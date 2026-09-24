@@ -2,9 +2,11 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// The landing page's public address is /welcome; landing.html is only the file
-// behind it. One rewrite for both the dev server and preview.
-const PRETTY = { '/welcome': '/landing.html' }
+// The landing page is the front door, so it is index.html and needs no rewrite.
+// The tool's public address is /app; app.html is only the file behind it. A host
+// serves a real file before it consults a rewrite, which is why the front door is
+// a filename and not a rule. One rewrite for the dev server and preview both.
+const PRETTY = { '/app': '/app.html' }
 const prettyUrls = {
   name: 'pretty-urls',
   configureServer(server) { server.middlewares.use(rewrite) },
@@ -12,7 +14,7 @@ const prettyUrls = {
 }
 function rewrite(req, _res, next) {
   const [path, query] = req.url.split('?')
-  const to = PRETTY[path.replace(/\/$/, '')]
+  const to = PRETTY[path.replace(/(.)\/$/, '$1')]
   if (to) req.url = query ? `${to}?${query}` : to
   next()
 }
@@ -23,7 +25,7 @@ export default defineConfig({
     rollupOptions: {
       // A second real page, not a route: the app has no router, and the
       // landing page must never load the header/tabs/command bar shell.
-      input: { main: 'index.html', landing: 'landing.html' },
+      input: { landing: 'index.html', app: 'app.html' },
     },
   },
   server: {

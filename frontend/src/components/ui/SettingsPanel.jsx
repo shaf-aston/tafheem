@@ -67,7 +67,7 @@ export default function SettingsPanel({ open, onClose }) {
         <SourceList />
 
         <a
-          href="/welcome"
+          href="/"
           target="_blank"
           rel="noreferrer noopener"
           className="block type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors"
