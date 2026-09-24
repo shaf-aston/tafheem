@@ -106,3 +106,12 @@ export function ayahProblem(surah, ayah) {
   if (ayah > surah.ayahs) return `${surah.en} has ${surah.ayahs} ayahs`
   return null
 }
+
+/** Every real place a line names (surah and an ayah that exists), closest first. */
+export function placesNamed(text) {
+  const { matches, ayah } = readSurahRef(text)
+  if (ayah === null) return []
+  return matches
+    .filter((m) => m.close < CLOSE.typo && !ayahProblem(m, ayah))
+    .map((m) => ({ surah: m, ayah, ref: `${m.n}:${ayah}` }))
+}

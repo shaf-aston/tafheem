@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import surahs from '../data/surahs.json'
-import { CLOSE, ayahProblem, readSurahRef, surahsNamed } from './surahRef'
+import { CLOSE, ayahProblem, placesNamed, readSurahRef, surahsNamed } from './surahRef'
 
 const top = (text) => readSurahRef(text).matches[0]
 
@@ -100,5 +100,14 @@ describe('ayahProblem', () => {
   it('names the limit when the ayah is past the end', () => {
     expect(ayahProblem(nisa, 177)).toBe('An-Nisa has 176 ayahs')
     expect(ayahProblem(nisa, 0)).toBe('Ayahs start at 1')
+  })
+})
+
+describe('placesNamed', () => {
+  it('names real places only', () => {
+    expect(placesNamed('Nisa 45')).toMatchObject([{ ref: '4:45', ayah: 45 }])
+    expect(placesNamed('nisa 999')).toEqual([])
+    expect(placesNamed('kahf')).toEqual([])
+    expect(placesNamed('patience')).toEqual([])
   })
 })

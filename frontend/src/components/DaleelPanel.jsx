@@ -10,13 +10,14 @@
  * question: narrowing re-asks the same question straight away rather than
  * leaving passages on screen from books the reader has just excluded.
  */
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
 import { findDaleel, getDaleelBooks } from '../api'
 import { smartError } from '../lib/apiError'
 import { isArabic, mostlyArabic } from '../lib/arabicText'
 import { plainEntry } from '../lib/laneEntry'
+import { placesNamed } from '../lib/surahRef'
 import { sourcesFor, useSources } from '../lib/useSources'
 import { useArrival, useHeld } from '../lib/useArrival'
 import { useHistory } from '../lib/useHistory'
@@ -116,6 +117,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
   const books = groupByBook(data?.hits ?? [], sourcesFor(sources, 'daleel'))
   const passageCount = data?.hits?.length ?? 0
   const bookCount = books.length
+  const places = useMemo(() => placesNamed(query), [query])
 
   return (
     <div className="space-y-5">
@@ -169,6 +171,18 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
           sourceLabel={(key) => sources.find((s) => s.key === key)?.label ?? key}
         />
       </div>
+
+      {/* "Nisa 45" names a place, not a phrase: offer the ayah itself, and keep
+          searching the books for the words as usual. */}
+      {onGo && places.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {places.map(({ surah, ayah, ref }) => (
+            <GoButton key={ref} onClick={() => onGo('quran', ref)} style={{ '--c': accent }}>
+              Open {surah.en} {ayah}
+            </GoButton>
+          ))}
+        </div>
+      )}
 
       {mutation.isError && (
         <ErrorAlert title="Search failed">

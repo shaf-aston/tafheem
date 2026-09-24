@@ -12,7 +12,7 @@
  */
 
 import { isArabic } from './arabicText'
-import { CLOSE, ayahProblem, readSurahRef } from './surahRef'
+import { placesNamed } from './surahRef'
 
 /** "2:255", with the Arabic comma allowed because a keyboard left in Arabic types it. */
 const AYAH = /^\s*(\d{1,3})\s*[:٬،,]\s*(\d{1,3})\s*$/
@@ -86,11 +86,9 @@ export function classify(query, tabs) {
   // "Nisa 45": a surah's name and an ayah. Only a name plus a number counts
   // here, and only a name spelled close to right, so ordinary words and tab
   // names are never mistaken for a place; a bare name is left to the tabs.
-  const named = readSurahRef(raw)
-  if (named.ayah !== null && !/^[\d@/]/.test(raw)) {
-    for (const m of named.matches.filter((x) => x.close < CLOSE.typo && !ayahProblem(x, named.ayah))) {
-      const ref = `${m.n}:${named.ayah}`
-      add(GROUPS.ayah, 'quran', ref, `${m.en} ${named.ayah}`, `${ref}, word by word, with the reason`)
+  if (!/^[\d@/]/.test(raw)) {
+    for (const { surah, ayah: n, ref } of placesNamed(raw)) {
+      add(GROUPS.ayah, 'quran', ref, `${surah.en} ${n}`, `${ref}, word by word, with the reason`)
     }
     if (rows.length) return rows
   }
