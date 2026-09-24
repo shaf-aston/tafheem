@@ -225,3 +225,6 @@ frontend/scripts/ears-report.txt
 
 # Vercel CLI working folder
 .vercel/
+
+# A 53MB program, fetched not written. tunnel/README.md says where from.
+tunnel/cloudflared.exe
