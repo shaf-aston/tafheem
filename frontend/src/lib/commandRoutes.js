@@ -12,6 +12,7 @@
  */
 
 import { isArabic } from './arabicText'
+import { CLOSE, ayahProblem, readSurahRef } from './surahRef'
 
 /** "2:255", with the Arabic comma allowed because a keyboard left in Arabic types it. */
 const AYAH = /^\s*(\d{1,3})\s*[:٬،,]\s*(\d{1,3})\s*$/
@@ -80,6 +81,18 @@ export function classify(query, tabs) {
     const ref = `${Number(ayah[1])}:${Number(ayah[2])}`
     add(GROUPS.ayah, 'quran', ref, ref, 'Word by word, with the reason')
     return rows
+  }
+
+  // "Nisa 45": a surah's name and an ayah. Only a name plus a number counts
+  // here, and only a name spelled close to right, so ordinary words and tab
+  // names are never mistaken for a place; a bare name is left to the tabs.
+  const named = readSurahRef(raw)
+  if (named.ayah !== null && !/^[\d@/]/.test(raw)) {
+    for (const m of named.matches.filter((x) => x.close < CLOSE.typo && !ayahProblem(x, named.ayah))) {
+      const ref = `${m.n}:${named.ayah}`
+      add(GROUPS.ayah, 'quran', ref, `${m.en} ${named.ayah}`, `${ref}, word by word, with the reason`)
+    }
+    if (rows.length) return rows
   }
 
   // "@" is the one prefix that means a thing rather than a place: look this

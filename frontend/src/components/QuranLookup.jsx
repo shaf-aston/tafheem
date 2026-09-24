@@ -26,6 +26,7 @@ import PrimaryButton from './ui/PrimaryButton'
 import RetryButton from './ui/RetryButton'
 import RootActions from './ui/RootActions'
 import SurahReader from './SurahReader'
+import SurahRefBox from './SurahRefBox'
 import MicButton from './ui/MicButton'
 import SectionHeader from './ui/SectionHeader'
 import SourceBadge from './ui/SourceBadge'
@@ -53,6 +54,9 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   const [surah, setSurah] = useState(arrived?.[1] ?? '')
   const [ayah, setAyah] = useState(arrived?.[2] ?? '')
   const [query, setQuery] = useState('')
+  // What is typed in the surah-and-ayah box, kept apart from the two number
+  // fields so half a name never overwrites a number already chosen.
+  const [typedRef, setTypedRef] = useState('')
   // The ayahs a recitation might have been. Kept apart from the typed search's
   // results because they are a different claim: a search found these words, a
   // recitation was guessed at twice over, once by the listening and once by the
@@ -178,6 +182,13 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
             openResult({ surah: Number(s), ayah: Number(a) })
           }}
           mono
+        />
+      )}
+
+      {mode === 'ref' && (
+        <SurahRefBox
+          value={typedRef} onChange={setTypedRef} busy={busy} accent={accent}
+          onOpen={(m, a) => (a === null ? readSurah(m.n) : openResult({ surah: m.n, ayah: a }))}
         />
       )}
 

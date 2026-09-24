@@ -102,3 +102,24 @@ describe('grouped', () => {
     expect(grouped(classify('qui', TABS)).map((block) => block.group)).toEqual([GROUPS.go, GROUPS.ask])
   })
 })
+
+describe('a surah named with an ayah', () => {
+  it('opens the ayah for "Nisa 45"', () => {
+    const [row] = classify('Nisa 45', TABS)
+    expect(row).toMatchObject({ group: GROUPS.ayah, tabId: 'quran', value: '4:45', label: 'An-Nisa 45' })
+  })
+
+  it('offers nothing when the ayah is past the end of that surah', () => {
+    expect(classify('nisa 177', TABS).some((r) => r.group === GROUPS.ayah)).toBe(false)
+  })
+
+  it('leaves a bare name and ordinary words to the tabs', () => {
+    expect(classify('nisa', TABS).some((r) => r.group === GROUPS.ayah)).toBe(false)
+    expect(classify('quiz 3', TABS).some((r) => r.group === GROUPS.ayah)).toBe(false)
+  })
+
+  it('does not steal a root lookup or a slash command', () => {
+    expect(classify('@نور 3', TABS).every((r) => r.group !== GROUPS.ayah)).toBe(true)
+    expect(classify('/nisa 4', TABS).every((r) => r.group !== GROUPS.ayah)).toBe(true)
+  })
+})
