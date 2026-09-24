@@ -1,0 +1,142 @@
+[
+  {
+    "page": 214,
+    "type": "مثال واوي",
+    "bab": "باب ضَرَبَ",
+    "root": "و ع د",
+    "sarf_sagheer": "وَعَدَ يَعِدُ وَعْدًا فَهُوَ وَاعِدٌ وَوُعِدَ يُوْعَدُ وَعْدًا فَهُوَ مَوْعُوْدٌ اَلْأَمْرُ مِنْهُ عِدْ وَالنَّهْيُ عَنْهُ لاَ تَعِدْ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": { "madi": "وَعَدَ", "mudari": "يَعِدُ", "madi-passive": "وُعِدَ", "mudari-passive": "يُوْعَدُ" },
+      "you (m)": { "amr": "عِدْ", "nahy": "لاَ تَعِدْ" }
+    },
+    "notes": "Heading: مثال واوي من باب ضَرَبَ ــ الْوَعْدُ وَالْعِدَةُ. The book prints this chapter as a running sarf sagheer line only: the هو form of each tense/voice plus the أمر and النهي (both 2nd person masc. sing.). No person-by-person table is printed anywhere in printed pages 214-220, so only the rows the book actually gives are filled. After the أمر/نهي the page runs a dense kashida-stretched list of derived nouns for this root (الظرف مَوْعِدٌ..., اسم الآلة مِيْعَدٌ/مِيْعَادٌ..., أفعل التفضيل أَوْعَدُ... and its مؤنث وُعْدَي...); several harakat in that run are not legible at this scan resolution and are deliberately not transcribed. Analysis: (1) مثال واوي verbs occur in every باب except باب نصر; (2) و of the معروف مضارع deleted, rule 1 (rule of يَعِدُ); (3) و of the مصدر deleted, rule 2 (rule of عِدَةٌ); (4) in الماضي المجهول the و may become همزة, rule 5 (rule of أُجُوْهٌ), so وُعِدَ may be read أُعِدَ. Continued on printed p215: broken plural of اسم الفاعل أَوَاعِدُ, و→همزة by rule 6 (rule of أَوَاصِلُ); اسم الآلة و→ي by rule 3 (rule of مِيْعَادٌ); و unchanged in the diminutive and in the broken plural of the diminutive of اسم الآلة.",
+    "rules_cited": [1, 2, 3, 5, 6]
+  },
+  {
+    "page": 216,
+    "type": "مثال يائي",
+    "bab": "باب ضَرَبَ",
+    "root": "ي س ر",
+    "sarf_sagheer": "يَسَرَ يَيْسِرُ مَيْسِرًا فَهُوَ يَاسِرٌ وَيُسِرَ يُوْسَرُ مَيْسِرًا فَهُوَ مَيْسُوْرٌ اَلْأَمْرُ مِنْهُ إِيْسِرْ وَالنَّهْيُ عَنْهُ لاَ تَيْسِرْ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": { "madi": "يَسَرَ", "mudari": "يَيْسِرُ", "madi-passive": "يُسِرَ", "mudari-passive": "يُوْسَرُ" },
+      "you (m)": { "amr": "إِيْسِرْ", "nahy": "لاَ تَيْسِرْ" }
+    },
+    "notes": "Heading: مثال يائي من باب ضَرَبَ ــ الْمَيْسِرُ. Analysis: the only change in this باب is in المضارع المجهول, where ي changed to و by rule 3 (rule of مُوْسِرٌ).",
+    "rules_cited": [3]
+  },
+  {
+    "page": 216,
+    "type": "مثال واوي",
+    "bab": "باب سَمِعَ",
+    "root": "و ج ل",
+    "sarf_sagheer": "وَجِلَ يَوْجَلُ وَجْلًا فَهُوَ وَاجِلٌ وَوُجِلَ يُوْجَلُ وَجْلًا فَهُوَ مَوْجُوْلٌ اَلْأَمْرُ مِنْهُ إِيْجَلْ وَالنَّهْيُ عَنْهُ لاَ تَوْجَلْ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": { "madi": "وَجِلَ", "mudari": "يَوْجَلُ", "madi-passive": "وُجِلَ", "mudari-passive": "يُوْجَلُ" },
+      "you (m)": { "amr": "إِيْجَلْ", "nahy": "لاَ تَوْجَلْ" }
+    },
+    "notes": "Heading: مثال واوي من باب سَمِعَ ــ الْوَجْلُ. The masdar printed in the line is وَجْلًا (sukoon on the ج), not وَجَلًا. Analysis (finishes on printed p217): (1) in the أمر حاضر the و changed to ي by rule 3 (rule of مِيْعَادٌ), and the same rule applies to the اسم الآلة مِيْجَلٌ / مِيْجَلَةٌ / مِيْجَالٌ; (2) in أَوَاجِلُ the و changed to همزة by rule 6 (rule of أَوَاصِلُ); (3) it is permissible to change the و to a همزة in وُجِلَ (الماضي المجهول, واحد مذكر غائب), giving أُجَِلَ, and in the broken plural of the اسم التفضيل مؤنث. No other change in this باب.",
+    "rules_cited": [3, 6]
+  },
+  {
+    "page": 217,
+    "type": "مثال واوي",
+    "bab": "باب سَمِعَ",
+    "root": "و س ع",
+    "sarf_sagheer": "وَسِعَ يَسَعُ وَسْعًا وَسَعَةً فَهُوَ وَاسِعٌ وَوُسِعَ يُوْسَعُ وَسْعًا وَسَعَةً فَهُوَ مَوْسُوْعٌ اَلْأَمْرُ مِنْهُ سَعْ وَالنَّهْيُ عَنْهُ لاَ تَسَعْ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": { "madi": "وَسِعَ", "mudari": "يَسَعُ", "madi-passive": "وُسِعَ", "mudari-passive": "يُوْسَعُ" },
+      "you (m)": { "amr": "سَعْ", "nahy": "لاَ تَسَعْ" }
+    },
+    "notes": "Heading: مثال واوي آخر من باب سَمِعَ ــ الْوَسْعُ وَالسَّعَةُ. Both masdars وَسْعًا وَسَعَةً are printed in the active and in the passive half of the line. Shares its Analysis paragraph with the وهب paradigm below it.",
+    "rules_cited": [1]
+  },
+  {
+    "page": 217,
+    "type": "مثال واوي",
+    "bab": "باب فَتَحَ",
+    "root": "و ه ب",
+    "sarf_sagheer": "وَهَبَ يَهَبُ هِبَةً فَهُوَ وَاهِبٌ وَوُهِبَ يُوْهَبُ هِبَةً فَهُوَ مَوْهُوْبٌ اَلْأَمْرُ مِنْهُ هَبْ وَالنَّهْيُ عَنْهُ لاَ تَهَبْ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": { "madi": "وَهَبَ", "mudari": "يَهَبُ", "madi-passive": "وُهِبَ", "mudari-passive": "يُوْهَبُ" },
+      "you (m)": { "amr": "هَبْ", "nahy": "لاَ تَهَبْ" }
+    },
+    "notes": "Heading: مثال واوي من باب فَتَحَ ــ الْهِبَةُ. Shared analysis for وسع and وهب: in both أبواب the و of the مضارع was deleted by rule 1 (rule of يَعِدُ); the changes in the other words are like those of وَعَدَ يَعِدُ.",
+    "rules_cited": [1]
+  },
+  {
+    "page": 218,
+    "type": "مثال واوي",
+    "bab": "باب حَسِبَ",
+    "root": "و م ق",
+    "sarf_sagheer": "وَمَقَ يَمِقُ وَمَقًا وَمِقَةً فَهُوَ وَامِقٌ وَوُمِقَ يُوْمَقُ وَمَقًا وَمِقَةً فَهُوَ مَوْمُوْقٌ اَلْأَمْرُ مِنْهُ مِقْ وَالنَّهْيُ عَنْهُ لاَ تَمِقْ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": { "madi": "وَمَقَ", "mudari": "يَمِقُ", "madi-passive": "وُمِقَ", "mudari-passive": "يُوْمَقُ" },
+      "you (m)": { "amr": "مِقْ", "nahy": "لاَ تَمِقْ" }
+    },
+    "notes": "Heading: مثال واوي من باب حَسِبَ ــ الْوَمَقُ وَالمِقَةُ. IMPORTANT: the printed ماضي is وَمَقَ, with a fatha on the م, verified on a 3x enlargement of the line. باب حَسِبَ is فَعِلَ يَفْعِلُ, so the expected form is وَمِقَ; the book as printed gives fatha. Recorded as printed, not corrected. Analysis: the changes in this باب are like those of وَعَدَ يَعِدُ.",
+    "rules_cited": []
+  },
+  {
+    "page": 218,
+    "type": "مثال واوي",
+    "bab": "باب إفتعال",
+    "root": "و ق د",
+    "sarf_sagheer": "إِتَّقَدَ يَتَّقِدُ إِتِّقَادًا فَهُوَ مُتَّقِدٌ وَأُتُّقِدَ يُتَّقَدُ إِتِّقَادًا فَهُوَ مُتَّقَدٌ اَلْأَمْرُ مِنْهُ إِتَّقِدْ وَالنَّهْيُ عَنْهُ لاَ تَتَّقِدْ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": { "madi": "إِتَّقَدَ", "mudari": "يَتَّقِدُ", "madi-passive": "أُتُّقِدَ", "mudari-passive": "يُتَّقَدُ" },
+      "you (m)": { "amr": "إِتَّقِدْ", "nahy": "لاَ تَتَّقِدْ" }
+    },
+    "notes": "Heading: مثال واوي من باب إفتعال ــ الْإِتِّقَادُ (Form VIII). Shares its Analysis paragraph with the إتسار paradigm below it.",
+    "rules_cited": [4]
+  },
+  {
+    "page": 218,
+    "type": "مثال يائي",
+    "bab": "باب إفتعال",
+    "root": "ي س ر",
+    "sarf_sagheer": "إِتَّسَرَ يَتَّسِرُ إِتِّسَارًا فَهُوَ مُتَّسِرٌ وَأُتُّسِرَ يُتَّسَرُ إِتِّسَارًا فَهُوَ مُتَّسَرٌ اَلْأَمْرُ مِنْهُ إِتَّسِرْ وَالنَّهْيُ عَنْهُ لاَ تَتَّسِرْ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": { "madi": "إِتَّسَرَ", "mudari": "يَتَّسِرُ", "madi-passive": "أُتُّسِرَ", "mudari-passive": "يُتَّسَرُ" },
+      "you (m)": { "amr": "إِتَّسِرْ", "nahy": "لاَ تَتَّسِرْ" }
+    },
+    "notes": "Heading: مثال يائي من باب إفتعال ــ الْإِتِّسَارُ (Form VIII). Analysis for both إفتعال paradigms: by rule 4 (rule of إِتَّقَدَ), the و and the ي changed into ت and were assimilated into the ت of the pattern.",
+    "rules_cited": [4]
+  },
+  {
+    "page": 219,
+    "type": "مثال واوي",
+    "bab": "باب إفعال",
+    "root": "و ق د",
+    "sarf_sagheer": "أَوْقَدَ يُوْقِدُ إِيْقَادًا فَهُوَ مُوْقِدٌ وَأُوْقِدَ يُوْقَدُ إِيْقَادًا فَهُوَ مُوْقَدٌ اَلْأَمْرُ مِنْهُ أَوْقِدْ وَالنَّهْيُ عَنْهُ لاَ تُوْقِدْ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": { "madi": "أَوْقَدَ", "mudari": "يُوْقِدُ", "madi-passive": "أُوْقِدَ", "mudari-passive": "يُوْقَدُ" },
+      "you (m)": { "amr": "أَوْقِدْ", "nahy": "لاَ تُوْقِدْ" }
+    },
+    "notes": "Heading: مثال واوي من باب إفعال ــ الْإِيْقَادُ (Form IV). Shares its Analysis paragraph with the إستيقاد paradigm below it.",
+    "rules_cited": [3]
+  },
+  {
+    "page": 219,
+    "type": "مثال واوي",
+    "bab": "باب إستفعال",
+    "root": "و ق د",
+    "sarf_sagheer": "إِسْتَوْقَدَ يَسْتَوْقِدُ إِسْتِيْقَادًا فَهُوَ مُسْتَوْقِدٌ وَأُسْتُوْقِدَ يُسْتَوْقَدُ إِسْتِيْقَادًا فَهُوَ مُسْتَوْقَدٌ اَلْأَمْرُ مِنْهُ إِسْتَوْقِدْ وَالنَّهْيُ عَنْهُ لاَ تَسْتَوْقِدْ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": { "madi": "إِسْتَوْقَدَ", "mudari": "يَسْتَوْقِدُ", "madi-passive": "أُسْتُوْقِدَ", "mudari-passive": "يُسْتَوْقَدُ" },
+      "you (m)": { "amr": "إِسْتَوْقِدْ", "nahy": "لاَ تَسْتَوْقِدْ" }
+    },
+    "notes": "Heading: مثال واوي من باب إستفعال ــ الْإِسْتِيْقَادُ (Form X). Analysis for both the إفعال and إستفعال paradigms: the و changed into ي by rule 3 (rule of مِيْعَادٌ). Printed page 220 holds no paradigm: it is Exercise 45(a), a list of verbs to conjugate (1 وَضَعَ, 2 يَتَمَ, 3 إِتَّسَمَ, 4 أَيْقَظَ, 5 إِسْتَيْقَظَ, 6 يَاسَرَ, 7 جَاوَبَ, 9 إِنْقَادَ, 10 وَحَّدَ; item 8 is missing from the printed list).",
+    "rules_cited": [3]
+  }
+]

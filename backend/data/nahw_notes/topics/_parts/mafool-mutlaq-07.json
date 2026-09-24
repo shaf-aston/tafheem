@@ -1,0 +1,379 @@
+{
+  "blocks": [
+    {
+      "id": "p07-1",
+      "kind": "heading",
+      "page": 7,
+      "ar": "Ex 10",
+      "en": "Ex 10"
+    },
+    {
+      "id": "p07-2",
+      "kind": "picture",
+      "page": 7,
+      "caption": "شجرة تركيب لجملة ضَرَبْتُ زَيْدًا مِثْلَ مَا ضَرَبْتُ بَكْرًا، وفوقها (ضَرْبًا) محذوفة مكتوبة داخل دائرة وعليها موصوف، وفي الزاوية (موصوف) صفة مع كلمة نوع",
+      "caption_en": "A tarkeeb tree over the sentence \"darabtu Zaydan mithla maa darabtu Bakran\", with the dropped (darban) circled above it marked mawsoof, and in the corner the pair (mawsoof) sifah with the word naw'"
+    },
+    {
+      "id": "p07-3",
+      "kind": "example",
+      "page": 7,
+      "ar": "ضَرَبْتُ زَيْدًا (ضَرْبًا) مِثْلَ مَا ضَرَبْتُ بَكْرًا",
+      "en": "I struck Zayd (a striking) like the striking with which I struck Bakr",
+      "labels": [
+        {
+          "word": "ضَرَبْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "ضَرْبًا",
+          "label": "موصوف"
+        },
+        {
+          "word": "مِثْلَ",
+          "label": "مضاف"
+        },
+        {
+          "word": "مَا",
+          "label": "مصدريه"
+        },
+        {
+          "word": "ضَرَبْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "بَكْرًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p07-4",
+      "kind": "rule",
+      "page": 7,
+      "ar": "مصدر: ضَرْب · فاعل: أنتَ",
+      "en": "Masdar: darb; faa'il: anta"
+    },
+    {
+      "id": "p07-5",
+      "kind": "rule",
+      "page": 7,
+      "ar": "مَا ضَرَبْتُ بَكْرًا: JFK · BTM: ضَرْبِكَ بَكْرًا، ضَرْبِ مضاف، كَ مضاف إليه، بَكْرًا مفعول به؛ والمجموع مضاف إليه لـ مِثْلَ، ثم الكل {{label|نائب عن (المفعول المطلق)}}، JFK",
+      "en": "\"maa darabtu Bakran\": JFK. BTM: \"darbika Bakran\", darbi is mudaaf, ka is mudaaf ilayhi, Bakran is maf'ool bihi; together they are mudaaf ilayhi to mithla, and the whole is {{label|standing in for the maf'ool mutlaq}}, JFK"
+    },
+    {
+      "id": "p07-6",
+      "kind": "example",
+      "page": 7,
+      "ar": "جَاءَ رَجُلٌ غَيْرُ زَيْدٍ / مِثْلُ زَيْدٍ",
+      "en": "A man other than Zayd / like Zayd came",
+      "labels": [
+        {
+          "word": "رَجُلٌ",
+          "label": "موصوف"
+        },
+        {
+          "word": "غَيْرُ",
+          "label": "صفة"
+        },
+        {
+          "word": "مِثْلُ",
+          "label": "صفة"
+        }
+      ]
+    },
+    {
+      "id": "p07-7",
+      "kind": "rule",
+      "page": 7,
+      "ar": "غَيْرُ / مِثْلُ: {{ruling|نَكِرَة}} Always",
+      "en": "ghayr / mithl: {{ruling|always indefinite}}"
+    },
+    {
+      "id": "p08-1",
+      "kind": "heading",
+      "page": 8,
+      "ar": "Ex 11 A",
+      "en": "Ex 11 A"
+    },
+    {
+      "id": "p08-2",
+      "kind": "picture",
+      "page": 8,
+      "caption": "شجرة تركيب لجملة ضَرَبْتُ زَيْدًا كَذَلِكَ (الضَّرْبِ) ضَرَبْتُ بَكْرًا، وفوقها (ضَرْبًا) داخل دائرة، وسهم يشير إلى ضَرَبْتُ زَيْدًا المظللة، وفي الزاوية (موصوف) صفة مع كلمة نوع",
+      "caption_en": "A tarkeeb tree over \"darabtu Zaydan ka-dhaalika (al-darbi) darabtu Bakran\", with (darban) circled above it, an arrow pointing to the highlighted \"darabtu Zaydan\", and in the corner the pair (mawsoof) sifah with the word naw'"
+    },
+    {
+      "id": "p08-3",
+      "kind": "example",
+      "page": 8,
+      "ar": "ضَرَبْتُ زَيْدًا (ضَرْبًا) كَذَلِكَ (الضَّرْبِ) ضَرَبْتُ بَكْرًا",
+      "en": "I struck Zayd (a striking) like that (striking), I struck Bakr",
+      "labels": [
+        {
+          "word": "ضَرَبْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "ضَرْبًا",
+          "label": "موصوف"
+        },
+        {
+          "word": "كَـ",
+          "label": "جار"
+        },
+        {
+          "word": "ذَلِكَ",
+          "label": "اسم الاشارة، مبدل منه"
+        },
+        {
+          "word": "الضَّرْبِ",
+          "label": "بدل"
+        },
+        {
+          "word": "ضَرَبْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "بَكْرًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p08-4",
+      "kind": "rule",
+      "page": 8,
+      "ar": "ضَرَبْتُ زَيْدًا: JFK · ذَلِكَ الضَّرْبِ: {{label|مجرور}}، ومع الجار {{term|ق}} (ثَابِتًا)، ثم {{label|صفة}}، ومع الموصوف {{label|مفعول مطلق}}، والكل JFK",
+      "en": "\"darabtu Zaydan\": JFK. dhaalika al-darbi: {{label|majroor}}; with the jaar, {{term|muta'alliq}} (thaabitan), then {{label|sifah}}; with the mawsoof, {{label|maf'ool mutlaq}}; all of it JFK"
+    },
+    {
+      "id": "p09-1",
+      "kind": "heading",
+      "page": 9,
+      "ar": "Ex 11 B",
+      "en": "Ex 11 B"
+    },
+    {
+      "id": "p09-2",
+      "kind": "picture",
+      "page": 9,
+      "caption": "شجرة تركيب لنفس الجملة ضَرَبْتُ زَيْدًا كَذَلِكَ (الضَّرْبِ) ضَرَبْتُ بَكْرًا، وسهم يشير إلى ضَرَبْتُ زَيْدًا، وفي الزاوية (موصوف) صفة مع كلمة نوع",
+      "caption_en": "A tarkeeb tree over the same sentence \"darabtu Zaydan ka-dhaalika (al-darbi) darabtu Bakran\", with an arrow pointing to \"darabtu Zaydan\", and in the corner the pair (mawsoof) sifah with the word naw'"
+    },
+    {
+      "id": "p09-3",
+      "kind": "example",
+      "page": 9,
+      "ar": "ضَرَبْتُ زَيْدًا كَذَلِكَ (الضَّرْبِ) ضَرَبْتُ بَكْرًا",
+      "en": "I struck Zayd like that (striking), I struck Bakr",
+      "labels": [
+        {
+          "word": "ضَرَبْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "كَـ",
+          "label": "بمعنى (مثل)، مضاف"
+        },
+        {
+          "word": "ذَلِكَ",
+          "label": "اسم الاشارة، مبدل منه"
+        },
+        {
+          "word": "الضَّرْبِ",
+          "label": "بدل"
+        },
+        {
+          "word": "ضَرَبْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "بَكْرًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p09-4",
+      "kind": "rule",
+      "page": 9,
+      "ar": "ضَرَبْتُ زَيْدًا: JFK · كَـ {{condition|بمعنى (مثل)}} مضاف، وذَلِكَ الضَّرْبِ {{label|مضاف إليه}}، والمجموع {{label|نائب عن (المفعول المطلق)}}، والكل JFK",
+      "en": "\"darabtu Zaydan\": JFK. ka {{condition|in the sense of \"mithl\"}} is mudaaf and dhaalika al-darbi is {{label|mudaaf ilayhi}}; together they are {{label|standing in for the maf'ool mutlaq}}, all of it JFK"
+    },
+    {
+      "id": "p10-1",
+      "kind": "heading",
+      "page": 10,
+      "ar": "Ex 12",
+      "en": "Ex 12"
+    },
+    {
+      "id": "p10-2",
+      "kind": "example",
+      "page": 10,
+      "ar": "ضَرَبْتُ زَيْدًا (ضَرْبًا) كَثِيرًا",
+      "en": "I struck Zayd (a striking) much",
+      "labels": [
+        {
+          "word": "ضَرَبْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "كَثِيرًا",
+          "label": "NAMM"
+        }
+      ]
+    },
+    {
+      "id": "p10-3",
+      "kind": "rule",
+      "page": 10,
+      "ar": "(موصوف) صفة، نوع · والجملة كلها JFK",
+      "en": "(mawsoof) sifah, naw'; the whole is JFK"
+    },
+    {
+      "id": "p10-4",
+      "kind": "heading",
+      "page": 10,
+      "ar": "Ex 13",
+      "en": "Ex 13"
+    },
+    {
+      "id": "p10-5",
+      "kind": "example",
+      "page": 10,
+      "ar": "ضَرَبْتُ زَيْدًا (ضَرْبًا) قَلِيلًا",
+      "en": "I struck Zayd (a striking) little",
+      "labels": [
+        {
+          "word": "ضَرَبْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "قَلِيلًا",
+          "label": "NAMM"
+        }
+      ]
+    },
+    {
+      "id": "p10-6",
+      "kind": "rule",
+      "page": 10,
+      "ar": "(موصوف) صفة، نوع · والجملة كلها JFK",
+      "en": "(mawsoof) sifah, naw'; the whole is JFK"
+    },
+    {
+      "id": "p11-1",
+      "kind": "rule",
+      "page": 11,
+      "ar": "Sometimes the {{term|governor}} of the {{term|مفعول مطلق}} is dropped.",
+      "en": "Sometimes the {{term|governor}} of the {{term|maf'ool mutlaq}} is dropped."
+    },
+    {
+      "id": "p11-2",
+      "kind": "example",
+      "page": 11,
+      "ar": "(رَح⟨?⟩بَتْ الأَرْضُ) مَرْحَبًا بِكُمْ / لَكُمْ",
+      "en": "(the earth was wide) a welcome to you / for you",
+      "labels": [
+        {
+          "word": "رَح⟨?⟩بَتْ",
+          "label": "فعل"
+        },
+        {
+          "word": "الأَرْضُ",
+          "label": "فاعل"
+        },
+        {
+          "word": "مَرْحَبًا",
+          "label": "مفعول مطلق"
+        },
+        {
+          "word": "بِكُمْ",
+          "label": "ق"
+        }
+      ]
+    },
+    {
+      "id": "p11-3",
+      "kind": "example",
+      "page": 11,
+      "ar": "(قَدِمْتَ قُدُومًا) خَيْرَ مَقْدَمٍ",
+      "en": "(you came a coming) the best of comings",
+      "labels": [
+        {
+          "word": "قَدِمْتَ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "قُدُومًا",
+          "label": "موصوف"
+        },
+        {
+          "word": "خَيْرَ",
+          "label": "مضاف، صفة"
+        },
+        {
+          "word": "مَقْدَمٍ",
+          "label": "مضاف إليه"
+        }
+      ]
+    },
+    {
+      "id": "p11-4",
+      "kind": "rule",
+      "page": 11,
+      "ar": "الموصوف مع صفته {{label|مفعول مطلق}}، والكل JFK",
+      "en": "The mawsoof with its sifah is the {{label|maf'ool mutlaq}}, and the whole is JFK"
+    },
+    {
+      "id": "p12-1",
+      "kind": "picture",
+      "page": 12,
+      "caption": "ثلاثة أمثلة مكتوبة بجانب مربع مظلل بالأخضر فارغ من الكتابة، والعامل في كل مثال داخل قوسين",
+      "caption_en": "Three examples written beside an empty box filled in green, the governor of each example written inside brackets"
+    },
+    {
+      "id": "p12-2",
+      "kind": "example",
+      "page": 12,
+      "ar": "(شَكَرْتُ) شُكْرًا لَكَ",
+      "en": "(I thanked) thanks be to you"
+    },
+    {
+      "id": "p12-3",
+      "kind": "example",
+      "page": 12,
+      "ar": "(سَقَاكَ اللهُ) سَقْيًا لَكَ",
+      "en": "(may Allah give you drink) a giving of drink to you"
+    },
+    {
+      "id": "p12-4",
+      "kind": "example",
+      "page": 12,
+      "ar": "(حَمِدْتُ) حَمْدًا لَكَ",
+      "en": "(I praised) praise be to you"
+    }
+  ]
+}

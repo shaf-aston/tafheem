@@ -1,0 +1,545 @@
+/* ── The command line ───────────────────────────────────────────────────────
+   Two surfaces, one look: the bar in the header and the orbit launcher behind
+   the pen. Every colour is a tab's own, handed in as --c by the component;
+   nothing here names a tab, and no size, timing or radius is written out.
+
+   Timings are theme.json's motion group, which holds plain numbers so that a
+   duration has to be built with `calc(... * 1ms)`. Written as a bare var it is
+   not a duration at all and the browser drops the whole line, which is how a
+   file full of transitions can animate nothing. Same idiom as index.css.
+
+   Reduced motion is handled once for the whole app in index.css (the wildcard
+   rule reaches this file's classes too, CSS has no file scope). */
+.cb {
+  position: relative;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.cb-field {
+  display: flex;
+  align-items: center;
+  /* The ghost is measured from this box's own left edge, so it has to hang off
+     this box and not off whatever happens to be around it. In the header the
+     two edges are the same line; in the launcher the orb is padded away from
+     it, and anchored any higher the completion sat a rem to the right of the
+     letters it is meant to continue. */
+  position: relative;
+  gap: 0.4rem;
+  width: var(--command-rest-w);
+  max-width: 100%;
+  /* The same height as the two buttons at either end of the row. */
+  height: var(--layout-control);
+  padding: 0 0.7rem;
+  border: 1px solid var(--border);
+  /* A box you type in, so it takes the radius every other text box in the app
+     takes, not the tighter one the square buttons beside it use. */
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  color: var(--text-faint);
+  transition:
+    width calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
+    border-color calc(var(--motion-base-ms) * 1ms) ease,
+    background-color calc(var(--motion-base-ms) * 1ms) ease,
+    box-shadow calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+.cb-field:hover { border-color: var(--border-hi); }
+
+/* Lit while it holds the cursor, in the tab's own colour. Hung on the box
+   itself rather than on the header's wrapper, so the same box lights the same
+   way inside the launcher, which has no wrapper. */
+.cb-field:focus-within {
+  border-color: var(--c, var(--primary));
+  background: var(--surface);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c, var(--primary)) 14%, transparent);
+}
+
+/* Grows in place. What it grows into is the empty middle of the header row, so
+   nothing beside it moves. Only the header does this: in the orb the box is
+   already as wide as it can be. */
+.cb[data-open] .cb-field { width: var(--command-open-w); }
+
+.cb-glass { flex-shrink: 0; }
+
+.cb-input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--type-body);
+  line-height: 1.4;
+}
+
+.cb-input::placeholder { color: var(--text-faint); }
+
+/* The app draws one focus ring on anything you can tab to, which is right
+   everywhere else and wrong here: the thing a reader sees is the box round the
+   input, not the bare input inside it, so the ring landed within the border as
+   a second rectangle with square corners inside a rounded one. Focus is still
+   shown, and shown on the right shape: the rule above lights the whole box in
+   the tab's colour and puts a halo round it the moment the cursor is in here.
+   Written with the field in the selector so it outranks the app-wide rule; the
+   plain `outline: none` above it never won. */
+.cb-field .cb-input:focus-visible { outline: none; }
+
+/* The completion, printed under the real box with the typed part in nothing, so
+   the grey rest begins exactly where the next letter would. It has to carry the
+   input's own font and size or the two would not line up. */
+.cb-ghost {
+  position: absolute;
+  left: calc(0.7rem + 14px + 0.4rem);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  white-space: pre;
+  overflow: hidden;
+  max-width: calc(100% - 2rem);
+  font-family: var(--font-ui);
+  font-size: var(--type-body);
+  line-height: 1.4;
+  color: var(--text-faint);
+}
+
+.cb-ghost-typed { color: transparent; }
+
+.cb-key {
+  flex-shrink: 0;
+  font-family: var(--font-ui);
+  font-size: var(--type-tiny);
+  letter-spacing: 0.04em;
+  padding: 0.1rem 0.3rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-faint);
+  transition: opacity calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+.cb[data-open] .cb-key { opacity: 0; }
+
+.cb-results {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  z-index: 60;
+  display: flex;
+  width: max(var(--command-open-w), 22rem);
+  max-width: 92vw;
+  max-height: var(--command-results-h);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-pop);
+  transform-origin: 100% 0;
+  animation: cb-drop calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease);
+}
+
+@keyframes cb-drop {
+  from { opacity: 0; transform: translateY(-0.4rem) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+/* The rail: the seven tabs as one letter each, in their own colours. A
+   shortcut, not a state, so nothing in it is ever "on" except the tab the
+   highlighted row would open. */
+.cb-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  padding: 0.35rem;
+  border-right: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  overflow-y: auto;
+}
+
+.cb-rail-chip {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: var(--command-rail-w);
+  height: var(--command-rail-w);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: color-mix(in srgb, var(--c) 55%, var(--text-faint));
+  background: color-mix(in srgb, var(--c) 8%, transparent);
+  transition:
+    background-color calc(var(--motion-instant-ms) * 1ms) ease,
+    color calc(var(--motion-instant-ms) * 1ms) ease,
+    border-color calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+.cb-rail-chip:hover,
+.cb-rail-chip:focus-visible,
+.cb-rail-chip[data-lit] {
+  color: var(--c);
+  border-color: color-mix(in srgb, var(--c) 45%, transparent);
+  background: color-mix(in srgb, var(--c) 18%, transparent);
+}
+
+.cb-rows {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 0.35rem 0.35rem 0.5rem;
+}
+
+.cb-group {
+  font-size: var(--type-tiny);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding: 0.5rem 0.5rem 0.3rem;
+}
+
+.cb-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.4rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: background-color calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+.cb-row[data-active] {
+  background: color-mix(in srgb, var(--c) 13%, transparent);
+}
+
+.cb-row-mark {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: var(--command-rail-w);
+  height: var(--command-rail-w);
+  border-radius: var(--radius-sm);
+  color: var(--c);
+  background: color-mix(in srgb, var(--c) 16%, transparent);
+}
+
+.cb-row-text {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+/* No font-size here on purpose: an English label is sized by the button, an
+   Arabic one by ArabicText's own rung, and setting one would fight the other. */
+.cb-row-label {
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.cb-row-hint {
+  color: var(--text-faint);
+  font-size: var(--type-small);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── The pen badge ──────────────────────────────────────────────────────────
+   What the title used to be. The pen is the app's mark and now also the way back
+   out to everything, so it is a control like any other: it wears .icon-button
+   for its square, its border and its radius, and adds only what is its own, a
+   surface behind the pen and the tab's colour on hover. */
+.pen-badge {
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+}
+
+.pen-badge:hover,
+.pen-badge:focus-visible {
+  border-color: var(--c, var(--primary));
+  background: color-mix(in srgb, var(--c, var(--primary)) 10%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c, var(--primary)) 12%, transparent);
+}
+
+/* ── The orbit launcher ─────────────────────────────────────────────────────
+   The seven tabs on a ring round the orb. The ring turns; each satellite turns
+   back by the same amount, so no label is ever upside down. The arrival is the
+   shared .dance in index.css: the satellites and the orb wear it, and this file
+   only says what --spread and --pop mean here. */
+.sh-dialog {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.sh-dialog::backdrop {
+  background: color-mix(in srgb, #000 62%, transparent);
+  backdrop-filter: blur(6px);
+  animation: sh-fade calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+@keyframes sh-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sh-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  height: 100%;
+  padding: 1.5rem;
+  /* A ring and a long answer list can together stand taller than a short
+     window. Scrolling the stage is what stops the list being squeezed to a
+     sliver against the bottom edge, which is what it did before. */
+  overflow-y: auto;
+}
+
+/* The ring and the answers, as one thing that can be moved.
+   Stacked on a narrow window, ring above and answers below, because two columns
+   of this width simply do not fit. Wide enough and they part: see the rule
+   further down. */
+.sh-pair {
+  --sh-panel-w: min(34rem, 92vw);
+  --sh-ring-w: calc(var(--command-orbit-r) * 2 + var(--command-sat-w));
+  --sh-split: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sh-split);
+  min-height: 0;
+}
+
+.sh-ring,
+.sh-panel {
+  /* Never squeezed by a stage shorter than they are; the stage scrolls instead. */
+  flex-shrink: 0;
+}
+
+.sh-panel { width: var(--sh-panel-w); }
+
+/* Wide enough for two columns: the ring and the answers stand in the same place
+   and are moved apart with transforms, rather than being laid out side by side.
+   Laid out, they would jump into position the moment a letter is typed and jump
+   again when the language changes. Moved, both slides are the browser animating
+   one property, and a reader who types English, clears it and types Arabic sees
+   the whole thing cross over rather than blink.
+   The distances are written from the same two widths the boxes themselves use,
+   so the pair cannot end up off-centre if either width is ever retuned. */
+@media (min-width: 70rem) {
+  .sh-pair {
+    display: grid;
+    place-items: center;
+    gap: 0;
+  }
+
+  .sh-ring,
+  .sh-panel {
+    grid-area: 1 / 1;
+    transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+  }
+
+  /* English runs left to right, so its answers open on the right. */
+  .sh-pair[data-side='ltr'] .sh-ring {
+    transform: translateX(calc((var(--sh-panel-w) + var(--sh-split)) / -2));
+  }
+
+  .sh-pair[data-side='ltr'] .sh-panel {
+    transform: translateX(calc((var(--sh-ring-w) + var(--sh-split)) / 2));
+  }
+
+  /* Including the strip of tab letters down the side of the answers: with the
+     panel on the left it belongs on the panel's right edge, nearest the ring,
+     which is where a reader coming out of an Arabic box looks first. Only the
+     strip is mirrored; a row keeps its Arabic word first and its English note
+     after, because that is how the row itself is written. */
+  .sh-pair[data-side='rtl'] .cb-results { flex-direction: row-reverse; }
+
+  .sh-pair[data-side='rtl'] .cb-rail {
+    border-right: 0;
+    border-left: 1px solid var(--border);
+  }
+
+  /* Arabic runs the other way, so everything is the other way round. */
+  .sh-pair[data-side='rtl'] .sh-ring {
+    transform: translateX(calc((var(--sh-panel-w) + var(--sh-split)) / 2));
+  }
+
+  .sh-pair[data-side='rtl'] .sh-panel {
+    transform: translateX(calc((var(--sh-ring-w) + var(--sh-split)) / -2));
+  }
+}
+
+.sh-orbit {
+  position: relative;
+  flex-shrink: 0;
+  width: calc(var(--command-orbit-r) * 2 + var(--command-sat-w));
+  height: calc(var(--command-orbit-r) * 2 + var(--command-sat-w));
+  transform: rotate(var(--turn));
+  transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+}
+
+/* The clock face. It turns once every hour and a half, slowly enough that it
+   reads as the thing being alive rather than as something happening. */
+.sh-track {
+  position: absolute;
+  inset: calc(var(--command-sat-w) / 2);
+  border: 1px dashed color-mix(in srgb, var(--border-hi) 70%, transparent);
+  border-radius: 50%;
+  animation:
+    sh-drift calc(90s * var(--motion-scale)) linear infinite,
+    sh-fade calc(var(--motion-spring-ms) * 2ms) ease backwards;
+}
+
+@keyframes sh-drift {
+  to { transform: rotate(360deg); }
+}
+
+.sh-sat {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--command-sat-w);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.6rem 0.4rem;
+  border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  /* Placed on the ring, then turned back twice: once out of its own angle so it
+     stands upright on the circle, once out of the ring's turn so spinning the
+     ring never tips it. Opening animates the distance and the size, so each one
+     flies out of the orb along its own spoke instead of fading in where it
+     already was. */
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--a))
+    translateY(calc(-1 * var(--command-orbit-r) * var(--spread)))
+    rotate(calc(-1 * var(--a)))
+    rotate(calc(-1 * var(--turn)))
+    scale(var(--pop));
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
+    opacity calc(var(--motion-base-ms) * 1ms) ease,
+    border-color calc(var(--motion-base-ms) * 1ms) ease,
+    box-shadow calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+/* Hover lights a satellite where it stands. It must never turn the ring: the
+   card would slide out from under the pointer, the next one would take its
+   place and hover itself, and the ring would chase the cursor forever. */
+.sh-sat:hover,
+.sh-sat:focus-visible {
+  border-color: var(--c);
+  background: color-mix(in srgb, var(--c) 10%, var(--surface));
+}
+
+.sh-sat[data-selected] {
+  border-color: var(--c);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 14%, transparent);
+  background: color-mix(in srgb, var(--c) 12%, var(--surface));
+}
+
+/* Ruled out by what was typed, not switched off: it is still a real button and
+   still says its own name, so it stays readable. At the quarter opacity it had
+   before, the label fell under every contrast floor while remaining clickable. */
+.sh-sat[data-dim] { opacity: var(--command-dim); }
+
+.sh-sat-mark {
+  display: grid;
+  place-items: center;
+  width: calc(var(--command-rail-w) * 0.85);
+  height: calc(var(--command-rail-w) * 0.85);
+  border-radius: 50%;
+  color: var(--c);
+  background: color-mix(in srgb, var(--c) 16%, transparent);
+}
+
+.sh-sat-label { color: var(--text); font-size: var(--type-body); }
+.sh-sat-arabic { color: var(--text-faint); }
+
+.sh-orb {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: calc(var(--command-orbit-r) * 1.15);
+  aspect-ratio: 1;
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, var(--c) 35%, var(--border));
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--c) 14%, transparent), transparent 70%),
+    var(--surface);
+  /* Wears .dance too, but sits at the centre, so it only grows: --spread is not
+     in its transform and the same arrival reads as a swell rather than a flight. */
+  transform: translate(-50%, -50%) rotate(calc(-1 * var(--turn))) scale(var(--pop));
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
+    border-color calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+/* The header's box, standing in the orb. All it has to be told is that it fills
+   the orb rather than keeping the header's resting width. Everything else, the
+   rounded edge, the glass, the grey completion, the lit border in the tab's
+   colour, it already is. */
+.sh-orb .cb-field {
+  width: 100%;
+  /* The orb is a circle a little over the width of the box, so a box the full
+     height of a header control would touch the curve at both ends. */
+  height: auto;
+  padding-block: 0.35rem;
+}
+
+/* Last to arrive: the ring is what the eye should follow first. */
+.sh-hint,
+.sh-stage .cb-results {
+  animation: sh-fade calc(var(--motion-spring-ms) * 2ms) ease backwards;
+  animation-delay: calc(var(--motion-spring-ms) * 1ms);
+}
+
+.sh-hint {
+  color: var(--text-faint);
+  font-size: var(--type-small);
+}
+
+.sh-hint kbd {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.05rem 0.3rem;
+  font-family: var(--font-ui);
+}
+
+.sh-hint-tab { color: var(--text); }
+
+/* The launcher's results sit in the flow beside or under the ring rather than
+   floating off a bar, so they get their own box back. The width is the panel's,
+   which is also what the slide distances are measured from. */
+.sh-stage .cb-results {
+  position: static;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* A phone cannot hold a ring this wide: the satellites would touch. Drawn
+   smaller rather than allowed to overlap. */
+@media (max-width: 40rem) {
+  .sh-orbit {
+    --command-orbit-r: 7.5rem;
+    --command-sat-w: 5.25rem;
+  }
+  .sh-sat-arabic { display: none; }
+}

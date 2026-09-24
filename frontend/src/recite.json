@@ -1,0 +1,62 @@
+{
+  "_comment": "Following someone as they recite. The rules that use these numbers are in lib/soundalike.js and lib/follow.js; this file is only what the numbers are. Nothing here decides which engine listens: that is backend config, because the key and the model live there.",
+
+  "_comment-orange": "Letters a microphone confuses with each other. Each line is one group, and any letter in a group counts as any other when deciding whether a word that came back wrong is a near miss rather than a mistake. This runs AFTER the spelling fold in arabicText.js, never instead of it: مَٰلِكِ and مالك are one word and must never reach this rule at all.",
+
+  "_comment-orange-why-wide": "The groups are wider than a phonetics book would draw them, on purpose. Getting this wrong in one direction shows orange, which says 'I cannot tell whether you slipped or I misheard'. Getting it wrong in the other direction shows red, which tells a reciter they made a mistake they did not make. The first is honest, the second is a lie, so the doubt is drawn wide.",
+
+  "_comment-orange-groups": "سصث the s sounds. تط and دضظذز the plain and emphatic pairs, which is where nearly every real confusion has been. قك the two k sounds. حهة the breath at the end of a word, where ة and ه are the same sound in pause. خغ. ءعئ the catch in the throat, dropped by every engine at some point. ؤو.",
+  "sound-alike-groups": ["سصث", "تط", "دضظذز", "قك", "حهة", "خغ", "ءعئ", "ؤو"],
+
+  "_comment-article": "The ال at the front of a word is dropped by every engine at some point: real recitation came back as رحمن for ٱلرَّحْمَٰنِ, on a Groq reading, simply because the sound was cut there. A reciter dropping it is far rarer than a microphone losing it, so the pair counts as a near miss rather than a mistake. Only when enough word is left without it: ٱللَّهِ without its ال is لله, which is a different word anyone might really say, so a word that short keeps its ال and is judged whole.",
+  "article-keeps-at-least": 3,
+
+  "_comment-costs": "What each way of being wrong costs when lining up what was heard against what is on the page. Only the sizes relative to each other matter, and each one is a claim about the reciter, so what it costs is how strong a claim it is. A near miss costs almost nothing, so doubt always wins over an accusation, which is rule 2 said in numbers. A word said that is not in the book is the strongest claim of the four and costs the most: it must cost more than reading the same sound as the word it stood in for (5 against 4), or the last word of an ayah said wrongly is reported as a word added and a word never reached. And one wrong word must cost less than a word lost plus a word gained (4 against 3+5), so it is read as one mistake and not as two.",
+  "costs": { "near": 1, "wrong": 4, "missed": 3, "extra": 5, "split": 1 },
+
+  "_cost-split": "What it costs to read two heard pieces as one word of the page. An engine cuts what it heard wherever the reciter paused, and a pause can land inside a word: العالمين came back as العالم then مين. That is the machine's doing and not the reciter's, so it must be readable as one word rather than as two mistakes. It is not free, so a word heard whole is still preferred, and it can only happen when the two pieces put together are the printed word, which is why so small a cost is safe.",
+
+  "_anchor-words": "How many words of the page must be heard before anything at all is marked. Nothing on this page is worth saying until the reciter is actually on it: with music playing in the room the engine returned موسيقى, and every one of those words was lined up against the page and shown as twelve mistakes by somebody who had not yet said a word. One word could be a coincidence, so two.",
+  "anchor-words": 2,
+
+  "_settle-words": "How many words must go past before a word may be marked. Nothing is marked as it is said, because what the engine heard changes as it hears more: a word alone comes back wrong and comes back right once the words after it are in. Three is what the reciter sees as 'a moment later' rather than 'it changed its mind'.",
+  "settle-words": 3,
+
+  "_window-s": "The longest a recording may run with no pause in it; a pause (pause-s) ends one sooner, and nearly always does. A cut on this clock lands mid-word and the word is lost from both recordings: at 10 seconds al-Fatihah 1:7, 14 seconds with no breath, lost الضالين every time. 25 keeps under the 30 seconds the ear reads at once. Shorter windows cut words in half, four seconds turned إياك نعبد into إيا كان عبوا.",
+  "window-s": 25,
+
+  "_pause-s": "A pause this long ends the recording early, so each one is a whole phrase and the next begins on a whole word. Measured with back-to-back ten-second windows and the strict ear: a perfect al-Fatihah showed 7 not said and 2 wrong, because a word cut at a window's edge is dropped as unsure and is never heard whole in any window. A reciter pauses at every ayah, so cutting there costs nothing. The meter sees about 0.7 seconds at a time, so this is on top of that.",
+  "pause-s": 0.4,
+
+  "_step-s": "The least time between two requests. Groq allows 20 requests a minute, which is one every three seconds, so three is the floor and asks-per-minute below is what keeps under the ceiling. It was four, which is what a word waited for before it could turn green: the ear answers in a quarter of a second and the page then sat idle for the rest of the four. It used to be the whole pacing, one number per ear, and the page always read the hosted one: the ear on this machine takes three to five seconds to answer, so a reading was asked for while the last was still going and the answer came back later than it needed to. Now this is only a floor, and how long the last reading actually took is what paces the rest, because only one reading is ever asked for at a time.",
+  "step-s": 3,
+
+  "_asks-per-minute": "How many readings may be asked for in any sixty seconds. Groq's free allowance is twenty, and going over it is not a slow answer but a refusal, which rests the fast ear for recitation_hosted_rest_s (sixty seconds) and drops the reciter onto the ear here: a whole minute of three-second waits to buy one second. The floor above alone does not keep under it, because the reading asked for at every pause does not wait for the floor: with a pause every few seconds the two together already came to about twenty-four a minute at step-s four. So both kinds of reading are counted here, and only the mid-phrase ones give way; the reading at a pause is never held back, because it is the one that settles the marks and dropping it lost two words of al-Fatihah for good. A reciter who pauses often spends the allowance on pauses and asks less in between, which is right: the pause readings are the better ones. Eighteen and not twenty because a pause reading can still land after the count is spent: the whole of al-Fatihah through the probe, which pauses at every ayah, asked twenty-one times in fifty-eight seconds at twenty, and eighteen leaves those two their room.",
+  "asks-per-minute": 18,
+
+  "_tick-s": "How often the recording hands over what it has, which is how soon after the ear is free the next reading can start. Not how often a request is sent: a request is sent when the ear has answered and this much sound has arrived since the last one was asked for. Small costs nothing, the pieces are simply joined, and it is what turns a fixed wait into 'as soon as it can'.",
+  "tick-s": 1,
+
+  "_levels": "How much the ear's sureness changes a mark, per checking level (the reciting-level setting). Sureness is how likely the ear finds the page word given the sound, 0 to 1. Below flag-below a word is red, even one the transcript found, because a wrong vowel keeps the same letters; a word the transcript missed is counted as said at or above pass-sure and is orange between; a word it found is orange below doubt-below. A word with no sureness (its recording did not place) is orange at worst, never red. Measured as the app shows it, forgiving a word's single worst piece (backend/scripts/sweep_sureness.py): on 390 marked recordings heard by Groq, of 830 words that were right beginner marks 3.0% red and standard 3.3%, and of 43 vowel slips it catches 40% and 58%. Needing the transcript to miss the word as well caught only 12% and 16%. With Groq down, the letters ear places them: on all 1,950 recordings 2.3% and 3.8% of right words red, 42% and 59% of vowel slips caught. A third, more forgiving level (red under 0.3) caught only 21% and was dropped as too lenient. Standard was then raised from 0.9 to 0.95 for stricter vowels: on 795 right words in clean recordings red went 2.1% to 2.9% and vowel slips caught 60% to 67% (letters ear: 3.8% to 4.7%, 59% to 66%). 0.97 caught 69% for 3.3%, 0.99 71% for 4.8%, and judging a word by its single worst piece caught 86% but marked 10-12% of right words red. Fewer false marks and more catches are the same dial. Tajweed is not judged by any level.",
+  "levels": {
+    "beginner": { "pass-sure": 0.9, "flag-below": 0.7, "doubt-below": 0 },
+    "standard": { "pass-sure": 0.95, "flag-below": 0.95, "doubt-below": 0.95 }
+  },
+
+  "_comment-silence": "How quiet counts as silence is not here: it is voice-level in dictation.json, already read by the microphone button, and one idea of 'nobody is speaking' is enough for the app. A window under it is never sent, because a silent one costs the engine on this machine up to seventeen seconds and returns nothing.",
+
+  "_check-timeout-s": "The longest a sureness check may take before it is given up on. Without one, a request that never answers left checkBusy stuck true forever and nothing after it in the queue was ever sent.",
+  "check-timeout-s": 20,
+
+  "_check-queue-max": "The most sureness checks held waiting to be sent. Past it the oldest not-yet-sent one is dropped to make room; the one already in flight is never touched.",
+  "check-queue-max": 8,
+
+  "_journal-flush-ms": "How often lib/journal.js sends whatever it is holding, if reciting has not already filled a batch.",
+  "journal-flush-ms": 2000,
+
+  "_journal-batch": "How many events lib/journal.js sends in one call, and the queue length that triggers an early flush rather than waiting for journal-flush-ms. The backend accepts up to 50 per call; well under that leaves room for a burst mid-flush.",
+  "journal-batch": 20,
+
+  "_journal-queue-max": "The most events lib/journal.js holds before it starts dropping the newest rather than growing without bound. A crash worth reading about is not a crash worth running out of memory for first.",
+  "journal-queue-max": 200
+}

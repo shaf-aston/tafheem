@@ -1,0 +1,660 @@
+{
+  "id": "mafool-bihi",
+  "title": "Al-maf'ool bihi",
+  "arabic": "المفعول به",
+  "tamreen": [],
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "heading",
+      "page": 0,
+      "ar": "المفعول به",
+      "en": "The object, the receiver of action."
+    },
+    {
+      "id": "p00-2",
+      "kind": "example",
+      "page": 0,
+      "ar": "ضَرَبَ زَيْدٌ بَكْرًا",
+      "en": "Zayd hit Bakr.",
+      "labels": [
+        {
+          "word": "ضَرَبَ",
+          "label": "فعل"
+        },
+        {
+          "word": "بَكْرًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p00-3",
+      "kind": "example",
+      "page": 0,
+      "ar": "زَيْدٌ ضارِبٌ بَكْرًا",
+      "en": "Zayd is hitting Bakr.",
+      "labels": [
+        {
+          "word": "ضارِبٌ",
+          "label": "شبه الفعل"
+        },
+        {
+          "word": "بَكْرًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p00-4",
+      "kind": "rule",
+      "page": 0,
+      "ar": "{{term|مفعول به}} {{ruling|منصوب}} {{term|فعل}} {{term|شبه الفعل}}",
+      "en": "The مفعول به is always {{ruling|منصوب}}. A {{term|فعل}} or a {{term|شبه الفعل}} will serve as its governor."
+    },
+    {
+      "id": "p00-5",
+      "kind": "rule",
+      "page": 0,
+      "ar": "مفعول به",
+      "en": "Sometimes, the {{term|governor}} of the مفعول به is {{ruling|dropped}} from the sentence."
+    },
+    {
+      "id": "p01-1",
+      "kind": "example",
+      "page": 1,
+      "ar": "(1) {{example|أهْلًا وَسَهْلًا}}",
+      "en": "A family and ease",
+      "labels": [
+        {
+          "word": "أهْلًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "سَهْلًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p01-2",
+      "kind": "example",
+      "page": 1,
+      "ar": "أَتَيْتَ أهْلًا وَ وَطِيْتَ سَهْلًا",
+      "en": "You have come to a family and you have treaded/come upon ease.",
+      "labels": [
+        {
+          "word": "أَتَيْتَ",
+          "label": "فعل"
+        },
+        {
+          "word": "أهْلًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "وَطِيْتَ",
+          "label": "فعل"
+        },
+        {
+          "word": "سَهْلًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p01-3",
+      "kind": "rule",
+      "page": 1,
+      "ar": "مفعول به",
+      "en": "Here, it is {{ruling|waajib}} to {{ruling|drop}} the governor of the مفعول به."
+    },
+    {
+      "id": "p02-1",
+      "kind": "example",
+      "page": 2,
+      "ar": "(2) {{example|يَا زَيْدُ}}",
+      "en": "O Zayd",
+      "labels": [
+        {
+          "word": "زَيْدُ",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p02-2",
+      "kind": "example",
+      "page": 2,
+      "ar": "أَدْعُوْ / أَطْلُبُ زَيْدًا",
+      "en": "I call / I seek Zayd",
+      "labels": [
+        {
+          "word": "أَدْعُوْ / أَطْلُبُ",
+          "label": "فعل"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p02-3",
+      "kind": "rule",
+      "page": 2,
+      "ar": "مفعول به، {{term|حرف النداء}}، منادى {{ruling|مبني على الضم}} و{{ruling|مَحَلًّا منصوب}}",
+      "en": "Here, it is also {{ruling|wajib to drop}} the governor of the مفعول به. The حرف النداء has {{ruling|substituted the verb}}. The منادى is مبني على الضم and مَحَلًّا منصوب."
+    },
+    {
+      "id": "p02-4",
+      "kind": "rule",
+      "page": 2,
+      "ar": "منادى مبني \"كَِ\" ({{term|ضمير منصوب متصل}})",
+      "en": "The reason for the منادى being مبني is that {{condition|it is in the place of \"كَِ\"}} (ضمير منصوب متصل)."
+    },
+    {
+      "id": "p03-1",
+      "kind": "list",
+      "page": 3,
+      "ar": "مبني⟨?⟩ \"كَِ\"",
+      "en": "This rule of being مبني only applies to words which {{condition|resemble \"كَِ\" in 3 ways}}:",
+      "items": [
+        "1. Being {{condition|alone, not a construction}}.",
+        "2. Being {{condition|معرفة}}.",
+        "3. Being {{condition|مخاطب}}"
+      ]
+    },
+    {
+      "id": "p03-2",
+      "kind": "rule",
+      "page": 3,
+      "ar": "{{example|يَا عبدَ اللّٰه}} مبني",
+      "en": "So, يَا عبدَ اللّٰه is {{ruling|not مبني}} because {{condition|it's not a word on its own, rather it is a construction}}."
+    },
+    {
+      "id": "p03-3",
+      "kind": "rule",
+      "page": 3,
+      "ar": "وَلَدٌ، {{example|يَا وَلَدًا}}، مبني، نكرة",
+      "en": "And, وَلَدٌ, in يَا وَلَدًا when intending any child, not a specific child is also {{ruling|not مبني}} because {{condition|it is نكرة}}."
+    },
+    {
+      "id": "p04-1",
+      "kind": "rule",
+      "page": 4,
+      "ar": "منادى مخاطب مبني",
+      "en": "All منادى are مخاطب, this resemblance is {{ruling|insufficient}}. The منادى must contain {{condition|all 3 resemblances}} to be مبني."
+    },
+    {
+      "id": "p04-2",
+      "kind": "list",
+      "page": 4,
+      "ar": "زيْدُ، {{example|يَا زَيْدُ}}، مبني",
+      "en": "Therefore زيْدُ in يَا زَيْدُ is {{ruling|مبني}} because it contains all 3.",
+      "items": [
+        "It's not a construction",
+        "It's {{condition|معرفة}}",
+        "It's {{condition|مخاطب}}."
+      ]
+    },
+    {
+      "id": "p04-3",
+      "kind": "rule",
+      "page": 4,
+      "ar": "{{ruling|مبني على الضم}} فتح كسر",
+      "en": "The reason why it's مبني على الضم and not upon فتح or كسر is because {{condition|the other 2 cause problems due to them being specific to other scenarios}}."
+    },
+    {
+      "id": "p05-1",
+      "kind": "example",
+      "page": 5,
+      "ar": "(3) {{example|كُلَّ شيْءٍ أحْصَيْنٰهُ كِتَابًا}}",
+      "en": "Everything We have recorded in a book.",
+      "labels": [
+        {
+          "word": "كُلَّ شيْءٍ",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p05-2",
+      "kind": "example",
+      "page": 5,
+      "ar": "أَحْصَيْنَا كُلَّ شيْءٍ أحْصَيْنٰهُ كِتَابًا",
+      "en": "We recorded everything, We have recorded it in a book.",
+      "labels": [
+        {
+          "word": "أَحْصَيْنَا",
+          "label": "فعل"
+        },
+        {
+          "word": "كُلَّ شيْءٍ",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p05-3",
+      "kind": "rule",
+      "page": 5,
+      "ar": "{{term|المنصوب على شريْطَةِ التفسير}}",
+      "en": "This concept is called المنصوب على شريْطَةِ التفسير."
+    },
+    {
+      "id": "p05-4",
+      "kind": "picture",
+      "page": 5,
+      "caption": "زَيْدًا ضَرَبْتُهُ: الهاء مفعول به، وزيدًا مفعول به مقدم ×. زَيْدًا ضَرَبْتُ = جملة، وزيدًا مفعول به مقدم. زَيْدٌ ضَرَبْتُهُ: زيد مبتدأ، ضربته جملة خبر، والهاء (رابط).",
+      "caption_en": "Three hand-drawn tarkeeb sketches: in زَيْدًا ضَرَبْتُهُ the ه is marked مفعول به and an arrow from زيدًا is labelled مفعول به مقدم with a cross; زَيْدًا ضَرَبْتُ is marked = جملة with زيدًا labelled مفعول به مقدم; in زَيْدٌ ضَرَبْتُهُ, زيد is labelled مبتدأ, ضربته is labelled جملة خبر, and its ه is labelled (رابط)."
+    },
+    {
+      "id": "p05-5",
+      "kind": "example",
+      "page": 5,
+      "ar": "زَيْدًا ضَرَبْتُهُ",
+      "en": "Zayd, I hit him.",
+      "labels": [
+        {
+          "word": "ضَرَبْتُهُ",
+          "label": "مفعول به"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "مفعول به مقدم ×"
+        }
+      ]
+    },
+    {
+      "id": "p05-6",
+      "kind": "example",
+      "page": 5,
+      "ar": "زَيْدًا ضَرَبْتُ",
+      "en": "Zayd I hit.",
+      "labels": [
+        {
+          "word": "زَيْدًا",
+          "label": "مفعول به مقدم"
+        },
+        {
+          "word": "زَيْدًا ضَرَبْتُ",
+          "label": "جملة"
+        }
+      ]
+    },
+    {
+      "id": "p05-7",
+      "kind": "example",
+      "page": 5,
+      "ar": "زَيْدٌ ضَرَبْتُهُ",
+      "en": "Zayd, I hit him.",
+      "labels": [
+        {
+          "word": "زَيْدٌ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "ضَرَبْتُهُ",
+          "label": "جملة خبر"
+        },
+        {
+          "word": "ضَرَبْتُهُ",
+          "label": "(رابط)"
+        }
+      ]
+    },
+    {
+      "id": "p06-1",
+      "kind": "example",
+      "page": 6,
+      "ar": "زَيْدًا ضَرَبْتُهُ",
+      "en": "A. Zayd, I hit him.",
+      "labels": []
+    },
+    {
+      "id": "p06-2",
+      "kind": "picture",
+      "page": 6,
+      "caption": "أ. تركيب «زَيْدًا ضَرَبْتُهُ» مكتوبا هكذا: (ضَرَبْتُ) زَيْدًا ضَرَبْتُهُ، تحت كل كلمة إعرابها، وتحت المجموعة اليمنى خط وتحتها «جملة»، وتحت «ضَرَبْتُهُ» خط وتحتها «جملة»",
+      "caption_en": "A. The tarkeeb of «زَيْدًا ضَرَبْتُهُ», written as (ضَرَبْتُ) زَيْدًا ضَرَبْتُهُ: each word has its label under it, the right-hand group is underlined and called a jumla, and ضَرَبْتُهُ is underlined and called a jumla."
+    },
+    {
+      "id": "p06-3",
+      "kind": "example",
+      "page": 6,
+      "ar": "(ضَرَبْتُ) زَيْدًا",
+      "en": "(I hit) Zayd",
+      "labels": [
+        {
+          "word": "(ضَرَبْتُ)",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p06-4",
+      "kind": "example",
+      "page": 6,
+      "ar": "ضَرَبْتُهُ",
+      "en": "I hit him",
+      "labels": [
+        {
+          "word": "ضَرَبْتُهُ",
+          "label": "فعل، فاعل، مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p06-5",
+      "kind": "example",
+      "page": 6,
+      "ar": "زَيْدًا مَرَرْتُ بِهِ",
+      "en": "B.1 Zayd, I passed by him.",
+      "labels": []
+    },
+    {
+      "id": "p06-6",
+      "kind": "picture",
+      "page": 6,
+      "caption": "ب.١ تركيب «زَيْدًا مَرَرْتُ بِهِ» مكتوبا هكذا: جَاوَزْتُ زَيْدًا مَرَرْتُ بِهِ، تحت كل كلمة إعرابها، وتحت كل مجموعة خط وتحته «جملة»، وسهم صاعد من تحت «بِهِ»",
+      "caption_en": "B.1 The tarkeeb of «زَيْدًا مَرَرْتُ بِهِ», written as جَاوَزْتُ زَيْدًا مَرَرْتُ بِهِ: each word has its label under it, each group is underlined and called a jumla, and an arrow runs up from under بِهِ."
+    },
+    {
+      "id": "p06-7",
+      "kind": "example",
+      "page": 6,
+      "ar": "جَاوَزْتُ زَيْدًا",
+      "en": "I went past Zayd",
+      "labels": [
+        {
+          "word": "جَاوَزْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p06-8",
+      "kind": "example",
+      "page": 6,
+      "ar": "مَرَرْتُ بِهِ",
+      "en": "I passed by him",
+      "labels": [
+        {
+          "word": "مَرَرْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "بِهِ",
+          "label": "⟨?⟩"
+        }
+      ]
+    },
+    {
+      "id": "p07-1",
+      "kind": "example",
+      "page": 7,
+      "ar": "قَلَمًا كَتَبْتُ بِهِ",
+      "en": "B.2 A pen, I wrote with it.",
+      "labels": []
+    },
+    {
+      "id": "p07-2",
+      "kind": "rule",
+      "page": 7,
+      "ar": "{{ruling|منصوب}} على {{term|شريطة التفسير}}",
+      "en": "{{ruling|Mansoob}} on {{term|the condition of explanation}}."
+    },
+    {
+      "id": "p07-3",
+      "kind": "picture",
+      "page": 7,
+      "caption": "ب.٢ كلمة «قَلَمًا» محاطة بمربع أحمر وبجانبها الملاحظة، ثم تركيبها مكتوبا هكذا: استخدمتُ قَلَمًا كَتَبْتُ بِهِ، تحت كل كلمة إعرابها، وتحت كل مجموعة خط وتحته «جملة»، وسهم صاعد من تحت «بِهِ»",
+      "caption_en": "B.2 The word قَلَمًا is boxed in red with the note beside it, then its tarkeeb is written as استخدمتُ قَلَمًا كَتَبْتُ بِهِ: each word has its label under it, each group is underlined and called a jumla, and an arrow runs up from under بِهِ."
+    },
+    {
+      "id": "p07-4",
+      "kind": "example",
+      "page": 7,
+      "ar": "استخدمتُ قَلَمًا",
+      "en": "I used a pen",
+      "labels": [
+        {
+          "word": "استخدمتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "قَلَمًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p07-5",
+      "kind": "example",
+      "page": 7,
+      "ar": "كَتَبْتُ بِهِ",
+      "en": "I wrote with it",
+      "labels": [
+        {
+          "word": "كَتَبْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "بِهِ",
+          "label": "⟨?⟩"
+        }
+      ]
+    },
+    {
+      "id": "p07-6",
+      "kind": "picture",
+      "page": 7,
+      "caption": "ج. جملة «زَيْدًا أكَلْتُ طَعَامَهُ» وقبلها بين قوسين (أفْرَحْتُ/أسْرَرْتُ)، وتحت «زَيْدًا» كُتِبَ بالحروف اللاتينية MAST، وتحت «طَعَامَهُ» علامتان ⟨?⟩ ⟨?⟩ ثم «مفعول به»، وتحت «أكَلْتُ طَعَامَهُ» خط وتحته «جملة»",
+      "caption_en": "C. The sentence زَيْدًا أكَلْتُ طَعَامَهُ preceded in brackets by (أفْرَحْتُ/أسْرَرْتُ); under زَيْدًا the Latin letters MAST are written, under طَعَامَهُ two marks ⟨?⟩ ⟨?⟩ then مفعول به, and أكَلْتُ طَعَامَهُ is underlined and called a jumla."
+    },
+    {
+      "id": "p07-7",
+      "kind": "example",
+      "page": 7,
+      "ar": "(أفْرَحْتُ/أسْرَرْتُ) زَيْدًا",
+      "en": "(I gladdened / I delighted) Zayd",
+      "labels": [
+        {
+          "word": "زَيْدًا",
+          "label": "MAST"
+        }
+      ]
+    },
+    {
+      "id": "p07-8",
+      "kind": "example",
+      "page": 7,
+      "ar": "أكَلْتُ طَعَامَهُ",
+      "en": "I ate his food",
+      "labels": [
+        {
+          "word": "أكَلْتُ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "طَعَامَهُ",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p08-1",
+      "kind": "heading",
+      "page": 8,
+      "ar": "{{term|التحذير}}",
+      "en": "{{term|Warning}}!"
+    },
+    {
+      "id": "p08-2",
+      "kind": "picture",
+      "page": 8,
+      "caption": "(١) تركيب «سَيَّارَةً سَيَّارَةً» بتقدير الفعل بين قوسين: (إحْذَرْ) سَيَّارَةً سَيَّارَةً؛ تحت «إحْذَرْ» «فعل» وتحتها «فاعل (أنتَ)» في دائرة، وتحت الكلمة الأولى خط وتحته «مؤكَّد»، وتحت الثانية خط وتحته «تأكيد»، ثم خط تحتهما معا وتحته «مفعول به»، وتحت ذلك «سَيَّارَةً» وتحتها خط وتحته «مفعول به»، ثم خط طويل تحت الكل وتحته «جملة»",
+      "caption_en": "(1) The tarkeeb of سَيَّارَةً سَيَّارَةً with the verb estimated in brackets: (إحْذَرْ) سَيَّارَةً سَيَّارَةً. Under إحْذَرْ is فعل and below it فاعل (أنتَ) in a circle; the first سَيَّارَةً is underlined as مؤكَّد, the second as تأكيد, a line under both is labelled مفعول به; below that سَيَّارَةً is underlined and labelled مفعول به; one long line under the whole thing is labelled jumla."
+    },
+    {
+      "id": "p08-3",
+      "kind": "example",
+      "page": 8,
+      "ar": "(إحْذَرْ) سَيَّارَةً سَيَّارَةً",
+      "en": "(Beware of) a car, a car",
+      "labels": [
+        {
+          "word": "(إحْذَرْ)",
+          "label": "فعل"
+        },
+        {
+          "word": "(أنتَ)",
+          "label": "فاعل"
+        },
+        {
+          "word": "سَيَّارَةً",
+          "label": "مؤكَّد"
+        },
+        {
+          "word": "سَيَّارَةً",
+          "label": "تأكيد"
+        },
+        {
+          "word": "سَيَّارَةً سَيَّارَةً",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p09-1",
+      "kind": "example",
+      "page": 9,
+      "ar": "(٢) إيَّاكَ وَ البِدْعَةَ",
+      "en": "(2) Beware of innovation.",
+      "labels": []
+    },
+    {
+      "id": "p09-2",
+      "kind": "example",
+      "page": 9,
+      "ar": "(إتَّقِ) نَفْسَكَ مِنَ البِدْعَةِ",
+      "en": "(Guard) yourself from innovation",
+      "labels": []
+    },
+    {
+      "id": "p09-3",
+      "kind": "example",
+      "page": 9,
+      "ar": "وَ",
+      "en": "and",
+      "labels": []
+    },
+    {
+      "id": "p09-4",
+      "kind": "example",
+      "page": 9,
+      "ar": "(بَاعدْ) البِدْعَةَ مِنْ نَفْسِكَ",
+      "en": "(Keep) innovation away from yourself",
+      "labels": []
+    },
+    {
+      "id": "p09-5",
+      "kind": "picture",
+      "page": 9,
+      "caption": "سطر العمل في أسفل الصفحة: «إتَّقِ» ثم خط فوقه علامة ✗ ثم «لَكَ» وتحتها علامة ⟨?⟩، ثم سهم إلى «إتَّقِ» مشطوبة و«لَكَ = إيَّاكَ»؛ ومن تحت «لَكَ» قوس إلى سطرين: «✗ ضمير مجرور منفصل» و«⟨?⟩ منصوب متصل»",
+      "caption_en": "The working line at the foot of the page: إتَّقِ, then a line with ✗ over it, then لَكَ with a mark ⟨?⟩ under it; then an arrow to إتَّقِ crossed out and لَكَ = إيَّاكَ; from under لَكَ a brace runs to two lines: ✗ ضمير مجرور منفصل and ⟨?⟩ منصوب متصل."
+    },
+    {
+      "id": "p09-6",
+      "kind": "example",
+      "page": 9,
+      "ar": "إتَّقِ ✗ لَكَ ← إتَّقِ لَكَ = إيَّاكَ",
+      "en": "إتَّقِ ✗ لَكَ → إتَّقِ (crossed out) لَكَ = إيَّاكَ",
+      "labels": [
+        {
+          "word": "لَكَ",
+          "label": "⟨?⟩"
+        },
+        {
+          "word": "لَكَ",
+          "label": "✗ ضمير مجرور منفصل"
+        },
+        {
+          "word": "لَكَ",
+          "label": "⟨?⟩ منصوب متصل"
+        }
+      ]
+    },
+    {
+      "id": "p10-1",
+      "kind": "picture",
+      "page": 10,
+      "caption": "أربعة أسطر، كل سطر فيه مثال وسهم إلى إعراب الضمير: «إتقِ نَفْسَكَ» ← ضمير مجرور متصل؛ «إتق نفس (مشطوبة) لَكَ» ← ضمير مجرور متصل، ومنه سهم منحن إلى «ضمير مجرور منفصل»؛ «إتَّقِكَ» ← ضمير منصوب متصل؛ «إتَّقِكَ (مشطوبة) إيَّاكَ» ← ضمير منصوب منفصل",
+      "caption_en": "Four lines, each with an example and an arrow to the pronoun's label: إتقِ نَفْسَكَ → attached majroor pronoun; إتق نفس (crossed out) لَكَ → attached majroor pronoun, with a curved arrow from it to detached majroor pronoun; إتَّقِكَ → attached mansoob pronoun; إتَّقِكَ (crossed out) إيَّاكَ → detached mansoob pronoun."
+    },
+    {
+      "id": "p10-2",
+      "kind": "example",
+      "page": 10,
+      "ar": "إتقِ نَفْسَكَ",
+      "en": "Guard yourself",
+      "labels": [
+        {
+          "word": "نَفْسَكَ",
+          "label": "ضمير مجرور متصل"
+        }
+      ]
+    },
+    {
+      "id": "p10-3",
+      "kind": "example",
+      "page": 10,
+      "ar": "إتق نفس لَكَ",
+      "en": "Guard yourself, with نفس crossed out and لَكَ put in its place",
+      "labels": [
+        {
+          "word": "لَكَ",
+          "label": "ضمير مجرور متصل"
+        },
+        {
+          "word": "لَكَ",
+          "label": "ضمير مجرور منفصل"
+        }
+      ]
+    },
+    {
+      "id": "p10-4",
+      "kind": "example",
+      "page": 10,
+      "ar": "إتَّقِكَ",
+      "en": "Guard you",
+      "labels": [
+        {
+          "word": "إتَّقِكَ",
+          "label": "ضمير منصوب متصل"
+        }
+      ]
+    },
+    {
+      "id": "p10-5",
+      "kind": "example",
+      "page": 10,
+      "ar": "إتَّقِكَ إيَّاكَ",
+      "en": "إتَّقِكَ crossed out, إيَّاكَ put in its place",
+      "labels": [
+        {
+          "word": "إيَّاكَ",
+          "label": "ضمير منصوب منفصل"
+        }
+      ]
+    }
+  ]
+}

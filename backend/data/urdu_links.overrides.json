@@ -1,0 +1,13 @@
+{
+  "_about": "Which candidates in urdu_links.json a person who reads Urdu has checked. The build never writes this file and never overrules it. Anything not listed here is shown to nobody, which is why the lists start almost empty: build_urdu_links.py compares two English glosses and is wrong often, so its 563 false-friend and 335 cognate candidates are a reading list, not findings.",
+
+  "_how": "Add the Arabic spelling exactly as urdu_links.json writes it. Either \"مَكَان\", which uses Wiktionary's own English wording for the Urdu sense, or {\"ar\": \"مَكَان\", \"sense\": \"گھر\"} to write that sense in Urdu yourself, which is better: there is no free Urdu-language dictionary to download, so without you the note is an English phrase inside an Urdu sentence. Re-run export_quiz_words.py after editing.",
+
+  "_seeded": "مَكَان is the machine's own example, left in so the note can be seen working. Check it or remove it. Nothing else has been checked by anyone.",
+
+  "false-friend": [
+    { "ar": "مَكَان", "sense": "گھر" }
+  ],
+
+  "cognate": []
+}

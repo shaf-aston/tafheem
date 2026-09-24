@@ -1,0 +1,47 @@
+{
+  "_about": [
+    "Real people reciting, with their mistakes marked by a person. The proof that",
+    "the recitation checker catches a slip and passes a right word, rather than a",
+    "claim tested on professional reciters only.",
+    "Fetched into downloads/ by backend/scripts/fetch_recitation_checks.py, scored by",
+    "backend/scripts/score_recitation_checker.py. Nothing here is used by the app."
+  ],
+  "sets": [
+    {
+      "id": "recitation-errors",
+      "repo": "sobolev210/quran-recitation-errors",
+      "url": "https://huggingface.co/datasets/sobolev210/quran-recitation-errors",
+      "license": "MIT",
+      "what": "About a thousand single-ayah clips; a reviewer names each wrong word as Wording, Tashkeel or Tajweed. Hafs and Qaloon."
+    },
+    {
+      "id": "ikhlas",
+      "repo": "MuazAhmad7/Surah_Ikhlas-Labeled_Dataset",
+      "url": "https://huggingface.co/datasets/MuazAhmad7/Surah_Ikhlas-Labeled_Dataset",
+      "license": "CC-BY-4.0",
+      "what": "1,506 clips of al-Ikhlas, one ayah each, marked correct or error, with the error's type and place."
+    }
+  ],
+  "text": {
+    "id": "imlaei",
+    "url": "https://api.quran.com/api/v4/quran/verses/imlaei",
+    "what": "Every ayah in plain vowelled spelling, the spelling the Qur'an model writes. The app's Uthmani text scores right words as wrong. Written to backend/data/quran/imlaei.json, where the app reads it to check reciting by sound."
+  },
+  "benchmark": {
+    "id": "everyayah",
+    "url": "https://everyayah.com/data/",
+    "what": "150 mid-surah ayahs read by seven reciters, 1,050 recordings and 9,926 words, the widest check of how well each ear hears. The correct words are the Qur'an's own imlaei text, so nothing needs marking by hand. Free to download, no account. Run by frontend/scripts/ears.test.js, which keeps every reading in ears-heard.json so re-marking is free; the table is frontend/scripts/ears-report.txt.",
+    "reciters": [
+      "Alafasy_64kbps",
+      "Husary_64kbps",
+      "Minshawy_Murattal_128kbps",
+      "Abdul_Basit_Murattal_64kbps",
+      "Abdurrahmaan_As-Sudais_64kbps",
+      "Ghamadi_40kbps",
+      "Hudhaify_64kbps"
+    ]
+  },
+  "letters": {
+    "what": "Which letters each ear mishears, from readings already saved, by backend/scripts/letters_missed.py into letters-report.txt. Costs nothing: no recording is opened and no model is loaded."
+  }
+}

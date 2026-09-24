@@ -1,0 +1,138 @@
+[
+  {
+    "page": 291,
+    "type": "مضاعف",
+    "bab": "باب نصر",
+    "root": "م د د",
+    "sarf_sagheer": "مَدَّ يَمُدُّ مَدًّا فهو مَادٌّ وَ مُدَّ يُمَدُّ مَدًّا فهو مَمْدُوْدٌ الامر منه مُدَّ مُدِّ مُدُّ أُمْدُدْ والنهي عنه لاَ تَمُدَّ لاَ تَمُدِّ لاَ تَمُدُّ لاَ تَمْدُدْ الظرف منه مَمَدٌّ مَمَدَّانِ مَمَادُّ والآلة منه مِمَدٌّ مِمَدَّانِ مَمَادُّ مِمَدَّةٌ مِمَدَّتَانِ مَمَادُّ مِمْدَادٌ مِمْدَادَانِ مَمَادِيْدُ وأفعل التفضيل منه أَمَدُّ أَمَدَّانِ أَمَدُّوْنَ و أَمَادُّ والمؤنث منه مُدَّى مُدَّيَانِ مُدَدٌ و مُدَّيَاتٌ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": {"madi": "مَدَّ", "mudari": "يَمُدُّ", "amr": "لِيَمُدَّ", "nahy": "لاَ يَمُدَّ", "madi-passive": "مُدَّ", "mudari-passive": "يُمَدُّ"},
+      "they two (m)": {"madi": "مَدَّا", "mudari": "يَمُدَّانِ", "amr": "لِيَمُدَّا", "nahy": "لاَ يَمُدَّا", "madi-passive": "مُدَّا", "mudari-passive": "يُمَدَّانِ"},
+      "they (m)": {"madi": "مَدُّوْا", "mudari": "يَمُدُّوْنَ", "amr": "لِيَمُدُّوْ", "nahy": "لاَ يَمُدُّوْ", "madi-passive": "مُدُّوْا", "mudari-passive": "يُمَدُّوْنَ"},
+      "she": {"madi": "مَدَّتْ", "mudari": "تَمُدُّ", "amr": "لِتَمُدَّ", "nahy": "لاَ تَمُدَّ", "madi-passive": "مُدَّتْ", "mudari-passive": "تُمَدُّ"},
+      "they two (f)": {"madi": "مَدَّتَا", "mudari": "تَمُدَّانِ", "amr": "لِتَمُدَّا", "nahy": "لاَ تَمُدَّا", "madi-passive": "مُدَّتَا", "mudari-passive": "تُمَدَّانِ"},
+      "they (f)": {"madi": "مَدَدْنَ", "mudari": "يَمْدُدْنَ", "amr": "لِيَمْدُدْنَ", "nahy": "لاَ يَمْدُدْنَ", "madi-passive": "مُدِدْنَ", "mudari-passive": "يُمْدَدْنَ"},
+      "you (m)": {"madi": "مَدَدْتَ", "mudari": "تَمُدُّ", "amr": "مُدَّ", "nahy": "لاَ تَمُدَّ", "madi-passive": "مُدِدْتَ", "mudari-passive": "تُمَدُّ"},
+      "you two (m)": {"madi": "مَدَدْتُمَا", "mudari": "تَمُدَّانِ", "amr": "مُدَّا", "nahy": "لاَ تَمُدَّا", "madi-passive": "مُدِدْتُمَا", "mudari-passive": "تُمَدَّانِ"},
+      "you all (m)": {"madi": "مَدَدْتُمْ", "mudari": "تَمُدُّوْنَ", "amr": "مُدُّوْ", "nahy": "لاَ تَمُدُّوْ", "madi-passive": "مُدِدْتُمْ", "mudari-passive": "تُمَدُّوْنَ"},
+      "you (f)": {"madi": "مَدَدْتِ", "mudari": "تَمُدِّيْنَ", "amr": "مُدِّيْ", "nahy": "لاَ تَمُدِّيْ", "madi-passive": "مُدِدْتِ", "mudari-passive": "تُمَدِّيْنَ"},
+      "you two (f)": {"madi": "مَدَدْتُمَا", "mudari": "تَمُدَّانِ", "amr": "مُدَّا", "nahy": "لاَ تَمُدَّا", "madi-passive": "مُدِدْتُمَا", "mudari-passive": "تُمَدَّانِ"},
+      "you all (f)": {"madi": "مَدَدْتُنَّ", "mudari": "تَمْدُدْنَ", "amr": "أُمْدُدْنَ", "nahy": "لاَ تَمْدُدْنَ", "madi-passive": "مُدِدْتُنَّ", "mudari-passive": "تُمْدَدْنَ"},
+      "I": {"madi": "مَدَدْتُ", "mudari": "أَمُدُّ", "amr": "لِأَمُدَّ", "nahy": "لاَ أَمُدَّ", "madi-passive": "مُدِدْتُ", "mudari-passive": "أُمَدُّ"},
+      "we": {"madi": "مَدَدْنَا", "mudari": "نَمُدُّ", "amr": "لِنَمُدَّ", "nahy": "لاَ نَمُدَّ", "madi-passive": "مُدِدْنَا", "mudari-passive": "نُمَدُّ"}
+    },
+    "notes": "One paradigm spread over printed pages 291-296. p291 prints the sarf sagheer line and a four-point Analysis; p292 the ماضي/مضارع (معروف and مجهول) table plus a تأكيد النفي مع لن pair of columns (e.g. he: لَنْ يَمُدَّ / لَنْ يُمَدَّ); p293 the النفي مع لم columns (لَمْ يَمُدَّ / لَمْ يُمَدَّ) and the مضارع with the heavy nun (لَيَمُدَّنَّ / لَيُمَدَّنَّ), with the light-nun lists at the foot; p294 الأمر (معروف, مجهول, and both with the heavy nun); p295 النهي in the same four shapes; p296 the derived nouns. Only the six requested columns are recorded above. The book prints the أمر and النهي for all fourteen persons, using lam al-amr for the third and first persons. The passive أمر column on p294 reads: لِيُمَدَّ، لِيُمَدَّا، لِيُمَدُّوْ، لِتُمَدَّ، لِتُمَدَّا، لِيُمْدَدْنَ، لِتُمَدَّ، لِتُمَدَّا، لِتُمَدُّوْ، لِتُمَدِّيْ، لِتُمَدَّا، لِتُمْدَدْنَ، لِأُمَدَّ، لِنُمَدَّ. The passive النهي on p295: لاَ يُمَدَّ، لاَ يُمَدَّا، لاَ يُمَدُّوْ، لاَ تُمَدَّ، لاَ تُمَدَّا، لاَ يُمْدَدْنَ، لاَ تُمَدَّ، لاَ تُمَدَّا، لاَ تُمَدُّوْ، لاَ تُمَدِّيْ، لاَ تُمَدَّا، لاَ تُمْدَدْنَ، لاَ أُمَدَّ، لاَ نُمَدَّ. Note the book writes the waw of the masculine plural without the silent alif in every jussive/mansub shape (مُدُّوْ، لاَ تَمُدُّوْ), keeping the alif only in the ماضي (مَدُّوْا). p296 derived nouns: اسم الفاعل مَادٌّ، مَادَّانِ، مَادُّوْنَ، مَادَّةٌ، مَادَّتَانِ، مَادَّاتٌ; اسم المفعول مَمْدُوْدٌ، مَمْدُوْدَانِ، مَمْدُوْدُوْنَ، مَمْدُوْدَةٌ، مَمْدُوْدَتَانِ، مَمْدُوْدَاتٌ; اسم الظرف مَمَدٌّ، مَمَدَّانِ، مَمَادُّ (feminine cells left blank); اسم الآلة مِمَدٌّ، مِمَدَّانِ، مَمَادُّ، مِمَدَّةٌ، مِمَدَّتَانِ، مَمَادُّ، and then مِمْدَادٌ، مِمْدَادَانِ، مَمَادِيْدُ. p296's Analysis adds: from مَدَدْنَ onward no إدغام of the first د because the second radical is ساكن; from مَدَدْتَ onward إدغام applies because د and ت are قريب المخرج; rule 5 applied to لَمْ يَمُدَّ.",
+    "rules_cited": [2, 3, 4, 5]
+  },
+  {
+    "page": 298,
+    "type": "مضاعف",
+    "bab": "باب ضرب",
+    "root": "ف ر ر",
+    "sarf_sagheer": "فَرَّ يَفِرُّ فِرَارًا فهو فَارٌّ الامر منه فِرَّ فِرِّ إِفْرِرْ والنهي عنه لاَ تَفِرَّ لاَ تَفِرِّ لاَ تَفْرِرْ الظرف منه مَفِرٌّ",
+    "columns": [],
+    "rows": {},
+    "notes": "Sarf sagheer line only; the book prints no person-by-person table for this باب.",
+    "rules_cited": []
+  },
+  {
+    "page": 298,
+    "type": "مضاعف",
+    "bab": "باب سمع",
+    "root": "م س س",
+    "sarf_sagheer": "مَسَّ يَمَسُّ مَسًّا فهو مَاسٌّ و مُسَّ يُمَسُّ مَسًّا فهو مَمْسُوسٌ الامر منه مَسَّ مَسِّ إِمْسَسْ والنهي عنه لاَ تَمَسَّ لاَ تَمَسِّ لاَ تَمْسَسْ الظرف منه مَمَسٌّ",
+    "columns": [],
+    "rows": {},
+    "notes": "Sarf sagheer line only; no table printed. مَمْسُوسٌ is printed without a sukun on the waw.",
+    "rules_cited": []
+  },
+  {
+    "page": 298,
+    "type": "مضاعف",
+    "bab": "باب إفتعال",
+    "root": "ض ر ر",
+    "sarf_sagheer": "إِضْطَرَّ يَضْطَرُّ إِضْطِرَارًا فهو مُضْطَرٌّ و أُضْطُرَّ يُضْطَرُّ إِضْطِرَارًا فهو مُضْطَرٌّ الامر منه إِضْطَرَّ إِضْطَرِّ إِضْطَرِرْ والنهي عنه لاَ تَضْطَرَّ لاَ تَضْطَرِّ لاَ تَضْطَرِرْ الظرف منه مُضْطَرٌّ",
+    "columns": [],
+    "rows": {},
+    "notes": "Sarf sagheer line only. The page adds in English that in this باب the اسم, اسم الفاعل, اسم المفعول and اسم الظرف have become similar in form, but the original of the اسم الفاعل was مكسور العين while the اسم المفعول and اسم الظرف were مفتوح العين.",
+    "rules_cited": []
+  },
+  {
+    "page": 299,
+    "type": "مضاعف",
+    "bab": "باب إنفعال",
+    "root": "س د د",
+    "sarf_sagheer": "إِنْسَدَّ يَنْسَدُّ إِنْسِدَادًا فهو مُنْسَدٌّ الامر منه إِنْسَدَّ إِنْسَدِّ إِنْسَدِدْ والنهي عنه لاَ تَنْسَدَّ لاَ تَنْسَدِّ لاَ تَنْسَدِدْ الظرف منه مُنْسَدٌّ",
+    "columns": [],
+    "rows": {},
+    "notes": "Sarf sagheer line only; no table printed.",
+    "rules_cited": []
+  },
+  {
+    "page": 299,
+    "type": "مضاعف",
+    "bab": "باب إستفعال",
+    "root": "ق ر ر",
+    "sarf_sagheer": "إِسْتَقَرَّ يَسْتَقِرُّ إِسْتِقْرَارًا فهو مُسْتَقِرٌّ الامر منه إِسْتَقَرَّ إِسْتَقِرِّ إِسْتَقْرِرْ والنهي عنه لاَ تَسْتَقَرَّ لاَ تَسْتَقِرِّ لاَ تَسْتَقْرِرْ الظرف منه مُسْتَقَرٌّ",
+    "columns": [],
+    "rows": {},
+    "notes": "Sarf sagheer line only; no table printed.",
+    "rules_cited": []
+  },
+  {
+    "page": 299,
+    "type": "مضاعف",
+    "bab": "باب إفعال",
+    "root": "م د د",
+    "sarf_sagheer": "أَمَدَّ يُمِدُّ إِمْدَادًا فهو مُمِدٌّ و أُمِدَّ يُمَدُّ إِمْدَادًا فهو مُمَدٌّ الامر منه أَمِدَّ أَمِدِّ أَمْدِدْ والنهي عنه لاَ تُمِدَّ لاَ تُمِدِّ لاَ تُمْدِدْ الظرف منه مُمَدٌّ",
+    "columns": [],
+    "rows": {},
+    "notes": "Sarf sagheer line only; no table printed. Same root as the باب نصر paradigm on p291, in the derived إفعال form.",
+    "rules_cited": []
+  },
+  {
+    "page": 299,
+    "type": "مضاعف",
+    "bab": "باب تفعيل",
+    "root": "ج د د",
+    "sarf_sagheer": "جَدَّدَ يُجَدِّدُ تَجْدِيْدًا فهو مُجَدِّدٌ و جُدِّدَ يُجَدَّدُ تَجْدِيْدًا فهو مُجَدَّدٌ الامر منه جَدِّدْ والنهي عنه لاَ تُجَدِّدْ الظرف منه مُجَدَّدٌ",
+    "columns": [],
+    "rows": {},
+    "notes": "Sarf sagheer line only; no table printed. The note on the next page says the rules of إدغام have not been applied in this paradigm and the تفعُّل one.",
+    "rules_cited": []
+  },
+  {
+    "page": 299,
+    "type": "مضاعف",
+    "bab": "باب تفعُّل",
+    "root": "خ ف ف",
+    "sarf_sagheer": "تَخَفَّفَ يَتَخَفَّفُ تَخَفُّفًا فهو مُتَخَفِّفٌ و تُخُفِّفَ يُتَخَفَّفُ تَخَفُّفًا فهو مُتَخَفَّفٌ الامر منه تَخَفَّفْ والنهي عنه لاَ تَتَخَفَّفْ الظرف منه مُتَخَفَّفٌ",
+    "columns": [],
+    "rows": {},
+    "notes": "Sarf sagheer line only; it begins at the foot of printed page 299 and finishes at the top of printed page 300. Directly beneath it the book states in English: 'The rules of إدغام have not been applied in these two paradigms' (this one and باب تفعيل).",
+    "rules_cited": []
+  },
+  {
+    "page": 300,
+    "type": "مضاعف",
+    "bab": "باب مفاعلة",
+    "root": "ح ج ج",
+    "sarf_sagheer": "حَاجَّ يُحَاجُّ مُحَاجَّةً فهو مُحَاجٌّ و حُوْجَّ يُحَاجُّ مُحَاجَّةً فهو مُحَاجٌّ الامر منه حَاجَّ حَاجِّ حَاجِجْ والنهي عنه لاَ تُحَاجَّ لاَ تُحَاجِّ لاَ تُحَاجِجْ الظرف منه مُحَاجٌّ",
+    "columns": [],
+    "rows": {},
+    "notes": "Sarf sagheer line only; no table printed. The page states beneath it: wherever إدغام has been applied in this باب, it is due to rule no. 4.",
+    "rules_cited": [4]
+  },
+  {
+    "page": 300,
+    "type": "مضاعف",
+    "bab": "باب تفاعل",
+    "root": "ض د د",
+    "sarf_sagheer": "تَضَادَّ يَتَضَادُّ تَضَادُدًا فهو مُتَضَادٌّ و تُضُوْدَّ يُتَضَادُّ تَضَادُدًا فهو مُتَضَادٌّ الامر منه تَضَادَّ تَضَادِّ تَضَادَدْ والنهي عنه لاَ تَتَضَادَّ لاَ تَتَضَادِّ لاَ تَتَضَادَدْ الظرف منه مُتَضَادٌّ",
+    "columns": [],
+    "rows": {},
+    "notes": "Sarf sagheer line only; no table printed. Last entry on printed page 300, which is the end of this chunk.",
+    "rules_cited": []
+  }
+]

@@ -1,0 +1,621 @@
+{
+  "blocks": [
+    {
+      "id": "p27-1",
+      "kind": "heading",
+      "page": 27,
+      "ar": "الحال",
+      "en": "Sequence"
+    },
+    {
+      "id": "p27-2",
+      "kind": "rule",
+      "page": 27,
+      "ar": "",
+      "en": "However, if the ‘{{term|ذو الحال}}’ is ‘{{condition|نكرة منصوبة}}’, then it is {{ruling|wajib}} for the ‘الحال’ to {{ruling|precede}} the ‘ذو الحال’. This is so the ‘الحال’ is not mistaken as a ‘{{term|صفة/نعت}}’."
+    },
+    {
+      "id": "p27-3",
+      "kind": "picture",
+      "page": 27,
+      "caption": "تركيبان جنبا إلى جنب: ١٧أ «رَأَيْتُ رَاكِبًا رَجُلًا» و١٧ب «رَأَيْتُ رَجُلًا رَاكِبًا»، تحت كل كلمة إعرابها، وتحت الكلمتين الأخيرتين خط وتحته «مفعول به»، وتحت الجميع خط وتحته «جملة فعلية خبرية»",
+      "caption_en": "Two tarkeeb diagrams side by side: 17a «رَأَيْتُ رَاكِبًا رَجُلًا» and 17b «رَأَيْتُ رَجُلًا رَاكِبًا». Each word has its label under it, the last two words are underlined and called مفعول به, and the whole is underlined and called جملة فعلية خبرية."
+    },
+    {
+      "id": "p27-4",
+      "kind": "example",
+      "page": 27,
+      "ar": "رَأَيْتُ رَاكِبًا رَجُلًا",
+      "en": "17a. I saw a man whilst (he was) riding.",
+      "labels": [
+        {
+          "word": "رَأَيْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "رَاكِبًا",
+          "label": "حال"
+        },
+        {
+          "word": "رَجُلًا",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "رَاكِبًا رَجُلًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "رَأَيْتُ رَاكِبًا رَجُلًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p27-5",
+      "kind": "example",
+      "page": 27,
+      "ar": "رَأَيْتُ رَجُلًا رَاكِبًا",
+      "en": "17b. I saw a riding man.",
+      "labels": [
+        {
+          "word": "رَأَيْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "رَجُلًا",
+          "label": "موصوف"
+        },
+        {
+          "word": "رَاكِبًا",
+          "label": "صفة"
+        },
+        {
+          "word": "رَجُلًا رَاكِبًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "رَأَيْتُ رَجُلًا رَاكِبًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p27-6",
+      "kind": "rule",
+      "page": 27,
+      "ar": "",
+      "en": "In 17a, ‘رَاكِبًا’ is ‘{{label|الحال}}’ and it has {{ruling|preceded}} the ‘ذو الحال’. In 17b, ‘رَاكِبًا’ is ‘{{label|صفة}}’ as it has come after ‘رَجُلًا’ the ‘موصوف’ and since ‘رَجُلًا’ is ‘منصوب’ and ‘رَاكِبًا’ has come after, they will be considered ‘موصوف’ and ‘صفة’ instead of ‘ذو الحال’ and ‘الحال’ due to the rule based on the importance of the sequence mentioned above."
+    },
+    {
+      "id": "p28-1",
+      "kind": "heading",
+      "page": 28,
+      "ar": "الحال",
+      "en": "مضاف إليه ذو الحال"
+    },
+    {
+      "id": "p28-2",
+      "kind": "rule",
+      "page": 28,
+      "ar": "",
+      "en": "When the ‘ذو الحال’ is ‘{{condition|مضاف إليه}}’, then, according to the majority of the grammarians, it is necessary: 1. For the ‘مضاف’ to be a ‘{{ruling|شبه الفعل}}’. The meaning will resemble that of a ‘فعل فاعل’ or ‘فعل مفعول ’."
+    },
+    {
+      "id": "p28-3",
+      "kind": "picture",
+      "page": 28,
+      "caption": "تركيبان جنبا إلى جنب: ١٨أ «هذَا نَاصِرُ فَاطِمَةَ مُحْتَاجَةً» و١٨ب «رَأَيْتُ سُقُوْطَ زَيْدٍ غَافِلًا»، تحت كل كلمة إعرابها، وخطوط متداخلة تجمع «مضاف إليه» ثم «خبر» أو «مفعول به» ثم الجملة كلها",
+      "caption_en": "Two tarkeeb diagrams side by side: 18a «هذَا نَاصِرُ فَاطِمَةَ مُحْتَاجَةً» and 18b «رَأَيْتُ سُقُوْطَ زَيْدٍ غَافِلًا». Each word has its label under it, with nested underlines grouping the مضاف إليه, then the خبر or مفعول به, then the whole sentence."
+    },
+    {
+      "id": "p28-4",
+      "kind": "example",
+      "page": 28,
+      "ar": "هذَا نَاصِرُ فَاطِمَةَ مُحْتَاجَةً",
+      "en": "18a. This is Fatimah’s helper whilst she is in need.",
+      "labels": [
+        {
+          "word": "هذَا",
+          "label": "مبتدا"
+        },
+        {
+          "word": "نَاصِرُ",
+          "label": "مضاف"
+        },
+        {
+          "word": "فَاطِمَةَ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "مُحْتَاجَةً",
+          "label": "حال"
+        },
+        {
+          "word": "فَاطِمَةَ مُحْتَاجَةً",
+          "label": "مضاف إليه"
+        },
+        {
+          "word": "نَاصِرُ فَاطِمَةَ مُحْتَاجَةً",
+          "label": "خبر"
+        },
+        {
+          "word": "هذَا نَاصِرُ فَاطِمَةَ مُحْتَاجَةً",
+          "label": "جملة إسميه خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p28-5",
+      "kind": "example",
+      "page": 28,
+      "ar": "رَأَيْتُ سُقُوْطَ زَيْدٍ غَافِلًا",
+      "en": "18b. I saw Zaid’s fall whilst he was unaware.",
+      "labels": [
+        {
+          "word": "رَأَيْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "سُقُوْطَ",
+          "label": "مضاف"
+        },
+        {
+          "word": "زَيْدٍ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "غَافِلًا",
+          "label": "حال"
+        },
+        {
+          "word": "زَيْدٍ غَافِلًا",
+          "label": "مضاف إليه"
+        },
+        {
+          "word": "سُقُوْطَ زَيْدٍ غَافِلًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "رَأَيْتُ سُقُوْطَ زَيْدٍ غَافِلًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p28-6",
+      "kind": "rule",
+      "page": 28,
+      "ar": "",
+      "en": "In 18a, ‘مُحْتَاجَةً’ is ‘{{label|الحال}}’ and ‘فَاطِمَةَ’ is the ‘{{label|ذو الحال}}’ which is the ‘مضاف إليه’ and the ‘مضاف’ ‘ناصر’ is a ‘{{ruling|شبه الفعل}}’. In meaning ‘فَاطِمَةَ’ is the ‘{{label|مفعول}}’ because she is receiving the action of help, she was helped. In 18b, ‘غافِلًا’ is ‘الحال’ and ‘زيد’ is the ‘ذو الحال’ which is the ‘مضاف إليه’ and the ‘مضاف’ ‘سقوط’ is a ‘شبه الفعل’. In meaning ‘زيد’ is the ‘{{label|فاعل}}’ because he is doing the action of falling, he fell."
+    },
+    {
+      "id": "p29-1",
+      "kind": "heading",
+      "page": 29,
+      "ar": "الحال",
+      "en": "مضاف إليه ذو الحال"
+    },
+    {
+      "id": "p29-2",
+      "kind": "rule",
+      "page": 29,
+      "ar": "",
+      "en": "…or it is necessary: 2. For the ‘مضاف’ to be a {{ruling|physical part}} of the ‘مضاف إليه’ ."
+    },
+    {
+      "id": "p29-3",
+      "kind": "picture",
+      "page": 29,
+      "caption": "تركيبان جنبا إلى جنب: ١٩أ «يَأْكُلَ لَحْمَ أَخِيه مَيْتًا» و١٩ب «رَأَيْتُ رَأْسَ زَيْدٍ جَالِسًا»، تحت كل كلمة إعرابها، وفي ١٩أ قوس أحمر من الفعل إلى «هو» المكتوب صغيرا علامةً على الفاعل المستتر، وتحت «أَخِيه» صغيرا «مضافَ مضافَ إليه»",
+      "caption_en": "Two tarkeeb diagrams side by side: 19a «يَأْكُلَ لَحْمَ أَخِيه مَيْتًا» and 19b «رَأَيْتُ رَأْسَ زَيْدٍ جَالِسًا». Each word has its label under it. In 19a a red arc runs from the verb to a small هو marking the hidden فاعل, and أَخِيه has a small مضافَ مضافَ إليه written under it."
+    },
+    {
+      "id": "p29-4",
+      "kind": "example",
+      "page": 29,
+      "ar": "يَأْكُلَ لَحْمَ أَخِيه مَيْتًا",
+      "en": "19a. He eats his brother’s meat whilst he is dead.",
+      "labels": [
+        {
+          "word": "يَأْكُلَ",
+          "label": "فعل"
+        },
+        {
+          "word": "هو",
+          "label": "فاعل"
+        },
+        {
+          "word": "لَحْمَ",
+          "label": "مضاف"
+        },
+        {
+          "word": "أَخِيه",
+          "label": "ذو الحال (مضافَ مضافَ إليه)"
+        },
+        {
+          "word": "مَيْتًا",
+          "label": "حال"
+        },
+        {
+          "word": "أَخِيه مَيْتًا",
+          "label": "مضاف إليه"
+        },
+        {
+          "word": "لَحْمَ أَخِيه مَيْتًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "يَأْكُلَ لَحْمَ أَخِيه مَيْتًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p29-5",
+      "kind": "example",
+      "page": 29,
+      "ar": "رَأَيْتُ رَأْسَ زَيْدٍ جَالِسًا",
+      "en": "19b. I saw Zaid’s head whilst he was sitting.",
+      "labels": [
+        {
+          "word": "رَأَيْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "رَأْسَ",
+          "label": "مضاف"
+        },
+        {
+          "word": "زَيْدٍ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "جَالِسًا",
+          "label": "حال"
+        },
+        {
+          "word": "زَيْدٍ جَالِسًا",
+          "label": "مضاف إليه"
+        },
+        {
+          "word": "رَأْسَ زَيْدٍ جَالِسًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "رَأَيْتُ رَأْسَ زَيْدٍ جَالِسًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p29-6",
+      "kind": "rule",
+      "page": 29,
+      "ar": "",
+      "en": "In 19a, ‘ميتًا’ is ‘{{label|الحال}}’ and ‘أخيهَ’ is the ‘{{label|ذو الحال}}’ which is the ‘مضاف إليه’ and the ‘مضاف’, ‘لحم’ is a {{ruling|physical part}} of ‘ميتًا’. In 19b, ‘جالسًا’ is ‘الحال’ and ‘زيد’ is the ‘ذو الحال’ which is the ‘مضاف إليه’ and the ‘مضاف’, ‘رَأْسَ’ is a physical part of ‘زيد’."
+    },
+    {
+      "id": "p30-1",
+      "kind": "heading",
+      "page": 30,
+      "ar": "الحال",
+      "en": "مضاف إليه ذو الحال"
+    },
+    {
+      "id": "p30-2",
+      "kind": "rule",
+      "page": 30,
+      "ar": "",
+      "en": "…or it is necessary: 3. For the ‘مضاف’ to be {{ruling|omittable}} in the sense that the ‘مضاف إليه’ should be able to {{condition|suffice without the ‘مضاف’}}. Doing this should not corrupt the meaning of the sentence/expression."
+    },
+    {
+      "id": "p30-3",
+      "kind": "picture",
+      "page": 30,
+      "caption": "تركيبان جنبا إلى جنب: ٢٠أ «اِتَّبعْ مِلَّةَ إبْرَاهِيْمَ حَنِيْفًا» و٢٠ب «رَأَيْتُ نَحْوَ زَيْدٍ مُنَادِيًا»، تحت كل كلمة إعرابها، وفي ٢٠أ قوس أحمر من الفعل إلى «أنتَ» المكتوب صغيرا علامةً على الفاعل المستتر",
+      "caption_en": "Two tarkeeb diagrams side by side: 20a «اِتَّبعْ مِلَّةَ إبْرَاهِيْمَ حَنِيْفًا» and 20b «رَأَيْتُ نَحْوَ زَيْدٍ مُنَادِيًا». Each word has its label under it. In 20a a red arc runs from the verb to a small أنتَ marking the hidden فاعل."
+    },
+    {
+      "id": "p30-4",
+      "kind": "example",
+      "page": 30,
+      "ar": "اِتَّبعْ مِلَّةَ إبْرَاهِيْمَ حَنِيْفًا",
+      "en": "20a. Follow the way of Ibrahim who is in the state of being upright.",
+      "labels": [
+        {
+          "word": "اِتَّبعْ",
+          "label": "فعل"
+        },
+        {
+          "word": "أنتَ",
+          "label": "فاعل"
+        },
+        {
+          "word": "مِلَّةَ",
+          "label": "مضاف"
+        },
+        {
+          "word": "إبْرَاهِيْمَ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "حَنِيْفًا",
+          "label": "حال"
+        },
+        {
+          "word": "إبْرَاهِيْمَ حَنِيْفًا",
+          "label": "مضاف إليه"
+        },
+        {
+          "word": "مِلَّةَ إبْرَاهِيْمَ حَنِيْفًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "اِتَّبعْ مِلَّةَ إبْرَاهِيْمَ حَنِيْفًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p30-5",
+      "kind": "example",
+      "page": 30,
+      "ar": "رَأَيْتُ نَحْوَ زَيْدٍ مُنَادِيًا",
+      "en": "20b. I looked towards Zaid whilst he was calling.",
+      "labels": [
+        {
+          "word": "رَأَيْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "نَحْوَ",
+          "label": "مضاف"
+        },
+        {
+          "word": "زَيْدٍ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "مُنَادِيًا",
+          "label": "حال"
+        },
+        {
+          "word": "زَيْدٍ مُنَادِيًا",
+          "label": "مضاف إليه"
+        },
+        {
+          "word": "نَحْوَ زَيْدٍ مُنَادِيًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "رَأَيْتُ نَحْوَ زَيْدٍ مُنَادِيًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p30-6",
+      "kind": "rule",
+      "page": 30,
+      "ar": "",
+      "en": "In 20a, ‘حَنِيْفًا’ is ‘{{label|الحال}}’ and ‘إبراهيم’ is the ‘{{label|ذو الحال}}’ which is the ‘مضاف إليه’ and the ‘مضاف’, ‘ملة’ is {{ruling|omittable}}. ‘إبْرَاهِيْمَ’ will suffice in retaining the over all meaning: Follow Ibrahim who is in the state of being upright. In 20b, ‘مُنَادِيًا’ is ‘الحال’ and ‘زَيْدٍ’ is the ‘ذو الحال’ which is the ‘مضاف إليه’ and the ‘مضاف’, ‘نَحْوَ’ is omittable. ‘زَيْدٍ’ will suffice in retaining the over all meaning. I saw Zaid whilst he was calling."
+    },
+    {
+      "id": "p31-1",
+      "kind": "heading",
+      "page": 31,
+      "ar": "الحال",
+      "en": "Multiple ZH-H"
+    },
+    {
+      "id": "p31-2",
+      "kind": "rule",
+      "page": 31,
+      "ar": "",
+      "en": "There can be a {{ruling|multiple number}} of ‘ذو الحال’ and ‘الحال’. There can be {{condition|1 x ‘ذو الحال’ and many ‘الحال’}} or {{condition|many ‘ذو الحال’ and 1 x ‘الحال’}}."
+    },
+    {
+      "id": "p31-3",
+      "kind": "picture",
+      "page": 31,
+      "caption": "تركيبان جنبا إلى جنب: ٢١أ «جاء زيدٌ راكبًا آكِلًا» و٢١ب «رَأَيْتُ زَيْدًا رَاكِبَيْنِ»، تحت كل كلمة إعرابها، وفي ٢١أ تحت المجموعة خط وتحته «فاعل»، وفي ٢١ب تحت الحال وذي الحالين خط وتحته «مفعول به» و«فاعل» جنبا إلى جنب، وتحت الجميع «جملة فعلية خبرية»",
+      "caption_en": "Two tarkeeb diagrams side by side: 21a «جاء زيدٌ راكبًا آكِلًا» and 21b «رَأَيْتُ زَيْدًا رَاكِبَيْنِ». Each word has its label under it, in 21a the group is underlined and called فاعل; in 21b the حال and both ذو الحال are underlined, with مفعول به and فاعل written side by side under that line (فاعل under the تُ side); and the whole is called جملة فعلية خبرية."
+    },
+    {
+      "id": "p31-4",
+      "kind": "example",
+      "page": 31,
+      "ar": "جاء زيدٌ راكبًا آكِلًا",
+      "en": "21a. Zaid came whilst riding & eating.",
+      "labels": [
+        {
+          "word": "جاء",
+          "label": "فعل"
+        },
+        {
+          "word": "زيدٌ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "راكبًا",
+          "label": "حال 1"
+        },
+        {
+          "word": "آكِلًا",
+          "label": "حال 2"
+        },
+        {
+          "word": "زيدٌ راكبًا آكِلًا",
+          "label": "فاعل"
+        },
+        {
+          "word": "جاء زيدٌ راكبًا آكِلًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p31-5",
+      "kind": "example",
+      "page": 31,
+      "ar": "رَأَيْتُ زَيْدًا رَاكِبَيْنِ",
+      "en": "21b. I saw Zaid whilst we both were riding.",
+      "labels": [
+        {
+          "word": "رَأَيْتُ",
+          "label": "فعل ذو الحال"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "رَاكِبَيْنِ",
+          "label": "حال"
+        },
+        {
+          "word": "زَيْدًا رَاكِبَيْنِ",
+          "label": "مفعول به"
+        },
+        {
+          "word": "تُ … رَاكِبَيْنِ",
+          "label": "فاعل"
+        },
+        {
+          "word": "رَأَيْتُ زَيْدًا رَاكِبَيْنِ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p31-6",
+      "kind": "rule",
+      "page": 31,
+      "ar": "",
+      "en": "In 21a, ‘راكبًا’ and ‘آكِلًا’ are ‘{{label|الحال}}’ and ‘زيدٌ’ is the ‘{{label|ذو الحال}}’. We have a multiple number of ‘الحال’ and 1 ‘ذو الحال’. In 21b, ‘رَاكِبَيْنِ’ is ‘الحال’ and ‘تُ’ and ‘زَيْدًا’ are ‘ذو الحال’. Here, we have a multiple number of ‘ذو الحال’ and 1 ‘الحال’."
+    },
+    {
+      "id": "p32-1",
+      "kind": "heading",
+      "page": 32,
+      "ar": "الحال",
+      "en": "Multiple ZH-H"
+    },
+    {
+      "id": "p32-2",
+      "kind": "rule",
+      "page": 32,
+      "ar": "",
+      "en": "Or there can be {{condition|many ‘ذو الحال’ and many ‘الحال’}}. Here, we must bring the ‘الحال’ for the {{ruling|latter}} ‘ذو الحال’ {{ruling|first}} and the ‘الحال’ for the {{ruling|former}} ‘ذو الحال’ {{ruling|delayed}}."
+    },
+    {
+      "id": "p32-3",
+      "kind": "picture",
+      "page": 32,
+      "caption": "تركيبان جنبا إلى جنب: ٢٢أ «لَقِيْتُ زَيْدًا جَالِسًا قَائِمًا» و٢٢ب «نَصَرْتُ زَيْنَبَ جَالِسَةً قَائِمًا»، تحت كل كلمة إعرابها، وتحت ذي الحال الثاني وحاله خط وتحته «مفعول به»، وخط منقط يجمع ضمير المتكلم مع الحال الأخيرة وتحته «فاعل»، وتحت الجميع «جملة فعلية خبرية»",
+      "caption_en": "Two tarkeeb diagrams side by side: 22a «لَقِيْتُ زَيْدًا جَالِسًا قَائِمًا» and 22b «نَصَرْتُ زَيْنَبَ جَالِسَةً قَائِمًا». Each word has its label under it; the second ذو الحال and its حال are underlined as مفعول به, a dotted line joins the speaker's pronoun with the last حال as فاعل, and the whole is called جملة فعلية خبرية."
+    },
+    {
+      "id": "p32-4",
+      "kind": "example",
+      "page": 32,
+      "ar": "لَقِيْتُ زَيْدًا جَالِسًا قَائِمًا",
+      "en": "22a. I met Zaid whilst he was sitting and I was standing.",
+      "labels": [
+        {
+          "word": "لَقِيْتُ",
+          "label": "فعل ذو الحال"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "جَالِسًا",
+          "label": "حال"
+        },
+        {
+          "word": "قَائِمًا",
+          "label": "حال"
+        },
+        {
+          "word": "زَيْدًا جَالِسًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "تُ … قَائِمًا",
+          "label": "فاعل"
+        },
+        {
+          "word": "لَقِيْتُ زَيْدًا جَالِسًا قَائِمًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p32-5",
+      "kind": "example",
+      "page": 32,
+      "ar": "نَصَرْتُ زَيْنَبَ جَالِسَةً قَائِمًا",
+      "en": "22b. I helped Zainab whilst she was sitting and I was standing",
+      "labels": [
+        {
+          "word": "نَصَرْتُ",
+          "label": "فعل ذو الحال"
+        },
+        {
+          "word": "زَيْنَبَ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "جَالِسَةً",
+          "label": "حال"
+        },
+        {
+          "word": "قَائِمًا",
+          "label": "حال"
+        },
+        {
+          "word": "زَيْنَبَ جَالِسَةً",
+          "label": "مفعول به"
+        },
+        {
+          "word": "تُ … قَائِمًا",
+          "label": "فاعل"
+        },
+        {
+          "word": "نَصَرْتُ زَيْنَبَ جَالِسَةً قَائِمًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p32-6",
+      "kind": "rule",
+      "page": 32,
+      "ar": "",
+      "en": "In 22a, ‘جَالِسًا’ and ‘قَائِمًا’ are ‘{{label|الحال}}’, and ‘تُ’ and ‘زيدًا’ are ‘{{label|ذو الحال}}’. ‘جَالِسًا’ is the ‘الحال’ of ‘زيدًا’, the {{ruling|latter}} ‘ذو الحال’ while ‘قَائِمًا’ is the ‘الحال’ of ‘تُ’, the {{ruling|former}} ‘ذو الحال’. In 22b, ‘جَالِسَةً’ and ‘قَائِمًا’ are ‘الحال’ and ‘تُ’ and ‘زَيْنَبَ’ are ‘ذو الحال’. ‘جَالِسَةً’ is the ‘الحال’ of ‘زَيْنَبَ’, the latter ‘ذو الحال’ while ‘قَائِمًا’ is the ‘الحال’ of ‘تُ’ the former ‘ذو الحال’."
+    },
+    {
+      "id": "p33-1",
+      "kind": "heading",
+      "page": 33,
+      "ar": "الحال",
+      "en": "Conclusion"
+    },
+    {
+      "id": "p33-2",
+      "kind": "rule",
+      "page": 33,
+      "ar": "",
+      "en": "Conclusion: Further details regarding ‘حال’ such as {{term|omitting the governor}} etc will be discussed at another point in time insha’Allah."
+    },
+    {
+      "id": "p34-1",
+      "kind": "heading",
+      "page": 34,
+      "ar": "{{term|الحال}}",
+      "en": "The {{term|Circumstantial Clause}}"
+    }
+  ]
+}

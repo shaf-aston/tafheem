@@ -1,0 +1,3848 @@
+{
+ "sections": {
+  "haal/application": {
+   "form": "haal",
+   "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+   "topic": "Haal",
+   "name": "Application of Rules",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو."
+  },
+  "haal/correct-or-incorrect": {
+   "form": "haal",
+   "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+   "topic": "Haal",
+   "name": "Correct or Incorrect",
+   "instructions": "Correct or Incorrect | Q4"
+  },
+  "mafool-lahu-fihi/application": {
+   "form": "mafool-lahu-fihi",
+   "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "name": "Application of Rules",
+   "instructions": "Important instructions\n1. Look at the following sentences and considering the conditions of the مفعول له and where the Harf Jar is necessary and also considering the translation, choose from the 2 options by ticking A or B.\n2. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n\nUse your notes. Look at them, read them, understand them."
+  },
+  "mafool-lahu-fihi/identify-underlined": {
+   "form": "mafool-lahu-fihi",
+   "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "name": "Identify the underlined Maf'ools",
+   "instructions": "1. Look at the following sentences and Identify the type of maf'ools present by ticking the correlating box.\n2. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n3. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them."
+  },
+  "mafool-maahu/application": {
+   "form": "mafool-maahu",
+   "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+   "topic": "Mafool Ma'ahu",
+   "name": "Application of Rules",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them."
+  }
+ },
+ "questions": [
+  {
+   "id": "haal/application/1",
+   "section": "haal/application",
+   "number": 1,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "رَأَيْتَهُمْ يَصُدُّونَ وَهُمْ مُسْتَكْبِرُونَ",
+     "marked": [
+      {
+       "text": "يَصُدُّونَ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَهُمْ مُسْتَكْبِرُونَ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "هُمْ (suffix in رَأَيْتَهُمْ)",
+       "mark": "green underline"
+      }
+     ],
+     "en": "you see them walking away arrogantly."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each underlined phrase, tick ليست حالا if it is not a حال; if it is, tick حال and also tick the ruling for its واو حالية (منع الواو | جواز الواو | وجوب الواو).",
+     "kind": "grid",
+     "rows": [
+      "يصدون",
+      "وهم..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "يصدون": [
+       "حال",
+       "منع الواو"
+      ],
+      "وهم...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "يصدون": [
+       "حال",
+       "منع الواو"
+      ],
+      "وهم...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "score": {
+      "got": 2,
+      "of": 2
+     }
+    }
+   ],
+   "explanation": "The action of \"seeing\" was done upon them whilst they were \"walking away\". \"They\" performed the action of \"walking away\" whilst being \"arrogant\".\n\"Walking away\", which is فعل مضارع مثبت without a قد, is a haal but will not have a waaw haaliyyah.\n\"Being arrogant\" is also haal. And it requires a waaw haaliyah as it is a jumla ismiyyah beginning with a dhameer raabit.",
+   "images": [
+    "haal/q026.png",
+    "haal/q027.png"
+   ],
+   "flags": [
+    "Pixel measurement of q026.png shows one continuous blue underline stroke spans وَهُمْ and مُسْتَكْبِرُونَ together, with يَصُدُّونَ underlined blue as a separate stroke; the green stroke covers only the trailing هُمْ suffix of رَأَيْتُهُمْ, not the whole word مُسْتَكْبِرُونَ. The exact letter boundary of that suffix mark is approximate at pixel level."
+   ]
+  },
+  {
+   "id": "haal/application/2",
+   "section": "haal/application",
+   "number": 2,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "زيدٌ يأتِيْكَ وَما تَنَامُ",
+     "marked": [
+      {
+       "text": "كَ (suffix in يأتِيْكَ)",
+       "mark": "green underline"
+      },
+      {
+       "text": "وَما تَنَامُ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "Zaid will come to you and you will not be sleeping."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each underlined phrase, tick ليست حالا if it is not a حال; if it is, tick حال and also tick the ruling for its واو حالية (منع الواو | جواز الواو | وجوب الواو).",
+     "kind": "grid",
+     "rows": [
+      "وما تنام"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "وما تنام": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "وما تنام": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "A فعل مضارع preceded by ما will always have ضمير رابط and will not have a واو حالية.\nThe الضمير الرابط is underlined in your sheet because it means the الضمير الرابط will always be present.",
+   "images": [
+    "haal/q029.png",
+    "haal/q030.png"
+   ]
+  },
+  {
+   "id": "haal/application/3",
+   "section": "haal/application",
+   "number": 3,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "مَرَجَ الْبَحْرَيْنِ يَلْتَقِيَانِ بَيْنَهُمَا بَرْزَخٌ لَا يَبْغِيَانِ",
+     "marked": [
+      {
+       "text": "الْبَحْرَيْنِ",
+       "mark": "green underline"
+      },
+      {
+       "text": "يَلْتَقِيَانِ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "بَيْنَهُمَا بَرْزَخٌ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "لَا يَبْغِيَانِ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "He released the two seas, meeting one another, between them is a barrier so neither of them transgresses."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each underlined phrase, tick ليست حالا if it is not a حال; if it is, tick حال and also tick the ruling for its واو حالية (منع الواو | جواز الواو | وجوب الواو).",
+     "kind": "grid",
+     "rows": [
+      "يلتقيان",
+      "بينهما...",
+      "لا يبغيان"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "يلتقيان": [
+       "حال",
+       "منع الواو"
+      ],
+      "بينهما...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "لا يبغيان": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "يلتقيان": [
+       "حال",
+       "منع الواو"
+      ],
+      "بينهما...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "لا يبغيان": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "score": {
+      "got": 3,
+      "of": 3
+     }
+    }
+   ],
+   "explanation": "All of them are haal as they are all jumlas and neither of them need a waaw haaliyya as they all have a dhameer raabit.\nThe first for being فعل مضارع مثبت without a قد will not have a waaw haaliyya.\nThe second for being JIK which does not begin with the dhameer raabit, hence waaw haaliyya is optional.\nThe third for being فعل مضارع منفي with لا will not have a waaw haaliyya.",
+   "images": [
+    "haal/q032.png",
+    "haal/q033.png"
+   ],
+   "flags": [
+    "\"الْبَحْرَيْنِ\" is underlined in the image (confirmed green, not blue, by pixel measurement) but has no corresponding row in the grid (only يلتقيان, بينهما..., لا يبغيان are tested)."
+   ]
+  },
+  {
+   "id": "haal/application/4",
+   "section": "haal/application",
+   "number": 4,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "دَخلتُ المسجدَ والصلاةُ قائمةٌ",
+     "marked": [
+      {
+       "text": "والصلاةُ قائمةٌ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "المسجدَ",
+       "mark": "green underline"
+      }
+     ],
+     "en": "I entered the masjid whilst the salaah had begun."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Classify the blue-underlined clause: is it حال? If so, tick which واو ruling (وجوب الواو | جواز الواو | منع الواو) applies to the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "والصلاة..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "والصلاة...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "والصلاة...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "The \"entering of the masjid\" was done whilst \"salah had started\" so that becomes haal - and since it's a jumla ismiyah without a dhameer raabit, it requires a waaw haaliyah.",
+   "images": [
+    "haal/q035.png",
+    "haal/q036.png"
+   ]
+  },
+  {
+   "id": "haal/application/5",
+   "section": "haal/application",
+   "number": 5,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "إِذَا قَامُوا إِلَى الصَّلَاةِ قَامُوا كُسَالَى يُرَاءُونَ النَّاسَ",
+     "marked": [
+      {
+       "text": "كُسَالَى",
+       "mark": "blue underline"
+      },
+      {
+       "text": "يُرَاءُونَ النَّاسَ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "قَامُوا",
+       "mark": "green underline"
+      }
+     ],
+     "en": "When they stand up to pray, they do so sluggishly, showing off in front of people."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each blue-underlined item, tick whether it is حال and, if so, which واو ruling applies.",
+     "kind": "grid",
+     "rows": [
+      "كسالى",
+      "يراءون..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "كسالى": [
+       "حال",
+       "منع الواو"
+      ],
+      "يراءون...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "كسالى": [
+       "حال",
+       "منع الواو"
+      ],
+      "يراءون...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "score": {
+      "got": 2,
+      "of": 2
+     }
+    }
+   ],
+   "explanation": "The first one, كسالى, is haal and because it's a ism mushtaqq, it doesn't require a waaw haaliya.\nThe second is a jumla which is a فعل مضارع مثبت without قد so will not have a waaw",
+   "images": [
+    "haal/q038.png",
+    "haal/q039.png"
+   ],
+   "flags": [
+    "The exact word carrying the green (potential dhu-al-haal) underline could not be pinned down with full certainty from the image; it is given here as the second قَامُوا (the implied 'they' both haal phrases describe), the best-fitting reading, not a directly confirmed pixel-level match."
+   ]
+  },
+  {
+   "id": "haal/application/6",
+   "section": "haal/application",
+   "number": 6,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "رَأيتُ مَنْ في المسجد مصلِّياً أو هُوَ جَالِسٌ",
+     "marked": [
+      {
+       "text": "مصلِّياً",
+       "mark": "blue underline"
+      },
+      {
+       "text": "هُوَ جَالِسٌ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "مَنْ",
+       "mark": "green underline"
+      }
+     ],
+     "en": "I saw the one who was in the masjid whilst praying or sitting."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each blue-underlined item, tick whether it is حال and, if so, which واو ruling applies.",
+     "kind": "grid",
+     "rows": [
+      "مصليا",
+      "هو..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "مصليا": [
+       "حال",
+       "منع الواو"
+      ],
+      "هو...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "مصليا": [
+       "حال",
+       "منع الواو"
+      ],
+      "هو...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "score": {
+      "got": 2,
+      "of": 2
+     }
+    }
+   ],
+   "explanation": "\"The one who was in the masjid\" was either \"praying\" or \"sitting\".\nHere, both are haal. The \"sitting\" does not take a waaw haaliyyah because it is mufrad and not a jumla, and the part after وl also does not require a waaw haaliyah because it is a jumla ismiyah beginning with the dhameer rabit and is ataf to a haal preceding it.",
+   "images": [
+    "haal/q041.png",
+    "haal/q042.png"
+   ]
+  },
+  {
+   "id": "haal/application/7",
+   "section": "haal/application",
+   "number": 7,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "تَرَى الْمُجْرِمِينَ يَوْمَئِذٍ مُقَرَّنِينَ فِي الأَصْفَادِ سَرَابِيلُهُمْ مِنْ قَطِرَانٍ وَتَغْشَىٰ وُجُوهَهُمُ ٱلنَّارُ",
+     "marked": [
+      {
+       "text": "الْمُجْرِمِينَ",
+       "mark": "green underline"
+      },
+      {
+       "text": "مُقَرَّنِينَ فِي الأَصْفَادِ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "سَرَابِيلُهُمْ مِنْ قَطِرَانٍ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَتَغْشَىٰ وُجُوهَهُمُ ٱلنَّارُ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "You will see the criminals that Day, bound together in irons, their garments of liquid pitch and their faces covered by the Fire."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each blue-underlined item, tick whether it is حال, and if so tick the applicable واو حالية ruling (منع الواو | جواز الواو | وجوب الواو); if not حال tick ليست حالا.",
+     "kind": "grid",
+     "rows": [
+      "مقرنين",
+      "سرابيلهم...",
+      "وتغشى..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "مقرنين": [
+       "حال",
+       "منع الواو"
+      ],
+      "سرابيلهم...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وتغشى...": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "مقرنين": [
+       "حال",
+       "منع الواو"
+      ],
+      "سرابيلهم...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وتغشى...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "score": {
+      "got": 2,
+      "of": 3
+     }
+    }
+   ],
+   "explanation": "The first does not take a waw haaliyah as it a -Mufrad Haal-; the second can take a waw haaliyah as it is a jumla ismiyah that has dhameer raabit but does not begin with it hence it's optional; and the last one does not take a waw haaliyah as it is a jumla with a فعل مضارع مثبت without a قد and has a dhameer raabit (The waw before it is actually for atf and not for haal).",
+   "images": [
+    "haal/q044.png",
+    "haal/q045.png"
+   ],
+   "flags": [
+    "Green underline (ذو الحال marker) is inferred as المجرمين from sentence logic and its position early in the line; exact pixel boundary not independently verified.",
+    "The 'سرابيلهم' row's blue underline appears to split across the line wrap (سرابيلهم on line 1, قطران on line 2); transcribed here as the combined phrase سرابيلهم من قطران."
+   ]
+  },
+  {
+   "id": "haal/application/8",
+   "section": "haal/application",
+   "number": 8,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "عَلَف زيدٌ الطيرَ حبَّاتٍ يرمي إليهَا",
+     "marked": [
+      {
+       "text": "زيدٌ",
+       "mark": "green underline"
+      },
+      {
+       "text": "الطيرَ حبَّاتٍ يرمي إليهَا",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "Zaid fed the birds throwing seeds at them."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For the blue-underlined item, tick whether it is حال, and if so tick the applicable واو حالية ruling (منع الواو | جواز الواو | وجوب الواو); if not حال tick ليست حالا.",
+     "kind": "grid",
+     "rows": [
+      "حبات..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "حبات...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "حبات...": [
+       "ليست حالا"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "The action of \"feeding the birds\" was done while \"throwing seeds at them\" so it will be haal in tarkeeb. And since it has a فعل مضارع مثبت with it's ma'mool preceding it, a waaw haaliyyah is optional but not necessary.",
+   "images": [
+    "haal/q047.png",
+    "haal/q048.png"
+   ],
+   "flags": [
+    "Green underline (ذو الحال marker) is inferred as زيد from the feedback's grammatical logic (Zaid is the doer of both actions); exact pixel boundary not independently verified, could alternatively fall on الطير."
+   ]
+  },
+  {
+   "id": "haal/application/9",
+   "section": "haal/application",
+   "number": 9,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "مَا يَأْتِيهِمْ مِنْ ذِكْرٍ مِنْ رَبِّهِمْ مُحْدَثٍ إِلَّا اسْتَمَعُوهُ وَهُمْ يَلْعَبُونَ لَاهِيَةً قُلُوبُهُمْ",
+     "marked": [
+      {
+       "text": "وَهُمْ",
+       "mark": "green underline"
+      },
+      {
+       "text": "اسْتَمَعُوهُ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "يَلْعَبُونَ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "لَاهِيَةً قُلُوبُهُمْ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "No new revelation comes to them from their Lord except that they listen to it playfully, their hearts distracted."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each blue-underlined item, tick whether it is حال, and if so tick the applicable واو حالية ruling (منع الواو | جواز الواو | وجوب الواو); if not حال tick ليست حالا.",
+     "kind": "grid",
+     "rows": [
+      "استمعوه",
+      "وهم يلعبون",
+      "لاهية..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "استمعوه": [
+       "حال",
+       "منع الواو"
+      ],
+      "وهم يلعبون": [
+       "حال",
+       "وجوب الواو"
+      ],
+      "لاهية...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "استمعوه": [
+       "حال",
+       "منع الواو"
+      ],
+      "وهم يلعبون": [
+       "حال",
+       "وجوب الواو"
+      ],
+      "لاهية...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "score": {
+      "got": 3,
+      "of": 3
+     }
+    }
+   ],
+   "explanation": "All three are haal because that is \"their\" state when \"they\" receive the revelation.\nThe first one does not take a waaw haaliyyah because it is a فعل ماضي which comes after إلا.\nThe second one requires a waaw haaliyyah because it is a jumla ismiyyah beginning with the dhameer raabit.\nThe third one does not take waaw haaliyah because it is a mufrad haal and not a jumla.",
+   "images": [
+    "haal/q050.png",
+    "haal/q051.png"
+   ]
+  },
+  {
+   "id": "haal/application/10",
+   "section": "haal/application",
+   "number": 10,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "زَار زيدٌ بيتَ اللّهِ وَمَا دَعا لِأحدٍ",
+     "marked": [
+      {
+       "text": "زيدٌ",
+       "mark": "green underline"
+      },
+      {
+       "text": "وَمَا دَعا لِأحدٍ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "Zaid visited The Haram and didn't do dua for anyone."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the blue-underlined clause a حال? If so, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "وما دعا..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "وما دعا...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "وما دعا...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "If the tarkeeb is taken as haal, it is optional to add a waaw haaliyah since it is a فعل ماضي منفي with a dhameer raabit.",
+   "images": [
+    "haal/q053.png",
+    "haal/q054.png"
+   ]
+  },
+  {
+   "id": "haal/application/11",
+   "section": "haal/application",
+   "number": 11,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "مَا لَكُمْ لا تُؤْمِنُونَ بِاللَّهِ وَالرَّسُولُ يَدْعُوكُمْ لِتُؤْمِنُوا بِرَبِّكُمْ وَقَدْ أَخَذَ مِيثَاقَكُمْ",
+     "marked": [
+      {
+       "text": "لَكُمْ",
+       "mark": "green underline"
+      },
+      {
+       "text": "لا تُؤْمِنُونَ بِاللَّهِ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَالرَّسُولُ يَدْعُوكُمْ لِتُؤْمِنُوا بِرَبِّكُمْ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَقَدْ أَخَذَ مِيثَاقَكُمْ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "What is the matter with you that you do not believe in God when the Messenger calls you to believe in your Lord, and He has already made a pledge with you, if you have faith?"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each blue-underlined clause, is it a حال? If so, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "لا تؤمنون...",
+      "والرسول...",
+      "وقد أخذ..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "لا تؤمنون...": [
+       "حال",
+       "منع الواو"
+      ],
+      "والرسول...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وقد أخذ...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "لا تؤمنون...": [
+       "حال",
+       "منع الواو"
+      ],
+      "والرسول...": [
+       "حال",
+       "وجوب الواو"
+      ],
+      "وقد أخذ...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "score": {
+      "got": 2,
+      "of": 3
+     }
+    }
+   ],
+   "explanation": "All of them can be taken as haal in tarkeeb as \"you\" are in the state that \"you do not believe in....\". The first one doesn't take a waaw haaliyah because it's a فعل مضارع منفي with a dhameer raabit.\nThe second one is a jumlah ismiyyah which does not cotain a dhameer raabit, hence the waaw haaliyyah is necessary.\nThe third one is also optional because it is a فعل ماضي with a dhameer raabit.",
+   "images": [
+    "haal/q056.png",
+    "haal/q057.png"
+   ]
+  },
+  {
+   "id": "haal/application/12",
+   "section": "haal/application",
+   "number": 12,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "فتح زيدٌ بابَ الفصلِ ولَمْ يشْعُر الأستاذُ به",
+     "marked": [
+      {
+       "text": "زيدٌ",
+       "mark": "green underline"
+      },
+      {
+       "text": "ولَمْ يشْعُر الأستاذُ به",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "Zaid opened the classroom door and the teacher did not perceive."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the blue-underlined clause a حال? If so, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "ولم يشعر..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "ولم يشعر...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "ولم يشعر...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "The waaw haaliyah is optional because the jumla is a فعل مصرع منفي بلم with the dhameer raabit.",
+   "images": [
+    "haal/q059.png",
+    "haal/q060.png"
+   ]
+  },
+  {
+   "id": "haal/application/13",
+   "section": "haal/application",
+   "number": 13,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "أَتُحَاجُّونِّي فِي اللَّهِ وَقَدْ هَدَانِي وَلَا أَخَافُ مَا تُشْرِكُونَ بِهِ",
+     "marked": [
+      {
+       "text": "وَقَدْ هَدَانِي",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَلَا أَخَافُ مَا تُشْرِكُونَ بِهِ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "نِّي",
+       "mark": "green underline"
+      }
+     ],
+     "en": "How can you argue with me about God when He has guided me? I do not fear anything you associate with Him."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each clause, decide if it is حال; if it is, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "وقد هداني",
+      "ولا أخاف..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "وقد هداني": [
+       "حال",
+       "جواز الواو"
+      ],
+      "ولا أخاف...": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "وقد هداني": [
+       "حال",
+       "جواز الواو"
+      ],
+      "ولا أخاف...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "score": {
+      "got": 1,
+      "of": 2
+     }
+    }
+   ],
+   "explanation": "First one is haal because when \"You\" are arguing with me, the state \"I\" am in is that \"Allah has guided me\". And since the first one is فعل ماضي with a dhameer raabit, the \"Yaa\" in 'Hadanee', it is persimmable for it to have a waaw haaliyah.\nAs for the second part, that also comes under the haaliyyah sentence. Since it is a فعل مضارع منفي with لا, it cannot take a waaw haaliyah, therefore the waaw before it is atifa making it معطوف to the haal before it. It is NOT an independent haal.",
+   "images": [
+    "haal/q062.png",
+    "haal/q063.png"
+   ]
+  },
+  {
+   "id": "haal/application/14",
+   "section": "haal/application",
+   "number": 14,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "كان زيدٌ يجلسُ على الأرضِ ويُكمل واجباتِه",
+     "marked": [
+      {
+       "text": "ويُكمل واجباتِه",
+       "mark": "blue underline"
+      },
+      {
+       "text": "زيدٌ",
+       "mark": "green underline"
+      }
+     ],
+     "en": "Zaid used to sit on the floor and complete his assignments."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each clause, decide if it is حال; if it is, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "...يكمل"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "...يكمل": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "...يكمل": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "It is not a haal because the jumla is a فعل مضارع مثبت without قد so a waaw haaliyyah is not permissible. Rather, the waaw is atifa and the jumla is ataf to يجلس.",
+   "images": [
+    "haal/q065.png",
+    "haal/q066.png"
+   ]
+  },
+  {
+   "id": "haal/application/15",
+   "section": "haal/application",
+   "number": 15,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "رَبِّ أَنَّى يَكُونُ لِي غُلَامٌ وَقَدْ بَلَغَنِيَ الْكِبَرُ وَامْرَأَتِي عَاقِرٌ",
+     "marked": [
+      {
+       "text": "وَقَدْ بَلَغَنِيَ الْكِبَرُ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَامْرَأَتِي عَاقِرٌ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "لِي",
+       "mark": "green underline"
+      }
+     ],
+     "en": "My Lord, how can I have a son when I am so old and my wife is barren?"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each clause, decide if it is حال; if it is, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "وقد بلغني...",
+      "وامرأتي..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "وقد بلغني...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وامرأتي...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "وقد بلغني...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وامرأتي...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "score": {
+      "got": 2,
+      "of": 2
+     }
+    }
+   ],
+   "explanation": "First is a فعل ماضي with a raabit so it is optional for it to take a waaw haaliyyah.\nSecond one is a jumlah ismiyah that does not begin with its dhameer raabit (which is the يـ in this case) so it is also optional for it to take a waaw haaliyyah.",
+   "images": [
+    "haal/q068.png",
+    "haal/q069.png"
+   ]
+  },
+  {
+   "id": "haal/application/16",
+   "section": "haal/application",
+   "number": 16,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "وَاعْبُدُوا اللَّه وَلَا تُشْرِكُواْ بِهِ شَيْئًا",
+     "marked": [
+      {
+       "text": "وَلَا تُشْرِكُواْ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "بِهِ",
+       "mark": "green underline"
+      },
+      {
+       "text": "شَيْئًا",
+       "mark": "green underline"
+      }
+     ],
+     "en": "Worship Allah and don't associate anything with him."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of its importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "kind": "grid",
+     "rows": [
+      "...ولا تشركوا"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "...ولا تشركوا": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "...ولا تشركوا": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "The jumla is actually a prohibitive, a نهي, therefore it can't be a haal because a Jumla Inshaiyya does not be a haal.",
+   "images": [
+    "haal/q071.png",
+    "haal/q072.png"
+   ],
+   "flags": [
+    "Vowels on تُشْرِكُواْ (mark on final alef: small loop drawn above it, read as sukun/silence-marker, matching reader A) could not be read with certainty.",
+    "Vowels on شَيْئًا (mark above ي: small loop distinct from the ش fatha and from the hamza+tanween cluster on the alef, read as sukun, matching reader B) could not be read with certainty."
+   ]
+  },
+  {
+   "id": "haal/application/17",
+   "section": "haal/application",
+   "number": 17,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "آكلُ الطعامَ سخنَ أو بردَ",
+     "marked": [
+      {
+       "text": "الطعامَ",
+       "mark": "green underline"
+      },
+      {
+       "text": "سخنَ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "بردَ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "I will eat the food whether it's hot or cold."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of its importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "kind": "grid",
+     "rows": [
+      "سخن",
+      "برد"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "سخن": [
+       "حال",
+       "منع الواو"
+      ],
+      "برد": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "سخن": [
+       "حال",
+       "منع الواو"
+      ],
+      "برد": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "score": {
+      "got": 2,
+      "of": 2
+     }
+    }
+   ],
+   "explanation": "Both are fil maadhi but connected to an aw (doesn't matter which side of the aw they are) - So, the waaw haaliyyah is prevented for both -",
+   "images": [
+    "haal/q074.png",
+    "haal/q075.png"
+   ]
+  },
+  {
+   "id": "haal/application/18",
+   "section": "haal/application",
+   "number": 18,
+   "type": "haal_waw_grid",
+   "sentences": [
+    {
+     "ar": "إِنّي ذَاهِبٌ إِلَىٰ رَبِّي سَيَهْدِينِ (ي)",
+     "marked": [
+      {
+       "text": "إِنّي",
+       "mark": "green underline"
+      },
+      {
+       "text": "رَبِّي",
+       "mark": "green underline"
+      },
+      {
+       "text": "سَيَهْدِينِ (ي)",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "Indeed, I will go to my Lord, He is sure to guide (me)"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of its importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "kind": "grid",
+     "rows": [
+      "سيهدين"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "سيهدين": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "سيهدين": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "The verb begins with a س so, it can't form a haal.",
+   "images": [
+    "haal/q077.png",
+    "haal/q078.png"
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/1",
+   "section": "haal/correct-or-incorrect",
+   "number": 1,
+   "type": "correct_or_incorrect",
+   "sentences": [
+    {
+     "ar": "لِيَذهبْ طالِبُو العلمَ إلى المدرسةِ مَمْلُوْؤُوْن بِنَشاطٍ",
+     "en": "Students of knowledge should go to the madrassa whilst full with drive (eagerness)"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "'Ilm' should have kasrah as it is mudaf ilayh.\nMamloo'oon should be mansoob (mamloo'een) as it is haal.",
+   "images": [
+    "haal/q081.png",
+    "haal/q082.png",
+    "haal/q083.png"
+   ],
+   "flags": [
+    "Vowel check read different letters for sentence 0: لِيَذهبْ طالِبُو العلمَ إلى المدرسةِ مَمْلُوءُوْن بِنَشاطٍ"
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/2",
+   "section": "haal/correct-or-incorrect",
+   "number": 2,
+   "type": "correct_or_incorrect",
+   "sentences": [
+    {
+     "ar": "وَخِلافُه الكسلُ ما يكرهُهُ رسولُ اللَّهِ ﷺ عَائِذًا باللَّهِ منه",
+     "en": "And contrary to it (drive) is laziness which the Messenger of Allah ﷺ disliked whilst seeking refuge by (in) Allah from it."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Correct",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Correct"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q085.png",
+    "haal/q086.png",
+    "haal/q087.png"
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/3",
+   "section": "haal/correct-or-incorrect",
+   "number": 3,
+   "type": "correct_or_incorrect",
+   "sentences": [
+    {
+     "ar": "وَلِيمْكُثُوا فيها قد يبذُلون أَفْضَلَ جُهودِهم في دُروسِهم",
+     "en": "And they (students of knowledge) should remain in it (madrassa) whilst exhausting the best of their efforts in their lessons."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "There should be a Waaw Haaliyyah before Qad because it is a فعل مضارع مثبت with قد and the dhameer raabit is present.",
+   "images": [
+    "haal/q089.png",
+    "haal/q090.png",
+    "haal/q091.png"
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/4",
+   "section": "haal/correct-or-incorrect",
+   "number": 4,
+   "type": "correct_or_incorrect",
+   "sentences": [
+    {
+     "ar": "عَامِرٌ رَاجَع دُروسَه (ثَابتةً) بلَا تُؤَدَةٍ فَرَسَبَ، لاتكنْ مثلَ عامر",
+     "en": "Amir revised his lessons whilst being in a state without calmness and he failed, don't be like Amir."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "Correct"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "The Zul Haal is the pronoun in the verb راجع which is in reference to Amir, who is a male, so the haal should correlate in number and gender. Therefore, it should be thaabitan (not thaabitatan)",
+   "images": [
+    "haal/q093.png",
+    "haal/q094.png",
+    "haal/q095.png"
+   ],
+   "flags": [
+    "The small parenthetical word '(ثابتة)' printed inline after 'دُروسَه' is transcribed exactly as shown; its purpose (possibly a label marking the haal as the 'fixed/ثابتة' type rather than part of the sentence) is not certain from the image alone.",
+    "Vowels on (ثَابتةً) - tiny tanween mark on ة hard to resolve visually by itself, but the answer-key feedback on the same image set (\"should be thaabitan not thaabitatan\") confirms it's tanween fatha, not damma could not be read with certainty."
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/5",
+   "section": "haal/correct-or-incorrect",
+   "number": 5,
+   "type": "correct_or_incorrect",
+   "sentences": [
+    {
+     "ar": "إحترمْ وَالِدَاكَ وَغَابَ أو حَضَرَا",
+     "en": "Respect your parents whilst they're absent or present"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "3"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "1st, والداك should be والديك in the state of نصب because it's مفعول به of إحترم. 2nd, the waw haaliyah is not permissible because the construction of the haal is Fil Maadhi connected to 'Au' Harful ataf. 3rd, the verb غاب should be in the dual form غابا, because the Fa'il should be dual and in reference to 'والداك' both parents and therefore should correlate in number and gender.",
+   "images": [
+    "haal/q097.png",
+    "haal/q098.png",
+    "haal/q099.png"
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/6",
+   "section": "haal/correct-or-incorrect",
+   "number": 6,
+   "type": "correct_or_incorrect",
+   "sentences": [
+    {
+     "ar": "القرآنُ، قرأتُ مَا (يَثْبُتُ) فيه (ثَابِتَةً) مِن الترغيبِ والترهيبِ",
+     "en": "The Qur'an, I read that which (what) is in it whilst it (consists) of motivation and warning."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "Correct"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "Thaabitatan ثابتة should be thaabitan ثابتا, as it is the haal and it should correlate in N&G to the zul haal (pronoun هو inside يثبت).",
+   "images": [
+    "haal/q101.png",
+    "haal/q102.png",
+    "haal/q103.png"
+   ],
+   "flags": [
+    "Two small parenthetical words '(يَثبُتُ)' and '(ثابتةً)' are printed inline in the sentence; transcribed exactly as shown, their purpose (label vs. sentence word) is not certain from the image alone."
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/7",
+   "section": "haal/correct-or-incorrect",
+   "number": 7,
+   "type": "correct_or_incorrect",
+   "sentences": [
+    {
+     "ar": "مكث الضيوفُ عندنا ثلاثةُ أيّامٍ ما قَصَّرنا في إكرامِه",
+     "en": "The guests stayed by us for 3 days whilst we did not lack in honouring them (with good hospitality)."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "The word ثلاثة should have a fathah as it is zarf (time/place).\nThe مضاف إليه of إكرام should be plural, هم, as it is referring to the guests who are plural.",
+   "images": [
+    "haal/q105.png",
+    "haal/q106.png",
+    "haal/q107.png"
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/8",
+   "section": "haal/correct-or-incorrect",
+   "number": 8,
+   "type": "correct_or_incorrect",
+   "sentences": [
+    {
+     "ar": "سمعتُ (ثابتًا) مِن كلام بكرٍ مَا حَدَثَ بِزيدٍ دارسٍ",
+     "en": "I heard, whilst it being from the statement of Bakr, that which (what) happened to Zaid whilst studying."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "The word دارس should be دارسا, it should be mansoob because it is the haal of Zaid.",
+   "images": [
+    "haal/q109.png",
+    "haal/q110.png",
+    "haal/q111.png"
+   ],
+   "flags": [
+    "A small bracketed \"(ثابتًا)\" is printed right after سمعتُ in q109.png in a visibly smaller superscript-style font, unlike the rest of the sentence; it has no counterpart in the English translation and is never mentioned in the 8c feedback, which only discusses دارس/دارسا. Judged from the picture as a rendering artifact (footnote/comment marker), not part of the exam sentence, and removed from \"ar\"."
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/9",
+   "section": "haal/correct-or-incorrect",
+   "number": 9,
+   "type": "correct_or_incorrect",
+   "sentences": [
+    {
+     "ar": "أكل زيدٌ هو شبعانِ ثُمَّ تَأَلَّمَ بطنُها",
+     "en": "Zaid ate whilst he was satiated then his stomach ached."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "3"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "There should be a waaw haaliyyah before 'هو' because the haal 'هو شبعان' is a jumlah ismiyyah which begins with the dhameer raabit.\nAlso, شبعانٍ should be شبعانُ as it is مرفوع because of being the خبر of هو and it's also غير منصرف hence no tanween.\nAlso, it should be 'بطنه' because it is referring to the stomach of zaid and he is male (hopefully).",
+   "images": [
+    "haal/q113.png",
+    "haal/q114.png",
+    "haal/q115.png"
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/10",
+   "section": "haal/correct-or-incorrect",
+   "number": 10,
+   "type": "correct_or_incorrect",
+   "sentences": [
+    {
+     "ar": "مَا صلّيتُ صلاةً إلّا وَأَنَا مرتجٍ لِغُفرانِ ذنبي",
+     "en": "I prayed salaah only whilst hoping for the forgiveness of my sins."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Correct",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "Incorrect"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "No mistakes.\nAs for مرتج, it's an اسم المنقوص like قاضٍ and it's in the state of رفع",
+   "images": [
+    "haal/q117.png",
+    "haal/q118.png",
+    "haal/q119.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/application/1",
+   "section": "mafool-lahu-fihi/application",
+   "number": 1,
+   "type": "choose_sentence_ab",
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "قرأتَ القرآنَ دُخولَكَ الجنّةَ",
+     "en": "You read the Qur'an so that you enter Jannah."
+    },
+    {
+     "label": "B",
+     "ar": "قرأتَ القرآنَ لِدُخولِكَ الجنّةَ",
+     "en": "You read the Qur'an so that you enter Jannah."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose from the 2 options by ticking A or B.",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "B",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "B"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q018.png",
+    "mafool-lahu-fihi/q019.png",
+    "mafool-lahu-fihi/q020.png"
+   ],
+   "flags": [
+    "Internal short-vowel harakat inside the sentence bodies (e.g. on دُخولَكَ / لِدُخولِكَ) were read from the rendered image at normal resolution; double-check exact placement against the original picture if pixel-perfect diacritics matter."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/application/2",
+   "section": "mafool-lahu-fihi/application",
+   "number": 2,
+   "type": "choose_sentence_ab",
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "أذهبُ إلى زيدٍ طلبَه إيّايَ",
+     "en": "I am going to Zaid because he is seeking me."
+    },
+    {
+     "label": "B",
+     "ar": "أذهبُ إلى زيدٍ لطلبِه إيّايَ",
+     "en": "I am going to Zaid because he is seeking me."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose from the 2 options by ticking A or B.",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "B",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "A",
+      "B"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q021.png",
+    "mafool-lahu-fihi/q022.png",
+    "mafool-lahu-fihi/q023.png"
+   ],
+   "flags": [
+    "Internal short-vowel harakat inside طلبَه / لِطلبِه were read from the rendered image at normal resolution; double-check against the original picture if pixel-perfect diacritics matter."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/application/3",
+   "section": "mafool-lahu-fihi/application",
+   "number": 3,
+   "type": "choose_sentence_ab",
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "خشيةَ اللَّهِ صلُّوا صلواتِكُم",
+     "en": "Only because of fearing Allah, pray your (ritual) prayers."
+    },
+    {
+     "label": "B",
+     "ar": "بخشيةَ اللَّهِ صلُّوا صلواتِكُم",
+     "en": "Only because of fearing Allah, pray your (ritual) prayers."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose from the 2 options by ticking A or B.",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "A",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "A"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q024.png",
+    "mafool-lahu-fihi/q025.png",
+    "mafool-lahu-fihi/q026.png"
+   ],
+   "flags": [
+    "Internal short-vowel harakat inside خَشيةَ / بِخَشيةِ and صَلَواتِكُم were read from the rendered image at normal resolution; double-check against the original picture if pixel-perfect diacritics matter."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/application/4",
+   "section": "mafool-lahu-fihi/application",
+   "number": 4,
+   "type": "choose_sentence_ab",
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "لِلإلتقاءِ غدًا تكلّمتُ بزيدٍ",
+     "en": "Because of the meeting tomorrow, I spoke to Zaid."
+    },
+    {
+     "label": "B",
+     "ar": "الالتقاءِ غدًا تكلّمتُ بزيدٍ",
+     "en": "Because of the meeting tomorrow, I spoke to Zaid."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose whether sentence A or B correctly forms the مفعول له (with or without the harf jar لِ) to match the translation.",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "A",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "A"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q027.png",
+    "mafool-lahu-fihi/q028.png",
+    "mafool-lahu-fihi/q029.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/application/5",
+   "section": "mafool-lahu-fihi/application",
+   "number": 5,
+   "type": "choose_sentence_ab",
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "تدرسُ فاطمةُ التجويدَ أن تقرأَ القرآنَ",
+     "en": "Fatimah studies Tajweed so that she can read the Qur'an"
+    },
+    {
+     "label": "B",
+     "ar": "تدرسُ فاطمةُ التجويدَ (لِ) أن تقرأَ القرآنَ",
+     "en": "Fatimah studies Tajweed so that she can read the Qur'an"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose whether sentence A or B correctly forms the مفعول له (with or without the harf jar لِ) to match the translation.",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "B",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "B"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q030.png",
+    "mafool-lahu-fihi/q031.png",
+    "mafool-lahu-fihi/q032.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/application/6",
+   "section": "mafool-lahu-fihi/application",
+   "number": 6,
+   "type": "choose_sentence_ab",
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "صفحَ زيدٌ عن السفيهِ حِلمًا",
+     "en": "Zaid pardoned the foolish one because of forbearance."
+    },
+    {
+     "label": "B",
+     "ar": "صفحَ زيدٌ عن السفيهِ لِحِلمٍ",
+     "en": "Zaid pardoned the foolish one because of forbearance."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose whether sentence A or B correctly forms the مفعول له (with or without the harf jar لِ) to match the translation.",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "A",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "A",
+      "B"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q033.png",
+    "mafool-lahu-fihi/q034.png",
+    "mafool-lahu-fihi/q035.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/application/7",
+   "section": "mafool-lahu-fihi/application",
+   "number": 7,
+   "type": "choose_sentence_ab",
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "صامَ زيدٌ ابتغاءً رضَا اللَّٰهِ",
+     "en": "Zaid fasted because of wanting the pleasure of Allah."
+    },
+    {
+     "label": "B",
+     "ar": "صامَ زيدٌ مبتغيًا رضَا اللَّٰه",
+     "en": "Zaid fasted because of wanting the pleasure of Allah."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose A or B",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "A",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "A",
+      "B"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q036.png",
+    "mafool-lahu-fihi/q037.png",
+    "mafool-lahu-fihi/q038.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/application/8",
+   "section": "mafool-lahu-fihi/application",
+   "number": 8,
+   "type": "choose_sentence_ab",
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "ابتعدتُ عن الأسد لخوفٍ",
+     "en": "I distanced myself away from the lion because of fear."
+    },
+    {
+     "label": "B",
+     "ar": "ابتعدتُ عن الأسد خوفاً",
+     "en": "I distanced myself away from the lion because of fear."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose A or B",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "B",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "A",
+      "B"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q039.png",
+    "mafool-lahu-fihi/q040.png",
+    "mafool-lahu-fihi/q041.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/application/9",
+   "section": "mafool-lahu-fihi/application",
+   "number": 9,
+   "type": "choose_sentence_ab",
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "عاقب الوالدُ وَلَدَه (لِ) أن يؤدِّبَه",
+     "en": "The father punished his son to discipline him"
+    },
+    {
+     "label": "B",
+     "ar": "عاقب الوالدُ وَلَدَه أن يؤدِّبَه",
+     "en": "The father punished his son to discipline him"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose A or B",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "A",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "A"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q042.png",
+    "mafool-lahu-fihi/q043.png",
+    "mafool-lahu-fihi/q044.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/application/10",
+   "section": "mafool-lahu-fihi/application",
+   "number": 10,
+   "type": "choose_sentence_ab",
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "لا تدخل في المكان المتداعِي ضعفَه",
+     "en": "Do not enter a dilapidated building because of its weakness."
+    },
+    {
+     "label": "B",
+     "ar": "لا تدخل في المكان المتداعِي لِضعفِه",
+     "en": "Do not enter a dilapidated building because of its weakness."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose A or B",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "B",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "A",
+      "B"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q045.png",
+    "mafool-lahu-fihi/q046.png",
+    "mafool-lahu-fihi/q047.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/1",
+   "section": "mafool-lahu-fihi/identify-underlined",
+   "number": 1,
+   "type": "classify_underlined_grid",
+   "sentences": [
+    {
+     "ar": "أعطيتُ الفقيرَ خبزاً مَنْحَةً صباحًا شفقةً",
+     "marked": [
+      {
+       "text": "الفقيرَ",
+       "mark": "underline"
+      },
+      {
+       "text": "خبزاً",
+       "mark": "underline"
+      },
+      {
+       "text": "مَنْحَةً",
+       "mark": "underline"
+      },
+      {
+       "text": "صباحًا",
+       "mark": "underline"
+      },
+      {
+       "text": "شفقةً",
+       "mark": "underline"
+      }
+     ],
+     "en": "I gave the poor bread in the morning in the style of giving a gift due to compassion"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool for each underlined word",
+     "kind": "grid",
+     "rows": [
+      "الفقير",
+      "خبزا",
+      "منحة",
+      "صباحا",
+      "شفقة"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "الفقير": [
+       "مفعول به"
+      ],
+      "خبزا": [
+       "مفعول به"
+      ],
+      "منحة": [
+       "مفعول مطلق"
+      ],
+      "صباحا": [
+       "مفعول فيه"
+      ],
+      "شفقة": [
+       "مفعول له"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "الفقير": [
+       "مفعول به"
+      ],
+      "خبزا": [
+       "مفعول به"
+      ],
+      "منحة": [
+       "مفعول مطلق"
+      ],
+      "صباحا": [
+       "مفعول فيه"
+      ],
+      "شفقة": [
+       "مفعول له"
+      ]
+     },
+     "score": {
+      "got": 5,
+      "of": 5
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q049.png",
+    "mafool-lahu-fihi/q050.png",
+    "mafool-lahu-fihi/q051.png",
+    "mafool-lahu-fihi/q052.png"
+   ],
+   "flags": [
+    "Full harakat on the sentence read from a small image; صباحًا and شفقةً tanween marks may not be pixel-perfect."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/2",
+   "section": "mafool-lahu-fihi/identify-underlined",
+   "number": 2,
+   "type": "classify_underlined_grid",
+   "sentences": [
+    {
+     "ar": "مَا بِكَ وزيدًا أمسِ فوقَ المسجدِ",
+     "marked": [
+      {
+       "text": "زيدًا",
+       "mark": "underline"
+      },
+      {
+       "text": "أمسِ",
+       "mark": "underline"
+      },
+      {
+       "text": "فوقَ",
+       "mark": "underline"
+      }
+     ],
+     "en": "what is it with you along with zaid from yesterday, ontop of the masjid?"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool for each underlined word",
+     "kind": "grid",
+     "rows": [
+      "زيدا",
+      "أمس",
+      "فوق"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "زيدا": [
+       "مفعول معه"
+      ],
+      "أمس": [
+       "مفعول فيه"
+      ],
+      "فوق": [
+       "مفعول فيه"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "زيدا": [
+       "مفعول معه"
+      ],
+      "أمس": [
+       "مفعول فيه"
+      ],
+      "فوق": [
+       "مفعول فيه"
+      ]
+     },
+     "score": {
+      "got": 3,
+      "of": 3
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q053.png",
+    "mafool-lahu-fihi/q054.png",
+    "mafool-lahu-fihi/q055.png",
+    "mafool-lahu-fihi/q056.png"
+   ],
+   "flags": [
+    "Full harakat on the sentence read from a small image; some vowel marks (kasra/fatha placement) may not be pixel-perfect."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/3",
+   "section": "mafool-lahu-fihi/identify-underlined",
+   "number": 3,
+   "type": "classify_underlined_grid",
+   "sentences": [
+    {
+     "ar": "احترامًا قُمتَ وَكَتابَكَ أَمَامَ الأستاذِ نَشاطًا",
+     "marked": [
+      {
+       "text": "احترامًا",
+       "mark": "underline"
+      },
+      {
+       "text": "كِتابَك",
+       "mark": "underline"
+      },
+      {
+       "text": "أَمَامَ",
+       "mark": "underline"
+      },
+      {
+       "text": "نَشاطًا",
+       "mark": "underline"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool present for each underlined word by ticking the correlating box.",
+     "kind": "grid",
+     "rows": [
+      "احتراما",
+      "كتابك",
+      "أمام",
+      "نشاطا"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "احتراما": [
+       "مفعول له"
+      ],
+      "كتابك": [
+       "مفعول معه"
+      ],
+      "أمام": [
+       "مفعول فيه"
+      ],
+      "نشاطا": [
+       "مفعول مطلق"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "احتراما": [
+       "مفعول مطلق"
+      ],
+      "كتابك": [
+       "مفعول معه"
+      ],
+      "أمام": [
+       "مفعول فيه"
+      ],
+      "نشاطا": [
+       "مفعول مطلق"
+      ]
+     },
+     "score": {
+      "got": 3,
+      "of": 4
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q057.png",
+    "mafool-lahu-fihi/q058.png",
+    "mafool-lahu-fihi/q059.png",
+    "mafool-lahu-fihi/q060.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/4",
+   "section": "mafool-lahu-fihi/identify-underlined",
+   "number": 4,
+   "type": "classify_underlined_grid",
+   "sentences": [
+    {
+     "ar": "إبراهيمُ كسرَ الأصنامَ فَأسًا يومَ عيدِهم كَرْهًا للشركِ",
+     "marked": [
+      {
+       "text": "الأصنامَ",
+       "mark": "underline"
+      },
+      {
+       "text": "فَأسًا",
+       "mark": "underline"
+      },
+      {
+       "text": "يومَ",
+       "mark": "underline"
+      },
+      {
+       "text": "كَرْهًا",
+       "mark": "underline"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool present for each underlined word by ticking the correlating box.",
+     "kind": "grid",
+     "rows": [
+      "الأصنام",
+      "فأسا",
+      "يوم",
+      "كرها"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "الأصنام": [
+       "مفعول به"
+      ],
+      "فأسا": [
+       "مفعول مطلق"
+      ],
+      "يوم": [
+       "مفعول فيه"
+      ],
+      "كرها": [
+       "مفعول له"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "الأصنام": [
+       "مفعول به"
+      ],
+      "فأسا": [
+       "مفعول مطلق"
+      ],
+      "يوم": [
+       "مفعول فيه"
+      ],
+      "كرها": [
+       "مفعول له"
+      ]
+     },
+     "score": {
+      "got": 4,
+      "of": 4
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q061.png",
+    "mafool-lahu-fihi/q062.png",
+    "mafool-lahu-fihi/q063.png",
+    "mafool-lahu-fihi/q064.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/5",
+   "section": "mafool-lahu-fihi/identify-underlined",
+   "number": 5,
+   "type": "classify_underlined_grid",
+   "sentences": [
+    {
+     "ar": "أَطِعِ اللَّهَ تشريفًا له وَدينَه كلَّ الإطاعةِ أَبَدًا",
+     "marked": [
+      {
+       "text": "اللَّهَ",
+       "mark": "underline"
+      },
+      {
+       "text": "تشريفًا",
+       "mark": "underline"
+      },
+      {
+       "text": "دينَه",
+       "mark": "underline"
+      },
+      {
+       "text": "كلَّ",
+       "mark": "underline"
+      },
+      {
+       "text": "الإطاعةِ",
+       "mark": "underline"
+      },
+      {
+       "text": "أَبَدًا",
+       "mark": "underline"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool present for each underlined word by ticking the correlating box.",
+     "kind": "grid",
+     "rows": [
+      "الله",
+      "تشريفا",
+      "دينه",
+      "كل",
+      "أبدا"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "الله": [
+       "مفعول به"
+      ],
+      "تشريفا": [
+       "مفعول له"
+      ],
+      "دينه": [
+       "مفعول به",
+       "مفعول معه"
+      ],
+      "كل": [
+       "مفعول مطلق"
+      ],
+      "أبدا": [
+       "مفعول فيه"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "الله": [
+       "مفعول به"
+      ],
+      "تشريفا": [
+       "مفعول له"
+      ],
+      "دينه": [
+       "مفعول معه"
+      ],
+      "كل": [
+       "مفعول مطلق"
+      ],
+      "أبدا": [
+       "مفعول فيه"
+      ]
+     },
+     "score": {
+      "got": 4,
+      "of": 5
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q065.png",
+    "mafool-lahu-fihi/q066.png",
+    "mafool-lahu-fihi/q067.png",
+    "mafool-lahu-fihi/q068.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/6",
+   "section": "mafool-lahu-fihi/identify-underlined",
+   "number": 6,
+   "type": "classify_underlined_grid",
+   "sentences": [
+    {
+     "ar": "دخلتُ مكّةَ للعمرة ارتجاءً مغفرةَ اللّهِ",
+     "marked": [
+      {
+       "text": "مكّةَ",
+       "mark": "underline"
+      },
+      {
+       "text": "ارتجاءً",
+       "mark": "underline"
+      },
+      {
+       "text": "مغفرةَ",
+       "mark": "underline"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool present for each underlined word/phrase by ticking the correlating box.",
+     "kind": "grid",
+     "rows": [
+      "مكة",
+      "ارتجاء",
+      "مغفرة"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "مكة": [
+       "مفعول به"
+      ],
+      "ارتجاء": [
+       "مفعول له"
+      ],
+      "مغفرة": [
+       "مفعول به"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "مكة": [
+       "مفعول به"
+      ],
+      "ارتجاء": [
+       "مفعول له"
+      ],
+      "مغفرة": [
+       "مفعول له"
+      ]
+     },
+     "score": {
+      "got": 2,
+      "of": 3
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q069.png",
+    "mafool-lahu-fihi/q070.png",
+    "mafool-lahu-fihi/q071.png",
+    "mafool-lahu-fihi/q072.png"
+   ],
+   "flags": [
+    "Diacritics on 'دخلتُ مكّةَ للعمرةِ ارتجاءً مغفرةَ اللهِ' transcribed to the best legibility from the image; a few harakat (e.g. on للعمرة) are read, not certain.",
+    "Row 'مكة' and 'ارتجاء' are confirmed correct by a green check (marked_correct); row 'مغفرة' was ticked wrong (مفعول له, 0/1) and its answer here comes from the 'Correct answers' key block (مفعول به), not from the student's own tick."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/7",
+   "section": "mafool-lahu-fihi/identify-underlined",
+   "number": 7,
+   "type": "classify_underlined_grid",
+   "sentences": [
+    {
+     "ar": "الجيشُ رجعَ والأميرَ القَهْقَرى مساءً",
+     "marked": [
+      {
+       "text": "الأَميرَ",
+       "mark": "underline"
+      },
+      {
+       "text": "القَهْقَرى",
+       "mark": "underline"
+      },
+      {
+       "text": "مساءً",
+       "mark": "underline"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool present for each underlined word/phrase by ticking the correlating box.",
+     "kind": "grid",
+     "rows": [
+      "الأمير",
+      "القهقرى",
+      "مساء"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "الأمير": [
+       "مفعول معه"
+      ],
+      "القهقرى": [
+       "مفعول مطلق"
+      ],
+      "مساء": [
+       "مفعول فيه"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "الأمير": [
+       "مفعول معه"
+      ],
+      "القهقرى": [
+       "مفعول مطلق"
+      ],
+      "مساء": [
+       "مفعول فيه"
+      ]
+     },
+     "score": {
+      "got": 3,
+      "of": 3
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q073.png",
+    "mafool-lahu-fihi/q074.png",
+    "mafool-lahu-fihi/q075.png",
+    "mafool-lahu-fihi/q076.png"
+   ],
+   "flags": [
+    "Diacritics on 'الجيشُ رجعَ والأميرَ القهقرى مساءً' transcribed to the best legibility from the image."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/8",
+   "section": "mafool-lahu-fihi/identify-underlined",
+   "number": 8,
+   "type": "classify_underlined_grid",
+   "sentences": [
+    {
+     "ar": "أَبحَرَ زيدٌ السفينةَ ليلًا هُدُوْءً له",
+     "marked": [
+      {
+       "text": "السفينةَ",
+       "mark": "underline"
+      },
+      {
+       "text": "ليلًا",
+       "mark": "underline"
+      },
+      {
+       "text": "هُدُوْءً له",
+       "mark": "underline"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool present for each underlined word/phrase by ticking the correlating box.",
+     "kind": "grid",
+     "rows": [
+      "السفينة",
+      "ليلا",
+      "هدوء"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "السفينة": [
+       "مفعول به"
+      ],
+      "ليلا": [
+       "مفعول فيه"
+      ],
+      "هدوء": [
+       "مفعول مطلق",
+       "مفعول له"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "السفينة": [
+       "مفعول به"
+      ],
+      "ليلا": [
+       "مفعول فيه"
+      ],
+      "هدوء": [
+       "مفعول له"
+      ]
+     },
+     "score": {
+      "got": 2,
+      "of": 3
+     }
+    }
+   ],
+   "explanation": "Hudu'an can be mafool lahu, he sailed in order to be calm.\nLike: He hit zaid in order to teach manners\nor\nHudu'an is Naib anil mafool mutlaq, ie he sailed a relaxing, calmful, tranquil sailing.",
+   "images": [
+    "mafool-lahu-fihi/q077.png",
+    "mafool-lahu-fihi/q078.png",
+    "mafool-lahu-fihi/q079.png",
+    "mafool-lahu-fihi/q080.png"
+   ],
+   "flags": [
+    "Diacritics on 'أبحرَ زيدٌ السفينةَ ليلًا هدوءً له' transcribed to the best legibility from the image; the final 'له' is rendered لَهُ though the printed image shows no visible haraka on it.",
+    "Vowels on أَبحَرَ (hamza's fatha is clearly drawn; the fatha on ح is agreed by both readers; whether the remaining stroke sits over ر or over ب could not be pinned down with full certainty at this resolution) could not be read with certainty."
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/1",
+   "section": "mafool-maahu/application",
+   "number": 1,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "تَخَاصَمَ زيد وبكر",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of the highlighted و.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "عاطفة",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "عاطفة"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q020.png",
+    "mafool-maahu/q021.png",
+    "mafool-maahu/q022.png",
+    "mafool-maahu/q023.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/2",
+   "section": "mafool-maahu/application",
+   "number": 2,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "قرأ القرآن زيد والمِصباح",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of the highlighted و.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "معية"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q024.png",
+    "mafool-maahu/q025.png",
+    "mafool-maahu/q026.png",
+    "mafool-maahu/q027.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/3",
+   "section": "mafool-maahu/application",
+   "number": 3,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "جلست فاطمة وظِلّ الشجرة",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of the highlighted و.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "معية"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q028.png",
+    "mafool-maahu/q029.png",
+    "mafool-maahu/q030.png",
+    "mafool-maahu/q031.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/4",
+   "section": "mafool-maahu/application",
+   "number": 4,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "فتحتُ أنَا وزيد أبوابَ البيت",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و in the sentence.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "كلاهما",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "كلاهما"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q032.png",
+    "mafool-maahu/q033.png",
+    "mafool-maahu/q034.png",
+    "mafool-maahu/q035.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/5",
+   "section": "mafool-maahu/application",
+   "number": 5,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "دخل الفصل زيدٌ وطلحة",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و in the sentence.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "كلاهما",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "كلاهما"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q036.png",
+    "mafool-maahu/q037.png",
+    "mafool-maahu/q038.png",
+    "mafool-maahu/q039.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/6",
+   "section": "mafool-maahu/application",
+   "number": 6,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "سمعتُ والتاجر الآذانَ",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و in the sentence.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "معية"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q040.png",
+    "mafool-maahu/q041.png",
+    "mafool-maahu/q042.png",
+    "mafool-maahu/q043.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/7",
+   "section": "mafool-maahu/application",
+   "number": 7,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "أطعمتُ زيدًا دجاجة وماء",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و you are dealing with.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "كلاهما"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "Chicken can be fed to someone, water is given to drink.\nso, I fed Zaid chicken `WITH` water. Meaning whilst eating the chicken, he's drinking sips of water. It's happening at the same time within the process of consuming nutrients.",
+   "images": [
+    "mafool-maahu/q044.png",
+    "mafool-maahu/q045.png",
+    "mafool-maahu/q046.png",
+    "mafool-maahu/q047.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/8",
+   "section": "mafool-maahu/application",
+   "number": 8,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "لقيتُ زيدا وفاطمة وهو قائم",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و you are dealing with.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "كلاهما"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q048.png",
+    "mafool-maahu/q049.png",
+    "mafool-maahu/q050.png",
+    "mafool-maahu/q051.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/9",
+   "section": "mafool-maahu/application",
+   "number": 9,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "هذا لِزيدٍ وبكر",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و you are dealing with.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "عاطفة",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "عاطفة"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q052.png",
+    "mafool-maahu/q053.png",
+    "mafool-maahu/q054.png",
+    "mafool-maahu/q055.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/10",
+   "section": "mafool-maahu/application",
+   "number": 10,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "زينبُ طالعتْ الدرسَ وفاطمة",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "عاطفة",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "عاطفة"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q056.png",
+    "mafool-maahu/q057.png",
+    "mafool-maahu/q058.png",
+    "mafool-maahu/q059.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/11",
+   "section": "mafool-maahu/application",
+   "number": 11,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "دخل المسجدَ زيدٌ وغروب الشمس",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "معية"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q060.png",
+    "mafool-maahu/q061.png",
+    "mafool-maahu/q062.png",
+    "mafool-maahu/q063.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/12",
+   "section": "mafool-maahu/application",
+   "number": 12,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "جلس زيد وبكر وهُما ضاحكان",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "عاطفة",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "كلاهما"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q064.png",
+    "mafool-maahu/q065.png",
+    "mafool-maahu/q066.png",
+    "mafool-maahu/q067.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/13",
+   "section": "mafool-maahu/application",
+   "number": 13,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "هذا له وزيد",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و and select the correct option.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "معية"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q068.png",
+    "mafool-maahu/q069.png",
+    "mafool-maahu/q070.png",
+    "mafool-maahu/q071.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/14",
+   "section": "mafool-maahu/application",
+   "number": 14,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "جاء الشتاءُ والمعطف",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و and select the correct option.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "كلاهما"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q072.png",
+    "mafool-maahu/q073.png",
+    "mafool-maahu/q074.png",
+    "mafool-maahu/q075.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/15",
+   "section": "mafool-maahu/application",
+   "number": 15,
+   "type": "atf_or_maiyyah",
+   "sentences": [
+    {
+     "ar": "اشترك زيد وبكر في العمل",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و and select the correct option.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "عاطفة",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "كلاهما"
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "explanation": "It is عاطفة only because the verb of the same reason تخاصم in Q1.\nThe verb contains the meaning of `With` so و will not be معية or you'll end up with `With` `with`.",
+   "images": [
+    "mafool-maahu/q076.png",
+    "mafool-maahu/q077.png",
+    "mafool-maahu/q078.png",
+    "mafool-maahu/q079.png"
+   ]
+  }
+ ]
+}

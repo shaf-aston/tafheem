@@ -1,0 +1,303 @@
+{
+  "id": "grave",
+  "order": 4,
+  "name": "Death and the Grave",
+  "arabic": "الموت والبرزخ",
+  "science": "aqidah",
+  "kind": "unseen",
+  "sub": "From the last breath to the Trumpet",
+  "events": [
+    {
+      "id": "soul",
+      "title": "The soul is taken",
+      "arabic": "قبض الروح",
+      "when": "At death",
+      "at": 1,
+      "summary": "The angel of death, put in charge of you, takes the soul.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "32:11"
+        },
+        {
+          "quran": "6:93"
+        }
+      ],
+      "steps": [
+        {
+          "id": "angel-arrives",
+          "title": "The angel of death arrives",
+          "arabic": "مجيء ملك الموت",
+          "when": "At death",
+          "summary": "The angel of death, charged with each soul, comes to take it.",
+          "refs": [
+            {
+              "quran": "32:11"
+            }
+          ]
+        },
+        {
+          "id": "soul-believer",
+          "title": "Taken in peace",
+          "arabic": "قبض روح المؤمن",
+          "when": "At death",
+          "summary": "The angels take the soul of the pure and say: peace be upon you, enter Paradise for what you used to do.",
+          "refs": [
+            {
+              "quran": "16:32"
+            }
+          ],
+          "path": "believer"
+        },
+        {
+          "id": "soul-disbeliever",
+          "title": "Souls forced out",
+          "arabic": "قبض روح الكافر",
+          "when": "At death",
+          "summary": "The wrongdoers are in the anguish of death while the angels stretch out their hands: discharge your souls, today you are repaid with a punishment of humiliation.",
+          "refs": [
+            {
+              "quran": "6:93"
+            }
+          ],
+          "path": "disbeliever"
+        }
+      ]
+    },
+    {
+      "id": "questions",
+      "title": "The three questions",
+      "arabic": "سؤال القبر",
+      "when": "In the grave",
+      "at": 2,
+      "summary": "Who is your Lord? What is your religion? Who is this man sent to you?",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "abudawud",
+          "number": 4753,
+          "checked": "sunnah.com"
+        },
+        {
+          "quran": "14:27"
+        }
+      ],
+      "steps": [
+        {
+          "id": "sat-up",
+          "title": "Made to sit up",
+          "arabic": "الإجلاس في القبر",
+          "when": "In the grave",
+          "summary": "Two angels come to the dead person and make him sit up to question him.",
+          "refs": [
+            {
+              "hadith": "abudawud",
+              "number": 4753,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "believer-answers",
+          "title": "Believer answers surely",
+          "arabic": "جواب المؤمن",
+          "when": "In the grave",
+          "summary": "He says: my Lord is Allah, my religion is Islam, he is the Messenger of Allah. A caller from heaven declares him truthful and opens a door to Paradise for him.",
+          "refs": [
+            {
+              "hadith": "abudawud",
+              "number": 4753,
+              "checked": "sunnah.com"
+            }
+          ],
+          "path": "believer"
+        },
+        {
+          "id": "disbeliever-falters",
+          "title": "Disbeliever falters",
+          "arabic": "تعثر الكافر",
+          "when": "In the grave",
+          "summary": "He can only say: alas, I do not know. A caller declares him a liar and opens a door to the Fire for him.",
+          "refs": [
+            {
+              "hadith": "abudawud",
+              "number": 4753,
+              "checked": "sunnah.com"
+            }
+          ],
+          "path": "disbeliever"
+        }
+      ]
+    },
+    {
+      "id": "munkar",
+      "title": "Munkar and Nakir",
+      "arabic": "منكر ونكير",
+      "when": "In the grave",
+      "at": 2,
+      "summary": "The two angels who question the dead are named.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "tirmidhi",
+          "number": 1071,
+          "checked": "sunnah.com"
+        }
+      ],
+      "steps": [
+        {
+          "id": "two-angels",
+          "title": "Munkar and Nakir arrive",
+          "arabic": "مجيء منكر ونكير",
+          "when": "After burial",
+          "summary": "Two black, blue-eyed angels come and ask: what did you used to say about this man?",
+          "refs": [
+            {
+              "hadith": "tirmidhi",
+              "number": 1071,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "grave-widened",
+          "title": "Grave widened for the believer",
+          "arabic": "توسيع قبر المؤمن",
+          "when": "After the answer",
+          "summary": "His grave is opened out seventy by seventy cubits and lit up, and he is told to sleep like a bridegroom.",
+          "refs": [
+            {
+              "hadith": "tirmidhi",
+              "number": 1071,
+              "checked": "sunnah.com"
+            }
+          ],
+          "path": "believer"
+        },
+        {
+          "id": "earth-closes",
+          "title": "Earth closes on him",
+          "arabic": "التئام الأرض على المنافق",
+          "when": "After the answer",
+          "summary": "The hypocrite can only say he does not know; the earth is told to close on him until his ribs are crushed together.",
+          "refs": [
+            {
+              "hadith": "tirmidhi",
+              "number": 1071,
+              "checked": "sunnah.com"
+            }
+          ],
+          "path": "disbeliever"
+        }
+      ]
+    },
+    {
+      "id": "barzakh",
+      "title": "Barzakh",
+      "arabic": "البرزخ",
+      "when": "Until resurrection",
+      "at": 3,
+      "summary": "A barrier behind them until the Day they are raised.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "23:99-100"
+        }
+      ],
+      "steps": [
+        {
+          "id": "plea-return",
+          "title": "Pleads to be sent back",
+          "arabic": "طلب الرجوع",
+          "when": "At death",
+          "summary": "The dying wrongdoer begs: my Lord, send me back, that I might do good in what I left behind.",
+          "refs": [
+            {
+              "quran": "23:99"
+            }
+          ]
+        },
+        {
+          "id": "barrier-set",
+          "title": "The barrier is set",
+          "arabic": "ضرب البرزخ",
+          "when": "Until resurrection",
+          "summary": "No, it is only a word he speaks. Behind them is a barrier until the Day they are raised.",
+          "refs": [
+            {
+              "quran": "23:100"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "garden-pit",
+      "title": "A garden or a pit",
+      "arabic": "روضة أو حفرة",
+      "when": "Until resurrection",
+      "at": 3,
+      "summary": "The grave is shown their seat morning and evening.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "40:46"
+        },
+        {
+          "hadith": "bukhari",
+          "number": 1379,
+          "checked": "sunnah.com"
+        }
+      ],
+      "steps": [
+        {
+          "id": "shown-seat",
+          "title": "Shown his place",
+          "arabic": "عرض المقعد",
+          "when": "Morning and evening",
+          "summary": "Each person is shown their place, in Paradise or in the Fire, morning and evening.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 1379,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "seat-garden",
+          "title": "A garden",
+          "arabic": "روضة من رياض الجنة",
+          "when": "Until resurrection",
+          "summary": "If he is one of the people of Paradise, he is shown his place there.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 1379,
+              "checked": "sunnah.com"
+            }
+          ],
+          "path": "believer"
+        },
+        {
+          "id": "seat-pit",
+          "title": "A pit of the Fire",
+          "arabic": "حفرة من حفر النار",
+          "when": "Until resurrection",
+          "summary": "If he is one of the people of the Fire, he is shown his place there, as the Family of Fir'awn are shown the Fire morning and evening.",
+          "refs": [
+            {
+              "quran": "40:46"
+            },
+            {
+              "hadith": "bukhari",
+              "number": 1379,
+              "checked": "sunnah.com"
+            }
+          ],
+          "path": "disbeliever"
+        }
+      ]
+    }
+  ]
+}

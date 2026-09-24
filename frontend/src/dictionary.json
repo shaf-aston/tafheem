@@ -1,0 +1,9 @@
+{
+  "_comment": "How the dictionary lays out the words that come back beside the one searched. The first result is read in full; the rest sit in a grid of small cards so the forms of one root can be compared at a glance. 'tiers' is checked in order, first match wins: a card spans 'cols' columns once it has at least 'senses' definitions, or 'letters' of definition text in all, or (when 'synonyms' is true) any synonyms at all, since the synonym band needs the width. No match keeps the default, 1 column. lib/entrySpan.js is the only reader.",
+  "forms": {
+    "tiers": [
+      { "cols": 3, "senses": 8, "letters": 260, "synonyms": false },
+      { "cols": 2, "senses": 4, "letters": 110, "synonyms": true }
+    ]
+  }
+}

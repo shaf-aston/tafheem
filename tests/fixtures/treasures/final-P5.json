@@ -1,0 +1,28 @@
+[
+  {
+    "page": 241,
+    "type": "ناقص واوي",
+    "bab": "باب نصر",
+    "root": "د ع و",
+    "sarf_sagheer": "دَعَا يَدْعُوْ دُعَاءً فَهُوَ دَاعٍ وَدُعِيَ يُدْعَى دُعَاءً فَهُوَ مَدْعُوٌّ اَلْأَمْرُ مِنْهُ أُدْعُ وَالنَّهْيُ عَنْهُ لاَ تَدْعُ الظَّرْفُ مِنْهُ مَدْعًى مَدْعَيَانِ مَدَاعٍ وَالْآلَةُ مِنْهُ مِدْعًى مِدْعَيَانِ مَدَاعٍ مِدْعَاةٌ مِدْعَاتَانِ مَدَاعٍ مِدْعَاءٌ مِدْعَايَانِ مَدَاعِيُّ وَأَفْعَلُ التَّفْضِيْلِ مِنْهُ أَدْعَى أَدْعَيَانِ أَدَاعٍ وَأَدْعَوْنَ وَالْمُؤَنَّثُ مِنْهُ دُعْيَى دُعْيَيَانِ دُعًى وَ دُعْيَيَاتٌ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": {"madi": "دَعَا", "mudari": "يَدْعُوْ", "amr": "لِيَدْعُ", "nahy": "لاَ يَدْعُ", "madi-passive": "دُعِيَ", "mudari-passive": "يُدْعَى"},
+      "they two (m)": {"madi": "دَعَوَا", "mudari": "يَدْعُوَانِ", "amr": "لِيَدْعُوَا", "nahy": "لاَ يَدْعُوَا", "madi-passive": "دُعِيَا", "mudari-passive": "يُدْعَيَانِ"},
+      "they (m)": {"madi": "دَعَوْا", "mudari": "يَدْعُوْنَ", "amr": "لِيَدْعُوْ", "nahy": "لاَ يَدْعُوْ", "madi-passive": "دُعُوْا", "mudari-passive": "يُدْعَوْنَ"},
+      "she": {"madi": "دَعَتْ", "mudari": "تَدْعُوْ", "amr": "لِتَدْعُ", "nahy": "لاَ تَدْعُ", "madi-passive": "دُعِيَتْ", "mudari-passive": "تُدْعَى"},
+      "they two (f)": {"madi": "دَعَتَا", "mudari": "تَدْعُوَانِ", "amr": "لِتَدْعُوَا", "nahy": "لاَ تَدْعُوَا", "madi-passive": "دُعِيَتَا", "mudari-passive": "تُدْعَيَانِ"},
+      "they (f)": {"madi": "دَعَوْنَ", "mudari": "يَدْعُوْنَ", "amr": "لِيَدْعُوْنَ", "nahy": "لاَ يَدْعُوْنَ", "madi-passive": "دُعِيْنَ", "mudari-passive": "يُدْعَيْنَ"},
+      "you (m)": {"madi": "دَعَوْتَ", "mudari": "تَدْعُوْ", "amr": "أُدْعُ", "nahy": "لاَ تَدْعُ", "madi-passive": "دُعِيْتَ", "mudari-passive": "تُدْعَى"},
+      "you two (m)": {"madi": "دَعَوْتُمَا", "mudari": "تَدْعُوَانِ", "amr": "أُدْعُوَا", "nahy": "لاَ تَدْعُوَا", "madi-passive": "دُعِيْتُمَا", "mudari-passive": "تُدْعَيَانِ"},
+      "you all (m)": {"madi": "دَعَوْتُمْ", "mudari": "تَدْعُوْنَ", "amr": "أُدْعُوْ", "nahy": "لاَ تَدْعُوْ", "madi-passive": "دُعِيْتُمْ", "mudari-passive": "تُدْعَوْنَ"},
+      "you (f)": {"madi": "دَعَوْتِ", "mudari": "تَدْعِيْنَ", "amr": "أُدْعِيْ", "nahy": "لاَ تَدْعِيْ", "madi-passive": "دُعِيْتِ", "mudari-passive": "تُدْعَيْنَ"},
+      "you two (f)": {"madi": "دَعَوْتُمَا", "mudari": "تَدْعُوَانِ", "amr": "أُدْعُوَا", "nahy": "لاَ تَدْعُوَا", "madi-passive": "دُعِيْتُمَا", "mudari-passive": "تُدْعَيَانِ"},
+      "you all (f)": {"madi": "دَعَوْتُنَّ", "mudari": "تَدْعُوْنَ", "amr": "أُدْعُوْنَ", "nahy": "لاَ تَدْعُوْنَ", "madi-passive": "دُعِيْتُنَّ", "mudari-passive": "تُدْعَيْنَ"},
+      "I": {"madi": "دَعَوْتُ", "mudari": "أَدْعُوْ", "amr": "لِأَدْعُ", "nahy": "لاَ أَدْعُ", "madi-passive": "دُعِيْتُ", "mudari-passive": "أُدْعَى"},
+      "we": {"madi": "دَعَوْنَا", "mudari": "نَدْعُوْ", "amr": "لِنَدْعُ", "nahy": "لاَ نَدْعُ", "madi-passive": "دُعِيْنَا", "mudari-passive": "نُدْعَى"}
+    },
+    "notes": "Chapter heading p241: The Paradigms of (ناقص) and (لفيف); only the ناقص واوي paradigm of دعا falls in pages 241-250. Title line: ناقص واوي من باب نَصَرَ ــ اَلدُّعَاءُ وَالدَّعْوَةُ. Tables are split across pages: p243 ماضي/مضارع معروف+مجهول and تأكيد النفي مع لن; p244 النفي مع لم and المضارع مع النون الثقيلة plus running lists with النون الخفيفة; p245 الأمر معروف/مجهول and both مع النون الثقيلة; p246 النهي معروف/مجهول and both مع النون الثقيلة; p247 اسم الفاعل/اسم المفعول/اسم الظرف/اسم الآلة. The amr and nahy columns above are the معروف forms; the book also prints matching مجهول forms (لِيُدْعَ … / لاَ يُدْعَ …), which have no column id in this schema. Analysis notes: أجوف يائي and ناقص يائي do not come on باب نصر (this is the exceptional case); و of مَدْعَى/مِدْعَى deleted by rule 7, retained with أل or as مضاف; و of مِدْعَاءٌ became hamza as in the مصدر; rule 25 in the plurals مَدَاعٍ and أَدَاعٍ; rule 20 in مَدَاعِيُّ and in the passive يُدْعَى; rule 26 in دُعْيَى; rule 22 in دُعْيَيَانِ/دُعْيَيَاتٌ; rule 11 in الماضي المجهول and in اسم الفاعل; rule 10.1/10.2/10.3 in يَدْعُوْ، يَدْعُوْنَ، تَدْعُوْنَ، تَدْعِيْنَ; at اجتماع الساكنين a مدة is deleted, otherwise و takes ضمة and ي takes كسرة (لَيُدْعَوُنَّ، لَتُدْعَيِنَّ); only إدغام applied to اسم المفعول. p250 is Exercise 48, not a paradigm.",
+    "rules_cited": [7, 10, 11, 20, 22, 25, 26]
+  }
+]

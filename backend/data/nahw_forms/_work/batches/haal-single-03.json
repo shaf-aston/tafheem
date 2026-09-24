@@ -1,0 +1,242 @@
+{
+ "batch": "haal-single-03",
+ "questions": [
+  {
+   "id": "haal/statements/17",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "17",
+    "images": [
+     "q018.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "An إسم جامد can not be a حال unless...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "An إسم جامد can not be a حال unless...",
+     "kind": "choose_all",
+     "options": [
+      "...the اسم جامد is a name.",
+      "...the اسم جامد has a نعت مشتق.",
+      "...the اسم جامد can be interpreted as a مشتق.",
+      "...the اسم جامد has a حال aswell."
+     ],
+     "answer": [
+      "...the اسم جامد can be interpreted as a مشتق.",
+      "...the اسم جامد has a نعت مشتق."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...the اسم جامد can be interpreted as a مشتق."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/18",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "18",
+    "images": [
+     "q019.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "The حال and the action preceding it...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The حال and the action preceding it...",
+     "kind": "choose_one",
+     "options": [
+      "...must always correspond in time.",
+      "...should correspond in time but not always.",
+      "...must never correspond in time."
+     ],
+     "answer": "...should correspond in time but not always.",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...must always correspond in time."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/19",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "19",
+    "images": [
+     "q020.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "When the حال is a فعل ماضي, generally, it has قد preceding it (provided there isn't a reason to prevent قد). The purpose of this قد is to...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "When the حال is a فعل ماضي, generally, it has قد preceding it (provided there isn't a reason to prevent قد). The purpose of this قد is to...",
+     "kind": "choose_one",
+     "options": [
+      "...provide a meaning of close past tense (القريب) in order to bring it close to the مضارع verb because the مضارع verb is the closest to an اسم الفاعل which is what حال should be in principle.",
+      "...provide a meaning of ceirtainty (التحقيق) in order to ascertain the حال so it is absolutely clear and ratified.",
+      "...provide a meaning of emphasis (التأكيد) in order to remove doubt since the حال is in the past and it could become doubtful."
+     ],
+     "answer": "...provide a meaning of close past tense (القريب) in order to bring it close to the مضارع verb because the مضارع verb is the closest to an اسم الفاعل which is what حال should be in principle.",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...provide a meaning of close past tense (القريب) in order to bring it close to the مضارع verb because the مضارع verb is the closest to an اسم الفاعل which is what حال should be in principle."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/20",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "20",
+    "images": [
+     "q021.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "A فعل ماضي حال is prevented from being preceded by قد...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "A فعل ماضي حال is prevented from being preceded by قد...",
+     "kind": "choose_all",
+     "options": [
+      "...when the فعل ماضي comes after إلّا.",
+      "...when the فعل ماضي is free from a رابط.",
+      "...when the فعل ماضي is free from a واو حالية.",
+      "...when the فعل ماضي is connected with أو."
+     ],
+     "answer": [
+      "...when the فعل ماضي is connected with أو.",
+      "...when the فعل ماضي comes after إلّا."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...when the فعل ماضي is free from a واو حالية."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/21",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "21",
+    "images": [
+     "q022.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "A فعل مضارع حال...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "A فعل مضارع حال...",
+     "kind": "choose_one",
+     "options": [
+      "...can never be preceded by قد, whether the واو حالية is there or not..",
+      "...can be preceded by قد only if the واو حالية is absent.",
+      "...can be preceded by قد and the واو حالية will also be necessary."
+     ],
+     "answer": "...can be preceded by قد and the واو حالية will also be necessary.",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can be preceded by قد and the واو حالية will also be necessary."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/22",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "22",
+    "images": [
+     "q023.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "A حال مقدرة is...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "A حال مقدرة is...",
+     "kind": "choose_one",
+     "options": [
+      "...a حال which is in no tense (tenseless, timeless in another dimension) that's why it's called مقدّرة because it's to do with decree (تقدير).",
+      "...a حال which is in the past tense.",
+      "...a حال which is in the future tense.",
+      "...a حال which is in the present tense."
+     ],
+     "answer": "...a حال which is in the future tense.",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...a حال which is in no tense (tenseless, timeless in another dimension) that's why it's called مقدّرة because it's to do with decree (تقدير)."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  }
+ ]
+}

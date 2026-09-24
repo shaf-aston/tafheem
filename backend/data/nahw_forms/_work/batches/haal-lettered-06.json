@@ -1,0 +1,272 @@
+{
+ "batch": "haal-lettered-06",
+ "questions": [
+  {
+   "id": "haal/application/16",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q16",
+    "number": "16",
+    "images": [
+     "q071.png",
+     "q072.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال.\nIf it's not حال, choose ليست حالا and move on.\nIf it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "وَاعْبُدُوا اللَّه وَلَا تُشْرِكُواْ بِهِ شَيْئًا",
+     "marked": [
+      {
+       "text": "وَلَا تُشْرِكُواْ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "بِهِ",
+       "mark": "green underline"
+      },
+      {
+       "text": "شَيْئًا",
+       "mark": "green underline"
+      }
+     ],
+     "en": "Worship Allah and don't associate anything with him."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of its importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "kind": "grid",
+     "rows": [
+      "...ولا تشركوا"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "...ولا تشركوا": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "...ولا تشركوا": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": null,
+     "answer": "The jumla وَلَا تُشْرِكُوا is a prohibitive (نهي) jumla insha'iyyah, so it can't be a حال because a Jumla Inshaiyya cannot be a حال.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "The jumla is actually a prohibitive, a نهي, therefore it can't be a haal because a Jumla Inshaiyya does not be a haal."
+    }
+   ],
+   "flags": [
+    "16b my_response shows only a bare '.', likely an empty/placeholder answer box rather than actual student text.",
+    "Vowels on تُشْرِكُواْ (mark on final alef: small loop drawn above it, read as sukun/silence-marker, matching reader A) could not be read with certainty.",
+    "Vowels on شَيْئًا (mark above ي: small loop distinct from the ش fatha and from the hamza+tanween cluster on the alef, read as sukun, matching reader B) could not be read with certainty."
+   ]
+  },
+  {
+   "id": "haal/application/17",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q17",
+    "number": "17",
+    "images": [
+     "q074.png",
+     "q075.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال.\nIf it's not حال, choose ليست حالا and move on.\nIf it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "آكلُ الطعامَ سخنَ أو بردَ",
+     "marked": [
+      {
+       "text": "الطعامَ",
+       "mark": "green underline"
+      },
+      {
+       "text": "سخنَ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "بردَ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "I will eat the food whether it's hot or cold."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of its importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "kind": "grid",
+     "rows": [
+      "سخن",
+      "برد"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "سخن": [
+       "حال",
+       "منع الواو"
+      ],
+      "برد": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "سخن": [
+       "حال",
+       "منع الواو"
+      ],
+      "برد": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "points": {
+      "سخن": "1/1",
+      "برد": "1/1"
+     },
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": null,
+     "answer": "Both سَخِنَ and بَرِدَ are fi'l maadhi (past tense) joined by أو (it doesn't matter which side of the أو they're on), so the واو حالية is prevented (منع الواو) for both.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "Both are fil maadhi but connected to an aw (doesn't matter which side of the aw they are) - So, the waaw haaliyyah is prevented for both -"
+    }
+   ],
+   "flags": [
+    "17b my_response shows only a bare '.', likely an empty/placeholder answer box rather than actual student text."
+   ]
+  },
+  {
+   "id": "haal/application/18",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q18",
+    "number": "18",
+    "images": [
+     "q077.png",
+     "q078.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال.\nIf it's not حال, choose ليست حالا and move on.\nIf it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "إِنّي ذَاهِبٌ إِلَىٰ رَبِّي سَيَهْدِينِ (ي)",
+     "marked": [
+      {
+       "text": "إِنّي",
+       "mark": "green underline"
+      },
+      {
+       "text": "رَبِّي",
+       "mark": "green underline"
+      },
+      {
+       "text": "سَيَهْدِينِ (ي)",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "Indeed, I will go to my Lord, He is sure to guide (me)"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of its importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "kind": "grid",
+     "rows": [
+      "سيهدين"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "سيهدين": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "سيهدين": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": null,
+     "answer": "The verb سيهدين begins with a س, so it can't form a حال.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "The verb begins with a س so, it can't form a haal."
+    }
+   ],
+   "flags": [
+    "18b my_response shows only a bare '.', likely an empty/placeholder answer box rather than actual student text."
+   ]
+  }
+ ]
+}

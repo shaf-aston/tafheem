@@ -1,0 +1,1320 @@
+{
+ "title": "Exercise: ما ولا وإن ولات المشبهات بليس - لا التي لنفي الجنس YR3PT25-26 (21/01/26)",
+ "form": "Exercise: ما ولا وإن ولات المشبهات بليس - لا التي لنفي الجنس YR3PT25-26 (21/01/26)",
+ "harvested": "2026-09-17",
+ "rules": [
+  {
+   "id": "mushabbahat-laysa-la-jins-r01",
+   "question": "The ما & لا govern...",
+   "options": [
+    "...similar to the حروف مشبهة بالفعل",
+    "...similar to the حروف جارة",
+    "...similar to the أفعال ناقصة"
+   ],
+   "answer": [
+    "...similar to the أفعال ناقصة"
+   ],
+   "tags": [
+    "mushabbahat-laysa",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r02",
+   "question": "The ما will seize to govern if...",
+   "options": [
+    "...it's خبر precedes its إسم",
+    "...its إسم or خبر is معرفة",
+    "...an إلّا breaks the negation",
+    "...an extra إن comes after the ما"
+   ],
+   "answer": [
+    "...it's خبر precedes its إسم",
+    "...an إلّا breaks the negation",
+    "...an extra إن comes after the ما"
+   ],
+   "tags": [
+    "mushabbahat-laysa",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r03",
+   "question": "The لا will seize to govern if...",
+   "options": [
+    "...it's خبر precedes its إسم",
+    "...an إلّا breaks the negation",
+    "...its إسم or خبر is معرفة",
+    "...an extra إن comes after the ما"
+   ],
+   "answer": [
+    "...it's خبر precedes its إسم",
+    "...an إلّا breaks the negation",
+    "...its إسم or خبر is معرفة"
+   ],
+   "tags": [
+    "mushabbahat-laysa",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r04",
+   "question": "When the ما or لا seize to govern, then...",
+   "options": [
+    "...they are termed المهملة.",
+    "...they are termed الزائدة.",
+    "...they are termed الملغاة."
+   ],
+   "answer": [
+    "...they are termed المهملة."
+   ],
+   "tags": [
+    "mushabbahat-laysa",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r05",
+   "question": "The إن النافية governs...",
+   "options": [
+    "...similar to the governing of ما according to everyone.",
+    "...similar to the governing of ما according to some.",
+    "...similar to the governing of ما according to most."
+   ],
+   "answer": [
+    "...similar to the governing of ما according to some."
+   ],
+   "tags": [
+    "in-nafiya",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r06",
+   "question": "The word لاتَ governs...",
+   "options": [
+    "...an إسم & خبر",
+    "...a مفعول به & مفعول فيه",
+    "...a فعل & فاعل"
+   ],
+   "answer": [
+    "...an إسم & خبر"
+   ],
+   "tags": [
+    "laata-hin",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r07",
+   "question": "The لا التي لنفي الجنس...",
+   "options": [
+    "...only negates individuals of a genus.",
+    "...negates the entire genus."
+   ],
+   "answer": [
+    "...negates the entire genus."
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r08",
+   "question": "The لا التي لنفي الجنس governs...",
+   "options": [
+    "...similar to the حروف مشبهة بالفعل",
+    "...similar to the أفعال ناقصة",
+    "...similar to the حروف جارة"
+   ],
+   "answer": [
+    "...similar to the حروف مشبهة بالفعل"
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r09",
+   "question": "If the إسم of لا التي لنفي الجنس is نكرة مفردة...",
+   "options": [
+    "...then the إعراب of the إسم will be termed منصوب.",
+    "...then the إعراب of the إسم will be termed مرفوع.",
+    "...then the إعراب of the إسم will be termed مبني على الفتح  محلا منصوب.",
+    "...then the إعراب of the إسم will be termed مبني على علامة النصب."
+   ],
+   "answer": [
+    "...then the إعراب of the إسم will be termed مبني على الفتح  محلا منصوب."
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r10",
+   "question": "When the إسم of لا التي لنفي الجنس is نكرة مفردة and it has a صفة/نعت immediately after it without any gap, then...",
+   "options": [
+    "...the صفة can be منصوب or مرفوع only",
+    "...the صفة can be مبني على الفتح or منصوب only",
+    "...the صفة will be مبني على الفتح only",
+    "...the صفة can be مبني على الفتح or منصوب or مرفوع"
+   ],
+   "answer": [
+    "...the صفة can be مبني على الفتح or منصوب or مرفوع"
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r11",
+   "question": "When the إسم of لا التي لنفي الجنس is نكرة مفردة and it has a صفة/نعت with a gap between the it and its صفة, then...",
+   "options": [
+    "...the صفة will be مبني على الفتح only",
+    "...the صفة can be مبني على الفتح or منصوب only",
+    "...the صفة can be مبني على الفتح or منصوب or مرفوع",
+    "...the صفة can be منصوب or مرفوع only"
+   ],
+   "answer": [
+    "...the صفة can be منصوب or مرفوع only"
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r12",
+   "question": "When the إسم of لا التي لنفي الجنس is نكرة مفردة and it has a معطوف with no repitition of the لا, then...",
+   "options": [
+    "...the صفة can be مبني على الفتح or منصوب or مرفوع",
+    "...the صفة can be منصوب or مرفوع only",
+    "...the صفة can be مبني على الفتح or منصوب only",
+    "...the صفة will be مبني على الفتح only"
+   ],
+   "answer": [
+    "...the صفة can be منصوب or مرفوع only"
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "atf",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r13",
+   "question": "If the صفة or the معطوف of the نكرة مفردة إسم of لا التي لنفي الجنس is منصوب...",
+   "options": [
+    "...then it is following الإعراب المحلي البعيد (محل المحل)",
+    "...then it is following الإعراب اللفظي",
+    "...then it is following الإعراب المحلي القريب"
+   ],
+   "answer": [
+    "...then it is following الإعراب المحلي القريب"
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r14",
+   "question": "If the صفة or the معطوف of the نكرة مفردة إسم of لا التي لنفي الجنس is مرفوع...",
+   "options": [
+    "...then it is following الإعراب اللفظي",
+    "...then it is following الإعراب المحلي البعيد (محل المحل)",
+    "...then it is following الإعراب المحلي القريب"
+   ],
+   "answer": [
+    "...then it is following الإعراب المحلي البعيد (محل المحل)"
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r15",
+   "question": "If the إسم of لا التي لنفي الجنس is نكرة مفردة and a dual noun like مسلمان...",
+   "options": [
+    "...then the إعراب of the إسم will be termed منصوب.",
+    "...then the إعراب of the إسم will be termed مبني على الفتح  محلا منصوب.",
+    "...then the إعراب of the إسم will be termed مرفوع.",
+    "...then the إعراب of the إسم will be termed مبني على علامة النصب."
+   ],
+   "answer": [
+    "...then the إعراب of the إسم will be termed مبني على علامة النصب."
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r16",
+   "question": "If the إسم of لا التي لنفي الجنس is a مضاف or شبه المضاف...",
+   "options": [
+    "...then the إعراب of the إسم will be termed مرفوع.",
+    "...then the إعراب of the إسم will be termed منصوب.",
+    "...then the إعراب of the إسم will be termed مبني على علامة النصب.",
+    "...then the إعراب of the إسم will be termed مبني على الفتح  محلا منصوب."
+   ],
+   "answer": [
+    "...then the إعراب of the إسم will be termed منصوب."
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r17",
+   "question": "A شبه المضاف means...",
+   "options": [
+    "...an إضافة لفظية",
+    "...a word which has a connection with something subsequent to it in terms of governance.",
+    "...a word that looks like a مضاف but takes ال of موصول"
+   ],
+   "answer": [
+    "...a word which has a connection with something subsequent to it in terms of governance."
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-r18",
+   "question": "The لا التي لنفي الجنس will seize to govern if...",
+   "options": [
+    "...an إلّا breaks the negation",
+    "...there is a gap between the لا and its إسم",
+    "...it's خبر precedes its إسم",
+    "...its إسم or خبر is معرفة"
+   ],
+   "answer": [
+    "...its إسم or خبر is معرفة",
+    "...there is a gap between the لا and its إسم",
+    "...it's خبر precedes its إسم"
+   ],
+   "tags": [
+    "la-linafi-aljins",
+    "tarif-mustalah"
+   ]
+  }
+ ],
+ "examples": [
+  {
+   "id": "mushabbahat-laysa-la-jins-e01",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-00.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A to D gives the correct إعراب of this sentence?",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "ما زيدًا إلا رجلًا كريمًا",
+      "B": "ما زيدٌ إلا رجلٌ كريمٌ",
+      "C": "ما زيدً إلا رجلٌ كريمٌ",
+      "D": "ما زيدٌ إلا رجلًا كريمًا"
+     }
+    },
+    {
+     "letter": "b",
+     "question": "What is the ruling of the نافية",
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "answer": [
+      "مهملة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "ما زيد إلا رجل كريم\nZaid is only a noble man.",
+   "marked": [],
+   "tags": [
+    "mushabbahat-laysa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e02",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-01.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A to D gives the correct إعراب of this sentence?",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "A"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "لا رحمةٌ (ثابتًا) لمن لا يطيعُ اللهَ",
+      "B": "لا رحمةَ (ثابتٌ) لمن لا يطيعُ اللهَ",
+      "C": "لا رحمةٌ (ثابتٌ) لمن لا يطيعَ اللهَ",
+      "D": "لا رحمةً (ثابتًا) لمن لا يطيعُ اللهَ"
+     }
+    },
+    {
+     "letter": "b",
+     "question": "What is the ruling of the نافية",
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "answer": [
+      "عاملة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لا رحمة (ثابت) لمن لا يطيع الله\nMercy is not for the one who disobeys Allah.",
+   "marked": [],
+   "tags": [
+    "mushabbahat-laysa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e03",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-02.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A to D gives the correct إعراب of this sentence?",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "D"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "لا كتابُ زيدٍ مفتوحًا",
+      "B": "لا كتابَ زيدٍ مفتوحٌ",
+      "C": "لا كتابَ زيدٍ مفتوحًا",
+      "D": "لا كتابُ زيدٍ مفتوحٌ"
+     }
+    },
+    {
+     "letter": "b",
+     "question": "What is the ruling of the نافية",
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "answer": [
+      "مهملة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لا كتاب زيد مفتوح\nZaid's book is not open.",
+   "marked": [],
+   "tags": [
+    "mushabbahat-laysa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e04",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-03.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A to D give a correct إعراب of this sentence? More than one may be correct.",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "A",
+       "B",
+       "D"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "لا كتابَ جديدَ (ثابتٌ) في المكتبةِ",
+      "B": "لا كتابَ جديدًا (ثابتٌ) في المكتبةِ",
+      "C": "لا كتابَ جديدٌ (ثابتًا) في المكتبةِ",
+      "D": "لا كتابَ جديدٌ (ثابتٌ) في المكتبةِ"
+     }
+    },
+    {
+     "letter": "b",
+     "question": "What is the ruling of the نافية",
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "answer": [
+      "عاملة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لا كتاب جديد(ثابت) في المكتبة\nNo new book is present in the library.",
+   "marked": [],
+   "tags": [
+    "mushabbahat-laysa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e05",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-04.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A to D gives the correct إعراب of this sentence?",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "C"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "لا أُمًّا تكره أبناءها",
+      "B": "لا أُمَّ تَكره أبناءِها",
+      "C": "لا أُمَّ تَكره أبناءَها",
+      "D": "لا أُمٌّ تُكره أبناءُها"
+     }
+    },
+    {
+     "letter": "b",
+     "question": "What is the ruling of the نافية",
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "answer": [
+      "عاملة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لا أُمّ تكره أبناءها\nNo mother hates her children.",
+   "marked": [],
+   "tags": [
+    "mushabbahat-laysa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e06",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-05.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A to D gives the correct إعراب of this sentence?",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "A"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "ما (ثابتُوْنَ) في المدرسة طُلَّابٌ",
+      "B": "ما (ثابتَاتٌ) في المدرسة طُلَّابٌ",
+      "C": "ما (ثابتُوْنَ) في المدرسة طُلَّابًا",
+      "D": "ما (ثابتٌ) في المدرسة طُلَّابًا"
+     }
+    },
+    {
+     "letter": "b",
+     "question": "What is the ruling of the نافية",
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "answer": [
+      "مهملة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "ما (ثابت) في المدرسة طُلّاب\nStudents are not in the madrassa.",
+   "marked": [],
+   "tags": [
+    "mushabbahat-laysa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e07",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-06.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A to D gives the correct إعراب of this sentence?",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "ما وقتَ الإمتحانِ بعيدًا",
+      "B": "ما وقتُ الإمتحانِ بعيدًا",
+      "C": "ما وقتُ الإمتحانِ بعيدٌ",
+      "D": "ما وقتَ الإمتحانِ بعيدٌ"
+     }
+    },
+    {
+     "letter": "b",
+     "question": "What is the ruling of the نافية",
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "answer": [
+      "عاملة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "ما وقت الإمتحان بعيد\nThe time for the exam is not far.",
+   "marked": [],
+   "tags": [
+    "mushabbahat-laysa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e08",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-07.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A to D gives the correct إعراب of this sentence?",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "ما إنْ الأستاذُ جَاهِلًا",
+      "B": "ما إنْ الأستاذُ جَاهِلٌ",
+      "C": "ما إنْ الأستاذَ جَاهِلٌ",
+      "D": "ما إنَّ الأستاذَ جَاهِلٌ"
+     }
+    },
+    {
+     "letter": "b",
+     "question": "What is the ruling of the نافية",
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "answer": [
+      "مهملة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "ما إن الأستاذ جاهل\nThe teacher is not ignorant.",
+   "marked": [],
+   "tags": [
+    "mushabbahat-laysa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e09",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-08.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A to D gives the correct إعراب of this sentence?",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "A"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "لا مسلمٌ إلا مُطيعٌ للهِ",
+      "B": "لا مسلمٌ إلا مُطيعًا للهِ",
+      "C": "لا مسلمًا إلا مُطيعٌ للهِ",
+      "D": "لا مسلمَ إلا مُطيعٌ للهِ"
+     }
+    },
+    {
+     "letter": "b",
+     "question": "What is the ruling of the نافية",
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "answer": [
+      "مهملة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لا مسلم إلا مطيع لله\nA Muslim is not except that he obeys Allah.",
+   "marked": [],
+   "tags": [
+    "mushabbahat-laysa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e10",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-09.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A to D give a correct إعراب of this sentence? More than one may be correct.",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "C",
+       "D"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "لا هرةً موجودةٌ صغيرةٌ",
+      "B": "لا هرةٌ موجودةً صغيرةً",
+      "C": "لا هرةَ موجودةٌ صغيرةً",
+      "D": "لا هرةَ موجودةٌ صغيرةٌ"
+     }
+    },
+    {
+     "letter": "b",
+     "question": "What is the ruling of the نافية",
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "answer": [
+      "عاملة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لا هرة موجودة صغيرة\nNo small cat is present.",
+   "marked": [],
+   "tags": [
+    "mushabbahat-laysa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e11",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-10.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A or B correctly gives this sentence's إعراب, including what لاتَ's missing (dropped) part is understood to be?",
+     "options": [
+      "A",
+      "B"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "A"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "صلّى زيدٌ الفجرَ ولاتَ حينُ فجرٍ (ثابتًا) له",
+      "B": "صلّى زيدٌ الفجرَ ولاتَ (الحينَ) حينُ فجرٍ"
+     }
+    }
+   ],
+   "sentence": "صلّى زيدٌ الفجرَ ولاتَ حينُ فجرٍ",
+   "marked": [],
+   "tags": [
+    "laata-hin",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e12",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-11.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A or B correctly gives this sentence's إعراب, including what لاتَ's missing (dropped) part is understood to be?",
+     "options": [
+      "A",
+      "B"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "صلّى زيدٌ الفجرَ ولاتَ حينَ فجرٍ (ثابتٌ) له",
+      "B": "صلّى زيدٌ الفجرَ ولاتَ (الحينُ) حينَ فجرٍ"
+     }
+    }
+   ],
+   "sentence": "صلّى زيدٌ الفجرَ ولاتَ حينَ فجرٍ",
+   "marked": [],
+   "tags": [
+    "laata-hin",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e13",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-12.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A or B correctly gives this sentence's إعراب, including what لاتَ's missing (dropped) part is understood to be?",
+     "options": [
+      "A",
+      "B"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "A"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "رَاجع زيدٌ صباحَ الإمتحانِ ولاتَ وقتُ مراجعةٍ (ثابتًا) له",
+      "B": "رَاجع زيدٌ صباحَ الإمتحانِ ولاتَ (الوقتَ) وقتُ مراجعةٍ"
+     }
+    }
+   ],
+   "sentence": "رَاجع زيدٌ صباحَ الإمتحانِ ولاتَ وقتُ مراجعةٍ",
+   "marked": [],
+   "tags": [
+    "laata-hin",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e14",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-13.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A or B correctly gives this sentence's إعراب, including what لاتَ's missing (dropped) part is understood to be?",
+     "options": [
+      "A",
+      "B"
+     ],
+     "rows": [
+      "?"
+     ],
+     "answer": {
+      "?": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "رَاجع زيدٌ صباحَ الإمتحانِ ولاتَ وقتَ مراجعةٍ (ثابتٌ) له",
+      "B": "رَاجع زيدٌ صباحَ الإمتحانِ ولاتَ (الوقتُ) وقتَ مراجعةٍ"
+     }
+    }
+   ],
+   "sentence": "راجع زيدٌ قُبيلَ الإمتحانِ ولاتَ وقتَ مراجعةٍ",
+   "marked": [],
+   "doubt": "The picture disagrees with itself: its top line says قُبيلَ الإمتحانِ but both options say صباحَ الإمتحانِ. Both are copied as printed.",
+   "tags": [
+    "laata-hin",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e15",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-14.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which type of لا is being used in this sentence?",
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "rows": [
+      "لا"
+     ],
+     "answer": {
+      "لا": [
+       "لا الزائدة"
+      ]
+     },
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَا أَكَلتُ الخبزَ ولا الفاكِهَةَ",
+   "marked": [],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem",
+    "mushabbahat-laysa"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e16",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-15.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which type of لا is being used in this sentence?",
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "rows": [
+      "لا"
+     ],
+     "answer": {
+      "لا": [
+       "لا بمعنى غير"
+      ]
+     },
+     "by": "teacher"
+    }
+   ],
+   "sentence": "رأيتُ كثيرًا من أطفالٍ بلا أبٍ",
+   "marked": [],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem",
+    "mushabbahat-laysa"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e17",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-16.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which type of لا is being used in this sentence?",
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "rows": [
+      "لا"
+     ],
+     "answer": {
+      "لا": [
+       "لا المشبهة بليس"
+      ]
+     },
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لا شيءٌ صغيرٌ أسرعَ من الضّوءِ في الحركةِ",
+   "marked": [],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem",
+    "mushabbahat-laysa"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e18",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-17.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which type of لا is being used in this sentence?",
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "rows": [
+      "لا"
+     ],
+     "answer": {
+      "لا": [
+       "لا لنفي الجنس"
+      ]
+     },
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لَا سَائقَ السَّيَّارَةِ حاضِرٌ",
+   "marked": [],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem",
+    "mushabbahat-laysa"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e19",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-18.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which type of لا is being used in this sentence?",
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "rows": [
+      "لا"
+     ],
+     "answer": {
+      "لا": [
+       "لا الزائدة"
+      ]
+     },
+     "by": "teacher"
+    }
+   ],
+   "sentence": "ليسَ زيدٌ ماشيًا ولا راكبًا",
+   "marked": [],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem",
+    "mushabbahat-laysa"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e20",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-19.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "This sentence has two لا's: the one before مشكلة and the one before مساعدة. Which type of لا is each?",
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "rows": [
+      "لا (مشكلة)",
+      "لا (مساعدة)"
+     ],
+     "answer": {
+      "لا (مشكلة)": [
+       "لا بمعنى غير"
+      ],
+      "لا (مساعدة)": [
+       "لا الزائدة"
+      ]
+     },
+     "by": "teacher"
+    }
+   ],
+   "sentence": "كَتَبْتُ درسِي بِلا مُشكِلةٍ ولا مُساعَدةٍ",
+   "marked": [],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem",
+    "mushabbahat-laysa"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e21",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-20.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which type of لا is being used in this sentence?",
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "rows": [
+      "لا"
+     ],
+     "answer": {
+      "لا": [
+       "لا لنفي الجنس"
+      ]
+     },
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لاَ كتابَ طفلٍ في البيتِ",
+   "marked": [],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem",
+    "mushabbahat-laysa"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e22",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-21.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which type of لا is being used in this sentence?",
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "rows": [
+      "لا"
+     ],
+     "answer": {
+      "لا": [
+       "لا المشبهة بليس"
+      ]
+     },
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لا شيءٌ ثمينٌ يُضَاهِي اللؤلُؤَ في النَّدْرةِ",
+   "marked": [],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem",
+    "mushabbahat-laysa"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e23",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-22.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which type of لا is being used in this sentence?",
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "rows": [
+      "لا"
+     ],
+     "answer": {
+      "لا": [
+       "لا لنفي الجنس"
+      ]
+     },
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لا عالِمَ أَشهرُ من سيبويه في النحوِ",
+   "marked": [],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem",
+    "mushabbahat-laysa"
+   ]
+  },
+  {
+   "id": "mushabbahat-laysa-la-jins-e24",
+   "section": "Application of Rules",
+   "picture": "mushabbahat-laysa-la-jins-23.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which type of لا is being used in this sentence?",
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "rows": [
+      "لا"
+     ],
+     "answer": {
+      "لا": [
+       "لا لنفي الجنس"
+      ]
+     },
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لا كتاب مُفيدٌ أنفعُ من القرآنِ في الهِداية وَالتّذْكِيرِ",
+   "marked": [],
+   "tags": [
+    "la-linafi-aljins",
+    "tafriq-mafaheem",
+    "mushabbahat-laysa"
+   ]
+  }
+ ]
+}

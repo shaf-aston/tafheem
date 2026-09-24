@@ -1,0 +1,432 @@
+{
+ "pictures": {
+  "mushabbahat-laysa-la-jins-00.png": {
+   "sentence": "ما زيد إلا رجل كريم\nZaid is only a noble man.",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-01.png": {
+   "sentence": "لا رحمة (ثابت) لمن لا يطيع الله\nMercy is not for the one who disobeys Allah.",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-02.png": {
+   "sentence": "لا كتاب زيد مفتوح\nZaid's book is not open.",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-03.png": {
+   "sentence": "لا كتاب جديد(ثابت) في المكتبة\nNo new book is present in the library.",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-04.png": {
+   "sentence": "لا أُمّ تكره أبناءها\nNo mother hates her children.",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-05.png": {
+   "sentence": "ما (ثابت) في المدرسة طُلّاب\nStudents are not in the madrassa.",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-06.png": {
+   "sentence": "ما وقت الإمتحان بعيد\nThe time for the exam is not far.",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-07.png": {
+   "sentence": "ما إن الأستاذ جاهل\nThe teacher is not ignorant.",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-08.png": {
+   "sentence": "لا مسلم إلا مطيع لله\nA Muslim is not except that he obeys Allah.",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-09.png": {
+   "sentence": "لا هرة موجودة صغيرة\nNo small cat is present.",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-10.png": {
+   "sentence": "صلّى زيدٌ الفجرَ ولاتَ حينُ فجرٍ",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-11.png": {
+   "sentence": "صلّى زيدٌ الفجرَ ولاتَ حينَ فجرٍ",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-12.png": {
+   "sentence": "رَاجع زيدٌ صباحَ الإمتحانِ ولاتَ وقتُ مراجعةٍ",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-13.png": {
+   "sentence": "راجع زيدٌ قُبيلَ الإمتحانِ ولاتَ وقتَ مراجعةٍ",
+   "marked": [],
+   "doubt": "The picture disagrees with itself: its top line says قُبيلَ الإمتحانِ but both options say صباحَ الإمتحانِ. Both are copied as printed."
+  },
+  "mushabbahat-laysa-la-jins-14.png": {
+   "sentence": "مَا أَكَلتُ الخبزَ ولا الفاكِهَةَ",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-15.png": {
+   "sentence": "رأيتُ كثيرًا من أطفالٍ بلا أبٍ",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-16.png": {
+   "sentence": "لا شيءٌ صغيرٌ أسرعَ من الضّوءِ في الحركةِ",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-17.png": {
+   "sentence": "لَا سَائقَ السَّيَّارَةِ حاضِرٌ",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-18.png": {
+   "sentence": "ليسَ زيدٌ ماشيًا ولا راكبًا",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-19.png": {
+   "sentence": "كَتَبْتُ درسِي بِلا مُشكِلةٍ ولا مُساعَدةٍ",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-20.png": {
+   "sentence": "لاَ كتابَ طفلٍ في البيتِ",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-21.png": {
+   "sentence": "لا شيءٌ ثمينٌ يُضَاهِي اللؤلُؤَ في النَّدْرةِ",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-22.png": {
+   "sentence": "لا عالِمَ أَشهرُ من سيبويه في النحوِ",
+   "marked": []
+  },
+  "mushabbahat-laysa-la-jins-23.png": {
+   "sentence": "لا كتاب مُفيدٌ أنفعُ من القرآنِ في الهِداية وَالتّذْكِيرِ",
+   "marked": []
+  }
+ },
+ "notes": {
+  "mushabbahat-laysa-la-jins-e01a": {
+   "question": "Which of A to D gives the correct إعراب of this sentence?",
+   "labels": {
+    "A": "ما زيدًا إلا رجلًا كريمًا",
+    "B": "ما زيدٌ إلا رجلٌ كريمٌ",
+    "C": "ما زيدً إلا رجلٌ كريمٌ",
+    "D": "ما زيدٌ إلا رجلًا كريمًا"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e02a": {
+   "question": "Which of A to D gives the correct إعراب of this sentence?",
+   "labels": {
+    "A": "لا رحمةٌ (ثابتًا) لمن لا يطيعُ اللهَ",
+    "B": "لا رحمةَ (ثابتٌ) لمن لا يطيعُ اللهَ",
+    "C": "لا رحمةٌ (ثابتٌ) لمن لا يطيعَ اللهَ",
+    "D": "لا رحمةً (ثابتًا) لمن لا يطيعُ اللهَ"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e03a": {
+   "question": "Which of A to D gives the correct إعراب of this sentence?",
+   "labels": {
+    "A": "لا كتابُ زيدٍ مفتوحًا",
+    "B": "لا كتابَ زيدٍ مفتوحٌ",
+    "C": "لا كتابَ زيدٍ مفتوحًا",
+    "D": "لا كتابُ زيدٍ مفتوحٌ"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e04a": {
+   "question": "Which of A to D give a correct إعراب of this sentence? More than one may be correct.",
+   "labels": {
+    "A": "لا كتابَ جديدَ (ثابتٌ) في المكتبةِ",
+    "B": "لا كتابَ جديدًا (ثابتٌ) في المكتبةِ",
+    "C": "لا كتابَ جديدٌ (ثابتًا) في المكتبةِ",
+    "D": "لا كتابَ جديدٌ (ثابتٌ) في المكتبةِ"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e05a": {
+   "question": "Which of A to D gives the correct إعراب of this sentence?",
+   "labels": {
+    "A": "لا أُمًّا تكره أبناءها",
+    "B": "لا أُمَّ تَكره أبناءِها",
+    "C": "لا أُمَّ تَكره أبناءَها",
+    "D": "لا أُمٌّ تُكره أبناءُها"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e06a": {
+   "question": "Which of A to D gives the correct إعراب of this sentence?",
+   "labels": {
+    "A": "ما (ثابتُوْنَ) في المدرسة طُلَّابٌ",
+    "B": "ما (ثابتَاتٌ) في المدرسة طُلَّابٌ",
+    "C": "ما (ثابتُوْنَ) في المدرسة طُلَّابًا",
+    "D": "ما (ثابتٌ) في المدرسة طُلَّابًا"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e07a": {
+   "question": "Which of A to D gives the correct إعراب of this sentence?",
+   "labels": {
+    "A": "ما وقتَ الإمتحانِ بعيدًا",
+    "B": "ما وقتُ الإمتحانِ بعيدًا",
+    "C": "ما وقتُ الإمتحانِ بعيدٌ",
+    "D": "ما وقتَ الإمتحانِ بعيدٌ"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e08a": {
+   "question": "Which of A to D gives the correct إعراب of this sentence?",
+   "labels": {
+    "A": "ما إنْ الأستاذُ جَاهِلًا",
+    "B": "ما إنْ الأستاذُ جَاهِلٌ",
+    "C": "ما إنْ الأستاذَ جَاهِلٌ",
+    "D": "ما إنَّ الأستاذَ جَاهِلٌ"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e09a": {
+   "question": "Which of A to D gives the correct إعراب of this sentence?",
+   "labels": {
+    "A": "لا مسلمٌ إلا مُطيعٌ للهِ",
+    "B": "لا مسلمٌ إلا مُطيعًا للهِ",
+    "C": "لا مسلمًا إلا مُطيعٌ للهِ",
+    "D": "لا مسلمَ إلا مُطيعٌ للهِ"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e10a": {
+   "question": "Which of A to D give a correct إعراب of this sentence? More than one may be correct.",
+   "labels": {
+    "A": "لا هرةً موجودةٌ صغيرةٌ",
+    "B": "لا هرةٌ موجودةً صغيرةً",
+    "C": "لا هرةَ موجودةٌ صغيرةً",
+    "D": "لا هرةَ موجودةٌ صغيرةٌ"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e11a": {
+   "question": "Which of A or B correctly gives this sentence's إعراب, including what لاتَ's missing (dropped) part is understood to be?",
+   "labels": {
+    "A": "صلّى زيدٌ الفجرَ ولاتَ حينُ فجرٍ (ثابتًا) له",
+    "B": "صلّى زيدٌ الفجرَ ولاتَ (الحينَ) حينُ فجرٍ"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e12a": {
+   "question": "Which of A or B correctly gives this sentence's إعراب, including what لاتَ's missing (dropped) part is understood to be?",
+   "labels": {
+    "A": "صلّى زيدٌ الفجرَ ولاتَ حينَ فجرٍ (ثابتٌ) له",
+    "B": "صلّى زيدٌ الفجرَ ولاتَ (الحينُ) حينَ فجرٍ"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e13a": {
+   "question": "Which of A or B correctly gives this sentence's إعراب, including what لاتَ's missing (dropped) part is understood to be?",
+   "labels": {
+    "A": "رَاجع زيدٌ صباحَ الإمتحانِ ولاتَ وقتُ مراجعةٍ (ثابتًا) له",
+    "B": "رَاجع زيدٌ صباحَ الإمتحانِ ولاتَ (الوقتَ) وقتُ مراجعةٍ"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e14a": {
+   "question": "Which of A or B correctly gives this sentence's إعراب, including what لاتَ's missing (dropped) part is understood to be?",
+   "labels": {
+    "A": "رَاجع زيدٌ صباحَ الإمتحانِ ولاتَ وقتَ مراجعةٍ (ثابتٌ) له",
+    "B": "رَاجع زيدٌ صباحَ الإمتحانِ ولاتَ (الوقتُ) وقتَ مراجعةٍ"
+   }
+  },
+  "mushabbahat-laysa-la-jins-e15a": {
+   "question": "Which type of لا is being used in this sentence?"
+  },
+  "mushabbahat-laysa-la-jins-e16a": {
+   "question": "Which type of لا is being used in this sentence?"
+  },
+  "mushabbahat-laysa-la-jins-e17a": {
+   "question": "Which type of لا is being used in this sentence?"
+  },
+  "mushabbahat-laysa-la-jins-e18a": {
+   "question": "Which type of لا is being used in this sentence?"
+  },
+  "mushabbahat-laysa-la-jins-e19a": {
+   "question": "Which type of لا is being used in this sentence?"
+  },
+  "mushabbahat-laysa-la-jins-e20a": {
+   "question": "This sentence has two لا's: the one before مشكلة and the one before مساعدة. Which type of لا is each?"
+  },
+  "mushabbahat-laysa-la-jins-e21a": {
+   "question": "Which type of لا is being used in this sentence?"
+  },
+  "mushabbahat-laysa-la-jins-e22a": {
+   "question": "Which type of لا is being used in this sentence?"
+  },
+  "mushabbahat-laysa-la-jins-e23a": {
+   "question": "Which type of لا is being used in this sentence?"
+  },
+  "mushabbahat-laysa-la-jins-e24a": {
+   "question": "Which type of لا is being used in this sentence?"
+  }
+ },
+ "tags": {
+  "mushabbahat-laysa-la-jins-r01": [
+   "mushabbahat-laysa",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r02": [
+   "mushabbahat-laysa",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r03": [
+   "mushabbahat-laysa",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r04": [
+   "mushabbahat-laysa",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r05": [
+   "in-nafiya",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r06": [
+   "laata-hin",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r07": [
+   "la-linafi-aljins",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r08": [
+   "la-linafi-aljins",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r09": [
+   "la-linafi-aljins",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r10": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem"
+  ],
+  "mushabbahat-laysa-la-jins-r11": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem"
+  ],
+  "mushabbahat-laysa-la-jins-r12": [
+   "la-linafi-aljins",
+   "atf",
+   "tafriq-mafaheem"
+  ],
+  "mushabbahat-laysa-la-jins-r13": [
+   "la-linafi-aljins",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r14": [
+   "la-linafi-aljins",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r15": [
+   "la-linafi-aljins",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r16": [
+   "la-linafi-aljins",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r17": [
+   "la-linafi-aljins",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-r18": [
+   "la-linafi-aljins",
+   "tarif-mustalah"
+  ],
+  "mushabbahat-laysa-la-jins-e01": [
+   "mushabbahat-laysa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e02": [
+   "mushabbahat-laysa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e03": [
+   "mushabbahat-laysa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e04": [
+   "mushabbahat-laysa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e05": [
+   "mushabbahat-laysa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e06": [
+   "mushabbahat-laysa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e07": [
+   "mushabbahat-laysa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e08": [
+   "mushabbahat-laysa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e09": [
+   "mushabbahat-laysa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e10": [
+   "mushabbahat-laysa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e11": [
+   "laata-hin",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e12": [
+   "laata-hin",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e13": [
+   "laata-hin",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e14": [
+   "laata-hin",
+   "tatbeeq-tarkeeb"
+  ],
+  "mushabbahat-laysa-la-jins-e15": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem",
+   "mushabbahat-laysa"
+  ],
+  "mushabbahat-laysa-la-jins-e16": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem",
+   "mushabbahat-laysa"
+  ],
+  "mushabbahat-laysa-la-jins-e17": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem",
+   "mushabbahat-laysa"
+  ],
+  "mushabbahat-laysa-la-jins-e18": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem",
+   "mushabbahat-laysa"
+  ],
+  "mushabbahat-laysa-la-jins-e19": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem",
+   "mushabbahat-laysa"
+  ],
+  "mushabbahat-laysa-la-jins-e20": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem",
+   "mushabbahat-laysa"
+  ],
+  "mushabbahat-laysa-la-jins-e21": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem",
+   "mushabbahat-laysa"
+  ],
+  "mushabbahat-laysa-la-jins-e22": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem",
+   "mushabbahat-laysa"
+  ],
+  "mushabbahat-laysa-la-jins-e23": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem",
+   "mushabbahat-laysa"
+  ],
+  "mushabbahat-laysa-la-jins-e24": [
+   "la-linafi-aljins",
+   "tafriq-mafaheem",
+   "mushabbahat-laysa"
+  ]
+ }
+}

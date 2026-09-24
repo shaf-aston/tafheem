@@ -1,0 +1,383 @@
+{
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "picture",
+      "page": 0,
+      "caption": "هٰذَا = هَا + ذَا، ذَا = قريب. هٰذِهٖ = هَا + ذِه، ذه = قريب. هٰذَان (mas) و هٰتانِ (fem) = قريب. THIS",
+      "caption_en": "Words split into coloured parts: yellow هَا is the {{term|حرف التنبيه}} (HT), green ذَا is the {{term|اسم الاشارة}} (II). Each is marked {{ruling|قريب}}, THIS: the masculine هٰذَا, the feminine هٰذِهٖ, and the duals هٰذَان (mas) and هٰتانِ (fem)."
+    },
+    {
+      "id": "p00-2",
+      "kind": "example",
+      "page": 0,
+      "ar": "{{example|هٰذَا}} هَا ذَا - ذَا = {{ruling|قريب}}",
+      "en": "haadhaa: haa dhaa - dhaa = near. THIS",
+      "labels": [
+        {
+          "word": "هَا",
+          "label": "حرف التنبيه (HT)"
+        },
+        {
+          "word": "ذَا",
+          "label": "اسم الاشارة (II)"
+        }
+      ]
+    },
+    {
+      "id": "p00-3",
+      "kind": "example",
+      "page": 0,
+      "ar": "{{example|هٰذِهٖ}} هَا ذِه - ذه = {{ruling|قريب}}",
+      "en": "haadhihi: haa dhih - dhih = near. THIS",
+      "labels": [
+        {
+          "word": "هَا",
+          "label": "حرف التنبيه"
+        },
+        {
+          "word": "ذِه",
+          "label": "اسم الاشارة"
+        }
+      ]
+    },
+    {
+      "id": "p00-4",
+      "kind": "example",
+      "page": 0,
+      "ar": "{{example|هٰذَان}} ({{label|mas}}) - {{example|هٰتانِ}} ({{label|fem}}) = {{ruling|قريب}}",
+      "en": "haadhaan (masculine), haataani (feminine) = near",
+      "labels": [
+        {
+          "word": "هٰذَان",
+          "label": "mas"
+        },
+        {
+          "word": "هٰتانِ",
+          "label": "fem"
+        }
+      ]
+    },
+    {
+      "id": "p01-1",
+      "kind": "picture",
+      "page": 1,
+      "caption": "بعيد (far) - متوسط (middle) - قريب (close). ذَاكَ = ذَا + كَ مربوط بـ متوسط. ذَالِكَ = ذَا + لِ + كَ مربوط بـ بعيد.",
+      "caption_en": "A scale of far, middle and close. A red line ties ذَاكَ to {{ruling|متوسط}} (middle) and ذَالِكَ to {{ruling|بعيد}} (far). Each word is split into coloured parts: green ذَا (II), pink لِ the {{term|لامُ البعد}} (LB), cyan كَ the {{term|حرف الخطاب}} (HK)."
+    },
+    {
+      "id": "p01-2",
+      "kind": "example",
+      "page": 1,
+      "ar": "{{example|ذَاكَ}} - ذَا كَ ، {{ruling|متوسط}}",
+      "en": "dhaaka = dhaa + ka; middle",
+      "labels": [
+        {
+          "word": "ذَا",
+          "label": "II"
+        },
+        {
+          "word": "كَ",
+          "label": "حرف الخطاب (HK)"
+        }
+      ]
+    },
+    {
+      "id": "p01-3",
+      "kind": "example",
+      "page": 1,
+      "ar": "{{example|ذَالِكَ}} - ذَا لِ كَ ، {{ruling|بعيد}}",
+      "en": "dhaalika = dhaa + li + ka; far",
+      "labels": [
+        {
+          "word": "ذَا",
+          "label": "II"
+        },
+        {
+          "word": "لِ",
+          "label": "لامُ البعد (LB)"
+        },
+        {
+          "word": "كَ",
+          "label": "حرف الخطاب (HK)"
+        }
+      ]
+    },
+    {
+      "id": "p02-1",
+      "kind": "example",
+      "page": 2,
+      "ar": "{{example|ذَانِكَ}} - ذَانِ كَ - {{ruling|بعيد/متوسط}}",
+      "en": "dhaanika = dhaani + ka; far/middle",
+      "labels": [
+        {
+          "word": "ذَانِ",
+          "label": "II"
+        },
+        {
+          "word": "كَ",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p02-2",
+      "kind": "example",
+      "page": 2,
+      "ar": "{{example|تِلْكَ}} - تِ لْ كَ - {{ruling|بعيد}}",
+      "en": "tilka = ti + l + ka; far",
+      "labels": [
+        {
+          "word": "تِ",
+          "label": "II"
+        },
+        {
+          "word": "لْ",
+          "label": "LB"
+        },
+        {
+          "word": "كَ",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p02-3",
+      "kind": "example",
+      "page": 2,
+      "ar": "{{example|تَانِكَ}} - تَانِ كَ - // //",
+      "en": "taanika = taani + ka; ditto (far/middle)",
+      "labels": [
+        {
+          "word": "تَانِ",
+          "label": "II"
+        },
+        {
+          "word": "كَ",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p02-4",
+      "kind": "picture",
+      "page": 2,
+      "caption": "هَا + أُولَاءِ + كَ: هَا مع أُولَاءِ = قريب = هٰؤلاءِ، أُولَاءِ مع كَ = بعيد = أُولٰئِكَ",
+      "caption_en": "Three coloured parts, yellow هَا, green أُولَاءِ, cyan كَ, with two underlines: هَا with أُولَاءِ is {{ruling|قريب}} (grey) and gives هٰؤلاءِ; أُولَاءِ with كَ is {{ruling|بعيد}} (orange) and gives أُولٰئِكَ."
+    },
+    {
+      "id": "p02-5",
+      "kind": "example",
+      "page": 2,
+      "ar": "{{example|هٰؤلاءِ}} = هَا + أُولَاءِ ، {{ruling|قريب}}",
+      "en": "haa'ulaa'i = haa + ulaa'i; near",
+      "labels": [
+        {
+          "word": "هَا",
+          "label": "HT"
+        },
+        {
+          "word": "أُولَاءِ",
+          "label": "II"
+        }
+      ]
+    },
+    {
+      "id": "p02-6",
+      "kind": "example",
+      "page": 2,
+      "ar": "{{example|أُولٰئِكَ}} = أُولَاءِ + كَ ، {{ruling|بعيد}}",
+      "en": "ulaa'ika = ulaa'i + ka; far",
+      "labels": [
+        {
+          "word": "أُولَاءِ",
+          "label": "II"
+        },
+        {
+          "word": "كَ",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p03-1",
+      "kind": "picture",
+      "page": 3,
+      "caption": "باب واحد، وأمامه أشخاص (Ad): رجلان ذَالِكُمَا، رجل ذَالِكَ، امرأة ذَالِكِ. بابان، وأمامهما: رجل ذَانِكَ، رجل وامرأة ذَانِكُمَا.",
+      "caption_en": "Stick-figure drawing. One door is pointed at; the people beside it are labelled Ad. Two men: ذَالِكُمَا; one man: ذَالِكَ; one woman: ذَالِكِ. Then two doors are pointed at: one man: ذَانِكَ; a woman and a man: ذَانِكُمَا."
+    },
+    {
+      "id": "p03-2",
+      "kind": "example",
+      "page": 3,
+      "ar": "{{example|ذَالِكُمَا}}",
+      "en": "that (one door), said to two addressees",
+      "labels": [
+        {
+          "word": "ذَا",
+          "label": "II"
+        },
+        {
+          "word": "لِ",
+          "label": "LB"
+        },
+        {
+          "word": "كُمَا",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p03-3",
+      "kind": "example",
+      "page": 3,
+      "ar": "{{example|ذَالِكَ}}",
+      "en": "that (one door), said to one man",
+      "labels": [
+        {
+          "word": "كَ",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p03-4",
+      "kind": "example",
+      "page": 3,
+      "ar": "{{example|ذَالِكِ}}",
+      "en": "that (one door), said to one woman",
+      "labels": [
+        {
+          "word": "كِ",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p03-5",
+      "kind": "example",
+      "page": 3,
+      "ar": "{{example|ذَانِكَ}}",
+      "en": "those two (two doors), said to one man",
+      "labels": [
+        {
+          "word": "ذَان",
+          "label": "II"
+        },
+        {
+          "word": "كَ",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p03-6",
+      "kind": "example",
+      "page": 3,
+      "ar": "{{example|ذَانِكُمَا}}",
+      "en": "those two (two doors), said to a woman and a man",
+      "labels": [
+        {
+          "word": "ذَان",
+          "label": "II"
+        },
+        {
+          "word": "كُمَا",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p04-1",
+      "kind": "picture",
+      "page": 4,
+      "caption": "دائرة فيها ستة أبواب، وأمامها: رجل تِلْكَ، أربعة رجال تِلْكُمْ، أربع نساء تِلْكُنَّ. ثم أربعة رجال يشار إليهم، وأمامهم: أربعة رجال أُولٰئِكُمْ، أربع نساء أُولٰئِكُنَّ.",
+      "caption_en": "Stick-figure drawing. A circle holding six doors is pointed at: said to one man, تِلْكَ; to four men, تِلْكُمْ; to four women, تِلْكُنَّ. Then four men are pointed at: said to four men, أُولٰئِكُمْ; to four women, أُولٰئِكُنَّ. Green is the {{term|اسم الإشارة}} part, cyan the كاف."
+    },
+    {
+      "id": "p04-2",
+      "kind": "example",
+      "page": 4,
+      "ar": "{{example|تِلْكَ}}",
+      "en": "those (six doors), said to one man",
+      "labels": [
+        {
+          "word": "تِلْ",
+          "label": "II"
+        },
+        {
+          "word": "كَ",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p04-3",
+      "kind": "example",
+      "page": 4,
+      "ar": "{{example|تِلْكُمْ}}",
+      "en": "those (six doors), said to four men",
+      "labels": [
+        {
+          "word": "تِلْ",
+          "label": "II"
+        },
+        {
+          "word": "كُمْ",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p04-4",
+      "kind": "example",
+      "page": 4,
+      "ar": "{{example|تِلْكُنَّ}}",
+      "en": "those (six doors), said to four women",
+      "labels": [
+        {
+          "word": "تِلْ",
+          "label": "II"
+        },
+        {
+          "word": "كُنَّ",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p04-5",
+      "kind": "example",
+      "page": 4,
+      "ar": "{{example|أُولٰئِكُمْ}}",
+      "en": "those (four men), said to four men",
+      "labels": [
+        {
+          "word": "أُولٰئِ",
+          "label": "II"
+        },
+        {
+          "word": "كُمْ",
+          "label": "HK"
+        }
+      ]
+    },
+    {
+      "id": "p04-6",
+      "kind": "example",
+      "page": 4,
+      "ar": "{{example|أُولٰئِكُنَّ}}",
+      "en": "those (four men), said to four women",
+      "labels": [
+        {
+          "word": "أُولٰئِ",
+          "label": "II"
+        },
+        {
+          "word": "كُنَّ",
+          "label": "HK"
+        }
+      ]
+    }
+  ]
+}

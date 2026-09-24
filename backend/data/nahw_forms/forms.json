@@ -1,0 +1,9 @@
+{
+  "_note": "Google Forms score pages to capture. Add a link here, run `node scripts/forms-capture.mjs` from frontend/, then transcribe. id is just a folder name.",
+  "capture": { "scale": 2, "width": 900, "settle_ms": 1500 },
+  "forms": [
+    { "id": "haal", "url": "https://docs.google.com/forms/d/e/1FAIpQLSdlXO-_pmNUjBY_-lLqvav1TXJqdm6PBPpsb53h0CqgrwjZmg/viewscore?viewscore=AE0zAgAXoH7IWXfsIML4x1Qzl4O72vpDiXPqfhZZXeEvHNiuVgd6dGhorhw-3IdOqagtqUM" },
+    { "id": "mafool-maahu", "url": "https://docs.google.com/forms/d/e/1FAIpQLSfTDoW2tssxDsWYyUAjccIld7I7f9NAI9GYLsTSzjCQWmb2JA/viewscore?viewscore=AE0zAgDIgsJWwHQrplyu75Gp_L3q7PNVYunKVF0NW_iPemXpK_aTR74eGFT1HwJXDiRH_kk" },
+    { "id": "mafool-lahu-fihi", "url": "https://docs.google.com/forms/d/e/1FAIpQLSeqnmopXsKzFyC8-PBae8H335N3S9PYecHocEghx3ygnMy1Fg/viewscore?viewscore=AE0zAgCHn5OVnvTCePWrJI1h_15Z-7hk_npeNkZzhUw9X4mqH8kSF4idsOs7gpl9dha7pbQ" }
+  ]
+}

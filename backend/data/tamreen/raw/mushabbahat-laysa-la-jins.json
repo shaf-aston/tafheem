@@ -1,0 +1,2187 @@
+{
+ "title": "Exercise: ما ولا وإن ولات المشبهات بليس - لا التي لنفي الجنس YR3PT25-26 (21/01/26)",
+ "description": "Assalaamualaykum wa Rahmatullahi wa Barakaatuhu.\n\nPlease complete this exercise before your next lesson.\n\nThere are 53 questions in total. Each question is valued at 1 point.\nA score below 48 is a fail.\nA score of 48 and above is a pass.\n\nIn order to complete this exercise, you must use your notes. \nLook at them, read them, understand them.\n\nIf you need any assistance, you can email me at: [email removed]\nor \nYou can send me a message on Google Classroom. ",
+ "items": [
+  {
+   "id": 1261089275,
+   "title": "Complete the following statements",
+   "description": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario.",
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 919483082,
+   "title": "1. The ما & لا govern... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...similar to the حروف مشبهة بالفعل",
+      "...similar to the حروف جارة",
+      "...similar to the أفعال ناقصة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...similar to the أفعال ناقصة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 963042202,
+   "title": "2. The ما will seize to govern if... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...it's خبر precedes its إسم",
+      "...its إسم or خبر is معرفة",
+      "...an إلّا breaks the negation",
+      "...an extra إن comes after the ما"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...it's خبر precedes its إسم",
+      "mark": "Correct"
+     },
+     {
+      "label": "...an إلّا breaks the negation",
+      "mark": "Correct"
+     },
+     {
+      "label": "...an extra إن comes after the ما",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1366222658,
+   "title": "3. The لا will seize to govern if... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...it's خبر precedes its إسم",
+      "...an إلّا breaks the negation",
+      "...its إسم or خبر is معرفة",
+      "...an extra إن comes after the ما"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...it's خبر precedes its إسم",
+      "mark": "Correct"
+     },
+     {
+      "label": "...an إلّا breaks the negation",
+      "mark": "Correct"
+     },
+     {
+      "label": "...it's خبر precedes its إسم",
+      "mark": "none"
+     },
+     {
+      "label": "...an إلّا breaks the negation",
+      "mark": "none"
+     },
+     {
+      "label": "...its إسم or خبر is معرفة",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "...it's خبر precedes its إسم",
+     "...an إلّا breaks the negation",
+     "...its إسم or خبر is معرفة"
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 799970595,
+   "title": "4. When the ما or لا seize to govern, then... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...they are termed المهملة.",
+      "...they are termed الزائدة.",
+      "...they are termed الملغاة."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...they are termed المهملة.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 73019729,
+   "title": "5. The إن النافية governs... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...similar to the governing of ما according to everyone.",
+      "...similar to the governing of ما according to some.",
+      "...similar to the governing of ما according to most."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...similar to the governing of ما according to some.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1542606405,
+   "title": "6. The word لاتَ governs... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...an إسم & خبر",
+      "...a مفعول به & مفعول فيه",
+      "...a فعل & فاعل"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...an إسم & خبر",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1542124492,
+   "title": "7. The لا التي لنفي الجنس... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...only negates individuals of a genus.",
+      "...negates the entire genus."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...negates the entire genus.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 712554596,
+   "title": "8. The لا التي لنفي الجنس governs... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...similar to the حروف مشبهة بالفعل",
+      "...similar to the أفعال ناقصة",
+      "...similar to the حروف جارة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...similar to the حروف مشبهة بالفعل",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 679074427,
+   "title": "9. If the إسم of لا التي لنفي الجنس is نكرة مفردة... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...then the إعراب of the إسم will be termed منصوب.",
+      "...then the إعراب of the إسم will be termed مرفوع.",
+      "...then the إعراب of the إسم will be termed مبني على الفتح  محلا منصوب.",
+      "...then the إعراب of the إسم will be termed مبني على علامة النصب."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...then the إعراب of the إسم will be termed منصوب.",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "...then the إعراب of the إسم will be termed مبني على الفتح محلا منصوب.",
+      "mark": "Correct"
+     },
+     {
+      "label": "...then the إعراب of the إسم will be termed مبني على الفتح محلا منصوب.",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "...then the إعراب of the إسم will be termed مبني على الفتح محلا منصوب."
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 80755505,
+   "title": "10. When the إسم of لا التي لنفي الجنس is نكرة مفردة and it has a صفة/نعت immediately after it without any gap, then... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...the صفة can be منصوب or مرفوع only",
+      "...the صفة can be مبني على الفتح or منصوب only",
+      "...the صفة will be مبني على الفتح only",
+      "...the صفة can be مبني على الفتح or منصوب or مرفوع"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...the صفة can be مبني على الفتح or منصوب or مرفوع",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1035653693,
+   "title": "11. When the إسم of لا التي لنفي الجنس is نكرة مفردة and it has a صفة/نعت with a gap between the it and its صفة, then... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...the صفة will be مبني على الفتح only",
+      "...the صفة can be مبني على الفتح or منصوب only",
+      "...the صفة can be مبني على الفتح or منصوب or مرفوع",
+      "...the صفة can be منصوب or مرفوع only"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...the صفة can be منصوب or مرفوع only",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 802679561,
+   "title": "12. When the إسم of لا التي لنفي الجنس is نكرة مفردة and it has a معطوف with no repitition of the لا, then... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...the صفة can be مبني على الفتح or منصوب or مرفوع",
+      "...the صفة can be منصوب or مرفوع only",
+      "...the صفة can be مبني على الفتح or منصوب only",
+      "...the صفة will be مبني على الفتح only"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...the صفة can be منصوب or مرفوع only",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1528860889,
+   "title": "13. If the صفة or the معطوف of the نكرة مفردة إسم of لا التي لنفي الجنس is منصوب... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...then it is following الإعراب المحلي البعيد (محل المحل)",
+      "...then it is following الإعراب اللفظي",
+      "...then it is following الإعراب المحلي القريب"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...then it is following الإعراب المحلي القريب",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1654160752,
+   "title": "14. If the صفة or the معطوف of the نكرة مفردة إسم of لا التي لنفي الجنس is مرفوع... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...then it is following الإعراب اللفظي",
+      "...then it is following الإعراب المحلي البعيد (محل المحل)",
+      "...then it is following الإعراب المحلي القريب"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...then it is following الإعراب المحلي البعيد (محل المحل)",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 690733338,
+   "title": "15. If the إسم  of لا التي لنفي الجنس is نكرة مفردة and a dual noun like مسلمان... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...then the إعراب of the إسم will be termed منصوب.",
+      "...then the إعراب of the إسم will be termed مبني على الفتح  محلا منصوب.",
+      "...then the إعراب of the إسم will be termed مرفوع.",
+      "...then the إعراب of the إسم will be termed مبني على علامة النصب."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...then the إعراب of the إسم will be termed مرفوع.",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "...then the إعراب of the إسم will be termed مبني على علامة النصب.",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "...then the إعراب of the إسم will be termed مبني على علامة النصب."
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 509595196,
+   "title": "16. If the إسم  of لا التي لنفي الجنس is a مضاف or شبه المضاف... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...then the إعراب of the إسم will be termed مرفوع.",
+      "...then the إعراب of the إسم will be termed منصوب.",
+      "...then the إعراب of the إسم will be termed مبني على علامة النصب.",
+      "...then the إعراب of the إسم will be termed مبني على الفتح  محلا منصوب."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...then the إعراب of the إسم will be termed منصوب.",
+      "mark": "Correct"
+     },
+     {
+      "label": "...then the إعراب of the إسم will be termed مبني على الفتح محلا منصوب.",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "...then the إعراب of the إسم will be termed منصوب.",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "...then the إعراب of the إسم will be termed منصوب."
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1016047362,
+   "title": "17. A شبه المضاف means... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...an إضافة لفظية",
+      "...a word which has a connection with something subsequent to it in terms of governance.",
+      "...a word that looks like a مضاف but takes ال of موصول"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...a word which has a connection with something subsequent to it in terms of governance.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 2115853641,
+   "title": "18. The لا التي لنفي الجنس will seize to govern if... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...an إلّا breaks the negation",
+      "...there is a gap between the لا and its إسم",
+      "...it's خبر precedes its إسم",
+      "...its إسم or خبر is معرفة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...an إلّا breaks the negation",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "...there is a gap between the لا and its إسم",
+      "mark": "Correct"
+     },
+     {
+      "label": "...it's خبر precedes its إسم",
+      "mark": "Correct"
+     },
+     {
+      "label": "...its إسم or خبر is معرفة",
+      "mark": "none"
+     },
+     {
+      "label": "...there is a gap between the لا and its إسم",
+      "mark": "none"
+     },
+     {
+      "label": "...it's خبر precedes its إسم",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "...its إسم or خبر is معرفة",
+     "...there is a gap between the لا and its إسم",
+     "...it's خبر precedes its إسم"
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1315990661,
+   "title": "Application of Rules",
+   "description": "Important instructions\nLook at the following sentences and whilst considering the rules and focusing closely on the translation which has been provided, choose the correct إعراب by ticking the boxes corresponding to your choice.\nApply the ruling to the لا or the ما, whichever is present in the sentence, in terms of their governing circumstances. If they are governing, tick  عاملة and if not, tick مهملة.\n                           Use your notes. Look at them, read them, understand them. ",
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 8843873,
+   "title": "Application of Rules ",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 519938419,
+   "title": "1a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     221,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for ?",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-00.png"
+    ]
+   }
+  },
+  {
+   "id": 1825874581,
+   "title": "1b. What is the ruling of the نافية",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "مهملة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1334540591,
+   "title": "2a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     229,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for ?",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "A, response for ?",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "A B C D",
+     "?",
+     "?"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-01.png"
+    ]
+   }
+  },
+  {
+   "id": 573597431,
+   "title": "2b. What is the ruling of the نافية",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "عاملة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1389428750,
+   "title": "3a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     225,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "A, response for ?",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "D, response for ?",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "A B C D",
+     "?",
+     "?"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-02.png"
+    ]
+   }
+  },
+  {
+   "id": 892150787,
+   "title": "3b. What is the ruling of the نافية",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "عاملة",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "مهملة",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "مهملة"
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1552980229,
+   "title": "4a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     225,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "A, response for ?",
+      "mark": "Correct"
+     },
+     {
+      "label": "B, response for ?",
+      "mark": "Correct"
+     },
+     {
+      "label": "D, response for ?",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-03.png"
+    ]
+   }
+  },
+  {
+   "id": 2074869262,
+   "title": "4b. What is the ruling of the نافية",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "عاملة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 551535109,
+   "title": "5a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     230,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "C, response for ?",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-04.png"
+    ]
+   }
+  },
+  {
+   "id": 75265720,
+   "title": "5b. What is the ruling of the نافية",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "عاملة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1083523591,
+   "title": "6a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     236,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "A, response for ?",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-05.png"
+    ]
+   }
+  },
+  {
+   "id": 1077359173,
+   "title": "6b. What is the ruling of the نافية",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "مهملة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1632112229,
+   "title": "7a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     223,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for ?",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-06.png"
+    ]
+   }
+  },
+  {
+   "id": 708263989,
+   "title": "7b. What is the ruling of the نافية",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "عاملة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 953618146,
+   "title": "8a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     223,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for ?",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-07.png"
+    ]
+   }
+  },
+  {
+   "id": 402144376,
+   "title": "8b. What is the ruling of the نافية",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "مهملة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1054973265,
+   "title": "9a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     229,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "A, response for ?",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-08.png"
+    ]
+   }
+  },
+  {
+   "id": 471068759,
+   "title": "9b. What is the ruling of the نافية",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "مهملة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 490520061,
+   "title": "10a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     219,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "C, response for ?",
+      "mark": "Correct"
+     },
+     {
+      "label": "D, response for ?",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-09.png"
+    ]
+   }
+  },
+  {
+   "id": 1761389672,
+   "title": "10b. What is the ruling of the نافية",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "مهملة",
+      "عاملة"
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "عاملة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1002353849,
+   "title": "11.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     192,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "A, response for ?",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "B, response for ?",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "A, response for ?",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "A B",
+     "?",
+     "?"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-10.png"
+    ]
+   }
+  },
+  {
+   "id": 363657634,
+   "title": "12.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     193,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "A, response for ?",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "B, response for ?",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "B, response for ?",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "A B",
+     "?",
+     "?"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-11.png"
+    ]
+   }
+  },
+  {
+   "id": 1521234902,
+   "title": "13.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     192,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "A, response for ?",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "B, response for ?",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "A, response for ?",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "A B",
+     "?",
+     "?"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-12.png"
+    ]
+   }
+  },
+  {
+   "id": 594635346,
+   "title": "14.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B"
+     ],
+     "row": "?"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     194,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for ?",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-13.png"
+    ]
+   }
+  },
+  {
+   "id": 73243174,
+   "title": "Application of Rules ",
+   "description": "Identify the لا",
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 1099705958,
+   "title": "1.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "row": "لا"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     83,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "لا لنفي الجنس, response for لا",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "لا الزائدة, response for لا",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "لا المشبهة بليس لا لنفي الجنس لا بمعنى غير لا الزائدة لا المهملة",
+     "لا",
+     "لا"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-14.png"
+    ]
+   }
+  },
+  {
+   "id": 1210494669,
+   "title": "2.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "row": "لا"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     71,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "لا بمعنى غير, response for لا",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-15.png"
+    ]
+   }
+  },
+  {
+   "id": 1091312193,
+   "title": "3.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "row": "لا"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     74,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "لا المشبهة بليس, response for لا",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-16.png"
+    ]
+   }
+  },
+  {
+   "id": 557790618,
+   "title": "4.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "row": "لا"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     69,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "لا لنفي الجنس, response for لا",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-17.png"
+    ]
+   }
+  },
+  {
+   "id": 1005217862,
+   "title": "5.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "row": "لا"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     77,
+     2
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "لا الزائدة, response for لا",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-18.png"
+    ]
+   }
+  },
+  {
+   "id": 1264742739,
+   "title": "6.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "row": "لا (مشكلة)"
+    },
+    {
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "row": "لا (مساعدة)"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     80,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "لا بمعنى غير, response for لا (مشكلة)",
+      "mark": "Correct"
+     },
+     {
+      "label": "لا المهملة, response for لا (مساعدة)",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "لا الزائدة, response for لا (مساعدة)",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "لا المشبهة بليس لا لنفي الجنس لا بمعنى غير لا الزائدة لا المهملة",
+     "لا (مساعدة)",
+     "لا (مساعدة)"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-19.png"
+    ]
+   }
+  },
+  {
+   "id": 933275985,
+   "title": "7.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "row": "لا"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     89,
+     2
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "لا لنفي الجنس, response for لا",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-20.png"
+    ]
+   }
+  },
+  {
+   "id": 278509405,
+   "title": "8.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "row": "لا"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     86,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "لا المشبهة بليس, response for لا",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-21.png"
+    ]
+   }
+  },
+  {
+   "id": 1933950240,
+   "title": "9.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "row": "لا"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     86,
+     2
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "لا لنفي الجنس, response for لا",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-22.png"
+    ]
+   }
+  },
+  {
+   "id": 880454677,
+   "title": "10.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "لا المشبهة بليس",
+      "لا لنفي الجنس",
+      "لا بمعنى غير",
+      "لا الزائدة",
+      "لا المهملة"
+     ],
+     "row": "لا"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     84,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "لا المشبهة بليس, response for لا",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "لا لنفي الجنس, response for لا",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "لا المشبهة بليس لا لنفي الجنس لا بمعنى غير لا الزائدة لا المهملة",
+     "لا",
+     "لا"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mushabbahat-laysa-la-jins-23.png"
+    ]
+   }
+  },
+  {
+   "id": 1127971536,
+   "title": "End of exercise",
+   "description": "You have completed the exercise.\nLook through your answers one last time before submitting your work.",
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 1576924826,
+   "title": "Difficulty ",
+   "description": null,
+   "type": 6,
+   "entries": [],
+   "media": null,
+   "dom": {
+    "points": null,
+    "checked": [],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 40231748,
+   "title": "How difficult was this exercise?\nPlease choose from 1 to 10.",
+   "description": null,
+   "type": 5,
+   "entries": [
+    {
+     "options": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+     ],
+     "row": "Easy"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": null,
+    "checked": [
+     {
+      "label": "1",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  }
+ ]
+}

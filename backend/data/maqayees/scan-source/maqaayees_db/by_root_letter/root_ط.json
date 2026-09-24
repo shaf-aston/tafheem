@@ -1,0 +1,5231 @@
+{
+ "root_letter": "ط",
+ "entry_count": 130,
+ "entries": [
+  {
+   "root": "طع",
+   "root_letters": [
+    "ط",
+    "ع"
+   ],
+   "core_meaning": "الطاء والعين ليس بشيء",
+   "core_meaning_english": "the combination of Ta and 'Ayn is not a valid (meaningful) root",
+   "sarf_pattern": "المضاعف والمطابق",
+   "variances": [
+    {
+     "usage": "الطمطمة",
+     "meaning": "حكاية صوت اللاطع، فليس بشيء",
+     "meaning_english": "an onomatopoeic word for a lisping/mumbling sound, as claimed by al-Khalil; the author says this claim is not sound",
+     "citation": "ما حكاه الخليل"
+    }
+   ],
+   "printed_page_number": "405",
+   "pdf_page_index": 1482,
+   "notes": "Opens the new Book of Ta (كتاب الطاء), section heading: باب [ الطاء في المضاعف والمطابق ]; corrected sarf_pattern to the full verbatim heading (was only 'المضاعف')."
+  },
+  {
+   "root": "طف",
+   "root_letters": [
+    "ط",
+    "ف"
+   ],
+   "core_meaning": "الطاء والفاء يدل على قلة الشيء",
+   "core_meaning_english": "scantness/slightness of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "هذا شيء طفيف",
+     "meaning": "قليل",
+     "meaning_english": "this is a slight/small thing",
+     "citation": ""
+    },
+    {
+     "usage": "إناء طَفّان",
+     "meaning": "أي ملآن",
+     "meaning_english": "a vessel brimful, i.e. full (filled right to the rim)",
+     "citation": ""
+    },
+    {
+     "usage": "التطفيف",
+     "meaning": "نقص المكيال والميزان؛ قال بعض أهل العلم: إنما سمي بذلك لأن الذي ينقصه منه يكون طفيفًا",
+     "meaning_english": "shortchanging in measure and weight; said to be so called because the amount withheld is a slight/small amount",
+     "citation": "قال بعض أهل العلم"
+    },
+    {
+     "usage": "الطِّفَاف / الطُّفَافة",
+     "meaning": "ما فوق الإناء (فوق مِلئه)",
+     "meaning_english": "the small excess/overflow above a vessel's rim",
+     "citation": ""
+    },
+    {
+     "usage": "طفّت بفلان موضعَ كذا",
+     "meaning": "أي رفعتُه وحاذيته",
+     "meaning_english": "to raise/lift someone up level with a place",
+     "citation": "(footnote: al-Mujmal and Lisan al-'Arab read دفعته with dal instead of رفعته)"
+    },
+    {
+     "usage": "طَفَّتْ بي الفرس مسجد بني فلان",
+     "meaning": "أي وثب بي حتى كاد يساوي المسجد؛ على معنى التشبيه بطفاف الإناء وطفافته، والقياس واحد",
+     "meaning_english": "the horse leapt with me until it nearly reached (the level of) the mosque — a metaphor from a vessel's brimming excess",
+     "citation": "حديث نبوي"
+    },
+    {
+     "usage": "أطفّ فلان بفلان",
+     "meaning": "إذا طبن له وأراد ختله (شاذ عن الباب)",
+     "meaning_english": "so-and-so schemed against so-and-so, intending to deceive him (irregular usage, outside the core meaning)",
+     "citation": ""
+    },
+    {
+     "usage": "استطفّت الأمر",
+     "meaning": "إذا أمكن واستقام (من باب الإبدال)",
+     "meaning_english": "the matter became possible/settled (from the category of letter-substitution)",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "405",
+   "pdf_page_index": 1482,
+   "notes": "Added missing variance 'طفّت بفلان موضعَ كذا' (meaning: رفعته وحاذيته) which was present on the page but omitted from the prior extraction. Footnote (2) gives variant reading 'بني زريق' for 'بني فلان' in the hadith citation, per al-Mujmal and Lisan al-'Arab. Footnote (3) glosses استطفّت in al-Mujmal as 'إذا استقام وأمكن'."
+  },
+  {
+   "root": "طل",
+   "root_letters": [
+    "ط",
+    "ل"
+   ],
+   "core_meaning": "الطاء واللام يدل على أصول ثلاثة: أحدها غضاضة الشيء وغضارته، والآخر الإشراف، والثالث إبطال الشيء",
+   "core_meaning_english": "three underlying senses: (1) the freshness/succulence of a thing, (2) looking down/overlooking from above, (3) nullifying/voiding a thing",
+   "sarf_pattern": "",
+   "variances": [],
+   "printed_page_number": "405",
+   "pdf_page_index": 1482,
+   "notes": "Entry for root طل only begins here — the three sub-meanings are stated but their derived usages/examples are not yet given on this page; entry continues onto the following page not included in this batch."
+  },
+  {
+   "root": "طل",
+   "core_meaning": "تتمة من الصفحة السابقة؛ الجملة الأصلية المحدِّدة لأصل الباب (أصل واحد يدل على...) لا تظهر في هذه الصفحات — الوارد هنا استمرار لتفريعات الطل (أضعف المطر) وما يتصل بها.",
+   "core_meaning_english": "Continuation of the root's entry; the root's defining core-meaning sentence appears on an earlier page not in this batch. Content here covers derived usages of الطل (the weakest rain) and related senses.",
+   "pdf_page_index": 1483,
+   "printed_page_number": "406",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَلَّته (زوجة الرجل)",
+     "meaning": "تُسمَّى امرأة الرجل طَلَّته؛ قال بعضهم: إنما سميت بذلك لأنها غضّة في عينه كأنها طَلّ",
+     "meaning_english": "a man's wife is called his 'talla' because she is fresh/tender in his eye, as if she were tal (light rain)"
+    },
+    {
+     "usage": "ما بالناقة طُلّ",
+     "meaning": "ما بها لبن، ولا يراد قليل منه؛ وضُمّت الطاء فرقاً بينه وبين المطر",
+     "meaning_english": "the she-camel has no milk at all (not merely 'little'); the letter ta takes damma here to distinguish it from the word for rain"
+    },
+    {
+     "usage": "الطَّلَل",
+     "meaning": "ماشخص من آثار الديار؛ يقال لشخص الرجل طلله",
+     "meaning_english": "the visible remains of abandoned dwellings; also a person's silhouette/figure"
+    },
+    {
+     "usage": "أطلَّ على الشيء",
+     "meaning": "إذا أشرف",
+     "meaning_english": "to overlook/loom over something"
+    },
+    {
+     "usage": "طَلَل السفينة",
+     "meaning": "جلالها؛ والجمع أطلال",
+     "meaning_english": "the ship's covering; the plural is atlal"
+    },
+    {
+     "usage": "تطاولت",
+     "meaning": "إذا مددت عنقك تنظر إلى الشيء ببعد عنك",
+     "meaning_english": "to stretch one's neck to look at something distant",
+     "citation": "كفى حزنا أني تطاولت كي أرى ذرى علم دمخ فما يريان (لطهمان بن عمرو الكلابي)"
+    },
+    {
+     "usage": "طُلَّ دمه فهو مطلول / أُطِلَّ فهو مُطَلّ",
+     "meaning": "وأمّا إبطال الشيء فهو إبطال الدماء وهو إبطالها، وذلك إذا لم يطلب لها؛ إذا أهدر",
+     "meaning_english": "his blood was voided/declared forfeit — spoken of blood when no retaliation/compensation is sought for it"
+    },
+    {
+     "usage": "الطُّلَّة (شاذ)",
+     "meaning": "الحيّة",
+     "meaning_english": "the snake (irregular usage)"
+    },
+    {
+     "usage": "الطلاطلة (شاذ)",
+     "meaning": "داء يأخذ في الصلب",
+     "meaning_english": "a disease affecting the back/spine (irregular usage)"
+    }
+   ],
+   "notes": "Continuation of the طل entry begun on a previous page not included in this batch."
+  },
+  {
+   "root": "طم",
+   "core_meaning": "أصل صحيح يدل على تغطية الشيء للشيء حتى يسويه به",
+   "core_meaning_english": "covering one thing over another until it is made level/even with it",
+   "pdf_page_index": 1483,
+   "printed_page_number": "406",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَمَّ البئر",
+     "meaning": "ملأها وسواها بالتراب",
+     "meaning_english": "to fill a well and level it with earth"
+    },
+    {
+     "usage": "الطَّمّ (البحر)",
+     "meaning": "كأنه طَمَّ الماء ذلك القرار",
+     "meaning_english": "the sea, as if the water covered/leveled that basin"
+    },
+    {
+     "usage": "«له الطَّمّ والرَّمّ»",
+     "meaning": "الطمّ: البحر، والرمّ: الثرى",
+     "meaning_english": "proverb: 'he has the sea and the moist earth' i.e. everything"
+    },
+    {
+     "usage": "طَمَّ الأمر",
+     "meaning": "إذا علا وغلب",
+     "meaning_english": "the matter overtook/overwhelmed"
+    },
+    {
+     "usage": "الطَّامَّة",
+     "meaning": "القيامة، سميت لذلك لعلوها وغلبتها",
+     "meaning_english": "the Resurrection, so named for its overwhelming nature"
+    },
+    {
+     "usage": "طَمَّ شعره",
+     "meaning": "إذا أخذ منه، فيه معنى التسوية وإن لم يكن فيه التغطية",
+     "meaning_english": "to trim hair, carrying the sense of leveling though not covering"
+    },
+    {
+     "usage": "الطُّمطام",
+     "meaning": "الرجل الذي لا يفصح، كأنه قد طُمَّ كما تُطَمّ البئر",
+     "meaning_english": "a man who cannot speak clearly, as if 'filled up' like a well"
+    },
+    {
+     "usage": "طَمَّ الفرس (شاذ، ذكره ابن السكيت)",
+     "meaning": "إذا علا",
+     "meaning_english": "the horse rose up/soared (irregular usage)"
+    },
+    {
+     "usage": "طَمَّ الطائر",
+     "meaning": "إذا علا الشجرة",
+     "meaning_english": "the bird rose above the tree"
+    }
+   ],
+   "notes": "Entry begins on page 1483 (406) and continues onto page 1484 (407)."
+  },
+  {
+   "root": "طن",
+   "core_meaning": "أصل يدل على صوت",
+   "core_meaning_english": "a sound/buzzing noise",
+   "pdf_page_index": 1484,
+   "printed_page_number": "407",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَنَّ الذباب طنينًا",
+     "meaning": "صوت الذباب",
+     "meaning_english": "the buzzing sound of flies"
+    },
+    {
+     "usage": "ضرب يده فأطنَّها",
+     "meaning": "كأنه يراد به صوت القطع",
+     "meaning_english": "he struck off his hand — evoking the sound of the cutting blow"
+    },
+    {
+     "usage": "الطُّنّ (حزمة الحطب)",
+     "meaning": "ليس عندي عربيًا، يقولونه للحزمة من الحطب وغيره",
+     "meaning_english": "a bundle of firewood — the author states this is not, in his view, genuinely Arabic"
+    },
+    {
+     "usage": "طَنَّ (شاذ)",
+     "meaning": "إذا مات، وليس بشيء",
+     "meaning_english": "'he died' — an irregular, unfounded usage"
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "طه",
+   "core_meaning": "الطاء والهاء والميم كلمة واحدة",
+   "core_meaning_english": "a single word, not a productive derivational root",
+   "pdf_page_index": 1484,
+   "printed_page_number": "407",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَهْطَاة",
+     "meaning": "يقال للفرس السريع",
+     "meaning_english": "said of a swift horse"
+    }
+   ],
+   "notes": "Printed text reads 'الطاء والهاء والميم' for a root bracket shown as طه (two letters) — possible OCR/print oddity; could not fully verify against a cleaner source, flagged as uncertain."
+  },
+  {
+   "root": "طأ",
+   "core_meaning": "الطاء والهمزة، وهو يدل على هَبْط شيء",
+   "core_meaning_english": "denotes the lowering/sinking down of something",
+   "pdf_page_index": 1484,
+   "printed_page_number": "407",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَأْطَأ رأسه",
+     "meaning": "وهو مأخوذ من الطَّأْطَاء، وهو منهبطٌ من الأرض",
+     "meaning_english": "he lowered his head — derived from al-ta'ta', a low-lying tract of land",
+     "citation": "وهو في قول الكميت (إحالة إلى ديوانه ص428؛ نص البيت غير مذكور بالكامل في هذه الصفحة)"
+    }
+   ],
+   "notes": "Footnote references a verse of al-Kumayt (diwan p.428) but the verse text itself is not fully given on this page."
+  },
+  {
+   "root": "طب",
+   "core_meaning": "أصلان صحيحان: أحدهما يدل على علم بالشيء ومهارة فيه، والآخر على امتداد في الشيء واستطالة",
+   "core_meaning_english": "two sound sub-meanings: (1) knowledge/skill in something, and (2) extension/elongation in something",
+   "pdf_page_index": 1484,
+   "printed_page_number": "407",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطِّبّ",
+     "meaning": "العلم بالشيء",
+     "meaning_english": "knowledge of a thing"
+    },
+    {
+     "usage": "رجل طَبٌّ / طبيب",
+     "meaning": "أي عالم حاذق",
+     "meaning_english": "a knowledgeable, skillful man",
+     "citation": "فإن تسألوني بالنساء فإني بصير بأدواء النساء طبيب"
+    },
+    {
+     "usage": "لِخِلٍّ طَبٌّ",
+     "meaning": "أي ماهر بالقراع",
+     "meaning_english": "skilled in combat/dueling"
+    },
+    {
+     "usage": "طَبٌّ (يتعهد موضع خفه)",
+     "meaning": "يقال للذي يتعهد موضع خفه أين يطأ به",
+     "meaning_english": "one who carefully watches where he steps"
+    },
+    {
+     "usage": "الطِّبّ (السحر) / مطبوب",
+     "meaning": "سمي السحر طِبًّا؛ مطبوب أي مسحور",
+     "meaning_english": "sorcery is called 'tibb'; matbub means bewitched",
+     "citation": "فإن كنت مطبوبا فلا زلت هكذا وإن كنت مسحورا فلا برأ السحر"
+    },
+    {
+     "usage": "ما ذاك بِطِيّ (ليس من هذا الباب)",
+     "meaning": "معناه ما ذاك بالأمر الذي أمهره، ما ذاك بالشيء الذي أقتله علمًا",
+     "meaning_english": "the author explains this phrase is unrelated to this root — it means 'that is not something I have mastered'",
+     "citation": "حديث: «فما طهوى إذًا»"
+    },
+    {
+     "usage": "الطِّبَّة (خرقة)",
+     "meaning": "الخرقة المستطيلة من الثوب، والجمع طِبَب",
+     "meaning_english": "a long strip cut from a garment"
+    },
+    {
+     "usage": "طِبَب شعاع الشمس",
+     "meaning": "الطرائق الممتدة تُرى فيها حين تُطالِع",
+     "meaning_english": "the elongated streaks of sunlight seen at sunrise"
+    },
+    {
+     "usage": "الطِّبَابَة",
+     "meaning": "السير بين الخرزتين",
+     "meaning_english": "the strip of leather sewn between two seams"
+    },
+    {
+     "usage": "الطِّبَّة (من الأرض)",
+     "meaning": "مستطيل من الأرض دقيق كثير النبات",
+     "meaning_english": "a narrow elongated strip of land, thickly vegetated"
+    },
+    {
+     "usage": "تلقى فلانًا عن طِبَبٍ كثيرة",
+     "meaning": "أي ألوان كثيرة",
+     "meaning_english": "to encounter someone in many different states"
+    }
+   ],
+   "notes": "Entry begins on page 1484 (407) and continues onto page 1485 (408)."
+  },
+  {
+   "root": "طث",
+   "core_meaning": "ليس بشيء",
+   "core_meaning_english": "not a genuine/established root meaning",
+   "pdf_page_index": 1485,
+   "printed_page_number": "408",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّثّ",
+     "meaning": "يزعمون أن الطث لعبة بخشبة تدعى المِطَثَّة",
+     "meaning_english": "claimed to be a game played with a stick called al-mithatha"
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "طح",
+   "core_meaning": "قريب من الذي قبله (أي من باب طث، ليس بأصل قوي)",
+   "core_meaning_english": "close to the preceding root (طث) — not a strong established meaning",
+   "pdf_page_index": 1485,
+   "printed_page_number": "408",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّحّ",
+     "meaning": "أن تسحج الشيء بعقبك",
+     "meaning_english": "to scrape/rub something with your heel"
+    },
+    {
+     "usage": "طَحْطَح بهم",
+     "meaning": "إذا بدَّدهم",
+     "meaning_english": "to scatter/disperse them"
+    },
+    {
+     "usage": "طَحْطَحَهم",
+     "meaning": "غلبهم",
+     "meaning_english": "to overpower/defeat them"
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "طخ",
+   "core_meaning": "ليس له عندي أصل مطرد ولا منقاس",
+   "core_meaning_english": "no consistent, measurable root meaning, per the author",
+   "pdf_page_index": 1485,
+   "printed_page_number": "408",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَخْطَخ السحاب",
+     "meaning": "انضمَّ بعضه إلى بعض",
+     "meaning_english": "the clouds gathered/massed together"
+    },
+    {
+     "usage": "الطَّخْطَخَة",
+     "meaning": "تسوية (النص مقطوع، يتابع في الصفحة التالية)",
+     "meaning_english": "leveling/evening out (text cut off, continues on next page)"
+    }
+   ],
+   "notes": "Entry is cut off at the bottom of page 1485 (408) and continues on the following page, not included in this batch."
+  },
+  {
+   "root": "طخ",
+   "root_letters": [
+    "ط",
+    "خ"
+   ],
+   "core_meaning": "(تكملة الباب) الطخطخة: الضحك؛ والمتطخطخ: الضعيف البصر؛ الطخوخ: سوء الخلق والشراسة",
+   "core_meaning_english": "(continuation) laughter (الطخطخة); weak-sighted (المتطخطخ); bad temper and roughness of character (الطخوخ)",
+   "pdf_page_index": 1486,
+   "printed_page_number": "409",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطخطخة",
+     "meaning": "الضحك (حكاية، والحكايات لا تقاس)",
+     "meaning_english": "laughter (an imitative/onomatopoeic word, not to be analogized)"
+    },
+    {
+     "usage": "المتطخطخ",
+     "meaning": "الضعيف البصر",
+     "meaning_english": "one weak of sight"
+    },
+    {
+     "usage": "الطخوخ",
+     "meaning": "سوء الخلق والشراسة",
+     "meaning_english": "bad temper and roughness of character"
+    }
+   ],
+   "notes": "Tail end of an entry (root طخ) begun on an earlier page not in this batch; recorded here only for content appearing on page 1486."
+  },
+  {
+   "root": "طر",
+   "root_letters": [
+    "ط",
+    "ر"
+   ],
+   "core_meaning": "الطاء والراء أصل صحيح يدل على حدّة في الشيء واستطالة وامتداد",
+   "core_meaning_english": "sharpness/keenness in a thing, and extension/elongation",
+   "pdf_page_index": 1486,
+   "printed_page_number": "409",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طرّ السّنان",
+     "meaning": "إذا حدّده، وهذا سنان مطرور أي محدَّد",
+     "meaning_english": "to sharpen a spearhead; 'a sharpened spearhead'"
+    },
+    {
+     "usage": "الطّرير",
+     "meaning": "ذو الهيئة من الرجل، كأنه قد طُرّ وجُلي وحُدّد",
+     "meaning_english": "a man of fine, striking appearance, as if sharpened/polished",
+     "citation": "ويُعجبك الطّريرُ فتبتليه فيُخلِف ظنّك الرجلُ الطّرير"
+    },
+    {
+     "usage": "طرّ شاربه (فتى طارّ)",
+     "meaning": "طلع",
+     "meaning_english": "his mustache sprouted/grew",
+     "citation": "منّا الذى هو ما إنْ طرَّ شاربُه والعانسونَ، ومنّا المُرْدُ والشِّيبُ"
+    },
+    {
+     "usage": "الطُّرّة",
+     "meaning": "كفّة الثوب",
+     "meaning_english": "the hem/border of a garment"
+    },
+    {
+     "usage": "كل شيء حَسُن فقد طرّ، ويقال: رمى فأطرّ إذا أنفذ",
+     "meaning": "كل شيء حسن، والرمي النافذ",
+     "meaning_english": "anything that becomes fine/excellent; a shot that goes clean through"
+    },
+    {
+     "usage": "طرّ حوضه",
+     "meaning": "طيّنه، إذا طيّنه",
+     "meaning_english": "to plaster/line a water-trough with clay"
+    },
+    {
+     "usage": "الطُّرّة من الفم",
+     "meaning": "الطريقة المستطيلة",
+     "meaning_english": "an elongated streak/line (near the mouth)"
+    },
+    {
+     "usage": "لُطخة السوداء على ظهر الحمار",
+     "meaning": "طُرّة",
+     "meaning_english": "a black smudge/mark on a donkey's back"
+    },
+    {
+     "usage": "طُرّة النهر",
+     "meaning": "شفيره",
+     "meaning_english": "the bank/edge of a river"
+    },
+    {
+     "usage": "طرّ النبت",
+     "meaning": "إذا أنبت",
+     "meaning_english": "the plant sprouted"
+    },
+    {
+     "usage": "الطرّ بمعنى الشلّ، والطَّرْد",
+     "meaning": "من طرد شيئا فقد أذاقه وأحدّ في شدّه وعدوه",
+     "meaning_english": "related to 'driving off/pursuit' — one who drives something off has intensified it in speed and pursuit",
+     "citation": "غضبتم علينا أن قتلنا بمخالد بني مالك ها إنّ ذا غضبٌ مُطِرّ (الحطيئة)"
+    }
+   ],
+   "notes": "Footnote (4) marks a word in the original manuscript as corrected/emended (تحريف) per editor note; citation (5) is from ديوان الحطيئة، اللسان (طرر)، وإصلاح المنطق. Corrected: added the poetry citation (footnote 3, 'منا الذي هو...') that belongs to the طرّ شاربه usage and was omitted in the original extraction; removed an invented parenthetical '(طرد ومطاردة)' not present in the source text."
+  },
+  {
+   "root": "طر",
+   "root_letters": [
+    "ط",
+    "ر"
+   ],
+   "core_meaning": "(تكملة) الإطرار: الإغراء",
+   "core_meaning_english": "(continuation) الإطرار = enticing/inciting",
+   "pdf_page_index": 1487,
+   "printed_page_number": "410",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الإطرار (قال أبو زيد)",
+     "meaning": "الإغراء، وهذا قريب القياس من الباب؛ لأنه إذا أغراه بالشيء فقد أذاقه وأحدّه",
+     "meaning_english": "enticement/incitement, as stated by Abu Zayd — close in analogy to the root's meaning, since inciting someone with a thing sharpens/intensifies his desire for it"
+    },
+    {
+     "usage": "المُطِرّ (قول آخرون)",
+     "meaning": "المُدِلّ، والأول أحسن وأقيس",
+     "meaning_english": "(alternate view) one who presumes/boasts — but the first explanation (from طرد) is judged better and more analogically sound"
+    },
+    {
+     "usage": "الغضب المُطِرّ",
+     "meaning": "الذي جاء من أطرار الأرض، أي جاء من غضب لا يُدرى من أين جاء؛ لأن أطرار الأرض أطرافها، وطرف كل شيء الحادّ منه",
+     "meaning_english": "anger that comes 'from the edges of the land' — i.e. anger whose origin is unknown, because the أطرار of the land are its outer edges, and the طرف of anything is its sharp/extreme point"
+    }
+   ],
+   "notes": "Continuation of root طر begun on page 1486. The الإطرار explanation is attributed to أبو زيد in the source text."
+  },
+  {
+   "root": "طس",
+   "root_letters": [
+    "ط",
+    "س"
+   ],
+   "core_meaning": "الطاء والسين ليس أصلا",
+   "core_meaning_english": "ط-س is not a (valid) root",
+   "pdf_page_index": 1487,
+   "printed_page_number": "410",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطّسّ",
+     "meaning": "لغة في الطّسْت",
+     "meaning_english": "a dialectal variant of الطّست (basin)"
+    }
+   ],
+   "notes": "Ibn Faris explicitly denies this combination a core meaning (ليس أصلا)."
+  },
+  {
+   "root": "طش",
+   "root_letters": [
+    "ط",
+    "ش"
+   ],
+   "core_meaning": "الطاء والشين أصيل يدل على قلة في مطر، ويجوز أن يستعار في غيره",
+   "core_meaning_english": "scantiness/slightness of rain; may be metaphorically extended to other things",
+   "pdf_page_index": 1487,
+   "printed_page_number": "410",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطّشّ",
+     "meaning": "المطر الضعيف",
+     "meaning_english": "weak/light rain (drizzle)"
+    },
+    {
+     "usage": "ولا ندى وبلك بالطشيش",
+     "meaning": "استعارة من الطش في غير المطر (وصف الجود/الدمع)",
+     "meaning_english": "metaphorical use of 'drizzle' outside of rain, describing scant generosity/moisture",
+     "citation": "قال رؤبة: ولا ندى وبلك بالطشيش"
+    }
+   ],
+   "notes": "Footnote gives a variant reading of the verse from اللسان and الديوان: 'ولا جدا نيلك بالطشيش' / 'وماجدا غيثك بالطشوش' (الديوان ٧٨)."
+  },
+  {
+   "root": "طعم",
+   "root_letters": [
+    "ط",
+    "ع",
+    "م"
+   ],
+   "core_meaning": "الطاء والعين والميم أصل مطّرد منقاس في تذوّق الشيء",
+   "core_meaning_english": "consistent, regular meaning of tasting/perceiving-the-taste-of a thing",
+   "pdf_page_index": 1487,
+   "printed_page_number": "410",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَعِمَ الشيء طَعْماً",
+     "meaning": "تذوّقه",
+     "meaning_english": "to taste a thing"
+    },
+    {
+     "usage": "الطّعام",
+     "meaning": "هو المأكول؛ وكان بعض أهل اللغة يقول: الطعام هو البُرّ خاصة",
+     "meaning_english": "food, that which is eaten; some lexicographers held it meant wheat specifically",
+     "citation": "حديث أبي سعيد: كنا نُخرج صدقة الفطر على عهد رسول الله صلى الله عليه وآله وسلم صاعا من طعام أو صاعا من كذا"
+    }
+   ],
+   "notes": "Header ﴿باب الطاء والعين وما يثلثهما﴾ appears above this entry with the number ٤٢٩ beside it — this appears to be Ibn Faris's running root/chapter count, not a printed page number; the page's actual printed page number stays ٤١٠. Entry continues onto page 1488. Footnote 2 identifies أبو سعيد as أبو سعيد الخدري سعد بن مالك بن سنان (الإصابة ٢١٨٩)."
+  },
+  {
+   "root": "طعم",
+   "root_letters": [
+    "ط",
+    "ع",
+    "م"
+   ],
+   "core_meaning": "(تكملة) أصل مطّرد منقاس في تذوّق الشيء",
+   "core_meaning_english": "(continuation) consistent meaning of tasting a thing",
+   "pdf_page_index": 1488,
+   "printed_page_number": "411",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "استطعمك الإمام فأطعموه",
+     "meaning": "إذا ارتج عليه واستفتح في الصلاة فافتحوا عليه",
+     "meaning_english": "if the imam falters and asks for prompting, prompt him",
+     "citation": "حديث نبوي: إذا استطعمكم الإمام فأطعموه"
+    },
+    {
+     "usage": "الإطعام",
+     "meaning": "يقع في كل ما يُطعَم حتى الماء",
+     "meaning_english": "'feeding' applies to anything consumed, even water",
+     "citation": "قوله تعالى: ومن لم يطعمه فإنه مني؛ وقوله عليه السلام في زمزم: إنها طعام طُعْم وشفاء سُقْم"
+    },
+    {
+     "usage": "أطعموني ماء (قول خالد بن عبدالله القسري)",
+     "meaning": "عِيب عليه هذا القول عند بعضهم، وقال بعضهم في عيبه بذلك شعرا، وليس بعيب عند ابن فارس لما تقدم من أن الإطعام يقع على الماء",
+     "meaning_english": "a phrase criticized by some (who wrote verse mocking it), but defended by the author since 'feeding' properly applies to water too"
+    },
+    {
+     "usage": "رجل طاعم",
+     "meaning": "حسن الحال في المطعَم",
+     "meaning_english": "a man in good condition as regards his food/sustenance",
+     "citation": "قول الحطيئة: دع المكارم لا ترحل لبغيتها واقعد فإنك أنت الطاعم الكاسي"
+    },
+    {
+     "usage": "رجل مِطعام",
+     "meaning": "كثير القِرى",
+     "meaning_english": "a man who feeds guests abundantly, hospitable"
+    },
+    {
+     "usage": "هو مُطعَم",
+     "meaning": "إذا كان مرزوقا",
+     "meaning_english": "one who is provided-for/blessed with sustenance"
+    },
+    {
+     "usage": "الطُّعْمة",
+     "meaning": "المأكلة؛ جعلت هذه الضيعة لفلان طُعمة",
+     "meaning_english": "a source of livelihood/sustenance; 'I made this estate a livelihood-grant for so-and-so'"
+    },
+    {
+     "usage": "مُطعَمة / مُطعِمة (قوس)",
+     "meaning": "يروى بفتح العين: أنها قوس مرزوقة (تصيب)؛ ويروى بكسرها: أنها تُطعِم صاحبها الصيد",
+     "meaning_english": "a bow described as 'mut'ama' (blessed/lucky, hits its mark) or 'mut'ima' (that feeds its owner game)",
+     "citation": "قول ذي الرمة: وفي الشمال من الشريان مُطعَمة كبداء في عَجْسها عَطْفٌ وتقويمُ"
+    },
+    {
+     "usage": "مُطعِمة (للإصبع)",
+     "meaning": "الإصبع الغليظة المتقدمة من الجارحة، لأنها تُطعِمه إذا صاد بها",
+     "meaning_english": "the thick foremost talon/claw of a bird of prey, because it 'feeds' it when it hunts with it"
+    },
+    {
+     "usage": "المُطعِم من الإبل",
+     "meaning": "الذي يوجد من نِقْيه طعمُ الشحم من السّمَن",
+     "meaning_english": "a camel whose marrow has the taste of fat from being well-fed"
+    },
+    {
+     "usage": "أطعمت النخلة",
+     "meaning": "إذا أدرك ثمرها",
+     "meaning_english": "the palm tree 'gave fruit' when its fruit ripened"
+    },
+    {
+     "usage": "التطعّم",
+     "meaning": "التذوّق؛ تطعّم أي ذُق الطعام تشتهيه وتأكله",
+     "meaning_english": "to taste/sample; 'taste the food, crave it, and eat it'"
+    },
+    {
+     "usage": "فلان خبيث الطُّعمة",
+     "meaning": "إذا كان رديء الكسب",
+     "meaning_english": "'so-and-so has a foul livelihood' — said of one with ill-gotten earnings"
+    },
+    {
+     "usage": "أُذْنٌ فاطْعَم",
+     "meaning": "أي استمع وتذوّق",
+     "meaning_english": "'listen and taste' (said to the ear)"
+    },
+    {
+     "usage": "مالي طُعْم",
+     "meaning": "كما يقال من الشراب: مالي شُرْب",
+     "meaning_english": "'I have no taste [for food]', analogous to 'I have no drink [i.e. thirst]'"
+    },
+    {
+     "usage": "شاة طَعوم",
+     "meaning": "إذا كان فيها بعض السّمَن",
+     "meaning_english": "a ewe that has some fat on it"
+    }
+   ],
+   "notes": "Continuation of root طعم begun on page 1487; footnotes cite ديوان الحطيئة and ديوان ذي الرمة for the two poetry citations. Corrected: split the merged 'أُذْنٌ فاطْعَم / مالي طُعْم' variance into two, since the original extraction dropped the 'أي استمع وتذوّق' gloss that belongs to أذن فاطعم and wrongly attached the شراب comparison to it instead of to مالي طعم."
+  },
+  {
+   "root": "طعن",
+   "root_letters": [
+    "ط",
+    "ع",
+    "ن"
+   ],
+   "core_meaning": "الطاء والعين والنون أصل واحد صحيح مطرد، وهو النخس في الشيء بما ينفذه، ثم يحمل عليه ويستعار",
+   "core_meaning_english": "piercing/stabbing a thing with something that penetrates it; then extended and used metaphorically",
+   "sarf_pattern": "",
+   "pdf_page_index": 1489,
+   "printed_page_number": "412",
+   "variances": [
+    {
+     "usage": "الطعن بالرمح",
+     "meaning": "الطعن بالرمح",
+     "meaning_english": "stabbing with a spear"
+    },
+    {
+     "usage": "تطاعن القوم واطّاعنوا",
+     "meaning": "تطاعنوا في الحرب",
+     "meaning_english": "the people stabbed one another (in battle)"
+    },
+    {
+     "usage": "مطاعين في الحرب",
+     "meaning": "كثيرو الطعن في الحرب",
+     "meaning_english": "frequent stabbers in war"
+    },
+    {
+     "usage": "رجل طعّان في أعراض الناس",
+     "meaning": "يقدح في أعراض الناس (استعارة)",
+     "meaning_english": "a man who slanders/attacks people's honor (metaphorical)"
+    },
+    {
+     "usage": "لا يكون المؤمن طعّانا",
+     "meaning": "حديث نبوي: المؤمن لا يكون كثير الطعن (الشتم/القدح في الأعراض)",
+     "meaning_english": "hadith: the believer is not one who habitually slanders",
+     "citation": "حديث النبي صلى الله عليه وسلم"
+    },
+    {
+     "usage": "طعنت في الرجل طعنانا لاغير",
+     "meaning": "استعمال خاص فرّقوا به بين الطعن بالكلام والطعن بالرمح",
+     "meaning_english": "a distinct verbal-noun form used for verbal (not physical) stabbing",
+     "citation": "وأبى ظاهر الشنآة إلا طعنانا وقولا مالا يقال"
+    },
+    {
+     "usage": "طعن في المفازة",
+     "meaning": "ذهب",
+     "meaning_english": "he departed/went off into the desert"
+    },
+    {
+     "usage": "طعن بالرمح يطعُن (بالضم) / طعن بالقول يطعَن (بالفتح)",
+     "meaning": "تفريق في ضبط الفعل المضارع بحسب المعنى الحسي أو القولي",
+     "meaning_english": "the imperfect verb differs in vowelling depending on physical vs. verbal stabbing",
+     "citation": ""
+    }
+   ],
+   "notes": "This is the complete, self-contained entry as it begins on this page (full header ﴿طعن﴾ and full core-meaning statement are present) — not a continuation of an earlier page as previously noted."
+  },
+  {
+   "root": "طغى",
+   "root_letters": [
+    "ط",
+    "غ",
+    "ي"
+   ],
+   "core_meaning": "الطاء والغين والحرف المعتل أصل صحيح منقاس، وهو مجاوزة الحد في العصيان",
+   "core_meaning_english": "exceeding the limit/bound in disobedience or transgression",
+   "sarf_pattern": "المعتل",
+   "pdf_page_index": 1489,
+   "printed_page_number": "412",
+   "variances": [
+    {
+     "usage": "هو طاغ",
+     "meaning": "مجاوز الحد في المعصية",
+     "meaning_english": "he is a transgressor"
+    },
+    {
+     "usage": "طغى السيل",
+     "meaning": "إذا جاء بماء كثير",
+     "meaning_english": "the flood 'طغى' when it brought abundant water",
+     "citation": "إنّا لمّا طغى الماء حملناكم (القرآن)"
+    },
+    {
+     "usage": "طغى البحر",
+     "meaning": "هاجت أمواجه",
+     "meaning_english": "the sea 'طغى' meaning its waves raged"
+    },
+    {
+     "usage": "طغى الدم",
+     "meaning": "تبيّغ (فار وهاج)",
+     "meaning_english": "the blood surged/overflowed"
+    },
+    {
+     "usage": "الطُّغيان والطُّغوان",
+     "meaning": "لغتان بمعنى واحد (قاله الخليل)، والفعل منه طَغيت وطَغَوت",
+     "meaning_english": "two dialectal forms of the same noun; verb forms طغيت/طغوت"
+    },
+    {
+     "usage": "الطَّغْيَة",
+     "meaning": "الصفاة الملساء",
+     "meaning_english": "a smooth flat rock (an irregular/anomalous usage outside the core meaning)"
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "طغم",
+   "root_letters": [
+    "ط",
+    "غ",
+    "م"
+   ],
+   "core_meaning": "الطاء والغين والميم كلمة ما أحسبها من أصل كلام العرب",
+   "core_meaning_english": "a word Ibn Faris does not consider to be from genuine original Arabic speech",
+   "sarf_pattern": "",
+   "pdf_page_index": 1490,
+   "printed_page_number": "413",
+   "variances": [
+    {
+     "usage": "طَغَام",
+     "meaning": "يقولون لأوغاد الناس: طغام",
+     "meaning_english": "they call the rabble/lowly people 'طغام'"
+    }
+   ],
+   "notes": "Ibn Faris explicitly doubts this root's authenticity rather than giving a normal core meaning."
+  },
+  {
+   "root": "طفق",
+   "root_letters": [
+    "ط",
+    "ف",
+    "ق"
+   ],
+   "core_meaning": "الطاء والفاء والقاف كلمة صحيحة، يقولون طفق يفعل كذا كما يقال ظلّ يفعل",
+   "core_meaning_english": "a sound word meaning 'he began/kept doing such-and-such', like saying 'ظلّ يفعل'",
+   "sarf_pattern": "",
+   "pdf_page_index": 1490,
+   "printed_page_number": "413",
+   "variances": [
+    {
+     "usage": "فطفق مسحا بالسوق والأعناق",
+     "meaning": "فبدأ يمسح بالسوق والأعناق",
+     "meaning_english": "he began stroking the legs and necks",
+     "citation": "القرآن"
+    },
+    {
+     "usage": "وطفقا يخصفان عليهما من ورق الجنة",
+     "meaning": "بدآ يلصقان عليهما من ورق الجنة",
+     "meaning_english": "the two of them began covering themselves with leaves of paradise",
+     "citation": "القرآن"
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "طفل",
+   "root_letters": [
+    "ط",
+    "ف",
+    "ل"
+   ],
+   "core_meaning": "الطاء والفاء واللام أصل صحيح مطرد ثم يقاس عليه، والأصل المولود الصغير",
+   "core_meaning_english": "a sound, consistent root that things are analogized to; the base meaning is the small newborn child",
+   "sarf_pattern": "",
+   "pdf_page_index": 1490,
+   "printed_page_number": "413",
+   "variances": [
+    {
+     "usage": "هو طِفْل، والأنثى طِفْلة",
+     "meaning": "المولود الصغير، مؤنثه طفلة",
+     "meaning_english": "a small child (male); female form طفلة"
+    },
+    {
+     "usage": "المُطْفِل",
+     "meaning": "الظبية معها طفلها وهي قريبة عهد بالنتاج",
+     "meaning_english": "a doe/gazelle with her fawn, recently having given birth"
+    },
+    {
+     "usage": "طفّلنا إبلنا تطفيلا",
+     "meaning": "إذا كان معها أولادها رفّقنا بها في السير",
+     "meaning_english": "we went gently with our camels when their young were with them",
+     "citation": ""
+    },
+    {
+     "usage": "طَفْلة (للمرأة الناعمة)",
+     "meaning": "مشبّهة في رطوبتها ونعمتها بالطَّفلة، مع فرق في الضبط (فتح/كسر) بين اللفظين",
+     "meaning_english": "a soft, tender woman, likened in moistness and tenderness to a young child"
+    },
+    {
+     "usage": "طَفَل الظلام",
+     "meaning": "أوّل الظلام وبدايةُ إقباله، قبل مجيء معظم الليل، سمي طفلا لقلته ودقته",
+     "meaning_english": "the onset/beginning of darkness, before the bulk of night, called 'طفل' for its scantiness",
+     "citation": "فتدلّيت عليه قافلا وعلى الأرض غيايات الطَّفَل (لبيد)"
+    },
+    {
+     "usage": "طَفَل الليل",
+     "meaning": "أقبل ظلامه",
+     "meaning_english": "the night's darkness approached"
+    },
+    {
+     "usage": "لو هدّ جاده طَفَلُ الثريا",
+     "meaning": "الطفل هنا: المطر (بحسب الحاشية)",
+     "meaning_english": "here 'طفل' refers to rain, per the footnote",
+     "citation": "لو هد جاده طفل الثريا"
+    }
+   ],
+   "notes": "Marginal figure '430' appears embedded mid-column near this entry — likely a stray cross-reference/page artifact in the scan, not the actual page header number (header reads 413). The 'خرفقنا' wording for the camel-herding variance could not be confirmed at full confidence from the scan; corrected to 'رفّقنا' (went gently) based on best reading."
+  },
+  {
+   "root": "طفو",
+   "root_letters": [
+    "ط",
+    "ف",
+    "و"
+   ],
+   "core_meaning": "الطاء والفاء والحرف المعتل أصل صحيح، وهو يدل على الشيء الخفيف يعلو الشيء",
+   "core_meaning_english": "a sound root indicating a light thing that rises above/floats over another thing",
+   "sarf_pattern": "المعتل",
+   "pdf_page_index": 1491,
+   "printed_page_number": "414",
+   "variances": [
+    {
+     "usage": "طفا الشيء فوق الماء يطفو طفوا وطفوّا",
+     "meaning": "إذا علاه ولم يرسب",
+     "meaning_english": "it floated on the water, rising above without sinking"
+    },
+    {
+     "usage": "طفا الثور فوق الرمل",
+     "meaning": "ظهر/علا فوق الرمل",
+     "meaning_english": "the bull appeared/rose above the sand"
+    },
+    {
+     "usage": "الطُّفية",
+     "meaning": "خوصة المقل، سميت بذلك لأنها تعظُم حتى تُغطّي الشجرة",
+     "meaning_english": "the frond/leaf of the muql-palm, so named because it grows until it covers the tree",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّفية (عند الخليل)",
+     "meaning": "حية خبيثة - وهذا عند ابن فارس غلط؛ إنما الطفية خوصة المقل والجمع طُفى، ثم شُبّه الخط الذي على ظهر الحية بها",
+     "meaning_english": "Al-Khalil calls it a venomous snake, which Ibn Faris says is an error; rather it is the palm-frond, and the snake's back-stripe is metaphorically likened to it"
+    },
+    {
+     "usage": "اقتلوا ذا الطُّفْيَتَيْن والأبتر",
+     "meaning": "حديث نبوي في الحيات، سُمّي ذا طفيتين لتشبيه الخطين على ظهره بخوصتي المقل",
+     "meaning_english": "hadith on snakes: 'kill the one with two طفية-stripes and the tailless one'",
+     "citation": "حديث النبي صلى الله عليه وآله وسلم"
+    },
+    {
+     "usage": "عفت غير نؤي الدار ما إن تبينه وأقطار طفى قد عفت في المآقل",
+     "meaning": "بيت شعر للهذلي في الطفى",
+     "meaning_english": "poetic line describing effaced traces near palm-frond patches",
+     "citation": "الهذلي (أبو ذؤيب الهذلي)"
+    },
+    {
+     "usage": "كما تدل الطفى من رقية الرقاق",
+     "meaning": "أراد ذوات الطفى",
+     "meaning_english": "meaning 'those covered with/possessing طفى-fronds'",
+     "citation": "قول القائل"
+    },
+    {
+     "usage": "إذا حملت بزتي على عدس",
+     "meaning": "أراد على التي يقال لها عدس، وذلك زجر للبغال",
+     "meaning_english": "meant 'the one called \"عدس\"' — a call used to drive mules",
+     "citation": "قول القائل"
+    }
+   ],
+   "notes": "This entry likely continues onto a following page not included in this batch; citation translations for the poetry lines are approximate given classical vocabulary."
+  },
+  {
+   "root": "طفأ (استمرار)",
+   "root_letters": [
+    "ط",
+    "ف",
+    "أ"
+   ],
+   "core_meaning": "فإذا هُمزَت كان فى معنى آخر، يقال طَفِئَت النار تَطْفَأُ، وأنا أطفأتُها",
+   "core_meaning_english": "the fire went out / was extinguished; I extinguished it",
+   "sarf_pattern": "",
+   "pdf_page_index": 1492,
+   "printed_page_number": "415",
+   "notes": "Continuation of an entry that began on a previous page (not included in this batch); discusses the hamzed form طفئ as distinct from the preceding root about floating/covering.",
+   "variances": [
+    {
+     "usage": "الطَّفَّاء",
+     "meaning": "مثل الطَّخَاء، وهو السَّحاب الرَّقيق، فهو من الباب الأول، كأنه شیءٌ يطفو",
+     "meaning_english": "thin/light cloud, as if it floats",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طفح",
+   "root_letters": [
+    "ط",
+    "ف",
+    "ح"
+   ],
+   "core_meaning": "الطاء والفاء والحاء، وهو شبيه بالباب الذى قبله",
+   "core_meaning_english": "similar to the preceding chapter (rising over / covering something)",
+   "sarf_pattern": "",
+   "pdf_page_index": 1492,
+   "printed_page_number": "415",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "الطُّفَاحة",
+     "meaning": "ما طَفَح فوق الشیء يُطْبَخُ من زُبْدٍ أو غيره، ثمّ يُحمَل عليه فيسمّى كلُّ شیء علا شيئاً فغطّاه طافحاً",
+     "meaning_english": "the foam/scum that rises to the top of a cooked thing (e.g. butter); by extension, anything that rises and covers another thing",
+     "citation": ""
+    },
+    {
+     "usage": "طَفَح النهرُ",
+     "meaning": "امتلأَ",
+     "meaning_english": "the river overflowed / became full",
+     "citation": ""
+    },
+    {
+     "usage": "طفَحَ السَّكرانُ، فهو طافح",
+     "meaning": "من ذلك (بلغ الامتلاء من السُّكر)",
+     "meaning_english": "the drunk man overflowed (became fully intoxicated); طافح = brimful",
+     "citation": ""
+    },
+    {
+     "usage": "وطفَّحت الريح القُطنةَ فى الهواء",
+     "meaning": "إذا استطارَت بها",
+     "meaning_english": "the wind made the cotton fluff fly/float in the air",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طفر",
+   "root_letters": [
+    "ط",
+    "ف",
+    "ر"
+   ],
+   "core_meaning": "الطاء والفاء والراء كلمةٌ صحيحة، يقال طفَر: وثب",
+   "core_meaning_english": "sound word: طفر means he leapt/jumped",
+   "sarf_pattern": "",
+   "pdf_page_index": 1492,
+   "printed_page_number": "415",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "طفَر",
+     "meaning": "وثب",
+     "meaning_english": "he jumped/leapt",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طفس",
+   "root_letters": [
+    "ط",
+    "ف",
+    "س"
+   ],
+   "core_meaning": "الطاء والفاء والسين، يقولون طفس: مات. والطَّفَس: الدَّرَن",
+   "core_meaning_english": "طفس: he died; الطفس also means grime/filth",
+   "sarf_pattern": "",
+   "pdf_page_index": 1492,
+   "printed_page_number": "415",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "طفس",
+     "meaning": "مات",
+     "meaning_english": "he died",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّفَس",
+     "meaning": "الدَّرَن",
+     "meaning_english": "grime, filth",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طفن",
+   "root_letters": [
+    "ط",
+    "ف",
+    "ن"
+   ],
+   "core_meaning": "الطاء والفاء والنون ليس بشیء. على أنهم يقولون: الطُّفَأْنِيَة نعتُ سَوْء فى الرَّجل والمرأة، والله أعلم بالصواب",
+   "core_meaning_english": "not a proper (sound) root; but they say الطفأنية is a bad trait/description applied to a man or woman",
+   "sarf_pattern": "",
+   "pdf_page_index": 1492,
+   "printed_page_number": "415",
+   "notes": "Author explicitly denies this is a genuine root with a derivable core meaning.",
+   "variances": [
+    {
+     "usage": "الطُّفَأْنِيَة",
+     "meaning": "نعتُ سَوْء فى الرَّجل والمرأة",
+     "meaning_english": "a bad character trait, in a man or a woman",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طلم",
+   "root_letters": [
+    "ط",
+    "ل",
+    "م"
+   ],
+   "core_meaning": "الطاء واللام والميم أصلٌ صحيح، وهو ضرب الشیء ببسط الشیء المبسوط",
+   "core_meaning_english": "sound root: striking a thing with a flat, spread-out thing",
+   "sarf_pattern": "",
+   "pdf_page_index": 1492,
+   "printed_page_number": "415",
+   "notes": "Entry begins under new chapter heading باب الطاء واللام وما يثلثهما (Ta-Lam and their triliteral pairings); continues onto next page with poetry citation of Hassan.",
+   "variances": [
+    {
+     "usage": "الطَّلْمُ",
+     "meaning": "ضربك خُبزةَ المَلَّة بيدك تنفُضُ ما عليها من الرَّماد",
+     "meaning_english": "striking the ember-baked bread loaf with your hand to shake the ash off it",
+     "citation": ""
+    },
+    {
+     "usage": "ما أقرَبَ ما بين الطَّلْم واللَّطْم",
+     "meaning": "والدَّليلُ على ذلك قول حسّان (بيت مقتبس)",
+     "meaning_english": "how close طلم is to لطم (slapping) — supported by a verse of Hassan",
+     "citation": "قول حسّان (البيت يتمّ فى الصفحة التالية)"
+    }
+   ]
+  },
+  {
+   "root": "طلم (تتمة)",
+   "root_letters": [
+    "ط",
+    "ل",
+    "م"
+   ],
+   "core_meaning": "تتمة الاستشهاد الشعرى وبيان أن الطَّلْفة (الخبزة) سُمّيت لأنها تُلطَم",
+   "core_meaning_english": "continuation: poetic citation confirming the closeness of طلم and لطم; the bread-loaf is called الطلمة because it is slapped/patted",
+   "sarf_pattern": "",
+   "pdf_page_index": 1493,
+   "printed_page_number": "416",
+   "notes": "Continuation of the طلم entry from the previous page; includes a variant-reading footnote (تُطَلِّمهنّ vs تَلطُمهنّ) about a poetry line concerning women veiling with headscarves.",
+   "variances": [
+    {
+     "usage": "تُطَلِّمهن بخُمُرِ النِّساه",
+     "meaning": "بيت شعر مستشهد به، مع خلاف فى روايته: «تلطُمهُنَّ»",
+     "meaning_english": "poetic line quoted, with a variant reading 'تلطمهن' — cited as proof the two words share one meaning",
+     "citation": "شاهد شعرى مذكور فى الحاشية"
+    },
+    {
+     "usage": "الطُّلْمة (الخبزة)",
+     "meaning": "إنما سميت بذلك لأنها تُلطَم",
+     "meaning_english": "the bread-loaf is so named because it is patted/slapped (to remove ash)",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طله",
+   "root_letters": [
+    "ط",
+    "ل",
+    "ه"
+   ],
+   "core_meaning": "الطاء واللام والهاء ليس عندى بأصل يفرع منه ولا قياسه بذلك الصحيح، لكنهم يقولون: طَلَه فى البلاد، إذا ذهب",
+   "core_meaning_english": "author states this is not, in his view, a sound root with a proper derivable core meaning; but usages exist meaning 'he went away/departed in the land'",
+   "sarf_pattern": "",
+   "pdf_page_index": 1493,
+   "printed_page_number": "416",
+   "notes": "Author explicitly denies soundness of this root's derivation.",
+   "variances": [
+    {
+     "usage": "طَلَه فى البلاد، يَطلَه طَلَهاً",
+     "meaning": "إذا ذهب",
+     "meaning_english": "he went away / departed in the land",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّلْهة",
+     "meaning": "القليل من الكلام",
+     "meaning_english": "a small amount of speech",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّلْهة",
+     "meaning": "الأسمال من الثياب؛ يقال: تَطَلَّه هذا [الخَلَق] حتى تستنجد غيره",
+     "meaning_english": "worn-out/ragged garments; 'this worn garment has become so shabby you must seek another'",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طلى",
+   "root_letters": [
+    "ط",
+    "ل",
+    "ى"
+   ],
+   "core_meaning": "الطاء واللام والحرف المعتل أصلان صحيحان، أحدهما يدلُّ على لطخ شیء بشیء، والآخر على شیء صغير على شیء كالولد للشیء",
+   "core_meaning_english": "two sound core meanings: (1) smearing one thing over another; (2) a small thing attached to a thing, like an offspring belonging to it",
+   "sarf_pattern": "المعتل",
+   "pdf_page_index": 1493,
+   "printed_page_number": "416",
+   "notes": "Entry spans pages 416-417; second core meaning (offspring sense) begins on page 417 with 'والأصل الآخر'.",
+   "variances": [
+    {
+     "usage": "طلَيتُ الشیء بالشیء / أطلِيه؛ اطَّلَيتُ بالشَّیء أُطَّلي به",
+     "meaning": "الأصل الأول: لطخ شیء بشیء",
+     "meaning_english": "I smeared/anointed the thing with the thing",
+     "citation": ""
+    },
+    {
+     "usage": "الطِّلاء",
+     "meaning": "جنسٌ من الشراب، كأنه طُبخ حتى صار كالقَطِران الذى يُطلى به",
+     "meaning_english": "a type of beverage/syrup, as if cooked until it became like the tar that is smeared on things",
+     "citation": ""
+    },
+    {
+     "usage": "المِطلاء، جمعها المَطالِي",
+     "meaning": "أرضٌ مِثْناث (لَيّنة)، وذلك أنها قد طُلِيت بشیء حتى لانت",
+     "meaning_english": "soft, pliable land — as if it had been smeared/coated with something until it softened",
+     "citation": ""
+    },
+    {
+     "usage": "كلامٌ لا طَلاوة له",
+     "meaning": "إذا كان غثّاً، كأنه إذا كان خلاف ذلك فقد طُلِیَ بشیء يُحلّيه",
+     "meaning_english": "speech with no 'sweetness/gloss' to it, i.e. dull speech — as if pleasant speech has been coated with something sweetening it",
+     "citation": ""
+    },
+    {
+     "usage": "بأسنانه طَلْیٌ وطِلَیانٌ؛ طَلِیَ فوه طَلاً (الصُّفرة)",
+     "meaning": "يُقصد بذلك اصفرار الأسنان كأنه طُلِیَ به",
+     "meaning_english": "yellowish coating/tartar on the teeth, as if the mouth had been smeared with it",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّلْوَة",
+     "meaning": "الأصل الآخر: ولد الوحشية الأنثى، والذكر طِلاً",
+     "meaning_english": "second core meaning: the offspring of a wild female animal; the male offspring is called طِلاً",
+     "citation": ""
+    },
+    {
+     "usage": "الطِّلْو / الطَّلْو",
+     "meaning": "الذِّئب، ولعله أن يكون ولدَه، لما ذكرناه",
+     "meaning_english": "the wolf — perhaps so called because it is treated as an 'offspring' by the same logic mentioned",
+     "citation": ""
+    },
+    {
+     "usage": "طِلْوَة (الحبل)",
+     "meaning": "الحبل الذى يشدُّ به الطِّلا، قاله ابن دريد",
+     "meaning_english": "the rope with which the young animal is tied, per Ibn Duraid",
+     "citation": "قول ابن دريد"
+    },
+    {
+     "usage": "بيت شعر: مازال مذ قُرِّف عنه جلَبَبُه له من اللَّوْم طَِلْیٌ يجذبه",
+     "meaning": "شاهد على معنى الطِّلی/الربط",
+     "meaning_english": "verse cited (via al-Qattan from Ahmad ibn Yahya) illustrating usage of طلی tied to blame/tugging",
+     "citation": "أحمد بن يحيى، رواه عنه القطّان"
+    },
+    {
+     "usage": "طَلَیتُ الطِّلا وطَلَوته",
+     "meaning": "قال الفرّاء: إذا ربطتَه برِجله",
+     "meaning_english": "al-Farra': I tied the young animal by its leg",
+     "citation": "قول الفرّاء"
+    },
+    {
+     "usage": "الطَّلا (عند الشيبانى)",
+     "meaning": "الشخص؛ يقال إنه لجميل الطَّلا",
+     "meaning_english": "per al-Shaybani: a person/figure — 'he is beautiful of form'",
+     "citation": "قول الشيبانى، مع بيت شعر: وخِدٍّ كمَتْنِ الصُّلَّبِیِّ جَلَوتَه / جميل الطَّلَا مستشرِبٍ الوَرْسِ أكحل"
+    },
+    {
+     "usage": "فهذا إن صحّ فهو من الإبدال",
+     "meaning": "كأنه أراد الطَّلَل ثم أبدل إحدى اللامين حرفاً معتلاًّ، وهو من باب «تقضّي البازي» وليس ببعيد",
+     "meaning_english": "if correct, this word (الطلا='figure') is a phonetic substitution of الطلل ('ruins/remains'), one of the two lams swapped for a weak letter — comparable to the idiom 'a falcon plummeting' (تقضّي البازي)",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّلْیة، جمعها الطُّلَی",
+     "meaning": "الأعناق؛ سُمّيت كذلك لأنها شاخصةٌ، محمولةٌ على الطَّلا الذى هو الشَّخص",
+     "meaning_english": "necks; so named because they are prominent/upright, drawing on طلا meaning 'figure/form'",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طلب",
+   "root_letters": [
+    "ط",
+    "ل",
+    "ب"
+   ],
+   "core_meaning": "الطاء واللام والباء أصلٌ واحد يدلُّ على ابتغاء الشیء",
+   "core_meaning_english": "one core meaning: seeking/pursuing a thing",
+   "sarf_pattern": "",
+   "pdf_page_index": 1494,
+   "printed_page_number": "417",
+   "notes": "Entry begins at the very end of this page and is cut off mid-sentence ('وأطلبتُ فلاناً بابتغائه،'); continuation would be on the next page, not included in this batch.",
+   "variances": [
+    {
+     "usage": "طلبتُ الشیء أطلبه طلباً",
+     "meaning": "ابتغيته",
+     "meaning_english": "I sought/pursued the thing",
+     "citation": ""
+    },
+    {
+     "usage": "هذا مَطالَبى؛ هذه طَلِبَتى",
+     "meaning": "أشياء تتعلق بالطلب",
+     "meaning_english": "this is my object of pursuit; this is my request/quest",
+     "citation": ""
+    },
+    {
+     "usage": "أطلبتُ فلاناً بابتغائه...",
+     "meaning": "غير مكتمل - القطع فى نهاية الصفحة",
+     "meaning_english": "(sentence cut off at page end)",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طلب",
+   "root_letters": [
+    "ط",
+    "ل",
+    "ب"
+   ],
+   "core_meaning": "(تكملة من الصفحة السابقة - لم يُعَد ذكر أصل المعنى هنا)",
+   "core_meaning_english": "(continuation from previous page - core meaning not restated here)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "أطلبته",
+     "meaning": "إذا أحوجته إلى الطلب",
+     "meaning_english": "to make someone need to seek/request something",
+     "citation": ""
+    },
+    {
+     "usage": "أطلب الكلأ",
+     "meaning": "تباعد عن الماء حتى طلبه القوم، وهو ماء مُطْلِب",
+     "meaning_english": "the pasture grew far from water, so people had to seek water; such water is called 'mutlib'",
+     "citation": "قال ذو الرمة: أَضَلَّه راعياً كَلبِيَّةٍ صَدَرَا عن مُطْلِبٍ قارب وُرَّادُهُ عُصُبُ"
+    }
+   ],
+   "printed_page_number": "418",
+   "pdf_page_index": 1495,
+   "notes": "Continuation of root طلب begun on a previous page not in this batch. Footnote (1) marks the verse as reconstructed: البيت ساقط في الأصل، وإثباته من الديوان ٣٠ واللسان (طلب)."
+  },
+  {
+   "root": "طلح",
+   "root_letters": [
+    "ط",
+    "ل",
+    "ح"
+   ],
+   "core_meaning": "الطاء واللام والحاء أصلان صحيحان، أحدهما جنسٌ من الشجر، والآخر بابٌ من الهزال وما أشبهه",
+   "core_meaning_english": "two sound bases: one, a kind/genus of tree; the other, a category relating to emaciation/exhaustion and the like",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّلْح",
+     "meaning": "شجرٌ معروف، الواحدة طَلحة",
+     "meaning_english": "a well-known type of tree; singular 'talha'",
+     "citation": ""
+    },
+    {
+     "usage": "ذو طُلُوح",
+     "meaning": "مكان",
+     "meaning_english": "a place name",
+     "citation": ""
+    },
+    {
+     "usage": "إبل طَلاَحَى وطَلِحة",
+     "meaning": "يقال لها إذا شكَتْ عن أكل كلّ الطَّلْح",
+     "meaning_english": "said of camels that have had enough of eating all the talh-tree fodder",
+     "citation": ""
+    },
+    {
+     "usage": "ناقة طِلْحُ أسفار",
+     "meaning": "إذا جهدها السير وهزلها؛ وقد طَلَحَتْ",
+     "meaning_english": "a she-camel worn out by journeys, exhausted and emaciated by travel; 'taluhat' = she became worn out",
+     "citation": ""
+    },
+    {
+     "usage": "الطِّلْح",
+     "meaning": "المهزول من القِرْدان",
+     "meaning_english": "the emaciated one, of ticks",
+     "citation": "إذا نام طِلْحٌ أشعثُ الرأسِ خَلْفَها... هَداهَا لها أنفاسُها وزَفيرُها"
+    },
+    {
+     "usage": "الطَّلاَح",
+     "meaning": "ضدّ الصَّلاح، وكأنه من سوء الحال والهُزال",
+     "meaning_english": "the opposite of righteousness/soundness, as if from bad condition and emaciation",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "418",
+   "pdf_page_index": 1495,
+   "notes": ""
+  },
+  {
+   "root": "طلخ",
+   "root_letters": [
+    "ط",
+    "ل",
+    "خ"
+   ],
+   "core_meaning": "الطاء واللام والخاء ليس بشىء، وذكروا فيه كلمةً كأنها مقلوبة",
+   "core_meaning_english": "the letters ta-lam-kha do not constitute a sound meaningful root; they mention in it a word that seems to be a metathesis (inverted form)",
+   "sarf_pattern": "مقلوبة",
+   "variances": [
+    {
+     "usage": "الطَّلْخ",
+     "meaning": "قال الخليل: الطَّلْخ: اللَّطْخ بالقَذَر",
+     "meaning_english": "al-Khalil said: 'at-talkh' means smearing with filth (a metathesis of 'al-latkh')",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّلْخ",
+     "meaning": "يقال للغِرْيَن الذى يبقى فى أسفل الحوض",
+     "meaning_english": "the sediment/mud that remains at the bottom of a watering trough",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "418",
+   "pdf_page_index": 1495,
+   "notes": "Footnote states the original manuscript reads 'واللطخ بالقدر' and the editor judges the correct reading is found in al-Mujmal (صوابه في المجمل)."
+  },
+  {
+   "root": "طلس",
+   "root_letters": [
+    "ط",
+    "ل",
+    "س"
+   ],
+   "core_meaning": "الطاء واللام والسين أصلٌ صحيح يدلّ على مَلاسة",
+   "core_meaning_english": "a sound base indicating smoothness",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طِلْس",
+     "meaning": "يقال لفرخ البعير إذا تساقط عنه شعره: طِلْس",
+     "meaning_english": "said of a young camel when its hair sheds off",
+     "citation": ""
+    },
+    {
+     "usage": "طَلَسْتُ الكتاب",
+     "meaning": "محوتُه، كأنك قد مَلَّسته",
+     "meaning_english": "I erased/effaced the writing, as if you had smoothed it away",
+     "citation": ""
+    },
+    {
+     "usage": "الذئب الأطلس",
+     "meaning": "يقولون الأغبر، والقياس يدلّ على أنه الذى قد تمعَّط شعره، فكأنّه من غُبرته قد أُلبس طيلساناً",
+     "meaning_english": "they say it means dust-colored, but analogy shows it is the wolf whose fur has fallen out, as if from its dustiness it had been clothed in a 'taylasan' cloak",
+     "citation": ""
+    },
+    {
+     "usage": "الطيلسان (بفتح اللام)",
+     "meaning": "صحيح",
+     "meaning_english": "a sound word (a garment/mantle, per real-world usage)",
+     "citation": "وليلٍ فيهِ يُحسَبُ كلُّ نجمٍ... بَدا لك من خَصاصةِ طَيْلَسانِ"
+    }
+   ],
+   "printed_page_number": "418",
+   "pdf_page_index": 1495,
+   "notes": "Entry begins at bottom of page 1495 (p.418) and continues onto page 1496 (p.419). Footnote (2) on p.419 states the true origin is a Persian loanword 'معرَّب من تالسان' (arabicized from 'talasan'). Footnote (3) notes the verse reads differently in the original manuscript (لا يستقيم به الوزن)."
+  },
+  {
+   "root": "طلع",
+   "root_letters": [
+    "ط",
+    "ل",
+    "ع"
+   ],
+   "core_meaning": "الطاء واللام والعين أصلٌ واحد صحيح، يدلّ على ظهور وبروز",
+   "core_meaning_english": "one sound base indicating appearing and emerging/protruding",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَلَعت الشمس طُلُوعاً ومَطْلَعاً",
+     "meaning": "",
+     "meaning_english": "the sun rose, rising",
+     "citation": ""
+    },
+    {
+     "usage": "المَطْلِع",
+     "meaning": "موضع طلوعها",
+     "meaning_english": "the place of its rising",
+     "citation": "قال الله تعالى: {حتى مَطْلَعِ الفجر}؛ فمن فتح اللام أراد المصدر، ومن كسر أراد الموضع الذى تطلع منه"
+    },
+    {
+     "usage": "طلَعَ علينا فلان",
+     "meaning": "إذا هجم",
+     "meaning_english": "so-and-so came upon us suddenly/burst in",
+     "citation": ""
+    },
+    {
+     "usage": "أطلعتك على الأمر إطلاعاً / أطلعتُك طِلْعَه",
+     "meaning": "",
+     "meaning_english": "I informed you of the matter, made you aware of it",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّلاَّع",
+     "meaning": "ما طلعت عليه الشمس من الأرض",
+     "meaning_english": "the land that the sun has risen upon / the whole surface of the earth",
+     "citation": "وفي الحديث: 'لو أنّ لى طِلاَع الأرض ذهباً'"
+    },
+    {
+     "usage": "نفسٌ طُلَعَة / امرأة طُلَعَة",
+     "meaning": "تتطلَّع للشىء؛ إذا كانت تُكثر الاطِّلاع",
+     "meaning_english": "a soul/woman that is inclined to look out and peer at things constantly",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّلْع (طَلْع النخلة)",
+     "meaning": "وهو الذى يكون فى جوفه الكافور، وقد أطلعت النخلة",
+     "meaning_english": "the spathe/blossom of the palm tree, inside which is the kafur (sheath); the palm tree has put forth its talʿ",
+     "citation": ""
+    },
+    {
+     "usage": "قوس طِلاَع الكفّ",
+     "meaning": "إذا كان عجسها ملء الكفّ",
+     "meaning_english": "a bow whose grip fills the hand",
+     "citation": "قال أوس: كَتُومٌ طِلاَعُ الكفّ لا دونَ مِلْئِها... ولا عَجْسُها عن موضعِ الكفِّ أفضلا"
+    },
+    {
+     "usage": "استطلعتُ رأى فلان",
+     "meaning": "إذا نظرتَ ما الذى يَبرُز إليك منه",
+     "meaning_english": "I sought to find out someone's opinion, to see what would emerge from him",
+     "citation": ""
+    },
+    {
+     "usage": "طَلْعة الإنسان",
+     "meaning": "رؤيته؛ لأنها تطلُع",
+     "meaning_english": "a person's appearance/sighting, because it 'emerges' [to view]",
+     "citation": ""
+    },
+    {
+     "usage": "أطلعَ وأشخصَ (السهم)",
+     "meaning": "إذا مرّ سهمُه برأس الفَرَض",
+     "meaning_english": "said when an arrow flies past, reaching the notch/mark of the target",
+     "citation": ""
+    },
+    {
+     "usage": "طليعة الجيش",
+     "meaning": "من يَطَّلِع طِلْعَ العدوّ",
+     "meaning_english": "the vanguard/scout of the army, who spies out the enemy's situation",
+     "citation": ""
+    },
+    {
+     "usage": "المُطَّلَع (المأتى)",
+     "meaning": "يقال أين مُطَّلَعُ هذا الأمر، أى مأتاه",
+     "meaning_english": "the approach/access point of a matter",
+     "citation": "فأما قوله عليه السلام: 'لافتديتُ به من هَوْلِ المُطَّلَع'"
+    },
+    {
+     "usage": "أطلعَ",
+     "meaning": "إذا قاء (الطَّلَعاء: القىء)",
+     "meaning_english": "he vomited ('at-talaʿa' = vomit)",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "419",
+   "pdf_page_index": 1496,
+   "notes": "Entry begins on page 1496 (p.419) and continues onto page 1497 (p.420), where it concludes with the الطَلَعاء (vomit) material before the new root طلف begins."
+  },
+  {
+   "root": "طلف",
+   "root_letters": [
+    "ط",
+    "ل",
+    "ف"
+   ],
+   "core_meaning": "الطاء واللام والفاء أصلٌ صحيح يدلّ على إهانة الشىء وطَرْحِه، ثم يُحمَل عليه",
+   "core_meaning_english": "a sound base indicating the debasing/disdaining and discarding of a thing, from which further senses are derived",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّلَف (الهدر من الدماء)",
+     "meaning": "أُطلِفَ دَمُه: أُهدِر؛ وكل شىء لم يُطلَب فهو هَدَر",
+     "meaning_english": "blood shed with no retribution sought/wasted; anything not pursued/claimed is 'hadar' (forfeit)",
+     "citation": "حَكَمَ الدهرُ علينا إنه طَلَفٌ... ما نال منّا وجُبارُ"
+    },
+    {
+     "usage": "الطَّلَف (العطاء)",
+     "meaning": "المحمول عليه الطَّلَف: العطاء، ولا يُعطى الشىء حتى يكون أمرُه خفيفاً عند المعطى. يقال أطلفنى وأسلفنى",
+     "meaning_english": "a gift/donation - something is not given until it is of little weight to the giver; 'he gave me a talaf' and 'he gave me a salaf' (loan)",
+     "citation": ""
+    },
+    {
+     "usage": "السَّلَف",
+     "meaning": "ما يُقتَضى",
+     "meaning_english": "that which is claimed back (a loan)",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّلَف (الهيّن)",
+     "meaning": "",
+     "meaning_english": "the trifling, insignificant thing",
+     "citation": "وكلُّ شىءٍ من الدنيا نُصاب به... ماعِشتُ فينا وإنْ جلَّ الرُّزَى طَلَفُ"
+    },
+    {
+     "usage": "الطَّليف والطَّلَف",
+     "meaning": "متقاربان",
+     "meaning_english": "close in meaning to each other",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّلَف = الفضل (قول غير موافق عليه)",
+     "meaning": "وقولهم إن الطَّلَف الفضل، ليس بشىء، إلا أن يُراد أنه الفاضل عن الشىء، لِمَا ذكرناه",
+     "meaning_english": "the claim that 'talaf' means 'surplus' is rejected, unless it means what is left over/surplus to the thing, per the sense already given",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "420",
+   "pdf_page_index": 1497,
+   "notes": ""
+  },
+  {
+   "root": "طلق",
+   "root_letters": [
+    "ط",
+    "ل",
+    "ق"
+   ],
+   "core_meaning": "الطاء واللام والقاف أصلٌ صحيح مطّرد واحد، وهو يدلّ على التخلية والإرسال",
+   "core_meaning_english": "one sound, consistently-applied base indicating releasing/setting free and sending off",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "انطلق الرجل بانطلاقٍ انطلاقاً",
+     "meaning": "",
+     "meaning_english": "the man departed/set off, a setting-off",
+     "citation": ""
+    },
+    {
+     "usage": "أطلقتُه إطلاقاً",
+     "meaning": "ثم ترجع الفروع إليه",
+     "meaning_english": "I released/set him free - the derived senses all return to this",
+     "citation": ""
+    },
+    {
+     "usage": "الطِّلْق (الشىء الحلال)",
+     "meaning": "كأنه قد خُلِّىَ عنه فلم يُحظَر",
+     "meaning_english": "a permissible thing, as if it has been left free and not forbidden",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "420",
+   "pdf_page_index": 1497,
+   "notes": "Entry begins at the bottom of page 1497 (p.420) and continues onto subsequent pages not included in this batch."
+  },
+  {
+   "root": "طلق",
+   "root_letters": [
+    "ط",
+    "ل",
+    "ق"
+   ],
+   "core_meaning": "(تكملة من صفحة سابقة) ومن الباب عدا الفرس طلقا أو طلقين، وامرأة طالق",
+   "core_meaning_english": "continuation: of this root's chapter — a horse running 'talaqan', a woman 'taaliq' (divorced)",
+   "sarf_pattern": "",
+   "printed_page_number": "421",
+   "pdf_page_index": 1498,
+   "notes": "Continuation of root طلق whose core-meaning statement began on an earlier page not in this batch. Restructured the final variance: split the fatha/kasra reading discussion of رأس المطالق across this page and the next, since the kasra-reading text physically appears at the top of page 422/1499.",
+   "variances": [
+    {
+     "usage": "عدا الفرس طلقا أو طلقين",
+     "meaning": "الفرس يجري شوطا أو شوطين",
+     "meaning_english": "a horse running one or two full courses",
+     "citation": ""
+    },
+    {
+     "usage": "امرأة طالق",
+     "meaning": "[طلّقها زوجها]",
+     "meaning_english": "a divorced woman (bracketed gloss in the text)",
+     "citation": ""
+    },
+    {
+     "usage": "امرأة طالقة غدا",
+     "meaning": "التي طلاقها معلَّق بغدٍ",
+     "meaning_english": "a woman whose divorce is deferred/takes effect tomorrow",
+     "citation": ""
+    },
+    {
+     "usage": "أطلقت الناقة من عقالها وطلقتها فطلقت",
+     "meaning": "حلّت عقالها فانحلت",
+     "meaning_english": "she released the she-camel from its hobble and it was released",
+     "citation": ""
+    },
+    {
+     "usage": "رجل طلق الوجه وطليقه",
+     "meaning": "كأنه منطلق، ضد الباسر (العابس)",
+     "meaning_english": "a man of cheerful, open face — opposite of scowling",
+     "citation": ""
+    },
+    {
+     "usage": "طلق يده بخير وأطلق",
+     "meaning": "بمعنى واحد، أي بذل بيده خيرا",
+     "meaning_english": "he gave generously with his hand",
+     "citation": "أنشد ثعلب: اطلق يديك تنفعاك يا رجل بالريث ما أرويتها لا بالعجل"
+    },
+    {
+     "usage": "الطالق (من الناقة)",
+     "meaning": "التي تُرسَل ترعى حيث شاءت",
+     "meaning_english": "a she-camel let loose to graze wherever it wishes",
+     "citation": ""
+    },
+    {
+     "usage": "تطالق (للظبي)",
+     "meaning": "إذا مرّ لا يلوي على شيء",
+     "meaning_english": "said of a gazelle passing swiftly without turning aside for anything",
+     "citation": ""
+    },
+    {
+     "usage": "رجل طلق اللسان وطليقه، لسان طالق ذلق",
+     "meaning": "فصيح اللسان",
+     "meaning_english": "a man eloquent of tongue; a fluent, sharp tongue",
+     "citation": ""
+    },
+    {
+     "usage": "ما تطالق نفسي له",
+     "meaning": "أي لا تنشرح له",
+     "meaning_english": "my soul does not open up/incline to it",
+     "citation": ""
+    },
+    {
+     "usage": "طلق السليم",
+     "meaning": "سكن وجعه بعد العداد (اشتداد الألم)",
+     "meaning_english": "the snake-bitten man's pain subsided after its peak",
+     "citation": "تطلقه طورا وطورا تراجعه"
+    },
+    {
+     "usage": "المطالق (رأس المطالق)، بفتح اللام",
+     "meaning": "الذي طَلَقَ من وجع السنام",
+     "meaning_english": "one released/freed from the pain of a hump-sore (the fatha reading)",
+     "citation": "كما تعرى الأحوال رأس المطالق"
+    }
+   ]
+  },
+  {
+   "root": "طلق",
+   "root_letters": [
+    "ط",
+    "ل",
+    "ق"
+   ],
+   "core_meaning": "(تكملة) الطالق من الإبل التي يتركها الراعي لنفسه لا يحلبها على الماء",
+   "core_meaning_english": "continuation: usages relating to camels left ungrazed/unmilked by the herdsman",
+   "sarf_pattern": "",
+   "printed_page_number": "422",
+   "pdf_page_index": 1499,
+   "notes": "Direct continuation of the same root's entry from page 421/1498. Added the missing opening variance (the كسر اللام reading of المطلق) that appears at the very top of this page, which the prior extraction had folded into the previous page's entry instead.",
+   "variances": [
+    {
+     "usage": "المطلَق، بكسر اللام",
+     "meaning": "الرجل الذي يريد أن يسابق بفرسه، فالأهوال تمريه؛ لأنه لا يدري أيَشيق أم يُسبَق",
+     "meaning_english": "(variant reading, kasra) the man who wants to race his horse — the ordeal tests him, since he does not know whether he will fall behind or outrun",
+     "citation": ""
+    },
+    {
+     "usage": "الطالق من الإبل",
+     "meaning": "التي يتركها الراعي لنفسه، لا يحلبها، على الماء",
+     "meaning_english": "a camel the herdsman leaves ungrazed by the water for his own use, unmilked",
+     "citation": "قال الشيباني"
+    },
+    {
+     "usage": "استطلق الراعي لنفسه ناقة",
+     "meaning": "طلب لنفسه ناقة",
+     "meaning_english": "the herdsman claimed a she-camel for himself",
+     "citation": ""
+    },
+    {
+     "usage": "ليلة الطلاق",
+     "meaning": "ليلة يخلّي الراعي إبله إلى الماء ويتركها ترعى حتى تلتئط",
+     "meaning_english": "the night the herdsman lets his camels go free to water and graze until they settle",
+     "citation": ""
+    },
+    {
+     "usage": "أطلقتها حتى طلقت طلقا وطلوقا",
+     "meaning": "وهي قبل القرب وبعد التحويز",
+     "meaning_english": "state of the camels before nearing water and after being turned back",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طمن",
+   "root_letters": [
+    "ط",
+    "م",
+    "ن"
+   ],
+   "core_meaning": "أصيل بزيادة همزة",
+   "core_meaning_english": "a root augmented with an added hamza (i.e. اطمأن)",
+   "sarf_pattern": "",
+   "printed_page_number": "422",
+   "pdf_page_index": 1499,
+   "notes": "",
+   "variances": [
+    {
+     "usage": "اطمأنّ المكان يطمئن طمأنينة",
+     "meaning": "سكن",
+     "meaning_english": "the place settled/became tranquil",
+     "citation": ""
+    },
+    {
+     "usage": "طامنت منه",
+     "meaning": "سكّنت",
+     "meaning_english": "she stilled/calmed it",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طمي",
+   "root_letters": [
+    "ط",
+    "م",
+    "ي"
+   ],
+   "core_meaning": "أصل صحيح يدل على علوّ وارتفاع في شيء خاص",
+   "core_meaning_english": "a sound root indicating rising and height in a particular thing",
+   "sarf_pattern": "الحرف المعتل",
+   "printed_page_number": "422",
+   "pdf_page_index": 1499,
+   "notes": "",
+   "variances": [
+    {
+     "usage": "طما البحر يطمو ويطمي",
+     "meaning": "فاض، وهو طامٍ، إذا امتلأ وعلا",
+     "meaning_english": "the sea overflowed / rose in flood, full and high",
+     "citation": ""
+    },
+    {
+     "usage": "طمى الفرس",
+     "meaning": "مرّ مسرعا",
+     "meaning_english": "the horse ran swiftly",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طمث",
+   "root_letters": [
+    "ط",
+    "م",
+    "ث"
+   ],
+   "core_meaning": "أصل صحيح يدل على مسّ الشيء",
+   "core_meaning_english": "a sound root indicating touching a thing",
+   "sarf_pattern": "",
+   "printed_page_number": "422",
+   "pdf_page_index": 1499,
+   "notes": "Entry begins on page 422/1499 and continues onto page 423/1500.",
+   "variances": [
+    {
+     "usage": "الطمث (في كلام العرب)",
+     "meaning": "المس، في كل شيء",
+     "meaning_english": "touching, of anything",
+     "citation": "قال الشيباني"
+    }
+   ]
+  },
+  {
+   "root": "طمث",
+   "root_letters": [
+    "ط",
+    "م",
+    "ث"
+   ],
+   "core_meaning": "(تكملة) أصل صحيح يدل على مسّ الشيء",
+   "core_meaning_english": "continuation: sound root indicating touching a thing",
+   "sarf_pattern": "",
+   "printed_page_number": "423",
+   "pdf_page_index": 1500,
+   "notes": "Continuation of the طمث entry started on page 422/1499.",
+   "variances": [
+    {
+     "usage": "ما طمث هذا المرتع قبلنا أحد",
+     "meaning": "لم يمسه أحد قبلنا؛ وكل شيء يُطمث",
+     "meaning_english": "no one touched this pasture before us; and 'yutmath' applies to anything",
+     "citation": ""
+    },
+    {
+     "usage": "الطامث",
+     "meaning": "الحائض؛ طمثت وطمثت",
+     "meaning_english": "the menstruating woman",
+     "citation": ""
+    },
+    {
+     "usage": "طمث الرجل المرأة",
+     "meaning": "مسّها بجماع (وهذا في هذا الموضع لا يكون بجماع وحده)",
+     "meaning_english": "the man touched/had intercourse with the woman",
+     "citation": "قال الله تعالى: ﴿لم يطمثهن إنس قبلهم ولا جان﴾"
+    },
+    {
+     "usage": "طمث البعير طمثا",
+     "meaning": "عقله (قال الخليل)",
+     "meaning_english": "he hobbled the camel",
+     "citation": ""
+    },
+    {
+     "usage": "ما طمث هذه الناقة حبل قط",
+     "meaning": "ما مسّها",
+     "meaning_english": "no rope ever touched this she-camel",
+     "citation": ""
+    },
+    {
+     "usage": "الطمث (في قول عدي)",
+     "meaning": "قال قوم: الدنس",
+     "meaning_english": "filth/defilement, per some",
+     "citation": "قول عدي: أو طمث العطن"
+    }
+   ]
+  },
+  {
+   "root": "طمح",
+   "root_letters": [
+    "ط",
+    "م",
+    "ح"
+   ],
+   "core_meaning": "أصل صحيح يدل على علوّ في شيء",
+   "core_meaning_english": "a sound root indicating rising/height in a thing",
+   "sarf_pattern": "",
+   "printed_page_number": "423",
+   "pdf_page_index": 1500,
+   "notes": "Fixed a misattributed citation: the verse 'طويل طامح الطرف إلى مقرعة الكلب' illustrates 'طامح' (raised gaze), not 'طمّح ببوله' (urinating upward) as the prior extraction had it.",
+   "variances": [
+    {
+     "usage": "طمح ببصره إلى الشيء",
+     "meaning": "علا (رفع بصره)",
+     "meaning_english": "he lifted/raised his gaze toward the thing",
+     "citation": ""
+    },
+    {
+     "usage": "كل مرتفع طامح",
+     "meaning": "كل شيء عالٍ يوصف بالطامح",
+     "meaning_english": "anything raised/high is 'taamih'",
+     "citation": "طويل طامح الطرف إلى مقرعة الكلب"
+    },
+    {
+     "usage": "طمّح ببوله",
+     "meaning": "رماه في الهواء",
+     "meaning_english": "he shot his urine up into the air",
+     "citation": ""
+    },
+    {
+     "usage": "طمحات الدهر",
+     "meaning": "شدائده",
+     "meaning_english": "the hardships/blows of fate",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طمر",
+   "root_letters": [
+    "ط",
+    "م",
+    "ر"
+   ],
+   "core_meaning": "أصل صحيح يدل على معنيين: أحدهما الوثب، والآخر قريب من الأول: هوي الشيء إلى أسفل",
+   "core_meaning_english": "a sound root with two meanings: leaping/jumping, and (a related sense) a thing plunging downward",
+   "sarf_pattern": "",
+   "printed_page_number": "423",
+   "pdf_page_index": 1500,
+   "notes": "Entry only just begun at the bottom of this page batch; its derived-usage discussion continues beyond page 1500 (not included here).",
+   "variances": []
+  },
+  {
+   "root": "طمر",
+   "root_letters": [
+    "ط",
+    "م",
+    "ر"
+   ],
+   "core_meaning": "(تكملة من الصفحة السابقة؛ أصل الباب غير ظاهر في هذه الصفحة) - الأصل الآخر: طَمَر إذا هوى",
+   "core_meaning_english": "(continuation — core meaning stated on prior page, not visible here)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَمَر",
+     "meaning": "وثَب، فهو طامر",
+     "meaning_english": "leapt/jumped",
+     "citation": ""
+    },
+    {
+     "usage": "طِمِرٌّ (للفرس)",
+     "meaning": "كأنه الوثاب",
+     "meaning_english": "as if it were the leaper",
+     "citation": ""
+    },
+    {
+     "usage": "طامر بن طامر",
+     "meaning": "البرغوث",
+     "meaning_english": "the flea",
+     "citation": ""
+    },
+    {
+     "usage": "طَمَر (الأصل الآخر)",
+     "meaning": "إذا هوى",
+     "meaning_english": "fell/plunged down",
+     "citation": ""
+    },
+    {
+     "usage": "الأمر المطمِّر",
+     "meaning": "المهلك",
+     "meaning_english": "the destroying/fatal thing",
+     "citation": ""
+    },
+    {
+     "usage": "الأمور المطمِّرات",
+     "meaning": "المهلكات",
+     "meaning_english": "the destructive matters",
+     "citation": ""
+    },
+    {
+     "usage": "طِمار",
+     "meaning": "مكان يُرفَع إليه الإنسان ثم يُرمَى به",
+     "meaning_english": "a place a person is raised up to then thrown down from",
+     "citation": "بيت شعر مذكور في الأصل، انظر الحاشية (2)"
+    },
+    {
+     "usage": "طمرت الشيء",
+     "meaning": "أخفيته",
+     "meaning_english": "hid/concealed the thing",
+     "citation": ""
+    },
+    {
+     "usage": "المطمورة",
+     "meaning": "حفرة تحت الأرض يُرمى فيها الشيء",
+     "meaning_english": "an underground pit into which a thing is thrown",
+     "citation": ""
+    },
+    {
+     "usage": "طمرت الغِرارة",
+     "meaning": "إذا ملأتَها؛ كأن الشيء قد رُمِيَ بها",
+     "meaning_english": "filled the sack, as if the thing had been thrown into it",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّمْر (شاذ عن الباب)",
+     "meaning": "الثوب الخَلَق",
+     "meaning_english": "the worn-out/tattered garment",
+     "citation": ""
+    },
+    {
+     "usage": "المِطمَر (شاذ)",
+     "meaning": "زَيْج للبناء",
+     "meaning_english": "the builder's plumb-line/cord",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "424",
+   "pdf_page_index": 1501,
+   "notes": "Entry continues from a previous page; the opening statement of the root's core meaning is not on this page. Footnote (1) discusses vocalization of طمار; footnote (2) names the poet as Sulaym ibn Sallam al-Hanafi with attribution variants (Muslim ibn 'Aqil ibn Abi Talib / Hani ibn 'Urwa al-Muradi)."
+  },
+  {
+   "root": "طمس",
+   "root_letters": [
+    "ط",
+    "م",
+    "س"
+   ],
+   "core_meaning": "أصلٌ يدل على محو الشيء ومسحه",
+   "core_meaning_english": "effacing and wiping out a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَمَسْتُ الخَطّ",
+     "meaning": "من محو الشيء ومسحه (مثال على الأصل)",
+     "meaning_english": "erased the writing (example of the root meaning)",
+     "citation": ""
+    },
+    {
+     "usage": "طمست الأثر",
+     "meaning": "من محو الشيء ومسحه (مثال على الأصل)",
+     "meaning_english": "effaced the trace/track (example of the root meaning)",
+     "citation": ""
+    },
+    {
+     "usage": "الشيء طامسٌ",
+     "meaning": "الشيء الذي مُحِي",
+     "meaning_english": "the thing that is effaced (adjective)",
+     "citation": ""
+    },
+    {
+     "usage": "طَمَس هو بنفسه",
+     "meaning": "صار ممحوّاً من ذاته",
+     "meaning_english": "it became effaced by itself (intransitive)",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "424",
+   "pdf_page_index": 1501,
+   "notes": "Text gives طَمَسْتُ الخَطّ and طمست الأثر as two examples under the single core meaning, without separately glossing each; individual meanings shown here are inferred from the core meaning, not stated verbatim per-usage."
+  },
+  {
+   "root": "طمش",
+   "root_letters": [
+    "ط",
+    "م",
+    "ش"
+   ],
+   "core_meaning": "لا قياسَ له، ولولا أنه في الشعر لكان من المشكوك فيه؛ لأنه لا يشبه كلام العرب",
+   "core_meaning_english": "has no analogical basis; would be considered doubtful were it not attested in poetry, as it does not resemble genuine Arab speech",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ما أدري أيّ الطَّمْش هو",
+     "meaning": "أي أيّ الناس والخلق هو",
+     "meaning_english": "I don't know which of the people/creatures he is",
+     "citation": ""
+    },
+    {
+     "usage": "وَحْشٌ ولا طَمْشٌ من الطُّمُوش",
+     "meaning": "بيت شعر يُستشهَد به على استعمال الكلمة",
+     "meaning_english": "verse cited as evidence for the word's usage",
+     "citation": "لرؤبة، كما سبق في (حَشَر: 66) حسب الحاشية"
+    }
+   ],
+   "printed_page_number": "424",
+   "pdf_page_index": 1501,
+   "notes": "Entry is explicitly flagged by Ibn Faris as dubious/without qiyas; its poetry citation ('وحش ولا طمش من الطموش') is printed at the top of the next page (425/pdf 1502), with footnote (1) there attributing it to Ru'ba and cross-referencing the entry حشر at page 66. Corrected from prior draft, which wrongly split the single verse into two separate variances."
+  },
+  {
+   "root": "طمع",
+   "root_letters": [
+    "ط",
+    "م",
+    "ع"
+   ],
+   "core_meaning": "أصلٌ صحيحٌ واحدٌ يدل على رجاء في القلب قويّ للشيء",
+   "core_meaning_english": "a strong hope/craving in the heart for a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَمِعَ في الشيء طَمَعاً وطَمَاعةً وطَمَاعِيَة",
+     "meaning": "قوى قلبه في رجاء الشيء",
+     "meaning_english": "coveted/hoped strongly for the thing",
+     "citation": ""
+    },
+    {
+     "usage": "لَطَمِعْتَ يا زيد",
+     "meaning": "قالوه عند التعجب، كقولهم أقضَى القاضى",
+     "meaning_english": "an exclamatory expression of astonishment, on the pattern of another anomalous verb-of-wonder usage",
+     "citation": ""
+    },
+    {
+     "usage": "امرأة مِطماعٌ",
+     "meaning": "التي تُطمِع ولا تُمكِّن",
+     "meaning_english": "a woman who arouses desire/hope but does not yield to it",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "425",
+   "pdf_page_index": 1502,
+   "notes": "Footnotes (2) and (3) note textual variants in the original manuscript regarding وطَاعة/طَاعِيَة and وأطمعت يازيد."
+  },
+  {
+   "root": "طمل",
+   "root_letters": [
+    "ط",
+    "م",
+    "ل"
+   ],
+   "core_meaning": "أصيلٌ يدل على ضَعَةٍ وسَفال",
+   "core_meaning_english": "lowness and baseness/vileness",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّمَلَة",
+     "meaning": "ما يبقى في أسفل الحوض من الماء القليل والطين",
+     "meaning_english": "the residue of a little water and mud left at the bottom of a trough",
+     "citation": ""
+    },
+    {
+     "usage": "اطمأَلَّ ما في الحوض / اطمَأَلَه",
+     "meaning": "إذا لم يُترك فيه قَطْرة",
+     "meaning_english": "to empty the trough completely, leaving not a drop",
+     "citation": ""
+    },
+    {
+     "usage": "طِمْلة (للمرأة)",
+     "meaning": "المرأة الضعيفة",
+     "meaning_english": "a weak/feeble woman",
+     "citation": ""
+    },
+    {
+     "usage": "طِمْل (للرجل)",
+     "meaning": "الرجل اللِّصّ",
+     "meaning_english": "a thieving man",
+     "citation": ""
+    },
+    {
+     "usage": "الطِّمْل",
+     "meaning": "الفاحش",
+     "meaning_english": "the obscene/vile one",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "425",
+   "pdf_page_index": 1502,
+   "notes": "Footnote (4) notes the original manuscript reads 'وطِرة' with variant readings 'صوابه في المجمل واللسان'."
+  },
+  {
+   "root": "طنى",
+   "root_letters": [
+    "ط",
+    "ن",
+    "ى"
+   ],
+   "core_meaning": "كلمةٌ تدل على مرضٍ من أمراض الإبل",
+   "core_meaning_english": "indicates a disease among the diseases of camels",
+   "sarf_pattern": "الحرف المعتل",
+   "variances": [
+    {
+     "usage": "طَنِيَ البعير، يُطنَى طَنًى",
+     "meaning": "إذا التصقت رئتُه بجنبه فمات",
+     "meaning_english": "the camel's lung stuck to its side and it died",
+     "citation": ""
+    },
+    {
+     "usage": "ما اطّنَيْتُ بهذا الأمر",
+     "meaning": "أي ما تعرَّضتُ له، كأنه يقول ما لصق بي ولا تلطَّخت به",
+     "meaning_english": "I did not expose myself to/engage with this matter, as if saying nothing stuck to or soiled me",
+     "citation": ""
+    },
+    {
+     "usage": "الطِّنْء (مهموز، ليس من بناء الباب لكنه قريب في المعنى)",
+     "meaning": "الرِّيبة",
+     "meaning_english": "suspicion",
+     "citation": "كأنّ على ذي الطِّنْء عيناً رقيبة / بمقعده أو منظرٍ وهو ناظرُ — بيت يتمّ على الصفحة التالية"
+    },
+    {
+     "usage": "الطِّنْء (شاذّ عن الباب، وقد يُهمز)",
+     "meaning": "المنزل",
+     "meaning_english": "the dwelling/abode",
+     "citation": ""
+    },
+    {
+     "usage": "تركته بطِنْئه (شاذّ أيضاً)",
+     "meaning": "أي بحُشاشة نفسه",
+     "meaning_english": "left him with the last remnant of his life/breath",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "425",
+   "pdf_page_index": 1502,
+   "notes": "Section header 'باب الطاء والنون وما يثلثهما' precedes this root (not an entry itself). The hamzated طِنء discussion and its poetry citation continue onto the next page (426/pdf 1503), which also explains: 'وإنما سميت بذلك لأن الريبة مما يلاطخ ويتلاطخ به' (so named because suspicion is something one is smeared/tainted with). Corrected 'ما اطّنَبيتُ' (contained an extraneous ب not part of the root) to 'ما اطّنَيْتُ'; sarf_pattern corrected to the exact term printed in the text, 'الحرف المعتل'."
+  },
+  {
+   "root": "طنب",
+   "root_letters": [
+    "ط",
+    "ن",
+    "ب"
+   ],
+   "core_meaning": "أصلٌ يدل على ثَبَات الشيء وتمكُّنه واستطالة في ذلك",
+   "core_meaning_english": "the firmness and fixedness of a thing, and elongation in that",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطُّنُب (طُنُب الخِيام)",
+     "meaning": "حبالها التي تُشَدّ بها",
+     "meaning_english": "the tent's guy-ropes used to fasten it",
+     "citation": ""
+    },
+    {
+     "usage": "طَنَّبَ بالمكان",
+     "meaning": "أقام",
+     "meaning_english": "settled/stayed in the place",
+     "citation": ""
+    },
+    {
+     "usage": "الإطنابة",
+     "meaning": "المظلّة، كأنها إفعالة من طَنَب لأنها تثبت على ما تُظِلّه",
+     "meaning_english": "the awning/shade, fixed over what it shades",
+     "citation": ""
+    },
+    {
+     "usage": "الإطنابة (معنى آخر)",
+     "meaning": "سيرٌ يُشَدّ في طرف وتر القوس",
+     "meaning_english": "a strap tied at the end of a bowstring",
+     "citation": ""
+    },
+    {
+     "usage": "أطنب في الشيء",
+     "meaning": "إذا بالَغَ، كأنه ثبت عليه إرادة المبالغة فيه",
+     "meaning_english": "exaggerated/went to excess in a matter",
+     "citation": ""
+    },
+    {
+     "usage": "طَنَبَ الفرَس",
+     "meaning": "طول متنه وقوّته، فهو كالطُّنُب الذي يُمَدّ ثم يُثبَّت به الشيء",
+     "meaning_english": "the horse having a long, strong back, like a rope stretched and made fast",
+     "citation": ""
+    },
+    {
+     "usage": "أطنبَت الإبل",
+     "meaning": "إذا تَبِعَ بعضها بعضاً في السير",
+     "meaning_english": "the camels followed one another closely in travel",
+     "citation": ""
+    },
+    {
+     "usage": "أطنبت الريح إطناباً",
+     "meaning": "إذا اشتدّت في غبار حتى ترتفع الغبرة وتصير كالإطنابة (المظلّة)",
+     "meaning_english": "the wind intensified, raising dust until it rose like an awning",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "426",
+   "pdf_page_index": 1503,
+   "notes": "Footnote (3) notes the manuscript reading 'على ماتظلله' for a phrase in this entry."
+  },
+  {
+   "root": "طنخ",
+   "root_letters": [
+    "ط",
+    "ن",
+    "خ"
+   ],
+   "core_meaning": "كلمةٌ إن صحّت",
+   "core_meaning_english": "a word/root of uncertain authenticity",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَنِخ",
+     "meaning": "إذا بَشِم، ويقال إذا سَئِم",
+     "meaning_english": "became surfeited/sick from food, or (alternatively) became weary/bored",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "426",
+   "pdf_page_index": 1503,
+   "notes": "Ibn Faris explicitly casts doubt on this root's authenticity ('إن صحّت')."
+  },
+  {
+   "root": "طنف",
+   "root_letters": [
+    "ط",
+    "ن",
+    "ف"
+   ],
+   "core_meaning": "أصلٌ صحيحٌ يدل على دَوْر شيءٍ على شيء",
+   "core_meaning_english": "something encircling/going around another thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطُّنُف",
+     "meaning": "حَيْد في الجبل يُطنَف به",
+     "meaning_english": "a projecting ledge in a mountain that juts out over it",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّنَف",
+     "meaning": "إفريز الحائط",
+     "meaning_english": "the cornice/overhang of a wall",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "426",
+   "pdf_page_index": 1503,
+   "notes": "Entry cuts off at bottom of page (page ends mid-sentence on 'ويقولون الطَّنَف: إفريز الحائط'); continuation would be on the next page, not included in this batch."
+  },
+  {
+   "root": "طنف",
+   "root_letters": [
+    "ط",
+    "ن",
+    "ف"
+   ],
+   "core_meaning": "(تكملة من صفحة سابقة) الطنف: السيور",
+   "core_meaning_english": "(continuation) the straps/thongs",
+   "sarf_pattern": "",
+   "pdf_page_index": 1504,
+   "printed_page_number": "427",
+   "notes": "Continuation of an entry begun on a prior page batch (root طنف), not a new entry. Only the tail of the entry appears here.",
+   "variances": [
+    {
+     "usage": "الطنف",
+     "meaning": "السيور",
+     "meaning_english": "straps/thongs",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّنَف فى التُّهمة",
+     "meaning": "فهو من المقلوب، كأنه من النطف",
+     "meaning_english": "in the sense of 'accusation/suspicion' it is a metathesis (maqlūb), as if from النطف",
+     "citation": ""
+    },
+    {
+     "usage": "الطنف الذى يأكل كل القليل",
+     "meaning": "حُكي عن الشيباني بهذا المعنى؛ يقال: ما أطنفه",
+     "meaning_english": "one who eats very little (reported from al-Shaybani); the expression 'mā aṭnafahu' is used",
+     "citation": "حكاية عن الشيباني"
+    }
+   ]
+  },
+  {
+   "root": "طهى",
+   "root_letters": [
+    "ط",
+    "ه",
+    "ى"
+   ],
+   "core_meaning": "الطاء والهاء والحرف المعتل أصل صحيح يدل على أمرين: إمّا على معالجة شيء، وإمّا على رقّة",
+   "core_meaning_english": "A sound root indicating two things: either processing/treating something, or fineness/thinness",
+   "sarf_pattern": "المعتل",
+   "pdf_page_index": 1504,
+   "printed_page_number": "427",
+   "notes": "Entry begins on page 1504 (427) and continues onto page 1505 (428) with 'الأصل الآخر' (the second core meaning, رقة/fineness).",
+   "variances": [
+    {
+     "usage": "الطَّهْي / الطَّاهي",
+     "meaning": "علاج اللحم فى الطبخ؛ الطاهي: فاعل، جمعه طُهاة",
+     "meaning_english": "cooking/preparing meat; 'al-ṭāhī' = the cook, plural ṭuhāh",
+     "citation": "فظلَّ طُهاةُ اللحمِ من بين مُنضِـجٍ صَفيفَ شِواءٍ أو قديرٍ مُعَجَّلِ"
+    },
+    {
+     "usage": "فما طَهْوَى إذاً",
+     "meaning": "أي ما عملي، إن لم أُحْكِمْ ذلك",
+     "meaning_english": "then what is my work, if I did not do it well",
+     "citation": "قول أبي هريرة سُئل عن شيء"
+    },
+    {
+     "usage": "طَهَتِ الإبلُ تَطْهَى طَهْياً",
+     "meaning": "إذا نَفَشَتْ بالليل ورعت، كأنها فى ذلك تعالج شيئاً",
+     "meaning_english": "said of camels that scatter and graze at night, as if treating/handling something",
+     "citation": ""
+    },
+    {
+     "usage": "ماطَهَى بالليل مُنتَشِراتها",
+     "meaning": "من معالجة الإبل ليلا",
+     "meaning_english": "of camels handled/gathered at night",
+     "citation": "ولسنا لباغى المُهملاتِ بِقَرْفَةٍ إذا ماطَهَى بالليل مُنتَشِراتُها (الأعشى)"
+    },
+    {
+     "usage": "الطَّهاء",
+     "meaning": "غيمٌ رقيق",
+     "meaning_english": "a thin/light cloud",
+     "citation": ""
+    },
+    {
+     "usage": "طُهَيَّة",
+     "meaning": "حيٌّ من العرب، ومن ذلك اشتُقَّ",
+     "meaning_english": "a tribe of the Arabs, derived from this (the 'fineness' meaning)",
+     "citation": ""
+    },
+    {
+     "usage": "النسبة إليهم",
+     "meaning": "طُهَوِيّ وطُهُوِيّ (ويقال أيضاً طَهَوِيّ بالفتح، وبالتحريك)",
+     "meaning_english": "the relational adjective for that tribe",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طهر",
+   "root_letters": [
+    "ط",
+    "ه",
+    "ر"
+   ],
+   "core_meaning": "الطاء والهاء والراء أصلٌ صحيحٌ واحدٌ يدلُّ على نقاءٍ وزوالِ دَنَسٍ",
+   "core_meaning_english": "purity and the removal of filth/impurity",
+   "sarf_pattern": "",
+   "pdf_page_index": 1505,
+   "printed_page_number": "428",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "الطُّهْر",
+     "meaning": "خلاف الدَّنَس",
+     "meaning_english": "the opposite of filth",
+     "citation": ""
+    },
+    {
+     "usage": "التطَهُّر",
+     "meaning": "التنزُّه عن الذمِّ وكلِّ قبيح",
+     "meaning_english": "keeping oneself free of blame and everything disgraceful",
+     "citation": ""
+    },
+    {
+     "usage": "فلانٌ طاهرُ الثياب",
+     "meaning": "إذا لم يُدنَّس",
+     "meaning_english": "so-and-so is 'clean of garment', i.e. not sullied",
+     "citation": "ثيابُ بني عوفٍ طَهارَى نقيّةٌ وأوجُهُهم عند المُسافِر غُرّانُ"
+    },
+    {
+     "usage": "الطَّهُور",
+     "meaning": "الماء",
+     "meaning_english": "water (purifying water)",
+     "citation": "قال الله تعالى: وأنزلنا من السماء ماءً طَهُوراً"
+    },
+    {
+     "usage": "الطَّهُور",
+     "meaning": "قول أحمد بن يحيى ثعلب: الطاهر فى نفسه، المُطَهِّر لغيره",
+     "meaning_english": "that which is pure in itself and purifies others (as reported from Thaʿlab, via Muḥammad b. Hārūn al-Thaqafī)",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طهش",
+   "root_letters": [
+    "ط",
+    "ه",
+    "ش"
+   ],
+   "core_meaning": "الطاء والهاء والشين ليس بشيء، وذُكِرَتْ كلمةٌ فيها نظرٌ",
+   "core_meaning_english": "not a sound (established) root; only one word of doubtful standing is mentioned",
+   "sarf_pattern": "",
+   "pdf_page_index": 1505,
+   "printed_page_number": "428",
+   "notes": "Marked explicitly by Ibn Faris as not a genuine root ('ليس بشيء').",
+   "variances": [
+    {
+     "usage": "الطَّهْوَش",
+     "meaning": "فَسادُ العمل",
+     "meaning_english": "corruption/spoiling of work",
+     "citation": "قالوا"
+    }
+   ]
+  },
+  {
+   "root": "طهف",
+   "root_letters": [
+    "ط",
+    "ه",
+    "ف"
+   ],
+   "core_meaning": "الطاء والهاء والفاء كالذى قبله، على أنّهم يقولون فيه كلاماً",
+   "core_meaning_english": "like the preceding (طهش) — i.e. not a sound established root, though some words are reported",
+   "sarf_pattern": "",
+   "pdf_page_index": 1505,
+   "printed_page_number": "428",
+   "notes": "Explicitly likened to طهش (weak root); text ends 'وكل ذلك كلام'. Corrected: 'ويقال هى أعالى الصليان' is a second sense of الطُّهْفَة, not of الطُّهافة (which only means الذؤابة).",
+   "variances": [
+    {
+     "usage": "الطُّهْفَة",
+     "meaning": "طعامٌ يُتَّخَذ من الذُّرة، ويقال هى أعالى الصِّلِّيان",
+     "meaning_english": "a food made from millet/sorghum; also said to be the tops of the ṣilliyān plant",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّهافة",
+     "meaning": "الذُّؤابة",
+     "meaning_english": "the forelock/tuft",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طهل",
+   "root_letters": [
+    "ط",
+    "ه",
+    "ل"
+   ],
+   "core_meaning": "الطاء والهاء واللام كلمةٌ إن صحّت",
+   "core_meaning_english": "a word of doubtful authenticity, if it is sound at all",
+   "sarf_pattern": "",
+   "pdf_page_index": 1505,
+   "printed_page_number": "428",
+   "notes": "Marked as of uncertain authenticity ('إن صحّت').",
+   "variances": [
+    {
+     "usage": "طَهِلَ الماءُ",
+     "meaning": "أَجَنَ",
+     "meaning_english": "the water became stale/foul",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّهْلِئَة",
+     "meaning": "الطين الذى يَنْضَحُ من الحوض فى الماء",
+     "meaning_english": "the mud that seeps from the trough into the water",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طهم",
+   "root_letters": [
+    "ط",
+    "ه",
+    "م"
+   ],
+   "core_meaning": "الطاء والهاء والميم أصلٌ صحيحٌ يدلُّ على شىءٍ من خَلْقِ الإنسان وغيره",
+   "core_meaning_english": "a sound root indicating something pertaining to the physical form/build of a person or other creature",
+   "sarf_pattern": "",
+   "pdf_page_index": 1506,
+   "printed_page_number": "429",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "المُطَهَّم (رواية أبى عبيدة)",
+     "meaning": "الجميل التامّ الخَلْق من الناس والأفراس",
+     "meaning_english": "one perfectly handsome/well-formed in build, of men and horses",
+     "citation": "حكى أبو عبيدة"
+    },
+    {
+     "usage": "المُطَهَّم (رواية غيره)",
+     "meaning": "المُكَتَّم الجميع (الجسم المجتمع)",
+     "meaning_english": "the compact/well-knit (body)",
+     "citation": "قال غيره"
+    },
+    {
+     "usage": "لم يكن بالمُطَهَّم ولا المُكَلْثَم",
+     "meaning": "من وصف على عليه السلام لرسول الله صلى الله عليه وآله وسلم",
+     "meaning_english": "'he was neither muṭahham nor mukalthham' — from ʿAlī's description of the Prophet",
+     "citation": "حديث رواه علي عليه السلام"
+    },
+    {
+     "usage": "تَطَهَّمْتُ الطعامَ",
+     "meaning": "كَرِهْتُه (حُكيت كلمة إن صحّت)",
+     "meaning_english": "I disliked/loathed the food (word of uncertain authenticity)",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طوى",
+   "root_letters": [
+    "ط",
+    "و",
+    "ى"
+   ],
+   "core_meaning": "الطاء والواو والياء أصلٌ صحيحٌ يدلُّ على إدراج شىءٍ حتى يُدرَجَ بعضُه فى بعض، ثم يُحمَل عليه تشبيهاً",
+   "core_meaning_english": "a sound root indicating the folding/rolling of a thing so that part of it is enfolded into another part, with further meanings carried on it by analogy",
+   "sarf_pattern": "المعتل",
+   "pdf_page_index": 1506,
+   "printed_page_number": "429",
+   "notes": "Entry continues past the end of page 1506 ('وذلك فى القياس صحيح،' is the last visible clause) — not fully captured within these three pages.",
+   "variances": [
+    {
+     "usage": "طَوَيْتُ الثوبَ والكتابَ طَيّاً أطويه",
+     "meaning": "لفّه وأدرج بعضه فى بعض",
+     "meaning_english": "I folded/rolled the garment or the book",
+     "citation": ""
+    },
+    {
+     "usage": "طَوَى اللهُ عُمَرَ الميّت",
+     "meaning": "استعمال الفعل فى إدراج/انقضاء العمر",
+     "meaning_english": "God ended/folded up the deceased's lifespan (usage cited without further gloss on the page)",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّوِيّ",
+     "meaning": "البئر المطوية",
+     "meaning_english": "a well lined/built up with stones (rings folded upon each other)",
+     "citation": "هذا الطَّوِيّ وماؤه ومُحْتَرِقٌ من يابسِ الجلدِ قاحِلُ"
+    },
+    {
+     "usage": "طَوَى كَشْحَه",
+     "meaning": "قولهم لمن مضى على وجهه (كأنه أدرج نفسه وغاب)",
+     "meaning_english": "'he folded his side/flank' — said of one who went his own way, cutting off from another",
+     "citation": "وصاحبٍ لى طَوَى كَشْحاً فقلتُ له: إنّ انطواءَك عنّى سوف يَطْوِينى"
+    },
+    {
+     "usage": "أَطْواءُ الناقة",
+     "meaning": "طرائقُ شحمِ جَنْبَيْها",
+     "meaning_english": "the folds/layers of fat on a she-camel's sides",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّيّان / طَوِي",
+     "meaning": "الطاوى البطن، إذا جاع وضَمُر صار كالشىء الذى لو ابْتُغِيَ خِطاؤه لأَمْكَن",
+     "meaning_english": "one with an empty/lean belly from hunger, so wasted that his 'seams' (folds) could almost be found",
+     "citation": ""
+    },
+    {
+     "usage": "طَوَى يَطْوِى طَيّاً (تعمّد للجوع)",
+     "meaning": "إن تعمّد للجوع، وذلك فى القياس صحيح",
+     "meaning_english": "to deliberately fast/go hungry — sound by analogy with the root's core meaning",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طوى",
+   "root_letters": [
+    "ط",
+    "و",
+    "ي"
+   ],
+   "core_meaning": "(تكملة من صفحة سابقة) الكلام عن الطَّوَى وما تفرّع منه من كلمة الطَّاية",
+   "core_meaning_english": "(continuation) discussion of al-ṭawā (hunger) and the derived word aṭ-ṭāya",
+   "sarf_pattern": "",
+   "pdf_page_index": 1507,
+   "printed_page_number": "430",
+   "notes": "هذا استمرار لمادة بدأت فى صفحة سابقة (خارج نطاق الصور المرسلة)؛ لا يظهر رأس المادة فى هذه الصفحة.",
+   "variances": [
+    {
+     "usage": "الطَّوَى",
+     "meaning": "ورد فى بيت شعر للشاعر، يتعلق بالمبيت على الجوع",
+     "meaning_english": "spending the night hungry",
+     "citation": "ولقد أبيتُ على الطَّوَى وأظلُّه حتى أنالَ به كريمَ المأكلِ"
+    },
+    {
+     "usage": "الطَّاية",
+     "meaning": "كلمة صحيحة تدلّ على استواء فى مكان؛ قال قوم: السَّطْح، وقال قوم: مِرْبَد التمر، وقال قوم: صخرة عظيمة فى أرض ذات رمل",
+     "meaning_english": "a word denoting a flat/level place — variously said to mean: a roof/flat surface, a date-drying yard, or a huge rock in a sandy land",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طوب",
+   "root_letters": [
+    "ط",
+    "و",
+    "ب"
+   ],
+   "core_meaning": "الطاء والواو والباء، ليس بأصل",
+   "core_meaning_english": "not a genuine (consistent) root",
+   "sarf_pattern": "",
+   "pdf_page_index": 1507,
+   "printed_page_number": "430",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "الطُّوب",
+     "meaning": "فيما أحسب هذا الذى يسمى الآجُرّ، وما أظنُّ العرب تعرفه",
+     "meaning_english": "supposed to mean baked brick, though the author doubts the Arabs knew this word",
+     "citation": ""
+    },
+    {
+     "usage": "طُوبَى",
+     "meaning": "ليس من هذا الباب، وأصله الياء، كأنها فُعلى من الطَّيِّب، فقلبت الياء واواً للضمة",
+     "meaning_english": "not from this root; originally from ṭ-y-b (goodness/pleasantness), with the yā' changed to wāw because of the ḍamma",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طوح",
+   "root_letters": [
+    "ط",
+    "و",
+    "ح"
+   ],
+   "core_meaning": "الطاء والواو والحاء، ليس بأصل، وكأنه من باب الإبدال",
+   "core_meaning_english": "not a genuine root; seems to be a case of letter-substitution (ibdāl)",
+   "sarf_pattern": "باب الإبدال",
+   "pdf_page_index": 1507,
+   "printed_page_number": "430",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "طاح يَطِيح / طاح يَطُوح",
+     "meaning": "أى هَلَك",
+     "meaning_english": "to perish/die",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طود",
+   "root_letters": [
+    "ط",
+    "و",
+    "د"
+   ],
+   "core_meaning": "الطاء والواو والدال أصلٌ صحيح، وفيه كلمة واحدة",
+   "core_meaning_english": "a sound root with a single word derived from it",
+   "sarf_pattern": "",
+   "pdf_page_index": 1507,
+   "printed_page_number": "430",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "الطَّوْد",
+     "meaning": "الجبل العظيم",
+     "meaning_english": "the huge mountain",
+     "citation": "﴿فَانفَلَقَ فَكَانَ كُلُّ فِرْقٍ كَالطَّوْدِ الْعَظِيمِ﴾ (القرآن)"
+    },
+    {
+     "usage": "طَوَّدَ فى الجبل",
+     "meaning": "إذا طوَّف، كأنه فعل مشتقّ من الطَّوْد",
+     "meaning_english": "to wander/roam in the mountain, as if derived from al-ṭawd",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طور",
+   "root_letters": [
+    "ط",
+    "و",
+    "ر"
+   ],
+   "core_meaning": "الطاء والواو والراء أصلٌ صحيح يدلّ على معنًى واحد، وهو الامتداد فى شىء، من مكانٍ أو زمان",
+   "core_meaning_english": "a sound root denoting one meaning: extension/stretching of something, whether of place or of time",
+   "sarf_pattern": "",
+   "pdf_page_index": 1507,
+   "printed_page_number": "430",
+   "notes": "المادة تمتد إلى الصفحة التالية (431 / pdf 1508).",
+   "variances": [
+    {
+     "usage": "طَوَّار الدَّار",
+     "meaning": "الذى يمتدّ مع الدار من فنائها",
+     "meaning_english": "the boundary strip that extends from a house's courtyard",
+     "citation": ""
+    },
+    {
+     "usage": "عدا طَوْره",
+     "meaning": "أى جاز الحدّ الذى هو له من داره، ثم استُعير فى كل شىء يُتعدَّى",
+     "meaning_english": "he exceeded his limit/bound — later used metaphorically for any transgressed limit",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّور (اسم الجبل)",
+     "meaning": "يجوز أن يكون اسماً علَماً، ويجوز أن يكون سمّى لما فيه من امتداد طولاً وعرضاً",
+     "meaning_english": "the mountain (Mount Sinai) — either a proper name, or named for its extension in length and width",
+     "citation": ""
+    },
+    {
+     "usage": "فعل ذلك طَوْراً بعد طَوْر",
+     "meaning": "من معنى الزمان، كأنه فعله مدةً بعد مدة",
+     "meaning_english": "he did it time after time / period after period",
+     "citation": ""
+    },
+    {
+     "usage": "طُورِيّ / طُوَرانِيّ (للوحشيّ من الطير وغيرها)",
+     "meaning": "كأنه توحّش فعدا الطَّوَر، أى تباعد عن حدّ الأُنس",
+     "meaning_english": "wild/feral (of birds etc.) — as if it went wild and exceeded the bound of tameness/familiarity",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طوس",
+   "root_letters": [
+    "ط",
+    "و",
+    "س"
+   ],
+   "core_meaning": "الطاء والواو والسين ليس بأصل، إنما فيه الذى يقال له الطَّاوُس",
+   "core_meaning_english": "no consistent root meaning; the root only carries the word for 'peacock' (al-ṭāwūs)",
+   "sarf_pattern": "",
+   "pdf_page_index": 1508,
+   "printed_page_number": "431",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "الطَّاوُس",
+     "meaning": "إنما فيه الذى يقال له الطاووس، ليس فيه أصل",
+     "meaning_english": "the peacock",
+     "citation": ""
+    },
+    {
+     "usage": "مُطوَّس",
+     "meaning": "يشتقّ منه فيقال للشىء الحسن",
+     "meaning_english": "said of a beautiful thing, derived from al-ṭāwūs",
+     "citation": ""
+    },
+    {
+     "usage": "تطوَّست المرأة",
+     "meaning": "تزيَّنَت (حُكى عن الأصمعىّ)",
+     "meaning_english": "the woman adorned/beautified herself (per al-Aṣma'ī)",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّوْس",
+     "meaning": "تغطية الشىء؛ يقال طُسْته طَوْساً أى غطَّيته",
+     "meaning_english": "covering something",
+     "citation": ""
+    },
+    {
+     "usage": "طَوَاس",
+     "meaning": "ليلة من ليالى المِحَاق",
+     "meaning_english": "a night of the moon's waning/disappearance",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طوع",
+   "root_letters": [
+    "ط",
+    "و",
+    "ع"
+   ],
+   "core_meaning": "الطاء والواو والعين أصلٌ صحيح واحد يدلّ على الإصحاب والانقياد",
+   "core_meaning_english": "a sound single root denoting companionship/compliance and submission (obedience)",
+   "sarf_pattern": "",
+   "pdf_page_index": 1508,
+   "printed_page_number": "431",
+   "notes": "المادة تمتد إلى الصفحة التالية (432 / pdf 1509).",
+   "variances": [
+    {
+     "usage": "طاعَه يَطُوعه",
+     "meaning": "إذا انقاد معه ومضى لأمره",
+     "meaning_english": "he complied with him and followed his command",
+     "citation": ""
+    },
+    {
+     "usage": "أطاعه",
+     "meaning": "بمعنى طاعَ له",
+     "meaning_english": "same meaning as ṭā'a lahu, to obey him",
+     "citation": ""
+    },
+    {
+     "usage": "طاوعه",
+     "meaning": "يقال لمن وافق غيره",
+     "meaning_english": "said of one who agrees/concurs with another",
+     "citation": ""
+    },
+    {
+     "usage": "الاستطاعة",
+     "meaning": "مشتقة من الطَّوع، كأنها كانت فى الأصل الاستطواع، فلما أسقطت الواو جُعلت الهاء بدلاً منها، مثل قياس الاستعانة والاستعاذة",
+     "meaning_english": "ability/capability — derived from ṭaw', originally istiṭwā', with the wāw dropped and the hā' substituted, analogous to istiʻāna and istiʻādha",
+     "citation": ""
+    },
+    {
+     "usage": "تطاوَعْ لهذا الأمر حتى تستطيعه",
+     "meaning": "قول العرب",
+     "meaning_english": "keep striving/comply with this matter until you can manage it",
+     "citation": ""
+    },
+    {
+     "usage": "تطوَّع",
+     "meaning": "أى تكلَّف استطاعته",
+     "meaning_english": "he undertook/forced himself to be capable of it",
+     "citation": ""
+    },
+    {
+     "usage": "تطوَّعَ بالشىء",
+     "meaning": "فى التبرّع بالشىء، وهو من الباب لكنه لم يلزمه، لكنه انقاد مع خير أحبّ أن يفعله؛ ولا يقال هذا إلا فى باب الخير والبرّ",
+     "meaning_english": "to volunteer something of one's own accord — not obligatory, but complying with a good deed one wished to do; used only in matters of good/righteousness",
+     "citation": ""
+    },
+    {
+     "usage": "المُطَّوِّعة",
+     "meaning": "المجاهدون الذين يتطوّعون بالجهاد، بتشديد الطاء والواو، وأصله المتطوّعة ثم أدغمت التاء فى الطاء",
+     "meaning_english": "volunteer fighters who undertake jihad voluntarily; originally al-mutaṭawwi'a with the tā' assimilated into the ṭā'",
+     "citation": "﴿الَّذِينَ يَلْمِزُونَ الْمُطَّوِّعِينَ مِنَ الْمُؤْمِنِينَ﴾ (القرآن)"
+    }
+   ]
+  },
+  {
+   "root": "طوف",
+   "root_letters": [
+    "ط",
+    "و",
+    "ف"
+   ],
+   "core_meaning": "الطاء والواو والفاء أصلٌ صحيح واحد يدلّ على دَوَران الشىء على الشىء، وأن يحُفَّ به",
+   "core_meaning_english": "a sound single root denoting something's circling/revolving around something else, and surrounding it",
+   "sarf_pattern": "",
+   "pdf_page_index": 1509,
+   "printed_page_number": "432",
+   "notes": "المادة تمتد إلى ما بعد هذه الصفحة (لم تُرسل)؛ الجملة الأخيرة عن الطائفة من الناس غير مكتملة فى الصورة المرسلة.",
+   "variances": [
+    {
+     "usage": "طاف بالبيت يطوف طَوْفاً وطَوَافاً / اطّاف / استطاف",
+     "meaning": "الدوران حول الشىء",
+     "meaning_english": "to circumambulate/go around something (e.g. the House/Ka'ba)",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّوفَان",
+     "meaning": "ما يدور بالأشياء ويُفَشِّيها من الماء؛ شبّه العجاج به ظلام الليل",
+     "meaning_english": "flood/deluge — that which sweeps around and engulfs things; the poet al-'Ajjāj likened it to the darkness of night",
+     "citation": "وعمَّ طوفانُ الظلامِ الأثآبا"
+    },
+    {
+     "usage": "الطائف (العاسّ)",
+     "meaning": "الذى يطوف حارساً بالليل",
+     "meaning_english": "the night patroller/watchman",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّيْف / الطائف",
+     "meaning": "ما أطاف بالإنسان من الجنّان (الجن)",
+     "meaning_english": "a phantom/apparition from the jinn that visits/haunts a person",
+     "citation": "﴿إِذَا مَسَّهُمْ طَيْفٌ مِنَ الشَّيْطَانِ﴾ ﴿طَائِفٌ﴾ (القرآن)؛ وتُصْبِحُ عن غِبِّ السُّرَى وكأنّما ألَمَّ بها من طائف الجنّ أولَقُ (الأعشى)"
+    },
+    {
+     "usage": "طاف / أطاف (فى الخيال)",
+     "meaning": "زيارة الخيال (طيف المحبوب) فى المنام",
+     "meaning_english": "the beloved's phantom/image visiting in a dream",
+     "citation": "أنّى ألَمَّ بكَ الخيالُ يُطيف وطوافه بك ذكرةٌ وشُغوفُ (ويُروى: ومطافه لك ذكرة وشُغوف)"
+    },
+    {
+     "usage": "الطائفة من الناس",
+     "meaning": "كأنها جماعة تُطيف بالواحد أو بالشىء؛ لا تحدّها العرب بعدد معلوم إلا أن الفقهاء...(الجملة غير مكتملة)",
+     "meaning_english": "a group of people, as if a party that surrounds one person or thing; the Arabs do not fix it to a specific number, though jurists (sentence cut off at page end)",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طوف",
+   "root_letters": [
+    "ط",
+    "و",
+    "ف"
+   ],
+   "core_meaning": "(تكملة من صفحة سابقة، لم يرد نص الأصل هنا)",
+   "core_meaning_english": "(continuation from previous page, core meaning not restated here)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طائفة",
+     "meaning": "قوم يختلفون فى تحديد عددها: أربعة فما فوقها، أو واحد، أو ثلاثة؛ وقيل كل جماعة يمكن أن تحفّ بشىء فهى طائفة",
+     "meaning_english": "a group/party of people - disputed count (four or more; or just one; or three); broadly any group that can surround something",
+     "citation": ""
+    },
+    {
+     "usage": "أخذتُ طائفةً من الثَّوب",
+     "meaning": "أى قطعة منه، على سبيل المجاز",
+     "meaning_english": "I took a piece/portion of the garment - figurative usage",
+     "citation": ""
+    },
+    {
+     "usage": "طائفُ القوس",
+     "meaning": "ما أبهرَها (جزء من القوس)",
+     "meaning_english": "a part of the bow (its curved extremity)",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1510,
+   "printed_page_number": "433",
+   "notes": "This is a continuation of an entry (root طوف) that began on an earlier page not included in this batch; no root bracket or core-meaning sentence appears for it here."
+  },
+  {
+   "root": "طوق",
+   "root_letters": [
+    "ط",
+    "و",
+    "ق"
+   ],
+   "core_meaning": "الطاء والواو والقاف أصلٌ صحيحٌ يدلُّ على مثل مادلَّ عليه الباب الذى قبله. فكلُّ ما استدار بشىء فهو طَوق.",
+   "core_meaning_english": "A sound root indicating something similar to the meaning of the previous root (encircling): anything that goes/wraps around something is a طَوق (collar/ring).",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَوق",
+     "meaning": "كلُّ ما استدار بشىء",
+     "meaning_english": "anything that encircles/wraps around a thing; a collar or ring",
+     "citation": ""
+    },
+    {
+     "usage": "البناء طاقاً",
+     "meaning": "سُمّى البناء طاقاً لاستدارته إذا عُقد",
+     "meaning_english": "an arch/vault construction is called طاق because of its curved/rounded form when built",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّيَلَسان طاقٌ",
+     "meaning": "لأنّه يدور على لابسه",
+     "meaning_english": "the shawl/mantle (طيلسان) is called طاق because it wraps around its wearer",
+     "citation": ""
+    },
+    {
+     "usage": "أطاق هذا الأمر إطاقةً، هو فى طَوقه",
+     "meaning": "له القدرة عليه؛ كأنّه قد أحاط به ودار به من جوانبه",
+     "meaning_english": "he is capable of this matter, it is within his capacity - as if he has encompassed/surrounded it from all sides",
+     "citation": ""
+    },
+    {
+     "usage": "طوَّقتُك الشَّىءَ",
+     "meaning": "إذا كلَّفتُكَه",
+     "meaning_english": "I burdened/charged you with the thing",
+     "citation": ""
+    },
+    {
+     "usage": "طاقةٌ من خيط أو بَقْل",
+     "meaning": "الواحدة الفَردةُ منه؛ شاذّ عن هذا الأصل، وقد يمكن أن يتمحَّل فيقاس على الأول لكنّه يبعُد",
+     "meaning_english": "a single strand of thread, or a single sprout/herb - noted as anomalous/irregular relative to the root's core meaning, though it might be contrived/stretched to fit the analogy, yet that is far-fetched",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1510,
+   "printed_page_number": "433",
+   "notes": "Corrected: 'يتحمّل ... لكنّه بعُد' in the last variance read as 'يتمحَّل ... لكنّه يبعُد' on the page image."
+  },
+  {
+   "root": "طول",
+   "root_letters": [
+    "ط",
+    "و",
+    "ل"
+   ],
+   "core_meaning": "الطاء والواو واللام أصلٌ صحيحٌ يدلُّ على فَضْلٍ وامتدادٍ فى الشَّىء.",
+   "core_meaning_english": "A sound root indicating excess/surplus and extension/length in a thing.",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طالَ الشَّىءُ يطُول طُولاً",
+     "meaning": "خلاف القِصَر",
+     "meaning_english": "the thing became long - opposite of short",
+     "citation": ""
+    },
+    {
+     "usage": "طاوَلْتُ فلاناً فطُلْتُه",
+     "meaning": "إذا كنتَ أطولَ منه",
+     "meaning_english": "I competed in length/height with so-and-so and surpassed him, i.e. I was taller than him",
+     "citation": ""
+    },
+    {
+     "usage": "طال فلاناً",
+     "meaning": "أى إنه أطول منه",
+     "meaning_english": "he is taller than him",
+     "citation": "إنّ الفرزدقَ صخرةٌ ملمومةٌ / طالت فليس تنالها الأوعالا (بيت شعر منسوب فى الحاشية إلى نُبيع بن رياح الزُّهيمى - قراءة الاسم فى الحاشية غير مؤكدة تماماً بسبب صغر الخط)"
+    },
+    {
+     "usage": "الطَّوَّل (للحبل)",
+     "meaning": "يقال للحبل الطَّوَّل لطوله وامتداده",
+     "meaning_english": "a long tether/rope, called طَوَّل for its length and extension",
+     "citation": "لعمرُك إنّ الموتَ ما أخطأ الفتى / لكالطَّوَل المُرخَى وثنياهُ فى اليدِ (طرفة)"
+    },
+    {
+     "usage": "لا أكلّمه طوَال الدَّهر",
+     "meaning": "طوال الدهر كله",
+     "meaning_english": "I will not speak to him for the entirety of time",
+     "citation": ""
+    },
+    {
+     "usage": "جملٌ أطوَلُ",
+     "meaning": "إذا طالت شفتُه العليا",
+     "meaning_english": "a camel called أطول when its upper lip is long",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّوَّال",
+     "meaning": "الطويل، وأيضاً جمع الطويل؛ وحُكى بضمهم قلانِسُ طيالٌ بالياء",
+     "meaning_english": "the tall one; also the plural of 'tall' - also reported with the form طِيال (caps described as طِيال)",
+     "citation": ""
+    },
+    {
+     "usage": "أمرٌ غيرُ طائلٍ",
+     "meaning": "إذا لم يكن فيه غَناء، يقال فى المذكر والمؤنث",
+     "meaning_english": "a matter of no benefit/use - said of both masculine and feminine",
+     "citation": "وقد كَفَونى خُطّةً غيرَ طائل"
+    },
+    {
+     "usage": "تطاولتُ فى قِيامى",
+     "meaning": "إذا مددتَ رجليكَ لتنظر",
+     "meaning_english": "I stretched myself up while standing, extending on my legs to see",
+     "citation": ""
+    },
+    {
+     "usage": "طوِّلٌ فرسَك",
+     "meaning": "أى أرخِ طويلتَه فى مرعاه، أى أُرخِ حبله",
+     "meaning_english": "loosen your horse's tether/rope in its pasture",
+     "citation": ""
+    },
+    {
+     "usage": "استطالُوا عليهم",
+     "meaning": "إذا قتلوا منهم أكثرَ ممّا قتلوا",
+     "meaning_english": "they gained superiority/overpowered them, i.e. killed more of them than were killed of their own",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1511,
+   "printed_page_number": "434",
+   "notes": "Entry begins at bottom of page 1510 (printed 433) with the core-meaning sentence and continues fully on page 1511 (printed 434); recorded here with the page-1511 content. Poet name in the Farazdaq-verse citation corrected from 'النجيح بن رياح الزهيمى' to 'نُبيع بن رياح الزُّهيمى' per footnote reading - flagged as low-confidence OCR on a small footnote."
+  },
+  {
+   "root": "طوط",
+   "root_letters": [
+    "ط",
+    "و",
+    "ط"
+   ],
+   "core_meaning": "الطاء والواو والطاء كلمتان إن صحّتا. يقولون: إنّ الطَّوطَ القطن.",
+   "core_meaning_english": "Two words, if authentic (i.e., not necessarily a single unified root meaning): they say الطَّوط means cotton.",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّوط",
+     "meaning": "القطن",
+     "meaning_english": "cotton",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّوط",
+     "meaning": "الرَّجل الطَّويل",
+     "meaning_english": "a tall man",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1511,
+   "printed_page_number": "434",
+   "notes": "sarf_pattern 'المضاعف' removed - not named anywhere in the entry text on the page image (it was invented, likely inferred from the root's doubled-letter shape rather than read from the page)."
+  },
+  {
+   "root": "طيب",
+   "root_letters": [
+    "ط",
+    "ي",
+    "ب"
+   ],
+   "core_meaning": "الطاء والياء والباء أصلٌ صحيحٌ واحدٌ يدلُّ على خلافِ الخبيثِ.",
+   "core_meaning_english": "A single sound root indicating the opposite of foul/impure (i.e., that which is good/pure).",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّيِّب",
+     "meaning": "ضدّ الخبيث",
+     "meaning_english": "the good/pure - opposite of the foul",
+     "citation": ""
+    },
+    {
+     "usage": "سىّ طَيِّبَةٌ",
+     "meaning": "أى طيّبٌ",
+     "meaning_english": "a good/pleasant thing",
+     "citation": ""
+    },
+    {
+     "usage": "الاستطابة",
+     "meaning": "الاستنجاء؛ لأنّ الرجل يطيِّب نفسَه ممّا عليه من الخُبث بالاستنجاء",
+     "meaning_english": "cleansing oneself after relieving oneself - because a man purifies himself of the filth upon him by this cleansing",
+     "citation": "نهى رسول الله صلى الله عليه وآله أن يستطيب الرَّجُل بيمينه"
+    },
+    {
+     "usage": "الأطيبان",
+     "meaning": "الأكل والنِّكاح",
+     "meaning_english": "the two 'good things': eating and sexual relations",
+     "citation": ""
+    },
+    {
+     "usage": "طَيِّبَة",
+     "meaning": "مدينة الرسول صلى الله عليه وآله",
+     "meaning_english": "Tayyibah, the city of the Prophet (Madinah)",
+     "citation": ""
+    },
+    {
+     "usage": "طعام مَطيبةٌ للنَّفس",
+     "meaning": "طعام يطيب النفس",
+     "meaning_english": "food that is pleasing/wholesome to the soul",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّيِّب",
+     "meaning": "الحلال",
+     "meaning_english": "that which is lawful/permissible",
+     "citation": ""
+    },
+    {
+     "usage": "الطاب",
+     "meaning": "الطيّب",
+     "meaning_english": "the good/pure (poetic form)",
+     "citation": "مُقابَلَ الأعراقِ فى الطَّابِ الطَّابْ / بين أبى العاص وآلِ الخطّاب (رجز لكثير بن كثير النوفلى، يمدح به عمر بن عبد العزيز)"
+    }
+   ],
+   "pdf_page_index": 1512,
+   "printed_page_number": "435",
+   "notes": "New chapter heading appears above this entry: باب الطاء والياء وما يثلثهما."
+  },
+  {
+   "root": "طيخ",
+   "root_letters": [
+    "ط",
+    "ي",
+    "خ"
+   ],
+   "core_meaning": "الطاء والياء والخاء أصلٌ صحيحٌ يدلُّ على تلطُّخٍ بغير جميل.",
+   "core_meaning_english": "A sound root indicating being smeared/stained with something unseemly.",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طاخ يطيخ، تطيَّخ",
+     "meaning": "إذا تلطَّخ بالقبيح",
+     "meaning_english": "he became smeared/soiled with something bad/ugly",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّيخ",
+     "meaning": "الحُمقَة، وهو بمعنى الطَّيْش",
+     "meaning_english": "foolishness/stupidity, synonymous with rashness (طيش)",
+     "citation": "فآثِرُوا الطَّيْخ والتَّعدَّى وإمّا / تتعاشَوا فى التَّعاشِى الدَّاء (الحارث)"
+    }
+   ],
+   "pdf_page_index": 1512,
+   "printed_page_number": "435",
+   "notes": "The citation line's first two words were noted in the footnote as a lacuna in the original text (موضع البيت بياض فى الأصل) and reconstructed/suggested from another source (الجمل) per the footnote - treat with some caution."
+  },
+  {
+   "root": "طير",
+   "root_letters": [
+    "ط",
+    "ي",
+    "ر"
+   ],
+   "core_meaning": "الطاء والياء والراء أصلٌ واحد يدلُّ على خفَّة الشَّىء فى الهواء.",
+   "core_meaning_english": "A single root indicating the lightness of a thing in the air (i.e., flying).",
+   "sarf_pattern": "",
+   "variances": [],
+   "pdf_page_index": 1512,
+   "printed_page_number": "435",
+   "notes": "Entry just begins at the very bottom of this page batch; its derived usages are not yet given (continues on the next page, not included in this batch)."
+  },
+  {
+   "root": "طير",
+   "root_letters": [
+    "ط",
+    "ي",
+    "ر"
+   ],
+   "core_meaning": "",
+   "core_meaning_english": "",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طار يطير طيراناً / قد طار",
+     "meaning": "جمع طائر؛ ثم استعير لكل سرعة وخفة",
+     "meaning_english": "to fly; extended to anything swift/light",
+     "citation": "حديث النبي صلى الله عليه وآله وسلم: «خير الناس رجل ممسك بعنان فرسه في سبيل الله، كلما سمع هيعة طار إليها»؛ وشعر: فطرنا إليهم بالقنابل والقنا"
+    },
+    {
+     "usage": "تطاير الشيء",
+     "meaning": "تفرّق",
+     "meaning_english": "to scatter/disperse",
+     "citation": ""
+    },
+    {
+     "usage": "استطار الفجر",
+     "meaning": "انتشر؛ وكذلك كل منتشر",
+     "meaning_english": "to spread out (of dawn light); anything that spreads",
+     "citation": "القرآن: {يخافون يوماً كان شره مستطيراً}"
+    },
+    {
+     "usage": "تطيّر من الشيء",
+     "meaning": "اشتقاقه من الطير كالغراب وما أشبهه (التشاؤم)",
+     "meaning_english": "to take an omen/augury (derived from birds like the crow)",
+     "citation": ""
+    },
+    {
+     "usage": "طائر الإنسان",
+     "meaning": "عمله",
+     "meaning_english": "a person's deed/fate",
+     "citation": ""
+    },
+    {
+     "usage": "بئر مطارة",
+     "meaning": "إذا كانت واسعة الفم",
+     "meaning_english": "a well with a wide mouth",
+     "citation": "هوى الريح في جفر مطار"
+    },
+    {
+     "usage": "الطِّيرة",
+     "meaning": "الغضب، وسمي كذا لأنه كذا يُستطار له الإنسان",
+     "meaning_english": "anger (a person is 'flown into' with rage)",
+     "citation": ""
+    },
+    {
+     "usage": "خذ ما تطاير من شعر رأسك",
+     "meaning": "أي طال",
+     "meaning_english": "take what has grown long of your hair",
+     "citation": "وطار جَنّى السنام الأطول (قراءة الكلمة الثانية غير واضحة تماماً في المسح)"
+    }
+   ],
+   "pdf_page_index": 1513,
+   "printed_page_number": "436",
+   "notes": "Continuation entry, no core-meaning statement here. One poetry citation word uncertain due to scan quality (corrected from prior transcription's misreading 'حِيّ' to closer reading 'جَنّى', still uncertain)."
+  },
+  {
+   "root": "طيس",
+   "root_letters": [
+    "ط",
+    "ي",
+    "س"
+   ],
+   "core_meaning": "الطاء والياء والسين كلمة واحدة",
+   "core_meaning_english": "the letters ط ي س form a single (isolated) word, not a derivational root with branching senses",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّيس (كمديد الطيس)",
+     "meaning": "أراد به العدد الكثير",
+     "meaning_english": "meant to denote a great/abundant number",
+     "citation": "عددت قوى كمديد الطيس (لرؤبة بن الحجّاج، فى ملحقات ديوانه)"
+    }
+   ],
+   "pdf_page_index": 1513,
+   "printed_page_number": "436",
+   "notes": "Entry starts page 436, closes with 'أراد به العدد الكثير' on page 437. Corrected the citation's poet attribution: footnote names the poet 'رؤبة بن الحجّاج', not 'رؤبة بن العجاج' as the prior extraction had it."
+  },
+  {
+   "root": "طيش",
+   "root_letters": [
+    "ط",
+    "ي",
+    "ش"
+   ],
+   "core_meaning": "الطاء والياء والشين كلمة واحدة، وهى الطَّيش والخِفّة",
+   "core_meaning_english": "the letters ط ي ش form a single word, meaning rashness/levity",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طاش السهم",
+     "meaning": "إذا لم يُصب، كأنه خفّ وطاش وطار",
+     "meaning_english": "the arrow went astray/missed, as if it flew off lightly",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1514,
+   "printed_page_number": "437",
+   "notes": "Corrected: prior extraction split 'وهى الطيش والخفة' out as a separate variance ('الطَّيش' -> 'الخفة'), but it is part of the core-meaning sentence itself, not a distinct listed usage. Merged into core_meaning and removed the redundant variance."
+  },
+  {
+   "root": "طين",
+   "root_letters": [
+    "ط",
+    "ي",
+    "ن"
+   ],
+   "core_meaning": "الطاء والياء والنون كلمة واحدة، وهو الطِّين وهو معروف",
+   "core_meaning_english": "the letters ط ي ن form a single word: clay/mud, which is well known",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طيّنت البيت / طيّنت الكتاب",
+     "meaning": "تطيين البيت بالطين، وختم/طلاء الكتاب (المعنى مستنبط من الاستعمال، لم يُصرَّح به في النص)",
+     "meaning_english": "to plaster a house with clay; to seal/coat a document (sense inferred from usage, not spelled out in the text)",
+     "citation": ""
+    },
+    {
+     "usage": "طانه الله تعالى على الخير",
+     "meaning": "أي جبله، كأن معناه من طينت الكتاب أي ختمته، كأنه طبعه على الخير وختم أمره به",
+     "meaning_english": "God formed/molded him for good, as if imprinted and sealed toward it",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1514,
+   "printed_page_number": "437",
+   "notes": "Corrected: 'وهو الطِّين وهو معروف' is part of the core-meaning sentence, not a separate variance; merged and removed the redundant 'الطِّين'->'معروف' variance entry."
+  },
+  {
+   "root": "طبخ",
+   "root_letters": [
+    "ط",
+    "ب",
+    "خ"
+   ],
+   "core_meaning": "الطاء والباء والخاء أصل واحد، وهو الطبخ المعروف",
+   "core_meaning_english": "one core meaning: the well-known act of cooking",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طبخت الشيء أطبخه طبخاً، وأنا طابخ، والشيء مطبوخ وطبيخ",
+     "meaning": "فعل الطبخ ومشتقاته",
+     "meaning_english": "to cook something; cooker; cooked thing",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّبّخ",
+     "meaning": "جمع الطابخ",
+     "meaning_english": "plural of 'cook/cooker'",
+     "citation": "والله لولا أن تعشّ الطبّخ (للعجاج) — أراد به الملائكة الموكلين بالنار"
+    },
+    {
+     "usage": "طِباخُه (لسَمائِم الحرّ)",
+     "meaning": "يقال لسَمائِم الحرّ (رياح الحرّ الشديدة): طباخه",
+     "meaning_english": "said of the scorching hot winds (samoom) — not of fever",
+     "citation": ""
+    },
+    {
+     "usage": "طابخة",
+     "meaning": "لقب رجل من العرب؛ لأنه طبخ طبخاً فسمي بذلك",
+     "meaning_english": "epithet of an Arab man, named for having cooked",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّفاحة والفوّارة (ما فار من رغوة القدر)",
+     "meaning": "إذا طبخت",
+     "meaning_english": "the froth/foam that rises from a cooking pot",
+     "citation": ""
+    },
+    {
+     "usage": "طابخ (للحمى الصالب)",
+     "meaning": "يقال للحمى الصالب: طابخ",
+     "meaning_english": "said of a burning/scorching fever",
+     "citation": ""
+    },
+    {
+     "usage": "ليس به طباخ",
+     "meaning": "للشيء لا قوّة له؛ من الكلام المولّد على الأرجح",
+     "meaning_english": "said of something with no strength/vigor in it (a possibly post-classical/coined usage)",
+     "citation": ""
+    },
+    {
+     "usage": "فرخ الضبّ مُطبَّخ",
+     "meaning": "إذا قوي؛ يقولون هو جِسْل، ثم (طور آخر غير واضح تماماً في المسح)، ثم مطبَّخ، ثم خُضَرِم، ثم ضَبّ (شاذ عن الباب لكنه صحيح الكلام)",
+     "meaning_english": "a young monitor-lizard once it has grown strong — one stage among named growth stages",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1514,
+   "printed_page_number": "438",
+   "notes": "Entry starts page 437 under the باب heading (باب الطاء والباء وما يثلثهما) and continues onto page 438 with the 'ليس به طباخ' and فرخ الضب passages. Corrected: the prior extraction attributed 'طباخه' to fever ('لحُمّى الحرّ'); the page text actually reads 'لسَمائِم الحرّ' (the hot winds/samoom of heat), a different word and referent from the later, separate 'طابخ (للحمى الصالب)' entry. Also flagged: the fara' al-ḍabb growth-stage list may include one more intermediate stage term between جِسْل and مُطبَّخ that is not fully legible in the scan — left marked as uncertain rather than guessed."
+  },
+  {
+   "root": "طبس",
+   "root_letters": [
+    "ط",
+    "ب",
+    "س"
+   ],
+   "core_meaning": "الطاء والباء والسين ليس بشيء",
+   "core_meaning_english": "ط ب س yields no (established) meaning",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّبَسان",
+     "meaning": "كُورتان (اسم بلدين/إقليمين)، وهذا وشبهه ممّا لا معنى لذكره؛ لأنه إذا ذكر ما أشبه كله حُمل على كلام العرب ما ليس هو منه",
+     "meaning_english": "name of two districts/regions — the author dismisses this as not genuine Arabic derivation",
+     "citation": ""
+    },
+    {
+     "usage": "التطبيس",
+     "meaning": "قول من قال: إنّ التطبيس هو التطبين",
+     "meaning_english": "claimed by some to mean the same as 'plastering with clay' (طبّن)",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1515,
+   "printed_page_number": "438",
+   "notes": "Ibn Faris explicitly rejects this as a real derivational root, calling it baseless."
+  },
+  {
+   "root": "طبع",
+   "root_letters": [
+    "ط",
+    "ب",
+    "ع"
+   ],
+   "core_meaning": "الطاء والباء والعين أصل صحيح ومثلٌ على نهايةٍ ينتهي إليها الشيء حتى يختم عندها",
+   "core_meaning_english": "one sound core meaning: an endpoint/limit at which a thing terminates and is sealed",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طبعت الشيء على الشيء طابعا",
+     "meaning": "فعل الطبع/الختم",
+     "meaning_english": "to stamp/imprint one thing upon another",
+     "citation": ""
+    },
+    {
+     "usage": "طبع الإنسان وسجيّته",
+     "meaning": "طبعه وسجيّته",
+     "meaning_english": "a person's innate nature/character",
+     "citation": ""
+    },
+    {
+     "usage": "طبع الله على قلب الكافر",
+     "meaning": "كأنه ختم عليه حتى لا يصل إليه هدى ولا نور، فلا يوفَّق لخير",
+     "meaning_english": "God sealed the disbeliever's heart, as if stamped shut so no guidance or light reaches it",
+     "citation": ""
+    },
+    {
+     "usage": "طبع السيف والدرهم",
+     "meaning": "إذا ضربه حتى يُكمّله (سكّه)",
+     "meaning_english": "to forge/strike a sword or coin to completion",
+     "citation": ""
+    },
+    {
+     "usage": "الطابَع",
+     "meaning": "الخاتم يُختم به",
+     "meaning_english": "a seal/stamp used for sealing",
+     "citation": ""
+    },
+    {
+     "usage": "الطابِع",
+     "meaning": "الذي يختم",
+     "meaning_english": "one who seals/stamps",
+     "citation": ""
+    },
+    {
+     "usage": "ملء المكيال طَبْع",
+     "meaning": "لأنه قد تكامل وخُتم؛ والقياس واحد",
+     "meaning_english": "a measure filled exactly to its limit, as if sealed complete",
+     "citation": ""
+    },
+    {
+     "usage": "تطبّع النهر",
+     "meaning": "إذا امتلأ؛ وهو ذلك المعنى",
+     "meaning_english": "the river became full/brimming",
+     "citation": ""
+    },
+    {
+     "usage": "الناقة المُطبَّعة",
+     "meaning": "إذا حملت حملها الوافي الكامل",
+     "meaning_english": "a she-camel that carries her load complete and full",
+     "citation": "[citation begins but is cut off at the end of the page]"
+    }
+   ],
+   "pdf_page_index": 1515,
+   "printed_page_number": "438",
+   "notes": "The entry's closing poetry citation is cut off at the bottom of page 438 (text ends with 'قال:' and no verse shown). The stray inline '438' mid-page is a scan artifact, not a second page marker."
+  },
+  {
+   "root": "طبع",
+   "root_letters": [
+    "ط",
+    "ب",
+    "ع"
+   ],
+   "core_meaning": "(تكملة من صفحة سابقة) يذكر أن الطِّبْع هو النهر والجمع الطِّباع، ويرد أيضاً معنى شاذ عن الأصل: الدَّنَس",
+   "core_meaning_english": "continuation: the river (jamʿ: rivers); a divergent usage: filth/defilement",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطِّبْع",
+     "meaning": "النهر",
+     "meaning_english": "river",
+     "citation": "قال ابن السكيت: الطِّبْع: النهر، والجمع: الطِّباع. قال: فتولّوا فاتراً مشيهم كروايا الطِّبْع همّت بالوحل"
+    },
+    {
+     "usage": "رجلٌ طَبِعٌ",
+     "meaning": "الدَّنَس",
+     "meaning_english": "filthy/defiled man",
+     "citation": "قال رسول الله صلى الله عليه وسلم: استعيذوا بالله من طمعٍ يهدي إلى طَبَعٍ. وشعر: له أكاليلُ بالياقوت فصّلها صوّاغها لا ترى عيباً ولا طَبَعا"
+    },
+    {
+     "usage": "قد طَبِعَ",
+     "meaning": "الرجل إذا لم ينفذ في الأمر",
+     "meaning_english": "a man who failed to carry through a matter",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1516,
+   "printed_page_number": "439",
+   "notes": "Entry began on a previous page (not included in this batch); only the tail is captured here. The verse at the very top of the page ('وأينَ وسنُ الناقةِ المطبَّعه') illustrates a further sense of طبع (a heavily-laden she-camel) whose explanation falls on the uncaptured prior page, so it is not represented as a variance here."
+  },
+  {
+   "root": "طبق",
+   "root_letters": [
+    "ط",
+    "ب",
+    "ق"
+   ],
+   "core_meaning": "الطاء والباء والقاف أصلٌ صحيحٌ واحد، وهو يدلّ على وضع شيء مبسوط على مثله حتى يغطّيه",
+   "core_meaning_english": "laying one flat thing over its match so as to cover it (matching/covering)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "أطبقتُ الشيء على الشيء",
+     "meaning": "غطيته به فتطابقا",
+     "meaning_english": "to cover one thing with another so they coincide"
+    },
+    {
+     "usage": "أطبَقَ الناسُ على كذا",
+     "meaning": "أجمعوا عليه كأن أقوالهم تساوت حتى صار كل قول مطابقاً للآخر",
+     "meaning_english": "people all agreed on something, as if their words became identical"
+    },
+    {
+     "usage": "الطَّبَق",
+     "meaning": "الحال",
+     "meaning_english": "state/condition",
+     "citation": "قوله تعالى: لَتَرْكَبُنَّ طَبَقاً عَن طَبَقٍ"
+    },
+    {
+     "usage": "إحدى بنات طَبَق",
+     "meaning": "الداهية، سُمّيت طَبَقة لأنها تعمّ وتشمل",
+     "meaning_english": "a calamity/great affliction (a proverbial phrase)"
+    },
+    {
+     "usage": "هو طَبَقُ الأرض",
+     "meaning": "ما عالج الأمر وعلا الأرض حتى غطّاها",
+     "meaning_english": "something that covers the whole earth",
+     "citation": "قول امرئ القيس يصف الغيث: ديمة هطلاء فيها وطف طَبَق الأرض تحرّى وتَدُرّ"
+    },
+    {
+     "usage": "طبَّق الحق",
+     "meaning": "أصابه ووافقه حتى صار ما أراده موافقاً للحق مطابقاً له",
+     "meaning_english": "he hit exactly upon the truth/right, matching it"
+    },
+    {
+     "usage": "طبَّقَ المفصل",
+     "meaning": "أصاب المفصل ولم يخطئه",
+     "meaning_english": "he struck exactly at the joint, without missing"
+    },
+    {
+     "usage": "طبَّق عنقه بالسيف",
+     "meaning": "أبانها",
+     "meaning_english": "he severed his neck with the sword"
+    },
+    {
+     "usage": "المطابقة (في القيد)",
+     "meaning": "أن رِجْلَي المقيَّد تقاربتا حتى كأنهما متطابقتان",
+     "meaning_english": "the shackled man's two feet drawn close together as if matched",
+     "citation": "قول الجَعْدي: طِباقَ الكِلابَ يطأنَ الهِراسا"
+    },
+    {
+     "usage": "الطَّبَق",
+     "meaning": "عظمٌ رقيق يفصل بين الفَقارتين",
+     "meaning_english": "a thin bone separating two vertebrae"
+    },
+    {
+     "usage": "يدٌ طَبِقة",
+     "meaning": "إذا التزقت بالجنب",
+     "meaning_english": "a hand/foreleg stuck close to the flank"
+    },
+    {
+     "usage": "طابقتُ بين الشيئين",
+     "meaning": "جعلتهما على حَذْوٍ واحد",
+     "meaning_english": "to make two things exactly aligned/equal"
+    },
+    {
+     "usage": "مُطابَق (من الكلام)",
+     "meaning": "الكلام المتضاعف مرتين، مثل جَرْجَر وصَلْصَل وصَمْصَم",
+     "meaning_english": "a reduplicated word, e.g. jarjar, ṣalṣal, ṣamṣam"
+    },
+    {
+     "usage": "الطَّبَق",
+     "meaning": "الجماعة من الجراد، شُبّهت بطبقٍ يغطّي الأرض",
+     "meaning_english": "a swarm of locusts, likened to a covering tray"
+    },
+    {
+     "usage": "ولدت الغنمُ طَبَقاً وطَبَقةً",
+     "meaning": "إذا ولد بعضها بعد بعض",
+     "meaning_english": "the flock gave birth one after another"
+    },
+    {
+     "usage": "الطَّباقاء",
+     "meaning": "الدَّهِيّ من الرجال، والبعير الذي لا يحسن الضِّراب، كأنه سُتر عنه الشيء حتى أُطبق عليه فصار كالمغطّى",
+     "meaning_english": "a slow-witted/incapable man, or a camel poor at mating — as if the matter is shut/covered over him",
+     "citation": "قال جميل: طَبَاقَاهُ لم يشهد خصوماً ولم يَقُدْ رِكاباً إلى أكوارها حين تُنكف"
+    }
+   ],
+   "pdf_page_index": 1516,
+   "printed_page_number": "439",
+   "notes": "Entry begins on page 439 (pdf 1516) and continues onto page 440 (pdf 1517)."
+  },
+  {
+   "root": "طبل",
+   "root_letters": [
+    "ط",
+    "ب",
+    "ل"
+   ],
+   "core_meaning": "الطاء والباء واللام ثلاث كلمات ليست لها طلاوة كلام العرب، وما أدري كيف هي",
+   "core_meaning_english": "three usages that lack the polish/authenticity of genuine Arab speech; the author is unsure of their true nature",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّبْل",
+     "meaning": "الذي يُضرَب (آلة الطبل)",
+     "meaning_english": "the drum (that is beaten)"
+    },
+    {
+     "usage": "(الكلمة الثانية)",
+     "meaning": "الخُلُق",
+     "meaning_english": "temperament/character",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّوبالة",
+     "meaning": "لفظة وردت في شعر، ولولا ورودها في الشعر ما كان لذكرها معنى",
+     "meaning_english": "a word occurring only in a line of poetry, otherwise meaningless to mention",
+     "citation": "نعاني حنانةً طُوبالةً تَسُفُّ يبيساً من العِشْرِق"
+    },
+    {
+     "usage": "الطُّوبالة",
+     "meaning": "قيل هي النَّعْجة",
+     "meaning_english": "said to mean the ewe"
+    }
+   ],
+   "pdf_page_index": 1517,
+   "printed_page_number": "440",
+   "notes": "Root begins page 440 (pdf 1517), continues onto page 441 (pdf 1518). The explanation of the second كلمة (الخُلُق) is split across the page break (fragment 'انخلق' visible at the top of page 441), so its exact wording is not fully verifiable."
+  },
+  {
+   "root": "طبن",
+   "root_letters": [
+    "ط",
+    "ب",
+    "ن"
+   ],
+   "core_meaning": "الطاء والباء والنون أصلٌ صحيح يدلّ على ثبات",
+   "core_meaning_english": "firmness/steadiness, settling in place",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "اطبأنّ",
+     "meaning": "إذا ثبت وسكن، مثل اطمأنّ",
+     "meaning_english": "to settle and become still, like iṭmaʾanna"
+    },
+    {
+     "usage": "طَبَنَتِ النارُ / طبَّنَ النار",
+     "meaning": "دفنها لئلا تُطفأ ثم تُنبش",
+     "meaning_english": "he buried the fire (embers) so it would not go out"
+    },
+    {
+     "usage": "الطَّابون",
+     "meaning": "الموضع الذي تُدفن فيه النار",
+     "meaning_english": "the place where the fire/embers are buried"
+    },
+    {
+     "usage": "طابِنْ هذه الحفيرة",
+     "meaning": "طاطِئْها (اخفضها/سوِّها)",
+     "meaning_english": "level/flatten this pit"
+    },
+    {
+     "usage": "إن الخير في بني فلان كثبات الطَّبَن",
+     "meaning": "أي هو تليدٌ قديم",
+     "meaning_english": "the good in that family is ancient/inherited, as firmly established as ṭaban"
+    },
+    {
+     "usage": "الطَّبَن",
+     "meaning": "الفطنة",
+     "meaning_english": "sharp-wittedness/perceptiveness",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1518,
+   "printed_page_number": "441",
+   "notes": "Author states Ṭaban and fiṭnah share the qiyās of the root because steadfastness parallels firmness in knowledge."
+  },
+  {
+   "root": "طبى",
+   "root_letters": [
+    "ط",
+    "ب",
+    "ي"
+   ],
+   "core_meaning": "الطاء والباء والحرف المعتل أصلٌ يدلّ على استدعاء شيء",
+   "core_meaning_english": "summoning/enticing something",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "اطَّبى بنو فلانٍ فلاناً",
+     "meaning": "إذا خدعوه وقبِلوه (استدرجوه)",
+     "meaning_english": "they enticed/lured him and won him over"
+    },
+    {
+     "usage": "طَباه / اطَّباه",
+     "meaning": "دعاه",
+     "meaning_english": "he called/summoned him"
+    },
+    {
+     "usage": "الطُّبْي (من أطباء الناقة)",
+     "meaning": "أخلاف الناقة، سُمّي كذلك لأنه يُستدعى منه اللبن",
+     "meaning_english": "the teat of the she-camel, so named because milk is drawn/summoned from it"
+    }
+   ],
+   "pdf_page_index": 1518,
+   "printed_page_number": "441",
+   "notes": "Final entry on the page. sarf_pattern corrected to empty: the page text uses 'الحرف المعتل' only as a generic descriptor of the root's third (weak) letter — a phrase used across nearly all weak-root entries in this dictionary — not as a named morphological category (unlike المضاعف/الأجوف/المثال/اللفيف/الناقص/المهموز), so it should not populate this field."
+  },
+  {
+   "root": "طبي (تكملة)",
+   "core_meaning": "تكملة من صفحة سابقة: وذُكر أن العرب تقول: هذا خِلْفٌ طَبِيٌّ، أي مُجيب. فإن كان هذا صحيحاً فهو يدلُّ على صحّة القياس الذى قسْناه.",
+   "core_meaning_english": "Continuation from a prior page: if the Arabs' saying 'this is a responsive teat (khilf tabiyy)' is correct, it confirms the soundness of the analogical pattern established for this root.",
+   "pdf_page_index": 1519,
+   "printed_page_number": "442",
+   "sarf_pattern": "",
+   "variances": [],
+   "notes": "Continuation of a root entry begun on an earlier page not included in this batch; the root bracket itself does not appear on this page, so root letters are inferred (uncertain) from context (خِلْفٌ طَبِيٌّ = udder teat)."
+  },
+  {
+   "root": "طثر",
+   "core_meaning": "الطاء والثاء والراء أصل صحيح يدلُّ على غَضارةٍ فى الشئ وكثرة ندى.",
+   "core_meaning_english": "A sound root indicating freshness/luxuriance in a thing and abundance of moisture.",
+   "pdf_page_index": 1519,
+   "printed_page_number": "442",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "فلان في طَثْرة من العيش",
+     "meaning": "أي في غَضارة",
+     "meaning_english": "so-and-so is in luxuriance/abundance of living"
+    },
+    {
+     "usage": "اللبن الطاثر",
+     "meaning": "وهو الخاثر (اشتقاق طَثْرة العيش منه)",
+     "meaning_english": "curdled/thickened milk"
+    },
+    {
+     "usage": "طَثْرة (للحَمْأة)",
+     "meaning": "يُشبَّه بذلك فيقال للحمأة طَثْرة",
+     "meaning_english": "the mud/silt is likened to thickened milk and called tathrah"
+    },
+    {
+     "usage": "طَثْرة",
+     "meaning": "اسم سُمّي به رجل من العرب",
+     "meaning_english": "a proper name given to a man among the Arabs"
+    },
+    {
+     "usage": "الطَّيْثار",
+     "meaning": "البعوض؛ ذُكر أنه شاذّ عن الباب ولا يُدرى وجه صحّته",
+     "meaning_english": "mosquito/gnat — noted as anomalous, not fitting the root's pattern",
+     "citation": "قولهم: إنّ الطَّيْثار البعوض"
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "طجن",
+   "core_meaning": "يقولون في الطاء والجيم والنون: إنّ الطَّاجَن الطَّابَق. وهو كلامٌ، والله أعلم.",
+   "core_meaning_english": "Ibn Faris states this is merely a reported word (possibly a loanword), not an established root with an analogical core meaning: they say al-tajin means al-tabaq (a griddle/flat cooking vessel).",
+   "pdf_page_index": 1520,
+   "printed_page_number": "443",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّاجَن",
+     "meaning": "الطَّابَق",
+     "meaning_english": "a griddle / flat cooking pan"
+    }
+   ],
+   "notes": "Footnotes discuss طاجن/طابق as possibly Persian or Greek loanwords (معرَّب)."
+  },
+  {
+   "root": "طحر",
+   "core_meaning": "الطاء والحاء والراء أصلٌ صحيح يدلُّ على الحَفْز والرَّمْي والقَذْف.",
+   "core_meaning_english": "A sound root indicating propelling, throwing, and casting out.",
+   "pdf_page_index": 1520,
+   "printed_page_number": "443",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَحَرَتِ العينُ قَذَاها",
+     "meaning": "إذا قذفَتْ به",
+     "meaning_english": "the eye cast out its speck"
+    },
+    {
+     "usage": "طَحَرَتْ عينُ الماء المريض",
+     "meaning": "إذا رمت به",
+     "meaning_english": "the (sick person's) tear duct discharged it"
+    },
+    {
+     "usage": "قَوسٌ مِطْحَرٌ",
+     "meaning": "إذا حَفَزَت سَهْمَها فرمَت به صُعُداً",
+     "meaning_english": "a bow that propels its arrow upward forcefully"
+    },
+    {
+     "usage": "حَرْبٌ مِطْحَرة",
+     "meaning": "زَبُون",
+     "meaning_english": "a fierce, repelling war"
+    },
+    {
+     "usage": "الطَّحير",
+     "meaning": "النَّفَس العالي، وسُمّي بذلك لأنّ صاحبه يَطْحَر",
+     "meaning_english": "loud/heavy breathing",
+     "citation": "قال الكميت: بأهازيج من أغانيّها الجـ...شّ وإتباعها الزَّفيرَ الطَّحيرا"
+    }
+   ],
+   "notes": "The Kumayt verse is split across a page/line break and partly cut off ('الجـ...شّ'), rendering part of the line illegible/uncertain. Corrected: removed an invented parenthetical gloss ('تدفع أصحابها وتصرعهم') on حَرْبٌ مِطْحَرة not present in the source text — the page gives only 'زَبُون'."
+  },
+  {
+   "root": "طحر (تكملة)",
+   "core_meaning": "تكملة: فأما المُطْحَر من النِّصال، فهو المُطَوَّل المسال.",
+   "core_meaning_english": "Continuation: al-muthar among arrowheads denotes the elongated, tapering type.",
+   "pdf_page_index": 1521,
+   "printed_page_number": "444",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "المُطْحَر (من النِّصال)",
+     "meaning": "المُطَوَّل المسال",
+     "meaning_english": "an elongated, tapering arrowhead",
+     "citation": "قال الهُذَلِيّ: من مُطْحَراتِ الإلال"
+    }
+   ],
+   "notes": "Continuation of the طحر entry begun on the previous page; poetry citation partly fragmentary per footnote apparatus. Corrected: citation attribution was mistranscribed as 'المهذلي' — the footnote identifies the poet as أمية بن أبي عائذ الهذلي, i.e. 'الهذلي' (not a valid nisba as 'المهذلي')."
+  },
+  {
+   "root": "طحل",
+   "core_meaning": "الطاء والحاء واللام أصلٌ صحيح يدلُّ على لونٍ غير صافٍ ولا مُشرق.",
+   "core_meaning_english": "A sound root indicating a dull, impure, unbright color.",
+   "pdf_page_index": 1521,
+   "printed_page_number": "444",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطُّحْلة",
+     "meaning": "لون الغُبْرة",
+     "meaning_english": "an ashy/dusty color"
+    },
+    {
+     "usage": "رمادٌ أطْحَل، شرابٌ أطْحَل",
+     "meaning": "إذا لم يكن صافياً",
+     "meaning_english": "ash or drink that is not clear/pure"
+    },
+    {
+     "usage": "الطِّحال",
+     "meaning": "العضو المعروف؛ ويمكن أن يكون سُمّي بذلك لكُدْرة لونه",
+     "meaning_english": "the spleen — possibly named for its dull color"
+    },
+    {
+     "usage": "طَحِلَ الماءُ",
+     "meaning": "فسد وتغيَّر",
+     "meaning_english": "the water spoiled and changed (in color/quality)"
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "طحم",
+   "core_meaning": "الطاء والحاء والميم أصلٌ صحيح يدلُّ على تجمُّعٍ وتكاثف.",
+   "core_meaning_english": "A sound root indicating gathering/massing and density.",
+   "pdf_page_index": 1521,
+   "printed_page_number": "444",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّحْمة من الناس",
+     "meaning": "الجماعة الكثيفة",
+     "meaning_english": "a dense throng of people"
+    },
+    {
+     "usage": "طُحْمة/طَحْمة الليل",
+     "meaning": "مُعظَمه",
+     "meaning_english": "the bulk/main part of the night"
+    },
+    {
+     "usage": "طُحْمة/طَحْمة السيل",
+     "meaning": "مُعظَمه",
+     "meaning_english": "the main surge/bulk of a flood"
+    },
+    {
+     "usage": "طَحْمة الفتنة",
+     "meaning": "جولة الناس عندها",
+     "meaning_english": "the turmoil/commotion of people during strife",
+     "citation": "قال الخليل"
+    },
+    {
+     "usage": "طُحَمة (للرجل الشديد العِراك)",
+     "meaning": "وصف لرجل شديد المُصارعة/القتال",
+     "meaning_english": "a fiercely combative man"
+    }
+   ],
+   "notes": "Footnote flags the tripled letter طاء in الطّحمة as a point some had trouble vocalizing/understanding."
+  },
+  {
+   "root": "طحن",
+   "core_meaning": "الطاء والحاء والنون أصلٌ صحيح يدلُّ على فَتِّ الشيء ورَفْتِه بما يدور عليه من فوقه.",
+   "core_meaning_english": "A sound root indicating crushing/pulverizing a thing by something rotating over it.",
+   "pdf_page_index": 1521,
+   "printed_page_number": "444",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَحَنَتِ الرَّحَى طَحْناً",
+     "meaning": "فتُّ الحَبِّ بالرَّحى",
+     "meaning_english": "the millstone ground (grain)"
+    },
+    {
+     "usage": "الطَّحْن",
+     "meaning": "الدقيق",
+     "meaning_english": "flour"
+    },
+    {
+     "usage": "أسمعُ جَمْجَمَةً ولا أرى طَحْناً",
+     "meaning": "قول يُضرب فيمن يُسمع له صوت/أثر ولا يُرى نتاجه؛ والجَمجَمة صوت الرَّحى",
+     "meaning_english": "proverb: 'I hear the (millstone's) rumble but see no flour' — for effort with no visible result"
+    },
+    {
+     "usage": "كتيبةٌ طَحُونٌ",
+     "meaning": "تطحَنُ ما لَقِيَت",
+     "meaning_english": "a crushing military troop that grinds down whatever it meets"
+    },
+    {
+     "usage": "الأضراس الطَّواحن",
+     "meaning": "أضراس الطَّحن",
+     "meaning_english": "the grinding (molar) teeth"
+    }
+   ],
+   "notes": "This root entry appears to continue past page 444 (not included in this batch). Corrected: the proverb's word was mistranscribed with kasra (طِحْناً) — the page vocalizes it with fatha (طَحْناً), consistent with the adjacent 'الطَّحْن: الدقيق'. Trimmed an added-in-translation parenthetical on الأضراس الطَّواحن not present in the source line."
+  },
+  {
+   "root": "طحن",
+   "root_letters": [
+    "ط",
+    "ح",
+    "ن"
+   ],
+   "core_meaning": "(تكملة من صفحة سابقة) دويبة تُغيَّب نفسها في تراب قد سوّته وأدارته",
+   "core_meaning_english": "continuation from a previous page: a small creature that buries itself in dust it has leveled and rounded",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطُّحَن",
+     "meaning": "دويبة تغيّب نفسها في تراب قد سوّته وأدارته",
+     "meaning_english": "a small creature that hides itself in dust it has leveled and rounded"
+    },
+    {
+     "usage": "طَحَنَتِ الأفعى",
+     "meaning": "إذا تلوّت مستديرة",
+     "meaning_english": "said of a viper when it coils itself round"
+    }
+   ],
+   "printed_page_number": "445",
+   "pdf_page_index": 1522,
+   "notes": "Continuation of root طحن begun on a previous page; only tail end appears here."
+  },
+  {
+   "root": "طحو",
+   "root_letters": [
+    "ط",
+    "ح",
+    "و"
+   ],
+   "core_meaning": "الطاء والحاء والحرف المعتل أصل صحيح يدلّ على البسط والمدّ",
+   "core_meaning_english": "spreading out and extending",
+   "sarf_pattern": "الحرف المعتل",
+   "variances": [
+    {
+     "usage": "الطَّحْو",
+     "meaning": "كالدَّحْو، وهو البسط",
+     "meaning_english": "spreading out, like دحو"
+    },
+    {
+     "usage": "وَالْأَرْضِ وَمَا طَحَاهَا",
+     "meaning": "أي بسطها",
+     "meaning_english": "and the earth and He who spread it out",
+     "citation": "القرآن، سورة الشمس، آية 6"
+    },
+    {
+     "usage": "وَالْأَرْضَ بَعْدَ ذَٰلِكَ دَحَاهَا",
+     "meaning": "آية أخرى بنفس المعنى",
+     "meaning_english": "and the earth, after that, He spread it out",
+     "citation": "القرآن، سورة النازعات، آية 30"
+    },
+    {
+     "usage": "طحا بك همُّك بطحو",
+     "meaning": "إذا ذهب بك في الأمر ومدّ بك فيه",
+     "meaning_english": "said when one's worry carries and prolongs one in a matter",
+     "citation": "بيت علقمة: طحا بك قلبٌ فى الحسان طَروبُ / بُعَيدَ الشباب عصرَ حان مشيبُ"
+    },
+    {
+     "usage": "المُدَوَّمة الطواحي",
+     "meaning": "النسور تستدير حول القتلى",
+     "meaning_english": "vultures circling around the slain"
+    },
+    {
+     "usage": "طَحَيْتُ (عن الشيباني)",
+     "meaning": "اضطجعت",
+     "meaning_english": "I lay down / reclined"
+    },
+    {
+     "usage": "الطاحي",
+     "meaning": "الجمع الكثير، سمي بذلك لأنه يجرّ على الشيء كما يسمى جرّاراً",
+     "meaning_english": "a large gathered crowd, so named because it drags itself over things, as it is also called جرّار"
+    }
+   ],
+   "printed_page_number": "445",
+   "pdf_page_index": 1522,
+   "notes": "Final verse citation partly illegible/uncertain (\"من الأنس الطاحى عليك انعم مرم\") — attribution and exact wording uncertain per footnote 6 referencing a poem of Abu Sakhr al-Hudhali."
+  },
+  {
+   "root": "طخف",
+   "root_letters": [
+    "ط",
+    "خ",
+    "ف"
+   ],
+   "core_meaning": "الطاء والخاء والفاء أصيل يدلّ على الشيء الرقيق",
+   "core_meaning_english": "thinness/fineness of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّخَاف",
+     "meaning": "الغَيْم الرقيق",
+     "meaning_english": "thin, light cloud"
+    },
+    {
+     "usage": "الطَّخْف",
+     "meaning": "كالهمّ يَغشى القلب",
+     "meaning_english": "like worry/gloom that covers the heart"
+    }
+   ],
+   "printed_page_number": "446",
+   "pdf_page_index": 1523,
+   "notes": "Page heading marks start of باب الطاء والحاء وما يثلثهما."
+  },
+  {
+   "root": "طخر",
+   "root_letters": [
+    "ط",
+    "خ",
+    "ر"
+   ],
+   "core_meaning": "الطاء والخاء والراء أصل صحيح يدلّ على خفّة في شيء",
+   "core_meaning_english": "lightness/nimbleness in a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّخَارِير",
+     "meaning": "المتفرّقون، يُشبَّه بذلك الرجل الخفيف الخطّاف",
+     "meaning_english": "scattered people; used to liken a light, quick-footed man"
+    }
+   ],
+   "printed_page_number": "446",
+   "pdf_page_index": 1523,
+   "notes": ""
+  },
+  {
+   "root": "طخى",
+   "root_letters": [
+    "ط",
+    "خ",
+    "ي"
+   ],
+   "core_meaning": "الطاء والخاء والحرف المعتل أصل صحيح يدلّ على ظلمة وغِشاء",
+   "core_meaning_english": "darkness and covering",
+   "sarf_pattern": "الحرف المعتل",
+   "variances": [
+    {
+     "usage": "الطَّخْوَة، الطَّخْيَة",
+     "meaning": "السحابة الرقيقة",
+     "meaning_english": "a thin cloud"
+    },
+    {
+     "usage": "الطَّخْياء",
+     "meaning": "الليلة المظلمة",
+     "meaning_english": "a dark night"
+    },
+    {
+     "usage": "ظلام طاخٍ",
+     "meaning": "مثال استعمال آخر لم يُفسَّر صراحة، يفهم من السياق أنه بمعنى مظلم",
+     "meaning_english": "a further usage cited without an explicit gloss; understood from context to mean 'dark'"
+    },
+    {
+     "usage": "وجَد على قلبه طَخَاء",
+     "meaning": "شبه الكرب",
+     "meaning_english": "a feeling of distress like grief pressing on the heart"
+    },
+    {
+     "usage": "كلّمنى كلمة طَخْياء",
+     "meaning": "أى أعجميّة",
+     "meaning_english": "he spoke to me an unintelligible/foreign word"
+    }
+   ],
+   "printed_page_number": "446",
+   "pdf_page_index": 1523,
+   "notes": ""
+  },
+  {
+   "root": "طخم",
+   "root_letters": [
+    "ط",
+    "خ",
+    "م"
+   ],
+   "core_meaning": "الطاء والخاء والميم أصل صحيح يدلّ على سواد فى شىء",
+   "core_meaning_english": "blackness in a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطُّخْمة",
+     "meaning": "سوادٌ فى مقدَّم الأنف",
+     "meaning_english": "blackness at the front/tip of the nose"
+    },
+    {
+     "usage": "كبشٌ أطخَم، أسدٌ أطخَم",
+     "meaning": "موصوف بهذا السواد",
+     "meaning_english": "a ram or lion described by this blackness"
+    }
+   ],
+   "printed_page_number": "446",
+   "pdf_page_index": 1523,
+   "notes": ""
+  },
+  {
+   "root": "طرز",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ز"
+   ],
+   "core_meaning": "الطاء والراء والزاء كلمةٌ يُظنّ أنها فارسيّة معرَّبة",
+   "core_meaning_english": "a word thought to be an Arabized Persian loanword (no core Arabic meaning given)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "بيضُ الوُجوهِ كريمةٌ أحسابُهم / شُمّ الأنوفِ من الطِّرَازِ الأوّلِ",
+     "meaning": "شاهد شعري لحسان يستعمل فيه لفظ الطراز",
+     "meaning_english": "verse of Hassan using the word طراز",
+     "citation": "شعر حسان بن ثابت، ديوانه ص310 واللسان (طرز)"
+    },
+    {
+     "usage": "طِرْزُه",
+     "meaning": "أى هيئته",
+     "meaning_english": "his/its manner or form"
+    }
+   ],
+   "printed_page_number": "446",
+   "pdf_page_index": 1524,
+   "notes": "Entry begins on page 446 and its final line ('ويقولون: طرزه، أى هيئته') continues onto page 447 (pdf 1524); recorded together here. Heading on 446 marks start of باب الطاء والراء وما يثلثهما."
+  },
+  {
+   "root": "طرس",
+   "root_letters": [
+    "ط",
+    "ر",
+    "س"
+   ],
+   "core_meaning": "الطاء والراء والسين فيه كلامٌ لعلّه أن يكون صحيحاً",
+   "core_meaning_english": "uncertain/doubtful core meaning, possibly valid",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطِّرْس",
+     "meaning": "الكتاب المحوّ (الصحيفة التي مُحي ما فيها لتُكتب ثانية)",
+     "meaning_english": "a manuscript/leaf that has been erased for reuse"
+    },
+    {
+     "usage": "كلّ صحيفة",
+     "meaning": "طِرْس",
+     "meaning_english": "any written leaf is called طرس"
+    },
+    {
+     "usage": "التَّطَرُّس",
+     "meaning": "أن لا يطعم الإنسان ولا يشرب إلا طيّباً",
+     "meaning_english": "to eat and drink only what is good/pure"
+    }
+   ],
+   "printed_page_number": "447",
+   "pdf_page_index": 1524,
+   "notes": "Ibn Faris himself expresses doubt about whether this root has a sound single core meaning."
+  },
+  {
+   "root": "طرش",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ش"
+   ],
+   "core_meaning": "الطاء والراء والشين كلمةٌ معروفة، وهى الطَّرَش، معروف",
+   "core_meaning_english": "deafness (a known, self-explanatory word)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "تطرَّشتِ الناقةُ",
+     "meaning": "من المرض، إذا قام وقعد",
+     "meaning_english": "said of a she-camel from sickness, when it kept rising and sitting",
+     "citation": "قول أبى عمرو"
+    }
+   ],
+   "printed_page_number": "447",
+   "pdf_page_index": 1524,
+   "notes": "Footnote 1 on the page adds further gloss on الطرش (deafness) and its variant forms أطرش/أطروش — recorded as marginal note, not a separate entry."
+  },
+  {
+   "root": "طرط",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ط"
+   ],
+   "core_meaning": "الطاء والراء والطاء كلمةٌ",
+   "core_meaning_english": "a (single) word — no elaborated core meaning given",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الأَطْرَط",
+     "meaning": "الدقيق الحاجبين",
+     "meaning_english": "one with thin/fine eyebrows"
+    },
+    {
+     "usage": "وقد طَرِطَ",
+     "meaning": "(الفعل منه)",
+     "meaning_english": "the corresponding verb form, 'to be thin-eyebrowed'"
+    }
+   ],
+   "printed_page_number": "447",
+   "pdf_page_index": 1524,
+   "notes": ""
+  },
+  {
+   "root": "طرف",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ف"
+   ],
+   "core_meaning": "الطاء والراء والفاء أصلان: فالأوّل يدلّ على حدّ الشىء وحرفه، والثانى يدلّ على حركةٍ فى بعض الأعضاء",
+   "core_meaning_english": "two core meanings: (1) the edge/extremity of a thing, and (2) movement of some part of the body (e.g. the eye)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَرَفُ الشىء والثوب والحائط",
+     "meaning": "حدّه وحرفه (المعنى الأول)",
+     "meaning_english": "the edge of a thing, a garment, or a wall"
+    },
+    {
+     "usage": "ناقة طَرِفَة",
+     "meaning": "تَرعى أطرافَ المرعى ولا تختلط بالنُّوق",
+     "meaning_english": "a she-camel that grazes the outer edges of pasture, not mixing with the herd"
+    },
+    {
+     "usage": "عينٌ مطروفة",
+     "meaning": "أن يصيبها طَرَفُ شىء ثوبٍ أو غيره فتَغرورِق دمعاً؛ ويُستعار فيقال طَرَفها الحزن",
+     "meaning_english": "an eye struck by the edge of a garment or the like so it fills with tears; metaphorically, 'grief struck it'"
+    },
+    {
+     "usage": "هو كريمُ الطَّرَفين",
+     "meaning": "قال قوم: يُراد به نَسَبُ الأب والأمّ؛ ولا يُدرى أىّ الطَّرَفين أطول",
+     "meaning_english": "'he is noble of both extremities' — said by some to mean noble lineage on both father's and mother's side; it is unclear which sense (extremity) is meant by the phrase"
+    },
+    {
+     "usage": "أطراف",
+     "meaning": "جمع الطَّرَف",
+     "meaning_english": "plural of طرف (edges/extremities)"
+    }
+   ],
+   "printed_page_number": "447",
+   "pdf_page_index": 1524,
+   "notes": "Entry is cut off at 'قال :' introducing a poetry citation whose text is not shown on this page — it continues onto the next page, not included in this batch."
+  },
+  {
+   "root": "طرف",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ف"
+   ],
+   "core_meaning": "(تتمة من صفحة سابقة) الأصل الأول: حركة العين ورفعها للنظر، وما ذكر من معاني الطرف والأطراف",
+   "core_meaning_english": "(continuation) the eye's motion in looking, and the outer edge/extremity of a thing",
+   "sarf_pattern": "",
+   "pdf_page_index": 1525,
+   "printed_page_number": "448",
+   "variances": [
+    {
+     "usage": "الطَّوَارِف من الحلباء",
+     "meaning": "وهى ما رُفِعَت من جوانبه لتنظر",
+     "meaning_english": "the parts of the udder-cover raised up so [the animal] can see",
+     "citation": ""
+    },
+    {
+     "usage": "جاء فلان بطارفة عين",
+     "meaning": "فهو من الذى ذكرناه فى قولهم: طُرِفَت العين، إذا أصابها طرف فاغرورقت. وإذا كان كذا لم تكد تُبصر فكذلك",
+     "meaning_english": "he came with a glance/blink of the eye — from 'the eye was struck/watered'",
+     "citation": ""
+    },
+    {
+     "usage": "بطارفة عين، أى بشىء",
+     "meaning": "تَحَيَّر له العين من كَثرته",
+     "meaning_english": "with something the eye is bewildered by, from its abundance",
+     "citation": ""
+    },
+    {
+     "usage": "طريف",
+     "meaning": "المستحدَث من الشىء، وهو خلاف التَّليد؛ ومعناه أنه شىء أُفيدَ الآنَ فى طرَفٍ من زمانٍ قد مضى",
+     "meaning_english": "newly acquired/novel thing, opposite of the old/inherited; something newly gained recently",
+     "citation": ""
+    },
+    {
+     "usage": "اطَّرَفَه اطِّرَافًا",
+     "meaning": "إذا استحدثته",
+     "meaning_english": "he newly acquired it",
+     "citation": ""
+    },
+    {
+     "usage": "الرَّجُل الطَّرِف",
+     "meaning": "الذى لا يثبُتُ على امرأةٍ ولا صاحب؛ لأنه يطالب الأطراف",
+     "meaning_english": "a man who does not stay constant with one wife or companion, always seeking new extremes/parties",
+     "citation": ""
+    },
+    {
+     "usage": "المرأة المطروفة",
+     "meaning": "التى لا تثبُت على رجلٍ واحد، بل تَطَّرِف الرجال",
+     "meaning_english": "a woman who does not stay with one man but takes new men",
+     "citation": "وهو قول الحطيئة: بنى الودّ من مطروفة الودّ طامح"
+    },
+    {
+     "usage": "الفرس الطَّرْف الكريم",
+     "meaning": "كأنَّ صاحبَه قد اطَّرَفه؛ وللمُطَّرَف فضلٌ على التَّليد",
+     "meaning_english": "the noble horse, as if its owner newly acquired it; the newly-acquired has merit over the inherited",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طرف",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ف"
+   ],
+   "core_meaning": "الأصل الآخر: تحريك الجفون فى النظر، وهو مجاز فى تسمية العين طرفاً",
+   "core_meaning_english": "second core sense: the movement of the eyelids in looking; the eye is called 'tarf' figuratively from this",
+   "sarf_pattern": "",
+   "pdf_page_index": 1526,
+   "printed_page_number": "449",
+   "notes": "This entry finishes on page 449 before the new root طرق begins.",
+   "variances": [
+    {
+     "usage": "الطَّرْفة (نجم)",
+     "meaning": "نجمٌ من النجوم يسمى الطَّرْفة، كأنه فيما أحسب طَرْفُ الأسد",
+     "meaning_english": "a star called al-Tarfa, reckoned as if it were the lion's eye/glance",
+     "citation": "قال جرير: إن العيون التى فى طَرْفها مرضٌ قتلننا ثم لم يُحيينَ قتلانا"
+    },
+    {
+     "usage": "الطِّرَاف",
+     "meaning": "بيتٌ من أَدَمٍ، وهو شاذٌّ عن الأصلَيْن اللذَيْن ذكرناهما",
+     "meaning_english": "a tent made of tanned leather; this usage is irregular, not fitting the two stated core meanings",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طرق",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ق"
+   ],
+   "core_meaning": "الطاء والراء والقاف أربعة أصول: أحدها الإتيان مساءً، والثانى الضَّرْب، والثالث جنسٌ من استرخاء الشىء، والرابع خَضْف شىء على شىء",
+   "core_meaning_english": "four core meanings: (1) coming/arriving at night, (2) striking, (3) a kind of looseness/slackness in a thing, (4) one thing being pressed/laid onto another",
+   "sarf_pattern": "",
+   "pdf_page_index": 1526,
+   "printed_page_number": "449",
+   "variances": [
+    {
+     "usage": "الطُّرُوق (الأول)",
+     "meaning": "إتيان المنزل ليلاً؛ ورجلٌ طُرُقَة، إذا كان يَسْرِى حتى يطرُقَ أهله ليلاً، وقد ذُكِر أن ذلك يقال بالنهار أيضاً",
+     "meaning_english": "coming home at night; a man called 'turuqa' travels by night until he arrives home at night (also said of daytime)",
+     "citation": ""
+    },
+    {
+     "usage": "الطارق (النجم)",
+     "meaning": "الدليل على أن الليل هو الأصل: أن النجم سُمِّىَ طارقاً لأنه يطلُعُ ليلاً؛ وكلُّ من أتى ليلاً فقد طَرَق. والبيت قول امرأة، تريد: إن أبانا نجمٌ فى شرفه وعلوّه",
+     "meaning_english": "the star is called 'tariq' because it rises at night; anyone who comes at night has 'taraqa'; the verse is a woman's saying meaning 'our father is a star in his nobility and loftiness'",
+     "citation": "نحنُ بناتُ طارق"
+    },
+    {
+     "usage": "الطَّرِيق",
+     "meaning": "الله أعلم؛ لأنه يُتَوَرَّد؛ ويجوز أن يكون من أصلٍ آخر، وهو الذى ذكرناه من خَضْف الشىء فوق الشىء",
+     "meaning_english": "'the road/path' — God knows best; because it is entered/approached; possibly from the fourth sense (laying one thing over another)",
+     "citation": ""
+    },
+    {
+     "usage": "أتيتُه طَرْقَتَين",
+     "meaning": "أى مرَّتين",
+     "meaning_english": "I came to him twice",
+     "citation": ""
+    },
+    {
+     "usage": "طارقة الرجل",
+     "meaning": "فَخِذُه التى هو منها؛ وسُمِّيَت طارقةً لأنها تطرُقه ويَطرُقُها",
+     "meaning_english": "a man's clan/family branch he descends from; called 'tariqa' because it reaches him and he it",
+     "citation": "شكوتُ ذَهابَ طارقتى إليه وطارقَتِى بأكنافِ الدُّروب"
+    },
+    {
+     "usage": "طَرَق يطرُق طرقاً (الأصل الثانى: الضَّرْب)",
+     "meaning": "الضَّرب؛ والشىء مطروق ومطرقة",
+     "meaning_english": "to strike; a struck thing is 'matruq'/'mitraqa'",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّرْق",
+     "meaning": "الضَّرب بالحصى تكهُّناً، وهو الذى جاء فى الحديث النهى عنه؛ وقيل: الطَّرق والعيافة والزجر من الجِبْت",
+     "meaning_english": "striking pebbles for soothsaying/divination, forbidden per hadith; also said to be a form of superstitious divination",
+     "citation": "حديث نبوي: الطرق والعيافة والزجر من الجبت"
+    },
+    {
+     "usage": "امرأةٌ طارقةٌ",
+     "meaning": "تفعل ذلك (الضرب بالحصى تكهناً)، والجمع الطَّوَارِق",
+     "meaning_english": "a woman who practices pebble-divination; plural 'al-tawariq'",
+     "citation": "لعمرُك ما تَدْرِى الطَّوارقُ بالحصى ولا زاجراتُ الطَّيرِ ما اللهُ صانعُ"
+    },
+    {
+     "usage": "الطَّرْق (الثالث: ضرب الصوف)",
+     "meaning": "ضرب الصُّوف بالقضيب، وذلك القضيب مِطْرَقة؛ وقد يفعل ذلك الكاهن فيَطرُق، أى يَخلِط القُطنَ بالصوف إذا تكهَّن، ويجعلون هذا مَثَلاً فيقولون: طَرَق وماشَ",
+     "meaning_english": "beating wool with a rod (the rod called 'mitraqa'); a soothsayer does this too — mixing cotton with wool while divining, hence the proverbial phrase 'he beat and mixed'",
+     "citation": ""
+    }
+   ],
+   "notes": "Page 1527 (printed page 450) text cuts off mid-citation ('قال:') at the bottom of the page; the poetry that follows is not visible in this batch."
+  },
+  {
+   "root": "طرق",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ق"
+   ],
+   "core_meaning": "",
+   "core_meaning_english": "",
+   "sarf_pattern": "",
+   "pdf_page_index": 1528,
+   "printed_page_number": "451",
+   "notes": "Continuation of the طرق entry from a prior page batch; the root's opening core-meaning statement is not present on this page. This page covers the (unlabeled, likely second) sense and the start of 'الأصل الثالث' (third sense: slackness/looseness).",
+   "variances": [
+    {
+     "usage": "طرَق الفحل الناقة طرقاً",
+     "meaning": "إذا ضربها",
+     "meaning_english": "the stud camel covered/mounted the she-camel",
+     "citation": ""
+    },
+    {
+     "usage": "طَروقة الفحل",
+     "meaning": "أنثاه",
+     "meaning_english": "the stud's designated female",
+     "citation": ""
+    },
+    {
+     "usage": "استطرقَ فلانٌ فلاناً فحلَه",
+     "meaning": "إذا طلبه منه ليضرب به في إبله، فأطرقه إياه",
+     "meaning_english": "so-and-so asked to borrow another's stud camel to breed his own camels, and it was lent to him",
+     "citation": ""
+    },
+    {
+     "usage": "هذه النَّبْل طِرْقةُ رجل واحد",
+     "meaning": "أى صِيغة رجل واحد",
+     "meaning_english": "these arrows are the making/fashioning of one man",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّرَق (الأصل الثالث: استرخاء الشيء)",
+     "meaning": "من ذلك الطَّرَق، وهو لِينٌ فى ريش الطائر",
+     "meaning_english": "third core sense: slackness/looseness of a thing; 'taraq' is a softness/limpness in a bird's feathers",
+     "citation": "قال الشاعر (poetry cited, text partly illegible/unclear)"
+    },
+    {
+     "usage": "أطرَقَ فلانٌ فى نظره",
+     "meaning": "والمُطرِق: المسترخى العين",
+     "meaning_english": "so-and-so lowered/drooped his gaze in looking; 'al-mutriq' is one whose eye droops/is slack",
+     "citation": "وما كنتُ أخشى أن تكون وفاتُه ... بكفَّى سَبَنْتَى أزرقِ العين مُطرِقِ"
+    },
+    {
+     "usage": "قال فى الإطراق",
+     "meaning": "context of a snake ('الشجاع') lowering its head before striking",
+     "meaning_english": "a snake ('the brave one'/serpent) lowering its head",
+     "citation": "فأطرَقَ إطراقَ الشُّجاع ولو يرى ... مَساغاً لَناباه الشُّجاعُ لصمَّما"
+    }
+   ]
+  },
+  {
+   "root": "طرق",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ق"
+   ],
+   "core_meaning": "",
+   "core_meaning_english": "",
+   "sarf_pattern": "",
+   "pdf_page_index": 1529,
+   "printed_page_number": "452",
+   "notes": "Continuation of the طرق entry. Contains the end of the third sense (الطريقة = softness/compliance), a note on 'الطرق' as crookedness/weakness of leg or knee, then 'الأصل الرابع' (fourth core sense: overlaying/patching one thing on another) with its derivatives, and the start of a discussion tying 'الطريق' (road) back to this same fourth sense, ending mid-poetry-citation by al-A'sha.",
+   "variances": [
+    {
+     "usage": "الطَّرِّيقة",
+     "meaning": "اللِّين والانقياد. يقولون فى المثل: «إنَّ تحت طِرِّيقته لَمِنْداوةً» أى إنَّ فى لِينه بعض العُسر أحياناً",
+     "meaning_english": "softness and compliance/docility; proverb: 'under his soft manner there is some dampness/hidden difficulty', i.e. his softness sometimes hides some hardship",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّرَق",
+     "meaning": "قال قوم: هذا اعوجاج فى الساق من غير فَحَج. وقال قوم: الطَّرَق: ضَعف فى الرُّكبتين",
+     "meaning_english": "some said it is a crookedness in the leg without bow-leggedness; others said it is a weakness in the knees",
+     "citation": ""
+    },
+    {
+     "usage": "نَعْل مُطارَقة (الأصل الرابع: خَصْف شىء على شىء)",
+     "meaning": "أى مخصوفة",
+     "meaning_english": "fourth core sense: patching/layering one thing onto another; a 'mutaraqa' sandal is one that is patched/layered",
+     "citation": ""
+    },
+    {
+     "usage": "خُفٌّ مُطارَق",
+     "meaning": "إذا كان قد ظَهَر له نَعْلان",
+     "meaning_english": "a boot that has had two soles layered onto it",
+     "citation": ""
+    },
+    {
+     "usage": "كل خَصْفة",
+     "meaning": "طِراق",
+     "meaning_english": "every patch/layer is called 'tiraq'",
+     "citation": ""
+    },
+    {
+     "usage": "تُرْس مُطرَّق",
+     "meaning": "إذا طُورِق بجلد على قَدْره",
+     "meaning_english": "a shield that has been covered/layered with leather cut to its size",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّرْق",
+     "meaning": "الشحم والقُوَّة، وسمِّى بذلك لأنه كأنه شىء خُصِف به. يقولون: ما به طِرْق، أى ما به قوَّة",
+     "meaning_english": "fat and strength; called so because it is as if something layered onto the body; 'he has no tirq' means 'he has no strength'",
+     "citation": "قال أبو محمد عبد الله بن مسلم: أصل الطَّرْق الشحم، لأن القوَّة أكثر ما تكون عنه"
+    },
+    {
+     "usage": "الطَّرَق",
+     "meaning": "مَناقِع المياه؛ سُمِّيت بذلك تشبيها بالشىء يتراكب بعضه على بعض، كذلك الماء إذا دام تراكب",
+     "meaning_english": "standing pools of collected water; named so by likening it to something layered upon itself, since water layers/accumulates when it stays still",
+     "citation": "قال رؤبة: للعِدِّ إذ أخلَفه ماءُ الطَّرَقْ"
+    },
+    {
+     "usage": "الطريق",
+     "meaning": "وذلك أنه شىء يعلو الأرض، فكأنَّها قد طُورِقت به وخُصِفت به",
+     "meaning_english": "'the road/path' — because it is a thing raised over the ground, as if the ground were layered/patched with it (linked back to the fourth sense, though earlier treated as possibly a separate origin)",
+     "citation": ""
+    },
+    {
+     "usage": "تطارقَت الإبل",
+     "meaning": "إذا جاءت يتبع بعضها بعضاً",
+     "meaning_english": "the camels came one following another (in file)",
+     "citation": ""
+    },
+    {
+     "usage": "الطريق",
+     "meaning": "النخل الذى على صفٍّ واحد، تشبيهاً بالطريق فى تتابُعه وعلوِّه الأرض",
+     "meaning_english": "palm trees standing in a single row, likened to the road for its succession/continuity and its rising over the ground",
+     "citation": "قال الأعشى (citation continues onto next page)"
+    }
+   ]
+  },
+  {
+   "root": "طرق",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ق"
+   ],
+   "core_meaning": "",
+   "core_meaning_english": "",
+   "sarf_pattern": "",
+   "pdf_page_index": 1530,
+   "printed_page_number": "453",
+   "notes": "Final continuation of the طرق entry before the new root طرم begins on the same page.",
+   "variances": [
+    {
+     "usage": "ومن كل أحوى كجذع الطريق يزين الفناء إذا ما صفن",
+     "meaning": "poetry completing the al-A'sha citation about palm trees likened to a road/row",
+     "meaning_english": "verse likening dark palm trunks in a row to a road, adorning the courtyard when standing still",
+     "citation": "قال الأعشى"
+    },
+    {
+     "usage": "ريش طِراق",
+     "meaning": "إذا كان تطارق بعضه فوق بعض",
+     "meaning_english": "feathers 'tiraq' when layered one atop another",
+     "citation": ""
+    },
+    {
+     "usage": "خرج القوم مَطاريقَ",
+     "meaning": "إذا جاءوا مُشاةً لا دوابَّ لهم، فكأنَّ كلَّ واحدٍ منهم يخصِف بأثر قدمَيه أثَرَ الذى تقدَّم",
+     "meaning_english": "the people went out 'mataariq' when they came on foot with no mounts, each stepping his footprint onto the one ahead of him",
+     "citation": ""
+    },
+    {
+     "usage": "جاءت الإبل على طَرَقة واحدة، وعلى خُفَّة واحد",
+     "meaning": "وهو الذى ذكرناه من أنها تخصِف بآثارها آثارَ غيرها",
+     "meaning_english": "the camels came in a single track/file, each layering its footprints on another's, as described above",
+     "citation": ""
+    },
+    {
+     "usage": "اختضبَت المرأة طَرْقَتين",
+     "meaning": "إذا أعادت الخِضاب، كأنها تخصِف بالثانى الأوَّل",
+     "meaning_english": "the woman applied henna-dye twice, as if layering the second application over the first",
+     "citation": ""
+    },
+    {
+     "usage": "طَرَّقَت المرأة (عند الولادة)",
+     "meaning": "كأنها جعلت للمولود طريقاً؛ لا يقال طَرَّقَت إلا إذا خرج الولد نصفُه ثم احتُبِس بعض الاحتباس ثم خرج. تقول: طَرَّقَت ثم خَلَصَت",
+     "meaning_english": "the woman had a difficult childbirth (as if making a path for the newborn); the word applies only when the child emerges halfway, is then delayed, then comes out fully; one says 'she taraqat then was delivered'",
+     "citation": ""
+    },
+    {
+     "usage": "طَرَّقَت القَطاة",
+     "meaning": "إذا عَسُر عليها بيضُها ففَحَصت الأرض بجُؤجُئها",
+     "meaning_english": "the sandgrouse 'tarraqat' when laying her egg is difficult for her, so she scrapes the ground with her breast",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طرم",
+   "root_letters": [
+    "ط",
+    "ر",
+    "م"
+   ],
+   "core_meaning": "الطاء والراء والميم أصلٌ صحيحٌ يدلُّ على تراكُم شىء على شىءٍ",
+   "core_meaning_english": "the letters ط ر م form a sound root indicating the piling/accumulation of one thing upon another",
+   "sarf_pattern": "",
+   "pdf_page_index": 1530,
+   "printed_page_number": "453",
+   "notes": "Last word of the final variance (السحاب الفليظ) is unclear in the scan — could be 'الفليظ' or a misprint/variant for 'الغليظ' (thick); recorded as printed.",
+   "variances": [
+    {
+     "usage": "الطُّرامة",
+     "meaning": "الخُضرة على الأسنان",
+     "meaning_english": "the greenish film/tartar on the teeth",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّرْم",
+     "meaning": "العسَل",
+     "meaning_english": "honey",
+     "citation": ""
+    },
+    {
+     "usage": "الطِّرْيَم",
+     "meaning": "السَّحاب الفَليظ (كذا)",
+     "meaning_english": "thick cloud",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "طرى",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ى"
+   ],
+   "core_meaning": "الطاء والراء والحرف المعتلّ أصيلٌ صحيحٌ يدلُّ على غضاضةٍ وجِدَّة",
+   "core_meaning_english": "freshness and newness",
+   "sarf_pattern": "",
+   "pdf_page_index": 1531,
+   "printed_page_number": "454",
+   "variances": [
+    {
+     "usage": "الطَّرِيّ",
+     "meaning": "الشيء الغَضّ",
+     "meaning_english": "the fresh/tender thing",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّرَاوة والطَّرَاءة",
+     "meaning": "مصدر الطَّرِيّ",
+     "meaning_english": "freshness (verbal noun)",
+     "citation": ""
+    },
+    {
+     "usage": "أطرَيْتُ فلاناً",
+     "meaning": "مدحته إذا أحسنَ ما فيه",
+     "meaning_english": "I praised so-and-so for what is good in him",
+     "citation": ""
+    },
+    {
+     "usage": "طَرَأَ فلانٌ (مهموز)",
+     "meaning": "إذا طلع",
+     "meaning_english": "he appeared/turned up suddenly; considered from the chapter of إبدال (letter substitution), though the root is truly درأ",
+     "citation": ""
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "طرب",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ب"
+   ],
+   "core_meaning": "الطاء والراء والباء أصيلٌ صحيح. يقولون: إنَّ الطَّرَب خِفّة تُصِيب الرَّجُلَ من شدّةِ سرورٍ أو غيره",
+   "core_meaning_english": "a lightness/exhilaration that befalls a man from intense joy or the like",
+   "sarf_pattern": "",
+   "pdf_page_index": 1531,
+   "printed_page_number": "454",
+   "variances": [
+    {
+     "usage": "قد طَرِبْتَ فقلتُ كلاً",
+     "meaning": "بيت شعر ينشد",
+     "meaning_english": "you became exhilarated, and I said no",
+     "citation": "وهل يبكي من الطَّرَب الجليدُ"
+    },
+    {
+     "usage": "طَرَبَ الوالِه",
+     "meaning": "بيت نابغة بني جعدة",
+     "meaning_english": "the love-stricken one's exhilaration",
+     "citation": "وأرانى طَرِباً فى إثرِهِمْ / طَرَبَ الوالِهِ أو كالمُخْتَبَلْ - نسبة بدون في اللسان (خبل) وقبله في (طرب)"
+    },
+    {
+     "usage": "طرَّب فى صوته",
+     "meaning": "إذا مدَّه، وهو من الأوّل",
+     "meaning_english": "he trilled/prolonged his voice, derived from the first meaning",
+     "citation": ""
+    },
+    {
+     "usage": "الكريم طَروبٌ",
+     "meaning": "وصف للكريم",
+     "meaning_english": "the generous man is exuberant/lively",
+     "citation": ""
+    },
+    {
+     "usage": "المَطَارِب",
+     "meaning": "طرقٌ ضيّقة متفرّقة",
+     "meaning_english": "narrow scattered paths, considered irregular (شاذّ) from this chapter, thought to be from باب الإبدال, as if derived from الدَّرْب",
+     "citation": ""
+    },
+    {
+     "usage": "الطُّرْضُبّ",
+     "meaning": "الثدى المسترخي",
+     "meaning_english": "the sagging/loose breast",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّرْطَبَة",
+     "meaning": "صوت الحالب بالمِعزَى، وكذلك كلمة أخرى وما أشبهه كلام (الكلمة المقتبسة غير واضحة فى المسح)",
+     "meaning_english": "the sound a milker makes to the goats, and a similar quoted word — that quoted word is not clearly legible in the scan — plus similar meaningless utterances",
+     "citation": ""
+    }
+   ],
+   "notes": "Corrected: usage was wrongly given as 'الطَّرَائِب / المَطَارِب' — the page only has المَطَارِب, الطرائب does not appear. The exact quoted onomatopoeic word before 'وما أشبهه كلام' is not clearly legible; prior extraction guessed 'فِعلٌ', which is uncertain — flagged rather than asserted."
+  },
+  {
+   "root": "طرث",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ث"
+   ],
+   "core_meaning": "الطاء والراء والثاء كلمةٌ صحيحة، وهى الطُّرْثُوث، وهى نبت",
+   "core_meaning_english": "the word الطُّرثوث, a type of plant",
+   "sarf_pattern": "",
+   "pdf_page_index": 1532,
+   "printed_page_number": "455",
+   "variances": [
+    {
+     "usage": "الطُّرْثُوث",
+     "meaning": "وهى نَبْت",
+     "meaning_english": "a plant",
+     "citation": ""
+    }
+   ],
+   "notes": "Very short entry, single-word root."
+  },
+  {
+   "root": "طرح",
+   "root_letters": [
+    "ط",
+    "ر",
+    "ح"
+   ],
+   "core_meaning": "الطاء والراء والحاء أصلٌ صحيح يدلُّ على نَبْذِ الشَّىء وإلقائه",
+   "core_meaning_english": "casting away and throwing down a thing",
+   "sarf_pattern": "",
+   "pdf_page_index": 1532,
+   "printed_page_number": "455",
+   "variances": [
+    {
+     "usage": "طَرَحَ الشَّىءَ يَطرَحُهُ طرحا",
+     "meaning": "نبذه وألقاه",
+     "meaning_english": "he cast/threw it away",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّرَح",
+     "meaning": "من ذلك، وهو المكان البعيد",
+     "meaning_english": "the far-off place",
+     "citation": ""
+    },
+    {
+     "usage": "طَرَّحَت النَّوَى بفلان كلَّ مَطرَح",
+     "meaning": "إذا نأت به وورمت به",
+     "meaning_english": "fate cast him to every far place, when it distanced and estranged him",
+     "citation": "ألمّا بىّ قبل أن تطرَحَ النَّوَى بنا مطرَحاً أو قبل بين يزيلُها"
+    },
+    {
+     "usage": "خُلٌ مِطرَحٌ",
+     "meaning": "بعيدُ موقع الماء فى الرَّحِم",
+     "meaning_english": "a companion who is aloof, like water's far-off place in the womb",
+     "citation": ""
+    },
+    {
+     "usage": "نخلة طَروح",
+     "meaning": "طويلة العراجين",
+     "meaning_english": "a palm tree with long branch-clusters",
+     "citation": ""
+    },
+    {
+     "usage": "سَنَامٌ إطريحٌ",
+     "meaning": "طويل",
+     "meaning_english": "a tall hump",
+     "citation": ""
+    },
+    {
+     "usage": "قوسٌ طَروح",
+     "meaning": "شديدة الحفز للسهم",
+     "meaning_english": "a bow that propels the arrow with great force",
+     "citation": ""
+    }
+   ],
+   "notes": "Corrected: prior extraction merged 'نخلة طروح: طويلة العراجين' and 'سنام إطريح: طويل' into a single variance entry with a garbled combined meaning field; the page has these as two distinct items and is split accordingly. القياس فى كله واحد stated at end of entry."
+  },
+  {
+   "root": "طرد",
+   "root_letters": [
+    "ط",
+    "ر",
+    "د"
+   ],
+   "core_meaning": "الطاء والراء والدال أصلٌ واحد يدلُّ على إبعاد",
+   "core_meaning_english": "driving/sending far away, expulsion",
+   "sarf_pattern": "",
+   "pdf_page_index": 1532,
+   "printed_page_number": "455",
+   "variances": [
+    {
+     "usage": "طَرَدتُه طرداً",
+     "meaning": "إبعاد الشيء",
+     "meaning_english": "I drove him away",
+     "citation": ""
+    },
+    {
+     "usage": "أطرَدَه السلطان وطَرَّدَه",
+     "meaning": "إذا أخرجه عن بلده",
+     "meaning_english": "the ruler banished him, expelled him from his country",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّرْد",
+     "meaning": "معالجة أخذ الصَّيد",
+     "meaning_english": "the practice of pursuing/taking game (hunting)",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّرِيدة",
+     "meaning": "الصَّيد",
+     "meaning_english": "the hunted quarry",
+     "citation": ""
+    },
+    {
+     "usage": "مُطارَدة الأقران",
+     "meaning": "حَملُ بعضهم على بعض، وقيل ذلك لأنَّ هذا يَطرُد ذاك",
+     "meaning_english": "combatants charging one another, so named because one drives off the other",
+     "citation": ""
+    },
+    {
+     "usage": "المِطرَد",
+     "meaning": "رمح صغير",
+     "meaning_english": "a small spear",
+     "citation": ""
+    },
+    {
+     "usage": "مَطرَدة",
+     "meaning": "يقال لحُجَّة الطَّريق",
+     "meaning_english": "said of a well-trodden/consistent path, used for a consistent argument",
+     "citation": ""
+    },
+    {
+     "usage": "اطَّرَدَ الشَّىء",
+     "meaning": "اطراداً إذا تابَعَ بعضُه بعضاً، وإنّما قيل ذلك تشبيهاً، كأنّ الأوّل يَطرُد الثانى",
+     "meaning_english": "the thing proceeded in continuous succession, as if the first drives the second",
+     "citation": "continues with a verse cited (ومنه قوله) that carries onto next page"
+    },
+    {
+     "usage": "مُطَّرَد النَّسيم",
+     "meaning": "الأنف؛ أنشدنا على بن إبراهيم القطّان عن ثعلب عن ابن الأعرابى",
+     "meaning_english": "the nose, so called for the continuous flow of breath",
+     "citation": "أتعرف رسماً كاطِّرادِ المذاهبِ لعمرةَ وحشاً غيَّرَ موقفَ راكب / وكأنّ مُطَّرَد النَّسيم إذا جَرَى بعد [الكلال] خليّتا زُنبورِ"
+    },
+    {
+     "usage": "اطَّرَدَ الأمرُ",
+     "meaning": "استقام. وكلُّ شىء امتدَّ فهذا قياسه",
+     "meaning_english": "the matter proceeded straight/consistently; anything that extends follows this pattern",
+     "citation": ""
+    },
+    {
+     "usage": "طَرَدُ سَوطَك",
+     "meaning": "مدُّه",
+     "meaning_english": "the extending/lengthening of your whip",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّريد",
+     "meaning": "الذى يُولَد بعد أخيه، فالثانى طريدُ الأوّل، وهذا تشبيه كأنّه طرده وتَبِعَه",
+     "meaning_english": "the child born right after his brother; the second is called the 'pursuer' of the first, by analogy as if he drove/followed him",
+     "citation": ""
+    },
+    {
+     "usage": "طريدٌ",
+     "meaning": "بمعنى طارد",
+     "meaning_english": "in the sense of one who pursues/drives away",
+     "citation": ""
+    }
+   ],
+   "notes": "Corrected: the 'طَريقٌ مَطرَدة / مَطرُودة' variance invented an unattested alternate form 'مَطرُودة' and inverted the phrase; the page only has 'يقال لحُجّة الطَّريق مَطرَدة'. Also folded 'وقيل ذلك لأنَّ هذا يَطرُد ذاك' back onto مُطارَدة الأقران (where it grammatically belongs) rather than المِطرَد, and removed that clause from المِطرَد. Entry spans pages 455-456 (pdf_page_index 1532-1533); poetry citation about مُطَّرَد النَّسيم completes on page 456 with bracketed reconstruction [الكلال] where a word was cut/obscured across the page break."
+  },
+  {
+   "root": "طست",
+   "root_letters": [
+    "ط",
+    "س",
+    "ت"
+   ],
+   "core_meaning": "الطاء والسين والتاء ليس بشىء إلا الطَّسْتُ، وهى معروفة",
+   "core_meaning_english": "not indicative of anything except the word الطَّسْت (basin), which is well known",
+   "sarf_pattern": "",
+   "pdf_page_index": 1533,
+   "printed_page_number": "456",
+   "variances": [
+    {
+     "usage": "الطَّسْت",
+     "meaning": "معروفة",
+     "meaning_english": "a wash-basin",
+     "citation": ""
+    }
+   ],
+   "notes": "Preceded on this page by two section-header notes (باب الطاء والزاء وما يثلثهما - a 'this chapter is narrow' note about الطَّزْع meaning a man with no jealousy for his family; and باب الطاء والسين وما يثلثهما), neither of which are root entries themselves, so not recorded as separate entries."
+  },
+  {
+   "root": "طسأ",
+   "root_letters": [
+    "ط",
+    "س",
+    "أ"
+   ],
+   "core_meaning": "الطاء والسين والهمزة كلمة واحدة",
+   "core_meaning_english": "one single word/usage",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَسِئَتْ نفسي فهي طَسِئَة",
+     "meaning": "غثت نفسه (يقال عند اضطراب النفس/الغثيان)",
+     "meaning_english": "his soul/stomach felt nauseous",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "457",
+   "pdf_page_index": 1534,
+   "notes": ""
+  },
+  {
+   "root": "طسل",
+   "root_letters": [
+    "ط",
+    "س",
+    "ل"
+   ],
+   "core_meaning": "الطاء والسين واللام فيه كلمات، ولعلها أن تكون صحيحة، غير أنها لا يقاس عليها",
+   "core_meaning_english": "contains several words which may be sound, but nothing can be analogized from them",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطَّسْل",
+     "meaning": "اضطراب السَّراب",
+     "meaning_english": "the shimmering/wavering of a mirage",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّيْسَل",
+     "meaning": "الكثير، يقال ماء طَيْسَل",
+     "meaning_english": "abundant, said of copious water",
+     "citation": ""
+    },
+    {
+     "usage": "الطَّيْسَل",
+     "meaning": "الغبار",
+     "meaning_english": "dust",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "457",
+   "pdf_page_index": 1534,
+   "notes": "footnote marker (443) after 'صحيحة' is a running editorial reference/footnote number in the margin, not part of the dictionary text"
+  },
+  {
+   "root": "طسم",
+   "root_letters": [
+    "ط",
+    "س",
+    "م"
+   ],
+   "core_meaning": "الطاء والسين والميم كلمة واحدة",
+   "core_meaning_english": "one single word/usage",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طَسَمَ",
+     "meaning": "مثل طَمَسَ",
+     "meaning_english": "like 'tamasa' (to efface/obliterate)",
+     "citation": ""
+    },
+    {
+     "usage": "طَيْسَم",
+     "meaning": "قبيلة من عاد",
+     "meaning_english": "a tribe descended from 'Aad",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "457",
+   "pdf_page_index": 1534,
+   "notes": ""
+  },
+  {
+   "root": "طرب",
+   "core_meaning": "القُطْرُب: دويبة تسمى نهارها دائباً، وهذا مما زيدت فيه القاف، والأصل الطَّرَب: خفة تصيب الإنسان في سَعْيِه، فسمي قُطرباً لخفته في سعيه",
+   "core_meaning_english": "lightness/agitation that afflicts a person in his exertion (levity, restlessness)",
+   "pdf_page_index": 2188,
+   "printed_page_number": "118",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "القُطْرُب",
+     "meaning": "دويبة تسمى نهارها دائباً؛ سمي قطرباً لخفته في سعيه",
+     "meaning_english": "a small creature said to be ceaselessly active by day; so named for its restless lightness of movement",
+     "citation": ""
+    },
+    {
+     "usage": "القُطْرُب (ويقولون)",
+     "meaning": "الجنون",
+     "meaning_english": "madness (a further sense some report)",
+     "citation": ""
+    },
+    {
+     "usage": "القُطْرُب",
+     "meaning": "الكلب الصغير",
+     "meaning_english": "a small dog",
+     "citation": ""
+    }
+   ],
+   "notes": "Appendix entry; extra ق added to root طرب. Text notes 'وقياسه واحد' (its analogical basis is one/uniform). Footnote (2) glosses القطرب in القاموس as a kind of ميلانخوليا (melancholia)."
+  }
+ ]
+}

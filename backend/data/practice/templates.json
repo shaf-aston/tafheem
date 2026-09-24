@@ -1,0 +1,38 @@
+{
+  "_comment": "The offline practice questions. Wording lives here so a teacher can change how a question is asked without touching code. {name} is filled in from the sentence's analysis.",
+
+  "max_questions": 4,
+
+  "_key_roles_comment": "Which role the second question prefers to ask about, the subject of a sentence is the most useful thing to name first. Written both ways because the rule engine may label either.",
+  "key_roles": ["فاعل", "مبتدأ", "fa'il", "mubtada"],
+
+  "_case_types_comment": "Only these word types carry a visible case ending worth asking about.",
+  "case_types": ["ism", "sifah", "damir"],
+
+  "questions": {
+    "sentence_type": {
+      "question": "What type of sentence is: «{sentence}»?",
+      "answer": "It is a {summary}.",
+      "answer_when_unknown": "Analyse the sentence type.",
+      "hint": "Look at the first word, is it a verb (fi'l) or a noun (ism)?"
+    },
+    "key_role": {
+      "question": "What is the grammatical role (إعراب) of «{word}»?",
+      "answer": "«{word}» is the {role}. {reason}",
+      "hint": "Its case is: {case}"
+    },
+    "case_sign": {
+      "question": "What is the case (حالة الإعراب) and its sign (علامة الإعراب) of «{word}»?",
+      "answer": "«{word}» is {case} with the sign: {sign}. {reason}",
+      "hint": "Think about which case ending it takes."
+    },
+    "full_iraab": {
+      "question": "Write the full I'raab (إعراب) of the sentence: «{sentence}» word by word.",
+      "answer": "{breakdown}",
+      "hint": "Work through the sentence word by word, naming each word's role and case."
+    }
+  },
+
+  "_missing_comment": "Printed wherever the analysis had nothing to put in a slot.",
+  "missing": "–"
+}

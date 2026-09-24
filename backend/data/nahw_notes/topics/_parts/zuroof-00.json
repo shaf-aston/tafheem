@@ -1,0 +1,687 @@
+{
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "heading",
+      "page": 0,
+      "ar": "{{term|إذْ (ظرفية)}} = {{ruling|اسم}}",
+      "en": "{{term|Idh (of time)}} = {{ruling|a noun}}"
+    },
+    {
+      "id": "p00-2",
+      "kind": "picture",
+      "page": 0,
+      "caption": "تركيب: اذْكُرُوا إذْ أَنْتُمْ قَلِيْلٌ (امر)، وإذْ يَرْفَعُ إبْرَاهِيمُ القَوَاعِدَ مِنَ البَيْتِ",
+      "caption_en": "Tarkeeb trees of two sentences with idh of time: udhkuroo idh antum qaleel (a command), and idh yarfa'u Ibraaheemu al-qawaa'ida mina al-bayt."
+    },
+    {
+      "id": "p00-3",
+      "kind": "example",
+      "page": 0,
+      "ar": "اذْكُرُوا إذْ أَنْتُمْ قَلِيْلٌ",
+      "en": "Remember when you were few.",
+      "labels": [
+        {
+          "word": "اذْكُرُوا",
+          "label": "فعل، فاعل (انتم)"
+        },
+        {
+          "word": "إذْ",
+          "label": "مضاف"
+        },
+        {
+          "word": "أَنْتُمْ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "قَلِيْلٌ",
+          "label": "خبر"
+        },
+        {
+          "word": "أَنْتُمْ قَلِيْلٌ",
+          "label": "JIK، مضاف اليه"
+        },
+        {
+          "word": "إذْ أَنْتُمْ قَلِيْلٌ",
+          "label": "ظرف / ق / مفعول فيه، منصوب"
+        },
+        {
+          "word": "اذْكُرُوا إذْ أَنْتُمْ قَلِيْلٌ",
+          "label": "JI (امر)"
+        }
+      ]
+    },
+    {
+      "id": "p00-4",
+      "kind": "example",
+      "page": 0,
+      "ar": "إذْ يَرْفَعُ إبْرَاهِيمُ القَوَاعِدَ مِنَ البَيْتِ",
+      "en": "When Ibraheem was raising the foundations of the House.",
+      "labels": [
+        {
+          "word": "إذْ",
+          "label": "مضاف"
+        },
+        {
+          "word": "يَرْفَعُ",
+          "label": "فعل"
+        },
+        {
+          "word": "إبْرَاهِيمُ",
+          "label": "فاعل"
+        },
+        {
+          "word": "القَوَاعِدَ",
+          "label": "موصوف (ذو الحال)"
+        },
+        {
+          "word": "مِنَ",
+          "label": "جار"
+        },
+        {
+          "word": "البَيْتِ",
+          "label": "مجرور"
+        },
+        {
+          "word": "مِنَ البَيْتِ",
+          "label": "ق الثابتة صفة / ق (ثابتة) حال"
+        },
+        {
+          "word": "القَوَاعِدَ مِنَ البَيْتِ",
+          "label": "مفعول به"
+        },
+        {
+          "word": "يَرْفَعُ إبْرَاهِيمُ القَوَاعِدَ مِنَ البَيْتِ",
+          "label": "JFK، مضاف اليه"
+        },
+        {
+          "word": "إذْ يَرْفَعُ إبْرَاهِيمُ القَوَاعِدَ مِنَ البَيْتِ",
+          "label": "ظرف / ق / مفعول فيه"
+        }
+      ]
+    },
+    {
+      "id": "p01-1",
+      "kind": "heading",
+      "page": 1,
+      "ar": "{{term|إذْ (الفجائية)}} = {{ruling|حرف}}",
+      "en": "{{term|Idh of surprise}} = {{ruling|a particle}}"
+    },
+    {
+      "id": "p01-2",
+      "kind": "example",
+      "page": 1,
+      "ar": "خَرَجْتُ إذْ المدِيْرُ نَاظِرٌ",
+      "en": "I went out, and suddenly the headmaster was watching.",
+      "labels": [
+        {
+          "word": "خَرَجْتُ",
+          "label": "فعل، فاعل، JFK"
+        },
+        {
+          "word": "إذْ",
+          "label": "فجائية"
+        },
+        {
+          "word": "المدِيْرُ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "نَاظِرٌ",
+          "label": "خبر"
+        },
+        {
+          "word": "المدِيْرُ نَاظِرٌ",
+          "label": "JIK"
+        }
+      ]
+    },
+    {
+      "id": "p01-3",
+      "kind": "heading",
+      "page": 1,
+      "ar": "{{term|إذْ (تعليلية)}} = {{ruling|حرف}}",
+      "en": "{{term|Idh of reason}} = {{ruling|a particle}}"
+    },
+    {
+      "id": "p01-4",
+      "kind": "example",
+      "page": 1,
+      "ar": "أَدَّبْتُهُ إذْ أَسَاء",
+      "en": "I disciplined him because he did wrong.",
+      "labels": [
+        {
+          "word": "أَدَّبْتُهُ",
+          "label": "فعل، فاعل، مفعول به"
+        },
+        {
+          "word": "إذْ",
+          "label": "(لِأَنَّ)"
+        },
+        {
+          "word": "أَسَاء",
+          "label": "فعل، فاعل (هو)، JFK"
+        },
+        {
+          "word": "إذْ أَسَاء",
+          "label": "IBTM: إسَاءتِه (م / م ا)، مجرور، ق (أَدَّبْتُ)"
+        },
+        {
+          "word": "أَدَّبْتُهُ إذْ أَسَاء",
+          "label": "JFK"
+        }
+      ]
+    },
+    {
+      "id": "p02-1",
+      "kind": "heading",
+      "page": 2,
+      "ar": "{{term|إذَا (ظرفية)}} = {{ruling|اسم}}",
+      "en": "{{term|Idhaa of time}} = {{ruling|a noun}}"
+    },
+    {
+      "id": "p02-2",
+      "kind": "example",
+      "page": 2,
+      "ar": "آتيك إذَا الشَّمْسُ طَالِعَةٌ",
+      "en": "I will come to you when the sun is rising.",
+      "labels": [
+        {
+          "word": "آتيك",
+          "label": "فعل، فاعل (انا)، مفعول به"
+        },
+        {
+          "word": "إذَا",
+          "label": "مضاف"
+        },
+        {
+          "word": "الشَّمْسُ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "طَالِعَةٌ",
+          "label": "خبر"
+        },
+        {
+          "word": "الشَّمْسُ طَالِعَةٌ",
+          "label": "JIK = مضاف اليه"
+        },
+        {
+          "word": "إذَا الشَّمْسُ طَالِعَةٌ",
+          "label": "ظرف / ق / مفعول فيه"
+        },
+        {
+          "word": "آتيك إذَا الشَّمْسُ طَالِعَةٌ",
+          "label": "JFK"
+        }
+      ]
+    },
+    {
+      "id": "p02-3",
+      "kind": "example",
+      "page": 2,
+      "ar": "آتيك إذَا طَلَعَتْ الشَّمْسُ",
+      "en": "I will come to you when the sun rises.",
+      "labels": [
+        {
+          "word": "آتيك",
+          "label": "فعل، فاعل (انا)، مفعول به"
+        },
+        {
+          "word": "إذَا",
+          "label": "مضاف"
+        },
+        {
+          "word": "طَلَعَتْ",
+          "label": "فعل"
+        },
+        {
+          "word": "الشَّمْسُ",
+          "label": "فاعل"
+        },
+        {
+          "word": "طَلَعَتْ الشَّمْسُ",
+          "label": "JFK = مضاف اليه"
+        },
+        {
+          "word": "إذَا طَلَعَتْ الشَّمْسُ",
+          "label": "ظرف / ق / مفعول فيه"
+        },
+        {
+          "word": "آتيك إذَا طَلَعَتْ الشَّمْسُ",
+          "label": "JFK"
+        }
+      ]
+    },
+    {
+      "id": "p03-1",
+      "kind": "heading",
+      "page": 3,
+      "ar": "{{term|إذَا (فجائية)}} = {{ruling|حرف}}",
+      "en": "{{term|Idhaa of surprise}} = {{ruling|a particle}}"
+    },
+    {
+      "id": "p03-2",
+      "kind": "example",
+      "page": 3,
+      "ar": "خَرَجْتُ فَإذَا الكَلْبُ وَاقِفٌ",
+      "en": "I went out, and suddenly the dog was standing there.",
+      "labels": [
+        {
+          "word": "خَرَجْتُ",
+          "label": "فعل، فاعل، JFK، معطوف عليه"
+        },
+        {
+          "word": "فَ",
+          "label": "HA"
+        },
+        {
+          "word": "إذَا",
+          "label": "حرف المفاجئة"
+        },
+        {
+          "word": "الكَلْبُ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "وَاقِفٌ",
+          "label": "خبر"
+        },
+        {
+          "word": "الكَلْبُ وَاقِفٌ",
+          "label": "JIK، معطوف"
+        }
+      ]
+    },
+    {
+      "id": "p03-3",
+      "kind": "example",
+      "page": 3,
+      "ar": "نُفِخَ فِي الصُّوْرِ فَإذَا هُمْ مِنَ الأَجْدَاثِ إلَى رَبِّهِمْ يَنْسِلُونَ",
+      "en": "The Trumpet is blown, and suddenly they are hastening from the graves to their Lord.",
+      "labels": [
+        {
+          "word": "نُفِخَ",
+          "label": "فعل"
+        },
+        {
+          "word": "فِي",
+          "label": "جار"
+        },
+        {
+          "word": "الصُّوْرِ",
+          "label": "مجرور"
+        },
+        {
+          "word": "فِي الصُّوْرِ",
+          "label": "ق (نائب الفاعل)"
+        },
+        {
+          "word": "نُفِخَ فِي الصُّوْرِ",
+          "label": "JFK، معطوف عليه"
+        },
+        {
+          "word": "فَ",
+          "label": "HA"
+        },
+        {
+          "word": "إذَا",
+          "label": "حرف المفاجئة"
+        },
+        {
+          "word": "هُمْ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "مِنَ",
+          "label": "جار"
+        },
+        {
+          "word": "الأَجْدَاثِ",
+          "label": "مجرور"
+        },
+        {
+          "word": "مِنَ الأَجْدَاثِ",
+          "label": "ق (يَنْسِلُونَ)"
+        },
+        {
+          "word": "إلَى",
+          "label": "جار"
+        },
+        {
+          "word": "رَبِّهِمْ",
+          "label": "م / م ا، مجرور"
+        },
+        {
+          "word": "إلَى رَبِّهِمْ",
+          "label": "ق يَنْسِلُونَ"
+        },
+        {
+          "word": "يَنْسِلُونَ",
+          "label": "فعل، فاعل (هم)"
+        },
+        {
+          "word": "مِنَ الأَجْدَاثِ إلَى رَبِّهِمْ يَنْسِلُونَ",
+          "label": "JFK = خبر"
+        },
+        {
+          "word": "هُمْ مِنَ الأَجْدَاثِ إلَى رَبِّهِمْ يَنْسِلُونَ",
+          "label": "JI، معطوف"
+        }
+      ]
+    },
+    {
+      "id": "p04-1",
+      "kind": "heading",
+      "page": 4,
+      "ar": "{{term|إذَا (شرطية)}} = {{ruling|اسم}}، {{term|المُتَضَمِّنُ بِمَعْنَى الشَّرْطِ}}",
+      "en": "{{term|Idhaa of condition}} = {{ruling|a noun}}, {{term|the one carrying the meaning of a condition}}"
+    },
+    {
+      "id": "p04-2",
+      "kind": "example",
+      "page": 4,
+      "ar": "إذَا طَلَعَتْ الشَّمْسُ أَذْهَبُ إلَى المَدْرَسَةِ",
+      "en": "When the sun rises, I go to school.",
+      "labels": [
+        {
+          "word": "إذَا",
+          "label": "(المتضمن بمعنى الشرط)، مضاف"
+        },
+        {
+          "word": "طَلَعَتْ",
+          "label": "فعل"
+        },
+        {
+          "word": "الشَّمْسُ",
+          "label": "فاعل"
+        },
+        {
+          "word": "طَلَعَتْ الشَّمْسُ",
+          "label": "JFK، مضاف اليه"
+        },
+        {
+          "word": "إذَا طَلَعَتْ الشَّمْسُ",
+          "label": "شرط"
+        },
+        {
+          "word": "أَذْهَبُ",
+          "label": "فعل، فاعل (انا)"
+        },
+        {
+          "word": "إلَى",
+          "label": "جار"
+        },
+        {
+          "word": "المَدْرَسَةِ",
+          "label": "مجرور"
+        },
+        {
+          "word": "إلَى المَدْرَسَةِ",
+          "label": "ق (اذهب)"
+        },
+        {
+          "word": "أَذْهَبُ إلَى المَدْرَسَةِ",
+          "label": "JFK، جزاء"
+        },
+        {
+          "word": "إذَا طَلَعَتْ الشَّمْسُ أَذْهَبُ إلَى المَدْرَسَةِ",
+          "label": "JS (جملة شرطية)"
+        }
+      ]
+    },
+    {
+      "id": "p04-3",
+      "kind": "table",
+      "page": 4,
+      "caption": "{{term|الأَدَوَاتُ الشَّرْطِ غَيْرُ الجَازِمَةِ}}",
+      "caption_en": "{{term|The non-jussive conditional tools}}",
+      "columns": [
+        "الأداة",
+        "النوع"
+      ],
+      "answer_col": 1,
+      "rows": [
+        [
+          "لَوْلَا",
+          "حرف"
+        ],
+        [
+          "لَوْمَا",
+          "حرف"
+        ],
+        [
+          "لَوْ",
+          "حرف"
+        ],
+        [
+          "أَمَّا",
+          "حرف"
+        ],
+        [
+          "لَمَّا",
+          "اسم"
+        ],
+        [
+          "كُلَّمَا",
+          "اسم"
+        ],
+        [
+          "إذَا",
+          "اسم"
+        ]
+      ]
+    },
+    {
+      "id": "p05-1",
+      "kind": "heading",
+      "page": 5,
+      "ar": "{{term|مَتَى (استفهامية)}} = {{ruling|اسم}}",
+      "en": "{{term|Mataa of question}} = {{ruling|a noun}}"
+    },
+    {
+      "id": "p05-2",
+      "kind": "example",
+      "page": 5,
+      "ar": "مَتَى تَذْهَبُ؟",
+      "en": "When are you going?",
+      "labels": [
+        {
+          "word": "مَتَى",
+          "label": "(اسم الاستفهام)، ظرف / ق / مفعول فيه"
+        },
+        {
+          "word": "تَذْهَبُ",
+          "label": "فعل، فاعل (انت)"
+        },
+        {
+          "word": "مَتَى تَذْهَبُ",
+          "label": "JI"
+        }
+      ]
+    },
+    {
+      "id": "p05-3",
+      "kind": "example",
+      "page": 5,
+      "ar": "مَتَى الِامتحان؟",
+      "en": "When is the exam?",
+      "labels": [
+        {
+          "word": "مَتَى",
+          "label": "(اسم الاستفهام)، ظرف / ق / مفعول فيه (ثابتٌ)، خبر مقدم"
+        },
+        {
+          "word": "الِامتحان",
+          "label": "مبتدأ مؤخر"
+        },
+        {
+          "word": "مَتَى الِامتحان",
+          "label": "JI"
+        }
+      ]
+    },
+    {
+      "id": "p05-4",
+      "kind": "heading",
+      "page": 5,
+      "ar": "({{term|مَتَى شَرطية}}) ← {{ruling|اسم}}",
+      "en": "({{term|Mataa of condition}}) → {{ruling|a noun}}"
+    },
+    {
+      "id": "p05-5",
+      "kind": "example",
+      "page": 5,
+      "ar": "مَتَى تَذْهَبْ أَذْهَبْ",
+      "en": "Whenever you go, I will go.",
+      "labels": [
+        {
+          "word": "مَتَى",
+          "label": "(اسم الشرط)، ظرف / ق / مفعول فيه"
+        },
+        {
+          "word": "تَذْهَبْ",
+          "label": "فعل، فاعل (انت)"
+        },
+        {
+          "word": "مَتَى تَذْهَبْ",
+          "label": "JFK، شرط"
+        },
+        {
+          "word": "أَذْهَبْ",
+          "label": "فعل، فاعل (انا)، JFK، جزاء"
+        },
+        {
+          "word": "مَتَى تَذْهَبْ أَذْهَبْ",
+          "label": "جملة شرطية"
+        }
+      ]
+    },
+    {
+      "id": "p06-1",
+      "kind": "heading",
+      "page": 6,
+      "ar": "{{term|يَوْمَئِذٍ / حِينَئِذٍ}}",
+      "en": "{{term|Yawma'idhin / heena'idhin}}"
+    },
+    {
+      "id": "p06-2",
+      "kind": "example",
+      "page": 6,
+      "ar": "سَتَدْخُلُونَ فِي قَاعَةِ الإمتحانِ. حِينَئِذٍ تَحْزَنُونَ.",
+      "en": "You will enter the exam hall. At that time you will be sad.",
+      "labels": [
+        {
+          "word": "حِينَ",
+          "label": "مضاف"
+        },
+        {
+          "word": "إذٍ",
+          "label": "مضاف اليه"
+        },
+        {
+          "word": "حِينَئِذٍ",
+          "label": "ظرف / ق / مفعول فيه"
+        },
+        {
+          "word": "تَحْزَنُونَ",
+          "label": "فعل، فاعل (انتم)"
+        },
+        {
+          "word": "حِينَئِذٍ تَحْزَنُونَ",
+          "label": "JFK"
+        }
+      ]
+    },
+    {
+      "id": "p06-3",
+      "kind": "rule",
+      "page": 6,
+      "ar": "حِينَئِذٍ = (حِين إذْ ({{condition|يَقَعُ المذكورُ}}))",
+      "en": "Heena'idhin = (at the time when ({{condition|the previously mentioned occurs}}))"
+    },
+    {
+      "id": "p06-4",
+      "kind": "rule",
+      "page": 6,
+      "ar": "{{term|تَنْوِينُ العِوَضِ}} = ◌ٍ",
+      "en": "{{term|Compensating tanween}} = the tanween mark"
+    },
+    {
+      "id": "p06-5",
+      "kind": "example",
+      "page": 6,
+      "ar": "حِينَئِذٍ تَحْزَنُونَ",
+      "en": "At that time you will be sad.",
+      "labels": [
+        {
+          "word": "حِينَ",
+          "label": "مضاف"
+        },
+        {
+          "word": "إذٍ",
+          "label": "مضاف"
+        },
+        {
+          "word": "(يَقَعُ المذكورُ)",
+          "label": "فعل، فاعل، JFK، مضاف اليه"
+        },
+        {
+          "word": "إذٍ (يَقَعُ المذكورُ)",
+          "label": "مضاف اليه"
+        },
+        {
+          "word": "حِينَئِذٍ",
+          "label": "ظرف / ق / مفعول فيه"
+        },
+        {
+          "word": "تَحْزَنُونَ",
+          "label": "فعل، فاعل"
+        },
+        {
+          "word": "حِينَئِذٍ تَحْزَنُونَ",
+          "label": "JFK"
+        }
+      ]
+    },
+    {
+      "id": "p07-1",
+      "kind": "list",
+      "page": 7,
+      "ar": "{{term|تنوين العوض}}",
+      "en": "Compensating tanween: compensating for a letter, and compensating for a word.",
+      "items": [
+        "compen a letter: قاضِيْ = قاضٍ = {{ruling|ي}} (مشطوبة) = ◌ٍ",
+        "compen a word: كُلُّ طالِبٍ = كُلٌّ = {{ruling|مضاف اليه}} = ◌ٌ"
+      ]
+    },
+    {
+      "id": "p07-2",
+      "kind": "heading",
+      "page": 7,
+      "ar": "{{term|كيف}}",
+      "en": "{{term|Kayfa}}"
+    },
+    {
+      "id": "p07-3",
+      "kind": "example",
+      "page": 7,
+      "ar": "كَيْفَ دَرْسُك؟",
+      "en": "How is your lesson? (kayfa after an ism)",
+      "labels": [
+        {
+          "word": "كَيْفَ",
+          "label": "(اسم after كيف)، خبر مقدم، ق (ثابتٌ) خبر مقدم"
+        },
+        {
+          "word": "دَرْسُك",
+          "label": "م / م ا، مبتدأ مؤخر"
+        },
+        {
+          "word": "كَيْفَ دَرْسُك",
+          "label": "JI"
+        }
+      ]
+    }
+  ]
+}

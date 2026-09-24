@@ -1,0 +1,345 @@
+{
+  "_comment": "What each grammar tag means. Arabic wording is the corpus maintainers' own (morphology-terms-ar.json); the English is plain wording for a learner. A tag means different things for different word types, which is why these are separate groups rather than one flat list.",
+  "types": {
+    "N": {
+      "ar": "اسم",
+      "en": "noun"
+    },
+    "PN": {
+      "ar": "علم",
+      "en": "proper noun"
+    },
+    "PRON": {
+      "ar": "ضمير",
+      "en": "pronoun"
+    },
+    "DEM": {
+      "ar": "اسم اشارة",
+      "en": "demonstrative"
+    },
+    "REL": {
+      "ar": "اسم موصول",
+      "en": "relative pronoun"
+    },
+    "T": {
+      "ar": "ظرف زمان",
+      "en": "time word"
+    },
+    "LOC": {
+      "ar": "ظرف مكان",
+      "en": "place word"
+    },
+    "V": {
+      "ar": "فعل",
+      "en": "verb"
+    },
+    "NV": {
+      "ar": "اسم فعل",
+      "en": "noun used as a verb"
+    },
+    "COND": {
+      "ar": "شرطية",
+      "en": "conditional"
+    },
+    "INTG": {
+      "ar": "استفهامية",
+      "en": "question word"
+    }
+  },
+  "particles": {
+    "P": {
+      "ar": "حرف جر",
+      "en": "preposition"
+    },
+    "EMPH": {
+      "ar": "لام التوكيد",
+      "en": "emphasis laam"
+    },
+    "IMPV": {
+      "ar": "لام الامر",
+      "en": "command laam"
+    },
+    "PRP": {
+      "ar": "لام التعليل",
+      "en": "purpose laam"
+    },
+    "CONJ": {
+      "ar": "حرف عطف",
+      "en": "joining word"
+    },
+    "SUB": {
+      "ar": "حرف مصدري",
+      "en": "subordinating particle"
+    },
+    "ACC": {
+      "ar": "حرف نصب",
+      "en": "accusative particle"
+    },
+    "AMD": {
+      "ar": "حرف استدراك",
+      "en": "correcting particle"
+    },
+    "ANS": {
+      "ar": "حرف جواب",
+      "en": "answer particle"
+    },
+    "AVR": {
+      "ar": "حرف ردع",
+      "en": "rebuke particle"
+    },
+    "CAUS": {
+      "ar": "حرف سببية",
+      "en": "cause particle"
+    },
+    "CERT": {
+      "ar": "حرف تحقيق",
+      "en": "certainty particle"
+    },
+    "CIRC": {
+      "ar": "حرف حال",
+      "en": "circumstance particle"
+    },
+    "COM": {
+      "ar": "واو المعية",
+      "en": "accompanying waw"
+    },
+    "EQ": {
+      "ar": "حرف تسوية",
+      "en": "equalising particle"
+    },
+    "EXH": {
+      "ar": "حرف تحضيض",
+      "en": "urging particle"
+    },
+    "EXL": {
+      "ar": "حرف تفصيل",
+      "en": "detailing particle"
+    },
+    "EXP": {
+      "ar": "أداة استثناء",
+      "en": "exception word"
+    },
+    "FUT": {
+      "ar": "حرف استقبال",
+      "en": "future particle"
+    },
+    "INC": {
+      "ar": "حرف ابتداء",
+      "en": "opening particle"
+    },
+    "INT": {
+      "ar": "حرف تفسير",
+      "en": "explaining particle"
+    },
+    "NEG": {
+      "ar": "حرف نفي",
+      "en": "negation"
+    },
+    "PREV": {
+      "ar": "حرف كاف",
+      "en": "blocking particle"
+    },
+    "PRO": {
+      "ar": "حرف نهي",
+      "en": "prohibition"
+    },
+    "REM": {
+      "ar": "حرف استئنافية",
+      "en": "new-sentence waw"
+    },
+    "RES": {
+      "ar": "أداة حصر",
+      "en": "restriction word"
+    },
+    "RET": {
+      "ar": "حرف اضراب",
+      "en": "correction particle"
+    },
+    "RSLT": {
+      "ar": "حرف واقع في جواب الشرط",
+      "en": "answer-of-condition laam"
+    },
+    "SUP": {
+      "ar": "حرف زائد",
+      "en": "extra particle"
+    },
+    "SUR": {
+      "ar": "حرف فجاءة",
+      "en": "particle of surprise"
+    },
+    "VOC": {
+      "ar": "حرف نداء",
+      "en": "calling particle"
+    },
+    "ATT": {
+      "ar": "حرف تنبيه",
+      "en": "attention particle"
+    },
+    "DIST": {
+      "ar": "لام البعد",
+      "en": "far-pointing laam"
+    },
+    "ADDR": {
+      "ar": "حرف خطاب",
+      "en": "addressing kaaf"
+    },
+    "INL": {
+      "ar": "حروف مقطعة",
+      "en": "disconnected letters"
+    }
+  },
+  "noun_forms": {
+    "ACT_PCPL": {
+      "ar": "اسم فاعل",
+      "en": "doer noun"
+    },
+    "PASS_PCPL": {
+      "ar": "اسم مفعول",
+      "en": "done-to noun"
+    },
+    "VN": {
+      "ar": "مصدر",
+      "en": "verbal noun"
+    }
+  },
+  "case": {
+    "NOM": {
+      "ar": "مرفوع",
+      "en": "nominative"
+    },
+    "ACC": {
+      "ar": "منصوب",
+      "en": "accusative"
+    },
+    "GEN": {
+      "ar": "مجرور",
+      "en": "genitive"
+    }
+  },
+  "attrs": {
+    "ADJ": {
+      "ar": "نعت",
+      "en": "describing word"
+    },
+    "INDEF": {
+      "ar": "نكرة",
+      "en": "indefinite"
+    },
+    "PASS": {
+      "ar": "لم يسمّ فاعله",
+      "en": "passive"
+    }
+  },
+  "tense": {
+    "PERF": {
+      "ar": "ماض",
+      "en": "past"
+    },
+    "IMPF": {
+      "ar": "مضارع",
+      "en": "present"
+    },
+    "IMPV": {
+      "ar": "أمر",
+      "en": "command"
+    }
+  },
+  "mood": {
+    "IND": {
+      "ar": "مرفوع",
+      "en": "indicative"
+    },
+    "SUBJ": {
+      "ar": "منصوب",
+      "en": "subjunctive"
+    },
+    "JUS": {
+      "ar": "مجزوم",
+      "en": "jussive"
+    }
+  },
+  "person_gender_number": {
+    "1": {
+      "ar": "متكلم",
+      "en": "I / we"
+    },
+    "2": {
+      "ar": "مخاطب",
+      "en": "you"
+    },
+    "3": {
+      "ar": "غائب",
+      "en": "he / she / they"
+    },
+    "M": {
+      "ar": "مذكر",
+      "en": "masculine"
+    },
+    "F": {
+      "ar": "مؤنث",
+      "en": "feminine"
+    },
+    "S": {
+      "ar": "مفرد",
+      "en": "singular"
+    },
+    "D": {
+      "ar": "مثنى",
+      "en": "dual"
+    },
+    "P": {
+      "ar": "جمع",
+      "en": "plural"
+    }
+  },
+  "structure": {
+    "PREFIX": {
+      "ar": "بادئة",
+      "en": "prefix"
+    },
+    "SUFFIX": {
+      "ar": "لاحقة",
+      "en": "suffix"
+    },
+    "DET": {
+      "ar": "ال",
+      "en": "the"
+    }
+  },
+  "families": {
+    "إِنّ": {
+      "ar": "حروف ناسخة",
+      "en": "inna and its sisters"
+    },
+    "كان": {
+      "ar": "أفعال ناقصة",
+      "en": "kaana and its sisters"
+    },
+    "كاد": {
+      "ar": "أفعال المقاربة والرجاء والشروع",
+      "en": "kaada and its sisters"
+    }
+  },
+  "verb_patterns": {
+    "_comment": "Baab of the verb. VF:1 is the first of these, VF:2 the second, and so on.",
+    "three_letter": [
+      "فَعَلَ",
+      "فَعَّلَ",
+      "فاعَلَ",
+      "أَفْعَلَ",
+      "تَفَعَّلَ",
+      "تَفاعَلَ",
+      "انْفَعَلَ",
+      "افْتَعَلَ",
+      "افْعَلَّ",
+      "اسْتَفْعَلَ",
+      "افْعالَّ"
+    ],
+    "four_letter": [
+      "فَعْلَلَ",
+      "تَفَعْلَلَ",
+      "افْعَنْلَلَ",
+      "افْعَلَلَّ"
+    ]
+  }
+}

@@ -1,0 +1,269 @@
+{
+ "batch": "haal-lettered-02",
+ "questions": [
+  {
+   "id": "haal/application/4",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q4",
+    "number": "4",
+    "images": [
+     "q035.png",
+     "q036.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": null,
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "دَخلتُ المسجدَ والصلاةُ قائمةٌ",
+     "marked": [
+      {
+       "text": "والصلاةُ قائمةٌ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "المسجدَ",
+       "mark": "green underline"
+      }
+     ],
+     "en": "I entered the masjid whilst the salaah had begun."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Classify the blue-underlined clause: is it حال? If so, tick which واو ruling (وجوب الواو | جواز الواو | منع الواو) applies to the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "والصلاة..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "والصلاة...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "والصلاة...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "answer": "The \"entering of the masjid\" was done whilst \"salah had started\" so that becomes haal - and since it's a jumla ismiyah without a dhameer raabit, it requires a waaw haaliyah.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "The \"entering of the masjid\" was done whilst \"salah had started\" so that becomes haal - and since it's a jumla ismiyah without a dhameer raabit, it requires a waaw haaliyah."
+    }
+   ],
+   "flags": [
+    "No instructions paragraph appears anywhere for this unit; q034.png (the listed 'instructions' picture) is only the blue section-title bar with the score, so 'instructions' is left null rather than copying the recurring paragraph seen in units 5 and 6."
+   ]
+  },
+  {
+   "id": "haal/application/5",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q5",
+    "number": "5",
+    "images": [
+     "q038.png",
+     "q039.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال.\nIf it's not حال, choose ليست حالا and move on.\nIf it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "إِذَا قَامُوا إِلَى الصَّلَاةِ قَامُوا كُسَالَى يُرَاءُونَ النَّاسَ",
+     "marked": [
+      {
+       "text": "كُسَالَى",
+       "mark": "blue underline"
+      },
+      {
+       "text": "يُرَاءُونَ النَّاسَ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "قَامُوا",
+       "mark": "green underline"
+      }
+     ],
+     "en": "When they stand up to pray, they do so sluggishly, showing off in front of people."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each blue-underlined item, tick whether it is حال and, if so, which واو ruling applies.",
+     "kind": "grid",
+     "rows": [
+      "كسالى",
+      "يراءون..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "كسالى": [
+       "حال",
+       "منع الواو"
+      ],
+      "يراءون...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "كسالى": [
+       "حال",
+       "منع الواو"
+      ],
+      "يراءون...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "points": "2/2",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "answer": "The first one, كسالى, is haal and because it's a ism mushtaqq, it doesn't require a waaw haaliya.\nThe second is a jumla which is a فعل مضارع مثبت without قد so will not have a waaw",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "The first one, كسالى, is haal and because it's a ism mushtaqq, it doesn't require a waaw haaliya.\nThe second is a jumla which is a فعل مضارع مثبت without قد so will not have a waaw"
+    }
+   ],
+   "flags": [
+    "The exact word carrying the green (potential dhu-al-haal) underline could not be pinned down with full certainty from the image; it is given here as the second قَامُوا (the implied 'they' both haal phrases describe), the best-fitting reading, not a directly confirmed pixel-level match."
+   ]
+  },
+  {
+   "id": "haal/application/6",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q6",
+    "number": "6",
+    "images": [
+     "q041.png",
+     "q042.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال.\nIf it's not حال, choose ليست حالا and move on.\nIf it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "رَأيتُ مَنْ في المسجد مصلِّياً أو هُوَ جَالِسٌ",
+     "marked": [
+      {
+       "text": "مصلِّياً",
+       "mark": "blue underline"
+      },
+      {
+       "text": "هُوَ جَالِسٌ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "مَنْ",
+       "mark": "green underline"
+      }
+     ],
+     "en": "I saw the one who was in the masjid whilst praying or sitting."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each blue-underlined item, tick whether it is حال and, if so, which واو ruling applies.",
+     "kind": "grid",
+     "rows": [
+      "مصليا",
+      "هو..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "مصليا": [
+       "حال",
+       "منع الواو"
+      ],
+      "هو...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "مصليا": [
+       "حال",
+       "منع الواو"
+      ],
+      "هو...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "points": "2/2",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "answer": "\"The one who was in the masjid\" was either \"praying\" or \"sitting\".\nHere, both are haal. The \"sitting\" does not take a waaw haaliyyah because it is mufrad and not a jumla, and the part after وl also does not require a waaw haaliyah because it is a jumla ismiyah beginning with the dhameer rabit and is ataf to a haal preceding it.",
+     "answer_source": "feedback",
+     "my_response": ".aw ataf",
+     "points": null,
+     "feedback": "\"The one who was in the masjid\" was either \"praying\" or \"sitting\".\nHere, both are haal. The \"sitting\" does not take a waaw haaliyyah because it is mufrad and not a jumla, and the part after وl also does not require a waaw haaliyah because it is a jumla ismiyah beginning with the dhameer rabit and is ataf to a haal preceding it."
+    }
+   ],
+   "flags": []
+  }
+ ]
+}

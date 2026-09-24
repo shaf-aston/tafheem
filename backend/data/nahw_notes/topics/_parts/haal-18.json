@@ -1,0 +1,599 @@
+{
+  "blocks": [
+    {
+      "id": "p18-1",
+      "kind": "heading",
+      "page": 18,
+      "ar": "الحال: الواو الحالية",
+      "en": "Al-haal: the haaliyah waw"
+    },
+    {
+      "id": "p18-2",
+      "kind": "rule",
+      "page": 18,
+      "ar": "",
+      "en": "Below are the places where the 'الواو الحالية' {{ruling|must NOT be present}}. Since the 'الواو الحالية' is prevented, the 'رابط' {{ruling|MUST be present}} in ALL of the scenarios below."
+    },
+    {
+      "id": "p18-3",
+      "kind": "table",
+      "page": 18,
+      "caption": "المواضع التي يُمنَع فيها الإتيان بالواو الحالية",
+      "caption_en": "Places where the haaliyah waw must not be present",
+      "columns": [
+        "",
+        "المواضع",
+        "و",
+        "أمثلة"
+      ],
+      "answer_col": 1,
+      "rows": [
+        [
+          "1",
+          "{{condition|جملة إسمية معطوفة على حالٍ قبلَها}}",
+          "✘",
+          "جاء زيدٌ ماشيًا أو هُو راكبٌ"
+        ],
+        [
+          "2",
+          "{{condition|جملة إسمية مؤكِّدةٌ لِمَا وقعَ قبلَها}}",
+          "✘",
+          "هو الحقُّ لا شَكَّ فيه"
+        ],
+        [
+          "3",
+          "جملة إسمية غيرُ المصدّرةِ بالضمير الرابط {{condition|بعدَ إلَّا}}",
+          "✘",
+          "مَا لقيتُ أحدًا إلَّا زيدٌ خيرٌ منه"
+        ],
+        [
+          "4",
+          "الفعل الماضي {{condition|بعد إلَّا}}",
+          "✘",
+          "مَا جاء زيدٌ إلَّا رَكِبَ"
+        ],
+        [
+          "5",
+          "الفعل الماضي {{condition|المتلوُّ بـ أو}}",
+          "✘",
+          "لَأضربَنَّ زَيْدًا ذَهبَ أَوْ مكث"
+        ],
+        [
+          "6",
+          "الفعل المضارع المثبت {{condition|بغير قد}}",
+          "✘",
+          "جاء زيدٌ يقرأُ القرآنَ"
+        ],
+        [
+          "7",
+          "الفعل المضارع {{condition|المنفي بـ لا}}",
+          "✘",
+          "يقرأ زيدٌ الكتابَ لا يفهَمُ"
+        ],
+        [
+          "8",
+          "الفعل المضارع {{condition|المنفي بـ ما}}",
+          "✘",
+          "لقيتُكَ ما تمْرَضُ"
+        ]
+      ]
+    },
+    {
+      "id": "p19-1",
+      "kind": "rule",
+      "page": 19,
+      "ar": "",
+      "en": "Below are the places where the 'الواو الحالية' is {{ruling|optional}}. Since the 'الواو الحالية' is optional, the 'رابط' {{ruling|MUST be present}} in ALL of the scenarios below."
+    },
+    {
+      "id": "p19-2",
+      "kind": "table",
+      "page": 19,
+      "caption": "المواضع التي جاز فيها الإتيان بالواو الحالية",
+      "caption_en": "Places where the haaliyah waw is optional (marked ÷ on the page)",
+      "columns": [
+        "",
+        "المواضع",
+        "و",
+        "أمثلة"
+      ],
+      "answer_col": 1,
+      "rows": [
+        [
+          "1",
+          "جملةٌ إسميةٌ {{condition|بالضميرِ الرابطِ}} و غيرُ المصدّرة به",
+          "÷",
+          "قَرَأَ زيدٌ كِتَابُهُ مفتوحٌ / وَ كِتَابُهُ مَفتوحٌ"
+        ],
+        [
+          "2",
+          "الفعل الماضي المثبت {{condition|بالضمير الرابط}}",
+          "÷",
+          "يُصلِّيْ زيدٌ قَدْ تَوَضَّأَ / وَ قَدْ تَوَضَّأَ"
+        ],
+        [
+          "3",
+          "الفعل الماضي المنفي {{condition|بالضمير الرابط}}",
+          "÷",
+          "رَجَعَ خَالِدٌ ما فعل شيأً / و ما فعل شيأً"
+        ],
+        [
+          "4",
+          "الفعل المضارع {{condition|المنفي بـ لَم}}، بالضمير الرابط",
+          "÷",
+          "يُصلِّي زَيدٌ لَمْ يَتَوَضَّأْ / وَ لَمْ يَتَوَضَّأْ"
+        ],
+        [
+          "5",
+          "الفعلُ المضارعُ بالضمير الرابط {{condition|المصدَّرُ بمعمولِه}}",
+          "÷",
+          "جَاءَ زيدٌ القرآنَ يسمعُ / و القرآنَ يَسْمَعُ"
+        ]
+      ],
+      "note_ar": "",
+      "note_en": "And {{ruling|any other scenario}} not found in the above 2 tables will fall into this 'optional table'."
+    },
+    {
+      "id": "p20-1",
+      "kind": "heading",
+      "page": 20,
+      "ar": "الحال",
+      "en": "Time Synchronisation"
+    },
+    {
+      "id": "p20-2",
+      "kind": "rule",
+      "page": 20,
+      "ar": "",
+      "en": "Taking time synchronisation into consideration, the general principle of 'الحال' is to {{ruling|synchronise in time with the primary action}} mentioned the sentence."
+    },
+    {
+      "id": "p20-3",
+      "kind": "rule",
+      "page": 20,
+      "ar": "",
+      "en": "When the 'الحال' is a 'اسم' ('مشتق', 'مصدر', 'جامد'), a 'شبه الجملة', a 'جملة فعلية' (with a 'مضارع' verb) or a 'جملة اسمية', then, {{condition|in the absence of an external factor indicating future tense}}, the 'الحال' will {{ruling|synchronise in time with the primary action}}."
+    },
+    {
+      "id": "p20-4",
+      "kind": "rule",
+      "page": 20,
+      "ar": "",
+      "en": "This is because, all of the above can be used to express the {{ruling|present tense}}."
+    },
+    {
+      "id": "p20-5",
+      "kind": "rule",
+      "page": 20,
+      "ar": "",
+      "en": "When using a 'الحال' which signifies the present tense, it will signify {{ruling|the present tense of the primary action}}."
+    },
+    {
+      "id": "p20-6",
+      "kind": "rule",
+      "page": 20,
+      "ar": "",
+      "en": "If {{condition|the primary action is in the past tense and the 'الحال' is a 'مضارع' verb}} for instance, then the 'مضارع' verb will express {{ruling|the present tense of the past tense of the primary action}}."
+    },
+    {
+      "id": "p20-7",
+      "kind": "rule",
+      "page": 20,
+      "ar": "",
+      "en": "Lets look at a few examples to understand this better."
+    },
+    {
+      "id": "p21-1",
+      "kind": "heading",
+      "page": 21,
+      "ar": "الحال",
+      "en": "Time Synchronisation: Examples"
+    },
+    {
+      "id": "p21-2",
+      "kind": "example",
+      "page": 21,
+      "ar": "S1a: {{example|قَرَأْتُ الْقُرْآنَ مُتَوَضِّأً}}",
+      "en": "I recited the Qur'an whilst in the state of wudhu",
+      "labels": [
+        {
+          "word": "قَرَأْتُ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "مُتَوَضِّأً",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p21-3",
+      "kind": "example",
+      "page": 21,
+      "ar": "S1b: {{example|أَقْرَأُ الْقُرْآنَ مُتَوَضِّأً}}",
+      "en": "I am reciting/will recite the Qur'an whilst in the state of wudhu.",
+      "labels": [
+        {
+          "word": "أَقْرَأُ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "مُتَوَضِّأً",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p21-4",
+      "kind": "example",
+      "page": 21,
+      "ar": "S2a: {{example|أَكَلَ زَيْدٌ في بيته}}",
+      "en": "Zaid ate whilst in the state of being at home",
+      "labels": [
+        {
+          "word": "أَكَلَ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "في بيته",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p21-5",
+      "kind": "example",
+      "page": 21,
+      "ar": "S2b: {{example|يَأْكَلُ زَيْدٌ في بيتهِ}}",
+      "en": "Zaid is eating/will eat whilst in the state of being at home",
+      "labels": [
+        {
+          "word": "يَأْكَلُ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "في بيتهِ",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p21-6",
+      "kind": "example",
+      "page": 21,
+      "ar": "S3a: {{example|سَافَرَ بَكْرٌ يَقُوْمُ}}",
+      "en": "Bakr travelled whilst he was standing",
+      "labels": [
+        {
+          "word": "سَافَرَ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "يَقُوْمُ",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p21-7",
+      "kind": "example",
+      "page": 21,
+      "ar": "S3b: {{example|يُسَافِرُ بَكْرٌ يَقُوْمُ}}",
+      "en": "Bakr is travelling/will travel whilst he is/will be standing",
+      "labels": [
+        {
+          "word": "يُسَافِرُ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "يَقُوْمُ",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p21-8",
+      "kind": "example",
+      "page": 21,
+      "ar": "S4a: {{example|أَتَيْتُ وَالشَّمسُ طَالِعةٌ}}",
+      "en": "I came whilst the sun was rising",
+      "labels": [
+        {
+          "word": "أَتَيْتُ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "وَالشَّمسُ طَالِعةٌ",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p21-9",
+      "kind": "example",
+      "page": 21,
+      "ar": "S4b: {{example|آتِيْ وَالشَّمسُ طَالِعةٌ}}",
+      "en": "I am coming/will come whilst the sun is/will be rising",
+      "labels": [
+        {
+          "word": "آتِيْ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "وَالشَّمسُ طَالِعةٌ",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p22-1",
+      "kind": "rule",
+      "page": 22,
+      "ar": "",
+      "en": "{{condition|If the 'الحال' is in the past tense}}, then the past tense 'الحال' will signify upon {{ruling|the past tense of the primary action}} whether that action is in the past, present or future tense."
+    },
+    {
+      "id": "p22-2",
+      "kind": "example",
+      "page": 22,
+      "ar": "S5a: {{example|سَافَرَ بَكْرٌ قَدْ أَكَلَ}}",
+      "en": "Bakr travelled whilst he had just eaten.",
+      "labels": [
+        {
+          "word": "سَافَرَ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "قَدْ أَكَلَ",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p22-3",
+      "kind": "example",
+      "page": 22,
+      "ar": "S5b: {{example|يُسَافِرُ بَكْرٌ قَدْ أَكَلَ}}",
+      "en": "Bakr is/will travel whilst he has/will just have eaten",
+      "labels": [
+        {
+          "word": "يُسَافِرُ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "قَدْ أَكَلَ",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p22-4",
+      "kind": "picture",
+      "page": 22,
+      "caption": "يُسَافر بَكْرٌ: يَأْكُلُ / قَدْ أَكَلَ",
+      "caption_en": "Timeline under يُسَافر بَكْرٌ with three bands: Future Tense of the Action (empty), Action Tense (يَأْكُلُ, whilst eating.), Past Tense of the Action (أَكَلَ crossed ✘, قَدْ ticked ✓: whilst he had just eaten.)"
+    },
+    {
+      "id": "p22-5",
+      "kind": "rule",
+      "page": 22,
+      "ar": "",
+      "en": "It is {{ruling|necessary}} that a 'قَدْ', for '{{term|تقريب}}', is brought before the 'ماضي' verb to express close proximity, to make it close as possible to the 'Action Tense' in an attempt to almost make it sync. Although total synchronisation has not been achieved, it has come close enough for the ruling of 'الحال' to be applicable."
+    },
+    {
+      "id": "p23-1",
+      "kind": "rule",
+      "page": 23,
+      "ar": "",
+      "en": "If, {{condition|due to an external factor, the 'الحال' is understood to be in the future tense}}, then such a 'الحال' is known as a '{{term|الحال المُقَدَّرَة}}' a decreed or circumstantial 'الحال'."
+    },
+    {
+      "id": "p23-2",
+      "kind": "example",
+      "page": 23,
+      "ar": "S6a: {{example|يُسَافِرُ بَكْرٌ يَصِلُ مَكَّةَ غَدًا}}",
+      "en": "Bakr is traveling whilst he is destined to reach Makkah tomorrow.",
+      "labels": [
+        {
+          "word": "يُسَافِرُ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "يَصِلُ مَكَّةَ غَدًا",
+          "label": "الحال المُقَدَّرَة (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p23-3",
+      "kind": "example",
+      "page": 23,
+      "ar": "S6b: {{example|يَدْرُسُ زَيْدٌ عَالِمًا}}",
+      "en": "Zaid is studying whilst destined to be an Alim",
+      "labels": [
+        {
+          "word": "يَدْرُسُ",
+          "label": "primary action (red)"
+        },
+        {
+          "word": "عَالِمًا",
+          "label": "الحال المُقَدَّرَة (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p23-4",
+      "kind": "rule",
+      "page": 23,
+      "ar": "",
+      "en": "In such scenarios, the 'الحال' is in the meaning of '{{term|مُقَدَّرًا}}', 'being destined'. The 'الحال', 'مُقَدَّرًا' is understood to be {{ruling|in sync with the 'Action tense'}}, This means the 'ذو الحال', in its current state, is in the state of 'being destined' with something. So, in S6a, Bakr's current state is that 'He is destined' to reach Makkah tomorrow. And in S6b, Zaid's current state is that 'He is destined' to becoming an Alim."
+    },
+    {
+      "id": "p24-1",
+      "kind": "rule",
+      "page": 24,
+      "ar": "",
+      "en": "So, if we look at S6a with the 'الحال المُقَدَّرَة' and other possible tenses the sentence would be as follows: 'Bakr is traveling…'"
+    },
+    {
+      "id": "p24-2",
+      "kind": "picture",
+      "page": 24,
+      "caption": "يُسَافر بَكْرٌ: مُقَدَّرًا بِأن يَصِلَ مَكَّةَ غَدًا / يَأْكُلُ / قَدْ أَكَلَ",
+      "caption_en": "Timeline under يُسَافر بَكْرٌ: Future Tense of the Action (مُقَدَّرًا بِأن يَصِلَ مَكَّةَ غَدًا, whilst he is to reach Makkah tomorrow.), Action Tense greyed (يَأْكُلُ, whilst eating.), Past Tense of the Action greyed (قَدْ أَكَلَ, whilst he had just eaten.)"
+    },
+    {
+      "id": "p24-3",
+      "kind": "example",
+      "page": 24,
+      "ar": "{{example|يُسَافر بَكْرٌ مُقَدَّرًا بِأن يَصِلَ مَكَّةَ غَدًا}}",
+      "en": "Bakr is traveling… whilst he is to reach Makkah tomorrow.",
+      "labels": [
+        {
+          "word": "مُقَدَّرًا",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p24-4",
+      "kind": "rule",
+      "page": 24,
+      "ar": "",
+      "en": "The actual 'الحال' is assumed to be 'مُقَدَّرًا', an '{{term|اسم المفعول}}' which is {{ruling|in sync with the 'Action tense'}}, and will also {{ruling|correlate with the 'ذو الحال' in N/G}}."
+    },
+    {
+      "id": "p24-5",
+      "kind": "example",
+      "page": 24,
+      "ar": "{{example|يُدۡخِلُهُمۡ جَنّٰتٍ تَجۡرِى مِن تَحۡتِهَا الۡأَنۡهٰرُ خَالِدِينَ فِيهَا}} (المجادلة ٢٢)",
+      "en": "He will enter them into gardens beneath which rivers flow whilst they will reside therein forever (Al-Mujadalah 22)",
+      "labels": [
+        {
+          "word": "خَالِدِينَ فِيهَا",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p25-1",
+      "kind": "rule",
+      "page": 25,
+      "ar": "",
+      "en": "So, if we look at S6b with the 'الحال المُقَدَّرَة' and other possible tenses the sentence would be as follows: 'Bakr is traveling…'"
+    },
+    {
+      "id": "p25-2",
+      "kind": "picture",
+      "page": 25,
+      "caption": "يُسَافر بَكْرٌ: مُقَدَّرًا بِأن يَصِلَ مَكَّةَ غَدًا / يَأْكُلُ / قَدْ أَكَلَ",
+      "caption_en": "The same timeline as the previous page, repeated as printed: Future Tense of the Action (مُقَدَّرًا بِأن يَصِلَ مَكَّةَ غَدًا, whilst he is to reach Makkah tomorrow.), Action Tense greyed (يَأْكُلُ, whilst eating.), Past Tense of the Action greyed (قَدْ أَكَلَ, whilst he had just eaten.)"
+    },
+    {
+      "id": "p25-3",
+      "kind": "rule",
+      "page": 25,
+      "ar": "",
+      "en": "The actual 'الحال' is assumed to be 'مُقَدَّرًا', an '{{term|اسم المفعول}}' which is in sync with the 'Action tense', and will also {{ruling|correlate with the 'ذو الحال' in N/G}}."
+    },
+    {
+      "id": "p25-4",
+      "kind": "example",
+      "page": 25,
+      "ar": "{{example|يُدۡخِلُهُمۡ جَنّٰتٍ تَجۡرِى مِن تَحۡتِهَا الۡأَنۡهٰرُ مُقَدَّرِيْنَ بِالْخُلُوْدِ فِيهَا}}",
+      "en": "He will enter them into gardens beneath which rivers flow whilst they are destined with everlasting residence therein.",
+      "labels": [
+        {
+          "word": "مُقَدَّرِيْنَ",
+          "label": "حال (blue)"
+        }
+      ]
+    },
+    {
+      "id": "p26-1",
+      "kind": "heading",
+      "page": 26,
+      "ar": "الحال",
+      "en": "Sequence"
+    },
+    {
+      "id": "p26-2",
+      "kind": "rule",
+      "page": 26,
+      "ar": "",
+      "en": "In regards to the sequence of the 'الحال', it is {{ruling|permissible}} for the 'الحال' to {{ruling|precede the 'ذو الحال'}}. It is also permissible for the 'الحال' to {{ruling|precede its governor}}, the primary action verb."
+    },
+    {
+      "id": "p26-3",
+      "kind": "picture",
+      "page": 26,
+      "caption": "تركيب: جَاءَ رَاكبًا زَيْدٌ / رَاكِبًا جَاءَ زَيْدٌ",
+      "caption_en": "Two tarkeeb trees, 16a and 16b, each labelled word by word (فعل, حال, ذو الحال). In 16a a line joins حال and ذو الحال and is labelled فاعل; in 16b one line runs under all three words with فاعل beneath it and a tick dropping from فعل. In both the whole is labelled جملة فعلية خبرية."
+    },
+    {
+      "id": "p26-4",
+      "kind": "example",
+      "page": 26,
+      "ar": "16a: {{example|جَاءَ رَاكبًا زَيْدٌ}}",
+      "en": "Zaid came whilst riding.",
+      "labels": [
+        {
+          "word": "جَاءَ",
+          "label": "فعل"
+        },
+        {
+          "word": "رَاكبًا",
+          "label": "حال"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "رَاكبًا زَيْدٌ",
+          "label": "فاعل"
+        },
+        {
+          "word": "جَاءَ رَاكبًا زَيْدٌ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p26-5",
+      "kind": "example",
+      "page": 26,
+      "ar": "16b: {{example|رَاكِبًا جَاءَ زَيْدٌ}}",
+      "en": "Zaid came whilst riding.",
+      "labels": [
+        {
+          "word": "رَاكِبًا",
+          "label": "حال"
+        },
+        {
+          "word": "جَاءَ",
+          "label": "فعل"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "رَاكِبًا جَاءَ زَيْدٌ",
+          "label": "فاعل"
+        },
+        {
+          "word": "رَاكِبًا جَاءَ زَيْدٌ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p26-6",
+      "kind": "rule",
+      "page": 26,
+      "ar": "",
+      "en": "In 16a, 'رَاكِبًا' is 'الحال' and it has {{ruling|preceded the 'ذو الحال'}}. In 16b, 'رَاكِبًا' is 'الحال' and it has {{ruling|preceded the 'ذو الحال' and its governor 'جَاءَ'}}."
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "_comment": "How scripts/score_iraab.py compares a role the app wrote with a role a book wrote. Each family lists the terms that name it, written plainly; both sides are folded to bare letters and the longest term found in the role wins, so فعل مع فاعله is a verb, not a fa'il. A book role that matches nothing is reported, never scored.",
+  "sources": {
+    "books": "data/tarkeeb/examples",
+    "checked": "data/nahw_rules/checked_sentences.json"
+  },
+  "families": {
+    "fil": [
+      "فعل",
+      "فعل مع فاعله",
+      "فعل ناقص",
+      "فعل مجهول",
+      "فعل ماض",
+      "فعل مضارع",
+      "فعل أمر"
+    ],
+    "fail": [
+      "فاعل"
+    ],
+    "naib_fail": [
+      "نائب الفاعل",
+      "نائب فاعل"
+    ],
+    "mubtada": [
+      "مبتدأ",
+      "جزء أول"
+    ],
+    "khabar": [
+      "خبر",
+      "جزء ثان"
+    ],
+    "mafool_bihi": [
+      "مفعول به"
+    ],
+    "mafool_mutlaq": [
+      "مفعول مطلق"
+    ],
+    "harf": [
+      "حرف",
+      "حرف مشبه بالفعل",
+      "لا لنفي الجنس",
+      "ما المشبهة بليس",
+      "لا المشبهة بليس"
+    ],
+    "majroor": [
+      "مجرور",
+      "اسم مجرور"
+    ],
+    "mutaallaq": [
+      "متعلق",
+      "متعلق بالخبر"
+    ],
+    "ism_inna": [
+      "اسم إن",
+      "اسم لا",
+      "اسم ليت",
+      "اسم لعل",
+      "اسم لكن",
+      "اسم أن"
+    ],
+    "khabar_inna": [
+      "خبر إن",
+      "خبر لا",
+      "خبر ليت",
+      "خبر لعل",
+      "خبر لكن",
+      "خبر أن"
+    ],
+    "ism_kana": [
+      "اسم كان",
+      "اسم ليس",
+      "اسم صار",
+      "اسم أمسى",
+      "اسم ما"
+    ],
+    "khabar_kana": [
+      "خبر كان",
+      "خبر ليس",
+      "خبر صار",
+      "خبر أمسى",
+      "خبر ما"
+    ],
+    "tamyeez": [
+      "تمييز"
+    ],
+    "naat": [
+      "صفة",
+      "نعت"
+    ],
+    "mawsoof": [
+      "موصوف",
+      "منعوت"
+    ],
+    "mudaf_ilayh": [
+      "مضاف إليه"
+    ],
+    "ism_mawsool": [
+      "اسم موصول"
+    ],
+    "ism_ishara": [
+      "اسم الإشارة",
+      "اسم إشارة"
+    ],
+    "mushar_ilayh": [
+      "مشار إليه"
+    ],
+    "haal": [
+      "حال"
+    ],
+    "mudaf": [
+      "مضاف"
+    ],
+    "munada": [
+      "منادى"
+    ]
+  }
+}

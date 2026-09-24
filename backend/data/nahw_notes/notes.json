@@ -1,0 +1,121 @@
+{
+  "_note": "The teacher's Year 3 Nahw theory notes. `pdf` is the file inside the folder given to `backend/scripts/render_note_pages.py`; `id` is the folder/slug used everywhere else. `tamreen` names the Tamreen exercise slugs that test this topic.",
+  "render": {
+    "dpi": 150,
+    "max_width": 1600
+  },
+  "notes": [
+    {
+      "id": "iraab-types",
+      "title": "The 9 types of i'raab",
+      "pdf": "9 Types of I’raab - HN1.pdf",
+      "tamreen": [],
+      "arabic": "أنواع الإعراب التسعة"
+    },
+    {
+      "id": "afaal-naqisa",
+      "title": "Al-af'aal an-naaqisa (worksheet)",
+      "pdf": "Alaf`aal Anaaqisa WS.pdf",
+      "tamreen": [],
+      "arabic": "الأفعال الناقصة"
+    },
+    {
+      "id": "huroof-mushabbaha-ws",
+      "title": "Al-huroof al-mushabbaha bil-fi'l (worksheet)",
+      "pdf": "Alhuroof Almushabbaha bilf`il WS.pdf",
+      "tamreen": [],
+      "arabic": "الحروف المشبهة بالفعل"
+    },
+    {
+      "id": "btm-tarkeeb",
+      "title": "BTM tarkeebs (basic)",
+      "pdf": "BTM Tarkeebs (basic).pdf",
+      "tamreen": [],
+      "arabic": "التراكيب الأساسية"
+    },
+    {
+      "id": "haal",
+      "title": "Al-haal",
+      "pdf": "Haal الحال.pdf",
+      "tamreen": [
+        "haal"
+      ],
+      "arabic": "الحال"
+    },
+    {
+      "id": "huroof-mushabbaha",
+      "title": "Al-huroof al-mushabbaha bil-fi'l",
+      "pdf": "Huroof mushabahah bil fi'l الحروف المشبهة بالفعل Rev.pdf",
+      "tamreen": [
+        "mushabbahat-laysa-la-jins"
+      ],
+      "arabic": "الحروف المشبهة بالفعل"
+    },
+    {
+      "id": "ism-isharah",
+      "title": "Ism al-isharah",
+      "pdf": "Ism Isharah Yr3PT25-26 Rough Notes.pdf",
+      "tamreen": [],
+      "arabic": "اسم الإشارة"
+    },
+    {
+      "id": "mushabbahat-laysa-la-jins",
+      "title": "Maa, laa, laata, in resembling laysa, and laa of denying the genus",
+      "pdf": "Maa Laa Laata Laa Nafi Jins Yr3PT 25-26 07-01-2026.pdf",
+      "tamreen": [
+        "mushabbahat-laysa-la-jins"
+      ],
+      "arabic": "ما ولا ولات المشبهات بليس، ولا النافية للجنس"
+    },
+    {
+      "id": "mafool-bihi",
+      "title": "Al-maf'ool bihi",
+      "pdf": "Mafool  bihi Yr3PT2526.pdf",
+      "tamreen": [],
+      "arabic": "المفعول به"
+    },
+    {
+      "id": "mafool-maahu",
+      "title": "Al-maf'ool ma'ahu, with shibh al-fi'l",
+      "pdf": "Mafool Ma'ahu Rules Featuring Shibhul Fi'l Notes Yr3PT25-26.pdf",
+      "tamreen": [
+        "mafool-maahu"
+      ],
+      "arabic": "المفعول معه وشبه الفعل"
+    },
+    {
+      "id": "mafool-mutlaq",
+      "title": "Al-maf'ool al-mutlaq",
+      "pdf": "Mafool Mutlaq Yr3PT2526.pdf",
+      "tamreen": [
+        "mafool-mutlaq"
+      ],
+      "arabic": "المفعول المطلق"
+    },
+    {
+      "id": "mawsoolaat-harfiyyah",
+      "title": "Al-mawsoolaat al-harfiyyah (the huroof saabika)",
+      "pdf": "Mawsoolaat Harfyiyyah BTM الموصولات  الحرفية - الحروف السابكة.pdf",
+      "tamreen": [],
+      "arabic": "الموصولات الحرفية"
+    },
+    {
+      "id": "waw-haaliyah",
+      "title": "Al-waw al-haaliyah",
+      "pdf": "Waw Haaliyah الواو الحالية.pdf",
+      "tamreen": [
+        "haal"
+      ],
+      "arabic": "الواو الحالية"
+    },
+    {
+      "id": "zuroof",
+      "title": "Az-zuroof",
+      "pdf": "Zuroof Year 3PT 25-26 Notes.pdf",
+      "tamreen": [
+        "mafool-lahu-fihi"
+      ],
+      "arabic": "الظروف"
+    }
+  ]
+}

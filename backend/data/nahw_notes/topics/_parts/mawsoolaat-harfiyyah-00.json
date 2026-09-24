@@ -1,0 +1,425 @@
+{
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "heading",
+      "page": 0,
+      "ar": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ\nالموصولات الحرفية",
+      "en": "In the name of Allah, the Most Merciful, the Most Kind. Al-mawsoolaat al-harfiyyah"
+    },
+    {
+      "id": "p01-1",
+      "kind": "heading",
+      "page": 1,
+      "ar": "الموصولات الحرفية\n(بتَأْويلِ المصدر – بتَأْويلِ المفرد)",
+      "en": "Al-mawsoolaat al-harfiyyah (bi-ta'weel al-masdar, bi-ta'weel al-mufrad)"
+    },
+    {
+      "id": "p01-2",
+      "kind": "list",
+      "page": 1,
+      "ar": "",
+      "en": "The six particles shown (the last two printed in grey):",
+      "items": ["أَنْ", "كَيْ", "أَنّ", "مَا", "لَوْ", "أَ"]
+    },
+    {
+      "id": "p01-3",
+      "kind": "list",
+      "page": 1,
+      "ar": "",
+      "en": "",
+      "items": [
+        "The above 6 words are known as {{term|الموصولات الحرفية}}.",
+        "These words also belong to other groups based on other governing factors and methods of usage.",
+        "However, they are grouped here as الموصولات الحرفية because they are \"particles\" which are \"connected\" to a sentence i.e., they {{ruling|enter upon a sentence}}. This sentence is known as a {{term|صلة}} meaning \"connection\".",
+        "They restructure the sentence into a compound/phrase. More specifically, into a {{ruling|مركب إضافي}} with the usage of a {{ruling|مصدر}}. The purpose of this is to enable the sentence to fall into places of {{ruling|مفرد}}, i.e., be مبتدا, فاعل, مفعول به etc. This is why they are also known as {{term|\"السابكة\"}} \"The forming one\", \"The structuring one\".",
+        "This process is called {{term|\"بِتَأْويلِ المصدر – بِتَأْويلِ المفرد\"}} with the interpretation into مصدر or مفرد. Abbreviation: {{term|BTM}}",
+        "The interpreted مصدر is called {{term|\"المصدر المُؤَوَّل\"}} The interpreted مصدر or {{term|\"المصدر المَسْبُوْك\"}} The formed مصدر.",
+        "Some can enter upon a جملة إسمية and some on a جملة فعلية."
+      ]
+    },
+    {
+      "id": "p02-1",
+      "kind": "heading",
+      "page": 2,
+      "ar": "أَنْ",
+      "en": "An"
+    },
+    {
+      "id": "p02-2",
+      "kind": "list",
+      "page": 2,
+      "ar": "",
+      "en": "",
+      "items": [
+        "أن is termed as {{term|المصدرية الناصبة}}.",
+        "It connects i.e., enters upon a {{condition|جملة فعلية}}. More specifically, it enters upon a verb.",
+        "The verb can be a {{condition|ماضي}} verb or a {{condition|مضارع}} verb.",
+        "If the verb is a {{condition|مضارع}}, أن will also make the مضارع verb {{ruling|منصوب}}.",
+        "It will interpret the جملة فعلية into a {{ruling|مفرد}}.",
+        "The interpreted construction will generally be a فاعل, مفعول به, مبتدا, مضاف إليه or مجرور."
+      ]
+    },
+    {
+      "id": "p02-3",
+      "kind": "list",
+      "page": 2,
+      "ar": "",
+      "en": "This is done by:",
+      "items": [
+        "a) Identifying the {{term|مصدر}} of the verb.",
+        "b) Identifying the نائب الفاعل/فاعل of the verb.",
+        "c) Extracting the نائب الفاعل/فاعل from the verb {{condition|if it's a ضمير}}.",
+        "d) Making the مصدر {{ruling|مضاف}} of the نائب الفاعل/فاعل.",
+        "e) Ensuring what used to be the نائب الفاعل/فاعل is in the state of {{ruling|جر}} as a {{ruling|مضاف إليه}}."
+      ]
+    },
+    {
+      "id": "p03-1",
+      "kind": "list",
+      "page": 3,
+      "ar": "",
+      "en": "Steps shown beside the first example (مصدر and مضاف in red, the rest in green):",
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر مضاف to the نائب الفاعل/فاعل.",
+        "e) Ensure مضاف إليه is مجرور."
+      ]
+    },
+    {
+      "id": "p03-2",
+      "kind": "example",
+      "page": 3,
+      "ar": "أَعْرِفُ أَنْ يَدْرُسَ زَيْدٌ",
+      "en": "I know that Zayd studies.",
+      "labels": [
+        {"word": "دَرْس", "label": "مصدر"},
+        {"word": "زيدٌ", "label": "فاعل"}
+      ]
+    },
+    {
+      "id": "p03-3",
+      "kind": "example",
+      "page": 3,
+      "ar": "{{example|دَرْس زيدٍ}}",
+      "en": "Zayd's studying",
+      "labels": [
+        {"word": "دَرْس", "label": "مضاف"},
+        {"word": "زيدٍ", "label": "مضاف إليه"}
+      ]
+    },
+    {
+      "id": "p03-4",
+      "kind": "list",
+      "page": 3,
+      "ar": "",
+      "en": "Steps shown beside the second example:",
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر مضاف to the نائب الفاعل/فاعل.",
+        "e) Ensure مضاف إليه is مجرور."
+      ]
+    },
+    {
+      "id": "p03-5",
+      "kind": "example",
+      "page": 3,
+      "ar": "أَعْرِفُ أَنْ تَدْرُسَ",
+      "en": "I know that you study.",
+      "labels": [
+        {"word": "دَرْس", "label": "مصدر"},
+        {"word": "أنتَ", "label": "فاعل"}
+      ]
+    },
+    {
+      "id": "p03-6",
+      "kind": "example",
+      "page": 3,
+      "ar": "{{example|دَرْسكَ}}",
+      "en": "your studying",
+      "labels": [
+        {"word": "دَرْس", "label": "مضاف"},
+        {"word": "كَ", "label": "مضاف إليه"}
+      ]
+    },
+    {
+      "id": "p04-1",
+      "kind": "list",
+      "page": 4,
+      "ar": "",
+      "en": "Steps shown beside the first example:",
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر مضاف to the نائب الفاعل/فاعل.",
+        "e) Ensure مضاف إليه is مجرور."
+      ]
+    },
+    {
+      "id": "p04-2",
+      "kind": "example",
+      "page": 4,
+      "ar": "بَلَغَنِيْ أَنْ نُصِرَ زَيْدٌ",
+      "en": "It reached me that Zayd was helped.",
+      "labels": [
+        {"word": "نَصْر", "label": "مصدر"},
+        {"word": "زيدٌ", "label": "نائب الفاعل"}
+      ]
+    },
+    {
+      "id": "p04-3",
+      "kind": "example",
+      "page": 4,
+      "ar": "{{example|نَصْر زيدٍ}}",
+      "en": "the helping of Zayd",
+      "labels": [
+        {"word": "نَصْر", "label": "مضاف"},
+        {"word": "زيدٍ", "label": "مضاف إليه"}
+      ]
+    },
+    {
+      "id": "p04-4",
+      "kind": "list",
+      "page": 4,
+      "ar": "",
+      "en": "Steps shown beside the second example:",
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر مضاف to the نائب الفاعل/فاعل.",
+        "e) Ensure مضاف إليه is مجرور."
+      ]
+    },
+    {
+      "id": "p04-5",
+      "kind": "example",
+      "page": 4,
+      "ar": "بَلَغَنِيْ أَنْ نُصِرْتُمْ",
+      "en": "It reached me that you (plural) were helped.",
+      "labels": [
+        {"word": "نَصْر", "label": "مصدر"},
+        {"word": "أنتُم (تُمْ)", "label": "نائب الفاعل"}
+      ]
+    },
+    {
+      "id": "p04-6",
+      "kind": "example",
+      "page": 4,
+      "ar": "{{example|نَصْركُمْ}}",
+      "en": "the helping of you (plural)",
+      "labels": [
+        {"word": "نَصْر", "label": "مضاف"},
+        {"word": "كُمْ", "label": "مضاف إليه"}
+      ]
+    },
+    {
+      "id": "p05-1",
+      "kind": "list",
+      "page": 5,
+      "ar": "",
+      "en": "Beside the first example:",
+      "items": [
+        "A Masdar can {{ruling|behave like a verb}} under certain circumstances.",
+        "Therefore, a جار ومجرور, ظرف, مفعول به etc will be {{ruling|dealt with as it was before the interpretation}}."
+      ]
+    },
+    {
+      "id": "p05-2",
+      "kind": "example",
+      "page": 5,
+      "ar": "أَنْ تَحْضُرَ فِي الفَصْلِ خَيْرٌ لَكَ",
+      "en": "That you attend the class is better for you.",
+      "labels": [
+        {"word": "حُضُوْر", "label": "مصدر"},
+        {"word": "أنتَ", "label": "فاعل"}
+      ]
+    },
+    {
+      "id": "p05-3",
+      "kind": "example",
+      "page": 5,
+      "ar": "{{example|حُضُوْركَ فِي الفَصْلِ}}",
+      "en": "your attending the class",
+      "labels": [
+        {"word": "حُضُوْر", "label": "مضاف"},
+        {"word": "كَ", "label": "مضاف إليه"}
+      ]
+    },
+    {
+      "id": "p05-4",
+      "kind": "list",
+      "page": 5,
+      "ar": "",
+      "en": "Beside the second example:",
+      "items": [
+        "A Masdar can {{ruling|behave like a verb}} under certain circumstances.",
+        "Therefore, a جار ومجرور, ظرف, مفعول به etc will be {{ruling|dealt with as it was before the interpretation}}."
+      ]
+    },
+    {
+      "id": "p05-5",
+      "kind": "example",
+      "page": 5,
+      "ar": "غَضِبُوْا بِأَنْ كُسِرَ الأَصْنَامُ يَوْمَ العِيْدِ",
+      "en": "They became angry that the idols were broken on the day of the festival.",
+      "labels": [
+        {"word": "كَسْر", "label": "مصدر"},
+        {"word": "الأَصْنَامُ", "label": "نائب الفاعل"}
+      ]
+    },
+    {
+      "id": "p05-6",
+      "kind": "example",
+      "page": 5,
+      "ar": "{{example|كَسْر الأَصْنَامِ يَوْمَ العِيْدِ}}",
+      "en": "the breaking of the idols on the day of the festival",
+      "labels": [
+        {"word": "كَسْر", "label": "مضاف"},
+        {"word": "الأَصْنَامِ", "label": "مضاف إليه"}
+      ]
+    },
+    {
+      "id": "p06-1",
+      "kind": "list",
+      "page": 6,
+      "ar": "",
+      "en": "Beside the first example:",
+      "items": [
+        "Quite often, أن is {{term|dropped}} from the sentence. Despite It being visibly absent, it is {{ruling|assumed to be present}}.",
+        "Its presence is evident by its governing which manifests on the {{condition|مضارع}} verb.",
+        "It's dropped after certain حروف. I will mention 2 here, the first being {{condition|لِ}}."
+      ]
+    },
+    {
+      "id": "p06-2",
+      "kind": "example",
+      "page": 6,
+      "ar": "أَتَعَلَّمُ النَّحْوَ لِأَفْهَمَ القُرْآنَ",
+      "en": "I learn nahw so that I understand the Qur'an.",
+      "labels": [
+        {"word": "فَهْم", "label": "مصدر"},
+        {"word": "أنَا", "label": "فاعل"}
+      ]
+    },
+    {
+      "id": "p06-3",
+      "kind": "example",
+      "page": 6,
+      "ar": "{{example|فَهْميْ القُرْآنَ}}",
+      "en": "my understanding the Qur'an",
+      "labels": [
+        {"word": "فَهْم", "label": "مضاف"},
+        {"word": "يْ", "label": "مضاف إليه"}
+      ]
+    },
+    {
+      "id": "p06-4",
+      "kind": "list",
+      "page": 6,
+      "ar": "",
+      "en": "Beside the second example:",
+      "items": [
+        "Quite often, أن is {{term|dropped}} from the sentence. Despite It being visibly absent, it is {{ruling|assumed to be present}}.",
+        "Its presence is evident by its governing which manifests on the {{condition|مضارع}} verb.",
+        "It's dropped after certain حروف. I will mention 2 here, the second being {{condition|حَتّٰى}}."
+      ]
+    },
+    {
+      "id": "p06-5",
+      "kind": "example",
+      "page": 6,
+      "ar": "أَتَعَلَّمُ القُرْآنَ حَتّٰى (أن) أَدْخُلَ الجَنَّةَ",
+      "en": "I learn the Qur'an so that I enter Paradise. ((أن) is printed small, in yellow, before أَدْخُلَ.)",
+      "labels": [
+        {"word": "دُخُوْل", "label": "مصدر"},
+        {"word": "أَنَا", "label": "فاعل"}
+      ]
+    },
+    {
+      "id": "p06-6",
+      "kind": "example",
+      "page": 6,
+      "ar": "{{example|دُخُوْليْ الجَنَّةَ}}",
+      "en": "my entering Paradise",
+      "labels": [
+        {"word": "دُخُوْل", "label": "مضاف"},
+        {"word": "يْ", "label": "مضاف إليه"}
+      ]
+    },
+    {
+      "id": "p07-1",
+      "kind": "list",
+      "page": 7,
+      "ar": "",
+      "en": "Beside the first example:",
+      "items": [
+        "When a نفي is present on the verb, the نفي will be {{ruling|rephrased as an إسم}}.",
+        "The إسم will be made {{ruling|مضاف}} to the مصدر. This is done for the retention of the negation present in the original sentence.",
+        "The إسم used here is: {{term|عَدَمٌ}} (not, absence)."
+      ]
+    },
+    {
+      "id": "p07-2",
+      "kind": "example",
+      "page": 7,
+      "ar": "أَنْ لَّا تَحْضُرَ فِي الفَصْلِ مُضِرٌّ لَكَ",
+      "en": "That you do not attend the class is harmful for you.",
+      "labels": [
+        {"word": "حُضُوْر", "label": "مصدر"},
+        {"word": "أنتَ", "label": "فاعل"}
+      ]
+    },
+    {
+      "id": "p07-3",
+      "kind": "example",
+      "page": 7,
+      "ar": "{{example|عَدَم حُضُوْرِكَ فِي الفَصْلِ}}",
+      "en": "your not attending the class",
+      "labels": [
+        {"word": "عَدَم", "label": "نفي"},
+        {"word": "حُضُوْرِ", "label": "مصدر"},
+        {"word": "كَ", "label": "مضاف إليه"}
+      ]
+    },
+    {
+      "id": "p07-4",
+      "kind": "list",
+      "page": 7,
+      "ar": "",
+      "en": "Beside the second example:",
+      "items": [
+        "If the اللام after which the أن is dropped, is {{condition|combined with a نفي}}, then the أن {{ruling|must be present}} in the sentence. It will not be dropped.",
+        "However, the أن will {{ruling|integrate into the لا النافية}} when written as seen in the example."
+      ]
+    },
+    {
+      "id": "p07-5",
+      "kind": "example",
+      "page": 7,
+      "ar": "أَتَعَلَّمُ النَّحْوَ لِـئَـلَّا أَغْفُلَ عَنِ القُرْآنِ",
+      "en": "I learn nahw so that I am not heedless of the Qur'an.",
+      "labels": [
+        {"word": "غَفْلَة", "label": "مصدر"},
+        {"word": "أَنَا", "label": "نائب الفاعل"}
+      ]
+    },
+    {
+      "id": "p07-6",
+      "kind": "example",
+      "page": 7,
+      "ar": "{{example|عَدَم غَفْلَتِيْ عَنْ القُرْآنِ}}",
+      "en": "my not being heedless of the Qur'an",
+      "labels": [
+        {"word": "عَدَم", "label": "نفي"},
+        {"word": "غَفْلَتِ", "label": "مصدر"},
+        {"word": "يْ", "label": "مضاف إليه"}
+      ]
+    }
+  ]
+}

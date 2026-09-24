@@ -1,0 +1,283 @@
+{
+ "root_letter": "؟",
+ "entry_count": 14,
+ "entries": [
+  {
+   "root": "؟ (متن سابق غير محدد)",
+   "root_letters": [],
+   "core_meaning": "",
+   "core_meaning_english": "",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "خلّى جزءًا ما في يديه من سيوف يربعون وأموالهم، وخلَّوا بين الهذيل وبين الماء يسقي خيله وإبله",
+     "meaning": "نص متبقٍّ من نهاية مادة سابقة (قبل هذه الصفحات) يتحدث عن ترك جزء من الغنائم وإخلاء الماء لقبيلة هذيل",
+     "meaning_english": "he left a portion of what was in his hands of swords etc. and their wealth, and they left the water between them and Hudhayl for him to water his horses and camels",
+     "citation": "بيت لجرير: ونحن تداركنا ابنَ حصنٍ ورهطَه ... ونحن مَنَعْنا السَّبْيَ يومَ الأزاقم"
+    }
+   ],
+   "pdf_page_index": 139,
+   "printed_page_number": "93",
+   "notes": "مقطع في أعلى الصفحة يسبق بداية مادة ﴿أرث﴾، تتمة لمادة سابقة غير مضمنة في هذه الدفعة؛ لا يمكن تحديد الجذر بثقة. تحقق: مطابق للصورة."
+  },
+  {
+   "root": "؟ (تتمة جذر سابق غير معروف)",
+   "root_letters": [],
+   "core_meaning": "غير ظاهر على هذه الصفحة - تكملة أبيات شعرية من نهاية مادة سابقة قبل ﴿ألب﴾",
+   "core_meaning_english": "not visible on this page - continuation of poetry citations from a preceding entry",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "وإني إذ تُسَابِقُنِي نَواها ... مُوَلٍّ في زيارتها مُليم",
+     "meaning": "بيت شعر، تتمة كلام سابق",
+     "meaning_english": "verse of poetry, continuation of prior discussion",
+     "citation": "عجزه في اللسان (18: 41)"
+    },
+    {
+     "usage": "قول الهذلي: جِهاره لا تألو إذا أظهرَتْ بَصَراً ولا من غَيلةٍ تُغنيني",
+     "meaning": "بيت شعري مستشهد به",
+     "meaning_english": "cited verse",
+     "citation": "أبو المثال الهذلي، انظر شرح أشعار الهذليين"
+    },
+    {
+     "usage": "قول الأعشى: ...ولا يقطع رِحماً ولا يخون إلا",
+     "meaning": "بيت شعري مستشهد به",
+     "meaning_english": "cited verse from al-A'sha",
+     "citation": "ديوان الأعشى ص157"
+    }
+   ],
+   "pdf_page_index": 175,
+   "printed_page_number": "129",
+   "notes": "هذا مقطع تكملة لمادة سابقة لم تظهر في هذه الدفعة من الصفحات؛ لا يمكن تحديد الجذر أو معناه الأصلي من هذه الصفحة وحدها."
+  },
+  {
+   "root": "؟ (متابعة من الصفحة السابقة)",
+   "core_meaning": "",
+   "core_meaning_english": "",
+   "sarf_pattern": "",
+   "pdf_page_index": 460,
+   "printed_page_number": "414",
+   "notes": "Top of page 460 continues a hadith citation (الذى يشرب فى آنية الفضة إنما يجرجر فى جوفه نار جهنم) from an entry that began on a prior page not included in this batch; the root letters are not visible here, so no root can be recorded.",
+   "root_letters": [],
+   "variances": [
+    {
+     "usage": "يُجَرْجِرُ فى جوفه نار جهنم",
+     "meaning": "من حديث شرب الماء فى آنية الفضة",
+     "meaning_english": "'he gurgles the fire of Hell in his belly' — closing part of a hadith about drinking from a silver vessel",
+     "citation": "حديث نبوي"
+    }
+   ]
+  },
+  {
+   "root": "؟ (تكملة من صفحة سابقة)",
+   "core_meaning": "غير واضح — نهاية مادة سابقة تتحدث عن جَمّ/جَمَعْتُ البعير",
+   "core_meaning_english": "unclear - tail end of a prior entry discussing a camel's muzzle/mouth being covered",
+   "pdf_page_index": 508,
+   "printed_page_number": "462",
+   "sarf_pattern": "",
+   "notes": "Continuation of an entry whose root bracket appeared on an earlier page not in this batch; root letters not visible here.",
+   "variances": [
+    {
+     "usage": "جَمَمْتُ البعير",
+     "meaning": "مثل كَمَمْتُه، وهو قياس فى باب الإبدال استحسنه المؤلف لجعله لغة",
+     "meaning_english": "like 'kamamtuhu' (covered its mouth/muzzle); treated as a case of letter-substitution (ibdāl)",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "؟ (تكملة من صفحة سابقة، غير معروضة)",
+   "core_meaning": "الشدّة والصلابة وعدم المبالاة (تكملة من صفحة سابقة لم تُعرض)",
+   "core_meaning_english": "toughness/firmness, not caring about hardship (continuation from an earlier page not included in this batch)",
+   "pdf_page_index": 517,
+   "printed_page_number": "471",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "التَّخْلَة المِجْلاح",
+     "meaning": "التي لا تبالي القحط",
+     "meaning_english": "a palm tree that does not mind drought",
+     "citation": ""
+    },
+    {
+     "usage": "النَّاقة المِجْلاح",
+     "meaning": "التي تدرّ في الشتاء",
+     "meaning_english": "a she-camel that gives milk in winter",
+     "citation": ""
+    },
+    {
+     "usage": "كأنها صلبةٌ، صلبةُ الوجه",
+     "meaning": "لا تبالي الشدّة",
+     "meaning_english": "as if firm, hard-faced, unconcerned by hardship",
+     "citation": ""
+    }
+   ],
+   "notes": "Tail end of an entry whose root heading appeared on an earlier page not in this batch; root letters unconfirmed (context suggests جلح)."
+  },
+  {
+   "root": "؟ (متابعة من صفحة سابقة)",
+   "root_letters": [],
+   "core_meaning": "وهذا يدل أن أصله واو، وهو بمعنى خَرِقت، وقد مضى ذكره.",
+   "core_meaning_english": "This root's origin is from waw, meaning 'to be torn/rent' (kharaqat); already discussed earlier.",
+   "sarf_pattern": "",
+   "variances": [],
+   "pdf_page_index": 544,
+   "printed_page_number": "٤٩٨",
+   "notes": "Tail end of an entry whose root letters/bracket appeared on a prior (unprovided) page; root identity not visible on this page."
+  },
+  {
+   "root": "؟ (تكملة من صفحة سابقة)",
+   "root_letters": [],
+   "core_meaning": "(تكملة مادة سابقة - لا يظهر نص أصل المعنى على هذه الصفحة)",
+   "core_meaning_english": "(continuation of a prior entry; core-meaning sentence not on this page)",
+   "sarf_pattern": "",
+   "pdf_page_index": 631,
+   "printed_page_number": "٦٦",
+   "notes": "Top of page 631 is the tail end of an entry that began on an earlier (unprovided) page, discussing the word حوشب/الحوشب. Root letters not visible on this page. Includes a poetry line with footnote attributing to a Hudhali poet (خبيب بن عبد الله المعروف بالأعلم الهذلي).",
+   "variances": [
+    {
+     "usage": "الحوشب (الحافر)",
+     "meaning": "حشو الحافر، ويقال بل هو عظم في باطن الحافر بين العصب والوظيف",
+     "meaning_english": "the stuffing/filling of the hoof; also said to be a bone inside the hoof between the sinew and the pastern",
+     "citation": "قال رؤبة: * في رُسْغ لا يَنْشَكّى الحوشَبا *"
+    }
+   ]
+  },
+  {
+   "root": "؟ (تكملة من صفحة سابقة)",
+   "root_letters": [],
+   "core_meaning": "ويقال اخرورَّت القاموس الدَّرَّ",
+   "core_meaning_english": "It is said: the sea/deep-ocean overflowed with abundant flow (of milk) — fragment continuing an entry from the previous page",
+   "sarf_pattern": "",
+   "variances": [],
+   "printed_page_number": "168",
+   "pdf_page_index": 733,
+   "notes": "Single leftover line at top of page 733, continuing an entry whose root heading appeared on a prior (unscanned) page. Corrected 'القافلة' (caravan) to 'القاموس' (the sea/deep ocean) — matches the printed text and is the more plausible classical usage (al-qāmūs originally meant 'the deep sea'). Root letters cannot be determined from this fragment alone."
+  },
+  {
+   "root": "؟ (تكملة من صفحة سابقة)",
+   "root_letters": [],
+   "core_meaning": "مقاربةٌ في سهولةٍ",
+   "core_meaning_english": "nearness/closeness with ease",
+   "sarf_pattern": "",
+   "pdf_page_index": 868,
+   "printed_page_number": "303",
+   "variances": [
+    {
+     "usage": "الدُّمَّثِل",
+     "meaning": "عربيٌّ، وهو قياسُ ما ذكرناه من التجمُّع في لِين",
+     "meaning_english": "an Arabic word, on the same pattern as 'clustering with softness'",
+     "citation": ""
+    },
+    {
+     "usage": "وامتهد الغارب فعل الدُّمَّل",
+     "meaning": "بيت شعر لأبي النجم يستشهد به على الباب",
+     "meaning_english": "verse of Abu al-Najm cited as evidence",
+     "citation": "أبو النجم"
+    }
+   ],
+   "notes": "Tail end of a root entry begun on an earlier page not in this batch; root heading not visible, root letters unconfirmed. Likely دمث/دمل family per the cited verse."
+  },
+  {
+   "root": "؟ (تكملة من صفحة سابقة)",
+   "root_letters": [],
+   "core_meaning": "غير واضح من هذه الصفحة - نهاية مادة سابقة",
+   "core_meaning_english": "unclear - end of a prior entry continuing onto this page",
+   "sarf_pattern": "",
+   "pdf_page_index": 910,
+   "printed_page_number": "345",
+   "variances": [
+    {
+     "usage": "بيت شعر: يقولون لما جُشَّت البئرُ أَوْرَدُوا وليس بها أدنى ذَفافٍ لوارد",
+     "meaning": "يقول: ليس بها شیءٌ",
+     "meaning_english": "there is nothing left in it (the well)",
+     "citation": "ديوان أبي ذؤيب ١٢٣؛ اللسان (جشش، ذفف)؛ وقد سبق إنشاده في (١: ٤١٥)؛ والكلمة الأولى من البيت ساقطة من الأصل"
+    }
+   ],
+   "notes": "هذا استكمال لمادة بدأت في صفحة سابقة لم تُقرأ هنا؛ الجذر غير مؤكد. صححت 'أوردوا' لتطابق الصورة (كانت الكلمة الأولى من الشطر الثاني مفقودة أصلاً وفق الحاشية)."
+  },
+  {
+   "root": "؟ (تكملة من صفحة سابقة)",
+   "root_letters": [],
+   "core_meaning": "",
+   "core_meaning_english": "",
+   "sarf_pattern": "",
+   "pdf_page_index": 940,
+   "printed_page_number": "375",
+   "variances": [
+    {
+     "usage": "إذا شرب المُرِضّة",
+     "meaning": "قال أَوْرِك: على ما فى سقائك قد روينا",
+     "meaning_english": "said 'awrik' (rest/wait) — from what's in your waterskin we have drunk our fill",
+     "citation": "بيت لابن أحمر، كما فى اللسان (رضض)"
+    }
+   ],
+   "notes": "Leftover poetry citation continuing an entry that began on a previous page; precedes the start of root رط on this page."
+  },
+  {
+   "root": "؟ (متصل من صفحة سابقة)",
+   "core_meaning": "لا يوجد نص أصل جديد على هذه الصفحة؛ استمرار مناقشة سابقة عن ألوان الإبل (العِشَار) وكلمة العَكَنْكَعَم",
+   "core_meaning_english": "Continuation of prior entry discussing camel colors (al-'ishaar) and the word 'akankaam'",
+   "pdf_page_index": 1567,
+   "printed_page_number": "12",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "العِشَار",
+     "meaning": "لونٌ يعلوها من صُهْبَةٍ فى وقت أو رُمْكَةٍ فى وقت",
+     "meaning_english": "A color overlaying it, tawny at times, ash-gray at times",
+     "citation": ""
+    },
+    {
+     "usage": "العَكَنْكَعَم",
+     "meaning": "الذَّكَر الخبيثُ من السَّعالَى",
+     "meaning_english": "The malicious male of the ghoul-like creatures (sa'aalaa)",
+     "citation": "كأنّها وهُوَ إذا استَبَّا معاً غولٌ تُداهى شرساً عَكَنْكَعَما"
+    }
+   ],
+   "notes": "Tail end of a root entry begun on a prior page not in this batch; only the running header 'عل' is visible, which is the section heading, not this entry's root. Ibn Faris states this report has somewhat lowered al-Khalil's book in scholars' esteem."
+  },
+  {
+   "root": "؟ (تكملة من الصفحة السابقة)",
+   "root_letters": [],
+   "core_meaning": "نص متبقٍ من مادة سابقة يصف أسنان عجوز شُبّهت بأسنان السودان",
+   "core_meaning_english": "leftover text from a prior entry describing an old woman's teeth likened to those of the Sudanese",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "عجوز لَطْماء",
+     "meaning": "تحاتّت أسنانها",
+     "meaning_english": "an old woman whose teeth have fallen away/crumbled",
+     "citation": "قال ابن دريد"
+    },
+    {
+     "usage": "اللَّطماء",
+     "meaning": "القليلة لحم الفرج",
+     "meaning_english": "a woman with little flesh on the vulva",
+     "citation": "قال (تكملة كلام ابن دريد)"
+    }
+   ],
+   "printed_page_number": "250",
+   "pdf_page_index": 2320,
+   "notes": "Opening fragment of page 250 continues an entry begun on an earlier (unprovided) page; root letters not visible on this page."
+  },
+  {
+   "root": "؟ (تكملة من الأصل ٧٥٢)",
+   "root_letters": [],
+   "core_meaning": "وإذا هُمز * تغيّر المعنى",
+   "core_meaning_english": "when hamzated, the meaning changes",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "تهمّأ الثوب",
+     "meaning": "بلي",
+     "meaning_english": "the garment wore out / became worn",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "٦٤",
+   "pdf_page_index": 2620,
+   "notes": "Fragment continuing root entry numbered 753 begun on an earlier page not in this batch; footnote (1) states this is the tail end of original page 752's material, appended here after a numbering adjustment. Root not identifiable from this page alone."
+  }
+ ]
+}

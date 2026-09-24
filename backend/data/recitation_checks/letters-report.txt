@@ -1,0 +1,236 @@
+Which letters the ear mishears.
+
+Counted only on the 1061 recitations a reviewer marked nothing on, so
+every mismatch below is the ear's and not the reciter's. 'wrong' is that
+letter swapped for another or dropped; 'became' names the three commonest.
+
+THE LETTERS EACH MODEL CAN WRITE AT ALL
+  letters (tilawa): 1025 pieces
+    letters it can never write: ػ ؼ ؽ ؾ ؿ ـ
+    marks it can never write:   ٰ
+    of those, ones the Qur'an uses: none
+  whisper (recitation): 51865 pieces
+    letters it can never write: ػ ؼ ؽ ؾ ؿ
+    marks it can never write:   ٰ
+    of those, ones the Qur'an uses: none
+
+WHAT EACH EAR HEARD FROM SEVEN PROFESSIONAL RECITERS
+(frontend/scripts/ears-heard.json, where the words are certain)
+
+hosted-groq: 1050 recitations, 42721 letters expected
+letter                    said  swapped   gone   wrong   became
+ئ yeh with hamza above     154        4      4    5.2%   ع x1, ء x1, ف x1
+ؤ waw with hamza above     112        0      4    3.6%   
+ظ zah                      119        4      0    3.4%   ض x3, ر x1
+غ ghain                    154        3      2    3.2%   و x2, ر x1
+ء hamza                    252        2      4    2.4%   ؤ x2
+ض dad                      182        2      2    2.2%   ط x1, ب x1
+ص sad                      364        7      0    1.9%   س x5, ف x1, ط x1
+ط tah                      161        1      1    1.2%   ق x1
+ز zain                     161        2      0    1.2%   ج x2
+ت teh                     1239        6      6    1.0%   ة x3, ث x1, ف x1
+ي yeh                     3276        8     22    0.9%   ا x5, ه x2, ف x1
+ة teh marbuta              329        2      1    0.9%   ه x2
+خ khah                     350        2      1    0.9%   ق x1, ف x1
+و waw                     3178        3     23    0.8%   ا x2, ي x1
+ع ain                     1106        1      8    0.8%   ؤ x1
+ن noon                    3451        5     20    0.7%   م x2, د x2, ظ x1
+ج jeem                     343        0      2    0.6%   
+ه heh                     1897        1     10    0.6%   ذ x1
+م meem                    3563        1     19    0.6%   ن x1
+ث theh                     182        0      1    0.5%   
+ل lam                     4900        1     25    0.5%   ر x1
+ا alef                    7931        2     36    0.5%   ي x2
+ب beh                     1498        0      7    0.5%   
+د dal                      868        1      3    0.5%   م x1
+ر reh                     1575        2      5    0.4%   د x1, ز x1
+ق qaf                      833        2      1    0.4%   م x1, ب x1
+ك kaf                     1064        2      1    0.3%   ق x2
+ف feh                     1134        1      1    0.2%   ت x1
+ح hah                      588        0      1    0.2%   
+ذ thal                     644        0      1    0.2%   
+س seen                     798        0      1    0.1%   
+ش sheen                    315        0      0    0.0%   
+letters heard that were not said: ا alef x48, ل lam x28, م meem x27, ي yeh x25, و waw x19, ن noon x17
+
+letters: 1050 recitations, 42721 letters expected
+letter                    said  swapped   gone   wrong   became
+ث theh                     182        7      0    3.8%   ط x4, س x3
+ي yeh                     3276        3     28    0.9%   ا x3
+ر reh                     1575        1     10    0.7%   ق x1
+ن noon                    3451        1     23    0.7%   ل x1
+ت teh                     1239        7      1    0.6%   د x7
+ح hah                      588        1      2    0.5%   ج x1
+س seen                     798        0      3    0.4%   
+ه heh                     1897        0      7    0.4%   
+ل lam                     4900        2     14    0.3%   م x1, ن x1
+و waw                     3178        0     10    0.3%   
+ذ thal                     644        0      2    0.3%   
+ة teh marbuta              329        0      1    0.3%   
+ص sad                      364        0      1    0.3%   
+ا alef                    7931        0     21    0.3%   
+د dal                      868        0      2    0.2%   
+م meem                    3563        0      5    0.1%   
+ب beh                     1498        0      2    0.1%   
+ق qaf                      833        1      0    0.1%   خ x1
+ف feh                     1134        0      0    0.0%   
+ع ain                     1106        0      0    0.0%   
+ك kaf                     1064        0      0    0.0%   
+خ khah                     350        0      0    0.0%   
+ج jeem                     343        0      0    0.0%   
+ش sheen                    315        0      0    0.0%   
+ء hamza                    252        0      0    0.0%   
+ض dad                      182        0      0    0.0%   
+ط tah                      161        0      0    0.0%   
+ز zain                     161        0      0    0.0%   
+غ ghain                    154        0      0    0.0%   
+ئ yeh with hamza above     154        0      0    0.0%   
+ظ zah                      119        0      0    0.0%   
+ؤ waw with hamza above     112        0      0    0.0%   
+letters heard that were not said: ا alef x57, ل lam x46, م meem x28, ي yeh x19, و waw x18, ن noon x18
+
+local-quran-strict: 1084 recitations, 43917 letters expected
+letter                    said  swapped   gone   wrong   became
+ؤ waw with hamza above     116        0      8    6.9%   
+ئ yeh with hamza above     158        5      3    5.1%   ء x3, ف x1, ا x1
+ء hamza                    258        0      6    2.3%   
+ض dad                      190        0      3    1.6%   
+غ ghain                    157        0      2    1.3%   
+ز zain                     168        0      2    1.2%   
+ت teh                     1266        3     12    1.2%   ف x1, ك x1, س x1
+م meem                    3666        2     36    1.0%   ن x2
+و waw                     3256        4     29    1.0%   ا x3, ي x1
+ي yeh                     3368        2     31    1.0%   ف x1, ا x1
+ن noon                    3546        1     31    0.9%   ظ x1
+ة teh marbuta              335        0      3    0.9%   
+ع ain                     1131        0     10    0.9%   
+ج jeem                     352        0      3    0.9%   
+ل lam                     5053        2     36    0.8%   م x1, د x1
+ا alef                    8162        0     58    0.7%   
+ط tah                      167        0      1    0.6%   
+ق qaf                      853        2      3    0.6%   م x1, ب x1
+ه heh                     1946        0     11    0.6%   
+ر reh                     1616        1      8    0.6%   د x1
+د dal                      898        1      4    0.6%   م x1
+ث theh                     183        0      1    0.5%   
+ب beh                     1532        0      7    0.5%   
+ف feh                     1165        3      2    0.4%   ت x2, ه x1
+ك kaf                     1098        0      4    0.4%   
+س seen                     827        1      2    0.4%   ر x1
+ح hah                      606        0      2    0.3%   
+ذ thal                     665        0      2    0.3%   
+خ khah                     359        0      1    0.3%   
+ص sad                      371        0      1    0.3%   
+ش sheen                    328        0      0    0.0%   
+ظ zah                      121        0      0    0.0%   
+letters heard that were not said: ا alef x24, ل lam x21, م meem x18, ي yeh x18, و waw x15, ن noon x13
+
+left out, fewer than 100 recitations read: deepgram-live (35), deepgram-nova-3 (36), deepgram-whisper (36), groq (36), local-base (36), local-quran (36)
+
+WHAT EACH EAR HEARD FROM ORDINARY PEOPLE RECITING
+
+whisper: 1054 recitations, 15157 letters expected
+letter                    said  swapped   gone   wrong   became
+غ ghain                     35        5      9   40.0%   ح x2, خ x1, ع x1
+ض dad                       35        2      7   25.7%   د x2
+ؤ waw with hamza above       8        1      1   25.0%   ر x1
+ط tah                       41        5      5   24.4%   ت x4, ك x1
+د dal                      965       87     45   13.7%   ت x37, ك x23, ث x6
+ت teh                      243        2     30   13.2%   ي x1, ط x1
+ص sad                      252       16     16   12.7%   س x13, خ x1, ت x1
+ة teh marbuta               80        1      9   12.5%   ي x1
+ع ain                      199        5     18   11.6%   غ x3, و x1, ح x1
+ن noon                     650        7     64   10.9%   م x5, ل x1, و x1
+ز zain                      29        0      3   10.3%   
+ب beh                      280        2     26   10.0%   ل x1, ف x1
+ء hamza                     40        1      3   10.0%   ر x1
+ذ thal                     167        3     13    9.6%   ل x1, ج x1, س x1
+ئ yeh with hamza above      33        1      2    9.1%   ا x1
+ر reh                      358        2     30    8.9%   ب x1, و x1
+ش sheen                     70        2      4    8.6%   ف x1, ر x1
+ظ zah                       12        1      0    8.3%   ض x1
+ا alef                    2508       20    184    8.1%   و x14, ت x2, ي x2
+س seen                     140        1     10    7.9%   ص x1
+ي yeh                      976        6     65    7.3%   ا x3, ط x1, ت x1
+م meem                    1186       13     71    7.1%   ب x7, و x3, غ x1
+خ khah                      58        0      4    6.9%   
+ج jeem                      77        0      5    6.5%   
+ل lam                     2830       32    146    6.3%   ر x5, ج x5, ي x3
+ق qaf                      328        6     14    6.1%   ك x2, ف x1, ط x1
+ح hah                      429        6     20    6.1%   ه x3, خ x2, ي x1
+ه heh                      993        6     51    5.7%   ا x1, ح x1, ن x1
+و waw                     1251        8     62    5.6%   ا x2, غ x2, ر x1
+ك kaf                      492        3     22    5.1%   ه x1, ق x1, خ x1
+ف feh                      346        8      6    4.0%   س x5, ص x2, غ x1
+ث theh                      46        0      0    0.0%   
+letters heard that were not said: ا alef x552, ل lam x315, و waw x246, ي yeh x230, م meem x204, ن noon x192
+
+letters: 1054 recitations, 15157 letters expected
+letter                    said  swapped   gone   wrong   became
+غ ghain                     35        2      8   28.6%   ص x1, ق x1
+ض dad                       35        0      6   17.1%   
+ط tah                       41        2      4   14.6%   س x1, ت x1
+ز zain                      29        0      4   13.8%   
+ء hamza                     40        0      5   12.5%   
+ؤ waw with hamza above       8        0      1   12.5%   
+ت teh                      243        0     29   11.9%   
+ذ thal                     167        0     16    9.6%   
+ب beh                      280        0     26    9.3%   
+خ khah                      58        0      5    8.6%   
+س seen                     140        1     11    8.6%   ف x1
+ش sheen                     70        0      6    8.6%   
+ر reh                      358        0     30    8.4%   
+ع ain                      199        0     16    8.0%   
+ن noon                     650        0     51    7.8%   
+ا alef                    2508        4    174    7.1%   و x2, م x1, س x1
+ج jeem                      77        0      5    6.5%   
+ي yeh                      976        1     62    6.5%   و x1
+ة teh marbuta               80        0      5    6.2%   
+م meem                    1186        0     72    6.1%   
+ئ yeh with hamza above      33        0      2    6.1%   
+ص sad                      252        0     14    5.6%   
+و waw                     1251        1     48    3.9%   ف x1
+ك kaf                      492        0     19    3.9%   
+ل lam                     2830        0    109    3.9%   
+ه heh                      993        0     38    3.8%   
+ح hah                      429        0     13    3.0%   
+د dal                      965        1     19    2.1%   ل x1
+ق qaf                      328        0      6    1.8%   
+ف feh                      346        1      5    1.7%   ن x1
+ث theh                      46        0      0    0.0%   
+ظ zah                       12        0      0    0.0%   
+letters heard that were not said: ا alef x566, ل lam x361, و waw x233, م meem x226, ي yeh x221, ن noon x182
+
+hosted: 207 recitations, 2971 letters expected
+letter                    said  swapped   gone   wrong   became
+غ ghain                     11        1      6   63.6%   خ x1
+ض dad                        8        1      3   50.0%   ظ x1
+ص sad                       46        0     17   37.0%   
+س seen                      27        3      3   22.2%   ص x2, ل x1
+ط tah                        9        0      2   22.2%   
+ب beh                       59        0     12   20.3%   
+ن noon                     126        2     19   16.7%   م x1, ا x1
+ع ain                       39        0      6   15.4%   
+ة teh marbuta               13        1      1   15.4%   ا x1
+ت teh                       33        1      4   15.2%   ك x1
+ا alef                     473        4     66   14.8%   ئ x1, و x1, ت x1
+ء hamza                      7        0      1   14.3%   
+م meem                     224        5     25   13.4%   ن x5
+ل lam                      566        8     60   12.0%   ر x3, و x2, د x1
+ر reh                       69        0      8   11.6%   
+ه heh                      193        2     20   11.4%   ي x1, ا x1
+ئ yeh with hamza above       9        1      0   11.1%   ء x1
+ي yeh                      201        0     22   10.9%   
+ذ thal                      38        0      4   10.5%   
+خ khah                      11        0      1    9.1%   
+ك kaf                       91        4      4    8.8%   ق x4
+د dal                      190        7      9    8.4%   ل x2, ت x1, ض x1
+ق qaf                       63        2      3    7.9%   ك x2
+و waw                      266        2     16    6.8%   ف x1, م x1
+ش sheen                     21        0      1    4.8%   
+ف feh                       69        2      1    4.3%   ث x1, ص x1
+ح hah                       83        2      0    2.4%   ج x2
+ج jeem                      13        0      0    0.0%   
+ث theh                      12        0      0    0.0%   
+ز zain                       1        0      0    0.0%   
+letters heard that were not said: ا alef x104, ل lam x58, و waw x52, ي yeh x38, ه heh x35, م meem x35

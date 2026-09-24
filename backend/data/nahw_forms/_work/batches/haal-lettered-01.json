@@ -1,0 +1,286 @@
+{
+ "batch": "haal-lettered-01",
+ "questions": [
+  {
+   "id": "haal/application/1",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q1",
+    "number": "1",
+    "images": [
+     "q026.png",
+     "q027.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "رَأَيْتَهُمْ يَصُدُّونَ وَهُمْ مُسْتَكْبِرُونَ",
+     "marked": [
+      {
+       "text": "يَصُدُّونَ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَهُمْ مُسْتَكْبِرُونَ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "هُمْ (suffix in رَأَيْتَهُمْ)",
+       "mark": "green underline"
+      }
+     ],
+     "en": "you see them walking away arrogantly."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each underlined phrase, tick ليست حالا if it is not a حال; if it is, tick حال and also tick the ruling for its واو حالية (منع الواو | جواز الواو | وجوب الواو).",
+     "kind": "grid",
+     "rows": [
+      "يصدون",
+      "وهم..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "يصدون": [
+       "حال",
+       "منع الواو"
+      ],
+      "وهم...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "يصدون": [
+       "حال",
+       "منع الواو"
+      ],
+      "وهم...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "points": "2/2",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "The action of \"seeing\" was done upon them whilst they were \"walking away\". \"They\" performed the action of \"walking away\" whilst being \"arrogant\".\n\"Walking away\", which is فعل مضارع مثبت without a قد, is a haal but will not have a waaw haaliyyah.\n\"Being arrogant\" is also haal. And it requires a waaw haaliyah as it is a jumla ismiyyah beginning with a dhameer raabit."
+    }
+   ],
+   "flags": [
+    "Pixel measurement of q026.png shows one continuous blue underline stroke spans وَهُمْ and مُسْتَكْبِرُونَ together, with يَصُدُّونَ underlined blue as a separate stroke; the green stroke covers only the trailing هُمْ suffix of رَأَيْتُهُمْ, not the whole word مُسْتَكْبِرُونَ. The exact letter boundary of that suffix mark is approximate at pixel level."
+   ]
+  },
+  {
+   "id": "haal/application/2",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q2",
+    "number": "2",
+    "images": [
+     "q029.png",
+     "q030.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "زيدٌ يأتِيْكَ وَما تَنَامُ",
+     "marked": [
+      {
+       "text": "كَ (suffix in يأتِيْكَ)",
+       "mark": "green underline"
+      },
+      {
+       "text": "وَما تَنَامُ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "Zaid will come to you and you will not be sleeping."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each underlined phrase, tick ليست حالا if it is not a حال; if it is, tick حال and also tick the ruling for its واو حالية (منع الواو | جواز الواو | وجوب الواو).",
+     "kind": "grid",
+     "rows": [
+      "وما تنام"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "وما تنام": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "وما تنام": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "A فعل مضارع preceded by ما will always have ضمير رابط and will not have a واو حالية.\nThe الضمير الرابط is underlined in your sheet because it means the الضمير الرابط will always be present."
+    }
+   ],
+   "flags": [
+    "Pixel measurement of q029.png shows the mark colours are swapped from the original read: the blue underline is under وَما تَنَامُ (both words), and the green underline is a short stroke under only the trailing pronoun suffix of يَأْتِيْكَ, not the whole word. Exact letter boundary of that suffix mark is approximate."
+   ]
+  },
+  {
+   "id": "haal/application/3",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q3",
+    "number": "3",
+    "images": [
+     "q032.png",
+     "q033.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "مَرَجَ الْبَحْرَيْنِ يَلْتَقِيَانِ بَيْنَهُمَا بَرْزَخٌ لَا يَبْغِيَانِ",
+     "marked": [
+      {
+       "text": "الْبَحْرَيْنِ",
+       "mark": "green underline"
+      },
+      {
+       "text": "يَلْتَقِيَانِ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "بَيْنَهُمَا بَرْزَخٌ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "لَا يَبْغِيَانِ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "He released the two seas, meeting one another, between them is a barrier so neither of them transgresses."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each underlined phrase, tick ليست حالا if it is not a حال; if it is, tick حال and also tick the ruling for its واو حالية (منع الواو | جواز الواو | وجوب الواو).",
+     "kind": "grid",
+     "rows": [
+      "يلتقيان",
+      "بينهما...",
+      "لا يبغيان"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "يلتقيان": [
+       "حال",
+       "منع الواو"
+      ],
+      "بينهما...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "لا يبغيان": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "يلتقيان": [
+       "حال",
+       "منع الواو"
+      ],
+      "بينهما...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "لا يبغيان": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "points": "3/3",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "All of them are haal as they are all jumlas and neither of them need a waaw haaliyya as they all have a dhameer raabit.\nThe first for being فعل مضارع مثبت without a قد will not have a waaw haaliyya.\nThe second for being JIK which does not begin with the dhameer raabit, hence waaw haaliyya is optional.\nThe third for being فعل مضارع منفي with لا will not have a waaw haaliyya."
+    }
+   ],
+   "flags": [
+    "\"الْبَحْرَيْنِ\" is underlined in the image (confirmed green, not blue, by pixel measurement) but has no corresponding row in the grid (only يلتقيان, بينهما..., لا يبغيان are tested)."
+   ]
+  }
+ ]
+}

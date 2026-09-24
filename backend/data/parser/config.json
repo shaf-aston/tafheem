@@ -1,0 +1,11 @@
+{
+  "bert_name": "CAMeL-Lab/bert-base-arabic-camelbert-msa",
+  "n_bert_layers": 4,
+  "hidden_size": 768,
+  "pad_index": 0,
+  "unk_index": 1,
+  "bos_index": 2,
+  "fix_len": 20,
+  "proj": true,
+  "tree": true
+}

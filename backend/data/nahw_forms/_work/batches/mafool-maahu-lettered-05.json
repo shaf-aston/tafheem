@@ -1,0 +1,230 @@
+{
+ "batch": "mafool-maahu-lettered-05",
+ "questions": [
+  {
+   "id": "mafool-maahu/application/13",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "13",
+    "images": [
+     "q068.png",
+     "q069.png",
+     "q070.png",
+     "q071.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "هذا له وزيد",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و and select the correct option.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "معية"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": null,
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation.",
+     "kind": "free_text",
+     "options": null,
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/application/14",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "14",
+    "images": [
+     "q072.png",
+     "q073.png",
+     "q074.png",
+     "q075.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "جاء الشتاءُ والمعطف",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و and select the correct option.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "كلاهما"
+     ],
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": null,
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation.",
+     "kind": "free_text",
+     "options": null,
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/application/15",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "15",
+    "images": [
+     "q076.png",
+     "q077.png",
+     "q078.png",
+     "q079.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "اشترك زيد وبكر في العمل",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و and select the correct option.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "عاطفة",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "كلاهما"
+     ],
+     "points": "0/1",
+     "feedback": "It is عاطفة only because the verb of the same reason تخاصم in Q1.\nThe verb contains the meaning of `With` so و will not be معية or you'll end up with `With` `with`."
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": null,
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation.",
+     "kind": "free_text",
+     "options": null,
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": []
+  }
+ ]
+}

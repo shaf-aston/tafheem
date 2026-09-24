@@ -1,0 +1,47 @@
+{
+ "id": "haal-e20",
+ "section": "Correct or Incorrect",
+ "picture": "haal-19.png",
+ "instruction": "",
+ "parts": [
+  {
+   "letter": "a",
+   "question": "",
+   "options": [
+    "Correct",
+    "Incorrect"
+   ],
+   "answer": [
+    "Correct"
+   ],
+   "by": "teacher"
+  },
+  {
+   "letter": "b",
+   "question": "How many mistakes?",
+   "options": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    "Mistakes:"
+   ],
+   "answer": {
+    "Mistakes:": [
+     "0"
+    ]
+   },
+   "by": "teacher"
+  },
+  {
+   "letter": "c",
+   "question": "Explain the mistakes and how to rectify them.",
+   "answer": "No mistakes",
+   "by": "teacher"
+  }
+ ],
+ "tags": []
+}

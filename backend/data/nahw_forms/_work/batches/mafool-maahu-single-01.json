@@ -1,0 +1,336 @@
+{
+ "batch": "mafool-maahu-single-01",
+ "questions": [
+  {
+   "id": "mafool-maahu/statements/1",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "1",
+    "images": [
+     "q002.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "The مفعول معه is...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول معه is...",
+     "kind": "choose_all",
+     "options": [
+      "...an إسم.",
+      "...a حرف.",
+      "...a فعل."
+     ],
+     "answer": [
+      "...an إسم."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...a حرف."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/2",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "2",
+    "images": [
+     "q003.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "The مفعول معه is...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول معه is...",
+     "kind": "choose_all",
+     "options": [
+      "...مجرور.",
+      "...مرفوع.",
+      "...منصوب."
+     ],
+     "answer": [
+      "...منصوب."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...منصوب."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/3",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "3",
+    "images": [
+     "q004.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "The و of the مفعول معه signifes...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The و of the مفعول معه signifes...",
+     "kind": "choose_all",
+     "options": [
+      "...association of what is after it with what is before it when the action is conducted.",
+      "...the state of what is before it while the action is conducted.",
+      "...the greatness of what is after it which deems the action necessary due to it being an oath.",
+      "...co-equailty of what is after it with what is before it when the action is conducted."
+     ],
+     "answer": [
+      "...association of what is after it with what is before it when the action is conducted."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...co-equailty of what is after it with what is before it when the action is conducted."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/4",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "4",
+    "images": [
+     "q005.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "The مفعول معه ...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول معه ...",
+     "kind": "choose_all",
+     "options": [
+      "...can come before the verb.",
+      "...must come before the verb.",
+      "...must come after the verb.",
+      "...can come after the verb."
+     ],
+     "answer": [
+      "...must come after the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...must come after the verb.",
+      "...can come after the verb."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/5",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "5",
+    "images": [
+     "q006.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "The مفعول معه ...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول معه ...",
+     "kind": "choose_all",
+     "options": [
+      "...can come after the noun which it would have been عطف to.",
+      "...can come before the noun which it would have been عطف to.",
+      "...must come after the noun which it would have been عطف to.",
+      "...must come before the noun which it would have been عطف to."
+     ],
+     "answer": [
+      "...must come after the noun which it would have been عطف to."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can come after the noun which it would have been عطف to.",
+      "...must come after the noun which it would have been عطف to."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/6",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "6",
+    "images": [
+     "q007.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "The مفعول معه will be necessary...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول معه will be necessary...",
+     "kind": "choose_all",
+     "options": [
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+     ],
+     "answer": [
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/7",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "7",
+    "images": [
+     "q008.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "The مفعول معه and the noun which it would have been عطف to...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول معه and the noun which it would have been عطف to...",
+     "kind": "choose_all",
+     "options": [
+      "...can NOT be seperated with a gap.",
+      "...can be seperated with a gap."
+     ],
+     "answer": [
+      "...can NOT be seperated with a gap."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can NOT be seperated with a gap.",
+      "...can be seperated with a gap."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/8",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "8",
+    "images": [
+     "q009.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "عطف is not permissible...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "عطف is not permissible...",
+     "kind": "choose_all",
+     "options": [
+      "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb.",
+      "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار."
+     ],
+     "answer": [
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  }
+ ]
+}

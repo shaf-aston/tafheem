@@ -1,0 +1,12 @@
+{
+  "_comment": "How the Nahw notes behave when they are used as a test, same pattern as tamreen.json. The notes themselves never change: these say what is hidden and how much is asked at a time.",
+
+  "_comment-hide": "Which kinds of marked piece start hidden in Test mode. Every role declared in the backend's roles.json can be switched on the page; these are only the ones on by default.",
+  "hide": ["ruling", "term"],
+
+  "_comment-cards": "Flashcards: how many in one run. Fewer than this in a topic simply means a shorter run.",
+  "cards-per-run": 20,
+
+  "_comment-reveal": "Whether a hidden piece comes back for good once revealed, or hides itself again when the next one is opened. Coming back for good is kinder for reading; hiding again is stricter for drilling.",
+  "reveal-stays": true
+}

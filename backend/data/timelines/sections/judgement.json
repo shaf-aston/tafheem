@@ -1,0 +1,528 @@
+{
+  "id": "judgement",
+  "order": 5,
+  "name": "Day of Judgement",
+  "arabic": "يوم القيامة",
+  "science": "aqidah",
+  "kind": "unseen",
+  "sub": "The Trumpet to the final home",
+  "events": [
+    {
+      "id": "trumpet",
+      "title": "The Trumpet",
+      "arabic": "النفخ في الصور",
+      "when": "First and second blowing",
+      "at": 1,
+      "summary": "All in the heavens and earth fall dead, then stand up looking on.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "39:68"
+        }
+      ],
+      "steps": [
+        {
+          "id": "first-blow",
+          "title": "The first blow",
+          "arabic": "النفخة الأولى",
+          "when": "At the Trumpet",
+          "summary": "All in the heavens and earth fall dead, except whom Allah wills.",
+          "refs": [
+            {
+              "quran": "39:68"
+            }
+          ]
+        },
+        {
+          "id": "gap-forty",
+          "title": "The gap of forty",
+          "arabic": "ما بين النفختين أربعون",
+          "when": "Between the two blows",
+          "summary": "Abu Huraira said there is forty between the two blowings and would not say whether days, months, or years; then rain falls and bodies grow again like plants.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4935,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "second-blow",
+          "title": "The second blow",
+          "arabic": "النفخة الثانية",
+          "when": "After the gap",
+          "summary": "The Trumpet sounds again and all stand up, looking on.",
+          "refs": [
+            {
+              "quran": "39:68"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "resurrection",
+      "title": "Resurrection",
+      "arabic": "البعث",
+      "when": "After the second blowing",
+      "at": 2,
+      "summary": "From the graves they hasten to their Lord.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "36:51"
+        }
+      ],
+      "steps": [
+        {
+          "id": "raised-bare",
+          "title": "Raised bare and barefoot",
+          "arabic": "الحشر حفاة عراة",
+          "when": "After the second blow",
+          "summary": "All are gathered barefoot, naked and uncircumcised, as they were first created.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 6527,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "ibrahim-clothed",
+          "title": "Ibrahim clothed first",
+          "arabic": "أول من يكسى إبراهيم",
+          "when": "At the gathering",
+          "aside": true,
+          "summary": "The first person to be clothed on that Day is Ibrahim.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3349,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gathering",
+      "title": "The Gathering",
+      "arabic": "الحشر",
+      "when": "The standing",
+      "at": 3,
+      "summary": "The sun is brought near; people stand in sweat by their deeds.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "hadith": "muslim",
+          "number": 2864,
+          "checked": "sunnah.com"
+        }
+      ],
+      "steps": [
+        {
+          "id": "sun-near",
+          "title": "The sun brought near",
+          "arabic": "دنو الشمس",
+          "when": "The standing",
+          "summary": "The sun is brought so close to the people that only a mile is left between them.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2864,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "sweat-by-deeds",
+          "title": "Sweat by their deeds",
+          "arabic": "الغرق في العرق",
+          "when": "The standing",
+          "summary": "People stand in their own sweat according to their deeds: some to the ankles, some to the knees, some to the waist, and some drowning in it.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2864,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "intercession",
+      "title": "The Intercession",
+      "arabic": "الشفاعة",
+      "when": "The standing",
+      "at": 3,
+      "summary": "People go from prophet to prophet until they reach Muhammad ﷺ.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 4712,
+          "checked": "sunnah.com"
+        }
+      ],
+      "steps": [
+        {
+          "id": "to-adam",
+          "title": "They go to Adam",
+          "arabic": "الذهاب إلى آدم",
+          "when": "The standing",
+          "summary": "People ask Adam, father of mankind, to intercede; he recalls his own sin and sends them on.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4712,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "to-nuh",
+          "title": "They go to Nuh",
+          "arabic": "الذهاب إلى نوح",
+          "when": "The standing",
+          "summary": "Nuh recalls the one dua he once made against his people and sends them on.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4712,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "to-ibrahim",
+          "title": "They go to Ibrahim",
+          "arabic": "الذهاب إلى إبراهيم",
+          "when": "The standing",
+          "summary": "Ibrahim recalls three sayings that were not strictly true and sends them on.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4712,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "to-musa",
+          "title": "They go to Musa",
+          "arabic": "الذهاب إلى موسى",
+          "when": "The standing",
+          "summary": "Musa recalls killing a man he was not commanded to kill and sends them on.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4712,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "to-isa",
+          "title": "They go to Isa",
+          "arabic": "الذهاب إلى عيسى",
+          "when": "The standing",
+          "summary": "Isa names no sin of his own, but still sends them on, to Muhammad.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4712,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "to-muhammad",
+          "title": "Muhammad intercedes",
+          "arabic": "شفاعة النبي صلى الله عليه وسلم",
+          "when": "The standing",
+          "summary": "He prostrates beneath the Throne in praise of his Lord, is told to raise his head and ask, and his intercession is granted.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4712,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "book",
+      "title": "The Book is given",
+      "arabic": "تطاير الصحف",
+      "when": "Reckoning",
+      "at": 4,
+      "summary": "Given in the right hand, or the left.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "quran": "69:19-25"
+        }
+      ],
+      "steps": [
+        {
+          "id": "right-hand",
+          "title": "Given in the right hand",
+          "arabic": "الكتاب باليمين",
+          "when": "Reckoning",
+          "summary": "The believer's record is given into his right hand, and he shares it with joy.",
+          "refs": [
+            {
+              "quran": "69:19-20"
+            }
+          ],
+          "path": "believer"
+        },
+        {
+          "id": "left-hand",
+          "title": "Given behind the back",
+          "arabic": "الكتاب وراء الظهر",
+          "when": "Reckoning",
+          "summary": "The wrongdoer's record is given from behind him, and he wishes for destruction.",
+          "refs": [
+            {
+              "quran": "69:25"
+            }
+          ],
+          "path": "disbeliever"
+        }
+      ]
+    },
+    {
+      "id": "scales",
+      "title": "The Scales",
+      "arabic": "الميزان",
+      "when": "Reckoning",
+      "at": 4,
+      "summary": "Just scales; not a mustard seed's weight is missed.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "quran": "21:47"
+        }
+      ],
+      "steps": [
+        {
+          "id": "weighed",
+          "title": "Deeds are weighed",
+          "arabic": "وزن الأعمال",
+          "when": "Reckoning",
+          "summary": "Allah sets up just scales; not a soul will be wronged in anything, not even the weight of a mustard seed.",
+          "refs": [
+            {
+              "quran": "21:47"
+            }
+          ]
+        },
+        {
+          "id": "bitaqah",
+          "title": "The card outweighs the scrolls",
+          "arabic": "حديث البطاقة",
+          "when": "Reckoning",
+          "summary": "A man is shown ninety-nine scrolls of sin, then a card bearing the shahadah is placed on the scale and outweighs them all.",
+          "refs": [
+            {
+              "hadith": "tirmidhi",
+              "number": 2639,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hawd",
+      "title": "The Pool",
+      "arabic": "الحوض",
+      "when": "Before or after the Bridge",
+      "at": 5,
+      "summary": "The Prophet's pool; whoever drinks never thirsts again.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "quran": "108:1"
+        },
+        {
+          "hadith": "bukhari",
+          "number": 6579,
+          "checked": "sunnah.com"
+        }
+      ],
+      "steps": [
+        {
+          "id": "waits-pool",
+          "title": "The Prophet waits at the Pool",
+          "arabic": "انتظار النبي عند الحوض",
+          "when": "Before or after the Bridge",
+          "summary": "His pool takes a month to cross, whiter than milk and sweeter than musk; whoever drinks from it never thirsts again.",
+          "refs": [
+            {
+              "quran": "108:1"
+            },
+            {
+              "hadith": "bukhari",
+              "number": 6579,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "some-turned-away",
+          "title": "Some are turned away",
+          "arabic": "صد بعض الناس عن الحوض",
+          "when": "At the Pool",
+          "summary": "Some he recognises as his companions are pulled away before him, told they changed the religion after he left them.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 6582,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sirat",
+      "title": "The Bridge",
+      "arabic": "الصراط",
+      "when": "Crossing",
+      "at": 6,
+      "summary": "A bridge over Jahannam, crossed at the speed of one's deeds.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "hadith": "muslim",
+          "number": 183,
+          "checked": "sunnah.com"
+        },
+        {
+          "quran": "19:71-72"
+        }
+      ],
+      "steps": [
+        {
+          "id": "bridge-set",
+          "title": "The bridge is set over Hell",
+          "arabic": "نصب الصراط",
+          "when": "After intercession",
+          "summary": "A bridge is laid across Jahannam, slippery, with hooks and spikes that catch as it is crossed.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 183,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "dua-safety",
+          "title": "Steadfast, O Lord",
+          "arabic": "اللهم سلم سلم",
+          "when": "Crossing",
+          "summary": "As they cross, people plead: Allah, keep safe, keep safe.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 183,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "speed-by-deeds",
+          "title": "Crossed at the speed of deeds",
+          "arabic": "السرعة على قدر العمل",
+          "when": "Crossing",
+          "summary": "Believers pass like the blink of an eye, like lightning, like wind, like birds, or like fine horses, while others are scratched, held back, or fall into the Fire.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 183,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "homes",
+      "title": "Jannah or Jahannam",
+      "arabic": "الجنة والنار",
+      "when": "Forever",
+      "at": 7,
+      "summary": "Driven in groups to the Garden, or to the Fire; and faces that day looking at their Lord.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "39:71-73"
+        },
+        {
+          "quran": "75:22-23"
+        }
+      ],
+      "steps": [
+        {
+          "id": "jannah-groups",
+          "title": "Driven to the Garden",
+          "arabic": "سوق المتقين إلى الجنة",
+          "when": "Forever",
+          "summary": "Those who feared their Lord are driven to Paradise in groups, its gates opened for them.",
+          "refs": [
+            {
+              "quran": "39:73"
+            }
+          ],
+          "path": "believer"
+        },
+        {
+          "id": "looking-at-lord",
+          "title": "Looking at their Lord",
+          "arabic": "النظر إلى وجه الرب",
+          "when": "Forever",
+          "aside": true,
+          "summary": "Some faces that Day will be radiant, looking at their Lord.",
+          "refs": [
+            {
+              "quran": "75:22-23"
+            }
+          ],
+          "path": "believer"
+        },
+        {
+          "id": "jahannam-groups",
+          "title": "Driven to the Fire",
+          "arabic": "سوق الكفار إلى النار",
+          "when": "Forever",
+          "summary": "Those who disbelieved are driven to Hell in groups.",
+          "refs": [
+            {
+              "quran": "39:71"
+            }
+          ],
+          "path": "disbeliever"
+        }
+      ]
+    }
+  ]
+}

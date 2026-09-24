@@ -1,0 +1,184 @@
+{
+  "_readme": "Every knob build_root_meanings.py turns. The script reads this file and holds no value of its own, so the book can be re-cut differently without editing code. Arabic patterns live here too: they are knowledge about how Ibn Faris writes, not about how the program works.",
+  "source": {
+    "_readme": "One human-typed copy of the book, packaged as a Shamela database on archive.org.",
+    "archive_item": "alfirdwsiy2018_gmail_6641",
+    "archive_file": "مقاييس اللغة  كتاب بصيغة بوك يفتح ب برنامج المكتبة الشاملة انظر للشرح اسفل    6641.zip",
+    "text_table": "b21710",
+    "toc_table": "t21710",
+    "encoding": "cp1256",
+    "timeout_seconds": 120
+  },
+  "index": {
+    "_readme": "Which rows of the book's own table of contents name a root rather than a section. The editor wrote that page the way the entry is printed, so a line arrives with his punctuation on it, and in the chapters of words longer than three letters with the definite article and sometimes the connective he opened the sentence with. strip_chars is peeled off both ends; drop_openers are the words he starts such a line with; connective and article come off only when min_after_prefix letters are left, so the و of وطر is never mistaken for the و of والحناتم. A title still holding a space after all that is a section heading, not a root. The contents page is not complete: five entries are printed and not listed on it, and the entry above each of them swallowed it. Those are found in the prose instead — a bracketed word whose next names_lookahead_chars characters name its own letters in order, never more than names_within_chars apart, is a heading and nothing else can be.",
+    "min_level": 3,
+    "min_letters": 2,
+    "max_letters": 8,
+    "lookbehind_chars": 400,
+    "strip_chars": "()[]. ،؛:؟",
+    "drop_openers": [
+      "فأما ",
+      "وأما ",
+      "أما "
+    ],
+    "connective": "و",
+    "article": "ال",
+    "min_after_prefix": 4,
+    "alternate_mark": "\\",
+    "names_lookahead_chars": 90,
+    "names_within_chars": 12
+  },
+  "entry": {
+    "_readme": "min_core_chars: shorter than this and the opening statement carried no sense, so the entry is treated as one the print leaves blank. It is low on purpose: Ibn Faris answers a word of more than three letters in one word — العصفر is نبات, a plant — and a bar set to catch empty openings was throwing those away. lacuna_window_chars: how far into the entry a manuscript gap still counts as the opening being unreadable — widen it and entries whose gap falls in the examples are wrongly thrown away. sense_lookahead_sentences: how many further sentences to try when the first one names only the root's letters.",
+    "min_core_chars": 5,
+    "lacuna_window_chars": 120,
+    "sense_lookahead_sentences": 3
+  },
+  "patterns": {
+    "_readme": "Arabic written as it is written. diacritics is the range stripped before comparing; section_heading marks where a chapter of the book begins, and both the origin sense and the entry body stop there. section_label is a chapter's name used as if it were an entry's opening, which is furniture and gets dropped. sense_markers are the words Ibn Faris uses when a root has more than one origin, longest first so the long form is never matched as the short one. lacuna is a gap the editor marked with spaced dots '. . . .'; the run of three dots he writes without spaces separates the two halves of a line of poetry and is not a gap, so 3,467 lines of verse used to read as unreadable manuscript.",
+    "diacritics": "[ً-ْٰـ]",
+    "lacuna": "\\.\\s+\\.\\s+\\.",
+    "section_heading": "\\[\\s*(ا[ً-ْٰـ]*ل[ً-ْٰـ]*)?(ب[ً-ْٰـ]*ا[ً-ْٰـ]*ب|ك[ً-ْٰـ]*ت[ً-ْٰـ]*ا[ً-ْٰـ]*ب)[ً-ْٰـ]*\\s",
+    "section_label": "^(في|باب|كتاب)\\s",
+    "sense_markers": "وَ?الْ?أَ?صْ?لُ? الْ?آخَ?رُ?|أَ?حَ?دُ?هُ?مَ?ا|وَ?الْ?آخَ?رُ?|وَ?الثَّ?انِ?ي|وَ?الثَّ?الِ?ثُ?|وَ?الرَّ?ابِ?عُ?|فَ?الْ?أَ?وَّ?لُ?",
+    "multi_origin_words": [
+      "أصلان",
+      "ثلاثة أصول",
+      "أربعة أصول",
+      "معنيان",
+      "أصول"
+    ],
+    "min_branch_chars": 3,
+    "_letter_names_readme": "How Ibn Faris names a letter when he spells a root out, keyed by the letter it names. Two readers, one table: an opening built only from these names, joined by connectives, states no sense — it tells the reader the letters they just typed — so the sentence after it is taken as well; and a bracketed word in the prose whose next words name exactly its own letters, in order, is an entry heading the contents page left out. A weak last letter he usually calls 'the weak letter' without naming it, and a hamza he names by whichever seat it is written on, so those letters answer to more than one word. Matched against text with the vowel marks already stripped.",
+    "letter_names": {
+      "ء": [
+        "الهمزة"
+      ],
+      "أ": [
+        "الهمزة"
+      ],
+      "إ": [
+        "الهمزة"
+      ],
+      "ؤ": [
+        "الهمزة"
+      ],
+      "ئ": [
+        "الهمزة"
+      ],
+      "ا": [
+        "الألف",
+        "الالف",
+        "الحرف المعتل",
+        "الحرف المعتلّ",
+        "المعتل",
+        "المعتلّ"
+      ],
+      "ب": [
+        "الباء"
+      ],
+      "ت": [
+        "التاء"
+      ],
+      "ث": [
+        "الثاء"
+      ],
+      "ج": [
+        "الجيم"
+      ],
+      "ح": [
+        "الحاء"
+      ],
+      "خ": [
+        "الخاء"
+      ],
+      "د": [
+        "الدال"
+      ],
+      "ذ": [
+        "الذال"
+      ],
+      "ر": [
+        "الراء"
+      ],
+      "ز": [
+        "الزاء",
+        "الزاي"
+      ],
+      "س": [
+        "السين"
+      ],
+      "ش": [
+        "الشين"
+      ],
+      "ص": [
+        "الصاد"
+      ],
+      "ض": [
+        "الضاد"
+      ],
+      "ط": [
+        "الطاء"
+      ],
+      "ظ": [
+        "الظاء"
+      ],
+      "ع": [
+        "العين"
+      ],
+      "غ": [
+        "الغين"
+      ],
+      "ف": [
+        "الفاء"
+      ],
+      "ق": [
+        "القاف"
+      ],
+      "ك": [
+        "الكاف"
+      ],
+      "ل": [
+        "اللام"
+      ],
+      "م": [
+        "الميم"
+      ],
+      "ن": [
+        "النون"
+      ],
+      "ه": [
+        "الهاء"
+      ],
+      "و": [
+        "الواو",
+        "الحرف المعتل",
+        "الحرف المعتلّ",
+        "المعتل",
+        "المعتلّ"
+      ],
+      "ي": [
+        "الياء",
+        "الحرف المعتل",
+        "الحرف المعتلّ",
+        "المعتل",
+        "المعتلّ"
+      ],
+      "ى": [
+        "الياء",
+        "الألف",
+        "الالف",
+        "الحرف المعتل",
+        "الحرف المعتلّ",
+        "المعتل",
+        "المعتلّ"
+      ],
+      "ة": [
+        "الهاء",
+        "التاء"
+      ]
+    },
+    "_connectives_readme": "What is left over once the letter names are removed: joining words, and the punctuation they are strung together with. Both carry no sense of their own, so an opening built only from these is the root spelled out and nothing more.",
+    "connectives": "[و\\s،؛:\\-\\[\\]().!؟\"']+|أما|وأما|فأما"
+  }
+}

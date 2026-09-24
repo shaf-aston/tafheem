@@ -1,0 +1,382 @@
+{
+ "tags": [
+  {
+   "key": "haal",
+   "ar": "حال",
+   "en": "Haal (State)",
+   "meaning": "A haal is a word or sentence that describes the condition of someone or something at the moment the main action happens."
+  },
+  {
+   "key": "zul-haal",
+   "ar": "ذو الحال",
+   "en": "Owner of the State",
+   "meaning": "The zul haal is the person or thing whose condition the haal is describing."
+  },
+  {
+   "key": "haal-mufrad",
+   "ar": "مفرد",
+   "en": "Single-word Haal",
+   "meaning": "A haal that is just one word, not a full sentence, for example an active participle or a verbal noun."
+  },
+  {
+   "key": "haal-jumla-ismiyya",
+   "ar": "جملة إسمية خبرية",
+   "en": "Noun-sentence Haal",
+   "meaning": "A haal made of a whole sentence that starts with a noun and simply states a fact."
+  },
+  {
+   "key": "haal-jumla-filiyya",
+   "ar": "جملة فعلية خبرية",
+   "en": "Verb-sentence Haal",
+   "meaning": "A haal made of a whole sentence that starts with a verb and simply states a fact."
+  },
+  {
+   "key": "haal-jumla-inshaiyya",
+   "ar": "جملة إنشائية",
+   "en": "Command Sentence, Not Allowed as Haal",
+   "meaning": "A sentence that commands, forbids, or asks a question can never be used as a haal."
+  },
+  {
+   "key": "waw-haaliyya",
+   "ar": "واو حالية",
+   "en": "Haal Waw",
+   "meaning": "This is the letter waw placed at the start of a sentence to mark it as describing a state."
+  },
+  {
+   "key": "wajib-alwaw",
+   "ar": "وجوب الواو",
+   "en": "Waw Required",
+   "meaning": "The haal waw must be used, most often before a noun-sentence haal that has no pronoun linking it back to the zul haal."
+  },
+  {
+   "key": "jawaz-alwaw",
+   "ar": "جواز الواو",
+   "en": "Waw Optional",
+   "meaning": "The haal waw is allowed but not required, so the sentence is correct with or without it."
+  },
+  {
+   "key": "mane-alwaw",
+   "ar": "منع الواو",
+   "en": "Waw Forbidden",
+   "meaning": "The haal waw cannot be used at all, for example before a present-tense verb haal that has no qad in front of it."
+  },
+  {
+   "key": "dhameer-raabit",
+   "ar": "الضمير الرابط",
+   "en": "Linking Pronoun",
+   "meaning": "A pronoun that ties a sentence or phrase back to the noun it is about, as in a haal sentence or a نعت سببي."
+  },
+  {
+   "key": "haal-fil-madi-qad",
+   "ar": "فعل ماضي حال",
+   "en": "Past-tense Verb as Haal",
+   "meaning": "When a past-tense verb is the haal, it usually needs qad before it, to bring its meaning close to the present moment."
+  },
+  {
+   "key": "haal-fil-mudari",
+   "ar": "فعل مضارع حال",
+   "en": "Present-tense Verb as Haal",
+   "meaning": "When a present-tense verb is the haal, whether the haal waw is allowed depends on the word, such as la, ma, lamma, or qad, that comes right before it."
+  },
+  {
+   "key": "haal-muqaddara",
+   "ar": "حال مقدرة",
+   "en": "Future-pointing Haal",
+   "meaning": "A haal that describes a state which has not happened yet at the moment of the main action, so it points forward in time."
+  },
+  {
+   "key": "haal-ism-jamid",
+   "ar": "إسم جامد",
+   "en": "Plain Noun as Haal",
+   "meaning": "A noun that is not built from a verb can only work as a haal if it can be understood to carry an action-like meaning."
+  },
+  {
+   "key": "mafool-lahu",
+   "ar": "مفعول له",
+   "en": "Object of Reason",
+   "meaning": "A noun in the accusative case that gives the reason why the main action was done."
+  },
+  {
+   "key": "masdar-condition",
+   "ar": "مصدر",
+   "en": "Verbal-noun Requirement",
+   "meaning": "A true mafool lahu must itself be a plain verbal noun, happen at the same time as, and be done by the same doer as, the main action."
+  },
+  {
+   "key": "lam-muqaddara",
+   "ar": "لام",
+   "en": "Assumed \"For\"",
+   "meaning": "When a mafool lahu is missing one of its required conditions, the word for (a lam) is understood before it instead."
+  },
+  {
+   "key": "mafool-feehi",
+   "ar": "مفعول فيه",
+   "en": "Object of Time or Place",
+   "meaning": "A noun that tells when or where the main action happened."
+  },
+  {
+   "key": "zarf-zaman",
+   "ar": "ظرف زمان",
+   "en": "Time Word",
+   "meaning": "A mafool feehi that names a time, like today or at night."
+  },
+  {
+   "key": "zarf-makaan",
+   "ar": "ظرف مكان",
+   "en": "Place Word",
+   "meaning": "A mafool feehi that names a place, like in front of or above."
+  },
+  {
+   "key": "ghayat",
+   "ar": "غايات",
+   "en": "Endpoint Words",
+   "meaning": "A small set of unrestricted place and time words, such as before and after, that take a fixed dhamma ending when the noun they would normally attach to is left out."
+  },
+  {
+   "key": "tanween-awad",
+   "ar": "تنوين العوض",
+   "en": "Compensation Tanween",
+   "meaning": "A tanween that stands in for something dropped, whether a single letter, a whole word, or a whole sentence."
+  },
+  {
+   "key": "tanween-tankeer",
+   "ar": "تنوين التنكير",
+   "en": "Indefiniteness Tanween",
+   "meaning": "A tanween that shows a noun is unspecified rather than a particular one."
+  },
+  {
+   "key": "tanween-tamkeen",
+   "ar": "تنوين التمكين",
+   "en": "Ordinary Noun Tanween",
+   "meaning": "The regular tanween on a fully declinable noun, showing it behaves like a firmly established, normal noun."
+  },
+  {
+   "key": "mafool-maahu",
+   "ar": "مفعول معه",
+   "en": "Object of Accompaniment",
+   "meaning": "A noun in the accusative case naming something that was present together with another noun while the action happened."
+  },
+  {
+   "key": "waw-maiyyah",
+   "ar": "و",
+   "en": "Accompaniment Waw",
+   "meaning": "The waw right before the mafool ma'ahu, meaning along with rather than and."
+  },
+  {
+   "key": "atf",
+   "ar": "عطف",
+   "en": "Joining (Atf)",
+   "meaning": "Joining two equal nouns together with a waw meaning and, so both are treated as doing the same action."
+  },
+  {
+   "key": "dameer-majroor-muttasil",
+   "ar": "ضمير مجرور متصل",
+   "en": "Attached Genitive Pronoun",
+   "meaning": "A pronoun stuck onto the end of a preposition or noun, such as the -hi in bihi."
+  },
+  {
+   "key": "dameer-marfoo-muttasil",
+   "ar": "ضمير مرفوع متصل",
+   "en": "Attached Subject Pronoun",
+   "meaning": "A pronoun stuck onto a verb showing who did the action, such as the -tu in fatahtu."
+  },
+  {
+   "key": "shibh-fil",
+   "ar": "شبه الفعل",
+   "en": "Verb-like Word",
+   "meaning": "A word, such as an active participle, that behaves like a verb even though it is not one."
+  },
+  {
+   "key": "tashafuh",
+   "ar": "تشافه",
+   "en": "Verb Needing Two People",
+   "meaning": "A verb whose meaning only makes sense with two or more people doing it together, like arguing with each other, so the second noun must be atf and can never be mafool ma'ahu."
+  },
+  {
+   "key": "muaatoof",
+   "ar": "معطوف",
+   "en": "The Joined Noun",
+   "meaning": "The noun joined by atf to the noun before it, standing as its equal partner rather than a mere companion."
+  },
+  {
+   "key": "tarif-mustalah",
+   "ar": "تعريف المصطلح",
+   "en": "Defining a Term",
+   "meaning": "A question that asks what a grammar term means or what category it falls into."
+  },
+  {
+   "key": "tafriq-mafaheem",
+   "ar": "التمييز بين المفهومين",
+   "en": "Telling Two Things Apart",
+   "meaning": "A question that asks you to choose between two similar-looking options, such as atf versus ma'iyyah, or which of the five maf'ool types a word is."
+  },
+  {
+   "key": "taskheek-khata",
+   "ar": "تصحيح الخطأ",
+   "en": "Spotting Mistakes",
+   "meaning": "A question that gives a sentence with an error in it and asks how many mistakes there are and how to fix them."
+  },
+  {
+   "key": "tarjama",
+   "ar": "الترجمة",
+   "en": "Translating",
+   "meaning": "A question that gives an English sentence and asks which of two Arabic versions correctly expresses the grammar point."
+  },
+  {
+   "key": "tatbeeq-tarkeeb",
+   "ar": "تطبيق القواعد",
+   "en": "Applying Rules to a Sentence",
+   "meaning": "A question that gives a real sentence and asks you to apply the grammar rules to it."
+  },
+  {
+   "key": "mafool-mutlaq",
+   "ar": "مفعول مطلق",
+   "en": "Absolute Object",
+   "meaning": "A verbal noun from the same root as the verb, placed after it to stress that the action happened, or to say what kind it was, or how many times."
+  },
+  {
+   "key": "mafool-bihi",
+   "ar": "مفعول به",
+   "en": "Direct Object",
+   "meaning": "The noun in the accusative case that the action is done to."
+  },
+  {
+   "key": "naib-anil-mafool-mutlaq",
+   "ar": "نائب عن المفعول المطلق",
+   "en": "Stand-in for the Absolute Object",
+   "meaning": "A word that is not the verbal noun itself but stands in its place and still carries the sense of how the action happened."
+  },
+  {
+   "key": "mushabbahat-laysa",
+   "ar": "ما ولا المشبهتان بليس",
+   "en": "Maa & Laa Like Laysa",
+   "meaning": "Maa and laa can act like the word laysa (is not): the subject stays in its normal form and the predicate is put into the accusative case, unless something in the sentence cancels this."
+  },
+  {
+   "key": "la-linafi-aljins",
+   "ar": "لا النافية للجنس",
+   "en": "Laa Denying the Whole Kind",
+   "meaning": "A laa that denies an entire kind of thing all at once, such as no book at all rather than just one book, and gives its noun a special fixed or accusative ending."
+  },
+  {
+   "key": "laata-hin",
+   "ar": "لاتَ",
+   "en": "Laata (Not a Time)",
+   "meaning": "A word made of laa plus taa that is only used with words for time, and always leaves one of its two parts, the subject or the predicate, unsaid."
+  },
+  {
+   "key": "in-nafiya",
+   "ar": "إنْ النافية",
+   "en": "In Meaning Not",
+   "meaning": "The letter in used to mean not; some grammarians say it works like maa and puts the predicate in the accusative case, though most say it has no effect on the sentence's case endings."
+  },
+  {
+   "key": "naat-sababi",
+   "ar": "نعت سببي",
+   "en": "Causal Adjective",
+   "meaning": "A phrase that describes something connected to the noun before it, rather than describing that noun directly."
+  },
+  {
+   "key": "manoot",
+   "ar": "منعوت",
+   "en": "The Noun Being Described",
+   "meaning": "The noun that an adjective phrase (نعت) is describing."
+  },
+  {
+   "key": "mustasna",
+   "ar": "مستثنى",
+   "en": "The Exception",
+   "meaning": "The word or phrase that gets excluded from what was just said, usually right after إلا."
+  },
+  {
+   "key": "adat-istithna",
+   "ar": "أداة الاستثناء",
+   "en": "Exception Word",
+   "meaning": "A word such as إلا, غير, سوى, عدا, خلا or حاشا that introduces an exception in a sentence."
+  },
+  {
+   "key": "mustathna-minhu",
+   "ar": "مستثنى منه",
+   "en": "The Excepted-From Group",
+   "meaning": "The larger group or statement that something is being excepted out of."
+  },
+  {
+   "key": "istithna-anwaa",
+   "ar": "أنواع الاستثناء",
+   "en": "Kinds of Exception",
+   "meaning": "The classification questions used for an exception sentence: is it positive or negative, is the excepted-from group missing or present, and is the exception connected to or separate from that group."
+  },
+  {
+   "key": "adat-hasr",
+   "ar": "أداة الحصر",
+   "en": "Restriction Word",
+   "meaning": "A word like إلا that, instead of making an exception, is used to mean only, limiting the sentence to just one thing."
+  },
+  {
+   "key": "munsarif",
+   "ar": "منصرف",
+   "en": "Munsarif (Fully Declinable)",
+   "meaning": "A noun that takes tanween and shows all three case endings in the normal way."
+  },
+  {
+   "key": "ghair-munsarif",
+   "ar": "غير منصرف",
+   "en": "Ghair Munsarif (Partly Declinable)",
+   "meaning": "A noun that cannot take tanween and, when majroor, takes a fatha instead of a kasra, because one strong cause or two causes together are present."
+  },
+  {
+   "key": "sabab-alamiyya",
+   "ar": "علم",
+   "en": "Proper Name (cause)",
+   "meaning": "Being a proper name. It blocks tanween only together with a second cause, such as femininity, foreignness or a verb pattern."
+  },
+  {
+   "key": "sabab-wasf",
+   "ar": "وصف",
+   "en": "Description (cause)",
+   "meaning": "Being a describing word. It blocks tanween together with a second cause, such as a verb pattern or an added alif and nun."
+  },
+  {
+   "key": "sabab-tanith",
+   "ar": "تأنيث",
+   "en": "Femininity (cause)",
+   "meaning": "A feminine name, with or without a taa marbuta; together with being a proper name it blocks tanween."
+  },
+  {
+   "key": "sabab-ujma",
+   "ar": "عجمة",
+   "en": "Foreignness (cause)",
+   "meaning": "A proper name taken from a language other than Arabic, such as إبراهيم; together with being a name it blocks tanween."
+  },
+  {
+   "key": "sabab-adl",
+   "ar": "عدل",
+   "en": "Deviation (cause)",
+   "meaning": "A word turned from its original pattern, such as عمر from عامر or ثلاث from ثلاثة ثلاثة."
+  },
+  {
+   "key": "sabab-wazn-fil",
+   "ar": "وزن الفعل",
+   "en": "Verb Pattern (cause)",
+   "meaning": "A noun on a pattern that belongs to verbs, such as أحمد or أكبر."
+  },
+  {
+   "key": "sabab-alif-nun",
+   "ar": "ان",
+   "en": "Added Alif and Nun (cause)",
+   "meaning": "An alif and nun added at the end of the word, as in عثمان or غضبان."
+  },
+  {
+   "key": "sabab-alif-tanith",
+   "ar": "ىٰ/اء",
+   "en": "Feminine Alif (cause)",
+   "meaning": "A feminine alif at the end, short (ى) as in حبلى or stretched (اء) as in حمراء; this cause alone is enough to block tanween."
+  },
+  {
+   "key": "sabab-jam",
+   "ar": "جمع",
+   "en": "Final Plural Pattern (cause)",
+   "meaning": "A broken plural on the furthest plural pattern, such as مساجد or مصابيح; this cause alone is enough to block tanween."
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+{
+  "_comment": "Memorise behaviour knobs. The books are in lib/books.js and the rules that use these numbers are in lib/memorise.js; this file is only what those numbers are, so changing how much a page holds or how many words a gap offers is an edit here and nowhere else.",
+
+  "_comment-page": "About how many words a page holds before the next line starts a new one. Sized from the 15-line Madani mushaf, which is the script this app already renders, so a page here holds about what one of its pages holds: 15 lines of roughly nine words. A book whose lines are not ayah-shaped sets its own wordsPerPage in books.js.",
+  "page-words": 135,
+
+  "_comment-options": "How many words a gap offers when the reader is picking rather than typing is not here: it is the same question the quiz asks, so the number is kept once, as option-count in quiz.json, and this tab reads it from there. The control that turns picking on says the number out loud, so it is read and never typed into a label.",
+
+  "_comment-spacing": "Two gaps never sit side by side while less than this share of a line is missing, because a run of blanks is one hard gap rather than two fair ones. From this share up there is no room left to keep that promise, so the rule steps aside rather than quietly hiding fewer words than asked. Raising it past a half would do exactly that.",
+  "spacing-drops-at-share": 0.5,
+
+  "_comment-difficulties": "How much is taken out, as one word in every N. Named rather than numbered because 'one word in four' is what a reader chooses; 0.25 is not. 'none' sits at the front rather than after 'all', because it is where a page is first opened to be read, not the far end of a difficulty ladder. The default must be one of these ids.",
+  "default-difficulty": "steady",
+  "difficulties": [
+    { "id": "none",   "label": "None",  "title": "Nothing is missing: the whole page, to read", "share": 0 },
+    { "id": "gentle", "label": "1 in 5", "title": "One word in every five is missing", "share": 0.2 },
+    { "id": "steady", "label": "1 in 3", "title": "One word in every three is missing", "share": 0.3333333333333333 },
+    { "id": "hard",   "label": "Half",  "title": "Half the words are missing", "share": 0.5 },
+    { "id": "recall", "label": "All",   "title": "Every word but the one each line starts on", "share": 1 }
+  ]
+}

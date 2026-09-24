@@ -1,0 +1,969 @@
+{
+ "root_letter": "ي",
+ "entry_count": 31,
+ "entries": [
+  {
+   "root": "يا",
+   "root_letters": [
+    "ي",
+    "ا"
+   ],
+   "core_meaning": "الياء والألف: أداة، وهي ياء تصلح للنداء نحو يا زيد، وقد يكون تعجبا وتلذذا نحو قولهم: يا بردها على الفؤاد، ويكون تلهفا كقول القائل: ياحسرتا على كذا",
+   "core_meaning_english": "a particle: 'yaa' used for calling out (vocative, as in 'O Zayd'), also for expressing delight/wonder or grief/lament",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "يا (للنداء)",
+     "meaning": "أداة نداء نحو يا زيد",
+     "meaning_english": "vocative particle, e.g. 'O Zayd'"
+    },
+    {
+     "usage": "يا (للتعجب)",
+     "meaning": "تعجب وتلذذ نحو: يا بردها على الفؤاد",
+     "meaning_english": "expresses delight/wonder"
+    },
+    {
+     "usage": "ياحسرتا",
+     "meaning": "تلهف، كقول القائل: ياحسرتا على كذا",
+     "meaning_english": "expresses grief/regret"
+    }
+   ],
+   "printed_page_number": "151",
+   "pdf_page_index": 2707,
+   "notes": "Opening of كتاب الياء (باب الياء وما بعدها في المضاعف والمطابق). Particle entry, not a standard root with 'أصل واحد يدل على' phrasing."
+  },
+  {
+   "root": "يب",
+   "root_letters": [
+    "ي",
+    "ب"
+   ],
+   "core_meaning": "الياء والباء كلمة واحدة، وهي اليَبَاب، إتباع للخراب، وربما أفردوها فقالوا",
+   "core_meaning_english": "one word: 'al-yabaab', an echo-word following 'al-kharaab' (ruin), though sometimes used independently",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "اليَبَابُ",
+     "meaning": "إتباع للخراب، وربما استُعملت مفردة",
+     "meaning_english": "desolation/ruin, an intensifying echo of 'kharaab', sometimes used alone",
+     "citation": "أخبرَتْ عن فَعَالِه الأرضُ وامتَلَتْ ... طَقَ منها اليَبَابُ والمعمورا (نص البيت غير مؤكد القراءة)"
+    }
+   ],
+   "printed_page_number": "151",
+   "pdf_page_index": 2707,
+   "notes": "The poetry citation's exact wording/reading is uncertain — the scan resolution is not high enough to confirm every letter; transcribed as best legible."
+  },
+  {
+   "root": "يد",
+   "root_letters": [
+    "ي",
+    "د"
+   ],
+   "core_meaning": "الياء والدال: أصل بناء اليد للإنسان وغيره، ويستعار في المنة، فيقال: له عليه يدٌ، ويجمع على الأيادى واليُدِيّ",
+   "core_meaning_english": "the base word for 'hand' in humans and others, metaphorically extended to mean a favor/benefaction owed; plural forms al-ayaadi and al-yudiyy",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "له عليه يدٌ",
+     "meaning": "منة، استعارة من اليد الجارحة",
+     "meaning_english": "a favor owed (metaphor from the physical hand)",
+     "citation": "فإنَّ له عندي يُدِيًّا وأنعمَا"
+    },
+    {
+     "usage": "اليَدُ",
+     "meaning": "القوة، ويجمع على الأيدي؛ وتصغيرها يُدَيَّة",
+     "meaning_english": "strength/power; diminutive 'yudayya'"
+    },
+    {
+     "usage": "الأيادِي",
+     "meaning": "جمع ناسٍ يد الإنسان على الأيادي",
+     "meaning_english": "plural of hand as used by some people",
+     "citation": "ساءها ما تأمّلتْ في أيادي ... نا وإشناقُها إلى الأعناق"
+    },
+    {
+     "usage": "امرأة يَدِيَّة",
+     "meaning": "أى صَنَاعٌ (ماهرة بيديها)، حكاه الشيباني",
+     "meaning_english": "a skillful woman (skilled with her hands), per al-Shaybani"
+    },
+    {
+     "usage": "رجل يَدِيّ",
+     "meaning": "منسوب إلى اليد، وصفة مماثلة",
+     "meaning_english": "a man described similarly (skillful)"
+    },
+    {
+     "usage": "ما أبْدَى فلانةَ",
+     "meaning": "غير واضح تماما في السياق المصور",
+     "meaning_english": "unclear in this scan"
+    },
+    {
+     "usage": "يَدِيَ منه",
+     "meaning": "يُدعى عليه",
+     "meaning_english": "to be invoked/cursed against"
+    },
+    {
+     "usage": "يَدَيْتُ على الرجل",
+     "meaning": "مَنَنْتُ عليه",
+     "meaning_english": "I did him a favor / reminded him of a favor",
+     "citation": "يَدَيْتُ على ابنِ حسحاسِ بن عمرٍو ... بأسقَلِ ذي الجَلْدات يدَ الكريم"
+    },
+    {
+     "usage": "يَدَيْتُه",
+     "meaning": "ضَرَبْتُ يَدَه",
+     "meaning_english": "I struck his hand"
+    }
+   ],
+   "printed_page_number": "151",
+   "pdf_page_index": 2707,
+   "notes": "Entry continues onto page 152 (pdf_page_index 2708). Citation for 'فإن له عندي يديا وأنعما' is attributed in the footnotes to al-A'sha (للأعشى). Corrected 'بَدَيْتُ على الرجل' to 'يَدَيْتُ على الرجل' — the root is ي-د (yaa-daal), and the immediately following citation confirms the ي spelling; the prior extraction's ب was an OCR/reading slip."
+  },
+  {
+   "root": "يد",
+   "root_letters": [
+    "ي",
+    "د"
+   ],
+   "core_meaning": "(تتمة) الياء والدال — أصل بناء اليد للإنسان وغيره",
+   "core_meaning_english": "(continuation) hand-root, continued derived usages",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "امرأة يَدِيَّة",
+     "meaning": "أى صَنَاعٌ",
+     "meaning_english": "a skillful (with her hands) woman"
+    },
+    {
+     "usage": "رجل يَدِيّ",
+     "meaning": "وصف مماثل للرجل",
+     "meaning_english": "similarly described man"
+    },
+    {
+     "usage": "ما أبدى فلانةَ",
+     "meaning": "غير واضح تماماً",
+     "meaning_english": "unclear phrase in scan"
+    },
+    {
+     "usage": "يَدِيَ منه، يُدعى عليه",
+     "meaning": "دعاء عليه",
+     "meaning_english": "invoked/cursed against"
+    },
+    {
+     "usage": "يَدَيْتُ على الرجل: مَنَنْتُ عليه",
+     "meaning": "منَّ عليه",
+     "meaning_english": "I did him a favor",
+     "citation": "يَدَيْتُ على ابن حسحاسٍ بن عمرو ... بأسقَل ذي الجَلْدات يدَ الكريم"
+    },
+    {
+     "usage": "يَدَيْتُه",
+     "meaning": "ضربتُ يدَه",
+     "meaning_english": "I struck his hand"
+    }
+   ],
+   "printed_page_number": "152",
+   "pdf_page_index": 2708,
+   "notes": "Continuation of the يد entry begun on page 151 (pdf_page_index 2707); recorded again here per instructions since it appears on this page. Corrected 'بَدَيْتُ' to 'يَدَيْتُ' for the same reason as the page-151 entry."
+  },
+  {
+   "root": "ير",
+   "root_letters": [
+    "ي",
+    "ر"
+   ],
+   "core_meaning": "الياء والراء: يقولون: الحَجَرُ الأيَرُّ: الصُّلْبُ، والمصدر اليَرَرُ",
+   "core_meaning_english": "they say 'al-hajar al-ayarr' meaning the hard/solid stone; the verbal noun is 'al-yarar' (hardness)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الحَجَرُ الأيَرُّ",
+     "meaning": "الصُّلْبُ",
+     "meaning_english": "the hard/solid stone"
+    },
+    {
+     "usage": "حارٌّ يارٌّ",
+     "meaning": "إتباع (كلمة إتباعية لا معنى مستقل لها)",
+     "meaning_english": "an echo-word attached to 'haarr' (hot), with no independent meaning"
+    }
+   ],
+   "printed_page_number": "152",
+   "pdf_page_index": 2708,
+   "notes": "Very short entry, no explicit 'أصل واحد يدل على' phrasing; reading of 'الأيَرّ'/'اليَرَر' uncertain — the scan's print quality makes the first letter (ي vs ب) hard to confirm with full certainty, though root ير supports ي."
+  },
+  {
+   "root": "يل",
+   "root_letters": [
+    "ي",
+    "ل"
+   ],
+   "core_meaning": "الياء واللام كلمة واحدة، هي اليَلَل: قصَر الأسنان",
+   "core_meaning_english": "one word: 'al-yalal', meaning shortness of the teeth",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "اليَلَل",
+     "meaning": "قصر الأسنان",
+     "meaning_english": "shortness of the teeth",
+     "citation": "يَكَلَّحُ الأرْوَقُ منها والأيَلّ"
+    }
+   ],
+   "printed_page_number": "152",
+   "pdf_page_index": 2708,
+   "notes": "Citation attributed in the footnotes to Labid (البيت للبيد في ديوانه)."
+  },
+  {
+   "root": "يم",
+   "root_letters": [
+    "ي",
+    "م"
+   ],
+   "core_meaning": "الياء والميم: كلمة تدلُّ على قصد الشيء وتيمُّمه وقصده",
+   "core_meaning_english": "a word indicating aiming for/heading toward something deliberately",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "تيمّموا صعيدا طيبا",
+     "meaning": "قصدوا (من القرآن)",
+     "meaning_english": "they deliberately sought/aimed for clean earth (Quranic usage)"
+    },
+    {
+     "usage": "تيمّمتُ فلانا بسهمي ورمحي",
+     "meaning": "قصدتُه دون من سواه، قاله الخليل",
+     "meaning_english": "I aimed at him specifically with my arrow/spear, excluding others (per al-Khalil)",
+     "citation": "يمَّمْتُه الرمحَ شزْراً ثم قلتُ له ... هذي البَسالةُ لا لَعبُ الزحاليق"
+    }
+   ],
+   "printed_page_number": "152",
+   "pdf_page_index": 2708,
+   "notes": "Entry continues onto page 153 (pdf_page_index 2709). Footnote 3 explains 'وقصده' is repeated verbatim in the original ('كذا ورد فى الأصل بالتكرار'), not an extraction error. Poetry citation attributed in footnotes to 'Aamir ibn Malik Mula'ib al-Asinna."
+  },
+  {
+   "root": "يم",
+   "root_letters": [
+    "ي",
+    "م"
+   ],
+   "core_meaning": "(تتمة) الياء والميم: قصد الشيء وتيممه، مع كلمات أخرى غير قياسية منه",
+   "core_meaning_english": "(continuation) aiming/heading toward something deliberately, plus separately-noted unrelated senses",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "أممته (تصحيح الخليل)",
+     "meaning": "قال الخليل: من قال أممته في هذا البيت فقد أخطأ، لأن الشزر لا يكون إلا من ناحية لا من أمام",
+     "meaning_english": "al-Khalil says using 'ammamtuhu' here is an error, since 'shazran' (a sideways strike) cannot be 'in front'"
+    },
+    {
+     "usage": "رجل مُيَمَّمٌ",
+     "meaning": "إذا كان يظفَرُ بكل ما طَلَبَ، حكاه الشيباني",
+     "meaning_english": "a man who attains everything he seeks, per al-Shaybani",
+     "citation": "إنّا وجَدْنا أعصُرَنا سعدٌ ... مُيَمَّمَ البيتِ رفيعَ الجَدِّ"
+    },
+    {
+     "usage": "اليَمُّ (البحر)",
+     "meaning": "أما البحر فليس من هذا القياس (معنى منفصل غير مشتق من نفس الأصل)",
+     "meaning_english": "the sea — explicitly stated as unrelated to this same root-meaning"
+    },
+    {
+     "usage": "يَمَّ الرجلُ فهو ميمومٌ",
+     "meaning": "إذا وقع في اليَمّ فغَرِق، حكاه الخليل",
+     "meaning_english": "a man who fell into the sea and drowned, per al-Khalil"
+    },
+    {
+     "usage": "اليَمَامُ",
+     "meaning": "طائرٌ، يقال إنه الطائر الذي يستفرخ في البيوت",
+     "meaning_english": "a bird, said to be the kind that nests/broods in houses"
+    }
+   ],
+   "printed_page_number": "153",
+   "pdf_page_index": 2709,
+   "notes": "Continuation of the يم entry begun on page 152 (pdf_page_index 2708)."
+  },
+  {
+   "root": "يه",
+   "root_letters": [
+    "ي",
+    "ه"
+   ],
+   "core_meaning": "الياء والهاء: يقولون: يَهْيَهَ بالإبل، إذا قال: ياه",
+   "core_meaning_english": "they say 'yahyaha' with camels, meaning he called out 'yaah' to them",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "يَهْيَهَ بالإبل",
+     "meaning": "قال لها: ياه (زجر أو نداء للإبل)",
+     "meaning_english": "called out 'yaah' to the camels (a driving/calling cry)"
+    }
+   ],
+   "printed_page_number": "153",
+   "pdf_page_index": 2709,
+   "notes": "Very brief entry."
+  },
+  {
+   "root": "يأس",
+   "root_letters": [
+    "ي",
+    "أ",
+    "س"
+   ],
+   "core_meaning": "الياء والهمزة والسين: كلمتان: إحداهما اليأس: قطع الرجاء",
+   "core_meaning_english": "two (unrelated) words: one is 'al-ya's' meaning the cutting-off of hope (despair)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "اليأسُ",
+     "meaning": "قطعُ الرجاء",
+     "meaning_english": "the cutting-off of hope; despair"
+    },
+    {
+     "usage": "بَئِسَ يَبْأَسُ ويَيْئِسُ",
+     "meaning": "على يَفْعَلُ ويَفْعِلُ (وجهان في التصريف)؛ ويقال إنه ليست ياء في صدر كلمة بعدها همزة إلا هذه",
+     "meaning_english": "conjugated on both the yaf'alu and yaf'ilu patterns; said to be the only word where a 'yaa' at the start is followed directly by a hamza"
+    },
+    {
+     "usage": "ألم تيأس (الكلمة الأخرى)",
+     "meaning": "أى ألم تعلم؛ ومنه قوله تعالى: أفلم ييأس الذين آمنوا، أى ألم يعلم",
+     "meaning_english": "means 'did you not know', a separate/homonymous sense from despair, including the Quranic usage"
+    }
+   ],
+   "printed_page_number": "153",
+   "pdf_page_index": 2709,
+   "notes": "New باب heading appears just before this entry ('باب الياء وما بعدها مما جاء على ثلاثة أحرف...') — a section header per the footnote, added editorially by Ibn Faris himself according to the footnote apparatus, not a root entry itself. The يأس entry's final poetry citation ('وأنشدوا:') is cut off at the bottom of page 153 and continues onto the next page (not included in this batch)."
+  },
+  {
+   "root": "يبس",
+   "root_letters": [
+    "ي",
+    "ب",
+    "س"
+   ],
+   "core_meaning": "أصلٌ صحيح يدلّ على جفاف",
+   "core_meaning_english": "dryness",
+   "sarf_pattern": "",
+   "printed_page_number": "154",
+   "pdf_page_index": 2710,
+   "variances": [
+    {
+     "usage": "يَبِسَ الشيء يَيْبِس ويَيْبُس",
+     "meaning": "جفاف الشيء",
+     "meaning_english": "the thing dried up"
+    },
+    {
+     "usage": "اليَبِيس",
+     "meaning": "يابس النبت، وهو جمع يابس",
+     "meaning_english": "dried-up plants; plural of 'dry'",
+     "citation": "قال ابن السكيت"
+    },
+    {
+     "usage": "اليَبَس (بفتح الباء)",
+     "meaning": "المكان يفارقه الماء فييبَس",
+     "meaning_english": "a place the water has left and dried"
+    },
+    {
+     "usage": "يَبِسَتِ الأرض",
+     "meaning": "ذهب ماؤها ونداها",
+     "meaning_english": "the land's water and moisture went away"
+    },
+    {
+     "usage": "أيْبَسَتْ",
+     "meaning": "كثر يَبْسها",
+     "meaning_english": "its dryness became abundant"
+    },
+    {
+     "usage": "امرأة يَبَسٌ",
+     "meaning": "إذا لم تَنَلْ خيرًا",
+     "meaning_english": "a woman who attains no good",
+     "citation": "قال الشيباني؛ شعر: إلى عجوز شنّة الوجه يَبَسْ"
+    },
+    {
+     "usage": "يَبِيس الماء",
+     "meaning": "العَرَق إذا يَبِس",
+     "meaning_english": "sweat once dried"
+    },
+    {
+     "usage": "الأيْبَسَان",
+     "meaning": "ما لا لحم عليه من الساق والكَعْب",
+     "meaning_english": "the fleshless parts of the shin and ankle"
+    }
+   ],
+   "notes": "Page opens with two lines of poetry (mentioning يأس/زهدم) carried over from a preceding entry not covered by this batch — not recorded as its own entry. Corrected: variance 'يابس النبت' usage was mislabeled 'اليَبَس (بفتح الباء)' in prior extraction — the fatha note belongs only to the distinct following word (place that dried); the plant-word is 'اليَبِيس'. Corrected 'امرأة يَيَسٌ'→'يَبَسٌ' (root-consistent word; 'ييس' is not a real form of ي-ب-س)."
+  },
+  {
+   "root": "يتم",
+   "root_letters": [
+    "ي",
+    "ت",
+    "م"
+   ],
+   "core_meaning": "اليُتْم في الناس من قِبَل الأب، وفي سائر الحيوان من جهة الأمّ",
+   "core_meaning_english": "orphanhood: among humans it is loss of the father, among other animals loss of the mother",
+   "sarf_pattern": "",
+   "printed_page_number": "154",
+   "pdf_page_index": 2710,
+   "variances": [
+    {
+     "usage": "بَيْتٌ [من الشِّعر] يتيم",
+     "meaning": "يقال لكل منفرد يتيم",
+     "meaning_english": "anything solitary/unmatched (e.g. an isolated verse of poetry) is called 'orphan'"
+    },
+    {
+     "usage": "أيتَمَ",
+     "meaning": "الشاعر يصف راميًا أصاب أتانا وأيتم أطفالها",
+     "meaning_english": "an archer struck a wild she-ass and orphaned her young",
+     "citation": "فناط بها سهمًا شديدًا غراره / وأيتَمَتِ الأطفالَ منها وجوبُها"
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "يتن",
+   "root_letters": [
+    "ي",
+    "ت",
+    "ن"
+   ],
+   "core_meaning": "كلمةٌ واحدة، وهى اليَتْنُ، وهو الفصيل يخرج رجلاه عند الولادة قبل رأسه",
+   "core_meaning_english": "a single word, al-yatn: a young camel born feet-first, its legs emerging before its head",
+   "sarf_pattern": "",
+   "printed_page_number": "155",
+   "pdf_page_index": 2711,
+   "variances": [
+    {
+     "usage": "أيتَنَتِ النَّاقةُ والمرأةُ",
+     "meaning": "إذا ولدَتْ يَتْنًا",
+     "meaning_english": "the she-camel or woman gave birth feet-first"
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "يدع",
+   "root_letters": [
+    "ي",
+    "د",
+    "ع"
+   ],
+   "core_meaning": "كلمتان متباينتان، إحداهما الأبدَع",
+   "core_meaning_english": "two unrelated meanings; one of them is 'al-abda'",
+   "sarf_pattern": "",
+   "printed_page_number": "155",
+   "pdf_page_index": 2711,
+   "variances": [
+    {
+     "usage": "بَدَّعْتُ الشيء أُبَدِّعُه تَبْدِيعاً",
+     "meaning": "الأبدَع صِبْغٌ أحمر",
+     "meaning_english": "a red dye; hence 'to dye something red'",
+     "citation": ""
+    },
+    {
+     "usage": "أبدَعَ الحاجُّ على نفسه",
+     "meaning": "أوجَبَه",
+     "meaning_english": "the pilgrim made [the hajj] obligatory upon himself",
+     "citation": "قال جرير: ورَبَّ الراقصاتِ إلى الثنايا / بشُمْثٍ أبدَعُوا حَجًّا تَمَامًا"
+    }
+   ],
+   "notes": "Corrected usage 'يَدَّعْتُ الشيء أُبَدِّعُه' (prior extraction flagged this as unclear) — the page clearly reads 'بَدَّعْتُ الشيء أُبَدِّعُه تَبْدِيعاً' (ب not ي), consistent with the derivation from الأبدَع."
+  },
+  {
+   "root": "يزن",
+   "root_letters": [
+    "ي",
+    "ز",
+    "ن"
+   ],
+   "core_meaning": "ليس فيه إلا ذو يَزَن، من ملوك حِمْيَر",
+   "core_meaning_english": "the root has no meaning beyond 'Dhu Yazan', one of the kings of Himyar",
+   "sarf_pattern": "",
+   "printed_page_number": "155",
+   "pdf_page_index": 2711,
+   "variances": [
+    {
+     "usage": "يَزَنِيَّة وأزَنِيَّة",
+     "meaning": "تُنسب إليه الرِّماح",
+     "meaning_english": "spears attributed/named after him"
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "يسر",
+   "root_letters": [
+    "ي",
+    "س",
+    "ر"
+   ],
+   "core_meaning": "أصلانِ يدلّ أحدُهما على انفتاح شيءٍ وخِفَّته، والآخر على عُضْوٍ من الأعضاء",
+   "core_meaning_english": "two cores: one indicates a thing's openness/ease and lightness, the other a bodily limb/organ",
+   "sarf_pattern": "",
+   "printed_page_number": "155",
+   "pdf_page_index": 2711,
+   "variances": [
+    {
+     "usage": "اليُسْر",
+     "meaning": "ضدّ العُسْر",
+     "meaning_english": "ease, opposite of hardship"
+    },
+    {
+     "usage": "اليَسَرات",
+     "meaning": "القوائم الخفاف",
+     "meaning_english": "light/nimble legs (of an animal)"
+    },
+    {
+     "usage": "فرسٌ حَسَنُ التَّيَسُّور",
+     "meaning": "أي حَسَنُ نَقْلِ القوائم",
+     "meaning_english": "a horse with a fine, easy gait",
+     "citation": "قد بَلَوْناهُ على عِلّاتِه / وعلى التَّيْسُورِ منه والضُّمُر"
+    },
+    {
+     "usage": "يَسَّرَتِ الغنم",
+     "meaning": "إذا كثر لبنها ونسلها",
+     "meaning_english": "the sheep flourished, their milk and offspring became abundant",
+     "citation": "هما سَيّدانا يَزْعُمانِ وإنّما / بسُودانِنا أنْ يَسَّرَتْ غَنَماهُما"
+    },
+    {
+     "usage": "رجل يَسِرٌ ويَسَرٌ",
+     "meaning": "أي حَسَنُ الانقياد",
+     "meaning_english": "a man easy/compliant to lead",
+     "citation": ""
+    },
+    {
+     "usage": "اليَسار",
+     "meaning": "الغِنى",
+     "meaning_english": "wealth, affluence"
+    },
+    {
+     "usage": "تَيَسَّرَ الشيء واستَيْسَرَ",
+     "meaning": "صار مُيسَّرًا",
+     "meaning_english": "the thing became easy/facilitated"
+    },
+    {
+     "usage": "يُسْرٌ",
+     "meaning": "اسم مكان",
+     "meaning_english": "a place name"
+    },
+    {
+     "usage": "الأيْسار",
+     "meaning": "القوم يجتمعون على المَيْسِر، واحدهم يَسَر",
+     "meaning_english": "the men who gather for the gambling-game, each one called yasar",
+     "citation": "وهُمُ أيسارُ لُقمانَ إذا / أغلَتِ الشَّتْوَةُ أبْداءُ الجُزُرِ"
+    },
+    {
+     "usage": "المَيْسِر",
+     "meaning": "القِمار",
+     "meaning_english": "gambling"
+    },
+    {
+     "usage": "اليَسَرَة",
+     "meaning": "أُسْرارُ الكَفّ إذا كانت غير ملتزقة",
+     "meaning_english": "the lines of the palm when not joined together (second core: bodily part)"
+    },
+    {
+     "usage": "اليَسار (الكلمة الأخرى)",
+     "meaning": "اليَد اليُسرى",
+     "meaning_english": "the left hand"
+    },
+    {
+     "usage": "تَيَاسَرُوا / يَاسَرُوا",
+     "meaning": "إذا أخذوا ذاتَ اليَسار؛ ياسروا أجْوَد",
+     "meaning_english": "they went to/took the left side; 'yasaru' is the better usage"
+    }
+   ],
+   "notes": "Entry spans page 155 (pdf 2711) into page 156 (pdf 2712)."
+  },
+  {
+   "root": "يعر",
+   "root_letters": [
+    "ي",
+    "ع",
+    "ر"
+   ],
+   "core_meaning": "اليَعْر: الجَدْي",
+   "core_meaning_english": "al-ya'r: a kid (young goat)",
+   "sarf_pattern": "",
+   "printed_page_number": "156",
+   "pdf_page_index": 2712,
+   "variances": [
+    {
+     "usage": "كما رُبِطَ اليَعْر (عند الزَّبْيَة للذئب)",
+     "meaning": "تشبيه بربط الجدي كطُعم عند حفرة الذئب",
+     "meaning_english": "as the kid is tethered [as bait] at the wolf-pit",
+     "citation": "شعر: كما رُبِطَ اليَعْر"
+    },
+    {
+     "usage": "اليُعَار",
+     "meaning": "صوت الشاء؛ يقال يَعَرَتْ تَيْعَر يُعارًا",
+     "meaning_english": "the bleating of sheep/goats; 'ya'arat taj'aru yu'aran'"
+    }
+   ],
+   "notes": "The poetic citation word is legibly 'اليَعْر' on the scan (matches the root); no ambiguity with 'اليَعْفُر' as previously flagged."
+  },
+  {
+   "root": "يعط",
+   "root_letters": [
+    "ي",
+    "ع",
+    "ط"
+   ],
+   "core_meaning": "يقولون للذِّئب إذا زَجَروه: يَعاطِ",
+   "core_meaning_english": "a call/word said to a wolf when driving it off",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "أَيْعَطْتُ به",
+     "meaning": "استعمال الفعل من نفس الباب (لم يُفسَّر المعنى صراحة في المتن)",
+     "meaning_english": "verb form from the same root (exact sense not explicitly glossed in text)",
+     "citation": ""
+    },
+    {
+     "usage": "يَعاطِ",
+     "meaning": "يَهفو إذا قيل له يَعاطِ",
+     "meaning_english": "he goes wild/quails when 'ya'aati' is said to him",
+     "citation": "شعر غير منسوب (قصيدة مذكورة في الحاشية عن الجمل واللسان: صُبَّ على شاءِ أبي رياط ذؤالة كالأقدح المِراط)"
+    }
+   ],
+   "pdf_page_index": 2713,
+   "printed_page_number": "157",
+   "notes": "Header at top of page reads يعط - يفن - يفع - يقن - يقه (confirmed legible, not 'بعط'). Meaning of 'أيعطت به' not spelled out in the visible text."
+  },
+  {
+   "root": "يفن",
+   "root_letters": [
+    "ي",
+    "ف",
+    "ن"
+   ],
+   "core_meaning": "يقولون: اليَفَنُ: الشيخ الكبير",
+   "core_meaning_english": "the old, elderly man",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "اليَفَنُ",
+     "meaning": "الشيخ الكبير",
+     "meaning_english": "an aged/elderly man",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 2713,
+   "printed_page_number": "157",
+   "notes": ""
+  },
+  {
+   "root": "يفع",
+   "root_letters": [
+    "ي",
+    "ف",
+    "ع"
+   ],
+   "core_meaning": "كلمةٌ تدلُّ على الارتفاع",
+   "core_meaning_english": "a word indicating elevation/rising up",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "اليَفَاع",
+     "meaning": "ما علا من الأرض",
+     "meaning_english": "elevated/high ground",
+     "citation": ""
+    },
+    {
+     "usage": "أيْفَعَ الغلامُ",
+     "meaning": "إذا علا شبابُه، فهو يافعٌ، ولا يقال مُوفِعٌ",
+     "meaning_english": "when a boy's youth rises/matures, he is 'yaafi'', not 'muufi''",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 2713,
+   "printed_page_number": "157",
+   "notes": ""
+  },
+  {
+   "root": "يقن",
+   "root_letters": [
+    "ي",
+    "ق",
+    "ن"
+   ],
+   "core_meaning": "اليَقَنُ واليَقين: زَوَال الشَّكِّ",
+   "core_meaning_english": "certainty: the removal of doubt",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "يَقِنْتُ / اسْتَيْقَنْتُ / أيْقَنْتُ",
+     "meaning": "لا مَعنى مستقلّ مذكور فى المتن لهذه الصيغ؛ هى تصاريف الفعل من نفس معنى اليقين (زوال الشك) المذكور أعلاه",
+     "meaning_english": "no separate meaning is stated for these forms in the text; they are simply conjugations of the verb carrying the same sense given above (removal of doubt)",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 2713,
+   "printed_page_number": "157",
+   "notes": "Corrected: prior extraction added an invented gloss ('بلغت اليقين، زال عني الشك') not present verbatim in the text — the page simply lists the three verb forms without restating a separate meaning."
+  },
+  {
+   "root": "يقه",
+   "root_letters": [
+    "ي",
+    "ق",
+    "ه"
+   ],
+   "core_meaning": "سُمِع عن ثعلب: أَبْقَهَ يُوقِهُ إيقاهاً، إذا فَهِمَ",
+   "core_meaning_english": "to understand/comprehend",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "أَبْقِهْ لهذا",
+     "meaning": "أى افْهَمْه",
+     "meaning_english": "understand this / grasp it",
+     "citation": ""
+    },
+    {
+     "usage": "استيقِهوا للمُحَلَّم",
+     "meaning": "يقال هذا من الطاعة (استمعوا وأطيعوا/افهموا)",
+     "meaning_english": "cited to mean obedience — heed/understand the elder/arbiter",
+     "citation": "بيت شعر منسوب للمخبل السعدي: فردّوا صدور الخيل حتى تنهنّهت إلى ذي النُّهى واستيقهوا للمُعلِّم (الحاشية تذكر رواية مختلفة للفظة الأخيرة، والقراءة الدقيقة لتلك الرواية غير واضحة تماماً في المسح)"
+    }
+   ],
+   "pdf_page_index": 2713,
+   "printed_page_number": "157",
+   "notes": "Footnote (4) says this verse belongs properly under root ح ل م and is quoted here by loan; the exact alternate-reading word in the footnote (after 'ويروى') is not clearly legible in the scan — flagged as uncertain rather than asserted as 'واستيقهت'. Core meaning simplifies the isnad chain (سمعت علي بن إبراهيم القطان يقول: سمعت ثعلبا يقول) to 'سُمع عن ثعلب' — meaning preserved."
+  },
+  {
+   "root": "يلب",
+   "root_letters": [
+    "ي",
+    "ل",
+    "ب"
+   ],
+   "core_meaning": "كلمةٌ واحدةٌ قد اختلفَ فى معناها، وهى اليَلَبُ",
+   "core_meaning_english": "a single word whose meaning is disputed: al-yalab",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "اليَلَبُ (قول قوم)",
+     "meaning": "البَيْضُ من جلود الإبل",
+     "meaning_english": "helmets/armor made from camel hides",
+     "citation": ""
+    },
+    {
+     "usage": "اليَلَبُ (قول قوم آخرين)",
+     "meaning": "التُّرْسُ",
+     "meaning_english": "a shield",
+     "citation": "عليهمْ كلُّ سابغةٍ دِلاصٍ وفى أيديهم اليَلَبُ المُدَارُ"
+    },
+    {
+     "usage": "اليَلَبُ (قول الخليل)",
+     "meaning": "الفُولاذُ",
+     "meaning_english": "steel",
+     "citation": "ومِحْوَرٍ أُخْلِصَ من ماء اليَلَبِ"
+    }
+   ],
+   "pdf_page_index": 2714,
+   "printed_page_number": "158",
+   "notes": ""
+  },
+  {
+   "root": "يلق",
+   "root_letters": [
+    "ي",
+    "ل",
+    "ق"
+   ],
+   "core_meaning": "يقولون: اليَلَقُ: الأبيضُ من كلِّ شىء",
+   "core_meaning_english": "whiteness in anything",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "بَلَقُ (في الشاهد)",
+     "meaning": "البياض/الخطوط البيضاء على صفحة الشىء (كنَصل السيف أو الرمح)، شاهدٌ على معنى الأبيض المذكور",
+     "meaning_english": "white streaks/patches on a surface (e.g. a blade), cited as an illustration of the general sense 'white'",
+     "citation": "وأترُكُ القِرْنَ فى الغُبار وفى حِضْنَيْهِ زرقاءُ متنُها بَلَقُ"
+    },
+    {
+     "usage": "اليَلَقَةُ",
+     "meaning": "العَنْزُ البيضاء",
+     "meaning_english": "a white she-goat",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 2714,
+   "printed_page_number": "158",
+   "notes": "Corrected: prior extraction glossed the shahid as 'a piebald/light-colored eye', which is not supported by the text — the verse describes leaving an opponent (القرن) in the dust while wielding a blade/weapon (زرقاء) whose surface (متنها) is streaked white (بلق); no eye is mentioned."
+  },
+  {
+   "root": "يمن",
+   "root_letters": [
+    "ي",
+    "م",
+    "ن"
+   ],
+   "core_meaning": "كلماتٌ من قياسٍ واحد",
+   "core_meaning_english": "words derived from one common sense",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "اليَمين",
+     "meaning": "اليَدُ",
+     "meaning_english": "the (right) hand",
+     "citation": ""
+    },
+    {
+     "usage": "اليَمين (في شعر الشماخ)",
+     "meaning": "أراد اليدَ اليمنى (تفسير الأصمعي للبيت، ليس معنى مستقلاً)",
+     "meaning_english": "Asma'i explains the poem's 'yamin' as meaning specifically the right hand — illustrating the 'hand' sense above, not a separate meaning",
+     "citation": "إذا ما رايةٌ رُفِعَتْ لمَجْدٍ تلقّاها عَرَابةُ باليَمين (قول الشمّاخ، بتفسير الأصمعي)"
+    },
+    {
+     "usage": "اليُمْن",
+     "meaning": "البَرَكة، وهو مَيمونٌ",
+     "meaning_english": "blessing; 'maymun' = the blessed one",
+     "citation": ""
+    },
+    {
+     "usage": "المَيْنُ",
+     "meaning": "الخِلْفُ",
+     "meaning_english": "falsehood / breaking a promise",
+     "citation": ""
+    },
+    {
+     "usage": "اليَمَنُ",
+     "meaning": "بلدٌ؛ يقال رجلٌ يَمَانٍ، وسيفٌ يَمَانٍ",
+     "meaning_english": "the country Yemen; 'a Yemeni man', 'a Yemeni sword'",
+     "citation": ""
+    },
+    {
+     "usage": "الحَلِف (اليمين)",
+     "meaning": "سُمِّي الحَلِفُ يميناً لأنّ المتحالفَين كأنّ أحدَهما يُصافِقُ بيمينه على يمين صاحبه",
+     "meaning_english": "an oath is called 'yamin' because the two swearing parties strike their right hands together",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 2714,
+   "printed_page_number": "158",
+   "notes": "Corrected: the second variance was mislabeled 'meaning: القوة' (strength) in the prior extraction — the text does not state a separate 'power' sense; it cites the Shammakh verse purely to illustrate the 'hand' sense, glossed by Asma'i as 'he meant the right hand'. Also added a missing variance 'المَيْنُ: الخِلْفُ' that was present on the page but previously only mentioned in notes, not captured as a variance. Entry continues onto page 159 (printed 159) with the oath explanation."
+  },
+  {
+   "root": "ينف",
+   "root_letters": [
+    "ي",
+    "ن",
+    "ف"
+   ],
+   "core_meaning": "يَنُوفُ (اسمُ موضع) فى شعر امرئ القيس",
+   "core_meaning_english": "Yanuf — a place-name occurring in the poetry of Imru' al-Qays",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "يَنُوفُ",
+     "meaning": "هَضْبةٌ فى جَبَلَىْ طَيِّئ",
+     "meaning_english": "a ridge/hill in the two mountains of Tayyi'",
+     "citation": "شعر امرئ القيس (بيت مذكور في الحاشية: كأنّ دثاراً حلَّقت بلَبونه عقابٌ ينوفُ لا يعاف القواعل)"
+    }
+   ],
+   "pdf_page_index": 2715,
+   "printed_page_number": "159",
+   "notes": "Marginal number '٧٧٩' appears beside this entry, likely a manuscript/verse reference marker, not part of the meaning."
+  },
+  {
+   "root": "ينم",
+   "root_letters": [
+    "ي",
+    "ن",
+    "م"
+   ],
+   "core_meaning": "اليَنَمَةُ: نَبْتٌ",
+   "core_meaning_english": "a plant (al-yanamah)",
+   "sarf_pattern": "",
+   "variances": [],
+   "pdf_page_index": 2715,
+   "printed_page_number": "159",
+   "notes": ""
+  },
+  {
+   "root": "يهر",
+   "root_letters": [
+    "ي",
+    "ه",
+    "ر"
+   ],
+   "core_meaning": "يقولون: اليَهْرُ: اللَّجاجُ",
+   "core_meaning_english": "obstinacy/persistence",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "استَيْهَرَ الرجلُ",
+     "meaning": "لَجَّ",
+     "meaning_english": "the man persisted stubbornly",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 2715,
+   "printed_page_number": "159",
+   "notes": ""
+  },
+  {
+   "root": "يهم",
+   "root_letters": [
+    "ي",
+    "ه",
+    "م"
+   ],
+   "core_meaning": "اليَهماء: المَفازةُ لا عَلَمَ بها",
+   "core_meaning_english": "a trackless desert with no landmark",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الأيْهَمَان",
+     "meaning": "السَّيلُ والحريقُ",
+     "meaning_english": "the flood and the fire",
+     "citation": ""
+    },
+    {
+     "usage": "الأَيْهَمُ من الرِّجال",
+     "meaning": "الأصَمُّ",
+     "meaning_english": "the deaf man",
+     "citation": ""
+    },
+    {
+     "usage": "أَيْهَمُ (للشجاع)",
+     "meaning": "يُقال للشجاع أَيْهَمُ، كأنّه لا مَأْتَى لأحدٍ إليه",
+     "meaning_english": "a brave man is called 'ayham', as if no one can find a way to approach him",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 2715,
+   "printed_page_number": "159",
+   "notes": "Reading of 'الأصمّ' for the deaf-man sense confirmed legible on the scan."
+  },
+  {
+   "root": "يوح",
+   "root_letters": [
+    "ي",
+    "و",
+    "ح"
+   ],
+   "core_meaning": "كلمةٌ واحدة، وهى يُوحُ: اسمٌ من أسماء الشمس",
+   "core_meaning_english": "a single word, 'Yuh': one of the names of the sun",
+   "sarf_pattern": "",
+   "variances": [],
+   "pdf_page_index": 2715,
+   "printed_page_number": "159",
+   "notes": ""
+  },
+  {
+   "root": "يوم",
+   "root_letters": [
+    "ي",
+    "و",
+    "م"
+   ],
+   "core_meaning": "كلمةٌ واحدة، هى اليَوْمُ: الواحدُ من الأيّام، ثم يُستعيرونه فى الأمر العظيم",
+   "core_meaning_english": "a single word, 'day': one of the days, then metaphorically used for a momentous event/battle",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "نِعْمَ فلانٌ فى اليَوْم",
+     "meaning": "إذا نَزَلَ (أى في وقت الشدة أو النازلة)",
+     "meaning_english": "said of someone who proves excellent 'on the day' (i.e. in a crisis)",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 2715,
+   "printed_page_number": "159",
+   "notes": "Entry is cut off at bottom of page 159 — continues onto the next page (not included in this batch) with a poetry citation ('وأنشد:') that is not visible here. Footnote (3) explains this entry was moved here editorially from after root (يدى); not a sarf/morphology term, so sarf_pattern stays empty."
+  }
+ ]
+}

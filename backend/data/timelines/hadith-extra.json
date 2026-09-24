@@ -1,0 +1,28 @@
+{
+ "_about": [
+  "Hadiths the mirror in fetch_timeline_hadith.py does not carry, read from the sunnah.com page itself.",
+  "Every entry names the page it was read from, so it can be checked the same way it was made.",
+  "The fetch script merges these in. It never writes this file, so re-running the script keeps them.",
+  "Keyed the same way as hadith.json: collection:number, with sunnah.com's own letter where it prints one."
+ ],
+ "hadith": {
+  "muslim:157c": {
+   "page": "https://sunnah.com/muslim:157c",
+   "read": "2026-09-19",
+   "arabic": "وَحَدَّثَنَا قُتَيْبَةُ بْنُ سَعِيدٍ، حَدَّثَنَا يَعْقُوبُ، - وَهُوَ ابْنُ عَبْدِ الرَّحْمَنِ الْقَارِيُّ - عَنْ سُهَيْلٍ، عَنْ أَبِيهِ، عَنْ أَبِي هُرَيْرَةَ، أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ ‏\"‏ لاَ تَقُومُ السَّاعَةُ حَتَّى يَكْثُرَ الْمَالُ وَيَفِيضَ حَتَّى يَخْرُجَ الرَّجُلُ بِزَكَاةِ مَالِهِ فَلاَ يَجِدُ أَحَدًا يَقْبَلُهَا مِنْهُ وَحَتَّى تَعُودَ أَرْضُ الْعَرَبِ مُرُوجًا وَأَنْهَارًا ‏\"",
+   "english": "Abu Huraira reported Allah's Messenger (way peace be upon him) as saying:The Last Hour will not come before wealth becomes abundant and overflowing, so much so that a man takes Zakat out of his property and cannot find anyone to accept it from him and till the land of Arabia reverts to meadows and rivers."
+  },
+  "muslim:2759a": {
+   "page": "https://sunnah.com/muslim:2759a",
+   "read": "2026-09-19",
+   "arabic": "حَدَّثَنَا مُحَمَّدُ بْنُ الْمُثَنَّى، حَدَّثَنَا مُحَمَّدُ بْنُ جَعْفَرٍ، حَدَّثَنَا شُعْبَةُ، عَنْ عَمْرِو بْنِ مُرَّةَ، قَالَ سَمِعْتُ أَبَا عُبَيْدَةَ، يُحَدِّثُ عَنْ أَبِي مُوسَى، عَنِ النَّبِيِّ صلى الله عليه وسلم قَالَ ‏\"‏ إِنَّ اللَّهَ عَزَّ وَجَلَّ يَبْسُطُ يَدَهُ بِاللَّيْلِ لِيَتُوبَ مُسِيءُ النَّهَارِ وَيَبْسُطُ يَدَهُ بِالنَّهَارِ لِيَتُوبَ مُسِيءُ اللَّيْلِ حَتَّى تَطْلُعَ الشَّمْسُ مِنْ مَغْرِبِهَا ‏\"",
+   "english": "Abu Musa reported Allah's Messenger (ﷺ) as saying that Allah, the Exalted and Glorious, Stretches out His Hand during the night so that the people may repent for the fault committed from dawn till dusk and He stretches out His Hand during the day so that the people may repent for the fault committed from dusk to dawn. (He would accept repentance) before the sun rises in the west (before the Day of Resurrection). A hadith like this has been narrated on the authority of Shu'ba with the same chain of transmitters."
+  },
+  "muslim:2920a": {
+   "page": "https://sunnah.com/muslim:2920",
+   "read": "2026-09-19",
+   "arabic": "حَدَّثَنَا قُتَيْبَةُ بْنُ سَعِيدٍ، حَدَّثَنَا عَبْدُ الْعَزِيزِ، - يَعْنِي ابْنَ مُحَمَّدٍ - عَنْ ثَوْرٍ، - وَهُوَ ابْنُ زَيْدٍ الدِّيلِيُّ - عَنْ أَبِي الْغَيْثِ، عَنْ أَبِي هُرَيْرَةَ، أَنَّ النَّبِيَّ صلى الله عليه وسلم قَالَ ‏\"‏ سَمِعْتُمْ بِمَدِينَةٍ جَانِبٌ مِنْهَا فِي الْبَرِّ وَجَانِبٌ مِنْهَا فِي الْبَحْرِ ‏\"‏ ‏.‏ قَالُوا نَعَمْ يَا رَسُولَ اللَّهِ ‏.‏ قَالَ ‏\"‏ لاَ تَقُومُ السَّاعَةُ حَتَّى يَغْزُوَهَا سَبْعُونَ أَلْفًا مِنْ بَنِي إِسْحَاقَ فَإِذَا جَاءُوهَا نَزَلُوا فَلَمْ يُقَاتِلُوا بِسِلاَحٍ وَلَمْ يَرْمُوا بِسَهْمٍ قَالُوا لاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ ‏.‏ فَيَسْقُطُ أَحَدُ جَانِبَيْهَا ‏\"‏ ‏.‏ قَالَ ثَوْرٌ لاَ أَعْلَمُهُ إِلاَّ قَالَ ‏\"‏ الَّذِي فِي الْبَحْرِ ثُمَّ يَقُولُوا الثَّانِيَةَ لاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ ‏.‏ فَيَسْقُطُ جَانِبُهَا الآخَرُ ثُمَّ يَقُولُوا الثَّالِثَةَ لاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ ‏.‏ فَيُفَرَّجُ لَهُمْ فَيَدْخُلُوهَا فَيَغْنَمُوا فَبَيْنَمَا هُمْ يَقْتَسِمُونَ الْمَغَانِمَ إِذْ جَاءَهُمُ الصَّرِيخُ فَقَالَ إِنَّ الدَّجَّالَ قَدْ خَرَجَ ‏.‏ فَيَتْرُكُونَ كُلَّ شَىْءٍ وَيَرْجِعُونَ ‏\"",
+   "english": "Abu Huraira reported Allah's Apostle (may peace he upon him) saying:You have heard about a city, one side of which is on land and the other is in the sea (Constantinople). They said: Allah's Messenger, yes. Thereupon he said: The Last Hour would not come unless seventy thousand persons from Bani lshaq would attack it. When they would land there, they will neither fight with weapons nor would shower arrows but would only say: \"There is no god but Allah and Allah is the Greatest,\" and one side of it would fall. Thaur (one of the narrators) said: I think that he said: The part by the side of the ocean. Then they would say for the second time: \"There is no god but Allah and Allah is the Greatest\" and the second side would also fall, and they would say: \"There is no god but Allah and Allah is the Greatest,\" and the gates would be opened for them and they would enter therein and, they would be collecting spoils of war and distributing them amongst themselves when a noise would be heard saying: Verily, Dajjal has come. And thus they would leave everything there and go back."
+  }
+ }
+}

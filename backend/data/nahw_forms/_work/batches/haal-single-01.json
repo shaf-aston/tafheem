@@ -1,0 +1,360 @@
+{
+ "batch": "haal-single-01",
+ "questions": [
+  {
+   "id": "haal/statements/1",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "1",
+    "images": [
+     "q002.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "1. حال can be...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "حال can be...",
+     "kind": "choose_all",
+     "options": [
+      "...an إسم.",
+      "...a فعل.",
+      "...a حرف (directly without being متعلق).",
+      "...a مركب غير مفيد like: طالعَ جبلٍ",
+      "...a جملة.",
+      "...a شبه الجملة (جار مجرور - ظرف).",
+      "...معرفة.",
+      "...نكرة."
+     ],
+     "answer": [
+      "...an إسم.",
+      "...a فعل.",
+      "...a مركب غير مفيد like: طالعَ جبلٍ",
+      "...a جملة.",
+      "...a شبه الجملة (جار مجرور - ظرف).",
+      "...نكرة."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...an إسم.",
+      "...a فعل.",
+      "...a جملة.",
+      "...a شبه الجملة (جار مجرور - ظرف).",
+      "...نكرة."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/2",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "2",
+    "images": [
+     "q003.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "2. حال is always...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "حال is always...",
+     "kind": "choose_one",
+     "options": [
+      "...مجرور.",
+      "...منصوب.",
+      "...مرفوع."
+     ],
+     "answer": "...منصوب.",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...منصوب."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/3",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "3",
+    "images": [
+     "q004.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "3. حال signifes upon...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "حال signifes upon...",
+     "kind": "choose_one",
+     "options": [
+      "...the condition of the subject or object when the action is conducted.",
+      "...the method an action is conducted in.",
+      "...the place an action is conducted in.",
+      "...the reason for an action being conducted."
+     ],
+     "answer": "...the condition of the subject or object when the action is conducted.",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the condition of the subject or object when the action is conducted."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/4",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "4",
+    "images": [
+     "q005.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "4. According to the Jamhoor, the حال will generally...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "According to the Jamhoor, the حال will generally...",
+     "kind": "choose_all",
+     "options": [
+      "...be in relation to the فاعل.",
+      "...be in relation to the مضاف إليه.",
+      "...be in relation to the مفعول به.",
+      "...be in relation to the مفعول مطلق.",
+      "...be in relation to the مفعول فيه.",
+      "...be in relation to the مبتدا."
+     ],
+     "answer": [
+      "...be in relation to the فاعل.",
+      "...be in relation to the مفعول به.",
+      "...be in relation to the مضاف إليه."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...be in relation to the فاعل.",
+      "...be in relation to the مفعول به.",
+      "...be in relation to the مبتدا."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/5",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "5",
+    "images": [
+     "q006.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "5. The ذو الحال can be...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The ذو الحال can be...",
+     "kind": "choose_all",
+     "options": [
+      "...an إسم.",
+      "...a فعل.",
+      "...a حرف.",
+      "...a مركب غير مفيد.",
+      "...a جملة.",
+      "...a شبه الجملة (جار مجرور - ظرف).",
+      "...معرفة.",
+      "...نكرة."
+     ],
+     "answer": [
+      "...an إسم.",
+      "...a مركب غير مفيد.",
+      "...معرفة.",
+      "...نكرة."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...an إسم.",
+      "...معرفة.",
+      "...نكرة."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/6",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "6",
+    "images": [
+     "q007.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "6. The ذو الحال...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The ذو الحال...",
+     "kind": "choose_all",
+     "options": [
+      "...can come after the حال.",
+      "...must come before the حال.",
+      "...must come after the حال.",
+      "...can come before the حال."
+     ],
+     "answer": [
+      "...can come after the حال.",
+      "...can come before the حال."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can come after the حال.",
+      "...can come before the حال."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/7",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "7",
+    "images": [
+     "q008.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "7. The حال MUST precede the ذو الحال when...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The حال MUST precede the ذو الحال when...",
+     "kind": "choose_one",
+     "options": [
+      "...the خبر precedes the مبتدا.",
+      "...the ذو الحال is جمع مؤنث سالم and منصوب.",
+      "...the فعل is hidden.",
+      "...the ذو الحال is نكرة and منصوب."
+     ],
+     "answer": "...the ذو الحال is نكرة and منصوب.",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the ذو الحال is نكرة and منصوب."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Option 4's ending punctuation in the image looked like a run of dots (\"...منصوب....\"); transcribed here as a single period to match the format of the other options."
+   ]
+  },
+  {
+   "id": "haal/statements/8",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "8",
+    "images": [
+     "q009.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "8. The حال...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The حال...",
+     "kind": "choose_all",
+     "options": [
+      "...can come before the verb.",
+      "...must come after the verb.",
+      "...can come after the verb.",
+      "...must come before the verb."
+     ],
+     "answer": [
+      "...can come before the verb.",
+      "...can come after the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can come before the verb.",
+      "...can come after the verb."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  }
+ ]
+}

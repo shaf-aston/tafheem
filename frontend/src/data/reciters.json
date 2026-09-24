@@ -1,0 +1,16 @@
+{
+  "_comment": "Who recites, and where the recording of one ayah lives. The only place a reciter is named. Adding one is a block here and nothing else: no code changes. `folder` is that reciter's directory on EveryAyah; `url` below is the shape every address takes, and lib/ayahAudio.js is the only file that expands it. Ordered by how a reader is likely to want them; the first is the default until they pick another.",
+  "_url_comment": "{folder} is the reciter, {surah} and {ayah} are each padded to three digits, so 2:255 is 002255.mp3. A plain file on a public CDN: no account, no key, no request to this app's own backend, and the browser starts playing while the rest is still arriving.",
+  "_timings_comment": "`quran_id` is the same reciter on api.quran.com, which is free and needs no key. It is asked for one thing EveryAyah cannot give: when each word starts, so a word can be lit as it is recited. That answer carries its own audio address, and lib/useRecitation.js plays that address rather than the EveryAyah one whenever it has it, because a list of word times is only true of the recording it was measured against. Where the answer has not arrived, or cannot be fetched at all, playback falls back to EveryAyah below and simply does not light a word.",
+  "timings_url": "https://api.quran.com/api/v4/recitations/{reciter}/by_chapter/{surah}?fields=segments&per_page=286",
+  "audio_host": "https://verses.quran.com/",
+  "url": "https://everyayah.com/data/{folder}/{surah}{ayah}.mp3",
+  "reciters": [
+    { "id": "alafasy", "name": "Mishary Alafasy", "arabic": "مشاري العفاسي", "folder": "Alafasy_128kbps", "quran_id": 7 },
+    { "id": "husary", "name": "Al-Husary", "arabic": "الحصري", "folder": "Husary_128kbps", "quran_id": 6 },
+    { "id": "minshawy", "name": "Al-Minshawy", "arabic": "المنشاوي", "folder": "Minshawy_Murattal_128kbps", "quran_id": 9 },
+    { "id": "abdulbasit", "name": "Abdul Basit", "arabic": "عبد الباسط", "folder": "Abdul_Basit_Murattal_192kbps", "quran_id": 2 },
+    { "id": "sudais", "name": "As-Sudais", "arabic": "السديس", "folder": "Abdurrahmaan_As-Sudais_192kbps", "quran_id": 3 },
+    { "id": "shuraym", "name": "Ash-Shuraym", "arabic": "الشريم", "folder": "Saood_ash-Shuraym_128kbps", "quran_id": 10 }
+  ]
+}

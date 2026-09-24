@@ -1,0 +1,18 @@
+{
+  "_comment": "Which of the six Form I babs a p~q vowel code names, and its display name. p is the past vowel, q the present vowel, read off Wiktionary's ar-verb template (I/a~u etc).",
+  "babs": {
+    "a~u": {"form_key": "I-nasara", "arabic": "نَصَرَ يَنْصُرُ"},
+    "a~i": {"form_key": "I-daraba", "arabic": "ضَرَبَ يَضْرِبُ"},
+    "a~a": {"form_key": "I-fataha", "arabic": "فَتَحَ يَفْتَحُ"},
+    "i~a": {"form_key": "I-samia", "arabic": "سَمِعَ يَسْمَعُ"},
+    "u~u": {"form_key": "I-karuma", "arabic": "كَرُمَ يَكْرُمُ"},
+    "i~i": {"form_key": "I-hasiba", "arabic": "حَسِبَ يَحْسِبُ"}
+  },
+  "_form_keys": "Wiktionary spells the two quadriliteral forms lowercase; patterns.json keys them uppercase. Only the forms that differ need an entry.",
+  "form_keys": {
+    "Iq": "IQ",
+    "IIq": "IIQ"
+  },
+  "_sources": "Where a verb's bab can come from. Every source in this order is tried and every one that answers is shown, so a reader sees both books when both name one.",
+  "sources": ["lane", "wiktionary"]
+}

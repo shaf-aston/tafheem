@@ -1,0 +1,36 @@
+{
+ "id": "haal-e04",
+ "section": "Application of Rules",
+ "picture": "haal-03.png",
+ "instruction": "",
+ "parts": [
+  {
+   "letter": "a",
+   "question": "",
+   "options": [
+    "???? ????",
+    "???",
+    "???? ?????",
+    "???? ?????",
+    "??? ?????"
+   ],
+   "rows": [
+    "???????..."
+   ],
+   "answer": {
+    "???????...": [
+     "???",
+     "???? ?????"
+    ]
+   },
+   "by": "teacher"
+  },
+  {
+   "letter": "b",
+   "question": "Explain why you chose what you chose.",
+   "answer": "The \"entering of the masjid\" was done whilst \"salah had started\" so that becomes haal - and since it's a jumla ismiyah without a dhameer raabit, it requires a waaw haaliyah.",
+   "by": "teacher"
+  }
+ ],
+ "tags": []
+}

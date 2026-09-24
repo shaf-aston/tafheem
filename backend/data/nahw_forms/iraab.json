@@ -1,0 +1,1879 @@
+{
+ "sections": {
+  "haal/statements": {
+   "form": "haal",
+   "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+   "topic": "Haal",
+   "name": "Complete the following statements",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond."
+  },
+  "mafool-lahu-fihi/statements": {
+   "form": "mafool-lahu-fihi",
+   "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "name": "Complete the following statements",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond."
+  },
+  "mafool-maahu/statements": {
+   "form": "mafool-maahu",
+   "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+   "topic": "Mafool Ma'ahu",
+   "name": "Complete the following statements",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond."
+  }
+ },
+ "questions": [
+  {
+   "id": "haal/statements/1",
+   "section": "haal/statements",
+   "number": 1,
+   "type": "choose_all_statement",
+   "prompt": "1. حال can be...",
+   "parts": [
+    {
+     "ask": "حال can be...",
+     "kind": "choose_all",
+     "options": [
+      "...an إسم.",
+      "...a فعل.",
+      "...a حرف (directly without being متعلق).",
+      "...a مركب غير مفيد like: طالعَ جبلٍ",
+      "...a جملة.",
+      "...a شبه الجملة (جار مجرور - ظرف).",
+      "...معرفة.",
+      "...نكرة."
+     ],
+     "answer": [
+      "...an إسم.",
+      "...a فعل.",
+      "...a مركب غير مفيد like: طالعَ جبلٍ",
+      "...a جملة.",
+      "...a شبه الجملة (جار مجرور - ظرف).",
+      "...نكرة."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...an إسم.",
+      "...a فعل.",
+      "...a جملة.",
+      "...a شبه الجملة (جار مجرور - ظرف).",
+      "...نكرة."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q002.png"
+   ]
+  },
+  {
+   "id": "haal/statements/2",
+   "section": "haal/statements",
+   "number": 2,
+   "type": "choose_all_statement",
+   "prompt": "2. حال is always...",
+   "parts": [
+    {
+     "ask": "حال is always...",
+     "kind": "choose_one",
+     "options": [
+      "...مجرور.",
+      "...منصوب.",
+      "...مرفوع."
+     ],
+     "answer": "...منصوب.",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...منصوب."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q003.png"
+   ]
+  },
+  {
+   "id": "haal/statements/3",
+   "section": "haal/statements",
+   "number": 3,
+   "type": "choose_all_statement",
+   "prompt": "3. حال signifes upon...",
+   "parts": [
+    {
+     "ask": "حال signifes upon...",
+     "kind": "choose_one",
+     "options": [
+      "...the condition of the subject or object when the action is conducted.",
+      "...the method an action is conducted in.",
+      "...the place an action is conducted in.",
+      "...the reason for an action being conducted."
+     ],
+     "answer": "...the condition of the subject or object when the action is conducted.",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the condition of the subject or object when the action is conducted."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q004.png"
+   ]
+  },
+  {
+   "id": "haal/statements/4",
+   "section": "haal/statements",
+   "number": 4,
+   "type": "choose_all_statement",
+   "prompt": "4. According to the Jamhoor, the حال will generally...",
+   "parts": [
+    {
+     "ask": "According to the Jamhoor, the حال will generally...",
+     "kind": "choose_all",
+     "options": [
+      "...be in relation to the فاعل.",
+      "...be in relation to the مضاف إليه.",
+      "...be in relation to the مفعول به.",
+      "...be in relation to the مفعول مطلق.",
+      "...be in relation to the مفعول فيه.",
+      "...be in relation to the مبتدا."
+     ],
+     "answer": [
+      "...be in relation to the فاعل.",
+      "...be in relation to the مفعول به.",
+      "...be in relation to the مضاف إليه."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...be in relation to the فاعل.",
+      "...be in relation to the مفعول به.",
+      "...be in relation to the مبتدا."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q005.png"
+   ]
+  },
+  {
+   "id": "haal/statements/5",
+   "section": "haal/statements",
+   "number": 5,
+   "type": "choose_all_statement",
+   "prompt": "5. The ذو الحال can be...",
+   "parts": [
+    {
+     "ask": "The ذو الحال can be...",
+     "kind": "choose_all",
+     "options": [
+      "...an إسم.",
+      "...a فعل.",
+      "...a حرف.",
+      "...a مركب غير مفيد.",
+      "...a جملة.",
+      "...a شبه الجملة (جار مجرور - ظرف).",
+      "...معرفة.",
+      "...نكرة."
+     ],
+     "answer": [
+      "...an إسم.",
+      "...a مركب غير مفيد.",
+      "...معرفة.",
+      "...نكرة."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...an إسم.",
+      "...معرفة.",
+      "...نكرة."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q006.png"
+   ]
+  },
+  {
+   "id": "haal/statements/6",
+   "section": "haal/statements",
+   "number": 6,
+   "type": "choose_all_statement",
+   "prompt": "6. The ذو الحال...",
+   "parts": [
+    {
+     "ask": "The ذو الحال...",
+     "kind": "choose_all",
+     "options": [
+      "...can come after the حال.",
+      "...must come before the حال.",
+      "...must come after the حال.",
+      "...can come before the حال."
+     ],
+     "answer": [
+      "...can come after the حال.",
+      "...can come before the حال."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can come after the حال.",
+      "...can come before the حال."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q007.png"
+   ]
+  },
+  {
+   "id": "haal/statements/7",
+   "section": "haal/statements",
+   "number": 7,
+   "type": "choose_all_statement",
+   "prompt": "7. The حال MUST precede the ذو الحال when...",
+   "parts": [
+    {
+     "ask": "The حال MUST precede the ذو الحال when...",
+     "kind": "choose_one",
+     "options": [
+      "...the خبر precedes the مبتدا.",
+      "...the ذو الحال is جمع مؤنث سالم and منصوب.",
+      "...the فعل is hidden.",
+      "...the ذو الحال is نكرة and منصوب."
+     ],
+     "answer": "...the ذو الحال is نكرة and منصوب.",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the ذو الحال is نكرة and منصوب."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q008.png"
+   ],
+   "flags": [
+    "Option 4's ending punctuation in the image looked like a run of dots (\"...منصوب....\"); transcribed here as a single period to match the format of the other options."
+   ]
+  },
+  {
+   "id": "haal/statements/8",
+   "section": "haal/statements",
+   "number": 8,
+   "type": "choose_all_statement",
+   "prompt": "8. The حال...",
+   "parts": [
+    {
+     "ask": "The حال...",
+     "kind": "choose_all",
+     "options": [
+      "...can come before the verb.",
+      "...must come after the verb.",
+      "...can come after the verb.",
+      "...must come before the verb."
+     ],
+     "answer": [
+      "...can come before the verb.",
+      "...can come after the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can come before the verb.",
+      "...can come after the verb."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q009.png"
+   ]
+  },
+  {
+   "id": "haal/statements/9",
+   "section": "haal/statements",
+   "number": 9,
+   "type": "choose_all_statement",
+   "prompt": "If the حال is a مفرد, then it can be...",
+   "parts": [
+    {
+     "ask": "If the حال is a مفرد, then it can be...",
+     "kind": "choose_all",
+     "options": [
+      "a صفة مشبهة.",
+      "a شبه الجملة.",
+      "an اسم الظرف.",
+      "an اسم الفاعل.",
+      "an اسم المبالغة.",
+      "an اسم الآلة.",
+      "an اسم المفعول.",
+      "an اسم التفضيل.",
+      "a مصدر."
+     ],
+     "answer": [
+      "an اسم الفاعل.",
+      "an اسم المفعول.",
+      "a صفة مشبهة.",
+      "an اسم المبالغة.",
+      "an اسم التفضيل.",
+      "a مصدر.",
+      "a شبه الجملة."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "a شبه الجملة.",
+      "an اسم الفاعل.",
+      "an اسم المبالغة.",
+      "a مصدر."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q010.png"
+   ]
+  },
+  {
+   "id": "haal/statements/10",
+   "section": "haal/statements",
+   "number": 10,
+   "type": "choose_all_statement",
+   "prompt": "The حال and ذو الحال must correlate in...",
+   "parts": [
+    {
+     "ask": "The حال and ذو الحال must correlate in...",
+     "kind": "choose_all",
+     "options": [
+      "(D) Definitenes",
+      "(I) I'raab",
+      "(N) Number",
+      "(G) Gender"
+     ],
+     "answer": [
+      "(N) Number",
+      "(G) Gender"
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "(N) Number",
+      "(G) Gender"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q011.png"
+   ],
+   "flags": [
+    "Option text \"(D) Definitenes\" is printed exactly this way on the slide; may be a source typo for \"Definiteness\"."
+   ]
+  },
+  {
+   "id": "haal/statements/11",
+   "section": "haal/statements",
+   "number": 11,
+   "type": "choose_all_statement",
+   "prompt": "If the ذو الحال is nonsensical plural, the حال...",
+   "parts": [
+    {
+     "ask": "If the ذو الحال is nonsensical plural, the حال...",
+     "kind": "choose_all",
+     "options": [
+      "will correlate in being plural and feminine or masculine depending on the gender of the nonsensical plural ذو الحال..",
+      "will be plural feminine.",
+      "will be single feminine.",
+      "will be single masculine."
+     ],
+     "answer": [
+      "will be single feminine."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "will be single feminine."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q012.png"
+   ]
+  },
+  {
+   "id": "haal/statements/12",
+   "section": "haal/statements",
+   "number": 12,
+   "type": "choose_all_statement",
+   "prompt": "If the حال is a جملة, then it must be a...",
+   "parts": [
+    {
+     "ask": "If the حال is a جملة, then it must be a...",
+     "kind": "choose_all",
+     "options": [
+      "جملة إنشائية.",
+      "جملة فعلية خبرية.",
+      "جملة إسمية خبرية."
+     ],
+     "answer": [
+      "جملة فعلية خبرية.",
+      "جملة إسمية خبرية."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "جملة فعلية خبرية.",
+      "جملة إسمية خبرية."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q013.png"
+   ]
+  },
+  {
+   "id": "haal/statements/13",
+   "section": "haal/statements",
+   "number": 13,
+   "type": "choose_all_statement",
+   "prompt": "A رابط is brought in a حال when...",
+   "parts": [
+    {
+     "ask": "A رابط is brought in a حال when...",
+     "kind": "choose_all",
+     "options": [
+      "the حال is a جملة.",
+      "the حال is a مفرد."
+     ],
+     "answer": [
+      "the حال is a جملة."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "the حال is a جملة."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q014.png"
+   ]
+  },
+  {
+   "id": "haal/statements/14",
+   "section": "haal/statements",
+   "number": 14,
+   "type": "choose_all_statement",
+   "prompt": "(continuing from Q13) In such a case...",
+   "parts": [
+    {
+     "ask": "(continuing from Q13) In such a case...",
+     "kind": "choose_all",
+     "options": [
+      "the حال can contain a رابط.",
+      "the حال must contain a رابط."
+     ],
+     "answer": [
+      "the حال can contain a رابط."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "the حال must contain a رابط."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q015.png"
+   ]
+  },
+  {
+   "id": "haal/statements/15",
+   "section": "haal/statements",
+   "number": 15,
+   "type": "choose_all_statement",
+   "prompt": "A فعل مضارع must always contain a رابط...",
+   "parts": [
+    {
+     "ask": "A فعل مضارع must always contain a رابط...",
+     "kind": "choose_all",
+     "options": [
+      "except when preceded by لن.",
+      "except when preceded by سوف.",
+      "except when preceded by لم.",
+      "except when preceded by قد.",
+      "except when preceded by لا."
+     ],
+     "answer": [
+      "except when preceded by لم."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "except when preceded by لن.",
+      "except when preceded by لم.",
+      "except when preceded by قد."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q017.png"
+   ]
+  },
+  {
+   "id": "haal/statements/16",
+   "section": "haal/statements",
+   "number": 16,
+   "type": "choose_all_statement",
+   "prompt": "A فعل مضارع can be preceded by...",
+   "parts": [
+    {
+     "ask": "A فعل مضارع can be preceded by...",
+     "kind": "choose_all",
+     "options": [
+      "the word لا.",
+      "the word ما.",
+      "the word لَمَّا.",
+      "the word سوف.",
+      "the word لم.",
+      "the word لن.",
+      "the letter س.",
+      "the word قد."
+     ],
+     "answer": [
+      "the word قد.",
+      "the word لم.",
+      "the word ما.",
+      "the word لا.",
+      "the word لَمَّا."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "the word ما.",
+      "the word لَمَّا.",
+      "the word لم.",
+      "the word لن.",
+      "the word قد."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q016.png"
+   ]
+  },
+  {
+   "id": "haal/statements/17",
+   "section": "haal/statements",
+   "number": 17,
+   "type": "choose_all_statement",
+   "prompt": "An إسم جامد can not be a حال unless...",
+   "parts": [
+    {
+     "ask": "An إسم جامد can not be a حال unless...",
+     "kind": "choose_all",
+     "options": [
+      "...the اسم جامد is a name.",
+      "...the اسم جامد has a نعت مشتق.",
+      "...the اسم جامد can be interpreted as a مشتق.",
+      "...the اسم جامد has a حال aswell."
+     ],
+     "answer": [
+      "...the اسم جامد can be interpreted as a مشتق.",
+      "...the اسم جامد has a نعت مشتق."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...the اسم جامد can be interpreted as a مشتق."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q018.png"
+   ]
+  },
+  {
+   "id": "haal/statements/18",
+   "section": "haal/statements",
+   "number": 18,
+   "type": "choose_all_statement",
+   "prompt": "The حال and the action preceding it...",
+   "parts": [
+    {
+     "ask": "The حال and the action preceding it...",
+     "kind": "choose_one",
+     "options": [
+      "...must always correspond in time.",
+      "...should correspond in time but not always.",
+      "...must never correspond in time."
+     ],
+     "answer": "...should correspond in time but not always.",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...must always correspond in time."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q019.png"
+   ]
+  },
+  {
+   "id": "haal/statements/19",
+   "section": "haal/statements",
+   "number": 19,
+   "type": "choose_all_statement",
+   "prompt": "When the حال is a فعل ماضي, generally, it has قد preceding it (provided there isn't a reason to prevent قد). The purpose of this قد is to...",
+   "parts": [
+    {
+     "ask": "When the حال is a فعل ماضي, generally, it has قد preceding it (provided there isn't a reason to prevent قد). The purpose of this قد is to...",
+     "kind": "choose_one",
+     "options": [
+      "...provide a meaning of close past tense (القريب) in order to bring it close to the مضارع verb because the مضارع verb is the closest to an اسم الفاعل which is what حال should be in principle.",
+      "...provide a meaning of ceirtainty (التحقيق) in order to ascertain the حال so it is absolutely clear and ratified.",
+      "...provide a meaning of emphasis (التأكيد) in order to remove doubt since the حال is in the past and it could become doubtful."
+     ],
+     "answer": "...provide a meaning of close past tense (القريب) in order to bring it close to the مضارع verb because the مضارع verb is the closest to an اسم الفاعل which is what حال should be in principle.",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...provide a meaning of close past tense (القريب) in order to bring it close to the مضارع verb because the مضارع verb is the closest to an اسم الفاعل which is what حال should be in principle."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q020.png"
+   ]
+  },
+  {
+   "id": "haal/statements/20",
+   "section": "haal/statements",
+   "number": 20,
+   "type": "choose_all_statement",
+   "prompt": "A فعل ماضي حال is prevented from being preceded by قد...",
+   "parts": [
+    {
+     "ask": "A فعل ماضي حال is prevented from being preceded by قد...",
+     "kind": "choose_all",
+     "options": [
+      "...when the فعل ماضي comes after إلّا.",
+      "...when the فعل ماضي is free from a رابط.",
+      "...when the فعل ماضي is free from a واو حالية.",
+      "...when the فعل ماضي is connected with أو."
+     ],
+     "answer": [
+      "...when the فعل ماضي is connected with أو.",
+      "...when the فعل ماضي comes after إلّا."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...when the فعل ماضي is free from a واو حالية."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q021.png"
+   ]
+  },
+  {
+   "id": "haal/statements/21",
+   "section": "haal/statements",
+   "number": 21,
+   "type": "choose_all_statement",
+   "prompt": "A فعل مضارع حال...",
+   "parts": [
+    {
+     "ask": "A فعل مضارع حال...",
+     "kind": "choose_one",
+     "options": [
+      "...can never be preceded by قد, whether the واو حالية is there or not..",
+      "...can be preceded by قد only if the واو حالية is absent.",
+      "...can be preceded by قد and the واو حالية will also be necessary."
+     ],
+     "answer": "...can be preceded by قد and the واو حالية will also be necessary.",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can be preceded by قد and the واو حالية will also be necessary."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q022.png"
+   ]
+  },
+  {
+   "id": "haal/statements/22",
+   "section": "haal/statements",
+   "number": 22,
+   "type": "choose_all_statement",
+   "prompt": "A حال مقدرة is...",
+   "parts": [
+    {
+     "ask": "A حال مقدرة is...",
+     "kind": "choose_one",
+     "options": [
+      "...a حال which is in no tense (tenseless, timeless in another dimension) that's why it's called مقدّرة because it's to do with decree (تقدير).",
+      "...a حال which is in the past tense.",
+      "...a حال which is in the future tense.",
+      "...a حال which is in the present tense."
+     ],
+     "answer": "...a حال which is in the future tense.",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...a حال which is in no tense (tenseless, timeless in another dimension) that's why it's called مقدّرة because it's to do with decree (تقدير)."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "haal/q023.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/1",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 1,
+   "type": "choose_all_statement",
+   "parts": [
+    {
+     "ask": "The مفعول له is...",
+     "kind": "choose_all",
+     "options": [
+      "...an إسم.",
+      "...a حرف.",
+      "...a فعل."
+     ],
+     "answer": [
+      "...an إسم."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...an إسم."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q002.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/2",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 2,
+   "type": "choose_all_statement",
+   "parts": [
+    {
+     "ask": "The مفعول له which conforms to its conditions is...",
+     "kind": "choose_all",
+     "options": [
+      "...منصوب.",
+      "...مجرور.",
+      "...مرفوع."
+     ],
+     "answer": [
+      "...منصوب."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...منصوب."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q003.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/3",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 3,
+   "type": "choose_all_statement",
+   "parts": [
+    {
+     "ask": "The مفعول له signifes...",
+     "kind": "choose_all",
+     "options": [
+      "...the reason for an action being conducted.",
+      "...the time an action is conducted in.",
+      "...the place an action is conducted in.",
+      "...the method an action is conducted in."
+     ],
+     "answer": [
+      "...the reason for an action being conducted."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the reason for an action being conducted."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q004.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/4",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 4,
+   "type": "choose_all_statement",
+   "parts": [
+    {
+     "ask": "A valid مفعول له will...",
+     "kind": "choose_all",
+     "options": [
+      "...be an interpreted masdar.",
+      "....sync in time with action.",
+      "...will be related to the فاعل and nothing else.",
+      "...will be related to the فاعل and the مفعول به.",
+      "...be a clear masdar."
+     ],
+     "answer": [
+      "....sync in time with action.",
+      "...will be related to the فاعل and nothing else.",
+      "...be a clear masdar."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "....sync in time with action.",
+      "...will be related to the فاعل and nothing else.",
+      "...be a clear masdar."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q005.png"
+   ],
+   "flags": [
+    "Option 2 is printed with four leading dots (\"....sync\") instead of the three used elsewhere; copied exactly as shown."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/5",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 5,
+   "type": "choose_all_statement",
+   "parts": [
+    {
+     "ask": "If one of the مفعول له conditions are not present, then...",
+     "kind": "choose_all",
+     "options": [
+      "...a لام will be assumed.",
+      "...it will become a grammatically incorrect construction.",
+      "...nothing will be assumed and it will become a haal.",
+      "...a باء will be assumed."
+     ],
+     "answer": [
+      "...a لام will be assumed."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...a لام will be assumed."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q006.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/6",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 6,
+   "type": "choose_all_statement",
+   "parts": [
+    {
+     "ask": "The مفعول له ...",
+     "kind": "choose_all",
+     "options": [
+      "...can come after the verb.",
+      "...must come before the verb.",
+      "...must come after the verb.",
+      "...can come before the verb."
+     ],
+     "answer": [
+      "...can come after the verb.",
+      "...can come before the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can come after the verb.",
+      "...can come before the verb."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q007.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/7",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 7,
+   "type": "choose_all_statement",
+   "parts": [
+    {
+     "ask": "The مفعول فيه is...",
+     "kind": "choose_all",
+     "options": [
+      "...an إسم.",
+      "...a فعل.",
+      "...a حرف."
+     ],
+     "answer": [
+      "...an إسم."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...an إسم."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q008.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/8",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 8,
+   "type": "choose_all_statement",
+   "parts": [
+    {
+     "ask": "The مفعول فيه can be...",
+     "kind": "choose_all",
+     "options": [
+      "...منصوب.",
+      "...مرفوع.",
+      "...مجرور."
+     ],
+     "answer": [
+      "...منصوب.",
+      "...مجرور."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...منصوب."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q009.png"
+   ],
+   "flags": [
+    "Student marked only \"...منصوب.\"; the page's \"Correct answer\" block shows both \"...منصوب.\" and \"...مجرور.\" as correct, so answer reflects the shown key, not the student's response."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/9",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 9,
+   "type": "choose_all_statement",
+   "prompt": "9. The مفعول فيه signifes...",
+   "parts": [
+    {
+     "ask": "The مفعول فيه signifes...",
+     "kind": "choose_all",
+     "options": [
+      "...the place an action is conducted in.",
+      "...the reason for an action being conducted.",
+      "...the time an action is conducted in.",
+      "...the method an action is conducted in."
+     ],
+     "answer": [
+      "...the time an action is conducted in.",
+      "...the place an action is conducted in."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...the place an action is conducted in."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q010.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/10",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 10,
+   "type": "choose_all_statement",
+   "prompt": "10. The مفعول فيه ...",
+   "parts": [
+    {
+     "ask": "The مفعول فيه ...",
+     "kind": "choose_all",
+     "options": [
+      "...can come after the verb.",
+      "...can come before the verb.",
+      "...must come before the verb.",
+      "...must come after the verb."
+     ],
+     "answer": [
+      "...can come after the verb.",
+      "...can come before the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can come after the verb.",
+      "...can come before the verb."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q011.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/11",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 11,
+   "type": "choose_all_statement",
+   "prompt": "11. The مفعول فيه will require an explicit في...",
+   "parts": [
+    {
+     "ask": "The مفعول فيه will require an explicit في...",
+     "kind": "choose_all",
+     "options": [
+      "...If the مفعول فيه is a restricted ظرف زمان.",
+      "...If the مفعول فيه is a restricted ظرف مكان.",
+      "...If the مفعول فيه is an unrestricted ظرف زمان.",
+      "...If the مفعول فيه is an unrestricted ظرف مكان."
+     ],
+     "answer": [
+      "...If the مفعول فيه is a restricted ظرف مكان."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...If the مفعول فيه is a restricted ظرف زمان.",
+      "...If the مفعول فيه is a restricted ظرف مكان."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q012.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/12",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 12,
+   "type": "choose_all_statement",
+   "prompt": "12. The غايات are...",
+   "parts": [
+    {
+     "ask": "The غايات are...",
+     "kind": "choose_all",
+     "options": [
+      "...unrestricted ظروف",
+      "...restricted ظروف"
+     ],
+     "answer": [
+      "...unrestricted ظروف"
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...unrestricted ظروف"
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q013.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/13",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 13,
+   "type": "choose_all_statement",
+   "prompt": "13. The غايات are called غايات because...",
+   "parts": [
+    {
+     "ask": "The غايات are called غايات because...",
+     "kind": "choose_all",
+     "options": [
+      "...they become مبني when their مضاف إليه is dropped.",
+      "...the sentence ends with them.",
+      "...the word ends with them.",
+      "...they remain معرب when their مضاف إليه is dropped.",
+      "...they don't accept تنوين العوض."
+     ],
+     "answer": [
+      "...the word ends with them.",
+      "...they don't accept تنوين العوض."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...they become مبني when their مضاف إليه is dropped.",
+      "...they don't accept تنوين العوض."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q014.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/14",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 14,
+   "type": "choose_all_statement",
+   "prompt": "14. A تنوين العوض compensates...",
+   "parts": [
+    {
+     "ask": "A تنوين العوض compensates...",
+     "kind": "choose_all",
+     "options": [
+      "...a dropped sentence.",
+      "...a dropped حرف like مِنْ.",
+      "...a dropped word.",
+      "...a dropped letter",
+      "...a hidden word like ثابت."
+     ],
+     "answer": [
+      "...a dropped letter",
+      "...a dropped word.",
+      "...a dropped sentence."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...a dropped word."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q015.png"
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/15",
+   "section": "mafool-lahu-fihi/statements",
+   "number": 15,
+   "type": "choose_all_statement",
+   "prompt": "15. The tanween on the following word is...",
+   "sentences": [
+    {
+     "ar": "رَجُلٌ"
+    }
+   ],
+   "parts": [
+    {
+     "ask": "The tanween on the following word is...",
+     "kind": "choose_all",
+     "options": [
+      "...a تنوين العوض (a tanween of compensation).",
+      "...a تنوين التنكير (a tanween of indefiniteness).",
+      "...a تنوين التمكين (a tanween of firm establishment)."
+     ],
+     "answer": [
+      "...a تنوين التمكين (a tanween of firm establishment)."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...a تنوين التنكير (a tanween of indefiniteness)."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-lahu-fihi/q016.png"
+   ],
+   "flags": [
+    "The word image is stylized calligraphy; transcribed as رَجُلٌ from visual reading of the shapes, worth a manual double-check."
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/1",
+   "section": "mafool-maahu/statements",
+   "number": 1,
+   "type": "choose_all_statement",
+   "prompt": "The مفعول معه is...",
+   "parts": [
+    {
+     "ask": "The مفعول معه is...",
+     "kind": "choose_all",
+     "options": [
+      "...an إسم.",
+      "...a حرف.",
+      "...a فعل."
+     ],
+     "answer": [
+      "...an إسم."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...a حرف."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q002.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/2",
+   "section": "mafool-maahu/statements",
+   "number": 2,
+   "type": "choose_all_statement",
+   "prompt": "The مفعول معه is...",
+   "parts": [
+    {
+     "ask": "The مفعول معه is...",
+     "kind": "choose_all",
+     "options": [
+      "...مجرور.",
+      "...مرفوع.",
+      "...منصوب."
+     ],
+     "answer": [
+      "...منصوب."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...منصوب."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q003.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/3",
+   "section": "mafool-maahu/statements",
+   "number": 3,
+   "type": "choose_all_statement",
+   "prompt": "The و of the مفعول معه signifes...",
+   "parts": [
+    {
+     "ask": "The و of the مفعول معه signifes...",
+     "kind": "choose_all",
+     "options": [
+      "...association of what is after it with what is before it when the action is conducted.",
+      "...the state of what is before it while the action is conducted.",
+      "...the greatness of what is after it which deems the action necessary due to it being an oath.",
+      "...co-equailty of what is after it with what is before it when the action is conducted."
+     ],
+     "answer": [
+      "...association of what is after it with what is before it when the action is conducted."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...co-equailty of what is after it with what is before it when the action is conducted."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q004.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/4",
+   "section": "mafool-maahu/statements",
+   "number": 4,
+   "type": "choose_all_statement",
+   "prompt": "The مفعول معه ...",
+   "parts": [
+    {
+     "ask": "The مفعول معه ...",
+     "kind": "choose_all",
+     "options": [
+      "...can come before the verb.",
+      "...must come before the verb.",
+      "...must come after the verb.",
+      "...can come after the verb."
+     ],
+     "answer": [
+      "...must come after the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...must come after the verb.",
+      "...can come after the verb."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q005.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/5",
+   "section": "mafool-maahu/statements",
+   "number": 5,
+   "type": "choose_all_statement",
+   "prompt": "The مفعول معه ...",
+   "parts": [
+    {
+     "ask": "The مفعول معه ...",
+     "kind": "choose_all",
+     "options": [
+      "...can come after the noun which it would have been عطف to.",
+      "...can come before the noun which it would have been عطف to.",
+      "...must come after the noun which it would have been عطف to.",
+      "...must come before the noun which it would have been عطف to."
+     ],
+     "answer": [
+      "...must come after the noun which it would have been عطف to."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can come after the noun which it would have been عطف to.",
+      "...must come after the noun which it would have been عطف to."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q006.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/6",
+   "section": "mafool-maahu/statements",
+   "number": 6,
+   "type": "choose_all_statement",
+   "prompt": "The مفعول معه will be necessary...",
+   "parts": [
+    {
+     "ask": "The مفعول معه will be necessary...",
+     "kind": "choose_all",
+     "options": [
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+     ],
+     "answer": [
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q007.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/7",
+   "section": "mafool-maahu/statements",
+   "number": 7,
+   "type": "choose_all_statement",
+   "prompt": "The مفعول معه and the noun which it would have been عطف to...",
+   "parts": [
+    {
+     "ask": "The مفعول معه and the noun which it would have been عطف to...",
+     "kind": "choose_all",
+     "options": [
+      "...can NOT be seperated with a gap.",
+      "...can be seperated with a gap."
+     ],
+     "answer": [
+      "...can NOT be seperated with a gap."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can NOT be seperated with a gap.",
+      "...can be seperated with a gap."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q008.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/8",
+   "section": "mafool-maahu/statements",
+   "number": 8,
+   "type": "choose_all_statement",
+   "prompt": "عطف is not permissible...",
+   "parts": [
+    {
+     "ask": "عطف is not permissible...",
+     "kind": "choose_all",
+     "options": [
+      "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb.",
+      "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار."
+     ],
+     "answer": [
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q009.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/9",
+   "section": "mafool-maahu/statements",
+   "number": 9,
+   "type": "choose_all_statement",
+   "prompt": "If the فعل or شبه الفعل is literal and عطف is permissible, then...",
+   "parts": [
+    {
+     "ask": "If the فعل or شبه الفعل is literal and عطف is permissible, then...",
+     "kind": "choose_all",
+     "options": [
+      "...only عطف will be permissible.",
+      "...only مفعول معه will be permissible.",
+      "...both مفعول معه & عطف will be permissible.",
+      "...both مفعول معه & عطف will Not be permissible."
+     ],
+     "answer": [
+      "...both مفعول معه & عطف will be permissible."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...both مفعول معه & عطف will be permissible."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q010.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/10",
+   "section": "mafool-maahu/statements",
+   "number": 10,
+   "type": "choose_all_statement",
+   "prompt": "If the فعل or شبه الفعل is not literal, rather it's abstract (in meaning) and عطف is permissible, then...",
+   "parts": [
+    {
+     "ask": "If the فعل or شبه الفعل is not literal, rather it's abstract (in meaning) and عطف is permissible, then...",
+     "kind": "choose_all",
+     "options": [
+      "...both مفعول معه & عطف will Not be permissible.",
+      "...both مفعول معه & عطف will be permissible.",
+      "...only عطف will be permissible.",
+      "...only مفعول معه will be permissible."
+     ],
+     "answer": [
+      "...only عطف will be permissible."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...both مفعول معه & عطف will Not be permissible.",
+      "...only عطف will be permissible."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q011.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/11",
+   "section": "mafool-maahu/statements",
+   "number": 11,
+   "type": "choose_all_statement",
+   "prompt": "If the فعل or شبه الفعل is not literal, rather it's abstract (in meaning) and عطف is NOT permissible, then...",
+   "parts": [
+    {
+     "ask": "If the فعل or شبه الفعل is not literal, rather it's abstract (in meaning) and عطف is NOT permissible, then...",
+     "kind": "choose_all",
+     "options": [
+      "...both مفعول معه & عطف will Not be permissible.",
+      "...only عطف will be permissible.",
+      "...both مفعول معه & عطف will be permissible.",
+      "...only مفعول معه will be permissible."
+     ],
+     "answer": [
+      "...only مفعول معه will be permissible."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...both مفعول معه & عطف will Not be permissible.",
+      "...only مفعول معه will be permissible."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q012.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/12",
+   "section": "mafool-maahu/statements",
+   "number": 12,
+   "type": "choose_all_statement",
+   "prompt": "If labeling the latter noun a معطوف is illogical, then...",
+   "parts": [
+    {
+     "ask": "If labeling the latter noun a معطوف is illogical, then...",
+     "kind": "choose_all",
+     "options": [
+      "...both مفعول معه & عطف will still be permissible because Nahw does not deal with logic.",
+      "...the only option will be مفعول معه."
+     ],
+     "answer": [
+      "...the only option will be مفعول معه."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the only option will be مفعول معه."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q013.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/13",
+   "section": "mafool-maahu/statements",
+   "number": 13,
+   "type": "choose_all_statement",
+   "prompt": "If labeling the latter noun a معطوف is illogical, then...",
+   "parts": [
+    {
+     "ask": "If labeling the latter noun a معطوف is illogical, then...",
+     "kind": "choose_all",
+     "options": [
+      "...the only option will be مفعول معه.",
+      "...both مفعول معه & عطف will still be permissible because Nahw does not deal with logic."
+     ],
+     "answer": [
+      "...the only option will be مفعول معه."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the only option will be مفعول معه."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q014.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/14",
+   "section": "mafool-maahu/statements",
+   "number": 14,
+   "type": "choose_all_statement",
+   "prompt": "If a verb which requires 2 or more doers for it to make sense like تشافه (talking to eachother) is used, then...",
+   "parts": [
+    {
+     "ask": "If a verb which requires 2 or more doers for it to make sense like تشافه (talking to eachother) is used, then...",
+     "kind": "choose_all",
+     "options": [
+      "...the only option will be عطف.",
+      "...both مفعول معه & عطف will be permissible.",
+      "...the only option will be مفعول معه."
+     ],
+     "answer": [
+      "...the only option will be عطف."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the only option will be عطف."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q015.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/15",
+   "section": "mafool-maahu/statements",
+   "number": 15,
+   "type": "choose_all_statement",
+   "prompt": "If a pronoun is used in reference to the former noun & the مفعول معه, then...",
+   "parts": [
+    {
+     "ask": "If a pronoun is used in reference to the former noun & the مفعول معه, then...",
+     "kind": "choose_all",
+     "options": [
+      "...both the former noun and the latter word (مفعول معه) will be considered to correlate with the pronoun because they are both co-equal.",
+      "...the former noun will be considered to correlate with the pronoun because the مفعول معه is not co-equal but only an associate.",
+      "...the latter noun (مفعول معه) will be considered to correlate with the pronoun because the مفعول معه is more important.."
+     ],
+     "answer": [
+      "...the former noun will be considered to correlate with the pronoun because the مفعول معه is not co-equal but only an associate."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...both the former noun and the latter word (مفعول معه) will be considered to correlate with the pronoun because they are both co-equal."
+     ],
+     "score": {
+      "got": 0,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q016.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/16",
+   "section": "mafool-maahu/statements",
+   "number": 16,
+   "type": "choose_all_statement",
+   "prompt": "عطف is permissible...",
+   "parts": [
+    {
+     "ask": "عطف is permissible...",
+     "kind": "choose_all",
+     "options": [
+      "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb and there is also a gap between the ضمير مرفوع متصل and the latter noun."
+     ],
+     "answer": [
+      "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb and there is also a gap between the ضمير مرفوع متصل and the latter noun."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb and there is also a gap between the ضمير مرفوع متصل and the latter noun."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q017.png"
+   ]
+  },
+  {
+   "id": "mafool-maahu/statements/17",
+   "section": "mafool-maahu/statements",
+   "number": 17,
+   "type": "choose_all_statement",
+   "prompt": "17. If a pronoun is used in reference to the former noun & the معطوف, then...",
+   "parts": [
+    {
+     "ask": "If a pronoun is used in reference to the former noun & the معطوف, then...",
+     "kind": "choose_all",
+     "options": [
+      "...the former noun will be considered to correlate with the pronoun because the معطوف is not co-equal but only an associate.",
+      "...the latter noun (معطوف) will be considered to correlate with the pronoun because the معطوف is more important..",
+      "...both the former noun and the latter noun (معطوف) will be considered to correlate with the pronoun because they are both co-equal."
+     ],
+     "answer": [
+      "...both the former noun and the latter noun (معطوف) will be considered to correlate with the pronoun because they are both co-equal."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...both the former noun and the latter noun (معطوف) will be considered to correlate with the pronoun because they are both co-equal."
+     ],
+     "score": {
+      "got": 1,
+      "of": 1
+     }
+    }
+   ],
+   "images": [
+    "mafool-maahu/q018.png"
+   ]
+  }
+ ]
+}

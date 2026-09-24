@@ -1,0 +1,272 @@
+{
+ "root_letter": "(",
+ "entry_count": 10,
+ "entries": [
+  {
+   "root": "(مهمل)",
+   "core_meaning": "باب الهمزة والعين وما بعدها فى الثلاثى — مهمل (لا كلام فيه)",
+   "core_meaning_english": "Chapter heading: hamza + ayn and what follows in triliterals — left empty, no entries",
+   "pdf_page_index": 160,
+   "printed_page_number": "114",
+   "sarf_pattern": "",
+   "variances": [],
+   "notes": "Section header only, no root entry; page also has a second header 'باب الهمزة والفاء وما بعدها فى الثلاثى' introducing the next root."
+  },
+  {
+   "root": "(تكملة من الصفحة السابقة)",
+   "root_letters": [],
+   "core_meaning": "[متابعة من صفحة سابقة - المعنى الأصلي غير ظاهر في هذا المقطع]",
+   "core_meaning_english": "[continuation from prior page - core meaning not visible on this excerpt]",
+   "sarf_pattern": "",
+   "pdf_page_index": 490,
+   "printed_page_number": "٤٤٤",
+   "notes": "Tail end of an entry begun on a previous page (root not shown, likely جرئضة judging by footnote forms جرئضة/جرائضة).",
+   "variances": [
+    {
+     "usage": "بعير جِرْواضٌ",
+     "meaning": "أى غليظ",
+     "meaning_english": "a thick/coarse camel",
+     "citation": ""
+    },
+    {
+     "usage": "الجِرَائِض",
+     "meaning": "البعير الضخم",
+     "meaning_english": "a huge/massive camel",
+     "citation": ""
+    },
+    {
+     "usage": "الجِرَائِض (أيضاً)",
+     "meaning": "الشَّدَد الأَكْل",
+     "meaning_english": "also said of one who eats voraciously",
+     "citation": ""
+    },
+    {
+     "usage": "نمجة جُرَئِضة",
+     "meaning": "ضَخْمة",
+     "meaning_english": "huge, massive (of a female)",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "(تكملة من الصفحة السابقة)",
+   "root_letters": [],
+   "core_meaning": "",
+   "core_meaning_english": "",
+   "sarf_pattern": "",
+   "pdf_page_index": 673,
+   "printed_page_number": "108",
+   "variances": [
+    {
+     "usage": "باب مستقيم، ثم يشبه بهذا فيقال لبرج من بروج السماء حَمَل",
+     "meaning": "تسمية أحد أبراج السماء بالحَمَل تشبيها",
+     "meaning_english": "the zodiac constellation named 'the Lamb' by analogy",
+     "citation": "قال الهذلي: كالسُّحُل البِيض جلا لونها * سَحُّ نِجاءِ الحَمَل الأسْوَل"
+    }
+   ],
+   "notes": "هذا نص متبقٍّ من نهاية مادة سابقة (قبل بدء باب الحاء والنون) لم تظهر بدايتها في هذه الصفحات؛ الجذر غير مؤكد، أدرج للحفاظ على التسلسل فقط. صححت الاستشهاد الشعري: 'الجمل' في النسخة الأصلية للاستخراج كانت خطأ، والصواب 'الحَمَل' (بالحاء) اتساقا مع سياق الاستشهاد عن برج الحَمَل."
+  },
+  {
+   "root": "(تكملة من الصفحة السابقة)",
+   "root_letters": [],
+   "core_meaning": "وجه الأرض والتراب",
+   "core_meaning_english": "the surface of the earth, dust/soil",
+   "sarf_pattern": "",
+   "pdf_page_index": 1927,
+   "printed_page_number": "372",
+   "variances": [
+    {
+     "usage": "(في البيت) خَدِرْ / بيت طرفة",
+     "meaning": "بيت شعر شاهد على أن الياء زيدت في أول الكلمة وإنما هي من العَفَر (وجه الأرض والتراب)",
+     "meaning_english": "poetry citation showing a prefixed ya, the base word relating to the earth's surface/dust",
+     "citation": "بيت لطرفة في ديوانه، رواية: زارت البيد إلى أرحلنا؛ وفي رواية أخرى (خدر): جازت البيد"
+    }
+   ],
+   "notes": "Tail end of an entry begun on a prior page not in this batch; root heading not visible here. Likely root ع-ف-ر based on 'وجه الأرض والتراب', left unconfirmed. Footnote 2 on this page also glosses 'التارة' (الحسنة البضة) used later in the علطمس entry — not a separate root entry, omitted."
+  },
+  {
+   "root": "(تكملة - غير محددة)",
+   "root_letters": [],
+   "core_meaning": "تكملة من صفحة سابقة: وصف الكليتين من القوس والحيوان",
+   "core_meaning_english": "Continuation from previous page describing 'kulyatān' (kidneys/bow-ends)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الكُلْيتان",
+     "meaning": "من القوس: معقد الحمالة من السهم، ماعن يمين النصل وشماله. وكلية السحاب: أسفله",
+     "meaning_english": "The two 'kidneys' of a bow: the knot of the strap near the arrow; also the underside of a cloud",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 2203,
+   "printed_page_number": "133",
+   "notes": "Continuation of an entry (root discussing كلية/kidney) begun on a prior page not in this batch; root brackets not visible."
+  },
+  {
+   "root": "(تكملة جذر سابق، غالباً كلح)",
+   "core_meaning": "التراكب (لا نص أصل صريح مذكور في هذا المقطع؛ استمرار من صفحة سابقة)",
+   "core_meaning_english": "accumulation/piling up (continuation from previous page, root heading not shown)",
+   "pdf_page_index": 2206,
+   "printed_page_number": "136",
+   "sarf_pattern": "",
+   "notes": "Tail end of an entry begun on a prior page not in this batch; root letters not printed here. Footnote (1) marks the bracketed [يقال] as an editorial insertion 'من الجُمَل'. Discusses سقاء كَلِح (dust caking a waterskin), الكَلْمَة (a disease afflicting a camel's hindquarters), and الكَلَمة من الغنم (sheep, named for clustering).",
+   "variances": [
+    {
+     "usage": "سقاء كَلِح",
+     "meaning": "إذا تراكب عليه التراب",
+     "meaning_english": "a waterskin caked with accumulated dust",
+     "citation": ""
+    },
+    {
+     "usage": "الكَلْمَة",
+     "meaning": "داءٌ يأخذ البعير في مؤخّره",
+     "meaning_english": "a disease/ailment that afflicts a camel in its hindquarters",
+     "citation": ""
+    },
+    {
+     "usage": "الكَلَمة (من الغنم)",
+     "meaning": "سمّيت بذلك لتجمّعها",
+     "meaning_english": "sheep, named for their clustering together",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "(تكملة من صفحة سابقة)",
+   "core_meaning": "",
+   "core_meaning_english": "",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "أمْصَتْ مالى كلَّه ونقَّصْتُه",
+     "meaning": "عبارة شعرية/نثرية مقتبسة، ومعها: والمُصَالة: قُطارة الحُبّ",
+     "meaning_english": "it drained/exhausted all my wealth and reduced it; al-muṣāla: the drippings of the (earthen) jar",
+     "citation": "بيت شعر فى الحاشية منسوب لابن السكيت (٣١٠) يذكر رواية «امصلت أعفراء مالى كله»"
+    }
+   ],
+   "printed_page_number": "٣٢٨",
+   "pdf_page_index": 2398,
+   "notes": "هذا مقطع متبقٍّ من مادة بدأت فى صفحة سابقة لم تُقرأ ضمن هذه الدفعة؛ الجذر غير مؤكد (يبدو مرتبطاً بـ مصل أو ما شابه بحسب الحاشية)."
+  },
+  {
+   "root": "(تكملة مادة سابقة – الحرف \"ها\")",
+   "root_letters": [
+    "ه",
+    "ا"
+   ],
+   "core_meaning": "هذا الحرف ها تنبيه، ومن شأنهم إذا أرادوا تعظيم شيء أن يُكثِروا فيه من التنبيه والإشارة",
+   "core_meaning_english": "This letter (ha) is a particle of alerting/attention; when people want to emphasize something they multiply the alerting and pointing with it",
+   "sarf_pattern": "",
+   "pdf_page_index": 2560,
+   "printed_page_number": "٤",
+   "variances": [
+    {
+     "usage": "الطَّعَام، الجَيْء",
+     "meaning": "الشَّرَاب؛ واللفظتان لا تدلان على هذا التفسير",
+     "meaning_english": "food, jay' — both words said to mean 'drink', but the etymology is said not to hold"
+    },
+    {
+     "usage": "هَأْهَأْتُ بالإبل",
+     "meaning": "إذا دعوتها للعلَف",
+     "meaning_english": "calling camels to fodder"
+    },
+    {
+     "usage": "﴿ها أنتم هؤلاء﴾",
+     "meaning": "آية يستشهد بها على استعمال 'ها' للتنبيه والإشارة، ثم قال الشاعر",
+     "meaning_english": "Qur'anic verse cited for the alerting/pointing use of 'ha'; a poet's verse follows it",
+     "citation": "ما إن تا عذرةٌ إلا تكنْ نفعتْ ... فإنّ صاحبها قد تاه في البلد"
+    },
+    {
+     "usage": "لاها اللهِ",
+     "meaning": "يقال في اليمين",
+     "meaning_english": "an oath expression 'by God' with ha inserted"
+    },
+    {
+     "usage": "إن هاء تكون لَبِّية",
+     "meaning": "قال: لابَلْ يُجيبُك حين تدعوه باسمه فيقول هاء، ما طال ما لَبِّي",
+     "meaning_english": "'ha' used as a response particle meaning 'here I am' when called by name",
+     "citation": "بيت شعر يستشهد به على هذا الاستعمال"
+    },
+    {
+     "usage": "هاء يَهُوء الرجلُ هَوْءاً",
+     "meaning": "والهَوْء: الهِمّة",
+     "meaning_english": "haa'a — to have ambition/resolve; al-haw' = ambition",
+     "citation": "قال الكسائي: يا هَيْءَ مالي، تأسّفٌ"
+    }
+   ],
+   "notes": "Continuation of an entry whose root heading appeared on an earlier page not in this batch; concerns the letter 'ha' as an alerting particle. Root uncertain from this fragment alone — flagged low confidence. Corrected: removed a trailing empty/hallucinated variance object; fixed the misquoted verse word 'لَبِثتُ' to 'لَبِّي' and the usage word 'لبّيك' to 'لبّية' per the page; removed an inaccurate note about an illegible 'هون' passage — no such passage appears (page bottom is only footnotes)."
+  },
+  {
+   "root": "(miscellaneous - hamzah-form note, not a full root entry)",
+   "root_letters": [],
+   "core_meaning": "وإذا هُمِز المعتلّ المعنى وصار إلى باب من الهلاك والضياع، يقولون: المُوَدَّأة: المهلكة، وهى على لفظ المفعول به. ويقولون: وَدَّأتُ عليه الأرضَ، إذا دفنته. ووَدَّأَ بالقوم: إذا أرداهم.",
+   "core_meaning_english": "when the weak root letter takes hamza, the sense shifts to destruction/loss: al-muwadda'a = a place of destruction (in passive-participle form); 'wadda'tu 'alayhi al-ard' = I heaped the earth over him, i.e. I buried him; a verb meaning he destroyed the people",
+   "sarf_pattern": "المعتل المهموز",
+   "variances": [
+    {
+     "usage": "المُوَدَّأة",
+     "meaning": "المهلكة، وهى على لفظ المفعول به",
+     "meaning_english": "a place/cause of destruction, in the form of a passive participle",
+     "citation": ""
+    },
+    {
+     "usage": "وَدَّأْتُ عليه الأرضَ",
+     "meaning": "إذا دفنته",
+     "meaning_english": "I heaped the earth over him, i.e. I buried him (I, not the earth, am the subject)",
+     "citation": ""
+    },
+    {
+     "usage": "وَدَّأَ بالقوم",
+     "meaning": "إذا أرداهم (النص الأصلي يظهر تصحيفاً مذكوراً فى الحاشية 2)",
+     "meaning_english": "he destroyed/ruined the people",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 2654,
+   "printed_page_number": "98",
+   "notes": "This is a short appended note on hamzated forms of the weak root, not introduced with its own root-bracket heading; footnote (2) flags 'أرادهم' in the original as a scribal corruption (تحريف)."
+  },
+  {
+   "root": "(continuation - no root bracket on this page)",
+   "root_letters": [],
+   "core_meaning": "هذه الصفحة ليست مدخل جذر جديد، بل تتمة لكلام سابق عن \"اليوم/أيّام\" ثم خاتمة عامة لباب «ما زاد على الثلاثة» تشرح أن الياء الزائدة في أواخر الرباعي والخماسي تُعامَل معاملة الهمزة الزائدة، وأن الاعتبار إنما هو بما يجيء بعدها، كما هو الاعتبار في باب الهمزة بما يجيء بعدها.",
+   "core_meaning_english": "Not a new root entry - continuation of a discussion about 'al-yawm/ayyaam' (day/days), then a closing general note on the chapter of quadriliteral/quintiliteral additions, explaining that a final extra yaa' in four- or five-letter words is treated like the extra hamza (i.e. as an added letter, not a root letter), with the letter following it being what counts - the same principle used in the hamza chapter.",
+   "sarf_pattern": "الرباعي والخماسي",
+   "variances": [
+    {
+     "usage": "أيَّام",
+     "meaning": "قال قوم: هو مقلوبٌ كان في اليوم، والأصل في أيّام أيوَام، لكنه أُدغم",
+     "meaning_english": "Some say 'ayyaam' (days) is a metathesized form; the original was 'aywaam', but the waw was assimilated (idghaam) into the yaa'",
+     "citation": "نَمَمَ أخو الهيجاء في اليوم اليَمِّ - بيت شعر منسوب لأبي الأخزر الحمّاني، أحاله المحقق في الهامش إلى لسان العرب (مادتي يوم، كرم)"
+    },
+    {
+     "usage": "اليَرْبُوع",
+     "meaning": "وهي دُوَيْبّة",
+     "meaning_english": "a small creature (jerboa)",
+     "citation": ""
+    },
+    {
+     "usage": "بَعْرِين",
+     "meaning": "وهو موضع",
+     "meaning_english": "a place name",
+     "citation": ""
+    },
+    {
+     "usage": "يَمْؤُود و يَلَمْلَق",
+     "meaning": "وهما موضعان",
+     "meaning_english": "two place names (given together as a pair in the text)",
+     "citation": ""
+    },
+    {
+     "usage": "البَرَنْدَج",
+     "meaning": "وهي جلود سود",
+     "meaning_english": "black hides/leathers",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "١٦٠",
+   "pdf_page_index": 2716,
+   "notes": "Not a fresh root entry - top portion continues a poetic-citation discussion of 'yawm/ayyaam', followed by the closing remarks of the book's chapter on letters added beyond the triliteral root (ما زاد على الثلاثة), then Ibn Faris's own closing colophon praising God and asking God's blessing on the Prophet, and finally editor 'Abd al-Salam Muhammad Harun's postscript noting he began the tahqiq mid-Dhu'l-Qa'dah 1365 and finished the morning of the 1st of Dhu'l-Hijjah 1370, followed by his signature. No bracketed root heading appears on this page, so no new lexical root entry begins here."
+  }
+ ]
+}

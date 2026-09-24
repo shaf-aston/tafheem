@@ -1,0 +1,10 @@
+{
+  "_readme": "Same letter, two spellings. A reader typing امر must reach the entry the book files under أمر. The book stores each root once, under the spelling its editor used; matching a reader spelling to it happens at lookup. Both the builder and services/root_meaning.py read this one file, so the two can never disagree about which spellings are the same letter.",
+  "fold": {
+    "أ": "ا",
+    "إ": "ا",
+    "آ": "ا",
+    "ٱ": "ا",
+    "ى": "ي"
+  }
+}

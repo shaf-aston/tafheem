@@ -1,0 +1,427 @@
+{
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "heading",
+      "page": 0,
+      "ar": "المفعول المطلق",
+      "en": "Al-maf'ool al-mutlaq"
+    },
+    {
+      "id": "p00-2",
+      "kind": "rule",
+      "page": 0,
+      "ar": "The {{term|مفعول مطلق}} is a {{ruling|منصوب}} word which is the {{ruling|مصدر}} of a فعل or a شبه الفعل {{condition|which is present in the sentence}}.",
+      "en": "The {{term|maf'ool mutlaq}} is a {{ruling|mansoob}} word which is the {{ruling|masdar}} of a fi'l or a shibh al-fi'l {{condition|which is present in the sentence}}."
+    },
+    {
+      "id": "p00-3",
+      "kind": "rule",
+      "page": 0,
+      "ar": "It is used for the following reasons:",
+      "en": "It is used for the following reasons:"
+    },
+    {
+      "id": "p00-4",
+      "kind": "list",
+      "page": 0,
+      "ar": "الأسباب",
+      "en": "The reasons",
+      "items": [
+        "١) {{term|تأكيد}} (emphasis)"
+      ]
+    },
+    {
+      "id": "p00-5",
+      "kind": "example",
+      "page": 0,
+      "ar": "ضَرَبْتُ زَيْدًا ضَرْبًا",
+      "en": "I hit Zaid a hitting / I certainly beat Zaid",
+      "labels": [
+        { "word": "ضَرَبْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "زَيْدًا", "label": "مفعول به" },
+        { "word": "ضَرْبًا", "label": "مفعول مطلق" }
+      ]
+    },
+    {
+      "id": "p00-6",
+      "kind": "picture",
+      "page": 0,
+      "caption": "شجرة التركيب تحت المثال: فعل، فاعل، مفعول به، مفعول مطلق، والخط تحت الكل مكتوب عليه \"جملة فعلية\"",
+      "caption_en": "The tarkeeb under the example: fi'l, faa'il, maf'ool bihi, maf'ool mutlaq, with the line under the whole marked \"jumlah fi'liyyah\""
+    },
+    {
+      "id": "p01-1",
+      "kind": "list",
+      "page": 1,
+      "ar": "الأسباب (تتمة)",
+      "en": "The reasons (continued)",
+      "items": [
+        "٢) {{term|عدد}} (Number of times action is conducted)"
+      ]
+    },
+    {
+      "id": "p01-2",
+      "kind": "example",
+      "page": 1,
+      "ar": "ضَرَبْتُ زَيْدًا ضَرْبَةً",
+      "en": "I hit Zaid once (one hitting)",
+      "labels": [
+        { "word": "ضَرْبَةً", "label": "مفعول مطلق" }
+      ]
+    },
+    {
+      "id": "p01-3",
+      "kind": "example",
+      "page": 1,
+      "ar": "ضَرَبْتُ زَيْدًا ضَرْبَتَيْنِ",
+      "en": "I hit Zaid twice (2 hittings)",
+      "labels": [
+        { "word": "ضَرْبَتَيْنِ", "label": "مفعول مطلق" }
+      ]
+    },
+    {
+      "id": "p01-4",
+      "kind": "example",
+      "page": 1,
+      "ar": "ضَرَبْتُ زَيْدًا ضَرَبَاتٍ",
+      "en": "I hit Zaid many times (many hittings)",
+      "labels": [
+        { "word": "ضَرَبَاتٍ", "label": "مفعول مطلق" }
+      ]
+    },
+    {
+      "id": "p01-5",
+      "kind": "rule",
+      "page": 1,
+      "ar": "دائرتان تحت أمثلة العدد: ({{term|مَرَّة}}) number of times، و({{term|فَعْلَة}})",
+      "en": "Two circled words under the number examples: ({{term|marrah}}) number of times, and ({{term|fa'lah}})"
+    },
+    {
+      "id": "p01-6",
+      "kind": "list",
+      "page": 1,
+      "ar": "الأسباب (تتمة)",
+      "en": "The reasons (continued)",
+      "items": [
+        "٣) {{term|نوع}} (The style the action was conducted)"
+      ]
+    },
+    {
+      "id": "p01-7",
+      "kind": "example",
+      "page": 1,
+      "ar": "ضَرَبْتُ زَيْدًا ضَرْبَةَ بَكْرٍ",
+      "en": "I hit Zaid like the hitting of Bakr / I hit Zaid like Bakr",
+      "labels": [
+        { "word": "ضَرَبْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "زَيْدًا", "label": "مفعول به" },
+        { "word": "ضَرْبَةَ", "label": "مضاف" },
+        { "word": "بَكْرٍ", "label": "مضاف اليه" },
+        { "word": "ضَرْبَةَ بَكْرٍ", "label": "مفعول مطلق" }
+      ]
+    },
+    {
+      "id": "p01-8",
+      "kind": "rule",
+      "page": 1,
+      "ar": "دائرتان بجانب مثال النوع: ({{term|فَعْلَة}}) و({{term|هَيْئَة}}) style",
+      "en": "Two circled words beside the style example: ({{term|fa'lah}}) and ({{term|hay'ah}}) style"
+    },
+    {
+      "id": "p02-1",
+      "kind": "example",
+      "page": 2,
+      "ar": "ضَرَبْتُ زَيْدًا ضَرْبًا شَدِيدًا",
+      "en": "e.g. (no English written on the page for this one)",
+      "labels": [
+        { "word": "ضَرَبْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "زَيْدًا", "label": "مفعول به" },
+        { "word": "ضَرْبًا", "label": "موصوف" },
+        { "word": "شَدِيدًا", "label": "صفة" },
+        { "word": "ضَرْبًا شَدِيدًا", "label": "مفعول مطلق" }
+      ]
+    },
+    {
+      "id": "p02-2",
+      "kind": "picture",
+      "page": 2,
+      "caption": "شجرة التركيب: فعل + فاعل + مفعول به + (موصوف + صفة = مفعول مطلق)، والخط تحت الكل \"جملة فعلية\"",
+      "caption_en": "The tarkeeb tree: fi'l + faa'il + maf'ool bihi + (mawsoof + sifah = maf'ool mutlaq), the whole line marked \"jumlah fi'liyyah\""
+    },
+    {
+      "id": "p02-3",
+      "kind": "example",
+      "page": 2,
+      "ar": "ضَرَبْتُ زَيْدًا ضَرْبًا لَمْ يَضْرِبْهُ أَحَدٌ",
+      "en": "e.g. (no English written on the page for this one)",
+      "labels": [
+        { "word": "ضَرَبْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "زَيْدًا", "label": "مفعول به" },
+        { "word": "ضَرْبًا", "label": "موصوف" },
+        { "word": "لَمْ", "label": "جازمة" },
+        { "word": "يَضْرِبْ", "label": "فعل" },
+        { "word": "ـهُ", "label": "مفعول به" },
+        { "word": "أَحَدٌ", "label": "فاعل" },
+        { "word": "لَمْ يَضْرِبْهُ أَحَدٌ", "label": "صفة" },
+        { "word": "ضَرْبًا لَمْ يَضْرِبْهُ أَحَدٌ", "label": "مفعول مطلق" }
+      ]
+    },
+    {
+      "id": "p02-4",
+      "kind": "picture",
+      "page": 2,
+      "caption": "شجرة التركيب: \"لَمْ يَضْرِبْهُ أَحَدٌ\" خط تحته \"جملة فعلية\" ثم \"صفة\"، ومع الموصوف \"مفعول مطلق\"، والخط تحت الكل \"جملة فعلية\"",
+      "caption_en": "The tarkeeb tree: \"lam yadribhu ahad\" is underlined as \"jumlah fi'liyyah\" then \"sifah\", with the mawsoof it makes \"maf'ool mutlaq\", and the whole line is marked \"jumlah fi'liyyah\""
+    },
+    {
+      "id": "p03-1",
+      "kind": "heading",
+      "page": 3,
+      "ar": "نائب عن المفعول المطلق",
+      "en": "Naa'ib 'an al-maf'ool al-mutlaq"
+    },
+    {
+      "id": "p03-2",
+      "kind": "rule",
+      "page": 3,
+      "ar": "Sometimes the {{term|مفعول مطلق}} is dropped and is replaced with something else which substitutes the مفعول مطلق and also {{ruling|takes its إعراب}}.",
+      "en": "Sometimes the {{term|maf'ool mutlaq}} is dropped and is replaced with something else which substitutes the maf'ool mutlaq and also {{ruling|takes its i'raab}}."
+    },
+    {
+      "id": "p03-3",
+      "kind": "picture",
+      "page": 3,
+      "caption": "e.g. كلمة داخل إطار ⟨?⟩ وعليها علامة ✗ مكتوب بجانبها Fem، وتحتها ✓ مَرَّةً",
+      "caption_en": "e.g. a boxed word ⟨?⟩ marked ✗ with \"Fem\" written beside it, and under it ✓ marratan"
+    },
+    {
+      "id": "p03-4",
+      "kind": "example",
+      "page": 3,
+      "ar": "Ex 1: ضَرَبْتُ زَيْدًا مَرَّةً",
+      "en": "I hit Zaid once.",
+      "labels": [
+        { "word": "ضَرَبْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "زَيْدًا", "label": "مفعول به" },
+        { "word": "مَرَّةً", "label": "نائب عن المفعول المطلق" }
+      ]
+    },
+    {
+      "id": "p03-5",
+      "kind": "list",
+      "page": 3,
+      "ar": "البدائل المكتوبة على نفس السطر",
+      "en": "The alternatives written on the same line",
+      "items": [
+        "مَرَّتَيْنِ: twice",
+        "مَرَّاتٍ: many times"
+      ]
+    },
+    {
+      "id": "p03-6",
+      "kind": "rule",
+      "page": 3,
+      "ar": "النوع المكتوب تحت المثال: {{term|عدد}}",
+      "en": "The kind written under the example: {{term|'adad}} (number)"
+    },
+    {
+      "id": "p03-7",
+      "kind": "rule",
+      "page": 3,
+      "ar": "(مَرَّة Totally replaced the {{term|مفعول مطلق}})",
+      "en": "(marrah totally replaced the {{term|maf'ool mutlaq}})"
+    },
+    {
+      "id": "p04-1",
+      "kind": "example",
+      "page": 4,
+      "ar": "Ex 2: ضَرَبْتُ زَيْدًا شَدِيدًا",
+      "en": "Ex 2 (no English written on the page)",
+      "labels": [
+        { "word": "ضَرَبْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "زَيْدًا", "label": "مفعول به" },
+        { "word": "شَدِيدًا", "label": "نائب عن المفعول المطلق" }
+      ]
+    },
+    {
+      "id": "p04-2",
+      "kind": "picture",
+      "page": 4,
+      "caption": "على يسار الخط الأحمر الأصل: ضَرْبًا شَدِيدًا: موصوف + صفة = مفعول مطلق، وسهم من \"شَدِيدًا\" إلى \"ضَرْبًا\"؛ وبجانبه (موصوف صفة) والنوع: نوع",
+      "caption_en": "Left of the red line the original: darban shadeedan: mawsoof + sifah = maf'ool mutlaq, with an arrow from \"shadeedan\" to \"darban\"; beside it (mawsoof sifah) and the kind: naw'"
+    },
+    {
+      "id": "p04-3",
+      "kind": "example",
+      "page": 4,
+      "ar": "Ex 3: رَجَعَ الجُنُودُ التَّقَهْقُرَ",
+      "en": "Ex 3 (no English written on the page)",
+      "labels": [
+        { "word": "رَجَعَ", "label": "فعل" },
+        { "word": "الجُنُودُ", "label": "فاعل" },
+        { "word": "التَّقَهْقُرَ", "label": "نائب عن المفعول المطلق" }
+      ]
+    },
+    {
+      "id": "p04-4",
+      "kind": "picture",
+      "page": 4,
+      "caption": "على يسار الخط الأحمر الأصل: رُجُوعَ التَّقَهْقُرِ: مضاف + مضاف اليه = المفعول المطلق، وسهم من \"التَّقَهْقُرِ\" إلى \"رُجُوعَ\"، ودائرة فوقه (رَجْعَة)؛ وبجانبه (اضافة) والنوع: نوع",
+      "caption_en": "Left of the red line the original: rujoo'a at-taqahquri: mudaaf + mudaaf ilayhi = the maf'ool mutlaq, with an arrow from \"at-taqahquri\" to \"rujoo'a\" and a circled (raj'ah) above; beside it (idaafah) and the kind: naw'"
+    },
+    {
+      "id": "p04-5",
+      "kind": "example",
+      "page": 4,
+      "ar": "Ex 4: ضَرَبْتُ زَيْدًا ذَلِكَ الضَّرْبَ",
+      "en": "Ex 4 (no English written on the page)",
+      "labels": [
+        { "word": "ضَرَبْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "زَيْدًا", "label": "مفعول به" },
+        { "word": "ذَلِكَ", "label": "مبدل منه" },
+        { "word": "الضَّرْبَ", "label": "بدل" },
+        { "word": "ذَلِكَ الضَّرْبَ", "label": "نائب عن المفعول المطلق" }
+      ]
+    },
+    {
+      "id": "p04-6",
+      "kind": "rule",
+      "page": 4,
+      "ar": "المكتوب بجانب المثال الرابع: ({{term|اسم الاشارة}}) والنوع: نوع",
+      "en": "Written beside the fourth example: ({{term|ism al-ishaarah}}) and the kind: naw'"
+    },
+    {
+      "id": "p05-1",
+      "kind": "example",
+      "page": 5,
+      "ar": "Ex 5: قَطَعْتُ اللَّحْمَ سِكِّينًا",
+      "en": "Ex 5 (no English written on the page)",
+      "labels": [
+        { "word": "قَطَعْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "اللَّحْمَ", "label": "مفعول به" },
+        { "word": "سِكِّينًا", "label": "نائب عن المفعول المطلق" }
+      ]
+    },
+    {
+      "id": "p05-2",
+      "kind": "picture",
+      "page": 5,
+      "caption": "خطان أحمران يفصلان ثلاث صور للمثال الخامس. الوسطى: قَطْعًا بِسِكِّينٍ: مصدر، جار، مجرور، وتحت الجار والمجرور ق(قطعا)، والخط تحت الكل مفعول مطلق. اليسرى: قَطْعًا بِسِكِّينٍ: موصوف، جار، مجرور، نائبًا، صفة، والخط تحته مفعول مطلق، وبجانبه دائرة فيها (موصوف ⟨?⟩ آلة) والنوع: نوع",
+      "caption_en": "Two red lines split the fifth example into three pictures. The middle one: qat'an bisikkeenin: masdar, jaar, majroor, with q(qat'an) under the jaar-majroor and the line under the whole marked maf'ool mutlaq. The left one: qat'an bisikkeenin: mawsoof, jaar, majroor, naa'iban, sifah, with the line under it marked maf'ool mutlaq, and beside it a circle holding (mawsoof ⟨?⟩ aalah) and the kind: naw'"
+    },
+    {
+      "id": "p05-3",
+      "kind": "example",
+      "page": 5,
+      "ar": "Ex 6: ضَرَبْتُ زَيْدًا ضَرْبًا ضَرَبَ خَالِدٌ بَكْرًا بِهِ",
+      "en": "Ex 6 (no English written on the page)",
+      "labels": [
+        { "word": "ضَرَبْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "زَيْدًا", "label": "مفعول به" },
+        { "word": "ضَرْبًا", "label": "موصوف" },
+        { "word": "ضَرَبَ", "label": "فعل" },
+        { "word": "خَالِدٌ", "label": "فاعل" },
+        { "word": "بَكْرًا", "label": "مفعول به" },
+        { "word": "ضَرَبَ خَالِدٌ بَكْرًا بِهِ", "label": "صفة" },
+        { "word": "ضَرْبًا ضَرَبَ خَالِدٌ بَكْرًا بِهِ", "label": "مفعول مطلق" }
+      ]
+    },
+    {
+      "id": "p05-4",
+      "kind": "picture",
+      "page": 5,
+      "caption": "سهم من \"ضَرْبًا\" إلى الجملة (ضَرَبَ خَالِدٌ بَكْرًا بِهِ) المحاطة بقوس، وتحت \"بِهِ\" ق(ضرب)، وتحتها جملة فعلية ثم صفة، ثم مفعول مطلق، والخط تحت الكل جملة فعلية. وبجانبه (ضمير)(موصوف صفة) والنوع: نوع. وعلى الطرف مكتوب بالبرتقالي: NOT نائب عن المفعول المطلق",
+      "caption_en": "An arrow runs from \"darban\" to the bracketed sentence (daraba Khaalidun Bakran bihi), with q(daraba) under \"bihi\", jumlah fi'liyyah then sifah under it, then maf'ool mutlaq, and the whole line marked jumlah fi'liyyah. Beside it (dameer)(mawsoof sifah) and the kind: naw'. At the edge, in orange: NOT naa'ib 'an al-maf'ool al-mutlaq"
+    },
+    {
+      "id": "p06-1",
+      "kind": "example",
+      "page": 6,
+      "ar": "Ex 7: حَاوَلْتُ فِي الدَّرْسِ كُلَّ المُحَاوَلَةِ",
+      "en": "Ex 7 (no English written on the page)",
+      "labels": [
+        { "word": "حَاوَلْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "فِي", "label": "جار" },
+        { "word": "الدَّرْسِ", "label": "مجرور" },
+        { "word": "كُلَّ", "label": "مضاف" },
+        { "word": "المُحَاوَلَةِ", "label": "مضاف اليه" },
+        { "word": "كُلَّ المُحَاوَلَةِ", "label": "نائب عن المفعول المطلق" }
+      ]
+    },
+    {
+      "id": "p06-2",
+      "kind": "rule",
+      "page": 6,
+      "ar": "المكتوب بجانب المثال السابع: ({{term|كُلّ}}) ({{term|اضافة}}) والنوع: نوع، وتحت الجار والمجرور ق(حاولت)، والخط تحت الكل JFK",
+      "en": "Written beside the seventh example: ({{term|kull}}) ({{term|idaafah}}) and the kind: naw'; q(haawaltu) is written under the jaar-majroor, and the whole line is marked JFK"
+    },
+    {
+      "id": "p06-3",
+      "kind": "example",
+      "page": 6,
+      "ar": "Ex 8: حَاوَلْتُ فِي الدَّرْسِ بَعْضَ المُحَاوَلَةِ",
+      "en": "Ex 8 (no English written on the page)",
+      "labels": [
+        { "word": "حَاوَلْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "فِي", "label": "جار" },
+        { "word": "الدَّرْسِ", "label": "مجرور" },
+        { "word": "بَعْضَ", "label": "م (مضاف)" },
+        { "word": "المُحَاوَلَةِ", "label": "م ا (مضاف اليه)" },
+        { "word": "بَعْضَ المُحَاوَلَةِ", "label": "NAMM (نائب عن المفعول المطلق)" }
+      ]
+    },
+    {
+      "id": "p06-4",
+      "kind": "rule",
+      "page": 6,
+      "ar": "المكتوب بجانب المثال الثامن: ({{term|بعض}}) ({{term|اضافة}}) والنوع: نوع، وتحت الجار والمجرور ق(حاولت)، والخط تحت الكل JFK",
+      "en": "Written beside the eighth example: ({{term|ba'd}}) ({{term|idaafah}}) and the kind: naw'; q(haawaltu) under the jaar-majroor, and the whole line marked JFK"
+    },
+    {
+      "id": "p06-5",
+      "kind": "example",
+      "page": 6,
+      "ar": "Ex 9: جَلَسْتُ فِي المَسْجِدِ قُعُودًا",
+      "en": "Ex 9 (no English written on the page)",
+      "labels": [
+        { "word": "جَلَسْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "فِي", "label": "جار" },
+        { "word": "المَسْجِدِ", "label": "مجرور" },
+        { "word": "قُعُودًا", "label": "NAMM (نائب عن المفعول المطلق)" }
+      ]
+    },
+    {
+      "id": "p06-6",
+      "kind": "example",
+      "page": 6,
+      "ar": "Ex 9: ضَرَبْتُ زَيْدًا تَضْرِيبًا",
+      "en": "Ex 9, second picture (no English written on the page)",
+      "labels": [
+        { "word": "ضَرَبْـ", "label": "فعل" },
+        { "word": "ـتُ", "label": "فاعل" },
+        { "word": "زَيْدًا", "label": "مفعول به" },
+        { "word": "تَضْرِيبًا", "label": "NAMM (نائب عن المفعول المطلق)" }
+      ]
+    },
+    {
+      "id": "p06-7",
+      "kind": "rule",
+      "page": 6,
+      "ar": "النوع المكتوب بجانب المثال التاسع: {{term|تأكيد}}، وتحت الجار والمجرور في الصورة الأولى ق(جلست)، والخط تحت كل صورة JFK",
+      "en": "The kind written beside the ninth example: {{term|ta'keed}}, and each picture's line is marked jumlah fi'liyyah"
+    }
+  ]
+}

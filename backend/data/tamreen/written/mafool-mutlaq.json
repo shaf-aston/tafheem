@@ -1,0 +1,268 @@
+{
+ "pictures": {
+  "mafool-mutlaq-00.png": {
+   "sentence": "يشرب الطفل اللبن شُربا",
+   "marked": []
+  },
+  "mafool-mutlaq-01.png": {
+   "sentence": "خاف الناس خوفا عظيما",
+   "marked": []
+  },
+  "mafool-mutlaq-02.png": {
+   "sentence": "رَمَى الصيّاد الطير سَهْما",
+   "marked": []
+  },
+  "mafool-mutlaq-03.png": {
+   "sentence": "يُحِبُّ المسلم دينه كل الحب",
+   "marked": []
+  },
+  "mafool-mutlaq-04.png": {
+   "sentence": "اجتهد زيد في درسه اجتهادا لم يجتهده أحد",
+   "marked": []
+  },
+  "mafool-mutlaq-05.png": {
+   "sentence": "ضرب اللاعب الكرّة رِجلا",
+   "marked": []
+  },
+  "mafool-mutlaq-06.png": {
+   "sentence": "جَلَس زيد القُرْفُصاء",
+   "marked": []
+  },
+  "mafool-mutlaq-07.png": {
+   "sentence": "سارت السيارة سيرا سريعا",
+   "marked": []
+  },
+  "mafool-mutlaq-08.png": {
+   "sentence": "فرح بكر بعض الفرح",
+   "marked": []
+  },
+  "mafool-mutlaq-09.png": {
+   "sentence": "كتبتُ كتابا قلما",
+   "marked": []
+  },
+  "mafool-mutlaq-10.png": {
+   "sentence": "زيد درس النحوَ عميقا، كذالك درس بكرٌ النحوَ",
+   "marked": []
+  },
+  "mafool-mutlaq-11.png": {
+   "sentence": "فتحتُ البابَ مثل ما فتحتَ",
+   "marked": []
+  },
+  "mafool-mutlaq-12.png": {
+   "sentence": "ما ضرب زيد هذا الضرب",
+   "marked": []
+  },
+  "mafool-mutlaq-13.png": {
+   "sentence": "أعرب زيد الجملة إعرابا أعربه سيبويه",
+   "marked": []
+  },
+  "mafool-mutlaq-14.png": {
+   "sentence": "زار الطبيبُ المريضَ مرتين",
+   "marked": []
+  }
+ },
+ "notes": {
+  "mafool-mutlaq-e01a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e01d": {
+   "answer": "The child truly does drink the milk."
+  },
+  "mafool-mutlaq-e02a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e02d": {
+   "answer": "The people feared a tremendous fear."
+  },
+  "mafool-mutlaq-e03a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e03d": {
+   "answer": "The hunter shot the bird with an arrow."
+  },
+  "mafool-mutlaq-e04a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e04d": {
+   "answer": "The Muslim loves his religion with the whole of that love."
+  },
+  "mafool-mutlaq-e05a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e05d": {
+   "answer": "Zaid strove in his lesson with a striving that no one else strove with."
+  },
+  "mafool-mutlaq-e06a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e06d": {
+   "answer": "The player struck the ball with his foot."
+  },
+  "mafool-mutlaq-e07a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e07b": {},
+  "mafool-mutlaq-e07d": {
+   "answer": "Zaid sat in a crouching position."
+  },
+  "mafool-mutlaq-e08a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e08d": {
+   "answer": "The car moved with a fast movement."
+  },
+  "mafool-mutlaq-e09a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e09d": {
+   "answer": "Bakr rejoiced with only some of the joy."
+  },
+  "mafool-mutlaq-e10a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e10d": {
+   "answer": "I wrote a book with a pen."
+  },
+  "mafool-mutlaq-e11a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e11d": {
+   "answer": "Zaid studied grammar deeply; Bakr studied grammar in that same way."
+  },
+  "mafool-mutlaq-e12a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e12d": {
+   "answer": "I opened the door the way you opened it."
+  },
+  "mafool-mutlaq-e13a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e13d": {
+   "answer": "Zaid did not strike this particular strike."
+  },
+  "mafool-mutlaq-e14a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e14d": {
+   "answer": "Zaid parsed the sentence, a parsing like the one Sibawayh gave it."
+  },
+  "mafool-mutlaq-e15a": {
+   "question": "Is the مفعول مطلق in this sentence تأكيد (emphasis), نوع (describes the kind/manner) or عدد (a number of times)?"
+  },
+  "mafool-mutlaq-e15d": {
+   "answer": "The doctor visited the patient twice."
+  }
+ },
+ "tags": {
+  "mafool-mutlaq-r01": [
+   "mafool-mutlaq",
+   "tarif-mustalah"
+  ],
+  "mafool-mutlaq-r02": [
+   "mafool-mutlaq",
+   "tarif-mustalah"
+  ],
+  "mafool-mutlaq-r03": [
+   "mafool-mutlaq",
+   "tafriq-mafaheem"
+  ],
+  "mafool-mutlaq-r04": [
+   "mafool-mutlaq",
+   "tarif-mustalah"
+  ],
+  "mafool-mutlaq-r05": [
+   "mafool-mutlaq",
+   "tarif-mustalah"
+  ],
+  "mafool-mutlaq-r06": [
+   "mafool-mutlaq",
+   "tarif-mustalah"
+  ],
+  "mafool-mutlaq-r07": [
+   "naib-anil-mafool-mutlaq",
+   "tarif-mustalah"
+  ],
+  "mafool-mutlaq-r08": [
+   "mafool-mutlaq",
+   "tarif-mustalah"
+  ],
+  "mafool-mutlaq-r09": [
+   "naib-anil-mafool-mutlaq",
+   "tafriq-mafaheem"
+  ],
+  "mafool-mutlaq-r10": [
+   "mafool-mutlaq",
+   "tarif-mustalah"
+  ],
+  "mafool-mutlaq-e01": [
+   "mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e02": [
+   "mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e03": [
+   "mafool-mutlaq",
+   "naib-anil-mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e04": [
+   "mafool-mutlaq",
+   "naib-anil-mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e05": [
+   "mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e06": [
+   "mafool-mutlaq",
+   "naib-anil-mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e07": [
+   "mafool-mutlaq",
+   "naib-anil-mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e08": [
+   "mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e09": [
+   "mafool-mutlaq",
+   "naib-anil-mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e10": [
+   "mafool-mutlaq",
+   "naib-anil-mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e11": [
+   "mafool-mutlaq",
+   "naib-anil-mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e12": [
+   "mafool-mutlaq",
+   "naib-anil-mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e13": [
+   "mafool-mutlaq",
+   "naib-anil-mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e14": [
+   "mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ],
+  "mafool-mutlaq-e15": [
+   "mafool-mutlaq",
+   "tatbeeq-tarkeeb"
+  ]
+ }
+}

@@ -1,0 +1,48 @@
+{
+  "_comment": "The grammar terms the app names, in one place. On a tag the Arabic term stands alone: مبتدأ, منصوب. English is not printed beside it; it is here, and the Nahw page opens this list at its foot for anyone who wants it. 'roles' are keyed by the role_key the backend sends, so every role that has a colour has an entry. 'cases' are keyed by the case string the backend sends. Each has the Arabic term, how it is said, and what it means in plain English. lib/grammarTerms.js is the only reader.",
+
+  "roles": {
+    "fil":     { "arabic": "فعل",       "said": "fi'l",       "meaning": "The verb. The past form never changes its ending; the present one does." },
+    "mubtada": { "arabic": "مبتدأ",     "said": "mubtada'",   "meaning": "What a sentence without a verb is about. Its ending is مرفوع." },
+    "khabar":  { "arabic": "خبر",       "said": "khabar",     "meaning": "What is said about the مبتدأ. Its ending is مرفوع." },
+    "fail":    { "arabic": "فاعل",      "said": "faa'il",     "meaning": "The one doing the verb. Always مرفوع." },
+    "mafool":  { "arabic": "مفعول به",  "said": "maf'ool bih", "meaning": "The one the verb is done to. Always منصوب." },
+    "harf":    { "arabic": "حرف",       "said": "harf",       "meaning": "A small word that does a job: على, و, لم. It never changes; a noun after a preposition becomes مجرور." },
+    "sifah":   { "arabic": "صفة",       "said": "sifah",      "meaning": "Describes the noun before it, and copies that noun's gender, number, definiteness and ending." },
+    "haal":    { "arabic": "حال",       "said": "haal",       "meaning": "The state someone was in while the verb happened. منصوب and without ال." },
+    "mudaf":   { "arabic": "مضاف",      "said": "mudaaf",     "meaning": "The first word of an 'X of Y' pair: كتابُ الطالبِ. Never takes ال; the second word is مجرور." }
+  },
+
+  "cases": {
+    "raf'": { "arabic": "مرفوع", "said": "marfoo'", "meaning": "The ending for a subject: a ضمة on one noun, و on a sound masculine plural." },
+    "nasb": { "arabic": "منصوب", "said": "mansoob", "meaning": "The ending for an object and for what comes after إن: a فتحة on one noun." },
+    "jarr": { "arabic": "مجرور", "said": "majroor", "meaning": "The ending after a preposition or as the second word of a مضاف pair: a كسرة on one noun." },
+    "jazm": { "arabic": "مجزوم", "said": "majzoom", "meaning": "The ending of a present verb after لم, لا of command and their like: a سكون, or a dropped final letter." },
+    "mabni": { "arabic": "مبني", "said": "mabni", "meaning": "Fixed. The ending never changes whatever the word is doing: past verbs, pronouns, particles." }
+  },
+
+  "_types_comment": "Keyed by the type string the backend sends for a word.",
+  "types": {
+    "ism":   { "arabic": "اسم",   "said": "ism",   "meaning": "A noun: a person, thing, place, quality or name. It takes case endings." },
+    "fi'l":  { "arabic": "فعل",   "said": "fi'l",  "meaning": "A verb: something done, in past, present or command form." },
+    "harf":  { "arabic": "حرف",   "said": "harf",  "meaning": "A particle: a word with no meaning of its own until joined to others, such as في or لم." },
+    "damir": { "arabic": "ضمير",  "said": "dameer", "meaning": "A pronoun: هو, أنت, or one attached to a word like the ـه in كتابه." },
+    "zarf":  { "arabic": "ظرف",   "said": "zarf",  "meaning": "A word for when or where: قبل, عند, فوق." }
+  },
+
+  "_signs_comment": "The mark that shows a case, keyed by the English the AI writes. Matched whole, in lower case; anything else prints as sent.",
+  "signs": {
+    "damma": "ضمة",
+    "fatha": "فتحة",
+    "kasra": "كسرة",
+    "sukun": "سكون",
+    "waw": "الواو",
+    "alif": "الألف",
+    "ya": "الياء",
+    "nun": "ثبوت النون",
+    "harakat muqaddara": "حركة مقدرة"
+  },
+
+  "_corpus_pos_comment": "The Quranic corpus files every word as N, V or P. Each names the type above it prints as.",
+  "corpus_pos": { "N": "ism", "V": "fi'l", "P": "harf" }
+}

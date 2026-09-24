@@ -1,0 +1,27 @@
+1957 recordings attempted, 1945 decoded, 12 skipped:
+  7  longer than the ear hears
+  5  word count mismatch between imlaei and the reference phonemizer
+120 decoded clips matched under 70% of the ayah's phonemes -- likely holding only part of it (see MATCH_RATE_FLOOR) -- and are left out of the two tables below, which score the remaining 1825.
+982 reviewer marks were tajweed-labelled and excluded from both tables below.
+1 reviewer marks named a word not in the ayah and were left out.
+
+ARTICULATION -- consonant substituted or dropped. 'passed right' should be
+low (false flags on clean words); 'caught, letter or word' should be high.
+                                        words  flagged
+passed right                             3853      12%
+caught, letter or word                     31      45%
+unmarked, in a recording with a mistake   2013      17%
+
+LENGTH -- vowel substituted, dropped, or the wrong length. 'passed right'
+should be low; 'caught, vowel' should be high.
+                                        words  flagged
+passed right                             3862      14%
+caught, vowel                             202      84%
+unmarked, in a recording with a mistake   2014      13%
+
+Runtime: 1945 clips timed, mean 2.3s, median 1.9s per clip.
+
+Duration (CTC frame span): 14571 correctly-decoded vowels measured, 100% were exactly one 20ms frame.
+Pooled mean: long vowels 20ms vs short vowels 20ms.
+Per clip, long held longer than short in 2/1669 clips with both to compare.
+A spike fraction near 1 means most of that gap is noise, not a usable length signal; read the pooled means and per-clip agreement alongside it, not instead of it.

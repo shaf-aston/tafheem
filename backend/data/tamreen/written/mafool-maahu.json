@@ -1,0 +1,449 @@
+{
+ "pictures": {
+  "mafool-maahu-00.png": {
+   "sentence": "تَخَاصَمَ زيد وبكر",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-01.png": {
+   "sentence": "قرأ القرآن زيد والمِصباح",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-02.png": {
+   "sentence": "جلست فاطمة وظِلّ الشجرة",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-03.png": {
+   "sentence": "فتحتُ أنَا وزيد أبوابَ البيت",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-04.png": {
+   "sentence": "دخل الفصل زيدٌ وطلحة",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-05.png": {
+   "sentence": "سمعتُ والتاجر الآذانَ",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-06.png": {
+   "sentence": "أطعمتُ زيدًا دجاجة وماء",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-07.png": {
+   "sentence": "لقيتُ زيدا وفاطمة وهو قائم",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-08.png": {
+   "sentence": "هذا لِزيدٍ وبكر",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-09.png": {
+   "sentence": "زينبُ طالعتْ الدرسَ وفاطمة",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-10.png": {
+   "sentence": "دخل المسجدَ زيدٌ وغروب الشمس",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-11.png": {
+   "sentence": "جلس زيد وبكر وهُما ضاحكان",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-12.png": {
+   "sentence": "هذا له وزيد",
+   "marked": [
+    {
+     "text": "وزيد",
+     "style": "yellow highlight box"
+    }
+   ]
+  },
+  "mafool-maahu-13.png": {
+   "sentence": "جاء الشتاءُ والمعطف",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "doubt": "At this resolution I cannot be fully certain whether the box's left edge stops exactly after و or bleeds slightly into the following alif of ال (a thin vertical stroke sitting right next to it), either way it clearly does not extend across the whole word المعطف as reading two claims."
+  },
+  "mafool-maahu-14.png": {
+   "sentence": "اشترك زيد وبكر في العمل",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ]
+  }
+ },
+ "notes": {
+  "mafool-maahu-e01a": {
+   "question": "Is the و joining بكر to زيد a واو عاطفة (and), a واو معية (with), or can it be read either way (كلاهما)?"
+  },
+  "mafool-maahu-e01b": {
+   "answer": "تَخَاصَمَ means they disputed with one another, a verb that by its own meaning needs two or more doers. The rule says that when such a verb is used, only عطف is possible, never مفعول معه. So بكر must be a معطوف on زيد, both of them doing the disputing together, and the و here is واو عاطفة. It cannot be واو معية, because a مفعول معه does not itself do the action, and here بكر must be a doer for the sentence تَخَاصَمَ زيد وبكر to make sense."
+  },
+  "mafool-maahu-e01c": {
+   "answer": "Zayd and Bakr disputed with each other."
+  },
+  "mafool-maahu-e02a": {
+   "question": "Is the و before المِصباح a واو عاطفة (and), a واو معية (with), or can it be read either way (كلاهما)?"
+  },
+  "mafool-maahu-e02b": {
+   "answer": "زيد read the قرآن, but المِصباح, the lamp, cannot read. Calling المِصباح a معطوف would mean it shares the act of reading with زيد, which is illogical. The rule says that when labelling the latter noun a معطوف is illogical, only مفعول معه is left. So in قرأ القرآن زيد والمِصباح, المِصباح is مفعول معه, and the و is واو معية, showing زيد's reading happened alongside the lamp."
+  },
+  "mafool-maahu-e02c": {
+   "answer": "Zayd read the Qur'an together with the lamp."
+  },
+  "mafool-maahu-e03a": {
+   "question": "Is the و before ظِلّ الشجرة a واو عاطفة (and), a واو معية (with), or can it be read either way (كلاهما)?"
+  },
+  "mafool-maahu-e03b": {
+   "answer": "فاطمة sat, but ظِلّ الشجرة, the shade of the tree, cannot itself sit, so calling it a معطوف that shares the act of sitting with فاطمة is illogical. The rule says that when the latter noun cannot logically be a معطوف, only مفعول معه remains. So in جلست فاطمة وظِلّ الشجرة, ظِلّ الشجرة is مفعول معه, and the و is واو معية, meaning فاطمة sat while the shade of the tree was there with her."
+  },
+  "mafool-maahu-e03c": {
+   "answer": "Fatimah sat along with the shade of the tree."
+  },
+  "mafool-maahu-e04a": {
+   "question": "Is the و before زيد a واو عاطفة (and), a واو معية (with), or can it be read either way (كلاهما)?"
+  },
+  "mafool-maahu-e04b": {
+   "answer": "The doer of فتحتُ is the ت, a ضمير مرفوع متصل, and it is emphasised outside the verb by أنَا. The rule says عطف is permissible when the former noun is a ضمير مرفوع متصل that is emphasised this way, so زيد can validly be a معطوف on that doer. Since فتح, opening doors, is a literal, ordinary action and عطف is permissible here, the rule for such cases says both عطف and مفعول معه are allowed together. So in فتحتُ أنَا وزيد أبوابَ البيت, the و can be read as either واو عاطفة or واو معية, matching كلاهما."
+  },
+  "mafool-maahu-e04c": {
+   "answer": "I, and Zayd with me, opened the doors of the house."
+  },
+  "mafool-maahu-e05a": {
+   "question": "Is the و before وطلحة in دخل الفصل زيدٌ وطلحة a واو عاطفة, a واو معية, or could it be read either way (كلاهما)?"
+  },
+  "mafool-maahu-e05b": {
+   "answer": "دخل is a literal, physical verb, real entering, and both readings work here. If و is عاطفة, طلحة is simply joined to زيدٌ by عطف, both entering the classroom together. If و is معية, طلحة is a منصوب مفعول معه, showing he entered together with زيدٌ at the same time, since the و of مفعول معه shows association of what comes after it with what came before it while the action happens. The rule says that when the verb is literal and عطف is logically possible, both عطف and مفعول معه are allowed, so in دخل الفصل زيدٌ وطلحة, both readings are correct, كلاهما. Neither reading is wrong here."
+  },
+  "mafool-maahu-e05c": {
+   "answer": "Zayd entered the classroom together with Talha (or, just as validly: Zayd entered the classroom, and Talha did too)."
+  },
+  "mafool-maahu-e06a": {
+   "question": "Is the و before التاجر in سمعتُ والتاجر الآذانَ a واو عاطفة, a واو معية, or could it be read either way (كلاهما)?"
+  },
+  "mafool-maahu-e06b": {
+   "answer": "The hidden doer of سمعتُ, meaning I, is a ضمير مرفوع متصل that is not emphasised outside the verb. The rule says عطف is not permissible when the former noun is a ضمير مرفوع متصل that is not emphasised outside the verb, so التاجر cannot be joined as a second doer of the hearing. Instead, the و is a واو معية, and التاجر is منصوب as a مفعول معه, since the rule for that و is that it shows association of what comes after it with what came before it while the action happens, meaning the merchant was present together with the speaker while الآذانَ was heard."
+  },
+  "mafool-maahu-e06c": {
+   "answer": "I heard the call to prayer along with the merchant."
+  },
+  "mafool-maahu-e07a": {
+   "question": "Is the و before وماء in أطعمتُ زيدًا دجاجة وماء a واو عاطفة, a واو معية, or could it be read either way (كلاهما)?"
+  },
+  "mafool-maahu-e07b": {
+   "answer": "If و were عاطفة, ماء would be a second thing fed to Zayd alongside دجاجة, but water is drunk, not fed as food, so calling ماء a معطوف on دجاجة does not make logical sense. The rule says that when treating the latter noun as a معطوف is illogical, only مفعول معه is possible. So ماء is منصوب, showing it was present together with the chicken when Zayd was fed, since the و of مفعول معه shows what comes after it was there together with what came before it during the action, not a second thing fed to him."
+  },
+  "mafool-maahu-e07c": {
+   "answer": "I fed Zayd chicken along with water."
+  },
+  "mafool-maahu-e08a": {
+   "question": "Is the و before وفاطمة in لقيتُ زيدا وفاطمة وهو قائم a واو عاطفة, a واو معية, or could it be read either way (كلاهما)?"
+  },
+  "mafool-maahu-e08b": {
+   "answer": "The sentence ends وهو قائم. هو is a pronoun that refers to only one person, and that person must be زيدا, not فاطمة, since هو is masculine and singular. The rule says that when a pronoun refers back to the former noun and a مفعول معه, the pronoun is understood to correlate with the former noun alone, because the مفعول معه is not co-equal with it, only an associate. That fits exactly what is seen here, هو matches زيدا only. If فاطمة were instead a معطوف, the rule says a pronoun like this would need to correlate with both her and زيدا together, since a معطوف is co-equal with the noun it is joined to. Since the pronoun here does not do that, فاطمة must be مفعول معه, not معطوف. So فاطمة is منصوب, present together with Zayd when the speaker met him, and the و here is واو معية."
+  },
+  "mafool-maahu-e08c": {
+   "answer": "I met Zayd, along with Fatima, while he was standing."
+  },
+  "mafool-maahu-e09a": {
+   "question": "In هذا لِزيدٍ وبكر, is the و before بكر a واو عاطفة, a واو معية, or could it be both, كلاهما؟"
+  },
+  "mafool-maahu-e09b": {
+   "answer": "There is no فعل anywhere in this sentence, only هذا لِزيدٍ وبكر. The rule says the مفعول معه must come after a verb, so with no verb here بكر cannot be a مفعول معه. بكر is instead مجرور, the same as زيدٍ, because of the لام on زيدٍ, which fits, since a مفعول معه must be منصوب while بكر is not. There is also no action here at all for the و to show association with, so the و is عاطفة, joining بكر to زيدٍ, not معية."
+  },
+  "mafool-maahu-e09c": {
+   "answer": "This is for Zayd and Bakr."
+  },
+  "mafool-maahu-e10a": {
+   "question": "In زينبُ طالعتْ الدرسَ وفاطمة, is the و before فاطمة a واو عاطفة, a واو معية, or could it be both, كلاهما؟"
+  },
+  "mafool-maahu-e10b": {
+   "answer": "فاطمة comes after الدرسَ, so there is a gap, طالعتْ الدرسَ, between her and زينبُ, the noun she would be joined to. The rule says the مفعول معه cannot be separated from that noun by a gap. Because of this gap, فاطمة cannot be a مفعول معه, so the و must be عاطفة, joining her to زينبُ as a second person who studied the lesson."
+  },
+  "mafool-maahu-e10c": {
+   "answer": "Zainab studied the lesson, and Fatima did too."
+  },
+  "mafool-maahu-e11a": {
+   "question": "In دخل المسجدَ زيدٌ وغروب الشمس, is the و before غروب a واو عاطفة, a واو معية, or could it be both, كلاهما؟"
+  },
+  "mafool-maahu-e11b": {
+   "answer": "غروب الشمس, the setting of the sun, cannot logically be a doer that entered the mosque alongside زيدٌ, so labelling it a معطوف makes no sense. The rule says that when treating the latter noun as a معطوف is illogical, مفعول معه is the only option left. So in دخل المسجدَ زيدٌ وغروب الشمس, the و signifies association of what comes after it with what comes before it during the action, زيدٌ entered the mosque at the time the sun was setting."
+  },
+  "mafool-maahu-e11c": {
+   "answer": "Zayd entered the mosque along with the setting of the sun."
+  },
+  "mafool-maahu-e12a": {
+   "question": "In جلس زيد وبكر وهُما ضاحكان, is the first و, before بكر, a واو عاطفة, a واو معية, or could it be both, كلاهما؟ (the second و, in وهُما, is a different و and is not being asked about here.)"
+  },
+  "mafool-maahu-e12b": {
+   "answer": "The sentence ends وهُما ضاحكان, a dual pronoun هُما referring back to both زيد and بكر together as laughing. The rule says that when a pronoun refers back to both the former noun and the latter noun as co-equal, the و is عاطفة, because a مفعول معه is only an associate and would not be counted equally with a pronoun this way. So بكر is joined to زيد as a second doer of جلس, and معية fails since a mere accompanying word would not be included in a dual pronoun with him."
+  },
+  "mafool-maahu-e12c": {
+   "answer": "Zayd and Bakr sat, and the two of them were laughing."
+  },
+  "mafool-maahu-e13a": {
+   "question": "Is the و in وزيد a واو عاطفة, a واو معية, or both?"
+  },
+  "mafool-maahu-e13b": {
+   "answer": "له contains a ضمير مجرور متصل (the ه attached to the لام). زيد, the noun after the واو, does not repeat the جار (it is not written لزيد). By the rule that when the former noun is a ضمير مجرور متصل and the latter noun does not repeat the جار, عطف is not allowed and مفعول معه becomes necessary, زيد here must be مفعول معه, not معطوف. So the teacher's answer, معية, follows from that rule, and عطف fails because the جار was not repeated."
+  },
+  "mafool-maahu-e13c": {
+   "answer": "This is his, along with Zaid."
+  },
+  "mafool-maahu-e14a": {
+   "question": "Is the و joining الشتاءُ and المعطف a واو عاطفة, a واو معية, or both?"
+  },
+  "mafool-maahu-e14b": {
+   "answer": "المعطف (the coat) cannot really be said to \"come\", جاء, the way الشتاءُ (winter) does, so calling المعطف a معطوف sharing the verb جاء with الشتاءُ would be illogical. By the rule that when labelling the latter noun a معطوف is illogical the only option left is مفعول معه, المعطف must be مفعول معه here, joined by a واو معية meaning \"along with\", matching the teacher's answer."
+  },
+  "mafool-maahu-e14c": {
+   "answer": "Winter came, along with the coat."
+  },
+  "mafool-maahu-e15a": {
+   "question": "Is the و joining زيد and بكر a واو عاطفة, a واو معية, or both?"
+  },
+  "mafool-maahu-e15b": {
+   "answer": "اشترك (participated/shared) is a verb that only makes sense with two or more doers, like تشافه. By the rule that such verbs force عطف and rule out مفعول معه, زيد and بكر must both stand as doers joined by عطف, so بكر is معطوف on زيد, not مفعول معه. This matches the teacher's answer, عاطفة."
+  },
+  "mafool-maahu-e15c": {
+   "answer": "Zaid and Bakr participated together in the work."
+  }
+ },
+ "tags": {
+  "mafool-maahu-r01": [
+   "mafool-maahu",
+   "tarif-mustalah"
+  ],
+  "mafool-maahu-r02": [
+   "mafool-maahu",
+   "tarif-mustalah"
+  ],
+  "mafool-maahu-r03": [
+   "tarif-mustalah",
+   "waw-maiyyah"
+  ],
+  "mafool-maahu-r04": [
+   "mafool-maahu",
+   "tarif-mustalah"
+  ],
+  "mafool-maahu-r05": [
+   "atf",
+   "mafool-maahu",
+   "tarif-mustalah"
+  ],
+  "mafool-maahu-r06": [
+   "dameer-majroor-muttasil",
+   "dameer-marfoo-muttasil",
+   "mafool-maahu",
+   "tafriq-mafaheem"
+  ],
+  "mafool-maahu-r07": [
+   "atf",
+   "mafool-maahu",
+   "tarif-mustalah"
+  ],
+  "mafool-maahu-r08": [
+   "atf",
+   "dameer-majroor-muttasil",
+   "dameer-marfoo-muttasil",
+   "tafriq-mafaheem"
+  ],
+  "mafool-maahu-r09": [
+   "atf",
+   "mafool-maahu",
+   "shibh-fil",
+   "tafriq-mafaheem"
+  ],
+  "mafool-maahu-r10": [
+   "atf",
+   "mafool-maahu",
+   "tafriq-mafaheem"
+  ],
+  "mafool-maahu-r11": [
+   "atf",
+   "mafool-maahu",
+   "tafriq-mafaheem"
+  ],
+  "mafool-maahu-r12": [
+   "mafool-maahu",
+   "muaatoof",
+   "tafriq-mafaheem"
+  ],
+  "mafool-maahu-r13": [
+   "mafool-maahu",
+   "muaatoof",
+   "tafriq-mafaheem"
+  ],
+  "mafool-maahu-r14": [
+   "atf",
+   "tafriq-mafaheem",
+   "tashafuh"
+  ],
+  "mafool-maahu-r15": [
+   "atf",
+   "mafool-maahu",
+   "tafriq-mafaheem"
+  ],
+  "mafool-maahu-r16": [
+   "atf",
+   "dameer-majroor-muttasil",
+   "dameer-marfoo-muttasil",
+   "tafriq-mafaheem"
+  ],
+  "mafool-maahu-r17": [
+   "atf",
+   "muaatoof",
+   "tafriq-mafaheem"
+  ],
+  "mafool-maahu-e01": [
+   "atf",
+   "tafriq-mafaheem",
+   "tarjama"
+  ],
+  "mafool-maahu-e02": [
+   "mafool-maahu",
+   "tafriq-mafaheem",
+   "tarjama",
+   "waw-maiyyah"
+  ],
+  "mafool-maahu-e03": [
+   "mafool-maahu",
+   "tafriq-mafaheem",
+   "tarjama",
+   "waw-maiyyah"
+  ],
+  "mafool-maahu-e04": [
+   "atf",
+   "mafool-maahu",
+   "tafriq-mafaheem",
+   "tarjama"
+  ],
+  "mafool-maahu-e05": [
+   "atf",
+   "mafool-maahu",
+   "tafriq-mafaheem",
+   "tarjama"
+  ],
+  "mafool-maahu-e06": [
+   "mafool-maahu",
+   "tafriq-mafaheem",
+   "tarjama",
+   "waw-maiyyah"
+  ],
+  "mafool-maahu-e07": [
+   "mafool-maahu",
+   "tafriq-mafaheem",
+   "tarjama",
+   "waw-maiyyah"
+  ],
+  "mafool-maahu-e08": [
+   "mafool-maahu",
+   "tafriq-mafaheem",
+   "tarjama",
+   "waw-maiyyah"
+  ],
+  "mafool-maahu-e09": [
+   "atf",
+   "tafriq-mafaheem",
+   "tarjama"
+  ],
+  "mafool-maahu-e10": [
+   "atf",
+   "tafriq-mafaheem",
+   "tarjama"
+  ],
+  "mafool-maahu-e11": [
+   "mafool-maahu",
+   "tafriq-mafaheem",
+   "tarjama",
+   "waw-maiyyah"
+  ],
+  "mafool-maahu-e12": [
+   "atf",
+   "tafriq-mafaheem",
+   "tarjama"
+  ],
+  "mafool-maahu-e13": [
+   "mafool-maahu",
+   "tafriq-mafaheem",
+   "tarjama",
+   "waw-maiyyah"
+  ],
+  "mafool-maahu-e14": [
+   "mafool-maahu",
+   "tafriq-mafaheem",
+   "tarjama",
+   "waw-maiyyah"
+  ],
+  "mafool-maahu-e15": [
+   "atf",
+   "tafriq-mafaheem",
+   "tarjama"
+  ]
+ }
+}

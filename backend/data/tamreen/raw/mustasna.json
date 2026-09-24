@@ -1,0 +1,3616 @@
+{
+ "title": "Exercise: Al-Mustasná YR3PT25-26 (Short Version)",
+ "description": "Assalaamualaykum wa Rahmatullahi wa Barakaatuhu.\n\nPlease complete this exercise by the deadline.\n\nThere are 77 questions in total. Each question is valued at 1 point.\n(I'll be a little lenient.)\nA score below 75 is a fail.\nA score of 75 and above is a pass.\n\nIn order to complete this exercise, you must use your notes. \nLook at them, read them, understand them, use them.\n\nIf you need any assistance, you can email me at: [email removed]\nor \nYou can send me a message on Google Classroom. ",
+ "items": [
+  {
+   "id": 1261089275,
+   "title": "Complete the following statements",
+   "description": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 799970595,
+   "title": "1. المستثنى is... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...an expression after an أداة الاستثناء which is exempt from the attribution applied to what is before the أداة الاستثناء..",
+      "...an expression before an أداة الاستثناء which is exempt from the attribution applied to what is after the أداة الاستثناء.."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...an expression after an أداة الاستثناء which is exempt from the attribution applied to what is before the أداة الاستثناء..",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 919483082,
+   "title": "2. المستثنى will... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...only be a مفرد.",
+      "...only be a جملة.",
+      "...generally be a مفرد but can be a جملة as well.",
+      "...generally be a جملة but can be a مفرد as well."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...generally be a مفرد but can be a جملة as well.",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "...only be a مفرد.",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "...only be a مفرد."
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 963042202,
+   "title": "3. The المستثنى will be... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...مرفوع.",
+      "...مجرور.",
+      "...منصوب."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...منصوب.",
+      "mark": "Correct"
+     },
+     {
+      "label": "...منصوب.",
+      "mark": "none"
+     },
+     {
+      "label": "...مجرور.",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "...منصوب.",
+     "...مجرور."
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 873300168,
+   "title": "4. A كلام موجَب is... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...that مستثنى which was part of the مستثنى منه before being exempted.",
+      "...a sentence free of نفي, نهي or استفهام.",
+      "...a sentence which contains نفي, نهي or استفهام.",
+      "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+      "...where the مستثنى منه is absent from the sentence.",
+      "...where the مستثنى منه is present in the sentence."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...a sentence free of نفي, نهي or استفهام.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 704211487,
+   "title": "5. A كلام غير موجَب is... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...a sentence which contains نفي, نهي or استفهام.",
+      "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+      "...where the مستثنى منه is present in the sentence.",
+      "...where the مستثنى منه is absent from the sentence.",
+      "...that مستثنى which was part of the مستثنى منه before being exempted.",
+      "...a sentence free of نفي, نهي or استفهام."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...a sentence which contains نفي, نهي or استفهام.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 447242325,
+   "title": "6. An استثناء مفرَّغ is... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...a sentence which contains نفي, نهي or استفهام.",
+      "...where the مستثنى منه is absent from the sentence.",
+      "...where the مستثنى منه is present in the sentence.",
+      "...that مستثنى which was part of the مستثنى منه before being exempted.",
+      "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+      "...a sentence free of نفي, نهي or استفهام."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...where the مستثنى منه is absent from the sentence.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 675997962,
+   "title": "7. An استثناء غير مفرَّغ is... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...a sentence free of نفي, نهي or استفهام.",
+      "...where the مستثنى منه is absent from the sentence.",
+      "...a sentence which contains نفي, نهي or استفهام.",
+      "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+      "...where the مستثنى منه is present in the sentence.",
+      "...that مستثنى which was part of the مستثنى منه before being exempted."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...where the مستثنى منه is present in the sentence.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 652488965,
+   "title": "8. Taking into consideration the above 4 scenarios, the إعراب of whatever comes after إلَّا will fall into... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...4 categories: منصوب على المفعول به، منصوب على الحال، بدل المستثنى منه، منصوب على الاستثناء.",
+      "...3 categories: على حسبِ ما يَقتضيه العاملُ المذكور قبلَ \"إلا\"، بدل المستثنى منه، منصوب على الاستثناء.",
+      "...2 categories: بدل المستثنى منه، منصوب على الاستثناء.",
+      "...3 categories: منصوب على المفعول به، منصوب على الحال، منصوب على الاستثناء."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...4 categories: منصوب على المفعول به، منصوب على الحال، بدل المستثنى منه، منصوب على الاستثناء.",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "...3 categories: على حسبِ ما يَقتضيه العاملُ المذكور قبلَ \"إلا\"، بدل المستثنى منه، منصوب على الاستثناء.",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "...3 categories: على حسبِ ما يَقتضيه العاملُ المذكور قبلَ \"إلا\"، بدل المستثنى منه، منصوب على الاستثناء."
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 48248568,
+   "title": "9. A مستثنى متصل is... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...a sentence which contains نفي, نهي or استفهام.",
+      "...where the مستثنى منه is present in the sentence.",
+      "...that مستثنى which was part of the مستثنى منه before being exempted.",
+      "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+      "...where the مستثنى منه is absent from the sentence.",
+      "...a sentence free of نفي, نهي or استفهام."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...that مستثنى which was part of the مستثنى منه before being exempted.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1920565672,
+   "title": "10. A مستثنى منقطع is... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...a sentence free of نفي, نهي or استفهام.",
+      "...where the مستثنى منه is absent from the sentence.",
+      "...that مستثنى which was part of the مستثنى منه before being exempted.",
+      "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+      "...where the مستثنى منه is present in the sentence.",
+      "...a sentence which contains نفي, نهي or استفهام."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1832454774,
+   "title": "11. An إلَّا, if called غير ملغاة means... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...it is active as an أداة الاستثناء.",
+      "...it is not active as an أداة الاستثناء, rather, it's been cancelled as an أداة الاستثناء and is now an أداة الحصر."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...it is active as an أداة الاستثناء.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 442736062,
+   "title": "12. An إلَّا, if called ملغاة means... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...it is active as an أداة الاستثناء.",
+      "...it is not active as an أداة الاستثناء, rather, it's been cancelled as an أداة الاستثناء and is now an أداة الحصر."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...it is not active as an أداة الاستثناء, rather, it's been cancelled as an أداة الاستثناء and is now an أداة الحصر.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 2077397735,
+   "title": "13. An أداة الحصر provides the sentence... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...a meaning of exemption.",
+      "...a meaning of emphasis.",
+      "...a meaning of exclusivity.",
+      "...a meaning of certainty."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...a meaning of exclusivity.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1958274013,
+   "title": "14. If كلام غير موجب and استثناء غير مفرغ combine and the مستثنى is متصل... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...then the مثتثنى will take the place of the مستثنى منه and إلا will be cancelled.",
+      "...then the مثتثنى will only be منصوب على الاستثناء and إلا will be active.",
+      "...then the مثتثنى can be منصوب على الاستثناء and إلا will be active or it can be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled.",
+      "...then the مثتثنى will only be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...then the مثتثنى can be منصوب على الاستثناء and إلا will be active or it can be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1425414238,
+   "title": "15. If كلام غير موجب and استثناء غير مفرغ combine and the مستثنى is منقطع... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...then the مثتثنى will only be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled.",
+      "...then the مثتثنى can be منصوب على الاستثناء and إلا will be active or it can be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled.",
+      "...then the مثتثنى will only be منصوب على الاستثناء and إلا will be active.",
+      "...then the مثتثنى will take the place of the مستثنى منه and إلا will be cancelled."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...then the مثتثنى will take the place of the مستثنى منه and إلا will be cancelled.",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "...then the مثتثنى will only be منصوب على الاستثناء and إلا will be active.",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "...then the مثتثنى will only be منصوب على الاستثناء and إلا will be active."
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1526008353,
+   "title": "16. If كلام غير موجب and استثناء مفرغ combine... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...then the مثتثنى will only be منصوب على الاستثناء and إلا will be active.",
+      "...then the مثتثنى can be منصوب على الاستثناء and إلا will be active or it can be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled.",
+      "...then the مثتثنى will take the place of the مستثنى منه and إلا will be cancelled.",
+      "...then the مثتثنى will only be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...then the مثتثنى will take the place of the مستثنى منه and إلا will be cancelled.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 2048204648,
+   "title": "17. The مستثنى منقطع will always be... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...مجرور.",
+      "...منصوب.",
+      "...مرفوع."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...منصوب.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 949427187,
+   "title": "18. If غير is used as an أداة الاستثناء then the state of the word غير itself will be... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...whatever the state of the مستثنى منه is.",
+      "...whatever the state of the word after إلّا would be had غير been replaced by إلّا but تقديري (hidden).",
+      "...whatever the state of the word after إلّا would be had غير been replaced by إلّا.",
+      "...whatever the state of the word after غير is."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...whatever the state of the word after إلّا would be had غير been replaced by إلّا.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 2123189198,
+   "title": "19. If غير is used as an أداة الاستثناء then the word after it will be... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...مجرور.",
+      "...مبني على الكسر.",
+      "...مرفوع.",
+      "...منصوب."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...مجرور.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1237604671,
+   "title": "20. If عدا، خلا، حاش are used as أدواة الاستثناء then the word after them will be... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...مرفوع.",
+      "...مجرور.",
+      "...مبني على الضم.",
+      "...منصوب."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...مجرور.",
+      "mark": "Correct"
+     },
+     {
+      "label": "...مجرور.",
+      "mark": "none"
+     },
+     {
+      "label": "...منصوب.",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "...مجرور.",
+     "...منصوب."
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 671909946,
+   "title": "21. If سوى is used as an أداة الاستثناء then the state of the word سوى itself will be... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...whatever the state of the word after إلّا would be had سوى been replaced by إلّا.",
+      "...whatever the state of the مستثنى منه is.",
+      "...whatever the state of the word after إلّا would be had سوى been replaced by إلّا but تقديري (hidden).",
+      "...whatever the state of the word after سوى is."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...whatever the state of the word after إلّا would be had سوى been replaced by إلّا but تقديري (hidden).",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1151708948,
+   "title": "22. If ما عدا، ما خلا are used as أداتا الاستثناء then the word after them will be... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...منصوب.",
+      "...مرفوع.",
+      "...مبني على الضم.",
+      "...مجرور."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...منصوب.",
+      "mark": "Correct"
+     },
+     {
+      "label": "...مجرور.",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "...منصوب.",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "...منصوب."
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1839989153,
+   "title": "23. The ما on ما عدا، ما خلا is... ",
+   "description": null,
+   "type": 4,
+   "entries": [
+    {
+     "options": [
+      "...a ما استفهامية.",
+      "...a ما موصولة.",
+      "...a ما نافية.",
+      "...a ما مصدرية."
+     ],
+     "row": null
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "...a ما مصدرية.",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1315990661,
+   "title": "Application of Rules",
+   "description": "Important instructions\nLook at the following استثناء sentences.\nConsidering the rules of استثناء such as موجب، مفرغ، متصل، منقطع etc, tick the boxes correlating to the circumstances in the sentence in question.\nRemember متصل منقطع is not applicable in an استثناء مفرغ.\nConsidering the choices you made, choose the إعراب the مستثنى should have from the options provided.\nTranslate the sentence.\nExplain your answer by breifly detailing your choices. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n                           Use your notes. Look at them, read them, understand them. ",
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 8843873,
+   "title": "Application of Rules | Q1",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 519938419,
+   "title": "1a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ":"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     196,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "غير ملغاة, response for :",
+      "mark": "Correct"
+     },
+     {
+      "label": "موجب, response for :",
+      "mark": "Correct"
+     },
+     {
+      "label": "غير مفرغ, response for :",
+      "mark": "Correct"
+     },
+     {
+      "label": "متصل, response for :",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mustasna-00.png"
+    ]
+   }
+  },
+  {
+   "id": 738941510,
+   "title": "1b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "عمر"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for عمر",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 183952520,
+   "title": "Application of Rules | Q2",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 313237261,
+   "title": "2a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     194,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "منقطع, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "منقطع, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-01.png"
+    ]
+   }
+  },
+  {
+   "id": 441379419,
+   "title": "2b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "شعبان"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for شعبان",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1068483053,
+   "title": "Application of Rules | Q3",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 2082719167,
+   "title": "3a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     196,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "N/A, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-02.png"
+    ]
+   }
+  },
+  {
+   "id": 201615295,
+   "title": "3b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "قلم"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "D, response for قلم",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1958702043,
+   "title": "Application of Rules | Q4",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 1149311646,
+   "title": "4a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     194,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "منقطع, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-03.png"
+    ]
+   }
+  },
+  {
+   "id": 635421927,
+   "title": "4b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "اتباع الظن"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for اتباع الظن",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "D, response for اتباع الظن",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "D, response for اتباع الظن",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "A B C D",
+     "اتباع الظن",
+     "اتباع الظن"
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 544560144,
+   "title": "Application of Rules | Q5",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 376983333,
+   "title": "5a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     194,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "موجب, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mustasna-04.png"
+    ]
+   }
+  },
+  {
+   "id": 116661082,
+   "title": "5b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "الكبير"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for الكبير",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 490072954,
+   "title": "Application of Rules | Q6",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 390103829,
+   "title": "6a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     195,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "منقطع, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "منقطع, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-05.png"
+    ]
+   }
+  },
+  {
+   "id": 611749563,
+   "title": "6b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "الطبّاخ"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "C, response for الطبّاخ",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 262880188,
+   "title": "Application of Rules | Q7",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 755174392,
+   "title": "7a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     739,
+     195,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "منقطع, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-06.png"
+    ]
+   }
+  },
+  {
+   "id": 849292872,
+   "title": "7b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "بكر"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for بكر",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 270387820,
+   "title": "Application of Rules | Q8",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 144875418,
+   "title": "8a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     195,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-07.png"
+    ]
+   }
+  },
+  {
+   "id": 1019785055,
+   "title": "8b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "طلحة"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "D, response for طلحة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1800003565,
+   "title": "Application of Rules | Q9",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 2110782789,
+   "title": "9a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     195,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "منقطع, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-08.png"
+    ]
+   }
+  },
+  {
+   "id": 96020013,
+   "title": "9b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "الرجال"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "A, response for الرجال",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "B, response for الرجال",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "B, response for الرجال",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "A B C D",
+     "الرجال",
+     "الرجال"
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 2008453179,
+   "title": "Application of Rules | Q10",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 400584618,
+   "title": "10a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     195,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "موجب, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mustasna-09.png"
+    ]
+   }
+  },
+  {
+   "id": 1277152874,
+   "title": "10b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "غير يوم"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "A, response for غير يوم",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 2028849345,
+   "title": "Application of Rules | Q11",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 970311894,
+   "title": "11a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     195,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "N/A, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-10.png"
+    ]
+   }
+  },
+  {
+   "id": 1565970594,
+   "title": "11b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "الإحسان"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "A, response for الإحسان",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "D, response for الإحسان",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "D, response for الإحسان",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "A B C D",
+     "الإحسان",
+     "الإحسان"
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1740319858,
+   "title": "Application of Rules | Q12",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 1766451309,
+   "title": "12a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     193,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "موجب, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mustasna-11.png"
+    ]
+   }
+  },
+  {
+   "id": 1857982412,
+   "title": "12b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "الله"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "C, response for الله",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 758287822,
+   "title": "Application of Rules | Q13",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 780542571,
+   "title": "13a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     739,
+     195,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "N/A, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-12.png"
+    ]
+   }
+  },
+  {
+   "id": 1522106985,
+   "title": "13b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "طاهر"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for طاهر",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1661598364,
+   "title": "Application of Rules | Q14",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 548314763,
+   "title": "14a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     196,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "مفرغ, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "N/A, response for >",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mustasna-13.png"
+    ]
+   }
+  },
+  {
+   "id": 1158158459,
+   "title": "14b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "غير دجاجة"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "D, response for غير دجاجة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 465996405,
+   "title": "Application of Rules | Q15",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 821200137,
+   "title": "15a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     195,
+     0
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "منقطع, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-14.png"
+    ]
+   }
+  },
+  {
+   "id": 2042441218,
+   "title": "15b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "بكر"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for بكر",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "A, response for بكر",
+      "mark": "none"
+     },
+     {
+      "label": "B, response for بكر",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "A B C D",
+     "بكر",
+     "بكر"
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 1965342180,
+   "title": "Application of Rules | Q16",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 18560397,
+   "title": "16a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     195,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "مفرغ, response for >",
+      "mark": "Correct"
+     },
+     {
+      "label": "N/A, response for >",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": [
+     "mustasna-15.png"
+    ]
+   }
+  },
+  {
+   "id": 496339205,
+   "title": "16b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "نصرة"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "C, response for نصرة",
+      "mark": "Correct"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 882704157,
+   "title": "Application of Rules | Q17",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 992805042,
+   "title": "17a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     195,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "N/A, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-16.png"
+    ]
+   }
+  },
+  {
+   "id": 1442916274,
+   "title": "17b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "النخيل"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "D, response for النخيل",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "A, response for النخيل",
+      "mark": "none"
+     },
+     {
+      "label": "D, response for النخيل",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "A B C D",
+     "النخيل",
+     "النخيل"
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 392853654,
+   "title": "Application of Rules | Q18",
+   "description": null,
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 131075173,
+   "title": "18a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     196,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "منقطع, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-17.png"
+    ]
+   }
+  },
+  {
+   "id": 1688886855,
+   "title": "18b. Choose from the 4 options:",
+   "description": "After acknowledging the choice/s you made above, choose whichever إعراب is applicable accordingly. \nIf more than 1 إعراب is applicable, choose more than 1.",
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "row": "الموتة الأولى"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "B, response for الموتة الأولى",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "D, response for الموتة الأولى",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "B, response for الموتة الأولى",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "A B C D",
+     "الموتة الأولى",
+     "الموتة الأولى"
+    ],
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 971203720,
+   "title": "Application of Rules | Q19",
+   "description": "**Do the tarkeeb on this one**",
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 250470568,
+   "title": "19a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     78,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "N/A, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-18.png"
+    ]
+   }
+  },
+  {
+   "id": 1998210464,
+   "title": "19b.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مضاف",
+      "مفعول مطلق",
+      "حال",
+      "منعوت",
+      "مضاف إليه",
+      "جملة فعلية خبرية",
+      "مفعول به",
+      "نعت",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?1"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مضاف",
+      "مفعول مطلق",
+      "حال",
+      "منعوت",
+      "مضاف إليه",
+      "جملة فعلية خبرية",
+      "مفعول به",
+      "نعت",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?2"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مضاف",
+      "مفعول مطلق",
+      "حال",
+      "منعوت",
+      "مضاف إليه",
+      "جملة فعلية خبرية",
+      "مفعول به",
+      "نعت",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?3"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مضاف",
+      "مفعول مطلق",
+      "حال",
+      "منعوت",
+      "مضاف إليه",
+      "جملة فعلية خبرية",
+      "مفعول به",
+      "نعت",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?4"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مضاف",
+      "مفعول مطلق",
+      "حال",
+      "منعوت",
+      "مضاف إليه",
+      "جملة فعلية خبرية",
+      "مفعول به",
+      "نعت",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?5"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مضاف",
+      "مفعول مطلق",
+      "حال",
+      "منعوت",
+      "مضاف إليه",
+      "جملة فعلية خبرية",
+      "مفعول به",
+      "نعت",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?6"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مضاف",
+      "مفعول مطلق",
+      "حال",
+      "منعوت",
+      "مضاف إليه",
+      "جملة فعلية خبرية",
+      "مفعول به",
+      "نعت",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?7"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مضاف",
+      "مفعول مطلق",
+      "حال",
+      "منعوت",
+      "مضاف إليه",
+      "جملة فعلية خبرية",
+      "مفعول به",
+      "نعت",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?8"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     233,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "فاعل, response for ?1",
+      "mark": "Correct"
+     },
+     {
+      "label": "مضاف, response for ?2",
+      "mark": "Correct"
+     },
+     {
+      "label": "مضاف إليه, response for ?3",
+      "mark": "Correct"
+     },
+     {
+      "label": "مفعول به, response for ?4",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "أداة الحصر, response for ?5",
+      "mark": "Correct"
+     },
+     {
+      "label": "فاعل, response for ?6",
+      "mark": "Correct"
+     },
+     {
+      "label": "جملة فعلية خبرية, response for ?7",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "مفعول به, response for ?8",
+      "mark": "Correct"
+     },
+     {
+      "label": "ذوالحال, response for ?4",
+      "mark": "none"
+     },
+     {
+      "label": "حال, response for ?7",
+      "mark": "none"
+     },
+     {
+      "label": "جملة فعلية خبرية, response for ?7",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "أداة الإستثناء ذوالحال مضاف مفعول مطلق حال منعوت مضاف إليه جملة فعلية خبرية مفعول به نعت أداة الحصر فاعل",
+     "?4",
+     "?7",
+     "?4",
+     "?7"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-19.png"
+    ]
+   }
+  },
+  {
+   "id": 1183286791,
+   "title": "Application of Rules | Q20",
+   "description": "**Do the tarkeeb on this one**",
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 76888945,
+   "title": "20a.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "row": ">"
+    }
+   ],
+   "media": {
+    "caption": "ملغاة | غير ملغاة\nموجب | غير موجب\nمفرغ | غير مفرغ\nمتصل | منقطع | Only choose 1 from this category: N/A",
+    "size": [
+     740,
+     89,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     0,
+     1
+    ],
+    "checked": [
+     {
+      "label": "ملغاة, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "غير مفرغ, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "متصل, response for >",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "ملغاة, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "غير موجب, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "مفرغ, response for >",
+      "mark": "none"
+     },
+     {
+      "label": "N/A, response for >",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "ملغاة غير ملغاة موجب غير موجب مفرغ غير مفرغ متصل منقطع N/A",
+     ">",
+     ">"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-20.png"
+    ]
+   }
+  },
+  {
+   "id": 2033928602,
+   "title": "20b.",
+   "description": null,
+   "type": 7,
+   "entries": [
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مبتدا",
+      "حال",
+      "الواو المعية",
+      "فعل",
+      "خبر",
+      "جملة إسمية خبرية",
+      "مفعول به",
+      "الواو الحالية",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?1"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مبتدا",
+      "حال",
+      "الواو المعية",
+      "فعل",
+      "خبر",
+      "جملة إسمية خبرية",
+      "مفعول به",
+      "الواو الحالية",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?2"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مبتدا",
+      "حال",
+      "الواو المعية",
+      "فعل",
+      "خبر",
+      "جملة إسمية خبرية",
+      "مفعول به",
+      "الواو الحالية",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?3"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مبتدا",
+      "حال",
+      "الواو المعية",
+      "فعل",
+      "خبر",
+      "جملة إسمية خبرية",
+      "مفعول به",
+      "الواو الحالية",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?4"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مبتدا",
+      "حال",
+      "الواو المعية",
+      "فعل",
+      "خبر",
+      "جملة إسمية خبرية",
+      "مفعول به",
+      "الواو الحالية",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?5"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مبتدا",
+      "حال",
+      "الواو المعية",
+      "فعل",
+      "خبر",
+      "جملة إسمية خبرية",
+      "مفعول به",
+      "الواو الحالية",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?6"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مبتدا",
+      "حال",
+      "الواو المعية",
+      "فعل",
+      "خبر",
+      "جملة إسمية خبرية",
+      "مفعول به",
+      "الواو الحالية",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?7"
+    },
+    {
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مبتدا",
+      "حال",
+      "الواو المعية",
+      "فعل",
+      "خبر",
+      "جملة إسمية خبرية",
+      "مفعول به",
+      "الواو الحالية",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "row": "?8"
+    }
+   ],
+   "media": {
+    "caption": null,
+    "size": [
+     740,
+     252,
+     1
+    ]
+   },
+   "dom": {
+    "points": [
+     1,
+     1
+    ],
+    "checked": [
+     {
+      "label": "فعل, response for ?1",
+      "mark": "Correct"
+     },
+     {
+      "label": "فاعل, response for ?1",
+      "mark": "Correct"
+     },
+     {
+      "label": "ذوالحال, response for ?2",
+      "mark": "Correct"
+     },
+     {
+      "label": "أداة الحصر, response for ?3",
+      "mark": "Correct"
+     },
+     {
+      "label": "الواو الحالية, response for ?4",
+      "mark": "Correct"
+     },
+     {
+      "label": "مبتدا, response for ?5",
+      "mark": "Correct"
+     },
+     {
+      "label": "خبر, response for ?6",
+      "mark": "Correct"
+     },
+     {
+      "label": "حال, response for ?7",
+      "mark": "Incorrect"
+     },
+     {
+      "label": "مفعول به, response for ?8",
+      "mark": "Correct"
+     },
+     {
+      "label": "حال, response for ?7",
+      "mark": "none"
+     },
+     {
+      "label": "جملة إسمية خبرية, response for ?7",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": [
+     "أداة الإستثناء ذوالحال مبتدا حال الواو المعية فعل خبر جملة إسمية خبرية مفعول به الواو الحالية أداة الحصر فاعل",
+     "?7",
+     "?7"
+    ],
+    "feedback": null,
+    "imgs": [
+     "mustasna-21.png"
+    ]
+   }
+  },
+  {
+   "id": 880929463,
+   "title": "End of exercise",
+   "description": "You have completed the exercise.\nLook through your answers one last time before submitting your work.",
+   "type": 8,
+   "entries": [],
+   "media": null
+  },
+  {
+   "id": 782517983,
+   "title": "Difficulty ",
+   "description": null,
+   "type": 6,
+   "entries": [],
+   "media": null,
+   "dom": {
+    "points": null,
+    "checked": [],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  },
+  {
+   "id": 925400648,
+   "title": "How difficult was this exercise?\nPlease choose from 1 to 10.",
+   "description": null,
+   "type": 5,
+   "entries": [
+    {
+     "options": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+     ],
+     "row": "Easy"
+    }
+   ],
+   "media": null,
+   "dom": {
+    "points": null,
+    "checked": [
+     {
+      "label": "9",
+      "mark": "none"
+     }
+    ],
+    "correctBlock": null,
+    "feedback": null,
+    "imgs": []
+   }
+  }
+ ]
+}

@@ -1,0 +1,331 @@
+{
+  "blocks": [
+    {
+      "id": "p09-1",
+      "kind": "example",
+      "page": 9,
+      "ar": "i) {{example|طالعُ جَبَلٍ}} (إضافة لفظية)",
+      "en": "i) Mountain climber ({{term|a verbal idafah}})",
+      "labels": [
+        {
+          "word": "طالعُ جَبَلٍ",
+          "label": "إضافة لفظية"
+        }
+      ]
+    },
+    {
+      "id": "p09-2",
+      "kind": "example",
+      "page": 9,
+      "ar": "ii) {{example|طالع⟨?⟩ جَبَلً}}",
+      "en": "ii) Mountain climber",
+      "labels": []
+    },
+    {
+      "id": "p10-1",
+      "kind": "picture",
+      "page": 10,
+      "caption": "تركيب: مضاف: لَا طَالِعَ جبلٍ مَوْجُوْدٌ، و شبه المضاف: لَا طالعًا جَبَلً مَوْجُوْدٌ، مع (منصوب) فوق اسم لا، وخط تحت الجملة كلها مكتوب عليه ⟨?⟩",
+      "caption_en": "Tarkeeb trees for the mudaaf case (laa taali'a jabalin mawjood) and the shibh al-mudaaf case (laa taali'an jabalan mawjood), with (mansoob) pointing at the ism of laa, and a line under the whole sentence labelled ⟨?⟩"
+    },
+    {
+      "id": "p10-2",
+      "kind": "example",
+      "page": 10,
+      "ar": "{{term|مضاف}}: {{example|لَا طَالِعَ جبلٍ مَوْجُوْدٌ}}",
+      "en": "Mudaaf: no mountain climber exists",
+      "labels": [
+        {
+          "word": "لَا",
+          "label": "لا نفي الجنس"
+        },
+        {
+          "word": "طَالِعَ",
+          "label": "م (منصوب)"
+        },
+        {
+          "word": "جبلٍ",
+          "label": "⟨?⟩"
+        },
+        {
+          "word": "طَالِعَ جبلٍ",
+          "label": "اسم لا نفي الجنس"
+        },
+        {
+          "word": "مَوْجُوْدٌ",
+          "label": "خبر لا نفي الجنس"
+        }
+      ]
+    },
+    {
+      "id": "p10-3",
+      "kind": "example",
+      "page": 10,
+      "ar": "{{term|شبه المضاف}}: {{example|لَا طالعًا جَبَلً مَوْجُوْدٌ}}",
+      "en": "Shibh al-mudaaf: no mountain climber exists",
+      "labels": [
+        {
+          "word": "لَا",
+          "label": "لا نفي الجنس"
+        },
+        {
+          "word": "طالعًا",
+          "label": "اسم فاعل (منصوب)"
+        },
+        {
+          "word": "جَبَلً",
+          "label": "مفعول به"
+        },
+        {
+          "word": "طالعًا جَبَلً",
+          "label": "اسم لا نفي الجنس"
+        },
+        {
+          "word": "مَوْجُوْدٌ",
+          "label": "خبر لا نفي الجنس"
+        }
+      ]
+    },
+    {
+      "id": "p11-1",
+      "kind": "rule",
+      "page": 11,
+      "ar": "A {{condition|single word on it's own}} as the Ism of لا نفي الجنس will be {{ruling|مبني على الفتح}} e.g. {{example|لَا رَجُلَ مَوْجُوْدٌ}} (note beside رَجُلَ: a word on it's own, not a construction)",
+      "en": "A {{condition|single word on its own}} as the ism of laa li-nafyil-jins will be {{ruling|mabni on fathah}}, e.g. no man exists. (Note beside رَجُلَ: a word on its own, not a construction.)"
+    },
+    {
+      "id": "p11-2",
+      "kind": "list",
+      "page": 11,
+      "items": [
+        "كَيْفَ = {{ruling|مبني على الفتح}}",
+        "أَمْسِ = {{ruling|مبني على الكسر}}",
+        "بَعْدُ = {{ruling|مبني على الضم}}",
+        "إذْ ={{ruling|مبني على السكون}}"
+      ],
+      "en": "Examples of mabni words: kayfa on fathah, amsi on kasrah, ba'du on dammah, idh on sukoon"
+    },
+    {
+      "id": "p12-1",
+      "kind": "example",
+      "page": 12,
+      "ar": "{{example|لَا رَجُلَ مَوْجُوْدٌ}}",
+      "en": "No man exists. The لا (arrow to the boxed رَجُلَ) totally encompasses the اسم. A line under the sentence is labelled ⟨?⟩.",
+      "labels": [
+        {
+          "word": "لَا",
+          "label": "لا نفي الجنس"
+        },
+        {
+          "word": "رَجُلَ",
+          "label": "اسم لا نفي الجنس"
+        },
+        {
+          "word": "مَوْجُوْدٌ",
+          "label": "خبر لا نفي الجنس"
+        }
+      ]
+    },
+    {
+      "id": "p12-2",
+      "kind": "list",
+      "page": 12,
+      "items": [
+        "رَجُلَ is {{ruling|مبني على الفتح}}، {{ruling|مَحَلًّا منصوب}}",
+        "why?",
+        "The لا has overpowered the اسم because of {{condition|negating the whole genus}} which has resulted to the اسم adopting a quality of حرف i.e. {{term|بناء}} (to be مبني)"
+      ],
+      "en": "Rajula is mabni on fathah and mansoob in position. Why? The laa has overpowered the ism by negating the whole genus, so the ism takes on a quality of a harf: binaa' (being mabni)."
+    },
+    {
+      "id": "p13-1",
+      "kind": "table",
+      "page": 13,
+      "caption": "حالات اسم لا وخبرها",
+      "caption_en": "States of the ism of laa and its khabar, as drawn",
+      "columns": [
+        "اسم لا",
+        "خبر لا"
+      ],
+      "answer_col": 0,
+      "rows": [
+        [
+          "{{ruling|مبني على الفتح}} / اسم لا",
+          "{{ruling|مرفوع}} / خبر لا"
+        ],
+        [
+          "{{ruling|منصوب}} / اسم لا",
+          "{{ruling|مرفوع}} / خبر لا"
+        ],
+        [
+          "{{ruling|مرفوع}} / {{label|مبتدأ}}",
+          "{{ruling|مرفوع}} / {{label|خبر}}"
+        ]
+      ]
+    },
+    {
+      "id": "p13-2",
+      "kind": "example",
+      "page": 13,
+      "ar": "{{example|لَا رَجُلَ كَرِيْمَ مَوْجُوْدٌ}} / {{example|لَا رَجُلَ كَرِيْمًا مَوْجُوْدٌ}} / {{example|لَا رَجُلَ كَرِيْمٌ مُوْجُوْدٌ}}",
+      "en": "No noble man exists (three highlighted forms of the sifah). A line under the whole sentence is labelled ⟨?⟩.",
+      "labels": [
+        {
+          "word": "لَا",
+          "label": "لا نفي الجنس"
+        },
+        {
+          "word": "رَجُلَ",
+          "label": "موصوف"
+        },
+        {
+          "word": "كَرِيْمَ / كَرِيْمًا / كَرِيْمٌ",
+          "label": "صفة"
+        },
+        {
+          "word": "رَجُلَ كَرِيْمَ",
+          "label": "اسم لا نفي الجنس"
+        },
+        {
+          "word": "مَوْجُوْدٌ",
+          "label": "خبر لا نفي الجنس"
+        }
+      ]
+    },
+    {
+      "id": "p14-1",
+      "kind": "rule",
+      "page": 14,
+      "ar": "If there is a {{condition|gap between the موصوف & صفة}} then there are {{ruling|only 2 options}}:",
+      "en": "If there is a {{condition|gap between the mawsoof and the sifah}}, there are {{ruling|only 2 options}}:"
+    },
+    {
+      "id": "p14-2",
+      "kind": "example",
+      "page": 14,
+      "ar": "{{example|لَا رَجُلَ مَوْجُوْدٌ كَرِيْمًا}} (مَحَلُّ) / {{example|لَا رَجُلَ مَوْجُوْدٌ كَرِيْمٌ}} (مَحَلُّ المحلِّ)",
+      "en": "No man exists, a noble one: two options for the separated sifah. A line under the whole sentence is labelled ⟨?⟩.",
+      "labels": [
+        {
+          "word": "لَا",
+          "label": "لا نفي الجنس"
+        },
+        {
+          "word": "رَجُلَ",
+          "label": "موصوف"
+        },
+        {
+          "word": "مَوْجُوْدٌ",
+          "label": "خبر لا نفي الجنس"
+        },
+        {
+          "word": "كَرِيْمًا / كَرِيْمٌ",
+          "label": "صفة"
+        }
+      ]
+    },
+    {
+      "id": "p14-3",
+      "kind": "rule",
+      "page": 14,
+      "ar": "If the اسم of لا نفي الجنس is {{condition|معرفة}} the لا {{ruling|stops governing}} and becomes {{term|مهملة}}.",
+      "en": "If the ism of laa li-nafyil-jins is {{condition|definite}}, the laa {{ruling|stops governing}} and becomes {{term|muhmalah}}."
+    },
+    {
+      "id": "p15-1",
+      "kind": "heading",
+      "page": 15,
+      "ar": "The Sifah of the اسم لا نفي جنس",
+      "en": "The sifah of the ism of laa li-nafyil-jins"
+    },
+    {
+      "id": "p15-2",
+      "kind": "example",
+      "page": 15,
+      "ar": "{{example|لَا رَجُلَ كَرِيْمَ / كَرِيْمًا / كَرِيْمٌ قائِمٌ}} ({{ruling|3 options}})",
+      "en": "No noble man is standing (3 options for the sifah when it comes straight after)",
+      "labels": [
+        {
+          "word": "كَرِيْمَ / كَرِيْمًا / كَرِيْمٌ",
+          "label": "صفة"
+        }
+      ]
+    },
+    {
+      "id": "p15-3",
+      "kind": "example",
+      "page": 15,
+      "ar": "{{example|لَا رَجُلَ قائِمٌ كَرِيْمًا / كَرِيْمٌ}} ({{ruling|2 options}})",
+      "en": "No man is standing, a noble one (2 options for the sifah when separated)",
+      "labels": [
+        {
+          "word": "كَرِيْمًا / كَرِيْمٌ",
+          "label": "صفة"
+        }
+      ]
+    },
+    {
+      "id": "p15-4",
+      "kind": "rule",
+      "page": 15,
+      "ar": "{{term|Ma'toof}} of اسم لا نفي جنس {{condition|when the لا is not repeated}}.",
+      "en": "The ma'toof of the ism of laa li-nafyil-jins, {{condition|when the laa is not repeated}}."
+    },
+    {
+      "id": "p15-5",
+      "kind": "example",
+      "page": 15,
+      "ar": "{{example|لَا رَجُلَ وَامْرَأَةً / إمْرَأَةٌ قائِمَانِ}} ({{ruling|always 2 options only}})",
+      "en": "Neither a man nor a woman is standing (always 2 options only)",
+      "labels": [
+        {
+          "word": "امْرَأَةً / إمْرَأَةٌ",
+          "label": "معطوف"
+        }
+      ]
+    },
+    {
+      "id": "p16-1",
+      "kind": "heading",
+      "page": 16,
+      "ar": "Types of لا",
+      "en": "Types of laa"
+    },
+    {
+      "id": "p16-2",
+      "kind": "list",
+      "page": 16,
+      "items": [
+        "1) {{term|لا المشبَّهَةُ بِلَيْسَ}} = لَا رَجُلٌ قائِمًا ({{ruling|Governs}})",
+        "2) {{term|لا لنفي الجنس}} = لَا رَجُلَ قائِمٌ ({{ruling|Governs}})",
+        "3) {{term|لا النافية}} = لَا يَضْرِبُ ({{ruling|Does not govern}})",
+        "4) {{term|لا الزائدة}} = مَا جَاءَ زَيْدٌ ولَا بَكْرٌ ({{ruling|Does not govern}})"
+      ],
+      "en": "1) Laa resembling laysa (governs). 2) Laa negating the genus (governs). 3) The negating laa, laa yadribu (does not govern). 4) The extra laa, Zayd did not come, nor Bakr (does not govern)."
+    },
+    {
+      "id": "p16-3",
+      "kind": "rule",
+      "page": 16,
+      "ar": "For this لا to be zaidah, it {{condition|must be preceded with a negation}}. It will be translated as {{term|neither}}.",
+      "en": "For this laa to be zaa'idah, it {{condition|must be preceded by a negation}}. It is translated as {{term|neither}}."
+    },
+    {
+      "id": "p16-4",
+      "kind": "list",
+      "page": 16,
+      "items": [
+        "5) {{term|لا المهملة}} = لَا قائِمٌ رَجُلٌ",
+        "6) {{term|لا بمعنى غير}} = أَعْبُدُ اللٰهَ بِلَا شَرِيْكٍ = (بِغَيْرِ شَرِيْكٍ)"
+      ],
+      "en": "5) The inactive laa: no man is standing. 6) Laa meaning ghayr: I worship Allah without a partner (= without a partner)."
+    },
+    {
+      "id": "p16-5",
+      "kind": "rule",
+      "page": 16,
+      "ar": "For this لا to be بمعنى غير، it {{condition|must be preceded by a حرف جر}}، mostly \"{{ruling|بـ}}\".",
+      "en": "For this laa to mean ghayr, it {{condition|must be preceded by a harf jarr}}, mostly {{ruling|bi}}."
+    }
+  ]
+}

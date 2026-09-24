@@ -1,0 +1,13 @@
+{
+  "_comment": "Tamreen behaviour knobs, same pattern as quiz.json.",
+
+  "_comment-auto": "How long an answer stays on screen before the next question, in milliseconds. The Quiz's own waits, repeated here so Tamreen can be retuned on its own: a right answer needs only a glance, a wrong one has to be read.",
+  "auto-next": true,
+  "auto-next-ms": 650,
+  "auto-next-wrong-ms": 2500,
+
+  "_comment-typo": "Search tolerance: exact/substring tried first; a typed word within this many edits of a candidate word still matches. The looser distance only kicks in for longer words, where one stray edit is still clearly the same word.",
+  "typo-distance": 1,
+  "typo-distance-long": 2,
+  "typo-distance-long-min-length": 5
+}

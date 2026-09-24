@@ -1,0 +1,262 @@
+{
+ "batch": "haal-lettered-09",
+ "questions": [
+  {
+   "id": "haal/correct-or-incorrect/7",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Correct or Incorrect | Q7",
+    "number": "7",
+    "images": [
+     "q105.png",
+     "q106.png",
+     "q107.png"
+    ]
+   },
+   "type": "correct_or_incorrect",
+   "instructions": "Correct or Incorrect | Q7\n1 of 2 points",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "مكث الضيوفُ عندنا ثلاثةُ أيّامٍ ما قَصَّرنا في إكرامِه",
+     "marked": [],
+     "en": "The guests stayed by us for 3 days whilst we did not lack in honouring them (with good hospitality)."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Explain the mistakes and how to rectify them. If there are no mistakes, then write: \"No mistakes\".",
+     "kind": "free_text",
+     "options": null,
+     "answer": "The word ثلاثة should have a fathah as it is zarf (time/place). The مضاف إليه of إكرام should be plural, هم, as it is referring to the guests who are plural.",
+     "answer_source": "feedback",
+     "my_response": "wrong dameer at really end.",
+     "points": null,
+     "feedback": "The word ثلاثة should have a fathah as it is zarf (time/place).\nThe مضاف إليه of إكرام should be plural, هم, as it is referring to the guests who are plural."
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/correct-or-incorrect/8",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Correct or Incorrect | Q8",
+    "number": "8",
+    "images": [
+     "q109.png",
+     "q110.png",
+     "q111.png"
+    ]
+   },
+   "type": "correct_or_incorrect",
+   "instructions": "Correct or Incorrect | Q8\n2 of 2 points",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "سمعتُ (ثابتًا) مِن كلام بكرٍ مَا حَدَثَ بِزيدٍ دارسٍ",
+     "marked": [],
+     "en": "I heard, whilst it being from the statement of Bakr, that which (what) happened to Zaid whilst studying."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Explain the mistakes and how to rectify them. If there are no mistakes, then write: \"No mistakes\".",
+     "kind": "free_text",
+     "options": null,
+     "answer": "The word دارس should be دارسا, it should be mansoob because it is the haal of Zaid.",
+     "answer_source": "feedback",
+     "my_response": "Should mansoob Haal at end",
+     "points": null,
+     "feedback": "The word دارس should be دارسا, it should be mansoob because it is the haal of Zaid."
+    }
+   ],
+   "flags": [
+    "A small bracketed \"(ثابتًا)\" is printed right after سمعتُ in q109.png in a visibly smaller superscript-style font, unlike the rest of the sentence; it has no counterpart in the English translation and is never mentioned in the 8c feedback, which only discusses دارس/دارسا. Judged from the picture as a rendering artifact (footnote/comment marker), not part of the exam sentence, and removed from \"ar\"."
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/9",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Correct or Incorrect | Q9",
+    "number": "9",
+    "images": [
+     "q113.png",
+     "q114.png",
+     "q115.png"
+    ]
+   },
+   "type": "correct_or_incorrect",
+   "instructions": "Correct or Incorrect | Q9\n1 of 2 points",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "أكل زيدٌ هو شبعانِ ثُمَّ تَأَلَّمَ بطنُها",
+     "marked": [],
+     "en": "Zaid ate whilst he was satiated then his stomach ached."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "3"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Explain the mistakes and how to rectify them. If there are no mistakes, then write: \"No mistakes\".",
+     "kind": "free_text",
+     "options": null,
+     "answer": "There should be a waaw haaliyyah before 'هو' because the haal 'هو شبعان' is a jumlah ismiyyah which begins with the dhameer raabit. Also, شبعانٍ should be شبعانُ as it is مرفوع because of being the خبر of هو and it's also غير منصرف hence no tanween. Also, it should be 'بطنه' because it is referring to the stomach of zaid and he is male (hopefully).",
+     "answer_source": "feedback",
+     "my_response": "shhould be \"wa ho wa\". and shob3aan should be marfoo3",
+     "points": null,
+     "feedback": "There should be a waaw haaliyyah before 'هو' because the haal 'هو شبعان' is a jumlah ismiyyah which begins with the dhameer raabit.\nAlso, شبعانٍ should be شبعانُ as it is مرفوع because of being the خبر of هو and it's also غير منصرف hence no tanween.\nAlso, it should be 'بطنه' because it is referring to the stomach of zaid and he is male (hopefully)."
+    }
+   ],
+   "flags": []
+  }
+ ]
+}

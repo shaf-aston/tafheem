@@ -1,0 +1,775 @@
+{
+  "id": "signs",
+  "order": 3,
+  "name": "Signs of the Hour",
+  "arabic": "أشراط الساعة",
+  "science": "aqidah",
+  "kind": "unseen",
+  "sub": "Minor, then the ten major signs",
+  "events": [
+    {
+      "id": "coming",
+      "title": "The Prophet's coming",
+      "arabic": "بعثة النبي",
+      "when": "Minor sign, already passed",
+      "at": 1,
+      "summary": "His being sent is itself a sign that the Hour is near.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "54:1"
+        },
+        {
+          "hadith": "bukhari",
+          "number": 6504,
+          "checked": "sunnah.com"
+        }
+      ]
+    },
+    {
+      "id": "buildings",
+      "title": "Shepherds in tall buildings",
+      "arabic": "التطاول في البنيان",
+      "when": "Minor sign",
+      "at": 2,
+      "summary": "Barefoot, destitute herders compete in building tall.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "muslim",
+          "number": 8,
+          "checked": "sunnah.com"
+        }
+      ]
+    },
+    {
+      "id": "knowledge-lifted",
+      "title": "Knowledge taken away",
+      "arabic": "رفع العلم",
+      "when": "Minor sign",
+      "at": 2.062,
+      "summary": "Knowledge is lost as the scholars die, and ignorance spreads.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 81,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "zina-wine",
+      "title": "Adultery and wine spread",
+      "arabic": "ظهور الزنا وشرب الخمر",
+      "when": "Minor sign",
+      "at": 2.125,
+      "summary": "Adultery and drinking become open and common.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 5231,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "women-outnumber",
+      "title": "Women outnumber men",
+      "arabic": "كثرة النساء",
+      "when": "Minor sign",
+      "at": 2.188,
+      "summary": "Men become so few that fifty women have one man to look after them.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 81,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "trust-lost",
+      "title": "Trust is lost",
+      "arabic": "تضييع الأمانة",
+      "when": "Minor sign",
+      "at": 2.25,
+      "summary": "Honesty disappears and authority is given to those unfit for it.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 6496,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "wealth-overflows",
+      "title": "Wealth overflows",
+      "arabic": "كثرة المال",
+      "when": "Minor sign",
+      "at": 2.312,
+      "summary": "Money is so plentiful that nobody will take charity.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 1412,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "time-harj",
+      "title": "Time quickens, killing spreads",
+      "arabic": "تقارب الزمان وكثرة الهرج",
+      "when": "Minor sign",
+      "at": 2.375,
+      "summary": "Time seems to pass quickly, and killing becomes widespread.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 7061,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "earthquakes",
+      "title": "Earthquakes increase",
+      "arabic": "كثرة الزلازل",
+      "when": "Minor sign",
+      "at": 2.438,
+      "summary": "Earthquakes become frequent.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 1036,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "thirty-liars",
+      "title": "Thirty false prophets",
+      "arabic": "ثلاثون كذابا",
+      "when": "Minor sign",
+      "at": 2.5,
+      "summary": "About thirty liars each claim to be a messenger of Allah.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 3609,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "great-battle",
+      "title": "Two great groups fight",
+      "arabic": "اقتتال فئتين عظيمتين",
+      "when": "Minor sign",
+      "at": 2.562,
+      "summary": "Two large groups with one claim fight, and many are killed.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 7121,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "mosques-boast",
+      "title": "Boasting over mosques",
+      "arabic": "التباهي في المساجد",
+      "when": "Minor sign",
+      "at": 2.625,
+      "summary": "People compete in showing off their mosques.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "abudawud",
+          "number": 449,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "daus-idol",
+      "title": "Daus return to the idol",
+      "arabic": "عبادة ذي الخلصة",
+      "when": "Minor sign",
+      "at": 2.688,
+      "summary": "Women of Daus again circle the old idol Dhul-Khalasah.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 7116,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "hijaz-fire",
+      "title": "A fire in the Hijaz",
+      "arabic": "نار الحجاز",
+      "when": "Minor sign",
+      "at": 2.75,
+      "summary": "A fire from the Hijaz lights up the necks of camels at Busra.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "muslim",
+          "number": 2902,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "arabia-green",
+      "title": "Arabia turns green",
+      "arabic": "عودة جزيرة العرب مروجا",
+      "when": "Minor sign",
+      "at": 2.812,
+      "summary": "The land of the Arabs returns to meadows and rivers.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "muslim",
+          "number": 157,
+          "part": "c",
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "euphrates-gold",
+      "title": "The Euphrates uncovers gold",
+      "arabic": "حسر الفرات عن جبل من ذهب",
+      "when": "Minor sign",
+      "at": 2.875,
+      "summary": "The river uncovers a mountain of gold, and people kill each other over it.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "muslim",
+          "number": 2894,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "black-banners",
+      "title": "Black banners from the east",
+      "arabic": "الرايات السود",
+      "when": "Minor sign",
+      "at": 2.938,
+      "summary": "Black banners come from the east, bringing the Mahdi.",
+      "flags": [
+        "weakchain"
+      ],
+      "refs": [
+        {
+          "hadith": "ibnmajah",
+          "number": 4084,
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ]
+    },
+    {
+      "id": "mahdi",
+      "title": "The Mahdi",
+      "arabic": "المهدي",
+      "when": "Before the major signs",
+      "at": 3,
+      "summary": "A man from the Prophet's family fills the earth with justice.",
+      "flags": [
+        "disputed",
+        "weakchain"
+      ],
+      "refs": [
+        {
+          "hadith": "abudawud",
+          "number": 4282,
+          "checked": "sunnah.com"
+        }
+      ],
+      "steps": [
+        {
+          "id": "bayah",
+          "title": "Bay'ah at the Kaaba",
+          "arabic": "البيعة عند الكعبة",
+          "when": "After a caliph's death",
+          "summary": "A report says people force allegiance on a man from Madinah between the Corner and the Station of Ibrahim.",
+          "refs": [
+            {
+              "hadith": "abudawud",
+              "number": 4286,
+              "checked": "sunnah.com"
+            }
+          ],
+          "flags": [
+            "weakchain"
+          ]
+        },
+        {
+          "id": "justice",
+          "title": "Fills the earth with justice",
+          "arabic": "يملأ الأرض عدلا",
+          "when": "His time",
+          "summary": "He fills the earth with equity and justice, as it had been filled with oppression and tyranny.",
+          "refs": [
+            {
+              "hadith": "abudawud",
+              "number": 4282,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "constantinople",
+      "title": "Constantinople opened",
+      "arabic": "فتح القسطنطينية",
+      "when": "Before the Dajjal",
+      "at": 3.5,
+      "summary": "A city is taken by the takbir alone; then word comes that the Dajjal has appeared.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "muslim",
+          "number": 2920,
+          "part": "a",
+          "checked": "sunnah.com numbering, read on hadithunlocked.com"
+        }
+      ],
+      "steps": [
+        {
+          "id": "takbir-falls",
+          "title": "Walls fall to the takbir",
+          "arabic": "سقوط الأسوار بالتكبير",
+          "when": "The siege",
+          "summary": "Seventy thousand from the Children of Israel take the city without weapon or arrow, only by saying the takbir.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2920,
+              "part": "a",
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "dajjal-news",
+          "title": "News of the Dajjal",
+          "arabic": "خبر ظهور الدجال",
+          "when": "While dividing the spoils",
+          "summary": "As the army collects and divides the spoils, a cry goes up that the Dajjal has appeared, and they leave everything behind.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2920,
+              "part": "a",
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dajjal",
+      "title": "The Dajjal",
+      "arabic": "الدجال",
+      "when": "Major sign",
+      "at": 4,
+      "summary": "The greatest trial; he stays forty days, one like a year.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "hadith": "muslim",
+          "number": 2937,
+          "checked": "sunnah.com"
+        }
+      ],
+      "steps": [
+        {
+          "id": "appearance",
+          "title": "His appearance",
+          "arabic": "صفته",
+          "when": "Between Syria and Iraq",
+          "summary": "A young man with curled hair and a blind eye, resembling Abd al-Uzza ibn Qatan; he appears between Syria and Iraq spreading corruption.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2937,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "forty-days",
+          "title": "Forty days",
+          "arabic": "أربعون يوما",
+          "when": "His stay on earth",
+          "summary": "He remains forty days: one like a year, one like a month, one like a week, the rest like ordinary days; prayers are timed by estimation.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2937,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "deception",
+          "title": "Rain and famine by his word",
+          "arabic": "المطر والقحط بأمره",
+          "when": "As he travels",
+          "summary": "Those who believe him see rain and full harvests; those who refuse him are struck by drought and lose their wealth.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2937,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "madinah-guarded",
+          "title": "Madinah stays guarded",
+          "arabic": "المدينة محروسة",
+          "when": "Throughout his time",
+          "summary": "Every land is open to him except Makkah and Madinah, whose approaches angels stand guarding in rows.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2943,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "isa-descends",
+      "title": "Isa descends",
+      "arabic": "نزول عيسى",
+      "when": "Major sign",
+      "at": 5,
+      "summary": "Descends at the white minaret east of Damascus and kills the Dajjal.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "hadith": "muslim",
+          "number": 2937,
+          "checked": "sunnah.com"
+        },
+        {
+          "quran": "43:61"
+        }
+      ],
+      "steps": [
+        {
+          "id": "white-minaret",
+          "title": "Descends at the white minaret",
+          "arabic": "النزول عند المنارة البيضاء",
+          "when": "East of Damascus",
+          "summary": "Isa descends at the white minaret east of Damascus, hands on the wings of two angels, wearing two garments dyed with saffron.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2937,
+              "checked": "sunnah.com"
+            },
+            {
+              "quran": "43:61"
+            }
+          ]
+        },
+        {
+          "id": "kills-dajjal",
+          "title": "Kills the Dajjal at Ludd",
+          "arabic": "قتل الدجال عند باب لد",
+          "when": "The pursuit",
+          "summary": "He chases the Dajjal down and kills him at the gate of Ludd.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2937,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "protects-survivors",
+          "title": "Protects the survivors",
+          "arabic": "حماية الناجين",
+          "when": "After the Dajjal's death",
+          "summary": "The people Allah protected from the Dajjal come to Isa; he wipes their faces and tells them their rank in Paradise.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2937,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "withdraws-tur",
+          "title": "Withdraws to Mount Tur",
+          "arabic": "الالتجاء إلى الطور",
+          "when": "Before Ya'juj and Ma'juj",
+          "summary": "Allah tells Isa He has brought forth servants no one can fight, and to take the believers to Mount Tur for safety.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2937,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yajuj",
+      "title": "Ya'juj and Ma'juj",
+      "arabic": "يأجوج ومأجوج",
+      "when": "Major sign",
+      "at": 6,
+      "summary": "Released, they pour down from every height.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "quran": "21:96"
+        },
+        {
+          "quran": "18:94-99"
+        }
+      ],
+      "steps": [
+        {
+          "id": "barrier-levelled",
+          "title": "The barrier is levelled",
+          "arabic": "تسوية السد",
+          "when": "Allah's promise comes",
+          "summary": "Dhul-Qarnayn's barrier is levelled to the ground, and Ya'juj and Ma'juj surge out mixed together.",
+          "refs": [
+            {
+              "quran": "18:98-99"
+            }
+          ]
+        },
+        {
+          "id": "every-height",
+          "title": "Down from every height",
+          "arabic": "الانحدار من كل حدب",
+          "when": "Their release",
+          "summary": "They are let loose and pour down from every rise of ground.",
+          "refs": [
+            {
+              "quran": "21:96"
+            }
+          ]
+        },
+        {
+          "id": "lake-drunk-dry",
+          "title": "Lake Tiberias drunk dry",
+          "arabic": "شرب بحيرة طبرية",
+          "when": "Their advance",
+          "summary": "Their vanguard drinks the lake dry; those behind them say water was once here.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2937,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "worms-in-necks",
+          "title": "Worms in their necks",
+          "arabic": "دود في رقابهم",
+          "when": "After Isa's prayer",
+          "summary": "Isa and the believers pray against them, and Allah sends creatures into their necks; by morning they all lie dead.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2937,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "birds-carry-bodies",
+          "title": "Birds carry the bodies",
+          "arabic": "الطير تحمل الجثث",
+          "when": "The clean-up",
+          "summary": "Isa and the believers pray again, and Allah sends birds with necks like camels to carry the corpses away.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2937,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "cleansing-rain",
+          "title": "Rain washes the earth",
+          "arabic": "مطر يغسل الأرض",
+          "when": "After the birds",
+          "summary": "Rain falls on every dwelling, washing the earth until it shines, and the land grows fruit again in abundance.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2937,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smoke",
+      "title": "The Smoke",
+      "arabic": "الدخان",
+      "when": "Major sign",
+      "at": 7,
+      "summary": "A smoke that covers the people.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "quran": "44:10-11"
+        },
+        {
+          "hadith": "muslim",
+          "number": 2901,
+          "checked": "sunnah.com"
+        }
+      ]
+    },
+    {
+      "id": "sun",
+      "title": "Sun rises from the west",
+      "arabic": "طلوع الشمس من مغربها",
+      "when": "Major sign",
+      "at": 8,
+      "summary": "After it, repentance is no longer accepted.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "quran": "6:158"
+        },
+        {
+          "hadith": "muslim",
+          "number": 2901,
+          "checked": "sunnah.com"
+        }
+      ],
+      "steps": [
+        {
+          "id": "world-believes",
+          "title": "All the living believe",
+          "arabic": "إيمان جميع الأحياء",
+          "when": "When it rises",
+          "summary": "Once the sun rises from the west, whoever is alive believes, but that late faith no longer benefits a soul who did not believe before.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4635,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "repentance-closes",
+          "title": "The door of repentance shuts",
+          "arabic": "إغلاق باب التوبة",
+          "when": "At that point",
+          "summary": "Allah's hand is stretched out day and night to accept repentance, but only until the sun rises from the west.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 2759,
+              "part": "a",
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "beast",
+      "title": "The Beast",
+      "arabic": "الدابة",
+      "when": "Major sign",
+      "at": 9,
+      "summary": "A beast from the earth speaks to people.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "quran": "27:82"
+        }
+      ],
+      "steps": [
+        {
+          "id": "marks-faces",
+          "title": "Marks believers and disbelievers",
+          "arabic": "وسم المؤمن والكافر",
+          "when": "Its emergence",
+          "summary": "A report says it carries the ring of Sulayman and the staff of Musa, brightening the believer's face and marking the disbeliever's nose.",
+          "refs": [
+            {
+              "hadith": "tirmidhi",
+              "number": 3187,
+              "checked": "sunnah.com"
+            }
+          ],
+          "flags": [
+            "weakchain"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fire",
+      "title": "The Fire from Yemen",
+      "arabic": "النار",
+      "when": "Last major sign",
+      "at": 10,
+      "summary": "A fire drives people to their gathering place.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "hadith": "muslim",
+          "number": 2901,
+          "checked": "sunnah.com"
+        }
+      ]
+    }
+  ]
+}

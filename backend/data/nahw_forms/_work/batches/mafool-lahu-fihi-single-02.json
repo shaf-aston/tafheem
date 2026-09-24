@@ -1,0 +1,322 @@
+{
+ "batch": "mafool-lahu-fihi-single-02",
+ "questions": [
+  {
+   "id": "mafool-lahu-fihi/statements/9",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "9",
+    "images": [
+     "q010.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "9. The مفعول فيه signifes...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول فيه signifes...",
+     "kind": "choose_all",
+     "options": [
+      "...the place an action is conducted in.",
+      "...the reason for an action being conducted.",
+      "...the time an action is conducted in.",
+      "...the method an action is conducted in."
+     ],
+     "rows": null,
+     "columns": null,
+     "answer": [
+      "...the time an action is conducted in.",
+      "...the place an action is conducted in."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...the place an action is conducted in."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/10",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "10",
+    "images": [
+     "q011.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "10. The مفعول فيه ...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول فيه ...",
+     "kind": "choose_all",
+     "options": [
+      "...can come after the verb.",
+      "...can come before the verb.",
+      "...must come before the verb.",
+      "...must come after the verb."
+     ],
+     "rows": null,
+     "columns": null,
+     "answer": [
+      "...can come after the verb.",
+      "...can come before the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can come after the verb.",
+      "...can come before the verb."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/11",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "11",
+    "images": [
+     "q012.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "11. The مفعول فيه will require an explicit في...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول فيه will require an explicit في...",
+     "kind": "choose_all",
+     "options": [
+      "...If the مفعول فيه is a restricted ظرف زمان.",
+      "...If the مفعول فيه is a restricted ظرف مكان.",
+      "...If the مفعول فيه is an unrestricted ظرف زمان.",
+      "...If the مفعول فيه is an unrestricted ظرف مكان."
+     ],
+     "rows": null,
+     "columns": null,
+     "answer": [
+      "...If the مفعول فيه is a restricted ظرف مكان."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...If the مفعول فيه is a restricted ظرف زمان.",
+      "...If the مفعول فيه is a restricted ظرف مكان."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/12",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "12",
+    "images": [
+     "q013.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "12. The غايات are...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The غايات are...",
+     "kind": "choose_all",
+     "options": [
+      "...unrestricted ظروف",
+      "...restricted ظروف"
+     ],
+     "rows": null,
+     "columns": null,
+     "answer": [
+      "...unrestricted ظروف"
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...unrestricted ظروف"
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/13",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "13",
+    "images": [
+     "q014.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "13. The غايات are called غايات because...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The غايات are called غايات because...",
+     "kind": "choose_all",
+     "options": [
+      "...they become مبني when their مضاف إليه is dropped.",
+      "...the sentence ends with them.",
+      "...the word ends with them.",
+      "...they remain معرب when their مضاف إليه is dropped.",
+      "...they don't accept تنوين العوض."
+     ],
+     "rows": null,
+     "columns": null,
+     "answer": [
+      "...the word ends with them.",
+      "...they don't accept تنوين العوض."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...they become مبني when their مضاف إليه is dropped.",
+      "...they don't accept تنوين العوض."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/14",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "14",
+    "images": [
+     "q015.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "14. A تنوين العوض compensates...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "A تنوين العوض compensates...",
+     "kind": "choose_all",
+     "options": [
+      "...a dropped sentence.",
+      "...a dropped حرف like مِنْ.",
+      "...a dropped word.",
+      "...a dropped letter",
+      "...a hidden word like ثابت."
+     ],
+     "rows": null,
+     "columns": null,
+     "answer": [
+      "...a dropped letter",
+      "...a dropped word.",
+      "...a dropped sentence."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...a dropped word."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/15",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "15",
+    "images": [
+     "q016.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "15. The tanween on the following word is...",
+   "sentences": [
+    {
+     "label": null,
+     "ar": "رَجُلٌ",
+     "marked": [],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The tanween on the following word is...",
+     "kind": "choose_all",
+     "options": [
+      "...a تنوين العوض (a tanween of compensation).",
+      "...a تنوين التنكير (a tanween of indefiniteness).",
+      "...a تنوين التمكين (a tanween of firm establishment)."
+     ],
+     "rows": null,
+     "columns": null,
+     "answer": [
+      "...a تنوين التمكين (a tanween of firm establishment)."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...a تنوين التنكير (a tanween of indefiniteness)."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "The word image is stylized calligraphy; transcribed as رَجُلٌ from visual reading of the shapes, worth a manual double-check."
+   ]
+  }
+ ]
+}

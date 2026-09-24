@@ -1,0 +1,974 @@
+{
+  "id": "prophets",
+  "order": 1,
+  "name": "The Prophets",
+  "arabic": "الأنبياء",
+  "science": "qasas",
+  "kind": "undated",
+  "sub": "Adam to Isa",
+  "map": "near-east",
+  "events": [
+    {
+      "id": "adam",
+      "title": "Adam",
+      "arabic": "آدم",
+      "when": "The first",
+      "at": 1,
+      "summary": "Created and placed in the Garden; taught the names; descends to the earth as its first khalifah.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "2:30-37"
+        }
+      ],
+      "steps": [
+        {
+          "id": "taught-names",
+          "title": "Taught the names",
+          "arabic": "تعليم الأسماء",
+          "when": "At his creation",
+          "summary": "Allah creates Adam, tells the angels a khalifah is coming, and teaches Adam the names of all things.",
+          "refs": [
+            {
+              "quran": "2:30-33"
+            }
+          ]
+        },
+        {
+          "id": "iblis-refuses",
+          "title": "Iblis refuses to bow",
+          "arabic": "إباء إبليس عن السجود",
+          "when": "After the names are taught",
+          "summary": "The angels are commanded to prostrate to Adam; all obey except Iblis, who refuses out of pride.",
+          "refs": [
+            {
+              "quran": "2:34"
+            }
+          ]
+        },
+        {
+          "id": "forbidden-tree",
+          "title": "The forbidden tree",
+          "arabic": "الشجرة المحرمة",
+          "when": "In the Garden",
+          "summary": "Adam and his wife are told to enjoy the Garden but avoid one tree; Shaytan whispers to them until they eat from it.",
+          "refs": [
+            {
+              "quran": "7:19-22"
+            }
+          ]
+        },
+        {
+          "id": "repentance-descent",
+          "title": "Repentance and descent",
+          "arabic": "التوبة والهبوط",
+          "when": "After the fall",
+          "summary": "Adam receives words of repentance from his Lord and is forgiven, then he and his wife are sent down to the earth.",
+          "refs": [
+            {
+              "quran": "2:36-38"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nuh",
+      "title": "Nuh",
+      "arabic": "نوح",
+      "when": "After Adam",
+      "at": 2,
+      "place": "judi",
+      "summary": "Calls his people for 950 years; the flood; the ark comes to rest on al-Judi.",
+      "flags": [
+        "tradplace"
+      ],
+      "refs": [
+        {
+          "quran": "29:14"
+        },
+        {
+          "quran": "11:44"
+        }
+      ],
+      "steps": [
+        {
+          "id": "calls-his-people",
+          "title": "Calls his people",
+          "arabic": "دعوة قومه",
+          "when": "Over centuries",
+          "summary": "Nuh calls his people night and day, openly and secretly, to worship Allah alone, but most refuse.",
+          "refs": [
+            {
+              "quran": "71:5-9"
+            }
+          ]
+        },
+        {
+          "id": "builds-ark",
+          "title": "Builds the ark",
+          "arabic": "بناء السفينة",
+          "when": "Before the flood",
+          "summary": "Commanded to build a ship under Allah's watch, he is mocked by his people as he works.",
+          "refs": [
+            {
+              "quran": "11:37-38"
+            }
+          ]
+        },
+        {
+          "id": "flood-and-son",
+          "title": "The flood and his son",
+          "arabic": "الطوفان وابنه",
+          "when": "When the flood came",
+          "summary": "The flood breaks out and Nuh boards the ark with believers and pairs of animals; his own son refuses to come aboard and drowns.",
+          "refs": [
+            {
+              "quran": "11:40-43"
+            }
+          ]
+        },
+        {
+          "id": "rests-on-judi",
+          "title": "The ark rests on Judi",
+          "arabic": "استواء السفينة على الجودي",
+          "when": "After the flood",
+          "summary": "The waters recede and the ark comes to rest on Mount Judi, ending the flood.",
+          "refs": [
+            {
+              "quran": "11:44"
+            }
+          ],
+          "place": "judi"
+        }
+      ]
+    },
+    {
+      "id": "hud",
+      "title": "Hud",
+      "arabic": "هود",
+      "when": "After Nuh",
+      "at": 3,
+      "place": "ahqaf",
+      "summary": "Sent to 'Ad at the sand dunes; they are destroyed by a furious wind.",
+      "flags": [
+        "tradplace"
+      ],
+      "refs": [
+        {
+          "quran": "46:21"
+        },
+        {
+          "quran": "69:6-7"
+        }
+      ],
+      "steps": [
+        {
+          "id": "sent-to-ad",
+          "title": "Sent to 'Ad",
+          "arabic": "الإرسال إلى عاد",
+          "when": "To the people of the dunes",
+          "summary": "Hud is sent to his people 'Ad and calls them to worship Allah alone.",
+          "refs": [
+            {
+              "quran": "11:50"
+            }
+          ]
+        },
+        {
+          "id": "ad-refuse",
+          "title": "'Ad refuse him",
+          "arabic": "رفض عاد",
+          "when": "After his call",
+          "summary": "His people mock him and refuse to leave the gods of their forefathers.",
+          "refs": [
+            {
+              "quran": "11:53-57"
+            }
+          ]
+        },
+        {
+          "id": "cloud-and-wind",
+          "title": "The cloud and the wind",
+          "arabic": "السحاب والريح",
+          "when": "As punishment nears",
+          "summary": "They see what looks like a rain cloud approaching, but it is a violent wind carrying painful punishment.",
+          "refs": [
+            {
+              "quran": "46:24-25"
+            }
+          ]
+        },
+        {
+          "id": "ad-destroyed",
+          "title": "'Ad destroyed",
+          "arabic": "هلاك عاد",
+          "when": "The punishment",
+          "summary": "The wind rages over them for seven nights and eight days, leaving them fallen like hollow palm trunks.",
+          "refs": [
+            {
+              "quran": "69:6-8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salih",
+      "title": "Salih",
+      "arabic": "صالح",
+      "when": "After Hud",
+      "at": 4,
+      "place": "hijr",
+      "summary": "Sent to Thamud, who carved homes from mountains; they kill the she-camel.",
+      "flags": [
+        "tradplace"
+      ],
+      "refs": [
+        {
+          "quran": "15:80"
+        },
+        {
+          "quran": "11:61-68"
+        }
+      ],
+      "steps": [
+        {
+          "id": "sent-to-thamud",
+          "title": "Sent to Thamud",
+          "arabic": "الإرسال إلى ثمود",
+          "when": "To the people of the rock",
+          "summary": "Salih is sent to Thamud and calls them to worship Allah alone.",
+          "refs": [
+            {
+              "quran": "11:61-62"
+            }
+          ]
+        },
+        {
+          "id": "she-camel-sign",
+          "title": "The she-camel as a sign",
+          "arabic": "الناقة آية",
+          "when": "As proof of his message",
+          "summary": "Allah sends a she-camel as a sign; Salih tells his people to let her drink and graze and not to harm her.",
+          "refs": [
+            {
+              "quran": "11:64"
+            },
+            {
+              "quran": "7:73"
+            }
+          ]
+        },
+        {
+          "id": "camel-hamstrung",
+          "title": "The she-camel hamstrung",
+          "arabic": "عقر الناقة",
+          "when": "Against his warning",
+          "summary": "The most wretched of them hamstrings the she-camel, defying the warning he gave them.",
+          "refs": [
+            {
+              "quran": "91:12-14"
+            }
+          ]
+        },
+        {
+          "id": "thamud-destroyed",
+          "title": "Thamud destroyed",
+          "arabic": "هلاك ثمود",
+          "when": "Three days later",
+          "summary": "A mighty shriek seizes them and they are found fallen dead in their homes.",
+          "refs": [
+            {
+              "quran": "11:67"
+            },
+            {
+              "quran": "91:14-15"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ibrahim",
+      "title": "Ibrahim",
+      "arabic": "إبراهيم",
+      "when": "Lut lives in his time",
+      "at": 5,
+      "place": "makkah",
+      "summary": "Breaks the idols, is saved from the fire, and raises the foundations of the Ka'bah with Isma'il.",
+      "flags": [
+        "tradplace"
+      ],
+      "refs": [
+        {
+          "quran": "21:68-69"
+        },
+        {
+          "quran": "2:127"
+        }
+      ],
+      "steps": [
+        {
+          "id": "argues-with-father",
+          "title": "Argues with his father",
+          "arabic": "جدال أبيه",
+          "when": "In his youth",
+          "summary": "Ibrahim asks his father why he worships idols that neither hear nor see, and gently parts from him.",
+          "refs": [
+            {
+              "quran": "19:42-48"
+            }
+          ]
+        },
+        {
+          "id": "breaks-idols",
+          "title": "Breaks the idols",
+          "arabic": "تحطيم الأصنام",
+          "when": "While his people are away",
+          "summary": "Ibrahim smashes his people's idols to pieces, leaving only the largest one.",
+          "refs": [
+            {
+              "quran": "21:57-58"
+            }
+          ]
+        },
+        {
+          "id": "thrown-in-fire",
+          "title": "Thrown into the Fire",
+          "arabic": "الإلقاء في النار",
+          "when": "After he is questioned",
+          "summary": "His people build a fire and cast him into it, but Allah commands the fire to be cool and safe for him.",
+          "refs": [
+            {
+              "quran": "21:68-69"
+            }
+          ]
+        },
+        {
+          "id": "commanded-sacrifice",
+          "title": "Commanded to sacrifice his son",
+          "arabic": "أمر بذبح ابنه",
+          "when": "When his son could work beside him",
+          "summary": "Ibrahim sees in a dream that he must sacrifice his son; both submit, and Allah ransoms the boy with a sacrifice.",
+          "refs": [
+            {
+              "quran": "37:102-107"
+            }
+          ]
+        },
+        {
+          "id": "builds-kabah",
+          "title": "Builds the Ka'bah",
+          "arabic": "بناء الكعبة",
+          "when": "With Isma'il",
+          "summary": "Ibrahim and Isma'il raise the foundations of the House and pray for it to be accepted.",
+          "refs": [
+            {
+              "quran": "2:127-129"
+            }
+          ],
+          "place": "makkah"
+        }
+      ]
+    },
+    {
+      "id": "lut",
+      "title": "Lut",
+      "arabic": "لوط",
+      "when": "In the time of Ibrahim",
+      "at": 5,
+      "place": "sodom",
+      "summary": "Angels come to him as guests; he leaves by night with his family before his town is overturned.",
+      "flags": [
+        "tradplace"
+      ],
+      "refs": [
+        {
+          "quran": "11:77-83"
+        }
+      ],
+      "steps": [
+        {
+          "id": "warns-his-people",
+          "title": "Warns his people",
+          "arabic": "إنذار قومه",
+          "when": "In Sodom",
+          "summary": "Lut warns his people against an immorality no people before them had committed.",
+          "refs": [
+            {
+              "quran": "7:80-81"
+            }
+          ]
+        },
+        {
+          "id": "angels-as-guests",
+          "title": "Angels as guests",
+          "arabic": "الملائكة ضيوفا",
+          "when": "Before the punishment",
+          "summary": "Angels visit Lut in human form; his people rush toward his house, and he is distressed for his guests.",
+          "refs": [
+            {
+              "quran": "11:77-79"
+            }
+          ]
+        },
+        {
+          "id": "leaves-by-night",
+          "title": "Leaves by night",
+          "arabic": "الخروج ليلا",
+          "when": "On the angels' instruction",
+          "summary": "The angels tell Lut to leave with his family in the night and not look back; his wife is left behind to be struck.",
+          "refs": [
+            {
+              "quran": "11:81"
+            }
+          ]
+        },
+        {
+          "id": "town-overturned",
+          "title": "The town overturned",
+          "arabic": "قلب القرية",
+          "when": "At the command",
+          "summary": "When the command comes, the town is turned upside down and pelted with stones of baked clay.",
+          "refs": [
+            {
+              "quran": "11:82-83"
+            }
+          ],
+          "place": "sodom"
+        }
+      ]
+    },
+    {
+      "id": "yusuf",
+      "title": "Yusuf",
+      "arabic": "يوسف",
+      "when": "Great-grandson of Ibrahim",
+      "at": 6,
+      "place": "egypt",
+      "summary": "Thrown in the well, sold in Egypt, imprisoned, then placed over the storehouses of the land.",
+      "flags": [
+        "tradplace"
+      ],
+      "refs": [
+        {
+          "quran": "12"
+        }
+      ],
+      "steps": [
+        {
+          "id": "the-dream",
+          "title": "The dream",
+          "arabic": "الرؤيا",
+          "when": "As a boy",
+          "summary": "Yusuf tells his father of a dream of eleven stars, the sun and the moon bowing to him; his father warns him to keep it from his brothers.",
+          "refs": [
+            {
+              "quran": "12:4-6"
+            }
+          ]
+        },
+        {
+          "id": "thrown-in-well",
+          "title": "Thrown in the well",
+          "arabic": "الإلقاء في الجب",
+          "when": "Out of his brothers' jealousy",
+          "summary": "His brothers throw him into a well and bring their father his shirt stained with false blood.",
+          "refs": [
+            {
+              "quran": "12:8-18"
+            }
+          ]
+        },
+        {
+          "id": "sold-in-egypt",
+          "title": "Sold in Egypt",
+          "arabic": "البيع في مصر",
+          "when": "As a boy",
+          "summary": "Travelers find him in the well and sell him for a low price to a noble of Egypt.",
+          "refs": [
+            {
+              "quran": "12:19-20"
+            }
+          ],
+          "place": "egypt"
+        },
+        {
+          "id": "wife-of-al-aziz",
+          "title": "The wife of al-Aziz",
+          "arabic": "امرأة العزيز",
+          "when": "Grown in the household",
+          "summary": "The nobleman's wife tries to seduce him; he flees and his shirt is torn from behind, proving his innocence.",
+          "refs": [
+            {
+              "quran": "12:23-29"
+            }
+          ],
+          "place": "egypt"
+        },
+        {
+          "id": "prison-and-kings-dream",
+          "title": "Prison and the king's dream",
+          "arabic": "السجن ورؤيا الملك",
+          "when": "For years",
+          "summary": "In prison he interprets two men's dreams, and is later called to interpret the king's dream of seven cows, which leads to his release.",
+          "refs": [
+            {
+              "quran": "12:36-49"
+            }
+          ],
+          "place": "egypt"
+        },
+        {
+          "id": "reunited-with-family",
+          "title": "Reunited with his family",
+          "arabic": "اللقاء بأهله",
+          "when": "Years later",
+          "summary": "His shirt restores his father's sight, and his family comes to Egypt and bows before him, fulfilling his childhood dream.",
+          "refs": [
+            {
+              "quran": "12:93-100"
+            }
+          ],
+          "place": "egypt"
+        }
+      ]
+    },
+    {
+      "id": "musa",
+      "title": "Musa",
+      "arabic": "موسى",
+      "when": "With his brother Harun",
+      "at": 7,
+      "place": "sinai",
+      "summary": "Confronts Pharaoh with Harun beside him, the sea is parted, and he receives the Tawrah.",
+      "flags": [
+        "tradplace"
+      ],
+      "refs": [
+        {
+          "quran": "20:9-98"
+        },
+        {
+          "quran": "26:63"
+        }
+      ],
+      "steps": [
+        {
+          "id": "infancy-in-the-river",
+          "title": "Infancy in the river",
+          "arabic": "الطفولة في النهر",
+          "when": "As a baby",
+          "summary": "His mother casts him into the river to save him from Pharaoh; Pharaoh's household takes him in, and he is returned to his mother to nurse.",
+          "refs": [
+            {
+              "quran": "28:7-13"
+            }
+          ],
+          "place": "egypt"
+        },
+        {
+          "id": "flight-to-madyan",
+          "title": "Flight to Madyan",
+          "arabic": "الهروب إلى مدين",
+          "when": "After fleeing Egypt",
+          "summary": "After killing a man by accident, Musa flees to Madyan, waters two women's flocks, and marries after working for their father.",
+          "refs": [
+            {
+              "quran": "28:15-28"
+            }
+          ],
+          "place": "madyan",
+          "flags": [
+            "tradplace"
+          ]
+        },
+        {
+          "id": "the-burning-bush",
+          "title": "The burning bush",
+          "arabic": "الشجرة المباركة",
+          "when": "Returning from Madyan",
+          "summary": "At a fire in the valley of Tuwa, Musa is called by name and commanded to worship Allah alone.",
+          "refs": [
+            {
+              "quran": "20:9-14"
+            }
+          ],
+          "place": "sinai"
+        },
+        {
+          "id": "confronts-pharaoh",
+          "title": "Confronts Pharaoh",
+          "arabic": "مواجهة فرعون",
+          "when": "Sent with Harun",
+          "summary": "Musa and Harun deliver the message to Pharaoh; his magicians are outmatched and fall down believing.",
+          "refs": [
+            {
+              "quran": "20:47-70"
+            }
+          ],
+          "place": "egypt"
+        },
+        {
+          "id": "the-sea-parts",
+          "title": "The sea parts",
+          "arabic": "انفلاق البحر",
+          "when": "Fleeing Pharaoh's army",
+          "summary": "Musa strikes the sea with his staff and it parts; his people cross safely and Pharaoh's army is drowned.",
+          "refs": [
+            {
+              "quran": "26:63-66"
+            }
+          ]
+        },
+        {
+          "id": "the-golden-calf",
+          "title": "The golden calf",
+          "arabic": "العجل الذهبي",
+          "when": "While Musa was on the mount",
+          "summary": "While Musa receives the Tawrah, al-Samiri leads his people to worship a calf; Musa returns in anger and destroys it.",
+          "refs": [
+            {
+              "quran": "20:83-98"
+            }
+          ],
+          "place": "sinai"
+        }
+      ]
+    },
+    {
+      "id": "dawud",
+      "title": "Dawud and Sulayman",
+      "arabic": "داود وسليمان",
+      "when": "Father, then son",
+      "at": 8,
+      "place": "jerusalem",
+      "summary": "Dawud is given the Zabur and iron made soft; Sulayman is given the wind and the jinn.",
+      "flags": [
+        "tradplace"
+      ],
+      "refs": [
+        {
+          "quran": "34:10-13"
+        },
+        {
+          "quran": "27:15-44"
+        }
+      ],
+      "steps": [
+        {
+          "id": "defeats-jalut",
+          "title": "Defeats Jalut",
+          "arabic": "قتل جالوت",
+          "when": "As a young soldier",
+          "summary": "Fighting under Talut against a much larger army, Dawud kills Jalut and Allah gives him kingship and wisdom.",
+          "refs": [
+            {
+              "quran": "2:249-251"
+            }
+          ]
+        },
+        {
+          "id": "iron-made-soft",
+          "title": "Given the Zabur and soft iron",
+          "arabic": "الزبور وتليين الحديد",
+          "when": "As a prophet-king",
+          "summary": "Allah gives Dawud a Book and makes iron pliant in his hands, and the mountains and birds join his praise.",
+          "refs": [
+            {
+              "quran": "34:10"
+            },
+            {
+              "quran": "4:163"
+            }
+          ]
+        },
+        {
+          "id": "two-disputants",
+          "title": "The two disputants",
+          "arabic": "الخصمان",
+          "when": "In his prayer chamber",
+          "summary": "Two men climb the wall to test his judgement with a dispute over ewes; Dawud realises it is a trial and turns to Allah in repentance.",
+          "refs": [
+            {
+              "quran": "38:21-25"
+            }
+          ]
+        },
+        {
+          "id": "sulayman-wind-jinn",
+          "title": "Sulayman commands wind and Jinn",
+          "arabic": "تسخير الريح والجن لسليمان",
+          "when": "As Dawud's heir",
+          "summary": "Sulayman inherits prophethood and kingship, and the wind and the jinn are made to work under his command.",
+          "refs": [
+            {
+              "quran": "34:12-13"
+            }
+          ],
+          "place": "jerusalem"
+        },
+        {
+          "id": "valley-of-ants",
+          "title": "The valley of ants",
+          "arabic": "وادي النمل",
+          "when": "On campaign",
+          "summary": "Passing a valley of ants, Sulayman hears one warn the others and smiles, grateful for the gift of understanding her speech.",
+          "refs": [
+            {
+              "quran": "27:18-19"
+            }
+          ]
+        },
+        {
+          "id": "queen-of-sheba",
+          "title": "The queen of Sheba",
+          "arabic": "ملكة سبأ",
+          "when": "After the hoopoe's report",
+          "summary": "The hoopoe brings news of a queen who rules a great kingdom; her throne is brought to Sulayman before she arrives, and she submits with him to Allah.",
+          "refs": [
+            {
+              "quran": "27:22-44"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yunus",
+      "title": "Yunus",
+      "arabic": "يونس",
+      "when": "Before Zakariyya",
+      "at": 9,
+      "place": "nineveh",
+      "summary": "Leaves his people, is swallowed by the whale, and returns to a people who believed.",
+      "flags": [
+        "tradplace"
+      ],
+      "refs": [
+        {
+          "quran": "37:139-148"
+        }
+      ],
+      "steps": [
+        {
+          "id": "flees-on-a-ship",
+          "title": "Flees on a ship",
+          "arabic": "الفرار في السفينة",
+          "when": "Leaving his people",
+          "summary": "Yunus leaves his people without Allah's permission and boards a ship; when it is overloaded, lots are drawn and he is cast into the sea.",
+          "refs": [
+            {
+              "quran": "37:139-141"
+            },
+            {
+              "quran": "21:87"
+            }
+          ]
+        },
+        {
+          "id": "swallowed-by-the-fish",
+          "title": "Swallowed by the fish",
+          "arabic": "ابتلاع الحوت له",
+          "when": "In the sea",
+          "summary": "A great fish swallows him while he is blameworthy for leaving his people.",
+          "refs": [
+            {
+              "quran": "37:142"
+            }
+          ]
+        },
+        {
+          "id": "calls-in-the-darkness",
+          "title": "Calls out in the darkness",
+          "arabic": "النداء في الظلمات",
+          "when": "Inside the fish",
+          "summary": "In the darkness of the sea and the fish's belly, he calls out that there is no god but Allah and confesses his wrong.",
+          "refs": [
+            {
+              "quran": "21:87-88"
+            }
+          ]
+        },
+        {
+          "id": "cast-onto-the-shore",
+          "title": "Cast onto the shore",
+          "arabic": "القذف بالعراء",
+          "when": "After being saved",
+          "summary": "Allah saves him and casts him, sick, onto an open shore, growing a gourd plant over him for shade.",
+          "refs": [
+            {
+              "quran": "37:145-146"
+            }
+          ]
+        },
+        {
+          "id": "nineveh-believes",
+          "title": "His people believe",
+          "arabic": "إيمان قومه",
+          "when": "On his return",
+          "summary": "He is sent back to over a hundred thousand people, and this time they believe and are spared the punishment.",
+          "refs": [
+            {
+              "quran": "37:147-148"
+            },
+            {
+              "quran": "10:98"
+            }
+          ],
+          "place": "nineveh"
+        }
+      ]
+    },
+    {
+      "id": "zakariyya",
+      "title": "Zakariyya and Yahya",
+      "arabic": "زكريا ويحيى",
+      "when": "In the time of Isa",
+      "at": 10,
+      "place": "jerusalem",
+      "summary": "Zakariyya, old and childless, is given Yahya, who is given judgement while still a boy.",
+      "flags": [
+        "tradplace"
+      ],
+      "refs": [
+        {
+          "quran": "19:2-15"
+        }
+      ],
+      "steps": [
+        {
+          "id": "prays-for-a-child",
+          "title": "Prays for a child",
+          "arabic": "الدعاء بالولد",
+          "when": "In old age",
+          "summary": "Old and his wife barren, Zakariyya privately asks his Lord for an heir to carry on his work.",
+          "refs": [
+            {
+              "quran": "19:2-6"
+            }
+          ]
+        },
+        {
+          "id": "good-news-of-yahya",
+          "title": "Good news of Yahya",
+          "arabic": "البشارة بيحيى",
+          "when": "In answer to his prayer",
+          "summary": "Zakariyya is given the good news of a son named Yahya, a name given to no one before him.",
+          "refs": [
+            {
+              "quran": "19:7-9"
+            }
+          ]
+        },
+        {
+          "id": "sign-of-silence",
+          "title": "Sign of three days' silence",
+          "arabic": "آية الأيام الثلاثة",
+          "when": "As confirmation",
+          "summary": "Zakariyya asks for a sign, and is told his sign is that he will not speak to people for three days though he is sound.",
+          "refs": [
+            {
+              "quran": "19:10-11"
+            }
+          ]
+        },
+        {
+          "id": "yahya-given-wisdom",
+          "title": "Yahya given wisdom as a boy",
+          "arabic": "إيتاء يحيى الحكم صبيا",
+          "when": "In his childhood",
+          "summary": "Yahya is given judgement, affection and purity while still a boy, and is devoted to his parents.",
+          "refs": [
+            {
+              "quran": "19:12-14"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "isa",
+      "title": "Isa",
+      "arabic": "عيسى",
+      "when": "In the time of Yahya",
+      "at": 10,
+      "place": "bethlehem",
+      "summary": "Born to Maryam without a father; not killed nor crucified, but raised up.",
+      "flags": [
+        "tradplace"
+      ],
+      "refs": [
+        {
+          "quran": "19:16-34"
+        },
+        {
+          "quran": "4:157-158"
+        }
+      ],
+      "steps": [
+        {
+          "id": "angels-announcement",
+          "title": "The angel's announcement",
+          "arabic": "بشارة الملك",
+          "when": "To Maryam",
+          "summary": "An angel comes to Maryam in human form and announces a pure son, though no man has touched her.",
+          "refs": [
+            {
+              "quran": "19:16-21"
+            }
+          ]
+        },
+        {
+          "id": "birth-under-palm",
+          "title": "Birth under the palm tree",
+          "arabic": "الولادة تحت النخلة",
+          "when": "Alone in labour",
+          "summary": "Maryam withdraws to give birth alone; a voice tells her not to grieve, and provides her water and fresh dates.",
+          "refs": [
+            {
+              "quran": "19:22-26"
+            }
+          ]
+        },
+        {
+          "id": "infant-speaks",
+          "title": "The infant speaks",
+          "arabic": "كلام الطفل",
+          "when": "When she is accused",
+          "summary": "When her people accuse her, Maryam points to the baby; Isa speaks from the cradle, declaring himself a servant of Allah.",
+          "refs": [
+            {
+              "quran": "19:27-33"
+            }
+          ]
+        },
+        {
+          "id": "miracles-by-permission",
+          "title": "Miracles by Allah's permission",
+          "arabic": "المعجزات بإذن الله",
+          "when": "As a prophet",
+          "summary": "As a messenger to the Children of Israel, Isa heals the blind and the leper and gives life to the dead, all by Allah's permission.",
+          "refs": [
+            {
+              "quran": "3:49"
+            }
+          ]
+        },
+        {
+          "id": "raised-not-crucified",
+          "title": "Raised, not crucified",
+          "arabic": "الرفع لا الصلب",
+          "when": "At the end of his mission",
+          "summary": "His enemies plot to kill him, but they neither kill nor crucify him; Allah raises him to Himself.",
+          "refs": [
+            {
+              "quran": "4:157-158"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

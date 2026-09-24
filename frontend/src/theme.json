@@ -1,0 +1,170 @@
+{
+  "_comment": "Every colour, timing and size knob in the UI lives here. Nothing visual is hard-coded in a component. Edit this file, reload, done.",
+  "color": {
+    "bg": "#0c1018",
+    "bg-glow": "#161d2b",
+    "surface": "#141a26",
+    "surface-hi": "#1c2434",
+    "border": "#273041",
+    "border-hi": "#38445c",
+    "text": "#e7ecf5",
+    "text-dim": "#9aa7bd",
+    "text-faint": "#808da3",
+    "primary": "#a78bfa",
+    "primary-hi": "#c4b5fd",
+    "danger": "#fb7185",
+    "success": "#5eead4",
+    "warn": "#fbbf24"
+  },
+  "tab": {
+    "nahw": "#a78bfa",
+    "quran": "#5eead4",
+    "mem": "#93c5fd",
+    "sarf": "#fb7185",
+    "dict": "#fbbf24",
+    "quiz": "#f472b6",
+    "timelines": "#38bdf8",
+    "daleel": "#4ade80",
+    "_comment": "default is what an unknown id wears, the primary purple, so colorFor('tab', id) is the one rule for tab colour everywhere.",
+    "default": "#a78bfa"
+  },
+  "tabstrip": {
+    "_comment": "How much of its own colour an unselected tab keeps. 0% is plain grey, 100% is as loud as the selected one.",
+    "idle-tint": "40%",
+    "hover-tint": "65%"
+  },
+  "timeline": {
+    "_comment": "The timelines tab: the map's two grounds. Every section wears the tab's own colour, so the Seerah and the unseen sections read as one design.",
+    "map-land": "#1c2434",
+    "map-water": "#0f2c38"
+  },
+  "cursor-light": {
+    "_comment": "The cursor light: one faint circle that follows the pointer on every tab, tinted by the tab's own colour, so the page points at what is being read without a word of instruction. size-px is how wide it reaches, white how much white sits in the middle, and tint how much of the tab's colour bleeds out from it. Small and faint on purpose: at full strength it reads as a torch and the text under it stops being the point. The Animations setting turns it off with everything else.",
+    "size-px": 210,
+    "white": "2%",
+    "tint": "3%"
+  },
+  "tamreen": {
+    "_comment": "The two underline colours on a Tamreen picture question: blue for a possible حال, green for a possible ذو الحال. Their own group, not 'role', because they mark a candidate in the picture rather than a settled grammatical role.",
+    "haal": "#60a5fa",
+    "zulhaal": "#4ade80"
+  },
+  "role": {
+    "mubtada": "#5eead4",
+    "khabar": "#fb7185",
+    "fail": "#5eead4",
+    "mafool": "#fb7185",
+    "harf": "#fbbf24",
+    "sifah": "#a78bfa",
+    "haal": "#a78bfa",
+    "mudaf": "#f472b6",
+    "fil": "#c4b5fd",
+    "rel": "#d8b4fe",
+    "gap": "#64748b",
+    "ghair_aamil": "#38bdf8",
+    "default": "#94a3b8"
+  },
+  "pos": {
+    "V": "#a78bfa",
+    "N": "#5eead4",
+    "P": "#fbbf24",
+    "default": "#94a3b8"
+  },
+  "mic": {
+    "_comment": "The capsule microphone, the mark that means dictation: capsule, three grille slits, cradle arc, stem. weight is the stroke on the mark's own 24-grid, so it scales with wherever it is drawn. pulse-ms is one beat of the grille level-meter while recording; hover-pulse-ms is that same beat run slowly on hover, a preview of what pressing does. chase-ms is one lap of the arc's chasing dash while thinking.",
+    "weight": 1.7,
+    "pulse-ms": 700,
+    "hover-pulse-ms": 2600,
+    "chase-ms": 1100
+  },
+  "lexicon": {
+    "_comment": "The shelf of classical dictionaries under a root. entry-h is how much of an entry is shown before the rest is folded behind Show all: Taj al-Arus on أمر is 23,000 letters, and printed whole one book would bury the three under it. Enough to tell whether this is the entry wanted, not enough to be a wall. In rem, so a browser's own text setting moves it with the words.",
+    "entry-h": "13rem"
+  },
+  "command": {
+    "_comment": "The command line: the bar in the header and the orbit launcher behind the pen. rest-w is how wide the bar sits when nobody is using it and open-w how wide it grows on focus, both in rem, so a longer placeholder needs a number changed here and not a class edited. orbit-r is the radius the seven tabs sit at in the launcher, sat-w the width of one of them, and rail-w the strip of letters beside a result list.",
+    "rest-w": "13.5rem",
+    "open-w": "24rem",
+    "orbit-r": "12.75rem",
+    "sat-w": "7rem",
+    "rail-w": "2rem",
+    "results-h": "22rem",
+    "dim": "0.5"
+  },
+  "dance": {
+    "_comment": "How a group of things arrives: each one small and gathered at the middle, then springing out to where it belongs, one after another. Written as its own group rather than inside the launcher because it is the .dance class in index.css, which anything can wear: a ring of tabs, a row of cards, a set of chips. from-scale is how small each starts, from-spread how far along its own spoke it starts as a fraction of the full distance (1 means it does not travel, only grows), and beats how many springs the whole arrival lasts. The gap between one and the next is motion.stagger-ms, shared with every other staggered thing in the app.",
+    "from-scale": "0.5",
+    "from-spread": "0.06",
+    "beats": "2"
+  },
+  "motion": {
+    "_comment": "Plain numbers, so a CSS duration is built as calc(var(--motion-base-ms) * 1ms). scale is the switch for the ambient loops (the pen bobbing, the mic grille, the mic ring, the shimmer): their choreography keeps its own tempo, multiplied by this, so the Animations setting can stop them all by driving it to 0.",
+    "scale": 1,
+    "instant-ms": 120,
+    "base-ms": 220,
+    "spring-ms": 420,
+    "stagger-ms": 55,
+    "spring-ease": "cubic-bezier(.34,1.56,.64,1)",
+    "_patience_comment": "Not an animation: how a wait is announced. Nothing is said for the first patience-ms, because an answer that arrives sooner than that has arrived at once as far as the eye is concerned, and a spinner shown and taken away inside a fifth of a second reads as a flash rather than as news. Once something has been said it stays for patience-hold-ms, so an answer landing just after the wait was announced does not snatch it away again. Read in JavaScript by lib/useSlowPending.js, not by the stylesheet, so the Animations setting leaves it alone.",
+    "patience-ms": 250,
+    "patience-hold-ms": 400
+  },
+  "landing": {
+    "_comment": "The welcome page's one vertical rhythm: the top and bottom breathing room of every section (hero, manuscript band, tools, shift, finale). Fluid between 64px on a phone and 112px on a wide screen. Change it here and every section moves together.",
+    "section-pad": "clamp(64px, 8vw, 112px)"
+  },
+  "layout": {
+    "_comment": "How wide the page is allowed to get. Everything down the middle of the app reads this one number through the .shell class, so the header, the tab strip, the banner and the panels can never disagree about where the edges are. It is a maximum, not a width: on any screen narrower than this the page simply fills it, which is what keeps the phone view working.",
+    "shell": "72rem",
+    "_control_comment": "One square for every small control in the page chrome: the settings gear, the pen that opens the launcher, and the height of the command bar between them. One number, so the two ends of the header can never disagree about how tall the row is.",
+    "control": "2.5rem",
+    "_chip_comment": "How tall a chip stands, whatever is written in it. Said here rather than left to the text because a pill that takes its height from its own letters is a different height in Arabic than in English: a Recent row holding both came out with the Arabic pills at exactly twice the height of the English ones, a ragged row that looked like a browser bug and was not.",
+    "chip": "1.9rem"
+  },
+  "radius": {
+    "sm": "0.5rem",
+    "md": "0.85rem",
+    "lg": "1.25rem"
+  },
+  "shadow": {
+    "_comment": "Depth, for the few things that float over the page rather than sit in it: a tooltip, a popover. Only one so far, on purpose, one lift reads as one layer.",
+    "pop": "0 6px 18px rgba(0, 0, 0, 0.45)"
+  },
+  "arabic": {
+    "_comment": "One ladder for every piece of Arabic in the app, in rem. Five rungs, smallest first: tiny is a name inside another name in the tarkeeb diagram; small is a term or a table cell; reading is Arabic being read; an ayah, a memorise page, a dictionary entry; heading is the sentence a diagram is drawn under; display is a word on its own, in a search box or as an answer. The diagram used to keep a second ladder of its own, which is how its words drifted a third bigger than the same Arabic on the memorise page. Anything Arabic picks a rung here; nothing sets a size of its own.",
+    "tiny-rem": 0.9,
+    "small-rem": 1.05,
+    "reading-rem": 1.5,
+    "heading-rem": 2,
+    "display-rem": 2.4,
+    "line-height": 1.9,
+    "input-line-height": 1.6
+  },
+  "urdu": {
+    "_comment": "Urdu rides the Arabic ladder above; only what genuinely differs is here. Nastaliq slopes each word down to the left, so a line needs far more room under it than Naskh does, and two lines set at the Arabic height overlap. Raise this if descenders touch the line below; index.css swaps it in wherever lang=\"ur\".",
+    "line-height": 2.6
+  },
+  "hadith": {
+    "_comment": "The words of a hadith, printed under an event in the timelines. said is what was actually said, which the books mark with quote marks; told is the telling around it, the chain of narrators and what happened between the sayings, drawn back because it is read past rather than read. lines is how much of one hadith shows before the rest waits behind Show the rest.",
+    "said": "#f2e7d3",
+    "told": "var(--text-faint)",
+    "lines": "14"
+  },
+  "type": {
+    "_comment": "English text sizes. In rem, so a browser's own text setting still moves them; px would ignore it. micro/tiny/small are supporting labels, badges, captions, the note under a control. body is English being read rather than labelled: an ayah's translation, a verse's gloss. A translation set at a label size is the mistake this token exists to stop, so reach for body whenever the English is the content.",
+    "micro": "0.5625rem",
+    "tiny": "0.625rem",
+    "small": "0.6875rem",
+    "body": "0.9375rem",
+    "_figure_comment": "A number read at a glance rather than in a sentence: the three counts on the quiz panel's shut bar. Larger than body on purpose, it is what the row exists to show and it has to win against the words beside it.",
+    "figure": "1.375rem",
+    "_label_comment": "The two rungs the rest of the app is written in: label is a control's own words (a chip, a select, a count) and ui is a line of English inside a control or a card. Tailwind's text-xs and text-sm are pointed at these two in index.css, so every size in the app comes from this file and there is no second scale hiding in the components.",
+    "label": "0.75rem",
+    "ui": "0.875rem"
+  },
+  "_tarkeeb_comment": "The diagram has no sizes of its own any more. Its sentence is the arabic 'heading' rung, its role names 'small', a name inside another name 'tiny', and its + signs the English type 'body' size. Depth still reads as size, the steps are just shared with the rest of the app instead of being a second private ladder. Its colours are the 'role' group.",
+  "glow": {
+    "strength": "0.55",
+    "blur": "18px"
+  }
+}

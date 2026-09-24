@@ -1,0 +1,341 @@
+{
+ "batch": "mafool-lahu-fihi-lettered-06",
+ "questions": [
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/6",
+   "category": "tarkeeb",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Identify the underlined Maf'ools",
+    "number": "6",
+    "images": [
+     "q069.png",
+     "q070.png",
+     "q071.png",
+     "q072.png"
+    ]
+   },
+   "type": "classify_underlined_grid",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of maf'ools present by ticking the correlating box.\n2. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n3. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "دخلتُ مكّةَ للعمرة ارتجاءً مغفرةَ اللّهِ",
+     "marked": [
+      {
+       "text": "مكّةَ",
+       "mark": "underline"
+      },
+      {
+       "text": "ارتجاءً",
+       "mark": "underline"
+      },
+      {
+       "text": "مغفرةَ",
+       "mark": "underline"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool present for each underlined word/phrase by ticking the correlating box.",
+     "kind": "grid",
+     "rows": [
+      "مكة",
+      "ارتجاء",
+      "مغفرة"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "مكة": [
+       "مفعول به"
+      ],
+      "ارتجاء": [
+       "مفعول له"
+      ],
+      "مغفرة": [
+       "مفعول به"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "مكة": [
+       "مفعول به"
+      ],
+      "ارتجاء": [
+       "مفعول له"
+      ],
+      "مغفرة": [
+       "مفعول له"
+      ]
+     },
+     "points": "2/3",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "d",
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring all the Mafools are clear in your translation.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "i entered makkah for umrah, due to hoping the mercy of allah",
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Diacritics on 'دخلتُ مكّةَ للعمرةِ ارتجاءً مغفرةَ اللهِ' transcribed to the best legibility from the image; a few harakat (e.g. on للعمرة) are read, not certain.",
+    "Row 'مكة' and 'ارتجاء' are confirmed correct by a green check (marked_correct); row 'مغفرة' was ticked wrong (مفعول له, 0/1) and its answer here comes from the 'Correct answers' key block (مفعول به), not from the student's own tick.",
+    "The third underline in q070.png covers only مغفرة, ending before اللهِ; the marked span was corrected to drop اللهِ, matching both the grid row label 'مغفرة' and the correct-answer key keyed to 'مغفرة' alone."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/7",
+   "category": "tarkeeb",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Identify the underlined Maf'ools",
+    "number": "7",
+    "images": [
+     "q073.png",
+     "q074.png",
+     "q075.png",
+     "q076.png"
+    ]
+   },
+   "type": "classify_underlined_grid",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of maf'ools present by ticking the correlating box.\n2. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n3. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "الجيشُ رجعَ والأميرَ القَهْقَرى مساءً",
+     "marked": [
+      {
+       "text": "الأَميرَ",
+       "mark": "underline"
+      },
+      {
+       "text": "القَهْقَرى",
+       "mark": "underline"
+      },
+      {
+       "text": "مساءً",
+       "mark": "underline"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool present for each underlined word/phrase by ticking the correlating box.",
+     "kind": "grid",
+     "rows": [
+      "الأمير",
+      "القهقرى",
+      "مساء"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "الأمير": [
+       "مفعول معه"
+      ],
+      "القهقرى": [
+       "مفعول مطلق"
+      ],
+      "مساء": [
+       "مفعول فيه"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "الأمير": [
+       "مفعول معه"
+      ],
+      "القهقرى": [
+       "مفعول مطلق"
+      ],
+      "مساء": [
+       "مفعول فيه"
+      ]
+     },
+     "points": "3/3",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "a",
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring all the Mafools are clear in your translation.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "the army returned in a backwards style along with the commander  at evening",
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Diacritics on 'الجيشُ رجعَ والأميرَ القهقرى مساءً' transcribed to the best legibility from the image.",
+    "All three rows ticked correctly (green check, 1/1 each); no 'Correct answers' key block appears for this unit since the score was already 3/3."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/8",
+   "category": "tarkeeb",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Identify the underlined Maf'ools",
+    "number": "8",
+    "images": [
+     "q077.png",
+     "q078.png",
+     "q079.png",
+     "q080.png"
+    ]
+   },
+   "type": "classify_underlined_grid",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of maf'ools present by ticking the correlating box.\n2. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n3. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "أَبحَرَ زيدٌ السفينةَ ليلًا هُدُوْءً له",
+     "marked": [
+      {
+       "text": "السفينةَ",
+       "mark": "underline"
+      },
+      {
+       "text": "ليلًا",
+       "mark": "underline"
+      },
+      {
+       "text": "هُدُوْءً له",
+       "mark": "underline"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool present for each underlined word/phrase by ticking the correlating box.",
+     "kind": "grid",
+     "rows": [
+      "السفينة",
+      "ليلا",
+      "هدوء"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "السفينة": [
+       "مفعول به"
+      ],
+      "ليلا": [
+       "مفعول فيه"
+      ],
+      "هدوء": [
+       "مفعول مطلق",
+       "مفعول له"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "السفينة": [
+       "مفعول به"
+      ],
+      "ليلا": [
+       "مفعول فيه"
+      ],
+      "هدوء": [
+       "مفعول له"
+      ]
+     },
+     "points": "2/3",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "feedback",
+     "my_response": "a",
+     "points": null,
+     "feedback": "Hudu'an can be mafool lahu, he sailed in order to be calm.\nLike: He hit zaid in order to teach manners\nor\nHudu'an is Naib anil mafool mutlaq, ie he sailed a relaxing, calmful, tranquil sailing."
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring all the Mafools are clear in your translation.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "zaid sailed the ship at night as it was calm for him",
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Diacritics on 'أبحرَ زيدٌ السفينةَ ليلًا هدوءً له' transcribed to the best legibility from the image; the final 'له' is rendered لَهُ though the printed image shows no visible haraka on it.",
+    "Row 'السفينة' and 'ليلا' confirmed correct by green check; row 'هدوء' was ticked مفعول له (0/1) and the 'Correct answers' key shows BOTH مفعول مطلق and مفعول له ticked, explained by the teacher feedback under part b as either mafool lahu or naib 'anil mafool mutlaq.",
+    "Vowels on أَبحَرَ (hamza's fatha is clearly drawn; the fatha on ح is agreed by both readers; whether the remaining stroke sits over ر or over ب could not be pinned down with full certainty at this resolution) could not be read with certainty."
+   ]
+  }
+ ]
+}

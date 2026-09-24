@@ -1,0 +1,586 @@
+{
+  "blocks": [
+    {
+      "id": "p08-1",
+      "kind": "picture",
+      "page": 8,
+      "caption": "تركيب: كَيف تَقْرَأُ؟ كَيف كَانَ زَيْدٌ؟",
+      "caption_en": "Two tarkeeb trees: kayfa after a complete verb (taqra'u) and kayfa after an incomplete verb (kaana), each labelled word by word, with Latin shorthand under the lines (JI, FN, IK, KKM)"
+    },
+    {
+      "id": "p08-2",
+      "kind": "rule",
+      "page": 8,
+      "ar": "كَيف after فعل: ({{term|فعل تام}})",
+      "en": "kayfa after a verb: ({{term|a complete verb}})"
+    },
+    {
+      "id": "p08-3",
+      "kind": "example",
+      "page": 8,
+      "ar": "{{example|كَيف تَقْرَأُ؟}}",
+      "en": "How do you read?",
+      "labels": [
+        {
+          "word": "كَيف",
+          "label": "حال (مفعول مطلق)"
+        },
+        {
+          "word": "ق(ثابتا)",
+          "label": "حال"
+        },
+        {
+          "word": "تَقْرَأُ",
+          "label": "فعل"
+        },
+        {
+          "word": "(أنت)",
+          "label": "ذو الحال / فاعل"
+        },
+        {
+          "word": "كَيف تَقْرَأُ",
+          "label": "JI"
+        }
+      ]
+    },
+    {
+      "id": "p08-4",
+      "kind": "rule",
+      "page": 8,
+      "ar": "كَيف after فعل: ({{term|فعل ناقص}})",
+      "en": "kayfa after a verb: ({{term|an incomplete verb}})"
+    },
+    {
+      "id": "p08-5",
+      "kind": "example",
+      "page": 8,
+      "ar": "{{example|كَيف كَانَ زَيْدٌ؟}}",
+      "en": "How was Zaid?",
+      "labels": [
+        {
+          "word": "كَيف",
+          "label": "KKM"
+        },
+        {
+          "word": "ق(ثابتا)",
+          "label": "KKM"
+        },
+        {
+          "word": "كَانَ",
+          "label": "FN"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "IK"
+        },
+        {
+          "word": "كَيف كَانَ زَيْدٌ",
+          "label": "JI"
+        }
+      ]
+    },
+    {
+      "id": "p09-1",
+      "kind": "picture",
+      "page": 9,
+      "caption": "تركيب: أيَّان القِيَامَةُ؟ أيَّانَ تَقُوْمُ السَّاعَةُ؟ ذَهَبْتُ أَمْسِ، زَيْدٌ قَائِمٌ أَمْسِ",
+      "caption_en": "Tarkeeb trees for ayyaana (two sentences) and amsi (two sentences), labelled word by word, with an arrow from each zarf to what it attaches to"
+    },
+    {
+      "id": "p09-2",
+      "kind": "heading",
+      "page": 9,
+      "ar": "أيَّان",
+      "en": "Ayyaana"
+    },
+    {
+      "id": "p09-3",
+      "kind": "example",
+      "page": 9,
+      "ar": "{{example|أيَّان القِيَامَةُ؟}}",
+      "en": "When is the Resurrection?",
+      "labels": [
+        {
+          "word": "أيَّان",
+          "label": "ظرف/ق (ثابتة) خبر مقدم"
+        },
+        {
+          "word": "القِيَامَةُ",
+          "label": "مبتدا مؤخر"
+        },
+        {
+          "word": "أيَّان القِيَامَةُ",
+          "label": "⟨?⟩"
+        }
+      ]
+    },
+    {
+      "id": "p09-4",
+      "kind": "example",
+      "page": 9,
+      "ar": "{{example|أيَّانَ تَقُوْمُ السَّاعَةُ؟}}",
+      "en": "When will the Hour be established?",
+      "labels": [
+        {
+          "word": "أيَّانَ",
+          "label": "ظرف/ق (تقوم)"
+        },
+        {
+          "word": "تَقُوْمُ",
+          "label": "فعل"
+        },
+        {
+          "word": "السَّاعَةُ",
+          "label": "فاعل"
+        },
+        {
+          "word": "أيَّانَ تَقُوْمُ السَّاعَةُ",
+          "label": "JI"
+        }
+      ]
+    },
+    {
+      "id": "p09-5",
+      "kind": "heading",
+      "page": 9,
+      "ar": "أَمْس",
+      "en": "Amsi"
+    },
+    {
+      "id": "p09-6",
+      "kind": "example",
+      "page": 9,
+      "ar": "{{example|ذَهَبْتُ أَمْسِ}}",
+      "en": "I went yesterday.",
+      "labels": [
+        {
+          "word": "ذَهَبْ",
+          "label": "فعل"
+        },
+        {
+          "word": "تُ",
+          "label": "فاعل"
+        },
+        {
+          "word": "أَمْسِ",
+          "label": "مفعول فيه ظرف/ق"
+        },
+        {
+          "word": "ذَهَبْتُ أَمْسِ",
+          "label": "⟨?⟩"
+        }
+      ]
+    },
+    {
+      "id": "p09-7",
+      "kind": "example",
+      "page": 9,
+      "ar": "{{example|زَيْدٌ قَائِمٌ أَمْسِ}}",
+      "en": "Zaid was standing yesterday.",
+      "labels": [
+        {
+          "word": "زَيْدٌ",
+          "label": "مبتدا"
+        },
+        {
+          "word": "قَائِمٌ",
+          "label": "اسم الفاعل"
+        },
+        {
+          "word": "أَمْسِ",
+          "label": "ظرف/ق مفعول فيه"
+        },
+        {
+          "word": "قَائِمٌ أَمْسِ",
+          "label": "خبر"
+        },
+        {
+          "word": "زَيْدٌ قَائِمٌ أَمْسِ",
+          "label": "⟨?⟩"
+        }
+      ]
+    },
+    {
+      "id": "p10-1",
+      "kind": "heading",
+      "page": 10,
+      "ar": "مُنْذُ / مُذْ",
+      "en": "Mundhu / mudh"
+    },
+    {
+      "id": "p10-2",
+      "kind": "rule",
+      "page": 10,
+      "ar": "",
+      "en": "{{ruling|Since}} - {{ruling|for}}"
+    },
+    {
+      "id": "p10-3",
+      "kind": "example",
+      "page": 10,
+      "ar": "{{example|كان مَرِيْضًا مُنْذُ/مُذْ يَوْمِ الإِثْنَيْنِ}}",
+      "en": "A. He was ill since Monday. {{condition|The beg of period}}",
+      "labels": [
+        {
+          "word": "مُنْذُ/مُذْ",
+          "label": "since"
+        }
+      ]
+    },
+    {
+      "id": "p10-4",
+      "kind": "example",
+      "page": 10,
+      "ar": "{{example|كانَ مرِيْضًا مُنْذُ/مُذْ ثل⟨?⟩ثةِ أَيَّامٍ}}",
+      "en": "B. He was ill for 3 days. {{condition|Total period}}",
+      "labels": [
+        {
+          "word": "مُنْذُ/مُذْ",
+          "label": "for"
+        }
+      ]
+    },
+    {
+      "id": "p11-1",
+      "kind": "picture",
+      "page": 11,
+      "caption": "تركيب: كَانَ مَرِيْضًا مُنْذُ يَوْمِ الإِثْنَيْنِ، كَانَ مَرِيْضًا مُنْذُ يَوْمَيْنِ (مُذْ)",
+      "caption_en": "Two tarkeeb trees, \"Beg period\" and \"Total period\", with mundhu read as a zarf (maf'ool fih) attached to mareedan, and Latin shorthand FN, IK, KK, JIK"
+    },
+    {
+      "id": "p11-2",
+      "kind": "example",
+      "page": 11,
+      "ar": "{{example|كَانَ مَرِيْضًا مُنْذُ يَوْمِ الإِثْنَيْنِ}} (مُذْ)",
+      "en": "Beg period: He was ill since Monday.",
+      "labels": [
+        {
+          "word": "كَانَ",
+          "label": "FN"
+        },
+        {
+          "word": "(هو)",
+          "label": "IK"
+        },
+        {
+          "word": "مَرِيْضًا",
+          "label": "صفة مشبهة"
+        },
+        {
+          "word": "مُنْذُ",
+          "label": "مضاف"
+        },
+        {
+          "word": "يَوْمِ",
+          "label": "مضاف"
+        },
+        {
+          "word": "الإِثْنَيْنِ",
+          "label": "مضاف اليه"
+        },
+        {
+          "word": "يَوْمِ الإِثْنَيْنِ",
+          "label": "مضاف اليه"
+        },
+        {
+          "word": "مُنْذُ يَوْمِ الإِثْنَيْنِ",
+          "label": "ظرف/ق مفعول فيه"
+        },
+        {
+          "word": "مَرِيْضًا مُنْذُ يَوْمِ الإِثْنَيْنِ",
+          "label": "KK"
+        },
+        {
+          "word": "كَانَ مَرِيْضًا مُنْذُ يَوْمِ الإِثْنَيْنِ",
+          "label": "JIK"
+        }
+      ]
+    },
+    {
+      "id": "p11-3",
+      "kind": "example",
+      "page": 11,
+      "ar": "{{example|كَانَ مَرِيْضًا مُنْذُ يَوْمَيْنِ}} (مُذْ)",
+      "en": "Total period: He was ill for two days.",
+      "labels": [
+        {
+          "word": "كَانَ",
+          "label": "FN"
+        },
+        {
+          "word": "(هو)",
+          "label": "IK"
+        },
+        {
+          "word": "مَرِيْضًا",
+          "label": "صفة مشبهة"
+        },
+        {
+          "word": "مُنْذُ",
+          "label": "مضاف"
+        },
+        {
+          "word": "يَوْمَيْنِ",
+          "label": "مضاف اليه"
+        },
+        {
+          "word": "مُنْذُ يَوْمَيْنِ",
+          "label": "ظرف/ق / مفعول فيه"
+        },
+        {
+          "word": "مَرِيْضًا مُنْذُ يَوْمَيْنِ",
+          "label": "KK"
+        },
+        {
+          "word": "كَانَ مَرِيْضًا مُنْذُ يَوْمَيْنِ",
+          "label": "JIK"
+        }
+      ]
+    },
+    {
+      "id": "p12-1",
+      "kind": "picture",
+      "page": 12,
+      "caption": "تركيب: كَانَ مَرِيْضًا مُنْذُ يَوْمِ الإِثْنَيْنِ، كان مَرِيْضًا مُنْذُ يَوْمَانِ (مُذْ)",
+      "caption_en": "The same two sentences read the second way: mundhu as mubtada and what follows as khabar, making a nominal sentence of its own, with FN, IK, KK, JIK shorthand"
+    },
+    {
+      "id": "p12-2",
+      "kind": "example",
+      "page": 12,
+      "ar": "{{example|كَانَ مَرِيْضًا مُنْذُ يَوْمِ الإِثْنَيْنِ}} (مُذْ): بِدَايَةُ مُدَّةِ مَرَضِه",
+      "en": "He was ill since Monday: the beginning of the period of his illness.",
+      "labels": [
+        {
+          "word": "كَانَ",
+          "label": "FN"
+        },
+        {
+          "word": "(هو)",
+          "label": "IK"
+        },
+        {
+          "word": "مَرِيْضًا",
+          "label": "KK"
+        },
+        {
+          "word": "كَانَ مَرِيْضًا",
+          "label": "JIK"
+        },
+        {
+          "word": "مُنْذُ",
+          "label": "مبتدا"
+        },
+        {
+          "word": "يَوْمِ",
+          "label": "مضاف"
+        },
+        {
+          "word": "الإِثْنَيْنِ",
+          "label": "مضاف اليه"
+        },
+        {
+          "word": "يَوْمِ الإِثْنَيْنِ",
+          "label": "خبر"
+        },
+        {
+          "word": "مُنْذُ يَوْمِ الإِثْنَيْنِ",
+          "label": "JIK"
+        }
+      ]
+    },
+    {
+      "id": "p12-3",
+      "kind": "example",
+      "page": 12,
+      "ar": "{{example|كان مَرِيْضًا مُنْذُ يَوْمَانِ}} (مُذْ): مُدَّةُ مَرَضِهِ",
+      "en": "He was ill for two days: the period of his illness.",
+      "labels": [
+        {
+          "word": "كان",
+          "label": "FN"
+        },
+        {
+          "word": "(هو)",
+          "label": "IK"
+        },
+        {
+          "word": "مَرِيْضًا",
+          "label": "KK"
+        },
+        {
+          "word": "كان مَرِيْضًا",
+          "label": "JIK"
+        },
+        {
+          "word": "مُنْذُ",
+          "label": "مبتدا"
+        },
+        {
+          "word": "يَوْمَانِ",
+          "label": "خبر"
+        },
+        {
+          "word": "مُنْذُ يَوْمَانِ",
+          "label": "JIK"
+        }
+      ]
+    },
+    {
+      "id": "p13-1",
+      "kind": "example",
+      "page": 13,
+      "ar": "{{example|جَاءَ زَيْدٌ وَبَكْرٌ}}",
+      "en": "Zaid and Bakr came.",
+      "labels": []
+    },
+    {
+      "id": "p13-2",
+      "kind": "example",
+      "page": 13,
+      "ar": "{{example|جَاءَ زَيْدٌ قَبْلَ بَكْرٍ}}",
+      "en": "Zaid came before Bakr.",
+      "labels": [
+        {
+          "word": "قَبْلَ",
+          "label": "معرب - منصوب"
+        },
+        {
+          "word": "بَكْرٍ",
+          "label": "مضاف اليه"
+        }
+      ]
+    },
+    {
+      "id": "p13-3",
+      "kind": "example",
+      "page": 13,
+      "ar": "{{example|جَاءَ بَكْرٌ بَعْدُ}} ___؟ (زَيْدٍ)",
+      "en": "Bakr came after ___? (Zaid).",
+      "labels": [
+        {
+          "word": "بَعْدُ",
+          "label": "مبني على الضم"
+        },
+        {
+          "word": "___؟ (زَيْدٍ)",
+          "label": "مضاف اليه"
+        }
+      ]
+    },
+    {
+      "id": "p13-4",
+      "kind": "rule",
+      "page": 13,
+      "ar": "Q: why no {{term|تنوين العوض}}",
+      "en": "Q: why no {{term|compensatory tanween}}?"
+    },
+    {
+      "id": "p14-1",
+      "kind": "heading",
+      "page": 14,
+      "ar": "الغايات (The ends)",
+      "en": "Al-ghaayaat (The ends)"
+    },
+    {
+      "id": "p14-2",
+      "kind": "list",
+      "page": 14,
+      "items": [
+        "قَبْلُ بَعْدُ",
+        "تَحْتُ فَوقُ",
+        "قُدَّامُ/أَمَامُ خَلْفُ"
+      ]
+    },
+    {
+      "id": "p14-3",
+      "kind": "rule",
+      "page": 14,
+      "ar": "Compensatory tanween: {{term|تَنْوِيْنُ العِوَضِ}}",
+      "en": "{{term|Compensatory tanween}}"
+    },
+    {
+      "id": "p14-4",
+      "kind": "example",
+      "page": 14,
+      "ar": "{{example|رَمَى يَرْمِي رَمْيًا فَهُوَ رَامٍ}}",
+      "en": "1. A {{condition|letter}} e.g. He threw, he throws, a throwing, so he is a thrower.",
+      "labels": [
+        {
+          "word": "رَامٍ",
+          "label": "تنوين العوض"
+        }
+      ]
+    },
+    {
+      "id": "p14-5",
+      "kind": "example",
+      "page": 14,
+      "ar": "رَامٍ رَامِيًا رَامٍ",
+      "en": "Thrower (raf'), thrower (nasb), thrower (jarr).",
+      "labels": [
+        {
+          "word": "رَامٍ",
+          "label": "رفع"
+        },
+        {
+          "word": "رَامِيًا",
+          "label": "نصب"
+        },
+        {
+          "word": "رَامٍ",
+          "label": "جر"
+        }
+      ]
+    },
+    {
+      "id": "p14-6",
+      "kind": "example",
+      "page": 14,
+      "ar": "{{example|كُلُّ طالبٍ حَاضِرٌ؟}}",
+      "en": "2. A {{condition|word}} e.g. Is every student present?",
+      "labels": []
+    },
+    {
+      "id": "p14-7",
+      "kind": "example",
+      "page": 14,
+      "ar": "{{example|كُلٌّ حَاضِرٌ}}",
+      "en": "Each is present.",
+      "labels": [
+        {
+          "word": "كُلٌّ",
+          "label": "تنوين العوض"
+        }
+      ]
+    },
+    {
+      "id": "p15-1",
+      "kind": "example",
+      "page": 15,
+      "ar": "{{example|حِيْنَئِذٍ (يَقَعُ المذكورُ)}}",
+      "en": "3. A {{condition|sentence}} e.g. at that time (the mentioned thing happens).",
+      "labels": [
+        {
+          "word": "حِيْنَئِذٍ",
+          "label": "تنوين العوض"
+        }
+      ]
+    },
+    {
+      "id": "p15-2",
+      "kind": "example",
+      "page": 15,
+      "ar": "كُلٌّ حَاضِرٌ",
+      "en": "Each is present. The laam is not the end of the word. {{ruling|The CT is the end of the word.}}",
+      "labels": []
+    },
+    {
+      "id": "p15-3",
+      "kind": "rule",
+      "page": 15,
+      "ar": "",
+      "en": "Q. When did Zaid arrive? A. 7:30 pm. Q. When did you arrive? A. I was here {{term|before}}."
+    }
+  ]
+}

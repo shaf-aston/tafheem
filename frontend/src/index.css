@@ -1,0 +1,913 @@
+@import "tailwindcss";
+
+/* Self-hosted, so the app still looks right with no network.
+   Noto Naskh is chosen over a calligraphic face because diacritics stay
+   legible at small sizes, this text gets read closely, not admired. */
+@import "@fontsource/noto-naskh-arabic/400.css";
+@import "@fontsource/noto-naskh-arabic/700.css";
+/* Urdu is read in Nastaliq, not Naskh. Naskh would render it legibly and still
+   look wrong to anyone who reads Urdu, the way a serif Arabic would. */
+@import "@fontsource/noto-nastaliq-urdu/400.css";
+@import "@fontsource-variable/inter/index.css";
+
+/* The command line and the orbit launcher. Their own file because they are one
+   feature spanning two surfaces, and they read the same tokens as everything
+   below without adding any. */
+@import "./command.css";
+
+/* Colour, timing and size tokens are injected onto :root from theme.json by
+   theme.js at startup. Anything below reads them; nothing redefines them. */
+:root {
+  --font-arabic: 'Noto Naskh Arabic', serif;
+  --font-urdu: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif;
+  --font-ui: 'Inter Variable', 'Inter', system-ui, sans-serif;
+}
+
+/* Urdu rides the same size ladder as Arabic, so an Urdu answer and an Arabic one
+   in the same grid line up. Only the two things that actually differ are swapped
+   here, and they are swapped as tokens rather than as a second set of classes:
+   Nastaliq slopes each word down to the left, so it needs noticeably more room
+   between lines than Naskh, and at the same nominal size it reads smaller.
+   ArabicText puts lang on the element, so this reaches every rung at once.
+
+   Matched on the size classes, not on lang alone: the Urdu tab sets lang="ur"
+   on the whole panel, and a rule that stopped at the attribute would hand the
+   Nastaliq to the Arabic word being asked, which sits inside it. */
+.arabic[lang="ur"],
+.arabic-tiny[lang="ur"],
+.arabic-sm[lang="ur"],
+.arabic-lg[lang="ur"] {
+  --font-arabic: var(--font-urdu);
+  --arabic-line-height: var(--urdu-line-height);
+  --arabic-input-line-height: var(--urdu-line-height);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  color: var(--text);
+  background:
+    radial-gradient(90rem 50rem at 50% -20%, var(--bg-glow) 0%, transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* The list a dropdown drops open is drawn by the browser, not by us, and it
+   takes its sheet from the control's own background. The gap picker in Memorise
+   is deliberately transparent so it sits in the line of Arabic, so that sheet
+   came out plain white and the page's pale text vanished into it. Painting the
+   options is the only reach we have into that list, and it leaves the closed
+   control looking exactly as it did. */
+select option {
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+/* ── Chrome controls ────────────────────────────────────────────────────────
+   A square button in the page furniture rather than inside a panel: the settings
+   gear, the pen that opens the launcher. One class and one size token, so the
+   two ends of the header row line up instead of being two lookalikes that drift
+   apart the first time one of them is edited. */
+.icon-button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: var(--layout-control);
+  height: var(--layout-control);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-faint);
+  transition:
+    color calc(var(--motion-base-ms) * 1ms) ease,
+    border-color calc(var(--motion-base-ms) * 1ms) ease,
+    background-color calc(var(--motion-base-ms) * 1ms) ease,
+    box-shadow calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  color: var(--text);
+  border-color: var(--border-hi);
+}
+
+/* ── Arriving as a group ────────────────────────────────────────────────────
+   Things that come in together: each one small and gathered at the middle, then
+   springing out to where it belongs, one after another. Worn by the ring of tabs
+   in the launcher, and by anything else that should arrive rather than appear.
+   Set --i on a thing to say where it falls in the order; leave it off and it
+   arrives first. How small, how far and how long are theme.json's `dance` group.
+
+   --spread is how far out along its own line a thing sits, as a fraction of the
+   full distance, and --pop how big it is drawn. Both are registered as numbers
+   because only a registered custom property interpolates: left unregistered they
+   would jump from one value to the other and the arrival would be a flicker
+   rather than a movement. Something that only grows can ignore --spread;
+   something on a ring multiplies its own radius by it. */
+@property --spread {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+@property --pop {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+.dance {
+  animation:
+    dance-in calc(var(--motion-spring-ms) * var(--dance-beats) * 1ms)
+    var(--motion-spring-ease) backwards;
+  animation-delay: calc(var(--i, 0) * var(--motion-stagger-ms) * 1ms);
+}
+
+@keyframes dance-in {
+  from {
+    --spread: var(--dance-from-spread);
+    --pop: var(--dance-from-scale);
+    opacity: 0;
+  }
+  55% { opacity: 1; }
+  to {
+    --spread: 1;
+    --pop: 1;
+    opacity: 1;
+  }
+}
+
+/* ── Study text size ────────────────────────────────────────────────────────
+   The one control a reader has over size. It scales a whole panel, the Arabic
+   and the English together, which is why it is zoom rather than a font-size:
+   everything inside is measured in rem and would otherwise ignore it. Only the
+   panels that are read closely carry this class; the header and its tabs never
+   move. The variable is written by settings.js. */
+.study {
+  zoom: var(--study-zoom, 1);
+}
+
+/* ── Arabic type ────────────────────────────────────────────────────────────
+   Three classes off the one ladder in theme.json, small, reading, display; 
+   so no component writes a size of its own. The tarkeeb diagram lower down
+   takes its rungs from the same ladder. */
+.arabic,
+.arabic-tiny,
+.arabic-sm,
+.arabic-lg {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  /* isolate, not embed: an embedded run still swallows the neutral text next to
+     it, so "حَفِظَ means جو حفاظت کی" laid its three parts out right to left and
+     the sentence read backwards the moment both halves were right-to-left.
+     Isolated, each run is one opaque object to the English sentence around it,
+     which is what puts them in the order they were written. */
+  unicode-bidi: isolate;
+  line-height: var(--arabic-line-height);
+}
+
+/* Arabic sitting on one line beside English, a panel title, a label; rather
+   than in a paragraph. The reading line-height spaces stacked lines; a single
+   word has nothing to be spaced from, and its tall empty line box otherwise
+   pushes everything under the header down the page. Still loose enough for the
+   descenders and the marks above the letters. */
+.arabic-inline {
+  line-height: 1.3;
+}
+
+.arabic {
+  font-size: calc(var(--arabic-reading-rem) * 1rem);
+}
+
+.arabic-lg {
+  font-size: calc(var(--arabic-display-rem) * 1rem);
+}
+
+/* The smallest rung. For an Arabic name sitting in a control beside English
+   names, a picker button, where the two have to look the same size. Arabic at
+   the same nominal size reads larger than Latin, so this rung is deliberately
+   above the English label size rather than equal to it. */
+.arabic-tiny {
+  font-size: calc(var(--arabic-tiny-rem) * 1rem);
+}
+
+/* For long lists of the same word, a conjugation table, where reading size
+   matters less than seeing the whole pattern at once. */
+.arabic-sm {
+  font-size: calc(var(--arabic-small-rem) * 1rem);
+}
+
+input.arabic,
+input.arabic-lg,
+textarea.arabic,
+textarea.arabic-lg {
+  line-height: var(--arabic-input-line-height);
+}
+
+/* ── The page's own width ───────────────────────────────────────────────────
+   One class for every band down the middle of the app: the header, the tab
+   strip, the offline banner, the panels. They used to write the same width out
+   five times, which is five chances to drift apart. The number itself lives in
+   theme.json. A maximum, not a width, so a narrow screen still fills. */
+.shell {
+  width: 100%;
+  max-width: var(--layout-shell);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* ── English text sizes ────────────────────────────────────────
+   Sizes come from theme.json, never from a literal in a component, so one edit
+   moves them all. The first three are labels: badges, captions, section
+   headings. type-body is English being read rather than labelled, an ayah's
+   translation, a verse's gloss, and is the one to reach for when the English
+   is the content. type-figure is the odd one out: not text but a number meant
+   to be read at a glance, so it sits above body rather than among the labels. */
+.type-micro  { font-size: var(--type-micro); }
+.type-tiny   { font-size: var(--type-tiny); }
+.type-small  { font-size: var(--type-small); }
+.type-body   { font-size: var(--type-body); }
+.type-figure { font-size: var(--type-figure); line-height: 1.1; }
+.type-label  { font-size: var(--type-label); }
+.type-ui     { font-size: var(--type-ui); }
+
+/* Tailwind's own two everyday sizes, pointed back at the same config. The app
+   is written in text-xs and text-sm in about forty files, and those were a
+   second scale nobody could retune from theme.json. The pixel values are
+   unchanged; only where they come from is. Line heights stay Tailwind's.
+   Set in @theme rather than as .text-xs rules so md:text-sm and every other
+   variant follows too. */
+@theme inline {
+  --text-xs: var(--type-label);
+  --text-sm: var(--type-ui);
+}
+
+/* ── Role colouring ─────────────────────────────────────────────────────────
+   A word's grammatical role is carried by one variable, so text, border and
+   glow can never drift apart. */
+.role {
+  --c: var(--role-default);
+  color: var(--c);
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+}
+
+.role-tag {
+  color: var(--c, var(--role-default));
+  background: color-mix(in srgb, var(--c, var(--role-default)) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c, var(--role-default)) 35%, transparent);
+}
+
+.glow {
+  box-shadow: 0 0 var(--glow-blur)
+    color-mix(in srgb, var(--c, var(--primary)) calc(var(--glow-strength) * 40%), transparent);
+}
+
+.text-glow {
+  text-shadow: 0 0 calc(var(--glow-blur) * 0.7)
+    color-mix(in srgb, var(--c, var(--primary)) calc(var(--glow-strength) * 60%), transparent);
+}
+
+/* ── Motion ─────────────────────────────────────────────────────────────────
+   Everything here is triggered by something the reader did. Nothing loops
+   forever except the loading shimmer, which stops when the answer arrives. */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+
+.rise-in {
+  /* `backwards`, not `both`: `both` holds the final keyframe forever, and since an
+     animation outranks a plain declaration, `transform: none` then silently beat
+     every hover lift on the element. Measured on the quiz options, they jumped
+     2px with no transition at all. `backwards` still hides the element before its
+     stagger delay, and hands transform back afterwards. */
+  animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
+  animation-delay: calc(var(--i, 0) * var(--motion-stagger-ms) * 1ms);
+}
+
+/* The hover a card-like container gets everywhere in the app: a small rise and
+   its shadow deepening with it, the same settle the quiz option below already
+   had, now shared rather than redrawn per tab. */
+.lift {
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
+    box-shadow calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+}
+
+.lift:hover,
+.lift:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-pop);
+}
+
+/* The press every button gets: a small, instant give under the finger, so a
+   tap reads as having landed before whatever it did shows up. */
+.press {
+  transition: transform calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+.press:active {
+  transform: scale(0.98);
+}
+
+/* A Disclosure's body, opening as a glide rather than a snap. Grid rows, not
+   height: height needs a measured pixel number to animate to, and this content
+   is unmeasured text of any length. 0fr collapses to nothing without the
+   content ever being display:none, so it still exists for layout underneath. */
+.glide {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+.glide > * {
+  overflow: hidden;
+}
+
+.glide[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+
+/* A <details> hides everything past its <summary> the instant it shuts, via the
+   browser's own stylesheet, which would cut the glide off before it could play.
+   Overridden only for a .glide body: it stays a real grid at every state, and
+   0fr does the collapsing instead. */
+details:not([open]) > .glide {
+  display: grid;
+}
+
+/* One answer in the quiz. Hover is a settle, not a hop: the lift is small, the
+   border and the surface come up with it so movement is not carrying the whole
+   message, and every part of it runs on the shared motion tokens. */
+.option {
+  transition:
+    transform calc(var(--motion-base-ms) * 1ms) ease-out,
+    border-color calc(var(--motion-base-ms) * 1ms) ease-out,
+    background-color calc(var(--motion-base-ms) * 1ms) ease-out,
+    color calc(var(--motion-base-ms) * 1ms) ease-out;
+}
+
+.option:not(:disabled):hover,
+.option:not(:disabled):focus-visible {
+  transform: translateY(-2px);
+  background-color: color-mix(in srgb, var(--c) 7%, var(--surface-hi));
+  border-color: var(--c);
+}
+
+.fade-in {
+  animation: fade-in calc(var(--motion-base-ms) * 1ms) ease both;
+}
+
+/* The dialog's dimmed backing. ::backdrop sits in the browser's top layer and
+   cannot be relied on to read the :root tokens, so this one scrim is written
+   directly, it is a shade over the page, not a colour of the design. */
+dialog::backdrop {
+  background: rgb(0 0 0 / 55%);
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface) 25%,
+    var(--surface-hi) 50%,
+    var(--surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer calc(1.4s * var(--motion-scale)) infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* Sibling dimming: hovering one word pushes the rest back so the pair you are
+   comparing stands out. Pure CSS, so it costs nothing per keystroke.
+
+   Deliberately gentle. At 0.45 opacity the rest of the ayah read as switched
+   off, and an ayah is a sentence: the words around the one under the cursor are
+   the context that makes it mean anything. This is a half-step back, enough to
+   see which word is being pointed at and not enough to stop reading the rest. */
+.peer-dim:has(.word:hover) .word:not(:hover),
+.peer-dim:has(.word:focus-visible) .word:not(:focus-visible) {
+  opacity: 0.72;
+  filter: saturate(0.85);
+}
+
+/* A word's English while the pointer rests on it, in the reading view.
+   The same idea as .peer-dim above and deliberately quieter: there, one word is
+   being studied; here, a surah is being read, and a page that reacts loudly to
+   every word the pointer crosses is a page nobody can read. */
+.gloss-line:hover .gloss-word:not(:hover),
+.gloss-line:focus-within .gloss-word:not(:focus-visible) {
+  color: var(--text-dim);
+}
+
+/* One ayah of the reading view. Rows off the screen are not laid out until they
+   scroll near it: al-Baqarah is 286 rows and 27,000 elements, and laying all of
+   them out at once was a full second of the two the surah took to appear.
+   The intrinsic size is a guess at a row's height, only used for the scrollbar
+   while a row is skipped. */
+.surah-row {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 8rem;
+}
+
+.gloss-word {
+  position: relative;
+  border-radius: var(--radius-sm);
+  transition:
+    color calc(var(--motion-instant-ms) * 1ms) ease,
+    background calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+.gloss-word:hover,
+.gloss-word:focus-visible {
+  color: var(--text);
+}
+
+/* The word being recited. Read at arm's length while the recitation runs, so it
+   is a lit background rather than a colour change: a tinted word is hard to
+   pick out of a line of the same colour, and the reader is following along, not
+   inspecting one word. The transition is short on purpose, at three or four
+   words a second a slow fade never finishes before the next word starts. */
+.gloss-word-lit,
+.gloss-line:hover .gloss-word-lit:not(:hover),
+.gloss-line:focus-within .gloss-word-lit:not(:focus-visible) {
+  color: var(--bg);
+  background: var(--c);
+}
+
+.gloss-tip {
+  position: absolute;
+  /* Pulled into the line's own leading rather than clear above it: at this
+     line-height a gloss that clears the glyphs entirely lands nearer the line
+     above than the word it belongs to. */
+  bottom: calc(100% - 0.35em);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: var(--c);
+  color: var(--bg);
+  font-family: var(--font-ui);
+  font-size: var(--type-small);
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0.4rem 0.55rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-pop);
+  transition:
+    opacity calc(var(--motion-instant-ms) * 1ms) ease,
+    transform calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+/* Focus reveals the gloss exactly as the pointer does. The words are buttons, so
+   a keyboard reaches every one of them; without this it reached them and was
+   shown nothing. */
+.gloss-word:hover > .gloss-tip,
+.gloss-word:focus-visible > .gloss-tip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.word {
+  transition:
+    opacity calc(var(--motion-instant-ms) * 1ms) ease,
+    filter calc(var(--motion-instant-ms) * 1ms) ease,
+    transform calc(var(--motion-instant-ms) * 1ms) ease,
+    box-shadow calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+.word:hover,
+.word:focus-visible {
+  transform: translateY(-3px);
+}
+
+/* The word you opened. It grows a little and lifts, so the detail panel hanging
+   below it reads as belonging to a particular word rather than floating over
+   the row; and the word itself comes up a shade, because the one you are
+   reading about should be the one your eye returns to. Both are small on
+   purpose: the row still has to scan as a row of equals. */
+/* The word being recited, in the word-by-word view. This card cannot be filled
+   the way a word in a line of text is: it already carries a colour for its part
+   of speech, and painting over that trades one piece of information for
+   another. A ring in that same colour instead, so both are readable at once,
+   and it never moves the card, since ten cards nudging in turn is a page that
+   twitches through a whole recitation. */
+.word-lit {
+  border-color: var(--c);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--c) 45%, transparent);
+}
+
+.word-open,
+.word-open:hover {
+  transform: translateY(-3px) scale(1.06);
+}
+
+/* Only the button, never the whole chip: the panel is a child of it, and
+   brightening that too washed out the text it exists to show. */
+.word-open > button {
+  filter: brightness(1.15);
+}
+
+/* The header bar. The tint ratio lives here with every other surface mix
+   rather than inlined in the component. */
+.app-header {
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+/* One tab on the strip, and the lit line under the chosen one. */
+.tab-btn {
+  transition: color calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+.tab-line {
+  transition:
+    background-color calc(var(--motion-base-ms) * 1ms) ease,
+    box-shadow calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+/* An unselected tab already hints at the colour it will turn, enough to tell
+   Sarf's red from Quran's teal at a glance, not enough to compete with the tab
+   you are actually on. How much of the hint shows is a theme.json knob. */
+.tab-idle {
+  color: color-mix(in srgb, var(--c) var(--tabstrip-idle-tint), var(--text-faint));
+}
+
+.tab-idle:hover {
+  color: color-mix(in srgb, var(--c) var(--tabstrip-hover-tint), var(--text));
+}
+
+/* ── The book picker's list ─────────────────────────────────────────────────
+   Two columns of books, some named in Arabic and some in English, each with a
+   quieter English name under it. Arabic carries the reading line-height, which
+   is nearly twice as tall as the English label beside it, so no two names on a
+   row began on the same line and the list came out ragged.
+
+   Both names sit on one rung here, and the rung under it is kept even where a
+   book has no English name, so every row is the same height whatever it holds
+   and the eye can run down either column. Set on the rows rather than on the
+   Arabic ladder, because the ladder is right everywhere else: it is only in a
+   list beside English that Arabic has something to line up with. */
+.book-name {
+  line-height: 1.6rem;
+}
+
+.book-sub {
+  line-height: 1.1rem;
+  min-height: 1.1rem;
+}
+
+/* One honest focus ring everywhere, in the accent of whatever it belongs to. */
+:where(button, a, input, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--c, var(--primary));
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .word:hover,
+  .word:focus-visible {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   Qalam mascot, a reed pen that mirrors what the app is doing.
+
+   Colour comes from --c (the active tab's accent) and every duration from
+   theme.json's motion group, so this block sets shape and behaviour only.
+   Moods are switched by the data-mood attribute the component writes.
+   ============================================================ */
+
+.qalam { overflow: visible; }
+
+.qalam-barrel { fill: var(--c, var(--primary)); }
+.qalam-nib { fill: color-mix(in srgb, var(--c, var(--primary)) 72%, #000); }
+.qalam-band { fill: color-mix(in srgb, var(--c, var(--primary)) 45%, var(--bg)); }
+.qalam-eye { fill: var(--bg); }
+.qalam-drop { fill: var(--c, var(--primary)); opacity: 0; }
+
+.qalam-shine {
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.28;
+  fill: none;
+}
+
+.qalam-slit,
+.qalam-mouth {
+  stroke: var(--bg);
+  fill: none;
+  stroke-linecap: round;
+}
+
+.qalam-slit { stroke-width: 2; }
+.qalam-mouth { stroke-width: 2.6; }
+
+/* The pen pivots on its nib; the ink drop falls on its own. */
+.qalam-pen {
+  transform-box: view-box;
+  transform-origin: 64px 118px;
+}
+
+.qalam-drop {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+
+.qalam[data-mood='idle'] .qalam-pen {
+  /* The ambient loops each keep their own tempo, multiplied by --motion-scale
+     so the Animations setting (which drives it to 0) stops them all at once. */
+  animation: qalam-bob calc(3.4s * var(--motion-scale)) ease-in-out infinite;
+}
+
+.qalam[data-mood='thinking'] .qalam-pen {
+  animation: qalam-tap calc(900ms * var(--motion-scale)) ease-in-out infinite;
+}
+
+.qalam[data-mood='correct'] .qalam-pen {
+  animation: qalam-pop calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) both;
+}
+
+.qalam[data-mood='wrong'] .qalam-pen {
+  animation: qalam-droop calc(var(--motion-spring-ms) * 1ms) ease-out both;
+}
+
+.qalam[data-mood='streak'] .qalam-pen {
+  animation: qalam-hop calc(700ms * var(--motion-scale)) var(--motion-spring-ease) infinite;
+}
+
+.qalam[data-mood='offline'] .qalam-pen {
+  animation: qalam-sink calc(var(--motion-spring-ms) * 1ms) ease-out both;
+}
+
+.qalam[data-mood='correct'] .qalam-drop,
+.qalam[data-mood='wrong'] .qalam-drop {
+  animation: qalam-drip calc(800ms * var(--motion-scale)) ease-in 120ms both;
+}
+
+@keyframes qalam-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(2deg); }
+}
+
+@keyframes qalam-tap {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-14deg); }
+}
+
+@keyframes qalam-pop {
+  0% { transform: scale(1) rotate(0deg); }
+  45% { transform: scale(1.16) rotate(8deg) translateY(-8px); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes qalam-droop {
+  to { transform: rotate(26deg) translateY(6px); }
+}
+
+@keyframes qalam-hop {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  30% { transform: translateY(-14px) rotate(-6deg); }
+  60% { transform: translateY(0) rotate(4deg); }
+}
+
+@keyframes qalam-sink {
+  to { transform: translateY(10px) scale(0.92); opacity: 0.45; }
+}
+
+/* In the launcher the pen is not resting, it is dancing. Nothing is happening
+   in there yet, no answer is being waited for and nothing has been got right or
+   wrong, so the mood is idle and the idle bob is a pen sitting still. The orb
+   is the one place the pen has the stage to itself, so it gets a step of its
+   own: a sway from foot to foot with a turn on each side and a little lift in
+   the middle. Written against the mood as well as the place so that a real mood
+   still wins if this orb is ever given one; nothing here overrides being wrong.
+   Its tempo carries --motion-scale like every other loop, which is how the
+   Animations setting stops it with everything else. */
+.qalam[data-place='orb'][data-mood='idle'] .qalam-pen {
+  animation: qalam-dance calc(2s * var(--motion-scale)) ease-in-out infinite;
+}
+
+/* Six steps rather than three, and a jump between them: it leans hard onto one
+   side, springs up off it, lands leaning the other way, and comes back. The
+   scale is what makes it read as weight going into the floor and coming off it
+   again, which is the difference between a pen dancing and a pen wobbling. */
+@keyframes qalam-dance {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  15% { transform: translate(-7px, 1px) rotate(-18deg) scale(0.97); }
+  30% { transform: translate(-4px, -14px) rotate(-8deg) scale(1.04); }
+  50% { transform: translate(0, -3px) rotate(0deg) scale(1); }
+  65% { transform: translate(7px, 1px) rotate(18deg) scale(0.97); }
+  80% { transform: translate(4px, -14px) rotate(8deg) scale(1.04); }
+}
+
+@keyframes qalam-drip {
+  0% { opacity: 0; transform: translateY(-4px) scale(0.4); }
+  30% { opacity: 1; transform: translateY(2px) scale(1); }
+  100% { opacity: 0; transform: translateY(22px) scale(0.7); }
+}
+
+/* ── Hover: one stroke of the pen ───────────────────────────────────────────
+   The pen leans right, sweeps across to the left through about 45 degrees, and
+   settles back where it was. Ink follows the nib and dries away after.
+
+   Three decisions worth keeping:
+   - It pivots at the band, not the nib. Every mood turns on the nib because a
+     pen resting on paper turns there, but a nib that never moves cannot leave
+     a line. From the band the tip traces a real arc, which is what the ink is.
+   - Only the header pen answers to hover. The small one marking a source is a
+     label, and a label that moves when the cursor passes reads as a button.
+   - Both animations share one duration and one easing, so the ink is drawn at
+     the speed the nib is actually travelling instead of drifting ahead of it.
+   The duration is built from --motion-spring-ms, which the Animations setting
+   drives to zero, so turning animations off turns this off with everything
+   else, and no component has to know the setting exists. */
+
+.qalam-ink {
+  fill: none;
+  stroke: var(--c, var(--primary));
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  opacity: 0;
+  /* The whole length hidden to begin with, then uncovered from the right-hand
+     end, which is the end the nib starts from. */
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+}
+
+.qalam[data-place='header']:hover .qalam-pen {
+  transform-origin: 64px 92px;
+  animation: qalam-sweep calc(var(--motion-spring-ms) * 2ms) cubic-bezier(0.4, 0, 0.25, 1);
+}
+
+.qalam[data-place='header']:hover .qalam-ink {
+  animation: qalam-write calc(var(--motion-spring-ms) * 2ms) cubic-bezier(0.4, 0, 0.25, 1);
+}
+
+@keyframes qalam-sweep {
+  0% { transform: rotate(0deg); }
+  18% { transform: rotate(20deg); }
+  62% { transform: rotate(-22deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes qalam-write {
+  0%, 18% { stroke-dashoffset: 22; opacity: 0.9; }
+  62%, 78% { stroke-dashoffset: 0; opacity: 0.9; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+/* ── The capsule microphone ─────────────────────────────────────────────────────────
+   Three things a press can be, and each has to look different from across the
+   room: resting, listening, working it out. Listening is the one that matters,
+   because a microphone that has silently stopped recording is the worst thing
+   this button can do, so the grille pulses like a level meter and a ring
+   breathes around it.
+
+   Each state is a different kind of motion rather than a faster one, and the
+   mark keeps its own shape when Animations are off, so there is still a mic
+   sitting there rather than a blank square. Numbers come from theme.json's
+   `mic` group, the shape comes from ui/MicMark.jsx, and nothing in JS ever
+   touches a stroke. */
+.mic-mark { overflow: visible; }
+
+.mic-mark path,
+.mic-mark rect,
+.mic-mark line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--mic-weight);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mic-mark,
+.mic-mark .mic-grille line {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Hover, after a beat: the same grille pulse recording uses, run far slower. It
+   is a preview of what pressing does rather than a second idea, which is why
+   hover and recording share one keyframe and differ only in tempo. The wait is
+   animation-delay, so there is no timer to start or clean up, and it answers to
+   the caller's own hit area (.mic-host): the mark is smaller than the button
+   around it, and hovering the button should be enough. A working state owns the
+   mark, so idle is the only one that pulses on hover. */
+.mic-host:hover .mic-mark[data-state='idle'] .mic-grille line {
+  animation: mic-grille-pulse calc(var(--mic-hover-pulse-ms) * 1ms * var(--motion-scale)) ease-in-out 350ms infinite;
+}
+
+.mic-host:hover .mic-mark[data-state='idle'] .mic-grille line:nth-child(2) {
+  animation-delay: calc(350ms + var(--mic-hover-pulse-ms) * 1ms * 0.17);
+}
+
+.mic-host:hover .mic-mark[data-state='idle'] .mic-grille line:nth-child(3) {
+  animation-delay: calc(350ms + var(--mic-hover-pulse-ms) * 1ms * 0.34);
+}
+
+/* The grille slits pulse out of step, a small level meter hearing a voice. */
+.mic-mark[data-state='recording'] .mic-grille line {
+  animation: mic-grille-pulse calc(var(--mic-pulse-ms) * 1ms * var(--motion-scale)) ease-in-out infinite;
+}
+
+.mic-mark[data-state='recording'] .mic-grille line:nth-child(2) {
+  animation-delay: calc(var(--mic-pulse-ms) * 1ms * 0.17);
+}
+
+.mic-mark[data-state='recording'] .mic-grille line:nth-child(3) {
+  animation-delay: calc(var(--mic-pulse-ms) * 1ms * 0.34);
+}
+
+@keyframes mic-grille-pulse {
+  0%, 100% { transform: scaleX(0.55); opacity: 0.6; }
+  50% { transform: scaleX(1); opacity: 1; }
+}
+
+/* The cradle arc becomes a chasing dash: clearly work, clearly not listening.
+   10 + 12 splits the arc's ~20.4 length into one dash and one gap, and the
+   offset walks a full period per lap so the loop closes without a jump. */
+.mic-mark[data-state='thinking'] .mic-arc {
+  stroke-dasharray: 10 12;
+  animation: mic-arc-chase calc(var(--mic-chase-ms) * 1ms * var(--motion-scale)) linear infinite;
+}
+
+@keyframes mic-arc-chase {
+  to { stroke-dashoffset: -22; }
+}
+
+.mic-ring {
+  animation: mic-ring calc(1600ms * var(--motion-scale)) ease-out infinite;
+}
+
+@keyframes mic-ring {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  70%, 100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* command.css sets the satellite caption in --text-faint, which fails AA
+   against the satellite background (about 3.4:1). --text-dim clears AA
+   comfortably; the unselected dimming stays, it runs on opacity, not colour. */
+.sh-sat-arabic { color: var(--text-dim); }
+
+/* ── The cursor light ───────────────────────────────────────────────────────
+   One faint circle, drawn once in the page and moved by CursorLight to wherever
+   the pointer is, on every tab. It says "this is
+   the thing being read" in the tab's own colour, which is a thing a caption
+   cannot do without taking space from what it is captioning.
+
+   Moved by transform alone and composited on its own layer, so following the
+   pointer costs no repaint of the page under it. Its knobs are in theme.json;
+   the Animations setting drives --motion-scale to 0, which takes it with it. */
+.cursor-light {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  width: calc(var(--cursor-light-size-px) * 1px);
+  height: calc(var(--cursor-light-size-px) * 1px);
+  margin: calc(var(--cursor-light-size-px) * -0.5px) 0 0 calc(var(--cursor-light-size-px) * -0.5px);
+  border-radius: 50%;
+  background: radial-gradient(closest-side,
+    color-mix(in srgb, #fff var(--cursor-light-white), transparent),
+    color-mix(in srgb, var(--c, var(--primary)) var(--cursor-light-tint), transparent) 40%,
+    transparent 70%);
+  transition: opacity calc(var(--motion-base-ms) * 1ms) ease,
+    background calc(var(--motion-base-ms) * 1ms) ease;
+  will-change: transform, opacity;
+}
+
+.cursor-light[data-on='1'] {
+  opacity: var(--motion-scale, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-light { display: none; }
+}

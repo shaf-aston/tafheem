@@ -1,0 +1,488 @@
+{
+ "pictures": {
+  "mustasna-00.png": {
+   "sentence": "الطلاب فتحوا كتبهم إلا عمر",
+   "marked": []
+  },
+  "mustasna-01.png": {
+   "sentence": "صام زيد رمضان إلا شعبان",
+   "marked": []
+  },
+  "mustasna-02.png": {
+   "sentence": "ما كتبتُ إلا بقلم",
+   "marked": []
+  },
+  "mustasna-03.png": {
+   "sentence": "ما لهم به من علم إلا اتباع الظن",
+   "marked": []
+  },
+  "mustasna-04.png": {
+   "sentence": "الأصنامُ كُسرتْ إلا الكبير",
+   "marked": []
+  },
+  "mustasna-05.png": {
+   "sentence": "كتبتُ رسالةً إلى المُدرّسِين إلا الطبَّاخ",
+   "marked": []
+  },
+  "mustasna-06.png": {
+   "sentence": "الرجال أكرمُوا زيدا ما خلا بكر",
+   "marked": []
+  },
+  "mustasna-07.png": {
+   "sentence": "ما مررت بأحدٍ إلا طلحة",
+   "marked": []
+  },
+  "mustasna-08.png": {
+   "sentence": "لم يجلس الأولاد إلا الرجال",
+   "marked": []
+  },
+  "mustasna-09.png": {
+   "sentence": "صام زيد رمضان غير يوم",
+   "marked": []
+  },
+  "mustasna-10.png": {
+   "sentence": "هل جزاء الإحسانِ إلا الإحسان",
+   "marked": []
+  },
+  "mustasna-11.png": {
+   "sentence": "كلُّ شيءٍ ما عدا الله باطلٌ",
+   "marked": []
+  },
+  "mustasna-12.png": {
+   "sentence": "ما قرأ زيد القرآنَ إلا طاهر",
+   "marked": []
+  },
+  "mustasna-13.png": {
+   "sentence": "ما أكلتْ الثعلب غير دجاجة",
+   "marked": []
+  },
+  "mustasna-14.png": {
+   "sentence": "الرجال أكرمُوا زيدا حاشا بكر",
+   "marked": []
+  },
+  "mustasna-15.png": {
+   "sentence": "لا أنصرُ زيدا إلا نَصرَة",
+   "marked": []
+  },
+  "mustasna-16.png": {
+   "sentence": "لم تثمر الأشجار إلا النخيل",
+   "marked": []
+  },
+  "mustasna-17.png": {
+   "sentence": "لا يذوقون فيها الموت إلا الموتة الأولى",
+   "marked": []
+  },
+  "mustasna-18.png": {
+   "sentence": "ما صلى زيد صلاة الفجر إلا ذهب وقتها",
+   "marked": []
+  },
+  "mustasna-19.png": {
+   "sentence": "ما صلّى زيد صلاة الفجر إلا ذهب وقتها",
+   "marked": []
+  },
+  "mustasna-20.png": {
+   "sentence": "لا آكل الطعام إلا و هو حارّ",
+   "marked": []
+  },
+  "mustasna-21.png": {
+   "sentence": "لا آكل الطعام إلا و هو حارّ",
+   "marked": []
+  }
+ },
+ "notes": {
+  "mustasna-e01b": {
+   "labels": {
+    "A": "عمرُ",
+    "B": "عمرَ",
+    "C": "عمرٌ",
+    "D": "عمرٍ"
+   }
+  },
+  "mustasna-e02b": {
+   "labels": {
+    "A": "شعبانُ",
+    "B": "شعبانَ",
+    "C": "شعبانِ",
+    "D": "شعبانٍ"
+   }
+  },
+  "mustasna-e03b": {
+   "labels": {
+    "A": "قلمٌ",
+    "B": "قلمَ",
+    "C": "قلمِ",
+    "D": "قلمٍ"
+   }
+  },
+  "mustasna-e04b": {
+   "labels": {
+    "A": "اتباعٍ الظن",
+    "B": "اتباعِ الظن",
+    "C": "اتباعُ الظن",
+    "D": "اتباعَ الظن"
+   }
+  },
+  "mustasna-e05b": {
+   "labels": {
+    "A": "الكبيرِ",
+    "B": "الكبيرَ",
+    "C": "الكبيرُ",
+    "D": "الكبيرْ"
+   }
+  },
+  "mustasna-e06b": {
+   "labels": {
+    "A": "الطبَّاخِ",
+    "B": "الطبَّاخُ",
+    "C": "الطبَّاخَ",
+    "D": "الطبَّاخْ"
+   }
+  },
+  "mustasna-e07b": {
+   "labels": {
+    "A": "بكرٌ",
+    "B": "بكرًا",
+    "C": "بكرٍ",
+    "D": "بكرَ"
+   }
+  },
+  "mustasna-e08b": {
+   "labels": {
+    "A": "طلحةٌ",
+    "B": "طلحةٍ",
+    "C": "طلحةُ",
+    "D": "طلحةَ"
+   }
+  },
+  "mustasna-e09b": {
+   "labels": {
+    "A": "الرجالُ",
+    "B": "الرجالَ",
+    "C": "الرجالِ",
+    "D": "الرجالْ"
+   }
+  },
+  "mustasna-e10b": {
+   "labels": {
+    "A": "غيرَ يومٍ",
+    "B": "غيرِ يومٍ",
+    "C": "غيرُ يومٍ",
+    "D": "غيرٌ يومٌ"
+   }
+  },
+  "mustasna-e11b": {
+   "labels": {
+    "A": "الإحسانَ",
+    "B": "الإحسانِ",
+    "C": "الإحسانٌ",
+    "D": "الإحسانُ"
+   }
+  },
+  "mustasna-e12a": {
+   "question": "For this sentence, which combination applies: is إلا active or cancelled (ملغاة means إلا is cancelled and works only as a restriction word, غير ملغاة means it is a true exception word), is the sentence positive or negative (موجب/غير موجب), is the excepted-from group missing from the sentence or present (مفرغ/غير مفرغ), and, if present, is the excepted word part of that group or separate from it (متصل/منقطع) - or does that last question not apply (N/A)? Tick every category that fits."
+  },
+  "mustasna-e12b": {
+   "labels": {
+    "A": "اللهْ",
+    "B": "اللهُ",
+    "C": "اللهَ",
+    "D": "اللهِ"
+   }
+  },
+  "mustasna-e13b": {
+   "labels": {
+    "A": "طاهرٌ",
+    "B": "طاهرًا",
+    "C": "طاهرَ",
+    "D": "طاهرٍ"
+   }
+  },
+  "mustasna-e14b": {
+   "labels": {
+    "A": "غيرُ دجاجةً",
+    "B": "غيرُ دجاجةٍ",
+    "C": "غيرِ دجاجةٌ",
+    "D": "غيرَ دجاجةٍ"
+   }
+  },
+  "mustasna-e15b": {
+   "labels": {
+    "A": "بكرًا",
+    "B": "بكرٍ",
+    "C": "بكرَ",
+    "D": "بكرٌ"
+   }
+  },
+  "mustasna-e16b": {
+   "labels": {
+    "A": "نَصرَةٍ",
+    "B": "نَصرَةٌ",
+    "C": "نَصرَةً",
+    "D": "نَصرَةَ"
+   }
+  },
+  "mustasna-e17b": {
+   "labels": {
+    "A": "النخيلُ",
+    "B": "النخيلً",
+    "C": "النخيلِ",
+    "D": "النخيلَ"
+   }
+  },
+  "mustasna-e18b": {
+   "labels": {
+    "A": "الموتةِ الأولى",
+    "B": "الموتةَ الأولى",
+    "C": "الموتةً الأولى",
+    "D": "الموتةُ الأولى"
+   }
+  },
+  "mustasna-e19b": {
+   "question": "Label each numbered word or phrase (؟1 to ؟8) in the diagram with its grammatical role, choosing from the options given.",
+   "labels": {
+    "?1": "زيد",
+    "?2": "صلاة",
+    "?3": "الفجر",
+    "?4": "صلاة الفجر",
+    "?5": "إلا",
+    "?6": "وقتها",
+    "?7": "ذهب وقتها",
+    "?8": "صلاة الفجر إلا ذهب وقتها"
+   }
+  },
+  "mustasna-e20b": {
+   "question": "Label each numbered word or phrase (؟1 to ؟8) in the diagram with its grammatical role, choosing from the options given.",
+   "labels": {
+    "?1": "آكل",
+    "?2": "الطعام",
+    "?3": "إلا",
+    "?4": "و",
+    "?5": "هو",
+    "?6": "حارّ",
+    "?7": "و هو حارّ",
+    "?8": "الطعام إلا و هو حارّ"
+   }
+  }
+ },
+ "tags": {
+  "mustasna-r01": [
+   "mustasna",
+   "tarif-mustalah"
+  ],
+  "mustasna-r02": [
+   "mustasna",
+   "tarif-mustalah"
+  ],
+  "mustasna-r03": [
+   "mustasna",
+   "tarif-mustalah"
+  ],
+  "mustasna-r04": [
+   "mustasna",
+   "istithna-anwaa",
+   "tarif-mustalah"
+  ],
+  "mustasna-r05": [
+   "mustasna",
+   "istithna-anwaa",
+   "tarif-mustalah"
+  ],
+  "mustasna-r06": [
+   "mustasna",
+   "istithna-anwaa",
+   "mustathna-minhu"
+  ],
+  "mustasna-r07": [
+   "mustasna",
+   "istithna-anwaa",
+   "mustathna-minhu"
+  ],
+  "mustasna-r08": [
+   "mustasna",
+   "adat-istithna",
+   "tarif-mustalah"
+  ],
+  "mustasna-r09": [
+   "mustasna",
+   "istithna-anwaa"
+  ],
+  "mustasna-r10": [
+   "mustasna",
+   "istithna-anwaa"
+  ],
+  "mustasna-r11": [
+   "mustasna",
+   "adat-istithna"
+  ],
+  "mustasna-r12": [
+   "mustasna",
+   "adat-istithna",
+   "adat-hasr"
+  ],
+  "mustasna-r13": [
+   "mustasna",
+   "adat-hasr"
+  ],
+  "mustasna-r14": [
+   "mustasna",
+   "istithna-anwaa",
+   "adat-istithna"
+  ],
+  "mustasna-r15": [
+   "mustasna",
+   "istithna-anwaa",
+   "adat-istithna"
+  ],
+  "mustasna-r16": [
+   "mustasna",
+   "istithna-anwaa",
+   "adat-hasr"
+  ],
+  "mustasna-r17": [
+   "mustasna",
+   "istithna-anwaa"
+  ],
+  "mustasna-r18": [
+   "mustasna",
+   "adat-istithna"
+  ],
+  "mustasna-r19": [
+   "mustasna",
+   "adat-istithna"
+  ],
+  "mustasna-r20": [
+   "mustasna",
+   "adat-istithna"
+  ],
+  "mustasna-r21": [
+   "mustasna",
+   "adat-istithna"
+  ],
+  "mustasna-r22": [
+   "mustasna",
+   "adat-istithna"
+  ],
+  "mustasna-r23": [
+   "mustasna",
+   "adat-istithna"
+  ],
+  "mustasna-e01": [
+   "mustasna",
+   "istithna-anwaa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e02": [
+   "mustasna",
+   "istithna-anwaa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e03": [
+   "mustasna",
+   "istithna-anwaa",
+   "adat-hasr",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e04": [
+   "mustasna",
+   "istithna-anwaa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e05": [
+   "mustasna",
+   "istithna-anwaa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e06": [
+   "mustasna",
+   "istithna-anwaa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e07": [
+   "mustasna",
+   "istithna-anwaa",
+   "adat-istithna",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e08": [
+   "mustasna",
+   "istithna-anwaa",
+   "adat-hasr",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e09": [
+   "mustasna",
+   "istithna-anwaa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e10": [
+   "mustasna",
+   "adat-istithna",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e11": [
+   "mustasna",
+   "istithna-anwaa",
+   "adat-hasr",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e12": [
+   "mustasna",
+   "adat-istithna",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e13": [
+   "mustasna",
+   "istithna-anwaa",
+   "adat-hasr",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e14": [
+   "mustasna",
+   "adat-istithna",
+   "adat-hasr",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e15": [
+   "mustasna",
+   "istithna-anwaa",
+   "adat-istithna",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e16": [
+   "mustasna",
+   "istithna-anwaa",
+   "adat-hasr",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e17": [
+   "mustasna",
+   "istithna-anwaa",
+   "adat-hasr",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e18": [
+   "mustasna",
+   "istithna-anwaa",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e19": [
+   "mustasna",
+   "adat-hasr",
+   "haal",
+   "zul-haal",
+   "haal-jumla-filiyya",
+   "mafool-bihi",
+   "tatbeeq-tarkeeb"
+  ],
+  "mustasna-e20": [
+   "mustasna",
+   "adat-hasr",
+   "haal",
+   "zul-haal",
+   "waw-haaliyya",
+   "haal-jumla-ismiyya",
+   "mafool-bihi",
+   "tatbeeq-tarkeeb"
+  ]
+ }
+}

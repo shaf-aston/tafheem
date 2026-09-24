@@ -1,0 +1,265 @@
+{
+ "batch": "haal-lettered-07",
+ "questions": [
+  {
+   "id": "haal/correct-or-incorrect/1",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Correct or Incorrect | Q1",
+    "number": "1",
+    "images": [
+     "q081.png",
+     "q082.png",
+     "q083.png"
+    ]
+   },
+   "type": "correct_or_incorrect",
+   "instructions": null,
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "لِيَذهبْ طالِبُو العلمَ إلى المدرسةِ مَمْلُوْؤُوْن بِنَشاطٍ",
+     "marked": [],
+     "en": "Students of knowledge should go to the madrassa whilst full with drive (eagerness)"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Explain the mistakes and how to rectify them. If there are no mistakes, then write: \"No mistakes\".",
+     "kind": "free_text",
+     "options": null,
+     "answer": "'Ilm' should have kasrah as it is mudaf ilayh.\nMamloo'oon should be mansoob (mamloo'een) as it is haal.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "'Ilm' should have kasrah as it is mudaf ilayh.\nMamloo'oon should be mansoob (mamloo'een) as it is haal."
+    }
+   ],
+   "flags": [
+    "Vowel check read different letters for sentence 0: لِيَذهبْ طالِبُو العلمَ إلى المدرسةِ مَمْلُوءُوْن بِنَشاطٍ"
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/2",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Correct or Incorrect | Q2",
+    "number": "2",
+    "images": [
+     "q085.png",
+     "q086.png",
+     "q087.png"
+    ]
+   },
+   "type": "correct_or_incorrect",
+   "instructions": null,
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "وَخِلافُه الكسلُ ما يكرهُهُ رسولُ اللَّهِ ﷺ عَائِذًا باللَّهِ منه",
+     "marked": [],
+     "en": "And contrary to it (drive) is laziness which the Messenger of Allah ﷺ disliked whilst seeking refuge by (in) Allah from it."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Correct",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Correct"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Explain the mistakes and how to rectify them. If there are no mistakes, then write: \"No mistakes\".",
+     "kind": "free_text",
+     "options": null,
+     "answer": [
+      "No mistakes",
+      "No mistakes."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": ".",
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/correct-or-incorrect/3",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Correct or Incorrect | Q3",
+    "number": "3",
+    "images": [
+     "q089.png",
+     "q090.png",
+     "q091.png"
+    ]
+   },
+   "type": "correct_or_incorrect",
+   "instructions": null,
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "وَلِيمْكُثُوا فيها قد يبذُلون أَفْضَلَ جُهودِهم في دُروسِهم",
+     "marked": [],
+     "en": "And they (students of knowledge) should remain in it (madrassa) whilst exhausting the best of their efforts in their lessons."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Explain the mistakes and how to rectify them. If there are no mistakes, then write: \"No mistakes\".",
+     "kind": "free_text",
+     "options": null,
+     "answer": "There should be a Waaw Haaliyyah before Qad because it is a فعل مضارع مثبت with قد and the dhameer raabit is present.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "There should be a Waaw Haaliyyah before Qad because it is a فعل مضارع مثبت with قد and the dhameer raabit is present."
+    }
+   ],
+   "flags": []
+  }
+ ]
+}

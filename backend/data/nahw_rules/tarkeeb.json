@@ -1,0 +1,397 @@
+{
+  "_comment": "Everything the tarkeeb rules read that is not logic: the Arabic name of each grammatical term, the colour it is drawn in, and the corpus's own tag shorthand. tarkeeb.py holds no Arabic and no tag letters of its own, so a term can be reworded; or a renamed corpus tag followed; by editing this file alone.",
+  "_pos_comment": "The part-of-speech column in corpus.db. It has only three values; everything finer lives in the feature string.",
+  "pos": {
+    "noun": "N",
+    "verb": "V",
+    "particle": "P"
+  },
+  "_feature_comment": "Tokens inside a segment's feature string, from data/quran/tags.json. Read only for the facts the joining rules need, a rule can therefore only ever fire on something the corpus actually recorded.",
+  "feature": {
+    "preposition": "P",
+    "conjunction": "CONJ",
+    "resumptive": "REM",
+    "definite_article": "DET",
+    "prefix": "PREF",
+    "suffix": "SUFF",
+    "pronoun": "PRON",
+    "proper_noun": "PN",
+    "indefinite": "INDEF",
+    "adjective": "ADJ",
+    "nominative": "NOM",
+    "accusative": "ACC",
+    "genitive": "GEN",
+    "passive": "PASS",
+    "time": "T",
+    "place": "LOC",
+    "vocative": "VOC"
+  },
+  "_not_a_noun_comment": "The corpus writes N for anything that behaves like a noun, pronouns and demonstratives included. These are the ones an idafa or a na't must not treat as an ordinary noun.",
+  "not_a_noun": [
+    "PRON",
+    "DEM",
+    "REL",
+    "COND",
+    "INTG"
+  ],
+  "_subject_words_comment": "Words filed as N with no case of their own: a pronoun, a demonstrative, a relative, an interrogative. They are never an idafa or a na't (not_a_noun), but هُوَ, هَٰذَا, ٱلَّذِى can head a nominal sentence, so a mubtada, an ism or a khabar may be one, taken only first in line since no case can be read off it. A pronoun or demonstrative joined on by و starts a new sentence (وَهُمْ غَافِلُونَ), as does one after a negative or a connective (وَلَا هُمْ يَحْزَنُونَ); elsewhere it belongs to what comes before it (أَلَيْسَ هَٰذَا, بَعْدِ ذَٰلِكَ, ٱسْكُنْ أَنتَ). A word carrying a resumptive, circumstantial or result prefix always starts one. A khabar may be a relative after a pronoun or demonstrative (هُوَ ٱلَّذِى); after a noun a relative describes it (ٱلْكِتَابُ ٱلَّذِى), and a pronoun there only separates (أُو۟لَٰٓئِكَ هُمُ ٱلْمُؤْمِنُونَ). A pronoun behind a preposition (لَهُۥ) is a majroor, never any of these. إِيَّا is the one standalone object pronoun (إِيَّاكَ نَعْبُدُ), so it is neither.",
+  "subject_words": {
+    "mabni": [
+      "PRON",
+      "DEM",
+      "REL",
+      "INTG"
+    ],
+    "opens_sentence": [
+      "PRON",
+      "DEM"
+    ],
+    "khabar_mabni": [
+      "REL"
+    ],
+    "sentence_prefixes": [
+      "REM",
+      "CIRC",
+      "RSLT"
+    ],
+    "object_pronoun": "إيا"
+  },
+  "_governing_comment": "A word that governs the sentence after it: إِنَّ and its sisters, كَانَ and its sisters, كَادَ. The corpus files each under a family tag (FAM:), and nahw teaches them the same way, so the family decides the case of the ism and the khabar. A word that shows a different case is not that ism or khabar; a word that shows none takes the role by its place. An attached ما (the corpus's PREV) stops إِنَّ governing: إِنَّمَا governs nothing. `word` names a family whose own governing word is not in treebank.governors, a conjugated كَانَ is named after كَانَ, as nahw names the whole family. `frames` are the treebank's own relation words, so both paths spell اِسْمُ إِنَّ the same way.",
+  "governing": {
+    "family_tag": "FAM:",
+    "negative": "NEG",
+    "preventive": "PREV",
+    "frames": {
+      "ism": "اسم",
+      "khabar": "خبر"
+    },
+    "families": {
+      "إِنّ": {
+        "word": "إن",
+        "particle": "harf_nasikh",
+        "negation": "la_nafiya",
+        "_ism_first_comment": "Only a jar-majroor may stand between إِنَّ and its ism (إِنَّ فِي ذَٰلِكَ لَآيَةً), so the ism is the first word in line or none. كَانَ's khabar can come first (وَكَانَ حَقًّا عَلَيْنَا نَصْرُ), so كَانَ reads on.",
+        "ism_first": true,
+        "ism": "accusative",
+        "khabar": "nominative"
+      },
+      "كَان": {
+        "word": "كان",
+        "verb": "fil_naqis",
+        "negation": "ma_hijaziyya",
+        "ism": "nominative",
+        "khabar": "accusative"
+      },
+      "كَاد": {
+        "word": "كاد",
+        "verb": "fil_muqaraba",
+        "ism": "nominative",
+        "khabar": "verb"
+      }
+    }
+  },
+  "_person_comment": "The corpus tags a verb's subject ending and its object ending alike (the وا of ءَامَنُوا, the كُمْ of خَلَقَكُمْ), so agreement is what tells them apart: an ending with the verb's own person is its subject. A he or she verb keeps its subject hidden, so there an agreeing ending is the object, ضَرَبَهُ.",
+  "person": {
+    "pattern": "^[123][MF]?[SDP]$",
+    "hidden_subject": [
+      "3MS",
+      "3FS"
+    ],
+    "_named_subject_comment": "Only a he, she or they verb takes a noun as its subject. An I or you verb (قُلْ, نَعْبُدُ) always has a pronoun for one, so no noun after it is its فاعل.",
+    "named_subject": "3",
+    "_implied_case_comment": "A noun carrying the my-ending (رَبِّى) has an implied case, إِعْرَابٌ مُقَدَّرٌ: no vowel shows it, and the corpus tag is no evidence either, it files 25 of the 32 such nouns right after إِنَّ as nominative. So its case is treated as unshown, and its place decides.",
+    "implied_case": [
+      "1S"
+    ]
+  },
+  "_terms_comment": "role = what a piece does · label = what a unit is. tone names the colour the diagram draws it in; the frontend owns the actual value.",
+  "terms": {
+    "fil": {
+      "ar": "فِعْلٌ",
+      "tone": "fil"
+    },
+    "fail": {
+      "ar": "فَاعِلٌ",
+      "tone": "fail"
+    },
+    "naib_fail": {
+      "ar": "نَائِبُ فَاعِلٍ",
+      "tone": "fail"
+    },
+    "mafool": {
+      "ar": "مَفْعُوْلٌ بِهِ",
+      "tone": "mafool"
+    },
+    "mubtada": {
+      "ar": "مُبْتَدَأٌ",
+      "tone": "fail"
+    },
+    "khabar": {
+      "ar": "خَبَرٌ",
+      "tone": "mafool"
+    },
+    "jarr": {
+      "ar": "حَرْفُ جَرٍّ",
+      "tone": "harf"
+    },
+    "majroor": {
+      "ar": "مَجْرُوْرٌ",
+      "tone": "harf"
+    },
+    "jar_majroor": {
+      "ar": "جَارٌّ وَمَجْرُوْرٌ",
+      "tone": "harf"
+    },
+    "mudaf": {
+      "ar": "مُضَافٌ",
+      "tone": "mudaf"
+    },
+    "mudaf_ilayhi": {
+      "ar": "مُضَافٌ إِلَيْهِ",
+      "tone": "mudaf"
+    },
+    "murakkab_idafi": {
+      "ar": "مُرَكَّبٌ إِضَافِيٌّ",
+      "tone": "mudaf"
+    },
+    "manoot": {
+      "ar": "مَنْعُوْتٌ",
+      "tone": "sifah"
+    },
+    "naat": {
+      "ar": "نَعْتٌ",
+      "tone": "sifah"
+    },
+    "murakkab_tawsifi": {
+      "ar": "مُرَكَّبٌ تَوْصِيْفِيٌّ",
+      "tone": "sifah"
+    },
+    "harf_atf": {
+      "ar": "حَرْفُ عَطْفٍ",
+      "tone": "ghair_aamil",
+      "detail": "غَيْرُ عَامِلٍ، لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ"
+    },
+    "harf_istinaf": {
+      "ar": "حَرْفُ اسْتِئْنَافٍ",
+      "tone": "ghair_aamil",
+      "detail": "غَيْرُ عَامِلٍ، لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ"
+    },
+    "harf_nasikh": {
+      "ar": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ",
+      "tone": "harf",
+      "detail": "يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ"
+    },
+    "la_nafiya": {
+      "ar": "لَا النَّافِيَةُ لِلْجِنْسِ",
+      "tone": "harf",
+      "detail": "تَنْصِبُ الِاسْمَ وَتَرْفَعُ الْخَبَرَ"
+    },
+    "ma_hijaziyya": {
+      "ar": "مَا الْحِجَازِيَّةُ",
+      "tone": "harf",
+      "detail": "تَرْفَعُ الِاسْمَ وَتَنْصِبُ الْخَبَرَ"
+    },
+    "fil_naqis": {
+      "ar": "فِعْلٌ نَاقِصٌ",
+      "tone": "fil",
+      "detail": "يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ"
+    },
+    "fil_muqaraba": {
+      "ar": "فِعْلُ مُقَارَبَةٍ",
+      "tone": "fil",
+      "detail": "يَرْفَعُ الِاسْمَ، وَخَبَرُهُ جُمْلَةٌ فِعْلِيَّةٌ"
+    },
+    "jumlah_filiyyah": {
+      "ar": "جُمْلَةٌ فِعْلِيَّةٌ",
+      "tone": "fil"
+    },
+    "jumlah_ismiyyah": {
+      "ar": "جُمْلَةٌ اِسْمِيَّةٌ",
+      "tone": "fail"
+    },
+    "unresolved": {
+      "ar": "؟ لَمْ يُحَلَّلْ",
+      "tone": "gap"
+    }
+  },
+  "_treebank_comment": "Reading the Quranic Treebank (NoorBayan, MIT) into the same tree shape. It names a relation in Arabic for each word and points at the word that governs it; these tables say how those names are drawn. A name that matches nothing here still draws, it just takes the default colour, because the name itself is the fact, not the colour.",
+  "treebank": {
+    "elided": "مَحْذُوْفٌ",
+    "unwritten_mark": "–",
+    "unwritten_note": "Interpreted.",
+    "root": "root",
+    "not_a_relation": [
+      "NonRel",
+      "_",
+      ""
+    ],
+    "_tone_comment": "Matched as substrings, first hit wins, so مفعول به and مفعول مطلق share one entry.",
+    "relation_tones": [
+      [
+        "فاعل",
+        "fail"
+      ],
+      [
+        "مبتدأ",
+        "fail"
+      ],
+      [
+        "مفعول",
+        "mafool"
+      ],
+      [
+        "خبر",
+        "mafool"
+      ],
+      [
+        "مضاف",
+        "mudaf"
+      ],
+      [
+        "مجرور",
+        "harf"
+      ],
+      [
+        "متعلق",
+        "harf"
+      ],
+      [
+        "حرف",
+        "harf"
+      ],
+      [
+        "صفة",
+        "sifah"
+      ],
+      [
+        "نعت",
+        "sifah"
+      ],
+      [
+        "حال",
+        "sifah"
+      ],
+      [
+        "صلة",
+        "rel"
+      ],
+      [
+        "موصول",
+        "rel"
+      ],
+      [
+        "بدل",
+        "mudaf"
+      ],
+      [
+        "معطوف",
+        "harf"
+      ]
+    ],
+    "_constituent_comment": "Only the three the treebank's own documentation names plainly are given a wording. SC, S and CS are left unnamed rather than guessed at.",
+    "constituent_labels": {
+      "PP": "جَارٌّ وَمَجْرُوْرٌ",
+      "VS": "جُمْلَةٌ فِعْلِيَّةٌ",
+      "NS": "جُمْلَةٌ اِسْمِيَّةٌ"
+    },
+    "sentence_labels": {
+      "verb": "jumlah_filiyyah",
+      "other": "jumlah_ismiyyah"
+    },
+    "_wording_comment": "The treebank writes its relation names without vowels; the rest of the app writes them fully vowelled. Same terms, so they are spelled the app's way here. A name that is not in this list is shown exactly as the treebank wrote it, its own wording beats no wording.",
+    "relation_terms": {
+      "فاعل": "فَاعِلٌ",
+      "نائب فاعل": "نَائِبُ فَاعِلٍ",
+      "مفعول به": "مَفْعُوْلٌ بِهِ",
+      "مفعول مطلق": "مَفْعُوْلٌ مُطْلَقٌ",
+      "مفعول لأجله": "مَفْعُوْلٌ لِأَجْلِهِ",
+      "مفعول فيه": "مَفْعُوْلٌ فِيْهِ",
+      "مفعول معه": "مَفْعُوْلٌ مَعَهُ",
+      "مبتدأ": "مُبْتَدَأٌ",
+      "خبر": "خَبَرٌ",
+      "مجرور": "مَجْرُوْرٌ",
+      "متعلق": "مُتَعَلِّقٌ",
+      "مضاف إليه": "مُضَافٌ إِلَيْهِ",
+      "صفة": "صِفَةٌ",
+      "نعت": "نَعْتٌ",
+      "حال": "حَالٌ",
+      "بدل": "بَدَلٌ",
+      "معطوف": "مَعْطُوْفٌ",
+      "صلة": "صِلَةٌ",
+      "تمييز": "تَمْيِيْزٌ",
+      "توكيد": "تَوْكِيْدٌ",
+      "اسم إن": "اِسْمُ إِنَّ",
+      "خبر إن": "خَبَرُ إِنَّ",
+      "اسم كان": "اِسْمُ كَانَ",
+      "خبر كان": "خَبَرُ كَانَ",
+      "نفي": "نَفْيٌ",
+      "جواب": "جَوَابٌ",
+      "استفهام": "اِسْتِفْهَامٌ",
+      "بيان": "بَيَانٌ",
+      "تحقيق": "تَحْقِيْقٌ",
+      "منادى": "مُنَادًى",
+      "مستثنى": "مُسْتَثْنًى",
+      "شرط": "شَرْطٌ",
+      "جواب الشرط": "جَوَابُ الشَّرْطِ",
+      "جواب أمر": "جَوَابُ أَمْرٍ",
+      "نهي": "نَهْيٌ",
+      "أمر": "أَمْرٌ",
+      "حصر": "حَصْرٌ",
+      "مستثني": "مُسْتَثْنًى",
+      "استقبال": "اِسْتِقْبَالٌ",
+      "سببية": "سَبَبِيَّةٌ",
+      "اضراب": "إِضْرَابٌ",
+      "المفعول لأجله": "مَفْعُوْلٌ لِأَجْلِهِ",
+      "ابتداء": "اِبْتِدَاءٌ",
+      "تفصيل": "تَفْصِيْلٌ",
+      "تفسير": "تَفْسِيْرٌ",
+      "تحضيض": "تَحْضِيْضٌ",
+      "استدراك": "اِسْتِدْرَاكٌ",
+      "فجاءة": "فُجَاءَةٌ",
+      "ردع": "رَدْعٌ",
+      "زائد": "زَائِدٌ",
+      "مركب": "مُرَكَّبٌ"
+    },
+    "_connector_comment": "The treebank gives a glued و / ف as a token of its own with no relation at all, because it governs nothing. These are the parts of speech that means, and what each one is called. A part of speech not listed here keeps whatever the treebank said about it.",
+    "connector_pos": {
+      "CONJ": "harf_atf",
+      "REM": "harf_istinaf",
+      "RSLT": "harf_istinaf",
+      "CIRC": "harf_istinaf"
+    },
+    "_frame_comment": "A relation the treebank writes as two words, خبر / اسم plus the word that governs it. The frame is spelled the app's way; the governing word is too when it is listed below, and is otherwise left exactly as the treebank wrote it and marked as such.",
+    "relation_frames": {
+      "خبر": "خَبَرُ",
+      "اسم": "اِسْمُ"
+    },
+    "governors": {
+      "كان": "كَانَ",
+      "أن": "أَنَّ",
+      "إن": "إِنَّ",
+      "ليس": "لَيْسَ",
+      "لا": "لَا",
+      "ما": "مَا",
+      "لعل": "لَعَلَّ",
+      "ليت": "لَيْتَ",
+      "لكن": "لٰكِنَّ",
+      "لاكن": "لٰكِنَّ",
+      "كأن": "كَأَنَّ",
+      "عسى": "عَسَى",
+      "كاد": "كَادَ",
+      "ظل": "ظَلَّ",
+      "دام": "دَامَ",
+      "برح": "بَرِحَ",
+      "أصبح": "أَصْبَحَ",
+      "اصبح": "أَصْبَحَ",
+      "زال": "زَالَ",
+      "صار": "صَارَ",
+      "بات": "بَاتَ",
+      "أمسى": "أَمْسَى",
+      "أضحى": "أَضْحَى",
+      "فتئ": "فَتِئَ",
+      "انفك": "انْفَكَّ",
+      "أوشك": "أَوْشَكَ"
+    },
+    "raw_note": "Treebank's wording, unchecked."
+  }
+}

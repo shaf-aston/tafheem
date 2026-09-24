@@ -1,0 +1,24 @@
+{
+  "_comment": "How the microphone button listens. Read only by ui/MicButton.jsx. Seconds are seconds; a level is a fraction of the loudest sound the microphone can carry, 0 silent to 1 full.",
+
+  "_too-short-s": "A recording shorter than this cannot hold a word said at any ordinary speed, so it is refused here instead of sent. The real recordings that set it were 0.3 and 0.78 seconds long.",
+  "too-short-s": 0.7,
+
+  "_quiet-stop-s": "Stop listening after this long without a voice. Nothing heard in all that time is a microphone left on by mistake, and a microphone left on is the thing this button must never be.",
+  "quiet-stop-s": 15,
+
+  "_after-speech-s": "Once a voice has been heard, stop this long after it stops. The whole wait used to be quiet-stop-s: you said a word and the button listened for another fifteen seconds. Long enough to pause mid-sentence, short enough that nobody reaches for the button.",
+  "after-speech-s": 1.2,
+
+  "_voice-level": "Louder than this counts as a voice, however quiet the room is. A floor under the rule below, not the rule itself: a microphone reporting a perfectly silent room would otherwise make every faint number three times the room and so a voice. It used to be the whole rule, at 0.04, and somebody reciting softly measured under it: nothing they said was ever counted as a voice, so nothing was ever sent to be read, and the page said they had recited nothing. Set far lower now because it is only the floor.",
+  "voice-level": 0.008,
+
+  "_over-room": "And louder than this many times the room. The quietest level heard so far is what the room sounds like on this microphone in this place, and a voice stands above it: on a hissy laptop and in a silent study alike, which a single fixed number cannot do. Three, so a breath or a page turning does not count.",
+  "over-room": 3,
+
+  "_level-check-ms": "How often the level is read while recording.",
+  "level-check-ms": 250,
+
+  "_judge-s": "How much of the newest sound one read judges. A voice stays heard for this long after it stops, so every pause is noticed this much late: the whole 0.7 second meter made reciting feel slow. Too short fails a quiet reciter instead: at 0.15 a voice played 30 decibels down dipped under the floor inside words and was cut mid-word, 15 to 18 cuts where 10 were right. 0.75 is the whole meter, as it always was; 0.4 with level-check-ms 100 noticed a pause about 0.4 seconds sooner but has not yet passed the quiet-voice run on a calm machine.",
+  "judge-s": 0.75
+}

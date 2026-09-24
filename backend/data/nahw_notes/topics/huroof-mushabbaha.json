@@ -1,0 +1,1671 @@
+{
+  "id": "huroof-mushabbaha",
+  "title": "Al-huroof al-mushabbaha bil-fi'l",
+  "arabic": "الحروف المشبهة بالفعل",
+  "tamreen": [
+    "mushabbahat-laysa-la-jins"
+  ],
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "heading",
+      "page": 0,
+      "ar": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ\nالحروف المشبهة بالفعل",
+      "en": "In the name of Allah, the Most Gracious, the Most Merciful. The particles resembling the verb"
+    },
+    {
+      "id": "p01-1",
+      "kind": "heading",
+      "page": 1,
+      "ar": "الحروف المشبهة بالفعل",
+      "en": "The particles resembling the verb"
+    },
+    {
+      "id": "p01-2",
+      "kind": "table",
+      "page": 1,
+      "caption": "الحروف المشبهة بالفعل",
+      "caption_en": "The six particles and their meanings",
+      "columns": [
+        "الحرف",
+        "Meaning"
+      ],
+      "answer_col": 1,
+      "rows": [
+        [
+          "إِنَّ",
+          "Indeed"
+        ],
+        [
+          "أَنَّ",
+          "That... / Indeed"
+        ],
+        [
+          "كَأَنَّ",
+          "Like | As if..."
+        ],
+        [
+          "لكِنَّ",
+          "However | But"
+        ],
+        [
+          "لَيْتَ",
+          "I wish"
+        ],
+        [
+          "لَعَلَّ",
+          "Perhaps/Hopefully"
+        ]
+      ]
+    },
+    {
+      "id": "p01-3",
+      "kind": "list",
+      "page": 1,
+      "ar": "حروف",
+      "en": "The above (حروف) particles are called: {{term|الحروف المشبهة بالفعل}} because they have certain characteristics which are exclusive to verbs. Some of those characteristics are:",
+      "items": [
+        "They govern 2 parts of a sentence, one of which they make {{ruling|منصوب}} and the other, they make {{ruling|مرفوع}}.",
+        "Their form consists of {{ruling|3 or more letters}}.",
+        "They contain meanings which are often found in verbs.",
+        "They can have a {{term|ضمير منصوب متصل}} attach to them.",
+        "They can also have a {{term|نون الوقاية}} attach to them.",
+        "They all end with a {{ruling|فتحة}} resembling الفعل الماضي."
+      ]
+    },
+    {
+      "id": "p01-4",
+      "kind": "rule",
+      "page": 1,
+      "ar": "جملة إسمية / مسند إليه / مسند / خبر",
+      "en": "They ONLY enter upon a ({{condition|جملة إسمية}}) sentence (unless deactivated) and make the \"مسند إليه\" {{ruling|منصوب}} and the \"مسند\" {{ruling|مرفوع}} if the خبر {{condition|is a noun}}."
+    },
+    {
+      "id": "p01-5",
+      "kind": "rule",
+      "page": 1,
+      "ar": "جملة إسمية / رابط",
+      "en": "Since they enter a (جملة إسمية) sentence, ALL the rules relating to the construction of a (جملة إسمية) sentence such as the {{term|رابط}} rule, the correlation of N/G etc will {{ruling|remain active}}."
+    },
+    {
+      "id": "p01-6",
+      "kind": "rule",
+      "page": 1,
+      "ar": "{{term|إسمُ إنَّ/أَنَّ}}... / {{term|خبرُ إنَّ/أَنَّ}}...",
+      "en": "The مسند إليه is then termed as \"{{term|The Ism of Inna/Anna...}}\" ...إسمُ إنَّ/أَنَّ and the مسند as \"{{term|The Khabar of Inna/Anna...}}\" ...خبرُ إنَّ/أَنَّ."
+    },
+    {
+      "id": "p01-7",
+      "kind": "rule",
+      "page": 1,
+      "ar": "أَنَّ / مفرد",
+      "en": "After they enter the (جملة إسمية) sentence, the construction remains a (جملة إسمية) sentence {{condition|except with Anna أَنَّ}}. The (جملة إسمية) sentence is {{ruling|demoted to a مفرد}} when Anna أَنَّ enters the (جملة إسمية) sentence."
+    },
+    {
+      "id": "p02-1",
+      "kind": "heading",
+      "page": 2,
+      "ar": "إِنَّ",
+      "en": "Indeed"
+    },
+    {
+      "id": "p03-1",
+      "kind": "list",
+      "page": 3,
+      "ar": "الحروف المشبهة بالفعل، إِنَّ: 1",
+      "en": "Inna, rule 1",
+      "items": [
+        "a) It ONLY enters a ({{condition|جملة إسمية}}) sentence.",
+        "b) After it enters the (جملة إسمية) sentence, the construction will remain a ({{ruling|جملة}}) sentence.",
+        "c) It gives {{ruling|emphasis}} to the meaning from the perspective of the first person.",
+        "d) It will make the \"مسند إليه\" {{ruling|منصوب}} and it will make the \"مسند\" {{ruling|مرفوع}} if the مسند {{condition|is a noun}}."
+      ]
+    },
+    {
+      "id": "p03-2",
+      "kind": "example",
+      "page": 3,
+      "ar": "إِنَّ اللّٰهَ وَاحِدٌ\nالحرف المشبهة بالفعل: إنَّ\nجملة إسمية: اللّٰهُ وَاحِدٌ\nإنَّ + جملة = جملة",
+      "en": "Indeed Allah is One. Inna + sentence = sentence",
+      "labels": [
+        {
+          "word": "إنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "اللّٰهُ وَاحِدٌ",
+          "label": "جملة إسمية"
+        }
+      ]
+    },
+    {
+      "id": "p03-3",
+      "kind": "list",
+      "page": 3,
+      "ar": "الحروف المشبهة بالفعل، إِنَّ: 2",
+      "en": "Inna, rule 2",
+      "items": [
+        "a) However, if it's خبر {{condition|is a جملة}}, whether فعلية or إسمية, there will {{ruling|not be any visible effect}} of the الحرف المشبهة بالفعل.",
+        "b) The effect will only be {{ruling|assumed}}."
+      ]
+    },
+    {
+      "id": "p03-4",
+      "kind": "example",
+      "page": 3,
+      "ar": "إِنَّ اللّٰهَ خَلَقَ كُلَّ شَيْءٍ\nالحرف المشبهة بالفعل: إنَّ\nجملة إسمية: اللّٰهُ خَلَقَ كُلَّ شَيْءٍ\nجملة فعلية: خَلَقَ كُلَّ شَيْءٍ\nإنَّ + جملة = جملة",
+      "en": "Indeed Allah created everything. Inna + sentence = sentence",
+      "labels": [
+        {
+          "word": "إنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "اللّٰهُ خَلَقَ كُلَّ شَيْءٍ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "خَلَقَ كُلَّ شَيْءٍ",
+          "label": "جملة فعلية"
+        }
+      ]
+    },
+    {
+      "id": "p04-1",
+      "kind": "list",
+      "page": 4,
+      "ar": "الحروف المشبهة بالفعل، إِنَّ: 3",
+      "en": "Inna, rule 3",
+      "items": [
+        "a) However, if the مسند {{condition|is a جملة}}, whether فعلية or إسمية, there will {{ruling|not be any visible effect}} of the الحرف المشبهة بالفعل.",
+        "b) The effect will only be {{ruling|assumed}}."
+      ]
+    },
+    {
+      "id": "p04-2",
+      "kind": "example",
+      "page": 4,
+      "ar": "إِنَّ اللّٰهَ ذَاتُهُ وَاحِدٌ\nالحرف المشبهة بالفعل: إنَّ\nجملة إسمية: اللّٰهُ ذَاتُهُ وَاحِدٌ\nجملة إسمية: ذَاتُهُ وَاحِدٌ\nإنَّ + جملة = جملة",
+      "en": "Indeed Allah, His essence is One. Inna + sentence = sentence",
+      "labels": [
+        {
+          "word": "إنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "اللّٰهُ ذَاتُهُ وَاحِدٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "ذَاتُهُ وَاحِدٌ",
+          "label": "جملة إسمية"
+        }
+      ]
+    },
+    {
+      "id": "p04-3",
+      "kind": "list",
+      "page": 4,
+      "ar": "الحروف المشبهة بالفعل، إِنَّ: 4",
+      "en": "Inna, rule 4",
+      "items": [
+        "a) It is {{ruling|impermissible}} for it's خبر to precede it's إسم unless it's خبر {{condition|is a جار ومجرور or a ظرف}}. In which case, it is {{ruling|permissible but not necessary}}.",
+        "b) This rule is not limited to إنَّ, rather it applies to {{ruling|all of the الحروف المشبهة بالفعل}}.",
+        "c) Also, an appropriate auxiliary word will be employed."
+      ]
+    },
+    {
+      "id": "p04-4",
+      "kind": "example",
+      "page": 4,
+      "ar": "إِنَّ فِي الدَّارِ زَيْدًا\nالحرف المشبهة بالفعل: إنَّ\nجملة إسمية: فِي الدَّارِ زَيْدٌ\nجار ومجرور: فِي الدَّارِ\nإنَّ + جملة = جملة",
+      "en": "Indeed in the house is Zayd. Inna + sentence = sentence",
+      "labels": [
+        {
+          "word": "إنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "فِي الدَّارِ زَيْدٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "فِي الدَّارِ",
+          "label": "جار ومجرور"
+        }
+      ]
+    },
+    {
+      "id": "p05-1",
+      "kind": "list",
+      "page": 5,
+      "ar": "الحروف المشبهة بالفعل، إِنَّ: 5",
+      "en": "Inna, rule 5",
+      "items": [
+        "a) It is {{ruling|impermissible}} for it's خبر to precede it's إسم unless it's خبر {{condition|is a جار ومجرور or a ظرف}}. In which case, it is {{ruling|permissible but not necessary}}.",
+        "b) This rule is not limited to إنَّ, rather it applies to {{ruling|all of the الحروف المشبهة بالفعل}}.",
+        "c) Also, an appropriate auxiliary word will be employed."
+      ]
+    },
+    {
+      "id": "p05-2",
+      "kind": "example",
+      "page": 5,
+      "ar": "إِنَّ عِنْدَ اللّٰهِ أَعْمَالَنَا\nالحرف المشبهة بالفعل: إنَّ\nجملة إسمية: عِنْدَ اللّٰهِ أَعْمَالُنَا\nظرف: عِنْدَ اللّٰهِ\nإنَّ + جملة = جملة",
+      "en": "Indeed with Allah are our deeds. Inna + sentence = sentence",
+      "labels": [
+        {
+          "word": "إنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "عِنْدَ اللّٰهِ أَعْمَالُنَا",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "عِنْدَ اللّٰهِ",
+          "label": "ظرف"
+        }
+      ]
+    },
+    {
+      "id": "p05-3",
+      "kind": "list",
+      "page": 5,
+      "ar": "الحروف المشبهة بالفعل، إِنَّ: 6",
+      "en": "Inna, rule 6",
+      "items": [
+        "a) Sometimes a \"مَا\" is attached to إنَّ.",
+        "b) This \"مَا\" is called \"{{term|الكَافَّة}}\" (The stopper) because it stops إنَّ from governing. It no longer makes the \"مبتدا\" منصوب and the \"خبر\" مرفوع. It absolutely cannot govern anymore. It is {{ruling|totally deactivated}}.",
+        "c) This rule applies to all. ({{condition|Except لَيْتَ}})",
+        "d) When this happens, إنَّ can enter {{ruling|both (جملة إسمية) & (جملة فعلية)}} sentences."
+      ]
+    },
+    {
+      "id": "p05-4",
+      "kind": "example",
+      "page": 5,
+      "ar": "إِنَّمَا يَأْمُرُكُمْ بِالسُّوْءِ\nالحرف المشبهة بالفعل: إنَّ\nمَا الكَافَّةُ: مَا\nإنَّ + مَا = لَا عَمَل\nجملة فعلية: يَأْمُرُكُمْ بِالسُّوْءِ\nإنَّمَا + جملة = جملة",
+      "en": "He only commands you to evil. Inna + maa = no governing. Innamaa + sentence = sentence",
+      "labels": [
+        {
+          "word": "إنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "مَا",
+          "label": "مَا الكَافَّةُ"
+        },
+        {
+          "word": "يَأْمُرُكُمْ بِالسُّوْءِ",
+          "label": "جملة فعلية"
+        }
+      ]
+    },
+    {
+      "id": "p06-1",
+      "kind": "list",
+      "page": 6,
+      "ar": "الحروف المشبهة بالفعل، إِنَّ: 7",
+      "en": "Inna, rule 7",
+      "items": [
+        "a) The \"مَا الكَافَّة\" not only stops the governing of إنَّ, but rather, it stops إنَّ from {{ruling|even having an إسم and a خبر}}.",
+        "b) The benefit of the \"مَا الكَافَّة\" is that, إنَّ, with the \"مَا الكَافَّة\" provide a meaning of ({{term|حصر}}) exclusivity i.e., together they translate as {{ruling|\"only\"}}."
+      ]
+    },
+    {
+      "id": "p06-2",
+      "kind": "example",
+      "page": 6,
+      "ar": "إِنَّمَا اَللّٰهُ إِلَٰهٌ وَاحِدٌ\nالحرف المشبهة بالفعل: إنَّ\nمَا الكَافَّةُ: مَا\nإنَّ + مَا = لَا عَمَل\nجملة إسمية: اللّٰهُ إِلَٰهٌ وَاحِدٌ\nإنَّمَا + جملة = جملة",
+      "en": "Allah is only One God. Inna + maa = no governing. Innamaa + sentence = sentence",
+      "labels": [
+        {
+          "word": "إنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "مَا",
+          "label": "مَا الكَافَّةُ"
+        },
+        {
+          "word": "اللّٰهُ إِلَٰهٌ وَاحِدٌ",
+          "label": "جملة إسمية"
+        }
+      ]
+    },
+    {
+      "id": "p06-3",
+      "kind": "list",
+      "page": 6,
+      "ar": "الحروف المشبهة بالفعل، إِنَّ: 8",
+      "en": "Inna, rule 8",
+      "items": [
+        "a) Sometimes \"لَ\", a لام signifying {{ruling|emphasis}} is attached to the {{condition|خبر of إنَّ}}.",
+        "b) This \"لَ\" is called \"{{term|المُزَحْلَقَة}}\" (Moved over) because it was on the مبتدا before إنَّ entered upon it and was originally known as \"{{term|لام الإبتِداء}}\". However, it was moved over to the خبر of إنَّ {{condition|to avoid two consecutive words signifying emphasis}}.",
+        "c) The \"لام المُزَحْلَقَة\" is {{ruling|exclusive to إنَّ}}."
+      ]
+    },
+    {
+      "id": "p06-4",
+      "kind": "example",
+      "page": 6,
+      "ar": "إِنَّ زَيدًا لَجَالِسٌ\nالحرف المشبهة بالفعل: إنَّ\nاللام المزحلقة: لَ\nجملة إسمية: لَزَيْدٌ جَالِسٌ\nإنَّ + جملة = جملة",
+      "en": "Indeed Zayd is surely sitting. Inna + sentence = sentence",
+      "labels": [
+        {
+          "word": "إنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "لَ",
+          "label": "اللام المزحلقة"
+        },
+        {
+          "word": "لَزَيْدٌ جَالِسٌ",
+          "label": "جملة إسمية"
+        }
+      ]
+    },
+    {
+      "id": "p07-1",
+      "kind": "list",
+      "page": 7,
+      "ar": "الحروف المشبهة بالفعل، إِنَّ: 9",
+      "en": "Inna, rule 9",
+      "items": [
+        "a) The \"لام المُزَحْلَقَة\" can attach to a verb if a verb is the خبر of إنَّ provided the verb is {{condition|not preceded by a negation}} i.e., the verb must be {{ruling|مثبت}} and not منفي.",
+        "b) There are more conditions for this لام to attach to verbs correctly, one of which has been mentioned above. We will discuss them in the future Insha'Allah."
+      ]
+    },
+    {
+      "id": "p07-2",
+      "kind": "example",
+      "page": 7,
+      "ar": "إِنَّ زَيدًا لَيَجْلِسُ\nالحرف المشبهة بالفعل: إنَّ\nاللام المزحلقة: لَ\nجملة إسمية: لَزَيْدٌ يَجْلِسُ\nإنَّ + جملة = جملة",
+      "en": "Indeed Zayd surely sits. Inna + sentence = sentence",
+      "labels": [
+        {
+          "word": "إنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "لَ",
+          "label": "اللام المزحلقة"
+        },
+        {
+          "word": "لَزَيْدٌ يَجْلِسُ",
+          "label": "جملة إسمية"
+        }
+      ]
+    },
+    {
+      "id": "p07-3",
+      "kind": "list",
+      "page": 7,
+      "ar": "الحروف المشبهة بالفعل، إِنَّ: 10",
+      "en": "Inna, rule 10",
+      "items": [
+        "a) The \"لام المُزَحْلَقَة\" can attach to the {{ruling|إسم of إنَّ}} if the {{condition|خبر of إنَّ precedes the إسم of إنَّ}} for the same reason of avoiding two consecutive words signifying emphasis."
+      ]
+    },
+    {
+      "id": "p07-4",
+      "kind": "example",
+      "page": 7,
+      "ar": "إِنَّ فِي الدَّارِ لَزَيدًا\nالحرف المشبهة بالفعل: إنَّ\nاللام المزحلقة: لَ\nجملة إسمية: لَزَيْدٌ فِي الدَّارِ\nإنَّ + جملة = جملة",
+      "en": "Indeed in the house is surely Zayd. Inna + sentence = sentence",
+      "labels": [
+        {
+          "word": "إنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "لَ",
+          "label": "اللام المزحلقة"
+        },
+        {
+          "word": "لَزَيْدٌ فِي الدَّارِ",
+          "label": "جملة إسمية"
+        }
+      ]
+    },
+    {
+      "id": "p07-5",
+      "kind": "rule",
+      "page": 7,
+      "ar": "لام المُزَحْلَقَة",
+      "en": "Rules relating to \"لام المُزَحْلَقَة\" will be revisited in the future InshaAllah."
+    },
+    {
+      "id": "p08-1",
+      "kind": "heading",
+      "page": 8,
+      "ar": "{{term|أَنَّ}}",
+      "en": "That... | Indeed"
+    },
+    {
+      "id": "p09-1",
+      "kind": "list",
+      "page": 9,
+      "ar": "الحروف المشبهة بالفعل، أَنَّ: ١",
+      "en": "1",
+      "items": [
+        "a) It ONLY enters a ({{condition|جملة إسمية}}) sentence.",
+        "b) The (جملة إسمية) sentence it enters will become a ({{ruling|مفرد}}) compound/phrase.",
+        "c) Together أَنَّ with it's إسم and خبر will ALWAYS fall into places of {{ruling|مفرد}}.",
+        "d) It also gives emphasis to the meaning from the perspective of the first person.",
+        "e) It will make the \"مسند إليه\" {{ruling|منصوب}} and it will make the \"مسند\" {{ruling|مرفوع}} if the مسند is a noun."
+      ]
+    },
+    {
+      "id": "p09-2",
+      "kind": "example",
+      "page": 9,
+      "ar": "أَشْهَدُ أَنَّ مُحَمَّدًا رَسُوْلُ اللهِ",
+      "en": "I bear witness that Muhammad is the Messenger of Allah.",
+      "labels": [
+        {
+          "word": "أنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "مُحَمَّدٌ رَسُوْلُ اللهِ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "أنَّ + جملة",
+          "label": "مفرد"
+        }
+      ]
+    },
+    {
+      "id": "p09-3",
+      "kind": "list",
+      "page": 9,
+      "ar": "٢",
+      "en": "2",
+      "items": [
+        "a) If it's خبر is a {{condition|جملة}}, whether فعلية or إسمية, there will not be any visible effect of the الحرف المشبهة بالفعل. The effect will only be {{ruling|assumed}}."
+      ]
+    },
+    {
+      "id": "p09-4",
+      "kind": "example",
+      "page": 9,
+      "ar": "مِنْ اِعْتِقَادِيْ أَنَّ اللهَ خَلَقَ كُلَّ شَيْءٍ",
+      "en": "Of my belief is that Allah created everything.",
+      "labels": [
+        {
+          "word": "أنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "اللهُ خَلَقَ كُلَّ شَيْءٍ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "خَلَقَ كُلَّ شَيْءٍ",
+          "label": "جملة فعلية"
+        },
+        {
+          "word": "أنَّ + جملة",
+          "label": "مفرد"
+        }
+      ]
+    },
+    {
+      "id": "p10-1",
+      "kind": "list",
+      "page": 10,
+      "ar": "الحروف المشبهة بالفعل، أَنَّ: ٣",
+      "en": "3",
+      "items": [
+        "a) If it's خبر is a {{condition|جملة}}, whether فعلية or إسمية, there will not be any visible effect of the الحرف المشبهة بالفعل. The effect will only be {{ruling|assumed}}."
+      ]
+    },
+    {
+      "id": "p10-2",
+      "kind": "example",
+      "page": 10,
+      "ar": "آمَنْتُ بِأَنَّ اللهَ ذَاتُهُ وَاحِدٌ",
+      "en": "I believe that Allah, His essence is one.",
+      "labels": [
+        {
+          "word": "أنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "اللهُ ذَاتُهُ وَاحِدٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "ذَاتُهُ وَاحِدٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "أنَّ + جملة",
+          "label": "مفرد"
+        }
+      ]
+    },
+    {
+      "id": "p10-3",
+      "kind": "list",
+      "page": 10,
+      "ar": "٤",
+      "en": "4",
+      "items": [
+        "a) It is {{ruling|impermissible}} for it's خبر to precede it's إسم unless it's خبر is a {{condition|جار ومجرور}} or a {{condition|ظرف}}. In which case, it is permissible but not necessary.",
+        "b) This applies to all the الحروف المشبهة بالفعل.",
+        "c) Also, an appropriate auxiliary word will be employed."
+      ]
+    },
+    {
+      "id": "p10-4",
+      "kind": "example",
+      "page": 10,
+      "ar": "أَعْجَبَنِيْ أَنَّ فِي الدَّارِ زَيْدًا",
+      "en": "It pleased me that in the house is Zayd.",
+      "labels": [
+        {
+          "word": "أنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "فِي الدَّارِ زَيْدٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "فِي الدَّارِ",
+          "label": "جار ومجرور"
+        },
+        {
+          "word": "أنَّ + جملة",
+          "label": "مفرد"
+        }
+      ]
+    },
+    {
+      "id": "p11-1",
+      "kind": "list",
+      "page": 11,
+      "ar": "الحروف المشبهة بالفعل، أَنَّ: ٥",
+      "en": "5",
+      "items": [
+        "a) It is {{ruling|impermissible}} for it's خبر to precede it's إسم unless it's خبر is a {{condition|جار ومجرور}} or a {{condition|ظرف}}. In which case, it is permissible but not necessary.",
+        "b) This applies to all the الحروف المشبهة بالفعل.",
+        "c) Also, an appropriate auxiliary word will be employed."
+      ]
+    },
+    {
+      "id": "p11-2",
+      "kind": "example",
+      "page": 11,
+      "ar": "إِنَّ عِنْدَ اللهِ أَعْمَالَنَا",
+      "en": "Indeed, with Allah are our deeds.",
+      "labels": [
+        {
+          "word": "أنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "عِنْدَ اللهِ أَعْمَالُنَا",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "عِنْدَ اللهِ",
+          "label": "ظرف"
+        },
+        {
+          "word": "أنَّ + جملة",
+          "label": "مفرد"
+        }
+      ]
+    },
+    {
+      "id": "p11-3",
+      "kind": "list",
+      "page": 11,
+      "ar": "٦",
+      "en": "6",
+      "items": [
+        "a) The \"{{term|مَا الكَافَّة}}\" can also attach to أَنَّ but will not affect the ability of أَنَّ converting the sentence to {{ruling|مفرد}}.",
+        "b) It will stop أَنَّ from {{ruling|governing}} the مبتدا and خبر. It will no longer make the \"مبتدا\" منصوب and the \"خبر\" مرفوع.",
+        "c) When this happens, أَنَّ can enter both, ({{ruling|جملة إسمية}}) & ({{ruling|جملة فعلية}}), sentences."
+      ]
+    },
+    {
+      "id": "p11-4",
+      "kind": "example",
+      "page": 11,
+      "ar": "أَ فَحَسِبْتُمْ أَنَّمَا خَلَقْنَا كُمْ عَبَثًا",
+      "en": "Did you then think that We created you in play?",
+      "labels": [
+        {
+          "word": "أنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "مَا",
+          "label": "مَا الكَافَّةُ"
+        },
+        {
+          "word": "أنَّ + مَا",
+          "label": "لَا عَمَل"
+        },
+        {
+          "word": "خَلَقْنَٰكُمْ عَبَثًا",
+          "label": "جملة فعلية"
+        },
+        {
+          "word": "أَنَّمَا + جملة",
+          "label": "مفرد"
+        }
+      ]
+    },
+    {
+      "id": "p12-1",
+      "kind": "list",
+      "page": 12,
+      "ar": "الحروف المشبهة بالفعل، أَنَّ: ٧",
+      "en": "7",
+      "items": [
+        "a) The \"مَا الكَافَّة\" not only stops the governing of أَنَّ, but also stops أَنَّ from even having an {{ruling|إسم}} and a {{ruling|خبر}}.",
+        "b) The benefit of ({{term|حصر}}) exclusivity the \"مَا الكَافَّة\" provided when connected to إِنَّ is also found with أَنَّ prominently.",
+        "c) The \"مَا الكَافَّة\" will not affect the ability of أَنَّ converting the sentence to {{ruling|مفرد}}."
+      ]
+    },
+    {
+      "id": "p12-2",
+      "kind": "example",
+      "page": 12,
+      "ar": "إِنَّمَا يُوحَىٰ إِلَيَّ أَنَّمَا إِلَٰهُكُمْ إِلَٰهٌ وَاحِدٌ",
+      "en": "It is only revealed to me that your god is one God.",
+      "labels": [
+        {
+          "word": "أنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "مَا",
+          "label": "مَا الكَافَّةُ"
+        },
+        {
+          "word": "أنَّ + مَا",
+          "label": "لَا عَمَل"
+        },
+        {
+          "word": "إِلَٰهُكُمْ إِلَٰهٌ وَاحِدٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "أَنَّمَا + جملة",
+          "label": "مفرد"
+        }
+      ]
+    },
+    {
+      "id": "p12-3",
+      "kind": "list",
+      "page": 12,
+      "ar": "٨",
+      "en": "8",
+      "items": [
+        "a) The ability of أَنَّ in converting the sentence after it into مفرد adds أَنَّ to another group of words known as {{term|الموصولات الحرفية}} which share this same characteristic of converting sentences into مفرد.",
+        "b) This process is called: {{term|بِتَأْوِيل المصدر/المفرد}} (BTM) often manifesting as {{ruling|المركب الإضافي}}.",
+        "We will discuss this soon Insha'Allah!"
+      ]
+    },
+    {
+      "id": "p12-4",
+      "kind": "example",
+      "page": 12,
+      "ar": "سَرَّنِيْ أَنَّ زَيْدًا مُسْلِمٌ",
+      "en": "It pleased me that Zayd is a Muslim.",
+      "labels": [
+        {
+          "word": "إنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "إسمُ أنَّ"
+        },
+        {
+          "word": "مُسْلِمٌ",
+          "label": "خبرُ أنَّ"
+        },
+        {
+          "word": "إِسلَام",
+          "label": "مَصْدر"
+        },
+        {
+          "word": "إسلامُ زَيْدٍ",
+          "label": "بِتَأْوِيلِ المَصْدَرِ"
+        },
+        {
+          "word": "أنَّ + جملة",
+          "label": "مفرد"
+        }
+      ]
+    },
+    {
+      "id": "p13-1",
+      "kind": "heading",
+      "page": 13,
+      "ar": "{{term|كَأَنَّ}}",
+      "en": "Like | As if..."
+    },
+    {
+      "id": "p14-1",
+      "kind": "list",
+      "page": 14,
+      "ar": "الحروف المشبهة بالفعل، كَأَنَّ: ١",
+      "en": "1",
+      "items": [
+        "a) It ONLY enters a ({{condition|جملة إسمية}}) sentence.",
+        "b) After it enters the (جملة إسمية) sentence, the construction will remain a ({{ruling|جملة}}).",
+        "c) It gives the meaning of it's إسم {{term|resembling}} it's خبر with emphasis.",
+        "d) It will make the \"مسند إليه\" {{ruling|منصوب}} and the \"مسند\" {{ruling|مرفوع}} if the مسند is a noun."
+      ]
+    },
+    {
+      "id": "p14-2",
+      "kind": "example",
+      "page": 14,
+      "ar": "كَأَنَّ زَيْدًا أَسَدٌ",
+      "en": "As if Zayd is a lion.",
+      "labels": [
+        {
+          "word": "كَأَنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "زَيْدٌ أَسَدٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "كَأَنَّ + جملة",
+          "label": "جملة"
+        }
+      ]
+    },
+    {
+      "id": "p14-3",
+      "kind": "list",
+      "page": 14,
+      "ar": "٢",
+      "en": "2",
+      "items": [
+        "a) It will not visibly affect it's خبر if it is a {{condition|sentence}} just as إِنَّ and أَنَّ didn't visibly affect their خبر when it was a sentence.",
+        "b) The affect will be {{ruling|assumed}}."
+      ]
+    },
+    {
+      "id": "p14-4",
+      "kind": "example",
+      "page": 14,
+      "ar": "كَأَنَّ زَيْدًا يَقْرَأُ القُرْآنَ",
+      "en": "As if Zayd is reading the Qur'an.",
+      "labels": [
+        {
+          "word": "كَأَنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "زَيْدٌ يَقْرَأُ القُرْآنَ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "يَقْرَأُ القُرْآنَ",
+          "label": "جملة فعلية"
+        },
+        {
+          "word": "كَأَنَّ + جملة",
+          "label": "جملة"
+        }
+      ]
+    },
+    {
+      "id": "p15-1",
+      "kind": "list",
+      "page": 15,
+      "ar": "الحروف المشبهة بالفعل، كَأَنَّ: ٣",
+      "en": "3",
+      "items": [
+        "a) Rules relating to it's خبر preceding it's إسم are identical to those mentioned in إِنَّ and أَنَّ.",
+        "b) It is only when it's خبر is a {{condition|جار ومجرور}} or a {{condition|ظرف}} that it becomes {{ruling|permissible}} for it's خبر to precede it's إسم otherwise not.",
+        "c) This applies to all of the الحروف المشبهة بالفعل.",
+        "d) Also, an appropriate auxiliary word will be employed."
+      ]
+    },
+    {
+      "id": "p15-2",
+      "kind": "example",
+      "page": 15,
+      "ar": "كَأَنَّ عِنْدَكَ زَيْدًا",
+      "en": "As if Zayd is with you.",
+      "labels": [
+        {
+          "word": "كَأَنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "عِنْدَكَ زَيْدٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "عِنْدَكَ",
+          "label": "ظرف"
+        },
+        {
+          "word": "كَأَنَّ + جملة",
+          "label": "جملة"
+        }
+      ]
+    },
+    {
+      "id": "p15-3",
+      "kind": "list",
+      "page": 15,
+      "ar": "٤",
+      "en": "4",
+      "items": [
+        "e) The rules relating to \"{{term|مَا الكَافَّة}}\" are also identical to إِنَّ and أَنَّ in stopping the governing of كَأَنَّ.",
+        "a) However, there is {{ruling|no added benefit}} of the meaning of (حصر) exclusivity here.",
+        "b) When this happens, كَأَنَّ can enter both (جملة إسمية) & (جملة فعلية) sentences. Just like إِنَّ and أَنَّ, it will no longer be restricted to a جملة إسمية construction."
+      ]
+    },
+    {
+      "id": "p15-4",
+      "kind": "example",
+      "page": 15,
+      "ar": "كَأَنَّمَا يُسَاقُوْنَ إِلَى الْمَوْتِ",
+      "en": "As if they are being driven to death.",
+      "labels": [
+        {
+          "word": "كَأَنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "مَا",
+          "label": "مَا الكَافَّةُ"
+        },
+        {
+          "word": "كَأَنَّ + مَا",
+          "label": "لَا عَمَل"
+        },
+        {
+          "word": "يُسَاقُوْنَ إِلَى المَوْتِ",
+          "label": "جملة فعلية"
+        },
+        {
+          "word": "كَأَنَّمَا + جملة",
+          "label": "جملة"
+        }
+      ]
+    },
+    {
+      "id": "p16-1",
+      "kind": "heading",
+      "page": 16,
+      "ar": "{{term|لٰكِنَّ}}",
+      "en": "{{term|However}}|{{term|But}}"
+    },
+    {
+      "id": "p17-1",
+      "kind": "heading",
+      "page": 17,
+      "ar": "الحروف المشبهة بالفعل، لكِنَّ",
+      "en": "The particles resembling the verb: lakinna"
+    },
+    {
+      "id": "p17-2",
+      "kind": "list",
+      "page": 17,
+      "ar": "لكِنَّ 1",
+      "en": "Lakinna, 1",
+      "items": [
+        "a) It ONLY enters a ({{condition|جملة إسمية}}) sentence.",
+        "b) After it enters the (جملة إسمية) sentence, the construction will remain a ({{ruling|جملة}}).",
+        "c) It also adds a meaning of {{ruling|emphasis}} to the sentence and comes between two contrasting sentences to correct a potential assumption. ({{term|استدراك}})",
+        "d) It will make the “مسند إليه” {{ruling|منصوب}} the “مسند” {{ruling|مرفوع}} if the مسند is a noun."
+      ]
+    },
+    {
+      "id": "p17-3",
+      "kind": "example",
+      "page": 17,
+      "ar": "غَابَ بَكْرٌ لكِنَّ زَيْدًا حَاضِرٌ",
+      "en": "Bakr is absent, but Zayd is present.",
+      "labels": [
+        {
+          "word": "لكِنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "زَيْدٌ حَاضِرٌ",
+          "label": "جملة إسمية"
+        }
+      ]
+    },
+    {
+      "id": "p17-4",
+      "kind": "rule",
+      "page": 17,
+      "ar": "لكِنَّ + جملة = {{ruling|جملة}}",
+      "en": "lakinna + sentence = {{ruling|sentence}}"
+    },
+    {
+      "id": "p17-5",
+      "kind": "list",
+      "page": 17,
+      "ar": "لكِنَّ 2",
+      "en": "Lakinna, 2",
+      "items": [
+        "a) It will {{ruling|not visibly affect}} it’s خبر {{condition|if it is a sentence}} just as إِنَّ, أَنَّ and كَأَنَّ didn’t visibly affect their خبر when it was a sentence.",
+        "b) The effect will be {{ruling|assumed}}."
+      ]
+    },
+    {
+      "id": "p17-6",
+      "kind": "example",
+      "page": 17,
+      "ar": "جاءَ زَيْدٌ لكِنَّهُ لَمْ يَدْخُلْ البَيْتَ",
+      "en": "Zayd came, but he did not enter the house.",
+      "labels": [
+        {
+          "word": "لكِنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "هُوَ لَمْ يَدخُلْ البَيتَ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "لَمْ يَدخُلْ البَيتَ",
+          "label": "جملة فعلية"
+        }
+      ]
+    },
+    {
+      "id": "p17-7",
+      "kind": "rule",
+      "page": 17,
+      "ar": "لكِنَّ + جملة = {{ruling|جملة}}",
+      "en": "lakinna + sentence = {{ruling|sentence}}"
+    },
+    {
+      "id": "p18-1",
+      "kind": "heading",
+      "page": 18,
+      "ar": "الحروف المشبهة بالفعل، لكِنَّ",
+      "en": "The particles resembling the verb: lakinna"
+    },
+    {
+      "id": "p18-2",
+      "kind": "list",
+      "page": 18,
+      "ar": "لكِنَّ 3",
+      "en": "Lakinna, 3",
+      "items": [
+        "c) Rules relating to it’s خبر preceding it’s إسم are identical to those mentioned in إِنَّ, أَنَّ and كَأَنَّ.",
+        "d) When it’s خبر is a {{condition|جار ومجرور}} or a {{condition|ظرف}}, only then does it become {{ruling|permissible}} for it’s خبر to precede it’s إسم otherwise not.",
+        "e) This applies to all of the {{term|الحروف المشبهة بالفعل}}.",
+        "f) Also, an appropriate auxiliary word will be employed."
+      ]
+    },
+    {
+      "id": "p18-3",
+      "kind": "example",
+      "page": 18,
+      "ar": "عِنْدِي قَلَمٌ لكِنَّ عِنْدَكَ وَرَقَةً",
+      "en": "I have a pen, but you have paper.",
+      "labels": [
+        {
+          "word": "لكِنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "عِنْدَكَ وَرَقَةٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "عِنْدَكَ",
+          "label": "ظرف"
+        }
+      ]
+    },
+    {
+      "id": "p18-4",
+      "kind": "rule",
+      "page": 18,
+      "ar": "لكِنَّ + جملة = {{ruling|جملة}}",
+      "en": "lakinna + sentence = {{ruling|sentence}}"
+    },
+    {
+      "id": "p18-5",
+      "kind": "list",
+      "page": 18,
+      "ar": "لكِنَّ 4",
+      "en": "Lakinna, 4",
+      "items": [
+        "a) The rules relating to “{{term|مَا الكَافَّة}}” are also identical to إِنَّ, أَنَّ and كَأَنَّ in {{ruling|stopping the governing}} of لكِنَّ.",
+        "b) However, there is {{ruling|no added benefit}} of the meaning of ({{term|حصر}}) exclusivity here.",
+        "c) When this happens, لكِنَّ can enter {{ruling|both}}, (جملة إسمية) & (جملة فعلية), sentences. Just like إِنَّ, أَنَّ and كَأَنَّ, it will no longer be restricted to a جملة إسمية construction."
+      ]
+    },
+    {
+      "id": "p18-6",
+      "kind": "example",
+      "page": 18,
+      "ar": "أَكَلَ زَيْدٌ لكِنَّمَا لَمْ يَأْكُلْ إِبْنُهُ",
+      "en": "Zayd ate, but his son did not eat.",
+      "labels": [
+        {
+          "word": "لكِنَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "مَا",
+          "label": "مَا الكَافَّةُ"
+        },
+        {
+          "word": "لَمْ يَأْكُلْ إِبْنُهُ",
+          "label": "جملة فعلية"
+        }
+      ]
+    },
+    {
+      "id": "p18-7",
+      "kind": "rule",
+      "page": 18,
+      "ar": "لكِنَّ + مَا = {{ruling|لَا عَمَل}}، لكِنَّمَا + جملة = جملة",
+      "en": "lakinna + maa = {{ruling|no governing}}; lakinnamaa + sentence = sentence"
+    },
+    {
+      "id": "p19-1",
+      "kind": "heading",
+      "page": 19,
+      "ar": "{{term|لَيْتَ}}",
+      "en": "{{term|I wish}}"
+    },
+    {
+      "id": "p20-1",
+      "kind": "heading",
+      "page": 20,
+      "ar": "الحروف المشبهة بالفعل، لَيت",
+      "en": "The particles resembling the verb: layta"
+    },
+    {
+      "id": "p20-2",
+      "kind": "list",
+      "page": 20,
+      "ar": "لَيت 1",
+      "en": "Layta, 1",
+      "items": [
+        "a) It ONLY enters a ({{condition|جملة إسمية}}) sentence.",
+        "b) After it enters the (جملة إسمية) sentence, the construction will remain a ({{ruling|جملة}}).",
+        "c) It gives the meaning of {{ruling|wishing}} from the perspective of the {{ruling|first person}}.",
+        "d) It is used for {{ruling|impossible scenarios}} more often than possible ones.",
+        "e) It will make the “مسند إليه” {{ruling|منصوب}} and the “مسند” {{ruling|مرفوع}} if the مسند is a noun."
+      ]
+    },
+    {
+      "id": "p20-3",
+      "kind": "example",
+      "page": 20,
+      "ar": "لَيْتَ زَيْدًا حَيٌّ",
+      "en": "I wish Zayd were alive.",
+      "labels": [
+        {
+          "word": "لَيْتَ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "زَيْدٌ حَيٌّ",
+          "label": "جملة إسمية"
+        }
+      ]
+    },
+    {
+      "id": "p20-4",
+      "kind": "rule",
+      "page": 20,
+      "ar": "لَيْتَ + جملة = جملة ({{ruling|إنشائية}})",
+      "en": "layta + sentence = sentence ({{ruling|inshaa'iyyah}})"
+    },
+    {
+      "id": "p20-5",
+      "kind": "list",
+      "page": 20,
+      "ar": "لَيت 2",
+      "en": "Layta, 2",
+      "items": [
+        "a) It will {{ruling|not visibly affect}} it’s خبر {{condition|if it is a sentence}} just as إِنَّ, أَنَّ, كَأَنَّ and لكِنَّ didn’t visibly affect their خبر when it was a sentence.",
+        "b) The effect will be {{ruling|assumed}}."
+      ]
+    },
+    {
+      "id": "p20-6",
+      "kind": "example",
+      "page": 20,
+      "ar": "لَيْتَنِيْ فَعَلْتُ",
+      "en": "I wish I had done it.",
+      "labels": [
+        {
+          "word": "لَيْتَ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "أَنَا فَعَلْتُ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "فَعَلْتُ",
+          "label": "جملة فعلية"
+        }
+      ]
+    },
+    {
+      "id": "p20-7",
+      "kind": "rule",
+      "page": 20,
+      "ar": "لَيْتَ + جملة = جملة ({{ruling|إنشائية}})",
+      "en": "layta + sentence = sentence ({{ruling|inshaa'iyyah}})"
+    },
+    {
+      "id": "p21-1",
+      "kind": "heading",
+      "page": 21,
+      "ar": "الحروف المشبهة بالفعل، لَيت",
+      "en": "The particles resembling the verb: layta"
+    },
+    {
+      "id": "p21-2",
+      "kind": "list",
+      "page": 21,
+      "ar": "لَيت 3",
+      "en": "Layta, 3",
+      "items": [
+        "a) Rules relating to it’s خبر preceding it’s إسم are identical to those mentioned in إِنَّ, أَنَّ, كَأَنَّ and لكِنَّ.",
+        "b) When it’s خبر is a جار ومجرور or a {{condition|ظرف}}, only then does it become {{ruling|permissible}} for it’s خبر to precede it’s إسم otherwise not.",
+        "c) This applies to all of the {{term|الحروف المشبهة بالفعل}}.",
+        "d) Also, an appropriate auxiliary word will be employed."
+      ]
+    },
+    {
+      "id": "p21-3",
+      "kind": "example",
+      "page": 21,
+      "ar": "لَيْتَ عِنْدَ نَا حَاكِمًا مُخْلِصًا",
+      "en": "I wish we had a sincere ruler.",
+      "labels": [
+        {
+          "word": "لَيْتَ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "عِنْدَنَا حَاكِمٌ مُخْلِصٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "عِنْدَنَا",
+          "label": "ظرف"
+        }
+      ]
+    },
+    {
+      "id": "p21-4",
+      "kind": "rule",
+      "page": 21,
+      "ar": "لَيْتَ + جملة = جملة ({{ruling|إنشائية}})",
+      "en": "layta + sentence = sentence ({{ruling|inshaa'iyyah}})"
+    },
+    {
+      "id": "p21-5",
+      "kind": "list",
+      "page": 21,
+      "ar": "لَيت 4",
+      "en": "Layta, 4",
+      "items": [
+        "a) Rules relating to it’s خبر preceding it’s إسم are identical to those mentioned in إِنَّ, أَنَّ, كَأَنَّ and لكِنَّ.",
+        "b) When it’s خبر is a {{condition|جار ومجرور}} or a ظرف, only then does it become {{ruling|permissible}} for it’s خبر to precede it’s إسم otherwise not.",
+        "c) This applies to all of the {{term|الحروف المشبهة بالفعل}}.",
+        "d) Also, an appropriate auxiliary word will be employed."
+      ]
+    },
+    {
+      "id": "p21-6",
+      "kind": "example",
+      "page": 21,
+      "ar": "لَيْتَ فِي الدُّنْيَا زَيْدًا",
+      "en": "I wish Zayd were in the world.",
+      "labels": [
+        {
+          "word": "لَيْتَ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "زَيْدٌ فِي الدُّنْيَا",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "فِي الدُّنْيَا",
+          "label": "جار ومجرور"
+        }
+      ]
+    },
+    {
+      "id": "p21-7",
+      "kind": "rule",
+      "page": 21,
+      "ar": "لَيْتَ + جملة = جملة ({{ruling|إنشائية}})",
+      "en": "layta + sentence = sentence ({{ruling|inshaa'iyyah}})"
+    },
+    {
+      "id": "p22-1",
+      "kind": "heading",
+      "page": 22,
+      "ar": "الحروف المشبهة بالفعل، لَيت",
+      "en": "The particles resembling the verb: layta"
+    },
+    {
+      "id": "p22-2",
+      "kind": "list",
+      "page": 22,
+      "ar": "لَيت 5",
+      "en": "Layta, 5",
+      "items": [
+        "e) The rules relating to “{{term|مَا الكَافَّة}}” are {{ruling|different}} to إِنَّ, أَنَّ, كَأَنَّ and لكِنَّ.",
+        "f) The effect of the “مَا الكَافَّة” upon لَيتَ is {{ruling|optional}}.",
+        "a) So, what that means is that لَيتَ can seize to govern it’s إسم and خبر and allow them to revert back to {{label|مبتدء}} and {{label|خبر}} OR it can continue to govern it’s إسم and خبر and make them {{ruling|منصوب}} and {{ruling|مرفوع}} respectively."
+      ]
+    },
+    {
+      "id": "p22-3",
+      "kind": "example",
+      "page": 22,
+      "ar": "لَيْتَمَا الشَّبَابُ عَائِدٌ",
+      "en": "I wish youth were returning.",
+      "labels": [
+        {
+          "word": "لَيْتَ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "مَا",
+          "label": "مَا الكَافَّةُ"
+        },
+        {
+          "word": "الشَّبَابُ عَائِدٌ",
+          "label": "جملة إسمية"
+        }
+      ]
+    },
+    {
+      "id": "p22-4",
+      "kind": "rule",
+      "page": 22,
+      "ar": "لَيْتَ + مَا = {{ruling|لَا عَمَل}}، لَيْتَمَا + جملة = جملة (إنشائية)",
+      "en": "layta + maa = {{ruling|no governing}}; laytamaa + sentence = sentence (inshaa'iyyah)"
+    },
+    {
+      "id": "p22-5",
+      "kind": "list",
+      "page": 22,
+      "ar": "لَيت 6",
+      "en": "Layta, 6",
+      "items": [
+        "b) There is {{ruling|no added benefit}} of the meaning of ({{term|حصر}}) exclusivity here.",
+        "c) When the “مَا الكَافَّة” is attached to لَيتَ, then unlike its homogeneous counterparts, لَيتَ will {{ruling|remain restricted}} to a {{condition|جملة إسمية}}.",
+        "d) Despite the presence of the “مَا الكَافَّة”, It will {{ruling|not enter}} a جملة فعلية."
+      ]
+    },
+    {
+      "id": "p22-6",
+      "kind": "example",
+      "page": 22,
+      "ar": "لَيْتَمَا الشَّبَابَ عَائِدٌ",
+      "en": "I wish youth were returning.",
+      "labels": [
+        {
+          "word": "لَيْتَ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "مَا",
+          "label": "مَا الكَافَّةُ"
+        },
+        {
+          "word": "الشَّبَابُ عَائِدٌ",
+          "label": "جملة إسمية"
+        }
+      ]
+    },
+    {
+      "id": "p22-7",
+      "kind": "rule",
+      "page": 22,
+      "ar": "لَيْتَ + مَا = {{ruling|عَمَل}}، لَيْتَمَا + جملة = جملة (إنشائية)",
+      "en": "layta + maa = {{ruling|governing}}; laytamaa + sentence = sentence (inshaa'iyyah)"
+    },
+    {
+      "id": "p23-1",
+      "kind": "heading",
+      "page": 23,
+      "ar": "{{term|لَعَلَّ}}",
+      "en": "{{term|Perhaps/Hopefully}}"
+    },
+    {
+      "id": "p24-1",
+      "kind": "heading",
+      "page": 24,
+      "ar": "الحروف المشبهة بالفعل: لَعلَ",
+      "en": "The particles resembling the verb: la'alla"
+    },
+    {
+      "id": "p24-2",
+      "kind": "list",
+      "page": 24,
+      "ar": "1",
+      "en": "1",
+      "items": [
+        "a) It ONLY enters a ({{condition|جملة إسمية}}) sentence.",
+        "b) After it enters the (جملة إسمية) sentence, the construction will remain a ({{ruling|جملة}}).",
+        "f) It gives the meaning of {{term|hope}}, {{term|concern}} and {{term|reason}} from the perspective of the first person.",
+        "c) It will make the “مسند إليه” {{ruling|منصوب}} and the “مسند” {{ruling|مرفوع}} {{condition|if the مسند is a noun}}."
+      ]
+    },
+    {
+      "id": "p24-3",
+      "kind": "example",
+      "page": 24,
+      "ar": "لَعَلَّ الدَّرْسَ سَهْلٌ",
+      "en": "Perhaps the lesson is easy.",
+      "labels": [
+        {
+          "word": "لَعَلَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "الدَّرْسُ سَهْلٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "لَعَلَّ + جملة",
+          "label": "جملة (إنشائية)"
+        }
+      ]
+    },
+    {
+      "id": "p24-4",
+      "kind": "list",
+      "page": 24,
+      "ar": "2",
+      "en": "2",
+      "items": [
+        "a) It will {{ruling|not visibly affect}} it’s خبر {{condition|if it is a sentence}} just as إِنَّ, أَنَّ, كَأَنَّ, لكِنَّ and لَيتَ didn’t visibly affect their خبر when it was a sentence.",
+        "b) The effect will be {{ruling|assumed}}."
+      ]
+    },
+    {
+      "id": "p24-5",
+      "kind": "example",
+      "page": 24,
+      "ar": "لَعَلِّيْ أَرْسُبُ فِي الإِخْتِبَارَ",
+      "en": "Perhaps I will fail in the exam.",
+      "labels": [
+        {
+          "word": "لَعَلَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "أَنَا أَرْسُبُ فِي الإِخْتِبَارَ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "أَرْسبُ فِي الإِخْتِبَارَ",
+          "label": "جملة فعلية"
+        },
+        {
+          "word": "لَعَلَّ + جملة",
+          "label": "جملة (إنشائية)"
+        }
+      ]
+    },
+    {
+      "id": "p25-1",
+      "kind": "heading",
+      "page": 25,
+      "ar": "الحروف المشبهة بالفعل: لَعلَ",
+      "en": "The particles resembling the verb: la'alla"
+    },
+    {
+      "id": "p25-2",
+      "kind": "list",
+      "page": 25,
+      "ar": "3",
+      "en": "3",
+      "items": [
+        "a) Rules relating to it’s خبر preceding it’s إسم are identical to those mentioned in إِنَّ, أَنَّ, كَأَنَّ, لكِنَّ and لَيتَ.",
+        "c) When it’s خبر is a {{condition|جار ومجرور}} or a {{condition|ظرف}}, only then does it become {{ruling|permissible}} for it’s خبر to precede it’s إسم otherwise not.",
+        "d) This applies to all of the الحروف المشبهة بالفعل.",
+        "e) Also, an appropriate auxiliary word will be employed."
+      ]
+    },
+    {
+      "id": "p25-3",
+      "kind": "example",
+      "page": 25,
+      "ar": "لَعَلَّ فِي المَدْرَسَةِ الطُّلَّابَ",
+      "en": "Perhaps the students are in the school.",
+      "labels": [
+        {
+          "word": "لَعَلَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "فِي المَدْرَسَةِ الطُّلَّابُ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "فِي المَدْرَسَةِ",
+          "label": "جار ومجرور"
+        },
+        {
+          "word": "لَعَلَّ + جملة",
+          "label": "جملة (إنشائية)"
+        }
+      ]
+    },
+    {
+      "id": "p25-4",
+      "kind": "list",
+      "page": 25,
+      "ar": "4",
+      "en": "4",
+      "items": [
+        "a) The rules relating to “{{term|مَا الكَافَّة}}” in stopping the governing of لَعَلَّ are also identical to إِنَّ, أَنَّ, كَأَنَّ and لكِنَّ.",
+        "b) There is {{ruling|no added benefit}} of the meaning of (حصر) exclusivity.",
+        "c) When this happens, لَعَلَّ can enter {{ruling|both (جملة إسمية) & (جملة فعلية)}} sentences. Just like إِنَّ, أَنَّ, كَأَنَّ and لكِنَّ, it will no longer be restricted to a جملة إسمية construction."
+      ]
+    },
+    {
+      "id": "p25-5",
+      "kind": "example",
+      "page": 25,
+      "ar": "لَعَلَّمَا يُبَلِّغُنَا اللهُ رَمَضَانَ",
+      "en": "Perhaps Allah will make us reach Ramadan.",
+      "labels": [
+        {
+          "word": "لَعَلَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "مَا",
+          "label": "مَا الكَافَّةُ"
+        },
+        {
+          "word": "لَعَلَّ + مَا",
+          "label": "لَا عَمَل"
+        },
+        {
+          "word": "يُبَلِّغُنَا اللهُ رَمَضَانَ",
+          "label": "جملة فعلية"
+        },
+        {
+          "word": "لَعَلَّمَا + جملة",
+          "label": "جملة (إنشائية)"
+        }
+      ]
+    },
+    {
+      "id": "p26-1",
+      "kind": "heading",
+      "page": 26,
+      "ar": "",
+      "en": "Summary"
+    },
+    {
+      "id": "p26-2",
+      "kind": "list",
+      "page": 26,
+      "items": [
+        "All of الحروف المشبهة بالفعل {{ruling|only enter upon a جملة إسمية}}.",
+        "The جملة remains a جملة except with {{condition|أَنَّ}} where the جملة becomes {{ruling|مفرد}}.",
+        "They make the “مسند إليه” {{ruling|منصوب}} and the “مسند” {{ruling|مرفوع}}.",
+        "The مبتدا is called their {{term|إسم}} and the خبر is called their {{term|خبر}}.",
+        "The rules of مبتدا & خبر such as correlating in N/G and خبر being مفرد or جملة etc are all {{ruling|retained}}",
+        "Their خبر can’t precede their إسم {{condition|unless the خبر is a جار ومجرور or ظرف}}.",
+        "The “{{term|مَا الكَافَّة}}” can attach to them and prevent them from governing, from making the “مبتدا” مرفوع and the “خبر” منصوب.",
+        "When the “مَا الكَافَّة” is attached, then they are not restricted to a جملة إسمية. They can then enter upon a {{ruling|جملة فعلية}} as well.",
+        "{{term|لَيْتَ}} is exempt as it remains restricted to the جملة إسمية and therefore the prevention imposed by the “مَا الكَافَّة” is {{ruling|optional}}."
+      ]
+    },
+    {
+      "id": "p27-1",
+      "kind": "heading",
+      "page": 27,
+      "ar": "الحروف المشبهة بالفعل",
+      "en": "Further Rules in relation to الحروف المشبهة بالفعل"
+    },
+    {
+      "id": "p27-2",
+      "kind": "heading",
+      "page": 27,
+      "ar": "1. {{term|ضمير منصوب متصل}}",
+      "en": "1. ضمير منصوب متصل"
+    },
+    {
+      "id": "p27-3",
+      "kind": "rule",
+      "page": 27,
+      "ar": "ضَرَبْتُهُ",
+      "en": "As we already know, a ضمير منصوب متصل generally connects to verbs as a {{label|مفعول به}}, e.g., ضَرَبْتُهُ"
+    },
+    {
+      "id": "p27-4",
+      "kind": "rule",
+      "page": 27,
+      "ar": "إِنَّهُ – كَأَنَّهَا – لَعَلَّهُمَا",
+      "en": "As mentioned before, a ضمير منصوب متصل can also connect to الحروف المشبهة بالفعل, e.g., إِنَّهُ – كَأَنَّهَا – لَعَلَّهُمَا. Since this is a characteristic of verbs, this was also one of the reasons for the name given to these particles."
+    },
+    {
+      "id": "p27-5",
+      "kind": "rule",
+      "page": 27,
+      "ar": "ضَرَبَنِيْ",
+      "en": "From amongst the ضمير منصوب متصل, when the ي متكلم connects to a verb, a {{term|نون الوقاية}} comes in-between the verb and the ي in order to protect the verb from {{ruling|كسرة}}. (This because the كسرة is exclusive to nouns as we already know) e.g., ضَرَبَنِيْ"
+    },
+    {
+      "id": "p27-6",
+      "kind": "rule",
+      "page": 27,
+      "ar": "إِنَّنِي – كَأَنَّنِي – لَيْتَنِي",
+      "en": "Due to their resemblance to verbs, the نون الوقاية can also come in-between الحروف المشبهة بالفعل and the ي متكلم when the ي متكلم is connected to these particles. e.g., إِنَّنِي – كَأَنَّنِي – لَيْتَنِي. Unlike verbs, where the presence of the نون الوقاية is {{ruling|necessary}}, its presence is {{ruling|always optional}} with the الحروف المشبهة بالفعل."
+    },
+    {
+      "id": "p28-1",
+      "kind": "table",
+      "page": 28,
+      "caption": "الحروف المشبهة بالفعل",
+      "caption_en": "However, for some of the الحروف المشبهة بالفعل the presence of the نون الوقاية is equally preferred and for some its more or less preferred. Please refer to the table below:",
+      "columns": [
+        "",
+        "الحروف المشبهة بالفعل",
+        "Ruling",
+        "Preference",
+        "Examples: With",
+        "Examples: Without"
+      ],
+      "answer_col": 3,
+      "rows": [
+        [
+          "1",
+          "إِنَّ",
+          "Optional",
+          "Equal",
+          "إِنَّنِي مُسْلِمٌ",
+          "إِنِّي مُسْلِمٌ"
+        ],
+        [
+          "2",
+          "أَنَّ",
+          "Optional",
+          "Equal",
+          "أَعْرِفُ أَنَّنِيْ مُسْلِمٌ",
+          "أَعْرِفُ أَنِّيْ مُسْلِمٌ"
+        ],
+        [
+          "3",
+          "كَأَنَّ",
+          "Optional",
+          "Equal",
+          "كَأَنَّنِيْ مُحْتَضَرٌ",
+          "كَأَنِّيْ مُحْتَضَرٌ"
+        ],
+        [
+          "4",
+          "لكِنَّ",
+          "Optional",
+          "Equal",
+          "مَا رَاجَعْتُ لكِنَّنِيْ نَجَحْتُ فِي الإِخْتِبَارِ",
+          "مَا رَاجَعْتُ لكِنِّيْ نَجَحْتُ فِي الإِخْتِبَارِ"
+        ],
+        [
+          "5",
+          "لَيتَ",
+          "Optional",
+          "With",
+          "لَيْتَنِيْ أَحُجُّ بَيْتَ اللهِ",
+          "x (not preferred)"
+        ],
+        [
+          "6",
+          "لَعَلَّ",
+          "Optional",
+          "Without",
+          "x (not preferred)",
+          "لَعَلِّيْ أَفْهَمُ القُرْآنَ"
+        ]
+      ],
+      "note_en": "Drawn as tick boxes: Ruling has columns Optional / Necessary (every row ticks Optional); Preference has columns Equal / With / Without (one ticked per row)."
+    },
+    {
+      "id": "p28-2",
+      "kind": "heading",
+      "page": 28,
+      "ar": "2. {{term|اللام المزحلقة}}",
+      "en": "2. اللام المزحلقة"
+    },
+    {
+      "id": "p28-3",
+      "kind": "rule",
+      "page": 28,
+      "ar": "زَحْلَقَ يُزَحْلِقُ – فَعْلَلَ يُفَعْلِلُ، مُزَحْلَقَةٌ",
+      "en": "As mentioned before, a لام can be added to the {{condition|خبر of إِنَّ}} to provide {{ruling|further emphasis}}. This لام has been termed {{term|المزحلقة}} which means: The one which has been made to move over. Etymologically, the word is a {{term|رباعي}}, on the pattern of فَعْلَلَ يُفَعْلِلُ – زَحْلَقَ يُزَحْلِقُ meaning to move over, to slide, to push, to slip. The word مُزَحْلَقَةٌ is the single feminine form of the {{term|إسم المفعول}} (PPA)."
+    }
+  ]
+}

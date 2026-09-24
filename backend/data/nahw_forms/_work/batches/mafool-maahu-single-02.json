@@ -1,0 +1,334 @@
+{
+ "batch": "mafool-maahu-single-02",
+ "questions": [
+  {
+   "id": "mafool-maahu/statements/9",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "9",
+    "images": [
+     "q010.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "If the فعل or شبه الفعل is literal and عطف is permissible, then...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If the فعل or شبه الفعل is literal and عطف is permissible, then...",
+     "kind": "choose_all",
+     "options": [
+      "...only عطف will be permissible.",
+      "...only مفعول معه will be permissible.",
+      "...both مفعول معه & عطف will be permissible.",
+      "...both مفعول معه & عطف will Not be permissible."
+     ],
+     "answer": [
+      "...both مفعول معه & عطف will be permissible."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...both مفعول معه & عطف will be permissible."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/10",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "10",
+    "images": [
+     "q011.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "If the فعل or شبه الفعل is not literal, rather it's abstract (in meaning) and عطف is permissible, then...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If the فعل or شبه الفعل is not literal, rather it's abstract (in meaning) and عطف is permissible, then...",
+     "kind": "choose_all",
+     "options": [
+      "...both مفعول معه & عطف will Not be permissible.",
+      "...both مفعول معه & عطف will be permissible.",
+      "...only عطف will be permissible.",
+      "...only مفعول معه will be permissible."
+     ],
+     "answer": [
+      "...only عطف will be permissible."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...both مفعول معه & عطف will Not be permissible.",
+      "...only عطف will be permissible."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/11",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "11",
+    "images": [
+     "q012.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "If the فعل or شبه الفعل is not literal, rather it's abstract (in meaning) and عطف is NOT permissible, then...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If the فعل or شبه الفعل is not literal, rather it's abstract (in meaning) and عطف is NOT permissible, then...",
+     "kind": "choose_all",
+     "options": [
+      "...both مفعول معه & عطف will Not be permissible.",
+      "...only عطف will be permissible.",
+      "...both مفعول معه & عطف will be permissible.",
+      "...only مفعول معه will be permissible."
+     ],
+     "answer": [
+      "...only مفعول معه will be permissible."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...both مفعول معه & عطف will Not be permissible.",
+      "...only مفعول معه will be permissible."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/12",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "12",
+    "images": [
+     "q013.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "If labeling the latter noun a معطوف is illogical, then...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If labeling the latter noun a معطوف is illogical, then...",
+     "kind": "choose_all",
+     "options": [
+      "...both مفعول معه & عطف will still be permissible because Nahw does not deal with logic.",
+      "...the only option will be مفعول معه."
+     ],
+     "answer": [
+      "...the only option will be مفعول معه."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the only option will be مفعول معه."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/13",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "13",
+    "images": [
+     "q014.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "If labeling the latter noun a معطوف is illogical, then...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If labeling the latter noun a معطوف is illogical, then...",
+     "kind": "choose_all",
+     "options": [
+      "...the only option will be مفعول معه.",
+      "...both مفعول معه & عطف will still be permissible because Nahw does not deal with logic."
+     ],
+     "answer": [
+      "...the only option will be مفعول معه."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the only option will be مفعول معه."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/14",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "14",
+    "images": [
+     "q015.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "If a verb which requires 2 or more doers for it to make sense like تشافه (talking to eachother) is used, then...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If a verb which requires 2 or more doers for it to make sense like تشافه (talking to eachother) is used, then...",
+     "kind": "choose_all",
+     "options": [
+      "...the only option will be عطف.",
+      "...both مفعول معه & عطف will be permissible.",
+      "...the only option will be مفعول معه."
+     ],
+     "answer": [
+      "...the only option will be عطف."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the only option will be عطف."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/15",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "15",
+    "images": [
+     "q016.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "If a pronoun is used in reference to the former noun & the مفعول معه, then...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If a pronoun is used in reference to the former noun & the مفعول معه, then...",
+     "kind": "choose_all",
+     "options": [
+      "...both the former noun and the latter word (مفعول معه) will be considered to correlate with the pronoun because they are both co-equal.",
+      "...the former noun will be considered to correlate with the pronoun because the مفعول معه is not co-equal but only an associate.",
+      "...the latter noun (مفعول معه) will be considered to correlate with the pronoun because the مفعول معه is more important.."
+     ],
+     "answer": [
+      "...the former noun will be considered to correlate with the pronoun because the مفعول معه is not co-equal but only an associate."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...both the former noun and the latter word (مفعول معه) will be considered to correlate with the pronoun because they are both co-equal."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-maahu/statements/16",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "16",
+    "images": [
+     "q017.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "عطف is permissible...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "عطف is permissible...",
+     "kind": "choose_all",
+     "options": [
+      "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+      "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb and there is also a gap between the ضمير مرفوع متصل and the latter noun."
+     ],
+     "answer": [
+      "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb and there is also a gap between the ضمير مرفوع متصل and the latter noun."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار.",
+      "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+      "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb and there is also a gap between the ضمير مرفوع متصل and the latter noun."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  }
+ ]
+}

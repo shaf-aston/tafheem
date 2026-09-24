@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="Nahw and Sarf">
+  <!-- The open book, as it was picked: two panels notched at the foot, the left
+       one an outline and the right one solid, with the spine left open between
+       them so the two halves stay apart at 16px.
+       Colours are the app's own tokens, copied here as literals on purpose: a
+       favicon is loaded before any stylesheet exists, so it can read nothing
+       from theme.json. The dark plate is what keeps the mark legible on a light
+       tab bar and a dark one alike, which a bare violet would not be. -->
+  <rect width="24" height="24" rx="5.5" fill="#0c1018"/>
+  <path d="M5 6.8 h6.4 v10.8 l-3.2 -1.7 -3.2 1.7 z"
+        fill="none" stroke="#e7ecf5" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M12.6 6.8 h6.4 v10.8 l-3.2 -1.7 -3.2 1.7 z"
+        fill="#a78bfa" stroke="#a78bfa" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>

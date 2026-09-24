@@ -1,0 +1,259 @@
+{
+  "_comment": "The books imported from OpenITI, and nothing about how they are imported. Adding a book is a line here plus a re-run of backend/scripts/import_openiti.py; no code changes. Removing one is deleting its line and re-running.",
+  "_field_comment": "file is the OpenITI filename, which carries the author's death year at the front. collection decides which Daleel source the book is grouped under on screen. title/author are written here rather than read from the file because the two OpenITI metadata schemas disagree and half the files give neither.",
+  "_source_comment": "OpenITI pri-data v9, https://github.com/OpenITI. Texts are digitised from Shamela and al-Jami' al-Kabir. No harakat in any of them.",
+
+  "collections": {
+    "nahw-books": {
+      "label": "Classical Nahw & Sarf",
+      "note": "The grammar ladder, matn and sharh, as it is actually taught."
+    },
+    "fiqh-books": {
+      "label": "Hanafi Fiqh & Usul",
+      "note": "The Hanafi ladder: Quduri, then Bidaya with its Hidaya, and Shashi on usul."
+    }
+  },
+
+  "books": [
+    {
+      "collection": "nahw-books",
+      "file": "0723IbnAjrum.Ajrumiyya.Shamela0011371-ara1",
+      "title": "الآجرومية",
+      "author": "ابن آجروم الصنهاجي",
+      "died": 723
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0672IbnMalik.Alfiyya.Shamela0008522-ara1",
+      "title": "ألفية ابن مالك",
+      "author": "ابن مالك الطائي",
+      "died": 672
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0769IbnCaqilBahaDinMisri.SharhCalaAlfiyya.JK001328-ara1",
+      "title": "شرح ابن عقيل على الألفية",
+      "author": "ابن عقيل المصري",
+      "died": 769
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0761JamalDinIbnHisham.MatnQatrNada.Shamela0011376-ara1",
+      "title": "متن قطر الندى وبل الصدى",
+      "author": "ابن هشام الأنصاري",
+      "died": 761
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0761JamalDinIbnHisham.MatnShudhurDhahab.Shamela0096770-ara1",
+      "title": "متن شذور الذهب",
+      "author": "ابن هشام الأنصاري",
+      "died": 761
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0761JamalDinIbnHisham.AwdahMasalik.JK001455-ara1",
+      "title": "أوضح المسالك إلى ألفية ابن مالك",
+      "author": "ابن هشام الأنصاري",
+      "died": 761
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0761JamalDinIbnHisham.MughniLabib.JK001131-ara1",
+      "title": "مغني اللبيب عن كتب الأعاريب",
+      "author": "ابن هشام الأنصاري",
+      "died": 761
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0646IbnCumarIbnHajibKurdi.KafiyaFiCilmNahw.Sham19Y0122234-ara1",
+      "title": "الكافية في علم النحو",
+      "author": "ابن الحاجب",
+      "died": 646
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0646IbnCumarIbnHajibKurdi.ShafiyaFiCilmTasrif.JK001223-ara1",
+      "title": "الشافية في علم التصريف",
+      "author": "ابن الحاجب",
+      "died": 646
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0538JarAllahZamakhshari.MufassalFiSuncatIcrab.JK001224-ara1",
+      "title": "المفصل في صنعة الإعراب",
+      "author": "الزمخشري",
+      "died": 538
+    },
+
+    {
+      "collection": "nahw-books",
+      "file": "0180Sibawayhi.KitabSibawayhi.Shamela0023018-ara1.mARkdown",
+      "title": "الكتاب",
+      "author": "سيبويه",
+      "died": 180
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0170KhalilFarahidi.JumalFiNahw.JK001109-ara1",
+      "title": "الجمل في النحو",
+      "author": "الخليل بن أحمد الفراهيدي",
+      "died": 170
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0285IbnYazidMubarrad.Muqtadab.Shamela0006965-ara1.mARkdown",
+      "title": "المقتضب",
+      "author": "المبرد",
+      "died": 285
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0316IbnSarrajNahwi.UsulFiNahw.JK001327-ara1",
+      "title": "الأصول في النحو",
+      "author": "ابن السراج",
+      "died": 316
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0337IbnIshaqZajjaji.IdahCilalNahw.Sham19Y0143170-ara1",
+      "title": "الإيضاح في علل النحو",
+      "author": "الزجاجي",
+      "died": 337
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0337IbnIshaqZajjaji.HurufMacani.JK001104-ara1",
+      "title": "حروف المعاني",
+      "author": "الزجاجي",
+      "died": 337
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0392IbnJinniMawsili.LumacFiCarabiyya.JK001134-ara1",
+      "title": "اللمع في العربية",
+      "author": "ابن جني",
+      "died": 392
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0392IbnJinniMawsili.Khasais.JK001302-ara1.mARkdown",
+      "title": "الخصائص",
+      "author": "ابن جني",
+      "died": 392
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0392IbnJinniMawsili.Munsif.Shamela0010545-ara1",
+      "title": "المنصف",
+      "author": "ابن جني",
+      "died": 392
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0643IbnYacish.SharhMufassal.Sham19Y0013301-ara1",
+      "title": "شرح المفصل",
+      "author": "ابن يعيش",
+      "died": 643
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0669IbnCusfurHadramiIshbili.MumticKabirFiTasrif.Shamela0008667-ara1",
+      "title": "الممتع الكبير في التصريف",
+      "author": "ابن عصفور الإشبيلي",
+      "died": 669
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0672IbnMalik.SharhKafiya.Shamela0012024-ara1",
+      "title": "شرح الكافية الشافية",
+      "author": "ابن مالك الطائي",
+      "died": 672
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0672IbnMalik.TashilFawaid.Sham19Y0013247-ara1",
+      "title": "تسهيل الفوائد وتكميل المقاصد",
+      "author": "ابن مالك الطائي",
+      "died": 672
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0761JamalDinIbnHisham.SharhQatrNada.JK000007-ara1",
+      "title": "شرح قطر الندى وبل الصدى",
+      "author": "ابن هشام الأنصاري",
+      "died": 761
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0761JamalDinIbnHisham.SharhShudhurDhahab.JK001231-ara1",
+      "title": "شرح شذور الذهب",
+      "author": "ابن هشام الأنصاري",
+      "died": 761
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0855ShamsDinDikunquz.SharhCalaMarahArwah.Shamela0023140-ara1",
+      "title": "شرحان على مراح الأرواح",
+      "author": "ديكنقوز",
+      "died": 855
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0900IbnMuhammadNurDinAshmuni.SharhCalaAlfiyyatMalik.Shamela0011742-ara1",
+      "title": "شرح الأشموني على ألفية ابن مالك",
+      "author": "الأشموني",
+      "died": 900
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0905IbnCabdAllahWaqqadAzhari.SharhTasrih.Shamela0009985-ara1",
+      "title": "شرح التصريح على التوضيح",
+      "author": "خالد الأزهري",
+      "died": 905
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0905IbnCabdAllahWaqqadAzhari.MuwassilTullab.JK001179-ara1",
+      "title": "موصل الطلاب إلى قواعد الإعراب",
+      "author": "خالد الأزهري",
+      "died": 905
+    },
+    {
+      "collection": "nahw-books",
+      "file": "0911Suyuti.HamcHawamic.JK006705-ara1",
+      "title": "همع الهوامع في شرح جمع الجوامع",
+      "author": "السيوطي",
+      "died": 911
+    },
+
+    {
+      "collection": "fiqh-books",
+      "file": "0428AbuHusaynQuduri.Mukhtasar.Sham19Y0124336-ara1",
+      "title": "مختصر القدوري",
+      "author": "أبو الحسين القدوري",
+      "died": 428
+    },
+    {
+      "collection": "fiqh-books",
+      "file": "0593BurhanDinFarghaniMarghinani.Bidaya.JK000278-ara1",
+      "title": "بداية المبتدي",
+      "author": "برهان الدين المرغيناني",
+      "died": 593
+    },
+    {
+      "collection": "fiqh-books",
+      "file": "0593BurhanDinFarghaniMarghinani.HidayaFiSharhBidaya.JK000242-ara1",
+      "title": "الهداية في شرح بداية المبتدي",
+      "author": "برهان الدين المرغيناني",
+      "died": 593
+    },
+    {
+      "collection": "fiqh-books",
+      "file": "0344NizamDinShashi.Usul.JK000194-ara1",
+      "title": "أصول الشاشي",
+      "author": "نظام الدين الشاشي",
+      "died": 344
+    }
+  ]
+}

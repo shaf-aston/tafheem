@@ -1,0 +1,1785 @@
+{
+  "id": "seerah",
+  "order": 2,
+  "name": "The Seerah",
+  "arabic": "السيرة",
+  "science": "seerah",
+  "kind": "dated",
+  "sub": "570 to 632 CE",
+  "map": "hijaz",
+  "events": [
+    {
+      "id": "birth",
+      "title": "Birth",
+      "arabic": "المولد",
+      "when": "570 CE, Year of the Elephant",
+      "at": 570,
+      "hijri": "53 BH",
+      "place": "makkah",
+      "summary": "Born in Makkah in the year Abrahah's army came against the Ka'bah.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "105"
+        },
+        {
+          "book": "raheeq"
+        }
+      ],
+      "steps": [
+        {
+          "id": "elephant-year",
+          "title": "Year of the Elephant",
+          "arabic": "عام الفيل",
+          "when": "570 CE, before his birth",
+          "summary": "Abrahah marches on the Ka'bah with an army and an elephant; Allah destroys them with flocks of birds throwing stones of baked clay.",
+          "refs": [
+            {
+              "quran": "105"
+            },
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "orphaned-early",
+          "title": "Orphaned young",
+          "arabic": "يتم النبي",
+          "when": "Before and after birth",
+          "summary": "His father Abdullah dies before he is born; his mother Aminah dies at Abwa when he is about six.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "halimah",
+          "title": "Nursed by Halimah",
+          "arabic": "حليمة السعدية",
+          "when": "Infancy, in the desert",
+          "summary": "Halimah bint Abi Dhu'ayb of Banu Sa'd takes him to nurse in the desert, the custom for Makkan infants, and her household prospers while he is with her.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "grandfather-uncle",
+          "title": "Abdul Muttalib, then Abu Talib",
+          "arabic": "عبد المطلب وأبو طالب",
+          "when": "Ages six to eight",
+          "summary": "His grandfather Abdul Muttalib cares for him after Aminah's death, then dies himself two years later; his uncle Abu Talib takes him in and raises him.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "revelation",
+      "title": "First revelation",
+      "arabic": "بدء الوحي",
+      "when": "610 CE, age 40",
+      "at": 610,
+      "hijri": "13 BH",
+      "place": "hira",
+      "summary": "Jibril comes in the cave of Hira: \"Read, in the name of your Lord.\"",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "96:1-5"
+        },
+        {
+          "quran": "74:1-5"
+        },
+        {
+          "quran": "93"
+        },
+        {
+          "hadith": "bukhari",
+          "number": 3,
+          "checked": "sunnah.com"
+        }
+      ],
+      "names": [
+        "أول ما نزل",
+        "حراء",
+        "غار حراء"
+      ],
+      "steps": [
+        {
+          "id": "seclusion",
+          "title": "Seclusion in Hira",
+          "arabic": "التحنث في غار حراء",
+          "when": "Before the revelation",
+          "summary": "For years before, he goes alone to the cave of Hira to worship, taking food for the stay each time.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "iqra",
+          "title": "Iqra",
+          "arabic": "اقرأ",
+          "when": "Ramadan, 610 CE",
+          "summary": "The angel holds him and commands: Read. Three times he says he cannot, until the first verses of Surah al-Alaq come.",
+          "refs": [
+            {
+              "quran": "96:1-5"
+            },
+            {
+              "hadith": "bukhari",
+              "number": 3,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "khadijah-comforts",
+          "title": "Khadijah's reassurance",
+          "arabic": "تثبيت خديجة",
+          "when": "That same day",
+          "summary": "Trembling, he asks to be covered. Khadijah tells him Allah will never disgrace him, for he keeps ties of kinship and helps the weak.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "waraqah",
+          "title": "Waraqah confirms it",
+          "arabic": "شهادة ورقة بن نوفل",
+          "when": "Days after",
+          "summary": "Khadijah's blind Christian cousin Waraqah recognises the description as the same angel sent to Musa, and warns he will be driven out by his own people.",
+          "aside": true,
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "makkan-revelation",
+      "title": "Makkan revelation",
+      "arabic": "المكي",
+      "when": "610 to 622 CE",
+      "at": 610.1,
+      "hijri": "13 BH",
+      "until": "hijrah",
+      "period": "makkan",
+      "summary": "The Qur'an that came down before the Hijrah. Every report about a Makkan ayah that names no single event sits here.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "96:1-5"
+        }
+      ],
+      "steps": [
+        {
+          "id": "secret-dawah",
+          "title": "Three years of secret da'wah",
+          "arabic": "الدعوة السرية",
+          "when": "610 to 613 CE",
+          "summary": "For about three years he calls people privately, one at a time; Khadijah, Abu Bakr, Ali and Zayd are among the first to believe.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "safa-warning",
+          "title": "Warning at Safa",
+          "arabic": "الإنذار على الصفا",
+          "when": "613 CE",
+          "summary": "Once commanded to warn his nearest kin, he climbs Safa and calls the clans of Quraysh together to warn them of a severe punishment; Abu Lahab mocks him.",
+          "refs": [
+            {
+              "quran": "26:214-216"
+            },
+            {
+              "hadith": "bukhari",
+              "number": 4770,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "persecution-weak",
+          "title": "Persecution of the weak",
+          "arabic": "تعذيب المستضعفين",
+          "when": "Through the Makkan years",
+          "summary": "Quraysh torture believers who have no clan protection, among them Bilal, and the family of Yasir, whose mother Sumayyah is killed for her faith.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "boycott",
+          "title": "The boycott in the valley",
+          "arabic": "مقاطعة بني هاشم",
+          "when": "About 616 to 619 CE",
+          "summary": "Quraysh shut Banu Hashim and Banu al-Muttalib into a valley outside Makkah for about three years, cut off from trade and food, until the pact is torn up.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "open-conversions",
+          "title": "Hamzah and Umar embrace Islam",
+          "arabic": "إسلام حمزة وعمر",
+          "when": "Around 616 CE",
+          "summary": "His uncle Hamzah accepts Islam after Abu Jahl insults the Prophet, and Umar bin al-Khattab, once a fierce opponent, follows soon after; the believers begin to pray openly at the Ka'bah.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "abyssinia",
+      "title": "Migration to Abyssinia",
+      "arabic": "الهجرة إلى الحبشة",
+      "when": "615 to 628 CE",
+      "at": 615,
+      "hijri": "8 BH",
+      "until": "khaybar",
+      "place": "abyssinia",
+      "summary": "Persecuted Muslims shelter with the Negus; the last of them return as Khaybar falls.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "raheeq"
+        }
+      ],
+      "names": [
+        "الحبشة",
+        "النجاشي"
+      ],
+      "steps": [
+        {
+          "id": "two-migrations",
+          "title": "Two waves to Abyssinia",
+          "arabic": "الهجرتان إلى الحبشة",
+          "when": "615 CE",
+          "summary": "He tells the persecuted believers of a just king across the sea; a small group goes first, then a larger group follows.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ],
+          "steps": [
+            {
+              "id": "first-wave",
+              "title": "The first small group",
+              "summary": "About eleven men and four women slip out of Makkah and cross to Abyssinia, the first hijrah in Islam.",
+              "refs": [
+                {
+                  "book": "raheeq"
+                }
+              ],
+              "arabic": "الهجرة الأولى"
+            },
+            {
+              "id": "jafar-wave",
+              "title": "Ja'far leads a larger group",
+              "summary": "A second, larger party of over eighty migrants sets out, led by the Prophet's cousin Ja'far ibn Abi Talib.",
+              "refs": [
+                {
+                  "book": "raheeq"
+                }
+              ],
+              "arabic": "هجرة جعفر"
+            }
+          ]
+        },
+        {
+          "id": "quraysh-envoys",
+          "title": "Quraysh send envoys",
+          "arabic": "سفارة قريش إلى النجاشي",
+          "when": "Soon after",
+          "summary": "Quraysh send Amr ibn al-As and Abdullah ibn Abi Rabi'ah with gifts, asking the Negus to hand the migrants back.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "jafar-speech",
+          "title": "Ja'far's speech and Surah Maryam",
+          "arabic": "خطبة جعفر وسورة مريم",
+          "when": "Before the Negus",
+          "summary": "Ja'far describes their old way of life and their new faith, then recites from Surah Maryam about Isa and his mother; the Negus weeps.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "negus-protects",
+          "title": "The Negus refuses to hand them back",
+          "arabic": "حماية النجاشي",
+          "when": "Same audience",
+          "summary": "Moved by what he hears, the Negus rejects Quraysh's request and returns their gifts, giving the migrants his protection.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "return-khaybar",
+          "title": "Return as Khaybar falls",
+          "arabic": "العودة عند فتح خيبر",
+          "when": "628 CE",
+          "summary": "Abu Musa al-Ash'ari's party and Ja'far's group arrive from Abyssinia just as Khaybar is conquered, and the Prophet gives them a share of the spoils.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4230,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sorrow",
+      "title": "Year of Sorrow",
+      "arabic": "عام الحزن",
+      "when": "619 CE",
+      "at": 619,
+      "hijri": "3 BH",
+      "place": "makkah",
+      "summary": "Khadijah and Abu Talib both die.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "28:56"
+        },
+        {
+          "book": "raheeq"
+        }
+      ],
+      "names": [
+        "أبو طالب",
+        "خديجة"
+      ],
+      "steps": [
+        {
+          "id": "khadijah-death",
+          "title": "Khadijah's death",
+          "arabic": "وفاة خديجة",
+          "when": "619 CE, Ramadan",
+          "summary": "His first wife and closest supporter for twenty-five years dies in Makkah.",
+          "refs": [
+            {
+              "book": "raheeq"
+            },
+            {
+              "quran": "28:56"
+            }
+          ],
+          "steps": [
+            {
+              "id": "glad-tidings",
+              "title": "A house in Paradise",
+              "arabic": "بيت في الجنة",
+              "summary": "Jibril once told the Prophet to greet Khadijah and give her news of a house in Paradise of reeds, free of noise and hardship.",
+              "aside": true,
+              "refs": [
+                {
+                  "hadith": "bukhari",
+                  "number": 3820,
+                  "checked": "sunnah.com"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "abu-talib-death",
+          "title": "Abu Talib's death",
+          "arabic": "وفاة أبي طالب",
+          "when": "619 CE, shortly after",
+          "summary": "His uncle and protector dies still refusing to say the shahadah, though he shielded the Prophet from Quraysh for years.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 1360,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "losing-protection",
+          "title": "Quraysh grow bolder",
+          "arabic": "جرأة قريش",
+          "when": "After both deaths",
+          "summary": "With Khadijah's comfort and Abu Talib's clan protection both gone, Quraysh treat the Prophet more roughly than before.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "sawdah-marriage",
+          "title": "Marriage to Sawdah",
+          "arabic": "زواج سودة",
+          "when": "Later that year",
+          "summary": "He marries Sawdah bint Zam'ah, a widow of an earlier Abyssinia migrant, easing his household's grief.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "taif",
+      "title": "Ta'if",
+      "arabic": "الطائف",
+      "when": "619 CE",
+      "at": 619.5,
+      "hijri": "3 BH",
+      "place": "taif",
+      "summary": "Rejected and stoned at Ta'if; he makes du'a rather than curse them.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "46:29-32"
+        },
+        {
+          "quran": "72:1-19"
+        },
+        {
+          "book": "raheeq"
+        }
+      ],
+      "names": [
+        "الطائف"
+      ],
+      "steps": [
+        {
+          "id": "seeking-taif",
+          "title": "Seeking support at Ta'if",
+          "arabic": "طلب النصرة من ثقيف",
+          "when": "619 CE, after Abu Talib's death",
+          "summary": "He walks to Ta'if to ask the leaders of the tribe of Thaqif for support and protection, since Makkah has grown more hostile.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "rejected-stoned",
+          "title": "Rejected and stoned",
+          "arabic": "الرد والرجم",
+          "when": "Same visit",
+          "summary": "The chiefs of Thaqif refuse him and set their slaves and youths to pelt him with stones until his feet bleed and Zayd bin Harithah is hurt shielding him.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "utbah-orchard",
+          "title": "Shelter in an orchard",
+          "arabic": "بستان عتبة وشيبة",
+          "when": "Retreating from the town",
+          "summary": "He rests in an orchard belonging to Utbah and Shaybah, sons of Rabi'ah, who send out their Christian slave Addas with a bunch of grapes; Addas recognises the name of Yunus and kisses his hands and feet.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "dua-wall",
+          "title": "The dua at the wall",
+          "arabic": "دعاء حائط الطائف",
+          "when": "Same day",
+          "summary": "Alone and hurt, he prays: to You, O Allah, I complain of my weakness and my lack of resources, and my insignificance before people.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "hardest-day",
+          "title": "The hardest day",
+          "arabic": "أشد يوم",
+          "when": "Recalled later",
+          "summary": "Aisha later asks if any day was harder than Uhud; he describes this day, when Jibril brought the Angel of the Mountains offering to crush the valley between two mountains, and he declines, hoping their children will worship Allah alone.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3231,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "jinn-listen",
+          "title": "Jinn hear the Qur'an at Nakhlah",
+          "arabic": "استماع الجن بنخلة",
+          "when": "On the way back to Makkah",
+          "summary": "Travelling home, a group of jinn stop to listen to him reciting the Qur'an in the night prayer and return to their people as warners.",
+          "aside": true,
+          "refs": [
+            {
+              "quran": "72:1-19"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "isra",
+      "title": "Isra and Mi'raj",
+      "arabic": "الإسراء والمعراج",
+      "when": "about 620 CE",
+      "at": 620.5,
+      "hijri": "1 BH",
+      "place": "jerusalem",
+      "summary": "Night journey to al-Aqsa and ascent through the heavens; the five prayers.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "quran": "17:1"
+        },
+        {
+          "quran": "53:13-18"
+        }
+      ],
+      "names": [
+        "أسري",
+        "الإسراء",
+        "المسجد الأقصى",
+        "ليلة أسري"
+      ],
+      "steps": [
+        {
+          "id": "buraq",
+          "title": "Carried on Buraq to Jerusalem",
+          "arabic": "الإسراء على البراق",
+          "when": "Earlier the same night",
+          "place": "jerusalem",
+          "summary": "Mounted on Buraq, he travels to Bayt al-Maqdis, ties it at the ring used by the prophets, and prays two rak'ahs inside; Jibril offers him a vessel of wine and one of milk, and he chooses the milk.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 162,
+              "checked": "sunnah.com"
+            },
+            {
+              "quran": "17:1"
+            }
+          ]
+        },
+        {
+          "id": "ascent",
+          "title": "Chest opened, ascent begins",
+          "arabic": "شق الصدر والمعراج",
+          "when": "The same night",
+          "place": "makkah",
+          "summary": "Jibril opens his chest, washes his heart with Zamzam water, then takes him up through the gates of the seven heavens.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 349,
+              "checked": "sunnah.com"
+            },
+            {
+              "quran": "17:1"
+            }
+          ]
+        },
+        {
+          "id": "meeting-prophets",
+          "title": "Meeting the earlier prophets",
+          "arabic": "لقاء الأنبياء",
+          "when": "Through the seven heavens",
+          "summary": "He meets Adam, Idris, Musa, Isa and Ibrahim in turn, each greeting him as a righteous prophet and son or brother.",
+          "aside": true,
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 349,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "fifty-to-five",
+          "title": "Fifty prayers become five",
+          "arabic": "من خمسين إلى خمس",
+          "when": "At Sidrat al-Muntaha",
+          "summary": "Musa sends him back again and again to ask for less, until five remain, each counted as fifty in reward.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 349,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "sidrah",
+          "title": "The Lote Tree of the utmost boundary",
+          "arabic": "سدرة المنتهى",
+          "when": "The furthest point",
+          "summary": "He reaches Sidrat al-Muntaha, wrapped in colours beyond description, and glimpses the greatest signs of his Lord.",
+          "aside": true,
+          "refs": [
+            {
+              "quran": "53:13-18"
+            },
+            {
+              "hadith": "bukhari",
+              "number": 349,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hijrah",
+      "title": "Hijrah",
+      "arabic": "الهجرة",
+      "when": "622 CE, year 1 AH",
+      "at": 622,
+      "hijri": "1 AH",
+      "place": "madinah",
+      "summary": "Leaves Makkah with Abu Bakr, hides in the cave of Thawr, reaches Madinah.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "9:40"
+        }
+      ],
+      "names": [
+        "حين هاجر",
+        "لما هاجر",
+        "الهجرة إلى المدينة"
+      ],
+      "steps": [
+        {
+          "id": "nadwa",
+          "title": "The plot at Dar an-Nadwa",
+          "arabic": "دار الندوة",
+          "when": "Nights before",
+          "summary": "The chiefs of Quraysh meet and settle on a young man from every clan, so no one clan carries the blood.",
+          "refs": [
+            {
+              "quran": "8:30"
+            }
+          ]
+        },
+        {
+          "id": "bed",
+          "title": "The night of the bed",
+          "arabic": "ليلة المبيت",
+          "when": "The night itself",
+          "summary": "Ali sleeps in his place under his green cloak while the house is watched.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ],
+          "steps": [
+            {
+              "id": "trusts",
+              "title": "The trusts handed back",
+              "arabic": "رد الأمانات",
+              "summary": "Ali is left behind to return what people had left with him for safekeeping, the same people watching the door.",
+              "refs": [
+                {
+                  "book": "raheeq"
+                }
+              ]
+            },
+            {
+              "id": "leaving",
+              "title": "Out through the watchers",
+              "arabic": "الخروج",
+              "summary": "He leaves the house and goes to Abu Bakr, and the two of them take the road south rather than north.",
+              "refs": [
+                {
+                  "hadith": "bukhari",
+                  "number": 3905,
+                  "checked": "sunnah.com"
+                },
+                {
+                  "book": "raheeq"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "thawr",
+          "title": "The cave of Thawr",
+          "arabic": "غار ثور",
+          "when": "Three nights",
+          "summary": "They hide three nights in a cave south of Makkah while the search parties comb the roads.",
+          "refs": [
+            {
+              "quran": "9:40"
+            },
+            {
+              "hadith": "bukhari",
+              "number": 3653,
+              "checked": "sunnah.com"
+            }
+          ],
+          "steps": [
+            {
+              "id": "grieve",
+              "title": "Do not grieve",
+              "arabic": "لا تحزن إن الله معنا",
+              "summary": "Abu Bakr sees feet at the mouth of the cave and is told: what do you think of two, the third of whom is Allah.",
+              "refs": [
+                {
+                  "quran": "9:40"
+                },
+                {
+                  "hadith": "bukhari",
+                  "number": 3653,
+                  "checked": "sunnah.com"
+                }
+              ]
+            },
+            {
+              "id": "asma",
+              "title": "Food carried up at night",
+              "arabic": "ذات النطاقين",
+              "summary": "Asma bint Abi Bakr brings the provision, tearing her waist-belt in two to tie it, and is named for it after.",
+              "refs": [
+                {
+                  "hadith": "bukhari",
+                  "number": 3907,
+                  "checked": "sunnah.com"
+                }
+              ]
+            },
+            {
+              "id": "news",
+              "title": "The day's news brought down",
+              "arabic": "خبر قريش",
+              "summary": "Abdullah ibn Abi Bakr sits among Quraysh by day and carries what is said back to the cave at night; the sheep are driven over the tracks behind him.",
+              "refs": [
+                {
+                  "hadith": "bukhari",
+                  "number": 3905,
+                  "checked": "sunnah.com"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "suraqah",
+          "title": "Suraqah on the road",
+          "arabic": "سراقة بن مالك",
+          "when": "On the way",
+          "summary": "Suraqah rides them down for the bounty and his horse sinks into the ground under him; he turns back and puts the others off the trail.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3906,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "quba",
+          "title": "Quba",
+          "arabic": "قباء",
+          "when": "Rabi' al-Awwal",
+          "summary": "He stops at Quba on the edge of the town and a masjid is built there, the first founded upon piety.",
+          "refs": [
+            {
+              "quran": "9:108"
+            },
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "entry",
+          "title": "Entering Madinah",
+          "arabic": "دخول المدينة",
+          "when": "The same week",
+          "summary": "Every household asks him to stay with them; he lets the camel walk on, and builds where it kneels.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3906,
+              "checked": "sunnah.com"
+            },
+            {
+              "book": "raheeq"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "madinan-revelation",
+      "title": "Madinan revelation",
+      "arabic": "المدني",
+      "when": "622 to 632 CE",
+      "at": 622.1,
+      "hijri": "1 AH",
+      "until": "death",
+      "period": "madinan",
+      "summary": "The Qur'an that came down after the Hijrah. Every report about a Madinan ayah that names no single event sits here.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "2:1-5"
+        }
+      ],
+      "steps": [
+        {
+          "id": "fighting-permitted",
+          "title": "Permission to fight",
+          "arabic": "الإذن بالقتال",
+          "when": "Soon after the Hijrah",
+          "summary": "For the first time permission is given to fight those who make war on the Muslims, after years of ordered patience in Makkah.",
+          "refs": [
+            {
+              "quran": "22:39-40"
+            }
+          ]
+        },
+        {
+          "id": "qiblah-change",
+          "title": "Qiblah turns to Makkah",
+          "arabic": "تحويل القبلة",
+          "when": "Rajab, 2 AH",
+          "summary": "Mid prayer at Quba, word comes that the direction of prayer has changed from Jerusalem to the Ka'bah, and the whole row turns together.",
+          "refs": [
+            {
+              "quran": "2:144"
+            },
+            {
+              "hadith": "bukhari",
+              "number": 403,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "wine-prohibited",
+          "title": "Wine forbidden in stages",
+          "arabic": "تحريم الخمر تدريجياً",
+          "when": "Across the Madinan years",
+          "summary": "The Qur'an first calls wine a mixed good and a sin, then bars prayer while drunk, then forbids it outright as the work of Satan.",
+          "refs": [
+            {
+              "quran": "2:219"
+            },
+            {
+              "quran": "4:43"
+            },
+            {
+              "quran": "5:90-91"
+            }
+          ]
+        },
+        {
+          "id": "hijab-verses",
+          "title": "Screening verses revealed",
+          "arabic": "آية الحجاب",
+          "when": "5 AH",
+          "summary": "Verses come down telling believing women to draw their outer garments close, and setting a screen between the Prophet's wives and other men.",
+          "refs": [
+            {
+              "quran": "33:53"
+            },
+            {
+              "quran": "33:59"
+            }
+          ]
+        },
+        {
+          "id": "longest-verse",
+          "title": "The verse on debt",
+          "arabic": "آية الدين",
+          "when": "Late in Madinah",
+          "summary": "The longest verse in the Qur'an comes down, ordering that loans between people be written down and witnessed.",
+          "aside": true,
+          "refs": [
+            {
+              "quran": "2:282"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "badr",
+      "title": "Badr",
+      "arabic": "غزوة بدر",
+      "when": "624 CE, 2 AH",
+      "at": 624,
+      "hijri": "2 AH",
+      "place": "badr",
+      "summary": "About 313 Muslims face a larger Quraysh army and win.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "3:123"
+        },
+        {
+          "quran": "8:9"
+        },
+        {
+          "quran": "8:5-19"
+        },
+        {
+          "quran": "8:41-44"
+        }
+      ],
+      "names": [
+        "يوم بدر",
+        "ببدر",
+        "غزوة بدر"
+      ],
+      "steps": [
+        {
+          "id": "caravan",
+          "title": "Abu Sufyan's caravan",
+          "arabic": "قافلة أبي سفيان",
+          "when": "Ramadan, 2 AH",
+          "summary": "Word reaches Madinah that a large Quraysh trade caravan under Abu Sufyan is coming up from Syria. The Prophet sets out with about three hundred men to intercept it, not meaning to fight a battle.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "council",
+          "title": "The council of war",
+          "arabic": "المشورة يوم بدر",
+          "when": "Once the caravan escapes",
+          "summary": "The caravan slips past and Quraysh send an army instead. Asked whether to press on, al-Miqdad promises to fight at the Prophet's side wherever he goes.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3952,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "wells",
+          "title": "Control of the water",
+          "arabic": "السيطرة على الماء",
+          "when": "The night before the battle",
+          "summary": "Al-Hubab ibn al-Mundhir suggests moving to the well nearest the enemy and filling in the rest, so the Muslims control the only water on the field. The Prophet accepts the plan.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "dua",
+          "title": "The Prophet's dua",
+          "arabic": "دعاء النبي يوم بدر",
+          "when": "Before the fighting",
+          "summary": "Facing a much larger force, he stretches out his hands and pleads: if this small band is destroyed today, You will not be worshipped on earth.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 1763,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "battle",
+          "title": "The battle is fought",
+          "arabic": "المعركة",
+          "when": "17 Ramadan, 2 AH",
+          "summary": "The two sides meet in single combats before the general fighting starts. Two young Ansari boys, each unaware the other had the same target, cut down Abu Jahl, the leading voice against the Prophet in Makkah.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3141,
+              "checked": "sunnah.com"
+            },
+            {
+              "quran": "8:9"
+            }
+          ]
+        },
+        {
+          "id": "prisoners",
+          "title": "What to do with the captives",
+          "arabic": "الأسرى",
+          "when": "After the battle",
+          "summary": "Abu Bakr advises ransoming the captives as kin; Umar advises killing them. The Prophet takes Abu Bakr's view, and Allah later reveals a caution about it.",
+          "aside": true,
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 1763,
+              "checked": "sunnah.com"
+            },
+            {
+              "quran": "8:67"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uhud",
+      "title": "Uhud",
+      "arabic": "غزوة أحد",
+      "when": "625 CE, 3 AH",
+      "at": 625,
+      "hijri": "3 AH",
+      "place": "uhud",
+      "summary": "The archers leave their post; Hamzah is martyred.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "3:121-122"
+        },
+        {
+          "quran": "3:152"
+        },
+        {
+          "quran": "3:165-175"
+        }
+      ],
+      "names": [
+        "يوم أحد",
+        "بأحد",
+        "غزوة أحد"
+      ],
+      "steps": [
+        {
+          "id": "archers",
+          "title": "The archers leave their post",
+          "arabic": "نزول الرماة",
+          "when": "Once Quraysh appeared to retreat",
+          "summary": "The Prophet orders fifty archers to hold a hill whatever happens. Seeing what looks like victory, most leave for the spoils, and the battle turns against the Muslims.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4043,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "hamzah",
+          "title": "Hamzah is martyred",
+          "arabic": "استشهاد حمزة",
+          "when": "During the battle",
+          "summary": "Wahshi, promised his freedom, kills Hamzah with a thrown spear. Wahshi later becomes Muslim, and kills the false prophet Musaylimah with the same spear.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4072,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "prophet-wounded",
+          "title": "The Prophet is wounded",
+          "arabic": "جرح النبي",
+          "when": "During the battle",
+          "summary": "His helmet is broken, his face is cut and a tooth is broken. Fatimah washes the wound while Ali pours water, and burnt matting stops the bleeding.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4075,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "khandaq",
+      "title": "The Trench",
+      "arabic": "غزوة الخندق",
+      "when": "627 CE, 5 AH",
+      "at": 627,
+      "hijri": "5 AH",
+      "place": "madinah",
+      "summary": "The confederates besiege Madinah; a trench is dug; a wind scatters them.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "33:9-27"
+        }
+      ],
+      "names": [
+        "الخندق",
+        "الأحزاب يوم"
+      ],
+      "steps": [
+        {
+          "id": "trench-dug",
+          "title": "Salman's proposal",
+          "arabic": "مشورة سلمان",
+          "when": "Before the siege",
+          "summary": "Salman al-Farisi, who knew Persian siege warfare, suggests digging a trench around the exposed side of Madinah; nothing like it had been used by the Arabs before.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "hunger",
+          "title": "A stone against the hunger",
+          "arabic": "شد الحجر على البطن",
+          "when": "During the digging",
+          "summary": "Salman finds a rock the spades cannot break. The Prophet strikes it three times, each strike lighting up with a promise of future conquest, though he has tied a stone to his own belly from hunger.",
+          "aside": true,
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4101,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "siege-tightens",
+          "title": "The siege tightens",
+          "arabic": "اشتداد الحصار",
+          "when": "Across nearly a month",
+          "summary": "The confederate armies surround Madinah and keep the Muslims so busy defending the trench that they miss the Asr prayer until after sunset.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4111,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "qurayzah-betrayal",
+          "title": "Banu Qurayzah break their pact",
+          "arabic": "نقض بني قريظة",
+          "when": "During the siege",
+          "summary": "Banu Qurayzah, bound by treaty to help defend Madinah, go over to the confederates instead, opening a second front behind the Muslim lines.",
+          "aside": true,
+          "refs": [
+            {
+              "quran": "33:26-27"
+            },
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "amr-duel",
+          "title": "Single combat with Amr",
+          "arabic": "مبارزة عمرو بن عبد ود",
+          "when": "During the siege",
+          "summary": "Amr ibn Abd Wudd, a famed Quraysh warrior, leaps his horse across the trench and challenges the Muslims to single combat. Ali accepts and kills him, and the rest of his party turn back.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "wind-scatters",
+          "title": "A wind scatters them",
+          "arabic": "الريح تبدد الأحزاب",
+          "when": "After nearly a month",
+          "summary": "A bitter, cold wind strikes the confederates' camp by night, overturning their tents and cooking pots, and the siege breaks up without a final battle.",
+          "refs": [
+            {
+              "quran": "33:9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hudaybiyyah",
+      "title": "Hudaybiyyah",
+      "arabic": "صلح الحديبية",
+      "when": "628 CE, 6 AH",
+      "at": 628,
+      "hijri": "6 AH",
+      "place": "hudaybiyyah",
+      "summary": "A treaty that looks like a loss and is called a clear victory.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "48:1"
+        },
+        {
+          "quran": "48:15-18"
+        },
+        {
+          "quran": "48:24-27"
+        }
+      ],
+      "names": [
+        "الحديبية"
+      ],
+      "steps": [
+        {
+          "id": "uthman-envoy",
+          "title": "Uthman sent to Makkah",
+          "when": "Before the pledge",
+          "summary": "The Prophet sends Uthman, well regarded by Quraysh, to tell them he has come only for Umrah. The pledge that follows is taken while he is still away.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4066,
+              "checked": "sunnah.com"
+            }
+          ],
+          "arabic": "إرسال عثمان"
+        },
+        {
+          "id": "bayah-ridwan",
+          "title": "The pledge under the tree",
+          "arabic": "بيعة الرضوان",
+          "when": "Under the tree",
+          "summary": "The Prophet calls the Muslims to pledge to fight if it comes to that. Allah later says He was pleased with them for this pledge.",
+          "refs": [
+            {
+              "quran": "48:18"
+            }
+          ]
+        },
+        {
+          "id": "treaty-terms",
+          "title": "Terms that look like a loss",
+          "when": "The negotiation",
+          "summary": "Suhail insists the words 'Messenger of Allah' be struck from the document, and that anyone who joins the Muslims from Quraysh be returned, but not the reverse.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 2731,
+              "checked": "sunnah.com"
+            }
+          ],
+          "arabic": "شروط الصلح"
+        },
+        {
+          "id": "umar-objects",
+          "title": "Umar's questions",
+          "when": "During the treaty",
+          "summary": "Umar bin al-Khattab asks why they should accept humbling terms when their cause is true. The Prophet says he will not disobey his Lord, and later events prove him right.",
+          "aside": true,
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 2731,
+              "checked": "sunnah.com"
+            }
+          ],
+          "arabic": "اعتراض عمر"
+        },
+        {
+          "id": "abu-jandal",
+          "title": "Abu Jandal turned back",
+          "when": "The same day",
+          "summary": "Abu Jandal arrives dragging his chains, seeking refuge as a new Muslim, but under the treaty's terms Suhail, his own father, takes him back to Makkah.",
+          "aside": true,
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 2731,
+              "checked": "sunnah.com"
+            }
+          ],
+          "arabic": "أبو جندل"
+        }
+      ]
+    },
+    {
+      "id": "khaybar",
+      "title": "Khaybar",
+      "arabic": "غزوة خيبر",
+      "when": "628 CE, 7 AH",
+      "at": 628.6,
+      "hijri": "7 AH",
+      "place": "khaybar",
+      "summary": "The fortresses of Khaybar are taken; the emigrants return from Abyssinia.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "48:15"
+        },
+        {
+          "book": "raheeq"
+        }
+      ],
+      "names": [
+        "خيبر"
+      ],
+      "steps": [
+        {
+          "id": "march-khaybar",
+          "title": "March to Khaybar",
+          "arabic": "المسير إلى خيبر",
+          "when": "Muharram, 7 AH",
+          "summary": "The Muslims reach Khaybar's oasis of fortresses by night. At dawn the field workers see the army coming and cry out in alarm.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4197,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "banner-ali",
+          "title": "The banner given to Ali",
+          "arabic": "دفع الراية لعلي",
+          "when": "During the siege",
+          "summary": "The Prophet promises the banner to a man Allah will grant victory through. He calls for Ali, cures his eye trouble with his own saliva, and hands it to him.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 2942,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "fall-of-forts",
+          "title": "The forts fall",
+          "arabic": "سقوط الحصون",
+          "when": "Over the following weeks",
+          "summary": "Khaybar's fortresses are taken one after another until the Jewish community sues for peace and is allowed to keep working the land for half its produce.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "poisoned-sheep",
+          "title": "The poisoned sheep",
+          "arabic": "الشاة المسمومة",
+          "when": "After the conquest",
+          "summary": "A Jewish woman serves the Prophet a roasted sheep laced with poison. He tastes it and stops, and spares her life though he feels its effect afterward.",
+          "aside": true,
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 2617,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "safiyyah-marriage",
+          "title": "Marriage to Safiyyah",
+          "arabic": "زواج صفية",
+          "when": "On the road back",
+          "summary": "He marries Safiyyah bint Huyay, taken captive at Khaybar. The wedding feast is only dates, dried yoghurt and butter spread on leather sheets.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 5085,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fath",
+      "title": "Opening of Makkah",
+      "arabic": "فتح مكة",
+      "when": "630 CE, 8 AH",
+      "at": 630,
+      "hijri": "8 AH",
+      "place": "makkah",
+      "summary": "Makkah is entered almost without fighting; the idols are removed from the Ka'bah.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "110"
+        },
+        {
+          "quran": "17:81"
+        }
+      ],
+      "names": [
+        "يوم الفتح",
+        "فتح مكة"
+      ],
+      "steps": [
+        {
+          "id": "abu-sufyan-witnesses",
+          "title": "Abu Sufyan sees the army",
+          "when": "At Marr az-Zahran, approaching Makkah",
+          "summary": "Abu Sufyan comes out to spy and is caught. He accepts Islam and is placed to watch the Muslim tribes march past in their thousands.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4280,
+              "checked": "sunnah.com"
+            }
+          ],
+          "arabic": "أبو سفيان يرى الجيش"
+        },
+        {
+          "id": "kabah-not-sad",
+          "title": "Not a day of killing",
+          "when": "As the army passes",
+          "summary": "Sa'd bin Ubada calls it a day when the Ka'bah's sanctity is set aside. The Prophet corrects him: today Allah honours the Ka'bah, and orders it draped in cloth.",
+          "aside": true,
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4280,
+              "checked": "sunnah.com"
+            }
+          ],
+          "arabic": "اليوم يوم المرحمة"
+        },
+        {
+          "id": "abu-sufyan-safety",
+          "title": "Whoever enters Abu Sufyan's house",
+          "when": "As the army enters",
+          "summary": "The Prophet announces that whoever enters Abu Sufyan's house, lays down arms, or shuts their own door will be safe.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 1780,
+              "checked": "sunnah.com"
+            }
+          ],
+          "arabic": "من دخل دار أبي سفيان"
+        },
+        {
+          "id": "khalid-flank",
+          "title": "Resistance on Khalid's flank",
+          "when": "Entering from the upper side",
+          "summary": "While the Prophet enters peacefully, Khalid ibn al-Walid's column meets armed resistance entering from Makkah's upper side, and two of his men are killed.",
+          "aside": true,
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4280,
+              "checked": "sunnah.com"
+            }
+          ],
+          "arabic": "قتال جهة خالد"
+        },
+        {
+          "id": "idols-removed",
+          "title": "The idols are struck down",
+          "arabic": "تحطيم الأصنام",
+          "when": "Entering the Ka'bah",
+          "summary": "Three hundred and sixty idols stand around the Ka'bah. The Prophet strikes each with a stick, reciting: truth has come and falsehood has vanished.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4287,
+              "checked": "sunnah.com"
+            },
+            {
+              "quran": "17:81"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tabuk",
+      "title": "Tabuk",
+      "arabic": "غزوة تبوك",
+      "when": "630 CE, 9 AH",
+      "at": 630.7,
+      "hijri": "9 AH",
+      "place": "tabuk",
+      "summary": "A long march in the heat; the hypocrites stay behind.",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "9:38-42"
+        },
+        {
+          "quran": "9:81-99"
+        },
+        {
+          "quran": "9:117-119"
+        }
+      ],
+      "names": [
+        "تبوك"
+      ],
+      "steps": [
+        {
+          "id": "hardship-march",
+          "title": "The army of hardship",
+          "arabic": "جيش العسرة",
+          "when": "Rajab, 9 AH",
+          "summary": "Unlike other campaigns, the Prophet announces the destination openly this time, because of the summer heat, the distance, and the size of the force ahead.",
+          "refs": [
+            {
+              "quran": "9:81"
+            },
+            {
+              "book": "raheeq"
+            }
+          ]
+        },
+        {
+          "id": "hypocrites-excuses",
+          "title": "The hypocrites stay behind",
+          "arabic": "تخلف المنافقين",
+          "when": "Before setting out",
+          "summary": "Some make excuses not to march and some mock the call to fight in the heat. The Qur'an names their excuses as a test of faith.",
+          "refs": [
+            {
+              "quran": "9:38-42"
+            },
+            {
+              "quran": "9:81-99"
+            }
+          ]
+        },
+        {
+          "id": "kab-boycott",
+          "title": "Ka'b ibn Malik's confession",
+          "arabic": "توبة كعب بن مالك",
+          "when": "After the army returns",
+          "summary": "Ka'b, who stayed behind with no excuse, tells the Prophet the plain truth instead of lying. The believers stop speaking to him and his two companions for fifty days, until the Qur'an announces their forgiveness.",
+          "aside": true,
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4418,
+              "checked": "sunnah.com"
+            },
+            {
+              "quran": "9:118"
+            }
+          ]
+        },
+        {
+          "id": "treaties-no-battle",
+          "title": "No battle at Tabuk",
+          "arabic": "لا قتال في تبوك",
+          "when": "On arrival",
+          "summary": "The Byzantine army does not appear. The Prophet takes treaties and tribute from the rulers of Ayla, Dumat al-Jandal and other border towns before returning to Madinah.",
+          "refs": [
+            {
+              "book": "raheeq"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "farewell",
+      "title": "Farewell Hajj",
+      "arabic": "حجة الوداع",
+      "when": "632 CE, 10 AH",
+      "at": 631.8,
+      "hijri": "10 AH",
+      "place": "arafat",
+      "summary": "The sermon at Arafat; \"Today I have perfected your religion for you.\"",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "5:3"
+        }
+      ],
+      "names": [
+        "حجة الوداع"
+      ],
+      "steps": [
+        {
+          "id": "last-hajj-announced",
+          "title": "The last Hajj announced",
+          "arabic": "الإذن بالحج",
+          "when": "Dhu al-Qa'dah, 10 AH",
+          "summary": "After nine years in Madinah without performing Hajj, the Prophet announces he is going, and people come from across Arabia to go with him.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 1218,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "khutbah-arafat",
+          "title": "The sermon at Arafat",
+          "arabic": "خطبة عرفة",
+          "when": "9th of Dhu al-Hijjah",
+          "summary": "He declares blood and property sacred, ends the blood feuds and usury of pre-Islam, and commands kindness to women, then asks three times: have I conveyed the message?",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 1218,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "religion-perfected",
+          "title": "Religion perfected",
+          "arabic": "إكمال الدين",
+          "when": "During the sermon",
+          "summary": "Allah reveals that the religion is now complete, His favour fulfilled, and Islam confirmed as the faith He has chosen.",
+          "refs": [
+            {
+              "quran": "5:3"
+            }
+          ]
+        },
+        {
+          "id": "farewell-rites",
+          "title": "Stoning and sacrifice",
+          "arabic": "الرمي والنحر",
+          "when": "The days that follow",
+          "summary": "At Mina he stones the largest pillar, sacrifices sixty three camels with his own hand, and performs the farewell circuit of the Ka'bah before leaving Makkah for the last time.",
+          "refs": [
+            {
+              "hadith": "muslim",
+              "number": 1218,
+              "checked": "sunnah.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "death",
+      "title": "Death",
+      "arabic": "الوفاة",
+      "when": "632 CE, 11 AH",
+      "at": 632.3,
+      "hijri": "11 AH",
+      "place": "madinah",
+      "summary": "Dies in the room of 'A'ishah; Abu Bakr: \"whoever worshipped Muhammad, Muhammad has died.\"",
+      "flags": [],
+      "refs": [
+        {
+          "quran": "3:144"
+        },
+        {
+          "quran": "39:30"
+        }
+      ],
+      "names": [
+        "قبض النبي",
+        "وفاة النبي"
+      ],
+      "steps": [
+        {
+          "id": "illness-begins",
+          "title": "The illness begins",
+          "arabic": "بدء المرض",
+          "when": "Safar, 11 AH",
+          "summary": "Growing weak with fever, he asks again and again whether the people have prayed, and asks for water to be poured over him before he can even stand.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 687,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "abu-bakr-leads-prayer",
+          "title": "Abu Bakr leads the prayer",
+          "arabic": "إمامة أبي بكر",
+          "when": "During the illness",
+          "summary": "Too weak to lead himself, he orders Abu Bakr to lead the people in prayer, then once comes out leaning on two men and sits beside him while Abu Bakr prays standing.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 664,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "final-moments",
+          "title": "The last siwak",
+          "arabic": "آخر سواك",
+          "when": "In Aishah's room",
+          "summary": "Resting against Aishah's chest, he cleans his teeth with a softened toothstick, then raises his hand and says three times, with the highest companion, before he dies.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4438,
+              "checked": "sunnah.com"
+            }
+          ]
+        },
+        {
+          "id": "abu-bakr-speech",
+          "title": "Abu Bakr's speech",
+          "arabic": "خطبة أبي بكر",
+          "when": "That same day",
+          "summary": "Umar refuses to believe he has died. Abu Bakr tells the people that whoever worshipped Muhammad, Muhammad has died, but whoever worships Allah, Allah is living and never dies, then recites the verse that no messenger lives forever.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4452,
+              "checked": "sunnah.com"
+            },
+            {
+              "quran": "3:144"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

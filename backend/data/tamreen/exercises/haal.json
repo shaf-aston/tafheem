@@ -1,0 +1,2065 @@
+{
+ "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+ "form": "Exercise: Haal YR3PT25-26 (18/12/25)",
+ "harvested": "2026-09-17",
+ "rules": [
+  {
+   "id": "haal-r01",
+   "question": "حال can be...",
+   "options": [
+    "...an إسم.",
+    "...a فعل.",
+    "...a حرف (directly without being متعلق).",
+    "...a مركب غير مفيد like: طالعَ جبلٍ",
+    "...a جملة.",
+    "...a شبه الجملة (جار مجرور - ظرف).",
+    "...معرفة.",
+    "...نكرة."
+   ],
+   "answer": [
+    "...an إسم.",
+    "...a فعل.",
+    "...a مركب غير مفيد like: طالعَ جبلٍ",
+    "...a جملة.",
+    "...a شبه الجملة (جار مجرور - ظرف).",
+    "...نكرة."
+   ],
+   "tags": [
+    "haal",
+    "haal-mufrad",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r02",
+   "question": "حال is always...",
+   "options": [
+    "...مجرور.",
+    "...منصوب.",
+    "...مرفوع."
+   ],
+   "answer": [
+    "...منصوب."
+   ],
+   "tags": [
+    "haal",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r03",
+   "question": "حال signifes upon...",
+   "options": [
+    "...the condition of the subject or object when the action is conducted.",
+    "...the method an action is conducted in.",
+    "...the place an action is conducted in.",
+    "...the reason for an action being conducted."
+   ],
+   "answer": [
+    "...the condition of the subject or object when the action is conducted."
+   ],
+   "tags": [
+    "haal",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r04",
+   "question": "According to the Jamhoor, the حال will generally...",
+   "options": [
+    "...be in relation to the فاعل.",
+    "...be in relation to the مضاف إليه.",
+    "...be in relation to the مفعول به.",
+    "...be in relation to the مفعول مطلق.",
+    "...be in relation to the مفعول فيه.",
+    "...be in relation to the مبتدا."
+   ],
+   "answer": [
+    "...be in relation to the فاعل.",
+    "...be in relation to the مفعول به.",
+    "...be in relation to the مضاف إليه."
+   ],
+   "tags": [
+    "haal",
+    "tarif-mustalah",
+    "zul-haal"
+   ]
+  },
+  {
+   "id": "haal-r05",
+   "question": "The ذو الحال can be...",
+   "options": [
+    "...an إسم.",
+    "...a فعل.",
+    "...a حرف.",
+    "...a مركب غير مفيد.",
+    "...a جملة.",
+    "...a شبه الجملة (جار مجرور - ظرف).",
+    "...معرفة.",
+    "...نكرة."
+   ],
+   "answer": [
+    "...an إسم.",
+    "...a مركب غير مفيد.",
+    "...معرفة.",
+    "...نكرة."
+   ],
+   "tags": [
+    "tarif-mustalah",
+    "zul-haal"
+   ]
+  },
+  {
+   "id": "haal-r06",
+   "question": "The ذو الحال...",
+   "options": [
+    "...can come after the حال.",
+    "...must come before the حال.",
+    "...must come after the حال.",
+    "...can come before the حال."
+   ],
+   "answer": [
+    "...can come after the حال.",
+    "...can come before the حال."
+   ],
+   "tags": [
+    "tarif-mustalah",
+    "zul-haal"
+   ]
+  },
+  {
+   "id": "haal-r07",
+   "question": "The حال MUST precede the ذو الحال when...",
+   "options": [
+    "...the خبر precedes the مبتدا.",
+    "...the ذو الحال is جمع مؤنث سالم and منصوب.",
+    "...the فعل is hidden.",
+    "...the ذو الحال is نكرة and منصوب."
+   ],
+   "answer": [
+    "...the ذو الحال is نكرة and منصوب."
+   ],
+   "tags": [
+    "haal",
+    "tarif-mustalah",
+    "zul-haal"
+   ]
+  },
+  {
+   "id": "haal-r08",
+   "question": "The حال...",
+   "options": [
+    "...can come before the verb.",
+    "...must come after the verb.",
+    "...can come after the verb.",
+    "...must come before the verb."
+   ],
+   "answer": [
+    "...can come before the verb.",
+    "...can come after the verb."
+   ],
+   "tags": [
+    "haal",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r09",
+   "question": "If the حال is a مفزد, then it can be...",
+   "options": [
+    "...a صفة مشبهة.",
+    "...a شبه الجملة.",
+    "...an اسم الظرف.",
+    "...an اسم الفاعل.",
+    "...an اسم المبالغة.",
+    "...an اسم الآلة.",
+    "...an اسم المفعول.",
+    "...an اسم التفضيل.",
+    "...a مصدر."
+   ],
+   "answer": [
+    "...an اسم الفاعل.",
+    "...an اسم المفعول.",
+    "...a صفة مشبهة.",
+    "...an اسم المبالغة.",
+    "...an اسم التفضيل.",
+    "...a مصدر.",
+    "...a شبه الجملة."
+   ],
+   "tags": [
+    "haal-mufrad",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r10",
+   "question": "The حال and ذو الحال must correlate in...",
+   "options": [
+    "...(D) Definitenes",
+    "...(I) I'raab",
+    "...(N) Number",
+    "...(G) Gender"
+   ],
+   "answer": [
+    "...(N) Number",
+    "...(G) Gender"
+   ],
+   "tags": [
+    "haal",
+    "tarif-mustalah",
+    "zul-haal"
+   ]
+  },
+  {
+   "id": "haal-r11",
+   "question": "If the ذو الحال is nonsensical plural, the حال...",
+   "options": [
+    "...will correlate in being plural and feminine or masculine depending on the gender of the nonsensical plural ذو الحال..",
+    "...will be plural feminine.",
+    "...will be single feminine.",
+    "...will be single masculine."
+   ],
+   "answer": [
+    "...will be single feminine."
+   ],
+   "tags": [
+    "haal",
+    "tarif-mustalah",
+    "zul-haal"
+   ]
+  },
+  {
+   "id": "haal-r12",
+   "question": "If the حال is a جملة, then it must be a...",
+   "options": [
+    "...جملة إنشائية.",
+    "...جملة فعلية خبرية.",
+    "...جملة إسمية خبرية."
+   ],
+   "answer": [
+    "...جملة فعلية خبرية.",
+    "...جملة إسمية خبرية."
+   ],
+   "tags": [
+    "haal-jumla-filiyya",
+    "haal-jumla-inshaiyya",
+    "haal-jumla-ismiyya",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r13",
+   "question": "A رابط is brought in a حال when...",
+   "options": [
+    "...the حال is a جملة.",
+    "...the حال is a مفرد."
+   ],
+   "answer": [
+    "...the حال is a جملة."
+   ],
+   "tags": [
+    "dhameer-raabit",
+    "haal",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r14",
+   "question": "(continuing from Q13) In such a case...",
+   "options": [
+    "...the حال can contain a رابط.",
+    "...the حال must contain a رابط."
+   ],
+   "answer": [
+    "...the حال can contain a رابط."
+   ],
+   "tags": [
+    "dhameer-raabit",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r16",
+   "question": "A فعل مضارع حال can be preceded by...",
+   "options": [
+    "...the word لا.",
+    "...the word ما.",
+    "...the word لَمَّا.",
+    "...the word سوف.",
+    "...the word لم.",
+    "...the word لن.",
+    "...the letter س.",
+    "...the word قد."
+   ],
+   "answer": [
+    "...the word قد.",
+    "...the word لم.",
+    "...the word ما.",
+    "...the word لا.",
+    "...the word لَمَّا."
+   ],
+   "tags": [
+    "haal-fil-mudari",
+    "tarif-mustalah",
+    "waw-haaliyya"
+   ]
+  },
+  {
+   "id": "haal-r15",
+   "question": "A فعل مضارع must always contain a رابط...",
+   "options": [
+    "...except when preceded by لن.",
+    "...except when preceded by سوف.",
+    "...except when preceded by لم.",
+    "...except when preceded by قد.",
+    "...except when preceded by لا."
+   ],
+   "answer": [
+    "...except when preceded by لم."
+   ],
+   "tags": [
+    "dhameer-raabit",
+    "haal-fil-mudari",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r17",
+   "question": "An إسم جامد can not be a حال unless...",
+   "options": [
+    "...the اسم جامد is a name.",
+    "...the اسم جامد has a مشتق نعت.",
+    "...the اسم جامد can be interpreted as a مشتق.",
+    "...the اسم جامد has a حال aswell."
+   ],
+   "answer": [
+    "...the اسم جامد can be interpreted as a مشتق.",
+    "...the اسم جامد has a مشتق نعت."
+   ],
+   "tags": [
+    "haal-ism-jamid",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r18",
+   "question": "The حال and the action preceding it...",
+   "options": [
+    "...must always correspond in time.",
+    "...should correspond in time but not always.",
+    "...must never correspond in time."
+   ],
+   "answer": [
+    "...should correspond in time but not always."
+   ],
+   "tags": [
+    "haal",
+    "haal-muqaddara",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r19",
+   "question": "When the حال is a فعل ماضي, generally, it has قد preceding it (provided there isn't a reason to prevent قد). The purpose of this قد is to...",
+   "options": [
+    "...provide a meaning of close past tense (القريب) in order to bring it close to the مضارع verb because the مضارع verb is the closest to an اسم الفاعل which is what حال should be in principle.",
+    "...provide a meaning of ceirtainty (التحقيق) in order to ascertain the حال so it is absolutely clear and ratified.",
+    "...provide a meaning of emphasis (التأكيد) in order to remove doubt since the حال is in the past and it could become doubtful."
+   ],
+   "answer": [
+    "...provide a meaning of close past tense (القريب) in order to bring it close to the مضارع verb because the مضارع verb is the closest to an اسم الفاعل which is what حال should be in principle."
+   ],
+   "tags": [
+    "haal-fil-madi-qad",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r20",
+   "question": "A فعل ماضي حال is prevented from being preceded by قد...",
+   "options": [
+    "...when the فعل ماضي comes after إلّا.",
+    "...when the فعل ماضي is free from a رابط.",
+    "...when the فعل ماضي is free from a واو حالية.",
+    "...when the فعل ماضي is connected with أو."
+   ],
+   "answer": [
+    "...when the فعل ماضي is connected with أو.",
+    "...when the فعل ماضي comes after إلّا."
+   ],
+   "tags": [
+    "atf",
+    "haal-fil-madi-qad",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "haal-r21",
+   "question": "A فعل مضارع حال...",
+   "options": [
+    "...can never be preceded by قد, whether the واو حالية is there or not..",
+    "...can be preceded by قد only if the واو حالية is absent.",
+    "...can be preceded by قد and the واو حالية will also be necessary."
+   ],
+   "answer": [
+    "...can be preceded by قد and the واو حالية will also be necessary."
+   ],
+   "tags": [
+    "haal-fil-mudari",
+    "tarif-mustalah",
+    "waw-haaliyya"
+   ]
+  },
+  {
+   "id": "haal-r22",
+   "question": "A حال مقدرة is...",
+   "options": [
+    "...a حال which is in no tense (tenseless, timeless in another dimension) that's why it's called مقدّرة because it's to do with decree (تقدير).",
+    "...a حال which is in the past tense.",
+    "...a حال which is in the future tense.",
+    "...a حال which is in the present tense."
+   ],
+   "answer": [
+    "...a حال which is in the future tense."
+   ],
+   "tags": [
+    "haal-muqaddara",
+    "tarif-mustalah"
+   ]
+  }
+ ],
+ "examples": [
+  {
+   "id": "haal-e01",
+   "section": "Application of Rules",
+   "picture": "haal-00.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "يصدون",
+      "وهم..."
+     ],
+     "answer": {
+      "يصدون": [
+       "حال",
+       "منع الواو"
+      ],
+      "وهم...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "The action of \"seeing\" was done upon them whilst they were \"walking away\". \"They\" performed the action of \"walking away\" whilst being \"arrogant\". \"Walking away\", which is فعل مضارع مثبت without a قد, is a haal but will not have a waaw haaliyyah. \"Being arrogant\" is also haal. And it requires a waaw haaliyah as it is a jumla ismiyyah beginning with a dhameer raabit.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "رَأَيْتُهُمْ يَصُدُّونَ وَهُمْ مُسْتَكْبِرُونَ\nyou see them walking away arrogantly.",
+   "marked": [
+    {
+     "text": "وَهُمْ مُسْتَكْبِرُونَ",
+     "style": "blue underline"
+    },
+    {
+     "text": "يَصُدُّونَ",
+     "style": "blue underline"
+    },
+    {
+     "text": "هُمْ رَأَيْتُهُمْ مُسْتَكْبِرُونَ",
+     "style": "green underline"
+    }
+   ],
+   "tags": [
+    "haal",
+    "haal-fil-mudari",
+    "mane-alwaw",
+    "tatbeeq-tarkeeb",
+    "wajib-alwaw",
+    "waw-haaliyya"
+   ]
+  },
+  {
+   "id": "haal-e02",
+   "section": "Application of Rules",
+   "picture": "haal-01.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "وما تنام"
+     ],
+     "answer": {
+      "وما تنام": [
+       "ليست حالا"
+      ]
+     },
+     "by": "teacher",
+     "doubt": "The teacher marks وَما تَنَامُ as not حال. But the explanation for it only talks about the رابط and about not needing a واو, things that only make sense if it were حال. It never says why the جملة fails to be حال in the first place. One of the rules says a فعل مضارع حال can come right after the word ما, so ما by itself is not a reason to rule out حال. I think the teacher's answer here needs a real reason, and none is given."
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "A فعل مضارع preceded by ما will always have ضمير رابط and will not have aو حالية. The الضمير الرابط is underlined in your sheet because it means the الضمير الرابط will always be present.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "زَيْدٌ يَأْتِيْكَ وَما تَنَامُ\nZaid will come to you and you will not be sleeping.",
+   "marked": [
+    {
+     "text": "وَما تَنَامُ",
+     "style": "blue underline"
+    },
+    {
+     "text": "كَ يَأْتِيْكَ",
+     "style": "green underline"
+    }
+   ],
+   "tags": [
+    "dhameer-raabit",
+    "haal-fil-mudari",
+    "mane-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e03",
+   "section": "Application of Rules",
+   "picture": "haal-02.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "يلتقيان",
+      "بينهما...",
+      "لا يبغيان"
+     ],
+     "answer": {
+      "يلتقيان": [
+       "حال",
+       "منع الواو"
+      ],
+      "بينهما...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "لا يبغيان": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "All of them are haal as they are all jumlas and neither of them need a waaw haaliyya as they all have a dhameer raabit. The first for being فعل مضارع مثبت without a قد will not have a waaw haaliyya. The second for being JIK which does not begin with the dhameer raabit, hence waaw haaliyya is optional. The third for being فعل مضارع منفي with لا will not have a waaw haaliyya.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَرَجَ الْبَحْرَيْنِ يَلْتَقِيَانِ بَيْنَهُمَا بَرْزَخٌ لَا يَبْغِيَانِ\nHe released the two seas, meeting one another, between them is a barrier so neither of them transgresses.",
+   "marked": [
+    {
+     "text": "الْبَحْرَيْنِ",
+     "style": "green underline"
+    },
+    {
+     "text": "يَلْتَقِيَانِ",
+     "style": "blue underline"
+    },
+    {
+     "text": "بَيْنَهُمَا بَرْزَخٌ",
+     "style": "blue underline"
+    },
+    {
+     "text": "لَا يَبْغِيَانِ",
+     "style": "blue underline"
+    }
+   ],
+   "tags": [
+    "dhameer-raabit",
+    "haal",
+    "jawaz-alwaw",
+    "mane-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e04",
+   "section": "Application of Rules",
+   "picture": "haal-03.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "In the sentence دَخَلْتُ المسجِدَ وَالصَّلَاةُ قَائِمَةٌ, what role does the word والصلاة... play? Choose from: ليست حالا, حال, وجوب الواو, جواز الواو, منع الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "والصلاة..."
+     ],
+     "answer": {
+      "والصلاة...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "The \"entering of the masjid\" was done whilst \"salah had started\" so that becomes haal - and since it's a jumla ismiyah without a dhameer raabit, it requires a waaw haaliyah.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "دَخَلْتُ المسجِدَ وَالصَّلَاةُ قَائِمَةٌ\nI entered the masjid whilst the salaah had begun.",
+   "marked": [
+    {
+     "text": "تُ ت دَخَلْتُ",
+     "style": "green underline"
+    },
+    {
+     "text": "وَالصَّلَاةُ قَائِمَةٌ",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "The kasra-vs-dot mark under jim in المسجِدَ is small even at 8x zoom; read it as a kasra (matching reading two) rather than just the letter's own dot, but flagging the low confidence.",
+   "tags": [
+    "haal",
+    "haal-jumla-ismiyya",
+    "tatbeeq-tarkeeb",
+    "wajib-alwaw"
+   ]
+  },
+  {
+   "id": "haal-e05",
+   "section": "Application of Rules",
+   "picture": "haal-04.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "كسالى",
+      "يراءون..."
+     ],
+     "answer": {
+      "كسالى": [
+       "حال",
+       "منع الواو"
+      ],
+      "يراءون...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "The first one, كسالى, is haal and because it’s a ism mushtaqq, it doesn’t require a waaw haaliya. The second is a jumla which is a فعل مضارع مثبت without قد so will not have a waaw",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "إِذَا قَامُوا إِلَى الصَّلاةِ قَامُوا كُسَالَى يُرَاءُونَ النَّاسَ\nWhen they stand up to pray, they do so sluggishly, showing off in front of people.",
+   "marked": [
+    {
+     "text": "قَامُوا كُسَالَى",
+     "style": "green underline"
+    },
+    {
+     "text": "كُسَالَى",
+     "style": "blue underline"
+    },
+    {
+     "text": "يُرَاءُونَ النَّاسَ",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "Pixel measurement shows the green underline under the second قَامُوا spans only about a third of that word's width (roughly the tail ـوا), while the other single-word underlines in this picture span the full word - it may be marking just the ـوا subject-pronoun ending rather than the whole verb, though neither reading raised this and it doesn't change the text/colour dispute.",
+   "tags": [
+    "haal",
+    "haal-fil-mudari",
+    "haal-mufrad",
+    "mane-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e06",
+   "section": "Application of Rules",
+   "picture": "haal-05.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "مصليا",
+      "هو..."
+     ],
+     "answer": {
+      "مصليا": [
+       "حال",
+       "منع الواو"
+      ],
+      "هو...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "\"The one who was in the masjid\" was either \"praying\" or \"sitting\". Here, both are haal. The \"sitting\" does not take a waaw haaliyyah because it is mufrad and not a jumla, and the part after او also does not require a waaw haaliyah because it is a jumla ismiyah beginning with the dhameer rabit and is ataf to a haal preceding it.",
+     "by": "teacher",
+     "doubt": "In part b the teacher calls the sitting part مفرد and not a جملة, then straight after calls the same part a جملة إسمية that begins with a رابط. هو جالس is two words, a subject and a predicate, so it is a جملة, not مفرد. The explanation contradicts itself about what kind of حال this is, even though the final marked choices still look correct."
+    }
+   ],
+   "sentence": "رَأَيتُ مَنْ فِي المسجد مصلِّياً أَو هُوَ جَالِسٌ\nI saw the one who was in the masjid whilst praying or sitting.",
+   "marked": [
+    {
+     "text": "مَنْ",
+     "style": "green underline"
+    },
+    {
+     "text": "مصلِّياً",
+     "style": "blue underline"
+    },
+    {
+     "text": "هُوَ جَالِسٌ",
+     "style": "blue underline"
+    }
+   ],
+   "tags": [
+    "atf",
+    "haal",
+    "haal-jumla-ismiyya",
+    "haal-mufrad",
+    "mane-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e07",
+   "section": "Application of Rules",
+   "picture": "haal-06.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "مقرنين...",
+      "سرابيلهم...",
+      "وتغشى..."
+     ],
+     "answer": {
+      "مقرنين...": [
+       "حال",
+       "منع الواو"
+      ],
+      "سرابيلهم...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وتغشى...": [
+       "ليست حالا"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "The first does not take a waaw haaliyah as it a -Mufrad Haal-; the second can take a waaw haaliyah as it is a jumlah ismiyah that has dhameer raabit but does not begin with it hence it's optional; and the last one does not take a waaw haaliyah as it is a jumlah with a فعل مضارع مثبت without a قد and has a dhameer raabit (The waaw before it is actually for atf and not for haal).",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "تَرَى الْمُجْرِمِينَ يَوْمَئِذٍ مُقَرَّنِينَ فِي الْأَصْفَادِ سَرَابِيلُهُمْ مِنْ قَطِرَانٍ وَتَغْشَىٰ وُجُوهَهُمُ النَّارُ\nYou will see the criminals that Day, bound together in irons, their garments of liquid pitch and their faces covered by the Fire.",
+   "marked": [
+    {
+     "text": "الْمُجْرِمِينَ",
+     "style": "green underline"
+    },
+    {
+     "text": "مُقَرَّنِينَ فِي الْأَصْفَادِ",
+     "style": "blue underline"
+    },
+    {
+     "text": "سَرَابِيلُهُمْ مِنْ قَطِرَانٍ",
+     "style": "blue underline"
+    },
+    {
+     "text": "وَتَغْشَىٰ وُجُوهَهُمُ النَّارُ",
+     "style": "blue underline"
+    }
+   ],
+   "tags": [
+    "atf",
+    "haal",
+    "haal-mufrad",
+    "jawaz-alwaw",
+    "mane-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e08",
+   "section": "Application of Rules",
+   "picture": "haal-07.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "حبات..."
+     ],
+     "answer": {
+      "حبات...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "The action of \"feeding the birds\" was done while \"throwing seeds at them\" so it will be haal in tarkeeb. And since it has a فعل مضارع مثبت with it's ma'mool preceding it, a waaw haaliyyah is optional but not necessary.",
+     "by": "teacher",
+     "doubt": "The explanation says the linking word (waw haaliyyah) is optional here because the present tense verb's object sits in front of it. No rule in the rules list says word order changes whether that linking word is optional. Every other example in this set with a plain positive present tense verb and no qad before it gets the linking word marked as not allowed at all, not optional (the birds turning away example, the two seas meeting example, the ones showing off while praying example). This mark breaks that pattern for a reason the rules never state. It could be right for a different reason, that the whole phrase seeds, he throws them to them, hangs together as one describing phrase rather than being its own separate haal sentence, but that reason is not in the rules either, so the mark cannot be confirmed from the rules alone."
+    }
+   ],
+   "sentence": "عَلَفَ زيدٌ الطَيرَ حَبَّاتٍ يرمي إِلَيهَا\nZaid fed the birds throwing seeds at them.",
+   "marked": [
+    {
+     "text": "زيدٌ",
+     "style": "green underline"
+    },
+    {
+     "text": "حَبَّاتٍ يرمي إِلَيهَا",
+     "style": "blue underline"
+    }
+   ],
+   "tags": [
+    "haal",
+    "haal-fil-mudari",
+    "jawaz-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e09",
+   "section": "Application of Rules",
+   "picture": "haal-08.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "استمعوه",
+      "وهم يلعبون",
+      "لاهية..."
+     ],
+     "answer": {
+      "استمعوه": [
+       "حال",
+       "منع الواو"
+      ],
+      "وهم يلعبون": [
+       "حال",
+       "وجوب الواو"
+      ],
+      "لاهية...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "All three are haal because that is \"their\" state when \"they\" receive the revelation. The first one does not take a waaw haaliyyah because it is a فعل ماضي which comes after الا. The second one requires a waaw haaliyyah because it is a jumla ismiyyah beginning with the dhameer raabit. The third one does not take waaw haaliyah because it is a mufrad haal and not a jumla.",
+     "by": "teacher",
+     "doubt": "The middle line is marked as the linking word being necessary. The stated reason is that the sentence starts with the very pronoun that points back to the person in the state. No rule given says that starting with that pointing word forces the linking word to be there. A sibling example in this set (the one about the old man and his wife) has that same kind of pointing word inside its sentence, just not at the very start, and there the linking word is marked optional, not necessary. So the difference between necessary and optional seems to depend on where in the sentence the pointing word sits, but that distinction is not written in any rule here. The mark itself is not contradicted by anything, the reason just cannot be traced to a stated rule."
+    }
+   ],
+   "sentence": "مَا يَأْتِيهِمْ مِنْ ذِكْرٍ مِنْ رَبِّهِمْ مُحْدَثٍ إِلَّا اسْتَمَعُوهُ وَهُمْ يَلْعَبُونَ لَاهِيَةً قُلُوبُهُمْ\nNo new revelation comes to them from their Lord except that they listen to it playfully, their hearts distracted.",
+   "marked": [
+    {
+     "text": "يَأْتِيهِمْ",
+     "style": "green underline"
+    },
+    {
+     "text": "اسْتَمَعُوهُ وَهُمْ يَلْعَبُونَ لَاهِيَةً قُلُوبُهُمْ",
+     "style": "blue underline"
+    }
+   ],
+   "tags": [
+    "haal",
+    "haal-fil-madi-qad",
+    "haal-jumla-ismiyya",
+    "mane-alwaw",
+    "tatbeeq-tarkeeb",
+    "wajib-alwaw"
+   ]
+  },
+  {
+   "id": "haal-e10",
+   "section": "Application of Rules",
+   "picture": "haal-09.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "وما دعا..."
+     ],
+     "answer": {
+      "وما دعا...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "If the tarkeeb is taken as haal, it is optional to add a waaw haaliyah since it is a فعل ماضي منفي with a dhameer raabit.",
+     "by": "teacher",
+     "doubt": "The explanation calls the linking word optional for a negated past tense verb carrying a pointing word back to the person in the state. The rules given only spell out when the word qad can or cannot come before a past tense haal, they do not separately name what happens when the verb is negated instead. The mark matches the general pattern used elsewhere in this set for a past tense haal with a pointing word, so it is likely fine, but this exact situation is not covered by name in the rules."
+    }
+   ],
+   "sentence": "زَارَ زَيْدٌ بَيْتَ اللَّهِ وَمَا دَعَا لِأَحَدٍ\nZaid visited The Haram and didn't do dua for anyone.",
+   "marked": [
+    {
+     "text": "زَيْدٌ",
+     "style": "green underline"
+    },
+    {
+     "text": "وَمَا دَعَا لِأَحَدٍ",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "The exact right-hand starting pixel of the blue line (whether it truly touches وَمَا or leaves a hair of a gap) is too fine to swear to at this image size.",
+   "tags": [
+    "dhameer-raabit",
+    "haal",
+    "jawaz-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e11",
+   "section": "Application of Rules",
+   "picture": "haal-10.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "لا تؤمنون...",
+      "والرسول...",
+      "وقد أخذ..."
+     ],
+     "answer": {
+      "لا تؤمنون...": [
+       "حال",
+       "منع الواو"
+      ],
+      "وقد أخذ...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "والرسول...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "All of them can be taken as haal in tarkeeb as \"you\" are in the state that \"you do not believe in....\". The first one doesn't take a waaw haaliyah because it's a فعل مضارغ منفي with a dhameer raabit. The second one is a jumlah ismiyyah which does not cotain a dhameer raabit, hence the waaw haaliyyah is necessary. The third one is also optional because it is a فعل ماضي with a dhameer raabit.",
+     "by": "teacher",
+     "doubt": "This is the clearest problem found. The answer table marks the middle line, about the messenger calling you, as the linking word being optional. But the written explanation for that same line says the opposite, that the linking word is necessary, and gives as its reason that the sentence has no pointing word back to the listener. That reason looks wrong too, since the sentence does contain the word for calling you, and that you is the very same person the whole state is about, so a pointing word is present. Either the mark should say optional and the explanation is describing the wrong line, or the explanation is right and the mark should say necessary. As written, the explanation argues for a different answer than the one that was ticked."
+    }
+   ],
+   "sentence": "مَا لَكُمْ لَا تُؤْمِنُونَ بِاللَّهِ وَالرَّسُولُ يَدْعُوكُمْ لِتُؤْمِنُوا بِرَبِّكُمْ وَقَدْ أَخَذَ مِيثَاقَكُمْ\n\nEnglish line: \"What is the matter with you that you do not believe in God when the Messenger calls you to believe in your Lord, and He has already made a pledge with you, if you have faith?\"",
+   "marked": [
+    {
+     "text": "لَكُمْ",
+     "style": "green underline"
+    },
+    {
+     "text": "لَا تُؤْمِنُونَ بِاللَّهِ وَالرَّسُولُ يَدْعُوكُمْ لِتُؤْمِنُوا بِرَبِّكُمْ وَقَدْ أَخَذَ مِيثَاقَكُمْ",
+     "style": "blue underline"
+    }
+   ],
+   "tags": [
+    "haal",
+    "haal-jumla-ismiyya",
+    "jawaz-alwaw",
+    "mane-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e12",
+   "section": "Application of Rules",
+   "picture": "haal-11.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "ولم يشعر..."
+     ],
+     "answer": {
+      "ولم يشعر...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "The waaw haaliyyah is optional because the jumla is a فعل مصرع منفي بلم with the dhameer raabit.",
+     "by": "teacher",
+     "doubt": "The explanation credits the optional linking word to the present tense verb carrying a pointing word back to the person in the state. But one of the rules given says a present tense verb must normally carry such a pointing word, except when it is preceded by the word lam, in which case that requirement is dropped entirely. So the real reason the linking word can be left out here is more likely the lam itself, not the pointing word the explanation names. The word in the sentence can plausibly still serve as a pointing word too, so the mark is probably fine, but the stated reason leans on something the rules do not clearly support instead of the lam exception the rules do state."
+    }
+   ],
+   "sentence": "فتح زيدٌ بابَ الفصلِ ولَمْ يشْعُر الأستاذُ بِه\nZaid opened the classroom door and the teacher did not perceive.",
+   "marked": [
+    {
+     "text": "زيدٌ",
+     "style": "green underline"
+    },
+    {
+     "text": "ولَمْ يشْعُر الأستاذُ بِه",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "Two specific tiny marks: whether the first ب of بابَ carries its own fatha, and whether the final ر of يشعر carries any mark at all (kasra, as reading one claims, or nothing). Neither is fully certain at this resolution.",
+   "tags": [
+    "haal",
+    "haal-fil-mudari",
+    "jawaz-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e13",
+   "section": "Application of Rules",
+   "picture": "haal-12.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "وقد هداني",
+      "ولا أخاف..."
+     ],
+     "answer": {
+      "وقد هداني": [
+       "حال",
+       "جواز الواو"
+      ],
+      "ولا أخاف...": [
+       "ليست حالا"
+      ]
+     },
+     "by": "teacher",
+     "doubt": "The short form of this line in the answer table spells the past tense verb (the one meaning he guided me) with an extra letter yaa at the end. Both the full sentence at the top of this example and the coloured underline text further down spell that same word without the final yaa. This looks like a copying slip in the short form used in the answer table, not a change to the grammar decision itself."
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "First one is haal because when \"You\" are arguing with me, the state \"I\" am in is that \"Allah has guided me\". And since the first one is فعل ماضي with a dhameer raabit, the \"Yaa\" in 'Hadanee', it is persimmable for it to have a waaw haaliyah. As for the second part, that also comes under the haaliyyah sentence. Since it is a فعل مضارع منفي with لا, it cannot take a waaw haaliyah, therefore the waaw before it is atifa making it معطوف to the haal before it. It is NOT an independent haal.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أَتُحَاجُّونِّي فِي اللَّهِ وَقَدْ هَدَانِ وَلَا أَخَافُ مَا تُشْرِكُونَ بِهِ\nHow can you argue with me about God when He has guided me? I do not fear anything you associate with Him.",
+   "marked": [
+    {
+     "text": "فِي",
+     "style": "green underline"
+    },
+    {
+     "text": "وَقَدْ هَدَانِ",
+     "style": "blue underline"
+    },
+    {
+     "text": "وَلَا أَخَافُ مَا تُشْرِكُونَ بِهِ",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "The colour marks in this picture are faint at this resolution. I could not pin down with confidence whether the green mark's right edge sits on في itself or bleeds into the tail of the previous word, nor confirm there is a genuine visible gap splitting the blue into two spans rather than one unbroken line. This entry is my best reading, not a certain one.",
+   "tags": [
+    "atf",
+    "haal",
+    "haal-fil-madi-qad",
+    "jawaz-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e14",
+   "section": "Application of Rules",
+   "picture": "haal-13.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "يكمل..."
+     ],
+     "answer": {
+      "يكمل...": [
+       "ليست حالا"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "It is not a haal because the jumla is a فعل مضارع مثبت without قد so a waaw haaliyyah is not permissible. Rather, the waaw is atifa and the jumla is ataf to يجلس.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "كَانَ زَيْدٌ يَجْلِسُ عَلَى الْأَرْضِ وَيُكْمِلُ وَاجِبَاتِهِ\nEnglish caption: Zaid used to sit on the floor and complete his assignments.",
+   "marked": [
+    {
+     "text": "زَيْدٌ",
+     "style": "green underline"
+    },
+    {
+     "text": "وَيُكْمِلُ وَاجِبَاتِهِ",
+     "style": "blue underline"
+    }
+   ],
+   "tags": [
+    "atf",
+    "haal-fil-mudari",
+    "mane-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e15",
+   "section": "Application of Rules",
+   "picture": "haal-14.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "وقد بلغني...",
+      "وامرأتي..."
+     ],
+     "answer": {
+      "وقد بلغني...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وامرأتي...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "First is a فعل ماضي with a raabit so it is optional for it to take a waaw haaliyyah. Second one is a jumlah ismiyah that does not begin with its dhameer raabit (which is the ْي in this case) so it is also optional for it to take a waaw haaliyyah.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "رَبِّ أَنَّى يَكُونُ لِي غُلَامٌ وَقَدْ بَلَغَنِيَ الْكِبَرُ وَامْرَأَتِي عَاقِرٌ\nMy Lord, how can I have a son when I am so old and my wife is barren?",
+   "marked": [
+    {
+     "text": "لِي",
+     "style": "green underline"
+    },
+    {
+     "text": "بَلَغَنِيَ الْكِبَرُ",
+     "style": "blue underline"
+    },
+    {
+     "text": "وَامْرَأَتِي عَاقِرٌ",
+     "style": "blue underline"
+    }
+   ],
+   "tags": [
+    "haal",
+    "haal-fil-madi-qad",
+    "haal-jumla-ismiyya",
+    "jawaz-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e16",
+   "section": "Application of Rules",
+   "picture": "haal-15.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "ولا تشركوا..."
+     ],
+     "answer": {
+      "ولا تشركوا...": [
+       "ليست حالا"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "The jumla is actually a prohibitive, a نهي, therefore it can't be a haal because a Jumla Inshaiyya does not be a haal.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "وَاعْبُدُوا اللَّهَ وَلَا تُشْرِكُوا بِهِ شَيْئًا\nWorship Allah and don't associate anything with him.",
+   "marked": [
+    {
+     "text": "وَاعْبُدُوا",
+     "style": "short green underline sitting only under the last two letters"
+    },
+    {
+     "text": "اللَّهَ",
+     "style": "green underline"
+    },
+    {
+     "text": "وَلَا تُشْرِكُوا بِهِ شَيْئًا",
+     "style": "blue underline"
+    }
+   ],
+   "tags": [
+    "haal-jumla-inshaiyya",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e17",
+   "section": "Application of Rules",
+   "picture": "haal-16.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "سخن",
+      "برد"
+     ],
+     "answer": {
+      "سخن": [
+       "حال",
+       "منع الواو"
+      ],
+      "برد": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "Both are fil maadhi but connected to an aw (doesn't matter which side of the aw they are) - So, the waaw haaliyyah is prevented for both -",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "آكلُ الطعامَ سخنَ أو بردَ\nI will eat the food whether it's hot or cold.",
+   "marked": [
+    {
+     "text": "الطعامَ",
+     "style": "green underline"
+    },
+    {
+     "text": "سخنَ",
+     "style": "blue underline"
+    },
+    {
+     "text": "بردَ",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "Neither reading's marked list mentions أو by name, but the blue stroke measurably runs under it too (it's a tiny 2-letter word sitting right next to سخنَ) - noting this since it's not something either reading called out.",
+   "tags": [
+    "atf",
+    "haal",
+    "haal-fil-madi-qad",
+    "mane-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e18",
+   "section": "Application of Rules",
+   "picture": "haal-17.png",
+   "instruction": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+     "options": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "rows": [
+      "سيهدين"
+     ],
+     "answer": {
+      "سيهدين": [
+       "ليست حالا"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain why you chose what you chose.",
+     "answer": "The verb begins with a س so, it can't form a haal.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "إِنّي ذَاهِبٌ إِلَىٰ رَبّي سَيَهْدِينِ(ي)\nIndeed, I will go to my Lord, He is sure to guide (me)",
+   "marked": [
+    {
+     "text": "إِنّي",
+     "style": "green underline"
+    },
+    {
+     "text": "رَبّي",
+     "style": "green underline"
+    },
+    {
+     "text": "سَيَهْدِينِ ي",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "Whether the print adds an explicit small kasra stroke under the shadda on نّ and بّ, and whether the final ي of إنّي carries a sukun tick (reading two writes these in, reading one doesn't), at this image's resolution the shadda mark and a kasra sit too close together to tell apart with confidence, and it doesn't change the word being read.",
+   "tags": [
+    "haal-fil-mudari",
+    "mane-alwaw",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "haal-e19",
+   "section": "Correct or Incorrect",
+   "picture": "haal-18.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this sentence written correctly: \"لِيَذهَبْ طالِبُو العلمَ إلى المدرسةِ مَمْلُوءُونَ بِنَشاطٍ\nStudents of knowledge should go to the madrassa whilst full with drive (eagerness)\"?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "c",
+     "question": "Explain the mistakes and how to rectify them.",
+     "answer": "'Ilm' should have kasrah as it is mudaf ilayh. Mamloo'oon should be mansoob (mamloo'een) as it is haal.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لِيَذهَبْ طالِبُو العلمَ إلى المدرسةِ مَمْلُوءُونَ بِنَشاطٍ\nStudents of knowledge should go to the madrassa whilst full with drive (eagerness)",
+   "marked": [],
+   "tags": [
+    "haal",
+    "haal-mufrad",
+    "taskheek-khata"
+   ]
+  },
+  {
+   "id": "haal-e20",
+   "section": "Correct or Incorrect",
+   "picture": "haal-19.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this sentence written correctly: \"وَخِلافُه الكسلُ ما يكرهُهُ رسولُ اللهِ ﷺ عَائِذًا بِاللهِ منه\nAnd contrary to it (drive) is laziness which the Messenger of Allah ﷺ disliked whilst seeking refuge by (in) Allah from it.\"?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Correct"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "c",
+     "question": "Explain the mistakes and how to rectify them.",
+     "answer": "No mistakes",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "وَخِلافُه الكسلُ ما يكرهُهُ رسولُ اللهِ ﷺ عَائِذًا بِاللهِ منه\nAnd contrary to it (drive) is laziness which the Messenger of Allah ﷺ disliked whilst seeking refuge by (in) Allah from it.",
+   "marked": [],
+   "tags": [
+    "haal",
+    "haal-mufrad",
+    "taskheek-khata"
+   ]
+  },
+  {
+   "id": "haal-e21",
+   "section": "Correct or Incorrect",
+   "picture": "haal-20.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this sentence written correctly: \"وَلِيمْكُثُوا فِيهَا قد يبذُلوْن أَفْضَلَ جُهوْدِهم في دُروسِهم\"?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "c",
+     "question": "Explain the mistakes and how to rectify them.",
+     "answer": "There should be a Waaw Haaliyyah before Qad because it is a فعل مضارع مثبت with قد and the dhameer raabit is present.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "وَلِيمْكُثُوا فِيهَا قد يبذُلوْن أَفْضَلَ جُهوْدِهم في دُروسِهم",
+   "marked": [],
+   "tags": [
+    "dhameer-raabit",
+    "haal",
+    "haal-fil-mudari",
+    "taskheek-khata",
+    "wajib-alwaw",
+    "waw-haaliyya"
+   ]
+  },
+  {
+   "id": "haal-e22",
+   "section": "Correct or Incorrect",
+   "picture": "haal-21.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the haal in this sentence, ثابتة, correctly used?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "c",
+     "question": "Explain the mistakes and how to rectify them.",
+     "answer": "The Zul Haal is the pronoun in the verb `راجع` which is in reference to Amir, who is a male, so the haal should correlate in number and gender. Therefore, it should be thaabitan (not thaabitatan)",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "عَامِرٌ رَاجَعَ دُروسَه(ثابتة) بِلَا تُؤَدَةٍ فَرَسَب، لَاتكنْ مثلَ عامر",
+   "marked": [
+    {
+     "text": "ثابتة",
+     "style": "small parenthetical annotation directly after دُروسَه"
+    }
+   ],
+   "tags": [
+    "haal",
+    "taskheek-khata",
+    "zul-haal"
+   ]
+  },
+  {
+   "id": "haal-e23",
+   "section": "Correct or Incorrect",
+   "picture": "haal-22.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the sentence إحترِمْ والِداكَ وَغَابَ أو حَضَرَا correct or incorrect in its grammar, including the haal clause وَغَابَ أو حَضَرَا?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "3"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "c",
+     "question": "Explain the mistakes and how to rectify them.",
+     "answer": "1st, والداك should be والديك in the state of نصب because it's مفعول به of إحترم. 2nd, the waw haaliyah is not permissible because the construction of the haal is Fil Maadhi connected to 'Au' Harful ataf. 3rd, the verb غاب should be in the dual form غابا, because the Fa'il should be dual and in reference to 'والداك' both parents and therefore should correlate in number and gender.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "إحترِمْ والِداكَ وَغَابَ أو حَضَرَا",
+   "marked": [],
+   "tags": [
+    "atf",
+    "haal",
+    "haal-fil-madi-qad",
+    "taskheek-khata",
+    "zul-haal"
+   ]
+  },
+  {
+   "id": "haal-e24",
+   "section": "Correct or Incorrect",
+   "picture": "haal-23.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the haal in this sentence, ثابتة, correctly used?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "c",
+     "question": "Explain the mistakes and how to rectify them.",
+     "answer": "Thaabitatan ثابتة should be thaabitan ثابتا, as it is the haal and it should correlate in N&G to the zul haal (pronoun هو inside يثبت).",
+     "by": "teacher",
+     "doubt": "The sentence field spells the verb as يَنبُثُ (yanbuthu), root ن ب ث, meaning to spread or emanate. But the teacher's explanation talks about the pronoun inside يثبت (yathbutu), root ث ب ت, the same root as ثابتة. These are two different Arabic words, not just missing vowel marks. Either the sentence text has a typo, or the explanation names the wrong verb. Worth checking against the source picture haal-23.png."
+    }
+   ],
+   "sentence": "القرآنُ، قرأتُ ما(يَثبُتُ)فيه(ثابتة)مِن الترغيبِ والترهيبِ",
+   "marked": [
+    {
+     "text": "يَثبُتُ",
+     "style": "small parenthetical annotation in reduced font"
+    },
+    {
+     "text": "ثابتة",
+     "style": "small parenthetical annotation in reduced font"
+    }
+   ],
+   "tags": [
+    "haal",
+    "taskheek-khata",
+    "zul-haal"
+   ]
+  },
+  {
+   "id": "haal-e25",
+   "section": "Correct or Incorrect",
+   "picture": "haal-24.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the sentence مكث الضيوفُ عندنا ثلاثةُ أيّامٍ ما قَصَّرنا في إكرامه correct or incorrect in its grammar?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher",
+     "doubt": "The sentence field spells the disputed word as ثلاثةُ, with a dammah. But part a's question quotes the same word as ثلاثةَ, with a fathah. Part c says the mistake is exactly this ending, it should be a fathah because the word is a zarf. So part a's question already shows the corrected spelling, not the mistake being tested. The question text does not match the sentence field."
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "c",
+     "question": "Explain the mistakes and how to rectify them.",
+     "answer": "The word ثلاثة should have a fathah as it is zarf (time/place). The مضاف إليه of إكرام should be plural, هم, as it is referring to the guests who are plural.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مكث الضيوفُ عندنا ثلاثةُ أيّامٍ ما قَصَّرنا في إكرامه\nThe guests stayed by us for 3 days whilst we did not lack in honouring them (with good hospitality).",
+   "marked": [],
+   "tags": [
+    "mafool-feehi",
+    "taskheek-khata",
+    "zarf-zaman"
+   ]
+  },
+  {
+   "id": "haal-e26",
+   "section": "Correct or Incorrect",
+   "picture": "haal-25.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this sentence written correctly: \"سمعتُ (ثابتًا) من كلام بكرٍ ما حَدَثَ بِزيدٍ دارسٍ\nI heard, whilst it being from the statement of Bakr, that which (what) happened to Zaid whilst studying.\"?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "c",
+     "question": "Explain the mistakes and how to rectify them.",
+     "answer": "The word دارس should be دارسا, it should be mansoob because it is the haal of Zaid.",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "سمعتُ (ثابتًا) من كلام بكرٍ ما حَدَثَ بِزيدٍ دارسٍ\nI heard, whilst it being from the statement of Bakr, that which (what) happened to Zaid whilst studying.",
+   "marked": [
+    {
+     "text": "ثابتًا",
+     "style": "small parenthetical annotation in reduced font"
+    }
+   ],
+   "tags": [
+    "haal",
+    "haal-mufrad",
+    "taskheek-khata"
+   ]
+  },
+  {
+   "id": "haal-e27",
+   "section": "Correct or Incorrect",
+   "picture": "haal-26.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this sentence written correctly: \"أكل زيدٌ هو شبعانِ ثُمَّ تَأَلَّمَ بَطنُها\nZaid ate whilst he was satiated then his stomach ached.\"?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "3"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "c",
+     "question": "Explain the mistakes and how to rectify them.",
+     "answer": "There should be a waaw haaliyyah before 'هو' because the haal 'هو شبعان' is a jumlah ismiyyah which begins with the dhameer raabit. Also, شبعانِ should be شبعانُ as it is مرفوع because of being the خبر of هو and it's also غير منصرف hence no tanween. Also, it should be 'بطنه' because it is referring to the stomach of zaid and he is male (hopefully).",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أكل زيدٌ هو شبعانِ ثُمَّ تَأَلَّمَ بَطنُها\nZaid ate whilst he was satiated then his stomach ached.",
+   "marked": [],
+   "tags": [
+    "haal",
+    "haal-jumla-ismiyya",
+    "taskheek-khata",
+    "wajib-alwaw",
+    "waw-haaliyya"
+   ]
+  },
+  {
+   "id": "haal-e28",
+   "section": "Correct or Incorrect",
+   "picture": "haal-27.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this sentence written correctly: \"مَا صَلَّيتُ صلاةً إلّا وَأَنَا مرتجٍ لِغُفرانِ ذنبي\nI prayed salaah only whilst hoping for the forgiveness of my sins.\"?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Correct"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "c",
+     "question": "Explain the mistakes and how to rectify them.",
+     "answer": "No mistakes",
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَا صَلَّيتُ صلاةً إلّا وَأَنَا مرتجٍ لِغُفرانِ ذنبي\nI prayed salaah only whilst hoping for the forgiveness of my sins.",
+   "marked": [],
+   "doubt": "The shadda over ل in صلّيت/إلّا is drawn as a single combined glyph in this font, so I cannot fully rule out a fatha merged invisibly into that glyph (both readings actually agree there IS a fatha there, so this doesn't change the transcription either way, just flagging the limit).",
+   "tags": [
+    "haal",
+    "taskheek-khata"
+   ]
+  }
+ ]
+}

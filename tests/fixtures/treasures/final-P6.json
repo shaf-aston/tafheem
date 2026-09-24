@@ -1,0 +1,116 @@
+[
+  {
+    "page": 272,
+    "type": "مهموز الفا وأجوف واوي",
+    "bab": "باب نصر",
+    "root": "أ و ل",
+    "sarf_sagheer": "آلَ يَؤُوْلُ أَوْلاً فهو آئِلٌ إِيْلَ يُآلُ أَوْلاً فهو مَؤُوْلٌ الامر منه اُلْ والنهي عنه لاَ تَؤُلْ",
+    "columns": [],
+    "rows": {},
+    "notes": "No paradigm table printed; only the sarf sagheer line and prose. The paradigm is stated to be like قَالَ يَقُوْلُ. Rules of مهموز apply to the همزة, rules of معتل to the و; where they conflict معتل wins. Worked examples: يَؤُوْلُ was originally يَأْوُلُ (rule of رَأْسٌ would give الف, but transferring the harakah was preferred); أَؤُوْلُ was originally أَأْوُلُ, then the second hamzah became و by the rule of أَوَادِمُ, giving أَوُوْلُ.",
+    "rules_cited": []
+  },
+  {
+    "page": 273,
+    "type": "مهموز الفا وأجوف يائي",
+    "bab": "باب ضرب",
+    "root": "أ ي د",
+    "sarf_sagheer": "آدَ يَئِيْدُ أَيْداً فهو آئِدٌ وَ إِيْدَ يُآدُ أَيْداً فهو مَئِيْدٌ الامر منه إِدْ والنهي عنه لاَ تَئِدْ",
+    "columns": [],
+    "rows": {},
+    "notes": "No table. This باب is like بَاعَ يَبِيْعُ. In يَئِيْدُ the rule of يَبِيْعُ is preferred over the rule of رَأْسٌ. The rule of أَئِمَّةٌ applies to أَئِيْدُ.",
+    "rules_cited": []
+  },
+  {
+    "page": 273,
+    "type": "مهموز الفا وناقص واوي",
+    "bab": "باب نصر",
+    "root": "أ ل و",
+    "sarf_sagheer": "أَلاَ يَأْلُوْ أَلْوًا فهو آلٍ وَ أُلِيَ يُأْلَى أَلْوًا فهو مَأْلُوٌّ الامر منه أُوْلُ والنهي عنه لاَ تَأْلُ",
+    "columns": [],
+    "rows": {},
+    "notes": "No table. Rules of مهموز apply to the hamzah, rules of ناقص to the و.",
+    "rules_cited": []
+  },
+  {
+    "page": 273,
+    "type": "مهموز الفا وناقص يائي",
+    "bab": "باب ضرب",
+    "root": "أ ت ي",
+    "sarf_sagheer": "أَتٰى يَأْتِيْ إِتْيَانًا فهو آتٍ وَ أُتِيَ يُأْتٰى إِتْيَانًا فهو مَأْتِيٌّ الامر منه إِيْتِ والنهي عنه لاَ تَأْتِ",
+    "columns": [],
+    "rows": {},
+    "notes": "No table. The note on p274 says this paradigm is similar to رَمٰى يَرْمِيْ.",
+    "rules_cited": []
+  },
+  {
+    "page": 274,
+    "type": "مهموز الفا وناقص يائي",
+    "bab": "باب فتح",
+    "root": "أ ب ي",
+    "sarf_sagheer": "أَبٰى يَأْبٰى إِبَاءًا فهو آبٍ وَ أُبِيَ يُأْبٰى إِبَاءًا فهو مَأْبِيٌّ الامر منه إِيْبِ والنهي عنه لاَ تَأْبِ",
+    "columns": [],
+    "rows": {},
+    "notes": "No table printed.",
+    "rules_cited": []
+  },
+  {
+    "page": 274,
+    "type": "مهموز الفا ولفيف مقرون",
+    "bab": "باب ضرب",
+    "root": "أ و ي",
+    "sarf_sagheer": "أَوٰى يَأْوِيْ أَيًّا فهو آوٍ وَ أُوِيَ يُأْوٰى أَيًّا فهو مَأْوِيٌّ الامر منه إِيْوِ والنهي عنه لاَ تَأْوِ",
+    "columns": [],
+    "rows": {},
+    "notes": "No table printed.",
+    "rules_cited": []
+  },
+  {
+    "page": 274,
+    "type": "مهموز العين ومثال",
+    "bab": "باب ضرب",
+    "root": "و أ د",
+    "sarf_sagheer": "وَأَدَ يَئِدُ وَأْدًا فهو وَائِدٌ وَ وُئِدَ يُوْأَدُ وَأْدًا فهو مَوْؤُوْدٌ الامر منه إِدْ والنهي عنه لاَ تَئِدْ",
+    "columns": [],
+    "rows": {},
+    "notes": "No table printed.",
+    "rules_cited": []
+  },
+  {
+    "page": 276,
+    "type": "مهموز العين وناقص يائي",
+    "bab": "باب فتح",
+    "root": "ر أ ي",
+    "sarf_sagheer": "رَأَى يَرٰى رُؤْيَةً فهو رَاءٍ وَ رُئِيَ يُرٰى رُؤْيَةً فهو مَرْئِيٌّ الامر منه رَ والنهي عنه لاَ تَرَ الظرف منه مَرْأًى مَرْأَيَانِ مَرَاءٍ والآلة منه مِرْأًى مِرْآةٌ مِرْآءٌ مِرْآيَانِ مَرَائِيُّ وأفعل التفضيل منه أَرْءٰى أَرْءَيَانِ أَرْأَوْنَ والمؤنث منه رُؤْىٰ رُؤْيَيَانِ ⟨?⟩ و رُؤْيَيَاتٌ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he":            {"madi": "رَأَى",        "mudari": "يَرٰى",      "amr": "لِيَرَ",      "nahy": "لاَ يَرَ",      "madi-passive": "رُئِيَ",      "mudari-passive": "يُرٰى"},
+      "they two (m)":  {"madi": "رَأَيَا",      "mudari": "يَرَيَانِ",  "amr": "لِيَرَيَا",   "nahy": "لاَ يَرَيَا",   "madi-passive": "رُئِيَا",     "mudari-passive": "يُرَيَانِ"},
+      "they (m)":      {"madi": "رَأَوْا",      "mudari": "يَرَوْنَ",   "amr": "لِيَرَوْا",   "nahy": "لاَ يَرَوْ",    "madi-passive": "رُؤُوْا",     "mudari-passive": "يُرَوْنَ"},
+      "she":           {"madi": "رَأَتْ",       "mudari": "تَرٰى",      "amr": "لِتَرَ",      "nahy": "لاَ تَرَ",      "madi-passive": "رُئِيَتْ",    "mudari-passive": "تُرٰى"},
+      "they two (f)":  {"madi": "رَأَتَا",      "mudari": "تَرَيَانِ",  "amr": "لِتَرَيَا",   "nahy": "لاَ تَرَيَا",   "madi-passive": "رُئِيَتَا",   "mudari-passive": "تُرَيَانِ"},
+      "they (f)":      {"madi": "رَأَيْنَ",     "mudari": "يَرَيْنَ",   "amr": "لِيَرَيْنَ",  "nahy": "لاَ يَرَيْنَ",  "madi-passive": "رُئِيْنَ",    "mudari-passive": "يُرَيْنَ"},
+      "you (m)":       {"madi": "رَأَيْتَ",     "mudari": "تَرٰى",      "amr": "رَ",          "nahy": "لاَ تَرَ",      "madi-passive": "رُئِيْتَ",    "mudari-passive": "تُرٰى"},
+      "you two (m)":   {"madi": "رَأَيْتُمَا",  "mudari": "تَرَيَانِ",  "amr": "رَيَا",       "nahy": "لاَ تَرَيَا",   "madi-passive": "رُئِيْتُمَا", "mudari-passive": "تُرَيَانِ"},
+      "you all (m)":   {"madi": "رَأَيْتُمْ",   "mudari": "تَرَوْنَ",   "amr": "رَوْ",        "nahy": "لاَ تَرَوْ",    "madi-passive": "رُئِيْتُمْ",  "mudari-passive": "تُرَوْنَ"},
+      "you (f)":       {"madi": "رَأَيْتِ",     "mudari": "تَرَيْنَ",   "amr": "رَيْ",        "nahy": "لاَ تَرَيْ",    "madi-passive": "رُئِيْتِ",    "mudari-passive": "تُرَيْنَ"},
+      "you two (f)":   {"madi": "رَأَيْتُمَا",  "mudari": "تَرَيَانِ",  "amr": "رَيَا",       "nahy": "لاَ تَرَيَا",   "madi-passive": "رُئِيْتُمَا", "mudari-passive": "تُرَيَانِ"},
+      "you all (f)":   {"madi": "رَأَيْتُنَّ",  "mudari": "تَرَيْنَ",   "amr": "رَيْنَ",      "nahy": "لاَ تَرَيْنَ",  "madi-passive": "رُئِيْتُنَّ", "mudari-passive": "تُرَيْنَ"},
+      "I":             {"madi": "رَأَيْتُ",     "mudari": "أَرٰى",      "amr": "لِأَرَ",      "nahy": "لاَ أَرَ",      "madi-passive": "رُئِيْتُ",    "mudari-passive": "أُرٰى"},
+      "we":            {"madi": "رَأَيْنَا",    "mudari": "نَرٰى",      "amr": "لِنَرَ",      "nahy": "لاَ نَرَ",      "madi-passive": "رُئِيْنَا",   "mudari-passive": "نُرٰى"}
+    },
+    "notes": "Full four-page paradigm: ماضي/مضارع (معروف and مجهول) on p276, أمر on p278, نهي on p279; sarf sagheer opens on p274 and continues on p275. The book also prints تأكيد النفي مع لن (p276), النفي مع لم and المضارع مع النون الثقيلة (p277), الأمر/النهي مع النون الثقيلة (p278-279) plus النون الخفيفة lists, and derived nouns on p280 (اسم الفاعل رَاءٍ، رَائِيَانِ، رَاؤُوْنَ، رَائِيَةٌ، رَائِيَتَانِ، رَائِيَاتٌ؛ اسم المفعول مَرْئِيٌّ، مَرْئِيَّانِ، مَرْئِيُّوْنَ، مَرْئِيَّةٌ، مَرْئِيَّتَانِ، مَرْئِيَّاتٌ؛ اسم الظرف مَرْأًى، مَرْأَيَانِ، مَرَاءٍ؛ اسم الآلة مِرْآةٌ، مِرْآءٌ، مِرْآتَانِ، مَرَائِيُّ) — none of these fit the allowed column ids, so they are recorded here only. Print detail confirmed on the images: the plural forms print WITHOUT the alif in أمر of the 2nd person (رَوْ) and in all نهي (لاَ يَرَوْ، لاَ تَرَوْ), but WITH the alif in ماضي (رَأَوْا، رُؤُوْا) and in the 3rd-person أمر (لِيَرَوْا). مضارع singular is written with alif maqsura + dagger alif (يَرٰى).",
+    "rules_cited": [7]
+  },
+  {
+    "page": 282,
+    "type": "مهموز اللام وأجوف يائي",
+    "bab": "باب ضرب",
+    "root": "ج ي ء",
+    "sarf_sagheer": "جَاءَ يَجِيْئُ مَجِيْئًا فهو جَاءٍ وَ جِيْئَ يُجَاءُ مَجِيْئًا فهو مَجِيْئٌ الامر منه جِئْ والنهي عنه لاَ تَجِئْ الظرف منه مَجِيْئٌ",
+    "columns": [],
+    "rows": {},
+    "notes": "No table. (1) the rest of the paradigm is like بَاعَ يَبِيْعُ. (2) شَاءَ يَشَاءُ (also مهموز اللام وأجوف يائي) can be from باب سمع or باب فتح; the كسرة of فاء الكلمة in شِئْنَ…شِئْنَا indicates either the كسرة of عين الكلمة (باب سمع) or the deleted ي (باب فتح, as in بِعْنَ). p283 continues: (3) in جِئْ and جزم forms like لَمْ يَجِئْ the hamzah may be changed to ي; in شَأْ / يَشَأْ it may be read as الف; the حرف علة is not dropped because the hamzah is a root letter. (4) the hamzah of مَجِيْئٌ / مَشِيْئَةٌ cannot become ي with إدغام, since the ي is original and the rule of خَطِيْئَة needs a مدة زائدة. (5) the ي of مَجَايِئُ is not changed to hamzah, being a root letter; the rule of عَجَائِزُ applies only to a زائدة ي or و. Exercise 51 follows (five verbs to conjugate) — an exercise, not a paradigm.",
+    "rules_cited": []
+  }
+]

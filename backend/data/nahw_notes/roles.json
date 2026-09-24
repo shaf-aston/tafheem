@@ -1,0 +1,10 @@
+{
+  "_note": "The kinds of thing a note marks inside its own text, as {{role|text}}. Hiding one kind is how the notes turn into a test, so this list is what the switches on the page are built from. Adding a role here is enough; nothing in the code names one.",
+  "roles": [
+    { "key": "term", "ar": "المصطلح", "en": "Term", "hint": "the name of the thing" },
+    { "key": "ruling", "ar": "الحكم", "en": "Ruling", "hint": "what it must be: mansoob, obligatory, forbidden" },
+    { "key": "condition", "ar": "الشرط", "en": "Condition", "hint": "when the rule applies" },
+    { "key": "label", "ar": "الإعراب", "en": "Label", "hint": "what a word in an example is called" },
+    { "key": "example", "ar": "المثال", "en": "Example", "hint": "the Arabic being shown" }
+  ]
+}

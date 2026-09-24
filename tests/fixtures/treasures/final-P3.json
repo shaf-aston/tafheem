@@ -1,0 +1,80 @@
+[
+  {
+    "page": 222,
+    "type": "أجوف",
+    "bab": "باب نَصَرَ",
+    "root": "ق و ل",
+    "sarf_sagheer": "قَالَ يَقُوْلُ قَوْلاً فَهُوَ قَائِلٌ وَ قِيْلَ يُقَالُ قَوْلاً فَهُوَ مَقُوْلٌ اَلْأَمْرُ مِنْهُ قُلْ وَالنَّهْيُ عَنْهُ لاَ تَقُلْ الظَّرْفُ مِنْهُ مقال مقالان مقاول وَالْآلَةُ مِنْهُ مقول مقولان مقاول مقولة مقولتان مقاول مقوال مقوالان مقاويل وَأَفْعَلُ التَّفْضِيْلِ مِنْهُ أَقْوَلُ أَقْوَلَان أَقْوَلُوْنَ وَأَقَاوِلُ وَالْمُؤَنَّثُ مِنْهُ قُوْلَى قُوْلَيَان قُوَلٌ وَقُوْلَيَاتٌ",
+    "columns": ["madi", "mudari", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": {"madi": "قَالَ", "mudari": "يَقُوْلُ", "madi-passive": "قِيْلَ", "mudari-passive": "يُقَالُ"},
+      "they two (m)": {"madi": "قَالَا", "mudari": "يَقُوْلَانِ", "madi-passive": "قِيْلَا", "mudari-passive": "يُقَالَانِ"},
+      "they (m)": {"madi": "قَالُوْا", "mudari": "يَقُوْلُوْنَ", "madi-passive": "قِيْلُوْا", "mudari-passive": "يُقَالُوْنَ"},
+      "she": {"madi": "قَالَتْ", "mudari": "تَقُوْلُ", "madi-passive": "قِيْلَتْ", "mudari-passive": "تُقَالُ"},
+      "they two (f)": {"madi": "قَالَتَا", "mudari": "تَقُوْلَانِ", "madi-passive": "قِيْلَتَا", "mudari-passive": "تُقَالَانِ"},
+      "they (f)": {"madi": "قُلْنَ", "mudari": "يَقُلْنَ", "madi-passive": "قُلْنَ", "mudari-passive": "يُقَلْنَ"},
+      "you (m)": {"madi": "قُلْتَ", "mudari": "تَقُوْلُ", "madi-passive": "قُلْتَ", "mudari-passive": "تُقَالُ"},
+      "you two (m)": {"madi": "قُلْتُمَا", "mudari": "تَقُوْلَانِ", "madi-passive": "قُلْتُمَا", "mudari-passive": "تُقَالَانِ"},
+      "you all (m)": {"madi": "قُلْتُمْ", "mudari": "تَقُوْلُوْنَ", "madi-passive": "قُلْتُمْ", "mudari-passive": "تُقَالُوْنَ"},
+      "you (f)": {"madi": "قُلْتِ", "mudari": "تَقُوْلِيْنِ", "madi-passive": "قُلْتِ", "mudari-passive": "تُقَالِيْنِ"},
+      "you two (f)": {"madi": "قُلْتُمَا", "mudari": "تَقُوْلَانِ", "madi-passive": "قُلْتُمَا", "mudari-passive": "تُقَالَانِ"},
+      "you all (f)": {"madi": "قُلْتُنَّ", "mudari": "تَقُلْنَ", "madi-passive": "قُلْتُنَّ", "mudari-passive": "تُقَلْنَ"},
+      "I": {"madi": "قُلْتُ", "mudari": "أَقُوْلُ", "madi-passive": "قُلْتُ", "mudari-passive": "أُقَالُ"},
+      "we": {"madi": "قُلْنَا", "mudari": "نَقُوْلُ", "madi-passive": "قُلْنَا", "mudari-passive": "نُقَالُ"}
+    },
+    "notes": "Checked against the page image at 450 dpi. IMPORTANT, and verified by eye against the book: from 'they (f)' downward the الماضي المجهول column is printed IDENTICAL to the معروف column, with damma (قُلْنَ، قُلْتَ، قُلْتُمَا، قُلْتُمْ، قُلْتِ، قُلْتُمَا، قُلْتُنَّ، قُلْتُ، قُلْنَا), not the kasra forms (قِلْنَ، قِلْتَ…) that the rule would give. Reader 2 'corrected' these to kasra; the book does not print kasra. The page also prints two further columns, تأكيد النفي مع لن معروف and مجهول (لَنْ يَقُوْلَ / لَنْ يُقَالَ … لَنْ نَقُوْلَ / لَنْ نُقَالَ), which have no column id in this schema and are omitted. The I-person forms are typeset with a bare alef (اَقُوْلُ / اُقَالُ); written here with the hamza. Dual forms carry a kasra on the ن (يَقُوْلَانِ). The 'you (f)' forms are printed with a kasra under the final ن (تَقُوْلِيْنِ / تُقَالِيْنِ) rather than the expected fatha; kept as printed and flagged. sarf_sagheer: the verb part is fully vowelled in the book; in the ظرف / آلة part the font drops and displaces the marks (مقاول shows kasra under the م and under the ل), so those words are given as bare consonants rather than invented vowels.",
+    "rules_cited": [7, 8, 9, 17]
+  },
+  {
+    "page": 224,
+    "type": "أجوف",
+    "bab": "باب نَصَرَ",
+    "root": "ق و ل",
+    "sarf_sagheer": "",
+    "columns": ["amr"],
+    "rows": {
+      "he": {"amr": "لِيَقُلْ"},
+      "they two (m)": {"amr": "لِيَقُوْلَا"},
+      "they (m)": {"amr": "لِيَقُوْلُوْا"},
+      "she": {"amr": "لِتَقُلْ"},
+      "they two (f)": {"amr": "لِتَقُوْلَا"},
+      "they (f)": {"amr": "لِيَقُلْنَ"},
+      "you (m)": {"amr": "قُلْ"},
+      "you two (m)": {"amr": "قُوْلَا"},
+      "you all (m)": {"amr": "قُوْلُوْا"},
+      "you (f)": {"amr": "قُوْلِيْ"},
+      "you two (f)": {"amr": "قُوْلَا"},
+      "you all (f)": {"amr": "قُلْنَ"},
+      "I": {"amr": "لِأَقُلْ"},
+      "we": {"amr": "لِنَقُلْ"}
+    },
+    "notes": "الأمر المعروف column, read off the page image at 450 dpi; both readers agreed and the image confirms. The page also prints الأمر المجهول (لِيُقَلْ، لِيُقَالَا، لِيُقَالُوْا، لِتُقَلْ، لِتُقَالَا، لِيُقَلْنَ، لِتُقَلْ، لِتُقَالَا، لِتُقَالُوْا، لِتُقَالِيْ، لِتُقَالَا، لِتُقَلْنَ، لِأُقَلْ، لِنُقَلْ) and both أمر columns again with النون الثقيلة; those have no column id here and are omitted. Below the table the نون خفيفة forms are printed as a prose list, not a column. The I/we forms are typeset with a bare alef (لِاَقُلْ); written here with the hamza.",
+    "rules_cited": []
+  },
+  {
+    "page": 225,
+    "type": "أجوف",
+    "bab": "باب نَصَرَ",
+    "root": "ق و ل",
+    "sarf_sagheer": "",
+    "columns": ["nahy"],
+    "rows": {
+      "he": {"nahy": "لاَ يَقُلْ"},
+      "they two (m)": {"nahy": "لاَ يَقُوْلَا"},
+      "they (m)": {"nahy": "لاَ يَقُوْلُوْا"},
+      "she": {"nahy": "لاَ تَقُلْ"},
+      "they two (f)": {"nahy": "لاَ تَقُوْلَا"},
+      "they (f)": {"nahy": "لاَ يَقُلْنَ"},
+      "you (m)": {"nahy": "لاَ تَقُلْ"},
+      "you two (m)": {"nahy": "لاَ تَقُوْلَا"},
+      "you all (m)": {"nahy": "لاَ تَقُوْلُوْا"},
+      "you (f)": {"nahy": "لاَ تَقُوْلِيْ"},
+      "you two (f)": {"nahy": "لاَ تَقُوْلَا"},
+      "you all (f)": {"nahy": "لاَ تَقُلْنَ"},
+      "I": {"nahy": "لاَ أَقُلْ"},
+      "we": {"nahy": "لاَ نَقُلْ"}
+    },
+    "notes": "النهي المعروف column, read off the page image at 450 dpi; both readers agreed and the image confirms. The page also prints النهي المجهول (لاَ يُقَلْ … لاَ نُقَلْ) and both columns again with النون الثقيلة, plus a prose list of the نون خفيفة forms; no column ids exist for those here. The I-person form is typeset with a bare alef (لاَ اَقُلْ); written here with the hamza.",
+    "rules_cited": []
+  }
+]

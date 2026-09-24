@@ -1,0 +1,182 @@
+{
+  "_comment": "The book's rules that reshape a word after its pattern has been filled, in the order they are applied. Each rule is a named function in services/sarf/ilal.py; the conditions it acts on, the letters peculiar to it and the cells it reaches live here, so what a rule covers changes without touching code. `page` is the printed page of *From the Treasures of Arabic Morphology* it is read off, and `book` its rule number there. The order here is the pipeline order, which is not the book's numbering: a rule that feeds another comes first.",
+
+
+  "rules": {
+    "iftial-taa": {
+      "_comment": "باب افتعال carries a ت after the first root letter. After some first letters that ت cannot be said, so it changes, and where the two letters then match they merge into one doubled letter (إدغام).",
+      "page": "105-108", "book": "افتعال 1-3",
+      "forms": ["VIII"],
+      "_becomes": "First root letter -> what the pattern's ت turns into. ث is not here: the book calls its change permissible, not compulsory, so the plain form stays and the variant is named below.",
+      "becomes": {
+        "د": "د", "ذ": "د", "ز": "د",
+        "ص": "ط", "ض": "ط", "ط": "ط", "ظ": "ط"
+      },
+      "_variants": "Spellings the book also allows for this first letter. The app prints the compulsory form and names these.",
+      "variants": {
+        "ذ": "اِدَّكَرَ and اِذَّكَرَ, both with إدغام, are also allowed (p.105).",
+        "ز": "اِزَّجَرَ, with إدغام, is also allowed (p.105).",
+        "ص": "اِصَّبَرَ, with إدغام, is also allowed (p.107).",
+        "ض": "اِضَّرَبَ, with إدغام, is also allowed (p.107).",
+        "ظ": "اِطَّلَمَ and اِظَّلَمَ, both with إدغام, are also allowed (p.107).",
+        "ث": "اِثَّارَ, the ت becoming a ث and merging, is also allowed (p.107)."
+      }
+    },
+
+    "iftial-weak-first": {
+      "_comment": "باب افتعال again: when the first root letter is a و or ي it becomes a ت and merges with the pattern's own ت. اِوْتَقَدَ becomes اِتَّقَدَ.",
+      "page": "169", "book": "7",
+      "forms": ["VIII"]
+    },
+
+    "mithal-drops-waw": {
+      "_comment": "A و that is the first root letter falls out of the مضارع when the letter after it carries a كسرة: يَوْعِدُ becomes يَعِدُ. The أمر and the نهي are built on the same stem, so they lose it too.",
+      "page": "166", "book": "1",
+      "slots": ["mudari", "amr", "nahy"],
+      "_forms": "Only باب ضرب and its five neighbours: the derived أبواب keep the و (يُوْقِدُ, يَسْتَوْقِدُ), and so does the مجهول (يُوْعَدُ).",
+      "forms": ["I-nasara", "I-daraba", "I-fataha", "I-samia", "I-karuma", "I-hasiba"],
+      "_after": "The vowel the letter after the و must carry for the و to fall.",
+      "after": "ِ",
+      "_throat": "The book's second half of the rule: the و also falls when that letter carries a فتحة instead, so long as the middle or last root letter is one of the throat letters (يَوْهَبُ becomes يَهَبُ).",
+      "throat": "ءهعحغخ"
+    },
+
+    "transfer-vowel": {
+      "_comment": "When the letter before a vowelled و or ي is silent, that vowel moves back onto it: يَقْوُلُ becomes يَقُوْلُ. Almost every أجوف form starts here.",
+      "page": "179", "book": "8.1"
+    },
+
+    "past-passive-hollow": {
+      "_comment": "In the ماضي مجهول of an أجوف the book silences the letter before the middle one and gives it that letter's vowel, whatever vowel it had of its own: قُوِلَ becomes قِوْلَ, and the rule after this one turns it into قِيْلَ.",
+      "page": "184-187", "book": "9.1, 9.2",
+      "slots": ["madi-passive"]
+    },
+
+    "done-to-of-hollow": {
+      "_comment": "The اسم المفعول of an أجوف drops one of the two silent letters, and after a ي the letter before takes a كسرة: مَقْوُوْل is مَقُوْل, مَبْيُوْع is مَبِيْع.",
+      "page": "182", "book": "8",
+      "slots": ["maful"]
+    },
+
+    "silent-waw-after-kasrah": {
+      "_comment": "A silent و after a كسرة becomes ي, and a silent ي after a ضمة becomes و. This is what turns قِوْلَ into قِيْلَ once the vowel has moved.",
+      "page": "168", "book": "3.1, 3.2"
+    },
+
+    "weak-after-fathah-is-alif": {
+      "_comment": "A و or ي with a فتحة before it becomes an alif: قَوَلَ becomes قَالَ, بَيَعَ becomes بَاعَ, دَعَوَ becomes دَعَا.",
+      "page": "171-177", "book": "7.1, 8.2",
+      "_blocked": "The book's conditions. The letter is left alone when it is the first root letter, when both of the last two root letters are weak (لفيف), or when an alif follows it, which is the الف of the dual.",
+      "blocked-before": "ا"
+    },
+
+    "jussive-drops-last-weak": {
+      "_comment": "A مجزوم loses its last weak letter altogether, the way a sound verb loses its final vowel: لِيَدْعُ, لاَ يَدْعُ.",
+      "page": "243", "book": "ناقص paradigm",
+      "slots": ["amr", "nahy"]
+    },
+
+    "final-weak-endings": {
+      "_comment": "A weak last root letter meeting a person ending: after a ضمة or a كسرة it goes silent (يَدْعُوْ, يَرْمِيْ); before its own letter again the pair reduces (يَدْعُوْنَ); and where the two differ the vowel moves back and one of them goes (تَدْعِيْنَ, يَرْمُوْنَ).",
+      "page": "189-192", "book": "10",
+      "_slots": "The last part of the rule, where nothing follows the weak letter, is stated about the four مضارع shapes, so that part runs on those cells only. The rest applies wherever two weak letters meet.",
+      "slots": ["mudari", "amr", "nahy", "mudari-passive"],
+      "_agrees": "The vowel that belongs with each weak letter. When the letter before it already carries that vowel, the pair simply reduces; when it does not, the vowel moves back instead.",
+      "agrees": {"و": "ُ", "ي": "ِ"}
+    },
+
+    "last-weak-follows-the-vowel": {
+      "_comment": "A last root letter و after a كسرة becomes ي, and a ي after a ضمة becomes و: دُعِوَ is دُعِيَ.",
+      "page": "192-193", "book": "11, 12"
+    },
+
+    "late-waw-is-ya": {
+      "_comment": "A و standing fourth in the word or later becomes ي, unless a ضمة or a silent و comes before it: يُدْعَوَانِ is يُدْعَيَانِ.",
+      "page": "205", "book": "20",
+      "_from-position": "Counting the letters of the word from one.",
+      "from-position": 4
+    },
+
+    "final-alif-is-written-maqsura": {
+      "_comment": "An alif at the end of a word is written ى. The past tense of a root ending in و keeps the full alif, which is why the book prints دَعَا but يُدْعَى.",
+      "page": "241-247", "book": "ناقص paradigm",
+      "keeps-alif": ["madi"]
+    },
+
+    "alif-drops-before-silence": {
+      "_comment": "An alif that came from a weak letter falls away when the next letter is silent (قَالْنَ becomes قَلْنَ), and also before the ت of the feminine past (دَعَاتْ becomes دَعَتْ).",
+      "page": "177, 181", "book": "7.2, 7.3, 8.4",
+      "_taa": "The feminine ت of the past, which deletes the alif even though it carries a vowel of its own.",
+      "taa": "ت"
+    },
+
+    "weak-drops-before-silence": {
+      "_comment": "A silent و or ي falls away when the letter after it is silent too, because two silent letters cannot be said together: يَقُوْلْنَ becomes يَقُلْنَ.",
+      "page": "180", "book": "8.3"
+    },
+
+    "past-first-vowel": {
+      "_comment": "Once the middle letter has gone from a past tense, the first root letter takes a vowel of its own: a ضمة for an أجوف واوي (قُلْنَ), a كسرة for an أجوف يائي or where the middle letter had a كسرة (بِعْنَ, خِفْنَ). The معروف decides it, so the مجهول of قَالَ is also قُلْنَ.",
+      "page": "177-178, 186-187", "book": "7.4, 7.5, 9.5, 9.6",
+      "slots": ["madi", "madi-passive"]
+    },
+
+    "doubled-letters-merge": {
+      "_comment": "A root whose last two letters are the same writes them as one letter with a shaddah: مَدَدَ is مَدَّ, يَمْدُدُ is يَمُدُّ. Where the second of the two would be silent and another letter follows, the book writes them apart instead: مَدَدْنَ, يَمْدُدْنَ.",
+      "page": "284-290", "book": "مضاعف 2-5",
+      "_pause-note": "What rule 5 allows where the word ends on the doubled letter. The app prints the first of them.",
+      "_pause-slots": "Rule 5 is about a word ending on the doubled letter in the أمر or the جزم. A noun keeps the two letters apart.",
+      "pause-slots": ["amr", "nahy"],
+      "pause-note": "On a word ending here the book also allows a كسرة (لَمْ يَمُدِّ) and writing the two letters apart (لَمْ يَمْدُدْ); a ضمة too when the letter before carries one (p.289)."
+    },
+
+    "hamzah-amr": {
+      "_comment": "In the أمر the book moves a middle hamzah's vowel onto the letter before it and drops the hamzah: اِسْأَلْ is سَلْ, اِزْأِرْ is زِرْ. Three verbs do the same with a first-letter hamzah, and the book names them.",
+      "page": "152, 159", "book": "مهموز 7",
+      "_drop-first": "The three roots whose أمر drops a first-letter hamzah: خُذْ, كُلْ, مُرْ.",
+      "drop-first": ["أخذ", "أكل", "أمر"],
+      "_drop-first-forms": "Only their own باب: the أمر of باب افتعال from the same root keeps its hamzah (إِيْتَمِرْ).",
+      "drop-first-forms": ["I-nasara", "I-daraba", "I-fataha", "I-samia", "I-karuma", "I-hasiba"],
+      "note": "The book says the fuller form, with the hamzah kept, is also read, and is the one used inside a sentence: وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ (p.159)."
+    },
+
+    "doer-of-hollow-takes-hamzah": {
+      "_comment": "The اسم الفاعل of an أجوف carries a hamzah where the root has its weak letter, because the verb itself changed: قَاوِل is قَائِل.",
+      "page": "202", "book": "17",
+      "slots": ["fail"],
+      "becomes": "ء"
+    },
+
+    "same-letters-at-the-end-merge": {
+      "_comment": "Two of the same letter ending a word are written once with a shaddah: مَدْعُووٌ is مَدْعُوٌّ.",
+      "page": "284", "book": "مضاعف 1"
+    },
+
+    "hamzah-becomes-long-vowel": {
+      "_comment": "A silent hamzah right after the alif that opens a word becomes the long vowel matching that alif's vowel: اِأْتَمَرَ is إِيْتَمَرَ, اُأْتُمِرَ is أُوْتُمِرَ.",
+      "page": "147-148", "book": "مهموز 1, 2",
+      "_openers": "The letters that can open a word this way: the joining alif and a hamzah on an alif.",
+      "openers": "اأإ",
+      "after": {"َ": "ا", "ُ": "و", "ِ": "ي"}
+    },
+
+    "hamzah-madd": {
+      "_comment": "A hamzah with a فتحة followed by a bare alif is written as one letter, the alif with a madd on it: أَاخِذ is آخِذ.",
+      "page": "147", "book": "مهموز 2",
+      "madd": "آ"
+    },
+
+    "hamzah-seat": {
+      "_comment": "Which letter a hamzah is written on: the stronger of its own vowel and the one before it decides, a كسرة giving ئ, a ضمة ؤ and a فتحة ا. At the head of a word it keeps its own alif.",
+      "page": "156-157", "book": "orthography",
+      "hamzah": "أؤئء",
+      "strength": {"ِ": 3, "ُ": 2, "َ": 1},
+      "seats": {"ِ": "ئ", "ُ": "ؤ", "َ": "أ"}
+    },
+
+    "joining-alif-drops": {
+      "_comment": "The alif at the head of an أمر or a ماضي is only there to start a silent letter. Once a rule has given that letter a vowel it is not needed, so اُقُلْ is written قُلْ. A doubled letter keeps it, because a doubled letter is silent underneath (اِطَّلَبَ).",
+      "page": "224", "book": "أمر paradigm"
+    }
+  }
+}

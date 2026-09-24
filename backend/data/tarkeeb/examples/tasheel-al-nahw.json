@@ -1,0 +1,1859 @@
+{
+  "_comment": "Worked tarkeeb examples transcribed from one book's own diagrams. One file per book; the service reads every file in this folder, so adding a book is adding a file. Only the tree is stored, where the braces and threads go is worked out from its shape when it is drawn.",
+  "book": {
+    "key": "tasheel",
+    "title": "Tasheel al-Nahw",
+    "detail": "Tasheel al-Nahw (Dar al-Sa'adah, 2011), based on 'Ilm al-Nahw of Mawlana Mushtaq Ahmad Charthawali"
+  },
+  "examples": [
+    {
+      "id": "1.4.4-a",
+      "ref": "§1.4.4",
+      "topic": "verbal",
+      "sentence": "جَاءَ الَّذِيْ أَبُوْهُ عَالِمٌ",
+      "translation": "The one whose father is a scholar came.",
+      "words": [
+        "جَاءَ",
+        "الَّذِيْ",
+        "أَبُوْهُ",
+        "عَالِمٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "role": "فَاعِلٌ",
+            "tone": "fail",
+            "children": [
+              {
+                "word": 1,
+                "role": "اِسْمٌ مَوْصُوْلٌ",
+                "tone": "rel"
+              },
+              {
+                "role": "صِلَةٌ",
+                "label": "جُمْلَةٌ اِسْمِيَّةٌ",
+                "tone": "rel",
+                "children": [
+                  {
+                    "word": 2,
+                    "role": "مُبْتَدَأٌ",
+                    "tone": "fail",
+                    "parts": [
+                      {
+                        "role": "مُضَافٌ",
+                        "tone": "mudaf"
+                      },
+                      {
+                        "role": "مُضَافٌ إِلَيْهِ",
+                        "tone": "mudaf"
+                      }
+                    ]
+                  },
+                  {
+                    "word": 3,
+                    "role": "خَبَرٌ",
+                    "tone": "mafool"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "2.2-a",
+      "ref": "§2.2",
+      "topic": "verbal",
+      "sentence": "جَاءَ هٰذَا",
+      "translation": "This came.",
+      "words": [
+        "جَاءَ",
+        "هٰذَا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "فَاعِلٌ",
+            "tone": "fail"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "2.2-b",
+      "ref": "§2.2",
+      "topic": "verbal",
+      "sentence": "رَأَيْتُ هٰذَا",
+      "translation": "I saw this.",
+      "words": [
+        "رَأَيْتُ",
+        "هٰذَا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ مَعَ فَاعِلِهِ",
+            "tone": "fil",
+            "parts": [
+              {
+                "role": "فِعْلٌ",
+                "tone": "fil"
+              },
+              {
+                "role": "فَاعِلٌ",
+                "tone": "fail"
+              }
+            ]
+          },
+          {
+            "word": 1,
+            "role": "مَفْعُوْلٌ بِهِ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "2.3-a",
+      "ref": "§2.3",
+      "topic": "verbal",
+      "sentence": "جَاءَ رَجُلٌ",
+      "translation": "A man came.",
+      "words": [
+        "جَاءَ",
+        "رَجُلٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "فَاعِلٌ",
+            "tone": "fail"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.5-noun-7b",
+      "ref": "§1.5",
+      "topic": "verbal",
+      "sentence": "جَلَسَ زَيْدٌ",
+      "translation": "Zayd sat.",
+      "words": [
+        "جَلَسَ",
+        "زَيْدٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "فَاعِلٌ",
+            "tone": "fail"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "3.7.2-ex-ii",
+      "ref": "§3.7.2 Exercise",
+      "topic": "verbal",
+      "sentence": "فَتَحَ زَيْدٌ الْبَابَ",
+      "translation": "Zayd opened the door.",
+      "words": [
+        "فَتَحَ",
+        "زَيْدٌ",
+        "الْبَابَ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "فَاعِلٌ",
+            "tone": "fail"
+          },
+          {
+            "word": 2,
+            "role": "مَفْعُوْلٌ بِهِ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "3.7.2-ex-iv",
+      "ref": "§3.7.2 Exercise",
+      "topic": "verbal",
+      "sentence": "ذَبَحَ الرَّجُلُ الشَّاةَ",
+      "translation": "The man slaughtered the goat.",
+      "words": [
+        "ذَبَحَ",
+        "الرَّجُلُ",
+        "الشَّاةَ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "فَاعِلٌ",
+            "tone": "fail"
+          },
+          {
+            "word": 2,
+            "role": "مَفْعُوْلٌ بِهِ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "3.7.1-a",
+      "ref": "§3.7.1 Table 3.5",
+      "topic": "verbal",
+      "sentence": "قَامَتْ عَائِشَةُ",
+      "translation": "Aisha stood.",
+      "words": [
+        "قَامَتْ",
+        "عَائِشَةُ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "فَاعِلٌ",
+            "tone": "fail"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "3.7.1-b",
+      "ref": "§3.7.1 Table 3.5",
+      "topic": "verbal",
+      "sentence": "طَلَعَتِ الشَّمْسُ",
+      "translation": "The sun rose.",
+      "words": [
+        "طَلَعَتِ",
+        "الشَّمْسُ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "فَاعِلٌ",
+            "tone": "fail"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "3.7.2-a",
+      "ref": "§3.7.2",
+      "topic": "verbal",
+      "sentence": "ضُرِبَ زَيْدٌ",
+      "translation": "Zayd was hit.",
+      "words": [
+        "ضُرِبَ",
+        "زَيْدٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ مَجْهُوْلٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "نَائِبُ الْفَاعِلِ",
+            "tone": "fail"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "3.7.2-b",
+      "ref": "§3.7.2",
+      "topic": "verbal",
+      "sentence": "فُتِحَ الْبَابُ",
+      "translation": "The door was opened.",
+      "words": [
+        "فُتِحَ",
+        "الْبَابُ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ مَجْهُوْلٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "نَائِبُ الْفَاعِلِ",
+            "tone": "fail"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.4.3-ex5",
+      "ref": "§1.4.3 Example 5",
+      "topic": "nominal",
+      "sentence": "هٰذِهِ بَعْلَبَكُّ",
+      "translation": "This is Ba'labakk.",
+      "words": [
+        "هٰذِهِ",
+        "بَعْلَبَكُّ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "مُبْتَدَأٌ",
+            "tone": "fail"
+          },
+          {
+            "word": 1,
+            "role": "خَبَرٌ",
+            "tone": "mafool",
+            "parts": [
+              {
+                "role": "جُزْءٌ أَوَّلُ",
+                "tone": "mudaf"
+              },
+              {
+                "role": "جُزْءٌ ثَانٍ",
+                "tone": "mudaf"
+              }
+            ]
+          }
+        ],
+        "tone": "fail"
+      }
+    },
+    {
+      "id": "1.4.4-b",
+      "ref": "§1.4.4",
+      "topic": "nominal",
+      "sentence": "اَلْإِمَامُ فِي الْمَسْجِدِ",
+      "translation": "The Imam is in the mosque.",
+      "words": [
+        "اَلْإِمَامُ",
+        "فِي",
+        "الْمَسْجِدِ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "مُبْتَدَأٌ",
+            "tone": "fail"
+          },
+          {
+            "role": "خَبَرٌ",
+            "label": "جَارٌّ وَمَجْرُوْرٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 1,
+                "role": "حَرْفُ جَرٍّ",
+                "tone": "harf"
+              },
+              {
+                "word": 2,
+                "role": "مَجْرُوْرٌ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "fail"
+      }
+    },
+    {
+      "id": "1.4.4-c",
+      "ref": "§1.4.4 Example 1",
+      "topic": "nominal",
+      "sentence": "زَيْدٌ أَبُوْهُ عَالِمٌ",
+      "translation": "Zayd's father is knowledgeable.",
+      "words": [
+        "زَيْدٌ",
+        "أَبُوْهُ",
+        "عَالِمٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "مُبْتَدَأٌ",
+            "tone": "fail"
+          },
+          {
+            "role": "خَبَرٌ",
+            "label": "جُمْلَةٌ اِسْمِيَّةٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 1,
+                "role": "مُبْتَدَأٌ ثَانٍ",
+                "tone": "fail",
+                "parts": [
+                  {
+                    "role": "مُضَافٌ",
+                    "tone": "mudaf"
+                  },
+                  {
+                    "role": "مُضَافٌ إِلَيْهِ",
+                    "tone": "mudaf"
+                  }
+                ]
+              },
+              {
+                "word": 2,
+                "role": "خَبَرٌ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "fail"
+      }
+    },
+    {
+      "id": "1.4.4-d",
+      "ref": "§1.4.4 Example 2",
+      "topic": "nominal",
+      "sentence": "زَيْدٌ أَكَلَ الطَّعَامَ",
+      "translation": "Zayd ate the food.",
+      "words": [
+        "زَيْدٌ",
+        "أَكَلَ",
+        "الطَّعَامَ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "مُبْتَدَأٌ",
+            "tone": "fail"
+          },
+          {
+            "role": "خَبَرٌ",
+            "label": "جُمْلَةٌ فِعْلِيَّةٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 1,
+                "role": "فِعْلٌ مَعَ فَاعِلِهِ",
+                "tone": "fil",
+                "parts": [
+                  {
+                    "role": "فِعْلٌ",
+                    "tone": "fil"
+                  },
+                  {
+                    "role": "فَاعِلٌ",
+                    "tone": "fail"
+                  }
+                ]
+              },
+              {
+                "word": 2,
+                "role": "مَفْعُوْلٌ بِهِ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "fail"
+      }
+    },
+    {
+      "id": "1.5-noun-7",
+      "ref": "§1.5",
+      "topic": "nominal",
+      "sentence": "اَلرَّجُلُ قَوِيٌّ",
+      "translation": "The man is strong.",
+      "words": [
+        "اَلرَّجُلُ",
+        "قَوِيٌّ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "مُبْتَدَأٌ",
+            "tone": "fail"
+          },
+          {
+            "word": 1,
+            "role": "خَبَرٌ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "fail"
+      }
+    },
+    {
+      "id": "3.5-a",
+      "ref": "§3.6 Note 2",
+      "topic": "nominal",
+      "sentence": "اَلْقَوْمُ حَاضِرٌ",
+      "translation": "The people are present.",
+      "words": [
+        "اَلْقَوْمُ",
+        "حَاضِرٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "مُبْتَدَأٌ",
+            "tone": "fail"
+          },
+          {
+            "word": 1,
+            "role": "خَبَرٌ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "fail"
+      }
+    },
+    {
+      "id": "1.4.4-ex-ii",
+      "ref": "§1.4.4 Exercise",
+      "topic": "nominal",
+      "sentence": "اَلثَّوْرُ يَحْرُثُ الْأَرْضَ",
+      "translation": "The ox ploughs the land.",
+      "words": [
+        "اَلثَّوْرُ",
+        "يَحْرُثُ",
+        "الْأَرْضَ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "مُبْتَدَأٌ",
+            "tone": "fail"
+          },
+          {
+            "role": "خَبَرٌ",
+            "label": "جُمْلَةٌ فِعْلِيَّةٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 1,
+                "role": "فِعْلٌ مَعَ فَاعِلِهِ",
+                "tone": "fil",
+                "parts": [
+                  {
+                    "role": "فِعْلٌ",
+                    "tone": "fil"
+                  },
+                  {
+                    "role": "فَاعِلٌ مُسْتَتِرٌ",
+                    "tone": "fail"
+                  }
+                ]
+              },
+              {
+                "word": 2,
+                "role": "مَفْعُوْلٌ بِهِ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "fail"
+      }
+    },
+    {
+      "id": "1.4.4-ex-i",
+      "ref": "§1.4.4 Exercise",
+      "topic": "nominal",
+      "sentence": "اَلْقَلَمُ فِي الْفَصْلِ",
+      "translation": "The pen is in the classroom.",
+      "words": [
+        "اَلْقَلَمُ",
+        "فِي",
+        "الْفَصْلِ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "مُبْتَدَأٌ",
+            "tone": "fail"
+          },
+          {
+            "role": "خَبَرٌ",
+            "label": "جَارٌّ وَمَجْرُوْرٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 1,
+                "role": "حَرْفُ جَرٍّ",
+                "tone": "harf"
+              },
+              {
+                "word": 2,
+                "role": "مَجْرُوْرٌ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "fail"
+      }
+    },
+    {
+      "id": "1.4.3-ex1",
+      "ref": "§1.4.3 Example 1",
+      "topic": "phrase",
+      "sentence": "رَبِحَ التَّاجِرُ الْأَمِيْنُ",
+      "translation": "The trustworthy trader gained profit.",
+      "words": [
+        "رَبِحَ",
+        "التَّاجِرُ",
+        "الْأَمِيْنُ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "role": "فَاعِلٌ",
+            "label": "مُرَكَّبٌ تَوْصِيْفِيٌّ",
+            "tone": "fail",
+            "children": [
+              {
+                "word": 1,
+                "role": "مَوْصُوْفٌ",
+                "tone": "fail"
+              },
+              {
+                "word": 2,
+                "role": "صِفَةٌ",
+                "tone": "rel"
+              }
+            ]
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.4.3-ex2",
+      "ref": "§1.4.3 Example 2",
+      "topic": "phrase",
+      "sentence": "اِشْتَرَيْتُ هٰذَا الْكِتَابَ",
+      "translation": "I bought this book.",
+      "words": [
+        "اِشْتَرَيْتُ",
+        "هٰذَا",
+        "الْكِتَابَ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ مَعَ فَاعِلِهِ",
+            "tone": "fil",
+            "parts": [
+              {
+                "role": "فِعْلٌ",
+                "tone": "fil"
+              },
+              {
+                "role": "فَاعِلٌ",
+                "tone": "fail"
+              }
+            ]
+          },
+          {
+            "role": "مَفْعُوْلٌ بِهِ",
+            "label": "مُرَكَّبٌ إِشَارِيٌّ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 1,
+                "role": "اِسْمُ الْإِشَارَةِ",
+                "tone": "rel"
+              },
+              {
+                "word": 2,
+                "role": "مُشَارٌ إِلَيْهِ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "ch4-tarakib-a",
+      "ref": "§1.4.3 / cover examples",
+      "topic": "phrase",
+      "sentence": "قَرَأَ الطَّالِبُ الْمُجْتَهِدُ الْكِتَابَ",
+      "translation": "The diligent student read the book.",
+      "words": [
+        "قَرَأَ",
+        "الطَّالِبُ",
+        "الْمُجْتَهِدُ",
+        "الْكِتَابَ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "role": "فَاعِلٌ",
+            "label": "مُرَكَّبٌ تَوْصِيْفِيٌّ",
+            "tone": "fail",
+            "children": [
+              {
+                "word": 1,
+                "role": "مَوْصُوْفٌ",
+                "tone": "fail"
+              },
+              {
+                "word": 2,
+                "role": "صِفَةٌ",
+                "tone": "rel"
+              }
+            ]
+          },
+          {
+            "word": 3,
+            "role": "مَفْعُوْلٌ بِهِ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "2.2-c",
+      "ref": "§2.2",
+      "topic": "phrase",
+      "sentence": "مَرَرْتُ بِهٰذَا",
+      "translation": "I passed by this.",
+      "words": [
+        "مَرَرْتُ",
+        "بِ",
+        "هٰذَا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ مَعَ فَاعِلِهِ",
+            "tone": "fil",
+            "parts": [
+              {
+                "role": "فِعْلٌ",
+                "tone": "fil"
+              },
+              {
+                "role": "فَاعِلٌ",
+                "tone": "fail"
+              }
+            ]
+          },
+          {
+            "role": "مُتَعَلِّقٌ بِالْفِعْلِ",
+            "label": "جَارٌّ وَمَجْرُوْرٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 1,
+                "role": "حَرْفُ جَرٍّ",
+                "tone": "harf"
+              },
+              {
+                "word": 2,
+                "role": "مَجْرُوْرٌ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "ch4-tarakib-b",
+      "ref": "§1.4.3 / cover examples",
+      "topic": "phrase",
+      "sentence": "ذَهَبَ مُحَمَّدٌ إِلَى الْمَسْجِدِ",
+      "translation": "Muhammad went to the mosque.",
+      "words": [
+        "ذَهَبَ",
+        "مُحَمَّدٌ",
+        "إِلَى",
+        "الْمَسْجِدِ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "فَاعِلٌ",
+            "tone": "fail"
+          },
+          {
+            "role": "مُتَعَلِّقٌ بِالْفِعْلِ",
+            "label": "جَارٌّ وَمَجْرُوْرٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 2,
+                "role": "حَرْفُ جَرٍّ",
+                "tone": "harf"
+              },
+              {
+                "word": 3,
+                "role": "مَجْرُوْرٌ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.4.3-ex4",
+      "ref": "§1.4.3 Example 4",
+      "topic": "phrase",
+      "sentence": "جَاءَ أَرْبَعَةَ عَشَرَ رَجُلًا",
+      "translation": "Fourteen men came.",
+      "words": [
+        "جَاءَ",
+        "أَرْبَعَةَ",
+        "عَشَرَ",
+        "رَجُلًا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ",
+            "tone": "fil"
+          },
+          {
+            "role": "فَاعِلٌ",
+            "label": "مُرَكَّبٌ بِنَائِيٌّ عَدَدِيٌّ",
+            "tone": "fail",
+            "children": [
+              {
+                "word": 1,
+                "role": "جُزْءٌ أَوَّلُ",
+                "tone": "fail"
+              },
+              {
+                "word": 2,
+                "role": "جُزْءٌ ثَانٍ",
+                "tone": "fail"
+              },
+              {
+                "word": 3,
+                "role": "تَمْيِيْزٌ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.4.3-idafa",
+      "ref": "§1.4.3",
+      "topic": "phrase",
+      "sentence": "رَأَيْتُ اثْنَيْ عَشَرَ رَجُلًا",
+      "translation": "I saw twelve men.",
+      "words": [
+        "رَأَيْتُ",
+        "اثْنَيْ",
+        "عَشَرَ",
+        "رَجُلًا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ مَعَ فَاعِلِهِ",
+            "tone": "fil",
+            "parts": [
+              {
+                "role": "فِعْلٌ",
+                "tone": "fil"
+              },
+              {
+                "role": "فَاعِلٌ",
+                "tone": "fail"
+              }
+            ]
+          },
+          {
+            "role": "مَفْعُوْلٌ بِهِ",
+            "label": "مُرَكَّبٌ بِنَائِيٌّ عَدَدِيٌّ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 1,
+                "role": "جُزْءٌ أَوَّلُ",
+                "tone": "mafool"
+              },
+              {
+                "word": 2,
+                "role": "جُزْءٌ ثَانٍ",
+                "tone": "mafool"
+              },
+              {
+                "word": 3,
+                "role": "تَمْيِيْزٌ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.4.3-idafa-b",
+      "ref": "§1.4.3",
+      "topic": "phrase",
+      "sentence": "مَرَرْتُ بِاثْنَيْ عَشَرَ رَجُلًا",
+      "translation": "I passed by twelve men.",
+      "words": [
+        "مَرَرْتُ",
+        "بِ",
+        "اثْنَيْ",
+        "عَشَرَ",
+        "رَجُلًا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ مَعَ فَاعِلِهِ",
+            "tone": "fil",
+            "parts": [
+              {
+                "role": "فِعْلٌ",
+                "tone": "fil"
+              },
+              {
+                "role": "فَاعِلٌ",
+                "tone": "fail"
+              }
+            ]
+          },
+          {
+            "role": "مُتَعَلِّقٌ بِالْفِعْلِ",
+            "label": "جَارٌّ وَمَجْرُوْرٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 1,
+                "role": "حَرْفُ جَرٍّ",
+                "tone": "harf"
+              },
+              {
+                "role": "مَجْرُوْرٌ",
+                "label": "مُرَكَّبٌ بِنَائِيٌّ عَدَدِيٌّ",
+                "tone": "mafool",
+                "children": [
+                  {
+                    "word": 2,
+                    "role": "جُزْءٌ أَوَّلُ",
+                    "tone": "mafool"
+                  },
+                  {
+                    "word": 3,
+                    "role": "جُزْءٌ ثَانٍ",
+                    "tone": "mafool"
+                  },
+                  {
+                    "word": 4,
+                    "role": "تَمْيِيْزٌ",
+                    "tone": "mafool"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.8-a",
+      "ref": "§1.8",
+      "topic": "changers",
+      "sentence": "كَانَ الْبَيْتُ نَظِيْفًا",
+      "translation": "The house was clean.",
+      "words": [
+        "كَانَ",
+        "الْبَيْتُ",
+        "نَظِيْفًا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ نَاقِصٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "اِسْمُ كَانَ",
+            "tone": "fail"
+          },
+          {
+            "word": 2,
+            "role": "خَبَرُ كَانَ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.8-b",
+      "ref": "§1.8 Note 1",
+      "topic": "changers",
+      "sentence": "كَانَ زَيْدٌ يَكْتُبُ",
+      "translation": "Zayd used to write.",
+      "words": [
+        "كَانَ",
+        "زَيْدٌ",
+        "يَكْتُبُ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ نَاقِصٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "اِسْمُ كَانَ",
+            "tone": "fail"
+          },
+          {
+            "word": 2,
+            "role": "خَبَرُ كَانَ",
+            "label": "جُمْلَةٌ فِعْلِيَّةٌ",
+            "tone": "mafool",
+            "parts": [
+              {
+                "role": "فِعْلٌ",
+                "tone": "fil"
+              },
+              {
+                "role": "فَاعِلٌ مُسْتَتِرٌ",
+                "tone": "fail"
+              }
+            ]
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.8-c",
+      "ref": "§1.8 Note 7",
+      "topic": "changers",
+      "sentence": "كَانَ فِي السَّمَاءِ سَحَابٌ",
+      "translation": "There were clouds in the sky.",
+      "words": [
+        "كَانَ",
+        "فِي",
+        "السَّمَاءِ",
+        "سَحَابٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ نَاقِصٌ",
+            "tone": "fil"
+          },
+          {
+            "role": "خَبَرُ كَانَ مُقَدَّمٌ",
+            "label": "جَارٌّ وَمَجْرُوْرٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 1,
+                "role": "حَرْفُ جَرٍّ",
+                "tone": "harf"
+              },
+              {
+                "word": 2,
+                "role": "مَجْرُوْرٌ",
+                "tone": "mafool"
+              }
+            ]
+          },
+          {
+            "word": 3,
+            "role": "اِسْمُ كَانَ مُؤَخَّرٌ",
+            "tone": "fail"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.8-ex-i",
+      "ref": "§1.8 Exercise",
+      "topic": "changers",
+      "sentence": "لَيْسَ الْعَامِلُ نَشِيْطًا",
+      "translation": "The worker is not energetic.",
+      "words": [
+        "لَيْسَ",
+        "الْعَامِلُ",
+        "نَشِيْطًا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ نَاقِصٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "اِسْمُ لَيْسَ",
+            "tone": "fail"
+          },
+          {
+            "word": 2,
+            "role": "خَبَرُ لَيْسَ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.8-ex-ii",
+      "ref": "§1.8 Exercise",
+      "topic": "changers",
+      "sentence": "أَمْسَى الْغَنِيُّ فَقِيْرًا",
+      "translation": "The rich man became poor.",
+      "words": [
+        "أَمْسَى",
+        "الْغَنِيُّ",
+        "فَقِيْرًا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ نَاقِصٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "اِسْمُ أَمْسَى",
+            "tone": "fail"
+          },
+          {
+            "word": 2,
+            "role": "خَبَرُ أَمْسَى",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.8-ex-iii",
+      "ref": "§1.8 Exercise",
+      "topic": "changers",
+      "sentence": "صَارَ الْكَبْشُ سَمِيْنًا",
+      "translation": "The ram became fat.",
+      "words": [
+        "صَارَ",
+        "الْكَبْشُ",
+        "سَمِيْنًا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلٌ نَاقِصٌ",
+            "tone": "fil"
+          },
+          {
+            "word": 1,
+            "role": "اِسْمُ صَارَ",
+            "tone": "fail"
+          },
+          {
+            "word": 2,
+            "role": "خَبَرُ صَارَ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "3.7.3-a",
+      "ref": "§3.7.3",
+      "topic": "changers",
+      "sentence": "مَا زَيْدٌ قَائِمًا",
+      "translation": "Zayd is not standing.",
+      "words": [
+        "مَا",
+        "زَيْدٌ",
+        "قَائِمًا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "مَا الْمُشَبَّهَةُ بِلَيْسَ",
+            "tone": "harf"
+          },
+          {
+            "word": 1,
+            "role": "اِسْمُ مَا",
+            "tone": "fail"
+          },
+          {
+            "word": 2,
+            "role": "خَبَرُ مَا",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "harf"
+      }
+    },
+    {
+      "id": "3.7.3-b",
+      "ref": "§3.7.3",
+      "topic": "changers",
+      "sentence": "لَا رَجُلٌ أَفْضَلُ مِنْكَ",
+      "translation": "No man is more virtuous than you.",
+      "words": [
+        "لَا",
+        "رَجُلٌ",
+        "أَفْضَلُ",
+        "مِنْكَ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "لَا الْمُشَبَّهَةُ بِلَيْسَ",
+            "tone": "harf"
+          },
+          {
+            "word": 1,
+            "role": "اِسْمُ لَا",
+            "tone": "fail"
+          },
+          {
+            "role": "خَبَرُ لَا",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 2,
+                "role": "خَبَرٌ",
+                "tone": "mafool"
+              },
+              {
+                "word": 3,
+                "role": "مُتَعَلِّقٌ بِالْخَبَرِ",
+                "label": "جَارٌّ وَمَجْرُوْرٌ",
+                "tone": "mafool",
+                "parts": [
+                  {
+                    "role": "حَرْفُ جَرٍّ",
+                    "tone": "harf"
+                  },
+                  {
+                    "role": "مَجْرُوْرٌ",
+                    "tone": "mafool"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "tone": "harf"
+      }
+    },
+    {
+      "id": "3.7.3-c",
+      "ref": "§3.7.3",
+      "topic": "changers",
+      "sentence": "وَمَا مُحَمَّدٌ إِلَّا رَسُوْلٌ",
+      "translation": "Muhammad is only a messenger.",
+      "words": [
+        "وَ",
+        "مَا",
+        "مُحَمَّدٌ",
+        "إِلَّا",
+        "رَسُوْلٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "حَرْفُ عَطْفٍ",
+            "tone": "harf"
+          },
+          {
+            "word": 1,
+            "role": "حَرْفُ نَفْيٍ",
+            "tone": "harf"
+          },
+          {
+            "word": 2,
+            "role": "مُبْتَدَأٌ",
+            "tone": "fail"
+          },
+          {
+            "word": 3,
+            "role": "حَرْفُ اِسْتِثْنَاءٍ",
+            "tone": "harf"
+          },
+          {
+            "word": 4,
+            "role": "خَبَرٌ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "harf"
+      }
+    },
+    {
+      "id": "3.7.4-a",
+      "ref": "§3.7.4",
+      "topic": "changers",
+      "sentence": "لَا رَجُلَ قَائِمٌ",
+      "translation": "No man is standing.",
+      "words": [
+        "لَا",
+        "رَجُلَ",
+        "قَائِمٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "لَا لِنَفْيِ الْجِنْسِ",
+            "tone": "harf"
+          },
+          {
+            "word": 1,
+            "role": "اِسْمُ لَا",
+            "tone": "fail"
+          },
+          {
+            "word": 2,
+            "role": "خَبَرُ لَا",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "harf"
+      }
+    },
+    {
+      "id": "3.7.4-b",
+      "ref": "§3.7.4 Table 3.6",
+      "topic": "changers",
+      "sentence": "لَا رَجُلَ فِي الدَّارِ",
+      "translation": "There is no man in the house.",
+      "words": [
+        "لَا",
+        "رَجُلَ",
+        "فِي",
+        "الدَّارِ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "لَا لِنَفْيِ الْجِنْسِ",
+            "tone": "harf"
+          },
+          {
+            "word": 1,
+            "role": "اِسْمُ لَا",
+            "tone": "fail"
+          },
+          {
+            "role": "خَبَرُ لَا",
+            "label": "جَارٌّ وَمَجْرُوْرٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 2,
+                "role": "حَرْفُ جَرٍّ",
+                "tone": "harf"
+              },
+              {
+                "word": 3,
+                "role": "مَجْرُوْرٌ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "harf"
+      }
+    },
+    {
+      "id": "3.7.4-c",
+      "ref": "§3.7.4 Table 3.6",
+      "topic": "changers",
+      "sentence": "لَا خَادِمَ رَجُلٍ فِي الدَّارِ",
+      "translation": "There is no servant of a man in the house.",
+      "words": [
+        "لَا",
+        "خَادِمَ",
+        "رَجُلٍ",
+        "فِي",
+        "الدَّارِ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ اِسْمِيَّةٌ خَبَرِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "لَا لِنَفْيِ الْجِنْسِ",
+            "tone": "harf"
+          },
+          {
+            "role": "اِسْمُ لَا",
+            "label": "مُرَكَّبٌ إِضَافِيٌّ",
+            "tone": "fail",
+            "children": [
+              {
+                "word": 1,
+                "role": "مُضَافٌ",
+                "tone": "mudaf"
+              },
+              {
+                "word": 2,
+                "role": "مُضَافٌ إِلَيْهِ",
+                "tone": "mudaf"
+              }
+            ]
+          },
+          {
+            "role": "خَبَرُ لَا",
+            "label": "جَارٌّ وَمَجْرُوْرٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 3,
+                "role": "حَرْفُ جَرٍّ",
+                "tone": "harf"
+              },
+              {
+                "word": 4,
+                "role": "مَجْرُوْرٌ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "harf"
+      }
+    },
+    {
+      "id": "1.4.2-amr",
+      "ref": "§1.4.2",
+      "topic": "inshaa",
+      "sentence": "اِضْرِبْ",
+      "translation": "Hit!",
+      "words": [
+        "اِضْرِبْ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ إِنْشَائِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "فِعْلُ أَمْرٍ",
+            "tone": "fil",
+            "parts": [
+              {
+                "role": "فِعْلٌ",
+                "tone": "fil"
+              },
+              {
+                "role": "فَاعِلٌ مُسْتَتِرٌ",
+                "tone": "fail"
+              }
+            ]
+          }
+        ],
+        "tone": "fil"
+      }
+    },
+    {
+      "id": "1.4.2-nahy",
+      "ref": "§1.4.2",
+      "topic": "inshaa",
+      "sentence": "لَا تَضْرِبْ",
+      "translation": "Do not hit!",
+      "words": [
+        "لَا",
+        "تَضْرِبْ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ إِنْشَائِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "حَرْفُ نَهْيٍ",
+            "tone": "harf"
+          },
+          {
+            "word": 1,
+            "role": "فِعْلٌ مَجْزُوْمٌ",
+            "tone": "fil",
+            "parts": [
+              {
+                "role": "فِعْلٌ",
+                "tone": "fil"
+              },
+              {
+                "role": "فَاعِلٌ مُسْتَتِرٌ",
+                "tone": "fail"
+              }
+            ]
+          }
+        ],
+        "tone": "harf"
+      }
+    },
+    {
+      "id": "1.4.2-istifham",
+      "ref": "§1.4.2",
+      "topic": "inshaa",
+      "sentence": "هَلْ ضَرَبَ زَيْدٌ",
+      "translation": "Did Zayd hit?",
+      "words": [
+        "هَلْ",
+        "ضَرَبَ",
+        "زَيْدٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ إِنْشَائِيَّةٌ اِسْتِفْهَامِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "حَرْفُ اِسْتِفْهَامٍ",
+            "tone": "harf"
+          },
+          {
+            "role": "جُمْلَةٌ فِعْلِيَّةٌ",
+            "tone": "fil",
+            "children": [
+              {
+                "word": 1,
+                "role": "فِعْلٌ",
+                "tone": "fil"
+              },
+              {
+                "word": 2,
+                "role": "فَاعِلٌ",
+                "tone": "fail"
+              }
+            ]
+          }
+        ],
+        "tone": "harf"
+      }
+    },
+    {
+      "id": "1.4.2-tamanni",
+      "ref": "§1.4.2",
+      "topic": "inshaa",
+      "sentence": "لَيْتَ الشَّبَابَ عَائِدٌ",
+      "translation": "I wish youth would return.",
+      "words": [
+        "لَيْتَ",
+        "الشَّبَابَ",
+        "عَائِدٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ إِنْشَائِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ",
+            "tone": "harf"
+          },
+          {
+            "word": 1,
+            "role": "اِسْمُ لَيْتَ",
+            "tone": "fail"
+          },
+          {
+            "word": 2,
+            "role": "خَبَرُ لَيْتَ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "harf"
+      }
+    },
+    {
+      "id": "1.4.2-tarajji",
+      "ref": "§1.4.2",
+      "topic": "inshaa",
+      "sentence": "لَعَلَّ الْاِمْتِحَانَ سَهْلٌ",
+      "translation": "Hopefully the examination will be easy.",
+      "words": [
+        "لَعَلَّ",
+        "الْاِمْتِحَانَ",
+        "سَهْلٌ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ إِنْشَائِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ",
+            "tone": "harf"
+          },
+          {
+            "word": 1,
+            "role": "اِسْمُ لَعَلَّ",
+            "tone": "fail"
+          },
+          {
+            "word": 2,
+            "role": "خَبَرُ لَعَلَّ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "harf"
+      }
+    },
+    {
+      "id": "1.4.2-nida",
+      "ref": "§1.4.2",
+      "topic": "inshaa",
+      "sentence": "يَا اللهُ",
+      "translation": "O Allah!",
+      "words": [
+        "يَا",
+        "اللهُ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ إِنْشَائِيَّةٌ نِدَائِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "حَرْفُ نِدَاءٍ",
+            "tone": "harf"
+          },
+          {
+            "word": 1,
+            "role": "مُنَادَى",
+            "tone": "fail"
+          }
+        ],
+        "tone": "harf"
+      }
+    },
+    {
+      "id": "1.4.2-taajjub",
+      "ref": "§1.4.2",
+      "topic": "inshaa",
+      "sentence": "مَا أَحْسَنَ زَيْدًا",
+      "translation": "How good Zayd is!",
+      "words": [
+        "مَا",
+        "أَحْسَنَ",
+        "زَيْدًا"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ إِنْشَائِيَّةٌ تَعَجُّبِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "مُبْتَدَأٌ",
+            "tone": "fail"
+          },
+          {
+            "role": "خَبَرٌ",
+            "label": "جُمْلَةٌ فِعْلِيَّةٌ",
+            "tone": "mafool",
+            "children": [
+              {
+                "word": 1,
+                "role": "فِعْلُ التَّعَجُّبِ",
+                "tone": "fil",
+                "parts": [
+                  {
+                    "role": "فِعْلٌ",
+                    "tone": "fil"
+                  },
+                  {
+                    "role": "فَاعِلٌ مُسْتَتِرٌ",
+                    "tone": "fail"
+                  }
+                ]
+              },
+              {
+                "word": 2,
+                "role": "مَفْعُوْلٌ بِهِ",
+                "tone": "mafool"
+              }
+            ]
+          }
+        ],
+        "tone": "fail"
+      }
+    },
+    {
+      "id": "1.4.2-qasam",
+      "ref": "§1.4.2",
+      "topic": "inshaa",
+      "sentence": "وَاللهِ",
+      "translation": "By Allah!",
+      "words": [
+        "وَ",
+        "اللهِ"
+      ],
+      "tree": {
+        "label": "جُمْلَةٌ إِنْشَائِيَّةٌ قَسَمِيَّةٌ",
+        "children": [
+          {
+            "word": 0,
+            "role": "حَرْفُ قَسَمٍ",
+            "tone": "harf"
+          },
+          {
+            "word": 1,
+            "role": "مُقْسَمٌ بِهِ",
+            "tone": "mafool"
+          }
+        ],
+        "tone": "harf"
+      }
+    }
+  ]
+}

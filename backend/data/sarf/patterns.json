@@ -1,0 +1,357 @@
+{
+  "_comment": "Every conjugation rule in the app, as templates. {1}{2}{3} are the three root letters. The engine in services/conjugation.py only fills these in and attaches the endings below: it holds no Arabic of its own, so a wrong form is fixed here, not in code.",
+  "_endings": "The 14 persons, in the order the books list them. Each row is [label, madi suffix, mudari prefix letter, mudari ending].",
+  "persons": [
+    [
+      "he",
+      "َ",
+      "ي",
+      "ُ"
+    ],
+    [
+      "they two (m)",
+      "َا",
+      "ي",
+      "َانِ"
+    ],
+    [
+      "they (m)",
+      "ُوا",
+      "ي",
+      "ُونَ"
+    ],
+    [
+      "she",
+      "َتْ",
+      "ت",
+      "ُ"
+    ],
+    [
+      "they two (f)",
+      "َتَا",
+      "ت",
+      "َانِ"
+    ],
+    [
+      "they (f)",
+      "ْنَ",
+      "ي",
+      "ْنَ"
+    ],
+    [
+      "you (m)",
+      "ْتَ",
+      "ت",
+      "ُ"
+    ],
+    [
+      "you two (m)",
+      "ْتُمَا",
+      "ت",
+      "َانِ"
+    ],
+    [
+      "you all (m)",
+      "ْتُمْ",
+      "ت",
+      "ُونَ"
+    ],
+    [
+      "you (f)",
+      "ْتِ",
+      "ت",
+      "ِينَ"
+    ],
+    [
+      "you two (f)",
+      "ْتُمَا",
+      "ت",
+      "َانِ"
+    ],
+    [
+      "you all (f)",
+      "ْتُنَّ",
+      "ت",
+      "ْنَ"
+    ],
+    [
+      "I",
+      "ْتُ",
+      "أ",
+      "ُ"
+    ],
+    [
+      "we",
+      "ْنَا",
+      "ن",
+      "ُ"
+    ]
+  ],
+  "_forms": "madi/mudari/amr are stems; the endings above complete them. 'prefix' is the vowel on the mudari prefix letter. A null masdar means the books do not give one fixed shape.",
+  "forms": {
+    "I-nasara": {
+      "label": "Form I: nasara (يَنْصُرُ)",
+      "madi": "{1}َ{2}َ{3}",
+      "mudari": "{1}ْ{2}ُ{3}",
+      "prefix": "َ",
+      "amr": "اُ{1}ْ{2}ُ{3}",
+      "fail": "{1}َا{2}ِ{3}",
+      "maful": "مَ{1}ْ{2}ُو{3}",
+      "masdar": null,
+      "madi-passive": "{1}ُ{2}ِ{3}",
+      "mudari-passive": "{1}ْ{2}َ{3}"
+    },
+    "I-daraba": {
+      "label": "Form I: daraba (يَضْرِبُ)",
+      "madi": "{1}َ{2}َ{3}",
+      "mudari": "{1}ْ{2}ِ{3}",
+      "prefix": "َ",
+      "amr": "اِ{1}ْ{2}ِ{3}",
+      "fail": "{1}َا{2}ِ{3}",
+      "maful": "مَ{1}ْ{2}ُو{3}",
+      "masdar": null,
+      "madi-passive": "{1}ُ{2}ِ{3}",
+      "mudari-passive": "{1}ْ{2}َ{3}"
+    },
+    "I-fataha": {
+      "label": "Form I: fataha (يَفْتَحُ)",
+      "madi": "{1}َ{2}َ{3}",
+      "mudari": "{1}ْ{2}َ{3}",
+      "prefix": "َ",
+      "amr": "اِ{1}ْ{2}َ{3}",
+      "fail": "{1}َا{2}ِ{3}",
+      "maful": "مَ{1}ْ{2}ُو{3}",
+      "masdar": null,
+      "madi-passive": "{1}ُ{2}ِ{3}",
+      "mudari-passive": "{1}ْ{2}َ{3}"
+    },
+    "I-samia": {
+      "label": "Form I: samia (يَسْمَعُ)",
+      "madi": "{1}َ{2}ِ{3}",
+      "mudari": "{1}ْ{2}َ{3}",
+      "prefix": "َ",
+      "amr": "اِ{1}ْ{2}َ{3}",
+      "fail": "{1}َا{2}ِ{3}",
+      "maful": "مَ{1}ْ{2}ُو{3}",
+      "masdar": null,
+      "madi-passive": "{1}ُ{2}ِ{3}",
+      "mudari-passive": "{1}ْ{2}َ{3}"
+    },
+    "I-karuma": {
+      "label": "Form I: karuma (يَكْرُمُ)",
+      "madi": "{1}َ{2}ُ{3}",
+      "mudari": "{1}ْ{2}ُ{3}",
+      "prefix": "َ",
+      "amr": "اُ{1}ْ{2}ُ{3}",
+      "_fail": "Treasures p.88: the verbs of this باب are intransitive, so instead of an اسم الفاعل the صفة مشبهة on the scale فَعِيل is used, e.g. كَرِيم. The label changes with it.",
+      "fail": "{1}َ{2}ِي{3}",
+      "fail-label": "Likeness (صفة مشبهة)",
+      "maful": "مَ{1}ْ{2}ُو{3}",
+      "masdar": null,
+      "madi-passive": "{1}ُ{2}ِ{3}",
+      "mudari-passive": "{1}ْ{2}َ{3}"
+    },
+    "I-hasiba": {
+      "label": "Form I: hasiba (يَحْسِبُ)",
+      "madi": "{1}َ{2}ِ{3}",
+      "mudari": "{1}ْ{2}ِ{3}",
+      "prefix": "َ",
+      "amr": "اِ{1}ْ{2}ِ{3}",
+      "fail": "{1}َا{2}ِ{3}",
+      "maful": "مَ{1}ْ{2}ُو{3}",
+      "masdar": null,
+      "madi-passive": "{1}ُ{2}ِ{3}",
+      "mudari-passive": "{1}ْ{2}َ{3}"
+    },
+    "II": {
+      "label": "Form II: fa''ala",
+      "madi": "{1}َ{2}َّ{3}",
+      "mudari": "{1}َ{2}ِّ{3}",
+      "prefix": "ُ",
+      "amr": "{1}َ{2}ِّ{3}",
+      "fail": "مُ{1}َ{2}ِّ{3}",
+      "maful": "مُ{1}َ{2}َّ{3}",
+      "masdar": "تَ{1}ْ{2}ِي{3}",
+      "madi-passive": "{1}ُ{2}ِّ{3}",
+      "mudari-passive": "{1}َ{2}َّ{3}"
+    },
+    "III": {
+      "label": "Form III: faa'ala",
+      "madi": "{1}َا{2}َ{3}",
+      "mudari": "{1}َا{2}ِ{3}",
+      "prefix": "ُ",
+      "amr": "{1}َا{2}ِ{3}",
+      "fail": "مُ{1}َا{2}ِ{3}",
+      "maful": "مُ{1}َا{2}َ{3}",
+      "masdar": "مُ{1}َا{2}َ{3}َة",
+      "madi-passive": "{1}ُو{2}ِ{3}",
+      "mudari-passive": "{1}َا{2}َ{3}"
+    },
+    "IV": {
+      "label": "Form IV: af'ala",
+      "madi": "أَ{1}ْ{2}َ{3}",
+      "mudari": "{1}ْ{2}ِ{3}",
+      "prefix": "ُ",
+      "amr": "أَ{1}ْ{2}ِ{3}",
+      "fail": "مُ{1}ْ{2}ِ{3}",
+      "maful": "مُ{1}ْ{2}َ{3}",
+      "masdar": "إِ{1}ْ{2}َا{3}",
+      "madi-passive": "أُ{1}ْ{2}ِ{3}",
+      "mudari-passive": "{1}ْ{2}َ{3}"
+    },
+    "V": {
+      "label": "Form V: tafa''ala",
+      "madi": "تَ{1}َ{2}َّ{3}",
+      "mudari": "تَ{1}َ{2}َّ{3}",
+      "prefix": "َ",
+      "amr": "تَ{1}َ{2}َّ{3}",
+      "fail": "مُتَ{1}َ{2}ِّ{3}",
+      "maful": "مُتَ{1}َ{2}َّ{3}",
+      "masdar": "تَ{1}َ{2}ُّ{3}",
+      "madi-passive": "تُ{1}ُ{2}ِّ{3}",
+      "mudari-passive": "تَ{1}َ{2}َّ{3}"
+    },
+    "VI": {
+      "label": "Form VI: tafaa'ala",
+      "madi": "تَ{1}َا{2}َ{3}",
+      "mudari": "تَ{1}َا{2}َ{3}",
+      "prefix": "َ",
+      "amr": "تَ{1}َا{2}َ{3}",
+      "fail": "مُتَ{1}َا{2}ِ{3}",
+      "maful": "مُتَ{1}َا{2}َ{3}",
+      "masdar": "تَ{1}َا{2}ُ{3}",
+      "madi-passive": "تُ{1}ُو{2}ِ{3}",
+      "mudari-passive": "تَ{1}َا{2}َ{3}"
+    },
+    "VII": {
+      "label": "Form VII: infa'ala",
+      "madi": "اِنْ{1}َ{2}َ{3}",
+      "mudari": "نْ{1}َ{2}ِ{3}",
+      "prefix": "َ",
+      "amr": "اِنْ{1}َ{2}ِ{3}",
+      "fail": "مُنْ{1}َ{2}ِ{3}",
+      "maful": "مُنْ{1}َ{2}َ{3}",
+      "masdar": "اِنْ{1}ِ{2}َا{3}",
+      "madi-passive": "اُنْ{1}ُ{2}ِ{3}",
+      "mudari-passive": "نْ{1}َ{2}َ{3}"
+    },
+    "VIII": {
+      "label": "Form VIII: ifta'ala",
+      "madi": "اِ{1}ْتَ{2}َ{3}",
+      "mudari": "{1}ْتَ{2}ِ{3}",
+      "prefix": "َ",
+      "amr": "اِ{1}ْتَ{2}ِ{3}",
+      "fail": "مُ{1}ْتَ{2}ِ{3}",
+      "maful": "مُ{1}ْتَ{2}َ{3}",
+      "masdar": "اِ{1}ْتِ{2}َا{3}",
+      "madi-passive": "اُ{1}ْتُ{2}ِ{3}",
+      "mudari-passive": "{1}ْتَ{2}َ{3}"
+    },
+    "X": {
+      "label": "Form X: istaf'ala",
+      "madi": "اِسْتَ{1}ْ{2}َ{3}",
+      "mudari": "سْتَ{1}ْ{2}ِ{3}",
+      "prefix": "َ",
+      "amr": "اِسْتَ{1}ْ{2}ِ{3}",
+      "fail": "مُسْتَ{1}ْ{2}ِ{3}",
+      "maful": "مُسْتَ{1}ْ{2}َ{3}",
+      "masdar": "اِسْتِ{1}ْ{2}َا{3}",
+      "madi-passive": "اُسْتُ{1}ْ{2}ِ{3}",
+      "mudari-passive": "سْتَ{1}ْ{2}َ{3}"
+    },
+    "IQ": {
+      "label": "Quadriliteral I: fa'lala (يُبَعْثِرُ)",
+      "radicals": 4,
+      "madi": "{1}َ{2}ْ{3}َ{4}",
+      "mudari": "{1}َ{2}ْ{3}ِ{4}",
+      "prefix": "ُ",
+      "amr": "{1}َ{2}ْ{3}ِ{4}",
+      "fail": "مُ{1}َ{2}ْ{3}ِ{4}",
+      "maful": "مُ{1}َ{2}ْ{3}َ{4}",
+      "masdar": "{1}َ{2}ْ{3}َ{4}َة",
+      "madi-passive": "{1}ُ{2}ْ{3}ِ{4}",
+      "mudari-passive": "{1}َ{2}ْ{3}َ{4}"
+    },
+    "IIQ": {
+      "label": "Quadriliteral II: tafa'lala (يَتَسَرْبَلُ)",
+      "radicals": 4,
+      "madi": "تَ{1}َ{2}ْ{3}َ{4}",
+      "mudari": "تَ{1}َ{2}ْ{3}َ{4}",
+      "prefix": "َ",
+      "amr": "تَ{1}َ{2}ْ{3}َ{4}",
+      "fail": "مُتَ{1}َ{2}ْ{3}ِ{4}",
+      "maful": "مُتَ{1}َ{2}ْ{3}َ{4}",
+      "masdar": "تَ{1}َ{2}ْ{3}ُ{4}",
+      "madi-passive": "تُ{1}ُ{2}ْ{3}ِ{4}",
+      "mudari-passive": "تَ{1}َ{2}ْ{3}َ{4}"
+    }
+  },
+  "_irregular": "A root with a weak letter, a hamzah, or a repeated last letter does not follow the templates above. It is named: in the words the books use: and left unconjugated rather than conjugated wrongly.",
+  "irregular": {
+    "sahih": "صحيح سالم: no weak letter, no hamzah, no repeat",
+    "mithal": "مثال: weak first letter (و or ي)",
+    "ajwaf": "أجوف: weak middle letter (و or ي)",
+    "naqis": "ناقص: weak last letter (و or ي)",
+    "mudaaf": "مضاعف: last two letters the same",
+    "mahmuz": "مهموز: a hamzah in the root",
+    "mahmuz-weak": "مهموز ومعتل: a hamzah and a weak letter in one root",
+    "lafif-mafruq": "لفيف مفروق: two weak letters with a sound one between them",
+    "lafif-maqrun": "لفيف مقرون: two weak letters next to each other"
+  },
+  "_conjugates": "Which of the categories above the engine can shape today. A category is added here only once the book's own paradigms for it pass in tests/test_weak_paradigms.py; until then the tab says plainly that it is not built rather than printing a guess.",
+  "_conjugates-lafif-maqrun": "Taken out 2026-09-20. It was listed as working but never had paradigms to pass: the book's entry for it (p.267, طوي) is a summary line whose grid was not transcribed, so tests/test_weak_paradigms.py has nothing to check and nothing failed. Driven by hand it printed يَطِيُّ and طِيْ where p.267 gives يَطْوِيْ and إِطْوِ, so the two weak letters side by side are being collapsed as though the first were the middle radical of a hollow root. Put it back once p.267 and p.269 are transcribed into the fixtures and pass.",
+  "conjugates": ["sahih", "ajwaf", "naqis", "mithal", "mudaaf", "lafif-mafruq", "mahmuz"],
+  "_jussive": "The 14 مجزوم endings, in the same order as `persons`. Read off the نهي column of Treasures p.98 (لاَ يُكْرِمْ ... لاَ نُكْرِمْ).",
+  "jussive": [
+    "ْ",
+    "َا",
+    "ُوا",
+    "ْ",
+    "َا",
+    "ْنَ",
+    "ْ",
+    "َا",
+    "ُوا",
+    "ِي",
+    "َا",
+    "ْنَ",
+    "ْ",
+    "ْ"
+  ],
+  "_passive-prefix": "The مضارع مجهول always carries a ضمة on its prefix letter, whatever the form (Treasures p.39).",
+  "passive-prefix": "ُ",
+  "_nahy-la": "The نهي is the jussive with a لَا in front of it (Treasures p.98).",
+  "nahy-la": "لَا ",
+  "_columns": "The gardaan's columns, across the top, in the order the book prints them: Treasures p.98 for the four معروف, pp.29-39 for the two مجهول. The id is the slot name a rule is handed.",
+  "columns": [
+    {"id": "madi", "label": "Past", "arabic": "الماضي المعروف"},
+    {"id": "mudari", "label": "Present", "arabic": "المضارع المعروف"},
+    {"id": "amr", "label": "Command", "arabic": "الأمر المعروف"},
+    {"id": "nahy", "label": "Prohibition", "arabic": "النهي المعروف"},
+    {"id": "madi-passive", "label": "Past passive", "arabic": "الماضي المجهول"},
+    {"id": "mudari-passive", "label": "Present passive", "arabic": "المضارع المجهول"}
+  ],
+  "_slots": "The صرف صغير's lines, named, in the order it prints them. A باب may rename one for itself: see `fail-label` on باب كَرُمَ.",
+  "slots": {
+    "madi": "Past (ماضي)",
+    "mudari": "Present (مضارع)",
+    "masdar": "Verbal noun (مصدر)",
+    "fail": "Doer (اسم الفاعل)",
+    "madi-passive": "Past passive (ماضي مجهول)",
+    "mudari-passive": "Present passive (مضارع مجهول)",
+    "maful": "Done to (اسم المفعول)",
+    "amr": "Command (أمر)",
+    "nahy": "Prohibition (نهي)"
+  },
+  "_amr-lam": "The أمر of a person who is not being addressed takes a لِ (Treasures p.98: لِيُكْرِمْ).",
+  "amr-lam": "لِ",
+  "_addressed": "Index into `persons` of the second-person rows: they take the أمر stem itself.",
+  "addressed": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ]
+}

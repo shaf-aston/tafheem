@@ -1,0 +1,47 @@
+{
+ "id": "haal-e21",
+ "section": "Correct or Incorrect",
+ "picture": "haal-20.png",
+ "instruction": "",
+ "parts": [
+  {
+   "letter": "a",
+   "question": "",
+   "options": [
+    "Correct",
+    "Incorrect"
+   ],
+   "answer": [
+    "Incorrect"
+   ],
+   "by": "teacher"
+  },
+  {
+   "letter": "b",
+   "question": "How many mistakes?",
+   "options": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    "Mistakes:"
+   ],
+   "answer": {
+    "Mistakes:": [
+     "1"
+    ]
+   },
+   "by": "teacher"
+  },
+  {
+   "letter": "c",
+   "question": "Explain the mistakes and how to rectify them.",
+   "answer": "There should be a Waaw Haaliyyah before Qad because it is a ??? ????? ???? with ?? and the dhameer raabit is present.",
+   "by": "teacher"
+  }
+ ],
+ "tags": []
+}

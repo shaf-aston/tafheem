@@ -1,0 +1,92 @@
+{
+ "batch": "haal-lettered-10",
+ "questions": [
+  {
+   "id": "haal/correct-or-incorrect/10",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Correct or Incorrect | Q10",
+    "number": "10",
+    "images": [
+     "q117.png",
+     "q118.png",
+     "q119.png"
+    ]
+   },
+   "type": "correct_or_incorrect",
+   "instructions": "Correct or Incorrect | Q10",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "مَا صلّيتُ صلاةً إلّا وَأَنَا مرتجٍ لِغُفرانِ ذنبي",
+     "marked": [],
+     "en": "I prayed salaah only whilst hoping for the forgiveness of my sins."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Correct",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "Incorrect"
+     ],
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Explain the mistakes and how to rectify them. If there are no mistakes, then write: \"No mistakes\".",
+     "kind": "free_text",
+     "options": [],
+     "answer": "No mistakes",
+     "answer_source": "correct_answer_shown",
+     "my_response": ".",
+     "points": null,
+     "feedback": "No mistakes.\nAs for مرتج, it's an اسم المنقوص like قاضٍ and it's in the state of رفع"
+    }
+   ],
+   "flags": [
+    "Final image check found the transcription had also over-vowelled صَلَّيْتُ (image shows only shadda on the ل, no fatha on ص, no fatha with the shadda, and no sukun on ي, giving صلّيتُ), صَلاَةً (image shows no fatha over ص, giving صلاةً), and لِغُفْرَانِ (image shows no marks on ف or ر at all, giving لِغُفرانِ); these were corrected to match the picture even though neither checker flagged them."
+   ]
+  }
+ ]
+}

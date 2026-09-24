@@ -1,0 +1,284 @@
+{
+ "id": "mafool-lahu-fihi-e07",
+ "section": "Application of Rules",
+ "picture": "mafool-lahu-fihi-07.png",
+ "instruction": "Translation: Zaid fasted because of wanting the pleasure of Allah.",
+ "parts": [
+  {
+   "letter": "a",
+   "question": "Translation: Zaid fasted because of wanting the pleasure of Allah.",
+   "options": [
+    "A",
+    "B"
+   ],
+   "answer": [
+    "A"
+   ],
+   "by": "teacher"
+  },
+  {
+   "letter": "b",
+   "question": "Explain your answer clearly.",
+   "answer": "Sentence A is correct because ابتغاءً is a clear masdar. It is منصوب, it happens at the same time as the verb صامَ, and it belongs to the same فاعل, زيدٌ, who fasted. Rule mafool-lahu-fihi-r04 requires all of these for a valid مفعول له. Sentence B replaces it with مبتغيًا, which is a noun describing the one doing the wanting, not a masdar at all, so it fails the clear-masdar condition in rule mafool-lahu-fihi-r04 and cannot be a مفعول له.",
+   "by": "claude"
+  }
+ ],
+ "sentence": "A: صامَ زيدٌ ابتغاءً رضَا اللهِ\nB: صامَ زيدٌ مبتغيًا رضَا الله",
+ "marked": [],
+ "tags": [
+  "mafool-lahu",
+  "masdar-condition",
+  "tafriq-mafaheem"
+ ]
+}
+{
+ "id": "mafool-lahu-fihi-e08",
+ "section": "Application of Rules",
+ "picture": "mafool-lahu-fihi-08.png",
+ "instruction": "Translation: I distanced myself away from the lion because of fear.",
+ "parts": [
+  {
+   "letter": "a",
+   "question": "Translation: I distanced myself away from the lion because of fear.",
+   "options": [
+    "A",
+    "B"
+   ],
+   "answer": [
+    "B"
+   ],
+   "by": "teacher"
+  },
+  {
+   "letter": "b",
+   "question": "Explain your answer clearly.",
+   "answer": "Sentence B is correct because خوفاً is a clear masdar. It is منصوب with no لام, it happens at the same time as the verb ابتعدتُ, and it belongs to the same فاعل, the speaker, who moved away. Rule mafool-lahu-fihi-r04 lists these as the conditions for a valid مفعول له, and rule mafool-lahu-fihi-r02 says one that meets them takes منصوب, matching خوفاً. Sentence A adds لِ before خوف (لخوفٍ, مجرور). Rule mafool-lahu-fihi-r05 says a لام is only added when a condition is missing, but here no condition is missing, so A is wrong.",
+   "by": "claude"
+  }
+ ],
+ "sentence": "A: ابتعدتُ عن الأسد لخوفٍ\nB: ابتعدتُ عن الأسد خوفاً",
+ "marked": [],
+ "tags": [
+  "lam-muqaddara",
+  "mafool-lahu",
+  "masdar-condition",
+  "tafriq-mafaheem"
+ ]
+}
+{
+ "id": "mafool-lahu-fihi-e09",
+ "section": "Application of Rules",
+ "picture": "mafool-lahu-fihi-09.png",
+ "instruction": "Translation: The father punished his son to discipline him",
+ "parts": [
+  {
+   "letter": "a",
+   "question": "Translation: The father punished his son to discipline him",
+   "options": [
+    "A",
+    "B"
+   ],
+   "answer": [
+    "A"
+   ],
+   "by": "teacher"
+  },
+  {
+   "letter": "b",
+   "question": "Explain your answer clearly.",
+   "answer": "A is correct because أن يُأَدِّبَه fails the clear masdar condition in rule mafool-lahu-fihi-r04, since it is a sentence starting with أن, not a plain masdar noun. Because this condition is missing, rule mafool-lahu-fihi-r05 assumes a لام, giving (لِ) أن يُأَدِّبَه. That is why A, which has the (لِ), is correct, and B, which drops it, is wrong.",
+   "by": "claude"
+  }
+ ],
+ "sentence": "A: عاقب الوالدُ وَلَدَه (لِ) أن يُؤَدِّبَه\nB: عاقب الوالدُ وَلَدَه أن يُؤَدِّبَه",
+ "marked": [],
+ "tags": [
+  "lam-muqaddara",
+  "mafool-lahu",
+  "tafriq-mafaheem"
+ ]
+}
+{
+ "id": "mafool-lahu-fihi-e10",
+ "section": "Application of Rules",
+ "picture": "mafool-lahu-fihi-10.png",
+ "instruction": "Translation: Do not enter a dilapidated building because of its weakness.",
+ "parts": [
+  {
+   "letter": "a",
+   "question": "Translation: Do not enter a dilapidated building because of its weakness.",
+   "options": [
+    "A",
+    "B"
+   ],
+   "answer": [
+    "B"
+   ],
+   "by": "teacher"
+  },
+  {
+   "letter": "b",
+   "question": "Explain your answer clearly.",
+   "answer": "B is correct because ضعفَه fails the condition in rule mafool-lahu-fihi-r04 that the مفعول له must be related to the فاعل and nothing else: the weakness (ضعف) belongs to المكان, the place, not to أنت, the one entering, who is the فاعل of تدخل. Because this condition is missing, rule mafool-lahu-fihi-r05 assumes a لام, giving لِضعفِه. A is wrong because it uses ضعفَه as a plain مفعول له when its doer does not match the فاعل alone.",
+   "by": "claude"
+  }
+ ],
+ "sentence": "A: لا تدخل في المكان المتداعِي ضعفَه\nB: لا تدخل في المكان المتداعِي لِضعفِه",
+ "marked": [],
+ "tags": [
+  "lam-muqaddara",
+  "mafool-lahu",
+  "masdar-condition",
+  "tafriq-mafaheem"
+ ]
+}
+{
+ "id": "mafool-lahu-fihi-e11",
+ "section": "Identify the underlined Maf'ools",
+ "picture": "mafool-lahu-fihi-11.png",
+ "instruction": "",
+ "parts": [
+  {
+   "letter": "a",
+   "question": "Look at the underlined words in أعطيتُ الفقيرَ خبزاً مَنْحَةً صباحًا شفقةً. For each of الفقير, خبزا, منحة, صباحا and شفقة, which Maf'ool (مفعول مطلق, مفعول به, مفعول معه, مفعول له or مفعول فيه) is it?",
+   "options": [
+    "مفعول مطلق",
+    "مفعول به",
+    "مفعول معه",
+    "مفعول له",
+    "مفعول فيه"
+   ],
+   "rows": [
+    "الفقير",
+    "خبزا",
+    "منحة",
+    "صباحا",
+    "شفقة"
+   ],
+   "answer": {
+    "الفقير": [
+     "مفعول به"
+    ],
+    "خبزا": [
+     "مفعول به"
+    ],
+    "منحة": [
+     "مفعول مطلق"
+    ],
+    "صباحا": [
+     "مفعول فيه"
+    ],
+    "شفقة": [
+     "مفعول له"
+    ]
+   },
+   "by": "teacher"
+  },
+  {
+   "letter": "b",
+   "question": "Explain your answer clearly.",
+   "answer": "الفقيرَ and خبزاً are both مفعول به, because they are the two things the giving act affects: the man given to, and the bread given. مَنْحَةً is a مفعول مطلق, because it restates the giving itself as a gift, in the same sense as the verb أعطيتُ. صباحًا is a مفعول فيه, because it names the time the giving happened in, the morning. شفقةً is a مفعول له, because it gives the reason he gave the bread, out of pity, matching rule mafool-lahu-fihi-r03 that the مفعول له signifies the reason for an action being conducted.",
+   "by": "claude"
+  },
+  {
+   "letter": "c",
+   "question": "Write your translation whilst ensuring all the Mafools are clear in your translation:",
+   "answer": "I gave the poor man bread as a gift in the morning, out of pity.",
+   "by": "claude"
+  }
+ ],
+ "sentence": "أعطيتُ الفقيرَ خبزاً مَنْحةً صباحًا شفقةً",
+ "marked": [
+  {
+   "text": "خبزاً",
+   "style": "underline"
+  },
+  {
+   "text": "مَنْحةً",
+   "style": "underline"
+  },
+  {
+   "text": "صباحًا",
+   "style": "underline"
+  },
+  {
+   "text": "شفقةً",
+   "style": "underline"
+  }
+ ],
+ "tags": [
+  "mafool-bihi",
+  "mafool-feehi",
+  "mafool-lahu",
+  "mafool-mutlaq",
+  "tafriq-mafaheem"
+ ]
+}
+{
+ "id": "mafool-lahu-fihi-e12",
+ "section": "Identify the underlined Maf'ools",
+ "picture": "mafool-lahu-fihi-12.png",
+ "instruction": "",
+ "parts": [
+  {
+   "letter": "a",
+   "question": "Look at the underlined words in مَا بِكَ وزيدًا أمسِ فوقَ المسجدِ. For each of زيدا, أمس and فوق, which Maf'ool (مفعول مطلق, مفعول به, مفعول معه, مفعول له or مفعول فيه) is it?",
+   "options": [
+    "مفعول مطلق",
+    "مفعول به",
+    "مفعول معه",
+    "مفعول له",
+    "مفعول فيه"
+   ],
+   "rows": [
+    "زيدا",
+    "أمس",
+    "فوق"
+   ],
+   "answer": {
+    "زيدا": [
+     "مفعول معه"
+    ],
+    "أمس": [
+     "مفعول فيه"
+    ],
+    "فوق": [
+     "مفعول فيه"
+    ]
+   },
+   "by": "teacher"
+  },
+  {
+   "letter": "b",
+   "question": "Explain your answer clearly.",
+   "answer": "زيدا is a مفعول معه. The و right before it does not mean plain \"and\"; it means \"along with\": زيدًا is going along with the person being addressed at the same time, not simply added on as a separate thing. أمس is a مفعول فيه because it names when the state happened, yesterday. فوق is also a مفعول فيه because it names the place, above the mosque, matching rule mafool-lahu-fihi-r09 that the مفعول فيه signifies the time or the place an action is conducted in.",
+   "by": "claude"
+  },
+  {
+   "letter": "c",
+   "question": "Write your translation whilst ensuring all the Mafools are clear in your translation:",
+   "answer": "What is wrong with you, along with Zayd, yesterday, above the mosque?",
+   "by": "claude"
+  }
+ ],
+ "sentence": "مَا بِكَ وزيدًا أمسِ فوقَ المسجدِ",
+ "marked": [
+  {
+   "text": "وزيدًا",
+   "style": "underline"
+  },
+  {
+   "text": "أمسِ",
+   "style": "underline"
+  },
+  {
+   "text": "فوقَ",
+   "style": "underline"
+  }
+ ],
+ "tags": [
+  "mafool-feehi",
+  "mafool-maahu",
+  "tafriq-mafaheem"
+ ]
+}

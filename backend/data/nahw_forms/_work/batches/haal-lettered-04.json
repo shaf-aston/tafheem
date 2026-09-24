@@ -1,0 +1,278 @@
+{
+ "batch": "haal-lettered-04",
+ "questions": [
+  {
+   "id": "haal/application/10",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q10",
+    "number": "10",
+    "images": [
+     "q053.png",
+     "q054.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال.\nIf it's not حال, choose ليست حالا and move on.\nIf it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "زَار زيدٌ بيتَ اللّهِ وَمَا دَعا لِأحدٍ",
+     "marked": [
+      {
+       "text": "زيدٌ",
+       "mark": "green underline"
+      },
+      {
+       "text": "وَمَا دَعا لِأحدٍ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "Zaid visited The Haram and didn't do dua for anyone."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the blue-underlined clause a حال? If so, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "وما دعا..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "وما دعا...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "وما دعا...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": [],
+     "rows": [],
+     "columns": [],
+     "answer": "If the tarkeeb is taken as haal, it is optional to add a waaw haaliyah since it is a فعل ماضي منفي with a dhameer raabit.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "If the tarkeeb is taken as haal, it is optional to add a waaw haaliyah since it is a فعل ماضي منفي with a dhameer raabit."
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/application/11",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q11",
+    "number": "11",
+    "images": [
+     "q056.png",
+     "q057.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال.\nIf it's not حال, choose ليست حالا and move on.\nIf it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "مَا لَكُمْ لا تُؤْمِنُونَ بِاللَّهِ وَالرَّسُولُ يَدْعُوكُمْ لِتُؤْمِنُوا بِرَبِّكُمْ وَقَدْ أَخَذَ مِيثَاقَكُمْ",
+     "marked": [
+      {
+       "text": "لَكُمْ",
+       "mark": "green underline"
+      },
+      {
+       "text": "لا تُؤْمِنُونَ بِاللَّهِ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَالرَّسُولُ يَدْعُوكُمْ لِتُؤْمِنُوا بِرَبِّكُمْ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَقَدْ أَخَذَ مِيثَاقَكُمْ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "What is the matter with you that you do not believe in God when the Messenger calls you to believe in your Lord, and He has already made a pledge with you, if you have faith?"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each blue-underlined clause, is it a حال? If so, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "لا تؤمنون...",
+      "والرسول...",
+      "وقد أخذ..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "لا تؤمنون...": [
+       "حال",
+       "منع الواو"
+      ],
+      "والرسول...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وقد أخذ...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "لا تؤمنون...": [
+       "حال",
+       "منع الواو"
+      ],
+      "والرسول...": [
+       "حال",
+       "وجوب الواو"
+      ],
+      "وقد أخذ...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "points": "2/3",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": [],
+     "rows": [],
+     "columns": [],
+     "answer": "All of them can be taken as haal in tarkeeb as \"you\" are in the state that \"you do not believe in....\". The first one doesn't take a waaw haaliyah because it's a فعل مضارع منفي with a dhameer raabit.\nThe second one is a jumlah ismiyyah which does not cotain a dhameer raabit, hence the waaw haaliyyah is necessary.\nThe third one is also optional because it is a فعل ماضي with a dhameer raabit.",
+     "answer_source": "feedback",
+     "my_response": "..",
+     "points": null,
+     "feedback": "All of them can be taken as haal in tarkeeb as \"you\" are in the state that \"you do not believe in....\". The first one doesn't take a waaw haaliyah because it's a فعل مضارع منفي with a dhameer raabit.\nThe second one is a jumlah ismiyyah which does not cotain a dhameer raabit, hence the waaw haaliyyah is necessary.\nThe third one is also optional because it is a فعل ماضي with a dhameer raabit."
+    }
+   ],
+   "flags": [
+    "Rows 'لا تؤمنون...' and 'وقد أخذ...' were scored 1/1 (green check) rather than shown a separate correct-answer key; row 'والرسول...' scored 0/1 and its correct answer is the one shown in the Correct answers block."
+   ]
+  },
+  {
+   "id": "haal/application/12",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q12",
+    "number": "12",
+    "images": [
+     "q059.png",
+     "q060.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال.\nIf it's not حال, choose ليست حالا and move on.\nIf it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "فتح زيدٌ بابَ الفصلِ ولَمْ يشْعُر الأستاذُ به",
+     "marked": [
+      {
+       "text": "زيدٌ",
+       "mark": "green underline"
+      },
+      {
+       "text": "ولَمْ يشْعُر الأستاذُ به",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "Zaid opened the classroom door and the teacher did not perceive."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the blue-underlined clause a حال? If so, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "ولم يشعر..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "ولم يشعر...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "ولم يشعر...": [
+       "حال",
+       "وجوب الواو"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": [],
+     "rows": [],
+     "columns": [],
+     "answer": "The waaw haaliyah is optional because the jumla is a فعل مصرع منفي بلم with the dhameer raabit.",
+     "answer_source": "feedback",
+     "my_response": ".the bi hi is not raabit t0 zaid",
+     "points": null,
+     "feedback": "The waaw haaliyah is optional because the jumla is a فعل مصرع منفي بلم with the dhameer raabit."
+    }
+   ],
+   "flags": [
+    "Student's 12b response begins with a leading '.' exactly as rendered in the image; unclear if this is part of the typed answer or a placeholder artifact."
+   ]
+  }
+ ]
+}

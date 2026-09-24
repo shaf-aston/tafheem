@@ -1,0 +1,34 @@
+{
+ "_comment": "Timelines tab knobs, read only by lib/timelineLayout.js. Content lives in backend/data/timelines; colours in theme.json's timeline group.",
+ "_comment-axis": "width-rem is the line's column on a wide screen: thin, so the opened event gets the page. Room for year, Hijri year and title.",
+ "axis": {
+  "width-rem": 17
+ },
+ "_comment-steps": "The steps inside an opened event are open on arrival. A step can be folded only when it is worth skimming past: it holds moments, its summary runs to fold-from-chars or more, or the data marks it aside (a side detail away from the main story), which also starts it folded.",
+ "steps": {
+  "fold-from-chars": 240
+ },
+ "_comment-asbab": "The side panel of asbab al-nuzul reports. Past search-from reports the list gets a search box; under it, a search box would be a control for a list you can already see all of.",
+ "asbab": {
+  "search-from": 12
+ },
+ "_comment-map": "px-per-degree turns lon/lat into drawing units; the view box is a section's lon/lat box times this. Views are twice as wide as tall so the map fills the reader's width; text and pins scale with the view's height, the side drawn at a fixed size. Places closer than merge-deg share one pin (Makkah, Hira, Arafat, al-Hudaybiyyah). A name goes right of its pin, or left when the right is taken; char-width guesses a letter's width as a share of the font size; label-gap is the space from pin centre to name, in pin radii. A name with no free side is left off; hovering shows it. max-rem caps how tall it is drawn, in rem so a short window does not letterbox it; min-rem keeps a phone map tall enough to read, trimming the empty east and west edges instead (views are centred on their pins). Drawing ratios: hit-pins is the invisible press ring and chosen-pins the chosen dot, both in pin radii (the chosen size is also the space a label keeps from other dots); pin-stroke and coast-stroke are line widths in pin radii; halo is the dark edge behind a name and baseline drops text onto its pin, both in font sizes; ascent and descent are how far a name reaches above and below its baseline, for the overlap check.",
+ "map": {
+  "px-per-degree": 20,
+  "font-per-height": 0.034,
+  "pin-per-height": 0.0096,
+  "merge-deg": 0.4,
+  "char-width": 0.58,
+  "label-gap": 2.2,
+  "max-rem": 24,
+  "min-rem": 18,
+  "hit-pins": 3,
+  "chosen-pins": 1.5,
+  "pin-stroke": 0.4,
+  "coast-stroke": 0.2,
+  "halo": 0.25,
+  "baseline": 0.33,
+  "ascent": 0.7,
+  "descent": 0.5
+ }
+}

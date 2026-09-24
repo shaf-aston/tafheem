@@ -1,0 +1,196 @@
+{
+ "batch": "mafool-lahu-fihi-lettered-03",
+ "questions": [
+  {
+   "id": "mafool-lahu-fihi/application/7",
+   "category": "tarkeeb",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "7",
+    "images": [
+     "q036.png",
+     "q037.png",
+     "q038.png"
+    ]
+   },
+   "type": "choose_sentence_ab",
+   "instructions": "Important instructions\n1. Look at the following sentences and considering the conditions of the مفعول له and where the Harf Jar is necessary and also considering the translation, choose from the 2 options by ticking A or B.\n2. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "صامَ زيدٌ ابتغاءً رضَا اللَّٰهِ",
+     "marked": [],
+     "en": "Zaid fasted because of wanting the pleasure of Allah."
+    },
+    {
+     "label": "B",
+     "ar": "صامَ زيدٌ مبتغيًا رضَا اللَّٰه",
+     "marked": [],
+     "en": "Zaid fasted because of wanting the pleasure of Allah."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose A or B",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "A",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "A",
+      "B"
+     ],
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": null,
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "idk",
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/application/8",
+   "category": "tarkeeb",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "8",
+    "images": [
+     "q039.png",
+     "q040.png",
+     "q041.png"
+    ]
+   },
+   "type": "choose_sentence_ab",
+   "instructions": "Important instructions\n1. Look at the following sentences and considering the conditions of the مفعول له and where the Harf Jar is necessary and also considering the translation, choose from the 2 options by ticking A or B.\n2. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "ابتعدتُ عن الأسد لخوفٍ",
+     "marked": [],
+     "en": "I distanced myself away from the lion because of fear."
+    },
+    {
+     "label": "B",
+     "ar": "ابتعدتُ عن الأسد خوفاً",
+     "marked": [],
+     "en": "I distanced myself away from the lion because of fear."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose A or B",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "B",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "A",
+      "B"
+     ],
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": null,
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "s",
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/application/9",
+   "category": "tarkeeb",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "9",
+    "images": [
+     "q042.png",
+     "q043.png",
+     "q044.png"
+    ]
+   },
+   "type": "choose_sentence_ab",
+   "instructions": "Important instructions\n1. Look at the following sentences and considering the conditions of the مفعول له and where the Harf Jar is necessary and also considering the translation, choose from the 2 options by ticking A or B.\n2. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "عاقب الوالدُ وَلَدَه (لِ) أن يؤدِّبَه",
+     "marked": [],
+     "en": "The father punished his son to discipline him"
+    },
+    {
+     "label": "B",
+     "ar": "عاقب الوالدُ وَلَدَه أن يؤدِّبَه",
+     "marked": [],
+     "en": "The father punished his son to discipline him"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose A or B",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "A",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "A"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": null,
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "lee",
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": []
+  }
+ ]
+}

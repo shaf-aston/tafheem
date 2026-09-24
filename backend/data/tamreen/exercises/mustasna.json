@@ -1,0 +1,1862 @@
+{
+ "title": "Exercise: Al-Mustasná YR3PT25-26 (Short Version)",
+ "form": "Exercise: Al-Mustasná YR3PT25-26 (Short Version)",
+ "harvested": "2026-09-17",
+ "rules": [
+  {
+   "id": "mustasna-r01",
+   "question": "المستثنى is...",
+   "options": [
+    "...an expression after an أداة الاستثناء which is exempt from the attribution applied to what is before the أداة الاستثناء..",
+    "...an expression before an أداة الاستثناء which is exempt from the attribution applied to what is after the أداة الاستثناء.."
+   ],
+   "answer": [
+    "...an expression after an أداة الاستثناء which is exempt from the attribution applied to what is before the أداة الاستثناء.."
+   ],
+   "tags": [
+    "mustasna",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mustasna-r02",
+   "question": "المستثنى will...",
+   "options": [
+    "...only be a مفرد.",
+    "...only be a جملة.",
+    "...generally be a مفرد but can be a جملة as well.",
+    "...generally be a جملة but can be a مفرد as well."
+   ],
+   "answer": [
+    "...only be a مفرد."
+   ],
+   "tags": [
+    "mustasna",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mustasna-r03",
+   "question": "The المستثنى will be...",
+   "options": [
+    "...مرفوع.",
+    "...مجرور.",
+    "...منصوب."
+   ],
+   "answer": [
+    "...منصوب.",
+    "...مجرور."
+   ],
+   "tags": [
+    "mustasna",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mustasna-r04",
+   "question": "A كلام موجَب is...",
+   "options": [
+    "...that مستثنى which was part of the مستثنى منه before being exempted.",
+    "...a sentence free of نفي, نهي or استفهام.",
+    "...a sentence which contains نفي, نهي or استفهام.",
+    "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+    "...where the مستثنى منه is absent from the sentence.",
+    "...where the مستثنى منه is present in the sentence."
+   ],
+   "answer": [
+    "...a sentence free of نفي, نهي or استفهام."
+   ],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mustasna-r05",
+   "question": "A كلام غير موجَب is...",
+   "options": [
+    "...a sentence which contains نفي, نهي or استفهام.",
+    "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+    "...where the مستثنى منه is present in the sentence.",
+    "...where the مستثنى منه is absent from the sentence.",
+    "...that مستثنى which was part of the مستثنى منه before being exempted.",
+    "...a sentence free of نفي, نهي or استفهام."
+   ],
+   "answer": [
+    "...a sentence which contains نفي, نهي or استفهام."
+   ],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mustasna-r06",
+   "question": "An استثناء مفرَّغ is...",
+   "options": [
+    "...a sentence which contains نفي, نهي or استفهام.",
+    "...where the مستثنى منه is absent from the sentence.",
+    "...where the مستثنى منه is present in the sentence.",
+    "...that مستثنى which was part of the مستثنى منه before being exempted.",
+    "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+    "...a sentence free of نفي, نهي or استفهام."
+   ],
+   "answer": [
+    "...where the مستثنى منه is absent from the sentence."
+   ],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "mustathna-minhu"
+   ]
+  },
+  {
+   "id": "mustasna-r07",
+   "question": "An استثناء غير مفرَّغ is...",
+   "options": [
+    "...a sentence free of نفي, نهي or استفهام.",
+    "...where the مستثنى منه is absent from the sentence.",
+    "...a sentence which contains نفي, نهي or استفهام.",
+    "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+    "...where the مستثنى منه is present in the sentence.",
+    "...that مستثنى which was part of the مستثنى منه before being exempted."
+   ],
+   "answer": [
+    "...where the مستثنى منه is present in the sentence."
+   ],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "mustathna-minhu"
+   ]
+  },
+  {
+   "id": "mustasna-r08",
+   "question": "Taking into consideration the above 4 scenarios, the إعراب of whatever comes after إلَّا will fall into...",
+   "options": [
+    "...4 categories: منصوب على المفعول به، منصوب على الحال، بدل المستثنى منه، منصوب على الاستثناء.",
+    "...3 categories: على حسبِ ما يَقتضيه العاملُ المذكور قبلَ \"إلا\"، بدل المستثنى منه، منصوب على الاستثناء.",
+    "...2 categories: بدل المستثنى منه، منصوب على الاستثناء.",
+    "...3 categories: منصوب على المفعول به، منصوب على الحال، منصوب على الاستثناء."
+   ],
+   "answer": [
+    "...3 categories: على حسبِ ما يَقتضيه العاملُ المذكور قبلَ \"إلا\"، بدل المستثنى منه، منصوب على الاستثناء."
+   ],
+   "tags": [
+    "mustasna",
+    "adat-istithna",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mustasna-r09",
+   "question": "A مستثنى متصل is...",
+   "options": [
+    "...a sentence which contains نفي, نهي or استفهام.",
+    "...where the مستثنى منه is present in the sentence.",
+    "...that مستثنى which was part of the مستثنى منه before being exempted.",
+    "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+    "...where the مستثنى منه is absent from the sentence.",
+    "...a sentence free of نفي, نهي or استفهام."
+   ],
+   "answer": [
+    "...that مستثنى which was part of the مستثنى منه before being exempted."
+   ],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa"
+   ]
+  },
+  {
+   "id": "mustasna-r10",
+   "question": "A مستثنى منقطع is...",
+   "options": [
+    "...a sentence free of نفي, نهي or استفهام.",
+    "...where the مستثنى منه is absent from the sentence.",
+    "...that مستثنى which was part of the مستثنى منه before being exempted.",
+    "...that مستثنى which was not part of the مستثنى منه before being exempted.",
+    "...where the مستثنى منه is present in the sentence.",
+    "...a sentence which contains نفي, نهي or استفهام."
+   ],
+   "answer": [
+    "...that مستثنى which was not part of the مستثنى منه before being exempted."
+   ],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa"
+   ]
+  },
+  {
+   "id": "mustasna-r11",
+   "question": "An إلَّا, if called غير ملغاة means...",
+   "options": [
+    "...it is active as an أداة الاستثناء.",
+    "...it is not active as an أداة الاستثناء, rather, it's been cancelled as an أداة الاستثناء and is now an أداة الحصر."
+   ],
+   "answer": [
+    "...it is active as an أداة الاستثناء."
+   ],
+   "tags": [
+    "mustasna",
+    "adat-istithna"
+   ]
+  },
+  {
+   "id": "mustasna-r12",
+   "question": "An إلَّا, if called ملغاة means...",
+   "options": [
+    "...it is active as an أداة الاستثناء.",
+    "...it is not active as an أداة الاستثناء, rather, it's been cancelled as an أداة الاستثناء and is now an أداة الحصر."
+   ],
+   "answer": [
+    "...it is not active as an أداة الاستثناء, rather, it's been cancelled as an أداة الاستثناء and is now an أداة الحصر."
+   ],
+   "tags": [
+    "mustasna",
+    "adat-istithna",
+    "adat-hasr"
+   ]
+  },
+  {
+   "id": "mustasna-r13",
+   "question": "An أداة الحصر provides the sentence...",
+   "options": [
+    "...a meaning of exemption.",
+    "...a meaning of emphasis.",
+    "...a meaning of exclusivity.",
+    "...a meaning of certainty."
+   ],
+   "answer": [
+    "...a meaning of exclusivity."
+   ],
+   "tags": [
+    "mustasna",
+    "adat-hasr"
+   ]
+  },
+  {
+   "id": "mustasna-r14",
+   "question": "If كلام غير موجب and استثناء غير مفرغ combine and the مستثنى is متصل...",
+   "options": [
+    "...then the مثتثنى will take the place of the مستثنى منه and إلا will be cancelled.",
+    "...then the مثتثنى will only be منصوب على الاستثناء and إلا will be active.",
+    "...then the مثتثنى can be منصوب على الاستثناء and إلا will be active or it can be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled.",
+    "...then the مثتثنى will only be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled."
+   ],
+   "answer": [
+    "...then the مثتثنى can be منصوب على الاستثناء and إلا will be active or it can be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled."
+   ],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "adat-istithna"
+   ]
+  },
+  {
+   "id": "mustasna-r15",
+   "question": "If كلام غير موجب and استثناء غير مفرغ combine and the مستثنى is منقطع...",
+   "options": [
+    "...then the مثتثنى will only be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled.",
+    "...then the مثتثنى can be منصوب على الاستثناء and إلا will be active or it can be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled.",
+    "...then the مثتثنى will only be منصوب على الاستثناء and إلا will be active.",
+    "...then the مثتثنى will take the place of the مستثنى منه and إلا will be cancelled."
+   ],
+   "answer": [
+    "...then the مثتثنى will only be منصوب على الاستثناء and إلا will be active."
+   ],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "adat-istithna"
+   ]
+  },
+  {
+   "id": "mustasna-r16",
+   "question": "If كلام غير موجب and استثناء مفرغ combine...",
+   "options": [
+    "...then the مثتثنى will only be منصوب على الاستثناء and إلا will be active.",
+    "...then the مثتثنى can be منصوب على الاستثناء and إلا will be active or it can be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled.",
+    "...then the مثتثنى will take the place of the مستثنى منه and إلا will be cancelled.",
+    "...then the مثتثنى will only be بدل of the مستثنى منه and will follow the إعراب of the مستثنى منه and إلا will be cancelled."
+   ],
+   "answer": [
+    "...then the مثتثنى will take the place of the مستثنى منه and إلا will be cancelled."
+   ],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "adat-hasr"
+   ]
+  },
+  {
+   "id": "mustasna-r17",
+   "question": "The مستثنى منقطع will always be...",
+   "options": [
+    "...مجرور.",
+    "...منصوب.",
+    "...مرفوع."
+   ],
+   "answer": [
+    "...منصوب."
+   ],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa"
+   ]
+  },
+  {
+   "id": "mustasna-r18",
+   "question": "If غير is used as an أداة الاستثناء then the state of the word غير itself will be...",
+   "options": [
+    "...whatever the state of the مستثنى منه is.",
+    "...whatever the state of the word after إلّا would be had غير been replaced by إلّا but تقديري (hidden).",
+    "...whatever the state of the word after إلّا would be had غير been replaced by إلّا.",
+    "...whatever the state of the word after غير is."
+   ],
+   "answer": [
+    "...whatever the state of the word after إلّا would be had غير been replaced by إلّا."
+   ],
+   "tags": [
+    "mustasna",
+    "adat-istithna"
+   ]
+  },
+  {
+   "id": "mustasna-r19",
+   "question": "If غير is used as an أداة الاستثناء then the word after it will be...",
+   "options": [
+    "...مجرور.",
+    "...مبني على الكسر.",
+    "...مرفوع.",
+    "...منصوب."
+   ],
+   "answer": [
+    "...مجرور."
+   ],
+   "tags": [
+    "mustasna",
+    "adat-istithna"
+   ]
+  },
+  {
+   "id": "mustasna-r20",
+   "question": "If عدا، خلا، حاش are used as أدواة الاستثناء then the word after them will be...",
+   "options": [
+    "...مرفوع.",
+    "...مجرور.",
+    "...مبني على الضم.",
+    "...منصوب."
+   ],
+   "answer": [
+    "...مجرور.",
+    "...منصوب."
+   ],
+   "tags": [
+    "mustasna",
+    "adat-istithna"
+   ]
+  },
+  {
+   "id": "mustasna-r21",
+   "question": "If سوى is used as an أداة الاستثناء then the state of the word سوى itself will be...",
+   "options": [
+    "...whatever the state of the word after إلّا would be had سوى been replaced by إلّا.",
+    "...whatever the state of the مستثنى منه is.",
+    "...whatever the state of the word after إلّا would be had سوى been replaced by إلّا but تقديري (hidden).",
+    "...whatever the state of the word after سوى is."
+   ],
+   "answer": [
+    "...whatever the state of the word after إلّا would be had سوى been replaced by إلّا but تقديري (hidden)."
+   ],
+   "tags": [
+    "mustasna",
+    "adat-istithna"
+   ]
+  },
+  {
+   "id": "mustasna-r22",
+   "question": "If ما عدا، ما خلا are used as أداتا الاستثناء then the word after them will be...",
+   "options": [
+    "...منصوب.",
+    "...مرفوع.",
+    "...مبني على الضم.",
+    "...مجرور."
+   ],
+   "answer": [
+    "...منصوب."
+   ],
+   "tags": [
+    "mustasna",
+    "adat-istithna"
+   ]
+  },
+  {
+   "id": "mustasna-r23",
+   "question": "The ما on ما عدا، ما خلا is...",
+   "options": [
+    "...a ما استفهامية.",
+    "...a ما موصولة.",
+    "...a ما نافية.",
+    "...a ما مصدرية."
+   ],
+   "answer": [
+    "...a ما مصدرية."
+   ],
+   "tags": [
+    "mustasna",
+    "adat-istithna"
+   ]
+  }
+ ],
+ "examples": [
+  {
+   "id": "mustasna-e01",
+   "section": "Application of Rules",
+   "picture": "mustasna-00.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ":"
+     ],
+     "answer": {
+      ":": [
+       "غير ملغاة",
+       "موجب",
+       "غير مفرغ",
+       "متصل"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "عمر"
+     ],
+     "answer": {
+      "عمر": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "عمرُ",
+      "B": "عمرَ",
+      "C": "عمرٌ",
+      "D": "عمرٍ"
+     }
+    }
+   ],
+   "sentence": "الطلاب فتحوا كتبهم إلا عمر",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e02",
+   "section": "Application of Rules",
+   "picture": "mustasna-01.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "غير ملغاة",
+       "موجب",
+       "غير مفرغ",
+       "منقطع"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "شعبان"
+     ],
+     "answer": {
+      "شعبان": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "شعبانُ",
+      "B": "شعبانَ",
+      "C": "شعبانِ",
+      "D": "شعبانٍ"
+     }
+    }
+   ],
+   "sentence": "صام زيد رمضان إلا شعبان",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e03",
+   "section": "Application of Rules",
+   "picture": "mustasna-02.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "ملغاة",
+       "غير موجب",
+       "مفرغ",
+       "N/A"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "قلم"
+     ],
+     "answer": {
+      "قلم": [
+       "D"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "قلمٌ",
+      "B": "قلمَ",
+      "C": "قلمِ",
+      "D": "قلمٍ"
+     }
+    }
+   ],
+   "sentence": "ما كتبتُ إلا بقلم",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "adat-hasr",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e04",
+   "section": "Application of Rules",
+   "picture": "mustasna-03.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "غير ملغاة",
+       "غير موجب",
+       "غير مفرغ",
+       "منقطع"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "اتباع الظن"
+     ],
+     "answer": {
+      "اتباع الظن": [
+       "D"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "اتباعٍ الظن",
+      "B": "اتباعِ الظن",
+      "C": "اتباعُ الظن",
+      "D": "اتباعَ الظن"
+     }
+    }
+   ],
+   "sentence": "ما لهم به من علم إلا اتباع الظن",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e05",
+   "section": "Application of Rules",
+   "picture": "mustasna-04.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "غير ملغاة",
+       "موجب",
+       "غير مفرغ",
+       "متصل"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "الكبير"
+     ],
+     "answer": {
+      "الكبير": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "الكبيرِ",
+      "B": "الكبيرَ",
+      "C": "الكبيرُ",
+      "D": "الكبيرْ"
+     }
+    }
+   ],
+   "sentence": "الأصنامُ كُسرتْ إلا الكبير",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e06",
+   "section": "Application of Rules",
+   "picture": "mustasna-05.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "غير ملغاة",
+       "موجب",
+       "غير مفرغ",
+       "منقطع"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "الطبّاخ"
+     ],
+     "answer": {
+      "الطبّاخ": [
+       "C"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "الطبَّاخِ",
+      "B": "الطبَّاخُ",
+      "C": "الطبَّاخَ",
+      "D": "الطبَّاخْ"
+     }
+    }
+   ],
+   "sentence": "كتبتُ رسالةً إلى المُدرّسِين إلا الطبَّاخ",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e07",
+   "section": "Application of Rules",
+   "picture": "mustasna-06.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "غير ملغاة",
+       "موجب",
+       "غير مفرغ",
+       "متصل"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "بكر"
+     ],
+     "answer": {
+      "بكر": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "بكرٌ",
+      "B": "بكرًا",
+      "C": "بكرٍ",
+      "D": "بكرَ"
+     }
+    }
+   ],
+   "sentence": "الرجال أكرمُوا زيدا ما خلا بكر",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "adat-istithna",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e08",
+   "section": "Application of Rules",
+   "picture": "mustasna-07.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "ملغاة",
+       "غير ملغاة",
+       "غير موجب",
+       "غير مفرغ",
+       "متصل"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "طلحة"
+     ],
+     "answer": {
+      "طلحة": [
+       "D"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "طلحةٌ",
+      "B": "طلحةٍ",
+      "C": "طلحةُ",
+      "D": "طلحةَ"
+     }
+    }
+   ],
+   "sentence": "ما مررت بأحدٍ إلا طلحة",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "adat-hasr",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e09",
+   "section": "Application of Rules",
+   "picture": "mustasna-08.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "غير ملغاة",
+       "غير موجب",
+       "غير مفرغ",
+       "منقطع"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "الرجال"
+     ],
+     "answer": {
+      "الرجال": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "الرجالُ",
+      "B": "الرجالَ",
+      "C": "الرجالِ",
+      "D": "الرجالْ"
+     }
+    }
+   ],
+   "sentence": "لم يجلس الأولاد إلا الرجال",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e10",
+   "section": "Application of Rules",
+   "picture": "mustasna-09.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "غير ملغاة",
+       "موجب",
+       "غير مفرغ",
+       "متصل"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "غير يوم"
+     ],
+     "answer": {
+      "غير يوم": [
+       "A"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "غيرَ يومٍ",
+      "B": "غيرِ يومٍ",
+      "C": "غيرُ يومٍ",
+      "D": "غيرٌ يومٌ"
+     }
+    }
+   ],
+   "sentence": "صام زيد رمضان غير يوم",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "adat-istithna",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e11",
+   "section": "Application of Rules",
+   "picture": "mustasna-10.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "ملغاة",
+       "غير موجب",
+       "مفرغ",
+       "N/A"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "الإحسان"
+     ],
+     "answer": {
+      "الإحسان": [
+       "D"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "الإحسانَ",
+      "B": "الإحسانِ",
+      "C": "الإحسانٌ",
+      "D": "الإحسانُ"
+     }
+    }
+   ],
+   "sentence": "هل جزاء الإحسانِ إلا الإحسان",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "adat-hasr",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e12",
+   "section": "Application of Rules",
+   "picture": "mustasna-11.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "For this sentence, which combination applies: is إلا active or cancelled (ملغاة means إلا is cancelled and works only as a restriction word, غير ملغاة means it is a true exception word), is the sentence positive or negative (موجب/غير موجب), is the excepted-from group missing from the sentence or present (مفرغ/غير مفرغ), and, if present, is the excepted word part of that group or separate from it (متصل/منقطع) - or does that last question not apply (N/A)? Tick every category that fits.",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "غير ملغاة",
+       "موجب",
+       "غير مفرغ",
+       "متصل"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "الله"
+     ],
+     "answer": {
+      "الله": [
+       "C"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "اللهْ",
+      "B": "اللهُ",
+      "C": "اللهَ",
+      "D": "اللهِ"
+     }
+    }
+   ],
+   "sentence": "كلُّ شيءٍ ما عدا الله باطلٌ",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "adat-istithna",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e13",
+   "section": "Application of Rules",
+   "picture": "mustasna-12.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "ملغاة",
+       "غير موجب",
+       "مفرغ",
+       "N/A"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "طاهر"
+     ],
+     "answer": {
+      "طاهر": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "طاهرٌ",
+      "B": "طاهرًا",
+      "C": "طاهرَ",
+      "D": "طاهرٍ"
+     }
+    }
+   ],
+   "sentence": "ما قرأ زيد القرآنَ إلا طاهر",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "adat-hasr",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e14",
+   "section": "Application of Rules",
+   "picture": "mustasna-13.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "ملغاة",
+       "غير موجب",
+       "مفرغ",
+       "N/A"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "غير دجاجة"
+     ],
+     "answer": {
+      "غير دجاجة": [
+       "D"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "غيرُ دجاجةً",
+      "B": "غيرُ دجاجةٍ",
+      "C": "غيرِ دجاجةٌ",
+      "D": "غيرَ دجاجةٍ"
+     }
+    }
+   ],
+   "sentence": "ما أكلتْ الثعلب غير دجاجة",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "adat-istithna",
+    "adat-hasr",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e15",
+   "section": "Application of Rules",
+   "picture": "mustasna-14.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "غير ملغاة",
+       "موجب",
+       "غير مفرغ",
+       "متصل"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "بكر"
+     ],
+     "answer": {
+      "بكر": [
+       "A",
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "بكرًا",
+      "B": "بكرٍ",
+      "C": "بكرَ",
+      "D": "بكرٌ"
+     }
+    }
+   ],
+   "sentence": "الرجال أكرمُوا زيدا حاشا بكر",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "adat-istithna",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e16",
+   "section": "Application of Rules",
+   "picture": "mustasna-15.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "ملغاة",
+       "غير موجب",
+       "مفرغ",
+       "N/A"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "نصرة"
+     ],
+     "answer": {
+      "نصرة": [
+       "C"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "نَصرَةٍ",
+      "B": "نَصرَةٌ",
+      "C": "نَصرَةً",
+      "D": "نَصرَةَ"
+     }
+    }
+   ],
+   "sentence": "لا أنصرُ زيدا إلا نَصرَة",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "adat-hasr",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e17",
+   "section": "Application of Rules",
+   "picture": "mustasna-16.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "ملغاة",
+       "غير ملغاة",
+       "غير موجب",
+       "غير مفرغ",
+       "متصل"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "النخيل"
+     ],
+     "answer": {
+      "النخيل": [
+       "A",
+       "D"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "النخيلُ",
+      "B": "النخيلً",
+      "C": "النخيلِ",
+      "D": "النخيلَ"
+     }
+    }
+   ],
+   "sentence": "لم تثمر الأشجار إلا النخيل",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "adat-hasr",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e18",
+   "section": "Application of Rules",
+   "picture": "mustasna-17.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "غير ملغاة",
+       "غير موجب",
+       "غير مفرغ",
+       "منقطع"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Choose from the 4 options:",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "rows": [
+      "الموتة الأولى"
+     ],
+     "answer": {
+      "الموتة الأولى": [
+       "B"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "الموتةِ الأولى",
+      "B": "الموتةَ الأولى",
+      "C": "الموتةً الأولى",
+      "D": "الموتةُ الأولى"
+     }
+    }
+   ],
+   "sentence": "لا يذوقون فيها الموت إلا الموتة الأولى",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "istithna-anwaa",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e19",
+   "section": "Application of Rules",
+   "picture": "mustasna-18.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "ملغاة",
+       "غير موجب",
+       "مفرغ",
+       "N/A"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Label each numbered word or phrase (؟1 to ؟8) in the diagram with its grammatical role, choosing from the options given.",
+     "picture": "mustasna-19.png",
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مضاف",
+      "مفعول مطلق",
+      "حال",
+      "منعوت",
+      "مضاف إليه",
+      "جملة فعلية خبرية",
+      "مفعول به",
+      "نعت",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "rows": [
+      "?1",
+      "?2",
+      "?3",
+      "?4",
+      "?5",
+      "?6",
+      "?7",
+      "?8"
+     ],
+     "answer": {
+      "?1": [
+       "فاعل"
+      ],
+      "?2": [
+       "مضاف"
+      ],
+      "?3": [
+       "مضاف إليه"
+      ],
+      "?5": [
+       "أداة الحصر"
+      ],
+      "?6": [
+       "فاعل"
+      ],
+      "?8": [
+       "مفعول به"
+      ],
+      "?4": [
+       "ذوالحال"
+      ],
+      "?7": [
+       "حال",
+       "جملة فعلية خبرية"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "?1": "زيد",
+      "?2": "صلاة",
+      "?3": "الفجر",
+      "?4": "صلاة الفجر",
+      "?5": "إلا",
+      "?6": "وقتها",
+      "?7": "ذهب وقتها",
+      "?8": "صلاة الفجر إلا ذهب وقتها"
+     }
+    }
+   ],
+   "sentence": "ما صلى زيد صلاة الفجر إلا ذهب وقتها",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "adat-hasr",
+    "haal",
+    "zul-haal",
+    "haal-jumla-filiyya",
+    "mafool-bihi",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "mustasna-e20",
+   "section": "Application of Rules",
+   "picture": "mustasna-20.png",
+   "instruction": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "ملغاة | غير ملغاة موجب | غير موجب مفرغ | غير مفرغ متصل | منقطع | Only choose 1 from this category: N/A",
+     "options": [
+      "ملغاة",
+      "غير ملغاة",
+      "موجب",
+      "غير موجب",
+      "مفرغ",
+      "غير مفرغ",
+      "متصل",
+      "منقطع",
+      "N/A"
+     ],
+     "rows": [
+      ">"
+     ],
+     "answer": {
+      ">": [
+       "ملغاة",
+       "غير موجب",
+       "مفرغ",
+       "N/A"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Label each numbered word or phrase (؟1 to ؟8) in the diagram with its grammatical role, choosing from the options given.",
+     "picture": "mustasna-21.png",
+     "options": [
+      "أداة الإستثناء",
+      "ذوالحال",
+      "مبتدا",
+      "حال",
+      "الواو المعية",
+      "فعل",
+      "خبر",
+      "جملة إسمية خبرية",
+      "مفعول به",
+      "الواو الحالية",
+      "أداة الحصر",
+      "فاعل"
+     ],
+     "rows": [
+      "?1",
+      "?2",
+      "?3",
+      "?4",
+      "?5",
+      "?6",
+      "?7",
+      "?8"
+     ],
+     "answer": {
+      "?1": [
+       "فعل",
+       "فاعل"
+      ],
+      "?2": [
+       "ذوالحال"
+      ],
+      "?3": [
+       "أداة الحصر"
+      ],
+      "?4": [
+       "الواو الحالية"
+      ],
+      "?5": [
+       "مبتدا"
+      ],
+      "?6": [
+       "خبر"
+      ],
+      "?8": [
+       "مفعول به"
+      ],
+      "?7": [
+       "حال",
+       "جملة إسمية خبرية"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "?1": "آكل",
+      "?2": "الطعام",
+      "?3": "إلا",
+      "?4": "و",
+      "?5": "هو",
+      "?6": "حارّ",
+      "?7": "و هو حارّ",
+      "?8": "الطعام إلا و هو حارّ"
+     }
+    }
+   ],
+   "sentence": "لا آكل الطعام إلا و هو حارّ",
+   "marked": [],
+   "tags": [
+    "mustasna",
+    "adat-hasr",
+    "haal",
+    "zul-haal",
+    "waw-haaliyya",
+    "haal-jumla-ismiyya",
+    "mafool-bihi",
+    "tatbeeq-tarkeeb"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,3144 @@
+{
+ "root_letter": "ث",
+ "entry_count": 86,
+ "entries": [
+  {
+   "root": "ثج",
+   "root_letters": [
+    "ث",
+    "ج"
+   ],
+   "core_meaning": "الثاء والجيم أصل واحد، وهو صبّ الشيء",
+   "core_meaning_english": "pouring/gushing of a thing",
+   "sarf_pattern": "المضاعف",
+   "pdf_page_index": 413,
+   "printed_page_number": "367",
+   "variances": [
+    {
+     "usage": "ثجّ الماء",
+     "meaning": "صبّه",
+     "meaning_english": "he poured the water"
+    },
+    {
+     "usage": "ماء ثجّاج",
+     "meaning": "أي صبّاب",
+     "meaning_english": "heavily-pouring water",
+     "citation": "وأنزلنا من المعصرات ماء ثجّاجاً (Qur'an)"
+    },
+    {
+     "usage": "اكتظّ الوادي بثجيج الماء",
+     "meaning": "إذا بلغ ضريره",
+     "meaning_english": "the valley became crowded/choked with the gushing of water when it reached its full banks",
+     "citation": "أبو ذؤيب: سقى أمّ عمرو كلّ آخر ليلة حناتم مزن ماؤهنّ ثجيج"
+    },
+    {
+     "usage": "العجّ والثجّ",
+     "meaning": "العجّ رفع الصوت بالتلبية، والثجّ سيلان دماء الهدي",
+     "meaning_english": "raising the voice in talbiyah (العجّ) and the flowing of the sacrificial animal's blood (الثجّ)",
+     "citation": "حديث: أفضل الحج العجّ والثجّ"
+    },
+    {
+     "usage": "إني أثجّه ثجّا",
+     "meaning": "من الحديث في المستحاضة، مثال على الثجّ",
+     "meaning_english": "I am making it flow forth — cited from a hadith about a woman with prolonged menstrual bleeding",
+     "citation": "حديث المستحاضة"
+    }
+   ]
+  },
+  {
+   "root": "ثر",
+   "root_letters": [
+    "ث",
+    "ر"
+   ],
+   "core_meaning": "الثاء والراء قياس لا يختلف، وهو غزر الشيء الغزير",
+   "core_meaning_english": "abundance/copiousness of a thing",
+   "sarf_pattern": "المضاعف",
+   "pdf_page_index": 413,
+   "printed_page_number": "367",
+   "notes": "Entry continues onto page 368 (pdf index 414).",
+   "variances": [
+    {
+     "usage": "سحاب ثرّ",
+     "meaning": "أي غزير",
+     "meaning_english": "copious/abundant cloud (heavy rain-cloud)"
+    },
+    {
+     "usage": "عين ثرّة",
+     "meaning": "وهي سحابة تنشأ من قبل القبلة",
+     "meaning_english": "an abundant spring/eye, or a cloud that rises from the direction of the qiblah",
+     "citation": "عنترة: جادت عليه كل عين ثرّة فتركن كل قرارة كالدرهم"
+    },
+    {
+     "usage": "ثررت الشيء وثريته",
+     "meaning": "أي نديته",
+     "meaning_english": "I moistened the thing"
+    },
+    {
+     "usage": "ناقة ثرّة",
+     "meaning": "غزيرة",
+     "meaning_english": "a copious/heavy-milking she-camel"
+    },
+    {
+     "usage": "طعنة ثرّة",
+     "meaning": "إذا دفعت الدم دفعاً بغزر وكثرة",
+     "meaning_english": "a spear-thrust that gushes blood copiously"
+    },
+    {
+     "usage": "الثرثار",
+     "meaning": "الرجل الكثير الكلام",
+     "meaning_english": "a man who talks excessively/a chatterer",
+     "citation": "حديث: أبغضكم إليّ الثرثارون المتفيهقون"
+    },
+    {
+     "usage": "الثرثار",
+     "meaning": "واد بعينه",
+     "meaning_english": "a specific named valley (place name)",
+     "citation": "قال الأخطل: لعمري لقد لاقت سليم وعامر على جانب الثرثار راغية البكر"
+    }
+   ]
+  },
+  {
+   "root": "ثط",
+   "root_letters": [
+    "ث",
+    "ط"
+   ],
+   "core_meaning": "الثاء والطاء كلمة واحدة، فالثطط خفة اللحية",
+   "core_meaning_english": "sparseness/thinness of the beard",
+   "sarf_pattern": "المضاعف",
+   "pdf_page_index": 414,
+   "printed_page_number": "368",
+   "notes": "Corrected core_meaning: 'فالتطاط' in the source extraction was a misreading of 'فالثطط' (the noun pattern from root ث-ط, matching the stated meaning).",
+   "variances": [
+    {
+     "usage": "الرجل ثطّ",
+     "meaning": "خفيف اللحية",
+     "meaning_english": "a man with a sparse/thin beard"
+    }
+   ]
+  },
+  {
+   "root": "ثع",
+   "root_letters": [
+    "ث",
+    "ع"
+   ],
+   "core_meaning": "الثاء والعين كلمة واحدة: الثّعّ القيء",
+   "core_meaning_english": "vomiting",
+   "sarf_pattern": "المضاعف",
+   "pdf_page_index": 414,
+   "printed_page_number": "368",
+   "variances": [
+    {
+     "usage": "ثعّ ثعّة",
+     "meaning": "إذا قاء قيئة",
+     "meaning_english": "he vomited (a single act of vomiting)"
+    }
+   ]
+  },
+  {
+   "root": "ثل",
+   "root_letters": [
+    "ث",
+    "ل"
+   ],
+   "core_meaning": "الثاء واللام أصلان متباينان: أحدهما التجثّم، والآخر السقوط والهدم والذلّ",
+   "core_meaning_english": "two distinct senses: (1) crouching/settling in a mass, (2) falling, demolition, and abasement",
+   "sarf_pattern": "المضاعف",
+   "pdf_page_index": 414,
+   "printed_page_number": "368",
+   "notes": "Entry is cut off mid-poetry citation (Labid) at bottom of page 368; continues onto the next page not included in this batch.",
+   "variances": [
+    {
+     "usage": "الثّلّة",
+     "meaning": "الجماعة من الغنم، وبعضهم يخص بهذا الاسم الضأن",
+     "meaning_english": "a flock/group of sheep, specifically ewes by some accounts"
+    },
+    {
+     "usage": "حبل ثلّة",
+     "meaning": "أي صوف",
+     "meaning_english": "a rope of wool"
+    },
+    {
+     "usage": "كساء جيّد الثلّة",
+     "meaning": "جودة الصوف",
+     "meaning_english": "a garment of good wool-quality",
+     "citation": "قد قرنوني بامرئ قثول رثّ كبل الثلة المبتذل (uncertain reading)"
+    },
+    {
+     "usage": "الثّلّة",
+     "meaning": "الجماعة من الناس",
+     "meaning_english": "a group/company of people",
+     "citation": "القرآن: ثلّة من الأولين وثلّة من الآخرين"
+    },
+    {
+     "usage": "ثلّت البيت",
+     "meaning": "هدمته",
+     "meaning_english": "I demolished the house"
+    },
+    {
+     "usage": "الثّلّة",
+     "meaning": "تراب البئر",
+     "meaning_english": "the excavated earth/dirt of a well"
+    },
+    {
+     "usage": "الثّلل",
+     "meaning": "الهلاك",
+     "meaning_english": "destruction/perishing",
+     "citation": "قال لبيد (poem cut off, continues on next page)"
+    }
+   ]
+  },
+  {
+   "root": "ثم",
+   "root_letters": [
+    "ث",
+    "م"
+   ],
+   "core_meaning": "الثاء والميم أصلٌ واحد، هو اجتماعُ الشيء في لِين",
+   "core_meaning_english": "the gathering of a thing together with softness/looseness",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَمَمْتُ الشيءَ ثَمّاً",
+     "meaning": "إذا جمعتَه، وأكثرُ ما يُستعمل في الحشيش",
+     "meaning_english": "to gather a thing together, mostly used of dried grass/herbage",
+     "citation": ""
+    },
+    {
+     "usage": "القبضة من الحشيش",
+     "meaning": "يقال لها الثُّمَّة",
+     "meaning_english": "a handful of dried grass is called ath-thumma",
+     "citation": ""
+    },
+    {
+     "usage": "الثُّمَام",
+     "meaning": "شجرٌ ضعيف، وربما سُمّي به الرجل",
+     "meaning_english": "a weak/frail plant (thumaam); sometimes used as a man's name",
+     "citation": "جعلَتْ لها عُودَيْنِ مِنْ نَشَمٍ وآخَرَ من ثُمامَهْ"
+    },
+    {
+     "usage": "الثُّمام (قول آخر)",
+     "meaning": "ما كُسر من أغصان الشجر فوُضع لنَضْد الثياب، فإذا يَبِس فهو ثُمام",
+     "meaning_english": "broken tree branches laid down to stack clothes on, which once dried is called thumaam",
+     "citation": ""
+    },
+    {
+     "usage": "ثَمَمْتُ الشيءَ أثُمُّه ثَمّاً",
+     "meaning": "إذا جمعته ورَمَمْتَه",
+     "meaning_english": "to gather it and mend/tidy it",
+     "citation": "ومن الحديث: كنّا أهلَ ثَمٍّ ورَمٍّ، أي كنّا نَثُمُّه ثَمّاً أي نجمعُه جمعاً"
+    }
+   ],
+   "pdf_page_index": 415,
+   "printed_page_number": "369",
+   "notes": "Entry continues onto page 416 (index 416)."
+  },
+  {
+   "root": "ثم",
+   "root_letters": [
+    "ث",
+    "م"
+   ],
+   "core_meaning": "(تكملة) الثاء والميم — اجتماع الشيء في لين",
+   "core_meaning_english": "continuation: gathering of a thing with softness",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَمَمْتُ حَسْوِى وَوَذَأْتُ بِشْراً",
+     "meaning": "بيت شعر يذكر فيه ثممت",
+     "meaning_english": "verse using the form 'thamamtu'",
+     "citation": "ثَمَمْتُ حَسْوِى وَوَذَأْتُ بِشْراً فبئس مُعَرِّسُ الرَّكْبِ السِّغاب"
+    },
+    {
+     "usage": "ثَمَّتِ الشاةُ النَّبْتَ بفيها",
+     "meaning": "قلعتْه",
+     "meaning_english": "the sheep pulled up the plant with its mouth",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 416,
+   "printed_page_number": "370",
+   "notes": "Continuation of the ثم entry begun on page 415/369. Corrected citation: original scan reads 'ثَمَمْتُ حَسْوِى وَوَذَأْتُ بِشْراً' (with the وَ before وذأت), which the prior extraction had dropped."
+  },
+  {
+   "root": "ثن",
+   "root_letters": [
+    "ث",
+    "ن"
+   ],
+   "core_meaning": "الثاء والنون أصلٌ واحد، وهو نباتٌ من شَعرٍ أو غيره",
+   "core_meaning_english": "growth/tuft of hair or similar",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الثُّنَّة",
+     "meaning": "الشَّعَر المُشْرِف على رُسْغ الدابة من خَلْف",
+     "meaning_english": "the tuft of hair overhanging the back of an animal's fetlock",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّنّ (من غير الشَّعَر)",
+     "meaning": "حُطام اليَبيس",
+     "meaning_english": "crumbled dry withered plant matter",
+     "citation": "فظَلَّنَ يَخْبِطْنَ هَشِيمَ الثَّنِّ بَعْدَ عَمِيمِ الرَّوْضَةِ المُغِنِّ"
+    },
+    {
+     "usage": "الثُّنَّة (قول آخر)",
+     "meaning": "فادون السُّرَّة من أسفل البطن من الدابة، ولعلّه بشُعَيرات يكون ثَمَّ",
+     "meaning_english": "the area below the navel on an animal's underside, perhaps where small hairs grow",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 416,
+   "printed_page_number": "370",
+   "notes": ""
+  },
+  {
+   "root": "ثأ",
+   "root_letters": [
+    "ث",
+    "أ"
+   ],
+   "core_meaning": "الثاء والهمزة، كلمتان ليستا أصلاً",
+   "core_meaning_english": "not a true unified root — two unrelated usages",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَأْثَأْتُ بالإبل",
+     "meaning": "صِحْتُ بها",
+     "meaning_english": "I called out/shouted at the camels",
+     "citation": ""
+    },
+    {
+     "usage": "فثَأثأتُ منه",
+     "meaning": "لقيتُ فلاناً فثأثأتُ منه، أي هِبتُه",
+     "meaning_english": "I met so-and-so and shrank back from him, i.e. I feared/revered him",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 416,
+   "printed_page_number": "370",
+   "notes": "Corrected first usage: page reads 'ثَأْثَأْتُ بالإبل: صِحْتُ بها' (first-person, 'I called out to the camels'), not the prior extraction's third-person 'ثَأْثَأَتِ الإبل'."
+  },
+  {
+   "root": "ثب",
+   "root_letters": [
+    "ث",
+    "ب"
+   ],
+   "core_meaning": "الثاء والباء كلمةٌ ليست في الكتابين، وإن صحّت فهي تدلّ على تَناهي الشيء",
+   "core_meaning_english": "not found in the two reference books (Khalil's and Ibn Durayd's); if valid, indicates a thing's reaching its utmost/completion",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَبَّ الأمرُ",
+     "meaning": "إذا تمّ",
+     "meaning_english": "the matter was completed",
+     "citation": ""
+    },
+    {
+     "usage": "الثّابّة",
+     "meaning": "المرأة الهَرِمة",
+     "meaning_english": "a decrepit/very old woman",
+     "citation": ""
+    },
+    {
+     "usage": "أشابّةٌ أم ثابّةٌ؟",
+     "meaning": "عبارة يقولونها (تساؤل بين شابّة وهَرِمة)",
+     "meaning_english": "a saying asking whether a woman is young or decrepitly old",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 416,
+   "printed_page_number": "370",
+   "notes": "This entry ends on page 416 — page 417 opens with a new section heading (باب الثاء والجيم وما يشابهما) and the ثجر entry, not a continuation of ثب. The prior note claiming continuation onto page 417 was incorrect."
+  },
+  {
+   "root": "ثجر",
+   "root_letters": [
+    "ث",
+    "ج",
+    "ر"
+   ],
+   "core_meaning": "الثاء والجيم والراء أصلٌ واحد، يدلّ على مُتَّسَع الشيء وعِرَضه",
+   "core_meaning_english": "the wide/broad part of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَجْرة الوادي",
+     "meaning": "وسطُه وما اتَّسَع منه",
+     "meaning_english": "the middle and widened part of a valley",
+     "citation": ""
+    },
+    {
+     "usage": "ورقٌ ثَجْرٌ",
+     "meaning": "أي عريض",
+     "meaning_english": "broad leaves",
+     "citation": ""
+    },
+    {
+     "usage": "كلّ شيء عرَّضته",
+     "meaning": "فقد ثجَّرتَه",
+     "meaning_english": "to widen/broaden anything is to 'thajjara' it",
+     "citation": ""
+    },
+    {
+     "usage": "ثُجرة النحر",
+     "meaning": "وسطه وما حول الثَّدْي منه",
+     "meaning_english": "the middle of the chest/breastbone area",
+     "citation": ""
+    },
+    {
+     "usage": "الثُّجَر",
+     "meaning": "سِهام غِلاظ",
+     "meaning_english": "thick/coarse arrows",
+     "citation": ""
+    },
+    {
+     "usage": "في لَحْيِه تَثْجير",
+     "meaning": "أي رخاوة",
+     "meaning_english": "slackness/looseness in his jaw",
+     "citation": ""
+    },
+    {
+     "usage": "انثَجَر الماء / انثَجَر الدم من الطعنة",
+     "meaning": "إذا فاض؛ وليس من الباب لأن الثاء فيه مبدلة من فاء (أصله انفجر)",
+     "meaning_english": "the water/blood gushed out — excluded from this root because the thā' here is substituted from a fā' (originally infajara)",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 417,
+   "printed_page_number": "371",
+   "notes": "Page also carries the section heading باب الثاء والجيم وما يشابهما above this entry."
+  },
+  {
+   "root": "ثجل",
+   "root_letters": [
+    "ث",
+    "ج",
+    "ل"
+   ],
+   "core_meaning": "الثاء والجيم واللام أصلٌ يدلّ على عِظَم الشيء الأجوف، ثم يُحمل عليه ما ليس بأجوف",
+   "core_meaning_english": "largeness/bulge of a hollow thing, then extended to non-hollow things",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الثُّجلة",
+     "meaning": "عِظَم البطن",
+     "meaning_english": "largeness of the belly",
+     "citation": ""
+    },
+    {
+     "usage": "رجلٌ أثجَلُ، امرأةٌ ثَجلاء",
+     "meaning": "من له/لها بطن عظيم",
+     "meaning_english": "a man/woman with a large belly",
+     "citation": ""
+    },
+    {
+     "usage": "مَزادة ثَجلاء",
+     "meaning": "أي واسعة",
+     "meaning_english": "a wide/roomy water-skin",
+     "citation": "مَشَى الرَّوايا بالمَزادِ الأثْجَلِ (قال أبو النجم)؛ ويُروى 'الأنجل'"
+    },
+    {
+     "usage": "جُلّة ثَجلاء",
+     "meaning": "عظيمة",
+     "meaning_english": "a large basket/container (of dates)",
+     "citation": "باتوا يُعَشُّونَ القُطَيمَاءَ ضَيْفَهُمْ وعندهمُ البَرْنيُّ في جُلَلٍ ثُجُلِ"
+    }
+   ],
+   "pdf_page_index": 417,
+   "printed_page_number": "371",
+   "notes": "Text notes this morphological pattern (بناء) is unmentioned/unused (مهمل) by al-Khalil, and calls that surprising (وذا عجب)."
+  },
+  {
+   "root": "ثجم",
+   "root_letters": [
+    "ث",
+    "ج",
+    "م"
+   ],
+   "core_meaning": "ليس أصلاً، وهو دوام المطر أياماً",
+   "core_meaning_english": "not a true root; denotes continuous rain for days",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "أثجمت السماء",
+     "meaning": "إذا دامت أياماً لا تُقلع",
+     "meaning_english": "the sky rained continuously for days without stopping"
+    },
+    {
+     "usage": "الثَّجْم",
+     "meaning": "سرعة الصرف عن الشىء",
+     "meaning_english": "quickly turning away from something"
+    }
+   ],
+   "printed_page_number": "٣٧٢",
+   "pdf_page_index": 418,
+   "notes": "Author states the root is not genuine, and suspects ث is a metathesis of س. Text notes 'وهاهنا كلمة أخرى والله أعلم بصحتها' before giving the الثجم sense — meaning flagged uncertain by the author himself."
+  },
+  {
+   "root": "ثحج",
+   "root_letters": [
+    "ث",
+    "ح",
+    "ج"
+   ],
+   "core_meaning": "ذكر ابن دريد فى الثاء والحاء والجيم كلمة زعم أنها لهذيل بن حيدان، وقد أبعد أبو بكر شاهده ما استطاع",
+   "core_meaning_english": "Ibn Duraid cited a word he claimed belonged to a specific tribal usage; Ibn Faris says Ibn Duraid overreached in supporting it",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثحجه برجله",
+     "meaning": "إذا ضربه بها",
+     "meaning_english": "he struck him with his leg/foot"
+    }
+   ],
+   "printed_page_number": "٣٧٢",
+   "pdf_page_index": 418,
+   "notes": "Footnote (1) gives the Jamhara text's tribal name as 'لهزرة بن حيدان', differing from the body text's 'لهذيل بن حيدان' — proper name uncertain between the two readings."
+  },
+  {
+   "root": "ثخن",
+   "root_letters": [
+    "ث",
+    "خ",
+    "ن"
+   ],
+   "core_meaning": "يدلُّ على رزانة الشىء فى ثقل",
+   "core_meaning_english": "denotes the solidity/heaviness of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثخُن الشىء ثخانة",
+     "meaning": "صار ثخيناً",
+     "meaning_english": "the thing became thick/dense"
+    },
+    {
+     "usage": "الرجل الحليم الرزين",
+     "meaning": "ثخين",
+     "meaning_english": "a forbearing, solid man is called 'thakheen'"
+    },
+    {
+     "usage": "الثوب المكتنز الأحمة والسدى من جودة نسجه",
+     "meaning": "ثخين",
+     "meaning_english": "densely-woven cloth of fine warp/weft is called 'thakheen'"
+    },
+    {
+     "usage": "أثخنته",
+     "meaning": "أى أثقلته",
+     "meaning_english": "I overwhelmed/weighed him down heavily"
+    },
+    {
+     "usage": "حتى يُثخنَ فى الأرض",
+     "meaning": "أن القتيل قد أثقل حتى لا حراك به",
+     "meaning_english": "Qur'anic phrase: until he has thoroughly subdued (the enemy) in the land",
+     "citation": "القرآن الكريم"
+    },
+    {
+     "usage": "تركته مُثخَناً",
+     "meaning": "أى وَقيذاً",
+     "meaning_english": "I left him badly beaten/incapacitated"
+    },
+    {
+     "usage": "الأعزل الذى لا سلاح معه",
+     "meaning": "ثخين؛ وهو قياس الباب لأن حركته تقل خوفاً على نفسه",
+     "meaning_english": "the unarmed man is called 'thakheen', consistent with the root's core sense, since his movement is reduced out of fear for himself"
+    }
+   ],
+   "printed_page_number": "٣٧٢",
+   "pdf_page_index": 418,
+   "notes": ""
+  },
+  {
+   "root": "ثدى",
+   "root_letters": [
+    "ث",
+    "د",
+    "ى"
+   ],
+   "core_meaning": "كلمة واحدة، وهى ثدى المرأة",
+   "core_meaning_english": "a single meaning: the breast of a woman",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "أثدٍ",
+     "meaning": "جمع ثدى",
+     "meaning_english": "plural of 'breast'"
+    },
+    {
+     "usage": "الثَّدياء",
+     "meaning": "الكبيرة الثدى",
+     "meaning_english": "a woman with large breasts"
+    },
+    {
+     "usage": "الثُّندُؤَة (بالضم والهمزة)",
+     "meaning": "الاسم المستعمل للرجل بعد التفريق بينه وبين ثدى المرأة",
+     "meaning_english": "the term used for the man's chest/breast area, distinguished from the woman's 'thady'"
+    },
+    {
+     "usage": "الثَّندُؤَة (بالفتح غير مهموز)",
+     "meaning": "لغة أخرى فى نفس المعنى",
+     "meaning_english": "an alternate form (unhamzated) of the same word"
+    }
+   ],
+   "printed_page_number": "٣٧٣",
+   "pdf_page_index": 419,
+   "notes": ""
+  },
+  {
+   "root": "ثدق",
+   "root_letters": [
+    "ث",
+    "د",
+    "ق"
+   ],
+   "core_meaning": "كلمة واحدة",
+   "core_meaning_english": "a single meaning",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَدَق المطر",
+     "meaning": "(الفعل الأصلى؛ لم يرد له تفسير منفصل عن معنى نزول المطر)",
+     "meaning_english": "base verb usage — the rain drizzled/poured; no separate gloss given beyond this"
+    },
+    {
+     "usage": "سحاب ثادق",
+     "meaning": "سحاب يَثدُق (يمطر)",
+     "meaning_english": "a rain-dripping cloud"
+    },
+    {
+     "usage": "ثادق",
+     "meaning": "اسم فرس، كأنّ صاحبه شبّهه بالسحاب",
+     "meaning_english": "name of a horse, as if its owner likened it to a rain-cloud",
+     "citation": "قال جرير... (بيت الشعر: باتت تلوم على ثادق ليُشرى فقد جدّ عصيانها)"
+    },
+    {
+     "usage": "ليُشرى",
+     "meaning": "أى ليُباع",
+     "meaning_english": "to be sold"
+    }
+   ],
+   "printed_page_number": "٣٧٣",
+   "pdf_page_index": 419,
+   "notes": "Corrected: the 'ثدق المطر' variance previously carried the erroneous Arabic meaning 'واحدة' (mistakenly copied from the preceding 'كلمة واحدة' phrase) — the page gives no separate gloss for this base verb form. Poem's full attribution not given beyond footnote 2, which lists several manuscript variants/attributions (al-Kilābī, Ibn al-Aʿrābī, etc.) — uncertain which is authoritative."
+  },
+  {
+   "root": "ثدم",
+   "root_letters": [
+    "ث",
+    "د",
+    "م"
+   ],
+   "core_meaning": "كلمة ليست أصلاً",
+   "core_meaning_english": "not a genuine (single-meaning) root",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الثَّدَم",
+     "meaning": "زعموا أنه الفَدَم؛ وهذا إن صحّ فهو من باب الإبدال",
+     "meaning_english": "claimed to mean the same as 'fadam' (dull/clumsy person); if true, this is a case of letter-substitution (ibdal), not a genuine root"
+    }
+   ],
+   "printed_page_number": "٣٧٣",
+   "pdf_page_index": 419,
+   "notes": ""
+  },
+  {
+   "root": "ثدن",
+   "root_letters": [
+    "ث",
+    "د",
+    "ن"
+   ],
+   "core_meaning": "كلمة",
+   "core_meaning_english": "a word (no unifying core sense stated beyond the single usage)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الثِّدْن",
+     "meaning": "الرجل الكثير اللحم",
+     "meaning_english": "a fleshy/fat man"
+    },
+    {
+     "usage": "الثِّدْن",
+     "meaning": "تغيُّر رائحة اللحم (قول آخر)",
+     "meaning_english": "alternate view: the change in smell of meat (i.e. spoiling)"
+    }
+   ],
+   "printed_page_number": "٣٧٣",
+   "pdf_page_index": 419,
+   "notes": ""
+  },
+  {
+   "root": "ثرم",
+   "root_letters": [
+    "ث",
+    "ر",
+    "م"
+   ],
+   "core_meaning": "كلمة واحدة يشتقّ منها",
+   "core_meaning_english": "a single meaning from which derivations come: breaking off a front tooth",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَرَمْتُ الرجلَ فثَرِمَ",
+     "meaning": "أى كسرت ثنيته فصار أثرم",
+     "meaning_english": "I knocked out the man's tooth and he became gap-toothed"
+    },
+    {
+     "usage": "ثَرَمْتُ ثنيّته فانثرمت",
+     "meaning": "كسرتها فانكسرت",
+     "meaning_english": "I broke his front tooth and it broke off"
+    },
+    {
+     "usage": "الثَّرْماء",
+     "meaning": "ماء لكِندة",
+     "meaning_english": "a spring/water source belonging to the tribe of Kinda (place name)"
+    }
+   ],
+   "printed_page_number": "٣٧٤",
+   "pdf_page_index": 420,
+   "notes": "The two 'ثرمت' phrasings and their glosses could not be fully re-verified against the scan at this zoom level; kept as extracted since no contradicting evidence was found."
+  },
+  {
+   "root": "ثروى",
+   "root_letters": [
+    "ث",
+    "ر",
+    "و/ى"
+   ],
+   "core_meaning": "أصل واحد، وهو الكثرة، وخلاف اليُبْس",
+   "core_meaning_english": "abundance/plenty, the opposite of dryness",
+   "sarf_pattern": "الحرف المعتل",
+   "variances": [
+    {
+     "usage": "ثَرَا القومُ يَثْرُون",
+     "meaning": "إذا كثروا ونمَوا",
+     "meaning_english": "the people multiplied and grew numerous",
+     "citation": "الأصمعى"
+    },
+    {
+     "usage": "أثْرَى القومُ",
+     "meaning": "إذا كثرت أموالهم",
+     "meaning_english": "the people's wealth became abundant"
+    },
+    {
+     "usage": "ثَرَا المالُ يَثْرُو",
+     "meaning": "إذا كثر",
+     "meaning_english": "the wealth increased"
+    },
+    {
+     "usage": "ثَرَوْناهم",
+     "meaning": "إذا كثرناهم، أى كنا أكثر منهم",
+     "meaning_english": "we outnumbered them"
+    },
+    {
+     "usage": "الذى بينى وبين فلان مُثْرٍ",
+     "meaning": "أى إنه لم ينقطع؛ وأصله ألا ييبس الثرى بينهما",
+     "meaning_english": "the bond between me and so-and-so is 'muthri' — i.e. unbroken; rooted in the image of moist earth ('tharā') between them not drying up"
+    },
+    {
+     "usage": "فلا توبسوا بينى وبينكم الثَّرى فإنّ الذى بينى وبينكم مُثرى",
+     "meaning": "استعارة لعدم انقطاع الصلة",
+     "meaning_english": "metaphor for an unbroken relationship",
+     "citation": "جرير"
+    },
+    {
+     "usage": "لا تُوبِس الثَّرى بينى وبينك",
+     "meaning": "مثل، من أمثالهم فى تخوّفهم فى الرجل هجر صاحبه: أى لا يُقطع الأمر بيننا",
+     "meaning_english": "proverb: don't let the moist ground between us dry out — i.e. don't sever our relationship",
+     "citation": "ذكره أبو عبيدة"
+    },
+    {
+     "usage": "المال الثَّرِيّ",
+     "meaning": "الكثير",
+     "meaning_english": "abundant wealth"
+    },
+    {
+     "usage": "أراح علىّ نَعَماً ثَرِيّاً",
+     "meaning": "أى كثيراً",
+     "meaning_english": "he brought me back abundant livestock",
+     "citation": "حديث أم زرع"
+    },
+    {
+     "usage": "ثَرْوَان (للرجل) / ثَرْوَى (للمرأة)، ثم صُفِّرت: الثُّرَيّا",
+     "meaning": "أسماء مشتقة من الكثرة",
+     "meaning_english": "personal names, and the star-cluster name 'al-Thurayya' (the Pleiades), all derived from the sense of abundance"
+    },
+    {
+     "usage": "ثَرَّيْتُ التربةَ",
+     "meaning": "بَلَلْتها",
+     "meaning_english": "I moistened the soil"
+    },
+    {
+     "usage": "ثَرَّيْتُ الأقِط",
+     "meaning": "صببتُ عليه الماء ولَقَقْتُه",
+     "meaning_english": "I poured water on the dried curd (aqit) and worked/mixed it"
+    },
+    {
+     "usage": "بدا ثَرَا الماء من الفرس",
+     "meaning": "إذا نَدِى بعرقه",
+     "meaning_english": "moisture (sweat) appeared on the horse",
+     "citation": "طفيل (بيت الشعر مقطوع/غير مكتمل فى نهاية الصفحة)"
+    }
+   ],
+   "printed_page_number": "٣٧٤",
+   "pdf_page_index": 420,
+   "notes": "The final citation (poem by Tufayl) is cut off at the bottom of the page — verse text not visible on this page, continues on next page (not included in this batch)."
+  },
+  {
+   "root": "ثرى",
+   "root_letters": [
+    "ث",
+    "ر",
+    "ى"
+   ],
+   "core_meaning": "(تكملة من صفحة سابقة) يتعلق بالنَّدى والرَّطوبة فى الأرض",
+   "core_meaning_english": "moisture / wetness in the ground (continuation)",
+   "sarf_pattern": "",
+   "pdf_page_index": 421,
+   "printed_page_number": "375",
+   "variances": [
+    {
+     "usage": "العَقَى الثَّرَيان",
+     "meaning": "أن يجىء المطر فيرسخ فى الأرض حتى يلتقى هو وندى الأرض",
+     "meaning_english": "rain soaking down until it meets the ground's own moisture",
+     "citation": ""
+    },
+    {
+     "usage": "أرضٌ ثَرْيا",
+     "meaning": "أى ذاتُ ثرى",
+     "meaning_english": "land possessing moisture",
+     "citation": ""
+    },
+    {
+     "usage": "ثَرَيْتُ بفلان فأنا ثَرِ به",
+     "meaning": "أى غَنِىٌّ عنه بالناس به",
+     "meaning_english": "to be made wealthy/independent through someone, by the Kisā'ī",
+     "citation": "الكسائي"
+    },
+    {
+     "usage": "ثَرَا اللهُ القومَ",
+     "meaning": "كَثَّرَهم",
+     "meaning_english": "God made the people numerous/wealthy",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّرَاء",
+     "meaning": "كَثْرَةُ المال",
+     "meaning_english": "abundance of wealth",
+     "citation": "علقمة: يُرِدْنَ ثَراء المال حيث علِمْنَه وشَرْخُ الشَّبابِ عندهنَ عجيب"
+    }
+   ],
+   "notes": "Entry continues from a previous page batch not included here; core meaning statement itself is not visible on this page."
+  },
+  {
+   "root": "ثرب",
+   "root_letters": [
+    "ث",
+    "ر",
+    "ب"
+   ],
+   "core_meaning": "الثاء والراء والباء كلمتان متباينتا الأصل، لا فروع لهما",
+   "core_meaning_english": "two unrelated base meanings, each with no further branches",
+   "sarf_pattern": "",
+   "pdf_page_index": 421,
+   "printed_page_number": "375",
+   "variances": [
+    {
+     "usage": "التَّثْرِيب",
+     "meaning": "اللَّوم والأخذ على الذَّنب",
+     "meaning_english": "blame/reproach for a sin",
+     "citation": "قوله تعالى: لَا تَثْرِيبَ عَلَيْكُمُ الْيَوْمَ"
+    },
+    {
+     "usage": "الثَّرْب",
+     "meaning": "شَحْمٌ قد غَشَّى الكَرِشَ والأمعاءَ رقيقٌ، والجمع ثُرُوب",
+     "meaning_english": "the thin caul-fat covering the paunch and intestines; plural thurūb",
+     "citation": ""
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "ثرد",
+   "root_letters": [
+    "ث",
+    "ر",
+    "د"
+   ],
+   "core_meaning": "أصلٌ واحد، وهو فَتُّ الشىء وما أشبهه",
+   "core_meaning_english": "crumbling/breaking up a thing, and the like",
+   "sarf_pattern": "",
+   "pdf_page_index": 421,
+   "printed_page_number": "375",
+   "variances": [
+    {
+     "usage": "ثَرَدْتُ الثَّريد أثرُدُه",
+     "meaning": "فَتُّ الخبز فى المرق",
+     "meaning_english": "to crumble bread into broth (making tharīd)",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّرَد",
+     "meaning": "تَشَقُّق فى الشَّفَتين (من هذا القياس)",
+     "meaning_english": "cracking of the lips (by analogy)",
+     "citation": ""
+    },
+    {
+     "usage": "غير مُتَرَدٍّ (فى ذبح الذبيحة)",
+     "meaning": "ألا تكون الحديدة حادّةً فيَرُدّ موضعَ الذَّبح، كايتشقّق الشىء وينشظّى",
+     "meaning_english": "when the blade is not sharp so it bruises/breaks the slaughter-site instead of cutting cleanly",
+     "citation": "حديث: كلُّ ما أفرَى الأوداجَ غيرَ مُتَرَدٍّ"
+    }
+   ],
+   "notes": "Last footnote/word slightly unclear in scan (ينشظّى) — read with moderate confidence."
+  },
+  {
+   "root": "ثطأ",
+   "root_letters": [
+    "ث",
+    "ط",
+    "أ"
+   ],
+   "core_meaning": "كلمةٌ لا مُعَوَّل عليها",
+   "core_meaning_english": "a word with no reliable basis (not a true root)",
+   "sarf_pattern": "",
+   "pdf_page_index": 422,
+   "printed_page_number": "376",
+   "variances": [
+    {
+     "usage": "ثَطَأْتُه",
+     "meaning": "وَطِئْتُه",
+     "meaning_english": "I trod on/trampled him",
+     "citation": ""
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "ثطع",
+   "root_letters": [
+    "ث",
+    "ط",
+    "ع"
+   ],
+   "core_meaning": "شبيهٌ بما قبله (لا أصل معوّل عليه)",
+   "core_meaning_english": "similar to the previous entry — no reliable base meaning",
+   "sarf_pattern": "",
+   "pdf_page_index": 422,
+   "printed_page_number": "376",
+   "variances": [
+    {
+     "usage": "ثَطَعَ الرَّجلُ",
+     "meaning": "أبْدَى",
+     "meaning_english": "the man defecated/exposed himself",
+     "citation": ""
+    },
+    {
+     "usage": "ثُطِعَ",
+     "meaning": "إذا زُكِمَ",
+     "meaning_english": "to catch a cold/have a runny nose",
+     "citation": ""
+    }
+   ],
+   "notes": "Text notes some scholars doubt this word but it 'has been said' (قد قيل); author defers with 'والله أعلم'. The verb forms in the scan could be read as تَطَعَ/تُطِعَ (ت) rather than ثَطَعَ/ثُطِعَ (ث) — kept consistent with the ث root heading, but the dot distinguishing ت from ث is faint in this scan; flagged for verification."
+  },
+  {
+   "root": "ثعل",
+   "root_letters": [
+    "ث",
+    "ع",
+    "ل"
+   ],
+   "core_meaning": "أصلٌ واحد، وهو تَزَيُّدٌ واختلافُ حال",
+   "core_meaning_english": "an excess/increase and a change of state",
+   "sarf_pattern": "",
+   "pdf_page_index": 422,
+   "printed_page_number": "376",
+   "variances": [
+    {
+     "usage": "الثَّعَل",
+     "meaning": "زيادة السِّنّ واختلافٌ فى الأسنان فى منبتها",
+     "meaning_english": "an extra tooth / irregularity in the growth of teeth",
+     "citation": ""
+    },
+    {
+     "usage": "ثَعِلَ الرجلُ، ثَعِلَت سِنُّه، يَثْعَل ثَعَلاً",
+     "meaning": "اتصاف بهذا العيب فى الأسنان",
+     "meaning_english": "to have this dental irregularity",
+     "citation": ""
+    },
+    {
+     "usage": "أثْعَل / ثَعْلاء / ثَعِلة، الجمع الثُّعْل",
+     "meaning": "الرجل والمرأة الموصوفان بالثَّعَل",
+     "meaning_english": "masc./fem. forms and plural of one afflicted with this tooth condition",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّعَل فى أطباء الناقة أو البقرة",
+     "meaning": "زيادةٌ فى طُبْيَيْها",
+     "meaning_english": "an extra teat on a she-camel or cow",
+     "citation": ""
+    },
+    {
+     "usage": "الثُّعْلول",
+     "meaning": "الرجل الغضبان (عند الخليل)؛ ومن معناه المقارِب لا المتشدد",
+     "meaning_english": "an irritable/quick-tempered man; also one who is accommodating, not harsh",
+     "citation": "وليس بثُعلولٍ إذا سِيلَ واجْتُدِى ولا بَرِماً يوماً إذا الضَّيفُ أوْهَمَا"
+    },
+    {
+     "usage": "الأثْعَل",
+     "meaning": "السَّيدُ الضَّخْمُ إذا كان له فُضُول",
+     "meaning_english": "a great, imposing chief who has abundant excess/surplus",
+     "citation": ""
+    },
+    {
+     "usage": "ثُعَل",
+     "meaning": "بطنٌ من العرب، اشتُقّ من هذا الأصل",
+     "meaning_english": "Thu'al, a clan/subtribe of the Arabs",
+     "citation": "امرؤ القيس: أحلَتْ رَحْلى فى بنى ثُعَلٍ إنَّ الكِرامَ للكريمِ محَلّ (citation continues onto next page)"
+    }
+   ],
+   "notes": "Poetry citation by Imru' al-Qais spans the page break (ends on p.423/pdf 423); meaning of 'أوهما' in the Thu'lūl verse (roughly 'if a guest imposes/burdens') is somewhat idiomatic — recorded with moderate confidence."
+  },
+  {
+   "root": "ثعل",
+   "root_letters": [
+    "ث",
+    "ع",
+    "ل"
+   ],
+   "core_meaning": "(تكملة)",
+   "core_meaning_english": "(continuation of previous entry)",
+   "sarf_pattern": "",
+   "pdf_page_index": 423,
+   "printed_page_number": "377",
+   "variances": [
+    {
+     "usage": "أثمَل/أثعل القومُ",
+     "meaning": "إذا خالَفُوا",
+     "meaning_english": "when the people disagreed/opposed each other",
+     "citation": ""
+    }
+   ],
+   "notes": "Continuation of the ثعل entry begun on the previous page (poetry verse by Imru' al-Qais concludes here). The word here is unclear in the scan — could read as أثمل or أثعل; recorded with low confidence, flagged for verification against a printed edition."
+  },
+  {
+   "root": "ثعم",
+   "root_letters": [
+    "ث",
+    "ع",
+    "م"
+   ],
+   "core_meaning": "ليس أصلاً معوّلاً عليه",
+   "core_meaning_english": "not an established/reliable root",
+   "sarf_pattern": "",
+   "pdf_page_index": 423,
+   "printed_page_number": "377",
+   "variances": [
+    {
+     "usage": "الثُّعْم",
+     "meaning": "الزَّرْع والجَرّ (منسوب إلى الخليل بخبر)؛ يقال ثَعَمْتُه أى نزعتُه وجررتُه",
+     "meaning_english": "sowing/tilling and dragging — attributed report; 'I pulled/uprooted and dragged it'",
+     "citation": ""
+    },
+    {
+     "usage": "تَثَعَّمَتْ فلاناً أرضُ بنى فلان",
+     "meaning": "إذا أعجبتْه وجرَّتْه إليها ونزعَتْه",
+     "meaning_english": "when a certain land pleased a man and drew/pulled him toward it",
+     "citation": ""
+    }
+   ],
+   "notes": "Author says a group of scholars considered this a scribal corruption (تصحيف) of تنمّمته/تنمّم, related to نميمة (tale-telling); he finds no version of it verified by sound transmission ('وما صحّت بشىء منه رواية'). Also notes Ibn Duraid did not record it as a root at all, and al-Khalīl inconsistently treated it (once as unused/muhmal). Exact wording of some phrases uncertain in scan."
+  },
+  {
+   "root": "ثعر",
+   "root_letters": [
+    "ث",
+    "ع",
+    "ر"
+   ],
+   "core_meaning": "بناءٌ إنْ صحّ دلّ على قَماءٍ وصِغَر",
+   "core_meaning_english": "if sound, indicates meanness/smallness",
+   "sarf_pattern": "",
+   "pdf_page_index": 423,
+   "printed_page_number": "377",
+   "variances": [
+    {
+     "usage": "الثُّعْرَان",
+     "meaning": "كالحَلَمَتين تكتنفان ضَرْعَ الشاة",
+     "meaning_english": "two teat-like glands flanking a ewe's udder",
+     "citation": ""
+    },
+    {
+     "usage": "الثُّعْرُور",
+     "meaning": "الرجل القصير",
+     "meaning_english": "a short man",
+     "citation": ""
+    }
+   ],
+   "notes": "Corrected core meaning wording from 'قَمْءٍ' to 'قَماءٍ' (meanness/vileness) per the scan. Header word confirmed as ثعر by the page-top running header (ثعم - ثعر - ثعط) and internal consistency."
+  },
+  {
+   "root": "ثعط",
+   "root_letters": [
+    "ث",
+    "ع",
+    "ط"
+   ],
+   "core_meaning": "كلمةٌ صحيحة",
+   "core_meaning_english": "a sound/valid word (root)",
+   "sarf_pattern": "",
+   "pdf_page_index": 423,
+   "printed_page_number": "377",
+   "variances": [
+    {
+     "usage": "ثَعِطَ اللَّحمُ",
+     "meaning": "إذا تغيَّر وأنْتَنَ",
+     "meaning_english": "when meat spoiled and stank",
+     "citation": "يا كلَّ لحمٍ باتَ نتناً قد ثَعِطا (verse partly unclear)"
+    },
+    {
+     "usage": "الثَّعِيط",
+     "meaning": "دُقاقُ التُّراب الذى تُسْفِيه الرِّيح",
+     "meaning_english": "fine dust that the wind blows/scatters",
+     "citation": ""
+    }
+   ],
+   "notes": "The single hemistich of poetry (marked with *) is partly hard to make out in the scan; footnote 3 on this page gives a variant reading 'أكثر منه الأكل حتى خرطا' which differs somewhat from the main text's wording — recorded with moderate confidence."
+  },
+  {
+   "root": "ثعب",
+   "root_letters": [
+    "ث",
+    "ع",
+    "ب"
+   ],
+   "core_meaning": "الثاء والعين والباء أصلٌ يدل على امتداد الشيء وانبساطه، يكون ذلك فى ماء وغيره",
+   "core_meaning_english": "extension and spreading-out of a thing, whether of water or otherwise",
+   "sarf_pattern": "",
+   "printed_page_number": "378",
+   "pdf_page_index": 424,
+   "variances": [
+    {
+     "usage": "ثعبت الماء / أثعبه / فانثعب",
+     "meaning": "قال الخليل: يقال ثعبت الماء وأنا أثعبه، إذا فجّرته فانثعب، كانثعاب الدم من الأنف",
+     "meaning_english": "to gush/burst forth water, as blood gushes from the nose",
+     "citation": ""
+    },
+    {
+     "usage": "مَثْعَب المطر",
+     "meaning": "ومنه اشتُقّ مَثْعَبُ المَطَر",
+     "meaning_english": "the spout/drainage channel through which rainwater flows, derived from this root",
+     "citation": ""
+    },
+    {
+     "usage": "الثعبان",
+     "meaning": "وممّا يصلح حَملُه على هذا الثعبان: الحيّة الضخمة الطويلة؛ وهو من القياس، فى انبساطه وامتداده خَلقاً وحركةً",
+     "meaning_english": "the large long snake, because of its outstretched form and movement",
+     "citation": "على نهج كثعبان الفرين"
+    },
+    {
+     "usage": "ماء ثَعَب",
+     "meaning": "وربما قيل ماء ثَعَب، ويجمع على الثُّعبان",
+     "meaning_english": "gushing water; plural is 'thu'ban'",
+     "citation": ""
+    }
+   ],
+   "notes": "This entry appears at the top of page 378 with no accompanying entry-number, suggesting it is a continuation of an entry begun on a prior page not included in this batch; recorded here with the content visible on this page. The citation word 'الفرين' after 'كثعبان' is visually ambiguous in the scan (could be العرين/القرين) and could not be confirmed with certainty."
+  },
+  {
+   "root": "ثغا",
+   "root_letters": [
+    "ث",
+    "غ",
+    "و/ي"
+   ],
+   "core_meaning": "الثاء والغين والحرف المعتل أصلٌ يدل على الصوت",
+   "core_meaning_english": "a sound/cry (bleating)",
+   "sarf_pattern": "المعتل",
+   "printed_page_number": "378",
+   "pdf_page_index": 424,
+   "variances": [
+    {
+     "usage": "الثُّغاء",
+     "meaning": "صوت الشاة",
+     "meaning_english": "the bleating sound of a sheep/goat",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّاغية / الشاة",
+     "meaning": "الثَّاغية: الشاة. يقال ماله ثاغيةٌ ولا راغيةٌ، أى لا شاةٌ ولا ناقةٌ",
+     "meaning_english": "'bleater' meaning a sheep; the saying 'he has neither bleater nor groaner' means he owns neither sheep nor camel",
+     "citation": ""
+    }
+   ],
+   "notes": "Entry number ١٠٤ printed beside this entry; begins a new chapter heading 'باب الثاء والغين وما يثلثهما' just before it."
+  },
+  {
+   "root": "ثغب",
+   "root_letters": [
+    "ث",
+    "غ",
+    "ب"
+   ],
+   "core_meaning": "الثاء والغين والباء أصلٌ واحد، وهو غديرٌ فى غلظ من أرض",
+   "core_meaning_english": "a pool/pond of water in rugged/rocky ground",
+   "sarf_pattern": "",
+   "printed_page_number": "378",
+   "pdf_page_index": 424,
+   "variances": [
+    {
+     "usage": "ثَغْب / ثَغَب",
+     "meaning": "يقال له ثَغْبٌ وثَغَبٌ، وجمعه ثِغَاب وأثغاب، ويقال ثُغبان",
+     "meaning_english": "names and plural forms of the rock-pool",
+     "citation": "ولقد تحلُّ بها كأنّ مجاجَها ثَغْبٌ يُصَفِّق صفوَه بمُدام (عبيد بن الأبرص)"
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "ثغر",
+   "root_letters": [
+    "ث",
+    "غ",
+    "ر"
+   ],
+   "core_meaning": "الثاء والغين والراء أصلٌ يدل على تفتّحٍ وانفراج",
+   "core_meaning_english": "an opening-up and gap/breach",
+   "sarf_pattern": "",
+   "printed_page_number": "378-379",
+   "pdf_page_index": 424,
+   "variances": [
+    {
+     "usage": "الثَّغْر (فرج البلدان)",
+     "meaning": "الثَّغْر: الفَرْج من فُروج البلدان",
+     "meaning_english": "a frontier gap/border opening of a country",
+     "citation": ""
+    },
+    {
+     "usage": "ثَغْرة النحر",
+     "meaning": "ثَغْرة النحر: الهَزْمة التى فى اللَّبّة، والجمع ثُغَر",
+     "meaning_english": "the hollow of the throat/breastbone",
+     "citation": "وتارةً فى ثُغَر النُّحور"
+    },
+    {
+     "usage": "ثَغْر الإنسان",
+     "meaning": "الثَّغْر: ثَغْر الإنسان (أسنانه)",
+     "meaning_english": "a person's front teeth",
+     "citation": ""
+    },
+    {
+     "usage": "ثَغَر الصبيُّ / أثغَر",
+     "meaning": "يقال ثَغَر الصبى إذا سقطت أسنانه، وأثغَر إذا نبتت بعد السقوط، وربما قالوا عند السقوط أيضاً اثّغَر",
+     "meaning_english": "a child loses his (milk) teeth; and grows new teeth after they fall",
+     "citation": "قارحٌ قد فرّ عنه جانبٌ وربَاعٍ لم يَثْغَرْ (لِمِرار بن منقذ)"
+    },
+    {
+     "usage": "ثَغَروهم / الثَّغْر (سدّ المخرج)",
+     "meaning": "ويقال لَقِيَ بنو فلان بنى فلان فثَغَروهم، إذا سدّوا عليهم المَخْرَج فلا يدرون أين يأخذون",
+     "meaning_english": "to block/hem in an enemy so they cannot find an exit",
+     "citation": "هُمُ ثَغَرُوا أقرانَهم بمُضَرَّس وشَغَرٍ وحازُوا القومَ حتى تزحزحوا (لابن مقبل)"
+    }
+   ],
+   "notes": "Entry begins on page 378 (with poetry marked by an unattributed 'قال:'), continues onto page 379 where it concludes."
+  },
+  {
+   "root": "ثغم",
+   "root_letters": [
+    "ث",
+    "غ",
+    "م"
+   ],
+   "core_meaning": "الثاء والغين والميم مستعملٌ فى كلمةٍ واحدة، وهى الثُّغامة",
+   "core_meaning_english": "used in only one word, 'thughaamah' (a plant)",
+   "sarf_pattern": "",
+   "printed_page_number": "379-380",
+   "pdf_page_index": 425,
+   "variances": [
+    {
+     "usage": "الثُّغامة",
+     "meaning": "وهى شجرةٌ يبياضّ ثمرها والزَّهر يشبَّه الشِّيب به. وفى الحديث: أنّ رسول الله صلى الله عليه وسلم وآله أُتِى بأبى قُحافة [يوم الفتح] وكأنّ رأسه ثَغامة، فأمر أن يُغيَّر",
+     "meaning_english": "a plant whose fruit/flower whitens, to which grey hair is likened; hadith about Abu Quhafa's white hair being likened to it, and the order to dye it",
+     "citation": "حديث نبوي"
+    },
+    {
+     "usage": "الثُّغَم (الضّارى من الكلاب)",
+     "meaning": "وأغفل ابن دريد هذا البناء ولم يذكره مع شهرته. وقيل إنّ الثُّغَمَ الضّارى من الكلاب، ولم أجده فى الكتابين. فإن صحّ فهو فى باب الإبدال، لأنّ التاء مبدلة من فاء",
+     "meaning_english": "a fierce/trained hunting dog; Ibn Duraid omitted this word despite its currency; if valid, it belongs under letter-substitution since the taa' is a substitute for a faa'",
+     "citation": ""
+    }
+   ],
+   "notes": "Entry starts on page 379 and continues at the top of page 380 with an added note discussing Ibn Duraid's omission of this word-pattern and a possible variant 'ثُغْم/تُغْم' (dog breed name) under the chapter of letter-substitution (باب الإبدال)."
+  },
+  {
+   "root": "ثفل",
+   "root_letters": [
+    "ث",
+    "ف",
+    "ل"
+   ],
+   "core_meaning": "الثاء والفاء واللام أصلٌ واحد، وهو الشيء يستقرّ تحت الشيء، يكون ذلك من الكدر وغيره",
+   "core_meaning_english": "sediment/residue that settles beneath a thing",
+   "sarf_pattern": "",
+   "printed_page_number": "380",
+   "pdf_page_index": 426,
+   "variances": [
+    {
+     "usage": "ثِفْل القِدْر",
+     "meaning": "يقال هو ثِفْل القِدْر وغيرها، وهو ما رسا من الكُدارة",
+     "meaning_english": "the sediment/dregs at the bottom of a cooking pot",
+     "citation": ""
+    },
+    {
+     "usage": "الثِّفال",
+     "meaning": "ومن الباب الثِّفال: الجِلدة تُوضَع عليها الرَّحى، ويقال هو قطعة فَرْو تُوضَع إلى جنب الرَّحى",
+     "meaning_english": "the leather/felt piece placed under or beside a hand-mill",
+     "citation": "يكون ثِفالُها شَرقىَّ نجدٍ ولُهوَتُها قُضاعةَ أجمعينا (عمرو بن كلثوم)"
+    },
+    {
+     "usage": "ثِفالها (فى وصف الرّحى)",
+     "meaning": "استعمال آخر لثِفال الرحى فى وصف حركتها",
+     "meaning_english": "a second citation describing the millstone's felt-pad in motion",
+     "citation": "فتمرّ كَكَرِّ عَرْكَ الرَّحى بثِفالها وتلقَحُ كِشافاً ثم تحمِل فتُفطَم (زهير)"
+    },
+    {
+     "usage": "الثُّفَال (البعير)",
+     "meaning": "فأمّا الثُّفَال فالبعير البطىء، واشتقاقه صحيح، لأنه كأنه مستقرٌّ تحت حِمله، لا يكاد يَبرَح",
+     "meaning_english": "a slow, sluggish camel — as if settled/stuck under its load",
+     "citation": ""
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "ثفن",
+   "root_letters": [
+    "ث",
+    "ف",
+    "ن"
+   ],
+   "core_meaning": "الثاء والفاء والنون أصلٌ واحد، وهو ملازمة الشيء الشيء",
+   "core_meaning_english": "the constant clinging/adherence of one thing to another",
+   "sarf_pattern": "",
+   "printed_page_number": "380",
+   "pdf_page_index": 426,
+   "variances": [
+    {
+     "usage": "ثَفِنات البعير",
+     "meaning": "قال الخليل: ثَفِناتُ البعير: ما أصاب الأرض من أعضائه فغلُظ، كالرُّكبتين وغيرها",
+     "meaning_english": "the calloused parts of a camel's body that touch the ground (knees etc.)",
+     "citation": "الخليل"
+    }
+   ],
+   "notes": "Entry begins at the bottom of page 380 and is cut off there; continues on a subsequent page not included in this batch."
+  },
+  {
+   "root": "ثفن",
+   "root_letters": [
+    "ث",
+    "ف",
+    "ن"
+   ],
+   "core_meaning": "أصل واحد (المعنى الأصلي غير ظاهر في هذه الصفحة؛ الكلام مستمر من صفحة سابقة)",
+   "core_meaning_english": "continuation of an entry begun on a prior page; core-meaning statement not shown here",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَفَنْتُ الشَّيْءَ باليد أثفِنُه",
+     "meaning": "ضربتَه",
+     "meaning_english": "to strike/hit a thing with the hand",
+     "citation": ""
+    },
+    {
+     "usage": "الثِّفِنة (فى قوله: خَوَّى على مستوياتٍ خمسٍ ركزٍ وثِفِناتٍ مُلْسٍ)",
+     "meaning": "الكلمة وردت فى بيت شعر استشهد به الكاتب دون أن يذكر تعريفها صراحة فى هذا الموضع؛ هى معروفة بمعنى موضع خشونة فى ركبة البعير ونحوه",
+     "meaning_english": "the word appears only inside the quoted verse here, without an explicit defining sentence on this page; independently known to mean the callused patch on e.g. a camel's knee",
+     "citation": "خَوَّى على مستوياتٍ خمسٍ ... وثفناتٍ ملسٍ"
+    },
+    {
+     "usage": "ثافنتُ على الشيء",
+     "meaning": "واظبت عليه",
+     "meaning_english": "persisted / kept diligently at it",
+     "citation": ""
+    },
+    {
+     "usage": "ثافنته على الشيء",
+     "meaning": "أعنته عليه",
+     "meaning_english": "helped/assisted him with it",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "٣٨١",
+   "pdf_page_index": 427,
+   "notes": "Continuation of an entry whose root bracket and core-meaning sentence appeared on an earlier page not in this batch; text here begins mid-entry with 'وقال هو وغيره'. Corrected: original extraction merged the verb ثفنت (to strike) and the noun الثفنة (from the poetry citation) into one invented composite gloss; split into separate, page-faithful variances."
+  },
+  {
+   "root": "ثفى",
+   "root_letters": [
+    "ث",
+    "ف",
+    "ي"
+   ],
+   "core_meaning": "الثاء والفاء والحرف المعتل أصلٌ واحد، وهو الأُثفِيّة، والجمع أثافي. وربما خففوا، وليس بالجيد.",
+   "core_meaning_english": "one core meaning: the athfiyyah (a stone/support set under a cooking pot); plural athafi",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "المرأة المتُفّية (المتوفَّاة)",
+     "meaning": "التي مات عنها ثلاثة أزواج",
+     "meaning_english": "a woman whose three husbands have died",
+     "citation": ""
+    },
+    {
+     "usage": "الرجل المتُفّى (المتوفَّى)",
+     "meaning": "الذي يموت عنه ثلاث نسوة",
+     "meaning_english": "a man whose three wives have died",
+     "citation": ""
+    },
+    {
+     "usage": "بقيت من بني فلان أُثفِيّة خشناء (على طريق الاستعارة)",
+     "meaning": "إذا بقي منهم عدد",
+     "meaning_english": "metaphor: 'a rough athfiyyah remained of Banu so-and-so' — i.e. a remaining group/number of them",
+     "citation": ""
+    },
+    {
+     "usage": "الثُّفَّاء",
+     "meaning": "نَبْت، وليس من هذا الباب",
+     "meaning_english": "a plant (mustard-type), not actually part of this root's chapter",
+     "citation": "حديث: «ماذا فى الأمرَيْن من الشفاء: الصبِر والثُّفَّاء» - قالوا: هو الخَرْدل"
+    }
+   ],
+   "printed_page_number": "٣٨١",
+   "pdf_page_index": 427,
+   "notes": "Root bracket printed as ﴿ ثفى ﴾; final radical is the weak letter ي. Verified accurate, no corrections."
+  },
+  {
+   "root": "ثفر",
+   "root_letters": [
+    "ث",
+    "ف",
+    "ر"
+   ],
+   "core_meaning": "الثاء والفاء والراء كلمةٌ واحدةٌ تدل على المؤخَّر.",
+   "core_meaning_english": "one meaning: the rear/hind part of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَفَر الدابة",
+     "meaning": "فالثَّفَر ثَفَرُ الدابة، تَثفِرُ الدابة",
+     "meaning_english": "the breeching-strap at the rear of a riding animal",
+     "citation": ""
+    },
+    {
+     "usage": "استثفرت المرأة بثوبها",
+     "meaning": "إذا ائتزرت به ثم ردّت طرف الإزار من بين رجليها وغرزته فى الحُجزة من ورائه",
+     "meaning_english": "a woman tucked her garment between her legs and fastened its end at the back of her waist-wrap",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّفَر",
+     "meaning": "الحياء من السَّبُعة وغيرها",
+     "meaning_english": "the private/genital part of a lioness or similar animal",
+     "citation": "جَزَى اللهُ فيها الأعورَيْنِ ملامةً / وعَبْسَدةَ ثَفَرَ الثَّورةِ المتضاجم"
+    }
+   ],
+   "printed_page_number": "٣٨١",
+   "pdf_page_index": 427,
+   "notes": "Last word of the poetry citation (المتضاجم) is unusual/uncertain in reading; transcribed as printed. Verified accurate, no corrections."
+  },
+  {
+   "root": "ثقل",
+   "root_letters": [
+    "ث",
+    "ق",
+    "ل"
+   ],
+   "core_meaning": "الثاء والقاف واللام أصلٌ واحد يتفرَّع منه كلماتٌ متقاربة، وهو ضدّ الخِفّة.",
+   "core_meaning_english": "one core meaning branching into related words: the opposite of lightness (heaviness)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الثَّقَلان",
+     "meaning": "سُمِّي الجنّ والإنس بذلك",
+     "meaning_english": "'the two weighty ones' — name given to jinn and mankind",
+     "citation": ""
+    },
+    {
+     "usage": "أثقال الأرض",
+     "meaning": "كنوزها",
+     "meaning_english": "the earth's treasures/hoards",
+     "citation": "﴿وأخرجتِ الأرضُ أثقالَها﴾"
+    },
+    {
+     "usage": "أثقالكم",
+     "meaning": "أجسادكم، ويقال هي أجساد بني آدم",
+     "meaning_english": "your bodies (the bodies of the children of Adam)",
+     "citation": "﴿وتحمل أثقالَكم﴾؛ شعر الخنساء: أبعدَ ابنِ عمرٍو من آلِ الشرِّ ... حلَّت به الأرضُ أثقالَها"
+    },
+    {
+     "usage": "ارتحل القوم بثقلتهم",
+     "meaning": "أي بأمتعتهم",
+     "meaning_english": "the people departed with their belongings/baggage",
+     "citation": ""
+    },
+    {
+     "usage": "أجد فى نفسى ثِقْلة",
+     "meaning": "شعور بالثقل",
+     "meaning_english": "I feel a heaviness in myself",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "٣٨٢",
+   "pdf_page_index": 428,
+   "notes": "First entry under new chapter heading 'باب الثاء والقاف وما يثلثهما'. Verified accurate, no corrections."
+  },
+  {
+   "root": "ثقب",
+   "root_letters": [
+    "ث",
+    "ق",
+    "ب"
+   ],
+   "core_meaning": "الثاء والقاف والباء كلمةٌ واحدة، وهو أن ينفذ الشيء.",
+   "core_meaning_english": "one meaning: for a thing to pass/pierce through",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثقبتُ الشىء أثقبه ثقباً",
+     "meaning": "أنفذته بثقب",
+     "meaning_english": "I pierced/drilled a hole through the thing",
+     "citation": ""
+    },
+    {
+     "usage": "النجم الثاقب",
+     "meaning": "قالوا: هو نجمٌ ينفذ نورُه السمواتِ كلَّها",
+     "meaning_english": "the piercing star — a star whose light pierces through all the heavens",
+     "citation": "﴿النَّجْمُ الثَّاقِبُ﴾"
+    },
+    {
+     "usage": "ثَقَبت النار",
+     "meaning": "إذا ذكَّيتَها (أوقدتها جيداً) وذلك الشىء ثَقَبةٌ وذو كُوَة",
+     "meaning_english": "to kindle a fire well so it burns through",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "٣٨٢",
+   "pdf_page_index": 428,
+   "notes": "Footnote explains 'ثقبت النار' means it is called so because its light passes/penetrates (ينفذ ضوءها). Verified accurate, no corrections."
+  },
+  {
+   "root": "ثقف",
+   "root_letters": [
+    "ث",
+    "ق",
+    "ف"
+   ],
+   "core_meaning": "الثاء والقاف والفاء كلمةٌ واحدة، وهو رَجْع الفروع إلى أصلٍ واحد، وهو إقامة دَرْء الشىء.",
+   "core_meaning_english": "one meaning, all branches returning to one root: straightening out the crookedness/deviation of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثقّفتُ القناة",
+     "meaning": "إذا أقمتَ عِوَجَها",
+     "meaning_english": "I straightened the spear-shaft's crookedness",
+     "citation": "نَظَرَ المثقِّفُ فى كُعوبِ قناتِه / حتّى يُقيمَ ثِقافُهُ مِنآدَها"
+    },
+    {
+     "usage": "تثقّفتُ هذا الكلام من فلان",
+     "meaning": "أخذته",
+     "meaning_english": "I picked up this speech from so-and-so",
+     "citation": ""
+    },
+    {
+     "usage": "رجلٌ ثَقِفٌ لَقِفٌ",
+     "meaning": "وذلك أن يُصيب عِلمَ ما يسمعه على استواء",
+     "meaning_english": "a quick-witted man who grasps correctly what he hears",
+     "citation": ""
+    },
+    {
+     "usage": "ثقفتُ به",
+     "meaning": "إذا ظفرتَ به",
+     "meaning_english": "I caught/overtook him",
+     "citation": "فإمّا تثقفونى فاقتلونى / وإن أُثقَفْ فسوف تَرَوْنَ بالى"
+    }
+   ],
+   "printed_page_number": "٣٨٣",
+   "pdf_page_index": 429,
+   "notes": "Entry spans pages 428-429; the poetry 'نظر المثقف...' is the same line whose opening appears at bottom of page 428 and continues at top of 429. Text also poses and answers a rhetorical question ('فإن قيل...') tying the two senses (straightening / catching-up-with) together as one qiyas. Corrected: printed_page_number was inconsistently '٣٨٢' while pdf_page_index was 429 (page 429 is printed '٣٨٣') — fixed to match. Also trimmed an invented alternate gloss ('تعلمته منه') from the 'تثقفت' variance not present in the text (page only says 'أخذته')."
+  },
+  {
+   "root": "ثكل",
+   "root_letters": [
+    "ث",
+    "ك",
+    "ل"
+   ],
+   "core_meaning": "الثاء والكاف واللام كلمةٌ واحدة تدلّ على فُقدان الشىء، وكأنه يختصّ بذلك فُقدان الولد.",
+   "core_meaning_english": "one meaning: losing a thing, specifically associated with the loss of one's child",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَكِلته أمّه",
+     "meaning": "أى فقدته، تَثكَله ثُكلاً",
+     "meaning_english": "his mother lost him (was bereaved of him)",
+     "citation": ""
+    },
+    {
+     "usage": "الثُّكْل",
+     "meaning": "ولأمّه الثُّكل",
+     "meaning_english": "bereavement (of a mother for her child)",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "٣٨٣",
+   "pdf_page_index": 429,
+   "notes": "First entry under new chapter heading 'باب الثاء والكاف وما يثلثهما'. Text notes that if someone applies the word to a non-child loss, it is a metaphorical extension (يحمله على ذلك) from the true original sense. Verified against page image — both variances confirmed present ('يقال ثكلته أمه...ثكلا. ولأمه الثكل'); no corrections."
+  },
+  {
+   "root": "ثكم",
+   "root_letters": [
+    "ث",
+    "ك",
+    "م"
+   ],
+   "core_meaning": "الثاء والكاف والميم كلمةٌ واحدة، وهو مجتمع الشىء.",
+   "core_meaning_english": "one meaning: the gathering-point / main body of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "تنحّ عن ثُكْمِ الطريق",
+     "meaning": "أى مُعظَمِه وواضحه",
+     "meaning_english": "move away from the main, clearly-marked part of the road",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "٣٨٣",
+   "pdf_page_index": 429,
+   "notes": "Verified accurate, no corrections."
+  },
+  {
+   "root": "ثكن",
+   "root_letters": [
+    "ث",
+    "ك",
+    "ن"
+   ],
+   "core_meaning": "الثاء والكاف والنون كلمةٌ واحدةٌ تدلُّ على مجتمع الشيء",
+   "core_meaning_english": "the gathering-place / congregating spot of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "تَكَنُ الطريق",
+     "meaning": "أي معظمه وواضحه",
+     "meaning_english": "the main, well-trodden part of the road",
+     "citation": ""
+    },
+    {
+     "usage": "الثُّكْنة",
+     "meaning": "السِّرب",
+     "meaning_english": "a flock/covey (of birds)",
+     "citation": ""
+    },
+    {
+     "usage": "الثُّكْنة",
+     "meaning": "الجماعة",
+     "meaning_english": "a group/company of people",
+     "citation": ""
+    },
+    {
+     "usage": "الجمع ثُكَن",
+     "meaning": "جمع الثُّكْنة",
+     "meaning_english": "plural of thuknah",
+     "citation": "قال الأعشى: يُسافِحُ ورقاءَ جونيةً ليُدرِكَها في حمامٍ ثُكَنِ"
+    }
+   ],
+   "printed_page_number": "384",
+   "pdf_page_index": 430,
+   "notes": "Root marker present at page top. Footnote (1) records Ibn Faris's own note in al-Mujmal that this is a case of letter-substitution (إبدال): 'يقولون ثكن وتكن' — NOT a variant reading 'ثم' as previously noted (correction). Footnote (2) confirms manuscript/Diwan variant 'غورية' for 'جونية' in the citation."
+  },
+  {
+   "root": "ثلم",
+   "root_letters": [
+    "ث",
+    "ل",
+    "م"
+   ],
+   "core_meaning": "الثاء واللام والميم أصلٌ واحد، وهو تَشَرُّمٌ يقع في طَرَف الشيء",
+   "core_meaning_english": "a breach/chip occurring at the edge of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الثُّلْمة",
+     "meaning": "تكون في طَرَف الإناء",
+     "meaning_english": "a chip/breach at the rim of a vessel",
+     "citation": ""
+    },
+    {
+     "usage": "ثُلْمة (بمعنى أوسع)",
+     "meaning": "يُسمَّى الخَلَل أيضاً وإن لم يكن في الطَّرَف",
+     "meaning_english": "also used for any gap/defect even when not at the edge",
+     "citation": ""
+    },
+    {
+     "usage": "إناءٌ مُثْلَمٌ ومُتَثَلِّمٌ",
+     "meaning": "الإناء الذي فيه ثُلْمة",
+     "meaning_english": "a vessel that is chipped/breached",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "384",
+   "pdf_page_index": 430,
+   "notes": "Preceded by section heading 'باب الثاء واللام وما يثلثهما' (chapter divider, not a root entry)."
+  },
+  {
+   "root": "ثلب",
+   "root_letters": [
+    "ث",
+    "ل",
+    "ب"
+   ],
+   "core_meaning": "الثاء واللام والباء كلمةٌ صحيحةٌ مطَّردة القياس في خَوَر الشيء وتشقُّقه",
+   "core_meaning_english": "weakness/softness and cracking or splitting of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الثَّلِب",
+     "meaning": "الرُّمح الخَوَّار",
+     "meaning_english": "a weak, soft (bending) spear",
+     "citation": "قال أبو خراش الهذلي (per footnote 3, not أبو ذؤيب): ومُطَّرِدٌ من الخَطِّيّ لا عارٍ ولا ثَلِبُ"
+    },
+    {
+     "usage": "الثِّلْب",
+     "meaning": "الهِمُّ الكبير",
+     "meaning_english": "an old, decrepit (male) animal",
+     "citation": ""
+    },
+    {
+     "usage": "ثَلَّبَه تَثليباً / ثَلَبْتُه",
+     "meaning": "إذا عِبْتَه",
+     "meaning_english": "to revile / find fault with him",
+     "citation": ""
+    },
+    {
+     "usage": "ذو ثَلِبةٍ",
+     "meaning": "أي عَيْبٌ",
+     "meaning_english": "having a defect/fault",
+     "citation": ""
+    },
+    {
+     "usage": "امرأةٌ ثالِبة الثَّوى",
+     "meaning": "أي منشقّة القدمين",
+     "meaning_english": "a woman with cracked feet/heels",
+     "citation": "لقد ولَدَتْ غسّانَ ثالبةَ الثوى عَدُوسَ السُّرى لا يَعرف الكَرَمَ جِيدُها"
+    },
+    {
+     "usage": "الثَّلَب",
+     "meaning": "الوَسَخ",
+     "meaning_english": "filth, griminess",
+     "citation": ""
+    },
+    {
+     "usage": "ثَلِب الجِلد",
+     "meaning": "وذاك هو القَشَف",
+     "meaning_english": "roughness/austerity of the skin",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "384",
+   "pdf_page_index": 430,
+   "notes": "Entry continues onto page 431 (printed 385). CORRECTION: footnote (3) attributes the spear-verse to أبو خراش الهذلي, not أبو ذؤيب as previously stated — the OCR of the poet's name in the footnote is faint; flagged as the best reading but not 100% certain. 'ثابتة/ثالبة الثوى' word remains a low-confidence OCR read, kept per prior editorial judgment since footnote (1) on p.431 only glosses meaning, doesn't flag a spelling variant."
+  },
+  {
+   "root": "ثلث",
+   "root_letters": [
+    "ث",
+    "ل",
+    "ث"
+   ],
+   "core_meaning": "الثاء واللام والثاء كلمةٌ واحدة، وهي في العدد، يقال اثنان وثلاثة",
+   "core_meaning_english": "denotes a number — the number three, as in 'two and three'",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الثُّلاثاء",
+     "meaning": "من الأيام",
+     "meaning_english": "Tuesday, one of the days of the week",
+     "citation": "[قالوا] تُلاثاؤه مالٌ ومَأدُبةٌ وكلُّ أيامه أيامُ الثُّلاثاءِ (مصراع أول ساقط من البيت الأصلي، أثبته المحقق من مصدر آخر)"
+    },
+    {
+     "usage": "ثالثة الأَثافي",
+     "meaning": "الحَيْدُ النادر من الجبل، يُجمع إليه صخرتان ثم تُنصَبُ عليها القِدْر",
+     "meaning_english": "the odd rock-outcrop of a mountain, joined with two other rocks to set a cooking-pot on them",
+     "citation": "قال الشماخ: أقامَتْ على رَبعَيهما جارتا صفاً كُمَيْتا الأعالي جَونتا مُصطلاهما"
+    },
+    {
+     "usage": "الثُّلُوث من الإبل",
+     "meaning": "التي تَحمِلُ ثلاثة آنيةٍ إذا حُلبت",
+     "meaning_english": "she-camels that fill three vessels when milked",
+     "citation": ""
+    },
+    {
+     "usage": "المِثلوثة",
+     "meaning": "المزادة تكون من ثلاثة جلود",
+     "meaning_english": "a water-skin bag made from three hides",
+     "citation": ""
+    },
+    {
+     "usage": "حَبلٌ مَثلوثٌ",
+     "meaning": "إذا كان على ثلاث قُوًى",
+     "meaning_english": "a rope twisted of three strands",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "385",
+   "pdf_page_index": 431,
+   "notes": "Marginal number '١٠٦' beside the day-name discussion is an editorial/reference marker, not dictionary text."
+  },
+  {
+   "root": "ثلج",
+   "root_letters": [
+    "ث",
+    "ل",
+    "ج"
+   ],
+   "core_meaning": "الثاء واللام والجيم أصلٌ واحد، وهو الثَّلْج المعروف",
+   "core_meaning_english": "snow, the well-known substance",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "أرضٌ مَثلوجة",
+     "meaning": "إذا أصابها الثلج",
+     "meaning_english": "land that snow has fallen on",
+     "citation": ""
+    },
+    {
+     "usage": "رجلٌ مَثلوجُ الفؤاد",
+     "meaning": "البليدُ الماجز؛ والمعنى أن فؤاده كأنه ضُرِب بثَلْجٍ فبَرَدَتْ حرارتُه وتَبَلَّد",
+     "meaning_english": "a dull, sluggish man, as if his heart were struck by snow and its warmth cooled",
+     "citation": "قال (حاتم الطائي): تَنَبَّهَ مَثلوجَ الفؤادِ مُوَرَّما"
+    },
+    {
+     "usage": "ثَلِجَ بخبرٍ أتاه",
+     "meaning": "إذا سُرَّ به",
+     "meaning_english": "to be gladdened by news that reached him",
+     "citation": ""
+    },
+    {
+     "usage": "أسخنَ اللهُ عينَه",
+     "meaning": "دعاءٌ عليه",
+     "meaning_english": "an imprecation: 'may God heat his eye' (make him weep in sorrow)",
+     "citation": ""
+    },
+    {
+     "usage": "أقرَّ اللهُ عينَه",
+     "meaning": "دعاءٌ له",
+     "meaning_english": "a blessing: 'may God cool/settle his eye' (make him joyful)",
+     "citation": ""
+    },
+    {
+     "usage": "حَفَرَ حتى أثلَجَ",
+     "meaning": "إذا بلغ الطِّين",
+     "meaning_english": "he dug until he reached the moist clay/mud",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "385/386",
+   "pdf_page_index": 431,
+   "notes": "Entry begins at bottom of page 431 (printed 385) and continues through top of page 432 (printed 386). Footnote on page 432 attributes the poetry line to Hatim al-Ta'i (حاتم الطائي), diwan p.109, giving the preceding hemistich: 'ينامُ الضحى حتى إذا الليل استوى'. CORRECTION: fixed 'ثَلَجَ' → 'ثَلِجَ' (per the wording pattern used) and 'اسُرَّ به' → 'سُرَّ به' (typo in prior extraction)."
+  },
+  {
+   "root": "ثلط",
+   "root_letters": [
+    "ث",
+    "ل",
+    "ط"
+   ],
+   "core_meaning": "الثاء واللام والطاء كلمةٌ واحدة، وهو ثِلاط البعير والبقرة",
+   "core_meaning_english": "the dung of a camel and of a cow",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الثِّلاط",
+     "meaning": "ثِلاط البعير والبقرة",
+     "meaning_english": "dung of a camel or cow",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "386",
+   "pdf_page_index": 432,
+   "notes": ""
+  },
+  {
+   "root": "ثلغ",
+   "root_letters": [
+    "ث",
+    "ل",
+    "غ"
+   ],
+   "core_meaning": "الثاء واللام والغين كلمةٌ واحدة، وهو شَدْخُ الشيء",
+   "core_meaning_english": "the crushing/smashing of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَلَغْتُ رأسَه",
+     "meaning": "أي شَدَخْتُه",
+     "meaning_english": "I crushed/smashed his head",
+     "citation": ""
+    },
+    {
+     "usage": "مُثَلَّغ",
+     "meaning": "يقولونه لما سقط من الرُّطَب فانشدَخَ",
+     "meaning_english": "said of fresh dates that fell and got crushed/mashed",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "386",
+   "pdf_page_index": 432,
+   "notes": ""
+  },
+  {
+   "root": "ثمن",
+   "root_letters": [
+    "ث",
+    "م",
+    "ن"
+   ],
+   "core_meaning": "الثاء والميم والنون أصلان: أحدهما عِوَضُ ما بِيع، والآخر جزءٌ من ثمانية",
+   "core_meaning_english": "two roots: (1) the compensation/price given for something sold, and (2) a part/fraction of eight (one-eighth)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "بِعْتُ بكذا وأخذتُ ثَمَنَه",
+     "meaning": "مثالٌ على الأصل الأول (عِوَضُ ما بِيع)",
+     "meaning_english": "'I sold for such-and-such and took its price' — illustrating the first sense (the price of something sold)",
+     "citation": "وقال زهير: [البيت مقطوع؛ يتابع في الصفحة التالية غير المتوفرة]"
+    }
+   ],
+   "printed_page_number": "386",
+   "pdf_page_index": 432,
+   "notes": "Entry begins at end of page 432 with heading 'باب الثاء والميم وما يثلثهما' preceding it; text cuts off mid-citation of a verse by Zuhayr and continues onto the next (unprovided) page — incomplete on these pages. CORRECTION: fixed 'ما بُوعِ' → 'ما بِيع' (passive form) and the illustrative usage text, which reads 'بِعْتُ بكذا وأخذتُ ثَمَنَه' in the source, not 'بِعْتُ بثمنٍ كذا'; merged the two near-duplicate variances from the prior extraction into one since the source gives only one worked example under 'فالأول'."
+  },
+  {
+   "root": "ثمن",
+   "root_letters": [
+    "ث",
+    "م",
+    "ن"
+   ],
+   "core_meaning": "(تكملة من صفحة سابقة - لم يرد نص الأصل في هذه الصفحة)",
+   "core_meaning_english": "(continuation from a previous page — core-meaning sentence not on this page)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "وعزّت أُثمُنُ البُدُنُ (بالضم) / أثمَنَ البُدُن (بالفتح)",
+     "meaning": "فمن رواه بالضمّ فهو جمع ثَمَن؛ ومن رواه بالفتح «أثمَنَ البُدُن» فإنه يريد أكثرها ثمناً",
+     "meaning_english": "read with ḍamma, it is the plural of 'thaman' (price); read with fatḥa it means 'the most valuable of them'",
+     "citation": "بيت شعر مذكور في الحاشية"
+    },
+    {
+     "usage": "الثُّمُن",
+     "meaning": "واحد من ثمانية؛ يقال ثَمَنْتُ القوم أثمُنُهم إذا أخذتَ ثُمُنَ أموالهم",
+     "meaning_english": "one part of eight; to take an eighth of people's wealth",
+     "citation": ""
+    },
+    {
+     "usage": "المَثمون والثَّمين",
+     "meaning": "المأخوذ منه الثُّمُن",
+     "meaning_english": "the one from whom an eighth is taken",
+     "citation": "بيتان: بيت غير منسوب، وبيت للشماخ أو غيره"
+    }
+   ],
+   "printed_page_number": "387",
+   "pdf_page_index": 433,
+   "notes": "This root's core-meaning statement is not on this page (continuation of an entry begun earlier). Corrected: original extraction inverted which reading (ḍamma vs fatḥa) means 'plural' vs 'most valuable'. Footnote poetry text partly cut off/small."
+  },
+  {
+   "root": "ثمد",
+   "root_letters": [
+    "ث",
+    "م",
+    "د"
+   ],
+   "core_meaning": "أصل واحد، وهو القليل من الشيء",
+   "core_meaning_english": "little / scant amount of a thing",
+   "sarf_pattern": "",
+   "variances": [],
+   "printed_page_number": "387",
+   "pdf_page_index": 433,
+   "notes": "Entry begins at bottom of this page and continues onto the next page (434); no variances appear yet on this page."
+  },
+  {
+   "root": "ثمد",
+   "root_letters": [
+    "ث",
+    "م",
+    "د"
+   ],
+   "core_meaning": "أصل واحد، وهو القليل من الشيء",
+   "core_meaning_english": "little / scant amount of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الماء القليل",
+     "meaning": "لا مادّة له",
+     "meaning_english": "small standing water with no continuous source",
+     "citation": ""
+    },
+    {
+     "usage": "ثَمَدَت فلاناً النساء",
+     "meaning": "إذا قطعن ماءه",
+     "meaning_english": "the women cut off/exhausted his (seminal) water",
+     "citation": ""
+    },
+    {
+     "usage": "فلان مثمود",
+     "meaning": "إذا كَثُر عليه السؤال حتى ينفد ما عنده",
+     "meaning_english": "a man so heavily petitioned that what he has is exhausted",
+     "citation": "أو كان المثمودِ بعد جِمامٍ / زَرِمَ المِدْمَعُ لا يَؤُوب نزورا"
+    },
+    {
+     "usage": "الثامد من البهم",
+     "meaning": "حين قَرِمَ؛ لأن الذي يأخذه يسير",
+     "meaning_english": "young lamb/kid at the stage when only a little (milk) is taken from it",
+     "citation": ""
+    },
+    {
+     "usage": "الإثْمِد",
+     "meaning": "معروف (كحل)؛ قال بعض أهل اللغة: هو من الباب لأن الذي يُستعمل منه يسير؛ وهذا مما لا يوقف على وجهه",
+     "meaning_english": "antimony/kohl — said by some to belong to this root because only a small amount of it is used; the author says this is not certainly established",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "388",
+   "pdf_page_index": 434,
+   "notes": "Corrected two transcription errors: citation word 'المِعْمَ' -> 'المِدْمَعُ', and 'قَرُم' -> 'قَرِمَ'."
+  },
+  {
+   "root": "ثمر",
+   "root_letters": [
+    "ث",
+    "م",
+    "ر"
+   ],
+   "core_meaning": "أصلٌ واحد، وهو يتولّد عن شيء متجمّعاً، ثم يُحمَل عليه غيرُه استعارةً",
+   "core_meaning_english": "something generated/collected from a thing gathered together, then extended metaphorically to other things",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الثَّمَر",
+     "meaning": "معروف؛ يقال ثَمَرَة وثَمَر وثِمار وثُمُر",
+     "meaning_english": "fruit (well known); collective/plural forms given",
+     "citation": ""
+    },
+    {
+     "usage": "الشجر الثامر",
+     "meaning": "الذي بَلَغَ أوان أن يُثمَر",
+     "meaning_english": "a tree that has reached the time to fruit",
+     "citation": ""
+    },
+    {
+     "usage": "المُثمِر",
+     "meaning": "الذي فيه الثمر",
+     "meaning_english": "that which bears/has fruit in it",
+     "citation": "كذا قال ابن دريد"
+    },
+    {
+     "usage": "ثمّر الرجلُ ماله",
+     "meaning": "أحسنَ القيامَ عليه",
+     "meaning_english": "the man made his wealth grow/multiply by managing it well",
+     "citation": ""
+    },
+    {
+     "usage": "ثَمَّرَ اللهُ مالَه (دعاء)",
+     "meaning": "دعاء بالنماء",
+     "meaning_english": "a prayer/invocation for God to make one's wealth increase",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّميرة",
+     "meaning": "من اللبن حين يُثمِر فيصير مثل الجُمّار الأبيض؛ وهذا هو القياس",
+     "meaning_english": "milk when it froths/thickens and becomes like white palm-pith",
+     "citation": ""
+    },
+    {
+     "usage": "ثَمَرة (لمُقدّمة السوط)",
+     "meaning": "المُقدَّمة من السوط؛ وذلك تشبيه",
+     "meaning_english": "the tip-end of a whip, called 'fruit' by metaphor",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "388",
+   "pdf_page_index": 434,
+   "notes": "Corrected usage label of last variance: text says 'مُقدّمة السوط' (the tip/front of the whip), not 'عُقدة السوط' (knot)."
+  },
+  {
+   "root": "ثمر (شاذ - ليلة ابن ثمير)",
+   "root_letters": [
+    "ث",
+    "م",
+    "ر"
+   ],
+   "core_meaning": "وما شذّ عن الباب: ليلة ابن ثُمَيْر، وهي الليلة القَمْراء؛ وما أدرى ما أصله",
+   "core_meaning_english": "an anomalous usage outside this root's core meaning: 'the night of Ibn Thumayr' meaning a moonlit night; the author states he does not know its origin",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ليلة ابن ثُمَير",
+     "meaning": "الليلة القمراء",
+     "meaning_english": "a moonlit night",
+     "citation": "وأنى لمن عبس وإن قال قائل / على رغمهم ما أنمر ابن ثمير"
+    }
+   ],
+   "printed_page_number": "388",
+   "pdf_page_index": 434,
+   "notes": "Marked in the text itself (شذ عن الباب) as an anomaly, entry numbered 107 in margin. Corrected citation word: 'لمن عيّس' -> 'لمن عبس' (per footnote 4)."
+  },
+  {
+   "root": "ثمغ",
+   "root_letters": [
+    "ث",
+    "م",
+    "غ"
+   ],
+   "core_meaning": "كلمتان: واحدة لا يُقاس عليها ولا يُفرَّع منها",
+   "core_meaning_english": "two (unrelated) words; one of them cannot be analogized from or branched into further derivations",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَمَغْتُ الثوبَ ثَمْغاً",
+     "meaning": "إذا صبغته صبغاً مُشبَعاً",
+     "meaning_english": "to dye a garment with a saturated/deep dye",
+     "citation": "تركتُ بني الفزاريّ غير فخرٍ / كأنّ لحاهمُ ثُمِغَت بوَرْس"
+    },
+    {
+     "usage": "ثَمَفَة الجبل (بالثاء)",
+     "meaning": "أعلاه؛ قال ابن فارس: وهاهنا كلمة ليست من الباب وهي مع ذلك معلومة، ذكرها الكسائي؛ وقال الفراء: والذي سمعتُ أنا نَمَفَة (بالنون)",
+     "meaning_english": "the top/summit of a mountain (with thā'); the author notes this word does not belong to this root though it is a known word, per al-Kisā'ī — while al-Farrā' says what he himself heard was 'namafa' (with nūn)",
+     "citation": "قول الفراء المذكور بعده"
+    }
+   ],
+   "printed_page_number": "389",
+   "pdf_page_index": 435,
+   "notes": "Corrected: citation reads 'بني الفزاريّ' not 'بني الفزيّل' (low confidence, small print). Corrected variance 2: the 'not from this root' remark is Ibn Fāris's own statement, not al-Kisā'ī's; al-Farrā' is quoted giving an alternate reading 'نَمَفَة' (with nūn) rather than a vague 'variant reading' as originally noted — still flagged low-confidence given tiny footnote print."
+  },
+  {
+   "root": "ثمأ",
+   "root_letters": [
+    "ث",
+    "م",
+    "أ"
+   ],
+   "core_meaning": "الثاء والميم والهمزة كلمة واحدة ليست أصلاً، بل هي فرعٌ لما قبلها",
+   "core_meaning_english": "a single word that is not an independent root but a branch of the preceding root (ثمغ)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثمأ ... صبغَها",
+     "meaning": "والهمزة كأنها مبدلة من غين (أي أصلها ثمغ)",
+     "meaning_english": "to dye something; the hamza here is considered a substitution for ghayn, i.e. originally from ثمغ",
+     "citation": ""
+    },
+    {
+     "usage": "ثمّأت الكمأة في السمن",
+     "meaning": "طرحتها فيه؛ لأن الكمأة كأنها صُبغت بالسمن",
+     "meaning_english": "to put/dip truffles (kama'a) in clarified butter, as if they were 'dyed' by it",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "389",
+   "pdf_page_index": 435,
+   "notes": "Text explicitly says 'وهذا فيه بعض مافيه' (there is some doubt about this). First usage's exact object/word (transcribed as 'إحديته') is illegible/uncertain in the scan at this resolution — flagged rather than guessed; the verb-meaning 'صبغها' (to dye it) is legible and retained."
+  },
+  {
+   "root": "ثمل",
+   "root_letters": [
+    "ث",
+    "م",
+    "ل"
+   ],
+   "core_meaning": "أصلٌ يُقاس مطّرداً، وهو الشيء يبقى ويثبت، ويكون ذلك في القليل والكثير",
+   "core_meaning_english": "something that remains and persists/stays fixed, applying to both a small and a large amount",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "دار بني فلان ثَمَلٌ",
+     "meaning": "أي دار مُقام",
+     "meaning_english": "the house of so-and-so's clan is an inhabited/lasting abode",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّميلة",
+     "meaning": "ما بَقِيَ في الكَرِش من العَلَف؛ وكل بقيّة ثَميلة",
+     "meaning_english": "what remains of fodder in the paunch/stomach; any remainder is called thamila",
+     "citation": ""
+    },
+    {
+     "usage": "تشرب الإبل على تلك الثميلة",
+     "meaning": "سُمّيت بذلك لأنها تبقى، ثم تشرب الإبل معتمدة عليها؛ وإلا فهي لا تحتاج للشرب",
+     "meaning_english": "camels drink relying on that residual fodder — hence the name, since it persists",
+     "citation": ""
+    },
+    {
+     "usage": "فلان ثِمالُ بني فلان",
+     "meaning": "إذا كان مُعتَمَدَهم، وهو ذلك القياس لأنه يُعوَّل عليه كتعويل الإبل على تلك الثميلة",
+     "meaning_english": "so-and-so is the mainstay/support of his people, by analogy to camels relying on residual fodder",
+     "citation": "بيت أبي طالب في مدح النبي صلى الله عليه وآله وسلم بذكر الثِّمال (النص يتقطع في نهاية الصفحة)"
+    }
+   ],
+   "printed_page_number": "389",
+   "pdf_page_index": 435,
+   "notes": "Entry is cut off at the bottom of the page mid-citation (Abu Talib's verse); continues on the next page not included in this batch. No corrections needed here."
+  },
+  {
+   "root": "ثمل",
+   "root_letters": [
+    "ث",
+    "م",
+    "ل"
+   ],
+   "core_meaning": "",
+   "core_meaning_english": "",
+   "sarf_pattern": "",
+   "pdf_page_index": 436,
+   "printed_page_number": "390",
+   "notes": "Continuation of an entry that began on a previous page (not in this batch); the opening core-meaning sentence is not present on this page.",
+   "variances": [
+    {
+     "usage": "ثُمَال اليتامى",
+     "meaning": "غياث اليتامى وملجؤهم، عصمة للأرامل",
+     "meaning_english": "the refuge/support of orphans, a protection for widows",
+     "citation": "وأبيض يستسقى الغمام بوجهه ... ثُمال اليتامى عصمة للأرامل"
+    },
+    {
+     "usage": "الثُّمْلَة",
+     "meaning": "بقية الماء",
+     "meaning_english": "the remainder of water left (in a vessel)",
+     "citation": ""
+    },
+    {
+     "usage": "الثُّمَال",
+     "meaning": "السَّمُّ المُنْقَع",
+     "meaning_english": "poison that has been steeped/soaked",
+     "citation": "قال الهذلي: فممّا سقاها قليلا سما ... بمزعف ذيفان قشب ثمال"
+    },
+    {
+     "usage": "الثُّمَلَة",
+     "meaning": "باقي المهناء (القطران) في الإناء",
+     "meaning_english": "the residue of tar-ointment left in a vessel",
+     "citation": "كما تلوث فى المهناء الثملة"
+    },
+    {
+     "usage": "الثُّمَال (فى السكران)",
+     "meaning": "السكران، من بقية الشراب التى أسكرته وخيّرته",
+     "meaning_english": "the drunk man, so called from the leftover drink that intoxicated him",
+     "citation": "فقلت للقوم فى درنا وقد ثملوا ... شيموا وكيف يشيم الشارب الثمل"
+    },
+    {
+     "usage": "الثُّمَالَة / أثمل اللبن",
+     "meaning": "الرغوة؛ أثمل اللبن: رغى",
+     "meaning_english": "froth/foam; the milk frothed",
+     "citation": "إذا مس خرشاءه الثمالة أنفه ... ثنى مشفريه للصريح فأقنعا"
+    }
+   ]
+  },
+  {
+   "root": "ثنى",
+   "root_letters": [
+    "ث",
+    "ن",
+    "ي"
+   ],
+   "core_meaning": "الثاء والنون والياء أصلٌ واحد، وهو تكرير الشيء مرتين، أو جعله شيئين متواليين أو متباينين",
+   "core_meaning_english": "repeating a thing twice, or making two things follow one another / be paired",
+   "sarf_pattern": "",
+   "pdf_page_index": 437,
+   "printed_page_number": "391",
+   "notes": "Entry begins on page 437 (printed 391) and continues onto page 438 (printed 392); content from both pages combined here. Corrected: 'متتاليين'→'متواليين' to match printed wording; added omitted 'قال معن' citation; fixed usage name 'الثنيان من الجزور'→'الثنيا من الجزور'; reworded the grammatical-exception variance's Arabic meaning to track the printed sentence more closely.",
+   "variances": [
+    {
+     "usage": "الاثنان، التثنية",
+     "meaning": "معروفان فى العدد؛ التثنية والثنيان: الذى يكون بعد السيد كأنه ثانيه",
+     "meaning_english": "the well-known dual/two in counting; 'al-thinyān' is the one who comes after the chief, as if he were his second",
+     "citation": "ترى ثنيانا إذا ما جاءنا بدأهم ... وبدوهم إن أتانا كان ثنيانا"
+    },
+    {
+     "usage": "الثِّنَى (الأمر)",
+     "meaning": "الأمر يعاد مرتين",
+     "meaning_english": "a matter/act repeated twice",
+     "citation": "حديث النبي صلى الله عليه وآله وسلم: لا ثنى فى الصدقة، يعنى لا تؤخذ فى السنة مرتين؛ وقال معن: أفى جنب بكر قطعتنى ملامة ... لعمرك لقد كانت ملامتها ثنى؛ وقال النمر بن تولب: فإذا ما لم تصب رشدا ... كان بعض اللأوم ثنيانا"
+    },
+    {
+     "usage": "امرأة ثنى",
+     "meaning": "ولدت اثنين، ولا يقال ثلث ولا فوق ذلك",
+     "meaning_english": "a woman who has given birth to two (children); the term is not extended to three or more",
+     "citation": ""
+    },
+    {
+     "usage": "الثِّنَاية",
+     "meaning": "حبل من شعر أو صوف",
+     "meaning_english": "a rope made of hair or wool",
+     "citation": ""
+    },
+    {
+     "usage": "[بيت شعر مجزوء] الحجر الأخشن والثِّنَاية",
+     "meaning": "غير واضح تماما فى السياق المقروء",
+     "meaning_english": "unclear from the legible portion",
+     "citation": "و[...] الحجر الأخشن والثناية"
+    },
+    {
+     "usage": "الثُّنْيَا من الجزور",
+     "meaning": "الرأس أو غيره إذا استثناه صاحبه",
+     "meaning_english": "a portion (e.g. the head) of a slaughtered camel that its owner excludes/reserves",
+     "citation": ""
+    },
+    {
+     "usage": "معنى الاستثناء (نحويا)",
+     "meaning": "من قياس الباب: أن الذاكر يثنى ذكره مرة فى الجملة ومرة فى التفصيل؛ لأنك إذا قلت خرج الناس فقد ذكرت الناس، وفى الناس زيد وعمرو، فإذا قلت إلا زيدا فقد ذكرته ذكرا ظاهرا",
+     "meaning_english": "grammatical exception fits the root's core meaning because the excepted item is mentioned twice — once implicitly within the general statement (e.g. 'the people left', which includes Zayd and 'Amr), once explicitly in the exception ('except Zayd')",
+     "citation": ""
+    },
+    {
+     "usage": "الاِثْنَاة (طرف الزمام)",
+     "meaning": "طرف الزمام فى الخشاش، كأنه ثانى الزمام",
+     "meaning_english": "the end/loop of the nose-rein attached to the nose-peg, as if it were the rein's second/pair",
+     "citation": ""
+    },
+    {
+     "usage": "المَثَانِى",
+     "meaning": "ما قُرئ من الكتاب مكررا؛ قال الله تعالى: ولقد آتيناك سبعا من المثانى، أراد أن قراءتها تثنى وتكرر",
+     "meaning_english": "the repeated/recited portions of scripture; Qur'anic 'al-mathani' — meant that their recitation is repeated over and over",
+     "citation": "﴿ولقد آتيناك سبعا من المثانى﴾"
+    }
+   ]
+  },
+  {
+   "root": "ثنت",
+   "root_letters": [
+    "ث",
+    "ن",
+    "ت"
+   ],
+   "core_meaning": "الثاء والنون والتاء كلمة واحدة",
+   "core_meaning_english": "the letters tha-nun-ta form a single (isolated) usage",
+   "sarf_pattern": "",
+   "pdf_page_index": 438,
+   "printed_page_number": "392",
+   "notes": "Very short entry with no branching variances beyond the one usage given; a metathesized form (ثتن) is also noted by the author. Corrected citation's final word ('درحابه'→'درحايه', per the footnote gloss of 'الدرحاية'); corrected the metathesis description ('بتقديم النون'→'بتقديم التاء على النون', matching the actual letter swap ث-ن-ت→ث-ت-ن) — the printed footnote is small and this reading carries some uncertainty.",
+   "variances": [
+    {
+     "usage": "ثَنِتَ اللحمُ",
+     "meaning": "تغيّرت رائحتُه",
+     "meaning_english": "the meat's smell changed (went off/spoiled)",
+     "citation": "وثنِنَت لثاته درحايه"
+    },
+    {
+     "usage": "ثَتِن (بتقديم التاء على النون)",
+     "meaning": "لغة أخرى بمعنى ثَنِت",
+     "meaning_english": "an alternate metathesized form of the same word",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "ثهل",
+   "root_letters": [
+    "ث",
+    "ه",
+    "ل"
+   ],
+   "core_meaning": "الثاء والهاء واللام كلمة واحدة، وهو جبل يقال له ثهلان، وهو مشهور",
+   "core_meaning_english": "a single (proper-name) usage: 'Thahlān', a well-known mountain",
+   "sarf_pattern": "",
+   "pdf_page_index": 438,
+   "printed_page_number": "392",
+   "notes": "Ibn Faris explicitly doubts a further claimed meaning (marked 'وما أحسبه صحيحا' — 'I do not think it correct').",
+   "variances": [
+    {
+     "usage": "ثَهْلان",
+     "meaning": "اسم جبل معروف",
+     "meaning_english": "the name of a well-known mountain",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّهَل",
+     "meaning": "قيل: الانبساط على وجه الأرض، وما أحسبه صحيحا",
+     "meaning_english": "claimed to mean 'spreading out flat on the ground', but the author doubts this is correct",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "ثوى",
+   "root_letters": [
+    "ث",
+    "و",
+    "ي"
+   ],
+   "core_meaning": "الثاء والواو والياء كلمة واحدة صحيحة تدل على الإقامة",
+   "core_meaning_english": "residing, staying, dwelling",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثَوَى يَثوِي فهو ثاوٍ",
+     "meaning": "أقام",
+     "meaning_english": "he resided/stayed",
+     "citation": "آذَنَتْنا ببَيْنِها أسماءُ ... رُبَّ ثاوٍ يُمَلَّ منه الثَّواء"
+    },
+    {
+     "usage": "أثْوَى",
+     "meaning": "يقال أيضاً بمعنى ثوى/أقام",
+     "meaning_english": "also said for residing",
+     "citation": "أثوى وقَصَّر ليلةً ليُزَوَّدا ... فمضى وأخلف من قُتيلةَ موعدا"
+    },
+    {
+     "usage": "الثَّوِيَّة والثَّاية",
+     "meaning": "مأوى الغَنَم",
+     "meaning_english": "sheepfold, resting place of sheep",
+     "citation": ""
+    },
+    {
+     "usage": "الثُّوَيَّة",
+     "meaning": "مكان",
+     "meaning_english": "a place (name)",
+     "citation": ""
+    },
+    {
+     "usage": "أُمُّ مَثْوَى الرجل",
+     "meaning": "صاحبة منزله، والقياس كله واحد",
+     "meaning_english": "the mistress of a man's lodging - his hostess/landlady",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّابَة",
+     "meaning": "حجارةٌ تُرفَع للراعي يرجع إليها ليلاً تكون علماً له",
+     "meaning_english": "stones raised as a marker for the shepherd to return to at night",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "393",
+   "pdf_page_index": 439,
+   "notes": ""
+  },
+  {
+   "root": "ثوب",
+   "root_letters": [
+    "ث",
+    "و",
+    "ب"
+   ],
+   "core_meaning": "الثاء والواو والباء قياسٌ صحيحٌ من أصلٍ واحد، وهو العَوْدُ والرجوع",
+   "core_meaning_english": "returning, coming back",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثابَ",
+     "meaning": "إذا رجع",
+     "meaning_english": "he returned",
+     "citation": ""
+    },
+    {
+     "usage": "المَثابَة",
+     "meaning": "المكان يثوب إليه الناس",
+     "meaning_english": "the place people return/gather to",
+     "citation": "وَإِذْ جَعَلْنَا الْبَيْتَ مَثَابَةً لِلنَّاسِ وَأَمْنًا؛ قال أهل التفسير: مثابةً: يثوبون إليه لا يَقضون منه وطراً أبداً. والمَثابةُ: مَقامُ المُستَقي على فَمِ البئر"
+    },
+    {
+     "usage": "مَثَاباتُ العروش",
+     "meaning": "بقيّة تُستدَلّ منها على تحت العروش الدعائم إذا استُذِلّ",
+     "meaning_english": "remnants/traces indicating the props beneath a trellis",
+     "citation": "وما لمَثَاباتِ العُرُوشِ بَقِيَّةٌ ... إذا استُذِلَّ من تحت العُرُوشِ الدَّعائمُ"
+    },
+    {
+     "usage": "المَثابَة (عند قوم)",
+     "meaning": "العدد الكبير",
+     "meaning_english": "a large number",
+     "citation": ""
+    },
+    {
+     "usage": "ثابَ الحوضُ",
+     "meaning": "امتلأ، إذا امتلأ",
+     "meaning_english": "the trough became full",
+     "citation": "إن لم يثب حَوْضُكَ قبل الرِّيّ"
+    },
+    {
+     "usage": "ثاب (المعنى الممتد)",
+     "meaning": "كأنه خلا ثم عاد إليه الماء، أو عاد ممتلئاً بعد أن خلا",
+     "meaning_english": "as if it emptied then the water returned to it",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّوابُ",
+     "meaning": "من الأجر والجزاء، أمرٌ يُثابُ إليه",
+     "meaning_english": "reward/recompense - something one is returned/rewarded with",
+     "citation": ""
+    },
+    {
+     "usage": "المَثابة (للصائد)",
+     "meaning": "يقال إنّ المثابة حِبالة الصائد، على معنى الاستعارة والتشبيه (فإن كان هذا صحيحاً فلأنّه مَثابةُ الصيد)",
+     "meaning_english": "the hunter's snare, by metaphor/simile",
+     "citation": "متى متى تُطَّلَعُ المَثابا لعلّ شيخاً مُهترّاً مُصابا - يعني بالشيخ الوَعِل يَصيده"
+    },
+    {
+     "usage": "الثَّوابُ",
+     "meaning": "يقال إنّ الثَّوابَ العسل، وهو من الباب لأنّ النَّحل يثوب إليه",
+     "meaning_english": "honey (since bees return to it)",
+     "citation": "فهو أحلى من الثَّوابِ إذا ... ذُقْتَ فاها وباري النَّسَم"
+    },
+    {
+     "usage": "ثُوَابة / ثَوَاب",
+     "meaning": "الواحد ثُوَابة والجمع ثَوابٌ: اسم رجلٍ كان يُضرَب به المثل في الطَّواعية، فيقال: أطْوَعُ من ثُوابٍ",
+     "meaning_english": "a proverbially obedient man's name, used in the saying 'more obedient than Thuwab'",
+     "citation": "وكنتُ الدهرَ لستُ أُطيعُ أُنثى ... فصرتُ اليومَ أطوَعَ من ثُوابِ"
+    },
+    {
+     "usage": "الثَّوبُ المَلبوس",
+     "meaning": "محتملٌ أن يكون من هذا القياس، لأنّه يُلبَس ثم يُلبَس ويُثاب إليه، وربما عبَّروا عن النفس بالثَّوب فيقال هو طاهر الثِّياب",
+     "meaning_english": "the worn garment - possibly from this root since it is worn again and again ('returned to'); the self is metaphorically called a 'garment' (clean-garmented = pure-souled)",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "393",
+   "pdf_page_index": 439,
+   "notes": "Entry spans pages 393-395 (pdf pages 439-441); recorded here as it begins on 439 and its content runs through 440 into the start of 441 before the ثور entry begins."
+  },
+  {
+   "root": "ثور",
+   "root_letters": [
+    "ث",
+    "و",
+    "ر"
+   ],
+   "core_meaning": "الثاء والواو والراء أصلان قد يمكن الجمع بينهما بأدنى نظر: فالأول انبعاثُ الشيء، والثاني جنسٌ من الحيوان",
+   "core_meaning_english": "two sub-meanings, near-unifiable: (1) the bursting-forth/rising up of a thing, (2) a kind of animal (the bull/ox)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثارَ الشيءُ يَثورُ ثَوْراً وثُؤوراً وثَوَراناً",
+     "meaning": "انبعث",
+     "meaning_english": "it rose up / burst forth",
+     "citation": ""
+    },
+    {
+     "usage": "ثارَتِ الحَصْبةُ تَثورُ",
+     "meaning": "انتشرت/ظهرت",
+     "meaning_english": "measles broke out",
+     "citation": ""
+    },
+    {
+     "usage": "ثاوَرَ فلانٌ فلاناً",
+     "meaning": "إذا واثَبَه، كأنّ كلّ واحدٍ منهما ثار إلى صاحبه",
+     "meaning_english": "he assailed/attacked him, as if each rose up at the other",
+     "citation": ""
+    },
+    {
+     "usage": "ثَوَّرَ فلانٌ على فلانٍ شرّاً",
+     "meaning": "إذا أظهره",
+     "meaning_english": "he stirred up/exposed evil against him",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّور (قول من يقول إنه الطُّحلُب)",
+     "meaning": "محتملٌ أن يكون من هذا لأنّه شيءٌ قد ثار على مَتْنِ الماء",
+     "meaning_english": "algae/pond-scum - said to derive from this sense since it 'rises' over the surface of water",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّورُ من الثِّيران، وجمعه الأثوار",
+     "meaning": "جنسٌ من الحيوان (الثور/الذكر من البقر)",
+     "meaning_english": "the bull/ox, a kind of animal; plural athwar",
+     "citation": ""
+    },
+    {
+     "usage": "ثَوْر (للسيّد)",
+     "meaning": "على معنى التشبيه إن كانت العرب تستعمله؛ يقول ابن فارس إنه لم يرَ به روايةً صحيحة",
+     "meaning_english": "'bull' used for a chieftain/leader, by way of simile - author notes he found no sound transmission for this usage",
+     "citation": "إنّي وقتلي سُلَيْكاً ثمّ أعقِلَه ... كالثَّورِ يُضرَبُ لَمّا عافتِ البَقَرُ"
+    },
+    {
+     "usage": "قال قومٌ: هو الثَّور بعينه",
+     "meaning": "لأنّهم يقولون إنّ الجِنّيّ إن ركب ظهر الثَّور امتنعت البقر من الشُّرب",
+     "meaning_english": "some said the word literally means the ox itself, per a belief that if a jinn rides an ox's back the cows refuse to drink",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "395",
+   "pdf_page_index": 441,
+   "notes": "Entry begins on this page (441/395) and continues beyond the given page range; only the portion appearing on page 441 is recorded."
+  },
+  {
+   "root": "ثور",
+   "root_letters": [
+    "ث",
+    "و",
+    "ر"
+   ],
+   "core_meaning": "(نص الأصل غير ظاهر في هذه الصفحات؛ هذا تتمة لمناقشة سابقة)",
+   "core_meaning_english": "(continuation only — core meaning stated on earlier page not in this batch)",
+   "sarf_pattern": "",
+   "pdf_page_index": 442,
+   "printed_page_number": "396",
+   "variances": [
+    {
+     "usage": "الطُّحْلب",
+     "meaning": "قال قوم: هو الطُّحلب",
+     "meaning_english": "algae/moss (per some)",
+     "citation": ""
+    },
+    {
+     "usage": "نَوْر",
+     "meaning": "جَبَل",
+     "meaning_english": "a mountain (name)",
+     "citation": ""
+    },
+    {
+     "usage": "ثَوْر",
+     "meaning": "قومٌ من العرب",
+     "meaning_english": "a tribe of the Arabs (name)",
+     "citation": ""
+    },
+    {
+     "usage": "النَّوْر (تشبيهاً)",
+     "meaning": "القطعة من الأقط",
+     "meaning_english": "a lump/piece of dried curd, by analogy",
+     "citation": ""
+    }
+   ],
+   "notes": "Tail end of an entry (root ثور) begun on a previous page not in this batch; core-meaning sentence not on these pages. Footnote (2) says the phrase 'وجائز أن يكون من' appears truncated (مبتورة) in the source text."
+  },
+  {
+   "root": "ثول",
+   "root_letters": [
+    "ث",
+    "و",
+    "ل"
+   ],
+   "core_meaning": "كلمةٌ واحدةٌ تدلُّ على الاضطراب",
+   "core_meaning_english": "disturbance / agitation",
+   "sarf_pattern": "",
+   "pdf_page_index": 442,
+   "printed_page_number": "396",
+   "variances": [
+    {
+     "usage": "الثَّوَل",
+     "meaning": "داءٌ يصيب الشاةَ فتسترخي أعضاؤها، وقد يكون في الذُّكران أيضاً",
+     "meaning_english": "a disease afflicting a ewe causing her limbs to go slack; can also afflict males",
+     "citation": ""
+    },
+    {
+     "usage": "تيسٌ أَثْوَلُ",
+     "meaning": "التيس المصاب بهذا الداء",
+     "meaning_english": "a billy-goat afflicted with this disease",
+     "citation": ""
+    },
+    {
+     "usage": "أَثْوَل",
+     "meaning": "ربما قالوا للأحمق البطيء الأخير",
+     "meaning_english": "sometimes used, of uncertain precise sense, for a slow, dull-witted fool (reading of the final word uncertain at this resolution)",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّوْل",
+     "meaning": "الجماعة من النحل، لأنه إذا تجمَّع اضطرب فتردَّد بعضُه على بعض",
+     "meaning_english": "a swarm of bees — because when it clusters it stirs/swirls, part circling over part",
+     "citation": ""
+    },
+    {
+     "usage": "تثوَّل القومُ على فلانٍ تَثوُّلاً",
+     "meaning": "تجمَّعوا عليه",
+     "meaning_english": "the people gathered/massed against so-and-so",
+     "citation": ""
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "ثوم",
+   "root_letters": [
+    "ث",
+    "و",
+    "م"
+   ],
+   "core_meaning": "كلمةٌ واحدة، وهي الثُّومة من النبات",
+   "core_meaning_english": "garlic — the plant",
+   "sarf_pattern": "",
+   "pdf_page_index": 442,
+   "printed_page_number": "396",
+   "variances": [
+    {
+     "usage": "ثُومة (قبيعة السيف)",
+     "meaning": "ربما سمَّوا قبيعة السيف ثُومةً، وليس ذلك بأصل",
+     "meaning_english": "sometimes the pommel/knob of a sword's hilt is called 'thawma'; not an original root sense",
+     "citation": ""
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "ثوخ",
+   "root_letters": [
+    "ث",
+    "و",
+    "خ"
+   ],
+   "core_meaning": "ليس أصلاً؛ لأن قولهم ثاخت الإصبع إنما هي مبدلة من ساخت، وربما قالوا بالتاء: تاخت، والأصل في ذلك كله الواو",
+   "core_meaning_english": "not a genuine root — 'thaakhat al-isba' (the finger sank) is a substituted form of 'saakhat'; sometimes said with taa' as 'taakhat'; the true origin in all these is the letter waw",
+   "sarf_pattern": "",
+   "pdf_page_index": 442,
+   "printed_page_number": "396",
+   "variances": [
+    {
+     "usage": "ثاخت الإصبع / تاخت",
+     "meaning": "سَاخت (غاصت في الشيء اللين كالطين)",
+     "meaning_english": "the finger sank (into something soft, e.g. mud) — variant of 'saakhat'",
+     "citation": "قال أبو ذؤيب: فهي تَثوخ فيها الإصبع (البيت الكامل في الحاشية: قصر الصبوح لها فشرج لحمها بالنِّي فهي تَثوخ فيها الإصبع)"
+    }
+   ],
+   "notes": "Main text prints only the fragment 'فهي تَنُوخ/تَثوخ فيها الإصبع' (letter uncertain at this resolution); footnote (4) supplies the full verse from Diwan Abi Dhu'ayb, reading 'تَثوخ' — recorded here for completeness."
+  },
+  {
+   "root": "ثيل",
+   "root_letters": [
+    "ث",
+    "ي",
+    "ل"
+   ],
+   "core_meaning": "كلمةٌ واحدة، وهي الثِّيلُ، وهو وعاء قضيب البعير",
+   "core_meaning_english": "the sheath/case of a camel's penis",
+   "sarf_pattern": "",
+   "pdf_page_index": 443,
+   "printed_page_number": "397",
+   "variances": [
+    {
+     "usage": "الثِّيل (نبات)",
+     "meaning": "نباتٌ يشبك بعضُه ببعض",
+     "meaning_english": "a plant (e.g. Bermuda grass) whose growth intertwines with itself",
+     "citation": ""
+    }
+   ],
+   "notes": "Text notes the ي may be a conversion (منقلبة) from و, connecting it to 'ثوَّلوا عليه' (gathered/massed upon) — linking this entry back to root ثول. Page also carries the section header 'باب الثاء والياء وما يثلثهما' introducing this entry."
+  },
+  {
+   "root": "ثأر",
+   "root_letters": [
+    "ث",
+    "أ",
+    "ر"
+   ],
+   "core_meaning": "أصلٌ واحد، وهو الدَّخْل المطلوب",
+   "core_meaning_english": "the sought blood-vengeance/retribution",
+   "sarf_pattern": "",
+   "pdf_page_index": 443,
+   "printed_page_number": "397",
+   "variances": [
+    {
+     "usage": "ثَأرْتُ فلاناً بفلان",
+     "meaning": "قتلتُ قاتلَه",
+     "meaning_english": "I avenged so-and-so by killing his killer",
+     "citation": "قال قيس بن الخطيم: ثأرتُ عدياً والخطيمَ فلم أُضِعْ وصيّةَ أشياخٍ جُعِلتُ إزاءَها"
+    },
+    {
+     "usage": "الثَّأْر المُنيم",
+     "meaning": "الذي إذا أدرك صاحبه نام",
+     "meaning_english": "'the sleep-bringing vengeance' — vengeance which, once its seeker attains it, lets him sleep (satisfied)",
+     "citation": ""
+    },
+    {
+     "usage": "اتَّأرتُ (افتعال)",
+     "meaning": "بمعنى ثَأرتُ",
+     "meaning_english": "same meaning as thaartu, in the ifta'ala form",
+     "citation": "قال لبيد: والذئبُ إن تَمْرُ منّي رِمّةٌ خَلَقًا بعد الممات فإني كنتُ أَثَّئِر"
+    },
+    {
+     "usage": "استَثْأَرَ فلانٌ فلاناً",
+     "meaning": "استنفرَه، كأنه دعاه إلى طلب الثَّأر",
+     "meaning_english": "he summoned/roused so-and-so, as if calling him to seek vengeance",
+     "citation": "إذا جاءهم مستَنفِرٌ كان نصرُه دعاءَ ألا طيروا بكلٍّ وأى نَهْد"
+    },
+    {
+     "usage": "الثُّؤْرة",
+     "meaning": "الثَّأْر أيضاً",
+     "meaning_english": "vengeance, a synonym of al-tha'r",
+     "citation": "بني عامرٍ هل كنتُ في ثُؤْرتي نِكْسا"
+    }
+   ],
+   "notes": "Entry spans page 443 (start) into page 444 (continuation: استثأر, الثؤرة). Footnote text is dense with variant readings of the citation lines; recorded meanings follow the main text, not every footnote variant."
+  },
+  {
+   "root": "ثأط",
+   "root_letters": [
+    "ث",
+    "أ",
+    "ط"
+   ],
+   "core_meaning": "كلمةٌ واحدةٌ ليست أصلاً",
+   "core_meaning_english": "not a genuine (independent) root",
+   "sarf_pattern": "",
+   "pdf_page_index": 444,
+   "printed_page_number": "398",
+   "variances": [
+    {
+     "usage": "الثَّأْطة",
+     "meaning": "الحمأة، والجمع ثَأط",
+     "meaning_english": "black mire/mud; plural tha'at",
+     "citation": "في عينِ ذي خُلُبٍ وثَأطٍ حَرْمَدِ"
+    }
+   ],
+   "notes": "Judged not a true root because the same word is also said with د (i.e. ثأد), so treated as from 'باب الإبدال' (letter-substitution) — recorded in notes rather than sarf_pattern since it is not a named morphological category (مضاعف/أجوف/etc.)."
+  },
+  {
+   "root": "ثأد",
+   "root_letters": [
+    "ث",
+    "أ",
+    "د"
+   ],
+   "core_meaning": "كلمةٌ واحدةٌ يُشتقّ منها، وهي النَّدَى وما أشبهه",
+   "core_meaning_english": "moisture/dampness and what resembles it",
+   "sarf_pattern": "",
+   "pdf_page_index": 444,
+   "printed_page_number": "398",
+   "variances": [
+    {
+     "usage": "الثَّأَد",
+     "meaning": "النَّدَى",
+     "meaning_english": "moisture, dew",
+     "citation": ""
+    },
+    {
+     "usage": "الثَّئِد",
+     "meaning": "النَّديُّ اللّيّن",
+     "meaning_english": "the moist and soft (thing)",
+     "citation": ""
+    },
+    {
+     "usage": "ثَئِدَ المكان يَثأَدُ",
+     "meaning": "صار المكان نَديّاً",
+     "meaning_english": "the place became damp",
+     "citation": "هل سُوَيدٌ غير لَيْثٍ خادرٍ ثَئِدَتْ أرضٌ عليه فانتَجَم"
+    },
+    {
+     "usage": "الثَّأداء (على وزن فَعَلاء وفَعَلا)",
+     "meaning": "الأَمَة، وهي قياس الباب (يتبع على الصفحة التالية)",
+     "meaning_english": "a slave-woman; said to fit the pattern/analogy of this root (explanation continues onto the next page, not included here)",
+     "citation": ""
+    }
+   ],
+   "notes": "The final variance (الثأداء) is cut off at the bottom of page 444 — 'ومعناها...' continues onto a following page not in this batch."
+  },
+  {
+   "root": "ثبت",
+   "root_letters": [
+    "ث",
+    "ب",
+    "ت"
+   ],
+   "core_meaning": "الثاء والباء والتاء كلمة واحدة، وهي دوام الشيء",
+   "core_meaning_english": "one meaning: the permanence/steadfastness of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثبت ثباتاً وثبوتاً",
+     "meaning": "مصدر الفعل ثبت",
+     "meaning_english": "verbal nouns of 'to be firm/steadfast'",
+     "citation": ""
+    },
+    {
+     "usage": "رجل ثبت وثبيت",
+     "meaning": "الرجل الثابت",
+     "meaning_english": "a firm, steadfast man",
+     "citation": "فالهبيت لا فؤاد له والثبيت ثبته فهمه (قاله طرفة في الثبيت)"
+    }
+   ],
+   "pdf_page_index": 445,
+   "printed_page_number": "399",
+   "notes": "CORRECTED citation attribution from 'قاله طرفة في التبيت' to 'قاله طرفة في الثبيت' (the poem is cited under the headword الثبيت, not a word 'التبيت')."
+  },
+  {
+   "root": "ثبج",
+   "root_letters": [
+    "ث",
+    "ب",
+    "ج"
+   ],
+   "core_meaning": "الثاء والباء والجيم كلمة واحدة تتفرع منها كلمٌ، وهي معظم الشيء ووسطه",
+   "core_meaning_english": "one meaning branching into several derived words: the main bulk/middle part of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ثبج كل شيء",
+     "meaning": "وسطه (قاله ابن دريد)",
+     "meaning_english": "the middle of anything",
+     "citation": ""
+    },
+    {
+     "usage": "رجل أثبج وامرأة ثبجاء",
+     "meaning": "إذا كان عظيم الجوف",
+     "meaning_english": "a man/woman with a large belly/torso",
+     "citation": ""
+    },
+    {
+     "usage": "ثبج الرجل",
+     "meaning": "إذا أفضى على أطراف قدميه كأنه يستنجي وذراً",
+     "meaning_english": "when a man rests on the tips of his feet as if squatting to relieve himself (defecate)",
+     "citation": "إذا الكماة جثموا على الركب ثبجت يا عمرو ثبوج المحتطب (قاله الراجز)"
+    },
+    {
+     "usage": "جمع الثبج: أثباج وثبوج؛ قوم ثبج جمع أثبج",
+     "meaning": "صيغ الجمع",
+     "meaning_english": "plural forms of athbaj",
+     "citation": ""
+    },
+    {
+     "usage": "تثبج الرجل بالعصا",
+     "meaning": "إذا جعلها على ظهره وجمع يديه من ورائها",
+     "meaning_english": "when a man carries a stick across his back with hands clasped behind it",
+     "citation": ""
+    },
+    {
+     "usage": "ثبج الرمل / ثبج البحر",
+     "meaning": "معظمه",
+     "meaning_english": "the bulk/main mass of the sand dune / of the sea",
+     "citation": ""
+    },
+    {
+     "usage": "ثبج الكلام تثبيجاً",
+     "meaning": "أن لا يأتي به على وجهه؛ أصله من الباب لأنه يجمعه جمعاً فيأتي به مجتمعاً غير ملخص ولا مفصل",
+     "meaning_english": "to garble speech, not presenting it properly — from the root sense of bundling it together unclearly, unsummarized and undetailed",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 445,
+   "printed_page_number": "399",
+   "notes": "Entry continues onto page 446 (printed 400). CORRECTED the word in the 'ثبج الرجل' variance from 'وتراً' to 'وذراً' (defecation, matching 'يستنجي' - relieving oneself; 'وتراً' does not fit this context)."
+  },
+  {
+   "root": "ثبج",
+   "root_letters": [
+    "ث",
+    "ب",
+    "ج"
+   ],
+   "core_meaning": "(تكملة) معظم الشيء ووسطه",
+   "core_meaning_english": "(continuation) the main bulk/middle of a thing",
+   "sarf_pattern": "",
+   "variances": [],
+   "pdf_page_index": 446,
+   "printed_page_number": "400",
+   "notes": "Continuation of entry ثبج begun on previous page (445/399); content already captured under that entry above."
+  },
+  {
+   "root": "ثبر",
+   "root_letters": [
+    "ث",
+    "ب",
+    "ر"
+   ],
+   "core_meaning": "الثاء والباء والراء أصول ثلاثة: الأول السهولة، والثاني الهلاك، والثالث المواظبة على الشيء",
+   "core_meaning_english": "three meanings: (1) ease/softness (of land), (2) destruction/perdition, (3) persisting/persevering at something",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الأرض السهلة",
+     "meaning": "هي الثِّبَرة",
+     "meaning_english": "soft/easy ground is called 'thibra'",
+     "citation": ""
+    },
+    {
+     "usage": "ثَبَرة",
+     "meaning": "موضع معروف",
+     "meaning_english": "a known place-name",
+     "citation": "نجيت نفسي وتركت حزرة نعم الفتى غادرته بثبرة / لن يسلم الحر الكريم بكره (قاله الراجز)"
+    },
+    {
+     "usage": "الثبرة (قول ابن دريد)",
+     "meaning": "تراب شبيه بالثورة إذا بلغ عرق النخلة إليه وقف؛ فيقولون: بلغت النخلة ثبرة من الأرض",
+     "meaning_english": "soil resembling loose dirt that a palm tree's root stops at upon reaching; they say the palm 'reached a thibra of ground'",
+     "citation": ""
+    },
+    {
+     "usage": "ثَبير",
+     "meaning": "جبل معروف",
+     "meaning_english": "a known mountain",
+     "citation": ""
+    },
+    {
+     "usage": "مثبر الناقة",
+     "meaning": "الموضع الذي تطرح فيه ولدها",
+     "meaning_english": "the place where a she-camel drops her young",
+     "citation": ""
+    },
+    {
+     "usage": "ثبر البحر جزر",
+     "meaning": "يبدي عن مكان أيّن سهل",
+     "meaning_english": "when the sea ebbs, revealing an accessible, easy spot",
+     "citation": ""
+    },
+    {
+     "usage": "الثبور",
+     "meaning": "الهلاك؛ رجل مثبور: هالك",
+     "meaning_english": "destruction/perdition; a doomed man is 'mathbur'",
+     "citation": "﴿دعوا هنالك ثبوراً﴾ (القرآن)"
+    },
+    {
+     "usage": "ثابرت على الشيء",
+     "meaning": "أي واظبت",
+     "meaning_english": "to persist/persevere at a thing",
+     "citation": ""
+    },
+    {
+     "usage": "تثابرت الرجال في الحرب",
+     "meaning": "إذا تواثبت (ذكره ابن دريد)",
+     "meaning_english": "the men leapt upon one another in battle",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 446,
+   "printed_page_number": "400",
+   "notes": "Entry begins on page 446 (400), continues onto page 447 (401)."
+  },
+  {
+   "root": "ثبر",
+   "root_letters": [
+    "ث",
+    "ب",
+    "ر"
+   ],
+   "core_meaning": "(تكملة) أصول ثلاثة: السهولة، والهلاك، والمواظبة",
+   "core_meaning_english": "(continuation) three meanings already stated: ease, destruction, persistence",
+   "sarf_pattern": "",
+   "variances": [],
+   "pdf_page_index": 447,
+   "printed_page_number": "401",
+   "notes": "Continuation of entry ثبر begun on previous page (446/400); content captured under that entry above."
+  },
+  {
+   "root": "ثبن",
+   "root_letters": [
+    "ث",
+    "ب",
+    "ن"
+   ],
+   "core_meaning": "الثاء والباء والنون أصل واحد، وهو وعاء من الأوعية",
+   "core_meaning_english": "one meaning: a kind of container/receptacle",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الثِّبان",
+     "meaning": "اتخاذك حجزةً في إزارك تجمع فيها ما اجتنيته من رطب وغيره",
+     "meaning_english": "gathering a fold/pouch in one's waist-wrap to collect what one has picked, such as fresh dates or the like",
+     "citation": "الحديث: «فليأخذ كل ولا يتخذ ثباناً»"
+    },
+    {
+     "usage": "المِثْبَنة (قول ابن دريد)",
+     "meaning": "كيس تتخذ فيه المرأة المرآة وأداتها؛ زعم أنها لغة يمانية",
+     "meaning_english": "a pouch a woman keeps her mirror and toiletries in; claimed to be a Yemeni dialect word",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 447,
+   "printed_page_number": "401",
+   "notes": "CORRECTED usage term for the second variance from 'الثِّبنة' to 'المِثْبَنة' (as printed: 'للمثبنة كيس...'). Ibn Duraid doubted this usage is genuinely from the root ('ما أحسبه إلا مصنوعاً' - he thought it fabricated/artificial)."
+  },
+  {
+   "root": "ثبى",
+   "root_letters": [
+    "ث",
+    "ب",
+    "ي"
+   ],
+   "core_meaning": "الثاء والباء والياء أصل واحد، وهو الدوام على الشيء",
+   "core_meaning_english": "one meaning: persisting/continuing upon a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "التثبية",
+     "meaning": "الدوام على الشيء (قاله الخليل)",
+     "meaning_english": "persisting continuously at a thing",
+     "citation": ""
+    },
+    {
+     "usage": "التثبية (معنى آخر)",
+     "meaning": "الثناء على الإنسان في حياته",
+     "meaning_english": "praising a person during his lifetime",
+     "citation": "يثني ثناء من كريم وقوله ألا انعم على حسن التحية واشرب (أنشده للبيد)"
+    }
+   ],
+   "pdf_page_index": 447,
+   "printed_page_number": "401",
+   "notes": "Possible reading uncertainty on the exact wording of Labid's verse (small print, footnote references Labid's diwan)."
+  },
+  {
+   "root": "ثبي",
+   "root_letters": [
+    "ث",
+    "ب",
+    "ي"
+   ],
+   "core_meaning": "وهو من ثَبَّى على الشيء إذا دام",
+   "core_meaning_english": "to persist/remain continuously upon a thing (from the verb thabbā)",
+   "sarf_pattern": "",
+   "pdf_page_index": 448,
+   "printed_page_number": "402",
+   "notes": "Continuation of an entry begun on an earlier page not included in this batch; discusses الثُّبَة (a troop of horsemen) and ثُبَة الحوض (the middle/gathering-point of a watering trough), debating whether the missing radical is و or ي. Root bracket header not visible on this page. Corrected: original text uses the verb ثَبَّى (form II, tied to the noun التثبية discussed earlier in the chapter), not يثبو as the prior extraction had it.",
+   "variances": [
+    {
+     "usage": "الثُّبَة",
+     "meaning": "المُصْبَة من الفرسان يكونون ثبة، والجمع ثبات وثبون",
+     "meaning_english": "a troop/group of horsemen gathered together; plural thubāt/thubūn",
+     "citation": "قال عمرو: فأمّا يومَ جَشِيتَنا عليهم فتُصْبِحُ خيلُنا عُصَبًا ثُبِينا"
+    },
+    {
+     "usage": "ثُبَةُ الحوض",
+     "meaning": "وسط الحوض الذي يثوب إليه الماء (قول الخليل)",
+     "meaning_english": "the middle of the watering-trough into which water returns/gathers, per al-Khalil",
+     "citation": ""
+    },
+    {
+     "usage": "تصغير الثبة (العامة)",
+     "meaning": "يصغرونها على ثُبَيَّة، توهمًا للفظ",
+     "meaning_english": "the common people diminutive it as thubayyah, by mistaken analogy to the surface form",
+     "citation": ""
+    },
+    {
+     "usage": "تصغير ثبة الحوض عند بعضهم",
+     "meaning": "ثُوَيْبَة، لزوما للقياس بردّ الناقص كما في تصغير رِوَاية إلى رُوَيْبَة",
+     "meaning_english": "some diminutive it as thuwaybah, following strict analogy by restoring the elided radical, as with riwāyah/ruwaybah",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "ثتن",
+   "root_letters": [
+    "ث",
+    "ت",
+    "ن"
+   ],
+   "core_meaning": "الثاء والتاء والنون ليس أصلاً",
+   "core_meaning_english": "not a genuine (unified) root",
+   "sarf_pattern": "",
+   "pdf_page_index": 449,
+   "printed_page_number": "403",
+   "notes": "Author explicitly denies this is a true triliteral root, explaining the two usages as separate metathesis/variant forms of one another.",
+   "variances": [
+    {
+     "usage": "ثَتِنَ اللحمُ",
+     "meaning": "أنْتَنَ",
+     "meaning_english": "the meat went rotten/putrid",
+     "citation": ""
+    },
+    {
+     "usage": "ثَنِتَتْ لِثَتُه",
+     "meaning": "استرخت وأنتنت",
+     "meaning_english": "his gum went slack and putrid",
+     "citation": "قال: ولِثَّةٌ قد ثَنِتَتْ مُشَخَّمَه (مُشَخَّمَة = مُنْتِنة، أي نتنة، بحسب حاشية المحقق)"
+    }
+   ]
+  }
+ ]
+}

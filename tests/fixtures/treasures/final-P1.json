@@ -1,0 +1,198 @@
+[
+  {
+    "page": 158,
+    "type": "مهموز الفاء",
+    "bab": "باب نَصَرَ",
+    "root": "أ خ ذ",
+    "sarf_sagheer": "أَخَذَ يَأْخُذُ أَخْذًا فَهُوَ آخِذٌ وَأُخِذَ يُؤْخَذُ أَخْذًا فَهُوَ مَأْخُوْذٌ اَلْأَمْرُ مِنْهُ خُذْ وَالنَّهْيُ عَنْهُ لاَ تَأْخُذْ الظَّرْفُ مِنْهُ مَأْخَذٌ مَأْخَذَان مَآخِذُ وَالْآلَةُ مِنْهُ مِيْخَذٌ مِيْخَذَان مَآخِذُ وَ مِيْخَذَةٌ مِيْخَذَتَان مَآخِذُ وَ مِيْخَاذٌ مِيْخَاذَان مَآخِيْذُ وَأَفْعَلُ التَّفْضِيْلِ مِنْهُ آخَذُ آخَذَان آخَذُوْنَ وَأَوَاخِذُ وَالْمُؤَنَّثُ مِنْهُ أُخْذَي أُخْذَيَان أُخَذٌ وَ أُخْذَيَاتٌ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": {
+        "madi": "أَخَذَ",
+        "mudari": "يَأْخُذُ",
+        "amr": "خُذْ",
+        "nahy": "لاَ تَأْخُذْ",
+        "madi-passive": "أُخِذَ",
+        "mudari-passive": "يُؤْخَذُ"
+      }
+    },
+    "notes": "Heading: مهموز الفاء من باب نَصَرَ ـــ اَلْأَخْذُ. The page prints no person-by-person table; only the running sarf sagheer line, so only the هو forms are attested. Also printed: مصدر أَخْذًا, اسم فاعل آخِذٌ, اسم مفعول مَأْخُوْذٌ, ظرف مَأْخَذٌ/مَأْخَذَان/مَآخِذُ, اسم آلة مِيْخَذٌ, مِيْخَذَةٌ, مِيْخَاذٌ with duals and plurals, اسم تفضيل آخَذُ (fem. أُخْذَي). Analysis of the changes (1) the أمر of this باب is خُذْ, an exception, originally أُوْخُذْ; (2) likewise أمر of أَكَلَ يَأْكُلُ is كُلْ, the همزة being deleted from both خُذْ and كُلْ; (3) in أَمَرَ يَأْمُرُ both deleting and retaining the همزة are permitted, so both مُرْ and أُوْمُرْ are correct, and deletion is more eloquent at the start of a sentence (continues on p159).",
+    "rules_cited": []
+  },
+  {
+    "page": 159,
+    "type": "مهموز الفاء",
+    "bab": "باب نَصَرَ",
+    "root": "أ خ ذ",
+    "sarf_sagheer": "",
+    "columns": [],
+    "rows": {},
+    "notes": "No paradigm printed. Continuation of the Analysis of the changes for أَخَذَ from p158: (4) the همزة is usually retained mid-sentence (Qur'anic example); (5) المضارع المعروف (other than the first person singular) follows the rule of رَأْسٌ, as do اسم الظرف and اسم المفعول; (6) the rule of بِئْرٌ applies in اسم الآلة; (7) the rule of بُؤْسٌ applies in المضارع المجهول except the first person singular; (8) the rule of آمَنَ applies in the first person singular of المضارع المعروف and in اسم التفضيل; (9) the rule of أَوَادِمُ applies in the plural of اسم التفضيل; (10) the rule of أُوْمِنَ applies in the first person singular of المضارع المجهول.",
+    "rules_cited": []
+  },
+  {
+    "page": 160,
+    "type": "مهموز الفاء",
+    "bab": "باب ضَرَبَ",
+    "root": "أ س ر",
+    "sarf_sagheer": "أَسَرَ يَأْسِرُ أَسْرًا فَهُوَ آسِرٌ وَأُسِرَ يُؤْسَرُ أَسْرًا فَهُوَ مَأْسُوْرٌ اَلْأَمْرُ مِنْهُ إِيْسِرْ وَالنَّهْيُ عَنْهُ لاَ تَأْسِرْ الظَّرْفُ مِنْهُ مَأْسِرٌ مَأْسِرَان مَآسِرُ وَالْآلَةُ مِنْهُ مِيْسَرٌ مِيْسَرَان مَآسِرُ مِيْسَرَةٌ مِيْسَرَتَان مَآسِرُ مِيْسَارٌ مِيْسَارَان مَآسِيْرُ وَأَفْعَلُ التَّفْضِيْلِ مِنْهُ آسَرُ آسَرَان آسَرُوْنَ وَأَوَاسِرُ وَالْمُؤَنَّثُ مِنْهُ أُسْرَي أُسْرَيَان أُسَرٌ وَ أُسْرَيَاتٌ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": {
+        "madi": "أَسَرَ",
+        "mudari": "يَأْسِرُ",
+        "amr": "إِيْسِرْ",
+        "nahy": "لاَ تَأْسِرْ",
+        "madi-passive": "أُسِرَ",
+        "mudari-passive": "يُؤْسَرُ"
+      }
+    },
+    "notes": "Heading: مهموز الفاء من باب ضَرَبَ ـــ اَلْأَسْرُ. Exercise 39 sits above this entry on the same printed page and is skipped. No person-by-person table is printed; only the running sarf sagheer line, so only the هو forms are attested. Also printed: مصدر أَسْرًا, اسم فاعل آسِرٌ, اسم مفعول مَأْسُوْرٌ, ظرف مَأْسِرٌ, اسم آلة مِيْسَرٌ/مِيْسَرَةٌ/مِيْسَارٌ with duals and plurals, اسم تفضيل آسَرُ (fem. أُسْرَي).",
+    "rules_cited": []
+  },
+  {
+    "page": 161,
+    "type": "مهموز الفاء",
+    "bab": "باب ضَرَبَ",
+    "root": "أ س ر",
+    "sarf_sagheer": "",
+    "columns": [],
+    "rows": {},
+    "notes": "No paradigm printed. Analysis of the changes for أَسَرَ from p160: (1) the changes of this باب are like those of أَخَذَ يَأْخُذُ, except the أمر إِيْسِرْ, where the rule of إِيْمَانٌ applies; (2) the remaining أبواب of ثلاثي مجرد follow the same pattern. Exercise 40 below, skipped.",
+    "rules_cited": []
+  },
+  {
+    "page": 162,
+    "type": "مهموز الفاء",
+    "bab": "باب إفتعال",
+    "root": "أ م ر",
+    "sarf_sagheer": "إِيْتَمَرَ يَأْتَمِرُ إِيْتِمَارًا فَهُوَ مُوْتَمِرٌ وَأُوْتُمِرَ يُوْتَمَرُ إِيْتِمَارًا فَهُوَ مُوْتَمَرٌ اَلْأَمْرُ مِنْهُ إِيْتَمِرْ وَالنَّهْيُ عَنْهُ لاَ تَأْتَمِرْ الظَّرْفُ مِنْهُ مُوْتَمَرٌ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": {
+        "madi": "إِيْتَمَرَ",
+        "mudari": "يَأْتَمِرُ",
+        "amr": "إِيْتَمِرْ",
+        "nahy": "لاَ تَأْتَمِرْ",
+        "madi-passive": "أُوْتُمِرَ",
+        "mudari-passive": "يُوْتَمَرُ"
+      }
+    },
+    "notes": "Heading: مهموز الفاء من باب إفتعال ـــ اَلْإِيْتِمَارُ. Only the هو forms are printed (running sarf sagheer line). The book prints مُوْتَمِرٌ / مُوْتَمَرٌ / يُوْتَمَرُ with a plain و (no hamzah seat), read directly off the page image. Analysis of the changes: (1) the rule of إِيْمَانٌ applies in الماضي المعروف, المصدر and الأمر المعروف; (2) the rule of أُوْمِنَ applies in الماضي المجهول; (3) the rule of رَأْسٌ applies in المضارع المعروف; (4) the rule of بُؤْسٌ applies in المضارع المجهول, اسم الفاعل, اسم المفعول and اسم الظرف.",
+    "rules_cited": []
+  },
+  {
+    "page": 162,
+    "type": "مهموز الفاء",
+    "bab": "باب إستفعال",
+    "root": "أ ذ ن",
+    "sarf_sagheer": "إِسْتَأْذَنَ يَسْتَأْذِنُ إِسْتِيْذَانًا فَهُوَ مُسْتَأْذِنٌ وَأُسْتُأْذِنَ يُسْتَأْذَنُ إِسْتِيْذَانًا فَهُوَ مُسْتَأْذَنٌ اَلْأَمْرُ مِنْهُ إِسْتَأْذِنْ وَالنَّهْيُ عَنْهُ لاَ تَسْتَأْذِنْ الظَّرْفُ مِنْهُ مُسْتَأْذَنٌ",
+    "columns": ["madi", "mudari", "amr", "nahy", "madi-passive", "mudari-passive"],
+    "rows": {
+      "he": {
+        "madi": "إِسْتَأْذَنَ",
+        "mudari": "يَسْتَأْذِنُ",
+        "amr": "إِسْتَأْذِنْ",
+        "nahy": "لاَ تَسْتَأْذِنْ",
+        "madi-passive": "أُسْتُأْذِنَ",
+        "mudari-passive": "يُسْتَأْذَنُ"
+      }
+    },
+    "notes": "Heading: مهموز الفاء من باب إستفعال ـــ اَلْإِسْتِيْذَانُ. Second entry on the same printed page. Only the هو forms are printed. Analysis of the changes: (1) conjugate all the verbs of أبواب ثلاثي مزيد فيه like the conjugations of أَخَذَ and إِيْتَمَرَ.",
+    "rules_cited": []
+  },
+  {
+    "page": 163,
+    "type": "مهموز العين",
+    "bab": "",
+    "root": "",
+    "sarf_sagheer": "",
+    "columns": [],
+    "rows": {},
+    "notes": "No paradigm printed. Exercise 41 (skipped), then the section heading Discussion of (مهموز العين): (1) the rule of بين بين or تسهيل applies to all الماضي verbs of مهموز العين ثلاثي مجرد, and this rule is optional; (2) the rule of يَسْـئَلُ applies to the مضارع and أمر of مهموز العين ثلاثي مجرد; (3) begins: زَأَرَ يَزْئِرُ is from باب ضرب, سَأَلَ يَسْـئَلُ is from (باب فتح, printed at the top of p164).",
+    "rules_cited": []
+  },
+  {
+    "page": 164,
+    "type": "مهموز العين",
+    "bab": "باب ضَرَبَ",
+    "root": "ز أ ر",
+    "sarf_sagheer": "زَأَرَ يَزْئِرُ",
+    "columns": ["amr"],
+    "rows": {
+      "you (m)": { "amr": "زِرْ" },
+      "you two (m)": { "amr": "زِرَا" },
+      "you all (m)": { "amr": "زِرُوْا" },
+      "you (f)": { "amr": "زِرِيْ" },
+      "you two (f)": { "amr": "زِرَا" },
+      "you all (f)": { "amr": "زِرْنَ" }
+    },
+    "notes": "First row of the single four-root table headed 'The conjugation of the imperative second person (أمر حاضر معروف) form is as follows', printed with an arrow showing the columns run right to left: أنتَ, أنتما, أنتم, أنتِ, أنتما, أنتنّ. Rule (4) on this page: after applying the rule of يَسْـئَلُ the همزة الوصل is deleted, so إِزْئَرْ becomes زِرْ. Only the أمر حاضر معروف is printed for this root; no other tense or person.",
+    "rules_cited": []
+  },
+  {
+    "page": 164,
+    "type": "مهموز العين",
+    "bab": "باب فَتَحَ",
+    "root": "س أ ل",
+    "sarf_sagheer": "سَأَلَ يَسْـئَلُ",
+    "columns": ["amr"],
+    "rows": {
+      "you (m)": { "amr": "سَلْ" },
+      "you two (m)": { "amr": "سَلَا" },
+      "you all (m)": { "amr": "سَلُوْا" },
+      "you (f)": { "amr": "سَلِيْ" },
+      "you two (f)": { "amr": "سَلَا" },
+      "you all (f)": { "amr": "سَلْنَ" }
+    },
+    "notes": "Second row of the four-root أمر حاضر معروف table on p164. Rule (4): إِسْـئَلْ becomes سَلْ. The باب (فتح) is stated at the head of p164, carrying over rule (3) begun on p163.",
+    "rules_cited": []
+  },
+  {
+    "page": 164,
+    "type": "مهموز العين",
+    "bab": "باب سَمِعَ",
+    "root": "س أ م",
+    "sarf_sagheer": "سَئِمَ يَسْـئَمُ",
+    "columns": ["amr"],
+    "rows": {
+      "you (m)": { "amr": "سَمْ" },
+      "you two (m)": { "amr": "سَمَا" },
+      "you all (m)": { "amr": "سَمُوْ" },
+      "you (f)": { "amr": "سَمِيْ" },
+      "you two (f)": { "amr": "سَمَا" },
+      "you all (f)": { "amr": "سَمْنَ" }
+    },
+    "notes": "Third row of the four-root أمر حاضر معروف table on p164. Transcribed exactly as printed: the you all (m) cell is printed سَمُوْ, without the alif of the واو الجماعة that the parallel cells سَلُوْا, زِرُوْا and لُمُوْا all carry. This looks like a misprint in the book but is recorded as printed and not corrected. Rule (4): إِسْـئَمْ becomes سَمْ.",
+    "rules_cited": []
+  },
+  {
+    "page": 164,
+    "type": "مهموز العين",
+    "bab": "باب كَرُمَ",
+    "root": "ل أ م",
+    "sarf_sagheer": "لَؤُمَ يَلْؤُمُ",
+    "columns": ["amr"],
+    "rows": {
+      "you (m)": { "amr": "لُمْ" },
+      "you two (m)": { "amr": "لُمَا" },
+      "you all (m)": { "amr": "لُمُوْا" },
+      "you (f)": { "amr": "لُمِيْ" },
+      "you two (f)": { "amr": "لُمَا" },
+      "you all (f)": { "amr": "لُمْنَ" }
+    },
+    "notes": "Fourth row of the four-root أمر حاضر معروف table on p164. All cells carry ضمة on the ل. Rule (4): أُلْـئُمْ becomes لُمْ. After the table the page opens the section Discussion of (مهموز اللام): (1) in most word-forms of مهموز اللام the rule of بين بين or تسهيل applies, e.g. قَرَأَ يَقْرَأُ; (2) the rule of مِيْرٌ applies to واحد الماضي المجهول (example قُرِءَ printed at the top of p165).",
+    "rules_cited": []
+  },
+  {
+    "page": 165,
+    "type": "مهموز اللام",
+    "bab": "",
+    "root": "",
+    "sarf_sagheer": "",
+    "columns": [],
+    "rows": {},
+    "notes": "No paradigm printed. Continuation of Discussion of (مهموز اللام): (2, continued) the example is قُرِءَ; (3) the rule of همزة منفردة ساكنة, that is the rule of رَأْسٌ, applies to all word-forms of أمر and مضارع مجزوم, so in إِقْرَأْ and لَمْ يَقْرَأْ the hamzah can become الف, in أُرْدُءْ and لَمْ يَرْدُءْ it can become و, and in أَنْبِـئْ and لَمْ يَنْبِـئْ it can become ي. The book states only that the hamzah can become each letter; it does not print the resulting substituted forms, so none are supplied. Exercise 42 below (هَنَأَ يَهْنُأُ, رَأَسَ يَرْئِسُ, أَمَّنَ, آخَذَ, أَبْأَسَ, تَأَهَّلَ, تَخَاطَأَ, إِنْكَفَأَ, إِبْتَدَأَ, إِسْتَأْنَفَ), skipped.",
+    "rules_cited": []
+  }
+]

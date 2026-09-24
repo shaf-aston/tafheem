@@ -1,0 +1,29 @@
+{
+  "topics": [
+    {
+      "key": "verbal",
+      "en": "Verbal sentence",
+      "ar": "الْجُمْلَةُ الْفِعْلِيَّةُ"
+    },
+    {
+      "key": "nominal",
+      "en": "Nominal sentence",
+      "ar": "الْجُمْلَةُ الْاِسْمِيَّةُ"
+    },
+    {
+      "key": "phrase",
+      "en": "Phrases inside a sentence",
+      "ar": "الْمُرَكَّبَاتُ"
+    },
+    {
+      "key": "changers",
+      "en": "Words that change it",
+      "ar": "النَّوَاسِخُ"
+    },
+    {
+      "key": "inshaa",
+      "en": "Command, question, wish",
+      "ar": "الْجُمْلَةُ الْإِنْشَائِيَّةُ"
+    }
+  ]
+}

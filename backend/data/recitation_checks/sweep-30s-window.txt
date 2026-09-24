@@ -1,0 +1,108 @@
+6832 words judged, heard by OdyAsh/faster-whisper-base-ar-quran
+
+Share of each group the rule says was NOT said. For the first two lower is
+better, they are words that were right; for the slips higher is better.
+The second line is how many words are in each group: the two slip columns
+rest on few enough words that one word moves them several points.
+
+          rule    cut                 right  marked for tajweed o  letter or word slips           vowel slips              unmarked
+        out of                        3,855                   838                    34                   185                 1,920
+the page today                         9.0%                 55.8%                 35.3%                 84.9%                 21.8%
+         worst  0.001                  2.8%                 14.7%                 11.8%                 24.3%                  3.2%
+         worst  0.005                  4.0%                 23.0%                 17.6%                 34.1%                  5.9%
+         worst   0.01                  4.4%                 26.8%                 20.6%                 41.6%                  7.0%
+         worst   0.02                  5.0%                 30.8%                 26.5%                 47.0%                  8.5%
+         worst   0.05                  5.8%                 34.6%                 26.5%                 57.8%                 10.4%
+         worst    0.1                  6.3%                 38.4%                 29.4%                 63.8%                 12.2%
+         worst    0.3                  7.6%                 45.5%                 29.4%                 74.1%                 15.1%
+         worst    0.5                  8.2%                 50.6%                 32.4%                 80.0%                 16.8%
+         worst    0.7                  9.5%                 54.9%                 35.3%                 83.8%                 19.5%
+         worst    0.8                 10.7%                 57.0%                 41.2%                 85.9%                 21.5%
+         worst    0.9                 12.4%                 60.6%                 41.2%                 87.0%                 24.4%
+         worst   0.95                 14.2%                 63.6%                 41.2%                 89.7%                 27.6%
+ worst-but-one  0.001                  0.5%                  1.2%                  0.0%                  2.7%                  0.2%
+ worst-but-one  0.005                  0.7%                  3.0%                  0.0%                  4.3%                  0.5%
+ worst-but-one   0.01                  0.8%                  4.4%                  0.0%                  8.1%                  1.0%
+ worst-but-one   0.02                  0.8%                  5.8%                  5.9%                 10.3%                  1.1%
+ worst-but-one   0.05                  1.0%                  8.0%                  5.9%                 17.8%                  1.9%
+ worst-but-one    0.1                  1.4%                 11.1%                  5.9%                 21.6%                  2.3%
+ worst-but-one    0.3                  1.9%                 16.0%                  8.8%                 31.9%                  3.5%
+ worst-but-one    0.5                  2.2%                 19.6%                  8.8%                 38.9%                  4.4%
+ worst-but-one    0.7                  2.6%                 23.7%                  8.8%                 44.9%                  5.7%
+ worst-but-one    0.8                  3.0%                 26.0%                  8.8%                 50.3%                  6.7%
+ worst-but-one    0.9                  3.7%                 29.6%                 11.8%                 61.6%                  8.1%
+ worst-but-one   0.95                  4.5%                 34.0%                 11.8%                 67.6%                  9.8%
+          mean  0.001                  0.0%                  0.0%                  0.0%                  0.0%                  0.0%
+          mean  0.005                  0.0%                  0.0%                  0.0%                  0.0%                  0.0%
+          mean   0.01                  0.0%                  0.0%                  0.0%                  0.0%                  0.0%
+          mean   0.02                  0.0%                  0.0%                  0.0%                  0.0%                  0.0%
+          mean   0.05                  0.0%                  0.0%                  0.0%                  0.0%                  0.1%
+          mean    0.1                  0.0%                  0.0%                  0.0%                  0.0%                  0.1%
+          mean    0.3                  0.1%                  0.1%                  0.0%                  0.0%                  0.3%
+          mean    0.5                  0.5%                  2.1%                  0.0%                  2.7%                  1.1%
+          mean    0.7                  1.6%                 13.5%                  0.0%                 17.8%                  4.3%
+          mean    0.8                  2.7%                 23.7%                  8.8%                 41.6%                  9.6%
+          mean    0.9                  7.4%                 48.3%                 29.4%                 78.9%                 17.0%
+          mean   0.95                  9.5%                 55.3%                 32.4%                 84.3%                 20.5%
+
+The bar: at most 3% marked though right, vowel slips still caught 85% of the time.
+Nothing clears it by sound alone. Nothing is claimed; the rows are above.
+
+
+Shown RED by the page: the transcript missed the word and the sound check
+is under flag-below. Orange is not counted here; orange accuses nobody.
+
+          rule  flag-below                 right  marked for tajweed o  letter or word slips           vowel slips              unmarked
+         worst       0.001                  2.4%                 14.7%                 11.8%                 23.2%                  2.8%
+         worst       0.005                  3.3%                 23.0%                 17.6%                 33.0%                  5.4%
+         worst        0.01                  3.7%                 26.8%                 20.6%                 40.5%                  6.5%
+         worst        0.02                  4.1%                 30.7%                 26.5%                 45.9%                  7.9%
+         worst        0.05                  4.7%                 34.2%                 26.5%                 56.8%                  9.5%
+         worst         0.1                  5.1%                 38.1%                 26.5%                 62.2%                 11.0%
+         worst         0.3                  6.0%                 45.0%                 26.5%                 71.9%                 13.4%
+         worst         0.5                  6.4%                 49.9%                 29.4%                 77.8%                 14.8%
+         worst         0.7                  7.0%                 52.9%                 29.4%                 81.1%                 16.4%
+         worst         0.8                  7.4%                 53.7%                 29.4%                 83.2%                 17.1%
+         worst         0.9                  7.8%                 54.4%                 29.4%                 83.8%                 18.0%
+         worst        0.95                  7.9%                 54.8%                 29.4%                 84.3%                 18.2%
+ worst-but-one       0.001                  0.4%                  1.2%                  0.0%                  2.7%                  0.2%
+ worst-but-one       0.005                  0.6%                  3.0%                  0.0%                  4.3%                  0.5%
+ worst-but-one        0.01                  0.7%                  4.4%                  0.0%                  8.1%                  1.0%
+ worst-but-one        0.02                  0.7%                  5.8%                  5.9%                 10.3%                  1.1%
+ worst-but-one        0.05                  0.9%                  8.0%                  5.9%                 17.8%                  1.8%
+ worst-but-one         0.1                  1.2%                 11.0%                  5.9%                 21.6%                  2.2%
+ worst-but-one         0.3                  1.7%                 15.9%                  8.8%                 31.9%                  3.4%
+ worst-but-one         0.5                  2.0%                 19.5%                  8.8%                 38.9%                  4.3%
+ worst-but-one         0.7                  2.4%                 23.6%                  8.8%                 43.8%                  5.5%
+ worst-but-one         0.8                  2.6%                 25.8%                  8.8%                 49.2%                  6.5%
+ worst-but-one         0.9                  3.2%                 29.0%                  8.8%                 60.5%                  7.7%
+ worst-but-one        0.95                  3.6%                 33.2%                  8.8%                 65.9%                  9.2%
+          mean       0.001                  0.0%                  0.0%                  0.0%                  0.0%                  0.0%
+          mean       0.005                  0.0%                  0.0%                  0.0%                  0.0%                  0.0%
+          mean        0.01                  0.0%                  0.0%                  0.0%                  0.0%                  0.0%
+          mean        0.02                  0.0%                  0.0%                  0.0%                  0.0%                  0.0%
+          mean        0.05                  0.0%                  0.0%                  0.0%                  0.0%                  0.1%
+          mean         0.1                  0.0%                  0.0%                  0.0%                  0.0%                  0.1%
+          mean         0.3                  0.1%                  0.1%                  0.0%                  0.0%                  0.2%
+          mean         0.5                  0.5%                  2.1%                  0.0%                  2.7%                  1.0%
+          mean         0.7                  1.5%                 13.5%                  0.0%                 17.8%                  4.2%
+          mean         0.8                  2.3%                 23.5%                  8.8%                 41.1%                  8.9%
+          mean         0.9                  6.0%                 47.9%                 26.5%                 76.2%                 14.9%
+          mean        0.95                  7.1%                 52.9%                 29.4%                 81.6%                 16.8%
+
+
+RED as the app shows it, worst-but-one. Words checked by sound: 74.8%
+
+    flag-below      in use                 right  marked for tajweed o  letter or word slips           vowel slips              unmarked
+         0.001                              0.1%                  0.0%                  0.0%                  0.0%                  0.1%
+         0.005                              0.1%                  0.0%                  0.0%                  0.5%                  0.1%
+          0.01                              0.1%                  0.0%                  0.0%                  1.6%                  0.2%
+          0.02                              0.2%                  0.2%                  2.9%                  3.2%                  0.2%
+          0.05                              0.2%                  0.4%                  2.9%                  5.9%                  0.3%
+           0.1                              0.3%                  0.6%                  2.9%                  6.5%                  0.3%
+           0.3                              0.4%                  0.8%                  2.9%                 12.4%                  0.4%
+           0.5                              0.5%                  0.8%                  2.9%                 15.1%                  0.7%
+           0.7    beginner                  0.7%                  1.0%                  2.9%                 17.8%                  0.8%
+           0.8                              0.8%                  1.2%                  2.9%                 21.6%                  1.0%
+           0.9                              1.2%                  1.7%                  5.9%                 28.6%                  1.4%
+          0.95    standard                  1.6%                  1.9%                  5.9%                 31.9%                  1.7%

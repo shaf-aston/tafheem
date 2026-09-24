@@ -1,0 +1,1279 @@
+[
+ {
+  "id": "haal/application/1",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "رَأَيْتَهُمْ",
+     "يَصُدُّونَ",
+     "وَهُمْ",
+     "مُسْتَكْبِرُونَ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/application/2",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "زيدٌ",
+     "يَأْتِيكَ",
+     "وَما",
+     "تَنَامُ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "haal/application/3",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "مَرَجَ",
+     "الْبَحْرَيْنِ",
+     "يَلْتَقِيَانِ",
+     "بَيْنَهُمَا",
+     "بَرْزَخٌ",
+     "لَا",
+     "يَبْغِيَانِ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "haal/application/4",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "دَخلتُ",
+     "المسجدَ",
+     "والصلاةُ",
+     "قائمةٌ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/application/5",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "إِذَا",
+     "قَامُوا",
+     "إِلَى",
+     "الصَّلَاةِ",
+     "قَامُوا",
+     "كُسَالَى",
+     "يُرَاءُونَ",
+     "النَّاسَ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "haal/application/6",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "رَأيتُ",
+     "مَنْ",
+     "في",
+     "المسجد",
+     "مصلِّياً",
+     "أو",
+     "هُوَ",
+     "جَالِسٌ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "haal/application/7",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "تَرَى",
+     "الْمُجْرِمِينَ",
+     "يَوْمَئِذٍ",
+     "مُقَرَّنِينَ",
+     "فِي",
+     "الأَصْفَادِ",
+     "سَرَابِيلُهُمْ",
+     "مِنْ",
+     "قَطِرَانٍ",
+     "وَتَغْشَىٰ",
+     "وُجُوهَهُمُ",
+     "ٱلنَّارُ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/application/8",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "عَلَف",
+     "زيدٌ",
+     "الطيرَ",
+     "حبَّاتٍ",
+     "يرمي",
+     "إليهَا"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "haal/application/9",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "مَا",
+     "يَأْتِيهِمْ",
+     "مِنْ",
+     "ذِكْرٍ",
+     "مِنْ",
+     "رَبِّهِمْ",
+     "مُحْدَثٍ",
+     "إِلَّا",
+     "اسْتَمَعُوهُ",
+     "وَهُمْ",
+     "يَلْعَبُونَ",
+     "لَاهِيَةً",
+     "قُلُوبُهُمْ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "haal/application/10",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "زَار",
+     "زيدٌ",
+     "بيتَ",
+     "اللّهِ",
+     "وَمَا",
+     "دَعا",
+     "لِأحدٍ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/application/11",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "مَا",
+     "لَكُمْ",
+     "لا",
+     "تُؤْمِنُونَ",
+     "بِاللَّهِ",
+     "وَالرَّسُولُ",
+     "يَدْعُوكُمْ",
+     "لِتُؤْمِنُوا",
+     "بِرَبِّكُمْ",
+     "وَقَدْ",
+     "أَخَذَ",
+     "مِيثَاقَكُمْ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/application/12",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "فتح",
+     "زيدٌ",
+     "بابَ",
+     "الفصلِ",
+     "ولَمْ",
+     "يشْعُر",
+     "الأستاذُ",
+     "به"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/application/13",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "أَتُحَاجُّونِّي",
+     "فِي",
+     "اللَّهِ",
+     "وَقَدْ",
+     "هَدَانِي",
+     "وَلَا",
+     "أَخَافُ",
+     "مَا",
+     "تُشْرِكُونَ",
+     "بِهِ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "haal/application/14",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "كان",
+     "زيدٌ",
+     "يجلسُ",
+     "على",
+     "الأرضِ",
+     "ويُكمل",
+     "واجباتِه"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/application/15",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "رَبِّ",
+     "أَنَّى",
+     "يَكُونُ",
+     "لِي",
+     "غُلَامٌ",
+     "وَقَدْ",
+     "بَلَغَنِيَ",
+     "الْكِبَرُ",
+     "وَامْرَأَتِي",
+     "عَاقِرٌ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "haal/application/16",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "وَاعْبُدُوا",
+     "اللَّه",
+     "وَلَا",
+     "تُشْرِكُواْ",
+     "بِهِ",
+     "شَيْئًا"
+    ],
+    "unsure": [
+     "تُشْرِكُواْ (mark on final alef: small loop drawn above it, read as sukun/silence-marker, matching reader A)",
+     "شَيْئًا (mark above ي: small loop distinct from the ش fatha and from the hamza+tanween cluster on the alef, read as sukun, matching reader B)"
+    ]
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/application/17",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "آكلُ",
+     "الطعامَ",
+     "سخنَ",
+     "أو",
+     "بردَ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "haal/application/18",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "إِنّي",
+     "ذَاهِبٌ",
+     "إِلَىٰ",
+     "رَبِّي",
+     "سَيَهْدِينِ",
+     "(ي)"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/correct-or-incorrect/1",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "لِيَذهبْ",
+     "طالِبُو",
+     "العلمَ",
+     "إلى",
+     "المدرسةِ",
+     "مَمْلُوءُوْن",
+     "بِنَشاطٍ"
+    ],
+    "unsure": [
+     "مَمْلُوءُوْن (hamza sits bare on the line between the two waws, with damma on the hamza itself — not on a waw seat as reader A wrote 'ؤ', and not a shadda as reader B wrote; exact seat worth a second look)"
+    ]
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/correct-or-incorrect/2",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "وَخِلافُه",
+     "الكسلُ",
+     "ما",
+     "يكرهُهُ",
+     "رسولُ",
+     "اللَّهِ",
+     "ﷺ",
+     "عَائِذًا",
+     "باللَّهِ",
+     "منه"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/correct-or-incorrect/3",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "وَلِيمْكُثُوا",
+     "فيها",
+     "قد",
+     "يبذُلون",
+     "أَفْضَلَ",
+     "جُهودِهم",
+     "في",
+     "دُروسِهم"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/correct-or-incorrect/4",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "عَامِرٌ",
+     "رَاجَع",
+     "دُروسَه",
+     "(ثَابتةً)",
+     "بلَا",
+     "تُؤَدَةٍ",
+     "فَرَسَبَ،",
+     "لاتكنْ",
+     "مثلَ",
+     "عامر"
+    ],
+    "unsure": [
+     "(ثَابتةً) - tiny tanween mark on ة hard to resolve visually by itself, but the answer-key feedback on the same image set (\"should be thaabitan not thaabitatan\") confirms it's tanween fatha, not damma"
+    ]
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/correct-or-incorrect/5",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "إحترمْ",
+     "وَالِدَاكَ",
+     "وَغَابَ",
+     "أو",
+     "حَضَرَا"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/correct-or-incorrect/6",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "القرآنُ،",
+     "قرأتُ",
+     "مَا",
+     "(يَثْبُتُ)",
+     "فيه",
+     "(ثَابِتَةً)",
+     "مِن",
+     "الترغيبِ",
+     "والترهيبِ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/correct-or-incorrect/7",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "مكث",
+     "الضيوفُ",
+     "عندنا",
+     "ثلاثةُ",
+     "أيّامٍ",
+     "ما",
+     "قَصَّرنا",
+     "في",
+     "إكرامِه"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "haal/correct-or-incorrect/8",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "سمعتُ",
+     "(ثابتًا)",
+     "مِن",
+     "كلام",
+     "بكرٍ",
+     "مَا",
+     "حَدَثَ",
+     "بِزيدٍ",
+     "دارسٍ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/correct-or-incorrect/9",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "أكل",
+     "زيدٌ",
+     "هو",
+     "شبعانِ",
+     "ثُمَّ",
+     "تَأَلَّمَ",
+     "بطنُها"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "haal/correct-or-incorrect/10",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "مَا",
+     "صلّيتُ",
+     "صلاةً",
+     "إلّا",
+     "وَأَنَا",
+     "مرتجٍ",
+     "لِغُفرانِ",
+     "ذنبي"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/application/1",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "قرأتَ",
+     "القرآنَ",
+     "دُخولَكَ",
+     "الجنّةَ"
+    ],
+    "unsure": []
+   },
+   {
+    "index": 1,
+    "words": [
+     "قرأتَ",
+     "القرآنَ",
+     "لِدُخولِكَ",
+     "الجنّةَ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-lahu-fihi/application/2",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "أذهبُ",
+     "إلى",
+     "زيدٍ",
+     "طلبَه",
+     "إيّايَ"
+    ],
+    "unsure": []
+   },
+   {
+    "index": 1,
+    "words": [
+     "أذهبُ",
+     "إلى",
+     "زيدٍ",
+     "لطلبِه",
+     "إيّايَ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 2,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/application/3",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "خشيةَ",
+     "اللَّهِ",
+     "صلُّوا",
+     "صلواتِكُم"
+    ],
+    "unsure": []
+   },
+   {
+    "index": 1,
+    "words": [
+     "بخشيةَ",
+     "اللَّهِ",
+     "صلُّوا",
+     "صلواتِكُم"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 2,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/application/4",
+  "sentences": [
+   {
+    "index": 1,
+    "words": [
+     "الالتقاءِ",
+     "غدًا",
+     "تكلّمتُ",
+     "بزيدٍ"
+    ],
+    "unsure": []
+   },
+   {
+    "index": 0,
+    "words": [
+     "لِلإلتقاءِ",
+     "غدًا",
+     "تكلّمتُ",
+     "بزيدٍ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/application/5",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "تدرسُ",
+     "فاطمةُ",
+     "التجويدَ",
+     "أن",
+     "تقرأَ",
+     "القرآنَ"
+    ],
+    "unsure": []
+   },
+   {
+    "index": 1,
+    "words": [
+     "تدرسُ",
+     "فاطمةُ",
+     "التجويدَ",
+     "(لِ)",
+     "أن",
+     "تقرأَ",
+     "القرآنَ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-lahu-fihi/application/6",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "صفحَ",
+     "زيدٌ",
+     "عن",
+     "السفيهِ",
+     "حِلمًا"
+    ],
+    "unsure": []
+   },
+   {
+    "index": 1,
+    "words": [
+     "صفحَ",
+     "زيدٌ",
+     "عن",
+     "السفيهِ",
+     "لِحِلمٍ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-lahu-fihi/application/7",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "صامَ",
+     "زيدٌ",
+     "ابتغاءً",
+     "رضَا",
+     "اللَّٰهِ"
+    ],
+    "unsure": []
+   },
+   {
+    "index": 1,
+    "words": [
+     "صامَ",
+     "زيدٌ",
+     "مبتغيًا",
+     "رضَا",
+     "اللَّٰه"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 2,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/application/8",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "ابتعدتُ",
+     "عن",
+     "الأسد",
+     "لخوفٍ"
+    ],
+    "unsure": []
+   },
+   {
+    "index": 1,
+    "words": [
+     "ابتعدتُ",
+     "عن",
+     "الأسد",
+     "خوفاً"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-lahu-fihi/application/9",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "عاقب",
+     "الوالدُ",
+     "وَلَدَه",
+     "(لِ)",
+     "أن",
+     "يؤدِّبَه"
+    ],
+    "unsure": []
+   },
+   {
+    "index": 1,
+    "words": [
+     "عاقب",
+     "الوالدُ",
+     "وَلَدَه",
+     "أن",
+     "يؤدِّبَه"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 2,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/application/10",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "لا",
+     "تدخل",
+     "في",
+     "المكان",
+     "المتداعِي",
+     "ضعفَه"
+    ],
+    "unsure": []
+   },
+   {
+    "index": 1,
+    "words": [
+     "لا",
+     "تدخل",
+     "في",
+     "المكان",
+     "المتداعِي",
+     "لِضعفِه"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 2,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/identify-underlined/1",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "أعطيتُ",
+     "الفقيرَ",
+     "خبزاً",
+     "مَنْحَةً",
+     "صباحًا",
+     "شفقةً"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/identify-underlined/2",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "مَا",
+     "بِكَ",
+     "وزيدًا",
+     "أمسِ",
+     "فوقَ",
+     "المسجدِ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 2,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/identify-underlined/3",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "احترامًا",
+     "قُمتَ",
+     "وَكَتابَكَ",
+     "أَمَامَ",
+     "الأستاذِ",
+     "نَشاطًا"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/identify-underlined/4",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "إبراهيمُ",
+     "كسرَ",
+     "الأصنامَ",
+     "فَأسًا",
+     "يومَ",
+     "عيدِهم",
+     "كَرْهًا",
+     "للشركِ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/identify-underlined/5",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "أَطِعِ",
+     "اللَّهَ",
+     "تشريفًا",
+     "له",
+     "وَدينَه",
+     "كلَّ",
+     "الإطاعةِ",
+     "أَبَدًا"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/identify-underlined/6",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "دخلتُ",
+     "مكّةَ",
+     "للعمرة",
+     "ارتجاءً",
+     "مغفرةَ",
+     "اللّهِ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-lahu-fihi/identify-underlined/7",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "الجيشُ",
+     "رجعَ",
+     "والأميرَ",
+     "القَهْقَرى",
+     "مساءً"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-lahu-fihi/identify-underlined/8",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "أَبحَرَ",
+     "زيدٌ",
+     "السفينةَ",
+     "ليلًا",
+     "هُدُوْءً",
+     "له"
+    ],
+    "unsure": [
+     "أَبحَرَ (hamza's fatha is clearly drawn; the fatha on ح is agreed by both readers; whether the remaining stroke sits over ر or over ب could not be pinned down with full certainty at this resolution)"
+    ]
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-maahu/application/1",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "تَخَاصَمَ",
+     "زيد",
+     "وبكر"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-maahu/application/2",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "قرأ",
+     "القرآن",
+     "زيد",
+     "والمِصباح"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-maahu/application/3",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "جلست",
+     "فاطمة",
+     "وظِلّ",
+     "الشجرة"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-maahu/application/4",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "فتحتُ",
+     "أنَا",
+     "وزيد",
+     "أبوابَ",
+     "البيت"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-maahu/application/5",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "دخل",
+     "الفصل",
+     "زيدٌ",
+     "وطلحة"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-maahu/application/6",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "سمعتُ",
+     "والتاجر",
+     "الآذانَ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-maahu/application/7",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "أطعمتُ",
+     "زيدًا",
+     "دجاجة",
+     "وماء"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-maahu/application/8",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "لقيتُ",
+     "زيدا",
+     "وفاطمة",
+     "وهو",
+     "قائم"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-maahu/application/9",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "هذا",
+     "لِزيدٍ",
+     "وبكر"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-maahu/application/10",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "زينبُ",
+     "طالعتْ",
+     "الدرسَ",
+     "وفاطمة"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-maahu/application/11",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "دخل",
+     "المسجدَ",
+     "زيدٌ",
+     "وغروب",
+     "الشمس"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-maahu/application/12",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "جلس",
+     "زيد",
+     "وبكر",
+     "وهُما",
+     "ضاحكان"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 1,
+  "tieFailed": false
+ },
+ {
+  "id": "mafool-maahu/application/13",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "هذا",
+     "له",
+     "وزيد"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-maahu/application/14",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "جاء",
+     "الشتاءُ",
+     "والمعطف"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-maahu/application/15",
+  "sentences": [
+   {
+    "index": 0,
+    "words": [
+     "اشترك",
+     "زيد",
+     "وبكر",
+     "في",
+     "العمل"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ },
+ {
+  "id": "mafool-lahu-fihi/statements/15",
+  "sentences": [
+   {
+    "index": 15,
+    "words": [
+     "رَجُلٌ"
+    ],
+    "unsure": []
+   }
+  ],
+  "tiebroken": 0
+ }
+]

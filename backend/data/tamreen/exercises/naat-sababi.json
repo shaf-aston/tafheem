@@ -1,0 +1,1004 @@
+{
+ "title": "Exercise: Na'at Sababi YR3PT 25-26 - 19/04/2026",
+ "form": "Exercise: Na'at Sababi YR3PT 25-26 - 19/04/2026",
+ "harvested": "2026-09-17",
+ "rules": [
+  {
+   "id": "naat-sababi-r01",
+   "question": "The نعت سببي is...",
+   "options": [
+    "...an إسم.",
+    "...a فعل.",
+    "...a حرف."
+   ],
+   "answer": [
+    "...an إسم."
+   ],
+   "tags": [
+    "naat-sababi",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "naat-sababi-r02",
+   "question": "The نعت سببي can be...",
+   "options": [
+    "...an اسم الفاعل.",
+    "...a مصدر.",
+    "...an اسم الظرف.",
+    "...an اسم المفعول.",
+    "...an اسم المبالغة.",
+    "...a صفة مشبهة.",
+    "...an اسم التفضيل.",
+    "...an اسم الآلة."
+   ],
+   "answer": [
+    "...an اسم الفاعل.",
+    "...an اسم المفعول.",
+    "...a صفة مشبهة.",
+    "...an اسم المبالغة.",
+    "...an اسم التفضيل."
+   ],
+   "tags": [
+    "naat-sababi",
+    "shibh-fil",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "naat-sababi-r03",
+   "question": "The نعت سببي describes...",
+   "options": [
+    "...the منعوت and something related to the منعوت.",
+    "...the منعوت.",
+    "...something related to the منعوت."
+   ],
+   "answer": [
+    "...something related to the منعوت."
+   ],
+   "tags": [
+    "naat-sababi",
+    "manoot",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "naat-sababi-r04",
+   "question": "The نعت سببي and the منعوت must correlate in...",
+   "options": [
+    "...(D) Definitenes",
+    "...(I) I'raab",
+    "...(N) Number",
+    "...(G) Gender"
+   ],
+   "answer": [
+    "...(D) Definitenes",
+    "...(I) I'raab"
+   ],
+   "tags": [
+    "naat-sababi",
+    "manoot",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "naat-sababi-r05",
+   "question": "The نعت سببي...",
+   "options": [
+    "...must come after the منعوت.",
+    "...can come before the منعوت.",
+    "...can come after the منعوت.",
+    "...must come before the منعوت."
+   ],
+   "answer": [
+    "...must come after the منعوت."
+   ],
+   "tags": [
+    "naat-sababi",
+    "manoot",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "naat-sababi-r06",
+   "question": "The نعت سببي...",
+   "options": [
+    "...must give رفع to an اسم مضمر hidden inside of it..",
+    "...can give رفع to an اسم مضمر hidden inside of it..",
+    "...must give رفع to an اسم after it and not hidden inside of it..",
+    "...can give رفع to an اسم after it and not hidden inside of it.."
+   ],
+   "answer": [
+    "...must give رفع to an اسم after it and not hidden inside of it.."
+   ],
+   "tags": [
+    "naat-sababi",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "naat-sababi-r07",
+   "question": "The نعت سببي...",
+   "options": [
+    "...can contain a ضمير correlating with the منعوت.",
+    "...must not contain a ضمير correlating with the منعوت.",
+    "...must contain a ضمير correlating with the منعوت."
+   ],
+   "answer": [
+    "...must contain a ضمير correlating with the منعوت."
+   ],
+   "tags": [
+    "naat-sababi",
+    "dhameer-raabit",
+    "manoot"
+   ]
+  },
+  {
+   "id": "naat-sababi-r08",
+   "question": "The نعت سببي...",
+   "options": [
+    "...is generally single and sometimes, it can be dual or plural.",
+    "...is always single and will never be dual or plural.",
+    "...will be single, dual or plural according to circumstance."
+   ],
+   "answer": [
+    "...is always single and will never be dual or plural."
+   ],
+   "tags": [
+    "naat-sababi",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "naat-sababi-r09",
+   "question": "The نعت سببي...",
+   "options": [
+    "...will be masculine or feminine according to what comes after it.",
+    "...will be masculine or feminine according to منعوت.",
+    "...is always feminine and will never be masculine.",
+    "...is always masculine and will never be feminine."
+   ],
+   "answer": [
+    "...will be masculine or feminine according to what comes after it."
+   ],
+   "tags": [
+    "naat-sababi",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "naat-sababi-r10",
+   "question": "The relationship of the نعت سببي with the word after it is the same as...",
+   "options": [
+    "...the مبتدا & خبر relationship.",
+    "...the فعل & فاعل relationship.",
+    "...the موصوف & صفة relationship.",
+    "...the مضاف& مضاف إلي relationship."
+   ],
+   "answer": [
+    "...the فعل & فاعل relationship."
+   ],
+   "tags": [
+    "naat-sababi",
+    "tafriq-mafaheem"
+   ]
+  }
+ ],
+ "examples": [
+  {
+   "id": "naat-sababi-e01",
+   "section": "Application of Rules",
+   "picture": "naat-sababi-00.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+     "options": [
+      "نعت سببي",
+      "جملة نعت",
+      "جملة حال"
+     ],
+     "rows": [
+      "A",
+      "B"
+     ],
+     "answer": {
+      "A": [
+       "نعت سببي"
+      ],
+      "B": [
+       "جملة نعت"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "البُرتُقال فاكهةٌ لذيذٌ طعمُها",
+      "B": "البُرتُقال فاكهةٌ طعمُها لذيذٌ"
+     }
+    }
+   ],
+   "sentence": "\nOrange is a fruit whose taste is pleasant.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "naat-sababi-e02",
+   "section": "Application of Rules",
+   "picture": "naat-sababi-01.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+     "options": [
+      "نعت سببي",
+      "جملة نعت",
+      "جملة حال"
+     ],
+     "rows": [
+      "A",
+      "B"
+     ],
+     "answer": {
+      "A": [
+       "نعت سببي"
+      ],
+      "B": [
+       "جملة حال"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "سمعتُ الرجُلَ الحسنَ نَغْمَتُه",
+      "B": "سمعتُ الرجُلَ نَغْمَتُه حسنةٌ"
+     }
+    }
+   ],
+   "sentence": "\nI heard the man whose tone (of recitation) is beautiful.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "naat-sababi-e03",
+   "section": "Application of Rules",
+   "picture": "naat-sababi-02.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+     "options": [
+      "نعت سببي",
+      "جملة نعت",
+      "جملة حال"
+     ],
+     "rows": [
+      "A",
+      "B"
+     ],
+     "answer": {
+      "A": [
+       "جملة نعت"
+      ],
+      "B": [
+       "نعت سببي"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "أَوْقَدْتُ مصْباحاً نورُه قوِيٌّ",
+      "B": "أَوْقَدْتُ مصْباحاً قوِيًّا نورُه"
+     }
+    }
+   ],
+   "sentence": "\nI lit a lamp whose light was strong (bright).",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "naat-sababi-e04",
+   "section": "Application of Rules",
+   "picture": "naat-sababi-03.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+     "options": [
+      "نعت سببي",
+      "جملة نعت",
+      "جملة حال"
+     ],
+     "rows": [
+      "A",
+      "B"
+     ],
+     "answer": {
+      "A": [
+       "نعت سببي"
+      ],
+      "B": [
+       "جملة نعت"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "مررتُ ببلدٍ كَريمٍ أهلُه",
+      "B": "مررتُ ببلدٍ أهلُه كِرامٌ"
+     }
+    }
+   ],
+   "sentence": "\nI passed by a town whose residents were noble.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "naat-sababi-e05",
+   "section": "Application of Rules",
+   "picture": "naat-sababi-04.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+     "options": [
+      "نعت سببي",
+      "جملة نعت",
+      "جملة حال"
+     ],
+     "rows": [
+      "A",
+      "B"
+     ],
+     "answer": {
+      "A": [
+       "جملة حال"
+      ],
+      "B": [
+       "نعت سببي"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "تَسلّقَ زيدٌ الشجرةَ جِذْعُها غليظٌ",
+      "B": "تَسلّقَ زيدٌ الشجرةَ الغليظَ جِذْعُها"
+     }
+    }
+   ],
+   "sentence": "\nZaid scaled the tree whose trunk was thick.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "naat-sababi-e06",
+   "section": "Application of Rules",
+   "picture": "naat-sababi-05.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+     "options": [
+      "نعت سببي",
+      "جملة نعت",
+      "جملة حال"
+     ],
+     "rows": [
+      "A",
+      "B"
+     ],
+     "answer": {
+      "A": [
+       "نعت سببي"
+      ],
+      "B": [
+       "جملة نعت"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "هذان رجلان عالمٌ عَمّاهُمَا",
+      "B": "هذان رجلان عالمانِ عَمّاهُمَا"
+     }
+    }
+   ],
+   "sentence": "\nThese are 2 men whose 2 uncles are scholars.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "naat-sababi-e07",
+   "section": "Application of Rules",
+   "picture": "naat-sababi-06.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+     "options": [
+      "نعت سببي",
+      "جملة نعت",
+      "جملة حال"
+     ],
+     "rows": [
+      "A",
+      "B"
+     ],
+     "answer": {
+      "A": [
+       "جملة حال"
+      ],
+      "B": [
+       "نعت سببي"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "تركتَ الكتابَ ممزَّقةٌ أوراقُه",
+      "B": "تركتَ الكتابَ الممزَّقةَ أوراقُه"
+     }
+    }
+   ],
+   "sentence": "\nYou left the book whose pages were torn.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "naat-sababi-e08",
+   "section": "Application of Rules",
+   "picture": "naat-sababi-07.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+     "options": [
+      "نعت سببي",
+      "جملة نعت",
+      "جملة حال"
+     ],
+     "rows": [
+      "A",
+      "B"
+     ],
+     "answer": {
+      "A": [
+       "جملة نعت"
+      ],
+      "B": [
+       "نعت سببي"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "اشتريتُ أقلاماً جميلٌ خطُّها",
+      "B": "اشتريتُ أقلاماً جميلاً خطُّها"
+     }
+    }
+   ],
+   "sentence": "\nI bought pens whose writing is beautiful.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "naat-sababi-e09",
+   "section": "Application of Rules",
+   "picture": "naat-sababi-08.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+     "options": [
+      "نعت سببي",
+      "جملة نعت",
+      "جملة حال"
+     ],
+     "rows": [
+      "A",
+      "B"
+     ],
+     "answer": {
+      "A": [
+       "نعت سببي"
+      ],
+      "B": [
+       "جملة حال"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "ركبتُ البحر الكثيرَ سَمَكُه",
+      "B": "ركبتُ البحر سَمَكُه كثيرٌ"
+     }
+    }
+   ],
+   "sentence": "\nI travelled the sea whose fish is abundant.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "naat-sababi-e10",
+   "section": "Application of Rules",
+   "picture": "naat-sababi-09.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+     "options": [
+      "نعت سببي",
+      "جملة نعت",
+      "جملة حال"
+     ],
+     "rows": [
+      "A",
+      "B"
+     ],
+     "answer": {
+      "A": [
+       "نعت سببي"
+      ],
+      "B": [
+       "جملة نعت"
+      ]
+     },
+     "by": "teacher",
+     "labels": {
+      "A": "دخلتُ مسجدًا مختلفةً أبوابُهُ",
+      "B": "دخلتُ مسجدًا أبوابُهُ مختلفةٌ"
+     }
+    }
+   ],
+   "sentence": "\nI entered a masjid whose doors were different.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "naat-sababi-e11",
+   "section": "Convert from نعت سببي to جملة",
+   "picture": "naat-sababi-10.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A or B correctly rewrites the نعت سببي construction as an equivalent جملة (sentence)?",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": [
+      "B"
+     ],
+     "by": "teacher",
+     "labels": {
+      "A": "ضاربٌ إبنُهُ زيدًا",
+      "B": "إبنُهُ ضاربٌ زيدًا"
+     }
+    }
+   ],
+   "sentence": "يأتيني الرجلُ الضاربُ إبنُهُ زيدًا\nThe man whose son is hitting Zaid is coming.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "naat-sababi-e12",
+   "section": "Convert from نعت سببي to جملة",
+   "picture": "naat-sababi-11.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A or B correctly rewrites the نعت سببي construction as an equivalent جملة (sentence)?",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": [
+      "A"
+     ],
+     "by": "teacher",
+     "labels": {
+      "A": "إطارَاها فارغانِ",
+      "B": "إطارَاهما فارغانِ"
+     }
+    }
+   ],
+   "sentence": "رَأيتُ سيارةً فارغًا إطارَاها\nI saw a car whose 2 tyres were flat.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "naat-sababi-e13",
+   "section": "Convert from نعت سببي to جملة",
+   "picture": "naat-sababi-12.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A or B correctly rewrites the نعت سببي construction as an equivalent جملة (sentence)?",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": [
+      "B"
+     ],
+     "by": "teacher",
+     "labels": {
+      "A": "نعيمةٌ جوُّهَا",
+      "B": "جوُّهَا نعيمٌ"
+     }
+    }
+   ],
+   "sentence": "زرتُ مدينةَ النبيِّ ﷺ النعيمَ جوُّهَا\nI visited the city of the prophet ﷺ the atmosphere of which was pleasant.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "naat-sababi-e14",
+   "section": "Convert from نعت سببي to جملة",
+   "picture": "naat-sababi-13.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A or B correctly rewrites the نعت سببي construction as an equivalent جملة (sentence)?",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": [
+      "B"
+     ],
+     "by": "teacher",
+     "labels": {
+      "A": "لوْنُهَا فَاقِعةٌ",
+      "B": "لوْنُهَا فَاقِعٌ"
+     }
+    }
+   ],
+   "sentence": "إنّها بَقَرةٌ صَفْرَاءُ فَاقِعٌ لوْنُهَا\nIndeed, it is a yellow cow whose colour is bright.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "naat-sababi-e15",
+   "section": "Convert from نعت سببي to جملة",
+   "picture": "naat-sababi-14.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Which of A or B correctly rewrites the نعت سببي construction as an equivalent جملة (sentence)?",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": [
+      "A"
+     ],
+     "by": "teacher",
+     "labels": {
+      "A": "أبوابُهَا مكسورَةٌ",
+      "B": "أبوابُهَا مكسورٌ"
+     }
+    }
+   ],
+   "sentence": "مررتُ بِالسيّاراتِ المكسورِ أبوابُهَا\nI walked passed cars whose doors were broken.",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "tatbeeq-tarkeeb"
+   ]
+  },
+  {
+   "id": "naat-sababi-e16",
+   "section": "Correct or Incorrect",
+   "picture": "naat-sababi-15.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the نعت سببي construction in this sentence correct or incorrect?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "d",
+     "question": "Translation:",
+     "answer": "I greeted Muhammad, whose mother is noble.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "سلّمتُ على محمدٍ الكريمِ أمُّه",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "taskheek-khata",
+    "tarjama"
+   ]
+  },
+  {
+   "id": "naat-sababi-e17",
+   "section": "Correct or Incorrect",
+   "picture": "naat-sababi-16.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the نعت سببي construction in this sentence correct or incorrect?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "d",
+     "question": "Translation:",
+     "answer": "The book whose stories are varied delights me.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "يُعجِبُني الكتابُ المُتنوّعُ قِصصُها",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "taskheek-khata",
+    "tarjama"
+   ]
+  },
+  {
+   "id": "naat-sababi-e18",
+   "section": "Correct or Incorrect",
+   "picture": "naat-sababi-17.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the نعت سببي construction in this sentence correct or incorrect?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "d",
+     "question": "Translation:",
+     "answer": "We worship Allah, whose command is obeyed.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "نعبدُ اللهَ المُطاعَ أمْرَهُ",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "taskheek-khata",
+    "tarjama"
+   ]
+  },
+  {
+   "id": "naat-sababi-e19",
+   "section": "Correct or Incorrect",
+   "picture": "naat-sababi-18.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the نعت سببي construction in this sentence correct or incorrect?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Correct"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "d",
+     "question": "Translation:",
+     "answer": "I visited a market whose goods were abundant.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "زرتُ سُوقًا كثيرًا متاعُها",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "taskheek-khata",
+    "tarjama"
+   ]
+  },
+  {
+   "id": "naat-sababi-e20",
+   "section": "Correct or Incorrect",
+   "picture": "naat-sababi-19.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the نعت سببي construction in this sentence correct or incorrect?",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": [
+      "Incorrect"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "How many mistakes?",
+     "options": [
+      "0",
+      "1",
+      "2"
+     ],
+     "rows": [
+      "Mistakes:"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "by": "teacher"
+    },
+    {
+     "letter": "d",
+     "question": "Translation:",
+     "answer": "Zaid perfumes himself with fragrances whose scent is fragrant.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "يتطيّبُ زيدٌ بأَعطارٍ فَوّاحَةٌ رائحتُه",
+   "marked": [],
+   "tags": [
+    "naat-sababi",
+    "taskheek-khata",
+    "tarjama"
+   ]
+  }
+ ]
+}

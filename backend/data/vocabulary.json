@@ -1,0 +1,1476 @@
+{
+  "_comment": "The quiz's only source of words. Questions are generated from this at run time, never stored. `category` makes a wrong option plausible (same topic); `sense` makes it safe (two entries sharing a sense can never appear in the same question, so no two options can be defensibly correct). `en` is the single commonly understood meaning, not a list of shades.",
+  "dialect": "Modern Standard Arabic",
+  "_dialect_comment": "One dialect only, shown beside the question so you know which Arabic is being asked for. No word here occurs anywhere in the Qur'an, not in the 385-word book list, not in the corpus; so the Everyday set and the Qur'anic set never overlap and nothing is filtered at run time. That rule is what shapes the topics: bread, dog and star are all Qur'anic, so what is left is modern life; work, school, health, travel, the city, technology.",
+  "_categories_comment": "Every topic in the list, and what kind of word it holds. The kind is what keeps a question fair: a wrong option that is a verb beside a noun answer is dismissed on grammar alone, without reading the Arabic. Words the topic gets wrong are corrected one at a time in backend/data/word_kinds.json.",
+  "categories": [
+    {
+      "id": "abstract",
+      "label": "Abstract",
+      "wordType": "noun"
+    },
+    {
+      "id": "animals",
+      "label": "Animals",
+      "wordType": "noun"
+    },
+    {
+      "id": "body",
+      "label": "Body",
+      "wordType": "noun"
+    },
+    {
+      "id": "city",
+      "label": "City",
+      "wordType": "noun"
+    },
+    {
+      "id": "family",
+      "label": "Family",
+      "wordType": "noun"
+    },
+    {
+      "id": "food",
+      "label": "Food",
+      "wordType": "noun"
+    },
+    {
+      "id": "health",
+      "label": "Health",
+      "wordType": "noun"
+    },
+    {
+      "id": "home",
+      "label": "Home",
+      "wordType": "noun"
+    },
+    {
+      "id": "money",
+      "label": "Money",
+      "wordType": "noun"
+    },
+    {
+      "id": "nature",
+      "label": "Nature",
+      "wordType": "noun"
+    },
+    {
+      "id": "qualities",
+      "label": "Qualities",
+      "wordType": "adjective"
+    },
+    {
+      "id": "school",
+      "label": "School",
+      "wordType": "noun"
+    },
+    {
+      "id": "tech",
+      "label": "Technology",
+      "wordType": "noun"
+    },
+    {
+      "id": "time",
+      "label": "Time",
+      "wordType": "noun"
+    },
+    {
+      "id": "travel",
+      "label": "Travel",
+      "wordType": "noun"
+    },
+    {
+      "id": "verbs",
+      "label": "Verbs",
+      "wordType": "verb"
+    },
+    {
+      "id": "work",
+      "label": "Work",
+      "wordType": "noun"
+    }
+  ],
+  "words": [
+    {
+      "ar": "قِطَار",
+      "en": "train",
+      "category": "travel",
+      "meaningKey": "train"
+    },
+    {
+      "ar": "طَائِرَة",
+      "en": "aeroplane",
+      "category": "travel",
+      "meaningKey": "aeroplane"
+    },
+    {
+      "ar": "مَطَار",
+      "en": "airport",
+      "category": "travel",
+      "meaningKey": "airport"
+    },
+    {
+      "ar": "دَرَّاجَة",
+      "en": "bicycle",
+      "category": "travel",
+      "meaningKey": "bicycle"
+    },
+    {
+      "ar": "حَافِلَة",
+      "en": "bus",
+      "category": "travel",
+      "meaningKey": "bus"
+    },
+    {
+      "ar": "جَوَاز",
+      "en": "passport",
+      "category": "travel",
+      "meaningKey": "passport"
+    },
+    {
+      "ar": "فُنْدُق",
+      "en": "hotel",
+      "category": "travel",
+      "meaningKey": "hotel"
+    },
+    {
+      "ar": "حَقِيبَة",
+      "en": "suitcase",
+      "category": "travel",
+      "meaningKey": "suitcase"
+    },
+    {
+      "ar": "مِيناء",
+      "en": "harbour",
+      "category": "travel",
+      "meaningKey": "harbour"
+    },
+    {
+      "ar": "مَدْرَسَة",
+      "en": "school",
+      "category": "city",
+      "meaningKey": "school"
+    },
+    {
+      "ar": "مُسْتَشْفَى",
+      "en": "hospital",
+      "category": "city",
+      "meaningKey": "hospital"
+    },
+    {
+      "ar": "مَطْعَم",
+      "en": "restaurant",
+      "category": "city",
+      "meaningKey": "restaurant"
+    },
+    {
+      "ar": "مَكْتَب",
+      "en": "office",
+      "category": "city",
+      "meaningKey": "office"
+    },
+    {
+      "ar": "صَيْدَلِيَّة",
+      "en": "pharmacy",
+      "category": "city",
+      "meaningKey": "pharmacy"
+    },
+    {
+      "ar": "جَامِعَة",
+      "en": "university",
+      "category": "city",
+      "meaningKey": "university"
+    },
+    {
+      "ar": "مَتْحَف",
+      "en": "museum",
+      "category": "city",
+      "meaningKey": "museum"
+    },
+    {
+      "ar": "مَلْعَب",
+      "en": "stadium",
+      "category": "city",
+      "meaningKey": "stadium"
+    },
+    {
+      "ar": "شَارِع",
+      "en": "street",
+      "category": "city",
+      "meaningKey": "street"
+    },
+    {
+      "ar": "مَكْتَبَة",
+      "en": "library",
+      "category": "city",
+      "meaningKey": "library"
+    },
+    {
+      "ar": "سِينَما",
+      "en": "cinema",
+      "category": "city",
+      "meaningKey": "cinema"
+    },
+    {
+      "ar": "ثَلَّاجَة",
+      "en": "fridge",
+      "category": "home",
+      "meaningKey": "fridge"
+    },
+    {
+      "ar": "مِرْوَحَة",
+      "en": "fan",
+      "category": "home",
+      "meaningKey": "fan"
+    },
+    {
+      "ar": "مِصْعَد",
+      "en": "lift",
+      "category": "home",
+      "meaningKey": "lift"
+    },
+    {
+      "ar": "كَهْرَبَاء",
+      "en": "electricity",
+      "category": "home",
+      "meaningKey": "electricity"
+    },
+    {
+      "ar": "مِفْتَاح",
+      "en": "key",
+      "category": "home",
+      "meaningKey": "key"
+    },
+    {
+      "ar": "سَرِير",
+      "en": "bed",
+      "category": "home",
+      "meaningKey": "bed"
+    },
+    {
+      "ar": "مِنْشَفَة",
+      "en": "towel",
+      "category": "home",
+      "meaningKey": "towel"
+    },
+    {
+      "ar": "صَابُون",
+      "en": "soap",
+      "category": "home",
+      "meaningKey": "soap"
+    },
+    {
+      "ar": "سَجَّادَة",
+      "en": "carpet",
+      "category": "home",
+      "meaningKey": "carpet"
+    },
+    {
+      "ar": "مِلْعَقَة",
+      "en": "spoon",
+      "category": "home",
+      "meaningKey": "spoon"
+    },
+    {
+      "ar": "شُبَّاك",
+      "en": "window",
+      "category": "home",
+      "meaningKey": "window"
+    },
+    {
+      "ar": "حَاسُوب",
+      "en": "computer",
+      "category": "tech",
+      "meaningKey": "computer"
+    },
+    {
+      "ar": "هَاتِف",
+      "en": "telephone",
+      "category": "tech",
+      "meaningKey": "telephone"
+    },
+    {
+      "ar": "شَاشَة",
+      "en": "screen",
+      "category": "tech",
+      "meaningKey": "screen"
+    },
+    {
+      "ar": "بَرْنَامَج",
+      "en": "program",
+      "category": "tech",
+      "meaningKey": "program"
+    },
+    {
+      "ar": "كَامِيرَا",
+      "en": "camera",
+      "category": "tech",
+      "meaningKey": "camera"
+    },
+    {
+      "ar": "بَطَّارِيَّة",
+      "en": "battery",
+      "category": "tech",
+      "meaningKey": "battery"
+    },
+    {
+      "ar": "طَابِعَة",
+      "en": "printer",
+      "category": "tech",
+      "meaningKey": "printer"
+    },
+    {
+      "ar": "تِلْفَاز",
+      "en": "television",
+      "category": "tech",
+      "meaningKey": "television"
+    },
+    {
+      "ar": "مِذْيَاع",
+      "en": "radio",
+      "category": "tech",
+      "meaningKey": "radio"
+    },
+    {
+      "ar": "فَم",
+      "en": "mouth",
+      "category": "body",
+      "meaningKey": "mouth"
+    },
+    {
+      "ar": "رُكْبَة",
+      "en": "knee",
+      "category": "body",
+      "meaningKey": "knee"
+    },
+    {
+      "ar": "كَتِف",
+      "en": "shoulder",
+      "category": "body",
+      "meaningKey": "shoulder"
+    },
+    {
+      "ar": "خَدّ",
+      "en": "cheek",
+      "category": "body",
+      "meaningKey": "cheek"
+    },
+    {
+      "ar": "ذَقْن",
+      "en": "chin",
+      "category": "body",
+      "meaningKey": "chin"
+    },
+    {
+      "ar": "مِعْدَة",
+      "en": "stomach",
+      "category": "body",
+      "meaningKey": "stomach"
+    },
+    {
+      "ar": "رِئَة",
+      "en": "lung",
+      "category": "body",
+      "meaningKey": "lung"
+    },
+    {
+      "ar": "حَاجِب",
+      "en": "eyebrow",
+      "category": "body",
+      "meaningKey": "eyebrow"
+    },
+    {
+      "ar": "غَيْمَة",
+      "en": "cloud",
+      "category": "nature",
+      "meaningKey": "cloud"
+    },
+    {
+      "ar": "ثَلْج",
+      "en": "snow",
+      "category": "nature",
+      "meaningKey": "snow"
+    },
+    {
+      "ar": "رَمْل",
+      "en": "sand",
+      "category": "nature",
+      "meaningKey": "sand"
+    },
+    {
+      "ar": "صَحْرَاء",
+      "en": "desert",
+      "category": "nature",
+      "meaningKey": "desert"
+    },
+    {
+      "ar": "ضَبَاب",
+      "en": "fog",
+      "category": "nature",
+      "meaningKey": "fog"
+    },
+    {
+      "ar": "رُطُوبَة",
+      "en": "humidity",
+      "category": "nature",
+      "meaningKey": "humidity"
+    },
+    {
+      "ar": "نَسِيم",
+      "en": "breeze",
+      "category": "nature",
+      "meaningKey": "breeze"
+    },
+    {
+      "ar": "قَصِير",
+      "en": "short",
+      "category": "qualities",
+      "meaningKey": "short"
+    },
+    {
+      "ar": "سَهْل",
+      "en": "easy",
+      "category": "qualities",
+      "meaningKey": "easy"
+    },
+    {
+      "ar": "صَعْب",
+      "en": "difficult",
+      "category": "qualities",
+      "meaningKey": "difficult"
+    },
+    {
+      "ar": "حَارّ",
+      "en": "hot",
+      "category": "qualities",
+      "meaningKey": "hot"
+    },
+    {
+      "ar": "رَخِيص",
+      "en": "cheap",
+      "category": "qualities",
+      "meaningKey": "cheap"
+    },
+    {
+      "ar": "غَالِي",
+      "en": "expensive",
+      "category": "qualities",
+      "meaningKey": "expensive"
+    },
+    {
+      "ar": "نَظِيف",
+      "en": "clean",
+      "category": "qualities",
+      "meaningKey": "clean"
+    },
+    {
+      "ar": "مَشْغُول",
+      "en": "busy",
+      "category": "qualities",
+      "meaningKey": "busy"
+    },
+    {
+      "ar": "مُمْتِع",
+      "en": "enjoyable",
+      "category": "qualities",
+      "meaningKey": "enjoyable"
+    },
+    {
+      "ar": "مُتْعَب",
+      "en": "tired",
+      "category": "qualities",
+      "meaningKey": "tired"
+    },
+    {
+      "ar": "جَلَسَ",
+      "en": "he sat",
+      "category": "verbs",
+      "meaningKey": "sat"
+    },
+    {
+      "ar": "طَبَخَ",
+      "en": "he cooked",
+      "category": "verbs",
+      "meaningKey": "cooked"
+    },
+    {
+      "ar": "غَسَلَ",
+      "en": "he washed",
+      "category": "verbs",
+      "meaningKey": "washed"
+    },
+    {
+      "ar": "سَافَرَ",
+      "en": "he travelled",
+      "category": "verbs",
+      "meaningKey": "travelled"
+    },
+    {
+      "ar": "اِتَّصَلَ",
+      "en": "he phoned",
+      "category": "verbs",
+      "meaningKey": "phoned"
+    },
+    {
+      "ar": "حَجَزَ",
+      "en": "he booked",
+      "category": "verbs",
+      "meaningKey": "booked"
+    },
+    {
+      "ar": "نَظَّفَ",
+      "en": "he cleaned",
+      "category": "verbs",
+      "meaningKey": "cleaned"
+    },
+    {
+      "ar": "رَقَصَ",
+      "en": "he danced",
+      "category": "verbs",
+      "meaningKey": "danced"
+    },
+    {
+      "ar": "اِسْتَيْقَظَ",
+      "en": "he woke up",
+      "category": "verbs",
+      "meaningKey": "woke-up"
+    },
+    {
+      "ar": "قِطّ",
+      "en": "cat",
+      "category": "animals",
+      "meaningKey": "cat"
+    },
+    {
+      "ar": "حِصَان",
+      "en": "horse",
+      "category": "animals",
+      "meaningKey": "horse"
+    },
+    {
+      "ar": "أَسَد",
+      "en": "lion",
+      "category": "animals",
+      "meaningKey": "lion"
+    },
+    {
+      "ar": "نَمِر",
+      "en": "tiger",
+      "category": "animals",
+      "meaningKey": "tiger"
+    },
+    {
+      "ar": "زَرَافَة",
+      "en": "giraffe",
+      "category": "animals",
+      "meaningKey": "giraffe"
+    },
+    {
+      "ar": "دُبّ",
+      "en": "bear",
+      "category": "animals",
+      "meaningKey": "bear"
+    },
+    {
+      "ar": "أَرْنَب",
+      "en": "rabbit",
+      "category": "animals",
+      "meaningKey": "rabbit"
+    },
+    {
+      "ar": "جَدّ",
+      "en": "grandfather",
+      "category": "family",
+      "meaningKey": "grandfather"
+    },
+    {
+      "ar": "جَدَّة",
+      "en": "grandmother",
+      "category": "family",
+      "meaningKey": "grandmother"
+    },
+    {
+      "ar": "حَفِيد",
+      "en": "grandson",
+      "category": "family",
+      "meaningKey": "grandson"
+    },
+    {
+      "ar": "حَفِيدَة",
+      "en": "granddaughter",
+      "category": "family",
+      "meaningKey": "granddaughter"
+    },
+    {
+      "ar": "خَطِيب",
+      "en": "fiance",
+      "category": "family",
+      "meaningKey": "fiance"
+    },
+    {
+      "ar": "تَوْأَم",
+      "en": "twin",
+      "category": "family",
+      "meaningKey": "twin"
+    },
+    {
+      "ar": "حَرَارَة",
+      "en": "heat",
+      "category": "nature",
+      "meaningKey": "heat"
+    },
+    {
+      "ar": "جَوّ",
+      "en": "weather",
+      "category": "nature",
+      "meaningKey": "weather"
+    },
+    {
+      "ar": "مُعْتَدِل",
+      "en": "moderate",
+      "category": "nature",
+      "meaningKey": "moderate"
+    },
+    {
+      "ar": "بَرّ",
+      "en": "land",
+      "category": "nature",
+      "meaningKey": "land"
+    },
+    {
+      "ar": "رِيف",
+      "en": "countryside",
+      "category": "nature",
+      "meaningKey": "countryside"
+    },
+    {
+      "ar": "مِسَاحَة",
+      "en": "area",
+      "category": "nature",
+      "meaningKey": "area"
+    },
+    {
+      "ar": "بِيئَة",
+      "en": "environment",
+      "category": "nature",
+      "meaningKey": "environment"
+    },
+    {
+      "ar": "نَفْط",
+      "en": "oil",
+      "category": "nature",
+      "meaningKey": "oil"
+    },
+    {
+      "ar": "قَارَّة",
+      "en": "continent",
+      "category": "nature",
+      "meaningKey": "continent"
+    },
+    {
+      "ar": "اِرْتِفَاع",
+      "en": "rise",
+      "category": "nature",
+      "meaningKey": "rise"
+    },
+    {
+      "ar": "تَلَوُّث",
+      "en": "pollution",
+      "category": "nature",
+      "meaningKey": "pollution"
+    },
+    {
+      "ar": "نُزُول",
+      "en": "descent",
+      "category": "nature",
+      "meaningKey": "descent"
+    },
+    {
+      "ar": "جَفَاف",
+      "en": "drought",
+      "category": "nature",
+      "meaningKey": "drought"
+    },
+    {
+      "ar": "جَزِيرَة",
+      "en": "island",
+      "category": "nature",
+      "meaningKey": "island"
+    },
+    {
+      "ar": "بُخَار",
+      "en": "steam",
+      "category": "nature",
+      "meaningKey": "steam"
+    },
+    {
+      "ar": "شَرِكَة",
+      "en": "company",
+      "category": "work",
+      "meaningKey": "company"
+    },
+    {
+      "ar": "بَائِع",
+      "en": "seller",
+      "category": "work",
+      "meaningKey": "seller"
+    },
+    {
+      "ar": "مُوَظَّف",
+      "en": "employee",
+      "category": "work",
+      "meaningKey": "employee"
+    },
+    {
+      "ar": "صِحَافَة",
+      "en": "journalism",
+      "category": "work",
+      "meaningKey": "journalism"
+    },
+    {
+      "ar": "مُهَنْدِس",
+      "en": "engineer",
+      "category": "work",
+      "meaningKey": "engineer"
+    },
+    {
+      "ar": "مُدَرِّس",
+      "en": "teacher",
+      "category": "work",
+      "meaningKey": "teacher"
+    },
+    {
+      "ar": "مُدِير",
+      "en": "manager",
+      "category": "work",
+      "meaningKey": "manager"
+    },
+    {
+      "ar": "بَطَالَة",
+      "en": "unemployment",
+      "category": "work",
+      "meaningKey": "unemployment"
+    },
+    {
+      "ar": "خِدْمَة",
+      "en": "service",
+      "category": "work",
+      "meaningKey": "service"
+    },
+    {
+      "ar": "حُكُومَة",
+      "en": "government",
+      "category": "work",
+      "meaningKey": "government"
+    },
+    {
+      "ar": "طَيَّار",
+      "en": "pilot",
+      "category": "work",
+      "meaningKey": "pilot"
+    },
+    {
+      "ar": "قِيَادَة",
+      "en": "leadership",
+      "category": "work",
+      "meaningKey": "leadership"
+    },
+    {
+      "ar": "شُرْطَة",
+      "en": "police",
+      "category": "work",
+      "meaningKey": "police"
+    },
+    {
+      "ar": "مَجْلِس",
+      "en": "council",
+      "category": "work",
+      "meaningKey": "council"
+    },
+    {
+      "ar": "مَشْرُوع",
+      "en": "project",
+      "category": "work",
+      "meaningKey": "project"
+    },
+    {
+      "ar": "مَزْرَعَة",
+      "en": "farm",
+      "category": "work",
+      "meaningKey": "farm"
+    },
+    {
+      "ar": "مِهْنَة",
+      "en": "profession",
+      "category": "work",
+      "meaningKey": "profession"
+    },
+    {
+      "ar": "اِخْتِيَار",
+      "en": "choice",
+      "category": "abstract",
+      "meaningKey": "choice"
+    },
+    {
+      "ar": "أَمِير",
+      "en": "prince",
+      "category": "work",
+      "meaningKey": "prince"
+    },
+    {
+      "ar": "عَمَلِيَّة",
+      "en": "operation",
+      "category": "work",
+      "meaningKey": "operation"
+    },
+    {
+      "ar": "مُسَافِر",
+      "en": "traveller",
+      "category": "travel",
+      "meaningKey": "traveller"
+    },
+    {
+      "ar": "تَأْشِيرَة",
+      "en": "visa",
+      "category": "travel",
+      "meaningKey": "visa"
+    },
+    {
+      "ar": "شَرْق",
+      "en": "east",
+      "category": "travel",
+      "meaningKey": "east"
+    },
+    {
+      "ar": "دُخُول",
+      "en": "entry",
+      "category": "travel",
+      "meaningKey": "entry"
+    },
+    {
+      "ar": "هِجْرَة",
+      "en": "migration",
+      "category": "travel",
+      "meaningKey": "migration"
+    },
+    {
+      "ar": "أُسْرَة",
+      "en": "family",
+      "category": "family",
+      "meaningKey": "family"
+    },
+    {
+      "ar": "جِنْسِيَّة",
+      "en": "nationality",
+      "category": "family",
+      "meaningKey": "nationality"
+    },
+    {
+      "ar": "زَوْجَة",
+      "en": "wife",
+      "category": "family",
+      "meaningKey": "wife"
+    },
+    {
+      "ar": "مُعَامَلَة",
+      "en": "treatment",
+      "category": "family",
+      "meaningKey": "treatment"
+    },
+    {
+      "ar": "زَوَاج",
+      "en": "marriage",
+      "category": "family",
+      "meaningKey": "marriage"
+    },
+    {
+      "ar": "شَخْص",
+      "en": "person",
+      "category": "family",
+      "meaningKey": "person"
+    },
+    {
+      "ar": "عَلَاقَة",
+      "en": "relationship",
+      "category": "family",
+      "meaningKey": "relationship"
+    },
+    {
+      "ar": "وَاجِب",
+      "en": "duty",
+      "category": "family",
+      "meaningKey": "duty"
+    },
+    {
+      "ar": "مُرَاهَقَة",
+      "en": "adolescence",
+      "category": "family",
+      "meaningKey": "adolescence"
+    },
+    {
+      "ar": "طُفُولَة",
+      "en": "childhood",
+      "category": "family",
+      "meaningKey": "childhood"
+    },
+    {
+      "ar": "اِبْنَة",
+      "en": "daughter",
+      "category": "family",
+      "meaningKey": "daughter"
+    },
+    {
+      "ar": "رِيَاضَة",
+      "en": "sport",
+      "category": "health",
+      "meaningKey": "sport"
+    },
+    {
+      "ar": "سِبَاحَة",
+      "en": "swimming",
+      "category": "health",
+      "meaningKey": "swimming"
+    },
+    {
+      "ar": "عُطْلَة",
+      "en": "holiday",
+      "category": "time",
+      "meaningKey": "holiday"
+    },
+    {
+      "ar": "مَسَاء",
+      "en": "evening",
+      "category": "time",
+      "meaningKey": "evening"
+    },
+    {
+      "ar": "أُسْبُوع",
+      "en": "week",
+      "category": "time",
+      "meaningKey": "week"
+    },
+    {
+      "ar": "تَارِيخ",
+      "en": "date",
+      "category": "time",
+      "meaningKey": "date"
+    },
+    {
+      "ar": "دَقِيقَة",
+      "en": "minute",
+      "category": "time",
+      "meaningKey": "minute"
+    },
+    {
+      "ar": "مَرْحَلَة",
+      "en": "stage",
+      "category": "time",
+      "meaningKey": "stage"
+    },
+    {
+      "ar": "شَاي",
+      "en": "tea",
+      "category": "food",
+      "meaningKey": "tea"
+    },
+    {
+      "ar": "وَجْبَة",
+      "en": "meal",
+      "category": "food",
+      "meaningKey": "meal"
+    },
+    {
+      "ar": "غِذَاء",
+      "en": "nourishment",
+      "category": "food",
+      "meaningKey": "nourishment"
+    },
+    {
+      "ar": "أَحْمَر",
+      "en": "red",
+      "category": "qualities",
+      "meaningKey": "red"
+    },
+    {
+      "ar": "أَزْرَق",
+      "en": "blue",
+      "category": "qualities",
+      "meaningKey": "blue"
+    },
+    {
+      "ar": "أَصْفَر",
+      "en": "yellow",
+      "category": "qualities",
+      "meaningKey": "yellow"
+    },
+    {
+      "ar": "قَادِم",
+      "en": "coming",
+      "category": "qualities",
+      "meaningKey": "coming"
+    },
+    {
+      "ar": "قَلَق",
+      "en": "anxiety",
+      "category": "abstract",
+      "meaningKey": "anxiety"
+    },
+    {
+      "ar": "شَخْصِيَّة",
+      "en": "personality",
+      "category": "abstract",
+      "meaningKey": "personality"
+    },
+    {
+      "ar": "مُشْكِلَة",
+      "en": "problem",
+      "category": "abstract",
+      "meaningKey": "problem"
+    },
+    {
+      "ar": "أَزْمَة",
+      "en": "crisis",
+      "category": "abstract",
+      "meaningKey": "crisis"
+    },
+    {
+      "ar": "مُتَنَوِّع",
+      "en": "varied",
+      "category": "qualities",
+      "meaningKey": "varied"
+    },
+    {
+      "ar": "مُفِيد",
+      "en": "useful",
+      "category": "qualities",
+      "meaningKey": "useful"
+    },
+    {
+      "ar": "عَدِيد",
+      "en": "numerous",
+      "category": "qualities",
+      "meaningKey": "numerous"
+    },
+    {
+      "ar": "مُطِيع",
+      "en": "obedient",
+      "category": "qualities",
+      "meaningKey": "obedient"
+    },
+    {
+      "ar": "مَسْؤُولِيَّة",
+      "en": "responsibility",
+      "category": "abstract",
+      "meaningKey": "responsibility"
+    },
+    {
+      "ar": "أَفْضَل",
+      "en": "better",
+      "category": "qualities",
+      "meaningKey": "better"
+    },
+    {
+      "ar": "سَعَادَة",
+      "en": "happiness",
+      "category": "abstract",
+      "meaningKey": "happiness"
+    },
+    {
+      "ar": "بُكَاء",
+      "en": "crying",
+      "category": "abstract",
+      "meaningKey": "crying"
+    },
+    {
+      "ar": "تَحَمُّل",
+      "en": "endurance",
+      "category": "abstract",
+      "meaningKey": "endurance"
+    },
+    {
+      "ar": "دَوْر",
+      "en": "role",
+      "category": "abstract",
+      "meaningKey": "role"
+    },
+    {
+      "ar": "حِمَايَة",
+      "en": "protection",
+      "category": "abstract",
+      "meaningKey": "protection"
+    },
+    {
+      "ar": "رَائِع",
+      "en": "wonderful",
+      "category": "qualities",
+      "meaningKey": "wonderful"
+    },
+    {
+      "ar": "مَوْقِف",
+      "en": "situation",
+      "category": "abstract",
+      "meaningKey": "situation"
+    },
+    {
+      "ar": "هُدُوء",
+      "en": "calm",
+      "category": "abstract",
+      "meaningKey": "calm"
+    },
+    {
+      "ar": "دَفْتَر",
+      "en": "notebook",
+      "category": "school",
+      "meaningKey": "notebook"
+    },
+    {
+      "ar": "قِرَاءَة",
+      "en": "reading",
+      "category": "school",
+      "meaningKey": "reading"
+    },
+    {
+      "ar": "كِتَابَة",
+      "en": "writing",
+      "category": "school",
+      "meaningKey": "writing"
+    },
+    {
+      "ar": "كُلِّيَّة",
+      "en": "college",
+      "category": "school",
+      "meaningKey": "college"
+    },
+    {
+      "ar": "طَالِبَة",
+      "en": "female student",
+      "category": "school",
+      "meaningKey": "female-student"
+    },
+    {
+      "ar": "دِرَاسَة",
+      "en": "study",
+      "category": "school",
+      "meaningKey": "study"
+    },
+    {
+      "ar": "لُغَة",
+      "en": "language",
+      "category": "school",
+      "meaningKey": "language"
+    },
+    {
+      "ar": "مُسَابَقَة",
+      "en": "competition",
+      "category": "school",
+      "meaningKey": "competition"
+    },
+    {
+      "ar": "مَهَارَة",
+      "en": "skill",
+      "category": "school",
+      "meaningKey": "skill"
+    },
+    {
+      "ar": "مَوْضُوع",
+      "en": "topic",
+      "category": "school",
+      "meaningKey": "topic"
+    },
+    {
+      "ar": "صَفْحَة",
+      "en": "page",
+      "category": "school",
+      "meaningKey": "page"
+    },
+    {
+      "ar": "تَعْرِيف",
+      "en": "definition",
+      "category": "school",
+      "meaningKey": "definition"
+    },
+    {
+      "ar": "قِصَّة",
+      "en": "story",
+      "category": "school",
+      "meaningKey": "story"
+    },
+    {
+      "ar": "ثَقَافَة",
+      "en": "culture",
+      "category": "school",
+      "meaningKey": "culture"
+    },
+    {
+      "ar": "مُعْجَم",
+      "en": "dictionary",
+      "category": "school",
+      "meaningKey": "dictionary"
+    },
+    {
+      "ar": "جَائِزَة",
+      "en": "prize",
+      "category": "school",
+      "meaningKey": "prize"
+    },
+    {
+      "ar": "حِوَار",
+      "en": "dialogue",
+      "category": "school",
+      "meaningKey": "dialogue"
+    },
+    {
+      "ar": "أُسْلُوب",
+      "en": "style",
+      "category": "school",
+      "meaningKey": "style"
+    },
+    {
+      "ar": "نَصّ",
+      "en": "text",
+      "category": "school",
+      "meaningKey": "text"
+    },
+    {
+      "ar": "تَعْلِيم",
+      "en": "education",
+      "category": "school",
+      "meaningKey": "education"
+    },
+    {
+      "ar": "قَصِيدَة",
+      "en": "poem",
+      "category": "school",
+      "meaningKey": "poem"
+    },
+    {
+      "ar": "تَبَادَلَ",
+      "en": "he exchanged",
+      "category": "verbs",
+      "meaningKey": "exchanged"
+    },
+    {
+      "ar": "غَادَرَ",
+      "en": "he left",
+      "category": "verbs",
+      "meaningKey": "left"
+    },
+    {
+      "ar": "تَكَلَّمَ",
+      "en": "he spoke",
+      "category": "verbs",
+      "meaningKey": "spoke"
+    },
+    {
+      "ar": "تَغَيَّرَ",
+      "en": "he changed",
+      "category": "verbs",
+      "meaningKey": "changed"
+    },
+    {
+      "ar": "عَاشَ",
+      "en": "he lived",
+      "category": "verbs",
+      "meaningKey": "lived"
+    },
+    {
+      "ar": "رِيَال",
+      "en": "riyal",
+      "category": "money",
+      "meaningKey": "riyal"
+    },
+    {
+      "ar": "دُولَار",
+      "en": "dollar",
+      "category": "money",
+      "meaningKey": "dollar"
+    },
+    {
+      "ar": "فَاتُورَة",
+      "en": "invoice",
+      "category": "money",
+      "meaningKey": "invoice"
+    },
+    {
+      "ar": "عُلْبَة",
+      "en": "box",
+      "category": "home",
+      "meaningKey": "box"
+    },
+    {
+      "ar": "فَحْص",
+      "en": "examination",
+      "category": "health",
+      "meaningKey": "examination"
+    },
+    {
+      "ar": "دَوَاء",
+      "en": "medicine",
+      "category": "health",
+      "meaningKey": "medicine"
+    },
+    {
+      "ar": "صُدَاع",
+      "en": "headache",
+      "category": "health",
+      "meaningKey": "headache"
+    },
+    {
+      "ar": "طَبِيب",
+      "en": "doctor",
+      "category": "health",
+      "meaningKey": "doctor"
+    },
+    {
+      "ar": "اِنْتِشَار",
+      "en": "spread",
+      "category": "health",
+      "meaningKey": "spread"
+    },
+    {
+      "ar": "سَرَطَان",
+      "en": "cancer",
+      "category": "health",
+      "meaningKey": "cancer"
+    },
+    {
+      "ar": "مُصَاب",
+      "en": "injured",
+      "category": "health",
+      "meaningKey": "injured"
+    },
+    {
+      "ar": "تَعَب",
+      "en": "tiredness",
+      "category": "health",
+      "meaningKey": "tiredness"
+    },
+    {
+      "ar": "نَظَافَة",
+      "en": "cleanliness",
+      "category": "health",
+      "meaningKey": "cleanliness"
+    },
+    {
+      "ar": "عَاصِمَة",
+      "en": "capital city",
+      "category": "city",
+      "meaningKey": "capital-city"
+    },
+    {
+      "ar": "نَحِيف",
+      "en": "thin",
+      "category": "qualities",
+      "meaningKey": "thin"
+    },
+    {
+      "ar": "اِسْتِخْدَام",
+      "en": "use",
+      "category": "tech",
+      "meaningKey": "use"
+    },
+    {
+      "ar": "اِتِّصَال",
+      "en": "communication",
+      "category": "tech",
+      "meaningKey": "communication"
+    },
+    {
+      "ar": "تَوْلِيد",
+      "en": "generation",
+      "category": "tech",
+      "meaningKey": "generation"
+    },
+    {
+      "ar": "إِلِكْتْرُونِيّ",
+      "en": "electronic",
+      "category": "tech",
+      "meaningKey": "electronic"
+    },
+    {
+      "ar": "شَبَكَة",
+      "en": "network",
+      "category": "tech",
+      "meaningKey": "network"
+    },
+    {
+      "ar": "إِنْتَرْنِت",
+      "en": "internet",
+      "category": "tech",
+      "meaningKey": "internet"
+    },
+    {
+      "ar": "إِذَاعَة",
+      "en": "radio broadcast",
+      "category": "tech",
+      "meaningKey": "radio-broadcast"
+    },
+    {
+      "ar": "قَهْوَة",
+      "en": "coffee",
+      "category": "food",
+      "meaningKey": "coffee"
+    },
+    {
+      "ar": "عَصِير",
+      "en": "juice",
+      "category": "food",
+      "meaningKey": "juice"
+    },
+    {
+      "ar": "حَلْوَى",
+      "en": "sweets",
+      "category": "food",
+      "meaningKey": "sweets"
+    },
+    {
+      "ar": "مَشْرُوب",
+      "en": "drink",
+      "category": "food",
+      "meaningKey": "drink"
+    },
+    {
+      "ar": "خُضَار",
+      "en": "vegetables",
+      "category": "food",
+      "meaningKey": "vegetables"
+    },
+    {
+      "ar": "جُبْن",
+      "en": "cheese",
+      "category": "food",
+      "meaningKey": "cheese"
+    },
+    {
+      "ar": "رَاتِب",
+      "en": "salary",
+      "category": "money",
+      "meaningKey": "salary"
+    },
+    {
+      "ar": "ضَرِيبَة",
+      "en": "tax",
+      "category": "money",
+      "meaningKey": "tax"
+    },
+    {
+      "ar": "مِيزَانِيَّة",
+      "en": "budget",
+      "category": "money",
+      "meaningKey": "budget"
+    },
+    {
+      "ar": "مَحْفَظَة",
+      "en": "wallet",
+      "category": "money",
+      "meaningKey": "wallet"
+    },
+    {
+      "ar": "عُمْلَة",
+      "en": "currency",
+      "category": "money",
+      "meaningKey": "currency"
+    }
+  ],
+  "_source_comment": "Most of these words were read out of 'Al-Arabiyyah Bayna Yadayk' (العربية بين يديك), the standard modern-MSA course, one half of a book at a time: a reader picked the vocabulary, a second agent tried to refute every pick, a script proved none of them occurs in the Qur'an, and a reviewer per topic checked the harakat and made sure no two entries in a topic mean the same thing."
+}

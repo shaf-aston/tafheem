@@ -1,0 +1,599 @@
+{
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "heading",
+      "page": 0,
+      "ar": "مَا وَ لَا المشبهتين بِلَيس",
+      "en": "Maa and Laa, the two likened to laysa"
+    },
+    {
+      "id": "p00-2",
+      "kind": "rule",
+      "page": 0,
+      "ar": "أفعال",
+      "en": "{{term|أفعال}} = Strongest governors."
+    },
+    {
+      "id": "p00-3",
+      "kind": "rule",
+      "page": 0,
+      "ar": "ما و لا",
+      "en": "{{term|ما و لا}} = Weak governors."
+    },
+    {
+      "id": "p00-4",
+      "kind": "example",
+      "page": 0,
+      "ar": "مَا زَيْدٌ قَائِمًا",
+      "en": "Zaid is not standing (the sentence is underlined and marked JIK)",
+      "labels": [
+        {
+          "word": "مَا",
+          "label": "المشبهة بليس"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "اسم ما"
+        },
+        {
+          "word": "قَائِمًا",
+          "label": "خبر ما"
+        }
+      ]
+    },
+    {
+      "id": "p00-5",
+      "kind": "example",
+      "page": 0,
+      "ar": "لَا رَجُلٌ قَائِمًا",
+      "en": "A man is not standing (the sentence is underlined and marked JIK)",
+      "labels": [
+        {
+          "word": "لَا",
+          "label": "المشبهة بليس"
+        },
+        {
+          "word": "رَجُلٌ",
+          "label": "اسم لا"
+        },
+        {
+          "word": "قَائِمًا",
+          "label": "خبر لا"
+        }
+      ]
+    },
+    {
+      "id": "p00-6",
+      "kind": "list",
+      "page": 0,
+      "ar": "لا",
+      "en": "{{term|لا}} only",
+      "items": [
+        "1. The {{term|اسم}} must be {{ruling|نَكرة}}",
+        "2. The {{term|خبر}} must be {{ruling|نَكرة}}"
+      ]
+    },
+    {
+      "id": "p00-7",
+      "kind": "example",
+      "page": 0,
+      "ar": "لَيْسَ زَيْدٌ قَائِمًا",
+      "en": "Zaid is not standing",
+      "labels": [
+        {
+          "word": "زَيْدٌ",
+          "label": "اسم ليس"
+        },
+        {
+          "word": "قَائِمًا",
+          "label": "خبر ليس"
+        }
+      ]
+    },
+    {
+      "id": "p00-8",
+      "kind": "example",
+      "page": 0,
+      "ar": "لَيْسَ قَائِمًا زَيْدٌ",
+      "en": "Zaid is not standing",
+      "labels": [
+        {
+          "word": "قَائِمًا",
+          "label": "خبر ليس مقدم"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "اسم ليس مؤخر"
+        }
+      ]
+    },
+    {
+      "id": "p01-1",
+      "kind": "rule",
+      "page": 1,
+      "ar": "المُهْمَلَةُ",
+      "en": "They will become non-governing ({{term|المُهْمَلَةُ}}) when:"
+    },
+    {
+      "id": "p01-2",
+      "kind": "rule",
+      "page": 1,
+      "ar": "خبر اسم ما و لا",
+      "en": "1. {{condition|The خبر precedes the اسم}} (ما و لا)"
+    },
+    {
+      "id": "p01-3",
+      "kind": "example",
+      "page": 1,
+      "ar": "مَا قَائِمٌ زَيْدٌ",
+      "en": "Zaid is not standing (the sentence is underlined and marked JIK)",
+      "labels": [
+        {
+          "word": "مَا",
+          "label": "المهملة (useless)"
+        },
+        {
+          "word": "قَائِمٌ",
+          "label": "خبر مقدم"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "مبتدأ مؤخر"
+        }
+      ]
+    },
+    {
+      "id": "p01-4",
+      "kind": "rule",
+      "page": 1,
+      "ar": "إلَّا ما و لا",
+      "en": "2. {{condition|إلَّا comes in the sentence}} (ما و لا)"
+    },
+    {
+      "id": "p01-5",
+      "kind": "example",
+      "page": 1,
+      "ar": "مَا مُحَمَّدٌ إِلَّا رَسُولٌ",
+      "en": "Muhammad is nothing but a messenger (مُحَمَّدٌ ... رَسُولٌ is underlined and marked JIK)",
+      "labels": [
+        {
+          "word": "مَا",
+          "label": "المهملة"
+        },
+        {
+          "word": "مُحَمَّدٌ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "إِلَّا",
+          "label": "ملغاة (cancelled)"
+        },
+        {
+          "word": "رَسُولٌ",
+          "label": "خبر"
+        }
+      ]
+    },
+    {
+      "id": "p01-6",
+      "kind": "rule",
+      "page": 1,
+      "ar": "إن زائدة ما",
+      "en": "3. {{condition|When إن زائدة comes after ما}}."
+    },
+    {
+      "id": "p01-7",
+      "kind": "example",
+      "page": 1,
+      "ar": "مَا إن زَيْدٌ قَائِمٌ",
+      "en": "Zaid is not standing (زَيْدٌ قَائِمٌ is underlined and marked JIK)",
+      "labels": [
+        {
+          "word": "مَا",
+          "label": "المهملة"
+        },
+        {
+          "word": "إن",
+          "label": "زائدة"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "قَائِمٌ",
+          "label": "خبر"
+        }
+      ]
+    },
+    {
+      "id": "p02-1",
+      "kind": "heading",
+      "page": 2,
+      "ar": "لَات",
+      "en": "Laata"
+    },
+    {
+      "id": "p02-2",
+      "kind": "rule",
+      "page": 2,
+      "ar": "لات ليس رفع نصب",
+      "en": "{{term|لات}} will govern like {{term|ليس}}. It gives its Ism {{ruling|رفع}} & its Khabar {{ruling|نصب}}."
+    },
+    {
+      "id": "p02-3",
+      "kind": "heading",
+      "page": 2,
+      "ar": "لات",
+      "en": "Exclusivities of لات"
+    },
+    {
+      "id": "p02-4",
+      "kind": "rule",
+      "page": 2,
+      "ar": "لات",
+      "en": "1) {{condition|Both, its Ism & its Khabar MUST mean \"Time\"}} or {{condition|just its Ism must mean \"Time\"}}."
+    },
+    {
+      "id": "p02-5",
+      "kind": "rule",
+      "page": 2,
+      "ar": "لات",
+      "en": "2) {{ruling|Its Ism or its Khabar MUST be dropped}}. Both can not be present at the same time. {{ruling|Dropping the Ism is preferred}}."
+    },
+    {
+      "id": "p03-1",
+      "kind": "example",
+      "page": 3,
+      "ar": "أُسكُتُوا لَات حِين تَكَلُّمٍ",
+      "en": "e.g. Be silent, it is not a time of speaking",
+      "labels": []
+    },
+    {
+      "id": "p03-2",
+      "kind": "example",
+      "page": 3,
+      "ar": "لَات (الحِينُ) حِين تَكَلُّمٍ",
+      "en": "BOTH I/K = Time; الحِينُ is boxed; = JIK",
+      "labels": [
+        {
+          "word": "لَات",
+          "label": "المشبهة بليس"
+        },
+        {
+          "word": "الحِينُ",
+          "label": "اسم لات"
+        },
+        {
+          "word": "حِين تَكَلُّمٍ",
+          "label": "خبر لات"
+        }
+      ]
+    },
+    {
+      "id": "p03-3",
+      "kind": "example",
+      "page": 3,
+      "ar": "أُسكُتُوا لَات حِينُ تَكَلُّمٍ",
+      "en": "Be silent, it is not a time of speaking (written again, with حِينُ)",
+      "labels": []
+    },
+    {
+      "id": "p03-4",
+      "kind": "example",
+      "page": 3,
+      "ar": "لَات حِينُ تَكَلُّمٍ (ثَابِتًا لَكُمْ)",
+      "en": "Only I = Time; ثَابِتًا لَكُمْ is boxed and the arrow points to it; = JIK",
+      "labels": [
+        {
+          "word": "لَات",
+          "label": "المشبهة بليس"
+        },
+        {
+          "word": "حِينُ تَكَلُّمٍ",
+          "label": "اسم لات"
+        },
+        {
+          "word": "ثَابِتًا لَكُمْ",
+          "label": "خبر لات"
+        }
+      ]
+    },
+    {
+      "id": "p04-1",
+      "kind": "example",
+      "page": 4,
+      "ar": "نَدِمَ زَيْدٌ وَلَات (الحِينُ) حِينَ نَدَامَةٍ",
+      "en": "Zaid regretted, and it was not a time of regret; the arrow puts the dropped ism الحِينُ back in",
+      "labels": []
+    },
+    {
+      "id": "p04-2",
+      "kind": "example",
+      "page": 4,
+      "ar": "نَدِمَ زَيْدٌ وَلَات حِينُ نَدَامَةٍ (ثابتًا لَهُ)",
+      "en": "Zaid regretted, and it was not a time of regret; (ثابتًا لَهُ) is boxed",
+      "labels": []
+    },
+    {
+      "id": "p04-3",
+      "kind": "rule",
+      "page": 4,
+      "ar": "حِين",
+      "en": "Q. Does the word {{term|حِين}} need to be used all the time? A. No. {{condition|Any word which means time}}."
+    },
+    {
+      "id": "p04-4",
+      "kind": "example",
+      "page": 4,
+      "ar": "لَات ساعة تَكَلُّمٍ / زمَان تَكَلُّمٍ",
+      "en": "e.g. it is not an hour of speaking / a time of speaking",
+      "labels": []
+    },
+    {
+      "id": "p05-1",
+      "kind": "heading",
+      "page": 5,
+      "ar": "لا التي لنفي الجنس",
+      "en": "The laa that negates the whole kind"
+    },
+    {
+      "id": "p05-2",
+      "kind": "example",
+      "page": 5,
+      "ar": "لَا رَجُلٌ قائِمًا بَلْ رَجُلَان قائِمانِ.",
+      "en": "1) A man is not stood, rather 2 men are standing",
+      "labels": [
+        {
+          "word": "لَا",
+          "label": "المشبهة بليس"
+        },
+        {
+          "word": "رَجُلٌ",
+          "label": "اسم لا"
+        },
+        {
+          "word": "قائِمًا",
+          "label": "خبر لا"
+        },
+        {
+          "word": "رَجُلَان",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "قائِمانِ",
+          "label": "خبر"
+        }
+      ]
+    },
+    {
+      "id": "p05-3",
+      "kind": "example",
+      "page": 5,
+      "ar": "لَا رَجُلَ قائِمٌ بَلْ رَجُلَان قائِمانِ",
+      "en": "2) No man is standing; the teacher crossed out \"بَلْ رَجُلَان قائِمانِ\", and wrote over رَجُلَ: مبنى على الفتح ({{label|مَحَلًّا منصوب}})",
+      "labels": [
+        {
+          "word": "لَا",
+          "label": "لا النافية للجنس"
+        },
+        {
+          "word": "رَجُلَ",
+          "label": "اسم لا النافية للجنس"
+        },
+        {
+          "word": "قائِمٌ",
+          "label": "خبر لا النافية للجنس"
+        }
+      ]
+    },
+    {
+      "id": "p05-4",
+      "kind": "rule",
+      "page": 5,
+      "ar": "",
+      "en": "1) No man is standing."
+    },
+    {
+      "id": "p06-1",
+      "kind": "example",
+      "page": 6,
+      "ar": "لَا زَيْدٌ قَائِمٌ",
+      "en": "Zaid is not standing (زَيْدٌ قَائِمٌ is underlined and marked JIK)",
+      "labels": [
+        {
+          "word": "لَا",
+          "label": "المهملة"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "قَائِمٌ",
+          "label": "خبر"
+        }
+      ]
+    },
+    {
+      "id": "p06-2",
+      "kind": "example",
+      "page": 6,
+      "ar": "لَا زَيْدَ قَائِمٌ",
+      "en": "No (person with the name) Zaid is stood (the sentence is underlined and marked JIK)",
+      "labels": [
+        {
+          "word": "لَا",
+          "label": "لا النافية للجنس"
+        },
+        {
+          "word": "زَيْدَ",
+          "label": "اسم لا النافية للجنس"
+        },
+        {
+          "word": "قَائِمٌ",
+          "label": "خبر لا النافية للجنس"
+        }
+      ]
+    },
+    {
+      "id": "p07-1",
+      "kind": "heading",
+      "page": 7,
+      "ar": "مضاف / شبهُ المضاف",
+      "en": "Mudaaf / resembling a mudaaf"
+    },
+    {
+      "id": "p07-2",
+      "kind": "picture",
+      "page": 7,
+      "caption": "صفحة رسم: فوق: مضاف / شبهُ المضاف. في إطار على اليسار طَالعٌ جَبَلًا، وسهم منه إلى شبهُ المضاف، وتحته (هو) فاعل ومفعول به وكلمة If. خط من هذا الإطار إلى إطار على اليمين فيه طالِعُ جَبَلٍ، وMountain climber بجانبه. وبينهما فعل فاعل مفعول وتحتها جز ومبتدا. وعلى اليمين (⟨?⟩ ⟨?⟩ زَيْدٍ) وتحته نَصْرُ زَيْدٍ. وفي الأسفل كِتَابُ زَيْدًا، وقاتِلٌ زَيْدًا وقاتِلُ زَيْدٍ.",
+      "caption_en": "A drawing page: at the top مضاف / شبهُ المضاف. A left box holds طَالعٌ جَبَلًا with an arrow to شبهُ المضاف; under it (هو) is labelled فاعل, جَبَلًا is labelled مفعول به, and \"If\" is written beside it. A line runs from it to a right box holding طالِعُ جَبَلٍ, next to \"Mountain climber\". Between them فعل فاعل مفعول, with جز and مبتدا under it. On the right a bracketed phrase ending in زَيْدٍ whose first words are unreadable, and under it نَصْرُ زَيْدٍ. At the bottom كِتَابُ زَيْدًا, and قاتِلٌ زَيْدًا beside قاتِلُ زَيْدٍ."
+    },
+    {
+      "id": "p07-3",
+      "kind": "example",
+      "page": 7,
+      "ar": "طالِعُ جَبَلٍ",
+      "en": "Mountain climber",
+      "labels": [
+        {
+          "word": "طالِعُ جَبَلٍ",
+          "label": "مضاف"
+        }
+      ]
+    },
+    {
+      "id": "p07-4",
+      "kind": "example",
+      "page": 7,
+      "ar": "طَالعٌ جَبَلًا",
+      "en": "Climbing a mountain",
+      "labels": [
+        {
+          "word": "طَالعٌ جَبَلًا",
+          "label": "شبهُ المضاف"
+        },
+        {
+          "word": "(هو)",
+          "label": "فاعل"
+        },
+        {
+          "word": "جَبَلًا",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p07-5",
+      "kind": "example",
+      "page": 7,
+      "ar": "(⟨?⟩ ⟨?⟩ زَيْدٍ)",
+      "en": "(⟨?⟩ ⟨?⟩ of Zaid)",
+      "labels": []
+    },
+    {
+      "id": "p07-6",
+      "kind": "example",
+      "page": 7,
+      "ar": "نَصْرُ زَيْدٍ",
+      "en": "Zaid's help",
+      "labels": []
+    },
+    {
+      "id": "p07-7",
+      "kind": "example",
+      "page": 7,
+      "ar": "كِتَابُ زَيْدًا",
+      "en": "Zaid's book (written with زَيْدًا as shown)",
+      "labels": []
+    },
+    {
+      "id": "p07-8",
+      "kind": "example",
+      "page": 7,
+      "ar": "قاتِلُ زَيْدٍ / قاتِلٌ زَيْدًا",
+      "en": "Zaid's killer / killing Zaid",
+      "labels": []
+    },
+    {
+      "id": "p08-1",
+      "kind": "picture",
+      "page": 8,
+      "caption": "صفحة رسم: إطار 1 فيه كِتَابُ زَيْدٍ وتحته إضافة معنوية، وإطار 2 فيه ضارِبُ زَيْدٍ وتحته إضافة لفظية ومفعول به، وزيد محاط بدائرة في كليهما. على اليسار ضارب⟨?⟩ زَيْدًا = ، وسهم منه إلى الإطار 2.",
+      "caption_en": "A drawing page: box 1 holds كِتَابُ زَيْدٍ labelled إضافة معنوية, box 2 holds ضارِبُ زَيْدٍ labelled إضافة لفظية with زَيْدٍ labelled مفعول به, زيد circled in both. On the left, circled ضارب⟨?⟩ زَيْدًا is written equal to box 2, with an arrow to box 2."
+    },
+    {
+      "id": "p08-2",
+      "kind": "example",
+      "page": 8,
+      "ar": "ضارب⟨?⟩ زَيْدًا = ضارِبُ زَيْدٍ",
+      "en": "(circled) = box 2",
+      "labels": []
+    },
+    {
+      "id": "p08-3",
+      "kind": "example",
+      "page": 8,
+      "ar": "كِتَابُ زَيْدٍ",
+      "en": "Zaid's book",
+      "labels": [
+        {
+          "word": "كِتَابُ زَيْدٍ",
+          "label": "إضافة معنوية"
+        }
+      ]
+    },
+    {
+      "id": "p08-4",
+      "kind": "example",
+      "page": 8,
+      "ar": "ضارِبُ زَيْدٍ",
+      "en": "The one who hits Zaid",
+      "labels": [
+        {
+          "word": "ضارِبُ زَيْدٍ",
+          "label": "إضافة لفظية"
+        },
+        {
+          "word": "زَيْدٍ",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p08-5",
+      "kind": "rule",
+      "page": 8,
+      "ar": "الذي يضرب/ضرب زَيْدًا",
+      "en": "The one who hits / hit Zaid"
+    },
+    {
+      "id": "p08-6",
+      "kind": "example",
+      "page": 8,
+      "ar": "هٰذا ضَارِبٌ زَيْدًا",
+      "en": "A: This one is hitting Zaid (arrow: resembles a مضاف)",
+      "labels": [
+        {
+          "word": "ضَارِبٌ زَيْدًا",
+          "label": "شبه المضاف"
+        }
+      ]
+    },
+    {
+      "id": "p08-7",
+      "kind": "example",
+      "page": 8,
+      "ar": "هٰذا ضارِبُ زَيْدٍ",
+      "en": "B: This one is the hitter of Zaid",
+      "labels": [
+        {
+          "word": "ضارِبُ زَيْدٍ",
+          "label": "مضاف"
+        }
+      ]
+    }
+  ]
+}

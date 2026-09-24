@@ -1,0 +1,1602 @@
+{
+  "id": "mawsoolaat-harfiyyah",
+  "title": "Al-mawsoolaat al-harfiyyah (the huroof saabika)",
+  "arabic": "الموصولات الحرفية",
+  "tamreen": [],
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "heading",
+      "page": 0,
+      "ar": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ\nالموصولات الحرفية",
+      "en": "In the name of Allah, the Most Merciful, the Most Kind. Al-mawsoolaat al-harfiyyah"
+    },
+    {
+      "id": "p01-1",
+      "kind": "heading",
+      "page": 1,
+      "ar": "الموصولات الحرفية\n(بتَأْويلِ المصدر – بتَأْويلِ المفرد)",
+      "en": "Al-mawsoolaat al-harfiyyah (bi-ta'weel al-masdar, bi-ta'weel al-mufrad)"
+    },
+    {
+      "id": "p01-2",
+      "kind": "list",
+      "page": 1,
+      "ar": "",
+      "en": "The six particles shown (the last two printed in grey):",
+      "items": [
+        "أَنْ",
+        "كَيْ",
+        "أَنّ",
+        "مَا",
+        "لَوْ",
+        "أَ"
+      ]
+    },
+    {
+      "id": "p01-3",
+      "kind": "list",
+      "page": 1,
+      "ar": "",
+      "en": "",
+      "items": [
+        "The above 6 words are known as {{term|الموصولات الحرفية}}.",
+        "These words also belong to other groups based on other governing factors and methods of usage.",
+        "However, they are grouped here as الموصولات الحرفية because they are \"particles\" which are \"connected\" to a sentence i.e., they {{ruling|enter upon a sentence}}. This sentence is known as a {{term|صلة}} meaning \"connection\".",
+        "They restructure the sentence into a compound/phrase. More specifically, into a {{ruling|مركب إضافي}} with the usage of a {{ruling|مصدر}}. The purpose of this is to enable the sentence to fall into places of {{ruling|مفرد}}, i.e., be مبتدا, فاعل, مفعول به etc. This is why they are also known as {{term|\"السابكة\"}} \"The forming one\", \"The structuring one\".",
+        "This process is called {{term|\"بِتَأْويلِ المصدر – بِتَأْويلِ المفرد\"}} with the interpretation into مصدر or مفرد. Abbreviation: {{term|BTM}}",
+        "The interpreted مصدر is called {{term|\"المصدر المُؤَوَّل\"}} The interpreted مصدر or {{term|\"المصدر المَسْبُوْك\"}} The formed مصدر.",
+        "Some can enter upon a جملة إسمية and some on a جملة فعلية."
+      ]
+    },
+    {
+      "id": "p02-1",
+      "kind": "heading",
+      "page": 2,
+      "ar": "أَنْ",
+      "en": "An"
+    },
+    {
+      "id": "p02-2",
+      "kind": "list",
+      "page": 2,
+      "ar": "",
+      "en": "",
+      "items": [
+        "أن is termed as {{term|المصدرية الناصبة}}.",
+        "It connects i.e., enters upon a {{condition|جملة فعلية}}. More specifically, it enters upon a verb.",
+        "The verb can be a {{condition|ماضي}} verb or a {{condition|مضارع}} verb.",
+        "If the verb is a {{condition|مضارع}}, أن will also make the مضارع verb {{ruling|منصوب}}.",
+        "It will interpret the جملة فعلية into a {{ruling|مفرد}}.",
+        "The interpreted construction will generally be a فاعل, مفعول به, مبتدا, مضاف إليه or مجرور."
+      ]
+    },
+    {
+      "id": "p02-3",
+      "kind": "list",
+      "page": 2,
+      "ar": "",
+      "en": "This is done by:",
+      "items": [
+        "a) Identifying the {{term|مصدر}} of the verb.",
+        "b) Identifying the نائب الفاعل/فاعل of the verb.",
+        "c) Extracting the نائب الفاعل/فاعل from the verb {{condition|if it's a ضمير}}.",
+        "d) Making the مصدر {{ruling|مضاف}} of the نائب الفاعل/فاعل.",
+        "e) Ensuring what used to be the نائب الفاعل/فاعل is in the state of {{ruling|جر}} as a {{ruling|مضاف إليه}}."
+      ]
+    },
+    {
+      "id": "p03-1",
+      "kind": "list",
+      "page": 3,
+      "ar": "",
+      "en": "Steps shown beside the first example (مصدر and مضاف in red, the rest in green):",
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر مضاف to the نائب الفاعل/فاعل.",
+        "e) Ensure مضاف إليه is مجرور."
+      ]
+    },
+    {
+      "id": "p03-2",
+      "kind": "example",
+      "page": 3,
+      "ar": "أَعْرِفُ أَنْ يَدْرُسَ زَيْدٌ",
+      "en": "I know that Zayd studies.",
+      "labels": [
+        {
+          "word": "دَرْس",
+          "label": "مصدر"
+        },
+        {
+          "word": "زيدٌ",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p03-3",
+      "kind": "example",
+      "page": 3,
+      "ar": "{{example|دَرْس زيدٍ}}",
+      "en": "Zayd's studying",
+      "labels": [
+        {
+          "word": "دَرْس",
+          "label": "مضاف"
+        },
+        {
+          "word": "زيدٍ",
+          "label": "مضاف إليه"
+        }
+      ]
+    },
+    {
+      "id": "p03-4",
+      "kind": "list",
+      "page": 3,
+      "ar": "",
+      "en": "Steps shown beside the second example:",
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر مضاف to the نائب الفاعل/فاعل.",
+        "e) Ensure مضاف إليه is مجرور."
+      ]
+    },
+    {
+      "id": "p03-5",
+      "kind": "example",
+      "page": 3,
+      "ar": "أَعْرِفُ أَنْ تَدْرُسَ",
+      "en": "I know that you study.",
+      "labels": [
+        {
+          "word": "دَرْس",
+          "label": "مصدر"
+        },
+        {
+          "word": "أنتَ",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p03-6",
+      "kind": "example",
+      "page": 3,
+      "ar": "{{example|دَرْسكَ}}",
+      "en": "your studying",
+      "labels": [
+        {
+          "word": "دَرْس",
+          "label": "مضاف"
+        },
+        {
+          "word": "كَ",
+          "label": "مضاف إليه"
+        }
+      ]
+    },
+    {
+      "id": "p04-1",
+      "kind": "list",
+      "page": 4,
+      "ar": "",
+      "en": "Steps shown beside the first example:",
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر مضاف to the نائب الفاعل/فاعل.",
+        "e) Ensure مضاف إليه is مجرور."
+      ]
+    },
+    {
+      "id": "p04-2",
+      "kind": "example",
+      "page": 4,
+      "ar": "بَلَغَنِيْ أَنْ نُصِرَ زَيْدٌ",
+      "en": "It reached me that Zayd was helped.",
+      "labels": [
+        {
+          "word": "نَصْر",
+          "label": "مصدر"
+        },
+        {
+          "word": "زيدٌ",
+          "label": "نائب الفاعل"
+        }
+      ]
+    },
+    {
+      "id": "p04-3",
+      "kind": "example",
+      "page": 4,
+      "ar": "{{example|نَصْر زيدٍ}}",
+      "en": "the helping of Zayd",
+      "labels": [
+        {
+          "word": "نَصْر",
+          "label": "مضاف"
+        },
+        {
+          "word": "زيدٍ",
+          "label": "مضاف إليه"
+        }
+      ]
+    },
+    {
+      "id": "p04-4",
+      "kind": "list",
+      "page": 4,
+      "ar": "",
+      "en": "Steps shown beside the second example:",
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر مضاف to the نائب الفاعل/فاعل.",
+        "e) Ensure مضاف إليه is مجرور."
+      ]
+    },
+    {
+      "id": "p04-5",
+      "kind": "example",
+      "page": 4,
+      "ar": "بَلَغَنِيْ أَنْ نُصِرْتُمْ",
+      "en": "It reached me that you (plural) were helped.",
+      "labels": [
+        {
+          "word": "نَصْر",
+          "label": "مصدر"
+        },
+        {
+          "word": "أنتُم (تُمْ)",
+          "label": "نائب الفاعل"
+        }
+      ]
+    },
+    {
+      "id": "p04-6",
+      "kind": "example",
+      "page": 4,
+      "ar": "{{example|نَصْركُمْ}}",
+      "en": "the helping of you (plural)",
+      "labels": [
+        {
+          "word": "نَصْر",
+          "label": "مضاف"
+        },
+        {
+          "word": "كُمْ",
+          "label": "مضاف إليه"
+        }
+      ]
+    },
+    {
+      "id": "p05-1",
+      "kind": "list",
+      "page": 5,
+      "ar": "",
+      "en": "Beside the first example:",
+      "items": [
+        "A Masdar can {{ruling|behave like a verb}} under certain circumstances.",
+        "Therefore, a جار ومجرور, ظرف, مفعول به etc will be {{ruling|dealt with as it was before the interpretation}}."
+      ]
+    },
+    {
+      "id": "p05-2",
+      "kind": "example",
+      "page": 5,
+      "ar": "أَنْ تَحْضُرَ فِي الفَصْلِ خَيْرٌ لَكَ",
+      "en": "That you attend the class is better for you.",
+      "labels": [
+        {
+          "word": "حُضُوْر",
+          "label": "مصدر"
+        },
+        {
+          "word": "أنتَ",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p05-3",
+      "kind": "example",
+      "page": 5,
+      "ar": "{{example|حُضُوْركَ فِي الفَصْلِ}}",
+      "en": "your attending the class",
+      "labels": [
+        {
+          "word": "حُضُوْر",
+          "label": "مضاف"
+        },
+        {
+          "word": "كَ",
+          "label": "مضاف إليه"
+        }
+      ]
+    },
+    {
+      "id": "p05-4",
+      "kind": "list",
+      "page": 5,
+      "ar": "",
+      "en": "Beside the second example:",
+      "items": [
+        "A Masdar can {{ruling|behave like a verb}} under certain circumstances.",
+        "Therefore, a جار ومجرور, ظرف, مفعول به etc will be {{ruling|dealt with as it was before the interpretation}}."
+      ]
+    },
+    {
+      "id": "p05-5",
+      "kind": "example",
+      "page": 5,
+      "ar": "غَضِبُوْا بِأَنْ كُسِرَ الأَصْنَامُ يَوْمَ العِيْدِ",
+      "en": "They became angry that the idols were broken on the day of the festival.",
+      "labels": [
+        {
+          "word": "كَسْر",
+          "label": "مصدر"
+        },
+        {
+          "word": "الأَصْنَامُ",
+          "label": "نائب الفاعل"
+        }
+      ]
+    },
+    {
+      "id": "p05-6",
+      "kind": "example",
+      "page": 5,
+      "ar": "{{example|كَسْر الأَصْنَامِ يَوْمَ العِيْدِ}}",
+      "en": "the breaking of the idols on the day of the festival",
+      "labels": [
+        {
+          "word": "كَسْر",
+          "label": "مضاف"
+        },
+        {
+          "word": "الأَصْنَامِ",
+          "label": "مضاف إليه"
+        }
+      ]
+    },
+    {
+      "id": "p06-1",
+      "kind": "list",
+      "page": 6,
+      "ar": "",
+      "en": "Beside the first example:",
+      "items": [
+        "Quite often, أن is {{term|dropped}} from the sentence. Despite It being visibly absent, it is {{ruling|assumed to be present}}.",
+        "Its presence is evident by its governing which manifests on the {{condition|مضارع}} verb.",
+        "It's dropped after certain حروف. I will mention 2 here, the first being {{condition|لِ}}."
+      ]
+    },
+    {
+      "id": "p06-2",
+      "kind": "example",
+      "page": 6,
+      "ar": "أَتَعَلَّمُ النَّحْوَ لِأَفْهَمَ القُرْآنَ",
+      "en": "I learn nahw so that I understand the Qur'an.",
+      "labels": [
+        {
+          "word": "فَهْم",
+          "label": "مصدر"
+        },
+        {
+          "word": "أنَا",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p06-3",
+      "kind": "example",
+      "page": 6,
+      "ar": "{{example|فَهْميْ القُرْآنَ}}",
+      "en": "my understanding the Qur'an",
+      "labels": [
+        {
+          "word": "فَهْم",
+          "label": "مضاف"
+        },
+        {
+          "word": "يْ",
+          "label": "مضاف إليه"
+        }
+      ]
+    },
+    {
+      "id": "p06-4",
+      "kind": "list",
+      "page": 6,
+      "ar": "",
+      "en": "Beside the second example:",
+      "items": [
+        "Quite often, أن is {{term|dropped}} from the sentence. Despite It being visibly absent, it is {{ruling|assumed to be present}}.",
+        "Its presence is evident by its governing which manifests on the {{condition|مضارع}} verb.",
+        "It's dropped after certain حروف. I will mention 2 here, the second being {{condition|حَتّٰى}}."
+      ]
+    },
+    {
+      "id": "p06-5",
+      "kind": "example",
+      "page": 6,
+      "ar": "أَتَعَلَّمُ القُرْآنَ حَتّٰى (أن) أَدْخُلَ الجَنَّةَ",
+      "en": "I learn the Qur'an so that I enter Paradise. ((أن) is printed small, in yellow, before أَدْخُلَ.)",
+      "labels": [
+        {
+          "word": "دُخُوْل",
+          "label": "مصدر"
+        },
+        {
+          "word": "أَنَا",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p06-6",
+      "kind": "example",
+      "page": 6,
+      "ar": "{{example|دُخُوْليْ الجَنَّةَ}}",
+      "en": "my entering Paradise",
+      "labels": [
+        {
+          "word": "دُخُوْل",
+          "label": "مضاف"
+        },
+        {
+          "word": "يْ",
+          "label": "مضاف إليه"
+        }
+      ]
+    },
+    {
+      "id": "p07-1",
+      "kind": "list",
+      "page": 7,
+      "ar": "",
+      "en": "Beside the first example:",
+      "items": [
+        "When a نفي is present on the verb, the نفي will be {{ruling|rephrased as an إسم}}.",
+        "The إسم will be made {{ruling|مضاف}} to the مصدر. This is done for the retention of the negation present in the original sentence.",
+        "The إسم used here is: {{term|عَدَمٌ}} (not, absence)."
+      ]
+    },
+    {
+      "id": "p07-2",
+      "kind": "example",
+      "page": 7,
+      "ar": "أَنْ لَّا تَحْضُرَ فِي الفَصْلِ مُضِرٌّ لَكَ",
+      "en": "That you do not attend the class is harmful for you.",
+      "labels": [
+        {
+          "word": "حُضُوْر",
+          "label": "مصدر"
+        },
+        {
+          "word": "أنتَ",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p07-3",
+      "kind": "example",
+      "page": 7,
+      "ar": "{{example|عَدَم حُضُوْرِكَ فِي الفَصْلِ}}",
+      "en": "your not attending the class",
+      "labels": [
+        {
+          "word": "عَدَم",
+          "label": "نفي"
+        },
+        {
+          "word": "حُضُوْرِ",
+          "label": "مصدر"
+        },
+        {
+          "word": "كَ",
+          "label": "مضاف إليه"
+        }
+      ]
+    },
+    {
+      "id": "p07-4",
+      "kind": "list",
+      "page": 7,
+      "ar": "",
+      "en": "Beside the second example:",
+      "items": [
+        "If the اللام after which the أن is dropped, is {{condition|combined with a نفي}}, then the أن {{ruling|must be present}} in the sentence. It will not be dropped.",
+        "However, the أن will {{ruling|integrate into the لا النافية}} when written as seen in the example."
+      ]
+    },
+    {
+      "id": "p07-5",
+      "kind": "example",
+      "page": 7,
+      "ar": "أَتَعَلَّمُ النَّحْوَ لِـئَـلَّا أَغْفُلَ عَنِ القُرْآنِ",
+      "en": "I learn nahw so that I am not heedless of the Qur'an.",
+      "labels": [
+        {
+          "word": "غَفْلَة",
+          "label": "مصدر"
+        },
+        {
+          "word": "أَنَا",
+          "label": "نائب الفاعل"
+        }
+      ]
+    },
+    {
+      "id": "p07-6",
+      "kind": "example",
+      "page": 7,
+      "ar": "{{example|عَدَم غَفْلَتِيْ عَنْ القُرْآنِ}}",
+      "en": "my not being heedless of the Qur'an",
+      "labels": [
+        {
+          "word": "عَدَم",
+          "label": "نفي"
+        },
+        {
+          "word": "غَفْلَتِ",
+          "label": "مصدر"
+        },
+        {
+          "word": "يْ",
+          "label": "مضاف إليه"
+        }
+      ]
+    },
+    {
+      "id": "p08-1",
+      "kind": "heading",
+      "page": 8,
+      "ar": "كَيْ",
+      "en": "Kay"
+    },
+    {
+      "id": "p08-2",
+      "kind": "list",
+      "page": 8,
+      "items": [
+        "كي is also termed as {{term|المصدرية الناصبة}}.",
+        "It also connects to a {{term|جملة فعلية}}. More specifically, it enters upon a verb.",
+        "The verb must only be a {{condition|مضارع}} verb.",
+        "It will make the مضارع verb {{ruling|منصوب}}.",
+        "It will interpret the جملة فعلية into a {{term|مفرد}}.",
+        "The interpreted construction will only be {{ruling|مجرور}}.",
+        "This is because there is always a {{term|اللام حرف الجر}} which is for تعليل (reason) before it.",
+        "This اللام can be explicit in the sentence or dropped but must be assumed, hence the meaning of {{term|تعليل}} is always present.",
+        "The method of interpreting the sentence into a مفرد is the same as what was previously mentioned in أَنْ."
+      ]
+    },
+    {
+      "id": "p09-1",
+      "kind": "example",
+      "page": 9,
+      "ar": "أَسْلَمْتُ لِكَيْ أَدْخُلَ الجَنَّةَ",
+      "en": "I accepted Islam so that I may enter Paradise",
+      "labels": [
+        {
+          "word": "دُخُوْل",
+          "label": "مصدر"
+        },
+        {
+          "word": "أَنَا",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p09-2",
+      "kind": "list",
+      "page": 9,
+      "items": [
+        "a) Identify the {{term|مصدر}}.",
+        "b) Identify the {{term|فاعل/نائب الفاعل}}.",
+        "c) Extract the فاعل/نائب الفاعل if it's a {{condition|ضمير}}.",
+        "d) Make the مصدر {{label|مضاف}} to the فاعل/نائب الفاعل.",
+        "e) Ensure مضاف إليه is {{ruling|مجرور}}."
+      ]
+    },
+    {
+      "id": "p09-3",
+      "kind": "example",
+      "page": 9,
+      "ar": "دُخُوْلِيْ الجَنَّةَ",
+      "en": "my entering Paradise"
+    },
+    {
+      "id": "p09-4",
+      "kind": "rule",
+      "page": 9,
+      "ar": "اللام حرف الجر",
+      "en": "The اللام حرف الجر can be {{condition|present}} in the sentence."
+    },
+    {
+      "id": "p09-5",
+      "kind": "example",
+      "page": 9,
+      "ar": "أَصُوْمُ كَيْ يَغْفِرَ اللهُ لِيْ ذَنْبِيْ",
+      "en": "I fast so that Allah may forgive me my sin",
+      "labels": [
+        {
+          "word": "غُفْرَان",
+          "label": "مصدر"
+        },
+        {
+          "word": "اللهُ",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p09-6",
+      "kind": "list",
+      "page": 9,
+      "items": [
+        "a) Identify the {{term|مصدر}}.",
+        "b) Identify the {{term|فاعل/نائب الفاعل}}.",
+        "c) Extract the فاعل/نائب الفاعل if it's a {{condition|ضمير}}.",
+        "d) Make the مصدر {{label|مضاف}} to the فاعل/نائب الفاعل.",
+        "e) Ensure مضاف إليه is {{ruling|مجرور}}."
+      ]
+    },
+    {
+      "id": "p09-7",
+      "kind": "example",
+      "page": 9,
+      "ar": "غُفْرَان اللهِ لِيْ ذَنْبِيْ",
+      "en": "Allah's forgiving me my sin"
+    },
+    {
+      "id": "p09-8",
+      "kind": "rule",
+      "page": 9,
+      "ar": "اللام حرف الجر",
+      "en": "The اللام حرف الجر can be {{condition|absent}} but must be assumed."
+    },
+    {
+      "id": "p10-1",
+      "kind": "example",
+      "page": 10,
+      "ar": "أَسْلَمْتُ لِكَيْلَا أَدْخُلَ النَّارَ",
+      "en": "I accepted Islam so that I may not enter the Fire",
+      "labels": [
+        {
+          "word": "دُخُوْل",
+          "label": "مصدر"
+        },
+        {
+          "word": "أَنَا",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p10-2",
+      "kind": "example",
+      "page": 10,
+      "ar": "عَدَم دُخُوْلِيْ النَّارَ",
+      "en": "my not entering the Fire"
+    },
+    {
+      "id": "p10-3",
+      "kind": "list",
+      "page": 10,
+      "items": [
+        "A {{term|نفي}} can be added to the verb and as mentioned in أن, it will be interpreted with {{term|عدم}}.",
+        "If the اللام حرف الجر is present in the sentence with the لا النافية, then the 3 i.e., the اللام حرف الجر, the كي and the لا النافية will be {{ruling|written together like one word}} as seen in the example."
+      ]
+    },
+    {
+      "id": "p10-4",
+      "kind": "example",
+      "page": 10,
+      "ar": "جَدَّ الطَّالِبُ كَيْ لَا يَرْسُبَ",
+      "en": "The student strove so that he may not fail",
+      "labels": [
+        {
+          "word": "رُسُوْب",
+          "label": "مصدر"
+        },
+        {
+          "word": "هُوَ",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p10-5",
+      "kind": "example",
+      "page": 10,
+      "ar": "عَدَم رُسُوْبِهِ",
+      "en": "his not failing"
+    },
+    {
+      "id": "p10-6",
+      "kind": "list",
+      "page": 10,
+      "items": [
+        "With the presence of a {{condition|نفي}}, it is permissible to drop the اللام حرف الجر.",
+        "When the اللام حرف الجر is dropped, then the remaining 2 i.e., the كي and the لا النافية will be {{ruling|written separately}} as seen in the example."
+      ]
+    },
+    {
+      "id": "p11-1",
+      "kind": "heading",
+      "page": 11,
+      "ar": "أَنَّ",
+      "en": "Anna"
+    },
+    {
+      "id": "p11-2",
+      "kind": "list",
+      "page": 11,
+      "items": [
+        "أَنَّ is termed as {{term|الحرف المشبهة بالفعل}}.",
+        "أَنَّ connects to a {{term|جملة إسمية}}. More specifically, it enters upon a مبتدا and خبر.",
+        "It will change the مبتدا from مرفوع to {{ruling|منصوب}}. The مبتدا will be known as {{term|إسمُ أَنَّ}} (Ism of أَنَّ).",
+        "The خبر will remain {{ruling|مرفوع}}. However, the خبر will be known as {{term|خبرُ أَنَّ}} (خبر of أَنَّ).",
+        "It will interpret the جملة إسمية into a {{term|مفرد}}.",
+        "The interpreted construction will generally be a {{ruling|فاعل, مفعول به, مبتدا or مجرور}}.",
+        "The method of interpreting the sentence into a مفرد depends on the construction of the جملة إسمية.",
+        "Ultimately, the construction of the جملة إسمية will fall into 3 types.",
+        "The details are as follows:"
+      ]
+    },
+    {
+      "id": "p12-1",
+      "kind": "rule",
+      "page": 12,
+      "ar": "خبر أَنَّ",
+      "en": "If the خبر أَنَّ is a {{condition|مشتق}}, a {{condition|مصدر}} or a verb."
+    },
+    {
+      "id": "p12-2",
+      "kind": "example",
+      "page": 12,
+      "ar": "اللهُ يَجْزِيكَ بِأَنّكَ مُطِيْعٌ لِوَالِدَيْكَ",
+      "en": "Allah rewards you because you are obedient to your parents",
+      "labels": [
+        {
+          "word": "إِطَاعَة",
+          "label": "مصدر"
+        },
+        {
+          "word": "كَ",
+          "label": "إسم أَنَّ"
+        }
+      ]
+    },
+    {
+      "id": "p12-3",
+      "kind": "example",
+      "page": 12,
+      "ar": "إِطَاعَتكَ لِوَالِدَيْكَ",
+      "en": "your obedience to your parents"
+    },
+    {
+      "id": "p12-4",
+      "kind": "list",
+      "page": 12,
+      "items": [
+        "a) Identify the {{term|مصدر}} of the خبر أَنَّ.",
+        "b) Make the مصدر {{label|مضاف}} to the إسم أَنَّ.",
+        "c) Ensure مضاف إليه is {{ruling|مجرور}}."
+      ]
+    },
+    {
+      "id": "p12-5",
+      "kind": "rule",
+      "page": 12,
+      "ar": "خبر أَنَّ",
+      "en": "If the خبر أَنَّ is a {{condition|مشتق}}, a {{condition|مصدر}} or a verb."
+    },
+    {
+      "id": "p12-6",
+      "kind": "example",
+      "page": 12,
+      "ar": "يَسُرُّنِيْ أَنَّ عَمَلَكَ خَيْرٌ",
+      "en": "It pleases me that your work is good",
+      "labels": [
+        {
+          "word": "خَيْر",
+          "label": "مصدر"
+        },
+        {
+          "word": "عَمَلَكَ",
+          "label": "إسم أَنَّ"
+        }
+      ]
+    },
+    {
+      "id": "p12-7",
+      "kind": "example",
+      "page": 12,
+      "ar": "خَيْر عَمَلِكَ",
+      "en": "the goodness of your work"
+    },
+    {
+      "id": "p12-8",
+      "kind": "list",
+      "page": 12,
+      "items": [
+        "a) Identify the {{term|مصدر}} of the خبر أَنَّ.",
+        "b) Make the مصدر {{label|مضاف}} to the إسم أَنَّ.",
+        "c) Ensure مضاف إليه is {{ruling|مجرور}}."
+      ]
+    },
+    {
+      "id": "p13-1",
+      "kind": "rule",
+      "page": 13,
+      "ar": "خبر أَنَّ",
+      "en": "If the خبر أَنَّ is a {{condition|مشتق}}, a {{condition|مصدر}} or a verb."
+    },
+    {
+      "id": "p13-2",
+      "kind": "example",
+      "page": 13,
+      "ar": "يُعْرَفُ أَنَّ التَّعَلُّمَ يَرْفَعُ الدَّرَجَةَ",
+      "en": "It is known that learning raises one's rank",
+      "labels": [
+        {
+          "word": "رَفْع",
+          "label": "مصدر"
+        },
+        {
+          "word": "التعَلُّم",
+          "label": "إسم أَنَّ"
+        }
+      ]
+    },
+    {
+      "id": "p13-3",
+      "kind": "example",
+      "page": 13,
+      "ar": "رَفْع التعَلُّمِ الدَّرَجَةَ",
+      "en": "learning's raising of one's rank"
+    },
+    {
+      "id": "p13-4",
+      "kind": "list",
+      "page": 13,
+      "items": [
+        "a) Identify the {{term|مصدر}} of the خبر أَنَّ.",
+        "b) Make the مصدر {{label|مضاف}} to the إسم أَنَّ.",
+        "c) Ensure مضاف إليه is {{ruling|مجرور}}."
+      ]
+    },
+    {
+      "id": "p13-5",
+      "kind": "rule",
+      "page": 13,
+      "ar": "خبر أَنَّ",
+      "en": "If the خبر أَنَّ is a {{condition|مشتق}}, a {{condition|مصدر}} or a verb."
+    },
+    {
+      "id": "p13-6",
+      "kind": "example",
+      "page": 13,
+      "ar": "وَ اعْلَمُوا أَنَّ اللهَ يَحُولُ بَيْنَ الْمَرْءِ وَ قَلْبِهِ",
+      "en": "And know that Allah comes between a man and his heart",
+      "labels": [
+        {
+          "word": "حَوْل",
+          "label": "مصدر"
+        },
+        {
+          "word": "الله",
+          "label": "إسم أَنَّ"
+        }
+      ]
+    },
+    {
+      "id": "p13-7",
+      "kind": "example",
+      "page": 13,
+      "ar": "حَوْل اللهِ بَيْنَ الْمَرْءِ وَقَلْبِهِ",
+      "en": "Allah's coming between a man and his heart"
+    },
+    {
+      "id": "p13-8",
+      "kind": "list",
+      "page": 13,
+      "items": [
+        "a) Identify the {{term|مصدر}} of the خبر أَنَّ.",
+        "b) Make the مصدر {{label|مضاف}} to the إسم أَنَّ.",
+        "c) Ensure مضاف إليه is {{ruling|مجرور}}."
+      ]
+    },
+    {
+      "id": "p14-1",
+      "kind": "rule",
+      "page": 14,
+      "ar": "خبر أَنَّ",
+      "en": "If the خبر أَنَّ is a {{condition|جار مجرور}} or a {{condition|ظرف}}."
+    },
+    {
+      "id": "p14-2",
+      "kind": "example",
+      "page": 14,
+      "ar": "أَعْرِفُ أَنَّ زَيْدًا فِي المَسْجِدِ",
+      "en": "I know that Zayd is in the mosque",
+      "labels": [
+        {
+          "word": "ثُبُوْت",
+          "label": "مصدر"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "إسم أَنَّ"
+        }
+      ]
+    },
+    {
+      "id": "p14-3",
+      "kind": "example",
+      "page": 14,
+      "ar": "ثُبُوْت زيدٍ في المسجِدِ",
+      "en": "Zayd's being established in the mosque"
+    },
+    {
+      "id": "p14-4",
+      "kind": "list",
+      "page": 14,
+      "items": [
+        "a) Identify the {{term|مصدر}} of the ثابت which is present in the خبر أَنَّ.",
+        "b) Make the مصدر {{label|مضاف}} to the إسم أَنَّ.",
+        "c) Ensure مضاف إليه is {{ruling|مجرور}}."
+      ]
+    },
+    {
+      "id": "p14-5",
+      "kind": "rule",
+      "page": 14,
+      "ar": "خبر أَنَّ",
+      "en": "If the خبر أَنَّ is a {{condition|جار مجرور}} or a {{condition|ظرف}}."
+    },
+    {
+      "id": "p14-6",
+      "kind": "example",
+      "page": 14,
+      "ar": "يَسُرُّنِيْ أَنَّ زَيْدًا عِنْدَكَ",
+      "en": "It pleases me that Zayd is with you",
+      "labels": [
+        {
+          "word": "ثُبُوْت",
+          "label": "مصدر"
+        },
+        {
+          "word": "عَمَلَكَ",
+          "label": "إسم أَنَّ"
+        }
+      ]
+    },
+    {
+      "id": "p14-7",
+      "kind": "example",
+      "page": 14,
+      "ar": "ثُبُوْت زيدٍ عندَكَ",
+      "en": "Zayd's being established with you"
+    },
+    {
+      "id": "p14-8",
+      "kind": "list",
+      "page": 14,
+      "items": [
+        "a) Identify the {{term|مصدر}} of the ثابت which is present in the خبر أَنَّ.",
+        "b) Make the مصدر {{label|مضاف}} to the إسم أَنَّ.",
+        "c) Ensure مضاف إليه is {{ruling|مجرور}}."
+      ]
+    },
+    {
+      "id": "p15-1",
+      "kind": "heading",
+      "page": 15,
+      "ar": "Option 1",
+      "en": "Option 1"
+    },
+    {
+      "id": "p15-2",
+      "kind": "rule",
+      "page": 15,
+      "ar": "خبر أَنَّ",
+      "en": "If the خبر أَنَّ is an {{condition|إسم جامد}}."
+    },
+    {
+      "id": "p15-3",
+      "kind": "example",
+      "page": 15,
+      "ar": "أَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ",
+      "en": "I bear witness that Muhammad is His slave",
+      "labels": [
+        {
+          "word": "كَوْن",
+          "label": "مصدر"
+        },
+        {
+          "word": "مُحَمَّدًا",
+          "label": "إسم أَنَّ"
+        }
+      ]
+    },
+    {
+      "id": "p15-4",
+      "kind": "example",
+      "page": 15,
+      "ar": "كَوْن مُحَمَّدٍ عَبْدَهُ",
+      "en": "Muhammad's being His slave"
+    },
+    {
+      "id": "p15-5",
+      "kind": "list",
+      "page": 15,
+      "items": [
+        "a) We will use the word {{term|كان}} because It's Masdar can govern like its verb.",
+        "b) Identify the {{term|مصدر}} of كان.",
+        "c) Make the مصدر {{label|مضاف}} to the إسم أَنَّ.",
+        "d) Make the خبر أَنَّ the خبر of the مصدر of كان.",
+        "e) Ensure مضاف إليه is {{ruling|مجرور}} and خبر كَوْن is {{ruling|منصوب}}."
+      ]
+    },
+    {
+      "id": "p15-6",
+      "kind": "heading",
+      "page": 15,
+      "ar": "Option 2",
+      "en": "Option 2"
+    },
+    {
+      "id": "p15-7",
+      "kind": "rule",
+      "page": 15,
+      "ar": "خبر أَنَّ",
+      "en": "If the خبر أَنَّ is an {{condition|إسم جامد}}."
+    },
+    {
+      "id": "p15-8",
+      "kind": "example",
+      "page": 15,
+      "ar": "مَشْهُوْرٌ أَنَّ زَيْدًا أَسَدٌ أَمَامَ العَدُوِّ",
+      "en": "It is well known that Zayd is a lion before the enemy",
+      "labels": [
+        {
+          "word": "أَسَدِيَّة",
+          "label": "مصدر"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "إسم أَنَّ"
+        }
+      ]
+    },
+    {
+      "id": "p15-9",
+      "kind": "example",
+      "page": 15,
+      "ar": "أَسَدِيَّة زَيْدٍ أَمَامَ العَدُوِّ",
+      "en": "Zayd's being lion-like before the enemy"
+    },
+    {
+      "id": "p15-10",
+      "kind": "list",
+      "page": 15,
+      "items": [
+        "a) Convert the خبر أَنَّ into a {{term|المصدر الصناعي}}.",
+        "b) The المصدر الصناعي can serve as a {{term|متعلَّق}}.",
+        "c) Make the مصدر {{label|مضاف}} to the إسم أَنَّ.",
+        "d) Ensure مضاف إليه is {{ruling|مجرور}}."
+      ]
+    },
+    {
+      "id": "p15-11",
+      "kind": "rule",
+      "page": 15,
+      "ar": "المصدر الصناعي",
+      "en": "Note: The المصدر الصناعي can serve as a {{term|متعلَّق}}."
+    },
+    {
+      "id": "p16-1",
+      "kind": "heading",
+      "page": 16,
+      "ar": "مَا",
+      "en": "Maa (running head: الموصولات الحرفية، مَا)"
+    },
+    {
+      "id": "p16-2",
+      "kind": "list",
+      "page": 16,
+      "items": [
+        "ما is termed as {{term|المصدرية}} and {{term|المصدرية الظرفية}} because this ما is of 2 types.",
+        "They both connect to a جملة فعلية and جملة إسمية. They enter upon a verb and a مبتدا & خبر. However, the latter scenario is uncommon and non-unanimous amongst the grammarians. So, we will only deal with the جملة فعلية scenario here.",
+        "First, we will discuss ما المصدرية.",
+        "The verb can be a {{condition|ماضي}} verb or a {{condition|مضارع}} verb.",
+        "It will {{ruling|not impact}} the مضارع verb and make it منصوب like أَنْ did.",
+        "It will interpret the جملة فعلية into a {{ruling|مفرد}}.",
+        "The interpreted construction of the ما المصدرية will generally be a {{ruling|فاعل، مفعول به or مجرور}}.",
+        "The method of interpreting the sentence into a مفرد is the same as what was previously mentioned in أَنْ."
+      ],
+      "en": "Bullet points on maa as written on the page (the page itself is in English)."
+    },
+    {
+      "id": "p17-1",
+      "kind": "heading",
+      "page": 17,
+      "ar": "الموصولات الحرفية، ما، المصدرية",
+      "en": "Harf relatives: maa, masdariyyah (running head)"
+    },
+    {
+      "id": "p17-2",
+      "kind": "example",
+      "page": 17,
+      "ar": "أَكْرَهُ {{example|مَا}} يُهْمِلُ الطُّلَّابُ في دُرُوْسِهِمْ",
+      "en": "I dislike what the students neglect in their lessons.",
+      "labels": [
+        {
+          "word": "إِهْمَال",
+          "label": "مصدر"
+        },
+        {
+          "word": "الطُّلَّاب",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p17-3",
+      "kind": "list",
+      "page": 17,
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر {{label|مضاف}} to the نائب الفاعل/فاعل.",
+        "e) Ensure {{label|مضاف إليه}} is {{ruling|مجرور}}."
+      ]
+    },
+    {
+      "id": "p17-4",
+      "kind": "example",
+      "page": 17,
+      "ar": "{{label|إِهْمَال}} الطُّلَّابِ في دُرُوْسِهِمْ",
+      "en": "The students' neglect in their lessons (the interpreted masdar).",
+      "labels": [
+        {
+          "word": "إِهْمَال",
+          "label": "مصدر"
+        },
+        {
+          "word": "الطُّلَّابِ",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p17-5",
+      "kind": "example",
+      "page": 17,
+      "ar": "أَدْهَشُ بِ{{example|مَا}} تُرِكَ العَمَلُ",
+      "en": "He was astonished by the work being abandoned.",
+      "labels": [
+        {
+          "word": "تَرْك",
+          "label": "مصدر"
+        },
+        {
+          "word": "العَمَل",
+          "label": "نائب الفاعل"
+        }
+      ]
+    },
+    {
+      "id": "p17-6",
+      "kind": "list",
+      "page": 17,
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر {{label|مضاف}} to the نائب الفاعل/فاعل.",
+        "e) Ensure {{label|مضاف إليه}} is {{ruling|مجرور}}."
+      ]
+    },
+    {
+      "id": "p17-7",
+      "kind": "example",
+      "page": 17,
+      "ar": "{{label|تَرْك}} العَمَلِ",
+      "en": "The abandoning of the work (the interpreted masdar).",
+      "labels": [
+        {
+          "word": "تَرْك",
+          "label": "مصدر"
+        },
+        {
+          "word": "العَمَلِ",
+          "label": "نائب الفاعل"
+        }
+      ]
+    },
+    {
+      "id": "p18-1",
+      "kind": "heading",
+      "page": 18,
+      "ar": "ما المصدرية الظرفية",
+      "en": "Maa al-masdariyyah al-zarfiyyah"
+    },
+    {
+      "id": "p18-2",
+      "kind": "list",
+      "page": 18,
+      "items": [
+        "The ما المصدرية الظرفية has a unique feature.",
+        "Along with interpreting the sentence into a compound, it also contains the meaning of {{ruling|time}}.",
+        "It signifies the period, the total time of conducting an action mentioned before it.",
+        "It expresses the meaning: {{ruling|\"as long as\"}} …",
+        "To express this meaning, the word {{term|\"مُدّة\"}} or something of a synonym is added at the beginning of the interpreted construction.",
+        "Since the ما المصدرية الظرفية signifies a time period, the interpreted construction of the ما المصدرية الظرفية will only be a {{ruling|ظرف متعلق}}.",
+        "The ما المصدرية الظرفية is sometimes termed as ما of {{term|ما دَامَ}}. This is because the ما in the فعل ناقص, ما دَامَ is this very ما.",
+        "The rest remains as it was with the ما المصدرية except that when the ما المصدرية الظرفية enters upon the مضارع verb, then the verb should contain a negation with the word {{condition|لَمْ}}."
+      ],
+      "en": "Bullet points as written on the page (the page itself is in English)."
+    },
+    {
+      "id": "p19-1",
+      "kind": "heading",
+      "page": 19,
+      "ar": "الموصولات الحرفية، ما، المصدرية الظرفية",
+      "en": "Harf relatives: maa, masdariyyah zarfiyyah (running head)"
+    },
+    {
+      "id": "p19-2",
+      "kind": "example",
+      "page": 19,
+      "ar": "أَفْرَحُ {{example|مَا}} لَمْ يُهْمِلْ الطُّلَّابُ دُرُوْسَهُمْ",
+      "en": "I am happy as long as the students do not neglect their lessons.",
+      "labels": [
+        {
+          "word": "إِهْمَال",
+          "label": "مصدر"
+        },
+        {
+          "word": "الطُّلَّاب",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p19-3",
+      "kind": "list",
+      "page": 19,
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر {{label|مضاف}} to the نائب الفاعل/فاعل.",
+        "e) Ensure {{label|مضاف إليه}} is {{ruling|مجرور}}.",
+        "f) Add the word {{term|\"مُدّة\"}} as a {{label|مضاف}}."
+      ]
+    },
+    {
+      "id": "p19-4",
+      "kind": "example",
+      "page": 19,
+      "ar": "{{term|مُدَّة}} عَدَمِ إِهْمَالِ الطُّلَّابِ دُرُوْسَهُمْ",
+      "en": "The period of the students not neglecting their lessons (the interpreted construction).",
+      "labels": [
+        {
+          "word": "إِهْمَالِ",
+          "label": "مصدر"
+        },
+        {
+          "word": "الطُّلَّابِ",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p19-5",
+      "kind": "example",
+      "page": 19,
+      "ar": "أَصْحَبُكَ {{example|مَا}} أَخْلَصْتَ فِي هَدَفِكَ",
+      "en": "I accompany you as long as you are sincere in your goal.",
+      "labels": [
+        {
+          "word": "إِخْلَاص",
+          "label": "مصدر"
+        },
+        {
+          "word": "أَنْتَ",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p19-6",
+      "kind": "list",
+      "page": 19,
+      "items": [
+        "a) Identify the مصدر.",
+        "b) Identify the نائب الفاعل/فاعل.",
+        "c) Extract the نائب الفاعل/فاعل if it's a ضمير.",
+        "d) Make the مصدر {{label|مضاف}} to the نائب الفاعل/فاعل.",
+        "e) Ensure {{label|مضاف إليه}} is {{ruling|مجرور}}.",
+        "f) Add the word {{term|\"مُدّة\"}} as a {{label|مضاف}}."
+      ]
+    },
+    {
+      "id": "p19-7",
+      "kind": "example",
+      "page": 19,
+      "ar": "{{term|مُدَّة}} إِخْلَاصِكَ فِي هَدَفِكَ",
+      "en": "The period of your sincerity in your goal (the interpreted construction).",
+      "labels": [
+        {
+          "word": "إِخْلَاصِ",
+          "label": "مصدر"
+        },
+        {
+          "word": "كَ",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p20-1",
+      "kind": "heading",
+      "page": 20,
+      "ar": "الموصولات الحرفية، ما، المصدرية الظرفية، مَا دَامَ",
+      "en": "Harf relatives: maa, masdariyyah zarfiyyah, maa daama (running head)"
+    },
+    {
+      "id": "p20-2",
+      "kind": "example",
+      "page": 20,
+      "ar": "أَزُوْرُ زَيْدًا {{example|مَا دَامَ}} إِبْنُهُ مَرِيْضًا",
+      "en": "I visit Zayd as long as his son is ill.",
+      "labels": [
+        {
+          "word": "دوام",
+          "label": "مصدر دام"
+        },
+        {
+          "word": "إِبْنُهُ",
+          "label": "إسم ما دَامَ"
+        },
+        {
+          "word": "مَرَض",
+          "label": "مصدر خبر ما دَامَ"
+        }
+      ]
+    },
+    {
+      "id": "p20-3",
+      "kind": "list",
+      "page": 20,
+      "items": [
+        "When using the word مَا دَامَ as a {{term|فعل ناقص}} and whether the خبر مَا دَامَ is an إسم مشتق or a verb.",
+        "a) Identify the مصدر of دَامَ & the خبر مَا دَامَ.",
+        "b) Make the مصدر of the خبر مَا دَامَ {{label|مضاف}} to the إسم مَا دَامَ.",
+        "c) Make the مصدر of دَامَ {{label|مضاف}} to the مصدر of the خبر مَا دَامَ.",
+        "d) Ensure {{label|مضاف إليه}} is {{ruling|مجرور}}.",
+        "e) Add the word {{term|\"مُدَّة\"}} as a {{label|مضاف}}."
+      ]
+    },
+    {
+      "id": "p20-4",
+      "kind": "example",
+      "page": 20,
+      "ar": "{{term|مُدَّة}} دَوَامِ مَرَضِ إِبْنِهِ",
+      "en": "The period of the continuing of his son's illness (the interpreted construction).",
+      "labels": [
+        {
+          "word": "دَوَامِ",
+          "label": "مصدر دام"
+        },
+        {
+          "word": "مَرَضِ",
+          "label": "مصدر خبر ما دَامَ"
+        },
+        {
+          "word": "إِبْنِهِ",
+          "label": "إسم ما دَامَ"
+        }
+      ]
+    },
+    {
+      "id": "p20-5",
+      "kind": "example",
+      "page": 20,
+      "ar": "أَوْصَانِيْ بِالصَّلَاةِ و الزَّكَاةِ {{example|مَا دُمْتُ}} حَيًّا",
+      "en": "He enjoined upon me prayer and zakah as long as I am alive.",
+      "labels": [
+        {
+          "word": "دوام",
+          "label": "مصدر دام"
+        },
+        {
+          "word": "أَنَا",
+          "label": "إسم ما دَامَ"
+        },
+        {
+          "word": "حَيَاة",
+          "label": "مصدر خبر ما دَامَ"
+        }
+      ]
+    },
+    {
+      "id": "p20-6",
+      "kind": "list",
+      "page": 20,
+      "items": [
+        "When using the word مَا دَامَ as a {{term|فعل ناقص}} and whether the خبر مَا دَامَ is an إسم مشتق or a verb.",
+        "a) Identify the مصدر of دَامَ & the خبر مَا دَامَ.",
+        "b) Make the مصدر of the خبر مَا دَامَ {{label|مضاف}} to the إسم مَا دَامَ.",
+        "c) Make the مصدر of دَامَ {{label|مضاف}} to the مصدر of the خبر مَا دَامَ.",
+        "d) Ensure {{label|مضاف إليه}} is {{ruling|مجرور}}.",
+        "e) Add the word {{term|\"مُدَّة\"}} as a {{label|مضاف}}."
+      ]
+    },
+    {
+      "id": "p20-7",
+      "kind": "example",
+      "page": 20,
+      "ar": "{{term|مُدَّة}} دَوَامِ حَيَاتِيْ",
+      "en": "The period of the continuing of my life (the interpreted construction).",
+      "labels": [
+        {
+          "word": "دَوَامِ",
+          "label": "مصدر دام"
+        },
+        {
+          "word": "حَيَاتِيْ",
+          "label": "مصدر خبر ما دَامَ"
+        }
+      ]
+    },
+    {
+      "id": "p21-1",
+      "kind": "heading",
+      "page": 21,
+      "ar": "الموصولات الحرفية، ما، المصدرية الظرفية، مَا دَامَ",
+      "en": "Harf relatives: maa, masdariyyah zarfiyyah, maa daama (running head)"
+    },
+    {
+      "id": "p21-2",
+      "kind": "example",
+      "page": 21,
+      "ar": "أَزُوْرُ زَيْدًا {{example|مَا دَامَ}} إِبْنُهُ يَمْرَضُ",
+      "en": "I visit Zayd as long as his son falls ill.",
+      "labels": [
+        {
+          "word": "دوام",
+          "label": "مصدر دام"
+        },
+        {
+          "word": "إِبْنُهُ",
+          "label": "إسم ما دَامَ"
+        },
+        {
+          "word": "مَرَض",
+          "label": "مصدر خبر ما دَامَ"
+        }
+      ]
+    },
+    {
+      "id": "p21-3",
+      "kind": "list",
+      "page": 21,
+      "items": [
+        "When using the word مَا دَامَ as a {{term|فعل ناقص}} and whether the خبر مَا دَامَ is an إسم مشتق or a verb.",
+        "a) Identify the مصدر of دَامَ & the خبر مَا دَامَ.",
+        "b) Make the مصدر of the خبر مَا دَامَ {{label|مضاف}} to the إسم مَا دَامَ.",
+        "c) Make the مصدر of دَامَ {{label|مضاف}} to the مصدر of the خبر مَا دَامَ.",
+        "d) Ensure {{label|مضاف إليه}} is {{ruling|مجرور}}.",
+        "e) Add the word {{term|\"مُدَّة\"}} as a {{label|مضاف}}."
+      ]
+    },
+    {
+      "id": "p21-4",
+      "kind": "example",
+      "page": 21,
+      "ar": "{{term|مُدَّة}} دَوَامِ مَرَضِ إِبْنِهِ",
+      "en": "The period of the continuing of his son's illness (the interpreted construction).",
+      "labels": [
+        {
+          "word": "دَوَامِ",
+          "label": "مصدر دام"
+        },
+        {
+          "word": "مَرَضِ",
+          "label": "مصدر خبر ما دَامَ"
+        },
+        {
+          "word": "إِبْنِهِ",
+          "label": "إسم ما دَامَ"
+        }
+      ]
+    },
+    {
+      "id": "p21-5",
+      "kind": "example",
+      "page": 21,
+      "ar": "أَجْلِسُ {{example|مَا دُمْتَ}} تَجْلِسُ",
+      "en": "I sit as long as you sit.",
+      "labels": [
+        {
+          "word": "دوام",
+          "label": "مصدر دام"
+        },
+        {
+          "word": "أَنْتَ",
+          "label": "إسم ما دَامَ"
+        },
+        {
+          "word": "جُلُوْس",
+          "label": "مصدر خبر ما دَامَ"
+        }
+      ]
+    },
+    {
+      "id": "p21-6",
+      "kind": "list",
+      "page": 21,
+      "items": [
+        "When using the word مَا دَامَ as a {{term|فعل ناقص}} and whether the خبر مَا دَامَ is an إسم مشتق or a verb.",
+        "a) Identify the مصدر of دَامَ & the خبر مَا دَامَ.",
+        "b) Make the مصدر of the خبر مَا دَامَ {{label|مضاف}} to the إسم مَا دَامَ.",
+        "c) Make the مصدر of دَامَ {{label|مضاف}} to the مصدر of the خبر مَا دَامَ.",
+        "d) Ensure {{label|مضاف إليه}} is {{ruling|مجرور}}.",
+        "e) Add the word {{term|\"مُدَّة\"}} as a {{label|مضاف}}."
+      ]
+    },
+    {
+      "id": "p21-7",
+      "kind": "example",
+      "page": 21,
+      "ar": "{{term|مُدَّة}} دَوَامِ جُلُوْسِكَ",
+      "en": "The period of the continuing of your sitting (the interpreted construction).",
+      "labels": [
+        {
+          "word": "دَوَامِ",
+          "label": "مصدر دام"
+        },
+        {
+          "word": "جُلُوْسِ",
+          "label": "مصدر خبر ما دَامَ"
+        },
+        {
+          "word": "كَ",
+          "label": "إسم ما دَامَ"
+        }
+      ]
+    },
+    {
+      "id": "p22-1",
+      "kind": "heading",
+      "page": 22,
+      "ar": "",
+      "en": "End of Document."
+    },
+    {
+      "id": "p22-2",
+      "kind": "rule",
+      "page": 22,
+      "ar": "",
+      "en": "The remaining الموصولات الحرفية + Information regarding further usages etc is in the complete document."
+    }
+  ]
+}

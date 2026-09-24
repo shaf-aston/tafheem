@@ -1,0 +1,42 @@
+# ── Web framework ─────────────────────────────────────────────────────────────
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
+pydantic-settings>=2.3.0
+python-dotenv>=1.0.0
+httpx>=0.27.0          # used by Ollama backend + general HTTP
+
+# ── Arabic NLP (priority chain: camel-tools → qalsadi → pyarabic) ─────────────
+# CAMeL Tools: full morphology (root, case, gender, number, tense, gloss …)
+# After pip install, run once: camel_data -i defaults  (~200 MB)
+camel-tools>=1.5.5
+
+# Qalsadi: lemmatisation fallback when CAMeL is unavailable
+qalsadi>=0.5.1
+
+# PyArabic: lightweight Arabic text utilities (always used for tokenisation)
+pyarabic>=0.6.15
+
+# ── PDF text extraction (for Nahw rules extractor script) ─────────────────────
+pymupdf>=1.24.0
+python-bidi>=0.4.2
+
+# ── AI cloud backend (optional — only needed when using Groq) ─────────────────
+# Leave GROQ_API_KEY blank in .env to skip Groq entirely.
+groq>=0.9.0
+
+# ── Hearing a recitation ──────────────────────────────────────────────────────
+# Speech to text on this machine: no account, no key, and nothing leaves the
+# computer. The model itself is downloaded once on first use and cached under
+# the user's own profile; "small" is enough for recitation, and the size is a
+# setting rather than a code change.
+faster-whisper>=1.2.0
+# The letters model (backend/services/recitation/letters.py). 1.22 cannot run
+# its int8 layers; the model files are in backend/data/models/tilawa.
+onnxruntime>=1.23
+# FastAPI needs this to accept an uploaded recording at all.
+python-multipart>=0.0.9
+
+# ── Building the Nahw notes (scripts only) ────────────────────────────────────
+# backend/scripts/render_note_pages.py turns the teacher's PDFs into page
+# pictures; the running app never opens a PDF.
+pypdfium2>=4.30

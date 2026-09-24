@@ -1,0 +1,47 @@
+{
+ "id": "haal-e19",
+ "section": "Correct or Incorrect",
+ "picture": "haal-18.png",
+ "instruction": "",
+ "parts": [
+  {
+   "letter": "a",
+   "question": "",
+   "options": [
+    "Correct",
+    "Incorrect"
+   ],
+   "answer": [
+    "Incorrect"
+   ],
+   "by": "teacher"
+  },
+  {
+   "letter": "b",
+   "question": "How many mistakes?",
+   "options": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    "Mistakes:"
+   ],
+   "answer": {
+    "Mistakes:": [
+     "2"
+    ]
+   },
+   "by": "teacher"
+  },
+  {
+   "letter": "c",
+   "question": "Explain the mistakes and how to rectify them.",
+   "answer": "'Ilm' should have kasrah as it is mudaf ilayh. Mamloo'oon should be mansoob (mamloo'een) as it is haal.",
+   "by": "teacher"
+  }
+ ],
+ "tags": []
+}

@@ -1,0 +1,568 @@
+{
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "heading",
+      "page": 0,
+      "ar": "فعل / {{term|شبيهةُ الفعل}}",
+      "en": "Verb / Resembles verb"
+    },
+    {
+      "id": "p00-2",
+      "kind": "list",
+      "page": 0,
+      "ar": "{{term|شبيهةُ الفعل}}",
+      "en": "What resembles the verb",
+      "items": [
+        "١) اسم الفاعل",
+        "٢) اسم المفعول",
+        "٣) صفة مشبهة",
+        "٤) اسم المبالغة",
+        "٥) اسم التفضيل",
+        "٦) مصدر"
+      ]
+    },
+    {
+      "id": "p00-3",
+      "kind": "rule",
+      "page": 0,
+      "ar": "Adjective = {{term|صفات}} ({{term|صفة}})",
+      "en": "Adjective = sifaat (sifah)"
+    },
+    {
+      "id": "p00-4",
+      "kind": "example",
+      "page": 0,
+      "ar": "جَاءَ رَجُلٌ ضَرَبَ زَيْدٌ ابْنَهُ",
+      "en": "A man came whose son Zaid hit",
+      "labels": [
+        {
+          "word": "رَجُلٌ",
+          "label": "(موصوف) منعوت"
+        },
+        {
+          "word": "ضَرَبَ زَيْدٌ ابْنَهُ",
+          "label": "JFK، (صفة) نعت"
+        }
+      ]
+    },
+    {
+      "id": "p00-5",
+      "kind": "example",
+      "page": 0,
+      "ar": "جَاءَ رَجُلٌ كَرِيْمٌ",
+      "en": "A generous man came. An arrow from صفة مشبهة points to كَرِيْمٌ",
+      "labels": [
+        {
+          "word": "رَجُلٌ",
+          "label": "منعوت"
+        },
+        {
+          "word": "كَرِيْمٌ",
+          "label": "نعت، صفة مشبهة"
+        }
+      ]
+    },
+    {
+      "id": "p00-6",
+      "kind": "example",
+      "page": 0,
+      "ar": "قَائِمٌ أَبُوْهُ",
+      "en": "Marked ✘, and written beside it: Not Jumla. Beside that: فاعل ✔, فعل ✘, JFK"
+    },
+    {
+      "id": "p00-7",
+      "kind": "example",
+      "page": 0,
+      "ar": "يَقُوْمُ أَبُوْهُ",
+      "en": "Marked ✔ and circled as {{term|JFK}}"
+    },
+    {
+      "id": "p00-8",
+      "kind": "example",
+      "page": 0,
+      "ar": "زَيْدٌ قَائِمٌ أَبُوْهُ",
+      "en": "Zaid, his father is standing. The boxed part is labelled خبر; beside it: مبتدأ، خبر = JIK, and the whole is JIK",
+      "labels": [
+        {
+          "word": "زَيْدٌ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "قَائِمٌ",
+          "label": "اسم الفاعل"
+        },
+        {
+          "word": "أَبُوْهُ",
+          "label": "فاعل"
+        },
+        {
+          "word": "قَائِمٌ أَبُوْهُ",
+          "label": "خبر"
+        }
+      ]
+    },
+    {
+      "id": "p01-1",
+      "kind": "heading",
+      "page": 1,
+      "ar": "{{term|المفعول معه}}  ({{term|مَعِيَّة}})",
+      "en": "Al-mafool ma'ahu (ma'iyyah)"
+    },
+    {
+      "id": "p01-2",
+      "kind": "example",
+      "page": 1,
+      "ar": "جَاءَ زَيْدٌ وَ بَكْرٌ",
+      "en": "Zaid and Bakr came. The column marks both عطف ✔ and مفعول معه ✔",
+      "labels": [
+        {
+          "word": "بَكْرٌ",
+          "label": "عطف"
+        },
+        {
+          "word": "وَ",
+          "label": "HA"
+        }
+      ]
+    },
+    {
+      "id": "p01-3",
+      "kind": "example",
+      "page": 1,
+      "ar": "جَاءَ زَيْدٌ وَ بَكْرًا",
+      "en": "Zaid came along with Bakr. The column marks both عطف ✔ and مفعول معه ✔",
+      "labels": [
+        {
+          "word": "بَكْرًا",
+          "label": "مفعول معه"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "فاعل"
+        },
+        {
+          "word": "وَ",
+          "label": "معية"
+        }
+      ]
+    },
+    {
+      "id": "p01-4",
+      "kind": "rule",
+      "page": 1,
+      "en": "1) If the {{condition|F/SF is present in the sentence}} and {{condition|عطف is permissible}}, then, {{ruling|مفعول معه is also permissible}}."
+    },
+    {
+      "id": "p01-5",
+      "kind": "rule",
+      "page": 1,
+      "en": "Side عطف rule. 1) {{term|عطف}} upon a Dmun is {{ruling|not permissible}} unless {{condition|there is a gap between the verb & معطوف}} OR {{condition|the Dmun is repeated as a منفصل}}."
+    },
+    {
+      "id": "p01-6",
+      "kind": "example",
+      "page": 1,
+      "ar": "جَاءَ / جِئْتُ وَ زَيْدٌ",
+      "en": "Marked ✘, and زَيْدٌ is crossed out. Arrows from both verbs point to ضمير مرفوع متصل",
+      "labels": [
+        {
+          "word": "زَيْدٌ",
+          "label": "معطوف"
+        },
+        {
+          "word": "جِئْتُ",
+          "label": "(أنا) ضمير مرفوع متصل"
+        },
+        {
+          "word": "جَاءَ",
+          "label": "(هو) ضمير مرفوع متصل"
+        }
+      ]
+    },
+    {
+      "id": "p01-7",
+      "kind": "example",
+      "page": 1,
+      "ar": "جَاءَ / جِئْتُ الْيَوْمَ وَ زَيْدٌ",
+      "en": "Marked ✔",
+      "labels": [
+        {
+          "word": "الْيَوْمَ",
+          "label": "gap"
+        }
+      ]
+    },
+    {
+      "id": "p01-8",
+      "kind": "example",
+      "page": 1,
+      "ar": "جِئْتُ أَنَا وَ زَيْدٌ",
+      "en": "Marked ✔",
+      "labels": [
+        {
+          "word": "أَنَا",
+          "label": "منفصل"
+        }
+      ]
+    },
+    {
+      "id": "p01-9",
+      "kind": "example",
+      "page": 1,
+      "ar": "جَاءَ هُوَ و زَيْدٌ",
+      "en": "Marked ✔",
+      "labels": [
+        {
+          "word": "هُوَ",
+          "label": "منفصل"
+        }
+      ]
+    },
+    {
+      "id": "p02-1",
+      "kind": "table",
+      "page": 2,
+      "caption": "العطف والمفعول معه بعد الضمير",
+      "caption_en": "Atf and mafool ma'ahu after a pronoun",
+      "columns": [
+        "الحالة",
+        "المثال",
+        "عطف",
+        "مفعول معه"
+      ],
+      "answer_col": 0,
+      "rows": [
+        [
+          "NO Gap",
+          "جِئْتُ وَ زَيْدًا",
+          "✘",
+          "✔"
+        ],
+        [
+          "Gap (R1)",
+          "جِئْتُ الْيَوْمَ وَ زَيْدٌ  (جِئْتُ اليوم و زَيْدًا)",
+          "✔",
+          "✔"
+        ],
+        [
+          "Repeat Dmun as a منفصل",
+          "جِئْتُ أَنَا وَ زَيْدٌ  (جِئْتُ أَنَا و زَيْدًا)",
+          "✔",
+          "✔"
+        ]
+      ],
+      "note_ar": "المرفوع معطوف والمنصوب مفعول معه، كما وُضِّح بالألوان على الصفحة",
+      "note_en": "In each pair the raf' word is the معطوف and the nasb word the مفعول معه, as the page colours them."
+    },
+    {
+      "id": "p02-2",
+      "kind": "rule",
+      "page": 2,
+      "en": "2) If the {{condition|F/SF is present in the sentence}} and {{condition|عطف is NOT permissible}}, then, {{ruling|مفعول معه is the only option}}."
+    },
+    {
+      "id": "p03-1",
+      "kind": "picture",
+      "page": 3,
+      "caption": "ثلاثة تراكيب لجملة القلم، مع علامة الخطأ على الأول وعلامة الصحة على الآخرين",
+      "caption_en": "Three tarkeeb trees for the 'al-qalam' sentence: the first marked wrong, the other two marked right. Each shows مبتدأ, an omitted khabar reckoned as (ثابت), the jaar-majroor and the معطوف."
+    },
+    {
+      "id": "p03-2",
+      "kind": "example",
+      "page": 3,
+      "ar": "القَلَمُ لَكَ وَ زَيْدٍ",
+      "en": "Marked ✘. (ثابت) is written above with an arrow; the jaar-majroor and the معطوف are underlined as خبر, and the whole as JIK",
+      "labels": [
+        {
+          "word": "القَلَمُ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "لَكَ",
+          "label": "جار مجرور (ضمير)"
+        },
+        {
+          "word": "وَ",
+          "label": "HA"
+        },
+        {
+          "word": "زَيْدٍ",
+          "label": "معطوف ✘"
+        }
+      ]
+    },
+    {
+      "id": "p03-3",
+      "kind": "rule",
+      "page": 3,
+      "en": "ii) If a {{condition|ضمير is made into a معطوف عليه whilst it is preceded with a جار (حرف جر or مضاف)}}, then the {{ruling|معطوف MUST also be preceded with the same جار}}."
+    },
+    {
+      "id": "p03-4",
+      "kind": "example",
+      "page": 3,
+      "ar": "القَلَمُ لَكَ وَ لِزَيْدٍ",
+      "en": "Marked ✔. (ثابت) is written above with an arrow; underneath: ق (ثابت), خبر, and the whole JIK",
+      "labels": [
+        {
+          "word": "القَلَمُ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "لَكَ",
+          "label": "جار مجرور، معطوف عليه"
+        },
+        {
+          "word": "وَ",
+          "label": "HA"
+        },
+        {
+          "word": "لِزَيْدٍ",
+          "label": "جار مجرور، معطوف"
+        }
+      ]
+    },
+    {
+      "id": "p03-5",
+      "kind": "rule",
+      "page": 3,
+      "en": "iii) If an {{condition|اسم ظاهر is found in the same scenario}}, the {{ruling|جار does not need to be repeated with the معطوف}} in order to validate the عطف construction."
+    },
+    {
+      "id": "p03-6",
+      "kind": "example",
+      "page": 3,
+      "ar": "القَلَمُ لِزَيْدٍ و بَكْرٍ",
+      "en": "Marked ✔. (ثابت) is written above with an arrow; underneath: مجرور, ق (ثابت), خبر, and the whole JIK",
+      "labels": [
+        {
+          "word": "القَلَمُ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "لِزَيْدٍ",
+          "label": "جار، معطوف عليه"
+        },
+        {
+          "word": "و",
+          "label": "HA"
+        },
+        {
+          "word": "بَكْرٍ",
+          "label": "معطوف"
+        }
+      ]
+    },
+    {
+      "id": "p04-1",
+      "kind": "example",
+      "page": 4,
+      "ar": "القَلَمُ لَكَ و زَيْدًا",
+      "en": "The columns mark {{label|عطف ✘}} and {{label|مفعول معه ✔}}. (ثابت) is written above with an arrow"
+    },
+    {
+      "id": "p04-2",
+      "kind": "rule",
+      "page": 4,
+      "en": "3) When the {{condition|F/SF is absent from the sentence}} and {{condition|عطف is not permissible}}, then {{ruling|مفعول معه will be the only option}}."
+    },
+    {
+      "id": "p04-3",
+      "kind": "example",
+      "page": 4,
+      "ar": "القَلَمُ لِبَكْرٍ وَ زَيْدٍ",
+      "en": "The columns mark {{label|عطف ✔}} and {{label|مفعول معه ✘}}. (ثابت) is written above with an arrow"
+    },
+    {
+      "id": "p04-4",
+      "kind": "rule",
+      "page": 4,
+      "en": "4) When the {{condition|F/SF is absent from the sentence}} and {{condition|عطف IS permissible}}, then {{ruling|عطف will be the only option}}."
+    },
+    {
+      "id": "p05-1",
+      "kind": "heading",
+      "page": 5,
+      "ar": "",
+      "en": "logical aspect!"
+    },
+    {
+      "id": "p05-2",
+      "kind": "example",
+      "page": 5,
+      "ar": "جَاءَ زَيْدٌ وَ السَّبِيْلَ",
+      "en": "Atf: Zaid & the path came. MM: Zaid came with/along the path. Beside it: R1, F/SF = p, A = p"
+    },
+    {
+      "id": "p05-3",
+      "kind": "example",
+      "page": 5,
+      "ar": "سَافَرَ زَيْدٌ مَكَّةَ وَ الْمَدِيْنَةَ.",
+      "en": "(عطف): Zaid travelled to Makkah and Madinah. (مم): Zaid travelled to Makkah along with Madinah. Beside it: R1, f/sh = p, A = p",
+      "labels": [
+        {
+          "word": "مَكَّةَ",
+          "label": "معطوف عليه"
+        },
+        {
+          "word": "وَ",
+          "label": "HA"
+        },
+        {
+          "word": "الْمَدِيْنَةَ",
+          "label": "معطوف"
+        },
+        {
+          "word": "مَكَّةَ وَ الْمَدِيْنَةَ",
+          "label": "مفعول به"
+        }
+      ]
+    },
+    {
+      "id": "p06-1",
+      "kind": "example",
+      "page": 6,
+      "ar": "ضَرَبْتُ زَيْدًا وَ بَكْرًا لِتَأْدِيْب⟨?⟩ لَهُ",
+      "en": "I hit Zaid along with Bakr for disciplining him. Written under it, with arrows: ق ضَرَبْتُ and ق (تَأْدِيْب); the whole is underlined JFK",
+      "labels": [
+        {
+          "word": "ضَرَبْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "زَيْدًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "وَ",
+          "label": "معية"
+        },
+        {
+          "word": "بَكْرًا",
+          "label": "مفعول معه"
+        }
+      ]
+    },
+    {
+      "id": "p06-2",
+      "kind": "rule",
+      "page": 6,
+      "en": "{{term|مفعول معه}} combines both and {{ruling|considers them as 1 object}} whereas {{term|عطف}} {{ruling|does not consider them as 1 object}}."
+    },
+    {
+      "id": "p06-3",
+      "kind": "picture",
+      "page": 6,
+      "caption": "دائرتان: دائرة فيها شخصان مكتوب تحتها عطف، ودائرة فيها شخص واحد مكتوب تحتها معه",
+      "caption_en": "Two circles drawn on the page: one holding two stick figures joined by + labelled عطف, one holding a single figure labelled معه."
+    },
+    {
+      "id": "p06-4",
+      "kind": "example",
+      "page": 6,
+      "ar": "ضَرَبْتُ زَيْدًا وَ بَكْرًا تَأْدِيْبًا لَهُمَا",
+      "en": "I hit Zaid and Bakr as a discipline for the two of them",
+      "labels": [
+        {
+          "word": "زَيْدًا",
+          "label": "معطوف عليه"
+        },
+        {
+          "word": "وَ",
+          "label": "HA"
+        },
+        {
+          "word": "بَكْرًا",
+          "label": "معطوف"
+        },
+        {
+          "word": "تَأْدِيْبًا",
+          "label": "مفعول له"
+        }
+      ]
+    },
+    {
+      "id": "p07-1",
+      "kind": "rule",
+      "page": 7,
+      "en": "Note: 1. The {{term|مفعول معه}} {{ruling|MUST come immediately after the word it would've been عطف to}}. {{ruling|There must not be a gap between them}}."
+    },
+    {
+      "id": "p07-2",
+      "kind": "example",
+      "page": 7,
+      "ar": "جِئْتُ وَ زَيْدًا اليومَ",
+      "en": "It must be: ✔"
+    },
+    {
+      "id": "p07-3",
+      "kind": "example",
+      "page": 7,
+      "ar": "جِئْتُ الْيَوْمَ وَ زَيْدًا",
+      "en": "Not: ✘"
+    },
+    {
+      "id": "p07-4",
+      "kind": "rule",
+      "page": 7,
+      "en": "2. The {{term|مفعول معه}} is the only مفعول which {{ruling|cannot precede its governor}} (فعل / شبيه الفعل)."
+    },
+    {
+      "id": "p07-5",
+      "kind": "example",
+      "page": 7,
+      "ar": "جِئْتُ وَ زَيْدًا",
+      "en": "It must be: ✔"
+    },
+    {
+      "id": "p07-6",
+      "kind": "example",
+      "page": 7,
+      "ar": "وَ زَيْدًا جِئْتُ",
+      "en": "Not: ✘"
+    },
+    {
+      "id": "p08-1",
+      "kind": "rule",
+      "page": 8,
+      "en": "3. {{condition|Verbs which contain the meaning of partnership}} will {{ruling|not be given a مفعول معه}}."
+    },
+    {
+      "id": "p08-2",
+      "kind": "example",
+      "page": 8,
+      "ar": "قَاتَلَ زَيْدٌ و بَكْرٌ",
+      "en": "Zaid and Bakr fought. Zaid fought with Bakr. The whole is underlined JFK",
+      "labels": [
+        {
+          "word": "قَاتَلَ",
+          "label": "فعل"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "معطوف عليه"
+        },
+        {
+          "word": "و",
+          "label": "HA"
+        },
+        {
+          "word": "بَكْرٌ",
+          "label": "معطوف"
+        },
+        {
+          "word": "زَيْدٌ و بَكْرٌ",
+          "label": "فاعل"
+        }
+      ]
+    },
+    {
+      "id": "p08-3",
+      "kind": "rule",
+      "page": 8,
+      "en": "We will only do {{term|عطف}} because {{condition|such verbs contain the meaning of \"with\"}}."
+    }
+  ]
+}

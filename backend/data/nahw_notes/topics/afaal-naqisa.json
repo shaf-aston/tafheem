@@ -1,0 +1,71 @@
+{
+  "id": "afaal-naqisa",
+  "title": "Al-af'aal an-naaqisa (worksheet)",
+  "arabic": "الأفعال الناقصة",
+  "tamreen": [],
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "heading",
+      "page": 0,
+      "ar": "",
+      "en": "Fill in the Harakaat; write the {{term|analysis (Tarkeeb)}} and {{term|translation}} for the following Sentences"
+    },
+    {
+      "id": "p00-2",
+      "kind": "example",
+      "page": 0,
+      "ar": "إنَّ اللّه {{term|كان}} عليكم رقيبا",
+      "en": "Indeed Allah {{label|was}} ever a watcher over you",
+      "labels": []
+    },
+    {
+      "id": "p00-3",
+      "kind": "example",
+      "page": 0,
+      "ar": "إِنَّ كيد الشيطان {{term|كان}} ضعيفا",
+      "en": "Indeed the plotting of Shaytan {{label|was}} weak",
+      "labels": []
+    },
+    {
+      "id": "p00-4",
+      "kind": "example",
+      "page": 0,
+      "ar": "{{term|كنتُ}} عليهم شهيدا {{term|ما دمتُ}} فيهم",
+      "en": "{{label|I was}} a witness over them {{term|as long as I remained}} among them",
+      "labels": []
+    },
+    {
+      "id": "p00-5",
+      "kind": "example",
+      "page": 0,
+      "ar": "{{term|أصبح}} هشيما تَذْرُوْهُ الرِّياح",
+      "en": "It {{label|became}} dry stalks which the winds scatter",
+      "labels": []
+    },
+    {
+      "id": "p01-1",
+      "kind": "example",
+      "page": 1,
+      "ar": "{{term|أصبح}} يُقلِّبُ كَفَّيْهِ",
+      "en": "He {{label|became}} turning over his two palms",
+      "labels": []
+    },
+    {
+      "id": "p01-2",
+      "kind": "example",
+      "page": 1,
+      "ar": "أَوْصَانِيْ بالصّلاة و الزكاة {{term|ما دمتُ}} حَيّا",
+      "en": "He enjoined upon me the prayer and the zakah {{term|as long as I remain}} alive",
+      "labels": []
+    },
+    {
+      "id": "p01-3",
+      "kind": "example",
+      "page": 1,
+      "ar": "إنَّ زيدا جالس علٰي شجرة {{term|لا يزال}} جِذْعها مثقوبا بطائر مِنْقَارهُ قَوِيّ يُسَمّٰى نَقَّارَ الخَشَب لِأَنَّه يَنقُر الخَشَب",
+      "en": "Indeed Zayd is sitting on a tree whose trunk {{label|continues to be}} pierced by a bird whose beak is strong, called a woodpecker, because it pecks the wood",
+      "labels": []
+    }
+  ]
+}

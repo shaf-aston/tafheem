@@ -1,0 +1,67 @@
+{
+  "_comment": "Every setting a reader is allowed to change, and exactly what it drives. Adding an entry here adds it to the settings panel, no component is edited. A 'choice' writes its chosen option's 'write' value into one CSS variable. A 'range' writes its own number. A 'switch' either writes the variables under 'off' while it is off, or is read directly by a component (the dictionary's synonyms). Defaults live here, so this file is the whole answer to 'what can be configured'.",
+
+  "storage-key": "settings",
+
+  "settings": [
+    {
+      "key": "study-size",
+      "label": "Study text size",
+      "help": "Arabic and English in Quran, tarkeeb, i'raab and sarf. Nothing else moves.",
+      "type": "choice",
+      "css": "--study-zoom",
+      "default": "normal",
+      "options": [
+        { "id": "small",  "label": "Small",  "write": 0.9 },
+        { "id": "normal", "label": "Normal", "write": 1 },
+        { "id": "large",  "label": "Large",  "write": 1.25 }
+      ]
+    },
+    {
+      "key": "motion",
+      "label": "Animations",
+      "help": "Movement as things appear. Turn off if distracting.",
+      "type": "switch",
+      "default": true,
+      "off": {
+        "--motion-instant-ms": 0,
+        "--motion-base-ms": 0,
+        "--motion-spring-ms": 0,
+        "--motion-stagger-ms": 0,
+        "--motion-scale": 0
+      }
+    },
+    {
+      "key": "fusha",
+      "label": "Prefer Fusha",
+      "help": "Dictation leans to classical Arabic. Off: any Arabic.",
+      "type": "switch",
+      "default": true
+    },
+    {
+      "key": "reciting-level",
+      "label": "Checking level",
+      "help": "How closely your Qur'an reciting is checked, by words and vowels. Beginner forgives a little more. Standard checks closely and marks doubtful words orange to look at again. Tajweed is not checked yet.",
+      "type": "choice",
+      "default": "beginner",
+      "options": [
+        { "id": "beginner", "label": "Beginner" },
+        { "id": "standard", "label": "Standard" }
+      ]
+    },
+    {
+      "key": "resume-reciting",
+      "label": "Carry on where you stopped",
+      "help": "Recording again in Memorise continues the same recitation. Off: it starts the page over.",
+      "type": "switch",
+      "default": true
+    },
+    {
+      "key": "synonyms",
+      "label": "Show synonyms",
+      "help": "Other Arabic words with the same meaning, under each dictionary definition.",
+      "type": "switch",
+      "default": true
+    }
+  ]
+}

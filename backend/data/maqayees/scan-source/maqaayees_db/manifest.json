@@ -1,0 +1,172 @@
+{
+ "source": "Ibn Faris, Maqaayees al-Lugha (مقاييس اللغة)",
+ "pdf_range_covered": [
+  55,
+  2716
+ ],
+ "total_entries": 5949,
+ "total_audit_corrections": 3499,
+ "schema": {
+  "root": "root letters as printed",
+  "root_letters": "array of individual letters",
+  "core_meaning": "classical Arabic core meaning statement",
+  "core_meaning_english": "literal English gloss only, no grammar commentary",
+  "sarf_pattern": "Arabic morphology/sarf term if named (e.g. المضاعف), else empty",
+  "variances": "array of {usage, meaning, meaning_english, citation}",
+  "printed_page_number": "page number printed on the scanned page",
+  "pdf_page_index": "index into the source PDF",
+  "notes": "uncertainty/illegibility/continuation flags"
+ },
+ "files": [
+  {
+   "file": "by_root_letter/root_(.json",
+   "root_letter": "(",
+   "entry_count": 10
+  },
+  {
+   "file": "by_root_letter/root_؟.json",
+   "root_letter": "؟",
+   "entry_count": 14
+  },
+  {
+   "file": "by_root_letter/root_ا.json",
+   "root_letter": "ا",
+   "entry_count": 450
+  },
+  {
+   "file": "by_root_letter/root_ب.json",
+   "root_letter": "ب",
+   "entry_count": 307
+  },
+  {
+   "file": "by_root_letter/root_ت.json",
+   "root_letter": "ت",
+   "entry_count": 101
+  },
+  {
+   "file": "by_root_letter/root_ث.json",
+   "root_letter": "ث",
+   "entry_count": 86
+  },
+  {
+   "file": "by_root_letter/root_ج.json",
+   "root_letter": "ج",
+   "entry_count": 239
+  },
+  {
+   "file": "by_root_letter/root_ح.json",
+   "root_letter": "ح",
+   "entry_count": 288
+  },
+  {
+   "file": "by_root_letter/root_خ.json",
+   "root_letter": "خ",
+   "entry_count": 231
+  },
+  {
+   "file": "by_root_letter/root_د.json",
+   "root_letter": "د",
+   "entry_count": 201
+  },
+  {
+   "file": "by_root_letter/root_ذ.json",
+   "root_letter": "ذ",
+   "entry_count": 63
+  },
+  {
+   "file": "by_root_letter/root_ر.json",
+   "root_letter": "ر",
+   "entry_count": 316
+  },
+  {
+   "file": "by_root_letter/root_ز.json",
+   "root_letter": "ز",
+   "entry_count": 139
+  },
+  {
+   "file": "by_root_letter/root_س.json",
+   "root_letter": "س",
+   "entry_count": 234
+  },
+  {
+   "file": "by_root_letter/root_ش.json",
+   "root_letter": "ش",
+   "entry_count": 235
+  },
+  {
+   "file": "by_root_letter/root_ص.json",
+   "root_letter": "ص",
+   "entry_count": 172
+  },
+  {
+   "file": "by_root_letter/root_ض.json",
+   "root_letter": "ض",
+   "entry_count": 139
+  },
+  {
+   "file": "by_root_letter/root_ط.json",
+   "root_letter": "ط",
+   "entry_count": 130
+  },
+  {
+   "file": "by_root_letter/root_ظ.json",
+   "root_letter": "ظ",
+   "entry_count": 23
+  },
+  {
+   "file": "by_root_letter/root_ع.json",
+   "root_letter": "ع",
+   "entry_count": 440
+  },
+  {
+   "file": "by_root_letter/root_غ.json",
+   "root_letter": "غ",
+   "entry_count": 153
+  },
+  {
+   "file": "by_root_letter/root_ف.json",
+   "root_letter": "ف",
+   "entry_count": 219
+  },
+  {
+   "file": "by_root_letter/root_ق.json",
+   "root_letter": "ق",
+   "entry_count": 251
+  },
+  {
+   "file": "by_root_letter/root_ك.json",
+   "root_letter": "ك",
+   "entry_count": 199
+  },
+  {
+   "file": "by_root_letter/root_ل.json",
+   "root_letter": "ل",
+   "entry_count": 211
+  },
+  {
+   "file": "by_root_letter/root_م.json",
+   "root_letter": "م",
+   "entry_count": 260
+  },
+  {
+   "file": "by_root_letter/root_ن.json",
+   "root_letter": "ن",
+   "entry_count": 341
+  },
+  {
+   "file": "by_root_letter/root_ه.json",
+   "root_letter": "ه",
+   "entry_count": 206
+  },
+  {
+   "file": "by_root_letter/root_و.json",
+   "root_letter": "و",
+   "entry_count": 260
+  },
+  {
+   "file": "by_root_letter/root_ي.json",
+   "root_letter": "ي",
+   "entry_count": 31
+  }
+ ]
+}

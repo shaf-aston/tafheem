@@ -1,0 +1,9 @@
+{
+  "_comment": "Surah names as al-Suyuti's Lubab writes them, where that differs from the name in meanings.db. The key is the heading with 'سورة' taken off and its letters folded (no hamza, no vowels), exactly as services/asbab_split.match_surah folds it. A heading the split cannot place is one line here, never a code change.",
+  "براءة": 9,
+  "(حم) السجدة": 41,
+  "ن": 68,
+  "الم نشرح لك": 94,
+  "_comment_muawwidhatayn": "The book gives al-Falaq and an-Nas one heading. Reports are matched inside 113 only, so any belonging to 114 are listed as unplaced rather than filed under the wrong surah.",
+  "المعوذتين": 113
+}

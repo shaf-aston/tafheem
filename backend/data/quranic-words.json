@@ -1,0 +1,2822 @@
+{
+  "_comment": "Word lists from '80% of Qur'anic Words' (Dr Abdulazeez Abdulraheem, Islamic Book Trust). Nouns keep the book's topic heading as their category; verbs keep their baab (verb pattern). 'count' is the book's Qur'an occurrence figure. 'sense' is shared by true synonyms so the quiz never offers two correct answers.",
+  "source": {
+    "title": "80% of Qur'anic Words",
+    "author": "Dr Abdulazeez Abdulraheem",
+    "publisher": "Islamic Book Trust",
+    "note": "Function words (book pages 1-6) are left out: 'not', 'this', 'except' and the like do not make a fair four-option meaning question."
+  },
+  "groups": [
+    {
+      "id": "attributes",
+      "label": "Attributes",
+      "wordType": "adjective"
+    },
+    {
+      "id": "superiority",
+      "label": "Comparatives",
+      "wordType": "adjective"
+    },
+    {
+      "id": "signs",
+      "label": "Signs of Allah",
+      "wordType": "noun"
+    },
+    {
+      "id": "lastday",
+      "label": "The Last Day",
+      "wordType": "noun"
+    },
+    {
+      "id": "faith",
+      "label": "Faith",
+      "wordType": "noun"
+    },
+    {
+      "id": "din",
+      "label": "Din",
+      "wordType": "noun"
+    },
+    {
+      "id": "blessings",
+      "label": "Blessings",
+      "wordType": "noun"
+    },
+    {
+      "id": "deeds",
+      "label": "Deeds",
+      "wordType": "noun"
+    },
+    {
+      "id": "body",
+      "label": "Body & self",
+      "wordType": "noun"
+    },
+    {
+      "id": "relatives",
+      "label": "Relatives",
+      "wordType": "noun"
+    },
+    {
+      "id": "people",
+      "label": "People",
+      "wordType": "noun"
+    },
+    {
+      "id": "world",
+      "label": "World",
+      "wordType": "noun"
+    },
+    {
+      "id": "v-nasara",
+      "label": "Verbs: nasara pattern",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-fataha",
+      "label": "Verbs: fataha pattern",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-daraba",
+      "label": "Verbs: daraba pattern",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-samia",
+      "label": "Verbs: sami'a pattern",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-mudaaf",
+      "label": "Verbs: doubled last letter",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-mithal",
+      "label": "Verbs: weak first letter",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-ajwaf",
+      "label": "Verbs: weak middle letter",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-naqis",
+      "label": "Verbs: weak last letter",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-mahmuz",
+      "label": "Verbs: hamzah in root",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-fa33ala",
+      "label": "Verbs: fa''ala pattern",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-faa3ala",
+      "label": "Verbs: faa'ala pattern",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-af3ala",
+      "label": "Verbs: af'ala pattern",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-tafa33ala",
+      "label": "Verbs: tafa''ala pattern",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-ifta3ala",
+      "label": "Verbs: ifta'ala pattern",
+      "wordType": "verb"
+    },
+    {
+      "id": "v-istaf3ala",
+      "label": "Verbs: istaf'ala pattern",
+      "wordType": "verb"
+    }
+  ],
+  "words": [
+    {
+      "ar": "أَوَّل",
+      "en": "first",
+      "category": "attributes",
+      "meaningKey": "first",
+      "timesInQuran": 82
+    },
+    {
+      "ar": "آخِر",
+      "en": "last",
+      "category": "attributes",
+      "meaningKey": "last",
+      "timesInQuran": 40
+    },
+    {
+      "ar": "أَمِين",
+      "en": "trustworthy",
+      "category": "attributes",
+      "meaningKey": "trustworthy",
+      "timesInQuran": 14
+    },
+    {
+      "ar": "بَصِير",
+      "en": "one who sees clearly",
+      "category": "attributes",
+      "meaningKey": "all-seeing",
+      "timesInQuran": 53
+    },
+    {
+      "ar": "بَعِيد",
+      "en": "far",
+      "category": "attributes",
+      "meaningKey": "far",
+      "timesInQuran": 25
+    },
+    {
+      "ar": "تَوَّاب",
+      "en": "most forgiving",
+      "category": "attributes",
+      "meaningKey": "most-forgiving",
+      "timesInQuran": 11
+    },
+    {
+      "ar": "حَفِيظ",
+      "en": "protector",
+      "category": "attributes",
+      "meaningKey": "protector",
+      "timesInQuran": 26
+    },
+    {
+      "ar": "حَكِيم",
+      "en": "wise",
+      "category": "attributes",
+      "meaningKey": "wise",
+      "timesInQuran": 97
+    },
+    {
+      "ar": "حَلِيم",
+      "en": "forbearing",
+      "category": "attributes",
+      "meaningKey": "forbearing",
+      "timesInQuran": 15
+    },
+    {
+      "ar": "حَمِيد",
+      "en": "praiseworthy",
+      "category": "attributes",
+      "meaningKey": "praiseworthy",
+      "timesInQuran": 17
+    },
+    {
+      "ar": "خَبِير",
+      "en": "knowing, ever aware",
+      "category": "attributes",
+      "meaningKey": "ever-aware",
+      "timesInQuran": 45
+    },
+    {
+      "ar": "رَبّ",
+      "en": "Lord, Sustainer",
+      "category": "attributes",
+      "meaningKey": "lord",
+      "timesInQuran": 970
+    },
+    {
+      "ar": "رَحْمَٰن",
+      "en": "Compassionate",
+      "category": "attributes",
+      "meaningKey": "compassionate",
+      "timesInQuran": 57
+    },
+    {
+      "ar": "سَلَام",
+      "en": "peace",
+      "category": "attributes",
+      "meaningKey": "peace",
+      "timesInQuran": 42
+    },
+    {
+      "ar": "سَمِيع",
+      "en": "one who listens",
+      "category": "attributes",
+      "meaningKey": "all-hearing",
+      "timesInQuran": 47
+    },
+    {
+      "ar": "شَكُور",
+      "en": "grateful",
+      "category": "attributes",
+      "meaningKey": "grateful",
+      "timesInQuran": 24
+    },
+    {
+      "ar": "عَزِيز",
+      "en": "mighty",
+      "category": "attributes",
+      "meaningKey": "mighty",
+      "timesInQuran": 99
+    },
+    {
+      "ar": "غَفُور",
+      "en": "most forgiving",
+      "category": "attributes",
+      "meaningKey": "most-forgiving",
+      "timesInQuran": 91
+    },
+    {
+      "ar": "قَدِير",
+      "en": "All-powerful",
+      "category": "attributes",
+      "meaningKey": "all-powerful",
+      "timesInQuran": 45
+    },
+    {
+      "ar": "نَذِير",
+      "en": "warner",
+      "category": "attributes",
+      "meaningKey": "warner",
+      "timesInQuran": 44
+    },
+    {
+      "ar": "نَصِير",
+      "en": "strong helper",
+      "category": "attributes",
+      "meaningKey": "helper",
+      "timesInQuran": 24
+    },
+    {
+      "ar": "وَكِيل",
+      "en": "one who takes care of a thing for another",
+      "category": "attributes",
+      "meaningKey": "trustee",
+      "timesInQuran": 24
+    },
+    {
+      "ar": "شَدِيد",
+      "en": "severe, strong",
+      "category": "attributes",
+      "meaningKey": "severe",
+      "timesInQuran": 52
+    },
+    {
+      "ar": "عَلِيّ",
+      "en": "high, exalted",
+      "category": "attributes",
+      "meaningKey": "exalted",
+      "timesInQuran": 11
+    },
+    {
+      "ar": "عَلِيم",
+      "en": "knower",
+      "category": "attributes",
+      "meaningKey": "all-knowing",
+      "timesInQuran": 162
+    },
+    {
+      "ar": "قَرِيب",
+      "en": "near",
+      "category": "attributes",
+      "meaningKey": "near",
+      "timesInQuran": 26
+    },
+    {
+      "ar": "كَبِير",
+      "en": "big",
+      "category": "attributes",
+      "meaningKey": "big",
+      "timesInQuran": 44
+    },
+    {
+      "ar": "كَثِير",
+      "en": "plenty, much",
+      "category": "attributes",
+      "meaningKey": "plenty",
+      "timesInQuran": 74
+    },
+    {
+      "ar": "سَرِيع",
+      "en": "quick, swift",
+      "category": "attributes",
+      "meaningKey": "quick",
+      "timesInQuran": 10
+    },
+    {
+      "ar": "رَحِيم",
+      "en": "merciful",
+      "category": "attributes",
+      "meaningKey": "merciful",
+      "timesInQuran": 182
+    },
+    {
+      "ar": "عَظِيم",
+      "en": "supreme",
+      "category": "attributes",
+      "meaningKey": "supreme",
+      "timesInQuran": 107
+    },
+    {
+      "ar": "قَلِيل",
+      "en": "little",
+      "category": "attributes",
+      "meaningKey": "little",
+      "timesInQuran": 71
+    },
+    {
+      "ar": "كَرِيم",
+      "en": "noble, honourable, generous",
+      "category": "attributes",
+      "meaningKey": "noble",
+      "timesInQuran": 27
+    },
+    {
+      "ar": "لَطِيف",
+      "en": "subtle",
+      "category": "attributes",
+      "meaningKey": "subtle",
+      "timesInQuran": 7
+    },
+    {
+      "ar": "أَشَدّ",
+      "en": "most severe",
+      "category": "superiority",
+      "meaningKey": "most-severe",
+      "timesInQuran": 31
+    },
+    {
+      "ar": "أَعْلَى",
+      "en": "higher, superior",
+      "category": "superiority",
+      "meaningKey": "higher",
+      "timesInQuran": 11
+    },
+    {
+      "ar": "أَعْلَم",
+      "en": "better-knowing",
+      "category": "superiority",
+      "meaningKey": "better-knowing",
+      "timesInQuran": 49
+    },
+    {
+      "ar": "أَقْرَب",
+      "en": "nearer",
+      "category": "superiority",
+      "meaningKey": "nearer",
+      "timesInQuran": 19
+    },
+    {
+      "ar": "أَكْبَر",
+      "en": "bigger",
+      "category": "superiority",
+      "meaningKey": "bigger",
+      "timesInQuran": 23
+    },
+    {
+      "ar": "أَكْثَر",
+      "en": "more, most",
+      "category": "superiority",
+      "meaningKey": "more",
+      "timesInQuran": 80
+    },
+    {
+      "ar": "أَحْسَن",
+      "en": "better",
+      "category": "superiority",
+      "meaningKey": "better",
+      "timesInQuran": 36
+    },
+    {
+      "ar": "أَحَقّ",
+      "en": "more entitled, more worthy",
+      "category": "superiority",
+      "meaningKey": "more-worthy",
+      "timesInQuran": 10
+    },
+    {
+      "ar": "أَدْنَى",
+      "en": "nearer, lower, less",
+      "category": "superiority",
+      "meaningKey": "lower",
+      "timesInQuran": 12
+    },
+    {
+      "ar": "أَظْلَم",
+      "en": "more unjust",
+      "category": "superiority",
+      "meaningKey": "more-unjust",
+      "timesInQuran": 16
+    },
+    {
+      "ar": "أَهْدَى",
+      "en": "better guided",
+      "category": "superiority",
+      "meaningKey": "better-guided",
+      "timesInQuran": 7
+    },
+    {
+      "ar": "أَوْلَى",
+      "en": "nearer, closer",
+      "category": "superiority",
+      "meaningKey": "closer",
+      "timesInQuran": 11
+    },
+    {
+      "ar": "رَسُول",
+      "en": "Messenger",
+      "category": "people",
+      "meaningKey": "messenger",
+      "timesInQuran": 332
+    },
+    {
+      "ar": "نَبِيّ",
+      "en": "Prophet",
+      "category": "people",
+      "meaningKey": "prophet",
+      "timesInQuran": 75
+    },
+    {
+      "ar": "شَيْطَان",
+      "en": "Satan",
+      "category": "people",
+      "meaningKey": "satan",
+      "timesInQuran": 88
+    },
+    {
+      "ar": "آيَة",
+      "en": "sign",
+      "category": "signs",
+      "meaningKey": "sign",
+      "timesInQuran": 382
+    },
+    {
+      "ar": "بَيِّنَة",
+      "en": "evidence",
+      "category": "signs",
+      "meaningKey": "evidence",
+      "timesInQuran": 71
+    },
+    {
+      "ar": "قُرْآن",
+      "en": "Qur'an, recitation",
+      "category": "signs",
+      "meaningKey": "quran",
+      "timesInQuran": 70
+    },
+    {
+      "ar": "أَنْعَام",
+      "en": "cattle",
+      "category": "signs",
+      "meaningKey": "cattle",
+      "timesInQuran": 32
+    },
+    {
+      "ar": "جَبَل",
+      "en": "mountain",
+      "category": "signs",
+      "meaningKey": "mountain",
+      "timesInQuran": 39
+    },
+    {
+      "ar": "بَحْر",
+      "en": "sea, large river",
+      "category": "signs",
+      "meaningKey": "sea",
+      "timesInQuran": 38
+    },
+    {
+      "ar": "شَمْس",
+      "en": "sun",
+      "category": "signs",
+      "meaningKey": "sun",
+      "timesInQuran": 33
+    },
+    {
+      "ar": "قَمَر",
+      "en": "moon",
+      "category": "signs",
+      "meaningKey": "moon",
+      "timesInQuran": 33
+    },
+    {
+      "ar": "لَيْل",
+      "en": "night",
+      "category": "signs",
+      "meaningKey": "night",
+      "timesInQuran": 80
+    },
+    {
+      "ar": "نَهَار",
+      "en": "daytime",
+      "category": "signs",
+      "meaningKey": "daytime",
+      "timesInQuran": 57
+    },
+    {
+      "ar": "أَرْض",
+      "en": "earth",
+      "category": "signs",
+      "meaningKey": "earth",
+      "timesInQuran": 461
+    },
+    {
+      "ar": "سَمَاء",
+      "en": "sky",
+      "category": "signs",
+      "meaningKey": "sky",
+      "timesInQuran": 310
+    },
+    {
+      "ar": "أَبَدًا",
+      "en": "forever, ever",
+      "category": "lastday",
+      "meaningKey": "forever",
+      "timesInQuran": 28
+    },
+    {
+      "ar": "أَجْر",
+      "en": "reward",
+      "category": "lastday",
+      "meaningKey": "reward",
+      "timesInQuran": 105
+    },
+    {
+      "ar": "أَجَل",
+      "en": "term",
+      "category": "lastday",
+      "meaningKey": "term",
+      "timesInQuran": 52
+    },
+    {
+      "ar": "الآخِرَة",
+      "en": "the Hereafter",
+      "category": "lastday",
+      "meaningKey": "hereafter",
+      "timesInQuran": 115
+    },
+    {
+      "ar": "أَلِيم",
+      "en": "painful",
+      "category": "lastday",
+      "meaningKey": "painful",
+      "timesInQuran": 72
+    },
+    {
+      "ar": "ثَوَاب",
+      "en": "reward",
+      "category": "lastday",
+      "meaningKey": "reward",
+      "timesInQuran": 13
+    },
+    {
+      "ar": "جَحِيم",
+      "en": "hellfire",
+      "category": "lastday",
+      "meaningKey": "hellfire",
+      "timesInQuran": 26
+    },
+    {
+      "ar": "جَزَاء",
+      "en": "reward",
+      "category": "lastday",
+      "meaningKey": "reward",
+      "timesInQuran": 42
+    },
+    {
+      "ar": "جَنَّة",
+      "en": "garden",
+      "category": "lastday",
+      "meaningKey": "garden",
+      "timesInQuran": 147
+    },
+    {
+      "ar": "جَهَنَّم",
+      "en": "the hell",
+      "category": "lastday",
+      "meaningKey": "hell",
+      "timesInQuran": 77
+    },
+    {
+      "ar": "حِسَاب",
+      "en": "reckoning",
+      "category": "lastday",
+      "meaningKey": "reckoning",
+      "timesInQuran": 39
+    },
+    {
+      "ar": "سَاعَة",
+      "en": "hour (day of resurrection)",
+      "category": "lastday",
+      "meaningKey": "the-hour",
+      "timesInQuran": 47
+    },
+    {
+      "ar": "صَاحِب",
+      "en": "companion, fellow",
+      "category": "lastday",
+      "meaningKey": "companion",
+      "timesInQuran": 94
+    },
+    {
+      "ar": "عَاقِبَة",
+      "en": "end, outcome",
+      "category": "lastday",
+      "meaningKey": "outcome",
+      "timesInQuran": 32
+    },
+    {
+      "ar": "عَذَاب",
+      "en": "torment",
+      "category": "lastday",
+      "meaningKey": "torment",
+      "timesInQuran": 332
+    },
+    {
+      "ar": "عِقَاب",
+      "en": "chastisement (for sin)",
+      "category": "lastday",
+      "meaningKey": "chastisement",
+      "timesInQuran": 20
+    },
+    {
+      "ar": "قِيَامَة",
+      "en": "Resurrection",
+      "category": "lastday",
+      "meaningKey": "resurrection",
+      "timesInQuran": 70
+    },
+    {
+      "ar": "لِقَاء",
+      "en": "meeting",
+      "category": "lastday",
+      "meaningKey": "meeting",
+      "timesInQuran": 24
+    },
+    {
+      "ar": "مُسَمَّى",
+      "en": "fixed, appointed",
+      "category": "lastday",
+      "meaningKey": "appointed",
+      "timesInQuran": 21
+    },
+    {
+      "ar": "نَار",
+      "en": "fire",
+      "category": "lastday",
+      "meaningKey": "fire",
+      "timesInQuran": 145
+    },
+    {
+      "ar": "نَهَر",
+      "en": "river",
+      "category": "lastday",
+      "meaningKey": "river",
+      "timesInQuran": 54
+    },
+    {
+      "ar": "وَيْل",
+      "en": "woe unto",
+      "category": "lastday",
+      "meaningKey": "woe",
+      "timesInQuran": 40
+    },
+    {
+      "ar": "يَوْم",
+      "en": "day",
+      "category": "lastday",
+      "meaningKey": "day",
+      "timesInQuran": 393
+    },
+    {
+      "ar": "أَحَد",
+      "en": "one",
+      "category": "faith",
+      "meaningKey": "one",
+      "timesInQuran": 85
+    },
+    {
+      "ar": "إِلَٰه",
+      "en": "god, deity",
+      "category": "faith",
+      "meaningKey": "deity",
+      "timesInQuran": 34
+    },
+    {
+      "ar": "شَرِيك",
+      "en": "partner, associate",
+      "category": "faith",
+      "meaningKey": "partner",
+      "timesInQuran": 40
+    },
+    {
+      "ar": "شَهَادَة",
+      "en": "witness (testimony)",
+      "category": "faith",
+      "meaningKey": "testimony",
+      "timesInQuran": 26
+    },
+    {
+      "ar": "عَرْش",
+      "en": "throne",
+      "category": "faith",
+      "meaningKey": "throne",
+      "timesInQuran": 26
+    },
+    {
+      "ar": "عَهْد",
+      "en": "covenant, promise",
+      "category": "faith",
+      "meaningKey": "covenant",
+      "timesInQuran": 29
+    },
+    {
+      "ar": "غَيْب",
+      "en": "unseen",
+      "category": "faith",
+      "meaningKey": "unseen",
+      "timesInQuran": 49
+    },
+    {
+      "ar": "كِتَاب",
+      "en": "book",
+      "category": "faith",
+      "meaningKey": "book",
+      "timesInQuran": 261
+    },
+    {
+      "ar": "كَلِمَة",
+      "en": "word",
+      "category": "faith",
+      "meaningKey": "word",
+      "timesInQuran": 42
+    },
+    {
+      "ar": "مَلَك",
+      "en": "angel",
+      "category": "faith",
+      "meaningKey": "angel",
+      "timesInQuran": 88
+    },
+    {
+      "ar": "مِيثَاق",
+      "en": "covenant, treaty",
+      "category": "faith",
+      "meaningKey": "covenant",
+      "timesInQuran": 25
+    },
+    {
+      "ar": "وَاحِد",
+      "en": "one",
+      "category": "faith",
+      "meaningKey": "one",
+      "timesInQuran": 61
+    },
+    {
+      "ar": "أَمْر",
+      "en": "matter, affair",
+      "category": "din",
+      "meaningKey": "affair",
+      "timesInQuran": 13
+    },
+    {
+      "ar": "تَقْوَى",
+      "en": "piety, fear (of Allah)",
+      "category": "din",
+      "meaningKey": "piety",
+      "timesInQuran": 17
+    },
+    {
+      "ar": "حَقّ",
+      "en": "truth, right",
+      "category": "din",
+      "meaningKey": "truth",
+      "timesInQuran": 247
+    },
+    {
+      "ar": "بَاطِل",
+      "en": "falsehood",
+      "category": "din",
+      "meaningKey": "falsehood",
+      "timesInQuran": 26
+    },
+    {
+      "ar": "حِكْمَة",
+      "en": "wisdom",
+      "category": "din",
+      "meaningKey": "wisdom",
+      "timesInQuran": 20
+    },
+    {
+      "ar": "حَمْد",
+      "en": "praise",
+      "category": "din",
+      "meaningKey": "praise",
+      "timesInQuran": 43
+    },
+    {
+      "ar": "دِين",
+      "en": "religion, judgement",
+      "category": "din",
+      "meaningKey": "religion",
+      "timesInQuran": 92
+    },
+    {
+      "ar": "زَكَاة",
+      "en": "poor-due, charity",
+      "category": "din",
+      "meaningKey": "zakat",
+      "timesInQuran": 32
+    },
+    {
+      "ar": "شَهِيد",
+      "en": "witness, present",
+      "category": "din",
+      "meaningKey": "witness-person",
+      "timesInQuran": 56
+    },
+    {
+      "ar": "صَلَاة",
+      "en": "prayer",
+      "category": "din",
+      "meaningKey": "prayer",
+      "timesInQuran": 83
+    },
+    {
+      "ar": "مُبِين",
+      "en": "clear, self-expressive",
+      "category": "din",
+      "meaningKey": "clear",
+      "timesInQuran": 119
+    },
+    {
+      "ar": "نُور",
+      "en": "light",
+      "category": "din",
+      "meaningKey": "light",
+      "timesInQuran": 43
+    },
+    {
+      "ar": "آلَاء",
+      "en": "favours",
+      "category": "blessings",
+      "meaningKey": "favours",
+      "timesInQuran": 34
+    },
+    {
+      "ar": "سُلْطَان",
+      "en": "authority, warrant",
+      "category": "blessings",
+      "meaningKey": "authority",
+      "timesInQuran": 37
+    },
+    {
+      "ar": "فَضْل",
+      "en": "grace",
+      "category": "blessings",
+      "meaningKey": "grace",
+      "timesInQuran": 84
+    },
+    {
+      "ar": "مَاء",
+      "en": "water",
+      "category": "blessings",
+      "meaningKey": "water",
+      "timesInQuran": 63
+    },
+    {
+      "ar": "مُلْك",
+      "en": "dominion, reign",
+      "category": "blessings",
+      "meaningKey": "dominion",
+      "timesInQuran": 48
+    },
+    {
+      "ar": "نِعْمَة",
+      "en": "favour",
+      "category": "blessings",
+      "meaningKey": "favour",
+      "timesInQuran": 37
+    },
+    {
+      "ar": "أَجْمَعُون",
+      "en": "all (of them)",
+      "category": "blessings",
+      "meaningKey": "all-of-them",
+      "timesInQuran": 26
+    },
+    {
+      "ar": "إِذْن",
+      "en": "permission",
+      "category": "blessings",
+      "meaningKey": "permission",
+      "timesInQuran": 39
+    },
+    {
+      "ar": "بَأْس",
+      "en": "punishment, power, adversity",
+      "category": "blessings",
+      "meaningKey": "might-adversity",
+      "timesInQuran": 25
+    },
+    {
+      "ar": "جَمِيع",
+      "en": "all, everybody",
+      "category": "blessings",
+      "meaningKey": "everybody",
+      "timesInQuran": 53
+    },
+    {
+      "ar": "سَوَاء",
+      "en": "same, equal",
+      "category": "blessings",
+      "meaningKey": "equal",
+      "timesInQuran": 27
+    },
+    {
+      "ar": "فَرِيق",
+      "en": "party, group",
+      "category": "blessings",
+      "meaningKey": "party",
+      "timesInQuran": 33
+    },
+    {
+      "ar": "أَعْمَال",
+      "en": "actions, deeds",
+      "category": "deeds",
+      "meaningKey": "deeds",
+      "timesInQuran": 41
+    },
+    {
+      "ar": "حَسَنَة",
+      "en": "good deed",
+      "category": "deeds",
+      "meaningKey": "good-deed",
+      "timesInQuran": 31
+    },
+    {
+      "ar": "سَيِّئَة",
+      "en": "evil deed",
+      "category": "deeds",
+      "meaningKey": "evil-deed",
+      "timesInQuran": 68
+    },
+    {
+      "ar": "خَيْر",
+      "en": "good, better",
+      "category": "deeds",
+      "meaningKey": "good",
+      "timesInQuran": 186
+    },
+    {
+      "ar": "شَرّ",
+      "en": "evil, worse",
+      "category": "deeds",
+      "meaningKey": "evil",
+      "timesInQuran": 29
+    },
+    {
+      "ar": "إِثْم",
+      "en": "sin",
+      "category": "deeds",
+      "meaningKey": "sin",
+      "timesInQuran": 35
+    },
+    {
+      "ar": "ذَنْب",
+      "en": "sin",
+      "category": "deeds",
+      "meaningKey": "sin",
+      "timesInQuran": 37
+    },
+    {
+      "ar": "جُنَاح",
+      "en": "sin, blame",
+      "category": "deeds",
+      "meaningKey": "sin",
+      "timesInQuran": 25
+    },
+    {
+      "ar": "حَرَام",
+      "en": "unlawful",
+      "category": "deeds",
+      "meaningKey": "unlawful",
+      "timesInQuran": 26
+    },
+    {
+      "ar": "اِسْم",
+      "en": "name",
+      "category": "deeds",
+      "meaningKey": "name",
+      "timesInQuran": 27
+    },
+    {
+      "ar": "حَدِيث",
+      "en": "discourse, speech",
+      "category": "deeds",
+      "meaningKey": "discourse",
+      "timesInQuran": 23
+    },
+    {
+      "ar": "طَيِّبَة",
+      "en": "good, wholesome",
+      "category": "deeds",
+      "meaningKey": "wholesome",
+      "timesInQuran": 30
+    },
+    {
+      "ar": "وَجْه",
+      "en": "face",
+      "category": "body",
+      "meaningKey": "face",
+      "timesInQuran": 72
+    },
+    {
+      "ar": "عَيْن",
+      "en": "eye, spring",
+      "category": "body",
+      "meaningKey": "eye",
+      "timesInQuran": 47
+    },
+    {
+      "ar": "أَبْصَار",
+      "en": "sights",
+      "category": "body",
+      "meaningKey": "sights",
+      "timesInQuran": 38
+    },
+    {
+      "ar": "أَفْوَاه",
+      "en": "mouths",
+      "category": "body",
+      "meaningKey": "mouth",
+      "timesInQuran": 21
+    },
+    {
+      "ar": "لِسَان",
+      "en": "tongue, language",
+      "category": "body",
+      "meaningKey": "tongue",
+      "timesInQuran": 25
+    },
+    {
+      "ar": "قَلْب",
+      "en": "heart",
+      "category": "body",
+      "meaningKey": "heart",
+      "timesInQuran": 132
+    },
+    {
+      "ar": "صَدْر",
+      "en": "breast, chest",
+      "category": "body",
+      "meaningKey": "breast",
+      "timesInQuran": 44
+    },
+    {
+      "ar": "يَد",
+      "en": "hand",
+      "category": "body",
+      "meaningKey": "hand",
+      "timesInQuran": 118
+    },
+    {
+      "ar": "رِجْل",
+      "en": "foot",
+      "category": "body",
+      "meaningKey": "foot",
+      "timesInQuran": 15
+    },
+    {
+      "ar": "نَفْس",
+      "en": "soul",
+      "category": "body",
+      "meaningKey": "soul",
+      "timesInQuran": 293
+    },
+    {
+      "ar": "رُوح",
+      "en": "spirit",
+      "category": "body",
+      "meaningKey": "spirit",
+      "timesInQuran": 21
+    },
+    {
+      "ar": "قُوَّة",
+      "en": "power, strength",
+      "category": "body",
+      "meaningKey": "strength",
+      "timesInQuran": 28
+    },
+    {
+      "ar": "أُمّ",
+      "en": "mother",
+      "category": "relatives",
+      "meaningKey": "mother",
+      "timesInQuran": 35
+    },
+    {
+      "ar": "أَب",
+      "en": "father",
+      "category": "relatives",
+      "meaningKey": "father",
+      "timesInQuran": 117
+    },
+    {
+      "ar": "زَوْج",
+      "en": "wife, husband",
+      "category": "relatives",
+      "meaningKey": "spouse",
+      "timesInQuran": 76
+    },
+    {
+      "ar": "رَجُل",
+      "en": "man",
+      "category": "relatives",
+      "meaningKey": "man",
+      "timesInQuran": 57
+    },
+    {
+      "ar": "اِمْرَأَة",
+      "en": "woman",
+      "category": "relatives",
+      "meaningKey": "woman",
+      "timesInQuran": 83
+    },
+    {
+      "ar": "وَلَد",
+      "en": "child",
+      "category": "relatives",
+      "meaningKey": "child",
+      "timesInQuran": 56
+    },
+    {
+      "ar": "ذُرِّيَّة",
+      "en": "descendants, children",
+      "category": "relatives",
+      "meaningKey": "descendants",
+      "timesInQuran": 32
+    },
+    {
+      "ar": "اِبْن",
+      "en": "son",
+      "category": "relatives",
+      "meaningKey": "son",
+      "timesInQuran": 41
+    },
+    {
+      "ar": "أَخ",
+      "en": "brother",
+      "category": "relatives",
+      "meaningKey": "brother",
+      "timesInQuran": 67
+    },
+    {
+      "ar": "أُمَّة",
+      "en": "community",
+      "category": "people",
+      "meaningKey": "community",
+      "timesInQuran": 64
+    },
+    {
+      "ar": "قَوْم",
+      "en": "a nation, a folk",
+      "category": "people",
+      "meaningKey": "nation",
+      "timesInQuran": 383
+    },
+    {
+      "ar": "إِنْسَان",
+      "en": "mankind, human being",
+      "category": "people",
+      "meaningKey": "humankind",
+      "timesInQuran": 65
+    },
+    {
+      "ar": "نَاس",
+      "en": "men, people",
+      "category": "people",
+      "meaningKey": "the-people",
+      "timesInQuran": 248
+    },
+    {
+      "ar": "ذَكَر",
+      "en": "male",
+      "category": "people",
+      "meaningKey": "male",
+      "timesInQuran": 16
+    },
+    {
+      "ar": "أُنْثَى",
+      "en": "female",
+      "category": "people",
+      "meaningKey": "female",
+      "timesInQuran": 30
+    },
+    {
+      "ar": "عَبْد",
+      "en": "slave, servant",
+      "category": "people",
+      "meaningKey": "slave",
+      "timesInQuran": 126
+    },
+    {
+      "ar": "عَدُوّ",
+      "en": "enemy",
+      "category": "people",
+      "meaningKey": "enemy",
+      "timesInQuran": 44
+    },
+    {
+      "ar": "كُفَّار",
+      "en": "disbelievers",
+      "category": "people",
+      "meaningKey": "disbelievers",
+      "timesInQuran": 21
+    },
+    {
+      "ar": "مُجْرِم",
+      "en": "criminal",
+      "category": "people",
+      "meaningKey": "criminal",
+      "timesInQuran": 52
+    },
+    {
+      "ar": "مَلَأ",
+      "en": "chiefs, leaders",
+      "category": "people",
+      "meaningKey": "chiefs",
+      "timesInQuran": 22
+    },
+    {
+      "ar": "وَلِيّ",
+      "en": "protecting friend, guardian",
+      "category": "people",
+      "meaningKey": "guardian",
+      "timesInQuran": 86
+    },
+    {
+      "ar": "بَيْت",
+      "en": "house",
+      "category": "world",
+      "meaningKey": "house",
+      "timesInQuran": 64
+    },
+    {
+      "ar": "دَار",
+      "en": "abode",
+      "category": "world",
+      "meaningKey": "abode",
+      "timesInQuran": 48
+    },
+    {
+      "ar": "دُنْيَا",
+      "en": "this worldly life",
+      "category": "world",
+      "meaningKey": "this-world",
+      "timesInQuran": 115
+    },
+    {
+      "ar": "سَبِيل",
+      "en": "way",
+      "category": "world",
+      "meaningKey": "way",
+      "timesInQuran": 176
+    },
+    {
+      "ar": "صِرَاط",
+      "en": "path",
+      "category": "world",
+      "meaningKey": "path",
+      "timesInQuran": 46
+    },
+    {
+      "ar": "عَالَم",
+      "en": "the worlds, all creation",
+      "category": "world",
+      "meaningKey": "the-worlds",
+      "timesInQuran": 73
+    },
+    {
+      "ar": "فِتْنَة",
+      "en": "trial, persecution",
+      "category": "world",
+      "meaningKey": "trial",
+      "timesInQuran": 34
+    },
+    {
+      "ar": "قَرْيَة",
+      "en": "town",
+      "category": "world",
+      "meaningKey": "town",
+      "timesInQuran": 57
+    },
+    {
+      "ar": "مَال",
+      "en": "wealth",
+      "category": "world",
+      "meaningKey": "wealth",
+      "timesInQuran": 86
+    },
+    {
+      "ar": "مَتَاع",
+      "en": "provision, enjoyment",
+      "category": "world",
+      "meaningKey": "provision",
+      "timesInQuran": 34
+    },
+    {
+      "ar": "مَسْجِد",
+      "en": "mosque",
+      "category": "world",
+      "meaningKey": "mosque",
+      "timesInQuran": 28
+    },
+    {
+      "ar": "مَكَان",
+      "en": "place",
+      "category": "world",
+      "meaningKey": "place",
+      "timesInQuran": 32
+    },
+    {
+      "ar": "فَعَلَ",
+      "en": "to do",
+      "category": "v-fataha",
+      "meaningKey": "to-do",
+      "timesInQuran": 105
+    },
+    {
+      "ar": "فَتَحَ",
+      "en": "to open, to give victory",
+      "category": "v-fataha",
+      "meaningKey": "to-open",
+      "timesInQuran": 29
+    },
+    {
+      "ar": "بَعَثَ",
+      "en": "to raise, to resurrect",
+      "category": "v-fataha",
+      "meaningKey": "to-resurrect",
+      "timesInQuran": 65
+    },
+    {
+      "ar": "جَعَلَ",
+      "en": "to make, to place",
+      "category": "v-fataha",
+      "meaningKey": "to-make",
+      "timesInQuran": 346
+    },
+    {
+      "ar": "جَمَعَ",
+      "en": "to gather, to collect",
+      "category": "v-fataha",
+      "meaningKey": "to-gather",
+      "timesInQuran": 40
+    },
+    {
+      "ar": "ذَهَبَ",
+      "en": "to go",
+      "category": "v-fataha",
+      "meaningKey": "to-go",
+      "timesInQuran": 35
+    },
+    {
+      "ar": "رَفَعَ",
+      "en": "to lift up",
+      "category": "v-fataha",
+      "meaningKey": "to-lift",
+      "timesInQuran": 28
+    },
+    {
+      "ar": "سَحَرَ",
+      "en": "to enchant, to bewitch",
+      "category": "v-fataha",
+      "meaningKey": "to-bewitch",
+      "timesInQuran": 49
+    },
+    {
+      "ar": "صَلَحَ",
+      "en": "to act righteously",
+      "category": "v-fataha",
+      "meaningKey": "to-act-righteously",
+      "timesInQuran": 131
+    },
+    {
+      "ar": "لَعَنَ",
+      "en": "to curse",
+      "category": "v-fataha",
+      "meaningKey": "to-curse",
+      "timesInQuran": 27
+    },
+    {
+      "ar": "نَفَعَ",
+      "en": "to profit",
+      "category": "v-fataha",
+      "meaningKey": "to-profit",
+      "timesInQuran": 42
+    },
+    {
+      "ar": "نَصَرَ",
+      "en": "to help, to deliver",
+      "category": "v-nasara",
+      "meaningKey": "to-help",
+      "timesInQuran": 92
+    },
+    {
+      "ar": "بَلَغَ",
+      "en": "to reach",
+      "category": "v-nasara",
+      "meaningKey": "to-reach",
+      "timesInQuran": 49
+    },
+    {
+      "ar": "تَرَكَ",
+      "en": "to leave",
+      "category": "v-nasara",
+      "meaningKey": "to-leave",
+      "timesInQuran": 43
+    },
+    {
+      "ar": "حَشَرَ",
+      "en": "to gather, to bring together",
+      "category": "v-nasara",
+      "meaningKey": "to-assemble",
+      "timesInQuran": 43
+    },
+    {
+      "ar": "حَكَمَ",
+      "en": "to judge, to rule",
+      "category": "v-nasara",
+      "meaningKey": "to-judge",
+      "timesInQuran": 80
+    },
+    {
+      "ar": "خَرَجَ",
+      "en": "to come out",
+      "category": "v-nasara",
+      "meaningKey": "to-come-out",
+      "timesInQuran": 61
+    },
+    {
+      "ar": "خَلَدَ",
+      "en": "to live forever",
+      "category": "v-nasara",
+      "meaningKey": "to-live-forever",
+      "timesInQuran": 83
+    },
+    {
+      "ar": "خَلَقَ",
+      "en": "to create out of nothing",
+      "category": "v-nasara",
+      "meaningKey": "to-create",
+      "timesInQuran": 248
+    },
+    {
+      "ar": "دَخَلَ",
+      "en": "to enter",
+      "category": "v-nasara",
+      "meaningKey": "to-enter",
+      "timesInQuran": 78
+    },
+    {
+      "ar": "ذَكَرَ",
+      "en": "to remember",
+      "category": "v-nasara",
+      "meaningKey": "to-remember",
+      "timesInQuran": 163
+    },
+    {
+      "ar": "رَزَقَ",
+      "en": "to provide",
+      "category": "v-nasara",
+      "meaningKey": "to-provide",
+      "timesInQuran": 122
+    },
+    {
+      "ar": "سَجَدَ",
+      "en": "to prostrate",
+      "category": "v-nasara",
+      "meaningKey": "to-prostrate",
+      "timesInQuran": 49
+    },
+    {
+      "ar": "شَعَرَ",
+      "en": "to perceive",
+      "category": "v-nasara",
+      "meaningKey": "to-perceive",
+      "timesInQuran": 29
+    },
+    {
+      "ar": "شَكَرَ",
+      "en": "to be grateful",
+      "category": "v-nasara",
+      "meaningKey": "to-be-grateful",
+      "timesInQuran": 63
+    },
+    {
+      "ar": "صَدَقَ",
+      "en": "to be true, to say the truth",
+      "category": "v-nasara",
+      "meaningKey": "to-speak-truth",
+      "timesInQuran": 89
+    },
+    {
+      "ar": "عَبَدَ",
+      "en": "to worship, to serve",
+      "category": "v-nasara",
+      "meaningKey": "to-worship",
+      "timesInQuran": 143
+    },
+    {
+      "ar": "فَسَقَ",
+      "en": "to transgress",
+      "category": "v-nasara",
+      "meaningKey": "to-transgress",
+      "timesInQuran": 54
+    },
+    {
+      "ar": "قَتَلَ",
+      "en": "to kill, to slay",
+      "category": "v-nasara",
+      "meaningKey": "to-kill",
+      "timesInQuran": 93
+    },
+    {
+      "ar": "قَعَدَ",
+      "en": "to sit, to remain behind",
+      "category": "v-nasara",
+      "meaningKey": "to-sit",
+      "timesInQuran": 23
+    },
+    {
+      "ar": "كَتَبَ",
+      "en": "to prescribe, to write",
+      "category": "v-nasara",
+      "meaningKey": "to-write",
+      "timesInQuran": 56
+    },
+    {
+      "ar": "كَفَرَ",
+      "en": "to disbelieve, to be ungrateful",
+      "category": "v-nasara",
+      "meaningKey": "to-disbelieve",
+      "timesInQuran": 461
+    },
+    {
+      "ar": "مَكَرَ",
+      "en": "to plot",
+      "category": "v-nasara",
+      "meaningKey": "to-plot",
+      "timesInQuran": 43
+    },
+    {
+      "ar": "نَظَرَ",
+      "en": "to look, to wait",
+      "category": "v-nasara",
+      "meaningKey": "to-look",
+      "timesInQuran": 95
+    },
+    {
+      "ar": "ضَرَبَ",
+      "en": "to strike",
+      "category": "v-daraba",
+      "meaningKey": "to-strike",
+      "timesInQuran": 58
+    },
+    {
+      "ar": "حَمَلَ",
+      "en": "to carry, to bear",
+      "category": "v-daraba",
+      "meaningKey": "to-carry",
+      "timesInQuran": 50
+    },
+    {
+      "ar": "صَبَرَ",
+      "en": "to bear with patience",
+      "category": "v-daraba",
+      "meaningKey": "to-be-patient",
+      "timesInQuran": 94
+    },
+    {
+      "ar": "ظَلَمَ",
+      "en": "to wrong",
+      "category": "v-daraba",
+      "meaningKey": "to-wrong",
+      "timesInQuran": 266
+    },
+    {
+      "ar": "عَرَفَ",
+      "en": "to recognise",
+      "category": "v-daraba",
+      "meaningKey": "to-recognise",
+      "timesInQuran": 59
+    },
+    {
+      "ar": "عَقَلَ",
+      "en": "to understand, to comprehend",
+      "category": "v-daraba",
+      "meaningKey": "to-understand",
+      "timesInQuran": 49
+    },
+    {
+      "ar": "غَفَرَ",
+      "en": "to forgive, to cover",
+      "category": "v-daraba",
+      "meaningKey": "to-forgive",
+      "timesInQuran": 95
+    },
+    {
+      "ar": "قَدَرَ",
+      "en": "to decree, to have power",
+      "category": "v-daraba",
+      "meaningKey": "to-have-power",
+      "timesInQuran": 47
+    },
+    {
+      "ar": "كَذَبَ",
+      "en": "to lie",
+      "category": "v-daraba",
+      "meaningKey": "to-lie",
+      "timesInQuran": 76
+    },
+    {
+      "ar": "كَسَبَ",
+      "en": "to earn",
+      "category": "v-daraba",
+      "meaningKey": "to-earn",
+      "timesInQuran": 62
+    },
+    {
+      "ar": "مَلَكَ",
+      "en": "to possess",
+      "category": "v-daraba",
+      "meaningKey": "to-possess",
+      "timesInQuran": 49
+    },
+    {
+      "ar": "سَمِعَ",
+      "en": "to hear",
+      "category": "v-samia",
+      "meaningKey": "to-hear",
+      "timesInQuran": 100
+    },
+    {
+      "ar": "حَزِنَ",
+      "en": "to be grieved",
+      "category": "v-samia",
+      "meaningKey": "to-grieve",
+      "timesInQuran": 30
+    },
+    {
+      "ar": "حَسِبَ",
+      "en": "to think, to consider",
+      "category": "v-samia",
+      "meaningKey": "to-suppose",
+      "timesInQuran": 46
+    },
+    {
+      "ar": "حَفِظَ",
+      "en": "to guard, to protect",
+      "category": "v-samia",
+      "meaningKey": "to-guard",
+      "timesInQuran": 27
+    },
+    {
+      "ar": "خَسِرَ",
+      "en": "to lose",
+      "category": "v-samia",
+      "meaningKey": "to-lose",
+      "timesInQuran": 51
+    },
+    {
+      "ar": "رَحِمَ",
+      "en": "to have mercy on someone",
+      "category": "v-samia",
+      "meaningKey": "to-have-mercy",
+      "timesInQuran": 148
+    },
+    {
+      "ar": "شَهِدَ",
+      "en": "to bear witness, to be present",
+      "category": "v-samia",
+      "meaningKey": "to-bear-witness",
+      "timesInQuran": 66
+    },
+    {
+      "ar": "عَلِمَ",
+      "en": "to know",
+      "category": "v-samia",
+      "meaningKey": "to-know",
+      "timesInQuran": 518
+    },
+    {
+      "ar": "عَمِلَ",
+      "en": "to work, to do",
+      "category": "v-samia",
+      "meaningKey": "to-work",
+      "timesInQuran": 318
+    },
+    {
+      "ar": "كَرِهَ",
+      "en": "to dislike, to detest",
+      "category": "v-samia",
+      "meaningKey": "to-dislike",
+      "timesInQuran": 25
+    },
+    {
+      "ar": "بَصُرَ",
+      "en": "to watch, to see",
+      "category": "v-samia",
+      "meaningKey": "to-see",
+      "timesInQuran": 13
+    },
+    {
+      "ar": "حَيَّ",
+      "en": "to live, to greet",
+      "category": "v-mudaaf",
+      "meaningKey": "to-live",
+      "timesInQuran": 83
+    },
+    {
+      "ar": "رَدَّ",
+      "en": "to give back, to return",
+      "category": "v-mudaaf",
+      "meaningKey": "to-give-back",
+      "timesInQuran": 45
+    },
+    {
+      "ar": "صَدَّ",
+      "en": "to turn away, to hinder",
+      "category": "v-mudaaf",
+      "meaningKey": "to-hinder",
+      "timesInQuran": 39
+    },
+    {
+      "ar": "ضَرَّ",
+      "en": "to hurt, to harm",
+      "category": "v-mudaaf",
+      "meaningKey": "to-harm",
+      "timesInQuran": 31
+    },
+    {
+      "ar": "ضَلَّ",
+      "en": "to go astray, to err",
+      "category": "v-mudaaf",
+      "meaningKey": "to-go-astray",
+      "timesInQuran": 113
+    },
+    {
+      "ar": "ظَنَّ",
+      "en": "to think, to believe",
+      "category": "v-mudaaf",
+      "meaningKey": "to-think",
+      "timesInQuran": 68
+    },
+    {
+      "ar": "عَدَّ",
+      "en": "to count",
+      "category": "v-mudaaf",
+      "meaningKey": "to-count",
+      "timesInQuran": 17
+    },
+    {
+      "ar": "غَرَّ",
+      "en": "to beguile",
+      "category": "v-mudaaf",
+      "meaningKey": "to-beguile",
+      "timesInQuran": 24
+    },
+    {
+      "ar": "مَدَّ",
+      "en": "to spread out, to stretch",
+      "category": "v-mudaaf",
+      "meaningKey": "to-stretch",
+      "timesInQuran": 17
+    },
+    {
+      "ar": "مَسَّ",
+      "en": "to touch",
+      "category": "v-mudaaf",
+      "meaningKey": "to-touch",
+      "timesInQuran": 58
+    },
+    {
+      "ar": "وَدَّ",
+      "en": "to love, to wish",
+      "category": "v-mudaaf",
+      "meaningKey": "to-wish-for",
+      "timesInQuran": 18
+    },
+    {
+      "ar": "وَذَرَ",
+      "en": "to leave behind",
+      "category": "v-mithal",
+      "meaningKey": "to-leave-behind",
+      "timesInQuran": 45
+    },
+    {
+      "ar": "وَضَعَ",
+      "en": "to put, to set",
+      "category": "v-mithal",
+      "meaningKey": "to-put",
+      "timesInQuran": 22
+    },
+    {
+      "ar": "وَقَعَ",
+      "en": "to befall",
+      "category": "v-mithal",
+      "meaningKey": "to-befall-happen",
+      "timesInQuran": 20
+    },
+    {
+      "ar": "وَهَبَ",
+      "en": "to grant",
+      "category": "v-mithal",
+      "meaningKey": "to-grant",
+      "timesInQuran": 23
+    },
+    {
+      "ar": "وَجَدَ",
+      "en": "to find",
+      "category": "v-mithal",
+      "meaningKey": "to-find",
+      "timesInQuran": 107
+    },
+    {
+      "ar": "وَرِثَ",
+      "en": "to inherit",
+      "category": "v-mithal",
+      "meaningKey": "to-inherit",
+      "timesInQuran": 19
+    },
+    {
+      "ar": "وَزَرَ",
+      "en": "to bear a load",
+      "category": "v-mithal",
+      "meaningKey": "to-bear-a-load",
+      "timesInQuran": 19
+    },
+    {
+      "ar": "وَصَفَ",
+      "en": "to describe, to ascribe",
+      "category": "v-mithal",
+      "meaningKey": "to-describe",
+      "timesInQuran": 14
+    },
+    {
+      "ar": "وَعَدَ",
+      "en": "to promise",
+      "category": "v-mithal",
+      "meaningKey": "to-promise",
+      "timesInQuran": 124
+    },
+    {
+      "ar": "وَقَى",
+      "en": "to protect, to save",
+      "category": "v-mithal",
+      "meaningKey": "to-protect",
+      "timesInQuran": 19
+    },
+    {
+      "ar": "وَسِعَ",
+      "en": "to embrace, to comprehend",
+      "category": "v-mithal",
+      "meaningKey": "to-encompass",
+      "timesInQuran": 25
+    },
+    {
+      "ar": "تَابَ",
+      "en": "to repent",
+      "category": "v-ajwaf",
+      "meaningKey": "to-repent",
+      "timesInQuran": 72
+    },
+    {
+      "ar": "ذَاقَ",
+      "en": "to taste",
+      "category": "v-ajwaf",
+      "meaningKey": "to-taste",
+      "timesInQuran": 42
+    },
+    {
+      "ar": "فَازَ",
+      "en": "to succeed, to gain victory",
+      "category": "v-ajwaf",
+      "meaningKey": "to-succeed",
+      "timesInQuran": 26
+    },
+    {
+      "ar": "قَالَ",
+      "en": "to say",
+      "category": "v-ajwaf",
+      "meaningKey": "to-say",
+      "timesInQuran": 1719
+    },
+    {
+      "ar": "قَامَ",
+      "en": "to stand up",
+      "category": "v-ajwaf",
+      "meaningKey": "to-stand",
+      "timesInQuran": 55
+    },
+    {
+      "ar": "كَانَ",
+      "en": "to be",
+      "category": "v-ajwaf",
+      "meaningKey": "to-be",
+      "timesInQuran": 1361
+    },
+    {
+      "ar": "مَاتَ",
+      "en": "to die",
+      "category": "v-ajwaf",
+      "meaningKey": "to-die",
+      "timesInQuran": 93
+    },
+    {
+      "ar": "خَافَ",
+      "en": "to be afraid",
+      "category": "v-ajwaf",
+      "meaningKey": "to-be-afraid",
+      "timesInQuran": 112
+    },
+    {
+      "ar": "كَادَ",
+      "en": "to become nigh, to be close to",
+      "category": "v-ajwaf",
+      "meaningKey": "to-be-about-to",
+      "timesInQuran": 24
+    },
+    {
+      "ar": "زَادَ",
+      "en": "to increase",
+      "category": "v-ajwaf",
+      "meaningKey": "to-increase",
+      "timesInQuran": 51
+    },
+    {
+      "ar": "تَلَا",
+      "en": "to recite",
+      "category": "v-naqis",
+      "meaningKey": "to-recite",
+      "timesInQuran": 61
+    },
+    {
+      "ar": "دَعَا",
+      "en": "to call, to pray",
+      "category": "v-naqis",
+      "meaningKey": "to-call-upon",
+      "timesInQuran": 197
+    },
+    {
+      "ar": "عَفَا",
+      "en": "to forgo, to pardon",
+      "category": "v-naqis",
+      "meaningKey": "to-pardon",
+      "timesInQuran": 30
+    },
+    {
+      "ar": "بَغَى",
+      "en": "to want, to seek",
+      "category": "v-naqis",
+      "meaningKey": "to-desire",
+      "timesInQuran": 29
+    },
+    {
+      "ar": "جَرَى",
+      "en": "to flow",
+      "category": "v-naqis",
+      "meaningKey": "to-flow",
+      "timesInQuran": 60
+    },
+    {
+      "ar": "جَزَى",
+      "en": "to reward",
+      "category": "v-naqis",
+      "meaningKey": "to-recompense",
+      "timesInQuran": 116
+    },
+    {
+      "ar": "قَضَى",
+      "en": "to decree, to fulfil",
+      "category": "v-naqis",
+      "meaningKey": "to-decree",
+      "timesInQuran": 62
+    },
+    {
+      "ar": "كَفَى",
+      "en": "to suffice",
+      "category": "v-naqis",
+      "meaningKey": "to-suffice",
+      "timesInQuran": 32
+    },
+    {
+      "ar": "هَدَى",
+      "en": "to guide, to direct",
+      "category": "v-naqis",
+      "meaningKey": "to-guide",
+      "timesInQuran": 163
+    },
+    {
+      "ar": "خَشِيَ",
+      "en": "to fear",
+      "category": "v-naqis",
+      "meaningKey": "to-fear",
+      "timesInQuran": 48
+    },
+    {
+      "ar": "رَضِيَ",
+      "en": "to be satisfied, to be content",
+      "category": "v-naqis",
+      "meaningKey": "to-be-content",
+      "timesInQuran": 57
+    },
+    {
+      "ar": "نَسِيَ",
+      "en": "to forget",
+      "category": "v-naqis",
+      "meaningKey": "to-forget",
+      "timesInQuran": 36
+    },
+    {
+      "ar": "سَأَلَ",
+      "en": "to ask",
+      "category": "v-mahmuz",
+      "meaningKey": "to-ask",
+      "timesInQuran": 119
+    },
+    {
+      "ar": "قَرَأَ",
+      "en": "to read, to recite",
+      "category": "v-mahmuz",
+      "meaningKey": "to-read",
+      "timesInQuran": 17
+    },
+    {
+      "ar": "أَخَذَ",
+      "en": "to take, to catch",
+      "category": "v-mahmuz",
+      "meaningKey": "to-take",
+      "timesInQuran": 142
+    },
+    {
+      "ar": "أَكَلَ",
+      "en": "to eat",
+      "category": "v-mahmuz",
+      "meaningKey": "to-eat",
+      "timesInQuran": 101
+    },
+    {
+      "ar": "أَمَرَ",
+      "en": "to command",
+      "category": "v-mahmuz",
+      "meaningKey": "to-command",
+      "timesInQuran": 232
+    },
+    {
+      "ar": "أَمِنَ",
+      "en": "to be safe, to trust",
+      "category": "v-mahmuz",
+      "meaningKey": "to-be-safe",
+      "timesInQuran": 25
+    },
+    {
+      "ar": "أَبَى",
+      "en": "to refuse",
+      "category": "v-mahmuz",
+      "meaningKey": "to-refuse",
+      "timesInQuran": 13
+    },
+    {
+      "ar": "رَأَى",
+      "en": "to see",
+      "category": "v-mahmuz",
+      "meaningKey": "to-see",
+      "timesInQuran": 269
+    },
+    {
+      "ar": "أَتَى",
+      "en": "to come",
+      "category": "v-mahmuz",
+      "meaningKey": "to-come",
+      "timesInQuran": 263
+    },
+    {
+      "ar": "شَاءَ",
+      "en": "to will, to wish",
+      "category": "v-mahmuz",
+      "meaningKey": "to-will",
+      "timesInQuran": 277
+    },
+    {
+      "ar": "سَاءَ",
+      "en": "to be evil",
+      "category": "v-mahmuz",
+      "meaningKey": "to-be-evil",
+      "timesInQuran": 39
+    },
+    {
+      "ar": "جَاءَ",
+      "en": "to come",
+      "category": "v-mahmuz",
+      "meaningKey": "to-come",
+      "timesInQuran": 236
+    },
+    {
+      "ar": "بَدَّلَ",
+      "en": "to change",
+      "category": "v-fa33ala",
+      "meaningKey": "to-change",
+      "timesInQuran": 33
+    },
+    {
+      "ar": "بَشَّرَ",
+      "en": "to give good news",
+      "category": "v-fa33ala",
+      "meaningKey": "to-give-good-news",
+      "timesInQuran": 48
+    },
+    {
+      "ar": "بَيَّنَ",
+      "en": "to make clear",
+      "category": "v-fa33ala",
+      "meaningKey": "to-make-clear",
+      "timesInQuran": 35
+    },
+    {
+      "ar": "زَيَّنَ",
+      "en": "to adorn, to make seem fair",
+      "category": "v-fa33ala",
+      "meaningKey": "to-adorn",
+      "timesInQuran": 26
+    },
+    {
+      "ar": "سَبَّحَ",
+      "en": "to glorify, to praise",
+      "category": "v-fa33ala",
+      "meaningKey": "to-glorify",
+      "timesInQuran": 48
+    },
+    {
+      "ar": "سَخَّرَ",
+      "en": "to bring under control",
+      "category": "v-fa33ala",
+      "meaningKey": "to-subject",
+      "timesInQuran": 26
+    },
+    {
+      "ar": "صَدَّقَ",
+      "en": "to pronounce someone to be true",
+      "category": "v-fa33ala",
+      "meaningKey": "to-confirm-true",
+      "timesInQuran": 31
+    },
+    {
+      "ar": "عَذَّبَ",
+      "en": "to punish, to torment",
+      "category": "v-fa33ala",
+      "meaningKey": "to-punish",
+      "timesInQuran": 49
+    },
+    {
+      "ar": "عَلَّمَ",
+      "en": "to teach",
+      "category": "v-fa33ala",
+      "meaningKey": "to-teach",
+      "timesInQuran": 42
+    },
+    {
+      "ar": "قَدَّمَ",
+      "en": "to send forward",
+      "category": "v-fa33ala",
+      "meaningKey": "to-send-forward",
+      "timesInQuran": 27
+    },
+    {
+      "ar": "كَذَّبَ",
+      "en": "to accuse someone of falsehood",
+      "category": "v-fa33ala",
+      "meaningKey": "to-deny-as-lie",
+      "timesInQuran": 198
+    },
+    {
+      "ar": "نَبَّأَ",
+      "en": "to declare, to apprise",
+      "category": "v-fa33ala",
+      "meaningKey": "to-inform",
+      "timesInQuran": 46
+    },
+    {
+      "ar": "نَزَّلَ",
+      "en": "to send down",
+      "category": "v-fa33ala",
+      "meaningKey": "to-send-down",
+      "timesInQuran": 79
+    },
+    {
+      "ar": "نَجَّى",
+      "en": "to deliver, to rescue",
+      "category": "v-fa33ala",
+      "meaningKey": "to-rescue",
+      "timesInQuran": 39
+    },
+    {
+      "ar": "وَلَّى",
+      "en": "to turn",
+      "category": "v-fa33ala",
+      "meaningKey": "to-turn",
+      "timesInQuran": 45
+    },
+    {
+      "ar": "جَاهَدَ",
+      "en": "to struggle, to strive",
+      "category": "v-faa3ala",
+      "meaningKey": "to-strive",
+      "timesInQuran": 31
+    },
+    {
+      "ar": "قَاتَلَ",
+      "en": "to fight",
+      "category": "v-faa3ala",
+      "meaningKey": "to-fight",
+      "timesInQuran": 54
+    },
+    {
+      "ar": "نَادَى",
+      "en": "to call out, to cry unto",
+      "category": "v-faa3ala",
+      "meaningKey": "to-call-out",
+      "timesInQuran": 44
+    },
+    {
+      "ar": "نَافَقَ",
+      "en": "to play hypocrisy",
+      "category": "v-faa3ala",
+      "meaningKey": "to-be-hypocrite",
+      "timesInQuran": 34
+    },
+    {
+      "ar": "هَاجَرَ",
+      "en": "to migrate",
+      "category": "v-faa3ala",
+      "meaningKey": "to-migrate",
+      "timesInQuran": 24
+    },
+    {
+      "ar": "أَبْصَرَ",
+      "en": "to see, to watch",
+      "category": "v-af3ala",
+      "meaningKey": "to-see",
+      "timesInQuran": 36
+    },
+    {
+      "ar": "أَحْسَنَ",
+      "en": "to do good, to do excellently",
+      "category": "v-af3ala",
+      "meaningKey": "to-do-good",
+      "timesInQuran": 72
+    },
+    {
+      "ar": "أَخْرَجَ",
+      "en": "to bring forth",
+      "category": "v-af3ala",
+      "meaningKey": "to-bring-forth",
+      "timesInQuran": 108
+    },
+    {
+      "ar": "أَدْخَلَ",
+      "en": "to make someone enter",
+      "category": "v-af3ala",
+      "meaningKey": "to-admit",
+      "timesInQuran": 45
+    },
+    {
+      "ar": "أَرْجَعَ",
+      "en": "to send back, to take back",
+      "category": "v-af3ala",
+      "meaningKey": "to-send-back",
+      "timesInQuran": 33
+    },
+    {
+      "ar": "أَرْسَلَ",
+      "en": "to send",
+      "category": "v-af3ala",
+      "meaningKey": "to-send",
+      "timesInQuran": 135
+    },
+    {
+      "ar": "أَسْرَفَ",
+      "en": "to exceed, to be extravagant",
+      "category": "v-af3ala",
+      "meaningKey": "to-be-excessive",
+      "timesInQuran": 23
+    },
+    {
+      "ar": "أَسْلَمَ",
+      "en": "to submit, to surrender",
+      "category": "v-af3ala",
+      "meaningKey": "to-submit",
+      "timesInQuran": 72
+    },
+    {
+      "ar": "أَشْرَكَ",
+      "en": "to ascribe a partner",
+      "category": "v-af3ala",
+      "meaningKey": "to-associate-partners",
+      "timesInQuran": 120
+    },
+    {
+      "ar": "أَصْبَحَ",
+      "en": "to become",
+      "category": "v-af3ala",
+      "meaningKey": "to-become",
+      "timesInQuran": 34
+    },
+    {
+      "ar": "أَصْلَحَ",
+      "en": "to become good, to make good",
+      "category": "v-af3ala",
+      "meaningKey": "to-set-right",
+      "timesInQuran": 40
+    },
+    {
+      "ar": "أَعْرَضَ",
+      "en": "to turn away, to backslide",
+      "category": "v-af3ala",
+      "meaningKey": "to-turn-away",
+      "timesInQuran": 53
+    },
+    {
+      "ar": "أَغْرَقَ",
+      "en": "to drown",
+      "category": "v-af3ala",
+      "meaningKey": "to-drown",
+      "timesInQuran": 21
+    },
+    {
+      "ar": "أَفْسَدَ",
+      "en": "to spread corruption",
+      "category": "v-af3ala",
+      "meaningKey": "to-corrupt",
+      "timesInQuran": 36
+    },
+    {
+      "ar": "أَفْلَحَ",
+      "en": "to be successful",
+      "category": "v-af3ala",
+      "meaningKey": "to-prosper",
+      "timesInQuran": 40
+    },
+    {
+      "ar": "أَنْبَتَ",
+      "en": "to make something grow",
+      "category": "v-af3ala",
+      "meaningKey": "to-cause-growth",
+      "timesInQuran": 16
+    },
+    {
+      "ar": "أَنْذَرَ",
+      "en": "to warn",
+      "category": "v-af3ala",
+      "meaningKey": "to-warn",
+      "timesInQuran": 70
+    },
+    {
+      "ar": "أَنْزَلَ",
+      "en": "to send down, to reveal",
+      "category": "v-af3ala",
+      "meaningKey": "to-reveal-send-down",
+      "timesInQuran": 190
+    },
+    {
+      "ar": "أَنْشَأَ",
+      "en": "to produce, to create",
+      "category": "v-af3ala",
+      "meaningKey": "to-bring-into-being",
+      "timesInQuran": 22
+    },
+    {
+      "ar": "أَنْعَمَ",
+      "en": "to favour, to bestow grace",
+      "category": "v-af3ala",
+      "meaningKey": "to-bestow-favour",
+      "timesInQuran": 17
+    },
+    {
+      "ar": "أَنْفَقَ",
+      "en": "to spend",
+      "category": "v-af3ala",
+      "meaningKey": "to-spend",
+      "timesInQuran": 69
+    },
+    {
+      "ar": "أَنْكَرَ",
+      "en": "to not recognize, to deny",
+      "category": "v-af3ala",
+      "meaningKey": "to-deny",
+      "timesInQuran": 25
+    },
+    {
+      "ar": "أَهْلَكَ",
+      "en": "to destroy",
+      "category": "v-af3ala",
+      "meaningKey": "to-destroy",
+      "timesInQuran": 58
+    },
+    {
+      "ar": "أَتَمَّ",
+      "en": "to complete",
+      "category": "v-af3ala",
+      "meaningKey": "to-complete",
+      "timesInQuran": 17
+    },
+    {
+      "ar": "أَحَبَّ",
+      "en": "to love",
+      "category": "v-af3ala",
+      "meaningKey": "to-love",
+      "timesInQuran": 64
+    },
+    {
+      "ar": "أَحَلَّ",
+      "en": "to make lawful",
+      "category": "v-af3ala",
+      "meaningKey": "to-make-lawful",
+      "timesInQuran": 21
+    },
+    {
+      "ar": "أَسَرَّ",
+      "en": "to conceal, to speak secretly",
+      "category": "v-af3ala",
+      "meaningKey": "to-speak-secretly",
+      "timesInQuran": 18
+    },
+    {
+      "ar": "أَضَلَّ",
+      "en": "to leave in error, to send astray",
+      "category": "v-af3ala",
+      "meaningKey": "to-mislead",
+      "timesInQuran": 68
+    },
+    {
+      "ar": "أَعَدَّ",
+      "en": "to prepare",
+      "category": "v-af3ala",
+      "meaningKey": "to-prepare",
+      "timesInQuran": 20
+    },
+    {
+      "ar": "أَذَاقَ",
+      "en": "to make someone taste",
+      "category": "v-af3ala",
+      "meaningKey": "to-make-taste",
+      "timesInQuran": 22
+    },
+    {
+      "ar": "أَرَادَ",
+      "en": "to intend, to wish",
+      "category": "v-af3ala",
+      "meaningKey": "to-intend",
+      "timesInQuran": 139
+    },
+    {
+      "ar": "أَصَابَ",
+      "en": "to befall, to inflict",
+      "category": "v-af3ala",
+      "meaningKey": "to-strike-befall",
+      "timesInQuran": 65
+    },
+    {
+      "ar": "أَطَاعَ",
+      "en": "to obey",
+      "category": "v-af3ala",
+      "meaningKey": "to-obey",
+      "timesInQuran": 74
+    },
+    {
+      "ar": "أَقَامَ",
+      "en": "to establish, to set upright",
+      "category": "v-af3ala",
+      "meaningKey": "to-establish",
+      "timesInQuran": 67
+    },
+    {
+      "ar": "أَمَاتَ",
+      "en": "to cause someone to die",
+      "category": "v-af3ala",
+      "meaningKey": "to-cause-death",
+      "timesInQuran": 21
+    },
+    {
+      "ar": "أَحْيَا",
+      "en": "to give life",
+      "category": "v-af3ala",
+      "meaningKey": "to-give-life",
+      "timesInQuran": 53
+    },
+    {
+      "ar": "أَخْفَى",
+      "en": "to conceal",
+      "category": "v-af3ala",
+      "meaningKey": "to-conceal",
+      "timesInQuran": 18
+    },
+    {
+      "ar": "أَرَى",
+      "en": "to show",
+      "category": "v-af3ala",
+      "meaningKey": "to-show",
+      "timesInQuran": 44
+    },
+    {
+      "ar": "أَغْنَى",
+      "en": "to enrich",
+      "category": "v-af3ala",
+      "meaningKey": "to-enrich",
+      "timesInQuran": 41
+    },
+    {
+      "ar": "أَلْقَى",
+      "en": "to throw, to cast",
+      "category": "v-af3ala",
+      "meaningKey": "to-cast",
+      "timesInQuran": 71
+    },
+    {
+      "ar": "أَنْجَى",
+      "en": "to rescue, to save",
+      "category": "v-af3ala",
+      "meaningKey": "to-save",
+      "timesInQuran": 23
+    },
+    {
+      "ar": "أَوْحَى",
+      "en": "to reveal, to inspire",
+      "category": "v-af3ala",
+      "meaningKey": "to-inspire",
+      "timesInQuran": 72
+    },
+    {
+      "ar": "أَوْفَى",
+      "en": "to fulfil",
+      "category": "v-af3ala",
+      "meaningKey": "to-fulfil",
+      "timesInQuran": 18
+    },
+    {
+      "ar": "آمَنَ",
+      "en": "to believe",
+      "category": "v-af3ala",
+      "meaningKey": "to-believe",
+      "timesInQuran": 782
+    },
+    {
+      "ar": "آتَى",
+      "en": "to give",
+      "category": "v-af3ala",
+      "meaningKey": "to-give",
+      "timesInQuran": 274
+    },
+    {
+      "ar": "آذَى",
+      "en": "to give trouble, to harm",
+      "category": "v-af3ala",
+      "meaningKey": "to-hurt",
+      "timesInQuran": 16
+    },
+    {
+      "ar": "تَفَكَّرَ",
+      "en": "to think over, to reflect",
+      "category": "v-tafa33ala",
+      "meaningKey": "to-reflect",
+      "timesInQuran": 17
+    },
+    {
+      "ar": "تَذَكَّرَ",
+      "en": "to receive admonition, to remember",
+      "category": "v-tafa33ala",
+      "meaningKey": "to-take-heed",
+      "timesInQuran": 51
+    },
+    {
+      "ar": "تَوَكَّلَ",
+      "en": "to put one's trust",
+      "category": "v-tafa33ala",
+      "meaningKey": "to-put-trust",
+      "timesInQuran": 44
+    },
+    {
+      "ar": "تَبَيَّنَ",
+      "en": "to become clear",
+      "category": "v-tafa33ala",
+      "meaningKey": "to-become-clear",
+      "timesInQuran": 18
+    },
+    {
+      "ar": "تَرَبَّصَ",
+      "en": "to wait and watch for opportunity",
+      "category": "v-tafa33ala",
+      "meaningKey": "to-lie-in-wait",
+      "timesInQuran": 17
+    },
+    {
+      "ar": "تَوَلَّى",
+      "en": "to turn away, to take for friend",
+      "category": "v-tafa33ala",
+      "meaningKey": "to-turn-my-back",
+      "timesInQuran": 79
+    },
+    {
+      "ar": "تَوَفَّى",
+      "en": "to make someone die, to receive in full",
+      "category": "v-tafa33ala",
+      "meaningKey": "to-take-in-full",
+      "timesInQuran": 25
+    },
+    {
+      "ar": "تَبَارَكَ",
+      "en": "to be blessed or exalted",
+      "category": "v-tafa33ala",
+      "meaningKey": "to-be-blessed",
+      "timesInQuran": 9
+    },
+    {
+      "ar": "تَسَاءَلَ",
+      "en": "to ask each other",
+      "category": "v-tafa33ala",
+      "meaningKey": "to-ask-one-another",
+      "timesInQuran": 9
+    },
+    {
+      "ar": "اخْتَلَفَ",
+      "en": "to differ",
+      "category": "v-ifta3ala",
+      "meaningKey": "to-differ",
+      "timesInQuran": 52
+    },
+    {
+      "ar": "اتَّبَعَ",
+      "en": "to follow",
+      "category": "v-ifta3ala",
+      "meaningKey": "to-follow",
+      "timesInQuran": 140
+    },
+    {
+      "ar": "اتَّخَذَ",
+      "en": "to take, to adopt",
+      "category": "v-ifta3ala",
+      "meaningKey": "to-adopt",
+      "timesInQuran": 128
+    },
+    {
+      "ar": "اتَّقَى",
+      "en": "to be on guard, to protect oneself",
+      "category": "v-ifta3ala",
+      "meaningKey": "to-be-god-fearing",
+      "timesInQuran": 215
+    },
+    {
+      "ar": "افْتَرَى",
+      "en": "to fabricate a lie",
+      "category": "v-ifta3ala",
+      "meaningKey": "to-fabricate",
+      "timesInQuran": 59
+    },
+    {
+      "ar": "اهْتَدَى",
+      "en": "to find or follow the right path",
+      "category": "v-ifta3ala",
+      "meaningKey": "to-be-guided",
+      "timesInQuran": 61
+    },
+    {
+      "ar": "ابْتَغَى",
+      "en": "to seek",
+      "category": "v-ifta3ala",
+      "meaningKey": "to-seek",
+      "timesInQuran": 48
+    },
+    {
+      "ar": "انْقَلَبَ",
+      "en": "to turn around, to return",
+      "category": "v-ifta3ala",
+      "meaningKey": "to-turn-back",
+      "timesInQuran": 20
+    },
+    {
+      "ar": "انْتَهَى",
+      "en": "to refrain, to end",
+      "category": "v-ifta3ala",
+      "meaningKey": "to-desist",
+      "timesInQuran": 16
+    },
+    {
+      "ar": "اسْوَدَّ",
+      "en": "to become black",
+      "category": "v-istaf3ala",
+      "meaningKey": "to-blacken",
+      "timesInQuran": 3
+    },
+    {
+      "ar": "ابْيَضَّ",
+      "en": "to become white",
+      "category": "v-istaf3ala",
+      "meaningKey": "to-whiten",
+      "timesInQuran": 3
+    },
+    {
+      "ar": "اسْتَعْجَلَ",
+      "en": "to seek to hasten",
+      "category": "v-istaf3ala",
+      "meaningKey": "to-hasten",
+      "timesInQuran": 20
+    },
+    {
+      "ar": "اسْتَغْفَرَ",
+      "en": "to ask forgiveness",
+      "category": "v-istaf3ala",
+      "meaningKey": "to-ask-forgiveness",
+      "timesInQuran": 42
+    },
+    {
+      "ar": "اسْتَكْبَرَ",
+      "en": "to act arrogantly",
+      "category": "v-istaf3ala",
+      "meaningKey": "to-be-arrogant",
+      "timesInQuran": 48
+    },
+    {
+      "ar": "اسْتَهْزَأَ",
+      "en": "to mock at",
+      "category": "v-istaf3ala",
+      "meaningKey": "to-mock",
+      "timesInQuran": 23
+    },
+    {
+      "ar": "اسْتَجَابَ",
+      "en": "to accept, to respond",
+      "category": "v-istaf3ala",
+      "meaningKey": "to-respond",
+      "timesInQuran": 28
+    },
+    {
+      "ar": "اسْتَطَاعَ",
+      "en": "to be able to",
+      "category": "v-istaf3ala",
+      "meaningKey": "to-be-able",
+      "timesInQuran": 42
+    },
+    {
+      "ar": "اسْتَقَامَ",
+      "en": "to be straight, to act straight",
+      "category": "v-istaf3ala",
+      "meaningKey": "to-be-upright",
+      "timesInQuran": 47
+    }
+  ]
+}

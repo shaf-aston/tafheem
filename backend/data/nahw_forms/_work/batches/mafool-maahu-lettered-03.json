@@ -1,0 +1,233 @@
+{
+ "batch": "mafool-maahu-lettered-03",
+ "questions": [
+  {
+   "id": "mafool-maahu/application/7",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "7",
+    "images": [
+     "q044.png",
+     "q045.png",
+     "q046.png",
+     "q047.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "أطعمتُ زيدًا دجاجة وماء",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و you are dealing with.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "كلاهما"
+     ],
+     "points": "0/1",
+     "feedback": "Chicken can be fed to someone, water is given to drink.\nso, I fed Zaid chicken `WITH` water. Meaning whilst eating the chicken, he's drinking sips of water. It's happening at the same time within the process of consuming nutrients."
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Student left parts b and c blank (no text entered); no flags on the ticked answer itself.",
+    "دجاجة carries no haraka in the picture (q045.png); transcribed exactly as shown, with no tanween."
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/8",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "8",
+    "images": [
+     "q048.png",
+     "q049.png",
+     "q050.png",
+     "q051.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "لقيتُ زيدا وفاطمة وهو قائم",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و you are dealing with.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "كلاهما"
+     ],
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Student left parts b and c blank (no text entered).",
+    "No visible tanween on 'زيدا' or 'قائم' in the image; transcribed as plain letters shown."
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/9",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "9",
+    "images": [
+     "q052.png",
+     "q053.png",
+     "q054.png",
+     "q055.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "هذا لِزيدٍ وبكر",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و you are dealing with.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "عاطفة",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "عاطفة"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Student left parts b and c blank (no text entered).",
+    "بكر carries no haraka in the picture (q053.png); transcribed exactly as shown, with no tanween."
+   ]
+  }
+ ]
+}

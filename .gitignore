@@ -1,0 +1,221 @@
+# ---------------------------
+# Global ignores
+# ---------------------------
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon\r
+
+# Temp files
+*.tmp
+*.temp
+~$*
+
+# Log files
+*.log
+logs/
+
+# Node / frontend
+node_modules/
+dist/
+build/
+.parcel-cache/
+.vite/
+.turbo/
+/.pnp.cjs
+/.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Lock files (keep lockfiles if you want reproducible installs, comment out if you prefer)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+pip-wheel-metadata/
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Pytest, coverage, caches
+.pytest_cache/
+.mypy_cache/
+.dmypy/
+.pyre/
+htmlcov/
+coverage.xml
+.coverage
+coverage-report/
+
+# Packaging
+*.manifest
+*.spec
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+*.tmproj
+*.kate-swp
+*.iml
+
+# Visual Studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# Windows
+Desktop.ini
+$RECYCLE.BIN/
+
+# Secrets and config
+.env
+.env.*
+env.local
+secrets.json
+credentials.json
+*.pem
+*.key
+*.crt
+*.p12
+.aws/credentials
+
+# Database
+*.sqlite3
+*.db
+*.sql
+# A database in WAL mode keeps two working files beside it. They are rebuilt
+# from the database itself, and *.db above does not match their names.
+*.db-wal
+*.db-shm
+
+# Large datasets / media
+# Project-specific large folders (ignore if you don't want to track large books/datasets)
+/Islamic books/
+/Nahw yr3/
+# data/
+# media/
+
+# Python compiled C extensions
+*.so
+*.dylib
+*.dll
+
+# Binary/executable
+*.exe
+*.out
+*.app
+
+# LaTeX
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+
+# Documentation build
+docs/_build/
+
+# Coverage and reporting
+coverage/
+nosetests.xml
+pytest_cache/
+
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+docker-compose.*.yml
+
+# Virtual environments
+# Per-project virtualenvs
+/backend/venv/
+/backend/.venv/
+.idea/**/venv/
+
+# Misc
+*.log
+*.csv
+*.tsv
+*.dat
+
+# Allow local overrides: keep this at the bottom so people can add local ignores without committing them
+.gitignore_local
+
+# End of file
+# Generated data — rebuild with the scripts, never commit
+backend/data/wiktionary-arabic.jsonl
+backend/data/arabic_dictionary.json
+
+# One table of every quiz word, and the files the quiz fetches from it:
+# backend/scripts/build_lexicon.py then backend/scripts/export_quiz_words.py.
+# The words themselves are authored in backend/data/vocabulary.json and
+# quranic-words.json and corrected in word_kinds.json, which are committed.
+backend/data/lexicon.db
+frontend/public/words/
+
+# Qur'anic corpus: rebuilt by backend/scripts/build_quran_corpus.py
+backend/data/quran/quran-morphology.txt
+backend/data/quran/corpus.db
+
+# Word-by-word English: rebuilt by backend/scripts/build_quran_meanings.py
+backend/data/quran/meanings.db
+
+# The Qur'an's library: every tafsir and translation, in one file.
+# The downloads are third-party books fetched by backend/scripts/fetch_quran_editions.py;
+# library.db is rebuilt from them by backend/scripts/import_quran_editions.py.
+# editions.json, which names them, IS committed: it is the manifest, not data.
+backend/data/quran/downloads/
+backend/data/quran/library.db
+
+# Marked recitations and their text, fetched by backend/scripts/fetch_recitation_checks.py.
+# sources.json, which names them, IS committed.
+backend/data/recitation_checks/downloads/
+# The plain-spelling Qur'an the reciting check needs, fetched by the same script.
+backend/data/quran/imlaei.json
+
+# Over GitHub's 100 MB per-file limit; a push containing it is rejected outright
+backend/data/parser/encoder.onnx
+
+# Screenshots and scratch output from probing the running app
+frontend/*.png
+frontend/ux_screenshots/
+frontend/ux_a11y_report.json
+frontend/scripts/ears-report.txt
+/probe-ear.png
+/scratchout*.txt

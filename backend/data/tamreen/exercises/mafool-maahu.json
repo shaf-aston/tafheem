@@ -1,0 +1,995 @@
+{
+ "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+ "form": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+ "harvested": "2026-09-17",
+ "rules": [
+  {
+   "id": "mafool-maahu-r01",
+   "question": "The مفعول معه is...",
+   "options": [
+    "...an إسم.",
+    "...a حرف.",
+    "...a فعل."
+   ],
+   "answer": [
+    "...an إسم."
+   ],
+   "tags": [
+    "mafool-maahu",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r02",
+   "question": "The مفعول معه is...",
+   "options": [
+    "...مجرور.",
+    "...مرفوع.",
+    "...منصوب."
+   ],
+   "answer": [
+    "...منصوب."
+   ],
+   "tags": [
+    "mafool-maahu",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r03",
+   "question": "The و of the مفعول معه signifes...",
+   "options": [
+    "...association of what is after it with what is before it when the action is conducted.",
+    "...the state of what is before it while the action is conducted.",
+    "...the greatness of what is after it which deems the action necessary due to it being an oath.",
+    "...co-equailty of what is after it with what is before it when the action is conducted."
+   ],
+   "answer": [
+    "...association of what is after it with what is before it when the action is conducted."
+   ],
+   "tags": [
+    "tarif-mustalah",
+    "waw-maiyyah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r04",
+   "question": "The مفعول معه ...",
+   "options": [
+    "...can come before the verb.",
+    "...must come before the verb.",
+    "...must come after the verb.",
+    "...can come after the verb."
+   ],
+   "answer": [
+    "...must come after the verb."
+   ],
+   "tags": [
+    "mafool-maahu",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r05",
+   "question": "The مفعول معه ...",
+   "options": [
+    "...can come after the noun which it would have been عطف to.",
+    "...can come before the noun which it would have been عطف to.",
+    "...must come after the noun which it would have been عطف to.",
+    "...must come before the noun which it would have been عطف to."
+   ],
+   "answer": [
+    "...must come after the noun which it would have been عطف to."
+   ],
+   "tags": [
+    "atf",
+    "mafool-maahu",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r06",
+   "question": "The مفعول معه will be necessary...",
+   "options": [
+    "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+    "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار.",
+    "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+    "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+   ],
+   "answer": [
+    "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+    "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+   ],
+   "tags": [
+    "dameer-majroor-muttasil",
+    "dameer-marfoo-muttasil",
+    "mafool-maahu",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r07",
+   "question": "The مفعول معه and the noun which it would have been عطف to...",
+   "options": [
+    "...can NOT be seperated with a gap.",
+    "...can be seperated with a gap."
+   ],
+   "answer": [
+    "...can NOT be seperated with a gap."
+   ],
+   "tags": [
+    "atf",
+    "mafool-maahu",
+    "tarif-mustalah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r08",
+   "question": "عطف is not permissible...",
+   "options": [
+    "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+    "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+    "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb.",
+    "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار."
+   ],
+   "answer": [
+    "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+    "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb."
+   ],
+   "tags": [
+    "atf",
+    "dameer-majroor-muttasil",
+    "dameer-marfoo-muttasil",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r09",
+   "question": "If the فعل or شبه الفعل is literal and عطف is permissible, then...",
+   "options": [
+    "...only عطف will be permissible.",
+    "...only مفعول معه will be permissible.",
+    "...both عطف & مفعول معه will be permissible.",
+    "...both عطف & مفعول معه will Not be permissible."
+   ],
+   "answer": [
+    "...both عطف & مفعول معه will be permissible."
+   ],
+   "tags": [
+    "atf",
+    "mafool-maahu",
+    "shibh-fil",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r10",
+   "question": "If the فعل or شبه الفعل is not literal, rather it's abstract (in meaning) and عطف is permissible, then...",
+   "options": [
+    "...both عطف & مفعول معه will Not be permissible.",
+    "...both عطف & مفعول معه will be permissible.",
+    "...only عطف will be permissible.",
+    "...only مفعول معه will be permissible."
+   ],
+   "answer": [
+    "...only عطف will be permissible."
+   ],
+   "tags": [
+    "atf",
+    "mafool-maahu",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r11",
+   "question": "If the فعل or شبه الفعل is not literal, rather it's abstract (in meaning) and عطف is NOT permissible, then...",
+   "options": [
+    "...both عطف & مفعول معه will Not be permissible.",
+    "...only عطف will be permissible.",
+    "...both عطف & مفعول معه will be permissible.",
+    "...only مفعول معه will be permissible."
+   ],
+   "answer": [
+    "...only مفعول معه will be permissible."
+   ],
+   "tags": [
+    "atf",
+    "mafool-maahu",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r12",
+   "question": "If labeling the latter noun a معطوف is illogical, then...",
+   "options": [
+    "...both عطف & مفعول معه will still be permissible because Nahw does not deal with logic.",
+    "...the only option will be مفعول معه."
+   ],
+   "answer": [
+    "...the only option will be مفعول معه."
+   ],
+   "tags": [
+    "mafool-maahu",
+    "muaatoof",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r13",
+   "question": "If labeling the latter noun a معطوف is illogical, then...",
+   "options": [
+    "...the only option will be مفعول معه.",
+    "...both عطف & مفعول معه will still be permissible because Nahw does not deal with logic."
+   ],
+   "answer": [
+    "...the only option will be مفعول معه."
+   ],
+   "tags": [
+    "mafool-maahu",
+    "muaatoof",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r14",
+   "question": "If a verb which requires 2 or more doers for it to make sense like تشافه (talking to eachother) is used, then...",
+   "options": [
+    "...the only option will be عطف.",
+    "...both عطف & مفعول معه will be permissible.",
+    "...the only option will be مفعول معه."
+   ],
+   "answer": [
+    "...the only option will be عطف."
+   ],
+   "tags": [
+    "atf",
+    "tafriq-mafaheem",
+    "tashafuh"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r15",
+   "question": "If a pronoun is used in reference to the former noun & the مفعول معه, then...",
+   "options": [
+    "...both the former noun and the latter word (مفعول معه) will be considered to correlate with the pronoun because they are both co-equal.",
+    "...the former noun will be considered to correlate with the pronoun because the مفعول معه is not co-equal but only an associate.",
+    "...the latter noun (مفعول معه) will be considered to correlate with the pronoun because the مفعول معه is more important.."
+   ],
+   "answer": [
+    "...the former noun will be considered to correlate with the pronoun because the مفعول معه is not co-equal but only an associate."
+   ],
+   "tags": [
+    "atf",
+    "mafool-maahu",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r16",
+   "question": "عطف is permissible...",
+   "options": [
+    "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار.",
+    "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+    "...If the former noun is a ضمير مجرور متصل and the the latter noun does NOT contain a repitition of the جار.",
+    "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb.",
+    "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb and there is also a gap between the ضمير مرفوع متصل and the latter noun."
+   ],
+   "answer": [
+    "...If the former noun is a ضمير مجرور متصل and the latter noun does contain a repitition of the جار.",
+    "...If the former noun is a ضمير مرفوع متصل and it is also emphasised outside of the verb.",
+    "...If the former noun is a ضمير مرفوع متصل and it is NOT emphasised outside of the verb and there is also a gap between the ضمير مرفوع متصل and the latter noun."
+   ],
+   "tags": [
+    "atf",
+    "dameer-majroor-muttasil",
+    "dameer-marfoo-muttasil",
+    "tafriq-mafaheem"
+   ]
+  },
+  {
+   "id": "mafool-maahu-r17",
+   "question": "If a pronoun is used in reference to the former noun & the معطوف, then...",
+   "options": [
+    "...the former noun will be considered to correlate with the pronoun because the معطوف is not co-equal but only an associate.",
+    "...the latter noun (معطوف) will be considered to correlate with the pronoun because the معطوف is more important..",
+    "...both the former noun and the latter noun (معطوف) will be considered to correlate with the pronoun because they are both co-equal."
+   ],
+   "answer": [
+    "...both the former noun and the latter noun (معطوف) will be considered to correlate with the pronoun because they are both co-equal."
+   ],
+   "tags": [
+    "atf",
+    "muaatoof",
+    "tafriq-mafaheem"
+   ]
+  }
+ ],
+ "examples": [
+  {
+   "id": "mafool-maahu-e01",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-00.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the و joining بكر to زيد a واو عاطفة (and), a واو معية (with), or can it be read either way (كلاهما)?",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "عاطفة"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "تَخَاصَمَ means they disputed with one another, a verb that by its own meaning needs two or more doers. The rule says that when such a verb is used, only عطف is possible, never مفعول معه. So بكر must be a معطوف on زيد, both of them doing the disputing together, and the و here is واو عاطفة. It cannot be واو معية, because a مفعول معه does not itself do the action, and here بكر must be a doer for the sentence تَخَاصَمَ زيد وبكر to make sense.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "Zayd and Bakr disputed with each other.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "تَخَاصَمَ زيد وبكر",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "atf",
+    "tafriq-mafaheem",
+    "tarjama"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e02",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-01.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the و before المِصباح a واو عاطفة (and), a واو معية (with), or can it be read either way (كلاهما)?",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "معية"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "زيد read the قرآن, but المِصباح, the lamp, cannot read. Calling المِصباح a معطوف would mean it shares the act of reading with زيد, which is illogical. The rule says that when labelling the latter noun a معطوف is illogical, only مفعول معه is left. So in قرأ القرآن زيد والمِصباح, المِصباح is مفعول معه, and the و is واو معية, showing زيد's reading happened alongside the lamp.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "Zayd read the Qur'an together with the lamp.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "قرأ القرآن زيد والمِصباح",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "mafool-maahu",
+    "tafriq-mafaheem",
+    "tarjama",
+    "waw-maiyyah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e03",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-02.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the و before ظِلّ الشجرة a واو عاطفة (and), a واو معية (with), or can it be read either way (كلاهما)?",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "معية"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "فاطمة sat, but ظِلّ الشجرة, the shade of the tree, cannot itself sit, so calling it a معطوف that shares the act of sitting with فاطمة is illogical. The rule says that when the latter noun cannot logically be a معطوف, only مفعول معه remains. So in جلست فاطمة وظِلّ الشجرة, ظِلّ الشجرة is مفعول معه, and the و is واو معية, meaning فاطمة sat while the shade of the tree was there with her.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "Fatimah sat along with the shade of the tree.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "جلست فاطمة وظِلّ الشجرة",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "mafool-maahu",
+    "tafriq-mafaheem",
+    "tarjama",
+    "waw-maiyyah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e04",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-03.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the و before زيد a واو عاطفة (and), a واو معية (with), or can it be read either way (كلاهما)?",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "كلاهما"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "The doer of فتحتُ is the ت, a ضمير مرفوع متصل, and it is emphasised outside the verb by أنَا. The rule says عطف is permissible when the former noun is a ضمير مرفوع متصل that is emphasised this way, so زيد can validly be a معطوف on that doer. Since فتح, opening doors, is a literal, ordinary action and عطف is permissible here, the rule for such cases says both عطف and مفعول معه are allowed together. So in فتحتُ أنَا وزيد أبوابَ البيت, the و can be read as either واو عاطفة or واو معية, matching كلاهما.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "I, and Zayd with me, opened the doors of the house.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "فتحتُ أنَا وزيد أبوابَ البيت",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "atf",
+    "mafool-maahu",
+    "tafriq-mafaheem",
+    "tarjama"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e05",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-04.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the و before وطلحة in دخل الفصل زيدٌ وطلحة a واو عاطفة, a واو معية, or could it be read either way (كلاهما)?",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "كلاهما"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "دخل is a literal, physical verb, real entering, and both readings work here. If و is عاطفة, طلحة is simply joined to زيدٌ by عطف, both entering the classroom together. If و is معية, طلحة is a منصوب مفعول معه, showing he entered together with زيدٌ at the same time, since the و of مفعول معه shows association of what comes after it with what came before it while the action happens. The rule says that when the verb is literal and عطف is logically possible, both عطف and مفعول معه are allowed, so in دخل الفصل زيدٌ وطلحة, both readings are correct, كلاهما. Neither reading is wrong here.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "Zayd entered the classroom together with Talha (or, just as validly: Zayd entered the classroom, and Talha did too).",
+     "by": "claude"
+    }
+   ],
+   "sentence": "دخل الفصل زيدٌ وطلحة",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "atf",
+    "mafool-maahu",
+    "tafriq-mafaheem",
+    "tarjama"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e06",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-05.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the و before التاجر in سمعتُ والتاجر الآذانَ a واو عاطفة, a واو معية, or could it be read either way (كلاهما)?",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "معية"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "The hidden doer of سمعتُ, meaning I, is a ضمير مرفوع متصل that is not emphasised outside the verb. The rule says عطف is not permissible when the former noun is a ضمير مرفوع متصل that is not emphasised outside the verb, so التاجر cannot be joined as a second doer of the hearing. Instead, the و is a واو معية, and التاجر is منصوب as a مفعول معه, since the rule for that و is that it shows association of what comes after it with what came before it while the action happens, meaning the merchant was present together with the speaker while الآذانَ was heard.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "I heard the call to prayer along with the merchant.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "سمعتُ والتاجر الآذانَ",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "mafool-maahu",
+    "tafriq-mafaheem",
+    "tarjama",
+    "waw-maiyyah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e07",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-06.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the و before وماء in أطعمتُ زيدًا دجاجة وماء a واو عاطفة, a واو معية, or could it be read either way (كلاهما)?",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "معية"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "If و were عاطفة, ماء would be a second thing fed to Zayd alongside دجاجة, but water is drunk, not fed as food, so calling ماء a معطوف on دجاجة does not make logical sense. The rule says that when treating the latter noun as a معطوف is illogical, only مفعول معه is possible. So ماء is منصوب, showing it was present together with the chicken when Zayd was fed, since the و of مفعول معه shows what comes after it was there together with what came before it during the action, not a second thing fed to him.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "I fed Zayd chicken along with water.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "أطعمتُ زيدًا دجاجة وماء",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "mafool-maahu",
+    "tafriq-mafaheem",
+    "tarjama",
+    "waw-maiyyah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e08",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-07.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the و before وفاطمة in لقيتُ زيدا وفاطمة وهو قائم a واو عاطفة, a واو معية, or could it be read either way (كلاهما)?",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "معية"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "The sentence ends وهو قائم. هو is a pronoun that refers to only one person, and that person must be زيدا, not فاطمة, since هو is masculine and singular. The rule says that when a pronoun refers back to the former noun and a مفعول معه, the pronoun is understood to correlate with the former noun alone, because the مفعول معه is not co-equal with it, only an associate. That fits exactly what is seen here, هو matches زيدا only. If فاطمة were instead a معطوف, the rule says a pronoun like this would need to correlate with both her and زيدا together, since a معطوف is co-equal with the noun it is joined to. Since the pronoun here does not do that, فاطمة must be مفعول معه, not معطوف. So فاطمة is منصوب, present together with Zayd when the speaker met him, and the و here is واو معية.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "I met Zayd, along with Fatima, while he was standing.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "لقيتُ زيدا وفاطمة وهو قائم",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "mafool-maahu",
+    "tafriq-mafaheem",
+    "tarjama",
+    "waw-maiyyah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e09",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-08.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "In هذا لِزيدٍ وبكر, is the و before بكر a واو عاطفة, a واو معية, or could it be both, كلاهما؟",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "عاطفة"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "There is no فعل anywhere in this sentence, only هذا لِزيدٍ وبكر. The rule says the مفعول معه must come after a verb, so with no verb here بكر cannot be a مفعول معه. بكر is instead مجرور, the same as زيدٍ, because of the لام on زيدٍ, which fits, since a مفعول معه must be منصوب while بكر is not. There is also no action here at all for the و to show association with, so the و is عاطفة, joining بكر to زيدٍ, not معية.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "This is for Zayd and Bakr.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "هذا لِزيدٍ وبكر",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "atf",
+    "tafriq-mafaheem",
+    "tarjama"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e10",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-09.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "In زينبُ طالعتْ الدرسَ وفاطمة, is the و before فاطمة a واو عاطفة, a واو معية, or could it be both, كلاهما؟",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "عاطفة"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "فاطمة comes after الدرسَ, so there is a gap, طالعتْ الدرسَ, between her and زينبُ, the noun she would be joined to. The rule says the مفعول معه cannot be separated from that noun by a gap. Because of this gap, فاطمة cannot be a مفعول معه, so the و must be عاطفة, joining her to زينبُ as a second person who studied the lesson.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "Zainab studied the lesson, and Fatima did too.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "زينبُ طالعتْ الدرسَ وفاطمة",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "atf",
+    "tafriq-mafaheem",
+    "tarjama"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e11",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-10.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "In دخل المسجدَ زيدٌ وغروب الشمس, is the و before غروب a واو عاطفة, a واو معية, or could it be both, كلاهما؟",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "معية"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "غروب الشمس, the setting of the sun, cannot logically be a doer that entered the mosque alongside زيدٌ, so labelling it a معطوف makes no sense. The rule says that when treating the latter noun as a معطوف is illogical, مفعول معه is the only option left. So in دخل المسجدَ زيدٌ وغروب الشمس, the و signifies association of what comes after it with what comes before it during the action, زيدٌ entered the mosque at the time the sun was setting.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "Zayd entered the mosque along with the setting of the sun.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "دخل المسجدَ زيدٌ وغروب الشمس",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "mafool-maahu",
+    "tafriq-mafaheem",
+    "tarjama",
+    "waw-maiyyah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e12",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-11.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "In جلس زيد وبكر وهُما ضاحكان, is the first و, before بكر, a واو عاطفة, a واو معية, or could it be both, كلاهما؟ (the second و, in وهُما, is a different و and is not being asked about here.)",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "عاطفة"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "The sentence ends وهُما ضاحكان, a dual pronoun هُما referring back to both زيد and بكر together as laughing. The rule says that when a pronoun refers back to both the former noun and the latter noun as co-equal, the و is عاطفة, because a مفعول معه is only an associate and would not be counted equally with a pronoun this way. So بكر is joined to زيد as a second doer of جلس, and معية fails since a mere accompanying word would not be included in a dual pronoun with him.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "Zayd and Bakr sat, and the two of them were laughing.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "جلس زيد وبكر وهُما ضاحكان",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "atf",
+    "tafriq-mafaheem",
+    "tarjama"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e13",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-12.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the و in وزيد a واو عاطفة, a واو معية, or both?",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "معية"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "له contains a ضمير مجرور متصل (the ه attached to the لام). زيد, the noun after the واو, does not repeat the جار (it is not written لزيد). By the rule that when the former noun is a ضمير مجرور متصل and the latter noun does not repeat the جار, عطف is not allowed and مفعول معه becomes necessary, زيد here must be مفعول معه, not معطوف. So the teacher's answer, معية, follows from that rule, and عطف fails because the جار was not repeated.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "This is his, along with Zaid.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "هذا له وزيد",
+   "marked": [
+    {
+     "text": "وزيد",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "mafool-maahu",
+    "tafriq-mafaheem",
+    "tarjama",
+    "waw-maiyyah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e14",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-13.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the و joining الشتاءُ and المعطف a واو عاطفة, a واو معية, or both?",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "معية"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "المعطف (the coat) cannot really be said to \"come\", جاء, the way الشتاءُ (winter) does, so calling المعطف a معطوف sharing the verb جاء with الشتاءُ would be illogical. By the rule that when labelling the latter noun a معطوف is illogical the only option left is مفعول معه, المعطف must be مفعول معه here, joined by a واو معية meaning \"along with\", matching the teacher's answer.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "Winter came, along with the coat.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "جاء الشتاءُ والمعطف",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "doubt": "At this resolution I cannot be fully certain whether the box's left edge stops exactly after و or bleeds slightly into the following alif of ال (a thin vertical stroke sitting right next to it), either way it clearly does not extend across the whole word المعطف as reading two claims.",
+   "tags": [
+    "mafool-maahu",
+    "tafriq-mafaheem",
+    "tarjama",
+    "waw-maiyyah"
+   ]
+  },
+  {
+   "id": "mafool-maahu-e15",
+   "section": "Application of Rules",
+   "picture": "mafool-maahu-14.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is the و joining زيد and بكر a واو عاطفة, a واو معية, or both?",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": [
+      "عاطفة"
+     ],
+     "by": "teacher"
+    },
+    {
+     "letter": "b",
+     "question": "Explain your answer clearly.",
+     "answer": "اشترك (participated/shared) is a verb that only makes sense with two or more doers, like تشافه. By the rule that such verbs force عطف and rule out مفعول معه, زيد and بكر must both stand as doers joined by عطف, so بكر is معطوف on زيد, not مفعول معه. This matches the teacher's answer, عاطفة.",
+     "by": "claude"
+    },
+    {
+     "letter": "c",
+     "question": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "answer": "Zaid and Bakr participated together in the work.",
+     "by": "claude"
+    }
+   ],
+   "sentence": "اشترك زيد وبكر في العمل",
+   "marked": [
+    {
+     "text": "و",
+     "style": "yellow highlight box"
+    }
+   ],
+   "tags": [
+    "atf",
+    "tafriq-mafaheem",
+    "tarjama"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "btm-tarkeeb",
+  "title": "BTM tarkeebs (basic)",
+  "arabic": "التراكيب الأساسية",
+  "tamreen": [],
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "heading",
+      "page": 0,
+      "ar": "",
+      "en": "Apply harakah where required, write the analysis (Tarkeeb) inc BTM and translation for the following Sentences."
+    },
+    {
+      "id": "p00-2",
+      "kind": "example",
+      "page": 0,
+      "ar": "الطاعةُ {{term|أن}} تعبدوا الله",
+      "en": "Obedience is that you worship Allah.",
+      "labels": []
+    },
+    {
+      "id": "p00-3",
+      "kind": "example",
+      "page": 0,
+      "ar": "يحبُّ زيد {{term|أن}} يُكمِل عمله إلى آخره",
+      "en": "Zayd loves to finish his work to its end.",
+      "labels": []
+    },
+    {
+      "id": "p00-4",
+      "kind": "example",
+      "page": 0,
+      "ar": "أُواظِب على واجباتي {{term|كي}} لا أُلَام",
+      "en": "I keep to my duties so that I am not blamed.",
+      "labels": []
+    },
+    {
+      "id": "p00-5",
+      "kind": "example",
+      "page": 0,
+      "ar": "تشوّقتُ لِلقاء زيد {{term|لِأنّه}} كريم",
+      "en": "I longed to meet Zayd because he is generous.",
+      "labels": []
+    },
+    {
+      "id": "p01-1",
+      "kind": "example",
+      "page": 1,
+      "ar": "{{term|أنْ}} تدْرُسوا يُؤدِّي إلى أن تنجحوا",
+      "en": "That you study leads to your succeeding.",
+      "labels": []
+    },
+    {
+      "id": "p01-2",
+      "kind": "example",
+      "page": 1,
+      "ar": "إِنِّيْ لَيَحْزُنُنِيْ {{term|أَنْ}} تَذْهَبُوْا بِهِ",
+      "en": "It grieves me that you should go off with him.",
+      "labels": []
+    },
+    {
+      "id": "p01-3",
+      "kind": "example",
+      "page": 1,
+      "ar": "يُجَادِلُونَكَ فِي الْحَقِّ {{term|بَعْدَ مَا}} تَبَيَّنَ",
+      "en": "They dispute with you about the truth after it has become clear.",
+      "labels": []
+    },
+    {
+      "id": "p01-4",
+      "kind": "example",
+      "page": 1,
+      "ar": "يطلب الأستاذ {{term|أن}} تنتبهوا في دروسكم ما عَلّمكم",
+      "en": "The teacher asks that you pay attention in your lessons to what he taught you.",
+      "labels": []
+    }
+  ]
+}

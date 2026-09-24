@@ -1,0 +1,694 @@
+{
+ "pictures": {
+  "haal-00.png": {
+   "sentence": "رَأَيْتُهُمْ يَصُدُّونَ وَهُمْ مُسْتَكْبِرُونَ\nyou see them walking away arrogantly.",
+   "marked": [
+    {
+     "text": "وَهُمْ مُسْتَكْبِرُونَ",
+     "style": "blue underline"
+    },
+    {
+     "text": "يَصُدُّونَ",
+     "style": "blue underline"
+    },
+    {
+     "text": "هُمْ رَأَيْتُهُمْ مُسْتَكْبِرُونَ",
+     "style": "green underline"
+    }
+   ]
+  },
+  "haal-01.png": {
+   "sentence": "زَيْدٌ يَأْتِيْكَ وَما تَنَامُ\nZaid will come to you and you will not be sleeping.",
+   "marked": [
+    {
+     "text": "وَما تَنَامُ",
+     "style": "blue underline"
+    },
+    {
+     "text": "كَ يَأْتِيْكَ",
+     "style": "green underline"
+    }
+   ]
+  },
+  "haal-02.png": {
+   "sentence": "مَرَجَ الْبَحْرَيْنِ يَلْتَقِيَانِ بَيْنَهُمَا بَرْزَخٌ لَا يَبْغِيَانِ\nHe released the two seas, meeting one another, between them is a barrier so neither of them transgresses.",
+   "marked": [
+    {
+     "text": "الْبَحْرَيْنِ",
+     "style": "green underline"
+    },
+    {
+     "text": "يَلْتَقِيَانِ",
+     "style": "blue underline"
+    },
+    {
+     "text": "بَيْنَهُمَا بَرْزَخٌ",
+     "style": "blue underline"
+    },
+    {
+     "text": "لَا يَبْغِيَانِ",
+     "style": "blue underline"
+    }
+   ]
+  },
+  "haal-03.png": {
+   "sentence": "دَخَلْتُ المسجِدَ وَالصَّلَاةُ قَائِمَةٌ\nI entered the masjid whilst the salaah had begun.",
+   "marked": [
+    {
+     "text": "تُ ت دَخَلْتُ",
+     "style": "green underline"
+    },
+    {
+     "text": "وَالصَّلَاةُ قَائِمَةٌ",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "The kasra-vs-dot mark under jim in المسجِدَ is small even at 8x zoom; read it as a kasra (matching reading two) rather than just the letter's own dot, but flagging the low confidence."
+  },
+  "haal-04.png": {
+   "sentence": "إِذَا قَامُوا إِلَى الصَّلاةِ قَامُوا كُسَالَى يُرَاءُونَ النَّاسَ\nWhen they stand up to pray, they do so sluggishly, showing off in front of people.",
+   "marked": [
+    {
+     "text": "قَامُوا كُسَالَى",
+     "style": "green underline"
+    },
+    {
+     "text": "كُسَالَى",
+     "style": "blue underline"
+    },
+    {
+     "text": "يُرَاءُونَ النَّاسَ",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "Pixel measurement shows the green underline under the second قَامُوا spans only about a third of that word's width (roughly the tail ـوا), while the other single-word underlines in this picture span the full word - it may be marking just the ـوا subject-pronoun ending rather than the whole verb, though neither reading raised this and it doesn't change the text/colour dispute."
+  },
+  "haal-05.png": {
+   "sentence": "رَأَيتُ مَنْ فِي المسجد مصلِّياً أَو هُوَ جَالِسٌ\nI saw the one who was in the masjid whilst praying or sitting.",
+   "marked": [
+    {
+     "text": "مَنْ",
+     "style": "green underline"
+    },
+    {
+     "text": "مصلِّياً",
+     "style": "blue underline"
+    },
+    {
+     "text": "هُوَ جَالِسٌ",
+     "style": "blue underline"
+    }
+   ]
+  },
+  "haal-06.png": {
+   "sentence": "تَرَى الْمُجْرِمِينَ يَوْمَئِذٍ مُقَرَّنِينَ فِي الْأَصْفَادِ سَرَابِيلُهُمْ مِنْ قَطِرَانٍ وَتَغْشَىٰ وُجُوهَهُمُ النَّارُ\nYou will see the criminals that Day, bound together in irons, their garments of liquid pitch and their faces covered by the Fire.",
+   "marked": [
+    {
+     "text": "الْمُجْرِمِينَ",
+     "style": "green underline"
+    },
+    {
+     "text": "مُقَرَّنِينَ فِي الْأَصْفَادِ",
+     "style": "blue underline"
+    },
+    {
+     "text": "سَرَابِيلُهُمْ مِنْ قَطِرَانٍ",
+     "style": "blue underline"
+    },
+    {
+     "text": "وَتَغْشَىٰ وُجُوهَهُمُ النَّارُ",
+     "style": "blue underline"
+    }
+   ]
+  },
+  "haal-07.png": {
+   "sentence": "عَلَفَ زيدٌ الطَيرَ حَبَّاتٍ يرمي إِلَيهَا\nZaid fed the birds throwing seeds at them.",
+   "marked": [
+    {
+     "text": "زيدٌ",
+     "style": "green underline"
+    },
+    {
+     "text": "حَبَّاتٍ يرمي إِلَيهَا",
+     "style": "blue underline"
+    }
+   ]
+  },
+  "haal-08.png": {
+   "sentence": "مَا يَأْتِيهِمْ مِنْ ذِكْرٍ مِنْ رَبِّهِمْ مُحْدَثٍ إِلَّا اسْتَمَعُوهُ وَهُمْ يَلْعَبُونَ لَاهِيَةً قُلُوبُهُمْ\nNo new revelation comes to them from their Lord except that they listen to it playfully, their hearts distracted.",
+   "marked": [
+    {
+     "text": "يَأْتِيهِمْ",
+     "style": "green underline"
+    },
+    {
+     "text": "اسْتَمَعُوهُ وَهُمْ يَلْعَبُونَ لَاهِيَةً قُلُوبُهُمْ",
+     "style": "blue underline"
+    }
+   ]
+  },
+  "haal-09.png": {
+   "sentence": "زَارَ زَيْدٌ بَيْتَ اللَّهِ وَمَا دَعَا لِأَحَدٍ\nZaid visited The Haram and didn't do dua for anyone.",
+   "marked": [
+    {
+     "text": "زَيْدٌ",
+     "style": "green underline"
+    },
+    {
+     "text": "وَمَا دَعَا لِأَحَدٍ",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "The exact right-hand starting pixel of the blue line (whether it truly touches وَمَا or leaves a hair of a gap) is too fine to swear to at this image size."
+  },
+  "haal-10.png": {
+   "sentence": "مَا لَكُمْ لَا تُؤْمِنُونَ بِاللَّهِ وَالرَّسُولُ يَدْعُوكُمْ لِتُؤْمِنُوا بِرَبِّكُمْ وَقَدْ أَخَذَ مِيثَاقَكُمْ\n\nEnglish line: \"What is the matter with you that you do not believe in God when the Messenger calls you to believe in your Lord, and He has already made a pledge with you, if you have faith?\"",
+   "marked": [
+    {
+     "text": "لَكُمْ",
+     "style": "green underline"
+    },
+    {
+     "text": "لَا تُؤْمِنُونَ بِاللَّهِ وَالرَّسُولُ يَدْعُوكُمْ لِتُؤْمِنُوا بِرَبِّكُمْ وَقَدْ أَخَذَ مِيثَاقَكُمْ",
+     "style": "blue underline"
+    }
+   ]
+  },
+  "haal-11.png": {
+   "sentence": "فتح زيدٌ بابَ الفصلِ ولَمْ يشْعُر الأستاذُ بِه\nZaid opened the classroom door and the teacher did not perceive.",
+   "marked": [
+    {
+     "text": "زيدٌ",
+     "style": "green underline"
+    },
+    {
+     "text": "ولَمْ يشْعُر الأستاذُ بِه",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "Two specific tiny marks: whether the first ب of بابَ carries its own fatha, and whether the final ر of يشعر carries any mark at all (kasra, as reading one claims, or nothing). Neither is fully certain at this resolution."
+  },
+  "haal-12.png": {
+   "sentence": "أَتُحَاجُّونِّي فِي اللَّهِ وَقَدْ هَدَانِ وَلَا أَخَافُ مَا تُشْرِكُونَ بِهِ\nHow can you argue with me about God when He has guided me? I do not fear anything you associate with Him.",
+   "marked": [
+    {
+     "text": "فِي",
+     "style": "green underline"
+    },
+    {
+     "text": "وَقَدْ هَدَانِ",
+     "style": "blue underline"
+    },
+    {
+     "text": "وَلَا أَخَافُ مَا تُشْرِكُونَ بِهِ",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "The colour marks in this picture are faint at this resolution. I could not pin down with confidence whether the green mark's right edge sits on في itself or bleeds into the tail of the previous word, nor confirm there is a genuine visible gap splitting the blue into two spans rather than one unbroken line. This entry is my best reading, not a certain one."
+  },
+  "haal-13.png": {
+   "sentence": "كَانَ زَيْدٌ يَجْلِسُ عَلَى الْأَرْضِ وَيُكْمِلُ وَاجِبَاتِهِ\nEnglish caption: Zaid used to sit on the floor and complete his assignments.",
+   "marked": [
+    {
+     "text": "زَيْدٌ",
+     "style": "green underline"
+    },
+    {
+     "text": "وَيُكْمِلُ وَاجِبَاتِهِ",
+     "style": "blue underline"
+    }
+   ]
+  },
+  "haal-14.png": {
+   "sentence": "رَبِّ أَنَّى يَكُونُ لِي غُلَامٌ وَقَدْ بَلَغَنِيَ الْكِبَرُ وَامْرَأَتِي عَاقِرٌ\nMy Lord, how can I have a son when I am so old and my wife is barren?",
+   "marked": [
+    {
+     "text": "لِي",
+     "style": "green underline"
+    },
+    {
+     "text": "بَلَغَنِيَ الْكِبَرُ",
+     "style": "blue underline"
+    },
+    {
+     "text": "وَامْرَأَتِي عَاقِرٌ",
+     "style": "blue underline"
+    }
+   ]
+  },
+  "haal-15.png": {
+   "sentence": "وَاعْبُدُوا اللَّهَ وَلَا تُشْرِكُوا بِهِ شَيْئًا\nWorship Allah and don't associate anything with him.",
+   "marked": [
+    {
+     "text": "وَاعْبُدُوا",
+     "style": "short green underline sitting only under the last two letters"
+    },
+    {
+     "text": "اللَّهَ",
+     "style": "green underline"
+    },
+    {
+     "text": "وَلَا تُشْرِكُوا بِهِ شَيْئًا",
+     "style": "blue underline"
+    }
+   ]
+  },
+  "haal-16.png": {
+   "sentence": "آكلُ الطعامَ سخنَ أو بردَ\nI will eat the food whether it's hot or cold.",
+   "marked": [
+    {
+     "text": "الطعامَ",
+     "style": "green underline"
+    },
+    {
+     "text": "سخنَ",
+     "style": "blue underline"
+    },
+    {
+     "text": "بردَ",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "Neither reading's marked list mentions أو by name, but the blue stroke measurably runs under it too (it's a tiny 2-letter word sitting right next to سخنَ) - noting this since it's not something either reading called out."
+  },
+  "haal-17.png": {
+   "sentence": "إِنّي ذَاهِبٌ إِلَىٰ رَبّي سَيَهْدِينِ(ي)\nIndeed, I will go to my Lord, He is sure to guide (me)",
+   "marked": [
+    {
+     "text": "إِنّي",
+     "style": "green underline"
+    },
+    {
+     "text": "رَبّي",
+     "style": "green underline"
+    },
+    {
+     "text": "سَيَهْدِينِ ي",
+     "style": "blue underline"
+    }
+   ],
+   "doubt": "Whether the print adds an explicit small kasra stroke under the shadda on نّ and بّ, and whether the final ي of إنّي carries a sukun tick (reading two writes these in, reading one doesn't), at this image's resolution the shadda mark and a kasra sit too close together to tell apart with confidence, and it doesn't change the word being read."
+  },
+  "haal-18.png": {
+   "sentence": "لِيَذهَبْ طالِبُو العلمَ إلى المدرسةِ مَمْلُوءُونَ بِنَشاطٍ\nStudents of knowledge should go to the madrassa whilst full with drive (eagerness)",
+   "marked": []
+  },
+  "haal-19.png": {
+   "sentence": "وَخِلافُه الكسلُ ما يكرهُهُ رسولُ اللهِ ﷺ عَائِذًا بِاللهِ منه\nAnd contrary to it (drive) is laziness which the Messenger of Allah ﷺ disliked whilst seeking refuge by (in) Allah from it.",
+   "marked": []
+  },
+  "haal-20.png": {
+   "sentence": "وَلِيمْكُثُوا فِيهَا قد يبذُلوْن أَفْضَلَ جُهوْدِهم في دُروسِهم",
+   "marked": []
+  },
+  "haal-21.png": {
+   "sentence": "عَامِرٌ رَاجَعَ دُروسَه(ثابتة) بِلَا تُؤَدَةٍ فَرَسَب، لَاتكنْ مثلَ عامر",
+   "marked": [
+    {
+     "text": "ثابتة",
+     "style": "small parenthetical annotation directly after دُروسَه"
+    }
+   ]
+  },
+  "haal-22.png": {
+   "sentence": "إحترِمْ والِداكَ وَغَابَ أو حَضَرَا",
+   "marked": []
+  },
+  "haal-23.png": {
+   "sentence": "القرآنُ، قرأتُ ما(يَثبُتُ)فيه(ثابتة)مِن الترغيبِ والترهيبِ",
+   "marked": [
+    {
+     "text": "يَثبُتُ",
+     "style": "small parenthetical annotation in reduced font"
+    },
+    {
+     "text": "ثابتة",
+     "style": "small parenthetical annotation in reduced font"
+    }
+   ]
+  },
+  "haal-24.png": {
+   "sentence": "مكث الضيوفُ عندنا ثلاثةُ أيّامٍ ما قَصَّرنا في إكرامه\nThe guests stayed by us for 3 days whilst we did not lack in honouring them (with good hospitality).",
+   "marked": []
+  },
+  "haal-25.png": {
+   "sentence": "سمعتُ (ثابتًا) من كلام بكرٍ ما حَدَثَ بِزيدٍ دارسٍ\nI heard, whilst it being from the statement of Bakr, that which (what) happened to Zaid whilst studying.",
+   "marked": [
+    {
+     "text": "ثابتًا",
+     "style": "small parenthetical annotation in reduced font"
+    }
+   ]
+  },
+  "haal-26.png": {
+   "sentence": "أكل زيدٌ هو شبعانِ ثُمَّ تَأَلَّمَ بَطنُها\nZaid ate whilst he was satiated then his stomach ached.",
+   "marked": []
+  },
+  "haal-27.png": {
+   "sentence": "مَا صَلَّيتُ صلاةً إلّا وَأَنَا مرتجٍ لِغُفرانِ ذنبي\nI prayed salaah only whilst hoping for the forgiveness of my sins.",
+   "marked": [],
+   "doubt": "The shadda over ل in صلّيت/إلّا is drawn as a single combined glyph in this font, so I cannot fully rule out a fatha merged invisibly into that glyph (both readings actually agree there IS a fatha there, so this doesn't change the transcription either way, just flagging the limit)."
+  }
+ },
+ "notes": {
+  "haal-e22a": {
+   "question": "Is the haal in this sentence, ثابتة, correctly used?"
+  },
+  "haal-e23a": {
+   "question": "Is the sentence إحترِمْ والِداكَ وَغَابَ أو حَضَرَا correct or incorrect in its grammar, including the haal clause وَغَابَ أو حَضَرَا?"
+  },
+  "haal-e24a": {
+   "question": "Is the haal in this sentence, ثابتة, correctly used?"
+  },
+  "haal-e25a": {
+   "question": "Is the sentence مكث الضيوفُ عندنا ثلاثةُ أيّامٍ ما قَصَّرنا في إكرامه correct or incorrect in its grammar?",
+   "doubt": "The sentence field spells the disputed word as ثلاثةُ, with a dammah. But part a's question quotes the same word as ثلاثةَ, with a fathah. Part c says the mistake is exactly this ending, it should be a fathah because the word is a zarf. So part a's question already shows the corrected spelling, not the mistake being tested. The question text does not match the sentence field."
+  },
+  "haal-e02a": {
+   "doubt": "The teacher marks وَما تَنَامُ as not حال. But the explanation for it only talks about the رابط and about not needing a واو, things that only make sense if it were حال. It never says why the جملة fails to be حال in the first place. One of the rules says a فعل مضارع حال can come right after the word ما, so ما by itself is not a reason to rule out حال. I think the teacher's answer here needs a real reason, and none is given."
+  },
+  "haal-e06b": {
+   "doubt": "In part b the teacher calls the sitting part مفرد and not a جملة, then straight after calls the same part a جملة إسمية that begins with a رابط. هو جالس is two words, a subject and a predicate, so it is a جملة, not مفرد. The explanation contradicts itself about what kind of حال this is, even though the final marked choices still look correct."
+  },
+  "haal-e08b": {
+   "doubt": "The explanation says the linking word (waw haaliyyah) is optional here because the present tense verb's object sits in front of it. No rule in the rules list says word order changes whether that linking word is optional. Every other example in this set with a plain positive present tense verb and no qad before it gets the linking word marked as not allowed at all, not optional (the birds turning away example, the two seas meeting example, the ones showing off while praying example). This mark breaks that pattern for a reason the rules never state. It could be right for a different reason, that the whole phrase seeds, he throws them to them, hangs together as one describing phrase rather than being its own separate haal sentence, but that reason is not in the rules either, so the mark cannot be confirmed from the rules alone."
+  },
+  "haal-e09b": {
+   "doubt": "The middle line is marked as the linking word being necessary. The stated reason is that the sentence starts with the very pronoun that points back to the person in the state. No rule given says that starting with that pointing word forces the linking word to be there. A sibling example in this set (the one about the old man and his wife) has that same kind of pointing word inside its sentence, just not at the very start, and there the linking word is marked optional, not necessary. So the difference between necessary and optional seems to depend on where in the sentence the pointing word sits, but that distinction is not written in any rule here. The mark itself is not contradicted by anything, the reason just cannot be traced to a stated rule."
+  },
+  "haal-e10b": {
+   "doubt": "The explanation calls the linking word optional for a negated past tense verb carrying a pointing word back to the person in the state. The rules given only spell out when the word qad can or cannot come before a past tense haal, they do not separately name what happens when the verb is negated instead. The mark matches the general pattern used elsewhere in this set for a past tense haal with a pointing word, so it is likely fine, but this exact situation is not covered by name in the rules."
+  },
+  "haal-e11b": {
+   "doubt": "This is the clearest problem found. The answer table marks the middle line, about the messenger calling you, as the linking word being optional. But the written explanation for that same line says the opposite, that the linking word is necessary, and gives as its reason that the sentence has no pointing word back to the listener. That reason looks wrong too, since the sentence does contain the word for calling you, and that you is the very same person the whole state is about, so a pointing word is present. Either the mark should say optional and the explanation is describing the wrong line, or the explanation is right and the mark should say necessary. As written, the explanation argues for a different answer than the one that was ticked."
+  },
+  "haal-e12b": {
+   "doubt": "The explanation credits the optional linking word to the present tense verb carrying a pointing word back to the person in the state. But one of the rules given says a present tense verb must normally carry such a pointing word, except when it is preceded by the word lam, in which case that requirement is dropped entirely. So the real reason the linking word can be left out here is more likely the lam itself, not the pointing word the explanation names. The word in the sentence can plausibly still serve as a pointing word too, so the mark is probably fine, but the stated reason leans on something the rules do not clearly support instead of the lam exception the rules do state."
+  },
+  "haal-e13a": {
+   "doubt": "The short form of this line in the answer table spells the past tense verb (the one meaning he guided me) with an extra letter yaa at the end. Both the full sentence at the top of this example and the coloured underline text further down spell that same word without the final yaa. This looks like a copying slip in the short form used in the answer table, not a change to the grammar decision itself."
+  },
+  "haal-e24c": {
+   "doubt": "The sentence field spells the verb as يَنبُثُ (yanbuthu), root ن ب ث, meaning to spread or emanate. But the teacher's explanation talks about the pronoun inside يثبت (yathbutu), root ث ب ت, the same root as ثابتة. These are two different Arabic words, not just missing vowel marks. Either the sentence text has a typo, or the explanation names the wrong verb. Worth checking against the source picture haal-23.png."
+  },
+  "haal-e04a": {
+   "question": "In the sentence دَخَلْتُ المسجِدَ وَالصَّلَاةُ قَائِمَةٌ, what role does the word والصلاة... play? Choose from: ليست حالا, حال, وجوب الواو, جواز الواو, منع الواو."
+  },
+  "haal-e19a": {
+   "question": "Is this sentence written correctly: \"لِيَذهَبْ طالِبُو العلمَ إلى المدرسةِ مَمْلُوءُونَ بِنَشاطٍ\nStudents of knowledge should go to the madrassa whilst full with drive (eagerness)\"?"
+  },
+  "haal-e20a": {
+   "question": "Is this sentence written correctly: \"وَخِلافُه الكسلُ ما يكرهُهُ رسولُ اللهِ ﷺ عَائِذًا بِاللهِ منه\nAnd contrary to it (drive) is laziness which the Messenger of Allah ﷺ disliked whilst seeking refuge by (in) Allah from it.\"?"
+  },
+  "haal-e21a": {
+   "question": "Is this sentence written correctly: \"وَلِيمْكُثُوا فِيهَا قد يبذُلوْن أَفْضَلَ جُهوْدِهم في دُروسِهم\"?"
+  },
+  "haal-e26a": {
+   "question": "Is this sentence written correctly: \"سمعتُ (ثابتًا) من كلام بكرٍ ما حَدَثَ بِزيدٍ دارسٍ\nI heard, whilst it being from the statement of Bakr, that which (what) happened to Zaid whilst studying.\"?"
+  },
+  "haal-e27a": {
+   "question": "Is this sentence written correctly: \"أكل زيدٌ هو شبعانِ ثُمَّ تَأَلَّمَ بَطنُها\nZaid ate whilst he was satiated then his stomach ached.\"?"
+  },
+  "haal-e28a": {
+   "question": "Is this sentence written correctly: \"مَا صَلَّيتُ صلاةً إلّا وَأَنَا مرتجٍ لِغُفرانِ ذنبي\nI prayed salaah only whilst hoping for the forgiveness of my sins.\"?"
+  }
+ },
+ "tags": {
+  "haal-r01": [
+   "haal",
+   "haal-mufrad",
+   "tarif-mustalah"
+  ],
+  "haal-r02": [
+   "haal",
+   "tarif-mustalah"
+  ],
+  "haal-r03": [
+   "haal",
+   "tarif-mustalah"
+  ],
+  "haal-r04": [
+   "haal",
+   "tarif-mustalah",
+   "zul-haal"
+  ],
+  "haal-r05": [
+   "tarif-mustalah",
+   "zul-haal"
+  ],
+  "haal-r06": [
+   "tarif-mustalah",
+   "zul-haal"
+  ],
+  "haal-r07": [
+   "haal",
+   "tarif-mustalah",
+   "zul-haal"
+  ],
+  "haal-r08": [
+   "haal",
+   "tarif-mustalah"
+  ],
+  "haal-r09": [
+   "haal-mufrad",
+   "tarif-mustalah"
+  ],
+  "haal-r10": [
+   "haal",
+   "tarif-mustalah",
+   "zul-haal"
+  ],
+  "haal-r11": [
+   "haal",
+   "tarif-mustalah",
+   "zul-haal"
+  ],
+  "haal-r12": [
+   "haal-jumla-filiyya",
+   "haal-jumla-inshaiyya",
+   "haal-jumla-ismiyya",
+   "tarif-mustalah"
+  ],
+  "haal-r13": [
+   "dhameer-raabit",
+   "haal",
+   "tarif-mustalah"
+  ],
+  "haal-r14": [
+   "dhameer-raabit",
+   "tarif-mustalah"
+  ],
+  "haal-r15": [
+   "dhameer-raabit",
+   "haal-fil-mudari",
+   "tarif-mustalah"
+  ],
+  "haal-r16": [
+   "haal-fil-mudari",
+   "tarif-mustalah",
+   "waw-haaliyya"
+  ],
+  "haal-r17": [
+   "haal-ism-jamid",
+   "tarif-mustalah"
+  ],
+  "haal-r18": [
+   "haal",
+   "haal-muqaddara",
+   "tarif-mustalah"
+  ],
+  "haal-r19": [
+   "haal-fil-madi-qad",
+   "tarif-mustalah"
+  ],
+  "haal-r20": [
+   "atf",
+   "haal-fil-madi-qad",
+   "tarif-mustalah"
+  ],
+  "haal-r21": [
+   "haal-fil-mudari",
+   "tarif-mustalah",
+   "waw-haaliyya"
+  ],
+  "haal-r22": [
+   "haal-muqaddara",
+   "tarif-mustalah"
+  ],
+  "haal-e01": [
+   "haal",
+   "haal-fil-mudari",
+   "mane-alwaw",
+   "tatbeeq-tarkeeb",
+   "wajib-alwaw",
+   "waw-haaliyya"
+  ],
+  "haal-e02": [
+   "dhameer-raabit",
+   "haal-fil-mudari",
+   "mane-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e03": [
+   "dhameer-raabit",
+   "haal",
+   "jawaz-alwaw",
+   "mane-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e04": [
+   "haal",
+   "haal-jumla-ismiyya",
+   "tatbeeq-tarkeeb",
+   "wajib-alwaw"
+  ],
+  "haal-e05": [
+   "haal",
+   "haal-fil-mudari",
+   "haal-mufrad",
+   "mane-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e06": [
+   "atf",
+   "haal",
+   "haal-jumla-ismiyya",
+   "haal-mufrad",
+   "mane-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e07": [
+   "atf",
+   "haal",
+   "haal-mufrad",
+   "jawaz-alwaw",
+   "mane-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e08": [
+   "haal",
+   "haal-fil-mudari",
+   "jawaz-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e09": [
+   "haal",
+   "haal-fil-madi-qad",
+   "haal-jumla-ismiyya",
+   "mane-alwaw",
+   "tatbeeq-tarkeeb",
+   "wajib-alwaw"
+  ],
+  "haal-e10": [
+   "dhameer-raabit",
+   "haal",
+   "jawaz-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e11": [
+   "haal",
+   "haal-jumla-ismiyya",
+   "jawaz-alwaw",
+   "mane-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e12": [
+   "haal",
+   "haal-fil-mudari",
+   "jawaz-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e13": [
+   "atf",
+   "haal",
+   "haal-fil-madi-qad",
+   "jawaz-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e14": [
+   "atf",
+   "haal-fil-mudari",
+   "mane-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e15": [
+   "haal",
+   "haal-fil-madi-qad",
+   "haal-jumla-ismiyya",
+   "jawaz-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e16": [
+   "haal-jumla-inshaiyya",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e17": [
+   "atf",
+   "haal",
+   "haal-fil-madi-qad",
+   "mane-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e18": [
+   "haal-fil-mudari",
+   "mane-alwaw",
+   "tatbeeq-tarkeeb"
+  ],
+  "haal-e19": [
+   "haal",
+   "haal-mufrad",
+   "taskheek-khata"
+  ],
+  "haal-e20": [
+   "haal",
+   "haal-mufrad",
+   "taskheek-khata"
+  ],
+  "haal-e21": [
+   "dhameer-raabit",
+   "haal",
+   "haal-fil-mudari",
+   "taskheek-khata",
+   "wajib-alwaw",
+   "waw-haaliyya"
+  ],
+  "haal-e22": [
+   "haal",
+   "taskheek-khata",
+   "zul-haal"
+  ],
+  "haal-e23": [
+   "atf",
+   "haal",
+   "haal-fil-madi-qad",
+   "taskheek-khata",
+   "zul-haal"
+  ],
+  "haal-e24": [
+   "haal",
+   "taskheek-khata",
+   "zul-haal"
+  ],
+  "haal-e25": [
+   "mafool-feehi",
+   "taskheek-khata",
+   "zarf-zaman"
+  ],
+  "haal-e26": [
+   "haal",
+   "haal-mufrad",
+   "taskheek-khata"
+  ],
+  "haal-e27": [
+   "haal",
+   "haal-jumla-ismiyya",
+   "taskheek-khata",
+   "wajib-alwaw",
+   "waw-haaliyya"
+  ],
+  "haal-e28": [
+   "haal",
+   "taskheek-khata"
+  ]
+ }
+}

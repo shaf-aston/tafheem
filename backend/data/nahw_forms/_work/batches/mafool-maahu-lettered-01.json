@@ -1,0 +1,230 @@
+{
+ "batch": "mafool-maahu-lettered-01",
+ "questions": [
+  {
+   "id": "mafool-maahu/application/1",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "1",
+    "images": [
+     "q020.png",
+     "q021.png",
+     "q022.png",
+     "q023.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "تَخَاصَمَ زيد وبكر",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of the highlighted و.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "عاطفة",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "عاطفة"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "disputed /argued",
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "زيد and بكر are printed without harakat in the source image; not a transcription gap."
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/2",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "2",
+    "images": [
+     "q024.png",
+     "q025.png",
+     "q026.png",
+     "q027.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "قرأ القرآن زيد والمِصباح",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of the highlighted و.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "معية"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Parts 2b and 2c were left blank by the student (no response entered)."
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/3",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "3",
+    "images": [
+     "q028.png",
+     "q029.png",
+     "q030.png",
+     "q031.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "جلست فاطمة وظِلّ الشجرة",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of the highlighted و.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "معية"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "kind": "free_text",
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Parts 3b and 3c were left blank by the student (no response entered)."
+   ]
+  }
+ ]
+}

@@ -1,0 +1,262 @@
+{
+ "batch": "haal-lettered-08",
+ "questions": [
+  {
+   "id": "haal/correct-or-incorrect/4",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Correct or Incorrect | Q4",
+    "number": "4",
+    "images": [
+     "q093.png",
+     "q094.png",
+     "q095.png"
+    ]
+   },
+   "type": "correct_or_incorrect",
+   "instructions": "Correct or Incorrect | Q4",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "عَامِرٌ رَاجَع دُروسَه (ثَابتةً) بلَا تُؤَدَةٍ فَرَسَبَ، لاتكنْ مثلَ عامر",
+     "marked": [],
+     "en": "Amir revised his lessons whilst being in a state without calmness and he failed, don't be like Amir."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "Correct"
+     ],
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Explain the mistakes and how to rectify them. If there are no mistakes, then write: \"No mistakes\".",
+     "kind": "free_text",
+     "answer": "The Zul Haal is the pronoun in the verb راجع which is in reference to Amir, who is a male, so the haal should correlate in number and gender. Therefore, it should be thaabitan (not thaabitatan)",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "The Zul Haal is the pronoun in the verb راجع which is in reference to Amir, who is a male, so the haal should correlate in number and gender. Therefore, it should be thaabitan (not thaabitatan)"
+    }
+   ],
+   "flags": [
+    "The small parenthetical word '(ثابتة)' printed inline after 'دُروسَه' is transcribed exactly as shown; its purpose (possibly a label marking the haal as the 'fixed/ثابتة' type rather than part of the sentence) is not certain from the image alone.",
+    "Vowels on (ثَابتةً) - tiny tanween mark on ة hard to resolve visually by itself, but the answer-key feedback on the same image set (\"should be thaabitan not thaabitatan\") confirms it's tanween fatha, not damma could not be read with certainty."
+   ]
+  },
+  {
+   "id": "haal/correct-or-incorrect/5",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Correct or Incorrect | Q5",
+    "number": "5",
+    "images": [
+     "q097.png",
+     "q098.png",
+     "q099.png"
+    ]
+   },
+   "type": "correct_or_incorrect",
+   "instructions": "Correct or Incorrect | Q5",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "إحترمْ وَالِدَاكَ وَغَابَ أو حَضَرَا",
+     "marked": [],
+     "en": "Respect your parents whilst they're absent or present"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "Incorrect"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "3"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "2"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Explain the mistakes and how to rectify them. If there are no mistakes, then write: \"No mistakes\".",
+     "kind": "free_text",
+     "answer": "1st, والداك should be والديك in the state of نصب because it's مفعول به of إحترم. 2nd, the waw haaliyah is not permissible because the construction of the haal is Fil Maadhi connected to 'Au' Harful ataf. 3rd, the verb غاب should be in the dual form غابا, because the Fa'il should be dual and in reference to 'والداك' both parents and therefore should correlate in number and gender.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "1st, والداك should be والديك in the state of نصب because it's مفعول به of إحترم. 2nd, the waw haaliyah is not permissible because the construction of the haal is Fil Maadhi connected to 'Au' Harful ataf. 3rd, the verb غاب should be in the dual form غابا, because the Fa'il should be dual and in reference to 'والداك' both parents and therefore should correlate in number and gender."
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/correct-or-incorrect/6",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Correct or Incorrect | Q6",
+    "number": "6",
+    "images": [
+     "q101.png",
+     "q102.png",
+     "q103.png"
+    ]
+   },
+   "type": "correct_or_incorrect",
+   "instructions": "Correct or Incorrect | Q6",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "القرآنُ، قرأتُ مَا (يَثْبُتُ) فيه (ثَابِتَةً) مِن الترغيبِ والترهيبِ",
+     "marked": [],
+     "en": "The Qur'an, I read that which (what) is in it whilst it (consists) of motivation and warning."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Is the sentence correct or incorrect?",
+     "kind": "choose_one",
+     "options": [
+      "Correct",
+      "Incorrect"
+     ],
+     "answer": "Incorrect",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "Correct"
+     ],
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "How many mistakes?",
+     "kind": "grid",
+     "rows": [
+      "Mistakes:"
+     ],
+     "columns": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": {
+      "Mistakes:": [
+       "1"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "Mistakes:": [
+       "0"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Explain the mistakes and how to rectify them. If there are no mistakes, then write: \"No mistakes\".",
+     "kind": "free_text",
+     "answer": "Thaabitatan ثابتة should be thaabitan ثابتا, as it is the haal and it should correlate in N&G to the zul haal (pronoun هو inside يثبت).",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "Thaabitatan ثابتة should be thaabitan ثابتا, as it is the haal and it should correlate in N&G to the zul haal (pronoun هو inside يثبت)."
+    }
+   ],
+   "flags": [
+    "Two small parenthetical words '(يَثبُتُ)' and '(ثابتةً)' are printed inline in the sentence; transcribed exactly as shown, their purpose (label vs. sentence word) is not certain from the image alone."
+   ]
+  }
+ ]
+}

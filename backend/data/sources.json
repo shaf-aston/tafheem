@@ -1,0 +1,308 @@
+{
+  "_comment": "Every place a fact in this app can come from, and how much it can be trusted. The app shows this next to results, so a reader always knows whether they are looking at something checked by a scholar, worked out by a rule, or guessed by a machine. Adding a source means adding it here, not in code.",
+  "_confidence_comment": "verified = a person checked it · derived = a fixed rule produced it, same answer every time · translated = the source's own content, put into English by a machine with the original beside it · guessed = a statistical model or an AI produced it and it can be wrong",
+  "_field_comment": "label/confidence/detail are what a result badge shows. url is the thing itself on the web, empty where there is nothing public to link to, never a guessed address. where is one plain sentence saying where it physically lives, for a reader who does not know what a corpus or a dump is. used_in lists the tabs that read it, and drives the line at the foot of each tab; a source used by no tab is a source nothing reads, which is a bug worth seeing.",
+  "corpus": {
+    "label": "Quranic Arabic Corpus",
+    "confidence": "verified",
+    "detail": "Tagged by hand, word by word. Version 0.4, GNU GPL, corpus.quran.com",
+    "url": "https://corpus.quran.com",
+    "where": "A public project that tagged every Qur'anic word by hand. Downloaded once and kept here, so lookups need no internet.",
+    "used_in": [
+      "quran",
+      "quiz",
+      "daleel"
+    ],
+    "category": "Qur'an"
+  },
+  "translation": {
+    "label": "Quran.com",
+    "confidence": "verified",
+    "detail": "From the Quran.com project: each word glossed on its own, in English and in Urdu, and whole translations of the ayah",
+    "url": "https://quran.com",
+    "where": "The meaning under each Arabic word, and the full English translations a reader can choose between. Both from Quran.com, stored here once, so a surah reads offline. The same word-by-word is also published in Urdu, and the quiz asks in either.",
+    "used_in": [
+      "quran",
+      "quiz",
+      "daleel"
+    ],
+    "category": "Qur'an"
+  },
+  "mushaf": {
+    "label": "Madani mushaf layout",
+    "confidence": "verified",
+    "detail": "Page breaks of the 604-page, 15-line Madani printing, from Quran.com",
+    "url": "https://quran.com",
+    "where": "Which printed page each ayah begins on in the 604-page Madani mushaf, from Quran.com. Lets Memorise deal a real page, not a word count.",
+    "used_in": [
+      "mem"
+    ]
+  },
+  "tafsir": {
+    "label": "Ibn Kathir (Abridged)",
+    "confidence": "translated",
+    "detail": "A scholar's commentary on the ayah, in English, from Quran.com",
+    "url": "https://quran.com",
+    "where": "Ibn Kathir's commentary, abridged English, from Quran.com. Says what an ayah is about, which grammar and word-by-word English do not.",
+    "used_in": [
+      "quran",
+      "daleel"
+    ],
+    "category": "Tafsir"
+  },
+  "recitation-audio": {
+    "label": "EveryAyah",
+    "confidence": "verified",
+    "detail": "Recordings of each ayah by well-known reciters, played from everyayah.com",
+    "url": "https://everyayah.com",
+    "where": "The only thing in this app fetched while you use it. Pressing play on an ayah asks everyayah.com for that one recording; nothing is stored here and nothing is sent there but the ayah's number.",
+    "used_in": [
+      "quran"
+    ]
+  },
+  "qul": {
+    "label": "Quranic Universal Library",
+    "confidence": "verified",
+    "detail": "Tafsirs and translations, downloaded once from qul.tarteel.ai",
+    "url": "https://qul.tarteel.ai",
+    "where": "A free library of Quran commentaries. Each book is downloaded once and kept here, so nothing is fetched while reading. Every book carries its own terms; the ones installed are listed above with what their publisher states.",
+    "used_in": [
+      "quran",
+      "daleel"
+    ],
+    "category": "Tafsir"
+  },
+  "rules": {
+    "label": "Sarf rule tables",
+    "confidence": "derived",
+    "detail": "Built from the conjugation patterns in data/sarf/patterns.json, the same answer every time",
+    "url": "",
+    "where": "In this app, at data/sarf/patterns.json. Nothing fetched, nothing guessed; the same word always gives the same table.",
+    "used_in": [
+      "sarf"
+    ]
+  },
+  "nahw": {
+    "label": "Nahw rule engine",
+    "confidence": "derived",
+    "detail": "Grammar rules applied in order, from data/nahw_rules/rules.json",
+    "url": "",
+    "where": "In this app, at data/nahw_rules/rules.json. Grammar rules applied in order, so the same sentence always gets the same answer.",
+    "used_in": [
+      "nahw"
+    ]
+  },
+  "tasheel": {
+    "label": "Tasheel al-Nahw",
+    "confidence": "verified",
+    "detail": "Worked examples transcribed by hand from a printed book",
+    "url": "",
+    "where": "A printed book: Dar al-Sa'adah, 2011, after 'Ilm al-Nahw of Mawlana Mushtaq Ahmad Charthawali. Its worked diagrams were typed in by hand; a scholar decided every join. No copy on the web.",
+    "used_in": [
+      "nahw",
+      "daleel"
+    ],
+    "category": "Grammar"
+  },
+  "treebank": {
+    "label": "Quranic Treebank",
+    "confidence": "verified",
+    "detail": "Hand-recorded word relations, 5,023 of 6,236 ayahs",
+    "url": "",
+    "where": "An open dataset (NoorBayan, MIT) where people recorded which word governs which. Covers 5,023 of 6,236 ayahs; the rest fall back to the rules below, since crossing relations can't be drawn as brackets.",
+    "used_in": [
+      "quran"
+    ]
+  },
+  "tarkeeb": {
+    "label": "Tarkeeb rules",
+    "confidence": "derived",
+    "detail": "The corpus's word tags, joined into a bracket tree by rule",
+    "url": "",
+    "where": "Derived by rule from the corpus's word tags; no join here is hand-recorded. Used only where the Treebank above has nothing; a join the rules can't make is left as a visible gap.",
+    "used_in": [
+      "quran",
+      "nahw"
+    ]
+  },
+  "wiktionary": {
+    "label": "Wiktionary",
+    "confidence": "verified",
+    "detail": "Community-written and openly licensed (CC BY-SA). Broad, but thinner than a printed dictionary on rare classical words",
+    "url": "https://www.wiktionary.org",
+    "where": "The free community dictionary. Its Arabic entries were downloaded in full and stored here, so searching stays offline.",
+    "used_in": [
+      "dict",
+      "quiz",
+      "daleel",
+      "sarf"
+    ],
+    "category": "Dictionary"
+  },
+  "maqayees": {
+    "label": "Maqayees al-Lugha (Ibn Faris)",
+    "confidence": "verified",
+    "detail": "The origin sense, up to the entry's first full stop, 4,738 roots",
+    "url": "https://shamela.ws/book/21710",
+    "where": "A classical dictionary from around 1,000 years ago (d. 395 AH), Abd al-Salam Harun's edition. Typed by people for the free Shamela library; all 4,738 entries are stored here, with a rule deciding only where each starts and stops. A second, independently typed copy agrees word-for-word on 98.4% of shared roots.",
+    "used_in": [
+      "dict",
+      "daleel"
+    ],
+    "category": "Dictionary"
+  },
+  "maqayees_deck": {
+    "label": "Maqayees: checking copy",
+    "confidence": "verified",
+    "detail": "A second typed copy, used only to check this text",
+    "url": "https://ankiweb.net/shared/info/792073695",
+    "where": "An AnkiWeb flashcard deck (4,726 entries). Used only to check the copy above; not one word of the app's text comes from it.",
+    "used_in": [
+      "dict"
+    ]
+  },
+  "maqayees_english": {
+    "label": "Maqayees: English of the origin sense",
+    "confidence": "guessed",
+    "detail": "A model's one-line gloss, unproofread, about 1 in 50 wrong",
+    "url": "",
+    "where": "A model read a photograph of each root's page and wrote one line of English, unproofread. Shown only where the full entry isn't translated yet. Hand-checked on 300 roots: about 1 in 50 wrong, 1 in 11 thinner than the book.",
+    "used_in": [
+      "dict"
+    ]
+  },
+  "maqayees_translation": {
+    "label": "Maqayees: English of the whole entry",
+    "confidence": "translated",
+    "detail": "The book's own Arabic, put into English by a model, with the Arabic beside it",
+    "url": "",
+    "where": "Made by the app's own AI from the entry's typed Arabic, which stays beside it on the card so it can be checked. Written ahead of time so nothing is fetched while reading. Not proofread by a person, and not checked against the printed page.",
+    "used_in": [
+      "dict"
+    ]
+  },
+  "ai": {
+    "label": "AI explanation",
+    "confidence": "guessed",
+    "detail": "Written by a language model. Useful for wording, not proof; check it against the rules above",
+    "url": "",
+    "where": "Written fresh by a language model each time. Looked up in no book; treat it as a way of putting something in words, never as evidence.",
+    "used_in": [
+      "nahw",
+      "sarf",
+      "quran",
+      "dict"
+    ]
+  },
+  "recitation": {
+    "label": "Heard by Groq or this machine",
+    "confidence": "guessed",
+    "detail": "What a recitation sounded like, written down by Groq online when it answers, otherwise on this computer",
+    "url": "",
+    "where": "Recording is turned into words by Groq's Whisper online when it answers, otherwise by a model on this computer, and the words are then matched against the Qur'an's own text. How sure each recited word is gets worked out on this computer. No recording is kept here. Both steps can be wrong, which is why several ayahs are offered rather than one.",
+    "used_in": [
+      "quran",
+      "daleel"
+    ]
+  },
+  "recitation-letters": {
+    "label": "tilawa",
+    "confidence": "guessed",
+    "detail": "Finds where on the page a recitation is. tilawa v0.2.0 by yazinsai on GitHub (MIT), built on NVIDIA's Arabic FastConformer (CC-BY-4.0)",
+    "url": "https://github.com/yazinsai/tilawa",
+    "where": "A small model kept in backend/data/models/tilawa and run on this computer. It writes down the letters of a recitation so the page knows which words were being recited; it never decides whether a word was right.",
+    "used_in": [
+      "quran"
+    ]
+  },
+  "nahw-books": {
+    "label": "Classical Nahw & Sarf",
+    "detail": "Thirty works, from Sibawayh's Kitab and Ibn Jinni's Khasais through Ibn Hisham to Suyuti. Printed page numbers kept; no harakat in these texts.",
+    "confidence": "verified",
+    "url": "https://github.com/OpenITI",
+    "where": "Classical books digitised by the OpenITI project from Shamela and al-Jami' al-Kabir. Copied into this app once, so nothing is fetched while you search.",
+    "used_in": [
+      "daleel"
+    ],
+    "category": "Grammar"
+  },
+  "fiqh-books": {
+    "label": "Hanafi Fiqh & Usul",
+    "detail": "Mukhtasar al-Quduri, Bidayat al-Mubtadi with al-Hidaya, Usul al-Shashi. Printed page numbers kept; no harakat in these texts.",
+    "confidence": "verified",
+    "url": "https://github.com/OpenITI",
+    "where": "Classical books digitised by the OpenITI project from Shamela and al-Jami' al-Kabir. Copied into this app once, so nothing is fetched while you search.",
+    "used_in": [
+      "daleel"
+    ],
+    "category": "Fiqh"
+  },
+  "jazariyya": {
+    "label": "Al-Muqaddimah al-Jazariyyah",
+    "detail": "All 107 verses with their harakat. The English beside each verse is our own short gloss of what it says, not a translation",
+    "confidence": "verified",
+    "url": "",
+    "where": "Ibn al-Jazari's tajweed poem (d. 833 AH), centuries out of copyright. Typed by hand from our own printed Arabic-only matn, checked page by page against every printed line, then against the poem's own closing line, which states its length as 107 verses. The English was written fresh from the Arabic; no translator's wording was read or reused.",
+    "used_in": [
+      "mem",
+      "daleel"
+    ],
+    "category": "Tajweed"
+  },
+  "_category_comment": "category is the shelf a source sits on, in a reader's words: Qur'an, Tafsir, Grammar, Fiqh, and whatever is added next. Daleel's book picker groups by it, and choosing a shelf searches everything on it. Only sources Daleel searches need one; anything without a category is simply never offered as a shelf.",
+  "openiti-lexicons": {
+    "label": "Classical Arabic dictionaries",
+    "confidence": "verified",
+    "detail": "Lisan al-Arab and Taj al-Arus, whole entries, filed by root",
+    "url": "https://github.com/OpenITI",
+    "where": "Two of the great Arabic dictionaries, digitised by the OpenITI project from Shamela and al-Jami' al-Kabir. Copied into this app once, so a root is looked up with the internet unplugged. Only books whose files mark where each entry begins are here: cutting entries out of running prose by eye would file half of one root under another.",
+    "used_in": [
+      "dict"
+    ],
+    "category": "Dictionary"
+  },
+  "lane": {
+    "label": "Lane's Arabic-English Lexicon",
+    "confidence": "verified",
+    "detail": "Edward William Lane, 1863-1893. Arabic explained in English, 5,183 roots",
+    "url": "https://www.perseus.tufts.edu/hopper/collection?collection=Perseus:corpus:perseus,work,Lane,+An+Arabic-English+Lexicon",
+    "where": "Text provided by Perseus Digital Library, Tufts University, with funding from The U.S. Department of Education and The Max Planck Society, under a Creative Commons Attribution-ShareAlike 3.0 licence. The one book here that explains Arabic in English rather than in Arabic; its Arabic was stored in Latin letters and has been turned back into Arabic script.",
+    "used_in": [
+      "dict",
+      "sarf"
+    ],
+    "category": "Dictionary"
+  },
+  "timelines": {
+    "label": "Timeline notes",
+    "confidence": "guessed",
+    "detail": "Order and summaries written with Claude; Qur'an references read against the text; hadith numbers checked against sunnah.com",
+    "url": "",
+    "where": "Hand-written files in backend/data/timelines, one per section. Every Qur'an reference was read against the Saheeh International translation before it was kept. Each hadith number was opened on sunnah.com (or its mirror hadithunlocked.com) and read against the event it is cited for.",
+    "used_in": [
+      "timelines"
+    ]
+  },
+  "lubab": {
+    "label": "al-Suyuti, Lubab al-Nuqul",
+    "confidence": "derived",
+    "detail": "Reports on why an ayah came down, cut out of al-Suyuti's book by rule and matched to their ayahs",
+    "url": "https://github.com/OpenITI",
+    "where": "The book as OpenITI published it, downloaded once by backend/scripts/build_asbab.py and cut into reports here: each one is matched to its ayah by the words the book quotes, and a report that matches no single ayah is listed in data/quran/asbab-unmatched.json rather than guessed at. The English beside it was written by Claude, with the Arabic one tap away.",
+    "used_in": [
+      "timelines",
+      "quran"
+    ],
+    "category": "Tafsir"
+  },
+  "nahw-notes": {
+    "label": "Year 3 Nahw notes",
+    "confidence": "guessed",
+    "detail": "Your teacher's own notes, read off the page by Claude; the page itself is one tap away",
+    "url": "",
+    "where": "Typed and handwritten notes from the Year 3 Nahw course, at data/nahw_notes. The wording is the teacher's; turning the pages into text was done by Claude, so a misread is possible and every block says which page it came from.",
+    "used_in": [
+      "nahw"
+    ]
+  }
+}

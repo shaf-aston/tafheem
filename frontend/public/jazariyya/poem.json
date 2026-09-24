@@ -1,0 +1,716 @@
+{
+  "_comment": "Al-Muqaddimah al-Jazariyyah, Ibn al-Jazari's 107-verse tajweed poem. Built by hand from the owned scan, see README.md beside this file. Do not edit by hand; regenerate per the README if a bayt or gloss needs fixing.",
+  "title": "Al-Muqaddimah al-Jazariyyah",
+  "arabicTitle": "المقدمة الجزرية",
+  "totalBayt": 107,
+  "sections": [
+    {
+      "title": "المقدمة",
+      "afterBaytN": 0
+    },
+    {
+      "title": "بَابُ مَخَارِجِ الْحُرُوفِ",
+      "afterBaytN": 8
+    },
+    {
+      "title": "بَابُ صِفَاتِ الْحُرُوفِ",
+      "afterBaytN": 19
+    },
+    {
+      "title": "بَابُ التَّجْوِيدِ",
+      "afterBaytN": 26
+    },
+    {
+      "title": "بَابٌ فِي ذِكْرِ بَعْضِ التَّنْبِيهَاتِ",
+      "afterBaytN": 33
+    },
+    {
+      "title": "بَابُ الرَّاءَاتِ",
+      "afterBaytN": 40
+    },
+    {
+      "title": "بَابُ اللَّامَاتِ وَأَحْكَامٍ مُتَفَرِّقَةٍ",
+      "afterBaytN": 43
+    },
+    {
+      "title": "بَابُ الضَّادِ وَالظَّاءِ",
+      "afterBaytN": 51
+    },
+    {
+      "title": "بَابُ النُّونِ وَالْمِيمِ الْمُشَدَّدَتَيْنِ وَالْمِيمِ السَّاكِنَةِ",
+      "afterBaytN": 61
+    },
+    {
+      "title": "بَابُ أَحْكَامِ النُّونِ السَّاكِنَةِ وَالتَّنْوِينِ",
+      "afterBaytN": 64
+    },
+    {
+      "title": "بَابُ الْمَدِّ",
+      "afterBaytN": 68
+    },
+    {
+      "title": "بَابُ مَعْرِفَةِ الْوَقْفِ وَالِابْتِدَاءِ",
+      "afterBaytN": 72
+    },
+    {
+      "title": "بَابُ الْمَقْطُوعِ وَالْمَوْصُولِ",
+      "afterBaytN": 78
+    },
+    {
+      "title": "بَابُ التَّاءَاتِ",
+      "afterBaytN": 93
+    },
+    {
+      "title": "بَابُ هَمْزِ الْوَصْلِ",
+      "afterBaytN": 100
+    },
+    {
+      "title": "بَابُ الْوَقْفِ عَلَى أَوَاخِرِ الْكَلِمِ",
+      "afterBaytN": 103
+    }
+  ],
+  "bayt": [
+    {
+      "n": 1,
+      "sadr": "يَقُولُ رَاجِي عَفْوِ رَبٍّ سَامِعِ",
+      "ajuz": "مُحَمَّدُ بْنُ الْجَزَرِيِّ الشَّافِعِي",
+      "english": "The poet, Muhammad ibn al-Jazari al-Shafi'i, introduces himself as one hoping for his Lord's forgiveness."
+    },
+    {
+      "n": 2,
+      "sadr": "اَلْحَمْدُ لِلَّهِ، وَصَلَّى اللَّهُ",
+      "ajuz": "عَلَى نَبِيِّهِ وَمُصْطَفَاهُ",
+      "english": "He opens with praise of God and blessings upon His chosen Prophet."
+    },
+    {
+      "n": 3,
+      "sadr": "مُحَمَّدٍ وَآلِهِ وَصَحْبِهِ",
+      "ajuz": "وَمُقْرِئِ الْقُرْآنِ مَعَ مُحِبِّهِ",
+      "english": "He extends blessings to Muhammad, his family, his companions, and all who love and recite the Quran."
+    },
+    {
+      "n": 4,
+      "sadr": "وَبَعْدُ: إِنَّ هَذِهِ مُقَدِّمَهْ",
+      "ajuz": "فِيمَا عَلَى قَارِئِهِ أَنْ يَعْلَمَهْ",
+      "english": "This poem is an introduction covering what every reciter of the Quran must know."
+    },
+    {
+      "n": 5,
+      "sadr": "إِذْ وَاجِبٌ عَلَيْهِمُ مُحَتَّمُ",
+      "ajuz": "قَبْلَ الشُّرُوعِ أَوَّلًا أَنْ يَعْلَمُوا",
+      "english": "It is a strict duty on reciters to learn this knowledge before they begin reciting."
+    },
+    {
+      "n": 6,
+      "sadr": "مَخَارِجَ الْحُرُوفِ وَالصِّفَاتِ",
+      "ajuz": "لِيَلْفِظُوا بِأَفْصَحِ اللُّغَاتِ",
+      "english": "Namely the points where letters are articulated and their characteristics, so speech comes out most clearly."
+    },
+    {
+      "n": 7,
+      "sadr": "مُحَرِّرِي التَّجْوِيدِ وَالْمَوَاقِفِ",
+      "ajuz": "وَمَا الَّذِي رُسِمَ فِي الْمَصَاحِفِ",
+      "english": "It covers those skilled in tajweed and correct pausing, and what is drawn in the Uthmani script."
+    },
+    {
+      "n": 8,
+      "sadr": "مِنْ كُلِّ مَقْطُوعٍ وَمَوْصُولٍ بِهَا",
+      "ajuz": "وَتَاءِ أُنْثَى لَمْ تَكُنْ تُكْتَبْ بِـ: (هَا)",
+      "english": "This includes every word written joined or separate, and the feminine ending written with ة rather than ه."
+    },
+    {
+      "n": 9,
+      "sadr": "مَخَارِجُ الْحُرُوفِ سَبْعَةَ عَشَرْ",
+      "ajuz": "عَلَى الَّذِي يَخْتَارُهُ وَمَنِ اخْتَبَرْ",
+      "english": "The articulation points of the Arabic letters number seventeen, according to the view chosen by those who studied it."
+    },
+    {
+      "n": 10,
+      "sadr": "لِلْجَوْفِ أَلِفٌ وَأُخْتَاهَا، وَهِي:",
+      "ajuz": "حُرُوفُ مَدٍّ لِلْهَوَاءِ تَنْتَهِي",
+      "english": "The open throat cavity produces alif and its two related long vowels, which trail off into open air."
+    },
+    {
+      "n": 11,
+      "sadr": "ثُمَّ لِأَقْصَى الْحَلْقِ: هَمْزٌ هَاءُ،",
+      "ajuz": "وَمِنْ وَسَطِهِ: فَعَيْنٌ حَاءُ",
+      "english": "From the deepest part of the throat come hamza and ha; from its middle come ain and ha."
+    },
+    {
+      "n": 12,
+      "sadr": "أَدْنَاهُ: غَيْنٌ خَاؤُهَا، وَالْقَافُ:",
+      "ajuz": "أَقْصَى اللِّسَانِ فَوْقُ، ثُمَّ الْكَافُ",
+      "english": "From the throat's near end come ghayn and kha; qaf comes from the back of the tongue against the palate."
+    },
+    {
+      "n": 13,
+      "sadr": "أَسْفَلُ، وَالْوَسَطُ: فَجِيمُ الشِّينُ يَا،",
+      "ajuz": "وَالضَّادُ: مِنْ حَافَتِهِ إِذْ وَلِيَا",
+      "english": "Kaf comes just below qaf; jim, shin, and ya from the tongue's middle; dad from the tongue's side edge."
+    },
+    {
+      "n": 14,
+      "sadr": "الْأَضْرَاسِ مِنْ أَيْسَرَ أَوْ أَيْمَنِهَا،",
+      "ajuz": "وَاللَّامُ: أَدْنَاهَا لِمُنْتَهَاهَا",
+      "english": "Dad touches the molars on either the left or right side; lam runs along the tongue's edge to its tip."
+    },
+    {
+      "n": 15,
+      "sadr": "وَالنُّونُ: مِنْ طَرَفِهِ تَحْتُ اجْعَلُوا",
+      "ajuz": "وَالرَّا: يُدَانِيهِ لِظَهْرٍ أَدْخَلُ",
+      "english": "Nun is placed just beneath the tongue's tip, and ra nearby but pressed further back."
+    },
+    {
+      "n": 16,
+      "sadr": "وَالطَّاءُ وَالدَّالُ وَتَا: مِنْهُ وَمِنْ",
+      "ajuz": "عُلْيَا الثَّنَايَا، وَالصَّفِيرُ: مُسْتَكِنْ",
+      "english": "Ta, dal, and another ta come from the tongue tip against the upper front teeth; the whistling letters sit nearby."
+    },
+    {
+      "n": 17,
+      "sadr": "مِنْهُ وَمِنْ فَوْقِ الثَّنَايَا السُّفْلَى",
+      "ajuz": "وَالظَّاءُ وَالذَّالُ وَثَا: لِلْعُلْيَا",
+      "english": "The whistling letters also touch the lower front teeth; za, dhal, and tha come from the upper front teeth's tips."
+    },
+    {
+      "n": 18,
+      "sadr": "مِنْ طَرَفَيْهِمَا، وَمِنْ بَطْنِ الشَّفَةْ:",
+      "ajuz": "فَالْفَا مَعَ أَطْرَافِ الثَّنَايَا الْمُشْرِفَةْ",
+      "english": "Those three come from the teeth's edges; fa comes from the inner lip meeting the upper front teeth."
+    },
+    {
+      "n": 19,
+      "sadr": "لِلشَّفَتَيْنِ: الْوَاوُ بَاءٌ مِيمُ",
+      "ajuz": "وَغُنَّةٌ: مَخْرَجُهَا الْخَيْشُومُ",
+      "english": "Waw, ba, and meem come from the two lips together; the nasal ghunnah sound comes from the nasal passage."
+    },
+    {
+      "n": 20,
+      "sadr": "صِفَاتُهَا: جَهْرٌ وَرِخْوٌ مُسْتَفِلْ",
+      "ajuz": "مُنْفَتِحٌ، مُصْمَتَةٌ وَالضِّدُّ قُلْ",
+      "english": "Letters are described by pairs of opposite traits: voiced or voiceless, soft or hard, low or raised, open or closed, and more."
+    },
+    {
+      "n": 21,
+      "sadr": "مَهْمُوسُهَا: فَحَثَّهُ وَشَخْصٌ سَكَتْ،",
+      "ajuz": "شَدِيدُهَا لَفْظُ: أَجِدْ قَطٍ بَكَتْ",
+      "english": "The voiceless letters are grouped in a memory phrase; the hardest, fully-stopped letters are grouped in another."
+    },
+    {
+      "n": 22,
+      "sadr": "وَبَيْنَ رِخْوٍ وَالشَّدِيدِ: لِنْ عُمَرْ،",
+      "ajuz": "وَسَبْعُ عُلْوٍ: خُصَّ ضَغْطٍ قِظْ حَصَرْ",
+      "english": "Between soft and hard sit the 'leen-like' letters in one phrase, and the seven 'raised' letters in another."
+    },
+    {
+      "n": 23,
+      "sadr": "وَصَادٍ ضَادٍ طَاءِ ظَاءٍ: مُطْبَقَهْ،",
+      "ajuz": "وَفِرَّ مِنْ لُبِّ: الْحُرُوفِ الْمُذْلَقَهْ",
+      "english": "Sad, dad, ta, and za are the fully-pressed 'emphatic' letters; avoid weakening the fluent, easily-pronounced letters."
+    },
+    {
+      "n": 24,
+      "sadr": "صَفِيرُهَا: صَادٍ وَزَايٌ سِينُ،",
+      "ajuz": "قَلْقَلَةٌ: قُطْبُ جَدٍّ، وَاللِّينُ",
+      "english": "The whistling letters are sad, za, and sin; the letters with a little bounce are grouped in one phrase, plus the soft 'leen' letters."
+    },
+    {
+      "n": 25,
+      "sadr": "وَاوٌ وَيَاءٌ سُكِّنَا، وَانْفَتَحَا",
+      "ajuz": "قَبْلَهُمَا، وَالِانْحِرَافُ: صَحَّحَا",
+      "english": "Leen letters are a quiescent waw or ya preceded by a fatha."
+    },
+    {
+      "n": 26,
+      "sadr": "فِي اللَّامِ وَالرَّا، وَبِتَكْرِيرٍ جُعِلْ،",
+      "ajuz": "وَلِلتَّفَشِّي: الشِّينُ، ضَادًا: اسْتَطِلْ",
+      "english": "Lam and ra have a deflected sound, ra also repeats slightly, shin spreads, and dad is drawn out lengthwise."
+    },
+    {
+      "n": 27,
+      "sadr": "وَالْأَخْذُ بِالتَّجْوِيدِ حَتْمٌ لَازِمُ،",
+      "ajuz": "مَنْ لَمْ يُصَحِّحِ الْقُرْآنَ آثِمُ",
+      "english": "Applying tajweed properly is an absolute duty; whoever fails to recite the Quran correctly is at fault."
+    },
+    {
+      "n": 28,
+      "sadr": "لِأَنَّهُ بِهِ الْإِلَهُ أَنْزَلَا،",
+      "ajuz": "وَهَكَذَا مِنْهُ إِلَيْنَا وَصَلَا",
+      "english": "This is because God revealed the Quran this way, and it has reached us across generations in this same form."
+    },
+    {
+      "n": 29,
+      "sadr": "وَهُوَ أَيْضًا حِلْيَةُ التِّلَاوَةِ",
+      "ajuz": "وَزِينَةُ الْأَدَاءِ وَالْقِرَاءَةِ",
+      "english": "Tajweed is also the ornament of recitation and the beauty of proper vocal performance."
+    },
+    {
+      "n": 30,
+      "sadr": "وَهُوَ: إِعْطَاءُ الْحُرُوفِ حَقَّهَا",
+      "ajuz": "مِنْ كُلِّ صِفَةٍ وَمُسْتَحَقَّهَا",
+      "english": "Tajweed means giving every letter its full due, according to each of its characteristics and rights."
+    },
+    {
+      "n": 31,
+      "sadr": "وَرَدُّ كُلٍّ وَاحِدٍ لِأَصْلِهِ",
+      "ajuz": "وَاللَّفْظُ فِي نَظِيرِهِ كَمِثْلِهِ",
+      "english": "It means restoring each letter to its true origin, and pronouncing similar sounds consistently alike."
+    },
+    {
+      "n": 32,
+      "sadr": "مُكَمِّلًا مِنْ غَيْرِ مَا تَكَلُّفِ",
+      "ajuz": "بِاللُّطْفِ فِي النُّطْقِ بِلَا تَعَسُّفِ",
+      "english": "This should be done fully but naturally, with ease and gentleness, never forced or exaggerated."
+    },
+    {
+      "n": 33,
+      "sadr": "وَلَيْسَ بَيْنَهُ وَبَيْنَ تَرْكِهِ",
+      "ajuz": "إِلَّا رِيَاضَةُ امْرِئٍ بِفَكِّهِ",
+      "english": "The only thing separating correct recitation from incorrect is a person training and practicing their own mouth."
+    },
+    {
+      "n": 34,
+      "sadr": "فَرِّقَنْ مُسْتَفِلًا مِنْ أَحْرُفِ",
+      "ajuz": "وَحَاذِرَنْ تَفْخِيمَ لَفْظِ الْأَلِفِ",
+      "english": "Distinguish the letters that stay low in the mouth, and avoid overly thickening the sound of alif."
+    },
+    {
+      "n": 35,
+      "sadr": "وَهَمْزَ: الْحَمْدُ، أَعُوذُ، اهْدِنَا،",
+      "ajuz": "اَللَّهُ، ثُمَّ لَامَ: لِلَّهِ، لَنَا",
+      "english": "Watch the hamza carefully in words like al-hamdu, a'udhu, ihdina, and Allah, and the lam in lillahi and lana."
+    },
+    {
+      "n": 36,
+      "sadr": "وَلْيَتَلَطَّفْ، وَعَلَى اللَّهِ، وَلَا الضَّ-",
+      "ajuz": "وَالْمِيمَ: مِنْ مَحْمَصَةٍ، وَمِنْ مَرَضْ",
+      "english": "Be gentle in phrases like wal-yatalattaf and ala Allah and wa la ad-dallin, and mind the meem in mahmasa and marad."
+    },
+    {
+      "n": 37,
+      "sadr": "وَبَاءَ: بَرْقٍ، بَطَلٍ، بِهِمْ، بِذِي،",
+      "ajuz": "وَاحْرِصْ عَلَى الشِّدَّةِ وَالْجَهْرِ الَّذِي",
+      "english": "Mind the ba in barq, batal, bihim, and bidhi, keeping its firmness and full voicing."
+    },
+    {
+      "n": 38,
+      "sadr": "فِيهَا وَفِي الْجِيمِ كَ: حُبِّ، الصَّبْرِ،",
+      "ajuz": "رِبْوَةٍ، اجْتُثَّتْ، وَحَجٍّ، الْفَجْرِ",
+      "english": "The same care applies to jim, as in hubb, al-sabr, ribwa, ijtuththat, hajj, and al-fajr."
+    },
+    {
+      "n": 39,
+      "sadr": "وَبَيِّنَنْ مُقَلْقَلًا؛ إِنْ سَكَنَا",
+      "ajuz": "وَإِنْ يَكُنْ فِي الْوَقْفِ كَانَ أَبْيَنَا",
+      "english": "Make the little bounce on quiescent letters clear, and even clearer when that letter falls at a stop."
+    },
+    {
+      "n": 40,
+      "sadr": "وَحَاءَ: حَصْحَصَ، أُحِطتُ، الْحَقُّ،",
+      "ajuz": "وَسِينَ: مُسْتَقِيمٍ، يَسْطُو، يَسْقُو",
+      "english": "Mind the ha in hashasa, uhittu, and al-haqq, and the sin in mustaqim, yastu, and yasqu."
+    },
+    {
+      "n": 41,
+      "sadr": "وَرَقِّقِ الرَّاءَ إِذَا مَا كُسِرَتْ،",
+      "ajuz": "كَذَاكَ بَعْدَ الْكَسْرِ حَيْثُ سَكَنَتْ",
+      "english": "Thin the sound of ra whenever it carries a kasra, and likewise when it is quiescent right after a kasra."
+    },
+    {
+      "n": 42,
+      "sadr": "إِنْ لَمْ تَكُنْ مِنْ قَبْلِ حَرْفِ اسْتِعْلَا،",
+      "ajuz": "أَوْ كَانَتِ الْكَسْرَةُ لَيْسَتْ أَصْلَا",
+      "english": "This thinning applies unless a raised letter precedes it, or unless that kasra is not original to the word."
+    },
+    {
+      "n": 43,
+      "sadr": "وَالْخُلْفُ فِي: فِرْقٍ، لِكَسْرٍ يُوجَدُ،",
+      "ajuz": "وَأَخِّفْ تَكْرِيرًا إِذَا تُشَدَّدُ",
+      "english": "Scholars differ over the ra in the word 'firq'; also soften any doubled or repeated ra sound."
+    },
+    {
+      "n": 44,
+      "sadr": "وَفَخِّمِ اللَّامَ مِنِ اسْمِ اللَّهِ",
+      "ajuz": "عَنْ فَتْحٍ اوْ ضَمٍّ كَـ: عَبْدُ اللَّهِ",
+      "english": "Thicken the lam in the word Allah when it follows a fatha or damma, as in 'Abdullah'."
+    },
+    {
+      "n": 45,
+      "sadr": "وَحَرْفَ الِاسْتِعْلَاءِ فَخِّمْ، وَأَخْصُصَا",
+      "ajuz": "الِإطْبَاقَ أَقْوَى، نَحْوُ: قَالَ، وَالْعَصَا",
+      "english": "Thicken every raised letter, especially when it is also fully pressed, as in the words qala and al-'asa."
+    },
+    {
+      "n": 46,
+      "sadr": "وَبَيِّنِ الِإطْبَاقَ مِنْ: أَحَطتُ، مَعْ",
+      "ajuz": "بَسَطتَ، وَالْخُلْفُ بِـ: نَخْلُقكُّمْ وَقَعْ",
+      "english": "Make the full pressing clear in words like ahattu and basatta; scholars differ on 'nakhluqkum'."
+    },
+    {
+      "n": 47,
+      "sadr": "وَأَحْرِصْ عَلَى السُّكُونِ فِي: جَعَلْنَا،",
+      "ajuz": "أَنْعَمْتَ، وَالْمَغْضُوبِ، مَعْ ضَلَلْنَا",
+      "english": "Take care to pronounce the quiescent letters clearly in ja'alna, an'amta, al-maghdub, and dalalna."
+    },
+    {
+      "n": 48,
+      "sadr": "وَخَلِّصِ انْفِتَاحَ: مَحْذُورًا، عَسَى،",
+      "ajuz": "خَوْفَ اشْتِبَاهِهِ بِـ: مَحْظُورًا، عَصَى",
+      "english": "Keep the open, unpressed sound distinct in mahduran and 'asa, so they aren't confused with mahzuran and 'asa."
+    },
+    {
+      "n": 49,
+      "sadr": "وَرَاعِ شِدَّةً بِكَافٍ وَبِتَا",
+      "ajuz": "كَـ: شِرْكِكُمْ، وَتَتَوَفَّى، فِتَنَا",
+      "english": "Preserve the full hardness of kaf and ta, as in shirkikum, tatawaffa, and fitana."
+    },
+    {
+      "n": 50,
+      "sadr": "وَأَوْلِي: مِثْلِي وَجِنْسٍ - إِنْ سَكَنْ -",
+      "ajuz": "أَدْغِمْ كَـ: قُل رَّبِّ، وَبَل لَّا، وَأَبِنْ:",
+      "english": "When a letter meets an identical or similar quiescent letter, merge them, as in qur-rabbi and bal-la."
+    },
+    {
+      "n": 51,
+      "sadr": "فِي يَوْمٍ، مَعْ قَالُوا وَهُم، وَقُل نَّعَمْ",
+      "ajuz": "سَبِّحْهُ، لَا تَزِغْ قُلُوبٌ، فَالْتَقَمْ",
+      "english": "Further merging examples are given, such as in yawmim ma'a, qalu wahum, qun-na'am, sabbihhu, and la tazigh qulub."
+    },
+    {
+      "n": 52,
+      "sadr": "وَالضَّادَ: بِاسْتِطَالَةٍ وَمَخْرَجِ",
+      "ajuz": "مَيِّزْ مِنَ الظَّاءِ، وَكُلُّهَا تَجِي",
+      "english": "Distinguish dad from za by dad's drawn-out sound and its different point of articulation."
+    },
+    {
+      "n": 53,
+      "sadr": "فِي: الظَّعْنِ، ظِلٍّ، الظُّهْرِ، عُظْمٍ، الْحِفْظِ،",
+      "ajuz": "أَيْقِظْ، وَأَنْظِرْ، عَظْمِ، ظَهْرِ، اللَّفظِ",
+      "english": "Lists Quranic words containing za, such as al-za'n, zill, al-zuhr, and al-hifz, to help distinguish it from dad."
+    },
+    {
+      "n": 54,
+      "sadr": "ظَاهِرْ، لَظَى، شُوَاظِ، كَظْمٍ، ظَلَمَا،",
+      "ajuz": "أَغْلَظْ، ظَلَامٍ، ظَفَرِ، انْتَظِرِ، ظَمَا",
+      "english": "Continues listing more za words like zahir, laza, and zalama for practice distinguishing the two letters."
+    },
+    {
+      "n": 55,
+      "sadr": "أَظْفَرَ، ظَنًّا كَيْفَ جَا، وَعَظَ سِوَى",
+      "ajuz": "عِضِينَ، ظَلَّ النَّحْلِ زُخْرُفٍ سَوَا",
+      "english": "Continues the za-word list, noting the word zalla is spelled with za in the surahs of Nahl and Zukhruf."
+    },
+    {
+      "n": 56,
+      "sadr": "وَظَلْتَ، ظَلْتُمْ، وَبِرُومِ ظَلُّوا",
+      "ajuz": "كَالْحِجْرِ، ظَلَّتْ شَعَرًا نَظَلُّ",
+      "english": "Notes further za spellings of zallta and zallu across different surahs, including one variant reading."
+    },
+    {
+      "n": 57,
+      "sadr": "يَظْلَلْنَ، مَحْظُورًا مَعَ الْمُحْتَظِرِ،",
+      "ajuz": "وَكُنتَ فَظًّا، وَجَمِيعَ النَّظَرِ",
+      "english": "Lists more za words such as yazlalna and mahzuran, contrasted with the dad word fazzan."
+    },
+    {
+      "n": 58,
+      "sadr": "إِلَّا بِـ: (وَيْلٌ)، (هَلْ)، وَأُولَى نَاضِرَة",
+      "ajuz": "وَالْغَيْظَ لَا الرَّعْدُ، وَهُودٍ قَاصِرَة",
+      "english": "Gives exceptions where a word looks like it should have za but is actually spelled with dad, like wayl and hal."
+    },
+    {
+      "n": 59,
+      "sadr": "وَالْحَظُّ لَا الْحَضُّ عَلَى الطَّعَامِ",
+      "ajuz": "وَفِي ضَنِينٍ الْخِلَافُ سَامِي",
+      "english": "Notes al-hazz (with za) versus al-hadd (with dad) regarding food, and a known disagreement over the word danin."
+    },
+    {
+      "n": 60,
+      "sadr": "وَإِنِ تَلَاقَيَا الْبَيَانُ لَازِمُ",
+      "ajuz": "أَنقَضَ ظَهْرَكَ، يَعَضُّ الظَّالِمُ",
+      "english": "Where a dad and a za letter meet in a phrase, pronouncing each one distinctly is required."
+    },
+    {
+      "n": 61,
+      "sadr": "وَاضْطُرَّ مَعْ وَعَظَتْ مَعْ أَفْضَتُمْ",
+      "ajuz": "وَصَفٍّ هَا: جِبَاهُهُمْ عَلَيْهِمُ",
+      "english": "Lists a few more words, like udturra and saffin, needing careful distinct pronunciation of dad and za."
+    },
+    {
+      "n": 62,
+      "sadr": "وَأَظْهِرِ الْغُنَّةَ مِنْ نُونٍ وَمِنْ",
+      "ajuz": "مِيمٍ إِذَا مَا شُدِّدَا، وَأَخْفِيَنْ",
+      "english": "Pronounce the nasal ghunnah sound clearly whenever nun or meem is doubled, but hide the meem in one specific case."
+    },
+    {
+      "n": 63,
+      "sadr": "الْمِيمَ، إِنْ تَسْكُنْ بِغُنَّةٍ لَدَى",
+      "ajuz": "بَاءٍ عَلَى الْمُخْتَارِ مِنْ أَهْلِ الْأَدَا",
+      "english": "Hide a quiescent meem with nasalization when it is followed by the letter ba, per the preferred method of reciters."
+    },
+    {
+      "n": 64,
+      "sadr": "وَأَظْهِرَنْهَا عِنْدَ بَاقِي الْأَحْرُفِ",
+      "ajuz": "وَاحْذَرْ لَدَى وَاوٍ وَفَا أَنْ تَخْتَفِي",
+      "english": "Pronounce a quiescent meem clearly before every other letter, taking care it doesn't vanish before waw or fa."
+    },
+    {
+      "n": 65,
+      "sadr": "وَحُكْمُ تَنْوِينٍ وَنُونٍ يُلْفَى:",
+      "ajuz": "إِظْهَارٌ، ادْغَامٌ، وَقَلْبٌ، إِخْفَا",
+      "english": "A quiescent nun or tanwin follows one of four rulings: clear pronunciation, merging, conversion, or hiding."
+    },
+    {
+      "n": 66,
+      "sadr": "فَعِنْدَ حَرْفِ الْحَلْقِ أَظْهِرْ، وَادْغَمِ",
+      "ajuz": "فِي اللَّامِ وَالرَّا لَا بِغُنَّةٍ لَزِمْ",
+      "english": "Pronounce clearly before throat letters; merge without nasalization when followed by lam or ra."
+    },
+    {
+      "n": 67,
+      "sadr": "وَأَدْغِمَنْ بِغُنَّةٍ فِي: يُوَمِنُ",
+      "ajuz": "إِلَّا بِكِلْمَةٍ كَـ: دُنْيَا عَنُونُوا",
+      "english": "Merge with nasalization before the letters of the word 'yu'minu', except within a single word like dunya."
+    },
+    {
+      "n": 68,
+      "sadr": "وَالْقَلْبُ عِنْدَ الْبَاءِ بِغُنَّةٍ، كَذَا",
+      "ajuz": "الِاخْفَا لَدَى بَاقِي الْحُرُوفِ أُخِذَا",
+      "english": "Convert to a meem sound with nasalization before ba, and hide the sound before all remaining letters."
+    },
+    {
+      "n": 69,
+      "sadr": "وَالْمَدُّ: لَازِمٌ، وَوَاجِبٌ أَتَى",
+      "ajuz": "وَجَائِزٌ، وَهُوَ وَقَصْرٌ ثَبَتَا",
+      "english": "Lengthening of vowels comes in kinds: necessary, obligatory, and permissible, alongside plain shortening."
+    },
+    {
+      "n": 70,
+      "sadr": "فَلَازِمٌ: إِنْ جَاءَ بَعْدَ حَرْفِ مَدّ",
+      "ajuz": "سَاكِنٌ حَالَيْنِ، وَبِالطُّولِ يُمَدّ",
+      "english": "Necessary lengthening happens when a quiescent letter follows a long vowel, in both continuous and paused reading, held the longest."
+    },
+    {
+      "n": 71,
+      "sadr": "وَوَاجِبٌ: إِنْ جَاءَ قَبْلَ هَمْزَةِ",
+      "ajuz": "مُتَّصِلًا؛ إِنْ جُمِعَا بِكَلِمَةِ",
+      "english": "Obligatory lengthening happens when a hamza follows the long vowel within the very same word."
+    },
+    {
+      "n": 72,
+      "sadr": "وَجَائِزٌ: إِذَا أَتَى مُنْفَصِلَا",
+      "ajuz": "أَوْ عَرَضَ السُّكُونُ وَقْفًا مُسَجَّلَا",
+      "english": "Permissible lengthening happens when the hamza begins the next separate word, or when a pause creates a new quiescent ending."
+    },
+    {
+      "n": 73,
+      "sadr": "وَبَعْدَ تَجْوِيدِكَ لِلْحُرُوفِ",
+      "ajuz": "لَا بُدَّ مِنْ مَعْرِفَةِ الْوُقُوفِ",
+      "english": "After mastering correct pronunciation of the letters, one must also learn the proper places to pause."
+    },
+    {
+      "n": 74,
+      "sadr": "وَالِابْتِدَاءِ، وَهِيَ تُقْسَمُ إِذَنْ",
+      "ajuz": "ثَلَاثَةٌ: تَامٌّ، وَكَافٍ، وَحَسَنْ",
+      "english": "Pausing and restarting fall into three kinds: complete, sufficient, and merely good."
+    },
+    {
+      "n": 75,
+      "sadr": "وَهْيَ لِمَا تَمَّ، فَإِنْ لَمْ يُوجَدِ",
+      "ajuz": "تَعَلُّقٌ - أَوْ كَانَ مَعْنَى - فَابْتَدِي",
+      "english": "A stop is complete where the meaning is finished; if meaning still depends on what follows, one should keep going."
+    },
+    {
+      "n": 76,
+      "sadr": "فَالتَّامُ، فَالْكَافِي، وَلَفْظًا: فَأْمَنَنْ",
+      "ajuz": "إِلَّا الرُّؤُوسَ الْآيِ جَوَّزْ، فَالْحَسَنْ",
+      "english": "Complete stops rank above sufficient ones; a good stop relies only on wording, mostly allowed at the end of verses."
+    },
+    {
+      "n": 77,
+      "sadr": "وَغَيْرُ مَا تَمَّ: قَبِيحٌ، وَلَهُ",
+      "ajuz": "الْوَقْفُ مُضْطَرًّا، وَيُبْدَا قَبْلَهُ",
+      "english": "Any stop that isn't complete, sufficient, or good is considered poor, only used when forced, and one restarts before it."
+    },
+    {
+      "n": 78,
+      "sadr": "وَلَيْسَ فِي الْقُرْآنِ مِنْ وَقْفٍ يَجِبْ",
+      "ajuz": "وَلَا حَرَامٌ غَيْرُ مَا لَهُ سَبَبْ",
+      "english": "No pause in the Quran is truly mandatory or forbidden, except where there is a specific meaningful reason."
+    },
+    {
+      "n": 79,
+      "sadr": "وَاعْرِفْ لِمَقْطُوعٍ وَمَوْصُولٍ وَتَا",
+      "ajuz": "فِي الْمُصْحَفِ الْإِمَامِ فِيمَا قَدْ أَتَى",
+      "english": "One should also know which words are written joined or separate, and where the feminine ta appears, per the standard Mushaf."
+    },
+    {
+      "n": 80,
+      "sadr": "فَاقْطَعْ بِعَشْرِ كَلِمَاتٍ: أَنْ لَا",
+      "ajuz": "مَعْ: مَلْجَأً، وَلَا إِلَهَ إِلَّا",
+      "english": "Lists ten specific phrases that are written as two separate words despite sounding continuous, including 'an la' and 'la ilaha illa'."
+    },
+    {
+      "n": 81,
+      "sadr": "وَتَعْبُدُوا يَاسِينَ، ثَانِي هُودَ، لَا",
+      "ajuz": "يُشْرِكْنَ، تُشْرِكَ، يَدْخُلَنَّ، تَعْلُوا عَلَى",
+      "english": "Continues listing more phrases written separately across various surahs, including cases in Ya-Sin and the second mention in Hud."
+    },
+    {
+      "n": 82,
+      "sadr": "أَنْ لَا يَقُولُوا، لَا أَقُولَ: إِنْ مَا:",
+      "ajuz": "بِالرَّعْدِ. وَالْمَفْتُوحُ صِلْ: عَنْ مَّا.",
+      "english": "Continues the list of separately-written phrases, then notes one case in Surat al-Ra'd that is written joined instead."
+    },
+    {
+      "n": 83,
+      "sadr": "نُهُوا: أَقُطِعُوا: مِنْ مَا مَلَكَتْ: رُومَ النِّسَا",
+      "ajuz": "خُلْفٌ الْمُنَافِقِينَ. أَمْ مَنْ: أَسَّسَ",
+      "english": "Lists further joined and separated spellings across several surahs, including a disputed case among reciters."
+    },
+    {
+      "n": 84,
+      "sadr": "فُصِّلَتْ، النِّسَا، وَذَبَحَ، حَيْثُ مَا،",
+      "ajuz": "وَأَن لَّمِ الْمَفْتُوحُ، كَسْرُ إِنَّ مَا:",
+      "english": "Lists more separated and joined spellings, including a case with a kasra reading in Surat al-An'am."
+    },
+    {
+      "n": 85,
+      "sadr": "الْأَنْعَامِ. وَالْمَفْتُوحُ: يَدْعُونَ مَعَا",
+      "ajuz": "وَخَلْفُ الْأَنْفَالِ وَنَحْلٍ وَقَعَا",
+      "english": "Notes joined spellings in Surat al-An'am and disputed readings in Surahs al-Anfal and al-Nahl."
+    },
+    {
+      "n": 86,
+      "sadr": "وَ (كُلِّ مَا سَأَلْتُمُوهُ)، وَاخْتُلِفْ",
+      "ajuz": "رُدُّوا، كَذَا قُلْ بِئْسَمَا، وَالْوَصْلُ صِفْ",
+      "english": "Lists a joined phrase with disputed spelling, plus other words confirmed as written joined."
+    },
+    {
+      "n": 87,
+      "sadr": "خَلَفْتُمُونِي وَاشْتَرَوْا. فِي مَا اقْطَعَا",
+      "ajuz": "أُوحِيَ، أَفَضْتُمْ، اشْتَهَتْ، يَتْلُو مَعَا",
+      "english": "Lists more words written joined, including cases across several different surahs."
+    },
+    {
+      "n": 88,
+      "sadr": "ثَانِي فَعَلْنَ (وَقَعَتْ) رُومٌ، كِلَا",
+      "ajuz": "(تَنْزِيلُ)، شَعَرًا، وَغَيْرَهَا صِلَا",
+      "english": "Notes a specific joined spelling repeated in certain surahs, contrasted with words elsewhere written separately."
+    },
+    {
+      "n": 89,
+      "sadr": "فَأَيُّمَا كَالنَّحْلِ: صِلْ، وَمُخْتَلِفْ",
+      "ajuz": "فِي الشُّعَرَا الْأَحْزَابِ وَالنِّسَا وَصِفْ",
+      "english": "Notes that a word matching the pattern in Surat al-Nahl is written joined, with disputed readings in three other surahs."
+    },
+    {
+      "n": 90,
+      "sadr": "وَصِلْ: فَإِلَّمَ هُودَ. أَلَنْ نَّجْعَلَ",
+      "ajuz": "نَجْمَعُ. كَيْلَا تَحْزَنُوا، تَأَسَوْا عَلَى",
+      "english": "Lists more words confirmed as written joined across several different surahs and contexts."
+    },
+    {
+      "n": 91,
+      "sadr": "حَجٌّ، عَلَيْكَ حَرَجٌ. وَقَطَعَهُمُ",
+      "ajuz": "عَن مَّن يَشَاءُ، مَن تَوَلَّى. يَوْمَ هُمْ",
+      "english": "Continues listing joined words, then turns to words written as two separate words in specific contexts."
+    },
+    {
+      "n": 92,
+      "sadr": "وَمَالِ هَذَا، وَالَّذِينَ، هَؤُلَا",
+      "ajuz": "تَحِينَ: فِي الْإِمَامِ صِلْ، وَوَهَلَا",
+      "english": "Lists more phrases written joined in the standard Mushaf, including demonstrative pronoun combinations."
+    },
+    {
+      "n": 93,
+      "sadr": "وَوَزَنُوهُمْ وَكَالُوهُمْ صِلِ",
+      "ajuz": "كَذَا مِنَ: أَلْ، وَيْ، وَهَلْ، لَا تَفْصِلِ",
+      "english": "Confirms several more specific phrases and word-forms are written joined rather than separated."
+    },
+    {
+      "n": 94,
+      "sadr": "وَرَحْمَتُ الزُّخْرُفِ بِالتَّا زُبْرَهْ",
+      "ajuz": "الْأَعْرَافِ رُومِ هُودَ كَافِ الْبَقَرَهْ",
+      "english": "Lists surahs where the word 'rahmat' is written with a regular ta rather than the rounded ة ending."
+    },
+    {
+      "n": 95,
+      "sadr": "نِعْمَتَهَا، ثَلَاثُ نَحْلٍ، إِبْرَهِمْ",
+      "ajuz": "مَعًا: أَخِيرَاتٌ، عُقُودُ الثَّانِ هَمّ",
+      "english": "Continues listing more words across several surahs that take the regular ta ending instead of ة."
+    },
+    {
+      "n": 96,
+      "sadr": "لُقْمَانُ، ثُمَّ فَاطِرٌ، كَالطُّورِ",
+      "ajuz": "عِمْرَانَ. لَعْنَتَ: بِهَا، وَالنُّورِ",
+      "english": "Continues the list of ta-ending exceptions across further named surahs, including the word for 'curse'."
+    },
+    {
+      "n": 97,
+      "sadr": "وَامْرَأَتْ: يُوسُفَ، عِمْرَانَ، الْقَصَصْ",
+      "ajuz": "تَحْرِيمِ. مَعْصِيَتْ: بِـ (قَدْ سَمِعْ) يُخَصّ",
+      "english": "Lists more ta-ending exceptions, including the word 'imra'at' (wife of) across several surahs."
+    },
+    {
+      "n": 98,
+      "sadr": "شَجَرَتْ: الدُّخَانِ. سُنَّتَ: فَاطِرِ",
+      "ajuz": "كُلًّا، وَالْأَنْفَالِ، وَأُخْرَى غَافِرِ",
+      "english": "Continues listing ta-ending exceptions, including 'shajarat' in Surat al-Dukhan and 'sunnat' in several surahs."
+    },
+    {
+      "n": 99,
+      "sadr": "قُرَّتُ عَيْنٍ. جَنَّتُ: فِي (وَقَعَتْ)",
+      "ajuz": "فِطْرَتْ. بَقِيَّتْ. ابْنَتْ. وَكَلِمَتْ",
+      "english": "Lists further ta-ending exceptions including 'qurrat', 'jannat', 'fitrat', 'baqiyyat', 'ibnat', and 'kalimat'."
+    },
+    {
+      "n": 100,
+      "sadr": "أَوْسَطَ الْأَعْرَافِ. وَكُلُّ مَا اخْتُلِفْ",
+      "ajuz": "جَمْعًا وَفَرْدًا فِيهِ بِالتَّاءِ عُرِفْ",
+      "english": "Notes one case in Surat al-A'raf, then states that any word disputed between singular and plural form takes the ta ending."
+    },
+    {
+      "n": 101,
+      "sadr": "وَابْدَأْ بِهَمْزِ الْوَصْلِ مِنْ فِعْلٍ بِضَمّ؛",
+      "ajuz": "إِنْ كَانَ ثَالِثٌ مِنَ الْفِعْلِ يُضَمّ",
+      "english": "When starting a verb with a connecting hamza, pronounce it with damma if the verb's third root letter carries damma."
+    },
+    {
+      "n": 102,
+      "sadr": "وَاكْسِرْهُ حَالَ الْكَسْرِ وَالْفَتْحِ، وَفِي",
+      "ajuz": "الْأَسْمَاءِ غَيْرَ اللَّامِ كَسْرُهَا كَفِي",
+      "english": "Pronounce that connecting hamza with kasra in other verb cases, and generally with kasra in nouns as well."
+    },
+    {
+      "n": 103,
+      "sadr": "ابْنٍ، مَعَ ابْنَتٍ، امْرِئٍ، وَاثْنَيْنِ،",
+      "ajuz": "وَامْرَأَةٍ، وَاسْمٍ، مَعَ اثْنَتَيْنِ",
+      "english": "Lists nouns taking a kasra on the connecting hamza, such as ibn, ibnah, imru', ithnayn, imra'ah, ism, and ithnatayn."
+    },
+    {
+      "n": 104,
+      "sadr": "وَحَاذِرِ الْوَقْفَ بِكُلِّ الْحَرَكَةْ",
+      "ajuz": "إِلَّا إِذَا رُمْتَ فَبَعْضَ الْحَرَكَةْ",
+      "english": "Avoid stopping on a word while keeping its full final vowel sound, unless deliberately giving it a partial hint."
+    },
+    {
+      "n": 105,
+      "sadr": "إِلَّا بِفَتْحٍ أَوْ بِنَصْبٍ، وَأَشِمّ",
+      "ajuz": "إِشَارَةً بِالضَّمِّ فِي رَفْعٍ وَضَمّ",
+      "english": "This applies except for fatha, where the vowel is dropped entirely, and a light hint is given for damma."
+    },
+    {
+      "n": 106,
+      "sadr": "وَقَدْ تَقَضَّى نَظْمِيَ الْمُقَدِّمَةْ",
+      "ajuz": "مِنِّي لِقَارِئِ الْقُرْآنِ تَقْدِمَةْ",
+      "english": "The poet declares his composition of this introduction complete, offered as a gift to every reciter of the Quran."
+    },
+    {
+      "n": 107,
+      "sadr": "أَبْيَاتُهَا قَافٌ وَزَايٌ فِي الْعَدَدْ",
+      "ajuz": "مَنْ يُحْسِنِ التَّجْوِيدَ يَظْفَرْ بِالرُّشْدِ",
+      "english": "Its total verse count is one hundred and seven, and whoever masters tajweed will attain right guidance."
+    }
+  ]
+}

@@ -1,0 +1,402 @@
+{
+  "blocks": [
+    {
+      "id": "p16-1",
+      "kind": "picture",
+      "page": 16,
+      "caption": "تركيب: جِئْتُ قَبْلَ زَيْدٍ ، وَجِئْتُ بَعْدُ، و{{example|بَعْدُ}} في مربع، وبعدها = ⟨?⟩",
+      "caption_en": "Tarkeeb tree of 'I came before Zaid, and I came after', with {{example|ba'du}} boxed and followed by '= ⟨?⟩'; 'before Zaid' is drawn as zarf / muta'alliq / maf'ool fih with an arrow to the verb."
+    },
+    {
+      "id": "p16-2",
+      "kind": "example",
+      "page": 16,
+      "ar": "جِئْتُ قَبْلَ زَيْدٍ ، وَجِئْتُ بَعْدُ",
+      "en": "I came before Zaid, and I came after.",
+      "labels": [
+        {
+          "word": "جِئْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "قَبْلَ",
+          "label": "مضاف"
+        },
+        {
+          "word": "زَيْدٍ",
+          "label": "مضاف اليه"
+        },
+        {
+          "word": "قَبْلَ زَيْدٍ",
+          "label": "ظرف/ق/مفعول فيه"
+        }
+      ]
+    },
+    {
+      "id": "p16-3",
+      "kind": "rule",
+      "page": 16,
+      "ar": "If a {{condition|جار}} precedes any ظرف, the ظرف will be calculated in تركيب",
+      "en": "If a {{condition|jaarr (preposition)}} precedes any zarf, the zarf will be calculated in the tarkeeb."
+    },
+    {
+      "id": "p16-4",
+      "kind": "example",
+      "page": 16,
+      "ar": "جِئْتُ مِنْ قَبْل زَيْدٍ",
+      "en": "I came from before Zaid.",
+      "labels": [
+        {
+          "word": "مِنْ",
+          "label": "جار"
+        },
+        {
+          "word": "قَبْل",
+          "label": "مضاف"
+        },
+        {
+          "word": "زَيْدٍ",
+          "label": "مضاف اليه"
+        },
+        {
+          "word": "قَبْل زَيْدٍ",
+          "label": "مجرور"
+        },
+        {
+          "word": "مِنْ قَبْل زَيْدٍ",
+          "label": "ق"
+        }
+      ]
+    },
+    {
+      "id": "p17-1",
+      "kind": "heading",
+      "page": 17,
+      "ar": "{{term|حَيثُ}}",
+      "en": "Where"
+    },
+    {
+      "id": "p17-2",
+      "kind": "rule",
+      "page": 17,
+      "ar": "Always {{ruling|مضاف}} to a {{ruling|sentence}}.",
+      "en": "Always {{ruling|mudaaf}} to a {{ruling|sentence}}."
+    },
+    {
+      "id": "p17-3",
+      "kind": "example",
+      "page": 17,
+      "ar": "ذَهَبْتُ حَيثُ ذَهَبْتَ",
+      "en": "I went where you went.",
+      "labels": [
+        {
+          "word": "ذَهَبْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "حَيثُ",
+          "label": "مضاف"
+        },
+        {
+          "word": "ذَهَبْتَ",
+          "label": "فعل فاعل، JFu، مضاف اليه"
+        },
+        {
+          "word": "حَيثُ ذَهَبْتَ",
+          "label": "ظرف/ق/مفعول فيه"
+        }
+      ]
+    },
+    {
+      "id": "p17-4",
+      "kind": "example",
+      "page": 17,
+      "ar": "إِجْلِس حَيثُ زَيْدٌ (جَالِسٌ)",
+      "en": "Sit where Zaid is (sitting).",
+      "labels": [
+        {
+          "word": "إِجْلِس",
+          "label": "فعل فاعل (انت)"
+        },
+        {
+          "word": "حَيثُ",
+          "label": "مضاف"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "جَالِسٌ",
+          "label": "خبر"
+        },
+        {
+          "word": "زَيْدٌ (جَالِسٌ)",
+          "label": "JIu، مضاف اليه"
+        },
+        {
+          "word": "حَيثُ زَيْدٌ (جَالِسٌ)",
+          "label": "ظرف/ق/مفعول فيه"
+        },
+        {
+          "word": "إِجْلِس حَيثُ زَيْدٌ (جَالِسٌ)",
+          "label": "JI"
+        }
+      ]
+    },
+    {
+      "id": "p17-5",
+      "kind": "rule",
+      "page": 17,
+      "ar": "ثابتٌ/موجودٌ. Here, when the خبر is {{condition|dropped}}, the word زيد will be read {{ruling|مرفوع}} considering the dropped خبر.",
+      "en": "(thaabitun / mawjoodun) Here, when the khabar is {{condition|dropped}}, the word Zaid will be read {{ruling|marfoo'}} considering the dropped khabar."
+    },
+    {
+      "id": "p18-1",
+      "kind": "rule",
+      "page": 18,
+      "ar": "Here, the word زيد is read {{ruling|مجرور}} in a rare instance where حيث means {{condition|مكان}} (place of) instead \"where\".",
+      "en": "Here, the word Zaid is read {{ruling|majroor}} in a rare instance where haythu means {{condition|makaan (place of)}} instead of \"where\"."
+    },
+    {
+      "id": "p18-2",
+      "kind": "example",
+      "page": 18,
+      "ar": "إِجْلِس حَيثُ (مَكَانَ) زَيْدٍ .",
+      "en": "Sit at the place of Zaid.",
+      "labels": [
+        {
+          "word": "إِجْلِس",
+          "label": "فعل (انت) فاعل"
+        },
+        {
+          "word": "حَيثُ",
+          "label": "مضاف"
+        },
+        {
+          "word": "زَيْدٍ",
+          "label": "مضاف اليه"
+        },
+        {
+          "word": "حَيثُ زَيْدٍ",
+          "label": "ظرف/ق/مفعول فيه"
+        },
+        {
+          "word": "إِجْلِس حَيثُ زَيْدٍ",
+          "label": "JI"
+        }
+      ]
+    },
+    {
+      "id": "p18-3",
+      "kind": "heading",
+      "page": 18,
+      "ar": "{{term|أنّٰى}} / {{term|أينَ}}",
+      "en": "Where?"
+    },
+    {
+      "id": "p18-4",
+      "kind": "example",
+      "page": 18,
+      "ar": "أَيْنَ تَذْهَبُ ؟",
+      "en": "Where are you going?",
+      "labels": [
+        {
+          "word": "أَيْنَ",
+          "label": "(اسم الاستفهام) ظرف/ق/مفعول فيه"
+        },
+        {
+          "word": "تَذْهَبُ",
+          "label": "فعل، (انت) فاعل"
+        },
+        {
+          "word": "أَيْنَ تَذْهَبُ",
+          "label": "JI"
+        }
+      ]
+    },
+    {
+      "id": "p18-5",
+      "kind": "example",
+      "page": 18,
+      "ar": "أنّٰى تَذْهَبُ ؟",
+      "en": "Where are you going?",
+      "labels": [
+        {
+          "word": "أنّٰى",
+          "label": "(اسم الاستفهام) ظرف/ق/مفعول فيه"
+        },
+        {
+          "word": "تَذْهَبُ",
+          "label": "فعل، (انت) فاعل"
+        },
+        {
+          "word": "أنّٰى تَذْهَبُ",
+          "label": "JI"
+        }
+      ]
+    },
+    {
+      "id": "p19-1",
+      "kind": "example",
+      "page": 19,
+      "ar": "أَيْنَ تَجْلِس أَجْلِس",
+      "en": "Wherever you sit, I shall sit.",
+      "labels": [
+        {
+          "word": "أَيْنَ",
+          "label": "(اسم الشرط) ظرف/ق/مفعول فيه"
+        },
+        {
+          "word": "تَجْلِس",
+          "label": "فعل، (انت) فاعل"
+        },
+        {
+          "word": "أَيْنَ تَجْلِس",
+          "label": "JFK، شرط"
+        },
+        {
+          "word": "أَجْلِس",
+          "label": "فعل، (انا) فاعل، JFu، جزاء"
+        },
+        {
+          "word": "أَيْنَ تَجْلِس أَجْلِس",
+          "label": "جملة شرطية"
+        }
+      ]
+    },
+    {
+      "id": "p19-2",
+      "kind": "example",
+      "page": 19,
+      "ar": "أنّٰى تَجْلِس أَجْلِس",
+      "en": "Wherever you sit, I shall sit.",
+      "labels": [
+        {
+          "word": "أنّٰى",
+          "label": "(اسم الشرط) ظرف/ق/مفعول فيه"
+        },
+        {
+          "word": "تَجْلِس",
+          "label": "فعل، (انت) فاعل"
+        },
+        {
+          "word": "أنّٰى تَجْلِس",
+          "label": "JFK، شرط"
+        },
+        {
+          "word": "أَجْلِس",
+          "label": "فعل، (انا) فاعل، JFu، جزاء"
+        },
+        {
+          "word": "أنّٰى تَجْلِس أَجْلِس",
+          "label": "جملة شرطية"
+        }
+      ]
+    },
+    {
+      "id": "p20-1",
+      "kind": "heading",
+      "page": 20,
+      "ar": "{{term|عِنْدَ}}",
+      "en": "By, with"
+    },
+    {
+      "id": "p20-2",
+      "kind": "example",
+      "page": 20,
+      "ar": "زَيْدٌ عِنْدِي",
+      "en": "Zaid is by me. Zaid is with me.",
+      "labels": [
+        {
+          "word": "زَيْدٌ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "عِنْدِ",
+          "label": "مضاف"
+        },
+        {
+          "word": "ي",
+          "label": "مضاف اليه"
+        },
+        {
+          "word": "عِنْدِي",
+          "label": "ق/ظرف (ثابتٌ) خبر"
+        },
+        {
+          "word": "زَيْدٌ عِنْدِي",
+          "label": "JIK"
+        }
+      ]
+    },
+    {
+      "id": "p20-3",
+      "kind": "example",
+      "page": 20,
+      "ar": "القَلَمُ عِنْدَ زَيْدٍ",
+      "en": "The pen is with Zaid.",
+      "labels": [
+        {
+          "word": "القَلَمُ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "عِنْدَ",
+          "label": "مضاف"
+        },
+        {
+          "word": "زَيْدٍ",
+          "label": "مضاف اليه"
+        },
+        {
+          "word": "عِنْدَ زَيْدٍ",
+          "label": "ق/ظرف (ثابتٌ) خبر"
+        },
+        {
+          "word": "القَلَمُ عِنْدَ زَيْدٍ",
+          "label": "JIK"
+        }
+      ]
+    },
+    {
+      "id": "p21-1",
+      "kind": "heading",
+      "page": 21,
+      "ar": "{{term|لدٰى}} - {{term|لَدُنْ}}",
+      "en": "Ladaa - ladun"
+    },
+    {
+      "id": "p21-2",
+      "kind": "example",
+      "page": 21,
+      "ar": "القَلَمُ لَدَيَّ / لَدُنِّيْ",
+      "en": "The pen is with me.",
+      "labels": [
+        {
+          "word": "القَلَمُ",
+          "label": "مبتدأ"
+        },
+        {
+          "word": "لَدَيَّ",
+          "label": "مضاف مضاف اليه"
+        },
+        {
+          "word": "لَدَيَّ",
+          "label": "ق (ثابتٌ) خبر"
+        },
+        {
+          "word": "القَلَمُ لَدَيَّ",
+          "label": "JIK"
+        }
+      ]
+    },
+    {
+      "id": "p21-3",
+      "kind": "rule",
+      "page": 21,
+      "ar": "The difference between {{term|عند}} & {{term|لدى/لدن}} is that with the former the item {{ruling|does not need to be on you}}.",
+      "en": "The difference between 'inda and ladaa/ladun is that with the former the item {{ruling|does not need to be on you}}."
+    }
+  ]
+}

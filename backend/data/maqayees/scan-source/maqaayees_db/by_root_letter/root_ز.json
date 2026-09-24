@@ -1,0 +1,5320 @@
+{
+ "root_letter": "ز",
+ "entry_count": 139,
+ "entries": [
+  {
+   "root": "زمخ",
+   "core_meaning": "يَزْمَخُ الرجل إذا تكبّر، وهى منحوتةٌ من قولهم زَمَخَ إذا شمخ بأنفه (زامخ وشامخ)، ومن قولهم بزَخَ إذا تقاعس، ومشى متبازخاً إذا تكلّف إقامة صلبه",
+   "core_meaning_english": "'yazmakhu' — the man becomes arrogant/proud; blended from 'zamakha' (raised his nose in pride) and 'bazakha' (leaned/receded backward, walked affectedly upright)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زامخ / شامخ",
+     "meaning": "من شمخ بأنفه",
+     "meaning_english": "haughty, nose held high in pride"
+    },
+    {
+     "usage": "بزخ",
+     "meaning": "تقاعس",
+     "meaning_english": "leaned back, receded"
+    },
+    {
+     "usage": "مشى متبازخاً",
+     "meaning": "تكلّف إقامة صلبه",
+     "meaning_english": "walked affecting an upright/straight back"
+    }
+   ],
+   "printed_page_number": "331",
+   "pdf_page_index": 377,
+   "notes": "Corrected: printed headword is يَزْمَخُ (imperfect verb), not زَمَخَ, so core_meaning updated to match. Corrected variance spelling from 'متباذخاً' (with dhal) to 'متبازخاً' (with zay) — matches the بزخ root it derives from, per the page image."
+  },
+  {
+   "root": "زط",
+   "root_letters": [
+    "ز",
+    "ط"
+   ],
+   "core_meaning": "الزاء والطاء ليس بشيء. وزُطّ: كلمة مولّدة.",
+   "core_meaning_english": "The letters zāʼ and ṭāʼ do not form a valid root; \"zuṭṭ\" is a coined/non-Arabic (post-classical) word.",
+   "sarf_pattern": "المضاعف والمطابق",
+   "variances": [
+    {
+     "usage": "زُطّ",
+     "meaning": "كلمة مولّدة (اسم جيل من الهند)",
+     "meaning_english": "a coined word, name of a people from India (per footnote)",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1080,
+   "printed_page_number": "",
+   "notes": "First page of Volume 3 (كتاب الزاي), under heading باب ما جاء من كلام العرب أوله زاء في المضاعف والمطابق. No printed page number visible (only root-range header 'زط - زع - زغ'). Footnote (1) explains الزط as a tribe from India, arabized, per al-Khawarizmi and others. Pages 1078 (blank) and 1079 (title page of vol. 3) contain no entry content."
+  },
+  {
+   "root": "زع",
+   "root_letters": [
+    "ز",
+    "ع"
+   ],
+   "core_meaning": "الزاء والعين أصلٌ يدلُّ على اهتزاز وحركة.",
+   "core_meaning_english": "The letters zāʼ and ʻayn indicate shaking/vibration and movement.",
+   "sarf_pattern": "المضاعف والمطابق",
+   "variances": [
+    {
+     "usage": "زَعْزَعْتُ الشيء",
+     "meaning": "حركته",
+     "meaning_english": "I shook/agitated the thing",
+     "citation": ""
+    },
+    {
+     "usage": "تَزَعْزَعَ هو",
+     "meaning": "إذا اهتزّ واضطرب",
+     "meaning_english": "it shook and became unsteady",
+     "citation": ""
+    },
+    {
+     "usage": "سيرٌ زَعْزَعٌ",
+     "meaning": "شديد تهتزّ له الركاب",
+     "meaning_english": "a hard/vigorous pace that shakes the riding mounts",
+     "citation": ""
+    },
+    {
+     "usage": "زَعْزَعًا (وصف هملجة)",
+     "meaning": "حركة شديدة مضطربة، شبّهها الشاعر بانخراط الحبل فوق البكرة",
+     "meaning_english": "a violent, jolting motion, likened to a rope slipping/uncoiling over the pulley",
+     "citation": "قال الهذلي: وترمّد هملجة زعزعا كما انخرط الحبل فوق المحال"
+    }
+   ],
+   "pdf_page_index": 1080,
+   "printed_page_number": "",
+   "notes": "Citation attributed to 'الهذلي' with footnote (2) identifying him as أمية بن أبي عائذ الهذلي, referencing شرح السكري للهذليين ص180 and مخطوطة الشنقيطي ص79."
+  },
+  {
+   "root": "زغ",
+   "root_letters": [
+    "ز",
+    "غ"
+   ],
+   "core_meaning": "الزاء والغين ليس بشيء.",
+   "core_meaning_english": "The letters zāʼ and ghayn do not form a valid (established) root.",
+   "sarf_pattern": "المضاعف والمطابق",
+   "variances": [
+    {
+     "usage": "الزَّغْزَغَة",
+     "meaning": "السخرية",
+     "meaning_english": "mockery/ridicule",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1080,
+   "printed_page_number": "",
+   "notes": "Text reads 'الزغزغة: السخرية' as printed; recorded literally (the later common sense 'tickling' is not what the page states)."
+  },
+  {
+   "root": "زف",
+   "root_letters": [
+    "ز",
+    "ف"
+   ],
+   "core_meaning": "الزاء والفاء أصلٌ يدلُّ على خِفَّةٍ في كل شيء",
+   "core_meaning_english": "lightness in everything",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَفَّ الظليمُ زفيفاً",
+     "meaning": "إذا أسرع",
+     "meaning_english": "the male ostrich hastened/ran quickly"
+    },
+    {
+     "usage": "زُفَّتِ العروسُ إلى زوجها",
+     "meaning": "ومنه زُفَّتِ العروسُ إلى زوجها",
+     "meaning_english": "the bride was conveyed/escorted to her husband"
+    },
+    {
+     "usage": "زَفَّ القومُ في سيرهم",
+     "meaning": "أسرَعوا",
+     "meaning_english": "the people hastened in their travel",
+     "citation": "﴿فأقبلوا إليه يزفّون﴾"
+    },
+    {
+     "usage": "الزَّفَزافة / الزَّفَزَف",
+     "meaning": "الريح الشديدة لما فيها من خِفّة",
+     "meaning_english": "a violent wind, named for its lightness"
+    },
+    {
+     "usage": "قد زَفَّ رَأْلُه",
+     "meaning": "يقولون لمن طاش حِلمُه: قد زَفَّ رَأْلُه",
+     "meaning_english": "said of one whose composure/forbearance was shaken: 'his young ostrich has taken flight' (i.e. he has become flighty/unsettled)"
+    },
+    {
+     "usage": "زِفُّ الطائرِ",
+     "meaning": "صغار ريشه؛ لأنه خفيف",
+     "meaning_english": "the fine down-feathers of a bird, because it is light"
+    }
+   ],
+   "printed_page_number": "٤",
+   "pdf_page_index": 1081,
+   "notes": "Corrected 'قد زَفَّ رأسُه' -> 'قد زَفَّ رَأْلُه' (رأل = young ostrich, not رأس = head); the page shows رأله, fitting the ostrich theme of the entry. Also 'وزِفُّ الطائر' (down-feathers, noun) rather than 'وزَفَّ الطائر' (verb) per the visible vowelling."
+  },
+  {
+   "root": "زق",
+   "root_letters": [
+    "ز",
+    "ق"
+   ],
+   "core_meaning": "الزاء والقاف أصلٌ يدلُّ على تضايقٍ",
+   "core_meaning_english": "constriction/narrowness",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزُّقاق",
+     "meaning": "من ذلك الزُّقاق، سمي بذلك لضيقه عن الشوارع",
+     "meaning_english": "the alley/lane, named for being narrower than the main streets"
+    },
+    {
+     "usage": "زَقَّ الطائرُ فرخَه",
+     "meaning": "إطعام الفرخ",
+     "meaning_english": "the bird fed its chick (by regurgitation)"
+    },
+    {
+     "usage": "التَّزقيق إلى الجلد",
+     "meaning": "أن يُساخ من قِبَل العُنُق",
+     "meaning_english": "to sink/penetrate toward the skin, from the side of the neck"
+    }
+   ],
+   "printed_page_number": "٤",
+   "pdf_page_index": 1081,
+   "notes": "Removed hallucinated variance 'الزِّقّ' (waterskin) — not present anywhere in the entry on this page; the entry only contains الزُّقاق, زَقَّ الطائرُ فرخَه, and التزقيق. Footnote (2) marks التزقيق material as 'التكملة من المجمل' (supplemented from al-Mujmal)."
+  },
+  {
+   "root": "زل",
+   "root_letters": [
+    "ز",
+    "ل"
+   ],
+   "core_meaning": "الزاء واللام أصلٌ مطَّردٌ منقاسٌ في المضاعف، وكذلك في كل زاءٍ بعدها لامٌ من الثلاثي؛ تقول: زَلَّ عن مكانه زَليلاً وزَلَلاً",
+   "core_meaning_english": "slipping from one's place",
+   "sarf_pattern": "المضاعف",
+   "variances": [
+    {
+     "usage": "الماء الزُّلال",
+     "meaning": "العذب، لأنه يَزِلّ عن ظاهر اللسان لرقّته",
+     "meaning_english": "sweet/pure water, because it slips off the surface of the tongue owing to its thinness"
+    },
+    {
+     "usage": "الزَّلّة",
+     "meaning": "الخطأ؛ لأن المخطئ زَلّ عن نهج الصواب",
+     "meaning_english": "a slip/mistake, because the erring person slipped off the path of correctness"
+    },
+    {
+     "usage": "تزلزلت الأرض / زُلزِلَت زِلزالاً",
+     "meaning": "اضطربت",
+     "meaning_english": "the earth shook/quaked"
+    },
+    {
+     "usage": "المِزَلّة",
+     "meaning": "المكان الدَّحض",
+     "meaning_english": "a slippery place"
+    },
+    {
+     "usage": "الذِّئب الأزَلّ",
+     "meaning": "هو الأرسَح؛ قال ابن الأعرابي: سمي بذلك من قولهم زَلّ إذا عدا، وهو القياس الصحيح",
+     "meaning_english": "the wolf called 'azall' means lean/thin in the hindquarters; Ibn al-A'rabi said it is named from 'he ran' (zalla), which is the sound analogy",
+     "citation": "ابن الأعرابي"
+    },
+    {
+     "usage": "المرأة الزَّلاّء",
+     "meaning": "شُبِّهت بالذئب الأزَلّ فقيل للمرأة الرَّصعاء زَلاّء",
+     "meaning_english": "a woman likened to the lean-hipped wolf, called 'zallaa'"
+    },
+    {
+     "usage": "اللحم زَلّ عن مؤخّره / مؤخّر المرأة الرَّسحاء",
+     "meaning": "زَلّ عن مؤخّره",
+     "meaning_english": "the flesh slipped off his/her hindquarters (explaining thinness there)"
+    },
+    {
+     "usage": "الزُّؤْلول",
+     "meaning": "كالقَلِق؛ لأنه لا يستقرّ في مكانه",
+     "meaning_english": "something restless/unsettled, like a fidgety thing that will not stay in place"
+    },
+    {
+     "usage": "الزَّلَل",
+     "meaning": "شذّ عن هذا الأصل: الأثاث والمتاع، على فَعَل",
+     "meaning_english": "(anomalous, not from the core meaning) household furniture and goods"
+    }
+   ],
+   "printed_page_number": "٤",
+   "pdf_page_index": 1081,
+   "notes": "Entry continues from page 1081 (printed ٤) onto page 1082 (printed ٥). Added citation 'ابن الأعرابي' for الذئب الأزلّ, whom the page names as the source of that etymology."
+  },
+  {
+   "root": "زم",
+   "root_letters": [
+    "ز",
+    "م"
+   ],
+   "core_meaning": "الزاء والميم أصلٌ واحد، وهو يدلّ على تقدُّمٍ في استقامةٍ وقَصْد",
+   "core_meaning_english": "advancing forward in a straight, purposeful direction",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزِّمام",
+     "meaning": "لأنه يتقدَّم إذا مُدَّ به، قاصداً في استقامة",
+     "meaning_english": "the nose-rope/rein, because it leads the animal forward, straight and purposeful, when pulled"
+    },
+    {
+     "usage": "زَمَمْتُ البعيرَ أزُمُّه",
+     "meaning": "تقول: زَمَمْتُ البعيرَ أزُمُّه",
+     "meaning_english": "I put a nose-rope/rein on the camel and led it"
+    },
+    {
+     "usage": "أمْرُ بني فلانٍ زَمَمٌ",
+     "meaning": "كما يقال أمَمٌ، أي قصدٌ",
+     "meaning_english": "the affair of so-and-so's people is 'zamam', i.e. moderate/on a direct course"
+    },
+    {
+     "usage": "لا والذي وجهي زَمَمَ بيتِه",
+     "meaning": "يريدون تلقاءه وقصده",
+     "meaning_english": "an oath: 'No, by the One toward whose House my face is directed' — meaning facing and heading straight toward it"
+    },
+    {
+     "usage": "الزَّمّ",
+     "meaning": "التقدُّم في السير",
+     "meaning_english": "advancing/pressing forward in travel"
+    },
+    {
+     "usage": "الزِّمْزِمة",
+     "meaning": "شذّ عن هذا الأصل: الجماعة من الناس",
+     "meaning_english": "(anomalous) a group/crowd of people"
+    },
+    {
+     "usage": "الزِّمْزِيم",
+     "meaning": "الجِلّة من الإبل",
+     "meaning_english": "(anomalous) large/mature camels",
+     "citation": "قال الشيباني"
+    }
+   ],
+   "printed_page_number": "٥",
+   "pdf_page_index": 1082,
+   "notes": "Split the merged 'الزمزيم/زمزمة' variance into two: the page states الزِّمزِمة (group of people) as the anomalous item, then separately attributes الزِّمزِيم (large camels) to al-Shaybani."
+  },
+  {
+   "root": "زن",
+   "root_letters": [
+    "ز",
+    "ن"
+   ],
+   "core_meaning": "الزاء والنون كلمةٌ واحدةٌ لا يُتفرَّعُ ولا يُقاسُ عليها",
+   "core_meaning_english": "a single word, not derived from nor analogized upon",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "أزنَنْتُ فلاناً بكذا / هو مُزَنٌّ به",
+     "meaning": "إذا اتّهمتَه به",
+     "meaning_english": "I suspected so-and-so of such a thing; he is suspected of it",
+     "citation": "إن كنتَ أزنَنْتَني بها كذباً جَزْءُ فلاقَيْتَ مثلَها عَجَلاً (لحضري بن عامر)"
+    }
+   ],
+   "printed_page_number": "٥",
+   "pdf_page_index": 1082,
+   "notes": ""
+  },
+  {
+   "root": "زب",
+   "root_letters": [
+    "ز",
+    "ب"
+   ],
+   "core_meaning": "الزاء والباء أصلان: أحدهما يدلّ على وفورٍ في شَعَرٍ ونحوٍ يُحمَل عليه؛ والآخر الزَّبيب وهو معروف",
+   "core_meaning_english": "two core meanings: (1) abundance/thickness of hair and things likened to it; (2) raisins (well-known dried grapes)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّبَب",
+     "meaning": "طول الشَّعَر وكثرته",
+     "meaning_english": "length and abundance of hair"
+    },
+    {
+     "usage": "بعيرٌ أزَبّ",
+     "meaning": "بعير كثير الشعر",
+     "meaning_english": "a camel that is hairy/shaggy"
+    },
+    {
+     "usage": "عامٌ أزَبّ",
+     "meaning": "أي خصيب",
+     "meaning_english": "a fertile/abundant year",
+     "citation": "أثرَتِ الفتى نمّ نزعَتْ عنه كما حادَ الأزَبُّ عن الطِّمّانِ"
+    },
+    {
+     "usage": "الزَّبيبتان (النكتتان السوداوان فوق عيني الحية)",
+     "meaning": "تشبيهاً بالزَّبيب؛ وهو أخبث ما يكون من الحيّات",
+     "meaning_english": "the two black spots above a snake's eyes, likened to raisins; marks the most venomous kind of snake",
+     "citation": "حديث: يجيء كنز أحدهم يوم القيامة شجاعاً أقرعَ له زَبيبتان"
+    },
+    {
+     "usage": "زَبَّبَ شِدْقاه",
+     "meaning": "أزبدا (وربّما سمّوا الزَّبَدتين زَبيبتين)",
+     "meaning_english": "his mouth-corners foamed (from prolonged talking/reciting)",
+     "citation": "إنّي إذا ما زَبَّبَ الأشداقُ وكَثُر الضِّجاجُ واللَّقلاقُ ثَبْتُ الجَنانِ مِرْجَمٌ وَدّاقُ (قائله أبو الجحناء نصيب الأصغر)"
+    },
+    {
+     "usage": "الزَّبَّاب",
+     "meaning": "شذّ عن الباب: الفأر، الواحد زُبابة، وقد يحتمل أن يكون من الزَّبيب",
+     "meaning_english": "(anomalous) mice/rats, singular 'zubaba', possibly related to the raisin sense"
+    },
+    {
+     "usage": "زَبَّتِ الشمسُ وأزَبَّت",
+     "meaning": "شاذّ لا قياس له: دنَت للغروب",
+     "meaning_english": "(anomalous, no analogy) the sun neared setting"
+    }
+   ],
+   "printed_page_number": "٥",
+   "pdf_page_index": 1082,
+   "notes": "Entry begins on page 1082 (printed ٥) and continues onto page 1083 (printed ٦). Corrected citation spelling 'أبو الجهناء' -> 'أبو الجحناء' per footnote (1) on page 1083. Poem 'أثرت الفتى...' remains uncertain/hard to read in full."
+  },
+  {
+   "root": "زت",
+   "root_letters": [
+    "ز",
+    "ت"
+   ],
+   "core_meaning": "الزاء والتاء كلمةٌ لا قياس لها. يقال زَتَّتِ العروسُ، إذا زُيِّنَتْ",
+   "core_meaning_english": "a word with no wider analogy; said of a bride when she is adorned",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَتَّتِ العروسُ",
+     "meaning": "زُيِّنَتْ",
+     "meaning_english": "the bride was adorned/decked out"
+    },
+    {
+     "usage": "تزَتَّتَتْ",
+     "meaning": "أي تزيَّنَتْ",
+     "meaning_english": "she adorned herself",
+     "citation": "بَني تَميمٍ زَهْنِموا فتاتَكُمْ إنّ فتاةَ الحيّ بالتَّزَتُّتِ"
+    }
+   ],
+   "printed_page_number": "٦",
+   "pdf_page_index": 1083,
+   "notes": "Fixed typo in core_meaning: 'زُيِّنَتْها' -> 'زُيِّنَتْ' (extraneous ها not present on the page)."
+  },
+  {
+   "root": "زج",
+   "root_letters": [
+    "ز",
+    "ج"
+   ],
+   "core_meaning": "الزاء والجيم أصلٌ يدلُّ على رقّةٍ فى شىء",
+   "core_meaning_english": "fineness/thinness in a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زُجُّ الرمح والسهم",
+     "meaning": "الحديدة الرقيقة فى أسفل الرمح أو السهم",
+     "meaning_english": "the thin metal spike at the lower end of a spear or arrow"
+    },
+    {
+     "usage": "زَجَّجْتُه",
+     "meaning": "جعلت له زُجّاً",
+     "meaning_english": "I fitted it with a spike"
+    },
+    {
+     "usage": "أزْجَجْتُه",
+     "meaning": "نزعت زُجَّه",
+     "meaning_english": "I removed its spike"
+    },
+    {
+     "usage": "الزَّجَج",
+     "meaning": "دقّة الحاجبين وحسنهما",
+     "meaning_english": "fineness and beauty of the two eyebrows"
+    },
+    {
+     "usage": "الأزَجُّ من النعام",
+     "meaning": "الذى فوق عينه ريشٌ أبيض",
+     "meaning_english": "an ostrich with white feathers above its eye"
+    }
+   ],
+   "printed_page_number": "7",
+   "pdf_page_index": 1084,
+   "notes": ""
+  },
+  {
+   "root": "زح",
+   "root_letters": [
+    "ز",
+    "ح"
+   ],
+   "core_meaning": "الزاء والحاء يدلّ على البعد",
+   "core_meaning_english": "distance/remoteness",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زُحْزِحَ عن كذا",
+     "meaning": "بُوعِدَ",
+     "meaning_english": "he was made distant/removed",
+     "citation": "قال الله تعالى: {فَمَنْ زُحْزِحَ عَنِ النَّارِ} أى بُوعِد"
+    }
+   ],
+   "printed_page_number": "7",
+   "pdf_page_index": 1084,
+   "notes": ""
+  },
+  {
+   "root": "زخ",
+   "root_letters": [
+    "ز",
+    "خ"
+   ],
+   "core_meaning": "الزاء والخاء أصيلٌ يدلُّ على الدَّفع والمباينة",
+   "core_meaning_english": "pushing/thrusting and separation",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَخَخْتُ الشىء",
+     "meaning": "دفعته إذا دفعته",
+     "meaning_english": "I pushed the thing"
+    },
+    {
+     "usage": "زُخَّ فى قفاه",
+     "meaning": "دُفِع فى قفاه",
+     "meaning_english": "he was thrust/pushed on the back of his neck",
+     "citation": "وفى الحديث: «من نبذ القرآن وراء ظهره زُخَّ فى قفاه»"
+    },
+    {
+     "usage": "زَخَّها",
+     "meaning": "جامَعَها",
+     "meaning_english": "he had intercourse with her"
+    },
+    {
+     "usage": "المِزَخَّة",
+     "meaning": "المرأة",
+     "meaning_english": "the woman (so termed)"
+    },
+    {
+     "usage": "الزَّخَّة",
+     "meaning": "الحِقد والغَيظ",
+     "meaning_english": "rancor and rage",
+     "citation": "قال: فلا تقعدَنّ على زَخَّةٍ وتُضْمِرَ فى القلب وَجْداً وخِيفاً"
+    }
+   ],
+   "printed_page_number": "7",
+   "pdf_page_index": 1084,
+   "notes": "footnote gives poet as أصغر الهذلى (Asghar al-Hudhali); attribution not precisely verified in mainstream sources."
+  },
+  {
+   "root": "زر",
+   "root_letters": [
+    "ز",
+    "ر"
+   ],
+   "core_meaning": "الزاء والراء أصيلٌ يدلُّ على شدّة، وشذّ من ذلك الزَّرّ",
+   "core_meaning_english": "intensity/firmness (with one anomalous exception: the button/clasp)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زِرُّ القميص",
+     "meaning": "يقال إنه يشتقّ منه",
+     "meaning_english": "the shirt button"
+    },
+    {
+     "usage": "الزِّرّ (عظم تحت القلب)",
+     "meaning": "عظمٌ تحت القلب",
+     "meaning_english": "a bone said to be under the heart"
+    },
+    {
+     "usage": "لَزِرٌّ من أزرارها",
+     "meaning": "الرجل الحسن الرعية للإبل",
+     "meaning_english": "a man skilled/steady in tending camels",
+     "citation": "قال ابن السكيت"
+    },
+    {
+     "usage": "عيناه تَزِرّان",
+     "meaning": "توقّدتا",
+     "meaning_english": "his eyes blazed/glowed"
+    },
+    {
+     "usage": "الزَّرُّ (الشَّلّ والطَّرد)",
+     "meaning": "هو يَزُرُّ الكتائب بسيفه زَرًّا",
+     "meaning_english": "he routs and drives back the battalions with his sword"
+    },
+    {
+     "usage": "الزَّرّ (العضّ)",
+     "meaning": "العضّ",
+     "meaning_english": "biting",
+     "citation": "حمارٌ مِزَرٌّ"
+    },
+    {
+     "usage": "الزَّرَّة الكُرْهَبَة",
+     "meaning": "غير مفسّرة فى المعاجم المتداولة",
+     "meaning_english": "unexplained term (per footnote)"
+    },
+    {
+     "usage": "الزِّرِّير",
+     "meaning": "الخصيف السديد الرأى",
+     "meaning_english": "one of sound and firm judgment"
+    }
+   ],
+   "printed_page_number": "7",
+   "pdf_page_index": 1084,
+   "notes": "footnote 3 states this word's meaning here is not found in the standard lexicons; term rendered uncertainly as 'الكُرْهَبَة' possibly misread."
+  },
+  {
+   "root": "زعف",
+   "root_letters": [
+    "ز",
+    "ع",
+    "ف"
+   ],
+   "core_meaning": "الزاء والعين والفاء أصيلٌ",
+   "core_meaning_english": "(single/undivided origin — no explicit defining clause is given in the text; the examples that follow show a sense of swift, deadly killing)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "سُمٌّ زُعافٌ",
+     "meaning": "قاتل",
+     "meaning_english": "deadly poison"
+    },
+    {
+     "usage": "موتٌ زُعافٌ",
+     "meaning": "عاجل",
+     "meaning_english": "sudden/swift death"
+    },
+    {
+     "usage": "أزْعَفْتُه / زَعَفْتُه",
+     "meaning": "قتلته",
+     "meaning_english": "I killed him instantly"
+    },
+    {
+     "usage": "زَعَفَ فى حديثه",
+     "meaning": "كذَب",
+     "meaning_english": "he lied in his speech"
+    }
+   ],
+   "printed_page_number": "8",
+   "pdf_page_index": 1085,
+   "notes": "Unlike most entries, Ibn Faris gives no explicit 'يدلّ على...' defining clause after 'أصيلٌ' for this root — he moves straight to examples. Text also notes this root may be a substitution (إبدال) of زاء for ذال (i.e. related to ذعف)."
+  },
+  {
+   "root": "زعق",
+   "root_letters": [
+    "ز",
+    "ع",
+    "ق"
+   ],
+   "core_meaning": "الزاء والعين والقاف أصلٌ يدلُّ على شدّةٍ فى صياحٍ أو صِرارةٍ أو مُلوحة",
+   "core_meaning_english": "intensity in shouting/crying out, or in salinity",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طعامٌ مزعوقٌ",
+     "meaning": "إذا كُثِّرَ مِلحُه",
+     "meaning_english": "food oversalted"
+    },
+    {
+     "usage": "الماء الزُّعاق",
+     "meaning": "الملح",
+     "meaning_english": "salty/bitter water"
+    },
+    {
+     "usage": "زَعَقْتُ به",
+     "meaning": "صحتُ به",
+     "meaning_english": "I shouted at him"
+    },
+    {
+     "usage": "انزَعَقَ",
+     "meaning": "فَزِع",
+     "meaning_english": "he was startled/frightened"
+    },
+    {
+     "usage": "الزَّعِق",
+     "meaning": "النشيط الذى يفزع مع نشاطه",
+     "meaning_english": "the lively one who startles easily despite his liveliness"
+    },
+    {
+     "usage": "يَزْعَق دابّته",
+     "meaning": "طرَدَه طرداً شديداً",
+     "meaning_english": "he drove his mount hard"
+    },
+    {
+     "usage": "رجلٌ زَاعِقٌ",
+     "meaning": "الذى يصيح",
+     "meaning_english": "a shouting man"
+    },
+    {
+     "usage": "أزْعَقه الخوفُ حتّى زَعِق",
+     "meaning": "أفزعه الخوف",
+     "meaning_english": "fear startled him until he panicked",
+     "citation": "قال: من غائلات الليل والهَوْل الزَّعِق"
+    },
+    {
+     "usage": "الزُّعاق (النِّفار)",
+     "meaning": "النِّفار",
+     "meaning_english": "skittishness/shying"
+    },
+    {
+     "usage": "وَعِلٌ زَعّاق",
+     "meaning": "شديد النِّفار",
+     "meaning_english": "a very shy/skittish mountain-goat"
+    },
+    {
+     "usage": "مُهْرٌ مزعوق",
+     "meaning": "نشيط يفزع مع نشاطه",
+     "meaning_english": "a colt lively yet easily startled",
+     "citation": "قال: يا رُبَّ مُهْرٍ مزعوقٍ مُقيَّلٍ أو مَغبوقٍ من لبن الضأن الرَّتوق"
+    }
+   ],
+   "printed_page_number": "8",
+   "pdf_page_index": 1085,
+   "notes": "entry continues onto page 9 (index 1086) with remainder of the poetry citation."
+  },
+  {
+   "root": "زعك",
+   "root_letters": [
+    "ز",
+    "ع",
+    "ك"
+   ],
+   "core_meaning": "الزاء والعين والكاف أصيلٌ إن صحّ يدلُّ على تلبّثٍ وحقارةٍ ولؤمٍ",
+   "core_meaning_english": "tarrying/delay, and meanness/lowliness (if the root is sound)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الأزْعَكِيّ",
+     "meaning": "الرجل القصير اللئيم",
+     "meaning_english": "a short, base/mean man"
+    },
+    {
+     "usage": "الزُّعْكوك",
+     "meaning": "كذلك (القصير اللئيم)",
+     "meaning_english": "likewise, a short mean man"
+    },
+    {
+     "usage": "زَعَكة (للقوم)",
+     "meaning": "إذا لَبِثوا ساعة",
+     "meaning_english": "a group that tarried a while",
+     "citation": "قال الكسائى"
+    },
+    {
+     "usage": "الزَّعاكيك من الإبل",
+     "meaning": "المتردّدة الأخلاق",
+     "meaning_english": "camels of unsteady/fluctuating temperament",
+     "citation": "الواحدة زُعْكوكة؛ قال: تَسْنُّ أولادٌ لها زَعاكيكُ"
+    }
+   ],
+   "printed_page_number": "9",
+   "pdf_page_index": 1086,
+   "notes": "root entry begins with 'إن صحّ' (if sound) qualifier, indicating some doubt expressed by Ibn Faris himself."
+  },
+  {
+   "root": "زعل",
+   "root_letters": [
+    "ز",
+    "ع",
+    "ل"
+   ],
+   "core_meaning": "الزاء والعين واللام أصيلٌ يدلُّ على مرحٍ وقلّة استقرارٍ لنشاطٍ يكون",
+   "core_meaning_english": "friskiness and restlessness arising from liveliness",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّعَل",
+     "meaning": "النشاط",
+     "meaning_english": "liveliness/friskiness"
+    },
+    {
+     "usage": "الزَّعِل",
+     "meaning": "النشيط",
+     "meaning_english": "the lively/frisky one"
+    },
+    {
+     "usage": "أزْعَلَه السِّمَنُ والرَّعْى",
+     "meaning": "جعله نشيطاً",
+     "meaning_english": "fatness and grazing made it frisky",
+     "citation": "قال الهذلى: أكل الجميم وطاوعته سَمْحَجٌ مثل القناة وأزْعَلَتْه الأمْرُعُ"
+    },
+    {
+     "usage": "مَكاءٌ زَعِلٌ",
+     "meaning": "نشيط لا يستقرّ",
+     "meaning_english": "a restless, frisky bird (wheatear)",
+     "citation": "قال طرفة: ومَكاءٌ زَعِلٌ ظِلمانُه كالمخاض الجَرِب فى اليوم الخَصِر"
+    }
+   ],
+   "printed_page_number": "9",
+   "pdf_page_index": 1086,
+   "notes": "footnote 5 (attached to 'قال الهُذَلِىّ' in this زعل entry, not the زعك entry) identifies the poet as Abu Dhu'ayb al-Hudhali (أبو ذؤيب الهذلى); footnote 6 cites Tarafah's diwan for the second citation."
+  },
+  {
+   "root": "زعل",
+   "root_letters": [
+    "ز",
+    "ع",
+    "ل"
+   ],
+   "core_meaning": "(تكملة من صفحة سابقة) لم يظهر أصل المعنى في هذه الصفحة، فقط جملة ختامية",
+   "core_meaning_english": "(continuation from a previous page; core meaning not shown on this page)",
+   "sarf_pattern": "",
+   "pdf_page_index": 1087,
+   "printed_page_number": "10",
+   "variances": [
+    {
+     "usage": "زَعِلًا",
+     "meaning": "ورُبَّما حُمِل على هذا فسُمِّي المتضوِّر من الجوع زَعِلًا",
+     "meaning_english": "one writhing/twisting from hunger is sometimes named 'za'ilan' on this analogy",
+     "citation": ""
+    }
+   ],
+   "notes": "Tail end of an entry that began on an earlier page not included in this batch; root reconstructed as زعل from the word زَعِلًا, the root bracket itself is not visible on this page."
+  },
+  {
+   "root": "زعم",
+   "root_letters": [
+    "ز",
+    "ع",
+    "م"
+   ],
+   "core_meaning": "الزاء والعين والميم أصلان: أحدهما القول من غير صحّةٍ ولا يقين، والآخر التكفّل بالشيء",
+   "core_meaning_english": "Two core meanings: (1) a statement/claim made without certainty or proof; (2) to vouch for / guarantee something",
+   "sarf_pattern": "",
+   "pdf_page_index": 1087,
+   "printed_page_number": "10",
+   "variances": [
+    {
+     "usage": "الزَّعْم والزُّعْم",
+     "meaning": "القول على غير صحّة",
+     "meaning_english": "a claim/assertion without proof",
+     "citation": "قال الله جلّ ثناؤه: ﴿زَعَمَ الَّذِينَ كَفَرُوا أَنْ لَنْ يُبْعَثُوا﴾؛ وقال الشاعر: زَعَمَتْ غُدانَةُ أنَّ فيها سيِّدًا ضَخْمًا يُوَارِبُهُ جَناحُ الجُنْدَبِ"
+    },
+    {
+     "usage": "زَعَمَ في غير مَزْعَم",
+     "meaning": "أي طَمِع في غير مَطْمَع",
+     "meaning_english": "to covet/claim something with no legitimate basis for it",
+     "citation": "زَعْمًا لَعَمْرُ أبيكِ ليس بمَزْعَمِ"
+    },
+    {
+     "usage": "الزَّعُّوم",
+     "meaning": "الجَزُور التي يُشَكُّ في سِمَنها فتُغْبَط في يمينها بالأيدي (غَبْط الشاة والناقة: أن تُجَسّ لينظر سِمَنُها من هزالها)",
+     "meaning_english": "a slaughter-camel of doubtful fatness, felt/squeezed by hand to check",
+     "citation": ""
+    },
+    {
+     "usage": "التَّزَعُّم",
+     "meaning": "الكَذِب",
+     "meaning_english": "lying, falsehood",
+     "citation": ""
+    },
+    {
+     "usage": "زَعَمَ بالشيء",
+     "meaning": "إذا كَفَلَ به (الأصل الآخر)، أي كما كَفَل",
+     "meaning_english": "to vouch for / guarantee a thing",
+     "citation": "تُعازِبني في الرِّزْقِ عِرْسي وإنّما على اللهِ أرزاقُ العبادِ كما زَعَمْ"
+    },
+    {
+     "usage": "الزَّعامة (السِّيادة)",
+     "meaning": "لأنّ السيّد يَزْعُمُ بالأمور، أي يتكفّل بها",
+     "meaning_english": "leadership/chieftainship, because the chief vouches for / takes charge of affairs",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّعِيم",
+     "meaning": "الكَفِيل",
+     "meaning_english": "guarantor, surety",
+     "citation": "وأصدق من ذلك قول الله جلّ ثناؤه: ﴿قَالُوا نَفْقِدُ صُوَاعَ الْمَلِكِ وَلِمَنْ جَاءَ بِهِ حِمْلُ بَعِيرٍ وَأَنَا بِهِ زَعِيمٌ﴾"
+    },
+    {
+     "usage": "الزَّعامة",
+     "meaning": "حَظُّ السيّد من الغنيمة، ويقال بل هي أفضل المال",
+     "meaning_english": "the chief's share/portion of the spoils, said to be the best part of the wealth",
+     "citation": "قال لبيد: تَطِيرُ عَدائدُ الأشراكِ شَزْرًا وشَفْعًا والزَّعامةُ للغُلامِ"
+    }
+   ],
+   "notes": "Entry continues from printed page 10 onto printed page 11 (pdf_page_index 1088). Variances for الزعامة(السيادة)/الزعيم/الزعامة(حظ السيد) reordered to match actual page sequence; 'الزَّعُّوم' spelling and 'يمينها' wording corrected against source (scan quality makes exact vowelling of that word slightly uncertain)."
+  },
+  {
+   "root": "زعب",
+   "root_letters": [
+    "ز",
+    "ع",
+    "ب"
+   ],
+   "core_meaning": "الزاء والعين والباء أصلٌ واحد يدلُّ على الدَّفْع والتدافع",
+   "core_meaning_english": "One core meaning: pushing / surging against one another",
+   "sarf_pattern": "",
+   "pdf_page_index": 1088,
+   "printed_page_number": "11",
+   "variances": [
+    {
+     "usage": "زَعَبْتُه زَعْبَةً",
+     "meaning": "من ذلك الزَّعْب: الدَّفْع",
+     "meaning_english": "I pushed/shoved him",
+     "citation": ""
+    },
+    {
+     "usage": "أزْعَبُ لك زَعْبَةً من المال",
+     "meaning": "أي أعطيك دَفْعة/نصيبًا وافرًا من المال (من معنى الدَّفْع)",
+     "meaning_english": "I shall give you a good lump/portion of wealth",
+     "citation": "قال رسول الله صلى الله عليه وآله وسلم: «وأزْعَبُ لك زَعْبَةً من المال»"
+    },
+    {
+     "usage": "سيلٌ يَزْعَبُ الوادِيَ",
+     "meaning": "إذا ملأه (هذا غير معجم)",
+     "meaning_english": "a torrent that fills/floods the valley",
+     "citation": ""
+    },
+    {
+     "usage": "سيلٌ يَزْعَبُ بازّاء",
+     "meaning": "إذا تدافَعَ",
+     "meaning_english": "a flood surging forcefully, pushing against itself",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّاعِب",
+     "meaning": "السيّاح في الأرض",
+     "meaning_english": "one who roams/travels far over the land",
+     "citation": "قال ابن هَرْمة: يكادُ يَهْلِكُ فيها الزّاعِبُ الهادي"
+    },
+    {
+     "usage": "الزَّعّابيّة",
+     "meaning": "الرِّماح، قال الخليل: هي منسوبة إلى زاعب، ولم يَظْهَر لى زاعب أرجل هو أم بلد",
+     "meaning_english": "spears, said to be named after 'Za'ib' (a man or place, uncertain which)",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّعّابيّ",
+     "meaning": "وقال غيرُه: هو الرمح الذي إذا هُزَّ تدافَعَ من أوّله إلى آخره، وهو تدافُعُه، وهذا هو الصحيح",
+     "meaning_english": "a spear that, when shaken, ripples/surges from its base to its tip",
+     "citation": ""
+    },
+    {
+     "usage": "زَعَبَ الرجلُ المرأةَ",
+     "meaning": "إذا جامَعَها، وهذا هو بالراء أحسن، وقد مضى",
+     "meaning_english": "for a man to have intercourse with a woman",
+     "citation": ""
+    },
+    {
+     "usage": "الزُّعْبوب",
+     "meaning": "القصير من الرجال، ولعلّه أن يكون الذُّعبوب (باب واحد من هذا الباب إن صحّ، من باب الإبدال)",
+     "meaning_english": "a short man; possibly a substituted-letter variant of 'dhu'bub'",
+     "citation": ""
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "زعج",
+   "root_letters": [
+    "ز",
+    "ع",
+    "ج"
+   ],
+   "core_meaning": "الزاء والعين والجيم أصلٌ واحد يدلُّ على الإقلاق وقلّة الاستقرار",
+   "core_meaning_english": "One core meaning: disturbing/unsettling and lack of steadiness",
+   "sarf_pattern": "",
+   "pdf_page_index": 1089,
+   "printed_page_number": "12",
+   "variances": [
+    {
+     "usage": "أزْعَجْتُه أُزْعِجُه إزعاجًا",
+     "meaning": "من هذا الأصل (الإقلاق وعدم الاستقرار)",
+     "meaning_english": "I unsettled/disturbed him, made him uneasy",
+     "citation": ""
+    },
+    {
+     "usage": "أزْعَجْتُه فشَخَص",
+     "meaning": "أي أقلقته حتى قام/نهض مذعورًا",
+     "meaning_english": "I startled him and he stood up/started with alarm",
+     "citation": "قال الخليل: لو قيل انْزَعَجَ لكان صوابًا"
+    }
+   ],
+   "notes": "Two variances originally had the attribution phrase 'قال الخليل' placed in the meaning field instead of an actual gloss; corrected."
+  },
+  {
+   "root": "زعر",
+   "root_letters": [
+    "ز",
+    "ع",
+    "ر"
+   ],
+   "core_meaning": "الزاء والعين والراء أصيلٌ يدلُّ على سُوءِ خُلُقٍ وقلّةِ خيرٍ",
+   "core_meaning_english": "A genuine core meaning: bad character/temper and scarcity of good",
+   "sarf_pattern": "",
+   "pdf_page_index": 1089,
+   "printed_page_number": "12",
+   "variances": [
+    {
+     "usage": "الزَّعارّة",
+     "meaning": "شراسة الخُلُق، وهو على وزن فَعالّة",
+     "meaning_english": "fierceness/badness of temperament",
+     "citation": ""
+    },
+    {
+     "usage": "الأزعر (المكان)",
+     "meaning": "المكان القليل النَّبات",
+     "meaning_english": "a place with sparse vegetation",
+     "citation": ""
+    },
+    {
+     "usage": "الأزعرة",
+     "meaning": "يقال إنّ الأزعرة لا يُبنى منها تصريفُ فعلٍ",
+     "meaning_english": "said to have no verbal conjugation formed from it",
+     "citation": ""
+    },
+    {
+     "usage": "الأزعر (الشَّعر)",
+     "meaning": "القليل الشَّعر؛ والمرأة زَعْراء",
+     "meaning_english": "one with sparse/thin hair; a woman with sparse hair is 'za'ra'",
+     "citation": ""
+    },
+    {
+     "usage": "زَعِرَ يَزْعَرُ",
+     "meaning": "ورد الفعل في النص دون مزيد بيان",
+     "meaning_english": "the verb form is given with no further definition in the text",
+     "citation": ""
+    }
+   ],
+   "notes": "Followed by a section heading (not a root entry): باب الزاء والعين وما يثلثهما. The last variance's meaning was previously an invented gloss ('فعل من هذا الباب') not literally in the text; corrected to reflect that no further definition is given."
+  },
+  {
+   "root": "زغف",
+   "root_letters": [
+    "ز",
+    "غ",
+    "ف"
+   ],
+   "core_meaning": "الزاء والعين والفاء أصيلٌ صحيحٌ يدلُّ على سَعَةٍ وفَضْلٍ",
+   "core_meaning_english": "A genuine, sound core meaning: ampleness/broadness and excess/surplus",
+   "sarf_pattern": "",
+   "pdf_page_index": 1089,
+   "printed_page_number": "12",
+   "variances": [
+    {
+     "usage": "الزَّغْفة",
+     "meaning": "الدِّرع؛ والجمع الزُّغُف، وهي الواسعة؛ وربّما قالوا زَغَفة وزَغَف",
+     "meaning_english": "coat of mail; plural 'zughuf', meaning ample/roomy ones",
+     "citation": "أطعمنا القومُ ماءَ الفراتِ وفينا السيوفُ وفينا الزَّغَّف"
+    },
+    {
+     "usage": "رجلٌ مِزْغَفٌ",
+     "meaning": "نَهِمٌ رَغِيب",
+     "meaning_english": "a greedy, voracious man",
+     "citation": ""
+    },
+    {
+     "usage": "زَغَفَ في حديثه",
+     "meaning": "زاد فيه",
+     "meaning_english": "he added/embellished in his speech",
+     "citation": "قال الأصمعي"
+    }
+   ],
+   "notes": "Core meaning corrected: 'سِمَعٍ' (hearing/reputation) was a transcription error for 'سَعَةٍ' (ampleness), which is also what the original English gloss already said."
+  },
+  {
+   "root": "زغل",
+   "root_letters": [
+    "ز",
+    "غ",
+    "ل"
+   ],
+   "core_meaning": "الزاء والغين واللام أصلٌ يدلُّ على رَضاعٍ وزَقٍّ",
+   "core_meaning_english": "A core meaning indicating suckling/nursing and pouring/gushing forth",
+   "sarf_pattern": "",
+   "pdf_page_index": 1089,
+   "printed_page_number": "12",
+   "variances": [],
+   "notes": "Entry only begins at the very bottom of this page (core-meaning sentence only); its variances/derived usages continue on the next page, not included in this batch."
+  },
+  {
+   "root": "زغل",
+   "root_letters": [
+    "ز",
+    "غ",
+    "ل"
+   ],
+   "core_meaning": "لم يرد نص أصل المعنى في هذه الصفحة؛ هذا استمرار لمادة زغل التي بدأت في صفحة سابقة",
+   "core_meaning_english": "continuation of entry begun on a previous page - core meaning not restated here",
+   "sarf_pattern": "",
+   "pdf_page_index": 1090,
+   "printed_page_number": "13",
+   "variances": [
+    {
+     "usage": "أزغل الطائر فرخه",
+     "meaning": "إذا زقّه",
+     "meaning_english": "the bird fed its chick by regurgitation",
+     "citation": "قال ابن أحمر: فأزغلت في حلقه زغلة لم تخطئ الجيد ولم تشفتر"
+    },
+    {
+     "usage": "أزغل له زغلة من سقائك",
+     "meaning": "أي صُبَّ له شيء من لبن",
+     "meaning_english": "poured him a bit of milk from your waterskin",
+     "citation": ""
+    },
+    {
+     "usage": "أزغلت المرأة من عزلائها",
+     "meaning": "أي صَبَّت",
+     "meaning_english": "she (the woman) poured from its spout",
+     "citation": ""
+    },
+    {
+     "usage": "الزُّغلول من الرجال",
+     "meaning": "الخفيف؛ وهذا شاذ عن الباب",
+     "meaning_english": "a light/nimble man - noted as an irregular outlier not fitting the root's core meaning",
+     "citation": ""
+    }
+   ],
+   "notes": "Continuation of a root entry begun on an earlier page not included in this batch. Footnote (1) discusses variant readings of the poetry citation (لم تشتفر vs لم تشفتر, and المجمل's لم تظلم الجيد)."
+  },
+  {
+   "root": "زغم",
+   "root_letters": [
+    "ز",
+    "غ",
+    "م"
+   ],
+   "core_meaning": "أصيلٌ يدلُّ على ترديد صوتٍ خفيّ",
+   "core_meaning_english": "a genuine root indicating the repeated making of a faint/muffled sound",
+   "sarf_pattern": "",
+   "pdf_page_index": 1090,
+   "printed_page_number": "13",
+   "variances": [
+    {
+     "usage": "تزغّم الجمل",
+     "meaning": "إذا ردّد رغاءه في خفاءٍ ليس شديدًا",
+     "meaning_english": "the camel repeated its bellow faintly, not loudly",
+     "citation": ""
+    },
+    {
+     "usage": "التزغّم",
+     "meaning": "وهو التغضّب، كأنه في غضبه يردّد صوتًا في نفسه",
+     "meaning_english": "becoming angry, as if repeating a sound to oneself in anger",
+     "citation": ""
+    },
+    {
+     "usage": "تزغّم الفصيل لأمّه",
+     "meaning": "إذا حنّ حنينًا خفيًّا (ذكره ناس)",
+     "meaning_english": "the young camel yearned faintly for its mother (mentioned by some)",
+     "citation": ""
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "زغب",
+   "root_letters": [
+    "ز",
+    "غ",
+    "ب"
+   ],
+   "core_meaning": "أُصَيْلٌ صحيحٌ، وهو الزَّغَب",
+   "core_meaning_english": "a sound, genuine root: down/soft fluff",
+   "sarf_pattern": "",
+   "pdf_page_index": 1090,
+   "printed_page_number": "13",
+   "variances": [
+    {
+     "usage": "الزَّغَب",
+     "meaning": "أوّل ما ينبت من الريش",
+     "meaning_english": "the first feathers/down that grow",
+     "citation": ""
+    },
+    {
+     "usage": "يُزغّب الكَرَم",
+     "meaning": "بعد جَرْي الماء فيه",
+     "meaning_english": "the grapevine puts out its first fine growth after water runs through it",
+     "citation": ""
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "زغد",
+   "root_letters": [
+    "ز",
+    "غ",
+    "د"
+   ],
+   "core_meaning": "أصيلٌ يدلّ على تعسّرٍ في صوتٍ",
+   "core_meaning_english": "a genuine root indicating a strained/labored sound",
+   "sarf_pattern": "",
+   "pdf_page_index": 1090,
+   "printed_page_number": "13",
+   "variances": [
+    {
+     "usage": "الزَّغْد",
+     "meaning": "وهو الهدير يتعسّر فيه الهادر",
+     "meaning_english": "a low rumbling sound (like a camel's growl) produced with strain",
+     "citation": ""
+    },
+    {
+     "usage": "زغد عُكَّته",
+     "meaning": "إذا عَصَرها ليُخرج ما فيها",
+     "meaning_english": "he squeezed the skin-container to force out its contents",
+     "citation": ""
+    }
+   ],
+   "notes": "The exact word for what is squeezed out is unclear/ambiguous in the scan at this resolution; the printed text reads roughly 'ليخرج ما فيها' (to force out what is in it) - the earlier gloss '(سمنها/ghee)' was an unsupported addition and has been removed pending a clearer scan."
+  },
+  {
+   "root": "زغر",
+   "root_letters": [
+    "ز",
+    "غ",
+    "ر"
+   ],
+   "core_meaning": "أصيلٌ؛ يقال زَغَر الماء وزَخَر، وليس هذا عندي من جهة الإبدال لأن قياس زَغَر قياسٌ صحيح",
+   "core_meaning_english": "a genuine root; water 'zaghara' (surged) like 'zakhara' - the author states this is not mere phonetic substitution, since zaghara has its own sound derivation",
+   "sarf_pattern": "",
+   "pdf_page_index": 1090,
+   "printed_page_number": "13",
+   "variances": [
+    {
+     "usage": "زَغَر الماء",
+     "meaning": "بمعنى زَخَر",
+     "meaning_english": "the water surged/overflowed",
+     "citation": ""
+    },
+    {
+     "usage": "زَغَرت الشيء زَغْرًا",
+     "meaning": "الاغتصاب (عن ابن دريد)",
+     "meaning_english": "to seize/take by force (per Ibn Duraid)",
+     "citation": ""
+    },
+    {
+     "usage": "زُغَر",
+     "meaning": "اسم امرأة، يقال أن عين زُغَر إليها تُنسَب",
+     "meaning_english": "a woman's name; 'Ayn Zughar (a spring) is said to be named after her",
+     "citation": ""
+    }
+   ],
+   "notes": "Entry begins on page 1090 (printed 13) and continues onto page 1091 (printed 14) where the discussion of Ibn Duraid's meaning and the woman's name زُغَر appears. Author promises further discussion 'in 308' (سيجيء في ٣٠٨)."
+  },
+  {
+   "root": "زفن",
+   "root_letters": [
+    "ز",
+    "ف",
+    "ن"
+   ],
+   "core_meaning": "ليس عندي أصلاً، ولا فيه ما يُحتاج إليه",
+   "core_meaning_english": "the author states this is not a genuine root, and nothing in it needs deriving",
+   "sarf_pattern": "",
+   "pdf_page_index": 1091,
+   "printed_page_number": "14",
+   "variances": [
+    {
+     "usage": "الزَّفْن",
+     "meaning": "الرقص (يقولونه)",
+     "meaning_english": "dancing (as some say)",
+     "citation": ""
+    },
+    {
+     "usage": "الزِّيفَن",
+     "meaning": "الشديد (يقولونه)",
+     "meaning_english": "the strong/harsh one (as some say)",
+     "citation": ""
+    }
+   ],
+   "notes": "Opens the new bab heading 'باب الزاء والفاء وما يثلثهما' just before this entry. Author dismisses it: 'وليس هذا بشيء'. Footnote (3) gives two vocalizations of الزيفن: بكسر الزاء وفتح الفاء وتشديد النون، وبكسر الزاء وفتح الياء وسكون الفاء."
+  },
+  {
+   "root": "زفي",
+   "root_letters": [
+    "ز",
+    "ف",
+    "ي"
+   ],
+   "core_meaning": "الزاء والفاء والحرف المعتل يدلّ على خفةٍ وسرعة",
+   "core_meaning_english": "the root (with weak final letter) indicates lightness and speed",
+   "sarf_pattern": "المعتل",
+   "pdf_page_index": 1091,
+   "printed_page_number": "14",
+   "variances": [
+    {
+     "usage": "زَفَتِ الريح التراب",
+     "meaning": "إذا طردَته عن وجه الأرض",
+     "meaning_english": "the wind swept the dust off the ground",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّفَيان",
+     "meaning": "شدّة هبوب الريح",
+     "meaning_english": "the intensity of the wind's blowing",
+     "citation": ""
+    },
+    {
+     "usage": "ناقة زَفَيان",
+     "meaning": "سريعة",
+     "meaning_english": "a swift she-camel",
+     "citation": ""
+    },
+    {
+     "usage": "قوس زَفَيان",
+     "meaning": "سريعة الإرسال للسهم",
+     "meaning_english": "a bow that releases the arrow swiftly",
+     "citation": ""
+    },
+    {
+     "usage": "زَفَى الظليم زَفَيانًا",
+     "meaning": "إذا نشر جناحيه",
+     "meaning_english": "the male ostrich spread its wings",
+     "citation": ""
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "زفر",
+   "root_letters": [
+    "ز",
+    "ف",
+    "ر"
+   ],
+   "core_meaning": "أصلان: أحدهما يدلّ على حَمْل، والآخر على صَوْتٍ من الأصوات",
+   "core_meaning_english": "two core meanings: one indicating carrying/bearing a load, the other a kind of sound",
+   "sarf_pattern": "",
+   "pdf_page_index": 1091,
+   "printed_page_number": "14",
+   "variances": [
+    {
+     "usage": "الزَّفْر (جمع أزفار)",
+     "meaning": "الحِمل",
+     "meaning_english": "a load/burden",
+     "citation": ""
+    },
+    {
+     "usage": "ازدفره",
+     "meaning": "إذا حمله",
+     "meaning_english": "he carried/bore it",
+     "citation": ""
+    },
+    {
+     "usage": "الرجل زُوفَر",
+     "meaning": "لأنه يزدفر بالأموال مطيقًا لها",
+     "meaning_english": "a man called 'Zufar' because he bears loads of wealth, being capable of it",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّافِرة",
+     "meaning": "عشيرة الرجل؛ لأنهم قد يتحمّلون بعض ما ينوبه",
+     "meaning_english": "a man's clan/kinsmen, since they help bear what befalls him",
+     "citation": ""
+    },
+    {
+     "usage": "زُفرة الفرس",
+     "meaning": "وسَطه",
+     "meaning_english": "the horse's midsection",
+     "citation": ""
+    },
+    {
+     "usage": "الزِّفْر",
+     "meaning": "القِربة، ومنه الإماء اللاتي تحمل القرب: زوافر",
+     "meaning_english": "a waterskin; hence female slaves who carry waterskins are called 'zawaafir'",
+     "citation": ""
+    },
+    {
+     "usage": "الزُّفَر",
+     "meaning": "الرجل السيّد، يأبى الظلامة",
+     "meaning_english": "a chieftain/noble man who refuses to be wronged",
+     "citation": "يأبى الظلامة منه النوفل الزُّفَر - بيت لأعشى باهلة، من قصيدة يرثي بها المنتشر بن وهب الباهلي"
+    },
+    {
+     "usage": "زِفْر المسافر",
+     "meaning": "جهازه",
+     "meaning_english": "a traveler's provisions/gear",
+     "citation": ""
+    },
+    {
+     "usage": "الزُّفَر (النهر)",
+     "meaning": "النهر الكبير، لأنه كثير الحمل للماء",
+     "meaning_english": "a large river, so called because it carries much water",
+     "citation": ""
+    }
+   ],
+   "notes": "Entry begins on page 1091 (printed 14) with the two core meanings and the first (load) meaning's opening, and continues onto page 1092 (printed 15) with the rest; the second (sound) meaning is never elaborated within these three pages. Footnotes give textual corrections: page 1091 fn.4 corrects الأصل's 'وازفره' to 'وازدفره'; page 1092 fn.1 corrects 'يزفر' to 'يزدفر'; page 1092 fn.3 corrects 'الزُّفْرة' (with ta marbuta) to 'الزُّفْر' (without it, per الجمل/اللسان/القاموس) for the horse's-midsection word; fn.2 notes a variant reading 'مطيقًا له'; fn.4 gives the poetry line's source and attribution to Al-A'sha Bahila's elegy for al-Muntashir ibn Wahb al-Bahili, with cross-references to Asma'iyyat, Jamharat Ash'ar al-'Arab, Mukhtarat Ibn al-Shajari, Amali al-Murtada, and al-Khizana."
+  },
+  {
+   "root": "زفل",
+   "root_letters": [
+    "ز",
+    "ف",
+    "ل"
+   ],
+   "core_meaning": "هي الأزفلة، وهي الجماعة",
+   "core_meaning_english": "the root refers to 'al-azfala', meaning a group/crowd of people",
+   "sarf_pattern": "",
+   "pdf_page_index": 1092,
+   "printed_page_number": "15",
+   "variances": [
+    {
+     "usage": "جاءوا بأزفلتهم",
+     "meaning": "أي بجماعتهم",
+     "meaning_english": "they came with their whole group",
+     "citation": ""
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "root": "زفت",
+   "root_letters": [
+    "ز",
+    "ف",
+    "ت"
+   ],
+   "core_meaning": "ليس بشيء، إلا الزِّفت، ولا أدري أعربيٌّ هو أم غيره",
+   "core_meaning_english": "the author states this is not a genuine root - except for the word 'zift' (tar/pitch), and he is unsure whether it is Arabic or foreign",
+   "sarf_pattern": "",
+   "pdf_page_index": 1092,
+   "printed_page_number": "15",
+   "variances": [
+    {
+     "usage": "المُزَفَّت",
+     "meaning": "المطليّ بالزّفت",
+     "meaning_english": "a vessel coated/pitched with tar",
+     "citation": "جاء في الحديث: «المزفّت»؛ وفي اللسان: الحديث أنه نهى عن المزفّت من الأوعية"
+    }
+   ],
+   "notes": "Final entry of the batch; author closes with 'والله أعلم بالصواب'. The vessel-prohibition detail comes from footnote (5) citing اللسان, not the main entry text."
+  },
+  {
+   "root": "زقم",
+   "root_letters": [
+    "ز",
+    "ق",
+    "م"
+   ],
+   "core_meaning": "الزاء والقاف والميم أصيلٌ يدلُّ على جِنْسٍ من الأكل",
+   "core_meaning_english": "a genus of eating/consuming",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزُّقْمُ",
+     "meaning": "الفِعْل، من أكل الزُّقُّوم",
+     "meaning_english": "the act of eating the tree az-Zaqqum",
+     "citation": "قال الخليل"
+    },
+    {
+     "usage": "الازدِقَام",
+     "meaning": "الابتلاع",
+     "meaning_english": "swallowing",
+     "citation": ""
+    },
+    {
+     "usage": "تزقّم فلان اللبن",
+     "meaning": "إذا أفرط فى شُرْبه",
+     "meaning_english": "when he drank milk excessively",
+     "citation": "ذكر ابن دريد عن بعض العرب"
+    }
+   ],
+   "pdf_page_index": 1093,
+   "printed_page_number": "16",
+   "notes": ""
+  },
+  {
+   "root": "زقل",
+   "root_letters": [
+    "ز",
+    "ق",
+    "ل"
+   ],
+   "core_meaning": "الزاء والقاف واللام ليس بشىء",
+   "core_meaning_english": "not a coherent root",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَوْقَلَ فلان عمامته",
+     "meaning": "إذا أرخى طرَفَيْها من ناحيتَىْ رأسه",
+     "meaning_english": "when he let both ends of his turban hang loose from either side of his head",
+     "citation": "حكِى عن بعض العرب"
+    }
+   ],
+   "pdf_page_index": 1093,
+   "printed_page_number": "16",
+   "notes": ""
+  },
+  {
+   "root": "زقو",
+   "root_letters": [
+    "ز",
+    "ق",
+    "و"
+   ],
+   "core_meaning": "الزاء والقاف والحرف المعتل أصيلٌ يدل على صوتٍ من الأصوات",
+   "core_meaning_english": "a sound among sounds (crowing/calling)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّقْوُ (مصدر زَقَا الديك يَزْقُو)",
+     "meaning": "صياح الديك، ويقال إن كل صائح زاقٍ",
+     "meaning_english": "the crowing of the rooster; said of any caller/crier",
+     "citation": ""
+    },
+    {
+     "usage": "هو أنقل من الزَّواقى (الديَكة)",
+     "meaning": "لأنهم كانوا يَسْمُرون فإذا صاحت الدِّيَكة تفرَّقُوا",
+     "meaning_english": "'more disruptive than the roosters' - proverb, because when roosters crowed, night-gatherers who used to stay up would scatter",
+     "citation": "كانت العرب تقول"
+    },
+    {
+     "usage": "الزُّقاء",
+     "meaning": "زُقاء الديك",
+     "meaning_english": "the crowing of the rooster",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1093,
+   "printed_page_number": "16",
+   "notes": ""
+  },
+  {
+   "root": "زقب",
+   "root_letters": [
+    "ز",
+    "ق",
+    "ب"
+   ],
+   "core_meaning": "الزاء والقاف والباء كلمة",
+   "core_meaning_english": "a single word, not a full root",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "طريقٌ زَقَبٌ",
+     "meaning": "أى ضيّق",
+     "meaning_english": "a narrow road",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1093,
+   "printed_page_number": "16",
+   "notes": "footnote adds: وقيل الزَّقَب الطرق الضيقة، واحدتها زَقبة، وقيل الواحد والجمع سواء"
+  },
+  {
+   "root": "زقن",
+   "root_letters": [
+    "ز",
+    "ق",
+    "ن"
+   ],
+   "core_meaning": "الزاء والقاف والنون ليس بشىء",
+   "core_meaning_english": "not a coherent root",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَقَنْتُ الحِمْلَ أزْقُنُه",
+     "meaning": "إذا حملته",
+     "meaning_english": "when he carried the load",
+     "citation": "على أنهم ربما قالوا"
+    },
+    {
+     "usage": "أزْقَنْتُ فلاناً",
+     "meaning": "أعنته على الحمل",
+     "meaning_english": "I helped him carry the load",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1093,
+   "printed_page_number": "16",
+   "notes": "page ends with 'والله أعلم بالصواب'"
+  },
+  {
+   "root": "زكل",
+   "root_letters": [
+    "ز",
+    "ك",
+    "ل"
+   ],
+   "core_meaning": "الزاء والكاف واللام ليس بأصل، وقد جاءت فيه كلمة",
+   "core_meaning_english": "not a coherent root, though one word occurs in it",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزُّوَنْكَل من الرجال",
+     "meaning": "القصير",
+     "meaning_english": "the short man",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1094,
+   "printed_page_number": "17",
+   "notes": ""
+  },
+  {
+   "root": "زكم",
+   "root_letters": [
+    "ز",
+    "ك",
+    "م"
+   ],
+   "core_meaning": "الزاء والكاف والميم ليس فيه إلا الزُّكْمَة والزُّكام",
+   "core_meaning_english": "contains nothing but 'the head-cold/blockage' and 'catarrh'",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "فلان زُكْمَةُ أبويه",
+     "meaning": "وهو آخر أولادهما (استعارة)",
+     "meaning_english": "metaphor: he is the last child of his parents",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1094,
+   "printed_page_number": "17",
+   "notes": "footnote 1 text partly unclear in scan: الزُّكْمة والزُّكام هو ذاك الداء المعروف فى الأنف؛ trailing clause illegible/uncertain"
+  },
+  {
+   "root": "زكن",
+   "root_letters": [
+    "ز",
+    "ك",
+    "ن"
+   ],
+   "core_meaning": "الزاء والكاف والنون أصلٌ يختلف فى معناه",
+   "core_meaning_english": "a root whose meaning is disputed",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّكَن",
+     "meaning": "يقولون هو الظنّ، ويقولون هو اليقين",
+     "meaning_english": "said to mean both 'supposition' and 'certain knowledge'",
+     "citation": ""
+    },
+    {
+     "usage": "زَكِنْتُ منك كذا",
+     "meaning": "أى عَلِمْته (قول أهل التحقيق من اللغويين)",
+     "meaning_english": "I came to know such-and-such from you",
+     "citation": "ولن يراجعَ قلبى حبَّهم أبداً / زَكِنْتُ منهم على مثل الذى زَكَنوا"
+    },
+    {
+     "usage": "أزْكَنْتُ (الإزكان)",
+     "meaning": "قالوا ولا يقال أزْكَنْتُ، على أن الخليل قد ذكر الإزكان",
+     "meaning_english": "disputed form; some deny it is said, though al-Khalil mentioned it",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّكَن",
+     "meaning": "ويقال إن الزَّكَن الظنّ",
+     "meaning_english": "closing note: it is said az-zakan means supposition",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1094,
+   "printed_page_number": "17",
+   "notes": "footnote 2 attributes the verse to a bayt by Qa'nab ibn Umm Sahib (Lisan al-'Arab s.v. زكن); footnote also notes the verb is transitivized with على to imply the sense of اطّلعت — omitted from transcription as non-essential grammatical gloss"
+  },
+  {
+   "root": "زكو / زكي",
+   "root_letters": [
+    "ز",
+    "ك",
+    "و"
+   ],
+   "core_meaning": "الزاء والكاف والحرف المعتل أصلٌ يدل على نماءٍ وزيادة",
+   "core_meaning_english": "growth and increase",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الطهارة / زكاة المال",
+     "meaning": "قيل سُمّيت بذلك لأنها ما يُرجى بها زكاء المال وهو زيادته ونماؤه؛ وقيل سُمّيت زكاة لأنها طهارة",
+     "meaning_english": "almsgiving/purification of property - named either for the growth hoped from it, or because it is a purification",
+     "citation": "{خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ وَتُزَكِّيهِمْ بِهَا}"
+    },
+    {
+     "usage": "زرعٌ زاكٍ",
+     "meaning": "بيّن الزكاء",
+     "meaning_english": "flourishing/thriving crop",
+     "citation": ""
+    },
+    {
+     "usage": "هو أمرٌ لا يُزْكُو بفلانٍ",
+     "meaning": "أى لا يليق به",
+     "meaning_english": "a matter that does not befit so-and-so",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّكا",
+     "meaning": "الزَّوْج، وهو الشَّفْع",
+     "meaning_english": "the even (pair), an even number",
+     "citation": ""
+    },
+    {
+     "usage": "رجلٌ زُكَأَةٌ",
+     "meaning": "حاضر النقد كثيره (مهموز، قريب من هذا الباب)",
+     "meaning_english": "a man with cash abundantly and readily at hand",
+     "citation": "قال الفراء"
+    },
+    {
+     "usage": "الزُّكْأَة",
+     "meaning": "الموسر",
+     "meaning_english": "the wealthy/solvent man",
+     "citation": "قال الأصمعىّ"
+    },
+    {
+     "usage": "زَكَأَتِ الناقةُ بولدها تزكَأُ به زَكْأً",
+     "meaning": "إذا رمَت به عند رجليها (شاذّ عن الباب)",
+     "meaning_english": "when the she-camel cast her young out near her own legs while giving birth",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1095,
+   "printed_page_number": "18",
+   "notes": "entry begins on page 1094 (printed 17) and concludes on page 1095 (printed 18)"
+  },
+  {
+   "root": "زكر",
+   "root_letters": [
+    "ز",
+    "ك",
+    "ر"
+   ],
+   "core_meaning": "الزاء والكاف والراء أصيلٌ إن كان صحيحاً يدل على وعاءٍ يسمى الزُّكْرة",
+   "core_meaning_english": "a vessel/container called az-zukrah",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَكَّرَ الصبىّ وتزَكَّر",
+     "meaning": "امتلأ بطنُه",
+     "meaning_english": "the boy's belly became full/distended",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1095,
+   "printed_page_number": "18",
+   "notes": ""
+  },
+  {
+   "root": "زكت",
+   "root_letters": [
+    "ز",
+    "ك",
+    "ت"
+   ],
+   "core_meaning": "الزاء والكاف والتاء أصلٌ إن صحّ",
+   "core_meaning_english": "a root, if sound",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَكَتُّ الإناء",
+     "meaning": "ملأتُه",
+     "meaning_english": "I filled the vessel",
+     "citation": ""
+    }
+   ],
+   "pdf_page_index": 1095,
+   "printed_page_number": "18",
+   "notes": "page ends 'والله أعلم'"
+  },
+  {
+   "root": "زلم",
+   "root_letters": [
+    "ز",
+    "ل",
+    "م"
+   ],
+   "core_meaning": "الزاء واللام والميم أصلٌ يدل على تخافتٍ ودقّةٍ فى ملاسة، وقد يشذّ عنه الشىء",
+   "core_meaning_english": "lightness/slenderness together with smoothness; some words fall outside this base sense",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّلَم والزُّلَم",
+     "meaning": "قِدْحٌ يُستَقسَم به، كانوا يفعلون ذلك فى الجاهلية وحُرّم ذلك فى الإسلام",
+     "meaning_english": "a divination arrow used for casting lots; practiced pre-Islamically, forbidden in Islam",
+     "citation": "{وَأَنْ تَسْتَقْسِمُوا بِالْأَزْلَامِ}"
+    },
+    {
+     "usage": "تَزِلُّ عن الثَّرى أزلامُها",
+     "meaning": "من قول لبيد (البيت متقطع فى الصفحة)",
+     "meaning_english": "'its lots slip off the moist earth' - from a verse of Labid",
+     "citation": "حتى إذا انحسر الظلامُ وأسفرت / بكرت تزلّ عن الثرى أزلامها"
+    }
+   ],
+   "pdf_page_index": 1095,
+   "printed_page_number": "18",
+   "notes": "entry begins on page 1095 and is cut off mid-citation at the bottom of the page, continuing onto the next (unseen) page; only the start of the زلم entry is captured here. Core-meaning word 'تخافتٍ/تحافتٍ' is small in the scan — reads as تخافت (from خفة, lightness); could not be pixel-verified with full certainty."
+  },
+  {
+   "root": "زلم",
+   "root_letters": [
+    "ز",
+    "ل",
+    "م"
+   ],
+   "core_meaning": "(تكملة من صفحة سابقة) يذكر ألفاظاً مشتقة كالزَّلَمَة والمُزَلَّم دون تكرار نص أصل المعنى على هذه الصفحة",
+   "core_meaning_english": "continuation of a prior root entry; no new core-meaning statement on this page",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "رجل مُزَلَّمٌ",
+     "meaning": "نَحيف",
+     "meaning_english": "a thin/lean man",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّلَمَة",
+     "meaning": "الهَنَة المتدلِّية من عنق الماعزة، ولهما زَلَمَتان",
+     "meaning_english": "the dangling piece of flesh hanging from a goat's neck; a goat has two of them",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّلَمُ",
+     "meaning": "الزَّمَع التي تكون خَلْفَ الظِّلْف",
+     "meaning_english": "the small growths behind the cloven hoof (dewclaws)",
+     "citation": ""
+    },
+    {
+     "usage": "المُزَلَّم (من الباب)",
+     "meaning": "السَّيِّئ الغِذاء، وإنما قيل له ذلك لأنه بذلك يَنْحُف ويَدِقّ",
+     "meaning_english": "the poorly-nourished one; so called because he grows thin and slight from it",
+     "citation": ""
+    },
+    {
+     "usage": "«هو العبد زُلَمَةٌ»",
+     "meaning": "قال قوم: معناه خالصٌ فى العبودية، وكان الأصل أنه شُبِّه بما خَلَف الأظلاف من الزَّمَع",
+     "meaning_english": "a saying meaning 'purely/wholly a slave'; originally likened to the growths behind the hooves",
+     "citation": ""
+    },
+    {
+     "usage": "الأزلَم الجَذَع",
+     "meaning": "يقال إنه الدهر، ويقال إن الأسد يسمى الأزلم الجذع",
+     "meaning_english": "an epithet said to mean 'time/fate', also said to name the lion",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "19",
+   "pdf_page_index": 1096,
+   "notes": "Continuation of the root زلم which began on a previous page; only the tail of the entry appears here. Corrected: added missing usages 'رجل مُزَلَّمٌ: نحيف' and the separate phrase 'هو العبد زُلَمَةٌ' (originally mis-merged into المُزَلَّم's citation field in the source extraction)."
+  },
+  {
+   "root": "زلج",
+   "root_letters": [
+    "ز",
+    "ل",
+    "ج"
+   ],
+   "core_meaning": "الزاء واللام والجيم أصيلٌ يدلّ على الاندفاع والدَّفْع",
+   "core_meaning_english": "impelling/being pushed forward and pushing away",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "المُزَلَّج من العيش",
+     "meaning": "المدافَع بالبُلْغَة (أي الكفاف اليسير)",
+     "meaning_english": "a bare, meager livelihood one is fended off with",
+     "citation": ""
+    },
+    {
+     "usage": "المُزَلَّج",
+     "meaning": "الذي يُدفَع عن كل خير من كفاية وغَناء",
+     "meaning_english": "one who is pushed away from every good of sufficiency and wealth",
+     "citation": "دَعَوتُ إلى ما نابنى فأجابنى كريمٌ من الفتيان غير مُزَلَّجِ"
+    },
+    {
+     "usage": "الزَّأْلَج",
+     "meaning": "السُّرعة فى المشى وغيره",
+     "meaning_english": "swiftness in walking and elsewhere",
+     "citation": ""
+    },
+    {
+     "usage": "زالِج",
+     "meaning": "كل سريع",
+     "meaning_english": "anything swift",
+     "citation": ""
+    },
+    {
+     "usage": "سهمٌ زالِجٌ",
+     "meaning": "سريعٌ، يتزَلَّج من القوس",
+     "meaning_english": "a swift arrow, one that slides swiftly off the bow",
+     "citation": ""
+    },
+    {
+     "usage": "المُزَلَّج (معنى آخر)",
+     "meaning": "المدفوع عن حَسَبِه",
+     "meaning_english": "one pushed away/denied regarding his lineage or rank",
+     "citation": ""
+    },
+    {
+     "usage": "المِزْلاج",
+     "meaning": "المرأة الرَّسحاء، شُبِّهت فى دِقّتها بالسهم الزالج",
+     "meaning_english": "a flat-buttocked woman, likened in her slightness to the swift arrow",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "19",
+   "pdf_page_index": 1096,
+   "notes": "Corrected: source extraction invented an alternate reading 'الزَّلَج' alongside الزَّأْلَج (only الزَّأْلَج appears on the page); and mis-merged two distinct usages into one variance 'يتزَلَّج من القوس' -> 'المدفوع عن حَسَبِه'. The page actually has two separate statements: (1) 'سهمٌ زالِجٌ: يتزَلَّج من القوس' (a swift arrow sliding off the bow) and (2) a separate second sense of المُزَلَّج meaning 'المدفوع عن حَسَبِه' — split into two variances above."
+  },
+  {
+   "root": "زلح",
+   "root_letters": [
+    "ز",
+    "ل",
+    "ح"
+   ],
+   "core_meaning": "الزاء واللام والحاء ليس بأصلٍ فى اللغة منقاس، وقد جاءت فيه كلمات الله أعلم بصحّتها",
+   "core_meaning_english": "not a regular/systematic root in the language; words attributed to it whose soundness is uncertain",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّعْلَعُ من الرّجال (قال ابن السكّيت)",
+     "meaning": "الخفيف",
+     "meaning_english": "a light/nimble man",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّلَحْلَح",
+     "meaning": "الوادى الذى ليس بعميق؛ فإن كان هذا صحيحاً فالكلمة تدلُّ على تبسُّط الشَّىء من غير قَعْرٍ يكون له",
+     "meaning_english": "a valley that is not deep; if sound, the word indicates a thing's flatness, having no real depth",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "19-20",
+   "pdf_page_index": 1096,
+   "notes": "Corrected: the source extraction's first variance 'قَصْعَةٌ زَلَحْلَحَة' (a shallow dish) does not appear on these pages and was replaced — the actual text discusses 'الزَّلَحْلَح' as a shallow valley (الوادى الذى ليس بعميق), plus ابن السكّيت's separate word 'الزَّعْلَعُ' (a light/nimble man). Entry continues onto page_1097 (printed page 20)."
+  },
+  {
+   "root": "زلخ",
+   "root_letters": [
+    "ز",
+    "ل",
+    "خ"
+   ],
+   "core_meaning": "الزاء واللام والخاء أصلٌ إن صحّ يدلّ على تزلّق الشيء",
+   "core_meaning_english": "if sound, indicates the slipping/skidding of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّلَخَة",
+     "meaning": "المَزَلَّة (موضع الزلق)",
+     "meaning_english": "a slippery spot",
+     "citation": ""
+    },
+    {
+     "usage": "بئرٌ زَلُوخ",
+     "meaning": "إذا كانت أعلاها مُزِلَّةً يُزلِق من قام عليه",
+     "meaning_english": "a well whose rim is slippery, making whoever stands on it slip",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّلْخ",
+     "meaning": "رَفْعُك يدك فى رمى السهم إلى أقصى ما تقدر عليه، تريد به الفَلْوَة",
+     "meaning_english": "raising the hand as far as one can when shooting an arrow, aiming for maximum extension",
+     "citation": "مِن مائةٍ زَلَخٍ يُمِرِّخُ غالُ (قراءة البيت غير مؤكَّدة فى المسح)"
+    },
+    {
+     "usage": "الزَّلَخ (عند بعضهم)",
+     "meaning": "أقصى غاية المفالى",
+     "meaning_english": "the utmost extent/limit",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّلاّخة",
+     "meaning": "قيل: علّة (مرض)، وهو كلام يُنظَر فيه",
+     "meaning_english": "said to be a disease/ailment; the author flags this as doubtful",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "20",
+   "pdf_page_index": 1097,
+   "notes": "Corrected the cited verse's second half from the source's 'يريحُ غالِ' to 'يُمِرِّخُ غالُ' per the page image; reading remains uncertain (small print, footnote markers present) so kept flagged as unconfirmed."
+  },
+  {
+   "root": "زلع",
+   "root_letters": [
+    "ز",
+    "ل",
+    "ع"
+   ],
+   "core_meaning": "الزاء واللام والعين أصلٌ يدلّ على تَفَطُّر وزوال شىءٍ عن مكانه",
+   "core_meaning_english": "cracking/splitting open and a thing's departure from its place",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّلَع",
+     "meaning": "تفطُّر الجلد",
+     "meaning_english": "cracking of the skin",
+     "citation": ""
+    },
+    {
+     "usage": "تَزَلَّعَت يدُه",
+     "meaning": "تشقَّقَت",
+     "meaning_english": "his hand cracked/chapped",
+     "citation": ""
+    },
+    {
+     "usage": "زَلِعَت جراحتُه",
+     "meaning": "فسدَت",
+     "meaning_english": "his wound went bad/festered",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّلَع (قال الخليل)",
+     "meaning": "شُقاقُ ظاهر الكَفّ؛ فإن كان فى الباطن فهو كَلَع",
+     "meaning_english": "cracking on the back of the hand (if on the palm side, it is called 'kala')",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّلْع",
+     "meaning": "استلابُ شىءٍ فى خَتْل",
+     "meaning_english": "snatching something by stealth/deception",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "20",
+   "pdf_page_index": 1097,
+   "notes": ""
+  },
+  {
+   "root": "زلف",
+   "root_letters": [
+    "ز",
+    "ل",
+    "ف"
+   ],
+   "core_meaning": "الزاء واللام والفاء يدلّ على اندفاعٍ وتقدُّمٍ فى قُرْبٍ إلى شىء",
+   "core_meaning_english": "impelling forward and advancing in proximity toward something",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ازدَلَفَ الرجل",
+     "meaning": "تقدَّم",
+     "meaning_english": "he advanced/came forward",
+     "citation": ""
+    },
+    {
+     "usage": "مُزْدَلِفَة",
+     "meaning": "سُمِّيت بذلك بمكة لاقتراب الناس إلى مِنى بعد الإفاضة من عرفات",
+     "meaning_english": "named so for the people's drawing near to Mina after departing Arafat",
+     "citation": ""
+    },
+    {
+     "usage": "لفلانٍ عند فلانٍ زُلْفى",
+     "meaning": "أى قُرْبى",
+     "meaning_english": "he has nearness/standing with so-and-so",
+     "citation": "﴿وَإِنَّ لَهُ عِندَنَا لَزُلْفَى وَحُسْنَ مَآبٍ﴾"
+    },
+    {
+     "usage": "الزَّلَف والزُّلْفة",
+     "meaning": "الدَّرَجة والمنزلة",
+     "meaning_english": "rank/degree and station",
+     "citation": ""
+    },
+    {
+     "usage": "أزلَفَ الرجلَ إلى كذا",
+     "meaning": "أدنَيته",
+     "meaning_english": "he brought/drew him near to such-and-such",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّلَف (فى قول القائل)",
+     "meaning": "قيل: الأجاجين الخضر، سُمِّيت بذلك لأن الماء لا يثبت فيها عند امتلائها بل يندفع",
+     "meaning_english": "said to mean green basins, so named because water does not settle but spills from them when full",
+     "citation": "حتى إذا ماءُ الصَّهاريج نُشِّف مِن بعدِ ما كانت مِلاءً كالزَّلَفْ"
+    },
+    {
+     "usage": "المَزالِف",
+     "meaning": "بلادٌ بين البَرّ والرِّيف، سُمِّيت بذلك لقربها من الريف",
+     "meaning_english": "lands lying between the desert/steppe and the cultivated tract, named for their nearness to it",
+     "citation": ""
+    },
+    {
+     "usage": "الزُّلَف من الليل",
+     "meaning": "طوائفُ منه؛ لأن كل طائفة منها تقرب من الأخرى",
+     "meaning_english": "portions/watches of the night, each portion nearing the next",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "21",
+   "pdf_page_index": 1098,
+   "notes": ""
+  },
+  {
+   "root": "زلق",
+   "root_letters": [
+    "ز",
+    "ل",
+    "ق"
+   ],
+   "core_meaning": "الزاء واللام والقاف أصلٌ واحدٌ يدلّ على تزلُّج الشىء عن مقامه",
+   "core_meaning_english": "the slipping/sliding of a thing away from its place",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّلَق",
+     "meaning": "من ذلك (من هذا الأصل)",
+     "meaning_english": "belongs to this root's meaning (slipping)",
+     "citation": ""
+    },
+    {
+     "usage": "أزلَقَت الحامل",
+     "meaning": "إذا ألقت ولدها؛ والأصح: إذا ألقت الماء ولم تقبله رحمها",
+     "meaning_english": "the pregnant female miscarried; more correctly: she discharged the (seminal) fluid without her womb accepting it",
+     "citation": ""
+    },
+    {
+     "usage": "المَزَلَّقة والمَزْلَقة",
+     "meaning": "الموضع لا يُثبَت عليه",
+     "meaning_english": "a place upon which one cannot keep one's footing",
+     "citation": ""
+    },
+    {
+     "usage": "ليُزلِقونك بأبصارهم",
+     "meaning": "حقيقة معناه أنهم من حدّة نظرهم يكادون يُزيلونك عن مكانك",
+     "meaning_english": "the true sense: from the intensity of their gaze they almost dislodge/remove you from your place",
+     "citation": "﴿وَإِن يَكَادُ الَّذِينَ كَفَرُوا لَيُزْلِقُونَكَ بِأَبْصَارِهِمْ﴾ ؛ * نظراً يُزيل مواطئَ الأقدامِ *"
+    }
+   ],
+   "printed_page_number": "21",
+   "pdf_page_index": 1098,
+   "notes": "Corrected 'الزَّلَقة والمَزْلَقة' to 'المَزَلَّقة والمَزْلَقة' (source dropped the initial م) and corrected 'يُزهِقونك' (to perish/kill you — semantically wrong) to 'يُزيلونك' (dislodge/remove you), matching the root's slipping sense as printed. Entry likely continues onto the next page, not provided here."
+  },
+  {
+   "root": "زلق",
+   "root_letters": [
+    "ز",
+    "ل",
+    "ق"
+   ],
+   "core_meaning": "(تكملة من صفحة سابقة) الذى إذا دنا من المرأة رمى بمائه قبل أن يفضّاها",
+   "core_meaning_english": "(continuation) one who, on nearing a woman, emits his fluid before penetrating her",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّلِق / الزُّمَّاق",
+     "meaning": "من رمى بمائه قبل أن يفضّى إلى المرأة",
+     "meaning_english": "one who ejaculates before penetration",
+     "citation": "إنّ الزُّبيرَ زَلِقٌ وزُمَّاقُ"
+    },
+    {
+     "usage": "زَلَقَ رأسَه",
+     "meaning": "حَلَقَه (عن ابن الأعرابى)",
+     "meaning_english": "he shaved his head",
+     "citation": "ابن الأعرابى"
+    },
+    {
+     "usage": "الزَّلَق (فى قول رؤبة)",
+     "meaning": "المَجَزّ منها ومن كلّ دابة، سُمِّيت بذلك لأن اليد تَزْلَق عنها، وكذلك ما يصيبها من مطر وندى",
+     "meaning_english": "the shorn/slick patch of hide, so called because the hand slips off it, or where rain/dew slides off",
+     "citation": "قول رؤبة: كأنّها حِقْباءُ بَلْقاءُ الزَّلَقْ"
+    }
+   ],
+   "printed_page_number": "22",
+   "pdf_page_index": 1099,
+   "notes": "This is a continuation of the زلق root entry begun on an earlier page not in this batch; only the tail end appears here."
+  },
+  {
+   "root": "زمن",
+   "root_letters": [
+    "ز",
+    "م",
+    "ن"
+   ],
+   "core_meaning": "الزاء والميم والنون أصلٌ واحد يدلّ على وقتٍ من الوقت",
+   "core_meaning_english": "one core meaning: a period/point of time",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّمان",
+     "meaning": "الحين، قليله وكثيره؛ يقال زمانٌ وزَمَن، والجمع أزمانٌ وأزمِنة",
+     "meaning_english": "a while, whether short or long; plural azmān/azmina",
+     "citation": ""
+    },
+    {
+     "usage": "زَمَناً (فى قول الشاعر)",
+     "meaning": "بمعنى الوقت/الحين",
+     "meaning_english": "a time/period (in the poem)",
+     "citation": "وكنتُ امرأً زَمَناً بالعراقِ عفيفَ المُناخِ طويلَ التَّفَنّي (الأعشى)"
+    },
+    {
+     "usage": "الأزمان (فى قول آخر)",
+     "meaning": "استعمال الأزمان فى الشعر",
+     "meaning_english": "the plural 'times/seasons' used in verse",
+     "citation": "أزمانَ آيْلَ عامَ آيْلَ وحُمَّى"
+    },
+    {
+     "usage": "لقيته ذاتَ الزُّمَّيْن",
+     "meaning": "يراد بذلك تراخى المدة",
+     "meaning_english": "said of meeting someone after a long interval",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّمانة",
+     "meaning": "التى تصيب الإنسان فتُقعده؛ فالأصل فيها الضاد وهى الضَّمانة، وقد كُتِبَت بقياسها فى الضاد",
+     "meaning_english": "chronic infirmity/disability that incapacitates a person; properly spelled with ḍād (ضمانة) by analogy, though written here with zāy",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "22-23",
+   "pdf_page_index": 1099,
+   "notes": "Entry begins on page 22 (pdf 1099) under new section heading باب الزاء والميم وما يثلثهما, continues onto page 23 (pdf 1100)."
+  },
+  {
+   "root": "زمت",
+   "root_letters": [
+    "ز",
+    "م",
+    "ت"
+   ],
+   "core_meaning": "الزاء والميم والتاء ليس أصلاً؛ لأنّ فيه كلمةً وهى من باب الإبدال",
+   "core_meaning_english": "not a genuine root — it is a single word belonging to the category of letter-substitution (ibdāl)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "رجلٌ زَمِيتٌ / زِمِّيتٌ",
+     "meaning": "أى سِكِّيت (الزاء فى هذا مبدلة من صاد، والأصل الصَّمْت)",
+     "meaning_english": "a very silent/reticent man; the zāy here substitutes for ṣād, the true root being ṣ-m-t 'silence'",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "23",
+   "pdf_page_index": 1100,
+   "notes": ""
+  },
+  {
+   "root": "زمج",
+   "root_letters": [
+    "ز",
+    "م",
+    "ج"
+   ],
+   "core_meaning": "الزاء والميم والجيم ليس بشىء",
+   "core_meaning_english": "not a genuine (meaningful) root",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزُّمَّج",
+     "meaning": "الطائر (نوع من الطير)",
+     "meaning_english": "a kind of bird of prey",
+     "citation": ""
+    },
+    {
+     "usage": "الزِّجّى / زِمِكّى",
+     "meaning": "أصل ذَنَب الطائر؛ والأصل فى هذا الكاف",
+     "meaning_english": "the base of a bird's tail; the true form uses kāf (zimikkā)",
+     "citation": ""
+    },
+    {
+     "usage": "زَجَّت السقاءَ",
+     "meaning": "مَلأَتْه؛ وهذا مقلوبٌ، إنما هو جَزَّمَتْه",
+     "meaning_english": "she filled the waterskin; this is a metathesized form of jazzamathu",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "23",
+   "pdf_page_index": 1100,
+   "notes": "Text refers back to a root (جزم) already discussed earlier ('وقد مضى ذكره')."
+  },
+  {
+   "root": "زمح",
+   "root_letters": [
+    "ز",
+    "م",
+    "ح"
+   ],
+   "core_meaning": "الزاء والميم والحاء كلمةٌ واحدة",
+   "core_meaning_english": "a single (isolated) word, not a productive root",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زُمَّحٌ",
+     "meaning": "يقال للرجل القصير",
+     "meaning_english": "said of a short man",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "23",
+   "pdf_page_index": 1100,
+   "notes": ""
+  },
+  {
+   "root": "زمخ",
+   "root_letters": [
+    "ز",
+    "م",
+    "خ"
+   ],
+   "core_meaning": "الزاء والميم والخاء ليس بأصل",
+   "core_meaning_english": "not a genuine root",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّامِخ",
+     "meaning": "الشَّامِخ بأنفه (عن الخليل)",
+     "meaning_english": "one who holds his nose up high (haughty)",
+     "citation": "الخليل"
+    },
+    {
+     "usage": "الأنوفُ الزُّمَّخ",
+     "meaning": "الطِّوال",
+     "meaning_english": "long noses",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "23",
+   "pdf_page_index": 1100,
+   "notes": "Text notes: if this usage is sound, its true root is ش م خ (shamakha)."
+  },
+  {
+   "root": "زمر",
+   "root_letters": [
+    "ز",
+    "م",
+    "ر"
+   ],
+   "core_meaning": "الزاء والميم والراء أصلان: أحدهما يدلّ على قِلّة الشىء، والآخر جنسٌ من الأصوات",
+   "core_meaning_english": "two core meanings: one indicating scantiness/fewness of a thing, the other a kind of sound",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّمَر",
+     "meaning": "قِلّة الشَّعَر",
+     "meaning_english": "scantiness of hair",
+     "citation": ""
+    },
+    {
+     "usage": "الزِّمِّر",
+     "meaning": "قليل الشَّعَر",
+     "meaning_english": "having little hair",
+     "citation": ""
+    },
+    {
+     "usage": "رجلٌ زَمِرُ المروءة",
+     "meaning": "قليلها",
+     "meaning_english": "a man of little manly virtue",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّمْر / الزَّمّار",
+     "meaning": "صوت النعامة؛ يقال زَمَرت تَزْمُر وتَزَمُّراً وتَزْمِيراً وزِماراً",
+     "meaning_english": "the ostrich's cry/booming sound; verb zamarat with its several verbal-noun forms",
+     "citation": ""
+    },
+    {
+     "usage": "الزُّمرة",
+     "meaning": "الجماعة، مشتقّة من هذا؛ لأنّها إذا اجتمعت كانت لها جَلَبة وزِمار",
+     "meaning_english": "a group/band of people, so called because when they assemble there is a clamor/din",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّمّارة (فى الحديث: نهى عن كسب الزمّارة)",
+     "meaning": "قيل هى الزانية؛ فإن صحّ فلعلّ نغمتها شُبِّهت بالزَّمْر؛ وقيل هى الرَّمّازة التى ترمز بحاجبيها للرجال، وهذا أقرب",
+     "meaning_english": "said to mean 'the fornicating woman'; if valid, perhaps her tone/voice was likened to piping; alternatively said to mean 'the woman who signals men with her eyebrows,' which is closer (to the true sense)",
+     "citation": "حديث نبوى"
+    }
+   ],
+   "printed_page_number": "23-24",
+   "pdf_page_index": 1100,
+   "notes": "Entry begins on page 23 (pdf 1100), continues on page 24 (pdf 1101)."
+  },
+  {
+   "root": "زمع",
+   "root_letters": [
+    "ز",
+    "م",
+    "ع"
+   ],
+   "core_meaning": "الزاء والميم والعين أصلٌ واحد يدلّ على الدُّون والقِلّة والذِّلّة",
+   "core_meaning_english": "one core meaning: lowliness, fewness/insignificance, and abasement",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّمَع",
+     "meaning": "التى تكون خلف أظلاف الشاء، وشُبِّه بذلك رُذال الناس",
+     "meaning_english": "the small extra hooflets behind a sheep/goat's cloven hoof; the base/lowly among people were likened to these",
+     "citation": ""
+    },
+    {
+     "usage": "عِكْرِشَة زَمُوع (فى قول الشمّاخ)",
+     "meaning": "العِكْرِشة هى الأنثى من الأرانب، والزَّمُوع ذات الزَّمَعات",
+     "meaning_english": "'ikrisha' is the female hare; 'zamūʿ' means possessor of the zama' hooflets",
+     "citation": "الشمّاخ: عِكْرِشَةٍ زَمُوعِ"
+    },
+    {
+     "usage": "أزْمَعَ كذا / الزِّماع",
+     "meaning": "له وجهان: إمّا مقلوب من عَزَمَ، وإمّا أن تكون الزاء مبدلة من الجيم، كأنّه من إجماع القوم وإجماع الرأى",
+     "meaning_english": "'to resolve/decide firmly' — either a metathesis of 'azama' (to resolve) or the zāy substitutes for jīm, relating to 'consensus/agreement of a people or of opinion'",
+     "citation": ""
+    },
+    {
+     "usage": "زَمِيع",
+     "meaning": "من هذا الباب: يقال للسريع",
+     "meaning_english": "swift/quick (of this same root-family)",
+     "citation": "(بيت منشد لم يكتمل على هذه الصفحات)"
+    }
+   ],
+   "printed_page_number": "24",
+   "pdf_page_index": 1101,
+   "notes": "Entry begins on page 24 (pdf 1101) and continues beyond this batch — the citation for زميع (السريع) is introduced but the verse text is cut off at the end of the supplied pages."
+  },
+  {
+   "root": "زمع",
+   "root_letters": [
+    "ز",
+    "م",
+    "ع"
+   ],
+   "core_meaning": "(تتمة من صفحة سابقة، لم يظهر نص أصل المعنى في هذه الصفحة)",
+   "core_meaning_english": "(continuation from a previous page; the core-meaning statement itself is not on this page)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّمِيع",
+     "meaning": "الشجاع الذي يُزمِع (يمضي على أمره) فلا ينثني",
+     "meaning_english": "the brave man who resolves and does not turn back",
+     "citation": ""
+    },
+    {
+     "usage": "الجَميع الزُّمَّاع / المصدر الزَّماع",
+     "meaning": "جمع الزَّمِيع ومصدره",
+     "meaning_english": "plural and verbal noun of al-zami‘",
+     "citation": ""
+    },
+    {
+     "usage": "رجلٌ زَمِيع الرأي",
+     "meaning": "أي جيِّده",
+     "meaning_english": "a man of sound/good judgment",
+     "citation": "قال الكسائي"
+    },
+    {
+     "usage": "الزَّمَّع",
+     "meaning": "الذي يأخذ الإنسان كالرِّعدة؛ كلامٌ مسموع لا يدري المؤلف صحته، ولعله شاذ عن الأصل",
+     "meaning_english": "a trembling-like seizure affecting a person; a reported usage the author is unsure is sound, possibly anomalous",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "25",
+   "pdf_page_index": 1102,
+   "notes": "This entry (root ز م ع) began on an earlier page not included in this batch; only the tail of the entry appears here, including a poetry citation in footnote (1) about الفراق زميع."
+  },
+  {
+   "root": "زمق",
+   "root_letters": [
+    "ز",
+    "م",
+    "ق"
+   ],
+   "core_meaning": "ليس بشيء",
+   "core_meaning_english": "not a valid/coherent root (no real meaning)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَمَّقَ شَعرَه",
+     "meaning": "إذا نَتَفَه، فإن صحّ فالأصل زبق وقد ذُكر",
+     "meaning_english": "to pluck out one's hair; if sound, its true origin is the root z-b-q, already discussed",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "25",
+   "pdf_page_index": 1102,
+   "notes": ""
+  },
+  {
+   "root": "زمك",
+   "root_letters": [
+    "ز",
+    "م",
+    "ك"
+   ],
+   "core_meaning": "ذكر ابن دريد وغيره أن الزاء والميم والكاف تدل على تداخل الشيء بعضه في بعض",
+   "core_meaning_english": "Ibn Duraid and others reported that z-m-k indicates the interlocking/intermingling of parts of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزِّمِكَّى",
+     "meaning": "مَنْبِت ذَنَب الطائر",
+     "meaning_english": "the base from which a bird's tail grows",
+     "citation": "ذكره ابن دريد وغيره"
+    }
+   ],
+   "printed_page_number": "25",
+   "pdf_page_index": 1102,
+   "notes": "Corrected: the whole core-meaning statement itself is attributed to Ibn Duraid in the source text ('ذكر ابن دريد وغيره أن...'), not just the derived usage الزمكى; original extraction had stripped this attribution out of the core_meaning field."
+  },
+  {
+   "root": "زمل",
+   "root_letters": [
+    "ز",
+    "م",
+    "ل"
+   ],
+   "core_meaning": "أصلان: أحدهما يدلّ على حَمل ثِقَل من الأثقال، والآخر صوتٌ",
+   "core_meaning_english": "two original meanings: one indicating the carrying of a heavy load, the other a sound",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّامِلة",
+     "meaning": "بعيرٌ يَستظهِرُ به الرجل، يَحمل عليه متاعَه",
+     "meaning_english": "a pack-camel a man relies on to carry his baggage",
+     "citation": ""
+    },
+    {
+     "usage": "ازدَمَلْتُ الشيء",
+     "meaning": "إذا حملته",
+     "meaning_english": "I carried the thing",
+     "citation": ""
+    },
+    {
+     "usage": "عِيالاتٌ أَزْمَلَةٌ",
+     "meaning": "أي كثيرة، كأنهم كلُّ أَحمالٍ لا يضطلعون ولا يطيقون أنفسهم",
+     "meaning_english": "a numerous, burdensome family - like a load too heavy to bear themselves",
+     "citation": ""
+    },
+    {
+     "usage": "الزُّمَّيل",
+     "meaning": "الرجل الضعيف الذي إذا حَزَبَه أمرٌ تَزَمَّلَ، أي ضاعَف عليه الثياب حتى يصير كأنه حِمْل",
+     "meaning_english": "the weak man who, when struck by misfortune, wraps himself in extra clothes as if he were a burden/load",
+     "citation": "قال أحيحة: لا وأبيك ما يُغني عني غَنائي / من الفتيان زُمَّيل كَسُول"
+    },
+    {
+     "usage": "المُزَامَلة",
+     "meaning": "المُعادَلة على البعير",
+     "meaning_english": "balancing/pairing two loads on a camel",
+     "citation": ""
+    },
+    {
+     "usage": "الأَزْمَل",
+     "meaning": "الصوت",
+     "meaning_english": "a sound/noise",
+     "citation": "قول الشاعر: لمّا بعد قِرَّاتِ المَشيّاتِ أَزْمَلُ"
+    },
+    {
+     "usage": "الإزْمِيل",
+     "meaning": "شذّ عن الأصلين المذكورين؛ عُني به فى الحاشية شفرة الحذاء",
+     "meaning_english": "an anomalous usage outside the two stated original meanings; a footnote glosses it as a shoemaker's blade/knife",
+     "citation": "الحاشية (٣): بيت لعبدة بن الطبيب - عيرانة ينتحي فى الأرض منسمها كما انتحى فى أديم الصرف إزميل"
+    },
+    {
+     "usage": "أخذتُ الشيء بأَزْمَلِه",
+     "meaning": "ذُكر ضمن الشاذّ عن الأصلين دون أن يُصرَّح بمعناه فى النص المطبوع على هذه الصفحة؛ المعنى المتداول له بكماله/بجملته",
+     "meaning_english": "listed under the anomalous usages without an explicit gloss on this printed page; the commonly known sense is 'wholly, entirely'",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "25-26",
+   "pdf_page_index": 1102,
+   "notes": "Entry spans page_1102 (printed 25) and continues onto page_1103 (printed 26). Corrected: الإزميل's gloss 'الشَّفْرَة' is not in the main text itself but in footnote (3) as 'شفرة الحذاء', with a citation from Abda ibn al-Tabib that was previously omitted. Also flagged that 'أخذت الشيء بأزمله' has no explicit meaning stated in the visible page text."
+  },
+  {
+   "root": "زنى",
+   "root_letters": [
+    "ز",
+    "ن",
+    "ي"
+   ],
+   "core_meaning": "الزاء والنون والحرف المعتل لا تتضايف، ولا قياس فيها لواحدةٍ على أخرى",
+   "core_meaning_english": "the letters z-n plus a weak letter do not correlate with one another; no one usage can be measured against another by analogy",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزِّنَى",
+     "meaning": "معروف؛ ويقال إنه يُمدّ ويُقصر",
+     "meaning_english": "fornication/adultery, well known; said to be pronounced with a long or short final vowel",
+     "citation": "وينشد للفرزدق: أبا حاضرٍ من يَزنِ يُعرَف زناؤه / ومن يشرب الخمر لا بدّ يَسكَرُ"
+    },
+    {
+     "usage": "النسبة إلى زِنَى: زِنَوِيّ",
+     "meaning": "من زِنْيَة أو زَنْيَة، والفتح أفصح",
+     "meaning_english": "the relational adjective 'zinawiyy' from zinyah/zanyah; the fatha vowel form is more correct",
+     "citation": ""
+    },
+    {
+     "usage": "زَنَأَتْ (مهموز) في الجبل، أزنَأُ زُنُوءًا وزَنْأً",
+     "meaning": "الكلمة الأخرى (مهموزة)؛ لم يُصرَّح بالمعنى صراحةً على هذه الصفحة",
+     "meaning_english": "'the other word' (hamzated); no explicit gloss given on this page, though the common lexical sense is 'she/it climbed up into the mountain'",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّنَّاء (الثالثة)",
+     "meaning": "القصير من كلّ شيء",
+     "meaning_english": "anything that is short",
+     "citation": "وتُولِجُ في الظّلّ الزَّنّاء رَوسَها وتحسِبُها هِيمًا وهنّ صحائحُ؛ وإذا قُذفتُ إلى زَنَاءٍ قَعرُها غبراء مظلمةٍ من الأحفار"
+    },
+    {
+     "usage": "الزَّنَّاء (الرابعة)",
+     "meaning": "الحاقن بوله",
+     "meaning_english": "one who is holding in/withholding his urine",
+     "citation": "نهى رسول الله صلى الله عليه وآله وسلم أن يصلي الرجل وهو زَنَاء"
+    }
+   ],
+   "printed_page_number": "26-27",
+   "pdf_page_index": 1103,
+   "notes": "Entry begins on page_1103 (printed 26) right after the section heading 'باب الزاء والنون والحرف المعتل', and continues onto page_1104 (printed 27). Corrected: core_meaning previously read 'لا تضاد فيها' (no contradiction); the printed text actually reads 'لا تتضايف' (do not correlate/analogize with each other). Also corrected the نسبة variance, which had an unsupported parenthetical '(ولد الزنى)' not present in the text, and the زنأت variance, which had an added gloss 'صعدت في الجبل' not explicitly printed here."
+  },
+  {
+   "root": "زنج",
+   "root_letters": [
+    "ز",
+    "ن",
+    "ج"
+   ],
+   "core_meaning": "ليس بشيء",
+   "core_meaning_english": "not a valid/coherent root (no real meaning)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّنَج",
+     "meaning": "العطش، ولا قياس لذلك",
+     "meaning_english": "thirst; with no consistent underlying pattern",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "27",
+   "pdf_page_index": 1104,
+   "notes": ""
+  },
+  {
+   "root": "زنح",
+   "root_letters": [
+    "ز",
+    "ن",
+    "ح"
+   ],
+   "core_meaning": "كالذي قبله",
+   "core_meaning_english": "like the one before it [root z-n-j] - i.e. also not a valid root",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "التزنّح",
+     "meaning": "التفتّح في الكلام",
+     "meaning_english": "affected, pretentious elaborateness in speech",
+     "citation": "ذكره بعضهم"
+    }
+   ],
+   "printed_page_number": "27",
+   "pdf_page_index": 1104,
+   "notes": "Corrected: core_meaning previously transcribed as 'كالحاء قبله' ('like the letter ha before it'), which does not parse; the printed text reads 'كالذي قبله' ('like the one before it')."
+  },
+  {
+   "root": "زند",
+   "root_letters": [
+    "ز",
+    "ن",
+    "د"
+   ],
+   "core_meaning": "أصلان: أحدهما عضو من الأعضاء ثم يشبه به، والآخر دليلٌ على ضيقٍ في شيء",
+   "core_meaning_english": "two original meanings: one, a bodily limb (and things later likened to it), the other indicating narrowness/tightness in something",
+   "sarf_pattern": "",
+   "variances": [],
+   "printed_page_number": "27",
+   "pdf_page_index": 1104,
+   "notes": "Entry only begins here; the detailed discussion/variances are not yet given on this page (continues beyond this batch). A stray numeral '312' appears mid-sentence in the source text near 'عضو من الأعضاء' - likely a pagination/printing artifact; transcribed core meaning excludes it, and its referent is uncertain. Corrected minor wording: 'دليل ضيق في شيء' -> 'دليلٌ على ضيقٍ في شيء' to match the printed text exactly."
+  },
+  {
+   "root": "زند",
+   "root_letters": [
+    "ز",
+    "ن",
+    "د"
+   ],
+   "core_meaning": "أصل يدل على معنيين: طرف عظم الساعد، وضيق الشيء (استمرار من صفحة سابقة)",
+   "core_meaning_english": "forearm-bone end / tightness (continuation from a previous page)",
+   "sarf_pattern": "",
+   "pdf_page_index": 1105,
+   "printed_page_number": "28",
+   "notes": "Continuation of an entry begun on an earlier page; opening core-meaning sentence not present here. Citation attribution 'قال عدي' before the verse line could not be visually confirmed on this scan — kept but flagged.",
+   "variances": [
+    {
+     "usage": "الزَّنْد",
+     "meaning": "طَرَف عظم الساعد، وهما زَنْدان",
+     "meaning_english": "the end of the forearm bone; there are two (upper and lower)",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّنْد (فى النار)",
+     "meaning": "ثم يُشبَّه به الزَّند الذى يُقدَح به النار، وهو الأعلى، والأسفل الزِّنَّدة",
+     "meaning_english": "by likeness to the arm-bone, the upper fire-drill stick is also called الزَّند; the lower piece is called الزِّنَّدة (not الزِّنَادة)",
+     "citation": ""
+    },
+    {
+     "usage": "ثوب مُزَنَّد",
+     "meaning": "إذا كان ضيّقاً",
+     "meaning_english": "a garment that is tight/narrow",
+     "citation": ""
+    },
+    {
+     "usage": "حوض مُزَنَّد",
+     "meaning": "مثله (ضيّق)",
+     "meaning_english": "a narrow watering-trough",
+     "citation": ""
+    },
+    {
+     "usage": "رجل مُزَنَّد",
+     "meaning": "ضيّق الخُلُق",
+     "meaning_english": "a man of narrow/bad temperament",
+     "citation": ""
+    },
+    {
+     "usage": "تزنّد فلان",
+     "meaning": "إذا ضاق بالجواب وغضب",
+     "meaning_english": "he grew impatient at a reply and became angry",
+     "citation": "فقُلْ مثلَ ما قالوا ولا تَتَزَنَّدِ"
+    },
+    {
+     "usage": "المُزَنَّد",
+     "meaning": "وهو الحَليل، وهو الدَّعِيّ فى النسب (الأصل كان مكتوبا «الجميل» وصوابه «الحليل» كما فى المجمل)",
+     "meaning_english": "الحليل — one falsely claimed/attached in lineage (the manuscript read 'الجميل', corrected per المجمل to 'الحليل'); not 'the close friend'",
+     "citation": ""
+    },
+    {
+     "usage": "زنّدت الناقة",
+     "meaning": "إذا خلّت أشعارها بأخِلّة صغار ثم شدّدتها بشَعر، إذا اندحفت رحمها بعد الولادة",
+     "meaning_english": "she-camel treated (bound up) after her womb prolapsed following birth, by pinning her hair with small pegs then tying it with hair",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "زنر",
+   "root_letters": [
+    "ز",
+    "ن",
+    "ر"
+   ],
+   "core_meaning": "الزاء والنون والراء ليس بأصل، على أنّ فى الباب كلمة",
+   "core_meaning_english": "not a true root, though the chapter records one word",
+   "sarf_pattern": "",
+   "pdf_page_index": 1105,
+   "printed_page_number": "28",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "الزَّنانير",
+     "meaning": "الحصى الصِّغار السود إذا هبّت عليها الريح سُمعت لها صوتا؛ والزنانير: أرضٌ بقرب جُرَش",
+     "meaning_english": "small black pebbles that make a sound when wind blows over them; also a place-name near Jurash",
+     "citation": "قال ابن مقبل: زَنانيرُ أرواحَ المصيفِ لها"
+    }
+   ]
+  },
+  {
+   "root": "زنق",
+   "root_letters": [
+    "ز",
+    "ن",
+    "ق"
+   ],
+   "core_meaning": "الزاء والنون والقاف أصل يدل على ضيق أو تضييق",
+   "core_meaning_english": "narrowness / constriction",
+   "sarf_pattern": "",
+   "pdf_page_index": 1105,
+   "printed_page_number": "28",
+   "notes": "Entry begins on page 1105 (p.28) and continues onto page 1106 (p.29).",
+   "variances": [
+    {
+     "usage": "زَنَقْت الفرس",
+     "meaning": "إذا شكَلْته فى قوائمه الأربع",
+     "meaning_english": "to hobble/tie the horse by its four legs",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّنَقة",
+     "meaning": "كالمدخل فى السِّكّة",
+     "meaning_english": "a narrow lane-entrance/alley",
+     "citation": ""
+    },
+    {
+     "usage": "(استمرار) غيرها فى ضيق وفيها ميل",
+     "meaning": "وصف لضيق مع ميل",
+     "meaning_english": "other narrow things with a slant/tilt",
+     "citation": ""
+    },
+    {
+     "usage": "الزِّناق",
+     "meaning": "ضرب من الحلى",
+     "meaning_english": "a type of ornament/jewelry",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "زنك",
+   "root_letters": [
+    "ز",
+    "ن",
+    "ك"
+   ],
+   "core_meaning": "الزاء والنون والكاف ليس أصلاً ولا قياس له",
+   "core_meaning_english": "not a true root and has no measurable pattern",
+   "sarf_pattern": "",
+   "pdf_page_index": 1106,
+   "printed_page_number": "29",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "الزَّوَنَّك",
+     "meaning": "القصير الدَّميم",
+     "meaning_english": "the short, ugly man",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "زنم",
+   "root_letters": [
+    "ز",
+    "ن",
+    "م"
+   ],
+   "core_meaning": "الزاء والنون والميم أصل يدل على تعليق شىء من شىء",
+   "core_meaning_english": "one thing hanging/attached from another",
+   "sarf_pattern": "",
+   "pdf_page_index": 1106,
+   "printed_page_number": "29",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "الزَّنيم",
+     "meaning": "الدَّعِيّ",
+     "meaning_english": "the illegitimate/spurious claimant (one falsely attached to a lineage)",
+     "citation": "قال الشاعر فى الزَّنيم: زَنيمٌ تَداعاهُ الرِّجالُ زيادةً كما زيدَ فى عَرضِ الأديمِ الأكارعُ"
+    },
+    {
+     "usage": "المُزَنَّم",
+     "meaning": "كذلك (شُبّه بزَنَمَتَي العنز)",
+     "meaning_english": "likened to the two dangling ear-lobes of a goat",
+     "citation": ""
+    },
+    {
+     "usage": "زَنَمَتا العنز",
+     "meaning": "اللتان تتعلقان من أذنيها",
+     "meaning_english": "the two flaps hanging from a goat's ears",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّنَمة",
+     "meaning": "اللحمة المتدلِّية فى الحلق",
+     "meaning_english": "the flesh hanging in the throat (uvula-like appendage)",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "زهو",
+   "root_letters": [
+    "ز",
+    "ه",
+    "و"
+   ],
+   "core_meaning": "الزاء والهاء والحرف المعتل أصلان: أحدهما يدل على كِبر وفَخْر، والآخر على حُسْن",
+   "core_meaning_english": "two senses: pride/boastfulness, and beauty/fine appearance",
+   "sarf_pattern": "الحرف المعتل",
+   "pdf_page_index": 1106,
+   "printed_page_number": "29",
+   "notes": "Entry begins under section heading 'باب الزاء والهاء والحرف المعتل' on page 1106 and continues onto page 1107.",
+   "variances": [
+    {
+     "usage": "الزَّهْو",
+     "meaning": "الفخر",
+     "meaning_english": "pride, boastfulness",
+     "citation": "قال الشاعر: متى ما أشأ غير زَهْوِ الملوكِ أجعلْكَ رَهطاً على حُيَّضِ"
+    },
+    {
+     "usage": "زُهِيَ الرجل فهو مَزْهُوٌّ",
+     "meaning": "إذا تفخَّر وتعظَّم",
+     "meaning_english": "he became conceited and self-important",
+     "citation": ""
+    },
+    {
+     "usage": "زَهَتِ الريحُ النباتَ تَزْهاه",
+     "meaning": "إذا هزَّته",
+     "meaning_english": "the wind shook the plant",
+     "citation": ""
+    },
+    {
+     "usage": "(استمرار) والقياس فيه",
+     "meaning": "أن المُعْجَب ذهب بنفسه متمايلاً",
+     "meaning_english": "the underlying analogy: a self-admiring person walks along swaying/swaggering",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّهْو (الأصل الآخر)",
+     "meaning": "المنظر الحسن؛ ومنه احمرار ثمر النخل واصفراره",
+     "meaning_english": "fine appearance; the reddening/yellowing of ripening dates",
+     "citation": ""
+    },
+    {
+     "usage": "زَهَى / أزهَى",
+     "meaning": "احمرّ ثمر النخل أو اصفرّ",
+     "meaning_english": "the dates turned red/yellow (ripened)",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّهْو (فى بيت ابن مقبل)",
+     "meaning": "الباطل والكذب، أو من الفخر والاختيال",
+     "meaning_english": "falsehood/lying, or pride and self-conceit",
+     "citation": "قول ابن مقبل: ولا تقولنَّ زَهْواً ما تُخَبِّرُنى لم يترك الشَّيبُ لى زَهْواً ولا الكِبَرُ. قال قوم: الزَّهو الباطل والكذب"
+    },
+    {
+     "usage": "الزُّهاء",
+     "meaning": "القَدْر فى العدد، وهو ممّا شذّ عن الأصلين جميعاً",
+     "meaning_english": "an approximate count/number — an outlier not fitting either of the root's two core senses",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "زهد",
+   "root_letters": [
+    "ز",
+    "ه",
+    "د"
+   ],
+   "core_meaning": "الزاء والهاء والدال أصل يدلُّ على قلَّة الشىء",
+   "core_meaning_english": "scantiness/smallness of a thing",
+   "sarf_pattern": "",
+   "pdf_page_index": 1107,
+   "printed_page_number": "30",
+   "notes": "Entry begins on page 1107 and likely continues onto subsequent pages not included in this batch.",
+   "variances": [
+    {
+     "usage": "الزَّهيد",
+     "meaning": "الشىء القليل",
+     "meaning_english": "a small/scant thing",
+     "citation": ""
+    },
+    {
+     "usage": "مُزهِد",
+     "meaning": "قليل المال",
+     "meaning_english": "a man of little wealth",
+     "citation": "قال رسول الله صلى الله عليه وآله وسلم: «أفضل الناس مؤمنٌ مُزْهِدٌ»"
+    },
+    {
+     "usage": "أزهَد إزهاداً",
+     "meaning": "بمعنى مُقِلّ",
+     "meaning_english": "to become poor/of little means",
+     "citation": "قال الأعشى: فلَن يَطلُبوا سِرَّها للغِنى ولن يُسلِموها لإزهادها"
+    },
+    {
+     "usage": "الزَّهادة فى الدنيا / الزُّهد فى الدين",
+     "meaning": "قال الخليل: الزهادة فى الدنيا، والزهد فى الدِّين خاصة",
+     "meaning_english": "renunciation of worldly things vs. religious asceticism specifically",
+     "citation": ""
+    },
+    {
+     "usage": "رجل زَهيد",
+     "meaning": "قليل المطعَم، وهو ضيّق الأخلاق أيضاً",
+     "meaning_english": "a man of small appetite, also of narrow temperament",
+     "citation": "قال اللِّحيانى"
+    },
+    {
+     "usage": "الوادى الزَّهيد",
+     "meaning": "القليل الأخذ للماء",
+     "meaning_english": "a valley/wadi that holds little water",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّهاد",
+     "meaning": "الأرض التى تسيل من أدنى مطر",
+     "meaning_english": "land that runs off (floods) from the slightest rain",
+     "citation": ""
+    },
+    {
+     "usage": "خُذ زَهْدَ ما يكفيك",
+     "meaning": "أى قَدْر ما يكفيك",
+     "meaning_english": "take just the amount that suffices you",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "زهد (تكملة)",
+   "root_letters": [
+    "ز",
+    "ه",
+    "د"
+   ],
+   "core_meaning": "تكملة من الصفحة السابقة: يُحكى عن الشيبانى أنه إن صح فهو شاذّ عن الأصل الذى أصّلناه؛ قال: زَهَدَتِ النخلَ، وذلك إذا خَرَصْتَه.",
+   "core_meaning_english": "Continuation of a prior entry: reported usage said to be irregular/divergent from the root's established core meaning; \"the palm-tree yielded scantly\", said when estimating its yield.",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَهَدَتِ النخلَ",
+     "meaning": "خَرَصْتَه (قدّرت ثمرها فوجدته قليلاً)",
+     "meaning_english": "he estimated the palm-tree's yield (and found it scant)",
+     "citation": "يُحكى عن الشيبانى"
+    }
+   ],
+   "printed_page_number": "31",
+   "pdf_page_index": 1108,
+   "notes": "Tail end of an entry whose heading is on a page not in this batch; root inferred as زهد from context."
+  },
+  {
+   "root": "زهر",
+   "root_letters": [
+    "ز",
+    "ه",
+    "ر"
+   ],
+   "core_meaning": "الزاء والهاء والراء أصلٌ واحدٌ يدلُّ على حُسنٍ وضياءٍ وصفاء.",
+   "core_meaning_english": "Beauty, brightness/light, and clarity/purity.",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزُّهَرة",
+     "meaning": "النجم، ومنه الزَّهْر",
+     "meaning_english": "the star (Venus); from it comes az-zahr (blossom)",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّهْر",
+     "meaning": "نَوْرُ كلّ نبات؛ يقال أزهى النَّبات إذا كان بعضه مضمومًا",
+     "meaning_english": "the blossom of every plant; said when the plant flowers",
+     "citation": ""
+    },
+    {
+     "usage": "النَّور / الزَّهْر",
+     "meaning": "النَّورُ الأبيضُ، والزَّهرُ الأصفرُ",
+     "meaning_english": "an-nawr is the white blossom, az-zahr is the yellow blossom",
+     "citation": "يُنسب القول لبعضهم"
+    },
+    {
+     "usage": "زَهرة الدنيا",
+     "meaning": "حُسنها",
+     "meaning_english": "the beauty/adornment of worldly life",
+     "citation": ""
+    },
+    {
+     "usage": "الأزهى",
+     "meaning": "القمر",
+     "meaning_english": "an epithet for the moon",
+     "citation": ""
+    },
+    {
+     "usage": "زَهَرَتِ النارُ",
+     "meaning": "أضاءت",
+     "meaning_english": "the fire flared up / gave light",
+     "citation": ""
+    },
+    {
+     "usage": "زَهَرَت بك نارى",
+     "meaning": "قول يُقال (تعبير عن إضاءة النار بسببه)",
+     "meaning_english": "idiom: \"my fire has flared up because of you\"",
+     "citation": "قول العرب"
+    },
+    {
+     "usage": "ازدهرتُ بالشىء (شاذّ عن الأصل)",
+     "meaning": "إذا احتفظتَ به",
+     "meaning_english": "irregular usage: to cherish/hold on to something",
+     "citation": "حديث النبى صلى الله عليه وآله وسلم لأبى قتادة فى الإناء الذى أعطاه: \"ازدهر به فإنّ له شأنًا\" أى يريد احتفظ به"
+    },
+    {
+     "usage": "كما ازدهرت (بيت شعر، مجهول القائل)",
+     "meaning": "شاهد شعرى مجزوء غير واضح المعنى كاملاً فى هذه الصفحة",
+     "meaning_english": "poetic fragment cited in the footnote; full sense unclear from this excerpt",
+     "citation": "هامش (2): قطعة من بيت فى اللسان (زهر) وهو بتمامه: كما ازدهرت قينة بالشراع لأسوارها على منها اصطباحا"
+    },
+    {
+     "usage": "المِزْهَر (العود)",
+     "meaning": "لعله محمول على ما ذكرناه من الأصل لأنه قريب منه",
+     "meaning_english": "the lute/oud, likely derived from this root's core meaning by association",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "31",
+   "pdf_page_index": 1108,
+   "notes": "Corrected: core meaning had a duplicated word (\"وصفاءٍ وصفاء\" → single \"وصفاء\"); moon epithet is only \"الأزهى\" as printed, not \"الأزهر\"; footnote poem citation corrected from \"بالسراع\" to \"بالشراع\"."
+  },
+  {
+   "root": "زهم",
+   "root_letters": [
+    "ز",
+    "ه",
+    "م"
+   ],
+   "core_meaning": "الزاء والهاء والميم أصلٌ واحدٌ يدلُّ على سِمَنٍ وشَحمٍ وما أشبه ذلك.",
+   "core_meaning_english": "Fatness, grease/fat, and the like.",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّهَم",
+     "meaning": "من ذلك؛ وهو أن تَزْهَمَ اليدُ من اللحم",
+     "meaning_english": "the hand becoming greasy from meat",
+     "citation": ""
+    },
+    {
+     "usage": "الزُّهْم",
+     "meaning": "ذكر ناسٌ أنَّ الزُّهْمَ شَحْمُ الوحش خاصّة، وأنه اسمٌ لذلك خاصّة",
+     "meaning_english": "some say az-zuhm specifically means the fat of wild game",
+     "citation": ""
+    },
+    {
+     "usage": "زَهِمٌ",
+     "meaning": "يقولون للسَّمين زَهِمٌ",
+     "meaning_english": "they call a fat person \"zahim\"",
+     "citation": ""
+    },
+    {
+     "usage": "المُزاهَمة",
+     "meaning": "عن أبى زيد: القُرب؛ ويقال زاهَمَ فلانٌ الأربعين أى داناها",
+     "meaning_english": "nearness; \"so-and-so neared forty\" (of age)",
+     "citation": "عن أبى زيد"
+    },
+    {
+     "usage": "زاهَمَ (تفسير بديل)",
+     "meaning": "يمكن حمله على الأصل (السِّمَن) لأنه كأنه أراد التلطُّخ بها ومماسّتها؛ ويمكن أن يكون من الإبدال وتكون الميم بدلاً من القاف، لأنّ الزاهق عين السَّمين",
+     "meaning_english": "possibly connected to the fatness-meaning by association, or the mim may be a substitution for qaf (linking it to az-zahiq, \"the fat one\")",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "31-32",
+   "pdf_page_index": 1108,
+   "notes": "Entry begins on page 1108 (p.31), continues onto page 1109 (p.32) with المزاهمة/زاهم discussion."
+  },
+  {
+   "root": "زهق",
+   "root_letters": [
+    "ز",
+    "ه",
+    "ق"
+   ],
+   "core_meaning": "الزاء والهاء والقاف أصلٌ واحدٌ يدلُّ على تقدُّمٍ ومُضِيٍّ وتجاوزٍ.",
+   "core_meaning_english": "Preceding/going ahead, passing away, and exceeding/overstepping.",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَهَقَتْ نفسُه",
+     "meaning": "من ذلك",
+     "meaning_english": "his soul departed/perished",
+     "citation": ""
+    },
+    {
+     "usage": "[زَهَقَ] الباطلُ",
+     "meaning": "أى مضى",
+     "meaning_english": "falsehood vanished/passed away",
+     "citation": ""
+    },
+    {
+     "usage": "زَهَقَ الفرسُ أمام الخيل",
+     "meaning": "إذا سبقها وتقدّمها",
+     "meaning_english": "the horse outran and got ahead of the other horses",
+     "citation": ""
+    },
+    {
+     "usage": "زَهَقَ السَّهمُ",
+     "meaning": "إذا جاوَزَ الهَدَف",
+     "meaning_english": "the arrow overshot/passed beyond the target",
+     "citation": ""
+    },
+    {
+     "usage": "فرسٌ ذاتُ أزاهيق",
+     "meaning": "أى ذاتُ جَرْىٍ وسَبْقٍ وتقدُّم",
+     "meaning_english": "a horse noted for outrunning and getting ahead",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّهَق",
+     "meaning": "من الباب: قَعْر الشىء؛ لأنّ الشىء يَزْهَق فيه إذا سقط",
+     "meaning_english": "the depth/bottom of a thing, because a thing \"goes down\" into it when it falls",
+     "citation": "قال رؤبة: كأنَّ أيديَهنّ تَهْوِى بالزَّهَق"
+    },
+    {
+     "usage": "أَزْهَقَ إناءَه",
+     "meaning": "إذا ملأه؛ فإن كان صحيحًا فهو من الباب لأنه إذا امتلأ سَبَقَ وفاضَ ومَرَّ",
+     "meaning_english": "to fill a vessel; connected to the root because a full vessel overflows/exceeds its limit",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّاهِق",
+     "meaning": "السَّمين، لأنّه جاوز حدّ الاقتصاد إلى أن اكتنز من اللحم؛ يقولون زَهَقَ خدُّه: اكتنَز",
+     "meaning_english": "the fat one, because he has exceeded the bounds of moderation and become dense with flesh; \"his cheek became firm/plump\"",
+     "citation": "قال زهير فى الزَّاهق: القائدُ الخيلَ منكوبًا دوابرُها منها الشَّنونُ ومنها الزَّاهقُ الزَّهِمُ"
+    },
+    {
+     "usage": "الزَّهوق",
+     "meaning": "من الباب: البئر البعيدة القعر",
+     "meaning_english": "a well of great depth",
+     "citation": ""
+    },
+    {
+     "usage": "النَّاسُ زُهاقُ مائة",
+     "meaning": "إن كان صحيحًا يمكن أن يكون من هذا الأصل، كأنّ عددهم تقدّم حتى بلغ ذلك؛ ويمكن أن يكون من الإبدال (الهمزة أبدلت قافًا)؛ ويمكن أن يكون شاذًّا",
+     "meaning_english": "\"about a hundred people\" — possibly connected to this root's meaning of exceeding/reaching, or a substitution of hamza for qaf, or an irregular usage",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "32-33",
+   "pdf_page_index": 1109,
+   "notes": "Corrected: printed usage is only \"زُهاقُ مائة\", not an alternate \"زُهاءُ/زُهاقُ\" pairing — the JSON had wrongly added an unprinted alternate reading. Entry heading on p.32, closing discussion continues onto top of p.33. Opening formula names only \"الزاء والقاف\" (omitting الهاء) as printed."
+  },
+  {
+   "root": "زهف",
+   "root_letters": [
+    "ز",
+    "ه",
+    "ف"
+   ],
+   "core_meaning": "الزاء والهاء والفاء أصلٌ يدلُّ على ذَهاب الشىء.",
+   "core_meaning_english": "The going-away/departure of a thing.",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ازدَهَفَ الشىءَ",
+     "meaning": "وذلك إذا ذَهَبَ به",
+     "meaning_english": "to carry a thing away",
+     "citation": "قالت امرأةٌ من العرب: يا من أحَسَّ بُنَيَّىَّ اللذين هما سَمْعِى وبَصَرِى فمُخِّى مُخّى اليومَ مُزدَهَفُ"
+    },
+    {
+     "usage": "أَزْهَفَه الموتُ",
+     "meaning": "من ذلك",
+     "meaning_english": "death carried/swept him away",
+     "citation": ""
+    },
+    {
+     "usage": "ازدَهَفَه",
+     "meaning": "من الباب: إذا استعجَلَه",
+     "meaning_english": "to hasten/hurry someone",
+     "citation": "قولُكَ أقوالًا مع التَّحلاف فيه ازدهافٌ أيُّما ازدهافِ"
+    },
+    {
+     "usage": "الازدهاف",
+     "meaning": "قال قوم: التزيُّد فى الكلام؛ فإن كان صحيحًا فلأنه ذَهابٌ عن الحقّ ومجاوَزَةٌ له",
+     "meaning_english": "exaggeration/embellishment in speech, connected to the root as a departure from and overstepping of the truth",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "33",
+   "pdf_page_index": 1110,
+   "notes": "Elegiac verse cited (woman lamenting her two sons) is a poetic fragment; English gloss approximate."
+  },
+  {
+   "root": "زهل",
+   "root_letters": [
+    "ز",
+    "ه",
+    "ل"
+   ],
+   "core_meaning": "الزاء والهاء واللام كلمةٌ تدلُّ على ملاسةِ الشىء.",
+   "core_meaning_english": "The smoothness of a thing.",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "فرسٌ زُهْلولٌ",
+     "meaning": "أى أَملَسُ",
+     "meaning_english": "a smooth/sleek horse",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "33",
+   "pdf_page_index": 1110,
+   "notes": ""
+  },
+  {
+   "root": "زهك",
+   "root_letters": [
+    "ز",
+    "ه",
+    "ك"
+   ],
+   "core_meaning": "الزاء والهاء والكاف ليس فيه شىء، إلا أنَّ ابن دريد ذكر أنهم يقولون: زَهَكَتِ الريحُ الترابَ، مثل سَهَكَت.",
+   "core_meaning_english": "No established core meaning for this root; Ibn Durayd reports only the isolated usage that the wind \"zahakat\" (ground/wore away) the dust, similar to \"sahakat\".",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَهَكَتِ الريحُ الترابَ",
+     "meaning": "مثلُ سَهَكَتْ",
+     "meaning_english": "the wind ground/scattered the dust (same sense as sahakat)",
+     "citation": "ذكره ابن دريد"
+    }
+   ],
+   "printed_page_number": "33",
+   "pdf_page_index": 1110,
+   "notes": "Ibn Faris explicitly states this root has no unifying core meaning (ليس فيه شىء) beyond this single reported usage."
+  },
+  {
+   "root": "زوى",
+   "root_letters": [
+    "ز",
+    "و",
+    "ى"
+   ],
+   "core_meaning": "الزاء والواو والياء أصلٌ يدلُّ على انضمامٍ وتجمُّع",
+   "core_meaning_english": "gathering and coming together",
+   "sarf_pattern": "",
+   "pdf_page_index": 1111,
+   "printed_page_number": "34",
+   "notes": "Correction: the heading زوى DOES appear on this page (visible directly under the bab heading 'باب الزاء والواو وما يثلثهما'); prior note claiming it was absent was wrong. Content continues onto page_1112 (printed 35) with the الزيزاء/الزَّوّ material and footnotes. The meaning attached to 'زَوَى الإرثَ عن وارثه يَزْويه زَيًّا' is not spelled out explicitly in the printed text at that line; the gloss given (منعه إياه/عدل به عنه) is an inference from the root sense, not a verbatim quote — flagged for lower confidence.",
+   "variances": [
+    {
+     "usage": "زويتُ الشيء",
+     "meaning": "جمعتُه",
+     "meaning_english": "I gathered it"
+    },
+    {
+     "usage": "حديث النبي صلى الله عليه وآله",
+     "meaning": "زُويت لى الأرض فأُريت مشارقها ومغاربها، وسيبلغ ملك أمتي ما زُوِيَ لى منها؛ يقول: جُمِعت إلَي الأرض",
+     "meaning_english": "the earth was gathered/rolled up for me and I was shown its easts and wests; my nation's dominion will reach what was gathered for me of it",
+     "citation": "قال رسول الله صلى الله عليه وآله"
+    },
+    {
+     "usage": "زَوَى الرجلُ ما بين عينيه",
+     "meaning": "إذا قبضه",
+     "meaning_english": "he contracted/knit what is between his eyes"
+    },
+    {
+     "usage": "زَوَى بين عينيه على المحاجم",
+     "meaning": "شعر يصف قبض ما بين العينين",
+     "meaning_english": "poetry describing contraction between the eyes",
+     "citation": "قال الأعشى: يزيد يغض الطرف دوني كأنما زوى بين عينيه على المحاجم / فلا ينبسط من بين عينيك ما ازوى / ولا تلقني إلا وأنفك راغم"
+    },
+    {
+     "usage": "انزَوَتِ الجلدةُ فى النار",
+     "meaning": "إذا تقبَّضت",
+     "meaning_english": "the skin shrivelled/contracted in the fire"
+    },
+    {
+     "usage": "زاوية البيت",
+     "meaning": "لاجتماع الحائطين",
+     "meaning_english": "the corner of the house, for the meeting of the two walls"
+    },
+    {
+     "usage": "من الباب الزَّيّ",
+     "meaning": "حُسْن الهيئة",
+     "meaning_english": "good appearance/attire"
+    },
+    {
+     "usage": "زَوَى الإرثَ عن وارثه يَزْويه زَيًّا",
+     "meaning": "منعه إياه/عدل به عنه (معنى مستنبط من سياق الأصل، غير منصوص صراحة فى هذا السطر)",
+     "meaning_english": "he diverted the inheritance from its heir (inferred sense — not an explicit gloss in this line)"
+    },
+    {
+     "usage": "الزَّوْزاة",
+     "meaning": "حُسْن الطَّرد؛ ذُكر أنه شاذ عن هذا الأصل ولا يُعلم له قياس ولا اشتقاق",
+     "meaning_english": "good manner of driving/pursuing (irregular, not derivable by the usual pattern)",
+     "citation": "يقال زَوْزَيْتُ به"
+    },
+    {
+     "usage": "الزِّيزاء",
+     "meaning": "أطراف الريش",
+     "meaning_english": "the tips of feathers"
+    },
+    {
+     "usage": "الزِّيزاءة",
+     "meaning": "الأكَمة، وجمعها الزِّيزاء",
+     "meaning_english": "a hillock; plural زِّيزاء"
+    },
+    {
+     "usage": "الزَّيَازِى",
+     "meaning": "شعر الهذلي: ويوفي زيازي حدب التلال",
+     "meaning_english": "poetic plural form referring to hillocks",
+     "citation": "شعر الهذلي (أسامة بن الحارث)"
+    },
+    {
+     "usage": "قِدْرٌ زُوَزِيَةٌ",
+     "meaning": "أى ضخمة",
+     "meaning_english": "a huge cooking pot"
+    },
+    {
+     "usage": "الزَّوّ",
+     "meaning": "وهى المِيتَة؛ ذُكر أنه ممّا لا اشتقاق له",
+     "meaning_english": "the manner of dying (said to have no derivation)"
+    }
+   ]
+  },
+  {
+   "root": "زوج",
+   "root_letters": [
+    "ز",
+    "و",
+    "ج"
+   ],
+   "core_meaning": "الزاء والواو والجيم أصلٌ يدلُّ على مقارنة شىء لشىء",
+   "core_meaning_english": "the pairing/comparing of one thing with another",
+   "sarf_pattern": "",
+   "pdf_page_index": 1112,
+   "printed_page_number": "35",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "الزَّوج",
+     "meaning": "زوج المرأة، والمرأة زوجُه، بعلها، وهو الفصيح",
+     "meaning_english": "a husband; and the wife is his زوج, i.e. his spouse — this is the correct/eloquent usage"
+    },
+    {
+     "usage": "قرآن",
+     "meaning": "اسكُن أنت وزوجُكَ الجنة",
+     "meaning_english": "dwell, you and your wife, in the Garden",
+     "citation": "قال الله جل ثناؤه"
+    },
+    {
+     "usage": "لفلانٍ زوجان من الحمام",
+     "meaning": "يعنى ذكراً وأنثى",
+     "meaning_english": "so-and-so has a pair of pigeons, meaning a male and a female"
+    },
+    {
+     "usage": "من كل زوجٍ بهيج",
+     "meaning": "فيقال أراد به اللَّون، كأنه قال: من كل لون؛ وهذا لا يبعد أن يكون من الذى ذكرناه؛ لأنه يزوَّج غيرَه ممّا يقاربه",
+     "meaning_english": "said to mean colour — 'of every kind/colour'; not far from the root meaning, since it is paired with what resembles it",
+     "citation": "قوله جل وعز فى ذكر النبات"
+    },
+    {
+     "usage": "النَّمَط الذى يُطرَح على الهودج يسمى زَوْج",
+     "meaning": "لأنه زوجٌ لما يُلقَى عليه",
+     "meaning_english": "the cloth thrown over the litter is called زوج because it is paired with what is placed on it"
+    },
+    {
+     "usage": "من كل محفوفٍ يظلُّ عصيُّه زوجٌ عليه كلّةٌ وقرامها",
+     "meaning": "بيت شعر يستشهد به على هذا المعنى",
+     "meaning_english": "verse cited in support of this meaning",
+     "citation": "قال لبيد"
+    }
+   ]
+  },
+  {
+   "root": "زوح",
+   "root_letters": [
+    "ز",
+    "و",
+    "ح"
+   ],
+   "core_meaning": "الزاء والواو والحاء أصلٌ يدلُّ على تنحٍّ وزوال",
+   "core_meaning_english": "moving aside and departing/vanishing",
+   "sarf_pattern": "",
+   "pdf_page_index": 1112,
+   "printed_page_number": "35",
+   "notes": "",
+   "variances": [
+    {
+     "usage": "زاح عن مكانه يزوح",
+     "meaning": "إذا تنحّى",
+     "meaning_english": "he moved away/aside from his place"
+    },
+    {
+     "usage": "أزحتُه أنا",
+     "meaning": "نحّيتُه",
+     "meaning_english": "I moved him away"
+    },
+    {
+     "usage": "أزاح يزيح",
+     "meaning": "وربّما قالوا ذلك",
+     "meaning_english": "a variant form (sometimes said this way)"
+    }
+   ]
+  },
+  {
+   "root": "زود",
+   "root_letters": [
+    "ز",
+    "و",
+    "د"
+   ],
+   "core_meaning": "الزاء والواو والدال أصلٌ يدلُّ على انتقالٍ بخيرٍ من عملٍ أو كسبٍ",
+   "core_meaning_english": "the transfer/carrying of good gained from labor or earning",
+   "sarf_pattern": "",
+   "pdf_page_index": 1113,
+   "printed_page_number": "36",
+   "notes": "The definition is attributed as a حَدّ (technical delimitation) by الخليل rather than the usual مقياس wording.",
+   "variances": [
+    {
+     "usage": "تحديد الخليل",
+     "meaning": "كل من انتقل معه بخير من عمل أو كسب فقد تزوَّد",
+     "meaning_english": "al-Khalil's definition: whoever carries away good from work or earning has 'taken provision' (تزوّد)"
+    },
+    {
+     "usage": "الزَّوْد",
+     "meaning": "تأسيس الزاد، وهو الطعام يُتَّخذ للسَّفر",
+     "meaning_english": "establishing/preparing travel provisions (food taken for a journey)",
+     "citation": "قال غيره"
+    },
+    {
+     "usage": "المِزْوَد",
+     "meaning": "الوعاء يُجعل للزاد",
+     "meaning_english": "the sack/container made for provisions"
+    },
+    {
+     "usage": "تُلُقِّب المعجم برقاب المزاود",
+     "meaning": "تلقيب المعجم (كتاب اللغة) بهذا الاسم على هذا الاشتقاق",
+     "meaning_english": "the dictionary (lexicon) was nicknamed thus, playing on this word's derivation"
+    }
+   ]
+  },
+  {
+   "root": "زور",
+   "root_letters": [
+    "ز",
+    "و",
+    "ر"
+   ],
+   "core_meaning": "الزاء والواو والراء أصلٌ واحدٌ يدلُّ على الميل والعدول",
+   "core_meaning_english": "inclining and turning aside/deviating",
+   "sarf_pattern": "",
+   "pdf_page_index": 1113,
+   "printed_page_number": "36",
+   "notes": "Merged the two related 'زوَّر' usages into one variance (the first, 'زوَّر فلانٌ الشيءَ تزويراً', has no separate stated meaning in the text — it is a grammatical lead-in to the explained phrase 'زوَّر الشيء فى نفسه: هيَّأه...'; the prior extraction had invented a standalone meaning for it). The poetry citation 'جاءوا بزُورِهم وجئنا بالأصنم' near the mention of idols (الصنم) is partly unclear due to page condition.",
+   "variances": [
+    {
+     "usage": "الزُّور",
+     "meaning": "الكذب؛ لأنه مائلٌ عن طريقة الحق",
+     "meaning_english": "falsehood, because it deviates from the path of truth"
+    },
+    {
+     "usage": "زوَّر فلانٌ الشىءَ تزويراً / زوَّر الشىءَ فى نفسه",
+     "meaning": "هيَّأه؛ لأنه يعدل به عن طريقةٍ إلى طريقةٍ تكون أقرب إلى قبول السامع",
+     "meaning_english": "he prepared/composed it in his mind, diverting it toward a manner more likely to be accepted by the hearer"
+    },
+    {
+     "usage": "الصَّنَم يُسمَّى زُوراً",
+     "meaning": "فهو القياس الصحيح",
+     "meaning_english": "the idol is called زور — this fits the correct pattern",
+     "citation": "قال: جاءوا بزُورِهم وجئنا بالأَصْنَم"
+    },
+    {
+     "usage": "الزَّوَر",
+     "meaning": "الميل، يقال ازْوَرَّ عن كذا: أى مال عنه",
+     "meaning_english": "inclination; one says ازورّ عن كذا meaning he turned away from it"
+    },
+    {
+     "usage": "الزائر",
+     "meaning": "لأنه إذ زارك فقد عدل عن غيرك",
+     "meaning_english": "the visitor, because in visiting you he turned aside from others"
+    },
+    {
+     "usage": "الزُّوَيْر",
+     "meaning": "رئيس القوم وصاحب أمرهم؛ لأنهم يعدلون عن كل أحدٍ إليه",
+     "meaning_english": "the chief/leader of a people, because they turn to him away from everyone else",
+     "citation": "بأيدى رجالٍ لا هَوادةَ بينهم يسوقون للموت الزُّوَيْر اليلنددا"
+    },
+    {
+     "usage": "رجلٌ ليس له زَوْر",
+     "meaning": "أى ليس له صَيُّورٌ يرجع إليه",
+     "meaning_english": "a man with no زور, i.e. no settled recourse/resolve to return to"
+    },
+    {
+     "usage": "البِزْوير",
+     "meaning": "كرامة الزائر",
+     "meaning_english": "the honoring/hospitality of a visitor"
+    },
+    {
+     "usage": "الزَّوْر",
+     "meaning": "القوم الزُّوَّار، يقال ذلك فى الواحد والاثنين والجماعة والنساء",
+     "meaning_english": "a visiting party — used for one person, two, a group, and women alike"
+    }
+   ]
+  },
+  {
+   "root": "زور",
+   "root_letters": [
+    "ز",
+    "و",
+    "ر"
+   ],
+   "core_meaning": "(تكملة) فأما قولهم إن الزَّوَرَّ القوىّ الشديد، فإنما هو من الزَّوْر، وهو أعلى الصدر، شاذٌّ عن الأصل الذى أصّلناه",
+   "core_meaning_english": "continuation: 'zawarr' (strong/powerful) is said to derive from 'zawr' (upper chest), but this is irregular, outside the core meaning already established for this root",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّوَرّ",
+     "meaning": "القوىّ الشديد",
+     "meaning_english": "the strong, powerful one",
+     "citation": "ومشيهنّ بالحُبيب المَوْرُ كما تهَادى الفَتَياتُ الزَّوَّرُ"
+    },
+    {
+     "usage": "الزَّوْر",
+     "meaning": "أعلى الصدر",
+     "meaning_english": "the upper chest",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "37",
+   "pdf_page_index": 1114,
+   "notes": "Continuation of root زور which began on a previous page not included in this batch. Corrected the citation verse: original reads 'ومشيهنّ بالحُبيب المَوْرُ كما تهَادى الفَتَياتُ الزَّوَّرُ' (footnote 1 glosses الحُبيب as a small sand-hollow and notes the Lisān variant 'ومشيهن بالكثيب مور')."
+  },
+  {
+   "root": "زوع",
+   "root_letters": [
+    "ز",
+    "و",
+    "ع"
+   ],
+   "core_meaning": "الزاء والواو والعين كلمةٌ واحدة",
+   "core_meaning_english": "one single word/meaning",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَاعَ الناقةَ بزمامها زَوْعًا",
+     "meaning": "إذا جذبها",
+     "meaning_english": "to pull/tug the she-camel by its rein",
+     "citation": "زُعْ بالزّمام وجَوْزُ الليل مركوم — لذي الرمة"
+    }
+   ],
+   "printed_page_number": "37",
+   "pdf_page_index": 1114,
+   "notes": ""
+  },
+  {
+   "root": "زوف",
+   "root_letters": [
+    "ز",
+    "و",
+    "ف"
+   ],
+   "core_meaning": "الزاء والواو والفاء ليس بشىء، إلا أنهم يقولون موتٌ زُوَافٌ: وَحِىٌّ",
+   "core_meaning_english": "not a valid (established) root meaning; only that they say 'mawtun zuwaaf' meaning a sudden/swift death",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "موتٌ زُوَافٌ",
+     "meaning": "وَحِىٌّ",
+     "meaning_english": "sudden, swift death",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "37",
+   "pdf_page_index": 1114,
+   "notes": ""
+  },
+  {
+   "root": "زوق",
+   "root_letters": [
+    "ز",
+    "و",
+    "ق"
+   ],
+   "core_meaning": "الزاء والواو والقاف ليس بشىء. وقولهم زَوَّقْتُ الشىء إذا زيّنته وموّهتَه، ليس بأصل، يقولون إنه من الزَّاوُوق، وهو الزئبق. وكل هذا كلام",
+   "core_meaning_english": "not a valid (established) root meaning; 'zawwaqtu al-shay'' (I decorated/gilded the thing) is said to derive from 'al-zaawuuq' (mercury/quicksilver), but this is not a sound derivation — all of this is (mere) speech",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَوَّقْتُ الشىء",
+     "meaning": "زيّنته وموّهتَه",
+     "meaning_english": "I decorated and gilded/plated the thing",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّاوُوق",
+     "meaning": "الزئبق",
+     "meaning_english": "mercury, quicksilver",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "37",
+   "pdf_page_index": 1114,
+   "notes": ""
+  },
+  {
+   "root": "زوك",
+   "root_letters": [
+    "ز",
+    "و",
+    "ك"
+   ],
+   "core_meaning": "الزاء والواو والكاف كلمةٌ إن صحّت. يقولون إن الزَّوْكَ مشية الغراب",
+   "core_meaning_english": "one word/meaning, if authentic; they say 'al-zawk' is the crow's walking gait",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّوْك",
+     "meaning": "مشية الغراب",
+     "meaning_english": "the crow's gait/walk",
+     "citation": "فى فُحْشِ زانيةٍ وزَوْكِ غُرَابِ"
+    },
+    {
+     "usage": "زَوْزَكَتْ المرأة",
+     "meaning": "إذا أسرعت فى المشى",
+     "meaning_english": "the woman hastened her walk",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "37",
+   "pdf_page_index": 1114,
+   "notes": "Entry continues onto page 1115 (printed page 38), where زَوْزَكَتْ المرأة is given, followed by the line 'وهذا بابٌ قريب من الذى قبله' closing the entry."
+  },
+  {
+   "root": "زول",
+   "root_letters": [
+    "ز",
+    "و",
+    "ل"
+   ],
+   "core_meaning": "الزاء والواو واللام أصلٌ واحدٌ يدلُّ على تنحّى الشىء عن مكانه",
+   "core_meaning_english": "one core meaning indicating a thing moving away/departing from its place",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زال الشىء زَوَالًا",
+     "meaning": "تنحّى عن مكانه",
+     "meaning_english": "the thing departed/moved from its place",
+     "citation": ""
+    },
+    {
+     "usage": "زالت الشمس عن كبد السماء تَزُول",
+     "meaning": "زوال الشمس عن وسط السماء",
+     "meaning_english": "the sun passed its zenith (moved from mid-sky)",
+     "citation": ""
+    },
+    {
+     "usage": "أزَلْتُهُ عن المكان وزوّلته عنه",
+     "meaning": "نحّيته عنه",
+     "meaning_english": "I removed/moved it away from the place",
+     "citation": "وبيضاء لا تحُاشى منّا وأمُّها إذا ما رأتنا زِيلَ منّا زَوِيلُها — لذي الرمة"
+    },
+    {
+     "usage": "الزّائلة",
+     "meaning": "كلّ شىء يتحرك",
+     "meaning_english": "anything that moves",
+     "citation": "وكنت امرأً أرى الزوائل مرّةً فأصبحتُ قد ودّعتُ رَمْىَ الزوائلِ"
+    },
+    {
+     "usage": "شىءٌ زَوْل",
+     "meaning": "أى عجب (شاذّ عن الباب)",
+     "meaning_english": "an amazing/wondrous thing (irregular usage outside the core meaning)",
+     "citation": ""
+    },
+    {
+     "usage": "امرأةٌ زَوْلةٌ",
+     "meaning": "أى خفيفة",
+     "meaning_english": "a nimble/light (agile) woman",
+     "citation": "وألقَتْ إلى القول منهنّ زَوْلةٌ تُخَاضِنُ أو تَرْنُو لقول المُخاضِنِ — للطرمّاح"
+    }
+   ],
+   "printed_page_number": "38",
+   "pdf_page_index": 1115,
+   "notes": "Corrected usage term for 'anything that moves' from 'الزَّآئل' to 'الزّائلة' (feminine form, as printed)."
+  },
+  {
+   "root": "زون",
+   "root_letters": [
+    "ز",
+    "و",
+    "ن"
+   ],
+   "core_meaning": "الزاء والواو والنون ليس هو عندى أصلًا. على أنهم يقولون: الزَّوْن: الصنم. ومرّة يقولون: الزَّوْن: بيت الأصنام",
+   "core_meaning_english": "not, in the author's view, an established root; they say 'al-zawn' means idol, and at other times 'the house of idols'",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّوْن",
+     "meaning": "الصنم",
+     "meaning_english": "the idol",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّوْن",
+     "meaning": "بيت الأصنام",
+     "meaning_english": "the house of idols",
+     "citation": ""
+    },
+    {
+     "usage": "زانه يَزُونه",
+     "meaning": "بمعنى يزينه",
+     "meaning_english": "to adorn/beautify it",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّوَنَّة",
+     "meaning": "القصيرة من النساء",
+     "meaning_english": "a short woman",
+     "citation": ""
+    },
+    {
+     "usage": "الرجل زَوَنٌّ",
+     "meaning": "قصير",
+     "meaning_english": "a short man",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّوَنْزَى",
+     "meaning": "القصير",
+     "meaning_english": "the short one",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "38",
+   "pdf_page_index": 1115,
+   "notes": "Entry continues onto page 1116 (printed page 39), where الزَّوَنَّة, زَوَنٌّ, and الزَّوَنْزَى are given."
+  },
+  {
+   "root": "زيب",
+   "root_letters": [
+    "ز",
+    "ي",
+    "ب"
+   ],
+   "core_meaning": "الزاى والياء والباء أصلٌ يدلُّ على خفّةٍ ونشاطٍ وما يشبه ذلك. والأصل الخفّة",
+   "core_meaning_english": "one core meaning indicating lightness/swiftness and energy and what resembles that; the base sense is lightness",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الأَزْيَب",
+     "meaning": "النشاط",
+     "meaning_english": "vigor, energetic activity",
+     "citation": ""
+    },
+    {
+     "usage": "مرّ فلانٌ وله أَزْيَب",
+     "meaning": "إذا مرّ مرًّا سريعًا",
+     "meaning_english": "so-and-so passed by swiftly",
+     "citation": ""
+    },
+    {
+     "usage": "أَزْيَب (للأمر المنكر)",
+     "meaning": "لأنه يُستخفّ لمن رآه أو سمعه",
+     "meaning_english": "term for a disapproved/objectionable matter, because it is regarded as trivial/scorned by one who sees or hears it",
+     "citation": "تُكَلّفُ الجارةُ ذنبَ الغَيّبِ وهى تُبيتُ زوجَها فى أَزْيَبِ"
+    },
+    {
+     "usage": "أَزْيَب (للرجل الذليل الداعى والدّعىّ)",
+     "meaning": "الرجل الذليل، الداعى والدّعىّ",
+     "meaning_english": "term for a lowly man, whether summoner or one summoned/claimed",
+     "citation": ""
+    },
+    {
+     "usage": "أَزْيَب (لمن قارب خطوه)",
+     "meaning": "لمن قارب خَطْوَه",
+     "meaning_english": "term for one who takes short/close steps",
+     "citation": ""
+    },
+    {
+     "usage": "أَزْيَب (للجنوب من الرياح)",
+     "meaning": "شذّ عن الباب",
+     "meaning_english": "the south wind (an irregular usage outside the core meaning)",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "39",
+   "pdf_page_index": 1116,
+   "notes": "New chapter heading appears before this entry: باب الزاى والياء وما يثلثهما (chapter of roots beginning zay-ya)."
+  },
+  {
+   "root": "زيت",
+   "root_letters": [
+    "ز",
+    "ي",
+    "ت"
+   ],
+   "core_meaning": "الزاى والياء والتاء كلمةٌ واحدة، وهى الزّيت، معروف",
+   "core_meaning_english": "one single word/meaning: 'al-zayt' (olive oil), well known",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَتَّه",
+     "meaning": "إذا دهنته بالزيت",
+     "meaning_english": "he anointed/rubbed it with oil",
+     "citation": ""
+    },
+    {
+     "usage": "مَزْيُوت",
+     "meaning": "المدهون بالزيت",
+     "meaning_english": "anointed with oil",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "39",
+   "pdf_page_index": 1116,
+   "notes": ""
+  },
+  {
+   "root": "زيح",
+   "root_letters": [
+    "ز",
+    "ي",
+    "ح"
+   ],
+   "core_meaning": "الزاى والياء والحاء أصلٌ واحد، وهو زوال الشىء وتنحّيه",
+   "core_meaning_english": "one core meaning: the departure and moving-aside of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زاح الشىء يَزِيح",
+     "meaning": "إذا ذهب",
+     "meaning_english": "the thing departed/went away",
+     "citation": ""
+    },
+    {
+     "usage": "أزَحْتُ عِلّته، فزاحت، وهى تَزِيح",
+     "meaning": "إزالة العلة",
+     "meaning_english": "I removed its ailment/excuse, and it departed",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "39",
+   "pdf_page_index": 1116,
+   "notes": "Entry is complete on this page (ends with a full stop and the footnote rule); it is not cut off, contrary to the prior note."
+  },
+  {
+   "root": "زيج",
+   "root_letters": [
+    "ز",
+    "ي",
+    "ج"
+   ],
+   "core_meaning": "الزاء والجيم والياء ليس بشیء . على أنهم يسمُّون خيط البناء زِيجاً . فما أدرى أعربيٌّ هو أم لا",
+   "core_meaning_english": "Not a genuine root meaning; they merely call the mason's cord \"ziyaj\" - uncertain if this is genuine Arabic",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زِيج",
+     "meaning": "خيط البناء",
+     "meaning_english": "the builder's/mason's cord",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "٤٠",
+   "pdf_page_index": 1117,
+   "notes": "Ibn Faris explicitly says this is not a real root with a core meaning; he doubts it is even genuine Arabic."
+  },
+  {
+   "root": "زيد",
+   "root_letters": [
+    "ز",
+    "ي",
+    "د"
+   ],
+   "core_meaning": "الزاء والياء والدال أصلٌ يدلُّ على الفَضْل",
+   "core_meaning_english": "Excess, surplus, increase",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زاد الشيء يزيد فهو زائد",
+     "meaning": "زاد الشيء",
+     "meaning_english": "the thing increased",
+     "citation": ""
+    },
+    {
+     "usage": "قوم زَيْدٌ على كذا",
+     "meaning": "أى يزيدون",
+     "meaning_english": "a people exceeding such-and-such",
+     "citation": "وأنتمُ معشرٌ زَيدٌ على مائةٍ فأجمعوا أمرَكم كيداً فكيدونى"
+    },
+    {
+     "usage": "شىء كثير الزَّيّابد",
+     "meaning": "أى الزيادات",
+     "meaning_english": "a thing with many additions/increments",
+     "citation": ""
+    },
+    {
+     "usage": "زوائد (الأسد)",
+     "meaning": "ذو زوائد",
+     "meaning_english": "the lion's claws/extra parts",
+     "citation": ""
+    },
+    {
+     "usage": "تزيَّد فى زَيِّرِه وصَولته",
+     "meaning": "الذى يتزيّد فى زئيره وصولته",
+     "meaning_english": "one who exceeds/exaggerates in his roaring and onslaught",
+     "citation": ""
+    },
+    {
+     "usage": "تَزَيَّدَتِ الناقة فى مشيتها",
+     "meaning": "إذا تكلَّفتْ فوق طاقتها",
+     "meaning_english": "the she-camel exerted herself beyond her capacity in her gait",
+     "citation": ""
+    },
+    {
+     "usage": "تَزَيَّد (بالياء)",
+     "meaning": "ما قالوا ولا تَزَيَّد - كأنه أراد التزيُّد فى الكلام",
+     "meaning_english": "exaggerating/embellishing in speech",
+     "citation": "فقل [مثل] ما قالوا ولا تَزَيَّد"
+    }
+   ],
+   "printed_page_number": "٤٠",
+   "pdf_page_index": 1117,
+   "notes": ""
+  },
+  {
+   "root": "زير",
+   "root_letters": [
+    "ز",
+    "ي",
+    "ر"
+   ],
+   "core_meaning": "الزاء والياء والراء ليس بأصل",
+   "core_meaning_english": "Not a genuine root",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "رجل زِيرٌ",
+     "meaning": "يحبُّ مجالسة النساء ومحادثتَهن، وهذا عندى أصله الواو، من زارَ يزور، فقلبت الواو ياءً للكسرة التى قبلها، كما يقال هو حَدَثُ نساء",
+     "meaning_english": "a man fond of sitting and conversing with women; originally from the root with waw (zaara/yazuuru, \"to visit\"), with the waw changed to ya due to the preceding kasra",
+     "citation": "من يكن فى السَّواد والدَّدِ والإغماض رامٍ زِيراً فإنّنى غيرُ زِير"
+    }
+   ],
+   "printed_page_number": "٤٠",
+   "pdf_page_index": 1117,
+   "notes": "Ibn Faris derives زير from و not ي, so denies it a true ي-root status despite listing it under this heading."
+  },
+  {
+   "root": "زيغ",
+   "root_letters": [
+    "ز",
+    "ي",
+    "غ"
+   ],
+   "core_meaning": "الزاء والياء والغين أصلٌ يدلّ على مَيَل الشىء",
+   "core_meaning_english": "The deviation or inclination of a thing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زاغ يزيغُ زَيْغاً",
+     "meaning": "مال",
+     "meaning_english": "it deviated/swerved",
+     "citation": ""
+    },
+    {
+     "usage": "التَّزَيُّغ",
+     "meaning": "التمايل",
+     "meaning_english": "swaying/leaning",
+     "citation": ""
+    },
+    {
+     "usage": "قوم زاغة",
+     "meaning": "أى زائغون",
+     "meaning_english": "a people who are deviating/straying",
+     "citation": ""
+    },
+    {
+     "usage": "زاغتِ الشمس",
+     "meaning": "وذلك إذا مالت وفاء الفىء",
+     "meaning_english": "the sun declined (past its zenith), when it tilts and the shadow lengthens",
+     "citation": ""
+    },
+    {
+     "usage": "فلمّا زاغوا أزاغ اللهُ قلوبَهم",
+     "meaning": "قرآن كريم - عن الانحراف",
+     "meaning_english": "when they deviated, God caused their hearts to deviate",
+     "citation": "قرآن: ﴿فَلَمَّا زَاغُوا أَزَاغَ اللَّهُ قُلُوبَهُمْ﴾"
+    },
+    {
+     "usage": "تَزَيَّغَتِ المرأة",
+     "meaning": "أى تَزَيَّنَتِ المرأة، فهذا من باب الإبدال، وهى نون أُبدلت غيناً",
+     "meaning_english": "the woman adorned herself - a substitution case, where a nun was replaced by ghayn (from زين not زيغ)",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "٤٠-٤١",
+   "pdf_page_index": 1117,
+   "notes": "Entry begins on page 40 (pdf 1117) and continues onto page 41 (pdf 1118); combined here. The final item (تزيّغت) is explained as a phonetic substitution from زين, not a true derivative of زيغ. Verified against both pages; content and order match printed text."
+  },
+  {
+   "root": "زيم",
+   "root_letters": [
+    "ز",
+    "ي",
+    "م"
+   ],
+   "core_meaning": "الزاء والياء والميم أصلٌ يدلُّ على تَجَمُّع",
+   "core_meaning_english": "Coming together, gathering, aggregation",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "لحمٌ زِيَمٌ",
+     "meaning": "أى مُكَتنِز",
+     "meaning_english": "compact, dense meat",
+     "citation": ""
+    },
+    {
+     "usage": "اجتمع الناسُ فصاروا زِيَماً",
+     "meaning": "اجتماع الناس",
+     "meaning_english": "the people gathered and formed clusters",
+     "citation": ""
+    },
+    {
+     "usage": "الخيل تعدو زِيَماً حولنا",
+     "meaning": "قول الخليل، عن اجتماع/تجمع الخيل فى عَدوها",
+     "meaning_english": "the horses ran in clustered groups around us",
+     "citation": "قال الخليل: والخيلُ تعدو زِيَماً حَولَنا"
+    }
+   ],
+   "printed_page_number": "٤١",
+   "pdf_page_index": 1118,
+   "notes": ""
+  },
+  {
+   "root": "زيل",
+   "root_letters": [
+    "ز",
+    "ي",
+    "ل"
+   ],
+   "core_meaning": "الزاء والياء واللام ليس أصلاً، لكنّ الياء فيه مبدلة من واو، وقد ذُكِر معنى ذِكرِه، وذُكرت هنالك كلماتُ اللفظ: فالتَّزايُل: التباين",
+   "core_meaning_english": "Not a genuine root; its ya is a substitute for waw; \"tazayul\" means mutual separation/estrangement",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَيَّلْتُ بينه",
+     "meaning": "أى فرَّقتُ",
+     "meaning_english": "I separated between them",
+     "citation": "قال الله تعالى: ﴿فَزَيَّلْنَا بَيْنَهُمْ﴾"
+    },
+    {
+     "usage": "الزَّيَل",
+     "meaning": "إن الزَّيَل تباعُد ما بين الفَخِذين، كالفَحَج",
+     "meaning_english": "a wide gap between the thighs, like bow-leggedness",
+     "citation": ""
+    },
+    {
+     "usage": "تزايلَ فلانٌ عن فلان",
+     "meaning": "إذا احتشمه، وذُكر عن الشيبانى أنه إن كان صحيحاً تزايل بمعنى تباعد احتشاماً، وهو ذلك القياس إن صحّ",
+     "meaning_english": "so-and-so kept his distance out of shyness/deference toward so-and-so",
+     "citation": "ذُكر عن الشيبانى"
+    }
+   ],
+   "printed_page_number": "٤١",
+   "pdf_page_index": 1118,
+   "notes": "Ibn Faris flags uncertainty about whether the Shaybani-reported usage (تزايل=احتشام) is sound."
+  },
+  {
+   "root": "زين",
+   "root_letters": [
+    "ز",
+    "ي",
+    "ن"
+   ],
+   "core_meaning": "الزاء والياء والنون أصلٌ صحيح يدلُّ على حُسن الشىء وتحسينه",
+   "core_meaning_english": "The beauty of a thing and beautifying/adorning it",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّيْن",
+     "meaning": "نقيض الشَّيْن",
+     "meaning_english": "the opposite of ugliness/blemish",
+     "citation": ""
+    },
+    {
+     "usage": "زَيَّنْتُ الشىء تزييناً",
+     "meaning": "تحسين الشىء",
+     "meaning_english": "I adorned/beautified the thing",
+     "citation": ""
+    },
+    {
+     "usage": "أزْيَنَتِ الأرضُ وازَّيَّنَتْ وازدانَتْ",
+     "meaning": "إذا حَسُنَ عُشْبُها",
+     "meaning_english": "the land became lush/beautiful, when its plants grew good",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّيْن",
+     "meaning": "إن كان صحيحاً - إنّ الزَّيْن: عُرْفُ الدِّيك",
+     "meaning_english": "the cockerel's comb (if this usage is sound)",
+     "citation": "وجئتَ على بغلٍ تَزُوقُكَ تسعةٌ كأنَّكَ ديكٌ ماثلُ الزَّيْنِ أغوَرُ"
+    }
+   ],
+   "printed_page_number": "٤١-٤٢",
+   "pdf_page_index": 1118,
+   "notes": "Entry begins page 41 (pdf 1118); the closing poetry citation about الزين=عرف الديك prints at the top of page 42 (pdf 1119); combined here. Ibn Faris hedges this last usage with 'إن كان صحيحاً'. Individual letters of the printed verse are hard to distinguish fully at scan resolution; transcription kept as the most likely reading."
+  },
+  {
+   "root": "زيف",
+   "root_letters": [
+    "ز",
+    "ي",
+    "ف"
+   ],
+   "core_meaning": "الزاء والياء والفاء فيه كلامٌ، وما أظنُّ شيئاً منه صحيحاً",
+   "core_meaning_english": "There is some discussion of this root, but I do not think any of it sound",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "درهمٌ زائفٌ وزَيْفٌ",
+     "meaning": "الدرهم غير الجيّد",
+     "meaning_english": "a counterfeit/debased coin",
+     "citation": ""
+    },
+    {
+     "usage": "زافَ الجملُ فى مَشيه يَزيف",
+     "meaning": "وذلك إذا أسرع",
+     "meaning_english": "the camel hastened in its gait",
+     "citation": ""
+    },
+    {
+     "usage": "المرأة تَزيف فى مشيها",
+     "meaning": "كأنها تستدير",
+     "meaning_english": "the woman sways in her walk, as if turning about",
+     "citation": ""
+    },
+    {
+     "usage": "الحمامة تَزيف عند الحَمَام",
+     "meaning": "حركة الحمامة",
+     "meaning_english": "the female pigeon struts before the male pigeons",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّيْف (فى قول عديّ)",
+     "meaning": "فيقولون إنّ الزَّيْف: الطُّنُف الذى يقى الحائط",
+     "meaning_english": "the overhanging ledge/coping that protects a wall",
+     "citation": "تَرَكَونى لدَى قُصورٍ وأعراضِ قصورٍ لزَيْفِهنّ مَراقى"
+    }
+   ],
+   "printed_page_number": "٤٢",
+   "pdf_page_index": 1119,
+   "notes": "Ibn Faris explicitly doubts the soundness of this root's derivations and closes with 'وكلّ هذا كلام والله أعلم' (all of this is mere talk, God knows best). Corrected the citation's opening word from the prior extraction's 'تَرَى كُوَّنى' to 'تَرَكَونى', the more plausible reading of the printed line (still uncertain at scan resolution)."
+  },
+  {
+   "root": "زأر",
+   "root_letters": [
+    "ز",
+    "أ",
+    "ر"
+   ],
+   "core_meaning": "الزاء والهمزة والراء أصلٌ واحد. زأَرَ الأسدُ زَأْراً وزَئيراً",
+   "core_meaning_english": "One core meaning: the lion roared (a roar)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زأر الأسد زأراً وزئيراً",
+     "meaning": "صوت الأسد",
+     "meaning_english": "the lion's roar/roaring",
+     "citation": "نُبِّئْتُ أنّ أبا قابوسَ أوعَدَنى ولا قَرَارَ على زَأْرٍ من الأسدِ (النابغة)"
+    },
+    {
+     "usage": "(بيت ثانٍ منسوب لهذا الباب)",
+     "meaning": "غير واضح المعنى بدقة فى هذا المقتطف",
+     "meaning_english": "uncertain reading - the printed word is hard to make out clearly, meaning unclear from this excerpt",
+     "citation": "حلّت بأرضِ الزّاجرين فأصبحتْ عَسِراً على طلاّبك ابنةُ مَخرَم"
+    }
+   ],
+   "printed_page_number": "٤٢",
+   "pdf_page_index": 1119,
+   "notes": "This entry opens a new section heading 'باب الزاء والهمزة وما يثلثهما' on page 42, and the زأر entry with both citations is complete within this page - it does not continue onto a further page (corrected from prior note claiming otherwise). The second citation is footnoted as from Antarah's well-known Mu'allaqa and Lisan al-Arab under زأر - since the footnote ties it specifically to the زأر root, the printed word (read here as 'الزّاجرين') is likely actually a زأر-derived form rather than a زور/زجر word; exact spelling could not be confirmed at scan resolution."
+  },
+  {
+   "root": "زأب",
+   "root_letters": [
+    "ز",
+    "أ",
+    "ب"
+   ],
+   "core_meaning": "الزاء والهمزة والباء كلمتان لا قياس لهما",
+   "core_meaning_english": "two unrelated words, no single unifying pattern",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَأَبَ الشیءَ",
+     "meaning": "إذا حمله",
+     "meaning_english": "he carried it"
+    },
+    {
+     "usage": "الازدئاب",
+     "meaning": "الاحتمال",
+     "meaning_english": "bearing/enduring"
+    },
+    {
+     "usage": "زَأَبَ",
+     "meaning": "إذا شرِب شُرباً شديداً",
+     "meaning_english": "he drank heavily"
+    }
+   ],
+   "printed_page_number": "٤٣",
+   "pdf_page_index": 1120
+  },
+  {
+   "root": "زأد",
+   "root_letters": [
+    "ز",
+    "أ",
+    "د"
+   ],
+   "core_meaning": "الزاء والهمزة والدال كلمة واحدة، تدلّ على الفزع",
+   "core_meaning_english": "indicates fright/terror",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زُئِدَ الرَّجُلُ",
+     "meaning": "إذا فَزِعَ، زُؤُوداً",
+     "meaning_english": "the man was terrified",
+     "citation": "بيت شعر لأبي كبير الهذلي — نسبة الشاهد مذكورة في الحاشية"
+    }
+   ],
+   "printed_page_number": "٤٣",
+   "pdf_page_index": 1120,
+   "notes": "poetry line's exact wording partly unclear/hard to fully vocalize from scan; footnote attributes it to أبي كبير الهذلي من قصيدة له في نسخة الشنقيطي من الهذليين"
+  },
+  {
+   "root": "زأم",
+   "root_letters": [
+    "ز",
+    "أ",
+    "م"
+   ],
+   "core_meaning": "الزاء والهمزة والميم أصلٌ يدلُّ على صوتٍ وكلام",
+   "core_meaning_english": "indicates a sound and speech",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّأْمَة",
+     "meaning": "الصَّوت الشديد",
+     "meaning_english": "a loud/harsh sound"
+    },
+    {
+     "usage": "زَأَمَ لى فلانٌ زَأْمَةً",
+     "meaning": "إذا طَرَحَ لى كلمةً لا أدرى أحقٌّ هى أم باطل",
+     "meaning_english": "he threw out a word to me I couldn't tell was true or false"
+    },
+    {
+     "usage": "الزَّأْم (مما يُحمَل عليه)",
+     "meaning": "الذَّعْر",
+     "meaning_english": "fright/panic"
+    },
+    {
+     "usage": "أزْأَمْتُه على كذا",
+     "meaning": "أى أكرهته",
+     "meaning_english": "I forced/compelled him to it"
+    },
+    {
+     "usage": "الزَّأْم (شاذّ عن الباب)",
+     "meaning": "شِدَّة الأكل",
+     "meaning_english": "intensity/voracity of eating"
+    }
+   ],
+   "printed_page_number": "٤٣",
+   "pdf_page_index": 1120
+  },
+  {
+   "root": "زبد",
+   "root_letters": [
+    "ز",
+    "ب",
+    "د"
+   ],
+   "core_meaning": "الزاء والباء والدال أصلٌ واحدٌ يدلُّ على تولُّد شىءٍ عن شىء",
+   "core_meaning_english": "indicates one thing being generated/produced from another",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَبَدُ الماء وغيرِه",
+     "meaning": "الرَّغوة المتولّدة عنه",
+     "meaning_english": "foam/froth generated from it"
+    },
+    {
+     "usage": "أَزْبَدَ إزباداً",
+     "meaning": "يقال ذلك للماء إذا رَغَا",
+     "meaning_english": "it foamed"
+    },
+    {
+     "usage": "الزُّبْد",
+     "meaning": "من ذلك أيضاً — زبدة اللبن",
+     "meaning_english": "butter"
+    },
+    {
+     "usage": "زَبَدْتُ الصَّبِىَّ أَزْبُدُه",
+     "meaning": "إذا أطعمتَه الزُّبْد",
+     "meaning_english": "he fed the child butter"
+    },
+    {
+     "usage": "أَزْبَدَ السِّدْرُ",
+     "meaning": "إذا نَوَّر",
+     "meaning_english": "the lote-tree blossomed/foamed with flowers"
+    },
+    {
+     "usage": "زَبَدَتْ فلانةُ سِقاءَها",
+     "meaning": "إذا خَضَتْه حتى يخرج زُبْدُه",
+     "meaning_english": "she churned her waterskin until its butter came out"
+    },
+    {
+     "usage": "الزَّبْد (من الباب)",
+     "meaning": "العطية — زَبَدْتُ الرَّجُلَ زَبْداً: أعطيتُه",
+     "meaning_english": "a gift; \"I gave the man a gift\"",
+     "citation": "قول رسول الله صلى الله عليه وآله وسلم: «إنّا لا نَقْبَلُ زَبْدَ المشركين» يريد هداياهم"
+    }
+   ],
+   "printed_page_number": "٤٣ / ٤٤",
+   "pdf_page_index": 1120,
+   "notes": "entry spans pages 1120-1121; corrected 'زَبَّدَ الصَّبِىَّ / أَزْبَدَه' to 'زَبَدْتُ الصَّبِىَّ أَزْبُدُه' (single verb, past+present form, as printed) rather than two separate headwords"
+  },
+  {
+   "root": "زبر",
+   "root_letters": [
+    "ز",
+    "ب",
+    "ر"
+   ],
+   "core_meaning": "الزاء والباء والراء أصلان: أحدهما يدلّ على إحكام الشىء وتوثيقه، والآخر يدلّ على قراءةٍ وكتابةٍ وما أشبه ذلك",
+   "core_meaning_english": "two senses: (1) making something firm/secure, (2) reading and writing",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَبَرْتُ البِئْرَ",
+     "meaning": "إذا طَوَيْتَها بالحجارة",
+     "meaning_english": "I lined the well with stones"
+    },
+    {
+     "usage": "الزُّبْرَة (زُبْرَة الحديد)",
+     "meaning": "القِطعة منه، والجمع زُبَر",
+     "meaning_english": "a chunk/piece of iron"
+    },
+    {
+     "usage": "الصَّدَر",
+     "meaning": "من الباب الزُّبْرة — سُمِّى بذلك لأنه كالبئر المزبورة، أى المطويّة بالحجارة",
+     "meaning_english": "the chest (of a lion), named for its solidity"
+    },
+    {
+     "usage": "الزُّبْرة (من الأسد)",
+     "meaning": "ما اجتمع من شَعره فى مِرْفَقيه وصَدره",
+     "meaning_english": "the mane-mass gathered on a lion's shoulders and chest"
+    },
+    {
+     "usage": "أَسَدٌ مَزْبَرانِىٌّ",
+     "meaning": "أى ضَخْم الزُّبْرة",
+     "meaning_english": "a lion with a huge mane/chest"
+    },
+    {
+     "usage": "الزَّبِير",
+     "meaning": "الدَّاهية",
+     "meaning_english": "a calamity/formidable thing"
+    },
+    {
+     "usage": "أَخَذَ الشَّىءَ بِزَوْبَرِه",
+     "meaning": "أى كُلَّه",
+     "meaning_english": "he took the whole thing, all of it",
+     "citation": "قول ابن أحمر فى قصيدته: «عُدَّتْ علىَّ بِزَوْبَرا»"
+    },
+    {
+     "usage": "ما لِفلانٍ زَبْرٌ",
+     "meaning": "أى ماله عقلٌ ولا تماسُك",
+     "meaning_english": "so-and-so has no sense or self-control"
+    },
+    {
+     "usage": "ازْبَأَرَّ الشَّعرُ",
+     "meaning": "إذا انتفش",
+     "meaning_english": "the hair bristled/stood on end",
+     "citation": "الحاشية (١) تشير إلى أن ضبط الكلمة كذا ورد في الأصل وليس في المجمل"
+    },
+    {
+     "usage": "زَبَرْتُ الكِتابَ",
+     "meaning": "إذا كَتَبْتَه؛ ومنه الزَّبُور",
+     "meaning_english": "I wrote the book; hence 'the Zabur (Psalms)'"
+    },
+    {
+     "usage": "زَبَرْتَه",
+     "meaning": "إذا قَرَأْتَه",
+     "meaning_english": "you read it",
+     "citation": "يقولون فى الكلمة: «أنا أَعْرِفُ تَزَبُّرَتى» أى كتابَتى"
+    }
+   ],
+   "printed_page_number": "٤٤ / ٤٥",
+   "pdf_page_index": 1121,
+   "notes": "entry spans pages 1121-1122; footnote cites variant verse forms and Sihah quotation about زوبر; added two variances present at the top of page 1122 (ما لفلان زبر / ازبأرّ الشعر) that were missing from the prior extraction"
+  },
+  {
+   "root": "زبق",
+   "root_letters": [
+    "ز",
+    "ب",
+    "ق"
+   ],
+   "core_meaning": "الزاء والباء والقاف ليس من الأصول التى يُعَوَّل على صِحَّتها، وما أدرى أَلها حقيقةٌ أم لا",
+   "core_meaning_english": "not a reliably established root; uncertain whether it has a genuine underlying meaning",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَبَقَ شَعرَه",
+     "meaning": "إذا نَتَفَه",
+     "meaning_english": "he plucked out his hair"
+    },
+    {
+     "usage": "انْزَبَقَ فى البيت",
+     "meaning": "دَخَلَ",
+     "meaning_english": "he slipped/entered into the house"
+    },
+    {
+     "usage": "زَبَقْتُ الرَّجُلَ",
+     "meaning": "حَبَسْتُه",
+     "meaning_english": "I imprisoned/confined the man"
+    }
+   ],
+   "printed_page_number": "٤٥",
+   "pdf_page_index": 1122
+  },
+  {
+   "root": "زبل",
+   "root_letters": [
+    "ز",
+    "ب",
+    "ل"
+   ],
+   "core_meaning": "الزاء والباء واللام كلمةٌ واحدة",
+   "core_meaning_english": "a single (isolated) word, no broader pattern",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ما أصبتُ من فلانٍ زُبالاً",
+     "meaning": "قالوا: هو الذى تحمله النملة بفيها، وليس لها اشتقاق",
+     "meaning_english": "I got not the least bit (lit. what an ant carries in its mouth) from him"
+    },
+    {
+     "usage": "ما فى الإناء زُبالة",
+     "meaning": "إذا لم يكن فيه شىء (ذكره ناس إن كان صحيحاً)",
+     "meaning_english": "there is nothing at all in the vessel"
+    },
+    {
+     "usage": "زَبَلْتُ الزَّرْعَ",
+     "meaning": "إذا سَمَّدتَه بالزِّبْل — من الباب أيضاً لأن الزِّبل من الساقط الذى لا يُعتَدّ به",
+     "meaning_english": "I manured/fertilized the crop with dung"
+    },
+    {
+     "usage": "الزَّأْبَل",
+     "meaning": "الرَّجل القصير",
+     "meaning_english": "a short man",
+     "citation": "رجز منشد: «حَزَ نَبْلَ الخُصْيَيْن فَدْمٌ زَأْبَلُ» — وهذا وشبهه مما لا يُعرَّج عليه"
+    }
+   ],
+   "printed_page_number": "٤٥",
+   "pdf_page_index": 1122,
+   "notes": "the closing rajaz verse's diacritics are partly indistinct in the scan; footnote says the verse is found in al-Jamharah and al-Lisan under زبل"
+  },
+  {
+   "root": "زبن",
+   "root_letters": [
+    "ز",
+    "ب",
+    "ن"
+   ],
+   "core_meaning": "الزَّاء والباء والنون أصلٌ واحد يدلُّ على الدَّفع",
+   "core_meaning_english": "pushing/repelling away",
+   "sarf_pattern": "",
+   "pdf_page_index": 1123,
+   "printed_page_number": "46",
+   "notes": "Entry began on a previous page not included in this batch; only the continuation appears here. CORRECTED: root-letter order in core_meaning was reversed in the prior extraction (page reads الزاء والباء والنون, not الزاء والنون والباء).",
+   "variances": [
+    {
+     "usage": "ناقة زَبُون",
+     "meaning": "إذا زَبَنَتْ حالبها",
+     "meaning_english": "a she-camel that kicks/pushes away her milker"
+    },
+    {
+     "usage": "الحرب تزبن الناس",
+     "meaning": "إذا صدمتهم",
+     "meaning_english": "war that collides with / batters people"
+    },
+    {
+     "usage": "حربٌ زَبُون",
+     "meaning": "لا يورد النص تفسيرًا مستقلاً لهذا الاستعمال؛ يرد مباشرة بعد \"الحرب تزبن الناس\" بلا تعليق إضافي",
+     "meaning_english": "no separate gloss is given on the page for this phrase — it follows directly after 'war that battters people' with no further explanation; the prior extraction's gloss 'a fierce, repelling war' was inferred, not stated"
+    },
+    {
+     "usage": "رجلٌ ذو زَبُونةٍ",
+     "meaning": "إذا كان مانعاً لجانبه دَفوعاً عن نفسه",
+     "meaning_english": "a man who is protective of his side, defensive of himself",
+     "citation": "بذَقِّ الدَّمَّ عن حسَبي بمالي وزَبُوناتِ أشْوسَ نَيَّحان — footnote: منسوب لسوار بن المضرب كما في اللسان (زبن)، وروايته فيه: «عن أحساب قوى»"
+    },
+    {
+     "usage": "زَبُونة (ويقال فيه زَبُونَةٌ)",
+     "meaning": "أي كِبر، ولا يكون كذا إلا وهو دافعٌ عن نفسه",
+     "meaning_english": "pride/haughtiness, always accompanied by self-defense"
+    },
+    {
+     "usage": "الزَّبانِيَة",
+     "meaning": "سُمُّوا بذلك لأنهم يدفعون أهل النار إلى النار",
+     "meaning_english": "the guardian-angels of Hellfire, so named because they thrust the people of the Fire into it"
+    },
+    {
+     "usage": "المُزابَنَة",
+     "meaning": "بيع الثمر في رءوس النخل، وهو الذي جاء الحديث بالنهي عنه؛ وقال أهل العلم: إنه ما يكون بعد ذلك من النِّزاع والمدافَعَة",
+     "meaning_english": "the sale of unharvested dates still on the palm (forbidden in hadith); scholars said it is the ensuing dispute/pushing-back"
+    },
+    {
+     "usage": "الزَّبْنَيْن",
+     "meaning": "يقولون إنّ الزَّبْنَيْنِ البُعْدُ",
+     "meaning_english": "remoteness/distance (as some say)"
+    },
+    {
+     "usage": "زُبانَى العقرب",
+     "meaning": "يجوز أن يكون من هذا، كأنها تدفع عن نفسها به، ويجوز أن يكون شاذاً",
+     "meaning_english": "the scorpion's pincer, possibly related as its means of self-defense, or possibly an irregular/anomalous usage"
+    }
+   ]
+  },
+  {
+   "root": "زبي",
+   "root_letters": [
+    "ز",
+    "ب",
+    "ي"
+   ],
+   "core_meaning": "الزّاء والباء والياء يدلُّ على شرٍّ لا خير فيه",
+   "core_meaning_english": "evil/harm, without good in it",
+   "sarf_pattern": "",
+   "pdf_page_index": 1123,
+   "printed_page_number": "46",
+   "notes": "Poetry couplet at end is bracketed [قال] in the source (editorial insertion marker). Footnote (2) notes the Lisan al-Arab variant reads «تلك استفدها» with fā instead of the printed «استقدَّها».",
+   "variances": [
+    {
+     "usage": "لقيت منه الأزابيَّ",
+     "meaning": "إذا لَقِيَ منه شرّاً",
+     "meaning_english": "to have encountered nothing but evil/harm from someone"
+    },
+    {
+     "usage": "الزُّبْيَة",
+     "meaning": "حُفَيْرَةٌ يُزَبَّى فيها الرجل للصيد، ويُنقَر فيها للذئب والأسد فيصادان فيها",
+     "meaning_english": "a small pit dug for a man to hide in for hunting, or dug to trap the wolf and lion"
+    },
+    {
+     "usage": "زَبَيْتُ أزْبِي",
+     "meaning": "إذا سُقْتُ إليه ما يكرهه",
+     "meaning_english": "to drive/bring upon someone something he dislikes",
+     "citation": "تلك استقدَّها وأعطِ الحكم واليَها / فإنّها بعضُ ما تُزْبِي لك الرَّقِمُ (footnote: Lisan al-Arab variant reads «تلك استفدها» with fā)"
+    }
+   ]
+  },
+  {
+   "root": "زبع",
+   "root_letters": [
+    "ز",
+    "ب",
+    "ع"
+   ],
+   "core_meaning": "الزاء والباء والعين قريبٌ من الذى قبله، وهو يدلُّ على تغيُّظٍ وعزيمةِ شرّ",
+   "core_meaning_english": "rage/fury and a resolve toward evil (close in sense to the previous root)",
+   "sarf_pattern": "",
+   "pdf_page_index": 1123,
+   "printed_page_number": "46",
+   "notes": "Entry begins at the very end of page 1123 (only the core-meaning line appears there) and continues fully on page 1124. ADDED: the entry closes with a line omitted from the prior extraction: 'وهذا إن صح فهو من الإبدال، وهو من الباب قبله' (if this reading is sound, it is a case of letter-substitution [ibdāl], and belongs with the preceding chapter/root).",
+   "variances": [
+    {
+     "usage": "تزبَّع فلانٌ",
+     "meaning": "إذا تهيَّأ للشرّ",
+     "meaning_english": "to prepare/brace oneself for evil"
+    },
+    {
+     "usage": "تزبُّع",
+     "meaning": "تغيُّر",
+     "meaning_english": "agitation/change (of temper)",
+     "citation": "وإنْ تَلْقَه فى الشَّرْبِ لا تَلْقَ فاحشاً من القوم ذا قاذورة متزبِّعاً (from a poem by Mutammim)"
+    },
+    {
+     "usage": "الأزبَعُ",
+     "meaning": "الداهية، والجمع الأزابع (قال الشيبانى وأنشد)",
+     "meaning_english": "a calamity/formidable event; plural: calamities",
+     "citation": "وعَدْتَ ولم تُنْجِزْ وقِدْماً وعدتنى فأخلفْتَنى وعدتنى وتلك إحدى الأزابع (recited by al-Shaybani)"
+    },
+    {
+     "usage": "(closing note)",
+     "meaning": "وهذا إن صح فهو من الإبدال، وهو من الباب قبله",
+     "meaning_english": "if this is sound, it is a case of letter-substitution (ibdal), and belongs with the previous root"
+    }
+   ]
+  },
+  {
+   "root": "زجر",
+   "root_letters": [
+    "ز",
+    "ج",
+    "ر"
+   ],
+   "core_meaning": "الزاء والجيم والراء كلمةٌ تدلُّ على الانتهار",
+   "core_meaning_english": "rebuking/driving away by shouting",
+   "sarf_pattern": "",
+   "pdf_page_index": 1124,
+   "printed_page_number": "47",
+   "notes": "Header 'باب الزاء والجيم وما يثلثهما' (chapter heading for roots beginning ز-ج-*) precedes this entry.",
+   "variances": [
+    {
+     "usage": "زَجَرْتُ البعيرَ حتى مضى، أَزْجُرُه",
+     "meaning": "لا يرد للنص تفسير مستقل لهذا المثال؛ هو مثال استعمال فقط",
+     "meaning_english": "no separate gloss follows this on the page — it is a bare usage example, not an explained definition; the prior extraction's gloss was a paraphrase, not page text"
+    },
+    {
+     "usage": "زجَرْتُ فلاناً عن الشئ فانزَجَر",
+     "meaning": "نهيته فامتنع",
+     "meaning_english": "to rebuke someone away from a thing, so he desisted"
+    },
+    {
+     "usage": "الزَّجُور",
+     "meaning": "من الإبل: التى تُعرَف بعينها وتُنكِر بأنفها",
+     "meaning_english": "a she-camel recognized by sight but that shies from the smell (of her young), of camels"
+    }
+   ]
+  },
+  {
+   "root": "زجل",
+   "root_letters": [
+    "ز",
+    "ج",
+    "ل"
+   ],
+   "core_meaning": "الزاء والجيم واللام أصلٌ يدلُّ على الرَّمى بالشئ والدفع له",
+   "core_meaning_english": "throwing/hurling a thing and driving it forth",
+   "sarf_pattern": "",
+   "pdf_page_index": 1124,
+   "printed_page_number": "47",
+   "notes": "Entry begins on page 1124 and continues onto page 1125. The last three variances (الزُّجْلة، الزُّنجيل، الإِزْجيل) are explicitly marked in the text with 'ومما شذّ عن الباب' — i.e. flagged by Ibn Faris as usages outside/anomalous to the core pattern of this root, not directly explained by it.",
+   "variances": [
+    {
+     "usage": "قَبَّح اللهُ أمًّا زَجَلَتْ به",
+     "meaning": "أى ولدته ورمت به",
+     "meaning_english": "may God disfigure a mother who cast him forth (i.e., bore/expelled him)"
+    },
+    {
+     "usage": "الزَّجْل",
+     "meaning": "إرسال الحمام الهادى",
+     "meaning_english": "the releasing/dispatching of the homing pigeon"
+    },
+    {
+     "usage": "المِزْجَل",
+     "meaning": "المِزْراق",
+     "meaning_english": "a light javelin/throwing-spear"
+    },
+    {
+     "usage": "زَجَل الفحلُ",
+     "meaning": "إذا ألقى ماءه فى الرَّحِم",
+     "meaning_english": "the stallion/male, when he ejaculates into the womb"
+    },
+    {
+     "usage": "الزَّاجِل",
+     "meaning": "يقال إنه ماء الظليم لأنه يُزَجَّل به؛ ويقال بل هو مخّ البيض، والأول أقيس",
+     "meaning_english": "said to be the male ostrich's fluid ejected in mating; also said to be the egg-yolk, the first being more analogically sound",
+     "citation": "وما بيضاتُ ذى لِبَدٍ هِجَفٍّ سُقِينَ بِزاجِلٍ حتى رَوينا (said by Ibn Ahmar)"
+    },
+    {
+     "usage": "الزُّجْلة",
+     "meaning": "القطعة من كل شئ، وجمعها زُجَل (ومما شذّ عن الباب)",
+     "meaning_english": "a portion/piece of anything, flagged as anomalous to the root's core sense; plural: pieces"
+    },
+    {
+     "usage": "الزُّنجيل",
+     "meaning": "الرجل الضعيف",
+     "meaning_english": "a weak man"
+    },
+    {
+     "usage": "الإزْجيل",
+     "meaning": "إن كان صحيحاً: حلقة تكون فى طرف حبل الثِّقَل",
+     "meaning_english": "(if this reading is correct) a ring at the end of the rope of a hoisting-weight/pulley"
+    }
+   ]
+  },
+  {
+   "root": "زجم",
+   "root_letters": [
+    "ز",
+    "ج",
+    "م"
+   ],
+   "core_meaning": "الزاء والجيم والميم أصلٌ واحد يدلُّ على صوتٍ ضعيف",
+   "core_meaning_english": "a faint/weak sound",
+   "sarf_pattern": "",
+   "pdf_page_index": 1125,
+   "printed_page_number": "48",
+   "notes": "Footnote states this entry was originally placed after زجى in the source text and was moved to its alphabetical place here.",
+   "variances": [
+    {
+     "usage": "ما بكلامٍ بِزَجْمَةٍ",
+     "meaning": "أى بنَبْسة",
+     "meaning_english": "he did not utter a sound/whisper of speech"
+    },
+    {
+     "usage": "الزَّجُّوم",
+     "meaning": "القوس ليست بشديدة الإرنان",
+     "meaning_english": "a bow that is not strongly twanging/resonant"
+    }
+   ]
+  },
+  {
+   "root": "زجى",
+   "root_letters": [
+    "ز",
+    "ج",
+    "ي"
+   ],
+   "core_meaning": "الزاء والجيم والحرف المعتلّ يدلُّ على السَّوق بالشئ وتسييره من غير حبس",
+   "core_meaning_english": "driving/propelling a thing and sending it along without holding it back",
+   "sarf_pattern": "",
+   "pdf_page_index": 1125,
+   "printed_page_number": "48",
+   "notes": "CORRECTED: prior extraction read the core-meaning verb as 'الرِّى' (irrigation), which does not fit any of the entry's examples (all describe driving/herding). Corrected to 'السَّوق' (driving), consistent with every variance below (أزجت البقرة ولدها = ساقته; الريح تزجي السحاب = تسوقه سوقاً رفيقاً). Moderate confidence — based on textual/contextual coherence, not a re-zoomed image.",
+   "variances": [
+    {
+     "usage": "أَزْجَتِ البقرةُ ولدَها",
+     "meaning": "إذا ساقته",
+     "meaning_english": "the cow, when she drives her calf along"
+    },
+    {
+     "usage": "الريح تُزْجِى السحابَ",
+     "meaning": "تسوقه سوقاً رفيقاً",
+     "meaning_english": "the wind drives the clouds gently along"
+    },
+    {
+     "usage": "المُزْجَى",
+     "meaning": "الشئ القليل، وهو من قياس الباب، أى يُدفَع به الوقت",
+     "meaning_english": "a scant/meager thing, used to make do for the time being"
+    },
+    {
+     "usage": "بضاعةٌ مُزْجاةٌ",
+     "meaning": "أى يسيرة الاندفاع",
+     "meaning_english": "scant/paltry merchandise, easily gotten rid of"
+    },
+    {
+     "usage": "زجا الخراجُ يزجُو",
+     "meaning": "أى تيسَّرت جبايته",
+     "meaning_english": "the tax/tribute flowed easily, i.e. its collection became easy"
+    }
+   ]
+  },
+  {
+   "root": "زحر",
+   "root_letters": [
+    "ز",
+    "ح",
+    "ر"
+   ],
+   "core_meaning": "الزاء والحاء والراء تنفُّسٌ بشدّة ليس إلا هذا",
+   "core_meaning_english": "breathing hard/heavily - nothing else",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَحَرَ يَزْحَرُ زَحِيراً",
+     "meaning": "وهو صوتُ نَفَسِه إذا تنفَّس بشدة",
+     "meaning_english": "the sound of his breath when he breathes hard",
+     "citation": ""
+    },
+    {
+     "usage": "زَحَرَتِ المرأةُ بولدها",
+     "meaning": "عند الولادة",
+     "meaning_english": "a woman groaning/straining in labor at childbirth",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "49",
+   "pdf_page_index": 1126,
+   "notes": "imperfect verb form slightly unclear in scan (looks like يَزْمَعَرُ); most likely يَزْحَرُ."
+  },
+  {
+   "root": "زحل",
+   "root_letters": [
+    "ز",
+    "ح",
+    "ل"
+   ],
+   "core_meaning": "الزاء والحاء واللام أصلٌ يدلُّ على التنحِّي",
+   "core_meaning_english": "moving aside / withdrawing from a place",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَحَل عن مكانه",
+     "meaning": "إذا تنحّى",
+     "meaning_english": "he moved away from his place",
+     "citation": ""
+    },
+    {
+     "usage": "زَحَلَتِ الناقةُ",
+     "meaning": "فى سَيرها",
+     "meaning_english": "the she-camel shifted/moved aside in her gait",
+     "citation": ""
+    },
+    {
+     "usage": "المَزْحَل",
+     "meaning": "الموضع الذي تَزْحَل إليه",
+     "meaning_english": "the place to which one withdraws",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "49",
+   "pdf_page_index": 1126,
+   "notes": ""
+  },
+  {
+   "root": "زحم",
+   "root_letters": [
+    "ز",
+    "ح",
+    "م"
+   ],
+   "core_meaning": "الزاء والحاء والميم أصلٌ يدل على انضمامٍ في شدّة",
+   "core_meaning_english": "pressing/crowding together forcefully",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَحَمَه يَزْحَمُه",
+     "meaning": "",
+     "meaning_english": "he pressed/crowded against him",
+     "citation": ""
+    },
+    {
+     "usage": "ازْدَحَمَ الناسُ",
+     "meaning": "",
+     "meaning_english": "the people crowded together",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "49",
+   "pdf_page_index": 1126,
+   "notes": "corrected: the page gives no separate meaning gloss for either usage beyond the core meaning; prior extraction invented glosses ('زَحْماً' and 'تزاحموا') not present in the text."
+  },
+  {
+   "root": "زحن",
+   "root_letters": [
+    "ز",
+    "ح",
+    "ن"
+   ],
+   "core_meaning": "الزاء والحاء والنون أصلٌ يدل على الإبطاء",
+   "core_meaning_english": "slowness / lagging behind",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَحَنَ يَزْحَنُ زَحْناً",
+     "meaning": "",
+     "meaning_english": "he was slow/lagged (زَحْناً is the verbal noun)",
+     "citation": ""
+    },
+    {
+     "usage": "التَّزَحُّن",
+     "meaning": "يقال تَزَحَّنَ على الشيء إذا تكارَه عليه وهو لا يشتهيه",
+     "meaning_english": "to force oneself reluctantly onto something one dislikes",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "49",
+   "pdf_page_index": 1126,
+   "notes": ""
+  },
+  {
+   "root": "زحف",
+   "root_letters": [
+    "ز",
+    "ح",
+    "ف"
+   ],
+   "core_meaning": "الزاء والحاء والفاء أصلٌ واحد يدلُّ على الاندفاع والمضيّ قُدُماً",
+   "core_meaning_english": "surging forward / advancing steadily ahead",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّحْف",
+     "meaning": "الجماعة يَزْحَفون إلى العدوّ",
+     "meaning_english": "a troop advancing toward the enemy",
+     "citation": ""
+    },
+    {
+     "usage": "الصبيّ يَزْحَف",
+     "meaning": "على الأرض قبل المشي",
+     "meaning_english": "an infant crawling on the ground before walking",
+     "citation": ""
+    },
+    {
+     "usage": "البعير إذا أعيا جَرَّ فِرْسِنَه فهو يَزْحَف، وهي إبلٌ زواحفُ، الواحدة زاحفة",
+     "meaning": "a tired camel dragging its foot as it moves",
+     "meaning_english": "a worn-out camel dragging its foot; plural زواحف, singular زاحفة",
+     "citation": "على زَوَاحِفَ نُزْجِيهَا كَسَائِبِر (للفرزدق، ديوانه ٢٦٣ واللسان: زحف)"
+    },
+    {
+     "usage": "زَحَفَ الدَّبى",
+     "meaning": "إذا مضى قُدُماً",
+     "meaning_english": "locusts advancing/moving forward",
+     "citation": ""
+    },
+    {
+     "usage": "الزاحف",
+     "meaning": "السهمُ الذي يقع دون الغرض ثم يَزْحَف",
+     "meaning_english": "an arrow that falls short of the target then creeps forward",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "49-50",
+   "pdf_page_index": 1126,
+   "notes": "entry continues from page 1126 (49) onto 1127 (50)."
+  },
+  {
+   "root": "زخر",
+   "root_letters": [
+    "ز",
+    "خ",
+    "ر"
+   ],
+   "core_meaning": "الزاء والخاء والراء أصلٌ صحيح يدلُّ على ارتفاع",
+   "core_meaning_english": "rising / swelling upward",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَخَرَ البحرُ",
+     "meaning": "إذا طَمَا، وهو زاخِرٌ",
+     "meaning_english": "the sea swelled/surged; it is 'zaakhir'",
+     "citation": ""
+    },
+    {
+     "usage": "زَخَرَ النباتُ",
+     "meaning": "إذا طال",
+     "meaning_english": "the plant grew tall",
+     "citation": ""
+    },
+    {
+     "usage": "أخذ المكانُ زُخَارِيَّه",
+     "meaning": "وذلك إذا نما النبات وأخرج زَهْره",
+     "meaning_english": "the place took on its full flourishing growth, when plants grew and put forth blossom",
+     "citation": "زُخَارِيُّ النَّباتِ كأنَّ فيه جيادَ العبقريّة والقُطوع (لابن مقبل)"
+    }
+   ],
+   "printed_page_number": "50",
+   "pdf_page_index": 1127,
+   "notes": "corrected citation word from 'الدُّبَّات' to 'النَّباتِ' (fits the زخر context of plant growth; 'الدُّبَّات' was not legible/plausible on the page)."
+  },
+  {
+   "root": "زد",
+   "root_letters": [
+    "ز",
+    "د"
+   ],
+   "core_meaning": "هذا بابٌ لا تكاد تكون الزاء فيه أصليّة",
+   "core_meaning_english": "a chapter noting that the letter zāʾ is scarcely ever a genuine root letter in words with dāl",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "أزْدَرَبَه (جاء فلانٌ يضربه أزْدَرَبَه)",
+     "meaning": "إذا جاء فارغاً، وهذا إنما هو أصْدَرَبَه",
+     "meaning_english": "said of someone who comes to strike him empty-handed; this is really 'aṣdarabah' (with ṣād, not zāy+dāl)",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّدْو فى اللعب",
+     "meaning": "وإنما هو السَّدْو",
+     "meaning_english": "'az-zadw' in games/play; it is really 'as-sadw' (with sīn)",
+     "citation": ""
+    },
+    {
+     "usage": "مِزْدَغَة",
+     "meaning": "وإنما هى مِصْدَغَة",
+     "meaning_english": "'mizdaghah'; it is really 'miṣdaghah' (a pillow/cushion, with ṣād)",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "50",
+   "pdf_page_index": 1127,
+   "notes": "ENTIRE ENTRY WAS MISSING from the prior extraction. This is the 'باب الزاء والدال وما يثلثهما' section, appearing between the زخر entry and the زرع entry — a note that zāʾ+dāl combinations are not genuine roots but corruptions of ṣād or sīn forms."
+  },
+  {
+   "root": "زرع",
+   "root_letters": [
+    "ز",
+    "ر",
+    "ع"
+   ],
+   "core_meaning": "الزاء والراء والعين أصلٌ يدلُّ على تنمية الشيء",
+   "core_meaning_english": "making a thing grow/increase",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّرْع",
+     "meaning": "معروف، ومكانه المَزْدَرَع",
+     "meaning_english": "well-known (sown crop); its place is 'al-mazdaraʿ'",
+     "citation": ""
+    },
+    {
+     "usage": "قول الخليل",
+     "meaning": "أصل الزَّرْع التنمية",
+     "meaning_english": "al-Khalil said: the base meaning of 'zarʿ' is making grow",
+     "citation": "الخليل"
+    },
+    {
+     "usage": "الزَّرْع (قول بعضهم)",
+     "meaning": "طرح البَذْر في الأرض",
+     "meaning_english": "some said: sowing/casting seed into the ground",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّرْع",
+     "meaning": "اسمٌ لما نبت",
+     "meaning_english": "a name for what has grown",
+     "citation": ""
+    },
+    {
+     "usage": "زارِع وزارِع",
+     "meaning": "كلبٌ، والأصل فى ذلك كله واحد",
+     "meaning_english": "name of a dog, 'Zāriʿ'",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "50-51",
+   "pdf_page_index": 1127,
+   "notes": "entry continues from page 1127 (50) onto 1128 (51); the doubled 'زارِع وزارِع' does appear to repeat in the scan (likely two vocalizations of the same name) — reading uncertain."
+  },
+  {
+   "root": "زرف",
+   "root_letters": [
+    "ز",
+    "ر",
+    "ف"
+   ],
+   "core_meaning": "الزاء والراء والفاء أصلٌ يدلُّ على سعيٍ وحركة",
+   "core_meaning_english": "striving/exertion and movement",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّرُوف",
+     "meaning": "الناقة الواسعة الخُطى الطويلة الرِّجلين",
+     "meaning_english": "a she-camel with wide stride and long legs",
+     "citation": ""
+    },
+    {
+     "usage": "زَرَفَ",
+     "meaning": "إذا قَفَزَ",
+     "meaning_english": "he leapt/jumped",
+     "citation": ""
+    },
+    {
+     "usage": "زَرَفْتُ الرِّجلَ عن نفسِه",
+     "meaning": "إذا نَحَّيتَه",
+     "meaning_english": "moving the person aside from oneself",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّرّافات",
+     "meaning": "الجماعات، وهى لا تكون كذا إلا إذا تجمّعت لسعيٍ في أمرٍ. ويقال زَرَافةً، مثقّلة الفاء",
+     "meaning_english": "groups/crowds, so called only when gathered striving toward some matter",
+     "citation": "الحجّاج: إيّاي وهذه الزَّرَافات، يريد المتجمّعين المضطربين لفتنةٍ وما أشبهها"
+    },
+    {
+     "usage": "زَرَفَ الجُرحُ",
+     "meaning": "إذا انتقض بعد البُرْء",
+     "meaning_english": "the wound reopened/relapsed after healing",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "51",
+   "pdf_page_index": 1128,
+   "notes": "one phrase's exact subject/object wording ('زَرَفْتُ الرِّجلَ' vs a passive reading) is uncertain from the scan."
+  },
+  {
+   "root": "زرم",
+   "root_letters": [
+    "ز",
+    "ر",
+    "م"
+   ],
+   "core_meaning": "الزاء والراء والميم أصلٌ يدلُّ على انقطاعٍ وقِلّة",
+   "core_meaning_english": "cutting off/stopping and scarcity",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "زَرِمَ الدَّمعُ",
+     "meaning": "إذا انقطع؛ وكذلك كلُّ شيء",
+     "meaning_english": "the tears stopped/ceased; likewise for anything",
+     "citation": ""
+    },
+    {
+     "usage": "حديث النبي صلى الله عليه وآله وسلم",
+     "meaning": "حين بال الحسنُ عليه السلام فقال: «لا تُزْرِمُوا ابنى» يقول: لا تقطعوا بَوله. زَرِمَ البَولُ نفسُه، إذا انقطع",
+     "meaning_english": "hadith: 'do not cut off my son's urination' - i.e. do not interrupt it; 'the urine itself stopped' when it ceases",
+     "citation": "حديث النبي صلى الله عليه وآله وسلم"
+    },
+    {
+     "usage": "زَرِمَ (بيت شعر)",
+     "meaning": "أوكَى المَشْمودِ بعد جِمَامٍ زَرِمَ الدَّمعِ لا يَثوبُ نُزُورا",
+     "meaning_english": "tears that stopped and do not return, being scant",
+     "citation": "لعمرو بن زبيد الطائي، فى اللسان (زرم)، وقد سبق فى (ثمد، جم)"
+    },
+    {
+     "usage": "الزَّرِم",
+     "meaning": "يقال إنّ الزَّرِمَ البخيل، وهو من ذاك",
+     "meaning_english": "the miser, from the same idea of stinginess/cutting off giving",
+     "citation": ""
+    },
+    {
+     "usage": "زَرِمَ الكلبُ",
+     "meaning": "إذا يبس جَعْرُه في دُبُرِه",
+     "meaning_english": "a dog whose dung dried up/became stuck in its rear",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "51",
+   "pdf_page_index": 1128,
+   "notes": "corrected the footnote's poet attribution from 'the son of Zubayd' to 'عمرو بن زبيد الطائي' (Amr ibn Zubayd al-Ta'i), per the printed footnote."
+  },
+  {
+   "root": "زرب",
+   "root_letters": [
+    "ز",
+    "ر",
+    "ب"
+   ],
+   "core_meaning": "الزاء والراء والباء أصلٌ يدلّ على بعض المأوى",
+   "core_meaning_english": "a kind of shelter/enclosure",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّرْب",
+     "meaning": "زَرْبُ الغنم، وهى حظيرتها",
+     "meaning_english": "a pen/fold for sheep, i.e. their enclosure",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّرِيبة",
+     "meaning": "الزُّبْيَة",
+     "meaning_english": "a pit/den (trap), equated with 'zubya'",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّرِيبة",
+     "meaning": "قُتْرَةُ الصائد",
+     "meaning_english": "also: the hunter's hide/blind",
+     "citation": ""
+    }
+   ],
+   "printed_page_number": "51",
+   "pdf_page_index": 1128,
+   "notes": "corrected the third variance's usage field from '(unclear final phrase)' to 'الزَّرِيبة' — the word is a second definition of the same term الزريبة (pit-trap AND hunter's hide), not an unclear separate phrase. Entry appears complete within the batch; whether it continues past page 1128 is unknown since no further page was supplied."
+  },
+  {
+   "root": "زرد",
+   "root_letters": [
+    "ز",
+    "ر",
+    "د"
+   ],
+   "core_meaning": "الزاء والراء والدال حرف واحد، يدل على الابتلاع، والزاي فيه مبدلة من سين",
+   "core_meaning_english": "swallowing/gulping down",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "ازدرد اللقمة يزدردها",
+     "meaning": "ابتلعها",
+     "meaning_english": "he swallowed the mouthful"
+    },
+    {
+     "usage": "الزَّرَد",
+     "meaning": "يُمكن أن يكون من هذا، على أن أصله السين",
+     "meaning_english": "possibly related, original letter being sin"
+    },
+    {
+     "usage": "الزَّرّاد",
+     "meaning": "معناه السَّرّاد (صانع الدروع)",
+     "meaning_english": "armor/chainmail maker"
+    }
+   ],
+   "printed_page_number": "52",
+   "pdf_page_index": 1129,
+   "notes": "footnote 1 notes a phrase 'وزرد يزدردها' in the original text is a forward/misplaced reference"
+  },
+  {
+   "root": "زرح",
+   "root_letters": [
+    "ز",
+    "ر",
+    "ح"
+   ],
+   "core_meaning": "الزاء والراء والحاء كلمة واحدة",
+   "core_meaning_english": "a single word/usage (minor root, one meaning)",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "الزَّراوِح",
+     "meaning": "الرَّوابي الصِّغار",
+     "meaning_english": "small hills/mounds"
+    }
+   ],
+   "printed_page_number": "52",
+   "pdf_page_index": 1129,
+   "notes": "footnote 2: singular is زَرُوح, with fatha on zay and sukun on ra"
+  },
+  {
+   "root": "زرى",
+   "root_letters": [
+    "ز",
+    "ر",
+    "ي"
+   ],
+   "core_meaning": "الزاء والراء والحرف المعتل يدل على احتقار الشيء والتهاون به",
+   "core_meaning_english": "belittling/disdaining a thing and being negligent toward it",
+   "sarf_pattern": "المعتل",
+   "variances": [
+    {
+     "usage": "زَرَيْتُ عليه",
+     "meaning": "إذا عِبْتَ عليه",
+     "meaning_english": "I found fault with / criticized him"
+    },
+    {
+     "usage": "أزْرَيْتُ به",
+     "meaning": "قصَّرْتَ به",
+     "meaning_english": "I disparaged/belittled him"
+    }
+   ],
+   "printed_page_number": "52",
+   "pdf_page_index": 1129,
+   "notes": ""
+  },
+  {
+   "root": "زعبج / زمهرير / زرنب / زبنتر / زخرط / زخرف / زمخر",
+   "root_letters": [
+    "ز",
+    "ع",
+    "ب",
+    "ج"
+   ],
+   "core_meaning": "هذه فقرة من «باب ماجاء من كلام العرب على أكثر من ثلاثة أحرف أوله زاء» - ألفاظ متفرقة زائدة على ثلاثة أحرف أولها زاء، وليست جميعها ذات أصل واحد جامع بل كل لفظ يذكر بمعناه على حدة، وبها يُختم كتاب الزاء (تم كتاب الزاء).",
+   "core_meaning_english": "This is a continuation of the appendix chapter of scattered Arabic words of more than three root letters beginning with zāy; each word is given its own meaning rather than sharing one unifying root-meaning. The chapter ends here with 'the Book of Zāy is complete'.",
+   "sarf_pattern": "",
+   "notes": "Continuation from a previous page batch (appendix chapter, not a standard triliteral root entry). Page ends with تم كتاب الزاء (end of Book of Zāy). Footnote (2) marks الزبنتر as a scribal correction (الزينتر in the original, corrected per al-Jamal and Lisān al-'Arab). Footnote (3) notes الزخرط/الزخرف/الزمخر appeared with jīm in the original and were corrected to khā' mu'jama (خ) as printed here.",
+   "pdf_page_index": 1132,
+   "printed_page_number": "55",
+   "variances": [
+    {
+     "usage": "الزَّعبَج",
+     "meaning": "السحاب الرقيق (قاله الفراء، وأنكر أبو عبيد كونه من كلام العرب، وابن فارس يرى الفراء ثقة)",
+     "meaning_english": "thin/light cloud (per al-Farrā'; Abū 'Ubayd doubted it was genuine Arabic, but the author trusts al-Farrā')",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّمْهَرِير",
+     "meaning": "البرد؛ ممكن أن يكون وضعاً مستقلاً، وممكن أن يكون مأخوذاً من ازمهرّت الكواكب (إذا اشتدّ البرد أضاءت النجوم)",
+     "meaning_english": "intense cold; possibly an independent coinage, or derived from the stars 'blazing' brightly when cold intensifies",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّرْنَب",
+     "meaning": "ضرب من الطِّيب",
+     "meaning_english": "a kind of perfume/fragrant plant",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّبَنْتَر",
+     "meaning": "القصير",
+     "meaning_english": "the short one",
+     "citation": ""
+    },
+    {
+     "usage": "الزُّخْرِط",
+     "meaning": "مُخاط النَّعجة",
+     "meaning_english": "the nasal mucus of a ewe",
+     "citation": ""
+    },
+    {
+     "usage": "الزُّخْرُف",
+     "meaning": "الزينة، ويقال أيضاً الذهب",
+     "meaning_english": "adornment; also said to mean gold",
+     "citation": ""
+    },
+    {
+     "usage": "زخارف الماء",
+     "meaning": "طرائق تكون فيه",
+     "meaning_english": "streaks/ripple-lines that appear on water",
+     "citation": ""
+    },
+    {
+     "usage": "زَمْخَر (الصوت)",
+     "meaning": "اشتدّ",
+     "meaning_english": "(of a sound) grew loud/intense",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّمْخَرَة",
+     "meaning": "الزَّمَّارة (آلة نفخ)",
+     "meaning_english": "the reed-pipe/flute",
+     "citation": ""
+    },
+    {
+     "usage": "الزَّمْخَر",
+     "meaning": "القصب الأجوف الناعم من الرَّيّ؛ وأيضاً نُشّاب العجم (سهامهم)؛ وأيضاً الكثير الملتفّ من الشجر",
+     "meaning_english": "hollow, smooth, well-watered reed/cane; also the arrows of the Persians; also thick, tangled growth of trees",
+     "citation": ""
+    }
+   ]
+  },
+  {
+   "root": "زوائد أوله لام (اللهجم / اللهذم)",
+   "root_letters": [
+    "ل",
+    "ه",
+    "ج",
+    "م"
+   ],
+   "core_meaning": "باب ما جاء من كلام العرب على أكثر من ثلاثة أحرف أوله لام - وهو قليل",
+   "core_meaning_english": "a small appendix chapter of Arabic words of more than three letters beginning with lām (blended/portmanteau words) — said to be rare",
+   "sarf_pattern": "",
+   "variances": [
+    {
+     "usage": "اللَّهْجَم",
+     "meaning": "الطريق المُدَبَّت (كذا فى المطبوع، والقراءة غير يقينية)، وهى منحوتة من لهج وهجم، كأنه يُلهَج به حتى يهجُم سالكُه على الموضع الذى يقصدُه. وقال الخليل: هو الطريق الواضح. ولعلّ الميم فيه زائدة. وقد يُلهَج بسلوك مثله",
+     "meaning_english": "a road (exact descriptive word uncertain in the scan — printed as something like 'al-mudabbit'), a blend of the roots لهج and هجم — as if one keeps at it (يُلهَج) until the traveller bursts forth (يهجم) onto the place he seeks; al-Khalīl said it means the clear/obvious road; the final mīm may be an added letter"
+    },
+    {
+     "usage": "اللَّهْذَم",
+     "meaning": "الحادّ، وهو مما زيدت فيه اللام من المَهذَم. والمُهذَام: السيف القاطع الحادّ",
+     "meaning_english": "sharp, cutting — formed by prefixing lām to مَهذَم; المُهذَام means a sharp cutting sword"
+    }
+   ],
+   "pdf_page_index": 2335,
+   "printed_page_number": "265",
+   "notes": "This is the closing appendix chapter of Kitāb al-Lām ('تم كتاب اللام، والله أعلم بالصواب' appears at the end), covering blended/portmanteau (منحوتة) four-letter words starting with lām rather than a standard triliteral root with a stated core meaning. Corrected the first variance's descriptive word: prior extraction gave 'الطريق المُذَبَّب' (tapering road) but scan resolution at this word is too low to confirm ذ/د or ب/ت — flagged as uncertain rather than asserted. Footnote (2) reads 'فى الأصل: اللاجم، صوابه فى الجمل' — its exact intended correction is not fully certain from the scan (prior note's gloss 'corrected to اللهجم' is a plausible but unverified reading); footnote (3) notes the original had 'الإلحاد', corrected to 'الحادّ'.",
+   "issues_found_here": true
+  }
+ ]
+}

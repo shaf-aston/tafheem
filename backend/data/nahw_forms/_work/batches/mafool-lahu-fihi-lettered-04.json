@@ -1,0 +1,316 @@
+{
+ "batch": "mafool-lahu-fihi-lettered-04",
+ "questions": [
+  {
+   "id": "mafool-lahu-fihi/application/10",
+   "category": "tarkeeb",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "10",
+    "images": [
+     "q045.png",
+     "q046.png",
+     "q047.png"
+    ]
+   },
+   "type": "choose_sentence_ab",
+   "instructions": "1. Look at the following sentences and considering the conditions of the مفعول له and where the Harf Jar is necessary and also considering the translation, choose from the 2 options by ticking A or B.\n2. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": "A",
+     "ar": "لا تدخل في المكان المتداعِي ضعفَه",
+     "marked": [],
+     "en": "Do not enter a dilapidated building because of its weakness."
+    },
+    {
+     "label": "B",
+     "ar": "لا تدخل في المكان المتداعِي لِضعفِه",
+     "marked": [],
+     "en": "Do not enter a dilapidated building because of its weakness."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Choose A or B",
+     "kind": "choose_one",
+     "options": [
+      "A",
+      "B"
+     ],
+     "answer": "B",
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "A",
+      "B"
+     ],
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "d",
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Both A and B appear ticked (checked square icon) in the response image, A marked with a red X and B with a green check; recorded both as my_response since both show a checked icon.",
+    "10b response is a single stray letter 'd', not a real explanation; likely an incomplete/placeholder answer in the source screenshot."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/1",
+   "category": "tarkeeb",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Identify the underlined Maf'ools",
+    "number": "1",
+    "images": [
+     "q049.png",
+     "q050.png",
+     "q051.png",
+     "q052.png"
+    ]
+   },
+   "type": "classify_underlined_grid",
+   "instructions": "1. Look at the following sentences and Identify the type of maf'ools present by ticking the correlating box.\n2. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n3. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "أعطيتُ الفقيرَ خبزاً مَنْحَةً صباحًا شفقةً",
+     "marked": [
+      {
+       "text": "الفقيرَ",
+       "mark": "underline"
+      },
+      {
+       "text": "خبزاً",
+       "mark": "underline"
+      },
+      {
+       "text": "مَنْحَةً",
+       "mark": "underline"
+      },
+      {
+       "text": "صباحًا",
+       "mark": "underline"
+      },
+      {
+       "text": "شفقةً",
+       "mark": "underline"
+      }
+     ],
+     "en": "I gave the poor bread in the morning in the style of giving a gift due to compassion"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool for each underlined word",
+     "kind": "grid",
+     "rows": [
+      "الفقير",
+      "خبزا",
+      "منحة",
+      "صباحا",
+      "شفقة"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "الفقير": [
+       "مفعول به"
+      ],
+      "خبزا": [
+       "مفعول به"
+      ],
+      "منحة": [
+       "مفعول مطلق"
+      ],
+      "صباحا": [
+       "مفعول فيه"
+      ],
+      "شفقة": [
+       "مفعول له"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "الفقير": [
+       "مفعول به"
+      ],
+      "خبزا": [
+       "مفعول به"
+      ],
+      "منحة": [
+       "مفعول مطلق"
+      ],
+      "صباحا": [
+       "مفعول فيه"
+      ],
+      "شفقة": [
+       "مفعول له"
+      ]
+     },
+     "points": "5/5",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "w",
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring all the Mafools are clear in your translation:",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "I gave the poor bread in the morning in the style of giving a gift due to compassion",
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Full harakat on the sentence read from a small image; صباحًا and شفقةً tanween marks may not be pixel-perfect.",
+    "Explain-answer response is a single stray letter 'w', likely incomplete."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/identify-underlined/2",
+   "category": "tarkeeb",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Identify the underlined Maf'ools",
+    "number": "2",
+    "images": [
+     "q053.png",
+     "q054.png",
+     "q055.png",
+     "q056.png"
+    ]
+   },
+   "type": "classify_underlined_grid",
+   "instructions": "1. Look at the following sentences and Identify the type of maf'ools present by ticking the correlating box.\n2. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n3. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "مَا بِكَ وزيدًا أمسِ فوقَ المسجدِ",
+     "marked": [
+      {
+       "text": "زيدًا",
+       "mark": "underline"
+      },
+      {
+       "text": "أمسِ",
+       "mark": "underline"
+      },
+      {
+       "text": "فوقَ",
+       "mark": "underline"
+      }
+     ],
+     "en": "what is it with you along with zaid from yesterday, ontop of the masjid?"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of maf'ool for each underlined word",
+     "kind": "grid",
+     "rows": [
+      "زيدا",
+      "أمس",
+      "فوق"
+     ],
+     "columns": [
+      "مفعول مطلق",
+      "مفعول به",
+      "مفعول معه",
+      "مفعول له",
+      "مفعول فيه"
+     ],
+     "answer": {
+      "زيدا": [
+       "مفعول معه"
+      ],
+      "أمس": [
+       "مفعول فيه"
+      ],
+      "فوق": [
+       "مفعول فيه"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "زيدا": [
+       "مفعول معه"
+      ],
+      "أمس": [
+       "مفعول فيه"
+      ],
+      "فوق": [
+       "مفعول فيه"
+      ]
+     },
+     "points": "3/3",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "a",
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring all the Mafools are clear in your translation:",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": "what is it with you along with zaid from yesterday, ontop of the masjid?",
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Full harakat on the sentence read from a small image; some vowel marks (kasra/fatha placement) may not be pixel-perfect.",
+    "Explain-answer response is a single stray letter 'a', likely incomplete."
+   ]
+  }
+ ]
+}

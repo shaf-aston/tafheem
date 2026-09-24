@@ -1,0 +1,16 @@
+{
+  "_comment": "Hand-checked word kinds. The build reads a word's kind from the list it came from, the book declares one per group, the everyday list one per category, the corpus tags every word by hand. This file is for the few words those declarations get wrong or cannot reach, and it beats all of them. The key is the exact spelling as written in the word list.",
+  "_why_these": "Three everyday words filed under a topic of things that are really describing words, plus the words the book's own groups label as a block: its Attributes and Comparatives are describing words, so the group says adjective and the handful of agent-nouns inside it are named back to noun here.",
+  "kinds": {
+    "مُعْتَدِل": "adjective",
+    "مُصَاب": "adjective",
+    "إِلِكْتْرُونِيّ": "adjective",
+    "حَفِيظ": "noun",
+    "سَلَام": "noun",
+    "نَذِير": "noun",
+    "نَصِير": "noun",
+    "وَكِيل": "noun",
+    "أَلِيم": "adjective",
+    "طَيِّبَة": "adjective"
+  }
+}

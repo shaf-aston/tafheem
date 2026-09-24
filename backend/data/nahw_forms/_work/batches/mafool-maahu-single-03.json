@@ -1,0 +1,45 @@
+{
+ "batch": "mafool-maahu-single-03",
+ "questions": [
+  {
+   "id": "mafool-maahu/statements/17",
+   "category": "iraab",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "17",
+    "images": [
+     "q018.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "17. If a pronoun is used in reference to the former noun & the معطوف, then...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If a pronoun is used in reference to the former noun & the معطوف, then...",
+     "kind": "choose_all",
+     "options": [
+      "...the former noun will be considered to correlate with the pronoun because the معطوف is not co-equal but only an associate.",
+      "...the latter noun (معطوف) will be considered to correlate with the pronoun because the معطوف is more important..",
+      "...both the former noun and the latter noun (معطوف) will be considered to correlate with the pronoun because they are both co-equal."
+     ],
+     "answer": [
+      "...both the former noun and the latter noun (معطوف) will be considered to correlate with the pronoun because they are both co-equal."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...both the former noun and the latter noun (معطوف) will be considered to correlate with the pronoun because they are both co-equal."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  }
+ ]
+}

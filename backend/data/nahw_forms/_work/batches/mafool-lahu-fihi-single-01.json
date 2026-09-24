@@ -1,0 +1,341 @@
+{
+ "batch": "mafool-lahu-fihi-single-01",
+ "questions": [
+  {
+   "id": "mafool-lahu-fihi/statements/1",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "1",
+    "images": [
+     "q002.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": null,
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول له is...",
+     "kind": "choose_all",
+     "options": [
+      "...an إسم.",
+      "...a حرف.",
+      "...a فعل."
+     ],
+     "answer": [
+      "...an إسم."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...an إسم."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/2",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "2",
+    "images": [
+     "q003.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": null,
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول له which conforms to its conditions is...",
+     "kind": "choose_all",
+     "options": [
+      "...منصوب.",
+      "...مجرور.",
+      "...مرفوع."
+     ],
+     "answer": [
+      "...منصوب."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...منصوب."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/3",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "3",
+    "images": [
+     "q004.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": null,
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول له signifes...",
+     "kind": "choose_all",
+     "options": [
+      "...the reason for an action being conducted.",
+      "...the time an action is conducted in.",
+      "...the place an action is conducted in.",
+      "...the method an action is conducted in."
+     ],
+     "answer": [
+      "...the reason for an action being conducted."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...the reason for an action being conducted."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/4",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "4",
+    "images": [
+     "q005.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": null,
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "A valid مفعول له will...",
+     "kind": "choose_all",
+     "options": [
+      "...be an interpreted masdar.",
+      "....sync in time with action.",
+      "...will be related to the فاعل and nothing else.",
+      "...will be related to the فاعل and the مفعول به.",
+      "...be a clear masdar."
+     ],
+     "answer": [
+      "....sync in time with action.",
+      "...will be related to the فاعل and nothing else.",
+      "...be a clear masdar."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "....sync in time with action.",
+      "...will be related to the فاعل and nothing else.",
+      "...be a clear masdar."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Option 2 is printed with four leading dots (\"....sync\") instead of the three used elsewhere; copied exactly as shown."
+   ]
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/5",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "5",
+    "images": [
+     "q006.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": null,
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If one of the مفعول له conditions are not present, then...",
+     "kind": "choose_all",
+     "options": [
+      "...a لام will be assumed.",
+      "...it will become a grammatically incorrect construction.",
+      "...nothing will be assumed and it will become a haal.",
+      "...a باء will be assumed."
+     ],
+     "answer": [
+      "...a لام will be assumed."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...a لام will be assumed."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/6",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "6",
+    "images": [
+     "q007.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": null,
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول له ...",
+     "kind": "choose_all",
+     "options": [
+      "...can come after the verb.",
+      "...must come before the verb.",
+      "...must come after the verb.",
+      "...can come before the verb."
+     ],
+     "answer": [
+      "...can come after the verb.",
+      "...can come before the verb."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...can come after the verb.",
+      "...can come before the verb."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/7",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "7",
+    "images": [
+     "q008.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": null,
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول فيه is...",
+     "kind": "choose_all",
+     "options": [
+      "...an إسم.",
+      "...a فعل.",
+      "...a حرف."
+     ],
+     "answer": [
+      "...an إسم."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "...an إسم."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "mafool-lahu-fihi/statements/8",
+   "category": "iraab",
+   "topic": "Mafool Lahu / Mafool Fihi",
+   "source": {
+    "form": "mafool-lahu-fihi",
+    "title": "Exercise: Mafool Lahu-Mafool Fihi YR3PT25-26 (05/12/25)",
+    "section": "Complete the following statements",
+    "number": "8",
+    "images": [
+     "q009.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": null,
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The مفعول فيه can be...",
+     "kind": "choose_all",
+     "options": [
+      "...منصوب.",
+      "...مرفوع.",
+      "...مجرور."
+     ],
+     "answer": [
+      "...منصوب.",
+      "...مجرور."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "...منصوب."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Student marked only \"...منصوب.\"; the page's \"Correct answer\" block shows both \"...منصوب.\" and \"...مجرور.\" as correct, so answer reflects the shown key, not the student's response."
+   ]
+  }
+ ]
+}

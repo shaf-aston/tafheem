@@ -1,0 +1,19 @@
+{
+  "_comment": "Quiz behaviour knobs. The words themselves are built in backend/data/; this file is only how the quiz runs.",
+
+  "_comment-options": "How many words a question offers, the answer among them. Memorise reads this too, because a gap offering words to pick from is the same question, so changing it here changes both tabs.",
+  "option-count": 4,
+  "default-direction": "ar-en",
+  "default-bank": "quranic",
+
+  "_comment-language": "Which language a meaning is shown in. English unless the reader changes it, and changing it here changes what everyone sees first. Only the Qur'anic words have an Urdu meaning; the everyday list has no Urdu source, so an Urdu round says so rather than asking in English.",
+  "meaning-language": "en",
+
+  "auto-next": true,
+  "auto-next-ms": 650,
+  "_comment-wrong": "A wrong answer waits longer: the correction under it has to be readable before it goes.",
+  "auto-next-wrong-ms": 2500,
+
+  "_comment-insights": "How many answers a category needs before its wrong-rate is worth showing. Below this, two wrong out of two reads as a weakness when it is only a small sample.",
+  "insight-min-attempts": 5
+}

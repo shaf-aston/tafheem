@@ -1,0 +1,4098 @@
+{
+ "title": "Munsarif and Ghair Munsarif",
+ "form": "Exercise: Munsarif Ghair Munsarif - Yr3PT25-26",
+ "harvested": "2026-09-17",
+ "rules": [],
+ "examples": [
+  {
+   "id": "munsarif-e01",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-00.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "قَنَاطِيْر\nQuintals (100kg)/Treasures",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e02",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-01.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أرْخَمِيْدِس\nArchimedes",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma"
+   ]
+  },
+  {
+   "id": "munsarif-e03",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-02.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "سَمْرَاء\nwhite with some redness",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e04",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-03.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "غَسَّان\nVery passionate/deep",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e05",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-04.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "فَاطِمَة\nName of a female",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e06",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-05.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "ذِكْرىٰ\nRemembrance/Repentance",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e07",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-06.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "ان"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "زِيْدَان\nZainuddin Zidan",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-alif-nun"
+   ]
+  },
+  {
+   "id": "munsarif-e08",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-07.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَشَاعِل\nTorches",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e09",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-08.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "إِنْشَاء\nTo Create",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e10",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-09.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أَمسَتَرْدام\nAmsterdam",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma"
+   ]
+  },
+  {
+   "id": "munsarif-e11",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-10.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "فَلَاسِفَة\nPhilosophers",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e12",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-11.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "نِيُوكاسَل\nNewcastle",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma"
+   ]
+  },
+  {
+   "id": "munsarif-e13",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-12.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَجْرىٰ\nPassage/Duct/Path",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e14",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-13.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "إِسْماعِيل\nIsmaeel (AS)",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma"
+   ]
+  },
+  {
+   "id": "munsarif-e15",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-14.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "فِتْيان\nYoungsters",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e16",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-15.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "عَرَفَة\nName of place/day",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e17",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-16.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "سَوَاحِل\nCoasts",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e18",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-17.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "دِمَشْق\nDamascus",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e19",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-18.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أغَسْطَس\nAugust",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma"
+   ]
+  },
+  {
+   "id": "munsarif-e20",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-19.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "وصف",
+      "وزن الفعل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أنْصر\nMost helpful",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-wasf",
+    "sabab-wazn-fil"
+   ]
+  },
+  {
+   "id": "munsarif-e21",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-20.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "شَمْس\nName of a female",
+   "marked": [],
+   "tags": [
+    "munsarif",
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e22",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-21.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "إِثْمِد\nAntimony",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e23",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-22.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "حُسَّان\nVery beautiful",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e24",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-23.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "رُقَيَّة\nName of a female",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e25",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-24.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "وصف",
+      "ان"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "جَوعَان\nHungry",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-wasf",
+    "sabab-alif-nun"
+   ]
+  },
+  {
+   "id": "munsarif-e26",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-25.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "وصف",
+      "وزن الفعل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أعْرج\nLame/Cripple",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-wasf",
+    "sabab-wazn-fil"
+   ]
+  },
+  {
+   "id": "munsarif-e27",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-26.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث",
+      "وزن الفعل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "يَنْبُع\nCity in Saudi Arabia",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith",
+    "sabab-wazn-fil"
+   ]
+  },
+  {
+   "id": "munsarif-e28",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-27.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عدل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "هُبَل\nA god of polytheists",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-adl"
+   ]
+  },
+  {
+   "id": "munsarif-e29",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-28.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أَصْدِقَاءِ\nFriends",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e30",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-29.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَصَابِيْح\nLanterns",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e31",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-30.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "بَطْلِيْمُوس\nPtolemy",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma"
+   ]
+  },
+  {
+   "id": "munsarif-e32",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-31.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "خَوَاصّ\nSpecialities",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e33",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-32.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَسَاكِيْن\nDestitute",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e34",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-33.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث",
+      "وزن الفعل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "يَثْرب\nFormer name of Madina",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith",
+    "sabab-wazn-fil"
+   ]
+  },
+  {
+   "id": "munsarif-e35",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-34.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أَرْبِعَاء\nWednesday",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e36",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-35.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "صيارِفَة\nMoney exchanges",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e37",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-36.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "شَتَر\nName of a Persian fort",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma"
+   ]
+  },
+  {
+   "id": "munsarif-e38",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-37.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أُسامَة\nName of a male",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e39",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-38.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أَطِبَّاء\nDoctors",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e40",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-39.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "عباقِرَة\nGeniuses/Intellectuals",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e41",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-40.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَتَاحِف\nMuseums",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e42",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-41.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "بُرهَان\nMale Name",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e43",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-42.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَدَارِس\nSchools",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e44",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-43.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "عُلْيَا\nMost High/Highest",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e45",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-44.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَشَّاء\nPerpetual walker",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e46",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-45.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "ان"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "رَمَضان\nRamadhan",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-alif-nun"
+   ]
+  },
+  {
+   "id": "munsarif-e47",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-46.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "اِبْتِدَاء\nTo initiate",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e48",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-47.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "فَوْز\nName of a female",
+   "marked": [],
+   "tags": [
+    "munsarif",
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e49",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-48.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "طَيَرَان\nFlying",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e50",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-49.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "رَغَد\nName of a female",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e51",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-50.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "وصف",
+      "وزن الفعل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أحْمد\nMost praised",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-wasf",
+    "sabab-wazn-fil"
+   ]
+  },
+  {
+   "id": "munsarif-e52",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-51.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَريَم\nName of a female",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma"
+   ]
+  },
+  {
+   "id": "munsarif-e53",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-52.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مُسْتَشْفىٰ\nHospital",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e54",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-53.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "حُسْنىٰ\nMost Beautiful/Best",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e55",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-54.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "صَحْرَاء\nDesert",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e56",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-55.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث",
+      "ان"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لُبْنَان\nLebanon",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith",
+    "sabab-alif-nun"
+   ]
+  },
+  {
+   "id": "munsarif-e57",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-56.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "دَرَاهِم\nDirhams",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e58",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-57.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "عُلَمَاء\nScholars",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e59",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-58.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "وزن الفعل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "يَعْرُب\nName (Father of Arabs)",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-wazn-fil"
+   ]
+  },
+  {
+   "id": "munsarif-e60",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-59.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "إِنْشَاء\nTo Create",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e61",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-60.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "تلامِذَة\nStudents",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e62",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-61.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة",
+      "ان"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "عِمران\nMale name",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma",
+    "sabab-alif-nun"
+   ]
+  },
+  {
+   "id": "munsarif-e63",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-62.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "شُعَرَاء\nPoets",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e64",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-63.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "نوْح\nProphet Nuh (AS)",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e65",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-64.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أَسْمَاء\nNouns",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e66",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-65.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "رُمَّان\nPomegranate",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e67",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-66.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "حَسْنَاء\nBeautiful",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e68",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-67.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "سَلامَة\nPeace",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e69",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-68.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أرْمل\nWidower",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e70",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-69.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "لوْط\nProphet Lut (AS)",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e71",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-70.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أُصْبُع\nFinger",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e72",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-71.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مُفْتِيَان\nMuftis",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e73",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-72.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "بَطَاطِس\nPotatoes",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e74",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-73.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مُصْطَفىٰ\nChosen",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e75",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-74.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أَرْنَب\nCoward",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e76",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-75.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "كَاهِل\nUpper back",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e77",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-76.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "هُدىٰ\nGuidance",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e78",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-77.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "وزن الفعل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أسْعد\nMale Name",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-wazn-fil"
+   ]
+  },
+  {
+   "id": "munsarif-e79",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-78.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "زَيْد\nName of a female",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e80",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-79.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "وصف",
+      "عدل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَخْمس\nFive five",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-wasf",
+    "sabab-adl"
+   ]
+  },
+  {
+   "id": "munsarif-e81",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-80.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أكتَوبر\nOctober",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma"
+   ]
+  },
+  {
+   "id": "munsarif-e82",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-81.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "مَرْضىٰ\nSick (Plural)",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e83",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-82.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "دَنَانِير\nDinars",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e84",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-83.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "هوْد\nProphet Hud (AS)",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e85",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-84.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "ثَعْبان\nSnake",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e86",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-85.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "هُدى\nName of a female",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e87",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-86.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "ألبَرْت\nAlbert",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma"
+   ]
+  },
+  {
+   "id": "munsarif-e88",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-87.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "وصف",
+      "وزن الفعل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أَعْلَى\nHighest",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-wasf",
+    "sabab-wazn-fil"
+   ]
+  },
+  {
+   "id": "munsarif-e89",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-88.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "بِنَاءِ\nConstruction",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e90",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-89.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "سَمَر\nName of a female",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e91",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-90.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "عجمة"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "سُوسَن\nSusan",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-ujma"
+   ]
+  },
+  {
+   "id": "munsarif-e92",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-91.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "وصف",
+      "عدل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "سُداس\nSix six",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-wasf",
+    "sabab-adl"
+   ]
+  },
+  {
+   "id": "munsarif-e93",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-92.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "دُعَاءِ\nPrayer",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e94",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-93.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "عَدَن\nCity in Yemen",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e95",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-94.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "وصف",
+      "وزن الفعل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أحْمس\nBrave",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-wasf",
+    "sabab-wazn-fil"
+   ]
+  },
+  {
+   "id": "munsarif-e96",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-95.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "بُرهان\nProof",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e97",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-96.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "حَمْزَة\nLion",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e98",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-97.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "ان"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "طالبان\nTaliban",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-alif-nun"
+   ]
+  },
+  {
+   "id": "munsarif-e99",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-98.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "وزن الفعل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "يَزيد\nMale Name",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-wazn-fil"
+   ]
+  },
+  {
+   "id": "munsarif-e100",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-99.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "دُنْيَا\nClosest",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e101",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-100.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "جَوْن\nJohn",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e102",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-101.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "حَمْرَاءِ\nRed",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e103",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-102.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "أرْبع\nFour",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e104",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-103.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "ىٰ/اء"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "سَلْوىٰ\nQuail",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alif-tanith"
+   ]
+  },
+  {
+   "id": "munsarif-e105",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-104.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "فتىٰ\nYoungster",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e106",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-105.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "شَاه\nShah",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e107",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-106.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "جمع"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "طَمَاطِم\nTomatoes",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-jam"
+   ]
+  },
+  {
+   "id": "munsarif-e108",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-107.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "عصا\nStaff/Stick",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  },
+  {
+   "id": "munsarif-e109",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-108.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "غير منصرف",
+      "علم",
+      "تأنيث",
+      "عدل"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "زُحَل\nMars",
+   "marked": [],
+   "tags": [
+    "ghair-munsarif",
+    "sabab-alamiyya",
+    "sabab-tanith",
+    "sabab-adl"
+   ]
+  },
+  {
+   "id": "munsarif-e110",
+   "section": "منصرف - غير منصرف",
+   "picture": "munsarif-109.png",
+   "instruction": "",
+   "parts": [
+    {
+     "letter": "a",
+     "question": "Is this word munsarif, ghair munsarif, or both? If it is ghair munsarif, tick every cause present in it, keeping in mind how the causes work together.",
+     "options": [
+      "غير منصرف",
+      "منصرف",
+      "علم",
+      "وصف",
+      "تأنيث",
+      "عجمة",
+      "تركيب",
+      "عدل",
+      "وزن الفعل",
+      "ان",
+      "ىٰ/اء",
+      "جمع"
+     ],
+     "answer": [
+      "منصرف"
+     ],
+     "by": "teacher"
+    }
+   ],
+   "sentence": "خَان\nKhan",
+   "marked": [],
+   "tags": [
+    "munsarif"
+   ]
+  }
+ ]
+}

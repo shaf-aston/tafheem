@@ -1,0 +1,127 @@
+/* ── The tarkeeb diagram ────────────────────────────────────────────────────
+   One grid. Word columns are equal, so a group covering 2 of 4 columns is
+   exactly half the width, which is what lets every brace line up with the
+   words above it without measuring anything. A gutter column on the far left
+   holds each level's "= name". Classes are prefixed tk- because .word and
+   .role above mean different things. */
+.tk-scroller { overflow-x: auto; padding-bottom: 0.5rem; }
+
+.tk-grid {
+  direction: rtl;
+  display: grid;
+  width: 100%;
+  min-width: max-content;
+  row-gap: 1.4rem;
+  font-family: var(--font-arabic);
+}
+
+.tk-word { grid-row: 1; display: flex; justify-content: center; }
+.tk-word span {
+  font-size: calc(var(--arabic-heading-rem) * 1rem);
+  line-height: 1.5;
+  padding: 0 0.5rem 0.3rem;
+  border-bottom: 1.5px solid var(--border-hi);
+  white-space: nowrap;
+}
+
+/* A name the Treebank supplied that the app has not checked against a book. It
+   still reads, but it must not look as settled as a term that was checked. */
+.tk-role.tk-raw { opacity: 0.7; }
+.tk-role.tk-raw > * { border-bottom: 1px dotted currentColor; }
+
+/* A word that is understood but not written. It keeps its column, that a word
+   is missing is itself the lesson, but recedes, so what is certainly on the
+   page reads first. */
+.tk-word.tk-unwritten span {
+  font-size: calc(var(--arabic-small-rem) * 1rem);
+  color: var(--text-faint);
+  border-bottom-style: dashed;
+  border-bottom-color: var(--border);
+  align-self: end;
+}
+
+/* A word whose role has not been named yet keeps a thread running down. */
+.tk-thread { justify-self: center; width: 1.5px; background: var(--border-hi); opacity: 0.7; }
+
+.tk-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 0.35rem;
+  justify-content: flex-end;
+}
+.tk-roles { display: flex; align-items: flex-end; }
+.tk-role {
+  flex: 1 1 0;
+  text-align: center;
+  font-size: calc(var(--arabic-small-rem) * 1rem);
+  line-height: 1.5;
+  color: var(--tone, var(--role-default));
+  padding: 0 0.2rem;
+}
+/* A join the rules could not make: named as open, and drawn as open. */
+.tk-role.tk-gap { color: var(--role-gap); border-bottom: 1px dashed var(--role-gap); }
+.tk-plus {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 0 0.2rem;
+  color: var(--text-faint);
+  font-family: var(--font-ui);
+  /* A "+" is not Arabic, so it takes the English body size rather than a size
+     of its own. It had two, one for the outer row, a smaller one for a nested
+     one, and at that scale the difference was under a pixel. */
+  font-size: var(--type-body);
+}
+
+/* The brace: a rounded bottom edge plus a centre stem, so it stretches to any
+   span without the curl distorting the way a scaled glyph would. */
+.tk-brace {
+  height: 0.85rem;
+  border: 1.75px solid var(--tone, var(--border-hi));
+  border-top: 0;
+  border-radius: 0 0 1.1rem 1.1rem;
+  position: relative;
+  opacity: 0.85;
+}
+.tk-brace::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1.75px;
+  height: 0.7rem;
+  background: var(--tone, var(--border-hi));
+}
+
+/* inset-inline-start, not -end: in RTL that is the left, where the name goes. */
+.tk-name {
+  position: absolute;
+  inset-inline-start: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  padding-inline-start: 0.6rem;
+  font-size: calc(var(--arabic-small-rem) * 1rem);
+  color: var(--tone, var(--text));
+}
+/* A group that does not reach the leftmost word has no gutter beside it, only
+   the next group along, so its name goes under its own brace rather than over
+   its neighbour. Left, not right: in RTL that is flex-end, and it is where the
+   eye already looks for a name. The padding clears the brace's stem, which
+   hangs 0.7rem below it. */
+.tk-group > .tk-name {
+  position: static;
+  transform: none;
+  align-self: flex-end;
+  padding-inline-start: 0;
+  padding-top: 0.35rem;
+}
+
+.tk-name .tk-eq {
+  color: var(--text-faint);
+  padding-inline-end: 0.35rem;
+  font-family: var(--font-ui);
+}
+
+.tk-inside .tk-role { font-size: calc(var(--arabic-tiny-rem) * 1rem); }

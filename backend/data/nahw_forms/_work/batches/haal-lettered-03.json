@@ -1,0 +1,303 @@
+{
+ "batch": "haal-lettered-03",
+ "questions": [
+  {
+   "id": "haal/application/7",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q7",
+    "number": "7",
+    "images": [
+     "q044.png",
+     "q045.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "تَرَى الْمُجْرِمِينَ يَوْمَئِذٍ مُقَرَّنِينَ فِي الأَصْفَادِ سَرَابِيلُهُمْ مِنْ قَطِرَانٍ وَتَغْشَىٰ وُجُوهَهُمُ ٱلنَّارُ",
+     "marked": [
+      {
+       "text": "الْمُجْرِمِينَ",
+       "mark": "green underline"
+      },
+      {
+       "text": "مُقَرَّنِينَ فِي الأَصْفَادِ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "سَرَابِيلُهُمْ مِنْ قَطِرَانٍ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَتَغْشَىٰ وُجُوهَهُمُ ٱلنَّارُ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "You will see the criminals that Day, bound together in irons, their garments of liquid pitch and their faces covered by the Fire."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each blue-underlined item, tick whether it is حال, and if so tick the applicable واو حالية ruling (منع الواو | جواز الواو | وجوب الواو); if not حال tick ليست حالا.",
+     "kind": "grid",
+     "rows": [
+      "مقرنين",
+      "سرابيلهم...",
+      "وتغشى..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "مقرنين": [
+       "حال",
+       "منع الواو"
+      ],
+      "سرابيلهم...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وتغشى...": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "مقرنين": [
+       "حال",
+       "منع الواو"
+      ],
+      "سرابيلهم...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وتغشى...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "points": "2/3",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": [],
+     "answer": "The first does not take a waw haaliyah as it a -Mufrad Haal-; the second can take a waw haaliyah as it is a jumla ismiyah that has dhameer raabit but does not begin with it hence it's optional; and the last one does not take a waw haaliyah as it is a jumla with a فعل مضارع مثبت without a قد and has a dhameer raabit (The waw before it is actually for atf and not for haal).",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "The first does not take a waw haaliyah as it a -Mufrad Haal-; the second can take a waw haaliyah as it is a jumla ismiyah that has dhameer raabit but does not begin with it hence it's optional; and the last one does not take a waw haaliyah as it is a jumla with a فعل مضارع مثبت without a قد and has a dhameer raabit (The waw before it is actually for atf and not for haal)."
+    }
+   ],
+   "flags": [
+    "Green underline (ذو الحال marker) is inferred as المجرمين from sentence logic and its position early in the line; exact pixel boundary not independently verified.",
+    "The 'سرابيلهم' row's blue underline appears to split across the line wrap (سرابيلهم on line 1, قطران on line 2); transcribed here as the combined phrase سرابيلهم من قطران.",
+    "Part b text box was left blank by the student (only a placeholder period); no real student answer to record beyond that.",
+    "Part a's answer_source is recorded as marked_correct for the whole grid, but that only holds for the rows مقرنين and سرابيلهم... (each green-checked 1/1); the row وتغشى... was marked wrong (0/1) and its recorded answer (ليست حالا) comes from the 'Correct answers' reveal block shown below the grid, i.e. correct_answer_shown, not a green check."
+   ]
+  },
+  {
+   "id": "haal/application/8",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q8",
+    "number": "8",
+    "images": [
+     "q047.png",
+     "q048.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "عَلَف زيدٌ الطيرَ حبَّاتٍ يرمي إليهَا",
+     "marked": [
+      {
+       "text": "زيدٌ",
+       "mark": "green underline"
+      },
+      {
+       "text": "الطيرَ حبَّاتٍ يرمي إليهَا",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "Zaid fed the birds throwing seeds at them."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For the blue-underlined item, tick whether it is حال, and if so tick the applicable واو حالية ruling (منع الواو | جواز الواو | وجوب الواو); if not حال tick ليست حالا.",
+     "kind": "grid",
+     "rows": [
+      "حبات..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "حبات...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "حبات...": [
+       "ليست حالا"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": [],
+     "answer": "The action of \"feeding the birds\" was done while \"throwing seeds at them\" so it will be haal in tarkeeb. And since it has a فعل مضارع مثبت with it's ma'mool preceding it, a waaw haaliyyah is optional but not necessary.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "The action of \"feeding the birds\" was done while \"throwing seeds at them\" so it will be haal in tarkeeb. And since it has a فعل مضارع مثبت with it's ma'mool preceding it, a waaw haaliyyah is optional but not necessary."
+    }
+   ],
+   "flags": [
+    "Green underline (ذو الحال marker) is inferred as زيد from the feedback's grammatical logic (Zaid is the doer of both actions); exact pixel boundary not independently verified, could alternatively fall on الطير.",
+    "Part b text box was left blank by the student (only a placeholder period); no real student answer to record beyond that."
+   ]
+  },
+  {
+   "id": "haal/application/9",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q9",
+    "number": "9",
+    "images": [
+     "q050.png",
+     "q051.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "مَا يَأْتِيهِمْ مِنْ ذِكْرٍ مِنْ رَبِّهِمْ مُحْدَثٍ إِلَّا اسْتَمَعُوهُ وَهُمْ يَلْعَبُونَ لَاهِيَةً قُلُوبُهُمْ",
+     "marked": [
+      {
+       "text": "وَهُمْ",
+       "mark": "green underline"
+      },
+      {
+       "text": "اسْتَمَعُوهُ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "يَلْعَبُونَ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "لَاهِيَةً قُلُوبُهُمْ",
+       "mark": "blue underline"
+      }
+     ],
+     "en": "No new revelation comes to them from their Lord except that they listen to it playfully, their hearts distracted."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each blue-underlined item, tick whether it is حال, and if so tick the applicable واو حالية ruling (منع الواو | جواز الواو | وجوب الواو); if not حال tick ليست حالا.",
+     "kind": "grid",
+     "rows": [
+      "استمعوه",
+      "وهم يلعبون",
+      "لاهية..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "استمعوه": [
+       "حال",
+       "منع الواو"
+      ],
+      "وهم يلعبون": [
+       "حال",
+       "وجوب الواو"
+      ],
+      "لاهية...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "استمعوه": [
+       "حال",
+       "منع الواو"
+      ],
+      "وهم يلعبون": [
+       "حال",
+       "وجوب الواو"
+      ],
+      "لاهية...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "points": "3/3",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "options": [],
+     "answer": "All three are haal because that is \"their\" state when \"they\" receive the revelation.\nThe first one does not take a waaw haaliyyah because it is a فعل ماضي which comes after إلا.\nThe second one requires a waaw haaliyyah because it is a jumla ismiyyah beginning with the dhameer raabit.\nThe third one does not take waaw haaliyah because it is a mufrad haal and not a jumla.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "All three are haal because that is \"their\" state when \"they\" receive the revelation.\nThe first one does not take a waaw haaliyyah because it is a فعل ماضي which comes after إلا.\nThe second one requires a waaw haaliyyah because it is a jumla ismiyyah beginning with the dhameer raabit.\nThe third one does not take waaw haaliyah because it is a mufrad haal and not a jumla."
+    }
+   ],
+   "flags": [
+    "Part b text box was left blank by the student (only a placeholder period); no real student answer to record beyond that.",
+    "Green underline (ذو الحال marker) sits on وَهُمْ at the end of line 1, directly adjacent to the blue mark on اسْتَمَعُوهُ, not on يَأْتِيهِمْ as first transcribed (يَأْتِيهِمْ has no underline in the picture). The grid's own row label 'وهم يلعبون' is copied as printed on the page; whether يَلْعَبُونَ itself carries a separate blue underline on line 2, versus the row being a compound label for the واو-plus-jumla unit, could not be confirmed at this image resolution."
+   ]
+  }
+ ]
+}

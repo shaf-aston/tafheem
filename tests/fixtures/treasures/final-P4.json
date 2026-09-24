@@ -1,0 +1,120 @@
+[
+  {
+    "page": 229,
+    "type": "أجوف يائي",
+    "bab": "باب ضرب",
+    "root": "ب ي ع",
+    "sarf_sagheer": "بَاعَ يَبِيْعُ بَيْعاً فَهُوَ بَائِعٌ وَ بِيْعَ يُبَاعُ بَيْعاً فَهُوَ مَبِيْعٌ اَلْأَمْرُ مِنْهُ بِعْ وَالنَّهْيُ عَنْهُ لاَ تَبِعْ الظَّرْفُ مِنْهُ مَبِيْعٌ مَبِيْعَانِ مَبَايِعُ وَالْآلَةُ مِنْهُ مِبْيَعٌ مِبْيَعَانِ مَبَايِعُ مِبْيَعَةٌ مِبْيَعَتَانِ مَبَايِعُ مِبْيَاعٌ مِبْيَاعَانِ مَبَايِيْعُ وَأَفْعَلُ التَّفْضِيْلِ مِنْهُ أَبْيَعُ أَبْيَعَانِ أَبْيَعُوْنَ وَ أَبَايِعُ وَالْمُؤَنَّثُ مِنْهُ بُوْعَى وَ بُوْعَيَانِ وَ ⟨?⟩ وَبُوْعَيَاتٌ",
+    "columns": ["madi", "madi-passive", "mudari", "mudari-passive", "amr", "nahy"],
+    "rows": {
+      "he": {"madi": "بَاعَ", "madi-passive": "بِيْعَ", "mudari": "يَبِيْعُ", "mudari-passive": "يُبَاعُ", "amr": "لِيَبِعْ", "nahy": "لاَ يَبِعْ"},
+      "they two (m)": {"madi": "بَاعَا", "madi-passive": "بِيْعَا", "mudari": "يَبِيْعَانِ", "mudari-passive": "يُبَاعَانِ", "amr": "لِيَبِيْعَا", "nahy": "لاَ يَبِيْعَا"},
+      "they (m)": {"madi": "بَاعُوْا", "madi-passive": "بِيْعُوْا", "mudari": "يَبِيْعُوْنَ", "mudari-passive": "يُبَاعُوْنَ", "amr": "لِيَبِيْعُوْا", "nahy": "لاَ يَبِيْعُوْا"},
+      "she": {"madi": "بَاعَتْ", "madi-passive": "بِيْعَتْ", "mudari": "تَبِيْعُ", "mudari-passive": "تُبَاعُ", "amr": "لِتَبِعْ", "nahy": "لاَ تَبِعْ"},
+      "they two (f)": {"madi": "بَاعَتَا", "madi-passive": "بِيْعَتَا", "mudari": "تَبِيْعَانِ", "mudari-passive": "تُبَاعَانِ", "amr": "لِتَبِيْعَا", "nahy": "لاَ تَبِيْعَا"},
+      "they (f)": {"madi": "بِعْنَ", "madi-passive": "بِعْنَ", "mudari": "يَبِعْنَ", "mudari-passive": "يُبَعْنَ", "amr": "لِيَبِعْنَ", "nahy": "لاَ يَبِعْنَ"},
+      "you (m)": {"madi": "بِعْتَ", "madi-passive": "بِعْتَ", "mudari": "تَبِيْعُ", "mudari-passive": "تُبَاعُ", "amr": "بِعْ", "nahy": "لاَ تَبِعْ"},
+      "you two (m)": {"madi": "بِعْتُمَا", "madi-passive": "بِعْتُمَا", "mudari": "تَبِيْعَانِ", "mudari-passive": "تُبَاعَانِ", "amr": "بِيْعَا", "nahy": "لاَ تَبِيْعَا"},
+      "you all (m)": {"madi": "بِعْتُمْ", "madi-passive": "بِعْتُمْ", "mudari": "تَبِيْعُوْنَ", "mudari-passive": "تُبَاعُوْنَ", "amr": "بِيْعُوْا", "nahy": "لاَ تَبِيْعُوْا"},
+      "you (f)": {"madi": "بِعْتِ", "madi-passive": "بِعْتِ", "mudari": "تَبِيْعِيْنَ", "mudari-passive": "تُبَاعِيْنَ", "amr": "بِيْعِيْ", "nahy": "لاَ تَبِيْعِيْ"},
+      "you two (f)": {"madi": "بِعْتُمَا", "madi-passive": "بِعْتُمَا", "mudari": "تَبِيْعَانِ", "mudari-passive": "تُبَاعَانِ", "amr": "بِيْعَا", "nahy": "لاَ تَبِيْعَا"},
+      "you all (f)": {"madi": "بِعْتُنَّ", "madi-passive": "بِعْتُنَّ", "mudari": "تَبِعْنَ", "mudari-passive": "تُبَعْنَ", "amr": "بِعْنَ", "nahy": "لاَ تَبِعْنَ"},
+      "I": {"madi": "بِعْتُ", "madi-passive": "بِعْتُ", "mudari": "أَبِيْعُ", "mudari-passive": "أُبَاعُ", "amr": "لِأَبِعْ", "nahy": "لاَ أَبِعْ"},
+      "we": {"madi": "بِعْنَا", "madi-passive": "بِعْنَا", "mudari": "نَبِيْعُ", "mudari-passive": "نُبَاعُ", "amr": "لِنَبِعْ", "nahy": "لاَ نَبِعْ"}
+    },
+    "notes": "Heading and sarf sagheer on printed p229; the tables run p230-p233 and the derived nouns on p234. Columns kept here are the six the id list allows. The book also prints, with no id available: تأكيد النفي مع لن (معروف/مجهول) on p230, النفي مع لم (معروف/مجهول) and المضارع مع النون الثقيلة (معروف/مجهول) on p231, الأمر المجهول and الأمر مع النون الثقيلة (معروف/مجهول) on p232, النهي المجهول and النهي مع النون الثقيلة (معروف/مجهول) on p233, plus run-on lists of the نون خفيفة forms under each of p231-p233. Note the passive imperative is printed with the ل prefix for the 2nd person too: لِتُبَعْ، لِتُبَاعَا، لِتُبَاعُوْا، لِتُبَاعِيْ، لِتُبَعْنَ; both readers had guessed بُعْ / بُوْعَا there and the page disproves it. جمع مؤنث with النون الثقيلة is لَيَبِعْنَانِّ / لَتَبِعْنَانِّ (active) and لَيُبَعْنَانِّ / لَتُبَعْنَانِّ (passive). Derived nouns on p234: اسم الفاعل بَائِعٌ بَائِعَانِ بَائِعُوْنَ بَائِعَةٌ بَائِعَتَانِ بَائِعَاتٌ; اسم المفعول مَبِيْعٌ مَبِيْعَانِ مَبِيْعُوْنَ مَبِيْعَةٌ مَبِيْعَتَانِ مَبِيْعَاتٌ; اسم الظرف مَبِيْعٌ مَبِيْعَانِ مَبَايِعُ (feminine cells blank); اسم الآلة مِبْيَعٌ مِبْيَعَانِ مَبَايِعُ مِبْيَعَةٌ مِبْيَعَتَانِ مَبَايِعُ مِبْيَاعٌ مِبْيَاعَانِ مَبَايِيْعُ. Analysis on p229: اسم الظرف and اسم المفعول coincide as مَبِيْعٌ though the originals were مَبْيُوْعٌ and مَبْيِعٌ.",
+    "rules_cited": [7, 8, 9, 17]
+  },
+  {
+    "page": 235,
+    "type": "أجوف واوي",
+    "bab": "باب سمع",
+    "root": "خ و ف",
+    "sarf_sagheer": "خَافَ يَخَافُ خَوْفاً فَهُوَ خَائِفٌ وَ خِيْفَ يُخَافُ خَوْفاً فَهُوَ مَخُوْفٌ اَلْأَمْرُ مِنْهُ خَفْ وَالنَّهْيُ عَنْهُ لاَ تَخَفْ الظَّرْفُ مِنْهُ مَخَافٌ",
+    "columns": ["madi", "madi-passive", "mudari", "mudari-passive", "amr"],
+    "rows": {
+      "he": {"madi": "خَافَ", "madi-passive": "خِيْفَ", "mudari": "يَخَافُ", "mudari-passive": "يُخَافُ", "amr": "لِيَخَفْ"},
+      "they two (m)": {"madi": "خَافَا", "madi-passive": "خِيْفَا", "mudari": "يَخَافَانِ", "mudari-passive": "يُخَافَانِ", "amr": "لِيَخَافَا"},
+      "they (m)": {"madi": "خَافُوْا", "madi-passive": "خِيْفُوْا", "mudari": "يَخَافُوْنَ", "mudari-passive": "يُخَافُوْنَ", "amr": "لِيَخَافُوْ"},
+      "she": {"madi": "خَافَتْ", "madi-passive": "خِيْفَتْ", "mudari": "تَخَافُ", "mudari-passive": "تُخَافُ", "amr": "لِتَخَفْ"},
+      "they two (f)": {"madi": "خَافَتَا", "madi-passive": "خِيْفَتَا", "mudari": "تَخَافَانِ", "mudari-passive": "تُخَافَانِ", "amr": "لِتَخَافَا"},
+      "they (f)": {"madi": "خِفْنَ", "madi-passive": "خِفْنَ", "mudari": "يَخَفْنَ", "mudari-passive": "يُخَفْنَ", "amr": "لِيَخَفْنَ"},
+      "you (m)": {"madi": "خِفْتَ", "madi-passive": "خِفْتَ", "mudari": "تَخَافُ", "mudari-passive": "تُخَافُ", "amr": "خَفْ"},
+      "you two (m)": {"madi": "خِفْتُمَا", "madi-passive": "خِفْتُمَا", "mudari": "تَخَافَانِ", "mudari-passive": "تُخَافَانِ", "amr": "خَافَا"},
+      "you all (m)": {"madi": "خِفْتُمْ", "madi-passive": "خِفْتُمْ", "mudari": "تَخَافُوْنَ", "mudari-passive": "تُخَافُوْنَ", "amr": "خَافُوْ"},
+      "you (f)": {"madi": "خِفْتِ", "madi-passive": "خِفْتِ", "mudari": "تَخَافِيْنَ", "mudari-passive": "تُخَافِيْنَ", "amr": "خَافِيْ"},
+      "you two (f)": {"madi": "خِفْتُمَا", "madi-passive": "خِفْتُمَا", "mudari": "تَخَافَانِ", "mudari-passive": "تُخَافَانِ", "amr": "خَافَا"},
+      "you all (f)": {"madi": "خِفْتُنَّ", "madi-passive": "خِفْتُنَّ", "mudari": "تَخَفْنَ", "mudari-passive": "تُخَفْنَ", "amr": "خَفْنَ"},
+      "I": {"madi": "خِفْتُ", "madi-passive": "خِفْتُ", "mudari": "أَخَافُ", "mudari-passive": "أُخَافُ", "amr": "لِأَخَفْ"},
+      "we": {"madi": "خِفْنَا", "madi-passive": "خِفْنَا", "mudari": "نَخَافُ", "mudari-passive": "نُخَافُ", "amr": "لِنَخَفْ"}
+    },
+    "notes": "Heading and sarf sagheer on p235; the single table is on p236 and prints six columns: الماضي المعروف، الماضي المجهول، المضارع المعروف، المضارع المجهول، الأمر المعروف، الأمر المعروف مع النون الثقيلة. The last has no column id here; its forms are لِيَخَافَنَّ، لِيَخَافَانِّ، لِيَخَافُنَّ، لِتَخَافَنَّ، لِتَخَافَانِّ، لِيَخَفْنَانِّ، خَافَنَّ، خَافَانِّ، خَافُنَّ، خَافِنَّ، خَافَانِّ، خَفْنَانِّ، لِأَخَافَنَّ، لِنَخَافَنَّ. The ماضي مجهول is printed with kasra throughout (خِفْتَ، خِفْنَ), not damma. The book prints the masculine plural imperative without the final alif: لِيَخَافُوْ، خَافُوْ (checked at high zoom). p235 also explains that in أجوف the عين الكلمة stays in the أمر (قُوْلَا قُوْلُوْا قُوْلِيْ، بِيْعَا بِيْعُوْا بِيْعِيْ، خَافَا خَافُوْا خَافِيْ، and with the nuns قُوْلَنَّ بِيْعَنَّ خَافَنَّ), while in مهموز العين it is deleted (زِرَا زِرُوْا زِرِيْ زِرَنَّ، سَلَا سَلُوْا سَلِيْ سَلَنَّ).",
+    "rules_cited": []
+  },
+  {
+    "page": 235,
+    "type": "أجوف يائي",
+    "bab": "باب سمع",
+    "root": "ن ي ل",
+    "sarf_sagheer": "نَالَ يَنَالُ نَيْلاً فَهُوَ نَائِلٌ وَ نِيْلَ يُنَالُ نَيْلاً فَهُوَ مَنِيْلٌ اَلْأَمْرُ مِنْهُ نَلْ وَالنَّهْيُ عَنْهُ لاَ تَنَلْ الظَّرْفُ مِنْهُ مَنَالٌ",
+    "columns": [],
+    "rows": {},
+    "notes": "Heading and one-line sarf sagheer only; the book prints no table for النيل.",
+    "rules_cited": []
+  },
+  {
+    "page": 237,
+    "type": "أجوف واوي",
+    "bab": "باب إفتعال",
+    "root": "ق و د",
+    "sarf_sagheer": "إِقْتَادَ يَقْتَادُ إِقْتِيَاداً فَهُوَ مُقْتَادٌ وَ أُقْتِيْدَ يُقْتَادُ إِقْتِيَاداً فَهُوَ مُقْتَادٌ اَلْأَمْرُ مِنْهُ إِقْتَدْ وَالنَّهْيُ عَنْهُ لاَ تَقْتَدْ الظَّرْفُ مِنْهُ مُقْتَادٌ",
+    "columns": [],
+    "rows": {},
+    "notes": "Heading, sarf sagheer and Analysis only; no table. Analysis: (1) اسم الفاعل and اسم المفعول both surface as مُقْتَادٌ though the originals were مُقْتَوِدٌ and مُقْتَوَدٌ, and اسم الظرف matches اسم المفعول as in every غير ثلاثي مجرد باب. (2) the ماضي تثنية/جمع مذكر غائب إِقْتَادَا / إِقْتَادُوْا coincide with the أمر تثنية/جمع مذكر حاضر, but the ماضي originals were إِقْتَوَدَا / إِقْتَوَدُوْا and the أمر originals إِقْتَوِدَا / إِقْتَوِدُوْا; the أمر is built from the مضارع تَقْتَوِدَانِ, so the و is مكسور.",
+    "rules_cited": []
+  },
+  {
+    "page": 238,
+    "type": "أجوف يائي",
+    "bab": "باب إفتعال",
+    "root": "خ ي ر",
+    "sarf_sagheer": "إِخْتَارَ يَخْتَارُ إِخْتِيَاراً فَهُوَ مُخْتَارٌ وَ أُخْتِيْرَ يُخْتَارُ إِخْتِيَاراً فَهُوَ مُخْتَارٌ اَلْأَمْرُ مِنْهُ إِخْتَرْ وَالنَّهْيُ عَنْهُ لاَ تَخْتَرْ الظَّرْفُ مِنْهُ مُخْتَارٌ",
+    "columns": [],
+    "rows": {},
+    "notes": "Heading and sarf sagheer only; the book says this باب is similar to the أجوف واوي إِقْتَادَ, so no table is printed.",
+    "rules_cited": []
+  },
+  {
+    "page": 238,
+    "type": "أجوف واوي",
+    "bab": "باب إستفعال",
+    "root": "ق و م",
+    "sarf_sagheer": "إِسْتَقَامَ يَسْتَقِيْمُ إِسْتِقَامَةً فَهُوَ مُسْتَقِيْمٌ وَ أُسْتُقِيْمَ يُسْتَقَامُ إِسْتِقَامَةً فَهُوَ مُسْتَقَامٌ اَلْأَمْرُ مِنْهُ إِسْتَقِمْ وَالنَّهْيُ عَنْهُ لاَ تَسْتَقِمْ الظَّرْفُ مِنْهُ مُسْتَقَامٌ",
+    "columns": [],
+    "rows": {},
+    "notes": "Heading, sarf sagheer and Analysis only; no table. Analysis: (1) إِسْتَقَامَ was إِسْتَقْوَمَ, changed by rule 8. (2) يَسْتَقِيْمُ was يَسْتَقْوِمُ, changed by rules 8 and 3. (3) إِسْتِقْوَامًا became إِسْتِقَامَةً by rule 8. (4) مُسْتَقِيْمٌ changes like يَسْتَقِيْمُ. (5) the عين الكلمة is deleted in the أمر, نهي and مضارع مجزوم: إِسْتَقِمْ، لاَ تَسْتَقِمْ، لَمْ يَسْتَقِمْ. (6, printed on p239) with النون الثقيلة or الخفيفة the deleted letter returns: إِسْتَقِيْمَنَّ، لاَ تَسْتَقِيْمَنَّ.",
+    "rules_cited": [3, 8]
+  },
+  {
+    "page": 239,
+    "type": "أجوف يائي",
+    "bab": "باب إستفعال",
+    "root": "خ ي ر",
+    "sarf_sagheer": "إِسْتَخَارَ يَسْتَخِيْرُ إِسْتِخَارَةً فَهُوَ مُسْتَخِيْرٌ وَ أُسْتُخِيْرَ يُسْتَخَارُ إِسْتِخَارَةً فَهُوَ مُسْتَخَارٌ اَلْأَمْرُ مِنْهُ إِسْتَخِرْ وَالنَّهْيُ عَنْهُ لاَ تَسْتَخِرْ الظَّرْفُ مِنْهُ مُسْتَخَارٌ",
+    "columns": [],
+    "rows": {},
+    "notes": "Heading and sarf sagheer only; the book says this باب is similar to إِسْتَقَامَ, so no table is printed.",
+    "rules_cited": []
+  },
+  {
+    "page": 239,
+    "type": "أجوف واوي",
+    "bab": "باب إفعال",
+    "root": "ق و م",
+    "sarf_sagheer": "أَقَامَ يُقِيْمُ إِقَامَةً فَهُوَ مُقِيْمٌ وَ أُقِيْمَ يُقَامُ إِقَامَةً فَهُوَ مُقَامٌ اَلْأَمْرُ مِنْهُ أَقِمْ وَالنَّهْيُ عَنْهُ لاَ تُقِمْ الظَّرْفُ مِنْهُ مُقَامٌ",
+    "columns": [],
+    "rows": {},
+    "notes": "Heading and sarf sagheer only; the book says the changes of this باب are similar to those of إِسْتَقَامَ, so no table is printed. Printed p240 is Exercise 47 (no paradigm): conjugate دَانَ يَدِيْنُ، زَاغَ يَزِيْغُ، رَابَ يَرِيْبُ، حَاشَ يَجِيْشُ، فَاضَ يَفِيْضُ, and name the صيغة of تَمَيَّزُوْا، لَنْ يَتَقَايَضْنَ، لَمْ تَسْتَفِيْضُوْا، لَتَجِيْشَنَّ، رِيْيْ.",
+    "rules_cited": []
+  }
+]

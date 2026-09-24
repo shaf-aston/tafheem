@@ -1,0 +1,117 @@
+{
+  "id": "huroof-mushabbaha-ws",
+  "title": "Al-huroof al-mushabbaha bil-fi'l (worksheet)",
+  "arabic": "الحروف المشبهة بالفعل",
+  "tamreen": [],
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "rule",
+      "page": 0,
+      "ar": "",
+      "en": "Fill in the I'iraab; write the analysis (Tarkeeb) and translation for the following Sentences. Include the BTM wherever it is required."
+    },
+    {
+      "id": "p00-2",
+      "kind": "example",
+      "page": 0,
+      "ar": "{{term|كَأَنَّ}} الْكِتَاب أُسْتَاذ",
+      "en": "As if the book is a teacher."
+    },
+    {
+      "id": "p00-3",
+      "kind": "example",
+      "page": 0,
+      "ar": "{{term|لَيْتَ}} الْقَمَر طَالِع",
+      "en": "Would that the moon were rising."
+    },
+    {
+      "id": "p00-4",
+      "kind": "example",
+      "page": 0,
+      "ar": "اَلْمُسَافِر قَادِم {{term|لٰكِنَّهُ}} مُتَأَخِّر",
+      "en": "The traveller is coming, but he is late."
+    },
+    {
+      "id": "p00-5",
+      "kind": "example",
+      "page": 0,
+      "ar": "{{term|لَعَلِّـيْ}} أَرْجِعُ إِلٰى النَّاسِ",
+      "en": "Perhaps I will return to the people."
+    },
+    {
+      "id": "p01-1",
+      "kind": "example",
+      "page": 1,
+      "ar": "{{term|إِنَّ}} الله عَلٰى كُلّ شَيْء قَدِيْر",
+      "en": "Indeed Allah is powerful over everything."
+    },
+    {
+      "id": "p01-2",
+      "kind": "example",
+      "page": 1,
+      "ar": "{{term|إِنَّـمَا}} يَأمُرُ كُمْ بِالسُّوْء",
+      "en": "He only commands you with evil."
+    },
+    {
+      "id": "p01-3",
+      "kind": "example",
+      "page": 1,
+      "ar": "مَا كَفَرَ سُلَيْمَان وَ {{term|لٰكِنَّ}} الشَّيَاطِين كَفَرُوْا",
+      "en": "Sulaymaan did not disbelieve, but the devils disbelieved."
+    },
+    {
+      "id": "p01-4",
+      "kind": "example",
+      "page": 1,
+      "ar": "{{term|لَعَلَّـكُمْ}} تَشْكُرُوْنَ",
+      "en": "Perhaps you will be grateful."
+    },
+    {
+      "id": "p02-1",
+      "kind": "example",
+      "page": 2,
+      "ar": "أَعْرِفُ {{term|أَنَّ}} الْإِمْتِحَان قَرِيْب",
+      "en": "I know that the exam is near."
+    },
+    {
+      "id": "p02-2",
+      "kind": "example",
+      "page": 2,
+      "ar": "يَسُرُّ نِيْ {{term|أَنّ}} زَيْدا إِنْسَان",
+      "en": "It pleases me that Zayd is a human being."
+    },
+    {
+      "id": "p02-3",
+      "kind": "example",
+      "page": 2,
+      "ar": "غَضِبْتُ {{term|بِأَنَّ}} الْبَاب مَكْسُوْر",
+      "en": "I became angry that the door is broken."
+    },
+    {
+      "id": "p02-4",
+      "kind": "example",
+      "page": 2,
+      "ar": "إِعْلَمُوْا {{term|أَنَّ}} الله مَعَ الْمُتَّقِيْن",
+      "en": "Know that Allah is with the God-fearing."
+    },
+    {
+      "id": "p03-1",
+      "kind": "rule",
+      "page": 3,
+      "ar": "",
+      "en": "Using the HMF, translate the following into Arabic then write the analysis (Tarkeeb) for your translation."
+    },
+    {
+      "id": "p03-2",
+      "kind": "list",
+      "page": 3,
+      "items": [
+        "Khalid informed me that his son woke up for Fajr.",
+        "Indeed the believers will enter Jannah.",
+        "Perhaps Allah will make it easy for me.",
+        "I study at (in) As-Suffa Institue, however it is challenging."
+      ]
+    }
+  ]
+}

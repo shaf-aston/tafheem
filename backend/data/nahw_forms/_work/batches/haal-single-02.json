@@ -1,0 +1,363 @@
+{
+ "batch": "haal-single-02",
+ "questions": [
+  {
+   "id": "haal/statements/9",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "9",
+    "images": [
+     "q010.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "If the حال is a مفرد, then it can be...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If the حال is a مفرد, then it can be...",
+     "kind": "choose_all",
+     "options": [
+      "a صفة مشبهة.",
+      "a شبه الجملة.",
+      "an اسم الظرف.",
+      "an اسم الفاعل.",
+      "an اسم المبالغة.",
+      "an اسم الآلة.",
+      "an اسم المفعول.",
+      "an اسم التفضيل.",
+      "a مصدر."
+     ],
+     "answer": [
+      "an اسم الفاعل.",
+      "an اسم المفعول.",
+      "a صفة مشبهة.",
+      "an اسم المبالغة.",
+      "an اسم التفضيل.",
+      "a مصدر.",
+      "a شبه الجملة."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "a شبه الجملة.",
+      "an اسم الفاعل.",
+      "an اسم المبالغة.",
+      "a مصدر."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/10",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "10",
+    "images": [
+     "q011.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "The حال and ذو الحال must correlate in...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "The حال and ذو الحال must correlate in...",
+     "kind": "choose_all",
+     "options": [
+      "(D) Definitenes",
+      "(I) I'raab",
+      "(N) Number",
+      "(G) Gender"
+     ],
+     "answer": [
+      "(N) Number",
+      "(G) Gender"
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "(N) Number",
+      "(G) Gender"
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Option text \"(D) Definitenes\" is printed exactly this way on the slide; may be a source typo for \"Definiteness\"."
+   ]
+  },
+  {
+   "id": "haal/statements/11",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "11",
+    "images": [
+     "q012.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "If the ذو الحال is nonsensical plural, the حال...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If the ذو الحال is nonsensical plural, the حال...",
+     "kind": "choose_all",
+     "options": [
+      "will correlate in being plural and feminine or masculine depending on the gender of the nonsensical plural ذو الحال..",
+      "will be plural feminine.",
+      "will be single feminine.",
+      "will be single masculine."
+     ],
+     "answer": [
+      "will be single feminine."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "will be single feminine."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/12",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "12",
+    "images": [
+     "q013.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "If the حال is a جملة, then it must be a...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "If the حال is a جملة, then it must be a...",
+     "kind": "choose_all",
+     "options": [
+      "جملة إنشائية.",
+      "جملة فعلية خبرية.",
+      "جملة إسمية خبرية."
+     ],
+     "answer": [
+      "جملة فعلية خبرية.",
+      "جملة إسمية خبرية."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "جملة فعلية خبرية.",
+      "جملة إسمية خبرية."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/13",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "13",
+    "images": [
+     "q014.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "A رابط is brought in a حال when...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "A رابط is brought in a حال when...",
+     "kind": "choose_all",
+     "options": [
+      "the حال is a جملة.",
+      "the حال is a مفرد."
+     ],
+     "answer": [
+      "the حال is a جملة."
+     ],
+     "answer_source": "marked_correct",
+     "my_response": [
+      "the حال is a جملة."
+     ],
+     "points": "1/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/14",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "14",
+    "images": [
+     "q015.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "(continuing from Q13) In such a case...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "(continuing from Q13) In such a case...",
+     "kind": "choose_all",
+     "options": [
+      "the حال can contain a رابط.",
+      "the حال must contain a رابط."
+     ],
+     "answer": [
+      "the حال can contain a رابط."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "the حال must contain a رابط."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/16",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "16",
+    "images": [
+     "q016.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "A فعل مضارع can be preceded by...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "A فعل مضارع can be preceded by...",
+     "kind": "choose_all",
+     "options": [
+      "the word لا.",
+      "the word ما.",
+      "the word لَمَّا.",
+      "the word سوف.",
+      "the word لم.",
+      "the word لن.",
+      "the letter س.",
+      "the word قد."
+     ],
+     "answer": [
+      "the word قد.",
+      "the word لم.",
+      "the word ما.",
+      "the word لا.",
+      "the word لَمَّا."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "the word ما.",
+      "the word لَمَّا.",
+      "the word لم.",
+      "the word لن.",
+      "the word قد."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "haal/statements/15",
+   "category": "iraab",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Complete the following statements",
+    "number": "15",
+    "images": [
+     "q017.png"
+    ]
+   },
+   "type": "choose_all_statement",
+   "instructions": "Complete the following statements by choosing ALL that is applicable from the options below.\n\nTip: Read the statements slowly and clearly whilst understanding the scenario. Then search for the rule in your notes, confirm it and then respond.",
+   "prompt": "A فعل مضارع must always contain a رابط...",
+   "sentences": [],
+   "parts": [
+    {
+     "label": null,
+     "ask": "A فعل مضارع must always contain a رابط...",
+     "kind": "choose_all",
+     "options": [
+      "except when preceded by لن.",
+      "except when preceded by سوف.",
+      "except when preceded by لم.",
+      "except when preceded by قد.",
+      "except when preceded by لا."
+     ],
+     "answer": [
+      "except when preceded by لم."
+     ],
+     "answer_source": "correct_answer_shown",
+     "my_response": [
+      "except when preceded by لن.",
+      "except when preceded by لم.",
+      "except when preceded by قد."
+     ],
+     "points": "0/1",
+     "feedback": null
+    }
+   ],
+   "flags": []
+  }
+ ]
+}

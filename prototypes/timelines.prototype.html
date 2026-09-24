@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROTOTYPE · Timelines</title>
+<!--
+  PROTOTYPE, throwaway. Question: what should a zoomable timeline of the Prophets, the Seerah,
+  the signs of the Hour, the grave and the Day of Judgement look like?
+  Six variants on one page, switched with ?variant=A|B|C|D|E|F or the bar at the bottom (or the arrow keys).
+  Sample data only: every source is unchecked until a winner is folded into the app.
+-->
+<style>
+  :root {
+    --bg: #faf7f0; --surface: #fffdf8; --ink: #2b2620; --muted: #6f665a; --line: #e2d9c8;
+    --accent: #0f766e; --accent-soft: #d7efec; --unseen: #5b4b8a; --unseen-soft: #e9e4f5;
+    --warn: #8a5a00; --warn-soft: #fbeccb; --map-land: #efe4cc; --map-water: #cfe3ea;
+    --bar-bg: #111; --bar-ink: #fff;
+    --r: 10px; --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 40px;
+    --t-sm: 0.8rem; --t-md: 0.95rem; --t-lg: 1.2rem; --t-xl: 1.6rem;
+    --ease: 250ms ease;
+    font-family: system-ui, "Segoe UI", sans-serif; color: var(--ink);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17150f; --surface: #221f18; --ink: #efe8da; --muted: #a99f8e; --line: #3a352b;
+      --accent: #3cc3b3; --accent-soft: #173a36; --unseen: #b3a3e6; --unseen-soft: #2c2640;
+      --warn: #f0c060; --warn-soft: #3a2e12; --map-land: #3a3326; --map-water: #1b2d33;
+      --bar-bg: #f4f1ea; --bar-ink: #111;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); padding: var(--s5) var(--s4) 120px; }
+  .wrap { max-width: 72rem; margin: 0 auto; }
+  h1 { font-size: var(--t-xl); margin: 0 0 var(--s1); }
+  .lede { color: var(--muted); margin: 0 0 var(--s5); font-size: var(--t-md); }
+  .ar { font-family: "Noto Naskh Arabic", "Traditional Arabic", serif; font-size: 1.15em; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  button:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  .badges { display: flex; flex-wrap: wrap; gap: var(--s1); margin: var(--s2) 0; }
+  .badge { font-size: var(--t-sm); padding: 2px var(--s2); border-radius: 999px; background: var(--warn-soft); color: var(--warn); border: 1px solid currentColor; }
+  .badge.src { background: transparent; color: var(--muted); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s4); }
+  .card h3 { margin: 0; font-size: var(--t-lg); }
+  .meta { color: var(--muted); font-size: var(--t-sm); margin-top: var(--s1); }
+  .srcs { margin: var(--s2) 0 0; padding-left: var(--s4); font-size: var(--t-sm); color: var(--muted); }
+  .kind-unseen { --tone: var(--unseen); --tone-soft: var(--unseen-soft); }
+  .kind-dated, .kind-undated { --tone: var(--accent); --tone-soft: var(--accent-soft); }
+  .crumbs { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; margin-bottom: var(--s3); font-size: var(--t-md); }
+  .crumbs button { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; }
+
+  /* ---------- A: River of time ---------- */
+  .river { display: flex; gap: var(--s2); min-height: 260px; }
+  .band { flex: 1 1 0; min-width: 0; border-radius: var(--r); border: 1px solid var(--line); background: var(--tone-soft); transition: flex-grow var(--ease); display: flex; flex-direction: column; padding: var(--s3); text-align: left; position: relative; overflow: hidden; }
+  .band.kind-unseen { background-image: repeating-linear-gradient(45deg, transparent 0 10px, color-mix(in srgb, var(--tone) 8%, transparent) 10px 12px); }
+  .band.open { flex-grow: 7; cursor: default; }
+  .band.shrunk { flex-grow: 0.5; }
+  .band .bname { font-weight: 600; color: var(--tone); }
+  .band.shrunk .bname { writing-mode: vertical-rl; transform: rotate(180deg); }
+  .band.shrunk .bsub, .band.shrunk .bcount { display: none; }
+  .bsub { font-size: var(--t-sm); color: var(--muted); }
+  .bcount { margin-top: auto; font-size: var(--t-sm); color: var(--muted); }
+  .axis { position: relative; flex: 1; margin: var(--s5) var(--s3) var(--s3); min-height: 150px; }
+  .axis::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 3px; background: var(--tone); border-radius: 2px; }
+  .dot { position: absolute; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; border: 3px solid var(--tone); background: var(--surface); padding: 0; }
+  .dot.on { background: var(--tone); transform: scale(1.35); }
+  .dot-label { position: absolute; font-size: 0.72rem; white-space: nowrap; transform: translateX(-50%); color: var(--ink); pointer-events: none; }
+  .dot-label.up { bottom: calc(50% + 16px); } .dot-label.down { top: calc(50% + 16px); }
+  .axis-ends { display: flex; justify-content: space-between; font-size: var(--t-sm); color: var(--muted); }
+  .a-detail { margin-top: var(--s4); }
+  @media (max-width: 640px) {
+    .river { flex-direction: column; }
+    .band.shrunk { flex-grow: 0; } .band.shrunk .bname { writing-mode: horizontal-tb; transform: none; }
+    .dot-label { display: none; }
+  }
+
+  /* ---------- B: Journey path ---------- */
+  .road { position: relative; max-width: 46rem; margin: 0 auto; }
+  .road::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; border-left: 4px dashed var(--line); transform: translateX(-2px); }
+  .mile { position: relative; text-align: center; margin: var(--s5) 0; }
+  .mile-btn { position: relative; display: inline-flex; flex-direction: column; align-items: center; gap: var(--s1); background: var(--surface); border: 3px solid var(--tone); border-radius: 999px; padding: var(--s3) var(--s5); color: var(--ink); }
+  .mile-btn .num { font-size: var(--t-sm); color: var(--tone); font-weight: 700; }
+  .mile-btn strong { font-size: var(--t-lg); }
+  .stops { list-style: none; margin: var(--s4) 0 0; padding: 0; }
+  .stop { position: relative; width: 50%; padding: 0 var(--s5) var(--s4); text-align: right; }
+  .stop:nth-child(even) { margin-left: 50%; text-align: left; }
+  .stop::after { content: ""; position: absolute; top: 10px; right: -8px; width: 14px; height: 14px; border-radius: 50%; background: var(--tone); }
+  .stop:nth-child(even)::after { right: auto; left: -6px; }
+  .stop-btn { background: none; border: 0; padding: 0; text-align: inherit; font-weight: 600; }
+  .stop-btn .when { display: block; font-weight: 400; font-size: var(--t-sm); color: var(--muted); }
+  .stop .card { margin-top: var(--s2); text-align: left; }
+  .start-end { text-align: center; color: var(--muted); font-size: var(--t-sm); position: relative; background: var(--bg); display: block; width: max-content; margin: 0 auto; padding: var(--s2); }
+  @media (max-width: 640px) {
+    .road::before { left: 12px; }
+    .mile { text-align: left; padding-left: var(--s5); }
+    .stop, .stop:nth-child(even) { width: auto; margin-left: 0; text-align: left; padding-left: var(--s6); }
+    .stop::after, .stop:nth-child(even)::after { left: 6px; right: auto; }
+  }
+
+  /* ---------- C: Map + scrubber ---------- */
+  .seg { display: flex; flex-wrap: wrap; gap: var(--s1); margin-bottom: var(--s3); }
+  .seg button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: var(--s1) var(--s3); }
+  .seg button[aria-pressed="true"] { background: var(--tone); color: var(--surface); border-color: var(--tone); }
+  .c-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--s4); align-items: start; }
+  @media (max-width: 800px) { .c-grid { grid-template-columns: minmax(0, 1fr); } }
+  .stage { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s2); }
+  .stage svg { display: block; width: 100%; height: auto; max-height: 55vh; }
+  .stage-note { font-size: var(--t-sm); color: var(--muted); padding: var(--s1) var(--s2); }
+  .pin { cursor: pointer; }
+  .scrub { margin-top: var(--s3); }
+  .scrub input { width: 100%; accent-color: var(--tone); }
+  .scrub-labels { display: flex; justify-content: space-between; font-size: var(--t-sm); color: var(--muted); }
+  .offmap { font-size: var(--t-sm); color: var(--warn); margin-top: var(--s2); }
+  .chain { overflow-x: auto; }
+
+  /* ---------- D: River, top to bottom (A's zoom, B's direction, C's map) ---------- */
+  .vriver { display: flex; flex-direction: column; }
+  .vlink { align-self: center; width: 3px; height: var(--s4); background: var(--line); }
+  .vband { display: block; width: 100%; text-align: left; border: 1px solid var(--line); border-radius: var(--r); background: var(--tone-soft); padding: var(--s4); color: var(--ink); transition: padding var(--ease); }
+  .vband.kind-unseen { background-image: repeating-linear-gradient(45deg, transparent 0 10px, color-mix(in srgb, var(--tone) 8%, transparent) 10px 12px); }
+  .vband.shrunk { padding: var(--s2) var(--s4); }
+  .vband.shrunk .bsub { display: none; }
+  .vband .vhead { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); align-items: baseline; }
+  .vband .vhead .bcount { margin: 0 0 0 auto; }
+  .vband.open { cursor: default; }
+  .vgrid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--s5); margin-top: var(--s4); align-items: start; }
+  .vside { position: sticky; top: var(--s4); display: flex; flex-direction: column; gap: var(--s3); }
+  .vaxis { list-style: none; margin: 0; padding: 0 0 0 var(--s5); border-left: 3px solid var(--tone); }
+  .vitem { position: relative; }
+  .vitem .gap { display: block; font-size: var(--t-sm); color: var(--muted); font-style: italic; }
+  .vitem button { position: relative; display: block; width: 100%; text-align: left; background: none; border: 0; padding: var(--s1) 0; }
+  .vitem button::before { content: ""; position: absolute; left: calc(-1 * var(--s5) - 10px); top: 8px; width: 17px; height: 17px; border-radius: 50%; border: 3px solid var(--tone); background: var(--surface); }
+  .vitem.on button::before { background: var(--tone); transform: scale(1.3); }
+  .vitem.on button { font-weight: 700; }
+  .vitem .when { display: block; font-weight: 400; font-size: var(--t-sm); color: var(--muted); }
+  .vitem .inline-card { display: none; margin: var(--s2) 0; }
+  @media (max-width: 800px) {
+    .vgrid { grid-template-columns: minmax(0, 1fr); }
+    .vside { position: static; order: -1; }
+    .vside .card { display: none; }
+    .vitem .inline-card { display: block; }
+  }
+
+  /* ---------- E and F: events at the same time (Seerah only) ---------- */
+  .pnote { font-size: var(--t-sm); color: var(--muted); margin: 0 0 var(--s3); max-width: 46rem; }
+  .erows { display: grid; column-gap: var(--s2); }
+  .ecell { padding-block: var(--s1); }
+  .edot { position: relative; border-left: 3px solid var(--tone); margin-left: 10px; }
+  .edot::before { content: ""; position: absolute; left: -10px; top: calc(var(--pad, 0px) + 12px); width: 17px; height: 17px; border-radius: 50%; border: 3px solid var(--tone); background: var(--surface); }
+  .ebar { border-radius: 999px; background: color-mix(in srgb, var(--warn) 35%, transparent); border: 2px solid var(--warn); margin-block: var(--s2); display: flex; align-items: center; justify-content: center; }
+  .ebar span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--ink); white-space: nowrap; }
+  .egap { display: block; font-size: var(--t-sm); color: var(--muted); font-style: italic; }
+  .eside { display: flex; flex-wrap: wrap; gap: var(--s2); }
+  .echip { flex: 1 1 10rem; text-align: left; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: var(--s2) var(--s3); }
+  .echip[aria-expanded="true"] { border-color: var(--tone); box-shadow: inset 0 0 0 1px var(--tone); }
+  .echip .when { display: block; font-size: var(--t-sm); color: var(--muted); }
+  .etogether { font-size: 0.7rem; color: var(--tone); font-weight: 700; flex-basis: 100%; }
+  .flanes { display: grid; grid-template-columns: 4.5rem repeat(3, minmax(0, 1fr)); column-gap: var(--s2); }
+  .fhead { position: sticky; top: 0; background: var(--bg); font-size: var(--t-sm); font-weight: 700; color: var(--tone); padding: var(--s2) 0; border-bottom: 2px solid var(--line); z-index: 1; }
+  .fyear { font-size: var(--t-sm); color: var(--muted); border-right: 3px solid var(--tone); padding: var(--s2) var(--s2) var(--s2) 0; text-align: right; }
+  .fcol { padding: var(--s1) 0; border-left: 1px dashed var(--line); padding-left: var(--s2); display: flex; flex-direction: column; gap: var(--s1); }
+  .fbar { margin-left: var(--s2); border-left: 6px solid var(--warn); padding-left: var(--s2); font-size: 0.72rem; color: var(--warn); }
+  @media (max-width: 520px) {
+    .eside { flex-direction: column; }
+    .flanes { grid-template-columns: 3rem repeat(3, minmax(0, 1fr)); font-size: 0.8rem; }
+    .echip { padding: var(--s1) var(--s2); }
+  }
+
+  /* ---------- Switcher (not part of the design) ---------- */
+  .proto-bar { position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--bar-bg); color: var(--bar-ink); border-radius: 999px; box-shadow: 0 6px 24px rgb(0 0 0 / .35); display: flex; align-items: center; gap: var(--s2); padding: var(--s1) var(--s2); z-index: 10; max-width: calc(100vw - 32px); }
+  .proto-bar button { background: none; border: 0; color: inherit; font-size: 1.4rem; width: 40px; height: 40px; border-radius: 50%; }
+  .proto-bar .lab { text-align: center; line-height: 1.2; min-width: 0; }
+  .proto-bar .lab b { display: block; font-size: var(--t-md); }
+  .proto-bar .lab span { display: block; font-size: 0.7rem; opacity: .7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Timelines</h1>
+  <p class="lede">From Adam to the Garden. Tap a stretch of time to open it, tap an event to read it. <b>Prototype with sample data:</b> sources below are not yet checked.</p>
+  <main id="app"></main>
+</div>
+<nav class="proto-bar" aria-label="Prototype variant switcher">
+  <button id="prev" aria-label="Previous variant">‹</button>
+  <div class="lab"><b id="vlabel"></b><span id="vstate"></span></div>
+  <button id="next" aria-label="Next variant">›</button>
+</nav>
+
+<script>
+// ---------- Sample data (unchecked) ----------
+// flags: nodate = no date recorded, disputed = scholars differ on order, tradplace = place from tradition, not the Qur'an
+const ERAS = [
+  { id: 'prophets', name: 'The Prophets', ar: 'الأنبياء', kind: 'undated', sub: 'Adam to Isa, in order; no dates recorded', events: [
+    { id: 'adam', t: 'Adam', ar: 'آدم', when: 'No date recorded', flags: ['nodate'], loc: null, sum: 'Created and placed in the Garden; taught the names; descends to the earth as its first khalifah.', src: ['Qur\'an 2:30-37'] },
+    { id: 'nuh', t: 'Nuh', ar: 'نوح', when: 'No date recorded', flags: ['nodate', 'tradplace'], loc: [42.4, 37.4], place: 'Mount al-Judi', sum: 'Calls his people for 950 years; the flood; the ark comes to rest on al-Judi.', src: ['Qur\'an 29:14', 'Qur\'an 11:44'] },
+    { id: 'hud', t: 'Hud', ar: 'هود', when: 'No date recorded', flags: ['nodate', 'tradplace'], loc: [48.5, 16.5], place: 'al-Ahqaf', sum: 'Sent to \'Ad at the sand dunes; they are destroyed by a furious wind.', src: ['Qur\'an 46:21', 'Qur\'an 69:6-7'] },
+    { id: 'salih', t: 'Salih', ar: 'صالح', when: 'No date recorded', flags: ['nodate', 'tradplace'], loc: [37.95, 26.79], place: 'al-Hijr', sum: 'Sent to Thamud, who carved homes from mountains; they kill the she-camel.', src: ['Qur\'an 15:80', 'Qur\'an 11:61-68'] },
+    { id: 'ibrahim', t: 'Ibrahim', ar: 'إبراهيم', when: 'No date recorded', flags: ['nodate', 'tradplace'], loc: [39.83, 21.42], place: 'Makkah', sum: 'Breaks the idols, is saved from the fire, and raises the foundations of the Ka\'bah with Isma\'il.', src: ['Qur\'an 21:68-69', 'Qur\'an 2:127'] },
+    { id: 'yusuf', t: 'Yusuf', ar: 'يوسف', when: 'No date recorded', flags: ['nodate', 'tradplace'], loc: [31.25, 29.85], place: 'Egypt', sum: 'Thrown in the well, sold in Egypt, imprisoned, then placed over the storehouses of the land.', src: ['Qur\'an 12'] },
+    { id: 'musa', t: 'Musa', ar: 'موسى', when: 'No date recorded', flags: ['nodate', 'tradplace'], loc: [33.97, 28.54], place: 'Sinai', sum: 'Confronts Pharaoh, the sea is parted, and he receives the Tawrah.', src: ['Qur\'an 20:9-98', 'Qur\'an 26:63'] },
+    { id: 'dawud', t: 'Dawud and Sulayman', ar: 'داود وسليمان', when: 'No date recorded', flags: ['nodate', 'tradplace'], loc: [35.23, 31.78], place: 'Jerusalem', sum: 'Dawud is given the Zabur and iron made soft; Sulayman is given the wind and the jinn.', src: ['Qur\'an 34:10-13', 'Qur\'an 27:15-44'] },
+    { id: 'yunus', t: 'Yunus', ar: 'يونس', when: 'No date recorded', flags: ['nodate', 'tradplace'], loc: [43.15, 36.36], place: 'Nineveh', sum: 'Leaves his people, is swallowed by the whale, and returns to a people who believed.', src: ['Qur\'an 37:139-148'] },
+    { id: 'isa', t: 'Isa', ar: 'عيسى', when: 'No date recorded', flags: ['nodate', 'tradplace'], loc: [35.2, 31.7], place: 'Bethlehem', sum: 'Born to Maryam without a father; not killed nor crucified, but raised up.', src: ['Qur\'an 19:16-34', 'Qur\'an 4:157-158'] },
+  ] },
+  { id: 'seerah', name: 'The Seerah', ar: 'السيرة', kind: 'dated', sub: 'Muhammad ﷺ‎, 570 to 632 CE', events: [
+    { id: 'birth', t: 'Birth', ar: 'المولد', when: '570 CE, Year of the Elephant', yr: 570, loc: [39.83, 21.42], place: 'Makkah', sum: 'Born in Makkah in the year Abrahah\'s army came against the Ka\'bah.', src: ['Qur\'an 105', 'Ar-Raheeq al-Makhtum'] },
+    { id: 'revelation', t: 'First revelation', ar: 'بدء الوحي', when: '610 CE, age 40', yr: 610, loc: [39.86, 21.46], place: 'Cave of Hira', sum: 'Jibril comes in the cave of Hira: "Read, in the name of your Lord."', src: ['Qur\'an 96:1-5', 'Sahih al-Bukhari 3'] },
+    { id: 'abyssinia', t: 'Migration to Abyssinia', ar: 'الهجرة إلى الحبشة', when: '615 CE', yr: 615, loc: [38.7, 14.1], place: 'Abyssinia', sum: 'A group of persecuted Muslims shelter with the Negus.', src: ['Ar-Raheeq al-Makhtum'] },
+    { id: 'sorrow', t: 'Year of Sorrow', ar: 'عام الحزن', when: '619 CE', yr: 619, loc: [39.83, 21.42], place: 'Makkah', sum: 'Khadijah and Abu Talib both die.', src: ['Ar-Raheeq al-Makhtum'] },
+    { id: 'taif', t: 'Ta\'if', ar: 'الطائف', when: '619 CE', yr: 619.5, loc: [40.42, 21.27], place: 'Ta\'if', sum: 'Rejected and stoned at Ta\'if; he makes du\'a rather than curse them.', src: ['Ar-Raheeq al-Makhtum'] },
+    { id: 'isra', t: 'Isra and Mi\'raj', ar: 'الإسراء والمعراج', when: 'about 620 CE', yr: 620.5, loc: [35.23, 31.78], place: 'Jerusalem', sum: 'Night journey to al-Aqsa and ascent through the heavens; the five prayers.', src: ['Qur\'an 17:1', 'Qur\'an 53:13-18'], flags: ['disputed'] },
+    { id: 'hijrah', t: 'Hijrah', ar: 'الهجرة', when: '622 CE, year 1 AH', yr: 622, loc: [39.61, 24.47], place: 'Madinah', sum: 'Leaves Makkah with Abu Bakr, hides in the cave of Thawr, reaches Madinah.', src: ['Qur\'an 9:40'] },
+    { id: 'badr', t: 'Badr', ar: 'غزوة بدر', when: '624 CE, 2 AH', yr: 624, loc: [38.77, 23.73], place: 'Badr', sum: 'About 313 Muslims face a larger Quraysh army and win.', src: ['Qur\'an 3:123', 'Qur\'an 8:9'] },
+    { id: 'uhud', t: 'Uhud', ar: 'غزوة أحد', when: '625 CE, 3 AH', yr: 625, loc: [39.61, 24.53], place: 'Uhud', sum: 'The archers leave their post; Hamzah is martyred.', src: ['Qur\'an 3:121-122', 'Qur\'an 3:152'] },
+    { id: 'khandaq', t: 'The Trench', ar: 'غزوة الخندق', when: '627 CE, 5 AH', yr: 627, loc: [39.58, 24.46], place: 'Madinah', sum: 'The confederates besiege Madinah; a trench is dug; a wind scatters them.', src: ['Qur\'an 33:9-10'] },
+    { id: 'hudaybiyyah', t: 'Hudaybiyyah', ar: 'صلح الحديبية', when: '628 CE, 6 AH', yr: 628, loc: [39.63, 21.44], place: 'al-Hudaybiyyah', sum: 'A treaty that looks like a loss and is called a clear victory.', src: ['Qur\'an 48:1'] },
+    { id: 'khaybar', t: 'Khaybar', ar: 'غزوة خيبر', when: '628 CE, 7 AH', yr: 628.6, loc: [39.29, 25.7], place: 'Khaybar', sum: 'The fortresses of Khaybar are taken.', src: ['Ar-Raheeq al-Makhtum'] },
+    { id: 'fath', t: 'Opening of Makkah', ar: 'فتح مكة', when: '630 CE, 8 AH', yr: 630, loc: [39.83, 21.42], place: 'Makkah', sum: 'Makkah is entered almost without fighting; the idols are removed from the Ka\'bah.', src: ['Qur\'an 110', 'Qur\'an 17:81'] },
+    { id: 'tabuk', t: 'Tabuk', ar: 'غزوة تبوك', when: '630 CE, 9 AH', yr: 630.7, loc: [36.57, 28.38], place: 'Tabuk', sum: 'A long march in the heat; the hypocrites stay behind.', src: ['Qur\'an 9:38-42'] },
+    { id: 'farewell', t: 'Farewell Hajj', ar: 'حجة الوداع', when: '632 CE, 10 AH', yr: 631.8, loc: [39.98, 21.35], place: 'Arafat', sum: 'The sermon at Arafat; "Today I have perfected your religion for you."', src: ['Qur\'an 5:3'] },
+    { id: 'death', t: 'Death', ar: 'الوفاة', when: '632 CE, 11 AH', yr: 632.3, loc: [39.61, 24.47], place: 'Madinah', sum: 'Dies in the room of \'A\'ishah; Abu Bakr: "whoever worshipped Muhammad, Muhammad has died."', src: ['Qur\'an 3:144'] },
+  ] },
+  { id: 'signs', name: 'Signs of the Hour', ar: 'أشراط الساعة', kind: 'unseen', sub: 'Minor, then the ten major signs', events: [
+    { id: 'coming', t: 'The Prophet\'s coming', ar: 'بعثة النبي', when: 'Minor sign, already passed', flags: [], sum: 'His being sent is itself a sign that the Hour is near.', src: ['Qur\'an 54:1', 'Sahih al-Bukhari 6504'] },
+    { id: 'buildings', t: 'Shepherds in tall buildings', ar: 'التطاول في البنيان', when: 'Minor sign', flags: [], sum: 'Barefoot, destitute herders compete in building tall.', src: ['Sahih Muslim 8'] },
+    { id: 'mahdi', t: 'The Mahdi', ar: 'المهدي', when: 'Before the major signs', flags: ['disputed'], sum: 'A man from the Prophet\'s family fills the earth with justice.', src: ['Sunan Abi Dawud 4282'] },
+    { id: 'dajjal', t: 'The Dajjal', ar: 'الدجال', when: 'Major sign', flags: ['disputed'], sum: 'The greatest trial; he stays forty days, one like a year.', src: ['Sahih Muslim 2937'] },
+    { id: 'isa-desc', t: 'Isa descends', ar: 'نزول عيسى', when: 'Major sign', flags: ['disputed'], sum: 'Descends at the white minaret east of Damascus and kills the Dajjal.', src: ['Sahih Muslim 2937', 'Qur\'an 43:61'] },
+    { id: 'yajuj', t: 'Ya\'juj and Ma\'juj', ar: 'يأجوج ومأجوج', when: 'Major sign', flags: ['disputed'], sum: 'Released, they pour down from every height.', src: ['Qur\'an 21:96', 'Qur\'an 18:94-99'] },
+    { id: 'smoke', t: 'The Smoke', ar: 'الدخان', when: 'Major sign', flags: ['disputed'], sum: 'A smoke that covers the people.', src: ['Qur\'an 44:10-11', 'Sahih Muslim 2901'] },
+    { id: 'sun', t: 'Sun rises from the west', ar: 'طلوع الشمس من مغربها', when: 'Major sign', flags: ['disputed'], sum: 'After it, repentance is no longer accepted.', src: ['Qur\'an 6:158', 'Sahih Muslim 2901'] },
+    { id: 'beast', t: 'The Beast', ar: 'الدابة', when: 'Major sign', flags: ['disputed'], sum: 'A beast from the earth speaks to people.', src: ['Qur\'an 27:82'] },
+    { id: 'fire', t: 'The Fire from Yemen', ar: 'النار', when: 'Last major sign', flags: ['disputed'], sum: 'A fire drives people to their gathering place.', src: ['Sahih Muslim 2901'] },
+  ] },
+  { id: 'grave', name: 'Death and the Grave', ar: 'الموت والبرزخ', kind: 'unseen', sub: 'From the last breath to the Trumpet', events: [
+    { id: 'death-soul', t: 'The soul is taken', ar: 'قبض الروح', when: 'At death', flags: [], sum: 'The angel of death, put in charge of you, takes the soul.', src: ['Qur\'an 32:11', 'Qur\'an 6:93'] },
+    { id: 'questions', t: 'The three questions', ar: 'سؤال القبر', when: 'In the grave', flags: [], sum: 'Who is your Lord? What is your religion? Who is this man sent to you?', src: ['Sunan Abi Dawud 4753', 'Qur\'an 14:27'] },
+    { id: 'munkar', t: 'Munkar and Nakir', ar: 'منكر ونكير', when: 'In the grave', flags: [], sum: 'The two angels who question the dead are named.', src: ['Jami\' at-Tirmidhi 1071'] },
+    { id: 'barzakh', t: 'Barzakh', ar: 'البرزخ', when: 'Until resurrection', flags: [], sum: 'A barrier behind them until the Day they are raised.', src: ['Qur\'an 23:99-100'] },
+    { id: 'garden-pit', t: 'A garden or a pit', ar: 'روضة أو حفرة', when: 'Until resurrection', flags: [], sum: 'The grave is shown their seat morning and evening.', src: ['Qur\'an 40:46', 'Sahih al-Bukhari 1379'] },
+  ] },
+  { id: 'judgement', name: 'Day of Judgement', ar: 'يوم القيامة', kind: 'unseen', sub: 'The Trumpet to the final home', events: [
+    { id: 'trumpet', t: 'The Trumpet', ar: 'النفخ في الصور', when: 'First and second blowing', flags: [], sum: 'All in the heavens and earth fall dead, then stand up looking on.', src: ['Qur\'an 39:68'] },
+    { id: 'resurrection', t: 'Resurrection', ar: 'البعث', when: 'After the second blowing', flags: [], sum: 'From the graves they hasten to their Lord.', src: ['Qur\'an 36:51'] },
+    { id: 'gathering', t: 'The Gathering', ar: 'الحشر', when: 'The standing', flags: ['disputed'], sum: 'The sun is brought near; people stand in sweat by their deeds.', src: ['Sahih Muslim 2864'] },
+    { id: 'intercession', t: 'The Intercession', ar: 'الشفاعة', when: 'The standing', flags: ['disputed'], sum: 'People go from prophet to prophet until they reach Muhammad ﷺ‎.', src: ['Sahih al-Bukhari 4712'] },
+    { id: 'book', t: 'The Book is given', ar: 'تطاير الصحف', when: 'Reckoning', flags: ['disputed'], sum: 'Given in the right hand, or the left.', src: ['Qur\'an 69:19-25'] },
+    { id: 'scales', t: 'The Scales', ar: 'الميزان', when: 'Reckoning', flags: ['disputed'], sum: 'Just scales; not a mustard seed\'s weight is missed.', src: ['Qur\'an 21:47'] },
+    { id: 'hawd', t: 'The Pool', ar: 'الحوض', when: 'Before or after the Sirat', flags: ['disputed'], sum: 'The Prophet\'s pool; whoever drinks never thirsts again.', src: ['Qur\'an 108:1', 'Sahih al-Bukhari 6579'] },
+    { id: 'sirat', t: 'The Bridge', ar: 'الصراط', when: 'Crossing', flags: ['disputed'], sum: 'A bridge over Jahannam, crossed at the speed of one\'s deeds.', src: ['Sahih Muslim 183', 'Qur\'an 19:71-72'] },
+    { id: 'homes', t: 'Jannah or Jahannam', ar: 'الجنة والنار', when: 'Forever', flags: [], sum: 'Driven in groups to the Garden, or to the Fire; and faces that day looking at their Lord.', src: ['Qur\'an 39:71-73', 'Qur\'an 75:22-23'] },
+  ] },
+];
+
+const FLAG_TEXT = { nodate: 'No date recorded', disputed: 'Scholars differ on order', tradplace: 'Place from tradition' };
+const VARIANTS = [
+  { key: 'A', name: 'River of time', render: renderA },
+  { key: 'B', name: 'Journey path', render: renderB },
+  { key: 'C', name: 'Map and scrubber', render: renderC },
+  { key: 'D', name: 'River, top to bottom, with map', render: renderD },
+  { key: 'E', name: 'Same time: side by side', render: renderE },
+  { key: 'F', name: 'Same time: lanes by place', render: renderF },
+];
+
+// ---------- State ----------
+const params = new URLSearchParams(location.search);
+const state = { variant: VARIANTS.some(v => v.key === params.get('variant')) ? params.get('variant') : 'A', era: null, event: null, open: new Set() };
+const app = document.getElementById('app');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const eraOf = id => ERAS.find(e => e.id === id);
+const eventOf = (era, id) => era?.events.find(e => e.id === id);
+
+function badges(ev, era) {
+  const flags = [...(ev.flags || [])];
+  return `<div class="badges">${flags.map(f => `<span class="badge">${FLAG_TEXT[f]}</span>`).join('')}<span class="badge src">Sample, sources not yet checked</span></div>`;
+}
+function detail(ev, era) {
+  return `<article class="card kind-${era.kind}">
+    <h3>${esc(ev.t)} <span class="ar" lang="ar" dir="rtl">${ev.ar}</span></h3>
+    <div class="meta">${esc(ev.when)}${ev.place ? ' · ' + esc(ev.place) : ''}</div>
+    <p>${esc(ev.sum)}</p>
+    ${badges(ev, era)}
+    <ul class="srcs">${ev.src.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
+  </article>`;
+}
+
+// ---------- A: River of time ----------
+function renderA() {
+  const era = eraOf(state.era), ev = eventOf(era, state.event);
+  const crumbs = `<div class="crumbs"><button data-a="home">All time</button>${era ? `› <button data-a="era" data-id="${era.id}">${esc(era.name)}</button>` : ''}${ev ? `› <span>${esc(ev.t)}</span>` : ''}</div>`;
+  const bands = ERAS.map(e => {
+    const isOpen = e.id === state.era;
+    const cls = `band kind-${e.kind} ${isOpen ? 'open' : state.era ? 'shrunk' : ''}`;
+    if (!isOpen) return `<button class="${cls}" data-a="era" data-id="${e.id}" aria-label="Open ${esc(e.name)}"><span class="bname">${esc(e.name)}</span><span class="bsub">${esc(e.sub)}</span><span class="bcount">${e.events.length} events ›</span></button>`;
+    const dated = e.kind === 'dated';
+    const lo = dated ? Math.min(...e.events.map(x => x.yr)) : 0, hi = dated ? Math.max(...e.events.map(x => x.yr)) : e.events.length - 1;
+    // Dated: the 40 quiet years before revelation get the first 12%, so the busy 22 years can breathe.
+    const pos = (x, i) => !dated ? 3 + 94 * i / hi : x.yr < 610 ? 3 + 12 * (x.yr - lo) / 40 : 15 + 82 * (x.yr - 610) / (hi - 610);
+    const labelled = (x, i) => x.id === state.event || (!state.event && (i === 0 || i === e.events.length - 1));
+    const dots = e.events.map((x, i) => `<button class="dot ${x.id === state.event ? 'on' : ''}" style="left:${pos(x, i)}%" data-a="ev" data-id="${x.id}" aria-label="${esc(x.t)}" title="${esc(x.t)}"></button>${labelled(x, i) ? `<span class="dot-label up" style="left:${pos(x, i)}%">${esc(x.t)}</span>` : ''}`).join('');
+    return `<div class="${cls}"><span class="bname">${esc(e.name)} <span class="ar" lang="ar" dir="rtl">${e.ar}</span></span><span class="bsub">${esc(e.sub)}${dated ? ' · the 40 years before revelation are shortened' : ' · evenly spaced, not to time scale'}</span><div class="axis">${dots}</div><div class="axis-ends"><span>${esc(e.events[0].when)}</span><span>${esc(e.events.at(-1).when)}</span></div></div>`;
+  }).join('');
+  app.innerHTML = `${crumbs}<div class="river">${bands}</div><div class="a-detail">${ev ? detail(ev, era) : era ? '<p class="meta">Tap a dot on the line to read it.</p>' : '<p class="meta">Tap a stretch of time to open it. Striped stretches are unseen: known by revelation, not by history.</p>'}</div>`;
+}
+
+// ---------- B: Journey path ----------
+function renderB() {
+  const miles = ERAS.map((e, n) => {
+    const isOpen = state.open.has(e.id);
+    const stops = isOpen ? `<ol class="stops">${e.events.map(x => `<li class="stop"><button class="stop-btn" data-a="ev" data-era="${e.id}" data-id="${x.id}" aria-expanded="${state.event === x.id}">${esc(x.t)}<span class="when">${esc(x.when)}</span></button>${state.event === x.id ? detail(x, e) : ''}</li>`).join('')}</ol>` : '';
+    return `<section class="mile kind-${e.kind}"><button class="mile-btn" data-a="mile" data-id="${e.id}" aria-expanded="${isOpen}"><span class="num">Stage ${n + 1} of ${ERAS.length}</span><strong>${esc(e.name)}</strong><span class="ar" lang="ar" dir="rtl">${e.ar}</span><span class="meta">${esc(e.sub)} · ${isOpen ? 'close' : e.events.length + ' stops'}</span></button>${stops}</section>`;
+  }).join('');
+  app.innerHTML = `<div class="road"><span class="start-end">Start: creation of Adam</span>${miles}<span class="start-end">The final home</span></div>`;
+}
+
+// ---------- C: Map and scrubber ----------
+const K = 20, LON0 = 25, LAT0 = 40;
+const P = ([lon, lat]) => [(lon - LON0) * K, (LAT0 - lat) * K];
+const poly = pts => pts.map(p => P(p).join(',')).join(' ');
+const WATER = [
+  [[25, 40], [25, 31.5], [29, 30.9], [32.3, 31.2], [34.5, 31.6], [35.6, 34.5], [36, 36.8], [32, 36.2], [28, 37], [26, 40]],
+  [[32.5, 29.9], [33.5, 27], [35.6, 23.5], [37.2, 19], [39, 16], [42.5, 13], [43.4, 12.6], [42.9, 14.5], [41, 17], [39, 21.4], [36.6, 25.8], [34.6, 28], [32.9, 29.6]],
+  [[48, 30], [50.5, 26.3], [51.5, 24.2], [54.5, 24.2], [56.3, 26.3], [56.4, 27], [52, 27.8], [50.2, 29.8]],
+  [[43.4, 12.6], [45, 12.8], [52, 15.9], [55, 17.3], [58.5, 20.5], [59.8, 22.5], [58.7, 23.6], [57, 24], [56.4, 25], [57.3, 25.8], [60, 25.3], [60, 10], [43.5, 10]],
+];
+const VIEW = { prophets: [0, 0, 700, 600], seerah: [150, 180, 300, 360] };
+
+// idx -1 means nothing chosen yet: every pin drawn plain.
+function mapStage(era, idx) {
+  const ev = era.events[idx];
+  const [vx, vy, vw, vh] = VIEW[era.id], fs = vw / 26, r = vw / 60;
+  // One label per spot: a pin within ~1 degree of a labelled one (or of the chosen one) stays unnamed, so Makkah's cluster reads.
+  const named = ev?.loc ? [ev.loc] : [];
+    const pins = era.events.map((x, i) => {
+      if (!x.loc) return '';
+      const [cx, cy] = P(x.loc), on = i === idx, past = i < idx;
+      const firstHere = !on && named.every(([lo, la]) => Math.hypot(lo - x.loc[0], la - x.loc[1]) > 1) && named.push(x.loc);
+      return `<g class="pin" data-a="ev" data-id="${x.id}" role="button" tabindex="0" aria-label="${esc(x.t)}">
+        <circle cx="${cx}" cy="${cy}" r="${on ? r * 1.8 : r}" fill="${on ? 'var(--tone)' : past ? 'var(--muted)' : 'var(--surface)'}" stroke="var(--tone)" stroke-width="${r / 3}" opacity="${past ? .5 : 1}"/>
+        ${on ? `<text x="${cx + r * 2.5}" y="${cy + fs / 3}" font-size="${fs}" fill="var(--ink)" stroke="var(--surface)" stroke-width="${fs / 5}" paint-order="stroke" font-weight="700">${esc(x.place || x.t)}</text>` : firstHere ?`<text x="${cx + r * 1.6}" y="${cy + fs / 3}" font-size="${fs * 0.7}" fill="var(--muted)">${esc(x.place)}</text>` : ''}
+      </g>`;
+    }).join('');
+  return `<div class="stage kind-${era.kind}"><svg viewBox="${vx} ${vy} ${vw} ${vh}" role="img" aria-label="Schematic map of ${esc(era.name)}">
+      <rect x="0" y="0" width="700" height="600" fill="var(--map-land)"/>
+      ${WATER.map(w => `<polygon points="${poly(w)}" fill="var(--map-water)"/>`).join('')}
+      ${pins}</svg><div class="stage-note">Schematic, not to scale. Coastlines drawn by hand.</div>
+      ${!ev || ev.loc ? '' : '<div class="offmap">No place recorded for this event, so it has no pin.</div>'}</div>`;
+}
+
+function renderC() {
+  const era = eraOf(state.era) || ERAS[1];
+  const idx = Math.max(0, era.events.findIndex(x => x.id === state.event));
+  const ev = era.events[idx];
+  const seg = `<div class="seg" role="group" aria-label="Choose a timeline">${ERAS.map(e => `<button class="kind-${e.kind}" aria-pressed="${e.id === era.id}" data-a="era" data-id="${e.id}">${esc(e.name)}</button>`).join('')}</div>`;
+  let stage;
+  if (VIEW[era.id]) {
+    stage = mapStage(era, idx);
+  } else {
+    const w = 150, h = 130;
+    const nodes = era.events.map((x, i) => {
+      const cx = 20 + i * w, on = i === idx;
+      return `<g class="pin" data-a="ev" data-id="${x.id}" role="button" tabindex="0" aria-label="${esc(x.t)}">
+        ${i ? `<line x1="${cx - w + 124}" y1="50" x2="${cx - 6}" y2="50" stroke="var(--line)" stroke-width="3" marker-end="url(#arr)"/>` : ''}
+        <rect x="${cx}" y="22" width="120" height="56" rx="12" fill="${on ? 'var(--tone)' : 'var(--surface)'}" stroke="var(--tone)" stroke-width="2"/>
+        <foreignObject x="${cx + 4}" y="24" width="112" height="52"><div xmlns="http://www.w3.org/1999/xhtml" style="font-size:12px;text-align:center;line-height:1.2;padding-top:6px;color:${on ? 'var(--bg);font-weight:700' : 'var(--ink)'}">${esc(x.t)}</div></foreignObject>
+        ${x.flags?.includes('disputed') ? `<text x="${cx + 60}" y="${h - 18}" text-anchor="middle" font-size="11" fill="var(--warn)">order differs</text>` : ''}
+      </g>`;
+    }).join('');
+    stage = `<div class="stage kind-${era.kind}"><div class="chain"><svg viewBox="0 0 ${20 + era.events.length * w} ${h}" style="min-width:${20 + era.events.length * w}px" role="img" aria-label="Stages of ${esc(era.name)}">
+      <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--line)"/></marker></defs>${nodes}</svg></div>
+      <div class="stage-note">Unseen: no map. Stages in the order most books give; scroll sideways.</div></div>`;
+  }
+  const scrub = `<div class="scrub kind-${era.kind}"><label for="scrub" class="meta">Move through ${esc(era.name)}: ${idx + 1} of ${era.events.length}</label>
+    <input id="scrub" type="range" min="0" max="${era.events.length - 1}" value="${idx}">
+    <div class="scrub-labels"><span>${esc(era.events[0].when)}</span><span>${esc(era.events.at(-1).when)}</span></div></div>`;
+  app.innerHTML = `${seg}<div class="c-grid"><div>${stage}${scrub}</div><div>${detail(ev, era)}</div></div>`;
+  state.era = era.id; state.event = ev.id;
+  const chain = app.querySelector('.chain');
+  if (chain) chain.scrollLeft = 20 + idx * 150 - chain.clientWidth / 2 + 60;
+  document.getElementById('scrub').addEventListener('input', e => { state.event = era.events[+e.target.value].id; render(); document.getElementById('scrub').focus(); });
+}
+
+// ---------- D: River, top to bottom, with map ----------
+let shownEra = null;
+function renderD() {
+  const era = eraOf(state.era), ev = eventOf(era, state.event);
+  const crumbs = `<div class="crumbs"><button data-a="home">All time</button>${era ? `› <button data-a="era" data-id="${era.id}">${esc(era.name)}</button>` : ''}${ev ? `› <span>${esc(ev.t)}</span>` : ''}</div>`;
+  const bands = ERAS.map(e => {
+    const isOpen = e.id === state.era;
+    const cls = `vband kind-${e.kind} ${isOpen ? 'open' : state.era ? 'shrunk' : ''}`;
+    const head = `<div class="vhead"><span class="bname">${esc(e.name)}</span><span class="ar" lang="ar" dir="rtl">${e.ar}</span><span class="bsub">${esc(e.sub)}</span><span class="bcount">${isOpen ? '' : e.events.length + ' events ›'}</span></div>`;
+    if (!isOpen) return `<button class="${cls}" data-a="era" data-id="${e.id}" aria-label="Open ${esc(e.name)}">${head}</button>`;
+    const dated = e.kind === 'dated';
+    // Dated: space grows with the years between events (capped), so the 40 quiet years read as a long gap without eating the page.
+    const items = e.events.map((x, i) => {
+      const years = dated && i ? x.yr - e.events[i - 1].yr : 0;
+      const gap = years >= 5 ? `<span class="gap" style="padding-block:${Math.min(96, years * 3)}px">${Math.round(years)} years pass</span>` : '';
+      const pad = dated && i ? Math.min(24, years * 8) : 6;
+      const on = x.id === state.event;
+      return `<li class="vitem ${on ? 'on' : ''}" style="margin-top:${pad}px">${gap}<button data-a="ev" data-id="${x.id}" aria-expanded="${on}">${esc(x.t)} <span class="ar" lang="ar" dir="rtl">${x.ar}</span><span class="when">${esc(x.when)}${x.place ? ' · ' + esc(x.place) : ''}</span></button>${on ? `<div class="inline-card">${detail(x, e)}</div>` : ''}</li>`;
+    }).join('');
+    const idx = e.events.findIndex(x => x.id === state.event);
+    const side = `${VIEW[e.id] ? mapStage(e, idx) : ''}${ev ? detail(ev, e) : `<p class="meta">${dated ? 'Tap an event, or a pin on the map.' : e.id === 'prophets' ? '' : 'Unseen: known by revelation, not by history, so there is no map. '}Tap an event to read it.</p>`}`;
+    return `<section class="${cls}">${head}<p class="meta">${dated ? 'Gaps grow with the years between events.' : 'Evenly spaced, not to time scale.'}</p><div class="vgrid"><ol class="vaxis">${items}</ol><aside class="vside">${side}</aside></div></section>`;
+  }).join('<span class="vlink" aria-hidden="true"></span>');
+  app.innerHTML = `${crumbs}<div class="vriver">${bands}</div>`;
+  if (state.era !== shownEra) app.querySelector('.vband.open')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  shownEra = state.era;
+}
+
+// ---------- E and F: events at the same time ----------
+// Stretches that overlap other events. Sample only, Seerah years.
+const STRETCHES = [
+  { id: 'makkan', t: 'Makkan revelation', from: 610, to: 622 },
+  { id: 'abyssinia-stay', t: 'Muslims in Abyssinia', from: 615, to: 628.6, place: 'far' },
+  { id: 'madinan', t: 'Madinan revelation', from: 622, to: 632.3 },
+];
+const LANE_OF = { Makkah: 'makkah', 'Cave of Hira': 'makkah', "Ta'if": 'makkah', 'al-Hudaybiyyah': 'makkah', Arafat: 'makkah', Madinah: 'madinah', Uhud: 'madinah', Badr: 'madinah' };
+const seerahRows = () => {
+  const rows = [];
+  for (const x of eraOf('seerah').events) {
+    const last = rows.at(-1);
+    if (last && Math.floor(last.yr) === Math.floor(x.yr)) last.events.push(x);
+    else rows.push({ yr: x.yr, events: [x] });
+  }
+  return rows;
+};
+const rowAt = (rows, yr) => rows.reduce((best, r, i) => (r.yr <= yr ? i : best), 0);
+const chip = x => `<button class="echip" data-a="ev" data-id="${x.id}" aria-expanded="${state.event === x.id}"><b>${esc(x.t)}</b> <span class="ar" lang="ar" dir="rtl">${x.ar}</span><span class="when">${esc(x.when)}${x.place ? ' · ' + esc(x.place) : ''}</span></button>`;
+const chosenCard = rows => {
+  const era = eraOf('seerah'), ev = eventOf(era, state.event);
+  return ev ? `<div style="margin-top:var(--s4)">${detail(ev, era)}</div>` : '<p class="meta">Tap an event to read it.</p>';
+};
+
+function renderE() {
+  state.era = 'seerah';
+  const rows = seerahRows(), lanes = STRETCHES.length;
+  const cells = rows.map((r, i) => {
+    const years = i ? r.yr - rows[i - 1].yr : 0;
+    const pad = Math.min(96, years * 3);
+    const gap = years >= 5 ? `<span class="egap" style="padding-bottom:${pad}px">${Math.round(years)} years pass</span>` : '';
+    const together = r.events.length > 1 ? `<span class="etogether">Same year</span>` : '';
+    return `<div class="ecell edot" style="grid-row:${i + 1};grid-column:${lanes + 1};--pad:${years >= 5 ? pad + 18 : 0}px"></div>
+      <div class="ecell" style="grid-row:${i + 1};grid-column:${lanes + 2}">${gap}<div class="eside">${together}${r.events.map(chip).join('')}</div></div>`;
+  }).join('');
+  const bars = STRETCHES.map((s, lane) => `<div class="ebar" style="grid-column:${lane + 1};grid-row:${rowAt(rows, s.from) + 1} / ${rowAt(rows, s.to) + 2}" title="${esc(s.t)}"><span>${esc(s.t)}</span></div>`).join('');
+  app.innerHTML = `<p class="pnote"><b>E. Side by side.</b> Events in the same year share one dot and sit next to each other (stacked on a phone). Things that last a while are bars in a gutter left of the line, each in its own column only when they overlap.</p>
+    <div class="erows kind-dated" style="grid-template-columns:repeat(${lanes}, 1.6rem) 1.5rem minmax(0, 1fr)">${bars}${cells}</div>${chosenCard(rows)}`;
+}
+
+function renderF() {
+  state.era = 'seerah';
+  const rows = seerahRows();
+  const LANES = [['makkah', 'Makkah and near'], ['madinah', 'Madinah and near'], ['far', 'Further away']];
+  const head = `<div class="fhead"></div>${LANES.map(([, n]) => `<div class="fhead">${n}</div>`).join('')}`;
+  const body = rows.map((r, i) => {
+    const byLane = Object.fromEntries(LANES.map(([k]) => [k, r.events.filter(x => (LANE_OF[x.place] || 'far') === k)]));
+    const bars = STRETCHES.filter(s => s.place && rowAt(rows, s.from) <= i && i <= rowAt(rows, s.to));
+    return `<div class="fyear kind-dated">${Math.floor(r.yr)}</div>${LANES.map(([k]) => `<div class="fcol">${k === 'far' ? bars.map(s => `<span class="fbar">${i === rowAt(rows, s.from) ? esc(s.t) + ' begins' : i === rowAt(rows, s.to) ? esc(s.t) + ' ends' : '│ still there'}</span>`).join('') : ''}${byLane[k].map(chip).join('')}</div>`).join('')}`;
+  }).join('');
+  app.innerHTML = `<p class="pnote"><b>F. Lanes by place.</b> Time runs down; each column is a place, so things happening at once in different places sit on the same line. Only works where events have places: the Seerah and the Prophets, not the unseen sections.</p>
+    <div class="flanes kind-dated">${head}${body}</div>${chosenCard(rows)}`;
+}
+
+// ---------- Events ----------
+app.addEventListener('click', e => {
+  const t = e.target.closest('[data-a]'); if (!t) return;
+  const { a, id } = t.dataset;
+  if (a === 'home') { state.era = null; state.event = null; }
+  if (a === 'era') { state.era = id; state.event = null; }
+  if (a === 'ev') {
+    if (t.dataset.era) state.era = t.dataset.era;
+    state.event = ('BDEF'.includes(state.variant)) && state.event === id ? null : id;
+  }
+  if (a === 'mile') { state.open.has(id) ? state.open.delete(id) : state.open.add(id); state.era = id; }
+  render();
+});
+app.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('g.pin')) { e.preventDefault(); e.target.dispatchEvent(new MouseEvent('click', { bubbles: true })); } });
+
+function render() {
+  const v = VARIANTS.find(x => x.key === state.variant);
+  v.render();
+  document.getElementById('vlabel').textContent = `${v.key} (${v.name})`;
+  const era = eraOf(state.era), ev = eventOf(era, state.event);
+  document.getElementById('vstate').textContent = `era: ${era ? era.id : 'none'} · event: ${ev ? ev.id : 'none'}${state.variant === 'B' ? ' · open: ' + ([...state.open].join(', ') || 'none') : ''}`;
+}
+function cycle(step) {
+  const i = VARIANTS.findIndex(x => x.key === state.variant);
+  state.variant = VARIANTS[(i + step + VARIANTS.length) % VARIANTS.length].key;
+  const u = new URL(location.href); u.searchParams.set('variant', state.variant);
+  try { history.replaceState(null, '', u); } catch { /* file:// in some browsers */ }
+  render();
+}
+document.getElementById('prev').onclick = () => cycle(-1);
+document.getElementById('next').onclick = () => cycle(1);
+document.addEventListener('keydown', e => {
+  if (e.target.closest('input, textarea, [contenteditable]')) return;
+  if (e.key === 'ArrowLeft') cycle(-1);
+  if (e.key === 'ArrowRight') cycle(1);
+});
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+{
+  "blocks": [
+    {
+      "id": "p24-1",
+      "kind": "heading",
+      "page": 24,
+      "ar": "الحروف المشبهة بالفعل: لَعلَ",
+      "en": "The particles resembling the verb: la'alla"
+    },
+    {
+      "id": "p24-2",
+      "kind": "list",
+      "page": 24,
+      "ar": "1",
+      "en": "1",
+      "items": [
+        "a) It ONLY enters a ({{condition|جملة إسمية}}) sentence.",
+        "b) After it enters the (جملة إسمية) sentence, the construction will remain a ({{ruling|جملة}}).",
+        "f) It gives the meaning of {{term|hope}}, {{term|concern}} and {{term|reason}} from the perspective of the first person.",
+        "c) It will make the “مسند إليه” {{ruling|منصوب}} and the “مسند” {{ruling|مرفوع}} {{condition|if the مسند is a noun}}."
+      ]
+    },
+    {
+      "id": "p24-3",
+      "kind": "example",
+      "page": 24,
+      "ar": "لَعَلَّ الدَّرْسَ سَهْلٌ",
+      "en": "Perhaps the lesson is easy.",
+      "labels": [
+        {
+          "word": "لَعَلَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "الدَّرْسُ سَهْلٌ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "لَعَلَّ + جملة",
+          "label": "جملة (إنشائية)"
+        }
+      ]
+    },
+    {
+      "id": "p24-4",
+      "kind": "list",
+      "page": 24,
+      "ar": "2",
+      "en": "2",
+      "items": [
+        "a) It will {{ruling|not visibly affect}} it’s خبر {{condition|if it is a sentence}} just as إِنَّ, أَنَّ, كَأَنَّ, لكِنَّ and لَيتَ didn’t visibly affect their خبر when it was a sentence.",
+        "b) The effect will be {{ruling|assumed}}."
+      ]
+    },
+    {
+      "id": "p24-5",
+      "kind": "example",
+      "page": 24,
+      "ar": "لَعَلِّيْ أَرْسُبُ فِي الإِخْتِبَارَ",
+      "en": "Perhaps I will fail in the exam.",
+      "labels": [
+        {
+          "word": "لَعَلَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "أَنَا أَرْسُبُ فِي الإِخْتِبَارَ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "أَرْسبُ فِي الإِخْتِبَارَ",
+          "label": "جملة فعلية"
+        },
+        {
+          "word": "لَعَلَّ + جملة",
+          "label": "جملة (إنشائية)"
+        }
+      ]
+    },
+    {
+      "id": "p25-1",
+      "kind": "heading",
+      "page": 25,
+      "ar": "الحروف المشبهة بالفعل: لَعلَ",
+      "en": "The particles resembling the verb: la'alla"
+    },
+    {
+      "id": "p25-2",
+      "kind": "list",
+      "page": 25,
+      "ar": "3",
+      "en": "3",
+      "items": [
+        "a) Rules relating to it’s خبر preceding it’s إسم are identical to those mentioned in إِنَّ, أَنَّ, كَأَنَّ, لكِنَّ and لَيتَ.",
+        "c) When it’s خبر is a {{condition|جار ومجرور}} or a {{condition|ظرف}}, only then does it become {{ruling|permissible}} for it’s خبر to precede it’s إسم otherwise not.",
+        "d) This applies to all of the الحروف المشبهة بالفعل.",
+        "e) Also, an appropriate auxiliary word will be employed."
+      ]
+    },
+    {
+      "id": "p25-3",
+      "kind": "example",
+      "page": 25,
+      "ar": "لَعَلَّ فِي المَدْرَسَةِ الطُّلَّابَ",
+      "en": "Perhaps the students are in the school.",
+      "labels": [
+        {
+          "word": "لَعَلَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "فِي المَدْرَسَةِ الطُّلَّابُ",
+          "label": "جملة إسمية"
+        },
+        {
+          "word": "فِي المَدْرَسَةِ",
+          "label": "جار ومجرور"
+        },
+        {
+          "word": "لَعَلَّ + جملة",
+          "label": "جملة (إنشائية)"
+        }
+      ]
+    },
+    {
+      "id": "p25-4",
+      "kind": "list",
+      "page": 25,
+      "ar": "4",
+      "en": "4",
+      "items": [
+        "a) The rules relating to “{{term|مَا الكَافَّة}}” in stopping the governing of لَعَلَّ are also identical to إِنَّ, أَنَّ, كَأَنَّ and لكِنَّ.",
+        "b) There is {{ruling|no added benefit}} of the meaning of (حصر) exclusivity.",
+        "c) When this happens, لَعَلَّ can enter {{ruling|both (جملة إسمية) & (جملة فعلية)}} sentences. Just like إِنَّ, أَنَّ, كَأَنَّ and لكِنَّ, it will no longer be restricted to a جملة إسمية construction."
+      ]
+    },
+    {
+      "id": "p25-5",
+      "kind": "example",
+      "page": 25,
+      "ar": "لَعَلَّمَا يُبَلِّغُنَا اللهُ رَمَضَانَ",
+      "en": "Perhaps Allah will make us reach Ramadan.",
+      "labels": [
+        {
+          "word": "لَعَلَّ",
+          "label": "الحرف المشبهة بالفعل"
+        },
+        {
+          "word": "مَا",
+          "label": "مَا الكَافَّةُ"
+        },
+        {
+          "word": "لَعَلَّ + مَا",
+          "label": "لَا عَمَل"
+        },
+        {
+          "word": "يُبَلِّغُنَا اللهُ رَمَضَانَ",
+          "label": "جملة فعلية"
+        },
+        {
+          "word": "لَعَلَّمَا + جملة",
+          "label": "جملة (إنشائية)"
+        }
+      ]
+    },
+    {
+      "id": "p26-1",
+      "kind": "heading",
+      "page": 26,
+      "ar": "",
+      "en": "Summary"
+    },
+    {
+      "id": "p26-2",
+      "kind": "list",
+      "page": 26,
+      "items": [
+        "All of الحروف المشبهة بالفعل {{ruling|only enter upon a جملة إسمية}}.",
+        "The جملة remains a جملة except with {{condition|أَنَّ}} where the جملة becomes {{ruling|مفرد}}.",
+        "They make the “مسند إليه” {{ruling|منصوب}} and the “مسند” {{ruling|مرفوع}}.",
+        "The مبتدا is called their {{term|إسم}} and the خبر is called their {{term|خبر}}.",
+        "The rules of مبتدا & خبر such as correlating in N/G and خبر being مفرد or جملة etc are all {{ruling|retained}}",
+        "Their خبر can’t precede their إسم {{condition|unless the خبر is a جار ومجرور or ظرف}}.",
+        "The “{{term|مَا الكَافَّة}}” can attach to them and prevent them from governing, from making the “مبتدا” مرفوع and the “خبر” منصوب.",
+        "When the “مَا الكَافَّة” is attached, then they are not restricted to a جملة إسمية. They can then enter upon a {{ruling|جملة فعلية}} as well.",
+        "{{term|لَيْتَ}} is exempt as it remains restricted to the جملة إسمية and therefore the prevention imposed by the “مَا الكَافَّة” is {{ruling|optional}}."
+      ]
+    },
+    {
+      "id": "p27-1",
+      "kind": "heading",
+      "page": 27,
+      "ar": "الحروف المشبهة بالفعل",
+      "en": "Further Rules in relation to الحروف المشبهة بالفعل"
+    },
+    {
+      "id": "p27-2",
+      "kind": "heading",
+      "page": 27,
+      "ar": "1. {{term|ضمير منصوب متصل}}",
+      "en": "1. ضمير منصوب متصل"
+    },
+    {
+      "id": "p27-3",
+      "kind": "rule",
+      "page": 27,
+      "ar": "ضَرَبْتُهُ",
+      "en": "As we already know, a ضمير منصوب متصل generally connects to verbs as a {{label|مفعول به}}, e.g., ضَرَبْتُهُ"
+    },
+    {
+      "id": "p27-4",
+      "kind": "rule",
+      "page": 27,
+      "ar": "إِنَّهُ – كَأَنَّهَا – لَعَلَّهُمَا",
+      "en": "As mentioned before, a ضمير منصوب متصل can also connect to الحروف المشبهة بالفعل, e.g., إِنَّهُ – كَأَنَّهَا – لَعَلَّهُمَا. Since this is a characteristic of verbs, this was also one of the reasons for the name given to these particles."
+    },
+    {
+      "id": "p27-5",
+      "kind": "rule",
+      "page": 27,
+      "ar": "ضَرَبَنِيْ",
+      "en": "From amongst the ضمير منصوب متصل, when the ي متكلم connects to a verb, a {{term|نون الوقاية}} comes in-between the verb and the ي in order to protect the verb from {{ruling|كسرة}}. (This because the كسرة is exclusive to nouns as we already know) e.g., ضَرَبَنِيْ"
+    },
+    {
+      "id": "p27-6",
+      "kind": "rule",
+      "page": 27,
+      "ar": "إِنَّنِي – كَأَنَّنِي – لَيْتَنِي",
+      "en": "Due to their resemblance to verbs, the نون الوقاية can also come in-between الحروف المشبهة بالفعل and the ي متكلم when the ي متكلم is connected to these particles. e.g., إِنَّنِي – كَأَنَّنِي – لَيْتَنِي. Unlike verbs, where the presence of the نون الوقاية is {{ruling|necessary}}, its presence is {{ruling|always optional}} with the الحروف المشبهة بالفعل."
+    },
+    {
+      "id": "p28-1",
+      "kind": "table",
+      "page": 28,
+      "caption": "الحروف المشبهة بالفعل",
+      "caption_en": "However, for some of the الحروف المشبهة بالفعل the presence of the نون الوقاية is equally preferred and for some its more or less preferred. Please refer to the table below:",
+      "columns": [
+        "",
+        "الحروف المشبهة بالفعل",
+        "Ruling",
+        "Preference",
+        "Examples: With",
+        "Examples: Without"
+      ],
+      "answer_col": 3,
+      "rows": [
+        [
+          "1",
+          "إِنَّ",
+          "Optional",
+          "Equal",
+          "إِنَّنِي مُسْلِمٌ",
+          "إِنِّي مُسْلِمٌ"
+        ],
+        [
+          "2",
+          "أَنَّ",
+          "Optional",
+          "Equal",
+          "أَعْرِفُ أَنَّنِيْ مُسْلِمٌ",
+          "أَعْرِفُ أَنِّيْ مُسْلِمٌ"
+        ],
+        [
+          "3",
+          "كَأَنَّ",
+          "Optional",
+          "Equal",
+          "كَأَنَّنِيْ مُحْتَضَرٌ",
+          "كَأَنِّيْ مُحْتَضَرٌ"
+        ],
+        [
+          "4",
+          "لكِنَّ",
+          "Optional",
+          "Equal",
+          "مَا رَاجَعْتُ لكِنَّنِيْ نَجَحْتُ فِي الإِخْتِبَارِ",
+          "مَا رَاجَعْتُ لكِنِّيْ نَجَحْتُ فِي الإِخْتِبَارِ"
+        ],
+        [
+          "5",
+          "لَيتَ",
+          "Optional",
+          "With",
+          "لَيْتَنِيْ أَحُجُّ بَيْتَ اللهِ",
+          "x (not preferred)"
+        ],
+        [
+          "6",
+          "لَعَلَّ",
+          "Optional",
+          "Without",
+          "x (not preferred)",
+          "لَعَلِّيْ أَفْهَمُ القُرْآنَ"
+        ]
+      ],
+      "note_en": "Drawn as tick boxes: Ruling has columns Optional / Necessary (every row ticks Optional); Preference has columns Equal / With / Without (one ticked per row)."
+    },
+    {
+      "id": "p28-2",
+      "kind": "heading",
+      "page": 28,
+      "ar": "2. {{term|اللام المزحلقة}}",
+      "en": "2. اللام المزحلقة"
+    },
+    {
+      "id": "p28-3",
+      "kind": "rule",
+      "page": 28,
+      "ar": "زَحْلَقَ يُزَحْلِقُ – فَعْلَلَ يُفَعْلِلُ، مُزَحْلَقَةٌ",
+      "en": "As mentioned before, a لام can be added to the {{condition|خبر of إِنَّ}} to provide {{ruling|further emphasis}}. This لام has been termed {{term|المزحلقة}} which means: The one which has been made to move over. Etymologically, the word is a {{term|رباعي}}, on the pattern of فَعْلَلَ يُفَعْلِلُ – زَحْلَقَ يُزَحْلِقُ meaning to move over, to slide, to push, to slip. The word مُزَحْلَقَةٌ is the single feminine form of the {{term|إسم المفعول}} (PPA)."
+    }
+  ]
+}

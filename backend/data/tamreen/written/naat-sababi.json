@@ -1,0 +1,363 @@
+{
+ "pictures": {
+  "naat-sababi-00.png": {
+   "sentence": "\nOrange is a fruit whose taste is pleasant.",
+   "marked": []
+  },
+  "naat-sababi-01.png": {
+   "sentence": "\nI heard the man whose tone (of recitation) is beautiful.",
+   "marked": []
+  },
+  "naat-sababi-02.png": {
+   "sentence": "\nI lit a lamp whose light was strong (bright).",
+   "marked": []
+  },
+  "naat-sababi-03.png": {
+   "sentence": "\nI passed by a town whose residents were noble.",
+   "marked": []
+  },
+  "naat-sababi-04.png": {
+   "sentence": "\nZaid scaled the tree whose trunk was thick.",
+   "marked": []
+  },
+  "naat-sababi-05.png": {
+   "sentence": "\nThese are 2 men whose 2 uncles are scholars.",
+   "marked": []
+  },
+  "naat-sababi-06.png": {
+   "sentence": "\nYou left the book whose pages were torn.",
+   "marked": []
+  },
+  "naat-sababi-07.png": {
+   "sentence": "\nI bought pens whose writing is beautiful.",
+   "marked": []
+  },
+  "naat-sababi-08.png": {
+   "sentence": "\nI travelled the sea whose fish is abundant.",
+   "marked": []
+  },
+  "naat-sababi-09.png": {
+   "sentence": "\nI entered a masjid whose doors were different.",
+   "marked": []
+  },
+  "naat-sababi-10.png": {
+   "sentence": "يأتيني الرجلُ الضاربُ إبنُهُ زيدًا\nThe man whose son is hitting Zaid is coming.",
+   "marked": []
+  },
+  "naat-sababi-11.png": {
+   "sentence": "رَأيتُ سيارةً فارغًا إطارَاها\nI saw a car whose 2 tyres were flat.",
+   "marked": []
+  },
+  "naat-sababi-12.png": {
+   "sentence": "زرتُ مدينةَ النبيِّ ﷺ النعيمَ جوُّهَا\nI visited the city of the prophet ﷺ the atmosphere of which was pleasant.",
+   "marked": []
+  },
+  "naat-sababi-13.png": {
+   "sentence": "إنّها بَقَرةٌ صَفْرَاءُ فَاقِعٌ لوْنُهَا\nIndeed, it is a yellow cow whose colour is bright.",
+   "marked": []
+  },
+  "naat-sababi-14.png": {
+   "sentence": "مررتُ بِالسيّاراتِ المكسورِ أبوابُهَا\nI walked passed cars whose doors were broken.",
+   "marked": []
+  },
+  "naat-sababi-15.png": {
+   "sentence": "سلّمتُ على محمدٍ الكريمِ أمُّه",
+   "marked": []
+  },
+  "naat-sababi-16.png": {
+   "sentence": "يُعجِبُني الكتابُ المُتنوّعُ قِصصُها",
+   "marked": []
+  },
+  "naat-sababi-17.png": {
+   "sentence": "نعبدُ اللهَ المُطاعَ أمْرَهُ",
+   "marked": []
+  },
+  "naat-sababi-18.png": {
+   "sentence": "زرتُ سُوقًا كثيرًا متاعُها",
+   "marked": []
+  },
+  "naat-sababi-19.png": {
+   "sentence": "يتطيّبُ زيدٌ بأَعطارٍ فَوّاحَةٌ رائحتُه",
+   "marked": []
+  }
+ },
+ "notes": {
+  "naat-sababi-e01a": {
+   "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+   "labels": {
+    "A": "البُرتُقال فاكهةٌ لذيذٌ طعمُها",
+    "B": "البُرتُقال فاكهةٌ طعمُها لذيذٌ"
+   }
+  },
+  "naat-sababi-e02a": {
+   "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+   "labels": {
+    "A": "سمعتُ الرجُلَ الحسنَ نَغْمَتُه",
+    "B": "سمعتُ الرجُلَ نَغْمَتُه حسنةٌ"
+   }
+  },
+  "naat-sababi-e03a": {
+   "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+   "labels": {
+    "A": "أَوْقَدْتُ مصْباحاً نورُه قوِيٌّ",
+    "B": "أَوْقَدْتُ مصْباحاً قوِيًّا نورُه"
+   }
+  },
+  "naat-sababi-e04a": {
+   "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+   "labels": {
+    "A": "مررتُ ببلدٍ كَريمٍ أهلُه",
+    "B": "مررتُ ببلدٍ أهلُه كِرامٌ"
+   }
+  },
+  "naat-sababi-e05a": {
+   "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+   "labels": {
+    "A": "تَسلّقَ زيدٌ الشجرةَ جِذْعُها غليظٌ",
+    "B": "تَسلّقَ زيدٌ الشجرةَ الغليظَ جِذْعُها"
+   }
+  },
+  "naat-sababi-e06a": {
+   "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+   "labels": {
+    "A": "هذان رجلان عالمٌ عَمّاهُمَا",
+    "B": "هذان رجلان عالمانِ عَمّاهُمَا"
+   }
+  },
+  "naat-sababi-e07a": {
+   "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+   "labels": {
+    "A": "تركتَ الكتابَ ممزَّقةٌ أوراقُه",
+    "B": "تركتَ الكتابَ الممزَّقةَ أوراقُه"
+   }
+  },
+  "naat-sababi-e08a": {
+   "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+   "labels": {
+    "A": "اشتريتُ أقلاماً جميلٌ خطُّها",
+    "B": "اشتريتُ أقلاماً جميلاً خطُّها"
+   }
+  },
+  "naat-sababi-e09a": {
+   "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+   "labels": {
+    "A": "ركبتُ البحر الكثيرَ سَمَكُه",
+    "B": "ركبتُ البحر سَمَكُه كثيرٌ"
+   }
+  },
+  "naat-sababi-e10a": {
+   "question": "For sentences A and B, tick which one is a true نعت سببي; for the other, tick whether it is a جملة نعت or a جملة حال.",
+   "labels": {
+    "A": "دخلتُ مسجدًا مختلفةً أبوابُهُ",
+    "B": "دخلتُ مسجدًا أبوابُهُ مختلفةٌ"
+   }
+  },
+  "naat-sababi-e11a": {
+   "question": "Which of A or B correctly rewrites the نعت سببي construction as an equivalent جملة (sentence)?",
+   "labels": {
+    "A": "ضاربٌ إبنُهُ زيدًا",
+    "B": "إبنُهُ ضاربٌ زيدًا"
+   }
+  },
+  "naat-sababi-e12a": {
+   "question": "Which of A or B correctly rewrites the نعت سببي construction as an equivalent جملة (sentence)?",
+   "labels": {
+    "A": "إطارَاها فارغانِ",
+    "B": "إطارَاهما فارغانِ"
+   }
+  },
+  "naat-sababi-e13a": {
+   "question": "Which of A or B correctly rewrites the نعت سببي construction as an equivalent جملة (sentence)?",
+   "labels": {
+    "A": "نعيمةٌ جوُّهَا",
+    "B": "جوُّهَا نعيمٌ"
+   }
+  },
+  "naat-sababi-e14a": {
+   "question": "Which of A or B correctly rewrites the نعت سببي construction as an equivalent جملة (sentence)?",
+   "labels": {
+    "A": "لوْنُهَا فَاقِعةٌ",
+    "B": "لوْنُهَا فَاقِعٌ"
+   }
+  },
+  "naat-sababi-e15a": {
+   "question": "Which of A or B correctly rewrites the نعت سببي construction as an equivalent جملة (sentence)?",
+   "labels": {
+    "A": "أبوابُهَا مكسورَةٌ",
+    "B": "أبوابُهَا مكسورٌ"
+   }
+  },
+  "naat-sababi-e16a": {
+   "question": "Is the نعت سببي construction in this sentence correct or incorrect?"
+  },
+  "naat-sababi-e16d": {
+   "answer": "I greeted Muhammad, whose mother is noble."
+  },
+  "naat-sababi-e17a": {
+   "question": "Is the نعت سببي construction in this sentence correct or incorrect?"
+  },
+  "naat-sababi-e17d": {
+   "answer": "The book whose stories are varied delights me."
+  },
+  "naat-sababi-e18a": {
+   "question": "Is the نعت سببي construction in this sentence correct or incorrect?"
+  },
+  "naat-sababi-e18d": {
+   "answer": "We worship Allah, whose command is obeyed."
+  },
+  "naat-sababi-e19a": {
+   "question": "Is the نعت سببي construction in this sentence correct or incorrect?"
+  },
+  "naat-sababi-e19d": {
+   "answer": "I visited a market whose goods were abundant."
+  },
+  "naat-sababi-e20a": {
+   "question": "Is the نعت سببي construction in this sentence correct or incorrect?"
+  },
+  "naat-sababi-e20d": {
+   "answer": "Zaid perfumes himself with fragrances whose scent is fragrant."
+  }
+ },
+ "tags": {
+  "naat-sababi-r01": [
+   "naat-sababi",
+   "tarif-mustalah"
+  ],
+  "naat-sababi-r02": [
+   "naat-sababi",
+   "shibh-fil",
+   "tarif-mustalah"
+  ],
+  "naat-sababi-r03": [
+   "naat-sababi",
+   "manoot",
+   "tarif-mustalah"
+  ],
+  "naat-sababi-r04": [
+   "naat-sababi",
+   "manoot",
+   "tarif-mustalah"
+  ],
+  "naat-sababi-r05": [
+   "naat-sababi",
+   "manoot",
+   "tarif-mustalah"
+  ],
+  "naat-sababi-r06": [
+   "naat-sababi",
+   "tarif-mustalah"
+  ],
+  "naat-sababi-r07": [
+   "naat-sababi",
+   "dhameer-raabit",
+   "manoot"
+  ],
+  "naat-sababi-r08": [
+   "naat-sababi",
+   "tarif-mustalah"
+  ],
+  "naat-sababi-r09": [
+   "naat-sababi",
+   "tarif-mustalah"
+  ],
+  "naat-sababi-r10": [
+   "naat-sababi",
+   "tafriq-mafaheem"
+  ],
+  "naat-sababi-e01": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb",
+   "tafriq-mafaheem"
+  ],
+  "naat-sababi-e02": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb",
+   "tafriq-mafaheem"
+  ],
+  "naat-sababi-e03": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb",
+   "tafriq-mafaheem"
+  ],
+  "naat-sababi-e04": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb",
+   "tafriq-mafaheem"
+  ],
+  "naat-sababi-e05": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb",
+   "tafriq-mafaheem"
+  ],
+  "naat-sababi-e06": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb",
+   "tafriq-mafaheem"
+  ],
+  "naat-sababi-e07": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb",
+   "tafriq-mafaheem"
+  ],
+  "naat-sababi-e08": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb",
+   "tafriq-mafaheem"
+  ],
+  "naat-sababi-e09": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb",
+   "tafriq-mafaheem"
+  ],
+  "naat-sababi-e10": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb",
+   "tafriq-mafaheem"
+  ],
+  "naat-sababi-e11": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb"
+  ],
+  "naat-sababi-e12": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb"
+  ],
+  "naat-sababi-e13": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb"
+  ],
+  "naat-sababi-e14": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb"
+  ],
+  "naat-sababi-e15": [
+   "naat-sababi",
+   "tatbeeq-tarkeeb"
+  ],
+  "naat-sababi-e16": [
+   "naat-sababi",
+   "taskheek-khata",
+   "tarjama"
+  ],
+  "naat-sababi-e17": [
+   "naat-sababi",
+   "taskheek-khata",
+   "tarjama"
+  ],
+  "naat-sababi-e18": [
+   "naat-sababi",
+   "taskheek-khata",
+   "tarjama"
+  ],
+  "naat-sababi-e19": [
+   "naat-sababi",
+   "taskheek-khata",
+   "tarjama"
+  ],
+  "naat-sababi-e20": [
+   "naat-sababi",
+   "taskheek-khata",
+   "tarjama"
+  ]
+ }
+}

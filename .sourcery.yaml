@@ -1,0 +1,13 @@
+# What `sourcery review .` should look at, which is the code this project wrote.
+#
+# Without this it reads everything under the folder: the virtual environment's
+# thousands of installed files, node_modules, the built frontend, and the data
+# folder, which holds the books and one stray JavaScript file it tries to parse
+# as Python. That run takes all the memory on the machine and is killed before
+# it prints anything, which is what happened.
+ignore:
+  - venv
+  - node_modules
+  - frontend/dist
+  - backend/data
+  - prototypes

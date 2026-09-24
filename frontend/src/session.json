@@ -1,0 +1,11 @@
+{
+  "_comment": "The saved session: where the reader has been, kept across a reload. lib/session.js is its only reader and writer. 'shelf-life-hours' is how long a walked path stays yours; older and the app opens clean. 'version' is the record shape; bump it and every old record is dropped rather than repaired. 'max-steps' and 'max-value-length' bound what is read back from the browser's store, which anyone can edit by hand; a path outside them is neither saved nor restored. 'trail-steps' is how many of those places the line beside a panel title shows at once; the rest stay in the browser's own history and the line prints an ellipsis for them. 'recent-kept' is how many past searches a tab keeps for its Recent row (lib/useHistory): one number for every tab, so they cannot drift apart.",
+
+  "storage-key": "session",
+  "version": 1,
+  "shelf-life-hours": 12,
+  "max-steps": 1000,
+  "max-value-length": 1000,
+  "trail-steps": 3,
+  "recent-kept": 8
+}

@@ -1,0 +1,692 @@
+{
+  "blocks": [
+    {
+      "id": "p00-1",
+      "kind": "heading",
+      "page": 0,
+      "ar": "هداية النحو",
+      "en": "The 9 Types of I'raab & 16 Types of Mu'rab Nouns, Arranged According to هداية النحو"
+    },
+    {
+      "id": "p00-2",
+      "kind": "table",
+      "page": 0,
+      "caption": "الأنواع التسعة للإعراب والستة عشر نوعا من الأسماء المعربة",
+      "caption_en": "The 9 types of i'raab and the 16 types of mu'rab noun",
+      "columns": [
+        "No",
+        "No",
+        "Type اسم",
+        "رفع",
+        "نصب",
+        "جر",
+        "Example"
+      ],
+      "answer_col": 2,
+      "rows": [
+        [
+          "1",
+          "1",
+          "{{term|المُفْرَدُ المُنصرِفُ الصَّحِيحُ}}",
+          "ـٌ",
+          "ـً",
+          "ـٍ",
+          "هذا زيدٌ - رأيتُ زيدًا - مَرَرْتُ بِزيدٍ"
+        ],
+        [
+          "1",
+          "2",
+          "{{term|الجَارِي مجرىٰ الصَّحِيحِ}}",
+          "ـٌ",
+          "ـً",
+          "ـٍ",
+          "هذا دلوٌ - رأيتُ دلوًا - مَرَرْتُ بِدلوٍ"
+        ],
+        [
+          "1",
+          "3",
+          "{{term|الجَمْعُ المُكَسَّرُ المُنصرِفُ}}",
+          "ـٌ",
+          "ـً",
+          "ـٍ",
+          "جَاءَ رجالٌ - رأيتُ رجالًا - مَرَرْتُ بِرجالٍ"
+        ],
+        [
+          "2",
+          "4",
+          "{{term|جَمْعُ المُؤَنَّثِ السَّالِمُ}}",
+          "ـَاتٌ",
+          "ـَاتٍ",
+          "ـَاتٍ",
+          "هُنَّ مُسْلِمَاتٌ - رأيتُ مُسْلِمَاتٍ - مَرَرْتُ بِمُسْلِمَاتٍ"
+        ],
+        [
+          "3",
+          "5",
+          "{{term|غيرُ المُنْصَرِفِ}}",
+          "ـُ",
+          "ـَ",
+          "ـَ",
+          "جَاءَ عمرُ - رأيتُ عمرَ - مَرَرْتُ بِعمرَ"
+        ],
+        [
+          "4",
+          "6",
+          "{{term|الأَسْمَاءُ السِّتَّةُ المُكَبَّرَةُ المُوَحَّدَةُ المُضَافَةُ إِلىٰ غيرِ ياءِ المُتَكلِّمِ}}",
+          "وْ",
+          "ا",
+          "يْ",
+          "جَاءَ أَخُوْكَ - رأيتُ أَخَاكَ - مَرَرْتُ بِأَخِيْكَ"
+        ],
+        [
+          "5",
+          "7",
+          "{{term|المُثَنّٰى}}",
+          "ـَانِ",
+          "ـَيْنِ",
+          "ـَيْنِ",
+          "جَاء رَجُلَانِ - رأيتُ رَجُلَيْنِ - مَرَرْتُ بِرجُلَيْنِ"
+        ],
+        [
+          "5",
+          "8",
+          "{{term|إِثْنَانِ وَ اثْنَتَانِ}} (قَمَرَانِ، أَسْوَدَانِ)",
+          "ـَانِ",
+          "ـَيْنِ",
+          "ـَيْنِ",
+          "جَاء إِثْنَانِ - رأيتُ إِثنَيْنِ - مَرَرْتُ بِإِثنَيْنِ"
+        ],
+        [
+          "5",
+          "9",
+          "{{term|كِلَا و كِلْتَا المُضَافَانِ إِلىٰ الضَّمِيْرِ}}",
+          "ـَا",
+          "ـَيْ",
+          "ـَيْ",
+          "جَاء كِلَاهُمَا - رأيتُ كِلَيْهِمَا - مَرَرْتُ بِكِلَيْهِمَا"
+        ],
+        [
+          "6",
+          "10",
+          "{{term|جمعُ المُذَكَّرِ السَّالِمُ}}",
+          "ـُوْنَ",
+          "ـِيْنَ",
+          "ـِيْنَ",
+          "جَاء مُسْلِمُوْنَ - رأيتُ مُسْلِمِيْنَ - مَرَرْتُ بِمُسْلِمِيْنَ"
+        ],
+        [
+          "6",
+          "11",
+          "{{term|عِشْرُوْنَ إِلىٰ تسعونَ}} (عَالَمُوْنَ)",
+          "ـُوْنَ",
+          "ـِيْنَ",
+          "ـِيْنَ",
+          "جَاء عِشْرُوْنَ - رأيتُ عِشْرِيْنَ - مَرَرْتُ بِعِشْرِيْنَ"
+        ],
+        [
+          "6",
+          "12",
+          "{{term|أُولُوْ}}",
+          "ـُوْنَ",
+          "ـِيْنَ",
+          "ـِيْنَ",
+          "جَاء أُولُوْ - رأيتُ أُولِيْ - مَرَرْتُ بِأُولِيْ"
+        ],
+        [
+          "7",
+          "13",
+          "{{term|الإِسْمُ المَقْصُوْرُ}}",
+          "–",
+          "–",
+          "–",
+          "جَاءَ الهُدٰى - رأيتُ الهُدٰى - مَرَرْتُ بِالهُدٰى"
+        ],
+        [
+          "7",
+          "14",
+          "{{term|الإِسمُ المُضافُ إِلىٰ يَاءِ المُتَكَلِّمِ غَيْرَ جَمْعِ المُذَكَّرِ السَّالِمِ}}",
+          "–",
+          "–",
+          "–",
+          "هذا قَلمِيْ - رأيتُ قَلمِيْ - مَرَرْتُ بِقَلمِيْ"
+        ],
+        [
+          "8",
+          "15",
+          "{{term|الإِسْمُ المَنْقُوْصُ}}",
+          "–",
+          "ـَ",
+          "–",
+          "جَاءَ القَاضِيْ - رأيتُ القَاضِيَ - مَرَرْتُ بِالقَاضِيْ"
+        ],
+        [
+          "9",
+          "16",
+          "{{term|جَمْعُ المُذَكَّرِ السَّالِمُ المُضَافُ إِلىٰ يَاءِ المُتَكَلِّمِ}}",
+          "–",
+          "يْ",
+          "يْ",
+          "جَاء مُسْلِمِيَّ - رأيتُ مُسْلِمِيَّ - مَرَرْتُ بِمُسْلِمِيَّ"
+        ]
+      ],
+      "note_ar": "العمود الأول للأنواع التسعة للإعراب، والعمود الثاني لأنواع الأسماء المعربة الستة عشر.",
+      "note_en": "The first column numbers the 9 types of i'raab, the second numbers the 16 types of mu'rab noun. The raf', nasb and jarr columns are the marks drawn on the page."
+    },
+    {
+      "id": "p01-1",
+      "kind": "heading",
+      "page": 1,
+      "ar": "المُفْرَدُ المُنصرِفُ الصَّحِيحُ",
+      "en": "Al-mufrad al-munsarif as-sahih"
+    },
+    {
+      "id": "p01-2",
+      "kind": "rule",
+      "page": 1,
+      "ar": "المُفْرَدُ",
+      "en": "It means: A noun which is single i.e., {{condition|not dual or plural}} like مسلمان و مسلمون و رجال"
+    },
+    {
+      "id": "p01-3",
+      "kind": "rule",
+      "page": 1,
+      "ar": "المُنصرِفُ",
+      "en": "It means: A noun which {{condition|doesn't contain the causes which prevent}} تنوين & كسرة."
+    },
+    {
+      "id": "p01-4",
+      "kind": "rule",
+      "page": 1,
+      "ar": "الصَّحِيحُ",
+      "en": "It means: A noun whose last letter, from the original letters, is {{condition|NOT a حرف العلة}} i.e., ا و ي"
+    },
+    {
+      "id": "p01-5",
+      "kind": "rule",
+      "page": 1,
+      "ar": "ملاحظة",
+      "en": "Note: According to Nahw, a صحيح word is one whose last letter, from the original letters, is not a حرف العلة whereas according to Sarf, a صحيح word is one which does not contain a حرف العلة anywhere from amongst the original letters. So, the word زيد is صحيح according to Nahw and {{term|أجوف}} according to Sarf."
+    },
+    {
+      "id": "p01-6",
+      "kind": "heading",
+      "page": 1,
+      "ar": "الجَارِي مجرىٰ الصَّحِيحِ",
+      "en": "Al-jaari majraa as-sahih"
+    },
+    {
+      "id": "p01-7",
+      "kind": "rule",
+      "page": 1,
+      "ar": "الجَارِي مجرىٰ الصَّحِيحِ",
+      "en": "It means: A noun which manifests like the manifestation of صحيح. (In terms of I'raab). A noun which technically is not صحيح but behaves like a صحيح. The last letter of this noun is either a و or a ي {{condition|preceded by a letter with a سكون}} e.g., نَحْوٌ, رَمْيٌ"
+    },
+    {
+      "id": "p01-8",
+      "kind": "heading",
+      "page": 1,
+      "ar": "الجَمْعُ المُكَسَّرُ المُنصرِفُ",
+      "en": "Al-jam' al-mukassar al-munsarif"
+    },
+    {
+      "id": "p01-9",
+      "kind": "rule",
+      "page": 1,
+      "ar": "الجَمْعُ المُكَسَّرُ",
+      "en": "It means: A noun which is a broken plural and {{condition|not an intact masculine or an intact feminine plural}}. This noun can be a masculine noun like: رِجال or a feminine noun like: أَنْفُسٌ."
+    },
+    {
+      "id": "p01-10",
+      "kind": "rule",
+      "page": 1,
+      "ar": "المُنصرِفُ",
+      "en": "It means: The broken plural {{condition|must not be one which falls on 1 of the 3 patterns which cause the prevention of تنوين & كسرة}} like: مَفَاتِيْحُ و مَسَاجِدُ و دَوَابُّ for these are also broken plurals BUT they are prevented from تنوين & كسرة."
+    },
+    {
+      "id": "p01-11",
+      "kind": "heading",
+      "page": 1,
+      "ar": "جَمْعُ المُؤَنَّثِ السَّالِمُ",
+      "en": "Jam' al-mu'annath as-saalim"
+    },
+    {
+      "id": "p01-12",
+      "kind": "rule",
+      "page": 1,
+      "ar": "جَمْعُ المُؤَنَّثِ",
+      "en": "It means: A noun which is pluralised with {{condition|an extra ا & ت at the end of the word}}. This is done without taking into consideration the gender of the word in the singular form e.g., كوكَبٌ (a star) which is masculine can be pluralised with كَوكَبَات."
+    },
+    {
+      "id": "p01-13",
+      "kind": "rule",
+      "page": 1,
+      "ar": "السَّالِمُ",
+      "en": "It means: A noun whose {{condition|singular form is not broken}}, this term is used to avoid those feminine nouns whose singular forms have been broken e.g., حُمْرٌ plural of حَمْرَاءُ"
+    },
+    {
+      "id": "p02-1",
+      "kind": "heading",
+      "page": 2,
+      "ar": "غيرُ المُنْصَرِفِ",
+      "en": "Ghair al-munsarif"
+    },
+    {
+      "id": "p02-2",
+      "kind": "rule",
+      "page": 2,
+      "ar": "غيرُ المُنْصَرِفِ",
+      "en": "It means: A noun which {{condition|contains 1 or 2 causes which disable it from taking a}} تنوين & كسرة."
+    },
+    {
+      "id": "p02-3",
+      "kind": "heading",
+      "page": 2,
+      "ar": "الأَسْمَاءُ السِّتَّةُ المُكَبَّرَةُ المُوَحَّدَةُ المُضَافَةُ إِلىٰ غيرِ ياءِ المُتَكلِّمِ",
+      "en": "The six nouns, in their default form, single, and mudaaf to other than the yaa of the speaker"
+    },
+    {
+      "id": "p02-4",
+      "kind": "table",
+      "page": 2,
+      "caption": "الأَسْمَاءُ السِّتَّةُ",
+      "caption_en": "It means: The six nouns which are:",
+      "columns": [
+        "الإسم",
+        "المعنى"
+      ],
+      "answer_col": 0,
+      "rows": [
+        [
+          "أَبٌ",
+          "Father"
+        ],
+        [
+          "أَخٌ",
+          "Brother"
+        ],
+        [
+          "حَمٌ",
+          "Husband's in-law"
+        ],
+        [
+          "هَنٌ",
+          "Private part"
+        ],
+        [
+          "فَمٌ",
+          "Mouth"
+        ],
+        [
+          "ذُوْ",
+          "Owner of..."
+        ]
+      ]
+    },
+    {
+      "id": "p02-5",
+      "kind": "rule",
+      "page": 2,
+      "ar": "المُكَبَّرَةُ",
+      "en": "It means: These six {{ruling|must be in the default form}} i.e., not in the مُصَغَّر (diminutive) form. Because when they are in the مُصَغَّر form, then they fall into the first I'raab category e.g.,"
+    },
+    {
+      "id": "p02-6",
+      "kind": "example",
+      "page": 2,
+      "ar": "جَاءَ أُخَيُّ زَيْدٍ، رَأَيْتُ أُخَيَّ زَيْدٍ، مَرَرْتُ بِأُخَيِّ زَيْدٍ",
+      "en": "The brother (diminutive) of Zaid came, I saw the brother (diminutive) of Zaid, I passed by the brother (diminutive) of Zaid",
+      "labels": []
+    },
+    {
+      "id": "p02-7",
+      "kind": "rule",
+      "page": 2,
+      "ar": "المُوَحَّدَةُ",
+      "en": "It means: These six {{ruling|must be in the single form and not in the dual or plural form}}. Because when they are in the dual form, then they will take the I'raab of dual e.g.,"
+    },
+    {
+      "id": "p02-8",
+      "kind": "example",
+      "page": 2,
+      "ar": "جَاءَ أَخَوَا زَيْدٍ، رَأَيْتُ أَخَوَيْ زَيْدٍ، مَرَرْتُ بِأَخَوَيْ زَيْدٍ",
+      "en": "The two brothers of Zaid came, I saw the two brothers of Zaid, I passed by the two brothers of Zaid",
+      "labels": []
+    },
+    {
+      "id": "p02-9",
+      "kind": "example",
+      "page": 2,
+      "ar": "جَاءَ إِخْوَةُ زَيْدٍ، رَأَيْتُ إِخْوَةَ زَيْدٍ، مَرَرْتُ بِإِخْوَةِ زَيْدٍ",
+      "en": "And when they are in the plural form, they will take the I'raab of broken plural e.g., the brothers of Zaid came, I saw the brothers of Zaid, I passed by the brothers of Zaid",
+      "labels": []
+    },
+    {
+      "id": "p02-10",
+      "kind": "rule",
+      "page": 2,
+      "ar": "المُضَافَةُ إِلىٰ غيرِ ياءِ المُتَكَلِّمِ",
+      "en": "It means: They {{ruling|must be مضاف}}. Because if they are not مضاف, then they will take the I'raab of the first category e.g.,"
+    },
+    {
+      "id": "p02-11",
+      "kind": "example",
+      "page": 2,
+      "ar": "جَاءَ أَخٌ، رَأَيْتُ أَخًا، مَرَرْتُ بِأَخٍ",
+      "en": "A brother came, I saw a brother, I passed by a brother",
+      "labels": []
+    },
+    {
+      "id": "p02-12",
+      "kind": "rule",
+      "page": 2,
+      "ar": "المُضَافَةُ إِلىٰ غيرِ ياءِ المُتَكَلِّمِ",
+      "en": "When these six are مضاف, they can be مضاف to any noun including pronouns {{condition|except the يَاءُ المُتَكَلِّمِ}}. Because when they are مضاف to a يَاءُ المُتَكَلِّمِ, then their I'raab is hidden like every other noun which is مضاف to a يَاءُ المُتَكَلِّمِ (except, of course, the Masculine Intact Plural) e.g.,"
+    },
+    {
+      "id": "p02-13",
+      "kind": "example",
+      "page": 2,
+      "ar": "جَاءَ أَخِيْ، رَأَيْتُ أَخِيْ ، مَرَرْتُ بِأَخِيْ",
+      "en": "My brother came, I saw my brother, I passed by my brother",
+      "labels": []
+    },
+    {
+      "id": "p02-14",
+      "kind": "list",
+      "page": 2,
+      "ar": "",
+      "en": "So, what all of this means is that for these six nouns to take the I'raab mentioned above, they:",
+      "items": [
+        "MUST be in the default form and not in the مُصَغَّر diminutive form.",
+        "MUST be single and not dual or plural.",
+        "MUST be مضاف to anything other than a يَاءُ المُتَكَلِّمِ."
+      ]
+    },
+    {
+      "id": "p02-15",
+      "kind": "example",
+      "page": 2,
+      "ar": "جَاءَ أَخُوْ زَيْدٍ، رَأَيْتُ أَخَا زَيْدٍ، مَرَرْتُ بِأَخِيْ زَيْدٍ",
+      "en": "E.g., the brother of Zaid came, I saw the brother of Zaid, I passed by the brother of Zaid",
+      "labels": []
+    },
+    {
+      "id": "p02-16",
+      "kind": "rule",
+      "page": 2,
+      "ar": "ذُوْ",
+      "en": "Note 1: ذُوْ can only be used as a مضاف. And the مضاف إليه MUST be an {{condition|إسم الجنس}} e.g., ذُوْ رَجُلٍ، ذُو مَالٍ and MUST not be a مُشتَق descriptive noun. So, the likes of: ذُوْ نَاصِرٍ، ذُوْ مَضْرُوْبٍ is not correct."
+    },
+    {
+      "id": "p02-17",
+      "kind": "rule",
+      "page": 2,
+      "ar": "هَنٌ",
+      "en": "Note 2: The word هَنٌ can be expressed with the I'raabs of category 1 e.g., هٰذَا هَنُ زَيْدٍ، رَأَيْتُ هَنَ زَيْدٍ، مَرَرْتُ بِهَنِ زَيْدٍ. In fact, this is the most eloquent way of using it."
+    },
+    {
+      "id": "p03-1",
+      "kind": "heading",
+      "page": 3,
+      "ar": "المُثَنّٰى",
+      "en": "Al-muthannaa"
+    },
+    {
+      "id": "p03-2",
+      "kind": "rule",
+      "page": 3,
+      "ar": "المُثَنّٰى",
+      "en": "It means: The dual noun, a noun which, {{condition|if it was broken and opened up, it should contain the same noun twice}} e.g., رَجُلَانِ, when this noun is opened up, you will find رَجُلٌ و رَجُلٌ. As for the word which the Arabs use for water and dates, أَسْوَدَانِ literally (2 black ones), despite it following the same I'raab as the dual noun, doesn't fall under the dual noun category because when this noun is opened up, you will find مَاءٌ و تَمْرٌ instead of أَسْوَدُ و أَسْوَدُ. However, if \"2 black ones\" is intended instead of water and dates, then the word أَسْوَدَانِ will fall under the dual noun because it now contains أسودُ و أسودُ. Understand!"
+    },
+    {
+      "id": "p03-3",
+      "kind": "heading",
+      "page": 3,
+      "ar": "إِثْنَانِ وَ اثْنَتَانِ (قَمَرَانِ، أَسْوَدَانِ)",
+      "en": "Ithnaan and ithnataan (qamaraan, aswadaan)"
+    },
+    {
+      "id": "p03-4",
+      "kind": "rule",
+      "page": 3,
+      "ar": "إِثْنَانِ وَ اثْنَتَانِ (قَمَرَانِ، أَسْوَدَانِ): {{term|الملحق بالمثنى (صُوَرِيْ)}}",
+      "en": "It means: A noun which shares the I'raab of the dual noun but {{condition|technically is not a dual noun}} because it does not fall under the definition of the dual noun which basically calls for the presence of 2 of the same word inside of the dual word (as mentioned above). So قَمَرَانِ which literally means 2 moons is used for the sun and the moon, therefore this is not a dual noun."
+    },
+    {
+      "id": "p03-5",
+      "kind": "heading",
+      "page": 3,
+      "ar": "كِلَا و كِلْتَا المُضَافَانِ إِلىٰ الضَّمِيْرِ",
+      "en": "Kilaa and kiltaa, mudaaf to a pronoun"
+    },
+    {
+      "id": "p03-6",
+      "kind": "list",
+      "page": 3,
+      "ar": "كِلَا و كِلْتَا المُضَافَانِ إِلىٰ الضَّمِيْرِ: {{term|الملحق بالمثنى}}",
+      "en": "It means:",
+      "items": [
+        "These 2 nouns must always be مضاف because that is how they are used.",
+        "They also don't fall under the definition of dual. In order to take the I'raab of dual, they must be مضاف to a pronoun in the meaning of dual e.g., كِلَاهُمَا، كِلَاكُمَا، كِلَانَا.",
+        "If they are مضاف to a dual noun instead of a dual pronoun, then their I'raab will be hidden with an Alif like الإسم المقصور e.g., جَاءَ كِلَا الرَّجُلَيْنِ، رَأَيْتُ كِلَا الرَّجُلَيْنِ، مَرَرْتُ بِكِلَا الرَّجُلَيْنِ"
+      ]
+    },
+    {
+      "id": "p03-7",
+      "kind": "rule",
+      "page": 3,
+      "ar": "ملاحظة: {{term|الملحق بالمثنى}}",
+      "en": "Note: The latter 2 categories of nouns, I mean إِثْنَانِ وَ اثْنَتَانِ & كِلَا و كِلْتَا are considered الملحق بالمثنى which means \"The ones which are connected to the dual\". They are not dual but resemble the dual either in form (صورة) which is what إِثْنَانِ وَ اثْنَتَانِ are because they take the form of dual, or in meaning (معنى) which is what كِلَا و كِلْتَا are because they mean \"Both\" which is dual in meaning. Understand!"
+    },
+    {
+      "id": "p03-8",
+      "kind": "heading",
+      "page": 3,
+      "ar": "جمعُ المُذَكَّرِ السَّالِمُ",
+      "en": "Jam' al-mudhakkar as-saalim"
+    },
+    {
+      "id": "p03-9",
+      "kind": "rule",
+      "page": 3,
+      "ar": "جمعُ المُذَكَّرِ السَّالِمُ",
+      "en": "It means: The plural in which {{condition|the single form is intact and the meaning is masculine}}."
+    },
+    {
+      "id": "p03-10",
+      "kind": "rule",
+      "page": 3,
+      "ar": "ملاحظة",
+      "en": "Note: There are conditions for a valid Masculine intact plural (MIP). Firstly, we need to understand that the MIP will only be made from an {{term|إسم جامد}} or an {{term|إسم مشتق}}. Both types need certain conditions to be fulfilled in order to qualify for a MIP form."
+    },
+    {
+      "id": "p04-1",
+      "kind": "list",
+      "page": 4,
+      "ar": "إسم جامد",
+      "en": "إسم جامد (Primary Noun) Conditions",
+      "items": [
+        "Must be a name. رَجُلٌ which is not a name can't be رَجُلُوْنَ",
+        "Name must be for a male. زَيْنَب which is a name for a female can't be زينبُوْنَ",
+        "Male must be human. لَاحِق, name of a male horse, can't be لاحِقُوْنَ",
+        "Must be free of a round ة. طَلْحَة, name of a male which has a round ة can't be طلحُوْنَ",
+        "Must be مُفْرد, not a مُرَكَّب. عَبد الله can't be عَبدُ اللّٰهُون because of being مركب."
+      ]
+    },
+    {
+      "id": "p04-2",
+      "kind": "list",
+      "page": 4,
+      "ar": "إسم مشتق",
+      "en": "إسم مشتق (Descriptive Noun) Conditions",
+      "items": [
+        "Must be describing male. حَائض can't be حَائِضُوْنَ because it describes a female.",
+        "Male must be human. سَابِقٌ, describing a fast male horse, can't be سَابِقُوْنَ.",
+        "Must be free of round ة. عَلَّامَة, describing a male, can't be عَلَّامُوْنَ.",
+        "Must not have a feminine on the pattern of فَعْلَاءُ. أَحْمَرُ can't be أَحْمَرُوْنَ because of حَمْرَاء",
+        "Must not have feminine on the pattern of فَعْلىٰ. سَكْرَانُ can't be سَكْرَانُوْنَ because of سَكْرىٰ",
+        "Must not be a pattern shared between male and female. صَبُوْرٌ is used for male and female, therefore it can't be صَبُوْرُوْنَ."
+      ]
+    },
+    {
+      "id": "p04-3",
+      "kind": "heading",
+      "page": 4,
+      "ar": "عِشْرُوْنَ إِلىٰ تسعونَ (عَالَمُوْنَ)",
+      "en": "'Ishroon to tis'oon ('aalamoon)"
+    },
+    {
+      "id": "p04-4",
+      "kind": "rule",
+      "page": 4,
+      "ar": "عِشْرُوْنَ إِلىٰ تسعونَ (عَالَمِيْنَ): {{term|الملحق بجمعِ المذَكَّرِ السالِمِ}}",
+      "en": "It means: Those nouns which take the MIP I'raab but {{condition|don't fall under the definition of MIP}} either by not having a single which needs to remain intact within the plural form or by not fulfilling the conditions mentioned above. Here, عِشْرُوْنَ has no single because عِشْرٌ would be its intact single. And عِشْرٌ does not exist. Even if one was to think عِشْرٌ could be its single, meaning 10, then عِشْرُوْنَ should mean 30 minimum. Understand! Also, عَالَمِيْنَ is a جَامِد and doesn't fulfil the conditions of جَامِد and therefore falls into this category."
+    },
+    {
+      "id": "p04-5",
+      "kind": "heading",
+      "page": 4,
+      "ar": "أُولُوْ",
+      "en": "Uloo"
+    },
+    {
+      "id": "p04-6",
+      "kind": "rule",
+      "page": 4,
+      "ar": "أُولُوْ: {{term|الملحق بجمعِ المذَكَّرِ السالِمِ}}",
+      "en": "It means: This word takes the I'raab of MIP but is not a MIP because it doesn't conform to the definition of MIP because {{condition|it does not have a single in its word form}} since it is the plural of the word ذُوْ and also because it doesn't fulfil the conditions of MIP. Added to that, this word is {{ruling|always used as a مضاف}}."
+    },
+    {
+      "id": "p04-7",
+      "kind": "rule",
+      "page": 4,
+      "ar": "ملاحظة",
+      "en": "Note: Similar to the dual category, this category also has 2 types which aren't MIP but are connected to MIP."
+    },
+    {
+      "id": "p05-1",
+      "kind": "heading",
+      "page": 5,
+      "ar": "الإِسْمُ المَقْصُوْرُ",
+      "en": "Al-ism al-maqsoor"
+    },
+    {
+      "id": "p05-2",
+      "kind": "list",
+      "page": 5,
+      "ar": "الإِسْمُ المَقْصُوْرُ",
+      "en": "It means:",
+      "items": [
+        "Those nouns which have an الألفُ المَقْصُوْرَة at the end of the word.",
+        "Their I'raab is assumed. They aren't called مبني because most can change from having an الألفُ المَقْصُوْرَة at the end to having فتحتَيْن instead like الهُدٰى and هُدًى. And also, because they have no resemblance to the المبني الأصل."
+      ]
+    },
+    {
+      "id": "p05-3",
+      "kind": "heading",
+      "page": 5,
+      "ar": "الإِسمُ المُضافُ إِلىٰ يَاءِ المُتَكَلِّمِ غَيْرَ جَمْعِ المُذَكَّرِ السَّالِمِ",
+      "en": "The noun mudaaf to the yaa of the speaker, other than the masculine intact plural"
+    },
+    {
+      "id": "p05-4",
+      "kind": "rule",
+      "page": 5,
+      "ar": "الإِسمُ المُضافُ إِلىٰ يَاءِ المُتَكَلِّمِ",
+      "en": "It means: Any noun that is made مضاف to the يَاءُ المُتَكَلِّم. It's I'raab is {{ruling|hidden in all states}} because the يَاء over powers the letter preceding it and makes it take a كَسْرَة in all states."
+    },
+    {
+      "id": "p05-5",
+      "kind": "example",
+      "page": 5,
+      "ar": "هٰذَا كِتَابِيْ، رَأَيْتُ كِتَابِيْ، مَرَرْتُ بِكِتَابِيْ",
+      "en": "This is my book, I saw my book, I passed by my book",
+      "labels": []
+    },
+    {
+      "id": "p05-6",
+      "kind": "rule",
+      "page": 5,
+      "ar": "غَيْرَ جَمْعِ المُذَكَّرِ السَّالِمِ",
+      "en": "It means: Any noun {{condition|except the MIP}}. This will be explained in its category."
+    },
+    {
+      "id": "p05-7",
+      "kind": "heading",
+      "page": 5,
+      "ar": "الإِسْمُ المَنْقُوْصُ",
+      "en": "Al-ism al-manqoos"
+    },
+    {
+      "id": "p05-8",
+      "kind": "rule",
+      "page": 5,
+      "ar": "الإِسْمُ المَنْقُوْصُ",
+      "en": "It means: A noun which ends with a {{condition|يَاءٌ سَاكِنٌ preceded with a كَسْرَة}} will have hidden I'raabs in the رفع & جر states and an apparent I'raab in the نصب state e.g., جَاءَ القَاضِيْ، رَأَيْتُ القَاضِيَ، مَرَرْتُ بِالقَاضِيْ."
+    },
+    {
+      "id": "p05-9",
+      "kind": "rule",
+      "page": 5,
+      "ar": "ملاحظة: {{term|تَنْوِيْنُ العِوَضِ}}",
+      "en": "Note: When the الإِسْمُ المَنْقُوْصُ is {{condition|free from الألف و اللام or إضافة}}, the يَاء will drop in the 2 states the I'raab is hidden and a تنوين will be added to the second to last letter. This تنوين is for substitution known as تَنْوِيْنُ العِوَضِ. Its purpose is to substitute the dropped letter. e.g., جَاءَ قَاضٍ، رَأَيْتُ قَاضِيًا، مَرَرْتُ بِقَاضٍ."
+    },
+    {
+      "id": "p05-10",
+      "kind": "heading",
+      "page": 5,
+      "ar": "جَمْعُ المُذَكَّرِ السَّالِمُ المُضَافُ إِلىٰ يَاءِ المُتَكَلِّمِ",
+      "en": "The masculine intact plural, mudaaf to the yaa of the speaker"
+    },
+    {
+      "id": "p05-11",
+      "kind": "rule",
+      "page": 5,
+      "ar": "جَمْعُ المُذَكَّرِ السَّالِمُ المُضَافُ إِلىٰ يَاءِ المُتَكَلِّمِ",
+      "en": "It means: The MIP when made مضاف to the يَاءُ المُتَكَلِّم, in one state, the رفع state, the I'raab is {{ruling|assumed}} and in the other 2 states the I'raab is {{ruling|apparent with the يَاء}}."
+    },
+    {
+      "id": "p05-12",
+      "kind": "table",
+      "page": 5,
+      "caption": "مُسْلِمُوْنَ / مُسْلِمِيْنَ مع ياء المتكلم",
+      "caption_en": "The steps drawn on the page for muslimoon and muslimeen joined to the yaa of the speaker (the drawn table has no column headings; the right-hand column is the raf' form and the left-hand column the nasb and jarr form)",
+      "columns": [
+        "رفع",
+        "نصب و جر"
+      ],
+      "rows": [
+        [
+          "مُسْلِمُوْنَ",
+          "مُسْلِمِيْنَ"
+        ],
+        [
+          "مُسْلِمُوْ",
+          "مُسْلِمِيْ"
+        ],
+        [
+          "مُسْلِمُوْ    يَ",
+          "مُسْلِمِيْ    يَ"
+        ],
+        [
+          "مُسْلِمُيْ    يَ",
+          "–"
+        ],
+        [
+          "مُسْلِمُيْ ⟶ يَ",
+          "مُسْلِمِيْ ⟶ يَ"
+        ],
+        [
+          "مُسْلِمُيَّ",
+          "–"
+        ],
+        [
+          "مُسْلِمِيَّ",
+          "مُسْلِمِيَّ"
+        ]
+      ],
+      "note_ar": "",
+      "note_en": "Understand!"
+    }
+  ]
+}

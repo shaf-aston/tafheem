@@ -1,0 +1,239 @@
+{
+ "batch": "mafool-maahu-lettered-02",
+ "questions": [
+  {
+   "id": "mafool-maahu/application/4",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "4",
+    "images": [
+     "q032.png",
+     "q033.png",
+     "q034.png",
+     "q035.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "فتحتُ أنَا وزيد أبوابَ البيت",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و in the sentence.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "كلاهما",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "كلاهما"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Parts b and c were left blank in the source screenshots, no student text or model answer visible.",
+    "Some bare letters in the sentence (the isolated و, زيد, and البيت) show no printed haraka in the source image; only the harakat actually visible were transcribed."
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/5",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "5",
+    "images": [
+     "q036.png",
+     "q037.png",
+     "q038.png",
+     "q039.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "دخل الفصل زيدٌ وطلحة",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و in the sentence.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "كلاهما",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "كلاهما"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Parts b and c were left blank in the source screenshots, no student text or model answer visible.",
+    "طلحة shows no printed haraka in the source image; only the harakat actually visible were transcribed."
+   ]
+  },
+  {
+   "id": "mafool-maahu/application/6",
+   "category": "tarkeeb",
+   "topic": "Mafool Ma'ahu",
+   "source": {
+    "form": "mafool-maahu",
+    "title": "Exercise: Mafool Ma'ahu YR3PT25-26 (05/12/25)",
+    "section": "Application of Rules",
+    "number": "6",
+    "images": [
+     "q040.png",
+     "q041.png",
+     "q042.png",
+     "q043.png"
+    ]
+   },
+   "type": "atf_or_maiyyah",
+   "instructions": "Important instructions\n1. Look at the following sentences and Identify the type of و you are dealing with.\n2. If it's a معية و then opt for معية and if it's a عاطفة و then opt for عاطفة and if it can be both then opt for كلاهما.\n3. Explain your answer by breifly detailing your choice. You will lose a mark if your explanation is not in line with your answer OR if you don't explain your answer properly.\n4. Translate the sentence clearly with what you have opted for. You will lose a mark if your translation is not clear.\n\nUse your notes. Look at them, read them, understand them.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "سمعتُ والتاجر الآذانَ",
+     "marked": [
+      {
+       "text": "و",
+       "mark": "yellow highlight"
+      }
+     ],
+     "en": null
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "Identify the type of و in the sentence.",
+     "kind": "choose_one",
+     "options": [
+      "عاطفة",
+      "معية",
+      "كلاهما"
+     ],
+     "answer": "معية",
+     "answer_source": "marked_correct",
+     "my_response": [
+      "معية"
+     ],
+     "points": "1/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain your answer clearly.",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    },
+    {
+     "label": "c",
+     "ask": "Write your translation whilst ensuring the مفعول معه or عطف is clear in your translation:",
+     "kind": "free_text",
+     "options": [],
+     "answer": null,
+     "answer_source": "unknown",
+     "my_response": null,
+     "points": null,
+     "feedback": null
+    }
+   ],
+   "flags": [
+    "Parts b and c were left blank in the source screenshots, no student text or model answer visible.",
+    "التاجر shows no printed haraka in the source image; only the harakat actually visible were transcribed."
+   ]
+  }
+ ]
+}

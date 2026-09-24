@@ -1,0 +1,882 @@
+{
+  "blocks": [
+    {
+      "id": "p09-1",
+      "kind": "heading",
+      "page": 9,
+      "ar": "الحال: اسم جامد",
+      "en": "Al-haal: ism jaamid"
+    },
+    {
+      "id": "p09-2",
+      "kind": "rule",
+      "page": 9,
+      "ar": "",
+      "en": "3. When the 'جامد' is used in the meaning of {{condition|mutual participation in engagement}}. Here, the 'جامد' will also be {{ruling|interpreted into a 'مشتق'}}."
+    },
+    {
+      "id": "p09-3",
+      "kind": "picture",
+      "page": 9,
+      "caption": "تركيب: أعطيتُ زَيدًا يَدًا بِيَدٍ (9a) و لَقِيْتُ زَيدًا وَجْهًا لِوَجْهٍ (9b)، مع ثَابِتَةً / ثَابِتًا مقدّرا متعلَّقا للجار والمجرور",
+      "caption_en": "Tarkeeb trees for 9a and 9b, with the implied ثَابِتَةً / ثَابِتًا written small as what the jaar-majroor attaches to"
+    },
+    {
+      "id": "p09-4",
+      "kind": "example",
+      "page": 9,
+      "ar": "أعطيتُ زَيدًا يَدًا بِيَدٍ",
+      "en": "I gave (it) to Zaid (whilst) hand in hand.",
+      "labels": [
+        {
+          "word": "أعطيتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "زَيدًا",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "يَدًا",
+          "label": "منعوت"
+        },
+        {
+          "word": "بِيَدٍ",
+          "label": "جار مجرور"
+        },
+        {
+          "word": "ثَابِتَةً",
+          "label": "متعلق"
+        },
+        {
+          "word": "بِيَدٍ (ثَابِتَةً)",
+          "label": "نعت"
+        },
+        {
+          "word": "يَدًا بِيَدٍ",
+          "label": "حال"
+        },
+        {
+          "word": "زَيدًا يَدًا بِيَدٍ",
+          "label": "مفعول به"
+        },
+        {
+          "word": "أعطيتُ زَيدًا يَدًا بِيَدٍ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p09-5",
+      "kind": "example",
+      "page": 9,
+      "ar": "لَقِيْتُ زَيدًا وَجْهًا لِوَجْهٍ",
+      "en": "I met/confronted Zaid (whilst) face to face.",
+      "labels": [
+        {
+          "word": "لَقِيْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "زَيدًا",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "وَجْهًا",
+          "label": "منعوت"
+        },
+        {
+          "word": "لِوَجْهٍ",
+          "label": "جار مجرور"
+        },
+        {
+          "word": "ثَابِتًا",
+          "label": "متعلق"
+        },
+        {
+          "word": "لِوَجْهٍ (ثَابِتًا)",
+          "label": "نعت"
+        },
+        {
+          "word": "وَجْهًا لِوَجْهٍ",
+          "label": "حال"
+        },
+        {
+          "word": "زَيدًا وَجْهًا لِوَجْهٍ",
+          "label": "مفعول به"
+        },
+        {
+          "word": "لَقِيْتُ زَيدًا وَجْهًا لِوَجْهٍ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p09-6",
+      "kind": "rule",
+      "page": 9,
+      "ar": "",
+      "en": "Here as well, the 'جامد' will {{ruling|not correspond}} due to the interpretation of the 'جامد' being intended. In 9a, 'يدًا بِيدٍ' is interpreted as 'مُتَقَابِضَيْنِ' '{{term|اسم الفاعل}}' and in 9b, 'وجهًا لِوجهٍ' is interpreted as 'مُتَقَابِلَيْنِ' 'اسم الفاعل'."
+    },
+    {
+      "id": "p10-1",
+      "kind": "heading",
+      "page": 10,
+      "ar": "الحال: اسم جامد",
+      "en": "Al-haal: ism jaamid"
+    },
+    {
+      "id": "p10-2",
+      "kind": "rule",
+      "page": 10,
+      "ar": "",
+      "en": "4. When the 'جامد' is used in its {{condition|original meaning and is not interpreted into a 'مشتق'}}. In this scenario, the 'جامد' {{ruling|must have a 'نعت'}}."
+    },
+    {
+      "id": "p10-3",
+      "kind": "picture",
+      "page": 10,
+      "caption": "تركيب: أَنْزَلْنَاهُ قُرْآنًا عَربِيًّا (10a) و يَخْرُجُ زَيْدٌ رَجلًا كَرِيمًا (10b)",
+      "caption_en": "Tarkeeb trees for 10a and 10b"
+    },
+    {
+      "id": "p10-4",
+      "kind": "example",
+      "page": 10,
+      "ar": "أَنْزَلْنَاهُ قُرْآنًا عَربِيًّا",
+      "en": "We revealed it (whilst) an Arabic Qur'an.",
+      "labels": [
+        {
+          "word": "أَنْزَلْنَاهُ",
+          "label": "فعل فاعل ذو الحال"
+        },
+        {
+          "word": "قُرْآنًا",
+          "label": "منعوت"
+        },
+        {
+          "word": "عَربِيًّا",
+          "label": "نعت"
+        },
+        {
+          "word": "قُرْآنًا عَربِيًّا",
+          "label": "حال"
+        },
+        {
+          "word": "هُ قُرْآنًا عَربِيًّا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "أَنْزَلْنَاهُ قُرْآنًا عَربِيًّا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p10-5",
+      "kind": "example",
+      "page": 10,
+      "ar": "يَخْرُجُ زَيْدٌ رَجلًا كَرِيمًا",
+      "en": "Zaid is exiting (whilst) a noble man.",
+      "labels": [
+        {
+          "word": "يَخْرُجُ",
+          "label": "فعل"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "رَجلًا",
+          "label": "منعوت"
+        },
+        {
+          "word": "كَرِيمًا",
+          "label": "نعت"
+        },
+        {
+          "word": "رَجلًا كَرِيمًا",
+          "label": "حال"
+        },
+        {
+          "word": "زَيْدٌ رَجلًا كَرِيمًا",
+          "label": "فاعل"
+        },
+        {
+          "word": "يَخْرُجُ زَيْدٌ رَجلًا كَرِيمًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p10-6",
+      "kind": "rule",
+      "page": 10,
+      "ar": "",
+      "en": "Here, the 'جامد' is {{ruling|corresponding with the 'ذو الحال'}} to maintain a valid expression. The meaning of the 'جامد' is intended here. There is {{ruling|no interpretation}} of the 'جامد' into a 'مشتق' here."
+    },
+    {
+      "id": "p11-1",
+      "kind": "heading",
+      "page": 11,
+      "ar": "الحال: اسم جامد",
+      "en": "Al-haal: ism jaamid"
+    },
+    {
+      "id": "p11-2",
+      "kind": "rule",
+      "page": 11,
+      "ar": "",
+      "en": "5. When the 'جامد' is considered to be {{condition|a part of the genus of the 'ذو الحال' or vice versa}}. Here as well, the 'جامد' will {{ruling|not be interpreted}} into a 'مشتق'."
+    },
+    {
+      "id": "p11-3",
+      "kind": "picture",
+      "page": 11,
+      "caption": "تركيب: إشْتَرَيْتُ الفِضّةَ خَاتِمًا (11a) و إشْتَرَيْتُ الخَاتِمَ فِضَّةً (11b)",
+      "caption_en": "Tarkeeb trees for 11a and 11b"
+    },
+    {
+      "id": "p11-4",
+      "kind": "example",
+      "page": 11,
+      "ar": "إشْتَرَيْتُ الفِضّةَ خَاتِمًا",
+      "en": "I purchased silver in the state of a ring.",
+      "labels": [
+        {
+          "word": "إشْتَرَيْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "الفِضّةَ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "خَاتِمًا",
+          "label": "حال"
+        },
+        {
+          "word": "الفِضّةَ خَاتِمًا",
+          "label": "مفعول به"
+        },
+        {
+          "word": "إشْتَرَيْتُ الفِضّةَ خَاتِمًا",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p11-5",
+      "kind": "example",
+      "page": 11,
+      "ar": "إشْتَرَيْتُ الخَاتِمَ فِضَّةً",
+      "en": "I purchased a ring in a silver state.",
+      "labels": [
+        {
+          "word": "إشْتَرَيْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "الخَاتِمَ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "فِضَّةً",
+          "label": "حال"
+        },
+        {
+          "word": "الخَاتِمَ فِضَّةً",
+          "label": "مفعول به"
+        },
+        {
+          "word": "إشْتَرَيْتُ الخَاتِمَ فِضَّةً",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p11-6",
+      "kind": "rule",
+      "page": 11,
+      "ar": "",
+      "en": "Here, the 'جامد' will {{ruling|not correspond}} with the 'ذو الحال'. The 'جامد' is not interpreted into a 'مشتق' here."
+    },
+    {
+      "id": "p12-1",
+      "kind": "heading",
+      "page": 12,
+      "ar": "الحال: شبه الجملة",
+      "en": "Al-haal: shibh al-jumlah"
+    },
+    {
+      "id": "p12-2",
+      "kind": "rule",
+      "page": 12,
+      "ar": "",
+      "en": "The term '{{term|شبه الجملة}}' includes '{{term|جار مجرور}}' and '{{term|ظروف}}' constructions."
+    },
+    {
+      "id": "p12-3",
+      "kind": "picture",
+      "page": 12,
+      "caption": "تركيب: رَأَيْتُ الهِرَّةَ عَلى الشَّجَرَةِ (12a) و رَأَيْتُ الهِلَالَ بَيْنَ السَّحَابِ (12b)، مع ثَابِتَةً / ثَابِتًا مقدّرا متعلَّقا",
+      "caption_en": "Tarkeeb trees for 12a and 12b, with the implied ثَابِتَةً / ثَابِتًا written small as the muta'allaq"
+    },
+    {
+      "id": "p12-4",
+      "kind": "example",
+      "page": 12,
+      "ar": "رَأَيْتُ الهِرَّةَ عَلى الشَّجَرَةِ",
+      "en": "I saw the cat whilst it was on the tree.",
+      "labels": [
+        {
+          "word": "رَأَيْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "الهِرَّةَ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "عَلى",
+          "label": "جار"
+        },
+        {
+          "word": "الشَّجَرَةِ",
+          "label": "مجرور"
+        },
+        {
+          "word": "ثَابِتَةً",
+          "label": "متعلق"
+        },
+        {
+          "word": "عَلى الشَّجَرَةِ (ثَابِتَةً)",
+          "label": "حال"
+        },
+        {
+          "word": "الهِرَّةَ عَلى الشَّجَرَةِ",
+          "label": "مفعول به"
+        },
+        {
+          "word": "رَأَيْتُ الهِرَّةَ عَلى الشَّجَرَةِ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p12-5",
+      "kind": "example",
+      "page": 12,
+      "ar": "رَأَيْتُ الهِلَالَ بَيْنَ السَّحَابِ",
+      "en": "I saw the new moon whilst it was between the clouds.",
+      "labels": [
+        {
+          "word": "رَأَيْتُ",
+          "label": "فعل فاعل"
+        },
+        {
+          "word": "الهِلَالَ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "بَيْنَ",
+          "label": "مضاف"
+        },
+        {
+          "word": "السَّحَابِ",
+          "label": "مضاف إليه"
+        },
+        {
+          "word": "ثَابِتًا",
+          "label": "متعلق"
+        },
+        {
+          "word": "بَيْنَ السَّحَابِ (ثَابِتًا)",
+          "label": "حال"
+        },
+        {
+          "word": "الهِلَالَ بَيْنَ السَّحَابِ",
+          "label": "مفعول به"
+        },
+        {
+          "word": "رَأَيْتُ الهِلَالَ بَيْنَ السَّحَابِ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p12-6",
+      "kind": "rule",
+      "page": 12,
+      "ar": "",
+      "en": "The 'جار مجرور' and 'ظروف' are '{{ruling|متعلق}}' to '{{ruling|ثابت}}' which {{ruling|correlates to the 'ذو الحال' in number & gender}}. In 12a, 'ثَابِتَةً' is in the feminine form due to 'الهِرَّةَ' being feminine and it's '{{ruling|منصوب}}' because of being 'الحال'. In 12b, 'ثَابِتًا' is in the masculine form due to 'الهِلَالَ' being masculine and it's 'منصوب' because of being 'الحال'."
+    },
+    {
+      "id": "p13-1",
+      "kind": "heading",
+      "page": 13,
+      "ar": "الحال: جملة فعلية",
+      "en": "Al-haal: jumlah fi'liyyah"
+    },
+    {
+      "id": "p13-2",
+      "kind": "rule",
+      "page": 13,
+      "ar": "",
+      "en": "The 'جملة فعلية' will either begin with a 'ماضي' verb or a 'مضارع' verb. If it begins with a {{condition|'ماضي' verb}}, then a '{{ruling|قَدْ}}', for '{{term|تقريب}}', will be brought before the 'ماضي' verb to express close proximity. Examples of a 'جملة فعلية' 'الحال' beginning with the 'ماضي' verb."
+    },
+    {
+      "id": "p13-3",
+      "kind": "picture",
+      "page": 13,
+      "caption": "تركيب: يُصَلِّيْ زَيْدٌ قَدْ تَوَضَّأَ (13a) و أَكَل زَيْدٌ وَ قَدْ وَصَلَ بَكرٌ (13b)",
+      "caption_en": "Tarkeeb trees for 13a and 13b, with the hidden فاعل هو drawn under تَوَضَّأَ"
+    },
+    {
+      "id": "p13-4",
+      "kind": "example",
+      "page": 13,
+      "ar": "يُصَلِّيْ زَيْدٌ قَدْ تَوَضَّأَ",
+      "en": "Zaid is praying whilst he had just done wudhu.",
+      "labels": [
+        {
+          "word": "يُصَلِّيْ",
+          "label": "فعل"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "قَدْ",
+          "label": "للتقريب"
+        },
+        {
+          "word": "تَوَضَّأَ",
+          "label": "فعل"
+        },
+        {
+          "word": "هو",
+          "label": "فاعل"
+        },
+        {
+          "word": "قَدْ تَوَضَّأَ",
+          "label": "جملة فعلية خبرية - جملة حالية = حال"
+        },
+        {
+          "word": "زَيْدٌ قَدْ تَوَضَّأَ",
+          "label": "فاعل"
+        },
+        {
+          "word": "يُصَلِّيْ زَيْدٌ قَدْ تَوَضَّأَ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p13-5",
+      "kind": "example",
+      "page": 13,
+      "ar": "أَكَل زَيْدٌ وَ قَدْ وَصَلَ بَكرٌ",
+      "en": "Zaid had eaten whilst Bakr had just arrived.",
+      "labels": [
+        {
+          "word": "أَكَل",
+          "label": "فعل"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "وَ",
+          "label": "حالية"
+        },
+        {
+          "word": "قَدْ",
+          "label": "للتقريب"
+        },
+        {
+          "word": "وَصَلَ",
+          "label": "فعل"
+        },
+        {
+          "word": "بَكرٌ",
+          "label": "فاعل"
+        },
+        {
+          "word": "وَ قَدْ وَصَلَ بَكرٌ",
+          "label": "جملة فعلية خبرية - جملة حالية = حال"
+        },
+        {
+          "word": "زَيْدٌ وَ قَدْ وَصَلَ بَكرٌ",
+          "label": "فاعل"
+        },
+        {
+          "word": "أَكَل زَيْدٌ وَ قَدْ وَصَلَ بَكرٌ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p13-6",
+      "kind": "rule",
+      "page": 13,
+      "ar": "",
+      "en": "In 13a, 'قَدْ تَوَضَّأَ' is 'الحال'. The 'قَدْ' is expressing {{ruling|proximity}}, suggesting an almost synchronous event. In 13b, 'وَقَدْ وَصَلَ بَكرٌ' is 'الحال'. A 'وَ' is added here known as '{{term|الواو الحالية}}' which will be discussed later."
+    },
+    {
+      "id": "p14-1",
+      "kind": "heading",
+      "page": 14,
+      "ar": "الحال: جملة فعلية",
+      "en": "Al-haal: jumlah fi'liyyah"
+    },
+    {
+      "id": "p14-2",
+      "kind": "rule",
+      "page": 14,
+      "ar": "",
+      "en": "If the 'جملة فعلية' begins with a {{condition|'مضارع' verb}}, then a 'قَدْ', for 'تقريب', {{ruling|will not be brought}} because the 'مضارع' verb will sync in time with the primary action. Examples of a 'جملة فعلية' 'الحال' beginning with the 'مضارع' verb."
+    },
+    {
+      "id": "p14-3",
+      "kind": "picture",
+      "page": 14,
+      "caption": "تركيب: جَاءَ زَيْدٌ يَرْكَبُ (14a) و تَدْرُسُ فاطِمَةُ وَ قَدْ تَجْهَدُ (14b)",
+      "caption_en": "Tarkeeb trees for 14a and 14b, with the hidden فاعل هو / هي drawn under the verb"
+    },
+    {
+      "id": "p14-4",
+      "kind": "example",
+      "page": 14,
+      "ar": "جَاءَ زَيْدٌ يَرْكَبُ",
+      "en": "Zaid came whilst riding.",
+      "labels": [
+        {
+          "word": "جَاءَ",
+          "label": "فعل"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "يَرْكَبُ",
+          "label": "فعل"
+        },
+        {
+          "word": "هو",
+          "label": "فاعل"
+        },
+        {
+          "word": "يَرْكَبُ",
+          "label": "جملة فعلية خبرية - جملة حالية = حال"
+        },
+        {
+          "word": "زَيْدٌ يَرْكَبُ",
+          "label": "فاعل"
+        },
+        {
+          "word": "جَاءَ زَيْدٌ يَرْكَبُ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p14-5",
+      "kind": "example",
+      "page": 14,
+      "ar": "تَدْرُسُ فاطِمَةُ وَ قَدْ تَجْهَدُ",
+      "en": "Fatimah studies whilst certainly working hard",
+      "labels": [
+        {
+          "word": "تَدْرُسُ",
+          "label": "فعل"
+        },
+        {
+          "word": "فاطِمَةُ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "وَ",
+          "label": "حالية"
+        },
+        {
+          "word": "قَدْ",
+          "label": "للتحقيق"
+        },
+        {
+          "word": "تَجْهَدُ",
+          "label": "فعل"
+        },
+        {
+          "word": "هي",
+          "label": "فاعل"
+        },
+        {
+          "word": "وَ قَدْ تَجْهَدُ",
+          "label": "جملة فعلية خبرية - جملة حالية = حال"
+        },
+        {
+          "word": "فاطِمَةُ وَ قَدْ تَجْهَدُ",
+          "label": "فاعل"
+        },
+        {
+          "word": "تَدْرُسُ فاطِمَةُ وَ قَدْ تَجْهَدُ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p14-6",
+      "kind": "rule",
+      "page": 14,
+      "ar": "",
+      "en": "In 14a, 'يَرْكَبُ' is 'الحال'. It is translated as 'رَاكِبًا' and it's able to replace 'يَرْكَبُ'. In 14b, 'وَقَدْ تَجْهَدُ' is 'الحال'. The 'قد' is added for {{ruling|emphasis, not for proximity}}."
+    },
+    {
+      "id": "p15-1",
+      "kind": "heading",
+      "page": 15,
+      "ar": "الحال: جملة اسمية",
+      "en": "Al-haal: jumlah ismiyyah"
+    },
+    {
+      "id": "p15-2",
+      "kind": "rule",
+      "page": 15,
+      "ar": "",
+      "en": "The 'جملة اسمية' will be {{ruling|any type of a 'جملة اسمية'}}. Whether constructed with a '{{term|مبتدا خبر}}' or '{{term|اسم خبر}}'."
+    },
+    {
+      "id": "p15-3",
+      "kind": "picture",
+      "page": 15,
+      "caption": "تركيب: قَامَ زَيْدٌ رِجْلُهُ مَكْسُوْرٌ (15a) و جَاءَ زَيْدٌ وَ الشَّمْسُ طَالَعَةٌ (15b)",
+      "caption_en": "Tarkeeb trees for 15a and 15b"
+    },
+    {
+      "id": "p15-4",
+      "kind": "example",
+      "page": 15,
+      "ar": "قَامَ زَيْدٌ رِجْلُهُ مَكْسُوْرٌ",
+      "en": "Zaid stood whilst his leg was broken.",
+      "labels": [
+        {
+          "word": "قَامَ",
+          "label": "فعل"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "رِجْلُ",
+          "label": "مضاف"
+        },
+        {
+          "word": "هُ",
+          "label": "مضاف إليه"
+        },
+        {
+          "word": "رِجْلُهُ",
+          "label": "مبتدا"
+        },
+        {
+          "word": "مَكْسُوْرٌ",
+          "label": "خبر"
+        },
+        {
+          "word": "رِجْلُهُ مَكْسُوْرٌ",
+          "label": "جملة اسمية خبرية - جملة حالية = حال"
+        },
+        {
+          "word": "زَيْدٌ رِجْلُهُ مَكْسُوْرٌ",
+          "label": "فاعل"
+        },
+        {
+          "word": "قَامَ زَيْدٌ رِجْلُهُ مَكْسُوْرٌ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p15-5",
+      "kind": "example",
+      "page": 15,
+      "ar": "جَاءَ زَيْدٌ وَ الشَّمْسُ طَالَعَةٌ",
+      "en": "Zaid came whilst the sun was rising.",
+      "labels": [
+        {
+          "word": "جَاءَ",
+          "label": "فعل"
+        },
+        {
+          "word": "زَيْدٌ",
+          "label": "ذو الحال"
+        },
+        {
+          "word": "وَ",
+          "label": "حالية"
+        },
+        {
+          "word": "الشَّمْسُ",
+          "label": "مبتدا"
+        },
+        {
+          "word": "طَالَعَةٌ",
+          "label": "فعل"
+        },
+        {
+          "word": "وَ الشَّمْسُ طَالَعَةٌ",
+          "label": "جملة اسمية خبرية - جملة حالية = حال"
+        },
+        {
+          "word": "زَيْدٌ وَ الشَّمْسُ طَالَعَةٌ",
+          "label": "فاعل"
+        },
+        {
+          "word": "جَاءَ زَيْدٌ وَ الشَّمْسُ طَالَعَةٌ",
+          "label": "جملة فعلية خبرية"
+        }
+      ]
+    },
+    {
+      "id": "p15-6",
+      "kind": "rule",
+      "page": 15,
+      "ar": "",
+      "en": "In 14a, ' رِجْلُهُ مَكْسُوْرٌ' is 'الحال'. There is {{ruling|a pronoun 'ه'}} in reference to the 'ذو الحال'. In 14b, 'وَالشَّمْسُ طَالَعَةٌ' is 'الحال'. There is {{ruling|no pronoun}} in reference to the 'ذو الحال'."
+    },
+    {
+      "id": "p16-1",
+      "kind": "heading",
+      "page": 16,
+      "ar": "الحال: الواو الحالية",
+      "en": "Al-haal: al-waw al-haaliyah"
+    },
+    {
+      "id": "p16-2",
+      "kind": "rule",
+      "page": 16,
+      "ar": "",
+      "en": "When a 'جملة' is made 'الحال', the 'جملة' is called a '{{term|جملة حالية}}' to signify the purpose and role of the sentence. This does not signify the essence (being اسمية، فعلية) of the sentence."
+    },
+    {
+      "id": "p16-3",
+      "kind": "rule",
+      "page": 16,
+      "ar": "",
+      "en": "A 'جملة حالية' {{ruling|requires the presence of a 'رابط' (connector)}} inside of it. This 'رابط' will enable the 'جملة حالية' to remain connected with the primary sentence."
+    },
+    {
+      "id": "p16-4",
+      "kind": "rule",
+      "page": 16,
+      "ar": "",
+      "en": "If {{condition|the 'رابط' is not present}} in the 'جملة حالية', it will disconnect and become an independent sentence without any connection to the primary sentence and {{ruling|will NOT express the meaning of 'حال'}}."
+    },
+    {
+      "id": "p16-5",
+      "kind": "rule",
+      "page": 16,
+      "ar": "",
+      "en": "A '{{term|ضمير}}', present in the 'جملة حالية', which {{condition|correlates to the 'ذو الحال' in N/G}} will serve as a 'رابط' in this topic."
+    },
+    {
+      "id": "p16-6",
+      "kind": "rule",
+      "page": 16,
+      "ar": "",
+      "en": "Sometimes, the 'رابط' is necessary and can not be omitted whilst at other times, it is permissible for the 'رابط' to be omitted. In such scenarios where {{condition|the 'رابط' is omitted from the 'جملة حالية'}}, the '{{ruling|الواو الحالية}}' will substitute the 'رابط'. Therefore, either a 'رابط' will be present in the 'جملة حالية' or 'الواو الحالية' will be present."
+    },
+    {
+      "id": "p16-7",
+      "kind": "rule",
+      "page": 16,
+      "ar": "",
+      "en": "However, sometimes {{ruling|both}}, the 'رابط' and the 'الواو الحالية' can be present."
+    },
+    {
+      "id": "p16-8",
+      "kind": "rule",
+      "page": 16,
+      "ar": "",
+      "en": "Therefore, it is important to delve further into this matter and acquire additional knowledge to prevent mistakes in our expressions and sentence analysis."
+    },
+    {
+      "id": "p17-1",
+      "kind": "heading",
+      "page": 17,
+      "ar": "الحال: الواو الحالية",
+      "en": "Al-haal: al-waw al-haaliyah"
+    },
+    {
+      "id": "p17-2",
+      "kind": "rule",
+      "page": 17,
+      "ar": "",
+      "en": "Below are the places where the 'الواو الحالية' {{ruling|MUST be present}}. Whether the 'الواو الحالية' is substituting the 'رابط' or not, it must be present."
+    },
+    {
+      "id": "p17-3",
+      "kind": "table",
+      "page": 17,
+      "caption": "المواضع التي يجب فيها الواو الحالية",
+      "caption_en": "Places where the haaliyah waw must be present",
+      "columns": [
+        "",
+        "المواضع",
+        "و",
+        "أمثلة"
+      ],
+      "answer_col": 1,
+      "rows": [
+        [
+          "1",
+          "جملة إسمية خالية من الضمير الرابط",
+          "✔",
+          "جاء زيدٌ و الشمسُ طالعةٌ"
+        ],
+        [
+          "2",
+          "جملة إسمية مُصَدَّرة بالضمير الرابط",
+          "✔",
+          "لَقِيْتُكُمْ و أَنْتُمْ جالسُون"
+        ],
+        [
+          "3",
+          "الفعل الماضي المثبت الخالي من الضمير الرابط",
+          "✔",
+          "جَاء زيدٌ و قد طلعتْ الشمسُ"
+        ],
+        [
+          "4",
+          "الفعل الماضي المنفي الخالي من الضمير الرابط",
+          "✔",
+          "جاء زيدٌ و مَا طلعتْ الشمسُ"
+        ],
+        [
+          "5",
+          "الفعل المضارع المثبت المسبوق بـ قد، بالضمير الرابط",
+          "✔",
+          "تَدْرسُ فَاطمةُ و قد تجهدُ في دُروسِهَا"
+        ],
+        [
+          "6",
+          "الفعل المضارع المنفي بـ لَم، الخالي من الضمير الرابط",
+          "✔",
+          "يُدَرِّسُ الأُسْتَاذُ و لَمْ ينتَبِهْ الطُّلَّابُ"
+        ],
+        [
+          "7",
+          "الفعل المضارع المنفي بـ لَمَّا",
+          "✔",
+          "كَبُرَ زيدٌ وَ لَمَّا يَعقِلْ"
+        ]
+      ]
+    }
+  ]
+}

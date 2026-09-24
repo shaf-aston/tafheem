@@ -1,0 +1,269 @@
+{
+ "batch": "haal-lettered-05",
+ "questions": [
+  {
+   "id": "haal/application/13",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q13",
+    "number": "13",
+    "images": [
+     "q062.png",
+     "q063.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "أَتُحَاجُّونِّي فِي اللَّهِ وَقَدْ هَدَانِي وَلَا أَخَافُ مَا تُشْرِكُونَ بِهِ",
+     "marked": [
+      {
+       "text": "وَقَدْ هَدَانِي",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَلَا أَخَافُ مَا تُشْرِكُونَ بِهِ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "نِّي",
+       "mark": "green underline"
+      }
+     ],
+     "en": "How can you argue with me about God when He has guided me? I do not fear anything you associate with Him."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each clause, decide if it is حال; if it is, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "وقد هداني",
+      "ولا أخاف..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "وقد هداني": [
+       "حال",
+       "جواز الواو"
+      ],
+      "ولا أخاف...": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "وقد هداني": [
+       "حال",
+       "جواز الواو"
+      ],
+      "ولا أخاف...": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "points": "1/2",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "answer": "First one is haal because when \"You\" are arguing with me, the state \"I\" am in is that \"Allah has guided me\". And since the first one is فعل ماضي with a dhameer raabit, the \"Yaa\" in 'Hadanee', it is persimmable for it to have a waaw haaliyah.\nAs for the second part, that also comes under the haaliyyah sentence. Since it is a فعل مضارع منفي with لا, it cannot take a waaw haaliyah, therefore the waaw before it is atifa making it معطوف to the haal before it. It is NOT an independent haal.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "First one is haal because when \"You\" are arguing with me, the state \"I\" am in is that \"Allah has guided me\". And since the first one is فعل ماضي with a dhameer raabit, the \"Yaa\" in 'Hadanee', it is persimmable for it to have a waaw haaliyah.\nAs for the second part, that also comes under the haaliyyah sentence. Since it is a فعل مضارع منفي with لا, it cannot take a waaw haaliyah, therefore the waaw before it is atifa making it معطوف to the haal before it. It is NOT an independent haal."
+    }
+   ],
+   "flags": [
+    "Part b's response box holds only a placeholder period, no real student answer; the explanation content is entirely the teacher feedback block."
+   ]
+  },
+  {
+   "id": "haal/application/14",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q14",
+    "number": "14",
+    "images": [
+     "q065.png",
+     "q066.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "كان زيدٌ يجلسُ على الأرضِ ويُكمل واجباتِه",
+     "marked": [
+      {
+       "text": "ويُكمل واجباتِه",
+       "mark": "blue underline"
+      },
+      {
+       "text": "زيدٌ",
+       "mark": "green underline"
+      }
+     ],
+     "en": "Zaid used to sit on the floor and complete his assignments."
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each clause, decide if it is حال; if it is, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "...يكمل"
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "...يكمل": [
+       "ليست حالا"
+      ]
+     },
+     "answer_source": "correct_answer_shown",
+     "my_response": {
+      "...يكمل": [
+       "حال",
+       "منع الواو"
+      ]
+     },
+     "points": "0/1",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "answer": "It is not a haal because the jumla is a فعل مضارع مثبت without قد so a waaw haaliyyah is not permissible. Rather, the waaw is atifa and the jumla is ataf to يجلس.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "It is not a haal because the jumla is a فعل مضارع مثبت without قد so a waaw haaliyyah is not permissible. Rather, the waaw is atifa and the jumla is ataf to يجلس."
+    }
+   ],
+   "flags": [
+    "Part b's response box holds only a placeholder period, no real student answer; the explanation content is entirely the teacher feedback block."
+   ]
+  },
+  {
+   "id": "haal/application/15",
+   "category": "tarkeeb",
+   "topic": "Haal",
+   "source": {
+    "form": "haal",
+    "title": "Exercise: Haal YR3PT25-26 (18/12/25)",
+    "section": "Application of Rules | Q15",
+    "number": "15",
+    "images": [
+     "q068.png",
+     "q069.png"
+    ]
+   },
+   "type": "haal_waw_grid",
+   "instructions": "The blue underlined: Potential حال | The green underlined: Potential ذو الحال. If it's not حال, choose ليست حالا and move on. If it's حال, choose حال and then choose the ruling applicable for a واو حالية in terms of it's importance by ticking one of the boxes from: منع الواو | جواز الواو | وجوب الواو.",
+   "prompt": null,
+   "sentences": [
+    {
+     "label": null,
+     "ar": "رَبِّ أَنَّى يَكُونُ لِي غُلَامٌ وَقَدْ بَلَغَنِيَ الْكِبَرُ وَامْرَأَتِي عَاقِرٌ",
+     "marked": [
+      {
+       "text": "وَقَدْ بَلَغَنِيَ الْكِبَرُ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "وَامْرَأَتِي عَاقِرٌ",
+       "mark": "blue underline"
+      },
+      {
+       "text": "لِي",
+       "mark": "green underline"
+      }
+     ],
+     "en": "My Lord, how can I have a son when I am so old and my wife is barren?"
+    }
+   ],
+   "parts": [
+    {
+     "label": "a",
+     "ask": "For each clause, decide if it is حال; if it is, tick the ruling for the واو حالية.",
+     "kind": "grid",
+     "rows": [
+      "وقد بلغني...",
+      "وامرأتي..."
+     ],
+     "columns": [
+      "ليست حالا",
+      "حال",
+      "وجوب الواو",
+      "جواز الواو",
+      "منع الواو"
+     ],
+     "answer": {
+      "وقد بلغني...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وامرأتي...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "answer_source": "marked_correct",
+     "my_response": {
+      "وقد بلغني...": [
+       "حال",
+       "جواز الواو"
+      ],
+      "وامرأتي...": [
+       "حال",
+       "جواز الواو"
+      ]
+     },
+     "points": "2/2",
+     "feedback": null
+    },
+    {
+     "label": "b",
+     "ask": "Explain why you chose what you chose.",
+     "kind": "free_text",
+     "answer": "First is a فعل ماضي with a raabit so it is optional for it to take a waaw haaliyyah.\nSecond one is a jumlah ismiyah that does not begin with its dhameer raabit (which is the يـ in this case) so it is also optional for it to take a waaw haaliyyah.",
+     "answer_source": "feedback",
+     "my_response": ".",
+     "points": null,
+     "feedback": "First is a فعل ماضي with a raabit so it is optional for it to take a waaw haaliyyah.\nSecond one is a jumlah ismiyah that does not begin with its dhameer raabit (which is the يـ in this case) so it is also optional for it to take a waaw haaliyyah."
+    }
+   ],
+   "flags": [
+    "Part b's response box holds only a placeholder period, no real student answer; the explanation content is entirely the teacher feedback block."
+   ]
+  }
+ ]
+}
