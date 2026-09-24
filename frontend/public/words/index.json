@@ -1,0 +1,974 @@
+{
+  "_comment": "Built by backend/scripts/export_quiz_words.py. Do not edit by hand.",
+  "builtFrom": "2c3ab4d182f332d2",
+  "sets": [
+    {
+      "id": "everyday",
+      "label": "Everyday",
+      "dialect": "Modern Standard Arabic"
+    },
+    {
+      "id": "book",
+      "label": "80% book",
+      "source": {
+        "title": "80% of Qur'anic Words",
+        "author": "Dr Abdulazeez Abdulraheem",
+        "publisher": "Islamic Book Trust",
+        "note": "Function words (book pages 1-6) are left out: 'not', 'this', 'except' and the like do not make a fair four-option meaning question."
+      },
+      "groups": [
+        {
+          "id": "attributes",
+          "label": "Attributes",
+          "wordType": "adjective"
+        },
+        {
+          "id": "superiority",
+          "label": "Comparatives",
+          "wordType": "adjective"
+        },
+        {
+          "id": "signs",
+          "label": "Signs of Allah",
+          "wordType": "noun"
+        },
+        {
+          "id": "lastday",
+          "label": "The Last Day",
+          "wordType": "noun"
+        },
+        {
+          "id": "faith",
+          "label": "Faith",
+          "wordType": "noun"
+        },
+        {
+          "id": "din",
+          "label": "Din",
+          "wordType": "noun"
+        },
+        {
+          "id": "blessings",
+          "label": "Blessings",
+          "wordType": "noun"
+        },
+        {
+          "id": "deeds",
+          "label": "Deeds",
+          "wordType": "noun"
+        },
+        {
+          "id": "body",
+          "label": "Body & self",
+          "wordType": "noun"
+        },
+        {
+          "id": "relatives",
+          "label": "Relatives",
+          "wordType": "noun"
+        },
+        {
+          "id": "people",
+          "label": "People",
+          "wordType": "noun"
+        },
+        {
+          "id": "world",
+          "label": "World",
+          "wordType": "noun"
+        },
+        {
+          "id": "v-nasara",
+          "label": "Verbs: nasara pattern",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-fataha",
+          "label": "Verbs: fataha pattern",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-daraba",
+          "label": "Verbs: daraba pattern",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-samia",
+          "label": "Verbs: sami'a pattern",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-mudaaf",
+          "label": "Verbs: doubled last letter",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-mithal",
+          "label": "Verbs: weak first letter",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-ajwaf",
+          "label": "Verbs: weak middle letter",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-naqis",
+          "label": "Verbs: weak last letter",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-mahmuz",
+          "label": "Verbs: hamzah in root",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-fa33ala",
+          "label": "Verbs: fa''ala pattern",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-faa3ala",
+          "label": "Verbs: faa'ala pattern",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-af3ala",
+          "label": "Verbs: af'ala pattern",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-tafa33ala",
+          "label": "Verbs: tafa''ala pattern",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-ifta3ala",
+          "label": "Verbs: ifta'ala pattern",
+          "wordType": "verb"
+        },
+        {
+          "id": "v-istaf3ala",
+          "label": "Verbs: istaf'ala pattern",
+          "wordType": "verb"
+        }
+      ]
+    },
+    {
+      "id": "quran",
+      "label": "Whole Qur'an",
+      "source": {
+        "title": "Quranic Arabic Corpus morphology (lemmas)",
+        "english": "Quran.com word-by-word"
+      }
+    }
+  ],
+  "surahs": [
+    {
+      "id": 1,
+      "name": "Al-Fatihah",
+      "arabic": "الفاتحة",
+      "words": 5
+    },
+    {
+      "id": 2,
+      "name": "Al-Baqarah",
+      "arabic": "البقرة",
+      "words": 646
+    },
+    {
+      "id": 3,
+      "name": "Ali 'Imran",
+      "arabic": "آل عمران",
+      "words": 380
+    },
+    {
+      "id": 4,
+      "name": "An-Nisa",
+      "arabic": "النساء",
+      "words": 433
+    },
+    {
+      "id": 5,
+      "name": "Al-Ma'idah",
+      "arabic": "المائدة",
+      "words": 333
+    },
+    {
+      "id": 6,
+      "name": "Al-An'am",
+      "arabic": "الأنعام",
+      "words": 369
+    },
+    {
+      "id": 7,
+      "name": "Al-A'raf",
+      "arabic": "الأعراف",
+      "words": 427
+    },
+    {
+      "id": 8,
+      "name": "Al-Anfal",
+      "arabic": "الأنفال",
+      "words": 171
+    },
+    {
+      "id": 9,
+      "name": "At-Tawbah",
+      "arabic": "التوبة",
+      "words": 323
+    },
+    {
+      "id": 10,
+      "name": "Yunus",
+      "arabic": "يونس",
+      "words": 211
+    },
+    {
+      "id": 11,
+      "name": "Hud",
+      "arabic": "هود",
+      "words": 282
+    },
+    {
+      "id": 12,
+      "name": "Yusuf",
+      "arabic": "يوسف",
+      "words": 244
+    },
+    {
+      "id": 13,
+      "name": "Ar-Ra'd",
+      "arabic": "الرعد",
+      "words": 154
+    },
+    {
+      "id": 14,
+      "name": "Ibrahim",
+      "arabic": "ابراهيم",
+      "words": 139
+    },
+    {
+      "id": 15,
+      "name": "Al-Hijr",
+      "arabic": "الحجر",
+      "words": 134
+    },
+    {
+      "id": 16,
+      "name": "An-Nahl",
+      "arabic": "النحل",
+      "words": 274
+    },
+    {
+      "id": 17,
+      "name": "Al-Isra",
+      "arabic": "الإسراء",
+      "words": 261
+    },
+    {
+      "id": 18,
+      "name": "Al-Kahf",
+      "arabic": "الكهف",
+      "words": 285
+    },
+    {
+      "id": 19,
+      "name": "Maryam",
+      "arabic": "مريم",
+      "words": 154
+    },
+    {
+      "id": 20,
+      "name": "Taha",
+      "arabic": "طه",
+      "words": 222
+    },
+    {
+      "id": 21,
+      "name": "Al-Anbya",
+      "arabic": "الأنبياء",
+      "words": 202
+    },
+    {
+      "id": 22,
+      "name": "Al-Hajj",
+      "arabic": "الحج",
+      "words": 222
+    },
+    {
+      "id": 23,
+      "name": "Al-Mu'minun",
+      "arabic": "المؤمنون",
+      "words": 191
+    },
+    {
+      "id": 24,
+      "name": "An-Nur",
+      "arabic": "النور",
+      "words": 207
+    },
+    {
+      "id": 25,
+      "name": "Al-Furqan",
+      "arabic": "الفرقان",
+      "words": 154
+    },
+    {
+      "id": 26,
+      "name": "Ash-Shu'ara",
+      "arabic": "الشعراء",
+      "words": 188
+    },
+    {
+      "id": 27,
+      "name": "An-Naml",
+      "arabic": "النمل",
+      "words": 184
+    },
+    {
+      "id": 28,
+      "name": "Al-Qasas",
+      "arabic": "القصص",
+      "words": 225
+    },
+    {
+      "id": 29,
+      "name": "Al-'Ankabut",
+      "arabic": "العنكبوت",
+      "words": 135
+    },
+    {
+      "id": 30,
+      "name": "Ar-Rum",
+      "arabic": "الروم",
+      "words": 127
+    },
+    {
+      "id": 31,
+      "name": "Luqman",
+      "arabic": "لقمان",
+      "words": 96
+    },
+    {
+      "id": 32,
+      "name": "As-Sajdah",
+      "arabic": "السجدة",
+      "words": 69
+    },
+    {
+      "id": 33,
+      "name": "Al-Ahzab",
+      "arabic": "الأحزاب",
+      "words": 207
+    },
+    {
+      "id": 34,
+      "name": "Saba",
+      "arabic": "سبإ",
+      "words": 137
+    },
+    {
+      "id": 35,
+      "name": "Fatir",
+      "arabic": "فاطر",
+      "words": 151
+    },
+    {
+      "id": 36,
+      "name": "Ya-Sin",
+      "arabic": "يس",
+      "words": 121
+    },
+    {
+      "id": 37,
+      "name": "As-Saffat",
+      "arabic": "الصافات",
+      "words": 174
+    },
+    {
+      "id": 38,
+      "name": "Sad",
+      "arabic": "ص",
+      "words": 146
+    },
+    {
+      "id": 39,
+      "name": "Az-Zumar",
+      "arabic": "الزمر",
+      "words": 177
+    },
+    {
+      "id": 40,
+      "name": "Ghafir",
+      "arabic": "غافر",
+      "words": 171
+    },
+    {
+      "id": 41,
+      "name": "Fussilat",
+      "arabic": "فصلت",
+      "words": 120
+    },
+    {
+      "id": 42,
+      "name": "Ash-Shuraa",
+      "arabic": "الشورى",
+      "words": 118
+    },
+    {
+      "id": 43,
+      "name": "Az-Zukhruf",
+      "arabic": "الزخرف",
+      "words": 140
+    },
+    {
+      "id": 44,
+      "name": "Ad-Dukhan",
+      "arabic": "الدخان",
+      "words": 78
+    },
+    {
+      "id": 45,
+      "name": "Al-Jathiyah",
+      "arabic": "الجاثية",
+      "words": 74
+    },
+    {
+      "id": 46,
+      "name": "Al-Ahqaf",
+      "arabic": "الأحقاف",
+      "words": 115
+    },
+    {
+      "id": 47,
+      "name": "Muhammad",
+      "arabic": "محمد",
+      "words": 99
+    },
+    {
+      "id": 48,
+      "name": "Al-Fath",
+      "arabic": "الفتح",
+      "words": 93
+    },
+    {
+      "id": 49,
+      "name": "Al-Hujurat",
+      "arabic": "الحجرات",
+      "words": 52
+    },
+    {
+      "id": 50,
+      "name": "Qaf",
+      "arabic": "ق",
+      "words": 96
+    },
+    {
+      "id": 51,
+      "name": "Adh-Dhariyat",
+      "arabic": "الذاريات",
+      "words": 79
+    },
+    {
+      "id": 52,
+      "name": "At-Tur",
+      "arabic": "الطور",
+      "words": 90
+    },
+    {
+      "id": 53,
+      "name": "An-Najm",
+      "arabic": "النجم",
+      "words": 75
+    },
+    {
+      "id": 54,
+      "name": "Al-Qamar",
+      "arabic": "القمر",
+      "words": 76
+    },
+    {
+      "id": 55,
+      "name": "Ar-Rahman",
+      "arabic": "الرحمن",
+      "words": 64
+    },
+    {
+      "id": 56,
+      "name": "Al-Waqi'ah",
+      "arabic": "الواقعة",
+      "words": 108
+    },
+    {
+      "id": 57,
+      "name": "Al-Hadid",
+      "arabic": "الحديد",
+      "words": 103
+    },
+    {
+      "id": 58,
+      "name": "Al-Mujadila",
+      "arabic": "المجادلة",
+      "words": 68
+    },
+    {
+      "id": 59,
+      "name": "Al-Hashr",
+      "arabic": "الحشر",
+      "words": 75
+    },
+    {
+      "id": 60,
+      "name": "Al-Mumtahanah",
+      "arabic": "الممتحنة",
+      "words": 59
+    },
+    {
+      "id": 61,
+      "name": "As-Saf",
+      "arabic": "الصف",
+      "words": 36
+    },
+    {
+      "id": 62,
+      "name": "Al-Jumu'ah",
+      "arabic": "الجمعة",
+      "words": 29
+    },
+    {
+      "id": 63,
+      "name": "Al-Munafiqun",
+      "arabic": "المنافقون",
+      "words": 32
+    },
+    {
+      "id": 64,
+      "name": "At-Taghabun",
+      "arabic": "التغابن",
+      "words": 31
+    },
+    {
+      "id": 65,
+      "name": "At-Talaq",
+      "arabic": "الطلاق",
+      "words": 58
+    },
+    {
+      "id": 66,
+      "name": "At-Tahrim",
+      "arabic": "التحريم",
+      "words": 56
+    },
+    {
+      "id": 67,
+      "name": "Al-Mulk",
+      "arabic": "الملك",
+      "words": 71
+    },
+    {
+      "id": 68,
+      "name": "Al-Qalam",
+      "arabic": "القلم",
+      "words": 84
+    },
+    {
+      "id": 69,
+      "name": "Al-Haqqah",
+      "arabic": "الحاقة",
+      "words": 76
+    },
+    {
+      "id": 70,
+      "name": "Al-Ma'arij",
+      "arabic": "المعارج",
+      "words": 60
+    },
+    {
+      "id": 71,
+      "name": "Nuh",
+      "arabic": "نوح",
+      "words": 45
+    },
+    {
+      "id": 72,
+      "name": "Al-Jinn",
+      "arabic": "الجن",
+      "words": 58
+    },
+    {
+      "id": 73,
+      "name": "Al-Muzzammil",
+      "arabic": "المزمل",
+      "words": 45
+    },
+    {
+      "id": 74,
+      "name": "Al-Muddaththir",
+      "arabic": "المدثر",
+      "words": 73
+    },
+    {
+      "id": 75,
+      "name": "Al-Qiyamah",
+      "arabic": "القيامة",
+      "words": 41
+    },
+    {
+      "id": 76,
+      "name": "Al-Insan",
+      "arabic": "الانسان",
+      "words": 72
+    },
+    {
+      "id": 77,
+      "name": "Al-Mursalat",
+      "arabic": "المرسلات",
+      "words": 52
+    },
+    {
+      "id": 78,
+      "name": "An-Naba",
+      "arabic": "النبإ",
+      "words": 57
+    },
+    {
+      "id": 79,
+      "name": "An-Nazi'at",
+      "arabic": "النازعات",
+      "words": 52
+    },
+    {
+      "id": 80,
+      "name": "'Abasa",
+      "arabic": "عبس",
+      "words": 41
+    },
+    {
+      "id": 81,
+      "name": "At-Takwir",
+      "arabic": "التكوير",
+      "words": 26
+    },
+    {
+      "id": 82,
+      "name": "Al-Infitar",
+      "arabic": "الإنفطار",
+      "words": 18
+    },
+    {
+      "id": 83,
+      "name": "Al-Mutaffifin",
+      "arabic": "المطففين",
+      "words": 34
+    },
+    {
+      "id": 84,
+      "name": "Al-Inshiqaq",
+      "arabic": "الإنشقاق",
+      "words": 20
+    },
+    {
+      "id": 85,
+      "name": "Al-Buruj",
+      "arabic": "البروج",
+      "words": 29
+    },
+    {
+      "id": 86,
+      "name": "At-Tariq",
+      "arabic": "الطارق",
+      "words": 19
+    },
+    {
+      "id": 87,
+      "name": "Al-A'la",
+      "arabic": "الأعلى",
+      "words": 17
+    },
+    {
+      "id": 88,
+      "name": "Al-Ghashiyah",
+      "arabic": "الغاشية",
+      "words": 28
+    },
+    {
+      "id": 89,
+      "name": "Al-Fajr",
+      "arabic": "الفجر",
+      "words": 36
+    },
+    {
+      "id": 90,
+      "name": "Al-Balad",
+      "arabic": "البلد",
+      "words": 22
+    },
+    {
+      "id": 91,
+      "name": "Ash-Shams",
+      "arabic": "الشمس",
+      "words": 13
+    },
+    {
+      "id": 92,
+      "name": "Al-Layl",
+      "arabic": "الليل",
+      "words": 19
+    },
+    {
+      "id": 93,
+      "name": "Ad-Duhaa",
+      "arabic": "الضحى",
+      "words": 11
+    },
+    {
+      "id": 94,
+      "name": "Ash-Sharh",
+      "arabic": "الشرح",
+      "words": 8
+    },
+    {
+      "id": 95,
+      "name": "At-Tin",
+      "arabic": "التين",
+      "words": 10
+    },
+    {
+      "id": 96,
+      "name": "Al-'Alaq",
+      "arabic": "العلق",
+      "words": 13
+    },
+    {
+      "id": 97,
+      "name": "Al-Qadr",
+      "arabic": "القدر",
+      "words": 7
+    },
+    {
+      "id": 98,
+      "name": "Al-Bayyinah",
+      "arabic": "البينة",
+      "words": 17
+    },
+    {
+      "id": 99,
+      "name": "Az-Zalzalah",
+      "arabic": "الزلزلة",
+      "words": 9
+    },
+    {
+      "id": 100,
+      "name": "Al-'Adiyat",
+      "arabic": "العاديات",
+      "words": 9
+    },
+    {
+      "id": 101,
+      "name": "Al-Qari'ah",
+      "arabic": "القارعة",
+      "words": 10
+    },
+    {
+      "id": 102,
+      "name": "At-Takathur",
+      "arabic": "التكاثر",
+      "words": 5
+    },
+    {
+      "id": 103,
+      "name": "Al-'Asr",
+      "arabic": "العصر",
+      "words": 3
+    },
+    {
+      "id": 104,
+      "name": "Al-Humazah",
+      "arabic": "الهمزة",
+      "words": 11
+    },
+    {
+      "id": 105,
+      "name": "Al-Fil",
+      "arabic": "الفيل",
+      "words": 12
+    },
+    {
+      "id": 106,
+      "name": "Quraysh",
+      "arabic": "قريش",
+      "words": 5
+    },
+    {
+      "id": 107,
+      "name": "Al-Ma'un",
+      "arabic": "الماعون",
+      "words": 10
+    },
+    {
+      "id": 108,
+      "name": "Al-Kawthar",
+      "arabic": "الكوثر",
+      "words": 3
+    },
+    {
+      "id": 109,
+      "name": "Al-Kafirun",
+      "arabic": "الكافرون",
+      "words": 2
+    },
+    {
+      "id": 110,
+      "name": "An-Nasr",
+      "arabic": "النصر",
+      "words": 4
+    },
+    {
+      "id": 111,
+      "name": "Al-Masad",
+      "arabic": "المسد",
+      "words": 7
+    },
+    {
+      "id": 112,
+      "name": "Al-Ikhlas",
+      "arabic": "الإخلاص",
+      "words": 2
+    },
+    {
+      "id": 113,
+      "name": "Al-Falaq",
+      "arabic": "الفلق",
+      "words": 7
+    },
+    {
+      "id": 114,
+      "name": "An-Nas",
+      "arabic": "الناس",
+      "words": 2
+    }
+  ],
+  "juz": [
+    {
+      "id": 1,
+      "words": 309
+    },
+    {
+      "id": 2,
+      "words": 359
+    },
+    {
+      "id": 3,
+      "words": 327
+    },
+    {
+      "id": 4,
+      "words": 328
+    },
+    {
+      "id": 5,
+      "words": 328
+    },
+    {
+      "id": 6,
+      "words": 298
+    },
+    {
+      "id": 7,
+      "words": 340
+    },
+    {
+      "id": 8,
+      "words": 335
+    },
+    {
+      "id": 9,
+      "words": 355
+    },
+    {
+      "id": 10,
+      "words": 316
+    },
+    {
+      "id": 11,
+      "words": 324
+    },
+    {
+      "id": 12,
+      "words": 388
+    },
+    {
+      "id": 13,
+      "words": 367
+    },
+    {
+      "id": 14,
+      "words": 377
+    },
+    {
+      "id": 15,
+      "words": 441
+    },
+    {
+      "id": 16,
+      "words": 399
+    },
+    {
+      "id": 17,
+      "words": 391
+    },
+    {
+      "id": 18,
+      "words": 393
+    },
+    {
+      "id": 19,
+      "words": 367
+    },
+    {
+      "id": 20,
+      "words": 339
+    },
+    {
+      "id": 21,
+      "words": 343
+    },
+    {
+      "id": 22,
+      "words": 383
+    },
+    {
+      "id": 23,
+      "words": 424
+    },
+    {
+      "id": 24,
+      "words": 308
+    },
+    {
+      "id": 25,
+      "words": 350
+    },
+    {
+      "id": 26,
+      "words": 406
+    },
+    {
+      "id": 27,
+      "words": 460
+    },
+    {
+      "id": 28,
+      "words": 321
+    },
+    {
+      "id": 29,
+      "words": 540
+    },
+    {
+      "id": 30,
+      "words": 476
+    }
+  ]
+}

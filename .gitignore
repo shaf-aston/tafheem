@@ -187,7 +187,8 @@ backend/data/arabic_dictionary.json
 # The words themselves are authored in backend/data/vocabulary.json and
 # quranic-words.json and corrected in word_kinds.json, which are committed.
 backend/data/lexicon.db
-frontend/public/words/
+# frontend/public/words/ is committed on purpose: it is built from
+# lexicon.db, which stays off GitHub, so a host cannot rebuild it.
 
 # Qur'anic corpus: rebuilt by backend/scripts/build_quran_corpus.py
 backend/data/quran/quran-morphology.txt
