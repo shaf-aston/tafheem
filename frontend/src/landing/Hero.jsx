@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal.jsx'
 import { scrollToEl } from '../lib/scrollToEl'
+import links from './links.json'
 import { CLIPS } from './assets/clips.js'
 
 // Two <video> elements cross-fade through the eight app clips in a loop, like
@@ -100,7 +101,7 @@ export default function Hero() {
             recitation gets heard, word by word. This is the app, running, right now.
           </Reveal>
           <div className="cta-row">
-            <a href="#work" className="cta">See it in action</a>
+            <a href={links.tool} className="cta">See it in action</a>
             <button
               type="button"
               className="cta ghost"
