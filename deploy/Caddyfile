@@ -1,0 +1,8 @@
+# Caddy answers the internet on 443 and hands requests to the backend, which
+# itself only listens on this machine. Caddy gets and renews the HTTPS
+# certificate on its own, so there is nothing to remember here.
+#
+# Replace the name below with the free one you registered at duckdns.org.
+tafheem.duckdns.org {
+	reverse_proxy 127.0.0.1:8000
+}

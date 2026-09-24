@@ -1,0 +1,16 @@
+# The backend, kept running and restarted if it dies or the machine reboots.
+# Install: sudo cp deploy/tafheem.service /etc/systemd/system/
+[Unit]
+Description=Tafheem backend
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/tafheem
+Environment=PATH=/home/ubuntu/tafheem/venv/bin
+ExecStart=/home/ubuntu/tafheem/venv/bin/uvicorn backend.main:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
