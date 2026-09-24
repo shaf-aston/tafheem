@@ -35,6 +35,10 @@ const STATUS = {
   error:    { color: 'var(--danger)',    label: 'Backend offline' },
 }
 
+// Telling a visitor to start a server on their own machine only makes sense on
+// the machine the server would run on.
+const OWN_MACHINE = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+
 function StatusPill({ status, nlpEngine, aiBackend, ear }) {
   const { color, label, pulse } = STATUS[status]
 
@@ -198,16 +202,25 @@ function AppContent() {
 
       {status === 'error' && !bannerDismissed && (
         <div className="shell pt-4 relative">
-          <ErrorAlert title="Backend offline">
-            The backend is not running.
-            {/* The command was the only advice here; most readers can't run
-                it, so it moves behind a summary instead of leading. */}
-            <details className="mt-2">
-              <summary className="cursor-pointer">The command, if you run it yourself</summary>
-              <code className="mt-1 block px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
-                python -m uvicorn backend.main:app --reload
-              </code>
-            </details>
+          <ErrorAlert title={OWN_MACHINE ? 'Backend offline' : 'Not connected yet'}>
+            {OWN_MACHINE ? (
+              <>
+                The backend is not running.
+                {/* The command was the only advice here; most readers can't run
+                    it, so it moves behind a summary instead of leading. */}
+                <details className="mt-2">
+                  <summary className="cursor-pointer">The command, if you run it yourself</summary>
+                  <code className="mt-1 block px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
+                    python -m uvicorn backend.main:app --reload
+                  </code>
+                </details>
+              </>
+            ) : (
+              <>
+                The books this reads from are not attached to this copy yet, so nothing here
+                will load. <a className="underline" href="/">The front page</a> shows what it does.
+              </>
+            )}
           </ErrorAlert>
           <button
             type="button"
