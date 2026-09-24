@@ -97,6 +97,8 @@ $RECYCLE.BIN/
 # Secrets and config
 .env
 .env.*
+# The key list, with no values in it, is the one that is meant to be shared.
+!.env.example
 env.local
 secrets.json
 credentials.json
