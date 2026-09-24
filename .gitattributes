@@ -1,0 +1,5 @@
+# These run on Linux. Windows line endings make the server refuse them with
+# "bad interpreter", so they stay as they are wherever they are checked out.
+*.sh text eol=lf
+deploy/Caddyfile text eol=lf
+deploy/tafheem.service text eol=lf
