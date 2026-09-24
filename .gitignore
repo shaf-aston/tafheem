@@ -222,3 +222,6 @@ frontend/ux_a11y_report.json
 frontend/scripts/ears-report.txt
 /probe-ear.png
 /scratchout*.txt
+
+# Vercel CLI working folder
+.vercel/
