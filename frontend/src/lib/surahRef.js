@@ -115,3 +115,10 @@ export function placesNamed(text) {
     .filter((m) => m.close < CLOSE.typo && !ayahProblem(m, ayah))
     .map((m) => ({ surah: m, ayah, ref: `${m.n}:${ayah}` }))
 }
+
+/** For a typed "name number" whose surah is clear but whose ayah does not exist: why, else null. */
+export function placeProblem(text) {
+  const { matches, ayah } = readSurahRef(text)
+  const m = matches[0]
+  return m && m.close < CLOSE.typo ? ayahProblem(m, ayah) : null
+}

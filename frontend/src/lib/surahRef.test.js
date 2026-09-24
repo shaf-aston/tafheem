@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import surahs from '../data/surahs.json'
-import { CLOSE, ayahProblem, placesNamed, readSurahRef, surahsNamed } from './surahRef'
+import { CLOSE, ayahProblem, placeProblem, placesNamed, readSurahRef, surahsNamed } from './surahRef'
 
 const top = (text) => readSurahRef(text).matches[0]
 
@@ -109,5 +109,14 @@ describe('placesNamed', () => {
     expect(placesNamed('nisa 999')).toEqual([])
     expect(placesNamed('kahf')).toEqual([])
     expect(placesNamed('patience')).toEqual([])
+  })
+})
+
+describe('placeProblem', () => {
+  it('says why a recognised surah cannot open at that ayah, and is silent otherwise', () => {
+    expect(placeProblem('nisa 999')).toBe('An-Nisa has 176 ayahs')
+    expect(placeProblem('nisa 99')).toBeNull()
+    expect(placeProblem('nisa')).toBeNull()
+    expect(placeProblem('patience 5')).toBeNull()
   })
 })

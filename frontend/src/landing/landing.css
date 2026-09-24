@@ -356,7 +356,9 @@ body { overflow-x: hidden; }
   /* Phone: the map fills the screen edge to edge and the page scroll pans it
      (SentenceDemo), with a row of dots showing how far the breakdown has got. */
   .landing-page .sd-frame {
-    width: 100%; flex: 1 1 auto; min-height: 0; padding: 1rem 0; border-radius: 0; border-inline: 0; box-shadow: none;
+    --fill: calc((var(--landing-sd-phone-start) + (100 - var(--landing-sd-phone-start)) * var(--grow, 1)) * 1%);
+    width: var(--fill); height: var(--fill); align-self: center; flex: 0 1 auto; min-height: 0; padding: 1rem 0;
+    border-radius: calc(20px * (1 - var(--grow, 1))); box-shadow: none;
   }
   .landing-page .sd-sentence { font-size: clamp(1.9rem, 9vw, 2.6rem); padding: 1.5rem 1.25rem; }
   .landing-page .sd-diagram .tk-scroller {
@@ -368,4 +370,5 @@ body { overflow-x: hidden; }
   .landing-page .pin-label, .landing-page .pin-caption { position: static; transform: none; }
   .landing-page .pin-dots { display: flex; justify-content: center; gap: .5rem; margin-bottom: .75rem; }
   .landing-page .cta-row .cta { flex: 1 1 12rem; text-align: center; }
+  .landing-page .strip-item { width: var(--landing-strip-w-sm); height: auto; aspect-ratio: var(--landing-strip-aspect); }
 }

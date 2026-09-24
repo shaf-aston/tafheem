@@ -44,7 +44,7 @@ export default function SentenceDemo({ demo = loadDemo() }) {
     const view = rootRef.current.querySelector('.tk-scroller')
     if (!phone || !view) return
     const t = Math.min(1, Math.max(0, (progress - GROW_END) / (1 - GROW_END)))
-    view.scrollLeft = -(view.scrollWidth - view.clientWidth) * t
+    view.scrollLeft = (view.scrollWidth - view.clientWidth) * (1 - t)
   }, [progress, phone])
 
   const caption = stage === 0

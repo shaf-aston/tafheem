@@ -21,6 +21,7 @@ import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import ExampleChips from './ui/ExampleChips'
 import MicButton from './ui/MicButton'
+import PlaceLinks from './ui/PlaceLinks'
 import Pronunciation from './ui/Pronunciation'
 import RecentRow from './ui/RecentRow'
 import RetryButton from './ui/RetryButton'
@@ -166,6 +167,8 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
             title="Say the word"
           />
         </SearchBox>
+
+        <PlaceLinks query={query} onGo={onGo} accent={accent} />
 
         {/* True whichever language is typed, so it no longer waits on a toggle
             to be set the right way before it can be read. */}
