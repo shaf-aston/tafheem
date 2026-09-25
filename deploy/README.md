@@ -66,7 +66,7 @@ curl https://<your name>.duckdns.org/api/health
 
 ## 6. Point the site at it
 
-In `frontend/vercel.json`, add this above the `/app` line, with your own name in
+In `vercel.json` (repo root), add this above the `/app` line, with your own name in
 it:
 
 ```json

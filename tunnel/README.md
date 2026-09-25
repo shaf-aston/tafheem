@@ -26,7 +26,7 @@ firewall are untouched either way.
 Two things, both one line each:
 
 - `PORT` at the top of `go-live.cmd`, which must match the backend's port.
-- The `/api` rewrite in `frontend/vercel.json`, which points the published site
+- The `/api` rewrite in `vercel.json` (repo root), which points the published site
   at the address this prints.
 
 The address changes every time the tunnel restarts, because this is the

@@ -1,0 +1,11 @@
+# Vercel serves only the frontend; the Python backend runs on the PC behind the tunnel.
+# Without this, requirements.txt makes Vercel build a Python app and fail on its size.
+backend/
+tests/
+tunnel/
+deploy/
+docs/
+prototypes/
+requirements.txt
+pytest.ini
+start.sh

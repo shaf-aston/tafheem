@@ -1,0 +1,16 @@
+{
+  "framework": "vite",
+  "installCommand": "cd frontend && npm ci",
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
+    {
+      "source": "/app",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://eric-project-imposed-illinois.trycloudflare.com/api/:path*"
+    }
+  ]
+}
