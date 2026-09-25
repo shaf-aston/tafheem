@@ -25,6 +25,7 @@
     "quiz": "#f472b6",
     "timelines": "#38bdf8",
     "daleel": "#4ade80",
+    "colloq": "#fb923c",
     "_comment": "default is what an unknown id wears, the primary purple, so colorFor('tab', id) is the one rule for tab colour everywhere.",
     "default": "#a78bfa"
   },

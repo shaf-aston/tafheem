@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { TABS, accentOf } from './lib/tabs'
+import { GROUPS, TABS, accentOf } from './lib/tabs'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
 import { useTabShortcuts } from './lib/useTabShortcuts'
 import { useHealth } from './lib/useHealth'
@@ -15,6 +15,7 @@ import SettingsPanel from './components/ui/SettingsPanel'
 import SpatialHome from './components/ui/SpatialHome'
 import SourceFooter from './components/ui/SourceFooter'
 import TabStrip from './components/ui/TabStrip'
+import SectionsMenu from './components/ui/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 1 } } })
@@ -73,6 +74,7 @@ function AppContent() {
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [spatialOpen, setSpatialOpen] = useState(false)
+  const [sectionsOpen, setSectionsOpen] = useState(false)
   // A root handed from one tab to another. Held here because it is the only
   // thing the panels share; each one reads it once and then owns its own state.
   const [handoff, setHandoff] = useState(
@@ -196,7 +198,7 @@ function AppContent() {
         </div>
 
         <div className="shell">
-          <TabStrip tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} />
+          <TabStrip tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} />
         </div>
       </header>
 
@@ -287,6 +289,15 @@ function AppContent() {
       <SpatialHome
         open={spatialOpen}
         onClose={() => setSpatialOpen(false)}
+        tabs={TABS}
+        colorOf={accentOf}
+        onGo={switchTab}
+        here={activeTab}
+      />
+      <SectionsMenu
+        open={sectionsOpen}
+        onClose={() => setSectionsOpen(false)}
+        groups={GROUPS}
         tabs={TABS}
         colorOf={accentOf}
         onGo={switchTab}
