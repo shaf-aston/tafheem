@@ -10,7 +10,7 @@
     },
     {
       "source": "/api/:path*",
-      "destination": "https://eric-project-imposed-illinois.trycloudflare.com/api/:path*"
+      "destination": "https://sherman-holland-metric-southampton.trycloudflare.com/api/:path*"
     }
   ]
 }
