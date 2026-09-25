@@ -14,8 +14,11 @@ from __future__ import annotations
 import re
 import unicodedata
 
-# Explicit \u escapes so this NEVER matches Arabic letters
-DIACRITICS_RE = re.compile("[ؐ-ًؚ-ٰٟ]")
+# Explicit \u escapes so this NEVER matches Arabic letters. Written as three
+# disjoint ranges on purpose: typing the boundary characters literally instead
+# silently unions them (bidi display hides the reordering) into one 0x610-0x670
+# span that swallows the letters فقكلمنهوىي (0x641-0x64A) as if they were diacritics.
+DIACRITICS_RE = re.compile("[\u0610-\u061a\u064b-\u065f\u0670]")
 
 # What counts as Arabic. One definition, in one place: this used to be asked
 # three different ways - broadly in utils.py, narrowly in morphology.py, and
