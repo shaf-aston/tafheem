@@ -14,27 +14,16 @@ from __future__ import annotations
 import re
 import unicodedata
 
-# Explicit \u escapes so this NEVER matches Arabic letters. Written as three
-# disjoint ranges on purpose: typing the boundary characters literally instead
-# silently unions them (bidi display hides the reordering) into one 0x610-0x670
-# span that swallows the letters فقكلمنهوىي (0x641-0x64A) as if they were diacritics.
+# \u escapes, three disjoint ranges: literal Arabic boundary chars get bidi-reordered
+# and silently swallow letters like فكلمن into the "diacritics" span.
 DIACRITICS_RE = re.compile("[\u0610-\u061a\u064b-\u065f\u0670]")
 
-# What counts as Arabic. One definition, in one place: this used to be asked
-# three different ways - broadly in utils.py, narrowly in morphology.py, and
-# narrowly again inline in the dictionary router - so the same word could be
-# Arabic to one of them and not to another.
+# What counts as Arabic - one definition, used everywhere (was three, inconsistently).
 ARABIC_RE = re.compile("[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]")
 
-# The letters a root is made of. Written as "keep the letters" rather than "drop
-# these separators", because the list of things that separate root letters is
-# open - hyphen, en-dash, space, non-breaking space, zero-width space - and the
-# invisible ones cannot be seen in a diff, so a list of them is a list that
-# quietly goes out of date. That list had four entries; a root written with an
-# en-dash was filed under letters no search could produce.
-#
-# U+0640 (tatweel) is left out on purpose: it stretches a word for typesetting,
-# it is not a letter, so كــتــب is كتب.
+# Keeps root letters, drops separators (hyphen, dash, any space, zero-width
+# space) - an open-ended list, so "keep" is safer than "drop these". Tatweel
+# (U+0640) is excluded too: it's typesetting stretch, not a letter.
 _NOT_ROOT_LETTER_RE = re.compile("[^\u0600-\u063F\u0641-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFE]")
 
 
@@ -49,8 +38,7 @@ try:
 except ImportError:
     pass
 
-# Whether PyArabic is installed. Asked here because this is already the module
-# that looks for it, morphology.py reports it as the engine that answered.
+# Whether PyArabic answered strip_diacritics, reported by morphology.py.
 HAS_PYARABIC = _strip_fn is not None
 
 
@@ -59,10 +47,7 @@ def strip_diacritics(text: str) -> str:
     return DIACRITICS_RE.sub("", text) if _strip_fn is None else _strip_fn(text)
 
 
-# Two sources can spell the same word differently and still mean the same word:
-# the Qur'anic corpus writes ٱللَّهِ with alef wasla and the Qur'anic pause marks,
-# a treebank writes الله plainly. Comparing those letter for letter says they
-# differ, which is false. This folds both to the letters they share.
+# Folds spelling variants that mean the same word (Qur'anic alef wasla vs plain alef) to shared letters.
 _QURANIC_MARKS_RE = re.compile("[ـۖ-ۭ࣓-ࣿ]")
 _LETTER_FOLD = str.maketrans({"ٱ": "ا", "أ": "ا", "إ": "ا", "آ": "ا",
                               "ى": "ي"})
@@ -97,21 +82,12 @@ def bare_letters(text: str) -> str:
 
 
 
-# The Qur'an writes a long "aa" as a small alef above the letter rather than as
-# the letter ا: ٱلْكِتَٰب is the word an ordinary book spells الكتاب, and ٱلصَّلَوٰة is
-# الصلاة. bare_letters drops that little mark, which is right for كِتَٰب matching
-# كتب but leaves someone who types الكتاب finding nothing at all.
-#
-# So this writes the mark out as a full alef instead. Neither answer is the
-# right one on its own, رَحْمَٰن is written الرحمن and never الرحمان, which is why
-# the search index holds both spellings and a query is compared against the pair.
+# Qur'anic small alef (long "aa") vs. plain alef: كِتَٰب and الكتاب are the
+# same word, so this spells the mark out as a full alef so both match.
 _SMALL_ALEF = "ٰ"
-# Every mark except the small alef itself. Taken off first, because the mark sits
-# after a fatha (صَلَوٰة is و, fatha, small alef) and a rule written for the two
-# characters side by side would never fire on the real text.
+# Strip marks other than the small alef first (it can follow a fatha).
 _OTHER_MARKS_RE = re.compile("[ؐ-ًؚ-ٟ]")
-# ـوٰ and ـيٰ are the same long "aa" carried on a waw or a ya, so the whole pair
-# becomes one alef; anywhere else the mark simply becomes an alef.
+# waw/ya + small alef -> one alef; the mark alone -> alef too.
 _WRITTEN_OUT = ((f"و{_SMALL_ALEF}", "ا"), (f"ي{_SMALL_ALEF}", "ا"), (_SMALL_ALEF, "ا"))
 
 
