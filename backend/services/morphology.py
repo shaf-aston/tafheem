@@ -247,7 +247,9 @@ def _analysis_dict_from_camel(word: str, a: dict) -> dict[str, Any]:
     lemma = _strip_diacritics(lex)
 
     cas = a.get("cas", "na") or "na"
-    case_str = _CAS_MAP.get(cas) or _harakat_case(word)
+    # A past or imperative verb is mabni: its last vowel is not a case.
+    mabni = pos == "verb" and a.get("asp") in ("p", "c")
+    case_str = _CAS_MAP.get(cas) or (None if mabni else _harakat_case(word))
 
     return {
         "word": word,
