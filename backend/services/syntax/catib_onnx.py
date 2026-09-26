@@ -58,7 +58,7 @@ _disambiguator = None
 _ar2bw = None
 
 
-def _files_present() -> bool:
+def files_present() -> bool:
     d = data_path("catib_parser_dir")
     names = ("encoder.onnx", "scorer.onnx", "tokenizer.json", "labels.json",
               "config.json", "clitic_feats.csv")
@@ -80,7 +80,7 @@ def _ensure_loaded() -> None:
         raise RuntimeError("CATiB parser is disabled (catib_parser_enabled=False)")
 
     d = data_path("catib_parser_dir")
-    if not _files_present():
+    if not files_present():
         raise RuntimeError(f"CATiB parser model files missing under {d}")
 
     with (d / "config.json").open(encoding="utf-8") as f:
@@ -220,7 +220,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ONNX biaffine parser: subtoken forms -> heads + rel labels
-# (ports onnx_spike/parse_onnx.py and decode.py; see module docstring)
+# (ports the spike's parse_onnx.py; decoding lives in decode.py)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def _tokenize_and_pack(forms: list[str]) -> tuple[np.ndarray, np.ndarray, list[tuple[int, int]]]:

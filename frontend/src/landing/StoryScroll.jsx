@@ -52,6 +52,20 @@ const STEPS = [
 
 const clamp = (v) => Math.max(0, Math.min(1, v))
 
+// An arrow from one word's top centre to another's. A pair on one row gets an
+// arc over both; a pair the line wrapped apart goes over the top, down the
+// nearer edge and in along the gap above the lower word, clear of the text.
+const ARC_LIFT = 18 // px above the higher word, plus a share of the span
+const ROW_GAP = 14 // px above the lower word where a wrapped arrow runs
+function arcPath([x1, y1], [x2, y2], width) {
+  const lift = Math.min(y1, y2) - ARC_LIFT - Math.abs(x2 - x1) / 6
+  if (Math.abs(y2 - y1) < 4) return `M${x1} ${y1}C${x1} ${lift} ${x2} ${lift} ${x2} ${y2}`
+  const edge = x2 > width / 2 ? width : 0
+  const gap = y2 - ROW_GAP
+  return `M${x1} ${y1}C${x1} ${lift} ${edge} ${lift} ${edge} ${(lift + gap) / 2}`
+    + `S${edge} ${gap} ${(edge + x2) / 2} ${gap}S${x2} ${gap} ${x2} ${y2}`
+}
+
 function Words({ list, cls = () => '' }) {
   return (
     <p className="story-words" lang="ar" dir="rtl">
@@ -85,22 +99,12 @@ export default function StoryScroll() {
       const svg = box.querySelector('svg')
       const b = svg.getBoundingClientRect()
       if (!b.width) return
-      // Top centre of each word, so an arrow can cross rows when the line wraps.
       const words = box.querySelectorAll('.story-word > .arabic:first-child')
       const at = (i) => {
         const r = words[i].getBoundingClientRect()
         return [r.left + r.width / 2 - b.left, r.top - b.top]
       }
-      setArcs(GOVERNS.map((g) => {
-        const [x1, y1] = at(g.from)
-        const [x2, y2] = at(g.to)
-        const lift = Math.min(y1, y2) - 18 - Math.abs(x2 - x1) / 6
-        if (Math.abs(y2 - y1) < 4) return `M${x1} ${y1}C${x1} ${lift} ${x2} ${lift} ${x2} ${y2}`
-        // A wrapped pair: over the top, down the nearer edge, in above the word.
-        const edge = x2 > b.width / 2 ? b.width : 0
-        const gap = y2 - 14
-        return `M${x1} ${y1}C${x1} ${lift} ${edge} ${lift} ${edge} ${(lift + gap) / 2}S${edge} ${gap} ${(edge + x2) / 2} ${gap}S${x2} ${gap} ${x2} ${y2}`
-      }))
+      setArcs(GOVERNS.map((g) => arcPath(at(g.from), at(g.to), b.width)))
     }
     measure()
     window.addEventListener('resize', measure)

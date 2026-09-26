@@ -32,7 +32,7 @@ def status() -> str:
         return "off"
     from backend.services.syntax import catib_onnx
 
-    return "ready" if catib_onnx._files_present() else "missing files"
+    return "ready" if catib_onnx.files_present() else "missing files"
 
 
 def read(sentence: str) -> dict:

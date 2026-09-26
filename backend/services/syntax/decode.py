@@ -61,29 +61,26 @@ def eisner(scores: np.ndarray) -> list[int]:
             comp[i, j, 1], comp_bp[i, j, 1] = right[k], i + 1 + k
     # the root takes exactly one child: pick it, then build each side
     hs = [0] * n
+
+    def complete(i, j, d):
+        if i == j:
+            return
+        k = comp_bp[i, j, d]
+        if d == 0:
+            complete(i, k, 0)
+            incomplete(k, j, 0)
+        else:
+            incomplete(i, k, 1)
+            complete(k, j, 1)
+
+    def incomplete(i, j, d):
+        dep, head = (i, j) if d == 0 else (j, i)
+        hs[dep - 1] = head
+        k = inc_bp[i, j, d]
+        complete(i, k, 1)
+        complete(k + 1, j, 0)
+
     r = max(range(1, n + 1), key=lambda r: comp[1, r, 0] + comp[r, n, 1] + s[0, r])
-    _complete(1, r, 0, comp_bp, inc_bp, hs)
-    _complete(r, n, 1, comp_bp, inc_bp, hs)
+    complete(1, r, 0)
+    complete(r, n, 1)
     return hs
-
-
-def _complete(i, j, d, comp_bp, inc_bp, hs):
-    if i == j:
-        return
-    k = comp_bp[i, j, d]
-    if d == 0:
-        _complete(i, k, 0, comp_bp, inc_bp, hs)
-        _incomplete(k, j, 0, comp_bp, inc_bp, hs)
-    else:
-        _incomplete(i, k, 1, comp_bp, inc_bp, hs)
-        _complete(k, j, 1, comp_bp, inc_bp, hs)
-
-
-def _incomplete(i, j, d, comp_bp, inc_bp, hs):
-    if d == 0:
-        hs[i - 1] = j
-    else:
-        hs[j - 1] = i
-    k = inc_bp[i, j, d]
-    _complete(i, k, 1, comp_bp, inc_bp, hs)
-    _complete(k + 1, j, 0, comp_bp, inc_bp, hs)

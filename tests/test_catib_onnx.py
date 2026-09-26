@@ -5,10 +5,10 @@ dropped into backend/data/parser/ (see catib_onnx.py's docstring).
 """
 import pytest
 
-from backend.services.syntax.catib_onnx import _files_present, parse
+from backend.services.syntax.catib_onnx import files_present, parse
 
 pytestmark = pytest.mark.skipif(
-    not _files_present(), reason="CATiB parser model files not present under backend/data/parser/"
+    not files_present(), reason="CATiB parser model files not present under backend/data/parser/"
 )
 
 
