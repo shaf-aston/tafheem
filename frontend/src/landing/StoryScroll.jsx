@@ -106,7 +106,7 @@ export default function StoryScroll() {
 
   return (
     <section className="story" id="story">
-      <div className="story-track" ref={trackRef} style={{ '--p': progress }}>
+      <div className="story-track" ref={trackRef}>
         <div className="story-sticky">
           <div className="story-col">
             <div className="story-rail">
@@ -123,7 +123,9 @@ export default function StoryScroll() {
             </div>
 
             <div className="story-stage" style={{ '--accent': STEPS[active].accent }}>
-              <div className="story-star" aria-hidden="true">
+              {/* --p here, not on the track: it changes every scroll frame, and set higher
+                  it would restyle the whole story each frame. */}
+              <div className="story-star" aria-hidden="true" style={{ '--p': progress }}>
                 <svg viewBox="0 0 200 200">
                   {SPIKES.map((a) => <path key={a} transform={`rotate(${a} 100 100)`} d="M100 6 L112 60 L100 100 L88 60Z" />)}
                   <circle cx="100" cy="100" r="60" />
