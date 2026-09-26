@@ -80,7 +80,7 @@ def run(clips, model: str, timing: bool, save=None) -> str:
     listen._models.clear()
     listen._last = None
     if model == "hosted":
-        write = lambda audio: hosted.transcribe(audio, "ar", "")  # noqa: E731
+        write = lambda audio: hosted.transcribe(audio, config.get_settings().listening_keys[0], "ar", "")  # noqa: E731
     elif model == "letters":
         write = lambda audio: letters.read(listen.sound_of(audio))  # noqa: E731
     else:

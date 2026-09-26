@@ -73,7 +73,7 @@ def warm() -> None:
     first such search pays about a second.
     """
     listen.warm()
-    if "letters" in get_settings().recitation_ears:
+    if "letters" in get_settings().listening_ears:
         letters.warm()
     try:
         _ayahs()
@@ -115,7 +115,7 @@ def hear(audio: bytes, match_ayahs: bool, recite: bool = False, fusha: bool = Tr
     text = transcribe(
         audio,
         language=settings.recitation_language if match_ayahs or recite else None,
-        hint=settings.recitation_fusha_hint if fusha else "",
+        hint=settings.listening_fusha_hint if fusha else "",
     )
     if not text or not match_ayahs:
         return text, []

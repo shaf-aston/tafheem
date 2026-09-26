@@ -3,12 +3,12 @@
 An ear turns sound into words. There are two, they do the same job at very
 different speeds, and nothing above this file knows which one answered:
 
-    hosted   Groq's machines, whisper-large-v3-turbo   about 250ms
+    hosted   Groq's machines, whisper-large-v3-turbo   about 250ms, one per key
     letters  this computer, tilawa's Qur'an model      about 640ms, recitations only
     here     this computer, faster-whisper             about 1,600ms
 
 Measured on this machine, from the timing log. The order comes from config
-(`recitation_ears`), so putting this computer first is a setting and not a code
+(`listening_ears`), so putting this computer first is a setting and not a code
 change; that is the switch for a session where nothing should leave the machine.
 
 Why this is an interface rather than the `if` it used to be
@@ -21,6 +21,15 @@ every single recording, three in a row in the log, each paying a full round trip
 to be told the same thing. Both sides now retire an engine the same way, through
 services/fallback.
 
+One ear per key
+---------------
+Groq allows each account 20 readings a minute, so reciting was paced at one
+reading every three seconds and the page ran that far behind the voice. Each
+key in `listening_keys` is its own hosted ear: they take turns, the one used
+longest ago first, and a key that is refused rests on its own while the other
+answers. /api/health says how many readings a minute that makes
+(`per_minute`), and the page paces itself by it.
+
 Word sureness
 -------------
 Checking a recitation asks how sure the ear is of each word the page expects,
@@ -31,13 +40,14 @@ only about which ear writes the words down, and every ear can do that.
 """
 from __future__ import annotations
 
+import itertools
 import logging
 import time
 from abc import ABC, abstractmethod
 
 from backend.config import get_settings
 from backend.services import journal
-from backend.services.fallback import Retirable, permanent_failure
+from backend.services.fallback import Retirable, permanent_failure, retry_after
 from backend.services.recitation import hosted, letters, listen
 from backend.services.timing import timed
 
@@ -82,16 +92,32 @@ class Ear(Retirable, ABC):
 
 
 class HostedEar(Ear):
-    """Groq's machines. Quick, and the sound leaves this computer to get there."""
+    """Groq's machines, on one account's key. Quick, and the sound leaves this
+    computer to get there."""
+
+    #: Counts every ask across the keys. A count, not a clock: Windows' clock
+    #: ticks every 15ms or so, and two asks inside one tick looked simultaneous.
+    _asks = itertools.count(1)
+
+    def __init__(self, key: str) -> None:
+        self.key = key
+        #: Which ask this key last answered, so turns go round.
+        self.used = 0
 
     def transcribe(self, audio: bytes, language: str | None, hint: str) -> str:
-        return hosted.transcribe(audio, language, hint)
+        self.used = next(HostedEar._asks)
+        return hosted.transcribe(audio, self.key, language, hint)
 
     def is_available(self) -> bool:
-        return hosted.is_available()
+        return hosted.is_available(self.key)
 
     def name(self, reciting: bool = False) -> str:
-        return get_settings().recitation_hosted_model
+        """The model, and which key when there is more than one to tell apart."""
+        settings = get_settings()
+        keys = settings.listening_keys
+        if len(keys) < 2 or self.key not in keys:
+            return settings.listening_model
+        return f"{settings.listening_model} key {keys.index(self.key) + 1}"
 
 
 class LocalEar(Ear):
@@ -135,21 +161,49 @@ class LettersEar(Ear):
         return "letters"
 
 
-_EARS: dict[str, Ear] = {"hosted": HostedEar(), "letters": LettersEar(), "here": LocalEar()}
+_EARS: dict[str, Ear] = {"letters": LettersEar(), "here": LocalEar()}
+# One per key, made the first time the key is seen and kept, so a key's rest
+# or retirement outlives the call that caused it.
+_HOSTED: dict[str, HostedEar] = {}
+
+
+def _hosted() -> list[HostedEar]:
+    """An ear per listening key, in the order config lists the keys."""
+    return [_HOSTED.setdefault(key, HostedEar(key)) for key in get_settings().listening_keys]
 
 
 def named(key: str) -> Ear:
-    """One ear by the name config uses for it."""
+    """One ear by the name config uses for it; "hosted" is the first key's."""
+    if key == "hosted":
+        pool = _hosted()
+        return pool[0] if pool else HostedEar("")
     return _EARS[key]
+
+
+def per_minute() -> int:
+    """Readings a minute the hosted ears allow between them right now: every
+    key not struck off, resting ones included, because their rest ends. Zero
+    when none is left, and the page then paces itself by how long readings take."""
+    if "hosted" not in _wanted():
+        return 0
+    usable = [ear for ear in _hosted() if not ear.retired_reason and ear.is_available()]
+    return len(usable) * get_settings().listening_rpm_per_key
+
+
+def _wanted() -> list[str]:
+    return [name.strip() for name in get_settings().listening_ears.split(",") if name.strip()]
 
 
 def order(reciting: bool = False) -> list[Ear]:
     """The ears to try, in turn. Unknown names in config are said, not ignored."""
-    wanted = [name.strip() for name in get_settings().recitation_ears.split(",") if name.strip()]
     chain = []
-    for name in wanted:
+    for name in _wanted():
+        if name == "hosted":
+            # Least recently used first, so the keys share the load evenly.
+            chain.extend(sorted(_hosted(), key=lambda ear: ear.used))
+            continue
         if name not in _EARS:
-            log.warning("recitation_ears names '%s', which is not an ear; ignoring it", name)
+            log.warning("listening_ears names '%s', which is not an ear; ignoring it", name)
             continue
         if reciting or not _EARS[name].reciting_only:
             chain.append(_EARS[name])
@@ -201,7 +255,7 @@ def hear(audio: bytes, language: str | None, hint: str) -> str:
                 log.warning("retiring the %s ear for this run, %s", name, reason)
                 journal.note("ear.retired", ear=name, reason=reason)
             else:
-                rest_s = get_settings().recitation_hosted_rest_s
+                rest_s = retry_after(exc) or get_settings().listening_rest_s
                 ear.rest(rest_s, journal.scrub(str(exc)))
                 log.info("the %s ear did not answer (%s), resting it for %.0fs", name, exc, rest_s)
                 journal.note("ear.resting", ear=name, seconds=rest_s, reason=journal.scrub(str(exc)))

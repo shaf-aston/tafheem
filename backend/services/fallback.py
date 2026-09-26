@@ -7,6 +7,7 @@ things, so both get them from here rather than each inventing its own:
 
     Retirable          an engine that can be struck off for the rest of the run
     permanent_failure  whether an error means "never again" or "try again"
+    retry_after        how long the engine itself said to wait, when it said
 
 What each side does with an engine that will not answer is its own business and
 stays there: the AI backends pick one and fall back to the rule engine, the ears
@@ -79,3 +80,20 @@ def permanent_failure(exc: Exception) -> str:
     if status == 404:
         return "the configured model does not exist for this key"
     return ""
+
+
+def retry_after(exc: Exception) -> float | None:
+    """Seconds the engine said to wait before asking again, or None when it did
+    not say. Read off the answer's Retry-After header only, never the rest of
+    the answer, which holds the request and so the key.
+
+    A refusal for the minute says a few seconds and one for the day says hours;
+    resting every refusal a fixed minute asked again all day long for the one,
+    and sat idle long after the other was over.
+    """
+    headers = getattr(getattr(exc, "response", None), "headers", None) or {}
+    try:
+        seconds = float(headers.get("retry-after", ""))
+    except (TypeError, ValueError):
+        return None
+    return seconds if seconds > 0 else None

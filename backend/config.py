@@ -158,14 +158,14 @@ class Settings(BaseSettings):
     # now matches the hosted ear's accuracy, for about a third more CPU time per
     # ayah, at zero cost and with nothing leaving the machine.
     # Hear it on Groq's machines rather than this one, when there is a key for
-    # them. Free, on the listening key below, and the model
+    # them. Free, on the listening keys below, and the model
     # there is several sizes bigger than the one that fits here: measured on one
     # spoken English word, 450ms with no processor used against 2,700ms with
     # eight cores busy. The engine below stays as the fallback for no internet, a
     # dead key or a spent allowance, so turning this off changes speed and
     # nothing else. Off means every recording is heard on this computer and no
     # sound ever leaves it.
-    recitation_hosted: bool = True
+    listening_hosted: bool = True
     # The ears to try, in order, by the names services/recitation/ears.py gives
     # them: "hosted" is Groq's machines, "here" is this computer, "letters" is
     # this computer's small Qur'an model, asked only for recitations. The quick
@@ -175,31 +175,38 @@ class Settings(BaseSettings):
     # A name that is not an ear is said in the log and skipped, and "here" is
     # always added at the end however this is set, so a typo cannot leave the
     # app deaf.
-    recitation_ears: str = "hosted,letters,here"
+    listening_ears: str = "hosted,letters,here"
     # Measured, one word: turbo ~135ms, "whisper-large-v3" 250 to 800ms and a
     # fuller decoder. Speed wins until the full one is shown to hear better.
-    recitation_hosted_model: str = "whisper-large-v3-turbo"
+    listening_model: str = "whisper-large-v3-turbo"
     # Read by Whisper before listening; sets the register, not the words. Sent
     # only when the "Prefer Fusha" switch is on. Off: any Arabic, no hint. Never
     # sent to the Qur'an model: with it the last word of every ayah fell to 0.90
     # sure and it looped on invented words; without it every real word is 1.00.
-    recitation_fusha_hint: str = "هذا كلامٌ بالعربية الفصحى."
+    listening_fusha_hint: str = "هذا كلامٌ بالعربية الفصحى."
     # Short: a slow cloud answer has already lost to the local engine, which is
     # sitting there able to answer in about three seconds. Groq's turbo answers
     # in about half a second, so 4s is generous and a failed wait costs little.
-    recitation_hosted_timeout_s: float = 4.0
+    listening_timeout_s: float = 4.0
     # How long a non-permanent failure (no internet, a rate limit, a bad
     # gateway) rests an ear before it is tried again, rather than being asked
     # on every single recording while it is having a bad minute. A settled
     # failure (a rejected key, a model that does not exist) still retires the
     # ear outright; this is only for the kind that might already be over.
-    recitation_hosted_rest_s: float = Field(default=60.0, gt=0)
-    # Listening spends its own key, apart from GROQ_API_KEY above. An hour of
-    # reciting is thousands of seconds of audio and the free allowance is
-    # counted per second, so on the shared key a long session would take the
-    # grammar explanations down with it. Blank falls back to the shared key, so
-    # a machine that never set one listens exactly as it did before.
-    recitation_groq_api_key: str = ""
+    # Used only when the refusal does not say itself how long to wait.
+    listening_rest_s: float = Field(default=60.0, gt=0)
+    # Listening spends its own keys, apart from GROQ_API_KEY above, so a long
+    # recitation cannot take the grammar explanations down with it. Comma
+    # separated, one key per Groq account: Groq counts its allowance per
+    # account, not per key, so two keys from one account buy nothing, and two
+    # accounts double how often the page may ask. Each key is its own ear
+    # (services/recitation/ears.py) and rests on its own when refused. Blank
+    # falls back to the shared key.
+    listening_groq_api_keys: str = ""
+    # Readings a minute one key's account allows (Groq free tier: 20 for
+    # whisper-large-v3-turbo). Times the keys, it is the pace /api/health tells
+    # the page it may ask at.
+    listening_rpm_per_key: int = Field(default=20, gt=0)
     # Read by the frontend ears benchmark through process.env, not by any backend
     # code; declared so a shared .env validates.
     recitation_deepgram_api_key: str = ""
@@ -456,11 +463,11 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
-    @field_validator("groq_api_key", "recitation_groq_api_key", mode="after")
+    @field_validator("groq_api_key", "listening_groq_api_keys", mode="after")
     @classmethod
     def _check_key_format(cls, value: str, info: ValidationInfo) -> str:
-        """Warn about malformed key format without crashing startup."""
-        if value and (" " in value or "#" in value):
+        """Refuse a malformed key (an inline comment, a space inside it) at startup."""
+        if any(" " in key.strip() or "#" in key for key in value.split(",")):
             name = info.field_name.upper()
             raise ValueError(
                 f"{name} appears malformed (contains spaces or '#'). "
@@ -495,11 +502,13 @@ class Settings(BaseSettings):
         return bool(self.groq_api_key.strip())
 
     @property
-    def listening_key(self) -> str:
-        """The key the microphone spends: its own when there is one, the shared
-        one when there is not. The only place that choice is made, so nothing
-        else has to know there are two keys."""
-        return self.recitation_groq_api_key.strip() or self.groq_api_key.strip()
+    def listening_keys(self) -> list[str]:
+        """The keys the microphone spends: its own when there are any, else the
+        shared one, else none. The only place that choice is made. A key listed
+        twice is one key."""
+        own = list(dict.fromkeys(key.strip() for key in self.listening_groq_api_keys.split(",") if key.strip()))
+        shared = self.groq_api_key.strip()
+        return own or ([shared] if shared else [])
 
 
 @lru_cache()
