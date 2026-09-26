@@ -1,0 +1,7 @@
+[Unit]
+Description=Make the server match GitHub master
+
+[Service]
+Type=oneshot
+User=ubuntu
+ExecStart=/home/ubuntu/repo/deploy/sync.sh
