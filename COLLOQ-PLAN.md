@@ -42,7 +42,7 @@ structure, loading, UI and checking. We never write or change Arabic content.
   - Load one unit at a time, lazily. Don't put units in the main bundle.
   - Show only valid units. An invalid unit shows "Unit unavailable" in dev and is hidden in production.
   - Evidence: the build output shows unit files split out, and a test loads one unit.
-- [ ] **Phase 3 — Lesson UI.**
+- [x] **Phase 3 — Lesson UI.**
   - Navigation goes unit list → lesson list → lesson page.
   - The lesson page shows, in order:
     - situation and goal
@@ -238,3 +238,9 @@ Rules applied throughout:
 
 ## Blocker
 The unit files are still missing. Phase 2's real-unit test and Phases 3–5's fixtures and screenshots need at least unit-01. Until they arrive, only the structural parts can be built.
+
+## Phase 3 notes
+- Screens in `frontend/src/colloquial/`: `UnitList`, `LessonList`, `LessonPage`, with shared pieces (`Section`, `Gloss`, `Row`, `Back`, `COPY`) in `parts.jsx`. `ColloquialPanel` only routes. Every label comes from `colloquial.json` `copy`.
+- `node scripts/colloq-shots.mjs [out]` (dev server running): screenshots + axe at 390/768/1280/1600. Uses a temporary placeholder unit when the folder is empty.
+- Known, out of scope: axe `aria-required-children` on the shared TabStrip (`role="tablist"`), excluded from the audit.
+- Practise is disabled until Phase 4.

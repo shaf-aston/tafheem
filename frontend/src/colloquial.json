@@ -18,6 +18,23 @@
   },
   "_comment-copy": "Every word the tab shows that is not lesson content.",
   "copy": {
-    "unit-unavailable": "Unit unavailable"
+    "unit-unavailable": "Unit unavailable",
+    "no-units": "No units yet.",
+    "back": "Back",
+    "lessons": "Lessons",
+    "situation": "Situation",
+    "goal": "Goal",
+    "phrases": "Phrases",
+    "reply": "Reply",
+    "dialogue": "Dialogue",
+    "show-gloss": "Show transliteration and English",
+    "gloss-on": "Show",
+    "gloss-off": "Hide",
+    "de-book": "Book vs natural",
+    "book": "Book",
+    "natural": "Natural",
+    "culture": "Culture",
+    "grammar": "Grammar",
+    "practise": "Practise"
   }
 }

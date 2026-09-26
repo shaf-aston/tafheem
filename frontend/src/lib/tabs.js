@@ -42,7 +42,7 @@ export const TABS = [
   { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    mark: 'ح', Component: MemorisePanel, study: true, row: 2, group: 'quran' },
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', mark: 'خ', Component: QuizPanel,   row: 2, group: 'tools' },
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', mark: 'ت', Component: TimelinesPanel, study: true, row: 3, group: 'tools' },
-  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, row: 3, group: 'language' },
+  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, row: 3, group: 'language', study: true },
 ]
 
 /** A tab's colour, with the theme's own fallback rule. */
