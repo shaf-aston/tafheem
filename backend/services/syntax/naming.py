@@ -52,7 +52,7 @@ ROLES = {
     "مفعول به": ("mafool", "mafool"),
     "مفعول مطلق": ("mafool", "mafool"),
     "تمييز": ("mafool", "mafool"),
-    "نعت": ("sifah", "rel"),
+    "صفة": ("sifah", "rel"),
     "حال": ("haal", "mafool"),
     "مضاف إليه": ("mudaf", "mudaf"),
     "حرف": ("harf", "harf"),
@@ -185,7 +185,7 @@ def name(token: dict, tokens: list[dict]) -> str | None:
         return "مبتدأ"
     pointer = next((c for c in children if "dem" in c.get("pos_camel", "")), None)
     if pointer and _case(pointer) in (None, _case(token)) and token.get("stt") == "d":
-        return "نعت"  # the noun pointed at: هذا البستانُ
+        return "صفة"  # the noun pointed at: هذا البستانُ
     if rel == "PRD":
         return _predicate(family)
     if _is_verb(token):
@@ -222,7 +222,7 @@ def name(token: dict, tokens: list[dict]) -> str | None:
             # counts as definite, so an indefinite word after either is the khabar
             if token.get("stt") == "i" and head.get("stt") in ("d", "c"):
                 return _predicate(_governor_family(head, by_id))
-            return "نعت"
+            return "صفة"
         # لا رجلَ حاضرٌ: hung off the noun, but its case says it is the noun's khabar
         if mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a":
             return _predicate(_governor_family(head, by_id))
@@ -235,7 +235,7 @@ def name(token: dict, tokens: list[dict]) -> str | None:
                 return "حال"
             return "تمييز"
         if token.get("ud") == "ADJ":
-            return "نعت"
+            return "صفة"
     return None
 
 

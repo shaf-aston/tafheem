@@ -482,7 +482,7 @@ def _process_noun_verbal(tag: dict, state: dict, tags: list[dict], pos: str) -> 
         return (_noun_entry(tag, role, reason, "fail", force_case="n"), 0.80)
 
     if pos == "adj":
-        return (_noun_entry(tag, "نعت (صفة)", "نعت يتبع منعوته في الإعراب", "sifah"), 0.72)
+        return (_noun_entry(tag, "صفة", "صفة تتبع موصوفها في الإعراب", "sifah"), 0.72)
 
     return (_noun_entry(tag, "مفعول به (منصوب)",
                        "منصوب لأنه مفعول به. القاعدة: المفعول به منصوب بالفتحة", "mafool", force_case="a"), 0.75)
@@ -501,6 +501,6 @@ def _process_noun_nominal(tag: dict, state: dict, pos: str) -> tuple[dict, float
                            "مرفوع لأنه خبر. القاعدة: الخبر مرفوع بالضمة الظاهرة", "khabar", force_case="n"), 0.78)
 
     if pos == "adj":
-        return (_noun_entry(tag, "نعت (صفة)", "نعت يتبع منعوته في الإعراب", "sifah"), 0.68)
+        return (_noun_entry(tag, "صفة", "صفة تتبع موصوفها في الإعراب", "sifah"), 0.68)
 
     return (_noun_entry(tag, "اسم (يُحدّد بالسياق)", "يحتاج إلى تحليل سياقي أدق", None), 0.45)
