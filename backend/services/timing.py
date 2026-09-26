@@ -1,6 +1,6 @@
 """One log line per timed call. "Still fast?" answered by grep on backend.log, not re-measured.
 
-    timed("heard", hosted.transcribe, audio, lang, ear="groq", bytes=len(audio))
+    timed("heard", hosted.transcribe, audio, key, lang, ear="groq", bytes=len(audio))
     -> heard  ear=groq  bytes=61094  out=9  247ms
 
 `out` is len(result) when it has one. Exceptions pass through untimed; the caller logs those.

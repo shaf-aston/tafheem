@@ -26,6 +26,15 @@ from backend.services.syntax.naming import roles as name_roles
 logger = logging.getLogger(__name__)
 
 
+def status() -> str:
+    """"off", "missing files" or "ready", for /api/health: no silent absence."""
+    if not get_settings().catib_parser_enabled:
+        return "off"
+    from backend.services.syntax import catib_onnx
+
+    return "ready" if catib_onnx._files_present() else "missing files"
+
+
 def read(sentence: str) -> dict:
     """One reading of a typed sentence: `roles` per word, and the `tree` they draw.
 

@@ -18,7 +18,7 @@ from backend.routers import (
     tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
-from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning
+from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, syntax
 from backend.services.morphology import get_engine_name
 
 BACKEND_ROOT = Path(__file__).resolve().parent
@@ -157,9 +157,13 @@ def create_app() -> FastAPI:
             # this machine (see services/recitation/ears.py's "Word sureness"),
             # whichever ear wrote the words down, so it is named on its own.
             "recite_sure": recitation.ears.named("here").name(reciting=True),
+            # How many readings a minute the page may ask for, all keys
+            # together; lib/recitingSession.js paces itself by it.
+            "listen_per_minute": recitation.ears.per_minute(),
             "corpus_loaded": quran_service.is_loaded(),
             "dictionary_loaded": dictionary_service.is_loaded(),
             "root_meaning_status": root_meaning.status(),
+            "parser": syntax.status(),
         }
 
     # Everything the app is built on, in one list. Sits beside /api/health

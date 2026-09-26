@@ -54,7 +54,7 @@ def test_kana_and_inna_are_told_apart():
 def test_naat_needs_the_definiteness_to_match():
     definite = [token(1, "الطبيب", "طبيب", "NOM", 0, "---", stt="d", cas="n"),
                 token(2, "الماهر", "ماهر", "NOM", 1, "MOD", ud="ADJ", stt="d", cas="n")]
-    assert roles(["الطَّبِيبُ", "الْمَاهِرُ"], definite)[1] == "نعت"
+    assert roles(["الطَّبِيبُ", "الْمَاهِرُ"], definite)[1] == "صفة"
     khabar = [token(1, "السماء", "سماء", "NOM", 0, "---", stt="d", cas="n"),
               token(2, "صافية", "صاف", "NOM", 1, "MOD", ud="ADJ", stt="i", cas="n")]
     assert roles(["السَّمَاءُ", "صَافِيَةٌ"], khabar) == ["مبتدأ", "خبر"]

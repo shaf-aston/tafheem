@@ -1,10 +1,8 @@
 """Arabic morphological analysis service.
 
 Priority fallback chain (highest quality first):
-  1. CAMeL Tools Analyzer, word-level analysis with diacritic-guided
-     disambiguation (see _pick_best_analysis); no cross-word context is used.
-     (The MLE sentence disambiguator is deliberately NOT loaded, it is tuned
-     for MSA and misreads classical/diacritised forms.)
+  1. CAMeL Tools Analyzer, readings ranked by the MLE disambiguator, then
+     the typed harakat choose among them (_heeding_vowels).
   2. Qalsadi: lemmatisation + basic info
   3. PyArabic / bare harakat, case from diacritics only
 
@@ -247,7 +245,9 @@ def _analysis_dict_from_camel(word: str, a: dict) -> dict[str, Any]:
     lemma = _strip_diacritics(lex)
 
     cas = a.get("cas", "na") or "na"
-    case_str = _CAS_MAP.get(cas) or _harakat_case(word)
+    # A past or imperative verb is mabni: its last vowel is not a case.
+    mabni = pos == "verb" and a.get("asp") in ("p", "c")
+    case_str = _CAS_MAP.get(cas) or (None if mabni else _harakat_case(word))
 
     return {
         "word": word,

@@ -33,7 +33,7 @@ def _label(head: dict, child_roles: list[str]) -> str:
         return JARR
     if "مضاف إليه" in child_roles:
         return IDAFA
-    if "نعت" in child_roles:
+    if "صفة" in child_roles:
         return WASF
     return ""
 
@@ -46,7 +46,7 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
     """
     if "مضاف إليه" in child_roles:
         return "مضاف"
-    if "نعت" in child_roles:
+    if "صفة" in child_roles:
         return "موصوف"
     return role
 
