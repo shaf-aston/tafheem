@@ -367,10 +367,8 @@ class Settings(BaseSettings):
     # the two would be free to disagree.
 
     # ── Syntax parser (CATiB dependency links) ───────────────────────────────
-    # Whether backend/services/syntax/catib_onnx.py runs at all. Off by
-    # default costs nothing; on, the first parse() call loads a ~110MB ONNX
-    # encoder plus CAMeL's BERT disambiguator, so it stays off until a caller
-    # actually wants dependency links.
+    # Whether backend/services/syntax/catib_onnx.py runs at all. The first
+    # parse() loads a ~110MB ONNX encoder plus CAMeL's BERT disambiguator.
     catib_parser_enabled: bool = True
     # encoder.onnx (int8), scorer.onnx, tokenizer.json, labels.json,
     # config.json, clitic_feats.csv. See catib_onnx.py's docstring for where

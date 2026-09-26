@@ -41,6 +41,7 @@ import numpy as np
 from tokenizers import Tokenizer
 
 from backend.config import data_path, get_settings
+from backend.services.syntax import decode
 
 logger = logging.getLogger(__name__)
 
@@ -252,51 +253,9 @@ def _pool_words(mixed_hidden: np.ndarray, spans: list[tuple[int, int]]) -> tuple
     return out, wmask
 
 
-def _is_tree(heads: list[int]) -> bool:
-    n = len(heads)
-    if sum(1 for h in heads if h == 0) != 1:
-        return False
-    for i in range(n):
-        seen: set[int] = set()
-        j = i
-        for _ in range(n + 1):
-            if heads[j] == 0:
-                break
-            j = heads[j] - 1
-            if j in seen:
-                return False
-            seen.add(j)
-        else:
-            return False
-    return True
-
-
-def _is_projective(heads: list[int]) -> bool:
-    n = len(heads)
-    for i in range(n):
-        hi = heads[i]
-        if hi == 0:
-            continue
-        lo, hi_ = (i + 1, hi) if i + 1 < hi else (hi, i + 1)
-        for j in range(n):
-            if lo < j + 1 < hi_:
-                hj = heads[j]
-                if hj != 0 and not (lo <= hj <= hi_):
-                    return False
-    return True
-
-
 def _decode(s_arc: np.ndarray, s_rel: np.ndarray, n_words: int) -> tuple[list[int], list[str]]:
-    """Argmax head/label decode (no Eisner correction). Flags, rather than
-    corrects, a plain argmax that is not already a single-rooted projective
-    tree -- see onnx_spike/decode.py: that never fired on the spike's own
-    test sentences, so it is logged, not repaired, here.
-    """
     L = n_words + 1
-    scores = s_arc[:L, :L]
-    heads = [int(h) for h in np.argmax(scores[1:], axis=-1)]
-    if not (_is_tree(heads) and _is_projective(heads)):
-        logger.warning("CATiB parse is not a valid single-rooted projective tree: heads=%s", heads)
+    heads = decode.heads(s_arc[:L, :L])
     rels = [_rel_labels[int(np.argmax(s_rel[i + 1, heads[i]]))] for i in range(n_words)]
     return heads, rels
 

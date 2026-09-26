@@ -1,10 +1,8 @@
 """Arabic morphological analysis service.
 
 Priority fallback chain (highest quality first):
-  1. CAMeL Tools Analyzer, word-level analysis with diacritic-guided
-     disambiguation (see _pick_best_analysis); no cross-word context is used.
-     (The MLE sentence disambiguator is deliberately NOT loaded, it is tuned
-     for MSA and misreads classical/diacritised forms.)
+  1. CAMeL Tools Analyzer, readings ranked by the MLE disambiguator, then
+     the typed harakat choose among them (_heeding_vowels).
   2. Qalsadi: lemmatisation + basic info
   3. PyArabic / bare harakat, case from diacritics only
 

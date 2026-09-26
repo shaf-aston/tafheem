@@ -173,6 +173,8 @@ docker-compose.*.yml
 # Misc
 *.log
 *.csv
+# The parser's clitic table is source, not output (catib_onnx.py)
+!backend/data/parser/clitic_feats.csv
 *.tsv
 *.dat
 
