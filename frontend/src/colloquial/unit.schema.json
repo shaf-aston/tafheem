@@ -1,0 +1,277 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Colloquial unit",
+  "description": "One unit file in src/data/colloquial/. Source of truth: COLLOQ-PLAN.md. Rules beyond shape (minimums, type-specific lists) live in src/colloquial.json.",
+  "type": "object",
+  "required": [
+    "unit",
+    "title",
+    "lessons",
+    "challenge"
+  ],
+  "properties": {
+    "unit": {
+      "type": "string",
+      "pattern": "^unit-\\d{2}$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "lessons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "situation",
+          "goal",
+          "phrases",
+          "dialogue",
+          "de_book",
+          "grammar",
+          "culture",
+          "exercises"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "situation": {
+            "type": "string"
+          },
+          "goal": {
+            "type": "string"
+          },
+          "phrases": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "ar",
+                "translit",
+                "en",
+                "use",
+                "reply"
+              ],
+              "properties": {
+                "ar": {
+                  "type": "string"
+                },
+                "translit": {
+                  "type": "string"
+                },
+                "en": {
+                  "type": "string"
+                },
+                "use": {
+                  "type": "string"
+                },
+                "reply": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "required": [
+                    "ar",
+                    "translit",
+                    "en"
+                  ],
+                  "properties": {
+                    "ar": {
+                      "type": "string"
+                    },
+                    "translit": {
+                      "type": "string"
+                    },
+                    "en": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "dialogue": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "speaker",
+                "ar",
+                "translit",
+                "en"
+              ],
+              "properties": {
+                "speaker": {
+                  "type": "string"
+                },
+                "ar": {
+                  "type": "string"
+                },
+                "translit": {
+                  "type": "string"
+                },
+                "en": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "de_book": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "book",
+                "natural",
+                "why"
+              ],
+              "properties": {
+                "book": {
+                  "type": "string"
+                },
+                "natural": {
+                  "type": "string"
+                },
+                "why": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "grammar": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "culture": {
+            "type": "string"
+          },
+          "exercises": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "type",
+                "prompt",
+                "answer",
+                "accepted",
+                "too_formal",
+                "tip"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "say_it",
+                    "respond",
+                    "de_book",
+                    "shadow",
+                    "listen_choose",
+                    "role_play"
+                  ]
+                },
+                "prompt": {
+                  "type": "string"
+                },
+                "given_lines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "options": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "answer": {
+                  "type": "string"
+                },
+                "accepted": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "too_formal": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "answer",
+                      "feedback"
+                    ],
+                    "properties": {
+                      "answer": {
+                        "type": "string"
+                      },
+                      "feedback": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "tip": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "challenge": {
+      "type": "object",
+      "required": [
+        "scenario",
+        "partner_role",
+        "learner_goals",
+        "target_phrases",
+        "checklist"
+      ],
+      "properties": {
+        "scenario": {
+          "type": "string"
+        },
+        "partner_role": {
+          "type": "string"
+        },
+        "learner_goals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target_phrases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "checklist": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { mostlyArabic } from './arabicText'
+import { mostlyArabic, spokenForm } from './arabicText'
 
 describe('mostlyArabic', () => {
   it('is true for an ayah', () => {
@@ -20,4 +20,11 @@ describe('mostlyArabic', () => {
     expect(mostlyArabic('')).toBe(false)
     expect(mostlyArabic(undefined)).toBe(false)
   })
+})
+
+describe('spokenForm', () => {
+  // Single letters and marks only: no Arabic phrases are authored in tests.
+  it('drops harakat and tatweel', () => expect(spokenForm('هَـ')).toBe('ه'))
+  it('folds hamza on alif, ى and ة', () => expect(spokenForm('أ إ آ ى ة')).toBe('ا ا ا ي ه'))
+  it('turns punctuation into one space and trims', () => expect(spokenForm(' ه،  ه؟ ')).toBe('ه ه'))
 })

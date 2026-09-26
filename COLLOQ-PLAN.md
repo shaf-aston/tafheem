@@ -27,7 +27,7 @@ structure, loading, UI and checking. We never write or change Arabic content.
   - whether the panel needs `study: true`
 
   Then recommend (a) a folder for the unit files and (b) whether to reuse the speech pipeline.
-- [ ] **Phase 1 — Schema and validator.**
+- [x] **Phase 1 — Schema and validator.**
   - Write a JSON Schema that matches the one below.
   - Write a node validator script and a vitest test. Rules:
     - `type` ∈ {say_it, respond, de_book, shadow, listen_choose, role_play}
@@ -127,3 +127,8 @@ structure, loading, UI and checking. We never write or change Arabic content.
 - **Data:** units go in `frontend/src/data/colloquial/`, loaded with `import.meta.glob(..., {import:'default'})`, lazily, one chunk per unit.
 - **Tests:** vitest, colocated `*.test.js`. There is no Playwright config, so Playwright runs as a standalone script with the preinstalled Chromium. Lint with `npm run lint`, build with `npm run build`.
 - There is no CLAUDE.md or rules directory in the repo.
+
+## Phase 1 notes
+- Shape: `frontend/src/colloquial/unit.schema.json`. Rules: `frontend/src/colloquial.json` (types, minimums). A test keeps the two type lists equal.
+- Checker: `frontend/src/colloquial/validate.js`. Normaliser: `spokenForm` in `frontend/src/lib/arabicText.js`, reused by Phase 4.
+- Run: `npm run validate:colloq` (frontend/) prints file → lesson → problem.
