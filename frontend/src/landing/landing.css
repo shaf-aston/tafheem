@@ -155,7 +155,7 @@ body { overflow-x: hidden; }
 .landing-page .marquee { overflow: hidden; width: 100%; }
 .landing-page .m-track { display: flex; width: max-content; gap: 3rem; animation: landing-mq1 34s linear infinite; align-items: center; }
 .landing-page .m-track.rev { animation: landing-mq2 34s linear infinite; }
-.landing-page .marquee:hover .m-track { animation-play-state: paused; }
+.landing-page .marquee:hover .m-track, .landing-page .marquee-section[data-off] .m-track { animation-play-state: paused; }
 @keyframes landing-mq1 { to { transform: translateX(-50%); } }
 @keyframes landing-mq2 { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 .landing-page .m-item { font-family: 'Fraunces', serif; font-size: clamp(1.3rem, 2.6vw, 2rem); white-space: nowrap; display: flex; align-items: center; gap: 3rem; }
@@ -192,6 +192,9 @@ body { overflow-x: hidden; }
   background: var(--landing-story-panel-bg); backdrop-filter: blur(3px); border: 1px solid var(--line); border-radius: var(--landing-story-panel-r);
   opacity: 0; visibility: hidden; text-align: center;
 }
+/* Hidden panels keep their loops (wave, mic ring) paused: running unseen they
+   restyle and re-layer every frame, which phones feel as scroll lag. */
+.landing-page .story-panel:not(.active) * { animation-play-state: paused; }
 .landing-page .story-panel.active {
   opacity: 1; visibility: visible;
   animation: landing-panelin calc(var(--motion-instant-ms) * 2ms) var(--smooth) both;
