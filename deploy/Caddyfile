@@ -1,8 +1,26 @@
-# Caddy answers the internet on 443 and hands requests to the backend, which
-# itself only listens on this machine. Caddy gets and renews the HTTPS
-# certificate on its own, so there is nothing to remember here.
-#
-# Replace the name below with the free one you registered at duckdns.org.
-tafheem.duckdns.org {
-	reverse_proxy 127.0.0.1:8000
+# Caddy answers the internet on 443: /api goes to the backend (which only
+# listens on this machine). The website itself lives on Vercel, so the bare
+# address just points people there. Every request is logged with the visitor's
+# real address (Vercel's x-vercel-forwarded-for header); read it with usage.sh.
+132-145-17-56.sslip.io {
+	log {
+		output file /var/log/caddy/access.log {
+			roll_size 10mb
+			roll_keep 10
+		}
+		format filter {
+			request>headers>X-Vercel-Proxy-Signature delete
+			request>headers>X-Vercel-Proxied-For delete
+		}
+	}
+	handle /api/* {
+		reverse_proxy 127.0.0.1:8000
+	}
+	handle / {
+		redir https://tafheem-app.vercel.app 302
+	}
+	handle {
+		respond 404
+	}
+	encode zstd gzip
 }
