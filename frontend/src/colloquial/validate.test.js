@@ -34,6 +34,7 @@ describe('unit validator', () => {
   it('keeps the schema type list and colloquial.json in step', () => {
     const e = schema.properties.lessons.items.properties.exercises.items.properties.type.enum
     expect(e).toEqual(TYPES)
+    for (const t of TYPES) expect(Object.keys(config['exercise-types'][t]).sort()).toEqual(['input', 'lists', 'speak'])
   })
 
   it('reports shape problems with their path, and never renames keys', () => {

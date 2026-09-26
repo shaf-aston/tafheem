@@ -10,8 +10,6 @@ import schema from './unit.schema.json'
 
 const TYPES = config['exercise-types']
 const MINIMUMS = config['lesson-minimums']
-// Lists a type may carry, straight from the config, so a new list is one line there.
-const TYPE_LISTS = Object.keys(Object.values(TYPES)[0])
 
 const typeOf = (v) => (v === null ? 'null' : Array.isArray(v) ? 'array' : typeof v)
 
@@ -51,13 +49,11 @@ export function checkLesson(lesson) {
     const at = `exercise ${ex.id}`
     if (seen.has(ex.id)) out.push(`${at}: duplicate exercise id`)
     seen.add(ex.id)
-    const rule = TYPES[ex.type]
-    if (rule) {
-      for (const list of TYPE_LISTS) {
-        const has = (ex[list]?.length ?? 0) > 0
-        if (rule[list] && !has) out.push(`${at}: ${ex.type} needs ${list}`)
-        if (!rule[list] && has) out.push(`${at}: ${list} is only for ${Object.keys(TYPES).filter((t) => TYPES[t][list]).join(', ')}`)
-      }
+    // Which lists a type may carry comes from the config, so a new list is one line there.
+    for (const [list, needed] of Object.entries(TYPES[ex.type]?.lists ?? {})) {
+      const has = (ex[list]?.length ?? 0) > 0
+      if (needed && !has) out.push(`${at}: ${ex.type} needs ${list}`)
+      if (!needed && has) out.push(`${at}: ${list} is only for ${Object.keys(TYPES).filter((t) => TYPES[t].lists[list]).join(', ')}`)
     }
     if (blank(ex.answer)) out.push(`${at}: answer is empty`)
     if (blank(ex.tip)) out.push(`${at}: tip is empty`)

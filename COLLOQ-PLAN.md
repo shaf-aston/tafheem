@@ -38,7 +38,7 @@ structure, loading, UI and checking. We never write or change Arabic content.
     - lesson ids are unique across all units
     - minimums: phrases ≥10, dialogue ≥10, de_book ≥4, exercises ≥10
   - Report as file → lesson → problem. Never auto-fix, and report key renames rather than making them.
-- [ ] **Phase 2 — Data loading.**
+- [x] **Phase 2 — Data loading.**
   - Load one unit at a time, lazily. Don't put units in the main bundle.
   - Show only valid units. An invalid unit shows "Unit unavailable" in dev and is hidden in production.
   - Evidence: the build output shows unit files split out, and a test loads one unit.
@@ -132,3 +132,109 @@ structure, loading, UI and checking. We never write or change Arabic content.
 - Shape: `frontend/src/colloquial/unit.schema.json`. Rules: `frontend/src/colloquial.json` (types, minimums). A test keeps the two type lists equal.
 - Checker: `frontend/src/colloquial/validate.js`. Normaliser: `spokenForm` in `frontend/src/lib/arabicText.js`, reused by Phase 4.
 - Run: `npm run validate:colloq` (frontend/) prints file → lesson → problem.
+
+## Phase 2 notes
+- `frontend/src/colloquial/units.js`: `unitIds()`, `loadUnit(id)`, `shown(loaded)`. Each unit is its own lazy chunk; the folder is the list.
+- Per-type `lists` / `input` / `speak` flags live in `colloquial.json`; UI copy in its `copy` block.
+
+## Microsteps (approved)
+## Module map (where each thing lives, and why)
+| Concern | Module | Reused from |
+|---|---|---|
+| Unit shape | `src/colloquial/unit.schema.json` (done) | none |
+| Rules and knobs (types, minimums, UI copy, data folder) | `src/colloquial.json` | same pattern as quiz.json and memorise.json |
+| Arabic normalising | `spokenForm` in `src/lib/arabicText.js` (done) | `bareForm` |
+| Validation | `src/colloquial/validate.js` (done) | schema and config |
+| Loading | `src/colloquial/units.js` | `import.meta.glob`, `validate.js` |
+| Checking | `src/colloquial/checkAnswer.js` | `spokenForm`, config |
+| Screens | `src/colloquial/*.jsx`, kept small; `ColloquialPanel.jsx` only routes | `SectionHeader`, `EmptyState`, `ArabicText`, `PrimaryButton`, `SmallButton`, `Segmented`, `Disclosure`, `AnswerSquare`, `ErrorAlert`, `MicButton`, `lib/shuffle.js`, `--c` accent |
+| Speech | none new | `MicButton` → `api.listen` → `POST /api/listen` (Groq whisper) |
+| Conversation (P6, proposal only) | a backend router plus a prompt in `services/ai/prompts.py` | `services/ai` backend and `config.py` settings |
+
+Rules applied throughout:
+- Labels and messages ("Unit unavailable", "We heard:", the result words) go in `colloquial.json`.
+- Result names (`correct`, `too_formal`, `incorrect`) are exported once from `checkAnswer.js`.
+- Exercise types come from `colloquial.json` `exercise-types`; each type gets an `input` field (`text`, `choice`, `shadow`) so the UI never hardcodes type lists.
+- Mic-capable types are a config flag (`speak: true`).
+- Colours come only from theme tokens and `--c`. No new CSS values if an existing class fits.
+
+## Phase 2 — Loading
+1. Add `"input"` and `"speak"` flags to each type in `colloquial.json`. Extend the schema/config sync test to cover them.
+2. Write `units.js`:
+   - `UNIT_FILES = import.meta.glob('../data/colloquial/*.json', { import: 'default' })`, lazy with one chunk per file
+   - `unitIds()`: sorted file names, derived from the glob keys, with no list written by hand
+   - `loadUnit(id)`: imports the file, runs `validateAll` for that unit, and returns `{unit}` or `{problems}`
+3. Visibility rule in one function, `visible(result)`:
+   - production (`import.meta.env.PROD`): hide invalid units
+   - dev: show them with the "Unit unavailable" text from the config
+4. `units.test.js`: `loadUnit` with a unit copied from a supplied file (blocked until the files exist, otherwise skipped with a clear message), plus an invalid-unit case built from the structural fixtures.
+5. Verify:
+   - `npm run build`: a chunk per unit, and the main bundle size is unchanged
+   - lint and vitest pass
+   - commit
+
+## Phase 3 — Lesson UI
+1. In `tabs.js`, add `study: true` to the colloq entry. This is its only change.
+2. `ColloquialPanel({accent})` holds the view state `{unitId, lessonId, mode}` and renders one of these screens.
+3. `UnitList.jsx`:
+   - loads titles lazily
+   - reuses the card and button classes already used for lists in other panels (find the nearest match, e.g. Tamreen/Notes)
+4. `LessonList.jsx`: situation and goal for each lesson.
+5. `LessonPage.jsx`, with the sections in plan order:
+   - `PhraseList`: `ArabicText` for Arabic, plus the reply under each phrase
+   - `Dialogue`: a `Segmented` toggle hides transliteration and English; the toggle is local state
+   - `BookVsNatural`
+   - `CultureNote`
+   - `PrimaryButton` "Practise"
+
+   Section titles come from the config.
+6. Transliteration and English get `dir="ltr"`. All Arabic goes through `ArabicText`, which gives `lang="ar"` and RTL.
+7. Keyboard: real `<button>`s, visible focus from the existing styles, and a back control on every screen.
+8. Verify:
+   - `scripts/colloq-shots.mjs`, a Playwright script in the pattern of the existing `scripts/probe*.mjs`: screenshots at 390/768/1280/1600 of the unit list and one lesson, plus an axe-core check (already a devDependency)
+   - lint and build pass
+   - commit
+
+## Phase 4 — Typed checking
+1. `checkAnswer.js`:
+   - exports `RESULT = {correct, too_formal, incorrect}`
+   - `checkAnswer(input, ex)` compares `spokenForm` values: `answer`/`accepted` first, then `too_formal`, else incorrect
+   - returns `{result, feedback, tip, answer}`
+2. `checkAnswer.test.js`: cases copied only from the supplied files, covering exact match, an accepted variant, with and without tashkeel, too_formal, and incorrect.
+3. `Exercise.jsx` picks its input by `config['exercise-types'][type].input`:
+   - `TextAnswer`: an input with `dir="rtl" lang="ar"`, submitted on Enter or with a button
+   - `ChoiceAnswer`: `options` shuffled with `lib/shuffle.js`
+   - `ShadowLine`: shows the line and marks it done on attempt
+4. `Feedback.jsx` is one component for all three results. Tone uses the existing `--success` and `--danger` tokens, with the too_formal tone taken from the theme (no new colour).
+5. `Practice.jsx` runs the exercises in order. Progress is a `useState` map `{exId: result}`, drawn as an `AnswerSquare` strip (the same one the Quiz and Tamreen use). Memory only.
+6. Verify:
+   - vitest
+   - a Playwright script that completes one lesson's exercises
+   - lint and build
+   - commit
+
+## Phase 5 — Speaking (the pipeline is confirmed free-text capable)
+1. `MicButton`: add an optional `fusha` prop that overrides the user setting when given. This is the only shared change; the default behaviour is unchanged.
+2. `Exercise.jsx`: for types with `speak: true`, render `<MicButton fusha={false} onHeard={...}>`. The text it hears goes through the same `checkAnswer`.
+3. `Feedback` shows "We heard: …" (copy from the config) above the result.
+4. Errors: `MicButton` already handles "refused" and silence. API errors go through `lib/apiError.js` into `ErrorAlert`. The text input always stays visible.
+5. Tests:
+   - mock `api.listen` to return a correct, a too-formal and a wrong transcript, plus empty text and a rejection
+   - one test checks that `fusha: false` is passed
+6. Write out a manual test script for the user: the exact phrase to say from unit-01 and the expected outcome. Then commit.
+
+## Phase 6 — Conversation challenge (proposal only; write it into COLLOQ-PLAN.md)
+- Endpoint: `POST /api/colloquial/turn` in a new `backend/routers/colloquial.py`. It reuses the `services/ai` backend (`complete_json`), and the model, timeout and max tokens come from `config.py` settings (new keys only if needed).
+- Prompt: a template in `services/ai/prompts.py`, filled from `scenario`, `partner_role`, `target_phrases` and `learner_goals`.
+- Each turn returns `{reply_ar, reply_translit, reply_en, checklist_hits[]}`. The frontend ticks off `checklist` items and runs each learner turn through `checkAnswer` against `target_phrases` for the too-formal hints.
+- Cost: estimate the tokens per turn × about 10 turns at Groq's gpt-oss-120b price. Write the numbers in the proposal.
+- Commit the plan text only.
+
+## Phase 7 — Final
+- lint, build, full vitest, and the Playwright scripts at all four widths
+- the validator report for all 16 units
+- a fresh subagent diffs the work against COLLOQ-PLAN.md and reports only these gaps: requirements not met, changes out of scope, Arabic edited, new dependencies
+- final report, then commit
+
+## Blocker
+The unit files are still missing. Phase 2's real-unit test and Phases 3–5's fixtures and screenshots need at least unit-01. Until they arrive, only the structural parts can be built.
