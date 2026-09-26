@@ -228,7 +228,9 @@ body { overflow-x: hidden; }
 }
 .landing-page .story-chip.on { opacity: 1; transform: none; color: var(--gold-hi); border-color: rgba(236, 202, 119, .4); }
 
-.landing-page .story-arcs { width: 100%; height: 70px; overflow: visible; }
+/* The arrows lie over the words and start at each word's own position. */
+.landing-page .story-gov { position: relative; padding-top: 2.5rem; }
+.landing-page .story-arcs { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .landing-page .story-arcs path { fill: none; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--d, 0)); }
 .landing-page .story-why {
   background: rgba(255, 255, 255, .04); border: 1px solid var(--line); border-radius: 12px; padding: .8rem 1rem; max-width: 420px;
@@ -266,7 +268,6 @@ body { overflow-x: hidden; }
   .landing-page .story-stage { height: var(--landing-story-stage-h-sm); }
   .landing-page .story-panel { gap: 1rem; padding: 1rem; }
   .landing-page .story-word .arabic { font-size: 1.25rem; }
-  .landing-page .story-arcs { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .landing-page .story-word .arabic, .landing-page .story-word .story-role, .landing-page .story-chip, .landing-page .story-why, .landing-page .story-book { transition: none; }

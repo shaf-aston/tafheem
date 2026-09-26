@@ -85,14 +85,21 @@ export default function StoryScroll() {
       const svg = box.querySelector('svg')
       const b = svg.getBoundingClientRect()
       if (!b.width) return
-      const words = box.querySelectorAll('.story-word')
-      const x = (i) => {
+      // Top centre of each word, so an arrow can cross rows when the line wraps.
+      const words = box.querySelectorAll('.story-word > .arabic:first-child')
+      const at = (i) => {
         const r = words[i].getBoundingClientRect()
-        return r.left + r.width / 2 - b.left
+        return [r.left + r.width / 2 - b.left, r.top - b.top]
       }
-      setArcs(GOVERNS.map((g, k) => {
-        const h = 60 + k * 6
-        return `M${x(g.from)} 4C${x(g.from)} ${h} ${x(g.to)} ${h} ${x(g.to)} 4`
+      setArcs(GOVERNS.map((g) => {
+        const [x1, y1] = at(g.from)
+        const [x2, y2] = at(g.to)
+        const lift = Math.min(y1, y2) - 18 - Math.abs(x2 - x1) / 6
+        if (Math.abs(y2 - y1) < 4) return `M${x1} ${y1}C${x1} ${lift} ${x2} ${lift} ${x2} ${y2}`
+        // A wrapped pair: over the top, down the nearer edge, in above the word.
+        const edge = x2 > b.width / 2 ? b.width : 0
+        const gap = y2 - 14
+        return `M${x1} ${y1}C${x1} ${lift} ${edge} ${lift} ${edge} ${(lift + gap) / 2}S${edge} ${gap} ${(edge + x2) / 2} ${gap}S${x2} ${gap} ${x2} ${y2}`
       }))
     }
     measure()
@@ -142,16 +149,18 @@ export default function StoryScroll() {
               </div>
 
               <div className={`story-panel${active === 1 ? ' active' : ''}`} ref={govRef}>
-                <Words list={DEMO_WORDS} cls={(i) => `on${GOVERNS[govIdx].from === i || GOVERNS[govIdx].to === i ? ' cur' : ''}`} />
-                <svg className="story-arcs" aria-hidden="true">
-                  {arcs.map((d, k) => (
-                    <path
-                      key={k} d={d} pathLength="1"
-                      stroke={roleVar(DEMO_WORDS[GOVERNS[k].to].tone)}
-                      style={{ '--d': clamp(k === 0 ? lp * 3 : (lp - 0.35) * 3) }}
-                    />
-                  ))}
-                </svg>
+                <div className="story-gov">
+                  <Words list={DEMO_WORDS} cls={(i) => `on${GOVERNS[govIdx].from === i || GOVERNS[govIdx].to === i ? ' cur' : ''}`} />
+                  <svg className="story-arcs" aria-hidden="true">
+                    {arcs.map((d, k) => (
+                      <path
+                        key={k} d={d} pathLength="1"
+                        stroke={roleVar(DEMO_WORDS[GOVERNS[k].to].tone)}
+                        style={{ '--d': clamp(k === 0 ? lp * 3 : (lp - 0.35) * 3) }}
+                      />
+                    ))}
+                  </svg>
+                </div>
                 {GOVERNS.map((g, k) => (
                   <p key={k} className={`story-why${k === govIdx && lp > 0.25 ? ' on' : ''}`} style={k !== govIdx ? { display: 'none' } : undefined}>
                     <b lang="ar">{g.why[0]}</b> {g.why[1]}<b lang="ar">{g.why[2]}</b>{g.why[3]}
@@ -171,7 +180,7 @@ export default function StoryScroll() {
                 <Words
                   list={AYAH.map((word, i) => ({
                     word,
-                    role: !ayahDone(i) ? '' : i === FLAGGED ? '✗ check' : '✓',
+                    role: !ayahDone(i) ? '' : i === FLAGGED ? '✗ راجِع' : '✓',
                     tone: !ayahDone(i) ? undefined : i === FLAGGED ? 'mafool' : 'fail',
                   }))}
                   cls={(i) => (ayahDone(i) ? 'on' : '')}
