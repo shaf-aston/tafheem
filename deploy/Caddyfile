@@ -1,6 +1,6 @@
 # Caddy answers the internet on 443: /api goes to the backend (which only
-# listens on this machine). The website itself lives on Vercel, so the bare
-# address just points people there. Every request is logged with the visitor's
+# listens on this machine), everything else is the built website in ~/site.
+# Every request is logged with the visitor's
 # real address (Vercel's x-vercel-forwarded-for header); read it with usage.sh.
 132-145-17-56.sslip.io {
 	log {
@@ -16,11 +16,10 @@
 	handle /api/* {
 		reverse_proxy 127.0.0.1:8000
 	}
-	handle / {
-		redir https://tafheem-app.vercel.app 302
-	}
 	handle {
-		respond 404
+		root * /home/ubuntu/site
+		try_files {path} {path}.html {path}/index.html
+		file_server
 	}
 	encode zstd gzip
 }
