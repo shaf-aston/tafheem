@@ -175,6 +175,19 @@ def test_a_sound_root_is_never_looked_up_as_hollow():
     assert verb_forms.babs_of("غلب", sources={"lane": _filed_under_past})["readings"] == []
 
 
+def test_hollow_past_only_names_a_bare_hollow_root():
+    assert conjugation.hollow_past("غيب") == ("غاب", "ي")
+    assert conjugation.hollow_past("قول") == ("قال", "و")
+    assert conjugation.hollow_past("كتب") is None
+    assert conjugation.hollow_past("وعد") is None
+    assert conjugation.hollow_past("طوي") is None
+
+
+def test_every_weak_letter_has_a_hollow_rule():
+    from backend.services.sarf import word
+    assert set(conjugation.babs()["hollow"]) == set(word.WEAK)
+
+
 def test_record_maps_quadriliteral_form_and_drops_unknown_babs():
     assert verb_forms.record("Iq", "زَهْزَهَ", []) == {"form": "IQ", "past": "زَهْزَهَ", "babs": []}
     assert verb_forms.record("I", "كَتَبَ", ["a~u", "z~z"]) == {"form": "I", "past": "كَتَبَ", "babs": ["a~u"]}

@@ -139,6 +139,20 @@ def kind(radicals: str) -> str:
     )
 
 
+def hollow_past(word: str) -> tuple[str, str] | None:
+    """(bare past, weak letter) when the word is a bare أجوف root, else None.
+
+    غيب -> (غاب, ي), قول -> (قال, و). Dictionaries file a hollow verb under
+    this past, where the middle و or ي has become an alif, never under the
+    root. Anything that is not three letters with a weak middle is None, so
+    a real word is only ever looked up as itself.
+    """
+    radicals = letters(word)
+    if len(radicals) != 3 or radicals[1] not in W.WEAK or kind(radicals) != "ajwaf":
+        return None
+    return radicals[0] + W.ALIF + radicals[2], radicals[1]
+
+
 def conjugates() -> list[str]:
     """The root kinds the rules can shape today. Everything else is refused."""
     return _rules()["conjugates"]

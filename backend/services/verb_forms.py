@@ -91,6 +91,17 @@ def babs_of(word: str, sources: dict | None = None) -> dict:
     record should show both, not whichever was tried first.
     """
     sources = verb_sources.SOURCES if sources is None else sources
+    found = _ask(sources, word)
+    if not any(verbs for verbs, _ in found) and (hollow := conjugation.hollow_past(word)):
+        # Both books file a أجوف verb under its past, غَابَ, never under the
+        # root غيب a reader types, so the root on its own found nothing.
+        past, weak = hollow
+        found = [(_hollow_babs(verbs, weak), key) for verbs, key in _ask(sources, past)]
+    return _verdict(found)
+
+
+def _ask(sources: dict, word: str) -> list[tuple[list[dict], str]]:
+    """(picked verbs, source key) from every source that answers, in babs.json's order."""
     found = []
     for key in conjugation.babs()["sources"]:
         provider = sources.get(key)
@@ -99,40 +110,19 @@ def babs_of(word: str, sources: dict | None = None) -> dict:
             continue
         if verbs := provider(word):
             found.append((_pick(verbs, word), key))
-    if not any(verbs for verbs, _ in found) and (hollow := _hollow(word)):
-        # Both books file a أجوف verb under its past, غَابَ, never under the
-        # root غيب a reader types, so the root on its own found nothing.
-        past, weak = hollow
-        for key in conjugation.babs()["sources"]:
-            if (provider := sources.get(key)) and (verbs := provider(past)):
-                found.append((_hollow_babs(_pick(verbs, past), weak), key))
-    return _verdict(found)
-
-
-def _hollow(word: str) -> tuple[str, str] | None:
-    """(past spelling, weak letter) for a bare أجوف root typed as its letters.
-
-    غيب -> (غاب, ي). None for anything else, so a real word is only ever
-    looked up as itself.
-    """
-    letters = conjugation.letters(word)
-    if len(letters) != 3 or letters[1] not in "وي" or conjugation.kind(letters) != "ajwaf":
-        return None
-    return letters[0] + "ا" + letters[2], letters[1]
-
-
-# The present tense's middle vowel is the weak letter come back: يَقُولُ keeps
-# the و as a dammah, يَبِيعُ the ي as a kasrah (Treasures pp.180-190). So a
-# و root never takes a present in i, nor a ي root one in u. Lane files بَاعَ
-# once for بيع and بوع together with both babs; this is what splits them.
-_HOLLOW_PRESENT_NOT = {"و": "i", "ي": "u"}
+    return found
 
 
 def _hollow_babs(verbs: list[dict], weak: str) -> list[dict]:
-    """The Form I verbs a hollow past names, keeping only babs this root can take."""
-    ruled_out = _HOLLOW_PRESENT_NOT[weak]
+    """The Form I verbs a hollow past names, keeping only babs this root can take.
+
+    babs.json's "hollow" table says which present vowel the weak letter rules
+    out: Lane files بَاعَ once for بيع and بوع with both babs, and this is
+    what splits them.
+    """
+    ruled_out = "~" + conjugation.babs()["hollow"][weak]
     return [
-        {**verb, "babs": [c for c in verb.get("babs") or [] if not c.endswith("~" + ruled_out)]}
+        {**verb, "babs": [c for c in verb.get("babs") or [] if not c.endswith(ruled_out)]}
         for verb in verbs if verb["form"] == "I"
     ]
 

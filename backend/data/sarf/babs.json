@@ -13,6 +13,8 @@
     "Iq": "IQ",
     "IIq": "IIQ"
   },
+  "_hollow": "A أجوف root is found under its past (غيب under غَابَ), and its weak letter rules out one present vowel: the present's middle vowel is that letter come back, يَقُولُ from و and يَبِيعُ from ي (Treasures pp.180-190). Weak letter -> the present vowel it never takes.",
+  "hollow": {"و": "i", "ي": "u"},
   "_sources": "Where a verb's bab can come from. Every source in this order is tried and every one that answers is shown, so a reader sees both books when both name one.",
   "sources": ["lane", "wiktionary"]
 }
