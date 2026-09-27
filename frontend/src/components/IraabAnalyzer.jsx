@@ -179,7 +179,9 @@ function SentencePicture({ tree }) {
         className="rise-in p-5 rounded-[var(--radius-lg)] bg-[var(--surface)]
           border border-[var(--border)]"
       >
-        <TarkeebDiagram words={tree.words} tree={tree.tree} />
+        {/* an ayah drawn from its record carries the words the book supplies,
+            (هُوَ) or an elided khabar, and the mark it writes them with */}
+        <TarkeebDiagram words={tree.words} tree={tree.tree} unwritten={tree.unwritten} />
       </div>
       {placed < 100 && (
         <p className="text-center type-small text-[var(--text-faint)]">

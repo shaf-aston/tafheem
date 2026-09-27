@@ -92,6 +92,13 @@ async def lifespan(_: FastAPI):
     if get_settings().recitation_warm:
         loop.run_in_executor(None, _warm_and_freeze)
 
+    # Not awaited either, for the same reason. The Nahw parser takes seconds to
+    # load, and before this it loaded inside the first /api/analyze, so the
+    # first sentence sat on a skeleton for all of it. A sentence typed while it
+    # is still loading waits for this one load rather than starting another.
+    if get_settings().catib_parser_warm:
+        loop.run_in_executor(None, _load_optional, "Nahw parser", syntax.warm)
+
     # Log which engines are active so the operator knows the mode at a glance
     logger.info("NLP engine   : %s", get_engine_name())
     logger.info("AI backend   : %s", ai_service.get_backend_name())

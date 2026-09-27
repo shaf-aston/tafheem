@@ -12,14 +12,19 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 from __future__ import annotations
 
 from backend.services.syntax.naming import tone
+from backend.services.tarkeeb import term_ar
 
-# What a unit is called, by the join that makes it
-IDAFA = "مُرَكَّبٌ إِضَافِيٌّ"
-WASF = "مُرَكَّبٌ تَوْصِيْفِيٌّ"
-JARR = "جَارٌّ وَمَجْرُوْرٌ"
-VERBAL = "جُمْلَةٌ فِعْلِيَّةٌ"
-NOMINAL = "جُمْلَةٌ اِسْمِيَّةٌ"
-QUESTION = "جُمْلَةٌ إِنْشَائِيَّةٌ اِسْتِفْهَامِيَّةٌ"
+# What a unit is called, by the join that makes it. Spelled once, in
+# data/nahw_rules/tarkeeb.json, so a typed sentence, a book example and an ayah
+# name the same unit the same way.
+IDAFA = term_ar("murakkab_idafi")
+WASF = term_ar("murakkab_tawsifi")
+JARR = term_ar("jar_majroor")
+VERBAL = term_ar("jumlah_filiyyah")
+NOMINAL = term_ar("jumlah_ismiyyah")
+QUESTION = term_ar("jumlah_istifhamiyyah")
+# What a particle is called inside the jar-majroor it heads
+JARR_HEAD = "حرف جر"
 
 
 def _leaf(index: int, role: str | None) -> dict:
@@ -48,6 +53,8 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
         return "مضاف"
     if "صفة" in child_roles:
         return "موصوف"
+    if "مجرور" in child_roles:
+        return JARR_HEAD
     return role
 
 
@@ -97,7 +104,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         role = role_of[token["id"]]
         label = _label(token, kid_roles) or (_sentence_label(token, role_of, bases)
                                              if token is root else "")
-        return {"role": None if token is root else role,
+        # A particle's name is what it is, not a job for the unit it heads: the
+        # parser gives no job for a jar-majroor or a clause under إِذَا, so none
+        # is written rather than calling the whole unit a حرف.
+        job = None if token is root or token["pos"] == "PRT" else role
+        return {"role": job,
                 "label": label,
                 "tone": tone(role),
                 # right to left, so the picture reads in the order they were typed

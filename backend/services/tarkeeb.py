@@ -59,6 +59,11 @@ def _term(key: str) -> dict:
     return out
 
 
+def term_ar(key: str) -> str:
+    """Just the Arabic of a term, for comparing against what a tree printed."""
+    return _rules()["terms"][key]["ar"]
+
+
 def relation_wording(relation: str | None) -> tuple[str, bool]:
     """What to call a treebank relation, and whether any of it is still unchecked wording.
 

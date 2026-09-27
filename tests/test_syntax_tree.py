@@ -59,3 +59,21 @@ def test_nothing_is_drawn_when_the_words_do_not_line_up():
     toks = [token(1, "كتب", "كتب", "VRB", 0, "---")]
     drawn = tree.build(["كَتَبَ", "زَيْدٌ"], toks, [{"role": None, "case": None}] * 2)
     assert drawn["coverage"] == 0.0 and not tree.is_drawable(drawn)
+
+
+def test_a_jar_majroor_is_not_given_the_job_harf():
+    # مَا فِي الْقُبُورِ: the unit was drawn as a حرف; the parser names no job for it
+    toks = [token(1, "ما", "ما", "NOM", 0, "---", pos_camel="pron_rel"),
+            token(2, "في", "في", "PRT", 1, "MOD", pos_camel="prep"),
+            token(3, "القبور", "قبر", "NOM", 2, "OBJ", stt="d", cas="g")]
+    drawn = built(["مَا", "فِي", "الْقُبُورِ"], toks)
+    unit = next(child for child in drawn["tree"]["children"] if child.get("children"))
+    assert unit["label"] == tree.JARR
+    assert unit["role"] is None
+    assert [child["role"] for child in unit["children"]] == ["حرف جر", "مجرور"]
+
+
+def test_the_labels_are_the_shared_terms():
+    from backend.services.tarkeeb import term_ar
+    assert (tree.JARR, tree.IDAFA, tree.VERBAL) == (
+        term_ar("jar_majroor"), term_ar("murakkab_idafi"), term_ar("jumlah_filiyyah"))
