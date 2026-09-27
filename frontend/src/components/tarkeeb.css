@@ -4,7 +4,17 @@
    words above it without measuring anything. A gutter column on the far left
    holds each level's "= name". Classes are prefixed tk- because .word and
    .role above mean different things. */
-.tk-scroller { overflow-x: auto; padding-bottom: 0.5rem; }
+/* Sideways only. Setting overflow-x alone makes overflow-y auto as well, and
+   the last brace's stem, hanging below the grid, drew a vertical scrollbar
+   with arrows down the side of every diagram. The padding holds that stem. A
+   long sentence or a phone still scrolls sideways, on the app's thin bar. */
+.tk-scroller {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
 
 .tk-grid {
   direction: rtl;
@@ -17,7 +27,9 @@
 
 .tk-word { grid-row: 1; display: flex; justify-content: center; }
 .tk-word span {
-  font-size: calc(var(--arabic-heading-rem) * 1rem);
+  /* Reading size, the same as the word cards under the diagram and every other
+     piece of Arabic being read: one sentence, one size, wherever it is drawn. */
+  font-size: calc(var(--arabic-reading-rem) * 1rem);
   line-height: 1.5;
   padding: 0 0.5rem 0.3rem;
   border-bottom: 1.5px solid var(--border-hi);

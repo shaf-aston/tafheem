@@ -167,9 +167,9 @@ function AnalysisResults({ data, accent, onWordClick, practice, detail }) {
  *
  * It sits above the cards because it is the wider view of the one sentence, and
  * it comes back with them from the same request, so the two can never disagree.
- * A word no rule could name is drawn as a gap by the diagram itself, and the
- * line underneath says how much was placed rather than letting a tidy picture
- * imply everything was.
+ * A word no rule could name is drawn as a gap by the diagram itself, and when
+ * any was left open a line underneath says how much was placed, rather than
+ * letting a tidy picture imply everything was. A whole placing says nothing.
  */
 function SentencePicture({ tree }) {
   const placed = Math.round((tree.coverage ?? 0) * 100)
@@ -181,9 +181,11 @@ function SentencePicture({ tree }) {
       >
         <TarkeebDiagram words={tree.words} tree={tree.tree} />
       </div>
-      <p className="text-center type-small text-[var(--text-faint)]">
-        {placed === 100 ? 'Every word placed' : `${placed}% of the words placed, the rest left open`}
-      </p>
+      {placed < 100 && (
+        <p className="text-center type-small text-[var(--text-faint)]">
+          {placed}% of the words placed, the rest left open
+        </p>
+      )}
     </div>
   )
 }
