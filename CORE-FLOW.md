@@ -97,7 +97,9 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
   is the only caller. Every label, column and template is in `data/sarf/`, never in code.
 - `backend/data/`: reference data, built by `backend/scripts/`; derived files are
   rebuilt, never hand-edited (see `backend/data/maqayees/README.md`).
-- `backend/data/progress.db`: learners' answers, the one database written while running.
+- `backend/data/progress.db`: learners' answers, and every Nahw practice question as it was
+  generated (AI or template, filed under its badge's source; `GET /api/practice/kept`). The
+  one database written while running, opened only by `services/progress_store.py`.
 - `backend/data/nahw_notes/`: the teacher's theory notes, one file per topic, read only by
   `services/nahw_notes.py` (format: its `FORMAT.md`). Testable pieces are marked in place as
   `{{role|text}}`; the Notes view in Nahw hides them or turns them into flashcards

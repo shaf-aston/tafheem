@@ -816,6 +816,17 @@ class PracticeResponse(BaseModel):
     source: Source | None = None
 
 
+class KeptQuestion(PracticeQuestion):
+    """A generated question as it was filed in progress.db."""
+    sentence: str
+    source: str
+    at: str
+
+
+class KeptQuestions(BaseModel):
+    questions: list[KeptQuestion]
+
+
 class DaleelHit(BaseModel):
     """One quotation, exactly as its book has it.
 

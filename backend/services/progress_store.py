@@ -39,6 +39,23 @@ CREATE TABLE IF NOT EXISTS attempts (
     at      TEXT    NOT NULL DEFAULT (datetime('now'))
 );
 CREATE INDEX IF NOT EXISTS ix_attempts ON attempts (user, module, item, id);
+-- Questions a panel generated, kept the moment they were made so an AI answer
+-- is paid for once and can be read back later. `source` is the provenance key
+-- the page showed (sources.json), so a row says who wrote it the same way the
+-- badge did. The same question for the same sentence is kept once.
+CREATE TABLE IF NOT EXISTS questions (
+    id       INTEGER PRIMARY KEY,
+    user     TEXT    NOT NULL DEFAULT 'local',
+    module   TEXT    NOT NULL,
+    sentence TEXT    NOT NULL,
+    question TEXT    NOT NULL,
+    answer   TEXT    NOT NULL,
+    hint     TEXT,
+    source   TEXT    NOT NULL,
+    at       TEXT    NOT NULL DEFAULT (datetime('now')),
+    UNIQUE (user, module, sentence, question)
+);
+CREATE INDEX IF NOT EXISTS ix_questions ON questions (user, module, sentence, id);
 CREATE TABLE IF NOT EXISTS feedback (
     id      INTEGER PRIMARY KEY,
     user    TEXT    NOT NULL DEFAULT 'local',
@@ -138,6 +155,40 @@ def leave_feedback(*, module: str, message: str, item: str | None = None, user: 
             (user, module, item, message),
         )
     return int(cursor.lastrowid)
+
+
+def keep_questions(
+    *, module: str, sentence: str, questions: list[dict], source: str, user: str = "local",
+) -> int:
+    """File generated questions as they were shown. Returns how many were new.
+
+    A question already kept for this sentence is skipped rather than doubled,
+    so asking again, or the page firing twice, leaves one copy.
+    """
+    rows = [
+        (user, module, sentence, q["question"], q["answer"], q.get("hint"), source)
+        for q in questions
+        if q.get("question") and q.get("answer")
+    ]
+    db = _db()
+    with db:
+        before = db.total_changes
+        db.executemany(
+            "INSERT OR IGNORE INTO questions (user, module, sentence, question, answer, hint, source) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?)",
+            rows,
+        )
+        return db.total_changes - before
+
+
+def kept_questions(module: str, sentence: str | None = None, user: str = "local") -> list[dict]:
+    """Questions filed by keep_questions, oldest first; for one sentence when given."""
+    sql = "SELECT sentence, question, answer, hint, source, at FROM questions WHERE user = ? AND module = ?"
+    args: list = [user, module]
+    if sentence is not None:
+        sql += " AND sentence = ?"
+        args.append(sentence)
+    return [dict(row) for row in _db().execute(sql + " ORDER BY id", args).fetchall()]
 
 
 def forget(user: str = "local") -> int:
