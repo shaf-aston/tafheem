@@ -26,8 +26,10 @@ EXPECT = {
     "نوم": ("I-samia", "نِمْتَ", "يَنَامُ"),
     "هيب": ("I-samia", "هِبْتَ", "يَهَابُ"),
     "نيل": ("I-samia", "نِلْتَ", "يَنَالُ"),
-    # The past typed as the dictionaries spell it, and a sound verb.
-    "غاب": ("I-daraba", "غِبْتَ", "يَغِيْبُ"),
+    # The past typed instead of the root: its alif may be a و or a ي, so the
+    # app asks for the root rather than guess, and no table comes back.
+    "غاب": (None, None, None),
+    # A sound verb.
     "كتب": ("I-nasara", "كَتَبْتَ", "يَكْتُبُ"),
 }
 
@@ -38,7 +40,7 @@ for word, want in EXPECT.items():
     got = json.load(urllib.request.urlopen(req, timeout=30))
     rows = {r["person"]: r["cells"] for r in (got.get("table") or {}).get("rows", [])}
     have = (got.get("form"), rows.get("you (m)", {}).get("madi"), rows.get("he", {}).get("mudari"))
-    ok = have == want and got.get("table_note") is None
+    ok = have == want and (got.get("table_note") is None) == (want[0] is not None)
     failed += not ok
     print("ok  " if ok else "FAIL", word, *have, "" if ok else f"want {want} note {got.get('table_note')}")
 sys.exit(f"{failed} failed" if failed else 0)
