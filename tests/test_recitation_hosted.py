@@ -33,9 +33,9 @@ def sound(monkeypatch):
         faster_whisper.audio, "decode_audio",
         lambda path: handed.append(path) or np.zeros(16000, dtype=np.float32),
     )
-    # Stood in at the engine's own door rather than at ours, so the temporary
-    # file a recording is written to is still really written and really
-    # deleted, and a test can still prove none is left on the disk.
+    # Stood in at the engine's own door rather than at ours, so what the
+    # decoder is handed is still really handed, and a test can still prove the
+    # recording never went to the disk on the way.
     listen._last = None
     yield handed
     listen._last = None
@@ -235,3 +235,16 @@ def test_nothing_heard_is_not_matched(monkeypatch):
     monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="": "")
     monkeypatch.setattr(recitation, "find", lambda text, limit: pytest.fail("matched silence"))
     assert recitation.hear(SOUND, match_ayahs=True) == ("", [])
+
+
+def test_an_upload_is_named_by_what_it_really_is(monkeypatch):
+    """Safari records mp4. Called .webm, Groq may refuse it, which rests the
+    key and sends every reading after it to the slower ear on this machine."""
+    fake = FakeGroq([("قل", "Arabic"), ("قل", "Arabic")])
+    monkeypatch.setattr(hosted, "_client", lambda key, timeout: fake)
+    mp4 = b"\x00\x00\x00\x20ftypisom" + bytes(16)
+    hosted.transcribe(mp4, "gsk_pretend", "ar")
+    assert fake.asked[0]["file"].name == "recording.mp4"
+    webm = b"\x1a\x45\xdf\xa3" + bytes(16)
+    hosted.transcribe(webm, "gsk_pretend", "ar")
+    assert fake.asked[1]["file"].name == "recording.webm"

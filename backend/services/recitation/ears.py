@@ -190,6 +190,12 @@ def per_minute() -> int:
     return len(usable) * get_settings().listening_rpm_per_key
 
 
+def _ready(ear: Ear) -> bool:
+    """Can be asked right now: not struck off, not resting, and switched on.
+    The one test `hear`, `active` and `would_answer_locally` all go by."""
+    return not ear.retired_reason and not ear.resting() and ear.is_available()
+
+
 def _wanted() -> list[str]:
     return [name.strip() for name in get_settings().listening_ears.split(",") if name.strip()]
 
@@ -228,7 +234,7 @@ def hear(audio: bytes, language: str | None, hint: str) -> str:
     reciting = language is not None
     last: Exception | None = None
     for ear in order(reciting):
-        if ear.retired_reason or ear.resting() or not ear.is_available():
+        if not _ready(ear):
             continue
         name = ear.name(reciting)
         try:
@@ -271,7 +277,7 @@ def active(reciting: bool = False) -> str:
     general one (LocalEar.name), and lets in the ears that only know the Qur'an.
     """
     for ear in order(reciting):
-        if not ear.retired_reason and not ear.resting() and ear.is_available():
+        if _ready(ear):
             return ear.name(reciting)
     return "none"
 
@@ -284,6 +290,6 @@ def would_answer_locally(reciting: bool = True) -> bool:
     once, and Groq answering costs this machine nothing to queue behind.
     """
     for ear in order(reciting):
-        if not ear.retired_reason and not ear.resting() and ear.is_available():
+        if _ready(ear):
             return ear.local
     return True
