@@ -32,6 +32,7 @@ import logging
 from functools import lru_cache
 
 from backend.config import get_settings
+from backend.services.recitation.recording import kind_of
 
 log = logging.getLogger(__name__)
 
@@ -87,10 +88,12 @@ def _ask(audio: bytes, key: str, language: str | None, hint: str) -> tuple[str, 
     settings = get_settings()
     client = _client(key, settings.listening_timeout_s)
 
-    # A name the service will accept. It reads the extension, and the browser
-    # sends webm; the local engine gets the same suffix for the same reason.
+    # A name the service will accept, and a true one: it reads the extension.
+    # Chrome records webm but Safari records mp4, and an mp4 called .webm is
+    # a refusal that rests this key and sends every reading after it to the
+    # slower ear on this machine.
     handle = io.BytesIO(audio)
-    handle.name = "recording.webm"
+    handle.name = f"recording.{kind_of(audio) or 'webm'}"
 
     answer = client.audio.transcriptions.create(
         file=handle,

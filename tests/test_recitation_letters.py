@@ -74,3 +74,22 @@ def test_a_search_never_goes_to_the_letters_ear(asked):
 def test_without_the_model_a_recitation_falls_to_the_ear_here(asked, monkeypatch):
     monkeypatch.setattr(ears.named("letters"), "is_available", lambda: False)
     assert ears.hear(b"sound", "ar", "") == "here"
+
+
+def test_the_letters_model_waits_for_the_processor_like_the_others(monkeypatch):
+    """It is handed the same cores as Whisper, so it takes the same lock."""
+    import numpy as np
+
+    from backend.services.recitation import letters, listen
+
+    held = []
+
+    class Session:
+        def run(self, *_):
+            held.append(listen.engine_lock.locked())
+            return (np.zeros((1, 3, 2), dtype=np.float32),)
+
+    monkeypatch.setattr(letters, "_engine", lambda: (Session(), ["a", "b"], 1))
+    letters.read(np.zeros(1600, dtype=np.float32))
+    assert held == [True]
+    assert not listen.engine_lock.locked()

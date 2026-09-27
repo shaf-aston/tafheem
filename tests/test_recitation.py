@@ -46,9 +46,9 @@ def sound(monkeypatch):
         faster_whisper.audio, "decode_audio",
         lambda path: handed.append(path) or np.zeros(16000, dtype=np.float32),
     )
-    # Stood in at the engine's own door rather than at ours, so the temporary
-    # file a recording is written to is still really written and really
-    # deleted, and a test can still prove none is left on the disk.
+    # Stood in at the engine's own door rather than at ours, so what the
+    # decoder is handed is still really handed, and a test can still prove the
+    # recording never went to the disk on the way.
     listen._last = None
     yield handed
     listen._last = None
@@ -338,12 +338,14 @@ def test_a_recording_that_worked_is_only_read_once(engine):
     assert engine.asked["vad_filter"] is True
 
 
-def test_the_recording_is_gone_once_the_answer_is_given(engine, sound):
-    """A microphone's output must not be left lying on the disk."""
-    from pathlib import Path
+def test_the_recording_never_touches_the_disk(engine, sound):
+    """A microphone's output must not be left lying on the disk, so it is
+    decoded from memory and never written there at all."""
+    import io
 
     assert listen.transcribe(b"pretend this is a recording", language="ar") == "قل هو الله أحد"
-    assert sound and not any(Path(path).exists() for path in sound)
+    assert sound and all(isinstance(handed, io.BytesIO) for handed in sound)
+    assert sound[0].getvalue() == b"pretend this is a recording"
 
 
 def test_nothing_recorded_is_never_sent_to_the_engine(engine):

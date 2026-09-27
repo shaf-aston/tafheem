@@ -255,3 +255,14 @@ def test_an_ear_that_hears_nothing_is_believed_rather_than_asked_again(both, mon
                         lambda audio, language, hint: asked.append("hosted") or "")
     assert ears.hear(SOUND, None, "") == ""
     assert asked == ["hosted"]
+
+
+def test_every_question_about_the_next_ear_goes_by_the_same_test(both):
+    """hear, active and would_answer_locally once each spelled out "can it be
+    asked now"; a resting quick ear must be passed over by all three alike."""
+    asked = both()
+    ears.named("hosted").rest(60, "resting for this test")
+    assert ears.hear(SOUND, None, "") == "here heard it"
+    assert asked == ["here"]
+    assert ears.active().startswith("local-")
+    assert ears.would_answer_locally(reciting=False) is True

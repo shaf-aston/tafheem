@@ -20,7 +20,7 @@ import time
 import numpy as np
 
 from backend.config import data_path, get_settings
-from backend.services.recitation.listen import NotInstalled
+from backend.services.recitation.listen import NotInstalled, engine_lock
 from backend.services.timing import timed
 
 log = logging.getLogger(__name__)
@@ -71,9 +71,14 @@ def read(sound: np.ndarray) -> str:
         return ""
     session, pieces, blank = _engine()
     signal = np.asarray(sound, dtype=np.float32)[None, :]
-    (logprobs,) = timed("placed-by-letters", session.run, None,
-                        {"audio_signal": signal, "length": np.array([signal.shape[1]], np.int64)},
-                        s=round(signal.shape[1] / 16000, 1))
+    # Under the same lock as the Whisper models: this one is handed the same
+    # cores (recitation_threads), and a spoken search falling back to Whisper
+    # here does not wait at the route's recitation turn, so without it the two
+    # could run at once and each take longer than both one after the other.
+    with engine_lock:
+        (logprobs,) = timed("placed-by-letters", session.run, None,
+                            {"audio_signal": signal, "length": np.array([signal.shape[1]], np.int64)},
+                            s=round(signal.shape[1] / 16000, 1))
     return spelled(logprobs[0].argmax(axis=-1), pieces, blank)
 
 

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { listen } from '../../api'
 import config from '../../dictation.json'
 import { watchForVoice } from '../../lib/dictation'
-import { canRecord, openMicrophone } from '../../lib/microphone'
+import { CANNOT_RECORD, canRecord, createRecorder, openMicrophone, refusal } from '../../lib/microphone'
 import { useSetting } from '../../lib/settings'
 import MicMark from './MicMark'
 
@@ -51,6 +51,9 @@ export default function MicButton({ onHeard, match = false, accent, title = 'Rec
   // Whether a voice was heard at all this recording. Set by the level meter.
   const spoke = useRef(false)
   const [seconds, setSeconds] = useState(0)
+  // Set once the button is gone. Stopping the recorder still fires its onstop,
+  // and without this that sent the recording off to be read for nobody.
+  const gone = useRef(false)
 
   // The seconds on screen while it records. Cleared the moment it stops, so a
   // stopped button never sits there showing a number that is no longer moving.
@@ -61,22 +64,29 @@ export default function MicButton({ onHeard, match = false, accent, title = 'Rec
   }, [state])
 
   // Whatever happens, do not leave the microphone on when this disappears.
-  useEffect(() => () => {
-    const live = recorder.current
-    if (live && live.state !== 'inactive') live.stop()
-    live?.stream?.getTracks().forEach((track) => track.stop())
+  // Set back on every mount, not only at the start: React mounts, unmounts and
+  // mounts again in development, and a flag left from the rehearsal would
+  // silence every recording after it.
+  useEffect(() => {
+    gone.current = false
+    return () => {
+      gone.current = true
+      const live = recorder.current
+      if (live && live.state !== 'inactive') live.stop()
+      live?.stream?.getTracks().forEach((track) => track.stop())
+    }
   }, [])
 
   async function start() {
     setProblem('')
     if (!canRecord()) {
       setState('refused')
-      setProblem('This browser cannot record.')
+      setProblem(CANNOT_RECORD)
       return
     }
     try {
       const stream = await openMicrophone()
-      const made = new MediaRecorder(stream)
+      const made = createRecorder(stream)
       const stopWatching = watchForVoice(stream, {
         onVoice: () => { spoke.current = true },
         onQuiet: () => made.state === 'recording' && made.stop(),
@@ -86,6 +96,7 @@ export default function MicButton({ onHeard, match = false, accent, title = 'Rec
       made.onstop = async () => {
         stopWatching()
         stream.getTracks().forEach((track) => track.stop())
+        if (gone.current) return
         const held = (Date.now() - began.current) / 1000
 
         // Answered before the recording is sent. A third of a second holds no
@@ -117,9 +128,11 @@ export default function MicButton({ onHeard, match = false, accent, title = 'Rec
             setProblem('Nothing was heard. Try again, closer to the microphone.')
             return
           }
+          if (gone.current) return
           onHeard(heard)
           setState('idle')
         } catch (error) {
+          if (gone.current) return
           setState('refused')
           setProblem(error?.response?.data?.detail || 'Could not make that out.')
         }
@@ -130,9 +143,9 @@ export default function MicButton({ onHeard, match = false, accent, title = 'Rec
       spoke.current = false
       setSeconds(0)
       setState('recording')
-    } catch {
+    } catch (error) {
       setState('refused')
-      setProblem('The microphone was not allowed.')
+      setProblem(refusal(error))
     }
   }
 

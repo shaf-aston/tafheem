@@ -1,5 +1,5 @@
 {
-  "_comment": "How the microphone button listens. Read only by ui/MicButton.jsx. Seconds are seconds; a level is a fraction of the loudest sound the microphone can carry, 0 silent to 1 full.",
+  "_comment": "How a microphone listens: the button (ui/MicButton.jsx), and reciting (lib/recitingSession.js) through lib/dictation.js. Seconds are seconds; a level is a fraction of the loudest sound the microphone can carry, 0 silent to 1 full.",
 
   "_too-short-s": "A recording shorter than this cannot hold a word said at any ordinary speed, so it is refused here instead of sent. The real recordings that set it were 0.3 and 0.78 seconds long.",
   "too-short-s": 0.7,

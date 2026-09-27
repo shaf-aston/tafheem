@@ -577,7 +577,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
   const start = async () => {
     set({ problem: '', ended: false })
     if (!canRecord()) {
-      set({ state: 'refused', problem: 'This browser cannot record.' })
+      set({ state: 'refused', problem: microphone.CANNOT_RECORD })
       return
     }
     try {
@@ -600,9 +600,9 @@ export function createRecitingSession({ onChange, deps = {} }) {
       })
       set({ state: 'listening' })
       record()
-    } catch {
-      set({ state: 'refused', problem: 'The microphone was not allowed.' })
-      note('mic.refused', {})
+    } catch (error) {
+      set({ state: 'refused', problem: microphone.refusal(error) })
+      note('mic.refused', { name: error?.name })
     }
   }
 
