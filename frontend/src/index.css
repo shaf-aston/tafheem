@@ -8,9 +8,7 @@
 /* Urdu is read in Nastaliq, not Naskh. Naskh would render it legibly and still
    look wrong to anyone who reads Urdu, the way a serif Arabic would. */
 @import "@fontsource/noto-nastaliq-urdu/400.css";
-/* The Qur'an in its own spelling carries marks everyday Arabic never does: a
-   madda over a small alef, the rounded sukun, the waqf signs. Naskh draws them
-   squeezed onto the baseline; Amiri Quran was cut for them. */
+/* The mushaf's marks (madda over a small alef, waqf signs) crowd in Naskh. */
 @import "@fontsource/amiri-quran/400.css";
 @import "@fontsource-variable/inter/index.css";
 
@@ -47,9 +45,7 @@
   --arabic-input-line-height: var(--urdu-line-height);
 }
 
-/* The mushaf's spelling, recognised by its marks (lib/arabicText isQuranic) and
-   flagged on the element by ArabicText or the tarkeeb diagram: the same token
-   swap as Urdu, so every rung of the ladder and every page takes it at once. */
+/* Set by ArabicText and the tarkeeb diagram (lib/arabicText isQuranic). */
 [data-script="quran"] {
   --font-arabic: var(--font-quran);
 }
@@ -461,17 +457,12 @@ dialog::backdrop {
   background: var(--c);
 }
 
-/* A tooltip's words, drawn rather than held, for the same reason as the gloss
-   below: nothing only shown on hover may end up in a copied selection. */
+/* Hover-only text is generated content, which a selection never copies. */
 .tip-bubble::after {
   content: attr(data-tip);
 }
 
-/* The gloss is drawn from the word's data-gloss, never written into the page:
-   generated content is not part of any selection, so copying an ayah copies the
-   ayah. As a child element the English rode along, word by word, into the
-   clipboard. Stated left to right and isolated on its own, as the English it is,
-   or a gloss like "(is) for Allah" has its bracket thrown to the wrong end. */
+/* Isolated left to right, or "(is) for Allah" has its bracket flipped. */
 .gloss-word[data-gloss]::after {
   content: attr(data-gloss);
   direction: ltr;

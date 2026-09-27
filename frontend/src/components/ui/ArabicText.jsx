@@ -11,11 +11,8 @@
  * Size is a prop, not a class a caller writes, so the four sizes in
  * index.css stay the only sizes any of this text can be.
  *
- * Qur'anic text is recognised by its own spelling, not by who shows it: an
- * ayah carries marks no other Arabic does (ٱ, ۟, the waqf signs), and the face
- * that draws everyday Arabic well stacks them badly. So the element says
- * data-script="quran" and index.css swaps the face, as it does for Urdu, and
- * no page has to remember to ask.
+ * Text in the mushaf's spelling is flagged data-script="quran", and index.css
+ * gives it a face cut for its marks.
  */
 import { isQuranic, textOf } from '../../lib/arabicText'
 
