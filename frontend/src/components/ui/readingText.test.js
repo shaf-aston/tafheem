@@ -1,13 +1,13 @@
 /**
  * What a reader can select out of a line of Arabic is the Arabic, and the
- * Qur'an's own spelling asks for the face cut for its marks. Rendered to real
+ * mushaf's small alef is given the seat a font needs to draw it. Rendered to real
  * markup, the way the page receives it.
  */
 import { createElement as h } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 
-import { isQuranic } from '../../lib/arabicText'
+import { seatSmallAlef } from '../../lib/arabicText'
 import ArabicText from './ArabicText'
 import GlossWord from './GlossWord'
 import Tooltip from './Tooltip'
@@ -22,7 +22,7 @@ describe('a word with its English gloss', () => {
       h(GlossWord, { gloss: 'guided', lit: true }, 'هَدَى')))
 
   it('copies as the Arabic alone', () => {
-    expect(selectable(html)).toBe('أُو۟لَٰٓئِكَ هَدَى')
+    expect(selectable(html)).toBe('أُو۟لَـٰٓئِكَ هَدَى')
   })
 
   it('still carries the English for the page to draw and a screen reader to say', () => {
@@ -36,21 +36,22 @@ describe('a word with its English gloss', () => {
   })
 })
 
-describe('the Qur\'an in its own spelling', () => {
-  it('is known by marks only the mushaf uses', () => {
-    expect(isQuranic('أُو۟لَٰٓئِكَ ٱلَّذِينَ هَدَى ٱللَّهُ ۖ')).toBe(true)
-    expect(isQuranic('ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ')).toBe(false)
-    expect(isQuranic(undefined)).toBe(false)
+describe('a small alef in the mushaf\'s spelling', () => {
+  it('stands on a tatweel between two joined letters', () => {
+    expect(seatSmallAlef('أُو۟لَٰٓئِكَ')).toBe('أُو۟لَـٰٓئِكَ')
+    expect(seatSmallAlef('ٱلرَّحْمَٰنِ')).toBe('ٱلرَّحْمَـٰنِ')
+    expect(seatSmallAlef('ٱلسَّمَٰوَٰتِ')).toBe('ٱلسَّمَـٰوَٰتِ')
   })
 
-  it('is flagged for its own face, however deep the words sit', () => {
-    const ayah = renderToStaticMarkup(h(ArabicText, { as: 'div' }, h(GlossWord, null, 'ٱللَّهُ')))
-    expect(ayah).toMatch(/^<div[^>]*data-script="quran"/)
+  it('needs no seat after a letter that joins nothing onward or carries it, or at a word\'s end', () => {
+    for (const word of ['ذَٰلِكَ', 'ذِكْرَىٰ', 'عَلَىٰ', 'فَبِهُدَىٰهُمُ', 'إِبْرَٰهِـۧمَ', 'أُو۟لَـٰٓئِكَ', 'ذَهَبَ']) {
+      expect(seatSmallAlef(word)).toBe(word)
+    }
   })
 
-  it('leaves everyday Arabic in the reading face', () => {
-    const plain = renderToStaticMarkup(h(ArabicText, null, 'ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ'))
-    expect(plain).not.toContain('data-script')
+  it('is seated however deep ArabicText holds it', () => {
+    const html = renderToStaticMarkup(h(ArabicText, null, h(GlossWord, { gloss: 'Those' }, 'أُو۟لَٰٓئِكَ')))
+    expect(selectable(html)).toBe('أُو۟لَـٰٓئِكَ')
   })
 })
 

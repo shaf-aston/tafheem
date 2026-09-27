@@ -126,21 +126,29 @@ export const spokenForm = (text) =>
     .replace(/ +/g, ' ')
     .trim()
 
-/**
- * True when the text is in the mushaf's own spelling: it carries the alef wasla
- * or a mark from U+06D6 to U+06ED (small high letters, rounded sukun, waqf
- * signs), which typed or printed Arabic never does.
- */
-export const isQuranic = (text) =>
-  [...(text ?? '')].some((char) => {
-    const code = char.codePointAt(0)
-    return code === 0x0671 || (code >= 0x06d6 && code <= 0x06ed)
-  })
+// Letters a small alef after needs no seat for: those joining nothing onward,
+// ى that carries it itself (هُدَىٰهُمْ), and a tatweel already standing.
+const NEEDS_NO_SEAT = new Set('ءاأإآٱدذرزوؤةىـ')
+const isLetter = (c) => (c >= 'ء' && c <= 'ي') || c === 'ٱ'
+const isMark = (c) => (c >= 'ً' && c <= 'ٟ') || c === 'ٰ' || (c >= 'ۖ' && c <= 'ۭ')
 
-/** The text inside a piece of React markup, however deeply nested. */
-export const textOf = (node) => {
-  if (node == null || typeof node === 'boolean') return ''
-  if (typeof node === 'string' || typeof node === 'number') return String(node)
-  if (Array.isArray(node)) return node.map(textOf).join('')
-  return textOf(node.props?.children)
+/**
+ * The mushaf's spelling as a font draws it: a small alef between two joined
+ * letters stands on a tatweel, أُو۟لَـٰٓئِكَ, as the Tanzil and King Fahd texts
+ * write it. Without that seat its vowel, the small alef and a madda all stack
+ * on the one letter. Text with no small alef is returned as it came.
+ */
+export const seatSmallAlef = (text) => {
+  if (typeof text !== 'string' || !text.includes('ٰ')) return text
+  const chars = [...text]
+  const near = (i, step) => {
+    while (isMark(chars[i] ?? '')) i += step
+    return chars[i] ?? ''
+  }
+  return chars.map((c, i) => {
+    if (c !== 'ٰ') return c
+    const before = near(i - 1, -1)
+    const seated = isLetter(before) && !NEEDS_NO_SEAT.has(before) && isLetter(near(i + 1, 1))
+    return seated ? `ـ${c}` : c
+  }).join('')
 }

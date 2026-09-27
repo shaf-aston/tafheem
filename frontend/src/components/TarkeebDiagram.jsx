@@ -11,7 +11,7 @@
  */
 import { Fragment, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
-import { isQuranic } from '../lib/arabicText'
+import { seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
 import { rows, share, splitConnectors } from '../lib/tarkeebLayout'
 import { colorFor } from '../theme'
@@ -131,12 +131,11 @@ export default function TarkeebDiagram({ words, tree, unwritten, className = '' 
             return (
               <div
                 className={`tk-word${missing ? ' tk-unwritten' : ''}`}
-                data-script={isQuranic(word) ? 'quran' : undefined}
                 key={`word-${index}`}
                 style={{ gridColumn: index + 1 }}
               >
                 <Tooltip text={missing ? unwritten.note : undefined}>
-                  <span>{word}</span>
+                  <span>{seatSmallAlef(word)}</span>
                 </Tooltip>
               </div>
             )
