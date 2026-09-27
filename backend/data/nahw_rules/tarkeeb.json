@@ -201,12 +201,24 @@
       "tone": "fil",
       "detail": "يَرْفَعُ الِاسْمَ، وَخَبَرُهُ جُمْلَةٌ فِعْلِيَّةٌ"
     },
+    "zarf_zaman": {
+      "ar": "ظَرْفُ زَمَانٍ",
+      "tone": "mafool"
+    },
+    "zarf_makan": {
+      "ar": "ظَرْفُ مَكَانٍ",
+      "tone": "mafool"
+    },
     "jumlah_filiyyah": {
       "ar": "جُمْلَةٌ فِعْلِيَّةٌ",
       "tone": "fil"
     },
     "jumlah_ismiyyah": {
       "ar": "جُمْلَةٌ اِسْمِيَّةٌ",
+      "tone": "fail"
+    },
+    "jumlah_istifhamiyyah": {
+      "ar": "جُمْلَةٌ إِنْشَائِيَّةٌ اِسْتِفْهَامِيَّةٌ",
       "tone": "fail"
     },
     "unresolved": {
@@ -392,6 +404,50 @@
       "انفك": "انْفَكَّ",
       "أوشك": "أَوْشَكَ"
     },
-    "raw_note": "Treebank's wording, unchecked."
+    "raw_note": "Treebank's wording, unchecked.",
+    "_particle_comment": "What a particle is, in the treebank's own name for its part of speech (pos_ar), spelled the app's way. A word whose every piece is named here is a particle, and the diagram calls it what it is: لَا is a حَرْفُ نَفْيٍ, not the job of the word it governs. The treebank often hangs the governed word off the particle (يَعْلَمُ off لَا) and writes the particle's meaning on that arrow (نفي); an arrow whose name is already inside the particle's own name (نفي in حرف نفي, استفهام in حرف استفهام) is read as the particle's meaning, never as the governed word's job. Arrows the particle's name does not say (مجرور under حرف جر, منادى under حرف نداء, اسم إن under حرف نصب) stay with the governed word. A value that is a key of `terms` is that term, so a particle the rules also name (إِنَّ is the treebank's حرف نصب) is spelled once.",
+    "particle_kinds": {
+      "حرف جر": "jarr",
+      "حرف عطف": "harf_atf",
+      "حرف استئنافية": "harf_istinaf",
+      "حرف نفي": "حَرْفُ نَفْيٍ",
+      "حرف نصب": "harf_nasikh",
+      "لام التوكيد": "لَامُ التَّوْكِيْدِ",
+      "حرف شرط": "حَرْفُ شَرْطٍ",
+      "حرف استفهام": "حَرْفُ اسْتِفْهَامٍ",
+      "حرف مصدري": "حَرْفٌ مَصْدَرِيٌّ",
+      "أداة حصر": "أَدَاةُ حَصْرٍ",
+      "حرف نداء": "حَرْفُ نِدَاءٍ",
+      "حرف تحقيق": "حَرْفُ تَحْقِيْقٍ",
+      "حرف واقع في جواب الشرط": "حَرْفٌ وَاقِعٌ فِي جَوَابِ الشَّرْطِ",
+      "حرف نهي": "حَرْفُ نَهْيٍ",
+      "لام التعليل": "لَامُ التَّعْلِيْلِ",
+      "حرف حال": "حَرْفُ حَالٍ",
+      "حرف زائد": "حَرْفٌ زَائِدٌ",
+      "حرف كاف": "حَرْفٌ كَافٌّ",
+      "حرف استقبال": "حَرْفُ اسْتِقْبَالٍ",
+      "حرف اضراب": "حَرْفُ إِضْرَابٍ",
+      "أداة استثناء": "أَدَاةُ اسْتِثْنَاءٍ",
+      "حرف سببية": "حَرْفُ سَبَبِيَّةٍ",
+      "حرف ابتداء": "حَرْفُ ابْتِدَاءٍ",
+      "لام الامر": "لَامُ الْأَمْرِ",
+      "حرف تفصيل": "حَرْفُ تَفْصِيْلٍ",
+      "حرف استدراك": "حَرْفُ اسْتِدْرَاكٍ",
+      "حرف تفسير": "حَرْفُ تَفْسِيْرٍ",
+      "حرف جواب": "حَرْفُ جَوَابٍ",
+      "حرف تحضيض": "حَرْفُ تَحْضِيْضٍ",
+      "حرف فجاءة": "حَرْفُ فُجَاءَةٍ",
+      "حرف ردع": "حَرْفُ رَدْعٍ",
+      "حروف مقطعة": "حُرُوْفٌ مُقَطَّعَةٌ",
+      "حرف تسوية": "حَرْفُ تَسْوِيَةٍ",
+      "واو المعية": "وَاوُ الْمَعِيَّةِ"
+    },
+    "particle_tone": "harf",
+    "_unit_head_comment": "What a word is, for a word that heads a unit. The unit carries the job (the clause بُعْثِرَ مَا … is the شَرْطٌ, إِذَا with its clause is the مَفْعُوْلٌ بِهِ), so the word's own column says what it is rather than repeating that job. Keyed by the treebank's pos_ar; each value is a key of `terms`. A noun heading a unit is not listed: its job (مُبْتَدَأٌ, مُضَافٌ) is its own, and it keeps it.",
+    "unit_heads": {
+      "فعل": "fil",
+      "ظرف زمان": "zarf_zaman",
+      "ظرف مكان": "zarf_makan"
+    }
   }
 }

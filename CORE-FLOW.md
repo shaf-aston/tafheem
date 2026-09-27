@@ -64,7 +64,13 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 - **Tarkeeb**: which words join into a unit and what that unit does. A bracket tree,
   never a per-word list. One Nahw page now draws it above the i'raab cards for the
   same typed sentence, from the same reading; the books' 47 worked examples sit in
-  a drawer under it.
+  a drawer under it. The reading comes from the best source there is, in order: a
+  typed ayah the Quranic Treebank recorded (`tarkeeb_store.for_sentence`, hand
+  checked), else the parser (`services/syntax`), else the rules. Every Arabic term
+  on any of those paths is spelled once, in `data/nahw_rules/tarkeeb.json`: a
+  particle is named by what it is (`particle_kinds`), a unit carries its job.
+  Changing how the treebank is read means rebuilding `tarkeeb.db`
+  (`backend/scripts/build_tarkeeb.py`, see its docstring).
 - **Sarf**: a word's root and pattern. The **gardaan** is the full table of 14 persons.
   **I'lal** is the rules that reshape a filled pattern when the root holds a weak letter, a
   hamzah or a doubled one, one per entry in `data/sarf/ilal.json`.

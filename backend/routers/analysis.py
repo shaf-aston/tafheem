@@ -3,9 +3,12 @@
 Strategy:
   1. Run local morphology (CAMeL / Qalsadi / PyArabic), always fast, offline.
   2. Run the rule engine, deterministic Nahw rules, no network needed.
-  2b. Let the syntax parser (services/syntax) name the roles it can; it reads the
-     links between the words and scores far better than the rules alone, so its
-     name wins wherever it has one and the rules fill the gaps.
+  2b. Name the roles from the best reading there is. A sentence that is an ayah
+     the Quranic Treebank recorded is read from that record (tarkeeb_store), hand
+     checked, word for word. Anything else goes to the syntax parser
+     (services/syntax), which reads the links between the words and scores far
+     better than the rules alone. Either way its name wins wherever it has one
+     and the rules fill the gaps, and cards and picture come from that one reading.
   3. If rule engine confidence < settings.confidence_threshold **and** an AI backend is
      available, call the AI to get richer explanations / handle complex cases.
   4. Merge: AI word list is preferred when present; rule engine is the fallback.
@@ -20,7 +23,7 @@ from fastapi import APIRouter
 from backend.config import get_settings
 from backend.models.schemas import AnalyzeRequest, AnalyzeResponse, Source, WordAnalysis
 from backend.services import ai as ai_service
-from backend.services import morphology, provenance, rule_engine, syntax
+from backend.services import morphology, provenance, rule_engine, syntax, tarkeeb, tarkeeb_store
 from backend.utils import arabic_sentence, call_service
 
 logger = logging.getLogger(__name__)
@@ -44,9 +47,12 @@ async def analyze_sentence(request: AnalyzeRequest) -> AnalyzeResponse:
         sentence[:40], confidence, threshold,
     )
 
-    # ── Step 2b: the parser names what it can, over the rules ────────────────
-    parsed = await asyncio.to_thread(syntax.read, sentence)
+    # ── Step 2b: the recorded ayah, else the parser, names what it can ───────
+    recorded = await asyncio.to_thread(tarkeeb_store.for_sentence, sentence)
+    parsed = recorded or await asyncio.to_thread(syntax.read, sentence)
     rule_result = syntax.with_parser_roles(rule_result, parsed["roles"])
+    if recorded:
+        rule_result["summary"] = _recorded_summary(recorded) or rule_result.get("summary")
     confidence = rule_result.get("confidence", 0.0)
 
     # ── Step 3: AI augmentation (optional) ───────────────────────────────────
@@ -80,7 +86,7 @@ async def analyze_sentence(request: AnalyzeRequest) -> AnalyzeResponse:
     else:
         word_dicts = rule_result.get("words", [])
         summary = rule_result.get("summary")
-        source_note = provenance.of("nahw")
+        source_note = provenance.of("treebank" if recorded else "nahw")
 
     logger.info("Analysis source: %s", source_note["label"])
 
@@ -91,5 +97,21 @@ async def analyze_sentence(request: AnalyzeRequest) -> AnalyzeResponse:
         source=Source(**source_note),
         # the picture is the parser's own reading, so it is only drawn when the
         # words on screen are still the parser's; an AI answer replaces them
-        tree=None if ai_result else parsed["tree"],
+        tree=None if ai_result else _drawn(recorded) if recorded else parsed["tree"],
     )
+
+
+def _drawn(recorded: dict) -> dict:
+    """The recorded tree, in the shape the page draws a typed sentence's in."""
+    keep = ("surah", "ayah", "words", "tree", "coverage", "unwritten")
+    return {**{key: recorded[key] for key in keep}, "source": provenance.of("treebank")}
+
+
+def _recorded_summary(recorded: dict) -> str | None:
+    """The sentence type the record names, in the words the rules use for it."""
+    top = recorded["tree"]
+    if not top.get("label"):
+        return None
+    return rule_engine.sentence_type(
+        is_verbal=top["label"] == tarkeeb.term_ar("jumlah_filiyyah"),
+        is_inna=top.get("role") == tarkeeb.term_ar("harf_nasikh"))

@@ -14,6 +14,17 @@ The data is a .rar, so it is not downloaded here. Get it once::
     7z x Quranic.rar
     venv/Scripts/python backend/scripts/build_tarkeeb.py Quranic.csv RelLabels.csv
 
+How a particle is read
+----------------------
+The treebank often hangs the governed word off its particle, يَعْلَمُ off لَا,
+and writes the particle's meaning (نفي) on that arrow. Read as the verb's own
+job, that drew 1,331 verbs as "نفي", 931 as "شرط", and 5,000-odd particles a
+sentence rests on as its مبتدأ. An arrow whose name is already inside its
+particle head's own name (نفي in حرف نفي) is the particle's meaning; the word
+under it opens a clause, and the particle is named by what it is, from
+tarkeeb.json's particle_kinds. Arrows the name does not say (مجرور under
+حرف جر, منادى under حرف نداء) stay the governed word's job.
+
 What it has to do
 -----------------
 A treebank is a set of arrows: each word points at the word it hangs off. A
@@ -35,7 +46,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services import arabic_text, quran_corpus, tarkeeb  # noqa: E402
+from backend.services import arabic_text, quran_corpus, tarkeeb, tarkeeb_store  # noqa: E402
 
 DATABASE = Path(__file__).parent.parent / "data" / "tarkeeb" / "tarkeeb.db"
 
@@ -45,8 +56,14 @@ CREATE TABLE IF NOT EXISTS tarkeeb (
     ayah  INTEGER NOT NULL,
     words TEXT NOT NULL,
     tree  TEXT NOT NULL,
+    -- the written words folded for lookup (tarkeeb_store.letters), so an ayah
+    -- typed into the Nahw analyser is drawn from this record, not re-derived
+    letters TEXT NOT NULL,
+    -- which columns of `words` were written; the rest are the book's own
+    written TEXT NOT NULL,
     PRIMARY KEY (surah, ayah)
-)
+);
+CREATE INDEX IF NOT EXISTS tarkeeb_letters ON tarkeeb (letters);
 """
 
 
@@ -126,34 +143,78 @@ def _words_of(rows: list[dict], settings: dict) -> tuple[list[dict], dict[int, i
             word.setdefault("connector_only", key)
 
     # A word's own job is the one its stem carries; a prefix like ٱل has none.
+    kinds = settings["particle_kinds"]
+    by_token = {int(row["token_id"]): row for row in rows}
     for row in rows:
         if row["rel_label_ar"] in settings["not_a_relation"]:
             continue
         word = words[belongs[int(row["token_id"])]]
+        # Every piece that has a job, in written order: أَفَلَا is three.
+        word.setdefault("pieces", []).append(row["pos_ar"])
         if "relation" in word:
             continue
         word["relation"] = row["rel_label_ar"]
         word["head"] = belongs.get(int(row["ref_token_id"]))
         word["constituent"] = row["constituent_label"]
         word["pos"] = row["pos"]
+        if word["relation"] != settings["root"]:
+            head = by_token.get(int(row["ref_token_id"]))
+            word["states_head"] = _states_particle(word["relation"], head, kinds)
+
+    for word in words:
+        pieces = word.get("pieces", [])
+        word["particle"] = bool(pieces) and all(piece in kinds for piece in pieces)
     return words, belongs
 
 
-def _sentence_label(word: dict, settings: dict) -> dict:
-    """What kind of sentence rests on this word, verbal if the word is a verb."""
-    kind = settings["sentence_labels"]["verb" if word.get("pos") == "V" else "other"]
+def _states_particle(relation: str, head: dict | None, kinds: dict) -> bool:
+    """True when this arrow's name is its particle head's meaning, not this word's job.
+
+    The treebank hangs يَعْلَمُ off لَا and writes نفي on the arrow: that is what
+    لَا does, and it is already inside the particle's own name, حرف نفي. An arrow
+    the name does not contain, مجرور under حرف جر, is the governed word's job.
+    """
+    if head is None or head["pos_ar"] not in kinds:
+        return False
+    said = arabic_text.bare_letters(relation)
+    return bool(said) and said in arabic_text.bare_letters(head["pos_ar"])
+
+
+def _sentence_label(word: dict | None, settings: dict) -> dict:
+    """What kind of sentence rests on this word, verbal if the word is a verb.
+
+    `word` is the first word under any particles the sentence opens with
+    (أَفَلَا يَعْلَمُ rests on يَعْلَمُ), or None when a particle governs no clause.
+    """
+    kind = settings["sentence_labels"]["verb" if word and word.get("pos") == "V" else "other"]
     return tarkeeb._term(kind)
 
 
 def _opening_role(word: dict, settings: dict) -> dict:
-    """What the word a sentence rests on is doing in it.
+    """What the word a sentence (or a clause under a particle) rests on is doing in it.
 
     The treebank writes "root" here, which is a marker for its own machinery and
-    says nothing to a reader. What it stands for is not in doubt: the word a
-    verbal sentence rests on is its verb, and the word a nominal one rests on is
-    its mubtada.
+    says nothing to a reader. A particle is what it is, حَرْفُ اسْتِفْهَامٍ; otherwise
+    the word a verbal sentence rests on is its verb, and the word a nominal one
+    rests on is its mubtada.
     """
+    if word.get("particle"):
+        return _particle(word["pieces"][0], settings)
     return tarkeeb._term("fil" if word.get("pos") == "V" else "mubtada")
+
+
+def _sentence_names(settings: dict) -> set[str]:
+    """How a whole clause is labelled, whichever kind it is."""
+    return {tarkeeb._term(key)["ar"] for key in settings["sentence_labels"].values()}
+
+
+def _particle(kind: str, settings: dict) -> dict:
+    """A particle named by what it is, in the app's spelling: a shared term where
+    the rules name it too, so إِنَّ reads the same on every path."""
+    named = settings["particle_kinds"][kind]
+    if named in tarkeeb._rules()["terms"]:
+        return tarkeeb._term(named)
+    return {"ar": named, "tone": settings["particle_tone"]}
 
 
 def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
@@ -192,23 +253,56 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
     if any(high - low + 1 != count for low, high, count in reach.values()):
         return None
 
+    def resting(index: int) -> dict | None:
+        """The word a sentence rests on once the particles opening it are passed:
+        under أَ and لَا, it is يَعْلَمُ."""
+        word = words[index]
+        if not word.get("particle"):
+            return word
+        for child in sorted(children[index]):
+            if words[child].get("states_head") and (found := resting(child)):
+                return found
+        return None
+
     def build(index: int) -> dict:
         word = words[index]
         relation = word.get("relation")
         # "root" is the treebank's marker for the word a sentence rests on, not
         # something a reader should ever see. What it means is that this is where
-        # a sentence starts, so that is what gets written instead.
-        opens_sentence = relation == settings["root"]
-        sentence = _sentence_label(word, settings) if opens_sentence else None
-        opening = _opening_role(word, settings) if opens_sentence else None
+        # a sentence starts, so that is what gets written instead. A word whose
+        # arrow only says what its particle head does starts a clause under that
+        # particle, so it is named the same way.
+        opens_clause = relation == settings["root"] or word.get("states_head", False)
+        rests_on = resting(index) if opens_clause else None
+        # a particle governing no clause at all opens no kind of sentence
+        sentence = _sentence_label(rests_on, settings) if rests_on else None
+        opening = _opening_role(word, settings) if opens_clause else None
         # Written the app's way where the app has a wording for it, and left in
         # the treebank's own words where it does not.
         said, raw = tarkeeb.relation_wording(relation)
-        role = opening["ar"] if opens_sentence else said
-        tone = opening["tone"] if opens_sentence else tone_of(relation)
+        role = opening["ar"] if opens_clause else said
+        tone = opening["tone"] if opens_clause else tone_of(relation)
+        # Inside its own unit a particle is what it is (فِى is حَرْفُ جَرٍّ); the
+        # unit it heads carries the job (the jar-majroor is مُتَعَلِّقٌ).
+        kind = (word.get("pieces") or [""])[0]
+        own = (_particle(kind, settings) if word.get("particle")
+               else tarkeeb._term(settings["unit_heads"][kind])
+               if children[index] and kind in settings["unit_heads"] else None)
+        clause = settings["constituent_labels"].get(word.get("constituent"))
+        if own is None and children[index] and clause in _sentence_names(settings):
+            # هُوَ heading هُوَ ٱللَّهُ أَحَدٌ is its mubtada; the clause is the مفعول به
+            own = _opening_role(word, settings)
 
-        leaf = {"word": index, "role": role, "tone": tone}
-        if raw and not opens_sentence:
+        leaf = {"word": index, "role": own["ar"] if own else role,
+                "tone": own["tone"] if own else tone}
+        if own and "detail" in own:
+            leaf["detail"] = own["detail"]
+        if word.get("particle") and len(word["pieces"]) > 1:
+            # أَفَلَا: question, extra فَ, negation, each named by what it is.
+            leaf["parts"] = [{"role": part["ar"], "tone": part["tone"],
+                              **({"detail": part["detail"]} if "detail" in part else {})}
+                             for part in (_particle(piece, settings) for piece in word["pieces"])]
+        if raw and not opens_clause and not own:
             # Said plainly rather than dressed up: this wording is the treebank's,
             # not the book's, and the page draws it as the weaker claim it is.
             leaf["raw_wording"] = True
@@ -229,10 +323,10 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
             if "detail" in named:
                 piece["detail"] = named["detail"]
             leaf["prefix_arabic"] = joined["text"]
-            leaf["parts"] = [piece, {"role": role, "tone": tone}]
+            leaf["parts"] = [piece, {"role": leaf["role"], "tone": leaf["tone"]}]
 
         if not children[index]:
-            if opens_sentence:
+            if sentence:
                 leaf["label"] = sentence["ar"]
             return leaf
 
@@ -240,7 +334,7 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
         pieces = sorted([index, *children[index]])
         if len(pieces) == 1:
             # Nothing to join, so no brace: a bracket round one word says nothing.
-            if opens_sentence:
+            if sentence:
                 leaf["label"] = sentence["ar"]
             return leaf
         node = {
@@ -248,7 +342,7 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
             "tone": tone,
             "children": [leaf if piece == index else build(piece) for piece in pieces],
         }
-        if opens_sentence:
+        if sentence:
             node["label"] = sentence["ar"]
         elif name := settings["constituent_labels"].get(word.get("constituent")):
             node["label"] = name
@@ -313,8 +407,9 @@ def build(treebank: Path, labels: Path) -> None:
 
     DATABASE.parent.mkdir(parents=True, exist_ok=True)
     db = sqlite3.connect(DATABASE)
+    # every row is rewritten, so an older layout of the table goes with them
+    db.execute("DROP TABLE IF EXISTS tarkeeb")
     db.executescript(SCHEMA)
-    db.execute("DELETE FROM tarkeeb")
 
     kept = 0
     rejected: Counter[str] = Counter()
@@ -346,11 +441,15 @@ def build(treebank: Path, labels: Path) -> None:
             rejected[failed] += 1
             continue
 
+        written = [i for i, w in enumerate(words) if not w["elided"]]
         db.execute(
-            "INSERT INTO tarkeeb (surah, ayah, words, tree) VALUES (?, ?, ?, ?)",
+            "INSERT INTO tarkeeb (surah, ayah, words, tree, letters, written)"
+            " VALUES (?, ?, ?, ?, ?, ?)",
             (surah, ayah,
              json.dumps([w["text"] for w in words], ensure_ascii=False),
-             json.dumps(tree, ensure_ascii=False)),
+             json.dumps(tree, ensure_ascii=False),
+             tarkeeb_store.letters([words[i]["text"] for i in written]),
+             json.dumps(written)),
         )
         kept += 1
 

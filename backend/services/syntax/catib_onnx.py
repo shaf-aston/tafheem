@@ -44,6 +44,7 @@ from tokenizers import Tokenizer
 
 from backend.config import data_path, get_settings
 from backend.services.syntax import decode
+from backend.services.syntax.naming import agrees_with_typed
 
 logger = logging.getLogger(__name__)
 
@@ -145,7 +146,8 @@ def _load() -> tuple:
     from camel_tools.disambig.bert import BERTUnfactoredDisambiguator
     from camel_tools.utils.charmap import CharMapper
 
-    disambiguator = BERTUnfactoredDisambiguator.pretrained("msa", top=1, use_gpu=False)
+    disambiguator = BERTUnfactoredDisambiguator.pretrained(
+        "msa", top=settings.catib_readings, use_gpu=False)
     ar2bw = CharMapper.builtin_mapper("ar2bw")
     logger.info("CATiB ONNX parser ready (%s) in %.1fs", d, time.perf_counter() - started)
     return cfg, rel_labels, clitic_table, bpe, enc_sess, scorer_sess, ar2bw, disambiguator
@@ -265,6 +267,23 @@ def _split_word(word: str, a: dict) -> list[dict]:
     return out
 
 
+def _reading(word: str, readings: list[dict]) -> dict:
+    """The best reading of a word that does not contradict its typed vowels.
+
+    The disambiguator reads bare letters, so its favourite may be a word the
+    reader plainly did not write. The vowels typed are the reader's own evidence
+    and win: the first reading, best first, that agrees with them is used. The
+    analyser's guessed proper noun has no vowels to disagree with, so it never
+    wins that way. When no real reading agrees the favourite is kept, since the
+    naming layer still reads the vowels itself (a passive بُعْثِرَ).
+    """
+    if not readings:
+        return {"pos": "", "lex": word}
+    agreeing = [r for r in readings if "NOAN" not in r.get("atbtok", "")
+                and agrees_with_typed(word, r.get("diac", ""))]
+    return agreeing[0] if agreeing else readings[0]
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # ONNX biaffine parser: subtoken forms -> heads + rel labels
 # (ports the spike's parse_onnx.py; decoding lives in decode.py)
@@ -339,8 +358,8 @@ def parse(words: list[str]) -> list[dict]:
     disambiguated = _disambiguator.disambiguate(words)
     subtokens: list[dict] = []
     for word, dw in zip(words, disambiguated):
-        analysis = dw.analyses[0].analysis if dw.analyses else {"pos": "", "lex": word}
-        subtokens.extend(_split_word(word, analysis))
+        readings = [scored.analysis for scored in dw.analyses]
+        subtokens.extend(_split_word(word, _reading(word, readings)))
 
     heads, rels = _parse_forms([t["form"] for t in subtokens])
 

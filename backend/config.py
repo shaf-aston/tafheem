@@ -375,6 +375,11 @@ class Settings(BaseSettings):
     # fast machine, far more on a laptop). Costs ~600MB from startup. Turn off
     # on a small machine; the first sentence then loads it, as it did before.
     catib_parser_warm: bool = True
+    # How many of the disambiguator's readings of a word, best first, are checked
+    # against the vowels the reader typed. The top reading is read off bare
+    # letters, so it can contradict them (آفِلًا for a typed أَفَلَا); the first
+    # that agrees is used instead. Scoring them all costs nothing extra.
+    catib_readings: int = 20
     # encoder.onnx (int8), scorer.onnx, tokenizer.json, labels.json,
     # config.json, clitic_feats.csv. See catib_onnx.py's docstring for where
     # each one comes from. Relative paths resolve inside backend/.

@@ -65,6 +65,99 @@ def test_a_nominal_sentence_names_its_opening_word_the_mubtada():
     assert tree["children"][0]["role"] == tarkeeb._term("mubtada")["ar"]
 
 
+# ── Particles: what the treebank's arrows say about them ─────────────────────
+
+def row(token, word_id, text, pos, pos_ar, relation, ref, constituent="-", segment="STEM"):
+    """One treebank row, the columns the importer reads."""
+    return {"token_id": str(token), "word_id": str(word_id), "uthmani_token": text,
+            "pos": pos, "pos_ar": pos_ar, "rel_label_ar": relation, "ref_token_id": str(ref),
+            "constituent_label": constituent, "features": f"{segment}|POS:{pos}"}
+
+
+# أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ (100:9), as the treebank records it:
+# the sentence rests on the question أَ, يَعْلَمُ hangs off لَا with نفي on its arrow.
+AL_ADIYAT_9 = [
+    row(0, 1, "أَ", "INTG", "حرف استفهام", "root", 0, segment="PREFIX"),
+    row(1, 1, "فَ", "SUP", "حرف زائد", "زائد", 2, segment="PREFIX"),
+    row(2, 1, "لَا", "NEG", "حرف نفي", "استفهام", 0),
+    row(3, 2, "يَعْلَمُ", "V", "فعل", "نفي", 2),
+    row(4, 0, "(هُوَ)", "PRON", "ضمير", "فاعل", 3),
+    row(5, 3, "إِذَا", "T", "ظرف زمان", "مفعول به", 3, constituent="CS"),
+    row(6, 4, "بُعْثِرَ", "V", "فعل", "شرط", 5, constituent="VS"),
+    row(7, 5, "مَا", "REL", "اسم موصول", "نائب فاعل", 6),
+    row(8, 0, "(*)", "N", "اسم", "صلة", 7),
+    row(9, 6, "فِى", "P", "حرف جر", "متعلق", 8, constituent="PP"),
+    row(10, 7, "ٱلْ", "DET", "ال التعريف", "NonRel", 10, segment="PREFIX"),
+    row(11, 7, "قُبُورِ", "N", "اسم", "مجرور", 9),
+]
+
+
+def drawn(rows):
+    words, _ = build_tarkeeb._words_of(rows, SETTINGS)
+    tree = build_tarkeeb._tree_of(words, SETTINGS, tarkeeb.relation_tone)
+    columns = {}
+
+    def walk(node):
+        if node.get("children"):
+            for child in node["children"]:
+                walk(child)
+        else:
+            columns[words[node["word"]]["text"]] = node
+    walk(tree)
+    return tree, columns
+
+
+def term(key):
+    return tarkeeb._term(key)["ar"]
+
+
+def test_a_particle_is_named_for_what_it_is_never_as_a_mubtada():
+    tree, columns = drawn(AL_ADIYAT_9)
+    afala = columns["أَفَلَا"]
+    assert afala["role"] == SETTINGS["particle_kinds"]["حرف استفهام"]
+    assert [part["role"] for part in afala["parts"]] == [
+        SETTINGS["particle_kinds"][kind] for kind in ("حرف استفهام", "حرف زائد", "حرف نفي")]
+    assert term("mubtada") not in {afala["role"], tree["role"]}
+
+
+def test_a_sentence_opening_on_particles_is_named_by_the_verb_under_them():
+    tree, _ = drawn(AL_ADIYAT_9)
+    assert tree["label"] == term("jumlah_filiyyah")
+
+
+def test_an_arrow_naming_its_particle_heads_meaning_is_not_the_verbs_job():
+    # نفي is what لَا does; يَعْلَمُ is a verb
+    _, columns = drawn(AL_ADIYAT_9)
+    assert columns["يَعْلَمُ"]["role"] == term("fil")
+
+
+def test_a_job_the_particles_name_does_not_say_stays_with_the_governed_word():
+    _, columns = drawn(AL_ADIYAT_9)
+    assert columns["ٱلْقُبُورِ"]["role"] == SETTINGS["relation_terms"]["مجرور"]
+    assert columns["مَا"]["role"] == SETTINGS["relation_terms"]["نائب فاعل"]
+
+
+def test_a_word_heading_a_unit_says_what_it_is_and_the_unit_carries_the_job():
+    tree, columns = drawn(AL_ADIYAT_9)
+    assert columns["إِذَا"]["role"] == term("zarf_zaman")
+    assert columns["بُعْثِرَ"]["role"] == term("fil")
+    assert columns["فِى"]["role"] == term("jarr")
+
+    def units(node, found):
+        if node.get("children"):
+            found.append(node.get("role"))
+            for child in node["children"]:
+                units(child, found)
+        return found
+    jobs = units(tree, [])
+    for job in ("مفعول به", "شرط", "متعلق"):
+        assert SETTINGS["relation_terms"][job] in jobs
+
+
+def test_ina_is_spelled_the_same_as_the_rules_spell_it():
+    assert build_tarkeeb._particle("حرف نصب", SETTINGS)["ar"] == term("harf_nasikh")
+
+
 # ── The gates ────────────────────────────────────────────────────────────────
 
 def test_a_tree_that_misses_a_word_fails_the_coverage_gate():
@@ -156,6 +249,7 @@ def test_a_name_nobody_has_checked_is_used_but_not_passed_off_as_checked():
 def test_the_recorded_tarkeeb_marks_every_unchecked_wording():
     """Nothing may print the treebank's raw wording without being flagged as such."""
     checked = set(SETTINGS["relation_terms"].values()) | {""}
+    checked |= {build_tarkeeb._particle(kind, SETTINGS)["ar"] for kind in SETTINGS["particle_kinds"]}
     frames = tuple(SETTINGS["relation_frames"].values())
     unflagged = []
 

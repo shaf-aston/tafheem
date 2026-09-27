@@ -36,7 +36,7 @@ def test_passive_is_read_from_the_vowels():
     # the morphology has no passive reading for this verb, the typed damma and kasra do
     toks = [token(1, "كتبت", "كتب", "VRB", 0, "---", vox="a", asp="p"),
             token(2, "الرسالة", "رسالة", "NOM", 1, "SBJ", stt="d", cas="n")]
-    assert roles(["كُتِبَتِ", "الرِّسَالَةُ"], toks) == ["فعل", "نائب الفاعل"]
+    assert roles(["كُتِبَتِ", "الرِّسَالَةُ"], toks) == ["فعل", "نائب فاعل"]
 
 
 def test_kana_and_inna_are_told_apart():
@@ -82,3 +82,49 @@ def test_nothing_is_guessed_when_the_split_does_not_line_up(words):
     toks = [token(1, "كتب", "كتب", "VRB", 0, "---"), token(2, "زيد", "زيد", "NOM", 1, "SBJ")]
     if len(words) != 2:
         assert roles(words, toks) == [None] * len(words)
+
+
+# ── أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِي الْقُبُورِ: what the parser path got wrong ──
+
+def test_a_reading_that_contradicts_the_typed_vowels_does_not_agree():
+    from backend.services.syntax.naming import agrees_with_typed
+    assert not agrees_with_typed("أَفَلَا", "آفِلاً")      # kasra and tanween the reader did not type
+    assert agrees_with_typed("أَفَلَا", "أَفَلا")
+    assert not agrees_with_typed("الْقُبُورِ", "القُبُورَ")  # the case typed is jarr
+    assert agrees_with_typed("افلا", "آفِلاً")              # nothing typed, nothing contradicted
+
+
+def test_the_parser_keeps_the_best_reading_that_agrees_with_the_vowels():
+    from backend.services.syntax.catib_onnx import _reading
+    readings = [{"diac": "آفِلاً", "atbtok": "آفِلاً", "pos": "noun"},
+                {"diac": "افلا", "atbtok": "NOAN", "pos": "noun_prop"},
+                {"diac": "أَفَلا", "atbtok": "أَفَلا", "pos": "verb"}]
+    assert _reading("أَفَلَا", readings)["pos"] == "verb"
+    # a guessed proper noun never wins just for having no vowels to disagree with,
+    # and with no real reading agreeing the favourite stands
+    assert _reading("بُعْثِرَ", [{"diac": "بَعْثَرَ", "atbtok": "بَعْثَرَ"},
+                                 {"diac": "بعثر", "atbtok": "NOAN"}])["diac"] == "بَعْثَرَ"
+
+
+def test_a_passive_verb_has_no_object_before_its_naib_fail():
+    # بُعْثِرَ مَا: the parser drew مَا as the object, but a passive verb has no doer
+    toks = [token(1, "بعثر", "بعثر", "VRB", 0, "---", vox="a", asp="p"),
+            token(2, "ما", "ما", "NOM", 1, "OBJ", pos_camel="pron_rel", cas="na")]
+    assert roles(["بُعْثِرَ", "مَا"], toks) == ["فعل", "نائب فاعل"]
+    # the second noun of a passive verb is still its object: أُعْطِيَ زَيْدٌ دِرْهَمًا
+    toks = [token(1, "أعطي", "أعطى", "VRB", 0, "---", vox="p", asp="p"),
+            token(2, "زيد", "زيد", "NOM", 1, "SBJ", cas="n"),
+            token(3, "درهما", "درهم", "NOM", 1, "OBJ", cas="a")]
+    assert roles(["أُعْطِيَ", "زَيْدٌ", "دِرْهَمًا"], toks) == ["فعل", "نائب فاعل", "مفعول به"]
+
+
+def test_a_tamyeez_never_comes_before_what_it_clarifies():
+    # the parser's آفِلًا hung off يَعْلَمُ; accusative, indefinite, first in the sentence
+    toks = [token(1, "آفلا", "آفل", "NOM", 2, "MOD", cas="a", stt="i"),
+            token(2, "يعلم", "علم", "VRB", 0, "---", vox="a", asp="i")]
+    assert roles(["آفِلًا", "يَعْلَمُ"], toks)[0] is None
+    # after it, it is one: زَادَ الْمَاءُ عُمْقًا
+    toks = [token(1, "زاد", "زاد", "VRB", 0, "---", vox="a", asp="p"),
+            token(2, "الماء", "ماء", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "عمقا", "عمق", "NOM", 1, "MOD", cas="a", stt="i")]
+    assert roles(["زَادَ", "الْمَاءُ", "عُمْقًا"], toks)[2] == "تمييز"

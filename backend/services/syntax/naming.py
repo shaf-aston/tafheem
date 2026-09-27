@@ -14,7 +14,7 @@ package's `__init__.py`.
 """
 from __future__ import annotations
 
-from backend.services.arabic_text import bare_letters
+from backend.services.arabic_text import bare_letters, strip_diacritics
 
 # Hamza matters in these two lists: كأن folds onto كان once it is dropped,
 # so the lemmas are compared as the parser writes them.
@@ -42,7 +42,7 @@ ROLES = {
     #              card key,    bracket tone
     "فعل": ("fil", "fil"),
     "فاعل": ("fail", "fail"),
-    "نائب الفاعل": ("fail", "fail"),
+    "نائب فاعل": ("fail", "fail"),
     "مبتدأ": ("mubtada", "fail"),
     "اسم كان": ("mubtada", "fail"),
     "اسم إن": ("mubtada", "fail"),
@@ -56,6 +56,7 @@ ROLES = {
     "حال": ("haal", "mafool"),
     "مضاف إليه": ("mudaf", "mudaf"),
     "حرف": ("harf", "harf"),
+    "حرف جر": ("harf", "harf"),
     "مجرور": ("harf", "mafool"),
     # said only inside a unit the diagram draws, so no card ever shows them
     "مضاف": (None, "mudaf"),
@@ -63,14 +64,19 @@ ROLES = {
 }
 
 
+def _entry(role: str | None) -> tuple:
+    # a recorded role is fully vowelled (نَائِبُ فَاعِلٍ); it is the same role
+    return ROLES.get(strip_diacritics(role or ""), (None, None))
+
+
 def role_key(role: str | None) -> str | None:
     """The stable name the word grid colours a card by."""
-    return ROLES.get(role or "", (None, None))[0]
+    return _entry(role)[0]
 
 
 def tone(role: str | None) -> str | None:
     """The colour the bracket diagram draws this role in."""
-    return ROLES.get(role or "", (None, None))[1]
+    return _entry(role)[1]
 
 
 def _letters(word: str) -> list[tuple[str, set]]:
@@ -105,6 +111,22 @@ def typed_case(word: str, stuck_on: int = 0) -> str | None:
 
 def _has_tanween(word: str) -> bool:
     return any(marks & TANWEEN for _, marks in _letters(word))
+
+
+def agrees_with_typed(typed: str, reading: str) -> bool:
+    """False when a vowelled reading puts a different vowel on a letter the reader
+    vowelled: آفِلًا is not the أَفَلَا typed. A letter either side left bare says
+    nothing, and two spellings that do not line up letter for letter are not
+    evidence either way."""
+    mine, theirs = _letters(typed), _letters(reading)
+    if [bare_letters(c) for c, _ in mine] != [bare_letters(c) for c, _ in theirs]:
+        return True
+    for (_, typed_marks), (_, read_marks) in zip(mine, theirs):
+        said = {mark for mark in typed_marks if mark in VOWEL}
+        read = {mark for mark in read_marks if mark in VOWEL}
+        if said and read and said != read:
+            return False
+    return True
 
 
 def typed_passive(word: str, present: bool) -> bool:
@@ -194,10 +216,16 @@ def name(token: dict, tokens: list[dict]) -> str | None:
         siblings = [t for t in tokens if t["head"] == head["id"] and t is not token]
         if family == "kana" and rel != "OBJ":
             return "اسم كان"
+        if _is_passive(head):
+            # a passive verb has no doer to take an object from: its first noun
+            # stands in for the doer, and only a second one is an object
+            standing = [t for t in (*siblings, token) if t["rel"] in ("SBJ", "TPC", "OBJ")]
+            first = min(standing, key=lambda t: (t["rel"] == "OBJ", t["id"]))
+            return "نائب فاعل" if token is first or rel != "OBJ" else "مفعول به"
         # the parser reads letters only, so a nominative "object" with no subject is the subject
         if rel == "OBJ" and (_case(token) != "u" or any(s["rel"] == "SBJ" for s in siblings)):
             return "مفعول به"
-        return "نائب الفاعل" if _is_passive(head) else "فاعل"
+        return "فاعل"
     if rel in ("SBJ", "TPC"):
         return {"kana": "اسم كان", "inna": "اسم إن"}.get(family, "مبتدأ")
     if rel == "---":
@@ -233,7 +261,8 @@ def name(token: dict, tokens: list[dict]) -> str | None:
             if token.get("ud") == "ADJ" or token.get("pos_camel") == "adj" \
                     or bare_letters(token.get("typed", ""))[:1] == "م":
                 return "حال"
-            return "تمييز"
+            # a tamyeez clarifies what came before it and never goes first
+            return "تمييز" if token["id"] > head["id"] else None
         if token.get("ud") == "ADJ":
             return "صفة"
     return None
