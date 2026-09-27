@@ -1,140 +1,91 @@
 # Tafheem
 
-A professional-grade AI-powered Arabic grammar analyzer featuring proof-based I'raab analysis, morphology breakdown (Sarf), Quranic corpus lookup, and intelligent practice question generation.
+Understand Quranic and classical Arabic, word by word. Grammar, morphology, the Quran and a dictionary in one study app.
+
+Built on real corpora and classical references. AI explanations are optional; the core app runs fully offline.
 
 ## Features
 
-- **Nahw**: one tab, two distances on the same sentence:
-  - *Tarkeeb*, the wide view; the bracket tree of how the words join, with 47 worked examples from Tasheel al-Nahw and a tree for any ayah
-  - *I'raab*, the close-up; word-by-word case & function analysis with proof citations
-- **Morphology (Sarf)**: Root extraction, verb patterns, conjugation tables
-- **Quranic Lookup**: Full-text search across Qur'anic corpus with optional deep AI analysis
-- **Memorise**: a printed mushaf page with words taken out, typed back or picked from four
-- **Dictionary**: Bidirectional Arabic↔English search, built from the Wiktionary Arabic extract (Hans Wehr is under copyright and is not shipped)
-- **Practice Questions**: AI-generated 4-question sets tailored to any sentence
+| Tab | What it does |
+|---|---|
+| **Nahw** | Tarkeeb (sentence tree) and I'raab (word-by-word case and function) with proof citations. Includes 47 worked examples from *Tasheel al-Nahw* and a tree for any ayah. |
+| **Sarf** | Root extraction, verb patterns and conjugation tables |
+| **Quran** | Search and look up any ayah, with optional deep analysis |
+| **Daleel** | Find the passage in the classical books, asked in Arabic or English, with the source and location of every quote |
+| **Memorise** | A printed mushaf page with words removed; type them back or pick from four |
+| **Dictionary** | Arabic and English search, built from the Wiktionary Arabic extract |
+| **Quiz** | Practice questions generated for any sentence |
+| **Timelines** | Five eras from Adam onward, with about fifty events to read |
 
-## Quick Start
+## Stack
 
-### Prerequisites
+| Layer | Tech |
+|---|---|
+| Frontend | React 19, Vite, Tailwind CSS, TanStack Query |
+| Backend | FastAPI, Pydantic, PyArabic |
+| Data | Quranic corpus (SQLite), Wiktionary dictionary (JSON), grammar rules |
+| AI (optional) | Groq or local Ollama |
+| Hosting | Landing page on Vercel, app on an Oracle Cloud VM (see [deploy/](deploy/README.md)) |
 
-- Python 3.10+
-- Node.js 18+ & npm
+## Run locally
 
-Optional, for the AI explanations only: a free [Groq API key](https://console.groq.com/keys),
-or Ollama running locally. The app runs fully offline without either.
+Needs Python 3.10+ and Node 18+.
 
-### Setup
+```bash
+./start.sh
+```
 
-1. **Clone/extract** the repository
-2. **Configure API key**:
-   ```bash
-   # optional - the app runs offline with no .env at all
-   # create one only to set GROQ_API_KEY or AI_BACKEND
-   # Edit .env and paste your Groq API key (get free key from https://console.groq.com/keys)
-   ```
+Or by hand, from the project root:
 
-3. **Install & run**:
+```bash
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python -m uvicorn backend.main:app --reload     # API on :8000
 
-   **Linux/macOS**:
-   ```bash
-   chmod +x start.sh
-   ./start.sh
-   ```
+cd frontend && npm install && npm run dev       # app on http://localhost:5173
+```
 
-   **Windows** (PowerShell as admin):
-   ```powershell
-   python -m venv venv
-   venv\Scripts\Activate
-   pip install -r requirements.txt
-   
-   # In separate terminal (PowerShell)
-   cd frontend
-   npm install
-   npm run dev
+Optional: set `GROQ_API_KEY` in `.env` for AI explanations ([free key](https://console.groq.com/keys)).
 
-   # In first terminal (from the project root, NOT from backend/)
-   python -m uvicorn backend.main:app --reload
-   ```
-
-4. Open **http://localhost:5173** in your browser
-
-## API Endpoints
+## API
 
 | Method | Endpoint | Purpose |
-|--------|----------|---------|
-| `POST` | `/api/analyze` | I'raab sentence analysis |
-| `GET` | `/api/tarkeeb/examples` | Worked tarkeeb trees from the books |
-| `GET` | `/api/quran/{surah}/{ayah}/tarkeeb` | The tarkeeb tree of one ayah, derived from the corpus tags |
-| `POST` | `/api/morphology` | Sarf word breakdown |
-| `GET` | `/api/quran/{surah}/{ayah}` | Quranic verse lookup |
-| `GET` | `/api/quran/search` | Quran search: Quran.com, falling back to the local index |
-| `GET` | `/api/dictionary/search` | Arabic/English dictionary lookup |
-| `POST` | `/api/practice` | Generate practice questions |
-| `GET` | `/api/health` | Service status check |
+|---|---|---|
+| POST | `/api/analyze` | I'raab analysis of a sentence |
+| GET | `/api/tarkeeb/examples` | Worked tarkeeb trees |
+| GET | `/api/quran/{surah}/{ayah}/tarkeeb` | Tarkeeb tree of one ayah |
+| POST | `/api/morphology` | Sarf breakdown of a word |
+| GET | `/api/quran/{surah}/{ayah}` | Ayah lookup |
+| GET | `/api/quran/search` | Quran search |
+| GET | `/api/dictionary/search` | Dictionary lookup |
+| POST | `/api/practice` | Practice questions |
+| GET | `/api/health` | Health check |
 
-See the endpoint table below for the available request and response shapes.
+## Layout
 
-## Architecture
+```
+backend/    FastAPI app: routers, services, models, data
+frontend/   React app: components, lib, api client
+deploy/     server setup for the Oracle VM
+tests/      backend tests
+docs/       design notes and research
+```
 
-- **Backend**: FastAPI + Groq LLM + PyArabic morphology
-- **Frontend**: React 19 + TanStack Query + Tailwind CSS + Vite
-- **Data**: Quranic corpus (SQLite), Wiktionary-built dictionary (JSON), grammar rules database
+## Tests
+
+```bash
+pytest                      # backend
+cd frontend && npm test     # frontend
+```
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| `GROQ_API_KEY not set` | Check .env file and restart backend after changing |
-| `Ayah not found` | Verify surah (1-114) and ayah numbers are correct |
-| `Analysis timeout` | LLM request timed out; try again (retry logic built-in) |
-| `Empty dictionary` | Ensure `backend/data/arabic_dictionary.json` exists; build it with `python backend/scripts/build_dictionary.py` |
+| Problem | Fix |
+|---|---|
+| `GROQ_API_KEY not set` | only needed for AI features; add it to `.env` and restart |
+| `Ayah not found` | surah is 1 to 114; check the ayah number |
+| Empty dictionary | build it: `python backend/scripts/build_dictionary.py` |
 
-## Project Structure
+## Data and licensing
 
-```
-tafheem/
-├── backend/              # FastAPI server
-│   ├── main.py             # Entry point
-│   ├── config.py           # Settings & validation
-│   ├── services/           # Business logic (Groq, corpus, dictionary)
-│   ├── routers/            # API endpoints
-│   ├── models/             # Pydantic schemas
-│   └── data/               # Rules, corpus
-├── frontend/            # React app
-│   ├── src/
-│   │   ├── App.jsx         # Main container
-│   │   ├── components/     # UI components
-│   │   ├── api.js          # HTTP client
-│   │   └── grammarRoles.js # Role-to-class helper
-│   └── package.json
-├── requirements.txt     # Python dependencies
-```
-
-## Development Notes
-
-- **Async**: All API endpoints use async/await with proper retry logic
-- **Logging**: Structured logging to file (`backend.log`) and console
-- **Type Safety**: Pydantic models for full request/response validation
-- **Error Handling**: User-friendly error messages with actionable hints
-- **State Management**: TanStack Query for efficient server state caching
-
-## Known Limitations
-
-- The dictionary holds what the Wiktionary extract covers, which is less than a printed lexicon
-- Deep Quranic analysis uses same LLM as regular analysis (no special weighting)
-
-## Contributing
-
-To extend this tool:
-1. Add new routers in `backend/routers/`
-2. Create services in `backend/services/`
-3. Add React components in `frontend/src/components/`
-4. Update `package.json` or `requirements.txt` for dependencies
-
-## License
-
-This project uses educational data and free APIs. Please respect copyright and usage terms for all external resources.
-
----
-
-**Questions?** Check backend logs with: `tail -f backend.log`
+Uses openly licensed sources only. Hans Wehr is under copyright and is not shipped. Respect the terms of each external resource.
