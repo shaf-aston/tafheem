@@ -127,29 +127,17 @@ export const spokenForm = (text) =>
     .trim()
 
 /**
- * Marks only the Qur'an's own (Uthmani) spelling uses: the alef wasla, the small
- * high letters, the rounded sukun and the waqf signs, U+06D6 to U+06ED. Plain
- * Arabic, typed or printed in a book, never carries them, so their presence is
- * what says a text is the mushaf's and wants a face drawn for those marks.
+ * True when the text is in the mushaf's own spelling: it carries the alef wasla
+ * or a mark from U+06D6 to U+06ED (small high letters, rounded sukun, waqf
+ * signs), which typed or printed Arabic never does.
  */
-const ALEF_WASLA = 0x0671
-const QURANIC_MARKS_FROM = 0x06d6
-const QURANIC_MARKS_TO = 0x06ed
-
-/** True when the text is written in the mushaf's own spelling. */
-export const isQuranic = (text) => {
-  for (const char of text ?? '') {
+export const isQuranic = (text) =>
+  [...(text ?? '')].some((char) => {
     const code = char.codePointAt(0)
-    if (code === ALEF_WASLA || (code >= QURANIC_MARKS_FROM && code <= QURANIC_MARKS_TO)) return true
-  }
-  return false
-}
+    return code === 0x0671 || (code >= 0x06d6 && code <= 0x06ed)
+  })
 
-/**
- * The text inside a piece of React markup, however deep: the words of an ayah
- * drawn as buttons are still the ayah. A value that is not text or markup, a
- * number aside, contributes nothing.
- */
+/** The text inside a piece of React markup, however deeply nested. */
 export const textOf = (node) => {
   if (node == null || typeof node === 'boolean') return ''
   if (typeof node === 'string' || typeof node === 'number') return String(node)

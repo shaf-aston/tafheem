@@ -59,6 +59,12 @@ def _term(key: str) -> dict:
     return out
 
 
+def shown(term: dict) -> dict:
+    """A term as a node wears it: its wording, its colour and its note, if any."""
+    return {"role": term["ar"], "tone": term["tone"],
+            **({"detail": term["detail"]} if "detail" in term else {})}
+
+
 def term_ar(key: str) -> str:
     """Just the Arabic of a term, for comparing against what a tree printed."""
     return _rules()["terms"][key]["ar"]
@@ -101,11 +107,7 @@ def relation_tone(relation: str | None) -> str:
 def _named(name: str) -> dict:
     """A role's wording, colour and note, from a term key or a treebank relation."""
     if name in _rules()["terms"]:
-        term = _term(name)
-        out = {"role": term["ar"], "tone": term["tone"]}
-        if "detail" in term:
-            out["detail"] = term["detail"]
-        return out
+        return shown(_term(name))
     wording, raw = relation_wording(name)
     out = {"role": wording, "tone": relation_tone(name)}
     if raw:
@@ -232,10 +234,8 @@ def _leaf(index: int, fact: dict) -> dict:
     # any join to reach, they are named here, once, and skip every join and
     # claim below rather than falling through to an unworked-out gap.
     if fact["atf_word"] or fact["rem_word"]:
-        term = _term("harf_atf" if fact["atf_word"] else "harf_istinaf")
-        node["role"], node["tone"], node["ghair_aamil"] = term["ar"], term["tone"], True
-        if "detail" in term:
-            node["detail"] = term["detail"]
+        node.update(shown(_term("harf_atf" if fact["atf_word"] else "harf_istinaf")),
+                    ghair_aamil=True)
         return node
     before, after = [], []
     if fact["atf_prefix"] or fact["rem_prefix"]:

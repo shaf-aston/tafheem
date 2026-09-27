@@ -2,12 +2,8 @@ import { useState } from 'react'
 
 /**
  * Floating explanation above an inline element. Hover and keyboard focus both
- * open it, and the native `title` keeps it reachable on touch and names it to a
- * screen reader.
- *
- * The bubble draws its text from data-tip (index.css, .tip-bubble) instead of
- * holding it: text held inside the page is text a drag-select copies, and a
- * copied line of Arabic came out with the English notes of its words in it.
+ * open it, and the native `title` keeps it reachable on touch and by a screen
+ * reader. The bubble's text is drawn from data-tip by CSS so it is never copied.
  */
 export default function Tooltip({ text, children }) {
   const [visible, setVisible] = useState(false)

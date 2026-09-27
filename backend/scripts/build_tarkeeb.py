@@ -14,16 +14,9 @@ The data is a .rar, so it is not downloaded here. Get it once::
     7z x Quranic.rar
     venv/Scripts/python backend/scripts/build_tarkeeb.py Quranic.csv RelLabels.csv
 
-How a particle is read
-----------------------
-The treebank often hangs the governed word off its particle, يَعْلَمُ off لَا,
-and writes the particle's meaning (نفي) on that arrow. Read as the verb's own
-job, that drew 1,331 verbs as "نفي", 931 as "شرط", and 5,000-odd particles a
-sentence rests on as its مبتدأ. An arrow whose name is already inside its
-particle head's own name (نفي in حرف نفي) is the particle's meaning; the word
-under it opens a clause, and the particle is named by what it is, from
-tarkeeb.json's particle_kinds. Arrows the name does not say (مجرور under
-حرف جر, منادى under حرف نداء) stay the governed word's job.
+Particles: an arrow naming its particle head's meaning (نفي under حرف نفي) is
+the particle's, not the governed word's job. See _states_particle and
+tarkeeb.json's particle_kinds.
 
 What it has to do
 -----------------
@@ -293,15 +286,10 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
             # هُوَ heading هُوَ ٱللَّهُ أَحَدٌ is its mubtada; the clause is the مفعول به
             own = _opening_role(word, settings)
 
-        leaf = {"word": index, "role": own["ar"] if own else role,
-                "tone": own["tone"] if own else tone}
-        if own and "detail" in own:
-            leaf["detail"] = own["detail"]
+        leaf = {"word": index, **(tarkeeb.shown(own) if own else {"role": role, "tone": tone})}
         if word.get("particle") and len(word["pieces"]) > 1:
             # أَفَلَا: question, extra فَ, negation, each named by what it is.
-            leaf["parts"] = [{"role": part["ar"], "tone": part["tone"],
-                              **({"detail": part["detail"]} if "detail" in part else {})}
-                             for part in (_particle(piece, settings) for piece in word["pieces"])]
+            leaf["parts"] = [tarkeeb.shown(_particle(piece, settings)) for piece in word["pieces"]]
         if raw and not opens_clause and not own:
             # Said plainly rather than dressed up: this wording is the treebank's,
             # not the book's, and the page draws it as the weaker claim it is.
@@ -311,17 +299,11 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
         if lone := word.get("connector_only"):
             # ثُمَّ joins nothing to anything by governing it, so the treebank
             # gives it no relation. It still has a name, and a blank is worse.
-            named = tarkeeb._term(lone)
-            leaf.update(role=named["ar"], tone=named["tone"], ghair_aamil=True)
-            if "detail" in named:
-                leaf["detail"] = named["detail"]
+            leaf.update(tarkeeb.shown(tarkeeb._term(lone)), ghair_aamil=True)
         elif joined := word.get("connector"):
             # The two pieces of فَسَوَّىٰهُنَّ, named separately, so the diagram can
             # peel them apart on request instead of drawing one fused column.
-            named = tarkeeb._term(joined["key"])
-            piece = {"role": named["ar"], "tone": named["tone"], "ghair_aamil": True}
-            if "detail" in named:
-                piece["detail"] = named["detail"]
+            piece = {**tarkeeb.shown(tarkeeb._term(joined["key"])), "ghair_aamil": True}
             leaf["prefix_arabic"] = joined["text"]
             leaf["parts"] = [piece, {"role": leaf["role"], "tone": leaf["tone"]}]
 
