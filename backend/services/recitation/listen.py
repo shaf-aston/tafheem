@@ -43,11 +43,10 @@ the fourth was later given back on purpose, for strictness:
 """
 from __future__ import annotations
 
+import io
 import logging
-import tempfile
 import threading
 import time
-from pathlib import Path
 
 import numpy as np
 
@@ -56,7 +55,8 @@ from backend.services.timing import timed
 
 log = logging.getLogger(__name__)
 
-# The model itself, not the recording. routers/listen.py already keeps two
+# The processor this machine's models run on, not the recording: held around
+# every call into a local model, the letters one (letters.py) included. routers/listen.py already keeps two
 # recitations from being read at once (_turn), but a plain search that falls
 # back to this engine skips that queue on purpose, and the model is handed
 # most of this machine's cores (recitation_threads): two calls into it at once
@@ -65,7 +65,7 @@ log = logging.getLogger(__name__)
 # scoring alike, never nested: transcribe() and scores() are asked one after
 # the other, never from inside each other, so a plain (non-reentrant) Lock is
 # enough.
-_engine_lock = threading.Lock()
+engine_lock = threading.Lock()
 
 # Timed here, and only here, are the steps that cost whole seconds on this
 # machine: opening the recording, loading a model, reading it, and scoring the
@@ -108,9 +108,10 @@ def sound_of(audio: bytes):
     after the other and the next recording is a different one. Keeping more
     would be holding somebody's voice in memory for no reason.
 
-    The engine reads a file rather than bytes, so the recording is written to a
-    temporary one and deleted afterwards however this ends: nothing a
-    microphone picked up stays on disk after the answer is given.
+    Decoded straight from memory. It used to be written to a temporary file
+    and deleted again for every recording, a trip to the disk that bought
+    nothing: the decoder reads a file object as readily as a path, and this
+    way nothing a microphone picked up ever touches the disk at all.
 
     The magic bytes at the front of a recording say what it claims to be; they
     do not say the rest of it is there. A truncated browser recording carries a
@@ -131,17 +132,12 @@ def sound_of(audio: bytes):
     if _last is not None and _last[0] == audio:
         return _last[1]
 
-    handle = tempfile.NamedTemporaryFile(suffix=".audio", delete=False)
     try:
-        handle.write(audio)
-        handle.close()
         # PyAV, in this process. Not free, and the reason a recording is only
         # opened once however many questions are asked about it.
-        sound = timed("decoded", decode_audio, handle.name, kb=len(audio) // 1024)
+        sound = timed("decoded", decode_audio, io.BytesIO(audio), kb=len(audio) // 1024)
     except Exception as exc:
         raise Unreadable("That recording could not be read. Record it again.") from exc
-    finally:
-        Path(handle.name).unlink(missing_ok=True)
 
     settings = get_settings()
     lifted = loudness.levelled(
@@ -246,7 +242,7 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str
     # slow one: which model, how many seconds of sound, and whether word timing
     # was asked for, which on its own more than doubles this line.
     seconds = round(len(sound) / 16000, 1)
-    with _engine_lock:
+    with engine_lock:
         heard = timed("read", lambda: _read(sound, trim=settings.recitation_trim_silence, **how),
                       model=how["model"], s=seconds, timing=how["word_min"] > 0)
 
@@ -319,7 +315,7 @@ def scores(audio: bytes, words: list[str]) -> list[dict]:
     # ear listening to the sound and does not care how many words are asked
     # about; "scored" is it weighing those words and grows with them. A slow
     # check is one or the other, and one line each says which without guessing.
-    with _engine_lock:
+    with engine_lock:
         listened = timed("encoded", model.encode, padded, s=round(frames / 100, 1))
         answer = timed(
             "scored",

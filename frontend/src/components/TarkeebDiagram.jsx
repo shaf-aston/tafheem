@@ -9,7 +9,7 @@
  * the tree's shape, and nothing about position is stored in the data. Colours
  * come from theme.json as `--role-<tone>`; this file names no colour of its own.
  */
-import { Fragment, useMemo, useState } from 'react'
+import { Fragment, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import { roleVar } from '../lib/roleColors'
 import { rows, share, splitConnectors } from '../lib/tarkeebLayout'
@@ -78,10 +78,18 @@ function Bracket({ node, atEdge, style }) {
 
 export default function TarkeebDiagram({ words, tree, unwritten, className = '' }) {
   const [mode, setMode] = useState('split')
+  const scroller = useRef(null)
   const split = useMemo(
     () => (tree && words?.length ? splitConnectors(words, tree) : null),
     [words, tree],
   )
+  // A diagram wider than its box opens on the sentence's first word, which is
+  // on the right. The scroller itself is left-to-right, so left to itself it
+  // opened on the last word, and on a phone that was all anyone saw.
+  useLayoutEffect(() => {
+    const view = scroller.current
+    if (view) view.scrollLeft = view.scrollWidth
+  }, [words, tree, mode])
   if (!tree || !words?.length) return null
 
   const canSplit = split.words.length > words.length
@@ -109,7 +117,7 @@ export default function TarkeebDiagram({ words, tree, unwritten, className = '' 
           in index.css, which already covers [tabindex]. */}
       {/* Named by its sentence: a page of worked examples has several of these,
           and same-named regions are one region to a screen reader. */}
-      <div className="tk-scroller" tabIndex={0} role="region" aria-label={`Tarkeeb of ${shown.words.join(' ')}, scroll sideways to see the rest`}>
+      <div ref={scroller} className="tk-scroller" tabIndex={0} role="region" aria-label={`Tarkeeb of ${shown.words.join(' ')}, scroll sideways to see the rest`}>
         <div
           className="tk-grid"
           style={{

@@ -170,7 +170,7 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
           accent={accent}
         >
           <MicButton
-            onHeard={({ text }) => { setWord(text || ''); setPreview(null); setForm(''); clear() }}
+            onHeard={({ text }) => { setWord(text); setPreview(null); setForm(''); clear() }}
             accent={accent}
             title="Say the word"
           />

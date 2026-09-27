@@ -24,8 +24,8 @@ import re
 import time
 import traceback
 import uuid
-from collections.abc import Iterator
-from contextlib import contextmanager
+from collections.abc import AsyncIterator, Iterator
+from contextlib import asynccontextmanager, contextmanager
 
 from fastapi import APIRouter, File, HTTPException, Query, Request, Response, UploadFile
 from starlette.concurrency import run_in_threadpool
@@ -34,6 +34,7 @@ from backend.config import get_settings
 from backend.models.schemas import Heard, HeardAyah, Sureness
 from backend.services import journal, recitation
 from backend.services.recitation import NotInstalled, Unreadable
+from backend.services.recitation.recording import kind_of
 
 log = logging.getLogger(__name__)
 
@@ -77,10 +78,7 @@ _turn = asyncio.Lock()
 def is_audio(body: bytes) -> bool:
     """What browsers record (webm, ogg, mp4) and what people upload (wav, mp3, flac),
     told by the file's first bytes, not the name or type it claims."""
-    return (body.startswith((b"\x1a\x45\xdf\xa3", b"OggS", b"fLaC", b"ID3"))
-            or (body[:4] == b"RIFF" and body[8:12] == b"WAVE")
-            or body[4:8] == b"ftyp"
-            or (len(body) > 1 and body[0] == 0xFF and body[1] & 0xE0 == 0xE0))
+    return kind_of(body) is not None
 
 
 def _reading_id(request: Request) -> str:
@@ -139,6 +137,46 @@ def _filing(request: Request, response: Response, name: str) -> Iterator[_Filed]
         journal.reading_id.reset(token)
 
 
+async def _read_recording(audio: UploadFile, filed: _Filed) -> bytes:
+    """The uploaded recording, or the reason it is refused. Empty is not refused:
+    a quiet room is an ordinary answer, and each route says what nothing means.
+
+    Both routes take a recording the same way, so the limit and what counts as
+    one are written once."""
+    limit_mb = get_settings().recitation_max_mb
+    limit = limit_mb * 1024 * 1024
+    body = await audio.read(limit + 1)
+    if len(body) > limit:
+        raise filed.fail(413, f"That recording is over {limit_mb}MB. Record a shorter passage.", "validate")
+    return body
+
+
+def _refuse_unless_audio(body: bytes, filed: _Filed) -> None:
+    if not is_audio(body):
+        raise filed.fail(415, "That file is not a sound recording.", "validate")
+
+
+@asynccontextmanager
+async def _my_turn(request: Request, name: str) -> AsyncIterator[bool]:
+    """Hold `_turn` for one request. Yields False when the page gave up while it
+    waited, so the caller answers with nothing instead of spending the model."""
+    queued = time.perf_counter()
+    async with _turn:
+        waited = (time.perf_counter() - queued) * 1000
+        # The wait a reciter feels is this plus the work, and only this one
+        # grows when readings pile up, so when a mark arrives late this line
+        # says whether the machine was slow or merely busy.
+        if waited >= 100:
+            log.info("queued  %.0fms", waited)
+        journal.note(f"{name}.queued", ms=round(waited))
+        if await request.is_disconnected():
+            log.info("the page gave up on that %s before its turn came", name)
+            journal.note(f"{name}.dropped")
+            yield False
+            return
+        yield True
+
+
 @router.post("", response_model=Heard)
 async def listen(
     request: Request,
@@ -154,25 +192,15 @@ async def listen(
     returns empty words and no ayahs, and the page says so; a 500 there would
     read as the feature being broken when it is working exactly as it should.
     """
-    settings = get_settings()
     with _filing(request, response, "reading") as filed:
-        limit = settings.recitation_max_mb * 1024 * 1024
-        body = await audio.read(limit + 1)
-        if len(body) > limit:
-            raise filed.fail(
-                413,
-                f"That recording is over {settings.recitation_max_mb}MB. Record a shorter passage.",
-                "validate",
-            )
-
+        body = await _read_recording(audio, filed)
         is_recitation = recite or match
         journal.note("reading.received", bytes=len(body), recite=is_recitation)
 
         if not body:
             filed.done(200)
             return Heard(text="", ayahs=[])
-        if not is_audio(body):
-            raise filed.fail(415, "That file is not a sound recording.", "validate")
+        _refuse_unless_audio(body, filed)
 
         async def do_hear() -> tuple[str, list]:
             try:
@@ -208,19 +236,8 @@ async def listen(
         # behind when this machine is the one about to spend it. A reading
         # Groq will answer costs this machine nothing to wait for.
         if is_recitation and recitation.ears.would_answer_locally():
-            # How long this reading queued behind another. The wait a reciter
-            # feels is this plus the work, and only this one grows when
-            # readings pile up, so when a mark arrives late this line says
-            # whether the machine was slow or merely busy.
-            queued = time.perf_counter()
-            async with _turn:
-                waited = (time.perf_counter() - queued) * 1000
-                if waited >= 100:
-                    log.info("queued  %.0fms", waited)
-                journal.note("reading.queued", ms=round(waited))
-                if await request.is_disconnected():
-                    log.info("the page gave up on that reading before its turn came")
-                    journal.note("reading.dropped")
+            async with _my_turn(request, "reading") as wanted:
+                if not wanted:
                     filed.done(200)
                     return Heard(text="", ayahs=[])
                 text, hits = await do_hear()
@@ -280,32 +297,16 @@ async def listen_check(
                 "validate",
             )
 
-        limit = settings.recitation_max_mb * 1024 * 1024
-        body = await audio.read(limit + 1)
-        if len(body) > limit:
-            raise filed.fail(
-                413,
-                f"That recording is over {settings.recitation_max_mb}MB. Record a shorter passage.",
-                "validate",
-            )
-
+        body = await _read_recording(audio, filed)
         journal.note("check.received", bytes=len(body), ayahs=len(checked))
 
         if not body or not checked or not heard:
             filed.done(200)
             return Sureness(sure={})
-        if not is_audio(body):
-            raise filed.fail(415, "That file is not a sound recording.", "validate")
+        _refuse_unless_audio(body, filed)
 
-        queued = time.perf_counter()
-        async with _turn:
-            waited = (time.perf_counter() - queued) * 1000
-            if waited >= 100:
-                log.info("queued  %.0fms", waited)
-            journal.note("check.queued", ms=round(waited))
-            if await request.is_disconnected():
-                log.info("the page gave up on that check before its turn came")
-                journal.note("check.dropped")
+        async with _my_turn(request, "check") as wanted:
+            if not wanted:
                 filed.done(200)
                 return Sureness(sure={})
 

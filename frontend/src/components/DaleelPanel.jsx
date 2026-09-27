@@ -154,7 +154,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
           {/* Speaking a phrase, not an ayah: Daleel searches whatever words come
               back, so it asks only for those and never for a list of ayahs. */}
           <MicButton
-            onHeard={({ text }) => { setQuery(text || ''); mutation.reset() }}
+            onHeard={({ text }) => { setQuery(text); mutation.reset() }}
             accent={accent}
             title="Say what you are looking for"
           />
