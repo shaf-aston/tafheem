@@ -174,9 +174,11 @@ body { overflow-x: hidden; }
 .landing-page .story-rail { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
 .landing-page .story-pill {
   font: 600 .9rem 'Syne', sans-serif; color: var(--text); border: 1px solid var(--line); border-radius: 99px;
-  padding: .45rem .9rem; opacity: var(--landing-step-dim);
+  padding: .45rem .9rem; opacity: var(--landing-step-dim); text-decoration: none;
   transition: opacity calc(var(--motion-instant-ms) * 1ms) ease, border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease;
 }
+.landing-page .story-pill:hover,
+.landing-page .story-pill:focus-visible,
 .landing-page .story-pill.active { opacity: 1; border-color: var(--accent); background: rgba(255, 255, 255, .05); }
 .landing-page .story-stage { position: relative; height: var(--landing-story-stage-h); }
 .landing-page .story-star {
