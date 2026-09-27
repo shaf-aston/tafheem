@@ -27,7 +27,11 @@ const digitsToLatin = (text) => text.replace(/[٠-٩]/g, (d) => ARABIC_DIGITS.in
 const foldLatin = (text) =>
   text.toLowerCase().replace(/[^a-z]/g, '').replace(/(.)\1+/g, '$1').replace(/e/g, 'i').replace(/o/g, 'u')
 
-const foldArabic = (text) => bareForm(text).replace(/[^؀-ۿ]/g, '')
+// A surah's name as a keyboard types it: ة and ه, ى and ي are one key's
+// difference ("البقره"). Folded for these 114 names only, where no two collide;
+// bareForm leaves them apart because across the word lists they would.
+const foldArabic = (text) =>
+  bareForm(text).replace(/[^؀-ۿ]/g, '').replace(/ة/g, 'ه').replace(/ى/g, 'ي')
 
 /** Every spelling one surah answers to: with and without its article. */
 const keys = surahs.map((s) => {

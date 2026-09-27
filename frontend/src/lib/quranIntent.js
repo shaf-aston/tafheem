@@ -40,7 +40,9 @@ const place = (matches, ayah) => ({
  * by Enter. `problem` is set when Enter can do nothing and says why.
  */
 export function readQuranQuery(text) {
-  const line = (text ?? '').trim()
+  // A separator left at the end is a reference still being typed ("2:"), not
+  // a mistake to flag.
+  const line = (text ?? '').trim().replace(/[\s:.,،٬-]+$/, '')
   if (!line) return { kind: KIND.none, surahs: [], ayah: null, problem: null }
 
   if (NUMBERS_ONLY.test(line) && HAS_NUMBER.test(line)) {
