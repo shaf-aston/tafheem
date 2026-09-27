@@ -8,8 +8,6 @@
 /* Urdu is read in Nastaliq, not Naskh. Naskh would render it legibly and still
    look wrong to anyone who reads Urdu, the way a serif Arabic would. */
 @import "@fontsource/noto-nastaliq-urdu/400.css";
-/* The mushaf's marks (madda over a small alef, waqf signs) crowd in Naskh. */
-@import "@fontsource/amiri-quran/400.css";
 @import "@fontsource-variable/inter/index.css";
 
 /* The command line and the orbit launcher. Their own file because they are one
@@ -22,7 +20,6 @@
 :root {
   --font-arabic: 'Noto Naskh Arabic', serif;
   --font-urdu: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif;
-  --font-quran: 'Amiri Quran', 'Noto Naskh Arabic', serif;
   --font-ui: 'Inter Variable', 'Inter', system-ui, sans-serif;
 }
 
@@ -43,11 +40,6 @@
   --font-arabic: var(--font-urdu);
   --arabic-line-height: var(--urdu-line-height);
   --arabic-input-line-height: var(--urdu-line-height);
-}
-
-/* Set by ArabicText and the tarkeeb diagram (lib/arabicText isQuranic). */
-[data-script="quran"] {
-  --font-arabic: var(--font-quran);
 }
 
 html,
