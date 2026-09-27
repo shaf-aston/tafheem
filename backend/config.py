@@ -370,6 +370,11 @@ class Settings(BaseSettings):
     # Whether backend/services/syntax/catib_onnx.py runs at all. The first
     # parse() loads a ~110MB ONNX encoder plus CAMeL's BERT disambiguator.
     catib_parser_enabled: bool = True
+    # Load it in the background as the app starts, so the first sentence typed
+    # does not wait for it (measured: ~8s for the BERT disambiguator alone on a
+    # fast machine, far more on a laptop). Costs ~600MB from startup. Turn off
+    # on a small machine; the first sentence then loads it, as it did before.
+    catib_parser_warm: bool = True
     # encoder.onnx (int8), scorer.onnx, tokenizer.json, labels.json,
     # config.json, clitic_feats.csv. See catib_onnx.py's docstring for where
     # each one comes from. Relative paths resolve inside backend/.

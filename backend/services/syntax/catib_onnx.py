@@ -34,6 +34,8 @@ from __future__ import annotations
 import csv
 import json
 import logging
+import threading
+import time
 
 import onnxruntime as ort  # must precede camel_tools (Windows DLL load-order bug, see module docstring)
 
@@ -46,7 +48,8 @@ from backend.services.syntax import decode
 logger = logging.getLogger(__name__)
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Module state, built once on the first parse() call (see _ensure_loaded)
+# Module state, built once by _ensure_loaded (at startup by warm(), or else by
+# the first parse())
 # ─────────────────────────────────────────────────────────────────────────────
 _enc_sess = None
 _scorer_sess = None
@@ -57,6 +60,17 @@ _clitic_table: list[dict[str, str]] | None = None
 _disambiguator = None
 _ar2bw = None
 
+# Loading takes seconds (the BERT disambiguator alone is ~8s on a fast machine),
+# so a second request always arrives while the first is still loading. Without
+# this lock it loaded everything a second time beside the first, and a third,
+# finding the encoder set but the disambiguator not, crashed on None and
+# quietly fell back to the rule engine. One loader; the rest wait for it.
+_load_lock = threading.Lock()
+# Why the load failed, or "" when it has not. A missing package or model does
+# not fix itself, so a failed load is not paid for again on every request, and
+# /api/health can say what went wrong instead of "ready".
+_load_error = ""
+
 
 def files_present() -> bool:
     d = data_path("catib_parser_dir")
@@ -65,16 +79,47 @@ def files_present() -> bool:
     return all((d / n).exists() for n in names)
 
 
+def state() -> str:
+    """"ready", "loading", "not loaded" or "failed: <why>", for /api/health."""
+    if _disambiguator is not None:
+        return "ready"
+    if _load_error:
+        return f"failed: {_load_error}"
+    return "loading" if _load_lock.locked() else "not loaded"
+
+
+def warm() -> None:
+    """Load everything now, so the first sentence typed does not wait for it."""
+    _ensure_loaded()
+
+
 def _ensure_loaded() -> None:
     """Load the ONNX sessions, tokenizer and BERT disambiguator once, and
     keep them in the module globals above. Heavy (a ~110MB int8 encoder plus
-    CAMeL's BERT disambiguator), so this only runs on the first parse() call
-    rather than at import time.
+    CAMeL's BERT disambiguator), so it runs in the background at startup
+    (warm()), or on the first parse() when warming is off.
+
+    Everything is loaded into locals and published together, last of all the
+    disambiguator, so a reader that sees it set sees a whole parser.
     """
     global _enc_sess, _scorer_sess, _bpe, _cfg, _rel_labels, _clitic_table, _disambiguator, _ar2bw
-    if _enc_sess is not None:
+    global _load_error
+    if _disambiguator is not None:
         return
+    with _load_lock:
+        if _disambiguator is not None:
+            return
+        if _load_error:
+            raise RuntimeError(f"CATiB parser failed to load: {_load_error}")
+        try:
+            loaded = _load()
+        except Exception as exc:
+            _load_error = f"{type(exc).__name__}: {exc}"
+            raise
+        _cfg, _rel_labels, _clitic_table, _bpe, _enc_sess, _scorer_sess, _ar2bw, _disambiguator = loaded
 
+
+def _load() -> tuple:
     settings = get_settings()
     if not settings.catib_parser_enabled:
         raise RuntimeError("CATiB parser is disabled (catib_parser_enabled=False)")
@@ -83,25 +128,27 @@ def _ensure_loaded() -> None:
     if not files_present():
         raise RuntimeError(f"CATiB parser model files missing under {d}")
 
+    started = time.perf_counter()
     with (d / "config.json").open(encoding="utf-8") as f:
-        _cfg = json.load(f)
+        cfg = json.load(f)
     with (d / "labels.json").open(encoding="utf-8") as f:
-        _rel_labels = json.load(f)["itos"]
+        rel_labels = json.load(f)["itos"]
     with (d / "clitic_feats.csv").open(encoding="utf-8") as f:
-        _clitic_table = list(csv.DictReader(f))
+        clitic_table = list(csv.DictReader(f))
 
-    _bpe = Tokenizer.from_file(str(d / "tokenizer.json"))
-    _enc_sess = ort.InferenceSession(str(d / "encoder.onnx"), providers=["CPUExecutionProvider"])
-    _scorer_sess = ort.InferenceSession(str(d / "scorer.onnx"), providers=["CPUExecutionProvider"])
+    bpe = Tokenizer.from_file(str(d / "tokenizer.json"))
+    enc_sess = ort.InferenceSession(str(d / "encoder.onnx"), providers=["CPUExecutionProvider"])
+    scorer_sess = ort.InferenceSession(str(d / "scorer.onnx"), providers=["CPUExecutionProvider"])
 
     # Imported here, not at module top: camel_tools pulls in pandas/torch,
     # which must load after onnxruntime (see module docstring).
     from camel_tools.disambig.bert import BERTUnfactoredDisambiguator
     from camel_tools.utils.charmap import CharMapper
 
-    _disambiguator = BERTUnfactoredDisambiguator.pretrained("msa", top=1, use_gpu=False)
-    _ar2bw = CharMapper.builtin_mapper("ar2bw")
-    logger.info("CATiB ONNX parser ready (%s)", d)
+    disambiguator = BERTUnfactoredDisambiguator.pretrained("msa", top=1, use_gpu=False)
+    ar2bw = CharMapper.builtin_mapper("ar2bw")
+    logger.info("CATiB ONNX parser ready (%s) in %.1fs", d, time.perf_counter() - started)
+    return cfg, rel_labels, clitic_table, bpe, enc_sess, scorer_sess, ar2bw, disambiguator
 
 
 # ─────────────────────────────────────────────────────────────────────────────

@@ -27,12 +27,23 @@ logger = logging.getLogger(__name__)
 
 
 def status() -> str:
-    """"off", "missing files" or "ready", for /api/health: no silent absence."""
+    """"off", "missing files", "not loaded", "loading", "ready" or "failed: <why>",
+    for /api/health: no silent absence, and no "ready" for a parser that is not."""
     if not get_settings().catib_parser_enabled:
         return "off"
     from backend.services.syntax import catib_onnx
 
-    return "ready" if catib_onnx.files_present() else "missing files"
+    return catib_onnx.state() if catib_onnx.files_present() else "missing files"
+
+
+def warm() -> None:
+    """Load the parser now rather than on the first sentence typed. Does
+    nothing when it is off or its files are absent, as read() would."""
+    if status() in ("off", "missing files"):
+        return
+    from backend.services.syntax import catib_onnx
+
+    catib_onnx.warm()
 
 
 def read(sentence: str) -> dict:
