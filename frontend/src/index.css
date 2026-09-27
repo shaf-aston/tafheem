@@ -8,6 +8,10 @@
 /* Urdu is read in Nastaliq, not Naskh. Naskh would render it legibly and still
    look wrong to anyone who reads Urdu, the way a serif Arabic would. */
 @import "@fontsource/noto-nastaliq-urdu/400.css";
+/* The Qur'an in its own spelling carries marks everyday Arabic never does: a
+   madda over a small alef, the rounded sukun, the waqf signs. Naskh draws them
+   squeezed onto the baseline; Amiri Quran was cut for them. */
+@import "@fontsource/amiri-quran/400.css";
 @import "@fontsource-variable/inter/index.css";
 
 /* The command line and the orbit launcher. Their own file because they are one
@@ -20,6 +24,7 @@
 :root {
   --font-arabic: 'Noto Naskh Arabic', serif;
   --font-urdu: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif;
+  --font-quran: 'Amiri Quran', 'Noto Naskh Arabic', serif;
   --font-ui: 'Inter Variable', 'Inter', system-ui, sans-serif;
 }
 
@@ -40,6 +45,13 @@
   --font-arabic: var(--font-urdu);
   --arabic-line-height: var(--urdu-line-height);
   --arabic-input-line-height: var(--urdu-line-height);
+}
+
+/* The mushaf's spelling, recognised by its marks (lib/arabicText isQuranic) and
+   flagged on the element by ArabicText or the tarkeeb diagram: the same token
+   swap as Urdu, so every rung of the ladder and every page takes it at once. */
+[data-script="quran"] {
+  --font-arabic: var(--font-quran);
 }
 
 html,
@@ -449,7 +461,21 @@ dialog::backdrop {
   background: var(--c);
 }
 
-.gloss-tip {
+/* A tooltip's words, drawn rather than held, for the same reason as the gloss
+   below: nothing only shown on hover may end up in a copied selection. */
+.tip-bubble::after {
+  content: attr(data-tip);
+}
+
+/* The gloss is drawn from the word's data-gloss, never written into the page:
+   generated content is not part of any selection, so copying an ayah copies the
+   ayah. As a child element the English rode along, word by word, into the
+   clipboard. Stated left to right and isolated on its own, as the English it is,
+   or a gloss like "(is) for Allah" has its bracket thrown to the wrong end. */
+.gloss-word[data-gloss]::after {
+  content: attr(data-gloss);
+  direction: ltr;
+  unicode-bidi: isolate;
   position: absolute;
   /* Pulled into the line's own leading rather than clear above it: at this
      line-height a gloss that clears the glyphs entirely lands nearer the line
@@ -477,8 +503,8 @@ dialog::backdrop {
 /* Focus reveals the gloss exactly as the pointer does. The words are buttons, so
    a keyboard reaches every one of them; without this it reached them and was
    shown nothing. */
-.gloss-word:hover > .gloss-tip,
-.gloss-word:focus-visible > .gloss-tip {
+.gloss-word[data-gloss]:hover::after,
+.gloss-word[data-gloss]:focus-visible::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
