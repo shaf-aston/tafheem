@@ -13,10 +13,8 @@ REMOTE=tafheem
 
 FILES="
 backend/data/daleel.db
-backend/data/daleel_index.db
 backend/data/lexicons.db
 backend/data/lexicon.db
-backend/data/openiti.db
 backend/data/books/openiti.db
 backend/data/parser/encoder.onnx
 backend/data/quran/library.db
