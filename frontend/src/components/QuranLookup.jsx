@@ -24,6 +24,7 @@ import ErrorAlert from './ui/ErrorAlert'
 import RetryButton from './ui/RetryButton'
 import RootActions from './ui/RootActions'
 import SurahReader from './SurahReader'
+import QuranPlacePicker from './QuranPlacePicker'
 import QuranSearchBar from './QuranSearchBar'
 import SectionHeader from './ui/SectionHeader'
 import SourceBadge from './ui/SourceBadge'
@@ -51,6 +52,10 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   // Which surah is open for reading, or null. Separate from the ayah lookup so
   // closing the reader leaves the ayah you were on untouched.
   const [reading, setReading] = useState(null)
+  // The place last opened, a surah or an ayah in it, for the picker to follow.
+  // Neither of the two above says it alone: an ayah opened from the reader
+  // leaves the reader open.
+  const [at, setAt] = useState(arrived ? { surah: Number(arrived[1]), ayah: Number(arrived[2]) } : null)
 
   const { history: recent, push: remember } = useHistory('quran-history')
 
@@ -82,7 +87,10 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   if (justCame && incoming) {
     setReading(null)
     setHeard(null)
-    if (arrived) setShowMatches(false)
+    if (arrived) {
+      setShowMatches(false)
+      setAt({ surah: Number(arrived[1]), ayah: Number(arrived[2]) })
+    }
   }
 
   useEffect(() => {
@@ -119,10 +127,11 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
       })),
     )
   }
-  const readSurah = (n) => { setShowMatches(false); setReading(n) }
+  const readSurah = (n) => { setShowMatches(false); setReading(n); setAt({ surah: n, ayah: null }) }
 
   const openResult = (r) => {
     setShowMatches(false)
+    setAt({ surah: r.surah, ayah: r.ayah })
     ayahLookup.mutate({ s: r.surah, a: r.ayah })
   }
 
@@ -151,6 +160,13 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
         onHeard={onHeard}
         busy={busy}
         accent={accent}
+      />
+
+      <QuranPlacePicker
+        surah={at?.surah ?? null}
+        ayah={at?.ayah ?? null}
+        onReadSurah={readSurah}
+        onOpenAyah={(surah, ayah) => openResult({ surah, ayah })}
       />
 
       {(ayahLookup.isError || search.isError) && (
@@ -182,7 +198,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
         <SurahReader
           surah={reading}
           accent={accent}
-          onChangeSurah={setReading}
+          onChangeSurah={readSurah}
           onClose={() => setReading(null)}
           onOpenAyah={openResult}
         />
