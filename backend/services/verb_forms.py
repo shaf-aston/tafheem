@@ -91,6 +91,17 @@ def babs_of(word: str, sources: dict | None = None) -> dict:
     record should show both, not whichever was tried first.
     """
     sources = verb_sources.SOURCES if sources is None else sources
+    found = _ask(sources, word)
+    if not any(verbs for verbs, _ in found) and (hollow := conjugation.hollow_past(word)):
+        # Both books file a أجوف verb under its past, غَابَ, never under the
+        # root غيب a reader types, so the root on its own found nothing.
+        past, weak = hollow
+        found = [(_hollow_babs(verbs, weak), key) for verbs, key in _ask(sources, past)]
+    return _verdict(found)
+
+
+def _ask(sources: dict, word: str) -> list[tuple[list[dict], str]]:
+    """(picked verbs, source key) from every source that answers, in babs.json's order."""
     found = []
     for key in conjugation.babs()["sources"]:
         provider = sources.get(key)
@@ -99,7 +110,21 @@ def babs_of(word: str, sources: dict | None = None) -> dict:
             continue
         if verbs := provider(word):
             found.append((_pick(verbs, word), key))
-    return _verdict(found)
+    return found
+
+
+def _hollow_babs(verbs: list[dict], weak: str) -> list[dict]:
+    """The Form I verbs a hollow past names, keeping only babs this root can take.
+
+    babs.json's "hollow" table says which present vowel the weak letter rules
+    out: Lane files بَاعَ once for بيع and بوع with both babs, and this is
+    what splits them.
+    """
+    ruled_out = "~" + conjugation.babs()["hollow"][weak]
+    return [
+        {**verb, "babs": [c for c in verb.get("babs") or [] if not c.endswith(ruled_out)]}
+        for verb in verbs if verb["form"] == "I"
+    ]
 
 
 def _pick(verbs: list[dict], word: str) -> list[dict]:

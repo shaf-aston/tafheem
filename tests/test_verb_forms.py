@@ -151,6 +151,43 @@ def test_babs_of_merges_across_sources(monkeypatch):
     assert result["readings"][0]["source_keys"] == ["lane"]
 
 
+def _filed_under_past(word):
+    """Lane's own filing: بَاعَ once, for بيع and بوع together, both babs."""
+    verbs = {"غاب": [{"form": "I", "past": "غَابَ", "babs": ["a~i"]}],
+             "باع": [{"form": "I", "past": "بَاعَ", "babs": ["a~u", "a~i"]}]}
+    return verbs.get(conjugation.bare(word), [])
+
+
+def test_a_hollow_root_is_found_under_its_past():
+    """غيب is how a reader types the root, but the books file غَابَ."""
+    result = verb_forms.babs_of("غيب", sources={"lane": _filed_under_past})
+    assert result["form_key"] == "I-daraba"
+    assert result["readings"][0]["label"].startswith("غَابَ")
+
+
+def test_the_weak_letter_picks_the_bab_of_a_shared_past():
+    """بَاعَ with a~u and a~i: يَبِيعُ belongs to بيع, يَبُوعُ to بوع."""
+    assert verb_forms.babs_of("بيع", sources={"lane": _filed_under_past})["form_key"] == "I-daraba"
+    assert verb_forms.babs_of("بوع", sources={"lane": _filed_under_past})["form_key"] == "I-nasara"
+
+
+def test_a_sound_root_is_never_looked_up_as_hollow():
+    assert verb_forms.babs_of("غلب", sources={"lane": _filed_under_past})["readings"] == []
+
+
+def test_hollow_past_only_names_a_bare_hollow_root():
+    assert conjugation.hollow_past("غيب") == ("غاب", "ي")
+    assert conjugation.hollow_past("قول") == ("قال", "و")
+    assert conjugation.hollow_past("كتب") is None
+    assert conjugation.hollow_past("وعد") is None
+    assert conjugation.hollow_past("طوي") is None
+
+
+def test_every_weak_letter_has_a_hollow_rule():
+    from backend.services.sarf import word
+    assert set(conjugation.babs()["hollow"]) == set(word.WEAK)
+
+
 def test_record_maps_quadriliteral_form_and_drops_unknown_babs():
     assert verb_forms.record("Iq", "زَهْزَهَ", []) == {"form": "IQ", "past": "زَهْزَهَ", "babs": []}
     assert verb_forms.record("I", "كَتَبَ", ["a~u", "z~z"]) == {"form": "I", "past": "كَتَبَ", "babs": ["a~u"]}

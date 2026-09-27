@@ -10,6 +10,12 @@ every verb form filed under the typed word's letters (fold the word with
 file keeps كَتَبَ and كَتَّبَ together); `[]` when the source records nothing.
 `verb_forms._pick` then keeps only the forms whose past matches what was typed.
 
+**Hollow roots are not an adapter's job.** A reader types the root غيب; the
+books file the past غَابَ. When no source answers for the root,
+`babs_of()` asks every source again for `conjugation.hollow_past()` and keeps
+only the babs babs.json's `"hollow"` table allows. File verbs under their past
+as the book does; never add a root-spelling alias in an adapter.
+
 **Registry:** `SOURCES` in `__init__.py`, one name to one function.
 
 **Add a source, in three files plus a test:**
