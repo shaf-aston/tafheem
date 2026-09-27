@@ -9,6 +9,7 @@ from __future__ import annotations
 from fastapi.testclient import TestClient
 
 from backend.main import app
+from backend.scripts import build_lane_verbs
 from backend.services import conjugation, verb_sources
 
 client = TestClient(app)
@@ -62,3 +63,21 @@ def test_two_lane_pasts_typed_bare_gives_both_readings_vowelled_gives_one(monkey
     vowelled = client.post("/api/morphology", json={"word": "حَبِلَ"}).json()["verb"]
     assert len(vowelled["readings"]) == 1
     assert vowelled["readings"][0]["label"] == "حَبِلَ · باب سَمِعَ يَسْمَعُ"
+
+
+def _lane(*runs: str) -> str:
+    """A Lane body: each Arabic run wrapped in the dump's bidi isolates."""
+    fsi, pdi = build_lane_verbs.FSI, build_lane_verbs.PDI
+    return " ".join(r if r.startswith(("aor.", ",", "first", "originally")) else f"{fsi}{r}{pdi}"
+                    for r in runs)
+
+
+def test_build_reads_hollow_samia_past_over_first_pers_and_originally():
+    # Lane's own خوف entry: the aor. follows "originally" and "first pers.", not the past.
+    body = _lane("خَافَ", ",", "originally", "خَوِفَ", ",", "first pers.", "خِفْتُ", ",", "aor.", "يَخَافُ")
+    assert build_lane_verbs.verbs_of("خوف", body) == [{"form": "I", "past": "خَافَ", "babs": ["i~a"]}]
+    # Alif in the past but a damma present stays نَصَرَ, not the سَمِعَ rule.
+    assert build_lane_verbs.verbs_of("قول", _lane("قَالَ", ",", "aor.", "يَقُولُ"))[0]["babs"] == ["a~u"]
+    # Only hollow roots step back: a doubled مَسَّ read past its "first pers." would be a~a.
+    doubled = _lane("مَسَّهُ", ",", "first pers.", "مَسِسْتُهُ", ",", "aor.", "يَمَسُّهُ")
+    assert build_lane_verbs.verbs_of("مسس", doubled) == []

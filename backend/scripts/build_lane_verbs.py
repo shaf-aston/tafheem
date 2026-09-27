@@ -42,6 +42,8 @@ VOWEL = {"َ": "a", "ُ": "u", "ِ": "i"}
 SHORT = "".join(VOWEL)
 SUKUN = "ْ"
 HAMZA_TO_ALIF = str.maketrans("أإآ", "ااا")  # Lane files أكل under اكل
+# Labels Lane puts before a run that sits between a past and its aor. without being it.
+ASIDES = ("first pers.", "originally")
 
 
 def form_one(body: str) -> str:
@@ -54,13 +56,17 @@ def form_one(body: str) -> str:
 
 
 def bab_vowel(token: str) -> str | None:
-    """First short vowel after the second letter; alif counts as a fatha."""
+    """First short vowel after the second letter; a hollow past's alif comes back as "ا".
+
+    That alif is a fatha in قَالَ يَقُولُ, but beside a fatha present (خَافَ
+    يَخَافُ) it hides a kasra, خَوِفَ, so verbs_of() needs to see it as its own mark.
+    """
     letters = 0
     for ch in token:
         if ch.isalpha():
             letters += 1
-            if letters > 2 and ch == "ا":
-                return "a"
+            if letters >= 2 and ch == "ا":
+                return "ا"
         elif letters >= 2 and ch in SHORT:
             return VOWEL[ch]
     return None
@@ -87,7 +93,7 @@ def past_word(token: str, root: str) -> str | None:
             letters += 1
         if ch.isalpha() or ch in SHORT + SUKUN + "ّ":  # the dump's ^ and @ split words
             word += ch
-    if SUKUN in word or not same_root(word, root) or not bab_vowel(word):
+    if SUKUN in word or not same_root(word, root) or not bab_vowel(word) or not set(SHORT) & set(word):
         return None
     return word
 
@@ -95,15 +101,27 @@ def past_word(token: str, root: str) -> str | None:
 def verbs_of(root: str, body: str) -> list[dict]:
     """Every (past, babs) Lane states for this root's Form I."""
     section = form_one(body)
-    known = conjugation.babs()["babs"]
+    table = conjugation.babs()
+    known = table["babs"]
+    hollow = conjugation.hollow_past(root) is not None
     found: dict[str, list[str]] = defaultdict(list)
     for hit in AOR.finditer(section):
-        before = RUN.findall(section[: hit.start()])
-        past = past_word(before[-1], root) if before else None
+        # A hollow entry puts "first pers. خِفْتُ" or "originally خَوِفَ" between
+        # the past and its aor.; the first is no past (sukun) and the second is
+        # not the spelling a reader types, so step back over runs so labelled,
+        # and only those. Hollow roots only: a doubled verb's "first pers.
+        # مَسِسْتُ" is the one run that shows its vowel, so it stays.
+        runs = list(RUN.finditer(section, 0, hit.start()))
+        while (hollow and len(runs) > 1
+               and section[:runs[-1].start()].rstrip(" [").endswith(ASIDES)):
+            runs.pop()
+        past = past_word(runs[-1].group(1), root) if runs else None
         if not past:
             continue
         present = [hit.group(1), *RUN.findall(hit.group(2))]
-        for code in (f"{bab_vowel(past)}~{bab_vowel(p)}" for p in present):
+        pairs = ((bab_vowel(past), bab_vowel(p)) for p in present)
+        for code in (table["hollow_alif"] if pair == ("ا", "a") else "~".join(pair).replace("ا", "a")
+                     for pair in pairs if None not in pair):
             # A pair babs.json does not name (u~a) is a misread run, not a seventh bab.
             if code in known and code not in found[past]:
                 found[past].append(code)
