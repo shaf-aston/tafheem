@@ -19,15 +19,14 @@ import { GoButton } from './ui/RootActions'
 import SearchBox from './ui/SearchBox'
 
 export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSearch, onHeard, busy, accent }) {
-  const read = useMemo(() => readQuranQuery(value), [value])
-  const { kind, surahs, ayah, problem } = read
+  const { kind, surahs, ayah, problem } = useMemo(() => readQuranQuery(value), [value])
   const isPlace = kind === KIND.ayah || kind === KIND.surah
 
-  // A place opens only if its ayah exists there; the words are always searchable.
+  // A place opens only if its ayah exists there; `problem` says so for the first.
   const open = (m) => { if (!ayahProblem(m, ayah)) onOpen(m, ayah) }
   const submit = () => {
     if (kind === KIND.text) onSearch(value.trim())
-    else if (isPlace && !problem && surahs[0]) open(surahs[0])
+    else if (!problem && surahs[0]) open(surahs[0])
   }
 
   return (
@@ -35,7 +34,7 @@ export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSea
       <SearchBox
         id="quran-search"
         label="Surah, ayah or Arabic text"
-        hint="Nisa 45, 2:255, or the words; Enter, or recite it"
+        hint="Enter to search, or recite it"
         placeholder="Nisa 45, 2:255 or الحمد لله"
         value={value}
         onChange={onChange}

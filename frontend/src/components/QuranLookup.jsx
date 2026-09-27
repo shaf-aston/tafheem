@@ -40,9 +40,8 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
 
   // The one box: a place or the words. What it is read as is lib/quranIntent's.
   const [query, setQuery] = useState('')
-  // Whether the list of matches (searched or heard) is the thing being looked
-  // at. Opening one of them, or a surah, puts it away, as switching back to the
-  // reference form used to.
+  // Whether the matches (searched or heard) are on screen: opening an ayah or
+  // a surah puts them away.
   const [showMatches, setShowMatches] = useState(false)
   // The ayahs a recitation might have been. Kept apart from the typed search's
   // results because they are a different claim: a search found these words, a
@@ -72,7 +71,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   const { mutate: lookupRoot } = rootLookup
   const { mutate: lookupAyahRef } = ayahLookup
 
-  // The fields follow an arrival during the render. App no longer remounts this
+  // The page follows an arrival during the render. App no longer remounts this
   // panel for one, that remount faded the whole page back in and read as a
   // flash (see lib/useArrival), and what the last arrival left open is not
   // about this one: a surah left open for reading would sit on top of the ayah
@@ -124,7 +123,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
 
   const openResult = (r) => {
     setShowMatches(false)
-    ayahLookup.mutate({ s: r.surah, a: r.ayah, d: false })
+    ayahLookup.mutate({ s: r.surah, a: r.ayah })
   }
 
   const busy = ayahLookup.isPending || search.isPending
@@ -195,7 +194,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
           ayah stays put underneath, since a new search is not closing it. */}
       {showMatches && (
         heard ? (
-          <SearchResults results={heard} onSelect={(r) => { setHeard(null); openResult(r) }} accent={accent} />
+          <SearchResults results={heard} onSelect={openResult} accent={accent} />
         ) : search.data ? (
           <div aria-busy={search.isPending} className={`transition-opacity ${search.isPending ? 'opacity-60' : ''}`}>
             <SearchResults results={search.data} onSelect={openResult} accent={accent} />
