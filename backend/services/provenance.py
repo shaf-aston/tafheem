@@ -22,6 +22,19 @@ def _sources() -> dict:
     return {key: value for key, value in data.items() if not key.startswith("_")}
 
 
+@lru_cache(maxsize=1)
+def _links() -> dict:
+    return json.loads(SOURCES_FILE.read_text(encoding="utf-8")).get("_links", {})
+
+
+def _resolve(url: str) -> str:
+    """'@name' or '@name:path' becomes the shared address in _links, plus path."""
+    if not url.startswith("@"):
+        return url
+    name, _, path = url[1:].partition(":")
+    return _links()[name] + path
+
+
 def of(key: str) -> dict:
     """One source as the API returns it. An unknown key is a bug, so it says so
     rather than quietly claiming the fact came from nowhere."""
@@ -57,7 +70,7 @@ def for_edition(edition: dict) -> dict:
 
 def url_for(key: str) -> str:
     """The download a build script needs, kept beside the attribution it belongs to."""
-    return _sources()[key].get("url", "")
+    return _resolve(_sources()[key].get("url", ""))
 
 
 def all_sources() -> list[dict]:
@@ -75,7 +88,7 @@ def all_sources() -> list[dict]:
     return [
         {
             **of(key),
-            "url": source.get("url", ""),
+            "url": _resolve(source.get("url", "")),
             "where": source.get("where", ""),
             "used_in": source.get("used_in", []),
         }

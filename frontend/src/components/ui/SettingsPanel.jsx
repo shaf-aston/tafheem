@@ -186,18 +186,21 @@ function Setting({ setting }) {
   )
 }
 
+// Reference list copy, in one place.
+const REFS = {
+  title: 'References',
+  intro: 'Every source an answer can come from.',
+  pending: 'Loading…',
+  error: 'Backend unreachable; list not loaded.',
+  noLink: 'No public copy',
+}
+
+/** Host of a URL, shown instead of the full address. */
+const hostOf = (url) => new URL(url).hostname.replace(/^www\./, '')
+
 /**
- * Everything the app is built on, in one place.
- *
- * The line at the foot of a tab says what that tab reads. This is the whole
- * list, for the reader who wants to know once what the app rests on: what each
- * source is in plain words, how far it can be trusted, where it physically
- * lives, and a link to the thing itself where there is one to give.
- *
- * Closed by default, it is reference, not a setting, and it is long. Kept
- * inside Settings rather than given a page of its own because it is read once
- * and then rarely, and a sixth tab for it would cost every reader screen space
- * for something most of them look at twice.
+ * Every source the app rests on: name, trust level, one line, link.
+ * Wording lives in data/sources.json; trust wording in lib/confidence.js.
  */
 function SourceList() {
   const { sources, isPending, isError } = useSources()
@@ -208,27 +211,16 @@ function SourceList() {
       className="border-t border-[var(--border)] pt-4"
       label={
         <>
-          References
+          {REFS.title}
           {sources.length > 0 && (
             <span className="text-[var(--text-faint)] font-normal"> · {sources.length}</span>
           )}
         </>
       }
     >
-      <p className="type-small text-[var(--text-faint)] leading-snug mt-2">
-        Every place an answer in this app can come from. Nothing is shown without one.
-      </p>
-
-      {isPending && (
-        <p className="type-small text-[var(--text-faint)] mt-3">Asking the backend…</p>
-      )}
-
-      {isError && (
-        <p className="type-small text-[var(--warn)] mt-3">
-          Couldn&rsquo;t reach the backend, so this list can&rsquo;t be shown. It is not
-          empty. It is unread.
-        </p>
-      )}
+      <p className="type-small text-[var(--text-faint)] mt-2">{REFS.intro}</p>
+      {isPending && <p className="type-small text-[var(--text-faint)] mt-3">{REFS.pending}</p>}
+      {isError && <p className="type-small text-[var(--warn)] mt-3">{REFS.error}</p>}
 
       <ul className="mt-3 space-y-3">
         {sources.map((source) => (
@@ -239,56 +231,29 @@ function SourceList() {
   )
 }
 
-/** One source: what it is, how far to trust it, where it lives, and a link. */
 function SourceRow({ source }) {
   const level = levelOf(source)
+  const faint = 'type-small text-[var(--text-faint)] leading-snug'
 
   return (
-    <li className="space-y-1">
+    <li className="space-y-0.5">
       <div className="flex items-baseline justify-between gap-2 flex-wrap">
         <span className="text-sm text-[var(--text)]">{source.label}</span>
-        <span className="type-small shrink-0" style={{ color: level.color }}>
-          {level.say}
-        </span>
+        <span className="type-small shrink-0" style={{ color: level.color }}>{level.say}</span>
       </div>
-
-      {/* Two sentences with two jobs, and this is the one page with room for
-          both. `where` says where the thing physically lives. `detail` says what
-          it is and how far it can be trusted, for the sources that have been
-          measured it carries the numbers, and those were reaching nobody while
-          this row showed only one of the two.
-
-          Skipped where it is shorter than `where`: for most sources `detail` is
-          the short phrase written for a badge tooltip, and printing it under a
-          fuller sentence says the same thing twice. Length is a proxy for that,
-          not a rule about writing, a `detail` that grows past its `where` has
-          stopped being a badge phrase. */}
-      <p className="type-small text-[var(--text-faint)] leading-snug">
-        {source.where || source.detail}
-      </p>
-
-      {source.where && source.detail?.length > source.where.length && (
-        <p className="type-small text-[var(--text-faint)] leading-snug">
-          {source.detail}
-        </p>
-      )}
-
+      <p className={faint} title={source.detail}>{source.where || source.detail}</p>
       {source.url ? (
         <a
           href={source.url}
           target="_blank"
           rel="noreferrer noopener"
           className="type-small text-[var(--text-dim)] underline underline-offset-2
-            hover:text-[var(--text)] transition-colors break-all"
+            hover:text-[var(--text)] transition-colors"
         >
-          {source.url}
+          {hostOf(source.url)}
         </a>
       ) : (
-        // Saying why there is no link matters: a missing address here means
-        // "there is nothing public to point at", never "we lost track of it".
-        <p className="type-small text-[var(--text-faint)] italic">
-          Nothing public to link to. It lives on this machine or in print.
-        </p>
+        <p className={`${faint} italic`}>{REFS.noLink}</p>
       )}
     </li>
   )
