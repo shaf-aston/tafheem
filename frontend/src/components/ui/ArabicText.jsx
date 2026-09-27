@@ -10,12 +10,26 @@
  *
  * Size is a prop, not a class a caller writes, so the four sizes in
  * index.css stay the only sizes any of this text can be.
+ *
+ * Qur'anic text is recognised by its own spelling, not by who shows it: an
+ * ayah carries marks no other Arabic does (ٱ, ۟, the waqf signs), and the face
+ * that draws everyday Arabic well stacks them badly. So the element says
+ * data-script="quran" and index.css swaps the face, as it does for Urdu, and
+ * no page has to remember to ask.
  */
+import { isQuranic, textOf } from '../../lib/arabicText'
+
 const SIZES = { tiny: 'arabic-tiny', sm: 'arabic-sm', base: 'arabic', lg: 'arabic-lg' }
 
 export default function ArabicText({ as: Tag = 'span', size = 'base', lang = 'ar', className = '', children, ...props }) {
   return (
-    <Tag className={`${SIZES[size]} ${className}`.trim()} lang={lang} dir="rtl" {...props}>
+    <Tag
+      className={`${SIZES[size]} ${className}`.trim()}
+      lang={lang}
+      dir="rtl"
+      data-script={isQuranic(textOf(children)) ? 'quran' : undefined}
+      {...props}
+    >
       {children}
     </Tag>
   )

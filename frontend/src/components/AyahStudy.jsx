@@ -37,6 +37,7 @@ import { GoButton } from './ui/RootActions'
 import Tooltip from './ui/Tooltip'
 import AyahTafsir from './AyahTafsir'
 import ArabicText from './ui/ArabicText'
+import GlossWord from './ui/GlossWord'
 import ErrorAlert from './ui/ErrorAlert'
 import RetryButton from './ui/RetryButton'
 import { Skeleton } from './ui/Skeleton'
@@ -286,20 +287,19 @@ function AyahText({ words, endMark, accent, lit, openWord, onToggle }) {
         return (
           <span key={key} style={{ '--c': posColor(word.pos) }}>
             {i > 0 && ' '}
-            <button
+            <GlossWord
+              as="button"
               type="button"
+              gloss={word.meaning}
+              lit={i === lit}
               onClick={() => onToggle(key)}
               aria-expanded={openWord === key}
-              className={`gloss-word${i === lit ? ' gloss-word-lit' : ''}`}
             >
               {/* The printed spelling, waqf marks included where the mushaf
                   carries one; falls back to the corpus spelling if a build
                   predates that data. */}
               {word.uthmani || word.arabic}
-              {word.meaning && (
-                <span className="gloss-tip" lang="en" dir="ltr">{word.meaning}</span>
-              )}
-            </button>
+            </GlossWord>
           </span>
         )
       })}

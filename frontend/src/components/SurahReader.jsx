@@ -29,6 +29,7 @@ import { useRemembered } from '../lib/useRemembered'
 
 import AyahTafsir from './AyahTafsir'
 import ArabicText from './ui/ArabicText'
+import GlossWord from './ui/GlossWord'
 import ErrorAlert from './ui/ErrorAlert'
 import PlayAyah from './ui/PlayAyah'
 import RetryButton from './ui/RetryButton'
@@ -79,15 +80,7 @@ function GlossedAyah({ arabic, english, lit = -1 }) {
       {arabic.split(' ').map((word, i) => (
         <span key={i}>
           {i > 0 && ' '}
-          <span className={`gloss-word${i === lit ? ' gloss-word-lit' : ''}`}>
-            {word}
-            {/* lang and dir stated on the English itself: it sits inside a
-                right-to-left line, and without them a gloss like "(is) for
-                Allah" has its bracket thrown to the wrong end. */}
-            {english && (
-              <span className="gloss-tip" lang="en" dir="ltr">{english[i]}</span>
-            )}
-          </span>
+          <GlossWord gloss={english?.[i]} lit={i === lit}>{word}</GlossWord>
         </span>
       ))}
     </ArabicText>
