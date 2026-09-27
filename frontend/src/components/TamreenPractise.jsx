@@ -115,7 +115,7 @@ function GridPart({ part, picks, onToggle, checked }) {
               <tr key={row} className="border-t border-[var(--border)]">
                 {/* Allowed to wrap: a tarkeeb row names a whole phrase, and held on one line it pushed the choices off a phone. */}
                 <th className="text-right font-normal py-2 pr-3 w-1/3 sm:w-auto">
-                  <span className="arabic-lg">{rowName(part, row)}</span>
+                  <ArabicText size="lg">{rowName(part, row)}</ArabicText>
                 </th>
                 <td className="py-2">
                   <div className="flex flex-wrap gap-1.5">
