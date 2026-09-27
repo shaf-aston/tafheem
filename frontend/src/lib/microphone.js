@@ -46,6 +46,9 @@ export const asked = {
   },
 }
 
+/** What to say when canRecord() is false. */
+export const CANNOT_RECORD = 'This browser cannot record.'
+
 /** True when this browser can record at all. Ask before opening. */
 export const canRecord = () => Boolean(navigator.mediaDevices?.getUserMedia)
 
@@ -67,7 +70,28 @@ export const openMicrophone = async () => {
 }
 
 /**
- * A recorder for an open microphone. Named here so the reciting session can be
- * handed a scripted one in tests: the browser's own is the only other kind.
+ * What to tell the reader when openMicrophone() throws, one sentence each for
+ * the cases they can do something different about. Here so the button and
+ * reciting say the same thing: "not allowed" sends them to the browser's
+ * permission, "none found" to plugging one in, "in use" to closing a call.
+ */
+export const refusal = (error) => {
+  switch (error?.name) {
+    case 'NotAllowedError':
+    case 'SecurityError':
+      return 'The microphone was not allowed.'
+    case 'NotFoundError':
+    case 'OverconstrainedError':
+      return 'No microphone was found.'
+    case 'NotReadableError':
+      return 'The microphone is in use by another app.'
+    default:
+      return 'The microphone could not be opened.'
+  }
+}
+
+/**
+ * A recorder for an open microphone. Named here so both recorders make it the
+ * same way, and the reciting session can be handed a scripted one in tests.
  */
 export const createRecorder = (stream) => new MediaRecorder(stream)

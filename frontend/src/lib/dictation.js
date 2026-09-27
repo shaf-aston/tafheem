@@ -1,6 +1,6 @@
 /**
  * When a recording should stop itself. Pure, so it is tested without a microphone.
- * ui/MicButton.jsx meters the sound; this decides what the meter means.
+ * watchForVoice below meters a live microphone; the rest decides what the meter means.
  */
 import config from '../dictation.json'
 

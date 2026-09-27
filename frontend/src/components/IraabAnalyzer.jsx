@@ -83,7 +83,7 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
           multiline
         >
           <MicButton
-            onHeard={({ text }) => setSentence(text || '')}
+            onHeard={({ text }) => setSentence(text)}
             accent={accent}
             title="Say the sentence"
           />

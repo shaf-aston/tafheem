@@ -162,7 +162,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
           {/* A word, not an ayah: the dictionary looks up whatever was said,
               so it asks only for the words and never for a list of ayahs. */}
           <MicButton
-            onHeard={({ text }) => { setQuery(text || ''); mutation.reset() }}
+            onHeard={({ text }) => { setQuery(text); mutation.reset() }}
             accent={accent}
             title="Say the word"
           />
