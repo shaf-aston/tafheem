@@ -116,6 +116,11 @@ credentials.json
 # from the database itself, and *.db above does not match their names.
 *.db-wal
 *.db-shm
+# The recorded tarkeeb is the exception: 15 MB, and its source (the treebank's
+# .rar) cannot be unpacked on the server, so it ships with the code and the
+# server's sync copies it like any other tracked data file. Rebuild it with
+# backend/scripts/build_tarkeeb.py whenever that script or tarkeeb.json changes.
+!backend/data/tarkeeb/tarkeeb.db
 
 # Large datasets / media
 # Project-specific large folders (ignore if you don't want to track large books/datasets)
