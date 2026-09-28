@@ -203,3 +203,17 @@ export const JOURNAL_PATH = '/api/journal'
 // A batch of what reciting did. 204 back, nothing to read, so nothing chains
 // off it; lib/journal.js only cares whether the call threw.
 export const postJournal = (events) => api.post('/journal', { events })
+
+// The spoken dialects with their unit and lesson titles, and nothing else: the
+// Colloquial tab opens on this list and a unit is sixty kilobytes on its own.
+export const getColloquial = () =>
+  api.get('/colloquial').then((r) => r.data)
+
+// One whole unit, every lesson in it. Sent whole because a learner moves between
+// a unit's lessons freely, so paging would only add a wait mid-lesson.
+export const getColloquialUnit = (dialect, unit) =>
+  api.get(`/colloquial/${encodeURIComponent(dialect)}/${encodeURIComponent(unit)}`).then((r) => r.data)
+
+// A phrase picture: `file` is the path the lesson names, like "damascene/unit-01/greeting.jpg".
+export const colloquialImageUrl = (file) =>
+  `${api.defaults.baseURL}/colloquial/image/${file.split('/').map(encodeURIComponent).join('/')}`

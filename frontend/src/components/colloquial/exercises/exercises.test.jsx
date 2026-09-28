@@ -1,0 +1,49 @@
+import { renderToStaticMarkup } from 'react-dom/server'
+import { describe, expect, it } from 'vitest'
+import { blankValue, rendererFor } from '../../../lib/exercises/registry'
+import ExerciseHost from '../ExerciseHost'
+
+const base = { id: 'u.l.x.01', prompt: 'Say hello', answer: 'مرحبا', accepted: ['مرحبا'] }
+const draw = (exercise) => renderToStaticMarkup(<ExerciseHost exercise={exercise} />)
+
+describe('exercise registry', () => {
+  it('has a renderer for each of the five types and none for a stranger', () => {
+    for (const type of ['reply', 'fill_blank', 'translate_to_arabic', 'choose', 'reorder']) {
+      expect(rendererFor(type)).toBeTruthy()
+    }
+    expect(rendererFor('telepathy')).toBeNull()
+    expect(blankValue('reorder')).toEqual([])
+    expect(blankValue('reply')).toBe('')
+  })
+})
+
+describe('ExerciseHost', () => {
+  it('draws each type with its prompt and a disabled Check', () => {
+    const types = {
+      reply: {},
+      choose: { options: ['مرحبا', 'شكرا', 'يلا'] },
+      reorder: { answer: 'شو اسمك', accepted: ['شو اسمك'] },
+    }
+    for (const [type, extra] of Object.entries(types)) {
+      const html = draw({ ...base, type, ...extra })
+      expect(html).toContain('Say hello')
+      expect(html).toContain('disabled')
+    }
+  })
+  it('an unknown type is a visible note, not blank', () => {
+    expect(draw({ ...base, type: 'telepathy' })).toContain('cannot show yet')
+  })
+  it('an answered exercise comes back as it was left, marked and read-only', () => {
+    const html = renderToStaticMarkup(
+      <ExerciseHost exercise={{ ...base, type: 'reply' }} saved={{ correct: false, value: 'هلا' }} />,
+    )
+    expect(html).toContain('value="هلا"')
+    expect(html).toContain('The natural answer is')
+    expect(html).not.toContain('Check')
+  })
+  it('picture options draw their labels', () => {
+    const html = draw({ ...base, type: 'choose', options: [{ label: 'قهوة', image: 'a/b.jpg' }, 'شاي', 'ماء'] })
+    expect(html).toContain('قهوة')
+    expect(html).toContain('/colloquial/image/a/b.jpg')
+  })
+})
