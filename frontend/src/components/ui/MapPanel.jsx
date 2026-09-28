@@ -21,6 +21,7 @@ import { useEffect, useRef, useState } from 'react'
 import ArabicText from './ArabicText'
 import PbsChart from './PbsChart'
 import PbsDetail from './PbsDetail'
+import './pbs.css'
 import { CHARTS } from '../../lib/pbsData'
 
 const ZOOM_MIN = 0.7
@@ -149,6 +150,10 @@ function MapIndex({ onOpen }) {
     g.items.push(chart)
   }
 
+  // A running index across every card, groups included, so the stagger reads
+  // top to bottom the way the eye does, not restarting at each group.
+  let seen = 0
+
   return (
     <div className="p-5 max-w-[64rem]">
       <p className="type-small text-[var(--text-dim)] max-w-[42rem] mb-6">
@@ -162,23 +167,28 @@ function MapIndex({ onOpen }) {
             {g.name}
           </h3>
           <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(14rem, 1fr))' }}>
-            {g.items.map((chart) => (
-              <button
-                key={chart.id}
-                type="button"
-                onClick={() => onOpen(chart.id)}
-                className="text-right p-4 rounded-[var(--radius-md)] border border-[var(--border)]
-                  border-r-4 bg-[var(--surface-hi)] hover:-translate-y-0.5 hover:shadow-lg transition-all"
-                style={{ borderRightColor: chart.accent }}
-              >
-                <p className="type-tiny tracking-widest font-bold text-[var(--text-faint)]">{chart.id}</p>
-                <ArabicText as="p" size="lg" className="my-0.5" style={{ color: chart.accent }}>
-                  {chart.ar}
-                </ArabicText>
-                <p className="type-small text-[var(--text-dim)]">{chart.en}</p>
-                <p className="type-tiny text-[var(--text-faint)] mt-1.5">{chart.frame}</p>
-              </button>
-            ))}
+            {g.items.map((chart) => {
+              const delay = seen++
+              return (
+                <button
+                  key={chart.id}
+                  type="button"
+                  onClick={() => onOpen(chart.id)}
+                  className="pbs-card pbs-rise text-right p-4 rounded-[var(--radius-md)] border border-[var(--border)]
+                    border-r-4 bg-[var(--surface-hi)]"
+                  style={{ borderRightColor: chart.accent, '--d': `${delay * 55}ms` }}
+                >
+                  <span className="pbs-ghost" style={{ color: chart.accent }} aria-hidden="true">{chart.id}</span>
+                  <span className="pbs-go text-[var(--text-faint)]" aria-hidden="true">↗</span>
+                  <p className="type-tiny tracking-widest font-bold text-[var(--text-faint)] relative">{chart.id}</p>
+                  <ArabicText as="p" size="lg" className="my-0.5 relative" style={{ color: chart.accent }}>
+                    {chart.ar}
+                  </ArabicText>
+                  <p className="type-small text-[var(--text-dim)] relative">{chart.en}</p>
+                  <p className="type-tiny text-[var(--text-faint)] mt-1.5 relative">{chart.frame}</p>
+                </button>
+              )
+            })}
           </div>
         </section>
       ))}

@@ -11,6 +11,7 @@
  * many-sizes diagram needs the pixel sizes tuned for it, not the prose size
  * ladder ArabicText hands out elsewhere in the app.
  */
+import './pbs.css'
 import { layoutChart } from '../../lib/pbsLayout'
 
 const M_ = 18
@@ -40,7 +41,7 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onSelect
         ))}
       </defs>
 
-      <g>
+      <g className="pbs-rise">
         <rect x={L.root.x} y={L.root.y} width={L.root.w} height={L.root.h} rx="14" fill="#1e293b" />
         <text x={L.root.cx} y={L.root.textY} textAnchor="middle" fontSize="28" fontWeight="700" fill="#fff" lang="ar" dir="rtl">
           {config.root.ar}
@@ -56,12 +57,16 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onSelect
       {L.branches.map(({ branch: b, i, box, stemPath, spinePath, kids }) => {
         const active = activeBranch == null || activeBranch === i
         return (
-          <g key={i} opacity={active ? 1 : 0.18} style={{ transition: 'opacity .25s ease' }}>
+          <g
+            key={i}
+            className="pbs-rise"
+            style={{ '--d': `${120 + i * 70}ms`, opacity: active ? 1 : 0.18, transition: 'opacity .25s ease' }}
+          >
             <path d={stemPath} stroke="var(--border-hi)" strokeWidth="1.6" fill="none" markerEnd="url(#pbs-m-root)" />
             <g
               role="button"
               tabIndex={0}
-              className="cursor-pointer"
+              className="pbs-branch cursor-pointer"
               onMouseEnter={() => onHoverBranch?.(i)}
               onMouseLeave={() => onHoverBranch?.(null)}
               onClick={() => onSelectBranch?.(i)}
@@ -77,12 +82,12 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onSelect
             </g>
             <path d={spinePath} stroke={b.c.bar} strokeWidth="1.5" fill="none" />
             {kids.map(({ kid: k, j, box: kbox, connectorPath }) => (
-              <g key={j}>
+              <g key={j} className="pbs-rise" style={{ '--d': `${220 + i * 70 + j * 26}ms` }}>
                 <path d={connectorPath} stroke={b.c.bar} strokeWidth="1.5" fill="none" markerEnd={`url(#pbs-m${i})`} />
                 <g
                   role="button"
                   tabIndex={0}
-                  className="cursor-pointer"
+                  className="pbs-kid cursor-pointer"
                   onClick={() => onSelectKid?.(i, j)}
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelectKid?.(i, j) } }}
                 >
@@ -101,7 +106,7 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onSelect
         )
       })}
 
-      <g>
+      <g className="pbs-rise" style={{ '--d': `${400 + L.branches.length * 70}ms` }}>
         <line x1={M_} y1={L.rule} x2={L.width - M_} y2={L.rule} stroke="var(--border)" strokeWidth="1" />
         {config.footnote.map((line, i) => (
           <text key={i} x={M_} y={L.rule + 25 + i * 18} fontSize="11.5" fill="var(--text-faint)">
