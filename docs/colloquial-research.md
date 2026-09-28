@@ -6,7 +6,7 @@ Goal: cross-check model-written Damascene phrases against something a model did 
 
 | Source | What | Licence | Use |
 |---|---|---|---|
-| DDDA (dc_apc_eng) | Digital Dictionary of Damascene Arabic, Damascus only, built from Prochazka's textbook; English, German, Spanish | CC BY 4.0 (CLARIN record) | Best find. Download via https://hdl.handle.net/21.11115/0000-0011-49E8-6 in a browser (agent got 403). Size and format unconfirmed. |
+| DDDA (dc_apc_eng) | Digital Dictionary of Damascene Arabic, Damascus only, built from Prochazka's textbook; English, German, Spanish | CC BY 4.0 (CLARIN record) | Best find. Downloaded and integrated (`reference/ddda.xml`, untracked, 5 MB). Unit 1 check: 73 distinct words, 10 in no reference, left for a native reviewer (`check_colloquial_words.py`). |
 | Nabra | Syrian, ~60K words, per-word spelling, dialect lemma, gloss; Damascus among 10 varieties | CC BY 4.0 | Word lookup. Access by request form (Shaf submits). |
 | Wiktionary (North Levantine, apc) | 764 lemmas, Syria and Lebanon | CC BY-SA | Live lookup for spelling, sound, gloss. Copying carries share-alike. |
 | Tatoeba (apc) | 100+ sentences | CC BY 2.0 FR (not opened) | Does a whole phrase sound natural. |
@@ -34,7 +34,7 @@ UFAL North Levantine, 120K subtitle sentences, real but CC BY-NC-SA and not Dama
 
 ## Open decisions
 
-0. Download DDDA in a browser and check size, format, whether it holds phrases or only headwords.
+0. DONE: DDDA downloaded and checked against Unit 1.
 1. Shaf submits the Nabra form (needs him).
 2. Find a native Damascene reviewer for the leftover list.
-3. Run the ladder on Unit 1 (56 phrases) once DDDA is downloaded.
+3. Run the ladder on Unit 1 (56 phrases).

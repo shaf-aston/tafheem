@@ -31,7 +31,7 @@ from fastapi import APIRouter, File, HTTPException, Query, Request, Response, Up
 from starlette.concurrency import run_in_threadpool
 
 from backend.config import get_settings
-from backend.models.schemas import Heard, HeardAyah, Sureness
+from backend.models.schemas import Heard, HeardAyah, Sureness, TextSureness
 from backend.services import journal, recitation
 from backend.services.recitation import NotInstalled, Unreadable
 from backend.services.recitation.recording import kind_of
@@ -323,3 +323,54 @@ async def listen_check(
 
         filed.done(200)
         return Sureness(sure=sure)
+
+
+@router.post("/check-text", response_model=TextSureness)
+async def listen_check_text(
+    request: Request,
+    response: Response,
+    audio: UploadFile = File(..., description="The same recording the words reading already heard"),
+    heard: str = Query(..., description="What that reading wrote down"),
+    expected: str = Query(..., description="The phrase the reader was asked to say, vowelled"),
+) -> TextSureness:
+    """How sure the ear is of each word of a phrase that is not an ayah.
+
+    The same as /check in every way that matters, the same limits, the same
+    turn on this machine's model, but for words the page shows by themselves
+    (Grow's takbir, tashahhud and the rest), which have no ayah key to name.
+    """
+    settings = get_settings()
+    with _filing(request, response, "check-text") as filed:
+        if len(heard) > settings.recitation_check_heard_max_chars or len(expected) > settings.recitation_check_heard_max_chars:
+            raise filed.fail(
+                422,
+                f"heard and expected must each be at most {settings.recitation_check_heard_max_chars} characters.",
+                "validate",
+            )
+
+        body = await _read_recording(audio, filed)
+        journal.note("check-text.received", bytes=len(body), chars=len(expected))
+
+        if not body or not heard.strip() or not expected.strip():
+            filed.done(200)
+            return TextSureness(sure=[])
+        _refuse_unless_audio(body, filed)
+
+        async with _my_turn(request, "check-text") as wanted:
+            if not wanted:
+                filed.done(200)
+                return TextSureness(sure=[])
+
+            try:
+                sure = await run_in_threadpool(recitation.check_text, body, heard, expected)
+            except Exception as exc:
+                log.exception("checking a phrase failed")
+                raise filed.fail(
+                    500,
+                    f"The app failed while checking this recording (reading {filed.id}). "
+                    "Your recitation was not the problem.",
+                    "check", exc,
+                ) from None
+
+        filed.done(200)
+        return TextSureness(sure=sure)

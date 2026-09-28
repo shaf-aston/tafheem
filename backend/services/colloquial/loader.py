@@ -27,11 +27,30 @@ logger = logging.getLogger(__name__)
 SOURCE = "colloquial"
 
 
+def _credit(image: str) -> dict:
+    """Who took a picture, under what licence, and where it came from.
+
+    Read from the attribution.json the fetch script keeps beside the pictures.
+    Empty when there is no entry, which `_phrase_faults` reports, because a
+    licence that asks for credit is not met by a picture shown without one.
+    """
+    folder = (data_path("colloquial_dir") / "images").resolve()
+    target = (folder / image).resolve()
+    try:
+        entry = json.loads((target.parent / "attribution.json").read_text(encoding="utf-8"))[target.name]
+    except (OSError, KeyError, ValueError):
+        return {}
+    licence = f"CC {entry['license'].upper()} {entry.get('license_version', '')}".strip()
+    return {"credit": f"{entry['creator']}, {licence}", "credit_url": entry["foreign_landing_url"]}
+
+
 def _phrase_faults(phrase: dict, name: str) -> list[str]:
     said = [f"{name} has no {field}" for field in ("arabic", "transliteration", "english")
             if not str(phrase.get(field) or "").strip()]
     if phrase.get("image") and image_path(phrase["image"]) is None:
         said.append(f"{name} names a picture that is not on disk: {phrase['image']}")
+    elif phrase.get("image") and not phrase.get("credit"):
+        said.append(f"{name} has a picture with no entry in attribution.json: {phrase['image']}")
     reply = phrase.get("reply")
     if reply is not None:
         said.extend(_phrase_faults(reply, f"{name} reply"))
@@ -109,6 +128,10 @@ def _content() -> dict:
         units = []
         for path in sorted(folder.glob("unit-*.json")):
             unit = json.loads(path.read_text(encoding="utf-8"))
+            for lesson in unit.get("lessons", []):
+                for phrase in lesson.get("phrases", []):
+                    if phrase.get("image"):
+                        phrase.update(_credit(phrase["image"]))
             if faults := _unit_faults(unit):
                 broken.append(f"{dialect['key']}/{path.name}: " + "; ".join(faults))
             units.append(unit)

@@ -195,6 +195,20 @@ export const checkReading = (recording, { heard = '', check = [], signal, readin
     .then((r) => r.data)
 }
 
+// How sure the ear is of each word of `expected`, a phrase that is not an ayah
+// (Grow's takbir, tashahhud and the rest), from the same recording `listen`
+// wrote `heard` down from. One number per word, in order.
+export const checkText = (recording, { heard = '', expected = '' } = {}) => {
+  const body = new FormData()
+  body.append('audio', recording, 'recitation.webm')
+  const asked = new URLSearchParams({ heard, expected })
+  return api.post(`/listen/check-text?${asked}`, body, { headers: { 'Content-Type': undefined } })
+    .then((r) => r.data)
+}
+
+// Grow's paths: the steps to learn and a scholar's words on each.
+export const getGrowPaths = () => api.get('/grow/paths').then((r) => r.data)
+
 // Where lib/journal.js's trail of reciting events goes. Its own constant
 // because sendBeacon cannot go through axios and needs the full path, not
 // just what api.post's baseURL would fill in.

@@ -1,0 +1,9 @@
+{
+  "_comment": "Grow's numbers. The rules that use them are in lib/grow.js.",
+
+  "_clean-days": "How many different days a step must be said with every word right before it counts as mastered. One clean run can be luck or a fresh memory; the same words right again on another day is what knowing them looks like. The score counts only mastered steps.",
+  "clean-days": 2,
+
+  "_storage-key": "Where the reader's record is kept in this browser. Nothing of it leaves the device except the anonymous attempt lib/progress.js already sends for every module.",
+  "storage-key": "grow-record"
+}
