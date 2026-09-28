@@ -1,36 +1,55 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useSyncExternalStore } from 'react'
 
 /**
- * Which hadiths a reader has starred, kept in this browser only.
+ * The hadiths a reader has starred, kept in this browser only.
  *
- * No backend: tafheem has nowhere else that remembers one reader's own
- * choices, so this stays local rather than inventing a second storage model
- * for one small feature. Shaped like lib/useHistory: a plain array behind
- * localStorage, read once and written on every change.
+ * The hadith itself is stored, not just its id, so the Starred view can print
+ * it without asking the backend. One store shared by every caller: the star in
+ * a book, the star in a search hit and the Starred count must all agree the
+ * moment one is pressed, which separate copies of the state would not.
  */
 const KEY = 'hadith-favorites'
 
-const keyOf = ({ collection, number, part = '' }) => `${collection}:${number}${part}`
+export const keyOf = ({ collection, number, part = '' }) => `${collection}:${number}${part}`
+
+const read = () => {
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || '[]')
+    return Array.isArray(saved) ? saved.filter((h) => h && typeof h === 'object') : []
+  } catch {
+    return []
+  }
+}
+
+let items = read()
+const listeners = new Set()
+
+const subscribe = (fn) => {
+  listeners.add(fn)
+  return () => listeners.delete(fn)
+}
+
+function save(next) {
+  items = next
+  try {
+    localStorage.setItem(KEY, JSON.stringify(next))
+  } catch {
+    /* private browsing, the star still works for this session */
+  }
+  listeners.forEach((fn) => fn())
+}
+
+/** Star or unstar; a newly starred hadith goes first. Exported for the test. */
+export function toggleFavorite(hadith) {
+  const key = keyOf(hadith)
+  const { collection, number, part = '', arabic, english = '' } = hadith
+  save(items.some((h) => keyOf(h) === key)
+    ? items.filter((h) => keyOf(h) !== key)
+    : [{ collection, number, part, arabic, english }, ...items])
+}
 
 export function useHadithFavorites() {
-  const [favorites, setFavorites] = useState(() => {
-    try { return JSON.parse(localStorage.getItem(KEY) || '[]') } catch { return [] }
-  })
-
-  const isFavorite = useCallback((hadith) => favorites.includes(keyOf(hadith)), [favorites])
-
-  const toggle = useCallback((hadith) => {
-    const key = keyOf(hadith)
-    setFavorites((prev) => {
-      const next = prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
-      try {
-        localStorage.setItem(KEY, JSON.stringify(next))
-      } catch {
-        /* private browsing, the star still works for this session */
-      }
-      return next
-    })
-  }, [])
-
-  return { isFavorite, toggle }
+  const favorites = useSyncExternalStore(subscribe, () => items)
+  const isFavorite = useCallback((hadith) => favorites.some((h) => keyOf(h) === keyOf(hadith)), [favorites])
+  return { favorites, isFavorite, toggle: toggleFavorite }
 }
