@@ -17,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.main import app  # noqa: E402
 from backend.scripts.build_hadith_index import _SCHEMA  # noqa: E402
+from backend.services.arabic_text import bare_letters  # noqa: E402
 from backend.services.hadith import loader, search  # noqa: E402
 
 _ROWS = [
@@ -41,7 +42,10 @@ def db(tmp_path, monkeypatch):
         "INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) VALUES (?, ?, ?, ?, ?, ?)",
         _ROWS,
     )
-    conn.execute("INSERT INTO hadith_fts (rowid, arabic, english) SELECT rowid, arabic, english FROM hadith")
+    conn.executemany(
+        "INSERT INTO hadith_fts (rowid, arabic, english) VALUES (?, ?, ?)",
+        [(r, bare_letters(a), e) for r, a, e in conn.execute("SELECT rowid, arabic, english FROM hadith").fetchall()],
+    )
     conn.commit()
     conn.close()
 
@@ -93,12 +97,13 @@ def test_search_finds_every_word_typed(db):
     assert [h.number for h in hits] == [3]
 
 
-def test_search_needs_every_word_present(db):
-    """Each word alone matches a different hadith; asking for both together
-    finds nothing, not the union of the two: an AND, not an OR."""
-    assert search.search("بِالنِّيَّاتِ", 10)
-    assert search.search("نُورٌ", 10)
-    assert search.search("بِالنِّيَّاتِ نُورٌ", 10) == []
+def test_search_takes_plain_arabic_and_loose_words(db):
+    """Unpointed Arabic finds pointed text; a word-order-free sentence with
+    words the hadith never uses still lands on it via the any-word fallback."""
+    assert [h.number for h in search.search("نور", 10)] == [3]
+    assert search.search("intention", 10)
+    assert [h.number for h in search.search("light nonexistentword", 10)] == [3]
+    assert search.search("qqqq zzzz", 10) == []
 
 
 def test_search_narrows_to_named_collections(db):

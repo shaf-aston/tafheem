@@ -1,8 +1,8 @@
 /**
- * Search every word typed across the installed collections.
+ * The search box on top of Browse. While a search is showing, its hits take
+ * the place of `children` (the book list); clearing the box brings the books back.
  *
- * The same box Daleel and the Qur'an tab use, down to the microphone: three
- * tabs that take a question should not take it three different ways.
+ * The same box Daleel and the Qur'an tab use, down to the microphone.
  */
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
@@ -22,7 +22,7 @@ import SearchBox from './ui/SearchBox'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import HadithText from './ui/HadithText'
 
-export default function HadithSearchResults({ collections, accent }) {
+export default function HadithSearchResults({ collections, accent, children }) {
   const [query, setQuery] = useState('')
   const { history, push: remember } = useHistory('hadith-history')
   const { isFavorite, toggle } = useHadithFavorites()
@@ -40,10 +40,10 @@ export default function HadithSearchResults({ collections, accent }) {
 
   const nameOf = (id) => collections.find((c) => c.id === id)?.name ?? id
   const data = mutation.data
+  const searching = mutation.isPending || mutation.isError || Boolean(data)
 
   return (
-    <div className="space-y-4">
-      <RecentRow items={history.map((h) => h.q)} accent={accent} onPick={(q) => { setQuery(q); submit(q) }} />
+    <div className="space-y-3">
 
       <SearchBox
         id="hadith-search-input"
@@ -58,11 +58,15 @@ export default function HadithSearchResults({ collections, accent }) {
         accent={accent}
       >
         <MicButton
-          onHeard={({ text }) => { setQuery(text); mutation.reset() }}
+          onHeard={({ text }) => { setQuery(text); submit(text) }}
           accent={accent}
           title="Say what you are looking for"
         />
       </SearchBox>
+
+      {!searching && <RecentRow items={history.map((h) => h.q)} accent={accent} onPick={(q) => { setQuery(q); submit(q) }} />}
+
+      {!searching && children}
 
       {mutation.isError && (
         <ErrorAlert title="Search failed">
@@ -71,13 +75,10 @@ export default function HadithSearchResults({ collections, accent }) {
         </ErrorAlert>
       )}
 
-      {/* Not an EmptyState: an index that was never built could not run any
-          search, which is a different thing than a search that ran and found
-          nothing. Same distinction Daleel's panel makes for the same reason. */}
+      {/* Not an EmptyState: an unbuilt index is not a search that found nothing. */}
       {data?.ready === false && (
         <ErrorAlert title="Search index not built">
-          The collection has not been indexed on this machine, so every search
-          would come back empty. Build it with{' '}
+          Every search would come back empty until it is built:{' '}
           <code className="px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
             python backend/scripts/build_hadith_index.py
           </code>

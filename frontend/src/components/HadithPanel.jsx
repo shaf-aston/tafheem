@@ -14,7 +14,6 @@ import { smartError } from '../lib/apiError'
 import { parsePlace, placeOf } from '../lib/hadithPlace'
 
 import SectionHeader from './ui/SectionHeader'
-import Segmented from './ui/Segmented'
 import ErrorAlert from './ui/ErrorAlert'
 import RetryButton from './ui/RetryButton'
 import { AnalyzerSkeleton } from './ui/Skeleton'
@@ -23,15 +22,12 @@ import HadithBookList from './HadithBookList'
 import HadithList from './HadithList'
 import HadithSearchResults from './HadithSearchResults'
 
-const VIEWS = [{ id: 'browse', label: 'Browse' }, { id: 'search', label: 'Search' }]
-
 export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
   const { data: collections, isPending, isError, error, refetch } = useQuery({
     queryKey: ['hadith-collections'],
     queryFn: getHadithCollections,
     staleTime: Infinity,
   })
-  const [view, setView] = useState('browse')
   const [place, setPlace] = useState(null)   // { collection, book, number, part }
 
   // A deep link, a link from another tab, or the back arrow landing here: all
@@ -90,11 +86,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
 
   return (
     <div className="space-y-3">
-      <SectionHeader
-        title="Hadith"
-        arabic="الحديث"
-        aside={<Segmented label="View" options={VIEWS} value={view} onChange={setView} accent={accent} />}
-      />
+      <SectionHeader title="Hadith" arabic="الحديث" />
 
       {missed && (
         <p role="status" className="type-small text-[var(--text-dim)]">
@@ -102,18 +94,14 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
         </p>
       )}
 
-      {view === 'browse' ? (
-        <div className="space-y-3">
-          <HadithCollectionPicker collections={collections} value={collection} onChange={pickCollection} accent={accent} />
-          {place?.book == null ? (
-            <HadithBookList collection={collection} onPick={pickBook} accent={accent} />
-          ) : (
-            <HadithList collection={collection} book={place.book} onBack={backToBooks} accent={accent} />
-          )}
-        </div>
-      ) : (
-        <HadithSearchResults collections={collections} accent={accent} />
-      )}
+      <HadithSearchResults collections={collections} accent={accent}>
+        <HadithCollectionPicker collections={collections} value={collection} onChange={pickCollection} accent={accent} />
+        {place?.book == null ? (
+          <HadithBookList collection={collection} onPick={pickBook} accent={accent} />
+        ) : (
+          <HadithList collection={collection} book={place.book} onBack={backToBooks} accent={accent} />
+        )}
+      </HadithSearchResults>
     </div>
   )
 }

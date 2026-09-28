@@ -21,6 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
+from backend.services.arabic_text import bare_letters  # noqa: E402
 
 _SCHEMA = """
 CREATE TABLE collection (
@@ -47,12 +48,10 @@ CREATE TABLE hadith (
 );
 CREATE INDEX hadith_by_book ON hadith (collection_id, book_number, number);
 
--- External content: the text stays in `hadith` alone, this only indexes it.
--- content_rowid ties a search hit straight back to its row.
-CREATE VIRTUAL TABLE hadith_fts USING fts5(
-    arabic, english,
-    content = 'hadith', content_rowid = 'rowid'
-);
+-- Arabic is indexed with its marks and spelling variants folded away, and the
+-- English stemmed, so a plain typed word finds the pointed or inflected one.
+-- rowid ties a search hit straight back to its row in `hadith`.
+CREATE VIRTUAL TABLE hadith_fts USING fts5(arabic, english, tokenize = 'porter unicode61');
 """
 
 
@@ -96,8 +95,11 @@ def build() -> dict[str, int]:
             counts[key] = len(raw.get("hadith", []))
             print(f"  {key}: {counts[key]:,} hadiths across {len(raw.get('books', [])):,} books")
 
-        conn.execute("INSERT INTO hadith_fts (rowid, arabic, english) "
-                      "SELECT rowid, arabic, english FROM hadith")
+        conn.executemany(
+            "INSERT INTO hadith_fts (rowid, arabic, english) VALUES (?, ?, ?)",
+            [(rowid, bare_letters(arabic), english)
+             for rowid, arabic, english in conn.execute("SELECT rowid, arabic, english FROM hadith").fetchall()],
+        )
         conn.commit()
         conn.close()
     except Exception:
