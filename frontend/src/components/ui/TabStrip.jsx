@@ -7,6 +7,14 @@ import ArabicText from './ArabicText'
 // A tab's `row` tier (see tabs.js) → when it shows. The open tab always shows.
 const ROW_CLASS = { 1: '', 2: 'hidden md:block', 3: 'hidden' }
 
+// A `half` tab comes out with its partner (the other half in its group), so
+// opening Nahw from All sections shows Sarf beside it, and the reverse.
+function isOut(tab, tabs, active) {
+  if (tab.id === active) return true
+  if (!tab.half) return false
+  return tabs.some((t) => t.id === active && t.half && t.group === tab.group)
+}
+
 export default function TabStrip({ tabs, active, colorOf, onSelect, onAll }) {
   return (
     // No overflow here on purpose: setting one axis to auto makes the other
@@ -19,6 +27,7 @@ export default function TabStrip({ tabs, active, colorOf, onSelect, onAll }) {
     <div className="flex flex-wrap gap-0.5 sm:gap-1" role="tablist" aria-label="Tools">
       {tabs.map((tab, i) => {
         const selected = active === tab.id
+        const out = isOut(tab, tabs, active)
         const tabAccent = colorOf(tab.id)
         return (
           <button
@@ -37,7 +46,7 @@ export default function TabStrip({ tabs, active, colorOf, onSelect, onAll }) {
               // so a half tab really is half of a whole one.
               flex: tab.half ? '0.5 1 0' : '1 1 0',
             }}
-            className={`tab-btn relative ${selected ? '' : ROW_CLASS[tab.row]} ${tab.half ? 'min-w-[3rem] sm:min-w-[3.5rem]' : 'min-w-[4.5rem] sm:min-w-[5.5rem]'}
+            className={`tab-btn relative ${out ? '' : ROW_CLASS[tab.row]} ${tab.half ? 'min-w-[3rem] sm:min-w-[3.5rem]' : 'min-w-[4.5rem] sm:min-w-[5.5rem]'}
               py-1.5 px-0.5 sm:px-2 type-body font-medium ${selected ? '' : 'tab-idle'}`}
           >
             <span className="sm:hidden">{tab.short}</span>
