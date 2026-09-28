@@ -36,27 +36,29 @@ function Spans({ text, marks }) {
   ))
 }
 
-/** `action` is a slot beside the label, for a search hit's collection badge or a favorite star. */
+/** `action` is a slot beside the number: a favorite star or a collection badge. */
 export default function HadithText({ label, arabic, english = '', accent, action = null, className = '' }) {
   const { narrator, body } = narrated(english)
 
   return (
-    <li className={`rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--surface-hi)] px-3 py-2.5 ${className}`.trim()}>
-      <p className="flex items-baseline justify-between gap-2 type-tiny uppercase tracking-wide text-[var(--text-faint)] m-0">
-        <span>{label}</span>
+    <li className={`rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 ${className}`.trim()}>
+      <div className="flex items-center justify-between gap-2 mb-3">
+        <span
+          style={{ color: accent, borderColor: accent }}
+          className="type-tiny tabular-nums min-w-7 h-7 px-2 grid place-items-center rounded-full border"
+        >
+          {label}
+        </span>
         {action}
-      </p>
+      </div>
 
-      <ShowRest lines={LINES} accent={accent} more="Show the rest" less="Show less" className="mt-1.5">
-        <ArabicText as="p" size="sm" className="block leading-loose m-0">
-          {/* The book's own mark, kept as it is written in Arabic. */}
+      <ShowRest lines={LINES} accent={accent} more="Show the rest" less="Show less">
+        <ArabicText as="p" size="base" className="block leading-loose m-0">
           <Spans text={arabic} marks={['«', '»']} />
         </ArabicText>
 
         {english && (
-          <p className="type-ui leading-relaxed mt-2 pt-2 border-t border-[var(--border)] max-w-prose">
-            {/* Who is passing it on: named before the words, and drawn back
-                with them, because it is not part of what was said. */}
+          <p className="type-ui leading-relaxed mt-3 pt-3 border-t border-[var(--border)] max-w-prose">
             {narrator && <span style={TONE.told}>{narrator} </span>}
             <Spans text={body} marks={['“', '”']} />
           </p>

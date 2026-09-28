@@ -32,19 +32,20 @@ export default function HadithBookList({ collection, onPick, accent }) {
   if (!data.length) return <EmptyState>This collection has no books yet.</EmptyState>
 
   return (
-    <ul className="grid gap-2 sm:grid-cols-2">
+    <ul className="m-0 p-0 list-none divide-y divide-[var(--border)] rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
       {data.map((book) => (
         <li key={book.number}>
           <button
             type="button"
             onClick={() => onPick(book.number)}
             style={{ '--c': accent }}
-            className="w-full text-start px-3 py-2.5 rounded-[var(--radius-md)] border border-[var(--border)]
-              bg-[var(--surface)] hover:border-[var(--c)] transition-colors
-              flex items-baseline justify-between gap-3"
+            className="w-full text-start px-4 py-3 flex items-center gap-3 hover:bg-[var(--surface-hi)] transition-colors"
           >
-            <span className="text-sm text-[var(--text)]">{book.number}. {book.name}</span>
-            <span className="type-small text-[var(--text-faint)] tabular-nums shrink-0">{book.count}</span>
+            <span className="type-tiny tabular-nums w-7 h-7 shrink-0 grid place-items-center rounded-full border border-[var(--c)] text-[var(--c)]">
+              {book.number}
+            </span>
+            <span className="flex-1 type-ui text-[var(--text)]">{book.name}</span>
+            <span className="type-small text-[var(--text-faint)] tabular-nums">{book.count}</span>
           </button>
         </li>
       ))}
