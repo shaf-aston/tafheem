@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 const COPY_RESET_MS = 2000
 
-export default function CopyButton({ text, label = 'Copy analysis' }) {
+export default function CopyButton({ text, label = 'Copy analysis', small = false }) {
   const [copied, setCopied] = useState(false)
   const timeoutRef = useRef(null)
 
@@ -26,7 +26,9 @@ export default function CopyButton({ text, label = 'Copy analysis' }) {
     <button
       type="button"
       onClick={onCopy}
-      className="shrink-0 px-3 py-2 text-xs rounded-[var(--radius-md)] border transition-colors"
+      className={`press shrink-0 border transition-colors ${
+        small ? 'px-2 py-0.5 type-tiny rounded-full' : 'px-3 py-2 text-xs rounded-[var(--radius-md)]'
+      }`}
       style={{
         borderColor: copied ? 'var(--success)' : 'var(--border)',
         color: copied ? 'var(--success)' : 'var(--text-dim)',

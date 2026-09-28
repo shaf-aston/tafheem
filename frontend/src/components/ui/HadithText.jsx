@@ -26,6 +26,8 @@ const TONE = {
 }
 // How much of one hadith shows before the rest waits behind a press.
 const LINES = Number(themeVariable('--hadith-lines')) || 7
+// Cards past this many appear together, so a long book never waits on its own stagger.
+const STAGGER_CAP = Number(themeVariable('--hadith-stagger-cap')) || 8
 
 /** One run of words, each span wearing the colour of whoever is talking. */
 function Spans({ text, marks }) {
@@ -37,11 +39,15 @@ function Spans({ text, marks }) {
 }
 
 /** `action` is a slot beside the number: a favorite star or a collection badge. */
-export default function HadithText({ label, arabic, english = '', accent, action = null, className = '' }) {
+export default function HadithText({ label, arabic, english = '', accent, action = null, id, index = 0, className = '' }) {
   const { narrator, body } = narrated(english)
 
   return (
-    <li className={`rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 ${className}`.trim()}>
+    <li
+      id={id}
+      style={{ '--i': Math.min(index, STAGGER_CAP) }}
+      className={`rise-in rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 scroll-mt-[calc(var(--app-header-h,0px)+6rem)] ${className}`.trim()}
+    >
       <div className="flex items-center justify-between gap-2 mb-3">
         <span
           style={{ color: accent, borderColor: accent }}

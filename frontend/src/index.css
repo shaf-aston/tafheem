@@ -301,6 +301,17 @@ textarea.arabic-lg {
   to   { background-position: 200% 0; }
 }
 
+/* A star landing: it swells past its size and settles, the same spring as the rest. */
+@keyframes pop {
+  0%   { transform: scale(0.6); }
+  60%  { transform: scale(1.3); }
+  100% { transform: none; }
+}
+
+.pop {
+  animation: pop calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+}
+
 .rise-in {
   /* `backwards`, not `both`: `both` holds the final keyframe forever, and since an
      animation outranks a plain declaration, `transform: none` then silently beat
