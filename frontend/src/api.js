@@ -130,6 +130,32 @@ export const getTimelines = () =>
 export const getTimelineAsbab = (section, event) =>
   api.get(`/timelines/${section}/${event}/asbab`).then((r) => r.data)
 
+// Every hadith collection the module can browse or search. Small and fixed,
+// fetched once like getTimelines.
+export const getHadithCollections = () =>
+  api.get('/hadith/collections').then((r) => r.data)
+
+// One collection's books (chapters), each carrying how many hadiths it holds.
+export const getHadithBooks = (collection) =>
+  api.get(`/hadith/${collection}/books`).then((r) => r.data)
+
+// One book's hadiths in full, Arabic and English.
+export const getHadithBook = (collection, number) =>
+  api.get(`/hadith/${collection}/books/${number}`).then((r) => r.data)
+
+// Every word typed must appear, in Arabic or English, across the named
+// collections; empty collections means every collection, the ordinary case.
+export const searchHadith = ({ q, collections = [] }) =>
+  api
+    .get('/hadith/search', {
+      params: { q, collections },
+      // One `collections=` per id, the same paramsSerializer findDaleel uses
+      // for `books`; left alone, axios writes `collections[]=` and nothing
+      // filters.
+      paramsSerializer: { indexes: null },
+    })
+    .then((r) => r.data)
+
 export const healthCheck = () =>
   api.get('/health').then((r) => r.data)
 

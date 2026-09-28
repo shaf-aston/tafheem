@@ -1054,3 +1054,45 @@ class ProgressSummary(BaseModel):
 class ReviewList(BaseModel):
     module: str
     items: list[str] = []
+
+
+class HadithCollection(BaseModel):
+    """One collection the module can browse or search, e.g. Sahih al-Bukhari."""
+    id: str
+    name: str
+
+
+class HadithBook(BaseModel):
+    """One book (chapter) inside a collection, and how many hadiths it holds."""
+    number: int
+    name: str
+    count: int
+
+
+class HadithEntry(BaseModel):
+    """One hadith's own words. `cite` is where it is checked, sunnah.com's page."""
+    collection: str
+    book: int
+    number: int
+    part: str = ""
+    arabic: str
+    english: str = ""
+    cite: str = ""
+
+
+class HadithBookResponse(BaseModel):
+    collection: HadithCollection
+    book: HadithBook
+    hadiths: list[HadithEntry]
+    source: Source
+
+
+class HadithSearchResponse(BaseModel):
+    query: str
+    collections: list[str] = []
+    hits: list[HadithEntry] = []
+    # False when the database has not been built yet (see services/hadith),
+    # same shape as DaleelResponse.ready: the panel tells the two apart rather
+    # than showing "nothing matches" for a search that could not run.
+    ready: bool = True
+    source: Source
