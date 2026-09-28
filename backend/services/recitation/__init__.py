@@ -166,3 +166,22 @@ def check(audio: bytes, heard: str, ayahs: list[str]) -> dict[str, list[float | 
         key = owner[i]
         out[key][i - owner.index(key)] = round(score, 3)
     return out
+
+
+def check_text(audio: bytes, heard: str, expected: str) -> list[float | None]:
+    """How sure the ear is of each word of `expected`, a phrase that is not an ayah.
+
+    For words a learner was shown and asked to say, a takbir or a tashahhud:
+    the whole phrase is scored, not placed first the way check() places ayahs.
+    The reader was told exactly what to say, so there is nothing to find, and
+    placing needs two words in a row to agree, which a two-word phrase heard
+    with one slip never has. One number per word of `expected` as the ear
+    spells it (spelling.as_heard), which is one per word as written: the phrase
+    is vowelled plain Arabic with no pause signs. Nothing when nothing was
+    heard, or the phrase is longer than one recording holds.
+    """
+    words = as_heard(expected)
+    if not heard.strip() or not words or len(words) > get_settings().recitation_sure_max_words:
+        return []
+    sure = timed("checked-text", listen.sureness, audio, words, words=len(words))
+    return [round(score, 3) for score in sure]

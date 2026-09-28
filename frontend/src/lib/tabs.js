@@ -16,6 +16,7 @@ import NahwPanel from '../components/NahwPanel'
 import DaleelPanel from '../components/DaleelPanel'
 import TimelinesPanel from '../components/TimelinesPanel'
 import ColloquialPanel from '../components/ColloquialPanel'
+import GrowPanel from '../components/GrowPanel'
 
 // `study`: read closely, so the text-size setting applies.
 // `half`: two tabs share one slot. Nahw + Sarf: shortest labels, used together.
@@ -40,6 +41,8 @@ export const TABS = [
   { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   mark: 'د', Component: DaleelPanel, study: true, row: 1, group: 'quran' },
   { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  mark: 'م', Component: Dictionary,  row: 1, group: 'tools' },
   { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    mark: 'ح', Component: MemorisePanel, study: true, row: 2, group: 'quran' },
+  // Grow, نبات (3:37): a learning path, reciting what is said in prayer.
+  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   mark: 'ب', Component: GrowPanel, study: true, row: 2, group: 'quran' },
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', mark: 'خ', Component: QuizPanel,   row: 2, group: 'tools' },
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', mark: 'ت', Component: TimelinesPanel, study: true, row: 3, group: 'tools' },
   { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, row: 2, group: 'language', study: true },
