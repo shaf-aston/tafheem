@@ -438,6 +438,12 @@ class Settings(BaseSettings):
     # under sections/. Hand-written data, checked on load by services/timelines.py.
     timelines_dir: str = "data/timelines"
 
+    # ── Colloquial (spoken dialects) ───────────────────────────────────────────
+    # dialects.json and one folder per dialect holding unit-NN.json files, with
+    # the pictures under images/. Written by a model, checked on load by
+    # services/colloquial/loader.py.
+    colloquial_dir: str = "data/colloquial"
+
     # ── Progress (what a learner has answered) ────────────────────────────────
     # The only database this app writes to while serving. Made on first use, so
     # there is no build script and nothing to install; deleting the file simply
