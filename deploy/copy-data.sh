@@ -12,6 +12,8 @@ SERVER="${1:?Pass the server, for example: bash deploy/copy-data.sh ubuntu@123.4
 REMOTE=tafheem
 
 FILES="
+backend/data/hadith.db
+backend/data/arabic_dictionary.json
 backend/data/daleel.db
 backend/data/lexicons.db
 backend/data/lexicon.db
@@ -27,11 +29,11 @@ backend/data/maqayees/roots.json
 for f in $FILES; do
   [ -e "$f" ] || { echo "not on this machine, skipping: $f"; continue; }
   here=$(stat -c %s "$f")
-  there=$(ssh "$SERVER" "stat -c %s '$REMOTE/$f' 2>/dev/null || echo 0")
+  there=$(ssh -i ~/.ssh/tafheem_oci "$SERVER" "stat -c %s '$REMOTE/$f' 2>/dev/null || echo 0")
   if [ "$here" = "$there" ]; then echo "already there: $f"; continue; fi
-  ssh "$SERVER" "mkdir -p '$REMOTE/$(dirname "$f")'"
+  ssh -i ~/.ssh/tafheem_oci "$SERVER" "mkdir -p '$REMOTE/$(dirname "$f")'"
   echo "copying $f"
-  scp "$f" "$SERVER:$REMOTE/$f"
+  scp -i ~/.ssh/tafheem_oci "$f" "$SERVER:$REMOTE/$f"
 done
 
 echo "Done. Now restart the backend:  ssh $SERVER 'sudo systemctl restart tafheem@8001 && sleep 5 && sudo systemctl restart tafheem@8000'"

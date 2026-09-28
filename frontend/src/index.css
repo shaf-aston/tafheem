@@ -177,8 +177,12 @@ select option {
 
 /* Qur'an text, flagged by ArabicText and the tarkeeb diagram (lib/arabicText
    isQuranic). The face itself, not the token: a diagram word inherits its
-   container's already-resolved font, so a token swap there changes nothing. */
-[data-script="quran"] {
+   container's already-resolved font, so a token swap there changes nothing.
+   A flag on a line or passage reaches every Arabic word inside it: judged word
+   by word, a word with no mushaf mark (يَوْمِ) kept Naskh beside Amiri words
+   and the line sat on two baselines. Only Arabic takes it: an ayah number or
+   English label in the same row keeps its own face, and Urdu its Nastaliq. */
+:is(.arabic, .arabic-tiny, .arabic-sm, .arabic-lg, .tk-word):not([lang="ur"]):is([data-script="quran"], [data-script="quran"] *) {
   font-family: var(--font-quran);
 }
 
@@ -299,6 +303,17 @@ textarea.arabic-lg {
 @keyframes shimmer {
   from { background-position: -200% 0; }
   to   { background-position: 200% 0; }
+}
+
+/* A star landing: it swells past its size and settles, the same spring as the rest. */
+@keyframes pop {
+  0%   { transform: scale(0.6); }
+  60%  { transform: scale(1.3); }
+  100% { transform: none; }
+}
+
+.pop {
+  animation: pop calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
 }
 
 .rise-in {

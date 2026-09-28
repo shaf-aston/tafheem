@@ -118,7 +118,7 @@ export default function TarkeebDiagram({ words, tree, unwritten, className = '' 
           in index.css, which already covers [tabindex]. */}
       {/* Named by its sentence: a page of worked examples has several of these,
           and same-named regions are one region to a screen reader. */}
-      <div ref={scroller} className="tk-scroller" tabIndex={0} role="region" aria-label={`Tarkeeb of ${shown.words.join(' ')}, scroll sideways to see the rest`}>
+      <div ref={scroller} className="tk-scroller" data-script={isQuranic(shown.words.join(' ')) ? 'quran' : undefined} tabIndex={0} role="region" aria-label={`Tarkeeb of ${shown.words.join(' ')}, scroll sideways to see the rest`}>
         <div
           className="tk-grid"
           style={{
@@ -131,7 +131,6 @@ export default function TarkeebDiagram({ words, tree, unwritten, className = '' 
             return (
               <div
                 className={`tk-word${missing ? ' tk-unwritten' : ''}`}
-                data-script={isQuranic(word) ? 'quran' : undefined}
                 key={`word-${index}`}
                 style={{ gridColumn: index + 1 }}
               >

@@ -5,11 +5,14 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getHadithBooks } from '../api'
 import { smartError } from '../lib/apiError'
+import { themeVariable } from '../theme'
 
 import ErrorAlert from './ui/ErrorAlert'
 import RetryButton from './ui/RetryButton'
 import EmptyState from './ui/EmptyState'
 import { AnalyzerSkeleton } from './ui/Skeleton'
+
+const STAGGER_CAP = Number(themeVariable('--hadith-stagger-cap')) || 8
 
 export default function HadithBookList({ collection, onPick, accent }) {
   const { data, isPending, isError, error, refetch } = useQuery({
@@ -33,19 +36,21 @@ export default function HadithBookList({ collection, onPick, accent }) {
 
   return (
     <ul className="m-0 p-0 list-none grid gap-2 sm:grid-cols-2">
-      {data.map((book) => (
-        <li key={book.number}>
+      {data.map((book, i) => (
+        <li key={book.number} className="rise-in" style={{ '--i': Math.min(i, STAGGER_CAP) }}>
           <button
             type="button"
             onClick={() => onPick(book.number)}
             style={{ '--c': accent }}
-            className="w-full h-full text-start px-4 py-3 flex items-center gap-3 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--c)] transition-colors"
+            className="lift press group w-full h-full text-start px-4 py-3 flex items-center gap-3 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--c)] transition-colors"
           >
-            <span className="type-tiny tabular-nums w-7 h-7 shrink-0 grid place-items-center rounded-full border border-[var(--c)] text-[var(--c)]">
+            <span className="type-figure font-medium tabular-nums min-w-[2ch] text-[var(--text-faint)] group-hover:text-[var(--c)] transition-colors">
               {book.number}
             </span>
-            <span className="flex-1 type-ui text-[var(--text)]">{book.name}</span>
-            <span className="type-small text-[var(--text-faint)] tabular-nums">{book.count}</span>
+            <span className="flex-1 type-ui text-[var(--text)] leading-snug">
+              {book.name}
+              <span className="block type-small text-[var(--text-faint)] tabular-nums">{book.count} hadiths</span>
+            </span>
           </button>
         </li>
       ))}

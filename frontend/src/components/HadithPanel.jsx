@@ -12,13 +12,17 @@ import { useQuery } from '@tanstack/react-query'
 import { getHadithCollections } from '../api'
 import { smartError } from '../lib/apiError'
 import { parsePlace, placeOf } from '../lib/hadithPlace'
+import { useHadithFavorites } from '../lib/useHadithFavorites'
 
+import Chip from './ui/Chip'
+import EmptyState from './ui/EmptyState'
 import SectionHeader from './ui/SectionHeader'
 import ErrorAlert from './ui/ErrorAlert'
 import RetryButton from './ui/RetryButton'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import HadithCollectionPicker from './HadithCollectionPicker'
 import HadithBookList from './HadithBookList'
+import HadithCards from './HadithCards'
 import HadithList from './HadithList'
 import HadithSearchResults from './HadithSearchResults'
 
@@ -29,6 +33,8 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
     staleTime: Infinity,
   })
   const [place, setPlace] = useState(null)   // { collection, book, number, part }
+  const [starred, setStarred] = useState(false)
+  const { favorites } = useHadithFavorites()
 
   // A deep link, a link from another tab, or the back arrow landing here: all
   // three read the same way, once per arrival. See TimelinesPanel for why
@@ -77,6 +83,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
 
   const go = (next) => {
     setMissed(false)
+    setStarred(false)
     setPlace(next)
     onVisit?.(placeOf(next.collection, next.book, next.number, next.part))
   }
@@ -95,8 +102,17 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
       )}
 
       <HadithSearchResults collections={collections} accent={accent}>
-        <HadithCollectionPicker collections={collections} value={collection} onChange={pickCollection} accent={accent} />
-        {place?.book == null ? (
+        <div className="flex items-center gap-2 flex-wrap">
+          <HadithCollectionPicker collections={collections} value={collection} onChange={pickCollection} accent={accent} />
+          <Chip selected={starred} tinted accent={accent} onClick={() => setStarred(!starred)}>
+            &#9733; Starred {favorites.length > 0 && favorites.length}
+          </Chip>
+        </div>
+        {starred ? (
+          favorites.length
+            ? <HadithCards items={favorites} collections={collections} accent={accent} />
+            : <EmptyState>Star a hadith and it is kept here.</EmptyState>
+        ) : place?.book == null ? (
           <HadithBookList collection={collection} onPick={pickBook} accent={accent} />
         ) : (
           <HadithList collection={collection} book={place.book} onBack={backToBooks} accent={accent} />

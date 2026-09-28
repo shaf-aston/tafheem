@@ -182,7 +182,8 @@
     "_comment": "The words of a hadith, printed under an event in the timelines. said is what was actually said, which the books mark with quote marks; told is the telling around it, the chain of narrators and what happened between the sayings, drawn back because it is read past rather than read. lines is how much of one hadith shows before the rest waits behind Show the rest.",
     "said": "#f2e7d3",
     "told": "var(--text-faint)",
-    "lines": "14"
+    "lines": "14",
+    "stagger-cap": "8"
   },
   "type": {
     "_comment": "English text sizes. In rem, so a browser's own text setting still moves them; px would ignore it. micro/tiny/small are supporting labels, badges, captions, the note under a control. body is English being read rather than labelled: an ayah's translation, a verse's gloss. A translation set at a label size is the mistake this token exists to stop, so reach for body whenever the English is the content.",
