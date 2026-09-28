@@ -11,6 +11,7 @@ import CursorLight from './components/CursorLight'
 import CommandBar from './components/ui/CommandBar'
 import ErrorAlert from './components/ui/ErrorAlert'
 import Mascot from './components/ui/Mascot'
+import MapPanel from './components/ui/MapPanel'
 import SettingsPanel from './components/ui/SettingsPanel'
 import SpatialHome from './components/ui/SpatialHome'
 import SourceFooter from './components/ui/SourceFooter'
@@ -73,6 +74,7 @@ function AppContent() {
   const [activeTab, setActiveTab] = useState(opened.tab)
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [mapOpen, setMapOpen] = useState(false)
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
   // A root handed from one tab to another. Held here because it is the only
@@ -175,6 +177,21 @@ function AppContent() {
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M3 12a9 9 0 1 0 3-6.7" />
               <path d="M3 4v5h5" />
+            </svg>
+          </button>
+          {/* A high-level overview, everything at a glance: not a tab, opened
+              the same way Settings is, so it never crowds the tab strip. */}
+          <button
+            type="button"
+            onClick={() => setMapOpen(true)}
+            title="Map"
+            aria-label="Open the map: a high-level overview"
+            aria-haspopup="dialog"
+            className="icon-button"
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M9 3 3 5.5v15L9 18l6 2.5L21 18V3l-6 2.5L9 3Z" />
+              <path d="M9 3v15M15 5.5v15" />
             </svg>
           </button>
           </div>
@@ -286,6 +303,7 @@ function AppContent() {
         </div>
       </footer>
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />
+      <MapPanel open={mapOpen} onClose={() => setMapOpen(false)} />
       <SpatialHome
         open={spatialOpen}
         onClose={() => setSpatialOpen(false)}
