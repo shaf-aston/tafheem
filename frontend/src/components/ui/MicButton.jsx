@@ -12,7 +12,8 @@ import MicMark from './MicMark'
  * One button, used by every box you can speak into, so recording works the same
  * way everywhere and only this file knows how a browser records. The caller
  * decides what the words are for: the Qur'an tab asks for the ayahs too, Daleel
- * just searches the words.
+ * just searches the words, and `recite` says the words are Arabic being recited
+ * (Grow), so the ear hears them as a recitation rather than guessing a language.
  *
  * The mark on it is the capsule microphone, which is what dictation looks
  * like everywhere in this app; MicMark owns its shape and its motion, this file
@@ -38,7 +39,7 @@ import MicMark from './MicMark'
  * button rather than beside it, so the box it belongs to does not shrink when
  * recording starts; the colour already says the rest.
  */
-export default function MicButton({ onHeard, match = false, accent, title = 'Recite' }) {
+export default function MicButton({ onHeard, match = false, recite = false, accent, title = 'Recite' }) {
   // Falls back to the theme's own colour, so a caller that gives no accent gets
   // a button that is still visible while recording rather than a white-on-white one.
   const live = accent || 'var(--primary)'
@@ -118,7 +119,8 @@ export default function MicButton({ onHeard, match = false, accent, title = 'Rec
 
         setState('thinking')
         try {
-          const heard = await listen(new Blob(chunks.current, { type: made.mimeType }), { match, fusha })
+          const recording = new Blob(chunks.current, { type: made.mimeType })
+          const heard = await listen(recording, { match, recite, fusha })
           // Nothing heard is answered here rather than passed on. It is the
           // ordinary result of a quiet room, and every box this button sits in
           // would otherwise show its own "nothing matched", which blames what
@@ -129,7 +131,9 @@ export default function MicButton({ onHeard, match = false, accent, title = 'Rec
             return
           }
           if (gone.current) return
-          onHeard(heard)
+          // The recording goes back too, for a caller that also asks how sure
+          // the ear was of each word (Grow). Everyone else ignores it.
+          onHeard(heard, recording)
           setState('idle')
         } catch (error) {
           if (gone.current) return

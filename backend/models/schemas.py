@@ -914,6 +914,44 @@ class Sureness(BaseModel):
     sure: dict[str, list[float | None]] = {}
 
 
+class TextSureness(BaseModel):
+    """How sure the ear is of each word of the phrase POST /api/listen/check-text
+    was given: one number per word, in order. Empty when nothing was heard."""
+    sure: list[float] = []
+
+
+class GrowRuling(BaseModel):
+    """A scholar's own words on one step, quoted, never paraphrased.
+
+    `arabic` is copied from the book exactly (tests/test_grow.py holds it to
+    the book's text), and `where` is the chapter it is in, so the reader can
+    find it; the app adds no ruling of its own."""
+    book: str
+    author: str
+    where: str
+    arabic: str
+    english: str = ""
+
+
+class GrowStep(BaseModel):
+    """One thing to learn to say. Either `arabic`, a phrase shown and checked
+    as written, or `ayahs`, as "1:2", checked the way the Qur'an tab checks."""
+    id: str
+    title: str
+    arabic: str = ""
+    ayahs: list[str] = []
+    meaning: str = ""
+    ruling: GrowRuling | None = None
+
+
+class GrowPath(BaseModel):
+    id: str
+    title: str
+    arabic: str
+    about: str
+    steps: list[GrowStep]
+
+
 # ── Recite journal: what the page reports about itself ──────────────────────
 # The same shape routers/listen.py uses for a reading id, so a page-reported
 # event can be joined to the server-side lines for the same reading.

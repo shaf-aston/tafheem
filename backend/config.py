@@ -406,6 +406,9 @@ class Settings(BaseSettings):
     # The index every searchable book is built into. Rebuilt by
     # backend/scripts/build_daleel_index.py, never written to while serving.
     daleel_index_path: str = "data/daleel.db"
+    # Grow's paths: the steps to learn, in order, and the scholar's words on
+    # each. Hand-written, read once. See routers/grow.py.
+    grow_path_path: str = "data/grow/paths.json"
     # How many quotations one search returns. A reader compares a handful of
     # passages; past that the list stops being read and starts being scrolled.
     daleel_result_limit: int = 12

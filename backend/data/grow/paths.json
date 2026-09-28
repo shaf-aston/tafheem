@@ -1,0 +1,262 @@
+{
+  "_comment": "Grow's paths, hand-written. A ruling's `arabic` is the scholar's sentence copied from the book, never paraphrased: tests/test_grow.py checks each one against the book's own file. A step with no clear sentence in the book carries no ruling.",
+  "paths": [
+    {
+      "id": "salah",
+      "title": "The words of salah",
+      "arabic": "الصلاة",
+      "about": "What is said in the prayer, from the first takbir to the salam, one step at a time.",
+      "steps": [
+        {
+          "id": "takbir",
+          "title": "Opening takbir",
+          "arabic": "اللَّهُ أَكْبَرُ",
+          "meaning": "Allah is the greatest.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "فإذا دخل الرجل في الصلاة كبر ورفع يديه مع التكبير حتى يحاذى بإبهاميه شحمتي أذنيه",
+            "english": "When he enters the prayer he says the takbir and raises his hands with it, until his thumbs are level with his earlobes."
+          }
+        },
+        {
+          "id": "thana",
+          "title": "Opening praise (thana')",
+          "arabic": "سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَى جَدُّكَ وَلَا إِلَهَ غَيْرُكَ",
+          "meaning": "Glory be to You, O Allah, and with Your praise. Blessed is Your name and exalted Your majesty, and there is no god but You.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ثم يقول: سبحانك اللهم وبحمدك وتبارك اسمك وتعلى جدك ولا إله غيرك",
+            "english": "Then he says: Subhanaka Allahumma wa bihamdik…"
+          }
+        },
+        {
+          "id": "taawwudh",
+          "title": "Seeking refuge",
+          "arabic": "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
+          "meaning": "I seek refuge in Allah from Satan, the outcast.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ويستعيذ بالله من الشيطان الرجيم ويقرأ بسم الله الرحمن الرحيم ويسر بهما",
+            "english": "He seeks refuge in Allah from the accursed Shaytan and reads Bismillah, saying both quietly."
+          }
+        },
+        {
+          "id": "basmala",
+          "title": "Bismillah",
+          "arabic": "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
+          "meaning": "In the name of Allah, the Most Merciful, the Especially Merciful.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ويستعيذ بالله من الشيطان الرجيم ويقرأ بسم الله الرحمن الرحيم ويسر بهما",
+            "english": "He seeks refuge in Allah from the accursed Shaytan and reads Bismillah, saying both quietly."
+          }
+        },
+        {
+          "id": "fatiha",
+          "title": "Al-Fatiha",
+          "ayahs": [
+            "1:2",
+            "1:3",
+            "1:4",
+            "1:5",
+            "1:6",
+            "1:7"
+          ],
+          "meaning": "The Opening, recited in every rak'ah.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ثم يقرأ فاتحة الكتاب وسورة معها أو ثلاث آيات من أي سورة شاء",
+            "english": "Then he reads the Fatiha and a surah with it, or three ayahs from any surah he wishes."
+          }
+        },
+        {
+          "id": "amin",
+          "title": "Amin",
+          "arabic": "آمِينَ",
+          "meaning": "O Allah, answer.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "وإذا قال الإمام {ولا الضالين} قال: آمين ويقولها ويخفونها",
+            "english": "When the imam says “wa la al-dallin” he says Amin; he says it, and they say it quietly."
+          }
+        },
+        {
+          "id": "ruku",
+          "title": "In ruku'",
+          "arabic": "سُبْحَانَ رَبِّيَ الْعَظِيمِ",
+          "meaning": "Glory be to my Lord, the Magnificent.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ويقول في ركوعه: سبحان ربي العظيم ثلاثا وذلك أذناه",
+            "english": "In his ruku' he says “Subhana Rabbiya al-'Azim” three times, and that is the least of it."
+          }
+        },
+        {
+          "id": "rising",
+          "title": "Rising from ruku'",
+          "arabic": "سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ رَبَّنَا لَكَ الْحَمْدُ",
+          "meaning": "Allah hears the one who praises Him. Our Lord, to You is the praise."
+        },
+        {
+          "id": "sujud",
+          "title": "In sujud",
+          "arabic": "سُبْحَانَ رَبِّيَ الْأَعْلَى",
+          "meaning": "Glory be to my Lord, the Most High.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ويقول في سجوده: سبحان ربي الأعلى ثلاثا وذلك أدناه",
+            "english": "In his sujud he says “Subhana Rabbiya al-A'la” three times, and that is the least of it."
+          }
+        },
+        {
+          "id": "tashahhud",
+          "title": "Tashahhud",
+          "arabic": "التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
+          "meaning": "Greetings, prayers and good things are for Allah. Peace be upon you, O Prophet, and the mercy of Allah and His blessings. Peace be upon us and upon the righteous servants of Allah. I bear witness that there is no god but Allah, and I bear witness that Muhammad is His servant and messenger.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "والتشهد أن يقول: التحيات لله والصلوات والطيبات السلام عليك أيها النبي ورحمة الله وبركاته السلام علينا وعلى عباد الله الصالحين أشهد أن لا إله إلا الله وأشهد أن محمدا عبده ورسوله ولا يزيد على هذا في القعدة الأولى",
+            "english": "The tashahhud is to say: al-tahiyyatu lillah… and he adds nothing to this in the first sitting."
+          }
+        },
+        {
+          "id": "salawat",
+          "title": "Blessings on the Prophet ﷺ",
+          "arabic": "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ",
+          "meaning": "O Allah, send prayers on Muhammad and the family of Muhammad as You sent prayers on Ibrahim and the family of Ibrahim; You are Praiseworthy, Glorious. O Allah, bless Muhammad and the family of Muhammad as You blessed Ibrahim and the family of Ibrahim; You are Praiseworthy, Glorious.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "فإذا جلس في آخر الصلاة جلس كما في الأولى وتشهد وصلى على النبي صلى الله عليه وسلم",
+            "english": "When he sits at the end of the prayer he sits as in the first, says the tashahhud, and sends prayers on the Prophet ﷺ."
+          }
+        },
+        {
+          "id": "taslim",
+          "title": "Closing salam",
+          "arabic": "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ",
+          "meaning": "Peace be upon you, and the mercy of Allah.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ثم يسلم عن يمينه فيقول: السلام عليكم ورحمة الله وعن يساره مثل ذلك",
+            "english": "Then he gives salam to his right, saying “as-salamu 'alaykum wa rahmatullah”, and to his left the same."
+          }
+        }
+      ]
+    },
+    {
+      "id": "surahs",
+      "title": "Short surahs",
+      "arabic": "قصار السور",
+      "about": "The Fatiha and the short surahs most often recited in prayer.",
+      "steps": [
+        {
+          "id": "fatiha",
+          "title": "Al-Fatiha",
+          "ayahs": [
+            "1:1",
+            "1:2",
+            "1:3",
+            "1:4",
+            "1:5",
+            "1:6",
+            "1:7"
+          ]
+        },
+        {
+          "id": "ikhlas",
+          "title": "Al-Ikhlas",
+          "ayahs": [
+            "112:1",
+            "112:2",
+            "112:3",
+            "112:4"
+          ]
+        },
+        {
+          "id": "falaq",
+          "title": "Al-Falaq",
+          "ayahs": [
+            "113:1",
+            "113:2",
+            "113:3",
+            "113:4",
+            "113:5"
+          ]
+        },
+        {
+          "id": "nas",
+          "title": "An-Nas",
+          "ayahs": [
+            "114:1",
+            "114:2",
+            "114:3",
+            "114:4",
+            "114:5",
+            "114:6"
+          ]
+        },
+        {
+          "id": "kawthar",
+          "title": "Al-Kawthar",
+          "ayahs": [
+            "108:1",
+            "108:2",
+            "108:3"
+          ]
+        },
+        {
+          "id": "asr",
+          "title": "Al-'Asr",
+          "ayahs": [
+            "103:1",
+            "103:2",
+            "103:3"
+          ]
+        },
+        {
+          "id": "nasr",
+          "title": "An-Nasr",
+          "ayahs": [
+            "110:1",
+            "110:2",
+            "110:3"
+          ]
+        },
+        {
+          "id": "kafirun",
+          "title": "Al-Kafirun",
+          "ayahs": [
+            "109:1",
+            "109:2",
+            "109:3",
+            "109:4",
+            "109:5",
+            "109:6"
+          ]
+        }
+      ]
+    }
+  ]
+}

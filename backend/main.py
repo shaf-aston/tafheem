@@ -14,7 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from backend.config import get_settings
 from backend.routers import (
-    analysis, daleel, dictionary, journal, listen, morphology, nahw_notes, practice, progress, quran, tamreen,
+    analysis, daleel, dictionary, grow, journal, listen, morphology, nahw_notes, practice, progress, quran, tamreen,
     tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
@@ -142,6 +142,7 @@ def create_app() -> FastAPI:
         tamreen.router,
         nahw_notes.router,
         timelines.router,
+        grow.router,
     ):
         app.include_router(router)
 
