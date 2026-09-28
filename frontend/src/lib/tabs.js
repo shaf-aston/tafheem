@@ -14,6 +14,7 @@ import MemorisePanel from '../components/MemorisePanel'
 import SarfPanel from '../components/SarfPanel'
 import NahwPanel from '../components/NahwPanel'
 import DaleelPanel from '../components/DaleelPanel'
+import HadithPanel from '../components/HadithPanel'
 import TimelinesPanel from '../components/TimelinesPanel'
 import ColloquialPanel from '../components/ColloquialPanel'
 
@@ -38,6 +39,7 @@ export const TABS = [
   { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', mark: 'ق', Component: QuranLookup, study: true, row: 1, group: 'quran' },
   // Daleel finds a passage, Dictionary a word: reached for together.
   { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   mark: 'د', Component: DaleelPanel, study: true, row: 1, group: 'quran' },
+  { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', mark: 'ث', Component: HadithPanel, study: true, row: 2, group: 'quran' },
   { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  mark: 'م', Component: Dictionary,  row: 1, group: 'tools' },
   { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    mark: 'ح', Component: MemorisePanel, study: true, row: 2, group: 'quran' },
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', mark: 'خ', Component: QuizPanel,   row: 2, group: 'tools' },

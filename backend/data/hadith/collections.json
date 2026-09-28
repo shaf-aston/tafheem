@@ -1,0 +1,12 @@
+{
+  "_about": [
+    "Every hadith collection the module knows about, and how to build one.",
+    "Adding a collection is an entry here plus a run of",
+    "scripts/fetch_hadith_collections.py and scripts/build_hadith_index.py; no code changes.",
+    "cite is the citation URL template sunnah.com uses, {number} filled with the hadith's own number."
+  ],
+  "bukhari": {
+    "name": "Sahih al-Bukhari",
+    "cite": "https://sunnah.com/bukhari:{number}"
+  }
+}

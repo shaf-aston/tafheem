@@ -14,7 +14,7 @@ client = TestClient(app)
 # The tabs the frontend declares, in App.jsx. Written out here on purpose: a
 # source pointing at a tab that does not exist would put a line at the foot of
 # no page at all, and nothing else would notice.
-TABS = {"nahw", "sarf", "quran", "mem", "dict", "quiz", "daleel", "timelines"}
+TABS = {"nahw", "sarf", "quran", "mem", "dict", "quiz", "daleel", "timelines", "hadith"}
 
 # Only these are shown as levels; anything else falls back to the weakest one
 # on screen, which would quietly downgrade a hand-checked source to a guess.

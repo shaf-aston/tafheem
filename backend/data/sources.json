@@ -314,5 +314,15 @@
     "used_in": [
       "nahw"
     ]
+  },
+  "hadith": {
+    "label": "Sahih al-Bukhari",
+    "confidence": "verified",
+    "detail": "The collection's own wording, Arabic and English, from fawazahmed0/hadith-api, itself mirrored from sunnah.com; every hadith links back to its sunnah.com page",
+    "url": "https://github.com/fawazahmed0/hadith-api",
+    "where": "Every book and hadith. Stored locally.",
+    "used_in": [
+      "hadith"
+    ]
   }
 }

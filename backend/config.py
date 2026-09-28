@@ -438,6 +438,19 @@ class Settings(BaseSettings):
     # under sections/. Hand-written data, checked on load by services/timelines.py.
     timelines_dir: str = "data/timelines"
 
+    # ── Hadith (browse a collection, search its text) ────────────────────────
+    # collections.json (which collections exist, their names and citation
+    # links) plus one raw <collection>.json per fetched collection, written by
+    # scripts/fetch_hadith_collections.py.
+    hadith_dir: str = "data/hadith"
+    # Books, their hadiths, and a full-text index, built from hadith_dir by
+    # scripts/build_hadith_index.py. Never written while serving.
+    hadith_index_path: str = "data/hadith.db"
+    # How many hadiths one search returns. Small on purpose: a hadith is read in
+    # full, not skimmed like a list of ayah numbers, so a long results page is
+    # a page that stops being read.
+    hadith_result_limit: int = 20
+
     # ── Progress (what a learner has answered) ────────────────────────────────
     # The only database this app writes to while serving. Made on first use, so
     # there is no build script and nothing to install; deleting the file simply
