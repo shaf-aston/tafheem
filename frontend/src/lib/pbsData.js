@@ -21,7 +21,6 @@ export const CHARTS = [
 { id:"06", group:"الآلات · Instrumental", ar:"عُلوم اللُّغة", en:"Arabic Language", frame:"البصريون",
   accent:"#0369a1",
   config:{
-  serial:"PRODUCT BREAKDOWN STRUCTURE · 06 — BASRAN SCHOOL",
   root:{ar:"عُلوم اللُّغة العَرَبِيَّة", en:"Arabic Language Sciences"},
   footnote:[
     "Rule: every level-2 node is a فنّ with its own manual in the البصريون curriculum, never a باب inside one.",
@@ -56,7 +55,6 @@ export const CHARTS = [
 { id:"09", group:"الآلات · Instrumental", ar:"المَنطِق", en:"Logic", frame:"آلة, not a Sharʿī science",
   accent:"#475569",
   config:{
-  serial:"PRODUCT BREAKDOWN STRUCTURE · 09 — INSTRUMENTAL SCIENCE",
   root:{ar:"المَنطِق", en:"Logic"},
   footnote:[
     "Rule: the science bisects exactly; every node falls under التصورات or التصديقات.",
@@ -81,7 +79,6 @@ export const CHARTS = [
 { id:"05", group:"النَّقل · Revelation", ar:"عُلوم القُرآن", en:"Qur'anic Sciences", frame:"السيوطي / الزركشي",
   accent:"#0f766e",
   config:{
-  serial:"PRODUCT BREAKDOWN STRUCTURE · 05 — SUYŪṬĪ / ZARKASHĪ",
   root:{ar:"عُلوم القُرآن", en:"Qur'anic Sciences"},
   footnote:[
     "Rule: every level-2 node is a نوع as الإتقان والبرهان divide it, never a باب inside one.",
@@ -120,7 +117,6 @@ export const CHARTS = [
 { id:"03", group:"النَّقل · Revelation", ar:"عُلوم الحَديث", en:"Hadith Sciences", frame:"ابن الصلاح / ابن حجر",
   accent:"#b45309",
   config:{
-  serial:"PRODUCT BREAKDOWN STRUCTURE · 03 — IBN AL-ṢALĀḤ / IBN ḤAJAR",
   root:{ar:"عُلوم الحَديث", en:"Hadith Sciences"},
   footnote:[
     "Rule: every level-2 node is a division of مصطلح الحديث in ابن الصلاح وابن حجر, never a باب inside one. The first three branches are three parallel axes of one خبر.",
@@ -154,7 +150,6 @@ export const CHARTS = [
 { id:"04", group:"الاعتِقاد · Creed", ar:"العَقيدة", en:"Creed", frame:"الماتريدية",
   accent:"#1d4ed8",
   config:{
-  serial:"PRODUCT BREAKDOWN STRUCTURE · 04 — MĀTURĪDĪ",
   root:{ar:"العَقيدة", en:"Islamic Creed"},
   footnote:[
     "Rule: every level-2 node is a قسم in the Māturīdī manuals (الماتريدي، النسفي، التفتازاني), never a مسألة inside one.",
@@ -197,7 +192,6 @@ export const CHARTS = [
 { id:"02", group:"الشَّريعة · Law", ar:"أُصول الفِقه", en:"Legal Theory", frame:"Hanafi · طريقة الفقهاء",
   accent:"#0f766e",
   config:{
-  serial:"PRODUCT BREAKDOWN STRUCTURE · 02 — HANAFI · JURISTS' METHOD",
   root:{ar:"أُصول الفِقه", en:"Legal Theory & Methodology"},
   footnote:[
     "Rule: every level-2 node is a قسم in the Hanafi manuals (البزدوي، النسفي، ابن الهمام), never a باب inside one.",
@@ -235,7 +229,6 @@ export const CHARTS = [
 { id:"01", group:"الشَّريعة · Law", ar:"الفِقه", en:"Jurisprudence", frame:"Hanafi · القدوري",
   accent:"#0f172a",
   config:{
-  serial:"PRODUCT BREAKDOWN STRUCTURE · 01 — HANAFI",
   root:{ar:"الفِقْه", en:"Islamic Jurisprudence"},
   footnote:[
     "Rule: every level-2 node is a كتاب in the Hanafi manuals, never a باب inside one.",
@@ -285,7 +278,6 @@ export const CHARTS = [
 { id:"07", group:"الشَّريعة · Law", ar:"القَواعِد الفِقهِيّة", en:"Legal Maxims", frame:"Hanafi · ابن نجيم / المجلة",
   accent:"#be123c",
   config:{
-  serial:"PRODUCT BREAKDOWN STRUCTURE · 07 — HANAFI · IBN NUJAYM / THE MAJALLA",
   root:{ar:"القَواعِد الفِقهِيَّة", en:"Legal Maxims"},
   footnote:[
     "Rule: the five قواعد كبرى are the branches, since the maxims under each are derived from it, not merely related to it.",
@@ -323,7 +315,6 @@ export const CHARTS = [
 { id:"08", group:"السُّلوك · The Path", ar:"التَّزكية", en:"Purification of the Soul", frame:"الغزالي · الإحياء",
   accent:"#6d28d9",
   config:{
-  serial:"PRODUCT BREAKDOWN STRUCTURE · 08 — GHAZĀLIAN · IḤYĀʾ ORDER",
   root:{ar:"التَّزكِية", en:"Purification of the Soul"},
   footnote:[
     "Rule: the branches follow the أرباع of الإحياء with the path's own divisions beside them; no node is a فصل lifted from a كتاب.",

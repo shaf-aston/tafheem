@@ -24,12 +24,8 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onSelect
       viewBox={`0 0 ${L.width} ${L.height}`}
       className="block w-full h-auto"
       role="img"
-      aria-label={config.serial}
+      aria-label={config.root.en}
     >
-      <text x={M_} y="26" fontSize="11" letterSpacing="1.5" fontWeight="700" fill="var(--text-faint)">
-        {config.serial}
-      </text>
-
       <defs>
         <marker id="pbs-m-root" markerWidth="7" markerHeight="7" refX="6.2" refY="3" orient="auto">
           <path d="M0,0 L6.5,3 L0,6 Z" fill="var(--border-hi)" />
