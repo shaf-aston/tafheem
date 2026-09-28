@@ -6,12 +6,16 @@
  */
 import ArabicText from './ArabicText'
 import { SUB } from '../../lib/pbsData'
+import { readableAccent } from '../../lib/pbsAccent'
 
 export default function PbsDetail({ chart, branchIndex, kidIndex, onSelectKid, onClose }) {
   const branch = chart.config.branches[branchIndex]
   if (!branch) return null
   const kid = kidIndex != null ? branch.kids[kidIndex] : null
   const accent = branch.c.bar
+  // The border bar can stay at the branch's own colour; the headline is text
+  // on the panel's dark surface, so it gets the readability floor.
+  const fg = readableAccent(accent)
 
   const subTopics = kid
     ? (SUB[`${chart.id}.${branchIndex}.${kidIndex}`] ?? '').split('·').map((t) => t.trim()).filter(Boolean)
@@ -39,7 +43,7 @@ export default function PbsDetail({ chart, branchIndex, kidIndex, onSelectKid, o
       <p className="type-tiny tracking-widest font-bold text-[var(--text-faint)] uppercase pr-8">
         {chart.id} · {kid ? `NODE ${branchIndex + 1}.${kidIndex + 1}` : `BRANCH ${branchIndex + 1} of ${chart.config.branches.length}`}
       </p>
-      <ArabicText as="p" size="lg" className="mt-2 leading-snug" style={{ color: accent }}>
+      <ArabicText as="p" size="lg" className="mt-2 leading-snug" style={{ color: fg }}>
         {kid ? kid[0] : branch.ar}
       </ArabicText>
       <p className="type-small text-[var(--text-dim)]">{kid ? kid[1] : branch.en}</p>

@@ -23,6 +23,7 @@ import PbsChart from './PbsChart'
 import PbsDetail from './PbsDetail'
 import './pbs.css'
 import { CHARTS } from '../../lib/pbsData'
+import { readableAccent } from '../../lib/pbsAccent'
 
 const ZOOM_MIN = 0.7
 const ZOOM_MAX = 2.2
@@ -169,6 +170,10 @@ function MapIndex({ onOpen }) {
           <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(14rem, 1fr))' }}>
             {g.items.map((chart) => {
               const delay = seen++
+              // The border/ghost stay at the chart's own accent (fine at any
+              // lightness, they're not text); the headline needs to read, so
+              // it gets the floor.
+              const fg = readableAccent(chart.accent)
               return (
                 <button
                   key={chart.id}
@@ -181,7 +186,7 @@ function MapIndex({ onOpen }) {
                   <span className="pbs-ghost" style={{ color: chart.accent }} aria-hidden="true">{chart.id}</span>
                   <span className="pbs-go text-[var(--text-faint)]" aria-hidden="true">↗</span>
                   <p className="type-tiny tracking-widest font-bold text-[var(--text-faint)] relative">{chart.id}</p>
-                  <ArabicText as="p" size="lg" className="my-0.5 relative" style={{ color: chart.accent }}>
+                  <ArabicText as="p" size="lg" className="my-0.5 relative" style={{ color: fg }}>
                     {chart.ar}
                   </ArabicText>
                   <p className="type-small text-[var(--text-dim)] relative">{chart.en}</p>
