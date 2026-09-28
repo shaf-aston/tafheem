@@ -45,10 +45,10 @@ const BARS = Array.from({ length: Number(theme.landing['wave-bars']) }, (_, i) =
 const SPIKES = Array.from({ length: 12 }, (_, i) => i * 30)
 
 const STEPS = [
-  { title: 'Every word, named', tab: 'nahw', accent: 'var(--role-fail)', body: 'Paste any sentence. Each word gets its role and colour in a moment, with harakat or without.' },
-  { title: 'See who governs whom', tab: 'nahw', accent: 'var(--role-rel)', body: 'The tool draws the governor arrows and tells you why each word takes its case.' },
-  { title: 'Recite, be heard', tab: 'mem', accent: 'var(--quran)', body: '1,950 real recitations, scored word by word. Mistakes are flagged where they happened.' },
-  { title: 'Trace any root', tab: 'dict', accent: 'var(--gold-hi)', body: '"gathering one thing to another", Ibn Faris. Four classical dictionaries, one search.' },
+  { title: 'Every word, named', to: 'tab=nahw', accent: 'var(--role-fail)', body: 'Paste any sentence. Each word gets its role and colour in a moment, with harakat or without.' },
+  { title: 'See who governs whom', to: 'tab=nahw', accent: 'var(--role-rel)', body: 'The tool draws the governor arrows and tells you why each word takes its case.' },
+  { title: 'Recite, be heard', to: 'tab=mem&mode=recite', accent: 'var(--quran)', body: '1,950 real recitations, scored word by word. Mistakes are flagged where they happened.' },
+  { title: 'Trace any root', to: 'tab=dict', accent: 'var(--gold-hi)', body: '"gathering one thing to another", Ibn Faris. Four classical dictionaries, one search.' },
 ]
 
 const clamp = (v) => Math.max(0, Math.min(1, v))
@@ -125,7 +125,7 @@ export default function StoryScroll() {
               {STEPS.map((s, i) => (
                 <a
                   key={s.title}
-                  href={`${links.tool}?tab=${s.tab}`}
+                  href={`${links.tool}?${s.to}`}
                   className={`story-pill${i === active ? ' active' : ''}`}
                   style={{ '--accent': s.accent }}
                   aria-current={i === active ? 'step' : undefined}

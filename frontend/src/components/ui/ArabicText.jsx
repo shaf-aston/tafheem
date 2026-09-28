@@ -11,12 +11,14 @@
  * Size is a prop, not a class a caller writes, so the four sizes in
  * index.css stay the only sizes any of this text can be.
  *
- * Every piece of text inside, however deep, is drawn in the spelling a font can
- * seat (seatSmallAlef), so no page has to remember to ask for it.
+ * Qur'an text is recognised by its own marks (isQuranic) and flagged
+ * data-script="quran" for the face drawn for them, and every piece of text
+ * inside is given the tatweel a small alef stands on (seatSmallAlef). No page
+ * has to remember to ask for either.
  */
 import { cloneElement, isValidElement } from 'react'
 
-import { seatSmallAlef } from '../../lib/arabicText'
+import { isQuranic, seatSmallAlef, textOf } from '../../lib/arabicText'
 
 const SIZES = { tiny: 'arabic-tiny', sm: 'arabic-sm', base: 'arabic', lg: 'arabic-lg' }
 
@@ -31,7 +33,13 @@ const seated = (node) => {
 
 export default function ArabicText({ as: Tag = 'span', size = 'base', lang = 'ar', className = '', children, ...props }) {
   return (
-    <Tag className={`${SIZES[size]} ${className}`.trim()} lang={lang} dir="rtl" {...props}>
+    <Tag
+      className={`${SIZES[size]} ${className}`.trim()}
+      lang={lang}
+      dir="rtl"
+      data-script={isQuranic(textOf(children)) ? 'quran' : undefined}
+      {...props}
+    >
       {seated(children)}
     </Tag>
   )

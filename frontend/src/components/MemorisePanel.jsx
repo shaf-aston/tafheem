@@ -22,6 +22,7 @@ import {
   optionsFor, pagesOf, printedPageOf, score, wordsOf,
 } from '../lib/memorise'
 
+import { readViewParam, writeViewParams } from '../lib/tabUrl'
 import { useReciting } from '../lib/useReciting'
 import { useSetting } from '../lib/settings'
 
@@ -76,7 +77,10 @@ export default function MemorisePanel({ accent }) {
   const [answers, setAnswers] = useState({})
   const [checked, setChecked] = useState(false)
   const [meaning, setMeaning] = useState(BOOKS[DEFAULT_BOOK].meaningDefault ?? false)
-  const [way, setWay] = useState('type')
+  // In the address as mode=, so a link (the landing page's "Recite, be heard")
+  // can open the page already reciting.
+  const [way, setWay] = useState(() => readViewParam('mode', WAYS.map((w) => w.id)) ?? 'type')
+  useEffect(() => { writeViewParams({ mode: way === 'type' ? '' : way }) }, [way])
   // The word the reader pressed to start on, or null for "they did not say".
   // A page is not always begun at its top: somebody revising picks up where
   // they stopped, or goes back over the one ayah they keep losing. It is

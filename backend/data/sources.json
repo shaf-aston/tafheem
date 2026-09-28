@@ -308,6 +308,16 @@
     ],
     "category": "Tafsir"
   },
+  "colloquial": {
+    "label": "Colloquial lessons",
+    "confidence": "guessed",
+    "detail": "Damascene phrases, conversations and exercises written by Claude; no native speaker has checked them yet",
+    "url": "",
+    "where": "One file per unit in backend/data/colloquial, generated to the prompt in docs/colloquial-authoring-prompt.md. Spoken Arabic is not written down in any corpus this app has, so nothing here was checked against a source: it is a model's account of how Damascus speaks. Pictures beside the phrases come from Openverse and each carries its own creator and licence.",
+    "used_in": [
+      "colloq"
+    ]
+  },
   "nahw-notes": {
     "label": "Year 3 Nahw notes",
     "confidence": "guessed",

@@ -13,6 +13,20 @@ import ArabicText from './ui/ArabicText'
 
 const pieceKey = (blockId, field, at) => `${blockId}:${field}:${at}`
 
+// The teacher's page had a word here too faint or too cramped to read; FORMAT.md
+// has the transcriber write ⟨?⟩ rather than guess. Shown as its own small badge
+// so it reads as "a word is missing here", not as leftover formatting syntax.
+function Illegible() {
+  return (
+    <bdi
+      title="A word here could not be read in the teacher's handwritten page"
+      className="italic text-[var(--text-faint)] whitespace-nowrap"
+    >
+      ⟨illegible⟩
+    </bdi>
+  )
+}
+
 function Blank({ text, what, onReveal }) {
   return (
     <button
@@ -33,13 +47,23 @@ function Blank({ text, what, onReveal }) {
 function Marked({ text, field, block, hidden, revealed, onReveal }) {
   return parseMarked(text).map((part, at) => {
     const key = pieceKey(block.id, field, at)
+    if (part.role === 'illegible') return <Illegible key={key} />
     if (part.role && hidden.has(part.role) && !revealed.has(key)) {
       return <Blank key={key} text={part.text} what={part.role} onReveal={() => onReveal(key)} />
     }
+    // <bdi>, not <span>: an Arabic run inside an English sentence (or the
+    // reverse) otherwise drags the surrounding punctuation out of order.
     return part.role
-      ? <span key={key} className={hidden.has(part.role) ? 'font-semibold text-[var(--c)]' : undefined}>{part.text}</span>
-      : <span key={key}>{part.text}</span>
+      ? <bdi key={key} className={hidden.has(part.role) ? 'font-semibold text-[var(--c)]' : undefined}>{part.text}</bdi>
+      : <bdi key={key}>{part.text}</bdi>
   })
+}
+
+/** The same marks, standalone: for a field that is only ever a single line, never hidden for testing. */
+function Segments({ text }) {
+  return parseMarked(text).map((part, i) => (
+    part.role === 'illegible' ? <Illegible key={i} /> : <bdi key={i}>{part.text}</bdi>
+  ))
 }
 
 // Most lines are Arabic, but the teacher writes some list lines and headings in English.
@@ -111,10 +135,10 @@ export default function NoteBlock({ topicId, block, testing, hidden, revealed, o
               const blank = testing && hidden.has('label') && !revealed.has(key)
               return (
                 <div key={key} className="flex items-baseline gap-1.5">
-                  <ArabicText as="dt">{label.word}</ArabicText>
+                  <ArabicText as="dt"><Segments text={label.word} /></ArabicText>
                   <span aria-hidden="true" className="text-[var(--text-faint)]">·</span>
                   <ArabicText as="dd" className="text-[var(--c)]">
-                    {blank ? <Blank text={label.label} what={`label for ${label.word}`} onReveal={() => onReveal(key)} /> : label.label}
+                    {blank ? <Blank text={label.label} what={`label for ${label.word}`} onReveal={() => onReveal(key)} /> : <Segments text={label.label} />}
                   </ArabicText>
                 </div>
               )
@@ -125,15 +149,15 @@ export default function NoteBlock({ topicId, block, testing, hidden, revealed, o
     ),
     table: (
       <figure className="space-y-2">
-        {block.caption && <ArabicText as="figcaption" className="font-semibold">{stripMarks(block.caption)}</ArabicText>}
-        {english && block.caption_en && <English>{stripMarks(block.caption_en)}</English>}
+        {block.caption && <ArabicText as="figcaption" className="font-semibold"><Segments text={block.caption} /></ArabicText>}
+        {english && block.caption_en && <English><Segments text={block.caption_en} /></English>}
         <div className="overflow-x-auto">
           <table dir="rtl" className="w-full border-collapse text-start">
             <thead>
               <tr>
                 {(block.columns ?? []).map((name, c) => (
                   <th key={c} scope="col" className="border border-[var(--border)] px-3 py-1.5 bg-[var(--surface-hi)]">
-                    <ArabicText>{stripMarks(name)}</ArabicText>
+                    <ArabicText><Segments text={name} /></ArabicText>
                   </th>
                 ))}
               </tr>
@@ -158,14 +182,14 @@ export default function NoteBlock({ topicId, block, testing, hidden, revealed, o
             </tbody>
           </table>
         </div>
-        {block.note_ar && <ArabicText as="p" size="sm" className="text-[var(--text-dim)]">{stripMarks(block.note_ar)}</ArabicText>}
-        {english && block.note_en && <English>{stripMarks(block.note_en)}</English>}
+        {block.note_ar && <ArabicText as="p" size="sm" className="text-[var(--text-dim)]"><Segments text={block.note_ar} /></ArabicText>}
+        {english && block.note_en && <English><Segments text={block.note_en} /></English>}
       </figure>
     ),
     picture: (
       <div className="space-y-1.5">
-        {block.caption && <ArabicText as="p">{stripMarks(block.caption)}</ArabicText>}
-        {block.caption_en && <English>{stripMarks(block.caption_en)}</English>}
+        {block.caption && <ArabicText as="p"><Segments text={block.caption} /></ArabicText>}
+        {block.caption_en && <English><Segments text={block.caption_en} /></English>}
         <a href={notePageUrl(topicId, block.page)} target="_blank" rel="noreferrer noopener" className="block">
           <img
             src={notePageUrl(topicId, block.page)}
