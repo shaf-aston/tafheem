@@ -71,7 +71,7 @@ echo "Press Ctrl+C to stop"
 echo ""
 
 # Start backend in background (run from project root so backend.* imports resolve)
-python -m uvicorn backend.main:app --reload --reload-dir backend --port 8000 &
+python -m uvicorn backend.main:app --reload --reload-dir backend --reload-exclude "backend/scripts/*" --reload-exclude "backend/data/*" --port 8000 &
 BACKEND_PID=$!
 
 # Ensure backend is killed on exit (Ctrl+C, error, or frontend exit)

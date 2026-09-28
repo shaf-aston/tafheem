@@ -1,0 +1,19 @@
+# The backend, one instance per port, kept running and restarted if it dies or
+# the machine reboots. Two instances (tafheem@8000, tafheem@8001) run at once
+# so sync.sh can restart them one at a time behind Caddy's health check,
+# instead of one shared unit that drops every request while it reloads.
+# Install: sudo cp deploy/tafheem@.service /etc/systemd/system/
+[Unit]
+Description=Tafheem backend (port %i)
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/tafheem
+Environment=PATH=/home/ubuntu/tafheem/venv/bin
+ExecStart=/home/ubuntu/tafheem/venv/bin/uvicorn backend.main:app --host 127.0.0.1 --port %i
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

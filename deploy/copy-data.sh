@@ -13,10 +13,8 @@ REMOTE=tafheem
 
 FILES="
 backend/data/daleel.db
-backend/data/daleel_index.db
 backend/data/lexicons.db
 backend/data/lexicon.db
-backend/data/openiti.db
 backend/data/books/openiti.db
 backend/data/parser/encoder.onnx
 backend/data/quran/library.db
@@ -36,4 +34,4 @@ for f in $FILES; do
   scp "$f" "$SERVER:$REMOTE/$f"
 done
 
-echo "Done. Now restart the backend:  ssh $SERVER 'sudo systemctl restart tafheem'"
+echo "Done. Now restart the backend:  ssh $SERVER 'sudo systemctl restart tafheem@8001 && sleep 5 && sudo systemctl restart tafheem@8000'"
