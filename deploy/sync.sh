@@ -35,6 +35,12 @@ git ls-files -z backend/data | rsync -a --from0 --files-from=- ./ /home/ubuntu/t
 rsync -a deploy/ /home/ubuntu/tafheem/deploy/
 cp requirements.txt /home/ubuntu/tafheem/requirements.txt
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements.txt
+# The hadith index is built here from the tracked bukhari.json, never copied
+# from anyone's machine. Rebuilt only when it is missing or its source is newer.
+H=/home/ubuntu/tafheem
+if [ ! -f "$H/backend/data/hadith.db" ] || [ "$H/backend/data/hadith/bukhari.json" -nt "$H/backend/data/hadith.db" ] || [ "$H/backend/scripts/build_hadith_index.py" -nt "$H/backend/data/hadith.db" ]; then
+	(cd "$H" && venv/bin/python backend/scripts/build_hadith_index.py)
+fi
 (cd frontend && npm ci --silent && npm run build)
 rm -rf /home/ubuntu/site.new
 cp -r frontend/dist /home/ubuntu/site.new
