@@ -7,30 +7,15 @@ import ArabicText from './ArabicText'
 // A tab's `row` tier (see tabs.js) → when it shows. The open tab always shows.
 const ROW_CLASS = { 1: '', 2: 'hidden md:block', 3: 'hidden' }
 
-// Adjacent `half` tabs in the same group (Nahw + Sarf) are one slot while
-// neither is open: a single button standing in for both. Opening either
-// expands it back into the pair, at the same sizing as if they'd never
-// collapsed, so the strip never grows past what it shows today.
-function pairUp(tabs, active) {
-  const items = []
-  for (let i = 0; i < tabs.length; i++) {
-    const tab = tabs[i]
-    const next = tabs[i + 1]
-    if (tab.half && next?.half && tab.group === next.group) {
-      const open = active === tab.id || active === next.id
-      items.push(open ? { tab } : { collapsed: [tab, next] })
-      if (!open) { i++; continue }
-      items.push({ tab: next })
-      i++
-      continue
-    }
-    items.push({ tab })
-  }
-  return items
+// A `half` tab comes out with its partner (the other half in its group), so
+// opening Nahw from All sections shows Sarf beside it, and the reverse.
+function isOut(tab, tabs, active) {
+  if (tab.id === active) return true
+  if (!tab.half) return false
+  return tabs.some((t) => t.id === active && t.half && t.group === tab.group)
 }
 
 export default function TabStrip({ tabs, active, colorOf, onSelect, onAll }) {
-  const items = pairUp(tabs, active)
   return (
     // No overflow here on purpose: setting one axis to auto makes the other
     // auto too, and the 1px underline below the strip would then raise a
@@ -40,29 +25,9 @@ export default function TabStrip({ tabs, active, colorOf, onSelect, onAll }) {
     // The labels are type-body, the same size as the English being read
     // in the panels below.
     <div className="flex flex-wrap gap-0.5 sm:gap-1" role="tablist" aria-label="Tools">
-      {items.map((item) => {
-        // Shortcut keys follow the registry order, not what the strip shows.
-        const key = (t) => tabs.indexOf(t) + 1
-        if (item.collapsed) {
-          const [first, second] = item.collapsed
-          return (
-            <button
-              key={first.id}
-              type="button"
-              role="tab"
-              aria-selected={false}
-              onClick={() => onSelect(first.id)}
-              title={`${first.label} / ${second.label} (press ${key(first)} or ${key(second)})`}
-              style={{ '--c': colorOf(first.id) }}
-              className="tab-btn relative min-w-[4.5rem] sm:min-w-[5.5rem] py-1.5 px-0.5 sm:px-2 type-body font-medium tab-idle flex-1"
-            >
-              <span className="sm:hidden">{first.short}/{second.short}</span>
-              <span className="hidden sm:inline">{first.label} / {second.label}</span>
-            </button>
-          )
-        }
-        const tab = item.tab
+      {tabs.map((tab, i) => {
         const selected = active === tab.id
+        const out = isOut(tab, tabs, active)
         const tabAccent = colorOf(tab.id)
         return (
           <button
@@ -73,7 +38,7 @@ export default function TabStrip({ tabs, active, colorOf, onSelect, onAll }) {
             aria-selected={selected}
             aria-controls="tabpanel"
             onClick={() => onSelect(tab.id)}
-            title={`${tab.label} (press ${key(tab)})`}
+            title={`${tab.label} (press ${i + 1})`}
             style={{
               '--c': tabAccent,
               color: selected ? tabAccent : undefined,
@@ -81,7 +46,7 @@ export default function TabStrip({ tabs, active, colorOf, onSelect, onAll }) {
               // so a half tab really is half of a whole one.
               flex: tab.half ? '0.5 1 0' : '1 1 0',
             }}
-            className={`tab-btn relative ${selected ? '' : ROW_CLASS[tab.row]} ${tab.half ? 'min-w-[3rem] sm:min-w-[3.5rem]' : 'min-w-[4.5rem] sm:min-w-[5.5rem]'}
+            className={`tab-btn relative ${out ? '' : ROW_CLASS[tab.row]} ${tab.half ? 'min-w-[3rem] sm:min-w-[3.5rem]' : 'min-w-[4.5rem] sm:min-w-[5.5rem]'}
               py-1.5 px-0.5 sm:px-2 type-body font-medium ${selected ? '' : 'tab-idle'}`}
           >
             <span className="sm:hidden">{tab.short}</span>
