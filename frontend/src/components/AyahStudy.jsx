@@ -36,6 +36,7 @@ import TranslationStrip from './ui/TranslationStrip'
 import { GoButton } from './ui/RootActions'
 import Tooltip from './ui/Tooltip'
 import AyahTafsir from './AyahTafsir'
+import { isQuranic } from '../lib/arabicText'
 import ArabicText from './ui/ArabicText'
 import GlossWord from './ui/GlossWord'
 import ErrorAlert from './ui/ErrorAlert'
@@ -154,7 +155,12 @@ export default function AyahStudy({ data, onGo, onReadSurah, accent }) {
         <SourceBadge source={data.source} />
       </div>
 
-      <div className="flex flex-wrap justify-center gap-2 peer-dim" dir="rtl" lang="ar">
+      <div
+        className="flex flex-wrap justify-center gap-2 peer-dim"
+        dir="rtl"
+        lang="ar"
+        data-script={isQuranic(data.words.map((w) => w.arabic).join(' ')) ? 'quran' : undefined}
+      >
         {data.words.map((w, i) => {
           const key = w.position || i
           return (

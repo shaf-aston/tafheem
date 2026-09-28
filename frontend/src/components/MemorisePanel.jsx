@@ -14,7 +14,7 @@
 import { Fragment, useEffect, useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { recitedForm } from '../lib/arabicText'
+import { isQuranic, recitedForm } from '../lib/arabicText'
 import { BOOKS, DEFAULT_BOOK } from '../lib/books'
 import { smartError } from '../lib/apiError'
 import {
@@ -540,7 +540,11 @@ function Line({ line, index, blanks, answers, checked, meaning, choices, accent,
       {/* Right to left, wrapping downward, exactly as the line is printed. The
           reference goes last so it sits at the end of the line the way a mushaf
           puts the ayah number, in a right-to-left row, last is leftmost. */}
-      <div className="flex flex-wrap items-center gap-x-2 gap-y-1" dir="rtl">
+      <div
+        className="flex flex-wrap items-baseline gap-x-2 gap-y-1"
+        dir="rtl"
+        data-script={isQuranic(line.arabic) ? 'quran' : undefined}
+      >
         {words.map((word, w) => {
           const key = `${index}:${w}`
           // A poem's bayt is two hemistichs, sadr then ajuz, printed as one

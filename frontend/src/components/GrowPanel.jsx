@@ -30,6 +30,7 @@ import { LOOK } from '../lib/reciteColors'
 import { byPlace } from '../lib/recitingSession'
 import { useRemembered } from '../lib/useRemembered'
 import { useSetting } from '../lib/settings'
+import { isQuranic } from '../lib/arabicText'
 import ArabicText from './ui/ArabicText'
 import Disclosure from './ui/Disclosure'
 import ErrorAlert from './ui/ErrorAlert'
@@ -191,7 +192,11 @@ function Step({ step, accent, entry, onGo, onRecited }) {
       {ayahText.loading && <p className="type-small text-[var(--text-faint)]">Loading the ayahs…</p>}
       {ayahText.failed && <ErrorAlert inline title="Could not load the ayahs" />}
 
-      <p className="leading-loose" dir="rtl">
+      <p
+        className="leading-loose"
+        dir="rtl"
+        data-script={isQuranic(words.map((mark) => mark.word).join(' ')) ? 'quran' : undefined}
+      >
         {words.map((mark, i) => {
           const look = LOOK[mark.state]
           const missed = mark.state === MISSED
