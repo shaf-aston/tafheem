@@ -8,6 +8,9 @@
 /* Urdu is read in Nastaliq, not Naskh. Naskh would render it legibly and still
    look wrong to anyone who reads Urdu, the way a serif Arabic would. */
 @import "@fontsource/noto-nastaliq-urdu/400.css";
+/* The mushaf's marks: Naskh squeezes a small alef and its madda onto the letter
+   below; Amiri Quran was drawn for them. */
+@import "@fontsource/amiri-quran/400.css";
 @import "@fontsource-variable/inter/index.css";
 
 /* The command line and the orbit launcher. Their own file because they are one
@@ -20,6 +23,7 @@
 :root {
   --font-arabic: 'Noto Naskh Arabic', serif;
   --font-urdu: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif;
+  --font-quran: 'Amiri Quran', 'Noto Naskh Arabic', serif;
   --font-ui: 'Inter Variable', 'Inter', system-ui, sans-serif;
 }
 
@@ -169,6 +173,13 @@ select option {
      which is what puts them in the order they were written. */
   unicode-bidi: isolate;
   line-height: var(--arabic-line-height);
+}
+
+/* Qur'an text, flagged by ArabicText and the tarkeeb diagram (lib/arabicText
+   isQuranic). The face itself, not the token: a diagram word inherits its
+   container's already-resolved font, so a token swap there changes nothing. */
+[data-script="quran"] {
+  font-family: var(--font-quran);
 }
 
 /* Arabic sitting on one line beside English, a panel title, a label; rather
