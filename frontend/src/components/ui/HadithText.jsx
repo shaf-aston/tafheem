@@ -58,7 +58,7 @@ export default function HadithText({ label, arabic, english = '', accent, action
         </ArabicText>
 
         {english && (
-          <p className="type-ui leading-relaxed mt-3 pt-3 border-t border-[var(--border)] max-w-prose">
+          <p className="type-ui leading-relaxed mt-3 pt-3 border-t border-[var(--border)]">
             {narrator && <span style={TONE.told}>{narrator} </span>}
             <Spans text={body} marks={['“', '”']} />
           </p>
