@@ -148,7 +148,7 @@
   },
   "layout": {
     "_comment": "How wide the page is allowed to get. Everything down the middle of the app reads this one number through the .shell class, so the header, the tab strip, the banner and the panels can never disagree about where the edges are. It is a maximum, not a width: on any screen narrower than this the page simply fills it, which is what keeps the phone view working.",
-    "shell": "72rem",
+    "shell": "80rem",
     "_control_comment": "One square for every small control in the page chrome: the settings gear, the pen that opens the launcher, and the height of the command bar between them. One number, so the two ends of the header can never disagree about how tall the row is.",
     "control": "2.5rem",
     "_chip_comment": "How tall a chip stands, whatever is written in it. Said here rather than left to the text because a pill that takes its height from its own letters is a different height in Arabic than in English: a Recent row holding both came out with the Arabic pills at exactly twice the height of the English ones, a ragged row that looked like a browser bug and was not.",
