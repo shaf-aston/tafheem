@@ -1,0 +1,13 @@
+{
+  "_about": "Every spoken dialect the Colloquial tab offers. A dialect is a folder of unit files beside this one, nothing more: adding one is a folder and a line here, with no code change anywhere.",
+  "dialects": [
+    {
+      "key": "damascene",
+      "folder": "damascene",
+      "label": "Damascene",
+      "arabic": "الشامي",
+      "where": "Damascus and the Syrian south",
+      "order": 1
+    }
+  ]
+}
