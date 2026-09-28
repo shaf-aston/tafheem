@@ -7,7 +7,7 @@ import { createElement as h } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 
-import { seatSmallAlef } from '../../lib/arabicText'
+import { isQuranic, seatSmallAlef } from '../../lib/arabicText'
 import ArabicText from './ArabicText'
 import GlossWord from './GlossWord'
 import Tooltip from './Tooltip'
@@ -52,6 +52,19 @@ describe('a small alef in the mushaf\'s spelling', () => {
   it('is seated however deep ArabicText holds it', () => {
     const html = renderToStaticMarkup(h(ArabicText, null, h(GlossWord, { gloss: 'Those' }, 'أُو۟لَٰٓئِكَ')))
     expect(selectable(html)).toBe('أُو۟لَـٰٓئِكَ')
+  })
+})
+
+describe('the Qur\'an in its own spelling', () => {
+  it('is known by marks only the mushaf uses', () => {
+    expect(isQuranic('أُو۟لَٰٓئِكَ ٱلَّذِينَ هَدَى ٱللَّهُ ۖ')).toBe(true)
+    expect(isQuranic('ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ')).toBe(false)
+  })
+
+  it('is flagged for its own face, however deep the words sit', () => {
+    const ayah = renderToStaticMarkup(h(ArabicText, { as: 'div' }, h(GlossWord, null, 'ٱللَّهُ')))
+    expect(ayah).toMatch(/^<div[^>]*data-script="quran"/)
+    expect(renderToStaticMarkup(h(ArabicText, null, 'ذَهَبَ الطَّالِبُ'))).not.toContain('data-script')
   })
 })
 

@@ -152,3 +152,22 @@ export const seatSmallAlef = (text) => {
     return seated ? `ـ${c}` : c
   }).join('')
 }
+
+/**
+ * True when the text is in the mushaf's own spelling: it carries the alef wasla
+ * or a mark from U+06D6 to U+06ED (small high letters, rounded sukun, waqf
+ * signs), which typed or printed Arabic never does.
+ */
+export const isQuranic = (text) =>
+  [...(text ?? '')].some((char) => {
+    const code = char.codePointAt(0)
+    return code === 0x0671 || (code >= 0x06d6 && code <= 0x06ed)
+  })
+
+/** The text inside a piece of React markup, however deeply nested. */
+export const textOf = (node) => {
+  if (node == null || typeof node === 'boolean') return ''
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map(textOf).join('')
+  return textOf(node.props?.children)
+}
