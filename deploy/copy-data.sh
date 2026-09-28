@@ -34,4 +34,4 @@ for f in $FILES; do
   scp "$f" "$SERVER:$REMOTE/$f"
 done
 
-echo "Done. Now restart the backend:  ssh $SERVER 'sudo systemctl restart tafheem'"
+echo "Done. Now restart the backend:  ssh $SERVER 'sudo systemctl restart tafheem@8001 && sleep 5 && sudo systemctl restart tafheem@8000'"

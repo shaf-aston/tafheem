@@ -21,12 +21,13 @@ sed "s/tafheem.duckdns.org/$HOST/" deploy/Caddyfile | sudo tee /etc/caddy/Caddyf
 sudo systemctl restart caddy
 
 # Oracle's Ubuntu image blocks every port but SSH in its own firewall.
-sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
-sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT
+N=$(sudo iptables -L INPUT --line-numbers -n | awk '/REJECT/{print $1; exit}'); N=${N:-1}
+sudo iptables -I INPUT $N -m state --state NEW -p tcp --dport 80 -j ACCEPT
+sudo iptables -I INPUT $N -m state --state NEW -p tcp --dport 443 -j ACCEPT
 sudo netfilter-persistent save
 
-sudo cp deploy/tafheem.service /etc/systemd/system/
+sudo cp "deploy/tafheem@.service" /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now tafheem
+sudo systemctl enable --now tafheem@8000 tafheem@8001
 
 echo "Done. Check it: curl -s https://$HOST/api/health"

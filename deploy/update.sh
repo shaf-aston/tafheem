@@ -4,5 +4,5 @@
 # Databases are not touched: they are not in git, see copy-data.sh.
 set -e
 SERVER="${1:?Pass the server, for example: bash deploy/update.sh ubuntu@123.45.67.89}"
-ssh "$SERVER" 'cd tafheem && git pull --ff-only && venv/bin/pip install -q -r requirements.txt && sudo systemctl restart tafheem'
+ssh "$SERVER" 'cd tafheem && git pull --ff-only && venv/bin/pip install -q -r requirements.txt && sudo systemctl restart tafheem@8001 && sleep 5 && sudo systemctl restart tafheem@8000'
 echo "Updated. Check: ssh $SERVER 'curl -s localhost:8000/api/health'"

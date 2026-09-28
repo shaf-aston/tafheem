@@ -2,6 +2,10 @@
 # listens on this machine), everything else is the built website in ~/site.
 # Every request is logged with the visitor's
 # real address (Vercel's x-vercel-forwarded-for header); read it with usage.sh.
+#
+# Two backend copies run at once (tafheem@8000, tafheem@8001). sync.sh
+# restarts them one at a time; the health check below stops sending requests
+# to whichever one is mid-restart, so a deploy never drops a request.
 132-145-17-56.sslip.io {
 	log {
 		output file /var/log/caddy/access.log {
@@ -14,7 +18,18 @@
 		}
 	}
 	handle /api/* {
-		reverse_proxy 127.0.0.1:8000
+		reverse_proxy 127.0.0.1:8000 127.0.0.1:8001 {
+			health_uri /api/health
+			health_interval 5s
+			health_timeout 3s
+			lb_policy round_robin
+			# The active health check above only samples every 5s, too slow to
+			# catch an instance the instant it stops for a restart. This makes
+			# a request that hits the down one retry the other immediately,
+			# instead of waiting on the next health check.
+			lb_try_duration 5s
+			lb_try_interval 250ms
+		}
 	}
 	handle {
 		root * /home/ubuntu/site
