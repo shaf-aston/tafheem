@@ -21,16 +21,34 @@ export const NOTES = {
 
 const MARK = /\{\{([^{}|]+)\|([^{}]*)\}\}/g
 
+// FORMAT.md: a word the transcriber could not read in the teacher's handwriting
+// goes in as this token, never a guess. It is not one of roles.json's roles —
+// nothing here can be hidden and tested, it only needs to read as "unreadable"
+// rather than print as stray brackets and a question mark.
+const ILLEGIBLE = '⟨?⟩'
+
+/** A plain run, further split wherever it holds an illegible-word marker. */
+function withIllegible(text) {
+  if (!text.includes(ILLEGIBLE)) return [{ text, role: null }]
+  const pieces = text.split(ILLEGIBLE)
+  const out = []
+  pieces.forEach((piece, i) => {
+    if (piece) out.push({ text: piece, role: null })
+    if (i < pieces.length - 1) out.push({ text: ILLEGIBLE, role: 'illegible' })
+  })
+  return out
+}
+
 /** One string split into the plain runs and the marked pieces, in order. */
 export function parseMarked(text) {
   const parts = []
   let at = 0
   for (const found of (text ?? '').matchAll(MARK)) {
-    if (found.index > at) parts.push({ text: text.slice(at, found.index), role: null })
+    if (found.index > at) parts.push(...withIllegible(text.slice(at, found.index)))
     parts.push({ text: found[2], role: found[1] })
     at = found.index + found[0].length
   }
-  if (at < (text ?? '').length) parts.push({ text: text.slice(at), role: null })
+  if (at < (text ?? '').length) parts.push(...withIllegible(text.slice(at)))
   return parts
 }
 
