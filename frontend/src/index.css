@@ -177,8 +177,12 @@ select option {
 
 /* Qur'an text, flagged by ArabicText and the tarkeeb diagram (lib/arabicText
    isQuranic). The face itself, not the token: a diagram word inherits its
-   container's already-resolved font, so a token swap there changes nothing. */
-[data-script="quran"] {
+   container's already-resolved font, so a token swap there changes nothing.
+   A flag on a line or passage reaches every Arabic word inside it: judged word
+   by word, a word with no mushaf mark (يَوْمِ) kept Naskh beside Amiri words
+   and the line sat on two baselines. Only Arabic takes it: an ayah number or
+   English label in the same row keeps its own face, and Urdu its Nastaliq. */
+:is(.arabic, .arabic-tiny, .arabic-sm, .arabic-lg, .tk-word):not([lang="ur"]):is([data-script="quran"], [data-script="quran"] *) {
   font-family: var(--font-quran);
 }
 
