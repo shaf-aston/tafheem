@@ -177,10 +177,7 @@ export default function Practice({ step, record, accent, onRecited, onGo, onBloo
 
       <div className="grow-prac">
         <DaysRing done={Math.min(daysOf(record, step.id), NEED)} />
-        {/* No microphone until the ayahs are here: nothing to judge a recitation against. */}
-        {!ayahText.loading && !ayahText.failed && (
-          <MicButton recite accent={accent} title={say('Say it')} onHeard={heard} />
-        )}
+        <MicButton recite accent={accent} title={say('Say it')} onHeard={heard} />
       </div>
       <Verdict phase={phase} result={result} />
 

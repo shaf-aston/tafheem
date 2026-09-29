@@ -45,7 +45,7 @@ export default function GrowPanel({ accent, onGo }) {
   const record = useMemo(() => JSON.parse(saved || '{}'), [saved])
   // Undefined until the map has drawn once, so the current group opens after
   // that first frame and grows out, rather than being open from the start.
-  const [picked, setPicked] = useState(undefined)
+  const [openId, setOpenId] = useState(undefined)
   const [sheet, setSheet] = useState(null)
   const [reaction, setReaction] = useState(null)
   const streak = useRef(0)
@@ -53,12 +53,11 @@ export default function GrowPanel({ accent, onGo }) {
   const tiers = useMemo(() => tiersOf(config.tiers, paths.data), [paths.data])
   const next = useMemo(() => upNext(tiers, record), [tiers, record])
   const current = useMemo(() => currentGroup(tiers, next), [tiers, next])
-  const openId = picked ?? null
   const done = score(tiers, record)
 
   useEffect(() => {
     if (!paths.data) return undefined
-    const frame = requestAnimationFrame(() => requestAnimationFrame(() => setPicked((was) => (was === undefined ? current : was))))
+    const frame = requestAnimationFrame(() => requestAnimationFrame(() => setOpenId((was) => (was === undefined ? current : was))))
     return () => cancelAnimationFrame(frame)
   }, [paths.data, current])
 
@@ -73,14 +72,14 @@ export default function GrowPanel({ accent, onGo }) {
     const onKey = (event) => {
       if (event.key !== 'Escape' || sheet || !openId) return
       const node = document.querySelector(`[data-group="${openId}"]`)
-      setPicked(null)
+      setOpenId(null)
       node.focus()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [sheet, openId])
 
-  const toggle = useCallback((id) => setPicked((was) => (was === id ? null : id)), [])
+  const toggle = useCallback((id) => setOpenId((was) => (was === id ? null : id)), [])
   const closed = useCallback(() => setSheet(null), [])
 
   function recited(clean) {
@@ -119,7 +118,7 @@ export default function GrowPanel({ accent, onGo }) {
             next={next}
             mood={mood}
             onToggle={toggle}
-            onGrown={setPicked}
+            onGrown={setOpenId}
             onStep={(step, at) => setSheet({ step, ...at })}
           />
         )}

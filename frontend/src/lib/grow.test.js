@@ -31,6 +31,10 @@ describe('marking one recitation', () => {
     }
   })
 
+  it('never counts an empty ayah as a try', () => {
+    expect(judge([], '', [], 'standard')).toMatchObject({ clean: false, weighed: false })
+  })
+
   it('does not accuse a word the sound never checked; it is only not sure', () => {
     const marks = mark(RUKU, 'سبحان ربي الكريم', [])
     expect(states(marks)[2]).toBe(CHECK)

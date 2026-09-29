@@ -964,7 +964,6 @@ class GrowPath(BaseModel):
     tier: str
     title: str
     arabic: str
-    about: str
     groups: list[GrowGroup]
     steps: list[GrowStep]
 

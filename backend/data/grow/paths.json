@@ -6,7 +6,6 @@
       "tier": "basics",
       "title": "The words of salah",
       "arabic": "الصلاة",
-      "about": "What is said in the prayer, from the first takbir to the salam, one step at a time.",
       "groups": [
         {
           "id": "stand",
@@ -228,7 +227,6 @@
       "tier": "basics",
       "title": "Short surahs",
       "arabic": "قصار السور",
-      "about": "The Fatiha and the short surahs most often recited in prayer.",
       "groups": [
         {
           "id": "surahs-1",
