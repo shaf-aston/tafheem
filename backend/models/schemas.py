@@ -957,7 +957,7 @@ class GrowGroup(BaseModel):
     id: str
     title: str
     arabic: str = ""
-    icon: Literal["stand", "bow", "prostrate", "sit", "book", "lock"]
+    icon: Literal["stand", "bow", "prostrate", "sit", "book", "lock", "drop"]
     steps: list[str]
 
 

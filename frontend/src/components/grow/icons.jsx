@@ -70,6 +70,7 @@ const FIGURES = {
   sit: <><circle cx="14" cy="8" r="3.5" /><path d="M14 13v15h17l-5 6H14" /></>,
   book: <path d="M20 10c-4-3-9-3-14-2v22c5-1 10-1 14 2 4-3 9-3 14-2V8c-5-1-10-1-14 2zM20 10v22" />,
   lock: <><rect x="9" y="18" width="22" height="15" rx="4" /><path d="M13 18v-5a7 7 0 0114 0v5" /></>,
+  drop: <path d="M20 5c6 7 10 12 10 18a10 10 0 0 1-20 0c0-6 4-11 10-18z" />,
 }
 
 export function GroupIcon({ name }) {
