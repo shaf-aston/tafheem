@@ -4,8 +4,9 @@ import Segmented from '../ui/Segmented'
 import SourceBadge from '../ui/SourceBadge'
 import { GoButton } from '../ui/RootActions'
 import Argument from './Argument'
+import Discussion from './Discussion'
 
-// One answer: the reply in short, the reasoning point by point, then further reading.
+// One answer: the reply in short, the reasoning point by point, the discussion in depth, then further reading.
 export default function Answer({ topic, question, library, accent, onGo, step, mode, modes, onMode, copy }) {
   const fatwa = question.islamqa
   return (
@@ -33,6 +34,8 @@ export default function Answer({ topic, question, library, accent, onGo, step, m
         </div>
         <Argument key={`${question.id}-${mode}`} points={question.points} library={library} accent={accent} mode={mode} copy={copy} onGo={onGo} />
       </div>
+
+      <Discussion key={question.id} parts={question.discussion} library={library} accent={accent} copy={copy} onGo={onGo} />
 
       <div className="flex items-center justify-between gap-2 flex-wrap pt-3 border-t border-[var(--border)]">
         {fatwa ? (

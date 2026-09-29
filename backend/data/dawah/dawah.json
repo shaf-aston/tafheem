@@ -7,6 +7,7 @@
   "  topics     id, title, arabic, blurb, and its questions in reading order.",
   "  question   id, q, short, points [{title, text, refs?, note?}], islamqa {number, title} or null (further reading).",
   "  refs       the timelines' shape: quran 'S:A' or 'S:A-B', or hadith + number from timelines/library.json.",
+  "  discussion the in-depth answer: paragraphs [{text, refs?, note?}], each with its own evidence.",
   "  note       a source that is not a Qur'an or hadith link, such as a tafsir. Every point has refs or a note."
  ],
  "islamqa": {
@@ -45,34 +46,92 @@
       },
       {
        "title": "Allah is the First",
-       "text": "The Qur'an names Him the First, before whom there is nothing. The Prophet taught that Allah was, and nothing was before Him.",
+       "text": "The Qur'an names Him the First, before whom there is nothing. The Prophet taught that at the start there was nothing but Allah.",
        "refs": [
         {
          "quran": "57:3"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 3191
         }
-       ],
-       "note": "Sahih al-Bukhari, Beginning of Creation"
+       ]
       },
       {
        "title": "Time is created too",
-       "text": "Asking what came before assumes God is inside time. Time is part of creation, so its Creator is not bound by it.",
+       "text": "Asking what came before assumes God is inside time. Allah is the Creator of everything, and time is part of everything, so its Creator is not bound by it. Classical theologians argued this point.",
        "refs": [
         {
          "quran": "39:62"
         }
        ],
-       "note": "Ibn Taymiyyah, Dar' Ta'arud al-'Aql wa'l-Naql"
+       "note": "al-Ghazali, Tahafut al-Falasifa, first discussion"
       },
       {
        "title": "Do not spiral into the doubt",
-       "text": "The Prophet said Shaytan whispers 'who created Allah?'. The cure is to seek refuge in Allah, say 'I believe in Allah and His messengers', and stop.",
-       "note": "Sahih al-Bukhari and Sahih Muslim, the hadith of the whisper"
+       "text": "The Prophet said Shaytan whispers 'who created Allah?'. The cure is to seek refuge in Allah, say 'I believe in Allah', and stop.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 3276
+        },
+        {
+         "hadith": "muslim",
+         "number": 134
+        }
+       ]
       }
      ],
      "islamqa": {
       "number": 6660,
       "title": "Who Created Allah?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The objection is strongest when put like this. If you say the universe needs a cause because everything needs a cause, you cannot then excuse God from the rule. That looks like special pleading. The answer is that Islam never said everything needs a cause. It says that whatever begins to exist, or depends on something else to exist, needs a cause. The Qur'an frames the question in exactly this way: were people created from nothing, or did they create themselves? Both options are absurd, so something must exist that was not brought into being. When the Prophet recited these verses, the non-Muslim Jubayr ibn Mut'im said his heart almost flew.",
+       "refs": [
+        {
+         "quran": "52:35-36"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 4854
+        }
+       ]
+      },
+      {
+       "text": "Think of a line of people each borrowing money from the one before. If nobody in the line owns any money of their own, no one can lend anything, however long the line is. A chain of causes works the same way: if every link only passes on existence it received, then something must exist in its own right. Al-Ghazali makes this argument in al-Iqtisad fi al-I'tiqad: an endless chain of things that each depend on another explains nothing, so the chain must end in what depends on nothing.",
+       "note": "al-Ghazali, al-Iqtisad fi al-I'tiqad"
+      },
+      {
+       "text": "A sceptic can fairly reply that the universe itself might be the thing that has no cause. The Muslim answer is that the universe is made of parts that change, and what changes has a before and an after, so it began. The One who ends the chain must be different: not made of parts, not changing, and needing nothing. That is exactly how the Qur'an describes Allah in Surah al-Ikhlas, and al-Tahawi puts it in his creed as: without beginning, without end. So the question 'who created God?' asks for a maker of someone who by definition was never made, like asking what is north of the North Pole.",
+       "refs": [
+        {
+         "quran": "112:1-4"
+        },
+        {
+         "quran": "57:3"
+        }
+       ],
+       "note": "al-Tahawi, al-'Aqida al-Tahawiyya"
+      },
+      {
+       "text": "Honest limits: we cannot picture something with no beginning, because our minds are used to things that start. But being unable to picture something is different from it being impossible. Scholars also differ on some details of how to phrase the argument. Ibn Taymiyyah discusses the questions of time and eternity at length in Dar' Ta'arud al-'Aql wa'l-Naql, and the theologians did not all agree with him. None of that changes the core claim that Allah is uncreated. The Prophet also warned that Shaytan pushes people down this road until they ask who created their Lord. He did not ban thought. He gave a way out of a loop that has no end.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 3276
+        },
+        {
+         "hadith": "muslim",
+         "number": 134
+        },
+        {
+         "quran": "42:11"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "proof-god-exists",
@@ -140,7 +199,64 @@
      "islamqa": {
       "number": 26745,
       "title": "Existence of God: Any Evidence?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The first line of evidence is the inner sense of God. The objection is that this is only upbringing, or fear. Islam does not say it is a finished belief. It says people are born with an inclination to recognise their Maker, which parents and society can build on or bury. The Prophet said every child is born on this natural disposition. The Qur'an points to the moment of real danger, when people who deny God call on Him, then go back to denying Him once they are safe. This is a pointer, not a courtroom proof, and honestly some sincere people do not feel it strongly.",
+       "refs": [
+        {
+         "quran": "30:30"
+        },
+        {
+         "quran": "29:65"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 1385
+        }
+       ]
+      },
+      {
+       "text": "The second line is the argument from beginning and design. Something cannot come from nothing, and it cannot make itself before it exists. Ibn Rushd, in al-Kashf 'an Manahij al-Adilla, said the Qur'an's own method rests on two ideas: providence, meaning that everything fits human life, and invention, meaning that living things and the heavens came into being. The verses ask us to look at day turning into night, and at the sun and moon running on a fixed course.",
+       "refs": [
+        {
+         "quran": "36:37-40"
+        },
+        {
+         "quran": "67:3-4"
+        },
+        {
+         "quran": "3:190"
+        }
+       ],
+       "note": "Ibn Rushd, al-Kashf 'an Manahij al-Adilla"
+      },
+      {
+       "text": "A sceptic will say that science explains order without God. The reply is that science describes how the laws work, and does not say why there are laws at all, or why they are so finely regular that the universe can be studied. The Qur'an does not tell us to stop investigating. It tells us to look. An honest limit is that design points to a Designer, but does not tell us which one wants what from us. That gap is why the third line, revelation, matters.",
+       "refs": [
+        {
+         "quran": "67:3-4"
+        }
+       ]
+      },
+      {
+       "text": "The third line is the Qur'an itself. It challenges people to produce anything like it, and it says a book from other than Allah would be full of contradictions. A reader who does not read Arabic cannot test the first claim directly, so it is best seen as an invitation to study the book, not a shortcut. Finally, if we are here with no purpose, words like justice and wrong have nothing to stand on. The Qur'an answers that we were made to know and worship Allah, in a life set up as a test.",
+       "refs": [
+        {
+         "quran": "17:88"
+        },
+        {
+         "quran": "4:82"
+        },
+        {
+         "quran": "51:56"
+        },
+        {
+         "quran": "67:2"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "why-suffering",
@@ -209,7 +325,74 @@
      "islamqa": {
       "number": 2850,
       "title": "Why Does Allah Allow Suffering?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "This is the hardest question, and it is strongest in this form: a good and all-powerful God could prevent a child's cancer, so either He does not care or He cannot help. Islam does not reply by saying we should not ask. It replies in steps. First, Allah tells us that He is wise and just and forbade oppression for Himself, so the suffering people cause each other is theirs, not His. Second, He owns His creation, and He is not answerable to us in the way a creature is, which is not the same as being careless.",
+       "refs": [
+        {
+         "quran": "21:23"
+        },
+        {
+         "hadith": "muslim",
+         "number": 2577
+        }
+       ]
+      },
+      {
+       "text": "Second, real choice needs real evil to be possible. A world where nobody could ever harm anyone would also be a world with no courage, no forgiveness and no honesty. The Qur'an says Allah showed people the two paths, and that what befalls us is partly from what our own hands have earned. Ibn al-Qayyim, in Shifa' al-'Alil, discusses at length the wisdom behind Allah allowing evil to exist. He argues that evil is never pure: the same events carry lessons, repentance and mercy that could not exist otherwise. The Prophet's own prayer says that evil is not attributed to Allah, meaning evil is not what He wants for its own sake.",
+       "refs": [
+        {
+         "quran": "90:10"
+        },
+        {
+         "quran": "42:30"
+        },
+        {
+         "hadith": "muslim",
+         "number": 771
+        }
+       ],
+       "note": "Ibn al-Qayyim, Shifa' al-'Alil"
+      },
+      {
+       "text": "Third, this life is a test, and the test is not the end. Hardship is met with patience, and patience is rewarded beyond counting. The Prophet said the believer's affair is amazing, because everything is good for him: thankful in ease, patient in hardship. He also said that pain wipes away sins. This does not mean every sufferer deserves it. It means suffering is never wasted for a believer.",
+       "refs": [
+        {
+         "quran": "67:2"
+        },
+        {
+         "quran": "2:155-156"
+        },
+        {
+         "quran": "39:10"
+        },
+        {
+         "hadith": "muslim",
+         "number": 2999
+        },
+        {
+         "hadith": "bukhari",
+         "number": 5641
+        }
+       ]
+      },
+      {
+       "text": "Fourth, justice is completed later. No one is wronged even by the weight of an atom, and the Prophet said rights will be returned to their owners on the Day of Resurrection, even the hornless sheep will be paid back by the horned one. The sceptic will say this only works if the afterlife is real, and that is true: the answer to suffering depends on the answer to the earlier question about proof. The honest limit is that Islam does not claim we will see the reason for every single case in this life. It asks for trust in Allah's wisdom, based on what we already know of Him.",
+       "refs": [
+        {
+         "quran": "4:40"
+        },
+        {
+         "quran": "2:216"
+        },
+        {
+         "hadith": "muslim",
+         "number": 2582
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "moon-god",
@@ -253,10 +436,14 @@
       },
       {
        "title": "The moon only keeps time",
-       "text": "Islam uses the lunar calendar for dates only. No prayer, verse or law is directed to the moon.",
+       "text": "Islam uses the lunar calendar to keep time, including the months of Ramadan and Hajj. No prayer, verse or law is directed to the moon.",
        "refs": [
         {
          "quran": "2:189"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 1043
         }
        ]
       }
@@ -264,7 +451,59 @@
      "islamqa": {
       "number": 1930,
       "title": "Doubts of one who is interested in Islam"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The claim goes like this: Arabia had moon worship, the crescent is a symbol of Islam, so Allah must be a moon god. Each step is weak. The crescent on mosque domes and flags became common centuries after the Prophet, and it was not a symbol of his mosque or his community. Islam counts months by the moon simply because a lunar month is easy to see, and the Qur'an says this directly: the crescents are for measuring time. When the sun eclipsed after the death of the Prophet's son, people said it was for his death, and he corrected them: the sun and moon are signs of Allah and do not eclipse for anyone's life or death.",
+       "refs": [
+        {
+         "quran": "2:189"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 1043
+        }
+       ]
+      },
+      {
+       "text": "Second, the word Allah is simply the Arabic for 'the God'. Arabic-speaking Christians and Jews use it in their own prayers and Bibles. The Prophet's father was named Abd Allah, servant of Allah, before Islam began, so the name was already known as the name of the supreme God. The Qur'an says that if you asked the pagan Arabs who created the heavens and earth, they would say Allah. Their error was adding partners beside Him. It was not who made the world.",
+       "refs": [
+        {
+         "quran": "29:61"
+        },
+        {
+         "quran": "31:25"
+        },
+        {
+         "quran": "43:87"
+        }
+       ],
+       "note": "Ibn Hisham, al-Sira al-Nabawiyya"
+      },
+      {
+       "text": "Third, the Arabs treated their idols as go-betweens, not as rivals to Allah. The Qur'an quotes them saying they worshipped idols only to bring them closer to Allah. Their own pilgrimage call said 'there is no partner for You, except a partner You own'. The Prophet rejected even that sentence. That is the opposite of a moon god being the centre of Islam.",
+       "refs": [
+        {
+         "quran": "39:3"
+        },
+        {
+         "hadith": "muslim",
+         "number": 1185
+        }
+       ]
+      },
+      {
+       "text": "Fourth, the Qur'an's own argument is against sky worship. Abraham watched a star, the moon and the sun rise and set, and concluded that what sets cannot be a Lord. A later command tells Muslims not to bow to the sun or moon but to the One who made them. An honest limit: pre-Islamic Arabia did have many gods, some connected to the moon and stars, and historians debate how much each mattered. That fact does not make Allah one of them. Sharing a name or a symbol with something does not show where a belief came from, especially when the belief's own text rejects the connection.",
+       "refs": [
+        {
+         "quran": "6:76-78"
+        },
+        {
+         "quran": "41:37"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "hell-and-mercy",
@@ -333,7 +572,73 @@
      "islamqa": {
       "number": 211871,
       "title": "There is no contradiction between the fact that Allah is more merciful to His slaves than a mother to her child and the fact that the disbeliever will abide in Hell for eternity"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The objection at its strongest: a truly merciful being would forgive everyone, and infinite punishment for a short life seems out of proportion. Start with what the sources say about mercy. Allah says His mercy encompasses all things. The Prophet said Allah made mercy in a hundred parts, sent one part down to earth, and it is by that one part that a mother lifts her foot from her baby, while He keeps ninety-nine for the Day of Resurrection. So the picture is not a stingy God with a small allowance of mercy. It is the reverse.",
+       "refs": [
+        {
+         "quran": "7:156"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 6000
+        },
+        {
+         "hadith": "muslim",
+         "number": 2752
+        }
+       ]
+      },
+      {
+       "text": "Second, mercy does not cancel justice. Imagine a judge who freed a mass murderer and told the victims' families that this was kindness. It would be mercy to one person and cruelty to many. The Qur'an says Allah does not treat those who did good and those who did great evil as equal. Allah also said He forbade oppression for Himself. Hell is not Allah being unkind. It is Allah refusing to make right and wrong the same.",
+       "refs": [
+        {
+         "quran": "45:21"
+        },
+        {
+         "quran": "38:28"
+        },
+        {
+         "quran": "68:35-36"
+        },
+        {
+         "hadith": "muslim",
+         "number": 2577
+        }
+       ]
+      },
+      {
+       "text": "Third, the question of who is punished. The Qur'an says Allah punishes only after a messenger has come, and no soul is burdened beyond what it can bear. Scholars such as Ibn Taymiyyah in al-Jawab al-Sahih and Ibn Kathir in his commentary on this verse take from it that those whom the message truly never reached are judged by their own situation, and that this is Allah's decision, not ours. We cannot say of any particular person that they are in Hell. And believers who sin are not treated like disbelievers: the Prophet said whoever has even a barley grain of faith will finally be brought out of the Fire.",
+       "refs": [
+        {
+         "quran": "17:15"
+        },
+        {
+         "quran": "2:286"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 44
+        }
+       ],
+       "note": "Ibn Taymiyyah, al-Jawab al-Sahih"
+      },
+      {
+       "text": "Fourth, the sceptic asks about eternity. The Qur'an describes Hell as the result of knowingly turning away: its people admit they were warned, and that they would have listened if they had used their hearing and reason. The majority of classical scholars hold that Hell is endless for those who die rejecting Allah, citing verses of abiding forever. The honest limit is that this is a revealed matter: reason alone cannot measure it, and the Qur'an asks us to trust that the Judge knows every heart better than we do.",
+       "refs": [
+        {
+         "quran": "23:105-108"
+        },
+        {
+         "quran": "67:8-10"
+        },
+        {
+         "quran": "4:169"
+        }
+       ]
+      }
+     ]
     }
    ]
   },
@@ -368,6 +673,9 @@
          "quran": "19:16-21"
         },
         {
+         "quran": "3:42"
+        },
+        {
          "quran": "3:59"
         }
        ]
@@ -393,6 +701,14 @@
         },
         {
          "quran": "43:61"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 3448
+        },
+        {
+         "hadith": "muslim",
+         "number": 155
         }
        ],
        "note": "Ibn Kathir on 4:159 and 43:61; the hadith of the descent of the son of Mary in Bukhari and Muslim"
@@ -413,7 +729,66 @@
      "islamqa": {
       "number": 43148,
       "title": "Muslims' Belief About Jesus"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The strongest objection is this: if Muslims honour Jesus so highly, why stop short of what his own followers say about him? The Qur'an answers by giving him a great deal, and then refusing only the one thing it says he never claimed. It calls him the Messiah, a word from Allah given to Mary, and a spirit from Him. In the very same verse it tells the People of the Scripture not to say \"three\", and says he was only a messenger.",
+       "refs": [
+        {
+         "quran": "4:171"
+        },
+        {
+         "quran": "3:45"
+        }
+       ]
+      },
+      {
+       "text": "Belief in Jesus is not optional for a Muslim. The Qur'an says the believers make no distinction between any of Allah's messengers, so a person who rejected Jesus, or slandered his mother, would be rejecting the message itself. The Prophet Muhammad taught the same unity: he said he was the closest of people to Jesus in this world and the next, and that the prophets are brothers whose mothers differ but whose religion is one. That religion is worship of Allah alone.",
+       "refs": [
+        {
+         "quran": "2:285"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 3443
+        }
+       ]
+      },
+      {
+       "text": "A sceptic will say a virgin birth and raising the dead sound like signs of divinity. The Qur'an replies with a plain comparison: in Allah's sight Jesus is like Adam, whom He made from dust with neither father nor mother. If having no father made Jesus divine, Adam would have a stronger claim. The miracles are also framed carefully. Again and again the verses add \"by permission of Allah\", which is what a servant says, not what a sovereign says. Allah also reminds Jesus of the favours He gave him, which only makes sense if Jesus was the one receiving them.",
+       "refs": [
+        {
+         "quran": "3:59"
+        },
+        {
+         "quran": "3:49"
+        },
+        {
+         "quran": "5:110"
+        }
+       ]
+      },
+      {
+       "text": "His return is the part most people do not expect. Ibn Kathir, in his tafsir on 4:159 and 43:61, understands the Qur'an to point to Jesus coming back before the Last Day, and the Prophet described it in a hadith: the son of Mary will descend as a just ruler, break the cross and end the tax on non-Muslims. The honest limit is that the Qur'an does not spell out the return in a single unmistakable verse. Commentators record more than one reading of \"before his death\" in 4:159, so the belief rests mainly on the hadith, which many scholars treat as mass-transmitted.",
+       "refs": [
+        {
+         "quran": "4:159"
+        },
+        {
+         "quran": "43:61"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 3448
+        },
+        {
+         "hadith": "muslim",
+         "number": 155
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir al-Qur'an al-'Azim, on 4:159 and 43:61"
+      }
+     ]
     },
     {
      "id": "trinity",
@@ -452,14 +827,19 @@
          "quran": "5:116-117"
         },
         {
-         "quran": "3:59"
+         "quran": "5:72"
         }
        ]
       },
       {
        "title": "Not found in Islam's sources",
-       "text": "The word and idea are absent from the Qur'an and hadith. Muslim scholars say it was shaped by later church councils, not taught by Jesus.",
-       "note": "Ibn al-Qayyim, Hidayat al-Hayara; the 'We' of the Qur'an is a royal plural, not three persons"
+       "text": "The Qur'an mentions the doctrine only to correct it, as something some Christians say, never as something revealed to Jesus or taught in Islam. Muslim scholars say it was shaped by later church councils, not taught by Jesus.",
+       "note": "Ibn al-Qayyim, Hidayat al-Hayara; the 'We' of the Qur'an is a royal plural, not three persons",
+       "refs": [
+        {
+         "quran": "5:73"
+        }
+       ]
       },
       {
        "title": "God is One, plainly",
@@ -477,7 +857,53 @@
      "islamqa": {
       "number": 12713,
       "title": "Is the trinity that the Christians believe in mentioned in Islam?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The best form of the objection is that Christians do not worship three gods. They say one God in three persons, and that the Qur'an is attacking a caricature. That is a fair challenge, and Muslims should answer it fairly. The Qur'an does not describe the doctrine's finer points. It rejects the core claims: that the Messiah is God, that he is the son of God, and that God is \"the third of three\". Whatever the exact wording of the creeds, saying Jesus is God is what these verses condemn.",
+       "refs": [
+        {
+         "quran": "5:73"
+        },
+        {
+         "quran": "5:17"
+        },
+        {
+         "quran": "4:171"
+        }
+       ]
+      },
+      {
+       "text": "The reasoning then runs in steps. First, the Qur'an points to ordinary human facts: Jesus and his mother both ate food, and earlier messengers had passed away before him. A being that needs food and comes after others in time does not fit what everyone means by God. Second, the Qur'an notes that Jesus himself told the Children of Israel to worship Allah, his Lord and theirs. So the worship of Jesus cannot be what he taught. Third, a God who has a son is compared to creatures, which the Qur'an says the heavens would almost split at.",
+       "refs": [
+        {
+         "quran": "5:75"
+        },
+        {
+         "quran": "5:72"
+        },
+        {
+         "quran": "19:88-93"
+        }
+       ]
+      },
+      {
+       "text": "A sceptic may point out that the Qur'an uses \"We\" for Allah, as if it hints at plurality. Ibn al-Qayyim, in Hidayat al-Hayara fi Ajwibat al-Yahud wa al-Nasara, answers that this is the plural of majesty, as a king says \"we have decided\", and that the Qur'an removes any doubt at once by stating that God is One. Another point is about the Holy Spirit. Muslim commentators generally read the Spirit that supported Jesus as the angel Jibril, a created being, and not a divine person.",
+       "refs": [
+        {
+         "quran": "112:1-4"
+        },
+        {
+         "quran": "5:110"
+        }
+       ],
+       "note": "Ibn al-Qayyim, Hidayat al-Hayara fi Ajwibat al-Yahud wa al-Nasara"
+      },
+      {
+       "text": "Muslim scholars also make a historical claim: the doctrine took its final shape in the church councils of the fourth century, at Nicaea and Constantinople, and was not spelled out in Jesus's own words. Christians reply that it grew out of the New Testament's own language about the Father, Son and Spirit. Both sides agree the word \"Trinity\" is not in the Gospels, but they differ over whether the idea is there. The honest limit for a Muslim is that this final step of the argument is a matter of history. The verses above are the core of the Islamic case.",
+       "note": "Historical claim: the councils of Nicaea (325) and Constantinople (381)"
+      }
+     ]
     },
     {
      "id": "crucifixion",
@@ -509,8 +935,8 @@
       },
       {
        "title": "Eyewitness record is thin",
-       "text": "The Gospels say the disciples fled and only some women watched from a distance. This supports the belief; it is not its basis.",
-       "note": "Gospel of Mark 14:50 and 15:40"
+       "text": "Mark says the disciples fled and only some women watched from a distance, though John places one disciple near the cross. The Gospels are reports, not proof either way, and Muslims rest this belief on the Qur'an, not on the Gospels.",
+       "note": "Gospel of Mark 14:50 and 15:40; Gospel of John 19:26"
       },
       {
        "title": "Allah protects His messengers",
@@ -528,7 +954,44 @@
      "islamqa": {
       "number": 231057,
       "title": "Don't the Christians have the right to believe in the crucifixion, as they saw it with their own eyes?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The strongest objection is historical. The crucifixion of Jesus is reported in all four Gospels, and Roman and Jewish writers such as Tacitus and Josephus mention it, so how can Muslims deny it? The Islamic answer begins by being precise. The Qur'an does not deny that people believed Jesus was crucified, and it does not deny that a crucifixion took place. It says that they did not kill him or crucify him, but it was made to appear so to them, and it says that those who differ over it are in doubt and follow only assumption.",
+       "refs": [
+        {
+         "quran": "4:157"
+        }
+       ]
+      },
+      {
+       "text": "So the reasoning is about certainty, and it is honest that the earliest outsider sources are not eyewitnesses. They report what Christians said happened. The Gospels themselves also show how thin the direct witness is. Mark says all the disciples left him and fled, and that women watched from a distance. John differs slightly and places one disciple near the cross. Muslims do not use this to prove their case, since the Qur'an is the basis of the belief. They use it only to show that the claim is less certain than it feels.",
+       "note": "Gospel of Mark 14:50 and 15:40; Gospel of John 19:26; Tacitus, Annals 15.44; Josephus, Antiquities 18.3"
+      },
+      {
+       "text": "Classical commentators explain how the mistake could happen. Al-Tabari and Ibn Kathir, in their tafsirs of 4:157, report that Allah cast the likeness of Jesus on another man, so those who came to seize him took that man instead. They differ on who he was. Some reports say a volunteer among his companions, others name someone else, and none of these reports comes from the Qur'an or an authentic saying of the Prophet. That is a real limit: the Qur'an says \"it was made to appear so\" without naming the person.",
+       "refs": [
+        {
+         "quran": "4:157-158"
+        }
+       ],
+       "note": "al-Tabari, Jami' al-Bayan, and Ibn Kathir, Tafsir al-Qur'an al-'Azim, on 4:157"
+      },
+      {
+       "text": "The theological argument is that Allah promised to take Jesus and raise him, to purify him from those who disbelieved, and to restrain the Children of Israel from him. A messenger with clear proofs whom Allah has promised to protect is not left to be killed as a criminal. One caution is that the word in 3:55, \"mutawaffika\", is read by some early commentators as \"I will take you\" in sleep or death, but the majority understand it as taking him up alive, since 4:158 says Allah raised him to Himself.",
+       "refs": [
+        {
+         "quran": "3:54-55"
+        },
+        {
+         "quran": "5:110"
+        },
+        {
+         "quran": "4:158"
+        }
+       ]
+      }
+     ]
     }
    ]
   },
@@ -560,7 +1023,7 @@
       },
       {
        "title": "No Arabic Bible existed",
-       "text": "The oldest known Arabic Bible translation comes after his death. There was no Arabic text to copy from.",
+       "text": "No Arabic Bible translation from before his time is known; the earliest surviving Arabic versions come well after his death. There was no Arabic text for him to copy from.",
        "note": "Bruce Metzger on early Bible translations, cited in IslamQA 487612"
       },
       {
@@ -606,7 +1069,54 @@
      "islamqa": {
       "number": 487612,
       "title": "The claim that the Quran was plagiarized from the scriptures of the People of the Book"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The strongest form of the objection is this: the Qur'an tells stories of Adam, Noah, Abraham, Moses, Mary and Jesus that also appear in the Bible, so surely the author borrowed them. To copy a book you need three things: access to the source, the ability to read it, and a reason to keep the parts you agree with and change the rest. The evidence for each is weak.",
+       "refs": [
+        {
+         "quran": "29:48"
+        },
+        {
+         "quran": "62:2"
+        }
+       ]
+      },
+      {
+       "text": "First, ability. The Qur'an says he did not read any book before it, nor write one with his hand, and it says this to the very people who had lived beside him for forty years. A false claim of that kind would be easy to expose. Second, access. No Arabic translation of the Bible from before his time is known, and Bruce Metzger's survey of early versions places the earliest Arabic translations well after his death. Copying would have meant a source in Syriac, Greek or Hebrew, which no one claims he knew.",
+       "refs": [
+        {
+         "quran": "25:4-5"
+        }
+       ],
+       "note": "Bruce Metzger on early Bible translations, as cited in IslamQA 487612"
+      },
+      {
+       "text": "The classical answer to the claim that a human teacher helped him is in the Qur'an itself. It names the accusation, that a man taught him, and replies that the man's tongue is foreign while this is clear Arabic. Al-Tabari, in his Tafsir on this verse, records several names suggested for the man, mostly foreign craftsmen in Makkah, and none is described as a scholar of scripture. The other accusation, that others dictated old tales to him morning and evening, is likewise recorded and answered.",
+       "refs": [
+        {
+         "quran": "16:103"
+        }
+       ]
+      },
+      {
+       "text": "Then there is the pattern of the borrowing. A copyist keeps what his source says. The Qur'an instead disagrees on central points: it denies the crucifixion, it clears the prophets of the sins the Bible attributes to some of them, and it describes itself as confirming what came before while standing as a judge over it. Ibn Taymiyya's al-Jawab al-Sahih discusses this at length. The honest limit is that similarity of stories is real, and the Qur'an does not deny it. Its explanation is a shared source, not borrowing, and it says he knew none of these events by being present.",
+       "refs": [
+        {
+         "quran": "4:157"
+        },
+        {
+         "quran": "5:48"
+        },
+        {
+         "quran": "11:49"
+        },
+        {
+         "quran": "28:44-45"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "aisha",
@@ -620,22 +1130,26 @@
         {
          "hadith": "bukhari",
          "number": 5133
+        },
+        {
+         "hadith": "muslim",
+         "number": 1422
         }
        ]
       },
       {
        "title": "Normal in that world",
-       "text": "Marriage at puberty was common in Arabia and elsewhere at the time. Not one enemy of the Prophet, who attacked him for everything, raised it.",
+       "text": "Marriage at puberty was common in Arabia and elsewhere at the time. The early sources record no objection to it, though his opponents attacked him over many other things.",
        "note": "IslamQA 44990"
       },
       {
        "title": "Desire does not explain it",
-       "text": "She was his only virgin wife, and all the others had been married before, several older than him. He was faithful to one older wife, Khadijah, for about 25 years.",
+       "text": "She was his only virgin wife, and all the others had been married before. He was faithful to one wife, Khadijah, who was older than him, for about 25 years.",
        "note": "IslamQA 44990"
       },
       {
        "title": "She carried his teaching",
-       "text": "Aisha lived about 48 years after him and narrated over 2,000 hadith. Senior companions came to her to settle questions of law.",
+       "text": "Aisha lived about 47 years after him and narrated over 2,000 hadith. Senior companions came to her to settle questions of law.",
        "note": "al-Dhahabi, Siyar A'lam al-Nubala, on Aisha"
       },
       {
@@ -647,7 +1161,30 @@
      "islamqa": {
       "number": 44990,
       "title": "The reason why the Prophet (peace and blessings of Allah be upon him) married 'Aa'ishah despite the age difference"
-     }
+     },
+     "discussion": [
+      {
+       "text": "Muslims do not deny the report. Bukhari records Aisha herself saying that the Prophet married her when she was six and that the marriage began when she was nine. The objection, at its strongest, is that a child cannot consent and that no era's customs make that right. That deserves a plain answer, not a dodge.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 5133
+        }
+       ]
+      },
+      {
+       "text": "The first part of the answer is historical. In seventh century Arabia, and in most societies for most of history, marriage followed puberty and was arranged between families. Early biographies record that Aisha had already been promised in marriage to another man, Jubayr ibn Mut'im, before the Prophet. Nothing in the early sources shows anyone, friend or enemy, treating her marriage as shocking, although his opponents attacked him over many things. That is evidence about how people then saw it. It is not proof that the accusation was never made, because we only have what the sources kept.",
+       "note": "IslamQA 44990; Ibn Sa'd, al-Tabaqat al-Kubra, on Aisha"
+      },
+      {
+       "text": "The second part is that the marriage was not consummated at six. Scholars such as Ibn Hajar, in Fath al-Bari on this hadith, explain that she joined him only at nine, when she was physically ready, and that the wait itself shows the marriage was not rushed. Her later life tells us what the relationship was. She spoke of him with love, and she became one of the great scholars of the community. Al-Dhahabi, in Siyar A'lam al-Nubala, says she was among the most learned in law, and senior companions came to her when they disagreed.",
+       "note": "Ibn Hajar, Fath al-Bari; al-Dhahabi, Siyar A'lam al-Nubala"
+      },
+      {
+       "text": "The honest limit is this. A modern reader may still feel that a marriage at that age is wrong by today's standards, and Muslims are not required to say the seventh century world was the same as ours. What the evidence supports is narrower: the marriage was lawful and ordinary in its time, it was not driven by desire as the accusation says, since every other wife had been married before and he stayed with a single older wife for about 25 years, and it produced a woman whose knowledge served the community for decades. Modern laws set their own minimum ages, and Muslims living under them follow them.",
+       "note": "IslamQA 44990"
+      }
+     ]
     },
     {
      "id": "many-wives",
@@ -656,7 +1193,7 @@
      "points": [
       {
        "title": "One wife until fifty",
-       "text": "He married Khadijah, an older widow, at 25 and took no other wife for about 25 years. A man led by desire does not live that way in his prime.",
+       "text": "He married Khadijah, an older woman who had been married before, at 25 and took no other wife for about 25 years. A man led by desire does not live that way in his prime.",
        "note": "Ibn Kathir, al-Bidayah wa'l-Nihayah; IslamQA 127066"
       },
       {
@@ -666,7 +1203,7 @@
       },
       {
        "title": "Bonds between tribes",
-       "text": "Marriages to women of different clans, such as Juwayriyah and Safiyyah, ended feuds and built trust. Hostile tribes became relatives.",
+       "text": "Reports say marriages to women of different clans, such as Juwayriyah and Umm Habibah, the daughter of Abu Sufyan, built ties with tribes that had been hostile.",
        "note": "Ibn Hisham, Sirah"
       },
       {
@@ -693,7 +1230,36 @@
      "islamqa": {
       "number": 127066,
       "title": "The wisdom behind the Prophet's marrying more than four wives"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The objection, at its strongest, is that a leader who took many wives looks like a man who indulged himself, and that a religion calling him the best example should not excuse it. The way to test this is to look at the pattern of his life, not at the number alone.",
+       "refs": [
+        {
+         "quran": "4:3"
+        }
+       ]
+      },
+      {
+       "text": "The pattern is the opposite of what the objection predicts. He married Khadijah at 25 and stayed with her alone until she died, when he was about fifty, all through his youth and prime. Ibn Kathir, in al-Bidayah wa'l-Nihayah, describes her as the wife he never forgot. It was only after her death, and mostly in the last ten years of his life, when he was leader of a community at war, that the other marriages happened. With the exception of Aisha, every wife had been married before, and several were widows of men who died for the faith, women who otherwise had little protection in that society.",
+       "note": "Ibn Kathir, al-Bidayah wa'l-Nihayah; IslamQA 127066"
+      },
+      {
+       "text": "Reasons beyond companionship are recorded. The biographers report that some marriages built ties with tribes that had been hostile, such as the marriage to Umm Habibah, daughter of Abu Sufyan, who had fought him. Others created teachers: Aisha and Umm Salamah passed on what only a wife could see of his private life and rulings on women's matters, which the community relied on for generations. Muslims read these as real reasons, but the sources give them as reports of wisdom, not as statements the Prophet himself made in every case.",
+       "note": "Ibn Hisham, Sirah; IslamQA 127066"
+      },
+      {
+       "text": "The legal side is often missed. The Qur'an limits believers to four wives and gave the Prophet a specific exception, then closed it: no more women were lawful for him afterwards. Ibn Kathir in his Tafsir treats this as a ruling for him alone, not a model. The honest limit is that a sceptic may still not be persuaded by wisdom arguments, since motives cannot be proven. What can be shown is that the record fits the account of duty and does not fit the account of appetite.",
+       "refs": [
+        {
+         "quran": "33:50"
+        },
+        {
+         "quran": "33:52"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "prophet-in-bible",
@@ -732,10 +1298,13 @@
       },
       {
        "title": "Earlier texts were changed",
-       "text": "Muslims believe the Bible we have is not the original revelation, so the clearest wording may be lost. The Qur'an is the standard it is judged by.",
+       "text": "Muslims believe the Bible we have is not the original revelation, so the clearest wording may be lost. The Qur'an says some wrote the book with their own hands and attributed it to God, and it is the standard earlier scripture is judged by.",
        "refs": [
         {
-         "quran": "2:146"
+         "quran": "2:79"
+        },
+        {
+         "quran": "5:13"
         },
         {
          "quran": "5:48"
@@ -746,7 +1315,45 @@
      "islamqa": {
       "number": 44018,
       "title": "Is the Prophet Muhammad (peace and blessings of Allaah be upon him) Mentioned in the Bible?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The claim needs care, because it is a Muslim reading of Jewish and Christian texts and those communities do not share it. The Qur'an says the unlettered Prophet is written of in their scriptures, and that the People of the Book recognise him as they recognise their own sons. It also says Jesus announced a messenger to come after him named Ahmad. That is a claim about what the texts say. It is not evidence a Jew or Christian would accept as neutral.",
+       "refs": [
+        {
+         "quran": "7:157"
+        },
+        {
+         "quran": "2:146"
+        },
+        {
+         "quran": "61:6"
+        }
+       ]
+      },
+      {
+       "text": "The two passages Muslims cite most are Deuteronomy 18:18 and the promises about a helper in John 14 to 16. In Deuteronomy God promises a prophet like Moses from among the brothers of Israel. Muslims note that Moses brought a law, fought and led a nation, as Muhammad did, and read brothers as the Ishmaelites, cousins of Israel. Christians read the verse as Jesus, and many Jews as Joshua or the line of prophets. Ibn Taymiyya in al-Jawab al-Sahih and Ibn al-Qayyim in Hidayat al-Hayara develop the Muslim reading. In John, Jesus promises one who speaks what he hears. Christians identify this with the Holy Spirit, and the Muslim reading depends on arguing the wording fits a human messenger.",
+       "note": "IslamQA 44018; Ibn Taymiyya, al-Jawab al-Sahih; Ibn al-Qayyim, Hidayat al-Hayara"
+      },
+      {
+       "text": "Why would the wording not be clearer? The Muslim answer is that the earlier books were not preserved in their original form, and the Qur'an says some people wrote a book with their own hands and attributed it to God. So the passages that remain are read as traces. The sceptic's reply is that this makes the argument circular: the texts are used as proof, but where they disagree, they are said to be altered. That is a fair objection.",
+       "refs": [
+        {
+         "quran": "2:79"
+        },
+        {
+         "quran": "5:13"
+        },
+        {
+         "quran": "5:48"
+        }
+       ]
+      },
+      {
+       "text": "The honest conclusion is limited. For a Muslim the Qur'an is the evidence, and the Bible passages are supporting hints. For a non-Muslim they are a fair topic of study but not a proof. The argument stands or falls on whether the Qur'an is from God, which is settled by other evidence and not by these verses.",
+       "note": "IslamQA 44018"
+      }
+     ]
     }
    ]
   },
@@ -772,34 +1379,88 @@
       },
       {
        "title": "Written in the Prophet's time",
-       "text": "Scribes wrote revelation down as it came, and companions memorised it from him. It was never a late collection of oral stories.",
+       "text": "Even his opponents said he had the revelation written down. Abu Bakr later reminded Zayd that he used to write it for the Prophet, and companions memorised it from him. It was never a late collection of oral stories.",
        "refs": [
         {
-         "quran": "80:11-16"
+         "quran": "25:5"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 4986
         }
        ],
        "note": "Ibn Kathir on 75:16-19"
       },
       {
        "title": "Gathered by Abu Bakr",
-       "text": "After many reciters died at Yamama, Zayd ibn Thabit collected the whole text, accepting only what was written and confirmed by witnesses. It was a check, not a rewrite.",
+       "text": "After many reciters died at Yamama, Zayd ibn Thabit collected the whole text from what was written and what people had memorised. It was a safeguard, not a rewrite.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 4986
+        }
+       ],
        "note": "Sahih al-Bukhari, Virtues of the Qur'an, the hadith of Zayd ibn Thabit"
       },
       {
        "title": "Uthman's copies matched",
-       "text": "When recitation began to differ in new lands, Uthman had copies made from that collection and sent them out. Today's Qur'ans trace to these, and early manuscripts match them.",
+       "text": "When recitation began to differ in new lands, Uthman had copies made from that collection and sent them out. Today's Qur'ans trace to these, and the early manuscripts that survive agree with them in the main text, apart from small differences of spelling and marking.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 4987
+        }
+       ],
        "note": "Sahih al-Bukhari, Virtues of the Qur'an, the hadith of Hudhayfah"
       },
       {
        "title": "The al-Hajjaj story fails",
-       "text": "The claim that al-Hajjaj changed eleven letters rests on a narrator scholars reject. No change could pass unseen with memorisers and copies in every land.",
+       "text": "The claim that al-Hajjaj changed eleven letters rests on a narrator, 'Abbad ibn Suhayb, whom scholars reject. What al-Hajjaj is said to have done, at the ruler's order, is add marks to help non-Arabs read. No change could pass unseen with memorisers and copies in every land.",
        "note": "IslamQA 23487"
       }
      ],
      "islamqa": {
       "number": 23487,
       "title": "Claims that the Qur'aan has been distorted"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The sceptic's objection is fair. Other scriptures were edited, translated and copied by hand over centuries, and the Qur'an was, at first, mostly spoken and memorised. Surely a text that lived in memory for years, was collected after a war, and was then standardised by a ruler who ordered other copies burned has had time to change? That is the strongest form of the worry, and it deserves a straight answer, not a slogan.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 4987
+        }
+       ]
+      },
+      {
+       "text": "The answer is that the text was protected by three independent checks, not one. It was written down in the Prophet's lifetime, it was memorised by many companions, and it was recited aloud in daily prayer. When Abu Bakr had it gathered after the battle of Yamama, Zayd ibn Thabit, who had himself written revelation for the Prophet, worked from the written pieces and from what people knew by heart. The point of the gathering was to keep the text safe, not to decide what it was.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 4986
+        }
+       ]
+      },
+      {
+       "text": "Uthman's step is often misread. Hudhayfah saw people in different lands disputing over how to recite. Uthman borrowed the pages kept with Hafsah, had them copied by a committee, and told them that where they differed they should write in the dialect of Quraysh, since the Qur'an came down in it. He then sent a copy to each major city and ordered personal pages that differed to be burned. Classical scholars such as Ibn Hajar, in Fath al-Bari, explain this as ending a dispute, not deleting content.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 4987
+        }
+       ]
+      },
+      {
+       "text": "Now the honest limits. The claim that God guards the text is a belief; a sceptic will only accept the history, and the history is strong but not spotless. The accepted readings differ in small ways of pronunciation and vowelling, and scholars record them openly. Some manuscript researchers, for example Sadeghi and Goudarzi in their study of the Sana'a palimpsest, argue that its erased lower text shows a few variants. Muslim scholars answer that such rare, private pages do not touch the text that whole communities recited and copied every day. And the al-Hajjaj story is weak on its own terms: al-Hajjaj is said only to have added marks to help non-Arabs read correctly, at the ruler's order.",
+       "refs": [
+        {
+         "quran": "15:9"
+        }
+       ],
+       "note": "IslamQA 23487; Sadeghi and Goudarzi, Sana'a 1 and the Origins of the Qur'an (Der Islam, 2012)"
+      }
+     ]
     },
     {
      "id": "from-god",
@@ -808,23 +1469,26 @@
      "points": [
       {
        "title": "An open challenge",
-       "text": "The Qur'an dares doubters to bring ten chapters, then one, like it, with any help they wish. A forger would not stake everything on such a test.",
+       "text": "The Qur'an dares doubters to bring the like of the whole Qur'an, then ten chapters, then one, with any help they wish. A forger would not stake everything on such a test.",
        "refs": [
         {
-         "quran": "2:23"
+         "quran": "17:88"
         },
         {
          "quran": "11:13"
         },
         {
-         "quran": "17:88"
+         "quran": "10:38"
+        },
+        {
+         "quran": "2:23"
         }
        ]
       },
       {
        "title": "Its own people could not answer",
        "text": "The Arabs prized eloquence and had every motive to silence him. They chose war and boycott instead, and Musaylimah's attempt became a joke.",
-       "note": "Ibn Kathir on 2:23"
+       "note": "Ibn Kathir, al-Bidaya wa'l-Nihaya, on Musaylimah"
       },
       {
        "title": "A prophecy that came true",
@@ -858,7 +1522,55 @@
      "islamqa": {
       "number": 245475,
       "title": "Miraculous aspects of the Holy Qur'an"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The sceptic says: beauty is a matter of taste, so a challenge to match a book's style proves nothing. Many people admire other books deeply, and one could say the Qur'an is simply the best of its kind. If that is all the challenge were, the objection would win. So it helps to see exactly what is being claimed.",
+       "refs": [
+        {
+         "quran": "2:23"
+        }
+       ]
+      },
+      {
+       "text": "The challenge has a shape. It was made in Makkah, among people who judged speech for a living. It came in steps: the whole Qur'an, then ten chapters, then a single chapter, with anyone they liked to help. It also says plainly that they would fail. A man making up a book has every reason to avoid a test like that, because one good rival text would end his claim in a day.",
+       "refs": [
+        {
+         "quran": "17:88"
+        },
+        {
+         "quran": "11:13"
+        },
+        {
+         "quran": "10:38"
+        }
+       ]
+      },
+      {
+       "text": "What did the Arabs do? They did not answer with a chapter. They fought, boycotted and mocked, which are the acts of people who cannot win by words. The known attempt, Musaylimah's, was remembered as a joke even by his own side. Later scholars tried to explain why the Qur'an is unmatched: al-Baqillani in I'jaz al-Qur'an and Abd al-Qahir al-Jurjani in Dala'il al-I'jaz both argue it lies in the way meaning and wording fit together, not in rare words. Be careful with the claim that nobody has ever tried; the fair claim is that no attempt has been accepted as equal by those who know the language.",
+       "note": "Ibn Kathir, al-Bidaya wa'l-Nihaya, on Musaylimah; al-Baqillani, I'jaz al-Qur'an; al-Jurjani, Dala'il al-I'jaz"
+      },
+      {
+       "text": "The prophecy about Rome is a second line of evidence, since it does not depend on taste. When the verses came down, Persia had beaten Rome badly, and few would have bet on a Roman recovery. The Qur'an said Rome would win within a few years, and Rome did turn the war around. A sceptic may reply that the dates are debated and that a lucky guess is possible. Scholars do differ on exactly which Roman victory and date is meant. So the prophecy works best as one piece among several, not as a proof on its own.",
+       "refs": [
+        {
+         "quran": "30:1-4"
+        }
+       ],
+       "note": "Ibn Kathir on 30:1-4"
+      },
+      {
+       "text": "The honest conclusion is that this is a cumulative case. A book with a public challenge, a record of unanswered claims, a checkable prophecy, and no internal contradiction over 23 years is harder to explain as human than any one of those points alone. It also stays open to inspection today, which is the point of the last verse: the sign is the book itself, and anyone can read it.",
+       "refs": [
+        {
+         "quran": "4:82"
+        },
+        {
+         "quran": "29:50-51"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "science",
@@ -872,7 +1584,7 @@
       },
       {
        "title": "A book of guidance",
-       "text": "It speaks of the sky, earth and human creation to point to God, not to teach physics. Its plain language serves every age.",
+       "text": "It calls itself a blessed book to be reflected on and a clarification of guidance. It speaks of the sky, earth and human creation to point to God, not to teach physics.",
        "refs": [
         {
          "quran": "38:29"
@@ -901,7 +1613,7 @@
       },
       {
        "title": "Test one example",
-       "text": "The verse that sun and moon each glide in an orbit uses a word for moving through space, which fits modern astronomy.",
+       "text": "The verse says sun and moon each glide in an orbit. The Arabic verb means to float or glide, not to be fixed in place, which is a fair fit with what we now know, though it is not a lesson in astronomy.",
        "refs": [
         {
          "quran": "36:40"
@@ -912,7 +1624,55 @@
        ]
       }
      ],
-     "islamqa": null
+     "islamqa": null,
+     "discussion": [
+      {
+       "text": "The sceptic points to particular verses and asks why they should not be read at face value. A well-known one says Dhul-Qarnayn found the sun setting in a spring of murky water. Read as a claim about astronomy, that would be a mistake. So the question is whether the Qur'an is making that claim, or describing what a traveller saw.",
+       "refs": [
+        {
+         "quran": "18:86"
+        }
+       ]
+      },
+      {
+       "text": "The first step is to ask what kind of book it says it is. It calls itself a blessed book to be reflected upon, and a clarification of guidance for people who submit. Its verses on the sky, the earth and human creation are given as signs that point to God, not as lessons in physics. Judging it as a textbook is judging it by a standard it never set for itself.",
+       "refs": [
+        {
+         "quran": "38:29"
+        },
+        {
+         "quran": "16:89"
+        }
+       ]
+      },
+      {
+       "text": "The second step is language. Arabic words often have a range of meaning, and the classical commentators, such as al-Tabari and Ibn Kathir, read many of these verses as describing appearances or events in a story, without ruling on physical fact. Take the sun and moon each moving in an orbit. The verb means to glide or float, which is different from being fixed to a sphere. That is a fair reading; it is not proof that the verse teaches modern astronomy, and nobody should claim more.",
+       "refs": [
+        {
+         "quran": "36:40"
+        },
+        {
+         "quran": "21:33"
+        }
+       ],
+       "note": "Al-Tabari and Ibn Kathir on 36:40"
+      },
+      {
+       "text": "The third step is how to weigh science against scripture. Ibn Taymiyyah argued that clear revelation and sound reason cannot truly contradict, so when they seem to, either the reading of the text or the claim of reason is faulty. The sceptic will say that this can protect the text from any test. The reply is that the rule has two sides: a settled fact does push us to re-read a verse, but a passing theory should not overturn the text. The danger to avoid on the other side is forcing every new discovery into a verse after the fact.",
+       "note": "Ibn Taymiyyah, Dar' Ta'arud al-'Aql wa'l-Naql"
+      },
+      {
+       "text": "Finally, the book itself does not fear the question. It tells people to look at the universe and at themselves, and promises that the signs will become clear to them. A text that asks for investigation is not behaving like one that is hiding from it. If you have a specific verse in mind, the best course is to bring it, with its Arabic, and look at it on its own terms.",
+       "refs": [
+        {
+         "quran": "41:53"
+        },
+        {
+         "quran": "3:190-191"
+        }
+       ]
+      }
+     ]
     }
    ]
   },
@@ -929,7 +1689,7 @@
      "points": [
       {
        "title": "An open challenge",
-       "text": "First to bring a book like it, then ten surahs, then a single surah. The shortest surah is three lines.",
+       "text": "First to bring a book like it, then ten surahs, then a single surah. The shortest surah, al-Kawthar, is only three short verses.",
        "refs": [
         {
          "quran": "17:88"
@@ -944,7 +1704,7 @@
       },
       {
        "title": "Answered in advance",
-       "text": "It said outright 'you will never do it'. One successful surah would have ended Islam, so the claim was fully exposed to failure.",
+       "text": "It said outright 'you will never do it'. One successful surah would have undercut its central claim in public, so the claim was fully exposed to failure.",
        "refs": [
         {
          "quran": "2:24"
@@ -991,7 +1751,55 @@
      "islamqa": {
       "number": 245475,
       "title": "Miraculous aspects of the Holy Qur’an"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The strongest objection is that eloquence is a matter of taste. Nobody can measure it, and a challenge judged by believers proves nothing. There is also the thought that Quraysh simply did not bother. The reply starts with who was tested. The challenge was made in public, in Makkah, to the people who lived for the spoken word and who held poetry contests at their markets. The judges were the opponents themselves. They wanted to silence him and had every reason to answer. The bar was also low: a single surah, and the shortest is only three verses.",
+       "refs": [
+        {
+         "quran": "52:33-34"
+        },
+        {
+         "quran": "2:23"
+        },
+        {
+         "quran": "10:38"
+        }
+       ]
+      },
+      {
+       "text": "Now the reasoning, step by step. First, the claim was public and specific: it said they could not do it. Second, failing cost them everything, since he kept winning followers, and succeeding would cost only a few lines of verse. Third, they were known to answer insults with satire, which they did in verse against him. Fourth, they turned to boycott, war and exile instead. The simplest reading is that they tried, or knew better than to try, and could not produce something people would accept. Ibn Kathir makes this argument in his tafsir of 2:23-24, and al-Baqillani builds the case at length in I'jaz al-Qur'an.",
+       "refs": [
+        {
+         "quran": "2:24"
+        },
+        {
+         "quran": "17:88"
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir, on 2:23-24; al-Baqillani, I'jaz al-Qur'an"
+      },
+      {
+       "text": "What kind of speech is it? Reports say al-Walid ibn al-Mughirah, a respected man of Quraysh, was asked to judge it. He said it was not poetry, not the talk of a soothsayer, and that it had a sweetness to it, yet in the end he settled on 'magic', so as not to have to accept it. The Qur'an records his last word. The point is not this one story, whose chain scholars discuss. It is that the Qur'an has rhyme and rhythm, but no poetic metre, and it is not ordinary prose. The Arabs had no name for it, and it is why the Qur'an says it is neither the word of a poet nor of a soothsayer.",
+       "refs": [
+        {
+         "quran": "74:18-25"
+        },
+        {
+         "quran": "69:41-42"
+        },
+        {
+         "quran": "36:69"
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir, on 74:18-25"
+      },
+      {
+       "text": "Honest limits. First, this sign can be tested first-hand only by a person who knows Arabic well, so others must rely on those who do. Translation loses it. Second, scholars differed on where the miracle lies. Al-Jurjani (Dala'il al-I'jaz) located it in the arrangement of words, and most scholars agreed. A minority, such as the Mu'tazili al-Nazzam, said God simply turned people away from trying (the 'sarfa' view). Most scholars rejected that, because the text itself is what astonishes. Third, later claimants such as Musaylimah produced rhymed sayings that even his own followers found weak. The claim is not that imitation is logically impossible, but that after fourteen centuries no attempt has been accepted by Arabic speakers as equal.",
+       "refs": [],
+       "note": "Al-Jurjani, Dala'il al-I'jaz; al-Baqillani, I'jaz al-Qur'an; Ibn Kathir, al-Bidayah wa al-Nihayah, on Musaylimah"
+      }
+     ]
     },
     {
      "id": "miracle-predictions",
@@ -1006,7 +1814,7 @@
       },
       {
        "title": "The Romans would win back",
-       "text": "When Persia had crushed Byzantium, the Qur'an said the Romans would win within a few years (bid', three to nine). Abu Bakr staked a wager on it, and Heraclius's counter-attack began within that span.",
+       "text": "When Persia had crushed Byzantium, the Qur'an said the Romans would win within a few years (bid', three to nine). Abu Bakr staked a wager on it, first fixing five years, then extending it on the Prophet's advice. Heraclius's counter-attack began within that span.",
        "refs": [
         {
          "quran": "30:2-4"
@@ -1016,11 +1824,11 @@
          "number": 3193
         }
        ],
-       "note": "Persia took Jerusalem in 614; Heraclius's winning campaign opened in 622"
+       "note": "Persia took Jerusalem in 614; Heraclius's winning campaign opened in 622. Tirmidhi 3193 records the wager and the extension."
       },
       {
        "title": "Quraysh would be routed",
-       "text": "In Makkah, when Muslims were few and weak, it said the gathering would be defeated and turn their backs. Umar said he did not understand it until Badr.",
+       "text": "In Makkah, when Muslims were few and weak, it said the gathering would be defeated and turn their backs. At Badr the Prophet went out from his tent reciting this very verse.",
        "refs": [
         {
          "quran": "54:45"
@@ -1028,8 +1836,13 @@
         {
          "hadith": "bukhari",
          "number": 4877
+        },
+        {
+         "hadith": "bukhari",
+         "number": 4876
         }
-       ]
+       ],
+       "note": "Bukhari 4876: 'A'ishah says this passage was revealed in Makkah while she was a young girl. Bukhari 4877: the Prophet recites it at Badr."
       },
       {
        "title": "Makkah would be entered",
@@ -1043,7 +1856,7 @@
       },
       {
        "title": "Guesswork cannot explain it",
-       "text": "One wrong prediction would have discredited him before friend and enemy. Every one came true, which a guesser cannot guarantee and only the Knower of the unseen can.",
+       "text": "One wrong prediction would have discredited him before friend and enemy. The ones cited here all came true, which a guesser cannot count on and only the Knower of the unseen can.",
        "refs": [
         {
          "quran": "72:26-27"
@@ -1055,7 +1868,63 @@
      "islamqa": {
       "number": 23475,
       "title": "Things foretold in the Quran which have come to pass"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The sharpest objection is that prophecy stories are written after the event. If the verses about Rome were composed or adjusted after 622, the whole sign vanishes. A second objection is that the events were guessable. The reply is that a prediction only counts if it is public, specific and dated before the outcome, so each case must pass that test. The Romans case does: the verses are Makkan, the wager was made in public with the idolaters, and the event was checked by everyone who heard about it.",
+       "refs": [
+        {
+         "quran": "30:2-4"
+        },
+        {
+         "hadith": "tirmidhi",
+         "number": 3193
+        }
+       ]
+      },
+      {
+       "text": "Consider the Roman prediction more closely. In 614 Persia took Jerusalem, and the Roman state looked close to collapse. Gibbon, no friend of Islam, wrote in Decline and Fall (chapter 46) that no prophecy could have seemed more remote from fulfilment at that moment. The verse says the Romans will overcome within 'bid'', which classical scholars gloss as three to nine years. Tirmidhi 3193 shows how honestly the report is kept: Abu Bakr first set five years, lost that term, and was told to extend it. That is not a detail a legend-maker would invent. The tradition also records a second reading of the verse (ghalabat and ghulibat), and Ibn Kathir discusses it in his tafsir of 30:2, while the standard reading is the one used here.",
+       "refs": [
+        {
+         "quran": "30:2-4"
+        },
+        {
+         "hadith": "tirmidhi",
+         "number": 3193
+        }
+       ],
+       "note": "Gibbon, Decline and Fall, ch. 46; Ibn Kathir, Tafsir, on 30:2-4"
+      },
+      {
+       "text": "The Badr case is about weakness. 54:45 is Makkan: A'ishah says in Bukhari that it was revealed when she was a young girl in Makkah, which is when the believers were few and beaten. At Badr, Bukhari 4877 has the Prophet going out of his tent reciting it, with Quraysh in retreat. The Makkah case is softer, because 48:27 was linked to a vision and carries 'if God wills'. Even so, it was said after the setback of Hudaybiyyah, when many companions thought the truce was a humiliation, and it promised a 'conquest near at hand', which scholars such as Ibn Kathir read as Khaybar, then the pilgrimage the next year and the taking of Makkah the year after.",
+       "refs": [
+        {
+         "quran": "54:45"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 4876
+        },
+        {
+         "hadith": "bukhari",
+         "number": 4877
+        },
+        {
+         "quran": "48:27"
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir, on 48:27"
+      },
+      {
+       "text": "Limits. The sceptic can say that a small number of hits proves little, and that we know the details from Muslim sources. Both are fair. The answer is that the Roman recovery is dated by Byzantine history, not only by Muslim reports, and that the Qur'an itself says these are signs of a Knower of the unseen, not of chance. The argument is cumulative and rests on the standard set in the first point: specific, public, prior, and open to failure.",
+       "refs": [
+        {
+         "quran": "72:26-27"
+        }
+       ],
+       "note": "Byzantine chronology: Theophanes, Chronographia"
+      }
+     ]
     },
     {
      "id": "miracle-history",
@@ -1064,7 +1933,7 @@
      "points": [
       {
        "title": "It says he was not there",
-       "text": "After the stories of Mary, Noah and Joseph, it states that he and his people did not know them before. His enemies could have exposed a hidden teacher, and never did.",
+       "text": "After the stories of Mary, Noah and Joseph, it states that he and his people did not know them before. His enemies alleged a human teacher, but never produced one who could account for it.",
        "refs": [
         {
          "quran": "3:44"
@@ -1122,7 +1991,71 @@
        "note": "Reasoned from the points above"
       }
      ],
-     "islamqa": null
+     "islamqa": null,
+     "discussion": [
+      {
+       "text": "The best objection is that he did not need a book. Makkah was a trading town, he travelled to Syria, he met Christians and Jews, and stories travel by mouth. The Qur'an itself records the charge: some said another people helped him, and that these were old legends dictated to him morning and evening. This has to be answered, not waved away. The Qur'an gives its answer inside the same book: the man they pointed to spoke a foreign tongue, while the Qur'an is in clear Arabic.",
+       "refs": [
+        {
+         "quran": "25:4-5"
+        },
+        {
+         "quran": "16:103"
+        }
+       ]
+      },
+      {
+       "text": "Ask what the theory needs. The teacher must have existed, known the detailed material, been willing to keep quiet, and taught a man who remained in Makkah among enemies looking for exactly this evidence. Nobody produced him. The reports of contact, such as the monk Bahira or Waraqa ibn Nawfal, are brief, come with chains scholars have questioned, and describe no teaching. Meanwhile, the Qur'an says three times that these accounts were news of the unseen that neither he nor his people had known. A false claim of that kind would be easy to expose in a small town.",
+       "refs": [
+        {
+         "quran": "3:44"
+        },
+        {
+         "quran": "11:49"
+        },
+        {
+         "quran": "12:102"
+        }
+       ],
+       "note": "Ibn Hisham, al-Sirah, on Bahira and Waraqa"
+      },
+      {
+       "text": "The king and Pharaoh detail is a fit, not a proof. Genesis calls Joseph's ruler Pharaoh, but Egyptologists say the word began as 'great house', meaning the palace, and only became a title for the king himself in the New Kingdom, after the age usually assigned to Joseph. The Qur'an says 'the king' for Joseph and 'Pharaoh' for Moses, and keeps that difference. A sceptic may answer that this is chance, and that Joseph's date is itself uncertain. Both points stand. Read alongside the fact that the Qur'an corrects earlier books rather than copying them (for example, Aaron warns against the calf and the blame falls on al-Samiri, and Solomon is cleared of disbelief), the pattern suggests an independent source.",
+       "refs": [
+        {
+         "quran": "12:43"
+        },
+        {
+         "quran": "7:104"
+        },
+        {
+         "quran": "20:90"
+        },
+        {
+         "quran": "20:95"
+        },
+        {
+         "quran": "2:102"
+        }
+       ],
+       "note": "Egyptological usage of 'pr-aa' as a royal title from the New Kingdom; date of Joseph is debated"
+      },
+      {
+       "text": "Limits. Lack of a known source is evidence, not proof, since someone can always say a source was lost. Some sceptics also raise alleged historical errors, and Muslim scholars have written replies to those; a fair reader should weigh them separately. The Qur'an itself also says that it confirms and guards what came before, so overlap is expected. The claim of this argument is narrow: the man had no reachable source, the details fit history where a copier's would not, and this adds to the other signs. Ibn Kathir also warns readers to be careful with unverified stories from earlier peoples.",
+       "refs": [
+        {
+         "quran": "5:48"
+        },
+        {
+         "quran": "27:76"
+        },
+        {
+         "quran": "29:48"
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir, introduction, on Israelite reports"
+      }
+     ]
     },
     {
      "id": "miracle-messenger",
@@ -1154,13 +2087,14 @@
       },
       {
        "title": "Known as the truthful one",
-       "text": "His people called him al-Amin, the trustworthy. When Heraclius asked Abu Sufyan, then his enemy, whether they had ever accused him of lying, the answer was no.",
+       "text": "His people called him al-Amin, the trustworthy. When Heraclius asked Abu Sufyan, then his enemy, whether they had ever accused him of lying before his claim, the answer was no.",
        "refs": [
         {
          "hadith": "bukhari",
          "number": 7
         }
-       ]
+       ],
+       "note": "The title al-Amin is from Ibn Hisham, al-Sirah, on the rebuilding of the Ka'bah. Bukhari 7 has Abu Sufyan's 'no'."
       },
       {
        "title": "Reproached in his own book",
@@ -1198,7 +2132,70 @@
      "islamqa": {
       "number": 2114,
       "title": "Evidence for the truth of the Prophethood of Muhammad"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The standard objection is that good character does not prove revelation. Many sincere founders have been honest people who truly believed what they said, and the biography comes from his followers. So the question splits into three: was he lying, was he deluded, and did he write it. The reply takes them in turn, using evidence from the other side where possible. In Bukhari 7, Abu Sufyan, still an enemy, answers Heraclius that they never accused him of lying before his claim, and says he would have lied if he had not feared being called a liar by his own companions. Heraclius drew the conclusion: a man who would not lie about people would not lie about God.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 7
+        }
+       ],
+       "note": "Al-Qadi 'Iyad, al-Shifa', on his character before prophethood"
+      },
+      {
+       "text": "Then the motive. Liars usually gain wealth, power or praise. The Qur'an records him being corrected: for turning away from the blind man, for granting leave to stay behind, over the prisoners of Badr, and over what he hid in himself about Zayd's marriage. A forger writing his own book does not place his mistakes in it. As for wealth, Bukhari 2916 says he died with his armour pledged to a Jew for thirty measures of barley. The Qur'an even says his opponents did not really call him a liar, but rejected the signs. That is the Qur'an's own testimony and is reported, not proven from outside.",
+       "refs": [
+        {
+         "quran": "80:1-10"
+        },
+        {
+         "quran": "9:43"
+        },
+        {
+         "quran": "8:67-68"
+        },
+        {
+         "quran": "33:37"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 2916
+        },
+        {
+         "quran": "6:33"
+        }
+       ]
+      },
+      {
+       "text": "Delusion is harder to dismiss with character alone, so the argument uses the book. A deluded person can be sincere, but cannot produce a work that stays consistent for 23 years, includes law, history, argument and prayer, and stays unmatched. His own recorded speech in the hadith is plainly different in style from the Qur'an, and he kept the two apart. Ibn Taymiyya, in al-Jawab al-Sahih, compares true prophets with liars and the possessed, and argues that the difference shows in their message, their conduct, and what follows from them.",
+       "refs": [
+        {
+         "quran": "53:2-4"
+        },
+        {
+         "quran": "10:16"
+        }
+       ],
+       "note": "Ibn Taymiyya, al-Jawab al-Sahih li-man baddala din al-Masih"
+      },
+      {
+       "text": "On being unlettered, the Qur'an calls him ummi, and 29:48 says he never read or wrote a book before. Most classical scholars, including Ibn Kathir, took this as unable to read and write. Some modern writers say ummi means 'of the gentiles', which would weaken the point, but 29:48 stands on its own words. Honest limit: this argument removes the 'liar' and 'deluded' explanations. It does not by itself prove the Qur'an is revelation. That step comes from putting it together with the other signs.",
+       "refs": [
+        {
+         "quran": "29:48"
+        },
+        {
+         "quran": "7:157"
+        },
+        {
+         "quran": "62:2"
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir, on 29:48"
+      }
+     ]
     },
     {
      "id": "miracle-consistency",
@@ -1228,13 +2225,16 @@
       },
       {
        "title": "No drafts, no revisions",
-       "text": "Each passage was recited at once and memorised by the companions. There was no time to edit and no earlier draft to tidy.",
+       "text": "Each passage was recited as it came, memorised by the companions and written down by scribes. The Prophet was promised he would not forget it. Where a ruling was replaced by a later one, the Qur'an says so openly.",
        "refs": [
         {
          "quran": "75:16-19"
         },
         {
          "quran": "87:6-7"
+        },
+        {
+         "quran": "2:106"
         }
        ]
       },
@@ -1254,7 +2254,7 @@
          "quran": "28:56"
         }
        ],
-       "note": "Ibn Hisham, al-Sirah, on the Year of Sorrow"
+       "note": "Ibn Hisham, al-Sirah, on the deaths of Abu Talib and Khadijah"
       },
       {
        "title": "Why a human could not do it",
@@ -1270,7 +2270,63 @@
        "note": "Reasoned from the points above"
       }
      ],
-     "islamqa": null
+     "islamqa": null,
+     "discussion": [
+      {
+       "text": "The objection is twofold. First, sceptics list verses they say contradict each other, and the tone of the Makkan and Madinan surahs differs. Second, a careful author could keep a steady line, so consistency proves little. The Qur'an's test is narrow and worded carefully: 'much contradiction', not 'no change of tone'. A book that addresses a persecuted minority and later a ruling community should sound different in its style and topics. The claim is that its teaching on God, judgement, prophets and worship does not change from the first surah to the last.",
+       "refs": [
+        {
+         "quran": "4:82"
+        },
+        {
+         "quran": "39:23"
+        }
+       ]
+      },
+      {
+       "text": "Apparent conflicts have been treated in works by Muslim scholars for centuries, such as Ibn Qutayba's Ta'wil Mushkil al-Qur'an and al-Shanqiti's Daf' Iham al-Idtirab 'an Ayat al-Kitab. Most turn out to be about different questions, or general and specific statements. Abrogation is a separate case. The Qur'an says openly that God may replace a ruling with another, and the change of rulings on drinking, for example, was done in stages. That is not a slip that got corrected quietly, because it is announced in the text.",
+       "refs": [
+        {
+         "quran": "2:106"
+        }
+       ],
+       "note": "Ibn Qutayba, Ta'wil Mushkil al-Qur'an; al-Shanqiti, Daf' Iham al-Idtirab 'an Ayat al-Kitab"
+      },
+      {
+       "text": "Then the circumstances. It came in stages, answering questions, wars, and defeats, and the Qur'an says why: to strengthen his heart. A human writing in those years would show it, and few authors keep their own feelings out of writing for 23 years. Here the speaker is always God addressing him, sometimes consoling him, never voicing his mood. Ibrahim died and he wept, and the Qur'an gave no elegy. An eclipse happened that day, and he refused the crowd's claim that it marked the death, when accepting it would have helped him. Bukhari 1303 and 1043 report both.",
+       "refs": [
+        {
+         "quran": "25:32"
+        },
+        {
+         "quran": "17:106"
+        },
+        {
+         "quran": "20:2"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 1303
+        },
+        {
+         "hadith": "bukhari",
+         "number": 1043
+        }
+       ]
+      },
+      {
+       "text": "Honest limits. Consistency alone is the weakest of the signs, since a skilled author can be consistent. Its force is in combination: consistent over 23 years, produced in changing conditions, without drafts, and still unmatched in language. Silence about his grief is also a negative proof, so it supports the case but cannot carry it. Ibn Kathir, commenting on 4:82, treats the verse as an invitation to reflect and check, and the reader is free to do exactly that.",
+       "refs": [
+        {
+         "quran": "4:82"
+        },
+        {
+         "quran": "28:56"
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir, on 4:82"
+      }
+     ]
     },
     {
      "id": "miracle-sum",
@@ -1351,7 +2407,69 @@
        ]
       }
      ],
-     "islamqa": null
+     "islamqa": null,
+     "discussion": [
+      {
+       "text": "The fair objection to a cumulative case is that many weak arguments do not add up to a strong one. Zero plus zero is zero. The reply accepts this: the case works only if each sign has real force by itself, and the signs must be different in kind so that one fault cannot sink them all. They are. The challenge is about the text, the Roman prediction is about dated events, the messenger is about a life, the consistency is about how the book was produced, and the union of enemies is about what followed. A rival theory has to explain each of these separately.",
+       "refs": [
+        {
+         "quran": "17:88"
+        },
+        {
+         "quran": "30:2-4"
+        },
+        {
+         "quran": "15:9"
+        },
+        {
+         "quran": "3:103"
+        }
+       ]
+      },
+      {
+       "text": "Take the rival explanations one at a time. He wrote it: he lacked the means and the motive, and the book reproaches him. He was taught: the accused teacher spoke a foreign tongue, and nobody produced a real source. He was deluded: a delusion does not stay consistent over 23 years or answer a public challenge. It was a group effort: then the group would have answered the challenge in Makkah. It grew as a legend: the text was recited, memorised and written down in his lifetime, and God promises to guard it. Each theory loses on at least one fact, which is why the argument stresses fit with all of them at once.",
+       "refs": [
+        {
+         "quran": "16:103"
+        },
+        {
+         "quran": "29:48"
+        },
+        {
+         "quran": "10:16"
+        },
+        {
+         "quran": "4:82"
+        },
+        {
+         "quran": "15:9"
+        }
+       ]
+      },
+      {
+       "text": "Why 'from God', and not just 'unexplained'? Because this is reasoning to the best explanation, the way we reason about any past event. When every human explanation fails and the book itself claims a source and gives a test, the source it names becomes the most reasonable remaining answer. Al-Baqillani argued in I'jaz al-Qur'an that the proof is the combination of the inimitable text and the claim it makes. A closed mind can always say 'we do not know yet', and that remains possible. But the Qur'an asks people to weigh the evidence for themselves, so the conclusion is offered, not forced.",
+       "refs": [
+        {
+         "quran": "41:53"
+        },
+        {
+         "quran": "38:29"
+        }
+       ],
+       "note": "Al-Baqillani, I'jaz al-Qur'an"
+      },
+      {
+       "text": "Limits, said plainly. No historical claim can be proven the way a chemistry experiment can. The standard here is the one we accept for any past event: what a fair person can reasonably conclude from the evidence. The Qur'an itself notes that some who see the signs still reject them, and asks whether their hearts are locked. It also records people demanding other signs. So the signs give a strong reason to believe, and the last step of honest reflection is left to the reader.",
+       "refs": [
+        {
+         "quran": "47:24"
+        },
+        {
+         "quran": "21:5"
+        }
+       ]
+      }
+     ]
     }
    ]
   },
@@ -1408,8 +2526,8 @@
        "note": "Ibn Kathir on 22:39"
       },
       {
-       "title": "Most were never conquered",
-       "text": "Indonesia, Malaysia and much of Africa accepted Islam through merchants and teachers. No army arrived.",
+       "title": "Many were never conquered",
+       "text": "Indonesia, Malaysia and large parts of East and West Africa came to Islam largely through merchants and teachers, not through an invading army.",
        "refs": [
         {
          "quran": "16:125"
@@ -1436,7 +2554,57 @@
      "islamqa": {
       "number": 43087,
       "title": "Was Islam spread by the sword?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The strongest form of the objection is a timeline. Within about a century of the Prophet's death, Muslim armies held Syria, Egypt, Iraq, Iran, North Africa and Spain. Armies clearly moved. So the sceptic asks: if the Qur'an says there is no compulsion, why did the map change so fast? The answer starts by pulling apart two things the question joins together: expanding a state, and changing what people believe.",
+       "refs": [
+        {
+         "quran": "2:256"
+        }
+       ]
+      },
+      {
+       "text": "On belief, the Qur'an speaks directly. It tells the Prophet he is only a reminder, not a controller over people, and asks whether he would compel people to believe. Ibn Kathir, in his commentary on 2:256, explains that faith has to be accepted by the heart, so forcing it would be meaningless. One reported occasion for the verse is in Abu Dawud: some Ansar parents had raised children as Jews, and when Banu al-Nadir were expelled they wanted to keep them. The verse was revealed and they were not forced.",
+       "refs": [
+        {
+         "quran": "10:99"
+        },
+        {
+         "quran": "88:21-22"
+        },
+        {
+         "hadith": "abudawud",
+         "number": 2682
+        }
+       ]
+      },
+      {
+       "text": "The conduct of conquest points the same way. Rulers who wanted everyone converted would not have set a tax for Jews and Christians to keep their faith, yet 9:29 does exactly that. Critics rightly notice the phrase 'while they are humbled', which describes a lower civic status, and it should be admitted. But it is a status inside a system that let them stay. The Qur'an even names their churches and synagogues as places God protects by checking people through one another. Richard Bulliet's study of conversion estimated that in places like Iran a majority became Muslim only after roughly two centuries. A slow curve like that fits gradual choice, not a sword held over each person.",
+       "refs": [
+        {
+         "quran": "9:29"
+        },
+        {
+         "quran": "22:39-40"
+        }
+       ],
+       "note": "Richard Bulliet, Conversion to Islam in the Medieval Period"
+      },
+      {
+       "text": "What about the hadith where commanders offer three options: Islam, the tax, or fighting? Many classical jurists took this to allow campaigns that bring lands under Muslim rule. Ibn Taymiyya, in al-Siyasa al-Shar'iyya, argued that the reason for fighting is being at war, not disbelief, which is why women, monks and the elderly who do not fight are protected. Either way, the option to keep one's religion under treaty stayed open. Even the wider view is a claim about who governs, not a claim that a person may be made to believe.",
+       "refs": [
+        {
+         "hadith": "muslim",
+         "number": 1731
+        }
+       ]
+      },
+      {
+       "text": "Honest limits: rulers were human. Some episodes did involve pressure or force, such as the Almohad persecution of Jews in twelfth century Spain and North Africa, and taxes and social advantage pushed many people toward Islam. Scholars judge coercion of that kind to be against the religion. The claim is not that nobody ever converted under pressure. It is that the law forbids forcing belief, and that most conversion came gradually through trade, teaching and example.",
+       "note": "IslamQA 43087"
+      }
+     ]
     },
     {
      "id": "jihad-meaning",
@@ -1508,7 +2676,66 @@
      "islamqa": {
       "number": 20214,
       "title": "Ruling on jihad and kinds of jihad"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The objection at its strongest: in the fiqh manuals, the chapter called Kitab al-Jihad is mostly about fighting, so 'holy war' looks like a fair translation of the technical term. That is true of the manuals. But the manuals use the word in its narrow legal sense, and the Qur'an and hadith use it far more widely. A fair reader has to hold both: the word means striving, and one branch of it is armed fighting under rules.",
+       "refs": [
+        {
+         "quran": "29:6"
+        }
+       ]
+      },
+      {
+       "text": "There is a simple test for whether 'striving' is meant. The Qur'an tells the Prophet to strive against the disbelievers 'with it', meaning the Qur'an, a great striving. That verse was revealed in Makkah. Fighting was only permitted later, after the migration to Madinah, when 22:39 gave permission to those being attacked. So in Makkah the word cannot have meant fighting. It meant argument, patience and steadfastness under persecution.",
+       "refs": [
+        {
+         "quran": "25:52"
+        },
+        {
+         "quran": "22:39"
+        }
+       ]
+      },
+      {
+       "text": "The hadith show the same range. A man asks to join the fighting and the Prophet asks whether his parents are alive, then tells him to strive in serving them. Another report says the best jihad is a just word to an oppressive ruler. Another tells believers to strive against the polytheists with their wealth, their persons and their tongues. Ibn al-Qayyim, in Zad al-Ma'ad, sets out the levels of jihad and places striving against one's own self first.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 3004
+        },
+        {
+         "hadith": "abudawud",
+         "number": 4344
+        },
+        {
+         "hadith": "abudawud",
+         "number": 2504
+        }
+       ],
+       "note": "Ibn al-Qayyim, Zad al-Ma'ad"
+      },
+      {
+       "text": "One popular saying should be avoided: that the Prophet returned from battle and said 'we return from the lesser jihad to the greater jihad.' Many hadith scholars, including Ibn Taymiyya, judged it to have no sound basis. The argument here does not need it, since the Qur'an and sound hadith already show the wide meaning. Nor should the narrow meaning be played down. Armed jihad is a real duty in Islamic law, but a communal one: if enough people take it up, the rest are relieved of it, as Ibn Qudama explains in al-Mughni.",
+       "refs": [
+        {
+         "quran": "9:122"
+        },
+        {
+         "quran": "4:95"
+        }
+       ],
+       "note": "Ibn Qudama, al-Mughni, Kitab al-Jihad"
+      },
+      {
+       "text": "Nuance and limits: scholars have disagreed over whether armed jihad may be offensive or only defensive. Classical scholars mostly allowed campaigns by a legitimate state, and many modern scholars restrict it to defence. On both views the tradition's own conditions matter: lawful authority, a fight only against those who fight, no transgression. That is why a self-declared 'jihad' by a private group fails the test, however it describes itself.",
+       "refs": [
+        {
+         "quran": "2:190"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "sword-verse",
@@ -1578,7 +2805,73 @@
      "islamqa": {
       "number": 165408,
       "title": "Specious argument from a Christian who claims that there are verses in the Qur'an which contradict the verse {There shall be no compulsion in [acceptance of] the religion} [al-Baqarah 2:256]"
-     }
+     },
+     "discussion": [
+      {
+       "text": "Read alone, 9:5 sounds unqualified: kill the polytheists wherever you find them, and if they repent, establish prayer and pay zakah, let them go. A sceptic will say that reads as 'convert or die'. That deserves a real answer, not a dismissal, and the answer is in the verses around it.",
+       "refs": [
+        {
+         "quran": "9:5"
+        }
+       ]
+      },
+      {
+       "text": "The chapter opens by ending treaties with certain polytheists. Then 9:4 exempts those who kept their treaty and did not help anyone against the Muslims. 9:7 says that as long as those at the Sacred Mosque are upright, the Muslims must be upright. 9:13 gives the reason for the fighting: a people who broke their oaths, meant to expel the Messenger and attacked first. In the same year, an announcement was made at Hajj that no polytheist would perform Hajj after that year. The audience is the Arab tribes of that time who had fought the Muslims for years, not all non-Muslims for all time. Al-Tabari and Ibn Kathir read it this way.",
+       "refs": [
+        {
+         "quran": "9:1"
+        },
+        {
+         "quran": "9:4"
+        },
+        {
+         "quran": "9:7"
+        },
+        {
+         "quran": "9:13"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 369
+        }
+       ],
+       "note": "al-Tabari and Ibn Kathir on 9:5"
+      },
+      {
+       "text": "What about the 'repent' clause? For those treaty-breakers the passage offers three routes: keep or make a treaty, ask for protection, or join the community. The verse right after 9:5 closes the loop: a polytheist who asks for protection is protected, hears God's words, and is then escorted to his place of safety. Nothing in that says he must accept Islam first. Hearing is not believing, and he leaves safe whatever he decides. That is the opposite of convert or die.",
+       "refs": [
+        {
+         "quran": "9:6"
+        }
+       ]
+      },
+      {
+       "text": "The second challenge is abrogation. Some early commentators, listed in abrogation works such as al-Suyuti's al-Itqan, said 9:5 cancelled earlier verses about forgiving and turning away. If so, a sceptic can say extremists have classical support. That is a fair point: such readings exist in the books. But a ruling about belief cannot be cancelled by a ruling about one war, and IslamQA holds that 9:5 does not cancel 2:256. Most scholars therefore read the verses of restraint and peace as still in force.",
+       "refs": [
+        {
+         "quran": "2:256"
+        }
+       ],
+       "note": "al-Suyuti, al-Itqan; IslamQA 165408"
+      },
+      {
+       "text": "The last test is consistency across the Qur'an. It says to fight those who fight you but not to transgress. It allows retaliation only in proportion. If the enemy leans to peace, accept it. And it says God does not forbid kindness and justice toward those who do not fight you over religion. A reading of 9:5 that contradicts all of these is a worse reading than one that places it in its wartime setting.",
+       "refs": [
+        {
+         "quran": "2:190"
+        },
+        {
+         "quran": "2:194"
+        },
+        {
+         "quran": "8:61"
+        },
+        {
+         "quran": "60:8"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "terrorism",
@@ -1645,7 +2938,71 @@
      "islamqa": {
       "number": 117724,
       "title": "Definition of terrorism and what it means in Islam and in the West"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The objection at its strongest: attackers say they act for Islam, quote verses and use its vocabulary, so surely the religion gives them something. The way to test that is to ask what the tradition itself permits, not what a group claims. Take terrorism to mean deliberately attacking civilians to frighten a public. On that definition the sources say no, clearly and repeatedly.",
+       "refs": [
+        {
+         "quran": "6:151"
+        }
+       ]
+      },
+      {
+       "text": "In the Qur'an, killing one soul unjustly is compared with killing all of humanity. The verse is addressed to the Children of Israel, but commentators treat it as a general principle, and it is placed among the Qur'an's rules about human life. Elsewhere the Qur'an forbids killing the soul God has made sacred 'except by right', which in law means by a court's process, not by private decision. Deliberately killing a believer is threatened with Hell.",
+       "refs": [
+        {
+         "quran": "5:32"
+        },
+        {
+         "quran": "17:33"
+        },
+        {
+         "quran": "4:93"
+        }
+       ]
+      },
+      {
+       "text": "The hadith apply this to war itself. The Prophet forbade killing women and children, and warned that whoever kills a person under treaty with the Muslims will not smell the fragrance of Paradise. Another report says it is not lawful for a Muslim to frighten another Muslim. Abu Bakr's instructions to his commander, recorded by Malik in the Muwatta, forbade killing children, women and the old, cutting down fruit trees, or harming monks in their retreats. That report has a broken chain but is widely cited by jurists.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 3015
+        },
+        {
+         "hadith": "bukhari",
+         "number": 3166
+        },
+        {
+         "hadith": "abudawud",
+         "number": 5004
+        }
+       ],
+       "note": "Malik, al-Muwatta, Book of Jihad"
+      },
+      {
+       "text": "Islamic law even has a category for this crime. 5:33 sets the harshest penalties for those who wage war on society and spread corruption. Jurists applied it to armed bands who terrorise roads and cities, and it is handled by a court. In that framework, a group that kills civilians is not a holy army but a criminal one. The Amman Message of 2004 and 2005, backed by hundreds of scholars, was also aimed at takfir, declaring other Muslims to be unbelievers, which extremist groups use as licence to kill them.",
+       "refs": [
+        {
+         "quran": "5:33"
+        }
+       ],
+       "note": "Ibn Kathir on 5:33; the Amman Message (2004)"
+      },
+      {
+       "text": "Honest limits: there are real gaps to admit. A hadith records the Prophet being asked about night raids that might expose women and children to harm, and he said 'they are from them.' Later jurists read that as covering unintended harm when a lawful military target is attacked, not deliberate targeting, but extremists have quoted such reports out of context. Modern scholars also argue over what counts as lawful resistance. Still, no classical school allows deliberately killing civilians, and each person answers for his own act. Most victims of groups like ISIS have been Muslims.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 3012
+        },
+        {
+         "quran": "6:164"
+        }
+       ],
+       "note": "Global Terrorism Index; IslamQA 117724"
+      }
+     ]
     },
     {
      "id": "apostasy",
@@ -1703,7 +3060,62 @@
      "islamqa": {
       "number": 14231,
       "title": "Punishment for Apostasy in Islam"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The objection at its strongest: this appears to contradict 'no compulsion in religion.' If a person may be killed for changing belief, then faith is being kept in place by threat. That is a serious challenge, and the honest first step is to state the classical ruling as it stands. The four Sunni schools held that a Muslim who knowingly and freely leaves Islam may face execution, after repentance is offered, and only by a court.",
+       "refs": [
+        {
+         "quran": "2:256"
+        }
+       ]
+      },
+      {
+       "text": "The evidence for it is the hadith 'whoever changes his religion, kill him.' A second report gives the permitted grounds for taking a Muslim's life as three: a life for a life, the married adulterer, and one who leaves his religion and abandons the community. The majority took the last clause as describing the act itself, since leaving the faith is leaving the community. A minority, including al-Qaradawi in our time, took it as a condition: apostasy joined with betrayal or fighting the community. Both readings rest on the same text, which is why the disagreement is real.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 6922
+        },
+        {
+         "hadith": "muslim",
+         "number": 1676
+        }
+       ],
+       "note": "Yusuf al-Qaradawi; Ibn Qudama, al-Mughni"
+      },
+      {
+       "text": "Two pieces of practice pull toward caution. A bedouin gave the Prophet his pledge, fell ill in Madinah and asked to cancel it. The Prophet refused three times, and the man left the city. No punishment is recorded. Classical scholars did not treat this as cancelling the ruling. And Umar, on hearing that a man had been killed after apostasy without delay, said he should have been held three days and fed bread each day, so he might repent. That is why repentance is offered first, and some early jurists such as al-Nakha'i and al-Thawri held it should be offered for as long as it takes, as reported by Ibn Hajar in Fath al-Bari.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 7211
+        }
+       ],
+       "note": "Malik, al-Muwatta, Book of Judgments; Ibn Hajar, Fath al-Bari"
+      },
+      {
+       "text": "The Qur'an itself repeatedly condemns leaving the faith and warns of the Hereafter, but never sets a punishment in this world. One verse says a person forced to say words of disbelief while his heart is secure in faith is excused, so the law needs proof that the person chose freely and knew what he was doing. That is a high bar for any court.",
+       "refs": [
+        {
+         "quran": "2:217"
+        },
+        {
+         "quran": "3:90"
+        },
+        {
+         "quran": "5:54"
+        },
+        {
+         "quran": "16:106"
+        }
+       ]
+      },
+      {
+       "text": "Honest limits: the majority classical position is what it is, and IslamQA states it. The minority view is respectable but is a minority, and some Muslim-majority states still have laws on the subject. What can be said with confidence is that no individual may carry it out, that a private killing is murder, and that the Qur'an sets out its own consequences for leaving faith in the Hereafter. A sceptic may still find the ruling hard, and it is better to say so plainly.",
+       "note": "IslamQA 14231"
+      }
+     ]
     }
    ]
   },
@@ -1798,7 +3210,78 @@
      "islamqa": {
       "number": 70042,
       "title": "Women's Rights in Islam"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The strongest form of this objection is not about a single rule. It is about the overall picture: in many Muslim-majority countries women face limits on education, work or movement, so surely the religion is the cause. A fair answer starts by separating two questions: what does the source text establish, and what do societies do in its name? The Qur'an addresses believing men and believing women side by side, promising both forgiveness and a great reward, and says that no deed of a doer, male or female, is lost. Spiritually, then, the two stand in the same place before God.",
+       "refs": [
+        {
+         "quran": "33:35"
+        },
+        {
+         "quran": "3:195"
+        },
+        {
+         "quran": "16:97"
+        }
+       ]
+      },
+      {
+       "text": "The second step is to compare with the world in which the message came. Commentators such as Ibn Kathir, in his tafsir of 4:7, record that women and children had commonly been left out of inheritance in pre-Islamic Arabia. Against that background, a verse giving women a fixed and named share of what parents and relatives leave was a real change, and the Qur'an also says that women have a share in what they earn. The bride's marriage gift is hers to keep, and a woman's property does not merge into her husband's.",
+       "refs": [
+        {
+         "quran": "4:7"
+        },
+        {
+         "quran": "4:32"
+        },
+        {
+         "quran": "4:4"
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir al-Qur'an al-'Azim, on 4:7"
+      },
+      {
+       "text": "Third, the honour given to mothers is unusually specific. A man asked the Prophet who deserved his best company, and he answered 'your mother' three times before saying 'your father'. Another companion wanted to go out to fight, and the Prophet sent him back to look after his mother, telling him to stay with her because Paradise is beneath her feet. Kindness to parents is placed right after the worship of God in the Qur'an, and the verse names the hardship of old age directly.",
+       "refs": [
+        {
+         "quran": "17:23-24"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 5971
+        },
+        {
+         "hadith": "ibnmajah",
+         "number": 2781
+        }
+       ]
+      },
+      {
+       "text": "Marriage and daughters follow the same pattern. The Prophet said the best of you is the best to his wives, and added that he was the best of them to his wives. The Qur'an condemns burying baby girls, and the Prophet said whoever raises two girls well will be close to him on the Day of Resurrection.",
+       "refs": [
+        {
+         "hadith": "tirmidhi",
+         "number": 3895
+        },
+        {
+         "quran": "81:8-9"
+        },
+        {
+         "hadith": "muslim",
+         "number": 2631
+        }
+       ]
+      },
+      {
+       "text": "The honest limit is this: a text cannot prevent a person from ignoring it. Where women are denied inheritance, schooling or a say in marriage, a Muslim can and should point to these rulings as the standard being broken. A sceptic is right to judge Muslims by how they behave, and right to expect Muslims to hold themselves to the standard. The claim here is narrower: the source itself does not teach the oppression, and that is checkable by reading the verses and reports above.",
+       "refs": [
+        {
+         "quran": "2:228"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "hijab",
@@ -1837,10 +3320,13 @@
       },
       {
        "title": "Worship, not force",
-       "text": "It counts as worship when done willingly, and millions wear it by conviction. Obedience comes first, understanding the wisdom second.",
+       "text": "No one can be forced to believe. Once a person believes, covering is one of the commands they follow willingly, and millions wear it by conviction. Obedience comes first, understanding the wisdom second.",
        "refs": [
         {
          "quran": "2:256"
+        },
+        {
+         "quran": "33:36"
         }
        ],
        "note": "IslamQA 6244"
@@ -1849,7 +3335,57 @@
      "islamqa": {
       "number": 6244,
       "title": "Why Do Women Cover Their Hair?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The strongest objection is that a rule about clothing cannot be fair if it applies to one sex more visibly than the other, and that a woman's dignity should not depend on cloth. The first step in reply is to be clear what the Muslim claim actually is. It is not that a woman is unsafe or dishonourable without it. It is that God commanded it, and a believer obeys a command from God whose wisdom they trust, in the same way as with prayer or fasting. The verse tells believing women to wrap their head covers over their chests.",
+       "refs": [
+        {
+         "quran": "24:31"
+        },
+        {
+         "quran": "33:36"
+        }
+       ]
+      },
+      {
+       "text": "Second, the early community understood it as a clear command. Aisha reported that when this verse was revealed, the early emigrant women tore their wrappers and covered themselves with them right away. Classical scholars of all four schools, such as Ibn Kathir in his tafsir on 24:31, took the head covering as required, and the disagreement among them was about how much of the face and hands may show, not about the head.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 4758
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir al-Qur'an al-'Azim, on 24:31"
+      },
+      {
+       "text": "Third, the sceptic says it is unfair to women alone. But the verse for men comes first and commands them to lower their gaze and guard their private parts. Both sexes have a modesty code; the forms differ. Also, the Qur'an gives a reason for the outer garment: that women 'will be known and not be abused'. The wisdom is stated as recognition and protection, and the reader should notice that the burden of restraint is placed on the man first.",
+       "refs": [
+        {
+         "quran": "24:30"
+        },
+        {
+         "quran": "33:59"
+        }
+       ]
+      },
+      {
+       "text": "Fourth, the word 'force'. The verse 'no compulsion in religion' says that no one can be made to believe, and it does not by itself settle every question about dress. What follows from it is that faith has to be freely chosen, and worship that is forced is not worship. Once someone chooses Islam, they are held to its commands, as with any faith. It follows that a woman made to wear it by a family or a state is not doing what the Qur'an describes, and many scholars say so.",
+       "refs": [
+        {
+         "quran": "2:256"
+        }
+       ]
+      },
+      {
+       "text": "The honest limit is that this reasoning explains what Muslims believe; it cannot make an outsider agree that the command is right. There is also a rule that shows it is not about shame: elderly women past marriage are told there is no blame on them for putting aside their outer garments, though modesty is better for them. That shows a rule about modesty and the setting of a limit, not a claim that a woman's body is a fault.",
+       "refs": [
+        {
+         "quran": "24:60"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "inheritance",
@@ -1908,7 +3444,56 @@
      "islamqa": {
       "number": 14357,
       "title": "Women's Inheritance Share Unchanged by Household Spending"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The strongest form of this objection: in a fair system, equal persons get equal shares, so 'a male gets the share of two females' looks like a plain statement that a woman is worth half. The first step is to read what the verse says and does not say. It names the son-and-daughter case, and it is one case among several. A daughter alone gets half the estate; two or more daughters get two thirds; a mother and a father each get a sixth when the deceased leaves a child.",
+       "refs": [
+        {
+         "quran": "4:11"
+        }
+       ]
+      },
+      {
+       "text": "Second, the equal cases are real. A brother and a sister from the same mother each get a sixth, and if there are more they share a third equally. So the rule is not 'women inherit half'. Scholars of inheritance list many situations where a woman receives the same as a man or more. The half applies mainly where a son and a daughter of the deceased inherit together, or siblings of the same parents.",
+       "refs": [
+        {
+         "quran": "4:11"
+        },
+        {
+         "quran": "4:12"
+        }
+       ]
+      },
+      {
+       "text": "Third, the reason offered by scholars is about who must spend, not who is worth more. The Qur'an makes the husband responsible for the marriage gift and for maintenance, and this duty stays with him even if the wife is wealthy. The Qur'an says men are in charge of women 'by what they spend from their wealth'. A brother's larger share arrives with duties towards a wife, children, and often parents or relatives, while a sister's share arrives with no such duty. She may spend it however she likes.",
+       "refs": [
+        {
+         "quran": "4:34"
+        },
+        {
+         "quran": "4:4"
+        },
+        {
+         "quran": "4:32"
+        }
+       ],
+       "note": "IslamQA 14357"
+      },
+      {
+       "text": "Fourth, the argument tested at its hardest. Suppose a brother has no dependants and a sister has children. Then the rule does not track need in that case. The reply is that Islamic law sets fixed shares by general categories, so that the family is not turned into a court case over every household, and the sister's own protection lies in the maintenance duty that falls on her husband or her male relatives. A rule that works in the typical case can feel unfair in a hard case; the scholars accept that as the price of a fixed share.",
+       "note": "Classical fiqh of fara'id; see Ibn Qudamah, al-Mughni, Book of Inheritance"
+      },
+      {
+       "text": "The honest limit is that this is a ruling a Muslim accepts because God set the shares, and then finds the wisdom in it; the wisdom above is the classical explanation, not the reason the ruling is binding. A sceptic may still think the fixed ratio ignores modern households where women earn and pay. The fair reply is that her money remains hers in either case, and a woman who chooses to spend on her family is doing an act of charity that is rewarded.",
+       "refs": [
+        {
+         "quran": "4:11"
+        }
+       ],
+       "note": "IslamQA 14357"
+      }
+     ]
     },
     {
      "id": "four-thirty-four",
@@ -1943,7 +3528,7 @@
       },
       {
        "title": "No harm allowed",
-       "text": "In his farewell sermon the Prophet allowed only a strike that is 'not severe'. Ibn Abbas said: like with a toothstick, causing no pain or injury.",
+       "text": "In his farewell sermon the Prophet allowed only a strike that is 'not severe', in the case of a wife letting in someone he dislikes. Ibn Abbas is reported to have said: like with a toothstick, causing no pain or injury.",
        "refs": [
         {
          "hadith": "muslim",
@@ -1964,13 +3549,17 @@
       },
       {
        "title": "Other ways out",
-       "text": "If the marriage is failing, family arbitrators step in, and a wife may seek divorce or a judge's help.",
+       "text": "If the marriage is failing, family arbitrators step in, and a wife may ask to end it: the Prophet approved the wife of Thabit ibn Qays ending her marriage by returning the garden she had been given.",
        "refs": [
         {
          "quran": "4:35"
         },
         {
          "quran": "4:128"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 5273
         }
        ]
       }
@@ -1978,7 +3567,64 @@
      "islamqa": {
       "number": 41199,
       "title": "Beating Wife in Islam"
-     }
+     },
+     "discussion": [
+      {
+       "text": "This is the hardest verse in the topic for a sceptic, and it should be met directly. The verse says that if a husband fears arrogance or persistent ill-conduct in his wife, he should advise her, then leave her bed, and then 'strike' her. Read alone, and in English, it sounds like a licence for violence. The first step is to read it in the setting of the surrounding verses. Just before, the Qur'an tells husbands to live with their wives in kindness, and the Prophet said the best of you is the best to his wives.",
+       "refs": [
+        {
+         "quran": "4:34"
+        },
+        {
+         "quran": "4:19"
+        },
+        {
+         "hadith": "tirmidhi",
+         "number": 3895
+        }
+       ]
+      },
+      {
+       "text": "The second step is the order of the verse: advice, then separation in bed, and only then the third step. The steps rise in seriousness, and the classical commentators, such as Ibn Kathir, treat the third as a last measure, only for real misconduct and never for everyday quarrels. Al-Tabari records Ibn Abbas and others explaining the strike as one that leaves no mark, comparable to a light touch with a toothstick. Ibn Kathir also records that Imam al-Shafi'i held that leaving it altogether is better.",
+       "note": "al-Tabari, Jami' al-Bayan, and Ibn Kathir, Tafsir al-Qur'an al-'Azim, on 4:34"
+      },
+      {
+       "text": "Third, the Prophet's own conduct sets the practical meaning. Aisha said he never struck anyone with his hand, neither a woman nor a servant, except when fighting in God's cause. In the farewell pilgrimage report, the only strike mentioned is one that is 'not severe', in the context of a wife letting into the home someone the husband dislikes. The sceptic should notice that the same report also lists the husband's duties to feed and clothe her fairly.",
+       "refs": [
+        {
+         "hadith": "muslim",
+         "number": 2328
+        },
+        {
+         "hadith": "muslim",
+         "number": 1218
+        }
+       ]
+      },
+      {
+       "text": "Fourth, the verse is not the only route. If the marriage is in serious trouble, the Qur'an tells both families to send an arbitrator each, and promises that God will bring about agreement if both want it. A wife also has a path out: in the report of Thabit ibn Qays's wife, she asked to end the marriage, the Prophet accepted her returning the garden he had given her, and told him to accept it and separate. Abuse is never described as a right of the husband.",
+       "refs": [
+        {
+         "quran": "4:35"
+        },
+        {
+         "quran": "4:128"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 5273
+        }
+       ]
+      },
+      {
+       "text": "The honest limit: the word in the verse is a strike, and scholars have differed on how to understand it, with some saying it must be a symbolic touch and others noting that the safest opinion is to avoid it. Anyone who uses this verse to justify harming a wife is going against the Prophet's own example and the limits the scholars set, and nothing here excuses domestic abuse.",
+       "refs": [
+        {
+         "quran": "4:34"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "polygamy",
@@ -2008,9 +3654,15 @@
        ]
       },
       {
-       "title": "It cared for widows",
-       "text": "The verse came after many men died at Uhud, leaving widows and orphans. Marriage gave them a home and provision.",
-       "note": "al-Tabari and Ibn Kathir on 4:3"
+       "title": "It protected the vulnerable",
+       "text": "The verse opens with orphan girls: Aisha explained that a guardian might marry a girl in his care for her wealth without a fair gift, and God told him to marry other women instead. The surah was revealed after Uhud, when many women were left without a provider.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 4574
+        }
+       ],
+       "note": "Ibn Kathir on 4:3"
       },
       {
        "title": "Women keep their rights",
@@ -2018,6 +3670,10 @@
        "refs": [
         {
          "quran": "4:4"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 5136
         }
        ],
        "note": "Ibn Qudamah, al-Mughni"
@@ -2036,7 +3692,64 @@
      "islamqa": {
       "number": 372570,
       "title": "Why Allah Permits Polygamy Even Though It Hurts the Wife's Feelings"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The strongest objection is that a man having several wives treats women as things to be collected, and that no wife can be content sharing her husband. It should be granted at once that many women find it painful, and IslamQA itself says the wife's feelings are real. The reply starts from what the verse actually says. It does not say 'marry four'. It begins with a concern for orphan girls and says: if you fear you will not deal justly, then marry one. The default is one, and more is a permission with a condition attached.",
+       "refs": [
+        {
+         "quran": "4:3"
+        }
+       ]
+      },
+      {
+       "text": "Second, the setting. Aisha, in the report in Sahih al-Bukhari, explained that the verse was about an orphan girl in the care of a guardian who wanted to marry her for her wealth and beauty without giving her a fair marriage gift. God told such men to marry other women instead. Many commentators also connect the surah to the aftermath of the battle of Uhud, when many men had died and many women and children needed care. That link comes from later commentary, so it is a likely setting rather than a proven cause.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 4574
+        },
+        {
+         "quran": "4:3"
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir al-Qur'an al-'Azim, on 4:3"
+      },
+      {
+       "text": "Third, the limit and the condition. Before Islam, reports say men could marry without a set limit, and the verse fixed the ceiling at four. The condition is justice, and the Qur'an is honest about how hard it is: you will never be able to be fully equal in feeling, so do not incline completely toward one and leave the other hanging. Scholars read this as equality in what can be controlled, such as time, housing and spending, not in love.",
+       "refs": [
+        {
+         "quran": "4:3"
+        },
+        {
+         "quran": "4:129"
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir al-Qur'an al-'Azim, on 4:3"
+      },
+      {
+       "text": "Fourth, the woman's position. She cannot be married without her consent. The Prophet said a woman previously married must be consulted, and a virgin must give her permission, which her silence may show. In the Hanbali school, as Ibn Qudamah records in al-Mughni, a woman may make it a condition of her marriage contract that her husband takes no other wife, and the condition is binding. Each wife has her own marriage gift and her own right to upkeep.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 5136
+        },
+        {
+         "quran": "4:4"
+        }
+       ],
+       "note": "Ibn Qudamah, al-Mughni"
+      },
+      {
+       "text": "The honest limit: this is a permission, not a virtue, and no text says it is better than one wife. Most Muslim marriages today are to one wife. A believer accepts it because it is in the Qur'an, trusting that good may lie in what we dislike; a sceptic will weigh the argument differently, and the question of whether a man will in fact act justly is where abuse most often occurs.",
+       "refs": [
+        {
+         "quran": "2:216"
+        }
+       ],
+       "note": "IslamQA 372570"
+      }
+     ]
     }
    ]
   },
@@ -2075,7 +3788,7 @@
       },
       {
        "title": "The Prophet's example",
-       "text": "Aisha asked about Ibn Jud'an, who fed the poor before Islam. The Prophet said it would not help him, because he never once asked God to forgive him.",
+       "text": "Aisha asked about Ibn Jud'an, who kept family ties and fed the poor before Islam. The Prophet said it would not benefit him, because he never once said: My Lord, forgive my sins on the Day of Judgment.",
        "refs": [
         {
          "hadith": "muslim",
@@ -2095,7 +3808,7 @@
       },
       {
        "title": "Judged by a just God",
-       "text": "Only God knows who was truly reached and who rejected out of stubbornness. Muslims do not name individuals as being in Hell.",
+       "text": "Only God knows who was truly reached and who rejected out of stubbornness. Muslims do not pass a verdict on named individuals, apart from those the revelation itself names, such as Abu Lahab.",
        "refs": [
         {
          "quran": "4:40"
@@ -2109,7 +3822,58 @@
      "islamqa": {
       "number": 6667,
       "title": "Will good deeds avail a person anything if he dies as a kaafir?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The strongest form of the objection is this: a doctor who spends her life healing strangers, and who never met a Muslim, surely cannot burn beside a tyrant. Islam does not deny that her goodness is real, and God says plainly that He wrongs no one, not even by the weight of an atom. The question is what a deed is for. The Qur'an treats worship of God as the purpose of a human life, so a life of kindness that never once turns toward the One who gave it is like a wage claimed from an employer you never worked for.",
+       "refs": [
+        {
+         "quran": "4:40"
+        },
+        {
+         "quran": "51:56"
+        }
+       ]
+      },
+      {
+       "text": "Islam is also clear about the other side. Scholars distinguish between a person who has heard the message clearly and turned away from it, and a person to whom it never really arrived. For the first, Paradise is forbidden to those who set up partners with God, and a way of life other than submission to Him is not accepted. The Prophet's answer about Ibn Jud'an shows the same principle: kindness done while never seeking God's forgiveness on the Day of Judgment does not carry over into the Hereafter.",
+       "refs": [
+        {
+         "quran": "5:72"
+        },
+        {
+         "quran": "3:85"
+        },
+        {
+         "hadith": "muslim",
+         "number": 214
+        }
+       ]
+      },
+      {
+       "text": "For the second group, the Qur'an says God never punishes until a messenger has come, and that messengers were sent so people would have no excuse. Ibn Kathir, in his tafsir of 17:15, records reports that the deaf, the insane, the very senile and those who died in the gap between prophets will be tested on the Day of Judgment: whoever obeys is admitted to Paradise and whoever refuses enters the Fire. Al-Ghazali, in Faysal al-Tafriqa, argued in the same spirit that a person in a distant land who never heard the Prophet's true description is excused, and that Muslims should not lightly declare people lost.",
+       "refs": [
+        {
+         "quran": "17:15"
+        },
+        {
+         "quran": "4:165"
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir on 17:15; al-Ghazali, Faysal al-Tafriqa"
+      },
+      {
+       "text": "Honest limits remain. Hearing a message is not the same as being able to see it properly. Someone who only met a distorted picture of Islam, or lived among people who never showed it well, may not have had the truth put before them in a fair way. Only God knows what each heart understood and what was pride. That is why Muslims do not pass a verdict on any named person beyond those the revelation itself names, and why the Qur'an says every record will be laid open and your Lord wrongs no one. A sceptic can reasonably ask whether this is comfortable. The claim is not that it is comfortable, but that judgment belongs to a Judge who is fully just and fully merciful.",
+       "refs": [
+        {
+         "quran": "18:49"
+        },
+        {
+         "quran": "4:40"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "arab-religion",
@@ -2155,7 +3919,7 @@
       },
       {
        "title": "Faith went beyond Arabia",
-       "text": "The Prophet said if faith were at the Pleiades, men from Persia would reach it. Bukhari, Muslim and Abu Hanifa were all non-Arabs.",
+       "text": "The Prophet put his hand on Salman the Persian and said that if faith were at the Pleiades, men from his people would reach it. Al-Bukhari, of Bukhara, and Abu Hanifa, reported to be of Persian descent, were scholars from outside the Arab lands.",
        "refs": [
         {
          "hadith": "bukhari",
@@ -2167,7 +3931,49 @@
      "islamqa": {
       "number": 182686,
       "title": "Is the Arab Muslim better than the non-Arab Muslim?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The objection looks reasonable at first sight: the Qur'an is in Arabic, the Prophet was an Arab, and Mecca is in Arabia. But a message being delivered in one language does not make it owned by one people. Every prophet spoke the tongue of his audience so they could understand him, and the Qur'an makes its own claim about scope: the Prophet was sent as a mercy to all the worlds, to all of humanity, and it calls him a bringer of good news and a warner to everyone.",
+       "refs": [
+        {
+         "quran": "21:107"
+        },
+        {
+         "quran": "34:28"
+        },
+        {
+         "quran": "7:158"
+        }
+       ]
+      },
+      {
+       "text": "Next, look at what the text says about status. Humanity is made into peoples and tribes so that we may know one another, and the most honoured with God is the most God-conscious. Differences of language and colour are called signs of God, not ranks. The Prophet's farewell sermon, reported in Musnad Ahmad, states it as a rule: no Arab is above a non-Arab, no non-Arab above an Arab, and no white above a black or black above white, except by taqwa. A religion built to protect one tribe would not teach this.",
+       "refs": [
+        {
+         "quran": "49:13"
+        },
+        {
+         "quran": "30:22"
+        }
+       ],
+       "note": "Musnad Ahmad, the farewell sermon; IslamQA 182686"
+      },
+      {
+       "text": "History points the same way. Around the Prophet stood Salman al-Farisi from Persia, Bilal from Ethiopia and Suhayb from the Byzantine lands. When Surat al-Jumu'ah spoke of others who had not yet joined the believers, the Prophet put his hand on Salman and said that if faith were at the Pleiades, some men from his people would reach it. Classical books such as Ibn Hajar's al-Isabah list the companions by origin, and many were not Arabs.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 4897
+        }
+       ],
+       "note": "Ibn Hajar, al-Isabah"
+      },
+      {
+       "text": "The numbers today settle the practical question. Arabs are a minority of the world's Muslims, and the largest Muslim countries by population, such as Indonesia, Pakistan and Bangladesh, are not Arab. Scholars like al-Bukhari, who came from Bukhara in Central Asia, shaped the tradition from outside Arabia. There is one honest nuance: Arabic holds a special place, because the Qur'an is recited in its own language in prayer, and the earliest generations were Arab. But that is a matter of preserving one text, not of privileging one people.",
+       "note": "IslamQA 182686; Ibn Hajar, al-Isabah"
+      }
+     ]
     },
     {
      "id": "why-pray",
@@ -2234,7 +4040,56 @@
      "islamqa": {
       "number": 9603,
       "title": "Why Do Muslims Pray 5 Times a Day?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The objection is that five prayers a day looks like a heavy demand, and a loving God should not need so much attention. Start with who is asking whom. The Qur'an says God does not need our worship; He created humans to worship Him, and He tells Musa that prayer is for His remembrance. Prayer is therefore less a tax paid to God than a meeting the believer is invited to, and the benefit falls on the one who prays.",
+       "refs": [
+        {
+         "quran": "51:56"
+        },
+        {
+         "quran": "20:14"
+        }
+       ]
+      },
+      {
+       "text": "Then look at the spacing. Forgetfulness is the ordinary human problem: a person rarely decides to abandon God, they drift. Prayers placed at dawn, midday, afternoon, sunset and night interrupt the drift before it grows. The Qur'an says prayer restrains a person from indecency and wrongdoing, and that prayer at the two ends of the day and in the early part of the night wipes out small wrongs. Ibn Kathir, in his tafsir of 29:45, explains that the prayer restrains because its remembrance of God keeps a person from turning to sin.",
+       "refs": [
+        {
+         "quran": "29:45"
+        },
+        {
+         "quran": "11:114"
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir on 29:45"
+      },
+      {
+       "text": "On the charge of excess, the practical facts matter. A prayer takes a few minutes, the whole day's worth is well under an hour, and the religion adds concessions. A traveller may shorten the prayer, prayers may be shortened under fear, and rain or illness is recognised as a difficulty. The Qur'an states that God intends ease and not hardship. The Night Journey account tells the same story: fifty prayers were first prescribed, and the Prophet, on Musa's advice, returned to ask for a reduction until five remained, with the reward of fifty.",
+       "refs": [
+        {
+         "quran": "4:101-103"
+        },
+        {
+         "quran": "2:185"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 349
+        }
+       ]
+      },
+      {
+       "text": "Finally, an honest limit. The exact number and timing of the prayers is not derived from a chain of reasoning that a sceptic could check; it is accepted as a command. The Qur'an says God is not asked about what He does, while people are asked about what they do. Scholars separate rulings whose reasons are stated from rulings of pure worship, where the believer trusts the Lawgiver, the way a patient follows a prescription without knowing the chemistry. The argument is not that five is mathematically forced. It is that a Creator who knows the human heart set a rhythm that is light, merciful and effective.",
+       "refs": [
+        {
+         "quran": "21:23"
+        }
+       ],
+       "note": "IslamQA 9603"
+      }
+     ]
     },
     {
      "id": "pork",
@@ -2302,7 +4157,54 @@
      "islamqa": {
       "number": 49688,
       "title": "Why Is Pork Haram?"
-     }
+     },
+     "discussion": [
+      {
+       "text": "A sceptic might say that the ban on pork is a leftover from a desert climate and has no place now. The first thing to see is how the Qur'an itself frames the rule. It forbids the flesh of swine in four separate places, and the reason given is not a health study. It is that this is a command from the One who made lawful and unlawful, and in 6:145 the flesh is called rijs, meaning something filthy.",
+       "refs": [
+        {
+         "quran": "2:173"
+        },
+        {
+         "quran": "5:3"
+        },
+        {
+         "quran": "6:145"
+        },
+        {
+         "quran": "16:115"
+        }
+       ]
+      },
+      {
+       "text": "That is why Muslim scholars say the ruling rests on revelation first, not on medicine. Verse 7:157 says the Prophet makes lawful what is good and forbids what is bad, and Ibn Kathir, on 2:173, notes that scholars agree the ban covers the whole animal. This means a person may find the wisdom, but the ruling does not fall if the wisdom is not found. The Prophet also treated swine as a category for the law of trade, and in the year of the Conquest of Mecca he declared trade in pigs unlawful, together with wine, dead animals and idols.",
+       "refs": [
+        {
+         "quran": "7:157"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 2236
+        }
+       ],
+       "note": "Ibn Kathir, Tafsir on 2:173"
+      },
+      {
+       "text": "Is there evidence that pork is bad? IslamQA notes that pigs can carry parasites such as tapeworm and trichinella. Modern cooking and farming reduce these risks a great deal, so a fair reader should not claim that pork is dangerous for everyone today. This is why the health argument is offered as a supporting observation only. If it were the basis, the ban would have to lapse whenever a safe supply appeared, and no Muslim scholar says that.",
+       "note": "IslamQA 49688"
+      },
+      {
+       "text": "The deeper reasoning is about what obedience means. A believer who accepts that God is the Creator and is All-Knowing does not demand a laboratory report for each command. The Qur'an says that when God and His Messenger have decided a matter, a believer has no choice in it. This is balanced by mercy: whoever is forced by necessity, not desiring it and not exceeding the need, commits no sin. So the rule is firm, but it does not crush a starving person.",
+       "refs": [
+        {
+         "quran": "33:36"
+        },
+        {
+         "quran": "2:173"
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "slavery",
@@ -2311,7 +4213,7 @@
      "points": [
       {
        "title": "Every source but war closed",
-       "text": "Debt, kidnapping and poverty no longer made anyone a slave; only war captives remained. The Prophet said God is the enemy of whoever sells a free person.",
+       "text": "Debt, kidnapping and poverty no longer made anyone a slave; classical law kept only war captives and children born to slaves. The Prophet reported that God says He will be against whoever sells a free person and eats the price.",
        "refs": [
         {
          "hadith": "bukhari",
@@ -2360,19 +4262,83 @@
       },
       {
        "title": "Rights and dignity",
-       "text": "Slaves are your brothers: feed them what you eat, clothe them as you dress. Bilal, freed, became the first caller to prayer.",
+       "text": "The Prophet said slaves are your brothers: feed them what you eat, clothe them as you dress. Bilal, freed, became the first caller to prayer.",
        "refs": [
         {
          "hadith": "bukhari",
          "number": 30
         }
-       ]
+       ],
+       "note": "Bilal as first caller: Ibn Hisham, al-Sirah"
       }
      ],
      "islamqa": {
       "number": 94840,
       "title": "Slavery in Islam"
-     }
+     },
+     "discussion": [
+      {
+       "text": "The objection is fair and should not be dodged: Islam did not abolish slavery in a single stroke, and the law contains rules about owning people. What a fair reading can show is the direction of the law. Slavery was the normal economic and military system of the seventh century, from Rome and Persia to Arabia. The Qur'an neither commands enslaving anyone nor treats slavery as a goal. It treats it as an existing condition to be narrowed and steadily dissolved.",
+       "refs": [
+        {
+         "quran": "47:4"
+        }
+       ]
+      },
+      {
+       "text": "First, the supply was cut. The Prophet reported that God says He will be against a man who sells a free person and eats the price, which shuts the market in kidnapping. Debt slavery and selling one's own children, which were common in surrounding societies, were not permitted. Classical jurists such as Ibn Qudamah in al-Mughni and al-Nawawi in Rawdat al-Talibin recognised as lawful sources only captives taken in a legitimate war and the children born to slaves. So war captives were not the only source, and the point on this page now says so.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 2227
+        }
+       ],
+       "note": "Ibn Qudamah, al-Mughni; al-Nawawi, Rawdat al-Talibin"
+      },
+      {
+       "text": "Second, the exits were opened and paid for. Freeing a slave is called the steep path in Surat al-Balad, and it is the required expiation for accidental killing, for a broken oath and for zihar, a wrongful oath against one's wife. A slave may contract to buy his freedom and the master is told to help, and zakah money is assigned to freeing captives. For prisoners of war, the Qur'an gives the options of release as a favour or ransom.",
+       "refs": [
+        {
+         "quran": "90:11-13"
+        },
+        {
+         "quran": "4:92"
+        },
+        {
+         "quran": "58:3"
+        },
+        {
+         "quran": "5:89"
+        },
+        {
+         "quran": "24:33"
+        },
+        {
+         "quran": "9:60"
+        },
+        {
+         "quran": "47:4"
+        }
+       ]
+      },
+      {
+       "text": "Third, dignity. The Prophet told his companions that their slaves are their brothers, to be fed and clothed as they themselves are and not burdened beyond their strength. The Qur'an forbids forcing slave women into prostitution. Bilal, freed after being tortured for his faith, became the first caller to prayer, a sign of a former slave holding one of the most honoured public roles.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 30
+        },
+        {
+         "quran": "24:33"
+        }
+       ],
+       "note": "Ibn Hisham, al-Sirah al-Nabawiyyah, on Bilal and the first adhan"
+      },
+      {
+       "text": "Honest limits: the law did not ban ownership outright, and in practice treatment across Muslim history was uneven, sometimes falling well short of these ideals. The reply a Muslim gives is that the sources push consistently toward freedom, that today's treaties and states have ended the practice, and that scholars widely hold that the conditions which made it lawful, a legitimate war and its captives, no longer apply. The argument is not that history was perfect. It is that the revelation aimed at its end.",
+       "note": "IslamQA 94840"
+      }
+     ]
     }
    ]
   }
