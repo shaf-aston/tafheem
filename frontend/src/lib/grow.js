@@ -85,7 +85,7 @@ export const isClean = (marks) => marks.words.length > 0 && marks.words.every((m
  * ear could not check is shown and never counted.
  */
 export const judge = (words, text, sure, level) => {
-  const weighed = sure != null && words.every((_, i) => sure[i] != null)
+  const weighed = words.length > 0 && sure != null && words.every((_, i) => sure[i] != null)
   const marks = markRecitation(words, text, sure ?? [], level)
   return { marks, weighed, clean: weighed && isClean(marks) }
 }
