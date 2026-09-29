@@ -211,6 +211,16 @@ class Settings(BaseSettings):
     # code; declared so a shared .env validates.
     recitation_deepgram_api_key: str = ""
 
+    # Saying a word aloud (services/speech.py). Voices in the order to try,
+    # comma separated. Real reciters are played by the page, not listed here.
+    speech_voices: str = "piper"
+    # Path inside the rhasspy/piper-voices repo; fetched once on first use.
+    speech_piper_model: str = "ar/ar_JO/kareem/medium/ar_JO-kareem-medium.onnx"
+    # Longest text /api/speak accepts. A word or short phrase, not a page.
+    speech_max_chars: int = Field(default=40, gt=0)
+    # How long a voice that failed is skipped before it is tried again.
+    speech_rest_s: float = Field(default=60.0, gt=0)
+
     recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
     # The search boxes are dictation, not recitation, and the Qur'an model knows
     # no other words: "knowledge" came back as ذَرَ ضِرِّ الْمُؤْمِنِينَ and

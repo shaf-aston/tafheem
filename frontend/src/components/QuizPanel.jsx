@@ -23,6 +23,7 @@ import { Skeleton } from './ui/Skeleton'
 import AnswerSquare from './ui/AnswerSquare'
 import ArabicText from './ui/ArabicText'
 import AutoAdvanceToggle from './ui/AutoAdvanceToggle'
+import SpeakButton from './ui/SpeakButton'
 
 // What each remembered control is allowed to be, taken from the same tables the
 // controls themselves are drawn from, so a set or a direction can never be
@@ -344,7 +345,11 @@ export default function QuizPanel({ accent, onProgress }) {
       // away. One press answers here, so 'check' is nothing to do.
       if (action.do === 'auto') setAutoNext(!autoNext)
       if (action.do === 'toggle') choose(question.options[action.index].id)
-      if (action.do === 'next') nextQuestion()
+      if (action.do === 'next') {
+        // Enter on a focused button would also click it, on the next question.
+        e.preventDefault()
+        nextQuestion()
+      }
     }
     window.addEventListener('keydown', onKeyDown, true)
     return () => window.removeEventListener('keydown', onKeyDown, true)
@@ -550,6 +555,8 @@ export default function QuizPanel({ accent, onProgress }) {
               ) : (
                 <div className="text-3xl font-semibold text-[var(--text)]">{shown.prompt}</div>
               )}
+              {/* Only the Arabic prompt: speaking an Arabic answer option would give it away. */}
+              {shown.promptLang === 'ar' && <SpeakButton key={shown.prompt} text={shown.prompt} />}
             </div>
           </div>
 

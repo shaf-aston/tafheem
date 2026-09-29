@@ -86,6 +86,11 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
   `recitation_ears` names, `here` always last. An ear that fails rests for 60 s; one
   whose key is rejected is dropped for the run. `/api/health` names them (`ear`,
   `recite_ear`, `recite_sure`).
+- **Voice**: anything that says a word aloud, the ear's opposite. `lib/speak.js` tries
+  them in `frontend/src/speak.json`'s order: `recorded` (a reciter from quran.com, for
+  Qur'an words mapped by `scripts/build_word_audio.py`), `server` (Piper via
+  `/api/speak`, `services/speech.py`) and `browser` (the device). `ui/SpeakButton` is
+  the one button; it names the voice that spoke.
 - **Recitation / reading**: Qur'an said aloud. A **reading** is one request about one
   phrase, with a reading number (`X-Reading-Id`) that the page and server both log. The
   words only place the reciter on the page; the mark comes from this computer's sureness,
