@@ -192,10 +192,21 @@ def _faults(section: dict, library: dict, ayahs: dict[int, int]) -> list[str]:
 
 
 @lru_cache(maxsize=1)
+def _declared() -> dict:
+    library = json.loads((data_path("timelines_dir") / "library.json").read_text(encoding="utf-8"))
+    library.pop("_about", None)
+    return library
+
+
+def collections() -> dict:
+    """The hadith collections references may name; other tabs cite through these."""
+    return _declared()["collections"]
+
+
+@lru_cache(maxsize=1)
 def _library() -> dict:
     root = data_path("timelines_dir")
-    library = json.loads((root / "library.json").read_text(encoding="utf-8"))
-    library.pop("_about", None)
+    library = dict(_declared())
     ayahs = {n: s["ayahs"] for n, s in quran_meanings.surah_names().items()}
     if not ayahs:
         logger.warning("Timelines: meanings.db is not built, so ayah ranges are not checked")

@@ -1,5 +1,36 @@
 {
-  "_comment": "Dawah tab knobs, read only by components/DawahPanel.jsx. Content lives in backend/data/dawah.",
+  "_comment": "Dawah tab knobs and wording, read only by components/DawahPanel.jsx and components/dawah/. Content lives in backend/data/dawah.",
   "_comment-mode": "reading-mode is how the reasoning opens before the reader picks: 'steps' reveals one point per press, 'all' shows every point. The reader's own pick is remembered.",
-  "reading-mode": "steps"
+  "reading-mode": "steps",
+  "modes": [
+    {
+      "id": "steps",
+      "label": "Step by step"
+    },
+    {
+      "id": "all",
+      "label": "All at once"
+    }
+  ],
+  "copy": {
+    "title": "Dawah",
+    "arabic": "دعوة",
+    "subtitle": "Clear answers to the questions most often asked about Islam, each with its evidence.",
+    "search": "Find a question",
+    "search-hint": "e.g. who created God, hijab, sword",
+    "no-match": "No question matches that. Try fewer words.",
+    "questions": "Questions",
+    "load-failed": "Could not load the dawah answers",
+    "unreachable": "The answers could not be reached.",
+    "short": "In short",
+    "copy": "Copy",
+    "reasoning": "The reasoning",
+    "mode-label": "How to read the reasoning",
+    "evidence": "Evidence",
+    "next-point": "Next point",
+    "point-count": "{shown} of {total}",
+    "read-more": "Read more:",
+    "previous": "Previous",
+    "next-question": "Next question"
+  }
 }

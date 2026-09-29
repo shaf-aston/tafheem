@@ -1,7 +1,7 @@
 """Dawah: common questions put to Islam, with a short reply, a full answer and evidence.
 
 The only reader of data/dawah. References share the timelines' shape and its
-collections (timelines/library.json), so one hadith collection is declared once
+collections (timelines.collections), so one hadith collection is declared once
 and the tab draws references with the same row.
 
 Checked when loaded, not trusted: a missing reply, a repeated id, a point with
@@ -14,8 +14,7 @@ import json
 from functools import lru_cache
 
 from backend.config import data_path
-from backend.services import provenance, quran_meanings
-from backend.services.timelines import refs_faults
+from backend.services import provenance, quran_meanings, timelines
 
 TOPIC_FIELDS = ("id", "title", "arabic", "blurb")
 QUESTION_FIELDS = ("id", "q", "short")
@@ -56,7 +55,7 @@ def faults(data: dict, collections: dict, ayahs: dict[int, int]) -> list[str]:
             for point in points:
                 if not point.get("refs") and not str(point.get("note") or "").strip():
                     said.append(f"{here} point {point.get('title')!r} has no evidence")
-                said += [f"{here}: {why}" for why in refs_faults(point.get("refs") or [], collections, ayahs)]
+                said += [f"{here}: {why}" for why in timelines.refs_faults(point.get("refs") or [], collections, ayahs)]
     return said
 
 
@@ -64,11 +63,10 @@ def faults(data: dict, collections: dict, ayahs: dict[int, int]) -> list[str]:
 def _library() -> dict:
     data = json.loads(data_path("dawah_path").read_text(encoding="utf-8"))
     data.pop("_about", None)
-    shared = json.loads((data_path("timelines_dir") / "library.json").read_text(encoding="utf-8"))
     ayahs = {n: s["ayahs"] for n, s in quran_meanings.surah_names().items()}
-    if broken := faults(data, shared["collections"], ayahs):
+    if broken := faults(data, timelines.collections(), ayahs):
         raise ValueError("Dawah data is broken. " + " | ".join(broken))
-    return {**data, "collections": shared["collections"], "flags": {}}
+    return {**data, "collections": timelines.collections()}
 
 
 def library() -> dict:
