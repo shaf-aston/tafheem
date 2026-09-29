@@ -16,6 +16,11 @@
     "success": "#5eead4",
     "warn": "#fbbf24"
   },
+  "unit": {
+    "_comment": "Colloquial unit cards cycle through these; a unit's number picks one, so the same unit keeps its colour.",
+    "0": "#fb923c", "1": "#5eead4", "2": "#a78bfa", "3": "#fbbf24",
+    "4": "#f472b6", "5": "#38bdf8", "6": "#4ade80", "7": "#fb7185"
+  },
   "tab": {
     "nahw": "#a78bfa",
     "quran": "#5eead4",
