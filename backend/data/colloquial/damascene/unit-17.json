@@ -1,5 +1,5 @@
 {
-  "unit": "unit-03",
+  "unit": "unit-17",
   "title": "Shopping and Getting Around",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
@@ -224,7 +224,7 @@
       "culture": "Bargaining is a normal, expected part of shopping in Damascene markets, especially for clothes, souvenirs, and household goods, though not usually in supermarkets with printed prices. A shopper who never tries to lower the price is unusual, and sellers expect the back-and-forth as part of the exchange.",
       "exercises": [
         {
-          "id": "unit-03.lesson-01.translate_to_arabic.01",
+          "id": "unit-17.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"How much is this?\"",
           "answer": "قديش هاد؟",
@@ -240,7 +240,7 @@
           "tip": "\"قديش\" is the everyday word for \"how much\"."
         },
         {
-          "id": "unit-03.lesson-01.choose.01",
+          "id": "unit-17.lesson-01.choose.01",
           "type": "choose",
           "prompt": "Which word means \"expensive\"?",
           "options": [
@@ -261,7 +261,7 @@
           "tip": "\"غالي\" is expensive, \"رخيص\" is cheap."
         },
         {
-          "id": "unit-03.lesson-01.reply.01",
+          "id": "unit-17.lesson-01.reply.01",
           "type": "reply",
           "prompt": "A seller tells you a price that is too high. Ask them to lower it a little.",
           "answer": "خفف شوي",
@@ -277,7 +277,7 @@
           "tip": "\"خفف شوي\" is the everyday way to ask a seller to lower the price a bit."
         },
         {
-          "id": "unit-03.lesson-01.fill_blank.01",
+          "id": "unit-17.lesson-01.fill_blank.01",
           "type": "fill_blank",
           "prompt": "Complete: \"هاد _____ سعر.\" Meaning: This is the final price.",
           "answer": "آخر",
@@ -292,7 +292,7 @@
           "tip": "\"آخر سعر\" is a fixed phrase sellers use to close bargaining."
         },
         {
-          "id": "unit-03.lesson-01.translate_to_arabic.02",
+          "id": "unit-17.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Is there a discount?\"",
           "answer": "في خصم؟",
@@ -308,7 +308,7 @@
           "tip": "\"في\" here means \"there is\", used constantly in everyday questions."
         },
         {
-          "id": "unit-03.lesson-01.reorder.01",
+          "id": "unit-17.lesson-01.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"هاد / غالي / كتير\"",
           "answer": "هاد غالي كتير",
@@ -324,7 +324,7 @@
           "tip": "\"كتير\" after an adjective makes it stronger: \"غالي كتير\"."
         },
         {
-          "id": "unit-03.lesson-01.choose.02",
+          "id": "unit-17.lesson-01.choose.02",
           "type": "choose",
           "prompt": "Which word means \"cheap\"?",
           "options": [
@@ -345,7 +345,7 @@
           "tip": "\"رخيص\" is cheap, \"غالي\" is expensive."
         },
         {
-          "id": "unit-03.lesson-01.reply.02",
+          "id": "unit-17.lesson-01.reply.02",
           "type": "reply",
           "prompt": "The seller offers you a price you accept. Say \"Okay, deal.\"",
           "answer": "ماشي",
@@ -361,7 +361,7 @@
           "tip": "\"ماشي\" is one of the most common everyday ways to say \"okay\" or \"deal\"."
         },
         {
-          "id": "unit-03.lesson-01.translate_to_arabic.03",
+          "id": "unit-17.lesson-01.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Do you have a smaller one?\" (to a man)",
           "answer": "عندك أصغر؟",
@@ -377,7 +377,7 @@
           "tip": "\"عندك\" plus what you're asking for is the everyday pattern for \"do you have...\"."
         },
         {
-          "id": "unit-03.lesson-01.fill_blank.02",
+          "id": "unit-17.lesson-01.fill_blank.02",
           "type": "fill_blank",
           "prompt": "Complete: \"الأزرق _____.\" Meaning: The blue one is nicer.",
           "answer": "أحلى",
@@ -392,7 +392,7 @@
           "tip": "\"أحلى\" is a very common everyday word for \"nicer\" or \"prettier\"."
         },
         {
-          "id": "unit-03.lesson-01.translate_to_arabic.04",
+          "id": "unit-17.lesson-01.translate_to_arabic.04",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"How much per kilo?\"",
           "answer": "بكم الكيلو؟",
@@ -408,7 +408,7 @@
           "tip": "\"بكم\" is another everyday way to ask a price, alongside \"قديش\"."
         },
         {
-          "id": "unit-03.lesson-01.choose.03",
+          "id": "unit-17.lesson-01.choose.03",
           "type": "choose",
           "prompt": "Which word means \"red\"?",
           "options": [
@@ -632,7 +632,7 @@
       "culture": "Taxis are a very common way to get around Damascus, and drivers often greet a new passenger with \"تحت الأمر\" (at your service). Giving directions one landmark or turn at a time as you go is normal, and saying \"وقف هون\" to end the ride exactly where you want is expected, not rude.",
       "exercises": [
         {
-          "id": "unit-03.lesson-02.translate_to_arabic.01",
+          "id": "unit-17.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I want to go to the Old City.\"",
           "answer": "بدي روح عالشام القديمة",
@@ -648,7 +648,7 @@
           "tip": "\"بدي روح\" is the everyday pattern for \"I want to go\"."
         },
         {
-          "id": "unit-03.lesson-02.choose.01",
+          "id": "unit-17.lesson-02.choose.01",
           "type": "choose",
           "prompt": "Which word means \"taxi\"?",
           "options": [
@@ -669,7 +669,7 @@
           "tip": "\"تكسي\" and \"باص\" are both everyday loanwords, like in many other languages."
         },
         {
-          "id": "unit-03.lesson-02.reply.01",
+          "id": "unit-17.lesson-02.reply.01",
           "type": "reply",
           "prompt": "A taxi driver asks \"وين بدك تروح؟\" (Where do you want to go?). Say: the Old City.",
           "answer": "عالشام القديمة",
@@ -685,7 +685,7 @@
           "tip": "\"عا-\" (from \"على\") is the everyday way to say \"to\" a place."
         },
         {
-          "id": "unit-03.lesson-02.fill_blank.01",
+          "id": "unit-17.lesson-02.fill_blank.01",
           "type": "fill_blank",
           "prompt": "Complete: \"قديش _____ الطريق؟\" Meaning: How long does the way take?",
           "answer": "بياخد",
@@ -700,7 +700,7 @@
           "tip": "\"بياخد\" is the everyday spoken form of \"it takes\"."
         },
         {
-          "id": "unit-03.lesson-02.translate_to_arabic.02",
+          "id": "unit-17.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Stop here, please.\" (to a man)",
           "answer": "وقف هون لو سمحت",
@@ -716,7 +716,7 @@
           "tip": "\"وقف\" is the everyday imperative for telling a driver to stop."
         },
         {
-          "id": "unit-03.lesson-02.reorder.01",
+          "id": "unit-17.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"الأجرة / قديش؟\"",
           "answer": "قديش الأجرة؟",
@@ -732,7 +732,7 @@
           "tip": "\"قديش\" comes first in this everyday question."
         },
         {
-          "id": "unit-03.lesson-02.choose.02",
+          "id": "unit-17.lesson-02.choose.02",
           "type": "choose",
           "prompt": "Which phrase means \"at your service\" (a common taxi driver reply)?",
           "options": [
@@ -753,7 +753,7 @@
           "tip": "\"تحت الأمر\" is a fixed, very common reply from drivers and shopkeepers alike."
         },
         {
-          "id": "unit-03.lesson-02.reply.02",
+          "id": "unit-17.lesson-02.reply.02",
           "type": "reply",
           "prompt": "You ask a taxi driver \"فاضي؟\" and he is not free. What does he say?",
           "answer": "مشغول",
@@ -769,7 +769,7 @@
           "tip": "\"فاضي\" is free/available, \"مشغول\" is busy/occupied."
         },
         {
-          "id": "unit-03.lesson-02.translate_to_arabic.03",
+          "id": "unit-17.lesson-02.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"What time does the bus come tomorrow?\"",
           "answer": "بكرا الباص بيجي الساعة كم؟",
@@ -785,7 +785,7 @@
           "tip": "\"بيجي\" is the everyday spoken form of \"comes/arrives\"."
         },
         {
-          "id": "unit-03.lesson-02.fill_blank.02",
+          "id": "unit-17.lesson-02.fill_blank.02",
           "type": "fill_blank",
           "prompt": "Complete: \"بدي روح عالشام _____.\" Meaning: I want to go to the Old City.",
           "answer": "القديمة",
@@ -800,7 +800,7 @@
           "tip": "\"الشام القديمة\" is how Damascenes usually name the Old City."
         },
         {
-          "id": "unit-03.lesson-02.translate_to_arabic.04",
+          "id": "unit-17.lesson-02.translate_to_arabic.04",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Bus.\"",
           "answer": "باص",
