@@ -4,25 +4,25 @@
  * so it never lives in the tab strip or the URL.
  *
  * Two views inside one dialog: an index of nine cards, and a chart view (one
- * science's tree, from PbsChart, with a side detail panel from PbsDetail on
- * click). Content is lib/pbsData, unchanged; this file only holds the small
- * amount of state that decides which view and which node are showing.
+ * science's tree, from PbsChart). A box with deeper topics zooms: the chart
+ * redraws with that box as root, and a breadcrumb walks back up. Content is
+ * lib/pbsTree over lib/pbsData; this file only holds which view and which
+ * zoom path are showing.
  *
  * A native <dialog> is used for the same reason as SettingsPanel: focus
  * trapping, Esc and the backdrop come free from the browser.
  *
  * What this does NOT do yet, on purpose: nothing here tracks how far a reader
- * has gone through a science. That's the next layer, once this overview
- * itself is in place — a `progress` prop could later decorate a kid's box in
- * PbsChart / a line in PbsDetail without restructuring either.
+ * has gone through a science; a `progress` prop could later decorate a box in
+ * PbsChart without restructuring it.
  */
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import ArabicText from './ArabicText'
 import PbsChart from './PbsChart'
-import PbsDetail from './PbsDetail'
 import './pbs.css'
 import { CHARTS } from '../../lib/pbsData'
+import { chartTree, nodeAt, viewConfig } from '../../lib/pbsTree'
 
 const ZOOM_MIN = 0.7
 const ZOOM_MAX = 2.2
@@ -31,9 +31,8 @@ const ZOOM_STEP = 0.2
 export default function MapPanel({ open, onClose }) {
   const dialog = useRef(null)
   const [currentId, setCurrentId] = useState(null)
-  const [pinnedBranch, setPinnedBranch] = useState(null)
+  const [path, setPath] = useState([]) // child indices from the chart root to the zoomed box
   const [hoverBranch, setHoverBranch] = useState(null)
-  const [detail, setDetail] = useState(null) // { branchIndex, kidIndex? }
   const [zoom, setZoom] = useState(1)
 
   useEffect(() => {
@@ -48,22 +47,29 @@ export default function MapPanel({ open, onClose }) {
   // header's own close button all end here via the native `close` event).
   const handleDialogClose = () => {
     setCurrentId(null)
-    setPinnedBranch(null)
+    setPath([])
     setHoverBranch(null)
-    setDetail(null)
     setZoom(1)
     onClose()
   }
 
   const current = CHARTS.find((c) => c.id === currentId) ?? null
+  const tree = useMemo(() => (current ? chartTree(current) : null), [current])
+  const shown = tree && (nodeAt(tree, path) ?? tree)
+  const config = useMemo(
+    () => shown && viewConfig(shown, path.length ? [] : current.config.footnote),
+    [shown, path.length, current],
+  )
+  // Every level's name, root first, for the breadcrumb.
+  const trail = tree ? path.map((_, n) => nodeAt(tree, path.slice(0, n + 1))) : []
 
-  const goIndex = () => { setCurrentId(null); setPinnedBranch(null); setHoverBranch(null); setDetail(null) }
-  const goChart = (id) => { setCurrentId(id); setPinnedBranch(null); setHoverBranch(null); setDetail(null) }
+  const goIndex = () => { setCurrentId(null); setPath([]); setHoverBranch(null) }
+  const goChart = (id) => { setCurrentId(id); setPath([]); setHoverBranch(null) }
+  const goUp = () => { if (path.length) { setPath(path.slice(0, -1)); setHoverBranch(null) } else goIndex() }
 
   const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
-      if (detail) { e.preventDefault(); setDetail(null); return }
-      if (current) { e.preventDefault(); goIndex(); return }
+      if (current) { e.preventDefault(); goUp(); return }
       return // let the dialog's own Escape close it
     }
     if (!current) return
@@ -88,15 +94,37 @@ export default function MapPanel({ open, onClose }) {
       >
         <header className="flex items-center gap-3 px-4 py-2.5 border-b border-[var(--border)] shrink-0">
           {current ? (
-            <button type="button" onClick={goIndex} title="Back to overview" aria-label="Back to overview" className="icon-button">
+            <button type="button" onClick={goUp} title={path.length ? 'Up one level' : 'Back to overview'} aria-label={path.length ? 'Up one level' : 'Back to overview'} className="icon-button">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M15 18l-6-6 6-6" />
               </svg>
             </button>
           ) : null}
-          <h2 id="map-title" className="text-sm font-bold text-[var(--text)] flex-1 min-w-0 truncate">
-            {current ? `${current.en} · ${current.frame}` : 'Map · Nine sciences, one frame per chart'}
-          </h2>
+          <div className="flex-1 min-w-0">
+            <h2 id="map-title" className="text-sm font-bold text-[var(--text)] truncate">
+              {current ? `${current.en} · ${current.frame}` : 'Map · Nine sciences, one frame per chart'}
+            </h2>
+            {path.length > 0 && (
+              <nav aria-label="Zoom trail" className="flex flex-wrap items-center gap-x-1 type-tiny text-[var(--text-faint)]">
+                {[tree, ...trail].map((n, depth) => (
+                  <span key={depth} className="flex items-center gap-1 min-w-0">
+                    {depth > 0 && <span aria-hidden="true">›</span>}
+                    {depth === path.length ? (
+                      <span aria-current="page" className="text-[var(--text)] truncate">{n.en || n.ar}</span>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setPath(path.slice(0, depth))}
+                        className="underline decoration-dotted truncate hover:text-[var(--text)]"
+                      >
+                        {n.en || n.ar}
+                      </button>
+                    )}
+                  </span>
+                ))}
+              </nav>
+            )}
+          </div>
           {current && (
             <div className="flex items-center gap-1.5 type-tiny text-[var(--text-faint)]">
               <button type="button" onClick={() => setZoom((z) => Math.max(ZOOM_MIN, z - ZOOM_STEP))} className="icon-button" aria-label="Zoom out">−</button>
@@ -115,26 +143,17 @@ export default function MapPanel({ open, onClose }) {
           {current ? (
             <div className="p-4" style={{ width: `${zoom * 100}%`, transition: 'width .2s ease' }}>
               <PbsChart
-                config={current.config}
-                activeBranch={hoverBranch ?? pinnedBranch}
+                key={path.join('.')}
+                config={config}
+                activeBranch={hoverBranch}
                 onHoverBranch={setHoverBranch}
-                onSelectBranch={(i) => { setPinnedBranch(i); setDetail({ branchIndex: i, kidIndex: null }) }}
-                onSelectKid={(bi, ki) => { setPinnedBranch(bi); setDetail({ branchIndex: bi, kidIndex: ki }) }}
+                onZoom={(rel) => { setPath([...path, ...rel]); setHoverBranch(null) }}
               />
             </div>
           ) : (
             <MapIndex onOpen={goChart} />
           )}
 
-          {current && detail && (
-            <PbsDetail
-              chart={current}
-              branchIndex={detail.branchIndex}
-              kidIndex={detail.kidIndex}
-              onSelectKid={(bi, ki) => { setPinnedBranch(bi); setDetail({ branchIndex: bi, kidIndex: ki }) }}
-              onClose={() => setDetail(null)}
-            />
-          )}
         </div>
       </div>
     </dialog>
