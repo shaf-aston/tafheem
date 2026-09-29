@@ -1,14 +1,33 @@
 # How a colloquial unit is written down
 
-One file per unit, `<dialect>/unit-NN.json`. The dialect folder is named in
-`dialects.json` beside this file. A unit is self-contained: everything a learner
-sees in it is in that one file, so a unit can be added, replaced or dropped on
-its own.
+Every dialect follows one course outline, `spine.json` beside this file. The
+spine holds what is the same in every dialect: each unit's and lesson's title,
+their order, and each phrase **slot** with its English, `search_term` and picture.
+A dialect holds only what is said: one file per unit, `<dialect>/unit-NN.json`,
+in the folder named in `dialects.json`.
+
+To change the course, edit the spine. A lesson or slot added there is reported
+missing by every dialect until each one writes it, so a template change cannot
+reach one dialect and skip another. A dialect may leave whole units unwritten;
+the tab lists them as coming. It may not leave half a lesson.
+
+## The spine
+
+```json
+{ "units": [ { "unit": "unit-01", "title": "First Conversations",
+  "lessons": [ { "lesson": "lesson-01", "title": "Greetings and Names",
+    "phrases": [ { "slot": "hello", "english": "Hello.", "search_term": "person waving hello" } ] } ] } ] }
+```
+
+`slot` is a short name written out, never a position, unique within its lesson.
+It ties the same phrase together across dialects, so never rename one.
+`image` is added by the picture script, and one picture serves every dialect.
+
+## A dialect's unit
 
 ```json
 {
   "unit": "unit-01",
-  "title": "First Conversations",
   "dialect": "Damascene Arabic",
   "transliteration_key": { "3": "ع", "7": "ح" },
   "lessons": [ ... ],
@@ -24,15 +43,14 @@ key in every unit of a dialect.
 
 | field | what it is |
 |---|---|
-| `lesson` | `lesson-01`, counting from one within the unit |
-| `title` | what the lesson is about, in English |
-| `phrases` | the things to learn: `arabic`, `transliteration`, `english`, and optionally `reply` (the natural answer) and `search_term` |
+| `lesson` | `lesson-01`, one of the spine's lessons for this unit |
+| `phrases` | one per spine slot: `slot`, `arabic`, `transliteration`, and optionally `reply` (the natural answer, with its own `english`) |
 | `dialogue` | one real conversation, in order: `speaker`, `arabic`, `transliteration`, `english` |
 | `de_book` | question and answer drill: `pair` and `response`, each a phrase |
 | `culture` | one or two sentences on when and with whom this is said |
 | `exercises` | the practice, see below |
 
-`search_term` is a short everyday English noun phrase for finding a picture, for
+`search_term`, in the spine, is a short everyday English noun phrase for finding a picture, for
 example `"a glass of tea"`. The English meaning alone is usually too idiomatic to
 search with, so a picture is only ever fetched from `search_term`. Leave it out
 when the phrase has nothing to show. Nothing is guessed on your behalf: a phrase
@@ -82,6 +100,6 @@ same shape as a lesson's. Not graded.
   dialect word dropped in. A formal sentence belongs in `too_formal`.
 - Never write a placeholder. No `...`, no `etc.`, no "add more here".
 - English is the meaning of what is there, not an explanation added to it.
-- If you are unsure a phrase is really said in this dialect, leave it out. The
+- If you are unsure a phrase is really said in this dialect, name it. The
   tab tells the learner these lessons were written by a model and no speaker has
   checked them, and that is only honest while nothing is invented past it.

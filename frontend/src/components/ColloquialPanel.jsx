@@ -34,18 +34,20 @@ function Failed({ error, onRetry }) {
 }
 
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
+// Without onClick it is a unit this dialect has not written yet: shown, not openable.
 function Card({ hue, index, kicker, title, arabic, note, onClick }) {
   const tint = (pct) => `color-mix(in oklab, ${hue} ${pct}%, transparent)`
   return (
     <button
       type="button"
       onClick={onClick}
+      disabled={!onClick}
       style={{
         '--i': index,
         background: `linear-gradient(90deg, ${tint(26)}, transparent 38%, transparent 62%, ${tint(26)}), var(--surface)`,
         borderColor: tint(40),
       }}
-      className={`rise-in lift press group text-start w-full px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS}`}
+      className={`rise-in ${onClick ? 'lift press' : 'opacity-50 cursor-default'} group text-start w-full px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS}`}
     >
       <span className="flex items-baseline justify-between gap-3">
         <span className="type-micro uppercase tracking-[0.18em]" style={{ color: hue }}>{kicker}</span>
@@ -97,7 +99,7 @@ export default function ColloquialPanel() {
   const client = useQueryClient()
 
   const dialect = picked ? dialects.find((d) => d.key === dialectKey) : null
-  const unit = dialect?.units.find((u) => u.unit === unitKey)
+  const unit = dialect?.units.find((u) => u.written && u.unit === unitKey)
   // Opening a unit shows its topics; the unit's words are what a topic click needs.
   useEffect(() => {
     if (dialect && unit) warm(client, colloquialUnitQuery(dialect.key, unit.unit))
@@ -124,7 +126,7 @@ export default function ColloquialPanel() {
         <Grid>
           {dialects.map((d, i) => (
             <Card key={d.key} index={i} hue={colorFor('tab', 'colloq')} kicker={d.where} title={d.label} arabic={d.arabic}
-              note={`${d.units.length} units`} onClick={() => { setDialectKey(d.key); setPicked(true) }} />
+              note={`${d.units.filter((u) => u.written).length} units`} onClick={() => { setDialectKey(d.key); setPicked(true) }} />
           ))}
         </Grid>
       )}
@@ -134,7 +136,8 @@ export default function ColloquialPanel() {
           {dialect.units.map((u, i) => (
             <Card key={u.unit} index={i} hue={colorFor('unit', unitNumber(u.unit) % HUES)}
               kicker={`Unit ${unitNumber(u.unit)}`} title={u.title}
-              note={u.lessons.map((l) => l.title).join(' · ')} onClick={() => setUnitKey(u.unit)} />
+              note={u.written ? u.lessons.map((l) => l.title).join(' · ') : 'Coming'}
+              onClick={u.written ? () => setUnitKey(u.unit) : undefined} />
           ))}
         </Grid>
       )}

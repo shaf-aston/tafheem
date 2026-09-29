@@ -1,6 +1,5 @@
 {
   "unit": "unit-10",
-  "title": "Weather and Seasons",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,58 +19,51 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "Talking About the Weather",
       "phrases": [
         {
+          "slot": "what-s-the-weather-like-today",
           "arabic": "شو الجو اليوم؟",
           "transliteration": "shu ljaw ilyom?",
-          "english": "What's the weather like today?",
           "reply": {
             "arabic": "الجو حلو، مشمس",
             "transliteration": "iljaw 7ilu, mishmis",
             "english": "The weather's nice, sunny."
-          },
-          "search_term": "sunny blue sky"
+          }
         },
         {
+          "slot": "the-weather-s-very-hot",
           "arabic": "الجو حر كتير",
-          "transliteration": "iljaw 7arr ktiir",
-          "english": "The weather's very hot.",
-          "search_term": "hot sunny street"
+          "transliteration": "iljaw 7arr ktiir"
         },
         {
+          "slot": "it-s-cold-today",
           "arabic": "الجو بارد اليوم",
-          "transliteration": "iljaw baared ilyom",
-          "english": "It's cold today.",
-          "search_term": "person shivering in cold"
+          "transliteration": "iljaw baared ilyom"
         },
         {
+          "slot": "it-s-raining-outside",
           "arabic": "عم تشتي برا",
-          "transliteration": "3am tishti barra",
-          "english": "It's raining outside.",
-          "search_term": "rain falling outside window"
+          "transliteration": "3am tishti barra"
         },
         {
+          "slot": "it-s-cloudy",
           "arabic": "الجو مغيم",
-          "transliteration": "iljaw mghayyim",
-          "english": "It's cloudy.",
-          "search_term": "cloudy overcast sky"
+          "transliteration": "iljaw mghayyim"
         },
         {
+          "slot": "there-s-a-lot-of-wind-today",
           "arabic": "في هوا كتير اليوم",
-          "transliteration": "fi hawa ktiir ilyom",
-          "english": "There's a lot of wind today.",
-          "search_term": "strong wind in trees"
+          "transliteration": "fi hawa ktiir ilyom"
         },
         {
+          "slot": "the-weather-s-humid-today",
           "arabic": "الجو رطب اليوم",
-          "transliteration": "iljaw raTib ilyom",
-          "english": "The weather's humid today."
+          "transliteration": "iljaw raTib ilyom"
         },
         {
+          "slot": "what-do-you-think-is-it-going-to-rain-tomorrow",
           "arabic": "شو رأيك، رح تشتي بكرا؟",
           "transliteration": "shu ra2yak, ra7 tishti bukra?",
-          "english": "What do you think, is it going to rain tomorrow?",
           "reply": {
             "arabic": "ما بعرف، بس الجو مغيم",
             "transliteration": "ma ba3rif, bas iljaw mghayyim",
@@ -79,28 +71,24 @@
           }
         },
         {
+          "slot": "it-s-hot-out-today",
           "arabic": "الدنيا حر اليوم",
-          "transliteration": "iddinye 7arr ilyom",
-          "english": "It's hot out today."
+          "transliteration": "iddinye 7arr ilyom"
         },
         {
+          "slot": "it-s-cold-out-right-now",
           "arabic": "الدنيا برد هلق",
-          "transliteration": "iddinye bard halla2",
-          "english": "It's cold out right now."
+          "transliteration": "iddinye bard halla2"
         },
         {
+          "slot": "you-need-to-take-an-umbrella-with-you",
           "arabic": "لازم تاخد شمسية معك",
-          "transliteration": "lazim taakhod shamsiyye ma3ak",
-          "english": "You need to take an umbrella with you.",
-          "search_term": "black umbrella",
-          "image": "damascene/unit-10/l01-p11-black-umbrella.jpg"
+          "transliteration": "lazim taakhod shamsiyye ma3ak"
         },
         {
+          "slot": "the-sun-s-out-today",
           "arabic": "الشمس طالعة اليوم",
-          "transliteration": "ishshams Taal3a ilyom",
-          "english": "The sun's out today.",
-          "search_term": "bright sun in sky",
-          "image": "damascene/unit-10/l01-p12-bright-sun-in-sky.jpg"
+          "transliteration": "ishshams Taal3a ilyom"
         }
       ],
       "dialogue": [
@@ -405,12 +393,11 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "Summer and Winter",
       "phrases": [
         {
+          "slot": "what-s-your-favorite-season",
           "arabic": "شو موسمك المفضل؟",
           "transliteration": "shu mawsimak ilmfaDDal?",
-          "english": "What's your favorite season?",
           "reply": {
             "arabic": "بحب الصيف",
             "transliteration": "ba7ibb iSSayf",
@@ -418,45 +405,39 @@
           }
         },
         {
+          "slot": "in-winter-it-gets-very-cold-in-damascus",
           "arabic": "بالشتا بصير برد كتير بدمشق",
-          "transliteration": "bishshita biSiir bard ktiir b-Dimashq",
-          "english": "In winter it gets very cold in Damascus.",
-          "search_term": "snowy winter street"
+          "transliteration": "bishshita biSiir bard ktiir b-Dimashq"
         },
         {
+          "slot": "in-summer-the-weather-s-hot-and-dry",
           "arabic": "بالصيف الجو بيكون حر وجاف",
-          "transliteration": "biSSayf iljaw byikuun 7arr w jaaf",
-          "english": "In summer the weather's hot and dry.",
-          "search_term": "hot dry summer field"
+          "transliteration": "biSSayf iljaw byikuun 7arr w jaaf"
         },
         {
+          "slot": "it-s-snowing-on-the-mountain",
           "arabic": "عم تتلج عالجبل",
-          "transliteration": "3am titlaj 3aljabal",
-          "english": "It's snowing on the mountain.",
-          "search_term": "snow on mountain",
-          "image": "damascene/unit-10/l02-p04-snow-on-mountain.jpg"
+          "transliteration": "3am titlaj 3aljabal"
         },
         {
+          "slot": "spring-is-my-favorite-season",
           "arabic": "الربيع أحلى موسم عندي",
-          "transliteration": "irrabii3 a7la mawsim 3indi",
-          "english": "Spring is my favorite season.",
-          "search_term": "spring flowers blooming"
+          "transliteration": "irrabii3 a7la mawsim 3indi"
         },
         {
+          "slot": "in-fall-the-leaves-fall-from-the-trees",
           "arabic": "بالخريف الورق بيوقع من الشجر",
-          "transliteration": "bilkhariif ilwara2 byuu2a3 min ishshajar",
-          "english": "In fall the leaves fall from the trees.",
-          "search_term": "autumn leaves falling"
+          "transliteration": "bilkhariif ilwara2 byuu2a3 min ishshajar"
         },
         {
+          "slot": "i-don-t-like-winter-because-it-gets-very-cold",
           "arabic": "ما بحب الشتا لأنو بيبرد كتير",
-          "transliteration": "ma ba7ibb ishshita la2anno byibrad ktiir",
-          "english": "I don't like winter because it gets very cold."
+          "transliteration": "ma ba7ibb ishshita la2anno byibrad ktiir"
         },
         {
+          "slot": "what-season-is-it-now",
           "arabic": "هلق شو الموسم؟",
           "transliteration": "halla2 shu ilmawsim?",
-          "english": "What season is it now?",
           "reply": {
             "arabic": "هلق صيف",
             "transliteration": "halla2 Sayf",
@@ -464,24 +445,24 @@
           }
         },
         {
+          "slot": "in-winter-you-need-to-wear-something-heavy",
           "arabic": "بالشتا لازم لبس شي تقيل",
-          "transliteration": "bishshita lazim libs shi ta2iil",
-          "english": "In winter you need to wear something heavy."
+          "transliteration": "bishshita lazim libs shi ta2iil"
         },
         {
+          "slot": "the-weather-changes-a-lot-between-the-seasons",
           "arabic": "الجو بيتغير كتير بين الفصول",
-          "transliteration": "iljaw byitghayyar ktiir been ilfuSuul",
-          "english": "The weather changes a lot between the seasons."
+          "transliteration": "iljaw byitghayyar ktiir been ilfuSuul"
         },
         {
+          "slot": "i-like-the-smell-of-rain-in-spring",
           "arabic": "بحب ريحة الشتي بالربيع",
-          "transliteration": "ba7ibb rii7et ishshiti birrabii3",
-          "english": "I like the smell of rain in spring."
+          "transliteration": "ba7ibb rii7et ishshiti birrabii3"
         },
         {
+          "slot": "summer-in-damascus-is-long",
           "arabic": "الصيف بدمشق بيكون طويل",
-          "transliteration": "iSSayf b-Dimashq byikuun Tawiil",
-          "english": "Summer in Damascus is long."
+          "transliteration": "iSSayf b-Dimashq byikuun Tawiil"
         }
       ],
       "dialogue": [
@@ -787,12 +768,11 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "Clothes for the Weather",
       "phrases": [
         {
+          "slot": "what-should-i-wear-today",
           "arabic": "شو لازم البس اليوم؟",
           "transliteration": "shu lazim ilbas ilyom?",
-          "english": "What should I wear today?",
           "reply": {
             "arabic": "البس شي تقيل، الجو برد",
             "transliteration": "ilbas shi ta2iil, iljaw bard",
@@ -800,51 +780,44 @@
           }
         },
         {
+          "slot": "take-an-umbrella-with-you-it-s-going-to-rain",
           "arabic": "خد معك شمسية، رح تشتي",
-          "transliteration": "khod ma3ak shamsiyye, ra7 tishti",
-          "english": "Take an umbrella with you, it's going to rain.",
-          "search_term": "black umbrella",
-          "image": "damascene/unit-10/l03-p02-black-umbrella.jpg"
+          "transliteration": "khod ma3ak shamsiyye, ra7 tishti"
         },
         {
+          "slot": "wear-a-sweater-it-s-cold",
           "arabic": "لبسي كنزة، الجو برد",
-          "transliteration": "libsi kenze, iljaw bard",
-          "english": "Wear a sweater, it's cold.",
-          "search_term": "wool sweater"
+          "transliteration": "libsi kenze, iljaw bard"
         },
         {
+          "slot": "in-summer-i-wear-shorts-and-a-shirt",
           "arabic": "بالصيف بلبس شورت وقميص",
-          "transliteration": "biSSayf balbis short w 2amiiS",
-          "english": "In summer I wear shorts and a shirt.",
-          "search_term": "shorts and t-shirt"
+          "transliteration": "biSSayf balbis short w 2amiiS"
         },
         {
+          "slot": "put-on-your-sunglasses-the-sun-s-strong",
           "arabic": "حط نضارتك الشمس، الشمس قوية",
-          "transliteration": "7oTT naDDaartak ishshams, ishshams 2awiyye",
-          "english": "Put on your sunglasses, the sun's strong.",
-          "search_term": "sunglasses"
+          "transliteration": "7oTT naDDaartak ishshams, ishshams 2awiyye"
         },
         {
+          "slot": "you-need-boots-in-winter-because-it-rains-a-lot",
           "arabic": "لازم بوط بالشتا لأنو بيشتي كتير",
-          "transliteration": "lazim buuT bishshita la2anno bishti ktiir",
-          "english": "You need boots in winter because it rains a lot.",
-          "search_term": "rain boots"
+          "transliteration": "lazim buuT bishshita la2anno bishti ktiir"
         },
         {
+          "slot": "i-didn-t-wear-a-jacket-and-i-got-cold",
           "arabic": "ما لبست جاكيت وبردت",
-          "transliteration": "ma libist jaakeet w bradet",
-          "english": "I didn't wear a jacket and I got cold."
+          "transliteration": "ma libist jaakeet w bradet"
         },
         {
+          "slot": "the-hat-protects-you-from-the-sun",
           "arabic": "القبعة بتحميك من الشمس",
-          "transliteration": "ilqabba3a bti7miik min ishshams",
-          "english": "The hat protects you from the sun.",
-          "search_term": "sun hat"
+          "transliteration": "ilqabba3a bti7miik min ishshams"
         },
         {
+          "slot": "what-s-your-favorite-color-in-sweaters",
           "arabic": "شو لونك المفضل بالكنزات؟",
           "transliteration": "shu lawnak ilmfaDDal bilkenzaat?",
-          "english": "What's your favorite color in sweaters?",
           "reply": {
             "arabic": "بحب الأزرق",
             "transliteration": "ba7ibb ilazra2",
@@ -852,20 +825,19 @@
           }
         },
         {
+          "slot": "in-fall-i-wear-a-light-jacket",
           "arabic": "بالخريف بلبس جاكيت خفيف",
-          "transliteration": "bilkhariif balbis jaakeet khafiif",
-          "english": "In fall I wear a light jacket.",
-          "search_term": "light jacket"
+          "transliteration": "bilkhariif balbis jaakeet khafiif"
         },
         {
+          "slot": "wear-something-comfortable-because-we-re-going-t",
           "arabic": "لبس شي مريح لأنو رح نمشي كتير",
-          "transliteration": "libs shi mrii7 la2anno ra7 nimshi ktiir",
-          "english": "Wear something comfortable because we're going to walk a lot."
+          "transliteration": "libs shi mrii7 la2anno ra7 nimshi ktiir"
         },
         {
+          "slot": "i-forgot-the-raincoat-at-home",
           "arabic": "نسيت المطرية بالبيت",
-          "transliteration": "nsiit ilmaTariyye bilbeet",
-          "english": "I forgot the raincoat at home."
+          "transliteration": "nsiit ilmaTariyye bilbeet"
         }
       ],
       "dialogue": [
@@ -1170,23 +1142,21 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Going Out Depends on the Weather",
       "phrases": [
         {
+          "slot": "if-the-weather-s-nice-we-ll-go-out-to-the-park",
           "arabic": "إذا الجو منيح، منطلع عالحديقة",
-          "transliteration": "iza iljaw mnii7, minTla3 3al7adiiqa",
-          "english": "If the weather's nice, we'll go out to the park.",
-          "search_term": "green park"
+          "transliteration": "iza iljaw mnii7, minTla3 3al7adiiqa"
         },
         {
+          "slot": "the-weather-s-not-good-we-need-to-cancel-the-out",
           "arabic": "الجو مش منيح، بدنا نلغي الطلعة",
-          "transliteration": "iljaw mish mnii7, badna nilghi iTTal3a",
-          "english": "The weather's not good, we need to cancel the outing."
+          "transliteration": "iljaw mish mnii7, badna nilghi iTTal3a"
         },
         {
+          "slot": "what-do-you-think-about-staying-home-today",
           "arabic": "شو رأيك نقعد بالبيت اليوم؟",
           "transliteration": "shu ra2yak nu23od bilbeet ilyom?",
-          "english": "What do you think about staying home today?",
           "reply": {
             "arabic": "ماشي، الجو برد كتير",
             "transliteration": "maashi, iljaw bard ktiir",
@@ -1194,57 +1164,54 @@
           }
         },
         {
+          "slot": "if-it-rains-tomorrow-we-ll-postpone-the-trip",
           "arabic": "إذا شتي بكرا، منأجل الرحلة",
-          "transliteration": "iza shiti bukra, minaajjil irri7le",
-          "english": "If it rains tomorrow, we'll postpone the trip."
+          "transliteration": "iza shiti bukra, minaajjil irri7le"
         },
         {
+          "slot": "the-weather-s-nice-let-s-go-out-for-a-walk",
           "arabic": "الجو حلو، يلا نطلع نتمشى",
-          "transliteration": "iljaw 7ilu, yalla niTla3 nitmashsha",
-          "english": "The weather's nice, let's go out for a walk.",
-          "search_term": "people walking outside"
+          "transliteration": "iljaw 7ilu, yalla niTla3 nitmashsha"
         },
         {
+          "slot": "i-can-t-go-out-it-s-too-hot",
           "arabic": "ما فيني اطلع، الجو حر كتير",
-          "transliteration": "ma fiini iTla3, iljaw 7arr ktiir",
-          "english": "I can't go out, it's too hot."
+          "transliteration": "ma fiini iTla3, iljaw 7arr ktiir"
         },
         {
+          "slot": "we-ll-sit-on-the-balcony-tonight-the-weather-s-p",
           "arabic": "رح نقعد عالشرفة الليلة، الجو لطيف",
-          "transliteration": "ra7 nu23od 3ashshurfe illele, iljaw laTiif",
-          "english": "We'll sit on the balcony tonight, the weather's pleasant.",
-          "search_term": "balcony evening"
+          "transliteration": "ra7 nu23od 3ashshurfe illele, iljaw laTiif"
         },
         {
+          "slot": "since-it-s-going-to-rain-let-s-postpone-the-even",
           "arabic": "لأنو رح تشتي، خلينا نأجل السهرة",
-          "transliteration": "la2anno ra7 tishti, khalliina naajjil issahra",
-          "english": "Since it's going to rain, let's postpone the evening gathering."
+          "transliteration": "la2anno ra7 tishti, khalliina naajjil issahra"
         },
         {
+          "slot": "the-weather-doesn-t-allow-us-to-play-outside",
           "arabic": "الجو ما بيسمح نلعب برا",
-          "transliteration": "iljaw ma byismah nil3ab barra",
-          "english": "The weather doesn't allow us to play outside."
+          "transliteration": "iljaw ma byismah nil3ab barra"
         },
         {
+          "slot": "as-long-as-the-weather-s-good-we-ll-keep-going-o",
           "arabic": "طالما الجو منيح، منضل طالعين",
-          "transliteration": "Talama iljaw mnii7, minDall Tal3iin",
-          "english": "As long as the weather's good, we'll keep going out."
+          "transliteration": "Talama iljaw mnii7, minDall Tal3iin"
         },
         {
+          "slot": "the-trip-to-the-mountain-depends-on-the-weather",
           "arabic": "الرحلة عالجبل رهن الجو",
-          "transliteration": "irri7le 3aljabal rahn iljaw",
-          "english": "The trip to the mountain depends on the weather."
+          "transliteration": "irri7le 3aljabal rahn iljaw"
         },
         {
+          "slot": "did-you-see-the-weather-forecast",
           "arabic": "شفت نشرة الجو؟",
           "transliteration": "shift nashret iljaw?",
-          "english": "Did you see the weather forecast?",
           "reply": {
             "arabic": "إي، قالوا رح تشتي بعد الظهر",
             "transliteration": "ii, 2aaloo ra7 tishti ba3d iDDuhur",
             "english": "Yes, they said it'll rain in the afternoon."
-          },
-          "search_term": "weather forecast on phone"
+          }
         }
       ],
       "dialogue": [

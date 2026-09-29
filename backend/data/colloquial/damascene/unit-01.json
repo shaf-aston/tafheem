@@ -1,6 +1,5 @@
 {
   "unit": "unit-01",
-  "title": "First Conversations",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,19 +19,16 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "Greetings and Names",
       "phrases": [
         {
+          "slot": "hello",
           "arabic": "مرحبا",
-          "transliteration": "mar7aba",
-          "english": "Hello.",
-          "search_term": "person waving hello"
+          "transliteration": "mar7aba"
         },
         {
+          "slot": "hi-welcome",
           "arabic": "أهلا",
           "transliteration": "ahleen",
-          "english": "Hi / Welcome.",
-          "search_term": "welcome sign",
           "reply": {
             "arabic": "أهلا وسهلا",
             "transliteration": "ahleen w sahleen",
@@ -40,75 +36,64 @@
           }
         },
         {
+          "slot": "how-are-you-to-a-man",
           "arabic": "كيفك؟",
-          "transliteration": "keefak?",
-          "english": "How are you? (to a man)",
-          "search_term": "two men talking"
+          "transliteration": "keefak?"
         },
         {
+          "slot": "how-are-you-to-a-woman",
           "arabic": "كيفِك؟",
-          "transliteration": "keefik?",
-          "english": "How are you? (to a woman)",
-          "search_term": "two women talking"
+          "transliteration": "keefik?"
         },
         {
+          "slot": "good-thank-god",
           "arabic": "منيح، الحمد لله",
-          "transliteration": "mnii7, il7amdella",
-          "english": "Good, thank God.",
-          "search_term": "smiling thumbs up"
+          "transliteration": "mnii7, il7amdella"
         },
         {
+          "slot": "great-fine",
           "arabic": "تمام",
-          "transliteration": "tamaam",
-          "english": "Great / Fine.",
-          "search_term": "thumbs up"
+          "transliteration": "tamaam"
         },
         {
+          "slot": "what-s-your-name-to-a-man",
           "arabic": "شو اسمك؟",
-          "transliteration": "shoo ismak?",
-          "english": "What's your name? (to a man)",
-          "search_term": "name tag"
+          "transliteration": "shoo ismak?"
         },
         {
+          "slot": "what-s-your-name-to-a-woman",
           "arabic": "شو اسمِك؟",
-          "transliteration": "shoo ismik?",
-          "english": "What's your name? (to a woman)",
-          "search_term": "name tag"
+          "transliteration": "shoo ismik?"
         },
         {
+          "slot": "my-name-is-rami",
           "arabic": "اسمي رامي",
-          "transliteration": "ismi Raami",
-          "english": "My name is Rami.",
-          "search_term": "name tag"
+          "transliteration": "ismi Raami"
         },
         {
+          "slot": "i-m-lina",
           "arabic": "أنا لينا",
-          "transliteration": "ana Leena",
-          "english": "I'm Lina.",
-          "search_term": "name tag"
+          "transliteration": "ana Leena"
         },
         {
+          "slot": "nice-to-meet-you",
           "arabic": "تشرفنا",
-          "transliteration": "tsharrafna",
-          "english": "Nice to meet you.",
-          "search_term": "handshake"
+          "transliteration": "tsharrafna"
         },
         {
+          "slot": "me-too",
           "arabic": "وأنا كمان",
-          "transliteration": "w ana kaman",
-          "english": "Me too."
+          "transliteration": "w ana kaman"
         },
         {
+          "slot": "where-are-you-from-to-a-man",
           "arabic": "من وين إنت؟",
-          "transliteration": "min ween enta?",
-          "english": "Where are you from? (to a man)",
-          "search_term": "world map pin"
+          "transliteration": "min ween enta?"
         },
         {
+          "slot": "where-are-you-from-to-a-woman",
           "arabic": "من وين إنتِ؟",
-          "transliteration": "min ween enti?",
-          "english": "Where are you from? (to a woman)",
-          "search_term": "world map pin"
+          "transliteration": "min ween enti?"
         }
       ],
       "dialogue": [
@@ -445,87 +430,76 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "Polite Everyday Requests",
       "phrases": [
         {
+          "slot": "please-excuse-me-to-a-man",
           "arabic": "لو سمحت",
-          "transliteration": "law sama7t",
-          "english": "Please / Excuse me. (to a man)",
-          "search_term": "hand raised asking"
+          "transliteration": "law sama7t"
         },
         {
+          "slot": "please-excuse-me-to-a-woman",
           "arabic": "لو سمحتي",
-          "transliteration": "law sama7ti",
-          "english": "Please / Excuse me. (to a woman)",
-          "search_term": "hand raised asking"
+          "transliteration": "law sama7ti"
         },
         {
+          "slot": "it-s-okay-sorry-excuse-me",
           "arabic": "معلش",
-          "transliteration": "ma3lesh",
-          "english": "It's okay / Sorry / Excuse me."
+          "transliteration": "ma3lesh"
         },
         {
+          "slot": "sorry-male-speaker",
           "arabic": "آسف",
-          "transliteration": "aasif",
-          "english": "Sorry. (male speaker)",
-          "search_term": "apologizing person"
+          "transliteration": "aasif"
         },
         {
+          "slot": "sorry-female-speaker",
           "arabic": "آسفة",
-          "transliteration": "aasfe",
-          "english": "Sorry. (female speaker)",
-          "search_term": "apologizing person"
+          "transliteration": "aasfe"
         },
         {
+          "slot": "thank-you",
           "arabic": "شكرا",
-          "transliteration": "shukran",
-          "english": "Thank you.",
-          "search_term": "thank you card"
+          "transliteration": "shukran"
         },
         {
+          "slot": "thank-you-very-much",
           "arabic": "شكرا كتير",
-          "transliteration": "shukran ktiir",
-          "english": "Thank you very much.",
-          "search_term": "thank you card"
+          "transliteration": "shukran ktiir"
         },
         {
+          "slot": "you-re-welcome-excuse-me",
           "arabic": "عفوا",
-          "transliteration": "3afwan",
-          "english": "You're welcome / Excuse me."
+          "transliteration": "3afwan"
         },
         {
+          "slot": "can-you-help-me-to-a-man",
           "arabic": "فيك تساعدني؟",
-          "transliteration": "fiik tse3edni?",
-          "english": "Can you help me? (to a man)",
-          "search_term": "helping hand"
+          "transliteration": "fiik tse3edni?"
         },
         {
+          "slot": "can-you-help-me-to-a-woman",
           "arabic": "فيكي تساعديني؟",
-          "transliteration": "fiiki tse3diini?",
-          "english": "Can you help me? (to a woman)",
-          "search_term": "helping hand"
+          "transliteration": "fiiki tse3diini?"
         },
         {
+          "slot": "i-want-some-water",
           "arabic": "بدي مي",
-          "transliteration": "baddi mayy",
-          "english": "I want some water.",
-          "search_term": "glass of water"
+          "transliteration": "baddi mayy"
         },
         {
+          "slot": "is-it-possible-can-i",
           "arabic": "ممكن؟",
-          "transliteration": "momken?",
-          "english": "Is it possible? / Can I?"
+          "transliteration": "momken?"
         },
         {
+          "slot": "yes-of-course",
           "arabic": "إي، أكيد",
-          "transliteration": "ee, akeed",
-          "english": "Yes, of course."
+          "transliteration": "ee, akeed"
         },
         {
+          "slot": "sorry-i-didn-t-understand",
           "arabic": "آسف، ما فهمت",
-          "transliteration": "aasif, ma fhemt",
-          "english": "Sorry, I didn't understand.",
-          "search_term": "confused person"
+          "transliteration": "aasif, ma fhemt"
         }
       ],
       "dialogue": [
@@ -862,90 +836,76 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "Numbers, Time, and Simple Plans",
       "phrases": [
         {
+          "slot": "one",
           "arabic": "واحد",
-          "transliteration": "waa7ad",
-          "english": "One.",
-          "search_term": "number one",
-          "image": "damascene/unit-01/l03-p01-number-one.jpg"
+          "transliteration": "waa7ad"
         },
         {
+          "slot": "two",
           "arabic": "تنين",
-          "transliteration": "tneen",
-          "english": "Two.",
-          "search_term": "number two"
+          "transliteration": "tneen"
         },
         {
+          "slot": "three",
           "arabic": "تلاتة",
-          "transliteration": "tlaate",
-          "english": "Three.",
-          "search_term": "number three"
+          "transliteration": "tlaate"
         },
         {
+          "slot": "four",
           "arabic": "أربعة",
-          "transliteration": "arba3a",
-          "english": "Four.",
-          "search_term": "number four"
+          "transliteration": "arba3a"
         },
         {
+          "slot": "five",
           "arabic": "خمسة",
-          "transliteration": "khamse",
-          "english": "Five.",
-          "search_term": "number five"
+          "transliteration": "khamse"
         },
         {
+          "slot": "how-much-how-many",
           "arabic": "قدّيش؟",
-          "transliteration": "addeesh?",
-          "english": "How much? / How many?",
-          "search_term": "coins counting money"
+          "transliteration": "addeesh?"
         },
         {
+          "slot": "what-time-is-it",
           "arabic": "الساعة قديش؟",
-          "transliteration": "is-saa3a addeesh?",
-          "english": "What time is it?",
-          "search_term": "wall clock"
+          "transliteration": "is-saa3a addeesh?"
         },
         {
+          "slot": "it-s-one-o-clock",
           "arabic": "الساعة وحدة",
-          "transliteration": "is-saa3a wa7de",
-          "english": "It's one o'clock.",
-          "search_term": "clock one o'clock"
+          "transliteration": "is-saa3a wa7de"
         },
         {
+          "slot": "it-s-two-o-clock",
           "arabic": "الساعة تنين",
-          "transliteration": "is-saa3a tneen",
-          "english": "It's two o'clock.",
-          "search_term": "clock two o'clock"
+          "transliteration": "is-saa3a tneen"
         },
         {
+          "slot": "tomorrow",
           "arabic": "بكرا",
-          "transliteration": "bukra",
-          "english": "Tomorrow.",
-          "search_term": "calendar"
+          "transliteration": "bukra"
         },
         {
+          "slot": "today",
           "arabic": "اليوم",
-          "transliteration": "il-yoom",
-          "english": "Today.",
-          "search_term": "calendar today"
+          "transliteration": "il-yoom"
         },
         {
+          "slot": "now",
           "arabic": "هلق",
-          "transliteration": "halla2",
-          "english": "Now.",
-          "search_term": "wristwatch"
+          "transliteration": "halla2"
         },
         {
+          "slot": "we-ll-see-you-tomorrow-to-a-man",
           "arabic": "منشوفك بكرا",
-          "transliteration": "mnshoofak bukra",
-          "english": "We'll see you tomorrow. (to a man)"
+          "transliteration": "mnshoofak bukra"
         },
         {
+          "slot": "i-ll-see-you-tomorrow-to-a-man",
           "arabic": "بشوفك بكرا",
-          "transliteration": "bshoofak bukra",
-          "english": "I'll see you tomorrow. (to a man)"
+          "transliteration": "bshoofak bukra"
         }
       ],
       "dialogue": [
@@ -1282,87 +1242,76 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Around Damascus",
       "phrases": [
         {
+          "slot": "where-is-the-market",
           "arabic": "وين السوق؟",
-          "transliteration": "ween is-soo2?",
-          "english": "Where is the market?",
-          "search_term": "old market souk"
+          "transliteration": "ween is-soo2?"
         },
         {
+          "slot": "where-is-the-nearest-shop",
           "arabic": "وين أقرب محل؟",
-          "transliteration": "ween a2rab ma7all?",
-          "english": "Where is the nearest shop?",
-          "search_term": "small shop"
+          "transliteration": "ween a2rab ma7all?"
         },
         {
+          "slot": "from-here",
           "arabic": "من هون",
-          "transliteration": "min hoon",
-          "english": "From here."
+          "transliteration": "min hoon"
         },
         {
+          "slot": "on-the-right",
           "arabic": "عاليمين",
-          "transliteration": "3al-yamiin",
-          "english": "On the right.",
-          "search_term": "right arrow sign"
+          "transliteration": "3al-yamiin"
         },
         {
+          "slot": "on-the-left",
           "arabic": "عاليسار",
-          "transliteration": "3al-yasaar",
-          "english": "On the left.",
-          "search_term": "left arrow sign"
+          "transliteration": "3al-yasaar"
         },
         {
+          "slot": "straight-ahead",
           "arabic": "عالطول",
-          "transliteration": "3aT-tool",
-          "english": "Straight ahead.",
-          "search_term": "straight road ahead"
+          "transliteration": "3aT-tool"
         },
         {
+          "slot": "near",
           "arabic": "قريب",
-          "transliteration": "2ariib",
-          "english": "Near."
+          "transliteration": "2ariib"
         },
         {
+          "slot": "far",
           "arabic": "بعيد",
-          "transliteration": "b3eed",
-          "english": "Far.",
-          "search_term": "long road distance"
+          "transliteration": "b3eed"
         },
         {
+          "slot": "here",
           "arabic": "هون",
-          "transliteration": "hoon",
-          "english": "Here."
+          "transliteration": "hoon"
         },
         {
+          "slot": "there",
           "arabic": "هنيك",
-          "transliteration": "hniik",
-          "english": "There."
+          "transliteration": "hniik"
         },
         {
+          "slot": "straight-on-directly",
           "arabic": "دغري",
-          "transliteration": "deghri",
-          "english": "Straight on / directly.",
-          "search_term": "straight road ahead"
+          "transliteration": "deghri"
         },
         {
+          "slot": "turn-right",
           "arabic": "لفّ عاليمين",
-          "transliteration": "leff 3al-yamiin",
-          "english": "Turn right.",
-          "search_term": "turn right sign"
+          "transliteration": "leff 3al-yamiin"
         },
         {
+          "slot": "turn-left-to-a-woman",
           "arabic": "لفّي عاليسار",
-          "transliteration": "leffi 3al-yasaar",
-          "english": "Turn left. (to a woman)",
-          "search_term": "turn left sign"
+          "transliteration": "leffi 3al-yasaar"
         },
         {
+          "slot": "thanks-may-you-have-strength",
           "arabic": "يعطيك العافية",
-          "transliteration": "ya3Tiik il-3aafye",
-          "english": "Thanks / May you have strength.",
-          "search_term": "thumbs up"
+          "transliteration": "ya3Tiik il-3aafye"
         }
       ],
       "dialogue": [

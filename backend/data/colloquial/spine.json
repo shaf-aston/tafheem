@@ -1,0 +1,4043 @@
+{
+  "_about": "The course outline every dialect follows. Written once; see FORMAT.md.",
+  "units": [
+    {
+      "unit": "unit-01",
+      "title": "First Conversations",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Greetings and Names",
+          "phrases": [
+            {
+              "slot": "hello",
+              "english": "Hello.",
+              "search_term": "person waving hello"
+            },
+            {
+              "slot": "hi-welcome",
+              "english": "Hi / Welcome.",
+              "search_term": "welcome sign"
+            },
+            {
+              "slot": "how-are-you-to-a-man",
+              "english": "How are you? (to a man)",
+              "search_term": "two men talking"
+            },
+            {
+              "slot": "how-are-you-to-a-woman",
+              "english": "How are you? (to a woman)",
+              "search_term": "two women talking"
+            },
+            {
+              "slot": "good-thank-god",
+              "english": "Good, thank God.",
+              "search_term": "smiling thumbs up"
+            },
+            {
+              "slot": "great-fine",
+              "english": "Great / Fine.",
+              "search_term": "thumbs up"
+            },
+            {
+              "slot": "what-s-your-name-to-a-man",
+              "english": "What's your name? (to a man)",
+              "search_term": "name tag"
+            },
+            {
+              "slot": "what-s-your-name-to-a-woman",
+              "english": "What's your name? (to a woman)",
+              "search_term": "name tag"
+            },
+            {
+              "slot": "my-name-is-rami",
+              "english": "My name is Rami.",
+              "search_term": "name tag"
+            },
+            {
+              "slot": "i-m-lina",
+              "english": "I'm Lina.",
+              "search_term": "name tag"
+            },
+            {
+              "slot": "nice-to-meet-you",
+              "english": "Nice to meet you.",
+              "search_term": "handshake"
+            },
+            {
+              "slot": "me-too",
+              "english": "Me too."
+            },
+            {
+              "slot": "where-are-you-from-to-a-man",
+              "english": "Where are you from? (to a man)",
+              "search_term": "world map pin"
+            },
+            {
+              "slot": "where-are-you-from-to-a-woman",
+              "english": "Where are you from? (to a woman)",
+              "search_term": "world map pin"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Polite Everyday Requests",
+          "phrases": [
+            {
+              "slot": "please-excuse-me-to-a-man",
+              "english": "Please / Excuse me. (to a man)",
+              "search_term": "hand raised asking"
+            },
+            {
+              "slot": "please-excuse-me-to-a-woman",
+              "english": "Please / Excuse me. (to a woman)",
+              "search_term": "hand raised asking"
+            },
+            {
+              "slot": "it-s-okay-sorry-excuse-me",
+              "english": "It's okay / Sorry / Excuse me."
+            },
+            {
+              "slot": "sorry-male-speaker",
+              "english": "Sorry. (male speaker)",
+              "search_term": "apologizing person"
+            },
+            {
+              "slot": "sorry-female-speaker",
+              "english": "Sorry. (female speaker)",
+              "search_term": "apologizing person"
+            },
+            {
+              "slot": "thank-you",
+              "english": "Thank you.",
+              "search_term": "thank you card"
+            },
+            {
+              "slot": "thank-you-very-much",
+              "english": "Thank you very much.",
+              "search_term": "thank you card"
+            },
+            {
+              "slot": "you-re-welcome-excuse-me",
+              "english": "You're welcome / Excuse me."
+            },
+            {
+              "slot": "can-you-help-me-to-a-man",
+              "english": "Can you help me? (to a man)",
+              "search_term": "helping hand"
+            },
+            {
+              "slot": "can-you-help-me-to-a-woman",
+              "english": "Can you help me? (to a woman)",
+              "search_term": "helping hand"
+            },
+            {
+              "slot": "i-want-some-water",
+              "english": "I want some water.",
+              "search_term": "glass of water"
+            },
+            {
+              "slot": "is-it-possible-can-i",
+              "english": "Is it possible? / Can I?"
+            },
+            {
+              "slot": "yes-of-course",
+              "english": "Yes, of course."
+            },
+            {
+              "slot": "sorry-i-didn-t-understand",
+              "english": "Sorry, I didn't understand.",
+              "search_term": "confused person"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Numbers, Time, and Simple Plans",
+          "phrases": [
+            {
+              "slot": "one",
+              "english": "One.",
+              "search_term": "number one",
+              "image": "unit-01/l03-p01-number-one.jpg"
+            },
+            {
+              "slot": "two",
+              "english": "Two.",
+              "search_term": "number two"
+            },
+            {
+              "slot": "three",
+              "english": "Three.",
+              "search_term": "number three"
+            },
+            {
+              "slot": "four",
+              "english": "Four.",
+              "search_term": "number four"
+            },
+            {
+              "slot": "five",
+              "english": "Five.",
+              "search_term": "number five"
+            },
+            {
+              "slot": "how-much-how-many",
+              "english": "How much? / How many?",
+              "search_term": "coins counting money"
+            },
+            {
+              "slot": "what-time-is-it",
+              "english": "What time is it?",
+              "search_term": "wall clock"
+            },
+            {
+              "slot": "it-s-one-o-clock",
+              "english": "It's one o'clock.",
+              "search_term": "clock one o'clock"
+            },
+            {
+              "slot": "it-s-two-o-clock",
+              "english": "It's two o'clock.",
+              "search_term": "clock two o'clock"
+            },
+            {
+              "slot": "tomorrow",
+              "english": "Tomorrow.",
+              "search_term": "calendar"
+            },
+            {
+              "slot": "today",
+              "english": "Today.",
+              "search_term": "calendar today"
+            },
+            {
+              "slot": "now",
+              "english": "Now.",
+              "search_term": "wristwatch"
+            },
+            {
+              "slot": "we-ll-see-you-tomorrow-to-a-man",
+              "english": "We'll see you tomorrow. (to a man)"
+            },
+            {
+              "slot": "i-ll-see-you-tomorrow-to-a-man",
+              "english": "I'll see you tomorrow. (to a man)"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Around Damascus",
+          "phrases": [
+            {
+              "slot": "where-is-the-market",
+              "english": "Where is the market?",
+              "search_term": "old market souk"
+            },
+            {
+              "slot": "where-is-the-nearest-shop",
+              "english": "Where is the nearest shop?",
+              "search_term": "small shop"
+            },
+            {
+              "slot": "from-here",
+              "english": "From here."
+            },
+            {
+              "slot": "on-the-right",
+              "english": "On the right.",
+              "search_term": "right arrow sign"
+            },
+            {
+              "slot": "on-the-left",
+              "english": "On the left.",
+              "search_term": "left arrow sign"
+            },
+            {
+              "slot": "straight-ahead",
+              "english": "Straight ahead.",
+              "search_term": "straight road ahead"
+            },
+            {
+              "slot": "near",
+              "english": "Near."
+            },
+            {
+              "slot": "far",
+              "english": "Far.",
+              "search_term": "long road distance"
+            },
+            {
+              "slot": "here",
+              "english": "Here."
+            },
+            {
+              "slot": "there",
+              "english": "There."
+            },
+            {
+              "slot": "straight-on-directly",
+              "english": "Straight on / directly.",
+              "search_term": "straight road ahead"
+            },
+            {
+              "slot": "turn-right",
+              "english": "Turn right.",
+              "search_term": "turn right sign"
+            },
+            {
+              "slot": "turn-left-to-a-woman",
+              "english": "Turn left. (to a woman)",
+              "search_term": "turn left sign"
+            },
+            {
+              "slot": "thanks-may-you-have-strength",
+              "english": "Thanks / May you have strength.",
+              "search_term": "thumbs up"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-02",
+      "title": "Family and a Meal",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Family",
+          "phrases": [
+            {
+              "slot": "family",
+              "english": "Family.",
+              "search_term": "family photo together"
+            },
+            {
+              "slot": "my-mother",
+              "english": "My mother."
+            },
+            {
+              "slot": "my-father",
+              "english": "My father."
+            },
+            {
+              "slot": "my-brother",
+              "english": "My brother."
+            },
+            {
+              "slot": "my-sister",
+              "english": "My sister."
+            },
+            {
+              "slot": "my-son",
+              "english": "My son."
+            },
+            {
+              "slot": "my-daughter",
+              "english": "My daughter."
+            },
+            {
+              "slot": "my-husband",
+              "english": "My husband."
+            },
+            {
+              "slot": "my-wife",
+              "english": "My wife."
+            },
+            {
+              "slot": "how-many-people-are-in-your-family-to-a-man",
+              "english": "How many people are in your family? (to a man)",
+              "search_term": "family photo together"
+            },
+            {
+              "slot": "i-have-a-brother-and-two-sisters",
+              "english": "I have a brother and two sisters."
+            },
+            {
+              "slot": "are-you-married-to-a-man",
+              "english": "Are you married? (to a man)"
+            },
+            {
+              "slot": "are-you-married-to-a-woman",
+              "english": "Are you married? (to a woman)"
+            },
+            {
+              "slot": "i-m-still-single-male-speaker",
+              "english": "I'm still single. (male speaker)"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Food and Drinks",
+          "phrases": [
+            {
+              "slot": "hungry-male-speaker",
+              "english": "Hungry. (male speaker)",
+              "search_term": "person eating hungrily"
+            },
+            {
+              "slot": "hungry-female-speaker",
+              "english": "Hungry. (female speaker)"
+            },
+            {
+              "slot": "thirsty-male-speaker",
+              "english": "Thirsty. (male speaker)",
+              "search_term": "glass of water"
+            },
+            {
+              "slot": "i-want-to-eat",
+              "english": "I want to eat."
+            },
+            {
+              "slot": "i-want-to-drink-water",
+              "english": "I want to drink water."
+            },
+            {
+              "slot": "what-do-you-like-to-eat",
+              "english": "What do you like to eat?"
+            },
+            {
+              "slot": "i-like-falafel",
+              "english": "I like falafel.",
+              "search_term": "plate of falafel",
+              "image": "unit-02/l02-p07-plate-of-falafel.jpg"
+            },
+            {
+              "slot": "coffee",
+              "english": "Coffee.",
+              "search_term": "cup of arabic coffee"
+            },
+            {
+              "slot": "tea",
+              "english": "Tea.",
+              "search_term": "cup of tea",
+              "image": "unit-02/l02-p09-cup-of-tea.jpg"
+            },
+            {
+              "slot": "the-bill-please",
+              "english": "The bill, please.",
+              "search_term": "restaurant bill"
+            },
+            {
+              "slot": "how-much-is-the-bill",
+              "english": "How much is the bill?"
+            },
+            {
+              "slot": "to-your-health-said-to-someone-after-they-finish",
+              "english": "To your health. (said to someone after they finish eating or drinking)"
+            },
+            {
+              "slot": "enjoy-your-meal-said-to-someone-while-they-are-e",
+              "english": "Enjoy your meal. (said to someone while they are eating)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-03",
+      "title": "Food and the Market",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "At the Vegetable Stall",
+          "phrases": [
+            {
+              "slot": "hello-do-you-have-fresh-vegetables",
+              "english": "Hello, do you have fresh vegetables?",
+              "search_term": "fresh vegetable stall",
+              "image": "unit-03/l01-p01-fresh-vegetable-stall.jpg"
+            },
+            {
+              "slot": "i-want-a-kilo-of-tomatoes-please",
+              "english": "I want a kilo of tomatoes please",
+              "search_term": "red tomatoes at a market stall",
+              "image": "unit-03/l01-p02-red-tomatoes-at-a-market-stall.jpg"
+            },
+            {
+              "slot": "how-much-is-the-cucumber",
+              "english": "How much is the cucumber?",
+              "search_term": "fresh cucumbers",
+              "image": "unit-03/l01-p03-fresh-cucumbers.jpg"
+            },
+            {
+              "slot": "do-you-have-onions-and-garlic",
+              "english": "Do you have onions and garlic?",
+              "search_term": "onions and garlic",
+              "image": "unit-03/l01-p04-onions-and-garlic.jpg"
+            },
+            {
+              "slot": "i-want-half-a-kilo-of-potatoes",
+              "english": "I want half a kilo of potatoes",
+              "search_term": "potatoes in a basket",
+              "image": "unit-03/l01-p05-potatoes-in-a-basket.jpg"
+            },
+            {
+              "slot": "is-this-cucumber-fresh-or-not",
+              "english": "Is this cucumber fresh or not?"
+            },
+            {
+              "slot": "give-me-a-bag-of-parsley-and-coriander",
+              "english": "Give me a bag of parsley and coriander",
+              "search_term": "parsley and coriander bunches",
+              "image": "unit-03/l01-p07-parsley-and-coriander-bunches.jpg"
+            },
+            {
+              "slot": "this-price-is-a-bit-expensive",
+              "english": "This price is a bit expensive"
+            },
+            {
+              "slot": "do-you-have-sweet-peppers",
+              "english": "Do you have sweet peppers?",
+              "search_term": "red and green bell peppers",
+              "image": "unit-03/l01-p09-red-and-green-bell-peppers.jpg"
+            },
+            {
+              "slot": "how-much-are-the-two-kilos-together",
+              "english": "How much are the two kilos together?"
+            },
+            {
+              "slot": "keep-the-change-thank-you",
+              "english": "Keep the change, thank you"
+            },
+            {
+              "slot": "that-s-enough-like-that-thanks",
+              "english": "That's enough like that, thanks"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "At the Bakery and Butcher",
+          "phrases": [
+            {
+              "slot": "i-want-a-fresh-bundle-of-bread",
+              "english": "I want a fresh bundle of bread",
+              "search_term": "fresh flatbread stack"
+            },
+            {
+              "slot": "how-much-is-a-bundle-of-bread",
+              "english": "How much is a bundle of bread?"
+            },
+            {
+              "slot": "i-want-a-kilo-of-ground-meat",
+              "english": "I want a kilo of ground meat",
+              "search_term": "ground meat on a scale"
+            },
+            {
+              "slot": "give-me-a-kilo-of-lamb-without-bone",
+              "english": "Give me a kilo of lamb without bone",
+              "search_term": "lamb meat cuts"
+            },
+            {
+              "slot": "i-want-half-a-kilo-of-kofta",
+              "english": "I want half a kilo of kofta",
+              "search_term": "raw kofta meat"
+            },
+            {
+              "slot": "is-the-bakery-open-now",
+              "english": "Is the bakery open now?"
+            },
+            {
+              "slot": "do-you-want-pita-bread-or-markook",
+              "english": "Do you want pita bread or markook?",
+              "search_term": "markook thin bread"
+            },
+            {
+              "slot": "cut-the-meat-into-small-pieces-for-me",
+              "english": "Cut the meat into small pieces for me"
+            },
+            {
+              "slot": "do-you-have-ready-made-kibbeh",
+              "english": "Do you have ready-made kibbeh?",
+              "search_term": "kibbeh on a plate"
+            },
+            {
+              "slot": "this-bread-is-very-hot",
+              "english": "This bread is very hot"
+            },
+            {
+              "slot": "how-much-is-a-kilo-of-meat-today",
+              "english": "How much is a kilo of meat today?"
+            },
+            {
+              "slot": "god-bless-you-good-night",
+              "english": "God bless you, good night"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Cooking at Home",
+          "phrases": [
+            {
+              "slot": "what-are-you-going-to-cook-today",
+              "english": "What are you going to cook today?",
+              "search_term": "lentils and rice dish"
+            },
+            {
+              "slot": "we-need-to-put-the-rice-in-the-water",
+              "english": "We need to put the rice in the water",
+              "search_term": "rice soaking in a bowl of water"
+            },
+            {
+              "slot": "did-you-put-enough-salt",
+              "english": "Did you put enough salt?"
+            },
+            {
+              "slot": "keep-the-flame-low",
+              "english": "Keep the flame low",
+              "search_term": "pot simmering on a low flame"
+            },
+            {
+              "slot": "the-food-is-boiling",
+              "english": "The food is boiling"
+            },
+            {
+              "slot": "we-need-to-add-garlic-and-coriander",
+              "english": "We need to add garlic and coriander",
+              "search_term": "garlic and coriander in a pan"
+            },
+            {
+              "slot": "what-s-the-recipe-you-want-to-make",
+              "english": "What's the recipe you want to make?",
+              "search_term": "okra stew"
+            },
+            {
+              "slot": "the-food-is-ready-please-come",
+              "english": "The food is ready, please come"
+            },
+            {
+              "slot": "this-dish-smells-delicious",
+              "english": "This dish smells delicious"
+            },
+            {
+              "slot": "how-long-does-it-need-to-stay-on-the-fire",
+              "english": "How long does it need to stay on the fire?"
+            },
+            {
+              "slot": "hand-me-the-big-spoon",
+              "english": "Hand me the big spoon",
+              "search_term": "large wooden cooking spoon"
+            },
+            {
+              "slot": "we-need-to-wash-the-dishes-afterward",
+              "english": "We need to wash the dishes afterward"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Likes and Dislikes in Food",
+          "phrases": [
+            {
+              "slot": "i-love-fava-beans-a-lot",
+              "english": "I love fava beans a lot",
+              "search_term": "fava beans dish",
+              "image": "unit-03/l04-p01-fava-beans-dish.jpg"
+            },
+            {
+              "slot": "i-don-t-like-raw-tomatoes",
+              "english": "I don't like raw tomatoes",
+              "search_term": "raw sliced tomatoes"
+            },
+            {
+              "slot": "i-prefer-sweet-food-over-salty",
+              "english": "I prefer sweet food over salty"
+            },
+            {
+              "slot": "do-you-like-spicy-food",
+              "english": "Do you like spicy food?",
+              "search_term": "spicy chili peppers"
+            },
+            {
+              "slot": "i-don-t-eat-pork",
+              "english": "I don't eat pork"
+            },
+            {
+              "slot": "i-love-damascene-sweets",
+              "english": "I love Damascene sweets",
+              "search_term": "tray of Damascene sweets"
+            },
+            {
+              "slot": "what-s-your-favorite-dish",
+              "english": "What's your favorite dish?",
+              "search_term": "maqluba dish"
+            },
+            {
+              "slot": "i-don-t-like-sour-taste",
+              "english": "I don't like sour taste",
+              "search_term": "sliced lemons"
+            },
+            {
+              "slot": "do-you-prefer-chicken-or-meat",
+              "english": "Do you prefer chicken or meat?"
+            },
+            {
+              "slot": "i-don-t-like-the-smell-of-fish",
+              "english": "I don't like the smell of fish",
+              "search_term": "fresh fish on ice"
+            },
+            {
+              "slot": "i-love-trying-new-dishes",
+              "english": "I love trying new dishes"
+            },
+            {
+              "slot": "i-don-t-like-this-food",
+              "english": "I don't like this food"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-04",
+      "title": "Café and Restaurant",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Ordering Coffee and Tea",
+          "phrases": [
+            {
+              "slot": "what-would-you-like-to-drink-to-a-man",
+              "english": "What would you like to drink? (to a man)",
+              "search_term": "waiter asking customer at a cafe"
+            },
+            {
+              "slot": "what-would-you-like-to-drink-to-a-woman",
+              "english": "What would you like to drink? (to a woman)"
+            },
+            {
+              "slot": "coffee-please",
+              "english": "Coffee, please.",
+              "search_term": "cup of arabic coffee"
+            },
+            {
+              "slot": "tea-please",
+              "english": "Tea, please.",
+              "search_term": "glass of tea"
+            },
+            {
+              "slot": "medium-sweet-coffee",
+              "english": "Medium-sweet coffee.",
+              "search_term": "small coffee cup"
+            },
+            {
+              "slot": "coffee-with-no-sugar",
+              "english": "Coffee with no sugar.",
+              "search_term": "black coffee cup"
+            },
+            {
+              "slot": "sweet-coffee",
+              "english": "Sweet coffee.",
+              "search_term": "sweet coffee cup"
+            },
+            {
+              "slot": "a-big-cup-of-coffee",
+              "english": "A big cup of coffee.",
+              "search_term": "large coffee cup"
+            },
+            {
+              "slot": "i-want-mint-tea",
+              "english": "I want mint tea.",
+              "search_term": "mint tea glass",
+              "image": "unit-04/l01-p09-mint-tea-glass.jpg"
+            },
+            {
+              "slot": "is-there-sugar",
+              "english": "Is there sugar?",
+              "search_term": "sugar bowl on table"
+            },
+            {
+              "slot": "i-like-my-coffee-bitter",
+              "english": "I like my coffee bitter.",
+              "search_term": "strong black coffee"
+            },
+            {
+              "slot": "no-sugar-at-all",
+              "english": "No sugar at all.",
+              "search_term": "unsweetened drink"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Reading the Menu",
+          "phrases": [
+            {
+              "slot": "where-s-the-menu",
+              "english": "Where's the menu?",
+              "search_term": "restaurant menu on table"
+            },
+            {
+              "slot": "do-you-have-an-english-menu",
+              "english": "Do you have an English menu?",
+              "search_term": "menu with two languages"
+            },
+            {
+              "slot": "what-do-you-have-today",
+              "english": "What do you have today?",
+              "search_term": "waiter presenting daily specials"
+            },
+            {
+              "slot": "what-appetizers-do-you-have",
+              "english": "What appetizers do you have?",
+              "search_term": "mezze plates on table"
+            },
+            {
+              "slot": "is-there-vegetarian-food",
+              "english": "Is there vegetarian food?",
+              "search_term": "vegetable dish plate"
+            },
+            {
+              "slot": "what-s-in-this-dish",
+              "english": "What's in this dish?",
+              "search_term": "close-up of a served dish"
+            },
+            {
+              "slot": "is-it-spicy-or-not-spicy",
+              "english": "Is it spicy or not spicy?",
+              "search_term": "chili pepper dish"
+            },
+            {
+              "slot": "what-do-you-recommend-i-get",
+              "english": "What do you recommend I get?",
+              "search_term": "waiter recommending a dish to customer"
+            },
+            {
+              "slot": "how-much-does-this-cost",
+              "english": "How much does this cost?",
+              "search_term": "menu price tag"
+            },
+            {
+              "slot": "is-there-a-dish-of-the-day",
+              "english": "Is there a dish of the day?",
+              "search_term": "specials board at restaurant"
+            },
+            {
+              "slot": "i-want-something-light",
+              "english": "I want something light.",
+              "search_term": "small light salad plate"
+            },
+            {
+              "slot": "do-you-have-desserts",
+              "english": "Do you have desserts?",
+              "search_term": "dessert display case"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Ordering a Meal",
+          "phrases": [
+            {
+              "slot": "are-you-ready-to-order",
+              "english": "Are you ready to order?",
+              "search_term": "waiter with notepad at table"
+            },
+            {
+              "slot": "i-ll-have-a-plate-of-hummus-and-fattoush",
+              "english": "I'll have a plate of hummus and fattoush.",
+              "search_term": "hummus and fattoush plates"
+            },
+            {
+              "slot": "i-want-this-and-this",
+              "english": "I want this and this.",
+              "search_term": "pointing at menu items"
+            },
+            {
+              "slot": "please-make-it-quick",
+              "english": "Please make it quick.",
+              "search_term": "customer checking watch at restaurant"
+            },
+            {
+              "slot": "without-onion-please",
+              "english": "Without onion, please.",
+              "search_term": "dish without onions"
+            },
+            {
+              "slot": "extra-bread-please",
+              "english": "Extra bread, please.",
+              "search_term": "basket of arabic bread"
+            },
+            {
+              "slot": "this-dish-is-for-me-and-this-is-for-her",
+              "english": "This dish is for me and this is for her.",
+              "search_term": "two plates served at table"
+            },
+            {
+              "slot": "can-i-have-a-glass-of-water",
+              "english": "Can I have a glass of water?",
+              "search_term": "glass of water on table",
+              "image": "unit-04/l03-p08-glass-of-water-on-table.jpg"
+            },
+            {
+              "slot": "thanks-that-s-good-enough",
+              "english": "Thanks, that's good (enough).",
+              "search_term": "satisfied customer at restaurant"
+            },
+            {
+              "slot": "my-order-hasn-t-arrived-yet",
+              "english": "My order hasn't arrived yet.",
+              "search_term": "empty table waiting for food"
+            },
+            {
+              "slot": "can-you-repeat-the-order",
+              "english": "Can you repeat the order?",
+              "search_term": "waiter confirming order"
+            },
+            {
+              "slot": "we-want-the-same-order",
+              "english": "We want the same order.",
+              "search_term": "two identical meals"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Paying the Bill",
+          "phrases": [
+            {
+              "slot": "the-bill-please",
+              "english": "The bill, please.",
+              "search_term": "restaurant bill on table"
+            },
+            {
+              "slot": "how-much-is-the-bill",
+              "english": "How much is the bill?",
+              "search_term": "waiter handing over receipt"
+            },
+            {
+              "slot": "do-you-take-cash-or-card",
+              "english": "Do you take cash or card?",
+              "search_term": "card payment machine at restaurant"
+            },
+            {
+              "slot": "i-m-paying-today",
+              "english": "I'm paying today.",
+              "search_term": "person handing money to waiter"
+            },
+            {
+              "slot": "no-i-m-paying",
+              "english": "No, I'm paying.",
+              "search_term": "two people arguing over bill"
+            },
+            {
+              "slot": "shall-we-split-the-bill",
+              "english": "Shall we split the bill?",
+              "search_term": "splitting a restaurant bill"
+            },
+            {
+              "slot": "is-there-a-tip-included-in-the-bill",
+              "english": "Is there a tip included in the bill?",
+              "search_term": "tip line on receipt"
+            },
+            {
+              "slot": "keep-the-change",
+              "english": "Keep the change.",
+              "search_term": "leaving change on table"
+            },
+            {
+              "slot": "thanks-lit-wellness-of-your-heart-it-was-a-tasty",
+              "english": "Thanks (lit. wellness of your heart), it was a tasty meal.",
+              "search_term": "satisfied customer leaving restaurant"
+            },
+            {
+              "slot": "can-i-have-the-receipt",
+              "english": "Can I have the receipt?",
+              "search_term": "printed receipt in hand"
+            },
+            {
+              "slot": "is-there-a-discount-today",
+              "english": "Is there a discount today?",
+              "search_term": "discount sign at restaurant"
+            },
+            {
+              "slot": "bless-your-hands-the-food-was-delicious",
+              "english": "Bless your hands, the food was delicious.",
+              "search_term": "chef receiving compliment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-05",
+      "title": "Getting Around",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Taking a Taxi",
+          "phrases": [
+            {
+              "slot": "taxi",
+              "english": "Taxi!",
+              "search_term": "hailing a taxi on a street"
+            },
+            {
+              "slot": "please-i-want-to-go-to-old-damascus",
+              "english": "Please, I want to go to Old Damascus."
+            },
+            {
+              "slot": "can-you-take-me-to-bab-touma",
+              "english": "Can you take me to Bab Touma?"
+            },
+            {
+              "slot": "turn-on-the-meter-please",
+              "english": "Turn on the meter please.",
+              "search_term": "taxi meter",
+              "image": "unit-05/l01-p04-taxi-meter.jpg"
+            },
+            {
+              "slot": "how-much-is-the-fare-to-here",
+              "english": "How much is the fare to here?"
+            },
+            {
+              "slot": "stop-right-here",
+              "english": "Stop right here.",
+              "search_term": "taxi stopped at a curb"
+            },
+            {
+              "slot": "keep-to-your-right",
+              "english": "Keep to your right.",
+              "search_term": "car turning right on a road"
+            },
+            {
+              "slot": "straight-ahead-to-the-end-of-the-street",
+              "english": "Straight ahead to the end of the street.",
+              "search_term": "straight city street"
+            },
+            {
+              "slot": "here-is-fine-stop",
+              "english": "Here is fine, stop."
+            },
+            {
+              "slot": "keep-the-change",
+              "english": "Keep the change."
+            },
+            {
+              "slot": "is-there-a-taxi-nearby-here",
+              "english": "Is there a taxi nearby here?",
+              "search_term": "empty taxi waiting on a street"
+            },
+            {
+              "slot": "i-don-t-have-change-sorry",
+              "english": "I don't have change, sorry.",
+              "search_term": "coins and small change in a hand"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Asking for Directions",
+          "phrases": [
+            {
+              "slot": "excuse-me-where-is-the-pharmacy",
+              "english": "Excuse me, where is the pharmacy?",
+              "search_term": "pharmacy storefront sign"
+            },
+            {
+              "slot": "straight-ahead",
+              "english": "Straight ahead.",
+              "search_term": "straight city street"
+            },
+            {
+              "slot": "turn-right-at-the-traffic-light",
+              "english": "Turn right at the traffic light.",
+              "search_term": "traffic light at an intersection"
+            },
+            {
+              "slot": "turn-left-after-the-mosque",
+              "english": "Turn left after the mosque.",
+              "search_term": "mosque on a street corner"
+            },
+            {
+              "slot": "is-it-far-or-near",
+              "english": "Is it far or near?"
+            },
+            {
+              "slot": "how-far-is-it-from-here",
+              "english": "How far is it from here?"
+            },
+            {
+              "slot": "i-m-lost-can-you-help-me",
+              "english": "I'm lost, can you help me?",
+              "search_term": "confused person looking at a map"
+            },
+            {
+              "slot": "okay-first-alley-on-your-right",
+              "english": "Okay, first alley on your right.",
+              "search_term": "narrow alley in an old city"
+            },
+            {
+              "slot": "walk-straight-until-the-end-of-the-market",
+              "english": "Walk straight until the end of the market.",
+              "search_term": "busy market street"
+            },
+            {
+              "slot": "this-street-is-closed",
+              "english": "This street is closed.",
+              "search_term": "closed road with a barrier"
+            },
+            {
+              "slot": "from-where-do-i-get-to-the-umayyad-mosque",
+              "english": "From where do I get to the Umayyad Mosque?"
+            },
+            {
+              "slot": "thanks-a-lot",
+              "english": "Thanks a lot."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Buses and Microbuses",
+          "phrases": [
+            {
+              "slot": "where-s-the-bus-stop",
+              "english": "Where's the bus stop?",
+              "search_term": "bus stop sign"
+            },
+            {
+              "slot": "does-this-bus-go-to-mazzeh",
+              "english": "Does this bus go to Mazzeh?",
+              "search_term": "city bus on a street"
+            },
+            {
+              "slot": "how-much-is-the-fare",
+              "english": "How much is the fare?"
+            },
+            {
+              "slot": "microbus-microbus",
+              "english": "Microbus, microbus!",
+              "search_term": "minibus microbus on a street"
+            },
+            {
+              "slot": "is-there-an-empty-seat",
+              "english": "Is there an empty seat?"
+            },
+            {
+              "slot": "do-you-stop-at-halbouni-roundabout",
+              "english": "Do you stop at Halbouni roundabout?"
+            },
+            {
+              "slot": "please-let-me-off-here",
+              "english": "Please let me off here.",
+              "search_term": "person getting off a bus"
+            },
+            {
+              "slot": "the-bus-is-very-crowded",
+              "english": "The bus is very crowded.",
+              "search_term": "crowded bus"
+            },
+            {
+              "slot": "what-s-the-bus-number-to-the-university",
+              "english": "What's the bus number to the university?"
+            },
+            {
+              "slot": "it-comes-every-little-while",
+              "english": "It comes every little while."
+            },
+            {
+              "slot": "take-the-change-please",
+              "english": "Take the change please.",
+              "search_term": "coins in an open hand"
+            },
+            {
+              "slot": "the-next-bus-is-emptier-better",
+              "english": "The next bus is emptier, better."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Places in Town",
+          "phrases": [
+            {
+              "slot": "the-market",
+              "english": "the market",
+              "search_term": "market stalls",
+              "image": "unit-05/l04-p01-market-stalls.jpg"
+            },
+            {
+              "slot": "the-pharmacy",
+              "english": "the pharmacy",
+              "search_term": "pharmacy storefront",
+              "image": "unit-05/l04-p02-pharmacy-storefront.jpg"
+            },
+            {
+              "slot": "the-mosque",
+              "english": "the mosque",
+              "search_term": "mosque exterior"
+            },
+            {
+              "slot": "the-church",
+              "english": "the church",
+              "search_term": "church exterior"
+            },
+            {
+              "slot": "the-hospital",
+              "english": "the hospital",
+              "search_term": "hospital building"
+            },
+            {
+              "slot": "the-school",
+              "english": "the school",
+              "search_term": "school building",
+              "image": "unit-05/l04-p06-school-building.jpg"
+            },
+            {
+              "slot": "the-restaurant",
+              "english": "the restaurant",
+              "search_term": "restaurant interior",
+              "image": "unit-05/l04-p07-restaurant-interior.jpg"
+            },
+            {
+              "slot": "the-bank",
+              "english": "the bank",
+              "search_term": "bank building"
+            },
+            {
+              "slot": "the-park",
+              "english": "the park",
+              "search_term": "city park"
+            },
+            {
+              "slot": "the-station",
+              "english": "the station",
+              "search_term": "bus station",
+              "image": "unit-05/l04-p10-bus-station.jpg"
+            },
+            {
+              "slot": "where-s-the-nearest-bank-from-here",
+              "english": "Where's the nearest bank from here?"
+            },
+            {
+              "slot": "is-there-a-good-restaurant-in-the-area",
+              "english": "Is there a good restaurant in the area?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-06",
+      "title": "Shopping",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Clothes and Sizes",
+          "phrases": [
+            {
+              "slot": "i-want-a-dress",
+              "english": "I want a dress.",
+              "search_term": "woman shopping for a dress",
+              "image": "unit-06/l01-p01-woman-shopping-for-a-dress.jpg"
+            },
+            {
+              "slot": "i-want-a-shirt",
+              "english": "I want a shirt.",
+              "search_term": "man trying on a shirt"
+            },
+            {
+              "slot": "what-s-your-size-to-a-man",
+              "english": "What's your size? (to a man)"
+            },
+            {
+              "slot": "what-s-your-size-to-a-woman",
+              "english": "What's your size? (to a woman)"
+            },
+            {
+              "slot": "can-i-try-it-on",
+              "english": "Can I try it on?",
+              "search_term": "fitting room curtain"
+            },
+            {
+              "slot": "where-s-the-fitting-room",
+              "english": "Where's the fitting room?"
+            },
+            {
+              "slot": "this-is-too-big-for-me",
+              "english": "This is too big for me."
+            },
+            {
+              "slot": "this-is-too-tight-for-me",
+              "english": "This is too tight for me."
+            },
+            {
+              "slot": "do-you-have-a-smaller-size",
+              "english": "Do you have a smaller size?"
+            },
+            {
+              "slot": "i-tried-it-on-and-it-fits-me",
+              "english": "I tried it on and it fits me."
+            },
+            {
+              "slot": "is-this-fabric-cotton",
+              "english": "Is this fabric cotton?"
+            },
+            {
+              "slot": "i-want-sports-shoes",
+              "english": "I want sports shoes.",
+              "search_term": "pair of sneakers on a shelf",
+              "image": "unit-06/l01-p12-pair-of-sneakers-on-a-shelf.jpg"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Colours and Choosing",
+          "phrases": [
+            {
+              "slot": "what-do-you-think-of-this-dress",
+              "english": "What do you think of this dress?"
+            },
+            {
+              "slot": "i-like-the-blue-color",
+              "english": "I like the blue color.",
+              "search_term": "blue clothing on a rack"
+            },
+            {
+              "slot": "do-you-have-another-color",
+              "english": "Do you have another color?"
+            },
+            {
+              "slot": "this-color-doesn-t-suit-me",
+              "english": "This color doesn't suit me."
+            },
+            {
+              "slot": "which-one-do-you-recommend",
+              "english": "Which one do you recommend?"
+            },
+            {
+              "slot": "this-one-is-nicer-than-that-one",
+              "english": "This one is nicer than that one."
+            },
+            {
+              "slot": "just-give-me-this-one",
+              "english": "Just give me this one."
+            },
+            {
+              "slot": "i-haven-t-decided-yet",
+              "english": "I haven't decided yet."
+            },
+            {
+              "slot": "do-you-have-gray",
+              "english": "Do you have gray?",
+              "search_term": "gray sweater folded"
+            },
+            {
+              "slot": "i-like-light-colors",
+              "english": "I like light colors."
+            },
+            {
+              "slot": "this-is-too-dark-for-me",
+              "english": "This is too dark for me."
+            },
+            {
+              "slot": "which-is-nicer-red-or-blue",
+              "english": "Which is nicer, red or blue?"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Bargaining",
+          "phrases": [
+            {
+              "slot": "how-much-is-this",
+              "english": "How much is this?"
+            },
+            {
+              "slot": "it-s-very-expensive",
+              "english": "It's very expensive."
+            },
+            {
+              "slot": "can-you-lower-the-price",
+              "english": "Can you lower the price?"
+            },
+            {
+              "slot": "lower-it-a-bit-for-me",
+              "english": "Lower it a bit for me."
+            },
+            {
+              "slot": "this-is-the-final-price",
+              "english": "This is the final price."
+            },
+            {
+              "slot": "isn-t-there-cheaper-than-this",
+              "english": "Isn't there cheaper than this?"
+            },
+            {
+              "slot": "take-it-for-two-thousand",
+              "english": "Take it for two thousand."
+            },
+            {
+              "slot": "i-can-t-i-ll-lose-money",
+              "english": "I can't, I'll lose money."
+            },
+            {
+              "slot": "i-want-a-discount-because-i-m-buying-a-lot",
+              "english": "I want a discount because I'm buying a lot.",
+              "search_term": "shopkeeper and customer bargaining at a stall"
+            },
+            {
+              "slot": "ok-we-agreed",
+              "english": "Ok, we agreed."
+            },
+            {
+              "slot": "that-s-fine-take-it",
+              "english": "That's fine, take it."
+            },
+            {
+              "slot": "how-much-did-the-total-come-to",
+              "english": "How much did the total come to?"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Returning and Exchanging",
+          "phrases": [
+            {
+              "slot": "i-want-to-return-this-shirt",
+              "english": "I want to return this shirt."
+            },
+            {
+              "slot": "there-s-a-defect",
+              "english": "There's a defect.",
+              "search_term": "torn shirt seam close up"
+            },
+            {
+              "slot": "i-didn-t-like-the-color",
+              "english": "I didn't like the color."
+            },
+            {
+              "slot": "i-want-to-exchange-it-for-another-one",
+              "english": "I want to exchange it for another one."
+            },
+            {
+              "slot": "i-have-the-receipt",
+              "english": "I have the receipt."
+            },
+            {
+              "slot": "i-don-t-have-the-receipt",
+              "english": "I don't have the receipt."
+            },
+            {
+              "slot": "when-did-you-buy-it",
+              "english": "When did you buy it?"
+            },
+            {
+              "slot": "do-you-give-money-back",
+              "english": "Do you give money back?"
+            },
+            {
+              "slot": "this-is-the-wrong-size",
+              "english": "This is the wrong size."
+            },
+            {
+              "slot": "this-isn-t-what-i-ordered",
+              "english": "This isn't what I ordered."
+            },
+            {
+              "slot": "can-i-exchange-it-for-a-bigger-size",
+              "english": "Can I exchange it for a bigger size?"
+            },
+            {
+              "slot": "thanks-for-your-cooperation",
+              "english": "Thanks for your cooperation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-07",
+      "title": "Daily Routine",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Morning",
+          "phrases": [
+            {
+              "slot": "good-morning",
+              "english": "Good morning.",
+              "search_term": "sunrise over a city"
+            },
+            {
+              "slot": "i-woke-up-early",
+              "english": "I woke up early.",
+              "search_term": "alarm clock in the morning",
+              "image": "unit-07/l01-p02-alarm-clock-in-the-morning.jpg"
+            },
+            {
+              "slot": "what-time-is-it-now",
+              "english": "What time is it now?"
+            },
+            {
+              "slot": "it-s-seven-o-clock",
+              "english": "It's seven o'clock."
+            },
+            {
+              "slot": "i-m-still-sleepy",
+              "english": "I'm still sleepy.",
+              "search_term": "sleepy man yawning"
+            },
+            {
+              "slot": "i-want-coffee-first-thing",
+              "english": "I want coffee first thing.",
+              "search_term": "cup of coffee in the morning",
+              "image": "unit-07/l01-p06-cup-of-coffee-in-the-morning.jpg"
+            },
+            {
+              "slot": "i-washed-my-face",
+              "english": "I washed my face."
+            },
+            {
+              "slot": "i-brushed-my-teeth",
+              "english": "I brushed my teeth.",
+              "search_term": "toothbrush and toothpaste",
+              "image": "unit-07/l01-p08-toothbrush-and-toothpaste.jpg"
+            },
+            {
+              "slot": "i-got-dressed",
+              "english": "I got dressed.",
+              "search_term": "clothes laid out on a bed"
+            },
+            {
+              "slot": "i-left-for-work",
+              "english": "I left for work.",
+              "search_term": "person leaving a house in the morning"
+            },
+            {
+              "slot": "i-missed-the-bus",
+              "english": "I missed the bus.",
+              "search_term": "empty bus stop"
+            },
+            {
+              "slot": "early-morning-is-very-cold",
+              "english": "Early morning is very cold."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "During the Day",
+          "phrases": [
+            {
+              "slot": "i-arrived-at-work",
+              "english": "I arrived at work.",
+              "search_term": "office building entrance"
+            },
+            {
+              "slot": "i-have-a-meeting-at-ten",
+              "english": "I have a meeting at ten.",
+              "search_term": "office meeting room"
+            },
+            {
+              "slot": "i-m-hungry-i-want-to-eat-something",
+              "english": "I'm hungry, I want to eat something.",
+              "search_term": "person eating lunch"
+            },
+            {
+              "slot": "where-do-you-have-lunch",
+              "english": "Where do you have lunch?"
+            },
+            {
+              "slot": "i-m-a-bit-tired-now",
+              "english": "I'm a bit tired now.",
+              "search_term": "tired person at a desk"
+            },
+            {
+              "slot": "i-have-to-finish-this-task-before-noon",
+              "english": "I have to finish this task before noon."
+            },
+            {
+              "slot": "can-i-take-a-break",
+              "english": "Can I take a break?"
+            },
+            {
+              "slot": "i-m-looking-for-my-pen",
+              "english": "I'm looking for my pen.",
+              "search_term": "pen on an office desk",
+              "image": "unit-07/l02-p08-pen-on-an-office-desk.jpg"
+            },
+            {
+              "slot": "what-s-the-news-today",
+              "english": "What's the news today?"
+            },
+            {
+              "slot": "i-have-a-lot-of-work-now",
+              "english": "I have a lot of work now."
+            },
+            {
+              "slot": "i-ll-call-you-in-the-afternoon",
+              "english": "I'll call you in the afternoon.",
+              "search_term": "person on the phone in an office"
+            },
+            {
+              "slot": "i-finished-my-work-early-today",
+              "english": "I finished my work early today."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Evening",
+          "phrases": [
+            {
+              "slot": "good-evening",
+              "english": "Good evening.",
+              "search_term": "sunset over a city skyline"
+            },
+            {
+              "slot": "i-came-back-home",
+              "english": "I came back home.",
+              "search_term": "person arriving home in the evening"
+            },
+            {
+              "slot": "what-will-we-eat-for-dinner",
+              "english": "What will we eat for dinner?"
+            },
+            {
+              "slot": "i-want-to-shower",
+              "english": "I want to shower.",
+              "search_term": "bathroom shower",
+              "image": "unit-07/l03-p04-bathroom-shower.jpg"
+            },
+            {
+              "slot": "i-got-very-tired-today",
+              "english": "I got very tired today."
+            },
+            {
+              "slot": "do-we-want-to-watch-a-series",
+              "english": "Do we want to watch a series?",
+              "search_term": "family watching tv in the evening"
+            },
+            {
+              "slot": "let-s-go-out-for-a-little-walk",
+              "english": "Let's go out for a little walk.",
+              "search_term": "couple walking in the evening street"
+            },
+            {
+              "slot": "the-weather-is-nice-in-the-evening",
+              "english": "The weather is nice in the evening."
+            },
+            {
+              "slot": "i-want-to-call-my-family",
+              "english": "I want to call my family.",
+              "search_term": "person calling family on the phone"
+            },
+            {
+              "slot": "i-ll-sleep-early-tonight",
+              "english": "I'll sleep early tonight.",
+              "search_term": "bed at night"
+            },
+            {
+              "slot": "good-night",
+              "english": "Good night."
+            },
+            {
+              "slot": "i-saw-my-friends-in-the-evening",
+              "english": "I saw my friends in the evening."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Days of the Week",
+          "phrases": [
+            {
+              "slot": "days-of-the-week",
+              "english": "Days of the week.",
+              "search_term": "weekly calendar"
+            },
+            {
+              "slot": "today-is-sunday",
+              "english": "Today is Sunday."
+            },
+            {
+              "slot": "tomorrow-is-monday",
+              "english": "Tomorrow is Monday."
+            },
+            {
+              "slot": "next-week-there-s-a-meeting-on-tuesday",
+              "english": "Next week there's a meeting on Tuesday."
+            },
+            {
+              "slot": "on-wednesday-i-work-until-the-evening",
+              "english": "On Wednesday I work until the evening."
+            },
+            {
+              "slot": "on-thursday-i-see-my-friends",
+              "english": "On Thursday I see my friends.",
+              "search_term": "friends meeting at a cafe"
+            },
+            {
+              "slot": "friday-is-the-day-of-prayer-and-rest",
+              "english": "Friday is the day of prayer and rest."
+            },
+            {
+              "slot": "on-saturday-we-go-to-the-market",
+              "english": "On Saturday we go to the market.",
+              "search_term": "street market"
+            },
+            {
+              "slot": "what-do-you-plan-to-do-on-the-weekend",
+              "english": "What do you plan to do on the weekend?"
+            },
+            {
+              "slot": "i-have-work-every-day-except-friday-and-saturday",
+              "english": "I have work every day except Friday and Saturday."
+            },
+            {
+              "slot": "when-is-the-meeting",
+              "english": "When is the meeting?"
+            },
+            {
+              "slot": "the-weekend-comes-quickly",
+              "english": "The weekend comes quickly."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-08",
+      "title": "Work and Study",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "What Do You Do",
+          "phrases": [
+            {
+              "slot": "what-do-you-do-to-a-man",
+              "english": "What do you do? (to a man)",
+              "search_term": "man working in office"
+            },
+            {
+              "slot": "what-do-you-do-to-a-woman",
+              "english": "What do you do? (to a woman)",
+              "search_term": "woman teacher in classroom"
+            },
+            {
+              "slot": "where-do-you-work",
+              "english": "Where do you work?",
+              "search_term": "office building"
+            },
+            {
+              "slot": "i-m-still-a-student",
+              "english": "I'm still a student.",
+              "search_term": "university student with books"
+            },
+            {
+              "slot": "i-m-retired",
+              "english": "I'm retired.",
+              "search_term": "elderly man relaxing at home"
+            },
+            {
+              "slot": "what-do-you-study",
+              "english": "What do you study?",
+              "search_term": "medical student with stethoscope"
+            },
+            {
+              "slot": "i-work-from-home",
+              "english": "I work from home.",
+              "search_term": "laptop on home desk"
+            },
+            {
+              "slot": "my-job-is-good",
+              "english": "My job is good."
+            },
+            {
+              "slot": "i-m-not-finding-a-job",
+              "english": "I'm not finding a job."
+            },
+            {
+              "slot": "i-m-looking-for-a-new-job",
+              "english": "I'm looking for a new job."
+            },
+            {
+              "slot": "how-many-years-have-you-been-working-here",
+              "english": "How many years have you been working here?"
+            },
+            {
+              "slot": "what-would-you-like-to-work-as",
+              "english": "What would you like to work as?",
+              "search_term": "doctor holding stethoscope"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "At the Office",
+          "phrases": [
+            {
+              "slot": "hi-are-you-coming-to-the-meeting",
+              "english": "Hi, are you coming to the meeting?",
+              "search_term": "office meeting room"
+            },
+            {
+              "slot": "the-manager-wants-to-talk-to-you",
+              "english": "The manager wants to talk to you.",
+              "search_term": "manager at office desk"
+            },
+            {
+              "slot": "i-received-your-email",
+              "english": "I received your email."
+            },
+            {
+              "slot": "i-haven-t-finished-the-report-yet",
+              "english": "I haven't finished the report yet."
+            },
+            {
+              "slot": "i-have-a-meeting-at-ten-o-clock",
+              "english": "I have a meeting at ten o'clock.",
+              "search_term": "clock on office wall"
+            },
+            {
+              "slot": "my-colleague-at-the-office-is-very-nice",
+              "english": "My colleague at the office is very nice.",
+              "search_term": "coworkers talking in office"
+            },
+            {
+              "slot": "we-must-finish-this-task-before-the-afternoon",
+              "english": "We must finish this task before the afternoon."
+            },
+            {
+              "slot": "my-boss-is-very-demanding",
+              "english": "My boss is very demanding."
+            },
+            {
+              "slot": "i-took-two-days-off",
+              "english": "I took two days off.",
+              "search_term": "person relaxing on vacation"
+            },
+            {
+              "slot": "the-salary-comes-at-the-end-of-the-month",
+              "english": "The salary comes at the end of the month."
+            },
+            {
+              "slot": "are-there-overtime-hours-today",
+              "english": "Are there overtime hours today?"
+            },
+            {
+              "slot": "the-printer-keeps-breaking-down",
+              "english": "The printer keeps breaking down.",
+              "search_term": "broken office printer"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "At University",
+          "phrases": [
+            {
+              "slot": "i-have-a-lecture-at-nine",
+              "english": "I have a lecture at nine.",
+              "search_term": "university lecture hall"
+            },
+            {
+              "slot": "the-professor-is-absent-today",
+              "english": "The professor is absent today."
+            },
+            {
+              "slot": "i-have-an-exam-tomorrow",
+              "english": "I have an exam tomorrow.",
+              "search_term": "student studying for exam"
+            },
+            {
+              "slot": "what-s-your-major",
+              "english": "What's your major?"
+            },
+            {
+              "slot": "what-year-are-you-in",
+              "english": "What year are you in?"
+            },
+            {
+              "slot": "i-have-to-study-a-lot-this-semester",
+              "english": "I have to study a lot this semester."
+            },
+            {
+              "slot": "the-exam-result-came-out-good",
+              "english": "The exam result came out good.",
+              "search_term": "happy student with exam results"
+            },
+            {
+              "slot": "i-didn-t-understand-the-lecture-well",
+              "english": "I didn't understand the lecture well."
+            },
+            {
+              "slot": "i-have-to-submit-the-assignment-before-friday",
+              "english": "I have to submit the assignment before Friday."
+            },
+            {
+              "slot": "my-friends-at-university-are-very-nice",
+              "english": "My friends at university are very nice.",
+              "search_term": "group of students laughing together"
+            },
+            {
+              "slot": "the-university-library-is-open-until-night",
+              "english": "The university library is open until night.",
+              "search_term": "university library interior"
+            },
+            {
+              "slot": "i-want-to-register-more-courses-next-semester",
+              "english": "I want to register more courses next semester."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Plans for the Future",
+          "phrases": [
+            {
+              "slot": "what-do-you-plan-to-do-after-you-graduate",
+              "english": "What do you plan to do after you graduate?"
+            },
+            {
+              "slot": "i-want-to-continue-my-studies-for-a-master-s",
+              "english": "I want to continue my studies for a master's.",
+              "search_term": "graduation cap and diploma"
+            },
+            {
+              "slot": "i-intend-to-start-my-own-project",
+              "english": "I intend to start my own project.",
+              "search_term": "small business shop front"
+            },
+            {
+              "slot": "i-m-thinking-of-traveling-to-work-abroad",
+              "english": "I'm thinking of traveling to work abroad.",
+              "search_term": "airport departure gate"
+            },
+            {
+              "slot": "in-five-years-where-will-you-be",
+              "english": "In five years where will you be?"
+            },
+            {
+              "slot": "i-ll-try-to-enter-a-phd-program",
+              "english": "I'll try to enter a PhD program."
+            },
+            {
+              "slot": "my-dream-is-to-open-a-restaurant",
+              "english": "My dream is to open a restaurant.",
+              "search_term": "restaurant kitchen"
+            },
+            {
+              "slot": "i-haven-t-decided-yet-what-i-ll-do",
+              "english": "I haven't decided yet what I'll do."
+            },
+            {
+              "slot": "i-want-to-settle-down-and-get-married-after-i-wo",
+              "english": "I want to settle down and get married after I work a bit."
+            },
+            {
+              "slot": "i-ll-apply-for-a-job-at-a-big-company",
+              "english": "I'll apply for a job at a big company.",
+              "search_term": "job interview handshake"
+            },
+            {
+              "slot": "my-ambition-is-to-become-a-manager-one-day",
+              "english": "My ambition is to become a manager one day."
+            },
+            {
+              "slot": "the-most-important-thing-is-to-be-comfortable-in",
+              "english": "The most important thing is to be comfortable in my job."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-09",
+      "title": "Health",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "How Are You Feeling",
+          "phrases": [
+            {
+              "slot": "how-are-you-today-to-a-man",
+              "english": "How are you today? (to a man)"
+            },
+            {
+              "slot": "how-are-you-today-to-a-woman",
+              "english": "How are you today? (to a woman)"
+            },
+            {
+              "slot": "what-happened-to-you-to-a-man",
+              "english": "What happened to you? (to a man)"
+            },
+            {
+              "slot": "i-feel-tired-a-man-speaking",
+              "english": "I feel tired (a man speaking)",
+              "search_term": "a tired man sitting on a couch"
+            },
+            {
+              "slot": "i-feel-tired-a-woman-speaking",
+              "english": "I feel tired (a woman speaking)"
+            },
+            {
+              "slot": "i-have-a-headache",
+              "english": "I have a headache",
+              "search_term": "a person holding their head in pain"
+            },
+            {
+              "slot": "my-stomach-hurts",
+              "english": "My stomach hurts",
+              "search_term": "a person holding their stomach"
+            },
+            {
+              "slot": "i-have-a-fever",
+              "english": "I have a fever",
+              "search_term": "a hand on a forehead checking for fever"
+            },
+            {
+              "slot": "i-feel-dizzy-a-man-speaking",
+              "english": "I feel dizzy (a man speaking)"
+            },
+            {
+              "slot": "i-can-t-sleep-well",
+              "english": "I can't sleep well"
+            },
+            {
+              "slot": "looks-like-you-have-a-cold-to-a-man",
+              "english": "Looks like you have a cold (to a man)"
+            },
+            {
+              "slot": "take-some-rest-to-a-man",
+              "english": "Take some rest (to a man)"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "At the Pharmacy",
+          "phrases": [
+            {
+              "slot": "do-you-have-medicine-for-a-headache",
+              "english": "Do you have medicine for a headache?"
+            },
+            {
+              "slot": "i-want-pills-for-the-fever",
+              "english": "I want pills for the fever",
+              "search_term": "a strip of medicine pills"
+            },
+            {
+              "slot": "do-you-have-cough-syrup",
+              "english": "Do you have cough syrup?",
+              "search_term": "a bottle of cough syrup",
+              "image": "unit-09/l02-p03-a-bottle-of-cough-syrup.jpg"
+            },
+            {
+              "slot": "how-much-does-this-medicine-cost",
+              "english": "How much does this medicine cost?"
+            },
+            {
+              "slot": "do-i-need-a-prescription",
+              "english": "Do I need a prescription?"
+            },
+            {
+              "slot": "take-it-twice-a-day-to-a-man",
+              "english": "Take it twice a day (to a man)"
+            },
+            {
+              "slot": "before-eating-or-after",
+              "english": "Before eating or after?"
+            },
+            {
+              "slot": "i-want-something-for-allergies",
+              "english": "I want something for allergies"
+            },
+            {
+              "slot": "do-you-have-band-aids",
+              "english": "Do you have band-aids?",
+              "search_term": "a box of adhesive bandages"
+            },
+            {
+              "slot": "this-medicine-makes-you-a-bit-sleepy",
+              "english": "This medicine makes you a bit sleepy"
+            },
+            {
+              "slot": "do-you-have-something-for-the-stomach",
+              "english": "Do you have something for the stomach?"
+            },
+            {
+              "slot": "get-well-soon-goodnight-to-a-man",
+              "english": "Get well soon, goodnight (to a man)"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "At the Doctor",
+          "phrases": [
+            {
+              "slot": "i-have-an-appointment-with-the-doctor",
+              "english": "I have an appointment with the doctor"
+            },
+            {
+              "slot": "what-hurts-you-doctor-asking-a-man",
+              "english": "What hurts you? (doctor asking a man)"
+            },
+            {
+              "slot": "since-when-have-you-been-feeling-like-this-to-a-",
+              "english": "Since when have you been feeling like this? (to a man)"
+            },
+            {
+              "slot": "you-need-to-do-some-tests",
+              "english": "You need to do some tests",
+              "search_term": "a doctor holding a blood test tube"
+            },
+            {
+              "slot": "take-a-deep-breath-to-a-man",
+              "english": "Take a deep breath (to a man)"
+            },
+            {
+              "slot": "are-you-allergic-to-any-medicine-to-a-man",
+              "english": "Are you allergic to any medicine? (to a man)"
+            },
+            {
+              "slot": "you-need-to-rest-for-a-few-days-to-a-man",
+              "english": "You need to rest for a few days (to a man)"
+            },
+            {
+              "slot": "i-ll-write-you-a-prescription-to-a-man",
+              "english": "I'll write you a prescription (to a man)"
+            },
+            {
+              "slot": "your-blood-pressure-is-a-bit-high-to-a-man",
+              "english": "Your blood pressure is a bit high (to a man)"
+            },
+            {
+              "slot": "it-s-nothing-serious",
+              "english": "It's nothing serious"
+            },
+            {
+              "slot": "you-need-to-come-back-after-a-week-to-a-man",
+              "english": "You need to come back after a week (to a man)"
+            },
+            {
+              "slot": "get-well-soon-take-it-easy-to-a-man",
+              "english": "Get well soon, take it easy (to a man)"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Body Parts and Pain",
+          "phrases": [
+            {
+              "slot": "head",
+              "english": "head",
+              "search_term": "a human head"
+            },
+            {
+              "slot": "stomach-belly",
+              "english": "stomach / belly",
+              "search_term": "a stomach",
+              "image": "unit-09/l04-p02-a-stomach.jpg"
+            },
+            {
+              "slot": "back",
+              "english": "back",
+              "search_term": "a person's back"
+            },
+            {
+              "slot": "hand-arm",
+              "english": "hand / arm",
+              "search_term": "a hand",
+              "image": "unit-09/l04-p04-a-hand.jpg"
+            },
+            {
+              "slot": "leg-foot",
+              "english": "leg / foot",
+              "search_term": "a leg and foot",
+              "image": "unit-09/l04-p05-a-leg-and-foot.jpg"
+            },
+            {
+              "slot": "eye",
+              "english": "eye",
+              "search_term": "a close-up of an eye"
+            },
+            {
+              "slot": "ear",
+              "english": "ear",
+              "search_term": "a close-up of an ear"
+            },
+            {
+              "slot": "tooth",
+              "english": "tooth",
+              "search_term": "a tooth"
+            },
+            {
+              "slot": "neck",
+              "english": "neck",
+              "search_term": "a neck",
+              "image": "unit-09/l04-p09-a-neck.jpg"
+            },
+            {
+              "slot": "my-back-hurts",
+              "english": "My back hurts",
+              "search_term": "a person holding their lower back in pain"
+            },
+            {
+              "slot": "i-have-a-toothache",
+              "english": "I have a toothache",
+              "search_term": "a person holding their jaw in pain"
+            },
+            {
+              "slot": "my-leg-is-swollen",
+              "english": "My leg is swollen",
+              "search_term": "a swollen ankle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-10",
+      "title": "Weather and Seasons",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Talking About the Weather",
+          "phrases": [
+            {
+              "slot": "what-s-the-weather-like-today",
+              "english": "What's the weather like today?",
+              "search_term": "sunny blue sky"
+            },
+            {
+              "slot": "the-weather-s-very-hot",
+              "english": "The weather's very hot.",
+              "search_term": "hot sunny street"
+            },
+            {
+              "slot": "it-s-cold-today",
+              "english": "It's cold today.",
+              "search_term": "person shivering in cold"
+            },
+            {
+              "slot": "it-s-raining-outside",
+              "english": "It's raining outside.",
+              "search_term": "rain falling outside window"
+            },
+            {
+              "slot": "it-s-cloudy",
+              "english": "It's cloudy.",
+              "search_term": "cloudy overcast sky"
+            },
+            {
+              "slot": "there-s-a-lot-of-wind-today",
+              "english": "There's a lot of wind today.",
+              "search_term": "strong wind in trees"
+            },
+            {
+              "slot": "the-weather-s-humid-today",
+              "english": "The weather's humid today."
+            },
+            {
+              "slot": "what-do-you-think-is-it-going-to-rain-tomorrow",
+              "english": "What do you think, is it going to rain tomorrow?"
+            },
+            {
+              "slot": "it-s-hot-out-today",
+              "english": "It's hot out today."
+            },
+            {
+              "slot": "it-s-cold-out-right-now",
+              "english": "It's cold out right now."
+            },
+            {
+              "slot": "you-need-to-take-an-umbrella-with-you",
+              "english": "You need to take an umbrella with you.",
+              "search_term": "black umbrella",
+              "image": "unit-10/l01-p11-black-umbrella.jpg"
+            },
+            {
+              "slot": "the-sun-s-out-today",
+              "english": "The sun's out today.",
+              "search_term": "bright sun in sky",
+              "image": "unit-10/l01-p12-bright-sun-in-sky.jpg"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Summer and Winter",
+          "phrases": [
+            {
+              "slot": "what-s-your-favorite-season",
+              "english": "What's your favorite season?"
+            },
+            {
+              "slot": "in-winter-it-gets-very-cold-in-damascus",
+              "english": "In winter it gets very cold in Damascus.",
+              "search_term": "snowy winter street"
+            },
+            {
+              "slot": "in-summer-the-weather-s-hot-and-dry",
+              "english": "In summer the weather's hot and dry.",
+              "search_term": "hot dry summer field"
+            },
+            {
+              "slot": "it-s-snowing-on-the-mountain",
+              "english": "It's snowing on the mountain.",
+              "search_term": "snow on mountain",
+              "image": "unit-10/l02-p04-snow-on-mountain.jpg"
+            },
+            {
+              "slot": "spring-is-my-favorite-season",
+              "english": "Spring is my favorite season.",
+              "search_term": "spring flowers blooming"
+            },
+            {
+              "slot": "in-fall-the-leaves-fall-from-the-trees",
+              "english": "In fall the leaves fall from the trees.",
+              "search_term": "autumn leaves falling"
+            },
+            {
+              "slot": "i-don-t-like-winter-because-it-gets-very-cold",
+              "english": "I don't like winter because it gets very cold."
+            },
+            {
+              "slot": "what-season-is-it-now",
+              "english": "What season is it now?"
+            },
+            {
+              "slot": "in-winter-you-need-to-wear-something-heavy",
+              "english": "In winter you need to wear something heavy."
+            },
+            {
+              "slot": "the-weather-changes-a-lot-between-the-seasons",
+              "english": "The weather changes a lot between the seasons."
+            },
+            {
+              "slot": "i-like-the-smell-of-rain-in-spring",
+              "english": "I like the smell of rain in spring."
+            },
+            {
+              "slot": "summer-in-damascus-is-long",
+              "english": "Summer in Damascus is long."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Clothes for the Weather",
+          "phrases": [
+            {
+              "slot": "what-should-i-wear-today",
+              "english": "What should I wear today?"
+            },
+            {
+              "slot": "take-an-umbrella-with-you-it-s-going-to-rain",
+              "english": "Take an umbrella with you, it's going to rain.",
+              "search_term": "black umbrella",
+              "image": "unit-10/l03-p02-black-umbrella.jpg"
+            },
+            {
+              "slot": "wear-a-sweater-it-s-cold",
+              "english": "Wear a sweater, it's cold.",
+              "search_term": "wool sweater"
+            },
+            {
+              "slot": "in-summer-i-wear-shorts-and-a-shirt",
+              "english": "In summer I wear shorts and a shirt.",
+              "search_term": "shorts and t-shirt"
+            },
+            {
+              "slot": "put-on-your-sunglasses-the-sun-s-strong",
+              "english": "Put on your sunglasses, the sun's strong.",
+              "search_term": "sunglasses"
+            },
+            {
+              "slot": "you-need-boots-in-winter-because-it-rains-a-lot",
+              "english": "You need boots in winter because it rains a lot.",
+              "search_term": "rain boots"
+            },
+            {
+              "slot": "i-didn-t-wear-a-jacket-and-i-got-cold",
+              "english": "I didn't wear a jacket and I got cold."
+            },
+            {
+              "slot": "the-hat-protects-you-from-the-sun",
+              "english": "The hat protects you from the sun.",
+              "search_term": "sun hat"
+            },
+            {
+              "slot": "what-s-your-favorite-color-in-sweaters",
+              "english": "What's your favorite color in sweaters?"
+            },
+            {
+              "slot": "in-fall-i-wear-a-light-jacket",
+              "english": "In fall I wear a light jacket.",
+              "search_term": "light jacket"
+            },
+            {
+              "slot": "wear-something-comfortable-because-we-re-going-t",
+              "english": "Wear something comfortable because we're going to walk a lot."
+            },
+            {
+              "slot": "i-forgot-the-raincoat-at-home",
+              "english": "I forgot the raincoat at home."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Going Out Depends on the Weather",
+          "phrases": [
+            {
+              "slot": "if-the-weather-s-nice-we-ll-go-out-to-the-park",
+              "english": "If the weather's nice, we'll go out to the park.",
+              "search_term": "green park"
+            },
+            {
+              "slot": "the-weather-s-not-good-we-need-to-cancel-the-out",
+              "english": "The weather's not good, we need to cancel the outing."
+            },
+            {
+              "slot": "what-do-you-think-about-staying-home-today",
+              "english": "What do you think about staying home today?"
+            },
+            {
+              "slot": "if-it-rains-tomorrow-we-ll-postpone-the-trip",
+              "english": "If it rains tomorrow, we'll postpone the trip."
+            },
+            {
+              "slot": "the-weather-s-nice-let-s-go-out-for-a-walk",
+              "english": "The weather's nice, let's go out for a walk.",
+              "search_term": "people walking outside"
+            },
+            {
+              "slot": "i-can-t-go-out-it-s-too-hot",
+              "english": "I can't go out, it's too hot."
+            },
+            {
+              "slot": "we-ll-sit-on-the-balcony-tonight-the-weather-s-p",
+              "english": "We'll sit on the balcony tonight, the weather's pleasant.",
+              "search_term": "balcony evening"
+            },
+            {
+              "slot": "since-it-s-going-to-rain-let-s-postpone-the-even",
+              "english": "Since it's going to rain, let's postpone the evening gathering."
+            },
+            {
+              "slot": "the-weather-doesn-t-allow-us-to-play-outside",
+              "english": "The weather doesn't allow us to play outside."
+            },
+            {
+              "slot": "as-long-as-the-weather-s-good-we-ll-keep-going-o",
+              "english": "As long as the weather's good, we'll keep going out."
+            },
+            {
+              "slot": "the-trip-to-the-mountain-depends-on-the-weather",
+              "english": "The trip to the mountain depends on the weather."
+            },
+            {
+              "slot": "did-you-see-the-weather-forecast",
+              "english": "Did you see the weather forecast?",
+              "search_term": "weather forecast on phone"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-11",
+      "title": "Visiting and Hospitality",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Arriving as a Guest",
+          "phrases": [
+            {
+              "slot": "welcome-lit-your-eye-honors-us-said-to-a-man-arr",
+              "english": "Welcome (lit. your eye honors us) - said to a man arriving."
+            },
+            {
+              "slot": "welcome-please-come-in",
+              "english": "Welcome, please come in.",
+              "search_term": "open front door of a house"
+            },
+            {
+              "slot": "you-have-honored-us-said-to-guests-who-arrived",
+              "english": "You have honored us (said to guests who arrived)."
+            },
+            {
+              "slot": "don-t-trouble-yourself-we-re-at-home-make-yourse",
+              "english": "Don't trouble yourself, we're at home (make yourself at ease)."
+            },
+            {
+              "slot": "where-can-i-park-my-car",
+              "english": "Where can I park my car?",
+              "search_term": "parked car outside a house"
+            },
+            {
+              "slot": "take-off-your-shoes-at-the-door-please",
+              "english": "Take off your shoes at the door please.",
+              "search_term": "row of shoes by a front door"
+            },
+            {
+              "slot": "i-brought-you-a-few-simple-things-a-small-gift",
+              "english": "I brought you a few simple things (a small gift).",
+              "search_term": "gift box wrapped"
+            },
+            {
+              "slot": "this-house-is-very-nice",
+              "english": "This house is very nice."
+            },
+            {
+              "slot": "how-long-did-it-take-you-to-arrive",
+              "english": "How long did it take you to arrive?"
+            },
+            {
+              "slot": "excuse-me-i-want-to-wash-my-hands",
+              "english": "Excuse me, I want to wash my hands.",
+              "search_term": "bathroom sink"
+            },
+            {
+              "slot": "good-i-found-the-house-easily",
+              "english": "Good, I found the house easily."
+            },
+            {
+              "slot": "you-went-to-trouble-for-us-said-appreciatively-a",
+              "english": "You went to trouble for us (said appreciatively about hospitality)."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Welcoming Guests",
+          "phrases": [
+            {
+              "slot": "sit-down-relax-a-little",
+              "english": "Sit down, relax a little.",
+              "search_term": "living room sofa"
+            },
+            {
+              "slot": "what-would-you-like-to-drink",
+              "english": "What would you like to drink?",
+              "search_term": "tray of tea glasses"
+            },
+            {
+              "slot": "coffee-or-tea",
+              "english": "Coffee or tea?",
+              "search_term": "cup of Arabic coffee"
+            },
+            {
+              "slot": "do-you-take-sugar-in-your-coffee",
+              "english": "Do you take sugar in your coffee?"
+            },
+            {
+              "slot": "ring-the-doorbell-they-must-have-arrived",
+              "english": "Ring the doorbell, they must have arrived.",
+              "search_term": "hand ringing a doorbell"
+            },
+            {
+              "slot": "give-me-your-coats-i-ll-hang-them-up",
+              "english": "Give me your coats, I'll hang them up.",
+              "search_term": "coats on a hanger"
+            },
+            {
+              "slot": "take-your-time-no-rush",
+              "english": "Take your time, no rush."
+            },
+            {
+              "slot": "i-put-the-sweets-on-the-table",
+              "english": "I put the sweets on the table.",
+              "search_term": "plate of Middle Eastern sweets"
+            },
+            {
+              "slot": "turn-on-the-tv-if-you-d-like",
+              "english": "Turn on the TV if you'd like.",
+              "search_term": "television remote control"
+            },
+            {
+              "slot": "your-kids-have-grown-up-so-much",
+              "english": "Your kids have grown up so much!"
+            },
+            {
+              "slot": "today-s-gathering-is-very-nice",
+              "english": "Today's gathering is very nice."
+            },
+            {
+              "slot": "don-t-be-shy-the-house-is-your-house",
+              "english": "Don't be shy, the house is your house."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "At the Table",
+          "phrases": [
+            {
+              "slot": "please-come-to-the-table-dinner-is-ready",
+              "english": "Please come to the table (dinner is ready).",
+              "search_term": "dinner table set with food"
+            },
+            {
+              "slot": "enjoy-your-meal-said-to-those-eating",
+              "english": "Enjoy your meal (said to those eating)."
+            },
+            {
+              "slot": "take-some-more-there-s-plenty-of-food",
+              "english": "Take some more, there's plenty of food."
+            },
+            {
+              "slot": "try-this-dish-i-made-it-today",
+              "english": "Try this dish, I made it today.",
+              "search_term": "plate of homemade food"
+            },
+            {
+              "slot": "don-t-hesitate-eat-as-you-like",
+              "english": "Don't hesitate, eat as you like."
+            },
+            {
+              "slot": "do-you-want-a-bit-more-bread",
+              "english": "Do you want a bit more bread?",
+              "search_term": "basket of Arabic bread"
+            },
+            {
+              "slot": "this-food-is-a-bit-spicy-be-careful",
+              "english": "This food is a bit spicy, be careful.",
+              "search_term": "spicy dish with chili"
+            },
+            {
+              "slot": "what-do-you-think-of-the-dish",
+              "english": "What do you think of the dish?"
+            },
+            {
+              "slot": "don-t-be-shy-tell-me-if-you-want-anything-else",
+              "english": "Don't be shy, tell me if you want anything else."
+            },
+            {
+              "slot": "thank-god-we-re-full-and-satisfied",
+              "english": "Thank God, we're full and satisfied.",
+              "search_term": "empty plates after a meal"
+            },
+            {
+              "slot": "good-thing-the-food-didn-t-get-cold",
+              "english": "Good thing the food didn't get cold."
+            },
+            {
+              "slot": "stay-a-bit-there-s-still-dessert",
+              "english": "Stay a bit, there's still dessert.",
+              "search_term": "dessert plate"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Leaving and Thanking",
+          "phrases": [
+            {
+              "slot": "thank-you-for-the-hospitality-lit-god-give-you-s",
+              "english": "Thank you for the hospitality (lit. God give you strength)."
+            },
+            {
+              "slot": "we-need-to-go-it-s-gotten-late",
+              "english": "We need to go, it's gotten late.",
+              "search_term": "clock showing late evening"
+            },
+            {
+              "slot": "a-very-nice-gathering-god-keep-you",
+              "english": "A very nice gathering, God keep you."
+            },
+            {
+              "slot": "don-t-forget-our-house-is-always-your-house",
+              "english": "Don't forget, our house is always your house."
+            },
+            {
+              "slot": "give-my-regards-to-the-family",
+              "english": "Give my regards to the family."
+            },
+            {
+              "slot": "good-night-said-when-leaving-in-the-evening",
+              "english": "Good night (said when leaving in the evening).",
+              "search_term": "night street with house lights"
+            },
+            {
+              "slot": "no-excuses-do-we-have-to-part-so-quickly",
+              "english": "No excuses, do we have to part so quickly?"
+            },
+            {
+              "slot": "thanks-for-the-invitation-we-had-a-great-time",
+              "english": "Thanks for the invitation, we had a great time."
+            },
+            {
+              "slot": "let-us-know-when-you-get-home",
+              "english": "Let us know when you get home.",
+              "search_term": "phone in hand"
+            },
+            {
+              "slot": "the-road-should-be-clear-god-willing",
+              "english": "The road should be clear, God willing.",
+              "search_term": "road at night with car lights"
+            },
+            {
+              "slot": "visit-me-again-soon",
+              "english": "Visit me again soon."
+            },
+            {
+              "slot": "goodbye-god-be-with-you",
+              "english": "Goodbye, God be with you.",
+              "search_term": "hands waving goodbye at a doorway"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-12",
+      "title": "Phone Calls and Plans",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Answering the Phone",
+          "phrases": [
+            {
+              "slot": "hello-answering-the-phone",
+              "english": "Hello? (answering the phone)",
+              "search_term": "person answering a phone call"
+            },
+            {
+              "slot": "hi-who-s-this",
+              "english": "Hi, who's this?"
+            },
+            {
+              "slot": "this-is-samer-speaking",
+              "english": "This is Samer (speaking)."
+            },
+            {
+              "slot": "good-that-you-called",
+              "english": "Good that you called."
+            },
+            {
+              "slot": "what-s-new",
+              "english": "What's new?"
+            },
+            {
+              "slot": "i-couldn-t-answer-you-a-bit-ago",
+              "english": "I couldn't answer you a bit ago."
+            },
+            {
+              "slot": "the-line-was-busy",
+              "english": "The line was busy."
+            },
+            {
+              "slot": "the-call-got-cut-off-on-me",
+              "english": "The call got cut off on me."
+            },
+            {
+              "slot": "my-credit-ran-out",
+              "english": "My credit ran out.",
+              "search_term": "prepaid phone credit card"
+            },
+            {
+              "slot": "my-battery-died",
+              "english": "My battery died.",
+              "search_term": "dead phone battery"
+            },
+            {
+              "slot": "there-s-no-signal-here",
+              "english": "There's no signal here.",
+              "search_term": "phone with no signal bars"
+            },
+            {
+              "slot": "can-you-call-me-back-in-a-bit",
+              "english": "Can you call me back in a bit?"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Arranging to Meet",
+          "phrases": [
+            {
+              "slot": "where-should-we-meet",
+              "english": "Where should we meet?"
+            },
+            {
+              "slot": "let-s-meet-at-the-cafe",
+              "english": "Let's meet at the cafe.",
+              "search_term": "friends meeting at a cafe"
+            },
+            {
+              "slot": "what-time-suits-you",
+              "english": "What time suits you?"
+            },
+            {
+              "slot": "is-7-o-clock-good",
+              "english": "Is 7 o'clock good?"
+            },
+            {
+              "slot": "where-exactly",
+              "english": "Where exactly?",
+              "search_term": "building main entrance"
+            },
+            {
+              "slot": "i-ll-meet-you-there",
+              "english": "I'll meet you there."
+            },
+            {
+              "slot": "don-t-be-late",
+              "english": "Don't be late."
+            },
+            {
+              "slot": "i-ll-be-there-before-you",
+              "english": "I'll be there before you."
+            },
+            {
+              "slot": "what-do-you-think-shall-we-go-together",
+              "english": "What do you think, shall we go together?",
+              "search_term": "two friends walking together"
+            },
+            {
+              "slot": "we-ll-meet-at-the-umayyad-mosque",
+              "english": "We'll meet at the Umayyad Mosque.",
+              "search_term": "Umayyad Mosque Damascus",
+              "image": "unit-12/l02-p10-umayyad-mosque-damascus.jpg"
+            },
+            {
+              "slot": "i-know-exactly-where-the-place-is",
+              "english": "I know exactly where the place is."
+            },
+            {
+              "slot": "if-you-re-late-call-me",
+              "english": "If you're late, call me."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Changing Plans",
+          "phrases": [
+            {
+              "slot": "i-want-to-change-the-appointment",
+              "english": "I want to change the appointment.",
+              "search_term": "calendar appointment reminder"
+            },
+            {
+              "slot": "i-can-t-come-today",
+              "english": "I can't come today."
+            },
+            {
+              "slot": "something-came-up-for-me",
+              "english": "Something came up for me."
+            },
+            {
+              "slot": "can-we-postpone-to-tomorrow",
+              "english": "Can we postpone to tomorrow?"
+            },
+            {
+              "slot": "i-d-like-us-to-meet-another-day",
+              "english": "I'd like us to meet another day."
+            },
+            {
+              "slot": "let-s-find-a-day-that-suits-us-both",
+              "english": "Let's find a day that suits us both."
+            },
+            {
+              "slot": "sorry-for-the-sudden-change",
+              "english": "Sorry for the sudden change."
+            },
+            {
+              "slot": "can-we-meet-in-the-afternoon-instead-of-the-morn",
+              "english": "Can we meet in the afternoon instead of the morning?"
+            },
+            {
+              "slot": "is-the-place-still-the-same-place",
+              "english": "Is the place still the same place?"
+            },
+            {
+              "slot": "can-we-cancel-the-appointment",
+              "english": "Can we cancel the appointment?"
+            },
+            {
+              "slot": "i-have-to-apologize-for-the-appointment-cancel-i",
+              "english": "I have to apologize for the appointment (cancel it)."
+            },
+            {
+              "slot": "i-ll-meet-you-friday-instead-of-thursday",
+              "english": "I'll meet you Friday instead of Thursday."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Leaving a Message",
+          "phrases": [
+            {
+              "slot": "hello-is-samer-there",
+              "english": "Hello, is Samer there?"
+            },
+            {
+              "slot": "no-he-s-not-here-right-now",
+              "english": "No, he's not here right now."
+            },
+            {
+              "slot": "when-will-he-be-back",
+              "english": "When will he be back?"
+            },
+            {
+              "slot": "i-don-t-know-exactly-in-a-bit",
+              "english": "I don't know exactly, in a bit."
+            },
+            {
+              "slot": "can-you-take-a-message-for-me",
+              "english": "Can you take a message for me?"
+            },
+            {
+              "slot": "tell-him-to-call-me",
+              "english": "Tell him to call me."
+            },
+            {
+              "slot": "let-him-know-i-called",
+              "english": "Let him know I called."
+            },
+            {
+              "slot": "i-ll-tell-him-as-soon-as-he-arrives",
+              "english": "I'll tell him as soon as he arrives."
+            },
+            {
+              "slot": "do-you-have-my-number",
+              "english": "Do you have my number?",
+              "search_term": "phone number written on paper"
+            },
+            {
+              "slot": "thanks-a-lot",
+              "english": "Thanks a lot."
+            },
+            {
+              "slot": "good-that-i-didn-t-waste-your-time",
+              "english": "Good that I didn't waste your time."
+            },
+            {
+              "slot": "i-ll-pass-him-the-news-as-soon-as-he-s-in",
+              "english": "I'll pass him the news as soon as he's in."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-13",
+      "title": "Feelings and Opinions",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "How I Feel",
+          "phrases": [
+            {
+              "slot": "how-are-you-today-to-a-man",
+              "english": "How are you today? (to a man)",
+              "search_term": "two friends talking"
+            },
+            {
+              "slot": "how-are-you-today-to-a-woman",
+              "english": "How are you today? (to a woman)",
+              "search_term": "two women talking"
+            },
+            {
+              "slot": "what-s-wrong-with-you-to-a-man",
+              "english": "What's wrong with you? (to a man)",
+              "search_term": "worried friend asking"
+            },
+            {
+              "slot": "i-m-happy-today-m",
+              "english": "I'm happy today. (m)",
+              "search_term": "smiling man"
+            },
+            {
+              "slot": "i-m-happy-today-f",
+              "english": "I'm happy today. (f)",
+              "search_term": "smiling woman"
+            },
+            {
+              "slot": "i-m-a-little-upset-m",
+              "english": "I'm a little upset. (m)",
+              "search_term": "sad man"
+            },
+            {
+              "slot": "i-m-a-little-upset-f",
+              "english": "I'm a little upset. (f)",
+              "search_term": "sad woman"
+            },
+            {
+              "slot": "i-m-very-tired-m",
+              "english": "I'm very tired. (m)",
+              "search_term": "tired man yawning"
+            },
+            {
+              "slot": "i-m-hungry-i-want-to-eat-something",
+              "english": "I'm hungry, I want to eat something.",
+              "search_term": "hungry person looking at food"
+            },
+            {
+              "slot": "i-m-worried-about-the-exam",
+              "english": "I'm worried about the exam.",
+              "search_term": "worried student with books"
+            },
+            {
+              "slot": "i-m-scared-of-this",
+              "english": "I'm scared of this.",
+              "search_term": "scared face"
+            },
+            {
+              "slot": "i-m-glad-you-came-to-a-man",
+              "english": "I'm glad you came. (to a man)",
+              "search_term": "friends greeting at door"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Agreeing and Disagreeing",
+          "phrases": [
+            {
+              "slot": "right-correct",
+              "english": "Right. / Correct.",
+              "search_term": "thumbs up"
+            },
+            {
+              "slot": "exactly-that-s-right",
+              "english": "Exactly. / That's right."
+            },
+            {
+              "slot": "you-re-right-to-a-man",
+              "english": "You're right. (to a man)"
+            },
+            {
+              "slot": "you-re-right-to-a-woman",
+              "english": "You're right. (to a woman)"
+            },
+            {
+              "slot": "i-agree-m",
+              "english": "I agree. (m)",
+              "search_term": "man nodding agreement"
+            },
+            {
+              "slot": "i-agree-f",
+              "english": "I agree. (f)",
+              "search_term": "woman nodding agreement"
+            },
+            {
+              "slot": "no-it-s-not-like-that",
+              "english": "No, it's not like that."
+            },
+            {
+              "slot": "i-don-t-agree-with-you",
+              "english": "I don't agree with you."
+            },
+            {
+              "slot": "that-s-not-true-correct",
+              "english": "That's not true / correct."
+            },
+            {
+              "slot": "in-my-opinion",
+              "english": "In my opinion..."
+            },
+            {
+              "slot": "maybe-but",
+              "english": "Maybe, but..."
+            },
+            {
+              "slot": "ok-that-works",
+              "english": "OK, that works."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Giving Advice",
+          "phrases": [
+            {
+              "slot": "you-should-get-some-rest-to-a-man",
+              "english": "You should get some rest. (to a man)"
+            },
+            {
+              "slot": "you-should-get-some-rest-to-a-woman",
+              "english": "You should get some rest. (to a woman)"
+            },
+            {
+              "slot": "it-s-better-you-go-to-the-doctor",
+              "english": "It's better you go to the doctor."
+            },
+            {
+              "slot": "why-don-t-you-try-this",
+              "english": "Why don't you try this?"
+            },
+            {
+              "slot": "if-i-were-you-i-d-do-this",
+              "english": "If I were you, I'd do this."
+            },
+            {
+              "slot": "listen-to-my-advice-to-a-man",
+              "english": "Listen to my advice. (to a man)"
+            },
+            {
+              "slot": "take-care-of-yourself-to-a-man",
+              "english": "Take care of yourself. (to a man)"
+            },
+            {
+              "slot": "it-won-t-hurt-you-to-try",
+              "english": "It won't hurt you to try."
+            },
+            {
+              "slot": "try-this-medicine",
+              "english": "Try this medicine.",
+              "search_term": "bottle of medicine"
+            },
+            {
+              "slot": "you-should-talk-to-him",
+              "english": "You should talk to him."
+            },
+            {
+              "slot": "i-advise-you-not-to-do-this",
+              "english": "I advise you not to do this."
+            },
+            {
+              "slot": "stay-calm-and-don-t-rush",
+              "english": "Stay calm and don't rush."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Complaining Politely",
+          "phrases": [
+            {
+              "slot": "excuse-me-there-s-a-small-problem-to-a-man",
+              "english": "Excuse me, there's a small problem. (to a man)"
+            },
+            {
+              "slot": "sorry-to-bother-you-but-m",
+              "english": "Sorry to bother you, but... (m)"
+            },
+            {
+              "slot": "can-someone-help-me",
+              "english": "Can someone help me?"
+            },
+            {
+              "slot": "this-isn-t-what-i-ordered-m",
+              "english": "This isn't what I ordered. (m)"
+            },
+            {
+              "slot": "there-s-a-mistake-in-the-bill",
+              "english": "There's a mistake in the bill.",
+              "search_term": "restaurant bill"
+            },
+            {
+              "slot": "the-food-is-a-bit-cold-can-you-heat-it-up-for-me",
+              "english": "The food is a bit cold, can you heat it up for me?",
+              "search_term": "plate of food"
+            },
+            {
+              "slot": "the-order-is-very-late",
+              "english": "The order is very late."
+            },
+            {
+              "slot": "i-don-t-mean-to-bother-you-but-this-is-important",
+              "english": "I don't mean to bother you, but this is important."
+            },
+            {
+              "slot": "can-you-refund-my-money",
+              "english": "Can you refund my money?",
+              "search_term": "cash refund"
+            },
+            {
+              "slot": "this-isn-t-the-same-as-what-i-saw-in-the-picture",
+              "english": "This isn't the same as what I saw in the picture."
+            },
+            {
+              "slot": "can-you-help-me-with-this-matter",
+              "english": "Can you help me with this matter?"
+            },
+            {
+              "slot": "there-s-no-problem-but-i-d-like-to-clarify-m",
+              "english": "There's no problem, but I'd like to clarify. (m)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-14",
+      "title": "Occasions and Celebrations",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Eid",
+          "phrases": [
+            {
+              "slot": "blessed-eid-happy-eid",
+              "english": "Blessed Eid / Happy Eid"
+            },
+            {
+              "slot": "may-you-be-well-every-year",
+              "english": "May you be well every year"
+            },
+            {
+              "slot": "may-you-witness-it-again-next-year",
+              "english": "May you witness it again next year"
+            },
+            {
+              "slot": "blessed-eid-to-you-all",
+              "english": "Blessed Eid to you all"
+            },
+            {
+              "slot": "eid-money-given-to-children",
+              "english": "Eid money given to children",
+              "search_term": "money in an envelope"
+            },
+            {
+              "slot": "i-m-putting-on-my-eid-clothes",
+              "english": "I'm putting on my Eid clothes",
+              "search_term": "new clothes on hangers"
+            },
+            {
+              "slot": "eid-cookies",
+              "english": "Eid cookies",
+              "search_term": "arabic date filled cookies"
+            },
+            {
+              "slot": "we-re-going-to-the-eid-prayer",
+              "english": "We're going to the Eid prayer",
+              "search_term": "a mosque"
+            },
+            {
+              "slot": "we-visited-my-grandma-today",
+              "english": "We visited my grandma today",
+              "search_term": "grandmother with grandchildren"
+            },
+            {
+              "slot": "congratulations-on-the-eid",
+              "english": "Congratulations on the Eid"
+            },
+            {
+              "slot": "where-were-you-why-didn-t-you-come-to-celebrate-",
+              "english": "Where were you, why didn't you come to celebrate Eid with us?"
+            },
+            {
+              "slot": "may-god-give-you-all-eid-money-said-jokingly",
+              "english": "May God give you all Eid money (said jokingly)"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Ramadan",
+          "phrases": [
+            {
+              "slot": "ramadan-is-generous-greeting",
+              "english": "Ramadan is generous (greeting)"
+            },
+            {
+              "slot": "blessed-ramadan",
+              "english": "Blessed Ramadan"
+            },
+            {
+              "slot": "blessed-month-of-ramadan-to-you",
+              "english": "Blessed month of Ramadan to you"
+            },
+            {
+              "slot": "we-re-fasting",
+              "english": "We're fasting"
+            },
+            {
+              "slot": "what-time-is-iftar-today",
+              "english": "What time is iftar today?",
+              "search_term": "sunset over a city"
+            },
+            {
+              "slot": "we-re-preparing-for-iftar",
+              "english": "We're preparing for iftar",
+              "search_term": "a table set for dinner"
+            },
+            {
+              "slot": "we-started-fasting-from-dawn",
+              "english": "We started fasting from dawn"
+            },
+            {
+              "slot": "the-pre-dawn-meal-eaten-before-the-fast",
+              "english": "The pre-dawn meal eaten before the fast",
+              "search_term": "a meal at night with lamps"
+            },
+            {
+              "slot": "qatayef-a-ramadan-sweet-stuffed-pastry",
+              "english": "Qatayef, a Ramadan sweet stuffed pastry",
+              "search_term": "stuffed pancake dessert"
+            },
+            {
+              "slot": "the-iftar-cannon-fired",
+              "english": "The iftar cannon fired",
+              "search_term": "an old cannon",
+              "image": "unit-14/l02-p10-an-old-cannon.jpg"
+            },
+            {
+              "slot": "whose-iftar-invitation-are-you-going-to-tonight",
+              "english": "Whose iftar invitation are you going to tonight?"
+            },
+            {
+              "slot": "may-god-accept-your-fasting",
+              "english": "May God accept your fasting"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Weddings",
+          "phrases": [
+            {
+              "slot": "congratulations",
+              "english": "Congratulations"
+            },
+            {
+              "slot": "may-god-make-you-happy-wedding-congrats",
+              "english": "May God make you happy (wedding congrats)"
+            },
+            {
+              "slot": "may-it-be-your-turn-next",
+              "english": "May it be your turn next"
+            },
+            {
+              "slot": "congratulations-on-the-wedding",
+              "english": "Congratulations on the wedding"
+            },
+            {
+              "slot": "when-is-their-wedding",
+              "english": "When is their wedding?"
+            },
+            {
+              "slot": "they-re-preparing-for-the-wedding",
+              "english": "They're preparing for the wedding",
+              "search_term": "wedding preparations table"
+            },
+            {
+              "slot": "the-wedding-stage-decoration-is-very-beautiful",
+              "english": "The wedding stage decoration is very beautiful",
+              "search_term": "wedding stage decoration"
+            },
+            {
+              "slot": "the-wedding-procession-is-coming",
+              "english": "The wedding procession is coming",
+              "search_term": "wedding procession with drums"
+            },
+            {
+              "slot": "she-wore-a-white-dress",
+              "english": "She wore a white dress",
+              "search_term": "white wedding dress"
+            },
+            {
+              "slot": "the-dabke-folk-dance-started",
+              "english": "The dabke folk dance started",
+              "search_term": "traditional folk dance"
+            },
+            {
+              "slot": "who-s-invited-to-the-wedding",
+              "english": "Who's invited to the wedding?"
+            },
+            {
+              "slot": "what-gift-did-you-bring-them",
+              "english": "What gift did you bring them?"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Birthdays and Congratulations",
+          "phrases": [
+            {
+              "slot": "happy-birthday",
+              "english": "Happy birthday"
+            },
+            {
+              "slot": "happy-birthday-lit-every-year-you-re-well",
+              "english": "Happy birthday (lit. every year you're well)"
+            },
+            {
+              "slot": "congratulations-on-your-success",
+              "english": "Congratulations on your success"
+            },
+            {
+              "slot": "congratulations-on-the-promotion",
+              "english": "Congratulations on the promotion"
+            },
+            {
+              "slot": "congratulations-on-the-newborn",
+              "english": "Congratulations on the newborn"
+            },
+            {
+              "slot": "congratulations-on-the-new-house",
+              "english": "Congratulations on the new house"
+            },
+            {
+              "slot": "we-re-preparing-the-cake",
+              "english": "We're preparing the cake",
+              "search_term": "birthday cake with candles",
+              "image": "unit-14/l04-p07-birthday-cake-with-candles.jpg"
+            },
+            {
+              "slot": "blow-out-the-candles",
+              "english": "Blow out the candles",
+              "search_term": "candles on a birthday cake",
+              "image": "unit-14/l04-p08-candles-on-a-birthday-cake.jpg"
+            },
+            {
+              "slot": "how-old-did-you-turn",
+              "english": "How old did you turn?"
+            },
+            {
+              "slot": "what-gift-do-you-want",
+              "english": "What gift do you want?"
+            },
+            {
+              "slot": "birthday-party",
+              "english": "Birthday party",
+              "search_term": "birthday party with balloons"
+            },
+            {
+              "slot": "may-god-lengthen-your-life",
+              "english": "May God lengthen your life"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-15",
+      "title": "Travel and Staying",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "At the Hotel",
+          "phrases": [
+            {
+              "slot": "hello-i-have-a-reservation",
+              "english": "Hello, I have a reservation.",
+              "search_term": "hotel reception desk"
+            },
+            {
+              "slot": "under-the-name-nour",
+              "english": "Under the name Nour."
+            },
+            {
+              "slot": "is-there-an-empty-room",
+              "english": "Is there an empty room?",
+              "search_term": "hotel room key"
+            },
+            {
+              "slot": "i-want-a-room-for-two-people",
+              "english": "I want a room for two people.",
+              "search_term": "hotel double room"
+            },
+            {
+              "slot": "how-much-is-the-price-per-night",
+              "english": "How much is the price per night?"
+            },
+            {
+              "slot": "is-breakfast-included-with-the-room",
+              "english": "Is breakfast included with the room?",
+              "search_term": "hotel breakfast buffet"
+            },
+            {
+              "slot": "can-i-see-the-room-first",
+              "english": "Can I see the room first?"
+            },
+            {
+              "slot": "where-s-the-elevator",
+              "english": "Where's the elevator?",
+              "search_term": "hotel elevator"
+            },
+            {
+              "slot": "i-want-the-key-please",
+              "english": "I want the key please.",
+              "search_term": "hotel room key card"
+            },
+            {
+              "slot": "what-time-do-i-need-to-check-out",
+              "english": "What time do I need to check out?"
+            },
+            {
+              "slot": "i-want-to-order-room-service",
+              "english": "I want to order room service."
+            },
+            {
+              "slot": "thanks-the-room-is-very-nice",
+              "english": "Thanks, the room is very nice."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Booking and Tickets",
+          "phrases": [
+            {
+              "slot": "i-want-to-book-a-bus-ticket",
+              "english": "I want to book a bus ticket.",
+              "search_term": "bus ticket counter"
+            },
+            {
+              "slot": "do-you-have-tickets-to-aleppo",
+              "english": "Do you have tickets to Aleppo?"
+            },
+            {
+              "slot": "how-much-is-a-round-trip-ticket",
+              "english": "How much is a round-trip ticket?"
+            },
+            {
+              "slot": "i-want-a-one-way-ticket-only",
+              "english": "I want a one-way ticket only."
+            },
+            {
+              "slot": "is-there-a-free-seat-on-the-next-bus",
+              "english": "Is there a free seat on the next bus?",
+              "search_term": "empty bus seats"
+            },
+            {
+              "slot": "what-time-does-the-bus-leave",
+              "english": "What time does the bus leave?"
+            },
+            {
+              "slot": "can-i-pay-by-card",
+              "english": "Can I pay by card?",
+              "search_term": "credit card payment machine"
+            },
+            {
+              "slot": "i-want-to-confirm-the-reservation",
+              "english": "I want to confirm the reservation."
+            },
+            {
+              "slot": "is-there-a-discount-for-students",
+              "english": "Is there a discount for students?"
+            },
+            {
+              "slot": "where-s-the-ticket-window",
+              "english": "Where's the ticket window?",
+              "search_term": "ticket window booth",
+              "image": "unit-15/l02-p10-ticket-window-booth.jpg"
+            },
+            {
+              "slot": "how-long-does-the-trip-take",
+              "english": "How long does the trip take?"
+            },
+            {
+              "slot": "thanks-here-s-your-ticket",
+              "english": "Thanks, here's your ticket.",
+              "search_term": "paper bus ticket",
+              "image": "unit-15/l02-p12-paper-bus-ticket.jpg"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "At the Airport and Border",
+          "phrases": [
+            {
+              "slot": "where-s-the-check-in-counter",
+              "english": "Where's the check-in counter?",
+              "search_term": "airport check in counter"
+            },
+            {
+              "slot": "i-have-my-passport-and-my-ticket",
+              "english": "I have my passport and my ticket.",
+              "search_term": "passport and boarding pass"
+            },
+            {
+              "slot": "how-many-bags-am-i-allowed-to-take",
+              "english": "How many bags am I allowed to take?"
+            },
+            {
+              "slot": "is-this-bag-overweight",
+              "english": "Is this bag overweight?",
+              "search_term": "suitcase on scale"
+            },
+            {
+              "slot": "where-s-the-boarding-gate",
+              "english": "Where's the boarding gate?",
+              "search_term": "airport departure gate"
+            },
+            {
+              "slot": "what-time-does-the-plane-depart",
+              "english": "What time does the plane depart?"
+            },
+            {
+              "slot": "do-you-have-anything-to-declare",
+              "english": "Do you have anything to declare?"
+            },
+            {
+              "slot": "no-i-don-t-have-anything",
+              "english": "No, I don't have anything."
+            },
+            {
+              "slot": "your-passport-please",
+              "english": "Your passport please.",
+              "search_term": "passport control booth"
+            },
+            {
+              "slot": "are-you-coming-for-tourism-or-work",
+              "english": "Are you coming for tourism or work?"
+            },
+            {
+              "slot": "how-long-will-you-stay-here",
+              "english": "How long will you stay here?"
+            },
+            {
+              "slot": "welcome",
+              "english": "Welcome."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Problems While Travelling",
+          "phrases": [
+            {
+              "slot": "i-lost-my-bag",
+              "english": "I lost my bag.",
+              "search_term": "lost luggage"
+            },
+            {
+              "slot": "the-plane-is-very-delayed",
+              "english": "The plane is very delayed.",
+              "search_term": "airport departure board delay"
+            },
+            {
+              "slot": "i-missed-the-bus",
+              "english": "I missed the bus."
+            },
+            {
+              "slot": "i-couldn-t-find-my-passport",
+              "english": "I couldn't find my passport.",
+              "search_term": "passport",
+              "image": "unit-15/l04-p04-passport.jpg"
+            },
+            {
+              "slot": "come-help-me-please",
+              "english": "Come help me please."
+            },
+            {
+              "slot": "there-s-a-problem-with-the-reservation",
+              "english": "There's a problem with the reservation."
+            },
+            {
+              "slot": "the-bag-got-broken",
+              "english": "The bag got broken.",
+              "search_term": "broken suitcase"
+            },
+            {
+              "slot": "i-need-to-change-the-flight",
+              "english": "I need to change the flight."
+            },
+            {
+              "slot": "i-missed-the-flight-what-do-i-do",
+              "english": "I missed the flight, what do I do?"
+            },
+            {
+              "slot": "where-s-the-complaints-office",
+              "english": "Where's the complaints office?",
+              "search_term": "customer service desk"
+            },
+            {
+              "slot": "nobody-answered-me",
+              "english": "Nobody answered me."
+            },
+            {
+              "slot": "may-god-make-up-for-it-god-willing-it-ll-work-ou",
+              "english": "May God make up for it, God willing it'll work out."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-16",
+      "title": "Telling What Happened",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Yesterday",
+          "phrases": [
+            {
+              "slot": "what-did-you-do-yesterday",
+              "english": "What did you do yesterday?",
+              "search_term": "street market"
+            },
+            {
+              "slot": "yesterday-was-a-very-long-day",
+              "english": "Yesterday was a very long day."
+            },
+            {
+              "slot": "i-woke-up-late-yesterday",
+              "english": "I woke up late yesterday."
+            },
+            {
+              "slot": "where-were-you-last-night",
+              "english": "Where were you last night?"
+            },
+            {
+              "slot": "we-ate-at-a-nice-restaurant-yesterday",
+              "english": "We ate at a nice restaurant yesterday.",
+              "search_term": "a restaurant table with food"
+            },
+            {
+              "slot": "who-did-you-see-yesterday",
+              "english": "Who did you see yesterday?"
+            },
+            {
+              "slot": "did-you-buy-anything-yesterday",
+              "english": "Did you buy anything yesterday?",
+              "search_term": "a new shirt on a hanger"
+            },
+            {
+              "slot": "the-day-before-yesterday-i-had-work-until-the-ev",
+              "english": "The day before yesterday I had work until the evening."
+            },
+            {
+              "slot": "how-late-did-you-stay-up-yesterday",
+              "english": "How late did you stay up yesterday?"
+            },
+            {
+              "slot": "i-got-very-tired-from-work-yesterday",
+              "english": "I got very tired from work yesterday."
+            },
+            {
+              "slot": "yesterday-the-weather-was-very-nice",
+              "english": "Yesterday the weather was very nice.",
+              "search_term": "a clear sunny sky"
+            },
+            {
+              "slot": "why-didn-t-you-come-yesterday",
+              "english": "Why didn't you come yesterday?"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "A Story from Childhood",
+          "phrases": [
+            {
+              "slot": "when-i-was-young-i-loved-to-play-outside",
+              "english": "When I was young I loved to play outside.",
+              "search_term": "children playing outside"
+            },
+            {
+              "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
+              "english": "I grew up in an old neighborhood in Damascus.",
+              "search_term": "an old narrow alley"
+            },
+            {
+              "slot": "i-had-a-friend-named-kareem",
+              "english": "I had a friend named Kareem."
+            },
+            {
+              "slot": "we-used-to-play-soccer-in-the-alley",
+              "english": "We used to play soccer in the alley.",
+              "search_term": "kids playing soccer in a street"
+            },
+            {
+              "slot": "every-summer-we-used-to-go-to-my-grandfather-s-i",
+              "english": "Every summer we used to go to my grandfather's in the village.",
+              "search_term": "a village house with a garden"
+            },
+            {
+              "slot": "my-grandmother-used-to-tell-us-stories-before-sl",
+              "english": "My grandmother used to tell us stories before sleeping."
+            },
+            {
+              "slot": "the-first-bike-i-had-was-red",
+              "english": "The first bike I had was red.",
+              "search_term": "a red bicycle",
+              "image": "unit-16/l02-p07-a-red-bicycle.jpg"
+            },
+            {
+              "slot": "i-used-to-be-very-afraid-of-the-dark-when-i-was-",
+              "english": "I used to be very afraid of the dark when I was young."
+            },
+            {
+              "slot": "my-teacher-at-school-was-very-kind",
+              "english": "My teacher at school was very kind."
+            },
+            {
+              "slot": "we-used-to-walk-to-school-together-every-day",
+              "english": "We used to walk to school together every day.",
+              "search_term": "children walking to school"
+            },
+            {
+              "slot": "when-i-was-young-i-dreamed-of-becoming-a-pilot",
+              "english": "When I was young I dreamed of becoming a pilot."
+            },
+            {
+              "slot": "back-then-life-was-much-simpler",
+              "english": "Back then life was much simpler."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Something Went Wrong",
+          "phrases": [
+            {
+              "slot": "my-phone-broke-yesterday",
+              "english": "My phone broke yesterday.",
+              "search_term": "a cracked phone screen",
+              "image": "unit-16/l03-p01-a-cracked-phone-screen.jpg"
+            },
+            {
+              "slot": "i-lost-the-house-key",
+              "english": "I lost the house key.",
+              "search_term": "a set of house keys"
+            },
+            {
+              "slot": "i-was-late-for-work-this-morning",
+              "english": "I was late for work this morning."
+            },
+            {
+              "slot": "i-fell-on-the-stairs-and-hurt-my-leg",
+              "english": "I fell on the stairs and hurt my leg.",
+              "search_term": "stairs in a building"
+            },
+            {
+              "slot": "i-forgot-my-wallet-at-home",
+              "english": "I forgot my wallet at home.",
+              "search_term": "a leather wallet"
+            },
+            {
+              "slot": "the-car-broke-down-in-the-middle-of-the-road",
+              "english": "The car broke down in the middle of the road.",
+              "search_term": "a broken down car on a road"
+            },
+            {
+              "slot": "the-power-went-out-all-night",
+              "english": "The power went out all night."
+            },
+            {
+              "slot": "coffee-spilled-on-my-laptop",
+              "english": "Coffee spilled on my laptop.",
+              "search_term": "spilled coffee on a keyboard"
+            },
+            {
+              "slot": "my-bag-got-lost-at-the-airport",
+              "english": "My bag got lost at the airport.",
+              "search_term": "luggage at an airport"
+            },
+            {
+              "slot": "i-cut-my-hand-while-cooking",
+              "english": "I cut my hand while cooking."
+            },
+            {
+              "slot": "i-made-a-mistake-and-sent-the-message-to-the-wro",
+              "english": "I made a mistake and sent the message to the wrong person."
+            },
+            {
+              "slot": "i-overslept-and-didn-t-hear-the-alarm",
+              "english": "I overslept and didn't hear the alarm."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "News and Gossip",
+          "phrases": [
+            {
+              "slot": "i-heard-that-samer-got-engaged",
+              "english": "I heard that Samer got engaged.",
+              "search_term": "an engagement ring"
+            },
+            {
+              "slot": "there-s-news-you-won-t-believe",
+              "english": "There's news you won't believe."
+            },
+            {
+              "slot": "they-told-me-you-re-moving-to-a-new-house",
+              "english": "They told me you're moving to a new house."
+            },
+            {
+              "slot": "who-told-you-this-news",
+              "english": "Who told you this news?"
+            },
+            {
+              "slot": "they-re-saying-that-such-and-such-shop-closed",
+              "english": "They're saying that such-and-such shop closed."
+            },
+            {
+              "slot": "we-re-not-sure-yet-it-might-just-be-a-rumor",
+              "english": "We're not sure yet, it might just be a rumor."
+            },
+            {
+              "slot": "you-won-t-believe-what-happened-yesterday-in-the",
+              "english": "You won't believe what happened yesterday in the neighborhood."
+            },
+            {
+              "slot": "my-sister-got-married-last-month",
+              "english": "My sister got married last month.",
+              "search_term": "a wedding celebration"
+            },
+            {
+              "slot": "we-heard-they-had-a-baby-boy",
+              "english": "We heard they had a baby boy.",
+              "search_term": "a newborn baby"
+            },
+            {
+              "slot": "what-s-the-latest-news-with-you",
+              "english": "What's the latest news with you?"
+            },
+            {
+              "slot": "don-t-tell-anyone-but-i-heard-they-re-going-to-t",
+              "english": "Don't tell anyone, but I heard they're going to travel."
+            },
+            {
+              "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it",
+              "english": "That's all just people's talk, I don't know if it's true or not."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-17",
+      "title": "Shopping and Getting Around",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "At the Market",
+          "phrases": [
+            {
+              "slot": "how-much-is-this",
+              "english": "How much is this?",
+              "search_term": "shopkeeper and customer"
+            },
+            {
+              "slot": "expensive",
+              "english": "Expensive."
+            },
+            {
+              "slot": "cheap",
+              "english": "Cheap."
+            },
+            {
+              "slot": "is-there-a-discount",
+              "english": "Is there a discount?"
+            },
+            {
+              "slot": "how-much-per-kilo",
+              "english": "How much per kilo?",
+              "search_term": "market fruit stall"
+            },
+            {
+              "slot": "i-want-this",
+              "english": "I want this."
+            },
+            {
+              "slot": "lower-it-a-little-to-a-man-when-bargaining",
+              "english": "Lower it a little. (to a man, when bargaining)"
+            },
+            {
+              "slot": "final-price",
+              "english": "Final price."
+            },
+            {
+              "slot": "okay-deal",
+              "english": "Okay / Deal."
+            },
+            {
+              "slot": "do-you-have-a-smaller-one-to-a-man",
+              "english": "Do you have a smaller one? (to a man)"
+            },
+            {
+              "slot": "do-you-have-another-color-to-a-man",
+              "english": "Do you have another color? (to a man)"
+            },
+            {
+              "slot": "this-one-is-nicer",
+              "english": "This one is nicer."
+            },
+            {
+              "slot": "blue",
+              "english": "Blue.",
+              "search_term": "blue fabric"
+            },
+            {
+              "slot": "red",
+              "english": "Red.",
+              "search_term": "red fabric",
+              "image": "unit-17/l01-p14-red-fabric.jpg"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Getting Around",
+          "phrases": [
+            {
+              "slot": "taxi",
+              "english": "Taxi.",
+              "search_term": "yellow taxi car",
+              "image": "unit-17/l02-p01-yellow-taxi-car.jpg"
+            },
+            {
+              "slot": "bus",
+              "english": "Bus.",
+              "search_term": "city bus",
+              "image": "unit-17/l02-p02-city-bus.jpg"
+            },
+            {
+              "slot": "i-want-to-go-to-the-old-city",
+              "english": "I want to go to the Old City.",
+              "search_term": "old city street"
+            },
+            {
+              "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
+              "english": "Stop here, please. (to a man, such as a taxi driver)"
+            },
+            {
+              "slot": "how-much-is-the-fare",
+              "english": "How much is the fare?"
+            },
+            {
+              "slot": "take-me-to-to-a-man",
+              "english": "Take me to... (to a man)"
+            },
+            {
+              "slot": "are-you-free-asking-a-taxi-driver-if-available",
+              "english": "Are you free? (asking a taxi driver if available)",
+              "search_term": "taxi driver waiting"
+            },
+            {
+              "slot": "busy-occupied",
+              "english": "Busy / Occupied."
+            },
+            {
+              "slot": "how-long-does-the-way-take",
+              "english": "How long does the way take?"
+            },
+            {
+              "slot": "will-you-drop-me-at-to-a-man",
+              "english": "Will you drop me at...? (to a man)"
+            },
+            {
+              "slot": "at-your-service-a-common-polite-reply-from-a-tax",
+              "english": "At your service. (a common polite reply from a taxi driver)"
+            },
+            {
+              "slot": "what-time-does-the-bus-come-tomorrow",
+              "english": "What time does the bus come tomorrow?",
+              "search_term": "bus stop"
+            },
+            {
+              "slot": "station",
+              "english": "Station."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

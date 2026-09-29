@@ -1,7 +1,8 @@
 # The prompt that writes a colloquial unit
 
 Paste the block below into a fresh chat to generate one unit at a time. Change
-the dialect name and the unit number; nothing else. The output drops straight
+the dialect name and the unit number, and paste that unit from
+`backend/data/colloquial/spine.json` where it says so. The output drops straight
 into `backend/data/colloquial/<dialect>/unit-NN.json` with no editing.
 `backend/services/colloquial/loader.py` checks the shape on load and names every
 fault at once, so a broken unit stops the app rather than showing a half lesson.
@@ -14,14 +15,21 @@ and this prompt saying the same thing.
 ---
 
 You are writing spoken **Damascene Arabic** teaching content for unit **01** of a
-sixteen unit course. Output is one JSON file, `unit-01.json`.
+course every dialect shares. Output is one JSON file, `unit-01.json`.
+
+**The outline you fill.** This is the unit's lessons and, in each, the phrase
+slots with their English. Write every lesson and every slot, in this dialect,
+keeping each `slot` name exactly:
+
+```json
+<paste this unit from spine.json here>
+```
 
 **Shape**
 
 ```json
 {
   "unit": "unit-01",
-  "title": "<what the unit is about, in English>",
   "dialect": "Damascene Arabic",
   "transliteration_key": { "sh": "ش", "kh": "خ", "gh": "غ", "3": "ع", "7": "ح",
     "2": "ء", "2a": "أ / همزة في بداية الكلمة", "aa": "ا طويلة",
@@ -29,11 +37,9 @@ sixteen unit course. Output is one JSON file, `unit-01.json`.
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "<English>",
       "phrases": [
-        { "arabic": "", "transliteration": "", "english": "",
-          "reply": { "arabic": "", "transliteration": "", "english": "" },
-          "search_term": "" }
+        { "slot": "<from the outline>", "arabic": "", "transliteration": "",
+          "reply": { "arabic": "", "transliteration": "", "english": "" } }
       ],
       "dialogue": [ { "speaker": "", "arabic": "", "transliteration": "", "english": "" } ],
       "de_book": [ { "pair": { "arabic": "", "transliteration": "", "english": "" },
@@ -54,7 +60,7 @@ sixteen unit course. Output is one JSON file, `unit-01.json`.
 
 **Minimum per lesson, never below**
 
-- `phrases`: 10 or more, each with its `reply` where one exists
+- `phrases`: exactly the outline's slots, each with its `reply` where one exists
 - `dialogue`: 10 or more lines, between named speakers
 - `de_book`: 4 or more pairs
 - `culture`: 1 to 3 sentences
@@ -83,14 +89,6 @@ lesson, the type, then a counter within that lesson and type starting at `01`.
 Never repeat an id inside a unit. A learner's answer history is kept against this
 id, so it must not change when a unit is edited later.
 
-**`search_term`**
-
-A short everyday English noun phrase a stock photo search would find, such as
-`"a glass of tea"` or `"a bus stop at night"`. It is the only thing a picture is
-ever fetched from. Leave the field out entirely when the phrase has nothing to
-show, for example a greeting or a grammatical particle. Never invent one to fill
-the field.
-
 **`accepted`**
 
 Every spelling that must be marked right, including the transliteration. Vowel
@@ -110,8 +108,8 @@ not spend `accepted` entries on those; spend them on real alternatives.
   `unit-01.json` structure.
 - Damascene Arabic as it is really spoken. A correct but bookish sentence belongs
   in `too_formal`, never in `answer`.
-- If you are unsure a phrase is really said this way in this dialect, leave it
-  out rather than guessing.
+- If you are unsure how this dialect says a slot, say so after the JSON and
+  name the slot, rather than guessing. The unit is not added until it is sure.
 
 After `unit-01.json` is complete, wait. When I say "next", write `unit-02.json`
-the same way, and so on up to `unit-16.json`.
+the same way, and so on to the last unit in the spine.

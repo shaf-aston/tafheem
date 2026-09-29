@@ -1,6 +1,5 @@
 {
   "unit": "unit-07",
-  "title": "Daily Routine",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,83 +19,71 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "Morning",
       "phrases": [
         {
+          "slot": "good-morning",
           "arabic": "صباح الخير",
           "transliteration": "saba7 il-kheer",
-          "english": "Good morning.",
           "reply": {
             "arabic": "صباح النور",
             "transliteration": "saba7 in-noor",
             "english": "Good morning (reply)."
-          },
-          "search_term": "sunrise over a city"
+          }
         },
         {
+          "slot": "i-woke-up-early",
           "arabic": "فيقت بدري",
-          "transliteration": "fi2it bderi",
-          "english": "I woke up early.",
-          "search_term": "alarm clock in the morning",
-          "image": "damascene/unit-07/l01-p02-alarm-clock-in-the-morning.jpg"
+          "transliteration": "fi2it bderi"
         },
         {
+          "slot": "what-time-is-it-now",
           "arabic": "قديش الساعة هلق؟",
-          "transliteration": "addeesh is-saa3a halla2?",
-          "english": "What time is it now?"
+          "transliteration": "addeesh is-saa3a halla2?"
         },
         {
+          "slot": "it-s-seven-o-clock",
           "arabic": "الساعة سبعة",
-          "transliteration": "is-saa3a sab3a",
-          "english": "It's seven o'clock."
+          "transliteration": "is-saa3a sab3a"
         },
         {
+          "slot": "i-m-still-sleepy",
           "arabic": "لسا نعسان",
-          "transliteration": "lissa na3saan",
-          "english": "I'm still sleepy.",
-          "search_term": "sleepy man yawning"
+          "transliteration": "lissa na3saan"
         },
         {
+          "slot": "i-want-coffee-first-thing",
           "arabic": "بدي قهوة عالريق",
-          "transliteration": "baddi 2ahwe 3al-ree2",
-          "english": "I want coffee first thing.",
-          "search_term": "cup of coffee in the morning",
-          "image": "damascene/unit-07/l01-p06-cup-of-coffee-in-the-morning.jpg"
+          "transliteration": "baddi 2ahwe 3al-ree2"
         },
         {
+          "slot": "i-washed-my-face",
           "arabic": "غسلت وجهي",
-          "transliteration": "ghasalt wijji",
-          "english": "I washed my face."
+          "transliteration": "ghasalt wijji"
         },
         {
+          "slot": "i-brushed-my-teeth",
           "arabic": "فرشت سناني",
-          "transliteration": "farasht snaani",
-          "english": "I brushed my teeth.",
-          "search_term": "toothbrush and toothpaste",
-          "image": "damascene/unit-07/l01-p08-toothbrush-and-toothpaste.jpg"
+          "transliteration": "farasht snaani"
         },
         {
+          "slot": "i-got-dressed",
           "arabic": "لبست تيابي",
-          "transliteration": "libist tyaabi",
-          "english": "I got dressed.",
-          "search_term": "clothes laid out on a bed"
+          "transliteration": "libist tyaabi"
         },
         {
+          "slot": "i-left-for-work",
           "arabic": "طلعت عالشغل",
-          "transliteration": "Tili3t 3ash-shughel",
-          "english": "I left for work.",
-          "search_term": "person leaving a house in the morning"
+          "transliteration": "Tili3t 3ash-shughel"
         },
         {
+          "slot": "i-missed-the-bus",
           "arabic": "فاتني الباص",
-          "transliteration": "faatni il-baaS",
-          "english": "I missed the bus.",
-          "search_term": "empty bus stop"
+          "transliteration": "faatni il-baaS"
         },
         {
+          "slot": "early-morning-is-very-cold",
           "arabic": "الصبح بدري كتير برد",
-          "transliteration": "iS-Sob7 bderi ktiir bard",
-          "english": "Early morning is very cold."
+          "transliteration": "iS-Sob7 bderi ktiir bard"
         }
       ],
       "dialogue": [
@@ -395,30 +382,26 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "During the Day",
       "phrases": [
         {
+          "slot": "i-arrived-at-work",
           "arabic": "وصلت عالشغل",
-          "transliteration": "wSilt 3ash-shughel",
-          "english": "I arrived at work.",
-          "search_term": "office building entrance"
+          "transliteration": "wSilt 3ash-shughel"
         },
         {
+          "slot": "i-have-a-meeting-at-ten",
           "arabic": "عندي اجتماع الساعة عشرة",
-          "transliteration": "3indi ijtimaa3 is-saa3a 3ashra",
-          "english": "I have a meeting at ten.",
-          "search_term": "office meeting room"
+          "transliteration": "3indi ijtimaa3 is-saa3a 3ashra"
         },
         {
+          "slot": "i-m-hungry-i-want-to-eat-something",
           "arabic": "جعان، بدي آكل شي",
-          "transliteration": "ja3aan, baddi aakol shi",
-          "english": "I'm hungry, I want to eat something.",
-          "search_term": "person eating lunch"
+          "transliteration": "ja3aan, baddi aakol shi"
         },
         {
+          "slot": "where-do-you-have-lunch",
           "arabic": "وين بتتغدى؟",
           "transliteration": "ween btitghadda?",
-          "english": "Where do you have lunch?",
           "reply": {
             "arabic": "عند البيت",
             "transliteration": "3ind il-beet",
@@ -426,20 +409,19 @@
           }
         },
         {
+          "slot": "i-m-a-bit-tired-now",
           "arabic": "تعبان شوي هلق",
-          "transliteration": "ta3baan shwayy halla2",
-          "english": "I'm a bit tired now.",
-          "search_term": "tired person at a desk"
+          "transliteration": "ta3baan shwayy halla2"
         },
         {
+          "slot": "i-have-to-finish-this-task-before-noon",
           "arabic": "لازم خلص هالشغلة قبل الظهر",
-          "transliteration": "laazim khalles hash-shughle 2abel iZ-Zuhur",
-          "english": "I have to finish this task before noon."
+          "transliteration": "laazim khalles hash-shughle 2abel iZ-Zuhur"
         },
         {
+          "slot": "can-i-take-a-break",
           "arabic": "فيني آخد استراحة؟",
           "transliteration": "fiini aakhod isteraa7a?",
-          "english": "Can I take a break?",
           "reply": {
             "arabic": "إي، تفضل",
             "transliteration": "ee, tfaDDal",
@@ -447,32 +429,29 @@
           }
         },
         {
+          "slot": "i-m-looking-for-my-pen",
           "arabic": "عم دوّر على قلمي",
-          "transliteration": "3am dawwer 3ala 2alami",
-          "english": "I'm looking for my pen.",
-          "search_term": "pen on an office desk",
-          "image": "damascene/unit-07/l02-p08-pen-on-an-office-desk.jpg"
+          "transliteration": "3am dawwer 3ala 2alami"
         },
         {
+          "slot": "what-s-the-news-today",
           "arabic": "شو الأخبار اليوم؟",
-          "transliteration": "shoo il-akhbaar il-yom?",
-          "english": "What's the news today?"
+          "transliteration": "shoo il-akhbaar il-yom?"
         },
         {
+          "slot": "i-have-a-lot-of-work-now",
           "arabic": "عندي شغل كتير هلق",
-          "transliteration": "3indi shughel ktiir halla2",
-          "english": "I have a lot of work now."
+          "transliteration": "3indi shughel ktiir halla2"
         },
         {
+          "slot": "i-ll-call-you-in-the-afternoon",
           "arabic": "رح إتصل فيك بعد الظهر",
-          "transliteration": "ra7 ittiSel fiik ba3d iZ-Zuhur",
-          "english": "I'll call you in the afternoon.",
-          "search_term": "person on the phone in an office"
+          "transliteration": "ra7 ittiSel fiik ba3d iZ-Zuhur"
         },
         {
+          "slot": "i-finished-my-work-early-today",
           "arabic": "خلصت شغلي بدري اليوم",
-          "transliteration": "khallaSt shughli bderi il-yom",
-          "english": "I finished my work early today."
+          "transliteration": "khallaSt shughli bderi il-yom"
         }
       ],
       "dialogue": [
@@ -771,75 +750,66 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "Evening",
       "phrases": [
         {
+          "slot": "good-evening",
           "arabic": "مسا الخير",
           "transliteration": "masa il-kheer",
-          "english": "Good evening.",
           "reply": {
             "arabic": "مسا النور",
             "transliteration": "masa in-noor",
             "english": "Good evening (reply)."
-          },
-          "search_term": "sunset over a city skyline"
+          }
         },
         {
+          "slot": "i-came-back-home",
           "arabic": "رجعت عالبيت",
-          "transliteration": "raja3t 3al-beet",
-          "english": "I came back home.",
-          "search_term": "person arriving home in the evening"
+          "transliteration": "raja3t 3al-beet"
         },
         {
+          "slot": "what-will-we-eat-for-dinner",
           "arabic": "شو رح ناكل عالعشا؟",
-          "transliteration": "shoo ra7 naakol 3al-3asha?",
-          "english": "What will we eat for dinner?"
+          "transliteration": "shoo ra7 naakol 3al-3asha?"
         },
         {
+          "slot": "i-want-to-shower",
           "arabic": "بدي استحم",
-          "transliteration": "baddi istaHamm",
-          "english": "I want to shower.",
-          "search_term": "bathroom shower",
-          "image": "damascene/unit-07/l03-p04-bathroom-shower.jpg"
+          "transliteration": "baddi istaHamm"
         },
         {
+          "slot": "i-got-very-tired-today",
           "arabic": "تعبت كتير اليوم",
-          "transliteration": "ti3ibt ktiir il-yom",
-          "english": "I got very tired today."
+          "transliteration": "ti3ibt ktiir il-yom"
         },
         {
+          "slot": "do-we-want-to-watch-a-series",
           "arabic": "بدنا نتفرج على مسلسل؟",
-          "transliteration": "biddna nitfarraj 3ala musalsal?",
-          "english": "Do we want to watch a series?",
-          "search_term": "family watching tv in the evening"
+          "transliteration": "biddna nitfarraj 3ala musalsal?"
         },
         {
+          "slot": "let-s-go-out-for-a-little-walk",
           "arabic": "خلينا نطلع نتمشى شوي",
-          "transliteration": "khalliina niTla3 nitmashsha shwayy",
-          "english": "Let's go out for a little walk.",
-          "search_term": "couple walking in the evening street"
+          "transliteration": "khalliina niTla3 nitmashsha shwayy"
         },
         {
+          "slot": "the-weather-is-nice-in-the-evening",
           "arabic": "الجو لطيف المسا",
-          "transliteration": "il-jaww laTiif il-masa",
-          "english": "The weather is nice in the evening."
+          "transliteration": "il-jaww laTiif il-masa"
         },
         {
+          "slot": "i-want-to-call-my-family",
           "arabic": "بدي إتصل بأهلي",
-          "transliteration": "baddi ittiSel b-ahli",
-          "english": "I want to call my family.",
-          "search_term": "person calling family on the phone"
+          "transliteration": "baddi ittiSel b-ahli"
         },
         {
+          "slot": "i-ll-sleep-early-tonight",
           "arabic": "رح نام بدري الليلة",
-          "transliteration": "ra7 naam bderi il-leele",
-          "english": "I'll sleep early tonight.",
-          "search_term": "bed at night"
+          "transliteration": "ra7 naam bderi il-leele"
         },
         {
+          "slot": "good-night",
           "arabic": "تصبح على خير",
           "transliteration": "tSbaH 3ala kheer",
-          "english": "Good night.",
           "reply": {
             "arabic": "وإنت من أهله",
             "transliteration": "w enta min ahlo",
@@ -847,9 +817,9 @@
           }
         },
         {
+          "slot": "i-saw-my-friends-in-the-evening",
           "arabic": "شفت رفقاتي بالمسا",
-          "transliteration": "shift rifi2aati bil-masa",
-          "english": "I saw my friends in the evening."
+          "transliteration": "shift rifi2aati bil-masa"
         }
       ],
       "dialogue": [
@@ -1148,65 +1118,61 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Days of the Week",
       "phrases": [
         {
+          "slot": "days-of-the-week",
           "arabic": "أيام الأسبوع",
-          "transliteration": "ayyaam il-isbuu3",
-          "english": "Days of the week.",
-          "search_term": "weekly calendar"
+          "transliteration": "ayyaam il-isbuu3"
         },
         {
+          "slot": "today-is-sunday",
           "arabic": "اليوم يوم الأحد",
-          "transliteration": "il-yom yom il-a7ad",
-          "english": "Today is Sunday."
+          "transliteration": "il-yom yom il-a7ad"
         },
         {
+          "slot": "tomorrow-is-monday",
           "arabic": "بكرا يوم الاتنين",
-          "transliteration": "bukra yom il-itneen",
-          "english": "Tomorrow is Monday."
+          "transliteration": "bukra yom il-itneen"
         },
         {
+          "slot": "next-week-there-s-a-meeting-on-tuesday",
           "arabic": "الأسبوع الجاي في اجتماع يوم التلات",
-          "transliteration": "il-isbuu3 ij-jaay fi ijtimaa3 yom it-talaat",
-          "english": "Next week there's a meeting on Tuesday."
+          "transliteration": "il-isbuu3 ij-jaay fi ijtimaa3 yom it-talaat"
         },
         {
+          "slot": "on-wednesday-i-work-until-the-evening",
           "arabic": "يوم الأربعا عندي دوام لحد المسا",
-          "transliteration": "yom il-arb3a 3indi dawaam la7add il-masa",
-          "english": "On Wednesday I work until the evening."
+          "transliteration": "yom il-arb3a 3indi dawaam la7add il-masa"
         },
         {
+          "slot": "on-thursday-i-see-my-friends",
           "arabic": "الخميس بشوف رفقاتي",
-          "transliteration": "il-khamiis bshuuf rifi2aati",
-          "english": "On Thursday I see my friends.",
-          "search_term": "friends meeting at a cafe"
+          "transliteration": "il-khamiis bshuuf rifi2aati"
         },
         {
+          "slot": "friday-is-the-day-of-prayer-and-rest",
           "arabic": "الجمعة يوم الصلاة والراحة",
-          "transliteration": "ij-jum3a yom iS-Salaa wir-raa7a",
-          "english": "Friday is the day of prayer and rest."
+          "transliteration": "ij-jum3a yom iS-Salaa wir-raa7a"
         },
         {
+          "slot": "on-saturday-we-go-to-the-market",
           "arabic": "السبت منروح عالسوق",
-          "transliteration": "is-sabt minruu7 3as-suu2",
-          "english": "On Saturday we go to the market.",
-          "search_term": "street market"
+          "transliteration": "is-sabt minruu7 3as-suu2"
         },
         {
+          "slot": "what-do-you-plan-to-do-on-the-weekend",
           "arabic": "شو ناوي تعمل نهاية الأسبوع؟",
-          "transliteration": "shoo naawi ta3mel nihaayet il-isbuu3?",
-          "english": "What do you plan to do on the weekend?"
+          "transliteration": "shoo naawi ta3mel nihaayet il-isbuu3?"
         },
         {
+          "slot": "i-have-work-every-day-except-friday-and-saturday",
           "arabic": "كل يوم عندي شغل غير الجمعة والسبت",
-          "transliteration": "kell yom 3indi shughel gheer ij-jum3a wis-sabt",
-          "english": "I have work every day except Friday and Saturday."
+          "transliteration": "kell yom 3indi shughel gheer ij-jum3a wis-sabt"
         },
         {
+          "slot": "when-is-the-meeting",
           "arabic": "أيمتى الاجتماع؟",
           "transliteration": "aymta il-ijtimaa3?",
-          "english": "When is the meeting?",
           "reply": {
             "arabic": "يوم التلات",
             "transliteration": "yom it-talaat",
@@ -1214,9 +1180,9 @@
           }
         },
         {
+          "slot": "the-weekend-comes-quickly",
           "arabic": "نهاية الأسبوع بتيجي بسرعة",
-          "transliteration": "nihaayet il-isbuu3 btiiji bsur3a",
-          "english": "The weekend comes quickly."
+          "transliteration": "nihaayet il-isbuu3 btiiji bsur3a"
         }
       ],
       "dialogue": [

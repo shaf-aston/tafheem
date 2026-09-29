@@ -1,6 +1,5 @@
 {
   "unit": "unit-08",
-  "title": "Work and Study",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,89 +19,81 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "What Do You Do",
       "phrases": [
         {
+          "slot": "what-do-you-do-to-a-man",
           "arabic": "شو بتشتغل؟",
           "transliteration": "shu btishtghel?",
-          "english": "What do you do? (to a man)",
           "reply": {
             "arabic": "بشتغل مهندس",
             "transliteration": "bishtghel muhandis",
             "english": "I work as an engineer."
-          },
-          "search_term": "man working in office"
+          }
         },
         {
+          "slot": "what-do-you-do-to-a-woman",
           "arabic": "شو بتشتغلي؟",
           "transliteration": "shu btishtghle?",
-          "english": "What do you do? (to a woman)",
           "reply": {
             "arabic": "بشتغل معلمة",
             "transliteration": "bishtghel mu3allime",
             "english": "I work as a teacher."
-          },
-          "search_term": "woman teacher in classroom"
+          }
         },
         {
+          "slot": "where-do-you-work",
           "arabic": "وين بتشتغل؟",
           "transliteration": "wein btishtghel?",
-          "english": "Where do you work?",
           "reply": {
             "arabic": "بشتغل بشركة كبيرة",
             "transliteration": "bishtghel bi sharikeh kbeereh",
             "english": "I work at a big company."
-          },
-          "search_term": "office building"
+          }
         },
         {
+          "slot": "i-m-still-a-student",
           "arabic": "أنا لسا بدرس",
-          "transliteration": "ana lissa badros",
-          "english": "I'm still a student.",
-          "search_term": "university student with books"
+          "transliteration": "ana lissa badros"
         },
         {
+          "slot": "i-m-retired",
           "arabic": "أنا متقاعد",
-          "transliteration": "ana mit2a3id",
-          "english": "I'm retired.",
-          "search_term": "elderly man relaxing at home"
+          "transliteration": "ana mit2a3id"
         },
         {
+          "slot": "what-do-you-study",
           "arabic": "شو بتدرس؟",
           "transliteration": "shu btidros?",
-          "english": "What do you study?",
           "reply": {
             "arabic": "بدرس طب",
             "transliteration": "badros teb",
             "english": "I study medicine."
-          },
-          "search_term": "medical student with stethoscope"
+          }
         },
         {
+          "slot": "i-work-from-home",
           "arabic": "بشتغل من البيت",
-          "transliteration": "bishtghel min il beit",
-          "english": "I work from home.",
-          "search_term": "laptop on home desk"
+          "transliteration": "bishtghel min il beit"
         },
         {
+          "slot": "my-job-is-good",
           "arabic": "شغلي منيح",
-          "transliteration": "shughli mnii7",
-          "english": "My job is good."
+          "transliteration": "shughli mnii7"
         },
         {
+          "slot": "i-m-not-finding-a-job",
           "arabic": "مو عم لاقي شغل",
-          "transliteration": "mu 3am la2i shughel",
-          "english": "I'm not finding a job."
+          "transliteration": "mu 3am la2i shughel"
         },
         {
+          "slot": "i-m-looking-for-a-new-job",
           "arabic": "عم دور عشغل جديد",
-          "transliteration": "3am dawwir 3ashughel jdeed",
-          "english": "I'm looking for a new job."
+          "transliteration": "3am dawwir 3ashughel jdeed"
         },
         {
+          "slot": "how-many-years-have-you-been-working-here",
           "arabic": "قديش سنين وإنت عم تشتغل هون؟",
           "transliteration": "addesh sneen w inte 3am tishtghel hon?",
-          "english": "How many years have you been working here?",
           "reply": {
             "arabic": "من ثلاث سنين",
             "transliteration": "min tlat sneen",
@@ -110,15 +101,14 @@
           }
         },
         {
+          "slot": "what-would-you-like-to-work-as",
           "arabic": "عمرك شو بتحب تشتغل؟",
           "transliteration": "3umrak shu bte7eb tishtghel?",
-          "english": "What would you like to work as?",
           "reply": {
             "arabic": "بحب اشتغل طبيب",
             "transliteration": "ba7eb ishtghel tabeeb",
             "english": "I'd like to work as a doctor."
-          },
-          "search_term": "doctor holding stethoscope"
+          }
         }
       ],
       "dialogue": [
@@ -420,72 +410,66 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "At the Office",
       "phrases": [
         {
+          "slot": "hi-are-you-coming-to-the-meeting",
           "arabic": "مرحبا، جاي عالاجتماع؟",
           "transliteration": "mar7aba, jaay 3al ijtima3?",
-          "english": "Hi, are you coming to the meeting?",
           "reply": {
             "arabic": "إي، جاي هلق",
             "transliteration": "ei, jaay halla2",
             "english": "Yes, coming now."
-          },
-          "search_term": "office meeting room"
+          }
         },
         {
+          "slot": "the-manager-wants-to-talk-to-you",
           "arabic": "المدير بدو يحكيك",
-          "transliteration": "il mudeer biddo ye7keek",
-          "english": "The manager wants to talk to you.",
-          "search_term": "manager at office desk"
+          "transliteration": "il mudeer biddo ye7keek"
         },
         {
+          "slot": "i-received-your-email",
           "arabic": "وصلني الإيميل تبعك",
-          "transliteration": "wislni il email taba3ak",
-          "english": "I received your email."
+          "transliteration": "wislni il email taba3ak"
         },
         {
+          "slot": "i-haven-t-finished-the-report-yet",
           "arabic": "لسا ما خلصت التقرير",
-          "transliteration": "lissa ma khallast it ta2reer",
-          "english": "I haven't finished the report yet."
+          "transliteration": "lissa ma khallast it ta2reer"
         },
         {
+          "slot": "i-have-a-meeting-at-ten-o-clock",
           "arabic": "عندي اجتماع الساعة عشرة",
-          "transliteration": "3ende ijtima3 is sa3a 3ashra",
-          "english": "I have a meeting at ten o'clock.",
-          "search_term": "clock on office wall"
+          "transliteration": "3ende ijtima3 is sa3a 3ashra"
         },
         {
+          "slot": "my-colleague-at-the-office-is-very-nice",
           "arabic": "زميلي بالمكتب لطيف كتير",
-          "transliteration": "zameele bil maktab lateef kteer",
-          "english": "My colleague at the office is very nice.",
-          "search_term": "coworkers talking in office"
+          "transliteration": "zameele bil maktab lateef kteer"
         },
         {
+          "slot": "we-must-finish-this-task-before-the-afternoon",
           "arabic": "لازم نخلص هالشغلة قبل العصر",
-          "transliteration": "laazim nkhalles hal shughle abl il 3asr",
-          "english": "We must finish this task before the afternoon."
+          "transliteration": "laazim nkhalles hal shughle abl il 3asr"
         },
         {
+          "slot": "my-boss-is-very-demanding",
           "arabic": "رئيسي كتير متطلب",
-          "transliteration": "ra2eese kteer mtatalleb",
-          "english": "My boss is very demanding."
+          "transliteration": "ra2eese kteer mtatalleb"
         },
         {
+          "slot": "i-took-two-days-off",
           "arabic": "خدت إجازة يومين",
-          "transliteration": "5adet ijaze yomein",
-          "english": "I took two days off.",
-          "search_term": "person relaxing on vacation"
+          "transliteration": "5adet ijaze yomein"
         },
         {
+          "slot": "the-salary-comes-at-the-end-of-the-month",
           "arabic": "الراتب بيجي آخر الشهر",
-          "transliteration": "ir raateb byeeji aakher ish shahr",
-          "english": "The salary comes at the end of the month."
+          "transliteration": "ir raateb byeeji aakher ish shahr"
         },
         {
+          "slot": "are-there-overtime-hours-today",
           "arabic": "ممكن ساعات إضافية اليوم؟",
           "transliteration": "mumken sa3aat idafeyye il yom?",
-          "english": "Are there overtime hours today?",
           "reply": {
             "arabic": "إي في، لحتى الساعة تسعة",
             "transliteration": "ei fee, la7atta is sa3a tis3a",
@@ -493,10 +477,9 @@
           }
         },
         {
+          "slot": "the-printer-keeps-breaking-down",
           "arabic": "الطابعة عم تعطل",
-          "transliteration": "it tabi3a 3am ta3attel",
-          "english": "The printer keeps breaking down.",
-          "search_term": "broken office printer"
+          "transliteration": "it tabi3a 3am ta3attel"
         }
       ],
       "dialogue": [
@@ -798,29 +781,26 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "At University",
       "phrases": [
         {
+          "slot": "i-have-a-lecture-at-nine",
           "arabic": "عندي محاضرة الساعة تسعة",
-          "transliteration": "3ende mo7aadara is sa3a tis3a",
-          "english": "I have a lecture at nine.",
-          "search_term": "university lecture hall"
+          "transliteration": "3ende mo7aadara is sa3a tis3a"
         },
         {
+          "slot": "the-professor-is-absent-today",
           "arabic": "الدكتور غاب اليوم",
-          "transliteration": "id doktor ghaab il yom",
-          "english": "The professor is absent today."
+          "transliteration": "id doktor ghaab il yom"
         },
         {
+          "slot": "i-have-an-exam-tomorrow",
           "arabic": "عندي امتحان بكرا",
-          "transliteration": "3ende imte7aan bukra",
-          "english": "I have an exam tomorrow.",
-          "search_term": "student studying for exam"
+          "transliteration": "3ende imte7aan bukra"
         },
         {
+          "slot": "what-s-your-major",
           "arabic": "شو تخصصك؟",
           "transliteration": "shu takhassosak?",
-          "english": "What's your major?",
           "reply": {
             "arabic": "تخصصي طب",
             "transliteration": "takhassose teb",
@@ -828,9 +808,9 @@
           }
         },
         {
+          "slot": "what-year-are-you-in",
           "arabic": "بأي سنة إنت؟",
           "transliteration": "bi2ay sane inte?",
-          "english": "What year are you in?",
           "reply": {
             "arabic": "بالسنة الثانية",
             "transliteration": "bis sane it taanye",
@@ -838,42 +818,39 @@
           }
         },
         {
+          "slot": "i-have-to-study-a-lot-this-semester",
           "arabic": "لازم أدرس كتير هالفصل",
-          "transliteration": "laazim adros kteer hal fasel",
-          "english": "I have to study a lot this semester."
+          "transliteration": "laazim adros kteer hal fasel"
         },
         {
+          "slot": "the-exam-result-came-out-good",
           "arabic": "نتيجة الامتحان طلعت منيحة",
-          "transliteration": "nateejet il imte7aan tel3et mnii7a",
-          "english": "The exam result came out good.",
-          "search_term": "happy student with exam results"
+          "transliteration": "nateejet il imte7aan tel3et mnii7a"
         },
         {
+          "slot": "i-didn-t-understand-the-lecture-well",
           "arabic": "ما فهمت المحاضرة منيح",
-          "transliteration": "ma fhemet il mo7aadara mnii7",
-          "english": "I didn't understand the lecture well."
+          "transliteration": "ma fhemet il mo7aadara mnii7"
         },
         {
+          "slot": "i-have-to-submit-the-assignment-before-friday",
           "arabic": "لازم سلم الواجب قبل الجمعة",
-          "transliteration": "laazim sallem il waajeb abl il jum3a",
-          "english": "I have to submit the assignment before Friday."
+          "transliteration": "laazim sallem il waajeb abl il jum3a"
         },
         {
+          "slot": "my-friends-at-university-are-very-nice",
           "arabic": "رفقاتي بالجامعة كتير حلوين",
-          "transliteration": "rifa2te bil jam3a kteer 7ilween",
-          "english": "My friends at university are very nice.",
-          "search_term": "group of students laughing together"
+          "transliteration": "rifa2te bil jam3a kteer 7ilween"
         },
         {
+          "slot": "the-university-library-is-open-until-night",
           "arabic": "مكتبة الجامعة مفتوحة لحتى الليل",
-          "transliteration": "maktabet il jam3a maftoo7a la7atta il leel",
-          "english": "The university library is open until night.",
-          "search_term": "university library interior"
+          "transliteration": "maktabet il jam3a maftoo7a la7atta il leel"
         },
         {
+          "slot": "i-want-to-register-more-courses-next-semester",
           "arabic": "بدي أسجل مواد كمان الفصل الجاي",
-          "transliteration": "biddi asajjel mawaadd kaman il fasel il jaay",
-          "english": "I want to register more courses next semester."
+          "transliteration": "biddi asajjel mawaadd kaman il fasel il jaay"
         }
       ],
       "dialogue": [
@@ -1177,12 +1154,11 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Plans for the Future",
       "phrases": [
         {
+          "slot": "what-do-you-plan-to-do-after-you-graduate",
           "arabic": "شو ناوي تعمل بعد ما تتخرج؟",
           "transliteration": "shu naawi ta3mel ba3d ma tit5arraj?",
-          "english": "What do you plan to do after you graduate?",
           "reply": {
             "arabic": "بدي دور عشغل بمجالي",
             "transliteration": "biddi dawwir 3ashughel bi majaale",
@@ -1190,64 +1166,59 @@
           }
         },
         {
+          "slot": "i-want-to-continue-my-studies-for-a-master-s",
           "arabic": "بدي كمل دراستي عالماجستير",
-          "transliteration": "biddi kammel diraaste 3al majesteer",
-          "english": "I want to continue my studies for a master's.",
-          "search_term": "graduation cap and diploma"
+          "transliteration": "biddi kammel diraaste 3al majesteer"
         },
         {
+          "slot": "i-intend-to-start-my-own-project",
           "arabic": "ناوي أفتح مشروعي الخاص",
-          "transliteration": "naawi aftah7 mashroo3e il khaass",
-          "english": "I intend to start my own project.",
-          "search_term": "small business shop front"
+          "transliteration": "naawi aftah7 mashroo3e il khaass"
         },
         {
+          "slot": "i-m-thinking-of-traveling-to-work-abroad",
           "arabic": "بفكر أسافر أشتغل برا",
-          "transliteration": "bfakkir asaafer ashtghel barra",
-          "english": "I'm thinking of traveling to work abroad.",
-          "search_term": "airport departure gate"
+          "transliteration": "bfakkir asaafer ashtghel barra"
         },
         {
+          "slot": "in-five-years-where-will-you-be",
           "arabic": "بعد خمس سنين وين رح تكون؟",
-          "transliteration": "ba3d khamis sneen wein ra7 tkoon?",
-          "english": "In five years where will you be?"
+          "transliteration": "ba3d khamis sneen wein ra7 tkoon?"
         },
         {
+          "slot": "i-ll-try-to-enter-a-phd-program",
           "arabic": "رح جرب أدخل عالدكتوراه",
-          "transliteration": "ra7 jarreb adkhol 3ad doktoraah",
-          "english": "I'll try to enter a PhD program."
+          "transliteration": "ra7 jarreb adkhol 3ad doktoraah"
         },
         {
+          "slot": "my-dream-is-to-open-a-restaurant",
           "arabic": "حلمي إفتح مطعم",
-          "transliteration": "7elme iftah7 mat3am",
-          "english": "My dream is to open a restaurant.",
-          "search_term": "restaurant kitchen"
+          "transliteration": "7elme iftah7 mat3am"
         },
         {
+          "slot": "i-haven-t-decided-yet-what-i-ll-do",
           "arabic": "لسا ما قررت شو رح أعمل",
-          "transliteration": "lissa ma 2arrart shu ra7 a3mel",
-          "english": "I haven't decided yet what I'll do."
+          "transliteration": "lissa ma 2arrart shu ra7 a3mel"
         },
         {
+          "slot": "i-want-to-settle-down-and-get-married-after-i-wo",
           "arabic": "بدي استقر وأتجوز بعد ما أشتغل شوي",
-          "transliteration": "biddi istaqerr w atjawwaz ba3d ma ashtghel shwayy",
-          "english": "I want to settle down and get married after I work a bit."
+          "transliteration": "biddi istaqerr w atjawwaz ba3d ma ashtghel shwayy"
         },
         {
+          "slot": "i-ll-apply-for-a-job-at-a-big-company",
           "arabic": "رح قدم عوظيفة بشركة كبيرة",
-          "transliteration": "ra7 addem 3a wazeefe bi sharikeh kbeereh",
-          "english": "I'll apply for a job at a big company.",
-          "search_term": "job interview handshake"
+          "transliteration": "ra7 addem 3a wazeefe bi sharikeh kbeereh"
         },
         {
+          "slot": "my-ambition-is-to-become-a-manager-one-day",
           "arabic": "طموحي إنو أصير مدير يوم من الأيام",
-          "transliteration": "tamoo7e inno aseer mudeer yom min il ayyaam",
-          "english": "My ambition is to become a manager one day."
+          "transliteration": "tamoo7e inno aseer mudeer yom min il ayyaam"
         },
         {
+          "slot": "the-most-important-thing-is-to-be-comfortable-in",
           "arabic": "أهم شي أرتاح بشغلي",
-          "transliteration": "ahamm shi arta7 bshughle",
-          "english": "The most important thing is to be comfortable in my job."
+          "transliteration": "ahamm shi arta7 bshughle"
         }
       ],
       "dialogue": [

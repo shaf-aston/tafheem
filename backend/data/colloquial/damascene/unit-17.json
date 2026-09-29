@@ -1,6 +1,5 @@
 {
   "unit": "unit-17",
-  "title": "Shopping and Getting Around",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,82 +19,76 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "At the Market",
       "phrases": [
         {
+          "slot": "how-much-is-this",
           "arabic": "قديش هاد؟",
-          "transliteration": "addeesh haad؟",
-          "english": "How much is this?",
-          "search_term": "shopkeeper and customer"
+          "transliteration": "addeesh haad؟"
         },
         {
+          "slot": "expensive",
           "arabic": "غالي",
-          "transliteration": "ghaali",
-          "english": "Expensive."
+          "transliteration": "ghaali"
         },
         {
+          "slot": "cheap",
           "arabic": "رخيص",
-          "transliteration": "rkhiis",
-          "english": "Cheap."
+          "transliteration": "rkhiis"
         },
         {
+          "slot": "is-there-a-discount",
           "arabic": "في خصم؟",
-          "transliteration": "fii khasem؟",
-          "english": "Is there a discount?"
+          "transliteration": "fii khasem؟"
         },
         {
+          "slot": "how-much-per-kilo",
           "arabic": "بكم الكيلو؟",
-          "transliteration": "bkam il-kiilo؟",
-          "english": "How much per kilo?",
-          "search_term": "market fruit stall"
+          "transliteration": "bkam il-kiilo؟"
         },
         {
+          "slot": "i-want-this",
           "arabic": "بدي هاد",
-          "transliteration": "baddi haad",
-          "english": "I want this."
+          "transliteration": "baddi haad"
         },
         {
+          "slot": "lower-it-a-little-to-a-man-when-bargaining",
           "arabic": "خفف شوي",
-          "transliteration": "khaffef shway",
-          "english": "Lower it a little. (to a man, when bargaining)"
+          "transliteration": "khaffef shway"
         },
         {
+          "slot": "final-price",
           "arabic": "آخر سعر",
-          "transliteration": "aakhir se3r",
-          "english": "Final price."
+          "transliteration": "aakhir se3r"
         },
         {
+          "slot": "okay-deal",
           "arabic": "ماشي",
-          "transliteration": "maashi",
-          "english": "Okay / Deal."
+          "transliteration": "maashi"
         },
         {
+          "slot": "do-you-have-a-smaller-one-to-a-man",
           "arabic": "عندك أصغر؟",
-          "transliteration": "3andak asghar؟",
-          "english": "Do you have a smaller one? (to a man)"
+          "transliteration": "3andak asghar؟"
         },
         {
+          "slot": "do-you-have-another-color-to-a-man",
           "arabic": "عندك لون تاني؟",
-          "transliteration": "3andak loon taani؟",
-          "english": "Do you have another color? (to a man)"
+          "transliteration": "3andak loon taani؟"
         },
         {
+          "slot": "this-one-is-nicer",
           "arabic": "هاد أحلى",
-          "transliteration": "haad a7la",
-          "english": "This one is nicer."
+          "transliteration": "haad a7la"
         },
         {
+          "slot": "blue",
           "arabic": "أزرق",
-          "transliteration": "azra2",
-          "english": "Blue.",
-          "search_term": "blue fabric"
+          "transliteration": "azra2"
         },
         {
+          "slot": "red",
           "arabic": "أحمر",
-          "transliteration": "a7mar",
-          "english": "Red.",
-          "search_term": "red fabric",
-          "image": "damascene/unit-17/l01-p14-red-fabric.jpg"
+          "transliteration": "a7mar"
         }
       ],
       "dialogue": [
@@ -433,79 +426,71 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "Getting Around",
       "phrases": [
         {
+          "slot": "taxi",
           "arabic": "تكسي",
-          "transliteration": "taksi",
-          "english": "Taxi.",
-          "search_term": "yellow taxi car",
-          "image": "damascene/unit-17/l02-p01-yellow-taxi-car.jpg"
+          "transliteration": "taksi"
         },
         {
+          "slot": "bus",
           "arabic": "باص",
-          "transliteration": "baas",
-          "english": "Bus.",
-          "search_term": "city bus",
-          "image": "damascene/unit-17/l02-p02-city-bus.jpg"
+          "transliteration": "baas"
         },
         {
+          "slot": "i-want-to-go-to-the-old-city",
           "arabic": "بدي روح عالشام القديمة",
-          "transliteration": "baddi roo7 3ash-Shaam il2adiime",
-          "english": "I want to go to the Old City.",
-          "search_term": "old city street"
+          "transliteration": "baddi roo7 3ash-Shaam il2adiime"
         },
         {
+          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
           "arabic": "وقف هون لو سمحت",
-          "transliteration": "wa22ef hoon law sama7t",
-          "english": "Stop here, please. (to a man, such as a taxi driver)"
+          "transliteration": "wa22ef hoon law sama7t"
         },
         {
+          "slot": "how-much-is-the-fare",
           "arabic": "قديش الأجرة؟",
-          "transliteration": "addeesh il2ujra؟",
-          "english": "How much is the fare?"
+          "transliteration": "addeesh il2ujra؟"
         },
         {
+          "slot": "take-me-to-to-a-man",
           "arabic": "خدني عـ...",
-          "transliteration": "khodni 3a...",
-          "english": "Take me to... (to a man)"
+          "transliteration": "khodni 3a..."
         },
         {
+          "slot": "are-you-free-asking-a-taxi-driver-if-available",
           "arabic": "فاضي؟",
-          "transliteration": "faadi؟",
-          "english": "Are you free? (asking a taxi driver if available)",
-          "search_term": "taxi driver waiting"
+          "transliteration": "faadi؟"
         },
         {
+          "slot": "busy-occupied",
           "arabic": "مشغول",
-          "transliteration": "mashghuul",
-          "english": "Busy / Occupied."
+          "transliteration": "mashghuul"
         },
         {
+          "slot": "how-long-does-the-way-take",
           "arabic": "قديش بياخد الطريق؟",
-          "transliteration": "addeesh byaakhod it-tariiq؟",
-          "english": "How long does the way take?"
+          "transliteration": "addeesh byaakhod it-tariiq؟"
         },
         {
+          "slot": "will-you-drop-me-at-to-a-man",
           "arabic": "رح توصلني عـ...؟",
-          "transliteration": "ra7 twassilni 3a...؟",
-          "english": "Will you drop me at...? (to a man)"
+          "transliteration": "ra7 twassilni 3a...؟"
         },
         {
+          "slot": "at-your-service-a-common-polite-reply-from-a-tax",
           "arabic": "تحت الأمر",
-          "transliteration": "ta7t il2amr",
-          "english": "At your service. (a common polite reply from a taxi driver)"
+          "transliteration": "ta7t il2amr"
         },
         {
+          "slot": "what-time-does-the-bus-come-tomorrow",
           "arabic": "بكرا الباص بيجي الساعة كم؟",
-          "transliteration": "bukra il-baas byiiji is-saa3a kam؟",
-          "english": "What time does the bus come tomorrow?",
-          "search_term": "bus stop"
+          "transliteration": "bukra il-baas byiiji is-saa3a kam؟"
         },
         {
+          "slot": "station",
           "arabic": "محطة",
-          "transliteration": "ma7atta",
-          "english": "Station."
+          "transliteration": "ma7atta"
         }
       ],
       "dialogue": [

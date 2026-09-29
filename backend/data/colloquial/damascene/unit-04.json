@@ -1,6 +1,5 @@
 {
   "unit": "unit-04",
-  "title": "Café and Restaurant",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,13 +19,11 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "Ordering Coffee and Tea",
       "phrases": [
         {
+          "slot": "what-would-you-like-to-drink-to-a-man",
           "arabic": "شو بتحب تشرب؟",
           "transliteration": "shoo bte7ebb teshrab?",
-          "english": "What would you like to drink? (to a man)",
-          "search_term": "waiter asking customer at a cafe",
           "reply": {
             "arabic": "قهوة، لو سمحت",
             "transliteration": "2ahwe, law sama7t",
@@ -34,58 +31,49 @@
           }
         },
         {
+          "slot": "what-would-you-like-to-drink-to-a-woman",
           "arabic": "شو بتحبي تشربي؟",
-          "transliteration": "shoo bte7ebbi teshrabi?",
-          "english": "What would you like to drink? (to a woman)"
+          "transliteration": "shoo bte7ebbi teshrabi?"
         },
         {
+          "slot": "coffee-please",
           "arabic": "قهوة، لو سمحت",
-          "transliteration": "2ahwe, law sama7t",
-          "english": "Coffee, please.",
-          "search_term": "cup of arabic coffee"
+          "transliteration": "2ahwe, law sama7t"
         },
         {
+          "slot": "tea-please",
           "arabic": "شاي، لو سمحت",
-          "transliteration": "shay, law sama7t",
-          "english": "Tea, please.",
-          "search_term": "glass of tea"
+          "transliteration": "shay, law sama7t"
         },
         {
+          "slot": "medium-sweet-coffee",
           "arabic": "قهوة مظبوطة",
-          "transliteration": "2ahwe mazbuu6a",
-          "english": "Medium-sweet coffee.",
-          "search_term": "small coffee cup"
+          "transliteration": "2ahwe mazbuu6a"
         },
         {
+          "slot": "coffee-with-no-sugar",
           "arabic": "قهوة سادة",
-          "transliteration": "2ahwe saada",
-          "english": "Coffee with no sugar.",
-          "search_term": "black coffee cup"
+          "transliteration": "2ahwe saada"
         },
         {
+          "slot": "sweet-coffee",
           "arabic": "قهوة حلوة",
-          "transliteration": "2ahwe 7elwe",
-          "english": "Sweet coffee.",
-          "search_term": "sweet coffee cup"
+          "transliteration": "2ahwe 7elwe"
         },
         {
+          "slot": "a-big-cup-of-coffee",
           "arabic": "فنجان قهوة كبير",
-          "transliteration": "finjaan 2ahwe kbiir",
-          "english": "A big cup of coffee.",
-          "search_term": "large coffee cup"
+          "transliteration": "finjaan 2ahwe kbiir"
         },
         {
+          "slot": "i-want-mint-tea",
           "arabic": "بدي شاي بالنعناع",
-          "transliteration": "biddi shay bl na3naa3",
-          "english": "I want mint tea.",
-          "search_term": "mint tea glass",
-          "image": "damascene/unit-04/l01-p09-mint-tea-glass.jpg"
+          "transliteration": "biddi shay bl na3naa3"
         },
         {
+          "slot": "is-there-sugar",
           "arabic": "في سكر؟",
           "transliteration": "fii sukkar?",
-          "english": "Is there sugar?",
-          "search_term": "sugar bowl on table",
           "reply": {
             "arabic": "أكيد، هلق بجيبلك",
             "transliteration": "akiid, halla2 bjiiblak",
@@ -93,16 +81,14 @@
           }
         },
         {
+          "slot": "i-like-my-coffee-bitter",
           "arabic": "بحب القهوة مرة",
-          "transliteration": "ba7ebb l2ahwe murra",
-          "english": "I like my coffee bitter.",
-          "search_term": "strong black coffee"
+          "transliteration": "ba7ebb l2ahwe murra"
         },
         {
+          "slot": "no-sugar-at-all",
           "arabic": "بلا سكر خالص",
-          "transliteration": "bala sukkar khaales",
-          "english": "No sugar at all.",
-          "search_term": "unsweetened drink"
+          "transliteration": "bala sukkar khaales"
         }
       ],
       "dialogue": [
@@ -410,25 +396,21 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "Reading the Menu",
       "phrases": [
         {
+          "slot": "where-s-the-menu",
           "arabic": "وين المنيو؟",
-          "transliteration": "ween l menu?",
-          "english": "Where's the menu?",
-          "search_term": "restaurant menu on table"
+          "transliteration": "ween l menu?"
         },
         {
+          "slot": "do-you-have-an-english-menu",
           "arabic": "عندكن منيو بالإنكليزي؟",
-          "transliteration": "3andkon menu bl ingliizi?",
-          "english": "Do you have an English menu?",
-          "search_term": "menu with two languages"
+          "transliteration": "3andkon menu bl ingliizi?"
         },
         {
+          "slot": "what-do-you-have-today",
           "arabic": "شو في عندكن اليوم؟",
           "transliteration": "shoo fii 3andkon lyoom?",
-          "english": "What do you have today?",
-          "search_term": "waiter presenting daily specials",
           "reply": {
             "arabic": "عنا فتوش وحمص ومشاوي",
             "transliteration": "3anna fattuush w 7ommus w mashaawi",
@@ -436,34 +418,29 @@
           }
         },
         {
+          "slot": "what-appetizers-do-you-have",
           "arabic": "شو المقبلات عندكن؟",
-          "transliteration": "shoo l muqabbilaat 3andkon?",
-          "english": "What appetizers do you have?",
-          "search_term": "mezze plates on table"
+          "transliteration": "shoo l muqabbilaat 3andkon?"
         },
         {
+          "slot": "is-there-vegetarian-food",
           "arabic": "في أكل نباتي؟",
-          "transliteration": "fii akel nabaati?",
-          "english": "Is there vegetarian food?",
-          "search_term": "vegetable dish plate"
+          "transliteration": "fii akel nabaati?"
         },
         {
+          "slot": "what-s-in-this-dish",
           "arabic": "هاد الطبق شو فيه؟",
-          "transliteration": "haad l6abaq shoo fii?",
-          "english": "What's in this dish?",
-          "search_term": "close-up of a served dish"
+          "transliteration": "haad l6abaq shoo fii?"
         },
         {
+          "slot": "is-it-spicy-or-not-spicy",
           "arabic": "حاد ولا مش حاد؟",
-          "transliteration": "7aad walla mish 7aad?",
-          "english": "Is it spicy or not spicy?",
-          "search_term": "chili pepper dish"
+          "transliteration": "7aad walla mish 7aad?"
         },
         {
+          "slot": "what-do-you-recommend-i-get",
           "arabic": "شو بتنصحني آخد؟",
           "transliteration": "shoo btinsa7ni aakhod?",
-          "english": "What do you recommend I get?",
-          "search_term": "waiter recommending a dish to customer",
           "reply": {
             "arabic": "جرب المنسف، كتير طيب",
             "transliteration": "jarreb l mansaf, ktiir 6ayyeb",
@@ -471,28 +448,24 @@
           }
         },
         {
+          "slot": "how-much-does-this-cost",
           "arabic": "قديش سعر هاد؟",
-          "transliteration": "addeesh sa3er haad?",
-          "english": "How much does this cost?",
-          "search_term": "menu price tag"
+          "transliteration": "addeesh sa3er haad?"
         },
         {
+          "slot": "is-there-a-dish-of-the-day",
           "arabic": "في طبق اليوم؟",
-          "transliteration": "fii 6abaq lyoom?",
-          "english": "Is there a dish of the day?",
-          "search_term": "specials board at restaurant"
+          "transliteration": "fii 6abaq lyoom?"
         },
         {
+          "slot": "i-want-something-light",
           "arabic": "بدي شي خفيف",
-          "transliteration": "biddi shi khafiif",
-          "english": "I want something light.",
-          "search_term": "small light salad plate"
+          "transliteration": "biddi shi khafiif"
         },
         {
+          "slot": "do-you-have-desserts",
           "arabic": "عندكن حلويات؟",
-          "transliteration": "3andkon 7alawiyyaat?",
-          "english": "Do you have desserts?",
-          "search_term": "dessert display case"
+          "transliteration": "3andkon 7alawiyyaat?"
         }
       ],
       "dialogue": [
@@ -791,13 +764,11 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "Ordering a Meal",
       "phrases": [
         {
+          "slot": "are-you-ready-to-order",
           "arabic": "جاهزين تطلبوا؟",
           "transliteration": "jaahziin ti6lubu?",
-          "english": "Are you ready to order?",
-          "search_term": "waiter with notepad at table",
           "reply": {
             "arabic": "إي، جاهزين",
             "transliteration": "ii, jaahziin",
@@ -805,71 +776,59 @@
           }
         },
         {
+          "slot": "i-ll-have-a-plate-of-hummus-and-fattoush",
           "arabic": "بدي آخد طبق حمص وفتوش",
-          "transliteration": "biddi aakhod 6abaq 7ommus w fattuush",
-          "english": "I'll have a plate of hummus and fattoush.",
-          "search_term": "hummus and fattoush plates"
+          "transliteration": "biddi aakhod 6abaq 7ommus w fattuush"
         },
         {
+          "slot": "i-want-this-and-this",
           "arabic": "بدي هاد وهاد",
-          "transliteration": "biddi haad w haad",
-          "english": "I want this and this.",
-          "search_term": "pointing at menu items"
+          "transliteration": "biddi haad w haad"
         },
         {
+          "slot": "please-make-it-quick",
           "arabic": "منشان يكون سريع لو سمحت",
-          "transliteration": "mnshaan ykuun sarii3 law sama7t",
-          "english": "Please make it quick.",
-          "search_term": "customer checking watch at restaurant"
+          "transliteration": "mnshaan ykuun sarii3 law sama7t"
         },
         {
+          "slot": "without-onion-please",
           "arabic": "بدون بصل لو سمحت",
-          "transliteration": "bidoon basal law sama7t",
-          "english": "Without onion, please.",
-          "search_term": "dish without onions"
+          "transliteration": "bidoon basal law sama7t"
         },
         {
+          "slot": "extra-bread-please",
           "arabic": "زيادة خبز، لو سمحت",
-          "transliteration": "ziyaade khobez, law sama7t",
-          "english": "Extra bread, please.",
-          "search_term": "basket of arabic bread"
+          "transliteration": "ziyaade khobez, law sama7t"
         },
         {
+          "slot": "this-dish-is-for-me-and-this-is-for-her",
           "arabic": "هاد الطبق لإلي وهاد إلها",
-          "transliteration": "haad l6abaq ili w haad ilha",
-          "english": "This dish is for me and this is for her.",
-          "search_term": "two plates served at table"
+          "transliteration": "haad l6abaq ili w haad ilha"
         },
         {
+          "slot": "can-i-have-a-glass-of-water",
           "arabic": "ممكن كاسة مي؟",
-          "transliteration": "mumken kaase mayy?",
-          "english": "Can I have a glass of water?",
-          "search_term": "glass of water on table",
-          "image": "damascene/unit-04/l03-p08-glass-of-water-on-table.jpg"
+          "transliteration": "mumken kaase mayy?"
         },
         {
+          "slot": "thanks-that-s-good-enough",
           "arabic": "شكرا، هيك منيح",
-          "transliteration": "shukran, heek mnii7",
-          "english": "Thanks, that's good (enough).",
-          "search_term": "satisfied customer at restaurant"
+          "transliteration": "shukran, heek mnii7"
         },
         {
+          "slot": "my-order-hasn-t-arrived-yet",
           "arabic": "لسا ما وصل طلبي",
-          "transliteration": "lissa ma wasal 6albi",
-          "english": "My order hasn't arrived yet.",
-          "search_term": "empty table waiting for food"
+          "transliteration": "lissa ma wasal 6albi"
         },
         {
+          "slot": "can-you-repeat-the-order",
           "arabic": "ممكن تعيد الطلب؟",
-          "transliteration": "mumken t3iid l6alab?",
-          "english": "Can you repeat the order?",
-          "search_term": "waiter confirming order"
+          "transliteration": "mumken t3iid l6alab?"
         },
         {
+          "slot": "we-want-the-same-order",
           "arabic": "بدنا نفس الطلب",
-          "transliteration": "biddna nafs l6alab",
-          "english": "We want the same order.",
-          "search_term": "two identical meals"
+          "transliteration": "biddna nafs l6alab"
         }
       ],
       "dialogue": [
@@ -1169,19 +1128,16 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Paying the Bill",
       "phrases": [
         {
+          "slot": "the-bill-please",
           "arabic": "الحساب، لو سمحت",
-          "transliteration": "l7saab, law sama7t",
-          "english": "The bill, please.",
-          "search_term": "restaurant bill on table"
+          "transliteration": "l7saab, law sama7t"
         },
         {
+          "slot": "how-much-is-the-bill",
           "arabic": "قديش الحساب؟",
           "transliteration": "addeesh l7saab?",
-          "english": "How much is the bill?",
-          "search_term": "waiter handing over receipt",
           "reply": {
             "arabic": "الحساب خمسة وعشرين ألف",
             "transliteration": "l7saab khamse w 3ishriin 2alf",
@@ -1189,64 +1145,54 @@
           }
         },
         {
+          "slot": "do-you-take-cash-or-card",
           "arabic": "بتاخدوا كاش ولا بطاقة؟",
-          "transliteration": "btaakhdu kaash walla be6aa2a?",
-          "english": "Do you take cash or card?",
-          "search_term": "card payment machine at restaurant"
+          "transliteration": "btaakhdu kaash walla be6aa2a?"
         },
         {
+          "slot": "i-m-paying-today",
           "arabic": "بدفع أنا اليوم",
-          "transliteration": "badfa3 ana lyoom",
-          "english": "I'm paying today.",
-          "search_term": "person handing money to waiter"
+          "transliteration": "badfa3 ana lyoom"
         },
         {
+          "slot": "no-i-m-paying",
           "arabic": "لأ، أنا بدفع",
-          "transliteration": "la2, ana badfa3",
-          "english": "No, I'm paying.",
-          "search_term": "two people arguing over bill"
+          "transliteration": "la2, ana badfa3"
         },
         {
+          "slot": "shall-we-split-the-bill",
           "arabic": "منقسم الحساب؟",
-          "transliteration": "mn2assem l7saab?",
-          "english": "Shall we split the bill?",
-          "search_term": "splitting a restaurant bill"
+          "transliteration": "mn2assem l7saab?"
         },
         {
+          "slot": "is-there-a-tip-included-in-the-bill",
           "arabic": "في بقشيش بالحساب؟",
-          "transliteration": "fii ba2shiish bl7saab?",
-          "english": "Is there a tip included in the bill?",
-          "search_term": "tip line on receipt"
+          "transliteration": "fii ba2shiish bl7saab?"
         },
         {
+          "slot": "keep-the-change",
           "arabic": "خليك بالباقي",
-          "transliteration": "khalliik bl baa2i",
-          "english": "Keep the change.",
-          "search_term": "leaving change on table"
+          "transliteration": "khalliik bl baa2i"
         },
         {
+          "slot": "thanks-lit-wellness-of-your-heart-it-was-a-tasty",
           "arabic": "سلامة قلبك، طبخة زاكية",
-          "transliteration": "salaamet 2albak, 6abkha zaakye",
-          "english": "Thanks (lit. wellness of your heart), it was a tasty meal.",
-          "search_term": "satisfied customer leaving restaurant"
+          "transliteration": "salaamet 2albak, 6abkha zaakye"
         },
         {
+          "slot": "can-i-have-the-receipt",
           "arabic": "ممكن الفاتورة؟",
-          "transliteration": "mumken l faatuura?",
-          "english": "Can I have the receipt?",
-          "search_term": "printed receipt in hand"
+          "transliteration": "mumken l faatuura?"
         },
         {
+          "slot": "is-there-a-discount-today",
           "arabic": "في خصم اليوم؟",
-          "transliteration": "fii khasem lyoom?",
-          "english": "Is there a discount today?",
-          "search_term": "discount sign at restaurant"
+          "transliteration": "fii khasem lyoom?"
         },
         {
+          "slot": "bless-your-hands-the-food-was-delicious",
           "arabic": "تسلم إيدك، الأكل كان زاكي",
-          "transliteration": "tislam iidak, l2akel kaan zaaki",
-          "english": "Bless your hands, the food was delicious.",
-          "search_term": "chef receiving compliment"
+          "transliteration": "tislam iidak, l2akel kaan zaaki"
         }
       ],
       "dialogue": [

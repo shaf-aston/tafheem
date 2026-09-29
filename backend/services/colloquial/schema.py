@@ -79,6 +79,8 @@ class UnitCard(BaseModel):
     """A unit as the list shows it, before it is opened."""
     unit: str
     title: str
+    # False while the dialect has not written this spine unit yet: shown as coming.
+    written: bool
     lessons: list[dict]
 
 

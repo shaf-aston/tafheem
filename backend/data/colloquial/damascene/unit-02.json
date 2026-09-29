@@ -1,6 +1,5 @@
 {
   "unit": "unit-02",
-  "title": "Family and a Meal",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,79 +19,76 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "Family",
       "phrases": [
         {
+          "slot": "family",
           "arabic": "عيلة",
-          "transliteration": "3eele",
-          "english": "Family.",
-          "search_term": "family photo together"
+          "transliteration": "3eele"
         },
         {
+          "slot": "my-mother",
           "arabic": "إمي",
-          "transliteration": "immi",
-          "english": "My mother."
+          "transliteration": "immi"
         },
         {
+          "slot": "my-father",
           "arabic": "أبوي",
-          "transliteration": "abuuy",
-          "english": "My father."
+          "transliteration": "abuuy"
         },
         {
+          "slot": "my-brother",
           "arabic": "أخي",
-          "transliteration": "akhi",
-          "english": "My brother."
+          "transliteration": "akhi"
         },
         {
+          "slot": "my-sister",
           "arabic": "أختي",
-          "transliteration": "ekhti",
-          "english": "My sister."
+          "transliteration": "ekhti"
         },
         {
+          "slot": "my-son",
           "arabic": "ابني",
-          "transliteration": "ibni",
-          "english": "My son."
+          "transliteration": "ibni"
         },
         {
+          "slot": "my-daughter",
           "arabic": "بنتي",
-          "transliteration": "binti",
-          "english": "My daughter."
+          "transliteration": "binti"
         },
         {
+          "slot": "my-husband",
           "arabic": "جوزي",
-          "transliteration": "jawzi",
-          "english": "My husband."
+          "transliteration": "jawzi"
         },
         {
+          "slot": "my-wife",
           "arabic": "مرتي",
-          "transliteration": "marti",
-          "english": "My wife."
+          "transliteration": "marti"
         },
         {
+          "slot": "how-many-people-are-in-your-family-to-a-man",
           "arabic": "كم واحد بعيلتك؟",
-          "transliteration": "kam wa7ad b3eeltak؟",
-          "english": "How many people are in your family? (to a man)",
-          "search_term": "family photo together"
+          "transliteration": "kam wa7ad b3eeltak؟"
         },
         {
+          "slot": "i-have-a-brother-and-two-sisters",
           "arabic": "عندي أخ وأختين",
-          "transliteration": "3andi akh w ekhten",
-          "english": "I have a brother and two sisters."
+          "transliteration": "3andi akh w ekhten"
         },
         {
+          "slot": "are-you-married-to-a-man",
           "arabic": "إنت متجوز؟",
-          "transliteration": "enta mjawwaz؟",
-          "english": "Are you married? (to a man)"
+          "transliteration": "enta mjawwaz؟"
         },
         {
+          "slot": "are-you-married-to-a-woman",
           "arabic": "إنتِ متجوزة؟",
-          "transliteration": "enti mjawwaze؟",
-          "english": "Are you married? (to a woman)"
+          "transliteration": "enti mjawwaze؟"
         },
         {
+          "slot": "i-m-still-single-male-speaker",
           "arabic": "لسا عزوبي",
-          "transliteration": "lissa 3azabi",
-          "english": "I'm still single. (male speaker)"
+          "transliteration": "lissa 3azabi"
         }
       ],
       "dialogue": [
@@ -428,75 +424,66 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "Food and Drinks",
       "phrases": [
         {
+          "slot": "hungry-male-speaker",
           "arabic": "جعان",
-          "transliteration": "je3aan",
-          "english": "Hungry. (male speaker)",
-          "search_term": "person eating hungrily"
+          "transliteration": "je3aan"
         },
         {
+          "slot": "hungry-female-speaker",
           "arabic": "جعانة",
-          "transliteration": "je3aane",
-          "english": "Hungry. (female speaker)"
+          "transliteration": "je3aane"
         },
         {
+          "slot": "thirsty-male-speaker",
           "arabic": "عطشان",
-          "transliteration": "3atshaan",
-          "english": "Thirsty. (male speaker)",
-          "search_term": "glass of water"
+          "transliteration": "3atshaan"
         },
         {
+          "slot": "i-want-to-eat",
           "arabic": "بدي آكل",
-          "transliteration": "baddi aakol",
-          "english": "I want to eat."
+          "transliteration": "baddi aakol"
         },
         {
+          "slot": "i-want-to-drink-water",
           "arabic": "بدي اشرب مي",
-          "transliteration": "baddi ishrab mayy",
-          "english": "I want to drink water."
+          "transliteration": "baddi ishrab mayy"
         },
         {
+          "slot": "what-do-you-like-to-eat",
           "arabic": "شو بتحب تاكل؟",
-          "transliteration": "shoo bti7ebb taakol؟",
-          "english": "What do you like to eat?"
+          "transliteration": "shoo bti7ebb taakol؟"
         },
         {
+          "slot": "i-like-falafel",
           "arabic": "بحب الفلافل",
-          "transliteration": "bi7ebb il-falaafel",
-          "english": "I like falafel.",
-          "search_term": "plate of falafel",
-          "image": "damascene/unit-02/l02-p07-plate-of-falafel.jpg"
+          "transliteration": "bi7ebb il-falaafel"
         },
         {
+          "slot": "coffee",
           "arabic": "قهوة",
-          "transliteration": "2ahwe",
-          "english": "Coffee.",
-          "search_term": "cup of arabic coffee"
+          "transliteration": "2ahwe"
         },
         {
+          "slot": "tea",
           "arabic": "شاي",
-          "transliteration": "shay",
-          "english": "Tea.",
-          "search_term": "cup of tea",
-          "image": "damascene/unit-02/l02-p09-cup-of-tea.jpg"
+          "transliteration": "shay"
         },
         {
+          "slot": "the-bill-please",
           "arabic": "الحساب لو سمحت",
-          "transliteration": "il7saab law sama7t",
-          "english": "The bill, please.",
-          "search_term": "restaurant bill"
+          "transliteration": "il7saab law sama7t"
         },
         {
+          "slot": "how-much-is-the-bill",
           "arabic": "قديش الحساب؟",
-          "transliteration": "addeesh il7saab؟",
-          "english": "How much is the bill?"
+          "transliteration": "addeesh il7saab؟"
         },
         {
+          "slot": "to-your-health-said-to-someone-after-they-finish",
           "arabic": "صحتين",
           "transliteration": "sa7teen",
-          "english": "To your health. (said to someone after they finish eating or drinking)",
           "reply": {
             "arabic": "على قلبك",
             "transliteration": "3ala albak",
@@ -504,9 +491,9 @@
           }
         },
         {
+          "slot": "enjoy-your-meal-said-to-someone-while-they-are-e",
           "arabic": "بالهنا والشفا",
           "transliteration": "bilhana wishshifa",
-          "english": "Enjoy your meal. (said to someone while they are eating)",
           "reply": {
             "arabic": "الله يهنيك",
             "transliteration": "alla yhanniik",
