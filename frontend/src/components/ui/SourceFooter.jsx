@@ -54,42 +54,32 @@ export default function SourceFooter({ tab, onSeeAll }) {
   }
 
   return (
-    // As many columns as the width allows, each at least this wide. No
-    // breakpoints to keep in step with anything: one narrow column on a phone,
-    // four or five across a laptop, and the same rule decides both.
-    //
-    // The word References and the see-all link are cells of that same grid
-    // rather than a row above it. They used to hold a line of their own with
-    // the width of the page empty between them, which is a lot of quiet for a
-    // credit; now they are the first and last things in one block that ends the
-    // page.
-    <ul className="grid gap-x-6 gap-y-1 [grid-template-columns:repeat(auto-fill,minmax(11rem,1fr))]">
-      <li className="min-w-0">
-        <h2 className="type-micro uppercase tracking-[0.14em] text-[var(--text-faint)] leading-relaxed">
-          References
-        </h2>
-      </li>
-
-      {used.map((source) => (
-        <li key={source.key} className="min-w-0">
-          <Source source={source} />
-        </li>
-      ))}
-
+    // The heading sits above one grid that holds only sources, as many
+    // columns as the width allows, so every name starts on the same line and
+    // no column begins with a label instead of a source. See-all ends it.
+    <div className="space-y-2">
+      <h2 className="type-micro uppercase tracking-[0.14em] text-[var(--text-faint)] leading-relaxed">
+        References
+      </h2>
+      <ul className="grid gap-x-6 gap-y-1 [grid-template-columns:repeat(auto-fill,minmax(11rem,1fr))]">
+        {used.map((source) => (
+          <li key={source.key} className="min-w-0">
+            <Source source={source} />
+          </li>
+        ))}
+      </ul>
       {onSeeAll && (
-        <li className="min-w-0">
-          <button
-            type="button"
-            onClick={onSeeAll}
-            className="type-small text-[var(--text-faint)] hover:text-[var(--text)]
-              underline underline-offset-2 decoration-[var(--border-hi)] transition-colors
-              leading-relaxed"
-          >
-            See all {sources.length}
-          </button>
-        </li>
+        <button
+          type="button"
+          onClick={onSeeAll}
+          className="type-small text-[var(--text-faint)] hover:text-[var(--text)]
+            underline underline-offset-2 decoration-[var(--border-hi)] transition-colors
+            leading-relaxed"
+        >
+          See all {sources.length}
+        </button>
       )}
-    </ul>
+    </div>
   )
 }
 

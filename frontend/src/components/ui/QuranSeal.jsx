@@ -2,14 +2,33 @@
  * The faint round seal behind the Quran tab: "القرآن الكريم" set inside a beaded ring,
  * as a mushaf cover is stamped. Decoration only, so screen readers skip it.
  * Its colour and strength are theme tokens (--backdrop-ink, --backdrop-strength),
- * so a light theme only has to change those two values.
+ * so a light theme only has to change those values. wide: a search has filled
+ * the page, so it moves to the middle and covers it.
  */
+import { useEffect, useRef } from 'react'
+
 /** A bead every 15 degrees round the ring, the ones on the eight main points larger. */
 const BEADS = Array.from({ length: 24 }, (_, i) => i * 15)
 
-export default function QuranSeal({ className = '' }) {
+export default function QuranSeal({ wide = false }) {
+  const seal = useRef(null)
+
+  // It lets clicks through, so :hover never fires; light it by where the pointer is.
+  useEffect(() => {
+    const move = (event) => {
+      const el = seal.current
+      if (!el) return
+      const r = el.getBoundingClientRect()
+      const dx = event.clientX - (r.left + r.width / 2)
+      const dy = event.clientY - (r.top + r.height / 2)
+      el.classList.toggle('quran-seal-lit', dx * dx + dy * dy < (r.width / 2) ** 2)
+    }
+    document.addEventListener('pointermove', move)
+    return () => document.removeEventListener('pointermove', move)
+  }, [])
+
   return (
-    <svg aria-hidden="true" viewBox="0 0 400 400" className={`quran-seal ${className}`.trim()}>
+    <svg ref={seal} aria-hidden="true" viewBox="0 0 400 400" className={`quran-seal ${wide ? 'quran-seal-wide' : ''}`.trim()}>
       <defs>
         <linearGradient id="quran-seal-sheen" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="currentColor" stopOpacity="1" />

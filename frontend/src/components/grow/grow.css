@@ -136,7 +136,7 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
 .grow-plate:first-child::before { top: 36px; }
 .grow-plate:last-child::before { bottom: 92px; }
 .grow-hd, .grow-row { padding-left: calc(var(--sx) - var(--cw) / 2); transition: padding-left calc(var(--motion-spring-ms) * 1ms) ease-in-out; }
-.grow-hd { position: relative; z-index: 1; display: flex; align-items: center; padding-right: 14px; margin-bottom: 2px; }
+.grow-hd { position: relative; z-index: var(--layer-raised); display: flex; align-items: center; padding-right: 14px; margin-bottom: 2px; }
 .grow-hn { width: var(--cw); flex: none; display: flex; justify-content: center; }
 .grow-n { background: var(--c); color: var(--bg); border-radius: 8px; padding: 1px 10px; font-weight: 800; font-size: var(--type-ui); box-shadow: 0 3px 0 var(--sh-m); }
 .grow-plate.grow-locked .grow-n { background: var(--border-hi); color: var(--text); box-shadow: 0 3px 0 var(--sh-l); }
@@ -145,8 +145,8 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
 .grow-h-ar { color: var(--text-faint); }
 .grow-tag { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 999px; padding: 2px 8px; border: 1px dashed var(--border-hi); color: var(--text-faint); white-space: nowrap; }
 
-.grow-row { position: relative; z-index: 1; display: flex; align-items: flex-start; scroll-margin-top: 130px; }
-.grow-cell { position: relative; z-index: 2; flex: none; width: var(--cw); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 0 14px; }
+.grow-row { position: relative; z-index: var(--layer-raised); display: flex; align-items: flex-start; scroll-margin-top: 130px; }
+.grow-cell { position: relative; z-index: calc(var(--layer-raised) + 1); flex: none; width: var(--cw); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 0 14px; }
 .grow-gl { background: var(--surface); border: 1px solid var(--border-hi); border-radius: 12px; padding: 3px 8px; font-size: var(--type-small); font-weight: 800; text-align: center; line-height: 1.25; max-width: var(--cw); color: var(--text); overflow-wrap: anywhere; }
 .grow-gl-ar { display: block; color: var(--text-dim); font-weight: 400; }
 .grow-row[data-now] .grow-gl { border-color: var(--c); color: var(--c); }
@@ -155,7 +155,7 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
    inside itself so a long one never widens the page. */
 .grow-lane {
   position: relative;
-  z-index: 1;
+  z-index: var(--layer-raised);
   flex: 1 1 0;
   min-width: 0;
   margin-left: calc(var(--cw) / -2);
@@ -197,7 +197,7 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
 .grow-bar i { display: block; height: 100%; background: var(--c); border-radius: 9px; transition: width calc(var(--motion-spring-ms) * 1ms) ease; }
 
 /* ── the practice card: grows out of the tapped circle and back ── */
-.grow-scrim { position: fixed; inset: 0; z-index: 40; background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(2px); animation: grow-fade calc(var(--motion-base-ms) * 1ms) ease both; }
+.grow-scrim { position: fixed; inset: 0; z-index: var(--layer-overlay); background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(2px); animation: grow-fade calc(var(--motion-base-ms) * 1ms) ease both; }
 .grow-scrim[data-closing] { animation-name: grow-fade-out; }
 @keyframes grow-fade { from { opacity: 0; } }
 @keyframes grow-fade-out { to { opacity: 0; } }
@@ -206,7 +206,7 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
   position: fixed;
   left: 50%;
   top: 50%;
-  z-index: 41;
+  z-index: calc(var(--layer-overlay) + 1);
   translate: -50% -50%;
   width: min(92vw, 480px);
   max-height: 88dvh;
@@ -245,7 +245,7 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
 /* The card's own circle: a leaf that swells while leaves fan out of it when a
    step becomes learnt. */
 .grow-stage { position: relative; width: 170px; height: 100px; margin: 4px auto 0; display: grid; place-items: center; }
-.grow-stage .grow-node { --n: 64px; z-index: 1; }
+.grow-stage .grow-node { --n: 64px; z-index: var(--layer-raised); }
 .grow-go .grow-node { animation: grow-swell calc(700ms * var(--motion-scale)) var(--motion-spring-ease); }
 @keyframes grow-swell { 40% { scale: 1.35; } }
 .grow-fan { position: absolute; inset: 0; pointer-events: none; }
@@ -259,7 +259,7 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
 }
 
 /* ── tier unlock: gate opens, dotted path draws, vine grows, groups appear ── */
-.grow-gate { position: absolute; left: 0; right: 0; top: -16px; height: 32px; z-index: 4; pointer-events: none; overflow: hidden; border-radius: 16px; }
+.grow-gate { position: absolute; left: 0; right: 0; top: -16px; height: 32px; z-index: calc(var(--layer-raised) + 3); pointer-events: none; overflow: hidden; border-radius: 16px; }
 .grow-door { position: absolute; top: 0; bottom: 0; width: 50.5%; background: linear-gradient(180deg, var(--border-hi), var(--surface-hi)); border: 1px solid var(--border-hi); transition: translate calc(var(--motion-spring-ms) * 1.6ms) ease-in-out; }
 .grow-door-l { left: 0; border-radius: 16px 0 0 16px; }
 .grow-door-r { right: 0; border-radius: 0 16px 16px 0; }

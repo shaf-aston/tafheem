@@ -43,7 +43,7 @@ export default function Sheet({ phrases, at, onAt, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+      className="fixed inset-0 z-[var(--layer-overlay)] flex items-end sm:items-center justify-center"
       style={{ background: 'color-mix(in srgb, var(--bg) 82%, transparent)' }}
       onMouseDown={(e) => e.target === e.currentTarget && onClose()}
     >

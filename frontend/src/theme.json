@@ -42,11 +42,22 @@
     "01": "#fbbf24", "02": "#fb923c", "03": "#4ade80", "04": "#38bdf8", "05": "#5eead4",
     "06": "#a78bfa", "07": "#fb7185", "08": "#f472b6", "09": "#93c5fd"
   },
+  "layer": {
+    "_comment": "The one stacking scale: every z-index in the app is one of these, never a bare number. Lowest first: raised lifts a piece over its neighbours, seal is the Quran backdrop, sticky is a bar that pins while scrolling, popover a floating panel opened from a button, header the app bar, overlay a full-screen sheet, tip a tooltip over everything.",
+    "raised": 1,
+    "seal": 5,
+    "sticky": 10,
+    "popover": 30,
+    "header": 40,
+    "overlay": 50,
+    "tip": 60
+  },
   "backdrop": {
-    "_comment": "The faint seal behind a tab (ui/QuranSeal). ink is its colour, strength how much of it shows; a light theme changes these two only.",
+    "_comment": "The faint seal behind a tab (ui/QuranSeal). ink is its colour, strength how much of it shows (wide: once a search fills the page); a light theme changes these two only.",
     "ink": "var(--text)",
     "strength": "9%",
     "strength-hover": "22%",
+    "strength-wide": "6%",
     "glow": "10px"
   },
   "tabstrip": {
