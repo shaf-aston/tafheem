@@ -11,6 +11,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 import { nodeState } from '../../lib/grow'
+import { byHand } from '../../lib/growKinds'
 import { sayIn } from '../../lib/say'
 import ArabicText from '../ui/ArabicText'
 import Practice from './Practice'
@@ -26,7 +27,7 @@ const CHIP = {
   locked: ['', say('Locked')],
 }
 
-export default function StepSheet({ step, from, state, tier, before, record, accent, onRecited, onGo, onClosed }) {
+export default function StepSheet({ step, from, state, figure, tier, before, record, accent, onRecited, onDone, onGo, onClosed }) {
   const box = useRef(null)
   const closeRef = useRef(null)
   const [closing, setClosing] = useState(false)
@@ -108,8 +109,8 @@ export default function StepSheet({ step, from, state, tier, before, record, acc
           <div className="grow-fan">
             {Array.from({ length: 8 }, (_, k) => <i key={k} style={{ '--a': k * 45, '--k': k }} />)}
           </div>
-          <div className="grow-node grow-leaf" data-s={shown}>
-            <span className="grow-in"><StateIcon state={shown} /></span>
+          <div className={`grow-node ${byHand(step) ? 'grow-act' : 'grow-leaf'}`} data-s={shown}>
+            <span className="grow-in"><StateIcon state={shown} figure={byHand(step) ? figure : null} /></span>
           </div>
         </div>
 
@@ -132,6 +133,7 @@ export default function StepSheet({ step, from, state, tier, before, record, acc
             record={record}
             accent={accent}
             onRecited={onRecited}
+            onDone={onDone}
             onGo={onGo}
             onBloom={() => setBloom((n) => n + 1)}
           />

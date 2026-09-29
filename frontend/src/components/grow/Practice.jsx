@@ -1,8 +1,9 @@
 /**
  * The inside of a step's card when the step is open: the words, the
- * microphone, the marks, the days and the scholar's words. How a word is
- * judged is lib/grow.js (judge), which ear checks a step gets is
- * lib/growKinds.js, and the record is the panel's.
+ * microphone, the marks, the days and the scholar's words; or, for a posture
+ * (growKinds byHand), the instruction and one Done. How a word is judged is
+ * lib/grow.js (judge), which ear checks a step gets is lib/growKinds.js, and
+ * the record is the panel's.
  */
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -10,8 +11,8 @@ import { useQuery } from '@tanstack/react-query'
 import { getQuranSurah } from '../../api'
 import config from '../../grow.json'
 import { CHECK, MISSED, WAITING, WRONG } from '../../lib/follow'
-import { becomesLearnt, daysOf, judge, pageOf, tally } from '../../lib/grow'
-import { checkStep } from '../../lib/growKinds'
+import { becomesLearnt, daysOf, isLearnt, judge, pageOf, tally } from '../../lib/grow'
+import { byHand, checkStep } from '../../lib/growKinds'
 import { isQuranic } from '../../lib/arabicText'
 import { LOOK } from '../../lib/reciteColors'
 import { sayIn } from '../../lib/say'
@@ -20,6 +21,7 @@ import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'
 import ErrorAlert from '../ui/ErrorAlert'
 import MicButton from '../ui/MicButton'
+import PrimaryButton from '../ui/PrimaryButton'
 
 const say = sayIn('en')
 const NEED = config['clean-days']
@@ -126,8 +128,24 @@ function Ruling({ ruling, onGo }) {
   )
 }
 
+/** A posture: what to do, and one Done from the reader, since the ear cannot hear it. */
+function Action({ step, record, accent, onGo, onDone, onBloom }) {
+  const learnt = isLearnt(record, step.id)
+  return (
+    <>
+      <p className="grow-meaning grow-how">{step.instruction}</p>
+      <div className="grow-prac">
+        {learnt
+          ? <p className="grow-verdict" data-ok="" role="status">{say('Done. This step is learnt.')}</p>
+          : <PrimaryButton accent={accent} onClick={() => { onBloom(); onDone() }}>{say('Done')}</PrimaryButton>}
+      </div>
+      {step.ruling && <Ruling ruling={step.ruling} onGo={onGo} />}
+    </>
+  )
+}
+
 /** The words, the microphone, the marks and the days, for a step that is open. */
-export default function Practice({ step, record, accent, onRecited, onGo, onBloom }) {
+function Recital({ step, record, accent, onRecited, onGo, onBloom }) {
   const level = useSetting('reciting-level')
   const ayahText = useAyahText(step)
   const page = useMemo(() => pageOf(step, ayahText.text), [step, ayahText.text])
@@ -184,4 +202,8 @@ export default function Practice({ step, record, accent, onRecited, onGo, onBloo
       {step.ruling && <Ruling ruling={step.ruling} onGo={onGo} />}
     </>
   )
+}
+
+export default function Practice(props) {
+  return byHand(props.step) ? <Action {...props} /> : <Recital {...props} />
 }

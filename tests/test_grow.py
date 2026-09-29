@@ -44,7 +44,10 @@ def test_every_path_loads_and_every_step_has_something_to_say():
         ids = [step["id"] for step in path["steps"]]
         assert len(ids) == len(set(ids)), path["id"]
         for step in path["steps"]:
-            assert bool(step["arabic"]) != bool(step["ayahs"]), step["id"]
+            if step["kind"] == "action":
+                assert step["instruction"] and not step["arabic"] and not step["ayahs"], step["id"]
+            else:
+                assert bool(step["arabic"]) != bool(step["ayahs"]), step["id"]
 
 
 def test_step_ids_are_unique_across_every_path():
@@ -66,6 +69,15 @@ def test_every_path_names_a_tier_and_every_step_sits_in_one_group():
         assert path.tier in tiers, path.id
         grouped = [step for group in path.groups for step in group.steps]
         assert sorted(grouped) == sorted(step.id for step in path.steps), path.id
+
+
+def test_every_posture_is_an_action_that_quotes_its_source():
+    """A posture cannot be heard, so it is tapped Done; and since it is a ruling
+    on how to pray, it carries al-Quduri's own sentence (held to the book above)."""
+    actions = [step for path in grow.paths() for step in path.steps if step.kind == "action"]
+    assert [step.id for step in actions] == ["stand-up", "fold-hands", "bow-down", "prostrate-down", "sit-down"]
+    for step in actions:
+        assert step.ruling and step.ruling.known_as == "al-Quduri", step.id
 
 
 def test_every_ruling_says_who_it_is_by():
@@ -90,7 +102,8 @@ def test_every_ayah_is_a_real_one():
             for key in step.ayahs:
                 surah, ayah = map(int, AYAH_KEY.fullmatch(key).groups())
                 assert 1 <= surah <= 114 and ayah >= 1, key
-    assert len(grow.paths()[0].steps[4].ayahs) <= get_settings().recitation_check_ayahs_max
+    fatiha = next(step for step in grow.paths()[0].steps if step.id == "fatiha")
+    assert len(fatiha.ayahs) <= get_settings().recitation_check_ayahs_max
 
 
 def test_every_phrase_is_one_ear_word_per_written_word():

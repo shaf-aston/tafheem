@@ -7,10 +7,12 @@
  * on the map is grow.json and paths.json, and pressing a step is handed up:
  * this file knows nothing of the microphone, the record or the network.
  *
- * Motion is all from the theme's motion tokens (grow.css), so the Animations
- * setting and prefers-reduced-motion switch it off with everything else. The
+ * The vine winds in soft S-curves, one per row, and a branch grows out as a
+ * curving twig per step, drawn on as its step pops in (grow.css). Motion is all
+ * from the theme's motion tokens, so the Animations setting and
+ * prefers-reduced-motion switch it off with everything else. The
  * one piece of motion decided here is the tier unlock, which is a sequence
- * (gate opens, dotted path draws, vine grows), so it is stepped in `beat`s.
+ * (gate opens, vine draws, groups appear), so it is stepped in `beat`s.
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -19,7 +21,9 @@ import { daysOf, groupsOf, nodeState, unlocked } from '../../lib/grow'
 import { scrollToEl } from '../../lib/scrollToEl'
 import { sayIn } from '../../lib/say'
 import ArabicText from '../ui/ArabicText'
+import { byHand } from '../../lib/growKinds'
 import Mascot from '../ui/Mascot'
+import MicMark from '../ui/MicMark'
 import { GroupIcon, Flower, StateIcon } from './icons'
 import './grow.css'
 
@@ -31,6 +35,9 @@ const WORDS = {
   locked: say('locked'),
 }
 const BEATS = config['unlock-ms']
+const { step: STEP, node: NODE, sway: SWAY, tail: TAIL } = config.branch
+// Rows and steps lean opposite ways in turn: -1 up, 1 down, 0 for the group's own circle.
+const lean = (i) => (i < 0 ? 0 : i % 2 ? 1 : -1)
 
 /** No motion wanted: the reader's own setting, or the Animations switch. Only the unlock sequence, which JS times, asks. */
 const still = () =>
@@ -54,30 +61,44 @@ function Ring({ fraction }) {
   )
 }
 
-function Item({ step, i, state, now, days, onOpen }) {
+/** The stretch of branch from the step before to this one, drawn on as it grows; the last runs a little past. */
+function Twig({ i, last }) {
+  const from = NODE / 2 + lean(i - 1) * SWAY
+  const to = NODE / 2 + lean(i) * SWAY
   return (
-    <div className="grow-item" style={{ '--i': i }}>
+    <svg className="grow-twig" width={STEP} height={NODE} viewBox={`0 0 ${STEP} ${NODE}`} aria-hidden="true">
+      <path d={`M0 ${from}C${STEP / 2} ${from} ${STEP / 2} ${to} ${STEP} ${to}${last ? `h${TAIL}` : ''}`} pathLength="1" />
+    </svg>
+  )
+}
+
+function Item({ step, i, last, state, now, days, figure, onOpen }) {
+  const act = byHand(step)
+  return (
+    <div className="grow-item" style={{ '--i': i, '--w': lean(i) }}>
+      <Twig i={i} last={last} />
       <div className="grow-nw">
         <button
           type="button"
-          className={`grow-node grow-leaf${i % 2 ? ' grow-alt' : ''}${now ? ' grow-pulse' : ''}`}
+          className={`grow-node ${act ? 'grow-act' : `grow-leaf${i % 2 ? ' grow-alt' : ''}`}${now ? ' grow-pulse' : ''}`}
           data-s={state}
           data-now={now ? '' : undefined}
           aria-label={`${step.title}, ${WORDS[state]}`}
           onClick={(event) => onOpen(step, event.currentTarget, state)}
         >
-          <span className="grow-in"><StateIcon state={state} /></span>
+          <span className="grow-in"><StateIcon state={state} figure={act ? figure : null} /></span>
+          {!act && state !== 'learnt' && <MicMark size={12} className="grow-say" />}
         </button>
       </div>
       <span className="grow-lbl">
         {step.title}
-        {now && <><br />{days}</>}
+        {now && !act && <><br />{days}</>}
       </span>
     </div>
   )
 }
 
-function Row({ group, open, isOpen, record, next, mood, onToggle, onStep }) {
+function Row({ group, index, open, isOpen, record, next, mood, onToggle, onStep }) {
   const steps = group.steps
   const state = nodeState(steps, record, open)
   const learnt = steps.filter((step) => nodeState([step], record, open) === 'learnt').length
@@ -85,6 +106,9 @@ function Row({ group, open, isOpen, record, next, mood, onToggle, onStep }) {
 
   return (
     <div className={`grow-row${isOpen ? ' grow-row-open' : ''}`} data-now={now ? '' : undefined}>
+      <svg className="grow-stem" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d={index % 2 ? 'M50 0V48C10 54 10 76 50 84V100' : 'M50 0V48C90 54 90 76 50 84V100'} pathLength="1" />
+      </svg>
       <div className="grow-cell">
         <div className="grow-nw">
           <button
@@ -98,7 +122,7 @@ function Row({ group, open, isOpen, record, next, mood, onToggle, onStep }) {
             onClick={(event) => onToggle(group.id, event.currentTarget)}
           >
             {state !== 'locked' && <Ring fraction={learnt / steps.length} />}
-            <span className="grow-in">{state === 'learnt' ? <Flower sway /> : <GroupIcon name={group.icon} />}</span>
+            <span className="grow-in">{state === 'learnt' ? <Flower /> : <GroupIcon name={group.icon} />}</span>
             <span className="grow-cnt" aria-hidden="true">{learnt}/{steps.length}</span>
           </button>
           {now && <Mascot place="map" mood={mood} className="grow-qalam" />}
@@ -108,16 +132,21 @@ function Row({ group, open, isOpen, record, next, mood, onToggle, onStep }) {
           {group.arabic && <ArabicText size="sm" className="grow-gl-ar">{group.arabic}</ArabicText>}
         </span>
       </div>
-      <div className="grow-lane" id={`grow-ln-${group.id}`} role="group" aria-label={`${group.title}, ${say('steps')}`}>
+      <div
+        className="grow-lane"
+        id={`grow-ln-${group.id}`}
+        role="group"
+        aria-label={`${group.title}, ${say('steps')}`}
+        style={{ '--iw': `${STEP}px`, '--n': `${NODE}px`, '--sway': SWAY }}
+      >
         <div className="grow-lane-in">
-          <svg className="grow-branch" aria-hidden="true">
-            <line x1="0" y1="48" x2="100%" y2="48" pathLength="1" />
-          </svg>
           {steps.map((step, i) => (
             <Item
               key={step.id}
               step={step}
               i={i}
+              last={i === steps.length - 1}
+              figure={group.icon}
               state={nodeState([step], record, open)}
               now={step === next}
               days={say('{done} of {need} days', { done: daysOf(record, step.id), need: config['clean-days'] })}
@@ -132,9 +161,8 @@ function Row({ group, open, isOpen, record, next, mood, onToggle, onStep }) {
 
 /**
  * One tier. A tier that has just opened plays its unlock: `beat` counts the
- * stages, 1 the shut gate, 2 the gate opening, 3 the dotted path drawing, 4 the
- * vine growing and the groups appearing, then it hands the first group up to
- * be opened. Between beats it still looks locked, so nothing shows early.
+ * stages, 1 the shut gate, 2 the gate opening, 3 the vine drawing, 4 the
+ * groups appearing, then it hands the first group up to be opened. Between beats it still looks locked, so nothing shows early.
  */
 function Plate({ tier, i, open, openId, record, next, mood, onToggle, onStep, onGrown }) {
   const groups = groupsOf(tier)
@@ -179,6 +207,7 @@ function Plate({ tier, i, open, openId, record, next, mood, onToggle, onStep, on
         </div>
       )}
       <div className="grow-hd">
+        <span className="grow-stub" />
         <div className="grow-hn"><span className="grow-n">{i + 1}</span></div>
         <div className="grow-ht">
           <h2 id={`grow-h-${tier.id}`}>
@@ -188,10 +217,11 @@ function Plate({ tier, i, open, openId, record, next, mood, onToggle, onStep, on
           {locked && <span className="grow-tag">{tier.paths.length ? say('Locked') : say('Proposed, locked')}</span>}
         </div>
       </div>
-      {groups.map((group) => (
+      {groups.map((group, index) => (
         <Row
           key={group.id}
           group={group}
+          index={index}
           open={open}
           isOpen={openId === group.id}
           record={record}
