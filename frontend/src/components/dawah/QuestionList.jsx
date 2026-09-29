@@ -1,5 +1,5 @@
 // The questions beside the answer; a search spanning topics names each one's topic.
-export default function QuestionList({ rows, current, accent, onPick }) {
+export default function QuestionList({ rows, current, onPick }) {
   return (
     <ol className="space-y-1">
       {rows.map(({ topic, question }, i) => {
@@ -10,7 +10,7 @@ export default function QuestionList({ rows, current, accent, onPick }) {
               type="button"
               onClick={() => onPick(question.id)}
               aria-current={on ? 'true' : undefined}
-              style={on ? { borderColor: accent, color: 'var(--text)' } : undefined}
+              style={on ? { borderColor: 'var(--c)', color: 'var(--text)' } : undefined}
               className="press w-full text-left rounded-[var(--radius-sm)] border-s-2 border-transparent
                 px-3 py-2 text-sm text-[var(--text-dim)] hover:text-[var(--text)] hover:bg-[var(--surface-hi)]
                 transition-colors"

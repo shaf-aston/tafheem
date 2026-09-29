@@ -41,8 +41,8 @@ export default function Answer({ topic, question, library, accent, onGo, step, m
           </Chip>
         ) : <span />}
         <div className="flex gap-2">
-          {step.prev && <GoButton style={{ '--c': accent }} onClick={step.prev}>{copy.previous}</GoButton>}
-          {step.next && <GoButton style={{ '--c': accent }} onClick={step.next}>{copy['next-question']}</GoButton>}
+          {step.prev && <GoButton onClick={step.prev}>{copy.previous}</GoButton>}
+          {step.next && <GoButton onClick={step.next}>{copy['next-question']}</GoButton>}
         </div>
       </div>
 
