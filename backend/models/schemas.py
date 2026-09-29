@@ -936,10 +936,14 @@ class GrowRuling(BaseModel):
 
 
 class GrowStep(BaseModel):
-    """One thing to learn to say. Either `arabic`, a phrase shown and checked
-    as written, or `ayahs`, as "1:2", checked the way the Qur'an tab checks."""
+    """One thing to learn. To say: either `arabic`, a phrase shown and checked
+    as written, or `ayahs`, as "1:2", checked the way the Qur'an tab checks. Or,
+    with `kind` "action", a posture to take: `instruction` is shown and the
+    reader taps Done, since the ear cannot hear it."""
     id: str
     title: str
+    kind: Literal["action"] | None = None
+    instruction: str = ""
     arabic: str = ""
     ayahs: list[str] = []
     meaning: str = ""

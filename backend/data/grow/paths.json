@@ -13,7 +13,9 @@
           "arabic": "القيام",
           "icon": "stand",
           "steps": [
+            "stand-up",
             "takbir",
+            "fold-hands",
             "thana",
             "taawwudh",
             "basmala",
@@ -27,6 +29,7 @@
           "arabic": "الركوع",
           "icon": "bow",
           "steps": [
+            "bow-down",
             "ruku",
             "rising"
           ]
@@ -37,6 +40,7 @@
           "arabic": "السجود",
           "icon": "prostrate",
           "steps": [
+            "prostrate-down",
             "sujud"
           ]
         },
@@ -46,6 +50,7 @@
           "arabic": "القعود",
           "icon": "sit",
           "steps": [
+            "sit-down",
             "tashahhud",
             "salawat",
             "taslim"
@@ -53,6 +58,20 @@
         }
       ],
       "steps": [
+        {
+          "id": "stand-up",
+          "title": "How to stand",
+          "kind": "action",
+          "instruction": "Stand upright to pray. Al-Quduri counts standing among the six obligations of the prayer; he says no more about how to stand.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "فرائض الصلاة ستة: التحريمة والقيام والقرءة والركوع والسجود والقعدة الأخيرة مقدار التشهد",
+            "english": "The obligations of the prayer are six: the opening takbir, standing, reciting, ruku', sujud, and the last sitting for the length of the tashahhud."
+          }
+        },
         {
           "id": "takbir",
           "title": "Opening takbir",
@@ -65,6 +84,20 @@
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "فإذا دخل الرجل في الصلاة كبر ورفع يديه مع التكبير حتى يحاذى بإبهاميه شحمتي أذنيه",
             "english": "When he enters the prayer he says the takbir and raises his hands with it, until his thumbs are level with his earlobes."
+          }
+        },
+        {
+          "id": "fold-hands",
+          "title": "Fold the hands",
+          "kind": "action",
+          "instruction": "Rest your right hand on your left and place them under your navel.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ويعتمد بيده اليمنى على اليسرى ويضعهما تحت سرته",
+            "english": "He rests his right hand on his left and places them under his navel."
           }
         },
         {
@@ -145,6 +178,20 @@
           }
         },
         {
+          "id": "bow-down",
+          "title": "How to bow",
+          "kind": "action",
+          "instruction": "Bow with your hands on your knees and your fingers spread. Keep your back flat, your head neither raised nor lowered.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ثم يكبر ويركع ويعتمد بيديه على ركبتيه ويفرج أصابعه ويبسط ظهره ولا يرفع رأسه ولا ينكسه",
+            "english": "Then he says the takbir and bows, resting his hands on his knees, spreading his fingers, and flattening his back; he neither raises his head nor lowers it."
+          }
+        },
+        {
           "id": "ruku",
           "title": "In ruku'",
           "arabic": "سُبْحَانَ رَبِّيَ الْعَظِيمِ",
@@ -165,6 +212,20 @@
           "meaning": "Allah hears the one who praises Him. Our Lord, to You is the praise."
         },
         {
+          "id": "prostrate-down",
+          "title": "How to prostrate",
+          "kind": "action",
+          "instruction": "Rest your hands on the ground, put your face between your palms, and prostrate on your nose and forehead.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "واعتمد بيديه على الأرض ووضع وجهه بين كفيه وسجد على أنفه وجبهته",
+            "english": "He rests his hands on the ground, puts his face between his palms, and prostrates on his nose and forehead."
+          }
+        },
+        {
           "id": "sujud",
           "title": "In sujud",
           "arabic": "سُبْحَانَ رَبِّيَ الْأَعْلَى",
@@ -176,6 +237,20 @@
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "ويقول في سجوده: سبحان ربي الأعلى ثلاثا وذلك أدناه",
             "english": "In his sujud he says “Subhana Rabbiya al-A'la” three times, and that is the least of it."
+          }
+        },
+        {
+          "id": "sit-down",
+          "title": "How to sit",
+          "kind": "action",
+          "instruction": "Lay your left foot down and sit on it, set your right foot upright with its toes towards the qibla, and rest your hands on your thighs with the fingers spread.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "افترش رجله اليسرى فجلس عليها ونصب اليمنى نصبا ووجه أصابعه نحو القبله ووضع يديه على فخذيه وبسط أصابعة",
+            "english": "He lays his left foot down and sits on it, sets the right one upright, points his toes towards the qibla, rests his hands on his thighs and spreads his fingers."
           }
         },
         {

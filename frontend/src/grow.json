@@ -32,6 +32,9 @@
     }
   ],
 
+  "_branch": "The shape of a branch of steps, in pixels. step: the width each step takes along the branch. node: how tall a step's circle is. sway: how far each step sits above or below the branch line, alternating, which is what makes it wind. tail: how far the branch runs on past its last step.",
+  "branch": { "step": 88, "node": 56, "sway": 8, "tail": 22 },
+
   "_daleel-words": "How many opening words of a ruling are handed to Daleel by its Open in Daleel link.",
   "daleel-words": 8,
 

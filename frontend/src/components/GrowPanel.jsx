@@ -24,7 +24,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getGrowPaths } from '../api'
 import config from '../grow.json'
-import { afterRecitation, currentGroup, reactionTo, score, tiersOf, upNext } from '../lib/grow'
+import { afterDone, afterRecitation, currentGroup, reactionTo, score, tiersOf, upNext } from '../lib/grow'
 import { moodFrom } from '../lib/mood'
 import { recordAttempt } from '../lib/progress'
 import { sayIn } from '../lib/say'
@@ -90,6 +90,15 @@ export default function GrowPanel({ accent, onGo }) {
     recordAttempt({ module: 'grow', item: `${group.path}/${step.id}`, correct: clean, context: { path: group.path } })
   }
 
+  // A posture is ticked off by the reader: learnt at once, and it counts as right.
+  function doneByHand() {
+    const { step, group } = sheet
+    streak.current += 1
+    save(JSON.stringify(afterDone(record, step.id)))
+    setReaction({ mood: reactionTo(true, streak.current) })
+    recordAttempt({ module: 'grow', item: `${group.path}/${step.id}`, correct: true, context: { path: group.path } })
+  }
+
   const mood = reaction?.mood ?? moodFrom({ offline: status === 'error' })
 
   return (
@@ -130,11 +139,13 @@ export default function GrowPanel({ accent, onGo }) {
           step={sheet.step}
           from={sheet.el}
           state={sheet.state}
+          figure={sheet.group.icon}
           tier={sheet.tier}
           before={tiers[sheet.i - 1]}
           record={record}
           accent={accent}
           onRecited={recited}
+          onDone={doneByHand}
           onGo={onGo}
           onClosed={closed}
         />

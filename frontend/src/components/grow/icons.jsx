@@ -2,8 +2,8 @@
  * The pictures on Grow's map. Drawn in the tab's own colour (--c) and the
  * theme's, never a colour of their own, so they match whatever they sit on.
  *
- * A step is a lock, a seed, a sprout or a flower: nodeState says which, this
- * file only draws it. A group is a small figure of what it holds; its `icon`
+ * A step is a lock, a seed, a sprout or a flower (a posture shows its figure
+ * until done): nodeState says which, this file only draws it. A group is a small figure of what it holds; its `icon`
  * is a name in paths.json, and the backend schema (GrowGroup.icon) holds it
  * to the names below. The figures are plain lines with a round head and no face.
  */
@@ -37,28 +37,29 @@ export function Sprout() {
   )
 }
 
-const PETALS = [0, 45, 90, 135, 180, 225, 270, 315]
+const PETALS = [0, 72, 144, 216, 288]
 
-/** One unbroken bloom: a disc behind two rings of overlapping petals and a centre. */
-export function Flower({ sway = false }) {
+/** A clean bloom: five petals round a warm centre with a tick in it. It sways, and pops in as it appears. */
+export function Flower() {
   return (
-    <svg className={`grow-bloom${sway ? ' grow-bloom-sway' : ''}`} viewBox="-30 -30 60 60" aria-hidden="true">
-      <circle r="21" className="grow-petal-a" />
+    <svg className="grow-bloom" viewBox="-30 -30 60 60" aria-hidden="true">
       {PETALS.map((a) => (
-        <ellipse key={a} cx="0" cy="-12" rx="11" ry="16" transform={`rotate(${a})`} className="grow-petal-a" />
+        <ellipse key={a} cx="0" cy="-15" rx="8.5" ry="13" transform={`rotate(${a})`} className="grow-petal" />
       ))}
-      {PETALS.map((a) => (
-        <ellipse key={a} cx="0" cy="-8" rx="7" ry="10.5" transform={`rotate(${a + 22.5})`} className="grow-petal-b" />
-      ))}
-      <circle r="6.5" className="grow-heart" />
+      <circle r="8" className="grow-heart" />
+      <path d="M-4 0l3 3 5-6" className="grow-tick" />
     </svg>
   )
 }
 
-/** What a step's circle holds for each state nodeState can give. */
-export function StateIcon({ state }) {
+/**
+ * What a step's circle holds for each state nodeState can give. A posture
+ * (`figure`, the group's picture) shows that figure until it is done.
+ */
+export function StateIcon({ state, figure = null }) {
   if (state === 'locked') return <Lock />
   if (state === 'learnt') return <Flower />
+  if (figure) return <GroupIcon name={figure} />
   return state === 'started' ? <Sprout /> : <Seed />
 }
 

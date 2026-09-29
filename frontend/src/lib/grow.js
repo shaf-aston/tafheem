@@ -12,7 +12,9 @@
  *   - a recitation is clean only when every word came back right. "Not sure"
  *     is not right, so it never counts towards anything;
  *   - a step is learnt only once it has been said clean on `clean-days`
- *     different days (grow.json). One good run is a good run, not learnt;
+ *     different days (grow.json). One good run is a good run, not learnt.
+ *     The one exception is a posture, which cannot be heard: the reader's
+ *     own Done makes it learnt;
  *   - the score counts learnt steps and nothing else. Steps opened, steps
  *     tried, recitations that were nearly right: none of them are counted.
  */
@@ -117,7 +119,10 @@ export const afterRecitation = (record, stepId, clean, day = today()) => {
 /** How many different days a step has been said clean. */
 export const daysOf = (record, stepId) => record[stepId]?.cleanDays.length ?? 0
 
-export const isLearnt = (record, stepId) => daysOf(record, stepId) >= config['clean-days']
+export const isLearnt = (record, stepId) => record[stepId]?.done === true || daysOf(record, stepId) >= config['clean-days']
+
+/** The record after the reader ticks a posture off: learnt at once, no days to count. */
+export const afterDone = (record, stepId) => ({ ...record, [stepId]: { tries: (record[stepId]?.tries ?? 0) + 1, cleanDays: [], done: true } })
 
 /**
  * Where a circle on the map stands, from the one record. `steps` is the single
@@ -164,7 +169,7 @@ export const unlocked = (tiers, i, record) =>
  */
 export const groupsOf = (tier) => {
   if (!tier.paths.length) {
-    const steps = tier.proposed.map(({ about, ...one }) => ({ ...one, meaning: about, proposed: true }))
+    const steps = tier.proposed.map(({ about, ...one }) => ({ ...one, ayahs: [], meaning: about, proposed: true }))
     return steps.length ? [{ id: `${tier.id}-proposed`, title: 'Steps', arabic: '', icon: 'lock', steps }] : []
   }
   return tier.paths.flatMap((path) => path.groups.map((group) => ({

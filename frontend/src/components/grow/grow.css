@@ -4,10 +4,11 @@
    reduced-motion block at the end stops the staggers too. */
 
 .grow-map {
-  --n: 56px;
   --cw: 92px;
   --sx: 50%;
-  /* The pressable shadow under a circle: a darker step of the same colour. */
+  --nc: 48px; /* a group circle's centre, down from the top of its row */
+  --stem-w: 5px;
+  /* The pressable shadow under a group circle: a darker step of the same colour. */
   --sh-m: color-mix(in srgb, var(--c) 50%, var(--bg));
   --sh-o: color-mix(in srgb, var(--c) 28%, var(--bg));
   --sh-l: var(--surface-hi);
@@ -20,7 +21,7 @@
 .grow-map-open { --sx: calc(40px + var(--cw) / 2); }
 @media (max-width: 480px) { .grow-map { --cw: 84px; } }
 
-/* ── the circle: one shadow recipe, colour set by state ── */
+/* ── the circle: colour set by state; only a group's circle is pressable ── */
 .grow-nw { position: relative; }
 .grow-node {
   --bd: var(--border-hi);
@@ -36,12 +37,14 @@
   border: 2px solid var(--bd);
   background: var(--surface-hi);
   color: var(--text-dim);
-  box-shadow: 0 5px 0 var(--sh), 0 0 22px var(--gl);
+  box-shadow: 0 0 22px var(--gl);
   transition: transform calc(var(--motion-instant-ms) * 1ms) ease, box-shadow calc(var(--motion-instant-ms) * 1ms) ease;
 }
 button.grow-node { cursor: pointer; }
 button.grow-node:hover { transform: translateY(-2px); }
-button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--sh), 0 0 22px var(--gl); }
+button.grow-node:active { transform: translateY(2px); }
+.grow-gnode { --n: 64px; box-shadow: 0 5px 0 var(--sh), 0 0 22px var(--gl); }
+.grow-gnode:active { box-shadow: 0 1px 0 var(--sh), 0 0 22px var(--gl); }
 .grow-in { display: grid; place-items: center; }
 .grow-ic { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .grow-node[data-s='learnt'] { background: var(--surface); --bd: var(--c); color: var(--c); --sh: var(--sh-m); }
@@ -64,51 +67,53 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
   100% { transform: scale(1.55); opacity: 0; }
 }
 
-/* seed, sprout, flower */
+/* seed, sprout, and the bloom: it pops in from its stem, then sways, and glows */
 .grow-seed { width: 26px; height: 26px; fill: currentColor; fill-opacity: 0.22; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.grow-bloom { width: 46px; height: 46px; }
-.grow-gnode .grow-bloom { width: calc(var(--n) + 14px); height: calc(var(--n) + 14px); margin: -7px; }
-.grow-bloom-sway { animation: grow-sway calc(4200ms * var(--motion-scale)) ease-in-out infinite; transform-origin: 50% 100%; }
+.grow-bloom {
+  width: calc(var(--n) + 14px);
+  height: calc(var(--n) + 14px);
+  margin: -7px;
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--c) 55%, transparent));
+  animation:
+    grow-bloom calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) both,
+    grow-sway calc(4200ms * var(--motion-scale)) ease-in-out infinite;
+}
+@keyframes grow-bloom { from { scale: 0; rotate: -50deg; opacity: 0; } }
 @keyframes grow-sway { 50% { transform: rotate(4deg); } }
-.grow-petal-a { fill: var(--c); stroke: color-mix(in srgb, var(--c) 60%, var(--bg)); stroke-width: 1; }
-.grow-petal-b { fill: color-mix(in srgb, var(--c) 62%, var(--text)); stroke: color-mix(in srgb, var(--c) 60%, var(--bg)); stroke-width: 0.8; }
-.grow-heart { fill: var(--warn); stroke: color-mix(in srgb, var(--warn) 55%, var(--bg)); stroke-width: 1; }
+.grow-petal { fill: var(--c); stroke: color-mix(in srgb, var(--c) 60%, var(--bg)); stroke-width: 1; }
+.grow-heart { fill: var(--warn); }
+.grow-tick { fill: none; stroke: color-mix(in srgb, var(--warn) 35%, var(--bg)); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* step circles are leaves */
+/* A step you say is a leaf in the accent, with a small microphone; one you do
+   is a plain outlined square in the dim text colour. */
 .grow-leaf { border-radius: 62% 8% 62% 8%; rotate: -14deg; }
 .grow-leaf .grow-in { rotate: 14deg; }
 .grow-leaf.grow-alt { border-radius: 8% 62% 8% 62%; rotate: 14deg; }
 .grow-leaf.grow-alt .grow-in { rotate: -14deg; }
-.grow-item { display: flex; flex-direction: column; align-items: center; gap: 6px; width: calc(var(--cw) - 4px); }
+.grow-leaf[data-s='learnt'], .grow-act[data-s='learnt'] { background: none; border-color: transparent; box-shadow: none; }
+.grow-leaf[data-s='learnt'] .grow-in { rotate: 0deg; }
+.grow-say { position: absolute; right: -4px; bottom: -4px; padding: 2px; box-sizing: content-box; border-radius: 50%; background: var(--surface); color: var(--c); }
+.grow-act { border-radius: 30%; }
+.grow-act[data-s] { --bd: var(--text-faint); color: var(--text-dim); background: transparent; }
+.grow-act[data-s='locked'] { border-style: dashed; }
+.grow-act .grow-gi { width: 26px; height: 26px; stroke-width: 2; }
+.grow-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; width: var(--iw); }
 .grow-lbl { font-size: var(--type-small); font-weight: 700; color: var(--text-dim); text-align: center; line-height: 1.25; max-width: 84px; min-height: 2.4em; overflow-wrap: anywhere; }
 .grow-item:has([data-now]) .grow-lbl { color: var(--c); }
 .grow-item:has([data-s='learnt']) .grow-lbl { color: var(--text); }
 
 /* group circles sit on the vine */
-.grow-gnode { --n: 64px; }
 .grow-ring { position: absolute; inset: -8px; width: calc(100% + 16px); height: calc(100% + 16px); pointer-events: none; overflow: visible; }
 .grow-ring circle, .grow-days-ring path { fill: none; stroke-width: 5; stroke-linecap: round; }
 .grow-ring-t { stroke: var(--border-hi); opacity: 0.7; }
 .grow-ring-f { stroke: var(--c); }
 .grow-gi { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-.grow-cnt {
-  position: absolute;
-  top: -10px;
-  right: -16px;
-  min-width: 28px;
-  height: 20px;
-  padding: 0 6px;
-  border-radius: 10px;
-  background: var(--bg);
-  border: 1px solid var(--border-hi);
-  font-size: var(--type-tiny);
-  display: grid;
-  place-items: center;
-  color: var(--text);
-}
-.grow-gnode[data-s='learnt'] .grow-cnt { background: var(--c); color: var(--bg); border-color: var(--c); }
+.grow-cnt { position: absolute; top: -8px; right: -18px; padding: 0 4px; border-radius: 8px; background: var(--surface); font-size: var(--type-tiny); font-weight: 700; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+.grow-gnode[data-s='learnt'] .grow-cnt { color: var(--c); }
 
-/* ── the vine: plates hold a vertical stem, rows hold a group and its lane ── */
+/* ── the vine: a plate holds rows, each row a group circle and the winding stem
+   down to the next one (drawn in the row, so it follows however tall the row is) ── */
 .grow-plate {
   --stem: color-mix(in srgb, var(--c) 45%, var(--surface-hi));
   position: relative;
@@ -120,71 +125,67 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
   box-shadow: 0 10px 0 -2px var(--bg), 0 26px 40px -10px var(--lift);
 }
 .grow-plate.grow-locked { --stem: color-mix(in srgb, var(--c) 16%, var(--surface-hi)); background: var(--surface); border-style: dashed; }
-.grow-plate::before {
-  content: '';
-  position: absolute;
-  z-index: 0;
-  left: var(--sx);
-  top: -34px;
-  bottom: 0;
-  width: 8px;
-  translate: -50% 0;
-  border-radius: 8px;
-  background: var(--stem);
-  transition: left calc(var(--motion-spring-ms) * 1ms) ease-in-out;
-}
-.grow-plate:first-child::before { top: 36px; }
-.grow-plate:last-child::before { bottom: 92px; }
+.grow-stem, .grow-stub { transition: left calc(var(--motion-spring-ms) * 1ms) ease-in-out; }
+.grow-stem { position: absolute; z-index: 0; left: calc(var(--sx) - var(--cw) / 2); top: var(--nc); width: var(--cw); height: 100%; overflow: visible; pointer-events: none; }
+.grow-stem path, .grow-twig path { fill: none; stroke: var(--stem); stroke-width: var(--stem-w); stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.grow-plate:last-child .grow-row:last-child .grow-stem { display: none; }
+/* Joins the stem up to the tier before it, and down to the first circle. */
+.grow-stub { position: absolute; z-index: -1; left: var(--sx); top: -52px; height: calc(100% + 54px + var(--nc)); width: var(--stem-w); translate: -50% 0; border-radius: var(--stem-w); background: var(--stem); }
+.grow-plate:first-child .grow-stub { top: 50%; height: calc(50% + 2px + var(--nc)); }
 .grow-hd, .grow-row { padding-left: calc(var(--sx) - var(--cw) / 2); transition: padding-left calc(var(--motion-spring-ms) * 1ms) ease-in-out; }
 .grow-hd { position: relative; z-index: var(--layer-raised); display: flex; align-items: center; padding-right: 14px; margin-bottom: 2px; }
 .grow-hn { width: var(--cw); flex: none; display: flex; justify-content: center; }
-.grow-n { background: var(--c); color: var(--bg); border-radius: 8px; padding: 1px 10px; font-weight: 800; font-size: var(--type-ui); box-shadow: 0 3px 0 var(--sh-m); }
-.grow-plate.grow-locked .grow-n { background: var(--border-hi); color: var(--text); box-shadow: 0 3px 0 var(--sh-l); }
+.grow-n { background: var(--c); color: var(--bg); border-radius: 8px; padding: 1px 10px; font-weight: 800; font-size: var(--type-ui); }
+.grow-plate.grow-locked .grow-n { background: var(--border-hi); color: var(--text); }
 .grow-ht { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
 .grow-ht h2 { font-size: var(--type-body); font-weight: 800; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; color: var(--text); }
 .grow-h-ar { color: var(--text-faint); }
-.grow-tag { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 999px; padding: 2px 8px; border: 1px dashed var(--border-hi); color: var(--text-faint); white-space: nowrap; }
+.grow-tag { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); white-space: nowrap; }
 
 .grow-row { position: relative; z-index: var(--layer-raised); display: flex; align-items: flex-start; scroll-margin-top: 130px; }
-.grow-cell { position: relative; z-index: calc(var(--layer-raised) + 1); flex: none; width: var(--cw); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 0 14px; }
-.grow-gl { background: var(--surface); border: 1px solid var(--border-hi); border-radius: 12px; padding: 3px 8px; font-size: var(--type-small); font-weight: 800; text-align: center; line-height: 1.25; max-width: var(--cw); color: var(--text); overflow-wrap: anywhere; }
+.grow-cell { position: relative; z-index: calc(var(--layer-raised) + 1); flex: none; width: var(--cw); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 0 40px; }
+.grow-gl { font-size: var(--type-small); font-weight: 800; text-align: center; line-height: 1.25; max-width: var(--cw); color: var(--text); overflow-wrap: anywhere; }
 .grow-gl-ar { display: block; color: var(--text-dim); font-weight: 400; }
-.grow-row[data-now] .grow-gl { border-color: var(--c); color: var(--c); }
+.grow-row[data-now] .grow-gl { color: var(--c); }
 
-/* The branch: a lane to the right of the group that opens sideways, scrolling
-   inside itself so a long one never widens the page. */
+/* The branch: a lane to the right of the group. It scrolls inside itself so a
+   long one never widens the page, and shows only as far as its last step: each
+   step brings its own twig, drawn on from the step before, then the step pops
+   in. --iw, --n and --sway come from grow.json (JourneyMap). */
 .grow-lane {
   position: relative;
   z-index: var(--layer-raised);
   flex: 1 1 0;
   min-width: 0;
-  margin-left: calc(var(--cw) / -2);
+  margin: -16px 0 0 calc(var(--cw) / -2);
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scrollbar-width: thin;
   visibility: hidden;
+  transition: visibility 0s linear calc(var(--motion-base-ms) * 1ms);
+}
+.grow-row-open .grow-lane { visibility: visible; transition-delay: 0s; }
+.grow-lane-in { display: flex; width: max-content; min-width: 100%; padding: calc(var(--nc) - var(--n) / 2 + 16px) 14px 16px calc(var(--iw) / 2); }
+.grow-twig { position: absolute; top: 0; left: calc(var(--iw) / -2); overflow: visible; pointer-events: none; }
+.grow-twig path { stroke-dashoffset: 1; transition: stroke-dashoffset calc(var(--motion-base-ms) * 1ms) ease; }
+.grow-row-open .grow-twig path {
+  stroke-dashoffset: 0;
+  transition-duration: calc(var(--motion-base-ms) * 1.5ms);
+  transition-delay: calc(var(--i) * var(--motion-stagger-ms) * 3 * 1ms);
+}
+.grow-lane .grow-nw, .grow-lane .grow-lbl {
+  translate: 0 calc(var(--w) * var(--sway) * 1px);
   opacity: 0;
-  transition: opacity calc(var(--motion-base-ms) * 1ms) ease, visibility 0s linear calc(var(--motion-base-ms) * 1ms);
+  transition: scale calc(var(--motion-base-ms) * 1ms) ease, opacity calc(var(--motion-base-ms) * 1ms) ease;
 }
-.grow-row-open .grow-lane { visibility: visible; opacity: 1; transition-delay: 0s; }
-.grow-lane-in { position: relative; display: flex; width: max-content; min-width: 100%; padding: 20px 14px 16px calc(var(--cw) / 2); }
-.grow-branch { position: absolute; top: 0; bottom: 0; left: calc(var(--cw) / 2); width: calc(100% - var(--cw) / 2); height: 100%; pointer-events: none; overflow: visible; }
-.grow-branch line {
-  stroke: var(--stem);
-  stroke-width: 8;
-  stroke-linecap: round;
-  stroke-dasharray: 1 1;
-  stroke-dashoffset: 1;
-  transition: stroke-dashoffset calc(var(--motion-spring-ms) * 1.6ms) ease;
-}
-.grow-row-open .grow-branch line { stroke-dashoffset: 0; }
-.grow-lane .grow-item { position: relative; transform: scale(0); opacity: 0; transform-origin: 50% 40%; transition: transform calc(var(--motion-base-ms) * 1ms) ease, opacity calc(var(--motion-base-ms) * 1ms) ease; }
-.grow-row-open .grow-lane .grow-item {
-  transform: none;
+.grow-lane .grow-nw { z-index: 1; scale: 0; transform-origin: 50% 40%; }
+.grow-row-open .grow-lane .grow-nw, .grow-row-open .grow-lane .grow-lbl {
+  scale: 1;
   opacity: 1;
-  transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease), opacity calc(var(--motion-base-ms) * 1ms) ease;
-  transition-delay: calc((var(--i) * var(--motion-stagger-ms) + 200) * 1ms);
+  transition-duration: calc(var(--motion-spring-ms) * 1ms), calc(var(--motion-base-ms) * 1ms);
+  transition-delay: calc((var(--i) * 3 * var(--motion-stagger-ms) + var(--motion-base-ms)) * 1ms);
 }
+.grow-row-open .grow-lane .grow-nw { transition-timing-function: var(--motion-spring-ease), ease; }
 
 /* Qalam stands left of the current group and only ever reacts, never speaks.
    It overlaps the circle's edge by 8px: with a branch open the vine sits at the
@@ -258,7 +259,7 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
   100% { opacity: 0; transform: rotate(calc(var(--a) * 1deg)) translateY(-54px) scale(1); }
 }
 
-/* ── tier unlock: gate opens, dotted path draws, vine grows, groups appear ── */
+/* ── tier unlock: gate opens, the vine draws, groups appear ── */
 .grow-gate { position: absolute; left: 0; right: 0; top: -16px; height: 32px; z-index: calc(var(--layer-raised) + 3); pointer-events: none; overflow: hidden; border-radius: 16px; }
 .grow-door { position: absolute; top: 0; bottom: 0; width: 50.5%; background: linear-gradient(180deg, var(--border-hi), var(--surface-hi)); border: 1px solid var(--border-hi); transition: translate calc(var(--motion-spring-ms) * 1.6ms) ease-in-out; }
 .grow-door-l { left: 0; border-radius: 16px 0 0 16px; }
@@ -273,27 +274,10 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
   40% { opacity: 1; scale: 1.6 1; }
   100% { opacity: 0; scale: 2 1; }
 }
-.grow-pre::before {
-  background: repeating-linear-gradient(to bottom, var(--stem) 0 6px, transparent 6px 14px);
-  clip-path: inset(0 0 100% 0);
-  transition: clip-path calc(var(--motion-spring-ms) * 1.8ms) ease-out, left calc(var(--motion-spring-ms) * 1ms) ease-in-out;
-}
-.grow-pre.grow-u2::before { clip-path: inset(0); }
-.grow-pre::after {
-  content: '';
-  position: absolute;
-  z-index: 0;
-  left: var(--sx);
-  top: -34px;
-  bottom: 0;
-  width: 8px;
-  translate: -50% 0;
-  border-radius: 8px;
-  background: var(--stem);
-  clip-path: inset(0 0 100% 0);
-  transition: clip-path calc(var(--motion-spring-ms) * 2.4ms) ease-in-out, left calc(var(--motion-spring-ms) * 1ms) ease-in-out;
-}
-.grow-pre.grow-u3::after { clip-path: inset(0); }
+.grow-pre .grow-stem path { transition: stroke-dashoffset calc(var(--motion-spring-ms) * 1.8ms) ease-out; }
+.grow-pre:not(.grow-u2) .grow-stem path { stroke-dashoffset: 1; }
+.grow-pre .grow-stub { transition: clip-path calc(var(--motion-spring-ms) * 1.8ms) ease-out, left calc(var(--motion-spring-ms) * 1ms) ease-in-out; }
+.grow-pre:not(.grow-u2) .grow-stub { clip-path: inset(0 0 100% 0); }
 .grow-pre:not(.grow-u3) .grow-cell { opacity: 0; scale: 0.2; }
 .grow-u3 .grow-cell { animation: grow-popin calc(520ms * var(--motion-scale)) var(--motion-spring-ease) both; animation-delay: calc(500ms * var(--motion-scale)); }
 @keyframes grow-popin { from { opacity: 0; scale: 0.2; } }
@@ -302,10 +286,12 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
   .grow-prac { gap: 12px; }
   .grow-days-ring { width: 72px; height: 72px; }
 }
+.grow-how { margin-top: 12px; }
 
 /* Reduced motion already zeroes every duration (index.css); the staggers are
    delays, so they are cleared here or a branch would still wait its turn. */
 @media (prefers-reduced-motion: reduce) {
-  .grow-row-open .grow-lane .grow-item, .grow-u3 .grow-cell, .grow-go .grow-fan i { transition-delay: 0s; animation-delay: 0s; }
+  .grow-row-open .grow-twig path, .grow-row-open .grow-lane .grow-nw, .grow-row-open .grow-lane .grow-lbl,
+  .grow-u3 .grow-cell, .grow-go .grow-fan i { transition-delay: 0s; animation-delay: 0s; }
   .grow-pulse::after { animation: none; }
 }

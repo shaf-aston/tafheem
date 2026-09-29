@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { CHECK, MISSED, SAID, WRONG } from './follow'
+import { byHand } from './growKinds'
 import {
-  afterRecitation, becomesLearnt, currentGroup, daysOf, groupsOf, isLearnt, judge, nodeState, pageOf, reactionTo, score, tally, tiersOf,
+  afterDone, afterRecitation, becomesLearnt, currentGroup, daysOf, groupsOf, isLearnt, judge, nodeState, pageOf, reactionTo, score, tally, tiersOf,
   today, unlocked, upNext,
 } from './grow'
 
@@ -100,6 +101,25 @@ describe('learnt and the score', () => {
     expect(score(TIERS, record)).toEqual({ learnt: 1, total: 2 })
   })
 
+  it('makes a posture learnt on one Done, with no days to count', () => {
+    const record = afterDone({}, 'bow-down')
+    expect(isLearnt(record, 'bow-down')).toBe(true)
+    expect(nodeState([{ id: 'bow-down' }], record)).toBe('learnt')
+    expect(daysOf(record, 'bow-down')).toBe(0)
+    expect(score(TIERS, afterDone({}, 'ruku'))).toEqual({ learnt: 1, total: 2 })
+  })
+
+  it('leaves the other steps of the record alone when a posture is done', () => {
+    const before = afterRecitation({}, 'takbir', true, '2026-09-28')
+    expect(afterDone(before, 'stand-up').takbir).toBe(before.takbir)
+  })
+
+  it('ticks off by hand only the steps of kind action', () => {
+    expect(byHand({ kind: 'action', ayahs: [] })).toBe(true)
+    expect(byHand({ kind: null, arabic: 'اللَّهُ أَكْبَرُ', ayahs: [] })).toBe(false)
+    expect(byHand({ kind: null, ayahs: ['112:1'] })).toBe(false)
+  })
+
   it('writes today as the reader\'s own date', () => {
     expect(today(new Date(2026, 0, 5))).toBe('2026-01-05')
   })
@@ -144,7 +164,7 @@ describe('the map', () => {
 
   it('shows a tier without paths as one locked group of its proposed topics', () => {
     const [group] = groupsOf(TIERS[1])
-    expect(group.steps).toEqual([{ id: 'p', title: 'P', meaning: 'About P', proposed: true }])
+    expect(group.steps).toEqual([{ id: 'p', title: 'P', ayahs: [], meaning: 'About P', proposed: true }])
     expect(groupsOf(TIERS[0])[0].steps.map((one) => one.id)).toEqual(['takbir', 'ruku'])
   })
 
