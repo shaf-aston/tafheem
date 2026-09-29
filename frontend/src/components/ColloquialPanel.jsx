@@ -82,6 +82,21 @@ function Trail({ steps }) {
   )
 }
 
+// A quiet switch for learners who know more than one dialect: every dialect
+// walks the same spine, so the same unit and topic are there to land on. A unit
+// the other dialect has not written yet drops back to its unit list.
+function Switch({ dialects, current, onPick }) {
+  return (
+    <label className="ms-auto flex items-center gap-2 type-small text-[var(--text-faint)]">
+      <span>Same place in</span>
+      <select value={current} onChange={(e) => onPick(e.target.value)}
+        className={`bg-transparent text-[var(--text-dim)] hover:text-[var(--text)] rounded ${FOCUS}`}>
+        {dialects.map((d) => <option key={d.key} value={d.key}>{d.label}</option>)}
+      </select>
+    </label>
+  )
+}
+
 function Topic({ dialect, unit, at }) {
   const { data, isPending, isError, error, refetch } = useQuery(colloquialUnitQuery(dialect, unit))
   if (isPending) return <AnalyzerSkeleton />
@@ -109,6 +124,10 @@ export default function ColloquialPanel() {
   const toTop = () => { setPicked(false); setUnitKey(null); setLessonAt(null) }
   const toDialect = () => { setUnitKey(null); setLessonAt(null) }
   const toUnit = () => setLessonAt(null)
+  const switchTo = (key) => {
+    setDialectKey(key)
+    if (!dialects.find((d) => d.key === key).units.some((u) => u.written && u.unit === unitKey)) toDialect()
+  }
 
   const steps = [{ label: 'Dialects', go: toTop }]
   if (dialect) steps.push({ label: dialect.label, go: toDialect })
@@ -120,7 +139,12 @@ export default function ColloquialPanel() {
       <SectionHeader title="Colloquial" arabic="عامية" subtitle={dialect?.where ?? 'Spoken, everyday Arabic.'} />
       {catalogue.isPending && <AnalyzerSkeleton />}
       {catalogue.isError && <Failed error={catalogue.error} onRetry={catalogue.refetch} />}
-      {catalogue.data && <Trail steps={steps} />}
+      {catalogue.data && (
+        <div className="flex flex-wrap items-center gap-3">
+          <Trail steps={steps} />
+          {dialect && dialects.length > 1 && <Switch dialects={dialects} current={dialect.key} onPick={switchTo} />}
+        </div>
+      )}
 
       {catalogue.data && !dialect && (
         <Grid>
