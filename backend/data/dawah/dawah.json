@@ -917,6 +917,445 @@
    ]
   },
   {
+   "id": "miracles",
+   "title": "Miracles of the Qur'an",
+   "arabic": "الإعجاز",
+   "blurb": "Its language, its predictions and history, and why the signs add up to proof.",
+   "questions": [
+    {
+     "id": "miracle-language",
+     "q": "What is the Qur'an's language miracle?",
+     "short": "The Qur'an challenged the most eloquent people in history to produce even one short surah like it, and they never did, though they had every reason to. Its form is neither poetry nor prose. No attempt since has been accepted as matching it.",
+     "points": [
+      {
+       "title": "An open challenge",
+       "text": "First to bring a book like it, then ten surahs, then a single surah. The shortest surah is three lines.",
+       "refs": [
+        {
+         "quran": "17:88"
+        },
+        {
+         "quran": "11:13"
+        },
+        {
+         "quran": "2:23"
+        }
+       ]
+      },
+      {
+       "title": "Answered in advance",
+       "text": "It said outright 'you will never do it'. One successful surah would have ended Islam, so the claim was fully exposed to failure.",
+       "refs": [
+        {
+         "quran": "2:24"
+        }
+       ]
+      },
+      {
+       "title": "The best placed to answer",
+       "text": "Poetry was the Arabs' highest art, and Quraysh were desperate to stop him. They chose war, exile and loss of life over the easy route of composing one surah.",
+       "refs": [
+        {
+         "quran": "52:33-34"
+        }
+       ],
+       "note": "Ibn Kathir on 2:23"
+      },
+      {
+       "title": "Neither poetry nor prose",
+       "text": "Opponents tried to call it poetry, magic or soothsaying and could not settle on a label, because it fits none of their known forms. Al-Walid ibn al-Mughirah, a master of verse, could only call it magic.",
+       "refs": [
+        {
+         "quran": "74:18-25"
+        },
+        {
+         "quran": "69:41-42"
+        }
+       ],
+       "note": "Ibn Kathir on 74:18"
+      },
+      {
+       "title": "So it is not human speech",
+       "text": "Those most able, most motivated and given the most time all failed. If a human could make it, a human could match it. The fitting conclusion is that it comes from God.",
+       "refs": [
+        {
+         "quran": "10:38"
+        },
+        {
+         "quran": "17:88"
+        }
+       ],
+       "note": "Reasoned from the points above"
+      }
+     ],
+     "islamqa": {
+      "number": 245475,
+      "title": "Miraculous aspects of the Holy Qur’an"
+     }
+    },
+    {
+     "id": "miracle-predictions",
+     "q": "Did the Qur'an predict the future?",
+     "short": "Yes. It made specific claims about events still to come, stated in public, which could have proved it false, and they came true: the Romans' comeback after a crushing defeat, the rout of Quraysh at Badr, and the Muslims entering Makkah.",
+     "points": [
+      {
+       "title": "A test anyone can run",
+       "text": "A real prediction is specific, made before the event, and could fail. Vague sayings prove nothing; these were none of those.",
+       "refs": [],
+       "note": "Reasoned standard applied to each prediction below"
+      },
+      {
+       "title": "The Romans would win back",
+       "text": "When Persia had crushed Byzantium, the Qur'an said the Romans would win within a few years (bid', three to nine). Abu Bakr staked a wager on it, and Heraclius's counter-attack began within that span.",
+       "refs": [
+        {
+         "quran": "30:2-4"
+        },
+        {
+         "hadith": "tirmidhi",
+         "number": 3193
+        }
+       ],
+       "note": "Persia took Jerusalem in 614; Heraclius's winning campaign opened in 622"
+      },
+      {
+       "title": "Quraysh would be routed",
+       "text": "In Makkah, when Muslims were few and weak, it said the gathering would be defeated and turn their backs. Umar said he did not understand it until Badr.",
+       "refs": [
+        {
+         "quran": "54:45"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 4877
+        }
+       ]
+      },
+      {
+       "title": "Makkah would be entered",
+       "text": "After being turned back at Hudaybiyyah, it promised they would enter the Sacred Mosque in safety. They did the next year, then took the city.",
+       "refs": [
+        {
+         "quran": "48:27"
+        }
+       ],
+       "note": "Ibn Kathir on 48:27"
+      },
+      {
+       "title": "Guesswork cannot explain it",
+       "text": "One wrong prediction would have discredited him before friend and enemy. Every one came true, which a guesser cannot guarantee and only the Knower of the unseen can.",
+       "refs": [
+        {
+         "quran": "72:26-27"
+        }
+       ],
+       "note": "Reasoned from the points above"
+      }
+     ],
+     "islamqa": {
+      "number": 23475,
+      "title": "Things foretold in the Quran which have come to pass"
+     }
+    },
+    {
+     "id": "miracle-history",
+     "q": "Does the Qur'an know things about history it could not have known?",
+     "short": "It tells stories of past nations that he, an unlettered man in Makkah, had no way to learn, and says so openly. Its details also fit history where the Bible's differ, such as calling Joseph's ruler a king and Moses's ruler Pharaoh.",
+     "points": [
+      {
+       "title": "It says he was not there",
+       "text": "After the stories of Mary, Noah and Joseph, it states that he and his people did not know them before. His enemies could have exposed a hidden teacher, and never did.",
+       "refs": [
+        {
+         "quran": "3:44"
+        },
+        {
+         "quran": "11:49"
+        },
+        {
+         "quran": "12:102"
+        }
+       ]
+      },
+      {
+       "title": "King, not Pharaoh, for Joseph",
+       "text": "The Qur'an calls Joseph's ruler 'the king' but Moses's ruler 'Pharaoh'. Egyptians began calling their ruler Pharaoh only in the later era, while the Bible uses Pharaoh for both.",
+       "refs": [
+        {
+         "quran": "12:43"
+        },
+        {
+         "quran": "7:104"
+        }
+       ],
+       "note": "A fit with Egyptian history, not a proof on its own: Joseph's date is uncertain"
+      },
+      {
+       "title": "It corrects, not copies",
+       "text": "Where it tells the same stories as earlier books, it differs in key details and clears prophets of faults the Bible gives them. A copier repeats his source.",
+       "refs": [
+        {
+         "quran": "5:48"
+        },
+        {
+         "quran": "27:76"
+        }
+       ]
+      },
+      {
+       "title": "No source was in reach",
+       "text": "No Arabic Bible existed then, and he could not read. The knowledge had no human route to him.",
+       "refs": [
+        {
+         "quran": "29:48"
+        }
+       ]
+      },
+      {
+       "title": "So it came from God",
+       "text": "Knowledge he could not have gained, delivered openly before those who knew his whole life, points to revelation.",
+       "refs": [
+        {
+         "quran": "12:3"
+        }
+       ],
+       "note": "Reasoned from the points above"
+      }
+     ],
+     "islamqa": null
+    },
+    {
+     "id": "miracle-messenger",
+     "q": "Why does the man who brought it matter?",
+     "short": "The Qur'an came through a man who had never produced poetry or speeches, could not read or write, and was known for honesty. It even reproaches him, and he gained no wealth from it. So he was not a liar, and a deluded man could not have produced it. What remains is that he was truthful and it came from God.",
+     "points": [
+      {
+       "title": "Forty years of silence",
+       "text": "He lived among his people for forty years before the Qur'an and produced no poetry or oratory. The Qur'an tells them to remember this: they knew his life.",
+       "refs": [
+        {
+         "quran": "10:16"
+        }
+       ],
+       "note": "His everyday speech, recorded in the hadith, reads nothing like the Qur'an."
+      },
+      {
+       "title": "He could not read or write",
+       "text": "The Qur'an says he never read a book or wrote one before it, and calls him the unlettered Prophet. That rules out studying earlier writings and writing from them.",
+       "refs": [
+        {
+         "quran": "29:48"
+        },
+        {
+         "quran": "7:157"
+        }
+       ],
+       "note": "Ibn Kathir on 29:48"
+      },
+      {
+       "title": "Known as the truthful one",
+       "text": "His people called him al-Amin, the trustworthy. When Heraclius asked Abu Sufyan, then his enemy, whether they had ever accused him of lying, the answer was no.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 7
+        }
+       ]
+      },
+      {
+       "title": "Reproached in his own book",
+       "text": "The Qur'an corrects him in public: for turning from the blind man, for excusing people from battle, over the prisoners of Badr. A forger seeking authority would not write his own faults in. Nor did he gain: he died with his armour pledged for barley.",
+       "refs": [
+        {
+         "quran": "80:1-10"
+        },
+        {
+         "quran": "9:43"
+        },
+        {
+         "quran": "8:67-68"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 2916
+        }
+       ]
+      },
+      {
+       "title": "Liar, deluded, or truthful",
+       "text": "A liar needs a motive, yet he had no gain, a clean record and a book that shames him. A deluded man could not produce a book that stays consistent and unmatched. Both fail, so the truthful messenger remains.",
+       "refs": [
+        {
+         "quran": "10:16"
+        },
+        {
+         "quran": "53:2-4"
+        }
+       ],
+       "note": "Reasoned from the points above"
+      }
+     ],
+     "islamqa": {
+      "number": 2114,
+      "title": "Evidence for the truth of the Prophethood of Muhammad"
+     }
+    },
+    {
+     "id": "miracle-consistency",
+     "q": "How could a book revealed over 23 years stay consistent?",
+     "short": "The Qur'an came in pieces over 23 years, through war and peace, grief and victory. Yet it keeps one voice with no contradiction, as it says it would if it were from God. A human author changes over that long and revises his work; there were no drafts here.",
+     "points": [
+      {
+       "title": "It sets its own test",
+       "text": "It says that if it were from anyone but God, people would find much contradiction in it. Anyone can check that claim.",
+       "refs": [
+        {
+         "quran": "4:82"
+        }
+       ]
+      },
+      {
+       "title": "Revealed in pieces, to events",
+       "text": "It came in stages, answering events as they happened, not written in one calm sitting.",
+       "refs": [
+        {
+         "quran": "17:106"
+        },
+        {
+         "quran": "25:32"
+        }
+       ]
+      },
+      {
+       "title": "No drafts, no revisions",
+       "text": "Each passage was recited at once and memorised by the companions. There was no time to edit and no earlier draft to tidy.",
+       "refs": [
+        {
+         "quran": "75:16-19"
+        },
+        {
+         "quran": "87:6-7"
+        }
+       ]
+      },
+      {
+       "title": "His own grief stays out",
+       "text": "He wept when his son Ibrahim died, yet no verse mourns him, and when people linked an eclipse to the death he denied it. The deaths of Khadijah and Abu Talib are not lamented either; instead it told him he cannot guide whom he loves.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 1303
+        },
+        {
+         "hadith": "bukhari",
+         "number": 1043
+        },
+        {
+         "quran": "28:56"
+        }
+       ],
+       "note": "Ibn Hisham, al-Sirah, on the Year of Sorrow"
+      },
+      {
+       "title": "Why a human could not do it",
+       "text": "Over 23 years a person's mood, views and style shift, and writing shaped by war and grief shows it. Here the voice holds steady and the author's feelings stay out. That points to a source beyond him.",
+       "refs": [
+        {
+         "quran": "4:82"
+        },
+        {
+         "quran": "39:23"
+        }
+       ],
+       "note": "Reasoned from the points above"
+      }
+     ],
+     "islamqa": null
+    },
+    {
+     "id": "miracle-sum",
+     "q": "Why do these signs add up to proof?",
+     "short": "Any one sign could be argued with alone. But they are different in kind and all true together: an unanswered challenge, fulfilled predictions, an unlettered messenger, unbroken consistency, a preserved text and a transformed people. Every other explanation fails on at least one, and only one covers them all: it is from God.",
+     "points": [
+      {
+       "title": "Signs of different kinds",
+       "text": "The challenge to match it stands unmet. It foretold the Romans' comeback within a few years. It promised its own preservation. It united a people who had been enemies.",
+       "refs": [
+        {
+         "quran": "17:88"
+        },
+        {
+         "quran": "30:2-4"
+        },
+        {
+         "quran": "15:9"
+        },
+        {
+         "quran": "3:103"
+        }
+       ]
+      },
+      {
+       "title": "He did not write it himself",
+       "text": "He was unlettered and had produced no such speech in forty years. He was known as honest, and the text reproaches him. Writing it himself leaves no motive and no means.",
+       "refs": [
+        {
+         "quran": "10:16"
+        },
+        {
+         "quran": "29:48"
+        }
+       ]
+      },
+      {
+       "title": "No teacher, no copying",
+       "text": "Enemies said a man taught him; the Qur'an answers that the man speaks a foreign tongue while this is clear Arabic. Copying scripture needs reading or a teacher, and both are ruled out.",
+       "refs": [
+        {
+         "quran": "16:103"
+        },
+        {
+         "quran": "12:102"
+        },
+        {
+         "quran": "29:48"
+        }
+       ]
+      },
+      {
+       "title": "One cause fits every sign",
+       "text": "Each other explanation breaks on at least one fact. A human author fails on 23 years of consistency, the unmet challenge and the fulfilled predictions together. Only a source beyond the man accounts for all at once.",
+       "refs": [
+        {
+         "quran": "4:82"
+        },
+        {
+         "quran": "17:88"
+        }
+       ],
+       "note": "Reasoned from the points above"
+      },
+      {
+       "title": "Reflect, then conclude",
+       "text": "The Qur'an does not ask for blind acceptance. It asks people to reflect and promises signs until the truth is clear. Once the alternatives fail, the conclusion is that it is from God.",
+       "refs": [
+        {
+         "quran": "38:29"
+        },
+        {
+         "quran": "47:24"
+        },
+        {
+         "quran": "41:53"
+        }
+       ]
+      }
+     ],
+     "islamqa": null
+    }
+   ]
+  },
+  {
    "id": "peace",
    "title": "Violence and Jihad",
    "arabic": "الجهاد",
