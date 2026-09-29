@@ -440,6 +440,7 @@ class Settings(BaseSettings):
     # library.json (sciences, places, collections, map) and one file per section
     # under sections/. Hand-written data, checked on load by services/timelines.py.
     timelines_dir: str = "data/timelines"
+    dawah_path: str = "data/dawah/dawah.json"
 
     # ── Colloquial (spoken dialects) ───────────────────────────────────────────
     # dialects.json and one folder per dialect holding unit-NN.json files, with

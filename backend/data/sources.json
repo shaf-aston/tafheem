@@ -296,6 +296,17 @@
       "timelines"
     ]
   },
+  "dawah": {
+    "label": "Dawah answers",
+    "confidence": "guessed",
+    "detail": "Replies researched with Claude from the Qur'an, hadith and classical scholars, in mainstream Sunni terms; evidence under each point, IslamQA linked for further reading",
+    "url": "",
+    "where": "One file, backend/data/dawah/dawah.json, checked on load by services/dawah.py. Each point carries its own evidence: Qur'an references open the ayah, hadith numbers are as commonly cited and not checked here, and notes name tafsir or scholars. A matching IslamQA fatwa is linked as further reading.",
+    "used_in": [
+      "dawah"
+    ],
+    "category": "Fiqh"
+  },
   "lubab": {
     "label": "al-Suyuti, Lubab al-Nuqul",
     "confidence": "derived",

@@ -16,6 +16,7 @@ import NahwPanel from '../components/NahwPanel'
 import DaleelPanel from '../components/DaleelPanel'
 import HadithPanel from '../components/HadithPanel'
 import TimelinesPanel from '../components/TimelinesPanel'
+import DawahPanel from '../components/DawahPanel'
 import ColloquialPanel from '../components/ColloquialPanel'
 import GrowPanel from '../components/GrowPanel'
 
@@ -48,6 +49,7 @@ export const TABS = [
   { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   mark: 'ب', Component: GrowPanel, study: true, row: 2, group: 'quran' },
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', mark: 'خ', Component: QuizPanel,   row: 2, group: 'tools' },
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', mark: 'ت', Component: TimelinesPanel, study: true, row: 3, group: 'tools' },
+  { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   mark: 'و', Component: DawahPanel, study: true, row: 3, group: 'tools' },
   { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, row: 3, group: 'language', study: true },
 ]
 
