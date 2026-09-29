@@ -1,7 +1,9 @@
 import ArabicText from '../ui/ArabicText'
+import { useFirstSight } from '../../lib/firstSight'
 
 // One topic on the home grid: how many questions it holds, its name and what it covers.
 export default function TopicTile({ topic, index, selected, onPick }) {
+  const rise = useFirstSight(`dawah-topic:${topic.id}`)
   return (
     <button
       type="button"
@@ -12,8 +14,8 @@ export default function TopicTile({ topic, index, selected, onPick }) {
         borderColor: selected ? 'var(--c)' : undefined,
         background: selected ? 'color-mix(in srgb, var(--c) 12%, var(--surface))' : undefined,
       }}
-      className="rise-in lift press text-left rounded-[var(--radius-md)] border border-[var(--border)]
-        bg-[var(--surface)] p-4 flex flex-col gap-2 hover:border-[var(--c)]"
+      className={`${rise ? 'rise-in ' : ''}lift press text-left rounded-[var(--radius-md)] border border-[var(--border)]
+        bg-[var(--surface)] p-4 flex flex-col gap-2 hover:border-[var(--c)]`}
     >
       <span className="flex items-baseline justify-between gap-2">
         <span className="font-semibold text-[var(--c)]">{topic.title}</span>

@@ -13,7 +13,7 @@
 import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
-import { findDaleel, getDaleelBooks } from '../api'
+import { daleelBooksQuery, findDaleel } from '../api'
 import { smartError } from '../lib/apiError'
 import { isArabic, mostlyArabic } from '../lib/arabicText'
 import { plainEntry } from '../lib/laneEntry'
@@ -68,10 +68,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
 
   // The list of books to offer. Asked for once and kept: it changes only when
   // the index is rebuilt, which cannot happen while the page is open.
-  const { data: catalogue = [] } = useQuery({
-    queryKey: ['daleel-books'],
-    queryFn: getDaleelBooks,
-  })
+  const { data: catalogue = [] } = useQuery(daleelBooksQuery)
 
   // A question arriving: handed over from another tab, or the back arrow
   // returning to one. App no longer remounts the panel for it, that remount

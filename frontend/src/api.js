@@ -123,11 +123,16 @@ export const notePageUrl = (topicId, page) =>
 
 // Every timeline section with its places and sources. About fifty events, fixed
 // for the life of the backend, so it is fetched whole once and filtered here.
-export const getTimelines = () =>
-  api.get('/timelines').then((r) => r.data)
+export const timelinesQuery = {
+  queryKey: ['timelines'],
+  queryFn: () => api.get('/timelines').then((r) => r.data),
+}
 
-// Every dawah topic and question, fetched whole once like getTimelines.
-export const getDawah = () => api.get('/dawah').then((r) => r.data)
+// Every dawah topic and question, fetched whole once like timelinesQuery.
+export const dawahQuery = {
+  queryKey: ['dawah'],
+  queryFn: () => api.get('/dawah').then((r) => r.data),
+}
 
 // Why the ayahs of one timeline event came down: one line per report. The
 // report itself is read from the Qur'an's library like any other book on that
@@ -138,7 +143,7 @@ export const asbabQuery = (section, event) => ({
 })
 
 // Every hadith collection the module can browse or search. Small and fixed,
-// fetched once like getTimelines.
+// fetched once like timelinesQuery.
 export const hadithCollectionsQuery = {
   queryKey: ['hadith-collections'],
   queryFn: () => api.get('/hadith/collections').then((r) => r.data),
@@ -149,6 +154,13 @@ export const hadithBooksQuery = (collection) => ({
   queryKey: ['hadith-books', collection],
   queryFn: () => api.get(`/hadith/${collection}/books`).then((r) => r.data),
 })
+
+// Opening Hadith: the collections, then every collection's books. Errors stay
+// quiet, like prefetchQuery: the panel shows its own when it is opened.
+export const hadithOpen = (client) =>
+  client.fetchQuery(hadithCollectionsQuery)
+    .then((list) => list.forEach((c) => client.prefetchQuery(hadithBooksQuery(c.id))))
+    .catch(() => {})
 
 // One book's hadiths in full, Arabic and English.
 export const hadithBookQuery = (collection, number) => ({
@@ -193,8 +205,10 @@ export const findDaleel = ({ q, books = [] }) =>
 
 // Which books the search can be narrowed to. Read from the built index, so a
 // book is only offered if searching it would actually find something.
-export const getDaleelBooks = () =>
-  api.get('/daleel/books').then((r) => r.data)
+export const daleelBooksQuery = {
+  queryKey: ['daleel-books'],
+  queryFn: () => api.get('/daleel/books').then((r) => r.data),
+}
 
 // A recording, and what was said. `match` also asks which ayahs those words
 // were, which only the Qur'an tab wants; Daleel just searches the words. Sent as
@@ -246,7 +260,10 @@ export const checkText = (recording, { heard = '', expected = '' } = {}) => {
 }
 
 // Grow's paths: the steps to learn and a scholar's words on each.
-export const getGrowPaths = () => api.get('/grow/paths').then((r) => r.data)
+export const growPathsQuery = {
+  queryKey: ['grow-paths'],
+  queryFn: () => api.get('/grow/paths').then((r) => r.data),
+}
 
 // Where lib/journal.js's trail of reciting events goes. Its own constant
 // because sendBeacon cannot go through axios and needs the full path, not
@@ -259,8 +276,10 @@ export const postJournal = (events) => api.post('/journal', { events })
 
 // The spoken dialects with their unit and lesson titles, and nothing else: the
 // Colloquial tab opens on this list and a unit is sixty kilobytes on its own.
-export const getColloquial = () =>
-  api.get('/colloquial').then((r) => r.data)
+export const colloquialQuery = {
+  queryKey: ['colloquial'],
+  queryFn: () => api.get('/colloquial').then((r) => r.data),
+}
 
 // One whole unit, every lesson in it. Sent whole because a learner moves between
 // a unit's lessons freely, so paging would only add a wait mid-lesson.

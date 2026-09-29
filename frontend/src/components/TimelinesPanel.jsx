@@ -13,7 +13,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getTimelines } from '../api'
+import { timelinesQuery } from '../api'
 import { smartError } from '../lib/apiError'
 import { parsePlace, placeOf } from '../lib/timelineLayout'
 
@@ -29,10 +29,7 @@ import TimelineSection from './TimelineSection'
 const ALL = 'all'
 
 export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisit }) {
-  const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: ['timelines'],
-    queryFn: getTimelines,
-  })
+  const { data, isPending, isError, error, refetch } = useQuery(timelinesQuery)
   const [science, setScience] = useState(ALL)
   const [place, setPlace] = useState(null)   // { section, event, report }
 

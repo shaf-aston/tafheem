@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { GROUPS, TABS, accentOf } from './lib/tabs'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
+import { idle } from './lib/warm'
 import { useTabShortcuts } from './lib/useTabShortcuts'
 import { useHealth } from './lib/useHealth'
 import { moodFrom } from './lib/mood'
@@ -24,6 +25,8 @@ const queryClient = new QueryClient({
   // second visit is instant and a fetch-ahead (lib/warm) is never repeated.
   defaultOptions: { queries: { retry: 1, staleTime: Infinity, gcTime: 30 * 60_000 } },
 })
+
+const openTab = (id) => TABS.find((t) => t.id === id)?.open?.(queryClient)
 
 // Nothing to say about a round: no streak, no answer just given.
 const QUIET = { streak: 0, answer: null }
@@ -116,6 +119,9 @@ function AppContent() {
   }, [])
 
   useTabShortcuts(TABS, switchTab)
+
+  // Every tab's opening data, fetched once the page is idle.
+  useEffect(() => { idle(() => TABS.forEach((t) => openTab(t.id))) }, [])
 
   // The trail and the browser's back arrow are the same list; this follows the
   // arrow: a step returned to is handed back to its panel exactly like a
@@ -219,7 +225,7 @@ function AppContent() {
         </div>
 
         <div className="shell">
-          <TabStrip tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} />
+          <TabStrip tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
         </div>
       </header>
 

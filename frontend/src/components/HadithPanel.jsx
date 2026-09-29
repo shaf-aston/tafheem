@@ -6,13 +6,12 @@
  * "adjusted during render" pattern TimelinesPanel follows for its own place),
  * and hand the actual work to small named components that read from there.
  */
-import { useEffect, useState } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
-import { hadithBooksQuery, hadithCollectionsQuery } from '../api'
+import { hadithCollectionsQuery } from '../api'
 import { smartError } from '../lib/apiError'
 import { parsePlace, placeOf } from '../lib/hadithPlace'
-import { warm } from '../lib/warm'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import Chip from './ui/Chip'
@@ -29,11 +28,6 @@ import HadithSearchResults from './HadithSearchResults'
 
 export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
   const { data: collections, isPending, isError, error, refetch } = useQuery(hadithCollectionsQuery)
-  const client = useQueryClient()
-  // The book lists are small and fixed: have every collection's ready.
-  useEffect(() => {
-    collections?.forEach((c) => warm(client, hadithBooksQuery(c.id)))
-  }, [client, collections])
   const [place, setPlace] = useState(null)   // { collection, book, number, part }
   const [starred, setStarred] = useState(false)
   const { favorites } = useHadithFavorites()

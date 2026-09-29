@@ -22,7 +22,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getGrowPaths } from '../api'
+import { growPathsQuery } from '../api'
 import config from '../grow.json'
 import { afterRecitation, currentGroup, reactionTo, score, tiersOf, upNext } from '../lib/grow'
 import { moodFrom } from '../lib/mood'
@@ -38,7 +38,7 @@ import StepSheet from './grow/StepSheet'
 const say = sayIn('en')
 
 export default function GrowPanel({ accent, onGo }) {
-  const paths = useQuery({ queryKey: ['grow-paths'], queryFn: getGrowPaths })
+  const paths = useQuery(growPathsQuery)
   const { status } = useHealth()
   // The record is kept as JSON text in this browser only (useRemembered).
   const [saved, save] = useRemembered(config['storage-key'])
