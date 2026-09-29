@@ -90,7 +90,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
   }
 
   return (
-    <div className="space-y-5" style={{ '--c': accent }}>
+    <div className="panel" style={{ '--c': accent }}>
       <SectionHeader
         title={copy.title}
         arabic={copy.arabic}

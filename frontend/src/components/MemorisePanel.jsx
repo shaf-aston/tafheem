@@ -291,7 +291,7 @@ export default function MemorisePanel({ accent }) {
   useEffect(() => { forget() }, [forget, pageNumber, part, bookId, pinned])
 
   return (
-    <div className="space-y-4">
+    <div className="panel">
       <SectionHeader
         title="Memorise"
         arabic="حفظ"

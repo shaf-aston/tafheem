@@ -42,6 +42,10 @@
     "01": "#fbbf24", "02": "#fb923c", "03": "#4ade80", "04": "#38bdf8", "05": "#5eead4",
     "06": "#a78bfa", "07": "#fb7185", "08": "#f472b6", "09": "#93c5fd"
   },
+  "space": {
+    "_comment": "Gaps shared across tabs. panel is the gap between the blocks of every tab, header included (the .panel class).",
+    "panel": "1.25rem"
+  },
   "layer": {
     "_comment": "The one stacking scale: every z-index in the app is one of these, never a bare number. Lowest first: raised lifts a piece over its neighbours, seal is the Quran backdrop, sticky is a bar that pins while scrolling, popover a floating panel opened from a button, header the app bar, overlay a full-screen sheet, tip a tooltip over everything.",
     "raised": 1,

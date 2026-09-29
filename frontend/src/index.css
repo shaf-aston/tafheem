@@ -973,3 +973,6 @@ dialog::backdrop {
 .wheel-item[aria-selected='true'] { color: var(--text); font-weight: 600; }
 .wheel-hint { color: var(--text-faint); }
 .wheel-card-flip { left: auto; right: 0; }
+
+/* Every tab's outer column: one gap between its blocks, from theme.json space.panel. */
+.panel > * + * { margin-top: var(--space-panel); }

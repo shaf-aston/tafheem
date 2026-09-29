@@ -84,7 +84,7 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
   ]
 
   return (
-    <div className="space-y-3">
+    <div className="panel">
       <SectionHeader
         title="Timelines"
         arabic="التاريخ"

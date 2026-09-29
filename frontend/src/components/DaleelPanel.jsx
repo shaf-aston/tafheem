@@ -119,7 +119,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
   const bookCount = books.length
 
   return (
-    <div className="space-y-5">
+    <div className="panel">
       <SectionHeader
         title="Daleel"
         arabic="دليل"

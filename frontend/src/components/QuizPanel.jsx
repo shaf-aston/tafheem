@@ -400,7 +400,7 @@ export default function QuizPanel({ accent, onProgress }) {
     // not merely untidy: a sentence built from two Urdu pieces with an element
     // between them comes out in the wrong order, because the element is neutral
     // and takes the direction of the text either side of it.
-    <div className="space-y-4" lang={language} dir={language === 'en' ? 'ltr' : 'rtl'}>
+    <div className="panel" lang={language} dir={language === 'en' ? 'ltr' : 'rtl'}>
       <SectionHeader title={say('Quiz')} arabic="اختبار" />
 
       {/* One quiet line of setup, so the question is the first thing you see
