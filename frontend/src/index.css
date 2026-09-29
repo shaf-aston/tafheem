@@ -859,15 +859,20 @@ dialog::backdrop {
   .cursor-light { display: none; }
 }
 
-/* The Quran tab's faint seal (ui/QuranSeal): behind everything, never clickable. */
+/* The Quran tab's faint seal (ui/QuranSeal): behind everything; hover only reaches it where the page is empty. */
 .quran-seal {
   position: absolute;
   z-index: -1;
   top: -0.5rem;
   right: 0;
   width: min(20rem, 60vw);
-  pointer-events: none;
   color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength), transparent);
+  transition: color calc(var(--motion-base-ms) * 2ms) ease, filter calc(var(--motion-base-ms) * 2ms) ease;
+}
+/* Hovered, it catches the light: stronger ink and a soft glow. */
+.quran-seal:hover {
+  color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength-hover), transparent);
+  filter: drop-shadow(0 0 var(--backdrop-glow) color-mix(in srgb, var(--backdrop-ink) 30%, transparent));
 }
 .quran-seal-script {
   font-family: 'Amiri', var(--font-quran);
