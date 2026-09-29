@@ -41,7 +41,6 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ['notes'],
     queryFn: getNotes,
-    staleTime: Infinity,
   })
 
   const [savedMode, rememberMode] = useRemembered('notes-mode', MODE_IDS)

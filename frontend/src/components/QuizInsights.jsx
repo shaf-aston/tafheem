@@ -63,11 +63,10 @@ export default function QuizInsights({ accent, language }) {
     // so the figures on the bar are the ones for the round being played.
     queryKey: ['quiz-progress', language],
     queryFn: () => fetchSummary(moduleFor(language)),
-    staleTime: Infinity,
     refetchOnWindowFocus: false,
   })
-  const words = useQuery({ queryKey: ['quiz-words', 'all'], queryFn: allWords, staleTime: Infinity })
-  const groups = useQuery({ queryKey: ['quiz-groups', 'quranic'], queryFn: () => groupsFor('quranic'), staleTime: Infinity })
+  const words = useQuery({ queryKey: ['quiz-words', 'all'], queryFn: allWords })
+  const groups = useQuery({ queryKey: ['quiz-groups', 'quranic'], queryFn: () => groupsFor('quranic') })
 
   // Joined and totalled once per round, not once per render: the bar reads the
   // same numbers the opened panel does, so the two can never disagree, and a

@@ -21,7 +21,6 @@ export function useTranslation(surah) {
   const { data: books = [] } = useQuery({
     queryKey: ['quran-editions', 'translation'],
     queryFn: () => getQuranEditions('translation'),
-    staleTime: Infinity,
   })
 
   const [chosen, choose] = useRemembered('translation-edition', books.map((book) => book.id))
@@ -30,7 +29,6 @@ export function useTranslation(surah) {
     queryKey: ['surah-edition', surah, chosen],
     queryFn: () => getSurahEdition(surah, chosen),
     enabled: Boolean(surah && chosen),
-    staleTime: Infinity,
   })
 
   return {

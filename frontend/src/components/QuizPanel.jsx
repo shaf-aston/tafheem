@@ -105,7 +105,6 @@ export default function QuizPanel({ accent, onProgress }) {
   const groups = useQuery({
     queryKey: ['quiz-groups', bankId],
     queryFn: () => groupsFor(bankId),
-    staleTime: Infinity,
   })
 
   // The cut, remembered as the pair it is: kind of cut, then the one inside it.
@@ -137,7 +136,6 @@ export default function QuizPanel({ accent, onProgress }) {
     // pile for each; every other set is the same words either way.
     queryKey: ['quiz-words', bankId, groupId, bank.live ? language : '', bank.live ? round.at : 0],
     queryFn: () => wordsFor(bankId, groupId, language),
-    staleTime: Infinity,
     refetchOnWindowFocus: false,
   })
 
@@ -147,7 +145,6 @@ export default function QuizPanel({ accent, onProgress }) {
   const everyWord = useQuery({
     queryKey: ['quiz-words', 'all'],
     queryFn: allWords,
-    staleTime: Infinity,
     enabled: bank.live,
   })
 
@@ -156,7 +153,6 @@ export default function QuizPanel({ accent, onProgress }) {
   const info = useQuery({
     queryKey: ['quiz-set', bankId],
     queryFn: () => bankInfo(bankId),
-    staleTime: Infinity,
   })
 
   // Only the words written in the language being shown. Everything outside the
@@ -179,7 +175,6 @@ export default function QuizPanel({ accent, onProgress }) {
   const mistakes = useQuery({
     queryKey: ['quiz-review', language],
     queryFn: () => fetchReviewItems(moduleFor(language)),
-    staleTime: Infinity,
     refetchOnWindowFocus: false,
   })
   const owed = mistakes.data?.length ?? 0

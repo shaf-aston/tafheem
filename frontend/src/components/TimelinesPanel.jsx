@@ -32,7 +32,6 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ['timelines'],
     queryFn: getTimelines,
-    staleTime: Infinity,
   })
   const [science, setScience] = useState(ALL)
   const [place, setPlace] = useState(null)   // { section, event, report }

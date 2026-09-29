@@ -12,12 +12,13 @@ import TopicIcon from './TopicIcon'
 import '../timelines.css'
 
 export default function TileCard({
-  hue, icon, variant = 'event', index = 0, pressed, current, label, className = '', onClick, children,
+  hue, icon, variant = 'event', index = 0, pressed, current, label, className = '', onClick, children, ...rest
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
+      {...rest}
       aria-pressed={pressed}
       aria-current={current}
       aria-label={label}

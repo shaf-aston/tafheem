@@ -36,7 +36,6 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ['dawah'],
     queryFn: getDawah,
-    staleTime: Infinity,
   })
   const [topicId, setTopicId] = useState(null)
   const [questionId, setQuestionId] = useState(null)

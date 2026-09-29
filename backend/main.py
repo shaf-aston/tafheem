@@ -11,6 +11,7 @@ from typing import Callable
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 
 from backend.config import get_settings
 from backend.routers import (
@@ -122,6 +123,7 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
 
+    app.add_middleware(GZipMiddleware, minimum_size=1000)  # hadith books run to hundreds of KB
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,

@@ -44,7 +44,6 @@ export default function RootMeaningCard({ root: asked, hasAlternates, accent }) 
     // Nothing to ask when the book is not on this machine: the message below
     // already says so, and a request would only come back as an empty answer.
     enabled: installed && Boolean(asked),
-    staleTime: Infinity,
   })
 
   if (!asked) return null
@@ -331,7 +330,6 @@ function EntryEnglish({ root, enabled }) {
     queryKey: ['root-entry-english', root],
     queryFn: () => getRootEntryEnglish(root),
     enabled,
-    staleTime: Infinity,
     // One failed reading is one failed reading. Retrying spends more calls on
     // the same answer, and the message below already offers to try again.
     retry: false,
@@ -382,7 +380,6 @@ function EntryLineByLine({ root, enabled }) {
     queryKey: ['root-entry-lines', root],
     queryFn: () => getRootEntryLines(root),
     enabled,
-    staleTime: Infinity,
     // One failed pairing is one failed pairing. The message below offers to
     // try again, and the Together view still has the whole entry.
     retry: false,

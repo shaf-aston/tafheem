@@ -38,7 +38,7 @@ import StepSheet from './grow/StepSheet'
 const say = sayIn('en')
 
 export default function GrowPanel({ accent, onGo }) {
-  const paths = useQuery({ queryKey: ['grow-paths'], queryFn: getGrowPaths, staleTime: Infinity })
+  const paths = useQuery({ queryKey: ['grow-paths'], queryFn: getGrowPaths })
   const { status } = useHealth()
   // The record is kept as JSON text in this browser only (useRemembered).
   const [saved, save] = useRemembered(config['storage-key'])

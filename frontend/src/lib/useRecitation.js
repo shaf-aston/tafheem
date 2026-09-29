@@ -64,7 +64,6 @@ export function useRecitation(surah, reciterId) {
     queryKey: ['recitation', surah, reciterId],
     queryFn: () => fetchRecitation(surah, reciterId),
     // Measured once and printed; it will not change while the page is open.
-    staleTime: Infinity,
     // A silent, optional improvement. Failing it must never make a page noisy.
     retry: 1,
   })

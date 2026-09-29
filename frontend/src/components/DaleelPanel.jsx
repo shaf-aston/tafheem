@@ -71,7 +71,6 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
   const { data: catalogue = [] } = useQuery({
     queryKey: ['daleel-books'],
     queryFn: getDaleelBooks,
-    staleTime: Infinity,
   })
 
   // A question arriving: handed over from another tab, or the back arrow

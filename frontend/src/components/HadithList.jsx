@@ -5,7 +5,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getHadithBook } from '../api'
+import { hadithBookQuery } from '../api'
 import { smartError } from '../lib/apiError'
 import { scrollToEl } from '../lib/scrollToEl'
 import { topicOf } from '../lib/hadithGrade'
@@ -31,11 +31,7 @@ function useReadingRail(ref) {
 }
 
 export default function HadithList({ collection, collections, book, onBack, accent }) {
-  const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: ['hadith-book', collection, book],
-    queryFn: () => getHadithBook(collection, book),
-    staleTime: Infinity,
-  })
+  const { data, isPending, isError, error, refetch } = useQuery(hadithBookQuery(collection, book))
   const rail = useRef(null)
   useReadingRail(rail)
   const [missing, setMissing] = useState(false)

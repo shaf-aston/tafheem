@@ -30,6 +30,8 @@ export const getQuranAyah = (surah, ayah) =>
 export const getQuranSurah = (surah) =>
   api.get(`/quran/surah/${surah}`).then((r) => r.data)
 
+export const quranSurahQuery = (surah) => ({ queryKey: ['quran-surah', surah], queryFn: () => getQuranSurah(surah) })
+
 // The English of each word, for showing what one word means without leaving the
 // page. Its own request, not part of the surah above: it is wanted only where
 // the words are drawn separately, and an ayah the two sources disagree about is
@@ -130,21 +132,29 @@ export const getDawah = () => api.get('/dawah').then((r) => r.data)
 // Why the ayahs of one timeline event came down: one line per report. The
 // report itself is read from the Qur'an's library like any other book on that
 // ayah, so nothing here fetches a megabyte of prose to show a list.
-export const getTimelineAsbab = (section, event) =>
-  api.get(`/timelines/${section}/${event}/asbab`).then((r) => r.data)
+export const asbabQuery = (section, event) => ({
+  queryKey: ['timeline-asbab', section, event],
+  queryFn: () => api.get(`/timelines/${section}/${event}/asbab`).then((r) => r.data),
+})
 
 // Every hadith collection the module can browse or search. Small and fixed,
 // fetched once like getTimelines.
-export const getHadithCollections = () =>
-  api.get('/hadith/collections').then((r) => r.data)
+export const hadithCollectionsQuery = {
+  queryKey: ['hadith-collections'],
+  queryFn: () => api.get('/hadith/collections').then((r) => r.data),
+}
 
 // One collection's books (chapters), each carrying how many hadiths it holds.
-export const getHadithBooks = (collection) =>
-  api.get(`/hadith/${collection}/books`).then((r) => r.data)
+export const hadithBooksQuery = (collection) => ({
+  queryKey: ['hadith-books', collection],
+  queryFn: () => api.get(`/hadith/${collection}/books`).then((r) => r.data),
+})
 
 // One book's hadiths in full, Arabic and English.
-export const getHadithBook = (collection, number) =>
-  api.get(`/hadith/${collection}/books/${number}`).then((r) => r.data)
+export const hadithBookQuery = (collection, number) => ({
+  queryKey: ['hadith-book', collection, number],
+  queryFn: () => api.get(`/hadith/${collection}/books/${number}`).then((r) => r.data),
+})
 
 // Every word typed must appear, in Arabic or English, across the named
 // collections; empty collections means every collection, the ordinary case.
@@ -254,8 +264,10 @@ export const getColloquial = () =>
 
 // One whole unit, every lesson in it. Sent whole because a learner moves between
 // a unit's lessons freely, so paging would only add a wait mid-lesson.
-export const getColloquialUnit = (dialect, unit) =>
-  api.get(`/colloquial/${encodeURIComponent(dialect)}/${encodeURIComponent(unit)}`).then((r) => r.data)
+export const colloquialUnitQuery = (dialect, unit) => ({
+  queryKey: ['colloquial-unit', dialect, unit],
+  queryFn: () => api.get(`/colloquial/${encodeURIComponent(dialect)}/${encodeURIComponent(unit)}`).then((r) => r.data),
+})
 
 // A phrase picture: `file` is the path the lesson names, like "damascene/unit-01/greeting.jpg".
 export const colloquialImageUrl = (file) =>
