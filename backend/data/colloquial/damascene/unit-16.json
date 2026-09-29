@@ -31,7 +31,7 @@
             "transliteration": "mbeeri7 ru7t 3as-soo2",
             "english": "Yesterday I went to the market."
           },
-          "search_term": "an outdoor market street"
+          "search_term": "street market"
         },
         {
           "arabic": "مبارح كان يوم طويل كتير",
@@ -450,7 +450,8 @@
           "arabic": "أول دراجة كان عندي كانت حمرا",
           "transliteration": "awwal drraaje kan 3indi kanet 7amra",
           "english": "The first bike I had was red.",
-          "search_term": "a red bicycle"
+          "search_term": "a red bicycle",
+          "image": "damascene/unit-16/l02-p07-a-red-bicycle.jpg"
         },
         {
           "arabic": "كنت أخاف من الظلام كتير لما كنت صغير",
@@ -775,7 +776,8 @@
           "arabic": "انكسر تلفوني مبارح",
           "transliteration": "inkasar talifoni mbeeri7",
           "english": "My phone broke yesterday.",
-          "search_term": "a cracked phone screen"
+          "search_term": "a cracked phone screen",
+          "image": "damascene/unit-16/l03-p01-a-cracked-phone-screen.jpg"
         },
         {
           "arabic": "ضاع مفتاح البيت مني",

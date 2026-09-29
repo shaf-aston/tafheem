@@ -31,7 +31,8 @@
             "transliteration": "ahlein, tfaddal shuf",
             "english": "Welcome, go ahead and look"
           },
-          "search_term": "fresh vegetable stall"
+          "search_term": "fresh vegetable stall",
+          "image": "damascene/unit-03/l01-p01-fresh-vegetable-stall.jpg"
         },
         {
           "arabic": "بدي كيلو بندورة لو سمحت",
@@ -42,7 +43,8 @@
             "transliteration": "tikram 3aynak, halla2 bawzinlak",
             "english": "Right away, I'll weigh it for you now"
           },
-          "search_term": "red tomatoes at a market stall"
+          "search_term": "red tomatoes at a market stall",
+          "image": "damascene/unit-03/l01-p02-red-tomatoes-at-a-market-stall.jpg"
         },
         {
           "arabic": "قديش سعر الخيار؟",
@@ -53,7 +55,8 @@
             "transliteration": "el-kilo b-khamsin lira",
             "english": "The kilo is fifty lira"
           },
-          "search_term": "fresh cucumbers"
+          "search_term": "fresh cucumbers",
+          "image": "damascene/unit-03/l01-p03-fresh-cucumbers.jpg"
         },
         {
           "arabic": "عندك بصل وتوم؟",
@@ -64,13 +67,15 @@
             "transliteration": "ee, shu biddak minnon?",
             "english": "Yes, how much of each do you want?"
           },
-          "search_term": "onions and garlic"
+          "search_term": "onions and garlic",
+          "image": "damascene/unit-03/l01-p04-onions-and-garlic.jpg"
         },
         {
           "arabic": "بدي نص كيلو بطاطا",
           "transliteration": "biddi nos kilo batata",
           "english": "I want half a kilo of potatoes",
-          "search_term": "potatoes in a basket"
+          "search_term": "potatoes in a basket",
+          "image": "damascene/unit-03/l01-p05-potatoes-in-a-basket.jpg"
         },
         {
           "arabic": "هاد الخيار طازة ولا لأ؟",
@@ -86,7 +91,8 @@
           "arabic": "عطيني كيس بقدونس وكزبرة",
           "transliteration": "3atini kis ba2dunes w kizbara",
           "english": "Give me a bag of parsley and coriander",
-          "search_term": "parsley and coriander bunches"
+          "search_term": "parsley and coriander bunches",
+          "image": "damascene/unit-03/l01-p07-parsley-and-coriander-bunches.jpg"
         },
         {
           "arabic": "هاد السعر غالي شوي",
@@ -107,7 +113,8 @@
             "transliteration": "ee fi, hamra w khadra",
             "english": "Yes there are, red and green"
           },
-          "search_term": "red and green bell peppers"
+          "search_term": "red and green bell peppers",
+          "image": "damascene/unit-03/l01-p09-red-and-green-bell-peppers.jpg"
         },
         {
           "arabic": "قديش الكيلوين سوا؟",
@@ -1265,7 +1272,8 @@
             "transliteration": "mni7, sa77a w hana",
             "english": "Good, enjoy"
           },
-          "search_term": "fava beans dish"
+          "search_term": "fava beans dish",
+          "image": "damascene/unit-03/l04-p01-fava-beans-dish.jpg"
         },
         {
           "arabic": "ما بحب البندورة نية",
