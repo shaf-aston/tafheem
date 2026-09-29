@@ -56,7 +56,7 @@ def _quran_faults(ref: str, ayahs: dict[int, int]) -> list[str]:
     return []
 
 
-def _refs_faults(refs: list[dict], collections: dict, ayahs: dict[int, int]) -> list[str]:
+def refs_faults(refs: list[dict], collections: dict, ayahs: dict[int, int]) -> list[str]:
     """Each reference sound, and none given twice: a repeat prints two identical pills."""
     said = [why for ref in refs for why in _ref_faults(ref, collections, ayahs)]
     keys = [json.dumps(ref, sort_keys=True) for ref in refs]
@@ -116,7 +116,7 @@ def _step_faults(steps: list, library: dict, ayahs: dict[int, int], name: str,
         for flag in step.get("flags") or []:
             if flag not in library["flags"]:
                 said.append(f"{here} has flag {flag!r}, which library.json does not declare")
-        said.extend(f"{here}: {why}" for why in _refs_faults(step.get("refs") or [], library["collections"], ayahs))
+        said.extend(f"{here}: {why}" for why in refs_faults(step.get("refs") or [], library["collections"], ayahs))
         said.extend(_step_faults(step.get("steps") or [], library, ayahs, here, seen, depth + 1))
     # Neighbouring steps on paths are drawn side by side, so a run of them needs
     # at least two paths, or it is one lane beside an empty column.
@@ -186,7 +186,7 @@ def _faults(section: dict, library: dict, ayahs: dict[int, int]) -> list[str]:
                 said.append(f"{name} lasts until {until!r}, which does not come after it")
         if not event.get("refs"):
             said.append(f"{name} has no references")
-        said.extend(f"{name}: {why}" for why in _refs_faults(event.get("refs") or [], library["collections"], ayahs))
+        said.extend(f"{name}: {why}" for why in refs_faults(event.get("refs") or [], library["collections"], ayahs))
         said.extend(_step_faults(event.get("steps") or [], library, ayahs, name, set()))
     return said
 

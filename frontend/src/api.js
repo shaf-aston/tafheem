@@ -124,6 +124,9 @@ export const notePageUrl = (topicId, page) =>
 export const getTimelines = () =>
   api.get('/timelines').then((r) => r.data)
 
+// Every dawah topic and question, fetched whole once like getTimelines.
+export const getDawah = () => api.get('/dawah').then((r) => r.data)
+
 // Why the ayahs of one timeline event came down: one line per report. The
 // report itself is read from the Qur'an's library like any other book on that
 // ayah, so nothing here fetches a megabyte of prose to show a list.
