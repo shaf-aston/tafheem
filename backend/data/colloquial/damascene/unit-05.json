@@ -1,6 +1,5 @@
 {
   "unit": "unit-05",
-  "title": "Getting Around",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,18 +19,16 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "Taking a Taxi",
       "phrases": [
         {
+          "slot": "taxi",
           "arabic": "تكسي!",
-          "transliteration": "taksi!",
-          "english": "Taxi!",
-          "search_term": "hailing a taxi on a street"
+          "transliteration": "taksi!"
         },
         {
+          "slot": "please-i-want-to-go-to-old-damascus",
           "arabic": "لو سمحت، بدي روح عَ الشام القديمة.",
           "transliteration": "law samaht, biddi rooh 3a esh-sham el-2adeeme.",
-          "english": "Please, I want to go to Old Damascus.",
           "reply": {
             "arabic": "تمام، اركب.",
             "transliteration": "tamam, erkab.",
@@ -39,21 +36,19 @@
           }
         },
         {
+          "slot": "can-you-take-me-to-bab-touma",
           "arabic": "فيك توصلني عَ باب توما؟",
-          "transliteration": "feek tewassilni 3a bab tuma?",
-          "english": "Can you take me to Bab Touma?"
+          "transliteration": "feek tewassilni 3a bab tuma?"
         },
         {
+          "slot": "turn-on-the-meter-please",
           "arabic": "شغّل العداد لو سمحت.",
-          "transliteration": "shaghghel el-3addad law samaht.",
-          "english": "Turn on the meter please.",
-          "search_term": "taxi meter",
-          "image": "damascene/unit-05/l01-p04-taxi-meter.jpg"
+          "transliteration": "shaghghel el-3addad law samaht."
         },
         {
+          "slot": "how-much-is-the-fare-to-here",
           "arabic": "قديش الأجرة لهون؟",
           "transliteration": "2addeish el-ojra la-hon?",
-          "english": "How much is the fare to here?",
           "reply": {
             "arabic": "تلاتين ليرة تقريبا.",
             "transliteration": "talateen leera ta2reeban.",
@@ -61,32 +56,29 @@
           }
         },
         {
+          "slot": "stop-right-here",
           "arabic": "وقف هون منيح.",
-          "transliteration": "2if hon mnee7.",
-          "english": "Stop right here.",
-          "search_term": "taxi stopped at a curb"
+          "transliteration": "2if hon mnee7."
         },
         {
+          "slot": "keep-to-your-right",
           "arabic": "خليك عَ يمينك.",
-          "transliteration": "khalleek 3a yameenak.",
-          "english": "Keep to your right.",
-          "search_term": "car turning right on a road"
+          "transliteration": "khalleek 3a yameenak."
         },
         {
+          "slot": "straight-ahead-to-the-end-of-the-street",
           "arabic": "دغري لآخر الشارع.",
-          "transliteration": "daghri la-2akher esh-share3.",
-          "english": "Straight ahead to the end of the street.",
-          "search_term": "straight city street"
+          "transliteration": "daghri la-2akher esh-share3."
         },
         {
+          "slot": "here-is-fine-stop",
           "arabic": "هون منيح، وقف.",
-          "transliteration": "hon mnee7, 2if.",
-          "english": "Here is fine, stop."
+          "transliteration": "hon mnee7, 2if."
         },
         {
+          "slot": "keep-the-change",
           "arabic": "الباقي إلك.",
           "transliteration": "el-ba2i elak.",
-          "english": "Keep the change.",
           "reply": {
             "arabic": "الله يعطيك العافية.",
             "transliteration": "allah y3teek el-3afye.",
@@ -94,21 +86,19 @@
           }
         },
         {
+          "slot": "is-there-a-taxi-nearby-here",
           "arabic": "في تكسي هون قريب؟",
           "transliteration": "fi taksi hon 2reeb?",
-          "english": "Is there a taxi nearby here?",
           "reply": {
             "arabic": "إي، بس دقيقة وبيجي.",
             "transliteration": "ee, bas d2ee2a w-biji.",
             "english": "Yes, just a minute and one will come."
-          },
-          "search_term": "empty taxi waiting on a street"
+          }
         },
         {
+          "slot": "i-don-t-have-change-sorry",
           "arabic": "ما في فكة عندي، آسف.",
-          "transliteration": "ma fi fakke 3ende, asef.",
-          "english": "I don't have change, sorry.",
-          "search_term": "coins and small change in a hand"
+          "transliteration": "ma fi fakke 3ende, asef."
         }
       ],
       "dialogue": [
@@ -435,36 +425,31 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "Asking for Directions",
       "phrases": [
         {
+          "slot": "excuse-me-where-is-the-pharmacy",
           "arabic": "لو سمحت، وين الصيدلية؟",
-          "transliteration": "law samaht, ween es-saydaliyye?",
-          "english": "Excuse me, where is the pharmacy?",
-          "search_term": "pharmacy storefront sign"
+          "transliteration": "law samaht, ween es-saydaliyye?"
         },
         {
+          "slot": "straight-ahead",
           "arabic": "دغري لقدام.",
-          "transliteration": "daghri la-2oddam.",
-          "english": "Straight ahead.",
-          "search_term": "straight city street"
+          "transliteration": "daghri la-2oddam."
         },
         {
+          "slot": "turn-right-at-the-traffic-light",
           "arabic": "لف يمين عند الإشارة.",
-          "transliteration": "leff yameen 3end el-ishara.",
-          "english": "Turn right at the traffic light.",
-          "search_term": "traffic light at an intersection"
+          "transliteration": "leff yameen 3end el-ishara."
         },
         {
+          "slot": "turn-left-after-the-mosque",
           "arabic": "لف شمال بعد الجامع.",
-          "transliteration": "leff shmal ba3d ej-jame3.",
-          "english": "Turn left after the mosque.",
-          "search_term": "mosque on a street corner"
+          "transliteration": "leff shmal ba3d ej-jame3."
         },
         {
+          "slot": "is-it-far-or-near",
           "arabic": "بعيدة ولا قريبة؟",
           "transliteration": "b3eede wala 2reebe?",
-          "english": "Is it far or near?",
           "reply": {
             "arabic": "قريبة، خمس دقايق مشي.",
             "transliteration": "2reebe, khams da2ayeq mashi.",
@@ -472,38 +457,34 @@
           }
         },
         {
+          "slot": "how-far-is-it-from-here",
           "arabic": "قديش المسافة من هون؟",
-          "transliteration": "2addeish el-masafe min hon?",
-          "english": "How far is it from here?"
+          "transliteration": "2addeish el-masafe min hon?"
         },
         {
+          "slot": "i-m-lost-can-you-help-me",
           "arabic": "تايه، ممكن تساعدني؟",
-          "transliteration": "tayeh, mumken tsa3edni?",
-          "english": "I'm lost, can you help me?",
-          "search_term": "confused person looking at a map"
+          "transliteration": "tayeh, mumken tsa3edni?"
         },
         {
+          "slot": "okay-first-alley-on-your-right",
           "arabic": "خلص، أول زاروب عَ يمينك.",
-          "transliteration": "khalas, awwal zaroob 3a yameenak.",
-          "english": "Okay, first alley on your right.",
-          "search_term": "narrow alley in an old city"
+          "transliteration": "khalas, awwal zaroob 3a yameenak."
         },
         {
+          "slot": "walk-straight-until-the-end-of-the-market",
           "arabic": "امشي دغري لحتى آخر السوق.",
-          "transliteration": "emshi daghri la-7atta 2akher es-sooq.",
-          "english": "Walk straight until the end of the market.",
-          "search_term": "busy market street"
+          "transliteration": "emshi daghri la-7atta 2akher es-sooq."
         },
         {
+          "slot": "this-street-is-closed",
           "arabic": "هاد الشارع مسكر.",
-          "transliteration": "had esh-share3 mesker.",
-          "english": "This street is closed.",
-          "search_term": "closed road with a barrier"
+          "transliteration": "had esh-share3 mesker."
         },
         {
+          "slot": "from-where-do-i-get-to-the-umayyad-mosque",
           "arabic": "منين بدي وصل عَ الجامع الأموي؟",
           "transliteration": "mneen biddi wsal 3al-jame3 el-2amawi?",
-          "english": "From where do I get to the Umayyad Mosque?",
           "reply": {
             "arabic": "تعدي هالساحة وبتشوفه قدامك.",
             "transliteration": "t3addi has-sa7a w-btshoofo 2oddamak.",
@@ -511,9 +492,9 @@
           }
         },
         {
+          "slot": "thanks-a-lot",
           "arabic": "شكرا كتير، الله يعطيك العافية.",
-          "transliteration": "shokran kteer, allah y3teek el-3afye.",
-          "english": "Thanks a lot."
+          "transliteration": "shokran kteer, allah y3teek el-3afye."
         }
       ],
       "dialogue": [
@@ -828,24 +809,21 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "Buses and Microbuses",
       "phrases": [
         {
+          "slot": "where-s-the-bus-stop",
           "arabic": "وين محطة الباص؟",
-          "transliteration": "ween ma7attet el-bas?",
-          "english": "Where's the bus stop?",
-          "search_term": "bus stop sign"
+          "transliteration": "ween ma7attet el-bas?"
         },
         {
+          "slot": "does-this-bus-go-to-mazzeh",
           "arabic": "هاد الباص بيروح عَ المزة؟",
-          "transliteration": "had el-bas byrooh 3al-mazze?",
-          "english": "Does this bus go to Mazzeh?",
-          "search_term": "city bus on a street"
+          "transliteration": "had el-bas byrooh 3al-mazze?"
         },
         {
+          "slot": "how-much-is-the-fare",
           "arabic": "قديش الأجرة؟",
           "transliteration": "2addeish el-ojra?",
-          "english": "How much is the fare?",
           "reply": {
             "arabic": "خمسطعش ليرة.",
             "transliteration": "khamasta3sh leera.",
@@ -853,15 +831,14 @@
           }
         },
         {
+          "slot": "microbus-microbus",
           "arabic": "ميكرو، ميكرو!",
-          "transliteration": "mikro, mikro!",
-          "english": "Microbus, microbus!",
-          "search_term": "minibus microbus on a street"
+          "transliteration": "mikro, mikro!"
         },
         {
+          "slot": "is-there-an-empty-seat",
           "arabic": "في مكان فاضي؟",
           "transliteration": "fi makan fadi?",
-          "english": "Is there an empty seat?",
           "reply": {
             "arabic": "إي، تفضل اقعد قدام.",
             "transliteration": "ee, tfaddal 2ead 2oddam.",
@@ -869,42 +846,39 @@
           }
         },
         {
+          "slot": "do-you-stop-at-halbouni-roundabout",
           "arabic": "بتوقف عند دوار الحلبوني؟",
-          "transliteration": "btoo2af 3end dawwar el-7albouni?",
-          "english": "Do you stop at Halbouni roundabout?"
+          "transliteration": "btoo2af 3end dawwar el-7albouni?"
         },
         {
+          "slot": "please-let-me-off-here",
           "arabic": "لو سمحت نزلني هون.",
-          "transliteration": "law samaht nazzelni hon.",
-          "english": "Please let me off here.",
-          "search_term": "person getting off a bus"
+          "transliteration": "law samaht nazzelni hon."
         },
         {
+          "slot": "the-bus-is-very-crowded",
           "arabic": "الباص فيه زحمة كتير.",
-          "transliteration": "el-bas fi ze7me kteer.",
-          "english": "The bus is very crowded.",
-          "search_term": "crowded bus"
+          "transliteration": "el-bas fi ze7me kteer."
         },
         {
+          "slot": "what-s-the-bus-number-to-the-university",
           "arabic": "شو رقم الباص لعَ الجامعة؟",
-          "transliteration": "shu ra2m el-bas la3al-jam3a?",
-          "english": "What's the bus number to the university?"
+          "transliteration": "shu ra2m el-bas la3al-jam3a?"
         },
         {
+          "slot": "it-comes-every-little-while",
           "arabic": "بيجي كل شوي.",
-          "transliteration": "byiji kell shwayy.",
-          "english": "It comes every little while."
+          "transliteration": "byiji kell shwayy."
         },
         {
+          "slot": "take-the-change-please",
           "arabic": "خد الفكة من فضلك.",
-          "transliteration": "khod el-fakke min fadlak.",
-          "english": "Take the change please.",
-          "search_term": "coins in an open hand"
+          "transliteration": "khod el-fakke min fadlak."
         },
         {
+          "slot": "the-next-bus-is-emptier-better",
           "arabic": "الباص الجاي فاضي أحسن.",
-          "transliteration": "el-bas ej-jayy fadi a7san.",
-          "english": "The next bus is emptier, better."
+          "transliteration": "el-bas ej-jayy fadi a7san."
         }
       ],
       "dialogue": [
@@ -1220,77 +1194,61 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Places in Town",
       "phrases": [
         {
+          "slot": "the-market",
           "arabic": "السوق",
-          "transliteration": "es-sooq",
-          "english": "the market",
-          "search_term": "market stalls",
-          "image": "damascene/unit-05/l04-p01-market-stalls.jpg"
+          "transliteration": "es-sooq"
         },
         {
+          "slot": "the-pharmacy",
           "arabic": "الصيدلية",
-          "transliteration": "es-saydaliyye",
-          "english": "the pharmacy",
-          "search_term": "pharmacy storefront",
-          "image": "damascene/unit-05/l04-p02-pharmacy-storefront.jpg"
+          "transliteration": "es-saydaliyye"
         },
         {
+          "slot": "the-mosque",
           "arabic": "الجامع",
-          "transliteration": "ej-jame3",
-          "english": "the mosque",
-          "search_term": "mosque exterior"
+          "transliteration": "ej-jame3"
         },
         {
+          "slot": "the-church",
           "arabic": "الكنيسة",
-          "transliteration": "el-kaniise",
-          "english": "the church",
-          "search_term": "church exterior"
+          "transliteration": "el-kaniise"
         },
         {
+          "slot": "the-hospital",
           "arabic": "المستشفى",
-          "transliteration": "el-mostashfa",
-          "english": "the hospital",
-          "search_term": "hospital building"
+          "transliteration": "el-mostashfa"
         },
         {
+          "slot": "the-school",
           "arabic": "المدرسة",
-          "transliteration": "el-madrase",
-          "english": "the school",
-          "search_term": "school building",
-          "image": "damascene/unit-05/l04-p06-school-building.jpg"
+          "transliteration": "el-madrase"
         },
         {
+          "slot": "the-restaurant",
           "arabic": "المطعم",
-          "transliteration": "el-mat3am",
-          "english": "the restaurant",
-          "search_term": "restaurant interior",
-          "image": "damascene/unit-05/l04-p07-restaurant-interior.jpg"
+          "transliteration": "el-mat3am"
         },
         {
+          "slot": "the-bank",
           "arabic": "البنك",
-          "transliteration": "el-bank",
-          "english": "the bank",
-          "search_term": "bank building"
+          "transliteration": "el-bank"
         },
         {
+          "slot": "the-park",
           "arabic": "الحديقة",
-          "transliteration": "el-7adi2a",
-          "english": "the park",
-          "search_term": "city park"
+          "transliteration": "el-7adi2a"
         },
         {
+          "slot": "the-station",
           "arabic": "المحطة",
-          "transliteration": "el-ma7atta",
-          "english": "the station",
-          "search_term": "bus station",
-          "image": "damascene/unit-05/l04-p10-bus-station.jpg"
+          "transliteration": "el-ma7atta"
         },
         {
+          "slot": "where-s-the-nearest-bank-from-here",
           "arabic": "وين أقرب بنك من هون؟",
           "transliteration": "ween a2rab bank min hon?",
-          "english": "Where's the nearest bank from here?",
           "reply": {
             "arabic": "عَ آخر الشارع، جنب البريد.",
             "transliteration": "3a 2akher esh-share3, jamb el-bareed.",
@@ -1298,9 +1256,9 @@
           }
         },
         {
+          "slot": "is-there-a-good-restaurant-in-the-area",
           "arabic": "في مطعم منيح بالمنطقة؟",
           "transliteration": "fi mat3am mnee7 bel-mante2a?",
-          "english": "Is there a good restaurant in the area?",
           "reply": {
             "arabic": "إي، في واحد مشهور قريب من هون.",
             "transliteration": "ee, fi wa7ed mash-hoor 2reeb min hon.",

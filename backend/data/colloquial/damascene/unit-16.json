@@ -1,6 +1,5 @@
 {
   "unit": "unit-16",
-  "title": "Telling What Happened",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,33 +19,31 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "Yesterday",
       "phrases": [
         {
+          "slot": "what-did-you-do-yesterday",
           "arabic": "مبارح شو عملت؟",
           "transliteration": "mbeeri7 shu 3milt?",
-          "english": "What did you do yesterday?",
           "reply": {
             "arabic": "مبارح رحت عالسوق",
             "transliteration": "mbeeri7 ru7t 3as-soo2",
             "english": "Yesterday I went to the market."
-          },
-          "search_term": "street market"
+          }
         },
         {
+          "slot": "yesterday-was-a-very-long-day",
           "arabic": "مبارح كان يوم طويل كتير",
-          "transliteration": "mbeeri7 kan yom Taweel kteer",
-          "english": "Yesterday was a very long day."
+          "transliteration": "mbeeri7 kan yom Taweel kteer"
         },
         {
+          "slot": "i-woke-up-late-yesterday",
           "arabic": "صحيت متأخر مبارح",
-          "transliteration": "Se7yet mit2akhkhir mbeeri7",
-          "english": "I woke up late yesterday."
+          "transliteration": "Se7yet mit2akhkhir mbeeri7"
         },
         {
+          "slot": "where-were-you-last-night",
           "arabic": "وينك كنت مبارح بالليل؟",
           "transliteration": "wenak kint mbeeri7 bil-leel?",
-          "english": "Where were you last night?",
           "reply": {
             "arabic": "كنت قاعد بالبيت",
             "transliteration": "kint 2a3ed bil-beet",
@@ -54,15 +51,14 @@
           }
         },
         {
+          "slot": "we-ate-at-a-nice-restaurant-yesterday",
           "arabic": "أكلنا بمطعم حلو مبارح",
-          "transliteration": "akalna b-mat3am 7ilu mbeeri7",
-          "english": "We ate at a nice restaurant yesterday.",
-          "search_term": "a restaurant table with food"
+          "transliteration": "akalna b-mat3am 7ilu mbeeri7"
         },
         {
+          "slot": "who-did-you-see-yesterday",
           "arabic": "مين شفت مبارح؟",
           "transliteration": "meen shuft mbeeri7?",
-          "english": "Who did you see yesterday?",
           "reply": {
             "arabic": "شفت خالتي بالصدفة",
             "transliteration": "shuft khaalti bel-Sudfe",
@@ -70,25 +66,24 @@
           }
         },
         {
+          "slot": "did-you-buy-anything-yesterday",
           "arabic": "اشتريت شي مبارح؟",
           "transliteration": "ishtareet shi mbeeri7?",
-          "english": "Did you buy anything yesterday?",
           "reply": {
             "arabic": "إي، اشتريت قميص جديد",
             "transliteration": "ee, ishtareet 2ameeS jdeed",
             "english": "Yes, I bought a new shirt."
-          },
-          "search_term": "a new shirt on a hanger"
+          }
         },
         {
+          "slot": "the-day-before-yesterday-i-had-work-until-the-ev",
           "arabic": "أول مبارح كان عندي دوام لحتى المسا",
-          "transliteration": "awwal mbeeri7 kan 3indi dawaam la7atta l-masa",
-          "english": "The day before yesterday I had work until the evening."
+          "transliteration": "awwal mbeeri7 kan 3indi dawaam la7atta l-masa"
         },
         {
+          "slot": "how-late-did-you-stay-up-yesterday",
           "arabic": "قديش سهرتوا مبارح؟",
           "transliteration": "2addeesh si-hirtu mbeeri7?",
-          "english": "How late did you stay up yesterday?",
           "reply": {
             "arabic": "سهرنا لحتى الساعة وحدة",
             "transliteration": "si-hirna la7atta s-sa3a wa7de",
@@ -96,20 +91,19 @@
           }
         },
         {
+          "slot": "i-got-very-tired-from-work-yesterday",
           "arabic": "تعبت كتير مبارح من الشغل",
-          "transliteration": "ti3bet kteer mbeeri7 mnesh-shughl",
-          "english": "I got very tired from work yesterday."
+          "transliteration": "ti3bet kteer mbeeri7 mnesh-shughl"
         },
         {
+          "slot": "yesterday-the-weather-was-very-nice",
           "arabic": "مبارح كان الجو حلو كتير",
-          "transliteration": "mbeeri7 kan ij-jaw 7ilu kteer",
-          "english": "Yesterday the weather was very nice.",
-          "search_term": "a clear sunny sky"
+          "transliteration": "mbeeri7 kan ij-jaw 7ilu kteer"
         },
         {
+          "slot": "why-didn-t-you-come-yesterday",
           "arabic": "ليش ما جيت مبارح؟",
           "transliteration": "leesh ma jeet mbeeri7?",
-          "english": "Why didn't you come yesterday?",
           "reply": {
             "arabic": "ما قدرت، كان عندي شغل كتير",
             "transliteration": "ma 2dirt, kan 3indi shughl kteer",
@@ -410,74 +404,66 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "A Story from Childhood",
       "phrases": [
         {
+          "slot": "when-i-was-young-i-loved-to-play-outside",
           "arabic": "لما كنت صغير كنت أحب ألعب برا",
-          "transliteration": "lamma kint zghir kint ba7ibb el3ab barra",
-          "english": "When I was young I loved to play outside.",
-          "search_term": "children playing outside"
+          "transliteration": "lamma kint zghir kint ba7ibb el3ab barra"
         },
         {
+          "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
           "arabic": "تربيت بحي قديم بدمشق",
-          "transliteration": "trabbayt b-7ayy 2adeem b-dimashq",
-          "english": "I grew up in an old neighborhood in Damascus.",
-          "search_term": "an old narrow alley"
+          "transliteration": "trabbayt b-7ayy 2adeem b-dimashq"
         },
         {
+          "slot": "i-had-a-friend-named-kareem",
           "arabic": "كان عندي صديق اسمه كريم",
-          "transliteration": "kan 3indi Sadee2 ismo Kareem",
-          "english": "I had a friend named Kareem."
+          "transliteration": "kan 3indi Sadee2 ismo Kareem"
         },
         {
+          "slot": "we-used-to-play-soccer-in-the-alley",
           "arabic": "كنا نلعب كرة قدم بالحارة",
-          "transliteration": "kinna nel3ab kurt 2adam bel-7aara",
-          "english": "We used to play soccer in the alley.",
-          "search_term": "kids playing soccer in a street"
+          "transliteration": "kinna nel3ab kurt 2adam bel-7aara"
         },
         {
+          "slot": "every-summer-we-used-to-go-to-my-grandfather-s-i",
           "arabic": "كل صيف كنا نروح عند جدي بالقرية",
-          "transliteration": "kell Seef kinna nrou7 3ind jiddi bel-2arye",
-          "english": "Every summer we used to go to my grandfather's in the village.",
-          "search_term": "a village house with a garden"
+          "transliteration": "kell Seef kinna nrou7 3ind jiddi bel-2arye"
         },
         {
+          "slot": "my-grandmother-used-to-tell-us-stories-before-sl",
           "arabic": "جدتي كانت تحكيلنا حكايات قبل النوم",
-          "transliteration": "jiddti kanet te7keelna 7kayaat 2abl in-nom",
-          "english": "My grandmother used to tell us stories before sleeping."
+          "transliteration": "jiddti kanet te7keelna 7kayaat 2abl in-nom"
         },
         {
+          "slot": "the-first-bike-i-had-was-red",
           "arabic": "أول دراجة كان عندي كانت حمرا",
-          "transliteration": "awwal drraaje kan 3indi kanet 7amra",
-          "english": "The first bike I had was red.",
-          "search_term": "a red bicycle",
-          "image": "damascene/unit-16/l02-p07-a-red-bicycle.jpg"
+          "transliteration": "awwal drraaje kan 3indi kanet 7amra"
         },
         {
+          "slot": "i-used-to-be-very-afraid-of-the-dark-when-i-was-",
           "arabic": "كنت أخاف من الظلام كتير لما كنت صغير",
-          "transliteration": "kint khaayef mnel-Zalaam kteer lamma kint zghir",
-          "english": "I used to be very afraid of the dark when I was young."
+          "transliteration": "kint khaayef mnel-Zalaam kteer lamma kint zghir"
         },
         {
+          "slot": "my-teacher-at-school-was-very-kind",
           "arabic": "أستاذتي بالمدرسة كانت طيبة كتير",
-          "transliteration": "ostazti bel-madrase kanet Tayybe kteer",
-          "english": "My teacher at school was very kind."
+          "transliteration": "ostazti bel-madrase kanet Tayybe kteer"
         },
         {
+          "slot": "we-used-to-walk-to-school-together-every-day",
           "arabic": "كنا نمشي عالمدرسة سوا كل يوم",
-          "transliteration": "kinna nemshi 3al-madrase sawa kell yom",
-          "english": "We used to walk to school together every day.",
-          "search_term": "children walking to school"
+          "transliteration": "kinna nemshi 3al-madrase sawa kell yom"
         },
         {
+          "slot": "when-i-was-young-i-dreamed-of-becoming-a-pilot",
           "arabic": "لما كنت صغير حلمت إني صير طيار",
-          "transliteration": "lamma kint zghir 7lemet inni Seer Tayyar",
-          "english": "When I was young I dreamed of becoming a pilot."
+          "transliteration": "lamma kint zghir 7lemet inni Seer Tayyar"
         },
         {
+          "slot": "back-then-life-was-much-simpler",
           "arabic": "زمان الحياة كانت أبسط بكتير",
-          "transliteration": "zamaan el-7ayaat kanet absaT b-kteer",
-          "english": "Back then life was much simpler."
+          "transliteration": "zamaan el-7ayaat kanet absaT b-kteer"
         }
       ],
       "dialogue": [
@@ -770,75 +756,66 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "Something Went Wrong",
       "phrases": [
         {
+          "slot": "my-phone-broke-yesterday",
           "arabic": "انكسر تلفوني مبارح",
-          "transliteration": "inkasar talifoni mbeeri7",
-          "english": "My phone broke yesterday.",
-          "search_term": "a cracked phone screen",
-          "image": "damascene/unit-16/l03-p01-a-cracked-phone-screen.jpg"
+          "transliteration": "inkasar talifoni mbeeri7"
         },
         {
+          "slot": "i-lost-the-house-key",
           "arabic": "ضاع مفتاح البيت مني",
-          "transliteration": "Da3 miftaa7 el-beet minni",
-          "english": "I lost the house key.",
-          "search_term": "a set of house keys"
+          "transliteration": "Da3 miftaa7 el-beet minni"
         },
         {
+          "slot": "i-was-late-for-work-this-morning",
           "arabic": "تأخرت عن الشغل هالصبح",
-          "transliteration": "it2akhkharet 3an ish-shughl hal-Sob7",
-          "english": "I was late for work this morning."
+          "transliteration": "it2akhkharet 3an ish-shughl hal-Sob7"
         },
         {
+          "slot": "i-fell-on-the-stairs-and-hurt-my-leg",
           "arabic": "وقعت عالدرج وضربت رجلي",
-          "transliteration": "we2et 3ad-daraj w-Darabt rejli",
-          "english": "I fell on the stairs and hurt my leg.",
-          "search_term": "stairs in a building"
+          "transliteration": "we2et 3ad-daraj w-Darabt rejli"
         },
         {
+          "slot": "i-forgot-my-wallet-at-home",
           "arabic": "نسيت محفظتي بالبيت",
-          "transliteration": "niseet ma7faZti bel-beet",
-          "english": "I forgot my wallet at home.",
-          "search_term": "a leather wallet"
+          "transliteration": "niseet ma7faZti bel-beet"
         },
         {
+          "slot": "the-car-broke-down-in-the-middle-of-the-road",
           "arabic": "خربت السيارة بنص الطريق",
-          "transliteration": "kharbet is-sayyaara b-noSS iT-Taree2",
-          "english": "The car broke down in the middle of the road.",
-          "search_term": "a broken down car on a road"
+          "transliteration": "kharbet is-sayyaara b-noSS iT-Taree2"
         },
         {
+          "slot": "the-power-went-out-all-night",
           "arabic": "انقطعت الكهربا كل الليل",
-          "transliteration": "in2aTa3et il-kahraba kell il-leel",
-          "english": "The power went out all night."
+          "transliteration": "in2aTa3et il-kahraba kell il-leel"
         },
         {
+          "slot": "coffee-spilled-on-my-laptop",
           "arabic": "انسكب القهوة عاللابتوب تبعي",
-          "transliteration": "insakab il-2ahwe 3al-laabtob taba3i",
-          "english": "Coffee spilled on my laptop.",
-          "search_term": "spilled coffee on a keyboard"
+          "transliteration": "insakab il-2ahwe 3al-laabtob taba3i"
         },
         {
+          "slot": "my-bag-got-lost-at-the-airport",
           "arabic": "ضاعت شنطتي بالمطار",
-          "transliteration": "Da3et shanTeti bel-maTaar",
-          "english": "My bag got lost at the airport.",
-          "search_term": "luggage at an airport"
+          "transliteration": "Da3et shanTeti bel-maTaar"
         },
         {
+          "slot": "i-cut-my-hand-while-cooking",
           "arabic": "جرحت إيدي وأنا بطبخ",
-          "transliteration": "jara7et eedi w-ana bTbokh",
-          "english": "I cut my hand while cooking."
+          "transliteration": "jara7et eedi w-ana bTbokh"
         },
         {
+          "slot": "i-made-a-mistake-and-sent-the-message-to-the-wro",
           "arabic": "غلطت وأرسلت الرسالة للشخص الغلط",
-          "transliteration": "ghlaTet w-arsalet ir-rsaale lash-shakhS il-ghalaT",
-          "english": "I made a mistake and sent the message to the wrong person."
+          "transliteration": "ghlaTet w-arsalet ir-rsaale lash-shakhS il-ghalaT"
         },
         {
+          "slot": "i-overslept-and-didn-t-hear-the-alarm",
           "arabic": "نمت وما سمعت المنبه",
-          "transliteration": "nimet w-ma smi3et il-munabbih",
-          "english": "I overslept and didn't hear the alarm."
+          "transliteration": "nimet w-ma smi3et il-munabbih"
         }
       ],
       "dialogue": [
@@ -1129,28 +1106,26 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "News and Gossip",
       "phrases": [
         {
+          "slot": "i-heard-that-samer-got-engaged",
           "arabic": "سمعت إنه سامر خطب",
-          "transliteration": "sme3et inno Samer khaTab",
-          "english": "I heard that Samer got engaged.",
-          "search_term": "an engagement ring"
+          "transliteration": "sme3et inno Samer khaTab"
         },
         {
+          "slot": "there-s-news-you-won-t-believe",
           "arabic": "في خبر ما بتصدقيه",
-          "transliteration": "fi khabar ma btSaddi2eeh",
-          "english": "There's news you won't believe."
+          "transliteration": "fi khabar ma btSaddi2eeh"
         },
         {
+          "slot": "they-told-me-you-re-moving-to-a-new-house",
           "arabic": "قالولي إنكن رح تنتقلوا عبيت جديد",
-          "transliteration": "2aloli innkon ra7 tinta2lo la-beet jdeed",
-          "english": "They told me you're moving to a new house."
+          "transliteration": "2aloli innkon ra7 tinta2lo la-beet jdeed"
         },
         {
+          "slot": "who-told-you-this-news",
           "arabic": "مين قلك هالخبر؟",
           "transliteration": "meen 2allak hal-khabar?",
-          "english": "Who told you this news?",
           "reply": {
             "arabic": "صحبتي قالتلي",
             "transliteration": "SaHebti 2altilli",
@@ -1158,36 +1133,34 @@
           }
         },
         {
+          "slot": "they-re-saying-that-such-and-such-shop-closed",
           "arabic": "عم يحكوا إنه المحل الفلاني سكر",
-          "transliteration": "3am ye7ku inno l-ma7all il-flaani sakkar",
-          "english": "They're saying that such-and-such shop closed."
+          "transliteration": "3am ye7ku inno l-ma7all il-flaani sakkar"
         },
         {
+          "slot": "we-re-not-sure-yet-it-might-just-be-a-rumor",
           "arabic": "لسا ما تأكدنا، ممكن تكون إشاعة بس",
-          "transliteration": "lissa ma t2akkadna, mumkin tkoon eshaa3a bas",
-          "english": "We're not sure yet, it might just be a rumor."
+          "transliteration": "lissa ma t2akkadna, mumkin tkoon eshaa3a bas"
         },
         {
+          "slot": "you-won-t-believe-what-happened-yesterday-in-the",
           "arabic": "ما تصدق شو صار مبارح بالحارة",
-          "transliteration": "ma tSaddi2 shu Saar mbeeri7 bel-7aara",
-          "english": "You won't believe what happened yesterday in the neighborhood."
+          "transliteration": "ma tSaddi2 shu Saar mbeeri7 bel-7aara"
         },
         {
+          "slot": "my-sister-got-married-last-month",
           "arabic": "أختي جوزت الشهر الماضي",
-          "transliteration": "ekhti jawwazet ish-shahr il-maaDi",
-          "english": "My sister got married last month.",
-          "search_term": "a wedding celebration"
+          "transliteration": "ekhti jawwazet ish-shahr il-maaDi"
         },
         {
+          "slot": "we-heard-they-had-a-baby-boy",
           "arabic": "سمعنا إنهن رزقوا بصبي",
-          "transliteration": "sme3na innon rizi2u b-Sabi",
-          "english": "We heard they had a baby boy.",
-          "search_term": "a newborn baby"
+          "transliteration": "sme3na innon rizi2u b-Sabi"
         },
         {
+          "slot": "what-s-the-latest-news-with-you",
           "arabic": "شو آخر الأخبار عندك؟",
           "transliteration": "shu aakhir el-akhbaar 3indak?",
-          "english": "What's the latest news with you?",
           "reply": {
             "arabic": "ولا شي جديد، كل شي تمام",
             "transliteration": "wala shi jdeed, kell shi tamaam",
@@ -1195,14 +1168,14 @@
           }
         },
         {
+          "slot": "don-t-tell-anyone-but-i-heard-they-re-going-to-t",
           "arabic": "لا تحكيلحدا، بس سمعت إنه رح يسافروا",
-          "transliteration": "la ti7killa7ada, bas sme3et inno ra7 ysaafro",
-          "english": "Don't tell anyone, but I heard they're going to travel."
+          "transliteration": "la ti7killa7ada, bas sme3et inno ra7 ysaafro"
         },
         {
+          "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it",
           "arabic": "هاد كله كلام ناس، ما بعرف صحيح ولا لأ",
-          "transliteration": "had kello klaam naas, ma ba3rif Sa7ee7 wala la2",
-          "english": "That's all just people's talk, I don't know if it's true or not."
+          "transliteration": "had kello klaam naas, ma ba3rif Sa7ee7 wala la2"
         }
       ],
       "dialogue": [

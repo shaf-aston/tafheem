@@ -1,6 +1,5 @@
 {
   "unit": "unit-03",
-  "title": "Food and the Market",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,67 +19,56 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "At the Vegetable Stall",
       "phrases": [
         {
+          "slot": "hello-do-you-have-fresh-vegetables",
           "arabic": "مرحبا، عندك خضرة طازة؟",
           "transliteration": "marhaba, 3andak khudra taza?",
-          "english": "Hello, do you have fresh vegetables?",
           "reply": {
             "arabic": "أهلين، تفضل شوف",
             "transliteration": "ahlein, tfaddal shuf",
             "english": "Welcome, go ahead and look"
-          },
-          "search_term": "fresh vegetable stall",
-          "image": "damascene/unit-03/l01-p01-fresh-vegetable-stall.jpg"
+          }
         },
         {
+          "slot": "i-want-a-kilo-of-tomatoes-please",
           "arabic": "بدي كيلو بندورة لو سمحت",
           "transliteration": "biddi kilo banadoura law samaht",
-          "english": "I want a kilo of tomatoes please",
           "reply": {
             "arabic": "تكرم عينك، هلق بوزنلك",
             "transliteration": "tikram 3aynak, halla2 bawzinlak",
             "english": "Right away, I'll weigh it for you now"
-          },
-          "search_term": "red tomatoes at a market stall",
-          "image": "damascene/unit-03/l01-p02-red-tomatoes-at-a-market-stall.jpg"
+          }
         },
         {
+          "slot": "how-much-is-the-cucumber",
           "arabic": "قديش سعر الخيار؟",
           "transliteration": "2addesh se3r el-khyar?",
-          "english": "How much is the cucumber?",
           "reply": {
             "arabic": "الكيلو بخمسين ليرة",
             "transliteration": "el-kilo b-khamsin lira",
             "english": "The kilo is fifty lira"
-          },
-          "search_term": "fresh cucumbers",
-          "image": "damascene/unit-03/l01-p03-fresh-cucumbers.jpg"
+          }
         },
         {
+          "slot": "do-you-have-onions-and-garlic",
           "arabic": "عندك بصل وتوم؟",
           "transliteration": "3andak basal w toom?",
-          "english": "Do you have onions and garlic?",
           "reply": {
             "arabic": "إي، شو بدك منن؟",
             "transliteration": "ee, shu biddak minnon?",
             "english": "Yes, how much of each do you want?"
-          },
-          "search_term": "onions and garlic",
-          "image": "damascene/unit-03/l01-p04-onions-and-garlic.jpg"
+          }
         },
         {
+          "slot": "i-want-half-a-kilo-of-potatoes",
           "arabic": "بدي نص كيلو بطاطا",
-          "transliteration": "biddi nos kilo batata",
-          "english": "I want half a kilo of potatoes",
-          "search_term": "potatoes in a basket",
-          "image": "damascene/unit-03/l01-p05-potatoes-in-a-basket.jpg"
+          "transliteration": "biddi nos kilo batata"
         },
         {
+          "slot": "is-this-cucumber-fresh-or-not",
           "arabic": "هاد الخيار طازة ولا لأ؟",
           "transliteration": "had el-khyar taza wla la2?",
-          "english": "Is this cucumber fresh or not?",
           "reply": {
             "arabic": "طبعا طازة، جايبها اليوم",
             "transliteration": "tab3an taza, jaybha lyom",
@@ -88,16 +76,14 @@
           }
         },
         {
+          "slot": "give-me-a-bag-of-parsley-and-coriander",
           "arabic": "عطيني كيس بقدونس وكزبرة",
-          "transliteration": "3atini kis ba2dunes w kizbara",
-          "english": "Give me a bag of parsley and coriander",
-          "search_term": "parsley and coriander bunches",
-          "image": "damascene/unit-03/l01-p07-parsley-and-coriander-bunches.jpg"
+          "transliteration": "3atini kis ba2dunes w kizbara"
         },
         {
+          "slot": "this-price-is-a-bit-expensive",
           "arabic": "هاد السعر غالي شوي",
           "transliteration": "had es-se3r ghali shway",
-          "english": "This price is a bit expensive",
           "reply": {
             "arabic": "ولا يهمك، بعملّك تخفيض",
             "transliteration": "wala yhimmak, ba3millak takhfid",
@@ -105,21 +91,19 @@
           }
         },
         {
+          "slot": "do-you-have-sweet-peppers",
           "arabic": "في عندك فليفلة حلوة؟",
           "transliteration": "fi 3andak filfileh hilwe?",
-          "english": "Do you have sweet peppers?",
           "reply": {
             "arabic": "إي في، حمرا وخضرا",
             "transliteration": "ee fi, hamra w khadra",
             "english": "Yes there are, red and green"
-          },
-          "search_term": "red and green bell peppers",
-          "image": "damascene/unit-03/l01-p09-red-and-green-bell-peppers.jpg"
+          }
         },
         {
+          "slot": "how-much-are-the-two-kilos-together",
           "arabic": "قديش الكيلوين سوا؟",
           "transliteration": "2addesh el-kiloyn sawa?",
-          "english": "How much are the two kilos together?",
           "reply": {
             "arabic": "بميّة ليرة الكيلوين",
             "transliteration": "b-miyye lira el-kiloyn",
@@ -127,9 +111,9 @@
           }
         },
         {
+          "slot": "keep-the-change-thank-you",
           "arabic": "خد الباقي، الله يعطيك العافية",
           "transliteration": "khod el-ba2i, alla y3tik el-3afye",
-          "english": "Keep the change, thank you",
           "reply": {
             "arabic": "الله يعافيك، تصبح على خير",
             "transliteration": "alla y3afik, tesba7 3ala khayr",
@@ -137,9 +121,9 @@
           }
         },
         {
+          "slot": "that-s-enough-like-that-thanks",
           "arabic": "بكفي هيك، مشكور",
-          "transliteration": "bikaffi heyk, mashkur",
-          "english": "That's enough like that, thanks"
+          "transliteration": "bikaffi heyk, mashkur"
         }
       ],
       "dialogue": [
@@ -444,23 +428,21 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "At the Bakery and Butcher",
       "phrases": [
         {
+          "slot": "i-want-a-fresh-bundle-of-bread",
           "arabic": "بدي ربطة خبز طازة",
           "transliteration": "biddi rabtet khobz taza",
-          "english": "I want a fresh bundle of bread",
           "reply": {
             "arabic": "هلق طالعة من الفرن",
             "transliteration": "halla2 tal3a mnel-forn",
             "english": "It's just coming out of the oven now"
-          },
-          "search_term": "fresh flatbread stack"
+          }
         },
         {
+          "slot": "how-much-is-a-bundle-of-bread",
           "arabic": "قديش سعر ربطة الخبز؟",
           "transliteration": "2addesh se3r rabtet el-khobz?",
-          "english": "How much is a bundle of bread?",
           "reply": {
             "arabic": "بخمسة وعشرين ليرة",
             "transliteration": "b-khamse w 3ishrin lira",
@@ -468,37 +450,34 @@
           }
         },
         {
+          "slot": "i-want-a-kilo-of-ground-meat",
           "arabic": "بدي كيلو لحمة مفرومة",
           "transliteration": "biddi kilo lahme mafrume",
-          "english": "I want a kilo of ground meat",
           "reply": {
             "arabic": "غنم ولا بقر؟",
             "transliteration": "ghanam wla ba2ar?",
             "english": "Lamb or beef?"
-          },
-          "search_term": "ground meat on a scale"
+          }
         },
         {
+          "slot": "give-me-a-kilo-of-lamb-without-bone",
           "arabic": "عطيني كيلو لحم غنم بلا عضم",
-          "transliteration": "3tini kilo lahm ghanam bala 3adem",
-          "english": "Give me a kilo of lamb without bone",
-          "search_term": "lamb meat cuts"
+          "transliteration": "3tini kilo lahm ghanam bala 3adem"
         },
         {
+          "slot": "i-want-half-a-kilo-of-kofta",
           "arabic": "بدي نص كيلو كفتة",
           "transliteration": "biddi nos kilo kafta",
-          "english": "I want half a kilo of kofta",
           "reply": {
             "arabic": "هلق بحضرلك ياها",
             "transliteration": "halla2 ba7addirlak yaha",
             "english": "I'll prepare it for you now"
-          },
-          "search_term": "raw kofta meat"
+          }
         },
         {
+          "slot": "is-the-bakery-open-now",
           "arabic": "الفرن فاتح هلق؟",
           "transliteration": "el-forn fate7 halla2?",
-          "english": "Is the bakery open now?",
           "reply": {
             "arabic": "إي فاتح من الصبح",
             "transliteration": "ee fate7 mnes-sob7",
@@ -506,15 +485,14 @@
           }
         },
         {
+          "slot": "do-you-want-pita-bread-or-markook",
           "arabic": "بدك خبز عربي ولا مرقوق؟",
-          "transliteration": "biddak khobz 3arabi wla mar2u2?",
-          "english": "Do you want pita bread or markook?",
-          "search_term": "markook thin bread"
+          "transliteration": "biddak khobz 3arabi wla mar2u2?"
         },
         {
+          "slot": "cut-the-meat-into-small-pieces-for-me",
           "arabic": "اقطعلي اللحمة قطع صغيرة",
           "transliteration": "i2ta3li el-lahme 2ata3 zghire",
-          "english": "Cut the meat into small pieces for me",
           "reply": {
             "arabic": "تكرم عينك",
             "transliteration": "tikram 3aynak",
@@ -522,20 +500,19 @@
           }
         },
         {
+          "slot": "do-you-have-ready-made-kibbeh",
           "arabic": "عندك كبة جاهزة؟",
           "transliteration": "3andak kibbe jahze?",
-          "english": "Do you have ready-made kibbeh?",
           "reply": {
             "arabic": "إي في نيّة ومقلية",
             "transliteration": "ee fi niyye w ma2liyye",
             "english": "Yes there's raw and fried"
-          },
-          "search_term": "kibbeh on a plate"
+          }
         },
         {
+          "slot": "this-bread-is-very-hot",
           "arabic": "هاد الخبز سخن كتير",
           "transliteration": "had el-khobz sikhen ktir",
-          "english": "This bread is very hot",
           "reply": {
             "arabic": "خليه يبرد شوي",
             "transliteration": "khallih yebrad shway",
@@ -543,9 +520,9 @@
           }
         },
         {
+          "slot": "how-much-is-a-kilo-of-meat-today",
           "arabic": "بكم كيلو اللحمة اليوم؟",
           "transliteration": "b-kam kilo el-lahme lyom?",
-          "english": "How much is a kilo of meat today?",
           "reply": {
             "arabic": "بتلتميّة ليرة الكيلو",
             "transliteration": "b-tltumiyye lira el-kilo",
@@ -553,9 +530,9 @@
           }
         },
         {
+          "slot": "god-bless-you-good-night",
           "arabic": "الله يبارك فيك، تصبح على خير",
-          "transliteration": "alla ybarek fik, tesba7 3ala khayr",
-          "english": "God bless you, good night"
+          "transliteration": "alla ybarek fik, tesba7 3ala khayr"
         }
       ],
       "dialogue": [
@@ -860,29 +837,26 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "Cooking at Home",
       "phrases": [
         {
+          "slot": "what-are-you-going-to-cook-today",
           "arabic": "شو رح تطبخي اليوم؟",
           "transliteration": "shu ra7 tetbukhi lyom?",
-          "english": "What are you going to cook today?",
           "reply": {
             "arabic": "رح اعمل مجدرة",
             "transliteration": "ra7 a3mel mjaddara",
             "english": "I'm going to make mjaddara"
-          },
-          "search_term": "lentils and rice dish"
+          }
         },
         {
+          "slot": "we-need-to-put-the-rice-in-the-water",
           "arabic": "لازم نحط الرز بالميّ",
-          "transliteration": "lazem nhot er-ruz bel-mayy",
-          "english": "We need to put the rice in the water",
-          "search_term": "rice soaking in a bowl of water"
+          "transliteration": "lazem nhot er-ruz bel-mayy"
         },
         {
+          "slot": "did-you-put-enough-salt",
           "arabic": "حطيت الملح كفاية؟",
           "transliteration": "hattayt el-mala7 kfaye?",
-          "english": "Did you put enough salt?",
           "reply": {
             "arabic": "إي حطيت",
             "transliteration": "ee hattayt",
@@ -890,15 +864,14 @@
           }
         },
         {
+          "slot": "keep-the-flame-low",
           "arabic": "خلي النار هادية",
-          "transliteration": "khalli en-nar hadye",
-          "english": "Keep the flame low",
-          "search_term": "pot simmering on a low flame"
+          "transliteration": "khalli en-nar hadye"
         },
         {
+          "slot": "the-food-is-boiling",
           "arabic": "الأكل عم يغلي",
           "transliteration": "el-akel 3am yighli",
-          "english": "The food is boiling",
           "reply": {
             "arabic": "طفي النار شوي",
             "transliteration": "taffi en-nar shway",
@@ -906,31 +879,29 @@
           }
         },
         {
+          "slot": "we-need-to-add-garlic-and-coriander",
           "arabic": "بدنا نحط توم وكزبرة",
-          "transliteration": "biddna nhot toom w kizbara",
-          "english": "We need to add garlic and coriander",
-          "search_term": "garlic and coriander in a pan"
+          "transliteration": "biddna nhot toom w kizbara"
         },
         {
+          "slot": "what-s-the-recipe-you-want-to-make",
           "arabic": "شو الوصفة اللي بدك تعمليها؟",
           "transliteration": "shu el-wasfe elli biddek ta3milha?",
-          "english": "What's the recipe you want to make?",
           "reply": {
             "arabic": "بدي اعمل يخنة بامية",
             "transliteration": "biddi a3mel yakhne bamye",
             "english": "I want to make an okra stew"
-          },
-          "search_term": "okra stew"
+          }
         },
         {
+          "slot": "the-food-is-ready-please-come",
           "arabic": "الأكل جاهز، تفضلوا",
-          "transliteration": "el-akel jahez, tfaddalu",
-          "english": "The food is ready, please come"
+          "transliteration": "el-akel jahez, tfaddalu"
         },
         {
+          "slot": "this-dish-smells-delicious",
           "arabic": "هيدا الطبخ ريحته زاكية",
           "transliteration": "heyda et-tabkh ri7to zakye",
-          "english": "This dish smells delicious",
           "reply": {
             "arabic": "صحتين وعافية",
             "transliteration": "sahtayn w 3afye",
@@ -938,9 +909,9 @@
           }
         },
         {
+          "slot": "how-long-does-it-need-to-stay-on-the-fire",
           "arabic": "قديش لازم يقعد عالنار؟",
           "transliteration": "2addesh lazem yo3od 3an-nar?",
-          "english": "How long does it need to stay on the fire?",
           "reply": {
             "arabic": "نص ساعة تقريبا",
             "transliteration": "nos sa3a ta2riban",
@@ -948,15 +919,14 @@
           }
         },
         {
+          "slot": "hand-me-the-big-spoon",
           "arabic": "ناولني الملعقة الكبيرة",
-          "transliteration": "nawilni el-mal3a2a el-kbire",
-          "english": "Hand me the big spoon",
-          "search_term": "large wooden cooking spoon"
+          "transliteration": "nawilni el-mal3a2a el-kbire"
         },
         {
+          "slot": "we-need-to-wash-the-dishes-afterward",
           "arabic": "لازم نغسل الصحون بعدين",
-          "transliteration": "lazem neghsel es-shu7un ba3dayn",
-          "english": "We need to wash the dishes afterward"
+          "transliteration": "lazem neghsel es-shu7un ba3dayn"
         }
       ],
       "dialogue": [
@@ -1261,30 +1231,26 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Likes and Dislikes in Food",
       "phrases": [
         {
+          "slot": "i-love-fava-beans-a-lot",
           "arabic": "بحب الفول كتير",
           "transliteration": "ba7eb el-ful ktir",
-          "english": "I love fava beans a lot",
           "reply": {
             "arabic": "منيح، صحة وهنا",
             "transliteration": "mni7, sa77a w hana",
             "english": "Good, enjoy"
-          },
-          "search_term": "fava beans dish",
-          "image": "damascene/unit-03/l04-p01-fava-beans-dish.jpg"
+          }
         },
         {
+          "slot": "i-don-t-like-raw-tomatoes",
           "arabic": "ما بحب البندورة نية",
-          "transliteration": "ma ba7eb el-banadoura niyye",
-          "english": "I don't like raw tomatoes",
-          "search_term": "raw sliced tomatoes"
+          "transliteration": "ma ba7eb el-banadoura niyye"
         },
         {
+          "slot": "i-prefer-sweet-food-over-salty",
           "arabic": "بفضل الأكل الحلو عالمالح",
           "transliteration": "bfaddel el-akel el-hilu 3al-male7",
-          "english": "I prefer sweet food over salty",
           "reply": {
             "arabic": "أنا بالعكس",
             "transliteration": "ana bel-3aks",
@@ -1292,53 +1258,49 @@
           }
         },
         {
+          "slot": "do-you-like-spicy-food",
           "arabic": "بتحب الأكل الحار؟",
           "transliteration": "bt7eb el-akel el-har?",
-          "english": "Do you like spicy food?",
           "reply": {
             "arabic": "إي، بحبه كتير",
             "transliteration": "ee, ba7ebbo ktir",
             "english": "Yes, I love it a lot"
-          },
-          "search_term": "spicy chili peppers"
+          }
         },
         {
+          "slot": "i-don-t-eat-pork",
           "arabic": "ما بآكل لحمة خنزير",
-          "transliteration": "ma bakol lahme khinzir",
-          "english": "I don't eat pork"
+          "transliteration": "ma bakol lahme khinzir"
         },
         {
+          "slot": "i-love-damascene-sweets",
           "arabic": "بحب الحلويات الشامية",
           "transliteration": "ba7eb el-halawiyyat esh-shamiyye",
-          "english": "I love Damascene sweets",
           "reply": {
             "arabic": "كلنا منحبن",
             "transliteration": "kellna menhebbon",
             "english": "We all love them"
-          },
-          "search_term": "tray of Damascene sweets"
+          }
         },
         {
+          "slot": "what-s-your-favorite-dish",
           "arabic": "شو أكلتك المفضلة؟",
           "transliteration": "shu aklitak el-mfaddale?",
-          "english": "What's your favorite dish?",
           "reply": {
             "arabic": "المقلوبة، ما في متلها",
             "transliteration": "el-ma2lube, ma fi mitla",
             "english": "Maqluba, there's nothing like it"
-          },
-          "search_term": "maqluba dish"
+          }
         },
         {
+          "slot": "i-don-t-like-sour-taste",
           "arabic": "ما بحب الطعم الحامض",
-          "transliteration": "ma ba7eb et-ta3em el-hames",
-          "english": "I don't like sour taste",
-          "search_term": "sliced lemons"
+          "transliteration": "ma ba7eb et-ta3em el-hames"
         },
         {
+          "slot": "do-you-prefer-chicken-or-meat",
           "arabic": "بتفضل الدجاج ولا اللحمة؟",
           "transliteration": "btfaddel ed-djaj wla el-lahme?",
-          "english": "Do you prefer chicken or meat?",
           "reply": {
             "arabic": "بفضل الدجاج، أخف عالمعدة",
             "transliteration": "bfaddel ed-djaj, akhaff 3al-me3de",
@@ -1346,20 +1308,19 @@
           }
         },
         {
+          "slot": "i-don-t-like-the-smell-of-fish",
           "arabic": "ما بحب ريحة السمك",
-          "transliteration": "ma ba7eb ri7et es-samak",
-          "english": "I don't like the smell of fish",
-          "search_term": "fresh fish on ice"
+          "transliteration": "ma ba7eb ri7et es-samak"
         },
         {
+          "slot": "i-love-trying-new-dishes",
           "arabic": "بحب اقعد اجرب أكلات جديدة",
-          "transliteration": "ba7eb i2ood ajarreb aklat jdide",
-          "english": "I love trying new dishes"
+          "transliteration": "ba7eb i2ood ajarreb aklat jdide"
         },
         {
+          "slot": "i-don-t-like-this-food",
           "arabic": "هاد الأكل مو عاجبني",
           "transliteration": "had el-akel mu 3ajebni",
-          "english": "I don't like this food",
           "reply": {
             "arabic": "ليش، شو في فيه؟",
             "transliteration": "leysh, shu fi fih?",

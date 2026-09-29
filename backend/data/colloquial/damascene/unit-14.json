@@ -1,6 +1,5 @@
 {
   "unit": "unit-14",
-  "title": "Occasions and Celebrations",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,12 +19,11 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "Eid",
       "phrases": [
         {
+          "slot": "blessed-eid-happy-eid",
           "arabic": "عيد مبارك",
           "transliteration": "3eed mbaarak",
-          "english": "Blessed Eid / Happy Eid",
           "reply": {
             "arabic": "الله يبارك فيك",
             "transliteration": "allah ybaarek fiik",
@@ -33,9 +31,9 @@
           }
         },
         {
+          "slot": "may-you-be-well-every-year",
           "arabic": "كل عام وإنتو بخير",
           "transliteration": "kell 3aam w-ento bikhair",
-          "english": "May you be well every year",
           "reply": {
             "arabic": "وإنتو بألف خير",
             "transliteration": "w-ento b-alf khair",
@@ -43,14 +41,14 @@
           }
         },
         {
+          "slot": "may-you-witness-it-again-next-year",
           "arabic": "عساكم من عواده",
-          "transliteration": "3asaakon min 3awaado",
-          "english": "May you witness it again next year"
+          "transliteration": "3asaakon min 3awaado"
         },
         {
+          "slot": "blessed-eid-to-you-all",
           "arabic": "عيدكم مبارك",
           "transliteration": "3eedkon mbaarak",
-          "english": "Blessed Eid to you all",
           "reply": {
             "arabic": "وعيدكم مبارك",
             "transliteration": "w-3eedkon mbaarak",
@@ -58,39 +56,34 @@
           }
         },
         {
+          "slot": "eid-money-given-to-children",
           "arabic": "عيدية",
-          "transliteration": "3eediyye",
-          "english": "Eid money given to children",
-          "search_term": "money in an envelope"
+          "transliteration": "3eediyye"
         },
         {
+          "slot": "i-m-putting-on-my-eid-clothes",
           "arabic": "عم إلبس تياب العيد",
-          "transliteration": "3am elbes tyaab l-3eed",
-          "english": "I'm putting on my Eid clothes",
-          "search_term": "new clothes on hangers"
+          "transliteration": "3am elbes tyaab l-3eed"
         },
         {
+          "slot": "eid-cookies",
           "arabic": "كعك ومعمول",
-          "transliteration": "ka3k w-ma3mool",
-          "english": "Eid cookies",
-          "search_term": "arabic date filled cookies"
+          "transliteration": "ka3k w-ma3mool"
         },
         {
+          "slot": "we-re-going-to-the-eid-prayer",
           "arabic": "رايحين عالصلاة",
-          "transliteration": "raay7iin 3a-s-salaa",
-          "english": "We're going to the Eid prayer",
-          "search_term": "a mosque"
+          "transliteration": "raay7iin 3a-s-salaa"
         },
         {
+          "slot": "we-visited-my-grandma-today",
           "arabic": "زرنا ستي اليوم",
-          "transliteration": "zorna setti l-yom",
-          "english": "We visited my grandma today",
-          "search_term": "grandmother with grandchildren"
+          "transliteration": "zorna setti l-yom"
         },
         {
+          "slot": "congratulations-on-the-eid",
           "arabic": "مبروك عليكم العيد",
           "transliteration": "mabrouk 3aleikon l-3eed",
-          "english": "Congratulations on the Eid",
           "reply": {
             "arabic": "الله يبارك فيكم",
             "transliteration": "allah ybaarek fiikon",
@@ -98,14 +91,14 @@
           }
         },
         {
+          "slot": "where-were-you-why-didn-t-you-come-to-celebrate-",
           "arabic": "وينكن، ليش ما جيتوا نعيّد؟",
-          "transliteration": "weinkon, leish ma jiitu n3ayyed?",
-          "english": "Where were you, why didn't you come to celebrate Eid with us?"
+          "transliteration": "weinkon, leish ma jiitu n3ayyed?"
         },
         {
+          "slot": "may-god-give-you-all-eid-money-said-jokingly",
           "arabic": "الله يعطيكن عيدية",
-          "transliteration": "allah y3teekon 3eediyye",
-          "english": "May God give you all Eid money (said jokingly)"
+          "transliteration": "allah y3teekon 3eediyye"
         }
       ],
       "dialogue": [
@@ -418,12 +411,11 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "Ramadan",
       "phrases": [
         {
+          "slot": "ramadan-is-generous-greeting",
           "arabic": "رمضان كريم",
           "transliteration": "ramadan kariim",
-          "english": "Ramadan is generous (greeting)",
           "reply": {
             "arabic": "الله أكرم",
             "transliteration": "allah akram",
@@ -431,9 +423,9 @@
           }
         },
         {
+          "slot": "blessed-ramadan",
           "arabic": "رمضان مبارك",
           "transliteration": "ramadan mbaarak",
-          "english": "Blessed Ramadan",
           "reply": {
             "arabic": "الله يبارك فيك",
             "transliteration": "allah ybaarek fiik",
@@ -441,55 +433,49 @@
           }
         },
         {
+          "slot": "blessed-month-of-ramadan-to-you",
           "arabic": "شهر رمضان مبارك عليكم",
-          "transliteration": "shahr ramadan mbaarak 3aleikon",
-          "english": "Blessed month of Ramadan to you"
+          "transliteration": "shahr ramadan mbaarak 3aleikon"
         },
         {
+          "slot": "we-re-fasting",
           "arabic": "عم نصوم",
-          "transliteration": "3am nsoom",
-          "english": "We're fasting"
+          "transliteration": "3am nsoom"
         },
         {
+          "slot": "what-time-is-iftar-today",
           "arabic": "الفطور الساعة كم اليوم؟",
-          "transliteration": "l-ftoor s-sa3a kam l-yom?",
-          "english": "What time is iftar today?",
-          "search_term": "sunset over a city"
+          "transliteration": "l-ftoor s-sa3a kam l-yom?"
         },
         {
+          "slot": "we-re-preparing-for-iftar",
           "arabic": "عم نحضر للإفطار",
-          "transliteration": "3am n7addér lal-ftoor",
-          "english": "We're preparing for iftar",
-          "search_term": "a table set for dinner"
+          "transliteration": "3am n7addér lal-ftoor"
         },
         {
+          "slot": "we-started-fasting-from-dawn",
           "arabic": "بلشنا نصوم من الفجر",
-          "transliteration": "balashna nsoom mn l-fajer",
-          "english": "We started fasting from dawn"
+          "transliteration": "balashna nsoom mn l-fajer"
         },
         {
+          "slot": "the-pre-dawn-meal-eaten-before-the-fast",
           "arabic": "السحور",
-          "transliteration": "s-so7oor",
-          "english": "The pre-dawn meal eaten before the fast",
-          "search_term": "a meal at night with lamps"
+          "transliteration": "s-so7oor"
         },
         {
+          "slot": "qatayef-a-ramadan-sweet-stuffed-pastry",
           "arabic": "قطايف",
-          "transliteration": "2ataayef",
-          "english": "Qatayef, a Ramadan sweet stuffed pastry",
-          "search_term": "stuffed pancake dessert"
+          "transliteration": "2ataayef"
         },
         {
+          "slot": "the-iftar-cannon-fired",
           "arabic": "مدفع الإفطار دق",
-          "transliteration": "midfa3 l-ftoor da2",
-          "english": "The iftar cannon fired",
-          "search_term": "an old cannon",
-          "image": "damascene/unit-14/l02-p10-an-old-cannon.jpg"
+          "transliteration": "midfa3 l-ftoor da2"
         },
         {
+          "slot": "whose-iftar-invitation-are-you-going-to-tonight",
           "arabic": "تروح عزيمة عند مين الليلة؟",
           "transliteration": "trou7 3ziime 3end miin l-leele?",
-          "english": "Whose iftar invitation are you going to tonight?",
           "reply": {
             "arabic": "عند خالتي",
             "transliteration": "3end khaalti",
@@ -497,9 +483,9 @@
           }
         },
         {
+          "slot": "may-god-accept-your-fasting",
           "arabic": "تقبل الله صيامكم",
           "transliteration": "ta2abbal allah seyaamkon",
-          "english": "May God accept your fasting",
           "reply": {
             "arabic": "منا ومنكم",
             "transliteration": "menna w-mennkon",
@@ -812,12 +798,11 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "Weddings",
       "phrases": [
         {
+          "slot": "congratulations",
           "arabic": "مبروك",
           "transliteration": "mabrouk",
-          "english": "Congratulations",
           "reply": {
             "arabic": "الله يبارك فيك",
             "transliteration": "allah ybaarek fiik",
@@ -825,9 +810,9 @@
           }
         },
         {
+          "slot": "may-god-make-you-happy-wedding-congrats",
           "arabic": "الله يهنيكم",
           "transliteration": "allah yhanniikon",
-          "english": "May God make you happy (wedding congrats)",
           "reply": {
             "arabic": "الله يخليك",
             "transliteration": "allah ykhalliik",
@@ -835,9 +820,9 @@
           }
         },
         {
+          "slot": "may-it-be-your-turn-next",
           "arabic": "عقبال عندك",
           "transliteration": "3o2baal 3endak",
-          "english": "May it be your turn next",
           "reply": {
             "arabic": "يا رب من عندك",
             "transliteration": "ya rab min 3endak",
@@ -845,49 +830,44 @@
           }
         },
         {
+          "slot": "congratulations-on-the-wedding",
           "arabic": "مبروك الفرح",
-          "transliteration": "mabrouk l-fara7",
-          "english": "Congratulations on the wedding"
+          "transliteration": "mabrouk l-fara7"
         },
         {
+          "slot": "when-is-their-wedding",
           "arabic": "عرسهم إمتى؟",
-          "transliteration": "3ersson emta?",
-          "english": "When is their wedding?"
+          "transliteration": "3ersson emta?"
         },
         {
+          "slot": "they-re-preparing-for-the-wedding",
           "arabic": "عم يحضروا للعرس",
-          "transliteration": "3am y7addro lal-3ers",
-          "english": "They're preparing for the wedding",
-          "search_term": "wedding preparations table"
+          "transliteration": "3am y7addro lal-3ers"
         },
         {
+          "slot": "the-wedding-stage-decoration-is-very-beautiful",
           "arabic": "الكوشة حلوة كتير",
-          "transliteration": "l-koosha 7elwe ktiir",
-          "english": "The wedding stage decoration is very beautiful",
-          "search_term": "wedding stage decoration"
+          "transliteration": "l-koosha 7elwe ktiir"
         },
         {
+          "slot": "the-wedding-procession-is-coming",
           "arabic": "الزفة جاية",
-          "transliteration": "z-zaffe jaaye",
-          "english": "The wedding procession is coming",
-          "search_term": "wedding procession with drums"
+          "transliteration": "z-zaffe jaaye"
         },
         {
+          "slot": "she-wore-a-white-dress",
           "arabic": "لبست فستان أبيض",
-          "transliteration": "lebset fostaan abyad",
-          "english": "She wore a white dress",
-          "search_term": "white wedding dress"
+          "transliteration": "lebset fostaan abyad"
         },
         {
+          "slot": "the-dabke-folk-dance-started",
           "arabic": "الدبكة بلشت",
-          "transliteration": "d-dabke balashet",
-          "english": "The dabke folk dance started",
-          "search_term": "traditional folk dance"
+          "transliteration": "d-dabke balashet"
         },
         {
+          "slot": "who-s-invited-to-the-wedding",
           "arabic": "مين عازمين عالعرس؟",
           "transliteration": "miin 3aazmiin 3al-3ers?",
-          "english": "Who's invited to the wedding?",
           "reply": {
             "arabic": "كل الحارة",
             "transliteration": "kell l-7aara",
@@ -895,9 +875,9 @@
           }
         },
         {
+          "slot": "what-gift-did-you-bring-them",
           "arabic": "شو جبتلهم هدية؟",
           "transliteration": "shu jebtelon hadiyye?",
-          "english": "What gift did you bring them?",
           "reply": {
             "arabic": "جبتلهم مصاري",
             "transliteration": "jebtelon masaari",
@@ -1209,12 +1189,11 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Birthdays and Congratulations",
       "phrases": [
         {
+          "slot": "happy-birthday",
           "arabic": "عيد ميلاد سعيد",
           "transliteration": "3eed miilaad sa3iid",
-          "english": "Happy birthday",
           "reply": {
             "arabic": "يسلم عمرك",
             "transliteration": "ysallem 3omrak",
@@ -1222,9 +1201,9 @@
           }
         },
         {
+          "slot": "happy-birthday-lit-every-year-you-re-well",
           "arabic": "كل سنة وإنت طيب",
           "transliteration": "kell sene w-enta tayyeb",
-          "english": "Happy birthday (lit. every year you're well)",
           "reply": {
             "arabic": "وإنت طيب",
             "transliteration": "w-enta tayyeb",
@@ -1232,9 +1211,9 @@
           }
         },
         {
+          "slot": "congratulations-on-your-success",
           "arabic": "مبروك النجاح",
           "transliteration": "mabrouk n-najaa7",
-          "english": "Congratulations on your success",
           "reply": {
             "arabic": "الله يبارك فيك",
             "transliteration": "allah ybaarek fiik",
@@ -1242,54 +1221,49 @@
           }
         },
         {
+          "slot": "congratulations-on-the-promotion",
           "arabic": "مبروك الترفيع",
-          "transliteration": "mabrouk t-tarfii3",
-          "english": "Congratulations on the promotion"
+          "transliteration": "mabrouk t-tarfii3"
         },
         {
+          "slot": "congratulations-on-the-newborn",
           "arabic": "مبروك المولود",
-          "transliteration": "mabrouk l-mawloud",
-          "english": "Congratulations on the newborn"
+          "transliteration": "mabrouk l-mawloud"
         },
         {
+          "slot": "congratulations-on-the-new-house",
           "arabic": "مبروك البيت الجديد",
-          "transliteration": "mabrouk l-beit j-jdiid",
-          "english": "Congratulations on the new house"
+          "transliteration": "mabrouk l-beit j-jdiid"
         },
         {
+          "slot": "we-re-preparing-the-cake",
           "arabic": "عم نحضر الكيك",
-          "transliteration": "3am n7addér l-keek",
-          "english": "We're preparing the cake",
-          "search_term": "birthday cake with candles",
-          "image": "damascene/unit-14/l04-p07-birthday-cake-with-candles.jpg"
+          "transliteration": "3am n7addér l-keek"
         },
         {
+          "slot": "blow-out-the-candles",
           "arabic": "طفي الشمعات",
-          "transliteration": "tfi sh-sham3aat",
-          "english": "Blow out the candles",
-          "search_term": "candles on a birthday cake",
-          "image": "damascene/unit-14/l04-p08-candles-on-a-birthday-cake.jpg"
+          "transliteration": "tfi sh-sham3aat"
         },
         {
+          "slot": "how-old-did-you-turn",
           "arabic": "قديش عمرك صرت؟",
-          "transliteration": "2addeish 3omrak sert?",
-          "english": "How old did you turn?"
+          "transliteration": "2addeish 3omrak sert?"
         },
         {
+          "slot": "what-gift-do-you-want",
           "arabic": "شو بدك هدية؟",
-          "transliteration": "shu baddak hadiyye?",
-          "english": "What gift do you want?"
+          "transliteration": "shu baddak hadiyye?"
         },
         {
+          "slot": "birthday-party",
           "arabic": "حفلة عيد ميلاد",
-          "transliteration": "7aflet 3eed miilaad",
-          "english": "Birthday party",
-          "search_term": "birthday party with balloons"
+          "transliteration": "7aflet 3eed miilaad"
         },
         {
+          "slot": "may-god-lengthen-your-life",
           "arabic": "الله يطول عمرك",
           "transliteration": "allah ytawwel 3omrak",
-          "english": "May God lengthen your life",
           "reply": {
             "arabic": "عمرك يطول",
             "transliteration": "3omrak ytawwel",

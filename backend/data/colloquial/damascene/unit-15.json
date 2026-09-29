@@ -1,6 +1,5 @@
 {
   "unit": "unit-15",
-  "title": "Travel and Staying",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,13 +19,11 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "At the Hotel",
       "phrases": [
         {
+          "slot": "hello-i-have-a-reservation",
           "arabic": "مرحبا، عندي حجز",
           "transliteration": "mar7aba, 3andi 7ajez",
-          "english": "Hello, I have a reservation.",
-          "search_term": "hotel reception desk",
           "reply": {
             "arabic": "تكرم عيونك، شو اسمك؟",
             "transliteration": "tkarram 3younak, shoo ismak?",
@@ -34,32 +31,29 @@
           }
         },
         {
+          "slot": "under-the-name-nour",
           "arabic": "باسم نور",
-          "transliteration": "b-ism noor",
-          "english": "Under the name Nour."
+          "transliteration": "b-ism noor"
         },
         {
+          "slot": "is-there-an-empty-room",
           "arabic": "شو في غرفة فاضية؟",
-          "transliteration": "shoo fi ghorfe faDye?",
-          "english": "Is there an empty room?",
-          "search_term": "hotel room key"
+          "transliteration": "shoo fi ghorfe faDye?"
         },
         {
+          "slot": "i-want-a-room-for-two-people",
           "arabic": "بدي غرفة لشخصين",
-          "transliteration": "biddi ghorfe la-shakhSein",
-          "english": "I want a room for two people.",
-          "search_term": "hotel double room"
+          "transliteration": "biddi ghorfe la-shakhSein"
         },
         {
+          "slot": "how-much-is-the-price-per-night",
           "arabic": "قديش سعر الليلة؟",
-          "transliteration": "addeesh se3r l-leele?",
-          "english": "How much is the price per night?"
+          "transliteration": "addeesh se3r l-leele?"
         },
         {
+          "slot": "is-breakfast-included-with-the-room",
           "arabic": "في فطور مع الغرفة؟",
           "transliteration": "fi fToor ma3 l-ghorfe?",
-          "english": "Is breakfast included with the room?",
-          "search_term": "hotel breakfast buffet",
           "reply": {
             "arabic": "ايه، من السبعة للعشرة",
             "transliteration": "eh, mn s-sab3a la-l-3ashra",
@@ -67,36 +61,34 @@
           }
         },
         {
+          "slot": "can-i-see-the-room-first",
           "arabic": "ممكن أشوف الغرفة قبل؟",
-          "transliteration": "mumken shoof l-ghorfe abel?",
-          "english": "Can I see the room first?"
+          "transliteration": "mumken shoof l-ghorfe abel?"
         },
         {
+          "slot": "where-s-the-elevator",
           "arabic": "وين المصعد؟",
-          "transliteration": "ween l-mas3ad?",
-          "english": "Where's the elevator?",
-          "search_term": "hotel elevator"
+          "transliteration": "ween l-mas3ad?"
         },
         {
+          "slot": "i-want-the-key-please",
           "arabic": "بدي المفتاح لو سمحت",
-          "transliteration": "biddi l-muftaa7 law sama7t",
-          "english": "I want the key please.",
-          "search_term": "hotel room key card"
+          "transliteration": "biddi l-muftaa7 law sama7t"
         },
         {
+          "slot": "what-time-do-i-need-to-check-out",
           "arabic": "الساعة كم لازم أفضى الغرفة؟",
-          "transliteration": "s-sa3a kam laazem afDi l-ghorfe?",
-          "english": "What time do I need to check out?"
+          "transliteration": "s-sa3a kam laazem afDi l-ghorfe?"
         },
         {
+          "slot": "i-want-to-order-room-service",
           "arabic": "بدي أطلب خدمة الغرف",
-          "transliteration": "biddi aTlub khedmet l-ghoraf",
-          "english": "I want to order room service."
+          "transliteration": "biddi aTlub khedmet l-ghoraf"
         },
         {
+          "slot": "thanks-the-room-is-very-nice",
           "arabic": "شكرا، الغرفة منيحة كتير",
-          "transliteration": "shukran, l-ghorfe mnii7a ktiir",
-          "english": "Thanks, the room is very nice."
+          "transliteration": "shukran, l-ghorfe mnii7a ktiir"
         }
       ],
       "dialogue": [
@@ -358,45 +350,41 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "Booking and Tickets",
       "phrases": [
         {
+          "slot": "i-want-to-book-a-bus-ticket",
           "arabic": "بدي أحجز تذكرة عالباص",
-          "transliteration": "biddi a7jez tazkara 3al-baaS",
-          "english": "I want to book a bus ticket.",
-          "search_term": "bus ticket counter"
+          "transliteration": "biddi a7jez tazkara 3al-baaS"
         },
         {
+          "slot": "do-you-have-tickets-to-aleppo",
           "arabic": "عندكن تذاكر لحلب؟",
-          "transliteration": "3endkon tazaaker la-7alab?",
-          "english": "Do you have tickets to Aleppo?"
+          "transliteration": "3endkon tazaaker la-7alab?"
         },
         {
+          "slot": "how-much-is-a-round-trip-ticket",
           "arabic": "قديش تذكرة الرايح جاي؟",
-          "transliteration": "addeesh tazkarit r-rayye7 jaaye?",
-          "english": "How much is a round-trip ticket?"
+          "transliteration": "addeesh tazkarit r-rayye7 jaaye?"
         },
         {
+          "slot": "i-want-a-one-way-ticket-only",
           "arabic": "بدي تذكرة رايح بس",
-          "transliteration": "biddi tazkara rayye7 bas",
-          "english": "I want a one-way ticket only."
+          "transliteration": "biddi tazkara rayye7 bas"
         },
         {
+          "slot": "is-there-a-free-seat-on-the-next-bus",
           "arabic": "في مقعد فاضي عالباص الجاي؟",
-          "transliteration": "fi ma23ad faaDi 3al-baaS j-jaaye?",
-          "english": "Is there a free seat on the next bus?",
-          "search_term": "empty bus seats"
+          "transliteration": "fi ma23ad faaDi 3al-baaS j-jaaye?"
         },
         {
+          "slot": "what-time-does-the-bus-leave",
           "arabic": "الباص بيطلع الساعة كم؟",
-          "transliteration": "l-baaS byeTla3 s-sa3a kam?",
-          "english": "What time does the bus leave?"
+          "transliteration": "l-baaS byeTla3 s-sa3a kam?"
         },
         {
+          "slot": "can-i-pay-by-card",
           "arabic": "ممكن أدفع بالبطاقة؟",
           "transliteration": "mumken adfa3 bel-beTaaqa?",
-          "english": "Can I pay by card?",
-          "search_term": "credit card payment machine",
           "reply": {
             "arabic": "للأسف بس كاش",
             "transliteration": "lal2asaf bas kash",
@@ -404,33 +392,29 @@
           }
         },
         {
+          "slot": "i-want-to-confirm-the-reservation",
           "arabic": "بدي أأكد الحجز",
-          "transliteration": "biddi a2akked l-7ajez",
-          "english": "I want to confirm the reservation."
+          "transliteration": "biddi a2akked l-7ajez"
         },
         {
+          "slot": "is-there-a-discount-for-students",
           "arabic": "في تخفيض للطلاب؟",
-          "transliteration": "fi takhfiiD lel-Tullaab?",
-          "english": "Is there a discount for students?"
+          "transliteration": "fi takhfiiD lel-Tullaab?"
         },
         {
+          "slot": "where-s-the-ticket-window",
           "arabic": "وين شباك التذاكر؟",
-          "transliteration": "ween shubbaak t-tazaaker?",
-          "english": "Where's the ticket window?",
-          "search_term": "ticket window booth",
-          "image": "damascene/unit-15/l02-p10-ticket-window-booth.jpg"
+          "transliteration": "ween shubbaak t-tazaaker?"
         },
         {
+          "slot": "how-long-does-the-trip-take",
           "arabic": "الرحلة قديش بتاخد وقت؟",
-          "transliteration": "r-ri7le addeesh btaakhod wa2et?",
-          "english": "How long does the trip take?"
+          "transliteration": "r-ri7le addeesh btaakhod wa2et?"
         },
         {
+          "slot": "thanks-here-s-your-ticket",
           "arabic": "شكرا، خدلك التذكرة",
-          "transliteration": "shukran, khodlak t-tazkara",
-          "english": "Thanks, here's your ticket.",
-          "search_term": "paper bus ticket",
-          "image": "damascene/unit-15/l02-p12-paper-bus-ticket.jpg"
+          "transliteration": "shukran, khodlak t-tazkara"
         }
       ],
       "dialogue": [
@@ -685,46 +669,41 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "At the Airport and Border",
       "phrases": [
         {
+          "slot": "where-s-the-check-in-counter",
           "arabic": "وين كاونتر تسجيل الدخول؟",
-          "transliteration": "ween kawnter tasjiil d-dukhuul?",
-          "english": "Where's the check-in counter?",
-          "search_term": "airport check in counter"
+          "transliteration": "ween kawnter tasjiil d-dukhuul?"
         },
         {
+          "slot": "i-have-my-passport-and-my-ticket",
           "arabic": "معي جواز سفري وتذكرتي",
-          "transliteration": "ma3i jawaaz safari w-tazkarti",
-          "english": "I have my passport and my ticket.",
-          "search_term": "passport and boarding pass"
+          "transliteration": "ma3i jawaaz safari w-tazkarti"
         },
         {
+          "slot": "how-many-bags-am-i-allowed-to-take",
           "arabic": "كم شنطة مسموح آخد؟",
-          "transliteration": "kam shanTa masmuu7 aakhod?",
-          "english": "How many bags am I allowed to take?"
+          "transliteration": "kam shanTa masmuu7 aakhod?"
         },
         {
+          "slot": "is-this-bag-overweight",
           "arabic": "الشنطة هاي زيادة وزن؟",
-          "transliteration": "sh-shanTa hayy ziyaade wazen?",
-          "english": "Is this bag overweight?",
-          "search_term": "suitcase on scale"
+          "transliteration": "sh-shanTa hayy ziyaade wazen?"
         },
         {
+          "slot": "where-s-the-boarding-gate",
           "arabic": "وين بوابة الطيران؟",
-          "transliteration": "ween bawwaabet T-Tayaraan?",
-          "english": "Where's the boarding gate?",
-          "search_term": "airport departure gate"
+          "transliteration": "ween bawwaabet T-Tayaraan?"
         },
         {
+          "slot": "what-time-does-the-plane-depart",
           "arabic": "الطيارة بتقوم الساعة كم؟",
-          "transliteration": "T-Tayyaara btu2uum s-sa3a kam?",
-          "english": "What time does the plane depart?"
+          "transliteration": "T-Tayyaara btu2uum s-sa3a kam?"
         },
         {
+          "slot": "do-you-have-anything-to-declare",
           "arabic": "معك شي تصرح عنه؟",
           "transliteration": "ma3ak shi taSarra7 3anno?",
-          "english": "Do you have anything to declare?",
           "reply": {
             "arabic": "لأ، ما معي شي",
             "transliteration": "la2, ma ma3i shi",
@@ -732,30 +711,29 @@
           }
         },
         {
+          "slot": "no-i-don-t-have-anything",
           "arabic": "لأ، ما معي شي",
-          "transliteration": "la2, ma ma3i shi",
-          "english": "No, I don't have anything."
+          "transliteration": "la2, ma ma3i shi"
         },
         {
+          "slot": "your-passport-please",
           "arabic": "جواز السفر تكرم",
-          "transliteration": "jawaaz s-safar takram",
-          "english": "Your passport please.",
-          "search_term": "passport control booth"
+          "transliteration": "jawaaz s-safar takram"
         },
         {
+          "slot": "are-you-coming-for-tourism-or-work",
           "arabic": "جاي سياحة ولا شغل؟",
-          "transliteration": "jaay siyaaha walla shughel?",
-          "english": "Are you coming for tourism or work?"
+          "transliteration": "jaay siyaaha walla shughel?"
         },
         {
+          "slot": "how-long-will-you-stay-here",
           "arabic": "رح تقعد قديش هون؟",
-          "transliteration": "ra7 to23od addeesh hon?",
-          "english": "How long will you stay here?"
+          "transliteration": "ra7 to23od addeesh hon?"
         },
         {
+          "slot": "welcome",
           "arabic": "أهلا وسهلا فيك",
-          "transliteration": "ahlan w sahlan fiik",
-          "english": "Welcome."
+          "transliteration": "ahlan w sahlan fiik"
         }
       ],
       "dialogue": [
@@ -1003,73 +981,66 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Problems While Travelling",
       "phrases": [
         {
+          "slot": "i-lost-my-bag",
           "arabic": "ضيعت شنطتي",
-          "transliteration": "Dayya3et shanTti",
-          "english": "I lost my bag.",
-          "search_term": "lost luggage"
+          "transliteration": "Dayya3et shanTti"
         },
         {
+          "slot": "the-plane-is-very-delayed",
           "arabic": "الطيارة تأخرت كتير",
-          "transliteration": "T-Tayyaara ta2akhkharet ktiir",
-          "english": "The plane is very delayed.",
-          "search_term": "airport departure board delay"
+          "transliteration": "T-Tayyaara ta2akhkharet ktiir"
         },
         {
+          "slot": "i-missed-the-bus",
           "arabic": "فاتني الباص",
-          "transliteration": "faatni l-baaS",
-          "english": "I missed the bus."
+          "transliteration": "faatni l-baaS"
         },
         {
+          "slot": "i-couldn-t-find-my-passport",
           "arabic": "ما لقيت جواز سفري",
-          "transliteration": "ma la2eet jawaaz safari",
-          "english": "I couldn't find my passport.",
-          "search_term": "passport",
-          "image": "damascene/unit-15/l04-p04-passport.jpg"
+          "transliteration": "ma la2eet jawaaz safari"
         },
         {
+          "slot": "come-help-me-please",
           "arabic": "تعا ساعدني لو سمحت",
-          "transliteration": "ta3a sa3edni law sama7t",
-          "english": "Come help me please."
+          "transliteration": "ta3a sa3edni law sama7t"
         },
         {
+          "slot": "there-s-a-problem-with-the-reservation",
           "arabic": "في مشكلة بالحجز",
-          "transliteration": "fi mishkile bel-7ajez",
-          "english": "There's a problem with the reservation."
+          "transliteration": "fi mishkile bel-7ajez"
         },
         {
+          "slot": "the-bag-got-broken",
           "arabic": "الشنطة انكسرت",
-          "transliteration": "sh-shanTa nkasaret",
-          "english": "The bag got broken.",
-          "search_term": "broken suitcase"
+          "transliteration": "sh-shanTa nkasaret"
         },
         {
+          "slot": "i-need-to-change-the-flight",
           "arabic": "لازم أغير الرحلة",
-          "transliteration": "laazem ghayyer r-ri7le",
-          "english": "I need to change the flight."
+          "transliteration": "laazem ghayyer r-ri7le"
         },
         {
+          "slot": "i-missed-the-flight-what-do-i-do",
           "arabic": "فوتني الرحلة، شو أعمل؟",
-          "transliteration": "fawwatni r-ri7le, shoo a3mel?",
-          "english": "I missed the flight, what do I do?"
+          "transliteration": "fawwatni r-ri7le, shoo a3mel?"
         },
         {
+          "slot": "where-s-the-complaints-office",
           "arabic": "وين مكتب الشكاوى؟",
-          "transliteration": "ween maktab sh-shakaawi?",
-          "english": "Where's the complaints office?",
-          "search_term": "customer service desk"
+          "transliteration": "ween maktab sh-shakaawi?"
         },
         {
+          "slot": "nobody-answered-me",
           "arabic": "ما حدا رد علي",
-          "transliteration": "ma 7ada radd 3alayyi",
-          "english": "Nobody answered me."
+          "transliteration": "ma 7ada radd 3alayyi"
         },
         {
+          "slot": "may-god-make-up-for-it-god-willing-it-ll-work-ou",
           "arabic": "الله يعوض، إن شاء الله بتنحل",
-          "transliteration": "alla y3awwiD, inshalla btenHall",
-          "english": "May God make up for it, God willing it'll work out."
+          "transliteration": "alla y3awwiD, inshalla btenHall"
         }
       ],
       "dialogue": [

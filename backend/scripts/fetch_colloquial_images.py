@@ -8,9 +8,12 @@ only the phrase's own `search_term`, and writes them with their licences to a
 review file. Nothing is downloaded and no lesson is touched. A phrase with no
 `search_term` is listed as needing one, never guessed from its English.
 
+Phrases are read from spine.json, the course outline every dialect shares, so
+one picture serves the same phrase in every dialect.
+
 `approve` downloads the one candidate you chose, saves it under
-data/colloquial/images/<dialect>/<unit>/, records who made it and under what
-licence in that folder's attribution.json, and sets the phrase's `image`. A wrong
+data/colloquial/images/<unit>/, records who made it and under what licence in
+that folder's attribution.json, and sets the slot's `image` in the spine. A wrong
 picture therefore never reaches a lesson without a person choosing it.
 
 Only pictures licensed for commercial use and for modification are asked for, and
@@ -58,15 +61,19 @@ def search(term: str, client: httpx.Client) -> list[dict]:
     return [candidate(result) for result in reply.json()["results"]]
 
 
-def paths(dialect: str, unit: str) -> tuple[Path, Path, Path]:
-    """The unit file, its review file and its picture folder."""
+def paths(unit: str) -> tuple[Path, Path, Path]:
+    """The spine, the unit's review file and its picture folder."""
     root = data_path("colloquial_dir")
-    return root / dialect / f"{unit}.json", root / "review" / f"{dialect}-{unit}.json", root / "images" / dialect / unit
+    return root / "spine.json", root / "review" / f"{unit}.json", root / "images" / unit
 
 
-def propose(dialect: str, unit: str, lesson: int | None, client: httpx.Client) -> dict:
-    unit_file, review_file, _ = paths(dialect, unit)
-    lessons = json.loads(unit_file.read_text(encoding="utf-8"))["lessons"]
+def outline(spine: dict, unit: str) -> dict:
+    return next(one for one in spine["units"] if one["unit"] == unit)
+
+
+def propose(unit: str, lesson: int | None, client: httpx.Client) -> dict:
+    spine_file, review_file, _ = paths(unit)
+    lessons = outline(json.loads(spine_file.read_text(encoding="utf-8")), unit)["lessons"]
     found, missing = [], []
     for lesson_at, one in enumerate(lessons, start=1):
         if lesson and lesson_at != lesson:
@@ -85,8 +92,8 @@ def propose(dialect: str, unit: str, lesson: int | None, client: httpx.Client) -
     return review
 
 
-def approve(dialect: str, unit: str, lesson: int, phrase: int, pick: int, client: httpx.Client) -> str:
-    unit_file, review_file, folder = paths(dialect, unit)
+def approve(unit: str, lesson: int, phrase: int, pick: int, client: httpx.Client) -> str:
+    spine_file, review_file, folder = paths(unit)
     review = json.loads(review_file.read_text(encoding="utf-8"))
     entry = next(e for e in review["found"] if (e["lesson"], e["phrase"]) == (lesson, phrase))
     chosen = entry["candidates"][pick - 1]
@@ -101,17 +108,16 @@ def approve(dialect: str, unit: str, lesson: int, phrase: int, pick: int, client
     credits[name] = {k: v for k, v in chosen.items() if k != "thumbnail"} | {"search_term": entry["search_term"]}
     sidecar.write_text(json.dumps(credits, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    data = json.loads(unit_file.read_text(encoding="utf-8"))
-    relative = f"{dialect}/{unit}/{name}"
-    data["lessons"][lesson - 1]["phrases"][phrase - 1]["image"] = relative
-    unit_file.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    spine = json.loads(spine_file.read_text(encoding="utf-8"))
+    relative = f"{unit}/{name}"
+    outline(spine, unit)["lessons"][lesson - 1]["phrases"][phrase - 1]["image"] = relative
+    spine_file.write_text(json.dumps(spine, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return relative
 
 
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("action", choices=("propose", "approve"))
-    ap.add_argument("--dialect", default="damascene")
     ap.add_argument("--unit", type=int, required=True)
     ap.add_argument("--lesson", type=int)
     ap.add_argument("--phrase", type=int)
@@ -120,12 +126,12 @@ def main(argv: list[str] | None = None) -> None:
     unit = unit_name(args.unit)
     with httpx.Client(headers=HEADERS, timeout=TIMEOUT_SECONDS) as client:
         if args.action == "propose":
-            review = propose(args.dialect, unit, args.lesson, client)
+            review = propose(unit, args.lesson, client)
             print(f"{len(review['found'])} phrases with candidates, {len(review['needs_search_term'])} need a search_term")
         else:
             if not (args.lesson and args.phrase and args.pick):
                 sys.exit("approve needs --lesson, --phrase and --pick")
-            print("saved", approve(args.dialect, unit, args.lesson, args.phrase, args.pick, client))
+            print("saved", approve(unit, args.lesson, args.phrase, args.pick, client))
 
 
 if __name__ == "__main__":

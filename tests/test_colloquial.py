@@ -170,13 +170,13 @@ def test_a_picture_is_served_and_cannot_be_climbed_out_to():
 
 def test_a_phrase_naming_a_missing_picture_is_caught():
     unit = copy.deepcopy(SOUND)
-    unit["lessons"][0]["phrases"][0]["image"] = "damascene/unit-01/nothing.jpg"
+    unit["lessons"][0]["phrases"][0]["image"] = "unit-01/nothing.jpg"
     assert any("not on disk" in line for line in loader._unit_faults(unit))
 
 
 def test_a_picture_with_no_credit_is_caught_and_a_real_one_carries_its_credit():
     unit = copy.deepcopy(SOUND)
-    unit["lessons"][0]["phrases"][0]["image"] = "damascene/unit-01/l03-p01-number-one.jpg"
+    unit["lessons"][0]["phrases"][0]["image"] = "unit-01/l03-p01-number-one.jpg"
     assert any("attribution.json" in line for line in loader._unit_faults(unit))
     served = loader.unit("damascene", "unit-01")
     shown = [p for lesson in served["lessons"] for p in lesson["phrases"] if p.get("image")]
@@ -190,13 +190,13 @@ def test_pictures_are_proposed_then_approved_by_a_person(tmp_path, monkeypatch):
 
     from backend.scripts import fetch_colloquial_images as fetch
 
-    unit = copy.deepcopy(SOUND)
-    unit["lessons"][0]["phrases"] = [
-        {**phrase(), "search_term": "waving hand"},
-        {**phrase("شكرا"), "search_term": ""},
-    ]
-    (tmp_path / "unit-01.json").write_text(json.dumps(unit, ensure_ascii=False), encoding="utf-8")
-    monkeypatch.setattr(fetch, "paths", lambda d, u: (tmp_path / "unit-01.json", tmp_path / "review.json", tmp_path / "pics"))
+    spine = {"units": [{"unit": "unit-01", "title": "t", "lessons": [{"lesson": "lesson-01", "title": "t", "phrases": [
+        {"slot": "hello", "english": "Hello.", "search_term": "waving hand"},
+        {"slot": "thanks", "english": "Thanks."},
+    ]}]}]}
+    (tmp_path / "spine.json").write_text(json.dumps(spine, ensure_ascii=False), encoding="utf-8")
+    monkeypatch.setattr(fetch, "paths", lambda u: (tmp_path / "spine.json", tmp_path / "review.json", tmp_path / "pics"))
+    first = lambda: json.loads((tmp_path / "spine.json").read_text(encoding="utf-8"))["units"][0]["lessons"][0]["phrases"][0]
 
     def serve(request):
         if request.url.path.endswith("/thumb/"):
@@ -207,13 +207,83 @@ def test_pictures_are_proposed_then_approved_by_a_person(tmp_path, monkeypatch):
             "thumbnail": "https://api.openverse.org/v1/images/abc/thumb/"}]})
 
     client = httpx.Client(transport=httpx.MockTransport(serve))
-    review = fetch.propose("damascene", "unit-01", None, client)
+    review = fetch.propose("unit-01", None, client)
     assert [e["search_term"] for e in review["found"]] == ["waving hand"]
     assert [m["phrase"] for m in review["needs_search_term"]] == [2]
-    assert "image" not in json.loads((tmp_path / "unit-01.json").read_text(encoding="utf-8"))["lessons"][0]["phrases"][0]
+    assert "image" not in first()
 
-    saved = fetch.approve("damascene", "unit-01", 1, 1, 1, client)
+    saved = fetch.approve("unit-01", 1, 1, 1, client)
     assert (tmp_path / "pics" / saved.split("/")[-1]).read_bytes() == b"jpgbytes"
     credits = json.loads((tmp_path / "pics" / "attribution.json").read_text(encoding="utf-8"))
     assert credits[saved.split("/")[-1]]["creator"] == "Sam"
-    assert json.loads((tmp_path / "unit-01.json").read_text(encoding="utf-8"))["lessons"][0]["phrases"][0]["image"] == saved
+    assert first()["image"] == saved
+
+
+OUTLINE = {"unit": "unit-01", "title": "First Conversations", "lessons": [
+    {"lesson": "lesson-01", "title": "Greetings", "phrases": [
+        {"slot": "hello", "english": "Hello.", "search_term": "waving hand"},
+        {"slot": "thanks", "english": "Thanks."}]}]}
+WRITTEN = {"unit": "unit-01", "dialect": "Egyptian Arabic", "lessons": [
+    {"lesson": "lesson-01", "phrases": [
+        {"slot": "thanks", "arabic": "شكرا", "transliteration": "shukran"},
+        {"slot": "hello", "arabic": "أهلا", "transliteration": "ahlan"}]}]}
+
+
+def test_a_dialect_is_laid_onto_the_spine_in_its_order_with_its_english():
+    unit, said = loader._fill(OUTLINE, copy.deepcopy(WRITTEN))
+    assert said == []
+    assert unit["title"] == "First Conversations" and unit["lessons"][0]["title"] == "Greetings"
+    hello, thanks = unit["lessons"][0]["phrases"]
+    assert (hello["arabic"], hello["english"], hello["search_term"]) == ("أهلا", "Hello.", "waving hand")
+    assert thanks["english"] == "Thanks."
+
+
+def test_a_slot_the_dialect_skipped_is_caught():
+    written = copy.deepcopy(WRITTEN)
+    written["lessons"][0]["phrases"].pop()
+    assert any("no words for 'hello'" in why for why in loader._fill(OUTLINE, written)[1])
+
+
+def test_a_slot_or_lesson_the_spine_lacks_is_caught():
+    written = copy.deepcopy(WRITTEN)
+    written["lessons"][0]["phrases"].append({"slot": "bye", "arabic": "باي", "transliteration": "bye"})
+    written["lessons"].append({"lesson": "lesson-09", "phrases": []})
+    said = loader._fill(OUTLINE, written)[1]
+    assert any("'bye', which spine.json does not have" in why for why in said)
+    assert any("'lesson-09' is not in spine.json" in why for why in said)
+
+
+def test_a_spine_lesson_the_dialect_never_wrote_is_caught():
+    outline = copy.deepcopy(OUTLINE)
+    outline["lessons"].append({"lesson": "lesson-02", "title": "More", "phrases": []})
+    assert any("'lesson-02' of spine.json is not written" in why for why in loader._fill(outline, copy.deepcopy(WRITTEN))[1])
+
+
+def test_a_repeated_slot_in_one_lesson_is_caught():
+    written = copy.deepcopy(WRITTEN)
+    written["lessons"][0]["phrases"].append({"slot": "hello", "arabic": "هاي", "transliteration": "hi"})
+    assert any("'hello' twice" in why for why in loader._fill(OUTLINE, written)[1])
+
+
+def test_an_unwritten_unit_is_listed_as_coming_and_cannot_be_opened(tmp_path, monkeypatch):
+    import json
+    import shutil
+
+    from backend.config import data_path
+    real = data_path("colloquial_dir")
+    shutil.copy(real / "spine.json", tmp_path / "spine.json")
+    (tmp_path / "dialects.json").write_text(json.dumps({"dialects": [
+        {"key": "damascene", "folder": "damascene", "label": "D", "arabic": "د", "where": "w", "order": 1}]}), encoding="utf-8")
+    (tmp_path / "damascene").mkdir()
+    shutil.copy(real / "damascene" / "unit-01.json", tmp_path / "damascene" / "unit-01.json")
+    shutil.copytree(real / "images" / "unit-01", tmp_path / "images" / "unit-01")
+    monkeypatch.setattr(loader, "data_path", lambda key: tmp_path if key == "colloquial_dir" else data_path(key))
+    loader._content.cache_clear()
+    try:
+        units = loader.catalogue()["dialects"][0]["units"]
+        assert [u["written"] for u in units[:2]] == [True, False]
+        assert len(units) == len(json.loads((real / "spine.json").read_text(encoding="utf-8"))["units"])
+        with pytest.raises(KeyError):
+            loader.unit("damascene", "unit-02")
+    finally:
+        loader._content.cache_clear()

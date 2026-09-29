@@ -1,6 +1,5 @@
 {
   "unit": "unit-13",
-  "title": "Feelings and Opinions",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,13 +19,11 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "How I Feel",
       "phrases": [
         {
+          "slot": "how-are-you-today-to-a-man",
           "arabic": "كيفك اليوم؟",
           "transliteration": "keefak elyom?",
-          "english": "How are you today? (to a man)",
-          "search_term": "two friends talking",
           "reply": {
             "arabic": "منيح كتير، الحمد لله",
             "transliteration": "mnii7 ktiir, il7amdella",
@@ -34,10 +31,9 @@
           }
         },
         {
+          "slot": "how-are-you-today-to-a-woman",
           "arabic": "كيفِك اليوم؟",
           "transliteration": "keefik elyom?",
-          "english": "How are you today? (to a woman)",
-          "search_term": "two women talking",
           "reply": {
             "arabic": "تمام، شكرا",
             "transliteration": "tamaam, shukran",
@@ -45,10 +41,9 @@
           }
         },
         {
+          "slot": "what-s-wrong-with-you-to-a-man",
           "arabic": "شو فيك؟",
           "transliteration": "shu fiik?",
-          "english": "What's wrong with you? (to a man)",
-          "search_term": "worried friend asking",
           "reply": {
             "arabic": "ولا شي، بس تعبان شوي",
             "transliteration": "wala shi, bas ta3baan shwayy",
@@ -56,58 +51,49 @@
           }
         },
         {
+          "slot": "i-m-happy-today-m",
           "arabic": "أنا مبسوط اليوم",
-          "transliteration": "ana mabsoot elyom",
-          "english": "I'm happy today. (m)",
-          "search_term": "smiling man"
+          "transliteration": "ana mabsoot elyom"
         },
         {
+          "slot": "i-m-happy-today-f",
           "arabic": "أنا مبسوطة اليوم",
-          "transliteration": "ana mabsoota elyom",
-          "english": "I'm happy today. (f)",
-          "search_term": "smiling woman"
+          "transliteration": "ana mabsoota elyom"
         },
         {
+          "slot": "i-m-a-little-upset-m",
           "arabic": "أنا زعلان شوي",
-          "transliteration": "ana za3laan shwayy",
-          "english": "I'm a little upset. (m)",
-          "search_term": "sad man"
+          "transliteration": "ana za3laan shwayy"
         },
         {
+          "slot": "i-m-a-little-upset-f",
           "arabic": "أنا زعلانة شوي",
-          "transliteration": "ana za3laane shwayy",
-          "english": "I'm a little upset. (f)",
-          "search_term": "sad woman"
+          "transliteration": "ana za3laane shwayy"
         },
         {
+          "slot": "i-m-very-tired-m",
           "arabic": "أنا تعبان كتير",
-          "transliteration": "ana ta3baan ktiir",
-          "english": "I'm very tired. (m)",
-          "search_term": "tired man yawning"
+          "transliteration": "ana ta3baan ktiir"
         },
         {
+          "slot": "i-m-hungry-i-want-to-eat-something",
           "arabic": "أنا جعان، بدي آكل شي",
-          "transliteration": "ana ja3aan, badde aakol shi",
-          "english": "I'm hungry, I want to eat something.",
-          "search_term": "hungry person looking at food"
+          "transliteration": "ana ja3aan, badde aakol shi"
         },
         {
+          "slot": "i-m-worried-about-the-exam",
           "arabic": "أنا قلقان على الامتحان",
-          "transliteration": "ana 2al2aan 3al imti7aan",
-          "english": "I'm worried about the exam.",
-          "search_term": "worried student with books"
+          "transliteration": "ana 2al2aan 3al imti7aan"
         },
         {
+          "slot": "i-m-scared-of-this",
           "arabic": "أنا خايف من هالشي",
-          "transliteration": "ana khaayef min hal shi",
-          "english": "I'm scared of this.",
-          "search_term": "scared face"
+          "transliteration": "ana khaayef min hal shi"
         },
         {
+          "slot": "i-m-glad-you-came-to-a-man",
           "arabic": "مبسوط إنك جيت",
-          "transliteration": "mabsoot innak jiit",
-          "english": "I'm glad you came. (to a man)",
-          "search_term": "friends greeting at door"
+          "transliteration": "mabsoot innak jiit"
         }
       ],
       "dialogue": [
@@ -420,70 +406,66 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "Agreeing and Disagreeing",
       "phrases": [
         {
+          "slot": "right-correct",
           "arabic": "صح",
-          "transliteration": "sa77",
-          "english": "Right. / Correct.",
-          "search_term": "thumbs up"
+          "transliteration": "sa77"
         },
         {
+          "slot": "exactly-that-s-right",
           "arabic": "مضبوط",
-          "transliteration": "mazbuut",
-          "english": "Exactly. / That's right."
+          "transliteration": "mazbuut"
         },
         {
+          "slot": "you-re-right-to-a-man",
           "arabic": "معك حق",
-          "transliteration": "ma3ak 7a2",
-          "english": "You're right. (to a man)"
+          "transliteration": "ma3ak 7a2"
         },
         {
+          "slot": "you-re-right-to-a-woman",
           "arabic": "معِك حق",
-          "transliteration": "ma3ik 7a2",
-          "english": "You're right. (to a woman)"
+          "transliteration": "ma3ik 7a2"
         },
         {
+          "slot": "i-agree-m",
           "arabic": "أنا موافق",
-          "transliteration": "ana muwaafe2",
-          "english": "I agree. (m)",
-          "search_term": "man nodding agreement"
+          "transliteration": "ana muwaafe2"
         },
         {
+          "slot": "i-agree-f",
           "arabic": "أنا موافقة",
-          "transliteration": "ana muwaafi2a",
-          "english": "I agree. (f)",
-          "search_term": "woman nodding agreement"
+          "transliteration": "ana muwaafi2a"
         },
         {
+          "slot": "no-it-s-not-like-that",
           "arabic": "لا، مو هيك",
-          "transliteration": "la2, mu heek",
-          "english": "No, it's not like that."
+          "transliteration": "la2, mu heek"
         },
         {
+          "slot": "i-don-t-agree-with-you",
           "arabic": "ما بوافقك",
-          "transliteration": "ma bwaafi2ak",
-          "english": "I don't agree with you."
+          "transliteration": "ma bwaafi2ak"
         },
         {
+          "slot": "that-s-not-true-correct",
           "arabic": "هاد مو صحيح",
-          "transliteration": "haad mu sa7ii7",
-          "english": "That's not true / correct."
+          "transliteration": "haad mu sa7ii7"
         },
         {
+          "slot": "in-my-opinion",
           "arabic": "برأيي..",
-          "transliteration": "bira2yi..",
-          "english": "In my opinion..."
+          "transliteration": "bira2yi.."
         },
         {
+          "slot": "maybe-but",
           "arabic": "يمكن، بس..",
-          "transliteration": "yimkin, bass..",
-          "english": "Maybe, but..."
+          "transliteration": "yimkin, bass.."
         },
         {
+          "slot": "ok-that-works",
           "arabic": "تمام، ماشي الحال",
-          "transliteration": "tamaam, maashi l7aal",
-          "english": "OK, that works."
+          "transliteration": "tamaam, maashi l7aal"
         }
       ],
       "dialogue": [
@@ -792,68 +774,66 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "Giving Advice",
       "phrases": [
         {
+          "slot": "you-should-get-some-rest-to-a-man",
           "arabic": "لازم تاخد قسط راحة",
-          "transliteration": "laazim taakhod 2ist raa7a",
-          "english": "You should get some rest. (to a man)"
+          "transliteration": "laazim taakhod 2ist raa7a"
         },
         {
+          "slot": "you-should-get-some-rest-to-a-woman",
           "arabic": "لازم تاخدي قسط راحة",
-          "transliteration": "laazim taakhdi 2ist raa7a",
-          "english": "You should get some rest. (to a woman)"
+          "transliteration": "laazim taakhdi 2ist raa7a"
         },
         {
+          "slot": "it-s-better-you-go-to-the-doctor",
           "arabic": "الأحسن إنك تروح عالدكتور",
-          "transliteration": "la7san innak truu7 3adduktoor",
-          "english": "It's better you go to the doctor."
+          "transliteration": "la7san innak truu7 3adduktoor"
         },
         {
+          "slot": "why-don-t-you-try-this",
           "arabic": "ليش ما بتجرب هيك؟",
-          "transliteration": "leesh ma btjarrib heek?",
-          "english": "Why don't you try this?"
+          "transliteration": "leesh ma btjarrib heek?"
         },
         {
+          "slot": "if-i-were-you-i-d-do-this",
           "arabic": "لو كنت مكانك كنت سويت هيك",
-          "transliteration": "low kinet mkaanak kinet sawweet heek",
-          "english": "If I were you, I'd do this."
+          "transliteration": "low kinet mkaanak kinet sawweet heek"
         },
         {
+          "slot": "listen-to-my-advice-to-a-man",
           "arabic": "اسمع نصيحتي",
-          "transliteration": "isma3 naSii7ti",
-          "english": "Listen to my advice. (to a man)"
+          "transliteration": "isma3 naSii7ti"
         },
         {
+          "slot": "take-care-of-yourself-to-a-man",
           "arabic": "خد بالك من حالك",
-          "transliteration": "khod baalak min 7aalak",
-          "english": "Take care of yourself. (to a man)"
+          "transliteration": "khod baalak min 7aalak"
         },
         {
+          "slot": "it-won-t-hurt-you-to-try",
           "arabic": "ما رح يضرك تجرب",
-          "transliteration": "ma ra7 yduRRak tjarrib",
-          "english": "It won't hurt you to try."
+          "transliteration": "ma ra7 yduRRak tjarrib"
         },
         {
+          "slot": "try-this-medicine",
           "arabic": "جرب هيدا الدوا",
-          "transliteration": "jarrib heeda ddawa",
-          "english": "Try this medicine.",
-          "search_term": "bottle of medicine"
+          "transliteration": "jarrib heeda ddawa"
         },
         {
+          "slot": "you-should-talk-to-him",
           "arabic": "لازم تحكي معو",
-          "transliteration": "laazim ti7ki ma3o",
-          "english": "You should talk to him."
+          "transliteration": "laazim ti7ki ma3o"
         },
         {
+          "slot": "i-advise-you-not-to-do-this",
           "arabic": "أنا بنصحك ما تعمل هيك",
-          "transliteration": "ana bansa7ak ma ta3mel heek",
-          "english": "I advise you not to do this."
+          "transliteration": "ana bansa7ak ma ta3mel heek"
         },
         {
+          "slot": "stay-calm-and-don-t-rush",
           "arabic": "خليك هادي وما تستعجل",
-          "transliteration": "khalliik haadi w ma tista3jil",
-          "english": "Stay calm and don't rush."
+          "transliteration": "khalliik haadi w ma tista3jil"
         }
       ],
       "dialogue": [
@@ -1163,70 +1143,66 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Complaining Politely",
       "phrases": [
         {
+          "slot": "excuse-me-there-s-a-small-problem-to-a-man",
           "arabic": "لو سمحت، في مشكلة صغيرة",
-          "transliteration": "low sama7t, fi mishkile zghiire",
-          "english": "Excuse me, there's a small problem. (to a man)"
+          "transliteration": "low sama7t, fi mishkile zghiire"
         },
         {
+          "slot": "sorry-to-bother-you-but-m",
           "arabic": "آسف عالإزعاج، بس..",
-          "transliteration": "aasef 3al iz3aaj, bass..",
-          "english": "Sorry to bother you, but... (m)"
+          "transliteration": "aasef 3al iz3aaj, bass.."
         },
         {
+          "slot": "can-someone-help-me",
           "arabic": "ممكن حدا يساعدني؟",
-          "transliteration": "mumkin 7ada ysaa3idni?",
-          "english": "Can someone help me?"
+          "transliteration": "mumkin 7ada ysaa3idni?"
         },
         {
+          "slot": "this-isn-t-what-i-ordered-m",
           "arabic": "هاد مو اللي طلبته",
-          "transliteration": "haad mu lli talabto",
-          "english": "This isn't what I ordered. (m)"
+          "transliteration": "haad mu lli talabto"
         },
         {
+          "slot": "there-s-a-mistake-in-the-bill",
           "arabic": "في غلطة بالفاتورة",
-          "transliteration": "fi ghalta bilfatuura",
-          "english": "There's a mistake in the bill.",
-          "search_term": "restaurant bill"
+          "transliteration": "fi ghalta bilfatuura"
         },
         {
+          "slot": "the-food-is-a-bit-cold-can-you-heat-it-up-for-me",
           "arabic": "الأكل بارد شوي، ممكن تسخنولي ياه؟",
-          "transliteration": "lakil baared shwayy, mumkin tsakhkhinuuli yaa?",
-          "english": "The food is a bit cold, can you heat it up for me?",
-          "search_term": "plate of food"
+          "transliteration": "lakil baared shwayy, mumkin tsakhkhinuuli yaa?"
         },
         {
+          "slot": "the-order-is-very-late",
           "arabic": "الطلب متأخر كتير",
-          "transliteration": "ttalab mit2akhkher ktiir",
-          "english": "The order is very late."
+          "transliteration": "ttalab mit2akhkher ktiir"
         },
         {
+          "slot": "i-don-t-mean-to-bother-you-but-this-is-important",
           "arabic": "مو قصدي أزعجك، بس هاد مهم",
-          "transliteration": "mu 2asdi az3ijak, bass haad muhem",
-          "english": "I don't mean to bother you, but this is important."
+          "transliteration": "mu 2asdi az3ijak, bass haad muhem"
         },
         {
+          "slot": "can-you-refund-my-money",
           "arabic": "ممكن تعيدولي الفلوس؟",
-          "transliteration": "mumkin tu3iiduuli lfluus?",
-          "english": "Can you refund my money?",
-          "search_term": "cash refund"
+          "transliteration": "mumkin tu3iiduuli lfluus?"
         },
         {
+          "slot": "this-isn-t-the-same-as-what-i-saw-in-the-picture",
           "arabic": "هاد مش نفس اللي شفتو بالصورة",
-          "transliteration": "haad mish nafs lli shifto bissuura",
-          "english": "This isn't the same as what I saw in the picture."
+          "transliteration": "haad mish nafs lli shifto bissuura"
         },
         {
+          "slot": "can-you-help-me-with-this-matter",
           "arabic": "بتقدر تساعدني بهالموضوع؟",
-          "transliteration": "bti2dar tsaa3idni bhal mawDuu3?",
-          "english": "Can you help me with this matter?"
+          "transliteration": "bti2dar tsaa3idni bhal mawDuu3?"
         },
         {
+          "slot": "there-s-no-problem-but-i-d-like-to-clarify-m",
           "arabic": "ما في مشكلة، بس حابب أوضح",
-          "transliteration": "ma fi mishkile, bass 7aabeb awaDDe7",
-          "english": "There's no problem, but I'd like to clarify. (m)"
+          "transliteration": "ma fi mishkile, bass 7aabeb awaDDe7"
         }
       ],
       "dialogue": [

@@ -1,6 +1,5 @@
 {
   "unit": "unit-09",
-  "title": "Health",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,12 +19,11 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "How Are You Feeling",
       "phrases": [
         {
+          "slot": "how-are-you-today-to-a-man",
           "arabic": "كيفك اليوم؟",
           "transliteration": "keefak ilyom?",
-          "english": "How are you today? (to a man)",
           "reply": {
             "arabic": "مش منيح كتير اليوم",
             "transliteration": "mish mnee7 ktiir ilyom",
@@ -33,9 +31,9 @@
           }
         },
         {
+          "slot": "how-are-you-today-to-a-woman",
           "arabic": "كيفِك اليوم؟",
           "transliteration": "keefik ilyom?",
-          "english": "How are you today? (to a woman)",
           "reply": {
             "arabic": "الحمدلله منيحة",
             "transliteration": "il7amdilla mnee7a",
@@ -43,9 +41,9 @@
           }
         },
         {
+          "slot": "what-happened-to-you-to-a-man",
           "arabic": "شو صار فيك؟",
           "transliteration": "shu Saar fiik?",
-          "english": "What happened to you? (to a man)",
           "reply": {
             "arabic": "ما بعرف، حاسس تعبان شوي",
             "transliteration": "ma ba3rif, 7aases ta3baan shwayy",
@@ -53,48 +51,44 @@
           }
         },
         {
+          "slot": "i-feel-tired-a-man-speaking",
           "arabic": "حاسس تعبان",
-          "transliteration": "7aases ta3baan",
-          "english": "I feel tired (a man speaking)",
-          "search_term": "a tired man sitting on a couch"
+          "transliteration": "7aases ta3baan"
         },
         {
+          "slot": "i-feel-tired-a-woman-speaking",
           "arabic": "حاسة تعبانة",
-          "transliteration": "7aasse ta3baane",
-          "english": "I feel tired (a woman speaking)"
+          "transliteration": "7aasse ta3baane"
         },
         {
+          "slot": "i-have-a-headache",
           "arabic": "عندي صداع",
-          "transliteration": "3indi Soda3",
-          "english": "I have a headache",
-          "search_term": "a person holding their head in pain"
+          "transliteration": "3indi Soda3"
         },
         {
+          "slot": "my-stomach-hurts",
           "arabic": "عم يوجعني بطني",
-          "transliteration": "3am yuwja3ni baTni",
-          "english": "My stomach hurts",
-          "search_term": "a person holding their stomach"
+          "transliteration": "3am yuwja3ni baTni"
         },
         {
+          "slot": "i-have-a-fever",
           "arabic": "عندي حرارة",
-          "transliteration": "3indi 7araara",
-          "english": "I have a fever",
-          "search_term": "a hand on a forehead checking for fever"
+          "transliteration": "3indi 7araara"
         },
         {
+          "slot": "i-feel-dizzy-a-man-speaking",
           "arabic": "حاسس دايخ",
-          "transliteration": "7aases dayekh",
-          "english": "I feel dizzy (a man speaking)"
+          "transliteration": "7aases dayekh"
         },
         {
+          "slot": "i-can-t-sleep-well",
           "arabic": "ما عم قدر نام منيح",
-          "transliteration": "ma 3am 2dar naam mnee7",
-          "english": "I can't sleep well"
+          "transliteration": "ma 3am 2dar naam mnee7"
         },
         {
+          "slot": "looks-like-you-have-a-cold-to-a-man",
           "arabic": "شكلك في عندك رشح",
           "transliteration": "shaklak fi 3indak rash7",
-          "english": "Looks like you have a cold (to a man)",
           "reply": {
             "arabic": "إي، وعندي سعال كمان",
             "transliteration": "ee, w 3indi su3aal kamaan",
@@ -102,9 +96,9 @@
           }
         },
         {
+          "slot": "take-some-rest-to-a-man",
           "arabic": "خدلك راحة شوي",
           "transliteration": "khudlak raa7a shwayy",
-          "english": "Take some rest (to a man)",
           "reply": {
             "arabic": "تمام، رح ارتاح شوي",
             "transliteration": "tamaam, ra7 irta7 shwayy",
@@ -413,12 +407,11 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "At the Pharmacy",
       "phrases": [
         {
+          "slot": "do-you-have-medicine-for-a-headache",
           "arabic": "عندك دوا للصداع؟",
           "transliteration": "3indak dawa las-Soda3?",
-          "english": "Do you have medicine for a headache?",
           "reply": {
             "arabic": "إي، تفضل هاد منيح كتير",
             "transliteration": "ee, tfaDDal haad mnee7 ktiir",
@@ -426,22 +419,19 @@
           }
         },
         {
+          "slot": "i-want-pills-for-the-fever",
           "arabic": "بدي حبوب للحرارة",
-          "transliteration": "biddi 7uboob lal-7araara",
-          "english": "I want pills for the fever",
-          "search_term": "a strip of medicine pills"
+          "transliteration": "biddi 7uboob lal-7araara"
         },
         {
+          "slot": "do-you-have-cough-syrup",
           "arabic": "عندك شراب سعال؟",
-          "transliteration": "3indak sharaab su3aal?",
-          "english": "Do you have cough syrup?",
-          "search_term": "a bottle of cough syrup",
-          "image": "damascene/unit-09/l02-p03-a-bottle-of-cough-syrup.jpg"
+          "transliteration": "3indak sharaab su3aal?"
         },
         {
+          "slot": "how-much-does-this-medicine-cost",
           "arabic": "قديش سعر هيدا الدوا؟",
           "transliteration": "2addeesh si3r heyda id-dawa?",
-          "english": "How much does this medicine cost?",
           "reply": {
             "arabic": "خمستعشر ألف ليرة",
             "transliteration": "khamastta3ash alf leera",
@@ -449,9 +439,9 @@
           }
         },
         {
+          "slot": "do-i-need-a-prescription",
           "arabic": "لازم وصفة طبية؟",
           "transliteration": "laazim waSfeh Tibbiyye?",
-          "english": "Do I need a prescription?",
           "reply": {
             "arabic": "لا، هاد بيندفع من دون وصفة",
             "transliteration": "la, haad byindafa3 min doon waSfeh",
@@ -459,14 +449,14 @@
           }
         },
         {
+          "slot": "take-it-twice-a-day-to-a-man",
           "arabic": "خدها مرتين باليوم",
-          "transliteration": "khudha marrtein bil-yom",
-          "english": "Take it twice a day (to a man)"
+          "transliteration": "khudha marrtein bil-yom"
         },
         {
+          "slot": "before-eating-or-after",
           "arabic": "قبل الأكل ولا بعده؟",
           "transliteration": "2abl il-akl walla ba3do?",
-          "english": "Before eating or after?",
           "reply": {
             "arabic": "بعد الأكل أحسن",
             "transliteration": "ba3d il-akl a7san",
@@ -474,30 +464,29 @@
           }
         },
         {
+          "slot": "i-want-something-for-allergies",
           "arabic": "بدي شي للحساسية",
-          "transliteration": "biddi shi lal-7asaasiyye",
-          "english": "I want something for allergies"
+          "transliteration": "biddi shi lal-7asaasiyye"
         },
         {
+          "slot": "do-you-have-band-aids",
           "arabic": "عندك بلاستر؟",
-          "transliteration": "3indak blaster?",
-          "english": "Do you have band-aids?",
-          "search_term": "a box of adhesive bandages"
+          "transliteration": "3indak blaster?"
         },
         {
+          "slot": "this-medicine-makes-you-a-bit-sleepy",
           "arabic": "هاد الدوا منوم شوي",
-          "transliteration": "haad id-dawa munawwim shwayy",
-          "english": "This medicine makes you a bit sleepy"
+          "transliteration": "haad id-dawa munawwim shwayy"
         },
         {
+          "slot": "do-you-have-something-for-the-stomach",
           "arabic": "في عندك شي للمعدة؟",
-          "transliteration": "fi 3indak shi lal-ma3de?",
-          "english": "Do you have something for the stomach?"
+          "transliteration": "fi 3indak shi lal-ma3de?"
         },
         {
+          "slot": "get-well-soon-goodnight-to-a-man",
           "arabic": "سلامتك، تصبح عالخير",
           "transliteration": "salaamtak, tSba7 3al-kheir",
-          "english": "Get well soon, goodnight (to a man)",
           "reply": {
             "arabic": "الله يسلمك",
             "transliteration": "alla ysallmak",
@@ -806,17 +795,16 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "At the Doctor",
       "phrases": [
         {
+          "slot": "i-have-an-appointment-with-the-doctor",
           "arabic": "عندي موعد مع الدكتور",
-          "transliteration": "3indi maw3id ma3 id-doktoor",
-          "english": "I have an appointment with the doctor"
+          "transliteration": "3indi maw3id ma3 id-doktoor"
         },
         {
+          "slot": "what-hurts-you-doctor-asking-a-man",
           "arabic": "شو بيوجعك؟",
           "transliteration": "shu byuwja3ak?",
-          "english": "What hurts you? (doctor asking a man)",
           "reply": {
             "arabic": "بيوجعني راسي",
             "transliteration": "byuwja3ni raasi",
@@ -824,9 +812,9 @@
           }
         },
         {
+          "slot": "since-when-have-you-been-feeling-like-this-to-a-",
           "arabic": "من إيمتى وانت حاسس هيك؟",
           "transliteration": "min eemta w inta 7aases heek?",
-          "english": "Since when have you been feeling like this? (to a man)",
           "reply": {
             "arabic": "من يومين تقريبا",
             "transliteration": "min yomein ta2riiban",
@@ -834,20 +822,19 @@
           }
         },
         {
+          "slot": "you-need-to-do-some-tests",
           "arabic": "لازم تعمل تحاليل",
-          "transliteration": "laazim ta3mal ta7aaliil",
-          "english": "You need to do some tests",
-          "search_term": "a doctor holding a blood test tube"
+          "transliteration": "laazim ta3mal ta7aaliil"
         },
         {
+          "slot": "take-a-deep-breath-to-a-man",
           "arabic": "خد نفس عميق",
-          "transliteration": "khud nafas 3ami2",
-          "english": "Take a deep breath (to a man)"
+          "transliteration": "khud nafas 3ami2"
         },
         {
+          "slot": "are-you-allergic-to-any-medicine-to-a-man",
           "arabic": "عندك حساسية من شي دوا؟",
           "transliteration": "3indak 7asaasiyye min shi dawa?",
-          "english": "Are you allergic to any medicine? (to a man)",
           "reply": {
             "arabic": "لا، ما عندي حساسية من شي",
             "transliteration": "la, ma 3indi 7asaasiyye min shi",
@@ -855,34 +842,34 @@
           }
         },
         {
+          "slot": "you-need-to-rest-for-a-few-days-to-a-man",
           "arabic": "لازم ترتاح كم يوم",
-          "transliteration": "laazim tirta7 kam yom",
-          "english": "You need to rest for a few days (to a man)"
+          "transliteration": "laazim tirta7 kam yom"
         },
         {
+          "slot": "i-ll-write-you-a-prescription-to-a-man",
           "arabic": "رح كتبلك وصفة",
-          "transliteration": "ra7 kutublak waSfeh",
-          "english": "I'll write you a prescription (to a man)"
+          "transliteration": "ra7 kutublak waSfeh"
         },
         {
+          "slot": "your-blood-pressure-is-a-bit-high-to-a-man",
           "arabic": "الضغط تبعك عالي شوي",
-          "transliteration": "id-daghT taba3ak 3aali shwayy",
-          "english": "Your blood pressure is a bit high (to a man)"
+          "transliteration": "id-daghT taba3ak 3aali shwayy"
         },
         {
+          "slot": "it-s-nothing-serious",
           "arabic": "ما في شي خطير",
-          "transliteration": "ma fi shi khaTiir",
-          "english": "It's nothing serious"
+          "transliteration": "ma fi shi khaTiir"
         },
         {
+          "slot": "you-need-to-come-back-after-a-week-to-a-man",
           "arabic": "لازم ترجع بعد أسبوع",
-          "transliteration": "laazim tirja3 ba3d isboo3",
-          "english": "You need to come back after a week (to a man)"
+          "transliteration": "laazim tirja3 ba3d isboo3"
         },
         {
+          "slot": "get-well-soon-take-it-easy-to-a-man",
           "arabic": "سلامتك، خفف عليك",
           "transliteration": "salaamtak, khaffef 3aleik",
-          "english": "Get well soon, take it easy (to a man)",
           "reply": {
             "arabic": "الله يسلمك دكتور",
             "transliteration": "alla ysallmak doktoor",
@@ -1190,83 +1177,66 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Body Parts and Pain",
       "phrases": [
         {
+          "slot": "head",
           "arabic": "راس",
-          "transliteration": "raas",
-          "english": "head",
-          "search_term": "a human head"
+          "transliteration": "raas"
         },
         {
+          "slot": "stomach-belly",
           "arabic": "بطن",
-          "transliteration": "baTen",
-          "english": "stomach / belly",
-          "search_term": "a stomach",
-          "image": "damascene/unit-09/l04-p02-a-stomach.jpg"
+          "transliteration": "baTen"
         },
         {
+          "slot": "back",
           "arabic": "ضهر",
-          "transliteration": "dahr",
-          "english": "back",
-          "search_term": "a person's back"
+          "transliteration": "dahr"
         },
         {
+          "slot": "hand-arm",
           "arabic": "إيد",
-          "transliteration": "eed",
-          "english": "hand / arm",
-          "search_term": "a hand",
-          "image": "damascene/unit-09/l04-p04-a-hand.jpg"
+          "transliteration": "eed"
         },
         {
+          "slot": "leg-foot",
           "arabic": "رجل",
-          "transliteration": "rijl",
-          "english": "leg / foot",
-          "search_term": "a leg and foot",
-          "image": "damascene/unit-09/l04-p05-a-leg-and-foot.jpg"
+          "transliteration": "rijl"
         },
         {
+          "slot": "eye",
           "arabic": "عين",
-          "transliteration": "3ein",
-          "english": "eye",
-          "search_term": "a close-up of an eye"
+          "transliteration": "3ein"
         },
         {
+          "slot": "ear",
           "arabic": "ودن",
-          "transliteration": "widen",
-          "english": "ear",
-          "search_term": "a close-up of an ear"
+          "transliteration": "widen"
         },
         {
+          "slot": "tooth",
           "arabic": "سن",
-          "transliteration": "senn",
-          "english": "tooth",
-          "search_term": "a tooth"
+          "transliteration": "senn"
         },
         {
+          "slot": "neck",
           "arabic": "رقبة",
-          "transliteration": "ra2abe",
-          "english": "neck",
-          "search_term": "a neck",
-          "image": "damascene/unit-09/l04-p09-a-neck.jpg"
+          "transliteration": "ra2abe"
         },
         {
+          "slot": "my-back-hurts",
           "arabic": "عم يوجعني ضهري",
-          "transliteration": "3am yuwja3ni dahri",
-          "english": "My back hurts",
-          "search_term": "a person holding their lower back in pain"
+          "transliteration": "3am yuwja3ni dahri"
         },
         {
+          "slot": "i-have-a-toothache",
           "arabic": "عندي وجع سن",
-          "transliteration": "3indi waja3 senn",
-          "english": "I have a toothache",
-          "search_term": "a person holding their jaw in pain"
+          "transliteration": "3indi waja3 senn"
         },
         {
+          "slot": "my-leg-is-swollen",
           "arabic": "رجلي متورمة",
-          "transliteration": "rijli mitwarrme",
-          "english": "My leg is swollen",
-          "search_term": "a swollen ankle"
+          "transliteration": "rijli mitwarrme"
         }
       ],
       "dialogue": [

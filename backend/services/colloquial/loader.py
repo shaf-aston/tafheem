@@ -1,8 +1,12 @@
 """The spoken dialects and their units, the only reader of data/colloquial.
 
-A dialect is a folder of unit files and one line in dialects.json. A unit is one
-self-contained file. Nothing here knows the name of any dialect or unit, so
-adding either is a file, never a code change.
+spine.json is the course outline, written once: every unit, lesson and phrase
+slot with its English and picture. A dialect is a folder of unit files and one
+line in dialects.json, and a unit file only fills the spine's slots with that
+dialect's words, dialogue and exercises. So every dialect walks the same course,
+and a lesson added to the spine is missing, loudly, from every dialect until
+written. A dialect may leave whole units unwritten; those are listed as coming.
+Nothing here knows the name of any dialect or unit.
 
 Checked when loaded, not trusted. A repeated exercise id would file two
 different questions under one learner history; an unknown exercise type would
@@ -88,6 +92,37 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     return said
 
 
+def _fill(outline: dict, written: dict) -> tuple[dict, list[str]]:
+    """One dialect's unit file laid onto its spine unit: the unit a learner sees.
+
+    The spine gives the titles, the order, each phrase's English and picture; the
+    dialect gives everything said. A slot or lesson on one side only is a fault,
+    so a template change can never reach one dialect and quietly miss another.
+    """
+    said = []
+    lessons = {lesson.get("lesson"): lesson for lesson in written.get("lessons") or []}
+    for extra in sorted(set(lessons) - {lesson["lesson"] for lesson in outline["lessons"]}, key=str):
+        said.append(f"lesson {extra!r} is not in spine.json")
+    filled = []
+    for plan in outline["lessons"]:
+        lesson = lessons.get(plan["lesson"])
+        if lesson is None:
+            said.append(f"lesson {plan['lesson']!r} of spine.json is not written")
+            continue
+        given = [phrase.get("slot") for phrase in lesson.get("phrases") or []]
+        for twice in sorted({slot for slot in given if given.count(slot) > 1}, key=str):
+            said.append(f"lesson {plan['lesson']!r} fills {twice!r} twice")
+        words = {phrase.get("slot"): phrase for phrase in lesson.get("phrases") or []}
+        slots = [slot["slot"] for slot in plan["phrases"]]
+        for extra in sorted(set(words) - set(slots), key=str):
+            said.append(f"lesson {plan['lesson']!r} fills {extra!r}, which spine.json does not have")
+        for missing in (slot for slot in slots if slot not in words):
+            said.append(f"lesson {plan['lesson']!r} has no words for {missing!r}")
+        phrases = [{**slot, **words[slot["slot"]]} for slot in plan["phrases"] if slot["slot"] in words]
+        filled.append({**lesson, "title": plan["title"], "phrases": phrases})
+    return {**written, "title": outline["title"], "lessons": filled}, said
+
+
 def _unit_faults(unit: dict) -> list[str]:
     said = []
     for field in ("unit", "title", "dialect"):
@@ -122,24 +157,35 @@ def _content() -> dict:
     """
     root = data_path("colloquial_dir")
     manifest = json.loads((root / "dialects.json").read_text(encoding="utf-8"))
+    spine = json.loads((root / "spine.json").read_text(encoding="utf-8"))["units"]
     dialects, broken = [], []
     for dialect in sorted(manifest["dialects"], key=lambda d: d["order"]):
         folder = root / dialect["folder"]
-        units = []
+        written = {}
         for path in sorted(folder.glob("unit-*.json")):
             unit = json.loads(path.read_text(encoding="utf-8"))
-            for lesson in unit.get("lessons", []):
-                for phrase in lesson.get("phrases", []):
+            if unit.get("unit") in written:
+                broken.append(f"dialect {dialect['key']!r} has two units named {unit.get('unit')!r}")
+            written[unit.get("unit")] = unit
+        for extra in sorted(set(written) - {outline["unit"] for outline in spine}, key=str):
+            broken.append(f"{dialect['key']}/{extra}: is not in spine.json")
+        if not written:
+            broken.append(f"dialect {dialect['key']!r} has no units in {folder.name}/")
+        units = []
+        for outline in spine:
+            if outline["unit"] not in written:
+                units.append({"unit": outline["unit"], "title": outline["title"], "written": False,
+                              "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"]}
+                                          for lesson in outline["lessons"]]})
+                continue
+            unit, faults = _fill(outline, written[outline["unit"]])
+            for lesson in unit["lessons"]:
+                for phrase in lesson["phrases"]:
                     if phrase.get("image"):
                         phrase.update(_credit(phrase["image"]))
-            if faults := _unit_faults(unit):
-                broken.append(f"{dialect['key']}/{path.name}: " + "; ".join(faults))
-            units.append(unit)
-        if not units:
-            broken.append(f"dialect {dialect['key']!r} has no units in {folder.name}/")
-        names = [unit.get("unit") for unit in units]
-        if len(set(names)) != len(names):
-            broken.append(f"dialect {dialect['key']!r} has two units named the same: {names}")
+            if faults := faults + _unit_faults(unit):
+                broken.append(f"{dialect['key']}/{outline['unit']}: " + "; ".join(faults))
+            units.append({**unit, "written": True})
         dialects.append({**dialect, "units": units})
     keys = [d["key"] for d in dialects]
     if len(set(keys)) != len(keys):
@@ -152,6 +198,9 @@ def _content() -> dict:
 def catalogue() -> dict:
     """Every dialect and the units in it, without the lessons.
 
+    Every spine unit is listed for every dialect; `written` says which can be
+    opened, so an unwritten unit shows as coming instead of vanishing.
+
     The tab opens on this, so it stays small: a unit's own lessons are about
     sixty kilobytes and there is no reason to send fifteen of them to draw a
     list of titles.
@@ -163,7 +212,7 @@ def catalogue() -> dict:
                 "label": dialect["label"],
                 "arabic": dialect["arabic"],
                 "where": dialect["where"],
-                "units": [{"unit": u["unit"], "title": u["title"],
+                "units": [{"unit": u["unit"], "title": u["title"], "written": u["written"],
                            "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"]}
                                        for lesson in u["lessons"]]}
                           for u in dialect["units"]],
@@ -180,7 +229,7 @@ def unit(dialect: str, name: str) -> dict:
         if known["key"] != dialect:
             continue
         for one in known["units"]:
-            if one["unit"] == name:
+            if one["unit"] == name and one["written"]:
                 return {**one, "dialect_key": dialect, "source": provenance.of(SOURCE)}
         raise KeyError(f"{dialect} has no unit {name!r}")
     raise KeyError(f"no dialect {dialect!r}")
@@ -190,7 +239,7 @@ def image_path(relative: str):
     """A picture file under the content's own images folder, or None.
 
     `relative` is what a phrase's `image` field holds, like
-    "damascene/unit-01/greeting.jpg". Resolved and checked to still sit inside the
+    "unit-01/greeting.jpg". Resolved and checked to still sit inside the
     folder, so a request cannot climb out of it with "..".
     """
     folder = (data_path("colloquial_dir") / "images").resolve()

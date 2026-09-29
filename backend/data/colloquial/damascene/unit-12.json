@@ -1,6 +1,5 @@
 {
   "unit": "unit-12",
-  "title": "Phone Calls and Plans",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,13 +19,11 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "Answering the Phone",
       "phrases": [
         {
+          "slot": "hello-answering-the-phone",
           "arabic": "آلو؟",
           "transliteration": "aaloo?",
-          "english": "Hello? (answering the phone)",
-          "search_term": "person answering a phone call",
           "reply": {
             "arabic": "آلو، معك مين؟",
             "transliteration": "aaloo, ma3ak miin?",
@@ -34,24 +31,24 @@
           }
         },
         {
+          "slot": "hi-who-s-this",
           "arabic": "مرحبا، معك مين؟",
-          "transliteration": "mar7aba, ma3ak miin?",
-          "english": "Hi, who's this?"
+          "transliteration": "mar7aba, ma3ak miin?"
         },
         {
+          "slot": "this-is-samer-speaking",
           "arabic": "معك سامر",
-          "transliteration": "ma3ak Saamer",
-          "english": "This is Samer (speaking)."
+          "transliteration": "ma3ak Saamer"
         },
         {
+          "slot": "good-that-you-called",
           "arabic": "منيح إنك اتصلت",
-          "transliteration": "mnii7 ennak ittasalt",
-          "english": "Good that you called."
+          "transliteration": "mnii7 ennak ittasalt"
         },
         {
+          "slot": "what-s-new",
           "arabic": "شو الأخبار؟",
           "transliteration": "shu l-akhbaar?",
-          "english": "What's new?",
           "reply": {
             "arabic": "الحمد لله تمام",
             "transliteration": "il7amdella tamaam",
@@ -59,42 +56,39 @@
           }
         },
         {
+          "slot": "i-couldn-t-answer-you-a-bit-ago",
           "arabic": "ما قدرت أرد عليك قبل شوي",
-          "transliteration": "ma 2dirt radd 3aleek 2abel shwaay",
-          "english": "I couldn't answer you a bit ago."
+          "transliteration": "ma 2dirt radd 3aleek 2abel shwaay"
         },
         {
+          "slot": "the-line-was-busy",
           "arabic": "كان الخط مشغول",
-          "transliteration": "kaan il-khatt mashghuul",
-          "english": "The line was busy."
+          "transliteration": "kaan il-khatt mashghuul"
         },
         {
+          "slot": "the-call-got-cut-off-on-me",
           "arabic": "قطع الخط معي",
-          "transliteration": "2ata3 il-khatt ma3i",
-          "english": "The call got cut off on me."
+          "transliteration": "2ata3 il-khatt ma3i"
         },
         {
+          "slot": "my-credit-ran-out",
           "arabic": "رصيدي خلص",
-          "transliteration": "rasiidi khiles",
-          "english": "My credit ran out.",
-          "search_term": "prepaid phone credit card"
+          "transliteration": "rasiidi khiles"
         },
         {
+          "slot": "my-battery-died",
           "arabic": "بطاريتي خلصت",
-          "transliteration": "battaariti khilset",
-          "english": "My battery died.",
-          "search_term": "dead phone battery"
+          "transliteration": "battaariti khilset"
         },
         {
+          "slot": "there-s-no-signal-here",
           "arabic": "ما في تغطية هون",
-          "transliteration": "ma fii taghtiye hoon",
-          "english": "There's no signal here.",
-          "search_term": "phone with no signal bars"
+          "transliteration": "ma fii taghtiye hoon"
         },
         {
+          "slot": "can-you-call-me-back-in-a-bit",
           "arabic": "بتقدر ترجع تتصل فيني بعد شوي؟",
           "transliteration": "btid2ar tirja3 tittasil fiini ba3d shwaay?",
-          "english": "Can you call me back in a bit?",
           "reply": {
             "arabic": "أكيد، بتصل فيك",
             "transliteration": "akiid, bittasil fiik",
@@ -391,28 +385,26 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "Arranging to Meet",
       "phrases": [
         {
+          "slot": "where-should-we-meet",
           "arabic": "وين ما نلتقي؟",
-          "transliteration": "ween ma niltiqi?",
-          "english": "Where should we meet?"
+          "transliteration": "ween ma niltiqi?"
         },
         {
+          "slot": "let-s-meet-at-the-cafe",
           "arabic": "خلينا نلتقي بالمقهى",
-          "transliteration": "khalliina niltiqi bil-ma2ha",
-          "english": "Let's meet at the cafe.",
-          "search_term": "friends meeting at a cafe"
+          "transliteration": "khalliina niltiqi bil-ma2ha"
         },
         {
+          "slot": "what-time-suits-you",
           "arabic": "أي ساعة بتناسبك؟",
-          "transliteration": "ayy saa3a betnasbak?",
-          "english": "What time suits you?"
+          "transliteration": "ayy saa3a betnasbak?"
         },
         {
+          "slot": "is-7-o-clock-good",
           "arabic": "الساعة سبعة منيح؟",
           "transliteration": "is-saa3a sab3a mnii7?",
-          "english": "Is 7 o'clock good?",
           "reply": {
             "arabic": "تمام، منشوف بعض الساعة سبعة",
             "transliteration": "tamaam, mnshuuf ba3ḍ is-saa3a sab3a",
@@ -420,10 +412,9 @@
           }
         },
         {
+          "slot": "where-exactly",
           "arabic": "وين بالضبط؟",
           "transliteration": "ween biḍ-ḍabt?",
-          "english": "Where exactly?",
-          "search_term": "building main entrance",
           "reply": {
             "arabic": "قدام المدخل الرئيسي",
             "transliteration": "2iddaam il-madkhal ir-ra2iisi",
@@ -431,25 +422,24 @@
           }
         },
         {
+          "slot": "i-ll-meet-you-there",
           "arabic": "بلاقيك هنيك",
-          "transliteration": "balaa2iik hniik",
-          "english": "I'll meet you there."
+          "transliteration": "balaa2iik hniik"
         },
         {
+          "slot": "don-t-be-late",
           "arabic": "لا تتأخر",
-          "transliteration": "la tit2akhkhar",
-          "english": "Don't be late."
+          "transliteration": "la tit2akhkhar"
         },
         {
+          "slot": "i-ll-be-there-before-you",
           "arabic": "بكون هناك قبلك",
-          "transliteration": "bkuun hunaak 2ablak",
-          "english": "I'll be there before you."
+          "transliteration": "bkuun hunaak 2ablak"
         },
         {
+          "slot": "what-do-you-think-shall-we-go-together",
           "arabic": "شو رأيك نروح سوا؟",
           "transliteration": "shu ra2yak nruu7 sawa?",
-          "english": "What do you think, shall we go together?",
-          "search_term": "two friends walking together",
           "reply": {
             "arabic": "ماشي، خذني معك",
             "transliteration": "maashi, khudni ma3ak",
@@ -457,21 +447,19 @@
           }
         },
         {
+          "slot": "we-ll-meet-at-the-umayyad-mosque",
           "arabic": "منتقابل عند الجامع الأموي",
-          "transliteration": "mnit2aabal 3ind il-jaame3 il-2amawi",
-          "english": "We'll meet at the Umayyad Mosque.",
-          "search_term": "Umayyad Mosque Damascus",
-          "image": "damascene/unit-12/l02-p10-umayyad-mosque-damascus.jpg"
+          "transliteration": "mnit2aabal 3ind il-jaame3 il-2amawi"
         },
         {
+          "slot": "i-know-exactly-where-the-place-is",
           "arabic": "بعرف وين المكان تمام",
-          "transliteration": "ba3ref ween il-makaan tamaam",
-          "english": "I know exactly where the place is."
+          "transliteration": "ba3ref ween il-makaan tamaam"
         },
         {
+          "slot": "if-you-re-late-call-me",
           "arabic": "إذا تأخرت اتصل فيي",
-          "transliteration": "iza ta2akhkharet ittasil fiyye",
-          "english": "If you're late, call me."
+          "transliteration": "iza ta2akhkharet ittasil fiyye"
         }
       ],
       "dialogue": [
@@ -760,28 +748,26 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "Changing Plans",
       "phrases": [
         {
+          "slot": "i-want-to-change-the-appointment",
           "arabic": "بدي غير الموعد",
-          "transliteration": "biddi ghayyir il-maw3id",
-          "english": "I want to change the appointment.",
-          "search_term": "calendar appointment reminder"
+          "transliteration": "biddi ghayyir il-maw3id"
         },
         {
+          "slot": "i-can-t-come-today",
           "arabic": "ما فيني إجي اليوم",
-          "transliteration": "ma fiini iji l-yoom",
-          "english": "I can't come today."
+          "transliteration": "ma fiini iji l-yoom"
         },
         {
+          "slot": "something-came-up-for-me",
           "arabic": "طرا علي شغلة",
-          "transliteration": "tara 3alay shaghle",
-          "english": "Something came up for me."
+          "transliteration": "tara 3alay shaghle"
         },
         {
+          "slot": "can-we-postpone-to-tomorrow",
           "arabic": "ممكن نأجل لبكرا؟",
           "transliteration": "mumkin n2ajjil la-bukra?",
-          "english": "Can we postpone to tomorrow?",
           "reply": {
             "arabic": "لا مشكلة، منأجل",
             "transliteration": "la mishkle, mn2ajjil",
@@ -789,19 +775,19 @@
           }
         },
         {
+          "slot": "i-d-like-us-to-meet-another-day",
           "arabic": "بحب نلتقي يوم تاني",
-          "transliteration": "ba7ib niltiqi yoom taani",
-          "english": "I'd like us to meet another day."
+          "transliteration": "ba7ib niltiqi yoom taani"
         },
         {
+          "slot": "let-s-find-a-day-that-suits-us-both",
           "arabic": "خلينا نشوف يوم بيناسبنا الاتنين",
-          "transliteration": "khalliina nshuuf yoom betnasibna l-itneen",
-          "english": "Let's find a day that suits us both."
+          "transliteration": "khalliina nshuuf yoom betnasibna l-itneen"
         },
         {
+          "slot": "sorry-for-the-sudden-change",
           "arabic": "آسف عالتغيير المفاجئ",
           "transliteration": "aasif 3at-taghyiir il-mfaaji2",
-          "english": "Sorry for the sudden change.",
           "reply": {
             "arabic": "ولا يهمك",
             "transliteration": "wala yhimmak",
@@ -809,14 +795,14 @@
           }
         },
         {
+          "slot": "can-we-meet-in-the-afternoon-instead-of-the-morn",
           "arabic": "منقدر نلتقي بعد الظهر بدل الصبح؟",
-          "transliteration": "mni2dar niltiqi ba3d iḍ-ḍuhur badal iṣ-ṣubu7?",
-          "english": "Can we meet in the afternoon instead of the morning?"
+          "transliteration": "mni2dar niltiqi ba3d iḍ-ḍuhur badal iṣ-ṣubu7?"
         },
         {
+          "slot": "is-the-place-still-the-same-place",
           "arabic": "المكان لسا نفس المكان؟",
           "transliteration": "il-makaan lissa nafs il-makaan?",
-          "english": "Is the place still the same place?",
           "reply": {
             "arabic": "لأ، غيرنا المكان",
             "transliteration": "la2, ghayyarna l-makaan",
@@ -824,19 +810,19 @@
           }
         },
         {
+          "slot": "can-we-cancel-the-appointment",
           "arabic": "منقدر نلغي الموعد؟",
-          "transliteration": "mni2dar nilghi l-maw3id?",
-          "english": "Can we cancel the appointment?"
+          "transliteration": "mni2dar nilghi l-maw3id?"
         },
         {
+          "slot": "i-have-to-apologize-for-the-appointment-cancel-i",
           "arabic": "لازم أعتذر عن الموعد",
-          "transliteration": "laazim a3tazer 3an il-maw3id",
-          "english": "I have to apologize for the appointment (cancel it)."
+          "transliteration": "laazim a3tazer 3an il-maw3id"
         },
         {
+          "slot": "i-ll-meet-you-friday-instead-of-thursday",
           "arabic": "بلاقيك يوم الجمعة عوض الخميس",
-          "transliteration": "balaa2iik yoom ij-jum3a 3awaḍ il-khamiis",
-          "english": "I'll meet you Friday instead of Thursday."
+          "transliteration": "balaa2iik yoom ij-jum3a 3awaḍ il-khamiis"
         }
       ],
       "dialogue": [
@@ -1125,32 +1111,31 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Leaving a Message",
       "phrases": [
         {
+          "slot": "hello-is-samer-there",
           "arabic": "آلو، سامر موجود؟",
-          "transliteration": "aaloo, Saamer mawjuud?",
-          "english": "Hello, is Samer there?"
+          "transliteration": "aaloo, Saamer mawjuud?"
         },
         {
+          "slot": "no-he-s-not-here-right-now",
           "arabic": "لأ، مش هون هلق",
-          "transliteration": "la2, mish hoon halla2",
-          "english": "No, he's not here right now."
+          "transliteration": "la2, mish hoon halla2"
         },
         {
+          "slot": "when-will-he-be-back",
           "arabic": "بترجع إمتى؟",
-          "transliteration": "birja3 emta?",
-          "english": "When will he be back?"
+          "transliteration": "birja3 emta?"
         },
         {
+          "slot": "i-don-t-know-exactly-in-a-bit",
           "arabic": "ما بعرف بالضبط، بعد شوي",
-          "transliteration": "ma ba3ref biḍ-ḍabt, ba3d shwaay",
-          "english": "I don't know exactly, in a bit."
+          "transliteration": "ma ba3ref biḍ-ḍabt, ba3d shwaay"
         },
         {
+          "slot": "can-you-take-a-message-for-me",
           "arabic": "ممكن تاخدلي رسالة؟",
           "transliteration": "mumkin taakhudli risaale?",
-          "english": "Can you take a message for me?",
           "reply": {
             "arabic": "أكيد، شو بدك تقوله؟",
             "transliteration": "akiid, shu biddak t2uulo?",
@@ -1158,25 +1143,24 @@
           }
         },
         {
+          "slot": "tell-him-to-call-me",
           "arabic": "قله اتصل فيني",
-          "transliteration": "2illo ittasil fiini",
-          "english": "Tell him to call me."
+          "transliteration": "2illo ittasil fiini"
         },
         {
+          "slot": "let-him-know-i-called",
           "arabic": "خبره إني اتصلت",
-          "transliteration": "khabbro inni ittasalt",
-          "english": "Let him know I called."
+          "transliteration": "khabbro inni ittasalt"
         },
         {
+          "slot": "i-ll-tell-him-as-soon-as-he-arrives",
           "arabic": "بخبره أول ما يوصل",
-          "transliteration": "bkhabbro awwal ma yuusal",
-          "english": "I'll tell him as soon as he arrives."
+          "transliteration": "bkhabbro awwal ma yuusal"
         },
         {
+          "slot": "do-you-have-my-number",
           "arabic": "عندك رقمي؟",
           "transliteration": "3andak ra2mi?",
-          "english": "Do you have my number?",
-          "search_term": "phone number written on paper",
           "reply": {
             "arabic": "إي، عندي محفوظ",
             "transliteration": "ee, 3indi ma7fuuz",
@@ -1184,9 +1168,9 @@
           }
         },
         {
+          "slot": "thanks-a-lot",
           "arabic": "يسلمو كتير",
           "transliteration": "yislamo ktiir",
-          "english": "Thanks a lot.",
           "reply": {
             "arabic": "عالرحب والسعة",
             "transliteration": "3ar-ra7b w is-se3a",
@@ -1194,14 +1178,14 @@
           }
         },
         {
+          "slot": "good-that-i-didn-t-waste-your-time",
           "arabic": "منيح ما ضيعت وقتك",
-          "transliteration": "mnii7 ma ḍayya3t wa2tak",
-          "english": "Good that I didn't waste your time."
+          "transliteration": "mnii7 ma ḍayya3t wa2tak"
         },
         {
+          "slot": "i-ll-pass-him-the-news-as-soon-as-he-s-in",
           "arabic": "بترجعلو الخبر أول ما يفوت",
-          "transliteration": "birja3lo l-khabar awwal ma yfuut",
-          "english": "I'll pass him the news as soon as he's in."
+          "transliteration": "birja3lo l-khabar awwal ma yfuut"
         }
       ],
       "dialogue": [

@@ -1,6 +1,5 @@
 {
   "unit": "unit-06",
-  "title": "Shopping",
   "dialect": "Damascene Arabic",
   "transliteration_key": {
     "sh": "ش",
@@ -20,30 +19,26 @@
   "lessons": [
     {
       "lesson": "lesson-01",
-      "title": "Clothes and Sizes",
       "phrases": [
         {
+          "slot": "i-want-a-dress",
           "arabic": "بدي فستان",
           "transliteration": "baddi fustaan",
-          "english": "I want a dress.",
           "reply": {
             "arabic": "شو لونه بتحبي؟",
             "transliteration": "shu lawno bit7ebbi?",
             "english": "What color do you like?"
-          },
-          "search_term": "woman shopping for a dress",
-          "image": "damascene/unit-06/l01-p01-woman-shopping-for-a-dress.jpg"
+          }
         },
         {
+          "slot": "i-want-a-shirt",
           "arabic": "بدي قميص",
-          "transliteration": "baddi 2amiiS",
-          "english": "I want a shirt.",
-          "search_term": "man trying on a shirt"
+          "transliteration": "baddi 2amiiS"
         },
         {
+          "slot": "what-s-your-size-to-a-man",
           "arabic": "شو مقاسك؟",
           "transliteration": "shu ma2aasak?",
-          "english": "What's your size? (to a man)",
           "reply": {
             "arabic": "مقاسي لارج",
             "transliteration": "ma2aasi laarj",
@@ -51,9 +46,9 @@
           }
         },
         {
+          "slot": "what-s-your-size-to-a-woman",
           "arabic": "شو مقاسِك؟",
           "transliteration": "shu ma2aasik?",
-          "english": "What's your size? (to a woman)",
           "reply": {
             "arabic": "مقاسي سمول",
             "transliteration": "ma2aasi smool",
@@ -61,35 +56,34 @@
           }
         },
         {
+          "slot": "can-i-try-it-on",
           "arabic": "فيني قيسه؟",
           "transliteration": "fiini 2ayyso?",
-          "english": "Can I try it on?",
           "reply": {
             "arabic": "أكيد، غرفة القياس هونيك",
             "transliteration": "akiid, ghurfet l-2yaas honiik",
             "english": "Sure, the fitting room is over there."
-          },
-          "search_term": "fitting room curtain"
+          }
         },
         {
+          "slot": "where-s-the-fitting-room",
           "arabic": "وين غرفة القياس؟",
-          "transliteration": "ween ghurfet l-2yaas?",
-          "english": "Where's the fitting room?"
+          "transliteration": "ween ghurfet l-2yaas?"
         },
         {
+          "slot": "this-is-too-big-for-me",
           "arabic": "هاد كتير كبير علي",
-          "transliteration": "haad ktiir kbiir 3alayy",
-          "english": "This is too big for me."
+          "transliteration": "haad ktiir kbiir 3alayy"
         },
         {
+          "slot": "this-is-too-tight-for-me",
           "arabic": "هاد كتير ضيق علي",
-          "transliteration": "haad ktiir Dayye2 3alayy",
-          "english": "This is too tight for me."
+          "transliteration": "haad ktiir Dayye2 3alayy"
         },
         {
+          "slot": "do-you-have-a-smaller-size",
           "arabic": "عندك قياس أصغر؟",
           "transliteration": "3andak 2yaas azghar?",
-          "english": "Do you have a smaller size?",
           "reply": {
             "arabic": "بفحص، ثانية",
             "transliteration": "bfaHeS, saanye",
@@ -97,14 +91,14 @@
           }
         },
         {
+          "slot": "i-tried-it-on-and-it-fits-me",
           "arabic": "لبسته وناسبني",
-          "transliteration": "labesto w naasabni",
-          "english": "I tried it on and it fits me."
+          "transliteration": "labesto w naasabni"
         },
         {
+          "slot": "is-this-fabric-cotton",
           "arabic": "هاد القماش قطن؟",
           "transliteration": "haad l-2maash 2uTun?",
-          "english": "Is this fabric cotton?",
           "reply": {
             "arabic": "إي، قطن مية بالمية",
             "transliteration": "ee, 2uTun miyye bil-miyye",
@@ -112,11 +106,9 @@
           }
         },
         {
+          "slot": "i-want-sports-shoes",
           "arabic": "بدي جزمة رياضة",
-          "transliteration": "baddi jazme riyaaDa",
-          "english": "I want sports shoes.",
-          "search_term": "pair of sneakers on a shelf",
-          "image": "damascene/unit-06/l01-p12-pair-of-sneakers-on-a-shelf.jpg"
+          "transliteration": "baddi jazme riyaaDa"
         }
       ],
       "dialogue": [
@@ -401,12 +393,11 @@
     },
     {
       "lesson": "lesson-02",
-      "title": "Colours and Choosing",
       "phrases": [
         {
+          "slot": "what-do-you-think-of-this-dress",
           "arabic": "شو رأيك بهالفستان؟",
           "transliteration": "shu ra2yak b-hal-fustaan?",
-          "english": "What do you think of this dress?",
           "reply": {
             "arabic": "حلو كتير، بس جرب اللون الأزرق",
             "transliteration": "7ilu ktiir, bas jarreb l-lawn l-azra2",
@@ -414,15 +405,14 @@
           }
         },
         {
+          "slot": "i-like-the-blue-color",
           "arabic": "بحب اللون الأزرق",
-          "transliteration": "ba7ebb l-lawn l-azra2",
-          "english": "I like the blue color.",
-          "search_term": "blue clothing on a rack"
+          "transliteration": "ba7ebb l-lawn l-azra2"
         },
         {
+          "slot": "do-you-have-another-color",
           "arabic": "عندك لون تاني؟",
           "transliteration": "3andak lawn taani?",
-          "english": "Do you have another color?",
           "reply": {
             "arabic": "إي، عندي أحمر وأسود",
             "transliteration": "ee, 3andi a7mar w aswad",
@@ -430,14 +420,14 @@
           }
         },
         {
+          "slot": "this-color-doesn-t-suit-me",
           "arabic": "هاد اللون ما بيناسبني",
-          "transliteration": "haad l-lawn ma byinaasibni",
-          "english": "This color doesn't suit me."
+          "transliteration": "haad l-lawn ma byinaasibni"
         },
         {
+          "slot": "which-one-do-you-recommend",
           "arabic": "أي واحد بتنصحني فيه؟",
           "transliteration": "ayy waa7ed btinSa7ni fii?",
-          "english": "Which one do you recommend?",
           "reply": {
             "arabic": "بنصحك بالأسود، بلبق فيك",
             "transliteration": "bnaSSa7ak bil-aswad, byilbo2 fiik",
@@ -445,40 +435,39 @@
           }
         },
         {
+          "slot": "this-one-is-nicer-than-that-one",
           "arabic": "هاد أحلى من هداك",
-          "transliteration": "haada a7la min hadaak",
-          "english": "This one is nicer than that one."
+          "transliteration": "haada a7la min hadaak"
         },
         {
+          "slot": "just-give-me-this-one",
           "arabic": "خدلي هاد بس",
-          "transliteration": "khudli haad bas",
-          "english": "Just give me this one."
+          "transliteration": "khudli haad bas"
         },
         {
+          "slot": "i-haven-t-decided-yet",
           "arabic": "لسا ما قررت",
-          "transliteration": "lissa ma 2arrart",
-          "english": "I haven't decided yet."
+          "transliteration": "lissa ma 2arrart"
         },
         {
+          "slot": "do-you-have-gray",
           "arabic": "عندكن لون رمادي؟",
-          "transliteration": "3andkon lawn ramaadi?",
-          "english": "Do you have gray?",
-          "search_term": "gray sweater folded"
+          "transliteration": "3andkon lawn ramaadi?"
         },
         {
+          "slot": "i-like-light-colors",
           "arabic": "بحب الألوان الفاتحة",
-          "transliteration": "ba7ebb l-alwaan l-faat7a",
-          "english": "I like light colors."
+          "transliteration": "ba7ebb l-alwaan l-faat7a"
         },
         {
+          "slot": "this-is-too-dark-for-me",
           "arabic": "هاد كتير غامق علي",
-          "transliteration": "haad ktiir ghaame2 3alayy",
-          "english": "This is too dark for me."
+          "transliteration": "haad ktiir ghaame2 3alayy"
         },
         {
+          "slot": "which-is-nicer-red-or-blue",
           "arabic": "شو أحلى، الأحمر ولا الأزرق؟",
           "transliteration": "shu a7la, l-a7mar walla l-azra2?",
-          "english": "Which is nicer, red or blue?",
           "reply": {
             "arabic": "الأزرق أحلى برأيي",
             "transliteration": "l-azra2 a7la bra2yi",
@@ -770,12 +759,11 @@
     },
     {
       "lesson": "lesson-03",
-      "title": "Bargaining",
       "phrases": [
         {
+          "slot": "how-much-is-this",
           "arabic": "قديش هاد؟",
           "transliteration": "addeesh haad?",
-          "english": "How much is this?",
           "reply": {
             "arabic": "هاد بخمسة آلاف",
             "transliteration": "haad bi-khamse aalaaf",
@@ -783,14 +771,14 @@
           }
         },
         {
+          "slot": "it-s-very-expensive",
           "arabic": "غالي كتير",
-          "transliteration": "ghaali ktiir",
-          "english": "It's very expensive."
+          "transliteration": "ghaali ktiir"
         },
         {
+          "slot": "can-you-lower-the-price",
           "arabic": "فيك تنزل بالسعر؟",
           "transliteration": "fiik tnazzel bis-si3r?",
-          "english": "Can you lower the price?",
           "reply": {
             "arabic": "شوي بس، مو كتير",
             "transliteration": "shwayy bas, mu ktiir",
@@ -798,40 +786,39 @@
           }
         },
         {
+          "slot": "lower-it-a-bit-for-me",
           "arabic": "نزلّي شوي",
-          "transliteration": "nazzelli shwayy",
-          "english": "Lower it a bit for me."
+          "transliteration": "nazzelli shwayy"
         },
         {
+          "slot": "this-is-the-final-price",
           "arabic": "هاد آخر سعر",
-          "transliteration": "haad aakhir si3r",
-          "english": "This is the final price."
+          "transliteration": "haad aakhir si3r"
         },
         {
+          "slot": "isn-t-there-cheaper-than-this",
           "arabic": "مافي أرخص من هيك؟",
-          "transliteration": "maafi arkhaS min heek?",
-          "english": "Isn't there cheaper than this?"
+          "transliteration": "maafi arkhaS min heek?"
         },
         {
+          "slot": "take-it-for-two-thousand",
           "arabic": "خدها بألفين",
-          "transliteration": "khudha b-alfeen",
-          "english": "Take it for two thousand."
+          "transliteration": "khudha b-alfeen"
         },
         {
+          "slot": "i-can-t-i-ll-lose-money",
           "arabic": "ما فيني، بخسر",
-          "transliteration": "ma fiini, bikhsar",
-          "english": "I can't, I'll lose money."
+          "transliteration": "ma fiini, bikhsar"
         },
         {
+          "slot": "i-want-a-discount-because-i-m-buying-a-lot",
           "arabic": "بدي خصم لأني بشتري كتير",
-          "transliteration": "baddi khasem la2anni bishtiri ktiir",
-          "english": "I want a discount because I'm buying a lot.",
-          "search_term": "shopkeeper and customer bargaining at a stall"
+          "transliteration": "baddi khasem la2anni bishtiri ktiir"
         },
         {
+          "slot": "ok-we-agreed",
           "arabic": "تمام، اتفقنا",
           "transliteration": "tamaam, ittafa2na",
-          "english": "Ok, we agreed.",
           "reply": {
             "arabic": "الله يبارك فيك",
             "transliteration": "alla ybaarek fiik",
@@ -839,14 +826,14 @@
           }
         },
         {
+          "slot": "that-s-fine-take-it",
           "arabic": "هيك منيح، خدها",
-          "transliteration": "heek mnii7, khudha",
-          "english": "That's fine, take it."
+          "transliteration": "heek mnii7, khudha"
         },
         {
+          "slot": "how-much-did-the-total-come-to",
           "arabic": "قديش صار المجموع؟",
           "transliteration": "addeesh Saar l-majmuu3?",
-          "english": "How much did the total come to?",
           "reply": {
             "arabic": "صار عشرة آلاف كلشي",
             "transliteration": "Saar 3ashara aalaaf killshi",
@@ -1137,12 +1124,11 @@
     },
     {
       "lesson": "lesson-04",
-      "title": "Returning and Exchanging",
       "phrases": [
         {
+          "slot": "i-want-to-return-this-shirt",
           "arabic": "بدي رجع هاد القميص",
           "transliteration": "baddi rajje3 haad l-2amiiS",
-          "english": "I want to return this shirt.",
           "reply": {
             "arabic": "شو فيه، في مشكلة؟",
             "transliteration": "shu fii, fii mishkle?",
@@ -1150,25 +1136,24 @@
           }
         },
         {
+          "slot": "there-s-a-defect",
           "arabic": "فيه عيب",
-          "transliteration": "fii 3ib",
-          "english": "There's a defect.",
-          "search_term": "torn shirt seam close up"
+          "transliteration": "fii 3ib"
         },
         {
+          "slot": "i-didn-t-like-the-color",
           "arabic": "ما عجبني اللون",
-          "transliteration": "ma 3ajabni l-lawn",
-          "english": "I didn't like the color."
+          "transliteration": "ma 3ajabni l-lawn"
         },
         {
+          "slot": "i-want-to-exchange-it-for-another-one",
           "arabic": "بدي بدله بغيره",
-          "transliteration": "baddi baddlo b-ghayro",
-          "english": "I want to exchange it for another one."
+          "transliteration": "baddi baddlo b-ghayro"
         },
         {
+          "slot": "i-have-the-receipt",
           "arabic": "معي الفاتورة",
           "transliteration": "ma3i l-faatuura",
-          "english": "I have the receipt.",
           "reply": {
             "arabic": "منيح، هيك أسهل",
             "transliteration": "mnii7, heek as-hal",
@@ -1176,14 +1161,14 @@
           }
         },
         {
+          "slot": "i-don-t-have-the-receipt",
           "arabic": "ما معي الفاتورة",
-          "transliteration": "ma ma3i l-faatuura",
-          "english": "I don't have the receipt."
+          "transliteration": "ma ma3i l-faatuura"
         },
         {
+          "slot": "when-did-you-buy-it",
           "arabic": "من إمتى اشتريتها؟",
           "transliteration": "min eemta shtareetha?",
-          "english": "When did you buy it?",
           "reply": {
             "arabic": "من أول أمبارح",
             "transliteration": "min awwal mbaare7",
@@ -1191,9 +1176,9 @@
           }
         },
         {
+          "slot": "do-you-give-money-back",
           "arabic": "بترجع مصاري؟",
           "transliteration": "btrajje3 maSaari?",
-          "english": "Do you give money back?",
           "reply": {
             "arabic": "لأ، بس فيني بدلها بس",
             "transliteration": "la2, bas fiini baddilha bas",
@@ -1201,19 +1186,19 @@
           }
         },
         {
+          "slot": "this-is-the-wrong-size",
           "arabic": "هاد مقاس غلط",
-          "transliteration": "haad ma2aas ghalaT",
-          "english": "This is the wrong size."
+          "transliteration": "haad ma2aas ghalaT"
         },
         {
+          "slot": "this-isn-t-what-i-ordered",
           "arabic": "هاد مو اللي طلبته",
-          "transliteration": "haad mu yalli Talabto",
-          "english": "This isn't what I ordered."
+          "transliteration": "haad mu yalli Talabto"
         },
         {
+          "slot": "can-i-exchange-it-for-a-bigger-size",
           "arabic": "فيني بدلها بمقاس أكبر؟",
           "transliteration": "fiini baddilha bi-ma2aas akbar?",
-          "english": "Can I exchange it for a bigger size?",
           "reply": {
             "arabic": "أكيد، ولا يهمك",
             "transliteration": "akiid, wala yhemmak",
@@ -1221,9 +1206,9 @@
           }
         },
         {
+          "slot": "thanks-for-your-cooperation",
           "arabic": "شكرا عالتعاون",
-          "transliteration": "shukran 3at-ta3aawon",
-          "english": "Thanks for your cooperation."
+          "transliteration": "shukran 3at-ta3aawon"
         }
       ],
       "dialogue": [

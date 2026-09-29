@@ -288,6 +288,6 @@ export const colloquialUnitQuery = (dialect, unit) => ({
   queryFn: () => api.get(`/colloquial/${encodeURIComponent(dialect)}/${encodeURIComponent(unit)}`).then((r) => r.data),
 })
 
-// A phrase picture: `file` is the path the lesson names, like "damascene/unit-01/greeting.jpg".
+// A phrase picture: `file` is the path the lesson names, like "unit-01/greeting.jpg".
 export const colloquialImageUrl = (file) =>
   `${api.defaults.baseURL}/colloquial/image/${file.split('/').map(encodeURIComponent).join('/')}`
