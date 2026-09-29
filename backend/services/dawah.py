@@ -56,6 +56,16 @@ def faults(data: dict, collections: dict, ayahs: dict[int, int]) -> list[str]:
                 if not point.get("refs") and not str(point.get("note") or "").strip():
                     said.append(f"{here} point {point.get('title')!r} has no evidence")
                 said += [f"{here}: {why}" for why in timelines.refs_faults(point.get("refs") or [], collections, ayahs)]
+            # The in-depth discussion is held to the same rule: every paragraph shows its evidence.
+            discussion = question.get("discussion") or []
+            if not discussion:
+                said.append(f"{here} has no discussion")
+            for n, part in enumerate(discussion, 1):
+                if not str(part.get("text") or "").strip():
+                    said.append(f"{here} discussion paragraph {n} has no text")
+                if not part.get("refs") and not str(part.get("note") or "").strip():
+                    said.append(f"{here} discussion paragraph {n} has no evidence")
+                said += [f"{here}: {why}" for why in timelines.refs_faults(part.get("refs") or [], collections, ayahs)]
     return said
 
 
