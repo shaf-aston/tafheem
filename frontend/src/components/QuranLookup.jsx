@@ -19,6 +19,7 @@ import { useArrival } from '../lib/useArrival'
 import { useHistory } from '../lib/useHistory'
 
 import AyahStudy from './AyahStudy'
+import QuranSeal from './ui/QuranSeal'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import RetryButton from './ui/RetryButton'
@@ -138,7 +139,8 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   const busy = ayahLookup.isPending || search.isPending
 
   return (
-    <div className="space-y-6">
+    <div className="relative isolate space-y-6">
+      <QuranSeal />
       <SectionHeader title="Quran" arabic="القرآن" />
 
       <RecentRow

@@ -858,3 +858,18 @@ dialog::backdrop {
 @media (prefers-reduced-motion: reduce) {
   .cursor-light { display: none; }
 }
+
+/* The Quran tab's faint seal (ui/QuranSeal): behind everything, never clickable. */
+.quran-seal {
+  position: absolute;
+  z-index: -1;
+  top: -0.5rem;
+  right: 0;
+  width: min(20rem, 60vw);
+  pointer-events: none;
+  color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength), transparent);
+}
+.quran-seal-script {
+  font-family: 'Amiri', var(--font-quran);
+  font-weight: 700;
+}
