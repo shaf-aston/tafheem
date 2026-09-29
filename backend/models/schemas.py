@@ -1060,6 +1060,15 @@ class HadithCollection(BaseModel):
     """One collection the module can browse or search, e.g. Sahih al-Bukhari."""
     id: str
     name: str
+    short: str = ""
+    # Every hadith in it is graded sahih, so none carries a grade of its own.
+    sahih: bool = False
+
+
+class HadithGrade(BaseModel):
+    """One scholar's verdict on one hadith, e.g. Al-Albani: Hasan Sahih."""
+    by: str
+    grade: str
 
 
 class HadithBook(BaseModel):
@@ -1077,6 +1086,7 @@ class HadithEntry(BaseModel):
     part: str = ""
     arabic: str
     english: str = ""
+    grades: list[HadithGrade] = []
     cite: str = ""
 
 

@@ -8,7 +8,7 @@ vi.stubGlobal('localStorage', {
   setItem: (k, v) => store.set(k, v),
 })
 
-const hadith = { collection: 'bukhari', number: 1, part: '', arabic: 'أ', english: 'a' }
+const hadith = { collection: 'bukhari', number: 1, part: '', arabic: 'أ', english: 'a', grades: [{ by: 'Al-Albani', grade: 'Sahih' }], cite: 'https://sunnah.com/bukhari:1' }
 const saved = () => JSON.parse(localStorage.getItem('hadith-favorites') || '[]')
 
 describe('starring a hadith', () => {

@@ -1,7 +1,6 @@
 /**
- * Which collection is open. Absent while only one is indexed (today, just
- * Bukhari) rather than shown as a one-choice control; it appears on its own
- * the moment a second collection is built, no code change needed.
+ * Which collection is open, by its short name. Absent while only one is
+ * indexed rather than shown as a one-choice control.
  */
 import Segmented from './ui/Segmented'
 
@@ -11,7 +10,7 @@ export default function HadithCollectionPicker({ collections, value, onChange, a
   return (
     <Segmented
       label="Collection"
-      options={collections.map((c) => ({ id: c.id, label: c.name }))}
+      options={collections.map((c) => ({ id: c.id, label: c.short || c.name }))}
       value={value}
       onChange={onChange}
       accent={accent}

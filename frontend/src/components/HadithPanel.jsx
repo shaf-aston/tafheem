@@ -79,7 +79,8 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
     )
   }
 
-  const collection = collections.some((c) => c.id === place?.collection) ? place.collection : collections[0].id
+  const open = collections.find((c) => c.id === place?.collection) ?? collections[0]
+  const collection = open.id
 
   const go = (next) => {
     setMissed(false)
@@ -108,6 +109,17 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
             &#9733; Starred {favorites.length > 0 && favorites.length}
           </Chip>
         </div>
+        {!starred && (
+          <p className="type-small text-[var(--text-faint)] flex items-center gap-2">
+            {open.name}
+            {open.sahih && (
+              <>
+                <span aria-hidden="true" className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--success)]" />
+                every hadith in it is graded sahih
+              </>
+            )}
+          </p>
+        )}
         {starred ? (
           favorites.length
             ? <HadithCards items={favorites} collections={collections} accent={accent} />
@@ -115,7 +127,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
         ) : place?.book == null ? (
           <HadithBookList collection={collection} onPick={pickBook} accent={accent} />
         ) : (
-          <HadithList collection={collection} book={place.book} onBack={backToBooks} accent={accent} />
+          <HadithList collection={collection} collections={collections} book={place.book} onBack={backToBooks} accent={accent} />
         )}
       </HadithSearchResults>
     </div>

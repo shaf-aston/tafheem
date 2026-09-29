@@ -1,0 +1,33 @@
+{
+  "_comment": "Hadith tab knobs. grades: which scholar's verdict leads on a card (the first here who graded it), and which words put a verdict in which family; the first family whose word appears wins, so weak words are checked first ('Hasan Sahih' is sound, 'Sahih Isnaad Daif' is not). topics: which picture a book wears, the first whose word appears in its English name wins, so the specific ones come first. Words are lower case, matched anywhere in the name.",
+  "grades": {
+    "lead": ["Al-Albani", "Zubair Ali Zai", "Shuaib Al Arnaut", "Ahmad Muhammad Shakir", "Abu Ghuddah"],
+    "families": [
+      { "id": "weak", "tone": "danger", "words": ["daif", "da'if", "mawdu", "munkar", "shadh", "matruk", "batil"] },
+      { "id": "sound", "tone": "success", "words": ["sahih"] },
+      { "id": "good", "tone": "warn", "words": ["hasan"] }
+    ]
+  },
+  "topics": [
+    { "id": "funeral", "words": ["funeral", "jana"] },
+    { "id": "hajj", "words": ["pilgrim", "umra", "manasik", "of hajj", "on hajj", "hajj rituals"] },
+    { "id": "quran", "words": ["qur'an", "tafs", "recitation", "revelation", "readings"] },
+    { "id": "endtimes", "words": ["fitan", "tribulation", "affliction", "portents", "day of judg", "paradise", "hell", "mahdi", "hypocrite", "creation", "dream", "parables", "divination", "battles (kitab al-malahim)"] },
+    { "id": "purify", "words": ["purif", "ablution", "wudu", "ghusl", "tayammum", "menstru", "bath", "book of water"] },
+    { "id": "fasting", "words": ["fast", "siyam", "i'tikaf", "night of qadr"] },
+    { "id": "prayer", "words": ["pray", "salat", "salah", "adhan", "masjid", "mosque", "witr", "friday", "jumu", "eid", "festival", "qiblah", "imamah", "tatbiq", "eclipse", "rain", "tahajjud", "taraweeh", "prostration", "times", "qiyam", "travel"] },
+    { "id": "zakat", "words": ["zakat", "zakah", "charity"] },
+    { "id": "faith", "words": ["faith", "belief", "tawheed", "oneness", "sunnah", "holding fast", "destiny", "qadar", "divine will"] },
+    { "id": "knowledge", "words": ["knowledge", "information"] },
+    { "id": "family", "words": ["marriage", "nikah", "wedlock", "divorce", "talaq", "suckling", "women", "family", "li'an", "curses"] },
+    { "id": "jihad", "words": ["jihad", "expedition", "maghaazi", "fighting", "khumus", "jizyah", "horses", "booty", "fay'", "kharaj"] },
+    { "id": "food", "words": ["food", "meal", "drink", "ashribah", "at'imah", "hunting", "slaughter", "game", "sacrifice", "dahaya", "adaahi", "aqiq", "fara' and"] },
+    { "id": "trade", "words": ["sale", "trade", "buyu", "business", "transaction", "hiring", "wages", "ijarah", "loan", "mortgag", "pawn", "partnership", "agricultur", "musaqah", "distribution of water", "kafalah", "hawala", "shuf", "pre-emption", "debt", "endowment", "representation", "lost"] },
+    { "id": "law", "words": ["judg", "judicial", "ruling", "ahkaam", "aqdiyah", "judge", "punishment", "hudud", "hudood", "blood", "diyat", "thief", "witness", "oath", "vow", "expiation", "oppression", "khusoomaat", "apostate", "coercion", "tricks", "inherit", "fara", "wills", "wasa", "manumission", "slave", "makaatib", "wala", "ruqba", "government", "bay'ah", "rulership", "conditions", "peacemaking", "curses"] },
+    { "id": "dress", "words": ["dress", "cloth", "libas", "adornment", "signet", "khatam", "hair", "tarajjul"] },
+    { "id": "health", "words": ["medicine", "tibb", "patient", "hammam"] },
+    { "id": "heart", "words": ["zuhd", "riqaq", "heart", "repentance", "supplication", "invocation", "remembrance", "refuge", "wishes"] },
+    { "id": "manners", "words": ["manners", "adab", "etiquette", "behavior", "greeting", "permission", "kinship", "righteousness", "words", "poetry", "gift", "present", "supporting"] },
+    { "id": "people", "words": ["prophet", "companions", "virtue", "merits", "ansaar", "madinah"] }
+  ]
+}

@@ -74,14 +74,15 @@ def hadiths_of(arabic: dict, english: dict, collection: str) -> list[dict]:
     .01 is a, .03 is c. English is matched by the same field the Arabic used,
     since both editions of one collection number the same way; a hadith the
     English edition lacks a match for still gets its Arabic and an empty
-    english.
+    english. `grades` is each scholar's verdict as the English edition gives
+    it; the two Sahihs carry none, their grading is the collection's own.
     """
     field = NUMBER_FIELD.get(collection, "hadithnumber")
     by_number = {}
     for item in english.get("hadiths") or []:
         whole, _, part = str(item.get(field) or "").partition(".")
         if whole.isdigit():
-            by_number[(int(whole), part)] = item.get("text", "").strip()
+            by_number[(int(whole), part)] = item
 
     out = []
     for item in arabic.get("hadiths") or []:
@@ -93,12 +94,15 @@ def hadiths_of(arabic: dict, english: dict, collection: str) -> list[dict]:
         text = (item.get("text") or "").strip()
         if not text:
             continue
+        match = by_number.get((number, part)) or {}
         out.append({
             "book": (item.get("reference") or {}).get("book", 0),
             "number": number,
             "part": letter,
             "arabic": text,
-            "english": by_number.get((number, part), ""),
+            "english": (match.get("text") or "").strip(),
+            "grades": [{"by": g["name"], "grade": g["grade"]} for g in match.get("grades") or []
+                       if g.get("name") and g.get("grade")],
         })
     return out
 

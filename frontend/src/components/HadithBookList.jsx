@@ -6,10 +6,12 @@ import { useQuery } from '@tanstack/react-query'
 import { getHadithBooks } from '../api'
 import { smartError } from '../lib/apiError'
 import { themeVariable } from '../theme'
+import { topicOf } from '../lib/hadithGrade'
 
 import ErrorAlert from './ui/ErrorAlert'
 import RetryButton from './ui/RetryButton'
 import EmptyState from './ui/EmptyState'
+import TopicIcon from './ui/TopicIcon'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
 const STAGGER_CAP = Number(themeVariable('--hadith-stagger-cap')) || 8
@@ -47,6 +49,7 @@ export default function HadithBookList({ collection, onPick, accent }) {
             <span className="type-figure font-medium tabular-nums min-w-[2ch] text-[var(--text-faint)] group-hover:text-[var(--c)] transition-colors">
               {book.number}
             </span>
+            <TopicIcon topic={topicOf(book.name)} className="text-[var(--text-faint)] group-hover:text-[var(--c)] transition-colors" />
             <span className="flex-1 type-ui text-[var(--text)] leading-snug">
               {book.name}
               <span className="block type-small text-[var(--text-faint)] tabular-nums">{book.count} hadiths</span>

@@ -27,7 +27,9 @@ _SCHEMA = """
 CREATE TABLE collection (
     id   TEXT PRIMARY KEY,
     name TEXT NOT NULL,
-    cite TEXT NOT NULL DEFAULT ''
+    short TEXT NOT NULL DEFAULT '',
+    cite TEXT NOT NULL DEFAULT '',
+    sahih INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE book (
@@ -44,6 +46,7 @@ CREATE TABLE hadith (
     part          TEXT NOT NULL DEFAULT '',
     arabic        TEXT NOT NULL,
     english       TEXT NOT NULL DEFAULT '',
+    grades        TEXT NOT NULL DEFAULT '[]',  -- JSON list of {by, grade}
     PRIMARY KEY (collection_id, number, part)
 );
 CREATE INDEX hadith_by_book ON hadith (collection_id, book_number, number);
@@ -71,7 +74,7 @@ def build() -> dict[str, int]:
     try:
         conn.executescript(_SCHEMA)
 
-        for key, meta in sorted(_collections().items()):
+        for key, meta in _collections().items():
             raw_path = data_path("hadith_dir") / f"{key}.json"
             if not raw_path.exists():
                 print(f"  {key}: not fetched, skipped (run fetch_hadith_collections.py {key})")
@@ -79,17 +82,18 @@ def build() -> dict[str, int]:
 
             raw = json.loads(raw_path.read_text(encoding="utf-8"))
             conn.execute(
-                "INSERT INTO collection (id, name, cite) VALUES (?, ?, ?)",
-                (key, meta["name"], meta.get("cite", "")),
+                "INSERT INTO collection (id, name, short, cite, sahih) VALUES (?, ?, ?, ?, ?)",
+                (key, meta["name"], meta.get("short", meta["name"]), meta.get("cite", ""), int(bool(meta.get("sahih")))),
             )
             conn.executemany(
                 "INSERT INTO book (collection_id, number, name) VALUES (?, ?, ?)",
                 [(key, b["number"], b["name"]) for b in raw.get("books", [])],
             )
             conn.executemany(
-                "INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) "
-                "VALUES (?, ?, ?, ?, ?, ?)",
-                [(key, h["book"], h["number"], h.get("part", ""), h["arabic"], h.get("english", ""))
+                "INSERT INTO hadith (collection_id, book_number, number, part, arabic, english, grades) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?)",
+                [(key, h["book"], h["number"], h.get("part", ""), h["arabic"], h.get("english", ""),
+                  json.dumps(h.get("grades", []), ensure_ascii=False))
                  for h in raw.get("hadith", [])],
             )
             counts[key] = len(raw.get("hadith", []))
