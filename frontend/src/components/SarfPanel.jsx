@@ -146,7 +146,7 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
   }
 
   return (
-    <div className="space-y-6">
+    <div className="panel">
       <SectionHeader
         title="Sarf"
         arabic="صرف"

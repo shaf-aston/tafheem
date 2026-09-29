@@ -112,7 +112,7 @@ export default function ColloquialPanel() {
   if (unit && lessonAt !== null) steps.push({ label: unit.lessons[lessonAt].title })
 
   return (
-    <div className="space-y-6">
+    <div className="panel">
       <SectionHeader title="Colloquial" arabic="عامية" subtitle={dialect?.where ?? 'Spoken, everyday Arabic.'} />
       {catalogue.isPending && <AnalyzerSkeleton />}
       {catalogue.isError && <Failed error={catalogue.error} onRetry={catalogue.refetch} />}

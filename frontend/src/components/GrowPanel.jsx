@@ -94,7 +94,7 @@ export default function GrowPanel({ accent, onGo }) {
 
   return (
     <>
-      <div className="space-y-5" inert={Boolean(sheet)}>
+      <div className="panel" inert={Boolean(sheet)}>
         <SectionHeader
           title="Grow!"
           arabic="نَبَات"

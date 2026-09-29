@@ -114,7 +114,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
   useEffect(() => { setRoot(primary) }, [primary])
 
   return (
-    <div className="space-y-6">
+    <div className="panel">
       <SectionHeader
         title="Dictionary"
         arabic="قاموس"

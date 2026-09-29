@@ -139,7 +139,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   const busy = ayahLookup.isPending || search.isPending
 
   return (
-    <div className="space-y-6">
+    <div className="panel">
       <QuranSeal wide={Boolean(search.data || ayahLookup.data || rootLookup.data)} />
       <SectionHeader title="Quran" arabic="القرآن" />
 

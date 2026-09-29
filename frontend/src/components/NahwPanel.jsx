@@ -96,7 +96,7 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
   }
 
   return (
-    <div className="space-y-5">
+    <div className="panel">
       {/* The views ride on the title line, in the space a two-word title leaves
           empty. On their own row they cost a whole row and read as a step to
           take before typing, which they are not. */}

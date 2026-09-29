@@ -43,7 +43,7 @@ export default function HadithSearchResults({ collections, accent, children }) {
 
       <SearchBox
         id="hadith-search-input"
-        label="Search the hadiths"
+        label="Arabic or English"
         placeholder="patience, الصبر…"
         value={query}
         onChange={setQuery}

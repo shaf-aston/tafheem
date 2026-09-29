@@ -63,8 +63,8 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
 
   if (!collections.length) {
     return (
-      <div className="space-y-3">
-        <SectionHeader title="Hadith" arabic="الحديث" />
+      <div className="panel">
+        <SectionHeader title="Hadith" arabic="الحديث" subtitle="Search and read the hadith collections." />
         <ErrorAlert title="No collection is built yet">
           Fetch and build one with{' '}
           <code className="px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
@@ -93,8 +93,8 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
   const backToBooks = () => go({ collection, book: null, number: null, part: '' })
 
   return (
-    <div className="space-y-3">
-      <SectionHeader title="Hadith" arabic="الحديث" />
+    <div className="panel">
+      <SectionHeader title="Hadith" arabic="الحديث" subtitle="Search and read the hadith collections." />
 
       {missed && (
         <p role="status" className="type-small text-[var(--text-dim)]">
