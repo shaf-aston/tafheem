@@ -10,26 +10,8 @@
   "_tiers": "The levels of the map, in the order they are climbed. A path in paths.json joins a tier by naming its id. A tier opens once every step of the one before it is learnt, and one with no path yet stays locked. `proposed` (required on a tier with no path, empty is fine) are the topics planned for it: shown locked so the road ahead is visible, and not steps anyone can practise. Adding a tier, or giving one its first path, is data only.",
   "tiers": [
     { "id": "basics", "title": "Basics", "arabic": "الأساسيات", "proposed": [] },
-    {
-      "id": "intermediate",
-      "title": "Intermediate",
-      "arabic": "المتوسط",
-      "proposed": [
-        { "id": "full-salah", "title": "Full salah in order", "arabic": "الصلاة", "about": "Every word of the prayer, said in sequence from takbir to salam." },
-        { "id": "adhkar", "title": "Adhkar after salah", "arabic": "أذكار بعد الصلاة", "about": "The remembrances said right after the salam." },
-        { "id": "amma", "title": "Longer 'Amma surahs", "arabic": "جزء عم", "about": "Longer surahs of juz 'Amma, learned a few ayahs at a time." }
-      ]
-    },
-    {
-      "id": "advanced",
-      "title": "Advanced",
-      "arabic": "المتقدم",
-      "proposed": [
-        { "id": "kursi", "title": "Ayat al-Kursi", "arabic": "آية الكرسي", "about": "The Throne verse, ayah 255 of Al-Baqarah." },
-        { "id": "mulk", "title": "Surah al-Mulk", "arabic": "سورة الملك", "about": "Thirty ayahs, held to the end." },
-        { "id": "tajweed", "title": "Tajweed focus steps", "arabic": "التجويد", "about": "One rule at a time, practised on words you already know." }
-      ]
-    }
+    { "id": "intermediate", "title": "Intermediate", "arabic": "المتوسط", "proposed": [] },
+    { "id": "advanced", "title": "Advanced", "arabic": "المتقدم", "proposed": [] }
   ],
 
   "_branch": "The shape of a branch of steps, in pixels. step: the width each step takes along the branch. node: how tall a step's circle is. sway: how far each step sits above or below the branch line, alternating, which is what makes it wind. tail: how far the branch runs on past its last step.",

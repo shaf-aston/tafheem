@@ -1,6 +1,273 @@
 {
-  "_comment": "Grow's paths, hand-written. A ruling's `arabic` is the scholar's sentence copied from the book, never paraphrased: tests/test_grow.py checks each one against the book's own file. A step with no clear sentence in the book carries no ruling. A path names its tier (grow.json lists the tiers) and cuts its steps into groups: a group is one node on the map, `icon` names its picture, and every step sits in exactly one group.",
+  "_comment": "Grow's paths, hand-written. A ruling's `arabic` is the scholar's sentence copied from the book, never paraphrased: tests/test_grow.py checks each one against the book's own file. A ruling from a hadith names its sunnah.com page in `where`, and the test checks it against hadith-sources.json, which holds the hadith as sunnah.com prints it, vowels and all. A step with no clear sentence in the book carries no ruling. A path names its tier (grow.json lists the tiers) and cuts its steps into groups: a group is one node on the map, `icon` names its picture, and every step sits in exactly one group.",
   "paths": [
+    {
+      "id": "wudu",
+      "tier": "basics",
+      "title": "Wudu",
+      "arabic": "الوضوء",
+      "groups": [
+        {
+          "id": "wudu-begin",
+          "title": "Beginning",
+          "arabic": "البداية",
+          "icon": "stand",
+          "steps": [
+            "wudu-intention",
+            "wudu-bismillah",
+            "wudu-hands",
+            "wudu-siwak",
+            "wudu-mouth",
+            "wudu-nose"
+          ]
+        },
+        {
+          "id": "wudu-wash",
+          "title": "Washing",
+          "arabic": "الغسل",
+          "icon": "stand",
+          "steps": [
+            "wudu-face",
+            "wudu-arms",
+            "wudu-head",
+            "wudu-ears",
+            "wudu-feet"
+          ]
+        },
+        {
+          "id": "wudu-care",
+          "title": "Good manners",
+          "arabic": "الآداب",
+          "icon": "stand",
+          "steps": [
+            "wudu-between",
+            "wudu-thrice",
+            "wudu-order"
+          ]
+        },
+        {
+          "id": "wudu-after",
+          "title": "After wudu",
+          "arabic": "الدعاء",
+          "icon": "book",
+          "steps": [
+            "wudu-dua"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": "wudu-intention",
+          "title": "Make the intention",
+          "kind": "action",
+          "instruction": "Intend in your heart to purify yourself for prayer.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "ويستحب للمتوضئ أن ينوي الطهارة",
+            "english": "It is recommended that the one making wudu intends purification."
+          }
+        },
+        {
+          "id": "wudu-bismillah",
+          "title": "Say Bismillah",
+          "kind": "action",
+          "instruction": "Say Bismillah as you begin.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "وتسمية الله تعالى في ابتداء الوضوء",
+            "english": "Among the sunnahs of purification: naming Allah at the start of wudu."
+          }
+        },
+        {
+          "id": "wudu-hands",
+          "title": "Wash the hands",
+          "kind": "action",
+          "instruction": "Wash both hands first, before they go into the water. This is a sunnah for one who has just woken from sleep.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "وغسل اليدين قبل إدخالها إذا استيقظ المتوضئ من نومه",
+            "english": "Among the sunnahs of purification: washing the hands before putting them in, when the one making wudu has woken from sleep."
+          }
+        },
+        {
+          "id": "wudu-siwak",
+          "title": "Clean the teeth",
+          "kind": "action",
+          "instruction": "Clean your teeth with the siwak.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "والسواك والمضمضة والأستنشاق",
+            "english": "Among the sunnahs of purification: the siwak, rinsing the mouth and sniffing water into the nose."
+          }
+        },
+        {
+          "id": "wudu-mouth",
+          "title": "Rinse the mouth",
+          "kind": "action",
+          "instruction": "Rinse your mouth with water.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "والسواك والمضمضة والأستنشاق",
+            "english": "Among the sunnahs of purification: the siwak, rinsing the mouth and sniffing water into the nose."
+          }
+        },
+        {
+          "id": "wudu-nose",
+          "title": "Sniff water into the nose",
+          "kind": "action",
+          "instruction": "Sniff a little water into your nose.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "والسواك والمضمضة والأستنشاق",
+            "english": "Among the sunnahs of purification: the siwak, rinsing the mouth and sniffing water into the nose."
+          }
+        },
+        {
+          "id": "wudu-face",
+          "title": "Wash the face",
+          "kind": "action",
+          "instruction": "Wash your whole face. This is an obligation of wudu.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "فاغسلوا وجوهكم",
+            "english": "Wash your faces."
+          }
+        },
+        {
+          "id": "wudu-arms",
+          "title": "Wash the arms",
+          "kind": "action",
+          "instruction": "Wash your arms up to the elbows, elbows included. This is an obligation of wudu.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "والمرفقان والكعبان يدخلان في الغسل",
+            "english": "The elbows and the ankles are included in the washing."
+          }
+        },
+        {
+          "id": "wudu-head",
+          "title": "Wipe the head",
+          "kind": "action",
+          "instruction": "Wipe your head with wet hands. Al-Quduri makes the amount of the forelock the obligation.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "والمفروض في مسح الرأس مقدار الناصية",
+            "english": "What is obligatory in wiping the head is the amount of the forelock."
+          }
+        },
+        {
+          "id": "wudu-ears",
+          "title": "Wipe the ears",
+          "kind": "action",
+          "instruction": "Wipe your ears.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "ومسح الأذنين",
+            "english": "Among the sunnahs of purification: wiping the ears."
+          }
+        },
+        {
+          "id": "wudu-feet",
+          "title": "Wash the feet",
+          "kind": "action",
+          "instruction": "Wash your feet up to the ankles, ankles included. This is an obligation of wudu.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "وأرجلكم إلى الكعبين",
+            "english": "and your feet up to the ankles."
+          }
+        },
+        {
+          "id": "wudu-between",
+          "title": "Between the fingers",
+          "kind": "action",
+          "instruction": "Run wet fingers between your fingers, and through the beard if you have one.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "وتخليل اللحية والأصابع",
+            "english": "Among the sunnahs of purification: combing the beard and the fingers with water."
+          }
+        },
+        {
+          "id": "wudu-thrice",
+          "title": "Three times",
+          "kind": "action",
+          "instruction": "Wash each limb up to three times.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "وتكرار الغسل إلى الثلاث",
+            "english": "Among the sunnahs of purification: repeating the washing up to three times."
+          }
+        },
+        {
+          "id": "wudu-order",
+          "title": "Keep the order",
+          "kind": "action",
+          "instruction": "Wash in the order Allah names them, and begin with the right side.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Tahara",
+            "arabic": "ويرتب الوضوء فيبدأ بما بدأ الله تعالى بذكره وبالميامن",
+            "english": "He keeps the wudu in order, beginning with what Allah mentioned first, and with the right side."
+          }
+        },
+        {
+          "id": "wudu-dua",
+          "title": "After wudu",
+          "arabic": "أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَنَّ مُحَمَّدًا عَبْدُ اللَّهِ وَرَسُولُهُ",
+          "meaning": "I bear witness that there is no god but Allah, and that Muhammad is Allah's servant and messenger.",
+          "ruling": {
+            "book": "Sahih Muslim",
+            "author": "Imam Muslim (d. 261 AH)",
+            "known_as": "Muslim",
+            "where": "Kitab al-Taharah, hadith 234a (sunnah.com/muslim:234a)",
+            "arabic": "مَا مِنْكُمْ مِنْ أَحَدٍ يَتَوَضَّأُ فَيُبْلِغُ - أَوْ فَيُسْبِغُ - الْوُضُوءَ ثُمَّ يَقُولُ أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَنَّ مُحَمَّدًا عَبْدُ اللَّهِ وَرَسُولُهُ إِلاَّ فُتِحَتْ لَهُ أَبْوَابُ الْجَنَّةِ الثَّمَانِيَةُ يَدْخُلُ مِنْ أَيِّهَا شَاءَ",
+            "english": "If any of you performs wudu well and then says: I bear witness that there is no god but Allah and that Muhammad is His servant and messenger, the eight gates of Paradise are opened for him, and he may enter by whichever he wishes."
+          }
+        }
+      ]
+    },
     {
       "id": "salah",
       "tier": "basics",
@@ -412,6 +679,667 @@
             "109:4",
             "109:5",
             "109:6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "full-salah",
+      "tier": "intermediate",
+      "title": "The full salah, in order",
+      "arabic": "الصلاة كاملة",
+      "groups": [
+        {
+          "id": "fs-first",
+          "title": "First rak'ah",
+          "arabic": "الركعة الأولى",
+          "icon": "stand",
+          "steps": [
+            "fs-open",
+            "fs-aloud",
+            "fs-bow",
+            "fs-sujud"
+          ]
+        },
+        {
+          "id": "fs-second",
+          "title": "Second rak'ah",
+          "arabic": "الركعة الثانية",
+          "icon": "stand",
+          "steps": [
+            "fs-rise",
+            "fs-second",
+            "fs-first-sitting"
+          ]
+        },
+        {
+          "id": "fs-last-two",
+          "title": "Last rak'ahs",
+          "arabic": "الركعتان الأخريان",
+          "icon": "bow",
+          "steps": [
+            "fs-last-two"
+          ]
+        },
+        {
+          "id": "fs-last-sit",
+          "title": "Final sitting",
+          "arabic": "القعدة الأخيرة",
+          "icon": "sit",
+          "steps": [
+            "fs-last-sitting",
+            "fs-dua",
+            "fs-salam"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": "fs-open",
+          "title": "Open and recite",
+          "kind": "action",
+          "instruction": "Say the takbir with your hands raised and fold them. Then thana', ta'awwudh, Bismillah, the Fatiha and Amin, and a surah with it.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ثم يقرأ فاتحة الكتاب وسورة معها أو ثلاث آيات من أي سورة شاء",
+            "english": "Then he reads the Fatiha and a surah with it, or three ayahs from any surah he wishes."
+          }
+        },
+        {
+          "id": "fs-aloud",
+          "title": "Aloud or quietly",
+          "kind": "action",
+          "instruction": "As imam, recite aloud in Fajr and in the first two rak'ahs of Maghrib and 'Isha. After the first two rak'ahs, recite quietly.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ويجهز بالقرءة في الفجر والركعتين الأوليين من المغرب والعشاء إن كان إماما ويخفي القراءة فيما بعد الأوليين",
+            "english": "He recites aloud in Fajr and in the first two rak'ahs of Maghrib and 'Isha if he is the imam, and recites quietly after the first two."
+          }
+        },
+        {
+          "id": "fs-bow",
+          "title": "Bow and rise",
+          "kind": "action",
+          "instruction": "Say the takbir and bow. Say Subhana Rabbiya al-'Azim, then rise.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ثم يكبر ويركع",
+            "english": "Then he says the takbir and bows."
+          }
+        },
+        {
+          "id": "fs-sujud",
+          "title": "Two prostrations",
+          "kind": "action",
+          "instruction": "Prostrate and say Subhana Rabbiya al-A'la. Rise with the takbir and sit calmly, then say the takbir and prostrate again.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ثم يرفع رأسه ويكبر فإذا اطمأن جالسا كبر وسجد",
+            "english": "Then he raises his head and says the takbir; when he is settled sitting, he says the takbir and prostrates."
+          }
+        },
+        {
+          "id": "fs-rise",
+          "title": "Rise for the second rak'ah",
+          "kind": "action",
+          "instruction": "Say the takbir and stand on the fronts of your feet, without sitting and without leaning on your hands.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "فإذا اطمأن ساجدا كبر واستوى قائما على صدور قدميه ولا يقعد ولا يعتمد بيديه على الأرض",
+            "english": "When he is settled in prostration he says the takbir and stands on the fronts of his feet; he does not sit and does not lean on his hands on the ground."
+          }
+        },
+        {
+          "id": "fs-second",
+          "title": "The second rak'ah",
+          "kind": "action",
+          "instruction": "Pray it as the first, but with no thana', no ta'awwudh, and hands raised only at the opening takbir.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ويفعل في الركعة الثانية مثل ما فعل في الأولى إلا أنه لا يستفتح ولا يتعوذ ولا يرفع يديه إلا في التكبير الأولى",
+            "english": "He does in the second rak'ah what he did in the first, except that he does not open with the thana', does not seek refuge, and does not raise his hands except at the first takbir."
+          }
+        },
+        {
+          "id": "fs-first-sitting",
+          "title": "First sitting",
+          "kind": "action",
+          "instruction": "Sit as you learnt and say the tashahhud, adding nothing to it.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ولا يزيد على هذا في القعدة الأولى",
+            "english": "He adds nothing to this in the first sitting."
+          }
+        },
+        {
+          "id": "fs-last-two",
+          "title": "The last rak'ahs",
+          "kind": "action",
+          "instruction": "In the last two rak'ahs recite only the Fatiha.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ويقرأ في الركعتين الأخريين الكتاب خاصة",
+            "english": "He reads only the Fatiha in the last two rak'ahs."
+          }
+        },
+        {
+          "id": "fs-last-sitting",
+          "title": "Last sitting",
+          "kind": "action",
+          "instruction": "Sit as in the first sitting, say the tashahhud and send prayers on the Prophet ﷺ.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "فإذا جلس في آخر الصلاة جلس كما في الأولى وتشهد وصلى على النبي صلى الله عليه وسلم",
+            "english": "When he sits at the end of the prayer he sits as in the first, says the tashahhud, and sends prayers on the Prophet ﷺ."
+          }
+        },
+        {
+          "id": "fs-dua",
+          "title": "Ask Allah",
+          "kind": "action",
+          "instruction": "Ask with words like the Qur'an's or the du'as handed down, never with words like everyday speech.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ودعا بما شاء بما يشبه ألفاظ القرآن والأدعيه المأثورة ولا يدعو بما يشبه كلام الناس",
+            "english": "He asks for what he wishes, with words like those of the Qur'an and the handed-down du'as, and does not ask with words like people's speech."
+          }
+        },
+        {
+          "id": "fs-salam",
+          "title": "Give the salam",
+          "kind": "action",
+          "instruction": "Say the closing salam to your right, then the same to your left.",
+          "ruling": {
+            "book": "Mukhtasar al-Quduri",
+            "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
+            "where": "Kitab al-Salah, Bab Sifat al-Salah",
+            "arabic": "ثم يسلم عن يمينه فيقول: السلام عليكم ورحمة الله وعن يساره مثل ذلك",
+            "english": "Then he gives salam to his right, saying “as-salamu 'alaykum wa rahmatullah”, and to his left the same."
+          }
+        }
+      ]
+    },
+    {
+      "id": "adhkar",
+      "tier": "intermediate",
+      "title": "Adhkar after salah",
+      "arabic": "أذكار بعد الصلاة",
+      "groups": [
+        {
+          "id": "adhkar-salam",
+          "title": "After the salam",
+          "arabic": "بعد السلام",
+          "icon": "sit",
+          "steps": [
+            "istighfar",
+            "allahumma-salam"
+          ]
+        },
+        {
+          "id": "adhkar-33",
+          "title": "Glorifying Allah",
+          "arabic": "التسبيح",
+          "icon": "book",
+          "steps": [
+            "tasbih",
+            "tahmid",
+            "takbir-33"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": "istighfar",
+          "title": "Asking forgiveness",
+          "arabic": "أَسْتَغْفِرُ اللَّهَ",
+          "meaning": "I ask Allah for forgiveness. Say it three times.",
+          "ruling": {
+            "book": "Sahih Muslim",
+            "author": "Imam Muslim (d. 261 AH)",
+            "known_as": "Muslim",
+            "where": "Kitab al-Masajid wa Mawadi' al-Salah, hadith 591 (sunnah.com/muslim:591)",
+            "arabic": "اسْتَغْفَرَ ثَلاَثًا",
+            "english": "He asked forgiveness three times."
+          }
+        },
+        {
+          "id": "allahumma-salam",
+          "title": "You are Peace",
+          "arabic": "اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ تَبَارَكْتَ ذَا الْجَلاَلِ وَالإِكْرَامِ",
+          "meaning": "O Allah, You are Peace and from You is peace. Blessed are You, Possessor of Glory and Honour.",
+          "ruling": {
+            "book": "Sahih Muslim",
+            "author": "Imam Muslim (d. 261 AH)",
+            "known_as": "Muslim",
+            "where": "Kitab al-Masajid wa Mawadi' al-Salah, hadith 591 (sunnah.com/muslim:591)",
+            "arabic": "اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ تَبَارَكْتَ ذَا الْجَلاَلِ وَالإِكْرَامِ",
+            "english": "When the Messenger of Allah ﷺ finished his prayer he asked forgiveness three times and said: O Allah, You are Peace and from You is peace; blessed are You, Possessor of Glory and Honour."
+          }
+        },
+        {
+          "id": "tasbih",
+          "title": "Tasbih, 33 times",
+          "arabic": "سُبْحَانَ اللَّهِ",
+          "meaning": "Glory be to Allah. Say it 33 times.",
+          "ruling": {
+            "book": "Sahih Muslim",
+            "author": "Imam Muslim (d. 261 AH)",
+            "known_as": "Muslim",
+            "where": "Kitab al-Masajid wa Mawadi' al-Salah, hadith 595a (sunnah.com/muslim:595a)",
+            "arabic": "تُسَبِّحُ اللَّهَ ثَلاَثًا وَثَلاَثِينَ",
+            "english": "Say “Glory be to Allah” thirty-three times."
+          }
+        },
+        {
+          "id": "tahmid",
+          "title": "Tahmid, 33 times",
+          "arabic": "الْحَمْدُ لِلَّهِ",
+          "meaning": "All praise is for Allah. Say it 33 times.",
+          "ruling": {
+            "book": "Sahih Muslim",
+            "author": "Imam Muslim (d. 261 AH)",
+            "known_as": "Muslim",
+            "where": "Kitab al-Masajid wa Mawadi' al-Salah, hadith 595a (sunnah.com/muslim:595a)",
+            "arabic": "وَتَحْمَدُ اللَّهَ ثَلاَثًا وَثَلاَثِينَ",
+            "english": "Say “All praise is for Allah” thirty-three times."
+          }
+        },
+        {
+          "id": "takbir-33",
+          "title": "Takbir, 33 times",
+          "arabic": "اللَّهُ أَكْبَرُ",
+          "meaning": "Allah is the greatest. Say it 33 times.",
+          "ruling": {
+            "book": "Sahih Muslim",
+            "author": "Imam Muslim (d. 261 AH)",
+            "known_as": "Muslim",
+            "where": "Kitab al-Masajid wa Mawadi' al-Salah, hadith 595a (sunnah.com/muslim:595a)",
+            "arabic": "وَتُكَبِّرُ اللَّهَ ثَلاَثًا وَثَلاَثِينَ",
+            "english": "Say “Allah is the greatest” thirty-three times."
+          }
+        }
+      ]
+    },
+    {
+      "id": "amma",
+      "tier": "intermediate",
+      "title": "Longer surahs of juz 'Amma",
+      "arabic": "جزء عم",
+      "groups": [
+        {
+          "id": "amma-1",
+          "title": "'Amma 1",
+          "arabic": "السور",
+          "icon": "book",
+          "steps": [
+            "ala-1",
+            "ala-2",
+            "ghashiya-1",
+            "ghashiya-2"
+          ]
+        },
+        {
+          "id": "amma-2",
+          "title": "'Amma 2",
+          "arabic": "السور",
+          "icon": "book",
+          "steps": [
+            "duha",
+            "sharh",
+            "tin",
+            "qadr"
+          ]
+        },
+        {
+          "id": "amma-3",
+          "title": "'Amma 3",
+          "arabic": "السور",
+          "icon": "book",
+          "steps": [
+            "zalzala",
+            "adiyat"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": "ala-1",
+          "title": "Al-A'la 1-8",
+          "ayahs": [
+            "87:1",
+            "87:2",
+            "87:3",
+            "87:4",
+            "87:5",
+            "87:6",
+            "87:7",
+            "87:8"
+          ]
+        },
+        {
+          "id": "ala-2",
+          "title": "Al-A'la 9-19",
+          "ayahs": [
+            "87:9",
+            "87:10",
+            "87:11",
+            "87:12",
+            "87:13",
+            "87:14",
+            "87:15",
+            "87:16",
+            "87:17",
+            "87:18",
+            "87:19"
+          ]
+        },
+        {
+          "id": "ghashiya-1",
+          "title": "Al-Ghashiya 1-16",
+          "ayahs": [
+            "88:1",
+            "88:2",
+            "88:3",
+            "88:4",
+            "88:5",
+            "88:6",
+            "88:7",
+            "88:8",
+            "88:9",
+            "88:10",
+            "88:11",
+            "88:12",
+            "88:13",
+            "88:14",
+            "88:15",
+            "88:16"
+          ]
+        },
+        {
+          "id": "ghashiya-2",
+          "title": "Al-Ghashiya 17-26",
+          "ayahs": [
+            "88:17",
+            "88:18",
+            "88:19",
+            "88:20",
+            "88:21",
+            "88:22",
+            "88:23",
+            "88:24",
+            "88:25",
+            "88:26"
+          ]
+        },
+        {
+          "id": "duha",
+          "title": "Ad-Duha",
+          "ayahs": [
+            "93:1",
+            "93:2",
+            "93:3",
+            "93:4",
+            "93:5",
+            "93:6",
+            "93:7",
+            "93:8",
+            "93:9",
+            "93:10",
+            "93:11"
+          ]
+        },
+        {
+          "id": "sharh",
+          "title": "Ash-Sharh",
+          "ayahs": [
+            "94:1",
+            "94:2",
+            "94:3",
+            "94:4",
+            "94:5",
+            "94:6",
+            "94:7",
+            "94:8"
+          ]
+        },
+        {
+          "id": "tin",
+          "title": "At-Tin",
+          "ayahs": [
+            "95:1",
+            "95:2",
+            "95:3",
+            "95:4",
+            "95:5",
+            "95:6",
+            "95:7",
+            "95:8"
+          ]
+        },
+        {
+          "id": "qadr",
+          "title": "Al-Qadr",
+          "ayahs": [
+            "97:1",
+            "97:2",
+            "97:3",
+            "97:4",
+            "97:5"
+          ]
+        },
+        {
+          "id": "zalzala",
+          "title": "Az-Zalzala",
+          "ayahs": [
+            "99:1",
+            "99:2",
+            "99:3",
+            "99:4",
+            "99:5",
+            "99:6",
+            "99:7",
+            "99:8"
+          ]
+        },
+        {
+          "id": "adiyat",
+          "title": "Al-'Adiyat",
+          "ayahs": [
+            "100:1",
+            "100:2",
+            "100:3",
+            "100:4",
+            "100:5",
+            "100:6",
+            "100:7",
+            "100:8",
+            "100:9",
+            "100:10",
+            "100:11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kursi",
+      "tier": "advanced",
+      "title": "Ayat al-Kursi",
+      "arabic": "آية الكرسي",
+      "groups": [
+        {
+          "id": "kursi-1",
+          "title": "The Throne verse",
+          "arabic": "آية الكرسي",
+          "icon": "book",
+          "steps": [
+            "ayat-al-kursi"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": "ayat-al-kursi",
+          "title": "Ayat al-Kursi",
+          "ayahs": [
+            "2:255"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mulk",
+      "tier": "advanced",
+      "title": "Surah al-Mulk",
+      "arabic": "سورة الملك",
+      "groups": [
+        {
+          "id": "mulk-g1",
+          "title": "Ayahs 1-8",
+          "arabic": "الملك",
+          "icon": "book",
+          "steps": [
+            "mulk-1",
+            "mulk-2",
+            "mulk-3"
+          ]
+        },
+        {
+          "id": "mulk-g2",
+          "title": "Ayahs 9-19",
+          "arabic": "الملك",
+          "icon": "book",
+          "steps": [
+            "mulk-4",
+            "mulk-5",
+            "mulk-6"
+          ]
+        },
+        {
+          "id": "mulk-g3",
+          "title": "Ayahs 20-30",
+          "arabic": "الملك",
+          "icon": "book",
+          "steps": [
+            "mulk-7",
+            "mulk-8",
+            "mulk-9"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": "mulk-1",
+          "title": "Al-Mulk 1-2",
+          "ayahs": [
+            "67:1",
+            "67:2"
+          ]
+        },
+        {
+          "id": "mulk-2",
+          "title": "Al-Mulk 3-5",
+          "ayahs": [
+            "67:3",
+            "67:4",
+            "67:5"
+          ]
+        },
+        {
+          "id": "mulk-3",
+          "title": "Al-Mulk 6-8",
+          "ayahs": [
+            "67:6",
+            "67:7",
+            "67:8"
+          ]
+        },
+        {
+          "id": "mulk-4",
+          "title": "Al-Mulk 9-11",
+          "ayahs": [
+            "67:9",
+            "67:10",
+            "67:11"
+          ]
+        },
+        {
+          "id": "mulk-5",
+          "title": "Al-Mulk 12-14",
+          "ayahs": [
+            "67:12",
+            "67:13",
+            "67:14"
+          ]
+        },
+        {
+          "id": "mulk-6",
+          "title": "Al-Mulk 15-19",
+          "ayahs": [
+            "67:15",
+            "67:16",
+            "67:17",
+            "67:18",
+            "67:19"
+          ]
+        },
+        {
+          "id": "mulk-7",
+          "title": "Al-Mulk 20-24",
+          "ayahs": [
+            "67:20",
+            "67:21",
+            "67:22",
+            "67:23",
+            "67:24"
+          ]
+        },
+        {
+          "id": "mulk-8",
+          "title": "Al-Mulk 25-27",
+          "ayahs": [
+            "67:25",
+            "67:26",
+            "67:27"
+          ]
+        },
+        {
+          "id": "mulk-9",
+          "title": "Al-Mulk 28-30",
+          "ayahs": [
+            "67:28",
+            "67:29",
+            "67:30"
           ]
         }
       ]
