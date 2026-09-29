@@ -47,9 +47,9 @@
     "panel": "1.25rem"
   },
   "layer": {
-    "_comment": "The one stacking scale: every z-index in the app is one of these, never a bare number. Lowest first: raised lifts a piece over its neighbours, seal is the Quran backdrop, sticky is a bar that pins while scrolling, popover a floating panel opened from a button, header the app bar, overlay a full-screen sheet, tip a tooltip over everything.",
+    "_comment": "The one stacking scale: every z-index in the app is one of these, never a bare number. Lowest first: raised lifts a piece over its neighbours, seal is the Quran backdrop, below the page so results sit over it, sticky is a bar that pins while scrolling, popover a floating panel opened from a button, header the app bar, overlay a full-screen sheet, tip a tooltip over everything.",
     "raised": 1,
-    "seal": 5,
+    "seal": -1,
     "sticky": 10,
     "popover": 30,
     "header": 40,

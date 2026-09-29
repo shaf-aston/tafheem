@@ -862,8 +862,8 @@ dialog::backdrop {
   .cursor-light { display: none; }
 }
 
-/* The Quran tab's faint seal (ui/QuranSeal). Always in front of the page but
-   never in the way: clicks pass through, and ui/QuranSeal lights it when the
+/* The Quran tab's faint seal (ui/QuranSeal). Behind the page, so search
+   results sit over it: clicks pass through, and ui/QuranSeal lights it when the
    pointer is over it. Fixed, so after a search it can glide to the middle and
    grow to cover the whole page; every property it moves by is one it animates. */
 .quran-seal {
@@ -924,6 +924,7 @@ dialog::backdrop {
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-pop);
 }
+.wheel-card-narrow { width: 9rem; }
 .wheel-type {
   width: 100%;
   padding: 0.375rem 0.625rem;
