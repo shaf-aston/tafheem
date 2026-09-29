@@ -16,7 +16,22 @@ import { layoutChart } from '../../lib/pbsLayout'
 
 const M_ = 18
 
-export default function PbsChart({ config, activeBranch, onHoverBranch, onSelectBranch, onSelectKid }) {
+/** Button semantics only for a box that opens something deeper. */
+const zoomable = (hasKids, go) => hasKids
+  ? {
+    role: 'button',
+    tabIndex: 0,
+    onClick: go,
+    onKeyDown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go() } },
+  }
+  : {}
+
+/** The "›" hint that a box has deeper topics. */
+const Arrow = ({ x, y, fill }) => (
+  <text x={x} y={y} fontSize="20" fontWeight="700" fill={fill} fillOpacity=".8" aria-hidden="true">›</text>
+)
+
+export default function PbsChart({ config, activeBranch, onHoverBranch, onZoom }) {
   const L = layoutChart(config)
 
   return (
@@ -24,7 +39,7 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onSelect
       viewBox={`0 0 ${L.width} ${L.height}`}
       className="block w-full h-auto"
       role="img"
-      aria-label={config.root.en}
+      aria-label={config.root.en || config.root.ar}
     >
       <defs>
         <marker id="pbs-m-root" markerWidth="7" markerHeight="7" refX="6.2" refY="3" orient="auto">
@@ -43,7 +58,7 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onSelect
           {config.root.ar}
         </text>
         <text x={L.root.cx} y={L.root.subTextY} textAnchor="middle" fontSize="12" fill="var(--text)" fillOpacity=".85">
-          ({config.root.en})
+          {config.root.en && `(${config.root.en})`}
         </text>
       </g>
 
@@ -60,32 +75,27 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onSelect
           >
             <path d={stemPath} stroke="var(--border-hi)" strokeWidth="1.6" fill="none" markerEnd="url(#pbs-m-root)" />
             <g
-              role="button"
-              tabIndex={0}
-              className="pbs-branch cursor-pointer"
+              {...zoomable(b.hasKids, () => onZoom([i]))}
+              className={b.hasKids ? 'pbs-branch cursor-pointer' : undefined}
               onMouseEnter={() => onHoverBranch?.(i)}
               onMouseLeave={() => onHoverBranch?.(null)}
-              onClick={() => onSelectBranch?.(i)}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelectBranch?.(i) } }}
             >
               <rect x={box.x} y={box.y} width={box.w} height={box.h} rx="12" fill={b.c.bar} />
               <text x={box.cx} y={box.textY} textAnchor="middle" fontSize="17" fontWeight="700" fill="var(--text)" lang="ar" dir="rtl">
                 {b.ar}
               </text>
               <text x={box.cx} y={box.subTextY} textAnchor="middle" fontSize="10" fill="var(--text)" fillOpacity=".9">
-                ({b.en})
+                {b.en && `(${b.en})`}
               </text>
+              {b.hasKids && <Arrow x={box.x + 14} y={box.y + box.h / 2 + 6} fill="var(--text)" />}
             </g>
-            <path d={spinePath} stroke={b.c.bar} strokeWidth="1.5" fill="none" />
+            {kids.length > 0 && <path d={spinePath} stroke={b.c.bar} strokeWidth="1.5" fill="none" />}
             {kids.map(({ kid: k, j, box: kbox, connectorPath }) => (
               <g key={j} className="pbs-rise" style={{ '--d': `${220 + i * 70 + j * 26}ms` }}>
                 <path d={connectorPath} stroke={b.c.bar} strokeWidth="1.5" fill="none" markerEnd={`url(#pbs-m${i})`} />
                 <g
-                  role="button"
-                  tabIndex={0}
-                  className="pbs-kid cursor-pointer"
-                  onClick={() => onSelectKid?.(i, j)}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelectKid?.(i, j) } }}
+                  {...zoomable(k[2], () => onZoom([i, j]))}
+                  className={k[2] ? 'pbs-kid cursor-pointer' : undefined}
                 >
                   <rect x={kbox.x} y={kbox.y} width={kbox.w} height={kbox.h} rx="10"
                     fill={b.c.fill} stroke={b.c.bar} strokeWidth="1.3" />
@@ -93,8 +103,9 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onSelect
                     {k[0]}
                   </text>
                   <text x={kbox.cx} y={kbox.subTextY} textAnchor="middle" fontSize="9.5" fill={b.c.text} fillOpacity=".7">
-                    ({k[1]})
+                    {k[1] && `(${k[1]})`}
                   </text>
+                  {k[2] && <Arrow x={kbox.x + 12} y={kbox.y + kbox.h / 2 + 5} fill={b.c.text} />}
                 </g>
               </g>
             ))}
