@@ -11,7 +11,7 @@
   --sh-m: color-mix(in srgb, var(--c) 50%, var(--bg));
   --sh-o: color-mix(in srgb, var(--c) 28%, var(--bg));
   --sh-l: var(--surface-hi);
-  --lift: color-mix(in srgb, #000 55%, transparent);
+  --lift: color-mix(in srgb, var(--bg) 90%, transparent);
   max-width: 760px;
   margin: 0 auto;
   padding-top: 26px;
@@ -70,9 +70,9 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
 .grow-gnode .grow-bloom { width: calc(var(--n) + 14px); height: calc(var(--n) + 14px); margin: -7px; }
 .grow-bloom-sway { animation: grow-sway calc(4200ms * var(--motion-scale)) ease-in-out infinite; transform-origin: 50% 100%; }
 @keyframes grow-sway { 50% { transform: rotate(4deg); } }
-.grow-petal-a { fill: var(--c); stroke: color-mix(in srgb, var(--c) 60%, #000); stroke-width: 1; }
-.grow-petal-b { fill: color-mix(in srgb, var(--c) 62%, #fff); stroke: color-mix(in srgb, var(--c) 60%, #000); stroke-width: 0.8; }
-.grow-heart { fill: var(--warn); stroke: color-mix(in srgb, var(--warn) 55%, #000); stroke-width: 1; }
+.grow-petal-a { fill: var(--c); stroke: color-mix(in srgb, var(--c) 60%, var(--bg)); stroke-width: 1; }
+.grow-petal-b { fill: color-mix(in srgb, var(--c) 62%, var(--text)); stroke: color-mix(in srgb, var(--c) 60%, var(--bg)); stroke-width: 0.8; }
+.grow-heart { fill: var(--warn); stroke: color-mix(in srgb, var(--warn) 55%, var(--bg)); stroke-width: 1; }
 
 /* step circles are leaves */
 .grow-leaf { border-radius: 62% 8% 62% 8%; rotate: -14deg; }
@@ -82,7 +82,6 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
 .grow-item { display: flex; flex-direction: column; align-items: center; gap: 6px; width: calc(var(--cw) - 4px); }
 .grow-lbl { font-size: var(--type-small); font-weight: 700; color: var(--text-dim); text-align: center; line-height: 1.25; max-width: 84px; min-height: 2.4em; overflow-wrap: anywhere; }
 .grow-item:has([data-now]) .grow-lbl { color: var(--c); }
-.grow-item:has([data-s='locked']) .grow-lbl { color: var(--text-faint); }
 .grow-item:has([data-s='learnt']) .grow-lbl { color: var(--text); }
 
 /* group circles sit on the vine */
@@ -118,10 +117,9 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
   border-radius: var(--radius-lg);
   background: linear-gradient(180deg, var(--surface-hi), var(--surface));
   border: 1px solid var(--border-hi);
-  box-shadow: 0 10px 0 -2px color-mix(in srgb, var(--bg) 60%, #000), 0 26px 40px -10px var(--lift);
-  transition: opacity calc(var(--motion-spring-ms) * 1ms) ease;
+  box-shadow: 0 10px 0 -2px var(--bg), 0 26px 40px -10px var(--lift);
 }
-.grow-plate.grow-locked { --stem: color-mix(in srgb, var(--c) 16%, var(--surface-hi)); background: var(--surface); border-style: dashed; opacity: 0.82; }
+.grow-plate.grow-locked { --stem: color-mix(in srgb, var(--c) 16%, var(--surface-hi)); background: var(--surface); border-style: dashed; }
 .grow-plate::before {
   content: '';
   position: absolute;
@@ -149,7 +147,7 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
 
 .grow-row { position: relative; z-index: 1; display: flex; align-items: flex-start; scroll-margin-top: 130px; }
 .grow-cell { position: relative; z-index: 2; flex: none; width: var(--cw); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 0 14px; }
-.grow-gl { background: var(--surface); border: 1px solid var(--border-hi); border-radius: 12px; padding: 3px 8px; font-size: var(--type-small); font-weight: 800; text-align: center; line-height: 1.25; max-width: var(--cw); color: var(--text); }
+.grow-gl { background: var(--surface); border: 1px solid var(--border-hi); border-radius: 12px; padding: 3px 8px; font-size: var(--type-small); font-weight: 800; text-align: center; line-height: 1.25; max-width: var(--cw); color: var(--text); overflow-wrap: anywhere; }
 .grow-gl-ar { display: block; color: var(--text-dim); font-weight: 400; }
 .grow-row[data-now] .grow-gl { border-color: var(--c); color: var(--c); }
 
@@ -188,11 +186,13 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
   transition-delay: calc((var(--i) * var(--motion-stagger-ms) + 200) * 1ms);
 }
 
-/* Qalam stands left of the current group and only ever reacts, never speaks. */
-.grow-qalam { position: absolute; top: -4px; right: calc(100% + 6px); pointer-events: none; }
+/* Qalam stands left of the current group and only ever reacts, never speaks.
+   It overlaps the circle's edge by 8px: with a branch open the vine sits at the
+   left of the map, and standing clear of the circle would clip it at 360px. */
+.grow-qalam { position: absolute; top: -4px; right: calc(100% - 8px); pointer-events: none; }
 
 /* ── progress in the header ── */
-.grow-progress { display: flex; align-items: center; gap: 8px; font-size: var(--type-small); color: var(--text-dim); }
+.grow-progress { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: var(--type-small); color: var(--text-dim); }
 .grow-bar { flex: 0 0 96px; height: 6px; border-radius: 9px; background: var(--surface-hi); overflow: hidden; }
 .grow-bar i { display: block; height: 100%; background: var(--c); border-radius: 9px; transition: width calc(var(--motion-spring-ms) * 1ms) ease; }
 
@@ -209,12 +209,12 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
   z-index: 41;
   translate: -50% -50%;
   width: min(92vw, 480px);
-  max-height: 88vh;
+  max-height: 88dvh;
   overflow-y: auto;
   background: var(--surface);
   border: 1px solid var(--border-hi);
   border-radius: var(--radius-lg);
-  box-shadow: 0 10px 0 -2px color-mix(in srgb, var(--bg) 60%, #000), 0 30px 60px -10px var(--lift);
+  box-shadow: 0 10px 0 -2px var(--bg), 0 30px 60px -10px var(--lift);
   padding: 16px 20px 22px;
   animation: grow-sheet calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) both;
 }
@@ -227,7 +227,7 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
 }
 .grow-sh-top { display: flex; align-items: center; gap: 10px; }
 .grow-sh-top h3 { font-size: var(--type-body); font-weight: 800; flex: 1; color: var(--text); }
-.grow-x { width: 36px; height: 36px; border-radius: 50%; background: var(--surface-hi); display: grid; place-items: center; font-size: 1.2rem; color: var(--text-dim); }
+.grow-x { width: 44px; height: 44px; border-radius: 50%; background: var(--surface-hi); display: grid; place-items: center; font-size: 1.2rem; color: var(--text-dim); }
 .grow-chip { display: inline-block; font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 9px; border-radius: 999px; background: var(--surface-hi); color: var(--text-dim); margin: 6px 0 0; }
 .grow-chip-done { background: var(--c); color: var(--bg); }
 .grow-chip-now { background: color-mix(in srgb, var(--c) 20%, var(--surface-hi)); color: var(--c); }
@@ -240,6 +240,7 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
 .grow-verdict[data-ok] { color: var(--c); font-weight: 800; }
 .grow-note { margin-top: 14px; padding: 12px 14px; border: 1px dashed var(--border-hi); border-radius: var(--radius-md); color: var(--text-dim); font-size: var(--type-ui); line-height: 1.5; text-align: center; }
 .grow-sheet details { margin-top: 16px; }
+.grow-missed { border: 1px solid var(--danger); border-radius: var(--radius-sm); padding: 0 4px; }
 
 /* The card's own circle: a leaf that swells while leaves fan out of it when a
    step becomes learnt. */
@@ -265,7 +266,7 @@ button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--
 .grow-door::after { content: ''; position: absolute; top: 50%; left: 10px; right: 10px; border-top: 2px dashed var(--border-hi); }
 .grow-u1 .grow-door-l { translate: -101% 0; }
 .grow-u1 .grow-door-r { translate: 101% 0; }
-.grow-light { position: absolute; left: var(--sx); top: 0; bottom: 0; width: 180px; translate: -50% 0; background: radial-gradient(closest-side, color-mix(in srgb, var(--warn) 45%, #fff), transparent); opacity: 0; }
+.grow-light { position: absolute; left: var(--sx); top: 0; bottom: 0; width: 180px; translate: -50% 0; background: radial-gradient(closest-side, color-mix(in srgb, var(--warn) 45%, var(--text)), transparent); opacity: 0; }
 .grow-u1 .grow-light { animation: grow-glow calc(1100ms * var(--motion-scale)) ease-out both; }
 @keyframes grow-glow {
   0% { opacity: 0; scale: 0.3 1; }

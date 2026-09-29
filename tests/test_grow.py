@@ -47,6 +47,19 @@ def test_every_path_loads_and_every_step_has_something_to_say():
             assert bool(step["arabic"]) != bool(step["ayahs"]), step["id"]
 
 
+def test_step_ids_are_unique_across_every_path():
+    """One record holds every step by id, so two paths sharing one would share progress."""
+    ids = [step.id for path in grow.paths() for step in path.steps]
+    assert len(ids) == len(set(ids))
+
+
+def test_every_ayahs_step_is_one_surah():
+    """The card loads one surah's text for a step, so a step may not span two."""
+    for path in grow.paths():
+        for step in path.steps:
+            assert len({key.split(":")[0] for key in step.ayahs}) <= 1, step.id
+
+
 def test_every_path_names_a_tier_and_every_step_sits_in_one_group():
     tiers = {t["id"] for t in json.loads(GROW_CONFIG.read_text(encoding="utf-8"))["tiers"]}
     for path in grow.paths():
