@@ -94,7 +94,8 @@
           "arabic": "أحمر",
           "transliteration": "a7mar",
           "english": "Red.",
-          "search_term": "red fabric"
+          "search_term": "red fabric",
+          "image": "damascene/unit-17/l01-p14-red-fabric.jpg"
         }
       ],
       "dialogue": [
@@ -438,13 +439,15 @@
           "arabic": "تكسي",
           "transliteration": "taksi",
           "english": "Taxi.",
-          "search_term": "yellow taxi car"
+          "search_term": "yellow taxi car",
+          "image": "damascene/unit-17/l02-p01-yellow-taxi-car.jpg"
         },
         {
           "arabic": "باص",
           "transliteration": "baas",
           "english": "Bus.",
-          "search_term": "city bus"
+          "search_term": "city bus",
+          "image": "damascene/unit-17/l02-p02-city-bus.jpg"
         },
         {
           "arabic": "بدي روح عالشام القديمة",

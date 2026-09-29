@@ -47,7 +47,8 @@
           "arabic": "شغّل العداد لو سمحت.",
           "transliteration": "shaghghel el-3addad law samaht.",
           "english": "Turn on the meter please.",
-          "search_term": "taxi meter"
+          "search_term": "taxi meter",
+          "image": "damascene/unit-05/l01-p04-taxi-meter.jpg"
         },
         {
           "arabic": "قديش الأجرة لهون؟",
@@ -1225,13 +1226,15 @@
           "arabic": "السوق",
           "transliteration": "es-sooq",
           "english": "the market",
-          "search_term": "outdoor market stalls"
+          "search_term": "market stalls",
+          "image": "damascene/unit-05/l04-p01-market-stalls.jpg"
         },
         {
           "arabic": "الصيدلية",
           "transliteration": "es-saydaliyye",
           "english": "the pharmacy",
-          "search_term": "pharmacy storefront"
+          "search_term": "pharmacy storefront",
+          "image": "damascene/unit-05/l04-p02-pharmacy-storefront.jpg"
         },
         {
           "arabic": "الجامع",
@@ -1255,13 +1258,15 @@
           "arabic": "المدرسة",
           "transliteration": "el-madrase",
           "english": "the school",
-          "search_term": "school building"
+          "search_term": "school building",
+          "image": "damascene/unit-05/l04-p06-school-building.jpg"
         },
         {
           "arabic": "المطعم",
           "transliteration": "el-mat3am",
           "english": "the restaurant",
-          "search_term": "restaurant interior"
+          "search_term": "restaurant interior",
+          "image": "damascene/unit-05/l04-p07-restaurant-interior.jpg"
         },
         {
           "arabic": "البنك",
@@ -1279,7 +1284,8 @@
           "arabic": "المحطة",
           "transliteration": "el-ma7atta",
           "english": "the station",
-          "search_term": "bus station"
+          "search_term": "bus station",
+          "image": "damascene/unit-05/l04-p10-bus-station.jpg"
         },
         {
           "arabic": "وين أقرب بنك من هون؟",

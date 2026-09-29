@@ -37,7 +37,8 @@
           "arabic": "فيقت بدري",
           "transliteration": "fi2it bderi",
           "english": "I woke up early.",
-          "search_term": "alarm clock in the morning"
+          "search_term": "alarm clock in the morning",
+          "image": "damascene/unit-07/l01-p02-alarm-clock-in-the-morning.jpg"
         },
         {
           "arabic": "قديش الساعة هلق؟",
@@ -59,7 +60,8 @@
           "arabic": "بدي قهوة عالريق",
           "transliteration": "baddi 2ahwe 3al-ree2",
           "english": "I want coffee first thing.",
-          "search_term": "cup of coffee in the morning"
+          "search_term": "cup of coffee in the morning",
+          "image": "damascene/unit-07/l01-p06-cup-of-coffee-in-the-morning.jpg"
         },
         {
           "arabic": "غسلت وجهي",
@@ -70,7 +72,8 @@
           "arabic": "فرشت سناني",
           "transliteration": "farasht snaani",
           "english": "I brushed my teeth.",
-          "search_term": "toothbrush and toothpaste"
+          "search_term": "toothbrush and toothpaste",
+          "image": "damascene/unit-07/l01-p08-toothbrush-and-toothpaste.jpg"
         },
         {
           "arabic": "لبست تيابي",
@@ -447,7 +450,8 @@
           "arabic": "عم دوّر على قلمي",
           "transliteration": "3am dawwer 3ala 2alami",
           "english": "I'm looking for my pen.",
-          "search_term": "pen on an office desk"
+          "search_term": "pen on an office desk",
+          "image": "damascene/unit-07/l02-p08-pen-on-an-office-desk.jpg"
         },
         {
           "arabic": "شو الأخبار اليوم؟",
@@ -795,7 +799,8 @@
           "arabic": "بدي استحم",
           "transliteration": "baddi istaHamm",
           "english": "I want to shower.",
-          "search_term": "bathroom shower"
+          "search_term": "bathroom shower",
+          "image": "damascene/unit-07/l03-p04-bathroom-shower.jpg"
         },
         {
           "arabic": "تعبت كتير اليوم",
@@ -1186,7 +1191,7 @@
           "arabic": "السبت منروح عالسوق",
           "transliteration": "is-sabt minruu7 3as-suu2",
           "english": "On Saturday we go to the market.",
-          "search_term": "outdoor market"
+          "search_term": "street market"
         },
         {
           "arabic": "شو ناوي تعمل نهاية الأسبوع؟",

@@ -92,13 +92,15 @@
           "arabic": "لازم تاخد شمسية معك",
           "transliteration": "lazim taakhod shamsiyye ma3ak",
           "english": "You need to take an umbrella with you.",
-          "search_term": "black umbrella"
+          "search_term": "black umbrella",
+          "image": "damascene/unit-10/l01-p11-black-umbrella.jpg"
         },
         {
           "arabic": "الشمس طالعة اليوم",
           "transliteration": "ishshams Taal3a ilyom",
           "english": "The sun's out today.",
-          "search_term": "bright sun in sky"
+          "search_term": "bright sun in sky",
+          "image": "damascene/unit-10/l01-p12-bright-sun-in-sky.jpg"
         }
       ],
       "dialogue": [
@@ -431,7 +433,8 @@
           "arabic": "عم تتلج عالجبل",
           "transliteration": "3am titlaj 3aljabal",
           "english": "It's snowing on the mountain.",
-          "search_term": "snow on mountain"
+          "search_term": "snow on mountain",
+          "image": "damascene/unit-10/l02-p04-snow-on-mountain.jpg"
         },
         {
           "arabic": "الربيع أحلى موسم عندي",
@@ -800,7 +803,8 @@
           "arabic": "خد معك شمسية، رح تشتي",
           "transliteration": "khod ma3ak shamsiyye, ra7 tishti",
           "english": "Take an umbrella with you, it's going to rain.",
-          "search_term": "black umbrella"
+          "search_term": "black umbrella",
+          "image": "damascene/unit-10/l03-p02-black-umbrella.jpg"
         },
         {
           "arabic": "لبسي كنزة، الجو برد",

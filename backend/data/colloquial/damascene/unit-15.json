@@ -417,7 +417,8 @@
           "arabic": "وين شباك التذاكر؟",
           "transliteration": "ween shubbaak t-tazaaker?",
           "english": "Where's the ticket window?",
-          "search_term": "ticket window booth"
+          "search_term": "ticket window booth",
+          "image": "damascene/unit-15/l02-p10-ticket-window-booth.jpg"
         },
         {
           "arabic": "الرحلة قديش بتاخد وقت؟",
@@ -428,7 +429,8 @@
           "arabic": "شكرا، خدلك التذكرة",
           "transliteration": "shukran, khodlak t-tazkara",
           "english": "Thanks, here's your ticket.",
-          "search_term": "paper bus ticket"
+          "search_term": "paper bus ticket",
+          "image": "damascene/unit-15/l02-p12-paper-bus-ticket.jpg"
         }
       ],
       "dialogue": [
@@ -1024,7 +1026,8 @@
           "arabic": "ما لقيت جواز سفري",
           "transliteration": "ma la2eet jawaaz safari",
           "english": "I couldn't find my passport.",
-          "search_term": "passport"
+          "search_term": "passport",
+          "image": "damascene/unit-15/l04-p04-passport.jpg"
         },
         {
           "arabic": "تعا ساعدني لو سمحت",

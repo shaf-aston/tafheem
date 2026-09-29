@@ -435,7 +435,8 @@
           "arabic": "عندك شراب سعال؟",
           "transliteration": "3indak sharaab su3aal?",
           "english": "Do you have cough syrup?",
-          "search_term": "a bottle of cough syrup"
+          "search_term": "a bottle of cough syrup",
+          "image": "damascene/unit-09/l02-p03-a-bottle-of-cough-syrup.jpg"
         },
         {
           "arabic": "قديش سعر هيدا الدوا؟",
@@ -1201,7 +1202,8 @@
           "arabic": "بطن",
           "transliteration": "baTen",
           "english": "stomach / belly",
-          "search_term": "a stomach"
+          "search_term": "a stomach",
+          "image": "damascene/unit-09/l04-p02-a-stomach.jpg"
         },
         {
           "arabic": "ضهر",
@@ -1213,13 +1215,15 @@
           "arabic": "إيد",
           "transliteration": "eed",
           "english": "hand / arm",
-          "search_term": "a hand"
+          "search_term": "a hand",
+          "image": "damascene/unit-09/l04-p04-a-hand.jpg"
         },
         {
           "arabic": "رجل",
           "transliteration": "rijl",
           "english": "leg / foot",
-          "search_term": "a leg and foot"
+          "search_term": "a leg and foot",
+          "image": "damascene/unit-09/l04-p05-a-leg-and-foot.jpg"
         },
         {
           "arabic": "عين",
@@ -1243,7 +1247,8 @@
           "arabic": "رقبة",
           "transliteration": "ra2abe",
           "english": "neck",
-          "search_term": "a neck"
+          "search_term": "a neck",
+          "image": "damascene/unit-09/l04-p09-a-neck.jpg"
         },
         {
           "arabic": "عم يوجعني ضهري",
