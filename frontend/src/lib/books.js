@@ -130,3 +130,13 @@ export const BOOKS = {
 }
 
 export const DEFAULT_BOOK = 'quran'
+
+// A book's parts, and one part's lines: shared by the panel and its fetch-ahead.
+export const bookPartsQuery = (bookId) => ({ queryKey: ['memorise-parts', bookId], queryFn: () => BOOKS[bookId].parts() })
+export const bookPartQuery = (bookId, id) => ({ queryKey: ['memorise', bookId, id], queryFn: () => BOOKS[bookId].load(id) })
+
+// Opening Memorise: the default book's parts, then the first part it opens on.
+export const memoriseOpen = (client) =>
+  client.fetchQuery(bookPartsQuery(DEFAULT_BOOK))
+    .then((parts) => client.prefetchQuery(bookPartQuery(DEFAULT_BOOK, parts[0].id)))
+    .catch(() => {})

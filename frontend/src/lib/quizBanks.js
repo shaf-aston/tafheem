@@ -87,7 +87,7 @@ async function fetchJson(path) {
 
 /** The three files, fetched once between them and then remembered. */
 let loading = null
-function load() {
+export function table() {
   loading ??= Promise.all([
     fetchJson(`${WORDS_DIR}/words.json`),
     fetchJson(`${WORDS_DIR}/cuts.json`),
@@ -107,7 +107,7 @@ const cutFor = (bankId, groupId) => {
 
 /** Every word there is, which the mistakes round draws its wrong options from. */
 export async function allWords() {
-  return (await load()).words
+  return (await table()).words
 }
 
 /**
@@ -119,7 +119,7 @@ export async function allWords() {
  * written in it.
  */
 export async function wordsFor(bankId, groupId = '', language = QUIZ.language) {
-  const { words, cuts } = await load()
+  const { words, cuts } = await table()
 
   // Asked for by id, then found in the table the page already holds. A word got
   // wrong long enough ago that it has since left the word list simply does not
@@ -143,7 +143,7 @@ export async function wordsFor(bankId, groupId = '', language = QUIZ.language) {
  * rather than repeated here.
  */
 export async function bankInfo(bankId) {
-  const { index } = await load()
+  const { index } = await table()
   return index.sets.find((set) => set.id === BANKS[bankId]?.cut) ?? {}
 }
 
@@ -157,7 +157,7 @@ export async function bankInfo(bankId) {
 export async function groupsFor(bankId) {
   if (!BANKS[bankId]?.grouped) return []
 
-  const { cuts, index } = await load()
+  const { cuts, index } = await table()
   const book = index.sets.find((set) => set.id === 'book')
 
   return [

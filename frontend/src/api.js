@@ -159,7 +159,7 @@ export const hadithBooksQuery = (collection) => ({
 // quiet, like prefetchQuery: the panel shows its own when it is opened.
 export const hadithOpen = (client) =>
   client.fetchQuery(hadithCollectionsQuery)
-    .then((list) => list.forEach((c) => client.prefetchQuery(hadithBooksQuery(c.id))))
+    .then((list) => Promise.all(list.map((c) => client.prefetchQuery(hadithBooksQuery(c.id)))))
     .catch(() => {})
 
 // One book's hadiths in full, Arabic and English.
