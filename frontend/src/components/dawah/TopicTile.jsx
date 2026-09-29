@@ -16,10 +16,9 @@ export default function TopicTile({ topic, index, selected, accent, onPick }) {
         bg-[var(--surface)] p-4 flex flex-col gap-2 hover:border-[var(--c)]"
     >
       <span className="flex items-baseline justify-between gap-2">
-        <span className="type-figure font-semibold" style={{ color: accent }}>{topic.questions.length}</span>
+        <span className="font-semibold" style={{ color: accent }}>{topic.title}</span>
         <ArabicText size="sm" className="arabic-inline text-[var(--text-faint)]">{topic.arabic}</ArabicText>
       </span>
-      <span className="font-semibold text-[var(--text)]">{topic.title}</span>
       <span className="type-small text-[var(--text-dim)] leading-snug">{topic.blurb}</span>
     </button>
   )
