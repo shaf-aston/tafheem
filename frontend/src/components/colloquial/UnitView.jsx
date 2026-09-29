@@ -25,7 +25,7 @@ function Scene({ lesson, number }) {
   return (
     <article className="space-y-12">
       <header className="space-y-1">
-        <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Scene {number}</p>
+        <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Topic {number}</p>
         <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
         <p className="type-small text-[var(--text-dim)]">Press a picture to look closer.</p>
       </header>
