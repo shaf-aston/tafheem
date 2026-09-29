@@ -6,6 +6,7 @@ is built: the router says so rather than pretending the collection is empty.
 """
 from __future__ import annotations
 
+import json
 import sqlite3
 from functools import lru_cache
 
@@ -22,20 +23,21 @@ def _connect() -> sqlite3.Connection:
 
 
 @lru_cache(maxsize=1)
-def collections() -> list[tuple[str, str]]:
-    """Every collection's id and name, in the order the database holds them."""
+def collections() -> list[tuple[str, str, str, bool]]:
+    """Every collection's id, name, short name and whether all of it is sahih, in the order the database holds them."""
     if not is_built():
         return []
     conn = _connect()
     try:
-        return list(conn.execute("SELECT id, name FROM collection ORDER BY rowid"))
+        return [(cid, name, short, bool(sahih)) for cid, name, short, sahih in
+                conn.execute("SELECT id, name, short, sahih FROM collection ORDER BY rowid")]
     finally:
         conn.close()
 
 
 @lru_cache(maxsize=8)
 def collection_name(collection_id: str) -> str | None:
-    return next((name for cid, name in collections() if cid == collection_id), None)
+    return next((name for cid, name, *_ in collections() if cid == collection_id), None)
 
 
 @lru_cache(maxsize=8)
@@ -48,6 +50,11 @@ def cite_of(collection_id: str) -> str:
         return row[0] if row else ""
     finally:
         conn.close()
+
+
+def cite_url(template: str, number: int, part: str) -> str:
+    """sunnah.com's page for one narration; the letter picks it out of those sharing a number (muslim:157c)."""
+    return template.replace("{number}", f"{number}{part}") if template else ""
 
 
 @lru_cache(maxsize=8)
@@ -82,10 +89,10 @@ def hadiths(collection_id: str, book_number: int) -> list[dict]:
             {
                 "collection": collection_id, "book": book_number, "number": number,
                 "part": part, "arabic": arabic, "english": english,
-                "cite": cite.replace("{number}", str(number)) if cite else "",
+                "grades": json.loads(grades), "cite": cite_url(cite, number, part),
             }
-            for number, part, arabic, english in conn.execute(
-                "SELECT number, part, arabic, english FROM hadith "
+            for number, part, arabic, english, grades in conn.execute(
+                "SELECT number, part, arabic, english, grades FROM hadith "
                 "WHERE collection_id = ? AND book_number = ? ORDER BY number, part",
                 (collection_id, book_number),
             )

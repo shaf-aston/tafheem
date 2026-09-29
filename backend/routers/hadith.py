@@ -24,7 +24,7 @@ CollectionName = Annotated[str, StringConstraints(max_length=60)]
 @router.get("/collections", response_model=list[HadithCollection])
 async def get_collections() -> list[HadithCollection]:
     found = await asyncio.to_thread(loader.collections)
-    return [HadithCollection(id=cid, name=name) for cid, name in found]
+    return [HadithCollection(id=cid, name=name, short=short, sahih=sahih) for cid, name, short, sahih in found]
 
 
 @router.get("/{collection}/books", response_model=list[HadithBook])
@@ -67,7 +67,7 @@ async def search(
     if not await asyncio.to_thread(loader.is_built):
         return HadithSearchResponse(query=query, ready=False, source=provenance.of("hadith"))
 
-    known = {cid for cid, _ in await asyncio.to_thread(loader.collections)}
+    known = {cid for cid, *_ in await asyncio.to_thread(loader.collections)}
     chosen = tuple(dict.fromkeys(c for c in collections[:_MAX_COLLECTIONS] if c in known))
 
     hits = await asyncio.to_thread(hadith_search.search, query, None, chosen)
@@ -77,8 +77,8 @@ async def search(
         hits=[
             HadithEntry(
                 collection=h.collection, book=h.book, number=h.number, part=h.part,
-                arabic=h.arabic, english=h.english,
-                cite=hadith_search.cite_url(h.collection, h.number),
+                arabic=h.arabic, english=h.english, grades=h.grades,
+                cite=loader.cite_url(loader.cite_of(h.collection), h.number, h.part),
             )
             for h in hits
         ],

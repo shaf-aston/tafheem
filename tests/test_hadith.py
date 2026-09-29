@@ -46,6 +46,7 @@ def db(tmp_path, monkeypatch):
         "INSERT INTO hadith_fts (rowid, arabic, english) VALUES (?, ?, ?)",
         [(r, bare_letters(a), e) for r, a, e in conn.execute("SELECT rowid, arabic, english FROM hadith").fetchall()],
     )
+    conn.execute("""UPDATE hadith SET grades = '[{"by": "Al-Albani", "grade": "Sahih"}]' WHERE number = 3""")
     conn.commit()
     conn.close()
 
@@ -69,7 +70,7 @@ def test_no_database_means_not_built(tmp_path, monkeypatch):
 
 
 def test_collections_and_books_are_listed(db):
-    assert loader.collections() == [("bukhari", "Sahih al-Bukhari")]
+    assert loader.collections() == [("bukhari", "Sahih al-Bukhari", "", False)]
     assert loader.books("bukhari") == [
         {"number": 1, "name": "Revelation", "count": 2},
         {"number": 2, "name": "Faith", "count": 1},
@@ -123,7 +124,7 @@ def client():
 def test_router_lists_collections(db, client):
     resp = client.get("/api/hadith/collections")
     assert resp.status_code == 200
-    assert resp.json() == [{"id": "bukhari", "name": "Sahih al-Bukhari"}]
+    assert resp.json() == [{"id": "bukhari", "name": "Sahih al-Bukhari", "short": "", "sahih": False}]
 
 
 def test_router_lists_books_of_a_collection(db, client):
@@ -169,3 +170,15 @@ def test_router_search_before_the_database_is_built(tmp_path, monkeypatch, clien
     loader.collections.cache_clear()
     resp = client.get("/api/hadith/search", params={"q": "light"})
     assert resp.json()["ready"] is False
+
+
+def test_grades_and_lettered_cite_reach_the_reader(db):
+    conn = sqlite3.connect(db)
+    conn.execute("INSERT INTO hadith (collection_id, book_number, number, part, arabic) VALUES ('bukhari', 2, 3, 'c', 'نص')")
+    conn.commit()
+    conn.close()
+    found = {(h["number"], h["part"]): h for h in loader.hadiths("bukhari", 2)}
+    assert found[(3, "")]["grades"] == [{"by": "Al-Albani", "grade": "Sahih"}]
+    assert found[(3, "c")]["grades"] == []
+    assert found[(3, "c")]["cite"] == "https://sunnah.com/bukhari:3c"
+    assert search.search("Prayer light")[0].grades == [{"by": "Al-Albani", "grade": "Sahih"}]

@@ -35,10 +35,17 @@ git ls-files -z backend/data | rsync -a --from0 --files-from=- ./ /home/ubuntu/t
 rsync -a deploy/ /home/ubuntu/tafheem/deploy/
 cp requirements.txt /home/ubuntu/tafheem/requirements.txt
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements.txt
-# The hadith index is built here from the tracked bukhari.json, never copied
-# from anyone's machine. Rebuilt only when it is missing or its source is newer.
+# The hadith collections are fetched here from the public CDN and indexed here,
+# never copied from anyone's machine. Each step reruns only when its input is
+# newer than its output, so a quiet sync costs nothing.
 H=/home/ubuntu/tafheem
-if [ ! -f "$H/backend/data/hadith.db" ] || [ "$H/backend/data/hadith/bukhari.json" -nt "$H/backend/data/hadith.db" ] || [ "$H/backend/scripts/build_hadith_index.py" -nt "$H/backend/data/hadith.db" ]; then
+HD=$H/backend/data/hadith
+for key in $("$H/venv/bin/python" -c "import json;print(' '.join(k for k in json.load(open('$HD/collections.json')) if not k.startswith('_')))"); do
+	if [ ! -f "$HD/$key.json" ] || [ "$H/backend/scripts/fetch_hadith_collections.py" -nt "$HD/$key.json" ]; then
+		(cd "$H" && venv/bin/python backend/scripts/fetch_hadith_collections.py "$key") || echo "hadith: fetching $key failed, kept the old copy"
+	fi
+done
+if [ ! -f "$H/backend/data/hadith.db" ] || [ -n "$(find "$HD" "$H/backend/scripts/build_hadith_index.py" -newer "$H/backend/data/hadith.db" -print -quit)" ]; then
 	(cd "$H" && venv/bin/python backend/scripts/build_hadith_index.py)
 fi
 (cd frontend && npm ci --silent && npm run build)

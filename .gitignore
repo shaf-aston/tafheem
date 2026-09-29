@@ -235,3 +235,7 @@ frontend/scripts/ears-report.txt
 
 # A 53MB program, fetched not written. tunnel/README.md says where from.
 tunnel/cloudflared.exe
+
+# Hadith collections are fetched on the server by deploy/sync.sh, never committed.
+backend/data/hadith/*.json
+!backend/data/hadith/collections.json

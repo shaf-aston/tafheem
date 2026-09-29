@@ -8,10 +8,12 @@ import { useQuery } from '@tanstack/react-query'
 import { getHadithBook } from '../api'
 import { smartError } from '../lib/apiError'
 import { scrollToEl } from '../lib/scrollToEl'
+import { topicOf } from '../lib/hadithGrade'
 
 import ErrorAlert from './ui/ErrorAlert'
 import RetryButton from './ui/RetryButton'
 import EmptyState from './ui/EmptyState'
+import TopicIcon from './ui/TopicIcon'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import HadithCards from './HadithCards'
 
@@ -28,7 +30,7 @@ function useReadingRail(ref) {
   }, [ref])
 }
 
-export default function HadithList({ collection, book, onBack, accent }) {
+export default function HadithList({ collection, collections, book, onBack, accent }) {
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ['hadith-book', collection, book],
     queryFn: () => getHadithBook(collection, book),
@@ -58,7 +60,8 @@ export default function HadithList({ collection, book, onBack, accent }) {
             &larr; Books
           </button>
           {data && (
-            <h3 className="flex-1 min-w-0 text-sm font-medium text-[var(--text)]">
+            <h3 className="flex-1 min-w-0 flex items-center gap-2 text-sm font-medium text-[var(--text)]">
+              <TopicIcon topic={topicOf(data.book.name)} className="w-4 h-4" />
               {data.book.number}. {data.book.name}
               <span className="ms-2 type-small font-normal text-[var(--text-faint)]">{data.hadiths.length} hadiths</span>
             </h3>
@@ -94,7 +97,7 @@ export default function HadithList({ collection, book, onBack, accent }) {
 
       {data && (data.hadiths.length === 0
         ? <EmptyState>This book has no hadiths yet.</EmptyState>
-        : <HadithCards items={data.hadiths} collection={collection} accent={accent} />)}
+        : <HadithCards items={data.hadiths} collection={collection} collections={collections} accent={accent} />)}
     </div>
   )
 }

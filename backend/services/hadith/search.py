@@ -9,12 +9,13 @@ loosely still finds its hadith.
 """
 from __future__ import annotations
 
+import json
 import sqlite3
 from dataclasses import dataclass
 
 from backend.config import data_path, get_settings
 from backend.services.arabic_text import bare_letters, has_arabic
-from backend.services.hadith.loader import cite_of, is_built
+from backend.services.hadith.loader import is_built
 
 
 @dataclass(frozen=True)
@@ -25,6 +26,7 @@ class Hit:
     part: str
     arabic: str
     english: str
+    grades: list[dict]
 
 
 def search(query: str, limit: int | None = None, collections: tuple[str, ...] = ()) -> list[Hit]:
@@ -49,7 +51,7 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
     try:
         for joiner in (" ", " OR "):
             rows = conn.execute(
-                "SELECT h.collection_id, h.book_number, h.number, h.part, h.arabic, h.english "
+                "SELECT h.collection_id, h.book_number, h.number, h.part, h.arabic, h.english, h.grades "
                 "FROM hadith_fts f JOIN hadith h ON h.rowid = f.rowid "
                 f"WHERE hadith_fts MATCH ?{only} "
                 "ORDER BY rank LIMIT ?",
@@ -63,7 +65,8 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
     finally:
         conn.close()
 
-    return [Hit(collection=c, book=b, number=n, part=p, arabic=a, english=e) for c, b, n, p, a, e in rows]
+    return [Hit(collection=c, book=b, number=n, part=p, arabic=a, english=e, grades=json.loads(g))
+            for c, b, n, p, a, e, g in rows]
 
 
 def _only_collections(collections: tuple[str, ...]) -> tuple[str, tuple[str, ...]]:
@@ -77,8 +80,3 @@ def _term(word: str) -> str:
     word = bare_letters(word) if has_arabic(word) else word
     word = word.replace('"', "")
     return f'"{word}"*' if word.strip() else ""
-
-
-def cite_url(collection: str, number: int) -> str:
-    cite = cite_of(collection)
-    return cite.replace("{number}", str(number)) if cite else ""
