@@ -24,12 +24,11 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getGrowPaths } from '../api'
 import config from '../grow.json'
-import {
-  afterRecitation, groupsOf, loadRecord, reactionTo, saveRecord, score, tiersOf, upNext,
-} from '../lib/grow'
+import { afterRecitation, currentGroup, reactionTo, score, tiersOf, upNext } from '../lib/grow'
 import { moodFrom } from '../lib/mood'
 import { recordAttempt } from '../lib/progress'
 import { sayIn } from '../lib/say'
+import { useRemembered } from '../lib/useRemembered'
 import { useHealth } from '../lib/useHealth'
 import ErrorAlert from './ui/ErrorAlert'
 import SectionHeader from './ui/SectionHeader'
@@ -41,7 +40,9 @@ const say = sayIn('en')
 export default function GrowPanel({ accent, onGo }) {
   const paths = useQuery({ queryKey: ['grow-paths'], queryFn: getGrowPaths, staleTime: Infinity })
   const { status } = useHealth()
-  const [record, setRecord] = useState(loadRecord)
+  // The record is kept as JSON text in this browser only (useRemembered).
+  const [saved, save] = useRemembered(config['storage-key'])
+  const record = useMemo(() => JSON.parse(saved || '{}'), [saved])
   // Undefined until the map has drawn once, so the current group opens after
   // that first frame and grows out, rather than being open from the start.
   const [picked, setPicked] = useState(undefined)
@@ -51,23 +52,15 @@ export default function GrowPanel({ accent, onGo }) {
 
   const tiers = useMemo(() => tiersOf(config.tiers, paths.data), [paths.data])
   const next = useMemo(() => upNext(tiers, record), [tiers, record])
-  const currentGroup = useMemo(
-    () => tiers.flatMap((tier) => (tier.paths.length ? groupsOf(tier) : [])).find((group) => group.steps.includes(next))?.id ?? null,
-    [tiers, next],
-  )
+  const current = useMemo(() => currentGroup(tiers, next), [tiers, next])
   const openId = picked ?? null
-  const done = tiers.flatMap((tier) => tier.paths).reduce((sum, path) => {
-    const one = score(path, record)
-    return { learnt: sum.learnt + one.learnt, total: sum.total + one.total }
-  }, { learnt: 0, total: 0 })
-
-  useEffect(() => { saveRecord(record) }, [record])
+  const done = score(tiers, record)
 
   useEffect(() => {
     if (!paths.data) return undefined
-    const frame = requestAnimationFrame(() => requestAnimationFrame(() => setPicked((was) => (was === undefined ? currentGroup : was))))
+    const frame = requestAnimationFrame(() => requestAnimationFrame(() => setPicked((was) => (was === undefined ? current : was))))
     return () => cancelAnimationFrame(frame)
-  }, [paths.data, currentGroup])
+  }, [paths.data, current])
 
   useEffect(() => {
     if (!reaction) return undefined
@@ -81,7 +74,7 @@ export default function GrowPanel({ accent, onGo }) {
       if (event.key !== 'Escape' || sheet || !openId) return
       const node = document.querySelector(`[data-group="${openId}"]`)
       setPicked(null)
-      node?.focus()
+      node.focus()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -93,7 +86,7 @@ export default function GrowPanel({ accent, onGo }) {
   function recited(clean) {
     const { step, group } = sheet
     streak.current = clean ? streak.current + 1 : 0
-    setRecord((was) => afterRecitation(was, step.id, clean))
+    save(JSON.stringify(afterRecitation(record, step.id, clean)))
     setReaction({ mood: reactionTo(clean, streak.current) })
     recordAttempt({ module: 'grow', item: `${group.path}/${step.id}`, correct: clean, context: { path: group.path } })
   }
@@ -101,33 +94,36 @@ export default function GrowPanel({ accent, onGo }) {
   const mood = reaction?.mood ?? moodFrom({ offline: status === 'error' })
 
   return (
-    <div className="space-y-5">
-      <SectionHeader
-        title="Grow!"
-        arabic="نَبَات"
-        subtitle={say('Learn to say it right, one step at a time. The app listens and marks each word; the rulings are the scholars\'.')}
-        aside={done.total > 0 && (
-          <p className="grow-progress" title={say('Only steps said right on two different days count')}>
-            <span className="tabular-nums">{say('{learnt} of {total} learnt', done)}</span>
-            <span className="grow-bar" aria-hidden="true"><i style={{ width: `${(100 * done.learnt) / done.total}%` }} /></span>
-          </p>
-        )}
-      />
-
-      {paths.isError && <ErrorAlert title={say('Could not load the paths')}>{say('Check the connection and try again.')}</ErrorAlert>}
-
-      {paths.data && (
-        <JourneyMap
-          tiers={tiers}
-          openId={openId}
-          record={record}
-          next={next}
-          mood={mood}
-          onToggle={toggle}
-          onGrown={setPicked}
-          onStep={(step, at) => setSheet({ step, ...at })}
+    <>
+      <div className="space-y-5" inert={Boolean(sheet)}>
+        <SectionHeader
+          title="Grow!"
+          arabic="نَبَات"
+          subtitle={say('Learn to say it right, one step at a time. The app listens and marks each word; the rulings are the scholars\'.')}
+          aside={done.total > 0 && (
+            <p className="grow-progress">
+              <span className="tabular-nums">{say('{learnt} of {total} learnt', done)}</span>
+              <span>{say('Only steps said right on {need} different days count', { need: config['clean-days'] })}</span>
+              <span className="grow-bar" aria-hidden="true"><i style={{ width: `${(100 * done.learnt) / done.total}%` }} /></span>
+            </p>
+          )}
         />
-      )}
+
+        {paths.isError && <ErrorAlert title={say('Could not load the paths')}>{say('Check the connection and try again.')}</ErrorAlert>}
+
+        {paths.data && (
+          <JourneyMap
+            tiers={tiers}
+            openId={openId}
+            record={record}
+            next={next}
+            mood={mood}
+            onToggle={toggle}
+            onGrown={setPicked}
+            onStep={(step, at) => setSheet({ step, ...at })}
+          />
+        )}
+      </div>
 
       {sheet && (
         <StepSheet
@@ -136,7 +132,7 @@ export default function GrowPanel({ accent, onGo }) {
           from={sheet.el}
           state={sheet.state}
           tier={sheet.tier}
-          before={tiers[sheet.i - 1] ?? null}
+          before={tiers[sheet.i - 1]}
           record={record}
           accent={accent}
           onRecited={recited}
@@ -144,6 +140,6 @@ export default function GrowPanel({ accent, onGo }) {
           onClosed={closed}
         />
       )}
-    </div>
+    </>
   )
 }

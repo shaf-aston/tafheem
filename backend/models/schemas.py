@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -947,11 +948,12 @@ class GrowStep(BaseModel):
 
 class GrowGroup(BaseModel):
     """One node on the map: a few steps that belong together. `steps` are step
-    ids, and `icon` names the picture the page draws for it."""
+    ids, and `icon` names the picture the page draws for it (the figures in
+    the page's grow/icons.jsx; one it lacks would draw nothing)."""
     id: str
     title: str
     arabic: str = ""
-    icon: str
+    icon: Literal["stand", "bow", "prostrate", "sit", "book", "lock"]
     steps: list[str]
 
 

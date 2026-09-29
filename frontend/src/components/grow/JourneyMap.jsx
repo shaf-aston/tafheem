@@ -15,7 +15,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import config from '../../grow.json'
-import { groupsOf, nodeState, unlocked } from '../../lib/grow'
+import { daysOf, groupsOf, nodeState, unlocked } from '../../lib/grow'
+import { scrollToEl } from '../../lib/scrollToEl'
 import { sayIn } from '../../lib/say'
 import ArabicText from '../ui/ArabicText'
 import Mascot from '../ui/Mascot'
@@ -31,9 +32,9 @@ const WORDS = {
 }
 const BEATS = config['unlock-ms']
 
-/** No motion wanted: the reader's own setting, or the Animations switch. */
+/** No motion wanted: the reader's own setting, or the Animations switch. Only the unlock sequence, which JS times, asks. */
 const still = () =>
-  globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ||
+  matchMedia('(prefers-reduced-motion: reduce)').matches ||
   Number(getComputedStyle(document.documentElement).getPropertyValue('--motion-scale')) === 0
 
 /** How much of a group is learnt, as a ring round its node. */
@@ -80,7 +81,7 @@ function Row({ group, open, isOpen, record, next, mood, onToggle, onStep }) {
   const steps = group.steps
   const state = nodeState(steps, record, open)
   const learnt = steps.filter((step) => nodeState([step], record, open) === 'learnt').length
-  const now = open && next != null && steps.includes(next)
+  const now = open && steps.includes(next)
 
   return (
     <div className={`grow-row${isOpen ? ' grow-row-open' : ''}`} data-now={now ? '' : undefined}>
@@ -112,20 +113,17 @@ function Row({ group, open, isOpen, record, next, mood, onToggle, onStep }) {
           <svg className="grow-branch" aria-hidden="true">
             <line x1="0" y1="48" x2="100%" y2="48" pathLength="1" />
           </svg>
-          {steps.map((step, i) => {
-            const cleanDays = record[step.id]?.cleanDays?.length ?? 0
-            return (
-              <Item
-                key={step.id}
-                step={step}
-                i={i}
-                state={nodeState([step], record, open)}
-                now={step === next}
-                days={say('{done} of {need} days', { done: cleanDays, need: config['clean-days'] })}
-                onOpen={(picked, el, at) => onStep(picked, { el, group, state: at })}
-              />
-            )
-          })}
+          {steps.map((step, i) => (
+            <Item
+              key={step.id}
+              step={step}
+              i={i}
+              state={nodeState([step], record, open)}
+              now={step === next}
+              days={say('{done} of {need} days', { done: daysOf(record, step.id), need: config['clean-days'] })}
+              onOpen={(picked, el, at) => onStep(picked, { el, group, state: at })}
+            />
+          ))}
         </div>
       </div>
     </div>
@@ -140,7 +138,7 @@ function Row({ group, open, isOpen, record, next, mood, onToggle, onStep }) {
  */
 function Plate({ tier, i, open, openId, record, next, mood, onToggle, onStep, onGrown }) {
   const groups = groupsOf(tier)
-  const first = groups[0].id
+  const first = groups[0]?.id
   const [was, setWas] = useState(open)
   const [beat, setBeat] = useState(0)
   const plate = useRef(null)
@@ -154,7 +152,7 @@ function Plate({ tier, i, open, openId, record, next, mood, onToggle, onStep, on
 
   useEffect(() => {
     if (!beat) return undefined
-    if (beat === 1) plate.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+    if (beat === 1) scrollToEl(plate.current, 'center')
     const wait = setTimeout(() => {
       if (beat < BEATS.length) return setBeat(beat + 1)
       setBeat(0)
@@ -210,7 +208,7 @@ function Plate({ tier, i, open, openId, record, next, mood, onToggle, onStep, on
 export default function JourneyMap({ tiers, openId, record, next, mood, onToggle, onStep, onGrown }) {
   const toggle = useCallback((id, el) => {
     onToggle(id)
-    if (openId !== id) el.closest('.grow-row')?.scrollIntoView({ block: 'nearest', behavior: still() ? 'auto' : 'smooth' })
+    if (openId !== id) scrollToEl(el.closest('.grow-row'), 'nearest')
   }, [onToggle, openId])
 
   return (

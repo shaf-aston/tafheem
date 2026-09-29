@@ -25,15 +25,13 @@ import { moodFrom } from './mood'
 import { soundsTheSame } from './soundalike'
 import recite from '../recite.json'
 
-export { wordsOf }
-
 /**
  * A step as one run of words, and where each ayah of it starts in that run,
  * so the ear's scores for an ayah land back on that ayah's words. `ayahText`
  * maps "1:2" to its printed Arabic; a phrase step needs none.
  */
-export const pageOf = (step, ayahText = {}) => {
-  if (!step?.ayahs?.length) return { words: wordsOf(step?.arabic), ayahs: [] }
+export const pageOf = (step, ayahText) => {
+  if (!step.ayahs.length) return { words: wordsOf(step.arabic), ayahs: [] }
   const words = []
   const ayahs = []
   for (const key of step.ayahs) {
@@ -63,7 +61,7 @@ const oneWord = (printed, heard) => {
  * bySound never lets that alone make it red). Nothing of the step heard at
  * all marks every word "not said"; the sound can still rescue each of them.
  */
-export const markRecitation = (words, heard, sure = [], level = 'standard') => {
+const markRecitation = (words, heard, sure, level) => {
   const said = wordsHeard(heard)
   let marks
   if (words.length < recite['anchor-words']) {
@@ -79,13 +77,23 @@ export const markRecitation = (words, heard, sure = [], level = 'standard') => {
 }
 
 /** Whether every word came back right. "Not sure" is not right. */
-export const isClean = (marks) =>
-  Boolean(marks?.words?.length) && marks.words.every((mark) => mark.state === SAID)
+export const isClean = (marks) => marks.words.length > 0 && marks.words.every((mark) => mark.state === SAID)
+
+/**
+ * The whole verdict on one recitation. `sure` is null when the sound could not
+ * be checked, and clean also needs the sound weighed for every word: a run the
+ * ear could not check is shown and never counted.
+ */
+export const judge = (words, text, sure, level) => {
+  const weighed = sure != null && words.every((_, i) => sure[i] != null)
+  const marks = markRecitation(words, text, sure ?? [], level)
+  return { marks, weighed, clean: weighed && isClean(marks) }
+}
 
 /** How many words were each state, for the one line said under a recitation. */
 export const tally = (marks) => {
   const out = { [SAID]: 0, [CHECK]: 0, [WRONG]: 0, [MISSED]: 0 }
-  for (const mark of marks?.words ?? []) if (mark.state in out) out[mark.state] += 1
+  for (const mark of marks.words) if (mark.state in out) out[mark.state] += 1
   return out
 }
 
@@ -106,14 +114,10 @@ export const afterRecitation = (record, stepId, clean, day = today()) => {
   return { ...record, [stepId]: { tries: was.tries + 1, cleanDays } }
 }
 
-export const isLearnt = (record, stepId) =>
-  (record[stepId]?.cleanDays?.length ?? 0) >= config['clean-days']
+/** How many different days a step has been said clean. */
+export const daysOf = (record, stepId) => record[stepId]?.cleanDays.length ?? 0
 
-/** Learnt steps of a path over all its steps. Only learnt counts. */
-export const score = (path, record) => {
-  const steps = path?.steps ?? []
-  return { learnt: steps.filter((step) => isLearnt(record, step.id)).length, total: steps.length }
-}
+export const isLearnt = (record, stepId) => daysOf(record, stepId) >= config['clean-days']
 
 /**
  * Where a circle on the map stands, from the one record. `steps` is the single
@@ -128,7 +132,7 @@ export const score = (path, record) => {
 export const nodeState = (steps, record, open = true) => {
   if (!open) return 'locked'
   if (steps.length && steps.every((step) => isLearnt(record, step.id))) return 'learnt'
-  const started = (step) => (record[step.id]?.tries ?? 0) > 0 || (record[step.id]?.cleanDays?.length ?? 0) > 0
+  const started = (step) => (record[step.id]?.tries ?? 0) > 0 || daysOf(record, step.id) > 0
   return steps.some(started) ? 'started' : 'open'
 }
 
@@ -137,6 +141,12 @@ export const tiersOf = (tiers, paths = []) =>
   tiers.map((tier) => ({ ...tier, paths: paths.filter((path) => path.tier === tier.id) }))
 
 const stepsOf = (tier) => tier.paths.flatMap((path) => path.steps)
+
+/** Learnt steps over all steps of every path. Only learnt counts. */
+export const score = (tiers, record) => {
+  const steps = tiers.flatMap(stepsOf)
+  return { learnt: steps.filter((step) => isLearnt(record, step.id)).length, total: steps.length }
+}
 
 /**
  * Whether tier `i` is open: it has a path, and the tier before it is open and
@@ -154,8 +164,8 @@ export const unlocked = (tiers, i, record) =>
  */
 export const groupsOf = (tier) => {
   if (!tier.paths.length) {
-    const steps = (tier.proposed ?? []).map(({ about, ...one }) => ({ ...one, meaning: about, proposed: true }))
-    return [{ id: `${tier.id}-proposed`, title: 'Steps', arabic: '', icon: 'lock', steps }]
+    const steps = tier.proposed.map(({ about, ...one }) => ({ ...one, meaning: about, proposed: true }))
+    return steps.length ? [{ id: `${tier.id}-proposed`, title: 'Steps', arabic: '', icon: 'lock', steps }] : []
   }
   return tier.paths.flatMap((path) => path.groups.map((group) => ({
     ...group,
@@ -163,6 +173,10 @@ export const groupsOf = (tier) => {
     steps: group.steps.map((id) => path.steps.find((step) => step.id === id)),
   })))
 }
+
+/** The group holding the step to work on next, so the map can open it. */
+export const currentGroup = (tiers, next) =>
+  tiers.flatMap(groupsOf).find((group) => group.steps.includes(next))?.id ?? null
 
 /**
  * Whether saying this step clean just now is the one that makes it learnt, so
@@ -186,39 +200,4 @@ export const upNext = (tiers, record) => {
     if (step) return step
   }
   return null
-}
-
-/** Only what a record should hold; anything else in storage is dropped. */
-const tidy = (raw) => {
-  const out = {}
-  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return out
-  for (const [id, entry] of Object.entries(raw)) {
-    const tries = Number.isInteger(entry?.tries) && entry.tries >= 0 ? entry.tries : 0
-    const cleanDays = Array.isArray(entry?.cleanDays)
-      ? [...new Set(entry.cleanDays.filter((day) => /^\d{4}-\d{2}-\d{2}$/.test(day)))]
-      : []
-    out[id] = { tries, cleanDays }
-  }
-  return out
-}
-
-/**
- * The reader's record, kept in this browser only. Storage that is missing,
- * blocked or holding something unreadable is an empty record, never an error:
- * nobody should lose the page because a private window forgot their progress.
- */
-export const loadRecord = (storage = globalThis.localStorage) => {
-  try {
-    return tidy(JSON.parse(storage?.getItem(config['storage-key']) ?? '{}'))
-  } catch {
-    return {}
-  }
-}
-
-export const saveRecord = (record, storage = globalThis.localStorage) => {
-  try {
-    storage?.setItem(config['storage-key'], JSON.stringify(record))
-  } catch {
-    // Full or blocked: the page carries on with what it has in memory.
-  }
 }

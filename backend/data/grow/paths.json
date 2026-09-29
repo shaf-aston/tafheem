@@ -236,7 +236,7 @@
           "arabic": "السور",
           "icon": "book",
           "steps": [
-            "fatiha",
+            "surah-fatiha",
             "ikhlas",
             "falaq",
             "nas"
@@ -257,7 +257,7 @@
       ],
       "steps": [
         {
-          "id": "fatiha",
+          "id": "surah-fatiha",
           "title": "Al-Fatiha",
           "ayahs": [
             "1:1",

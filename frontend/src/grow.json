@@ -7,9 +7,9 @@
   "_storage-key": "Where the reader's record is kept in this browser. Nothing of it leaves the device except the anonymous attempt lib/progress.js already sends for every module.",
   "storage-key": "grow-record",
 
-  "_tiers": "The levels of the map, in the order they are climbed. A path in paths.json joins a tier by naming its id. A tier opens once every step of the one before it is learnt, and one with no path yet stays locked. `proposed` are the topics planned for a tier that has no path: shown locked so the road ahead is visible, and not steps anyone can practise. Adding a tier, or giving one its first path, is data only.",
+  "_tiers": "The levels of the map, in the order they are climbed. A path in paths.json joins a tier by naming its id. A tier opens once every step of the one before it is learnt, and one with no path yet stays locked. `proposed` (required on a tier with no path, empty is fine) are the topics planned for it: shown locked so the road ahead is visible, and not steps anyone can practise. Adding a tier, or giving one its first path, is data only.",
   "tiers": [
-    { "id": "basics", "title": "Basics", "arabic": "الأساسيات" },
+    { "id": "basics", "title": "Basics", "arabic": "الأساسيات", "proposed": [] },
     {
       "id": "intermediate",
       "title": "Intermediate",

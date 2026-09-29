@@ -18,6 +18,12 @@ const KINDS = {
     byPlace((await checkReading(recording, { heard, check: step.ayahs })).sure, page.ayahs),
 }
 
-export const kindOf = (step) => (step.ayahs?.length ? 'ayahs' : 'phrase')
+const kindOf = (step) => (step.ayahs.length ? 'ayahs' : 'phrase')
 
-export const checkStep = (step, recording, heard, page) => KINDS[kindOf(step)](recording, heard, step, page)
+export async function checkStep(step, recording, heard, page) {
+  try {
+    return await KINDS[kindOf(step)](recording, heard, step, page)
+  } catch {
+    return null
+  }
+}

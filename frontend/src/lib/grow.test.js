@@ -1,57 +1,65 @@
 import { describe, expect, it } from 'vitest'
 import { CHECK, MISSED, SAID, WRONG } from './follow'
 import {
-  afterRecitation, becomesLearnt, groupsOf, isClean, isLearnt, loadRecord, markRecitation, nodeState, pageOf, reactionTo, saveRecord, score, tally, tiersOf,
+  afterRecitation, becomesLearnt, currentGroup, daysOf, groupsOf, isLearnt, judge, nodeState, pageOf, reactionTo, score, tally, tiersOf,
   today, unlocked, upNext,
 } from './grow'
 
 const RUKU = ['سُبْحَانَ', 'رَبِّيَ', 'الْعَظِيمِ']
 const states = (marks) => marks.words.map((mark) => mark.state)
+// Marks only, at the reader's own checking level unless one is named.
+const mark = (words, text, sure, level = 'standard') => judge(words, text, sure, level).marks
 
 describe('marking one recitation', () => {
   it('marks every word right when every word was said and the sound agrees', () => {
-    const marks = markRecitation(RUKU, 'سبحان ربي العظيم', [0.99, 0.99, 0.99])
+    const marks = mark(RUKU, 'سبحان ربي العظيم', [0.99, 0.99, 0.99])
     expect(states(marks)).toEqual([SAID, SAID, SAID])
-    expect(isClean(marks)).toBe(true)
+    expect(judge(RUKU, 'سبحان ربي العظيم', [0.99, 0.99, 0.99], 'standard')).toMatchObject({ clean: true, weighed: true })
   })
 
   it('never calls a doubtful word right, so a run with one is not clean', () => {
     // Heard as another word, and the sound half agrees: at beginner that is
     // doubt, orange, and not a pass.
-    const marks = markRecitation(RUKU, 'سبحان ربي الكريم', [0.99, 0.99, 0.8], 'beginner')
+    const marks = mark(RUKU, 'سبحان ربي الكريم', [0.99, 0.99, 0.8], 'beginner')
     expect(states(marks)).toEqual([SAID, SAID, CHECK])
-    expect(isClean(marks)).toBe(false)
+    expect(judge(RUKU, 'سبحان ربي الكريم', [0.99, 0.99, 0.8], 'beginner').clean).toBe(false)
+  })
+
+  it('is never clean when the sound was not weighed for every word, however right it reads', () => {
+    for (const sure of [null, [], [0.99, 0.99]]) {
+      expect(judge(RUKU, 'سبحان ربي العظيم', sure, 'standard')).toMatchObject({ clean: false, weighed: false })
+    }
   })
 
   it('does not accuse a word the sound never checked; it is only not sure', () => {
-    const marks = markRecitation(RUKU, 'سبحان ربي الكريم', [])
+    const marks = mark(RUKU, 'سبحان ربي الكريم', [])
     expect(states(marks)[2]).toBe(CHECK)
   })
 
   it('marks a word wrong when the sound says so', () => {
-    const marks = markRecitation(RUKU, 'سبحان ربي الكريم', [0.99, 0.99, 0.01])
+    const marks = mark(RUKU, 'سبحان ربي الكريم', [0.99, 0.99, 0.01])
     expect(states(marks)[2]).toBe(WRONG)
   })
 
   it('marks a one-word step, which the page follower would never start on', () => {
-    expect(states(markRecitation(['آمِينَ'], 'امين', [0.99]))).toEqual([SAID])
-    expect(states(markRecitation(['آمِينَ'], 'قال', [0.01]))).toEqual([WRONG])
+    expect(states(mark(['آمِينَ'], 'امين', [0.99]))).toEqual([SAID])
+    expect(states(mark(['آمِينَ'], 'قال', [0.01]))).toEqual([WRONG])
   })
 
   it('says nothing of the step was heard as not said, and lets the sound rescue it', () => {
-    expect(states(markRecitation(RUKU, 'موسيقى', [0.01, 0.01, 0.01]))).toEqual([MISSED, MISSED, MISSED])
-    expect(states(markRecitation(RUKU, 'موسيقى', [0.99, 0.99, 0.99]))).toEqual([SAID, SAID, SAID])
+    expect(states(mark(RUKU, 'موسيقى', [0.01, 0.01, 0.01]))).toEqual([MISSED, MISSED, MISSED])
+    expect(states(mark(RUKU, 'موسيقى', [0.99, 0.99, 0.99]))).toEqual([SAID, SAID, SAID])
   })
 
   it('counts each state for the line under the recitation', () => {
-    const marks = markRecitation(RUKU, 'سبحان ربك العظيم', [0.99, 0.8, 0.01], 'beginner')
+    const marks = mark(RUKU, 'سبحان ربك العظيم', [0.99, 0.8, 0.01], 'beginner')
     expect(tally(marks)).toEqual({ [SAID]: 1, [CHECK]: 1, [WRONG]: 1, [MISSED]: 0 })
   })
 })
 
 describe('a step as words', () => {
   it('splits a phrase into its written words', () => {
-    expect(pageOf({ arabic: 'سُبْحَانَ رَبِّيَ الْعَظِيمِ' }).words).toEqual(RUKU)
+    expect(pageOf({ arabic: 'سُبْحَانَ رَبِّيَ الْعَظِيمِ', ayahs: [] }).words).toEqual(RUKU)
   })
 
   it('runs ayahs together and remembers where each one starts', () => {
@@ -62,7 +70,7 @@ describe('a step as words', () => {
 })
 
 describe('learnt and the score', () => {
-  const PATH = { steps: [{ id: 'takbir' }, { id: 'ruku' }] }
+  const TIERS = [{ paths: [{ steps: [{ id: 'takbir' }, { id: 'ruku' }] }] }]
 
   it('needs clean runs on two different days, not two runs on one day', () => {
     let record = afterRecitation({}, 'takbir', true, '2026-09-28')
@@ -71,6 +79,8 @@ describe('learnt and the score', () => {
     record = afterRecitation(record, 'takbir', true, '2026-09-29')
     expect(isLearnt(record, 'takbir')).toBe(true)
     expect(record.takbir.tries).toBe(3)
+    expect(daysOf(record, 'takbir')).toBe(2)
+    expect(daysOf(record, 'never')).toBe(0)
   })
 
   it('counts a run that was not clean as a try and nothing more', () => {
@@ -81,38 +91,13 @@ describe('learnt and the score', () => {
   it('scores only what is learnt, never what was tried', () => {
     let record = afterRecitation({}, 'ruku', false, '2026-09-28')
     record = afterRecitation(record, 'ruku', false, '2026-09-29')
-    expect(score(PATH, record)).toEqual({ learnt: 0, total: 2 })
+    expect(score(TIERS, record)).toEqual({ learnt: 0, total: 2 })
     record = afterRecitation(afterRecitation(record, 'takbir', true, '2026-09-28'), 'takbir', true, '2026-09-30')
-    expect(score(PATH, record)).toEqual({ learnt: 1, total: 2 })
+    expect(score(TIERS, record)).toEqual({ learnt: 1, total: 2 })
   })
 
   it('writes today as the reader\'s own date', () => {
     expect(today(new Date(2026, 0, 5))).toBe('2026-01-05')
-  })
-})
-
-describe('the record in storage', () => {
-  const memory = () => {
-    const kept = {}
-    return { getItem: (k) => kept[k] ?? null, setItem: (k, v) => { kept[k] = v } }
-  }
-
-  it('comes back as it was saved', () => {
-    const storage = memory()
-    const record = afterRecitation({}, 'takbir', true, '2026-09-28')
-    saveRecord(record, storage)
-    expect(loadRecord(storage)).toEqual(record)
-  })
-
-  it('is empty, not an error, when storage holds nonsense or throws', () => {
-    expect(loadRecord({ getItem: () => '{not json' })).toEqual({})
-    expect(loadRecord({ getItem: () => { throw new Error('blocked') } })).toEqual({})
-    expect(() => saveRecord({}, { setItem: () => { throw new Error('full') } })).not.toThrow()
-  })
-
-  it('drops what a record should not hold', () => {
-    const storage = { getItem: () => JSON.stringify({ a: { tries: -3, cleanDays: ['2026-09-28', '2026-09-28', 'x', 5] } }) }
-    expect(loadRecord(storage)).toEqual({ a: { tries: 0, cleanDays: ['2026-09-28'] } })
   })
 })
 
@@ -122,7 +107,7 @@ describe('the map', () => {
   const step = (id) => ({ id })
   const PATH = { id: 'salah', tier: 'basics', steps: [step('takbir'), step('ruku')], groups: [{ id: 'g', steps: ['takbir', 'ruku'] }] }
   const TIERS = tiersOf(
-    [{ id: 'basics' }, { id: 'next', proposed: [{ id: 'p', title: 'P', about: 'About P' }] }, { id: 'last' }],
+    [{ id: 'basics' }, { id: 'next', proposed: [{ id: 'p', title: 'P', about: 'About P' }] }, { id: 'last', proposed: [] }],
     [PATH],
   )
 
@@ -157,6 +142,15 @@ describe('the map', () => {
     const [group] = groupsOf(TIERS[1])
     expect(group.steps).toEqual([{ id: 'p', title: 'P', meaning: 'About P', proposed: true }])
     expect(groupsOf(TIERS[0])[0].steps.map((one) => one.id)).toEqual(['takbir', 'ruku'])
+  })
+
+  it('shows a locked tier with nothing proposed as no groups, not an empty one', () => {
+    expect(groupsOf(TIERS[2])).toEqual([])
+  })
+
+  it('finds the group holding the step to work on, and none when there is none', () => {
+    expect(currentGroup(TIERS, TIERS[0].paths[0].steps[1])).toBe('g')
+    expect(currentGroup(TIERS, null)).toBeNull()
   })
 
   it('points at the first step not yet learnt, and at none once the open tiers are done', () => {
