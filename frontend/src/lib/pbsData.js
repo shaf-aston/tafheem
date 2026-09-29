@@ -19,7 +19,6 @@ export const CHARTS = [
 
 /* ---------------------------------------------------------- 06 */
 { id:"06", group:"الآلات · Instrumental", ar:"عُلوم اللُّغة", en:"Arabic Language", frame:"البصريون",
-  accent:"#0369a1",
   config:{
   root:{ar:"عُلوم اللُّغة العَرَبِيَّة", en:"Arabic Language Sciences"},
   footnote:[
@@ -53,7 +52,6 @@ export const CHARTS = [
 
 /* ---------------------------------------------------------- 09 */
 { id:"09", group:"الآلات · Instrumental", ar:"المَنطِق", en:"Logic", frame:"آلة, not a Sharʿī science",
-  accent:"#475569",
   config:{
   root:{ar:"المَنطِق", en:"Logic"},
   footnote:[
@@ -77,7 +75,6 @@ export const CHARTS = [
 
 /* ---------------------------------------------------------- 05 */
 { id:"05", group:"النَّقل · Revelation", ar:"عُلوم القُرآن", en:"Qur'anic Sciences", frame:"السيوطي / الزركشي",
-  accent:"#0f766e",
   config:{
   root:{ar:"عُلوم القُرآن", en:"Qur'anic Sciences"},
   footnote:[
@@ -99,7 +96,7 @@ export const CHARTS = [
      kids:[["الأحرُف السَّبعة","The seven modes"],["القِراءات المُتواتِرة","Canonical readings"],
            ["الشاذّ من القِراءات","Non-canonical readings"],["الرُّواة والأسانيد","Transmitters & chains"],
            ["التَّجويد وأحكامه","Rules of articulation"],["الوَقف والابتِداء","Pause & resumption"]]},
-    {ar:"دَلالات النَّظم", en:"Signification of the text", c:{bar:"#0f172a",fill:"#e2e8f0",text:"#0f172a"},
+    {ar:"دَلالات النَّظم", en:"Signification of the text", c:{bar:"#64748b",fill:"#e2e8f0",text:"#0f172a"},
      kids:[["المُحكَم والمُتشابِه","Clear & ambiguous"],["الناسِخ والمَنسوخ","Abrogating & abrogated"],
            ["العامّ والخاصّ","General & particular"],["المُطلَق والمُقَيَّد","Unrestricted & restricted"],
            ["المُجمَل والمُبَيَّن","Undetailed & clarified"],["غَريب القُرآن والوُجوه","Rare words & polysemy"]]},
@@ -115,7 +112,6 @@ export const CHARTS = [
 
 /* ---------------------------------------------------------- 03 */
 { id:"03", group:"النَّقل · Revelation", ar:"عُلوم الحَديث", en:"Hadith Sciences", frame:"ابن الصلاح / ابن حجر",
-  accent:"#b45309",
   config:{
   root:{ar:"عُلوم الحَديث", en:"Hadith Sciences"},
   footnote:[
@@ -132,7 +128,7 @@ export const CHARTS = [
            ["المَوقوف","Traced to a Companion"],["المَقطوع","Traced to a Successor"]]},
     {ar:"باعتِبار القَبول", en:"By acceptance & rejection", c:{bar:"#be123c",fill:"#ffe4e6",text:"#881337"},
      kids:[["الصَّحيح","Sound"],["الحَسَن","Fair"],["الضَّعيف","Weak"]]},
-    {ar:"عُلوم الإسناد", en:"Sciences of the chain", c:{bar:"#0f172a",fill:"#e2e8f0",text:"#0f172a"},
+    {ar:"عُلوم الإسناد", en:"Sciences of the chain", c:{bar:"#64748b",fill:"#e2e8f0",text:"#0f172a"},
      kids:[["الجَرح والتَّعديل","Narrator criticism"],["الرِّجال والطَّبَقات","Narrators & generations"],
            ["التَّحَمُّل والأداء","Receiving & transmitting"],["الاتِّصال والانقِطاع","Continuity & breaks"],
            ["العِلَل والشُّذوذ","Hidden defects & anomaly"],["المُتابَعات والشَّواهِد","Corroborations & witnesses"]]},
@@ -148,7 +144,6 @@ export const CHARTS = [
 
 /* ---------------------------------------------------------- 04 */
 { id:"04", group:"الاعتِقاد · Creed", ar:"العَقيدة", en:"Creed", frame:"الماتريدية",
-  accent:"#1d4ed8",
   config:{
   root:{ar:"العَقيدة", en:"Islamic Creed"},
   footnote:[
@@ -183,14 +178,13 @@ export const CHARTS = [
      kids:[["الإمامة وشُروطها","Leadership & conditions"],["الخِلافة الراشِدة","The Rightly-Guided caliphate"],
            ["عَدالة الصَّحابة","Uprightness of Companions"],["التَّفاضُل بينهم","Their relative merit"],
            ["الفِتنة والتَّوَقُّف","The civil strife"]]},
-    {ar:"الفِرَق والمِلَل", en:"Sects & religions", c:{bar:"#0f172a",fill:"#e2e8f0",text:"#0f172a"},
+    {ar:"الفِرَق والمِلَل", en:"Sects & religions", c:{bar:"#64748b",fill:"#e2e8f0",text:"#0f172a"},
      kids:[["أهل السُّنَّة والجَماعة","Sunni orthodoxy"],["فِرَق القِبلة","Sects of the qibla"],
            ["المِلَل والنِّحَل","Other religions & creeds"],["الرَّدّ على المُخالِفين","Refutation of opponents"]]}
   ]}},
 
 /* ---------------------------------------------------------- 02 */
 { id:"02", group:"الشَّريعة · Law", ar:"أُصول الفِقه", en:"Legal Theory", frame:"Hanafi · طريقة الفقهاء",
-  accent:"#0f766e",
   config:{
   root:{ar:"أُصول الفِقه", en:"Legal Theory & Methodology"},
   footnote:[
@@ -211,7 +205,7 @@ export const CHARTS = [
      kids:[["عُموم اللَّفظ وخُصوصه","Scope: four classes"],["وُضوح الدَّلالة","Clarity: four degrees"],
            ["خَفاء الدَّلالة","Obscurity: four degrees"],["كَيفِيَّة الدَّلالة","Modes of signification"],
            ["البَيان وأقسامه","Clarification & its kinds"]]},
-    {ar:"الحُكم الشَّرعي", en:"The legal ruling", c:{bar:"#0f172a",fill:"#e2e8f0",text:"#0f172a"},
+    {ar:"الحُكم الشَّرعي", en:"The legal ruling", c:{bar:"#64748b",fill:"#e2e8f0",text:"#0f172a"},
      kids:[["الحُكم التَّكليفي","Obligation-creating rulings"],["الحُكم الوَضعي","Declaratory rulings"],
            ["العَزيمة والرُّخصة","Strict rule & dispensation"],["الحاكِم","The Lawgiver"],
            ["المَحكوم فيه","The act ruled upon"],["المَحكوم عليه","The charged subject"],
@@ -227,7 +221,6 @@ export const CHARTS = [
 
 /* ---------------------------------------------------------- 01 */
 { id:"01", group:"الشَّريعة · Law", ar:"الفِقه", en:"Jurisprudence", frame:"Hanafi · القدوري",
-  accent:"#0f172a",
   config:{
   root:{ar:"الفِقْه", en:"Islamic Jurisprudence"},
   footnote:[
@@ -255,7 +248,7 @@ export const CHARTS = [
            ["الشُّفعة والقِسمة","Pre-emption & Division"],["اللُّقَطة وإحياء المَوات","Found Property & Land Revival"],
            ["الشِّرب والحيطان","Water Rights & Easements"],["الحَجر والمأذون والإكراه","Interdiction, Licence & Duress"],
            ["اللَّقيط والآبق والمفقود","Foundling, Fugitive & Missing"]]},
-    {ar:"الفَرائض والوَصايا", en:"Estates & Bequests", c:{bar:"#0f172a",fill:"#e2e8f0",text:"#0f172a"},
+    {ar:"الفَرائض والوَصايا", en:"Estates & Bequests", c:{bar:"#64748b",fill:"#e2e8f0",text:"#0f172a"},
      kids:[["تَجهيز التَّرِكة والدُّيون","Estate Settlement & Debts"],["الوَصايا","Bequests & Wills"],
            ["الفَرائض","Division of Inheritance"]]},
     {ar:"الجِنايات والعُقوبات", en:"Crimes & Punishments", c:{bar:"#be123c",fill:"#ffe4e6",text:"#881337"},
@@ -276,7 +269,6 @@ export const CHARTS = [
 
 /* ---------------------------------------------------------- 07 */
 { id:"07", group:"الشَّريعة · Law", ar:"القَواعِد الفِقهِيّة", en:"Legal Maxims", frame:"Hanafi · ابن نجيم / المجلة",
-  accent:"#be123c",
   config:{
   root:{ar:"القَواعِد الفِقهِيَّة", en:"Legal Maxims"},
   footnote:[
@@ -305,7 +297,7 @@ export const CHARTS = [
      kids:[["استِعمال الناس حُجّة","Common usage is authority"],["المَعروف كالمَشروط","Custom equals stipulation"],
            ["التَّعيين بالعُرف كالنَّصّ","Custom specifies like text"],["اعتِبار العادة باطِّرادها","Custom must be consistent"],
            ["تَغَيُّر الأحكام بالزَّمان","Rulings change with times"]]},
-    {ar:"الضَّوابِط والنَّظائر", en:"Chapter-rules & parallels", c:{bar:"#0f172a",fill:"#e2e8f0",text:"#0f172a"},
+    {ar:"الضَّوابِط والنَّظائر", en:"Chapter-rules & parallels", c:{bar:"#64748b",fill:"#e2e8f0",text:"#0f172a"},
      kids:[["القاعِدة والضابِط","Maxim vs chapter-rule"],["الضَّوابِط المَذهَبية","Madhhab-specific rules"],
            ["الفُروق","Distinctions"],["الأشباه والنَّظائر","Parallels & likenesses"],
            ["الاستِثناءات","Exceptions to the maxims"]]}
@@ -313,7 +305,6 @@ export const CHARTS = [
 
 /* ---------------------------------------------------------- 08 */
 { id:"08", group:"السُّلوك · The Path", ar:"التَّزكية", en:"Purification of the Soul", frame:"الغزالي · الإحياء",
-  accent:"#6d28d9",
   config:{
   root:{ar:"التَّزكِية", en:"Purification of the Soul"},
   footnote:[
@@ -330,7 +321,7 @@ export const CHARTS = [
      kids:[["الكِبر والعُجب","Arrogance & vanity"],["الحَسَد","Envy"],["الرِّياء","Ostentation"],
            ["الغَضَب والحِقد","Anger & rancour"],["حُبّ الدُّنيا والمال","Love of world & wealth"],
            ["آفات اللِّسان","Vices of the tongue"],["شَهوة البَطن والفَرج","Appetites of belly & loins"]]},
-    {ar:"المُنجِيات", en:"Saving virtues", c:{bar:"#0f172a",fill:"#e2e8f0",text:"#0f172a"},
+    {ar:"المُنجِيات", en:"Saving virtues", c:{bar:"#64748b",fill:"#e2e8f0",text:"#0f172a"},
      kids:[["التَّوبة","Repentance"],["الصَّبر والشُّكر","Patience & gratitude"],["الخَوف والرَّجاء","Fear & hope"],
            ["الزُّهد والفَقر","Renunciation & poverty"],["التَّوَكُّل","Reliance on God"],
            ["الإخلاص والصِّدق","Sincerity & truthfulness"],["المَحَبّة والرِّضا","Love & contentment"],

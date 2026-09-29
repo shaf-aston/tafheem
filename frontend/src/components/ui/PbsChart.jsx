@@ -38,11 +38,11 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onSelect
       </defs>
 
       <g className="pbs-rise">
-        <rect x={L.root.x} y={L.root.y} width={L.root.w} height={L.root.h} rx="14" fill="#1e293b" />
-        <text x={L.root.cx} y={L.root.textY} textAnchor="middle" fontSize="28" fontWeight="700" fill="#fff" lang="ar" dir="rtl">
+        <rect x={L.root.x} y={L.root.y} width={L.root.w} height={L.root.h} rx="14" fill="var(--surface-hi)" />
+        <text x={L.root.cx} y={L.root.textY} textAnchor="middle" fontSize="28" fontWeight="700" fill="var(--text)" lang="ar" dir="rtl">
           {config.root.ar}
         </text>
-        <text x={L.root.cx} y={L.root.subTextY} textAnchor="middle" fontSize="12" fill="#fff" fillOpacity=".85">
+        <text x={L.root.cx} y={L.root.subTextY} textAnchor="middle" fontSize="12" fill="var(--text)" fillOpacity=".85">
           ({config.root.en})
         </text>
       </g>
@@ -69,10 +69,10 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onSelect
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelectBranch?.(i) } }}
             >
               <rect x={box.x} y={box.y} width={box.w} height={box.h} rx="12" fill={b.c.bar} />
-              <text x={box.cx} y={box.textY} textAnchor="middle" fontSize="17" fontWeight="700" fill="#fff" lang="ar" dir="rtl">
+              <text x={box.cx} y={box.textY} textAnchor="middle" fontSize="17" fontWeight="700" fill="var(--text)" lang="ar" dir="rtl">
                 {b.ar}
               </text>
-              <text x={box.cx} y={box.subTextY} textAnchor="middle" fontSize="10" fill="#fff" fillOpacity=".9">
+              <text x={box.cx} y={box.subTextY} textAnchor="middle" fontSize="10" fill="var(--text)" fillOpacity=".9">
                 ({b.en})
               </text>
             </g>

@@ -23,7 +23,6 @@ import PbsChart from './PbsChart'
 import PbsDetail from './PbsDetail'
 import './pbs.css'
 import { CHARTS } from '../../lib/pbsData'
-import { readableAccent } from '../../lib/pbsAccent'
 
 const ZOOM_MIN = 0.7
 const ZOOM_MAX = 2.2
@@ -68,9 +67,9 @@ export default function MapPanel({ open, onClose }) {
       return // let the dialog's own Escape close it
     }
     if (!current) return
-    const i = CHARTS.findIndex((c) => c.id === current.id)
-    if (e.key === 'ArrowRight' && i < CHARTS.length - 1) goChart(CHARTS[i + 1].id)
-    if (e.key === 'ArrowLeft' && i > 0) goChart(CHARTS[i - 1].id)
+    const i = ORDER.findIndex((c) => c.id === current.id)
+    if (e.key === 'ArrowRight' && i < ORDER.length - 1) goChart(ORDER[i + 1].id)
+    if (e.key === 'ArrowLeft' && i > 0) goChart(ORDER[i - 1].id)
   }
 
   return (
@@ -142,14 +141,18 @@ export default function MapPanel({ open, onClose }) {
   )
 }
 
+/** The charts as the board shows them: by group, then by id. The arrow keys walk this same order. */
+const GROUPS = []
+for (const chart of CHARTS) {
+  let g = GROUPS.find((x) => x.name === chart.group)
+  if (!g) { g = { name: chart.group, items: [] }; GROUPS.push(g) }
+  g.items.push(chart)
+}
+for (const g of GROUPS) g.items.sort((a, b) => a.id.localeCompare(b.id))
+const ORDER = GROUPS.flatMap((g) => g.items)
+
 /** The nine-card overview: one science per card, click opens its chart. */
 function MapIndex({ onOpen }) {
-  const groups = []
-  for (const chart of CHARTS) {
-    let g = groups.find((g) => g.name === chart.group)
-    if (!g) { g = { name: chart.group, items: [] }; groups.push(g) }
-    g.items.push(chart)
-  }
 
   // A running index across every card, groups included, so the stagger reads
   // top to bottom the way the eye does, not restarting at each group.
@@ -162,7 +165,7 @@ function MapIndex({ onOpen }) {
         never a باب lifted from elsewhere. Click a science to see its tree, then any node for what
         sits inside it.
       </p>
-      {groups.map((g) => (
+      {GROUPS.map((g) => (
         <section key={g.name} className="mb-7">
           <h3 className="type-tiny tracking-widest font-bold text-[var(--text-faint)] uppercase mb-2.5">
             {g.name}
@@ -170,10 +173,7 @@ function MapIndex({ onOpen }) {
           <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(14rem, 1fr))' }}>
             {g.items.map((chart) => {
               const delay = seen++
-              // The border/ghost stay at the chart's own accent (fine at any
-              // lightness, they're not text); the headline needs to read, so
-              // it gets the floor.
-              const fg = readableAccent(chart.accent)
+              const fg = `var(--science-${chart.id})`
               return (
                 <button
                   key={chart.id}
@@ -181,9 +181,9 @@ function MapIndex({ onOpen }) {
                   onClick={() => onOpen(chart.id)}
                   className="pbs-card pbs-rise text-right p-4 rounded-[var(--radius-md)] border border-[var(--border)]
                     border-r-4 bg-[var(--surface-hi)]"
-                  style={{ borderRightColor: chart.accent, '--d': `${delay * 55}ms` }}
+                  style={{ borderRightColor: fg, '--d': `${delay * 55}ms` }}
                 >
-                  <span className="pbs-ghost" style={{ color: chart.accent }} aria-hidden="true">{chart.id}</span>
+                  <span className="pbs-ghost" style={{ color: fg }} aria-hidden="true">{chart.id}</span>
                   <span className="pbs-go text-[var(--text-faint)]" aria-hidden="true">↗</span>
                   <p className="type-tiny tracking-widest font-bold text-[var(--text-faint)] relative">{chart.id}</p>
                   <ArabicText as="p" size="lg" className="my-0.5 relative" style={{ color: fg }}>
