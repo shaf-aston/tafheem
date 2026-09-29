@@ -14,7 +14,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getAyahEditions, getTimelineAsbab } from '../api'
+import { asbabQuery, getAyahEditions } from '../api'
 import { smartError } from '../lib/apiError'
 import { bySurah, matching, needsSearch, quotedWords, reportsIn } from '../lib/asbabList'
 
@@ -35,11 +35,7 @@ const HOW = {
 
 export default function AsbabPanel({ section, event, accent, chosen, onChoose, onGo }) {
   const [query, setQuery] = useState('')
-  const list = useQuery({
-    queryKey: ['timeline-asbab', section.id, event.id],
-    queryFn: () => getTimelineAsbab(section.id, event.id),
-    staleTime: Infinity,
-  })
+  const list = useQuery(asbabQuery(section.id, event.id))
 
   if (list.isPending) return <Skeleton className="h-24 w-full" />
   if (list.isError) {
@@ -136,7 +132,6 @@ function OneReport({ report, count, books, source, accent, onBack, onGo }) {
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ['asbab-passage', report.ref],
     queryFn: () => getAyahEditions(report.surah, report.ayah, [books.arabic, books.english]),
-    staleTime: Infinity,
   })
   const passageOf = (id) => data?.passages?.find((passage) => passage.edition === id)
   const english = reportsIn(passageOf(books.english)?.text)

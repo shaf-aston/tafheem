@@ -9,9 +9,12 @@
  * edge and said in words for a screen reader, as the old line did.
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 
 import ArabicText from './ui/ArabicText'
 import TileCard from './ui/TileCard'
+import { asbabQuery } from '../api'
+import { onHover } from '../lib/warm'
 import { eventIcon, sectionLook } from '../lib/timelineLayout'
 
 const WEAK = 'weakchain'
@@ -20,6 +23,7 @@ const EDGE = 4     // px of slack before an end counts as reached
 
 export default function TimelineRail({ section, library, chosenId, onPick }) {
   const strip = useRef(null)
+  const client = useQueryClient()
   const [ends, setEnds] = useState({ start: true, end: false })
   const { hue } = sectionLook(section.id)
 
@@ -69,6 +73,7 @@ export default function TimelineRail({ section, library, chosenId, onPick }) {
                 index={i}
                 current={on}
                 onClick={() => onPick(on ? null : event.id)}
+                {...(event.asbab > 0 && onHover(client, asbabQuery(section.id, event.id)))}
               >
                 {/* Dated sections show the year; the others the stage. */}
                 <span className="tl-chip">{section.kind === 'dated' && event.hijri ? event.hijri : event.when}</span>

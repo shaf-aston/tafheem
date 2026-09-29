@@ -14,7 +14,6 @@ export function useHealth() {
   const { data, isPending, isError, refetch } = useQuery({
     queryKey: ['health'],
     queryFn: healthCheck,
-    staleTime: Infinity,
   })
 
   return {

@@ -18,7 +18,6 @@ export function useSources() {
   const { data, isPending, isError } = useQuery({
     queryKey: ['sources'],
     queryFn: getSources,
-    staleTime: Infinity,
   })
 
   return { sources: data ?? [], isPending, isError }

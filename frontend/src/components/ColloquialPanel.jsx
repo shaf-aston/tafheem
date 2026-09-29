@@ -6,11 +6,12 @@
  * sixteen units and sixty topics at once. The catalogue (titles only) draws the
  * first three steps; the unit itself is fetched only once a topic is opened.
  */
-import { useQuery } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 
-import { getColloquial, getColloquialUnit } from '../api'
+import { colloquialUnitQuery, getColloquial } from '../api'
 import { smartError } from '../lib/apiError'
+import { warm } from '../lib/warm'
 import { useRemembered } from '../lib/useRemembered'
 import { colorFor } from '../theme'
 import { FOCUS } from './colloquial/Face'
@@ -80,26 +81,27 @@ function Trail({ steps }) {
 }
 
 function Topic({ dialect, unit, at }) {
-  const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: ['colloquial-unit', dialect, unit],
-    queryFn: () => getColloquialUnit(dialect, unit),
-    staleTime: Infinity,
-  })
+  const { data, isPending, isError, error, refetch } = useQuery(colloquialUnitQuery(dialect, unit))
   if (isPending) return <AnalyzerSkeleton />
   if (isError) return <Failed error={error} onRetry={refetch} />
   return <UnitView unit={data} at={at} />
 }
 
 export default function ColloquialPanel() {
-  const catalogue = useQuery({ queryKey: ['colloquial'], queryFn: getColloquial, staleTime: Infinity })
+  const catalogue = useQuery({ queryKey: ['colloquial'], queryFn: getColloquial })
   const dialects = catalogue.data?.dialects ?? []
   const [dialectKey, setDialectKey] = useRemembered('colloq-dialect', dialects.map((d) => d.key))
   const [picked, setPicked] = useState(false)
   const [unitKey, setUnitKey] = useState(null)
   const [lessonAt, setLessonAt] = useState(null)
+  const client = useQueryClient()
 
   const dialect = picked ? dialects.find((d) => d.key === dialectKey) : null
   const unit = dialect?.units.find((u) => u.unit === unitKey)
+  // Opening a unit shows its topics; the unit's words are what a topic click needs.
+  useEffect(() => {
+    if (dialect && unit) warm(client, colloquialUnitQuery(dialect.key, unit.unit))
+  }, [client, dialect, unit])
   const hue = unit ? colorFor('unit', unitNumber(unit.unit) % HUES) : null
 
   const toTop = () => { setPicked(false); setUnitKey(null); setLessonAt(null) }

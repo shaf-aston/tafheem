@@ -19,7 +19,11 @@ import TabStrip from './components/ui/TabStrip'
 import SectionsMenu from './components/ui/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
 
-const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 1 } } })
+const queryClient = new QueryClient({
+  // The data is fixed for the life of the backend: keep every answer, so a
+  // second visit is instant and a fetch-ahead (lib/warm) is never repeated.
+  defaultOptions: { queries: { retry: 1, staleTime: Infinity, gcTime: 30 * 60_000 } },
+})
 
 // Nothing to say about a round: no streak, no answer just given.
 const QUIET = { streak: 0, answer: null }

@@ -34,7 +34,6 @@ export default function TamreenPanel({ accent, onProgress, onNotes }) {
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ['tamreen'],
     queryFn: getTamreen,
-    staleTime: Infinity,
   })
 
   if (isPending) return <AnalyzerSkeleton />

@@ -76,7 +76,6 @@ export default function AyahTafsir({ surah, ayah, accent, defaultOpen = false })
     queryKey: ['quran-editions', 'tafsir'],
     queryFn: () => getQuranEditions('tafsir'),
     enabled: opened,
-    staleTime: Infinity,
   })
 
   const [chosen, choose] = useRemembered('tafsir-edition', books.map((book) => book.id))
@@ -85,7 +84,6 @@ export default function AyahTafsir({ surah, ayah, accent, defaultOpen = false })
     queryKey: ['ayah-editions', surah, ayah, chosen],
     queryFn: () => getAyahEditions(surah, ayah, [chosen]),
     enabled: opened && Boolean(chosen),
-    staleTime: Infinity,
     // The text never changes, and an ayah this scholar did not comment on comes
     // back as an empty list rather than an error, so there is nothing to retry.
     retry: false,

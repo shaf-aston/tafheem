@@ -10,7 +10,7 @@ import { getNotes } from '../api'
 import Chip from './ui/Chip'
 
 export default function NotesLink({ exerciseKey, accent, onOpen }) {
-  const { data } = useQuery({ queryKey: ['notes'], queryFn: getNotes, staleTime: Infinity })
+  const { data } = useQuery({ queryKey: ['notes'], queryFn: getNotes })
   const topics = (data?.topics ?? []).filter((t) => t.tamreen.includes(exerciseKey))
   if (!onOpen || !topics.length) return null
   return topics.map((t) => (

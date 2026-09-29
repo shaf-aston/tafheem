@@ -12,7 +12,7 @@
  * of either. This file only shows what those two decide.
  */
 import { Fragment, useEffect, useMemo, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { isQuranic, recitedForm } from '../lib/arabicText'
 import { BOOKS, DEFAULT_BOOK } from '../lib/books'
@@ -25,6 +25,7 @@ import {
 import { readViewParam, writeViewParams } from '../lib/tabUrl'
 import { useReciting } from '../lib/useReciting'
 import { useSetting } from '../lib/settings'
+import { warm } from '../lib/warm'
 
 import { LOOK, SHOWN } from '../lib/reciteColors'
 
@@ -105,7 +106,6 @@ export default function MemorisePanel({ accent }) {
   const { data: parts } = useQuery({
     queryKey: ['memorise-parts', bookId],
     queryFn: () => book.parts(),
-    staleTime: Infinity,
   })
 
   // The part actually open: what the reader picked, as long as it is one of
@@ -114,12 +114,15 @@ export default function MemorisePanel({ accent }) {
   // book's part selected for a render.
   const part = parts?.some((p) => p.id === chosen) ? chosen : (parts?.[0]?.id ?? null)
 
-  const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: ['memorise', bookId, part],
-    queryFn: () => book.load(part),
-    enabled: part !== null,
-    staleTime: Infinity,
-  })
+  const partQuery = (id) => ({ queryKey: ['memorise', bookId, id], queryFn: () => book.load(id) })
+  const { data, isPending, isError, error, refetch } = useQuery({ ...partQuery(part), enabled: part !== null })
+
+  // The parts either side are where a reader goes next.
+  const client = useQueryClient()
+  useEffect(() => {
+    const at = parts?.findIndex((p) => p.id === part) ?? -1
+    if (at >= 0) [parts[at - 1], parts[at + 1]].forEach((p) => p && warm(client, partQuery(p.id)))
+  }, [client, parts, part, bookId])  // eslint-disable-line react-hooks/exhaustive-deps
 
   const pages = useMemo(() => (data ? pagesOf(data.lines, book.wordsPerPage) : []), [data, book])
   const page = pages[pageNumber] ?? null

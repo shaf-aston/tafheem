@@ -57,7 +57,6 @@ export default function LexiconShelf({ root: asked, hasAlternates }) {
     queryKey: ['lexicons', asked],
     queryFn: () => getLexicons(asked),
     enabled: Boolean(asked),
-    staleTime: Infinity,
   })
 
   if (!asked) return null

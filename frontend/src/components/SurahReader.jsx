@@ -17,10 +17,11 @@
  * (.surah-row).
  */
 import { memo, useDeferredValue, useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { getQuranSurah, getSurahGlosses } from '../api'
+import { getSurahGlosses, quranSurahQuery } from '../api'
 import { smartError } from '../lib/apiError'
+import { warm } from '../lib/warm'
 import { useTranslation } from '../lib/useTranslation'
 import { useRecitation } from '../lib/useRecitation'
 import { useRecitedWord } from '../lib/useRecitedWord'
@@ -171,12 +172,11 @@ function SurahReader({ surah, accent, onOpenAyah, onChangeSurah, onClose }) {
   // The same remembered voice the single-ayah view uses, by the same key.
   const [reciter] = useRemembered('reciter', RECITERS.map((one) => one.id))
 
-  const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: ['quran-surah', surah],
-    queryFn: () => getQuranSurah(surah),
-    // The Qur'an does not change. Once fetched, keep it for the session.
-    staleTime: Infinity,
-  })
+  const { data, isPending, isError, error, refetch } = useQuery(quranSurahQuery(surah))
+  const client = useQueryClient()
+  useEffect(() => {
+    if (surah < LAST_SURAH) warm(client, quranSurahQuery(surah + 1))
+  }, [client, surah])
 
   // The English of each word, for the hover gloss. Its own request so the text
   // is never held up by it: the surah reads normally while this is in flight,
@@ -184,7 +184,6 @@ function SurahReader({ surah, accent, onOpenAyah, onChangeSurah, onClose }) {
   const { data: glosses } = useQuery({
     queryKey: ['surah-glosses', surah],
     queryFn: () => getSurahGlosses(surah),
-    staleTime: Infinity,
   })
 
   // When each word is recited, so the word being read aloud can be lit. It also

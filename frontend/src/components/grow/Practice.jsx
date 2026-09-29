@@ -7,7 +7,7 @@
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getQuranSurah } from '../../api'
+import { quranSurahQuery } from '../../api'
 import config from '../../grow.json'
 import { CHECK, MISSED, WAITING, WRONG } from '../../lib/follow'
 import { becomesLearnt, daysOf, judge, pageOf, tally } from '../../lib/grow'
@@ -61,10 +61,8 @@ function DaysRing({ done }) {
 function useAyahText(step) {
   const surah = step.ayahs.length ? Number(step.ayahs[0].split(':')[0]) : null
   const found = useQuery({
-    queryKey: ['quran-surah', surah],
-    queryFn: () => getQuranSurah(surah),
+    ...quranSurahQuery(surah),
     enabled: surah != null,
-    staleTime: Infinity,
   })
   const text = useMemo(() => {
     const out = {}
