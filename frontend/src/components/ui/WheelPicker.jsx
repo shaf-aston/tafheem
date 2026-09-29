@@ -5,13 +5,14 @@
  *
  * options: [{ value, label, hint?, keys? }]; hint prints faint at the right
  * (an Arabic name, say) and keys are extra words typing may match.
+ * narrow: a numbers-only wheel (ayah, juz) gets a slim card and a "No." hint.
  */
 import { useEffect, useId, useRef, useState } from 'react'
 
 import { wheelFind } from '../../lib/wheelFind'
 import ArabicText from './ArabicText'
 
-export default function WheelPicker({ label, placeholder, options, value, onPick, disabled = false, className = '' }) {
+export default function WheelPicker({ label, placeholder, options, value, onPick, disabled = false, narrow = false, className = '' }) {
   const [open, setOpen] = useState(false)
   const [typed, setTyped] = useState('')
   const [at, setAt] = useState(0)
@@ -84,7 +85,7 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
         disabled={disabled}
         onClick={() => {
           // Opens leftwards when a pill sits too near the right edge for the card.
-          setFlip(pill.current.getBoundingClientRect().left + 256 > window.innerWidth)
+          setFlip(pill.current.getBoundingClientRect().left + (narrow ? 144 : 256) > window.innerWidth)
           setOpen((o) => !o)
         }}
         className="wheel-pill press"
@@ -96,18 +97,18 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
       </button>
 
       {open && (
-        <div className={`wheel-card rise-in ${flip ? 'wheel-card-flip' : ''}`}>
+        <div className={`wheel-card rise-in ${narrow ? 'wheel-card-narrow' : ''} ${flip ? 'wheel-card-flip' : ''}`}>
           <input
             autoFocus
             role="combobox"
-            aria-label={`Type a ${label.toLowerCase()} name or number`}
+            aria-label={`Type a ${label.toLowerCase()} ${narrow ? 'number' : 'name or number'}`}
             aria-controls={id}
             aria-expanded="true"
             aria-activedescendant={`${id}-${at}`}
             value={typed}
             onChange={(e) => onType(e.target.value)}
             onKeyDown={onKeyDown}
-            placeholder="Type a name or number"
+            placeholder={narrow ? 'No.' : 'No. or name'}
             className="wheel-type"
           />
           <div className="wheel-window">

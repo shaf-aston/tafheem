@@ -33,8 +33,8 @@ export default function QuranPlacePicker({ surah, ayah, onReadSurah, onOpenAyah 
   return (
     <div className="flex flex-wrap items-center gap-2">
       <WheelPicker label="Surah" placeholder="Surah" options={surahOptions} value={picked} onPick={pickSurah} className="max-w-[16rem]" />
-      <WheelPicker label="Ayah" placeholder="Ayah" options={ayahOptions} value={shownAyah} disabled={!current} onPick={(n) => onOpenAyah(picked, n)} />
-      <WheelPicker label="Juz" placeholder="Juz" options={juzOptions} value={picked ? juzOf(picked, shownAyah ?? 1) : null} onPick={pickJuz} />
+      <WheelPicker label="Ayah" placeholder="Ayah" options={ayahOptions} value={shownAyah} disabled={!current} narrow onPick={(n) => onOpenAyah(picked, n)} />
+      <WheelPicker label="Juz" placeholder="Juz" options={juzOptions} narrow value={picked ? juzOf(picked, shownAyah ?? 1) : null} onPick={pickJuz} />
     </div>
   )
 }
