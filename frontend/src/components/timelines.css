@@ -1,0 +1,170 @@
+/* The timelines tab: tinted cards, the rail and the reader's header.
+   A hue (--h, from timelines.json) becomes an accent and two tints; the
+   saturation and lightness come from theme.json's timeline group. Everything
+   else is the app's own tokens. */
+.tl-hue {
+  --tl-acc: hsl(var(--h) var(--timeline-acc-s) var(--timeline-acc-l));
+  --tl-ink: hsl(var(--h) var(--timeline-acc-s) var(--timeline-ink-l));
+  --tl-tint: color-mix(in srgb, var(--tl-acc) 11%, var(--surface));
+  --tl-tint-2: color-mix(in srgb, var(--tl-acc) 18%, var(--surface));
+  --tl-edge: color-mix(in srgb, var(--tl-acc) 25%, var(--border));
+}
+
+/* The faint picture behind a card or the reader's header. */
+.tl-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.tl-ico { position: absolute; color: var(--tl-acc); opacity: 0.12; }
+
+/* ── the card ─────────────────────────────────────────────── */
+.tl-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+  min-height: 9.5rem;
+  padding: 1rem;
+  text-align: start;
+  background: var(--tl-tint);
+  border: 1px solid var(--tl-edge);
+  border-radius: var(--radius-md);
+}
+.tl-card > :not(.tl-clip) { position: relative; }
+.tl-card:focus-visible { outline: 2px solid var(--tl-acc); outline-offset: 2px; }
+.tl-chip {
+  align-self: flex-start;
+  max-width: 100%;
+  padding: 0.125rem 0.625rem;
+  border-radius: 999px;
+  font-size: var(--type-tiny);
+  font-weight: 700;
+  color: var(--tl-ink);
+  background: color-mix(in srgb, var(--tl-acc) 16%, var(--surface));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tl-title { font-size: 1.05rem; font-weight: 600; line-height: 1.25; color: var(--text); }
+.tl-ar { color: var(--tl-ink); text-align: start; }
+.tl-sub { color: var(--text-dim); font-size: var(--type-small); }
+.tl-sum {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--type-small);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tl-meta { margin-top: auto; padding-top: 0.375rem; font-size: var(--type-tiny); font-weight: 600; color: var(--tl-ink); }
+
+/* Home tile: bigger, with a big watermark. */
+.tl-tile { padding: 1.125rem; }
+.tl-tile .tl-title { font-size: 1.25rem; }
+.tl-tile .tl-ico { width: 9.5rem; height: 9.5rem; right: -1.1rem; bottom: -1.4rem; }
+.tl-event .tl-ico { width: 5.25rem; height: 5.25rem; left: -0.6rem; bottom: -0.9rem; }
+
+.tl-board { display: grid; gap: 0.75rem; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .tl-board { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .tl-board { grid-template-columns: repeat(3, 1fr); } }
+
+/* Top row of compact tiles: one per section, the chosen one stronger. */
+.tl-minis { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); }
+.tl-mini { min-height: 0; padding: 0.625rem 0.75rem; gap: 0.125rem; }
+.tl-mini .tl-title { font-size: 0.95rem; }
+.tl-mini .tl-ico { width: 4rem; height: 4rem; right: -0.5rem; bottom: -0.75rem; }
+.tl-mini .tl-count { position: absolute; top: 0.625rem; right: 0.75rem; font-size: var(--type-tiny); font-weight: 700; color: var(--tl-ink); }
+.tl-mini[aria-pressed="true"] {
+  background: var(--tl-tint-2);
+  border-color: var(--tl-acc);
+  box-shadow: inset 0 0 0 1px var(--tl-acc);
+}
+@media (max-width: 520px) {
+  .tl-minis { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.375rem; }
+  .tl-mini { align-items: center; padding: 0.5rem 0.25rem; text-align: center; }
+  .tl-mini .tl-title, .tl-mini .tl-count { display: none; }
+  .tl-mini .tl-ar { text-align: center; }
+  .tl-mini .tl-ico { right: auto; left: 50%; transform: translateX(-50%); opacity: 0.18; }
+}
+
+/* ── the rail ─────────────────────────────────────────────── */
+.tl-rail { position: relative; }
+.tl-strip {
+  overflow-x: auto;
+  padding: 1.625rem 0.125rem 1rem;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  mask: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+}
+.tl-strip::-webkit-scrollbar { display: none; }
+.tl-strip-in { position: relative; display: flex; gap: 0.75rem; width: max-content; }
+.tl-strip-in::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: -0.875rem;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--tl-acc), color-mix(in srgb, var(--tl-acc) 30%, transparent));
+}
+.tl-rail-card { flex: none; width: 14.75rem; scroll-snap-align: start; }
+.tl-rail-card::after {
+  content: "";
+  position: absolute;
+  top: -1.45rem;
+  left: 1.125rem;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--tl-acc);
+  z-index: 2;
+  transition: transform calc(var(--motion-base-ms) * 1ms) ease;
+}
+.tl-rail-card[aria-current="true"] { outline: 2px solid var(--tl-acc); outline-offset: 2px; }
+.tl-rail-card[aria-current="true"]::after { background: var(--tl-acc); transform: scale(1.25); }
+/* An event on a weak narration keeps its place but wears a dashed edge. */
+.tl-weak { border-style: dashed; }
+
+.tl-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 2.375rem;
+  height: 2.375rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--tl-ink);
+  border: 1px solid color-mix(in srgb, var(--tl-acc) 35%, var(--border));
+  box-shadow: var(--shadow-pop);
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: opacity calc(var(--motion-base-ms) * 1ms) ease;
+}
+.tl-arrow-l { left: -0.375rem; }
+.tl-arrow-r { right: -0.375rem; }
+.tl-arrow[disabled] { opacity: 0; pointer-events: none; }
+/* A phone swipes the rail; the arrows would cover a card. */
+@media (max-width: 520px) { .tl-arrow { display: none; } }
+
+/* ── the reader ───────────────────────────────────────────── */
+.tl-reader {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--tl-edge);
+  border-radius: calc(var(--radius-md) + 4px);
+}
+.tl-head { position: relative; overflow: hidden; padding: 1.25rem 1rem 1rem; background: var(--tl-tint); }
+.tl-head > :not(.tl-clip) { position: relative; }
+.tl-head .tl-ico { width: 8.75rem; height: 8.75rem; right: -0.9rem; top: -0.9rem; }
+.tl-head h3 { margin: 0.5rem 0 0; font-size: 1.4rem; font-weight: 600; line-height: 1.2; color: var(--text); }
+.tl-facts { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.625rem; }
+.tl-facts .tl-chip { white-space: normal; background: color-mix(in srgb, var(--tl-acc) 12%, var(--surface)); }
+.tl-layer { margin: 0 0 0.5rem; font-size: var(--type-tiny); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tl-ink); }

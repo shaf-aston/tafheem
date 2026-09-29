@@ -1,9 +1,15 @@
 {
  "_comment": "Timelines tab knobs, read only by lib/timelineLayout.js. Content lives in backend/data/timelines; colours in theme.json's timeline group.",
- "_comment-axis": "width-rem is the line's column on a wide screen: thin, so the opened event gets the page. Room for year, Hijri year and title.",
- "axis": {
-  "width-rem": 17
+ "_comment-look": "Each section's picture and hue (0 to 360, turned into its tint by theme.json's timeline group). unknown is what a section not listed here wears. event-icons are cycled down a section's event cards in order.",
+ "sections": {
+  "prophets": { "icon": "branch", "hue": 150 },
+  "seerah": { "icon": "dome", "hue": 38 },
+  "signs": { "icon": "hourglass", "hue": 262 },
+  "grave": { "icon": "grave", "hue": 204 },
+  "judgement": { "icon": "scales", "hue": 350 },
+  "unknown": { "icon": "star", "hue": 200 }
  },
+ "event-icons": ["moon", "star", "book", "mountain", "drop", "sun"],
  "_comment-steps": "The steps inside an opened event are open on arrival. A step can be folded only when it is worth skimming past: it holds moments, its summary runs to fold-from-chars or more, or the data marks it aside (a side detail away from the main story), which also starts it folded.",
  "steps": {
   "fold-from-chars": 240

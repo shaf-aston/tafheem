@@ -2,8 +2,8 @@
  * Timelines: five stretches of time, from Adam to the final home.
  *
  * The tab fetches the library once (about fifty events, fixed for the life of
- * the backend) and owns two things only: which section is open and which event
- * is read. Where each of those goes on the screen is lib/timelineLayout's job,
+ * the backend) and owns two things only: which section is open (none: the board
+ * of sections) and which event is read. Where each of those goes on the screen is lib/timelineLayout's job,
  * and what they say is the backend's.
  *
  * The place in the tab is written as "section/event", so ?tab=timelines&q=
@@ -23,6 +23,7 @@ import ErrorAlert from './ui/ErrorAlert'
 import RetryButton from './ui/RetryButton'
 import EmptyState from './ui/EmptyState'
 import { AnalyzerSkeleton } from './ui/Skeleton'
+import TimelineBoard from './TimelineBoard'
 import TimelineSection from './TimelineSection'
 
 const ALL = 'all'
@@ -71,17 +72,12 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
     setPlace(next)
     if (next) onVisit?.(placeOf(next.section, next.event, next.report))
   }
-  // A section shutting is only news when it is the open one: opening another
-  // shuts this one through its own prop, and that close must not clear the
-  // section just opened (a controlled <details> reports both).
-  const open = (id, isOpen) => {
-    if (isOpen) go({ section: id, event: place?.section === id ? place.event : null })
-    else if (place?.section === id) go(null)
-  }
-  const pick = (sectionId) => (eventId) => go(eventId ? { section: sectionId, event: eventId } : { section: sectionId, event: null })
+  const pick = (sectionId) => (eventId) => go({ section: sectionId, event: eventId || null })
   const report = (sectionId, eventId) => (ref) => go({ section: sectionId, event: eventId, report: ref })
 
   const shown = data.sections.filter((s) => science === ALL || s.science === science)
+  // A science filter that hides the open section sends the tab back to the board.
+  const section = shown.find((s) => s.id === place?.section)
   const filter = [
     { id: ALL, label: 'All' },
     ...data.sciences.map((s) => ({ id: s.key, label: s.name })),
@@ -97,30 +93,29 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
 
       {missed && (
         <p role="status" className="type-small text-[var(--text-dim)]">
-          That link names a timeline event that does not exist, so every section is shown.
+          That link names a timeline event that does not exist, so the sections are shown.
         </p>
       )}
 
       {shown.length === 0
         ? <EmptyState>No section is filed under that science.</EmptyState>
-        : shown.map((section) => {
-          const isOpen = place?.section === section.id
-          return (
-            <TimelineSection
-              key={section.id}
-              section={section}
-              library={data}
-              open={isOpen}
-              alone={shown.length === 1}
-              chosen={isOpen ? section.events.find((e) => e.id === place.event) ?? null : null}
-              report={isOpen ? place.report ?? null : null}
-              onOpen={open}
-              onPick={pick(section.id)}
-              onReport={report(section.id, place?.event)}
-              onGo={onGo}
-            />
-          )
-        })}
+        : (
+          <>
+            <TimelineBoard sections={shown} current={section?.id ?? null} onPick={(id) => go(id && { section: id, event: null })} />
+            {section && (
+              <TimelineSection
+                key={section.id}
+                section={section}
+                library={data}
+                chosen={section.events.find((e) => e.id === place.event) ?? null}
+                report={place.report ?? null}
+                onPick={pick(section.id)}
+                onReport={report(section.id, place.event)}
+                onGo={onGo}
+              />
+            )}
+          </>
+        )}
     </div>
   )
 }
