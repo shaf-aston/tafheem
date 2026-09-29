@@ -48,7 +48,7 @@ class PiperVoice(Voice):
 
     Reads harakat: عَالِم and عَالَم, كَتَبَ and كُتِبَ come out different, as
     do ط/ت, ص/س, ض/د. It stops on the word, so the final short vowel is dropped,
-    which is the correct pause form. Known fault: ظ is said like ذ.
+    which is the correct pause form. Its ظ came out as ذ; _phonemes below fixes that.
     About 70ms a word once loaded; loading takes a few seconds, once.
     """
 
@@ -71,15 +71,40 @@ class PiperVoice(Voice):
 
     @property
     def version(self) -> str:
-        return get_settings().speech_piper_model
+        # "+zaa": words kept before the ظ fix are made again.
+        return get_settings().speech_piper_model + "+zaa"
 
     def say(self, text: str) -> bytes:
         model = self._load()
         out = io.BytesIO()
         # One word at a time: the model is not known to be safe to share between threads.
         with self._lock, wave.open(out, "wb") as file:
-            model.synthesize_wav(text, file)
+            file.setframerate(model.config.sample_rate)
+            file.setsampwidth(2)
+            file.setnchannels(1)
+            for sentence in _phonemes(model, text):
+                audio = model.phoneme_ids_to_audio(model.phonemes_to_ids(sentence))
+                file.writeframes((audio.clip(-1, 1) * 32767).astype("<i2").tobytes())
         return out.getvalue()
+
+
+def _phonemes(model, text: str) -> list[list[str]]:
+    """Piper's phonemes, with ظ said as ظ.
+
+    Its phonemizer says ظ as ð, the sound of ذ. ظ is spelled as ض, which comes
+    out as the distinct pair d ˤ, and that pair is turned into ð ˤ. Only in a
+    text with no real ض, whose d ˤ would be changed too; there ظ stays as it was.
+    """
+    zaa, daad = "ظ", "ض"
+    if zaa not in text or daad in text:
+        return model.phonemize(text)
+    fixed = []
+    for sentence in model.phonemize(text.replace(zaa, daad)):
+        out: list[str] = []
+        for i, p in enumerate(sentence):
+            out.append("ð" if p == "d" and sentence[i + 1:i + 2] == ["ˤ"] else p)
+        fixed.append(out)
+    return fixed
 
 
 _VOICES: dict[str, Voice] = {voice.name: voice for voice in (PiperVoice(),)}
@@ -106,6 +131,21 @@ def warm() -> None:
             log.exception("voice %s could not warm up", voice.name)
 
 
+def _trim() -> None:
+    """Keep the store under `speech_cache_max_files`, dropping the oldest first.
+
+    Anyone can ask for any Arabic, so without a cap the disk fills. A word
+    dropped here is only made again the next time someone asks.
+    """
+    limit = get_settings().speech_cache_max_files
+    files = list(CACHE.glob("*.wav"))
+    if len(files) <= limit:
+        return
+    files.sort(key=lambda f: f.stat().st_mtime)
+    for old in files[: len(files) - limit]:
+        old.unlink(missing_ok=True)
+
+
 def say(text: str) -> bytes:
     """Spoken `text` from the first voice that manages. Raises when none can."""
     for voice in order():
@@ -129,5 +169,6 @@ def say(text: str) -> bytes:
         part = cached.with_suffix(f".{uuid.uuid4().hex}.part")
         part.write_bytes(audio)
         os.replace(part, cached)
+        _trim()
         return audio
     raise RuntimeError("no voice could say this")

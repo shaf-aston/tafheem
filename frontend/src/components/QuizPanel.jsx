@@ -75,6 +75,7 @@ export default function QuizPanel({ accent, onProgress }) {
   // starts it. An initial Date.now() here would be the moment the panel
   // mounted, which is before the words have even been fetched.
   const askedAt = useRef(null)
+  const speakRef = useRef(null)
   // Set once if the store cannot be reached, so a session is never silently
   // saved to nowhere: without it the mistakes list is mysteriously empty later.
   const [saving, setSaving] = useState(true)
@@ -344,6 +345,7 @@ export default function QuizPanel({ accent, onProgress }) {
       // a round, including while an answer is on screen and about to take itself
       // away. One press answers here, so 'check' is nothing to do.
       if (action.do === 'auto') setAutoNext(!autoNext)
+      if (action.do === 'speak') speakRef.current?.click()
       if (action.do === 'toggle') choose(question.options[action.index].id)
       if (action.do === 'next') {
         // Enter on a focused button would also click it, on the next question.
@@ -556,7 +558,7 @@ export default function QuizPanel({ accent, onProgress }) {
                 <div className="text-3xl font-semibold text-[var(--text)]">{shown.prompt}</div>
               )}
               {/* Only the Arabic prompt: speaking an Arabic answer option would give it away. */}
-              {shown.promptLang === 'ar' && <SpeakButton key={shown.prompt} text={shown.prompt} />}
+              {shown.promptLang === 'ar' && <SpeakButton key={shown.prompt} ref={speakRef} text={shown.prompt} />}
             </div>
           </div>
 

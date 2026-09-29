@@ -1,14 +1,14 @@
 /**
  * What a key press means while a question is on screen. Shared by the Quiz and
  * by Tamreen Practise, so "a digit answers, Enter is the way on, A flips
- * auto-advance" is written down once and both tabs answer the same way.
+ * auto-advance, S says the word" is written down once and both tabs answer the same way.
  *
  * Pure: a key and the state of the question in, an action out. Which button
  * that action presses is the panel's business.
  */
 
 /**
- * `{ do: 'auto' | 'check' | 'next' | 'toggle' | 'swallow', index? }`, or null
+ * `{ do: 'auto' | 'speak' | 'check' | 'next' | 'toggle' | 'swallow', index? }`, or null
  * for a key that is none of ours.
  *
  * 'swallow' is a digit that names an option on screen but cannot act on it,
@@ -23,6 +23,7 @@
  */
 export function keyAction(key, { checked = false, optionCount = 0 } = {}) {
   if (key === 'a' || key === 'A') return { do: 'auto' }
+  if (key === 's' || key === 'S') return { do: 'speak' }
   if (key === 'Enter') return { do: checked ? 'next' : 'check' }
   const index = Number.parseInt(key, 10) - 1
   if (!(index >= 0 && index < optionCount)) return null

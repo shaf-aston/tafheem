@@ -9,7 +9,8 @@ import { useEffect, useRef, useState } from 'react'
 
 import { speak, stop } from '../../lib/speak'
 
-export default function SpeakButton({ text, className = '' }) {
+// `ref` reaches the button itself, so a keyboard shortcut can press it.
+export default function SpeakButton({ text, ref, className = '' }) {
   // idle | busy (finding a voice) | speaking | failed
   const [state, setState] = useState('idle')
   const [credit, setCredit] = useState('')
@@ -57,10 +58,11 @@ export default function SpeakButton({ text, className = '' }) {
     // icon stays put when the label comes and goes.
     <span className={`relative inline-flex ${className}`}>
       <button
+        ref={ref}
         type="button"
         onClick={press}
         aria-label={state === 'speaking' ? 'Stop' : 'Say it aloud'}
-        title={state === 'failed' ? 'No voice could say this word' : 'Say it aloud'}
+        title={state === 'failed' ? 'No voice could say this word' : 'Say it aloud (S)'}
         aria-busy={state === 'busy'}
         className={`shrink-0 w-7 h-7 grid place-items-center rounded-full border transition-colors ${look}
           ${state === 'busy' ? 'animate-pulse' : ''}`}
