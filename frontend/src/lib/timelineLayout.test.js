@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import settings from '../timelines.json'
 import {
-  canFold, countSteps, firstAyah, parsePlace, pathRows, pinsOf, placeLabels, placeOf, placeOfStep, projection,
+  canFold, eventIcon, firstAyah, parsePlace, pathRows, pinsOf, placeLabels, placeOf, placeOfStep, projection, sectionLook,
   readingOrder, stepIds,
 } from './timelineLayout'
 
@@ -127,12 +127,10 @@ describe('step folding', () => {
     expect(canFold(st('e', { summary: long.slice(1), steps: [] }))).toBe(false)
   })
 
-  it('finds matching ids at every depth, and counts every step and moment', () => {
+  it('finds matching ids at every depth', () => {
     const run = [st('a'), st('b', { steps: [st('m', { aside: true }), st('n')] }), st('c', { aside: true })]
     expect(stepIds(run, (s) => s.aside)).toEqual(['m', 'c'])
     expect(stepIds(run, canFold)).toEqual(['b', 'm', 'c'])
-    expect(countSteps(run)).toBe(5)
-    expect(countSteps(undefined)).toBe(0)
   })
 })
 
@@ -182,5 +180,17 @@ describe('side by side paths', () => {
   it('leaves a run with no paths as plain numbered steps', () => {
     expect(pathRows([st('a'), st('b')]).map((r) => [r.n, r.step.id])).toEqual([[1, 'a'], [2, 'b']])
     expect(pathRows([])).toEqual([])
+  })
+})
+
+describe('section and event looks', () => {
+  it('gives each named section its own look and an unlisted one the fallback', () => {
+    expect(sectionLook('seerah').icon).toBe('dome')
+    expect(sectionLook('nope')).toEqual(sectionLook('unknown'))
+  })
+
+  it('cycles event pictures without running off the end', () => {
+    expect(eventIcon(0)).toBe(eventIcon(6))
+    expect(eventIcon(7)).toBe(eventIcon(1))
   })
 })

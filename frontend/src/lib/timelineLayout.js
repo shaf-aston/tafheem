@@ -5,10 +5,13 @@
  */
 import settings from '../timelines.json'
 
-const { map: MAP, axis: AXIS, steps: STEPS } = settings
+const { map: MAP, steps: STEPS, sections: LOOKS, 'event-icons': EVENT_ICONS } = settings
 
-/** Every step and moment under an event, at any depth. */
-export const countSteps = (steps = []) => steps.reduce((n, s) => n + 1 + countSteps(s.steps), 0)
+/** A section's picture and hue, from timelines.json; an unlisted section wears `unknown`. */
+export const sectionLook = (id) => LOOKS[id] ?? LOOKS.unknown
+
+/** The picture on the k-th event card of a section: the config's set, cycled. */
+export const eventIcon = (k) => EVENT_ICONS[k % EVENT_ICONS.length]
 
 /** A step worth folding: it holds moments, runs long, or is a side detail. */
 export const canFold = (step) => (
@@ -63,9 +66,6 @@ export function pathRows(steps) {
   }
   return rows
 }
-
-/** How wide the line's column is beside the opened event, as a CSS length. */
-export const lineWidth = `${AXIS['width-rem']}rem`
 
 /** A view's drawing box, and a function taking lon/lat into it. */
 export function projection(view) {

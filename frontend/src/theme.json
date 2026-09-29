@@ -42,7 +42,10 @@
     "hover-tint": "65%"
   },
   "timeline": {
-    "_comment": "The timelines tab: the map's two grounds. Every section wears the tab's own colour, so the Seerah and the unseen sections read as one design.",
+    "_comment": "The timelines tab: acc-s and acc-l are the saturation and lightness every section hue is drawn at (its accent), ink-l the lightness of text in that hue; then the map's two grounds. Every section wears the tab's own colour, so the Seerah and the unseen sections read as one design.",
+    "acc-s": "52%",
+    "acc-l": "66%",
+    "ink-l": "80%",
     "map-land": "#1c2434",
     "map-water": "#0f2c38"
   },
