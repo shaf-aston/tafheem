@@ -10,6 +10,11 @@ describe('keyAction', () => {
     expect(keyAction('Enter', { ...rule4, checked: true })).toEqual({ do: 'next' })
   })
 
+  it('s says the word, before or after answering', () => {
+    expect(keyAction('s', rule4)).toEqual({ do: 'speak' })
+    expect(keyAction('S', { ...rule4, checked: true })).toEqual({ do: 'speak' })
+  })
+
   it('a flips auto-advance, in either case', () => {
     expect(keyAction('a', rule4)).toEqual({ do: 'auto' })
     expect(keyAction('A', { ...rule4, checked: true })).toEqual({ do: 'auto' })

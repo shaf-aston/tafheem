@@ -220,6 +220,11 @@ class Settings(BaseSettings):
     speech_max_chars: int = Field(default=40, gt=0)
     # How long a voice that failed is skipped before it is tried again.
     speech_rest_s: float = Field(default=60.0, gt=0)
+    # Most spoken words kept on disk (~25 KB each, so 20,000 is about 500 MB).
+    speech_cache_max_files: int = Field(default=20000, gt=0)
+    # New words one visitor may have made per minute. Words already made are
+    # served from disk and the browser keeps them, so a learner never nears this.
+    speech_per_minute: int = Field(default=60, gt=0)
 
     recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
     # The search boxes are dictation, not recitation, and the Qur'an model knows

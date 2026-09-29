@@ -7,8 +7,10 @@ address directly and the browser caches it like any file.
 from __future__ import annotations
 
 import re
+import time
+from collections import deque
 
-from fastapi import APIRouter, HTTPException, Query, Response
+from fastapi import APIRouter, HTTPException, Query, Request, Response
 from starlette.concurrency import run_in_threadpool
 
 from backend.config import get_settings
@@ -21,8 +23,32 @@ router = APIRouter(prefix="/api/speak", tags=["speak"])
 ARABIC = re.compile(r"[ء-غف-ٰٕٱ]+( [ء-غف-ٰٕٱ]+)*")
 
 
+# Recent asks per visitor, for speech_per_minute. In memory: a restart forgets
+# it, which is fine for a limit that only stops someone hammering the voice.
+_asks: dict[str, deque[float]] = {}
+
+
+def _too_many(visitor: str) -> bool:
+    now = time.monotonic()
+    if len(_asks) > 10_000:  # never grows without end
+        _asks.clear()
+    recent = _asks.setdefault(visitor, deque())
+    while recent and now - recent[0] > 60:
+        recent.popleft()
+    if len(recent) >= get_settings().speech_per_minute:
+        return True
+    recent.append(now)
+    return False
+
+
 @router.get("")
-async def speak(text: str = Query(..., min_length=1)) -> Response:
+async def speak(request: Request, text: str = Query(..., min_length=1)) -> Response:
+    # Behind Vercel and Caddy the visitor is the first forwarded address. A
+    # visitor can fake that header, so this slows casual abuse, not a determined one.
+    forwarded = request.headers.get("x-forwarded-for", "")
+    visitor = forwarded.split(",")[0].strip() or (request.client.host if request.client else "")
+    if _too_many(visitor):
+        raise HTTPException(429, "Too many words at once; try again in a minute")
     text = text.strip()
     if len(text) > get_settings().speech_max_chars:
         raise HTTPException(413, "Too long to say")
