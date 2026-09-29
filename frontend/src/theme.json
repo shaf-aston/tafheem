@@ -60,7 +60,7 @@
     "_comment": "The faint seal behind a tab (ui/QuranSeal). ink is its colour, strength how much of it shows (wide: once a search fills the page); a light theme changes these two only.",
     "ink": "var(--text)",
     "strength": "9%",
-    "strength-hover": "22%",
+    "strength-hover": "19%",
     "strength-wide": "6%",
     "glow": "10px"
   },
