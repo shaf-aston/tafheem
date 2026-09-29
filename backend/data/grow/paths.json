@@ -11,7 +11,7 @@
           "id": "wudu-begin",
           "title": "Beginning",
           "arabic": "البداية",
-          "icon": "stand",
+          "icon": "drop",
           "steps": [
             "wudu-intention",
             "wudu-bismillah",
@@ -25,7 +25,7 @@
           "id": "wudu-wash",
           "title": "Washing",
           "arabic": "الغسل",
-          "icon": "stand",
+          "icon": "drop",
           "steps": [
             "wudu-face",
             "wudu-arms",
@@ -38,7 +38,7 @@
           "id": "wudu-care",
           "title": "Good manners",
           "arabic": "الآداب",
-          "icon": "stand",
+          "icon": "drop",
           "steps": [
             "wudu-between",
             "wudu-thrice",
