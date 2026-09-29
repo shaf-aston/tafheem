@@ -1,0 +1,310 @@
+/* Grow's map and its practice card. Colour is the tab's own --c and the
+   theme's tokens; every duration is built from the motion tokens as
+   calc(var(--motion-*-ms) * 1ms), because the tokens are bare numbers. The
+   reduced-motion block at the end stops the staggers too. */
+
+.grow-map {
+  --n: 56px;
+  --cw: 92px;
+  --sx: 50%;
+  /* The pressable shadow under a circle: a darker step of the same colour. */
+  --sh-m: color-mix(in srgb, var(--c) 50%, var(--bg));
+  --sh-o: color-mix(in srgb, var(--c) 28%, var(--bg));
+  --sh-l: var(--surface-hi);
+  --lift: color-mix(in srgb, #000 55%, transparent);
+  max-width: 760px;
+  margin: 0 auto;
+  padding-top: 26px;
+  overflow-x: clip;
+}
+.grow-map-open { --sx: calc(40px + var(--cw) / 2); }
+@media (max-width: 480px) { .grow-map { --cw: 84px; } }
+
+/* ── the circle: one shadow recipe, colour set by state ── */
+.grow-nw { position: relative; }
+.grow-node {
+  --bd: var(--border-hi);
+  --sh: var(--sh-o);
+  --gl: transparent;
+  position: relative;
+  width: var(--n);
+  height: var(--n);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  border: 2px solid var(--bd);
+  background: var(--surface-hi);
+  color: var(--text-dim);
+  box-shadow: 0 5px 0 var(--sh), 0 0 22px var(--gl);
+  transition: transform calc(var(--motion-instant-ms) * 1ms) ease, box-shadow calc(var(--motion-instant-ms) * 1ms) ease;
+}
+button.grow-node { cursor: pointer; }
+button.grow-node:hover { transform: translateY(-2px); }
+button.grow-node:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--sh), 0 0 22px var(--gl); }
+.grow-in { display: grid; place-items: center; }
+.grow-ic { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.grow-node[data-s='learnt'] { background: var(--surface); --bd: var(--c); color: var(--c); --sh: var(--sh-m); }
+.grow-node[data-s='started'] { background: color-mix(in srgb, var(--c) 22%, var(--surface)); --bd: var(--c); color: var(--c); --sh: var(--sh-m); }
+.grow-node[data-now] { --gl: color-mix(in srgb, var(--c) 45%, transparent); }
+.grow-node[data-s='open'] { --bd: color-mix(in srgb, var(--c) 45%, var(--border-hi)); color: var(--text); background: color-mix(in srgb, var(--c) 10%, var(--surface)); }
+.grow-node[data-s='locked'] { background: var(--surface); border-style: dashed; color: var(--text-faint); --sh: var(--sh-l); }
+
+.grow-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--c);
+  animation: grow-pulse calc(1600ms * var(--motion-scale)) ease-out infinite;
+  pointer-events: none;
+}
+@keyframes grow-pulse {
+  0% { transform: scale(0.95); opacity: 0.9; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
+/* seed, sprout, flower */
+.grow-seed { width: 26px; height: 26px; fill: currentColor; fill-opacity: 0.22; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.grow-bloom { width: 46px; height: 46px; }
+.grow-gnode .grow-bloom { width: calc(var(--n) + 14px); height: calc(var(--n) + 14px); margin: -7px; }
+.grow-bloom-sway { animation: grow-sway calc(4200ms * var(--motion-scale)) ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes grow-sway { 50% { transform: rotate(4deg); } }
+.grow-petal-a { fill: var(--c); stroke: color-mix(in srgb, var(--c) 60%, #000); stroke-width: 1; }
+.grow-petal-b { fill: color-mix(in srgb, var(--c) 62%, #fff); stroke: color-mix(in srgb, var(--c) 60%, #000); stroke-width: 0.8; }
+.grow-heart { fill: var(--warn); stroke: color-mix(in srgb, var(--warn) 55%, #000); stroke-width: 1; }
+
+/* step circles are leaves */
+.grow-leaf { border-radius: 62% 8% 62% 8%; rotate: -14deg; }
+.grow-leaf .grow-in { rotate: 14deg; }
+.grow-leaf.grow-alt { border-radius: 8% 62% 8% 62%; rotate: 14deg; }
+.grow-leaf.grow-alt .grow-in { rotate: -14deg; }
+.grow-item { display: flex; flex-direction: column; align-items: center; gap: 6px; width: calc(var(--cw) - 4px); }
+.grow-lbl { font-size: var(--type-small); font-weight: 700; color: var(--text-dim); text-align: center; line-height: 1.25; max-width: 84px; min-height: 2.4em; overflow-wrap: anywhere; }
+.grow-item:has([data-now]) .grow-lbl { color: var(--c); }
+.grow-item:has([data-s='locked']) .grow-lbl { color: var(--text-faint); }
+.grow-item:has([data-s='learnt']) .grow-lbl { color: var(--text); }
+
+/* group circles sit on the vine */
+.grow-gnode { --n: 64px; }
+.grow-ring { position: absolute; inset: -8px; width: calc(100% + 16px); height: calc(100% + 16px); pointer-events: none; overflow: visible; }
+.grow-ring circle, .grow-days-ring path { fill: none; stroke-width: 5; stroke-linecap: round; }
+.grow-ring-t { stroke: var(--border-hi); opacity: 0.7; }
+.grow-ring-f { stroke: var(--c); }
+.grow-gi { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.grow-cnt {
+  position: absolute;
+  top: -10px;
+  right: -16px;
+  min-width: 28px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border-hi);
+  font-size: var(--type-tiny);
+  display: grid;
+  place-items: center;
+  color: var(--text);
+}
+.grow-gnode[data-s='learnt'] .grow-cnt { background: var(--c); color: var(--bg); border-color: var(--c); }
+
+/* ── the vine: plates hold a vertical stem, rows hold a group and its lane ── */
+.grow-plate {
+  --stem: color-mix(in srgb, var(--c) 45%, var(--surface-hi));
+  position: relative;
+  margin: 0 0 34px;
+  padding: 18px 0 8px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--surface-hi), var(--surface));
+  border: 1px solid var(--border-hi);
+  box-shadow: 0 10px 0 -2px color-mix(in srgb, var(--bg) 60%, #000), 0 26px 40px -10px var(--lift);
+  transition: opacity calc(var(--motion-spring-ms) * 1ms) ease;
+}
+.grow-plate.grow-locked { --stem: color-mix(in srgb, var(--c) 16%, var(--surface-hi)); background: var(--surface); border-style: dashed; opacity: 0.82; }
+.grow-plate::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: var(--sx);
+  top: -34px;
+  bottom: 0;
+  width: 8px;
+  translate: -50% 0;
+  border-radius: 8px;
+  background: var(--stem);
+  transition: left calc(var(--motion-spring-ms) * 1ms) ease-in-out;
+}
+.grow-plate:first-child::before { top: 36px; }
+.grow-plate:last-child::before { bottom: 92px; }
+.grow-hd, .grow-row { padding-left: calc(var(--sx) - var(--cw) / 2); transition: padding-left calc(var(--motion-spring-ms) * 1ms) ease-in-out; }
+.grow-hd { position: relative; z-index: 1; display: flex; align-items: center; padding-right: 14px; margin-bottom: 2px; }
+.grow-hn { width: var(--cw); flex: none; display: flex; justify-content: center; }
+.grow-n { background: var(--c); color: var(--bg); border-radius: 8px; padding: 1px 10px; font-weight: 800; font-size: var(--type-ui); box-shadow: 0 3px 0 var(--sh-m); }
+.grow-plate.grow-locked .grow-n { background: var(--border-hi); color: var(--text); box-shadow: 0 3px 0 var(--sh-l); }
+.grow-ht { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+.grow-ht h2 { font-size: var(--type-body); font-weight: 800; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; color: var(--text); }
+.grow-h-ar { color: var(--text-faint); }
+.grow-tag { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 999px; padding: 2px 8px; border: 1px dashed var(--border-hi); color: var(--text-faint); white-space: nowrap; }
+
+.grow-row { position: relative; z-index: 1; display: flex; align-items: flex-start; scroll-margin-top: 130px; }
+.grow-cell { position: relative; z-index: 2; flex: none; width: var(--cw); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 0 14px; }
+.grow-gl { background: var(--surface); border: 1px solid var(--border-hi); border-radius: 12px; padding: 3px 8px; font-size: var(--type-small); font-weight: 800; text-align: center; line-height: 1.25; max-width: var(--cw); color: var(--text); }
+.grow-gl-ar { display: block; color: var(--text-dim); font-weight: 400; }
+.grow-row[data-now] .grow-gl { border-color: var(--c); color: var(--c); }
+
+/* The branch: a lane to the right of the group that opens sideways, scrolling
+   inside itself so a long one never widens the page. */
+.grow-lane {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  margin-left: calc(var(--cw) / -2);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity calc(var(--motion-base-ms) * 1ms) ease, visibility 0s linear calc(var(--motion-base-ms) * 1ms);
+}
+.grow-row-open .grow-lane { visibility: visible; opacity: 1; transition-delay: 0s; }
+.grow-lane-in { position: relative; display: flex; width: max-content; min-width: 100%; padding: 20px 14px 16px calc(var(--cw) / 2); }
+.grow-branch { position: absolute; top: 0; bottom: 0; left: calc(var(--cw) / 2); width: calc(100% - var(--cw) / 2); height: 100%; pointer-events: none; overflow: visible; }
+.grow-branch line {
+  stroke: var(--stem);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset calc(var(--motion-spring-ms) * 1.6ms) ease;
+}
+.grow-row-open .grow-branch line { stroke-dashoffset: 0; }
+.grow-lane .grow-item { position: relative; transform: scale(0); opacity: 0; transform-origin: 50% 40%; transition: transform calc(var(--motion-base-ms) * 1ms) ease, opacity calc(var(--motion-base-ms) * 1ms) ease; }
+.grow-row-open .grow-lane .grow-item {
+  transform: none;
+  opacity: 1;
+  transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease), opacity calc(var(--motion-base-ms) * 1ms) ease;
+  transition-delay: calc((var(--i) * var(--motion-stagger-ms) + 200) * 1ms);
+}
+
+/* Qalam stands left of the current group and only ever reacts, never speaks. */
+.grow-qalam { position: absolute; top: -4px; right: calc(100% + 6px); pointer-events: none; }
+
+/* ── progress in the header ── */
+.grow-progress { display: flex; align-items: center; gap: 8px; font-size: var(--type-small); color: var(--text-dim); }
+.grow-bar { flex: 0 0 96px; height: 6px; border-radius: 9px; background: var(--surface-hi); overflow: hidden; }
+.grow-bar i { display: block; height: 100%; background: var(--c); border-radius: 9px; transition: width calc(var(--motion-spring-ms) * 1ms) ease; }
+
+/* ── the practice card: grows out of the tapped circle and back ── */
+.grow-scrim { position: fixed; inset: 0; z-index: 40; background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(2px); animation: grow-fade calc(var(--motion-base-ms) * 1ms) ease both; }
+.grow-scrim[data-closing] { animation-name: grow-fade-out; }
+@keyframes grow-fade { from { opacity: 0; } }
+@keyframes grow-fade-out { to { opacity: 0; } }
+
+.grow-sheet {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 41;
+  translate: -50% -50%;
+  width: min(92vw, 480px);
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 0 -2px color-mix(in srgb, var(--bg) 60%, #000), 0 30px 60px -10px var(--lift);
+  padding: 16px 20px 22px;
+  animation: grow-sheet calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) both;
+}
+.grow-sheet[data-closing] { animation-name: grow-sheet-out; animation-timing-function: ease-in; }
+@keyframes grow-sheet {
+  from { translate: calc(-50% + var(--dx, 0px)) calc(-50% + var(--dy, 0px)); scale: 0.06; opacity: 0; }
+}
+@keyframes grow-sheet-out {
+  to { translate: calc(-50% + var(--dx, 0px)) calc(-50% + var(--dy, 0px)); scale: 0.06; opacity: 0; }
+}
+.grow-sh-top { display: flex; align-items: center; gap: 10px; }
+.grow-sh-top h3 { font-size: var(--type-body); font-weight: 800; flex: 1; color: var(--text); }
+.grow-x { width: 36px; height: 36px; border-radius: 50%; background: var(--surface-hi); display: grid; place-items: center; font-size: 1.2rem; color: var(--text-dim); }
+.grow-chip { display: inline-block; font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 9px; border-radius: 999px; background: var(--surface-hi); color: var(--text-dim); margin: 6px 0 0; }
+.grow-chip-done { background: var(--c); color: var(--bg); }
+.grow-chip-now { background: color-mix(in srgb, var(--c) 20%, var(--surface-hi)); color: var(--c); }
+.grow-meaning { color: var(--text-dim); text-align: center; font-size: var(--type-ui); line-height: 1.45; }
+.grow-prac { display: flex; align-items: center; gap: 18px; justify-content: center; margin: 16px 0 6px; }
+.grow-days-ring { position: relative; width: 84px; height: 84px; flex: none; }
+.grow-days-ring svg { width: 100%; height: 100%; overflow: visible; }
+.grow-days-ring span { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 800; font-size: var(--type-ui); color: var(--text); }
+.grow-verdict { min-height: 1.4em; text-align: center; font-size: var(--type-small); color: var(--text-dim); margin-top: 4px; }
+.grow-verdict[data-ok] { color: var(--c); font-weight: 800; }
+.grow-note { margin-top: 14px; padding: 12px 14px; border: 1px dashed var(--border-hi); border-radius: var(--radius-md); color: var(--text-dim); font-size: var(--type-ui); line-height: 1.5; text-align: center; }
+.grow-sheet details { margin-top: 16px; }
+
+/* The card's own circle: a leaf that swells while leaves fan out of it when a
+   step becomes learnt. */
+.grow-stage { position: relative; width: 170px; height: 100px; margin: 4px auto 0; display: grid; place-items: center; }
+.grow-stage .grow-node { --n: 64px; z-index: 1; }
+.grow-go .grow-node { animation: grow-swell calc(700ms * var(--motion-scale)) var(--motion-spring-ease); }
+@keyframes grow-swell { 40% { scale: 1.35; } }
+.grow-fan { position: absolute; inset: 0; pointer-events: none; }
+.grow-fan i { position: absolute; left: 50%; top: 50%; width: 16px; height: 28px; margin: -14px 0 0 -8px; border-radius: 62% 8% 62% 8%; background: var(--c); opacity: 0; }
+.grow-go .grow-fan i { animation: grow-fan calc(1000ms * var(--motion-scale)) ease-out both; animation-delay: calc(var(--k) * 45ms * var(--motion-scale)); }
+@keyframes grow-fan {
+  0% { opacity: 0; transform: rotate(calc(var(--a) * 1deg)) translateY(0) scale(0.2); }
+  25% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; transform: rotate(calc(var(--a) * 1deg)) translateY(-54px) scale(1); }
+}
+
+/* ── tier unlock: gate opens, dotted path draws, vine grows, groups appear ── */
+.grow-gate { position: absolute; left: 0; right: 0; top: -16px; height: 32px; z-index: 4; pointer-events: none; overflow: hidden; border-radius: 16px; }
+.grow-door { position: absolute; top: 0; bottom: 0; width: 50.5%; background: linear-gradient(180deg, var(--border-hi), var(--surface-hi)); border: 1px solid var(--border-hi); transition: translate calc(var(--motion-spring-ms) * 1.6ms) ease-in-out; }
+.grow-door-l { left: 0; border-radius: 16px 0 0 16px; }
+.grow-door-r { right: 0; border-radius: 0 16px 16px 0; }
+.grow-door::after { content: ''; position: absolute; top: 50%; left: 10px; right: 10px; border-top: 2px dashed var(--border-hi); }
+.grow-u1 .grow-door-l { translate: -101% 0; }
+.grow-u1 .grow-door-r { translate: 101% 0; }
+.grow-light { position: absolute; left: var(--sx); top: 0; bottom: 0; width: 180px; translate: -50% 0; background: radial-gradient(closest-side, color-mix(in srgb, var(--warn) 45%, #fff), transparent); opacity: 0; }
+.grow-u1 .grow-light { animation: grow-glow calc(1100ms * var(--motion-scale)) ease-out both; }
+@keyframes grow-glow {
+  0% { opacity: 0; scale: 0.3 1; }
+  40% { opacity: 1; scale: 1.6 1; }
+  100% { opacity: 0; scale: 2 1; }
+}
+.grow-pre::before {
+  background: repeating-linear-gradient(to bottom, var(--stem) 0 6px, transparent 6px 14px);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path calc(var(--motion-spring-ms) * 1.8ms) ease-out, left calc(var(--motion-spring-ms) * 1ms) ease-in-out;
+}
+.grow-pre.grow-u2::before { clip-path: inset(0); }
+.grow-pre::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: var(--sx);
+  top: -34px;
+  bottom: 0;
+  width: 8px;
+  translate: -50% 0;
+  border-radius: 8px;
+  background: var(--stem);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path calc(var(--motion-spring-ms) * 2.4ms) ease-in-out, left calc(var(--motion-spring-ms) * 1ms) ease-in-out;
+}
+.grow-pre.grow-u3::after { clip-path: inset(0); }
+.grow-pre:not(.grow-u3) .grow-cell { opacity: 0; scale: 0.2; }
+.grow-u3 .grow-cell { animation: grow-popin calc(520ms * var(--motion-scale)) var(--motion-spring-ease) both; animation-delay: calc(500ms * var(--motion-scale)); }
+@keyframes grow-popin { from { opacity: 0; scale: 0.2; } }
+
+@media (max-width: 400px) {
+  .grow-prac { gap: 12px; }
+  .grow-days-ring { width: 72px; height: 72px; }
+}
+
+/* Reduced motion already zeroes every duration (index.css); the staggers are
+   delays, so they are cleared here or a branch would still wait its turn. */
+@media (prefers-reduced-motion: reduce) {
+  .grow-row-open .grow-lane .grow-item, .grow-u3 .grow-cell, .grow-go .grow-fan i { transition-delay: 0s; animation-delay: 0s; }
+  .grow-pulse::after { animation: none; }
+}

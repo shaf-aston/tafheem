@@ -1,9 +1,43 @@
 {
-  "_comment": "Grow's numbers. The rules that use them are in lib/grow.js.",
+  "_comment": "Grow's numbers and the shape of its map. The rules that use them are in lib/grow.js.",
 
-  "_clean-days": "How many different days a step must be said with every word right before it counts as mastered. One clean run can be luck or a fresh memory; the same words right again on another day is what knowing them looks like. The score counts only mastered steps.",
+  "_clean-days": "How many different days a step must be said with every word right before it counts as learnt. One clean run can be luck or a fresh memory; the same words right again on another day is what knowing them looks like. The score counts only learnt steps.",
   "clean-days": 2,
 
   "_storage-key": "Where the reader's record is kept in this browser. Nothing of it leaves the device except the anonymous attempt lib/progress.js already sends for every module.",
-  "storage-key": "grow-record"
+  "storage-key": "grow-record",
+
+  "_tiers": "The levels of the map, in the order they are climbed. A path in paths.json joins a tier by naming its id. A tier opens once every step of the one before it is learnt, and one with no path yet stays locked. `proposed` are the topics planned for a tier that has no path: shown locked so the road ahead is visible, and not steps anyone can practise. Adding a tier, or giving one its first path, is data only.",
+  "tiers": [
+    { "id": "basics", "title": "Basics", "arabic": "الأساسيات" },
+    {
+      "id": "intermediate",
+      "title": "Intermediate",
+      "arabic": "المتوسط",
+      "proposed": [
+        { "id": "full-salah", "title": "Full salah in order", "arabic": "الصلاة", "about": "Every word of the prayer, said in sequence from takbir to salam." },
+        { "id": "adhkar", "title": "Adhkar after salah", "arabic": "أذكار بعد الصلاة", "about": "The remembrances said right after the salam." },
+        { "id": "amma", "title": "Longer 'Amma surahs", "arabic": "جزء عم", "about": "Longer surahs of juz 'Amma, learned a few ayahs at a time." }
+      ]
+    },
+    {
+      "id": "advanced",
+      "title": "Advanced",
+      "arabic": "المتقدم",
+      "proposed": [
+        { "id": "kursi", "title": "Ayat al-Kursi", "arabic": "آية الكرسي", "about": "The Throne verse, ayah 255 of Al-Baqarah." },
+        { "id": "mulk", "title": "Surah al-Mulk", "arabic": "سورة الملك", "about": "Thirty ayahs, held to the end." },
+        { "id": "tajweed", "title": "Tajweed focus steps", "arabic": "التجويد", "about": "One rule at a time, practised on words you already know." }
+      ]
+    }
+  ],
+
+  "_daleel-words": "How many opening words of a ruling are handed to Daleel by its Open in Daleel link.",
+  "daleel-words": 8,
+
+  "_unlock-ms": "The tier unlock, in four waits: the gate stays shut, the gate opens, the dotted path draws, the vine grows and the groups appear. Each number is how long that beat lasts before the next one starts; after the last, the tier's first group opens by itself. Read in JavaScript, so it is skipped when animations are off.",
+  "unlock-ms": [500, 1100, 1000, 800],
+
+  "_mood-ms": "How long Qalam holds a reaction to a recitation before going back to resting. Longer than the motion itself so the reaction is seen, short enough that the next one reads as new.",
+  "mood-ms": 1400
 }

@@ -3,7 +3,8 @@
   "_size_comment": "The pen used to stand beside a title two lines tall and was sized to match it. The title is gone and the pen is a button now, so header is sized as a button: big enough to be an easy target, and the badge around it grows to suit rather than the pen shrinking to fit the badge. orb is the same pen at the centre of the launcher, where it has a whole circle to sit in and is the largest thing on the screen after the ring itself.",
   "size-rem": {
     "header": 2.1,
-    "orb": 3
+    "orb": 3,
+    "map": 3.2
   },
   "streak-at": 3,
   "captions": {
