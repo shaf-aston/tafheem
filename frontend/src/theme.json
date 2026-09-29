@@ -37,6 +37,11 @@
     "_comment": "default is what an unknown id wears, the primary purple, so colorFor('tab', id) is the one rule for tab colour everywhere.",
     "default": "#a78bfa"
   },
+  "science": {
+    "_comment": "Card colour of each map science (ui/MapPanel), keyed by chart id. One hue each, all readable on the raised surface, borrowed from the tab palette.",
+    "01": "#fbbf24", "02": "#fb923c", "03": "#4ade80", "04": "#38bdf8", "05": "#5eead4",
+    "06": "#a78bfa", "07": "#fb7185", "08": "#f472b6", "09": "#93c5fd"
+  },
   "backdrop": {
     "_comment": "The faint seal behind a tab (ui/QuranSeal). ink is its colour, strength how much of it shows; a light theme changes these two only.",
     "ink": "var(--text)",

@@ -22,7 +22,7 @@
 .pbs-card .pbs-ghost {
   position: absolute; right: 6px; bottom: -20px;
   font-size: 4.5rem; font-weight: 900; line-height: 1;
-  opacity: .06; pointer-events: none; transition: opacity .3s ease, transform .3s ease;
+  opacity: .10; pointer-events: none; transition: opacity .3s ease, transform .3s ease;
 }
 .pbs-card:hover .pbs-ghost { opacity: .14; transform: translate(-2px, -3px); }
 .pbs-card .pbs-go {

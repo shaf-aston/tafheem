@@ -85,8 +85,8 @@ export default function PbsDetail({ chart, branchIndex, kidIndex, onSelectKid, o
               onClick={() => onSelectKid(branchIndex, j)}
               className="type-small px-2.5 py-1 rounded-full border"
               style={j === kidIndex
-                ? { background: accent, color: '#fff', borderColor: accent }
-                : { borderColor: `${accent}55`, color: 'var(--text)' }}
+                ? { background: accent, color: 'var(--text)', borderColor: accent }
+                : { borderColor: `color-mix(in srgb, ${accent} 33%, transparent)`, color: 'var(--text)' }}
             >
               <ArabicText as="span">{k[0]}</ArabicText>
             </button>
