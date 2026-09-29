@@ -15,7 +15,7 @@ import { Fragment, useEffect, useMemo, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { isQuranic, recitedForm } from '../lib/arabicText'
-import { BOOKS, DEFAULT_BOOK } from '../lib/books'
+import { BOOKS, bookPartQuery, bookPartsQuery, DEFAULT_BOOK } from '../lib/books'
 import { smartError } from '../lib/apiError'
 import {
   blanksFor, CHOICES, DEFAULT_DIFFICULTY, DIFFICULTIES, fromMemory, isRight, makeRandom,
@@ -103,10 +103,7 @@ export default function MemorisePanel({ accent }) {
   // What this book breaks into. Asked for rather than listed, because a poem's
   // baabs are headings inside the poem, the same fetch the verses come from,
   // so asking costs nothing after the first time.
-  const { data: parts } = useQuery({
-    queryKey: ['memorise-parts', bookId],
-    queryFn: () => book.parts(),
-  })
+  const { data: parts } = useQuery(bookPartsQuery(bookId))
 
   // The part actually open: what the reader picked, as long as it is one of
   // this book's. Read from the parts rather than copied into state, so the
@@ -114,15 +111,14 @@ export default function MemorisePanel({ accent }) {
   // book's part selected for a render.
   const part = parts?.some((p) => p.id === chosen) ? chosen : (parts?.[0]?.id ?? null)
 
-  const partQuery = (id) => ({ queryKey: ['memorise', bookId, id], queryFn: () => book.load(id) })
-  const { data, isPending, isError, error, refetch } = useQuery({ ...partQuery(part), enabled: part !== null })
+  const { data, isPending, isError, error, refetch } = useQuery({ ...bookPartQuery(bookId, part), enabled: part !== null })
 
   // The parts either side are where a reader goes next.
   const client = useQueryClient()
   useEffect(() => {
     const at = parts?.findIndex((p) => p.id === part) ?? -1
-    if (at >= 0) [parts[at - 1], parts[at + 1]].forEach((p) => p && warm(client, partQuery(p.id)))
-  }, [client, parts, part, bookId])  // eslint-disable-line react-hooks/exhaustive-deps
+    if (at >= 0) [parts[at - 1], parts[at + 1]].forEach((p) => p && warm(client, bookPartQuery(bookId, p.id)))
+  }, [client, parts, part, bookId])
 
   const pages = useMemo(() => (data ? pagesOf(data.lines, book.wordsPerPage) : []), [data, book])
   const page = pages[pageNumber] ?? null

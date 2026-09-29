@@ -26,7 +26,13 @@ const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: 1, staleTime: Infinity, gcTime: 30 * 60_000 } },
 })
 
-const openTab = (id) => TABS.find((t) => t.id === id)?.open?.(queryClient)
+// Logs how long each tab's opening data took, `[open] hadith 212ms`; 0ms = already cached.
+const openTab = (id) => {
+  const open = TABS.find((t) => t.id === id)?.open
+  if (!open) return
+  const at = performance.now()
+  Promise.resolve(open(queryClient)).then(() => console.debug(`[open] ${id} ${Math.round(performance.now() - at)}ms`))
+}
 
 // Nothing to say about a round: no streak, no answer just given.
 const QUIET = { streak: 0, answer: null }
