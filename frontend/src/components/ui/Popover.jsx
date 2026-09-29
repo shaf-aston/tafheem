@@ -58,7 +58,7 @@ export default function Popover({ label, title, children }) {
       {open && (
         <div
           id={id}
-          className="absolute end-0 top-full mt-2 z-30 w-max p-3 rounded-[var(--radius-md)]
+          className="absolute end-0 top-full mt-2 z-[var(--layer-popover)] w-max p-3 rounded-[var(--radius-md)]
             bg-[var(--surface-hi)] border border-[var(--border-hi)] shadow-[var(--shadow-pop)]"
         >
           {children}

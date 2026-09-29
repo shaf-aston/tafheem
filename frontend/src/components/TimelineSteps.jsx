@@ -254,7 +254,7 @@ export default function TimelineSteps({ steps, prints, library, accent, onGo, he
           the step and its place, since the map above scrolls away. */}
       <div
         ref={barRef}
-        className={`flex items-center gap-2 flex-wrap ${walking ? `sticky z-10 top-[calc(var(--app-header-h,0px)+0.5rem)]
+        className={`flex items-center gap-2 flex-wrap ${walking ? `sticky z-[var(--layer-sticky)] top-[calc(var(--app-header-h,0px)+0.5rem)]
           -mx-2 px-2 py-1.5 rounded-[var(--radius-sm)] bg-[var(--surface)] border border-[var(--border)]` : ''}`}
       >
         {!walking

@@ -427,7 +427,7 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
                       English column belongs, out of the way of the Arabic. */}
                   <th
                     dir="ltr"
-                    className="sticky left-0 z-10 bg-[var(--surface-hi)] text-left px-4 py-2
+                    className="sticky left-0 z-[var(--layer-raised)] bg-[var(--surface-hi)] text-left px-4 py-2
                       text-[var(--text-faint)] text-xs uppercase tracking-wide"
                   >
                     Person
@@ -447,7 +447,7 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
                     <th
                       scope="row"
                       dir="ltr"
-                      className={`sticky left-0 z-10 px-4 py-1.5 text-left font-normal whitespace-nowrap
+                      className={`sticky left-0 z-[var(--layer-raised)] px-4 py-1.5 text-left font-normal whitespace-nowrap
                         text-xs text-[var(--text-dim)] ${i % 2 ? 'bg-[var(--surface)]' : 'bg-[var(--surface-hi)]'}`}
                     >
                       {row.person}

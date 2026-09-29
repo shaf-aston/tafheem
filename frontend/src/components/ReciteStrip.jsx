@@ -24,7 +24,7 @@ export default function ReciteStrip({ listening, problem, heard, marks, lines, a
 
   return (
     <div
-      className="sticky bottom-0 z-10 -mx-1 mt-2 rounded-[var(--radius-lg)] border border-[var(--border)]
+      className="sticky bottom-0 z-[var(--layer-sticky)] -mx-1 mt-2 rounded-[var(--radius-lg)] border border-[var(--border)]
         bg-[var(--surface)]/95 backdrop-blur px-3 py-2 space-y-2"
     >
       <div className="flex items-center gap-3 flex-wrap">

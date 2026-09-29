@@ -137,7 +137,7 @@ function AppContent() {
 
   return (
     <div className="min-h-screen" style={{ '--c': accent }}>
-      <header ref={pinHeader} className="app-header sticky top-0 z-40">
+      <header ref={pinHeader} className="app-header sticky top-0 z-[var(--layer-header)]">
         <div className="shell py-1 flex items-center justify-between gap-3">
           {/* The name used to be printed here in two lines that said what every
               tab below already says. The pen is the name now, and clicking it

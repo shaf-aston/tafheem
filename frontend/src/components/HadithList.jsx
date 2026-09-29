@@ -50,7 +50,7 @@ export default function HadithList({ collection, collections, book, onBack, acce
 
   return (
     <div className="space-y-3">
-      <div className="sticky z-30 top-[var(--app-header-h,0px)] -mx-1 px-1 pt-2 bg-[var(--bg)]">
+      <div className="sticky z-[var(--layer-sticky)] top-[var(--app-header-h,0px)] -mx-1 px-1 pt-2 bg-[var(--bg)]">
         <div className="flex items-center gap-3 flex-wrap">
           <button
             type="button"

@@ -396,7 +396,10 @@ details:not([open]) > .glide {
 }
 
 .fade-in {
-  animation: fade-in calc(var(--motion-base-ms) * 1ms) ease both;
+  /* `backwards`, as .rise-in: `both` keeps the opacity animation applied forever,
+     which makes the whole panel its own stacking layer, and the footer drawn
+     after it then paints over anything that floats out of it (the wheels). */
+  animation: fade-in calc(var(--motion-base-ms) * 1ms) ease backwards;
 }
 
 /* The dialog's dimmed backing. ::backdrop sits in the browser's top layer and
@@ -494,7 +497,7 @@ dialog::backdrop {
   transform: translateX(-50%) translateY(4px);
   opacity: 0;
   pointer-events: none;
-  z-index: 5;
+  z-index: var(--layer-raised);
   background: var(--c);
   color: var(--bg);
   font-family: var(--font-ui);
@@ -835,7 +838,7 @@ dialog::backdrop {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 5;
+  z-index: var(--layer-seal);
   pointer-events: none;
   opacity: 0;
   width: calc(var(--cursor-light-size-px) * 1px);
@@ -859,18 +862,31 @@ dialog::backdrop {
   .cursor-light { display: none; }
 }
 
-/* The Quran tab's faint seal (ui/QuranSeal): behind everything; hover only reaches it where the page is empty. */
+/* The Quran tab's faint seal (ui/QuranSeal). Always in front of the page but
+   never in the way: clicks pass through, and ui/QuranSeal lights it when the
+   pointer is over it. Fixed, so after a search it can glide to the middle and
+   grow to cover the whole page; every property it moves by is one it animates. */
 .quran-seal {
-  position: absolute;
-  z-index: -1;
-  top: -0.5rem;
-  right: 0;
+  position: fixed;
+  z-index: var(--layer-seal);
+  top: 9rem;
+  right: 1rem;
   width: min(20rem, 60vw);
+  transform: translate(0, 0);
+  pointer-events: none;
   color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength), transparent);
-  transition: color calc(var(--motion-base-ms) * 2ms) ease, filter calc(var(--motion-base-ms) * 2ms) ease;
+  transition-property: top, right, width, transform, color, filter;
+  transition-duration: calc(var(--motion-base-ms) * 4ms);
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
-/* Hovered, it catches the light: stronger ink and a soft glow. */
-.quran-seal:hover {
+.quran-seal-wide {
+  top: 50%;
+  right: 50%;
+  width: min(44rem, 92vw);
+  transform: translate(50%, -50%);
+  color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength-wide), transparent);
+}
+.quran-seal-lit {
   color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength-hover), transparent);
   filter: drop-shadow(0 0 var(--backdrop-glow) color-mix(in srgb, var(--backdrop-ink) 30%, transparent));
 }
@@ -897,7 +913,7 @@ dialog::backdrop {
 .wheel-pill:disabled { opacity: 0.5; }
 .wheel-card {
   position: absolute;
-  z-index: 30;
+  z-index: var(--layer-popover);
   top: calc(100% + 0.375rem);
   left: 0;
   width: 16rem;

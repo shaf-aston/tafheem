@@ -124,7 +124,7 @@
   position: absolute;
   top: calc(100% + 0.45rem);
   right: 0;
-  z-index: 60;
+  z-index: var(--layer-tip);
   display: flex;
   width: max(var(--command-open-w), 22rem);
   max-width: 92vw;

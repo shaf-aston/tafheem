@@ -123,7 +123,7 @@
   border-radius: 50%;
   background: var(--surface);
   border: 3px solid var(--tl-acc);
-  z-index: 2;
+  z-index: var(--layer-raised);
   transition: transform calc(var(--motion-base-ms) * 1ms) ease;
 }
 .tl-rail-card[aria-current="true"] { outline: 2px solid var(--tl-acc); outline-offset: 2px; }
@@ -134,7 +134,7 @@
 .tl-arrow {
   position: absolute;
   top: 50%;
-  z-index: 3;
+  z-index: calc(var(--layer-raised) + 1);
   width: 2.375rem;
   height: 2.375rem;
   display: grid;
