@@ -928,6 +928,7 @@ class GrowRuling(BaseModel):
     find it; the app adds no ruling of its own."""
     book: str
     author: str
+    known_as: str  # the name he goes by, for "What al-Quduri says"
     where: str
     arabic: str
     english: str = ""
@@ -944,11 +945,25 @@ class GrowStep(BaseModel):
     ruling: GrowRuling | None = None
 
 
-class GrowPath(BaseModel):
+class GrowGroup(BaseModel):
+    """One node on the map: a few steps that belong together. `steps` are step
+    ids, and `icon` names the picture the page draws for it."""
     id: str
+    title: str
+    arabic: str = ""
+    icon: str
+    steps: list[str]
+
+
+class GrowPath(BaseModel):
+    """`tier` is one of the ids in the page's grow.json, so a new tier of
+    learning is data: a path that names it."""
+    id: str
+    tier: str
     title: str
     arabic: str
     about: str
+    groups: list[GrowGroup]
     steps: list[GrowStep]
 
 

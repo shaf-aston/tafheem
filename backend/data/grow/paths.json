@@ -1,11 +1,58 @@
 {
-  "_comment": "Grow's paths, hand-written. A ruling's `arabic` is the scholar's sentence copied from the book, never paraphrased: tests/test_grow.py checks each one against the book's own file. A step with no clear sentence in the book carries no ruling.",
+  "_comment": "Grow's paths, hand-written. A ruling's `arabic` is the scholar's sentence copied from the book, never paraphrased: tests/test_grow.py checks each one against the book's own file. A step with no clear sentence in the book carries no ruling. A path names its tier (grow.json lists the tiers) and cuts its steps into groups: a group is one node on the map, `icon` names its picture, and every step sits in exactly one group.",
   "paths": [
     {
       "id": "salah",
+      "tier": "basics",
       "title": "The words of salah",
       "arabic": "الصلاة",
       "about": "What is said in the prayer, from the first takbir to the salam, one step at a time.",
+      "groups": [
+        {
+          "id": "stand",
+          "title": "Standing",
+          "arabic": "القيام",
+          "icon": "stand",
+          "steps": [
+            "takbir",
+            "thana",
+            "taawwudh",
+            "basmala",
+            "fatiha",
+            "amin"
+          ]
+        },
+        {
+          "id": "bow",
+          "title": "Bowing",
+          "arabic": "الركوع",
+          "icon": "bow",
+          "steps": [
+            "ruku",
+            "rising"
+          ]
+        },
+        {
+          "id": "prostrate",
+          "title": "Prostrating",
+          "arabic": "السجود",
+          "icon": "prostrate",
+          "steps": [
+            "sujud"
+          ]
+        },
+        {
+          "id": "sit",
+          "title": "Sitting",
+          "arabic": "القعود",
+          "icon": "sit",
+          "steps": [
+            "tashahhud",
+            "salawat",
+            "taslim"
+          ]
+        }
+      ],
       "steps": [
         {
           "id": "takbir",
@@ -15,6 +62,7 @@
           "ruling": {
             "book": "Mukhtasar al-Quduri",
             "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "فإذا دخل الرجل في الصلاة كبر ورفع يديه مع التكبير حتى يحاذى بإبهاميه شحمتي أذنيه",
             "english": "When he enters the prayer he says the takbir and raises his hands with it, until his thumbs are level with his earlobes."
@@ -28,6 +76,7 @@
           "ruling": {
             "book": "Mukhtasar al-Quduri",
             "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "ثم يقول: سبحانك اللهم وبحمدك وتبارك اسمك وتعلى جدك ولا إله غيرك",
             "english": "Then he says: Subhanaka Allahumma wa bihamdik…"
@@ -41,6 +90,7 @@
           "ruling": {
             "book": "Mukhtasar al-Quduri",
             "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "ويستعيذ بالله من الشيطان الرجيم ويقرأ بسم الله الرحمن الرحيم ويسر بهما",
             "english": "He seeks refuge in Allah from the accursed Shaytan and reads Bismillah, saying both quietly."
@@ -54,6 +104,7 @@
           "ruling": {
             "book": "Mukhtasar al-Quduri",
             "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "ويستعيذ بالله من الشيطان الرجيم ويقرأ بسم الله الرحمن الرحيم ويسر بهما",
             "english": "He seeks refuge in Allah from the accursed Shaytan and reads Bismillah, saying both quietly."
@@ -74,6 +125,7 @@
           "ruling": {
             "book": "Mukhtasar al-Quduri",
             "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "ثم يقرأ فاتحة الكتاب وسورة معها أو ثلاث آيات من أي سورة شاء",
             "english": "Then he reads the Fatiha and a surah with it, or three ayahs from any surah he wishes."
@@ -87,6 +139,7 @@
           "ruling": {
             "book": "Mukhtasar al-Quduri",
             "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "وإذا قال الإمام {ولا الضالين} قال: آمين ويقولها ويخفونها",
             "english": "When the imam says “wa la al-dallin” he says Amin; he says it, and they say it quietly."
@@ -100,6 +153,7 @@
           "ruling": {
             "book": "Mukhtasar al-Quduri",
             "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "ويقول في ركوعه: سبحان ربي العظيم ثلاثا وذلك أذناه",
             "english": "In his ruku' he says “Subhana Rabbiya al-'Azim” three times, and that is the least of it."
@@ -119,6 +173,7 @@
           "ruling": {
             "book": "Mukhtasar al-Quduri",
             "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "ويقول في سجوده: سبحان ربي الأعلى ثلاثا وذلك أدناه",
             "english": "In his sujud he says “Subhana Rabbiya al-A'la” three times, and that is the least of it."
@@ -132,6 +187,7 @@
           "ruling": {
             "book": "Mukhtasar al-Quduri",
             "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "والتشهد أن يقول: التحيات لله والصلوات والطيبات السلام عليك أيها النبي ورحمة الله وبركاته السلام علينا وعلى عباد الله الصالحين أشهد أن لا إله إلا الله وأشهد أن محمدا عبده ورسوله ولا يزيد على هذا في القعدة الأولى",
             "english": "The tashahhud is to say: al-tahiyyatu lillah… and he adds nothing to this in the first sitting."
@@ -145,6 +201,7 @@
           "ruling": {
             "book": "Mukhtasar al-Quduri",
             "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "فإذا جلس في آخر الصلاة جلس كما في الأولى وتشهد وصلى على النبي صلى الله عليه وسلم",
             "english": "When he sits at the end of the prayer he sits as in the first, says the tashahhud, and sends prayers on the Prophet ﷺ."
@@ -158,6 +215,7 @@
           "ruling": {
             "book": "Mukhtasar al-Quduri",
             "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+            "known_as": "al-Quduri",
             "where": "Kitab al-Salah, Bab Sifat al-Salah",
             "arabic": "ثم يسلم عن يمينه فيقول: السلام عليكم ورحمة الله وعن يساره مثل ذلك",
             "english": "Then he gives salam to his right, saying “as-salamu 'alaykum wa rahmatullah”, and to his left the same."
@@ -167,9 +225,36 @@
     },
     {
       "id": "surahs",
+      "tier": "basics",
       "title": "Short surahs",
       "arabic": "قصار السور",
       "about": "The Fatiha and the short surahs most often recited in prayer.",
+      "groups": [
+        {
+          "id": "surahs-1",
+          "title": "Surahs 1",
+          "arabic": "السور",
+          "icon": "book",
+          "steps": [
+            "fatiha",
+            "ikhlas",
+            "falaq",
+            "nas"
+          ]
+        },
+        {
+          "id": "surahs-2",
+          "title": "Surahs 2",
+          "arabic": "السور",
+          "icon": "book",
+          "steps": [
+            "kawthar",
+            "asr",
+            "nasr",
+            "kafirun"
+          ]
+        }
+      ],
       "steps": [
         {
           "id": "fatiha",

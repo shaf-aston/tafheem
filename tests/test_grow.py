@@ -9,6 +9,7 @@ Run: python -m pytest tests/test_grow.py
 """
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 
@@ -24,6 +25,7 @@ from backend.services.recitation.spelling import as_heard
 client = TestClient(app)
 WEBM = bytes([0x1A, 0x45, 0xDF, 0xA3]) + bytes(8)
 QUDURI = Path(__file__).resolve().parent.parent / "backend" / "data/books/openiti/0428AbuHusaynQuduri.Mukhtasar.Sham19Y0124336-ara1"
+GROW_CONFIG = Path(__file__).resolve().parent.parent / "frontend" / "src" / "grow.json"
 AYAH_KEY = re.compile(r"(\d{1,3}):(\d{1,3})")
 
 
@@ -43,6 +45,21 @@ def test_every_path_loads_and_every_step_has_something_to_say():
         assert len(ids) == len(set(ids)), path["id"]
         for step in path["steps"]:
             assert bool(step["arabic"]) != bool(step["ayahs"]), step["id"]
+
+
+def test_every_path_names_a_tier_and_every_step_sits_in_one_group():
+    tiers = {t["id"] for t in json.loads(GROW_CONFIG.read_text(encoding="utf-8"))["tiers"]}
+    for path in grow.paths():
+        assert path.tier in tiers, path.id
+        grouped = [step for group in path.groups for step in group.steps]
+        assert sorted(grouped) == sorted(step.id for step in path.steps), path.id
+
+
+def test_every_ruling_says_who_it_is_by():
+    for path in grow.paths():
+        for step in path.steps:
+            if step.ruling:
+                assert step.ruling.known_as, step.id
 
 
 def test_every_ruling_is_the_books_own_sentence():
