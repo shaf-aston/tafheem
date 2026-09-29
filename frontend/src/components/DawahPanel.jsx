@@ -14,7 +14,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getDawah } from '../api'
+import { dawahQuery } from '../api'
 import { smartError } from '../lib/apiError'
 import { useRemembered } from '../lib/useRemembered'
 import { matches } from '../lib/dawahSearch'
@@ -33,10 +33,7 @@ import Answer from './dawah/Answer'
 const { copy } = knobs
 
 export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit }) {
-  const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: ['dawah'],
-    queryFn: getDawah,
-  })
+  const { data, isPending, isError, error, refetch } = useQuery(dawahQuery)
   const [topicId, setTopicId] = useState(null)
   const [questionId, setQuestionId] = useState(null)
   const [query, setQuery] = useState('')

@@ -9,7 +9,7 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
-import { colloquialUnitQuery, getColloquial } from '../api'
+import { colloquialQuery, colloquialUnitQuery } from '../api'
 import { smartError } from '../lib/apiError'
 import { warm } from '../lib/warm'
 import { useRemembered } from '../lib/useRemembered'
@@ -88,7 +88,7 @@ function Topic({ dialect, unit, at }) {
 }
 
 export default function ColloquialPanel() {
-  const catalogue = useQuery({ queryKey: ['colloquial'], queryFn: getColloquial })
+  const catalogue = useQuery(colloquialQuery)
   const dialects = catalogue.data?.dialects ?? []
   const [dialectKey, setDialectKey] = useRemembered('colloq-dialect', dialects.map((d) => d.key))
   const [picked, setPicked] = useState(false)

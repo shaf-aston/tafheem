@@ -1,11 +1,14 @@
+import { useFirstSight } from '../../lib/firstSight'
+
 // The questions beside the answer; a search spanning topics names each one's topic.
 export default function QuestionList({ rows, current, onPick }) {
+  const rise = useFirstSight(`dawah-questions:${rows[0]?.question.id}`)
   return (
     <ol className="space-y-1">
       {rows.map(({ topic, question }, i) => {
         const on = question.id === current
         return (
-          <li key={question.id} className="rise-in" style={{ '--i': i }}>
+          <li key={question.id} className={rise ? 'rise-in' : undefined} style={{ '--i': i }}>
             <button
               type="button"
               onClick={() => onPick(question.id)}

@@ -15,7 +15,7 @@ function isOut(tab, tabs, active) {
   return tabs.some((t) => t.id === active && t.half && t.group === tab.group)
 }
 
-export default function TabStrip({ tabs, active, colorOf, onSelect, onAll }) {
+export default function TabStrip({ tabs, active, colorOf, onSelect, onAll, onHover }) {
   return (
     // No overflow here on purpose: setting one axis to auto makes the other
     // auto too, and the 1px underline below the strip would then raise a
@@ -38,6 +38,8 @@ export default function TabStrip({ tabs, active, colorOf, onSelect, onAll }) {
             aria-selected={selected}
             aria-controls="tabpanel"
             onClick={() => onSelect(tab.id)}
+            onPointerEnter={() => onHover?.(tab.id)}
+            onFocus={() => onHover?.(tab.id)}
             title={`${tab.label} (press ${i + 1})`}
             style={{
               '--c': tabAccent,

@@ -142,7 +142,7 @@
     "instant-ms": 120,
     "base-ms": 220,
     "spring-ms": 420,
-    "stagger-ms": 55,
+    "stagger-ms": 25,
     "spring-ease": "cubic-bezier(.34,1.56,.64,1)",
     "_patience_comment": "Not an animation: how a wait is announced. Nothing is said for the first patience-ms, because an answer that arrives sooner than that has arrived at once as far as the eye is concerned, and a spinner shown and taken away inside a fifth of a second reads as a flash rather than as news. Once something has been said it stays for patience-hold-ms, so an answer landing just after the wait was announced does not snatch it away again. Read in JavaScript by lib/useSlowPending.js, not by the stylesheet, so the Animations setting leaves it alone.",
     "patience-ms": 250,
@@ -219,7 +219,7 @@
     "said": "#f2e7d3",
     "told": "var(--text-faint)",
     "lines": "14",
-    "stagger-cap": "8"
+    "stagger-cap": "5"
   },
   "type": {
     "_comment": "English text sizes. In rem, so a browser's own text setting still moves them; px would ignore it. micro/tiny/small are supporting labels, badges, captions, the note under a control. body is English being read rather than labelled: an ayah's translation, a verse's gloss. A translation set at a label size is the mistake this token exists to stop, so reach for body whenever the English is the content.",

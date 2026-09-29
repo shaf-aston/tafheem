@@ -6,6 +6,8 @@
  * entry here; nothing else is edited.
  */
 import { colorFor } from '../theme'
+import { colloquialQuery, dawahQuery, daleelBooksQuery, growPathsQuery, hadithOpen, timelinesQuery } from '../api'
+import { load } from './warm'
 
 import Dictionary from '../components/Dictionary'
 import QuizPanel from '../components/QuizPanel'
@@ -29,6 +31,7 @@ import GrowPanel from '../components/GrowPanel'
 // `group`: its heading in All sections, an id from GROUPS.
 // `mark`: one Arabic letter for where only a letter fits (search rail, launcher
 //   ring). Taken from the tab's own name, unique across tabs.
+// `open`: fetches the tab's opening data, run on idle and on hovering its tab.
 // Order = strip order = number-key shortcuts. Related tabs sit together.
 export const GROUPS = [
   { id: 'language', label: 'Language' },
@@ -41,16 +44,16 @@ export const TABS = [
   { id: 'sarf',   label: 'Sarf',       short: 'Sarf',   arabic: 'صرف',    mark: 'ص', Component: SarfPanel,   study: true, half: true, row: 3, group: 'language' },
   { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', mark: 'ق', Component: QuranLookup, study: true, row: 1, group: 'quran' },
   // Daleel finds a passage, Dictionary a word: reached for together.
-  { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   mark: 'د', Component: DaleelPanel, study: true, row: 1, group: 'quran' },
-  { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', mark: 'ث', Component: HadithPanel, study: true, row: 2, group: 'quran' },
+  { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   mark: 'د', Component: DaleelPanel, open: load(daleelBooksQuery), study: true, row: 1, group: 'quran' },
+  { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', mark: 'ث', Component: HadithPanel, open: hadithOpen, study: true, row: 2, group: 'quran' },
   { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  mark: 'م', Component: Dictionary,  row: 1, group: 'tools' },
   { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    mark: 'ح', Component: MemorisePanel, study: true, row: 2, group: 'quran' },
   // Grow, نبات (3:37): a learning path, reciting what is said in prayer.
-  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   mark: 'ب', Component: GrowPanel, study: true, row: 2, group: 'quran' },
+  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   mark: 'ب', Component: GrowPanel, open: load(growPathsQuery), study: true, row: 2, group: 'quran' },
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', mark: 'خ', Component: QuizPanel,   row: 2, group: 'tools' },
-  { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', mark: 'ت', Component: TimelinesPanel, study: true, row: 3, group: 'tools' },
-  { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   mark: 'و', Component: DawahPanel, study: true, row: 3, group: 'tools' },
-  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, row: 3, group: 'language', study: true },
+  { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', mark: 'ت', Component: TimelinesPanel, open: load(timelinesQuery), study: true, row: 3, group: 'tools' },
+  { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   mark: 'و', Component: DawahPanel, open: load(dawahQuery), study: true, row: 3, group: 'tools' },
+  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, open: load(colloquialQuery), row: 3, group: 'language', study: true },
 ]
 
 /** A tab's colour, with the theme's own fallback rule. */
