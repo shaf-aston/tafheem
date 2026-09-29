@@ -15,10 +15,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.config import get_settings
 from backend.routers import (
     analysis, colloquial, daleel, dawah, dictionary, grow, hadith, journal, listen, morphology, nahw_notes, practice, progress, quran,
-    tamreen, tarkeeb, timelines,
+    speak, tamreen, tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
-from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, syntax
+from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, speech, syntax
 from backend.services.morphology import get_engine_name
 
 BACKEND_ROOT = Path(__file__).resolve().parent
@@ -91,6 +91,8 @@ async def lifespan(_: FastAPI):
     # from the first recitation to every startup.
     if get_settings().recitation_warm:
         loop.run_in_executor(None, _warm_and_freeze)
+    # Same reason: the voice loads once, in the background, before anyone asks.
+    loop.run_in_executor(None, speech.warm)
 
     # Not awaited either, for the same reason. The Nahw parser takes seconds to
     # load, and before this it loaded inside the first /api/analyze, so the
@@ -146,6 +148,7 @@ def create_app() -> FastAPI:
         grow.router,
         hadith.router,
         dawah.router,
+        speak.router,
     ):
         app.include_router(router)
 
