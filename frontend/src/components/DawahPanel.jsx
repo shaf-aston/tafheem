@@ -110,7 +110,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {data.topics.map((topic, i) => (
             <TopicTile key={topic.id} topic={topic} index={i} selected={topic.id === topicId}
-              accent={accent} onPick={pickTopic} />
+              onPick={pickTopic} />
           ))}
         </div>
       )}
@@ -120,7 +120,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
       {rows.length > 0 && (
         <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 items-start">
           <nav aria-label={copy.questions}>
-            <QuestionList rows={rows} current={open.question.id} accent={accent} onPick={read} />
+            <QuestionList rows={rows} current={open.question.id} onPick={read} />
           </nav>
           <Answer {...open} library={data} accent={accent} onGo={onGo} step={step} mode={mode} modes={knobs.modes} onMode={setMode} copy={copy} />
         </div>

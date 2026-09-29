@@ -39,7 +39,7 @@ export default function Argument({ points, library, accent, mode, copy, onGo }) 
       </ol>
       {mode === 'steps' && shown < points.length && (
         <div className="flex items-center gap-3 ps-10">
-          <GoButton style={{ '--c': accent }} onClick={() => setShown(shown + 1)}>{copy['next-point']}</GoButton>
+          <GoButton onClick={() => setShown(shown + 1)}>{copy['next-point']}</GoButton>
           <span className="type-small text-[var(--text-faint)]">{copy['point-count'].replace('{shown}', shown).replace('{total}', points.length)}</span>
         </div>
       )}
