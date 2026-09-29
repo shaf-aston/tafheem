@@ -1,9 +1,8 @@
-// A unit as scenes: pick a lesson, and its pictures come first, then the conversation and practice.
+// One topic as a scene: its pictures come first, then the conversation and practice.
 import { useState } from 'react'
 
 import TranslationStrip from '../ui/TranslationStrip'
 import Dialogue from './Dialogue'
-import { FOCUS } from './Face'
 import Mosaic from './Mosaic'
 import Pairs from './Pairs'
 import Practice from './Practice'
@@ -53,28 +52,11 @@ function Scene({ lesson, number }) {
   )
 }
 
-export default function UnitView({ unit }) {
-  const [pick, setPick] = useState(0)
+// One topic of a unit; the panel above owns which unit and topic are open.
+export default function UnitView({ unit, at }) {
   return (
-    <div className="max-w-3xl mx-auto space-y-10">
-      <nav aria-label="Scenes" className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        {unit.lessons.map((l, i) => (
-          <button
-            key={l.lesson}
-            type="button"
-            onClick={() => setPick(i)}
-            aria-current={i === pick}
-            className={`press text-start px-3 py-2 rounded-[var(--radius-md)] border transition-colors ${FOCUS}
-              ${i === pick
-                ? 'border-[var(--primary)] bg-[var(--surface-hi)]'
-                : 'border-[var(--border)] hover:border-[var(--border-hi)]'}`}
-          >
-            <span className="block type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Scene {i + 1}</span>
-            <span className="block type-small text-[var(--text)]">{l.title}</span>
-          </button>
-        ))}
-      </nav>
-      <Scene key={pick} lesson={unit.lessons[pick]} number={pick + 1} />
+    <div className="max-w-3xl mx-auto">
+      <Scene lesson={unit.lessons[at]} number={at + 1} />
     </div>
   )
 }
