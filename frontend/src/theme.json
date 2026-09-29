@@ -36,6 +36,11 @@
     "_comment": "default is what an unknown id wears, the primary purple, so colorFor('tab', id) is the one rule for tab colour everywhere.",
     "default": "#a78bfa"
   },
+  "backdrop": {
+    "_comment": "The faint seal behind a tab (ui/QuranSeal). ink is its colour, strength how much of it shows; a light theme changes these two only.",
+    "ink": "var(--text)",
+    "strength": "5%"
+  },
   "tabstrip": {
     "_comment": "How much of its own colour an unselected tab keeps. 0% is plain grey, 100% is as loud as the selected one.",
     "idle-tint": "40%",
