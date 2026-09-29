@@ -873,3 +873,82 @@ dialog::backdrop {
   font-family: 'Amiri', var(--font-quran);
   font-weight: 700;
 }
+
+/* ui/WheelPicker: a pill, and the floating wheel it opens. */
+.wheel-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.wheel-pill:hover:not(:disabled) { border-color: var(--border-hi); }
+.wheel-pill:disabled { opacity: 0.5; }
+.wheel-card {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 0.375rem);
+  left: 0;
+  width: 16rem;
+  max-width: calc(100vw - 2rem);
+  padding: 0.5rem;
+  background: var(--surface-hi);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pop);
+}
+.wheel-type {
+  width: 100%;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.875rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.wheel-type:focus { outline: none; border-color: var(--tab-quran); }
+/* Five rows show; the middle band marks the one Enter picks. */
+.wheel-window {
+  --wheel-row: 2.25rem;
+  position: relative;
+  margin-top: 0.5rem;
+}
+.wheel-window::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--wheel-row) * 2) 0 auto;
+  height: var(--wheel-row);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--tab-quran) 14%, transparent);
+  pointer-events: none;
+}
+.wheel-list {
+  height: calc(var(--wheel-row) * 5);
+  overflow-y: auto;
+  padding-block: calc(var(--wheel-row) * 2);
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  mask-image: linear-gradient(transparent, #000 35%, #000 65%, transparent);
+}
+.wheel-list::-webkit-scrollbar { display: none; }
+.wheel-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: var(--wheel-row);
+  padding-inline: 0.625rem;
+  scroll-snap-align: center;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+.wheel-item[aria-selected='true'] { color: var(--text); font-weight: 600; }
+.wheel-hint { color: var(--text-faint); }
+.wheel-card-flip { left: auto; right: 0; }
