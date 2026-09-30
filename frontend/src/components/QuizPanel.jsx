@@ -3,7 +3,6 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { keyAction, typingElsewhere } from '../lib/answerKeys'
-import { smartError } from '../lib/apiError'
 import { fetchReviewItems, recordAttempt } from '../lib/progress'
 import { buildQuestion, DIRECTIONS, makeRandom, MEANINGS } from '../lib/quiz'
 import {
@@ -487,9 +486,11 @@ export default function QuizPanel({ accent, onProgress }) {
       </div>
 
       {words.isError && (
-        <ErrorAlert title={say('Could not load those words')}>
-          {smartError(words.error, say('Those word lists may not have been built yet.'))}
-        </ErrorAlert>
+        <ErrorAlert
+          title={say('Could not load those words')}
+          error={words.error}
+          fallback={say('Those word lists may not have been built yet.')}
+        />
       )}
 
       {words.isPending && <Skeleton className="h-64 w-full" />}

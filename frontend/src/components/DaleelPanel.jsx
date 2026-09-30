@@ -14,7 +14,6 @@ import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
 import { daleelBooksQuery, findDaleel } from '../api'
-import { smartError } from '../lib/apiError'
 import { isArabic, mostlyArabic } from '../lib/arabicText'
 import { plainEntry } from '../lib/laneEntry'
 import { sourcesFor, useSources } from '../lib/useSources'
@@ -30,7 +29,6 @@ import MicButton from './ui/MicButton'
 import PlaceLinks from './ui/PlaceLinks'
 import ErrorAlert from './ui/ErrorAlert'
 import RecentRow from './ui/RecentRow'
-import RetryButton from './ui/RetryButton'
 import { GoButton } from './ui/RootActions'
 import SearchBox from './ui/SearchBox'
 import SectionHeader from './ui/SectionHeader'
@@ -170,10 +168,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
       <PlaceLinks query={query} onGo={onGo} accent={accent} />
 
       {mutation.isError && (
-        <ErrorAlert title="Search failed">
-          {smartError(mutation.error, 'Could not reach the backend.')}
-          <RetryButton onClick={() => submit()} />
-        </ErrorAlert>
+        <ErrorAlert title="Search failed" error={mutation.error} fallback="Could not reach the backend." onRetry={() => submit()} />
       )}
 
       {/* Not an EmptyState: an index that was never built is a thing that could
@@ -284,7 +279,7 @@ function Quotation({ hit, onGo, accent, tidy }) {
               className="type-small px-2 py-0.5 rounded-full border"
               style={{
                 color: 'var(--warn)',
-                borderColor: 'color-mix(in srgb, var(--warn) 35%, transparent)',
+                borderColor: 'var(--warn-edge)',
               }}
             >
               {note}

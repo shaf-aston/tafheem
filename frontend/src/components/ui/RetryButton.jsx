@@ -6,7 +6,7 @@ export default function RetryButton({ onClick, label = 'Try again' }) {
       onClick={onClick}
       className="mt-3 inline-flex items-center gap-1.5 text-xs rounded-[var(--radius-sm)] px-2.5 py-1 border transition-colors"
       style={{
-        borderColor: 'color-mix(in srgb, var(--danger) 40%, transparent)',
+        borderColor: 'var(--danger-edge)',
         color: 'var(--danger)',
       }}
     >

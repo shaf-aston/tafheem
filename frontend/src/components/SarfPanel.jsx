@@ -180,9 +180,8 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
       </div>
 
       {mutation.isError && (
-        <ErrorAlert title="Analysis failed">
+        <ErrorAlert title="Analysis failed" onRetry={() => submit()}>
           {errorMessage(mutation.error)}
-          <RetryButton onClick={() => submit()} />
         </ErrorAlert>
       )}
 

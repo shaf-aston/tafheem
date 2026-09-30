@@ -20,7 +20,7 @@ function DoubtBadge({ example }) {
   return (
     <span
       className="type-small px-2 py-0.5 rounded-full border"
-      style={{ color: 'var(--warn)', borderColor: 'color-mix(in srgb, var(--warn) 40%, transparent)' }}
+      style={{ color: 'var(--warn)', borderColor: 'var(--warn-edge)' }}
     >
       Answer in doubt
     </span>

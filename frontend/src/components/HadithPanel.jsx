@@ -10,7 +10,6 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { hadithCollectionsQuery } from '../api'
-import { smartError } from '../lib/apiError'
 import { parsePlace, placeOf } from '../lib/hadithPlace'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
@@ -18,7 +17,6 @@ import Chip from './ui/Chip'
 import EmptyState from './ui/EmptyState'
 import SectionHeader from './ui/SectionHeader'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import HadithCollectionPicker from './HadithCollectionPicker'
 import HadithBookList from './HadithBookList'
@@ -50,10 +48,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
 
   if (isError) {
     return (
-      <ErrorAlert title="Could not load the hadith collections">
-        {smartError(error, 'The hadith collections could not be reached.')}
-        <RetryButton onClick={refetch} />
-      </ErrorAlert>
+      <ErrorAlert title="Could not load the hadith collections" error={error} fallback="The hadith collections could not be reached." onRetry={refetch} />
     )
   }
 

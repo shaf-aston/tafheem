@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
 import { rootBabsQuery, searchDictionary } from '../api'
-import { smartError } from '../lib/apiError'
 import { isArabic } from '../lib/arabicText'
 import { entrySpan } from '../lib/entrySpan'
 import { plainPronunciation } from '../lib/pronounce'
@@ -24,7 +23,6 @@ import MicButton from './ui/MicButton'
 import PlaceLinks from './ui/PlaceLinks'
 import Pronunciation from './ui/Pronunciation'
 import RecentRow from './ui/RecentRow'
-import RetryButton from './ui/RetryButton'
 import RootActions from './ui/RootActions'
 import SearchBox from './ui/SearchBox'
 import SectionHeader from './ui/SectionHeader'
@@ -194,10 +192,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
       </div>
 
       {mutation.isError && (
-        <ErrorAlert title="Search failed">
-          {smartError(mutation.error, 'The dictionary file may not be installed yet.')}
-          <RetryButton onClick={() => submit()} />
-        </ErrorAlert>
+        <ErrorAlert title="Search failed" error={mutation.error} fallback="The dictionary file may not be installed yet." onRetry={() => submit()} />
       )}
 
       {mutation.isPending && !shown && <AnalyzerSkeleton />}

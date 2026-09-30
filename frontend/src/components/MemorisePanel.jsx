@@ -16,7 +16,6 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { isQuranic, recitedForm } from '../lib/arabicText'
 import { BOOKS, bookPartQuery, bookPartsQuery, DEFAULT_BOOK } from '../lib/books'
-import { smartError } from '../lib/apiError'
 import {
   blanksFor, CHOICES, DEFAULT_DIFFICULTY, DIFFICULTIES, fromMemory, isRight, makeRandom,
   optionsFor, pagesOf, printedPageOf, score, wordsOf,
@@ -34,7 +33,6 @@ import ReciteStrip from './ReciteStrip'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import PrimaryButton from './ui/PrimaryButton'
-import RetryButton from './ui/RetryButton'
 import SectionHeader from './ui/SectionHeader'
 import Segmented from './ui/Segmented'
 import { Skeleton } from './ui/Skeleton'
@@ -355,10 +353,7 @@ export default function MemorisePanel({ accent }) {
       {isPending && <Skeleton className="h-40 w-full" />}
 
       {isError && (
-        <ErrorAlert title="That part could not be read">
-          {smartError(error, 'The text comes from the Qur\'an tab\'s own source.')}
-          <RetryButton onClick={refetch} />
-        </ErrorAlert>
+        <ErrorAlert title="That part could not be read" error={error} fallback="The text comes from the Qur\'an tab\'s own source." onRetry={refetch} />
       )}
 
       {data && pages.length === 0 && <EmptyState>Nothing to memorise here.</EmptyState>}
