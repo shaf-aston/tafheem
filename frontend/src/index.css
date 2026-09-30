@@ -1016,6 +1016,10 @@ dialog::backdrop {
   .bottom-nav-room {
     padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
   }
+  /* Phones keep the top bar to pen, search and settings; these move into More. */
+  .phone-hide {
+    display: none;
+  }
   /* More opens as a sheet rising from the bottom, where the finger already is. */
   .sections-menu {
     margin: auto 0 0;

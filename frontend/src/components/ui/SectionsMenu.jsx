@@ -5,7 +5,7 @@
 import { useModal } from '../../lib/useModal'
 import ArabicText from './ArabicText'
 
-export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here }) {
+export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here, children }) {
   const dialog = useModal(open)
 
   const go = (id) => {
@@ -52,6 +52,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
             </div>
           </section>
         ))}
+        {children}
       </div>
     </dialog>
   )
