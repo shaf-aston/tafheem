@@ -248,6 +248,8 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
 }
 
 function Results({ data, accent, onGo, onLookup }) {
+  // The badge at the top right opens the references behind the bab names.
+  const [refs, setRefs] = useState(false)
   if (data.results.length === 0) {
     return (
       <EmptyState>No entries. Try the bare root, without prefixes or endings.</EmptyState>
@@ -263,7 +265,14 @@ function Results({ data, accent, onGo, onLookup }) {
         <p className="text-[var(--text-dim)] type-body">
           {data.results.length === 1 ? '1 entry' : `${data.results.length} entries`}
         </p>
-        <SourceBadge source={data.source} />
+        <button
+          type="button"
+          onClick={() => setRefs((on) => !on)}
+          aria-expanded={refs}
+          aria-label="Show where each bab is recorded"
+        >
+          <SourceBadge source={data.source} />
+        </button>
       </div>
 
       {/* Two questions, two shapes. An Arabic word asks what it means, and the
@@ -274,7 +283,7 @@ function Results({ data, accent, onGo, onLookup }) {
       {data.lang === 'en' ? (
         <WordGrid results={data.results} query={data.query} accent={accent} onGo={onGo} />
       ) : (
-        <Forms results={data.results} accent={accent} onGo={onGo} onLookup={onLookup} />
+        <Forms results={data.results} accent={accent} onGo={onGo} onLookup={onLookup} refs={refs} />
       )}
     </div>
   )
@@ -290,11 +299,11 @@ function Results({ data, accent, onGo, onLookup }) {
  * the gaps filled by whatever fits, so the eye moves across rather than down.
  * A drop-down would have hidden the very thing worth comparing.
  */
-function Forms({ results, accent, onGo, onLookup }) {
+function Forms({ results, accent, onGo, onLookup, refs }) {
   const [lead, ...others] = results
   return (
     <>
-      <Entry entry={lead} accent={accent} i={0} onGo={onGo} onLookup={onLookup} />
+      <Entry entry={lead} accent={accent} i={0} onGo={onGo} onLookup={onLookup} refs={refs} />
       {others.length > 0 && (
         <>
           <p className="type-small text-[var(--text-faint)] pt-2">
@@ -324,9 +333,9 @@ function Forms({ results, accent, onGo, onLookup }) {
 }
 
 /** The root's Form I باب from the classical books; nothing at all when none records one. */
-function RootBabs({ root }) {
+function RootBabs({ root, refs }) {
   const { data } = useQuery(rootBabsQuery(root))
-  return data?.readings.length ? <VerbFormTag readings={data.readings} /> : null
+  return data?.readings.length ? <VerbFormTag readings={data.readings} plain showSources={refs} /> : null
 }
 
 /**
@@ -337,7 +346,7 @@ function RootBabs({ root }) {
  * reads at the same size as one holding a single line, only its footprint
  * differs.
  */
-function Entry({ entry, accent, i, onGo, onLookup, compact = false, sameRoot = false }) {
+function Entry({ entry, accent, i, onGo, onLookup, refs = false, compact = false, sameRoot = false }) {
   // Off by default for nobody, but one switch away for anyone who finds the
   // extra words distracting. Read here rather than passed down, so the switch
   // reaches the one place that draws them.
@@ -361,14 +370,6 @@ function Entry({ entry, accent, i, onGo, onLookup, compact = false, sameRoot = f
         <Pronunciation size="body" className="mt-1">{entry.transliteration}</Pronunciation>
       </div>
 
-      {!compact && entry.root && <RootBabs root={entry.root} />}
-
-      {entry.root && (
-        // showRoot=false: the root already prints above under "جذر:", so the
-        // bare repeat inside RootActions is dropped.
-        <RootActions root={entry.root} onGo={onGo} exclude="dict" showRoot={false} />
-      )}
-
       {/* A one-column card has no synonyms (that is what keeps it narrow), and
           the band's empty word column would squeeze its senses to a sliver. */}
       {entry.definitions?.length > 0 && (
@@ -386,6 +387,14 @@ function Entry({ entry, accent, i, onGo, onLookup, compact = false, sameRoot = f
         )
       )}
 
+      {/* Under the meaning, not above it: the senses are what was asked for. */}
+      {!compact && entry.root && <RootBabs root={entry.root} refs={refs} />}
+
+      {entry.root && (
+        // showRoot=false: the root already prints above under "جذر:", so the
+        // bare repeat inside RootActions is dropped.
+        <RootActions root={entry.root} onGo={onGo} exclude="dict" showRoot={false} />
+      )}
     </div>
   )
 }
