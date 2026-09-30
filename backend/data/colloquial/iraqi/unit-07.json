@@ -31,17 +31,17 @@
       "phrases": [
         {
           "slot": "good-morning",
-          "arabic": "صباح الخير",
+          "arabic": "صَبَاح الخير",
           "transliteration": "SabaaH il-kheer",
           "reply": {
-            "arabic": "صباح النور",
+            "arabic": "صَبَاح النور",
             "transliteration": "SabaaH in-noor",
             "english": "Good morning (reply)."
           }
         },
         {
           "slot": "i-woke-up-early",
-          "arabic": "گمت بدري",
+          "arabic": "گُمِت بِدري",
           "transliteration": "gumit badri"
         },
         {
@@ -49,19 +49,19 @@
           "arabic": "شكد الساعة هسة؟",
           "transliteration": "shgad is-saa3a hessa?",
           "reply": {
-            "arabic": "الساعة سبعة",
+            "arabic": "الساعَة سَبْعَة",
             "transliteration": "is-saa3a sab3a",
             "english": "It's seven o'clock."
           }
         },
         {
           "slot": "it-s-seven-o-clock",
-          "arabic": "الساعة سبعة",
+          "arabic": "الساعَة سَبْعَة",
           "transliteration": "is-saa3a sab3a"
         },
         {
           "slot": "i-m-still-sleepy",
-          "arabic": "بعدني نعسان",
+          "arabic": "بَعْدني نَعسَان",
           "transliteration": "ba3dni na3saan"
         },
         {
@@ -71,32 +71,32 @@
         },
         {
           "slot": "i-washed-my-face",
-          "arabic": "غسلت وجهي",
+          "arabic": "غَسَلت وِجهي",
           "transliteration": "ghasalt wijhi"
         },
         {
           "slot": "i-brushed-my-teeth",
-          "arabic": "غسلت أسناني",
+          "arabic": "غَسَلت أَسنَاني",
           "transliteration": "ghasalt asnaani"
         },
         {
           "slot": "i-got-dressed",
-          "arabic": "لبست هدومي",
+          "arabic": "لَبِست هِدومي",
           "transliteration": "lbast hdoomi"
         },
         {
           "slot": "i-left-for-work",
-          "arabic": "طلعت للشغل",
+          "arabic": "طَلَعت لِلشُّغل",
           "transliteration": "Tili3t lish-shughul"
         },
         {
           "slot": "i-missed-the-bus",
-          "arabic": "فاتني الباص",
+          "arabic": "فَاتني البَاص",
           "transliteration": "faatni il-baaS"
         },
         {
           "slot": "early-morning-is-very-cold",
-          "arabic": "الصبح بدري هواية برد",
+          "arabic": "الصُّبح بِدري هَواية بَرد",
           "transliteration": "iS-SubuH badri hawaaya bard"
         }
       ],
@@ -177,12 +177,12 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "صباح الخير",
+            "arabic": "صَبَاح الخير",
             "transliteration": "SabaaH il-kheer",
             "english": "Good morning."
           },
           "response": {
-            "arabic": "صباح النور",
+            "arabic": "صَبَاح النور",
             "transliteration": "SabaaH in-noor",
             "english": "Good morning (reply)."
           }
@@ -194,7 +194,7 @@
             "english": "What time is it now?"
           },
           "response": {
-            "arabic": "الساعة سبعة",
+            "arabic": "الساعَة سَبْعَة",
             "transliteration": "is-saa3a sab3a",
             "english": "It's seven o'clock."
           }
@@ -230,9 +230,9 @@
           "id": "unit-07.lesson-01.reply.01",
           "type": "reply",
           "prompt": "Someone says to you: \"صباح الخير\". Reply naturally.",
-          "answer": "صباح النور",
+          "answer": "صَبَاح النور",
           "accepted": [
-            "صباح النور",
+            "صَبَاح النور",
             "صباح الورد",
             "SabaaH in-noor"
           ],
@@ -246,9 +246,9 @@
           "id": "unit-07.lesson-01.reply.02",
           "type": "reply",
           "prompt": "Someone asks you: \"شكد الساعة هسة؟\" Answer that it's seven o'clock.",
-          "answer": "الساعة سبعة",
+          "answer": "الساعَة سَبْعَة",
           "accepted": [
-            "الساعة سبعة",
+            "الساعَة سَبْعَة",
             "سبعة",
             "is-saa3a sab3a"
           ],
@@ -294,9 +294,9 @@
           "id": "unit-07.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Iraqi Arabic: \"I woke up early.\"",
-          "answer": "گمت بدري",
+          "answer": "گُمِت بِدري",
           "accepted": [
-            "گمت بدري",
+            "گُمِت بِدري",
             "صحيت بدري",
             "gumit badri"
           ],
@@ -310,9 +310,9 @@
           "id": "unit-07.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I missed the bus.\"",
-          "answer": "فاتني الباص",
+          "answer": "فَاتني البَاص",
           "accepted": [
-            "فاتني الباص",
+            "فَاتني البَاص",
             "الباص فاتني",
             "faatni il-baaS"
           ],
@@ -326,9 +326,9 @@
           "id": "unit-07.lesson-01.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'm still sleepy.\"",
-          "answer": "بعدني نعسان",
+          "answer": "بَعْدني نَعسَان",
           "accepted": [
-            "بعدني نعسان",
+            "بَعْدني نَعسَان",
             "بعدني نعسانة",
             "ba3dni na3saan"
           ],
@@ -343,14 +343,14 @@
           "type": "choose",
           "prompt": "Which sentence means \"I left for work\"?",
           "options": [
-            "طلعت للشغل",
-            "رجعت للبيت",
+            "طَلَعت لِلشُّغل",
+            "رِجَعت لِلبيت",
             "نمت بدري",
             "تعشيت"
           ],
-          "answer": "طلعت للشغل",
+          "answer": "طَلَعت لِلشُّغل",
           "accepted": [
-            "طلعت للشغل",
+            "طَلَعت لِلشُّغل",
             "طلعت للدوام",
             "Tili3t lish-shughul"
           ],
@@ -365,14 +365,14 @@
           "type": "choose",
           "prompt": "Which reply fits \"صباح الخير\" best?",
           "options": [
-            "صباح النور",
-            "مساء الخير",
-            "تصبح على خير",
+            "صَبَاح النور",
+            "مَسَاء الخير",
+            "تَصبَح عَلى خير",
             "تسلم ايدك"
           ],
-          "answer": "صباح النور",
+          "answer": "صَبَاح النور",
           "accepted": [
-            "صباح النور",
+            "صَبَاح النور",
             "صباح الورد",
             "SabaaH in-noor"
           ],
@@ -410,22 +410,22 @@
       "phrases": [
         {
           "slot": "i-arrived-at-work",
-          "arabic": "وصلت للشغل",
+          "arabic": "وُصَلِت لِلشُّغل",
           "transliteration": "wuSalit lish-shughul"
         },
         {
           "slot": "i-have-a-meeting-at-ten",
-          "arabic": "عندي اجتماع الساعة عشرة",
+          "arabic": "عِندي اجتِمَاع الساعَة عَشرَة",
           "transliteration": "3indi ijtimaa3 is-saa3a 3ashra"
         },
         {
           "slot": "i-m-hungry-i-want-to-eat-something",
-          "arabic": "جوعان، اريد آكل شي",
+          "arabic": "جوعان، ارِيد آكِل شي",
           "transliteration": "joo3aan, areed aakul shi"
         },
         {
           "slot": "where-do-you-have-lunch",
-          "arabic": "وين تتغدى؟",
+          "arabic": "وِين تِتغَدَّى؟",
           "transliteration": "ween titghadda?",
           "reply": {
             "arabic": "بالمطعم گدام الشغل",
@@ -435,7 +435,7 @@
         },
         {
           "slot": "i-m-a-bit-tired-now",
-          "arabic": "هسة تعبان شوية",
+          "arabic": "هَسَّة تَعبَان شويَّة",
           "transliteration": "hessa ta3baan shwayya"
         },
         {
@@ -460,17 +460,17 @@
         },
         {
           "slot": "what-s-the-news-today",
-          "arabic": "شنو الأخبار اليوم؟",
+          "arabic": "شِنو الأَخبَار اليوم؟",
           "transliteration": "shinu il-akhbaar il-yoom?",
           "reply": {
-            "arabic": "ماكو شي جديد",
+            "arabic": "مَاكو شي جَديد",
             "transliteration": "maaku shi jdiid",
             "english": "Nothing new."
           }
         },
         {
           "slot": "i-have-a-lot-of-work-now",
-          "arabic": "عندي هواية شغل هسة",
+          "arabic": "عِندي هَواية شُغل هَسَّة",
           "transliteration": "3indi hawaaya shughul hessa"
         },
         {
@@ -480,7 +480,7 @@
         },
         {
           "slot": "i-finished-my-work-early-today",
-          "arabic": "خلصت شغلي بدري اليوم",
+          "arabic": "خَلَّصت شُغلي بِدري اليوم",
           "transliteration": "khalliSt shughli badri il-yoom"
         }
       ],
@@ -561,7 +561,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "وين تتغدى؟",
+            "arabic": "وِين تِتغَدَّى؟",
             "transliteration": "ween titghadda?",
             "english": "Where do you have lunch?"
           },
@@ -573,12 +573,12 @@
         },
         {
           "pair": {
-            "arabic": "شنو الأخبار اليوم؟",
+            "arabic": "شِنو الأَخبَار اليوم؟",
             "transliteration": "shinu il-akhbaar il-yoom?",
             "english": "What's the news today?"
           },
           "response": {
-            "arabic": "ماكو شي جديد",
+            "arabic": "مَاكو شي جَديد",
             "transliteration": "maaku shi jdiid",
             "english": "Nothing new."
           }
@@ -630,9 +630,9 @@
           "id": "unit-07.lesson-02.reply.02",
           "type": "reply",
           "prompt": "Someone asks you: \"شنو الأخبار اليوم؟\" Say there is nothing new.",
-          "answer": "ماكو شي جديد",
+          "answer": "مَاكو شي جَديد",
           "accepted": [
-            "ماكو شي جديد",
+            "مَاكو شي جَديد",
             "ماكو جديد",
             "maaku shi jdiid"
           ],
@@ -678,9 +678,9 @@
           "id": "unit-07.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Iraqi Arabic: \"I arrived at work.\"",
-          "answer": "وصلت للشغل",
+          "answer": "وُصَلِت لِلشُّغل",
           "accepted": [
-            "وصلت للشغل",
+            "وُصَلِت لِلشُّغل",
             "وصلت للدوام",
             "wuSalit lish-shughul"
           ],
@@ -694,9 +694,9 @@
           "id": "unit-07.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I have a lot of work now.\"",
-          "answer": "عندي هواية شغل هسة",
+          "answer": "عِندي هَواية شُغل هَسَّة",
           "accepted": [
-            "عندي هواية شغل هسة",
+            "عِندي هَواية شُغل هَسَّة",
             "عندي هواية شغل",
             "3indi hawaaya shughul hessa"
           ],
@@ -729,7 +729,7 @@
           "options": [
             "أدور على گلمي",
             "اريد آكل شي",
-            "وصلت للشغل",
+            "وُصَلِت لِلشُّغل",
             "خلصت شغلي"
           ],
           "answer": "أدور على گلمي",
@@ -749,14 +749,14 @@
           "type": "choose",
           "prompt": "Which question asks \"Where do you have lunch?\"",
           "options": [
-            "وين تتغدى؟",
+            "وِين تِتغَدَّى؟",
             "شكد الساعة؟",
             "شنو الأخبار؟",
             "شلونك؟"
           ],
-          "answer": "وين تتغدى؟",
+          "answer": "وِين تِتغَدَّى؟",
           "accepted": [
-            "وين تتغدى؟",
+            "وِين تِتغَدَّى؟",
             "وين تتغدى",
             "ween titghadda"
           ],
@@ -795,42 +795,42 @@
       "phrases": [
         {
           "slot": "good-evening",
-          "arabic": "مساء الخير",
+          "arabic": "مَسَاء الخير",
           "transliteration": "masaa il-kheer",
           "reply": {
-            "arabic": "مساء النور",
+            "arabic": "مَسَاء النور",
             "transliteration": "masaa in-noor",
             "english": "Good evening (reply)."
           }
         },
         {
           "slot": "i-came-back-home",
-          "arabic": "رجعت للبيت",
+          "arabic": "رِجَعت لِلبيت",
           "transliteration": "rija3t lil-beet"
         },
         {
           "slot": "what-will-we-eat-for-dinner",
-          "arabic": "شنو راح نتعشى؟",
+          "arabic": "شِنو رَاح نِتعَشَّى؟",
           "transliteration": "shinu raaH nit3ashsha?",
           "reply": {
-            "arabic": "شي خفيف",
+            "arabic": "شي خَفيف",
             "transliteration": "shi khafeef",
             "english": "Something light."
           }
         },
         {
           "slot": "i-want-to-shower",
-          "arabic": "اريد استحم",
+          "arabic": "ارِيد استَحمّ",
           "transliteration": "areed astaHimm"
         },
         {
           "slot": "i-got-very-tired-today",
-          "arabic": "تعبت هواية اليوم",
+          "arabic": "تَعِبت هَواية اليوم",
           "transliteration": "ti3abit hawaaya il-yoom"
         },
         {
           "slot": "do-we-want-to-watch-a-series",
-          "arabic": "نتفرج على مسلسل؟",
+          "arabic": "نِتفَرَّج عَلى مُسَلسَل؟",
           "transliteration": "nitfarraj 3ala musalsal?",
           "reply": {
             "arabic": "إي، زين",
@@ -840,12 +840,12 @@
         },
         {
           "slot": "let-s-go-out-for-a-little-walk",
-          "arabic": "خل نطلع نتمشى شوية",
+          "arabic": "خَلّ نِطلَع نِتمَشَّى شويَّة",
           "transliteration": "khal niTla3 nitmashsha shwayya"
         },
         {
           "slot": "the-weather-is-nice-in-the-evening",
-          "arabic": "الجو حلو بالمسا",
+          "arabic": "الجو حِلو بِالمَسا",
           "transliteration": "ij-jaww Hilu bil-masa"
         },
         {
@@ -855,22 +855,22 @@
         },
         {
           "slot": "i-ll-sleep-early-tonight",
-          "arabic": "الليلة راح انام بدري",
+          "arabic": "الليلة راح انام بِدري",
           "transliteration": "illayla raaH anaam badri"
         },
         {
           "slot": "good-night",
-          "arabic": "تصبح على خير",
+          "arabic": "تَصبَح عَلى خير",
           "transliteration": "tSabiH 3ala kheer",
           "reply": {
-            "arabic": "وانت من أهله",
+            "arabic": "وانت مِن أَهله",
             "transliteration": "w inta min ahla",
             "english": "And you (reply)."
           }
         },
         {
           "slot": "i-saw-my-friends-in-the-evening",
-          "arabic": "شفت ربعي بالمسا",
+          "arabic": "شَفت رِبعي بِالمَسا",
           "transliteration": "shift rab3i bil-masa"
         }
       ],
@@ -895,7 +895,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "شنو راح نتعشى؟",
+          "arabic": "شِنو رَاح نِتعَشَّى؟",
           "transliteration": "shinu raaH nit3ashsha?",
           "english": "What will we eat for dinner?"
         },
@@ -957,31 +957,31 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "مساء الخير",
+            "arabic": "مَسَاء الخير",
             "transliteration": "masaa il-kheer",
             "english": "Good evening."
           },
           "response": {
-            "arabic": "مساء النور",
+            "arabic": "مَسَاء النور",
             "transliteration": "masaa in-noor",
             "english": "Good evening (reply)."
           }
         },
         {
           "pair": {
-            "arabic": "شنو راح نتعشى؟",
+            "arabic": "شِنو رَاح نِتعَشَّى؟",
             "transliteration": "shinu raaH nit3ashsha?",
             "english": "What will we eat for dinner?"
           },
           "response": {
-            "arabic": "شي خفيف",
+            "arabic": "شي خَفيف",
             "transliteration": "shi khafeef",
             "english": "Something light."
           }
         },
         {
           "pair": {
-            "arabic": "نتفرج على مسلسل؟",
+            "arabic": "نِتفَرَّج عَلى مُسَلسَل؟",
             "transliteration": "nitfarraj 3ala musalsal?",
             "english": "Shall we watch a series?"
           },
@@ -993,12 +993,12 @@
         },
         {
           "pair": {
-            "arabic": "تصبح على خير",
+            "arabic": "تَصبَح عَلى خير",
             "transliteration": "tSabiH 3ala kheer",
             "english": "Good night."
           },
           "response": {
-            "arabic": "وانت من أهله",
+            "arabic": "وانت مِن أَهله",
             "transliteration": "w inta min ahla",
             "english": "And you."
           }
@@ -1010,9 +1010,9 @@
           "id": "unit-07.lesson-03.reply.01",
           "type": "reply",
           "prompt": "Someone says to you: \"مساء الخير\". Reply naturally.",
-          "answer": "مساء النور",
+          "answer": "مَسَاء النور",
           "accepted": [
-            "مساء النور",
+            "مَسَاء النور",
             "مساء الورد",
             "masaa in-noor"
           ],
@@ -1026,9 +1026,9 @@
           "id": "unit-07.lesson-03.reply.02",
           "type": "reply",
           "prompt": "Someone says to you: \"تصبح على خير\". Reply naturally.",
-          "answer": "وانت من أهله",
+          "answer": "وانت مِن أَهله",
           "accepted": [
-            "وانت من أهله",
+            "وانت مِن أَهله",
             "وانتي من اهله",
             "w inta min ahla"
           ],
@@ -1075,9 +1075,9 @@
           "id": "unit-07.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Iraqi Arabic: \"I came back home.\"",
-          "answer": "رجعت للبيت",
+          "answer": "رِجَعت لِلبيت",
           "accepted": [
-            "رجعت للبيت",
+            "رِجَعت لِلبيت",
             "رجعت البيت",
             "rija3t lil-beet"
           ],
@@ -1091,9 +1091,9 @@
           "id": "unit-07.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I got very tired today.\"",
-          "answer": "تعبت هواية اليوم",
+          "answer": "تَعِبت هَواية اليوم",
           "accepted": [
-            "تعبت هواية اليوم",
+            "تَعِبت هَواية اليوم",
             "اليوم تعبت هواية",
             "ti3abit hawaaya il-yoom"
           ],
@@ -1107,9 +1107,9 @@
           "id": "unit-07.lesson-03.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I saw my friends in the evening.\"",
-          "answer": "شفت ربعي بالمسا",
+          "answer": "شَفت رِبعي بِالمَسا",
           "accepted": [
-            "شفت ربعي بالمسا",
+            "شَفت رِبعي بِالمَسا",
             "شفت اصحابي بالمسا",
             "shift rab3i bil-masa"
           ],
@@ -1124,14 +1124,14 @@
           "type": "choose",
           "prompt": "Which sentence means \"Let's go out for a little walk\"?",
           "options": [
-            "خل نطلع نتمشى شوية",
-            "اريد استحم",
-            "الليلة راح انام بدري",
-            "رجعت للبيت"
+            "خَلّ نِطلَع نِتمَشَّى شويَّة",
+            "ارِيد استَحمّ",
+            "الليلة راح انام بِدري",
+            "رِجَعت لِلبيت"
           ],
-          "answer": "خل نطلع نتمشى شوية",
+          "answer": "خَلّ نِطلَع نِتمَشَّى شويَّة",
           "accepted": [
-            "خل نطلع نتمشى شوية",
+            "خَلّ نِطلَع نِتمَشَّى شويَّة",
             "خلي نطلع نتمشى شوية",
             "khal niTla3 nitmashsha shwayya"
           ],
@@ -1168,13 +1168,13 @@
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"بالمسا / حلو / الجو\"",
           "words": [
-            "بالمسا",
-            "حلو",
+            "بِالمَسا",
+            "حِلو",
             "الجو"
           ],
-          "answer": "الجو حلو بالمسا",
+          "answer": "الجو حِلو بِالمَسا",
           "accepted": [
-            "الجو حلو بالمسا",
+            "الجو حِلو بِالمَسا",
             "بالمسا الجو حلو",
             "ij-jaww Hilu bil-masa"
           ],
@@ -1191,37 +1191,37 @@
       "phrases": [
         {
           "slot": "days-of-the-week",
-          "arabic": "الأحد، الاثنين، الثلاثاء، الأربعاء، الخميس، الجمعة، السبت",
+          "arabic": "الأَحد، الاثنين، الثَّلاثَاء، الأَربِعَاء، الخَميس، الجُمعَة، السَّبت",
           "transliteration": "il-aHad, il-ithneen, ith-thalaatha, il-arba3aa, il-khamiis, ij-jum3a, is-sabt"
         },
         {
           "slot": "today-is-sunday",
-          "arabic": "اليوم الأحد",
+          "arabic": "اليوم الأَحد",
           "transliteration": "il-yoom il-aHad"
         },
         {
           "slot": "tomorrow-is-monday",
-          "arabic": "باچر الاثنين",
+          "arabic": "بَاچِر الاثنين",
           "transliteration": "baachir il-ithneen"
         },
         {
           "slot": "next-week-there-s-a-meeting-on-tuesday",
-          "arabic": "الأسبوع الجاي عندنا اجتماع يوم الثلاثاء",
+          "arabic": "الأسبوع الجَاي عِندنا اجتِمَاع يوم الثَّلاثَاء",
           "transliteration": "il-usbuu3 ij-jaay 3idna ijtimaa3 yoom ith-thalaatha"
         },
         {
           "slot": "on-wednesday-i-work-until-the-evening",
-          "arabic": "يوم الأربعاء أشتغل لحد المسا",
+          "arabic": "يوم الأَربِعَاء أَشتَغِل لَحد المَسا",
           "transliteration": "yoom il-arba3aa ashtaghil laHad il-masa"
         },
         {
           "slot": "on-thursday-i-see-my-friends",
-          "arabic": "يوم الخميس أشوف ربعي",
+          "arabic": "يوم الخَميس أَشوف رِبعي",
           "transliteration": "yoom il-khamiis ashoof rab3i"
         },
         {
           "slot": "friday-is-the-day-of-prayer-and-rest",
-          "arabic": "الجمعة يوم صلاة وراحة",
+          "arabic": "الجُمعَة يوم صَلاة ورَاحَة",
           "transliteration": "ij-jum3a yoom Salaa w raaHa"
         },
         {
@@ -1231,7 +1231,7 @@
         },
         {
           "slot": "what-do-you-plan-to-do-on-the-weekend",
-          "arabic": "شنو ناوي تسوي بالعطلة؟",
+          "arabic": "شِنو نَاوي تسوي بِالعِطلَة؟",
           "transliteration": "shinu naawi tsawwi bil-3uTla?",
           "reply": {
             "arabic": "نروح للسوگ",
@@ -1241,22 +1241,22 @@
         },
         {
           "slot": "i-have-work-every-day-except-friday-and-saturday",
-          "arabic": "اشتغل كل يوم إلا الجمعة والسبت",
+          "arabic": "اشتَغِل كُل يوم إِلا الجُمعَة والسَّبت",
           "transliteration": "ashtaghil kull yoom illa ij-jum3a w is-sabt"
         },
         {
           "slot": "when-is-the-meeting",
-          "arabic": "شوكت الاجتماع؟",
+          "arabic": "شوكِت الاجتِمَاع؟",
           "transliteration": "shwakit il-ijtimaa3?",
           "reply": {
-            "arabic": "يوم الثلاثاء",
+            "arabic": "يوم الثَّلاثَاء",
             "transliteration": "yoom ith-thalaatha",
             "english": "On Tuesday."
           }
         },
         {
           "slot": "the-weekend-comes-quickly",
-          "arabic": "العطلة تجي بسرعة",
+          "arabic": "العِطلَة تِجي بسُرعَة",
           "transliteration": "il-3uTla tiji bsur3a"
         }
       ],
@@ -1337,7 +1337,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شوكت الاجتماع؟",
+            "arabic": "شوكِت الاجتِمَاع؟",
             "transliteration": "shwakit il-ijtimaa3?",
             "english": "When is the meeting?"
           },
@@ -1349,7 +1349,7 @@
         },
         {
           "pair": {
-            "arabic": "شنو ناوي تسوي بالعطلة؟",
+            "arabic": "شِنو نَاوي تسوي بِالعِطلَة؟",
             "transliteration": "shinu naawi tsawwi bil-3uTla?",
             "english": "What do you plan to do on the weekend?"
           },
@@ -1406,9 +1406,9 @@
           "id": "unit-07.lesson-04.reply.02",
           "type": "reply",
           "prompt": "Someone asks you: \"شوكت الاجتماع؟\" Say it is on Tuesday.",
-          "answer": "يوم الثلاثاء",
+          "answer": "يوم الثَّلاثَاء",
           "accepted": [
-            "يوم الثلاثاء",
+            "يوم الثَّلاثَاء",
             "الثلاثاء",
             "yoom ith-thalaatha"
           ],
@@ -1454,9 +1454,9 @@
           "id": "unit-07.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Iraqi Arabic: \"Tomorrow is Monday.\"",
-          "answer": "باچر الاثنين",
+          "answer": "بَاچِر الاثنين",
           "accepted": [
-            "باچر الاثنين",
+            "بَاچِر الاثنين",
             "باكر الاثنين",
             "baachir il-ithneen"
           ],
@@ -1470,9 +1470,9 @@
           "id": "unit-07.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"On Thursday I see my friends.\"",
-          "answer": "يوم الخميس أشوف ربعي",
+          "answer": "يوم الخَميس أَشوف رِبعي",
           "accepted": [
-            "يوم الخميس أشوف ربعي",
+            "يوم الخَميس أَشوف رِبعي",
             "الخميس اشوف ربعي",
             "yoom il-khamiis ashoof rab3i"
           ],
@@ -1486,9 +1486,9 @@
           "id": "unit-07.lesson-04.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"The weekend comes quickly.\"",
-          "answer": "العطلة تجي بسرعة",
+          "answer": "العِطلَة تِجي بسُرعَة",
           "accepted": [
-            "العطلة تجي بسرعة",
+            "العِطلَة تِجي بسُرعَة",
             "العطلة تيجي بسرعة",
             "il-3uTla tiji bsur3a"
           ],
@@ -1525,14 +1525,14 @@
           "type": "choose",
           "prompt": "Which question asks \"When is the meeting?\"",
           "options": [
-            "شوكت الاجتماع؟",
+            "شوكِت الاجتِمَاع؟",
             "وين الاجتماع؟",
             "شنو الاجتماع؟",
             "منو بالاجتماع؟"
           ],
-          "answer": "شوكت الاجتماع؟",
+          "answer": "شوكِت الاجتِمَاع؟",
           "accepted": [
-            "شوكت الاجتماع؟",
+            "شوكِت الاجتِمَاع؟",
             "شوگت الاجتماع",
             "shwakit il-ijtimaa3"
           ],
@@ -1547,14 +1547,14 @@
           "type": "reorder",
           "prompt": "Put these pieces in order: \"اشتغل / كل يوم / إلا / الجمعة والسبت\"",
           "words": [
-            "اشتغل",
-            "كل يوم",
-            "إلا",
-            "الجمعة والسبت"
+            "اشتَغِل",
+            "كُل يوم",
+            "إِلا",
+            "الجُمعَة والسَّبت"
           ],
-          "answer": "اشتغل كل يوم إلا الجمعة والسبت",
+          "answer": "اشتَغِل كُل يوم إِلا الجُمعَة والسَّبت",
           "accepted": [
-            "اشتغل كل يوم إلا الجمعة والسبت",
+            "اشتَغِل كُل يوم إِلا الجُمعَة والسَّبت",
             "كل يوم اشتغل إلا الجمعة والسبت",
             "ashtaghil kull yoom illa ij-jum3a w is-sabt"
           ],

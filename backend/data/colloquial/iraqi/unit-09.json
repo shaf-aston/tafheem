@@ -28,80 +28,80 @@
       "phrases": [
         {
           "slot": "how-are-you-today-to-a-man",
-          "arabic": "اليوم شلونك؟",
+          "arabic": "الْيَوْم شْلُونَك؟",
           "transliteration": "ilyoom shloonak?",
           "reply": {
-            "arabic": "اليوم مو زين هواية",
+            "arabic": "الْيَوْم مُو زِين هَوَايَة",
             "transliteration": "ilyoom mu zeen hawaaya",
             "english": "Not so good today"
           }
         },
         {
           "slot": "how-are-you-today-to-a-woman",
-          "arabic": "اليوم شلونچ؟",
+          "arabic": "الْيَوْم شْلُونِچ؟",
           "transliteration": "ilyoom shloonich?",
           "reply": {
-            "arabic": "زينة، الحمدلله",
+            "arabic": "زِينَة، الْحَمْدُلِلَّه",
             "transliteration": "zeena, il-7amdulillah",
             "english": "Fine, thank God"
           }
         },
         {
           "slot": "what-happened-to-you-to-a-man",
-          "arabic": "شبيك؟",
+          "arabic": "شْبِيك؟",
           "transliteration": "shbeek?",
           "reply": {
-            "arabic": "ما أدري، بس آني تعبان شوية",
+            "arabic": "مَا أَدْرِي، بَس آنِي تَعْبَان شْوَيَّة",
             "transliteration": "ma adri, bas aani ta3baan shwayya",
             "english": "I don't know, I'm just a bit tired"
           }
         },
         {
           "slot": "i-feel-tired-a-man-speaking",
-          "arabic": "آني تعبان",
+          "arabic": "آنِي تَعْبَان",
           "transliteration": "aani ta3baan"
         },
         {
           "slot": "i-feel-tired-a-woman-speaking",
-          "arabic": "آني تعبانة",
+          "arabic": "آنِي تَعْبَانَة",
           "transliteration": "aani ta3baana"
         },
         {
           "slot": "i-have-a-headache",
-          "arabic": "عندي صداع",
+          "arabic": "عِنْدِي صُدَاع",
           "transliteration": "3indi Sudaa3"
         },
         {
           "slot": "my-stomach-hurts",
-          "arabic": "بطني يوجعني",
+          "arabic": "بِطْنِي يِوجِعْنِي",
           "transliteration": "baTni yiwja3ni"
         },
         {
           "slot": "i-have-a-fever",
-          "arabic": "عندي حرارة",
+          "arabic": "عِنْدِي حَرَارَة",
           "transliteration": "3indi 7araara"
         },
         {
           "slot": "i-feel-dizzy-a-man-speaking",
-          "arabic": "آني دايخ",
+          "arabic": "آنِي دَايِخ",
           "transliteration": "aani daayikh"
         },
         {
           "slot": "i-can-t-sleep-well",
-          "arabic": "ما أگدر أنام زين",
+          "arabic": "مَا أَگْدِر أَنَام زِين",
           "transliteration": "ma agdar anaam zeen"
         },
         {
           "slot": "looks-like-you-have-a-cold-to-a-man",
-          "arabic": "شكلك عندك نزلة برد",
+          "arabic": "شَكْلَك عِنْدَك نَزْلَة بَرْد",
           "transliteration": "shaklak 3indak nazlat bard"
         },
         {
           "slot": "take-some-rest-to-a-man",
-          "arabic": "ارتاح شوية",
+          "arabic": "ارْتَاح شْوَيَّة",
           "transliteration": "irtaa7 shwayya",
           "reply": {
-            "arabic": "إن شاء الله، تسلم",
+            "arabic": "إِن شَاء اللَّه، تِسْلَم",
             "transliteration": "in shaa Allah, tislam",
             "english": "God willing, bless you"
           }
@@ -146,7 +146,7 @@
         },
         {
           "speaker": "Ali",
-          "arabic": "شكلك عندك نزلة برد",
+          "arabic": "شَكْلَك عِنْدَك نَزْلَة بَرْد",
           "transliteration": "shaklak 3indak nazlat bard",
           "english": "Looks like you have a cold"
         },
@@ -184,7 +184,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "اليوم شلونك؟",
+            "arabic": "الْيَوْم شْلُونَك؟",
             "transliteration": "ilyoom shloonak?",
             "english": "How are you today? (to a man)"
           },
@@ -196,7 +196,7 @@
         },
         {
           "pair": {
-            "arabic": "شبيك؟",
+            "arabic": "شْبِيك؟",
             "transliteration": "shbeek?",
             "english": "What happened to you?"
           },
@@ -243,7 +243,7 @@
             "ilyoom mu zeen hawaaya",
             "mu zeen hawaaya",
             "مو زين",
-            "آني تعبان"
+            "آنِي تَعْبَان"
           ],
           "too_formal": {
             "item": "لست بخير اليوم",
@@ -255,9 +255,9 @@
           "id": "unit-09.lesson-01.reply.02",
           "type": "reply",
           "prompt": "A friend asks: \"شبيك؟\" Tell them you have a headache.",
-          "answer": "عندي صداع",
+          "answer": "عِنْدِي صُدَاع",
           "accepted": [
-            "عندي صداع",
+            "عِنْدِي صُدَاع",
             "3indi Sudaa3",
             "راسي يوجعني",
             "عندي وجع راس"
@@ -306,9 +306,9 @@
           "id": "unit-09.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Say (as a man): I feel tired.",
-          "answer": "آني تعبان",
+          "answer": "آنِي تَعْبَان",
           "accepted": [
-            "آني تعبان",
+            "آنِي تَعْبَان",
             "aani ta3baan",
             "أني تعبان",
             "تعبان"
@@ -323,9 +323,9 @@
           "id": "unit-09.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Say: I can't sleep well.",
-          "answer": "ما أگدر أنام زين",
+          "answer": "مَا أَگْدِر أَنَام زِين",
           "accepted": [
-            "ما أگدر أنام زين",
+            "مَا أَگْدِر أَنَام زِين",
             "ma agdar anaam zeen",
             "ma akdar anaam zeen",
             "ما أكدر أنام زين"
@@ -341,14 +341,14 @@
           "type": "choose",
           "prompt": "How do you ask a woman how she is today?",
           "options": [
-            "اليوم شلونچ؟",
-            "اليوم شلونك؟",
-            "شبيك؟",
+            "الْيَوْم شْلُونِچ؟",
+            "الْيَوْم شْلُونَك؟",
+            "شْبِيك؟",
             "اليوم شنو؟"
           ],
-          "answer": "اليوم شلونچ؟",
+          "answer": "الْيَوْم شْلُونِچ؟",
           "accepted": [
-            "اليوم شلونچ؟",
+            "الْيَوْم شْلُونِچ؟",
             "ilyoom shloonich?",
             "شلونچ",
             "اليوم شلونچ"
@@ -364,16 +364,16 @@
           "type": "choose",
           "prompt": "Which one means \"I have a fever\"?",
           "options": [
-            "عندي حرارة",
-            "عندي صداع",
-            "بطني يوجعني",
-            "آني دايخ"
+            "عِنْدِي حَرَارَة",
+            "عِنْدِي صُدَاع",
+            "بِطْنِي يِوجِعْنِي",
+            "آنِي دَايِخ"
           ],
-          "answer": "عندي حرارة",
+          "answer": "عِنْدِي حَرَارَة",
           "accepted": [
-            "عندي حرارة",
+            "عِنْدِي حَرَارَة",
             "3indi 7araara",
-            "عندي حرارة",
+            "عِنْدِي حَرَارَة",
             "3indi 7araarah"
           ],
           "too_formal": {
@@ -403,12 +403,12 @@
           "id": "unit-09.lesson-01.reorder.02",
           "type": "reorder",
           "prompt": "Put in order: Looks like you have a cold.",
-          "answer": "شكلك عندك نزلة برد",
+          "answer": "شَكْلَك عِنْدَك نَزْلَة بَرْد",
           "accepted": [
-            "شكلك عندك نزلة برد",
+            "شَكْلَك عِنْدَك نَزْلَة بَرْد",
             "shaklak 3indak nazlat bard",
             "shaklak 3indak nazla bard",
-            "شكلك عندك نزلة برد"
+            "شَكْلَك عِنْدَك نَزْلَة بَرْد"
           ],
           "too_formal": {
             "item": "يبدو أنك مصاب بنزلة برد",
@@ -423,27 +423,27 @@
       "phrases": [
         {
           "slot": "do-you-have-medicine-for-a-headache",
-          "arabic": "عندك دوا للصداع؟",
+          "arabic": "عِنْدَك دَوَا لِلصُّدَاع؟",
           "transliteration": "3indak dawa liS-Sudaa3?",
           "reply": {
-            "arabic": "أي، عدنا. تفضل",
+            "arabic": "أِي، عِدْنَا. تِفَضَّل",
             "transliteration": "ee, 3idna. tfaDDal",
             "english": "Yes, we have it. Here you go"
           }
         },
         {
           "slot": "i-want-pills-for-the-fever",
-          "arabic": "أريد حبوب للحرارة",
+          "arabic": "أُرِيد حُبُوب لِلْحَرَارَة",
           "transliteration": "areed 7uboob lil-7araara",
           "reply": {
-            "arabic": "خذ هاي، هي زينة للحرارة",
+            "arabic": "خُذ هَاي، هِيَّ زِينَة لِلْحَرَارَة",
             "transliteration": "khudh haay, hiyya zeena lil-7araara",
             "english": "Take this, it's good for fever"
           }
         },
         {
           "slot": "do-you-have-cough-syrup",
-          "arabic": "عندك شراب للكحة؟",
+          "arabic": "عِنْدَك شَرَاب لِلْكُحَّة؟",
           "transliteration": "3indak sharaab lil-ku77a?",
           "reply": {
             "arabic": "أي، هذا زين للكحة",
@@ -456,57 +456,57 @@
           "arabic": "بيش هذا الدوا؟",
           "transliteration": "beesh haatha id-dawa?",
           "reply": {
-            "arabic": "خمسة آلاف دينار",
+            "arabic": "خَمْسَة آلَاف دِينَار",
             "transliteration": "khamsat aalaaf deenaar",
             "english": "Five thousand dinars"
           }
         },
         {
           "slot": "do-i-need-a-prescription",
-          "arabic": "لازم ريسيتة؟",
+          "arabic": "لَازِم رِيسِيتَة؟",
           "transliteration": "laazim reseeta?",
           "reply": {
-            "arabic": "لا، ما يريد ريسيتة",
+            "arabic": "لَا، مَا يُرِيد رِيسِيتَة",
             "transliteration": "la, ma yreed reseeta",
             "english": "No, it doesn't need a prescription"
           }
         },
         {
           "slot": "take-it-twice-a-day-to-a-man",
-          "arabic": "خذه مرتين باليوم",
+          "arabic": "خُذْهُ مَرْتِين بِالْيَوْم",
           "transliteration": "khudha marrteen bil-yoom",
           "reply": {
-            "arabic": "زين، مرتين باليوم",
+            "arabic": "زِين، مَرْتِين بِالْيَوْم",
             "transliteration": "zeen, marrteen bil-yoom",
             "english": "Okay, twice a day"
           }
         },
         {
           "slot": "before-eating-or-after",
-          "arabic": "گبل الأكل لو بعده؟",
+          "arabic": "گِبْل الأَكْل لُو بَعْدُه؟",
           "transliteration": "gabul il-akil loo ba3da?",
           "reply": {
-            "arabic": "بعد الأكل",
+            "arabic": "بَعْد الأَكْل",
             "transliteration": "ba3d il-akil",
             "english": "After eating"
           }
         },
         {
           "slot": "i-want-something-for-allergies",
-          "arabic": "أريد شي للحساسية",
+          "arabic": "أُرِيد شِي لِلْحَسَاسِيَّة",
           "transliteration": "areed shi lil-7asaasiyya",
           "reply": {
-            "arabic": "أي، عدنا حبوب للحساسية",
+            "arabic": "أِي، عِدْنَا حُبُوب لِلْحَسَاسِيَّة",
             "transliteration": "ee, 3idna 7uboob lil-7asaasiyya",
             "english": "Yes, we have allergy pills"
           }
         },
         {
           "slot": "do-you-have-band-aids",
-          "arabic": "عندك بلاستر؟",
+          "arabic": "عِنْدَك بْلَاسْتِر؟",
           "transliteration": "3indak blaastir?",
           "reply": {
-            "arabic": "أي، هاي علبة",
+            "arabic": "أِي، هَاي عِلْبَة",
             "transliteration": "ee, haay 3ilba",
             "english": "Yes, here's a box"
           }
@@ -516,14 +516,14 @@
           "arabic": "هذا الدوا يخلي الواحد نعسان شوية",
           "transliteration": "haatha id-dawa ykhalli il-waa7id na3saan shwayya",
           "reply": {
-            "arabic": "زين، ما أسوگ اليوم",
+            "arabic": "زِين، مَا أَسُوگ الْيَوْم",
             "transliteration": "zeen, ma asoog ilyoom",
             "english": "Okay, I won't drive today"
           }
         },
         {
           "slot": "do-you-have-something-for-the-stomach",
-          "arabic": "عندك شي للبطن؟",
+          "arabic": "عِنْدَك شِي لِلْبِطْن؟",
           "transliteration": "3indak shi lil-baTin?",
           "reply": {
             "arabic": "أي، هذا الدوا زين للبطن",
@@ -533,10 +533,10 @@
         },
         {
           "slot": "get-well-soon-goodnight-to-a-man",
-          "arabic": "سلامتك، تصبح على خير",
+          "arabic": "سَلَامَتِك، تِصْبَح عَلَى خِير",
           "transliteration": "salaamtak, tiSba7 3ala kheer",
           "reply": {
-            "arabic": "الله يسلمك، تسلم",
+            "arabic": "اللَّه يِسَلِّمَك، تِسْلَم",
             "transliteration": "allah ysallmak, tislam",
             "english": "God keep you well, thank you"
           }
@@ -557,7 +557,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "عندك دوا للصداع؟",
+          "arabic": "عِنْدَك دَوَا لِلصُّدَاع؟",
           "transliteration": "3indak dawa liS-Sudaa3?",
           "english": "Do you have medicine for a headache?"
         },
@@ -593,7 +593,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "لازم ريسيتة؟",
+          "arabic": "لَازِم رِيسِيتَة؟",
           "transliteration": "laazim reseeta?",
           "english": "Do I need a prescription?"
         },
@@ -605,7 +605,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "گبل الأكل لو بعده؟",
+          "arabic": "گِبْل الأَكْل لُو بَعْدُه؟",
           "transliteration": "gabul il-akil loo ba3da?",
           "english": "Before eating or after?"
         },
@@ -631,7 +631,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "عندك دوا للصداع؟",
+            "arabic": "عِنْدَك دَوَا لِلصُّدَاع؟",
             "transliteration": "3indak dawa liS-Sudaa3?",
             "english": "Do you have medicine for a headache?"
           },
@@ -648,26 +648,26 @@
             "english": "How much is this medicine?"
           },
           "response": {
-            "arabic": "خمسة آلاف دينار",
+            "arabic": "خَمْسَة آلَاف دِينَار",
             "transliteration": "khamsat aalaaf deenaar",
             "english": "Five thousand dinars"
           }
         },
         {
           "pair": {
-            "arabic": "لازم ريسيتة؟",
+            "arabic": "لَازِم رِيسِيتَة؟",
             "transliteration": "laazim reseeta?",
             "english": "Do I need a prescription?"
           },
           "response": {
-            "arabic": "لا، ما يريد ريسيتة",
+            "arabic": "لَا، مَا يُرِيد رِيسِيتَة",
             "transliteration": "la, ma yreed reseeta",
             "english": "No, it doesn't need one"
           }
         },
         {
           "pair": {
-            "arabic": "گبل الأكل لو بعده؟",
+            "arabic": "گِبْل الأَكْل لُو بَعْدُه؟",
             "transliteration": "gabul il-akil loo ba3da?",
             "english": "Before eating or after?"
           },
@@ -701,9 +701,9 @@
           "id": "unit-09.lesson-02.reply.02",
           "type": "reply",
           "prompt": "The pharmacist says: \"خذه مرتين باليوم.\" Ask if it is before or after eating.",
-          "answer": "گبل الأكل لو بعده؟",
+          "answer": "گِبْل الأَكْل لُو بَعْدُه؟",
           "accepted": [
-            "گبل الأكل لو بعده؟",
+            "گِبْل الأَكْل لُو بَعْدُه؟",
             "gabul il-akil loo ba3da?",
             "قبل الأكل لو بعده؟",
             "گبل الأكل لو بعد الأكل؟"
@@ -752,9 +752,9 @@
           "id": "unit-09.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Ask: Do you have a band-aid?",
-          "answer": "عندك بلاستر؟",
+          "answer": "عِنْدَك بْلَاسْتِر؟",
           "accepted": [
-            "عندك بلاستر؟",
+            "عِنْدَك بْلَاسْتِر؟",
             "3indak blaastir?",
             "عندك لزگة؟",
             "عندك بلاستر"
@@ -769,9 +769,9 @@
           "id": "unit-09.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Say to a man: Take it twice a day.",
-          "answer": "خذه مرتين باليوم",
+          "answer": "خُذْهُ مَرْتِين بِالْيَوْم",
           "accepted": [
-            "خذه مرتين باليوم",
+            "خُذْهُ مَرْتِين بِالْيَوْم",
             "khudha marrteen bil-yoom",
             "khudha marteen bil-yoom",
             "خذه مرتين بالنهار"
@@ -789,8 +789,8 @@
           "options": [
             "بيش هذا الدوا؟",
             "عندك دوا؟",
-            "لازم ريسيتة؟",
-            "گبل الأكل لو بعده؟"
+            "لَازِم رِيسِيتَة؟",
+            "گِبْل الأَكْل لُو بَعْدُه؟"
           ],
           "answer": "بيش هذا الدوا؟",
           "accepted": [
@@ -813,7 +813,7 @@
             "ما يريد ريسيتة",
             "لازم ريسيتة",
             "عندي ريسيتة",
-            "بعد الأكل"
+            "بَعْد الأَكْل"
           ],
           "answer": "ما يريد ريسيتة",
           "accepted": [
@@ -832,12 +832,12 @@
           "id": "unit-09.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Put in order: Take it twice a day.",
-          "answer": "خذه مرتين باليوم",
+          "answer": "خُذْهُ مَرْتِين بِالْيَوْم",
           "accepted": [
-            "خذه مرتين باليوم",
+            "خُذْهُ مَرْتِين بِالْيَوْم",
             "khudha marrteen bil-yoom",
             "khudha marteen bil-yoom",
-            "خذه مرتين باليوم"
+            "خُذْهُ مَرْتِين بِالْيَوْم"
           ],
           "too_formal": {
             "item": "تناوله مرتين يومياً",
@@ -869,120 +869,120 @@
       "phrases": [
         {
           "slot": "i-have-an-appointment-with-the-doctor",
-          "arabic": "عندي موعد ويه الدكتور",
+          "arabic": "عِنْدِي مَوْعِد وِيَّه الدُّكْتُور",
           "transliteration": "3indi maw3id wiyya id-doktoor",
           "reply": {
-            "arabic": "تفضل، اگعد شوية",
+            "arabic": "تِفَضَّل، اگْعِد شْوَيَّة",
             "transliteration": "tfaDDal, ig3ud shwayya",
             "english": "Please, sit down for a bit"
           }
         },
         {
           "slot": "what-hurts-you-doctor-asking-a-man",
-          "arabic": "شنو يوجعك؟",
+          "arabic": "شْنُو يِوجِعْك؟",
           "transliteration": "shinu yiwja3ak?",
           "reply": {
-            "arabic": "بطني يوجعني من يومين",
+            "arabic": "بِطْنِي يِوجِعْنِي مِن يَوْمِين",
             "transliteration": "baTni yiwja3ni min yoomeen",
             "english": "My stomach has hurt for two days"
           }
         },
         {
           "slot": "since-when-have-you-been-feeling-like-this-to-a-",
-          "arabic": "من شوگت تحس هيچ؟",
+          "arabic": "مِن شُوگِت تِحِس هِيچ؟",
           "transliteration": "min shoogit ti7iss heech?",
           "reply": {
-            "arabic": "من يومين",
+            "arabic": "مِن يَوْمِين",
             "transliteration": "min yoomeen",
             "english": "For two days"
           }
         },
         {
           "slot": "you-need-to-do-some-tests",
-          "arabic": "لازم تسوي تحاليل",
+          "arabic": "لَازِم تْسَوِّي تَحَالِيل",
           "transliteration": "laazim tsawwi ta7aaleel",
           "reply": {
-            "arabic": "زين دكتور، وين أسويها؟",
+            "arabic": "زِين دُكْتُور، وِين أَسَوِّيهَا؟",
             "transliteration": "zeen doktoor, ween asawweeha?",
             "english": "Okay doctor, where do I do them?"
           }
         },
         {
           "slot": "take-a-deep-breath-to-a-man",
-          "arabic": "خذ نفس عميگ",
+          "arabic": "خُذ نَفَس عَمِيگ",
           "transliteration": "khudh nafas 3ameeg",
           "reply": {
-            "arabic": "هيچ؟",
+            "arabic": "هِيچ؟",
             "transliteration": "heech?",
             "english": "Like this?"
           }
         },
         {
           "slot": "are-you-allergic-to-any-medicine-to-a-man",
-          "arabic": "عندك حساسية من أي دوا؟",
+          "arabic": "عِنْدَك حَسَاسِيَّة مِن أَيّ دَوَا؟",
           "transliteration": "3indak 7asaasiyya min ayy dawa?",
           "reply": {
-            "arabic": "لا، ما عندي",
+            "arabic": "لَا، مَا عِنْدِي",
             "transliteration": "la, ma 3indi",
             "english": "No, I don't"
           }
         },
         {
           "slot": "you-need-to-rest-for-a-few-days-to-a-man",
-          "arabic": "لازم ترتاح كم يوم",
+          "arabic": "لَازِم تِرْتَاح كَم يَوْم",
           "transliteration": "laazim tirtaa7 kam yoom",
           "reply": {
-            "arabic": "زين دكتور، شكراً",
+            "arabic": "زِين دُكْتُور، شُكْرًا",
             "transliteration": "zeen doktoor, shukran",
             "english": "Okay doctor, thank you"
           }
         },
         {
           "slot": "i-ll-write-you-a-prescription-to-a-man",
-          "arabic": "راح أكتبلك ريسيتة",
+          "arabic": "رَاح أَكْتِبْلَك رِيسِيتَة",
           "transliteration": "raa7 aktiblak reseeta",
           "reply": {
-            "arabic": "الله يخليك دكتور",
+            "arabic": "اللَّه يِخَلِّيك دُكْتُور",
             "transliteration": "allah ykhalleek doktoor",
             "english": "God keep you, doctor"
           }
         },
         {
           "slot": "your-blood-pressure-is-a-bit-high-to-a-man",
-          "arabic": "ضغطك عالي شوية",
+          "arabic": "ضِغْطَك عَالِي شْوَيَّة",
           "transliteration": "Daghtak 3aali shwayya",
           "reply": {
-            "arabic": "شنو أسوي؟",
+            "arabic": "شْنُو أَسَوِّي؟",
             "transliteration": "shinu asawwi?",
             "english": "What should I do?"
           }
         },
         {
           "slot": "it-s-nothing-serious",
-          "arabic": "ماكو شي خطير",
+          "arabic": "مَاكُو شِي خَطِير",
           "transliteration": "maaku shi khaTeer",
           "reply": {
-            "arabic": "الحمدلله",
+            "arabic": "الْحَمْدُلِلَّه",
             "transliteration": "il-7amdulillah",
             "english": "Thank God"
           }
         },
         {
           "slot": "you-need-to-come-back-after-a-week-to-a-man",
-          "arabic": "لازم ترجع بعد أسبوع",
+          "arabic": "لَازِم تِرْجَع بَعْد أُسْبُوع",
           "transliteration": "laazim tirja3 ba3d isbuu3",
           "reply": {
-            "arabic": "إن شاء الله",
+            "arabic": "إِن شَاء اللَّه",
             "transliteration": "in shaa Allah",
             "english": "God willing"
           }
         },
         {
           "slot": "get-well-soon-take-it-easy-to-a-man",
-          "arabic": "سلامتك، دير بالك على نفسك",
+          "arabic": "سَلَامَتِك، دِير بَالَك عَلَى نَفْسَك",
           "transliteration": "salaamtak, deer baalak 3ala nafsak",
           "reply": {
-            "arabic": "الله يسلمك",
+            "arabic": "اللَّه يِسَلِّمَك",
             "transliteration": "allah ysallmak",
             "english": "God keep you well"
           }
@@ -1009,7 +1009,7 @@
         },
         {
           "speaker": "Doctor",
-          "arabic": "من شوگت تحس هيچ؟",
+          "arabic": "مِن شُوگِت تِحِس هِيچ؟",
           "transliteration": "min shoogit ti7iss heech?",
           "english": "Since when have you felt like this?"
         },
@@ -1077,7 +1077,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو يوجعك؟",
+            "arabic": "شْنُو يِوجِعْك؟",
             "transliteration": "shinu yiwja3ak?",
             "english": "What hurts you?"
           },
@@ -1089,24 +1089,24 @@
         },
         {
           "pair": {
-            "arabic": "من شوگت تحس هيچ؟",
+            "arabic": "مِن شُوگِت تِحِس هِيچ؟",
             "transliteration": "min shoogit ti7iss heech?",
             "english": "Since when have you felt like this?"
           },
           "response": {
-            "arabic": "من يومين",
+            "arabic": "مِن يَوْمِين",
             "transliteration": "min yoomeen",
             "english": "For two days"
           }
         },
         {
           "pair": {
-            "arabic": "عندك حساسية من أي دوا؟",
+            "arabic": "عِنْدَك حَسَاسِيَّة مِن أَيّ دَوَا؟",
             "transliteration": "3indak 7asaasiyya min ayy dawa?",
             "english": "Are you allergic to any medicine?"
           },
           "response": {
-            "arabic": "لا، ما عندي",
+            "arabic": "لَا، مَا عِنْدِي",
             "transliteration": "la, ma 3indi",
             "english": "No, I'm not"
           }
@@ -1130,9 +1130,9 @@
           "id": "unit-09.lesson-03.reply.01",
           "type": "reply",
           "prompt": "The doctor asks: \"شنو يوجعك؟\" Say your stomach hurts.",
-          "answer": "بطني يوجعني",
+          "answer": "بِطْنِي يِوجِعْنِي",
           "accepted": [
-            "بطني يوجعني",
+            "بِطْنِي يِوجِعْنِي",
             "baTni yiwja3ni",
             "يوجعني بطني",
             "عندي وجع بطن"
@@ -1147,9 +1147,9 @@
           "id": "unit-09.lesson-03.reply.02",
           "type": "reply",
           "prompt": "The doctor asks: \"عندك حساسية من أي دوا؟\" Say no.",
-          "answer": "لا، ما عندي",
+          "answer": "لَا، مَا عِنْدِي",
           "accepted": [
-            "لا، ما عندي",
+            "لَا، مَا عِنْدِي",
             "la, ma 3indi",
             "لا ما عندي",
             "لا ماعندي"
@@ -1198,9 +1198,9 @@
           "id": "unit-09.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Say: I have an appointment with the doctor.",
-          "answer": "عندي موعد ويه الدكتور",
+          "answer": "عِنْدِي مَوْعِد وِيَّه الدُّكْتُور",
           "accepted": [
-            "عندي موعد ويه الدكتور",
+            "عِنْدِي مَوْعِد وِيَّه الدُّكْتُور",
             "3indi maw3id wiyya id-doktoor",
             "عندي موعد ويا الدكتور",
             "عندي موعد وية الدكتور"
@@ -1215,9 +1215,9 @@
           "id": "unit-09.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Say to a man: Your blood pressure is a bit high.",
-          "answer": "ضغطك عالي شوية",
+          "answer": "ضِغْطَك عَالِي شْوَيَّة",
           "accepted": [
-            "ضغطك عالي شوية",
+            "ضِغْطَك عَالِي شْوَيَّة",
             "Daghtak 3aali shwayya",
             "ضغطك شوية عالي",
             "ضغطك عالي شوي"
@@ -1233,17 +1233,17 @@
           "type": "choose",
           "prompt": "Which one means \"Take a deep breath\" (to a man)?",
           "options": [
-            "خذ نفس عميگ",
-            "ارتاح شوية",
+            "خُذ نَفَس عَمِيگ",
+            "ارْتَاح شْوَيَّة",
             "رجع بعد أسبوع",
             "سوي تحاليل"
           ],
-          "answer": "خذ نفس عميگ",
+          "answer": "خُذ نَفَس عَمِيگ",
           "accepted": [
-            "خذ نفس عميگ",
+            "خُذ نَفَس عَمِيگ",
             "khudh nafas 3ameeg",
             "خذ نفس عميق",
-            "خذ نفس عميگ"
+            "خُذ نَفَس عَمِيگ"
           ],
           "too_formal": {
             "item": "تنفس بعمق",
@@ -1256,16 +1256,16 @@
           "type": "choose",
           "prompt": "Which one means \"It's nothing serious\"?",
           "options": [
-            "ماكو شي خطير",
-            "عندي حرارة",
-            "لازم تسوي تحاليل",
+            "مَاكُو شِي خَطِير",
+            "عِنْدِي حَرَارَة",
+            "لَازِم تْسَوِّي تَحَالِيل",
             "ضغطك عالي"
           ],
-          "answer": "ماكو شي خطير",
+          "answer": "مَاكُو شِي خَطِير",
           "accepted": [
-            "ماكو شي خطير",
+            "مَاكُو شِي خَطِير",
             "maaku shi khaTeer",
-            "ماكو شي خطير",
+            "مَاكُو شِي خَطِير",
             "maaku shi khatir"
           ],
           "too_formal": {
@@ -1278,9 +1278,9 @@
           "id": "unit-09.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "Put in order: You need to come back after a week.",
-          "answer": "لازم ترجع بعد أسبوع",
+          "answer": "لَازِم تِرْجَع بَعْد أُسْبُوع",
           "accepted": [
-            "لازم ترجع بعد أسبوع",
+            "لَازِم تِرْجَع بَعْد أُسْبُوع",
             "laazim tirja3 ba3d isbuu3",
             "laazim tirja3 ba3ad isbuu3",
             "لازم ترجع بعد اسبوع"
@@ -1295,9 +1295,9 @@
           "id": "unit-09.lesson-03.reorder.02",
           "type": "reorder",
           "prompt": "Put in order: I'll write you a prescription.",
-          "answer": "راح أكتبلك ريسيتة",
+          "answer": "رَاح أَكْتِبْلَك رِيسِيتَة",
           "accepted": [
-            "راح أكتبلك ريسيتة",
+            "رَاح أَكْتِبْلَك رِيسِيتَة",
             "raa7 aktiblak reseeta",
             "راح اكتبلك ريسيتة",
             "ra7 aktiblak reseeta"
@@ -1315,75 +1315,75 @@
       "phrases": [
         {
           "slot": "head",
-          "arabic": "راس",
+          "arabic": "رَاس",
           "transliteration": "raas"
         },
         {
           "slot": "stomach-belly",
-          "arabic": "بطن",
+          "arabic": "بِطْن",
           "transliteration": "baTin"
         },
         {
           "slot": "back",
-          "arabic": "ظهر",
+          "arabic": "ظَهْر",
           "transliteration": "Dahar"
         },
         {
           "slot": "hand-arm",
-          "arabic": "إيد",
+          "arabic": "إِيد",
           "transliteration": "eed"
         },
         {
           "slot": "leg-foot",
-          "arabic": "رجل",
+          "arabic": "رِجْل",
           "transliteration": "rijil"
         },
         {
           "slot": "eye",
-          "arabic": "عين",
+          "arabic": "عِين",
           "transliteration": "3een"
         },
         {
           "slot": "ear",
-          "arabic": "أذن",
+          "arabic": "أُذْن",
           "transliteration": "uthun"
         },
         {
           "slot": "tooth",
-          "arabic": "سن",
+          "arabic": "سِن",
           "transliteration": "sinn"
         },
         {
           "slot": "neck",
-          "arabic": "رگبة",
+          "arabic": "رِگْبَة",
           "transliteration": "rigba"
         },
         {
           "slot": "my-back-hurts",
-          "arabic": "ظهري يوجعني",
+          "arabic": "ظَهْرِي يِوجِعْنِي",
           "transliteration": "Dahri yiwja3ni",
           "reply": {
-            "arabic": "ارتاح وما تشيل شي ثگيل",
+            "arabic": "ارْتَاح وَمَا تِشِيل شِي ثِگِيل",
             "transliteration": "irtaa7 w ma tsheel shi thigeel",
             "english": "Rest and don't lift anything heavy"
           }
         },
         {
           "slot": "i-have-a-toothache",
-          "arabic": "عندي وجع سن",
+          "arabic": "عِنْدِي وَجَع سِن",
           "transliteration": "3indi waja3 sinn",
           "reply": {
-            "arabic": "روح لدكتور الأسنان",
+            "arabic": "رُوح لِدُكْتُور الأَسْنَان",
             "transliteration": "rooH lid-doktoor il-asnaan",
             "english": "Go to the dentist"
           }
         },
         {
           "slot": "my-leg-is-swollen",
-          "arabic": "رجلي وارمة",
+          "arabic": "رِجْلِي وَارِمَة",
           "transliteration": "rijli waarma",
           "reply": {
-            "arabic": "روح للدكتور اليوم",
+            "arabic": "رُوح لِلدُّكْتُور الْيَوْم",
             "transliteration": "rooH lid-doktoor ilyoom",
             "english": "Go to the doctor today"
           }
@@ -1472,12 +1472,12 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو يوجعك؟",
+            "arabic": "شْنُو يِوجِعْك؟",
             "transliteration": "shinu yiwja3ak?",
             "english": "What hurts you?"
           },
           "response": {
-            "arabic": "ظهري يوجعني",
+            "arabic": "ظَهْرِي يِوجِعْنِي",
             "transliteration": "Dahri yiwja3ni",
             "english": "My back hurts"
           }
@@ -1489,7 +1489,7 @@
             "english": "Where does it hurt?"
           },
           "response": {
-            "arabic": "رجلي وارمة",
+            "arabic": "رِجْلِي وَارِمَة",
             "transliteration": "rijli waarma",
             "english": "My leg is swollen"
           }
@@ -1525,9 +1525,9 @@
           "id": "unit-09.lesson-04.reply.01",
           "type": "reply",
           "prompt": "Someone asks: \"شنو يوجعك؟\" Say your back.",
-          "answer": "ظهري يوجعني",
+          "answer": "ظَهْرِي يِوجِعْنِي",
           "accepted": [
-            "ظهري يوجعني",
+            "ظَهْرِي يِوجِعْنِي",
             "Dahri yiwja3ni",
             "ظهري يوجعني هواية",
             "ظهري"
@@ -1593,9 +1593,9 @@
           "id": "unit-09.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Say: I have a toothache.",
-          "answer": "عندي وجع سن",
+          "answer": "عِنْدِي وَجَع سِن",
           "accepted": [
-            "عندي وجع سن",
+            "عِنْدِي وَجَع سِن",
             "3indi waja3 sinn",
             "سنّي يوجعني",
             "sinni yiwja3ni"
@@ -1610,9 +1610,9 @@
           "id": "unit-09.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Say: My leg is swollen.",
-          "answer": "رجلي وارمة",
+          "answer": "رِجْلِي وَارِمَة",
           "accepted": [
-            "رجلي وارمة",
+            "رِجْلِي وَارِمَة",
             "rijli waarma",
             "رجلي منتفخة",
             "رجلي وارمه"
@@ -1628,14 +1628,14 @@
           "type": "choose",
           "prompt": "Which one is \"neck\"?",
           "options": [
-            "رگبة",
-            "ظهر",
-            "إيد",
-            "رجل"
+            "رِگْبَة",
+            "ظَهْر",
+            "إِيد",
+            "رِجْل"
           ],
-          "answer": "رگبة",
+          "answer": "رِگْبَة",
           "accepted": [
-            "رگبة",
+            "رِگْبَة",
             "rigba",
             "رقبة",
             "رگبه"
@@ -1651,17 +1651,17 @@
           "type": "choose",
           "prompt": "Which one is \"hand / arm\"?",
           "options": [
-            "إيد",
-            "عين",
-            "راس",
-            "سن"
+            "إِيد",
+            "عِين",
+            "رَاس",
+            "سِن"
           ],
-          "answer": "إيد",
+          "answer": "إِيد",
           "accepted": [
-            "إيد",
+            "إِيد",
             "eed",
             "ايد",
-            "إيد"
+            "إِيد"
           ],
           "too_formal": {
             "item": "يد",
@@ -1759,7 +1759,7 @@
         },
         {
           "speaker": "Doctor",
-          "arabic": "شنو يوجعك؟",
+          "arabic": "شْنُو يِوجِعْك؟",
           "transliteration": "shinu yiwja3ak?",
           "english": "What hurts you?"
         },
@@ -1777,7 +1777,7 @@
         },
         {
           "speaker": "Ahmad",
-          "arabic": "الله يخليك دكتور",
+          "arabic": "اللَّه يِخَلِّيك دُكْتُور",
           "transliteration": "allah ykhalleek doktoor",
           "english": "God keep you, doctor"
         },
@@ -1807,7 +1807,7 @@
         },
         {
           "speaker": "Ahmad",
-          "arabic": "الله يسلمك، تسلم",
+          "arabic": "اللَّه يِسَلِّمَك، تِسْلَم",
           "transliteration": "allah ysallmak, tislam",
           "english": "God keep you, thank you"
         }

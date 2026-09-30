@@ -25,72 +25,72 @@
       "phrases": [
         {
           "slot": "family",
-          "arabic": "عايلة",
+          "arabic": "عَايْلَة",
           "transliteration": "3aayle"
         },
         {
           "slot": "my-mother",
-          "arabic": "أمي",
+          "arabic": "أُمِّي",
           "transliteration": "ummi"
         },
         {
           "slot": "my-father",
-          "arabic": "أبوي",
+          "arabic": "أَبُوي",
           "transliteration": "abuuy"
         },
         {
           "slot": "my-brother",
-          "arabic": "أخوي",
+          "arabic": "أَخُوي",
           "transliteration": "akhuuy"
         },
         {
           "slot": "my-sister",
-          "arabic": "أختي",
+          "arabic": "أُخْتِي",
           "transliteration": "ukhti"
         },
         {
           "slot": "my-son",
-          "arabic": "ابني",
+          "arabic": "ابْنِي",
           "transliteration": "ibni"
         },
         {
           "slot": "my-daughter",
-          "arabic": "بنتي",
+          "arabic": "بِنْتِي",
           "transliteration": "binti"
         },
         {
           "slot": "my-husband",
-          "arabic": "زوجي",
+          "arabic": "زَوْجِي",
           "transliteration": "zawji"
         },
         {
           "slot": "my-wife",
-          "arabic": "مرتي",
+          "arabic": "مَرْتِي",
           "transliteration": "marti"
         },
         {
           "slot": "how-many-people-are-in-your-family-to-a-man",
-          "arabic": "شكد واحد بعايلتك؟",
+          "arabic": "شَكِدّ وَاحِد بِعَايْلَتَك؟",
           "transliteration": "shgadd waa7id b3aaylatak؟"
         },
         {
           "slot": "i-have-a-brother-and-two-sisters",
-          "arabic": "عندي أخ وأختين",
+          "arabic": "عِنْدِي أَخ وَأُخْتَيْن",
           "transliteration": "3indi akh w ukhtayn"
         },
         {
           "slot": "are-you-married-to-a-man",
-          "arabic": "إنت متزوج؟",
+          "arabic": "إِنْتَ مِتْزَوِّج؟",
           "transliteration": "inta mitzawwij؟"
         },
         {
           "slot": "are-you-married-to-a-woman",
-          "arabic": "إنتي متزوجة؟",
+          "arabic": "إِنْتِي مِتْزَوِّجَة؟",
           "transliteration": "inti mitzawwja؟"
         },
         {
           "slot": "i-m-still-single-male-speaker",
-          "arabic": "بعدني أعزب",
+          "arabic": "بَعْدِني أَعْزَب",
           "transliteration": "ba3adni a3zab"
         }
       ],
@@ -183,7 +183,7 @@
         },
         {
           "pair": {
-            "arabic": "إنتي متزوجة؟",
+            "arabic": "إِنْتِي مِتْزَوِّجَة؟",
             "transliteration": "inti mitzawwja؟",
             "english": "Are you married? (to a woman)"
           },
@@ -227,7 +227,7 @@
           "answer": "إي، عندي أخ وأختين",
           "accepted": [
             "إي، عندي أخ وأختين",
-            "عندي أخ وأختين",
+            "عِنْدِي أَخ وَأُخْتَيْن",
             "ee, 3indi akh w ukhtayn"
           ],
           "too_formal": {
@@ -240,9 +240,9 @@
           "id": "unit-02.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"My mother.\"",
-          "answer": "أمي",
+          "answer": "أُمِّي",
           "accepted": [
-            "أمي",
+            "أُمِّي",
             "امي",
             "ummi"
           ],
@@ -256,9 +256,9 @@
           "id": "unit-02.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"My father.\"",
-          "answer": "أبوي",
+          "answer": "أَبُوي",
           "accepted": [
-            "أبوي",
+            "أَبُوي",
             "ابوي",
             "abuuy"
           ],
@@ -273,14 +273,14 @@
           "type": "choose",
           "prompt": "Which word means \"my sister\"?",
           "options": [
-            "أخوي",
-            "أختي",
-            "ابني",
-            "بنتي"
+            "أَخُوي",
+            "أُخْتِي",
+            "ابْنِي",
+            "بِنْتِي"
           ],
-          "answer": "أختي",
+          "answer": "أُخْتِي",
           "accepted": [
-            "أختي",
+            "أُخْتِي",
             "اختي",
             "ukhti"
           ],
@@ -342,9 +342,9 @@
           "id": "unit-02.lesson-01.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'm still single.\" (male speaker)",
-          "answer": "بعدني أعزب",
+          "answer": "بَعْدِني أَعْزَب",
           "accepted": [
-            "بعدني أعزب",
+            "بَعْدِني أَعْزَب",
             "بعدني عازب",
             "ba3adni a3zab"
           ],
@@ -359,14 +359,14 @@
           "type": "choose",
           "prompt": "Which phrase means \"my wife\"?",
           "options": [
-            "زوجي",
-            "مرتي",
-            "أخوي",
-            "ابني"
+            "زَوْجِي",
+            "مَرْتِي",
+            "أَخُوي",
+            "ابْنِي"
           ],
-          "answer": "مرتي",
+          "answer": "مَرْتِي",
           "accepted": [
-            "مرتي",
+            "مَرْتِي",
             "marti",
             "مرتي."
           ],
@@ -396,9 +396,9 @@
           "id": "unit-02.lesson-01.translate_to_arabic.04",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"How many people are in your family?\" (to a man)",
-          "answer": "شكد واحد بعايلتك؟",
+          "answer": "شَكِدّ وَاحِد بِعَايْلَتَك؟",
           "accepted": [
-            "شكد واحد بعايلتك؟",
+            "شَكِدّ وَاحِد بِعَايْلَتَك؟",
             "شكد واحد بالعايلة؟",
             "shgadd waa7id b3aaylatak"
           ],
@@ -428,9 +428,9 @@
           "id": "unit-02.lesson-01.translate_to_arabic.05",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"My brother.\"",
-          "answer": "أخوي",
+          "answer": "أَخُوي",
           "accepted": [
-            "أخوي",
+            "أَخُوي",
             "اخوي",
             "akhuuy"
           ],
@@ -447,75 +447,75 @@
       "phrases": [
         {
           "slot": "hungry-male-speaker",
-          "arabic": "جوعان",
+          "arabic": "جُوعَان",
           "transliteration": "juu3aan"
         },
         {
           "slot": "hungry-female-speaker",
-          "arabic": "جوعانة",
+          "arabic": "جُوعَانَة",
           "transliteration": "juu3aana"
         },
         {
           "slot": "thirsty-male-speaker",
-          "arabic": "عطشان",
+          "arabic": "عَطْشَان",
           "transliteration": "3atshaan"
         },
         {
           "slot": "i-want-to-eat",
-          "arabic": "أريد آكل",
+          "arabic": "أُرِيد آكُل",
           "transliteration": "areed aakul"
         },
         {
           "slot": "i-want-to-drink-water",
-          "arabic": "أريد أشرب ماي",
+          "arabic": "أُرِيد أَشْرَب مَاي",
           "transliteration": "areed ashrab maay"
         },
         {
           "slot": "what-do-you-like-to-eat",
-          "arabic": "شنو تحب تاكل؟",
+          "arabic": "شِنُو تِحِبّ تَاكُل؟",
           "transliteration": "shinu ti7ibb taakul؟"
         },
         {
           "slot": "i-like-falafel",
-          "arabic": "أحب الفلافل",
+          "arabic": "أَحِبّ الْفَلَافِل",
           "transliteration": "a7ibb il-falaafil"
         },
         {
           "slot": "coffee",
-          "arabic": "قهوة",
+          "arabic": "قَهْوَة",
           "transliteration": "gahwa"
         },
         {
           "slot": "tea",
-          "arabic": "چاي",
+          "arabic": "چَاي",
           "transliteration": "chaay"
         },
         {
           "slot": "the-bill-please",
-          "arabic": "الحساب لو سمحت",
+          "arabic": "الْحِسَاب لُو سَمَحْت",
           "transliteration": "il-7isaab law sama7t"
         },
         {
           "slot": "how-much-is-the-bill",
-          "arabic": "شكد الحساب؟",
+          "arabic": "شَكِدّ الْحِسَاب؟",
           "transliteration": "shgadd il-7isaab؟"
         },
         {
           "slot": "to-your-health-said-to-someone-after-they-finish",
-          "arabic": "صحة وعافية",
+          "arabic": "صِحَّة وَعَافِيَة",
           "transliteration": "sa77a w 3aafya",
           "reply": {
-            "arabic": "الله يسلمك",
+            "arabic": "الله يَسِلِّمَك",
             "transliteration": "allah ysallimak",
             "english": "Thank you. (the usual reply to صحة وعافية)"
           }
         },
         {
           "slot": "enjoy-your-meal-said-to-someone-while-they-are-e",
-          "arabic": "بالعافية",
+          "arabic": "بِالْعَافِيَة",
           "transliteration": "bil-3aafya",
           "reply": {
-            "arabic": "الله يعافيك",
+            "arabic": "الله يُعَافِيك",
             "transliteration": "allah y3aafiik",
             "english": "Thank you. (the usual reply to بالعافية)"
           }
@@ -530,7 +530,7 @@
         },
         {
           "speaker": "Noor",
-          "arabic": "شنو تحب تاكل؟",
+          "arabic": "شِنُو تِحِبّ تَاكُل؟",
           "transliteration": "shinu ti7ibb taakul؟",
           "english": "What do you like to eat?"
         },
@@ -596,7 +596,7 @@
         },
         {
           "speaker": "Noor",
-          "arabic": "شكد الحساب؟",
+          "arabic": "شَكِدّ الْحِسَاب؟",
           "transliteration": "shgadd il-7isaab؟",
           "english": "How much is the bill?"
         }
@@ -604,7 +604,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو تحب تاكل؟",
+            "arabic": "شِنُو تِحِبّ تَاكُل؟",
             "transliteration": "shinu ti7ibb taakul؟",
             "english": "What do you like to eat?"
           },
@@ -657,9 +657,9 @@
           "id": "unit-02.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'm hungry.\" (male speaker)",
-          "answer": "جوعان",
+          "answer": "جُوعَان",
           "accepted": [
-            "جوعان",
+            "جُوعَان",
             "جوعان هواية",
             "juu3aan"
           ],
@@ -690,14 +690,14 @@
           "type": "choose",
           "prompt": "Which phrase is said to someone after they finish eating?",
           "options": [
-            "صحة وعافية",
-            "بالعافية",
-            "الله يعافيك",
-            "الله يسلمك"
+            "صِحَّة وَعَافِيَة",
+            "بِالْعَافِيَة",
+            "الله يُعَافِيك",
+            "الله يَسِلِّمَك"
           ],
-          "answer": "صحة وعافية",
+          "answer": "صِحَّة وَعَافِيَة",
           "accepted": [
-            "صحة وعافية",
+            "صِحَّة وَعَافِيَة",
             "صحه وعافيه",
             "sa77a w 3aafya"
           ],
@@ -711,9 +711,9 @@
           "id": "unit-02.lesson-02.reply.01",
           "type": "reply",
           "prompt": "Someone asks you: \"شنو تحب تاكل؟\" Say you like falafel.",
-          "answer": "أحب الفلافل",
+          "answer": "أَحِبّ الْفَلَافِل",
           "accepted": [
-            "أحب الفلافل",
+            "أَحِبّ الْفَلَافِل",
             "احب الفلافل",
             "أحب الفلافل هواية"
           ],
@@ -743,9 +743,9 @@
           "id": "unit-02.lesson-02.reply.02",
           "type": "reply",
           "prompt": "Someone says \"بالعافية\" to you while you are eating. Reply naturally.",
-          "answer": "الله يعافيك",
+          "answer": "الله يُعَافِيك",
           "accepted": [
-            "الله يعافيك",
+            "الله يُعَافِيك",
             "يعافيك",
             "allah y3aafiik"
           ],
@@ -759,9 +759,9 @@
           "id": "unit-02.lesson-02.reply.03",
           "type": "reply",
           "prompt": "Someone says \"صحة وعافية\" to you after you finish eating. Reply naturally.",
-          "answer": "الله يسلمك",
+          "answer": "الله يَسِلِّمَك",
           "accepted": [
-            "الله يسلمك",
+            "الله يَسِلِّمَك",
             "يسلمك",
             "allah ysallimak"
           ],
@@ -775,9 +775,9 @@
           "id": "unit-02.lesson-02.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"The bill, please.\"",
-          "answer": "الحساب لو سمحت",
+          "answer": "الْحِسَاب لُو سَمَحْت",
           "accepted": [
-            "الحساب لو سمحت",
+            "الْحِسَاب لُو سَمَحْت",
             "لو سمحت الحساب",
             "il-7isaab law sama7t"
           ],
@@ -791,9 +791,9 @@
           "id": "unit-02.lesson-02.translate_to_arabic.04",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"How much is the bill?\"",
-          "answer": "شكد الحساب؟",
+          "answer": "شَكِدّ الْحِسَاب؟",
           "accepted": [
-            "شكد الحساب؟",
+            "شَكِدّ الْحِسَاب؟",
             "شكد الحساب",
             "shgadd il-7isaab"
           ],
@@ -807,9 +807,9 @@
           "id": "unit-02.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"تاكل / تحب / شنو؟\"",
-          "answer": "شنو تحب تاكل؟",
+          "answer": "شِنُو تِحِبّ تَاكُل؟",
           "accepted": [
-            "شنو تحب تاكل؟",
+            "شِنُو تِحِبّ تَاكُل؟",
             "شنو تحب تاكل",
             "shinu ti7ibb taakul"
           ],
@@ -824,14 +824,14 @@
           "type": "choose",
           "prompt": "Which word means \"thirsty\" for a man?",
           "options": [
-            "جوعان",
-            "عطشان",
-            "جوعانة",
+            "جُوعَان",
+            "عَطْشَان",
+            "جُوعَانَة",
             "عطشانة"
           ],
-          "answer": "عطشان",
+          "answer": "عَطْشَان",
           "accepted": [
-            "عطشان",
+            "عَطْشَان",
             "3atshaan",
             "عطشان هواية"
           ],
@@ -845,9 +845,9 @@
           "id": "unit-02.lesson-02.translate_to_arabic.05",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Tea.\"",
-          "answer": "چاي",
+          "answer": "چَاي",
           "accepted": [
-            "چاي",
+            "چَاي",
             "جاي",
             "شاي"
           ],

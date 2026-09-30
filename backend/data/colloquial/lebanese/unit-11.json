@@ -22,80 +22,80 @@
       "phrases": [
         {
           "slot": "welcome-lit-your-eye-honors-us-said-to-a-man-arr",
-          "arabic": "تكرم عينك",
+          "arabic": "تِكْرَم عَيْنَك",
           "transliteration": "tikram 3eenak",
           "reply": {
-            "arabic": "الله يكرمك",
+            "arabic": "اللَّه يَكْرِمك",
             "transliteration": "alla ykarmak",
             "english": "God honor you (reply)."
           }
         },
         {
           "slot": "welcome-please-come-in",
-          "arabic": "أهلا وسهلا، تفضّل فوت",
+          "arabic": "أَهْلًا وَسَهْلًا، تِفَضَّل فُوت",
           "transliteration": "ahla w sahla, tfaddal foot",
           "reply": {
-            "arabic": "الله يسلمك",
+            "arabic": "اللَّه يِسْلِمك",
             "transliteration": "alla yeslamak",
             "english": "God keep you safe (thanks)."
           }
         },
         {
           "slot": "you-have-honored-us-said-to-guests-who-arrived",
-          "arabic": "شرّفتونا",
+          "arabic": "شَرَّفْتُونا",
           "transliteration": "sharraftoona",
           "reply": {
-            "arabic": "الشرف إلنا",
+            "arabic": "الشَّرَف إِلْنا",
             "transliteration": "ish-sharaf 2ilna",
             "english": "The honor is ours."
           }
         },
         {
           "slot": "don-t-trouble-yourself-we-re-at-home-make-yourse",
-          "arabic": "ما تكلّف حالك، نحنا بالبيت",
+          "arabic": "ما تِكَلَّف حالَك، نِحْنا بَالْبِيت",
           "transliteration": "ma tkallef 7aalak, ne7na bil-beit",
           "reply": {
-            "arabic": "الله يخلّيك",
+            "arabic": "اللَّه يِخَلِّيك",
             "transliteration": "alla ykhalliik",
             "english": "God preserve you."
           }
         },
         {
           "slot": "where-can-i-park-my-car",
-          "arabic": "وين فيّي ركّن سيّارتي؟",
+          "arabic": "وِين فِيِّي رَكِّن سِيَّارْتي؟",
           "transliteration": "ween fiyye rakken sayyaarti?",
           "reply": {
-            "arabic": "قدّام الباب في محل فاضي",
+            "arabic": "قُدَّام الْباب فِي مَحِل فاضي",
             "transliteration": "2uddaam il-baab fi ma7all faadi",
             "english": "There's an empty spot in front of the door."
           }
         },
         {
           "slot": "take-off-your-shoes-at-the-door-please",
-          "arabic": "شيل صباطك عالباب، لو سمحت",
+          "arabic": "شِيل صَبَّاطَك عَالْباب، لُو سَمِحْت",
           "transliteration": "sheel sabbaatak 3al-baab, law sama7t",
           "reply": {
-            "arabic": "أكيد",
+            "arabic": "أَكِيد",
             "transliteration": "2akiid",
             "english": "Of course."
           }
         },
         {
           "slot": "i-brought-you-a-few-simple-things-a-small-gift",
-          "arabic": "جبتلكن شي بسيط",
+          "arabic": "جِبْتِلْكِن شِي بَسِيط",
           "transliteration": "jibtilkon shi basiit",
           "reply": {
-            "arabic": "ما كان لازم، الله يخلّيك",
+            "arabic": "ما كان لازِم، اللَّه يِخَلِّيك",
             "transliteration": "ma kaan laazem, alla ykhalliik",
             "english": "You shouldn't have, God preserve you."
           }
         },
         {
           "slot": "this-house-is-very-nice",
-          "arabic": "هالبيت كتير حلو",
+          "arabic": "هَالْبِيت كْتِير حِلْو",
           "transliteration": "hal-beit ktiir 7ilu",
           "reply": {
-            "arabic": "من ذوقك",
+            "arabic": "مِن ذُوقَك",
             "transliteration": "min zo2ak",
             "english": "You're kind (lit. from your taste)."
           }
@@ -105,24 +105,24 @@
           "arabic": "قدّيش أخد معك الطريق؟",
           "transliteration": "2addeesh 2akhad ma3ak it-taree2?",
           "reply": {
-            "arabic": "ربع ساعة بس",
+            "arabic": "رُبُع سَاعَة بِس",
             "transliteration": "rob3 saa3a bas",
             "english": "Only a quarter of an hour."
           }
         },
         {
           "slot": "excuse-me-i-want-to-wash-my-hands",
-          "arabic": "عن إذنك، بدّي إغسل إيديّي",
+          "arabic": "عَن إِذْنِك، بِدِّي إِغْسِل إِيدِيِّي",
           "transliteration": "3an 2eznak, baddi 2eghsol 2iideyyi",
           "reply": {
-            "arabic": "تفضّل، الحمّام هونيك",
+            "arabic": "تِفَضَّل، الْحَمَّام هُونِيك",
             "transliteration": "tfaddal, l-7ammaam hoonik",
             "english": "Go ahead, the bathroom is over there."
           }
         },
         {
           "slot": "good-i-found-the-house-easily",
-          "arabic": "منيح، لقيت البيت بسهولة",
+          "arabic": "مْنِيح، لَقِيت الْبِيت بِسْهُولَة",
           "transliteration": "mnii7, la2eit il-beit bsuhuule",
           "reply": {
             "arabic": "الحمدلله",
@@ -135,7 +135,7 @@
           "arabic": "تعبتوا حالكن علينا",
           "transliteration": "ta3ibtu 7aalkon 3aleyna",
           "reply": {
-            "arabic": "ولا يهمّك، هيدا واجبنا",
+            "arabic": "وَلا يِهِمِّك، هِيدا واجِبْنا",
             "transliteration": "wala yhimmak, hayda waajibna",
             "english": "Not at all, it's our duty."
           }
@@ -168,7 +168,7 @@
         },
         {
           "speaker": "Hala",
-          "arabic": "قدّام الباب في محل فاضي",
+          "arabic": "قُدَّام الْباب فِي مَحِل فاضي",
           "transliteration": "2uddaam il-baab fi ma7all faadi",
           "english": "There's an empty spot in front of the door."
         },
@@ -186,7 +186,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "جبتلكن شي بسيط",
+          "arabic": "جِبْتِلْكِن شِي بَسِيط",
           "transliteration": "jibtilkon shi basiit",
           "english": "I brought you a little something."
         },
@@ -198,7 +198,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "عن إذنك، بدّي إغسل إيديّي",
+          "arabic": "عَن إِذْنِك، بِدِّي إِغْسِل إِيدِيِّي",
           "transliteration": "3an 2eznik, baddi 2eghsol 2iideyyi",
           "english": "Excuse me, I want to wash my hands."
         },
@@ -224,24 +224,24 @@
         },
         {
           "pair": {
-            "arabic": "شرّفتونا",
+            "arabic": "شَرَّفْتُونا",
             "transliteration": "sharraftoona",
             "english": "You have honored us."
           },
           "response": {
-            "arabic": "الشرف إلنا",
+            "arabic": "الشَّرَف إِلْنا",
             "transliteration": "ish-sharaf 2ilna",
             "english": "The honor is ours."
           }
         },
         {
           "pair": {
-            "arabic": "هالبيت كتير حلو",
+            "arabic": "هَالْبِيت كْتِير حِلْو",
             "transliteration": "hal-beit ktiir 7ilu",
             "english": "This house is very nice."
           },
           "response": {
-            "arabic": "من ذوقك",
+            "arabic": "مِن ذُوقَك",
             "transliteration": "min zo2ak",
             "english": "You're kind."
           }
@@ -253,7 +253,7 @@
             "english": "How long did it take you to arrive?"
           },
           "response": {
-            "arabic": "ربع ساعة بس",
+            "arabic": "رُبُع سَاعَة بِس",
             "transliteration": "rob3 saa3a bas",
             "english": "Only a quarter of an hour."
           }
@@ -265,11 +265,11 @@
           "id": "unit-11.lesson-01.reply.01",
           "type": "reply",
           "prompt": "You arrive at a friend's house and they say: \"تكرم عينك، تفضّل فوت\". Reply.",
-          "answer": "الله يكرمك",
+          "answer": "اللَّه يَكْرِمك",
           "accepted": [
-            "الله يكرمك",
+            "اللَّه يَكْرِمك",
             "alla ykarmak",
-            "الله يخلّيك",
+            "اللَّه يِخَلِّيك",
             "يسلمو",
             "alla ykhalliik"
           ],
@@ -300,9 +300,9 @@
           "id": "unit-11.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where can I park my car?\"",
-          "answer": "وين فيّي ركّن سيّارتي؟",
+          "answer": "وِين فِيِّي رَكِّن سِيَّارْتي؟",
           "accepted": [
-            "وين فيّي ركّن سيّارتي؟",
+            "وِين فِيِّي رَكِّن سِيَّارْتي؟",
             "ween fiyye rakken sayyaarti?",
             "وين فيّي ركّن السيّارة؟",
             "ween fiyye rakken is-sayyaara?"
@@ -339,17 +339,17 @@
           "id": "unit-11.lesson-01.reorder.01",
           "type": "reorder",
           "prompt": "Arrange: I brought you a few simple things.",
-          "answer": "جبتلكن شي بسيط",
+          "answer": "جِبْتِلْكِن شِي بَسِيط",
           "accepted": [
-            "جبتلكن شي بسيط",
+            "جِبْتِلْكِن شِي بَسِيط",
             "jibtilkon shi basiit",
             "جبتلكن شي صغير",
             "jibtilkon shi zghiir"
           ],
           "words": [
-            "جبتلكن",
-            "شي",
-            "بسيط"
+            "جِبْتِلْكِن",
+            "شِي",
+            "بَسِيط"
           ],
           "too_formal": {
             "item": "أحضرت لكم بعض الأشياء البسيطة",
@@ -378,16 +378,16 @@
           "id": "unit-11.lesson-01.choose.02",
           "type": "choose",
           "prompt": "How do you excuse yourself to go wash your hands?",
-          "answer": "عن إذنك، بدّي إغسل إيديّي",
+          "answer": "عَن إِذْنِك، بِدِّي إِغْسِل إِيدِيِّي",
           "accepted": [
-            "عن إذنك، بدّي إغسل إيديّي",
+            "عَن إِذْنِك، بِدِّي إِغْسِل إِيدِيِّي",
             "3an 2eznak, baddi 2eghsol 2iideyyi",
             "عن إذنك بدي غسل إيديي"
           ],
           "options": [
-            "عن إذنك، بدّي إغسل إيديّي",
-            "شرّفتونا",
-            "تكرم عينك",
+            "عَن إِذْنِك، بِدِّي إِغْسِل إِيدِيِّي",
+            "شَرَّفْتُونا",
+            "تِكْرَم عَيْنَك",
             "قدّيش الساعة؟"
           ],
           "too_formal": {
@@ -417,9 +417,9 @@
           "id": "unit-11.lesson-01.reply.02",
           "type": "reply",
           "prompt": "A guest says: \"تعبتوا حالكن علينا\". Reply.",
-          "answer": "ولا يهمّك، هيدا واجبنا",
+          "answer": "وَلا يِهِمِّك، هِيدا واجِبْنا",
           "accepted": [
-            "ولا يهمّك، هيدا واجبنا",
+            "وَلا يِهِمِّك، هِيدا واجِبْنا",
             "wala yhimmak, hayda waajibna",
             "ولا يهمّك",
             "هيدا واجبنا",
@@ -463,117 +463,117 @@
           "arabic": "إقعد، ريّح شوي",
           "transliteration": "2o3od, rayyi7 shwayy",
           "reply": {
-            "arabic": "الله يخلّيك",
+            "arabic": "اللَّه يِخَلِّيك",
             "transliteration": "alla ykhalliik",
             "english": "God preserve you."
           }
         },
         {
           "slot": "what-would-you-like-to-drink",
-          "arabic": "شو بتحبّ تشرب؟",
+          "arabic": "شُو بْتِحِبِّ تِشْرَب؟",
           "transliteration": "shu bti7ebb tishrab?",
           "reply": {
-            "arabic": "أي شي، ما تكلّف حالك",
+            "arabic": "أَيِّ شِي، ما تِكَلَّف حالَك",
             "transliteration": "2ayy shi, ma tkallef 7aalak",
             "english": "Anything, don't go to trouble."
           }
         },
         {
           "slot": "coffee-or-tea",
-          "arabic": "قهوة ولّا شاي؟",
+          "arabic": "قَهْوَة وِلَّا شاي؟",
           "transliteration": "2ahwe wella shaay?",
           "reply": {
-            "arabic": "قهوة، الله يخلّيك",
+            "arabic": "قَهْوَة، اللَّه يِخَلِّيك",
             "transliteration": "2ahwe, alla ykhalliik",
             "english": "Coffee, please (lit. God preserve you)."
           }
         },
         {
           "slot": "do-you-take-sugar-in-your-coffee",
-          "arabic": "بتحطّ سكّر بقهوتك؟",
+          "arabic": "بْتِحِطِّ سُكِّر بِقَهْوَتَك؟",
           "transliteration": "bti7ot sukkar b2ahwetak?",
           "reply": {
-            "arabic": "لا، سادة",
+            "arabic": "لا، سادَة",
             "transliteration": "laa, saade",
             "english": "No, plain."
           }
         },
         {
           "slot": "ring-the-doorbell-they-must-have-arrived",
-          "arabic": "دقّ الجرس، أكيد وصلو",
+          "arabic": "دَقِّ الْجِرِس، أَكِيد وَصِلُو",
           "transliteration": "do22 ij-jaras, 2akiid weslo",
           "reply": {
-            "arabic": "ماشي، بفتحلن",
+            "arabic": "ماشي، بِفْتِحْلِن",
             "transliteration": "maashi, bfta7lon",
             "english": "Okay, I'll open for them."
           }
         },
         {
           "slot": "give-me-your-coats-i-ll-hang-them-up",
-          "arabic": "عطيني الجاكيتات، بعلّقن",
+          "arabic": "عِطِينِي الْجاكِيتات، بِعِلِّقِن",
           "transliteration": "3atiini ij-jaakeetaat, b3alle2on",
           "reply": {
-            "arabic": "يسلمو، شكرا كتير",
+            "arabic": "يِسْلِمُو، شُكْرًا كْتِير",
             "transliteration": "yislamo, shukran ktiir",
             "english": "Thanks, thank you very much."
           }
         },
         {
           "slot": "take-your-time-no-rush",
-          "arabic": "خدو راحتكن، ما في استعجال",
+          "arabic": "خُدُو راحِتْكِن، ما في اسْتِعْجال",
           "transliteration": "khedo raa7itkon, ma fi 2ist3jaal",
           "reply": {
-            "arabic": "الله يخلّيكن",
+            "arabic": "اللَّه يِخَلِّيكِن",
             "transliteration": "alla ykhallikon",
             "english": "God preserve you."
           }
         },
         {
           "slot": "i-put-the-sweets-on-the-table",
-          "arabic": "حطّيت الحلويّات عالطاولة",
+          "arabic": "حَطِّيت الْحَلَوِيَّات عَالطَّاوِلَة",
           "transliteration": "7atteit il-7alaweyyaat 3at-taawle",
           "reply": {
-            "arabic": "يعطيكي العافية",
+            "arabic": "يَعْطِيكِي الْعافِيَة",
             "transliteration": "ya3tiiki l-3aafye",
             "english": "God give you strength (thanks)."
           }
         },
         {
           "slot": "turn-on-the-tv-if-you-d-like",
-          "arabic": "شغّل التلفزيون إذا بدّك",
+          "arabic": "شَغِّل التِّلِفْزِيُون إِذا بِدِّك",
           "transliteration": "shaghghel it-televizyon 2iza baddak",
           "reply": {
-            "arabic": "لا، منحكي أحلى",
+            "arabic": "لا، مِنْحِكِي أَحْلى",
             "transliteration": "laa, mnehke 2a7la",
             "english": "No, talking is nicer."
           }
         },
         {
           "slot": "your-kids-have-grown-up-so-much",
-          "arabic": "ولادكن كبرو كتير!",
+          "arabic": "وِلادْكِن كِبْرُو كْتِير!",
           "transliteration": "wlaadkon kebro ktiir!",
           "reply": {
-            "arabic": "إي والله، الله يحميهن",
+            "arabic": "إِيِّ واللَّه، اللَّه يِحْمِيهِن",
             "transliteration": "ee wallah, alla y7miihon",
             "english": "Yes indeed, God protect them."
           }
         },
         {
           "slot": "today-s-gathering-is-very-nice",
-          "arabic": "قعدتنا اليوم كتير حلوة",
+          "arabic": "قَعْدِتْنا الْيُوم كْتِير حِلْوَة",
           "transliteration": "2a3detna l-yoom ktiir 7elwe",
           "reply": {
-            "arabic": "بوجودكن",
+            "arabic": "بِوُجُودْكِن",
             "transliteration": "bwujuudkon",
             "english": "Thanks to you being here."
           }
         },
         {
           "slot": "don-t-be-shy-the-house-is-your-house",
-          "arabic": "ما تستحي، البيت بيتك",
+          "arabic": "ما تِسْتِحِي، الْبِيت بِيتَك",
           "transliteration": "ma tist7i, l-beit beitak",
           "reply": {
-            "arabic": "يسلمو، الله يخلّيك",
+            "arabic": "يِسْلِمُو، اللَّه يِخَلِّيك",
             "transliteration": "yislamo, alla ykhalliik",
             "english": "Thanks, God preserve you."
           }
@@ -606,7 +606,7 @@
         },
         {
           "speaker": "Maya",
-          "arabic": "قهوة ولّا شاي؟",
+          "arabic": "قَهْوَة وِلَّا شاي؟",
           "transliteration": "2ahwe wella shaay?",
           "english": "Coffee or tea?"
         },
@@ -618,13 +618,13 @@
         },
         {
           "speaker": "Maya",
-          "arabic": "بتحطّ سكّر بقهوتك؟",
+          "arabic": "بْتِحِطِّ سُكِّر بِقَهْوَتَك؟",
           "transliteration": "bti7ot sukkar b2ahwetak?",
           "english": "Do you take sugar in your coffee?"
         },
         {
           "speaker": "Ziad",
-          "arabic": "لا، سادة",
+          "arabic": "لا، سادَة",
           "transliteration": "laa, saade",
           "english": "No, plain."
         },
@@ -642,7 +642,7 @@
         },
         {
           "speaker": "Maya",
-          "arabic": "ما تستحي، البيت بيتك",
+          "arabic": "ما تِسْتِحِي، الْبِيت بِيتَك",
           "transliteration": "ma tist7i, l-beit beitak",
           "english": "Don't be shy, the house is your house."
         }
@@ -650,48 +650,48 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شو بتحبّ تشرب؟",
+            "arabic": "شُو بْتِحِبِّ تِشْرَب؟",
             "transliteration": "shu bti7ebb tishrab?",
             "english": "What would you like to drink?"
           },
           "response": {
-            "arabic": "أي شي، ما تكلّف حالك",
+            "arabic": "أَيِّ شِي، ما تِكَلَّف حالَك",
             "transliteration": "2ayy shi, ma tkallef 7aalak",
             "english": "Anything, don't go to trouble."
           }
         },
         {
           "pair": {
-            "arabic": "قهوة ولّا شاي؟",
+            "arabic": "قَهْوَة وِلَّا شاي؟",
             "transliteration": "2ahwe wella shaay?",
             "english": "Coffee or tea?"
           },
           "response": {
-            "arabic": "قهوة، الله يخلّيك",
+            "arabic": "قَهْوَة، اللَّه يِخَلِّيك",
             "transliteration": "2ahwe, alla ykhalliik",
             "english": "Coffee, please."
           }
         },
         {
           "pair": {
-            "arabic": "بتحطّ سكّر بقهوتك؟",
+            "arabic": "بْتِحِطِّ سُكِّر بِقَهْوَتَك؟",
             "transliteration": "bti7ot sukkar b2ahwetak?",
             "english": "Do you take sugar in your coffee?"
           },
           "response": {
-            "arabic": "لا، سادة",
+            "arabic": "لا، سادَة",
             "transliteration": "laa, saade",
             "english": "No, plain."
           }
         },
         {
           "pair": {
-            "arabic": "ما تستحي، البيت بيتك",
+            "arabic": "ما تِسْتِحِي، الْبِيت بِيتَك",
             "transliteration": "ma tist7i, l-beit beitak",
             "english": "Don't be shy, the house is your house."
           },
           "response": {
-            "arabic": "يسلمو، الله يخلّيك",
+            "arabic": "يِسْلِمُو، اللَّه يِخَلِّيك",
             "transliteration": "yislamo, alla ykhalliik",
             "english": "Thanks, God preserve you."
           }
@@ -703,9 +703,9 @@
           "id": "unit-11.lesson-02.reply.01",
           "type": "reply",
           "prompt": "Your host asks: \"شو بتحبّ تشرب؟\". Say anything is fine, don't trouble.",
-          "answer": "أي شي، ما تكلّف حالك",
+          "answer": "أَيِّ شِي، ما تِكَلَّف حالَك",
           "accepted": [
-            "أي شي، ما تكلّف حالك",
+            "أَيِّ شِي، ما تِكَلَّف حالَك",
             "2ayy shi, ma tkallef 7aalak",
             "أي شي",
             "ما تكلّف حالك",
@@ -737,9 +737,9 @@
           "id": "unit-11.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Do you take sugar in your coffee?\"",
-          "answer": "بتحطّ سكّر بقهوتك؟",
+          "answer": "بْتِحِطِّ سُكِّر بِقَهْوَتَك؟",
           "accepted": [
-            "بتحطّ سكّر بقهوتك؟",
+            "بْتِحِطِّ سُكِّر بِقَهْوَتَك؟",
             "bti7ot sukkar b2ahwetak?",
             "بتحطّ سكّر بالقهوة؟",
             "bti7ot sukkar bil-2ahwe?"
@@ -754,14 +754,14 @@
           "id": "unit-11.lesson-02.choose.01",
           "type": "choose",
           "prompt": "How do you say \"Coffee or tea?\"?",
-          "answer": "قهوة ولّا شاي؟",
+          "answer": "قَهْوَة وِلَّا شاي؟",
           "accepted": [
-            "قهوة ولّا شاي؟",
+            "قَهْوَة وِلَّا شاي؟",
             "2ahwe wella shaay?",
             "قهوة أو شاي؟"
           ],
           "options": [
-            "قهوة ولّا شاي؟",
+            "قَهْوَة وِلَّا شاي؟",
             "وين الحمّام؟",
             "قدّيش الساعة؟",
             "مع السلامة"
@@ -776,17 +776,17 @@
           "id": "unit-11.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Arrange: I put the sweets on the table.",
-          "answer": "حطّيت الحلويّات عالطاولة",
+          "answer": "حَطِّيت الْحَلَوِيَّات عَالطَّاوِلَة",
           "accepted": [
-            "حطّيت الحلويّات عالطاولة",
+            "حَطِّيت الْحَلَوِيَّات عَالطَّاوِلَة",
             "7atteit il-7alaweyyaat 3at-taawle",
             "حطيت الحلويات على الطاولة",
             "حطّيت الحلو عالطاولة"
           ],
           "words": [
-            "حطّيت",
-            "الحلويّات",
-            "عالطاولة"
+            "حَطِّيت",
+            "الْحَلَوِيَّات",
+            "عَالطَّاوِلَة"
           ],
           "too_formal": {
             "item": "وضعت الحلويات على الطاولة",
@@ -814,14 +814,14 @@
           "id": "unit-11.lesson-02.choose.02",
           "type": "choose",
           "prompt": "The host says \"ولادكن كبرو كتير!\". A natural reply is:",
-          "answer": "إي والله، الله يحميهن",
+          "answer": "إِيِّ واللَّه، اللَّه يِحْمِيهِن",
           "accepted": [
-            "إي والله، الله يحميهن",
+            "إِيِّ واللَّه، اللَّه يِحْمِيهِن",
             "ee wallah, alla y7miihon",
             "الله يحميهن"
           ],
           "options": [
-            "إي والله، الله يحميهن",
+            "إِيِّ واللَّه، اللَّه يِحْمِيهِن",
             "قدّيش الحساب؟",
             "مع السلامة",
             "ما في مشكلة"
@@ -836,9 +836,9 @@
           "id": "unit-11.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Don't be shy, the house is your house.\"",
-          "answer": "ما تستحي، البيت بيتك",
+          "answer": "ما تِسْتِحِي، الْبِيت بِيتَك",
           "accepted": [
-            "ما تستحي، البيت بيتك",
+            "ما تِسْتِحِي، الْبِيت بِيتَك",
             "ma tist7i, l-beit beitak",
             "ما تستحي البيت بيتك",
             "البيت بيتك"
@@ -853,9 +853,9 @@
           "id": "unit-11.lesson-02.reply.02",
           "type": "reply",
           "prompt": "You put sweets on the table and the guest says \"يعطيكي العافية\". Reply.",
-          "answer": "الله يعافيك",
+          "answer": "اللَّه يِعافِيك",
           "accepted": [
-            "الله يعافيك",
+            "اللَّه يِعافِيك",
             "alla y3aafiik",
             "الله يعافيكي",
             "alla y3aafiiki"
@@ -895,50 +895,50 @@
       "phrases": [
         {
           "slot": "please-come-to-the-table-dinner-is-ready",
-          "arabic": "تفضّلو عالسفرة، الأكل جاهز",
+          "arabic": "تِفَضَّلُو عَالسُّفْرَة، الْأَكْل جاهِز",
           "transliteration": "tfaddalo 3as-sufra, l-2akel jaahez",
           "reply": {
-            "arabic": "يسلمو إيديكي",
+            "arabic": "يِسْلِمُو إِيدِيكِي",
             "transliteration": "yislamo 2iideiki",
             "english": "Bless your hands."
           }
         },
         {
           "slot": "enjoy-your-meal-said-to-those-eating",
-          "arabic": "صحّتين",
+          "arabic": "صِحَّتَيْن",
           "transliteration": "sa77tein",
           "reply": {
-            "arabic": "الله يعافيك",
+            "arabic": "اللَّه يِعافِيك",
             "transliteration": "alla y3aafiik",
             "english": "God grant you health."
           }
         },
         {
           "slot": "take-some-more-there-s-plenty-of-food",
-          "arabic": "خود كمان، في كتير أكل",
+          "arabic": "خُود كِمان، في كْتِير أَكِل",
           "transliteration": "khod kamaan, fi ktiir 2akel",
           "reply": {
-            "arabic": "كتّر خيرك، شبعت",
+            "arabic": "كِتِّر خَيْرَك، شِبَعْت",
             "transliteration": "kattar kheirak, shbi3et",
             "english": "Thank you, I'm full."
           }
         },
         {
           "slot": "try-this-dish-i-made-it-today",
-          "arabic": "جرّب هالأكلة، أنا عملتها اليوم",
+          "arabic": "جَرِّب هَالْأَكْلَة، أَنا عِمِلْتَها الْيُوم",
           "transliteration": "jarrib hal-2akle, ana 3melta l-yoom",
           "reply": {
-            "arabic": "يسلمو إيديكي، طيّبة كتير",
+            "arabic": "يِسْلِمُو إِيدِيكِي، طَيِّبَة كْتِير",
             "transliteration": "yislamo 2iideiki, tayyibe ktiir",
             "english": "Bless your hands, it's very tasty."
           }
         },
         {
           "slot": "don-t-hesitate-eat-as-you-like",
-          "arabic": "ما تستحي، كول متل ما بدّك",
+          "arabic": "ما تِسْتِحِي، كُول مِتِل ما بِدِّك",
           "transliteration": "ma tist7i, kol mitl ma baddak",
           "reply": {
-            "arabic": "الله يخلّيك",
+            "arabic": "اللَّه يِخَلِّيك",
             "transliteration": "alla ykhalliik",
             "english": "God preserve you."
           }
@@ -948,7 +948,7 @@
           "arabic": "بدّك شوي خبز كمان؟",
           "transliteration": "baddak shwayy khobez kamaan?",
           "reply": {
-            "arabic": "لا كتّر خيرك، شبعان",
+            "arabic": "لا كِتِّر خَيْرَك، شِبْعان",
             "transliteration": "laa kattar kheirak, shab3aan",
             "english": "No thanks, I'm full."
           }
@@ -958,27 +958,27 @@
           "arabic": "هالأكل شوي حار، دير بالك",
           "transliteration": "hal-2akel shwayy 7aar, diir baalak",
           "reply": {
-            "arabic": "ما في مشكلة، بحب الحار",
+            "arabic": "ما في مِشْكِلَة، بِحِب الْحار",
             "transliteration": "ma fi mishkle, b7ebb il-7aar",
             "english": "No problem, I like spicy."
           }
         },
         {
           "slot": "what-do-you-think-of-the-dish",
-          "arabic": "كيف الأكلة؟ عجبتك؟",
+          "arabic": "كِيف الْأَكْلَة؟ عِجِبْتَك؟",
           "transliteration": "keef il-2akle? 3ajabetak?",
           "reply": {
-            "arabic": "بتجنّن",
+            "arabic": "بِتِجَنِّن",
             "transliteration": "bitjannen",
             "english": "It's amazing."
           }
         },
         {
           "slot": "don-t-be-shy-tell-me-if-you-want-anything-else",
-          "arabic": "ما تستحي، قلّي إذا بدّك شي تاني",
+          "arabic": "ما تِسْتِحِي، قِلِّي إِذا بِدِّك شِي تاني",
           "transliteration": "ma tist7i, 2illi 2iza baddak shi taani",
           "reply": {
-            "arabic": "الله يخلّيك، كلّو تمام",
+            "arabic": "اللَّه يِخَلِّيك، كِلُّو تِمام",
             "transliteration": "alla ykhalliik, kello tamaam",
             "english": "God preserve you, everything is perfect."
           }
@@ -988,17 +988,17 @@
           "arabic": "الحمدلله، شبعنا",
           "transliteration": "il-7amdulla, shbi3na",
           "reply": {
-            "arabic": "دايمة إن شاء الله",
+            "arabic": "دايِمَة إِن شاء اللَّه",
             "transliteration": "daayme 2in shaa2 alla",
             "english": "May it always be so, God willing."
           }
         },
         {
           "slot": "good-thing-the-food-didn-t-get-cold",
-          "arabic": "منيح إنّو الأكل ما برد",
+          "arabic": "مْنِيح إِنِّو الْأَكْل ما بِرِد",
           "transliteration": "mnii7 2inno l-2akel ma bired",
           "reply": {
-            "arabic": "إي، لسّا سخن",
+            "arabic": "إِيِّ، لِسَّا سَخِن",
             "transliteration": "ee, lissa sekhen",
             "english": "Yes, it's still hot."
           }
@@ -1017,7 +1017,7 @@
       "dialogue": [
         {
           "speaker": "Nadine",
-          "arabic": "تفضّلو عالسفرة، الأكل جاهز",
+          "arabic": "تِفَضَّلُو عَالسُّفْرَة، الْأَكْل جاهِز",
           "transliteration": "tfaddalo 3as-sufra, l-2akel jaahez",
           "english": "Please come to the table, dinner is ready."
         },
@@ -1047,7 +1047,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "ما في مشكلة، بحب الحار",
+          "arabic": "ما في مِشْكِلَة، بِحِب الْحار",
           "transliteration": "ma fi mishkle, b7ebb il-7aar",
           "english": "No problem, I like spicy."
         },
@@ -1065,7 +1065,7 @@
         },
         {
           "speaker": "Nadine",
-          "arabic": "ما تستحي، قلّي إذا بدّك شي تاني",
+          "arabic": "ما تِسْتِحِي، قِلِّي إِذا بِدِّك شِي تاني",
           "transliteration": "ma tist7i, 2illi 2iza baddak shi taani",
           "english": "Don't be shy, tell me if you want anything else."
         },
@@ -1085,36 +1085,36 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "صحّتين",
+            "arabic": "صِحَّتَيْن",
             "transliteration": "sa77tein",
             "english": "Enjoy your meal."
           },
           "response": {
-            "arabic": "الله يعافيك",
+            "arabic": "اللَّه يِعافِيك",
             "transliteration": "alla y3aafiik",
             "english": "God grant you health."
           }
         },
         {
           "pair": {
-            "arabic": "خود كمان، في كتير أكل",
+            "arabic": "خُود كِمان، في كْتِير أَكِل",
             "transliteration": "khod kamaan, fi ktiir 2akel",
             "english": "Take some more, there's plenty of food."
           },
           "response": {
-            "arabic": "كتّر خيرك، شبعت",
+            "arabic": "كِتِّر خَيْرَك، شِبَعْت",
             "transliteration": "kattar kheirak, shbi3et",
             "english": "Thank you, I'm full."
           }
         },
         {
           "pair": {
-            "arabic": "كيف الأكلة؟ عجبتك؟",
+            "arabic": "كِيف الْأَكْلَة؟ عِجِبْتَك؟",
             "transliteration": "keef il-2akle? 3ajabetak?",
             "english": "What do you think of the dish?"
           },
           "response": {
-            "arabic": "بتجنّن",
+            "arabic": "بِتِجَنِّن",
             "transliteration": "bitjannen",
             "english": "It's amazing."
           }
@@ -1126,7 +1126,7 @@
             "english": "Thank God, we're full."
           },
           "response": {
-            "arabic": "دايمة إن شاء الله",
+            "arabic": "دايِمَة إِن شاء اللَّه",
             "transliteration": "daayme 2in shaa2 alla",
             "english": "May it always be so, God willing."
           }
@@ -1138,9 +1138,9 @@
           "id": "unit-11.lesson-03.reply.01",
           "type": "reply",
           "prompt": "The host says \"صحّتين\" as you start eating. Reply.",
-          "answer": "الله يعافيك",
+          "answer": "اللَّه يِعافِيك",
           "accepted": [
-            "الله يعافيك",
+            "اللَّه يِعافِيك",
             "alla y3aafiik",
             "الله يعافيكي",
             "يسلمو",
@@ -1172,9 +1172,9 @@
           "id": "unit-11.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Try this dish, I made it today.\"",
-          "answer": "جرّب هالأكلة، أنا عملتها اليوم",
+          "answer": "جَرِّب هَالْأَكْلَة، أَنا عِمِلْتَها الْيُوم",
           "accepted": [
-            "جرّب هالأكلة، أنا عملتها اليوم",
+            "جَرِّب هَالْأَكْلَة، أَنا عِمِلْتَها الْيُوم",
             "jarrib hal-2akle, ana 3melta l-yoom",
             "جرّب هالأكلة أنا عملتها اليوم",
             "jarrib hal-2akle ana 3melta l-yoom"
@@ -1189,14 +1189,14 @@
           "id": "unit-11.lesson-03.choose.01",
           "type": "choose",
           "prompt": "What do you say to those who are eating?",
-          "answer": "صحّتين",
+          "answer": "صِحَّتَيْن",
           "accepted": [
-            "صحّتين",
+            "صِحَّتَيْن",
             "sa77tein",
             "صحتين"
           ],
           "options": [
-            "صحّتين",
+            "صِحَّتَيْن",
             "مع السلامة",
             "صباح الخير",
             "عن إذنك"
@@ -1248,15 +1248,15 @@
           "id": "unit-11.lesson-03.choose.02",
           "type": "choose",
           "prompt": "The host says \"بدّك شوي خبز كمان؟\". Politely decline:",
-          "answer": "لا كتّر خيرك، شبعان",
+          "answer": "لا كِتِّر خَيْرَك، شِبْعان",
           "accepted": [
-            "لا كتّر خيرك، شبعان",
+            "لا كِتِّر خَيْرَك، شِبْعان",
             "laa kattar kheirak, shab3aan",
             "كتر خيرك شبعان"
           ],
           "options": [
-            "لا كتّر خيرك، شبعان",
-            "بتجنّن",
+            "لا كِتِّر خَيْرَك، شِبْعان",
+            "بِتِجَنِّن",
             "دقّ الجرس",
             "قهوة سادة"
           ],
@@ -1270,9 +1270,9 @@
           "id": "unit-11.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"What do you think of the dish?\"",
-          "answer": "كيف الأكلة؟ عجبتك؟",
+          "answer": "كِيف الْأَكْلَة؟ عِجِبْتَك؟",
           "accepted": [
-            "كيف الأكلة؟ عجبتك؟",
+            "كِيف الْأَكْلَة؟ عِجِبْتَك؟",
             "keef il-2akle? 3ajabetak?",
             "كيف الأكلة؟",
             "عجبتك الأكلة؟",
@@ -1288,9 +1288,9 @@
           "id": "unit-11.lesson-03.reply.02",
           "type": "reply",
           "prompt": "You have finished and the host asks: \"كيف الأكلة؟ عجبتك؟\". Praise it.",
-          "answer": "بتجنّن",
+          "answer": "بِتِجَنِّن",
           "accepted": [
-            "بتجنّن",
+            "بِتِجَنِّن",
             "bitjannen",
             "طيّبة كتير",
             "كتير طيّبة",
@@ -1331,97 +1331,97 @@
       "phrases": [
         {
           "slot": "thank-you-for-the-hospitality-lit-god-give-you-s",
-          "arabic": "يعطيكن العافية",
+          "arabic": "يَعْطِيكِن الْعافِيَة",
           "transliteration": "ya3tiikon l-3aafye",
           "reply": {
-            "arabic": "الله يعافيك",
+            "arabic": "اللَّه يِعافِيك",
             "transliteration": "alla y3aafiik",
             "english": "God grant you health."
           }
         },
         {
           "slot": "we-need-to-go-it-s-gotten-late",
-          "arabic": "لازم نفلّ، صار الوقت متأخّر",
+          "arabic": "لازِم نِفِلِّ، صار الْوَقْت مِتْأَخِّر",
           "transliteration": "laazem nfell, saar il-w2et met2akhkher",
           "reply": {
-            "arabic": "بكّير لسّا",
+            "arabic": "بِكِّير لِسَّا",
             "transliteration": "bakkiir lissa",
             "english": "It's still early."
           }
         },
         {
           "slot": "a-very-nice-gathering-god-keep-you",
-          "arabic": "سهرة كتير حلوة، الله يخلّيكن",
+          "arabic": "سِهْرَة كْتِير حِلْوَة، اللَّه يِخَلِّيكِن",
           "transliteration": "sahra ktiir 7elwe, alla ykhallikon",
           "reply": {
-            "arabic": "الله يخلّيكن، بتشرّفو",
+            "arabic": "اللَّه يِخَلِّيكِن، بِتِشَرِّفُو",
             "transliteration": "alla ykhallikon, bteshrrafo",
             "english": "God preserve you, you honor us."
           }
         },
         {
           "slot": "don-t-forget-our-house-is-always-your-house",
-          "arabic": "ما تنسو، بيتنا دايماً بيتكن",
+          "arabic": "ما تِنْسُو، بِيتْنا دايِمًا بِيتْكِن",
           "transliteration": "ma tensu, beitna daayman beitkon",
           "reply": {
-            "arabic": "الله يخلّيكن",
+            "arabic": "اللَّه يِخَلِّيكِن",
             "transliteration": "alla ykhallikon",
             "english": "God preserve you."
           }
         },
         {
           "slot": "give-my-regards-to-the-family",
-          "arabic": "سلّملي عالعيلة",
+          "arabic": "سِلِّمْلِي عَالْعِيلَة",
           "transliteration": "sallemli 3al-3eele",
           "reply": {
-            "arabic": "الله يسلمك، بوصّلن",
+            "arabic": "اللَّه يِسْلِمك، بُوَصِّلِن",
             "transliteration": "alla yeslamak, bwassilon",
             "english": "God keep you, I'll pass it on."
           }
         },
         {
           "slot": "good-night-said-when-leaving-in-the-evening",
-          "arabic": "تصبحو ع خير",
+          "arabic": "تِصْبَحُو عَ خَيْر",
           "transliteration": "tsba7o 3ala khair",
           "reply": {
-            "arabic": "وإنتو من أهل الخير",
+            "arabic": "وَإِنْتُو مِن أَهْل الْخَيْر",
             "transliteration": "w 2entu min 2ahl il-khair",
             "english": "And you are among the people of goodness."
           }
         },
         {
           "slot": "no-excuses-do-we-have-to-part-so-quickly",
-          "arabic": "ما في أعذار، هلّق بدكن تروحو؟",
+          "arabic": "ما في أَعْذار، هِلَّق بِدْكِن تْرُوحُو؟",
           "transliteration": "ma fi 2a3dhaar, hallaq baddkon trou7o?",
           "reply": {
-            "arabic": "والله عنّا شغل بكّير بكرا",
+            "arabic": "واللَّه عِنِّا شُغِل بِكِّير بِكْرا",
             "transliteration": "wallah 3enna shoghol bakkiir bukra",
             "english": "Truly, we have work early tomorrow."
           }
         },
         {
           "slot": "thanks-for-the-invitation-we-had-a-great-time",
-          "arabic": "شكرا عالدعوة، قضّينا وقت كتير حلو",
+          "arabic": "شُكْرًا عَالدَّعْوَة، قِضِّيْنا وَقْت كْتِير حِلْو",
           "transliteration": "shukran 3ad-da3we, 2adeina w2et ktiir 7ilu",
           "reply": {
-            "arabic": "الشكر إلك",
+            "arabic": "الشُّكْر إِلَك",
             "transliteration": "ish-shukr 2ilak",
             "english": "The thanks are yours."
           }
         },
         {
           "slot": "let-us-know-when-you-get-home",
-          "arabic": "خبّرونا لمّا توصلو",
+          "arabic": "خَبِّرُونا لِمَّا تُوصْلُو",
           "transliteration": "khabbiroona lamma twaslo",
           "reply": {
-            "arabic": "أكيد، منبعتلك",
+            "arabic": "أَكِيد، مِنْبَعْتِلَك",
             "transliteration": "2akiid, mnib3atlak",
             "english": "Of course, we'll message you."
           }
         },
         {
           "slot": "the-road-should-be-clear-god-willing",
-          "arabic": "إن شاء الله الطريق فاضي",
+          "arabic": "إِن شاء اللَّه الطَّرِيق فاضي",
           "transliteration": "2in shaa2 alla it-taree2 faadi",
           "reply": {
             "arabic": "يارب",
@@ -1431,20 +1431,20 @@
         },
         {
           "slot": "visit-me-again-soon",
-          "arabic": "زورونا قريب",
+          "arabic": "زُورُونا قْرِيب",
           "transliteration": "zooroona 2ariib",
           "reply": {
-            "arabic": "إن شاء الله، الدور عليكن",
+            "arabic": "إِن شاء اللَّه، الدُّور عَلَيْكِن",
             "transliteration": "2in shaa2 alla, id-door 3aleikon",
             "english": "God willing, it's your turn to host."
           }
         },
         {
           "slot": "goodbye-god-be-with-you",
-          "arabic": "مع السلامة، الله معكن",
+          "arabic": "مَعَ السَّلامَة، اللَّه مَعْكِن",
           "transliteration": "ma3 is-salaame, alla ma3kon",
           "reply": {
-            "arabic": "الله يسلمك",
+            "arabic": "اللَّه يِسْلِمك",
             "transliteration": "alla yeslamak",
             "english": "God keep you."
           }
@@ -1465,25 +1465,25 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "لازم نفلّ، صار الوقت متأخّر",
+          "arabic": "لازِم نِفِلِّ، صار الْوَقْت مِتْأَخِّر",
           "transliteration": "laazem nfell, saar il-w2et met2akhkher",
           "english": "We need to go, it's gotten late."
         },
         {
           "speaker": "Nadine",
-          "arabic": "ما في أعذار، هلّق بدكن تروحو؟",
+          "arabic": "ما في أَعْذار، هِلَّق بِدْكِن تْرُوحُو؟",
           "transliteration": "ma fi 2a3dhaar, hallaq baddkon trou7o?",
           "english": "No excuses, do you have to go already?"
         },
         {
           "speaker": "Karim",
-          "arabic": "والله عنّا شغل بكّير بكرا",
+          "arabic": "واللَّه عِنِّا شُغِل بِكِّير بِكْرا",
           "transliteration": "wallah 3enna shoghol bakkiir bukra",
           "english": "Truly, we have work early tomorrow."
         },
         {
           "speaker": "Nadine",
-          "arabic": "ما تنسو، بيتنا دايماً بيتكن",
+          "arabic": "ما تِنْسُو، بِيتْنا دايِمًا بِيتْكِن",
           "transliteration": "ma tensu, beitna daayman beitkon",
           "english": "Don't forget, our house is always your house."
         },
@@ -1521,48 +1521,48 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "يعطيكن العافية",
+            "arabic": "يَعْطِيكِن الْعافِيَة",
             "transliteration": "ya3tiikon l-3aafye",
             "english": "Thank you for the hospitality."
           },
           "response": {
-            "arabic": "الله يعافيك",
+            "arabic": "اللَّه يِعافِيك",
             "transliteration": "alla y3aafiik",
             "english": "God grant you health."
           }
         },
         {
           "pair": {
-            "arabic": "تصبحو ع خير",
+            "arabic": "تِصْبَحُو عَ خَيْر",
             "transliteration": "tsba7o 3ala khair",
             "english": "Good night."
           },
           "response": {
-            "arabic": "وإنتو من أهل الخير",
+            "arabic": "وَإِنْتُو مِن أَهْل الْخَيْر",
             "transliteration": "w 2entu min 2ahl il-khair",
             "english": "And you as well."
           }
         },
         {
           "pair": {
-            "arabic": "سلّملي عالعيلة",
+            "arabic": "سِلِّمْلِي عَالْعِيلَة",
             "transliteration": "sallemli 3al-3eele",
             "english": "Give my regards to the family."
           },
           "response": {
-            "arabic": "الله يسلمك، بوصّلن",
+            "arabic": "اللَّه يِسْلِمك، بُوَصِّلِن",
             "transliteration": "alla yeslamak, bwassilon",
             "english": "God keep you, I'll pass it on."
           }
         },
         {
           "pair": {
-            "arabic": "زورونا قريب",
+            "arabic": "زُورُونا قْرِيب",
             "transliteration": "zooroona 2ariib",
             "english": "Visit us soon."
           },
           "response": {
-            "arabic": "إن شاء الله، الدور عليكن",
+            "arabic": "إِن شاء اللَّه، الدُّور عَلَيْكِن",
             "transliteration": "2in shaa2 alla, id-door 3aleikon",
             "english": "God willing, it's your turn."
           }
@@ -1574,9 +1574,9 @@
           "id": "unit-11.lesson-04.reply.01",
           "type": "reply",
           "prompt": "You thank the host: \"يعطيكن العافية\". She replies with the set phrase:",
-          "answer": "الله يعافيك",
+          "answer": "اللَّه يِعافِيك",
           "accepted": [
-            "الله يعافيك",
+            "اللَّه يِعافِيك",
             "alla y3aafiik",
             "الله يعافيكن",
             "الله يعافيكي",
@@ -1609,9 +1609,9 @@
           "id": "unit-11.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Give my regards to the family.\"",
-          "answer": "سلّملي عالعيلة",
+          "answer": "سِلِّمْلِي عَالْعِيلَة",
           "accepted": [
-            "سلّملي عالعيلة",
+            "سِلِّمْلِي عَالْعِيلَة",
             "sallemli 3al-3eele",
             "سلملي على العيلة",
             "سلّملي عالأهل",
@@ -1627,17 +1627,17 @@
           "id": "unit-11.lesson-04.choose.01",
           "type": "choose",
           "prompt": "What do you say to wish someone good night when leaving?",
-          "answer": "تصبحو ع خير",
+          "answer": "تِصْبَحُو عَ خَيْر",
           "accepted": [
-            "تصبحو ع خير",
+            "تِصْبَحُو عَ خَيْر",
             "tsba7o 3ala khair",
             "تصبحو على خير"
           ],
           "options": [
-            "تصبحو ع خير",
+            "تِصْبَحُو عَ خَيْر",
             "صباح الخير",
             "أهلا وسهلا",
-            "صحّتين"
+            "صِحَّتَيْن"
           ],
           "too_formal": {
             "item": "طاب مساؤكم",
@@ -1649,17 +1649,17 @@
           "id": "unit-11.lesson-04.reorder.01",
           "type": "reorder",
           "prompt": "Arrange: Let us know when you get home.",
-          "answer": "خبّرونا لمّا توصلو",
+          "answer": "خَبِّرُونا لِمَّا تُوصْلُو",
           "accepted": [
-            "خبّرونا لمّا توصلو",
+            "خَبِّرُونا لِمَّا تُوصْلُو",
             "khabbiroona lamma twaslo",
             "خبرونا لما توصلو",
             "خبّرونا لمّا توصلو عالبيت"
           ],
           "words": [
-            "خبّرونا",
-            "لمّا",
-            "توصلو"
+            "خَبِّرُونا",
+            "لِمَّا",
+            "تُوصْلُو"
           ],
           "too_formal": {
             "item": "أعلمونا عندما تصلون",
@@ -1696,8 +1696,8 @@
           ],
           "options": [
             "يارب",
-            "بكّير لسّا",
-            "شرّفتونا",
+            "بِكِّير لِسَّا",
+            "شَرَّفْتُونا",
             "قهوة سادة"
           ],
           "too_formal": {
@@ -1710,9 +1710,9 @@
           "id": "unit-11.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Thanks for the invitation, we had a great time.\"",
-          "answer": "شكرا عالدعوة، قضّينا وقت كتير حلو",
+          "answer": "شُكْرًا عَالدَّعْوَة، قِضِّيْنا وَقْت كْتِير حِلْو",
           "accepted": [
-            "شكرا عالدعوة، قضّينا وقت كتير حلو",
+            "شُكْرًا عَالدَّعْوَة، قِضِّيْنا وَقْت كْتِير حِلْو",
             "shukran 3ad-da3we, 2adeina w2et ktiir 7ilu",
             "شكرا عالدعوة قضينا وقت كتير حلو",
             "يعطيكن العافية عالدعوة"
@@ -1727,9 +1727,9 @@
           "id": "unit-11.lesson-04.reply.02",
           "type": "reply",
           "prompt": "You say \"زورونا قريب\" to guests leaving. They reply:",
-          "answer": "إن شاء الله، الدور عليكن",
+          "answer": "إِن شاء اللَّه، الدُّور عَلَيْكِن",
           "accepted": [
-            "إن شاء الله، الدور عليكن",
+            "إِن شاء اللَّه، الدُّور عَلَيْكِن",
             "2in shaa2 alla, id-door 3aleikon",
             "إن شاء الله",
             "الدور عليكن",

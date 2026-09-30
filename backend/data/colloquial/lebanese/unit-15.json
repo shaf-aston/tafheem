@@ -22,72 +22,72 @@
       "phrases": [
         {
           "slot": "hello-i-have-a-reservation",
-          "arabic": "مرحبا، عندي حجز",
+          "arabic": "مَرْحَبَا، عِنْدِي حِجْز",
           "transliteration": "mar7aba, 3andi 7ajz",
           "reply": {
-            "arabic": "أهلا وسهلا، على اسم مين؟",
+            "arabic": "أَهْلَا وَسَهْلَا، عَلَى اسْمْ مِيْن؟",
             "transliteration": "ahlan w sahlan, 3ala 2esm meen?",
             "english": "Welcome, under whose name?"
           }
         },
         {
           "slot": "under-the-name-nour",
-          "arabic": "على اسم نور",
+          "arabic": "عَلَى اسْمْ نُور",
           "transliteration": "3ala 2esm Noor"
         },
         {
           "slot": "is-there-an-empty-room",
-          "arabic": "في أوضة فاضية؟",
+          "arabic": "فِي أُوضَة فَاضْيَة؟",
           "transliteration": "fi 2ooDa faaDye?"
         },
         {
           "slot": "i-want-a-room-for-two-people",
-          "arabic": "بدّي أوضة لتنين",
+          "arabic": "بِدِّي أُوضَة لِتْنِيْن",
           "transliteration": "baddi 2ooDa la-tneen"
         },
         {
           "slot": "how-much-is-the-price-per-night",
-          "arabic": "قدّيش سعر الليلة؟",
+          "arabic": "قِدِّيْش سِعْر الْلَيْلَة؟",
           "transliteration": "addeesh se3r l-leile?"
         },
         {
           "slot": "is-breakfast-included-with-the-room",
-          "arabic": "في فطور مع الأوضة؟",
+          "arabic": "فِي فِطُور مَع الْأُوضَة؟",
           "transliteration": "fi fTuur ma3 l-2ooDa?",
           "reply": {
-            "arabic": "إي، من السبعة للعشرة",
+            "arabic": "إِي، مِن الْسَّبْعَة لِلْعِشْرَة",
             "transliteration": "ee, mn s-sab3a la-l-3ashra",
             "english": "Yes, from seven to ten."
           }
         },
         {
           "slot": "can-i-see-the-room-first",
-          "arabic": "فيّي شوف الأوضة قبل؟",
+          "arabic": "فِيِّي شُوف الْأُوضَة قَبْل؟",
           "transliteration": "fiyyi shoof l-2ooDa 2abel?"
         },
         {
           "slot": "where-s-the-elevator",
-          "arabic": "وين الأسانسور؟",
+          "arabic": "وَيْن الْأَسَانْسُور؟",
           "transliteration": "wein l-asansoor?"
         },
         {
           "slot": "i-want-the-key-please",
-          "arabic": "بدّي المفتاح، لو سمحت",
+          "arabic": "بِدِّي الْمُفْتَاح، لَوْ سَمَحْت",
           "transliteration": "baddi l-muftaa7, law sama7t"
         },
         {
           "slot": "what-time-do-i-need-to-check-out",
-          "arabic": "أي ساعة لازم أعمل تشيك آوت؟",
+          "arabic": "أَيْ سَاعَة لَازِمْ أَعْمَل تْشِيك آوْت؟",
           "transliteration": "ayy sa3a laazem 2a3mol check-out?"
         },
         {
           "slot": "i-want-to-order-room-service",
-          "arabic": "بدّي أطلب أكل عالأوضة",
+          "arabic": "بِدِّي أَطْلُب أَكْل عَالْأُوضَة",
           "transliteration": "baddi 2oTlob 2akel 3al-2ooDa"
         },
         {
           "slot": "thanks-the-room-is-very-nice",
-          "arabic": "شكرا، الأوضة كتير حلوة",
+          "arabic": "شُكْرَا، الْأُوضَة كْتِير حْلُوَة",
           "transliteration": "shukran, l-2ooDa ktiir 7elwe"
         }
       ],
@@ -162,7 +162,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "في أوضة فاضية؟",
+            "arabic": "فِي أُوضَة فَاضْيَة؟",
             "transliteration": "fi 2ooDa faaDye?",
             "english": "Is there an empty room?"
           },
@@ -174,7 +174,7 @@
         },
         {
           "pair": {
-            "arabic": "قدّيش سعر الليلة؟",
+            "arabic": "قِدِّيْش سِعْر الْلَيْلَة؟",
             "transliteration": "addeesh se3r l-leile?",
             "english": "How much is the price per night?"
           },
@@ -186,19 +186,19 @@
         },
         {
           "pair": {
-            "arabic": "في فطور مع الأوضة؟",
+            "arabic": "فِي فِطُور مَع الْأُوضَة؟",
             "transliteration": "fi fTuur ma3 l-2ooDa?",
             "english": "Is breakfast included with the room?"
           },
           "response": {
-            "arabic": "إي، من السبعة للعشرة",
+            "arabic": "إِي، مِن الْسَّبْعَة لِلْعِشْرَة",
             "transliteration": "ee, mn s-sab3a la-l-3ashra",
             "english": "Yes, from seven to ten."
           }
         },
         {
           "pair": {
-            "arabic": "أي ساعة لازم أعمل تشيك آوت؟",
+            "arabic": "أَيْ سَاعَة لَازِمْ أَعْمَل تْشِيك آوْت؟",
             "transliteration": "ayy sa3a laazem 2a3mol check-out?",
             "english": "What time do I need to check out?"
           },
@@ -219,7 +219,7 @@
           "accepted": [
             "عندي حجز على اسم نور",
             "3andi 7ajz 3ala 2esm Noor",
-            "على اسم نور",
+            "عَلَى اسْمْ نُور",
             "3andi 7ajz"
           ],
           "too_formal": {
@@ -249,9 +249,9 @@
           "id": "unit-15.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I want a room for two people.",
-          "answer": "بدّي أوضة لتنين",
+          "answer": "بِدِّي أُوضَة لِتْنِيْن",
           "accepted": [
-            "بدّي أوضة لتنين",
+            "بِدِّي أُوضَة لِتْنِيْن",
             "baddi 2ooDa la-tneen",
             "بدي أوضة لتنين"
           ],
@@ -266,14 +266,14 @@
           "type": "choose",
           "prompt": "كيف بتقول 'How much is the price per night?'",
           "options": [
-            "قدّيش سعر الليلة؟",
-            "وين الأسانسور؟",
+            "قِدِّيْش سِعْر الْلَيْلَة؟",
+            "وَيْن الْأَسَانْسُور؟",
             "بدّي المفتاح",
             "شكرا كتير"
           ],
-          "answer": "قدّيش سعر الليلة؟",
+          "answer": "قِدِّيْش سِعْر الْلَيْلَة؟",
           "accepted": [
-            "قدّيش سعر الليلة؟",
+            "قِدِّيْش سِعْر الْلَيْلَة؟",
             "addeesh se3r l-leile?",
             "قدّيش سعر الليلة",
             "addeesh se3r l-leile"
@@ -312,9 +312,9 @@
           "id": "unit-15.lesson-01.reorder.01",
           "type": "reorder",
           "prompt": "رتّب الجملة: بدّي أوضة لتنين",
-          "answer": "بدّي أوضة لتنين",
+          "answer": "بِدِّي أُوضَة لِتْنِيْن",
           "accepted": [
-            "بدّي أوضة لتنين",
+            "بِدِّي أُوضَة لِتْنِيْن",
             "baddi 2ooDa la-tneen",
             "بدي أوضة لتنين",
             "بدي اوضة لتنين"
@@ -329,17 +329,17 @@
           "id": "unit-15.lesson-01.reorder.02",
           "type": "reorder",
           "prompt": "رتّب الجملة: قدّيش سعر الليلة؟",
-          "answer": "قدّيش سعر الليلة؟",
+          "answer": "قِدِّيْش سِعْر الْلَيْلَة؟",
           "accepted": [
-            "قدّيش سعر الليلة؟",
+            "قِدِّيْش سِعْر الْلَيْلَة؟",
             "addeesh se3r l-leile?",
             "قدّيش سعر الليلة",
             "addeesh se3r l-leile"
           ],
           "words": [
-            "قدّيش",
-            "سعر",
-            "الليلة؟"
+            "قِدِّيْش",
+            "سِعْر",
+            "الْلَيْلَة؟"
           ],
           "too_formal": {
             "item": "كم سعر الليلة؟",
@@ -404,67 +404,67 @@
       "phrases": [
         {
           "slot": "i-want-to-book-a-bus-ticket",
-          "arabic": "بدّي إحجز تذكرة عالباص",
+          "arabic": "بِدِّي إِحْجُز تِذْكِرَة عَالْبَاص",
           "transliteration": "baddi 2i7jez tazkara 3al-baaS"
         },
         {
           "slot": "do-you-have-tickets-to-aleppo",
-          "arabic": "عندكن تذاكر لحلب؟",
+          "arabic": "عِنْدِكِنّ تِذَاكِر لِحَلَب؟",
           "transliteration": "3indkon tazaaker la-7alab?"
         },
         {
           "slot": "how-much-is-a-round-trip-ticket",
-          "arabic": "قدّيش تذكرة رايح جاي؟",
+          "arabic": "قِدِّيْش تِذْكِرَة رَايِح جَايْ؟",
           "transliteration": "addeesh tazkaret raaye7 jeyy?"
         },
         {
           "slot": "i-want-a-one-way-ticket-only",
-          "arabic": "بدّي تذكرة رايح بس",
+          "arabic": "بِدِّي تِذْكِرَة رَايِح بَسّ",
           "transliteration": "baddi tazkara raaye7 bass"
         },
         {
           "slot": "is-there-a-free-seat-on-the-next-bus",
-          "arabic": "في كرسي فاضي بالباص الجاي؟",
+          "arabic": "فِي كُرْسِي فَاضِي بَالْبَاص الْجَايْ؟",
           "transliteration": "fi kersi faaDi bel-baaS l-jeyy?"
         },
         {
           "slot": "what-time-does-the-bus-leave",
-          "arabic": "أي ساعة بيطلع الباص؟",
+          "arabic": "أَيْ سَاعَة بِيَطْلُع الْبَاص؟",
           "transliteration": "ayy sa3a byeTla3 l-baaS?"
         },
         {
           "slot": "can-i-pay-by-card",
-          "arabic": "فيّي إدفع بالكارت؟",
+          "arabic": "فِيِّي إِدْفَع بَالْكَارْت؟",
           "transliteration": "fiyyi 2edfa3 bel-kart?",
           "reply": {
-            "arabic": "إي، تفضّل",
+            "arabic": "إِي، تْفَضَّل",
             "transliteration": "ee, tfaddal",
             "english": "Yes, go ahead."
           }
         },
         {
           "slot": "i-want-to-confirm-the-reservation",
-          "arabic": "بدّي أكّد الحجز",
+          "arabic": "بِدِّي أَكِّد الْحِجْز",
           "transliteration": "baddi 2akked l-7ajz"
         },
         {
           "slot": "is-there-a-discount-for-students",
-          "arabic": "في خصم للطلاب؟",
+          "arabic": "فِي خِصْمْ لِلْطُّلَاب؟",
           "transliteration": "fi khaSm lal-Tollaab?"
         },
         {
           "slot": "where-s-the-ticket-window",
-          "arabic": "وين شباك التذاكر؟",
+          "arabic": "وَيْن شِبَّاك التِّذَاكِر؟",
           "transliteration": "wein shibbeek t-tazaaker?"
         },
         {
           "slot": "how-long-does-the-trip-take",
-          "arabic": "قدّيش بياخد الطريق؟",
+          "arabic": "قِدِّيْش بِيَاخُد الطَّرِيق؟",
           "transliteration": "addeesh byaakhod T-Taree2?"
         },
         {
           "slot": "thanks-here-s-your-ticket",
-          "arabic": "مرسي، تفضّل تذكرتك",
+          "arabic": "مِرْسِي، تْفَضَّل تِذْكِرِتَك",
           "transliteration": "mersi, tfaddal tazkartak"
         }
       ],
@@ -483,7 +483,7 @@
         },
         {
           "speaker": "سامر",
-          "arabic": "عندكن تذاكر لحلب؟",
+          "arabic": "عِنْدِكِنّ تِذَاكِر لِحَلَب؟",
           "transliteration": "3indkon tazaaker la-7alab?",
           "english": "Do you have tickets to Aleppo?"
         },
@@ -507,7 +507,7 @@
         },
         {
           "speaker": "سامر",
-          "arabic": "فيّي إدفع بالكارت؟",
+          "arabic": "فِيِّي إِدْفَع بَالْكَارْت؟",
           "transliteration": "fiyyi 2edfa3 bel-kart?",
           "english": "Can I pay by card?"
         },
@@ -551,7 +551,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "بدّي إحجز تذكرة عالباص",
+            "arabic": "بِدِّي إِحْجُز تِذْكِرَة عَالْبَاص",
             "transliteration": "baddi 2i7jez tazkara 3al-baaS",
             "english": "I want to book a bus ticket."
           },
@@ -563,7 +563,7 @@
         },
         {
           "pair": {
-            "arabic": "أي ساعة بيطلع الباص؟",
+            "arabic": "أَيْ سَاعَة بِيَطْلُع الْبَاص؟",
             "transliteration": "ayy sa3a byeTla3 l-baaS?",
             "english": "What time does the bus leave?"
           },
@@ -575,7 +575,7 @@
         },
         {
           "pair": {
-            "arabic": "فيّي إدفع بالكارت؟",
+            "arabic": "فِيِّي إِدْفَع بَالْكَارْت؟",
             "transliteration": "fiyyi 2edfa3 bel-kart?",
             "english": "Can I pay by card?"
           },
@@ -587,7 +587,7 @@
         },
         {
           "pair": {
-            "arabic": "في خصم للطلاب؟",
+            "arabic": "فِي خِصْمْ لِلْطُّلَاب؟",
             "transliteration": "fi khaSm lal-Tollaab?",
             "english": "Is there a discount for students?"
           },
@@ -604,9 +604,9 @@
           "id": "unit-15.lesson-02.reply.01",
           "type": "reply",
           "prompt": "الموظف بيسألك: أهلا، شو بدّك؟",
-          "answer": "بدّي إحجز تذكرة عالباص",
+          "answer": "بِدِّي إِحْجُز تِذْكِرَة عَالْبَاص",
           "accepted": [
-            "بدّي إحجز تذكرة عالباص",
+            "بِدِّي إِحْجُز تِذْكِرَة عَالْبَاص",
             "baddi 2i7jez tazkara 3al-baaS",
             "بدي احجز تذكرة عالباص",
             "بدّي تذكرة"
@@ -638,9 +638,9 @@
           "id": "unit-15.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Can I pay by card?",
-          "answer": "فيّي إدفع بالكارت؟",
+          "answer": "فِيِّي إِدْفَع بَالْكَارْت؟",
           "accepted": [
-            "فيّي إدفع بالكارت؟",
+            "فِيِّي إِدْفَع بَالْكَارْت؟",
             "fiyyi 2edfa3 bel-kart?",
             "فيي ادفع بالكارت؟",
             "فيّي إدفع بالكريدت كارد؟"
@@ -656,14 +656,14 @@
           "type": "choose",
           "prompt": "كيف بتقول 'What time does the bus leave?'",
           "options": [
-            "أي ساعة بيطلع الباص؟",
-            "وين شباك التذاكر؟",
-            "في خصم للطلاب؟",
+            "أَيْ سَاعَة بِيَطْلُع الْبَاص؟",
+            "وَيْن شِبَّاك التِّذَاكِر؟",
+            "فِي خِصْمْ لِلْطُّلَاب؟",
             "تفضّل تذكرتك"
           ],
-          "answer": "أي ساعة بيطلع الباص؟",
+          "answer": "أَيْ سَاعَة بِيَطْلُع الْبَاص؟",
           "accepted": [
-            "أي ساعة بيطلع الباص؟",
+            "أَيْ سَاعَة بِيَطْلُع الْبَاص؟",
             "ayy sa3a byeTla3 l-baaS?",
             "أي ساعة بيطلع الباص",
             "ayy sa3a byeTla3 l-baaS"
@@ -702,9 +702,9 @@
           "id": "unit-15.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "رتّب الجملة: فيّي إدفع بالكارت؟",
-          "answer": "فيّي إدفع بالكارت؟",
+          "answer": "فِيِّي إِدْفَع بَالْكَارْت؟",
           "accepted": [
-            "فيّي إدفع بالكارت؟",
+            "فِيِّي إِدْفَع بَالْكَارْت؟",
             "fiyyi 2edfa3 bel-kart?",
             "فيّي إدفع بالكارت",
             "فيي ادفع بالكارت",
@@ -720,18 +720,18 @@
           "id": "unit-15.lesson-02.reorder.02",
           "type": "reorder",
           "prompt": "رتّب الجملة: أي ساعة بيطلع الباص؟",
-          "answer": "أي ساعة بيطلع الباص؟",
+          "answer": "أَيْ سَاعَة بِيَطْلُع الْبَاص؟",
           "accepted": [
-            "أي ساعة بيطلع الباص؟",
+            "أَيْ سَاعَة بِيَطْلُع الْبَاص؟",
             "ayy sa3a byeTla3 l-baaS?",
             "أي ساعة بيطلع الباص",
             "ayy sa3a byeTla3 l-baaS"
           ],
           "words": [
-            "أي",
-            "ساعة",
-            "بيطلع",
-            "الباص؟"
+            "أَيْ",
+            "سَاعَة",
+            "بِيَطْلُع",
+            "الْبَاص؟"
           ],
           "too_formal": {
             "item": "متى تنطلق الحافلة؟",
@@ -777,9 +777,9 @@
           "id": "unit-15.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "How long does the trip take?",
-          "answer": "قدّيش بياخد الطريق؟",
+          "answer": "قِدِّيْش بِيَاخُد الطَّرِيق؟",
           "accepted": [
-            "قدّيش بياخد الطريق؟",
+            "قِدِّيْش بِيَاخُد الطَّرِيق؟",
             "addeesh byaakhod T-Taree2?",
             "قدّيش بياخد الطريق"
           ],
@@ -796,67 +796,67 @@
       "phrases": [
         {
           "slot": "where-s-the-check-in-counter",
-          "arabic": "وين التشيك إن؟",
+          "arabic": "وَيْن التِّشِيك إِنّ؟",
           "transliteration": "wein l-check-in?"
         },
         {
           "slot": "i-have-my-passport-and-my-ticket",
-          "arabic": "معي جواز السفر والتذكرة",
+          "arabic": "مَعِي جَوَاز السَّفَر والتِّذْكِرَة",
           "transliteration": "ma3i jawaaz s-safar w t-tazkara"
         },
         {
           "slot": "how-many-bags-am-i-allowed-to-take",
-          "arabic": "كم شنطة فيّي آخد؟",
+          "arabic": "كِمْ شَنْطَة فِيِّي آخُد؟",
           "transliteration": "kam shanTa fiyyi 2aakhod?"
         },
         {
           "slot": "is-this-bag-overweight",
-          "arabic": "هالشنطة أتقل من المسموح؟",
+          "arabic": "هَالْشَنْطَة أَتْقَل مِن الْمَسْمُوح؟",
           "transliteration": "hal-shanTa at2al mn l-masmoo7?"
         },
         {
           "slot": "where-s-the-boarding-gate",
-          "arabic": "وين البوابة للطيارة؟",
+          "arabic": "وَيْن الْبَوَّابَة لِلطَّيَّارَة؟",
           "transliteration": "wein l-bawwaabe la-T-Tayyaara?"
         },
         {
           "slot": "what-time-does-the-plane-depart",
-          "arabic": "أي ساعة بتقلع الطيارة؟",
+          "arabic": "أَيْ سَاعَة بْتِقْلَع الطَّيَّارَة؟",
           "transliteration": "ayy sa3a bti2la3 T-Tayyaara?"
         },
         {
           "slot": "do-you-have-anything-to-declare",
-          "arabic": "معك شي لازم تصرّح عنّو؟",
+          "arabic": "مَعَك شِي لَازِمْ تِصَرِّح عِنِّو؟",
           "transliteration": "ma3ak shi laazem tSarre7 3anno?",
           "reply": {
-            "arabic": "لا، ما عندي شي",
+            "arabic": "لَا، مَا عِنْدِي شِي",
             "transliteration": "la2, ma 3indi shi",
             "english": "No, I don't have anything."
           }
         },
         {
           "slot": "no-i-don-t-have-anything",
-          "arabic": "لا، ما عندي شي",
+          "arabic": "لَا، مَا عِنْدِي شِي",
           "transliteration": "la2, ma 3indi shi"
         },
         {
           "slot": "your-passport-please",
-          "arabic": "جواز السفر لو سمحت",
+          "arabic": "جَوَاز السَّفَر لَوْ سَمَحْت",
           "transliteration": "jawaaz s-safar, law sama7t"
         },
         {
           "slot": "are-you-coming-for-tourism-or-work",
-          "arabic": "جاي سياحة ولّا شغل؟",
+          "arabic": "جَايْ سِيَاحَة وِلَّا شُغْل؟",
           "transliteration": "jeyy siyaa7a willa shoghol?"
         },
         {
           "slot": "how-long-will-you-stay-here",
-          "arabic": "قدّيش رح تضل هون؟",
+          "arabic": "قِدِّيْش رَح تِضَل هُون؟",
           "transliteration": "addeesh ra7 teDall hon?"
         },
         {
           "slot": "welcome",
-          "arabic": "أهلا وسهلا",
+          "arabic": "أَهْلَاً وَسَهْلَاً",
           "transliteration": "ahlan w sahlan"
         }
       ],
@@ -923,7 +923,7 @@
         },
         {
           "speaker": "الضابط",
-          "arabic": "قدّيش رح تضل هون؟",
+          "arabic": "قِدِّيْش رَح تِضَل هُون؟",
           "transliteration": "addeesh ra7 teDall hon?",
           "english": "How long will you stay here?"
         },
@@ -935,7 +935,7 @@
         },
         {
           "speaker": "الضابط",
-          "arabic": "أهلا وسهلا",
+          "arabic": "أَهْلَاً وَسَهْلَاً",
           "transliteration": "ahlan w sahlan",
           "english": "Welcome."
         }
@@ -943,7 +943,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "وين التشيك إن؟",
+            "arabic": "وَيْن التِّشِيك إِنّ؟",
             "transliteration": "wein l-check-in?",
             "english": "Where's check-in?"
           },
@@ -955,7 +955,7 @@
         },
         {
           "pair": {
-            "arabic": "كم شنطة فيّي آخد؟",
+            "arabic": "كِمْ شَنْطَة فِيِّي آخُد؟",
             "transliteration": "kam shanTa fiyyi 2aakhod?",
             "english": "How many bags can I take?"
           },
@@ -967,19 +967,19 @@
         },
         {
           "pair": {
-            "arabic": "معك شي لازم تصرّح عنّو؟",
+            "arabic": "مَعَك شِي لَازِمْ تِصَرِّح عِنِّو؟",
             "transliteration": "ma3ak shi laazem tSarre7 3anno?",
             "english": "Do you have anything to declare?"
           },
           "response": {
-            "arabic": "لا، ما عندي شي",
+            "arabic": "لَا، مَا عِنْدِي شِي",
             "transliteration": "la2, ma 3indi shi",
             "english": "No, I don't have anything."
           }
         },
         {
           "pair": {
-            "arabic": "جاي سياحة ولّا شغل؟",
+            "arabic": "جَايْ سِيَاحَة وِلَّا شُغْل؟",
             "transliteration": "jeyy siyaa7a willa shoghol?",
             "english": "Are you coming for tourism or work?"
           },
@@ -1000,7 +1000,7 @@
           "accepted": [
             "تفضّل، معي جواز السفر والتذكرة",
             "tfaddal, ma3i jawaaz s-safar w t-tazkara",
-            "معي جواز السفر والتذكرة",
+            "مَعِي جَوَاز السَّفَر والتِّذْكِرَة",
             "تفضّل"
           ],
           "too_formal": {
@@ -1029,9 +1029,9 @@
           "id": "unit-15.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Where's the boarding gate?",
-          "answer": "وين البوابة للطيارة؟",
+          "answer": "وَيْن الْبَوَّابَة لِلطَّيَّارَة؟",
           "accepted": [
-            "وين البوابة للطيارة؟",
+            "وَيْن الْبَوَّابَة لِلطَّيَّارَة؟",
             "wein l-bawwaabe la-T-Tayyaara?",
             "وين البوابة؟",
             "wein l-bawwaabe?"
@@ -1047,14 +1047,14 @@
           "type": "choose",
           "prompt": "كيف بتقول 'No, I don't have anything.'",
           "options": [
-            "لا، ما عندي شي",
+            "لَا، مَا عِنْدِي شِي",
             "تفضّل جواز السفر",
             "جاي سياحة",
-            "أهلا وسهلا"
+            "أَهْلَاً وَسَهْلَاً"
           ],
-          "answer": "لا، ما عندي شي",
+          "answer": "لَا، مَا عِنْدِي شِي",
           "accepted": [
-            "لا، ما عندي شي",
+            "لَا، مَا عِنْدِي شِي",
             "la2, ma 3indi shi",
             "لا ما عندي شي",
             "la2 ma 3indi shi"
@@ -1092,18 +1092,18 @@
           "id": "unit-15.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "رتّب الجملة: جاي سياحة ولّا شغل؟",
-          "answer": "جاي سياحة ولّا شغل؟",
+          "answer": "جَايْ سِيَاحَة وِلَّا شُغْل؟",
           "accepted": [
-            "جاي سياحة ولّا شغل؟",
+            "جَايْ سِيَاحَة وِلَّا شُغْل؟",
             "jeyy siyaa7a willa shoghol?",
             "جاي سياحة ولّا شغل",
             "jeyy siyaa7a willa shoghol"
           ],
           "words": [
-            "جاي",
-            "سياحة",
-            "ولّا",
-            "شغل؟"
+            "جَايْ",
+            "سِيَاحَة",
+            "وِلَّا",
+            "شُغْل؟"
           ],
           "too_formal": {
             "item": "هل أتيت للسياحة أم للعمل؟",
@@ -1115,18 +1115,18 @@
           "id": "unit-15.lesson-03.reorder.02",
           "type": "reorder",
           "prompt": "رتّب الجملة: أي ساعة بتقلع الطيارة؟",
-          "answer": "أي ساعة بتقلع الطيارة؟",
+          "answer": "أَيْ سَاعَة بْتِقْلَع الطَّيَّارَة؟",
           "accepted": [
-            "أي ساعة بتقلع الطيارة؟",
+            "أَيْ سَاعَة بْتِقْلَع الطَّيَّارَة؟",
             "ayy sa3a bti2la3 T-Tayyaara?",
             "أي ساعة بتقلع الطيارة",
             "ayy sa3a bti2la3 T-Tayyaara"
           ],
           "words": [
-            "أي",
-            "ساعة",
-            "بتقلع",
-            "الطيارة؟"
+            "أَيْ",
+            "سَاعَة",
+            "بْتِقْلَع",
+            "الطَّيَّارَة؟"
           ],
           "too_formal": {
             "item": "متى تقلع الطائرة؟",
@@ -1172,9 +1172,9 @@
           "id": "unit-15.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Do you have anything to declare?",
-          "answer": "معك شي لازم تصرّح عنّو؟",
+          "answer": "مَعَك شِي لَازِمْ تِصَرِّح عِنِّو؟",
           "accepted": [
-            "معك شي لازم تصرّح عنّو؟",
+            "مَعَك شِي لَازِمْ تِصَرِّح عِنِّو؟",
             "ma3ak shi laazem tSarre7 3anno?",
             "معك شي لازم تصرّح عنو؟",
             "عندك شي لتصرّح عنّو؟"
@@ -1192,62 +1192,62 @@
       "phrases": [
         {
           "slot": "i-lost-my-bag",
-          "arabic": "ضيّعت شنطتي",
+          "arabic": "ضَيِّعَت شَنْطِتِي",
           "transliteration": "Dayya3et shanTti"
         },
         {
           "slot": "the-plane-is-very-delayed",
-          "arabic": "الطيارة متأخرة كتير",
+          "arabic": "الطَّيَّارَة مِتَأَخِّرَة كْتِير",
           "transliteration": "T-Tayyaara mit2akhkhre ktiir"
         },
         {
           "slot": "i-missed-the-bus",
-          "arabic": "فاتني الباص",
+          "arabic": "فَاتِني الْبَاص",
           "transliteration": "faatni l-baaS"
         },
         {
           "slot": "i-couldn-t-find-my-passport",
-          "arabic": "ما لقيت جواز سفري",
+          "arabic": "مَا لَقِيت جَوَاز سَفَرِي",
           "transliteration": "ma la2eet jawaaz safari"
         },
         {
           "slot": "come-help-me-please",
-          "arabic": "تعا ساعدني لو سمحت",
+          "arabic": "تَعَا سَاعِدْنِي لَوْ سَمَحْت",
           "transliteration": "ta3a saa3edni, law sama7t"
         },
         {
           "slot": "there-s-a-problem-with-the-reservation",
-          "arabic": "في مشكلة بالحجز",
+          "arabic": "فِي مِشْكْلَة بَالْحِجْز",
           "transliteration": "fi meshkle bel-7ajz"
         },
         {
           "slot": "the-bag-got-broken",
-          "arabic": "شنطتي إنكسرت",
+          "arabic": "شَنْطِتِي إنْكَسَرَت",
           "transliteration": "shanTti nkasaret"
         },
         {
           "slot": "i-need-to-change-the-flight",
-          "arabic": "لازم أغيّر الرحلة",
+          "arabic": "لَازِمْ أَغَيِّر الرَّحْلَة",
           "transliteration": "laazem 2ghayyer r-re7le"
         },
         {
           "slot": "i-missed-the-flight-what-do-i-do",
-          "arabic": "فاتتني الطيارة، شو بدّي أعمل؟",
+          "arabic": "فَاتِتْنِي الطَّيَّارَة، شُو بِدِّي أَعْمَل؟",
           "transliteration": "faatatni T-Tayyaara, shoo baddi 2a3mol?"
         },
         {
           "slot": "where-s-the-complaints-office",
-          "arabic": "وين مكتب الشكاوي؟",
+          "arabic": "وَيْن مِكْتَب الشَّكَاوِي؟",
           "transliteration": "wein maktab sh-shakaawi?"
         },
         {
           "slot": "nobody-answered-me",
-          "arabic": "ولا حدا جاوبني",
+          "arabic": "وَلَا حَدَا جَاوِبْنِي",
           "transliteration": "wala 7ada jaawabni"
         },
         {
           "slot": "may-god-make-up-for-it-god-willing-it-ll-work-ou",
-          "arabic": "الله يعوّض، إن شاء الله بتنحل",
+          "arabic": "اللَّهُ يُعَوِّض، إِنْ شَاءَ اللَّهُ بْتِنْحَل",
           "transliteration": "alla y3awwiD, inshalla bten7all"
         }
       ],
@@ -1278,7 +1278,7 @@
         },
         {
           "speaker": "كريم",
-          "arabic": "وين مكتب الشكاوي؟",
+          "arabic": "وَيْن مِكْتَب الشَّكَاوِي؟",
           "transliteration": "wein maktab sh-shakaawi?",
           "english": "Where's the complaints office?"
         },
@@ -1322,7 +1322,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "ضيّعت شنطتي",
+            "arabic": "ضَيِّعَت شَنْطِتِي",
             "transliteration": "Dayya3et shanTti",
             "english": "I lost my bag."
           },
@@ -1334,7 +1334,7 @@
         },
         {
           "pair": {
-            "arabic": "الطيارة متأخرة كتير",
+            "arabic": "الطَّيَّارَة مِتَأَخِّرَة كْتِير",
             "transliteration": "T-Tayyaara mit2akhkhre ktiir",
             "english": "The plane is very delayed."
           },
@@ -1346,7 +1346,7 @@
         },
         {
           "pair": {
-            "arabic": "فاتني الباص",
+            "arabic": "فَاتِني الْبَاص",
             "transliteration": "faatni l-baaS",
             "english": "I missed the bus."
           },
@@ -1358,7 +1358,7 @@
         },
         {
           "pair": {
-            "arabic": "وين مكتب الشكاوي؟",
+            "arabic": "وَيْن مِكْتَب الشَّكَاوِي؟",
             "transliteration": "wein maktab sh-shakaawi?",
             "english": "Where's the complaints office?"
           },
@@ -1375,9 +1375,9 @@
           "id": "unit-15.lesson-04.reply.01",
           "type": "reply",
           "prompt": "الموظفة بتسألك: شو صار؟",
-          "answer": "ضيّعت شنطتي",
+          "answer": "ضَيِّعَت شَنْطِتِي",
           "accepted": [
-            "ضيّعت شنطتي",
+            "ضَيِّعَت شَنْطِتِي",
             "Dayya3et shanTti",
             "ضيعت شنطتي",
             "ضيّعت الشنطة"
@@ -1409,9 +1409,9 @@
           "id": "unit-15.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I missed the bus.",
-          "answer": "فاتني الباص",
+          "answer": "فَاتِني الْبَاص",
           "accepted": [
-            "فاتني الباص",
+            "فَاتِني الْبَاص",
             "faatni l-baaS",
             "ما لحقت الباص",
             "ma la7a2et l-baaS"
@@ -1427,14 +1427,14 @@
           "type": "choose",
           "prompt": "كيف بتقول 'Come help me please.'",
           "options": [
-            "تعا ساعدني لو سمحت",
-            "وين مكتب الشكاوي؟",
-            "فاتني الباص",
-            "ضيّعت شنطتي"
+            "تَعَا سَاعِدْنِي لَوْ سَمَحْت",
+            "وَيْن مِكْتَب الشَّكَاوِي؟",
+            "فَاتِني الْبَاص",
+            "ضَيِّعَت شَنْطِتِي"
           ],
-          "answer": "تعا ساعدني لو سمحت",
+          "answer": "تَعَا سَاعِدْنِي لَوْ سَمَحْت",
           "accepted": [
-            "تعا ساعدني لو سمحت",
+            "تَعَا سَاعِدْنِي لَوْ سَمَحْت",
             "ta3a saa3edni, law sama7t",
             "تعا ساعدني",
             "ta3a saa3edni"
@@ -1472,9 +1472,9 @@
           "id": "unit-15.lesson-04.reorder.01",
           "type": "reorder",
           "prompt": "رتّب الجملة: شنطتي إنكسرت",
-          "answer": "شنطتي إنكسرت",
+          "answer": "شَنْطِتِي إنْكَسَرَت",
           "accepted": [
-            "شنطتي إنكسرت",
+            "شَنْطِتِي إنْكَسَرَت",
             "shanTti nkasaret",
             "شنطتي انكسرت"
           ],
@@ -1488,15 +1488,15 @@
           "id": "unit-15.lesson-04.reorder.02",
           "type": "reorder",
           "prompt": "رتّب الجملة: في مشكلة بالحجز",
-          "answer": "في مشكلة بالحجز",
+          "answer": "فِي مِشْكْلَة بَالْحِجْز",
           "accepted": [
-            "في مشكلة بالحجز",
+            "فِي مِشْكْلَة بَالْحِجْز",
             "fi meshkle bel-7ajz"
           ],
           "words": [
-            "في",
-            "مشكلة",
-            "بالحجز"
+            "فِي",
+            "مِشْكْلَة",
+            "بَالْحِجْز"
           ],
           "too_formal": {
             "item": "توجد مشكلة في الحجز",
@@ -1541,9 +1541,9 @@
           "id": "unit-15.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "There's a problem with the reservation.",
-          "answer": "في مشكلة بالحجز",
+          "answer": "فِي مِشْكْلَة بَالْحِجْز",
           "accepted": [
-            "في مشكلة بالحجز",
+            "فِي مِشْكْلَة بَالْحِجْز",
             "fi meshkle bel-7ajz",
             "في شي مش ماشي بالحجز"
           ],

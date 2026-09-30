@@ -23,90 +23,90 @@
       "phrases": [
         {
           "slot": "what-do-you-do-to-a-man",
-          "arabic": "بتشتغل إيه؟",
+          "arabic": "بِتِشْتَغَل إِيه؟",
           "transliteration": "beteshtaghal eh?",
           "reply": {
-            "arabic": "باشتغل مهندس",
+            "arabic": "بَاشْتَغَل مُهَنْدِس",
             "transliteration": "bashtaghal mohandis",
             "english": "I work as an engineer."
           }
         },
         {
           "slot": "what-do-you-do-to-a-woman",
-          "arabic": "بتشتغلي إيه؟",
+          "arabic": "بِتِشْتَغَلِي إِيه؟",
           "transliteration": "beteshtaghali eh?",
           "reply": {
-            "arabic": "باشتغل مدرّسة",
+            "arabic": "بَاشْتَغَل مُدَرِّسَة",
             "transliteration": "bashtaghal modarrisa",
             "english": "I work as a teacher."
           }
         },
         {
           "slot": "where-do-you-work",
-          "arabic": "بتشتغل فين؟",
+          "arabic": "بِتِشْتَغَل فَيْن؟",
           "transliteration": "beteshtaghal fein?",
           "reply": {
-            "arabic": "باشتغل في شركة كبيرة",
+            "arabic": "بَاشْتَغَل فِي شَرِكَة كَبِيرَة",
             "transliteration": "bashtaghal fi sharika kebeera",
             "english": "I work at a big company."
           }
         },
         {
           "slot": "i-m-still-a-student",
-          "arabic": "أنا لسه طالب",
+          "arabic": "أَنَا لِسَّه طَالِب",
           "transliteration": "ana lessa Taalib"
         },
         {
           "slot": "i-m-retired",
-          "arabic": "أنا على المعاش",
+          "arabic": "أَنَا عَلَى الْمَعَاش",
           "transliteration": "ana 3ala el ma3aash"
         },
         {
           "slot": "what-do-you-study",
-          "arabic": "بتدرس إيه؟",
+          "arabic": "بِتِدْرِس إِيه؟",
           "transliteration": "bet-dris eh?",
           "reply": {
-            "arabic": "بدرس طب",
+            "arabic": "بَدْرِس طِب",
             "transliteration": "badris Tebb",
             "english": "I study medicine."
           }
         },
         {
           "slot": "i-work-from-home",
-          "arabic": "باشتغل من البيت",
+          "arabic": "بَاشْتَغَل مِن الْبَيْت",
           "transliteration": "bashtaghal min el beit"
         },
         {
           "slot": "my-job-is-good",
-          "arabic": "شغلي كويس",
+          "arabic": "شُغْلِي كُوَيِّس",
           "transliteration": "shoghli kwayyis"
         },
         {
           "slot": "i-m-not-finding-a-job",
-          "arabic": "مش لاقي شغل",
+          "arabic": "مَش لَاقِي شُغْل",
           "transliteration": "mesh laa2i shoghl"
         },
         {
           "slot": "i-m-looking-for-a-new-job",
-          "arabic": "بدوّر على شغل جديد",
+          "arabic": "بَدَوِّر عَلَى شُغْل جَدِيد",
           "transliteration": "badawwar 3ala shoghl gedeed"
         },
         {
           "slot": "how-many-years-have-you-been-working-here",
-          "arabic": "بقالك كام سنة بتشتغل هنا؟",
+          "arabic": "بَقَالَك كَام سِنَة بِتِشْتَغَل هِنَا؟",
           "transliteration": "ba2aalak kam sana beteshtaghal hena?",
           "reply": {
-            "arabic": "بقالي تلات سنين",
+            "arabic": "بَقَالِي تِلَات سِنِين",
             "transliteration": "ba2aali talat sineen",
             "english": "For three years."
           }
         },
         {
           "slot": "what-would-you-like-to-work-as",
-          "arabic": "نفسك تشتغل إيه؟",
+          "arabic": "نَفْسَك تِشْتَغَل إِيه؟",
           "transliteration": "nefsak teshtaghal eh?",
           "reply": {
-            "arabic": "نفسي أشتغل دكتور",
+            "arabic": "نَفْسِي أَشْتَغَل دُكْتُور",
             "transliteration": "nefsi ashtaghal doktoor",
             "english": "I'd like to work as a doctor."
           }
@@ -183,7 +183,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "بتشتغل إيه؟",
+            "arabic": "بِتِشْتَغَل إِيه؟",
             "transliteration": "beteshtaghal eh?",
             "english": "What do you do?"
           },
@@ -236,9 +236,9 @@
           "id": "unit-08.lesson-01.reply.01",
           "type": "reply",
           "prompt": "Someone asks you: \"بتشتغل إيه؟\" Reply naturally.",
-          "answer": "باشتغل مهندس",
+          "answer": "بَاشْتَغَل مُهَنْدِس",
           "accepted": [
-            "باشتغل مهندس",
+            "بَاشْتَغَل مُهَنْدِس",
             "bashtaghal mohandis",
             "أنا مهندس"
           ],
@@ -268,9 +268,9 @@
           "id": "unit-08.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Where do you work? (to a man)",
-          "answer": "بتشتغل فين؟",
+          "answer": "بِتِشْتَغَل فَيْن؟",
           "accepted": [
-            "بتشتغل فين؟",
+            "بِتِشْتَغَل فَيْن؟",
             "beteshtaghal fein?",
             "شغلك فين؟"
           ],
@@ -284,14 +284,14 @@
           "id": "unit-08.lesson-01.choose.01",
           "type": "choose",
           "prompt": "How do you ask someone about their job?",
-          "answer": "بتشتغل إيه؟",
+          "answer": "بِتِشْتَغَل إِيه؟",
           "accepted": [
-            "بتشتغل إيه؟",
+            "بِتِشْتَغَل إِيه؟",
             "beteshtaghal eh?",
             "بتشتغل ايه"
           ],
           "options": [
-            "بتشتغل إيه؟",
+            "بِتِشْتَغَل إِيه؟",
             "عامل إيه النهارده؟",
             "رايح فين؟",
             "الساعة كام؟"
@@ -310,7 +310,7 @@
           "accepted": [
             "أنا باشتغل مهندس",
             "ana bashtaghal mohandis",
-            "باشتغل مهندس"
+            "بَاشْتَغَل مُهَنْدِس"
           ],
           "words": [
             "أنا",
@@ -359,9 +359,9 @@
           "id": "unit-08.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "I'm looking for a new job.",
-          "answer": "بدوّر على شغل جديد",
+          "answer": "بَدَوِّر عَلَى شُغْل جَدِيد",
           "accepted": [
-            "بدوّر على شغل جديد",
+            "بَدَوِّر عَلَى شُغْل جَدِيد",
             "badawwar 3ala shoghl gedeed",
             "بدوّر على وظيفة جديدة"
           ],
@@ -397,17 +397,17 @@
           "id": "unit-08.lesson-01.reorder.02",
           "type": "reorder",
           "prompt": "Arrange the sentence.",
-          "answer": "بدوّر على شغل جديد",
+          "answer": "بَدَوِّر عَلَى شُغْل جَدِيد",
           "accepted": [
-            "بدوّر على شغل جديد",
+            "بَدَوِّر عَلَى شُغْل جَدِيد",
             "badawwar 3ala shoghl gedeed",
             "بدوّر على شغل تاني"
           ],
           "words": [
-            "بدوّر",
-            "على",
-            "شغل",
-            "جديد"
+            "بَدَوِّر",
+            "عَلَى",
+            "شُغْل",
+            "جَدِيد"
           ],
           "too_formal": {
             "item": "أبحث عن عمل جديد",
@@ -422,72 +422,72 @@
       "phrases": [
         {
           "slot": "hi-are-you-coming-to-the-meeting",
-          "arabic": "أهلاً، جاي الاجتماع؟",
+          "arabic": "أَهْلًا، جَايِ الِاجْتِمَاع؟",
           "transliteration": "ahlan, gaay el egtimaa3?",
           "reply": {
-            "arabic": "أيوه، جاي دلوقتي",
+            "arabic": "أَيْوَه، جَايِ دِلْوَقْتِي",
             "transliteration": "aywa, gaay dilwa2ti",
             "english": "Yes, coming now."
           }
         },
         {
           "slot": "the-manager-wants-to-talk-to-you",
-          "arabic": "المدير عايز يكلّمك",
+          "arabic": "الْمُدِير عَايِز يِكَلِّمَك",
           "transliteration": "el mudiir 3aayez yekallimak"
         },
         {
           "slot": "i-received-your-email",
-          "arabic": "وصلني الإيميل بتاعك",
+          "arabic": "وَصَلَنِي الْإِيمَيْل بِتَاعَك",
           "transliteration": "wasalni el imeil bitaa3ak"
         },
         {
           "slot": "i-haven-t-finished-the-report-yet",
-          "arabic": "لسه ماخلّصتش التقرير",
+          "arabic": "لِسَّه مَاخَلِّصْتِش التَّقْرِير",
           "transliteration": "lessa makhallastesh el ta2reer"
         },
         {
           "slot": "i-have-a-meeting-at-ten-o-clock",
-          "arabic": "عندي اجتماع الساعة عشرة",
+          "arabic": "عِنْدِي اجْتِمَاع السَّاعَة عِشْرَة",
           "transliteration": "3andi egtimaa3 es-saa3a 3ashara"
         },
         {
           "slot": "my-colleague-at-the-office-is-very-nice",
-          "arabic": "زميلي في المكتب لطيف أوي",
+          "arabic": "زَمِيلِي فِي الْمَكْتَب لَطِيف أَوِي",
           "transliteration": "zameeli fil maktab laTeef awi"
         },
         {
           "slot": "we-must-finish-this-task-before-the-afternoon",
-          "arabic": "لازم نخلّص الشغلانة دي قبل العصر",
+          "arabic": "لَازِم نِخَلِّص الشَّغْلَانَة دِي قَبْل الْعَصْر",
           "transliteration": "laazim nekhallas el shaghlaana di abl el 3asr"
         },
         {
           "slot": "my-boss-is-very-demanding",
-          "arabic": "مديري بيطلب حاجات كتير أوي",
+          "arabic": "مُدِيرِي بِيطْلُب حَاجَات كِتِير أَوِي",
           "transliteration": "mudeeri biyoTlob 7agaat kiteer awi"
         },
         {
           "slot": "i-took-two-days-off",
-          "arabic": "خدت يومين إجازة",
+          "arabic": "خِدْت يُومَيْن إِجَازَة",
           "transliteration": "khadt yomeyn egaaza"
         },
         {
           "slot": "the-salary-comes-at-the-end-of-the-month",
-          "arabic": "المرتّب بينزل آخر الشهر",
+          "arabic": "الْمُرَتِّب بِينْزِل آخِر الشَّهْر",
           "transliteration": "el mortab biyenzel aakhir el shahr"
         },
         {
           "slot": "are-there-overtime-hours-today",
-          "arabic": "هنشتغل ساعات زيادة النهارده؟",
+          "arabic": "هِنِشْتَغَل سَاعَات زِيَادَة النَّهَاردَه؟",
           "transliteration": "hanishtaghal saa3aat ziyaada en-naharda?",
           "reply": {
-            "arabic": "أيوه، لحد الساعة تسعة",
+            "arabic": "أَيْوَه، لِحَد السَّاعَة تِسْعَة",
             "transliteration": "aywa, li7add es-saa3a tis3a",
             "english": "Yes, until nine o'clock."
           }
         },
         {
           "slot": "the-printer-keeps-breaking-down",
-          "arabic": "الطابعة بتبوظ كل شوية",
+          "arabic": "الطَّابِعَة بِتِبَوِّظ كُل شِوَيَّة",
           "transliteration": "eT-Taab3a betbawwaz kol shwayya"
         }
       ],
@@ -647,9 +647,9 @@
           "id": "unit-08.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I have a meeting at ten.",
-          "answer": "عندي اجتماع الساعة عشرة",
+          "answer": "عِنْدِي اجْتِمَاع السَّاعَة عِشْرَة",
           "accepted": [
-            "عندي اجتماع الساعة عشرة",
+            "عِنْدِي اجْتِمَاع السَّاعَة عِشْرَة",
             "3andi egtimaa3 es-saa3a 3ashara",
             "عندي اجتماع الساعة 10"
           ],
@@ -685,17 +685,17 @@
           "id": "unit-08.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Arrange the sentence.",
-          "answer": "عندي اجتماع الساعة عشرة",
+          "answer": "عِنْدِي اجْتِمَاع السَّاعَة عِشْرَة",
           "accepted": [
-            "عندي اجتماع الساعة عشرة",
+            "عِنْدِي اجْتِمَاع السَّاعَة عِشْرَة",
             "3andi egtimaa3 es-saa3a 3ashara",
             "الساعة عشرة عندي اجتماع"
           ],
           "words": [
-            "عندي",
-            "اجتماع",
-            "الساعة",
-            "عشرة"
+            "عِنْدِي",
+            "اجْتِمَاع",
+            "السَّاعَة",
+            "عِشْرَة"
           ],
           "too_formal": {
             "item": "لديّ اجتماع في الساعة العاشرة",
@@ -739,9 +739,9 @@
           "id": "unit-08.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "The printer keeps breaking down.",
-          "answer": "الطابعة بتبوظ كل شوية",
+          "answer": "الطَّابِعَة بِتِبَوِّظ كُل شِوَيَّة",
           "accepted": [
-            "الطابعة بتبوظ كل شوية",
+            "الطَّابِعَة بِتِبَوِّظ كُل شِوَيَّة",
             "eT-Taab3a betbawwaz kol shwayya",
             "الطابعة بتعطّل كل شوية"
           ],
@@ -755,14 +755,14 @@
           "id": "unit-08.lesson-02.choose.02",
           "type": "choose",
           "prompt": "How do you ask about overtime today?",
-          "answer": "هنشتغل ساعات زيادة النهارده؟",
+          "answer": "هِنِشْتَغَل سَاعَات زِيَادَة النَّهَاردَه؟",
           "accepted": [
-            "هنشتغل ساعات زيادة النهارده؟",
+            "هِنِشْتَغَل سَاعَات زِيَادَة النَّهَاردَه؟",
             "hanishtaghal saa3aat ziyaada en-naharda?",
             "هنشتغل ساعات زيادة النهارده"
           ],
           "options": [
-            "هنشتغل ساعات زيادة النهارده؟",
+            "هِنِشْتَغَل سَاعَات زِيَادَة النَّهَاردَه؟",
             "الساعة كام دلوقتي؟",
             "المكتب فين؟",
             "مين المدير؟"
@@ -777,17 +777,17 @@
           "id": "unit-08.lesson-02.reorder.02",
           "type": "reorder",
           "prompt": "Arrange the sentence.",
-          "answer": "الطابعة بتبوظ كل شوية",
+          "answer": "الطَّابِعَة بِتِبَوِّظ كُل شِوَيَّة",
           "accepted": [
-            "الطابعة بتبوظ كل شوية",
+            "الطَّابِعَة بِتِبَوِّظ كُل شِوَيَّة",
             "eT-Taab3a betbawwaz kol shwayya",
             "بتبوظ الطابعة كل شوية"
           ],
           "words": [
-            "الطابعة",
-            "بتبوظ",
-            "كل",
-            "شوية"
+            "الطَّابِعَة",
+            "بِتِبَوِّظ",
+            "كُل",
+            "شِوَيَّة"
           ],
           "too_formal": {
             "item": "الطابعة تتعطّل باستمرار",
@@ -802,72 +802,72 @@
       "phrases": [
         {
           "slot": "i-have-a-lecture-at-nine",
-          "arabic": "عندي محاضرة الساعة تسعة",
+          "arabic": "عِنْدِي مُحَاضِرَة السَّاعَة تِسْعَة",
           "transliteration": "3andi mo7aaDra es-saa3a tis3a"
         },
         {
           "slot": "the-professor-is-absent-today",
-          "arabic": "الدكتور غايب النهارده",
+          "arabic": "الدُّكْتُور غَايِب النَّهَاردَه",
           "transliteration": "ed-doktoor ghaayib en-naharda"
         },
         {
           "slot": "i-have-an-exam-tomorrow",
-          "arabic": "عندي امتحان بكرة",
+          "arabic": "عِنْدِي امْتِحَان بُكْرَة",
           "transliteration": "3andi imti7aan bukra"
         },
         {
           "slot": "what-s-your-major",
-          "arabic": "إنت في كلية إيه؟",
+          "arabic": "إِنْت فِي كُلِّيَّة إِيه؟",
           "transliteration": "enta fi kulliyya eh?",
           "reply": {
-            "arabic": "أنا في كلية طب",
+            "arabic": "أَنَا فِي كُلِّيَّة طِب",
             "transliteration": "ana fi kulliyyit Tebb",
             "english": "My major is medicine."
           }
         },
         {
           "slot": "what-year-are-you-in",
-          "arabic": "إنت في سنة كام؟",
+          "arabic": "إِنْت فِي سِنَة كَام؟",
           "transliteration": "enta fi sana kam?",
           "reply": {
-            "arabic": "في تانية",
+            "arabic": "فِي تَانِيَة",
             "transliteration": "fi tanya",
             "english": "In the second year."
           }
         },
         {
           "slot": "i-have-to-study-a-lot-this-semester",
-          "arabic": "لازم أذاكر كتير الترم ده",
+          "arabic": "لَازِم أَذَاكِر كِتِير التِّرْم دَه",
           "transliteration": "laazim azaakir kiteer et-term da"
         },
         {
           "slot": "the-exam-result-came-out-good",
-          "arabic": "نتيجة الامتحان طلعت كويسة",
+          "arabic": "نَتِيجَة الِامْتِحَان طَلَعَت كُوَيِّسَة",
           "transliteration": "nateegit el imti7aan Tel3it kwayyisa"
         },
         {
           "slot": "i-didn-t-understand-the-lecture-well",
-          "arabic": "مافهمتش المحاضرة كويس",
+          "arabic": "مَافَهِمْتِش الْمُحَاضِرَة كُوَيِّس",
           "transliteration": "mafhemtesh el mo7aaDra kwayyis"
         },
         {
           "slot": "i-have-to-submit-the-assignment-before-friday",
-          "arabic": "لازم أسلّم الأسايمنت قبل الجمعة",
+          "arabic": "لَازِم أَسَلِّم الْأَسَايْمِنْت قَبْل الْجُمْعَة",
           "transliteration": "laazim asallim el asaymint abl el gum3a"
         },
         {
           "slot": "my-friends-at-university-are-very-nice",
-          "arabic": "صحابي في الجامعة حلوين أوي",
+          "arabic": "صِحَابِي فِي الْجَامِعَة حِلْوِين أَوِي",
           "transliteration": "So7aabi fil gam3a 7elwiin awi"
         },
         {
           "slot": "the-university-library-is-open-until-night",
-          "arabic": "مكتبة الجامعة مفتوحة لحد بليل",
+          "arabic": "مَكْتَبَة الْجَامِعَة مَفْتُوحَة لِحَد بِلَيْل",
           "transliteration": "maktabit el gam3a maftoo7a li7add leil"
         },
         {
           "slot": "i-want-to-register-more-courses-next-semester",
-          "arabic": "عايز أسجّل مواد زيادة الترم الجاي",
+          "arabic": "عَايِز أَسَجِّل مَوَاد زِيَادَة التِّرْم الْجَايِ",
           "transliteration": "3aayez asaggil mawaad ziyaada et-term el gaay"
         }
       ],
@@ -942,7 +942,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "إنت في كلية إيه؟",
+            "arabic": "إِنْت فِي كُلِّيَّة إِيه؟",
             "transliteration": "enta fi kulliyya eh?",
             "english": "Which faculty are you in?"
           },
@@ -995,9 +995,9 @@
           "id": "unit-08.lesson-03.reply.01",
           "type": "reply",
           "prompt": "Someone asks: \"إنت في كلية إيه؟\" Reply naturally.",
-          "answer": "أنا في كلية طب",
+          "answer": "أَنَا فِي كُلِّيَّة طِب",
           "accepted": [
-            "أنا في كلية طب",
+            "أَنَا فِي كُلِّيَّة طِب",
             "ana fi kulliyyit Tebb",
             "في كلية طب",
             "أنا في طب"
@@ -1028,9 +1028,9 @@
           "id": "unit-08.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I didn't understand the lecture well.",
-          "answer": "مافهمتش المحاضرة كويس",
+          "answer": "مَافَهِمْتِش الْمُحَاضِرَة كُوَيِّس",
           "accepted": [
-            "مافهمتش المحاضرة كويس",
+            "مَافَهِمْتِش الْمُحَاضِرَة كُوَيِّس",
             "mafhemtesh el mo7aaDra kwayyis",
             "ما فهمتش المحاضرة كويس"
           ],
@@ -1066,17 +1066,17 @@
           "id": "unit-08.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "Arrange the sentence.",
-          "answer": "عندي محاضرة الساعة تسعة",
+          "answer": "عِنْدِي مُحَاضِرَة السَّاعَة تِسْعَة",
           "accepted": [
-            "عندي محاضرة الساعة تسعة",
+            "عِنْدِي مُحَاضِرَة السَّاعَة تِسْعَة",
             "3andi mo7aaDra es-saa3a tis3a",
             "الساعة تسعة عندي محاضرة"
           ],
           "words": [
-            "عندي",
-            "محاضرة",
-            "الساعة",
-            "تسعة"
+            "عِنْدِي",
+            "مُحَاضِرَة",
+            "السَّاعَة",
+            "تِسْعَة"
           ],
           "too_formal": {
             "item": "لديّ محاضرة في الساعة التاسعة",
@@ -1088,9 +1088,9 @@
           "id": "unit-08.lesson-03.reply.02",
           "type": "reply",
           "prompt": "Someone asks: \"إنت في سنة كام؟\" Reply naturally.",
-          "answer": "في تانية",
+          "answer": "فِي تَانِيَة",
           "accepted": [
-            "في تانية",
+            "فِي تَانِيَة",
             "fi tanya",
             "في سنة تانية"
           ],
@@ -1120,9 +1120,9 @@
           "id": "unit-08.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "The library is open until night.",
-          "answer": "مكتبة الجامعة مفتوحة لحد بليل",
+          "answer": "مَكْتَبَة الْجَامِعَة مَفْتُوحَة لِحَد بِلَيْل",
           "accepted": [
-            "مكتبة الجامعة مفتوحة لحد بليل",
+            "مَكْتَبَة الْجَامِعَة مَفْتُوحَة لِحَد بِلَيْل",
             "maktabit el gam3a maftoo7a li7add leil",
             "المكتبة مفتوحة لحد بليل"
           ],
@@ -1158,18 +1158,18 @@
           "id": "unit-08.lesson-03.reorder.02",
           "type": "reorder",
           "prompt": "Arrange the sentence.",
-          "answer": "لازم أسلّم الأسايمنت قبل الجمعة",
+          "answer": "لَازِم أَسَلِّم الْأَسَايْمِنْت قَبْل الْجُمْعَة",
           "accepted": [
-            "لازم أسلّم الأسايمنت قبل الجمعة",
+            "لَازِم أَسَلِّم الْأَسَايْمِنْت قَبْل الْجُمْعَة",
             "laazim asallim el asaymint abl el gum3a",
             "لازم أسلّم الأسايمنت قبل يوم الجمعة"
           ],
           "words": [
-            "لازم",
-            "أسلّم",
-            "الأسايمنت",
-            "قبل",
-            "الجمعة"
+            "لَازِم",
+            "أَسَلِّم",
+            "الْأَسَايْمِنْت",
+            "قَبْل",
+            "الْجُمْعَة"
           ],
           "too_formal": {
             "item": "يجب تسليم التكليف قبل الجمعة",
@@ -1184,67 +1184,67 @@
       "phrases": [
         {
           "slot": "what-do-you-plan-to-do-after-you-graduate",
-          "arabic": "ناوي تعمل إيه بعد ما تتخرّج؟",
+          "arabic": "نَاوِي تِعْمَل إِيه بَعْد مَا تِتْخَرِّج؟",
           "transliteration": "nawi ta3mel eh ba3d ma tetkharrag?",
           "reply": {
-            "arabic": "عايز أدوّر على شغل في مجالي",
+            "arabic": "عَايِز أَدَوِّر عَلَى شُغْل فِي مَجَالِي",
             "transliteration": "3aayez adawwar 3ala shoghl fi magaali",
             "english": "I want to look for a job in my field."
           }
         },
         {
           "slot": "i-want-to-continue-my-studies-for-a-master-s",
-          "arabic": "عايز أكمّل الماجستير",
+          "arabic": "عَايِز أَكَمِّل الْمَاجِسْتِير",
           "transliteration": "3aayez akammil el magistir"
         },
         {
           "slot": "i-intend-to-start-my-own-project",
-          "arabic": "ناوي أفتح مشروع خاص بيا",
+          "arabic": "نَاوِي أَفْتَح مَشْرُوع خَاصّ بِيَا",
           "transliteration": "nawi afta7 mashroo3 khaaS beya"
         },
         {
           "slot": "i-m-thinking-of-traveling-to-work-abroad",
-          "arabic": "بفكّر أسافر أشتغل بره",
+          "arabic": "بِفَكِّر أَسَافِر أَشْتَغَل بَرَّه",
           "transliteration": "bafakkar asaafir ashtaghal barra"
         },
         {
           "slot": "in-five-years-where-will-you-be",
-          "arabic": "بعد خمس سنين هتبقى فين؟",
+          "arabic": "بَعْد خِمَس سِنِين هِتِبْقَى فَيْن؟",
           "transliteration": "ba3d khamas sineen hatib2a fein?"
         },
         {
           "slot": "i-ll-try-to-enter-a-phd-program",
-          "arabic": "هحاول أدخل دكتوراه",
+          "arabic": "هِحَاوِل أَدْخُل دُكْتُورَاه",
           "transliteration": "ha7aawil adkhul doktoraah"
         },
         {
           "slot": "my-dream-is-to-open-a-restaurant",
-          "arabic": "حلمي أفتح مطعم",
+          "arabic": "حِلْمِي أَفْتَح مَطْعَم",
           "transliteration": "7ilmi afta7 maT3am"
         },
         {
           "slot": "i-haven-t-decided-yet-what-i-ll-do",
-          "arabic": "لسه ماقرّرتش هعمل إيه",
+          "arabic": "لِسَّه مَاقَرِّرْتِش هِعْمَل إِيه",
           "transliteration": "lessa ma2arrartesh ha3mel eh"
         },
         {
           "slot": "i-want-to-settle-down-and-get-married-after-i-wo",
-          "arabic": "عايز أستقر وأتجوّز بعد ما أشتغل شوية",
+          "arabic": "عَايِز أَسْتَقِر وَأَتَجَوِّز بَعْد مَا أَشْتَغَل شِوَيَّة",
           "transliteration": "3aayez asta2irr w atgawwiz ba3d ma ashtaghal shwayya"
         },
         {
           "slot": "i-ll-apply-for-a-job-at-a-big-company",
-          "arabic": "هقدّم على وظيفة في شركة كبيرة",
+          "arabic": "هِقَدِّم عَلَى وَظِيفَة فِي شَرِكَة كَبِيرَة",
           "transliteration": "ha2addim 3ala waZeefa fi sharika kebeera"
         },
         {
           "slot": "my-ambition-is-to-become-a-manager-one-day",
-          "arabic": "طموحي أبقى مدير في يوم من الأيام",
+          "arabic": "طُمُوحِي أَبْقَى مُدِير فِي يَوْم مِن الْأَيَّام",
           "transliteration": "Tomoo7i ab2a mudiir fi yom mel ayyaam"
         },
         {
           "slot": "the-most-important-thing-is-to-be-comfortable-in",
-          "arabic": "أهم حاجة أكون مرتاح في شغلي",
+          "arabic": "أَهَم حَاجَة أَكُون مُرْتَاح فِي شُغْلِي",
           "transliteration": "aham 7aaga akoon murtaa7 fi shoghli"
         }
       ],
@@ -1372,9 +1372,9 @@
           "id": "unit-08.lesson-04.reply.01",
           "type": "reply",
           "prompt": "Someone asks: \"ناوي تعمل إيه بعد ما تتخرّج؟\" Reply naturally.",
-          "answer": "عايز أدوّر على شغل في مجالي",
+          "answer": "عَايِز أَدَوِّر عَلَى شُغْل فِي مَجَالِي",
           "accepted": [
-            "عايز أدوّر على شغل في مجالي",
+            "عَايِز أَدَوِّر عَلَى شُغْل فِي مَجَالِي",
             "3aayez adawwar 3ala shoghl fi magaali",
             "هدوّر على شغل في مجالي"
           ],
@@ -1404,9 +1404,9 @@
           "id": "unit-08.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "My dream is to open a restaurant.",
-          "answer": "حلمي أفتح مطعم",
+          "answer": "حِلْمِي أَفْتَح مَطْعَم",
           "accepted": [
-            "حلمي أفتح مطعم",
+            "حِلْمِي أَفْتَح مَطْعَم",
             "7ilmi afta7 maT3am",
             "حلمي أفتتح مطعم"
           ],
@@ -1442,18 +1442,18 @@
           "id": "unit-08.lesson-04.reorder.01",
           "type": "reorder",
           "prompt": "Arrange the sentence.",
-          "answer": "ناوي أفتح مشروع خاص بيا",
+          "answer": "نَاوِي أَفْتَح مَشْرُوع خَاصّ بِيَا",
           "accepted": [
-            "ناوي أفتح مشروع خاص بيا",
+            "نَاوِي أَفْتَح مَشْرُوع خَاصّ بِيَا",
             "nawi afta7 mashroo3 khaaS beya",
             "ناوي أفتح مشروعي الخاص"
           ],
           "words": [
-            "ناوي",
-            "أفتح",
-            "مشروع",
-            "خاص",
-            "بيا"
+            "نَاوِي",
+            "أَفْتَح",
+            "مَشْرُوع",
+            "خَاصّ",
+            "بِيَا"
           ],
           "too_formal": {
             "item": "أنوي أن أفتتح مشروعي الخاص",
@@ -1497,9 +1497,9 @@
           "id": "unit-08.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "I'll apply for a job at a big company.",
-          "answer": "هقدّم على وظيفة في شركة كبيرة",
+          "answer": "هِقَدِّم عَلَى وَظِيفَة فِي شَرِكَة كَبِيرَة",
           "accepted": [
-            "هقدّم على وظيفة في شركة كبيرة",
+            "هِقَدِّم عَلَى وَظِيفَة فِي شَرِكَة كَبِيرَة",
             "ha2addim 3ala waZeefa fi sharika kebeera",
             "هقدّم على شغل في شركة كبيرة"
           ],
