@@ -61,7 +61,7 @@ function Card({ hue, index, kicker, title, arabic, note, onClick }) {
 }
 
 function Grid({ children }) {
-  return <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">{children}</div>
+  return <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">{children}</div>
 }
 
 // Where you are, each earlier step a button back to it.
