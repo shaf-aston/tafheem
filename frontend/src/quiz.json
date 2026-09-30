@@ -15,5 +15,9 @@
   "auto-next-wrong-ms": 2500,
 
   "_comment-insights": "How many answers a category needs before its wrong-rate is worth showing. Below this, two wrong out of two reads as a weakness when it is only a small sample.",
-  "insight-min-attempts": 5
+  "insight-min-attempts": 5,
+
+  "_comment-strip": "The answered-questions column on the far right: squares per column, and the most questions it holds before moving under the quiz as a row.",
+  "strip-rows": 8,
+  "strip-side-max": 40
 }
