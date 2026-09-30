@@ -990,3 +990,39 @@ dialog::backdrop {
 
 /* Every tab's outer column: one gap between its blocks, from theme.json space.panel. */
 .panel > * + * { margin-top: var(--space-panel); }
+
+/* The phone tab bar (ui/BottomNav): pinned at the bottom, clear of the home
+   indicator, and the page keeps room under it so nothing hides behind. */
+.bottom-nav {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  border-top: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
+  backdrop-filter: blur(8px);
+}
+.bottom-nav-mark {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: background-color calc(var(--motion-base-ms) * 1ms) ease;
+}
+.bottom-nav-on {
+  background: color-mix(in srgb, currentColor 18%, transparent);
+}
+@media (max-width: 39.99rem) {
+  .bottom-nav-room {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
+  /* More opens as a sheet rising from the bottom, where the finger already is. */
+  .sections-menu {
+    margin: auto 0 0;
+    max-width: 100vw;
+  }
+  .sections-menu > div {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  }
+}
