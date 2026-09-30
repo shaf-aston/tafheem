@@ -1,0 +1,1635 @@
+{
+  "unit": "unit-12",
+  "dialect": "Gulf Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ / ظ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "g": "ق (تنطق كالجيم المصرية في الخليج)",
+    "j": "ج",
+    "ch": "چ / ج بصوت تش (ضمير المخاطبة المؤنثة في الخليج)",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "hello-answering-the-phone",
+          "arabic": "ألو؟",
+          "transliteration": "aloo?",
+          "reply": {
+            "arabic": "هلا، منو معاي؟",
+            "transliteration": "hala, minu ma3aay?",
+            "english": "Hello, who's calling?"
+          }
+        },
+        {
+          "slot": "hi-who-s-this",
+          "arabic": "هلا، منو معاي؟",
+          "transliteration": "hala, minu ma3aay?"
+        },
+        {
+          "slot": "this-is-samer-speaking",
+          "arabic": "معاك سامر",
+          "transliteration": "ma3aak Saamer"
+        },
+        {
+          "slot": "good-that-you-called",
+          "arabic": "زين إنك اتصلت",
+          "transliteration": "zeen innak ittasalt"
+        },
+        {
+          "slot": "what-s-new",
+          "arabic": "شو علومك؟",
+          "transliteration": "shu 3luumak?",
+          "reply": {
+            "arabic": "الحمد لله طيب",
+            "transliteration": "il7amdulillah tayyib",
+            "english": "All good, thank God."
+          }
+        },
+        {
+          "slot": "i-couldn-t-answer-you-a-bit-ago",
+          "arabic": "ما قدرت أرد عليك قبل شوي",
+          "transliteration": "ma gdart arudd 3aleek gabl shwayy"
+        },
+        {
+          "slot": "the-line-was-busy",
+          "arabic": "الخط كان مشغول",
+          "transliteration": "il-khatt kaan mashghuul"
+        },
+        {
+          "slot": "the-call-got-cut-off-on-me",
+          "arabic": "انقطع الخط علي",
+          "transliteration": "ingata3 il-khatt 3alay"
+        },
+        {
+          "slot": "my-credit-ran-out",
+          "arabic": "رصيدي خلص",
+          "transliteration": "raseedi khalas"
+        },
+        {
+          "slot": "my-battery-died",
+          "arabic": "بطاريتي خلصت",
+          "transliteration": "battaareeti khalsat"
+        },
+        {
+          "slot": "there-s-no-signal-here",
+          "arabic": "ما في شبكة هني",
+          "transliteration": "ma fee shabaka hni"
+        },
+        {
+          "slot": "can-you-call-me-back-in-a-bit",
+          "arabic": "تقدر تتصل علي بعد شوي؟",
+          "transliteration": "tigdar titsil 3alay ba3d shwayy?",
+          "reply": {
+            "arabic": "أكيد، باتصل عليك",
+            "transliteration": "akeed, baatsil 3aleek",
+            "english": "Sure, I'll call you."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Samer",
+          "arabic": "ألو؟",
+          "transliteration": "aloo?",
+          "english": "Hello?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "هلا سامر، معاك مريم",
+          "transliteration": "hala Saamer, ma3aak Maryam",
+          "english": "Hi Samer, it's Mariam."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "هلا والله مريم، شو علومج؟",
+          "transliteration": "hala wallah Maryam, shu 3luumich?",
+          "english": "Hi Mariam, what's new?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "الحمد لله طيبة. اتصلت عليك قبل شوي بس الخط كان مشغول",
+          "transliteration": "il7amdulillah tayyiba. ittasalt 3aleek gabl shwayy bas il-khatt kaan mashghuul",
+          "english": "All good, thank God. I called you a bit ago but the line was busy."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "إي، كنت أكلم أخوي. آسف ما قدرت أرد عليج",
+          "transliteration": "ee, kint akallim akhooy. aasif ma gdart arudd 3aleech",
+          "english": "Yeah, I was talking with my brother. Sorry I couldn't answer you."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "لا عليك. أبي أكلمك عن الموعد",
+          "transliteration": "laa 3aleek. abi akallimak 3an il-maw3id",
+          "english": "Don't worry about it. I want to talk to you about the appointment."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "تفضلي، بس ثانية، رصيدي بيخلص",
+          "transliteration": "tfaddali, bas thaanya, raseedi bikhlas",
+          "english": "Go ahead, just a second, my credit is about to run out."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "طيب خلني أتكلم بسرعة قبل لا ينقطع الخط",
+          "transliteration": "tayyib khalni atkallam bsur3a gabl la yingati3 il-khatt",
+          "english": "Okay, let me talk fast before the call cuts off."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "لا لا، خلاص، انقطع. تقدرين تتصلين علي بعد شوي؟",
+          "transliteration": "laa laa, khalaas, ingata3. tigdareen titsileen 3alay ba3d shwayy?",
+          "english": "No no, that's it, it got cut off. Can you call me back in a bit?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "تمام، زين إنك اتصلت أصلا. باتصل عليك",
+          "transliteration": "tamaam, zeen innak ittasalt aslan. baatsil 3aleek",
+          "english": "Okay, good that you called at all. I'll call you back."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "الله يعافيج، أنتظرج",
+          "transliteration": "allah y3aafeech, antadhrich",
+          "english": "Thank you, I'll wait for you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "ألو، منو معاي؟",
+            "transliteration": "aloo, minu ma3aay?",
+            "english": "Hello, who's this?"
+          },
+          "response": {
+            "arabic": "معاك سامر",
+            "transliteration": "ma3aak Saamer",
+            "english": "This is Samer."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو علومك؟",
+            "transliteration": "shu 3luumak?",
+            "english": "What's new?"
+          },
+          "response": {
+            "arabic": "الحمد لله طيب",
+            "transliteration": "il7amdulillah tayyib",
+            "english": "All good, thank God."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تقدر تتصل علي بعد شوي؟",
+            "transliteration": "tigdar titsil 3alay ba3d shwayy?",
+            "english": "Can you call me back in a bit?"
+          },
+          "response": {
+            "arabic": "أكيد، باتصل عليك",
+            "transliteration": "akeed, baatsil 3aleek",
+            "english": "Sure, I'll call you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ليش ما رديت؟",
+            "transliteration": "leesh ma rdeet?",
+            "english": "Why didn't you answer?"
+          },
+          "response": {
+            "arabic": "كان تلفوني طافي",
+            "transliteration": "kaan telefooni taafi",
+            "english": "My phone was off."
+          }
+        }
+      ],
+      "culture": "A Gulf call often opens with \"هلا\" or \"ألو\", and \"السلام عليكم\" is common too, especially with someone older; a short warm greeting like \"شو علومك؟\" comes before the reason for the call. Ending with \"الله يعافيك\" or \"في أمان الله\" keeps it polite.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "You pick up the phone and hear: \"ألو؟\". Answer naturally, asking who is calling.",
+          "answer": "هلا، منو معاي؟",
+          "accepted": [
+            "هلا، منو معاي؟",
+            "منو معاي؟",
+            "هلا، مين معاي؟",
+            "hala, minu ma3aay?"
+          ],
+          "too_formal": {
+            "item": "السلام عليكم، من فضلك من المتصل؟",
+            "feedback": "This is correct Arabic, but far more formal than the ordinary way of answering the phone."
+          },
+          "tip": "\"منو\" (Kuwait and much of the Gulf) or \"مين\" both mean who; \"معاي\" is \"with me\", so \"منو معاي\" is \"who is with me\" on the line."
+        },
+        {
+          "id": "unit-12.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks you on the phone: \"شو علومك؟\". Say that everything is fine, thank God.",
+          "answer": "الحمد لله طيب",
+          "accepted": [
+            "الحمد لله طيب",
+            "طيب الحمد لله",
+            "الحمد لله تمام",
+            "الحمد لله بخير"
+          ],
+          "too_formal": {
+            "item": "الأمور على ما يرام، ولله الحمد",
+            "feedback": "Correct but bookish; a spoken reply is much shorter."
+          },
+          "tip": "\"الحمد لله\" almost always appears in the answer. A woman says \"طيبة\"."
+        },
+        {
+          "id": "unit-12.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"ما قدرت _____ عليك قبل شوي.\" Meaning: I couldn't answer you a bit ago.",
+          "answer": "أرد",
+          "accepted": [
+            "أرد",
+            "ارد",
+            "رد",
+            "arudd"
+          ],
+          "too_formal": {
+            "item": "أجيب",
+            "feedback": "Understandable, but \"رد على\" is the word actually used for answering someone's call."
+          },
+          "tip": "\"قدرت\" is said \"gdart\" in the Gulf, because ق is pronounced like a hard g."
+        },
+        {
+          "id": "unit-12.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الخط _____ علي وأنا أتكلم معاك.\" Meaning: The call got cut off on me while I was talking to you.",
+          "answer": "انقطع",
+          "accepted": [
+            "انقطع",
+            "قطع",
+            "ingata3"
+          ],
+          "too_formal": {
+            "item": "انفصل الاتصال",
+            "feedback": "Correct but sounds like a technical report, not something a person says on the phone."
+          },
+          "tip": "\"انقطع الخط علي\" is the everyday way to say a call dropped on you."
+        },
+        {
+          "id": "unit-12.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"My battery died.\"",
+          "answer": "بطاريتي خلصت",
+          "accepted": [
+            "بطاريتي خلصت",
+            "خلصت بطاريتي",
+            "البطارية خلصت",
+            "battaareeti khalsat"
+          ],
+          "too_formal": {
+            "item": "نفدت طاقة بطاريتي",
+            "feedback": "Grammatically fine, but far more formal than how people actually say it."
+          },
+          "tip": "\"خلص\" / \"خلصت\" covers running out of almost anything: credit, battery, petrol."
+        },
+        {
+          "id": "unit-12.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"There's no signal here.\"",
+          "answer": "ما في شبكة هني",
+          "accepted": [
+            "ما في شبكة هني",
+            "ما فيه شبكة هني",
+            "مافي شبكة هني",
+            "ما في تغطية هني"
+          ],
+          "too_formal": {
+            "item": "لا توجد تغطية شبكية في هذا المكان",
+            "feedback": "Correct but reads like a technician's report, not spoken Gulf Arabic."
+          },
+          "tip": "\"شبكة\" is the everyday word for phone signal; \"هني\" is the Gulf \"here\" (\"هنا\" is also heard)."
+        },
+        {
+          "id": "unit-12.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"My credit ran out\"?",
+          "answer": "رصيدي خلص",
+          "accepted": [
+            "رصيدي خلص",
+            "رصيدي خلاص",
+            "raseedi khalas"
+          ],
+          "options": [
+            "رصيدي خلص",
+            "بطاريتي خلصت",
+            "الخط كان مشغول",
+            "ما في شبكة هني"
+          ],
+          "too_formal": {
+            "item": "رصيدي انتهى",
+            "feedback": "Correct meaning, but \"خلص\" is the word used in everyday speech, not \"انتهى\"."
+          },
+          "tip": "\"رصيد\" is prepaid phone credit."
+        },
+        {
+          "id": "unit-12.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which is the natural way to answer an incoming call?",
+          "answer": "ألو؟",
+          "accepted": [
+            "ألو؟",
+            "ألو",
+            "هلا"
+          ],
+          "options": [
+            "ألو؟",
+            "شو علومك؟",
+            "أنتظرك",
+            "الله يعافيك"
+          ],
+          "too_formal": {
+            "item": "السلام عليكم ورحمة الله وبركاته، من المتصل؟",
+            "feedback": "Too long for picking up a phone; the short \"ألو\" or \"هلا\" is what is said."
+          },
+          "tip": "\"ألو\" answers the phone; the other phrases come once the call is already going."
+        },
+        {
+          "id": "unit-12.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"مشغول / كان / الخط\".",
+          "answer": "الخط كان مشغول",
+          "accepted": [
+            "الخط كان مشغول",
+            "كان الخط مشغول",
+            "il-khatt kaan mashghuul"
+          ],
+          "too_formal": {
+            "item": "كان الخط مزدحماً بالاتصالات",
+            "feedback": "That would be an unusual, technical way to say the line was busy."
+          },
+          "tip": "\"الخط\" comes first, then \"كان\", then how the line was."
+        },
+        {
+          "id": "unit-12.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"علي / بعد شوي / تتصل / تقدر\".",
+          "answer": "تقدر تتصل علي بعد شوي",
+          "accepted": [
+            "تقدر تتصل علي بعد شوي",
+            "تقدر تتصل بعد شوي علي",
+            "tigdar titsil 3alay ba3d shwayy"
+          ],
+          "too_formal": {
+            "item": "هل بإمكانك معاودة الاتصال بي لاحقاً",
+            "feedback": "Correct meaning, but this is the formal written version, not the spoken order of words."
+          },
+          "tip": "\"اتصل علي\" (call on me) is how the Gulf says \"call me\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "where-should-we-meet",
+          "arabic": "وين نتلاقى؟",
+          "transliteration": "ween nitlaagaa?"
+        },
+        {
+          "slot": "let-s-meet-at-the-cafe",
+          "arabic": "خلنا نتلاقى في الكافيه",
+          "transliteration": "khalna nitlaagaa fi l-kaafeeh"
+        },
+        {
+          "slot": "what-time-suits-you",
+          "arabic": "الساعة كم تناسبك؟",
+          "transliteration": "is-saa3a kam tinaasbak?"
+        },
+        {
+          "slot": "is-7-o-clock-good",
+          "arabic": "الساعة سبعة زينة؟",
+          "transliteration": "is-saa3a sab3a zeena?",
+          "reply": {
+            "arabic": "تمام، نتلاقى الساعة سبعة",
+            "transliteration": "tamaam, nitlaagaa is-saa3a sab3a",
+            "english": "Great, we'll meet at 7."
+          }
+        },
+        {
+          "slot": "where-exactly",
+          "arabic": "وين بالضبط؟",
+          "transliteration": "ween bi-dh-dhabt?",
+          "reply": {
+            "arabic": "عند المدخل الرئيسي",
+            "transliteration": "3ind il-madkhal ir-ra2eesi",
+            "english": "In front of the main entrance."
+          }
+        },
+        {
+          "slot": "i-ll-meet-you-there",
+          "arabic": "أشوفك هناك",
+          "transliteration": "ashoofak hnaak"
+        },
+        {
+          "slot": "don-t-be-late",
+          "arabic": "لا تتأخر علي",
+          "transliteration": "la tit2akhkhar 3alay"
+        },
+        {
+          "slot": "i-ll-be-there-before-you",
+          "arabic": "بكون هناك قبلك",
+          "transliteration": "bakuun hnaak gablak"
+        },
+        {
+          "slot": "what-do-you-think-shall-we-go-together",
+          "arabic": "شرايك نروح مع بعض؟",
+          "transliteration": "shraayak niruu7 ma3 ba3ad?",
+          "reply": {
+            "arabic": "يلا، خذني وياك",
+            "transliteration": "yalla, khudhni wayyaak",
+            "english": "Okay, take me with you."
+          }
+        },
+        {
+          "slot": "we-ll-meet-at-the-umayyad-mosque",
+          "arabic": "بنتلاقى عند المسجد الكبير",
+          "transliteration": "binitlaagaa 3ind il-masjid il-kabeer"
+        },
+        {
+          "slot": "i-know-exactly-where-the-place-is",
+          "arabic": "أعرف المكان زين",
+          "transliteration": "a3rif il-makaan zeen"
+        },
+        {
+          "slot": "if-you-re-late-call-me",
+          "arabic": "إذا تأخرت اتصل علي",
+          "transliteration": "idha ta2akhkharit ittasil 3alay"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Samer",
+          "arabic": "مريم، وين نتلاقى باجر؟",
+          "transliteration": "Maryam, ween nitlaagaa baajir?",
+          "english": "Mariam, where should we meet tomorrow?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "شرايك نتلاقى في الكافيه اللي عند المجمع؟",
+          "transliteration": "shraayak nitlaagaa fi l-kaafeeh illi 3ind il-mujamma3?",
+          "english": "What do you think, shall we meet at the cafe near the mall?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "فكرة زينة. الساعة كم تناسبج؟",
+          "transliteration": "fikra zeena. is-saa3a kam tinaasibich?",
+          "english": "Good idea. What time suits you?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "الساعة سبعة زينة؟",
+          "transliteration": "is-saa3a sab3a zeena?",
+          "english": "Is 7 o'clock good for you?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "تمام، نتلاقى الساعة سبعة",
+          "transliteration": "tamaam, nitlaagaa is-saa3a sab3a",
+          "english": "Great, we'll meet at 7."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "طيب وين بالضبط؟ قدام الكافيه؟",
+          "transliteration": "tayyib ween bi-dh-dhabt? gidaam il-kaafeeh?",
+          "english": "Okay, where exactly? In front of the cafe?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "إي، أشوفج عند المدخل الرئيسي",
+          "transliteration": "ee, ashoofich 3ind il-madkhal ir-ra2eesi",
+          "english": "Yes, I'll see you at the main entrance."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "تمام، بكون هناك قبلك أكيد",
+          "transliteration": "tamaam, bakuun hnaak gablak akeed",
+          "english": "Great, I'll definitely be there before you."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "لا تتأخرين علي يا مريم",
+          "transliteration": "la tit2akhkhareen 3alay ya Maryam",
+          "english": "Don't be late on me, Mariam."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "ولا يهمك، وإذا تأخرت باتصل عليك",
+          "transliteration": "wala yhimmak, w idha ta2akhkharit baatsil 3aleek",
+          "english": "Don't worry, and if I'm late I'll call you."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "ماشي، أشوفج باجر",
+          "transliteration": "maashi, ashoofich baajir",
+          "english": "Okay, see you tomorrow."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين نتلاقى؟",
+            "transliteration": "ween nitlaagaa?",
+            "english": "Where should we meet?"
+          },
+          "response": {
+            "arabic": "خلنا نتلاقى في الكافيه",
+            "transliteration": "khalna nitlaagaa fi l-kaafeeh",
+            "english": "Let's meet at the cafe."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الساعة كم تناسبك؟",
+            "transliteration": "is-saa3a kam tinaasbak?",
+            "english": "What time suits you?"
+          },
+          "response": {
+            "arabic": "الساعة سبعة زينة",
+            "transliteration": "is-saa3a sab3a zeena",
+            "english": "7 o'clock is good."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين بالضبط؟",
+            "transliteration": "ween bi-dh-dhabt?",
+            "english": "Where exactly?"
+          },
+          "response": {
+            "arabic": "عند المدخل الرئيسي",
+            "transliteration": "3ind il-madkhal ir-ra2eesi",
+            "english": "In front of the main entrance."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شرايك نروح مع بعض؟",
+            "transliteration": "shraayak niruu7 ma3 ba3ad?",
+            "english": "What do you think, shall we go together?"
+          },
+          "response": {
+            "arabic": "يلا، خذني وياك",
+            "transliteration": "yalla, khudhni wayyaak",
+            "english": "Okay, take me with you."
+          }
+        }
+      ],
+      "culture": "In the UAE and Kuwait people usually arrange to meet at a mall, a well-known cafe or a big mosque rather than giving a street address. The Umayyad Mosque is in Damascus, so the Gulf line names a local landmark instead, such as the Grand Mosque in Kuwait or the Sheikh Zayed Grand Mosque in Abu Dhabi.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks you: \"وين نتلاقى؟\". Suggest meeting at the cafe.",
+          "answer": "خلنا نتلاقى في الكافيه",
+          "accepted": [
+            "خلنا نتلاقى في الكافيه",
+            "نتلاقى في الكافيه",
+            "شرايك نتلاقى في الكافيه",
+            "khalna nitlaagaa fi l-kaafeeh"
+          ],
+          "too_formal": {
+            "item": "أقترح أن نلتقي في المقهى",
+            "feedback": "Grammatically correct, but far more formal than a casual suggestion."
+          },
+          "tip": "\"خلنا\" + verb is the everyday way to suggest doing something together."
+        },
+        {
+          "id": "unit-12.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: \"الساعة كم تناسبك؟\". Say that 7 o'clock is good for you.",
+          "answer": "الساعة سبعة زينة",
+          "accepted": [
+            "الساعة سبعة زينة",
+            "الساعة سبعة تمام",
+            "سبعة زينة",
+            "is-saa3a sab3a zeena"
+          ],
+          "too_formal": {
+            "item": "الساعة السابعة مناسبة لي",
+            "feedback": "Correct but sounds like a written appointment confirmation, not spoken."
+          },
+          "tip": "\"زين\" (masculine) and \"زينة\" (feminine, so it agrees with \"ساعة\") mean good in the Gulf."
+        },
+        {
+          "id": "unit-12.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أشوفك _____ المدخل الرئيسي.\" Meaning: I'll see you at the main entrance.",
+          "answer": "عند",
+          "accepted": [
+            "عند",
+            "قدام",
+            "3ind"
+          ],
+          "too_formal": {
+            "item": "أمام",
+            "feedback": "Correct meaning, but \"قدام\" or \"عند\" is what is actually said, not \"أمام\"."
+          },
+          "tip": "\"قدام\" is pronounced \"gidaam\" in the Gulf and means in front of."
+        },
+        {
+          "id": "unit-12.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"إذا _____ اتصل علي.\" Meaning: If you're late, call me.",
+          "answer": "تأخرت",
+          "accepted": [
+            "تأخرت",
+            "اتأخرت",
+            "تاخرت",
+            "ta2akhkharit"
+          ],
+          "too_formal": {
+            "item": "إن تأخرتَ فاتصل بي",
+            "feedback": "Correct but very formal written Arabic, not how it is said."
+          },
+          "tip": "\"إذا\" + past-tense verb is the everyday conditional."
+        },
+        {
+          "id": "unit-12.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"Don't be late.\"",
+          "answer": "لا تتأخر علي",
+          "accepted": [
+            "لا تتأخر علي",
+            "لا تتأخر",
+            "لا تتأخرين علي",
+            "la tit2akhkhar 3alay"
+          ],
+          "too_formal": {
+            "item": "يرجى عدم التأخر",
+            "feedback": "Correct meaning, but this is a formal written notice style, not spoken Gulf Arabic."
+          },
+          "tip": "\"لا\" + present-tense verb is the everyday negative command; add \"علي\" to mean \"don't keep me waiting\"."
+        },
+        {
+          "id": "unit-12.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'll be there before you.\"",
+          "answer": "بكون هناك قبلك",
+          "accepted": [
+            "بكون هناك قبلك",
+            "بكون هنا قبلك",
+            "راح أكون هناك قبلك",
+            "bakuun hnaak gablak"
+          ],
+          "too_formal": {
+            "item": "سأكون هناك قبلك",
+            "feedback": "Grammatically identical but uses the formal future \"سـ\" instead of the spoken \"ب\"."
+          },
+          "tip": "\"ب\" + present-tense verb makes the everyday future; in Kuwait \"راح\" + verb is also common."
+        },
+        {
+          "id": "unit-12.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence asks \"What time suits you?\"",
+          "answer": "الساعة كم تناسبك؟",
+          "accepted": [
+            "الساعة كم تناسبك؟",
+            "الساعة كم تناسبك",
+            "is-saa3a kam tinaasbak?"
+          ],
+          "options": [
+            "الساعة كم تناسبك؟",
+            "وين بالضبط؟",
+            "لا تتأخر علي",
+            "أشوفك هناك"
+          ],
+          "too_formal": {
+            "item": "في أي وقت يناسبك ذلك؟",
+            "feedback": "Correct but stiffer than the everyday spoken question."
+          },
+          "tip": "\"الساعة كم\" (what hour) is the everyday Gulf way to ask about time."
+        },
+        {
+          "id": "unit-12.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Let's meet at the cafe\"?",
+          "answer": "خلنا نتلاقى في الكافيه",
+          "accepted": [
+            "خلنا نتلاقى في الكافيه",
+            "نتلاقى في الكافيه",
+            "khalna nitlaagaa fi l-kaafeeh"
+          ],
+          "options": [
+            "خلنا نتلاقى في الكافيه",
+            "أشوفك هناك",
+            "شرايك نروح مع بعض؟",
+            "أعرف المكان زين"
+          ],
+          "too_formal": {
+            "item": "لنلتقِ في المقهى",
+            "feedback": "Grammatically correct classical form, but not how it's said in conversation."
+          },
+          "tip": "\"خلنا\" + present-tense verb is the everyday \"let's\"."
+        },
+        {
+          "id": "unit-12.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"سبعة / زينة / الساعة\".",
+          "answer": "الساعة سبعة زينة",
+          "accepted": [
+            "الساعة سبعة زينة",
+            "الساعة سبعة زين",
+            "is-saa3a sab3a zeena"
+          ],
+          "too_formal": {
+            "item": "هل الساعة السابعة وقت مناسب؟",
+            "feedback": "Correct meaning, but far more elaborate than the short spoken question."
+          },
+          "tip": "The time comes first, then the check word \"زينة\" at the end."
+        },
+        {
+          "id": "unit-12.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"المدخل الرئيسي / عند / أشوفك\".",
+          "answer": "أشوفك عند المدخل الرئيسي",
+          "accepted": [
+            "أشوفك عند المدخل الرئيسي",
+            "أشوفك قدام المدخل الرئيسي",
+            "ashoofak 3ind il-madkhal ir-ra2eesi"
+          ],
+          "too_formal": {
+            "item": "سألتقي بك أمام المدخل الرئيسي للمبنى",
+            "feedback": "Correct but a much longer, written-style sentence."
+          },
+          "tip": "\"أشوفك\" (I'll see you) usually opens the sentence, then the place."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "i-want-to-change-the-appointment",
+          "arabic": "أبي أغير الموعد",
+          "transliteration": "abi aghayyir il-maw3id"
+        },
+        {
+          "slot": "i-can-t-come-today",
+          "arabic": "ما أقدر أجي اليوم",
+          "transliteration": "ma agdar aji l-yoom"
+        },
+        {
+          "slot": "something-came-up-for-me",
+          "arabic": "عندي ظرف",
+          "transliteration": "3indi dhurf"
+        },
+        {
+          "slot": "can-we-postpone-to-tomorrow",
+          "arabic": "ممكن نأجله لباجر؟",
+          "transliteration": "mumkin ni2ajjilah la-baajir?",
+          "reply": {
+            "arabic": "ما في مشكلة، نأجله",
+            "transliteration": "ma fee mushkila, ni2ajjilah",
+            "english": "No problem, we'll postpone."
+          }
+        },
+        {
+          "slot": "i-d-like-us-to-meet-another-day",
+          "arabic": "أبي نتلاقى يوم ثاني",
+          "transliteration": "abi nitlaagaa yoom thaani"
+        },
+        {
+          "slot": "let-s-find-a-day-that-suits-us-both",
+          "arabic": "خلنا نشوف يوم يناسبنا احنا الثنين",
+          "transliteration": "khalna nshoof yoom yinaasibna i7na ith-thnayn"
+        },
+        {
+          "slot": "sorry-for-the-sudden-change",
+          "arabic": "آسف على التغيير المفاجئ",
+          "transliteration": "aasif 3ala t-taghyeer il-mufaaji2",
+          "reply": {
+            "arabic": "لا عليك",
+            "transliteration": "laa 3aleek",
+            "english": "Don't worry about it."
+          }
+        },
+        {
+          "slot": "can-we-meet-in-the-afternoon-instead-of-the-morn",
+          "arabic": "نقدر نتلاقى بعد الظهر بدل الصبح؟",
+          "transliteration": "nigdar nitlaagaa ba3d idh-dhuhr badal is-sub7?"
+        },
+        {
+          "slot": "is-the-place-still-the-same-place",
+          "arabic": "المكان للحين نفسه؟",
+          "transliteration": "il-makaan lil7een nafsah?",
+          "reply": {
+            "arabic": "لا، غيرنا المكان",
+            "transliteration": "laa, ghayyarna l-makaan",
+            "english": "No, we changed the place."
+          }
+        },
+        {
+          "slot": "can-we-cancel-the-appointment",
+          "arabic": "نقدر نلغي الموعد؟",
+          "transliteration": "nigdar nilghi l-maw3id?"
+        },
+        {
+          "slot": "i-have-to-apologize-for-the-appointment-cancel-i",
+          "arabic": "لازم أعتذر عن الموعد",
+          "transliteration": "laazim a3tadhir 3an il-maw3id"
+        },
+        {
+          "slot": "i-ll-meet-you-friday-instead-of-thursday",
+          "arabic": "أشوفك يوم الجمعة بدل الخميس",
+          "transliteration": "ashoofak yoom ij-jum3a badal il-khamees"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Mariam",
+          "arabic": "ألو سامر، أبي أغير موعدنا اليوم",
+          "transliteration": "aloo Saamer, abi aghayyir maw3idna l-yoom",
+          "english": "Hello Samer, I want to change our appointment today."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "شو صار؟ فيه شي؟",
+          "transliteration": "shu saar? feeh shay?",
+          "english": "What happened? Is something wrong?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "إي، عندي ظرف في البيت وما أقدر أجي اليوم",
+          "transliteration": "ee, 3indi dhurf fi l-beet w ma agdar aji l-yoom",
+          "english": "Yeah, something came up at home and I can't come today."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "لا عليج. ممكن نأجله لباجر؟",
+          "transliteration": "laa 3aleech. mumkin ni2ajjilah la-baajir?",
+          "english": "Don't worry about it. Can we postpone to tomorrow?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "ما في مشكلة، نأجله لباجر. بس نقدر نتلاقى بعد الظهر بدل الصبح؟",
+          "transliteration": "ma fee mushkila, ni2ajjilah la-baajir. bas nigdar nitlaagaa ba3d idh-dhuhr badal is-sub7?",
+          "english": "No problem, we'll postpone to tomorrow. But can we meet in the afternoon instead of the morning?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "تمام، بعد الظهر أحسن لي بعد",
+          "transliteration": "tamaam, ba3d idh-dhuhr a7san li ba3ad",
+          "english": "Great, the afternoon is better for me too."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "الله يعافيك، آسفة على التغيير المفاجئ",
+          "transliteration": "allah y3aafeek, aasfa 3ala t-taghyeer il-mufaaji2",
+          "english": "Thanks, sorry for the sudden change."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "لا عليج، عادي. المكان للحين نفسه؟",
+          "transliteration": "laa 3aleech, 3aadi. il-makaan lil7een nafsah?",
+          "english": "Don't worry, it's fine. Is the place still the same place?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "لا، غيرنا المكان، بنتلاقى عند الكافيه الجديد",
+          "transliteration": "laa, ghayyarna l-makaan, binitlaagaa 3ind il-kaafeeh ij-jadeed",
+          "english": "No, we changed the place, we'll meet at the new cafe."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "ماشي، بحفظ الموقع. مشكورة إنج خبرتيني بدري",
+          "transliteration": "maashi, ba7fadh il-mawgi3. mashkoora inch khabbarteeni badri",
+          "english": "Okay, I'll save the location. Thanks for letting me know early."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "الله يعافيك، أشوفك باجر بعد الظهر",
+          "transliteration": "allah y3aafeek, ashoofak baajir ba3d idh-dhuhr",
+          "english": "You're welcome, see you tomorrow afternoon."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أبي أغير الموعد",
+            "transliteration": "abi aghayyir il-maw3id",
+            "english": "I want to change the appointment."
+          },
+          "response": {
+            "arabic": "ما في مشكلة، نأجله",
+            "transliteration": "ma fee mushkila, ni2ajjilah",
+            "english": "No problem, we'll postpone."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ليش ما تقدر تجي؟",
+            "transliteration": "leesh ma tigdar tiji?",
+            "english": "Why can't you come?"
+          },
+          "response": {
+            "arabic": "عندي ظرف",
+            "transliteration": "3indi dhurf",
+            "english": "Something came up for me."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نقدر نتلاقى بعد الظهر بدل الصبح؟",
+            "transliteration": "nigdar nitlaagaa ba3d idh-dhuhr badal is-sub7?",
+            "english": "Can we meet in the afternoon instead of the morning?"
+          },
+          "response": {
+            "arabic": "إي، بعد الظهر أحسن لي",
+            "transliteration": "ee, ba3d idh-dhuhr a7san li",
+            "english": "Yes, the afternoon is better for me."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "المكان للحين نفسه؟",
+            "transliteration": "il-makaan lil7een nafsah?",
+            "english": "Is the place still the same place?"
+          },
+          "response": {
+            "arabic": "لا، غيرنا المكان",
+            "transliteration": "laa, ghayyarna l-makaan",
+            "english": "No, we changed the place."
+          }
+        }
+      ],
+      "culture": "Plans shift often around work, family visits and prayer times, and rearranging at short notice is normal as long as it comes with a quick apology like \"آسف على التغيير المفاجئ\". The other person usually answers \"لا عليك\" or \"عادي\", and Friday plans are usually set around the Friday prayer.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "Your friend says: \"آسف على التغيير المفاجئ\". Tell them not to worry about it.",
+          "answer": "لا عليك",
+          "accepted": [
+            "لا عليك",
+            "ما عليك",
+            "عادي",
+            "laa 3aleek"
+          ],
+          "too_formal": {
+            "item": "لا داعي للقلق أبداً",
+            "feedback": "Correct meaning, but far more formal than the short spoken reassurance."
+          },
+          "tip": "\"لا عليك\" (to a man) or \"لا عليج\" (to a woman) is the standard easy way to say \"don't worry about it\"."
+        },
+        {
+          "id": "unit-12.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: \"ممكن نأجله لباجر؟\". Agree, saying no problem.",
+          "answer": "ما في مشكلة، نأجله",
+          "accepted": [
+            "ما في مشكلة، نأجله",
+            "ماشي، نأجله",
+            "تمام، نأجله لباجر",
+            "ma fee mushkila, ni2ajjilah"
+          ],
+          "too_formal": {
+            "item": "لا بأس، سنؤجل الموعد",
+            "feedback": "Grammatically fine, but this is the written, not the spoken, register."
+          },
+          "tip": "\"ما في مشكلة\" is a very common easy agreement phrase."
+        },
+        {
+          "id": "unit-12.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عندي _____ وما أقدر أجي.\" Meaning: Something came up for me and I can't come.",
+          "answer": "ظرف",
+          "accepted": [
+            "ظرف",
+            "ظرف طارئ",
+            "dhurf"
+          ],
+          "too_formal": {
+            "item": "طرأ علي أمر طارئ",
+            "feedback": "Correct but redundant and bookish; the spoken version is much shorter."
+          },
+          "tip": "\"عندي ظرف\" is the everyday Gulf way to say something has come up."
+        },
+        {
+          "id": "unit-12.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"نقدر نتلاقى بعد الظهر _____ الصبح؟\" Meaning: Can we meet in the afternoon instead of the morning?",
+          "answer": "بدل",
+          "accepted": [
+            "بدل",
+            "عوض",
+            "badal"
+          ],
+          "too_formal": {
+            "item": "عوضاً عن",
+            "feedback": "Correct meaning, but more formal than the short spoken \"بدل\"."
+          },
+          "tip": "\"بدل\" means \"instead of\" in everyday speech."
+        },
+        {
+          "id": "unit-12.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"I can't come today.\"",
+          "answer": "ما أقدر أجي اليوم",
+          "accepted": [
+            "ما أقدر أجي اليوم",
+            "ما اقدر اجي اليوم",
+            "ما أقدر آجي اليوم",
+            "ma agdar aji l-yoom"
+          ],
+          "too_formal": {
+            "item": "لا أستطيع الحضور اليوم",
+            "feedback": "Grammatically correct but more formal than the everyday spoken phrase."
+          },
+          "tip": "\"ما أقدر\" is the everyday \"I can't\"; ق sounds like g, so it is said \"agdar\"."
+        },
+        {
+          "id": "unit-12.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Can we postpone to tomorrow?\"",
+          "answer": "ممكن نأجله لباجر؟",
+          "accepted": [
+            "ممكن نأجله لباجر؟",
+            "ممكن نأجل لباجر؟",
+            "نقدر نأجله لباجر؟",
+            "mumkin ni2ajjilah la-baajir?"
+          ],
+          "too_formal": {
+            "item": "هل يمكننا تأجيل الموعد إلى الغد؟",
+            "feedback": "Correct but a longer, written-style question."
+          },
+          "tip": "\"باجر\" is the Gulf word for tomorrow; \"بكرة\" is also understood."
+        },
+        {
+          "id": "unit-12.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Is the place still the same place?\"",
+          "answer": "المكان للحين نفسه؟",
+          "accepted": [
+            "المكان للحين نفسه؟",
+            "المكان للحين نفس المكان؟",
+            "il-makaan lil7een nafsah?"
+          ],
+          "options": [
+            "المكان للحين نفسه؟",
+            "أبي أغير الموعد",
+            "عندي ظرف",
+            "أبي نتلاقى يوم ثاني"
+          ],
+          "too_formal": {
+            "item": "هل ما زال المكان نفسه؟",
+            "feedback": "Correct meaning, but more formal phrasing than the spoken question."
+          },
+          "tip": "\"للحين\" means \"still, up to now\" in Gulf speech."
+        },
+        {
+          "id": "unit-12.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which is a natural apology for changing plans suddenly?",
+          "answer": "آسف على التغيير المفاجئ",
+          "accepted": [
+            "آسف على التغيير المفاجئ",
+            "آسفة على التغيير المفاجئ",
+            "aasif 3ala t-taghyeer il-mufaaji2"
+          ],
+          "options": [
+            "آسف على التغيير المفاجئ",
+            "لا تتأخر علي",
+            "أشوفك هناك",
+            "شو علومك؟"
+          ],
+          "too_formal": {
+            "item": "أعتذر منكم عن هذا التغيير الطارئ",
+            "feedback": "Correct meaning, but stiff and overly formal for a friend."
+          },
+          "tip": "\"آسف\" (man) / \"آسفة\" (woman) على التغيير المفاجئ fits a casual apology."
+        },
+        {
+          "id": "unit-12.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"لباجر / نأجله / ممكن\".",
+          "answer": "ممكن نأجله لباجر",
+          "accepted": [
+            "ممكن نأجله لباجر",
+            "ممكن نأجل لباجر",
+            "mumkin ni2ajjilah la-baajir"
+          ],
+          "too_formal": {
+            "item": "هل من الممكن أن نؤجل الأمر إلى الغد",
+            "feedback": "Correct meaning, but a much longer formal question."
+          },
+          "tip": "\"ممكن\" opens the question, then the verb, then the day."
+        },
+        {
+          "id": "unit-12.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"الصبح / بدل / بعد الظهر / نتلاقى / نقدر\".",
+          "answer": "نقدر نتلاقى بعد الظهر بدل الصبح",
+          "accepted": [
+            "نقدر نتلاقى بعد الظهر بدل الصبح",
+            "نقدر نتلاقى بعد الظهر عوض الصبح",
+            "nigdar nitlaagaa ba3d idh-dhuhr badal is-sub7"
+          ],
+          "too_formal": {
+            "item": "هل بإمكاننا اللقاء بعد الظهيرة عوضاً عن الصباح؟",
+            "feedback": "Correct meaning, but a longer, more formal question."
+          },
+          "tip": "\"نقدر\" (can we) opens it, then the verb, then the two times being compared."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "hello-is-samer-there",
+          "arabic": "ألو، سامر موجود؟",
+          "transliteration": "aloo, Saamer mawjuud?"
+        },
+        {
+          "slot": "no-he-s-not-here-right-now",
+          "arabic": "لا، مب هني الحين",
+          "transliteration": "laa, mub hni l-7een"
+        },
+        {
+          "slot": "when-will-he-be-back",
+          "arabic": "متى يرجع؟",
+          "transliteration": "mita yirja3?"
+        },
+        {
+          "slot": "i-don-t-know-exactly-in-a-bit",
+          "arabic": "ما أدري بالضبط، بعد شوي",
+          "transliteration": "ma adri bi-dh-dhabt, ba3d shwayy"
+        },
+        {
+          "slot": "can-you-take-a-message-for-me",
+          "arabic": "ممكن توصل له رسالة؟",
+          "transliteration": "mumkin twassil lah risaala?",
+          "reply": {
+            "arabic": "أكيد، شو تبي أقول له؟",
+            "transliteration": "akeed, shu tibi agool lah?",
+            "english": "Sure, what do you want to tell him?"
+          }
+        },
+        {
+          "slot": "tell-him-to-call-me",
+          "arabic": "قول له يتصل علي",
+          "transliteration": "gool lah yitsil 3alay"
+        },
+        {
+          "slot": "let-him-know-i-called",
+          "arabic": "قول له إني اتصلت",
+          "transliteration": "gool lah inni ittasalt"
+        },
+        {
+          "slot": "i-ll-tell-him-as-soon-as-he-arrives",
+          "arabic": "بقول له أول ما يوصل",
+          "transliteration": "bagool lah awwal ma yoosal"
+        },
+        {
+          "slot": "do-you-have-my-number",
+          "arabic": "عندك رقمي؟",
+          "transliteration": "3indak ragmi?",
+          "reply": {
+            "arabic": "إي، محفوظ عندي",
+            "transliteration": "ee, ma7fuudh 3indi",
+            "english": "Yes, I have it saved."
+          }
+        },
+        {
+          "slot": "thanks-a-lot",
+          "arabic": "يعطيك العافية",
+          "transliteration": "y3aateek il-3aafya",
+          "reply": {
+            "arabic": "الله يعافيك",
+            "transliteration": "allah y3aafeek",
+            "english": "You're very welcome."
+          }
+        },
+        {
+          "slot": "good-that-i-didn-t-waste-your-time",
+          "arabic": "زين إني ما ضيعت وقتك",
+          "transliteration": "zeen inni ma dayya3t wagtak"
+        },
+        {
+          "slot": "i-ll-pass-him-the-news-as-soon-as-he-s-in",
+          "arabic": "بوصل له الخبر أول ما يدخل",
+          "transliteration": "bawassil lah il-khabar awwal ma yidkhal"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rashid",
+          "arabic": "ألو، سامر موجود؟",
+          "transliteration": "aloo, Saamer mawjuud?",
+          "english": "Hello, is Samer there?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "لا، مب هني الحين، راح المجمع",
+          "transliteration": "laa, mub hni l-7een, raa7 il-mujamma3",
+          "english": "No, he's not here right now, he went to the mall."
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "آه، متى يرجع تقريبا؟",
+          "transliteration": "aah, mita yirja3 tagreeban?",
+          "english": "Ah, roughly when will he be back?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "ما أدري بالضبط، بعد شوي إن شاء الله",
+          "transliteration": "ma adri bi-dh-dhabt, ba3d shwayy in shaa2 allah",
+          "english": "I don't know exactly, in a bit God willing."
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "طيب ممكن توصلين له رسالة؟",
+          "transliteration": "tayyib mumkin twassileen lah risaala?",
+          "english": "Okay, can you pass a message to him for me?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "أكيد، شو تبي أقول له؟",
+          "transliteration": "akeed, shu tibi agool lah?",
+          "english": "Sure, what do you want to tell him?"
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "قولي له راشد اتصل، ويتصل علي إذا فاضي",
+          "transliteration": "gooli lah Raashid ittasal, w yitsil 3alay idha faadi",
+          "english": "Tell him Rashid called, and to call me if he's free."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "طيب، بقول له أول ما يوصل",
+          "transliteration": "tayyib, bagool lah awwal ma yoosal",
+          "english": "Okay, I'll tell him as soon as he arrives."
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "عنده رقمي؟",
+          "transliteration": "3indah ragmi?",
+          "english": "Does he have my number?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "ما أدري، خلني آخذ رقمك احتياط",
+          "transliteration": "ma adri, khalni aakhudh ragmak i7tiyaat",
+          "english": "I don't know, let me take your number just in case."
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "تفضلي، يعطيك العافية على هالمعروف",
+          "transliteration": "tfaddali, y3aateech il-3aafya 3ala hal-ma3roof",
+          "english": "Here you go, thanks a lot for the favor."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "الله يعافيك، بوصل له الخبر أول ما يدخل",
+          "transliteration": "allah y3aafeek, bawassil lah il-khabar awwal ma yidkhal",
+          "english": "You're very welcome, I'll pass him the news as soon as he's in."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "ألو، سامر موجود؟",
+            "transliteration": "aloo, Saamer mawjuud?",
+            "english": "Hello, is Samer there?"
+          },
+          "response": {
+            "arabic": "لا، مب هني الحين",
+            "transliteration": "laa, mub hni l-7een",
+            "english": "No, he's not here right now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "متى يرجع؟",
+            "transliteration": "mita yirja3?",
+            "english": "When will he be back?"
+          },
+          "response": {
+            "arabic": "ما أدري بالضبط، بعد شوي",
+            "transliteration": "ma adri bi-dh-dhabt, ba3d shwayy",
+            "english": "I don't know exactly, in a bit."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ممكن توصل له رسالة؟",
+            "transliteration": "mumkin twassil lah risaala?",
+            "english": "Can you take a message for me?"
+          },
+          "response": {
+            "arabic": "أكيد، شو تبي أقول له؟",
+            "transliteration": "akeed, shu tibi agool lah?",
+            "english": "Sure, what do you want to tell him?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك رقمي؟",
+            "transliteration": "3indak ragmi?",
+            "english": "Do you have my number?"
+          },
+          "response": {
+            "arabic": "إي، محفوظ عندي",
+            "transliteration": "ee, ma7fuudh 3indi",
+            "english": "Yes, I have it saved."
+          }
+        }
+      ],
+      "culture": "It is normal in the Gulf for a family member to answer the phone and pass on a message, and men often ask after the family before the message itself. \"يعطيك العافية\" is the standard thank-you for a favor, and \"الله يعافيك\" is the usual reply.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "Someone calling asks: \"سامر موجود؟\" but he is out. Say he's not here right now.",
+          "answer": "لا، مب هني الحين",
+          "accepted": [
+            "لا، مب هني الحين",
+            "مب هني الحين",
+            "لا، مو هني الحين",
+            "laa, mub hni l-7een"
+          ],
+          "too_formal": {
+            "item": "لا، إنه غير متواجد في الوقت الحالي",
+            "feedback": "Grammatically correct but sounds like an office receptionist, not a spoken reply."
+          },
+          "tip": "\"مب\" (UAE) and \"مو\" (Kuwait) both mean \"not\"; \"الحين\" is the Gulf \"now\"."
+        },
+        {
+          "id": "unit-12.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: \"ممكن توصل له رسالة؟\" Agree and ask what they want to say.",
+          "answer": "أكيد، شو تبي أقول له؟",
+          "accepted": [
+            "أكيد، شو تبي أقول له؟",
+            "إي، شو تبي أقول له؟",
+            "طيب، شو تبي أقول له؟",
+            "akeed, shu tibi agool lah?"
+          ],
+          "too_formal": {
+            "item": "بالتأكيد، ما الذي تريد أن تخبره به؟",
+            "feedback": "Correct meaning, but far more formal than the everyday phrasing."
+          },
+          "tip": "\"تبي\" (you want) is the Gulf form; \"تريد\" is the formal one."
+        },
+        {
+          "id": "unit-12.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ له يتصل علي.\" Meaning: Tell him to call me.",
+          "answer": "قول",
+          "accepted": [
+            "قول",
+            "قل",
+            "gool"
+          ],
+          "too_formal": {
+            "item": "أخبره أن يتصل بي",
+            "feedback": "Grammatically correct but a written-style instruction, not the short spoken one."
+          },
+          "tip": "\"قول له\" is the everyday \"tell him\"; ق sounds like g, so it is \"gool\"."
+        },
+        {
+          "id": "unit-12.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بقول له _____ ما يوصل.\" Meaning: I'll tell him as soon as he arrives.",
+          "answer": "أول",
+          "accepted": [
+            "أول",
+            "اول",
+            "أول ما",
+            "awwal"
+          ],
+          "too_formal": {
+            "item": "حالما يصل سأخبره",
+            "feedback": "Correct meaning, but a more formal written order of the sentence."
+          },
+          "tip": "\"أول ما\" is the everyday way to say \"as soon as\"."
+        },
+        {
+          "id": "unit-12.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"Do you have my number?\"",
+          "answer": "عندك رقمي؟",
+          "accepted": [
+            "عندك رقمي؟",
+            "معك رقمي؟",
+            "عندك رقمي",
+            "3indak ragmi?"
+          ],
+          "too_formal": {
+            "item": "هل لديك رقم هاتفي؟",
+            "feedback": "Correct but more formal wording than the short spoken question."
+          },
+          "tip": "\"عندك\" / \"معك\" both work for \"do you have\" in everyday speech."
+        },
+        {
+          "id": "unit-12.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Thanks a lot.\"",
+          "answer": "يعطيك العافية",
+          "accepted": [
+            "يعطيك العافية",
+            "الله يعطيك العافية",
+            "مشكور",
+            "y3aateek il-3aafya"
+          ],
+          "too_formal": {
+            "item": "أشكرك جزيل الشكر",
+            "feedback": "Correct meaning, but far more formal than the everyday \"يعطيك العافية\"."
+          },
+          "tip": "\"يعطيك العافية\" is one of the most common everyday thank-yous, and \"مشكور\" is a short one."
+        },
+        {
+          "id": "unit-12.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence asks \"When will he be back?\"",
+          "answer": "متى يرجع؟",
+          "accepted": [
+            "متى يرجع؟",
+            "متى يرجع",
+            "mita yirja3?"
+          ],
+          "options": [
+            "متى يرجع؟",
+            "عندك رقمي؟",
+            "قول له يتصل علي",
+            "لا، مب هني الحين"
+          ],
+          "too_formal": {
+            "item": "متى سيعود؟",
+            "feedback": "Correct meaning, but the future \"سـ\" and \"يعود\" are the written form; speech says \"يرجع\"."
+          },
+          "tip": "\"متى\" and \"شحين\" both mean when in Gulf speech."
+        },
+        {
+          "id": "unit-12.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which is the natural reply to \"يعطيك العافية\"?",
+          "answer": "الله يعافيك",
+          "accepted": [
+            "الله يعافيك",
+            "الله يعافيج",
+            "allah y3aafeek"
+          ],
+          "options": [
+            "الله يعافيك",
+            "متى يرجع؟",
+            "قول له إني اتصلت",
+            "ما أدري بالضبط"
+          ],
+          "too_formal": {
+            "item": "لا شكر على واجب",
+            "feedback": "Correct meaning, but a more formal set phrase than the everyday reply."
+          },
+          "tip": "\"الله يعافيك\" is the standard reply to a thank-you; to a woman it is \"الله يعافيج\"."
+        },
+        {
+          "id": "unit-12.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"رسالة / توصل له / ممكن\".",
+          "answer": "ممكن توصل له رسالة",
+          "accepted": [
+            "ممكن توصل له رسالة",
+            "ممكن توصل رسالة له",
+            "mumkin twassil lah risaala"
+          ],
+          "too_formal": {
+            "item": "هل يمكن أن تنقل إليه رسالة؟",
+            "feedback": "Correct meaning, but a longer, more formal question."
+          },
+          "tip": "\"ممكن\" opens the request, then the verb, then what is being asked for."
+        },
+        {
+          "id": "unit-12.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"يوصل / ما / أول / بقول له\".",
+          "answer": "بقول له أول ما يوصل",
+          "accepted": [
+            "بقول له أول ما يوصل",
+            "أول ما يوصل بقول له",
+            "bagool lah awwal ma yoosal"
+          ],
+          "too_formal": {
+            "item": "سأخبره حالما يصل إلى المنزل",
+            "feedback": "Correct meaning, but a longer written-style sentence."
+          },
+          "tip": "\"بقول له\" (I'll tell him) opens it, then the time clause \"أول ما يوصل\"."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "A Phone Call to Rearrange Plans",
+    "instructions": "Write and act out a phone conversation of at least 10 lines. It must include answering the phone, proposing a place and a time to meet, changing that plan for a real reason, agreeing on a new time or place, and, if the person you called is not free, leaving a message for someone else to pass on.",
+    "required_elements": [
+      "Answering the phone with ألو or هلا.",
+      "Asking or stating who is calling, using منو معاي or معاك + name.",
+      "A suggestion of where to meet, using خلنا نتلاقى or a similar phrase.",
+      "A question about time, using الساعة كم تناسبك or a similar phrase.",
+      "A reason for changing the plan, using عندي ظرف or a similar phrase.",
+      "A request to postpone or change, using ممكن نأجله or نقدر نتلاقى.",
+      "An apology for the change, using آسف على التغيير المفاجئ or a similar phrase.",
+      "A reassurance in response, using لا عليك.",
+      "A closing thank-you, using يعطيك العافية.",
+      "At least one exchange about leaving or taking a message, using رسالة or قول له."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Samer",
+          "arabic": "ألو؟",
+          "transliteration": "aloo?",
+          "english": "Hello?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "هلا سامر، معاك مريم. شو علومك؟",
+          "transliteration": "hala Saamer, ma3aak Maryam. shu 3luumak?",
+          "english": "Hi Samer, it's Mariam. What's new?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "الحمد لله طيب. شو في؟",
+          "transliteration": "il7amdulillah tayyib. shu fee?",
+          "english": "All good, thank God. What's up?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "خلنا نتلاقى في الكافيه باجر، الساعة كم تناسبك؟",
+          "transliteration": "khalna nitlaagaa fi l-kaafeeh baajir, is-saa3a kam tinaasbak?",
+          "english": "Let's meet at the cafe tomorrow, what time suits you?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "الساعة خمسة زينة",
+          "transliteration": "is-saa3a khamsa zeena",
+          "english": "5 o'clock is good."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "تمام، أشوفك عند المدخل الرئيسي",
+          "transliteration": "tamaam, ashoofak 3ind il-madkhal ir-ra2eesi",
+          "english": "Great, I'll see you at the main entrance."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "آسف بس، عندي ظرف في البيت وما أقدر أجي الساعة خمسة",
+          "transliteration": "aasif bas, 3indi dhurf fi l-beet w ma agdar aji is-saa3a khamsa",
+          "english": "Sorry but, something came up at home and I can't come at 5."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "لا عليك. ممكن نأجله للساعة سبعة؟",
+          "transliteration": "laa 3aleek. mumkin ni2ajjilah lis-saa3a sab3a?",
+          "english": "Don't worry about it. Can we postpone to 7?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "ما في مشكلة، نأجله لسبعة. آسف على التغيير المفاجئ",
+          "transliteration": "ma fee mushkila, ni2ajjilah la-sab3a. aasif 3ala t-taghyeer il-mufaaji2",
+          "english": "No problem, we'll postpone to 7. Sorry for the sudden change."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "لا عليك أبد. وإذا ما قدرت تجي، قول لأخوك يوصل لي رسالة",
+          "transliteration": "laa 3aleek abad. w idha ma gdart tiji, gool la-akhook yiwassil li risaala",
+          "english": "Don't worry at all. And if you can't come, tell your brother to pass me a message."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "أكيد، بقول له. يعطيك العافية على صبرك",
+          "transliteration": "akeed, bagool lah. y3aateek il-3aafya 3ala sabrak",
+          "english": "Sure, I'll tell him. Thanks a lot for your patience."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "الله يعافيك، أشوفك الساعة سبعة",
+          "transliteration": "allah y3aafeek, ashoofak is-saa3a sab3a",
+          "english": "You're very welcome, see you at 7."
+        }
+      ]
+    }
+  }
+}

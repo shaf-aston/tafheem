@@ -1,0 +1,936 @@
+{
+  "unit": "unit-02",
+  "dialect": "Egyptian Arabic",
+  "transliteration_key": {
+    "T": "ط",
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "g": "ج (في مصر تُنطق g مثل gate)",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء / ق (في مصر القاف همزة)",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "family",
+          "arabic": "عيلة",
+          "transliteration": "3eela"
+        },
+        {
+          "slot": "my-mother",
+          "arabic": "أمي",
+          "transliteration": "ommi"
+        },
+        {
+          "slot": "my-father",
+          "arabic": "أبويا",
+          "transliteration": "abooya"
+        },
+        {
+          "slot": "my-brother",
+          "arabic": "أخويا",
+          "transliteration": "akhooya"
+        },
+        {
+          "slot": "my-sister",
+          "arabic": "أختي",
+          "transliteration": "okhti"
+        },
+        {
+          "slot": "my-son",
+          "arabic": "ابني",
+          "transliteration": "ebni"
+        },
+        {
+          "slot": "my-daughter",
+          "arabic": "بنتي",
+          "transliteration": "binti"
+        },
+        {
+          "slot": "my-husband",
+          "arabic": "جوزي",
+          "transliteration": "gozi"
+        },
+        {
+          "slot": "my-wife",
+          "arabic": "مراتي",
+          "transliteration": "merati"
+        },
+        {
+          "slot": "how-many-people-are-in-your-family-to-a-man",
+          "arabic": "كام فرد في عيلتك؟",
+          "transliteration": "kaam fard fi 3eltak?"
+        },
+        {
+          "slot": "i-have-a-brother-and-two-sisters",
+          "arabic": "عندي أخ وأختين",
+          "transliteration": "3andi akh we okhteen"
+        },
+        {
+          "slot": "are-you-married-to-a-man",
+          "arabic": "إنت متجوز؟",
+          "transliteration": "enta metgawwez?"
+        },
+        {
+          "slot": "are-you-married-to-a-woman",
+          "arabic": "إنتي متجوزة؟",
+          "transliteration": "enti metgawwza?"
+        },
+        {
+          "slot": "i-m-still-single-male-speaker",
+          "arabic": "لسه أعزب",
+          "transliteration": "lissa a3zab"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "arabic": "إزيك يا منى؟",
+          "transliteration": "ezzayyek ya Mona?",
+          "english": "How are you, Mona?"
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "الحمد لله، إزيك إنت يا كريم؟",
+          "transliteration": "el-7amdu lillah, ezzayyak enta ya Kareem?",
+          "english": "Thank God, how are you, Karim?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "تمام الحمد لله. العيلة عاملة إيه؟",
+          "transliteration": "tamaam el-7amdu lillah. el-3eela 3amla eih?",
+          "english": "Fine, thank God. How is the family?"
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "كلهم بخير. عندي أخ وأختين.",
+          "transliteration": "kollohom bekheer. 3andi akh we okhteen.",
+          "english": "They are all well. I have a brother and two sisters."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "وأبوكي وأمك؟",
+          "transliteration": "we abooki we ommik?",
+          "english": "And your father and mother?"
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "أبويا وماما كويسين الحمد لله.",
+          "transliteration": "abooya we mama kwayyeseen el-7amdu lillah.",
+          "english": "My dad and mum are good, thank God."
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "وإنت، متجوز؟",
+          "transliteration": "we enta, metgawwez?",
+          "english": "And you, are you married?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "لا، لسه أعزب.",
+          "transliteration": "la2, lissa a3zab.",
+          "english": "No, I'm still single."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "بس أخويا متجوز وعنده بنت.",
+          "transliteration": "bass akhooya metgawwez we 3ando bint.",
+          "english": "But my brother is married and has a daughter."
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "ما شاء الله! اسمها إيه؟",
+          "transliteration": "ma sha2 Allah! esmaha eih?",
+          "english": "Ma sha Allah! What's her name?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "اسمها ليلى.",
+          "transliteration": "esmaha Leila.",
+          "english": "Her name is Leila."
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "ربنا يخليهالك.",
+          "transliteration": "rabbena yekhalleehaalak.",
+          "english": "May God keep her for you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كام فرد في عيلتك؟",
+            "transliteration": "kaam fard fi 3eltak?",
+            "english": "How many people are in your family?"
+          },
+          "response": {
+            "arabic": "إحنا خمسة، أنا وأبويا وأمي وأخويا وأختي.",
+            "transliteration": "e7na khamsa, ana we abooya we ommi we akhooya we okhti.",
+            "english": "We are five: me, my dad, my mum, my brother and my sister."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إنت متجوز؟",
+            "transliteration": "enta metgawwez?",
+            "english": "Are you married?"
+          },
+          "response": {
+            "arabic": "لا، لسه أعزب.",
+            "transliteration": "la2, lissa a3zab.",
+            "english": "No, I'm still single."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إنتي متجوزة؟",
+            "transliteration": "enti metgawwza?",
+            "english": "Are you married? (to a woman)"
+          },
+          "response": {
+            "arabic": "أيوه، وعندي بنت وولد.",
+            "transliteration": "aywa, we 3andi bint we walad.",
+            "english": "Yes, and I have a daughter and a son."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك إخوات؟",
+            "transliteration": "3andak ekhwaat?",
+            "english": "Do you have siblings?"
+          },
+          "response": {
+            "arabic": "أيوه، عندي أخ وأختين.",
+            "transliteration": "aywa, 3andi akh we okhteen.",
+            "english": "Yes, I have a brother and two sisters."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مين ده؟",
+            "transliteration": "meen da?",
+            "english": "Who is this?"
+          },
+          "response": {
+            "arabic": "ده أخويا.",
+            "transliteration": "da akhooya.",
+            "english": "This is my brother."
+          }
+        }
+      ],
+      "culture": "Asking about family is a warm, normal opener in Egypt, and people usually say ماما and بابا for mum and dad rather than the plainer أمي and أبويا. Told someone is unmarried, people often answer with a kind wish such as ربنا يرزقك (may God provide for you), and ما شاء الله is said on hearing about someone's child.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"my sister\"?",
+          "options": [
+            "أخويا",
+            "أختي",
+            "ابني",
+            "بنتي"
+          ],
+          "answer": "أختي",
+          "accepted": [
+            "أختي",
+            "اختي",
+            "okhti"
+          ],
+          "too_formal": {
+            "item": "شقيقتي",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "أخويا is brother, أختي is sister."
+        },
+        {
+          "id": "unit-02.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"my husband\"?",
+          "options": [
+            "جوزي",
+            "مراتي",
+            "أبويا",
+            "ابني"
+          ],
+          "answer": "جوزي",
+          "accepted": [
+            "جوزي",
+            "gozi",
+            "جوزى"
+          ],
+          "too_formal": {
+            "item": "زوجي",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "جوزي is the everyday word; زوجي sounds written or formal."
+        },
+        {
+          "id": "unit-02.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عندي أخ و_____.\" Meaning: I have a brother and two sisters.",
+          "answer": "أختين",
+          "accepted": [
+            "أختين",
+            "اختين",
+            "okhteen"
+          ],
+          "too_formal": {
+            "item": "شقيقتان",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "-ين makes the dual: أخت becomes أختين for two sisters."
+        },
+        {
+          "id": "unit-02.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"إنتي _____؟\" Meaning: Are you married? (to a woman)",
+          "answer": "متجوزة",
+          "accepted": [
+            "متجوزة",
+            "متجوزه",
+            "metgawwza"
+          ],
+          "too_formal": {
+            "item": "متزوجة",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "Add ة for a woman: متجوز (man), متجوزة (woman)."
+        },
+        {
+          "id": "unit-02.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"إنت متجوز؟\" Say no, you are still single (male speaker).",
+          "answer": "لا، لسه أعزب",
+          "accepted": [
+            "لا، لسه أعزب",
+            "لا لسه أعزب",
+            "لسه أعزب",
+            "la2 lissa a3zab"
+          ],
+          "too_formal": {
+            "item": "لا، ما زلت أعزب",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "لسه means \"still\" in Cairene speech."
+        },
+        {
+          "id": "unit-02.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: \"كام فرد في عيلتك؟\" Say there are five of you.",
+          "answer": "إحنا خمسة",
+          "accepted": [
+            "إحنا خمسة",
+            "احنا خمسة",
+            "إحنا خمسة أفراد",
+            "e7na khamsa"
+          ],
+          "too_formal": {
+            "item": "نحن خمسة أفراد",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "إحنا is \"we\" in Egyptian Arabic."
+        },
+        {
+          "id": "unit-02.lesson-01.reply.03",
+          "type": "reply",
+          "prompt": "Someone asks you: \"إنتي متجوزة؟\" Say yes (female speaker).",
+          "answer": "أيوه، متجوزة",
+          "accepted": [
+            "أيوه، متجوزة",
+            "أيوه متجوزة",
+            "أيوة متجوزة",
+            "aywa metgawwza"
+          ],
+          "too_formal": {
+            "item": "نعم، أنا متزوجة",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "أيوه is the everyday \"yes\"; نعم sounds formal."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Egyptian Arabic: \"My father.\"",
+          "answer": "أبويا",
+          "accepted": [
+            "أبويا",
+            "ابويا",
+            "abooya"
+          ],
+          "too_formal": {
+            "item": "والدي",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "Add ـيا to the noun for \"my\": أبويا, أخويا."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Egyptian Arabic: \"My brother.\"",
+          "answer": "أخويا",
+          "accepted": [
+            "أخويا",
+            "اخويا",
+            "akhooya"
+          ],
+          "too_formal": {
+            "item": "أخي",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "أخويا (brother) follows the same pattern as أبويا."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Egyptian Arabic: \"My wife.\"",
+          "answer": "مراتي",
+          "accepted": [
+            "مراتي",
+            "مرتي",
+            "merati"
+          ],
+          "too_formal": {
+            "item": "زوجتي",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "مراتي is \"my wife\"; جوزي is \"my husband\"."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Egyptian Arabic: \"I have a brother and two sisters.\"",
+          "answer": "عندي أخ وأختين",
+          "accepted": [
+            "عندي أخ وأختين",
+            "عندي اخ واختين",
+            "3andi akh we okhteen"
+          ],
+          "too_formal": {
+            "item": "لدي أخ وأختان",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "عندي is the everyday way to say \"I have\"."
+        },
+        {
+          "id": "unit-02.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"عيلتك / فرد / كام / في؟\"",
+          "answer": "كام فرد في عيلتك؟",
+          "accepted": [
+            "كام فرد في عيلتك؟",
+            "كام فرد في عيلتك",
+            "kaam fard fi 3eltak"
+          ],
+          "too_formal": {
+            "item": "كم فرداً في أسرتك؟",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "The question word كام comes first."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "hungry-male-speaker",
+          "arabic": "جعان",
+          "transliteration": "ga3aan"
+        },
+        {
+          "slot": "hungry-female-speaker",
+          "arabic": "جعانة",
+          "transliteration": "ga3aana"
+        },
+        {
+          "slot": "thirsty-male-speaker",
+          "arabic": "عطشان",
+          "transliteration": "3aTshaan"
+        },
+        {
+          "slot": "i-want-to-eat",
+          "arabic": "عايز آكل",
+          "transliteration": "3ayez aakol"
+        },
+        {
+          "slot": "i-want-to-drink-water",
+          "arabic": "عايز أشرب مية",
+          "transliteration": "3ayez ashrab mayya"
+        },
+        {
+          "slot": "what-do-you-like-to-eat",
+          "arabic": "بتحب تاكل إيه؟",
+          "transliteration": "bet7ebb taakol eih?"
+        },
+        {
+          "slot": "i-like-falafel",
+          "arabic": "بحب الطعمية",
+          "transliteration": "ba7ebb et-ta3meyya"
+        },
+        {
+          "slot": "coffee",
+          "arabic": "قهوة",
+          "transliteration": "2ahwa"
+        },
+        {
+          "slot": "tea",
+          "arabic": "شاي",
+          "transliteration": "shaay"
+        },
+        {
+          "slot": "the-bill-please",
+          "arabic": "الحساب لو سمحت",
+          "transliteration": "el-7esaab law samaht"
+        },
+        {
+          "slot": "how-much-is-the-bill",
+          "arabic": "الحساب كام؟",
+          "transliteration": "el-7esaab kaam?"
+        },
+        {
+          "slot": "to-your-health-said-to-someone-after-they-finish",
+          "arabic": "صحة",
+          "transliteration": "sa77a",
+          "reply": {
+            "arabic": "الله يسلمك",
+            "transliteration": "allaah yesallemak",
+            "english": "May God keep you well."
+          }
+        },
+        {
+          "slot": "enjoy-your-meal-said-to-someone-while-they-are-e",
+          "arabic": "بالهنا والشفا",
+          "transliteration": "bel-hana wesh-shifa",
+          "reply": {
+            "arabic": "الله يعافيك",
+            "transliteration": "allaah ye3aafeek",
+            "english": "May God give you health."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hany",
+          "arabic": "أنا جعان قوي.",
+          "transliteration": "ana ga3aan awi.",
+          "english": "I'm very hungry."
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "وأنا كمان جعانة. بتحب تاكل إيه؟",
+          "transliteration": "we ana kamaan ga3aana. bet7ebb taakol eih?",
+          "english": "Me too, I'm hungry. What do you like to eat?"
+        },
+        {
+          "speaker": "Hany",
+          "arabic": "بحب الطعمية والفول.",
+          "transliteration": "ba7ebb et-ta3meyya wel-fool.",
+          "english": "I like falafel and fava beans."
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "طيب يلا نطلب.",
+          "transliteration": "tayyeb yalla netlob.",
+          "english": "Okay, let's order."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "أهلاً بحضرتكم، تحبوا تشربوا إيه؟",
+          "transliteration": "ahlan be7adretkom, te7ebboo tishraboo eih?",
+          "english": "Welcome, what would you like to drink?"
+        },
+        {
+          "speaker": "Hany",
+          "arabic": "أنا عايز شاي، وإنتي؟",
+          "transliteration": "ana 3ayez shaay, we enti?",
+          "english": "I want tea, and you?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "وأنا عايزة قهوة لو سمحت.",
+          "transliteration": "we ana 3ayza 2ahwa law samaht.",
+          "english": "And I want coffee, please."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "حاضر يا فندم.",
+          "transliteration": "7aader ya fandem.",
+          "english": "Right away, madam."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "اتفضلوا، بالهنا والشفا.",
+          "transliteration": "etfaddaloo, bel-hana wesh-shifa.",
+          "english": "Here you go, enjoy your meal."
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "الله يعافيك.",
+          "transliteration": "allaah ye3aafeek.",
+          "english": "May God give you health."
+        },
+        {
+          "speaker": "Hany",
+          "arabic": "الحساب لو سمحت.",
+          "transliteration": "el-7esaab law samaht.",
+          "english": "The bill, please."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "الحساب مية جنيه.",
+          "transliteration": "el-7esaab meyyet geneeh.",
+          "english": "The bill is one hundred pounds."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بتحب تاكل إيه؟",
+            "transliteration": "bet7ebb taakol eih?",
+            "english": "What do you like to eat?"
+          },
+          "response": {
+            "arabic": "بحب الطعمية.",
+            "transliteration": "ba7ebb et-ta3meyya.",
+            "english": "I like falafel."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إنت عطشان؟",
+            "transliteration": "enta 3aTshaan?",
+            "english": "Are you thirsty?"
+          },
+          "response": {
+            "arabic": "أيوه، عايز أشرب مية.",
+            "transliteration": "aywa, 3ayez ashrab mayya.",
+            "english": "Yes, I want to drink water."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تحب تشرب إيه؟",
+            "transliteration": "te7ebb tishrab eih?",
+            "english": "What would you like to drink?"
+          },
+          "response": {
+            "arabic": "شاي لو سمحت.",
+            "transliteration": "shaay law samaht.",
+            "english": "Tea, please."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الحساب كام؟",
+            "transliteration": "el-7esaab kaam?",
+            "english": "How much is the bill?"
+          },
+          "response": {
+            "arabic": "الحساب مية جنيه.",
+            "transliteration": "el-7esaab meyyet geneeh.",
+            "english": "The bill is one hundred pounds."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بالهنا والشفا",
+            "transliteration": "bel-hana wesh-shifa",
+            "english": "Enjoy your meal."
+          },
+          "response": {
+            "arabic": "الله يعافيك.",
+            "transliteration": "allaah ye3aafeek.",
+            "english": "May God give you health."
+          }
+        }
+      ],
+      "culture": "In Egypt, ta3meyya (made from fava beans) is what falafel is called, and it is eaten with fool for breakfast. Diners wish each other بالهنا والشفا, a guest thanks the host with سفرة دايمة (may your table always be full), and friends often argue over who pays the bill.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which phrase do you say to someone while they are eating?",
+          "options": [
+            "بالهنا والشفا",
+            "أهلاً",
+            "مع السلامة",
+            "لو سمحت"
+          ],
+          "answer": "بالهنا والشفا",
+          "accepted": [
+            "بالهنا والشفا",
+            "bel-hana wesh-shifa",
+            "بالهنا والشفا."
+          ],
+          "too_formal": {
+            "item": "بالهناء والشفاء",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "بالهنا والشفا is the spoken shortening; the answer is الله يعافيك."
+        },
+        {
+          "id": "unit-02.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase means \"The bill, please\"?",
+          "options": [
+            "الحساب لو سمحت",
+            "عايز آكل",
+            "بالهنا والشفا",
+            "إزيك"
+          ],
+          "answer": "الحساب لو سمحت",
+          "accepted": [
+            "الحساب لو سمحت",
+            "el-7esaab law samaht",
+            "الحساب لو سمحت."
+          ],
+          "too_formal": {
+            "item": "من فضلك، أريد الفاتورة",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "الحساب is the bill; لو سمحت is \"please\"."
+        },
+        {
+          "id": "unit-02.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عايز _____ مية.\" Meaning: I want to drink water.",
+          "answer": "أشرب",
+          "accepted": [
+            "أشرب",
+            "اشرب",
+            "ashrab"
+          ],
+          "too_formal": {
+            "item": "أرغب في أن أشرب",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "After عايز the verb stays in its plain present form."
+        },
+        {
+          "id": "unit-02.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أنا _____ قوي.\" Meaning: I am very hungry (male speaker).",
+          "answer": "جعان",
+          "accepted": [
+            "جعان",
+            "ga3aan",
+            "جعان قوي"
+          ],
+          "too_formal": {
+            "item": "أشعر بالجوع",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "جعان for a man, جعانة for a woman."
+        },
+        {
+          "id": "unit-02.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"بتحب تاكل إيه؟\" Say you like falafel.",
+          "answer": "بحب الطعمية",
+          "accepted": [
+            "بحب الطعمية",
+            "بحب الطعميه",
+            "ba7ebb et-ta3meyya",
+            "بحب الفلافل"
+          ],
+          "too_formal": {
+            "item": "أفضل الفلافل",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "In Egypt falafel is called طعمية; بحب is \"I like\"."
+        },
+        {
+          "id": "unit-02.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "The waiter says \"بالهنا والشفا\". Reply.",
+          "answer": "الله يعافيك",
+          "accepted": [
+            "الله يعافيك",
+            "تسلم",
+            "الله يسلمك",
+            "allaah ye3aafeek"
+          ],
+          "too_formal": {
+            "item": "شكراً جزيلاً",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "The fixed reply is الله يعافيك."
+        },
+        {
+          "id": "unit-02.lesson-02.reply.03",
+          "type": "reply",
+          "prompt": "You want to ask the waiter for the bill. Say it.",
+          "answer": "الحساب لو سمحت",
+          "accepted": [
+            "الحساب لو سمحت",
+            "عايز الحساب لو سمحت",
+            "الحساب من فضلك",
+            "el-7esaab law samaht"
+          ],
+          "too_formal": {
+            "item": "أريد الفاتورة من فضلك",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "لو سمحت is the everyday \"please\"."
+        },
+        {
+          "id": "unit-02.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Egyptian Arabic: \"I am hungry.\" (female speaker)",
+          "answer": "أنا جعانة",
+          "accepted": [
+            "أنا جعانة",
+            "جعانة",
+            "ana ga3aana",
+            "ga3aana"
+          ],
+          "too_formal": {
+            "item": "أشعر بالجوع",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "Add ة to جعان for a woman."
+        },
+        {
+          "id": "unit-02.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Egyptian Arabic: \"I want to eat.\" (male speaker)",
+          "answer": "عايز آكل",
+          "accepted": [
+            "عايز آكل",
+            "عايز اكل",
+            "عاوز آكل",
+            "عاوز اكل",
+            "3ayez aakol"
+          ],
+          "too_formal": {
+            "item": "أريد أن آكل",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "عايز and عاوز are both common; a woman says عايزة."
+        },
+        {
+          "id": "unit-02.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Egyptian Arabic: \"How much is the bill?\"",
+          "answer": "الحساب كام؟",
+          "accepted": [
+            "الحساب كام؟",
+            "الحساب كام",
+            "el-7esaab kaam"
+          ],
+          "too_formal": {
+            "item": "كم الفاتورة؟",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "كام is \"how much\" and \"how many\"."
+        },
+        {
+          "id": "unit-02.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"إيه / تاكل / بتحب؟\"",
+          "answer": "بتحب تاكل إيه؟",
+          "accepted": [
+            "بتحب تاكل إيه؟",
+            "بتحب تاكل ايه",
+            "bet7ebb taakol eih"
+          ],
+          "too_formal": {
+            "item": "ماذا تحب أن تأكل؟",
+            "feedback": "This is formal Arabic (or a bookish word); everyday Cairene speech says it differently."
+          },
+          "tip": "In Cairene speech إيه often comes at the end."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Meeting Family Over a Meal",
+    "instructions": "Write and say a short Egyptian conversation of at least 10 lines. It must ask about someone's family, name at least one relative, say you are hungry or thirsty, order food or a drink, use the fixed exchange بالهنا والشفا / الله يعافيك, and ask for the bill. Use at least 8 target phrases from Unit 2 and address both a man and a woman.",
+    "required_elements": [
+      "A question about family using كام فرد في عيلتك؟ or عندك إخوات؟",
+      "A relative named with أمي, أبويا, أخويا, أختي, جوزي, مراتي, ابني or بنتي.",
+      "A statement of hunger or thirst using جعان, جعانة or عطشان.",
+      "An order using عايز آكل or عايز أشرب.",
+      "The fixed exchange بالهنا والشفا / الله يعافيك.",
+      "A request for the bill using الحساب لو سمحت or الحساب كام؟",
+      "Both a masculine form (إنت متجوز؟) and a feminine form (إنتي متجوزة؟)."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Sameh",
+          "arabic": "إزيك يا دينا؟",
+          "transliteration": "ezzayyek ya Dina?",
+          "english": "How are you, Dina?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "الحمد لله، إزيك يا سامح؟",
+          "transliteration": "el-7amdu lillah, ezzayyak ya Sameh?",
+          "english": "Thank God, how are you, Sameh?"
+        },
+        {
+          "speaker": "Sameh",
+          "arabic": "تمام. إنتي متجوزة؟",
+          "transliteration": "tamaam. enti metgawwza?",
+          "english": "Fine. Are you married?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "أيوه، وعندي بنت. وإنت متجوز؟",
+          "transliteration": "aywa, we 3andi bint. we enta metgawwez?",
+          "english": "Yes, and I have a daughter. And you, are you married?"
+        },
+        {
+          "speaker": "Sameh",
+          "arabic": "لا، لسه أعزب. كام فرد في عيلتك؟",
+          "transliteration": "la2, lissa a3zab. kaam fard fi 3eltak?",
+          "english": "No, still single. How many are in your family?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "إحنا خمسة. أنا جعانة، إنت جعان؟",
+          "transliteration": "e7na khamsa. ana ga3aana, enta ga3aan?",
+          "english": "We are five. I'm hungry, are you?"
+        },
+        {
+          "speaker": "Sameh",
+          "arabic": "أيوه، عايز آكل طعمية وأشرب شاي.",
+          "transliteration": "aywa, 3ayez aakol ta3meyya we ashrab shaay.",
+          "english": "Yes, I want to eat falafel and drink tea."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "وأنا عايزة قهوة.",
+          "transliteration": "we ana 3ayza 2ahwa.",
+          "english": "And I want coffee."
+        },
+        {
+          "speaker": "Sameh",
+          "arabic": "بالهنا والشفا.",
+          "transliteration": "bel-hana wesh-shifa.",
+          "english": "Enjoy your meal."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "الله يعافيك.",
+          "transliteration": "allaah ye3aafeek.",
+          "english": "May God give you health."
+        },
+        {
+          "speaker": "Sameh",
+          "arabic": "الحساب لو سمحت.",
+          "transliteration": "el-7esaab law samaht.",
+          "english": "The bill, please."
+        }
+      ]
+    }
+  }
+}

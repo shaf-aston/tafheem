@@ -1,0 +1,1795 @@
+{
+  "unit": "unit-09",
+  "dialect": "Egyptian Arabic",
+  "transliteration_key": {
+    "T": "ط",
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "g": "ج (في مصر تُنطق g مثل gate)",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء / ق (في مصر القاف همزة)",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "S": "ص",
+    "D": "ض",
+    "Z": "ظ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "how-are-you-today-to-a-man",
+          "arabic": "عامل إيه النهارده؟",
+          "transliteration": "3aamel eh en-nahaarda?",
+          "reply": {
+            "arabic": "مش أحسن حاجة النهارده",
+            "transliteration": "mish a7san 7aaga en-nahaarda",
+            "english": "Not too good today"
+          }
+        },
+        {
+          "slot": "how-are-you-today-to-a-woman",
+          "arabic": "عاملة إيه النهارده؟",
+          "transliteration": "3amla eh en-nahaarda?",
+          "reply": {
+            "arabic": "الحمد لله، كويسة",
+            "transliteration": "el-7amdu lillah, kwayyesa",
+            "english": "Thank God, I'm fine"
+          }
+        },
+        {
+          "slot": "what-happened-to-you-to-a-man",
+          "arabic": "مالك؟",
+          "transliteration": "maalak?",
+          "reply": {
+            "arabic": "مش عارف، حاسس إني تعبان شوية",
+            "transliteration": "mish 3aaref, 7aases enni ta3baan shwayya",
+            "english": "I don't know, I feel a bit tired"
+          }
+        },
+        {
+          "slot": "i-feel-tired-a-man-speaking",
+          "arabic": "أنا تعبان",
+          "transliteration": "ana ta3baan"
+        },
+        {
+          "slot": "i-feel-tired-a-woman-speaking",
+          "arabic": "أنا تعبانة",
+          "transliteration": "ana ta3baana"
+        },
+        {
+          "slot": "i-have-a-headache",
+          "arabic": "عندي صداع",
+          "transliteration": "3andi soda3"
+        },
+        {
+          "slot": "my-stomach-hurts",
+          "arabic": "بطني بتوجعني",
+          "transliteration": "baTni betwaga3ni"
+        },
+        {
+          "slot": "i-have-a-fever",
+          "arabic": "عندي سخونية",
+          "transliteration": "3andi sokhoneyya"
+        },
+        {
+          "slot": "i-feel-dizzy-a-man-speaking",
+          "arabic": "أنا دايخ",
+          "transliteration": "ana daayekh"
+        },
+        {
+          "slot": "i-can-t-sleep-well",
+          "arabic": "مش عارف أنام كويس",
+          "transliteration": "mish 3aaref anaam kwayyes"
+        },
+        {
+          "slot": "looks-like-you-have-a-cold-to-a-man",
+          "arabic": "شكلك واخد برد",
+          "transliteration": "shaklak waakhed bard"
+        },
+        {
+          "slot": "take-some-rest-to-a-man",
+          "arabic": "ارتاح شوية",
+          "transliteration": "ertaa7 shwayya"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Raami",
+          "arabic": "أهلاً يا سامر، عامل إيه النهارده؟",
+          "transliteration": "ahlan ya Saamer, 3aamel eh en-nahaarda?",
+          "english": "Hi Samer, how are you today?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "أهلاً يا رامي، مش أحسن حاجة",
+          "transliteration": "ahlan ya Raami, mish a7san 7aaga",
+          "english": "Hi Rami, not great"
+        },
+        {
+          "speaker": "Raami",
+          "arabic": "مالك؟ حصلك إيه؟",
+          "transliteration": "maalak? 7aSalak eh?",
+          "english": "What's wrong? What happened to you?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "عندي صداع من الصبح",
+          "transliteration": "3andi soda3 men es-sob7",
+          "english": "I've had a headache since morning"
+        },
+        {
+          "speaker": "Raami",
+          "arabic": "وعندك سخونية كمان؟",
+          "transliteration": "w 3andak sokhoneyya kamaan?",
+          "english": "Do you have a fever too?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "معرفش، بس أنا تعبان وشوية دايخ",
+          "transliteration": "ma3rafsh, bas ana ta3baan w shwayya daayekh",
+          "english": "I don't know, but I'm tired and a bit dizzy"
+        },
+        {
+          "speaker": "Raami",
+          "arabic": "شكلك واخد برد",
+          "transliteration": "shaklak waakhed bard",
+          "english": "Looks like you have a cold"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "يمكن، ومش عارف أنام كويس بالليل",
+          "transliteration": "yemken, w mish 3aaref anaam kwayyes bel-leil",
+          "english": "Maybe, and I can't sleep well at night"
+        },
+        {
+          "speaker": "Raami",
+          "arabic": "ارتاح النهارده وماتروحش الشغل",
+          "transliteration": "ertaa7 en-nahaarda w matroo7sh esh-shoghl",
+          "english": "Take a rest today and don't go to work"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "ماشي، هرتاح شوية وأشوف هبقى كويس ولا لأ",
+          "transliteration": "maashi, harta7 shwayya w ashoof hab2a kwayyes wella la2",
+          "english": "OK, I'll rest a bit and see if I get better"
+        },
+        {
+          "speaker": "Raami",
+          "arabic": "ألف سلامة عليك",
+          "transliteration": "alf salaama 3aleik",
+          "english": "Get well soon"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "الله يسلمك يا رامي",
+          "transliteration": "allah yesallemak ya Raami",
+          "english": "God keep you well, Rami"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عامل إيه النهارده؟",
+            "transliteration": "3aamel eh en-nahaarda?",
+            "english": "How are you today?"
+          },
+          "response": {
+            "arabic": "تعبان شوية، الحمد لله",
+            "transliteration": "ta3baan shwayya, el-7amdu lillah",
+            "english": "A bit tired, thank God"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مالك؟",
+            "transliteration": "maalak?",
+            "english": "What's wrong?"
+          },
+          "response": {
+            "arabic": "عندي صداع",
+            "transliteration": "3andi soda3",
+            "english": "I have a headache"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك سخونية؟",
+            "transliteration": "3andak sokhoneyya?",
+            "english": "Do you have a fever?"
+          },
+          "response": {
+            "arabic": "آه، من إمبارح",
+            "transliteration": "aah, men embaare7",
+            "english": "Yes, since yesterday"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شكلك واخد برد",
+            "transliteration": "shaklak waakhed bard",
+            "english": "Looks like you have a cold"
+          },
+          "response": {
+            "arabic": "أيوه، وعندي كحة كمان",
+            "transliteration": "aywa, w 3andi ko77a kamaan",
+            "english": "Yes, and I have a cough too"
+          }
+        }
+      ],
+      "culture": "In Egypt people answer 'how are you' with el-7amdu lillah even when unwell, and only then name the complaint. To someone who is ill you say alf salaama (a thousand wellbeing), and they answer Allah yesallemak.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"My stomach hurts\"?",
+          "answer": "بطني بتوجعني",
+          "accepted": [
+            "بطني بتوجعني",
+            "بطني واجعاني",
+            "baTni betwaga3ni",
+            "baTni waag3aani"
+          ],
+          "options": [
+            "بطني بتوجعني",
+            "راسي بتوجعني",
+            "عندي سخونية",
+            "أنا دايخ"
+          ],
+          "too_formal": {
+            "item": "تؤلمني معدتي",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "بتوجعني means \"hurts me\"; بطن (stomach) is treated as feminine here."
+        },
+        {
+          "id": "unit-09.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "A woman wants to say \"I feel tired\". Which does she say?",
+          "answer": "أنا تعبانة",
+          "accepted": [
+            "أنا تعبانة",
+            "تعبانة",
+            "ana ta3baana",
+            "ta3baana"
+          ],
+          "options": [
+            "أنا تعبانة",
+            "أنا تعبان",
+            "أنا دايخ",
+            "عندي صداع"
+          ],
+          "too_formal": {
+            "item": "أشعر بالتعب",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "A woman adds the ending -ة: تعبانة."
+        },
+        {
+          "id": "unit-09.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"كويس / أنام / عارف / مش\".",
+          "answer": "مش عارف أنام كويس",
+          "accepted": [
+            "مش عارف أنام كويس",
+            "مش قادر أنام كويس",
+            "mish 3aaref anaam kwayyes"
+          ],
+          "words": [
+            "كويس",
+            "أنام",
+            "عارف",
+            "مش"
+          ],
+          "too_formal": {
+            "item": "لا أستطيع النوم جيداً",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "مش comes first, and عارف takes the second verb straight after it."
+        },
+        {
+          "id": "unit-09.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"برد / واخد / شكلك\".",
+          "answer": "شكلك واخد برد",
+          "accepted": [
+            "شكلك واخد برد",
+            "shaklak waakhed bard",
+            "شكلك واخد دور برد"
+          ],
+          "words": [
+            "برد",
+            "واخد",
+            "شكلك"
+          ],
+          "too_formal": {
+            "item": "يبدو أنك أصبت بالبرد",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "شكلك means \"you look like\"; واخد is \"taken\"."
+        },
+        {
+          "id": "unit-09.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عندي _____ من الصبح.\" English meaning: I've had a headache since morning.",
+          "answer": "صداع",
+          "accepted": [
+            "صداع",
+            "soda3",
+            "sodaa3",
+            "صُداع"
+          ],
+          "too_formal": {
+            "item": "ألم في الرأس",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "صداع is the plain word for headache."
+        },
+        {
+          "id": "unit-09.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"شكلك واخد _____.\" English meaning: Looks like you have a cold.",
+          "answer": "برد",
+          "accepted": [
+            "برد",
+            "bard",
+            "دور برد",
+            "dawr bard"
+          ],
+          "too_formal": {
+            "item": "زكام",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "واخد برد or واخد دور برد are both said."
+        },
+        {
+          "id": "unit-09.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you \"عامل إيه النهارده؟\" and you feel bad. Reply naturally.",
+          "answer": "مش أحسن حاجة",
+          "accepted": [
+            "مش أحسن حاجة",
+            "تعبان شوية",
+            "مش كويس",
+            "mish a7san 7aaga",
+            "ta3baan shwayya"
+          ],
+          "too_formal": {
+            "item": "لست بخير اليوم",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "مش أحسن حاجة is a soft, everyday way to say you're not well."
+        },
+        {
+          "id": "unit-09.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "A friend says to you: \"ألف سلامة عليك\". Reply.",
+          "answer": "الله يسلمك",
+          "accepted": [
+            "الله يسلمك",
+            "الله يسلمك يا حبيبي",
+            "allah yesallemak",
+            "allah yesallemak ya 7abeebi"
+          ],
+          "too_formal": {
+            "item": "شكراً جزيلاً على اهتمامك",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "The set answer to a get-well wish is الله يسلمك."
+        },
+        {
+          "id": "unit-09.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian Arabic: \"I have a fever.\"",
+          "answer": "عندي سخونية",
+          "accepted": [
+            "عندي سخونية",
+            "عندي حرارة",
+            "3andi sokhoneyya",
+            "3andi 7araara"
+          ],
+          "too_formal": {
+            "item": "أعاني من ارتفاع في درجة الحرارة",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "سخونية is the everyday word for fever."
+        },
+        {
+          "id": "unit-09.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian Arabic: \"I feel dizzy.\" (a man speaking)",
+          "answer": "أنا دايخ",
+          "accepted": [
+            "أنا دايخ",
+            "دايخ",
+            "ana daayekh",
+            "daayekh"
+          ],
+          "too_formal": {
+            "item": "أشعر بالدوار",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "دايخ is used for feeling dizzy; a woman says دايخة."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "do-you-have-medicine-for-a-headache",
+          "arabic": "عندك دوا للصداع؟",
+          "transliteration": "3andak dawa lis-soda3?",
+          "reply": {
+            "arabic": "أيوه، خد الحباية دي",
+            "transliteration": "aywa, khod el-7abbaaya di",
+            "english": "Yes, take this pill"
+          }
+        },
+        {
+          "slot": "i-want-pills-for-the-fever",
+          "arabic": "عايز حبوب للسخونية",
+          "transliteration": "3aayez 7oboob lis-sokhoneyya",
+          "reply": {
+            "arabic": "اتفضل، دي بتنزل السخونية",
+            "transliteration": "ettafaddal, di betnazzel es-sokhoneyya",
+            "english": "Here you go, this one brings the fever down"
+          }
+        },
+        {
+          "slot": "do-you-have-cough-syrup",
+          "arabic": "عندك شراب للكحة؟",
+          "transliteration": "3andak sharaab lel-ko77a?",
+          "reply": {
+            "arabic": "أيوه، الكحة ناشفة ولا فيها بلغم؟",
+            "transliteration": "aywa, el-ko77a nashfa wella feeha balgham?",
+            "english": "Yes, is the cough dry or does it have phlegm?"
+          }
+        },
+        {
+          "slot": "how-much-does-this-medicine-cost",
+          "arabic": "الدوا ده بكام؟",
+          "transliteration": "ed-dawa da bekaam?",
+          "reply": {
+            "arabic": "بتمانين جنيه",
+            "transliteration": "bitamaneen gineeh",
+            "english": "80 pounds"
+          }
+        },
+        {
+          "slot": "do-i-need-a-prescription",
+          "arabic": "لازم روشتة؟",
+          "transliteration": "laazem roshetta?",
+          "reply": {
+            "arabic": "لأ، مش لازم",
+            "transliteration": "la2, mish laazem",
+            "english": "No, you don't need one"
+          }
+        },
+        {
+          "slot": "take-it-twice-a-day-to-a-man",
+          "arabic": "خده مرتين في اليوم",
+          "transliteration": "khodo marrateen fil-yoom",
+          "reply": {
+            "arabic": "حاضر، شكراً",
+            "transliteration": "7aader, shokran",
+            "english": "Okay, thank you"
+          }
+        },
+        {
+          "slot": "before-eating-or-after",
+          "arabic": "قبل الأكل ولا بعده؟",
+          "transliteration": "2abl el-akl wella ba3do?",
+          "reply": {
+            "arabic": "بعد الأكل",
+            "transliteration": "ba3d el-akl",
+            "english": "After eating"
+          }
+        },
+        {
+          "slot": "i-want-something-for-allergies",
+          "arabic": "عايز حاجة للحساسية",
+          "transliteration": "3aayez 7aaga lel-7asaseyya",
+          "reply": {
+            "arabic": "عندك حساسية من إيه؟",
+            "transliteration": "3andak 7asaseyya men eh?",
+            "english": "What are you allergic to?"
+          }
+        },
+        {
+          "slot": "do-you-have-band-aids",
+          "arabic": "عندك بلاستر؟",
+          "transliteration": "3andak blaster?",
+          "reply": {
+            "arabic": "أيوه، كام واحد؟",
+            "transliteration": "aywa, kaam waa7ed?",
+            "english": "Yes, how many?"
+          }
+        },
+        {
+          "slot": "this-medicine-makes-you-a-bit-sleepy",
+          "arabic": "الدوا ده بيجيب نعاس شوية",
+          "transliteration": "ed-dawa da beygeeb na3aas shwayya",
+          "reply": {
+            "arabic": "طب، مش هسوق النهارده",
+            "transliteration": "Tab, mish hasoo2 en-nahaarda",
+            "english": "OK, I won't drive today"
+          }
+        },
+        {
+          "slot": "do-you-have-something-for-the-stomach",
+          "arabic": "عندك حاجة للمعدة؟",
+          "transliteration": "3andak 7aaga lel-me3da?",
+          "reply": {
+            "arabic": "خد الحباية دي بعد الأكل",
+            "transliteration": "khod el-7abbaaya di ba3d el-akl",
+            "english": "Take this pill after eating"
+          }
+        },
+        {
+          "slot": "get-well-soon-goodnight-to-a-man",
+          "arabic": "ألف سلامة، تصبح على خير",
+          "transliteration": "alf salaama, teSba7 3ala kheir",
+          "reply": {
+            "arabic": "وأنت من أهله",
+            "transliteration": "w enta men ahlo",
+            "english": "And you, (may you be of its people)"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Saamer",
+          "arabic": "صباح الخير، عندك دوا للصداع؟",
+          "transliteration": "Sabaa7 el-kheir, 3andak dawa lis-soda3?",
+          "english": "Good morning, do you have medicine for a headache?"
+        },
+        {
+          "speaker": "Haani",
+          "arabic": "صباح النور، أيوه، عندك سخونية كمان؟",
+          "transliteration": "Sabaa7 en-noor, aywa, 3andak sokhoneyya kamaan?",
+          "english": "Good morning, yes, do you have a fever too?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "أيوه، وعايز حبوب للسخونية",
+          "transliteration": "aywa, w 3aayez 7oboob lis-sokhoneyya",
+          "english": "Yes, and I want pills for the fever"
+        },
+        {
+          "speaker": "Haani",
+          "arabic": "اتفضل، دي بتنزل السخونية والصداع",
+          "transliteration": "ettafaddal, di betnazzel es-sokhoneyya wes-soda3",
+          "english": "Here you go, this brings down the fever and the headache"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "الدوا ده بكام؟",
+          "transliteration": "ed-dawa da bekaam?",
+          "english": "How much is this medicine?"
+        },
+        {
+          "speaker": "Haani",
+          "arabic": "بتمانين جنيه",
+          "transliteration": "bitamaneen gineeh",
+          "english": "80 pounds"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "لازم روشتة؟",
+          "transliteration": "laazem roshetta?",
+          "english": "Do I need a prescription?"
+        },
+        {
+          "speaker": "Haani",
+          "arabic": "لأ، مش لازم",
+          "transliteration": "la2, mish laazem",
+          "english": "No, you don't"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "آخده قبل الأكل ولا بعده؟",
+          "transliteration": "aakhdo 2abl el-akl wella ba3do?",
+          "english": "Do I take it before eating or after?"
+        },
+        {
+          "speaker": "Haani",
+          "arabic": "بعد الأكل، مرتين في اليوم",
+          "transliteration": "ba3d el-akl, marrateen fil-yoom",
+          "english": "After eating, twice a day"
+        },
+        {
+          "speaker": "Haani",
+          "arabic": "وخد بالك، الدوا ده بيجيب نعاس شوية",
+          "transliteration": "w khod baalak, ed-dawa da beygeeb na3aas shwayya",
+          "english": "And be careful, this medicine makes you a bit sleepy"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "تمام، شكراً. عندك بلاستر كمان؟",
+          "transliteration": "tamaam, shokran. 3andak blaster kamaan?",
+          "english": "OK, thanks. Do you have band-aids too?"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عندك دوا للصداع؟",
+            "transliteration": "3andak dawa lis-soda3?",
+            "english": "Do you have medicine for a headache?"
+          },
+          "response": {
+            "arabic": "أيوه، اتفضل",
+            "transliteration": "aywa, ettafaddal",
+            "english": "Yes, here you go"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الدوا ده بكام؟",
+            "transliteration": "ed-dawa da bekaam?",
+            "english": "How much is this medicine?"
+          },
+          "response": {
+            "arabic": "بتمانين جنيه",
+            "transliteration": "bitamaneen gineeh",
+            "english": "80 pounds"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لازم روشتة؟",
+            "transliteration": "laazem roshetta?",
+            "english": "Do I need a prescription?"
+          },
+          "response": {
+            "arabic": "لأ، مش لازم",
+            "transliteration": "la2, mish laazem",
+            "english": "No, you don't"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قبل الأكل ولا بعده؟",
+            "transliteration": "2abl el-akl wella ba3do?",
+            "english": "Before eating or after?"
+          },
+          "response": {
+            "arabic": "بعد الأكل",
+            "transliteration": "ba3d el-akl",
+            "english": "After eating"
+          }
+        }
+      ],
+      "culture": "In Egypt the pharmacy (es-Saydaleyya) is often the first stop for a small complaint, and many medicines are sold without a prescription, which people call roshetta. The pharmacist usually adds salaamtak when handing you the medicine.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Do you have cough syrup?\"",
+          "answer": "عندك شراب للكحة؟",
+          "accepted": [
+            "عندك شراب للكحة؟",
+            "عندك شراب كحة؟",
+            "3andak sharaab lel-ko77a",
+            "3andak sharaab ko77a"
+          ],
+          "options": [
+            "عندك شراب للكحة؟",
+            "عندك دوا للصداع؟",
+            "الدوا ده بكام؟",
+            "لازم روشتة؟"
+          ],
+          "too_formal": {
+            "item": "هل لديك شراب للسعال؟",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "كحة is a cough; للـ means \"for the\"."
+        },
+        {
+          "id": "unit-09.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "What does the pharmacist say for \"Take it twice a day\"? (to a man)",
+          "answer": "خده مرتين في اليوم",
+          "accepted": [
+            "خده مرتين في اليوم",
+            "خده مرتين باليوم",
+            "khodo marrateen fil-yoom",
+            "khodo marrateen bil-yoom"
+          ],
+          "options": [
+            "خده مرتين في اليوم",
+            "خده قبل الأكل",
+            "الدوا ده بكام؟",
+            "عندك بلاستر؟"
+          ],
+          "too_formal": {
+            "item": "تناوله مرتين يومياً",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "خد is the command \"take\"; the -ه ending is \"it\"."
+        },
+        {
+          "id": "unit-09.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"بكام / ده / الدوا\".",
+          "answer": "الدوا ده بكام؟",
+          "accepted": [
+            "الدوا ده بكام",
+            "الدوا ده بكام؟",
+            "ed-dawa da bekaam",
+            "الدواء ده بكام"
+          ],
+          "words": [
+            "بكام",
+            "ده",
+            "الدوا"
+          ],
+          "too_formal": {
+            "item": "كم سعر هذا الدواء؟",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "The thing asked about comes first, then بكام at the end."
+        },
+        {
+          "id": "unit-09.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these segments in order: \"بعده؟ / ولا / قبل الأكل\".",
+          "answer": "قبل الأكل ولا بعده؟",
+          "accepted": [
+            "قبل الأكل ولا بعده؟",
+            "قبل الأكل ولا بعده",
+            "قبل الاكل ولا بعده",
+            "2abl el-akl wella ba3do",
+            "abl el-akl wella ba3do"
+          ],
+          "words": [
+            "بعده؟",
+            "ولا",
+            "قبل الأكل"
+          ],
+          "too_formal": {
+            "item": "قبل الطعام أم بعده؟",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "ولا (not أو) joins the two choices in a question."
+        },
+        {
+          "id": "unit-09.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عايز _____ للسخونية.\" English meaning: I want pills for the fever.",
+          "answer": "حبوب",
+          "accepted": [
+            "حبوب",
+            "حباية",
+            "7oboob",
+            "7abbaaya"
+          ],
+          "too_formal": {
+            "item": "أقراص",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "حباية is one pill, حبوب is pills."
+        },
+        {
+          "id": "unit-09.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"لازم _____؟\" English meaning: Do I need a prescription?",
+          "answer": "روشتة",
+          "accepted": [
+            "روشتة",
+            "رشتة",
+            "roshetta",
+            "rosheta"
+          ],
+          "too_formal": {
+            "item": "وصفة طبية",
+            "feedback": "Understood, but at the pharmacy people say روشتة, not the written word."
+          },
+          "tip": "In Egypt a prescription is روشتة."
+        },
+        {
+          "id": "unit-09.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "The pharmacist says: \"الدوا ده بيجيب نعاس شوية\". Reply.",
+          "answer": "تمام، شكراً",
+          "accepted": [
+            "تمام، شكراً",
+            "تمام شكراً",
+            "حاضر",
+            "tamaam shokran",
+            "7aader"
+          ],
+          "too_formal": {
+            "item": "حسناً، أشكرك على التنبيه",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "تمام and حاضر are the quick everyday acknowledgements."
+        },
+        {
+          "id": "unit-09.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "The pharmacist says: \"ألف سلامة، تصبح على خير\". Reply.",
+          "answer": "وأنت من أهله",
+          "accepted": [
+            "وأنت من أهله",
+            "وانت من اهله",
+            "w enta men ahlo",
+            "we enta men ahlo",
+            "وإنت من أهل الخير",
+            "الله يسلمك",
+            "allah yesallemak"
+          ],
+          "too_formal": {
+            "item": "وأنت بخير",
+            "feedback": "A polite wish, but not the set reply to تصبح على خير."
+          },
+          "tip": "The reply to تصبح على خير is وإنت من أهله or وإنت من أهل الخير; الله يسلمك answers ألف سلامة."
+        },
+        {
+          "id": "unit-09.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian Arabic: \"Do you have band-aids?\"",
+          "answer": "عندك بلاستر؟",
+          "accepted": [
+            "عندك بلاستر",
+            "عندك بلاستر؟",
+            "3andak blaster",
+            "3andak plaster"
+          ],
+          "too_formal": {
+            "item": "هل لديك ضمادات لاصقة؟",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "بلاستر is the everyday word for a band-aid."
+        },
+        {
+          "id": "unit-09.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian Arabic: \"I want something for allergies.\"",
+          "answer": "عايز حاجة للحساسية",
+          "accepted": [
+            "عايز حاجة للحساسية",
+            "عايز حاجة للحساسيه",
+            "3aayez 7aaga lel-7asaseyya",
+            "3ayez 7aaga lel-7asaseyya"
+          ],
+          "too_formal": {
+            "item": "أريد دواءً للحساسية",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "حاجة (\"something\") keeps the request simple."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "i-have-an-appointment-with-the-doctor",
+          "arabic": "عندي ميعاد مع الدكتور",
+          "transliteration": "3andi mee3aad ma3 ed-doktoor",
+          "reply": {
+            "arabic": "اتفضل، الدكتور جوه",
+            "transliteration": "ettafaddal, ed-doktoor gowwa",
+            "english": "Go ahead, the doctor is inside"
+          }
+        },
+        {
+          "slot": "what-hurts-you-doctor-asking-a-man",
+          "arabic": "إيه اللي بيوجعك؟",
+          "transliteration": "eh elli biywga3ak?",
+          "reply": {
+            "arabic": "بطني بتوجعني من إمبارح",
+            "transliteration": "baTni betwaga3ni men embaare7",
+            "english": "My stomach has hurt since yesterday"
+          }
+        },
+        {
+          "slot": "since-when-have-you-been-feeling-like-this-to-a-",
+          "arabic": "من إمتى وأنت حاسس كده؟",
+          "transliteration": "men emta w enta 7aases keda?",
+          "reply": {
+            "arabic": "من تلات أيام",
+            "transliteration": "men talat ayyaam",
+            "english": "For three days"
+          }
+        },
+        {
+          "slot": "you-need-to-do-some-tests",
+          "arabic": "محتاج تعمل شوية تحاليل",
+          "transliteration": "ma7taag ta3mel shwayyet ta7aleel",
+          "reply": {
+            "arabic": "حاضر، أعملها فين؟",
+            "transliteration": "7aader, a3melha feen?",
+            "english": "Okay, where do I do them?"
+          }
+        },
+        {
+          "slot": "take-a-deep-breath-to-a-man",
+          "arabic": "خد نفس عميق",
+          "transliteration": "khod nafas 3ameeq",
+          "reply": {
+            "arabic": "كده؟",
+            "transliteration": "keda?",
+            "english": "Like this?"
+          }
+        },
+        {
+          "slot": "are-you-allergic-to-any-medicine-to-a-man",
+          "arabic": "عندك حساسية من أي دوا؟",
+          "transliteration": "3andak 7asaseyya men ay dawa?",
+          "reply": {
+            "arabic": "لأ، ولا حاجة",
+            "transliteration": "la2, wala 7aaga",
+            "english": "No, nothing"
+          }
+        },
+        {
+          "slot": "you-need-to-rest-for-a-few-days-to-a-man",
+          "arabic": "لازم ترتاح كام يوم",
+          "transliteration": "laazem terta7 kaam yoom",
+          "reply": {
+            "arabic": "حاضر يا دكتور",
+            "transliteration": "7aader ya doktoor",
+            "english": "Okay, doctor"
+          }
+        },
+        {
+          "slot": "i-ll-write-you-a-prescription-to-a-man",
+          "arabic": "هكتبلك روشتة",
+          "transliteration": "haktiblak roshetta",
+          "reply": {
+            "arabic": "متشكر يا دكتور",
+            "transliteration": "metshakker ya doktoor",
+            "english": "Thank you, doctor"
+          }
+        },
+        {
+          "slot": "your-blood-pressure-is-a-bit-high-to-a-man",
+          "arabic": "الضغط عندك عالي شوية",
+          "transliteration": "ed-daghT 3andak 3aali shwayya",
+          "reply": {
+            "arabic": "عالي؟ أعمل إيه؟",
+            "transliteration": "3aali? a3mel eh?",
+            "english": "High? What should I do?"
+          }
+        },
+        {
+          "slot": "it-s-nothing-serious",
+          "arabic": "مفيش حاجة خطيرة",
+          "transliteration": "mafeesh 7aaga khaTeera",
+          "reply": {
+            "arabic": "الحمد لله",
+            "transliteration": "el-7amdu lillah",
+            "english": "Thank God"
+          }
+        },
+        {
+          "slot": "you-need-to-come-back-after-a-week-to-a-man",
+          "arabic": "لازم تيجي تاني بعد أسبوع",
+          "transliteration": "laazem teegi taani ba3d esboo3",
+          "reply": {
+            "arabic": "إن شاء الله",
+            "transliteration": "en shaa2 allah",
+            "english": "God willing"
+          }
+        },
+        {
+          "slot": "get-well-soon-take-it-easy-to-a-man",
+          "arabic": "ألف سلامة عليك، ريّح نفسك",
+          "transliteration": "alf salaama 3aleik, rayya7 nafsak",
+          "reply": {
+            "arabic": "الله يسلمك يا دكتور",
+            "transliteration": "allah yesallemak ya doktoor",
+            "english": "God keep you, doctor"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Saamer",
+          "arabic": "صباح الخير يا دكتور، عندي ميعاد",
+          "transliteration": "Sabaa7 el-kheir ya doktoor, 3andi mee3aad",
+          "english": "Good morning doctor, I have an appointment"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "صباح النور، اتفضل اقعد. إيه اللي بيوجعك؟",
+          "transliteration": "Sabaa7 en-noor, ettafaddal o2-3od. eh elli biywga3ak?",
+          "english": "Good morning, please sit. What hurts you?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "بطني بتوجعني من إمبارح",
+          "transliteration": "baTni betwaga3ni men embaare7",
+          "english": "My stomach has hurt since yesterday"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "ومن إمتى وأنت حاسس كده؟",
+          "transliteration": "w men emta w enta 7aases keda?",
+          "english": "And since when have you felt like this?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "من تلات أيام، وعندي سخونية كمان",
+          "transliteration": "men talat ayyaam, w 3andi sokhoneyya kamaan",
+          "english": "For three days, and I have a fever too"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "خد نفس عميق. عندك حساسية من أي دوا؟",
+          "transliteration": "khod nafas 3ameeq. 3andak 7asaseyya men ay dawa?",
+          "english": "Take a deep breath. Are you allergic to any medicine?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "لأ، ولا حاجة",
+          "transliteration": "la2, wala 7aaga",
+          "english": "No, nothing"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "محتاج تعمل شوية تحاليل، بس مفيش حاجة خطيرة",
+          "transliteration": "ma7taag ta3mel shwayyet ta7aleel, bas mafeesh 7aaga khaTeera",
+          "english": "You need some tests, but it's nothing serious"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "الحمد لله. أعمل التحاليل فين؟",
+          "transliteration": "el-7amdu lillah. a3mel et-ta7aleel feen?",
+          "english": "Thank God. Where do I do the tests?"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "في المعمل اللي تحت. وهكتبلك روشتة، ولازم ترتاح كام يوم",
+          "transliteration": "fil-ma3mal elli ta7t. w haktiblak roshetta, w laazem terta7 kaam yoom",
+          "english": "In the lab downstairs. I'll write you a prescription, and you need to rest a few days"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "حاضر يا دكتور، متشكر",
+          "transliteration": "7aader ya doktoor, metshakker",
+          "english": "Okay doctor, thank you"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "تعالى بعد أسبوع، وألف سلامة عليك",
+          "transliteration": "ta3aala ba3d esboo3, w alf salaama 3aleik",
+          "english": "Come back in a week, and get well soon"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "إيه اللي بيوجعك؟",
+            "transliteration": "eh elli biywga3ak?",
+            "english": "What hurts you?"
+          },
+          "response": {
+            "arabic": "راسي بتوجعني",
+            "transliteration": "raasi betwaga3ni",
+            "english": "My head hurts"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "من إمتى وأنت حاسس كده؟",
+            "transliteration": "men emta w enta 7aases keda?",
+            "english": "Since when have you felt like this?"
+          },
+          "response": {
+            "arabic": "من تلات أيام",
+            "transliteration": "men talat ayyaam",
+            "english": "For three days"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك حساسية من أي دوا؟",
+            "transliteration": "3andak 7asaseyya men ay dawa?",
+            "english": "Are you allergic to any medicine?"
+          },
+          "response": {
+            "arabic": "لأ، ولا حاجة",
+            "transliteration": "la2, wala 7aaga",
+            "english": "No, nothing"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مفيش حاجة خطيرة",
+            "transliteration": "mafeesh 7aaga khaTeera",
+            "english": "It's nothing serious"
+          },
+          "response": {
+            "arabic": "الحمد لله",
+            "transliteration": "el-7amdu lillah",
+            "english": "Thank God"
+          }
+        }
+      ],
+      "culture": "In Egypt patients call the doctor ya doktoor whatever the age, and say alf salaama when leaving. Private clinics work by a booked mee3aad, while public hospitals often work by queue.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "The doctor asks: \"What hurts you?\" Which is it?",
+          "answer": "إيه اللي بيوجعك؟",
+          "accepted": [
+            "إيه اللي بيوجعك؟",
+            "إيه اللي واجعك؟",
+            "eh elli biywga3ak",
+            "eh elli waga3ak"
+          ],
+          "options": [
+            "إيه اللي بيوجعك؟",
+            "من إمتى وأنت حاسس كده؟",
+            "خد نفس عميق",
+            "هكتبلك روشتة"
+          ],
+          "too_formal": {
+            "item": "ما الذي يؤلمك؟",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "إيه اللي is \"what is it that\"."
+        },
+        {
+          "id": "unit-09.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"It's nothing serious\"?",
+          "answer": "مفيش حاجة خطيرة",
+          "accepted": [
+            "مفيش حاجة خطيرة",
+            "مافيش حاجة خطيرة",
+            "mafeesh 7aaga khaTeera",
+            "mafeesh 7aaga"
+          ],
+          "options": [
+            "مفيش حاجة خطيرة",
+            "الضغط عندك عالي شوية",
+            "لازم ترتاح كام يوم",
+            "عندك حساسية من أي دوا؟"
+          ],
+          "too_formal": {
+            "item": "لا يوجد شيء خطير",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "مفيش is the everyday \"there isn't\"."
+        },
+        {
+          "id": "unit-09.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"يوم / كام / ترتاح / لازم\".",
+          "answer": "لازم ترتاح كام يوم",
+          "accepted": [
+            "لازم ترتاح كام يوم",
+            "لازم ترتاح كذا يوم",
+            "laazem terta7 kaam yoom"
+          ],
+          "words": [
+            "يوم",
+            "كام",
+            "ترتاح",
+            "لازم"
+          ],
+          "too_formal": {
+            "item": "عليك أن ترتاح بضعة أيام",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "كام is \"a few\" here, before the noun."
+        },
+        {
+          "id": "unit-09.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"دوا / أي / من / حساسية / عندك\".",
+          "answer": "عندك حساسية من أي دوا؟",
+          "accepted": [
+            "عندك حساسية من أي دوا",
+            "عندك حساسية من أي دوا؟",
+            "3andak 7asaseyya men ay dawa",
+            "عندك حساسية من أي دواء"
+          ],
+          "words": [
+            "دوا",
+            "أي",
+            "من",
+            "حساسية",
+            "عندك"
+          ],
+          "too_formal": {
+            "item": "هل تعاني من حساسية من أي دواء؟",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "Start with عندك, as in \"you have\"."
+        },
+        {
+          "id": "unit-09.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"من إمتى وأنت _____ كده؟\" English meaning: Since when have you felt like this?",
+          "answer": "حاسس",
+          "accepted": [
+            "حاسس",
+            "تعبان",
+            "7aases",
+            "ta3baan"
+          ],
+          "too_formal": {
+            "item": "تشعر",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "حاسس (\"feeling\") is the usual word; a woman says حاسة."
+        },
+        {
+          "id": "unit-09.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الضغط عندك _____ شوية.\" English meaning: Your blood pressure is a bit high.",
+          "answer": "عالي",
+          "accepted": [
+            "عالي",
+            "عالى",
+            "3aali",
+            "3aaly"
+          ],
+          "too_formal": {
+            "item": "مرتفع",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "عالي is \"high\", like the word for \"loud\" and \"tall\"."
+        },
+        {
+          "id": "unit-09.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "The doctor asks: \"عندك حساسية من أي دوا؟\" You have none. Reply.",
+          "answer": "لأ، ولا حاجة",
+          "accepted": [
+            "لأ، ولا حاجة",
+            "لأ ولا حاجة",
+            "لا ولا حاجة",
+            "la2 wala 7aaga"
+          ],
+          "too_formal": {
+            "item": "كلا، لا أعاني من أي حساسية",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "لأ is the everyday \"no\"; ولا حاجة is \"nothing at all\"."
+        },
+        {
+          "id": "unit-09.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "The doctor says: \"تعالى بعد أسبوع\". Reply.",
+          "answer": "إن شاء الله",
+          "accepted": [
+            "إن شاء الله",
+            "ان شاء الله",
+            "en shaa2 allah",
+            "إن شاء الله يا دكتور"
+          ],
+          "too_formal": {
+            "item": "سآتي بعد أسبوع بإذن الله",
+            "feedback": "Correct meaning, but in speech it is just إن شاء الله."
+          },
+          "tip": "إن شاء الله is the natural agreement to a future plan."
+        },
+        {
+          "id": "unit-09.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian Arabic: \"I have an appointment with the doctor.\"",
+          "answer": "عندي ميعاد مع الدكتور",
+          "accepted": [
+            "عندي ميعاد مع الدكتور",
+            "عندي معاد مع الدكتور",
+            "عندي ميعاد عند الدكتور",
+            "3andi mee3aad ma3 ed-doktoor"
+          ],
+          "too_formal": {
+            "item": "لدي موعد مع الطبيب",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "ميعاد is the spoken word for an appointment."
+        },
+        {
+          "id": "unit-09.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian Arabic: \"You need to do some tests.\"",
+          "answer": "محتاج تعمل شوية تحاليل",
+          "accepted": [
+            "محتاج تعمل شوية تحاليل",
+            "محتاج تعمل تحاليل",
+            "لازم تعمل تحاليل",
+            "ma7taag ta3mel shwayyet ta7aleel"
+          ],
+          "too_formal": {
+            "item": "يلزمك إجراء بعض الفحوصات",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "تعمل (\"do/make\") is used for having tests done."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "head",
+          "arabic": "راس",
+          "transliteration": "raas"
+        },
+        {
+          "slot": "stomach-belly",
+          "arabic": "بطن",
+          "transliteration": "baTn"
+        },
+        {
+          "slot": "back",
+          "arabic": "ضهر",
+          "transliteration": "Dahr"
+        },
+        {
+          "slot": "hand-arm",
+          "arabic": "إيد",
+          "transliteration": "eed"
+        },
+        {
+          "slot": "leg-foot",
+          "arabic": "رجل",
+          "transliteration": "rigl"
+        },
+        {
+          "slot": "eye",
+          "arabic": "عين",
+          "transliteration": "3ein"
+        },
+        {
+          "slot": "ear",
+          "arabic": "ودن",
+          "transliteration": "widn"
+        },
+        {
+          "slot": "tooth",
+          "arabic": "سنّة",
+          "transliteration": "sinna"
+        },
+        {
+          "slot": "neck",
+          "arabic": "رقبة",
+          "transliteration": "ra2aba"
+        },
+        {
+          "slot": "my-back-hurts",
+          "arabic": "ضهري بيوجعني",
+          "transliteration": "Dahri biywga3ni",
+          "reply": {
+            "arabic": "ألف سلامة، من إمتى؟",
+            "transliteration": "alf salaama, men emta?",
+            "english": "Get well soon, since when?"
+          }
+        },
+        {
+          "slot": "i-have-a-toothache",
+          "arabic": "عندي وجع سنان",
+          "transliteration": "3andi waga3 sinaan",
+          "reply": {
+            "arabic": "روح لدكتور الأسنان",
+            "transliteration": "roo7 le-doktoor el-asnaan",
+            "english": "Go to the dentist"
+          }
+        },
+        {
+          "slot": "my-leg-is-swollen",
+          "arabic": "رجلي وارمة",
+          "transliteration": "rigli waarma",
+          "reply": {
+            "arabic": "اقعد وارفعها شوية",
+            "transliteration": "o2-3od w erfa3ha shwayya",
+            "english": "Sit down and raise it a bit"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "إيه اللي بيوجعك يا سامر؟",
+          "transliteration": "eh elli biywga3ak ya Saamer?",
+          "english": "What hurts you, Samer?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "ضهري بيوجعني ورقبتي كمان",
+          "transliteration": "Dahri biywga3ni w ra2abti kamaan",
+          "english": "My back hurts, and my neck too"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "من إمتى؟",
+          "transliteration": "men emta?",
+          "english": "Since when?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "من أسبوع، وإيدي اليمين بتوجعني",
+          "transliteration": "men esboo3, w eedi el-yemeen betwaga3ni",
+          "english": "For a week, and my right hand hurts"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "وراسك؟",
+          "transliteration": "w raasak?",
+          "english": "And your head?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "راسي كمان بتوجعني بالليل",
+          "transliteration": "raasi kamaan betwaga3ni bel-leil",
+          "english": "My head hurts at night too"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "ورجلك؟ فيها حاجة؟",
+          "transliteration": "w riglak? feeha 7aaga?",
+          "english": "And your leg? Is something wrong with it?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "أيوه، رجلي وارمة شوية",
+          "transliteration": "aywa, rigli waarma shwayya",
+          "english": "Yes, my leg is a bit swollen"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "وعينك وودنك كويسين؟",
+          "transliteration": "w 3einak w widnak kwayyeseen?",
+          "english": "And your eyes and ears are fine?"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "آه، بس عندي وجع سنان من إمبارح",
+          "transliteration": "aah, bas 3andi waga3 sinaan men embaare7",
+          "english": "Yes, but I've had a toothache since yesterday"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "هتروح لدكتور الأسنان بكرة",
+          "transliteration": "hatroo7 le-doktoor el-asnaan bokra",
+          "english": "You'll go to the dentist tomorrow"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "إن شاء الله، متشكر يا دكتور",
+          "transliteration": "en shaa2 allah, metshakker ya doktoor",
+          "english": "God willing, thank you doctor"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "إيه اللي بيوجعك؟",
+            "transliteration": "eh elli biywga3ak?",
+            "english": "What hurts you?"
+          },
+          "response": {
+            "arabic": "ضهري بيوجعني",
+            "transliteration": "Dahri biywga3ni",
+            "english": "My back hurts"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "راسك بتوجعك؟",
+            "transliteration": "raasak betwaga3ak?",
+            "english": "Does your head hurt?"
+          },
+          "response": {
+            "arabic": "أيوه، من الصبح",
+            "transliteration": "aywa, men es-sob7",
+            "english": "Yes, since morning"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "رجلك وارمة؟",
+            "transliteration": "riglak waarma?",
+            "english": "Is your leg swollen?"
+          },
+          "response": {
+            "arabic": "أيوه، شوية",
+            "transliteration": "aywa, shwayya",
+            "english": "Yes, a bit"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك وجع سنان؟",
+            "transliteration": "3andak waga3 sinaan?",
+            "english": "Do you have a toothache?"
+          },
+          "response": {
+            "arabic": "آه، من إمبارح",
+            "transliteration": "aah, men embaare7",
+            "english": "Yes, since yesterday"
+          }
+        }
+      ],
+      "culture": "Egyptian body words are short and differ from the written ones: eed (hand), widn (ear), sinna (tooth), Dahr (back). Pain is named with waga3 plus the part, or with the verb biywga3ni, and listeners answer salaamtak.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"ear\"?",
+          "answer": "ودن",
+          "accepted": [
+            "ودن",
+            "widn",
+            "الودن",
+            "wedn"
+          ],
+          "options": [
+            "ودن",
+            "عين",
+            "رقبة",
+            "ضهر"
+          ],
+          "too_formal": {
+            "item": "أذن",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "ودن is the spoken word for ear; the written one is أذن."
+        },
+        {
+          "id": "unit-09.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"My leg is swollen\"?",
+          "answer": "رجلي وارمة",
+          "accepted": [
+            "رجلي وارمة",
+            "رجلي ورمت",
+            "rigli waarma",
+            "rigli warmet"
+          ],
+          "options": [
+            "رجلي وارمة",
+            "ضهري بيوجعني",
+            "عندي وجع سنان",
+            "راسي بتوجعني"
+          ],
+          "too_formal": {
+            "item": "ساقي منتفخة",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "وارمة is \"swollen\", agreeing with the feminine رجل."
+        },
+        {
+          "id": "unit-09.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"كمان / ورقبتي / بيوجعني / ضهري\".",
+          "answer": "ضهري بيوجعني ورقبتي كمان",
+          "accepted": [
+            "ضهري بيوجعني ورقبتي كمان",
+            "Dahri biywga3ni w ra2abti kamaan",
+            "ضهري واجعني ورقبتي كمان"
+          ],
+          "words": [
+            "كمان",
+            "ورقبتي",
+            "بيوجعني",
+            "ضهري"
+          ],
+          "too_formal": {
+            "item": "يؤلمني ظهري وعنقي أيضاً",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "كمان (\"also\") goes at the end."
+        },
+        {
+          "id": "unit-09.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"إمبارح / من / سنان / وجع / عندي\".",
+          "answer": "عندي وجع سنان من إمبارح",
+          "accepted": [
+            "عندي وجع سنان من إمبارح",
+            "3andi waga3 sinaan men embaare7",
+            "عندي وجع ضروس من إمبارح"
+          ],
+          "words": [
+            "إمبارح",
+            "من",
+            "سنان",
+            "وجع",
+            "عندي"
+          ],
+          "too_formal": {
+            "item": "أشعر بألم في أسناني منذ الأمس",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "وجع + the part names the pain."
+        },
+        {
+          "id": "unit-09.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ بتوجعني.\" English meaning: My head hurts.",
+          "answer": "راسي",
+          "accepted": [
+            "راسي",
+            "raasi",
+            "دماغي",
+            "demaaghi"
+          ],
+          "too_formal": {
+            "item": "رأسي",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "Both راسي and دماغي (\"my brain\") are said for a headache."
+        },
+        {
+          "id": "unit-09.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عندي وجع _____.\" English meaning: I have a toothache.",
+          "answer": "سنان",
+          "accepted": [
+            "سنان",
+            "sinaan",
+            "ضروس",
+            "Droos"
+          ],
+          "too_formal": {
+            "item": "أسنان",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "سنان (teeth) or ضروس (molars) follows وجع."
+        },
+        {
+          "id": "unit-09.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "The doctor asks: \"إيه اللي بيوجعك؟\" You have back pain. Reply.",
+          "answer": "ضهري بيوجعني",
+          "accepted": [
+            "ضهري بيوجعني",
+            "ضهري واجعني",
+            "Dahri biywga3ni",
+            "Dahri waag3ani"
+          ],
+          "too_formal": {
+            "item": "أشعر بألم في ظهري",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "ضهر (back) is masculine, so it takes بيوجعني."
+        },
+        {
+          "id": "unit-09.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "A friend says: \"رجلي وارمة\". Reply.",
+          "answer": "ألف سلامة عليك",
+          "accepted": [
+            "ألف سلامة عليك",
+            "ألف سلامة",
+            "سلامتك",
+            "alf salaama",
+            "salaamtak"
+          ],
+          "too_formal": {
+            "item": "أتمنى لك الشفاء العاجل",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "ألف سلامة and سلامتك are the two quick sympathy phrases."
+        },
+        {
+          "id": "unit-09.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian Arabic: \"My eye hurts.\"",
+          "answer": "عيني بتوجعني",
+          "accepted": [
+            "عيني بتوجعني",
+            "عيني واجعاني",
+            "3eini betwaga3ni",
+            "3eini waag3aani"
+          ],
+          "too_formal": {
+            "item": "تؤلمني عيني",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "عين (eye) is feminine, so it takes بتوجعني."
+        },
+        {
+          "id": "unit-09.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian Arabic: \"My neck hurts.\"",
+          "answer": "رقبتي بتوجعني",
+          "accepted": [
+            "رقبتي بتوجعني",
+            "رقبتي واجعاني",
+            "ra2abti betwaga3ni",
+            "ra2abti waag3aani"
+          ],
+          "too_formal": {
+            "item": "يؤلمني عنقي",
+            "feedback": "Correct meaning, but this is written Arabic, not what people say in Cairo."
+          },
+          "tip": "رقبة (neck) is the spoken word; عنق is written."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "A Visit to the Pharmacy and the Doctor",
+    "instructions": "Write and act out a conversation of at least 10 lines where you tell a friend how you feel, name at least two symptoms with body words, then get medicine at the pharmacy. Use at least 8 target phrases from Unit 9 and use both a masculine and a feminine address form (for example عامل and عاملة).",
+    "required_elements": [
+      "A question about how someone feels, like عامل إيه or مالك.",
+      "At least two symptoms named with body words, such as راسي or بطني.",
+      "A specific complaint such as عندي صداع or عندي سخونية.",
+      "A question about how long, using من إمتى.",
+      "A pharmacy request using عندك or عايز.",
+      "A question about a prescription using لازم روشتة.",
+      "Instructions for taking medicine, such as مرتين في اليوم.",
+      "A closing wish ألف سلامة and its reply الله يسلمك."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Mona",
+          "arabic": "أهلاً يا كريم، مالك؟ شكلك تعبان",
+          "transliteration": "ahlan ya Kareem, maalak? shaklak ta3baan",
+          "english": "Hi Karim, what's wrong? You look tired"
+        },
+        {
+          "speaker": "Kareem",
+          "arabic": "أهلاً يا منى، عندي صداع وسخونية من يومين",
+          "transliteration": "ahlan ya Mona, 3andi soda3 w sokhoneyya men yomeen",
+          "english": "Hi Mona, I've had a headache and a fever for two days"
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "ومن إمتى بالظبط وأنت حاسس كده؟",
+          "transliteration": "w men emta bez-zabT w enta 7aases keda?",
+          "english": "And since exactly when have you felt like this?"
+        },
+        {
+          "speaker": "Kareem",
+          "arabic": "من يوم الخميس، وبطني بتوجعني كمان",
+          "transliteration": "men yoom el-khamees, w baTni betwaga3ni kamaan",
+          "english": "Since Thursday, and my stomach hurts too"
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "روح الصيدلية، وأنا هاجي معاك",
+          "transliteration": "roo7 es-Saydaleyya, w ana haagi ma3aak",
+          "english": "Go to the pharmacy, I'll come with you"
+        },
+        {
+          "speaker": "Kareem",
+          "arabic": "صباح الخير، عندك دوا للصداع والسخونية؟",
+          "transliteration": "Sabaa7 el-kheir, 3andak dawa lis-soda3 wes-sokhoneyya?",
+          "english": "Good morning, do you have medicine for headache and fever?"
+        },
+        {
+          "speaker": "Haani",
+          "arabic": "اتفضل، خد الحباية دي مرتين في اليوم بعد الأكل",
+          "transliteration": "ettafaddal, khod el-7abbaaya di marrateen fil-yoom ba3d el-akl",
+          "english": "Here, take this pill twice a day after eating"
+        },
+        {
+          "speaker": "Kareem",
+          "arabic": "لازم روشتة؟",
+          "transliteration": "laazem roshetta?",
+          "english": "Do I need a prescription?"
+        },
+        {
+          "speaker": "Haani",
+          "arabic": "لأ، مش لازم. ألف سلامة عليك",
+          "transliteration": "la2, mish laazem. alf salaama 3aleik",
+          "english": "No. Get well soon"
+        },
+        {
+          "speaker": "Kareem",
+          "arabic": "الله يسلمك",
+          "transliteration": "allah yesallemak",
+          "english": "God keep you well"
+        }
+      ]
+    }
+  }
+}

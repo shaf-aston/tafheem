@@ -1,0 +1,962 @@
+{
+  "unit": "unit-17",
+  "dialect": "Iraqi Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "ch": "چ",
+    "g": "گ (ق في الكلمات العراقية)",
+    "j": "ج",
+    "3": "ع",
+    "7": "ح",
+    "6": "ط",
+    "2": "ء",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "how-much-is-this",
+          "arabic": "بيش هذا؟",
+          "transliteration": "beesh haadha?"
+        },
+        {
+          "slot": "expensive",
+          "arabic": "غالي",
+          "transliteration": "ghaali"
+        },
+        {
+          "slot": "cheap",
+          "arabic": "رخيص",
+          "transliteration": "rkhees"
+        },
+        {
+          "slot": "is-there-a-discount",
+          "arabic": "أكو تخفيض؟",
+          "transliteration": "aku takhfeed?"
+        },
+        {
+          "slot": "how-much-per-kilo",
+          "arabic": "بيش الكيلو؟",
+          "transliteration": "beesh il-keelo?"
+        },
+        {
+          "slot": "i-want-this",
+          "arabic": "أريد هذا",
+          "transliteration": "areed haadha"
+        },
+        {
+          "slot": "lower-it-a-little-to-a-man-when-bargaining",
+          "arabic": "نزّل شوية",
+          "transliteration": "nazzil shwayya"
+        },
+        {
+          "slot": "final-price",
+          "arabic": "آخر سعر",
+          "transliteration": "aakhir si3ir"
+        },
+        {
+          "slot": "okay-deal",
+          "arabic": "ماشي",
+          "transliteration": "maashi"
+        },
+        {
+          "slot": "do-you-have-a-smaller-one-to-a-man",
+          "arabic": "عندك أصغر؟",
+          "transliteration": "3indak asghar?"
+        },
+        {
+          "slot": "do-you-have-another-color-to-a-man",
+          "arabic": "عندك لون ثاني؟",
+          "transliteration": "3indak loon thaani?"
+        },
+        {
+          "slot": "this-one-is-nicer",
+          "arabic": "هذا أحلى",
+          "transliteration": "haadha a7la"
+        },
+        {
+          "slot": "blue",
+          "arabic": "أزرگ",
+          "transliteration": "azrag"
+        },
+        {
+          "slot": "red",
+          "arabic": "أحمر",
+          "transliteration": "a7mar"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Layla",
+          "arabic": "هلا عمي، بيش هذا الجاكيت؟",
+          "transliteration": "hala 3ammi, beesh haadha il-jaakeet?",
+          "english": "Hello uncle, how much is this jacket?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "هلا بيچ يا بنتي. هذا بخمسة وعشرين ألف.",
+          "transliteration": "hala beech ya binti. haadha b-khamsa w-3ishreen alif.",
+          "english": "Welcome, my daughter. This is twenty-five thousand."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "خمسة وعشرين؟ غالي هواية! أكو تخفيض؟",
+          "transliteration": "khamsa w-3ishreen? ghaali hawaaya! aku takhfeed?",
+          "english": "Twenty-five? Very expensive! Is there a discount?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "القماش زين، بس عشانچ أنزّلها شوية. عشرين ألف.",
+          "transliteration": "il-gumaash zeen, bas 3ashaanich anazzilha shwayya. 3ishreen alif.",
+          "english": "The cloth is good, but for you I will bring it down a little. Twenty thousand."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "نزّل شوية بعد. عندك أصغر منه؟",
+          "transliteration": "nazzil shwayya ba3ad. 3indak asghar minna?",
+          "english": "Lower it a little more. Do you have a smaller one?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "أكو، هذا أصغر. أي لون تريدين؟",
+          "transliteration": "aku, haadha asghar. ay loon treedeen?",
+          "english": "Yes, this one is smaller. Which colour do you want?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "عندك لون ثاني؟ أريد أزرگ.",
+          "transliteration": "3indak loon thaani? areed azrag.",
+          "english": "Do you have another colour? I want blue."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "أكو أزرگ وأحمر. هذا الأزرگ.",
+          "transliteration": "aku azrag w-a7mar. haadha il-azrag.",
+          "english": "There is blue and red. Here is the blue one."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "هذا أحلى. آخر سعر شكد؟",
+          "transliteration": "haadha a7la. aakhir si3ir shgad?",
+          "english": "This one is nicer. What is the final price?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "آخر سعر ثمانية عشر ألف.",
+          "transliteration": "aakhir si3ir thmaanta3sh alif.",
+          "english": "Final price, eighteen thousand."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "ماشي، أريد هذا.",
+          "transliteration": "maashi, areed haadha.",
+          "english": "Okay, I want this."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "تدلليّ، الله يخليچ.",
+          "transliteration": "tdallali, allah ykhalleech.",
+          "english": "Go ahead, God keep you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بيش هذا؟",
+            "transliteration": "beesh haadha?",
+            "english": "How much is this?"
+          },
+          "response": {
+            "arabic": "هذا بخمسة آلاف.",
+            "transliteration": "haadha b-khamsat aalaaf.",
+            "english": "This is five thousand."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بيش الكيلو؟",
+            "transliteration": "beesh il-keelo?",
+            "english": "How much per kilo?"
+          },
+          "response": {
+            "arabic": "بألفين الكيلو.",
+            "transliteration": "b-alfeen il-keelo.",
+            "english": "Two thousand a kilo."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أكو تخفيض؟",
+            "transliteration": "aku takhfeed?",
+            "english": "Is there a discount?"
+          },
+          "response": {
+            "arabic": "أكو، بس شوية.",
+            "transliteration": "aku, bas shwayya.",
+            "english": "Yes, but only a little."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك لون ثاني؟",
+            "transliteration": "3indak loon thaani?",
+            "english": "Do you have another colour?"
+          },
+          "response": {
+            "arabic": "أكو أزرگ وأحمر.",
+            "transliteration": "aku azrag w-a7mar.",
+            "english": "There is blue and red."
+          }
+        }
+      ],
+      "culture": "In Baghdad's traditional markets, such as Shorja, bargaining is expected for clothes, cloth and household goods, but not in supermarkets with printed prices. Sellers call customers by family words such as عمي (uncle) or خالة (auntie), and a friendly tone lowers the price faster than a hard one.",
+      "exercises": [
+        {
+          "id": "unit-17.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How much is this?\"",
+          "answer": "بيش هذا؟",
+          "accepted": [
+            "بيش هذا؟",
+            "beesh haadha?",
+            "شكد هذا؟",
+            "shgad haadha?",
+            "بيش هذا",
+            "beesh haadha"
+          ],
+          "too_formal": {
+            "item": "كم سعر هذا؟",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "بيش and شكد both mean how much; بيش is the price question at a stall."
+        },
+        {
+          "id": "unit-17.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"expensive\"?",
+          "options": [
+            "غالي",
+            "رخيص",
+            "جديد",
+            "قديم"
+          ],
+          "answer": "غالي",
+          "accepted": [
+            "غالي",
+            "ghaali",
+            "غالي.",
+            "ghaali."
+          ],
+          "too_formal": {
+            "item": "باهظ الثمن",
+            "feedback": "This is a literary way to say expensive; people say غالي."
+          },
+          "tip": "غالي is expensive, رخيص is cheap."
+        },
+        {
+          "id": "unit-17.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "The seller's price is too high. Ask him to lower it a little.",
+          "answer": "نزّل شوية",
+          "accepted": [
+            "نزّل شوية",
+            "nazzil shwayya",
+            "نزّل شوية بعد",
+            "nazzil shwayya ba3ad",
+            "نزل شوية",
+            "nazzilha shwayya"
+          ],
+          "too_formal": {
+            "item": "هل يمكن أن تخفض السعر قليلاً؟",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "نزّل is the everyday bargaining verb for bringing a price down."
+        },
+        {
+          "id": "unit-17.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ سعر.\" Meaning: Final price.",
+          "answer": "آخر",
+          "accepted": [
+            "آخر",
+            "aakhir",
+            "آخر سعر",
+            "aakhir si3ir",
+            "اخر"
+          ],
+          "too_formal": {
+            "item": "هذا هو السعر النهائي",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "آخر سعر is what a seller says to close the bargaining."
+        },
+        {
+          "id": "unit-17.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is there a discount?\"",
+          "answer": "أكو تخفيض؟",
+          "accepted": [
+            "أكو تخفيض؟",
+            "aku takhfeed?",
+            "أكو خصم؟",
+            "aku khasm?",
+            "أكو تخفيض",
+            "aku takhfeed"
+          ],
+          "too_formal": {
+            "item": "هل يوجد تخفيض؟",
+            "feedback": "يوجد is bookish; Iraqis say أكو for there is."
+          },
+          "tip": "أكو means there is, and ماكو means there is not."
+        },
+        {
+          "id": "unit-17.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"هذا / هواية / غالي\"",
+          "words": [
+            "هذا",
+            "غالي",
+            "هواية"
+          ],
+          "answer": "هذا غالي هواية",
+          "accepted": [
+            "هذا غالي هواية",
+            "haadha ghaali hawaaya",
+            "غالي هواية",
+            "ghaali hawaaya"
+          ],
+          "too_formal": {
+            "item": "هذا غالٍ جداً",
+            "feedback": "جداً is formal; in Baghdad هواية means very or a lot."
+          },
+          "tip": "هواية after an adjective makes it stronger."
+        },
+        {
+          "id": "unit-17.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"blue\"?",
+          "options": [
+            "أزرگ",
+            "أحمر",
+            "أخضر",
+            "أصفر"
+          ],
+          "answer": "أزرگ",
+          "accepted": [
+            "أزرگ",
+            "azrag",
+            "ازرگ",
+            "azrag."
+          ],
+          "too_formal": {
+            "item": "أزرق",
+            "feedback": "The spelling with ق is the written form; spoken Iraqi says أزرگ with a hard g."
+          },
+          "tip": "In Iraqi Arabic ق is often said g."
+        },
+        {
+          "id": "unit-17.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "The seller says: \"هذا بعشرين ألف.\" Tell him it is very expensive.",
+          "answer": "غالي هواية",
+          "accepted": [
+            "غالي هواية",
+            "ghaali hawaaya",
+            "هذا غالي هواية",
+            "haadha ghaali hawaaya",
+            "غالي هواية عمي",
+            "ghaali hawaaya 3ammi"
+          ],
+          "too_formal": {
+            "item": "إن هذا السعر مرتفع جداً",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "Adding عمي keeps the bargaining friendly."
+        },
+        {
+          "id": "unit-17.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Do you have another colour?\" (to a man)",
+          "answer": "عندك لون ثاني؟",
+          "accepted": [
+            "عندك لون ثاني؟",
+            "3indak loon thaani?",
+            "عندك لون ثاني"
+          ],
+          "too_formal": {
+            "item": "هل لديك لون آخر؟",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "ثاني means another; to a woman, use عندچ."
+        },
+        {
+          "id": "unit-17.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بيش _____؟\" Meaning: How much per kilo?",
+          "answer": "الكيلو",
+          "accepted": [
+            "الكيلو",
+            "il-keelo",
+            "كيلو",
+            "الكيلو؟",
+            "keelo"
+          ],
+          "too_formal": {
+            "item": "بكم الكيلوغرام",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "The seller answers with the price per kilo, for example بألفين الكيلو."
+        },
+        {
+          "id": "unit-17.lesson-01.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want this.\"",
+          "answer": "أريد هذا",
+          "accepted": [
+            "أريد هذا",
+            "areed haadha",
+            "اريد هذا",
+            "أريد هاي",
+            "areed haay"
+          ],
+          "too_formal": {
+            "item": "أرغب في هذا",
+            "feedback": "أرغب في is formal; spoken Iraqi uses أريد."
+          },
+          "tip": "Use هذا for a masculine thing and هاي for a feminine thing."
+        },
+        {
+          "id": "unit-17.lesson-01.choose.03",
+          "type": "choose",
+          "prompt": "How do you say \"This one is nicer\"?",
+          "options": [
+            "هذا أحلى",
+            "هذا أرخص",
+            "هذا أقدم",
+            "هذا أصغر"
+          ],
+          "answer": "هذا أحلى",
+          "accepted": [
+            "هذا أحلى",
+            "haadha a7la",
+            "هذا احلى"
+          ],
+          "too_formal": {
+            "item": "هذا أجمل",
+            "feedback": "أجمل is correct and used, but أحلى is the everyday word."
+          },
+          "tip": "أحلى is nicer or sweeter."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "taxi",
+          "arabic": "تكسي",
+          "transliteration": "taksi"
+        },
+        {
+          "slot": "bus",
+          "arabic": "باص",
+          "transliteration": "baas"
+        },
+        {
+          "slot": "i-want-to-go-to-the-old-city",
+          "arabic": "أريد أروح للمدينة القديمة",
+          "transliteration": "areed aroo7 lil-madeena il-gadeema"
+        },
+        {
+          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
+          "arabic": "وگّف هنا، لو سمحت",
+          "transliteration": "wagguf hnaa, law sama7t"
+        },
+        {
+          "slot": "how-much-is-the-fare",
+          "arabic": "شكد الأجرة؟",
+          "transliteration": "shgad il-ujra?"
+        },
+        {
+          "slot": "take-me-to-to-a-man",
+          "arabic": "خذني لـ",
+          "transliteration": "khudhni l-"
+        },
+        {
+          "slot": "are-you-free-asking-a-taxi-driver-if-available",
+          "arabic": "فاضي؟",
+          "transliteration": "faaDi?"
+        },
+        {
+          "slot": "busy-occupied",
+          "arabic": "مشغول",
+          "transliteration": "mashghool"
+        },
+        {
+          "slot": "how-long-does-the-way-take",
+          "arabic": "شكد ياخذ الطريگ؟",
+          "transliteration": "shgad yaakhudh it-tareeg?"
+        },
+        {
+          "slot": "will-you-drop-me-at-to-a-man",
+          "arabic": "توصلني لـ؟",
+          "transliteration": "twassilni l-?"
+        },
+        {
+          "slot": "at-your-service-a-common-polite-reply-from-a-tax",
+          "arabic": "تحت أمرك",
+          "transliteration": "ta7t amrak"
+        },
+        {
+          "slot": "what-time-does-the-bus-come-tomorrow",
+          "arabic": "الباص شوكت يجي باچر؟",
+          "transliteration": "il-baas shwakit yiji baachir?"
+        },
+        {
+          "slot": "station",
+          "arabic": "محطة",
+          "transliteration": "ma7atta"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ahmed",
+          "arabic": "أستاذ، فاضي؟",
+          "transliteration": "ustaadh, faaDi?",
+          "english": "Sir, are you free?"
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "تفضل، تحت أمرك. وين تريد تروح؟",
+          "transliteration": "tfaDDal, ta7t amrak. ween treed troo7?",
+          "english": "Please, at your service. Where do you want to go?"
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "أريد أروح للمدينة القديمة. شكد الأجرة؟",
+          "transliteration": "areed aroo7 lil-madeena il-gadeema. shgad il-ujra?",
+          "english": "I want to go to the Old City. How much is the fare?"
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "عشرة آلاف.",
+          "transliteration": "3ashart aalaaf.",
+          "english": "Ten thousand."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "عشرة؟ هواية. نزّل شوية.",
+          "transliteration": "3ashra? hawaaya. nazzil shwayya.",
+          "english": "Ten? That is a lot. Lower it a little."
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "ماشي، ثمانية آلاف. اركب.",
+          "transliteration": "maashi, thmaanyat aalaaf. irkab.",
+          "english": "Okay, eight thousand. Get in."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "شكد ياخذ الطريگ؟",
+          "transliteration": "shgad yaakhudh it-tareeg?",
+          "english": "How long does the way take?"
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "نص ساعة، وإذا أكو زحمة أكثر شوية.",
+          "transliteration": "nuSS saa3a, w-idha aku zi7ma akthar shwayya.",
+          "english": "Half an hour, and a bit more if there is traffic."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "زين. توصلني للمحطة أول؟",
+          "transliteration": "zeen. twassilni lil-ma7atta awwal?",
+          "english": "Fine. Will you drop me at the station first?"
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "أمرك، ماكو مشكلة.",
+          "transliteration": "amrak, maaku mushkila.",
+          "english": "As you wish, no problem."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "وگّف هنا، لو سمحت.",
+          "transliteration": "wagguf hnaa, law sama7t.",
+          "english": "Stop here, please."
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "تفضل، الله يسلمك.",
+          "transliteration": "tfaDDal, allah ysallmak.",
+          "english": "Here you are, God keep you safe."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "تسلم، الله يعطيك العافية.",
+          "transliteration": "tislam, allah y3teek il-3aafya.",
+          "english": "Thank you, God give you strength."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فاضي؟",
+            "transliteration": "faaDi?",
+            "english": "Are you free?"
+          },
+          "response": {
+            "arabic": "لا، مشغول.",
+            "transliteration": "la, mashghool.",
+            "english": "No, busy."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شكد الأجرة؟",
+            "transliteration": "shgad il-ujra?",
+            "english": "How much is the fare?"
+          },
+          "response": {
+            "arabic": "خمسة آلاف.",
+            "transliteration": "khamsat aalaaf.",
+            "english": "Five thousand."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين تريد تروح؟",
+            "transliteration": "ween treed troo7?",
+            "english": "Where do you want to go?"
+          },
+          "response": {
+            "arabic": "أريد أروح للمحطة.",
+            "transliteration": "areed aroo7 lil-ma7atta.",
+            "english": "I want to go to the station."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شكد ياخذ الطريگ؟",
+            "transliteration": "shgad yaakhudh it-tareeg?",
+            "english": "How long does the way take?"
+          },
+          "response": {
+            "arabic": "ربع ساعة.",
+            "transliteration": "rub3 saa3a.",
+            "english": "A quarter of an hour."
+          }
+        }
+      ],
+      "culture": "Baghdad taxis are usually painted orange and white and mostly have no meter, so the fare is agreed before you get in, and it is normal to bargain it down. Drivers often answer a passenger with تحت أمرك or تدلل, and shared minibuses, called كيا, run set routes for a fixed price.",
+      "exercises": [
+        {
+          "id": "unit-17.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How much is the fare?\"",
+          "answer": "شكد الأجرة؟",
+          "accepted": [
+            "شكد الأجرة؟",
+            "shgad il-ujra?",
+            "بيش الأجرة؟",
+            "beesh il-ujra?",
+            "شكد الاجرة",
+            "shgad il-ujra"
+          ],
+          "too_formal": {
+            "item": "كم أجرة الطريق؟",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "شكد is the everyday how much; agree the fare before you get in."
+        },
+        {
+          "id": "unit-17.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"busy\" for a taxi?",
+          "options": [
+            "مشغول",
+            "فاضي",
+            "قريب",
+            "بعيد"
+          ],
+          "answer": "مشغول",
+          "accepted": [
+            "مشغول",
+            "mashghool",
+            "مشغول."
+          ],
+          "too_formal": {
+            "item": "غير متاح",
+            "feedback": "This is stiff; a driver just says مشغول."
+          },
+          "tip": "فاضي is free, مشغول is busy."
+        },
+        {
+          "id": "unit-17.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "You stop a taxi. Ask the driver if he is free.",
+          "answer": "فاضي؟",
+          "accepted": [
+            "فاضي؟",
+            "faaDi?",
+            "أستاذ فاضي؟",
+            "ustaadh faaDi?",
+            "أنت فاضي؟",
+            "inta faaDi?"
+          ],
+          "too_formal": {
+            "item": "هل أنت متاح؟",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "أستاذ is a polite way to call a driver."
+        },
+        {
+          "id": "unit-17.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"وگّف _____، لو سمحت.\" Meaning: Stop here, please.",
+          "answer": "هنا",
+          "accepted": [
+            "هنا",
+            "hnaa",
+            "hna"
+          ],
+          "too_formal": {
+            "item": "توقف هنا من فضلك",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "Say it a little before the place, so the driver has time to stop."
+        },
+        {
+          "id": "unit-17.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to go to the Old City.\"",
+          "answer": "أريد أروح للمدينة القديمة",
+          "accepted": [
+            "أريد أروح للمدينة القديمة",
+            "areed aroo7 lil-madeena il-gadeema",
+            "اريد اروح للمدينة القديمة",
+            "أريد أروح إلى المدينة القديمة"
+          ],
+          "too_formal": {
+            "item": "أرغب في الذهاب إلى المدينة القديمة",
+            "feedback": "This is formal; spoken Iraqi says أريد أروح."
+          },
+          "tip": "أروح means to go, and القديمة is said with a g, gadeema."
+        },
+        {
+          "id": "unit-17.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"الطريگ / شكد / ياخذ\"",
+          "words": [
+            "شكد",
+            "ياخذ",
+            "الطريگ"
+          ],
+          "answer": "شكد ياخذ الطريگ",
+          "accepted": [
+            "شكد ياخذ الطريگ",
+            "shgad yaakhudh it-tareeg",
+            "شكد ياخذ الطريگ؟",
+            "shgad yaakhudh it-tareeg?",
+            "شكد ياخذ الطريق"
+          ],
+          "too_formal": {
+            "item": "كم يستغرق الطريق؟",
+            "feedback": "يستغرق is written Arabic; people say ياخذ."
+          },
+          "tip": "ياخذ means takes, used for time."
+        },
+        {
+          "id": "unit-17.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "What does a driver say for \"At your service\"?",
+          "options": [
+            "تحت أمرك",
+            "وگّف هنا",
+            "شكد الأجرة",
+            "أريد باص"
+          ],
+          "answer": "تحت أمرك",
+          "accepted": [
+            "تحت أمرك",
+            "ta7t amrak",
+            "تحت امرك",
+            "أمرك"
+          ],
+          "too_formal": {
+            "item": "أنا في خدمتك",
+            "feedback": "This is correct but bookish; a driver says تحت أمرك."
+          },
+          "tip": "أمرك alone is also common."
+        },
+        {
+          "id": "unit-17.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "The driver says: \"وين تريد تروح؟\" Answer: the station.",
+          "answer": "أريد أروح للمحطة",
+          "accepted": [
+            "أريد أروح للمحطة",
+            "areed aroo7 lil-ma7atta",
+            "للمحطة",
+            "lil-ma7atta",
+            "خذني للمحطة",
+            "khudhni lil-ma7atta"
+          ],
+          "too_formal": {
+            "item": "أرغب في الذهاب إلى المحطة",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "Short answers such as للمحطة are also fine."
+        },
+        {
+          "id": "unit-17.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"What time does the bus come tomorrow?\"",
+          "answer": "الباص شوكت يجي باچر؟",
+          "accepted": [
+            "الباص شوكت يجي باچر؟",
+            "il-baas shwakit yiji baachir?",
+            "شوكت يجي الباص باچر؟",
+            "shwakit yiji il-baas baachir?",
+            "الباص شوكت ايجي باچر"
+          ],
+          "too_formal": {
+            "item": "في أي ساعة يأتي الباص غداً؟",
+            "feedback": "غداً is formal; Iraqis say باچر."
+          },
+          "tip": "شوكت means when, and باچر means tomorrow."
+        },
+        {
+          "id": "unit-17.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"توصلني _____؟\" Meaning: Will you drop me at the station?",
+          "answer": "للمحطة",
+          "accepted": [
+            "للمحطة",
+            "lil-ma7atta",
+            "ل المحطة",
+            "للمحطه",
+            "lil ma7atta"
+          ],
+          "too_formal": {
+            "item": "هل توصلني إلى المحطة",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "توصلني is a polite question; for a woman driver you would say توصلين."
+        },
+        {
+          "id": "unit-17.lesson-02.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Take me to the station.\" (to a man)",
+          "answer": "خذني للمحطة",
+          "accepted": [
+            "خذني للمحطة",
+            "khudhni lil-ma7atta",
+            "وصلني للمحطة",
+            "wassilni lil-ma7atta"
+          ],
+          "too_formal": {
+            "item": "أوصلني إلى المحطة من فضلك",
+            "feedback": "This is formal and long."
+          },
+          "tip": "خذني is the direct everyday request."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Bargaining and Getting There",
+    "instructions": "Write and say a short Baghdadi conversation of at least 10 lines. It must include asking the price of something, bargaining it down at least once, agreeing on a price, hailing a taxi or asking about a bus, saying where you want to go, and asking about the fare or the time. Use at least 8 target phrases from this unit and include both a masculine-address form and a feminine-address form.",
+    "required_elements": [
+      "A price question using بيش هذا؟ or بيش الكيلو؟",
+      "At least one attempt to lower the price, using نزّل شوية or أكو تخفيض؟",
+      "An agreement using ماشي or آخر سعر.",
+      "Hailing transport using فاضي؟ or naming تكسي or باص.",
+      "A destination using أريد أروح ل or خذني ل.",
+      "A question about fare or time using شكد الأجرة؟ or شكد ياخذ الطريگ؟",
+      "Both a masculine-address form (such as عندك) and a feminine-address form (such as عندچ or تدلليّ)."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Hala",
+          "arabic": "هلا عمي، بيش هذا؟",
+          "transliteration": "hala 3ammi, beesh haadha?",
+          "english": "Hello uncle, how much is this?"
+        },
+        {
+          "speaker": "Abu Khalil",
+          "arabic": "هذا بعشرة آلاف.",
+          "transliteration": "haadha b-3ashart aalaaf.",
+          "english": "This is ten thousand."
+        },
+        {
+          "speaker": "Hala",
+          "arabic": "غالي! نزّل شوية.",
+          "transliteration": "ghaali! nazzil shwayya.",
+          "english": "Expensive! Lower it a little."
+        },
+        {
+          "speaker": "Abu Khalil",
+          "arabic": "آخر سعر ثمانية آلاف.",
+          "transliteration": "aakhir si3ir thmaanyat aalaaf.",
+          "english": "Final price, eight thousand."
+        },
+        {
+          "speaker": "Hala",
+          "arabic": "ماشي. عندك لون ثاني؟",
+          "transliteration": "maashi. 3indak loon thaani?",
+          "english": "Okay. Do you have another colour?"
+        },
+        {
+          "speaker": "Abu Khalil",
+          "arabic": "أكو أحمر. تدلليّ، هذا.",
+          "transliteration": "aku a7mar. tdallali, haadha.",
+          "english": "There is red. Here you go, this one."
+        },
+        {
+          "speaker": "Hala",
+          "arabic": "تسلم. أستاذ، تكسي، فاضي؟",
+          "transliteration": "tislam. ustaadh, taksi, faaDi?",
+          "english": "Thanks. Sir, taxi, are you free?"
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "تحت أمرچ. وين تريدين تروحين؟",
+          "transliteration": "ta7t amrich. ween treedeen troo7een?",
+          "english": "At your service. Where do you want to go?"
+        },
+        {
+          "speaker": "Hala",
+          "arabic": "أريد أروح للمدينة القديمة. شكد الأجرة؟",
+          "transliteration": "areed aroo7 lil-madeena il-gadeema. shgad il-ujra?",
+          "english": "I want to go to the Old City. How much is the fare?"
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "ستة آلاف.",
+          "transliteration": "sitt aalaaf.",
+          "english": "Six thousand."
+        },
+        {
+          "speaker": "Hala",
+          "arabic": "ماشي. شكد ياخذ الطريگ؟",
+          "transliteration": "maashi. shgad yaakhudh it-tareeg?",
+          "english": "Okay. How long does the way take?"
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "ربع ساعة.",
+          "transliteration": "rub3 saa3a.",
+          "english": "A quarter of an hour."
+        }
+      ]
+    }
+  }
+}

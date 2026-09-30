@@ -1,0 +1,1707 @@
+{
+ "unit": "unit-11",
+ "dialect": "Moroccan Arabic",
+ "transliteration_key": {
+  "sh": "ش",
+  "kh": "خ",
+  "gh": "غ",
+  "3": "ع",
+  "7": "ح",
+  "2": "ء",
+  "q": "ق",
+  "j": "ج",
+  "aa": "ا طويلة",
+  "ee": "ي طويلة",
+  "oo": "و طويلة",
+  "e": "حركة قصيرة خفيفة (شوا)",
+  "T": "ط",
+  "S": "ص",
+  "D": "ض"
+ },
+ "lessons": [
+  {
+   "lesson": "lesson-01",
+   "phrases": [
+    {
+     "slot": "welcome-lit-your-eye-honors-us-said-to-a-man-arr",
+     "arabic": "مرحبا بيك",
+     "transliteration": "mar7baa bik",
+     "reply": {
+      "arabic": "الله يبارك فيك",
+      "transliteration": "Allaah ybaarek fiik",
+      "english": "God bless you (reply)."
+     }
+    },
+    {
+     "slot": "welcome-please-come-in",
+     "arabic": "مرحبا، دخل، تفضل",
+     "transliteration": "mar7baa, dkhel, tfaDDal",
+     "reply": {
+      "arabic": "الله يخليك",
+      "transliteration": "Allaah ykhallik",
+      "english": "God keep you (thanks)."
+     }
+    },
+    {
+     "slot": "you-have-honored-us-said-to-guests-who-arrived",
+     "arabic": "نورتو الدار",
+     "transliteration": "nowwartu d-daar",
+     "reply": {
+      "arabic": "الله يبارك فيكم",
+      "transliteration": "Allaah ybaarek fiikum",
+      "english": "God bless you all."
+     }
+    },
+    {
+     "slot": "don-t-trouble-yourself-we-re-at-home-make-yourse",
+     "arabic": "ماتعذبش راسك، راك فدارك",
+     "transliteration": "maa t3addebsh raasek, raak f-daarek"
+    },
+    {
+     "slot": "where-can-i-park-my-car",
+     "arabic": "فين نباركي الطوموبيل ديالي؟",
+     "transliteration": "fiin nbaarki T-Tomobiil dyaali?",
+     "reply": {
+      "arabic": "قدام الباب كاينة بلاصة",
+      "transliteration": "qeddaam l-baab kayna blaaSa",
+      "english": "There's a spot in front of the door."
+     }
+    },
+    {
+     "slot": "take-off-your-shoes-at-the-door-please",
+     "arabic": "حيد الصباط عند الباب، عافاك",
+     "transliteration": "7ayyed S-Sbaat 3end l-baab, 3aafaak"
+    },
+    {
+     "slot": "i-brought-you-a-few-simple-things-a-small-gift",
+     "arabic": "جبت ليكم شي حاجة بسيطة",
+     "transliteration": "jebt likum shi 7aaja bsiiTa",
+     "reply": {
+      "arabic": "الله يخليك، ماكانش خاصك",
+      "transliteration": "Allaah ykhallik, maakaansh khaaSSek",
+      "english": "God keep you, you shouldn't have."
+     }
+    },
+    {
+     "slot": "this-house-is-very-nice",
+     "arabic": "هاد الدار زوينة بزاف",
+     "transliteration": "haad d-daar zwiina bzzaf",
+     "reply": {
+      "arabic": "الله يعمرها بيكم",
+      "transliteration": "Allaah y3ammerha bikum",
+      "english": "May God fill it with people like you."
+     }
+    },
+    {
+     "slot": "how-long-did-it-take-you-to-arrive",
+     "arabic": "شحال خديتي فالطريق؟",
+     "transliteration": "shhaal khditi f-T-Tariiq?",
+     "reply": {
+      "arabic": "ماشي بزاف، نص ساعة",
+      "transliteration": "maashi bzzaf, nuSS saa3a",
+      "english": "Not long, half an hour."
+     }
+    },
+    {
+     "slot": "excuse-me-i-want-to-wash-my-hands",
+     "arabic": "سمح ليا، بغيت نغسل يديا",
+     "transliteration": "sme7 liyya, bghit nghsel yddiya",
+     "reply": {
+      "arabic": "تفضل، بيت الما هنا",
+      "transliteration": "tfaDDal, biit l-maa hna",
+      "english": "Go ahead, the bathroom is here."
+     }
+    },
+    {
+     "slot": "good-i-found-the-house-easily",
+     "arabic": "الحمد لله، لقيت الدار بلا مشكل",
+     "transliteration": "l-7amdu lillaah, lqiit d-daar blaa mushkiil"
+    },
+    {
+     "slot": "you-went-to-trouble-for-us-said-appreciatively-a",
+     "arabic": "تعبتي معانا",
+     "transliteration": "t3ebti m3aana",
+     "reply": {
+      "arabic": "هادشي واجب",
+      "transliteration": "haadshi waajeb",
+      "english": "It's only right."
+     }
+    }
+   ],
+   "dialogue": [
+    {
+     "speaker": "Salma",
+     "arabic": "مرحبا بيك أ كريم، دخل تفضل",
+     "transliteration": "mar7baa bik a Kariim, dkhel tfaDDal",
+     "english": "Welcome Karim, come in please."
+    },
+    {
+     "speaker": "Karim",
+     "arabic": "الله يبارك فيك، فين نباركي الطوموبيل ديالي؟",
+     "transliteration": "Allaah ybaarek fiik, fiin nbaarki T-Tomobiil dyaali?",
+     "english": "God bless you, where can I park my car?"
+    },
+    {
+     "speaker": "Salma",
+     "arabic": "قدام الباب كاينة بلاصة",
+     "transliteration": "qeddaam l-baab kayna blaaSa",
+     "english": "There's a spot in front of the door."
+    },
+    {
+     "speaker": "Karim",
+     "arabic": "مزيان. جبت ليكم شي حاجة بسيطة",
+     "transliteration": "mziyaan. jebt likum shi 7aaja bsiiTa",
+     "english": "Good. I brought you a little something simple."
+    },
+    {
+     "speaker": "Salma",
+     "arabic": "الله يخليك، ماكانش خاصك",
+     "transliteration": "Allaah ykhallik, maakaansh khaaSSek",
+     "english": "God keep you, you shouldn't have."
+    },
+    {
+     "speaker": "Karim",
+     "arabic": "هاد الدار زوينة بزاف",
+     "transliteration": "haad d-daar zwiina bzzaf",
+     "english": "This house is very nice."
+    },
+    {
+     "speaker": "Salma",
+     "arabic": "الله يعمرها بيك. حيد الصباط هنا، عافاك",
+     "transliteration": "Allaah y3ammerha bik. 7ayyed S-Sbaat hna, 3aafaak",
+     "english": "May God fill it with people like you. Take off your shoes here, please."
+    },
+    {
+     "speaker": "Karim",
+     "arabic": "واخا. سمح ليا، بغيت نغسل يديا",
+     "transliteration": "waakha. sme7 liyya, bghit nghsel yddiya",
+     "english": "Okay. Excuse me, I want to wash my hands."
+    },
+    {
+     "speaker": "Salma",
+     "arabic": "تفضل، بيت الما هنا فالممر",
+     "transliteration": "tfaDDal, biit l-maa hna f-l-mamerr",
+     "english": "Go ahead, the bathroom is here in the hallway."
+    },
+    {
+     "speaker": "Karim",
+     "arabic": "شكرا بزاف. تعبتي معانا",
+     "transliteration": "shukran bzzaf. t3ebti m3aana",
+     "english": "Thanks a lot. You went to trouble for us."
+    },
+    {
+     "speaker": "Salma",
+     "arabic": "هادشي واجب، ماشي مشكل",
+     "transliteration": "haadshi waajeb, maashi mushkiil",
+     "english": "It's only right, no problem."
+    }
+   ],
+   "de_book": [
+    {
+     "pair": {
+      "arabic": "مرحبا بيك",
+      "transliteration": "mar7baa bik",
+      "english": "Welcome."
+     },
+     "response": {
+      "arabic": "الله يبارك فيك",
+      "transliteration": "Allaah ybaarek fiik",
+      "english": "God bless you."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "نورتو الدار",
+      "transliteration": "nowwartu d-daar",
+      "english": "You lit up the house (you honored us)."
+     },
+     "response": {
+      "arabic": "الله يبارك فيكم",
+      "transliteration": "Allaah ybaarek fiikum",
+      "english": "God bless you all."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "فين نباركي الطوموبيل ديالي؟",
+      "transliteration": "fiin nbaarki T-Tomobiil dyaali?",
+      "english": "Where can I park my car?"
+     },
+     "response": {
+      "arabic": "قدام الباب كاينة بلاصة",
+      "transliteration": "qeddaam l-baab kayna blaaSa",
+      "english": "There's a spot in front."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "سمح ليا، بغيت نغسل يديا",
+      "transliteration": "sme7 liyya, bghit nghsel yddiya",
+      "english": "Excuse me, I want to wash my hands."
+     },
+     "response": {
+      "arabic": "تفضل، بيت الما هنا",
+      "transliteration": "tfaDDal, biit l-maa hna",
+      "english": "Go ahead, the bathroom is here."
+     }
+    }
+   ],
+   "culture": "In many Moroccan homes shoes come off at the door, and a guest usually brings sweets, pastries or dates rather than anything expensive. The host answers the gift with a modest \"maakaansh khaaSSek\" (you shouldn't have) and the guest is told he is in his own home.",
+   "exercises": [
+    {
+     "id": "unit-11.lesson-01.reply.01",
+     "type": "reply",
+     "prompt": "You arrive at a friend's house and he says: \"مرحبا بيك، دخل تفضل\". Reply.",
+     "answer": "الله يبارك فيك",
+     "accepted": [
+      "الله يبارك فيك",
+      "الله يخليك",
+      "الله يبارك فيكم",
+      "Allaah ybaarek fiik"
+     ],
+     "too_formal": {
+      "item": "جزاكم الله خيرا",
+      "feedback": "Correct but too formal-religious for a doorway welcome."
+     },
+     "tip": "\"Allaah ybaarek fiik\" is the set answer to \"mar7baa bik\"."
+    },
+    {
+     "id": "unit-11.lesson-01.fill_blank.01",
+     "type": "fill_blank",
+     "prompt": "ماتعذبش راسك، راك ___",
+     "answer": "فدارك",
+     "accepted": [
+      "فدارك",
+      "فالدار",
+      "فدارك نتا",
+      "f-daarek"
+     ],
+     "too_formal": {
+      "item": "اعتبر نفسك في بيتك",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"raak f-daarek\"."
+     },
+     "tip": "\"raak f-daarek\" means \"you are in your own house\", so relax."
+    },
+    {
+     "id": "unit-11.lesson-01.translate_to_arabic.01",
+     "type": "translate_to_arabic",
+     "prompt": "Translate: \"Where can I park my car?\"",
+     "answer": "فين نباركي الطوموبيل ديالي؟",
+     "accepted": [
+      "فين نباركي الطوموبيل ديالي؟",
+      "فين نباركي الطوموبيل؟",
+      "فين نوقف الطوموبيل ديالي؟",
+      "fiin nbaarki T-Tomobiil dyaali"
+     ],
+     "too_formal": {
+      "item": "أين يمكنني أن أوقف سيارتي؟",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"fiin nbaarki T-Tomobiil\"."
+     },
+     "tip": "\"طوموبيل\" is the everyday word for car; \"ديالي\" means \"mine\"."
+    },
+    {
+     "id": "unit-11.lesson-01.choose.01",
+     "type": "choose",
+     "prompt": "What do you say when a guest arrives at your house?",
+     "answer": "مرحبا، دخل، تفضل",
+     "accepted": [
+      "مرحبا، دخل، تفضل"
+     ],
+     "options": [
+      "مرحبا، دخل، تفضل",
+      "بسلامة",
+      "غدا إن شاء الله",
+      "ما عرفتش"
+     ],
+     "too_formal": {
+      "item": "أهلا وسهلا تفضل بالدخول",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"dkhel, tfaDDal\"."
+     },
+     "tip": "\"dkhel\" (come in) plus \"tfaDDal\" (go ahead) is the natural invitation; \"dkhlu, tfaDDalu\" for several people."
+    },
+    {
+     "id": "unit-11.lesson-01.reorder.01",
+     "type": "reorder",
+     "prompt": "Arrange: I brought you a little something simple.",
+     "answer": "جبت ليكم شي حاجة بسيطة",
+     "accepted": [
+      "جبت ليكم شي حاجة بسيطة",
+      "jebt likum shi 7aaja bsiiTa",
+      "جبت ليكم حاجة بسيطة"
+     ],
+     "words": [
+      "جبت",
+      "ليكم",
+      "شي",
+      "حاجة",
+      "بسيطة"
+     ],
+     "too_formal": {
+      "item": "أحضرت لكم شيئا بسيطا",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"jebt likum shi 7aaja bsiiTa\"."
+     },
+     "tip": "\"jebt\" already means \"I brought\"; \"lik/likum\" is \"to you\"."
+    },
+    {
+     "id": "unit-11.lesson-01.fill_blank.02",
+     "type": "fill_blank",
+     "prompt": "حيد ___ عند الباب، عافاك",
+     "answer": "الصباط",
+     "accepted": [
+      "الصباط",
+      "الصبّاط",
+      "صباطك",
+      "S-Sbaat"
+     ],
+     "too_formal": {
+      "item": "اخلع حذاءك",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"S-Sbaat\"."
+     },
+     "tip": "\"3aafaak\" is the everyday \"please\" in Morocco."
+    },
+    {
+     "id": "unit-11.lesson-01.choose.02",
+     "type": "choose",
+     "prompt": "\"سمح ليا، بغيت نغسل يديا\" means:",
+     "answer": "Excuse me, I want to wash my hands",
+     "accepted": [
+      "Excuse me, I want to wash my hands"
+     ],
+     "options": [
+      "Excuse me, I want to wash my hands",
+      "Give me the soap",
+      "Where is the kitchen?",
+      "I want to leave"
+     ],
+     "tip": "\"sme7 liyya\" is \"excuse me\" or \"forgive me\"; \"bghit\" is \"I want\"."
+    },
+    {
+     "id": "unit-11.lesson-01.translate_to_arabic.02",
+     "type": "translate_to_arabic",
+     "prompt": "Translate: \"This house is very nice.\"",
+     "answer": "هاد الدار زوينة بزاف",
+     "accepted": [
+      "هاد الدار زوينة بزاف",
+      "هاد الدار زوينة بزاااف",
+      "هاد الدار مزيانة بزاف",
+      "haad d-daar zwiina bzzaf"
+     ],
+     "too_formal": {
+      "item": "هذا المنزل جميل جدا",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"zwiina bzzaf\"."
+     },
+     "tip": "\"زوين/زوينة\" is beautiful and \"بزاف\" is very or a lot."
+    },
+    {
+     "id": "unit-11.lesson-01.reply.02",
+     "type": "reply",
+     "prompt": "A host says: \"جبتي لينا شي حاجة، تعبتي معانا\". Say it's only right.",
+     "answer": "هادشي واجب",
+     "accepted": [
+      "هادشي واجب",
+      "ماشي مشكل",
+      "الله يخليك، هادشي واجب",
+      "haadshi waajeb"
+     ],
+     "too_formal": {
+      "item": "هذا واجب علي",
+      "feedback": "Correct but stiff; \"haadshi waajeb\" is what people say."
+     },
+     "tip": "\"waajeb\" (duty) turns thanks aside politely."
+    },
+    {
+     "id": "unit-11.lesson-01.choose.03",
+     "type": "choose",
+     "prompt": "A host thanks you for a small gift and says \"ماكانش خاصك\". It means:",
+     "answer": "You shouldn't have",
+     "accepted": [
+      "You shouldn't have"
+     ],
+     "options": [
+      "You shouldn't have",
+      "Please come in",
+      "Where is it from?",
+      "How much was it?"
+     ],
+     "tip": "\"maakaansh khaaSSek\" is literally \"there was no need for you\"."
+    }
+   ]
+  },
+  {
+   "lesson": "lesson-02",
+   "phrases": [
+    {
+     "slot": "sit-down-relax-a-little",
+     "arabic": "جلس، ارتاح شوية",
+     "transliteration": "jles, rtaa7 shwiya",
+     "reply": {
+      "arabic": "الله يخليك",
+      "transliteration": "Allaah ykhallik",
+      "english": "God keep you."
+     }
+    },
+    {
+     "slot": "what-would-you-like-to-drink",
+     "arabic": "أشنو بغيتي تشرب؟",
+     "transliteration": "ashnu bghiti tshrab?",
+     "reply": {
+      "arabic": "أتاي، عافاك",
+      "transliteration": "ataay, 3aafaak",
+      "english": "Tea, please."
+     }
+    },
+    {
+     "slot": "coffee-or-tea",
+     "arabic": "قهوة ولا أتاي؟",
+     "transliteration": "qahwa wlla ataay?",
+     "reply": {
+      "arabic": "أتاي بالنعناع",
+      "transliteration": "ataay b-nna3naa3",
+      "english": "Mint tea."
+     }
+    },
+    {
+     "slot": "do-you-take-sugar-in-your-coffee",
+     "arabic": "كتدير السكر فالقهوة؟",
+     "transliteration": "katdiir s-sukkar f-l-qahwa?",
+     "reply": {
+      "arabic": "لا، بلا سكر",
+      "transliteration": "laa, blaa sukkar",
+      "english": "No, no sugar."
+     }
+    },
+    {
+     "slot": "ring-the-doorbell-they-must-have-arrived",
+     "arabic": "ضرب الجرس، أكيد وصلو",
+     "transliteration": "Drob j-jaras, akiid wSlu"
+    },
+    {
+     "slot": "give-me-your-coats-i-ll-hang-them-up",
+     "arabic": "عطيوني الجاكيطات ديالكم، نعلقهم",
+     "transliteration": "3Tiyuunii j-jakiTaat dyaalkum, n3elqhum",
+     "reply": {
+      "arabic": "شكرا بزاف",
+      "transliteration": "shukran bzzaf",
+      "english": "Thanks a lot."
+     }
+    },
+    {
+     "slot": "take-your-time-no-rush",
+     "arabic": "على راحتك، ماكاينة حتى عجلة",
+     "transliteration": "3la raa7tek, maakayna 7ta 3jala"
+    },
+    {
+     "slot": "i-put-the-sweets-on-the-table",
+     "arabic": "حطيت الحلوة على الطبلة",
+     "transliteration": "7Tiit l-7elwa 3la T-Tebla",
+     "reply": {
+      "arabic": "الله يعطيك الصحة",
+      "transliteration": "Allaah y3Tiik S-S7a",
+      "english": "God give you health."
+     }
+    },
+    {
+     "slot": "turn-on-the-tv-if-you-d-like",
+     "arabic": "شعل التلفازة إلا بغيتي",
+     "transliteration": "sha33el t-tilifaaza ila bghiti"
+    },
+    {
+     "slot": "your-kids-have-grown-up-so-much",
+     "arabic": "وليداتك كبرو بزاف!",
+     "transliteration": "wlidaatek kberu bzzaf!",
+     "reply": {
+      "arabic": "الله يحفظهم",
+      "transliteration": "Allaah y7fDhum",
+      "english": "God protect them."
+     }
+    },
+    {
+     "slot": "today-s-gathering-is-very-nice",
+     "arabic": "الجلسة اليوم زوينة بزاف",
+     "transliteration": "j-jelsa l-yuum zwiina bzzaf",
+     "reply": {
+      "arabic": "بحضوركم",
+      "transliteration": "b-7uDuurkum",
+      "english": "It's because of you being here."
+     }
+    },
+    {
+     "slot": "don-t-be-shy-the-house-is-your-house",
+     "arabic": "متحشمش، الدار ديالك",
+     "transliteration": "matt7ashemsh, d-daar dyaalek"
+    }
+   ],
+   "dialogue": [
+    {
+     "speaker": "Youssef",
+     "arabic": "مرحبا بيكم، دخلو. عطيوني الجاكيطات ديالكم، نعلقهم",
+     "transliteration": "mar7baa bikum, dkhlu. 3Tiyuunii j-jakiTaat dyaalkum, n3elqhum",
+     "english": "Welcome, come in. Give me your coats, I'll hang them up."
+    },
+    {
+     "speaker": "Nadia",
+     "arabic": "شكرا بزاف. وليداتك كبرو بزاف!",
+     "transliteration": "shukran bzzaf. wlidaatek kberu bzzaf!",
+     "english": "Thanks a lot. Your kids have grown so much!"
+    },
+    {
+     "speaker": "Youssef",
+     "arabic": "الله يحفظهم. جلسو، ارتاحو شوية",
+     "transliteration": "Allaah y7fDhum. jelsu, rtaa7u shwiya",
+     "english": "God protect them. Sit down, relax a bit."
+    },
+    {
+     "speaker": "Nadia",
+     "arabic": "الله يخليك. هاد الصالون زوين بزاف",
+     "transliteration": "Allaah ykhallik. haad S-Saalon zwiin bzzaf",
+     "english": "God keep you. This living room is so nice."
+    },
+    {
+     "speaker": "Youssef",
+     "arabic": "قهوة ولا أتاي؟",
+     "transliteration": "qahwa wlla ataay?",
+     "english": "Coffee or tea?"
+    },
+    {
+     "speaker": "Nadia",
+     "arabic": "أتاي بالنعناع، عافاك",
+     "transliteration": "ataay b-nna3naa3, 3aafaak",
+     "english": "Mint tea, please."
+    },
+    {
+     "speaker": "Youssef",
+     "arabic": "كتدير السكر؟",
+     "transliteration": "katdiir s-sukkar?",
+     "english": "Do you take sugar?"
+    },
+    {
+     "speaker": "Nadia",
+     "arabic": "شوية صغيرة، الله يخليك",
+     "transliteration": "shwiya Sghiira, Allaah ykhallik",
+     "english": "Just a little, God keep you."
+    },
+    {
+     "speaker": "Youssef",
+     "arabic": "حطيت الحلوة على الطبلة، على راحتكم",
+     "transliteration": "7Tiit l-7elwa 3la T-Tebla, 3la raa7tkum",
+     "english": "I put the sweets on the table, take your time."
+    },
+    {
+     "speaker": "Nadia",
+     "arabic": "الله يعطيك الصحة، الجلسة اليوم زوينة بزاف",
+     "transliteration": "Allaah y3Tiik S-S7a, j-jelsa l-yuum zwiina bzzaf",
+     "english": "God give you health, today's gathering is very nice."
+    },
+    {
+     "speaker": "Youssef",
+     "arabic": "متحشمو، الدار ديالكم",
+     "transliteration": "matt7ashmu, d-daar dyaalkum",
+     "english": "Don't be shy, the house is yours."
+    }
+   ],
+   "de_book": [
+    {
+     "pair": {
+      "arabic": "قهوة ولا أتاي؟",
+      "transliteration": "qahwa wlla ataay?",
+      "english": "Coffee or tea?"
+     },
+     "response": {
+      "arabic": "أتاي بالنعناع",
+      "transliteration": "ataay b-nna3naa3",
+      "english": "Mint tea."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "كتدير السكر فالقهوة؟",
+      "transliteration": "katdiir s-sukkar f-l-qahwa?",
+      "english": "Do you take sugar in your coffee?"
+     },
+     "response": {
+      "arabic": "لا، بلا سكر",
+      "transliteration": "laa, blaa sukkar",
+      "english": "No, no sugar."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "وليداتك كبرو بزاف!",
+      "transliteration": "wlidaatek kberu bzzaf!",
+      "english": "Your kids have grown so much!"
+     },
+     "response": {
+      "arabic": "الله يحفظهم",
+      "transliteration": "Allaah y7fDhum",
+      "english": "God protect them."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "حطيت الحلوة على الطبلة",
+      "transliteration": "7Tiit l-7elwa 3la T-Tebla",
+      "english": "I put the sweets on the table."
+     },
+     "response": {
+      "arabic": "الله يعطيك الصحة",
+      "transliteration": "Allaah y3Tiik S-S7a",
+      "english": "God give you health."
+     }
+    }
+   ],
+   "culture": "Moroccan hospitality nearly always starts with mint tea (ataay), often with a plate of sweets and pastries called l-7elwa. Refusing outright can seem cold, so guests take at least a glass and compliment the house and the children.",
+   "exercises": [
+    {
+     "id": "unit-11.lesson-02.choose.01",
+     "type": "choose",
+     "prompt": "A host asks \"قهوة ولا أتاي؟\". What is he asking?",
+     "answer": "Coffee or tea?",
+     "accepted": [
+      "Coffee or tea?"
+     ],
+     "options": [
+      "Coffee or tea?",
+      "Are you hungry?",
+      "Do you smoke?",
+      "What time is it?"
+     ],
+     "tip": "\"wlla\" is \"or\" in Moroccan Arabic."
+    },
+    {
+     "id": "unit-11.lesson-02.reply.01",
+     "type": "reply",
+     "prompt": "Someone asks: \"كتدير السكر فالقهوة؟\" and you take none. Reply.",
+     "answer": "لا، بلا سكر",
+     "accepted": [
+      "لا، بلا سكر",
+      "لا، بلا سكر عافاك",
+      "لا، بلا سكر الله يخليك",
+      "laa, blaa sukkar"
+     ],
+     "too_formal": {
+      "item": "لا، سادة من فضلك",
+      "feedback": "Correct but bookish; \"blaa sukkar\" is what people say."
+     },
+     "tip": "\"blaa\" means \"without\"."
+    },
+    {
+     "id": "unit-11.lesson-02.fill_blank.01",
+     "type": "fill_blank",
+     "prompt": "عطيوني ___ ديالكم، نعلقهم",
+     "answer": "الجاكيطات",
+     "accepted": [
+      "الجاكيطات",
+      "الجاكيطة",
+      "الكبوطات",
+      "j-jakiTaat"
+     ],
+     "too_formal": {
+      "item": "أعطوني معاطفكم",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"j-jakiTaat\"."
+     },
+     "tip": "\"dyaalkum\" means \"yours (pl.)\" and is used instead of MSA possessive endings."
+    },
+    {
+     "id": "unit-11.lesson-02.translate_to_arabic.01",
+     "type": "translate_to_arabic",
+     "prompt": "Translate: \"Take your time, no rush.\"",
+     "answer": "على راحتك، ماكاينة حتى عجلة",
+     "accepted": [
+      "على راحتك، ماكاينة حتى عجلة",
+      "على راحتك",
+      "على راحتك ماكاينة عجلة",
+      "3la raa7tek"
+     ],
+     "too_formal": {
+      "item": "خذ وقتك، لا داعي للعجلة",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"3la raa7tek\"."
+     },
+     "tip": "\"3la raa7tek\" (on your comfort) is the everyday way to say no rush."
+    },
+    {
+     "id": "unit-11.lesson-02.reorder.01",
+     "type": "reorder",
+     "prompt": "Arrange: I put the sweets on the table.",
+     "answer": "حطيت الحلوة على الطبلة",
+     "accepted": [
+      "حطيت الحلوة على الطبلة",
+      "حطيت الحلوة فالطبلة",
+      "حطيت الحلوة فوق الطبلة",
+      "7Tiit l-7elwa 3la T-Tebla"
+     ],
+     "words": [
+      "حطيت",
+      "الحلوة",
+      "على",
+      "الطبلة"
+     ],
+     "too_formal": {
+      "item": "وضعت الحلويات على الطاولة",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"7Tiit l-7elwa 3la T-Tebla\"."
+     },
+     "tip": "\"Tebla\" is the Moroccan word for table; \"7elwa\" means sweets and pastries."
+    },
+    {
+     "id": "unit-11.lesson-02.choose.02",
+     "type": "choose",
+     "prompt": "What do you say to reassure a shy guest?",
+     "answer": "متحشمش، الدار ديالك",
+     "accepted": [
+      "متحشمش، الدار ديالك"
+     ],
+     "options": [
+      "متحشمش، الدار ديالك",
+      "ضرب الجرس",
+      "قهوة ولا أتاي؟",
+      "بسلامة"
+     ],
+     "tip": "\"matt7ashemsh\" (don't be shy) is used often at the table and in the living room."
+    },
+    {
+     "id": "unit-11.lesson-02.fill_blank.02",
+     "type": "fill_blank",
+     "prompt": "الجلسة اليوم ___ بزاف",
+     "answer": "زوينة",
+     "accepted": [
+      "زوينة",
+      "مزيانة",
+      "حلوة",
+      "zwiina"
+     ],
+     "too_formal": {
+      "item": "جميلة",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"zwiina\"."
+     },
+     "tip": "\"zwiina\" (beautiful, nice) is feminine, agreeing with \"jelsa\"."
+    },
+    {
+     "id": "unit-11.lesson-02.reply.02",
+     "type": "reply",
+     "prompt": "A guest says: \"وليداتك كبرو بزاف!\". Reply.",
+     "answer": "الله يحفظهم",
+     "accepted": [
+      "الله يحفظهم",
+      "الله يخليك",
+      "الله يبارك فيك",
+      "Allaah y7fDhum"
+     ],
+     "too_formal": {
+      "item": "بارك الله فيك",
+      "feedback": "Correct but formal."
+     },
+     "tip": "When children are praised, Moroccans answer with a protective blessing."
+    },
+    {
+     "id": "unit-11.lesson-02.translate_to_arabic.02",
+     "type": "translate_to_arabic",
+     "prompt": "Translate: \"Sit down, relax a little.\"",
+     "answer": "جلس، ارتاح شوية",
+     "accepted": [
+      "جلس، ارتاح شوية",
+      "اجلس ارتاح شوية",
+      "جلس ارتاح",
+      "jles, rtaa7 shwiya"
+     ],
+     "too_formal": {
+      "item": "تفضل بالجلوس واسترح قليلا",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"jles, rtaa7 shwiya\"."
+     },
+     "tip": "To several people: \"jelsu, rtaa7u shwiya\"."
+    },
+    {
+     "id": "unit-11.lesson-02.choose.03",
+     "type": "choose",
+     "prompt": "\"ضرب الجرس\" means:",
+     "answer": "Ring the doorbell",
+     "accepted": [
+      "Ring the doorbell"
+     ],
+     "options": [
+      "Ring the doorbell",
+      "Open the window",
+      "Turn off the light",
+      "Close the door"
+     ],
+     "tip": "\"Drob\" (hit) is used for ringing a bell."
+    }
+   ]
+  },
+  {
+   "lesson": "lesson-03",
+   "phrases": [
+    {
+     "slot": "please-come-to-the-table-dinner-is-ready",
+     "arabic": "تفضلو، الماكلة واجدة",
+     "transliteration": "tfaDDalu, l-makla waajda",
+     "reply": {
+      "arabic": "الله يعطيك الصحة",
+      "transliteration": "Allaah y3Tiik S-S7a",
+      "english": "God give you health."
+     }
+    },
+    {
+     "slot": "enjoy-your-meal-said-to-those-eating",
+     "arabic": "بالهنا والشفا",
+     "transliteration": "b-l-hna w sh-shfaa",
+     "reply": {
+      "arabic": "الله يبارك فيك",
+      "transliteration": "Allaah ybaarek fiik",
+      "english": "God bless you."
+     }
+    },
+    {
+     "slot": "take-some-more-there-s-plenty-of-food",
+     "arabic": "زيد شي حاجة، الماكلة بزاف",
+     "transliteration": "ziid shi 7aaja, l-makla bzzaf",
+     "reply": {
+      "arabic": "الحمد لله، شبعت",
+      "transliteration": "l-7amdu lillaah, shb3et",
+      "english": "Thank God, I'm full."
+     }
+    },
+    {
+     "slot": "try-this-dish-i-made-it-today",
+     "arabic": "دوق هاد الطبق، طيبتو اليوم",
+     "transliteration": "dooq haad T-Tbeq, Tyebtu l-yuum",
+     "reply": {
+      "arabic": "بنين بزاف",
+      "transliteration": "bniin bzzaf",
+      "english": "Really delicious."
+     }
+    },
+    {
+     "slot": "don-t-hesitate-eat-as-you-like",
+     "arabic": "ماتحشمش، كول على راحتك",
+     "transliteration": "maa t7ashemsh, kul 3la raa7tek"
+    },
+    {
+     "slot": "do-you-want-a-bit-more-bread",
+     "arabic": "بغيتي شوية ديال الخبز؟",
+     "transliteration": "bghiti shwiya dyaal l-khobz?",
+     "reply": {
+      "arabic": "إيه، عافاك",
+      "transliteration": "iyyeh, 3aafaak",
+      "english": "Yes please."
+     }
+    },
+    {
+     "slot": "this-food-is-a-bit-spicy-be-careful",
+     "arabic": "هادي حريفة شوية، دير بالك",
+     "transliteration": "haadi 7erriifa shwiya, diir baalek"
+    },
+    {
+     "slot": "what-do-you-think-of-the-dish",
+     "arabic": "كيفاش لقيتي هاد الطبق؟",
+     "transliteration": "kifaash lqiiti haad T-Tbeq?",
+     "reply": {
+      "arabic": "بنين بزاف، تبارك الله",
+      "transliteration": "bniin bzzaf, tbaarak Allaah",
+      "english": "Very tasty, God bless it."
+     }
+    },
+    {
+     "slot": "don-t-be-shy-tell-me-if-you-want-anything-else",
+     "arabic": "ماتحشمش، قول لي إلا بغيتي شي حاجة خرى",
+     "transliteration": "maa t7ashemsh, qul lii ila bghiti shi 7aaja khra"
+    },
+    {
+     "slot": "thank-god-we-re-full-and-satisfied",
+     "arabic": "الحمد لله، شبعنا",
+     "transliteration": "l-7amdu lillaah, shb3na",
+     "reply": {
+      "arabic": "بالصحة",
+      "transliteration": "b-S-S7a",
+      "english": "To your health."
+     }
+    },
+    {
+     "slot": "good-thing-the-food-didn-t-get-cold",
+     "arabic": "الحمد لله الماكلة ما بردتش",
+     "transliteration": "l-7amdu lillaah l-makla maa bardatsh"
+    },
+    {
+     "slot": "stay-a-bit-there-s-still-dessert",
+     "arabic": "بقاو شوية، باقي الحلوة",
+     "transliteration": "bqaaw shwiya, baaqi l-7elwa",
+     "reply": {
+      "arabic": "الله يخليك، شبعنا",
+      "transliteration": "Allaah ykhallik, shb3na",
+      "english": "God keep you, we're full."
+     }
+    }
+   ],
+   "dialogue": [
+    {
+     "speaker": "Fatima",
+     "arabic": "تفضلو، الماكلة واجدة",
+     "transliteration": "tfaDDalu, l-makla waajda",
+     "english": "Please come, the food is ready."
+    },
+    {
+     "speaker": "Omar",
+     "arabic": "الله يعطيك الصحة. ريحة زوينة بزاف",
+     "transliteration": "Allaah y3Tiik S-S7a. rii7a zwiina bzzaf",
+     "english": "God give you health. What a lovely smell."
+    },
+    {
+     "speaker": "Fatima",
+     "arabic": "بالهنا والشفا. دوق هاد الطبق، طيبتو اليوم",
+     "transliteration": "b-l-hna w sh-shfaa. dooq haad T-Tbeq, Tyebtu l-yuum",
+     "english": "Enjoy your meal. Try this dish, I made it today."
+    },
+    {
+     "speaker": "Omar",
+     "arabic": "الله يبارك فيك. بنين بزاف!",
+     "transliteration": "Allaah ybaarek fiik. bniin bzzaf!",
+     "english": "God bless you. It's really delicious!"
+    },
+    {
+     "speaker": "Fatima",
+     "arabic": "زيد شي حاجة، الماكلة بزاف",
+     "transliteration": "ziid shi 7aaja, l-makla bzzaf",
+     "english": "Take some more, there's plenty."
+    },
+    {
+     "speaker": "Omar",
+     "arabic": "شكرا، الحمد لله، شبعت",
+     "transliteration": "shukran, l-7amdu lillaah, shb3et",
+     "english": "Thanks, thank God, I'm full."
+    },
+    {
+     "speaker": "Fatima",
+     "arabic": "بغيتي شوية ديال الخبز؟",
+     "transliteration": "bghiti shwiya dyaal l-khobz?",
+     "english": "Do you want a bit more bread?"
+    },
+    {
+     "speaker": "Omar",
+     "arabic": "إيه، عافاك. هادي حريفة شوية؟",
+     "transliteration": "iyyeh, 3aafaak. haadi 7erriifa shwiya?",
+     "english": "Yes please. Is this a bit spicy?"
+    },
+    {
+     "speaker": "Fatima",
+     "arabic": "شوية، دير بالك. ماتحشمش، قول لي إلا بغيتي شي حاجة خرى",
+     "transliteration": "shwiya, diir baalek. maa t7ashemsh, qul lii ila bghiti shi 7aaja khra",
+     "english": "A little, be careful. Don't be shy, tell me if you want anything else."
+    },
+    {
+     "speaker": "Omar",
+     "arabic": "الحمد لله، شبعنا. الماكلة زوينة بزاف",
+     "transliteration": "l-7amdu lillaah, shb3na. l-makla zwiina bzzaf",
+     "english": "Thank God, we're full. The food is great."
+    },
+    {
+     "speaker": "Fatima",
+     "arabic": "بقاو شوية، باقي الحلوة",
+     "transliteration": "bqaaw shwiya, baaqi l-7elwa",
+     "english": "Stay a bit, there's still dessert."
+    }
+   ],
+   "de_book": [
+    {
+     "pair": {
+      "arabic": "تفضلو، الماكلة واجدة",
+      "transliteration": "tfaDDalu, l-makla waajda",
+      "english": "Please come, the food is ready."
+     },
+     "response": {
+      "arabic": "الله يعطيك الصحة",
+      "transliteration": "Allaah y3Tiik S-S7a",
+      "english": "God give you health."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "كيفاش لقيتي هاد الطبق؟",
+      "transliteration": "kifaash lqiiti haad T-Tbeq?",
+      "english": "What do you think of the dish?"
+     },
+     "response": {
+      "arabic": "بنين بزاف، تبارك الله",
+      "transliteration": "bniin bzzaf, tbaarak Allaah",
+      "english": "Very tasty, God bless it."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "زيد شي حاجة، الماكلة بزاف",
+      "transliteration": "ziid shi 7aaja, l-makla bzzaf",
+      "english": "Take some more, there's plenty."
+     },
+     "response": {
+      "arabic": "الحمد لله، شبعت",
+      "transliteration": "l-7amdu lillaah, shb3et",
+      "english": "Thank God, I'm full."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "بغيتي شوية ديال الخبز؟",
+      "transliteration": "bghiti shwiya dyaal l-khobz?",
+      "english": "Do you want a bit more bread?"
+     },
+     "response": {
+      "arabic": "إيه، عافاك",
+      "transliteration": "iyyeh, 3aafaak",
+      "english": "Yes please."
+     }
+    }
+   ],
+   "culture": "A Moroccan meal is often eaten from one shared dish, with bread used as the spoon and each person eating from the part nearest to them. The host keeps urging more food; guests say \"bismillah\" to start and \"l-7amdu lillaah\" at the end, and the host says \"b-l-hna w sh-shfaa\" as they eat.",
+   "exercises": [
+    {
+     "id": "unit-11.lesson-03.reply.01",
+     "type": "reply",
+     "prompt": "The host says \"بالهنا والشفا\" as you start eating. Reply.",
+     "answer": "الله يبارك فيك",
+     "accepted": [
+      "الله يبارك فيك",
+      "الله يخليك",
+      "الله يعطيك الصحة",
+      "Allaah ybaarek fiik"
+     ],
+     "too_formal": {
+      "item": "جزاك الله خيرا",
+      "feedback": "Correct but heavier than the light everyday reply."
+     },
+     "tip": "\"b-l-hna w sh-shfaa\" is the Moroccan \"bon appetit\"."
+    },
+    {
+     "id": "unit-11.lesson-03.fill_blank.01",
+     "type": "fill_blank",
+     "prompt": "زيد شي حاجة، الماكلة ___",
+     "answer": "بزاف",
+     "accepted": [
+      "بزاف",
+      "بزااف",
+      "كثيرة",
+      "bzzaf"
+     ],
+     "too_formal": {
+      "item": "كثيرة",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"bzzaf\"."
+     },
+     "tip": "\"bzzaf\" means a lot, or plenty, in Moroccan Arabic."
+    },
+    {
+     "id": "unit-11.lesson-03.translate_to_arabic.01",
+     "type": "translate_to_arabic",
+     "prompt": "Translate: \"Thank God, I'm full.\"",
+     "answer": "الحمد لله، شبعت",
+     "accepted": [
+      "الحمد لله، شبعت",
+      "الحمد لله شبعت",
+      "شبعت الحمد لله",
+      "l-7amdu lillaah, shb3et"
+     ],
+     "too_formal": {
+      "item": "الحمد لله لقد شبعت",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"shb3et\"."
+     },
+     "tip": "\"shb3et\" is \"I am full\"."
+    },
+    {
+     "id": "unit-11.lesson-03.choose.01",
+     "type": "choose",
+     "prompt": "You finish a big meal and feel satisfied. What do you say?",
+     "answer": "الحمد لله، شبعنا",
+     "accepted": [
+      "الحمد لله، شبعنا"
+     ],
+     "options": [
+      "الحمد لله، شبعنا",
+      "بالهنا والشفا",
+      "تفضلو، الماكلة واجدة",
+      "قهوة ولا أتاي؟"
+     ],
+     "tip": "We say \"l-7amdu lillaah\" at the end of a meal."
+    },
+    {
+     "id": "unit-11.lesson-03.reorder.01",
+     "type": "reorder",
+     "prompt": "Arrange: Try this dish, I made it today.",
+     "answer": "دوق هاد الطبق، طيبتو اليوم",
+     "accepted": [
+      "دوق هاد الطبق، طيبتو اليوم",
+      "دوق هاد الطبق طيبتو اليوم",
+      "دوق هاد الطبق ديال اليوم",
+      "dooq haad T-Tbeq, Tyebtu l-yuum"
+     ],
+     "words": [
+      "دوق",
+      "هاد",
+      "الطبق",
+      "طيبتو",
+      "اليوم"
+     ],
+     "too_formal": {
+      "item": "ذق هذا الطبق، طبخته اليوم",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"Tyebtu\"."
+     },
+     "tip": "\"Tyeb\" is the Moroccan verb for cooking."
+    },
+    {
+     "id": "unit-11.lesson-03.reply.02",
+     "type": "reply",
+     "prompt": "You finish eating and the host says \"بالصحة\". Reply.",
+     "answer": "الله يبارك فيك",
+     "accepted": [
+      "الله يبارك فيك",
+      "الله يخليك",
+      "الله يعطيك الصحة",
+      "Allaah ybaarek fiik"
+     ],
+     "too_formal": {
+      "item": "جزاك الله خيرا",
+      "feedback": "Correct but more formal than everyday Moroccan speech."
+     },
+     "tip": "After a meal the guest thanks with a blessing."
+    },
+    {
+     "id": "unit-11.lesson-03.choose.02",
+     "type": "choose",
+     "prompt": "\"دوق هاد الطبق\" means:",
+     "answer": "Try this dish",
+     "accepted": [
+      "Try this dish"
+     ],
+     "options": [
+      "Try this dish",
+      "Pass the salt",
+      "Sit down",
+      "Clean the table"
+     ],
+     "tip": "\"dooq\" is the command \"taste\"."
+    },
+    {
+     "id": "unit-11.lesson-03.fill_blank.02",
+     "type": "fill_blank",
+     "prompt": "ماتحشمش، كول على ___",
+     "answer": "راحتك",
+     "accepted": [
+      "راحتك",
+      "راحتك نتا",
+      "كيفك",
+      "raa7tek"
+     ],
+     "too_formal": {
+      "item": "كل كما تشاء",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"3la raa7tek\"."
+     },
+     "tip": "\"3la raa7tek\": the host tells you to be at ease."
+    },
+    {
+     "id": "unit-11.lesson-03.translate_to_arabic.02",
+     "type": "translate_to_arabic",
+     "prompt": "Translate: \"Do you want a bit more bread?\"",
+     "answer": "بغيتي شوية ديال الخبز؟",
+     "accepted": [
+      "بغيتي شوية ديال الخبز؟",
+      "بغيتي شوية خبز؟",
+      "بغيتي شوية خبز زايد؟",
+      "bghiti shwiya dyaal l-khobz"
+     ],
+     "too_formal": {
+      "item": "هل تريد المزيد من الخبز؟",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"bghiti\"."
+     },
+     "tip": "\"bghiti\" (do you want) comes from the everyday verb \"bgha\"."
+    },
+    {
+     "id": "unit-11.lesson-03.choose.03",
+     "type": "choose",
+     "prompt": "A host offers more food and you're genuinely full. What's a natural first reply?",
+     "answer": "الحمد لله، شبعت",
+     "accepted": [
+      "الحمد لله، شبعت"
+     ],
+     "options": [
+      "الحمد لله، شبعت",
+      "زيد شي حاجة",
+      "تفضلو، الماكلة واجدة",
+      "الحلوة"
+     ],
+     "tip": "Say \"shb3et\" and thank God; the host will gently insist again."
+    }
+   ]
+  },
+  {
+   "lesson": "lesson-04",
+   "phrases": [
+    {
+     "slot": "thank-you-for-the-hospitality-lit-god-give-you-s",
+     "arabic": "الله يعطيك الصحة",
+     "transliteration": "Allaah y3Tiik S-S7a",
+     "reply": {
+      "arabic": "بالصحة والهنا",
+      "transliteration": "b-S-S7a w l-hna",
+      "english": "To your health and enjoyment."
+     }
+    },
+    {
+     "slot": "we-need-to-go-it-s-gotten-late",
+     "arabic": "خاصنا نمشيو، الوقت فات",
+     "transliteration": "khaaSna nemshiw, l-waqt faat",
+     "reply": {
+      "arabic": "باقي بكري",
+      "transliteration": "baaqi bekri",
+      "english": "It's still early."
+     }
+    },
+    {
+     "slot": "a-very-nice-gathering-god-keep-you",
+     "arabic": "جلسة زوينة بزاف، الله يخليك",
+     "transliteration": "jelsa zwiina bzzaf, Allaah ykhallik",
+     "reply": {
+      "arabic": "الله يخليكم",
+      "transliteration": "Allaah ykhalliikum",
+      "english": "God keep you."
+     }
+    },
+    {
+     "slot": "don-t-forget-our-house-is-always-your-house",
+     "arabic": "ماتنساوش، دارنا داركم",
+     "transliteration": "maa tensaawsh, daarna daarkum"
+    },
+    {
+     "slot": "give-my-regards-to-the-family",
+     "arabic": "سلم ليا على العائلة",
+     "transliteration": "sellem liyya 3la l-3aa2ila",
+     "reply": {
+      "arabic": "الله يسلمك، غادي توصل",
+      "transliteration": "Allaah yesellmek, ghaadi twaSSel",
+      "english": "God keep you, it will be passed on."
+     }
+    },
+    {
+     "slot": "good-night-said-when-leaving-in-the-evening",
+     "arabic": "تصبحو على خير",
+     "transliteration": "teSb7u 3la khiir",
+     "reply": {
+      "arabic": "وانتوما من أهل الخير",
+      "transliteration": "w ntuma mn ahl l-khiir",
+      "english": "And you are among the people of good."
+     }
+    },
+    {
+     "slot": "no-excuses-do-we-have-to-part-so-quickly",
+     "arabic": "ماكاينش عذر، واش غادي نتفارقو بهاد السرعة؟",
+     "transliteration": "maakaynsh 3edr, waash ghaadi ntfaarqu b-haad s-sur3a?"
+    },
+    {
+     "slot": "thanks-for-the-invitation-we-had-a-great-time",
+     "arabic": "شكرا على الدعوة، تبسطنا بزاف",
+     "transliteration": "shukran 3la d-da3wa, tbeSSTna bzzaf",
+     "reply": {
+      "arabic": "الله يبارك فيكم",
+      "transliteration": "Allaah ybaarek fiikum",
+      "english": "God bless you."
+     }
+    },
+    {
+     "slot": "let-us-know-when-you-get-home",
+     "arabic": "عيطو ليا ملي توصلو للدار",
+     "transliteration": "3ayyTu liyya mli twaSlu l-daar",
+     "reply": {
+      "arabic": "إن شاء الله",
+      "transliteration": "in shaa2 Allaah",
+      "english": "God willing."
+     }
+    },
+    {
+     "slot": "the-road-should-be-clear-god-willing",
+     "arabic": "إن شاء الله الطريق تكون خاوية",
+     "transliteration": "in shaa2 Allaah T-Tariiq tkuun khaawya"
+    },
+    {
+     "slot": "visit-me-again-soon",
+     "arabic": "عاود زورني قريب",
+     "transliteration": "3aawed zuurni qriib",
+     "reply": {
+      "arabic": "إن شاء الله",
+      "transliteration": "in shaa2 Allaah",
+      "english": "God willing."
+     }
+    },
+    {
+     "slot": "goodbye-god-be-with-you",
+     "arabic": "بسلامة، الله يحفظكم",
+     "transliteration": "b-slaama, Allaah y7fDkum",
+     "reply": {
+      "arabic": "الله يسلمك، بسلامة",
+      "transliteration": "Allaah yesellmek, b-slaama",
+      "english": "God keep you, goodbye."
+     }
+    }
+   ],
+   "dialogue": [
+    {
+     "speaker": "Karim",
+     "arabic": "الله يعطيك الصحة، خاصنا نمشيو، الوقت فات",
+     "transliteration": "Allaah y3Tiik S-S7a, khaaSna nemshiw, l-waqt faat",
+     "english": "God give you health, we need to go, it's gotten late."
+    },
+    {
+     "speaker": "Salma",
+     "arabic": "باقي بكري! ماكاينش عذر، واش غادي نتفارقو بهاد السرعة؟",
+     "transliteration": "baaqi bekri! maakaynsh 3edr, waash ghaadi ntfaarqu b-haad s-sur3a?",
+     "english": "It's still early! No excuses, do we have to part so quickly?"
+    },
+    {
+     "speaker": "Karim",
+     "arabic": "الله يخليك، جلسة زوينة بزاف",
+     "transliteration": "Allaah ykhallik, jelsa zwiina bzzaf",
+     "english": "God keep you, a very nice gathering."
+    },
+    {
+     "speaker": "Salma",
+     "arabic": "الله يخليك. بقاو شوية، باقي الحلوة",
+     "transliteration": "Allaah ykhallik. bqaaw shwiya, baaqi l-7elwa",
+     "english": "God keep you. Stay a bit, there's still dessert."
+    },
+    {
+     "speaker": "Karim",
+     "arabic": "شكرا على الدعوة، تبسطنا بزاف",
+     "transliteration": "shukran 3la d-da3wa, tbeSSTna bzzaf",
+     "english": "Thanks for the invitation, we had a great time."
+    },
+    {
+     "speaker": "Salma",
+     "arabic": "الله يبارك فيكم. ماتنساوش، دارنا داركم",
+     "transliteration": "Allaah ybaarek fiikum. maa tensaawsh, daarna daarkum",
+     "english": "God bless you. Don't forget, our house is yours."
+    },
+    {
+     "speaker": "Karim",
+     "arabic": "سلم ليا على العائلة",
+     "transliteration": "sellem liyya 3la l-3aa2ila",
+     "english": "Give my regards to the family."
+    },
+    {
+     "speaker": "Salma",
+     "arabic": "الله يسلمك، غادي توصل. عيطو ليا ملي توصلو للدار",
+     "transliteration": "Allaah yesellmek, ghaadi twaSSel. 3ayyTu liyya mli twaSlu l-daar",
+     "english": "God keep you, I'll pass it on. Call me when you get home."
+    },
+    {
+     "speaker": "Karim",
+     "arabic": "إن شاء الله. تصبحو على خير",
+     "transliteration": "in shaa2 Allaah. teSb7u 3la khiir",
+     "english": "God willing. Good night."
+    },
+    {
+     "speaker": "Salma",
+     "arabic": "وانتوما من أهل الخير. عاود زورني قريب",
+     "transliteration": "w ntuma mn ahl l-khiir. 3aawed zuurni qriib",
+     "english": "And you as well. Visit me again soon."
+    },
+    {
+     "speaker": "Karim",
+     "arabic": "إن شاء الله، بسلامة",
+     "transliteration": "in shaa2 Allaah, b-slaama",
+     "english": "God willing, goodbye."
+    }
+   ],
+   "de_book": [
+    {
+     "pair": {
+      "arabic": "الله يعطيك الصحة",
+      "transliteration": "Allaah y3Tiik S-S7a",
+      "english": "Thank you (God give you health)."
+     },
+     "response": {
+      "arabic": "بالصحة والهنا",
+      "transliteration": "b-S-S7a w l-hna",
+      "english": "To your health and enjoyment."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "سلم ليا على العائلة",
+      "transliteration": "sellem liyya 3la l-3aa2ila",
+      "english": "Give my regards to the family."
+     },
+     "response": {
+      "arabic": "الله يسلمك، غادي توصل",
+      "transliteration": "Allaah yesellmek, ghaadi twaSSel",
+      "english": "God keep you, it will be passed on."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "تصبحو على خير",
+      "transliteration": "teSb7u 3la khiir",
+      "english": "Good night."
+     },
+     "response": {
+      "arabic": "وانتوما من أهل الخير",
+      "transliteration": "w ntuma mn ahl l-khiir",
+      "english": "And you as well."
+     }
+    },
+    {
+     "pair": {
+      "arabic": "عاود زورني قريب",
+      "transliteration": "3aawed zuurni qriib",
+      "english": "Visit me again soon."
+     },
+     "response": {
+      "arabic": "إن شاء الله",
+      "transliteration": "in shaa2 Allaah",
+      "english": "God willing."
+     }
+    }
+   ],
+   "culture": "Leaving a Moroccan home takes a while: the guest announces they must go, the host insists they stay, and this can repeat several times. Guests say \"Allaah y3Tiik S-S7a\" for the hospitality and hosts often walk them to the door or the car.",
+   "exercises": [
+    {
+     "id": "unit-11.lesson-04.reply.01",
+     "type": "reply",
+     "prompt": "You say you must leave and the host says \"باقي بكري، بقاو شوية\". Reply.",
+     "answer": "خاصنا نمشيو، الوقت فات",
+     "accepted": [
+      "خاصنا نمشيو، الوقت فات",
+      "خاصنا نمشيو",
+      "خاصنا نمشيو دابا",
+      "khaaSna nemshiw"
+     ],
+     "too_formal": {
+      "item": "يجب أن نغادر فقد تأخر الوقت",
+      "feedback": "Correct but bookish; \"khaaSna nemshiw\" is what people say."
+     },
+     "tip": "\"khaaSna\" means \"we must\" and \"nemshiw\" is \"we go\"."
+    },
+    {
+     "id": "unit-11.lesson-04.fill_blank.01",
+     "type": "fill_blank",
+     "prompt": "شكرا على الدعوة، ___ بزاف",
+     "answer": "تبسطنا",
+     "accepted": [
+      "تبسطنا",
+      "فرحنا",
+      "تهنينا",
+      "tbeSSTna"
+     ],
+     "too_formal": {
+      "item": "استمتعنا",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"tbeSSTna\"."
+     },
+     "tip": "\"tbeSSTna\" is \"we enjoyed ourselves\"."
+    },
+    {
+     "id": "unit-11.lesson-04.translate_to_arabic.01",
+     "type": "translate_to_arabic",
+     "prompt": "Translate: \"Give my regards to the family.\"",
+     "answer": "سلم ليا على العائلة",
+     "accepted": [
+      "سلم ليا على العائلة",
+      "سلم ليا على الدار",
+      "سلم ليا على الوالدين",
+      "sellem liyya 3la l-3aa2ila"
+     ],
+     "too_formal": {
+      "item": "بلغ سلامي إلى العائلة",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"sellem liyya 3la\"."
+     },
+     "tip": "\"sellem liyya 3la\" means \"greet for me\"."
+    },
+    {
+     "id": "unit-11.lesson-04.choose.01",
+     "type": "choose",
+     "prompt": "What do you say when leaving a house in the evening?",
+     "answer": "تصبحو على خير",
+     "accepted": [
+      "تصبحو على خير"
+     ],
+     "options": [
+      "تصبحو على خير",
+      "بالهنا والشفا",
+      "قهوة ولا أتاي؟",
+      "دخلو"
+     ],
+     "tip": "\"teSb7u 3la khiir\" to several people; \"teSbe7 3la khiir\" to one."
+    },
+    {
+     "id": "unit-11.lesson-04.reorder.01",
+     "type": "reorder",
+     "prompt": "Arrange: Don't forget, our house is always your house.",
+     "answer": "ماتنساوش، دارنا داركم ديما",
+     "accepted": [
+      "ماتنساوش، دارنا داركم ديما",
+      "ماتنساوش دارنا داركم ديما",
+      "ماتنساوش، دارنا داركم",
+      "maa tensaawsh daarna daarkum dima"
+     ],
+     "words": [
+      "ماتنساوش",
+      "دارنا",
+      "داركم",
+      "ديما"
+     ],
+     "too_formal": {
+      "item": "لا تنسوا أن بيتنا بيتكم دائما",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"daarna daarkum\"."
+     },
+     "tip": "\"maa ...sh\" makes a verb negative in Moroccan Arabic."
+    },
+    {
+     "id": "unit-11.lesson-04.reply.02",
+     "type": "reply",
+     "prompt": "As you leave the host says \"عاود زورني قريب\". Reply.",
+     "answer": "إن شاء الله",
+     "accepted": [
+      "إن شاء الله",
+      "إن شاء الله، بسلامة",
+      "ان شاء الله",
+      "in shaa2 Allaah"
+     ],
+     "too_formal": {
+      "item": "سأزورك قريبا",
+      "feedback": "Correct but too direct without \"in shaa2 Allaah\"."
+     },
+     "tip": "Promises about the future normally include \"in shaa2 Allaah\"."
+    },
+    {
+     "id": "unit-11.lesson-04.choose.02",
+     "type": "choose",
+     "prompt": "\"عيطو ليا ملي توصلو للدار\" means:",
+     "answer": "Call me when you get home",
+     "accepted": [
+      "Call me when you get home"
+     ],
+     "options": [
+      "Call me when you get home",
+      "Come back tomorrow",
+      "Don't forget your coat",
+      "Take the main road"
+     ],
+     "tip": "\"3ayyTu\" is \"call\" and \"mli\" means \"when\"."
+    },
+    {
+     "id": "unit-11.lesson-04.fill_blank.02",
+     "type": "fill_blank",
+     "prompt": "بسلامة، الله ___",
+     "answer": "يحفظكم",
+     "accepted": [
+      "يحفظكم",
+      "يسلمكم",
+      "يعاونكم",
+      "y7fDkum"
+     ],
+     "too_formal": {
+      "item": "مع السلامة",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"b-slaama\"."
+     },
+     "tip": "\"b-slaama\" is the standard Moroccan goodbye."
+    },
+    {
+     "id": "unit-11.lesson-04.translate_to_arabic.02",
+     "type": "translate_to_arabic",
+     "prompt": "Translate: \"A very nice gathering, God keep you.\"",
+     "answer": "جلسة زوينة بزاف، الله يخليك",
+     "accepted": [
+      "جلسة زوينة بزاف، الله يخليك",
+      "جلسة زوينة بزاف",
+      "جلسة مزيانة بزاف، الله يخليك",
+      "jelsa zwiina bzzaf, Allaah ykhallik"
+     ],
+     "too_formal": {
+      "item": "جلسة جميلة جدا حفظكم الله",
+      "feedback": "Correct formal Arabic, but everyday Moroccan speech says \"zwiina bzzaf\"."
+     },
+     "tip": "\"Allaah ykhallik\" is the everyday thanks."
+    },
+    {
+     "id": "unit-11.lesson-04.choose.03",
+     "type": "choose",
+     "prompt": "How do you thank a host as you are leaving?",
+     "answer": "الله يعطيك الصحة",
+     "accepted": [
+      "الله يعطيك الصحة"
+     ],
+     "options": [
+      "الله يعطيك الصحة",
+      "تصبحو على خير",
+      "خاصنا نمشيو",
+      "زورني قريب"
+     ],
+     "tip": "\"Allaah y3Tiik S-S7a\" works for any hospitality."
+    }
+   ]
+  }
+ ],
+ "challenge": {
+  "title": "Hosting or Visiting: A Full Exchange",
+  "instructions": "Write a short conversation where you either welcome a guest into your home from the door to the table, or visit someone else's home and take your leave at the end. Use at least one welcome phrase, one phrase about food or drink, and one closing or thanking phrase.",
+  "required_elements": [
+   "a welcome phrase at the door (e.g. mar7baa bik, dkhel tfaDDal)",
+   "an offer of food or drink (e.g. qahwa wlla ataay?)",
+   "a closing thanks or goodbye (e.g. Allaah y3Tiik S-S7a / b-slaama)"
+  ],
+  "model": {
+   "dialogue": [
+    {
+     "speaker": "Layla",
+     "arabic": "مرحبا بيك، دخلي تفضلي",
+     "transliteration": "mar7baa bik, dkhli tfaDDali",
+     "english": "Welcome, please come in."
+    },
+    {
+     "speaker": "Mona",
+     "arabic": "الله يبارك فيك، جبت ليك شي حاجة بسيطة",
+     "transliteration": "Allaah ybaarek fiik, jebt lik shi 7aaja bsiiTa",
+     "english": "God bless you, I brought you something simple."
+    },
+    {
+     "speaker": "Layla",
+     "arabic": "ماكانش خاصك. جلسي ارتاحي، قهوة ولا أتاي؟",
+     "transliteration": "maakaansh khaaSSek. jelsi rtaa7i, qahwa wlla ataay?",
+     "english": "You shouldn't have. Sit and relax, coffee or tea?"
+    },
+    {
+     "speaker": "Mona",
+     "arabic": "أتاي بالنعناع، عافاك",
+     "transliteration": "ataay b-nna3naa3, 3aafaak",
+     "english": "Mint tea, please."
+    },
+    {
+     "speaker": "Layla",
+     "arabic": "تفضلي، الماكلة واجدة",
+     "transliteration": "tfaDDali, l-makla waajda",
+     "english": "Here you go, the food is ready."
+    },
+    {
+     "speaker": "Mona",
+     "arabic": "الله يعطيك الصحة، خاصني نمشي شوية دابا",
+     "transliteration": "Allaah y3Tiik S-S7a, khaaSSni nemshi shwiya daba",
+     "english": "God give you health, I need to go shortly."
+    },
+    {
+     "speaker": "Layla",
+     "arabic": "باقي بكري، بقاي شوية!",
+     "transliteration": "baaqi bekri, bqaay shwiya!",
+     "english": "It's still early, stay a bit!"
+    },
+    {
+     "speaker": "Mona",
+     "arabic": "واخا، ولكن شكرا على الدعوة، تبسطت بزاف",
+     "transliteration": "waakha, walaakin shukran 3la d-da3wa, tbeSSTet bzzaf",
+     "english": "Okay, but thanks for the invitation, I had a great time."
+    },
+    {
+     "speaker": "Layla",
+     "arabic": "الله يخليك، عاودي زوريني قريب",
+     "transliteration": "Allaah ykhallik, 3aawdi zuurini qriib",
+     "english": "God keep you, visit me again soon."
+    },
+    {
+     "speaker": "Mona",
+     "arabic": "إن شاء الله، بسلامة",
+     "transliteration": "in shaa2 Allaah, b-slaama",
+     "english": "God willing, goodbye."
+    }
+   ]
+  }
+ }
+}

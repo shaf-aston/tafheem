@@ -1,0 +1,1623 @@
+{
+  "unit": "unit-16",
+  "dialect": "Gulf Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "g": "ق (تُنطق كالجيم المصرية في الخليج)",
+    "ch": "ج أو ك مكسورة (تشين) كما في شلونج و باجر",
+    "j": "ج",
+    "S": "ص",
+    "T": "ط",
+    "D": "ض",
+    "Z": "ظ",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "what-did-you-do-yesterday",
+          "arabic": "شو سويت أمس؟",
+          "transliteration": "shu sawweet ams?",
+          "reply": {
+            "arabic": "أمس رحت السوق",
+            "transliteration": "ams ruht is-soog",
+            "english": "Yesterday I went to the market."
+          }
+        },
+        {
+          "slot": "yesterday-was-a-very-long-day",
+          "arabic": "أمس كان يوم طويل وايد",
+          "transliteration": "ams kaan yoom Taweel waayid"
+        },
+        {
+          "slot": "i-woke-up-late-yesterday",
+          "arabic": "قمت متأخر أمس",
+          "transliteration": "gimt muta2akhkhir ams"
+        },
+        {
+          "slot": "where-were-you-last-night",
+          "arabic": "وين كنت البارحة بالليل؟",
+          "transliteration": "ween kint il-baar7a bil-leel?",
+          "reply": {
+            "arabic": "كنت في البيت",
+            "transliteration": "kint fil-beet",
+            "english": "I was at home."
+          }
+        },
+        {
+          "slot": "we-ate-at-a-nice-restaurant-yesterday",
+          "arabic": "أكلنا في مطعم حلو أمس",
+          "transliteration": "akalna fi maT3am 7ilu ams"
+        },
+        {
+          "slot": "who-did-you-see-yesterday",
+          "arabic": "منو شفت أمس؟",
+          "transliteration": "minu shift ams?",
+          "reply": {
+            "arabic": "شفت خالتي بالصدفة",
+            "transliteration": "shift khaalti biS-Sudfa",
+            "english": "I ran into my aunt by chance."
+          }
+        },
+        {
+          "slot": "did-you-buy-anything-yesterday",
+          "arabic": "شريت شي أمس؟",
+          "transliteration": "shreet shay ams?",
+          "reply": {
+            "arabic": "إي، شريت قميص جديد",
+            "transliteration": "ee, shreet gameeS jdeed",
+            "english": "Yes, I bought a new shirt."
+          }
+        },
+        {
+          "slot": "the-day-before-yesterday-i-had-work-until-the-ev",
+          "arabic": "أول أمس كان عندي شغل لين المسا",
+          "transliteration": "awwal ams kaan 3indi shughul layn il-masa"
+        },
+        {
+          "slot": "how-late-did-you-stay-up-yesterday",
+          "arabic": "لين متى سهرت أمس؟",
+          "transliteration": "layn mita sihart ams?",
+          "reply": {
+            "arabic": "سهرت لين الساعة وحدة",
+            "transliteration": "sihart layn is-saa3a w7ida",
+            "english": "I stayed up until one o'clock."
+          }
+        },
+        {
+          "slot": "i-got-very-tired-from-work-yesterday",
+          "arabic": "تعبت وايد من الشغل أمس",
+          "transliteration": "ta3abt waayid min ish-shughul ams"
+        },
+        {
+          "slot": "yesterday-the-weather-was-very-nice",
+          "arabic": "أمس الجو كان حلو وايد",
+          "transliteration": "ams il-jaw kaan 7ilu waayid"
+        },
+        {
+          "slot": "why-didn-t-you-come-yesterday",
+          "arabic": "ليش ما جيت أمس؟",
+          "transliteration": "leesh ma jeet ams?",
+          "reply": {
+            "arabic": "ما قدرت، كان عندي شغل",
+            "transliteration": "ma gidart, kaan 3indi shughul",
+            "english": "I couldn't, I had work."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Khalid",
+          "arabic": "هلا مريم، شلونچ؟",
+          "transliteration": "hala Mariam, shlonich?",
+          "english": "Hi Mariam, how are you?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "هلا خالد، الحمد لله بخير.",
+          "transliteration": "hala Khaalid, al7amdulillah bkhayr.",
+          "english": "Hi Khalid, thank God, well."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "شو سويتي أمس؟",
+          "transliteration": "shu sawweeti ams?",
+          "english": "What did you do yesterday?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "أمس كان يوم طويل وايد، تعبت من الشغل.",
+          "transliteration": "ams kaan yoom Taweel waayid, ta3abt min ish-shughul.",
+          "english": "Yesterday was a very long day, I got tired from work."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "وين كنتي البارحة بالليل؟ ما جاوبتي على الجوال.",
+          "transliteration": "ween kinti il-baar7a bil-leel? ma jaawabti 3ala il-jawwaal.",
+          "english": "Where were you last night? You didn't answer the phone."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "كنت في البيت، نمت بدري.",
+          "transliteration": "kint fil-beet, nimt bidri.",
+          "english": "I was at home, I slept early."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "واحنا أكلنا في مطعم حلو أمس.",
+          "transliteration": "w-i7na akalna fi maT3am 7ilu ams.",
+          "english": "And we ate at a nice restaurant yesterday."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "زين! منو شفتوا هناك؟",
+          "transliteration": "zeen! minu shiftoo hnaak?",
+          "english": "Nice! Who did you see there?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "شفنا ربيعي عبدالله بالصدفة. وانتي شريتي شي؟",
+          "transliteration": "shifna rabee3i 3abdullah biS-Sudfa. w-inti shreeti shay?",
+          "english": "We ran into my friend Abdullah by chance. And did you buy anything?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "إي، شريت عباية جديدة من السوق.",
+          "transliteration": "ee, shreet 3abaaya jdeeda min is-soog.",
+          "english": "Yes, I bought a new abaya from the market."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "ما شاء الله عليچ!",
+          "transliteration": "maa shaa2 allah 3aleech!",
+          "english": "Masha'Allah on you!"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "الله يسلمك. يالله، أشوفك باچر إن شاء الله.",
+          "transliteration": "allah yisallimak. yalla, ashoofak baachir in shaa2 allah.",
+          "english": "God keep you. Right, see you tomorrow, God willing."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شو سويت أمس؟",
+            "transliteration": "shu sawweet ams?",
+            "english": "What did you do yesterday?"
+          },
+          "response": {
+            "arabic": "ما سويت شي، قعدت في البيت",
+            "transliteration": "ma sawweet shay, ga3adt fil-beet",
+            "english": "I didn't do anything, I stayed at home."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين كنت الساعة سبع أمس؟",
+            "transliteration": "ween kint is-saa3a sab3a ams?",
+            "english": "Where were you at seven o'clock yesterday?"
+          },
+          "response": {
+            "arabic": "كنت للحين في الشغل",
+            "transliteration": "kint lil7een fish-shughul",
+            "english": "I was still at work."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ليش ما جيت أمس؟",
+            "transliteration": "leesh ma jeet ams?",
+            "english": "Why didn't you come yesterday?"
+          },
+          "response": {
+            "arabic": "آسف، ما قدرت أجي",
+            "transliteration": "aasif, ma gidart aji",
+            "english": "Sorry, I couldn't come."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو سويتوا أمس في الليل؟",
+            "transliteration": "shu sawweetoo ams fil-leel?",
+            "english": "What did you do last night?"
+          },
+          "response": {
+            "arabic": "سهرنا عند ربعنا",
+            "transliteration": "sihrna 3ind rab3ana",
+            "english": "We stayed up at our friends' place."
+          }
+        }
+      ],
+      "culture": "Catching up in the UAE and Kuwait often starts with شو سويت أمس؟ or شخبارك؟, and البارحة is the everyday word for last night. Friends are called ربع (or ربيع for one), and an evening at a friend's place or in the majlis is completely normal.",
+      "exercises": [
+        {
+          "id": "unit-16.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "صاحبك يسألك: \"شو سويت أمس؟\". جاوب إنك رحت السوق.",
+          "answer": "أمس رحت السوق",
+          "accepted": [
+            "أمس رحت السوق",
+            "ams ruht is-soog",
+            "رحت السوق أمس",
+            "ruht is-soog ams"
+          ],
+          "too_formal": {
+            "item": "ذهبت إلى السوق أمس",
+            "feedback": "Correct MSA but too formal for a casual catch-up; Gulf says رحت, not ذهبت."
+          },
+          "tip": "\"رحت\" = I went; no إلى needed, just رحت السوق."
+        },
+        {
+          "id": "unit-16.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "يسألونك: \"وين كنت البارحة بالليل؟\". جاوب إنك كنت في البيت.",
+          "answer": "كنت في البيت",
+          "accepted": [
+            "كنت في البيت",
+            "kint fil-beet",
+            "كنت بالبيت",
+            "كنت قاعد في البيت"
+          ],
+          "too_formal": {
+            "item": "كنت في المنزل",
+            "feedback": "المنزل is a written word; in speech it is البيت."
+          },
+          "tip": "\"البيت\" = home."
+        },
+        {
+          "id": "unit-16.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "أكمل: \"_____ كان يوم طويل وايد.\" المعنى: Yesterday was a very long day.",
+          "answer": "أمس",
+          "accepted": [
+            "أمس",
+            "ams",
+            "البارحة",
+            "il-baar7a"
+          ],
+          "tip": "\"أمس\" opens the sentence, just like \"yesterday\" in English."
+        },
+        {
+          "id": "unit-16.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "أكمل: \"تعبت وايد أمس من _____.\" المعنى: I got very tired from work yesterday.",
+          "answer": "الشغل",
+          "accepted": [
+            "الشغل",
+            "ish-shughul",
+            "الدوام",
+            "id-dawaam"
+          ],
+          "too_formal": {
+            "item": "العمل",
+            "feedback": "العمل is correct but bookish; the everyday word for work is الشغل."
+          },
+          "tip": "\"وايد\" = very, a lot, the Emirati and Kuwaiti word."
+        },
+        {
+          "id": "unit-16.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم: \"What did you do yesterday?\"",
+          "answer": "شو سويت أمس؟",
+          "accepted": [
+            "شو سويت أمس؟",
+            "shu sawweet ams?",
+            "أمس شو سويت؟",
+            "شو سويت البارحة؟"
+          ],
+          "too_formal": {
+            "item": "ماذا فعلت أمس؟",
+            "feedback": "Correct MSA, but شو and سويت are how this is really said."
+          },
+          "tip": "\"سوّى\" = to do, the everyday Gulf verb; \"فعل\" is bookish."
+        },
+        {
+          "id": "unit-16.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم: \"Who did you see yesterday?\"",
+          "answer": "منو شفت أمس؟",
+          "accepted": [
+            "منو شفت أمس؟",
+            "minu shift ams?",
+            "أمس منو شفت؟",
+            "منو شفت البارحة؟"
+          ],
+          "too_formal": {
+            "item": "من رأيت أمس؟",
+            "feedback": "Correct MSA; Gulf says منو for who and شفت for saw."
+          },
+          "tip": "\"منو\" = who."
+        },
+        {
+          "id": "unit-16.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "أي جملة معناها \"I bought a new shirt yesterday\"؟",
+          "answer": "شريت قميص جديد أمس",
+          "accepted": [
+            "شريت قميص جديد أمس",
+            "shreet gameeS jdeed ams",
+            "شريت قميص جديد البارحة"
+          ],
+          "options": [
+            "شريت قميص جديد أمس",
+            "بشتري قميص جديد باجر",
+            "عندي قميص جديد الحين",
+            "أبي قميص جديد"
+          ],
+          "too_formal": {
+            "item": "اشتريت قميصاً جديداً أمس",
+            "feedback": "Fine MSA, but Gulf says شريت, not اشتريت, and drops the case endings."
+          },
+          "tip": "A past-tense verb plus أمس marks something already done."
+        },
+        {
+          "id": "unit-16.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "شو معنى \"لين متى سهرت أمس؟\"؟",
+          "answer": "How late did you stay up yesterday?",
+          "accepted": [
+            "How late did you stay up yesterday?",
+            "How late did you stay up yesterday",
+            "how late did you stay up yesterday?"
+          ],
+          "options": [
+            "How late did you stay up yesterday?",
+            "What did you eat yesterday?",
+            "Where did you go yesterday?",
+            "Who did you see yesterday?"
+          ],
+          "tip": "\"سهر\" = to stay up late; \"لين\" = until."
+        },
+        {
+          "id": "unit-16.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الجملة: أمس الجو كان حلو وايد",
+          "answer": "أمس الجو كان حلو وايد",
+          "accepted": [
+            "أمس الجو كان حلو وايد",
+            "ams il-jaw kaan 7ilu waayid",
+            "الجو كان حلو وايد أمس"
+          ],
+          "words": [
+            "أمس",
+            "الجو",
+            "كان",
+            "حلو وايد"
+          ],
+          "tip": "\"الجو\" = the weather."
+        },
+        {
+          "id": "unit-16.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الجملة: تعبت وايد أمس من الشغل",
+          "answer": "تعبت وايد أمس من الشغل",
+          "accepted": [
+            "تعبت وايد أمس من الشغل",
+            "ta3abt waayid ams min ish-shughul",
+            "أمس تعبت وايد من الشغل"
+          ],
+          "words": [
+            "تعبت وايد",
+            "أمس",
+            "من الشغل"
+          ],
+          "tip": "\"تعبت\" = I got tired."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "when-i-was-young-i-loved-to-play-outside",
+          "arabic": "يوم كنت صغير كنت أحب ألعب برا",
+          "transliteration": "yoom kint Sagheer kint a7ibb al3ab barra"
+        },
+        {
+          "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
+          "arabic": "كبرت في فريج قديم في دبي",
+          "transliteration": "kbart fi freej gadeem fi dubai"
+        },
+        {
+          "slot": "i-had-a-friend-named-kareem",
+          "arabic": "كان عندي ربيع اسمه كريم",
+          "transliteration": "kaan 3indi rabee3 ismah kareem"
+        },
+        {
+          "slot": "we-used-to-play-soccer-in-the-alley",
+          "arabic": "كنا نلعب كورة في الفريج",
+          "transliteration": "kinna nil3ab koora fil-freej"
+        },
+        {
+          "slot": "every-summer-we-used-to-go-to-my-grandfather-s-i",
+          "arabic": "كل صيف كنا نروح بيت جدي في القرية",
+          "transliteration": "kill Seef kinna nrooh beet jiddi fil-garya"
+        },
+        {
+          "slot": "my-grandmother-used-to-tell-us-stories-before-sl",
+          "arabic": "جدتي كانت تحچي لنا قصص قبل ما ننام",
+          "transliteration": "jiddati kaanat ti7chi lana giSaS gabl ma nnaam"
+        },
+        {
+          "slot": "the-first-bike-i-had-was-red",
+          "arabic": "أول سيكل كان عندي كان أحمر",
+          "transliteration": "awwal seekil kaan 3indi kaan a7mar"
+        },
+        {
+          "slot": "i-used-to-be-very-afraid-of-the-dark-when-i-was-",
+          "arabic": "كنت أخاف وايد من الظلمة يوم كنت صغير",
+          "transliteration": "kint akhaaf waayid min iZ-Zalma yoom kint Sagheer"
+        },
+        {
+          "slot": "my-teacher-at-school-was-very-kind",
+          "arabic": "معلمي في المدرسة كان طيب وايد",
+          "transliteration": "mu3allimi fil-madrasa kaan Tayyib waayid"
+        },
+        {
+          "slot": "we-used-to-walk-to-school-together-every-day",
+          "arabic": "كنا نمشي للمدرسة سوا كل يوم",
+          "transliteration": "kinna nimshi lil-madrasa sawa kill yoom"
+        },
+        {
+          "slot": "when-i-was-young-i-dreamed-of-becoming-a-pilot",
+          "arabic": "يوم كنت صغير كنت أحلم أصير طيار",
+          "transliteration": "yoom kint Sagheer kint a7lam aSeer Tayyaar"
+        },
+        {
+          "slot": "back-then-life-was-much-simpler",
+          "arabic": "وقتها الحياة كانت أبسط وايد",
+          "transliteration": "wagtaha il-7ayaah kaanat absaT waayid"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Sultan",
+          "arabic": "هلا حمد، شخبارك؟",
+          "transliteration": "hala 7amad, shkhbaarak?",
+          "english": "Hi Hamad, how are you?"
+        },
+        {
+          "speaker": "Hamad",
+          "arabic": "هلا سلطان، الحمد لله. الحين تذكرت الفريج القديم.",
+          "transliteration": "hala Sultaan, al7amdulillah. il7een tdhakkart il-freej il-gadeem.",
+          "english": "Hi Sultan, thank God. I just remembered the old neighborhood."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "صج؟ يوم كنت صغير كنت أحب ألعب برا وايد.",
+          "transliteration": "Sij? yoom kint Sagheer kint a7ibb al3ab barra waayid.",
+          "english": "Really? When I was young I loved to play outside a lot."
+        },
+        {
+          "speaker": "Hamad",
+          "arabic": "وأنا بعد! كان عندي ربيع اسمه كريم، وكنا نلعب كورة في الفريج كل يوم.",
+          "transliteration": "w-ana ba3ad! kaan 3indi rabee3 ismah kareem, w-kinna nil3ab koora fil-freej kill yoom.",
+          "english": "Me too! I had a friend named Kareem, and we played football in the alley every day."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "وكل صيف كنا نروح بيت جدي في القرية.",
+          "transliteration": "w-kill Seef kinna nrooh beet jiddi fil-garya.",
+          "english": "And every summer we used to go to my grandfather's in the village."
+        },
+        {
+          "speaker": "Hamad",
+          "arabic": "وجدتي كانت تحچي لنا قصص قبل ما ننام.",
+          "transliteration": "w-jiddati kaanat ti7chi lana giSaS gabl ma nnaam.",
+          "english": "And my grandmother used to tell us stories before we slept."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "أنا كنت أخاف وايد من الظلمة، وكنت أنام والضو شغال.",
+          "transliteration": "ana kint akhaaf waayid min iZ-Zalma, w-kint anaam w-id-Daw shaghghaal.",
+          "english": "I was very afraid of the dark, and I used to sleep with the light on."
+        },
+        {
+          "speaker": "Hamad",
+          "arabic": "هههه! وأول سيكل كان عندي كان أحمر، وطحت منه مية مرة.",
+          "transliteration": "hehe! w-awwal seekil kaan 3indi kaan a7mar, w-Ti7t minnah miyya marra.",
+          "english": "Haha! And the first bike I had was red, and I fell off it a hundred times."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "وكنا نمشي للمدرسة سوا، ومعلمنا كان طيب وايد.",
+          "transliteration": "w-kinna nimshi lil-madrasa sawa, w-mu3allimna kaan Tayyib waayid.",
+          "english": "And we used to walk to school together, and our teacher was very kind."
+        },
+        {
+          "speaker": "Hamad",
+          "arabic": "صح، وقتها الحياة كانت أبسط وايد.",
+          "transliteration": "Sa7, wagtaha il-7ayaah kaanat absaT waayid.",
+          "english": "True, back then life was much simpler."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "وانت يوم كنت صغير، شو كنت تحلم تصير؟",
+          "transliteration": "w-inta yoom kint Sagheer, shu kint ta7lam tSeer?",
+          "english": "And you, when you were young, what did you dream of becoming?"
+        },
+        {
+          "speaker": "Hamad",
+          "arabic": "كنت أحلم أصير طيار، والحين أنا محاسب!",
+          "transliteration": "kint a7lam aSeer Tayyaar, w-il7een ana mu7aasib!",
+          "english": "I dreamed of becoming a pilot, and now I'm an accountant!"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شو كنت تسوي يوم كنت صغير؟",
+            "transliteration": "shu kint tsawwi yoom kint Sagheer?",
+            "english": "What did you used to do when you were young?"
+          },
+          "response": {
+            "arabic": "كنت ألعب كورة مع ربعي",
+            "transliteration": "kint al3ab koora ma3 rab3i",
+            "english": "I used to play football with my friends."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين كبرت؟",
+            "transliteration": "ween kbart?",
+            "english": "Where did you grow up?"
+          },
+          "response": {
+            "arabic": "كبرت في فريج قديم في الشارقة",
+            "transliteration": "kbart fi freej gadeem fish-Shaarga",
+            "english": "I grew up in an old neighborhood in Sharjah."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "منو كان أحسن معلم عندك؟",
+            "transliteration": "minu kaan a7san mu3allim 3indak?",
+            "english": "Who was the best teacher you had?"
+          },
+          "response": {
+            "arabic": "معلمي في الابتدائي، كان طيب وايد",
+            "transliteration": "mu3allimi fil-ibtidaa2i, kaan Tayyib waayid",
+            "english": "My teacher in primary school, he was very kind."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كنت تخاف من شي يوم كنت صغير؟",
+            "transliteration": "kint tikhaaf min shay yoom kint Sagheer?",
+            "english": "Were you afraid of anything when you were young?"
+          },
+          "response": {
+            "arabic": "إي، كنت أخاف من الظلمة",
+            "transliteration": "ee, kint akhaaf min iZ-Zalma",
+            "english": "Yes, I was afraid of the dark."
+          }
+        }
+      ],
+      "culture": "Emiratis and Kuwaitis call the old residential quarter the فريج, and childhood stories usually begin with يوم كنت صغير. Older people remember it fondly: children of the whole فريج played together in the lanes and families knew each other well.",
+      "exercises": [
+        {
+          "id": "unit-16.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "يسألونك: \"يوم كنت صغير، شو كنت تحب تسوي؟\". جاوب إنك كنت تحب تلعب برا.",
+          "answer": "كنت أحب ألعب برا",
+          "accepted": [
+            "كنت أحب ألعب برا",
+            "kint a7ibb al3ab barra",
+            "كنت احب العب برا",
+            "كنت أحب ألعب برا وايد"
+          ],
+          "too_formal": {
+            "item": "كنت أحب اللعب في الخارج",
+            "feedback": "Correct but written; Gulf says ألعب برا."
+          },
+          "tip": "\"برا\" = outside."
+        },
+        {
+          "id": "unit-16.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "يسألونك: \"كان عندك ربيع يوم كنت صغير؟\". جاوب إي، وسمّه كريم.",
+          "answer": "إي، كان عندي ربيع اسمه كريم",
+          "accepted": [
+            "إي، كان عندي ربيع اسمه كريم",
+            "ee, kaan 3indi rabee3 ismah kareem",
+            "إي كان عندي ربيع اسمه كريم",
+            "إي كان عندي واحد اسمه كريم"
+          ],
+          "too_formal": {
+            "item": "نعم، كان لدي صديق اسمه كريم",
+            "feedback": "MSA; Gulf says إي for yes and عندي for I had, and ربيع is a friend."
+          },
+          "tip": "\"ربيع\" (plural ربع) = friend in Emirati and Kuwaiti speech."
+        },
+        {
+          "id": "unit-16.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "أكمل: \"_____ كنت صغير، كنت أحب ألعب برا.\" المعنى: When I was young I loved to play outside.",
+          "answer": "يوم",
+          "accepted": [
+            "يوم",
+            "yoom",
+            "لما",
+            "lamma"
+          ],
+          "too_formal": {
+            "item": "عندما",
+            "feedback": "عندما is bookish; يوم is the usual Gulf \"when\" for a past time."
+          },
+          "tip": "\"يوم\" here means \"when\", not \"day\"."
+        },
+        {
+          "id": "unit-16.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "أكمل: \"كنا نلعب _____ في الفريج.\" المعنى: We used to play football in the alley.",
+          "answer": "كورة",
+          "accepted": [
+            "كورة",
+            "koora",
+            "الكورة",
+            "il-koora"
+          ],
+          "too_formal": {
+            "item": "كرة القدم",
+            "feedback": "كرة القدم is the formal name; everyone says كورة."
+          },
+          "tip": "\"كورة\" = football."
+        },
+        {
+          "id": "unit-16.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم: \"We used to walk to school together every day.\"",
+          "answer": "كنا نمشي للمدرسة سوا كل يوم",
+          "accepted": [
+            "كنا نمشي للمدرسة سوا كل يوم",
+            "kinna nimshi lil-madrasa sawa kill yoom",
+            "كل يوم كنا نمشي للمدرسة سوا",
+            "كنا نمشي المدرسة سوا كل يوم"
+          ],
+          "too_formal": {
+            "item": "كنا نذهب إلى المدرسة معاً كل يوم",
+            "feedback": "Correct MSA; Gulf says نمشي for walk/go and سوا for together."
+          },
+          "tip": "\"كنا + present verb\" = we used to."
+        },
+        {
+          "id": "unit-16.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم: \"The first bike I had was red.\"",
+          "answer": "أول سيكل كان عندي كان أحمر",
+          "accepted": [
+            "أول سيكل كان عندي كان أحمر",
+            "awwal seekil kaan 3indi kaan a7mar",
+            "أول سيكل عندي كان أحمر",
+            "awwal seekil 3indi kaan a7mar"
+          ],
+          "too_formal": {
+            "item": "أول دراجة امتلكتها كانت حمراء",
+            "feedback": "Correct MSA; spoken Gulf says سيكل and كان عندي."
+          },
+          "tip": "\"سيكل\" = bicycle."
+        },
+        {
+          "id": "unit-16.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "أي جملة معناها \"Back then life was much simpler\"؟",
+          "answer": "وقتها الحياة كانت أبسط وايد",
+          "accepted": [
+            "وقتها الحياة كانت أبسط وايد",
+            "wagtaha il-7ayaah kaanat absaT waayid",
+            "وقتها الحياة كانت أبسط"
+          ],
+          "options": [
+            "وقتها الحياة كانت أبسط وايد",
+            "الحين الحياة أصعب وايد",
+            "باجر الحياة بتكون أبسط",
+            "الحياة حلوة الحين"
+          ],
+          "too_formal": {
+            "item": "في ذلك الوقت كانت الحياة أبسط بكثير",
+            "feedback": "Correct MSA but formal; وقتها is how you say \"back then\"."
+          },
+          "tip": "\"كانت\" (was) shows it is finished."
+        },
+        {
+          "id": "unit-16.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "شو معنى \"كنت أخاف وايد من الظلمة\"؟",
+          "answer": "I used to be very afraid of the dark.",
+          "accepted": [
+            "I used to be very afraid of the dark.",
+            "I used to be very afraid of the dark",
+            "i used to be very afraid of the dark."
+          ],
+          "options": [
+            "I used to be very afraid of the dark.",
+            "I like the dark a lot.",
+            "I will be afraid of the dark.",
+            "I forgot the light at home."
+          ],
+          "tip": "\"كنت + present verb\" = I used to."
+        },
+        {
+          "id": "unit-16.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الجملة: كل صيف كنا نروح بيت جدي",
+          "answer": "كل صيف كنا نروح بيت جدي",
+          "accepted": [
+            "كل صيف كنا نروح بيت جدي",
+            "kill Seef kinna nrooh beet jiddi",
+            "كنا نروح بيت جدي كل صيف"
+          ],
+          "words": [
+            "كل صيف",
+            "كنا نروح",
+            "بيت جدي"
+          ],
+          "tip": "\"كل صيف\" = every summer."
+        },
+        {
+          "id": "unit-16.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الجملة: جدتي كانت تحچي لنا قصص قبل ما ننام",
+          "answer": "جدتي كانت تحچي لنا قصص قبل ما ننام",
+          "accepted": [
+            "جدتي كانت تحچي لنا قصص قبل ما ننام",
+            "jiddati kaanat ti7chi lana giSaS gabl ma nnaam",
+            "جدتي كانت تحكي لنا قصص قبل ما ننام"
+          ],
+          "words": [
+            "جدتي",
+            "كانت تحچي",
+            "لنا قصص",
+            "قبل ما ننام"
+          ],
+          "tip": "\"حچى\" is the Gulf verb for talk or tell."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "my-phone-broke-yesterday",
+          "arabic": "جوالي انكسر أمس",
+          "transliteration": "jawwaali inkasar ams"
+        },
+        {
+          "slot": "i-lost-the-house-key",
+          "arabic": "ضيعت مفتاح البيت",
+          "transliteration": "Dayya3t muftaa7 il-beet"
+        },
+        {
+          "slot": "i-was-late-for-work-this-morning",
+          "arabic": "تأخرت على الدوام اليوم الصبح",
+          "transliteration": "ta2akhkhart 3ala id-dawaam il-yoom iS-Sub7"
+        },
+        {
+          "slot": "i-fell-on-the-stairs-and-hurt-my-leg",
+          "arabic": "طحت على الدرج وعورت رجلي",
+          "transliteration": "Ti7t 3ala id-daraj w-3awwart rijli"
+        },
+        {
+          "slot": "i-forgot-my-wallet-at-home",
+          "arabic": "نسيت الجزدان في البيت",
+          "transliteration": "niseet il-jizdaan fil-beet"
+        },
+        {
+          "slot": "the-car-broke-down-in-the-middle-of-the-road",
+          "arabic": "السيارة خربت في نص الشارع",
+          "transliteration": "is-sayyaara kharbat fi niSS ish-shaari3"
+        },
+        {
+          "slot": "the-power-went-out-all-night",
+          "arabic": "الكهرباء انقطعت طول الليل",
+          "transliteration": "il-kahraba ingaT3at Tool il-leel"
+        },
+        {
+          "slot": "coffee-spilled-on-my-laptop",
+          "arabic": "القهوة انكبت على اللابتوب",
+          "transliteration": "il-gahwa inkabbat 3ala il-laabtoop"
+        },
+        {
+          "slot": "my-bag-got-lost-at-the-airport",
+          "arabic": "شنطتي ضاعت في المطار",
+          "transliteration": "shanTti Daa3at fil-maTaar"
+        },
+        {
+          "slot": "i-cut-my-hand-while-cooking",
+          "arabic": "جرحت إيدي وأنا أطبخ",
+          "transliteration": "jara7t eedi w-ana aTbukh"
+        },
+        {
+          "slot": "i-made-a-mistake-and-sent-the-message-to-the-wro",
+          "arabic": "غلطت وأرسلت الرسالة للشخص الغلط",
+          "transliteration": "ghalaTt w-arsalt ir-risaala lish-shakhS il-ghalaT"
+        },
+        {
+          "slot": "i-overslept-and-didn-t-hear-the-alarm",
+          "arabic": "نمت زيادة وما سمعت المنبه",
+          "transliteration": "nimt ziyaada w-ma sma3t il-munabbih"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Fahad",
+          "arabic": "هلا نورة، شفيچ؟ شكلچ تعبانة.",
+          "transliteration": "hala Noora, shfeech? shakilich ta3baana.",
+          "english": "Hi Noora, what's wrong? You look tired."
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "أمس كان يوم مب حلو وايد! جوالي انكسر.",
+          "transliteration": "ams kaan yoom mub 7ilu waayid! jawwaali inkasar.",
+          "english": "Yesterday was not a nice day at all! My phone broke."
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "لا، شو صار؟",
+          "transliteration": "laa, shu Saar?",
+          "english": "No, what happened?"
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "جوالي طاح وانكسر، وضيعت مفتاح البيت بعد.",
+          "transliteration": "jawwaali Taa7 w-inkasar, w-Dayya3t muftaa7 il-beet ba3ad.",
+          "english": "My phone fell and broke, and I lost the house key too."
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "الله يعينچ! وشلون الدوام؟",
+          "transliteration": "allah yi3eench! w-shloon id-dawaam?",
+          "english": "God help you! And how was work?"
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "تأخرت على الدوام عشان نمت زيادة وما سمعت المنبه.",
+          "transliteration": "ta2akhkhart 3ala id-dawaam 3ashaan nimt ziyaada w-ma sma3t il-munabbih.",
+          "english": "I was late for work because I overslept and didn't hear the alarm."
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "وأنا بعد نسيت الجزدان في البيت، وأنا في الطريق.",
+          "transliteration": "w-ana ba3ad niseet il-jizdaan fil-beet, w-ana fiT-Tareeg.",
+          "english": "I also forgot my wallet at home, and I was already on the road."
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "هههه! والسيارة، زينة؟",
+          "transliteration": "hehe! w-is-sayyaara, zeena?",
+          "english": "Haha! And the car, is it fine?"
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "خربت في نص الشارع، بس الحمد لله ما صار شي.",
+          "transliteration": "kharbat fi niSS ish-shaari3, bas al7amdulillah ma Saar shay.",
+          "english": "It broke down in the middle of the road, but thank God nothing happened."
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "الحمد لله على السلامة! والكهرباء عندنا انقطعت طول الليل.",
+          "transliteration": "al7amdulillah 3ala is-salaama! w-il-kahraba 3indana ingaT3at Tool il-leel.",
+          "english": "Thank God you're safe! And our power went out all night."
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "الله يعوضچ خير.",
+          "transliteration": "allah yi3awwiDich khayr.",
+          "english": "May God repay you with good."
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "آمين، ويعوضك انت بعد.",
+          "transliteration": "aamiin, w-yi3awwiDak inta ba3ad.",
+          "english": "Amen, and may He repay you too."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شو صار لك؟",
+            "transliteration": "shu Saar lak?",
+            "english": "What happened to you?"
+          },
+          "response": {
+            "arabic": "طحت على الدرج وعورت رجلي",
+            "transliteration": "Ti7t 3ala id-daraj w-3awwart rijli",
+            "english": "I fell on the stairs and hurt my leg."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ليش تأخرت اليوم؟",
+            "transliteration": "leesh ta2akhkhart il-yoom?",
+            "english": "Why were you late today?"
+          },
+          "response": {
+            "arabic": "السيارة خربت في نص الشارع",
+            "transliteration": "is-sayyaara kharbat fi niSS ish-shaari3",
+            "english": "The car broke down in the middle of the road."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين شنطتك؟",
+            "transliteration": "ween shanTtak?",
+            "english": "Where is your bag?"
+          },
+          "response": {
+            "arabic": "ضاعت في المطار",
+            "transliteration": "Daa3at fil-maTaar",
+            "english": "It got lost at the airport."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو صار في اللابتوب؟",
+            "transliteration": "shu Saar fil-laabtoop?",
+            "english": "What happened to the laptop?"
+          },
+          "response": {
+            "arabic": "انكبت عليه القهوة",
+            "transliteration": "inkabbat 3aleeh il-gahwa",
+            "english": "Coffee spilled on it."
+          }
+        }
+      ],
+      "culture": "When someone tells of a mishap, the listener says الله يعينك (God help you) or الحمد لله على السلامة, and often adds الله يعوضك خير. It is normal to add الحمد لله that it was not worse.",
+      "exercises": [
+        {
+          "id": "unit-16.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "صاحبك يقول: \"جوالي انكسر أمس\". جاوبه بدعاء.",
+          "answer": "الله يعينك",
+          "accepted": [
+            "الله يعينك",
+            "allah yi3eenak",
+            "الله يعوضك خير",
+            "allah yi3awwiDak khayr"
+          ],
+          "too_formal": {
+            "item": "أعانك الله",
+            "feedback": "Correct but formal, like something read aloud; الله يعينك is what people say."
+          },
+          "tip": "\"الله يعينك\" is the usual reply to someone's bad news."
+        },
+        {
+          "id": "unit-16.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "صاحبك يقول: \"طحت على الدرج وعورت رجلي\". جاوبه.",
+          "answer": "سلامتك",
+          "accepted": [
+            "سلامتك",
+            "salaamtak",
+            "ألف سلامة",
+            "alf salaama",
+            "الحمد لله على السلامة",
+            "al7amdulillah 3ala is-salaama"
+          ],
+          "too_formal": {
+            "item": "نسأل الله لك الشفاء العاجل",
+            "feedback": "Correct, but the register of a formal wish; friends just say سلامتك."
+          },
+          "tip": "\"سلامتك\" = wishing someone well after they got hurt."
+        },
+        {
+          "id": "unit-16.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "أكمل: \"ضيعت _____ البيت.\" المعنى: I lost the house key.",
+          "answer": "مفتاح",
+          "accepted": [
+            "مفتاح",
+            "muftaa7",
+            "miftaa7",
+            "المفتاح"
+          ],
+          "too_formal": {
+            "item": "فقدت",
+            "feedback": "فقدت is bookish; ضيّع is what is said for losing something."
+          },
+          "tip": "\"ضيّع\" = to lose."
+        },
+        {
+          "id": "unit-16.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "أكمل: \"نسيت _____ في البيت.\" المعنى: I forgot my wallet at home.",
+          "answer": "الجزدان",
+          "accepted": [
+            "الجزدان",
+            "il-jizdaan",
+            "جزداني",
+            "jizdaan"
+          ],
+          "too_formal": {
+            "item": "المحفظة",
+            "feedback": "المحفظة is the formal word; Emiratis and Kuwaitis say الجزدان."
+          },
+          "tip": "\"جزدان\" = wallet."
+        },
+        {
+          "id": "unit-16.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم: \"The car broke down in the middle of the road.\"",
+          "answer": "السيارة خربت في نص الشارع",
+          "accepted": [
+            "السيارة خربت في نص الشارع",
+            "is-sayyaara kharbat fi niSS ish-shaari3",
+            "خربت السيارة في نص الشارع",
+            "السيارة خربت نص الشارع"
+          ],
+          "too_formal": {
+            "item": "تعطلت السيارة في منتصف الطريق",
+            "feedback": "Correct MSA; Gulf says خربت and نص."
+          },
+          "tip": "\"خرب\" = to break down, stop working."
+        },
+        {
+          "id": "unit-16.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم: \"I overslept and didn't hear the alarm.\"",
+          "answer": "نمت زيادة وما سمعت المنبه",
+          "accepted": [
+            "نمت زيادة وما سمعت المنبه",
+            "nimt ziyaada w-ma sma3t il-munabbih",
+            "نمت وايد وما سمعت المنبه",
+            "ما سمعت المنبه ونمت زيادة"
+          ],
+          "too_formal": {
+            "item": "استغرقت في النوم ولم أسمع المنبه",
+            "feedback": "Correct MSA; Gulf uses ما for the negative, not لم."
+          },
+          "tip": "\"نمت زيادة\" = I slept too much."
+        },
+        {
+          "id": "unit-16.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "أي جملة معناها \"I was late for work this morning\"؟",
+          "answer": "تأخرت على الدوام اليوم الصبح",
+          "accepted": [
+            "تأخرت على الدوام اليوم الصبح",
+            "ta2akhkhart 3ala id-dawaam il-yoom iS-Sub7",
+            "تأخرت على الشغل اليوم الصبح"
+          ],
+          "options": [
+            "تأخرت على الدوام اليوم الصبح",
+            "بتأخر على الدوام باجر",
+            "وصلت بدري اليوم",
+            "ما رحت الدوام أمس"
+          ],
+          "too_formal": {
+            "item": "تأخرت عن العمل هذا الصباح",
+            "feedback": "Correct MSA; Gulf says الدوام for work hours and الصبح for morning."
+          },
+          "tip": "\"الدوام\" = working hours."
+        },
+        {
+          "id": "unit-16.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "شو معنى \"شنطتي ضاعت في المطار\"؟",
+          "answer": "My bag got lost at the airport.",
+          "accepted": [
+            "My bag got lost at the airport.",
+            "My bag got lost at the airport",
+            "my bag got lost at the airport."
+          ],
+          "options": [
+            "My bag got lost at the airport.",
+            "I forgot my bag at home.",
+            "I bought a new bag.",
+            "My bag is at the airport now."
+          ],
+          "tip": "\"ضاع\" = got lost."
+        },
+        {
+          "id": "unit-16.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الجملة: طحت على الدرج وعورت رجلي",
+          "answer": "طحت على الدرج وعورت رجلي",
+          "accepted": [
+            "طحت على الدرج وعورت رجلي",
+            "Ti7t 3ala id-daraj w-3awwart rijli",
+            "عورت رجلي وطحت على الدرج"
+          ],
+          "words": [
+            "طحت",
+            "على الدرج",
+            "وعورت رجلي"
+          ],
+          "tip": "\"طاح\" = to fall; \"عوّر\" = to hurt."
+        },
+        {
+          "id": "unit-16.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الجملة: جرحت إيدي وأنا أطبخ",
+          "answer": "جرحت إيدي وأنا أطبخ",
+          "accepted": [
+            "جرحت إيدي وأنا أطبخ",
+            "jara7t eedi w-ana aTbukh",
+            "جرحت يدي وأنا أطبخ"
+          ],
+          "words": [
+            "جرحت إيدي",
+            "وأنا أطبخ"
+          ],
+          "tip": "\"وأنا أطبخ\" = while I was cooking."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "i-heard-that-samer-got-engaged",
+          "arabic": "سمعت إن سالم خطب",
+          "transliteration": "sma3t inn Saalim khaTab"
+        },
+        {
+          "slot": "there-s-news-you-won-t-believe",
+          "arabic": "عندي خبر ما راح تصدقه",
+          "transliteration": "3indi khabar ma raa7 tSaddigah"
+        },
+        {
+          "slot": "they-told-me-you-re-moving-to-a-new-house",
+          "arabic": "قالوا لي إنك بتنتقل بيت جديد",
+          "transliteration": "gaaloo li innak btintigil beet jdeed"
+        },
+        {
+          "slot": "who-told-you-this-news",
+          "arabic": "منو قال لك هالخبر؟",
+          "transliteration": "minu gaal lak hal-khabar?",
+          "reply": {
+            "arabic": "ربيعي قال لي",
+            "transliteration": "rabee3i gaal li",
+            "english": "My friend told me."
+          }
+        },
+        {
+          "slot": "they-re-saying-that-such-and-such-shop-closed",
+          "arabic": "يقولون إن المحل الفلاني سكّر",
+          "transliteration": "yiguloon inn il-ma7all il-fulaani sakkar"
+        },
+        {
+          "slot": "we-re-not-sure-yet-it-might-just-be-a-rumor",
+          "arabic": "مب متأكدين للحين، يمكن بس إشاعة",
+          "transliteration": "mub muta2akkideen lil7een, yimkin bas ishaa3a"
+        },
+        {
+          "slot": "you-won-t-believe-what-happened-yesterday-in-the",
+          "arabic": "ما راح تصدق شو صار أمس في الفريج",
+          "transliteration": "ma raa7 tSaddig shu Saar ams fil-freej"
+        },
+        {
+          "slot": "my-sister-got-married-last-month",
+          "arabic": "أختي تزوجت الشهر اللي فات",
+          "transliteration": "ukhti tzawwajat ish-shahar illi faat"
+        },
+        {
+          "slot": "we-heard-they-had-a-baby-boy",
+          "arabic": "سمعنا إنهم جاهم ولد",
+          "transliteration": "sma3na innahum jaahum walad"
+        },
+        {
+          "slot": "what-s-the-latest-news-with-you",
+          "arabic": "شو الجديد عندك؟",
+          "transliteration": "shu ij-jideed 3indak?",
+          "reply": {
+            "arabic": "ما في جديد، الحمد لله",
+            "transliteration": "ma fi jideed, al7amdulillah",
+            "english": "Nothing new, thank God."
+          }
+        },
+        {
+          "slot": "don-t-tell-anyone-but-i-heard-they-re-going-to-t",
+          "arabic": "لا تقول لأحد، بس سمعت إنهم بيسافرون",
+          "transliteration": "laa tgool li a7ad, bas sma3t innahum bisaafiroon"
+        },
+        {
+          "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it",
+          "arabic": "كله كلام ناس، ما أدري صج لو لا",
+          "transliteration": "kullah kalaam naas, ma adri Sij loo laa"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Aisha",
+          "arabic": "هلا راشد، شو الجديد عندك؟",
+          "transliteration": "hala Raashid, shu ij-jideed 3indak?",
+          "english": "Hi Rashid, what's new with you?"
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "هلا عايشة، ما في جديد. وانتي شخبارچ؟",
+          "transliteration": "hala 3aaisha, ma fi jideed. w-inti shkhbaarich?",
+          "english": "Hi Aisha, nothing new. And how are you?"
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "عندي خبر ما راح تصدقه!",
+          "transliteration": "3indi khabar ma raa7 tSaddigah!",
+          "english": "I have news you won't believe!"
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "شو صار؟ قولي لي!",
+          "transliteration": "shu Saar? gooli li!",
+          "english": "What happened? Tell me!"
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "سمعت إن سالم خطب!",
+          "transliteration": "sma3t inn Saalim khaTab!",
+          "english": "I heard Salem got engaged!"
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "صج؟ منو قال لچ؟",
+          "transliteration": "Sij? minu gaal lich?",
+          "english": "Really? Who told you?"
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "ربيعتي قالت لي، بس مب متأكدين للحين، يمكن بس إشاعة.",
+          "transliteration": "rabee3ti gaalat li, bas mub muta2akkideen lil7een, yimkin bas ishaa3a.",
+          "english": "My friend told me, but we're not sure yet, it might just be a rumor."
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "وأنا بعد سمعت إن المحل الفلاني سكّر.",
+          "transliteration": "w-ana ba3ad sma3t inn il-ma7all il-fulaani sakkar.",
+          "english": "And I also heard that such-and-such shop closed."
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "صج؟ خلنا نشوف.",
+          "transliteration": "Sij? khallina nshoof.",
+          "english": "Really? Let's see."
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "وأختچ، شخبارها؟",
+          "transliteration": "w-ukhtich, shkhbaarha?",
+          "english": "And your sister, how is she?"
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "أختي تزوجت الشهر اللي فات، والحمد لله كل شي زين.",
+          "transliteration": "ukhti tzawwajat ish-shahar illi faat, w-al7amdulillah kill shay zeen.",
+          "english": "My sister got married last month, and thank God everything is fine."
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "الله يبارك لهم! ولا تقولين لأحد عن سالم.",
+          "transliteration": "allah yibaarik lahum! w-laa tgooleen li a7ad 3an Saalim.",
+          "english": "God bless them! And don't tell anyone about Salem."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شو الجديد عندك؟",
+            "transliteration": "shu ij-jideed 3indak?",
+            "english": "What's new with you?"
+          },
+          "response": {
+            "arabic": "ما في جديد، الحمد لله",
+            "transliteration": "ma fi jideed, al7amdulillah",
+            "english": "Nothing new, thank God."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "منو قال لك هالخبر؟",
+            "transliteration": "minu gaal lak hal-khabar?",
+            "english": "Who told you this news?"
+          },
+          "response": {
+            "arabic": "ربيعي قال لي",
+            "transliteration": "rabee3i gaal li",
+            "english": "My friend told me."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "سمعت إن أختك تزوجت؟",
+            "transliteration": "sma3t inn ukhtak tzawwajat?",
+            "english": "I heard your sister got married?"
+          },
+          "response": {
+            "arabic": "إي، الشهر اللي فات",
+            "transliteration": "ee, ish-shahar illi faat",
+            "english": "Yes, last month."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "صج هالخبر؟",
+            "transliteration": "Sij hal-khabar?",
+            "english": "Is this news true?"
+          },
+          "response": {
+            "arabic": "ما أدري، يمكن بس إشاعة",
+            "transliteration": "ma adri, yimkin bas ishaa3a",
+            "english": "I don't know, it might just be a rumor."
+          }
+        }
+      ],
+      "culture": "People soften gossip with يقولون or سمعت and often add الله أعلم instead of stating it as fact. For a wedding or a birth the reply is مبروك or الله يبارك لهم, and a newborn is announced with جاهم ولد (a boy has come to them).",
+      "exercises": [
+        {
+          "id": "unit-16.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "صاحبك يسألك: \"شو الجديد عندك؟\". جاوب إنه ما في جديد.",
+          "answer": "ما في جديد، الحمد لله",
+          "accepted": [
+            "ما في جديد، الحمد لله",
+            "ma fi jideed, al7amdulillah",
+            "ما في جديد",
+            "ما في شي جديد"
+          ],
+          "too_formal": {
+            "item": "لا يوجد جديد، والحمد لله",
+            "feedback": "Correct MSA; Gulf says ما في for there is not."
+          },
+          "tip": "\"ما في\" = there is no."
+        },
+        {
+          "id": "unit-16.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "يسألونك: \"منو قال لك هالخبر؟\". جاوب إن ربيعك قال لك.",
+          "answer": "ربيعي قال لي",
+          "accepted": [
+            "ربيعي قال لي",
+            "rabee3i gaal li",
+            "ربعي قالوا لي",
+            "واحد من ربعي قال لي"
+          ],
+          "too_formal": {
+            "item": "أخبرني صديقي",
+            "feedback": "Correct MSA; in speech people say قال لي, not أخبرني."
+          },
+          "tip": "\"قال لي\" = told me."
+        },
+        {
+          "id": "unit-16.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "أكمل: \"_____ إن سالم خطب.\" المعنى: I heard that Salem got engaged.",
+          "answer": "سمعت",
+          "accepted": [
+            "سمعت",
+            "sma3t",
+            "قالوا لي",
+            "gaaloo li"
+          ],
+          "tip": "\"سمعت إن\" or \"قالوا لي إن\" opens news you have heard."
+        },
+        {
+          "id": "unit-16.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "أكمل: \"مب متأكدين للحين، يمكن بس _____.\" المعنى: We're not sure yet, it might just be a rumor.",
+          "answer": "إشاعة",
+          "accepted": [
+            "إشاعة",
+            "ishaa3a",
+            "كلام ناس",
+            "kalaam naas"
+          ],
+          "too_formal": {
+            "item": "شائعة",
+            "feedback": "شائعة is the formal spelling; in speech it is إشاعة."
+          },
+          "tip": "\"مب\" = not, the Emirati and Kuwaiti negative for adjectives and phrases."
+        },
+        {
+          "id": "unit-16.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم: \"Who told you this news?\"",
+          "answer": "منو قال لك هالخبر؟",
+          "accepted": [
+            "منو قال لك هالخبر؟",
+            "minu gaal lak hal-khabar?",
+            "منو قال لك الخبر؟",
+            "منو قال لك هالخبر"
+          ],
+          "too_formal": {
+            "item": "من أخبرك بهذا الخبر؟",
+            "feedback": "Correct MSA; Gulf says منو, قال لك and هالخبر."
+          },
+          "tip": "\"هال\" = this, joined to the noun."
+        },
+        {
+          "id": "unit-16.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم: \"My sister got married last month.\"",
+          "answer": "أختي تزوجت الشهر اللي فات",
+          "accepted": [
+            "أختي تزوجت الشهر اللي فات",
+            "ukhti tzawwajat ish-shahar illi faat",
+            "الشهر اللي فات أختي تزوجت",
+            "أختي تزوجت الشهر الفايت"
+          ],
+          "too_formal": {
+            "item": "تزوجت أختي الشهر الماضي",
+            "feedback": "Correct MSA; spoken Gulf puts the subject first and says اللي فات for last."
+          },
+          "tip": "\"اللي فات\" = that passed, i.e. last."
+        },
+        {
+          "id": "unit-16.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "أي جملة معناها \"We heard they had a baby boy\"؟",
+          "answer": "سمعنا إنهم جاهم ولد",
+          "accepted": [
+            "سمعنا إنهم جاهم ولد",
+            "sma3na innahum jaahum walad",
+            "سمعنا إنهم جاهم ولد."
+          ],
+          "options": [
+            "سمعنا إنهم جاهم ولد",
+            "سمعنا إنهم بيسافرون",
+            "سمعنا إن المحل سكّر",
+            "سمعنا إنهم انتقلوا بيت جديد"
+          ],
+          "too_formal": {
+            "item": "سمعنا أنهم رُزقوا بمولود ذكر",
+            "feedback": "Correct but formal; جاهم ولد is the everyday phrase."
+          },
+          "tip": "\"جاهم ولد\" = a boy came to them."
+        },
+        {
+          "id": "unit-16.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "شو معنى \"لا تقول لأحد، بس سمعت إنهم بيسافرون\"؟",
+          "answer": "Don't tell anyone, but I heard they're going to travel.",
+          "accepted": [
+            "Don't tell anyone, but I heard they're going to travel.",
+            "Don't tell anyone but I heard they're going to travel.",
+            "don't tell anyone, but i heard they're going to travel."
+          ],
+          "options": [
+            "Don't tell anyone, but I heard they're going to travel.",
+            "Tell everyone they traveled yesterday.",
+            "I heard they came back from a trip.",
+            "They told me not to travel."
+          ],
+          "tip": "\"بي + verb\" = going to."
+        },
+        {
+          "id": "unit-16.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الجملة: قالوا لي إنك بتنتقل بيت جديد",
+          "answer": "قالوا لي إنك بتنتقل بيت جديد",
+          "accepted": [
+            "قالوا لي إنك بتنتقل بيت جديد",
+            "gaaloo li innak btintigil beet jdeed",
+            "إنك بتنتقل بيت جديد قالوا لي"
+          ],
+          "words": [
+            "قالوا لي",
+            "إنك",
+            "بتنتقل",
+            "بيت جديد"
+          ],
+          "tip": "\"بتنتقل\" = you are going to move."
+        },
+        {
+          "id": "unit-16.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الجملة: ما راح تصدق شو صار أمس في الفريج",
+          "answer": "ما راح تصدق شو صار أمس في الفريج",
+          "accepted": [
+            "ما راح تصدق شو صار أمس في الفريج",
+            "ma raa7 tSaddig shu Saar ams fil-freej",
+            "ما راح تصدق شو صار في الفريج أمس"
+          ],
+          "words": [
+            "ما راح تصدق",
+            "شو صار",
+            "أمس",
+            "في الفريج"
+          ],
+          "tip": "\"ما راح\" = you will not."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Tell Me What Happened",
+    "instructions": "Write and say a short Gulf Arabic conversation of at least 10 lines between two people catching up. It must include asking what happened yesterday, an answer in the past tense, a childhood memory, one thing that went wrong, and one piece of news or gossip you heard. Use at least 8 target phrases from Unit 16 and include both a masculine-address form and a feminine-address form.",
+    "required_elements": [
+      "A question about yesterday using أمس and شو سويت or شو صار.",
+      "An answer describing something that happened, using a past-tense verb.",
+      "A memory from childhood using يوم كنت صغير or كنا.",
+      "Something that went wrong, using a word like انكسر, ضاع, or تأخرت.",
+      "A piece of news or gossip introduced with سمعت إن or قالوا لي.",
+      "At least one masculine-address form such as سويت or شفت.",
+      "At least one feminine-address form such as سويتي or شفتي, or the ending چ as in عليچ.",
+      "A closing reaction such as يا حرام or الله يعينك."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Ali",
+          "arabic": "لطيفة، شلونچ؟ شو سويتي أمس؟",
+          "transliteration": "Lateefa, shlonich? shu sawweeti ams?",
+          "english": "Latifa, how are you? What did you do yesterday?"
+        },
+        {
+          "speaker": "Latifa",
+          "arabic": "هلا علي! ما راح تصدق شو صار لي أمس!",
+          "transliteration": "hala 3ali! ma raa7 tSaddig shu Saar li ams!",
+          "english": "Hi Ali! You won't believe what happened to me yesterday!"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "شو صار؟ قولي لي!",
+          "transliteration": "shu Saar? gooli li!",
+          "english": "What happened? Tell me!"
+        },
+        {
+          "speaker": "Latifa",
+          "arabic": "جوالي انكسر وضيعت مفتاح البيت في نفس اليوم.",
+          "transliteration": "jawwaali inkasar w-Dayya3t muftaa7 il-beet fi nafs il-yoom.",
+          "english": "My phone broke and I lost the house key on the same day."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "الله يعينچ! ذكرتيني بيوم كنا صغار، كنا نضيع كل شي.",
+          "transliteration": "allah yi3eench! dhakkarteeni b-yoom kinna Sighaar, kinna nDayyi3 kill shay.",
+          "english": "God help you! You reminded me of when we were small, we used to lose everything."
+        },
+        {
+          "speaker": "Latifa",
+          "arabic": "هههه صج! بس لقيت المفتاح في الآخر.",
+          "transliteration": "hehe Sij! bas ligeet il-muftaa7 fil-aakhir.",
+          "english": "Haha true! But I found the key in the end."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "الحمد لله. بالمناسبة، سمعت إن سالم خطب.",
+          "transliteration": "al7amdulillah. bil-munaasaba, sma3t inn Saalim khaTab.",
+          "english": "Thank God. By the way, I heard Salem got engaged."
+        },
+        {
+          "speaker": "Latifa",
+          "arabic": "صج؟ منو قال لك؟",
+          "transliteration": "Sij? minu gaal lak?",
+          "english": "Really? Who told you?"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "ربيعي قال لي، بس مب متأكد للحين.",
+          "transliteration": "rabee3i gaal li, bas mub muta2akkid lil7een.",
+          "english": "My friend told me, but I'm not sure yet."
+        },
+        {
+          "speaker": "Latifa",
+          "arabic": "خبر حلو إذا صج! بس أمس كان يوم مب حلو، يا حرام علي.",
+          "transliteration": "khabar 7ilu idha Sij! bas ams kaan yoom mub 7ilu, yaa 7araam 3ali.",
+          "english": "Nice news if it's true! But yesterday was not a nice day, poor me."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "الحمد لله على كل حال، الله يعوضچ خير.",
+          "transliteration": "al7amdulillah 3ala kill 7aal, allah yi3awwiDich khayr.",
+          "english": "Thank God in every case, may God repay you with good."
+        }
+      ]
+    }
+  }
+}
