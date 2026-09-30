@@ -16,6 +16,7 @@ import { useRemembered } from '../lib/useRemembered'
 import { colorFor } from '../theme'
 import { FOCUS } from './colloquial/Face'
 import UnitView from './colloquial/UnitView'
+import WordBank from './colloquial/WordBank'
 import ErrorAlert from './ui/ErrorAlert'
 import RetryButton from './ui/RetryButton'
 import SectionHeader from './ui/SectionHeader'
@@ -97,6 +98,12 @@ function Switch({ dialects, current, onPick }) {
   )
 }
 
+// The unit's word bank sits on the topic list; the unit loads once and is shared with the topics.
+function UnitWordBank({ dialect, unit }) {
+  const { data } = useQuery(colloquialUnitQuery(dialect, unit))
+  return data ? <WordBank unit={data} /> : null
+}
+
 function Topic({ dialect, unit, at }) {
   const { data, isPending, isError, error, refetch } = useQuery(colloquialUnitQuery(dialect, unit))
   if (isPending) return <AnalyzerSkeleton />
@@ -168,7 +175,10 @@ export default function ColloquialPanel() {
 
       {unit && lessonAt === null && (
         <div key={unit.unit} className="space-y-3">
-          <h2 className="type-figure font-semibold text-[var(--text)]">{unit.title}</h2>
+          <div className="flex flex-wrap items-center gap-3">
+            <h2 className="type-figure font-semibold text-[var(--text)]">{unit.title}</h2>
+            <UnitWordBank dialect={dialect.key} unit={unit.unit} />
+          </div>
           <Grid>
             {unit.lessons.map((l, i) => (
               <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} onClick={() => setLessonAt(i)} />
