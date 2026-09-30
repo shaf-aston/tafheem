@@ -1,5 +1,7 @@
 import { useCallback, useSyncExternalStore } from 'react'
 
+import { readSaved, writeSaved } from './stored'
+
 /**
  * The hadiths a reader has starred, kept in this browser only.
  *
@@ -13,12 +15,8 @@ const KEY = 'hadith-favorites'
 export const keyOf = ({ collection, number, part = '' }) => `${collection}:${number}${part}`
 
 const read = () => {
-  try {
-    const saved = JSON.parse(localStorage.getItem(KEY) || '[]')
-    return Array.isArray(saved) ? saved.filter((h) => h && typeof h === 'object') : []
-  } catch {
-    return []
-  }
+  const saved = readSaved(KEY, [])
+  return Array.isArray(saved) ? saved.filter((h) => h && typeof h === 'object') : []
 }
 
 let items = read()
@@ -31,11 +29,7 @@ const subscribe = (fn) => {
 
 function save(next) {
   items = next
-  try {
-    localStorage.setItem(KEY, JSON.stringify(next))
-  } catch {
-    /* private browsing, the star still works for this session */
-  }
+  writeSaved(KEY, next)
   listeners.forEach((fn) => fn())
 }
 

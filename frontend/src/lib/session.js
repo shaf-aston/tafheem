@@ -13,6 +13,7 @@
  * is always one the app itself could have walked.
  */
 import config from '../session.json'
+import { forgetKey, readRaw, writeRaw } from './stored'
 
 const KEY = config['storage-key']
 const VERSION = config.version
@@ -74,28 +75,16 @@ export function parseSession(raw, tabs, now) {
 export const serialise = ({ steps, at }, now) => JSON.stringify({ v: VERSION, saved: now, steps, at })
 
 export function loadSession(tabs, now = Date.now()) {
-  try {
-    return parseSession(globalThis.localStorage?.getItem(KEY) ?? '', tabs, now)
-  } catch {
-    return null // private browsing: nothing was kept
-  }
+  return parseSession(readRaw(KEY), tabs, now)
 }
 
 /** Forget the path. The next load opens on the first tab with nothing in hand. */
 export function forgetSession() {
-  try {
-    globalThis.localStorage?.removeItem(KEY)
-  } catch {
-    /* private browsing: nothing was kept */
-  }
+  forgetKey(KEY)
 }
 
 /** Save a path, if it is one that would be read back. Beyond the bounds the last good save stands. */
 export function saveSession(session, tabs, now = Date.now()) {
   if (!fitsSession(session.steps, tabs)) return
-  try {
-    globalThis.localStorage?.setItem(KEY, serialise(session, now))
-  } catch {
-    /* private browsing, the path still holds for this session */
-  }
+  writeRaw(KEY, serialise(session, now))
 }

@@ -8,20 +8,18 @@
  */
 import { useEffect, useState } from 'react'
 
+import { forgetKey, readSaved, writeSaved } from './stored'
+
 const ANSWERS_KEY = 'tamreen-answers'
 
 /** Every pick and check, saved as { id: { picks, checked } } so a reload keeps them. */
 export function useAnswers() {
-  const [answers, setAnswers] = useState(() => {
-    try { return JSON.parse(localStorage.getItem(ANSWERS_KEY) || '{}') } catch { return {} }
-  })
-  useEffect(() => {
-    try { localStorage.setItem(ANSWERS_KEY, JSON.stringify(answers)) } catch { /* private browsing, kept for this visit */ }
-  }, [answers])
+  const [answers, setAnswers] = useState(() => readSaved(ANSWERS_KEY, {}))
+  useEffect(() => { writeSaved(ANSWERS_KEY, answers) }, [answers])
   return [answers, setAnswers]
 }
 
 /** Forget every Tamreen answer. The page reloads after this, so no state to clear. */
 export function forgetTamreenAnswers() {
-  try { localStorage.removeItem(ANSWERS_KEY) } catch { /* nothing saved to forget */ }
+  forgetKey(ANSWERS_KEY)
 }

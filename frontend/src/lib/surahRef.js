@@ -12,6 +12,7 @@
  */
 import surahs from '../data/surahs.json'
 import { bareForm, isArabic } from './arabicText'
+import { editDistance } from './editDistance'
 
 /** How close a match is. Lower is closer; callers pick the loosest they accept. */
 export const CLOSE = { exact: 0, prefix: 1, inside: 2, typo: 3 }
@@ -39,20 +40,6 @@ const keys = surahs.map((s) => {
   const ar = foldArabic(s.ar)
   return { s, latin: en, arabic: [ar, ar.replace(ARABIC_ARTICLE, '')] }
 })
-
-function editDistance(a, b) {
-  const row = Array.from({ length: b.length + 1 }, (_, i) => i)
-  for (let i = 1; i <= a.length; i++) {
-    let diag = row[0]
-    row[0] = i
-    for (let j = 1; j <= b.length; j++) {
-      const up = row[j]
-      row[j] = Math.min(row[j] + 1, row[j - 1] + 1, diag + (a[i - 1] === b[j - 1] ? 0 : 1))
-      diag = up
-    }
-  }
-  return row[b.length]
-}
 
 /** How many typos a name of this length may have and still be recognised. */
 const allowedTypos = (length) => (length <= 4 ? 0 : length <= 7 ? 1 : 2)
