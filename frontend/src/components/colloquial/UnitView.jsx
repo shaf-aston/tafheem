@@ -35,15 +35,19 @@ function Scene({ unit, lesson, number, place }) {
       <Mosaic phrases={lesson.phrases} onOpen={setOpen} />
       {open !== null && <Sheet phrases={lesson.phrases} at={open} onAt={setOpen} onClose={() => setOpen(null)} place={place} />}
 
-      <Act kicker="On stage" title="Hear it said">
-        <Dialogue lines={lesson.dialogue} />
-      </Act>
-      <Act kicker="Match" title="Ask and answer">
-        <Pairs pairs={lesson.de_book} />
-      </Act>
-      <Act kicker="Your turn" title="Practice">
-        <Practice exercises={lesson.exercises} />
-      </Act>
+      <div className="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-10 lg:items-start">
+        <Act kicker="On stage" title="Hear it said">
+          <Dialogue lines={lesson.dialogue} />
+        </Act>
+        <Act kicker="Match" title="Ask and answer">
+          <Pairs pairs={lesson.de_book} />
+        </Act>
+      </div>
+      <div className="max-w-3xl mx-auto">
+        <Act kicker="Your turn" title="Practice">
+          <Practice exercises={lesson.exercises} />
+        </Act>
+      </div>
       <div className="rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden">
         <TranslationStrip pad="px-5 py-5">
           <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)] mb-2">Good to know</p>
@@ -57,7 +61,7 @@ function Scene({ unit, lesson, number, place }) {
 // One topic of a unit; the panel above owns which unit and topic are open.
 export default function UnitView({ unit, at }) {
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl lg:max-w-6xl mx-auto">
       <Scene unit={unit} lesson={unit.lessons[at]} number={at + 1}
         place={{ dialect: unit.dialect_key, unit: unit.unit, lesson: unit.lessons[at].lesson }} />
     </div>

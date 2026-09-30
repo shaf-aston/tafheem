@@ -5,7 +5,7 @@ const FEATURE_EVERY = 7
 
 export default function Mosaic({ phrases, onOpen }) {
   return (
-    <ul className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+    <ul className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
       {phrases.map((phrase, i) => {
         const big = i % FEATURE_EVERY === 0
         return (
