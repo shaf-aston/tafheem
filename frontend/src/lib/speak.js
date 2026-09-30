@@ -34,7 +34,7 @@ async function playFile(url) {
 /** Each voice resolves to { done } once sound has started, rejects if it cannot. */
 const VOICES = {
   recorded: async (text) => playFile(await recordingOf(text)),
-  server: (text) => playFile(`${config.voices.server.url}?text=${encodeURIComponent(text)}`),
+  server: (text) => playFile(`${config.voices.server.url}?text=${encodeURIComponent(text)}&voice=${config.voices.server.version}`),
   browser: (text) => new Promise((started, fail) => {
     const synth = globalThis.speechSynthesis
     if (!synth) return fail(new Error('no device voice'))
