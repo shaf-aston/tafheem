@@ -435,10 +435,12 @@ export default function MemorisePanel({ accent }) {
                 block, justified, each ayah ending in its number, and never a
                 new row per ayah, which left short ayahs a gutter of empty space.
                 The last row's leftover space goes to the ::after filler, so
-                only that row sits to the start instead of being stretched. */}
+                only that row sits to the start instead of being stretched. On a
+                phone a row holds two or three words, and stretching those left
+                holes wider than the words, so there it simply packs. */}
             <div
               className={book.flow
-                ? "flex flex-wrap items-baseline justify-between gap-x-2 gap-y-2 after:content-[''] after:flex-auto"
+                ? "flex flex-wrap items-baseline gap-x-2 gap-y-2 sm:justify-between after:content-[''] after:flex-1"
                 : 'space-y-4'}
               dir="rtl"
             >
@@ -470,7 +472,7 @@ export default function MemorisePanel({ accent }) {
               <ol className="space-y-2">
                 {page.filter((line) => line.english).map((line) => (
                   <li key={line.id} className="type-body text-[var(--text-dim)] leading-relaxed max-w-prose">
-                    <span className="type-small text-[var(--text-faint)] tabular-nums">{withinPart(line.label)}. </span>
+                    <span className="type-small text-[var(--text-faint)] tabular-nums" aria-hidden="true">{withinPart(line.label)}. </span>
                     {line.english}
                   </li>
                 ))}
@@ -559,6 +561,66 @@ function Line({ line, flow, index, blanks, answers, checked, meaning, choices, a
     ...words
       .map((word, w) => (blanks.has(`${index}:${w}`) ? recitedForm(word).length : 0)),
   ) + 1
+  const drawn = words.map((word, w) => {
+    const key = `${index}:${w}`
+    // A poem's bayt is two hemistichs, sadr then ajuz, printed as one
+    // line but never run together, forcing a wrap here after the sadr
+    // shows that split without needing a second Line per bayt, which
+    // would let pagesOf and the blank-picker split them across a page.
+    const hemistichBreak = line.breakAfter === w && (
+      <span key={`${key}:break`} className="basis-full h-0" aria-hidden="true" />
+    )
+    if (!blanks.has(key)) {
+      return (
+        <Fragment key={key}>
+          {recite
+            ? <RecitedWord word={word} at={recite.from + w} recite={recite} accent={accent} onStartAt={onStartAt} />
+            : <ArabicText size="base">{word}</ArabicText>}
+          {hemistichBreak}
+        </Fragment>
+      )
+    }
+    // Reciting a page you can read is not a test of remembering it. So
+    // the same words that would be gaps to type stay covered here, and
+    // the only thing that uncovers one is saying it.
+    if (recite) {
+      return (
+        <Fragment key={key}>
+          <RecitedWord
+            word={word}
+            at={recite.from + w}
+            recite={recite}
+            accent={accent}
+            coverWidth={typeWidth}
+            onStartAt={onStartAt}
+          />
+          {hemistichBreak}
+        </Fragment>
+      )
+    }
+    return (
+      <Fragment key={key}>
+        <Gap
+          word={word}
+          options={choices?.get(key)}
+          value={answers[key] ?? ''}
+          checked={checked}
+          accent={accent}
+          lineLabel={line.label}
+          typeWidth={typeWidth}
+          onChange={(value) => onAnswer(key, value)}
+        />
+        {hemistichBreak}
+      </Fragment>
+    )
+  })
+  const marker = flow ? (
+    <span className="type-small text-[var(--text-dim)] shrink-0 tabular-nums" aria-label={`ayah ${withinPart(line.label)}`}>
+      {`﴿${withinPart(line.label)}﴾`}
+    </span>
+  ) : (
+    <span className="type-small text-[var(--text-faint)] shrink-0">{line.label}</span>
+  )
   // Flowing, the line's two boxes step aside (display: contents) so its words
   // join the page's one run; the words themselves are drawn the same either way.
   return (
@@ -571,62 +633,22 @@ function Line({ line, flow, index, blanks, answers, checked, meaning, choices, a
         dir="rtl"
         data-script={isQuranic(line.arabic) ? 'quran' : undefined}
       >
-        {words.map((word, w) => {
-          const key = `${index}:${w}`
-          // A poem's bayt is two hemistichs, sadr then ajuz, printed as one
-          // line but never run together, forcing a wrap here after the sadr
-          // shows that split without needing a second Line per bayt, which
-          // would let pagesOf and the blank-picker split them across a page.
-          const hemistichBreak = line.breakAfter === w && (
-            <span key={`${key}:break`} className="basis-full h-0" aria-hidden="true" />
-          )
-          if (!blanks.has(key)) {
-            return (
-              <Fragment key={key}>
-                {recite
-                  ? <RecitedWord word={word} at={recite.from + w} recite={recite} accent={accent} onStartAt={onStartAt} />
-                  : <ArabicText size="base">{word}</ArabicText>}
-                {hemistichBreak}
-              </Fragment>
-            )
-          }
-          // Reciting a page you can read is not a test of remembering it. So
-          // the same words that would be gaps to type stay covered here, and
-          // the only thing that uncovers one is saying it.
-          if (recite) {
-            return (
-              <Fragment key={key}>
-                <RecitedWord
-                  word={word}
-                  at={recite.from + w}
-                  recite={recite}
-                  accent={accent}
-                  coverWidth={typeWidth}
-                  onStartAt={onStartAt}
-                />
-                {hemistichBreak}
-              </Fragment>
-            )
-          }
-          return (
-            <Fragment key={key}>
-              <Gap
-                word={word}
-                options={choices?.get(key)}
-                value={answers[key] ?? ''}
-                checked={checked}
-                accent={accent}
-                lineLabel={line.label}
-                typeWidth={typeWidth}
-                onChange={(value) => onAnswer(key, value)}
-              />
-              {hemistichBreak}
-            </Fragment>
-          )
-        })}
-        <span className="type-small text-[var(--text-faint)] shrink-0 tabular-nums">
-          {flow ? `﴿${withinPart(line.label)}﴾` : line.label}
-        </span>
+        {flow ? (
+          <>
+            {drawn.slice(0, -1)}
+            {/* The last word and the ayah's number wrap as one, so a number
+                is never left alone at the start of a row. */}
+            <span className="inline-flex items-baseline gap-x-2">
+              {drawn.at(-1)}
+              {marker}
+            </span>
+          </>
+        ) : (
+          <>
+            {drawn}
+            {marker}
+          </>
+        )}
       </div>
       {/* The body size, not a label size: this is the translation being read,
           and it is the same text the surah reader one tab away already sets at
