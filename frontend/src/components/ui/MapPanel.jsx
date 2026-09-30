@@ -27,6 +27,8 @@ import { chartTree, nodeAt, viewConfig } from '../../lib/pbsTree'
 const ZOOM_MIN = 0.7
 const ZOOM_MAX = 2.2
 const ZOOM_STEP = 0.2
+// At 100% the chart never draws narrower than this, so on a phone its text stays readable and the chart scrolls inside its own frame.
+const CHART_MIN_REM = 56
 
 export default function MapPanel({ open, onClose }) {
   const dialog = useRef(null)
@@ -101,11 +103,11 @@ export default function MapPanel({ open, onClose }) {
             </button>
           ) : null}
           <div className="flex-1 min-w-0">
-            <h2 id="map-title" className="text-sm font-bold text-[var(--text)] truncate">
+            <h2 id="map-title" className="text-sm font-bold text-[var(--text)] sm:truncate">
               {current ? `${current.en} · ${current.frame}` : 'Map · Nine sciences, one frame per chart'}
             </h2>
             {path.length > 0 && (
-              <nav aria-label="Zoom trail" className="flex flex-wrap items-center gap-x-1 type-tiny text-[var(--text-faint)]">
+              <nav aria-label="Zoom trail" className="flex sm:flex-wrap overflow-x-auto whitespace-nowrap items-center gap-x-1 type-tiny text-[var(--text-faint)]">
                 {[tree, ...trail].map((n, depth) => (
                   <span key={depth} className="flex items-center gap-1 min-w-0">
                     {depth > 0 && <span aria-hidden="true">›</span>}
@@ -126,7 +128,7 @@ export default function MapPanel({ open, onClose }) {
             )}
           </div>
           {current && (
-            <div className="flex items-center gap-1.5 type-tiny text-[var(--text-faint)]">
+            <div className="hidden sm:flex items-center gap-1.5 type-tiny text-[var(--text-faint)]">
               <button type="button" onClick={() => setZoom((z) => Math.max(ZOOM_MIN, z - ZOOM_STEP))} className="icon-button" aria-label="Zoom out">−</button>
               <span className="w-9 text-center">{Math.round(zoom * 100)}%</span>
               <button type="button" onClick={() => setZoom((z) => Math.min(ZOOM_MAX, z + ZOOM_STEP))} className="icon-button" aria-label="Zoom in">+</button>
@@ -139,9 +141,9 @@ export default function MapPanel({ open, onClose }) {
           </button>
         </header>
 
-        <div className="relative flex-1 min-h-0 overflow-auto">
+        <div className="relative flex-1 min-h-0 overflow-auto" tabIndex={0} role="region" aria-label="Map">
           {current ? (
-            <div className="p-4" style={{ width: `${zoom * 100}%`, transition: 'width .2s ease' }}>
+            <div className="p-4" style={{ width: `max(${zoom * 100}%, ${zoom * CHART_MIN_REM}rem)`, transition: 'width .2s ease' }}>
               <PbsChart
                 key={path.join('.')}
                 config={config}
