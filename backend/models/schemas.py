@@ -62,6 +62,8 @@ ROLE_KEYS = frozenset({
     "haal",     # circumstantial
     "mudaf",    # first of a genitive pair
     "harf",     # particle, and whatever it governs
+    "mansub",   # the other nasb extras: time and place, the called, the excepted
+    "tabi",     # a follower that copies the word before it: عطف, توكيد, بدل
 })
 
 

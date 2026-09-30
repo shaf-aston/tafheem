@@ -7,6 +7,8 @@
     "khabar":  { "arabic": "خبر",       "said": "khabar",     "meaning": "What is said about the مبتدأ. Its ending is مرفوع." },
     "fail":    { "arabic": "فاعل",      "said": "faa'il",     "meaning": "The one doing the verb. Always مرفوع." },
     "mafool":  { "arabic": "مفعول به",  "said": "maf'ool bih", "meaning": "The one the verb is done to. Always منصوب." },
+    "mansub":  { "arabic": "مفعول فيه / منادى / مستثنى", "said": "maf'ool feeh", "meaning": "The other words that stand in the nasb: when or where it happened (مفعول فيه), the one called (منادى), the one left out (مستثنى)." },
+    "tabi":    { "arabic": "معطوف / توكيد / بدل", "said": "ma'toof",    "meaning": "A word that copies the case of the word before it: after و or ثم (معطوف), as emphasis (توكيد), or as a replacement naming it (بدل)." },
     "harf":    { "arabic": "حرف",       "said": "harf",       "meaning": "A small word that does a job: على, و, لم. It never changes; a noun after a preposition becomes مجرور." },
     "sifah":   { "arabic": "صفة",       "said": "sifah",      "meaning": "Describes the noun before it, and copies that noun's gender, number, definiteness and ending." },
     "haal":    { "arabic": "حال",       "said": "haal",       "meaning": "The state someone was in while the verb happened. منصوب and without ال." },

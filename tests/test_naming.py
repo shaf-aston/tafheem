@@ -1,6 +1,7 @@
 """The naming layer reads links plus typed vowels, so both are tested without a model."""
 import pytest
 
+from backend.services.syntax import naming
 from backend.services.syntax.naming import roles as named, typed_case, typed_passive
 
 
@@ -128,3 +129,121 @@ def test_a_tamyeez_never_comes_before_what_it_clarifies():
             token(2, "الماء", "ماء", "NOM", 1, "SBJ", stt="d", cas="n"),
             token(3, "عمقا", "عمق", "NOM", 1, "MOD", cas="a", stt="i")]
     assert roles(["زَادَ", "الْمَاءُ", "عُمْقًا"], toks)[2] == "تمييز"
+
+
+def clitic(id, form, head, rel, **feats):
+    return token(id, form, form, "PRT", head, rel, token_type="prc2", pos_camel="conj", **feats)
+
+
+VERB = dict(vox="a", asp="p")
+
+
+def test_a_noun_after_an_atf_particle_is_matuf_but_an_oath_is_not():
+    # جاء محمد وعلي: the و is attached, so the parser gives it as its own token
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", **VERB),
+            token(2, "محمد", "محمد", "PROP", 1, "SBJ"),
+            clitic(3, "و+", 2, "MOD"),
+            token(4, "علي", "علي", "PROP", 3, "OBJ")]
+    assert roles(["جَاءَ", "مُحَمَّدٌ", "وَعَلِيٌّ"], toks) == ["فعل", "فاعل", "معطوف"]
+    # the same word typed apart is a base word of its own, and is a حرف
+    toks[2] = token(3, "و", "و", "PRT", 2, "MOD", pos_camel="conj")
+    assert roles(["جَاءَ", "مُحَمَّدٌ", "وَ", "عَلِيٌّ"], toks) == ["فعل", "فاعل", "حرف", "معطوف"]
+    # والله: nothing comes before the و for it to join to, so it swears and the noun is majroor
+    oath = [clitic(1, "و+", 3, "MOD"),
+            token(2, "الله", "الله", "PROP", 1, "OBJ"),
+            token(3, "أقسم", "أقسم", "VRB", 0, "---", vox="a", asp="i")]
+    assert roles(["وَاللَّهِ", "أُقْسِمُ"], oath) == ["مجرور", "فعل"]
+    # لكنّ is an inna sister, not a joiner
+    toks = [token(1, "الجو", "جو", "NOM", 0, "---", stt="d"),
+            token(2, "لكن", "لكن", "PRT", 1, "MOD"),
+            token(3, "الشمس", "شمس", "NOM", 2, "OBJ", stt="d")]
+    assert roles(["الْجَوُّ", "لَكِنَّ", "الشَّمْسَ"], toks)[2] != "معطوف"
+
+
+def test_the_called_noun_is_munada_and_the_particle_is_a_harf():
+    toks = [token(1, "يا", "يا", "PRT", 3, "MOD", pos_camel="part_voc"),
+            token(2, "محمد", "محمد", "PROP", 1, "OBJ"),
+            token(3, "أجلس", "أجلس", "VRB", 0, "---", **VERB)]
+    assert roles(["يَا", "مُحَمَّدُ", "اجْلِسْ"], toks) == ["حرف", "منادى", "فعل"]
+    # the nearest case: a real preposition still makes its noun majroor
+    toks = [token(1, "جلس", "جلس", "VRB", 0, "---", **VERB),
+            token(2, "في", "في", "PRT", 1, "MOD", pos_camel="prep"),
+            token(3, "البيت", "بيت", "NOM", 2, "OBJ", stt="d")]
+    assert roles(["جَلَسَ", "فِي", "الْبَيْتِ"], toks) == ["فعل", "حرف جر", "مجرور"]
+
+
+def test_mustathna_follows_illa_only_in_a_positive_sentence():
+    toks = [token(1, "حضر", "حضر", "VRB", 0, "---", **VERB),
+            token(2, "الطلاب", "طالب", "NOM", 1, "SBJ", stt="d"),
+            token(3, "إلا", "إلا", "PRT", 1, "MOD"),
+            token(4, "زيدا", "زيد", "VRB", 3, "OBJ")]  # the parser tags this name a verb
+    assert roles(["حَضَرَ", "الطُّلَّابُ", "إِلَّا", "زَيْدًا"], toks) == ["فعل", "فاعل", "حرف", "مستثنى"]
+    # after a negation it is restriction, and the noun is simply the doer
+    toks = [token(1, "ما", "ما", "PRT", 2, "MOD", pos_camel="part_neg"),
+            token(2, "حضر", "حضر", "VRB", 0, "---", **VERB),
+            token(3, "إلا", "إلا", "PRT", 2, "MOD"),
+            token(4, "زيد", "زيد", "PROP", 2, "SBJ")]
+    assert roles(["مَا", "حَضَرَ", "إِلَّا", "زَيْدٌ"], toks)[3] == "فاعل"
+
+
+def test_kaada_takes_a_ism_and_leaves_its_present_verb_a_verb():
+    toks = [token(1, "كاد", "كاد", "VRB", 0, "---", **VERB),
+            token(2, "المريض", "مريض", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "يموت", "مات", "VRB", 1, "PRD", vox="a", asp="i")]
+    assert roles(["كَادَ", "الْمَرِيضُ", "يَمُوتُ"], toks) == ["فعل", "اسم كاد", "فعل"]
+    assert naming.completes_kaada(toks[2], toks) and not naming.completes_kaada(toks[0], toks)
+    # أخذ with a noun object is the ordinary verb 'took', not a commencement verb
+    toks = [token(1, "أخذ", "أخذ", "VRB", 0, "---", **VERB),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "الكتاب", "كتاب", "NOM", 1, "OBJ", stt="d", cas="a")]
+    assert roles(["أَخَذَ", "الْوَلَدُ", "الْكِتَابَ"], toks) == ["فعل", "فاعل", "مفعول به"]
+
+
+def test_a_zarf_word_on_a_verb_is_mafool_fihi_but_not_as_a_subject():
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", **VERB),
+            token(2, "يوم", "يوم", "NOM", 1, "MOD", stt="c", cas="a"),
+            token(3, "الجمعة", "جمعة", "NOM", 2, "IDF", stt="d", cas="g")]
+    assert roles(["جِئْتُ", "يَوْمَ", "الْجُمُعَةِ"], toks) == ["فعل", "مفعول فيه", "مضاف إليه"]
+    # typed with a damma it is the doer, whatever the parser hung it on
+    assert roles(["جَاءَ", "يَوْمٌ", "الْجُمُعَةِ"], toks)[1] != "مفعول فيه"
+    toks[1]["rel"] = "SBJ"
+    assert roles(["جَاءَ", "يَوْمُ", "الْجُمُعَةِ"], toks)[1] == "فاعل"
+
+
+def test_tawkeed_needs_its_pronoun_so_a_bare_kull_is_a_plain_noun():
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", **VERB),
+            token(2, "القوم", "قوم", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "كل", "كل", "NOM", 2, "MOD", stt="c", cas="n"),
+            token(4, "+هم", "+هم", "NOM", 3, "IDF", pos_camel="pron", token_type="enc0")]
+    assert roles(["جَاءَ", "الْقَوْمُ", "كُلُّهُمْ"], toks)[2] == "توكيد"
+    toks = [token(1, "كل", "كل", "NOM", 3, "TPC", stt="c"),
+            token(2, "الطلاب", "طالب", "NOM", 1, "IDF", stt="d", cas="g"),
+            token(3, "حاضرون", "حاضر", "NOM", 0, "---")]
+    assert roles(["كُلُّ", "الطُّلَّابِ", "حَاضِرُونَ"], toks)[0] != "توكيد"
+
+
+def test_zanna_has_two_objects_and_an_ordinary_verb_does_not():
+    toks = [token(1, "ظننت", "ظن", "VRB", 0, "---", **VERB),
+            token(2, "الجو", "جو", "NOM", 1, "OBJ", stt="d", cas="a"),
+            token(3, "باردا", "بارد", "NOM", 1, "MOD", ud="ADJ", cas="a")]
+    assert roles(["ظَنَنْتُ", "الْجَوَّ", "بَارِدًا"], toks) == ["فعل", "مفعول به", "مفعول به"]
+    toks[0].update(lemma="شرب", form="شربت")
+    assert roles(["شَرِبْتُ", "الْمَاءَ", "بَارِدًا"], toks)[2] == "حال"
+
+
+def test_a_question_particle_only_asks():
+    toks = [token(1, "هل", "هل", "PRT", 3, "MOD", pos_camel="part_interrog"),
+            token(2, "الطالب", "طالب", "NOM", 3, "SBJ", stt="d", cas="n"),
+            token(3, "مجتهد", "مجتهد", "NOM", 0, "---", cas="n")]
+    assert roles(["هَلِ", "الطَّالِبُ", "مُجْتَهِدٌ"], toks) == ["حرف", "مبتدأ", "خبر"]
+
+
+def test_a_bare_name_after_a_noun_with_al_is_badal():
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", **VERB),
+            token(2, "الخليفة", "خليفة", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "عمر", "عمر", "PROP", 2, "MOD")]
+    assert roles(["جَاءَ", "الْخَلِيفَةُ", "عُمَرُ"], toks)[2] == "بدل"
+    # without ال the first noun is a مضاف and the name its مضاف إليه
+    toks[1].update(form="خليفة", stt="c")
+    toks[2]["rel"] = "IDF"
+    assert roles(["جَاءَ", "خَلِيفَةُ", "عُمَرَ"], toks)[2] == "مضاف إليه"

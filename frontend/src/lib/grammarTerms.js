@@ -33,6 +33,8 @@ export const ROLE_LEGEND = [
   { key: 'khabar', arabic: `${ROLES.khabar.arabic} / ${ROLES.mafool.arabic}` },
   { key: 'fil', arabic: ROLES.fil.arabic },
   { key: 'harf', arabic: ROLES.harf.arabic },
+  { key: 'mansub', arabic: ROLES.mansub.arabic },
+  { key: 'tabi', arabic: ROLES.tabi.arabic },
   { key: 'sifah', arabic: `${ROLES.sifah.arabic} / ${ROLES.haal.arabic}` },
   { key: 'mudaf', arabic: ROLES.mudaf.arabic },
 ]

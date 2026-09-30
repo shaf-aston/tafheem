@@ -11,7 +11,7 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 """
 from __future__ import annotations
 
-from backend.services.syntax.naming import tone
+from backend.services.syntax.naming import completes_kaada, tone
 from backend.services.tarkeeb import term_ar
 
 # What a unit is called, by the join that makes it. Spelled once, in
@@ -74,10 +74,23 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     at = {token["id"]: index for index, token in enumerate(bases)}
     role_of = {token["id"]: found["role"] for token, found in zip(bases, named)}
     children_of: dict[int, list[dict]] = {token["id"]: [] for token in bases}
+    by_id = {t["id"]: t for t in tokens}
+
+    def parent(token: dict) -> int:
+        # an attached و or بِ is not a word the reader typed apart, so a word hung
+        # on one hangs on whatever that particle hung on
+        head = token["head"]
+        for _ in tokens:
+            if head in children_of or head not in by_id:
+                break
+            head = by_id[head]["head"]
+        return head
+
     roots = []
     for token in bases:
-        if token["head"] in children_of and token["head"] != token["id"]:
-            children_of[token["head"]].append(token)
+        up = parent(token)
+        if up in children_of and up != token["id"]:
+            children_of[up].append(token)
         else:
             roots.append(token)
     roots = roots or [bases[0]]
@@ -102,11 +115,13 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                                              if token is root else "")
         # A particle's name is what it is, not a job for the unit it heads: the
         # parser gives no job for a jar-majroor or a clause under إِذَا, so none
-        # is written rather than calling the whole unit a حرف.
-        job = None if token is root or token["pos"] == "PRT" else role
+        # is written rather than calling the whole unit a حرف. The clause a كاد-type
+        # verb is finished by is that verb's khabar as a whole.
+        job = "خبر كاد" if completes_kaada(token, tokens) else (
+            None if token is root or token["pos"] == "PRT" else role)
         return {"role": job,
                 "label": label,
-                "tone": tone(role),
+                "tone": tone(job or role),
                 # right to left, so the picture reads in the order they were typed
                 "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
 

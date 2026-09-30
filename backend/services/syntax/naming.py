@@ -15,11 +15,7 @@ package's `__init__.py`.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-
-# Hamza matters in these two lists: كأن folds onto كان once it is dropped,
-# so the lemmas are compared as the parser writes them.
-KANA = set("كان ليس صار أمسى أصبح أضحى ظل بات زال ما".split())
-INNA = set("إن أن لكن كأن ليت لعل لا".split())
+from backend.services.syntax.book import is_one, words as book_words
 
 VOWEL = {"ً": "a", "ٌ": "u", "ٍ": "i", "َ": "a", "ُ": "u", "ِ": "i"}
 TANWEEN = {"ً", "ٌ", "ٍ"}
@@ -46,10 +42,20 @@ ROLES = {
     "مبتدأ": ("mubtada", "fail"),
     "اسم كان": ("mubtada", "fail"),
     "اسم إن": ("mubtada", "fail"),
+    "اسم كاد": ("mubtada", "fail"),
     "خبر": ("khabar", "mafool"),
     "خبر كان": ("khabar", "mafool"),
     "خبر إن": ("khabar", "mafool"),
+    "خبر كاد": ("khabar", "mafool"),
     "مفعول به": ("mafool", "mafool"),
+    # the other nasb extras (time and place, the called, the excepted) share one colour,
+    # and the followers that copy the word before them (عطف، توكيد، بدل) share another
+    "مفعول فيه": ("mansub", "mansub"),
+    "منادى": ("mansub", "mansub"),
+    "مستثنى": ("mansub", "mansub"),
+    "معطوف": ("tabi", "tabi"),
+    "توكيد": ("tabi", "tabi"),
+    "بدل": ("tabi", "tabi"),
     "مفعول مطلق": ("mafool", "mafool"),
     "تمييز": ("mafool", "mafool"),
     "صفة": ("sifah", "rel"),
@@ -170,30 +176,139 @@ def _is_passive(token: dict) -> bool:
     return typed_passive(token.get("typed"), token.get("asp") == "i" or token["pos"] != "VRB")
 
 
-def _family_of(lemma: str) -> str | None:
-    return "inna" if lemma in INNA else "kana" if lemma in KANA else None
+def _kids(token: dict, tokens: list[dict]) -> list[dict]:
+    return [t for t in tokens if t["head"] == token["id"]]
 
 
-def _governor_family(token: dict, by_id: dict) -> str | None:
-    """Which family the word this one hangs off belongs to, كان's or إنّ's."""
+def _has_particle(verb: dict, tokens: list[dict], family: str, part: str = "words") -> bool:
+    return any(k["pos"] == "PRT" and is_one(k["lemma"], family, part) for k in _kids(verb, tokens))
+
+
+def _completed_by_present_verb(verb: dict, tokens: list[dict]) -> bool:
+    """كاد يموت, أوشك أن ينتهي: a present verb, bare or behind أن, finishes the clause."""
+    for kid in _kids(verb, tokens):
+        if kid["pos"] == "PRT" and is_one(kid["lemma"], "nasb_mudari"):
+            if any(k["pos"] == "VRB" and k.get("asp") == "i" for k in _kids(kid, tokens)):
+                return True
+        elif kid["pos"] == "VRB" and kid.get("asp") == "i":
+            return True
+    return False
+
+
+def _family_of(word: dict, tokens: list[dict]) -> str | None:
+    """Which family a governing word belongs to: inna, kana, kaada or zanna."""
+    lemma = word["lemma"]
+    if is_one(lemma, "inna") or is_one(lemma, "la_jins"):
+        return "inna"
+    if is_one(lemma, "kana") or is_one(lemma, "kana", "like_laysa") \
+            or (is_one(lemma, "kana", "needs_negation") and _has_particle(word, tokens, "negation")) \
+            or (is_one(lemma, "kana", "needs_ma") and _has_particle(word, tokens, "kana", "like_laysa")):
+        return "kana"
+    if is_one(lemma, "kaada") and _completed_by_present_verb(word, tokens):
+        return "kaada"
+    return "zanna" if is_one(lemma, "zanna") else None
+
+
+def completes_kaada(token: dict, tokens: list[dict]) -> bool:
+    """The present verb that finishes a كاد-type verb; its clause is that verb's khabar."""
+    head = next((t for t in tokens if t["id"] == token["head"]), None)
+    return bool(head and _is_verb(token) and _family_of(head, tokens) == "kaada")
+
+
+def _governor_family(token: dict, by_id: dict, tokens: list[dict]) -> str | None:
+    """Which family the word this one hangs off belongs to."""
     head = by_id.get(token["head"])
-    return _family_of(head["lemma"]) if head else None
+    return _family_of(head, tokens) if head else None
+
+
+_PREDICATE = {"kana": "خبر كان", "inna": "خبر إن"}
+_SUBJECT = {"kana": "اسم كان", "inna": "اسم إن", "kaada": "اسم كاد"}
 
 
 def _predicate(family: str | None) -> str:
-    return {"kana": "خبر كان", "inna": "خبر إن"}.get(family, "خبر")
+    return _PREDICATE.get(family, "خبر")
+
+
+def _listed(token: dict, *families: str) -> bool:
+    """On a book list by its lemma or by the form as typed: the list holds صباحا
+    and يوم, while the parser lemmatises the first to صباح."""
+    return any(is_one(spelling, family) for family in families
+               for spelling in (token["lemma"], strip_diacritics(token["form"])))
+
+
+def _noun_before(particle: dict, by_id: dict) -> bool:
+    """The particle follows a noun it can join to, which an oath و does not."""
+    before = by_id.get(particle["head"])
+    return bool(before and before["id"] < particle["id"] and before["pos"] in ("NOM", "PROP")
+                and not _is_verb(before))
+
+
+def _negated_before(word: dict, tokens: list[dict]) -> bool:
+    return any(t["pos"] == "PRT" and t["id"] < word["id"] and is_one(t["lemma"], "negation")
+               for t in tokens)
+
+
+def _by_book(token: dict, tokens: list[dict], by_id: dict, head: dict | None,
+             family: str | None) -> str | None:
+    """Roles the book decides by a closed word list, before the links are read.
+
+    Each test pairs a listed word with the shape round it (what it hangs on, what
+    hangs on it, what the reader typed), because most listed words have a second
+    life: و swears, كل is a noun, يوم can be a subject.
+    """
+    lemma = token["lemma"]
+    if token["pos"] == "PRT":
+        return None
+    kids = _kids(token, tokens)
+    # ثم is a noun to the parser; between two nouns it is the joining particle
+    if is_one(lemma, "atf") and _noun_before(token, by_id) and any(k["rel"] == "OBJ" for k in kids):
+        return "حرف"
+    if not head:
+        return None
+    if head["pos"] == "PRT":
+        if is_one(head["lemma"], "nida") and "interrog" not in head.get("pos_camel", ""):
+            return "منادى"
+        # لكن is also an inna sister; it joins only when no clause of its own follows
+        if is_one(head["lemma"], "atf") and not is_one(head["lemma"], "inna") \
+                and _noun_before(head, by_id):
+            return "معطوف"
+        if is_one(head["lemma"], "istithna") and not _negated_before(head, tokens):
+            return "مستثنى"
+    if is_one(lemma, "istithna", "nouns") and _is_verb(head) and not _negated_before(token, tokens):
+        return "مستثنى"
+    # الخليفة عمر: a bare name right after a noun with ال is that noun's badal
+    if token["pos"] == "PROP" and token["rel"] == "MOD" and head["id"] == token["id"] - 1 and head["pos"] == "NOM" \
+            and head["form"].startswith("ال") and not _is_verb(head):
+        return "بدل"
+    case = typed_case(token.get("typed"), token.get("stuck_on", 0))
+    tawkeed = "with_pronoun" if any(k.get("pos_camel") == "pron" for k in kids) else "without_pronoun"
+    if is_one(lemma, "tawkeed", tawkeed) and head["id"] < token["id"] and not _is_verb(head) \
+            and head["pos"] != "PRT":
+        return "توكيد"
+    if token["rel"] == "MOD" and _is_verb(head) and case in (None, "a"):
+        if _listed(token, "zarf_zaman", "zarf_makan"):
+            return "مفعول فيه"
+        # ظن الولد الأمر سهلا: a first object before it makes it the second
+        if family == "zanna" and any(k["rel"] == "OBJ" and k["id"] < token["id"]
+                                     for k in _kids(head, tokens)):
+            return "مفعول به"
+    return None
 
 
 def name(token: dict, tokens: list[dict]) -> str | None:
     """The role for one word, or None when the links do not say."""
     by_id = {t["id"]: t for t in tokens}
     head = by_id.get(token["head"])
-    family = _family_of(head["lemma"]) if head else None
+    family = _family_of(head, tokens) if head else None
     rel = token["rel"]
-    children = [t for t in tokens if t["head"] == token["id"]]
+    children = _kids(token, tokens)
     verbless = not any(_is_verb(t) for t in tokens)
 
-    asking = any("interrog" in t.get("pos_camel", "") for t in tokens) and verbless
+    by_book = _by_book(token, tokens, by_id, head, family)
+    if by_book:
+        return by_book
+    # a question particle (هل، أ) only asks; it leaves the rest a plain sentence
+    asking = verbless and any("interrog" in t.get("pos_camel", "") and t["pos"] != "PRT" for t in tokens)
     if asking:
         # كيف حالك: the question word is the khabar, brought to the front
         if "interrog" in token.get("pos_camel", ""):
@@ -208,14 +323,14 @@ def name(token: dict, tokens: list[dict]) -> str | None:
     pointer = next((c for c in children if "dem" in c.get("pos_camel", "")), None)
     if pointer and _case(pointer) in (None, _case(token)) and token.get("stt") == "d":
         return "صفة"  # the noun pointed at: هذا البستانُ
-    if rel == "PRD":
-        return _predicate(family)
+    if rel == "PRD" and not (family == "kaada" and _is_verb(token)):
+        return _predicate(family)  # كاد يموت: the present verb stays a verb, the clause is the khabar
     if _is_verb(token):
         return "فعل"
     if head and _is_verb(head) and rel in ("SBJ", "TPC", "OBJ", "IDF"):
         siblings = [t for t in tokens if t["head"] == head["id"] and t is not token]
-        if family == "kana" and rel != "OBJ":
-            return "اسم كان"
+        if family in ("kana", "kaada") and rel != "OBJ":
+            return _SUBJECT[family]
         if _is_passive(head):
             # a passive verb has no doer to take an object from: its first noun
             # stands in for the doer, and only a second one is an object
@@ -227,7 +342,7 @@ def name(token: dict, tokens: list[dict]) -> str | None:
             return "مفعول به"
         return "فاعل"
     if rel in ("SBJ", "TPC"):
-        return {"kana": "اسم كان", "inna": "اسم إن"}.get(family, "مبتدأ")
+        return _SUBJECT.get(family, "مبتدأ")
     if rel == "---":
         # the word the sentence hangs on, with its subject under it, is the khabar
         if any(c["rel"] in ("SBJ", "TPC") for c in children):
@@ -249,11 +364,11 @@ def name(token: dict, tokens: list[dict]) -> str | None:
             # a na't matches its noun in "the" as well as case, and a word in idafa
             # counts as definite, so an indefinite word after either is the khabar
             if token.get("stt") == "i" and head.get("stt") in ("d", "c"):
-                return _predicate(_governor_family(head, by_id))
+                return _predicate(_governor_family(head, by_id, tokens))
             return "صفة"
         # لا رجلَ حاضرٌ: hung off the noun, but its case says it is the noun's khabar
         if mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a":
-            return _predicate(_governor_family(head, by_id))
+            return _predicate(_governor_family(head, by_id, tokens))
         if mine == "a" and token.get("stt") != "d":
             verb = head if _is_verb(head) else by_id.get(head["head"])
             if verb and _is_verb(verb) and _skeleton(token["lemma"]) == _skeleton(verb["lemma"]):
