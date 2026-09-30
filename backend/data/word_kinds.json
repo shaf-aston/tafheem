@@ -12,5 +12,9 @@
     "وَكِيل": "noun",
     "أَلِيم": "adjective",
     "طَيِّبَة": "adjective"
+  },
+  "_meanings": "Hand-checked meanings for Qur'anic words whose one chosen word-by-word gloss only fits its own verse. Each replaces en, ur and the meaning key.",
+  "meanings": {
+    "تَأْوِيل": { "en": "interpretation", "ur": "تاویل، تعبیر" }
   }
 }
