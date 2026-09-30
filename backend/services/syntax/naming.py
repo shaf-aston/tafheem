@@ -15,7 +15,7 @@ package's `__init__.py`.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.syntax.book import is_one, words as book_words
+from backend.services.nahw_book import is_one, words as book_words
 
 VOWEL = {"ً": "a", "ٌ": "u", "ٍ": "i", "َ": "a", "ُ": "u", "ِ": "i"}
 TANWEEN = {"ً", "ٌ", "ٍ"}
@@ -263,6 +263,11 @@ def _by_book(token: dict, tokens: list[dict], by_id: dict, head: dict | None,
     # ثم is a noun to the parser; between two nouns it is the joining particle
     if is_one(lemma, "atf") and _noun_before(token, by_id) and any(k["rel"] == "OBJ" for k in kids):
         return "حرف"
+    # ثم bare, before a verb, joins two clauses; the place-word ثَمَّ wears its shadda
+    typed = token.get("typed") or ""
+    follower = by_id.get(token["id"] + 1)
+    if is_one(lemma, "atf") and typed and typed == strip_diacritics(typed) and follower and _is_verb(follower):
+        return "حرف"
     if not head:
         return None
     if head["pos"] == "PRT":
@@ -323,10 +328,18 @@ def name(token: dict, tokens: list[dict]) -> str | None:
     pointer = next((c for c in children if "dem" in c.get("pos_camel", "")), None)
     if pointer and _case(pointer) in (None, _case(token)) and token.get("stt") == "d":
         return "صفة"  # the noun pointed at: هذا البستانُ
-    if rel == "PRD" and not (family == "kaada" and _is_verb(token)):
-        return _predicate(family)  # كاد يموت: the present verb stays a verb, the clause is the khabar
+    if rel == "PRD" and family == "inna" and token["pos"] != "PRT" and any(
+            t["head"] == head["id"] and t["rel"] == "PRD" and t["pos"] == "PRT" and t["id"] < token["id"]
+            for t in tokens):
+        return _SUBJECT[family]  # إن في البيت رجلا: the fronted jar-wa-majroor is the khabar, the noun after it the ism
+    if rel == "PRD" and not (_is_verb(token) and family in ("kaada", "inna")):
+        return _predicate(family)  # كاد يموت, ليت الشباب يعود: the verb stays a verb, its clause is the khabar
     if _is_verb(token):
         return "فعل"
+    if head and _is_verb(head) and rel in ("SBJ", "TPC") and token["id"] < head["id"] and family is None             and typed_case(token.get("typed"), token.get("stuck_on", 0)) == "a":
+        return "مفعول به"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object
+    if head and _is_verb(head) and rel == "TPC" and token["id"] < head["id"] and family is None:
+        return "مبتدأ"  # a فاعل never comes first: the noun opens the sentence, the verb's clause is its khabar
     if head and _is_verb(head) and rel in ("SBJ", "TPC", "OBJ", "IDF"):
         siblings = [t for t in tokens if t["head"] == head["id"] and t is not token]
         if family in ("kana", "kaada") and rel != "OBJ":

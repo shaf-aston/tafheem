@@ -17,6 +17,7 @@ import logging
 from typing import Any
 
 from backend.services.arabic_text import strip_diacritics as _bare
+from backend.services.nahw_book import words as _book_words
 
 logger = logging.getLogger(__name__)
 
@@ -53,15 +54,6 @@ _HUROOF_JARR_BARE = {
     "ب",   # ب
     "ل",   # ل
     "ك",   # ك
-}
-
-_INNA_SISTERS_BARE = {
-    "إن",   # إن
-    "أن",   # أن
-    "كأن",  # كأن
-    "لكن",  # لكن
-    "ليت",  # ليت
-    "لعل",  # لعل
 }
 
 _CONJUNCTIONS_BARE = {
@@ -113,7 +105,7 @@ def _is_inna_sister(tag: dict) -> bool:
     pos = (tag.get("pos") or "").lower()
     if pos in _INNA_POS:
         return True
-    return _bare(tag.get("word", "")) in _INNA_SISTERS_BARE
+    return _bare(tag.get("word", "")) in _book_words("inna")
 
 
 def _is_conjunction(tag: dict) -> bool:

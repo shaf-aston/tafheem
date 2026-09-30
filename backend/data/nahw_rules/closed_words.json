@@ -1,5 +1,9 @@
 {
- "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/syntax/book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word.",
+ "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw_book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word.",
+ "vetoes": {
+  "_comment": "Links the book rules out, removed from the parser's choices before its tree is picked. true = on. Read by services/syntax/mask.py.",
+  "verb_subject_follows": true
+ },
  "families": {
   "jarr": {
    "ar": "حروف الجر",

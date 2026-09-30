@@ -247,3 +247,39 @@ def test_a_bare_name_after_a_noun_with_al_is_badal():
     toks[1].update(form="خليفة", stt="c")
     toks[2]["rel"] = "IDF"
     assert roles(["جَاءَ", "خَلِيفَةُ", "عُمَرَ"], toks)[2] == "مضاف إليه"
+
+
+def test_noun_before_its_verb_is_mubtada_but_a_typed_fatha_makes_it_the_fronted_object():
+    verb = token(2, "كتب", "كتب", "VRB", 0, "---", vox="a", asp="p")
+    opening = [token(1, "الطالب", "طالب", "NOM", 2, "TPC", stt="d"), verb]
+    assert roles(["الطالب", "كتب"], opening) == ["مبتدأ", "فعل"]
+    assert roles(["الدرسَ", "كتب"], [token(1, "الدرس", "درس", "NOM", 2, "TPC", stt="d"), verb]) \
+        == ["مفعول به", "فعل"]
+    # the nearest case it must not touch: the subject after its verb
+    after = [token(1, "كتب", "كتب", "VRB", 0, "---", vox="a", asp="p"),
+             token(2, "الطالب", "طالب", "NOM", 1, "SBJ", stt="d")]
+    assert roles(["كتب", "الطالب"], after) == ["فعل", "فاعل"]
+
+
+def test_inna_khabar_verb_stays_a_verb_and_a_fronted_pp_gives_the_ism_to_the_noun():
+    toks = [token(1, "ليت", "ليت", "PRT", 0, "---"),
+            token(2, "الشباب", "شباب", "NOM", 1, "SBJ", stt="d"),
+            token(3, "يعود", "عاد", "VRB", 1, "PRD", asp="i")]
+    assert roles(["ليت", "الشباب", "يعود"], toks) == ["حرف", "اسم إن", "فعل"]
+    toks = [token(1, "أن", "إن", "PRT", 0, "---"),
+            token(2, "في", "في", "PRT", 1, "PRD"),
+            token(3, "البيت", "بيت", "NOM", 2, "OBJ", stt="d"),
+            token(4, "رجلا", "رجل", "NOM", 1, "PRD", cas="a")]
+    assert roles(["إن", "في", "البيت", "رجلا"], toks)[3] == "اسم إن"
+    toks = [token(1, "إن", "إن", "PRT", 0, "---"),
+            token(2, "الطالب", "طالب", "NOM", 1, "SBJ", stt="d"),
+            token(3, "مجتهد", "مجتهد", "NOM", 1, "PRD")]
+    assert roles(["إن", "الطالب", "مجتهد"], toks)[2] == "خبر إن"
+
+
+def test_bare_thumma_before_a_verb_is_the_particle_not_the_adverb():
+    toks = [token(1, "قرأ", "قرأ", "VRB", 0, "---"),
+            token(2, "ثم", "ثم", "NOM", 1, "MOD"),
+            token(3, "نام", "نام", "VRB", 2, "OBJ")]
+    assert roles(["قرأ", "ثم", "نام"], toks)[1] == "حرف"
+    assert roles(["قرأ", "ثَمَّ", "نام"], toks)[1] != "حرف"
