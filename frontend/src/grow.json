@@ -9,9 +9,9 @@
 
   "_tiers": "The levels of the map, in the order they are climbed. A path in paths.json joins a tier by naming its id. A tier opens once every step of the one before it is learnt, and one with no path yet stays locked. `proposed` (required on a tier with no path, empty is fine) are the topics planned for it: shown locked so the road ahead is visible, and not steps anyone can practise. Adding a tier, or giving one its first path, is data only.",
   "tiers": [
-    { "id": "basics", "title": "Basics", "arabic": "الأساسيات", "proposed": [] },
-    { "id": "intermediate", "title": "Intermediate", "arabic": "المتوسط", "proposed": [] },
-    { "id": "advanced", "title": "Advanced", "arabic": "المتقدم", "proposed": [] }
+    { "id": "basics", "title": "Level 1", "proposed": [] },
+    { "id": "intermediate", "title": "Level 2", "proposed": [] },
+    { "id": "advanced", "title": "Level 3", "proposed": [] }
   ],
 
   "_branch": "The shape of a branch of steps, in pixels. step: the width each step takes along the branch. node: how tall a step's circle is. sway: how far each step sits above or below the branch line, alternating, which is what makes it wind. tail: how far the branch runs on past its last step.",
