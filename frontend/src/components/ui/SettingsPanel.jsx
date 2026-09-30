@@ -8,9 +8,10 @@
  * A native <dialog> is used on purpose, the browser gives focus trapping, Esc
  * to close and the backdrop for free, none of which is worth hand-writing.
  */
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { SETTINGS, resetSettings, setSetting, useSetting } from '../../lib/settings'
+import { useModal } from '../../lib/useModal'
 import { levelOf } from '../../lib/confidence'
 import { forgetSaved } from '../../lib/stored'
 import { useSources } from '../../lib/useSources'
@@ -22,14 +23,7 @@ import Segmented from './Segmented'
 const SECTIONS = Object.entries(Object.groupBy(SETTINGS, (setting) => setting.section))
 
 export default function SettingsPanel({ open, onClose }) {
-  const dialog = useRef(null)
-
-  useEffect(() => {
-    const element = dialog.current
-    if (!element) return
-    if (open && !element.open) element.showModal()
-    if (!open && element.open) element.close()
-  }, [open])
+  const dialog = useModal(open)
 
   return (
     <dialog
