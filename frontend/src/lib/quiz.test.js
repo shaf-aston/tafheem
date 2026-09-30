@@ -180,6 +180,17 @@ describe('distractor choice', () => {
     ]
     expect(pickDistractors(synonyms, synonyms[0], 3, makeRandom(7))).toEqual([])
   })
+
+  // ضَرُورَة was offered beside "Necessity, obligation": two glosses, one sense.
+  it('refuses any option sharing one sense with the answer or another option', () => {
+    const noun = (en) => ({ ar: 'ـ', en, meaningKey: en.toLowerCase(), wordType: 'noun' })
+    const bank = [noun('necessity, requirement'), noun('Necessity, obligation'), noun('summary'),
+      noun('a summary, synopsis'), noun('negligence')]
+    const picked = pickDistractors(bank, bank[0], 3, makeRandom(7)).map((d) => d.en)
+    expect(picked).not.toContain('Necessity, obligation')
+    expect(picked.filter((en) => en.includes('summary'))).toHaveLength(1)
+    expect(picked).toContain('negligence')
+  })
 })
 
 describe('choosing which word to ask', () => {
