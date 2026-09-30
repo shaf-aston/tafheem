@@ -28,7 +28,7 @@ import GrowPanel from '../components/GrowPanel'
 // `half`: two tabs share one slot. Nahw + Sarf: shortest labels, used together,
 //   so opening one brings the other out beside it.
 // `row`: when the tab shows in the strip. 1 always, 2 from md, 3 only through
-//   a spot (SPOTS below; the strip is capped at the page width, so it never grows).
+//   a recent tab (RECENT below; the strip is capped at the page width, so it never grows).
 //   Every tab is always in All sections (SectionsMenu); tier 1 is what a phone fits.
 // `group`: its heading in All sections, an id from GROUPS.
 // `mark`: one Arabic letter for where only a letter fits (search rail, launcher
@@ -58,10 +58,10 @@ export const TABS = [
   { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, open: load(colloquialQuery), row: 3, group: 'language', study: true },
 ]
 
-// The strip's swappable spots at the far right: how many, and what they hold
-// before anything is opened, far right last. A row 3 tab opened takes the
-// spot held longest (lib/spots.js).
-export const SPOTS = ['grow', 'hadith']
+// The recent tabs at the strip's far right: how many, and what they are before
+// anything is opened, oldest first. Opening a row 3 tab drops the oldest
+// (lib/recent.js).
+export const RECENT = ['hadith', 'grow']
 
 /** A tab's colour, with the theme's own fallback rule. */
 export const accentOf = (id) => colorFor('tab', id)

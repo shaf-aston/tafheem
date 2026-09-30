@@ -4,15 +4,15 @@
  */
 import ArabicText from './ArabicText'
 
-// Fixed tabs past row 1, and the spots, wait for md. The open tab always shows.
+// Fixed tabs past row 1, and the recent ones, wait for md. The open tab always shows.
 const tierClass = (tab) => (tab.row === 1 ? '' : 'hidden md:block')
 
 export default function TabStrip({ tabs, active, colorOf, onSelect, onAll, onHover }) {
   return (
     // No overflow here on purpose: setting one axis to auto makes the other
     // auto too, and the 1px underline below the strip would then raise a
-    // scrollbar. `tabs` is already the strip (lib/spots.js): fixed tabs plus
-    // the spots, so it never outgrows the row; wrap is only the fallback.
+    // scrollbar. `tabs` is already the strip (lib/recent.js): fixed tabs plus
+    // the recent ones, so it never outgrows the row; wrap is only the fallback.
     //
     // The labels are type-body, the same size as the English being read
     // in the panels below.
