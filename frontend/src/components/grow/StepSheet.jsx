@@ -98,7 +98,7 @@ export default function StepSheet({ step, from, state, figure, tier, before, rec
         data-closing={closing ? '' : undefined}
       >
         <div className="grow-sh-top">
-          <h3 id="grow-sheet-title">{step.title}</h3>
+          <h2 id="grow-sheet-title">{step.title}</h2>
           <button ref={closeRef} type="button" className="grow-x" aria-label={say('Close')} onClick={close}>
             <span aria-hidden="true">×</span>
           </button>

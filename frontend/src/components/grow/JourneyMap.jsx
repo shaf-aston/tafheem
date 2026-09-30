@@ -84,6 +84,7 @@ function Item({ step, i, last, state, now, days, figure, onOpen }) {
           data-s={state}
           data-now={now ? '' : undefined}
           aria-label={`${step.title}, ${WORDS[state]}`}
+          tabIndex={state === 'locked' ? -1 : undefined}
           onClick={(event) => onOpen(step, event.currentTarget, state)}
         >
           <span className="grow-in"><StateIcon state={state} figure={act ? figure : null} /></span>
