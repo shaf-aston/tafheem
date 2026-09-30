@@ -107,7 +107,7 @@ function Row({ group, index, open, isOpen, record, next, mood, onToggle, onStep 
   return (
     <div className={`grow-row${isOpen ? ' grow-row-open' : ''}`} data-now={now ? '' : undefined}>
       <svg className="grow-stem" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        <path d={index % 2 ? 'M50 0V48C10 54 10 76 50 84V100' : 'M50 0V48C90 54 90 76 50 84V100'} pathLength="1" />
+        <path d={index % 2 ? 'M50 0V58C10 63 10 80 50 88V100' : 'M50 0V58C90 63 90 80 50 88V100'} pathLength="1" />
       </svg>
       <div className="grow-cell">
         <div className="grow-nw">

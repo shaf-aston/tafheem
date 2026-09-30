@@ -7,7 +7,7 @@
   --cw: 92px;
   --sx: 50%;
   --nc: 48px; /* a group circle's centre, down from the top of its row */
-  --stem-w: 5px;
+  --stem-w: 3px;
   /* The pressable shadow under a group circle: a darker step of the same colour. */
   --sh-m: color-mix(in srgb, var(--c) 50%, var(--bg));
   --sh-o: color-mix(in srgb, var(--c) 28%, var(--bg));
@@ -18,7 +18,7 @@
   padding-top: 26px;
   overflow-x: clip;
 }
-.grow-map-open { --sx: calc(40px + var(--cw) / 2); }
+.grow-map-open { --sx: calc(52px + var(--cw) / 2); }
 @media (max-width: 480px) { .grow-map { --cw: 84px; } }
 
 /* ── the circle: colour set by state; only a group's circle is pressable ── */
@@ -37,34 +37,34 @@
   border: 2px solid var(--bd);
   background: var(--surface-hi);
   color: var(--text-dim);
-  box-shadow: 0 0 22px var(--gl);
+  box-shadow: 0 0 12px var(--gl);
   transition: transform calc(var(--motion-instant-ms) * 1ms) ease, box-shadow calc(var(--motion-instant-ms) * 1ms) ease;
 }
 button.grow-node { cursor: pointer; }
 button.grow-node:hover { transform: translateY(-2px); }
 button.grow-node:active { transform: translateY(2px); }
-.grow-gnode { --n: 64px; box-shadow: 0 5px 0 var(--sh), 0 0 22px var(--gl); }
-.grow-gnode:active { box-shadow: 0 1px 0 var(--sh), 0 0 22px var(--gl); }
+.grow-gnode { --n: 64px; box-shadow: 0 4px 0 var(--sh), 0 0 12px var(--gl); }
+.grow-gnode:active { box-shadow: 0 1px 0 var(--sh), 0 0 12px var(--gl); }
 .grow-in { display: grid; place-items: center; }
 .grow-ic { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .grow-node[data-s='learnt'] { background: var(--surface); --bd: var(--c); color: var(--c); --sh: var(--sh-m); }
 .grow-node[data-s='started'] { background: color-mix(in srgb, var(--c) 22%, var(--surface)); --bd: var(--c); color: var(--c); --sh: var(--sh-m); }
-.grow-node[data-now] { --gl: color-mix(in srgb, var(--c) 45%, transparent); }
+.grow-node[data-now] { --gl: color-mix(in srgb, var(--c) 25%, transparent); }
 .grow-node[data-s='open'] { --bd: color-mix(in srgb, var(--c) 45%, var(--border-hi)); color: var(--text); background: color-mix(in srgb, var(--c) 10%, var(--surface)); }
 .grow-node[data-s='locked'] { background: var(--surface); border-style: dashed; color: var(--text-faint); --sh: var(--sh-l); }
 
 .grow-pulse::after {
   content: '';
   position: absolute;
-  inset: -4px;
+  inset: -3px;
   border-radius: inherit;
-  border: 2px solid var(--c);
-  animation: grow-pulse calc(1600ms * var(--motion-scale)) ease-out infinite;
+  border: 1.5px solid var(--c);
+  animation: grow-pulse calc(2600ms * var(--motion-scale)) ease-out infinite;
   pointer-events: none;
 }
 @keyframes grow-pulse {
-  0% { transform: scale(0.95); opacity: 0.9; }
-  100% { transform: scale(1.55); opacity: 0; }
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.18); opacity: 0; }
 }
 
 /* seed, sprout, and the bloom: it pops in from its stem, then sways, and glows */
@@ -80,7 +80,7 @@ button.grow-node:active { transform: translateY(2px); }
     grow-sway calc(4200ms * var(--motion-scale)) ease-in-out infinite;
 }
 @keyframes grow-bloom { from { scale: 0; rotate: -50deg; opacity: 0; } }
-@keyframes grow-sway { 50% { transform: rotate(4deg); } }
+@keyframes grow-sway { 50% { transform: rotate(2deg); } }
 .grow-petal { fill: var(--c); stroke: color-mix(in srgb, var(--c) 60%, var(--bg)); stroke-width: 1; }
 .grow-heart { fill: var(--warn); }
 .grow-tick { fill: none; stroke: color-mix(in srgb, var(--warn) 35%, var(--bg)); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
@@ -105,7 +105,7 @@ button.grow-node:active { transform: translateY(2px); }
 
 /* group circles sit on the vine */
 .grow-ring { position: absolute; inset: -8px; width: calc(100% + 16px); height: calc(100% + 16px); pointer-events: none; overflow: visible; }
-.grow-ring circle, .grow-days-ring path { fill: none; stroke-width: 5; stroke-linecap: round; }
+.grow-ring circle, .grow-days-ring path { fill: none; stroke-width: 3.5; stroke-linecap: round; }
 .grow-ring-t { stroke: var(--border-hi); opacity: 0.7; }
 .grow-ring-f { stroke: var(--c); }
 .grow-gi { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
@@ -144,6 +144,8 @@ button.grow-node:active { transform: translateY(2px); }
 
 .grow-row { position: relative; z-index: var(--layer-raised); display: flex; align-items: flex-start; scroll-margin-top: 130px; }
 .grow-cell { position: relative; z-index: calc(var(--layer-raised) + 1); flex: none; width: var(--cw); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 0 40px; }
+/* A label sits on the vine, so a halo of the plate colour hides the stem behind it: the stem never runs through the words. */
+.grow-gl { position: relative; z-index: 1; text-shadow: 0 0 3px var(--surface), 0 0 6px var(--surface), 0 0 10px var(--surface); }
 .grow-gl { font-size: var(--type-small); font-weight: 800; text-align: center; line-height: 1.25; max-width: var(--cw); color: var(--text); overflow-wrap: anywhere; }
 .grow-gl-ar { display: block; color: var(--text-dim); font-weight: 400; }
 .grow-row[data-now] .grow-gl { color: var(--c); }
@@ -178,7 +180,7 @@ button.grow-node:active { transform: translateY(2px); }
   opacity: 0;
   transition: scale calc(var(--motion-base-ms) * 1ms) ease, opacity calc(var(--motion-base-ms) * 1ms) ease;
 }
-.grow-lane .grow-nw { z-index: 1; scale: 0; transform-origin: 50% 40%; }
+.grow-lane .grow-nw { z-index: 1; scale: 0.6; transform-origin: 50% 40%; }
 .grow-row-open .grow-lane .grow-nw, .grow-row-open .grow-lane .grow-lbl {
   scale: 1;
   opacity: 1;
@@ -187,10 +189,9 @@ button.grow-node:active { transform: translateY(2px); }
 }
 .grow-row-open .grow-lane .grow-nw { transition-timing-function: var(--motion-spring-ease), ease; }
 
-/* Qalam stands left of the current group and only ever reacts, never speaks.
-   It overlaps the circle's edge by 8px: with a branch open the vine sits at the
-   left of the map, and standing clear of the circle would clip it at 360px. */
-.grow-qalam { position: absolute; top: -4px; right: calc(100% - 8px); pointer-events: none; }
+/* Qalam stands left of the current group, clear of its ring, and only ever
+   reacts, never speaks. The open map's --sx leaves it room at 360px. */
+.grow-qalam { position: absolute; top: 50%; translate: 0 -50%; right: calc(100% + 10px); pointer-events: none; }
 
 /* ── progress in the header ── */
 .grow-progress { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: var(--type-small); color: var(--text-dim); }
