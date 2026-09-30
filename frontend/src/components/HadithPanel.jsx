@@ -23,6 +23,7 @@ import HadithBookList from './HadithBookList'
 import HadithCards from './HadithCards'
 import HadithList from './HadithList'
 import HadithSearchResults from './HadithSearchResults'
+import Code from './ui/Code'
 
 export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
   const { data: collections, isPending, isError, error, refetch } = useQuery(hadithCollectionsQuery)
@@ -58,13 +59,13 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
         <SectionHeader title="Hadith" arabic="الحديث" subtitle="Search and read the hadith collections." />
         <ErrorAlert title="No collection is built yet">
           Fetch and build one with{' '}
-          <code className="px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
+          <Code>
             python backend/scripts/fetch_hadith_collections.py
-          </code>{' '}
+          </Code>{' '}
           then{' '}
-          <code className="px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
+          <Code>
             python backend/scripts/build_hadith_index.py
-          </code>
+          </Code>
         </ErrorAlert>
       </div>
     )

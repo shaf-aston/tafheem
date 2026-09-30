@@ -25,7 +25,7 @@ export default function ErrorAlert({ title, error, fallback, onRetry, children, 
       <div className={`text-[var(--text-dim)] ${inline ? 'text-right flex flex-col items-end' : ''}`}>
         {error !== undefined && smartError(error, fallback)}
         {children}
-        {onRetry && <RetryButton onClick={onRetry} />}
+        {onRetry && <div><RetryButton onClick={onRetry} /></div>}
       </div>
     </div>
   )

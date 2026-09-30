@@ -99,7 +99,7 @@ export default function TamreenBrowse({ exercises, tags, coverage, accent }) {
 
           {rules.length > 0 && (
             <div className="space-y-2">
-              <h4 className="type-tiny uppercase tracking-wide text-[var(--text-faint)]">Rules</h4>
+              <h4 className="eyebrow">Rules</h4>
               {rules.map((rule) => (
                 <div key={rule.id} className="rounded-[var(--radius-md)] border border-[var(--border)] p-3 space-y-1.5">
                   <p dir="auto" className="font-medium">{rule.question}</p>
@@ -126,7 +126,7 @@ export default function TamreenBrowse({ exercises, tags, coverage, accent }) {
           )}
 
           <div className="space-y-2">
-            <h4 className="type-tiny uppercase tracking-wide text-[var(--text-faint)]">
+            <h4 className="eyebrow">
               Examples · {examples.length}
             </h4>
             {examples.length === 0 && <EmptyState>No examples for this point.</EmptyState>}

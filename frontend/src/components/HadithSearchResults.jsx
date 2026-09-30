@@ -17,6 +17,7 @@ import RecentRow from './ui/RecentRow'
 import SearchBox from './ui/SearchBox'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import HadithCards from './HadithCards'
+import Code from './ui/Code'
 
 export default function HadithSearchResults({ collections, accent, children }) {
   const [query, setQuery] = useState('')
@@ -69,9 +70,9 @@ export default function HadithSearchResults({ collections, accent, children }) {
       {data?.ready === false && (
         <ErrorAlert title="Search index not built">
           Every search would come back empty until it is built:{' '}
-          <code className="px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
+          <Code>
             python backend/scripts/build_hadith_index.py
-          </code>
+          </Code>
         </ErrorAlert>
       )}
 

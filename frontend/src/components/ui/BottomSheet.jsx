@@ -3,11 +3,17 @@
  * screen. Mounted only while open. Native <dialog> through useModal, so Esc,
  * the backdrop, the focus trap and focus returning to the opener come free;
  * the page behind stops scrolling through the :modal rule in index.css.
+ * Closing by unmounting skips the browser's own focus return, so the opener
+ * is noted on the first render and handed focus back here.
  */
+import { useEffect, useState } from 'react'
+
 import { useModal } from '../../lib/useModal'
 
 export default function BottomSheet({ label, onClose, className = '', children }) {
   const dialog = useModal(true)
+  const [opener] = useState(() => document.activeElement)
+  useEffect(() => () => opener?.focus?.(), [opener])
   return (
     <dialog
       ref={dialog}

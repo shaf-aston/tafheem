@@ -31,6 +31,7 @@ import VerbFormTag from './ui/VerbFormTag'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
 import WordGrid from './ui/WordGrid'
+import Code from './ui/Code'
 
 // Tailwind needs the literal class names present in source to keep them in the
 // build; a computed string like `sm:col-span-${n}` would be purged.
@@ -126,9 +127,9 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
         <ErrorAlert title="Dictionary not installed">
           No dictionary data on this machine, so every search would come back empty.
           Build it with{' '}
-          <code className="px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
+          <Code>
             python backend/scripts/build_dictionary.py
-          </code>
+          </Code>
         </ErrorAlert>
       )}
 

@@ -153,7 +153,7 @@ function Run({ steps, depth, ctx }) {
           <li key={row.lanes[0].steps[0].id} className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
             {row.lanes.map((lane, l) => (
               <section key={lane.path} aria-label={ctx.library.paths?.[lane.path] ?? lane.path} className="min-w-0">
-                <p className="ps-7 type-tiny uppercase tracking-wide text-[var(--text-faint)] m-0" aria-hidden="true">
+                <p className="eyebrow ps-7 m-0" aria-hidden="true">
                   {ctx.library.paths?.[lane.path] ?? lane.path}
                 </p>
                 {/* Lanes after the first hang from a thread of their own. */}
@@ -259,7 +259,7 @@ export default function TimelineSteps({ steps, prints, library, accent, onGo, he
       >
         {!walking
           ? (
-            <h4 className="type-tiny uppercase tracking-wide text-[var(--text-faint)] m-0">
+            <h4 className="eyebrow m-0">
               Inside this event · {order.length} {order.length === 1 ? 'step' : 'steps'}
             </h4>
           )

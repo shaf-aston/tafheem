@@ -35,6 +35,7 @@ import SectionHeader from './ui/SectionHeader'
 import ShowRest from './ui/ShowRest'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
+import Code from './ui/Code'
 
 /**
  * How a hit was made, said in the reader's words beside it.
@@ -179,9 +180,9 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
         <ErrorAlert title="Search index not built">
           The books have not been indexed on this machine, so every search would
           come back empty. Build it with{' '}
-          <code className="px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
+          <Code>
             python backend/scripts/build_daleel_index.py
-          </code>
+          </Code>
         </ErrorAlert>
       )}
 
