@@ -1,4 +1,6 @@
-# Tafheem
+<img src="docs/banner.svg" width="100%" alt="Tafheem" />
+
+**[Open the app](https://tafheem-app.vercel.app)**
 
 Understand Quranic and classical Arabic, word by word. Grammar, morphology, the Quran and a dictionary in one study app.
 
