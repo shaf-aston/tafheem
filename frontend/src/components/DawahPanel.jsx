@@ -15,7 +15,6 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { dawahQuery } from '../api'
-import { smartError } from '../lib/apiError'
 import { useRemembered } from '../lib/useRemembered'
 import { matches } from '../lib/dawahSearch'
 import knobs from '../dawah.json'
@@ -23,7 +22,6 @@ import knobs from '../dawah.json'
 import SectionHeader from './ui/SectionHeader'
 import SearchBox from './ui/SearchBox'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import EmptyState from './ui/EmptyState'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import TopicTile from './dawah/TopicTile'
@@ -55,10 +53,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
   if (isPending) return <AnalyzerSkeleton />
   if (isError) {
     return (
-      <ErrorAlert title={copy['load-failed']}>
-        {smartError(error, copy.unreachable)}
-        <RetryButton onClick={refetch} />
-      </ErrorAlert>
+      <ErrorAlert title={copy['load-failed']} error={error} fallback={copy.unreachable} onRetry={refetch} />
     )
   }
 

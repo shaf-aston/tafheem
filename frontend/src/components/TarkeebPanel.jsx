@@ -13,7 +13,6 @@ import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { getTarkeebExamples } from '../api'
-import { smartError } from '../lib/apiError'
 import { exampleMatches } from '../lib/exampleSearch'
 import { useInView } from '../lib/useInView'
 import { useRemembered } from '../lib/useRemembered'
@@ -23,7 +22,6 @@ import Chip from './ui/Chip'
 import SearchBox from './ui/SearchBox'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import { GoButton } from './ui/RootActions'
 import SourceBadge from './ui/SourceBadge'
 import { Skeleton } from './ui/Skeleton'
@@ -75,10 +73,7 @@ export default function TarkeebPanel({ accent, onWordByWord }) {
   return (
     <div className="space-y-5">
       {isError && (
-        <ErrorAlert title="Could not load the examples">
-          {smartError(error)}
-          <RetryButton onClick={() => refetch()} />
-        </ErrorAlert>
+        <ErrorAlert title="Could not load the examples" error={error} onRetry={() => refetch()} />
       )}
       {isPending && <Skeleton className="h-40" />}
 

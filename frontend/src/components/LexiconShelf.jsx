@@ -28,7 +28,6 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getLexicons } from '../api'
 import { laneEntry } from '../lib/laneEntry'
-import { smartError } from '../lib/apiError'
 import { scrollToEl } from '../lib/scrollToEl'
 import { accentOf } from '../lib/tabs'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../lib/useLaneTidy'
@@ -37,7 +36,6 @@ import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
 import ErrorAlert from './ui/ErrorAlert'
 import FlagButton from './ui/FlagButton'
-import RetryButton from './ui/RetryButton'
 import ShowRest from './ui/ShowRest'
 import { Skeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
@@ -74,11 +72,7 @@ export default function LexiconShelf({ root: asked, hasAlternates }) {
         {isPending && <Skeleton className="h-24" />}
 
         {isError && (
-          <ErrorAlert
-            title="The dictionaries could not be read"
-            message={smartError(error)}
-            action={<RetryButton onClick={() => refetch()} />}
-          />
+          <ErrorAlert title="The dictionaries could not be read" error={error} onRetry={() => refetch()} />
         )}
 
         {data && entries.length === 0 && (

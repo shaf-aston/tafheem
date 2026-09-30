@@ -12,7 +12,7 @@ export default function Answer({ topic, question, library, accent, onGo, step, m
   return (
     <article key={question.id} className="fade-in rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-5 space-y-5">
       <div className="space-y-2">
-        <p className="type-tiny uppercase tracking-wide" style={{ color: accent }}>{topic.title}</p>
+        <p className="eyebrow" style={{ color: accent }}>{topic.title}</p>
         <h3 className="text-xl font-semibold leading-snug text-[var(--text)]">{question.q}</h3>
       </div>
 
@@ -21,7 +21,7 @@ export default function Answer({ topic, question, library, accent, onGo, step, m
         style={{ background: `color-mix(in srgb, ${accent} 10%, transparent)` }}
       >
         <div className="space-y-1">
-          <p className="type-tiny uppercase tracking-wide text-[var(--text-faint)]">{copy.short}</p>
+          <p className="eyebrow">{copy.short}</p>
           <p className="text-[var(--text)] leading-relaxed">{question.short}</p>
         </div>
         <CopyButton text={question.short} label={copy.copy} />

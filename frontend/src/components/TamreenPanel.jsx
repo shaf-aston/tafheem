@@ -7,13 +7,11 @@ import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { getTamreen } from '../api'
-import { smartError } from '../lib/apiError'
 import { readViewParam, writeViewParams } from '../lib/tabUrl'
 import { useRemembered } from '../lib/useRemembered'
 
 import Segmented from './ui/Segmented'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import EmptyState from './ui/EmptyState'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import TamreenPractise from './TamreenPractise'
@@ -40,10 +38,7 @@ export default function TamreenPanel({ accent, onProgress, onNotes }) {
 
   if (isError) {
     return (
-      <ErrorAlert title="Could not load the exercises">
-        {smartError(error, 'The Tamreen library could not be reached.')}
-        <RetryButton onClick={refetch} />
-      </ErrorAlert>
+      <ErrorAlert title="Could not load the exercises" error={error} fallback="The Tamreen library could not be reached." onRetry={refetch} />
     )
   }
 

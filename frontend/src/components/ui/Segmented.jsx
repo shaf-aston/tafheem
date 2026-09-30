@@ -49,7 +49,7 @@ export default function Segmented({
 
   return (
     <div className="flex items-center gap-2">
-      <span className="type-tiny uppercase tracking-wide text-[var(--text-faint)]">{label}</span>
+      <span className="eyebrow">{label}</span>
       {row}
     </div>
   )

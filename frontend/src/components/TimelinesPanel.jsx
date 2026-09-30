@@ -14,13 +14,11 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { timelinesQuery } from '../api'
-import { smartError } from '../lib/apiError'
 import { parsePlace, placeOf } from '../lib/timelineLayout'
 
 import SectionHeader from './ui/SectionHeader'
 import Segmented from './ui/Segmented'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import EmptyState from './ui/EmptyState'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import TimelineBoard from './TimelineBoard'
@@ -56,10 +54,7 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
 
   if (isError) {
     return (
-      <ErrorAlert title="Could not load the timelines">
-        {smartError(error, 'The timelines could not be reached.')}
-        <RetryButton onClick={refetch} />
-      </ErrorAlert>
+      <ErrorAlert title="Could not load the timelines" error={error} fallback="The timelines could not be reached." onRetry={refetch} />
     )
   }
 

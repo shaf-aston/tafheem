@@ -14,7 +14,6 @@ import { useEffect, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { getQuranAyah, getQuranRoot, searchQuran } from '../api'
-import { smartError } from '../lib/apiError'
 import { useArrival } from '../lib/useArrival'
 import { useHistory } from '../lib/useHistory'
 
@@ -22,7 +21,6 @@ import AyahStudy from './AyahStudy'
 import QuranSeal from './ui/QuranSeal'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import RootActions from './ui/RootActions'
 import SurahReader from './SurahReader'
 import QuranPlacePicker from './QuranPlacePicker'
@@ -172,19 +170,19 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
       />
 
       {(ayahLookup.isError || search.isError) && (
-        <ErrorAlert title="Lookup failed">
-          {/* Not "could not reach Quran.com" any more: a search that cannot
-              reach it falls back to the local index and never errors here, so
-              reaching this line means the app's own backend did not answer. */}
-          {smartError(ayahLookup.error || search.error, 'Could not reach the backend. Check that it is running.')}
-          <RetryButton onClick={ayahLookup.isError ? retryAyah : () => runSearch()} />
-        </ErrorAlert>
+        // Not "could not reach Quran.com" any more: a search that cannot reach it
+        // falls back to the local index and never errors here, so reaching this
+        // line means the app's own backend did not answer.
+        <ErrorAlert
+          title="Lookup failed"
+          error={ayahLookup.error || search.error}
+          fallback="Could not reach the backend. Check that it is running."
+          onRetry={ayahLookup.isError ? retryAyah : () => runSearch()}
+        />
       )}
 
       {rootLookup.isError && (
-        <ErrorAlert title="Root not found">
-          {smartError(rootLookup.error, 'That root does not occur in the Qur’an.')}
-        </ErrorAlert>
+        <ErrorAlert title="Root not found" error={rootLookup.error} fallback="That root does not occur in the Qur’an." />
       )}
       {rootLookup.data && !rootLookup.isPending && (
         <RootView

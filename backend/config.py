@@ -105,9 +105,9 @@ class Settings(BaseSettings):
     recitation_deepgram_api_key: str = ""
 
     # Real reciters are played by the page, not listed here.
-    speech_voices: str = "piper"
-    # Path inside the rhasspy/piper-voices repo; fetched once on first use.
-    speech_piper_model: str = "ar/ar_JO/kareem/medium/ar_JO-kareem-medium.onnx"
+    speech_voices: str = "fastpitch"
+    # FastPitch has four speakers; 3 was heard best by Whisper (21% letters wrong, speaker 0 41%).
+    speech_fastpitch_speaker: int = Field(default=3, ge=0, le=3)
     speech_max_chars: int = Field(default=40, gt=0)
     speech_rest_s: float = Field(default=60.0, gt=0)
     # ~25 KB each, so 20,000 is about 500 MB.

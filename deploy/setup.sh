@@ -10,6 +10,7 @@ sudo apt-get install -y python3-venv python3-dev build-essential debian-keyring 
 python3 -m venv venv
 venv/bin/pip install --upgrade pip
 venv/bin/pip install -r requirements.txt
+venv/bin/pip install --no-deps -r requirements-nodeps.txt
 venv/bin/camel_data -i defaults
 
 # Caddy, from its own package list.

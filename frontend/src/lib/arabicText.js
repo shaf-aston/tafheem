@@ -46,6 +46,9 @@ export const mostlyArabic = (text) =>
 export const bareForm = (text) =>
   (text ?? '').replace(DIACRITICS_ALL, '').replace(ALIF_FORMS, 'ا')
 
+/** One side of a search comparison: no vowel marks, no capitals. Null is empty. */
+export const foldForSearch = (text) => bareForm(text).toLowerCase()
+
 // Three more things the Qur'anic printing writes that no keyboard offers: the
 // wasla alif ٱ, the dagger-alif ى standing for a long a, and the tatweel ـ used
 // to stretch a line. Nobody filling in a gap types any of them.

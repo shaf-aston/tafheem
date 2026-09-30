@@ -1,5 +1,7 @@
 import { useCallback, useState } from 'react'
 
+import { readRaw, writeRaw } from './stored'
+
 /**
  * One remembered choice, kept in localStorage between visits. Which commentary,
  * which quiz set, which Nahw view: remembered where it was chosen rather than
@@ -17,17 +19,11 @@ import { useCallback, useState } from 'react'
  * the stored string comes straight back.
  */
 export function useRemembered(key, allowed = null, fallback = allowed?.[0] ?? '') {
-  const [stored, setStored] = useState(() => {
-    try { return localStorage.getItem(key) || '' } catch { return '' }
-  })
+  const [stored, setStored] = useState(() => readRaw(key) || '')
 
   const choose = useCallback((value) => {
     setStored(value)
-    try {
-      localStorage.setItem(key, value)
-    } catch {
-      /* private browsing, the choice still holds for this session */
-    }
+    writeRaw(key, value)
   }, [key])
 
   const chosen = !allowed || allowed.includes(stored) ? stored : fallback

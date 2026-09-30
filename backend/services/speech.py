@@ -43,71 +43,44 @@ class Voice(Retirable, ABC):
         """The spoken text as a WAV file."""
 
 
-class PiperVoice(Voice):
-    """Piper's Jordanian Arabic voice (kareem), on this machine's CPU.
+class FastPitchVoice(Voice):
+    """FastPitch + HiFi-GAN, Modern Standard Arabic (nipponjo/tts_arabic), on the CPU.
 
-    Reads harakat: عَالِم and عَالَم, كَتَبَ and كُتِبَ come out different, as
-    do ط/ت, ص/س, ض/د. It stops on the word, so the final short vowel is dropped,
-    which is the correct pause form. Its ظ came out as ذ; _phonemes below fixes that.
-    About 70ms a word once loaded; loading takes a few seconds, once.
+    Says every haraka written, the final one too, so أَلْهَبَ is alhaba as the
+    page shows it. Chosen 2026-10-01 over Piper's kareem: Whisper misheard 21%
+    of letters from this voice, 67% from kareem, at any speed; a quran.com
+    reciter scored as well. About 0.5s a word; the models (~250 MB) download
+    from Google Drive into the package's folder on first use.
     """
 
-    name = "piper"
+    name = "fastpitch"
 
     def __init__(self) -> None:
         self._model = None
         self._lock = threading.Lock()
 
-    def _load(self):
-        with self._lock:
-            if self._model is None:
-                from huggingface_hub import hf_hub_download
-                from piper import PiperVoice as Engine
-
-                path = get_settings().speech_piper_model
-                hf_hub_download("rhasspy/piper-voices", path + ".json")
-                self._model = Engine.load(hf_hub_download("rhasspy/piper-voices", path))
-        return self._model
-
     @property
     def version(self) -> str:
-        # "+zaa": words kept before the ظ fix are made again.
-        return get_settings().speech_piper_model + "+zaa"
+        return f"hifigan-speaker{get_settings().speech_fastpitch_speaker}"
 
     def say(self, text: str) -> bytes:
-        model = self._load()
-        out = io.BytesIO()
         # One word at a time: the model is not known to be safe to share between threads.
-        with self._lock, wave.open(out, "wb") as file:
-            file.setframerate(model.config.sample_rate)
+        with self._lock:
+            if self._model is None:
+                from tts_arabic import get_model
+
+                self._model = get_model("fastpitch", "hifigan", cuda=None)
+            audio = self._model.infer(text, speaker=get_settings().speech_fastpitch_speaker)
+        out = io.BytesIO()
+        with wave.open(out, "wb") as file:
+            file.setframerate(22050)
             file.setsampwidth(2)
             file.setnchannels(1)
-            for sentence in _phonemes(model, text):
-                audio = model.phoneme_ids_to_audio(model.phonemes_to_ids(sentence))
-                file.writeframes((audio.clip(-1, 1) * 32767).astype("<i2").tobytes())
+            file.writeframes((audio.clip(-1, 1) * 32767).astype("<i2").tobytes())
         return out.getvalue()
 
 
-def _phonemes(model, text: str) -> list[list[str]]:
-    """Piper's phonemes, with ظ said as ظ.
-
-    Its phonemizer says ظ as ð, the sound of ذ. ظ is spelled as ض, which comes
-    out as the distinct pair d ˤ, and that pair is turned into ð ˤ. Only in a
-    text with no real ض, whose d ˤ would be changed too; there ظ stays as it was.
-    """
-    zaa, daad = "ظ", "ض"
-    if zaa not in text or daad in text:
-        return model.phonemize(text)
-    fixed = []
-    for sentence in model.phonemize(text.replace(zaa, daad)):
-        out: list[str] = []
-        for i, p in enumerate(sentence):
-            out.append("ð" if p == "d" and sentence[i + 1:i + 2] == ["ˤ"] else p)
-        fixed.append(out)
-    return fixed
-
-
-_VOICES: dict[str, Voice] = {voice.name: voice for voice in (PiperVoice(),)}
+_VOICES: dict[str, Voice] = {voice.name: voice for voice in (FastPitchVoice(),)}
 
 
 def order() -> list[Voice]:
