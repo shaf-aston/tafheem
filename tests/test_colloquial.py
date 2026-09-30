@@ -287,3 +287,24 @@ def test_an_unwritten_unit_is_listed_as_coming_and_cannot_be_opened(tmp_path, mo
             loader.unit("damascene", "unit-02")
     finally:
         loader._content.cache_clear()
+
+
+def test_a_lesson_is_compared_across_every_dialect_slot_by_slot():
+    client = TestClient(app)
+    got = client.get("/api/colloquial/compare/unit-03/lesson-01").json()
+    keys = [d["key"] for d in client.get("/api/colloquial").json()["dialects"]]
+    assert [d["key"] for d in got["dialects"]] == keys
+    slots = [[p["slot"] for p in d["phrases"]] for d in got["dialects"] if d["phrases"] is not None]
+    assert slots and all(s == slots[0] for s in slots)
+    unit = client.get("/api/colloquial/damascene/unit-03").json()
+    assert [p["slot"] for p in unit["lessons"][0]["phrases"]] == slots[0]
+
+
+def test_an_unwritten_unit_compares_as_none_and_an_unknown_lesson_404s(monkeypatch):
+    content = copy.deepcopy(loader._content())
+    content["dialects"][1]["units"][2]["written"] = False
+    monkeypatch.setattr(loader, "_content", lambda: content)
+    got = loader.compare("unit-03", "lesson-01")
+    assert got["dialects"][1]["phrases"] is None and got["dialects"][0]["phrases"]
+    assert TestClient(app).get("/api/colloquial/compare/unit-03/lesson-99").status_code == 404
+    assert TestClient(app).get("/api/colloquial/compare/unit-99/lesson-01").status_code == 404

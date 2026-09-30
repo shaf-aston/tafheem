@@ -2,8 +2,8 @@
 import { useState } from 'react'
 
 import ArabicText from '../ui/ArabicText'
-import Pronunciation from '../ui/Pronunciation'
 import { FOCUS } from './Face'
+import Spelling from './Spelling'
 
 const FACE = `col-start-1 row-start-1 flex flex-col items-center justify-center gap-1 px-4 py-6 text-center
   rounded-[var(--radius-md)] border transition-[transform,opacity] [backface-visibility:hidden]`
@@ -18,7 +18,7 @@ function Side({ item, label, flipped, hidden, back }) {
     >
       <span className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{label}</span>
       <ArabicText as="span" size="base" className="block text-[var(--text)]">{item.arabic}</ArabicText>
-      <Pronunciation>{item.transliteration}</Pronunciation>
+      <Spelling>{item.transliteration}</Spelling>
       <span className="type-small text-[var(--text)]">{item.english}</span>
     </span>
   )

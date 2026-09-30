@@ -21,6 +21,15 @@ async def get_catalogue() -> schema.Catalogue:
     return schema.Catalogue(**await asyncio.to_thread(loader.catalogue))
 
 
+@router.get("/compare/{unit}/{lesson}", response_model=schema.Compare)
+async def get_compare(unit: str, lesson: str) -> schema.Compare:
+    """One lesson's phrases in every dialect, so a phrase can be shown as each says it."""
+    try:
+        return schema.Compare(**await asyncio.to_thread(loader.compare, unit, lesson))
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
 @router.get("/{dialect}/{unit}", response_model=schema.Unit)
 async def get_unit(dialect: str, unit: str) -> schema.Unit:
     """One whole unit: every lesson, its phrases, its conversation, its practice.

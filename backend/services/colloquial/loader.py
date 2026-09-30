@@ -235,6 +235,26 @@ def unit(dialect: str, name: str) -> dict:
     raise KeyError(f"no dialect {dialect!r}")
 
 
+def compare(name: str, lesson: str) -> dict:
+    """One spine lesson's phrases in every dialect, for setting them side by side.
+
+    A whole lesson rather than one phrase, so stepping through a lesson's
+    phrases is one fetch. An unknown unit or lesson is a KeyError, so the route 404s.
+    """
+    dialects = []
+    for known in _content()["dialects"]:
+        one = next((u for u in known["units"] if u["unit"] == name), None)
+        if one is None:
+            raise KeyError(f"no unit {name!r}")
+        found = next((l for l in one["lessons"] if l["lesson"] == lesson), None)
+        if found is None:
+            raise KeyError(f"{name} has no lesson {lesson!r}")
+        phrases = [{key: p[key] for key in ("slot", "arabic", "transliteration")}
+                   for p in found["phrases"]] if one["written"] else None
+        dialects.append({"key": known["key"], "label": known["label"], "phrases": phrases})
+    return {"unit": name, "lesson": lesson, "dialects": dialects}
+
+
 def image_path(relative: str):
     """A picture file under the content's own images folder, or None.
 

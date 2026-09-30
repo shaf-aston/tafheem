@@ -2,9 +2,9 @@
 import { useState } from 'react'
 
 import ArabicText from '../ui/ArabicText'
-import Pronunciation from '../ui/Pronunciation'
 import PrimaryButton from '../ui/PrimaryButton'
 import SmallButton from '../ui/SmallButton'
+import Spelling from './Spelling'
 
 const SIDE_TINT = ['--primary', '--warn']
 const TINT_PERCENT = 18
@@ -35,7 +35,7 @@ function Line({ line, side, latest }) {
           ${side ? 'rounded-ee-none text-end' : 'rounded-es-none text-start'}`}
       >
         <ArabicText as="p" size="base" className="text-[var(--text)]">{line.arabic}</ArabicText>
-        <Pronunciation className="block">{line.transliteration}</Pronunciation>
+        <Spelling className="block">{line.transliteration}</Spelling>
         <span className="block type-small text-[var(--text)]">{line.english}</span>
       </div>
     </li>

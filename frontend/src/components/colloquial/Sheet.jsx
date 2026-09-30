@@ -2,13 +2,14 @@
 import { useEffect, useRef } from 'react'
 
 import ArabicText from '../ui/ArabicText'
-import Pronunciation from '../ui/Pronunciation'
 import SmallButton from '../ui/SmallButton'
 import Face, { FOCUS } from './Face'
+import OtherDialects from './OtherDialects'
+import Spelling from './Spelling'
 
 const FOCUSABLE = 'button, [href], [tabindex]:not([tabindex="-1"])'
 
-export default function Sheet({ phrases, at, onAt, onClose }) {
+export default function Sheet({ phrases, at, onAt, onClose, place }) {
   const box = useRef(null)
   const closeRef = useRef(null)
   const phrase = phrases[at]
@@ -78,7 +79,7 @@ export default function Sheet({ phrases, at, onAt, onClose }) {
 
         <div className="p-5 space-y-5">
           <div className="space-y-1 text-center">
-            <Pronunciation size="body" className="block">{phrase.transliteration}</Pronunciation>
+            <Spelling size="body" className="block">{phrase.transliteration}</Spelling>
             <p className="type-ui font-semibold text-[var(--text)]">{phrase.english}</p>
           </div>
 
@@ -95,10 +96,12 @@ export default function Sheet({ phrases, at, onAt, onClose }) {
             <div className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] px-4 py-3 text-center space-y-1">
               <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">They answer</p>
               <ArabicText as="p" size="base" className="text-[var(--text)]">{phrase.reply.arabic}</ArabicText>
-              <Pronunciation className="block">{phrase.reply.transliteration}</Pronunciation>
+              <Spelling className="block">{phrase.reply.transliteration}</Spelling>
               <p className="type-small text-[var(--text)]">{phrase.reply.english}</p>
             </div>
           )}
+
+          <OtherDialects place={place} slot={phrase.slot} />
 
           <div className="flex items-center justify-between gap-3">
             <SmallButton onClick={() => onAt(at - 1)} disabled={at === 0} aria-label="Previous phrase">← Prev</SmallButton>
