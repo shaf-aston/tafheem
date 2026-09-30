@@ -7,6 +7,7 @@ import Mosaic from './Mosaic'
 import Pairs from './Pairs'
 import Practice from './Practice'
 import Sheet from './Sheet'
+import WordBank from './WordBank'
 
 function Act({ kicker, title, children }) {
   return (
@@ -20,7 +21,7 @@ function Act({ kicker, title, children }) {
   )
 }
 
-function Scene({ lesson, number, place }) {
+function Scene({ unit, lesson, number, place }) {
   const [open, setOpen] = useState(null)
   return (
     <article className="space-y-12">
@@ -28,6 +29,7 @@ function Scene({ lesson, number, place }) {
         <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Topic {number}</p>
         <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
         <p className="type-small text-[var(--text-dim)]">Press a picture to look closer.</p>
+        <div className="pt-2"><WordBank unit={unit} at={number - 1} /></div>
       </header>
 
       <Mosaic phrases={lesson.phrases} onOpen={setOpen} />
@@ -56,7 +58,7 @@ function Scene({ lesson, number, place }) {
 export default function UnitView({ unit, at }) {
   return (
     <div className="max-w-3xl mx-auto">
-      <Scene lesson={unit.lessons[at]} number={at + 1}
+      <Scene unit={unit} lesson={unit.lessons[at]} number={at + 1}
         place={{ dialect: unit.dialect_key, unit: unit.unit, lesson: unit.lessons[at].lesson }} />
     </div>
   )
