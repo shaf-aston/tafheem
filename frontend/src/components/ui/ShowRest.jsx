@@ -40,20 +40,45 @@ export default function ShowRest({
   const open = held ?? own
   const setOpen = onOpenChange ?? setOwn
   const [cut, setCut] = useState(false)
+  // The clamp pulled up to the bottom of the last whole line, px; null until measured.
+  const [snap, setSnap] = useState(null)
+  const limit = height ?? `${lines * 1.75}em`
 
   const measure = useCallback(() => {
     const node = body.current
     if (!node) return
     // Only meaningful while clamped; once open the box is its full height and
     // scrollHeight equals clientHeight, which would read as "nothing hidden".
-    if (!open) setCut(node.scrollHeight > node.clientHeight + 1)
-  }, [open])
+    if (open) return
+    // A fixed height slices through whatever line it lands on. Read the limit
+    // as pixels, then stop at the last line that fits whole.
+    const probe = document.createElement('div')
+    probe.style.cssText = `position:absolute;visibility:hidden;height:${limit}`
+    node.parentNode.appendChild(probe)
+    const target = probe.offsetHeight
+    probe.remove()
+    const top = node.getBoundingClientRect().top
+    const range = document.createRange()
+    const walk = document.createTreeWalker(node, NodeFilter.SHOW_TEXT)
+    let whole = 0
+    for (let text = walk.nextNode(); text; text = walk.nextNode()) {
+      range.selectNodeContents(text)
+      for (const line of range.getClientRects()) {
+        const bottom = line.bottom - top
+        if (bottom <= target + 1 && bottom > whole) whole = bottom
+      }
+    }
+    const next = whole > 0 ? Math.ceil(whole) + 2 : null
+    setSnap(next)
+    setCut(node.scrollHeight > (next ?? target) + 1)
+  }, [open, limit])
 
   useEffect(() => {
-    measure()
+    // The observer reports once on observe(), which is the first measure.
     if (!globalThis.ResizeObserver) {
+      const first = requestAnimationFrame(measure)
       globalThis.addEventListener('resize', measure)
-      return () => globalThis.removeEventListener('resize', measure)
+      return () => { cancelAnimationFrame(first); globalThis.removeEventListener('resize', measure) }
     }
     const observer = new ResizeObserver(measure)
     observer.observe(body.current)
@@ -79,7 +104,7 @@ export default function ShowRest({
         style={{
           transition: 'max-height calc(var(--motion-base-ms) * 1ms) ease',
           ...(open ? { maxHeight: '100em' } : {
-          maxHeight: height ?? `${lines * 1.75}em`,
+          maxHeight: snap ?? limit,
           overflow: 'hidden',
           // The last line fades out rather than being sliced through, which is
           // what makes the cut look meant. Mask, not a gradient laid over it:
