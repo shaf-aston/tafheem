@@ -83,15 +83,6 @@ export default function Sheet({ phrases, at, onAt, onClose, place }) {
             <p className="type-ui font-semibold text-[var(--text)]">{phrase.english}</p>
           </div>
 
-          {phrase.credit && (
-            <p className="type-micro text-center text-[var(--text-faint)]">
-              Photo:{' '}
-              <a href={phrase.credit_url} target="_blank" rel="noopener noreferrer" className={`underline ${FOCUS}`}>
-                {phrase.credit}
-              </a>
-            </p>
-          )}
-
           {phrase.reply && (
             <div className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] px-4 py-3 text-center space-y-1">
               <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">They answer</p>

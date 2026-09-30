@@ -17,10 +17,6 @@ def faults(folder: str, name: str) -> list[str]:
     written = json.loads((root / folder / f"{name}.json").read_text(encoding="utf-8"))
     outline = next(one for one in spine if one["unit"] == name)
     unit, said = loader._fill(outline, written)
-    for lesson in unit["lessons"]:
-        for phrase in lesson["phrases"]:
-            if phrase.get("image"):
-                phrase.update(loader._credit(phrase["image"]))
     return said + loader._unit_faults(unit)
 
 

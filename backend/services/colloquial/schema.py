@@ -32,9 +32,6 @@ class Phrase(BaseModel):
     search_term: str = ""
     # The picture file, once one has been fetched and approved by hand.
     image: str = ""
-    # Filled in by the loader from attribution.json, never authored in a unit.
-    credit: str = ""
-    credit_url: str = ""
 
 
 class DialogueLine(Phrase):
