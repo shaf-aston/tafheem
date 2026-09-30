@@ -1,33 +1,24 @@
 /**
- * The row of tabs under the header. Draws the registry, decides nothing:
+ * The row of tabs under the header. Draws the list it is given, decides nothing:
  * which tab is active and what switching does belong to the caller.
  */
 import ArabicText from './ArabicText'
 
-// A tab's `row` tier (see tabs.js) → when it shows. The open tab always shows.
-const ROW_CLASS = { 1: '', 2: 'hidden md:block', 3: 'hidden' }
-
-// A `half` tab comes out with its partner (the other half in its group), so
-// opening Nahw from All sections shows Sarf beside it, and the reverse.
-function isOut(tab, tabs, active) {
-  if (tab.id === active) return true
-  if (!tab.half) return false
-  return tabs.some((t) => t.id === active && t.half && t.group === tab.group)
-}
+// Fixed tabs past row 1, and the spots, wait for md. The open tab always shows.
+const tierClass = (tab) => (tab.row === 1 ? '' : 'hidden md:block')
 
 export default function TabStrip({ tabs, active, colorOf, onSelect, onAll, onHover }) {
   return (
     // No overflow here on purpose: setting one axis to auto makes the other
     // auto too, and the 1px underline below the strip would then raise a
-    // scrollbar. Tabs past what fits are hidden by `row` and live in All
-    // sections; wrap is only the fallback.
+    // scrollbar. `tabs` is already the strip (lib/spots.js): fixed tabs plus
+    // the spots, so it never outgrows the row; wrap is only the fallback.
     //
     // The labels are type-body, the same size as the English being read
     // in the panels below.
     <div className="flex flex-wrap gap-0.5 sm:gap-1" role="tablist" aria-label="Tools">
       {tabs.map((tab, i) => {
         const selected = active === tab.id
-        const out = isOut(tab, tabs, active)
         const tabAccent = colorOf(tab.id)
         return (
           <button
@@ -48,7 +39,7 @@ export default function TabStrip({ tabs, active, colorOf, onSelect, onAll, onHov
               // so a half tab really is half of a whole one.
               flex: tab.half ? '0.5 1 0' : '1 1 0',
             }}
-            className={`tab-btn relative ${out ? '' : ROW_CLASS[tab.row]} ${tab.half ? 'min-w-[3rem] sm:min-w-[3.5rem]' : 'min-w-[4.5rem] sm:min-w-[5.5rem]'}
+            className={`tab-btn relative ${selected ? '' : tierClass(tab)} ${tab.half ? 'min-w-[3rem] sm:min-w-[3.5rem]' : 'min-w-[4.5rem] sm:min-w-[5.5rem]'}
               py-1.5 px-0.5 sm:px-2 type-body font-medium ${selected ? '' : 'tab-idle'}`}
           >
             <span className="sm:hidden">{tab.short}</span>

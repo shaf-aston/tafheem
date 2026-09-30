@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { GROUPS, TABS, accentOf } from './lib/tabs'
+import { GROUPS, SPOTS, TABS, accentOf } from './lib/tabs'
+import { place, read, stripOf } from './lib/spots'
+import { useRemembered } from './lib/useRemembered'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
 import { idle } from './lib/warm'
 import { useTabShortcuts } from './lib/useTabShortcuts'
@@ -125,7 +127,17 @@ function AppContent() {
     setHandoff(incoming ? { tab: id, value: incoming, at: ++arrivals } : null)
   }, [])
 
-  useTabShortcuts(TABS, switchTab)
+  // The strip: fixed tabs plus the spots. Whatever opens a tab (a click, All
+  // sections, the command bar, back) lands here, so one rule fills the spots.
+  const [savedSpots, saveSpots] = useRemembered('tab-spots')
+  const spots = useMemo(() => read(savedSpots, TABS, SPOTS), [savedSpots])
+  const strip = useMemo(() => stripOf(TABS, spots), [spots])
+  useEffect(() => {
+    const moved = place(spots, activeTab, TABS)
+    if (moved !== spots) saveSpots(JSON.stringify(moved))
+  }, [activeTab, spots, saveSpots])
+
+  useTabShortcuts(strip, switchTab)
 
   // Every tab's opening data, fetched once the page is idle.
   useEffect(() => { idle(() => TABS.forEach((t) => openTab(t.id))) }, [])
@@ -233,7 +245,7 @@ function AppContent() {
 
         {/* Phones get the tabs at the bottom instead (BottomNav). */}
         <div className="shell hidden sm:block">
-          <TabStrip tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
+          <TabStrip tabs={strip} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
         </div>
       </header>
 
