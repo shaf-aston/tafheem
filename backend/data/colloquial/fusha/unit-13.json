@@ -1,0 +1,1640 @@
+{
+  "unit": "unit-13",
+  "dialect": "Fusha (Modern Standard Arabic)",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "q": "ق",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "how-are-you-today-to-a-man",
+          "arabic": "كَيْفَ حَالُكَ الْيَوْم؟",
+          "transliteration": "kayfa 7aaluka al-yawm?",
+          "reply": {
+            "arabic": "بِخَيْر، الْحَمْدُ لِلَّه",
+            "transliteration": "bikhayr, al7amdu lillaah",
+            "english": "Fine, thank God."
+          }
+        },
+        {
+          "slot": "how-are-you-today-to-a-woman",
+          "arabic": "كَيْفَ حَالُكِ الْيَوْم؟",
+          "transliteration": "kayfa 7aaluki al-yawm?"
+        },
+        {
+          "slot": "what-s-wrong-with-you-to-a-man",
+          "arabic": "مَا بِكَ؟",
+          "transliteration": "maa bika?",
+          "reply": {
+            "arabic": "لَا شَيْء، أَنَا مُتْعَب فَقَط",
+            "transliteration": "laa shay2, anaa mut3ab faqat",
+            "english": "Nothing, I'm just tired."
+          }
+        },
+        {
+          "slot": "i-m-happy-today-m",
+          "arabic": "أَنَا سَعِيد الْيَوْم",
+          "transliteration": "anaa sa3eed al-yawm"
+        },
+        {
+          "slot": "i-m-happy-today-f",
+          "arabic": "أَنَا سَعِيدَة الْيَوْم",
+          "transliteration": "anaa sa3eeda al-yawm"
+        },
+        {
+          "slot": "i-m-a-little-upset-m",
+          "arabic": "أَنَا مُنْزَعِج قَلِيلًا",
+          "transliteration": "anaa munza3ij qaleelan"
+        },
+        {
+          "slot": "i-m-a-little-upset-f",
+          "arabic": "أَنَا مُنْزَعِجَة قَلِيلًا",
+          "transliteration": "anaa munza3ija qaleelan"
+        },
+        {
+          "slot": "i-m-very-tired-m",
+          "arabic": "أَنَا مُتْعَب جِدًّا",
+          "transliteration": "anaa mut3ab jiddan"
+        },
+        {
+          "slot": "i-m-hungry-i-want-to-eat-something",
+          "arabic": "أَنَا جَائِع، أُرِيدُ أَنْ آكُلَ شَيْئًا",
+          "transliteration": "anaa jaa2i3, ureedu an aakula shay2an"
+        },
+        {
+          "slot": "i-m-worried-about-the-exam",
+          "arabic": "أَنَا قَلِق بِشَأْنِ الِامْتِحَان",
+          "transliteration": "anaa qaliq bishaa2ni al-imti7aan"
+        },
+        {
+          "slot": "i-m-scared-of-this",
+          "arabic": "أَنَا خَائِف مِنْ هَذَا",
+          "transliteration": "anaa khaa2if min haadhaa"
+        },
+        {
+          "slot": "i-m-glad-you-came-to-a-man",
+          "arabic": "يَسُرُّنِي أَنَّكَ جِئْتَ",
+          "transliteration": "yasurrunee annaka ji2ta"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Omar",
+          "arabic": "كَيْفَ حَالُكِ الْيَوْم؟",
+          "transliteration": "kayfa 7aaluki al-yawm?",
+          "english": "How are you today?"
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "بِخَيْر، الْحَمْدُ لِلَّه. أَنَا سَعِيدَة الْيَوْم.",
+          "transliteration": "bikhayr, al7amdu lillaah. anaa sa3eeda al-yawm.",
+          "english": "Fine, thank God. I'm happy today."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "يَسُرُّنِي هَذَا.",
+          "transliteration": "yasurrunee haadhaa.",
+          "english": "I'm glad to hear it."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "وَأَنْتَ؟ مَا بِكَ؟ تَبْدُو مُتْعَبًا.",
+          "transliteration": "wa anta? maa bika? tabdoo mut3aban.",
+          "english": "And you? What's wrong with you? You look tired."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "أَنَا مُتْعَب جِدًّا. أَنَا قَلِق بِشَأْنِ الِامْتِحَان.",
+          "transliteration": "anaa mut3ab jiddan. anaa qaliq bishaa2ni al-imti7aan.",
+          "english": "I'm very tired. I'm worried about the exam."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "لَا تَقْلَقْ. أَنَا أَيْضًا خَائِفَة مِنْ هَذَا الِامْتِحَان.",
+          "transliteration": "laa taqlaq. anaa aydan khaa2ifa min haadhaa al-imti7aan.",
+          "english": "Don't worry. I'm scared of this exam too."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "أَنَا مُنْزَعِج قَلِيلًا أَيْضًا.",
+          "transliteration": "anaa munza3ij qaleelan aydan.",
+          "english": "I'm a little upset too."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "أَنَا جَائِعَة. أُرِيدُ أَنْ آكُلَ شَيْئًا.",
+          "transliteration": "anaa jaa2i3a. ureedu an aakula shay2an.",
+          "english": "I'm hungry. I want to eat something."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وَأَنَا جَائِع. هَيَّا نَأْكُلْ مَعًا.",
+          "transliteration": "wa anaa jaa2i3. hayyaa na2kul ma3an.",
+          "english": "I'm hungry too. Let's eat together."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "يَسُرُّنِي أَنَّكَ جِئْتَ.",
+          "transliteration": "yasurrunee annaka ji2ta.",
+          "english": "I'm glad you came."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وَأَنَا أَيْضًا. الْآنَ أَشْعُرُ بِتَحَسُّن.",
+          "transliteration": "wa anaa aydan. al-aana ash3uru bitahassun.",
+          "english": "Me too. Now I feel better."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كَيْفَ حَالُكَ الْيَوْم؟",
+            "transliteration": "kayfa 7aaluka al-yawm?",
+            "english": "How are you today?"
+          },
+          "response": {
+            "arabic": "بِخَيْر، الْحَمْدُ لِلَّه.",
+            "transliteration": "bikhayr, al7amdu lillaah.",
+            "english": "Fine, thank God."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَا بِكَ؟",
+            "transliteration": "maa bika?",
+            "english": "What's wrong with you?"
+          },
+          "response": {
+            "arabic": "أَنَا مُتْعَب جِدًّا.",
+            "transliteration": "anaa mut3ab jiddan.",
+            "english": "I'm very tired."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ أَنْتِ سَعِيدَة؟",
+            "transliteration": "hal anti sa3eeda?",
+            "english": "Are you happy?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، أَنَا سَعِيدَة الْيَوْم.",
+            "transliteration": "na3am, anaa sa3eeda al-yawm.",
+            "english": "Yes, I'm happy today."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مِمَّ تَخَافُ؟",
+            "transliteration": "mimma takhaafu?",
+            "english": "What are you afraid of?"
+          },
+          "response": {
+            "arabic": "أَنَا خَائِف مِنْ هَذَا.",
+            "transliteration": "anaa khaa2if min haadhaa.",
+            "english": "I'm scared of this."
+          }
+        }
+      ],
+      "culture": "Asking مَا بِكَ؟ shows care, and a friend usually answers honestly but briefly. Feeling words change with the speaker: add ة for a woman, as in سَعِيد and سَعِيدَة.",
+      "exercises": [
+        {
+          "id": "unit-13.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "A man asks you: 'كَيْفَ حَالُكَ الْيَوْم؟'. Say you are fine.",
+          "answer": "بِخَيْر، الْحَمْدُ لِلَّه",
+          "accepted": [
+            "بِخَيْر، الْحَمْدُ لِلَّه",
+            "بخير، الحمد لله",
+            "bikhayr, al7amdu lillaah",
+            "بِخَيْر"
+          ],
+          "too_formal": {
+            "item": "تَمَامْ، الْحَمْدُ لِلَّهْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بِخَيْر means 'in goodness'."
+        },
+        {
+          "id": "unit-13.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: 'مَا بِكَ؟'. Say you are very tired (you are a man).",
+          "answer": "أَنَا مُتْعَب جِدًّا",
+          "accepted": [
+            "أَنَا مُتْعَب جِدًّا",
+            "أنا متعب جدا",
+            "anaa mut3ab jiddan"
+          ],
+          "too_formal": {
+            "item": "أَنَا تَعْبَانْ كْتِير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "جِدًّا means 'very'."
+        },
+        {
+          "id": "unit-13.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَنَا _____ الْيَوْم' (I'm happy today, said by a woman.)",
+          "answer": "سَعِيدَة",
+          "accepted": [
+            "سَعِيدَة",
+            "سعيدة",
+            "sa3eeda"
+          ],
+          "too_formal": {
+            "item": "أَنَا مَبْسُوطَة الْيَوْم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "A woman adds ة to the feeling word."
+        },
+        {
+          "id": "unit-13.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَنَا _____ بِشَأْنِ الِامْتِحَان' (I'm worried about the exam.)",
+          "answer": "قَلِق",
+          "accepted": [
+            "قَلِق",
+            "قلق",
+            "qaliq"
+          ],
+          "too_formal": {
+            "item": "أَنَا قَلْقَانْ عَلَى الِامْتِحَانْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بِشَأْنِ means 'about, concerning'."
+        },
+        {
+          "id": "unit-13.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I'm a little upset. (f)'",
+          "answer": "أَنَا مُنْزَعِجَة قَلِيلًا",
+          "accepted": [
+            "أَنَا مُنْزَعِجَة قَلِيلًا",
+            "أنا منزعجة قليلا",
+            "anaa munza3ija qaleelan"
+          ],
+          "too_formal": {
+            "item": "أَنَا زَعْلَانَة شْوَيّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "قَلِيلًا means 'a little'."
+        },
+        {
+          "id": "unit-13.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I'm hungry, I want to eat something.'",
+          "answer": "أَنَا جَائِع، أُرِيدُ أَنْ آكُلَ شَيْئًا",
+          "accepted": [
+            "أَنَا جَائِع، أُرِيدُ أَنْ آكُلَ شَيْئًا",
+            "أنا جائع، أريد أن آكل شيئا",
+            "anaa jaa2i3, ureedu an aakula shay2an"
+          ],
+          "too_formal": {
+            "item": "أَنَا جُوعَانْ، بَدِّي آكُلْ شِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أُرِيدُ أَنْ means 'I want to'."
+        },
+        {
+          "id": "unit-13.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I'm glad you came. (to a man)'",
+          "answer": "يَسُرُّنِي أَنَّكَ جِئْتَ",
+          "accepted": [
+            "يَسُرُّنِي أَنَّكَ جِئْتَ",
+            "يسرني أنك جئت",
+            "yasurrunee annaka ji2ta"
+          ],
+          "too_formal": {
+            "item": "مَبْسُوطْ إِنَّكْ اجِيتْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "يَسُرُّنِي literally means 'it pleases me'."
+        },
+        {
+          "id": "unit-13.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence asks a woman 'How are you today?'",
+          "answer": "كَيْفَ حَالُكِ الْيَوْم؟",
+          "accepted": [
+            "كَيْفَ حَالُكِ الْيَوْم؟",
+            "كيف حالك اليوم؟",
+            "kayfa 7aaluki al-yawm?"
+          ],
+          "options": [
+            "كَيْفَ حَالُكَ الْيَوْم؟",
+            "مَا بِكَ؟",
+            "أَنَا سَعِيدَة الْيَوْم",
+            "كَيْفَ حَالُكِ الْيَوْم؟"
+          ],
+          "too_formal": {
+            "item": "كِيفَكِ الْيَوْم؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The ending كِ addresses a woman."
+        },
+        {
+          "id": "unit-13.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'I'm scared of this'?",
+          "answer": "أَنَا خَائِف مِنْ هَذَا",
+          "accepted": [
+            "أَنَا خَائِف مِنْ هَذَا",
+            "أنا خائف من هذا",
+            "anaa khaa2if min haadhaa"
+          ],
+          "options": [
+            "أَنَا خَائِف مِنْ هَذَا",
+            "أَنَا جَائِع",
+            "أَنَا مُتْعَب جِدًّا",
+            "أَنَا قَلِق بِشَأْنِ الِامْتِحَان"
+          ],
+          "too_formal": {
+            "item": "أَنَا خَايِفْ مِنْ هَادَا",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "خَائِف means 'afraid'."
+        },
+        {
+          "id": "unit-13.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'جِدًّا / مُتْعَب / أَنَا'.",
+          "answer": "أَنَا مُتْعَب جِدًّا",
+          "accepted": [
+            "أَنَا مُتْعَب جِدًّا",
+            "أنا متعب جدا",
+            "anaa mut3ab jiddan"
+          ],
+          "too_formal": {
+            "item": "أَنَا تَعْبَانْ كْتِير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The person comes first, then the feeling."
+        },
+        {
+          "id": "unit-13.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'جِئْتَ / أَنَّكَ / يَسُرُّنِي'.",
+          "answer": "يَسُرُّنِي أَنَّكَ جِئْتَ",
+          "accepted": [
+            "يَسُرُّنِي أَنَّكَ جِئْتَ",
+            "يسرني أنك جئت",
+            "yasurrunee annaka ji2ta"
+          ],
+          "too_formal": {
+            "item": "مَبْسُوطْ إِنَّكْ اجِيتْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "يَسُرُّنِي first, then what pleased you."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "right-correct",
+          "arabic": "صَحِيح",
+          "transliteration": "sa7eeh"
+        },
+        {
+          "slot": "exactly-that-s-right",
+          "arabic": "بِالضَّبْط",
+          "transliteration": "bid-dabt"
+        },
+        {
+          "slot": "you-re-right-to-a-man",
+          "arabic": "أَنْتَ عَلَى حَقّ",
+          "transliteration": "anta 3alaa 7aqq"
+        },
+        {
+          "slot": "you-re-right-to-a-woman",
+          "arabic": "أَنْتِ عَلَى حَقّ",
+          "transliteration": "anti 3alaa 7aqq"
+        },
+        {
+          "slot": "i-agree-m",
+          "arabic": "أَنَا مُوَافِق",
+          "transliteration": "anaa muwaafiq",
+          "reply": {
+            "arabic": "جَيِّد، إِذًا اتَّفَقْنَا",
+            "transliteration": "jayyid, idhan ittafaqnaa",
+            "english": "Good, then we agree."
+          }
+        },
+        {
+          "slot": "i-agree-f",
+          "arabic": "أَنَا مُوَافِقَة",
+          "transliteration": "anaa muwaafiqa"
+        },
+        {
+          "slot": "no-it-s-not-like-that",
+          "arabic": "لَا، لَيْسَ الْأَمْرُ كَذَلِك",
+          "transliteration": "laa, laysa al-amru kadhaalik"
+        },
+        {
+          "slot": "i-don-t-agree-with-you",
+          "arabic": "لَا أَتَّفِقُ مَعَكَ",
+          "transliteration": "laa attafiqu ma3aka"
+        },
+        {
+          "slot": "that-s-not-true-correct",
+          "arabic": "هَذَا غَيْرُ صَحِيح",
+          "transliteration": "haadhaa ghayru sa7eeh"
+        },
+        {
+          "slot": "in-my-opinion",
+          "arabic": "فِي رَأْيِي",
+          "transliteration": "fee ra2yee"
+        },
+        {
+          "slot": "maybe-but",
+          "arabic": "رُبَّمَا، وَلَكِنْ",
+          "transliteration": "rubbamaa, wa lakin"
+        },
+        {
+          "slot": "ok-that-works",
+          "arabic": "حَسَنًا، هَذَا مُنَاسِب",
+          "transliteration": "7asanan, haadhaa munaasib"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yusuf",
+          "arabic": "فِي رَأْيِي، الْمَطْعَمُ الْقَدِيمُ أَفْضَل.",
+          "transliteration": "fee ra2yee, al-mat3amu al-qadeemu afdal.",
+          "english": "In my opinion, the old restaurant is better."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "رُبَّمَا، وَلَكِنْ هُوَ بَعِيد.",
+          "transliteration": "rubbamaa, wa lakin huwa ba3eed.",
+          "english": "Maybe, but it's far."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "صَحِيح. أَنْتِ عَلَى حَقّ.",
+          "transliteration": "sa7eeh. anti 3alaa 7aqq.",
+          "english": "Right. You're right."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "وَالْأَسْعَارُ هُنَاكَ مُرْتَفِعَة.",
+          "transliteration": "wal-as3aaru hunaaka murtafi3a.",
+          "english": "And the prices there are high."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "لَا، لَيْسَ الْأَمْرُ كَذَلِك. الْأَسْعَارُ مُنَاسِبَة.",
+          "transliteration": "laa, laysa al-amru kadhaalik. al-as3aaru munaasiba.",
+          "english": "No, it's not like that. The prices are fair."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "هَذَا غَيْرُ صَحِيح. أَنَا لَا أَتَّفِقُ مَعَكَ.",
+          "transliteration": "haadhaa ghayru sa7eeh. anaa laa attafiqu ma3aka.",
+          "english": "That's not true. I don't agree with you."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "حَسَنًا، مَا رَأْيُكِ فِي الْمَطْعَمِ الْجَدِيد؟",
+          "transliteration": "7asanan, maa ra2yuki fee al-mat3ami al-jadeed?",
+          "english": "OK, what do you think of the new restaurant?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "بِالضَّبْط، هَذَا مَا أَرَدْتُ قَوْلَه.",
+          "transliteration": "bid-dabt, haadhaa maa aradtu qawlah.",
+          "english": "Exactly, that's what I wanted to say."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "إِذًا أَنْتِ مُوَافِقَة؟",
+          "transliteration": "idhan anti muwaafiqa?",
+          "english": "So you agree?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "نَعَمْ، أَنَا مُوَافِقَة.",
+          "transliteration": "na3am, anaa muwaafiqa.",
+          "english": "Yes, I agree."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "جَيِّد، إِذًا اتَّفَقْنَا.",
+          "transliteration": "jayyid, idhan ittafaqnaa.",
+          "english": "Good, then we agree."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "حَسَنًا، هَذَا مُنَاسِب.",
+          "transliteration": "7asanan, haadhaa munaasib.",
+          "english": "OK, that works."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "الْمَطْعَمُ الْجَدِيدُ أَفْضَل.",
+            "transliteration": "al-mat3amu al-jadeedu afdal.",
+            "english": "The new restaurant is better."
+          },
+          "response": {
+            "arabic": "صَحِيح، أَنْتَ عَلَى حَقّ.",
+            "transliteration": "sa7eeh, anta 3alaa 7aqq.",
+            "english": "Right, you're right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ أَنْتَ مُوَافِق؟",
+            "transliteration": "hal anta muwaafiq?",
+            "english": "Do you agree?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، أَنَا مُوَافِق.",
+            "transliteration": "na3am, anaa muwaafiq.",
+            "english": "Yes, I agree."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لَا أَتَّفِقُ مَعَكَ.",
+            "transliteration": "laa attafiqu ma3aka.",
+            "english": "I don't agree with you."
+          },
+          "response": {
+            "arabic": "رُبَّمَا، وَلَكِنْ فِي رَأْيِي هَذَا صَحِيح.",
+            "transliteration": "rubbamaa, wa lakin fee ra2yee haadhaa sa7eeh.",
+            "english": "Maybe, but in my opinion this is right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ نَلْتَقِي غَدًا؟",
+            "transliteration": "hal naltaqee ghadan?",
+            "english": "Shall we meet tomorrow?"
+          },
+          "response": {
+            "arabic": "حَسَنًا، هَذَا مُنَاسِب.",
+            "transliteration": "7asanan, haadhaa munaasib.",
+            "english": "OK, that works."
+          }
+        }
+      ],
+      "culture": "Disagreeing gently is valued: people soften a no with رُبَّمَا، وَلَكِنْ or فِي رَأْيِي before giving their view. أَنْتَ عَلَى حَقّ is a generous way to concede a point.",
+      "exercises": [
+        {
+          "id": "unit-13.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "A friend says: 'الْمَطْعَمُ الْجَدِيدُ أَفْضَل'. Agree and tell him he is right.",
+          "answer": "أَنْتَ عَلَى حَقّ",
+          "accepted": [
+            "أَنْتَ عَلَى حَقّ",
+            "أنت على حق",
+            "anta 3alaa 7aqq",
+            "صَحِيح"
+          ],
+          "too_formal": {
+            "item": "مَعَكْ حَقّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عَلَى حَقّ literally means 'on right'."
+        },
+        {
+          "id": "unit-13.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "A friend says: 'هَذَا غَيْرُ صَحِيح'. Politely begin your view with 'Maybe, but in my opinion'.",
+          "answer": "رُبَّمَا، وَلَكِنْ فِي رَأْيِي",
+          "accepted": [
+            "رُبَّمَا، وَلَكِنْ فِي رَأْيِي",
+            "ربما، ولكن في رأيي",
+            "rubbamaa, wa lakin fee ra2yee"
+          ],
+          "too_formal": {
+            "item": "يُمْكِنْ، بَسّ بِرَأْيِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "رُبَّمَا softens the disagreement."
+        },
+        {
+          "id": "unit-13.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَنْتَ عَلَى _____' (You're right.)",
+          "answer": "حَقّ",
+          "accepted": [
+            "حَقّ",
+            "حق",
+            "7aqq"
+          ],
+          "too_formal": {
+            "item": "مَعَكْ حَقّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "حَقّ means 'right, truth'."
+        },
+        {
+          "id": "unit-13.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'لَا _____ مَعَكَ' (I don't agree with you.)",
+          "answer": "أَتَّفِقُ",
+          "accepted": [
+            "أَتَّفِقُ",
+            "أتفق",
+            "attafiqu"
+          ],
+          "too_formal": {
+            "item": "مَا بِتَّفِقْ مَعَكْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَتَّفِقُ means 'I agree'; لَا makes it negative."
+        },
+        {
+          "id": "unit-13.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'In my opinion...'",
+          "answer": "فِي رَأْيِي",
+          "accepted": [
+            "فِي رَأْيِي",
+            "في رأيي",
+            "fee ra2yee"
+          ],
+          "too_formal": {
+            "item": "بِرَأْيِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "رَأْي means 'opinion'."
+        },
+        {
+          "id": "unit-13.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'No, it's not like that.'",
+          "answer": "لَا، لَيْسَ الْأَمْرُ كَذَلِك",
+          "accepted": [
+            "لَا، لَيْسَ الْأَمْرُ كَذَلِك",
+            "لا، ليس الأمر كذلك",
+            "laa, laysa al-amru kadhaalik"
+          ],
+          "too_formal": {
+            "item": "لَا، مِشْ هَيْك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "الْأَمْر means 'the matter'."
+        },
+        {
+          "id": "unit-13.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'OK, that works.'",
+          "answer": "حَسَنًا، هَذَا مُنَاسِب",
+          "accepted": [
+            "حَسَنًا، هَذَا مُنَاسِب",
+            "حسنا، هذا مناسب",
+            "7asanan, haadhaa munaasib"
+          ],
+          "too_formal": {
+            "item": "تَمَامْ، هَيْك مْنِيحْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مُنَاسِب means 'suitable'."
+        },
+        {
+          "id": "unit-13.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'I agree' said by a woman?",
+          "answer": "أَنَا مُوَافِقَة",
+          "accepted": [
+            "أَنَا مُوَافِقَة",
+            "أنا موافقة",
+            "anaa muwaafiqa"
+          ],
+          "options": [
+            "أَنَا مُوَافِق",
+            "أَنْتِ عَلَى حَقّ",
+            "لَا أَتَّفِقُ مَعَكِ",
+            "أَنَا مُوَافِقَة"
+          ],
+          "too_formal": {
+            "item": "أَنَا مُوَافْقَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The ة marks a woman speaking."
+        },
+        {
+          "id": "unit-13.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'That's not true'?",
+          "answer": "هَذَا غَيْرُ صَحِيح",
+          "accepted": [
+            "هَذَا غَيْرُ صَحِيح",
+            "هذا غير صحيح",
+            "haadhaa ghayru sa7eeh"
+          ],
+          "options": [
+            "هَذَا غَيْرُ صَحِيح",
+            "بِالضَّبْط",
+            "صَحِيح",
+            "رُبَّمَا، وَلَكِنْ"
+          ],
+          "too_formal": {
+            "item": "هَادَا مِشْ صَحِيحْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "غَيْرُ before a word means 'not'."
+        },
+        {
+          "id": "unit-13.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'مَعَكَ / أَتَّفِقُ / لَا'.",
+          "answer": "لَا أَتَّفِقُ مَعَكَ",
+          "accepted": [
+            "لَا أَتَّفِقُ مَعَكَ",
+            "لا أتفق معك",
+            "laa attafiqu ma3aka"
+          ],
+          "too_formal": {
+            "item": "مَا بِتَّفِقْ مَعَكْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَا comes first, then the verb."
+        },
+        {
+          "id": "unit-13.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'كَذَلِك / الْأَمْرُ / لَيْسَ / لَا،'.",
+          "answer": "لَا، لَيْسَ الْأَمْرُ كَذَلِك",
+          "accepted": [
+            "لَا، لَيْسَ الْأَمْرُ كَذَلِك",
+            "لا، ليس الأمر كذلك",
+            "laa, laysa al-amru kadhaalik"
+          ],
+          "too_formal": {
+            "item": "لَا، مِشْ هَيْك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَيْسَ negates the whole sentence."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "you-should-get-some-rest-to-a-man",
+          "arabic": "يَنْبَغِي أَنْ تَرْتَاحَ قَلِيلًا",
+          "transliteration": "yanbaghee an tartaa7a qaleelan"
+        },
+        {
+          "slot": "you-should-get-some-rest-to-a-woman",
+          "arabic": "يَنْبَغِي أَنْ تَرْتَاحِي قَلِيلًا",
+          "transliteration": "yanbaghee an tartaa7ee qaleelan"
+        },
+        {
+          "slot": "it-s-better-you-go-to-the-doctor",
+          "arabic": "الْأَفْضَلُ أَنْ تَذْهَبَ إِلَى الطَّبِيب",
+          "transliteration": "al-afdalu an tadh-haba ilaa at-tabeeb"
+        },
+        {
+          "slot": "why-don-t-you-try-this",
+          "arabic": "لِمَاذَا لَا تُجَرِّبُ هَذَا؟",
+          "transliteration": "limaadhaa laa tujarribu haadhaa?"
+        },
+        {
+          "slot": "if-i-were-you-i-d-do-this",
+          "arabic": "لَوْ كُنْتُ مَكَانَكَ لَفَعَلْتُ هَذَا",
+          "transliteration": "law kuntu makaanaka lafa3altu haadhaa"
+        },
+        {
+          "slot": "listen-to-my-advice-to-a-man",
+          "arabic": "اِسْمَعْ نَصِيحَتِي",
+          "transliteration": "isma3 nasee7atee"
+        },
+        {
+          "slot": "take-care-of-yourself-to-a-man",
+          "arabic": "اِعْتَنِ بِنَفْسِكَ",
+          "transliteration": "i3tani binafsika"
+        },
+        {
+          "slot": "it-won-t-hurt-you-to-try",
+          "arabic": "لَنْ يَضُرَّكَ أَنْ تُجَرِّبَ",
+          "transliteration": "lan yadurraka an tujarriba"
+        },
+        {
+          "slot": "try-this-medicine",
+          "arabic": "جَرِّبْ هَذَا الدَّوَاء",
+          "transliteration": "jarrib haadhaa ad-dawaa2"
+        },
+        {
+          "slot": "you-should-talk-to-him",
+          "arabic": "يَنْبَغِي أَنْ تَتَحَدَّثَ إِلَيْه",
+          "transliteration": "yanbaghee an tata7addatha ilayhi"
+        },
+        {
+          "slot": "i-advise-you-not-to-do-this",
+          "arabic": "أَنْصَحُكَ أَلَّا تَفْعَلَ هَذَا",
+          "transliteration": "ansa7uka allaa taf3ala haadhaa"
+        },
+        {
+          "slot": "stay-calm-and-don-t-rush",
+          "arabic": "اِبْقَ هَادِئًا وَلَا تَتَعَجَّلْ",
+          "transliteration": "ibqa haadi2an wa laa tata3ajjal"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Khalid",
+          "arabic": "مَا بِكَ؟ تَبْدُو مُتْعَبًا.",
+          "transliteration": "maa bika? tabdoo mut3aban.",
+          "english": "What's wrong with you? You look tired."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "أَنَا مُتْعَب جِدًّا، وَرَأْسِي يُؤْلِمُنِي.",
+          "transliteration": "anaa mut3ab jiddan, wa ra2see yu2limunee.",
+          "english": "I'm very tired, and my head hurts."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "يَنْبَغِي أَنْ تَرْتَاحَ قَلِيلًا.",
+          "transliteration": "yanbaghee an tartaa7a qaleelan.",
+          "english": "You should get some rest."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "عِنْدِي عَمَل كَثِير.",
+          "transliteration": "3indee 3amal katheer.",
+          "english": "I have a lot of work."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "الْأَفْضَلُ أَنْ تَذْهَبَ إِلَى الطَّبِيب.",
+          "transliteration": "al-afdalu an tadh-haba ilaa at-tabeeb.",
+          "english": "It's better you go to the doctor."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "لَا أَظُنُّ أَنَّ الْأَمْرَ خَطِير.",
+          "transliteration": "laa adhunnu anna al-amra khateer.",
+          "english": "I don't think it's serious."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "لَنْ يَضُرَّكَ أَنْ تُجَرِّبَ. جَرِّبْ هَذَا الدَّوَاء.",
+          "transliteration": "lan yadurraka an tujarriba. jarrib haadhaa ad-dawaa2.",
+          "english": "It won't hurt you to try. Try this medicine."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "شُكْرًا. لَوْ كُنْتَ مَكَانِي، مَاذَا تَفْعَل؟",
+          "transliteration": "shukran. law kunta makaanee, maadhaa taf3al?",
+          "english": "Thanks. If you were me, what would you do?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "لَوْ كُنْتُ مَكَانَكَ لَنِمْتُ مُبَكِّرًا. اِعْتَنِ بِنَفْسِكَ.",
+          "transliteration": "law kuntu makaanaka lanimtu mubakkiran. i3tani binafsika.",
+          "english": "If I were you, I'd sleep early. Take care of yourself."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "وَمَاذَا عَنِ الِامْتِحَان؟ أَنَا قَلِق.",
+          "transliteration": "wa maadhaa 3ani al-imti7aan? anaa qaliq.",
+          "english": "And what about the exam? I'm worried."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "اِبْقَ هَادِئًا وَلَا تَتَعَجَّلْ.",
+          "transliteration": "ibqa haadi2an wa laa tata3ajjal.",
+          "english": "Stay calm and don't rush."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "حَسَنًا، سَأَسْمَعُ نَصِيحَتَكَ.",
+          "transliteration": "7asanan, sa-asma3u nasee7ataka.",
+          "english": "OK, I'll listen to your advice."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أَنَا مُتْعَب جِدًّا.",
+            "transliteration": "anaa mut3ab jiddan.",
+            "english": "I'm very tired."
+          },
+          "response": {
+            "arabic": "يَنْبَغِي أَنْ تَرْتَاحَ قَلِيلًا.",
+            "transliteration": "yanbaghee an tartaa7a qaleelan.",
+            "english": "You should get some rest."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "رَأْسِي يُؤْلِمُنِي.",
+            "transliteration": "ra2see yu2limunee.",
+            "english": "My head hurts."
+          },
+          "response": {
+            "arabic": "جَرِّبْ هَذَا الدَّوَاء.",
+            "transliteration": "jarrib haadhaa ad-dawaa2.",
+            "english": "Try this medicine."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ أُجَرِّبُ هَذَا؟",
+            "transliteration": "hal ujarribu haadhaa?",
+            "english": "Shall I try this?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، لَنْ يَضُرَّكَ أَنْ تُجَرِّبَ.",
+            "transliteration": "na3am, lan yadurraka an tujarriba.",
+            "english": "Yes, it won't hurt you to try."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَنَا قَلِق.",
+            "transliteration": "anaa qaliq.",
+            "english": "I'm worried."
+          },
+          "response": {
+            "arabic": "اِبْقَ هَادِئًا وَلَا تَتَعَجَّلْ.",
+            "transliteration": "ibqa haadi2an wa laa tata3ajjal.",
+            "english": "Stay calm and don't rush."
+          }
+        }
+      ],
+      "culture": "Advice between friends is often softened with لِمَاذَا لَا or لَوْ كُنْتُ مَكَانَكَ instead of a flat command. Verbs change for a woman, so يَنْبَغِي أَنْ تَرْتَاحِي is for her and تَرْتَاحَ is for him.",
+      "exercises": [
+        {
+          "id": "unit-13.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "A friend says: 'أَنَا مُتْعَب جِدًّا'. Advise him to get some rest.",
+          "answer": "يَنْبَغِي أَنْ تَرْتَاحَ قَلِيلًا",
+          "accepted": [
+            "يَنْبَغِي أَنْ تَرْتَاحَ قَلِيلًا",
+            "ينبغي أن ترتاح قليلا",
+            "yanbaghee an tartaa7a qaleelan"
+          ],
+          "too_formal": {
+            "item": "لَازِمْ تِرْتَاحْ شْوَيّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "يَنْبَغِي أَنْ means 'you ought to'."
+        },
+        {
+          "id": "unit-13.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "A friend says: 'رَأْسِي يُؤْلِمُنِي'. Tell him to try this medicine.",
+          "answer": "جَرِّبْ هَذَا الدَّوَاء",
+          "accepted": [
+            "جَرِّبْ هَذَا الدَّوَاء",
+            "جرب هذا الدواء",
+            "jarrib haadhaa ad-dawaa2"
+          ],
+          "too_formal": {
+            "item": "جَرِّبْ هَالدَّوَا",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "جَرِّبْ is the command 'try'."
+        },
+        {
+          "id": "unit-13.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'يَنْبَغِي أَنْ _____ قَلِيلًا' (You should rest, said to a woman.)",
+          "answer": "تَرْتَاحِي",
+          "accepted": [
+            "تَرْتَاحِي",
+            "ترتاحي",
+            "tartaa7ee"
+          ],
+          "too_formal": {
+            "item": "لَازِمْ تِرْتَاحِي شْوَيّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The ending ي is for a woman."
+        },
+        {
+          "id": "unit-13.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'اِعْتَنِ _____' (Take care of yourself.)",
+          "answer": "بِنَفْسِكَ",
+          "accepted": [
+            "بِنَفْسِكَ",
+            "بنفسك",
+            "binafsika"
+          ],
+          "too_formal": {
+            "item": "دِيرْ بَالَكْ عَلَى حَالَكْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "نَفْس means 'self'; كَ means 'your' for a man."
+        },
+        {
+          "id": "unit-13.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'It's better you go to the doctor.'",
+          "answer": "الْأَفْضَلُ أَنْ تَذْهَبَ إِلَى الطَّبِيب",
+          "accepted": [
+            "الْأَفْضَلُ أَنْ تَذْهَبَ إِلَى الطَّبِيب",
+            "الأفضل أن تذهب إلى الطبيب",
+            "al-afdalu an tadh-haba ilaa at-tabeeb"
+          ],
+          "too_formal": {
+            "item": "الأَحْسَنْ تُرُوحْ عَلَى الدُّكْتُورْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "الْأَفْضَلُ means 'the better thing'."
+        },
+        {
+          "id": "unit-13.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'If I were you, I'd do this.'",
+          "answer": "لَوْ كُنْتُ مَكَانَكَ لَفَعَلْتُ هَذَا",
+          "accepted": [
+            "لَوْ كُنْتُ مَكَانَكَ لَفَعَلْتُ هَذَا",
+            "لو كنت مكانك لفعلت هذا",
+            "law kuntu makaanaka lafa3altu haadhaa"
+          ],
+          "too_formal": {
+            "item": "لَوْ كُنْتْ مَكَانَكْ كُنْتْ عَمِلْتْ هَيْك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَوْ kuntu makaanak is 'if I were in your place'."
+        },
+        {
+          "id": "unit-13.lesson-03.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I advise you not to do this.'",
+          "answer": "أَنْصَحُكَ أَلَّا تَفْعَلَ هَذَا",
+          "accepted": [
+            "أَنْصَحُكَ أَلَّا تَفْعَلَ هَذَا",
+            "أنصحك ألا تفعل هذا",
+            "ansa7uka allaa taf3ala haadhaa"
+          ],
+          "too_formal": {
+            "item": "بَنْصَحَكْ مَا تِعْمَلْ هَيْك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَلَّا means 'that you not'."
+        },
+        {
+          "id": "unit-13.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'It won't hurt you to try'?",
+          "answer": "لَنْ يَضُرَّكَ أَنْ تُجَرِّبَ",
+          "accepted": [
+            "لَنْ يَضُرَّكَ أَنْ تُجَرِّبَ",
+            "لن يضرك أن تجرب",
+            "lan yadurraka an tujarriba"
+          ],
+          "options": [
+            "جَرِّبْ هَذَا الدَّوَاء",
+            "اِعْتَنِ بِنَفْسِكَ",
+            "اِسْمَعْ نَصِيحَتِي",
+            "لَنْ يَضُرَّكَ أَنْ تُجَرِّبَ"
+          ],
+          "too_formal": {
+            "item": "مَا رَحْ يِضُرَّكْ تْجَرِّبْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَنْ makes the future negative."
+        },
+        {
+          "id": "unit-13.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'Stay calm and don't rush'?",
+          "answer": "اِبْقَ هَادِئًا وَلَا تَتَعَجَّلْ",
+          "accepted": [
+            "اِبْقَ هَادِئًا وَلَا تَتَعَجَّلْ",
+            "ابق هادئا ولا تتعجل",
+            "ibqa haadi2an wa laa tata3ajjal"
+          ],
+          "options": [
+            "اِبْقَ هَادِئًا وَلَا تَتَعَجَّلْ",
+            "يَنْبَغِي أَنْ تَتَحَدَّثَ إِلَيْه",
+            "لِمَاذَا لَا تُجَرِّبُ هَذَا؟",
+            "أَنْصَحُكَ أَلَّا تَفْعَلَ هَذَا"
+          ],
+          "too_formal": {
+            "item": "خَلِّيكْ هَادِي وَلَا تِسْتَعْجِلْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَا plus a short verb is a prohibition."
+        },
+        {
+          "id": "unit-13.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الطَّبِيب / إِلَى / تَذْهَبَ / أَنْ / الْأَفْضَلُ'.",
+          "answer": "الْأَفْضَلُ أَنْ تَذْهَبَ إِلَى الطَّبِيب",
+          "accepted": [
+            "الْأَفْضَلُ أَنْ تَذْهَبَ إِلَى الطَّبِيب",
+            "الأفضل أن تذهب إلى الطبيب",
+            "al-afdalu an tadh-haba ilaa at-tabeeb"
+          ],
+          "too_formal": {
+            "item": "الأَحْسَنْ تُرُوحْ عَلَى الدُّكْتُورْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَنْ is followed by a verb with a final fatha."
+        },
+        {
+          "id": "unit-13.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'هَذَا؟ / تُجَرِّبُ / لَا / لِمَاذَا'.",
+          "answer": "لِمَاذَا لَا تُجَرِّبُ هَذَا؟",
+          "accepted": [
+            "لِمَاذَا لَا تُجَرِّبُ هَذَا؟",
+            "لماذا لا تجرب هذا؟",
+            "limaadhaa laa tujarribu haadhaa?"
+          ],
+          "too_formal": {
+            "item": "لَيْش مَا بِتْجَرِّبْ هَادَا؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لِمَاذَا لَا is a soft way to suggest."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "excuse-me-there-s-a-small-problem-to-a-man",
+          "arabic": "عَفْوًا، هُنَاكَ مُشْكِلَة صَغِيرَة",
+          "transliteration": "3afwan, hunaaka mushkila sagheera"
+        },
+        {
+          "slot": "sorry-to-bother-you-but-m",
+          "arabic": "آسِف عَلَى الْإِزْعَاج، وَلَكِنْ",
+          "transliteration": "aasif 3alaa al-iz3aaj, wa lakin"
+        },
+        {
+          "slot": "can-someone-help-me",
+          "arabic": "هَلْ يُمْكِنُ لِأَحَدٍ أَنْ يُسَاعِدَنِي؟",
+          "transliteration": "hal yumkinu li2a7adin an yusaa3idanee?"
+        },
+        {
+          "slot": "this-isn-t-what-i-ordered-m",
+          "arabic": "هَذَا لَيْسَ مَا طَلَبْتُه",
+          "transliteration": "haadhaa laysa maa talabtuhu"
+        },
+        {
+          "slot": "there-s-a-mistake-in-the-bill",
+          "arabic": "هُنَاكَ خَطَأ فِي الْفَاتُورَة",
+          "transliteration": "hunaaka khata2un fee al-faatoora",
+          "reply": {
+            "arabic": "آسِفُونَ، سَنُصَحِّحُهَا حَالًا",
+            "transliteration": "aasifoon, sanusa77i7uhaa 7aalan",
+            "english": "Sorry, we'll fix it right away."
+          }
+        },
+        {
+          "slot": "the-food-is-a-bit-cold-can-you-heat-it-up-for-me",
+          "arabic": "الطَّعَامُ بَارِدٌ قَلِيلًا، هَلْ يُمْكِنُكَ تَسْخِينَهُ لِي؟",
+          "transliteration": "at-ta3aamu baaridun qaleelan, hal yumkinuka taskheenahu lee?"
+        },
+        {
+          "slot": "the-order-is-very-late",
+          "arabic": "تَأَخَّرَ الطَّلَبُ كَثِيرًا",
+          "transliteration": "ta2akhkhara at-talabu katheeran"
+        },
+        {
+          "slot": "i-don-t-mean-to-bother-you-but-this-is-important",
+          "arabic": "لَا أَقْصِدُ إِزْعَاجَكَ، وَلَكِنَّ هَذَا مُهِمّ",
+          "transliteration": "laa aqsidu iz3aajaka, wa lakinna haadhaa muhimm"
+        },
+        {
+          "slot": "can-you-refund-my-money",
+          "arabic": "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ لِي الْمَال؟",
+          "transliteration": "hal yumkinuka an tu3eeda lee al-maal?",
+          "reply": {
+            "arabic": "بِالتَّأْكِيد",
+            "transliteration": "bit-ta2keed",
+            "english": "Certainly."
+          }
+        },
+        {
+          "slot": "this-isn-t-the-same-as-what-i-saw-in-the-picture",
+          "arabic": "هَذَا لَيْسَ مِثْلَ مَا رَأَيْتُ فِي الصُّورَة",
+          "transliteration": "haadhaa laysa mithla maa ra2aytu fee as-soora"
+        },
+        {
+          "slot": "can-you-help-me-with-this-matter",
+          "arabic": "هَلْ يُمْكِنُكَ مُسَاعَدَتِي فِي هَذَا الْأَمْر؟",
+          "transliteration": "hal yumkinuka musaa3adatee fee haadhaa al-amr?"
+        },
+        {
+          "slot": "there-s-no-problem-but-i-d-like-to-clarify-m",
+          "arabic": "لَا مُشْكِلَة، وَلَكِنْ أُرِيدُ أَنْ أُوَضِّحَ",
+          "transliteration": "laa mushkila, wa lakin ureedu an uwaddi7a"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Adam",
+          "arabic": "عَفْوًا، هُنَاكَ مُشْكِلَة صَغِيرَة.",
+          "transliteration": "3afwan, hunaaka mushkila sagheera.",
+          "english": "Excuse me, there's a small problem."
+        },
+        {
+          "speaker": "Basem",
+          "arabic": "تَفَضَّلْ، كَيْفَ أُسَاعِدُكَ؟",
+          "transliteration": "tafaddal, kayfa usaa3iduka?",
+          "english": "Go ahead, how can I help you?"
+        },
+        {
+          "speaker": "Adam",
+          "arabic": "آسِف عَلَى الْإِزْعَاج، وَلَكِنْ هَذَا لَيْسَ مَا طَلَبْتُهُ.",
+          "transliteration": "aasif 3alaa al-iz3aaj, wa lakin haadhaa laysa maa talabtuhu.",
+          "english": "Sorry to bother you, but this isn't what I ordered."
+        },
+        {
+          "speaker": "Basem",
+          "arabic": "آسِف، سَأُغَيِّرُهُ لَكَ حَالًا.",
+          "transliteration": "aasif, sa-ughayyiruhu laka 7aalan.",
+          "english": "Sorry, I'll change it for you right away."
+        },
+        {
+          "speaker": "Adam",
+          "arabic": "وَالطَّعَامُ بَارِدٌ قَلِيلًا، هَلْ يُمْكِنُكَ تَسْخِينَهُ لِي؟",
+          "transliteration": "wat-ta3aamu baaridun qaleelan, hal yumkinuka taskheenahu lee?",
+          "english": "And the food is a bit cold, can you heat it up for me?"
+        },
+        {
+          "speaker": "Basem",
+          "arabic": "بِالتَّأْكِيد.",
+          "transliteration": "bit-ta2keed.",
+          "english": "Certainly."
+        },
+        {
+          "speaker": "Adam",
+          "arabic": "تَأَخَّرَ الطَّلَبُ كَثِيرًا أَيْضًا.",
+          "transliteration": "ta2akhkhara at-talabu katheeran aydan.",
+          "english": "The order was very late too."
+        },
+        {
+          "speaker": "Basem",
+          "arabic": "نَعْتَذِرُ عَنِ التَّأْخِير.",
+          "transliteration": "na3tadhiru 3ani at-ta2kheer.",
+          "english": "We apologise for the delay."
+        },
+        {
+          "speaker": "Adam",
+          "arabic": "لَا أَقْصِدُ إِزْعَاجَكَ، وَلَكِنَّ هَذَا مُهِمّ. هُنَاكَ خَطَأ فِي الْفَاتُورَة.",
+          "transliteration": "laa aqsidu iz3aajaka, wa lakinna haadhaa muhimm. hunaaka khata2un fee al-faatoora.",
+          "english": "I don't mean to bother you, but this is important. There's a mistake in the bill."
+        },
+        {
+          "speaker": "Basem",
+          "arabic": "سَأُرَاجِعُهَا مَعَكَ.",
+          "transliteration": "sa-uraaji3uhaa ma3aka.",
+          "english": "I'll go over it with you."
+        },
+        {
+          "speaker": "Adam",
+          "arabic": "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ لِي الْمَال؟",
+          "transliteration": "hal yumkinuka an tu3eeda lee al-maal?",
+          "english": "Can you refund my money?"
+        },
+        {
+          "speaker": "Basem",
+          "arabic": "بِالتَّأْكِيد، اِعْذُرْنَا.",
+          "transliteration": "bit-ta2keed, i3dhurnaa.",
+          "english": "Certainly, forgive us."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هُنَاكَ خَطَأ فِي الْفَاتُورَة.",
+            "transliteration": "hunaaka khata2un fee al-faatoora.",
+            "english": "There's a mistake in the bill."
+          },
+          "response": {
+            "arabic": "آسِفُونَ، سَنُصَحِّحُهَا حَالًا.",
+            "transliteration": "aasifoon, sanusa77i7uhaa 7aalan.",
+            "english": "Sorry, we'll fix it right away."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الطَّعَامُ بَارِدٌ قَلِيلًا.",
+            "transliteration": "at-ta3aamu baaridun qaleelan.",
+            "english": "The food is a bit cold."
+          },
+          "response": {
+            "arabic": "سَنُسَخِّنُهُ لَكَ حَالًا.",
+            "transliteration": "sanusakhkhinuhu laka 7aalan.",
+            "english": "We'll heat it for you right away."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ لِي الْمَال؟",
+            "transliteration": "hal yumkinuka an tu3eeda lee al-maal?",
+            "english": "Can you refund my money?"
+          },
+          "response": {
+            "arabic": "بِالتَّأْكِيد.",
+            "transliteration": "bit-ta2keed.",
+            "english": "Certainly."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَذَا لَيْسَ مَا طَلَبْتُهُ.",
+            "transliteration": "haadhaa laysa maa talabtuhu.",
+            "english": "This isn't what I ordered."
+          },
+          "response": {
+            "arabic": "اِعْذُرْنَا، سَنُغَيِّرُهُ.",
+            "transliteration": "i3dhurnaa, sanughayyiruhu.",
+            "english": "Forgive us, we'll change it."
+          }
+        }
+      ],
+      "culture": "Complaints stay polite when you begin with عَفْوًا or آسِف عَلَى الْإِزْعَاج and name the problem without blame. Staff usually answer with an apology such as اِعْذُرْنَا and fix it on the spot.",
+      "exercises": [
+        {
+          "id": "unit-13.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "A waiter says: 'تَفَضَّلْ، كَيْفَ أُسَاعِدُكَ؟'. Say there is a small problem.",
+          "answer": "هُنَاكَ مُشْكِلَة صَغِيرَة",
+          "accepted": [
+            "هُنَاكَ مُشْكِلَة صَغِيرَة",
+            "هناك مشكلة صغيرة",
+            "hunaaka mushkila sagheera"
+          ],
+          "too_formal": {
+            "item": "فِي مُشْكِلَة صْغِيرَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هُنَاكَ means 'there is'."
+        },
+        {
+          "id": "unit-13.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "You found a mistake in the bill. Tell the waiter.",
+          "answer": "هُنَاكَ خَطَأ فِي الْفَاتُورَة",
+          "accepted": [
+            "هُنَاكَ خَطَأ فِي الْفَاتُورَة",
+            "هناك خطأ في الفاتورة",
+            "hunaaka khata2un fee al-faatoora"
+          ],
+          "too_formal": {
+            "item": "فِي غَلَطْ بِالْفَاتُورَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "خَطَأ means 'mistake'."
+        },
+        {
+          "id": "unit-13.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'آسِف عَلَى _____، وَلَكِنْ' (Sorry to bother you, but...)",
+          "answer": "الْإِزْعَاج",
+          "accepted": [
+            "الْإِزْعَاج",
+            "الإزعاج",
+            "al-iz3aaj"
+          ],
+          "too_formal": {
+            "item": "آسِفْ إِنِّي بْزَعِّجَكْ، بَسّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "الْإِزْعَاج means 'the bother'."
+        },
+        {
+          "id": "unit-13.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'تَأَخَّرَ _____ كَثِيرًا' (The order is very late.)",
+          "answer": "الطَّلَبُ",
+          "accepted": [
+            "الطَّلَبُ",
+            "الطلب",
+            "at-talabu"
+          ],
+          "too_formal": {
+            "item": "الطَّلَبْ تَأَخَّرْ كْتِير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "الطَّلَب means 'the order'."
+        },
+        {
+          "id": "unit-13.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Can you refund my money?'",
+          "answer": "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ لِي الْمَال؟",
+          "accepted": [
+            "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ لِي الْمَال؟",
+            "هل يمكنك أن تعيد لي المال؟",
+            "hal yumkinuka an tu3eeda lee al-maal?"
+          ],
+          "too_formal": {
+            "item": "فِيكْ تِرْجَعْلِي الْمَصَارِي؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "تُعِيدَ means 'give back'."
+        },
+        {
+          "id": "unit-13.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Can someone help me?'",
+          "answer": "هَلْ يُمْكِنُ لِأَحَدٍ أَنْ يُسَاعِدَنِي؟",
+          "accepted": [
+            "هَلْ يُمْكِنُ لِأَحَدٍ أَنْ يُسَاعِدَنِي؟",
+            "هل يمكن لأحد أن يساعدني؟",
+            "hal yumkinu li2a7adin an yusaa3idanee?"
+          ],
+          "too_formal": {
+            "item": "فِي حَدَا يِسَاعِدْنِي؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَحَد means 'someone, anyone'."
+        },
+        {
+          "id": "unit-13.lesson-04.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'This isn't what I ordered. (m)'",
+          "answer": "هَذَا لَيْسَ مَا طَلَبْتُهُ",
+          "accepted": [
+            "هَذَا لَيْسَ مَا طَلَبْتُهُ",
+            "هذا ليس ما طلبته",
+            "haadhaa laysa maa talabtuhu"
+          ],
+          "too_formal": {
+            "item": "هَادَا مِشْ يِلِّي طَلَبْتُو",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مَا طَلَبْتُهُ means 'what I ordered'."
+        },
+        {
+          "id": "unit-13.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence says the food is a bit cold and asks to heat it?",
+          "answer": "الطَّعَامُ بَارِدٌ قَلِيلًا، هَلْ يُمْكِنُكَ تَسْخِينَهُ لِي؟",
+          "accepted": [
+            "الطَّعَامُ بَارِدٌ قَلِيلًا، هَلْ يُمْكِنُكَ تَسْخِينَهُ لِي؟",
+            "الطعام بارد قليلا، هل يمكنك تسخينه لي؟",
+            "at-ta3aamu baaridun qaleelan, hal yumkinuka taskheenahu lee?"
+          ],
+          "options": [
+            "تَأَخَّرَ الطَّلَبُ كَثِيرًا",
+            "هُنَاكَ خَطَأ فِي الْفَاتُورَة",
+            "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ لِي الْمَال؟",
+            "الطَّعَامُ بَارِدٌ قَلِيلًا، هَلْ يُمْكِنُكَ تَسْخِينَهُ لِي؟"
+          ],
+          "too_formal": {
+            "item": "الأَكْلْ بَارِدْ شْوَيّ، فِيكْ تْسَخِّنُو؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "تَسْخِين means 'heating'."
+        },
+        {
+          "id": "unit-13.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'This isn't the same as what I saw in the picture'?",
+          "answer": "هَذَا لَيْسَ مِثْلَ مَا رَأَيْتُ فِي الصُّورَة",
+          "accepted": [
+            "هَذَا لَيْسَ مِثْلَ مَا رَأَيْتُ فِي الصُّورَة",
+            "هذا ليس مثل ما رأيت في الصورة",
+            "haadhaa laysa mithla maa ra2aytu fee as-soora"
+          ],
+          "options": [
+            "هَذَا لَيْسَ مِثْلَ مَا رَأَيْتُ فِي الصُّورَة",
+            "هَذَا لَيْسَ مَا طَلَبْتُهُ",
+            "هُنَاكَ مُشْكِلَة صَغِيرَة",
+            "لَا مُشْكِلَة، وَلَكِنْ أُرِيدُ أَنْ أُوَضِّحَ"
+          ],
+          "too_formal": {
+            "item": "هَادَا مِشْ مِثْلْ يِلِّي شِفْتُو بِالصُّورَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مِثْلَ means 'like, the same as'."
+        },
+        {
+          "id": "unit-13.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْفَاتُورَة / فِي / خَطَأ / هُنَاكَ'.",
+          "answer": "هُنَاكَ خَطَأ فِي الْفَاتُورَة",
+          "accepted": [
+            "هُنَاكَ خَطَأ فِي الْفَاتُورَة",
+            "هناك خطأ في الفاتورة",
+            "hunaaka khata2un fee al-faatoora"
+          ],
+          "too_formal": {
+            "item": "فِي غَلَطْ بِالْفَاتُورَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هُنَاكَ opens the sentence, then the thing, then where."
+        },
+        {
+          "id": "unit-13.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'كَثِيرًا / الطَّلَبُ / تَأَخَّرَ'.",
+          "answer": "تَأَخَّرَ الطَّلَبُ كَثِيرًا",
+          "accepted": [
+            "تَأَخَّرَ الطَّلَبُ كَثِيرًا",
+            "تأخر الطلب كثيرا",
+            "ta2akhkhara at-talabu katheeran"
+          ],
+          "too_formal": {
+            "item": "الطَّلَبْ تَأَخَّرْ كْتِير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The verb comes first, then the order, then 'very'."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Give an opinion and raise a problem",
+    "instructions": "Write a conversation in Fusha in which a friend says how they feel, you give an opinion and disagree or agree politely, you give one piece of advice, and then you politely raise a small problem with a waiter.",
+    "required_elements": [
+      "how each person feels",
+      "an opinion with فِي رَأْيِي",
+      "a polite agreement or disagreement",
+      "a piece of advice",
+      "a polite complaint to a waiter"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Layla",
+          "arabic": "كَيْفَ حَالُكَ الْيَوْم؟",
+          "transliteration": "kayfa 7aaluka al-yawm?",
+          "english": "How are you today?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "أَنَا مُتْعَب قَلِيلًا، وَأَنَا قَلِق بِشَأْنِ الِامْتِحَان.",
+          "transliteration": "anaa mut3ab qaleelan, wa anaa qaliq bishaa2ni al-imti7aan.",
+          "english": "I'm a little tired, and I'm worried about the exam."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "يَنْبَغِي أَنْ تَرْتَاحَ قَلِيلًا. لَنْ يَضُرَّكَ ذَلِك.",
+          "transliteration": "yanbaghee an tartaa7a qaleelan. lan yadurraka dhaalik.",
+          "english": "You should get some rest. It won't hurt you."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "فِي رَأْيِي، الدِّرَاسَةُ أَهَمّ.",
+          "transliteration": "fee ra2yee, ad-diraasatu ahamm.",
+          "english": "In my opinion, studying is more important."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "رُبَّمَا، وَلَكِنَّ الرَّاحَةَ تُسَاعِدُ أَيْضًا.",
+          "transliteration": "rubbamaa, wa lakinna ar-raa7ata tusaa3idu aydan.",
+          "english": "Maybe, but rest helps too."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "أَنْتِ عَلَى حَقّ. حَسَنًا، هَذَا مُنَاسِب.",
+          "transliteration": "anti 3alaa 7aqq. 7asanan, haadhaa munaasib.",
+          "english": "You're right. OK, that works."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "هَيَّا نَشْرَبِ الْقَهْوَة. يَسُرُّنِي أَنَّكَ جِئْتَ.",
+          "transliteration": "hayyaa nashrabi al-qahwa. yasurrunee annaka ji2ta.",
+          "english": "Let's drink coffee. I'm glad you came."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "عَفْوًا، هُنَاكَ مُشْكِلَة صَغِيرَة. هَذَا لَيْسَ مَا طَلَبْتُهُ.",
+          "transliteration": "3afwan, hunaaka mushkila sagheera. haadhaa laysa maa talabtuhu.",
+          "english": "Excuse me, there's a small problem. This isn't what I ordered."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "اِعْذُرْنَا، سَنُغَيِّرُهُ حَالًا.",
+          "transliteration": "i3dhurnaa, sanughayyiruhu 7aalan.",
+          "english": "Forgive us, we'll change it right away."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "شُكْرًا لَكَ.",
+          "transliteration": "shukran laka.",
+          "english": "Thank you."
+        }
+      ]
+    }
+  }
+}

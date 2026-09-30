@@ -135,8 +135,8 @@ def test_the_real_units_on_disk_load_and_are_served():
     loader._content.cache_clear()
     client = TestClient(app)
     catalogue = client.get("/api/colloquial").json()
-    dialect = catalogue["dialects"][0]
-    assert dialect["key"] == "damascene" and dialect["units"]
+    dialect = next(d for d in catalogue["dialects"] if d["key"] == "damascene")
+    assert dialect["units"]
 
     got = client.get(f"/api/colloquial/damascene/{dialect['units'][0]['unit']}")
     assert got.status_code == 200

@@ -1,0 +1,1847 @@
+{
+  "unit": "unit-14",
+  "dialect": "Fusha (Modern Standard Arabic)",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "q": "ق",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "blessed-eid-happy-eid",
+          "arabic": "عِيدٌ مُبَارَك",
+          "transliteration": "3eedun mubaarak",
+          "reply": {
+            "arabic": "بَارَكَ اللهُ فِيك",
+            "transliteration": "baaraka allaahu feek",
+            "english": "God bless you."
+          }
+        },
+        {
+          "slot": "may-you-be-well-every-year",
+          "arabic": "كُلُّ عَامٍ وَأَنْتَ بِخَيْر",
+          "transliteration": "kullu 3aamin wa anta bikhayr",
+          "reply": {
+            "arabic": "وَأَنْتَ بِخَيْر",
+            "transliteration": "wa anta bikhayr",
+            "english": "And you too."
+          }
+        },
+        {
+          "slot": "may-you-witness-it-again-next-year",
+          "arabic": "أَعَادَهُ اللهُ عَلَيْكُمْ بِالْخَيْر",
+          "transliteration": "a3aadahu allaahu 3alaykum bilkhayr",
+          "reply": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen."
+          }
+        },
+        {
+          "slot": "blessed-eid-to-you-all",
+          "arabic": "عِيدُكُمْ مُبَارَك",
+          "transliteration": "3eedukum mubaarak",
+          "reply": {
+            "arabic": "بَارَكَ اللهُ فِيكُمْ",
+            "transliteration": "baaraka allaahu feekum",
+            "english": "God bless you all."
+          }
+        },
+        {
+          "slot": "eid-money-given-to-children",
+          "arabic": "الْعِيدِيَّةُ لِلْأَطْفَال",
+          "transliteration": "al-3eediyyatu lil-atfaal"
+        },
+        {
+          "slot": "i-m-putting-on-my-eid-clothes",
+          "arabic": "أَلْبَسُ ثِيَابَ الْعِيد",
+          "transliteration": "albasu thiyaaba al-3eed"
+        },
+        {
+          "slot": "eid-cookies",
+          "arabic": "كَعْكُ الْعِيد",
+          "transliteration": "ka3ku al-3eed"
+        },
+        {
+          "slot": "we-re-going-to-the-eid-prayer",
+          "arabic": "نَذْهَبُ إِلَى صَلَاةِ الْعِيد",
+          "transliteration": "nadh-habu ilaa salaati al-3eed"
+        },
+        {
+          "slot": "we-visited-my-grandma-today",
+          "arabic": "زُرْنَا جَدَّتِي الْيَوْم",
+          "transliteration": "zurnaa jaddatee al-yawm"
+        },
+        {
+          "slot": "congratulations-on-the-eid",
+          "arabic": "مُبَارَكٌ عَلَيْكُمُ الْعِيد",
+          "transliteration": "mubaarakun 3alaykumu al-3eed"
+        },
+        {
+          "slot": "where-were-you-why-didn-t-you-come-to-celebrate-",
+          "arabic": "أَيْنَ كُنْتَ؟ لِمَاذَا لَمْ تَأْتِ لِتُعَيِّدَ مَعَنَا؟",
+          "transliteration": "ayna kunta? limaadha lam ta2ti li-tu3ayyida ma3anaa?",
+          "reply": {
+            "arabic": "كُنْتُ مُسَافِرًا، أَعْتَذِر",
+            "transliteration": "kuntu musaafiran, a3tadhir",
+            "english": "I was travelling, I apologise."
+          }
+        },
+        {
+          "slot": "may-god-give-you-all-eid-money-said-jokingly",
+          "arabic": "أَعْطَاكُمُ اللهُ الْعِيدِيَّة",
+          "transliteration": "a3taakumu allaahu al-3eediyya"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Omar",
+          "arabic": "عِيدٌ مُبَارَك يَا سَلْمَى.",
+          "transliteration": "3eedun mubaarak yaa Salmaa.",
+          "english": "Blessed Eid, Salma."
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "بَارَكَ اللهُ فِيكَ. كُلُّ عَامٍ وَأَنْتَ بِخَيْر.",
+          "transliteration": "baaraka allaahu feeka. kullu 3aamin wa anta bikhayr.",
+          "english": "God bless you. May you be well every year."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وَأَنْتِ بِخَيْر. هَلْ ذَهَبْتُمْ إِلَى صَلَاةِ الْعِيد؟",
+          "transliteration": "wa anti bikhayr. hal dhahabtum ilaa salaati al-3eed?",
+          "english": "And you. Did you go to the Eid prayer?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "نَعَمْ، ذَهَبْنَا صَبَاحًا، ثُمَّ زُرْنَا جَدَّتِي.",
+          "transliteration": "na3am, dhahabnaa sabaa7an, thumma zurnaa jaddatee.",
+          "english": "Yes, we went in the morning, then visited my grandmother."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وَهَلْ أَخَذَ الْأَطْفَالُ الْعِيدِيَّة؟",
+          "transliteration": "wa hal akhadha al-atfaalu al-3eediyya?",
+          "english": "And did the children get their Eid money?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "نَعَمْ، وَهُمْ فَرِحُونَ جِدًّا.",
+          "transliteration": "na3am, wa hum fari7oona jiddan.",
+          "english": "Yes, and they are very happy."
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "تَفَضَّلْ، كُلْ مِنْ كَعْكِ الْعِيد.",
+          "transliteration": "tafaddal, kul min ka3ki al-3eed.",
+          "english": "Please, have some Eid cookies."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "شُكْرًا، إِنَّهُ لَذِيذ.",
+          "transliteration": "shukran, innahu ladheedh.",
+          "english": "Thanks, they are delicious."
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "أَعَادَهُ اللهُ عَلَيْكُمْ بِالْخَيْر.",
+          "transliteration": "a3aadahu allaahu 3alaykum bilkhayr.",
+          "english": "May God bring it back to you in good health."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "آمِين. مُبَارَكٌ عَلَيْكُمُ الْعِيد.",
+          "transliteration": "aameen. mubaarakun 3alaykumu al-3eed.",
+          "english": "Amen. Blessed be the Eid upon you."
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "بَارَكَ اللهُ فِيكُمْ.",
+          "transliteration": "baaraka allaahu feekum.",
+          "english": "God bless you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عِيدٌ مُبَارَك",
+            "transliteration": "3eedun mubaarak",
+            "english": "Blessed Eid."
+          },
+          "response": {
+            "arabic": "بَارَكَ اللهُ فِيك",
+            "transliteration": "baaraka allaahu feek",
+            "english": "God bless you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كُلُّ عَامٍ وَأَنْتَ بِخَيْر",
+            "transliteration": "kullu 3aamin wa anta bikhayr",
+            "english": "May you be well every year."
+          },
+          "response": {
+            "arabic": "وَأَنْتَ بِخَيْر",
+            "transliteration": "wa anta bikhayr",
+            "english": "And you too."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ ذَهَبْتُمْ إِلَى صَلَاةِ الْعِيد؟",
+            "transliteration": "hal dhahabtum ilaa salaati al-3eed?",
+            "english": "Did you go to the Eid prayer?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، ذَهَبْنَا صَبَاحًا",
+            "transliteration": "na3am, dhahabnaa sabaa7an",
+            "english": "Yes, we went in the morning."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَاذَا أَكَلْتُمْ فِي الْعِيد؟",
+            "transliteration": "maadha akaltum fii al-3eed?",
+            "english": "What did you eat at the Eid?"
+          },
+          "response": {
+            "arabic": "أَكَلْنَا كَعْكَ الْعِيد",
+            "transliteration": "akalnaa ka3ka al-3eed",
+            "english": "We ate Eid cookies."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَعَادَهُ اللهُ عَلَيْكُمْ بِالْخَيْر",
+            "transliteration": "a3aadahu allaahu 3alaykum bilkhayr",
+            "english": "May God bring it back to you in good health."
+          },
+          "response": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen."
+          }
+        }
+      ],
+      "culture": "Eid greetings are exchanged in person and by message on the morning of the Eid, and Fusha phrases such as كُلُّ عَامٍ وَأَنْتَ بِخَيْر are understood in every Arab country. Children receive the الْعِيدِيَّة, a small gift of money, from relatives.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Blessed Eid / Happy Eid'",
+          "answer": "عِيدٌ مُبَارَك",
+          "accepted": [
+            "عِيدٌ مُبَارَك",
+            "عيد مبارك",
+            "3eedun mubaarak"
+          ],
+          "too_formal": {
+            "item": "عيدك مبارك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: 3eedun mubaarak."
+        },
+        {
+          "id": "unit-14.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Blessed Eid to you all'",
+          "answer": "عِيدُكُمْ مُبَارَك",
+          "accepted": [
+            "عِيدُكُمْ مُبَارَك",
+            "عيدكم مبارك",
+            "3eedukum mubaarak"
+          ],
+          "too_formal": {
+            "item": "كل سنة وإنتو طيبين",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: 3eedukum mubaarak."
+        },
+        {
+          "id": "unit-14.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Eid cookies'",
+          "answer": "كَعْكُ الْعِيد",
+          "accepted": [
+            "كَعْكُ الْعِيد",
+            "كعك العيد",
+            "ka3ku al-3eed"
+          ],
+          "too_formal": {
+            "item": "معمول العيد",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: ka3ku al-3eed."
+        },
+        {
+          "id": "unit-14.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which one means 'May you be well every year'?",
+          "options": [
+            "كُلُّ عَامٍ وَأَنْتَ بِخَيْر",
+            "عِيدُكُمْ مُبَارَك",
+            "كَعْكُ الْعِيد",
+            "مُبَارَكٌ عَلَيْكُمُ الْعِيد"
+          ],
+          "answer": "كُلُّ عَامٍ وَأَنْتَ بِخَيْر",
+          "accepted": [
+            "كُلُّ عَامٍ وَأَنْتَ بِخَيْر",
+            "كل عام وأنت بخير",
+            "kullu 3aamin wa anta bikhayr"
+          ],
+          "too_formal": {
+            "item": "كل عام وإنت بخير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "kullu 3aamin wa anta bikhayr is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which one means 'Eid money given to children'?",
+          "options": [
+            "كَعْكُ الْعِيد",
+            "مُبَارَكٌ عَلَيْكُمُ الْعِيد",
+            "عِيدٌ مُبَارَك",
+            "الْعِيدِيَّةُ لِلْأَطْفَال"
+          ],
+          "answer": "الْعِيدِيَّةُ لِلْأَطْفَال",
+          "accepted": [
+            "الْعِيدِيَّةُ لِلْأَطْفَال",
+            "العيدية للأطفال",
+            "al-3eediyyatu lil-atfaal"
+          ],
+          "too_formal": {
+            "item": "العيدية للولاد",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "al-3eediyyatu lil-atfaal is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-01.choose.03",
+          "type": "choose",
+          "prompt": "Which one means 'We're going to the Eid prayer'?",
+          "options": [
+            "عِيدٌ مُبَارَك",
+            "عِيدُكُمْ مُبَارَك",
+            "نَذْهَبُ إِلَى صَلَاةِ الْعِيد",
+            "مُبَارَكٌ عَلَيْكُمُ الْعِيد"
+          ],
+          "answer": "نَذْهَبُ إِلَى صَلَاةِ الْعِيد",
+          "accepted": [
+            "نَذْهَبُ إِلَى صَلَاةِ الْعِيد",
+            "نذهب إلى صلاة العيد",
+            "nadh-habu ilaa salaati al-3eed"
+          ],
+          "too_formal": {
+            "item": "رايحين عصلاة العيد",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "nadh-habu ilaa salaati al-3eed is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'May you witness it again next year'",
+          "answer": "أَعَادَهُ اللهُ عَلَيْكُمْ بِالْخَيْر",
+          "accepted": [
+            "أَعَادَهُ اللهُ عَلَيْكُمْ بِالْخَيْر",
+            "أعاده الله عليكم بالخير",
+            "a3aadahu allaahu 3alaykum bilkhayr"
+          ],
+          "too_formal": {
+            "item": "إن شاء الله بتعيد علينا",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'I'm putting on my Eid clothes'",
+          "answer": "أَلْبَسُ ثِيَابَ الْعِيد",
+          "accepted": [
+            "أَلْبَسُ ثِيَابَ الْعِيد",
+            "ألبس ثياب العيد",
+            "albasu thiyaaba al-3eed"
+          ],
+          "too_formal": {
+            "item": "عم لبس تياب العيد",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-01.reorder.03",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'We visited my grandma today'",
+          "answer": "زُرْنَا جَدَّتِي الْيَوْم",
+          "accepted": [
+            "زُرْنَا جَدَّتِي الْيَوْم",
+            "زرنا جدتي اليوم",
+            "zurnaa jaddatee al-yawm"
+          ],
+          "too_formal": {
+            "item": "زرنا ستي اليوم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'مُبَارَكٌ عَلَيْكُمُ _____' (Congratulations on the Eid)",
+          "answer": "الْعِيد",
+          "accepted": [
+            "الْعِيد",
+            "العيد",
+            "al-3eed"
+          ],
+          "too_formal": {
+            "item": "مبروك عليكم العيد",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The missing word is al-3eed."
+        },
+        {
+          "id": "unit-14.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'أَيْنَ كُنْتَ؟ لِمَاذَا لَمْ تَأْتِ لِتُعَيِّدَ _____' (Where were you, why didn't you come to celebrate Eid with us?)",
+          "answer": "مَعَنَا",
+          "accepted": [
+            "مَعَنَا",
+            "معنا",
+            "ma3anaa"
+          ],
+          "too_formal": {
+            "item": "وين كنت؟ ليش ما إجيت تعيد معنا؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The missing word is ma3anaa."
+        },
+        {
+          "id": "unit-14.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "You hear: 'عِيدٌ مُبَارَك'. Reply naturally.",
+          "answer": "بَارَكَ اللهُ فِيك",
+          "accepted": [
+            "بَارَكَ اللهُ فِيك",
+            "بارك الله فيك",
+            "baaraka allaahu feek"
+          ],
+          "too_formal": {
+            "item": "عيدك مبارك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "baaraka allaahu feek is the usual answer."
+        },
+        {
+          "id": "unit-14.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "You hear: 'كُلُّ عَامٍ وَأَنْتَ بِخَيْر'. Reply naturally.",
+          "answer": "وَأَنْتَ بِخَيْر",
+          "accepted": [
+            "وَأَنْتَ بِخَيْر",
+            "وأنت بخير",
+            "wa anta bikhayr"
+          ],
+          "too_formal": {
+            "item": "كل عام وإنت بخير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "wa anta bikhayr is the usual answer."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "ramadan-is-generous-greeting",
+          "arabic": "رَمَضَانُ كَرِيم",
+          "transliteration": "ramadaanu kareem",
+          "reply": {
+            "arabic": "اللهُ أَكْرَم",
+            "transliteration": "allaahu akram",
+            "english": "God is more generous."
+          }
+        },
+        {
+          "slot": "blessed-ramadan",
+          "arabic": "رَمَضَانُ مُبَارَك",
+          "transliteration": "ramadaanu mubaarak",
+          "reply": {
+            "arabic": "بَارَكَ اللهُ فِيك",
+            "transliteration": "baaraka allaahu feek",
+            "english": "God bless you."
+          }
+        },
+        {
+          "slot": "blessed-month-of-ramadan-to-you",
+          "arabic": "شَهْرُ رَمَضَانَ مُبَارَكٌ عَلَيْكُمْ",
+          "transliteration": "shahru ramadaana mubaarakun 3alaykum"
+        },
+        {
+          "slot": "we-re-fasting",
+          "arabic": "نَحْنُ صَائِمُون",
+          "transliteration": "na7nu saa2imoon"
+        },
+        {
+          "slot": "what-time-is-iftar-today",
+          "arabic": "مَتَى مَوْعِدُ الْإِفْطَارِ الْيَوْم؟",
+          "transliteration": "mataa maw3idu al-iftaari al-yawm?"
+        },
+        {
+          "slot": "we-re-preparing-for-iftar",
+          "arabic": "نُحَضِّرُ لِلْإِفْطَار",
+          "transliteration": "nu7addiru lil-iftaar"
+        },
+        {
+          "slot": "we-started-fasting-from-dawn",
+          "arabic": "بَدَأْنَا الصِّيَامَ مِنَ الْفَجْر",
+          "transliteration": "bada2naa as-siyaama mina al-fajr"
+        },
+        {
+          "slot": "the-pre-dawn-meal-eaten-before-the-fast",
+          "arabic": "وَجْبَةُ السُّحُور",
+          "transliteration": "wajbatu as-su7oor"
+        },
+        {
+          "slot": "qatayef-a-ramadan-sweet-stuffed-pastry",
+          "arabic": "الْقَطَايِفُ حَلْوَى رَمَضَانِيَّة",
+          "transliteration": "al-qataayifu 7alwaa ramadaaniyya"
+        },
+        {
+          "slot": "the-iftar-cannon-fired",
+          "arabic": "أُطْلِقَ مِدْفَعُ الْإِفْطَار",
+          "transliteration": "utliqa midfa3u al-iftaar"
+        },
+        {
+          "slot": "whose-iftar-invitation-are-you-going-to-tonight",
+          "arabic": "عَلَى دَعْوَةِ مَنْ تَذْهَبُ إِلَى الْإِفْطَارِ اللَّيْلَة؟",
+          "transliteration": "3alaa da3wati man tadhhabu ilaa al-iftaari al-layla?"
+        },
+        {
+          "slot": "may-god-accept-your-fasting",
+          "arabic": "تَقَبَّلَ اللهُ صِيَامَكُمْ",
+          "transliteration": "taqabbala allaahu siyaamakum",
+          "reply": {
+            "arabic": "وَمِنْكُمْ",
+            "transliteration": "wa minkum",
+            "english": "And from you."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Khalid",
+          "arabic": "رَمَضَانُ كَرِيم يَا هِنْد.",
+          "transliteration": "ramadaanu kareem yaa Hind.",
+          "english": "Ramadan is generous, Hind."
+        },
+        {
+          "speaker": "Hind",
+          "arabic": "اللهُ أَكْرَم. كَيْفَ الصِّيَامُ مَعَكَ؟",
+          "transliteration": "allaahu akram. kayfa as-siyaamu ma3aka?",
+          "english": "God is more generous. How is the fasting going?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "الْحَمْدُ لِلَّهِ، نَحْنُ صَائِمُون وَبِخَيْر.",
+          "transliteration": "al7amdu lillaah, na7nu saa2imoon wa bikhayr.",
+          "english": "Thank God, we are fasting and well."
+        },
+        {
+          "speaker": "Hind",
+          "arabic": "مَتَى مَوْعِدُ الْإِفْطَارِ الْيَوْم؟",
+          "transliteration": "mataa maw3idu al-iftaari al-yawm?",
+          "english": "What time is iftar today?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "بَعْدَ السَّاعَةِ السَّادِسَةِ بِقَلِيل.",
+          "transliteration": "ba3da as-saa3ati as-saadisati biqaleel.",
+          "english": "A little after six o'clock."
+        },
+        {
+          "speaker": "Hind",
+          "arabic": "نَحْنُ نُحَضِّرُ لِلْإِفْطَارِ الْآن.",
+          "transliteration": "na7nu nu7addiru lil-iftaari al-aan.",
+          "english": "We are preparing for iftar now."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "وَهَلْ عِنْدَكُمْ قَطَايِف؟",
+          "transliteration": "wa hal 3indakum qataayif?",
+          "english": "And do you have qatayef?"
+        },
+        {
+          "speaker": "Hind",
+          "arabic": "نَعَمْ، الْقَطَايِفُ حَلْوَى رَمَضَانِيَّة.",
+          "transliteration": "na3am, al-qataayifu 7alwaa ramadaaniyya.",
+          "english": "Yes, qatayef is a Ramadan sweet."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "عَلَى دَعْوَةِ مَنْ تَذْهَبِينَ اللَّيْلَة؟",
+          "transliteration": "3alaa da3wati man tadhhabeena al-layla?",
+          "english": "Whose invitation are you going to tonight?"
+        },
+        {
+          "speaker": "Hind",
+          "arabic": "إِلَى بَيْتِ عَمِّي لِلْإِفْطَار.",
+          "transliteration": "ilaa bayti 3ammee lil-iftaar.",
+          "english": "To my uncle's house for iftar."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "تَقَبَّلَ اللهُ صِيَامَكُمْ.",
+          "transliteration": "taqabbala allaahu siyaamakum.",
+          "english": "May God accept your fasting."
+        },
+        {
+          "speaker": "Hind",
+          "arabic": "وَمِنْكُمْ. رَمَضَانُ مُبَارَك.",
+          "transliteration": "wa minkum. ramadaanu mubaarak.",
+          "english": "And from you. Blessed Ramadan."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "رَمَضَانُ كَرِيم",
+            "transliteration": "ramadaanu kareem",
+            "english": "Ramadan is generous."
+          },
+          "response": {
+            "arabic": "اللهُ أَكْرَم",
+            "transliteration": "allaahu akram",
+            "english": "God is more generous."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى مَوْعِدُ الْإِفْطَار؟",
+            "transliteration": "mataa maw3idu al-iftaar?",
+            "english": "When is iftar?"
+          },
+          "response": {
+            "arabic": "بَعْدَ الْمَغْرِب",
+            "transliteration": "ba3da al-maghrib",
+            "english": "After sunset."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى بَدَأْتُمُ الصِّيَام؟",
+            "transliteration": "mataa bada2tumu as-siyaam?",
+            "english": "When did you start fasting?"
+          },
+          "response": {
+            "arabic": "بَدَأْنَا مِنَ الْفَجْر",
+            "transliteration": "bada2naa mina al-fajr",
+            "english": "We started at dawn."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تَقَبَّلَ اللهُ صِيَامَكُمْ",
+            "transliteration": "taqabbala allaahu siyaamakum",
+            "english": "May God accept your fasting."
+          },
+          "response": {
+            "arabic": "وَمِنْكُمْ",
+            "transliteration": "wa minkum",
+            "english": "And from you."
+          }
+        }
+      ],
+      "culture": "During Ramadan people greet each other with رَمَضَانُ كَرِيم, and families gather at sunset to break the fast together. The pre-dawn meal, the السُّحُور, is eaten before the call to the dawn prayer.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Ramadan is generous (greeting)'",
+          "answer": "رَمَضَانُ كَرِيم",
+          "accepted": [
+            "رَمَضَانُ كَرِيم",
+            "رمضان كريم",
+            "ramadaanu kareem"
+          ],
+          "too_formal": {
+            "item": "رمضان كريم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: ramadaanu kareem."
+        },
+        {
+          "id": "unit-14.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'We're fasting'",
+          "answer": "نَحْنُ صَائِمُون",
+          "accepted": [
+            "نَحْنُ صَائِمُون",
+            "نحن صائمون",
+            "na7nu saa2imoon"
+          ],
+          "too_formal": {
+            "item": "نحنا صايمين",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: na7nu saa2imoon."
+        },
+        {
+          "id": "unit-14.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'We started fasting from dawn'",
+          "answer": "بَدَأْنَا الصِّيَامَ مِنَ الْفَجْر",
+          "accepted": [
+            "بَدَأْنَا الصِّيَامَ مِنَ الْفَجْر",
+            "بدأنا الصيام من الفجر",
+            "bada2naa as-siyaama mina al-fajr"
+          ],
+          "too_formal": {
+            "item": "بلشنا صيام من الفجر",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: bada2naa as-siyaama mina al-fajr."
+        },
+        {
+          "id": "unit-14.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which one means 'Blessed Ramadan'?",
+          "options": [
+            "رَمَضَانُ مُبَارَك",
+            "نَحْنُ صَائِمُون",
+            "بَدَأْنَا الصِّيَامَ مِنَ الْفَجْر",
+            "أُطْلِقَ مِدْفَعُ الْإِفْطَار"
+          ],
+          "answer": "رَمَضَانُ مُبَارَك",
+          "accepted": [
+            "رَمَضَانُ مُبَارَك",
+            "رمضان مبارك",
+            "ramadaanu mubaarak"
+          ],
+          "too_formal": {
+            "item": "رمضانك مبارك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "ramadaanu mubaarak is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which one means 'What time is iftar today?'?",
+          "options": [
+            "بَدَأْنَا الصِّيَامَ مِنَ الْفَجْر",
+            "أُطْلِقَ مِدْفَعُ الْإِفْطَار",
+            "رَمَضَانُ كَرِيم",
+            "مَتَى مَوْعِدُ الْإِفْطَارِ الْيَوْم؟"
+          ],
+          "answer": "مَتَى مَوْعِدُ الْإِفْطَارِ الْيَوْم؟",
+          "accepted": [
+            "مَتَى مَوْعِدُ الْإِفْطَارِ الْيَوْم؟",
+            "متى موعد الإفطار اليوم؟",
+            "متى موعد الإفطار اليوم",
+            "mataa maw3idu al-iftaari al-yawm?",
+            "mataa maw3idu al-iftaari al-yawm"
+          ],
+          "too_formal": {
+            "item": "كم الساعة الفطور اليوم؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "mataa maw3idu al-iftaari al-yawm? is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-02.choose.03",
+          "type": "choose",
+          "prompt": "Which one means 'The pre-dawn meal eaten before the fast'?",
+          "options": [
+            "رَمَضَانُ كَرِيم",
+            "نَحْنُ صَائِمُون",
+            "وَجْبَةُ السُّحُور",
+            "أُطْلِقَ مِدْفَعُ الْإِفْطَار"
+          ],
+          "answer": "وَجْبَةُ السُّحُور",
+          "accepted": [
+            "وَجْبَةُ السُّحُور",
+            "وجبة السحور",
+            "wajbatu as-su7oor"
+          ],
+          "too_formal": {
+            "item": "أكلة السحور",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "wajbatu as-su7oor is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'Blessed month of Ramadan to you'",
+          "answer": "شَهْرُ رَمَضَانَ مُبَارَكٌ عَلَيْكُمْ",
+          "accepted": [
+            "شَهْرُ رَمَضَانَ مُبَارَكٌ عَلَيْكُمْ",
+            "شهر رمضان مبارك عليكم",
+            "shahru ramadaana mubaarakun 3alaykum"
+          ],
+          "too_formal": {
+            "item": "مبارك عليكم الشهر",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'We're preparing for iftar'",
+          "answer": "نُحَضِّرُ لِلْإِفْطَار",
+          "accepted": [
+            "نُحَضِّرُ لِلْإِفْطَار",
+            "نحضر للإفطار",
+            "nu7addiru lil-iftaar"
+          ],
+          "too_formal": {
+            "item": "عم نجهز للفطور",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-02.reorder.03",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'Qatayef, a Ramadan sweet stuffed pastry'",
+          "answer": "الْقَطَايِفُ حَلْوَى رَمَضَانِيَّة",
+          "accepted": [
+            "الْقَطَايِفُ حَلْوَى رَمَضَانِيَّة",
+            "القطايف حلوى رمضانية",
+            "al-qataayifu 7alwaa ramadaaniyya"
+          ],
+          "too_formal": {
+            "item": "القطايف أكلة رمضان",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'أُطْلِقَ مِدْفَعُ _____' (The iftar cannon fired)",
+          "answer": "الْإِفْطَار",
+          "accepted": [
+            "الْإِفْطَار",
+            "الإفطار",
+            "al-iftaar"
+          ],
+          "too_formal": {
+            "item": "ضرب مدفع الفطور",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The missing word is al-iftaar."
+        },
+        {
+          "id": "unit-14.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'عَلَى دَعْوَةِ مَنْ تَذْهَبُ إِلَى الْإِفْطَارِ _____' (Whose iftar invitation are you going to tonight?)",
+          "answer": "اللَّيْلَة",
+          "accepted": [
+            "اللَّيْلَة",
+            "الليلة",
+            "al-layla"
+          ],
+          "too_formal": {
+            "item": "عند مين معزوم عالفطور الليلة؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The missing word is al-layla."
+        },
+        {
+          "id": "unit-14.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "You hear: 'رَمَضَانُ كَرِيم'. Reply naturally.",
+          "answer": "اللهُ أَكْرَم",
+          "accepted": [
+            "اللهُ أَكْرَم",
+            "الله أكرم",
+            "allaahu akram"
+          ],
+          "too_formal": {
+            "item": "رمضان كريم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "allaahu akram is the usual answer."
+        },
+        {
+          "id": "unit-14.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "You hear: 'تَقَبَّلَ اللهُ صِيَامَكُمْ'. Reply naturally.",
+          "answer": "وَمِنْكُمْ",
+          "accepted": [
+            "وَمِنْكُمْ",
+            "ومنكم",
+            "wa minkum"
+          ],
+          "too_formal": {
+            "item": "الله يتقبل صيامكم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "wa minkum is the usual answer."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "congratulations",
+          "arabic": "مَبْرُوك",
+          "transliteration": "mabrook",
+          "reply": {
+            "arabic": "بَارَكَ اللهُ فِيك",
+            "transliteration": "baaraka allaahu feek",
+            "english": "God bless you."
+          }
+        },
+        {
+          "slot": "may-god-make-you-happy-wedding-congrats",
+          "arabic": "أَسْعَدَكُمُ اللهُ",
+          "transliteration": "as3adakumu allaahu",
+          "reply": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen."
+          }
+        },
+        {
+          "slot": "may-it-be-your-turn-next",
+          "arabic": "عُقْبَى لَكَ",
+          "transliteration": "3uqbaa laka"
+        },
+        {
+          "slot": "congratulations-on-the-wedding",
+          "arabic": "مُبَارَكٌ عَلَيْكُمُ الزَّوَاج",
+          "transliteration": "mubaarakun 3alaykumu az-zawaaj"
+        },
+        {
+          "slot": "when-is-their-wedding",
+          "arabic": "مَتَى مَوْعِدُ زَفَافِهِمْ؟",
+          "transliteration": "mataa maw3idu zafaafihim?"
+        },
+        {
+          "slot": "they-re-preparing-for-the-wedding",
+          "arabic": "هُمْ يَسْتَعِدُّونَ لِلزَّفَاف",
+          "transliteration": "hum yasta3iddoona liz-zafaaf"
+        },
+        {
+          "slot": "the-wedding-stage-decoration-is-very-beautiful",
+          "arabic": "تَزْيِينُ مَنَصَّةِ الْعُرْسِ جَمِيلٌ جِدًّا",
+          "transliteration": "tazyeenu manassati al-3ursi jameelun jiddan"
+        },
+        {
+          "slot": "the-wedding-procession-is-coming",
+          "arabic": "الْمَوْكِبُ قَادِم",
+          "transliteration": "al-mawkibu qaadim"
+        },
+        {
+          "slot": "she-wore-a-white-dress",
+          "arabic": "لَبِسَتْ فُسْتَانًا أَبْيَض",
+          "transliteration": "labisat fustaanan abyad"
+        },
+        {
+          "slot": "the-dabke-folk-dance-started",
+          "arabic": "بَدَأَتِ الدَّبْكَة",
+          "transliteration": "bada2ati ad-dabka"
+        },
+        {
+          "slot": "who-s-invited-to-the-wedding",
+          "arabic": "مَنِ الْمَدْعُوُّونَ إِلَى الْعُرْس؟",
+          "transliteration": "mani al-mad3uwwoona ilaa al-3urs?"
+        },
+        {
+          "slot": "what-gift-did-you-bring-them",
+          "arabic": "أَيَّ هَدِيَّةٍ أَحْضَرْتَ لَهُمْ؟",
+          "transliteration": "ayya hadiyyatin a7darta lahum?",
+          "reply": {
+            "arabic": "أَحْضَرْتُ سَاعَةً جَمِيلَة",
+            "transliteration": "a7dartu saa3atan jameela",
+            "english": "I brought a beautiful watch."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rana",
+          "arabic": "مَبْرُوك يَا سَامِي، سَمِعْتُ خَبَرَ زَوَاجِكَ.",
+          "transliteration": "mabrook yaa Saamee, sami3tu khabara zawaajika.",
+          "english": "Congratulations Sami, I heard the news of your wedding."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "بَارَكَ اللهُ فِيكِ. سَنَحْتَفِلُ الْأُسْبُوعَ الْقَادِم.",
+          "transliteration": "baaraka allaahu feeki. sana7taflu al-usboo3a al-qaadim.",
+          "english": "God bless you. We will celebrate next week."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "مَتَى مَوْعِدُ الزَّفَاف؟",
+          "transliteration": "mataa maw3idu az-zafaaf?",
+          "english": "When is the wedding?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "يَوْمَ الْجُمُعَةِ مَسَاءً.",
+          "transliteration": "yawma al-jumu3ati masaa2an.",
+          "english": "On Friday evening."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "هَلْ تَسْتَعِدُّونَ لِلزَّفَاف؟",
+          "transliteration": "hal tasta3iddoona liz-zafaaf?",
+          "english": "Are you preparing for the wedding?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "نَعَمْ، تَزْيِينُ الْمَنَصَّةِ جَمِيلٌ جِدًّا.",
+          "transliteration": "na3am, tazyeenu al-manassati jameelun jiddan.",
+          "english": "Yes, the stage decoration is very beautiful."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "وَمَنِ الْمَدْعُوُّونَ إِلَى الْعُرْس؟",
+          "transliteration": "wa mani al-mad3uwwoona ilaa al-3urs?",
+          "english": "And who is invited to the wedding?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "الْأَهْلُ وَالْأَصْدِقَاءُ جَمِيعًا.",
+          "transliteration": "al-ahlu wal-asdiqaa2u jamee3an.",
+          "english": "Family and friends, everyone."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "أَسْعَدَكُمُ اللهُ وَبَارَكَ لَكُمَا.",
+          "transliteration": "as3adakumu allaahu wa baaraka lakumaa.",
+          "english": "May God make you happy and bless you both."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "آمِين. وَعُقْبَى لَكِ.",
+          "transliteration": "aameen. wa 3uqbaa laki.",
+          "english": "Amen. And may it be your turn next."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "شُكْرًا لَكَ، نَرَاكَ فِي الزَّفَاف.",
+          "transliteration": "shukran laka, naraaka fii az-zafaaf.",
+          "english": "Thank you, see you at the wedding."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مَبْرُوك",
+            "transliteration": "mabrook",
+            "english": "Congratulations."
+          },
+          "response": {
+            "arabic": "بَارَكَ اللهُ فِيك",
+            "transliteration": "baaraka allaahu feek",
+            "english": "God bless you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى مَوْعِدُ الزَّفَاف؟",
+            "transliteration": "mataa maw3idu az-zafaaf?",
+            "english": "When is the wedding?"
+          },
+          "response": {
+            "arabic": "يَوْمَ الْجُمُعَة",
+            "transliteration": "yawma al-jumu3a",
+            "english": "On Friday."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَاذَا لَبِسَتِ الْعَرُوس؟",
+            "transliteration": "maadha labisati al-3aroos?",
+            "english": "What did the bride wear?"
+          },
+          "response": {
+            "arabic": "لَبِسَتْ فُسْتَانًا أَبْيَض",
+            "transliteration": "labisat fustaanan abyad",
+            "english": "She wore a white dress."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَسْعَدَكُمُ اللهُ",
+            "transliteration": "as3adakumu allaahu",
+            "english": "May God make you happy."
+          },
+          "response": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen."
+          }
+        }
+      ],
+      "culture": "At a wedding guests congratulate both families with phrases like مَبْرُوك and أَسْعَدَكُمُ اللهُ. The dabke is a line dance of the Levant that often opens the celebration, and bringing a gift is customary.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Congratulations'",
+          "answer": "مَبْرُوك",
+          "accepted": [
+            "مَبْرُوك",
+            "مبروك",
+            "mabrook"
+          ],
+          "too_formal": {
+            "item": "ألف مبروك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: mabrook."
+        },
+        {
+          "id": "unit-14.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Congratulations on the wedding'",
+          "answer": "مُبَارَكٌ عَلَيْكُمُ الزَّوَاج",
+          "accepted": [
+            "مُبَارَكٌ عَلَيْكُمُ الزَّوَاج",
+            "مبارك عليكم الزواج",
+            "mubaarakun 3alaykumu az-zawaaj"
+          ],
+          "too_formal": {
+            "item": "مبروك عليكم العرس",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: mubaarakun 3alaykumu az-zawaaj."
+        },
+        {
+          "id": "unit-14.lesson-03.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'The wedding stage decoration is very beautiful'",
+          "answer": "تَزْيِينُ مَنَصَّةِ الْعُرْسِ جَمِيلٌ جِدًّا",
+          "accepted": [
+            "تَزْيِينُ مَنَصَّةِ الْعُرْسِ جَمِيلٌ جِدًّا",
+            "تزيين منصة العرس جميل جدا",
+            "tazyeenu manassati al-3ursi jameelun jiddan"
+          ],
+          "too_formal": {
+            "item": "ديكور الكوشة كتير حلو",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: tazyeenu manassati al-3ursi jameelun jiddan."
+        },
+        {
+          "id": "unit-14.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which one means 'May God make you happy (wedding congrats)'?",
+          "options": [
+            "أَسْعَدَكُمُ اللهُ",
+            "مُبَارَكٌ عَلَيْكُمُ الزَّوَاج",
+            "تَزْيِينُ مَنَصَّةِ الْعُرْسِ جَمِيلٌ جِدًّا",
+            "بَدَأَتِ الدَّبْكَة"
+          ],
+          "answer": "أَسْعَدَكُمُ اللهُ",
+          "accepted": [
+            "أَسْعَدَكُمُ اللهُ",
+            "أسعدكم الله",
+            "as3adakumu allaahu"
+          ],
+          "too_formal": {
+            "item": "الله يسعدكم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "as3adakumu allaahu is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which one means 'When is their wedding?'?",
+          "options": [
+            "تَزْيِينُ مَنَصَّةِ الْعُرْسِ جَمِيلٌ جِدًّا",
+            "بَدَأَتِ الدَّبْكَة",
+            "مَبْرُوك",
+            "مَتَى مَوْعِدُ زَفَافِهِمْ؟"
+          ],
+          "answer": "مَتَى مَوْعِدُ زَفَافِهِمْ؟",
+          "accepted": [
+            "مَتَى مَوْعِدُ زَفَافِهِمْ؟",
+            "متى موعد زفافهم؟",
+            "متى موعد زفافهم",
+            "mataa maw3idu zafaafihim?",
+            "mataa maw3idu zafaafihim"
+          ],
+          "too_formal": {
+            "item": "إمتى عرسهم؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "mataa maw3idu zafaafihim? is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-03.choose.03",
+          "type": "choose",
+          "prompt": "Which one means 'The wedding procession is coming'?",
+          "options": [
+            "مَبْرُوك",
+            "مُبَارَكٌ عَلَيْكُمُ الزَّوَاج",
+            "الْمَوْكِبُ قَادِم",
+            "بَدَأَتِ الدَّبْكَة"
+          ],
+          "answer": "الْمَوْكِبُ قَادِم",
+          "accepted": [
+            "الْمَوْكِبُ قَادِم",
+            "الموكب قادم",
+            "al-mawkibu qaadim"
+          ],
+          "too_formal": {
+            "item": "الزفة جاية",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "al-mawkibu qaadim is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'May it be your turn next'",
+          "answer": "عُقْبَى لَكَ",
+          "accepted": [
+            "عُقْبَى لَكَ",
+            "عقبى لك",
+            "3uqbaa laka"
+          ],
+          "too_formal": {
+            "item": "عقبالك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'They're preparing for the wedding'",
+          "answer": "هُمْ يَسْتَعِدُّونَ لِلزَّفَاف",
+          "accepted": [
+            "هُمْ يَسْتَعِدُّونَ لِلزَّفَاف",
+            "هم يستعدون للزفاف",
+            "hum yasta3iddoona liz-zafaaf"
+          ],
+          "too_formal": {
+            "item": "عم يجهزوا للعرس",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-03.reorder.03",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'She wore a white dress'",
+          "answer": "لَبِسَتْ فُسْتَانًا أَبْيَض",
+          "accepted": [
+            "لَبِسَتْ فُسْتَانًا أَبْيَض",
+            "لبست فستانا أبيض",
+            "labisat fustaanan abyad"
+          ],
+          "too_formal": {
+            "item": "لبست فستان أبيض",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'بَدَأَتِ _____' (The dabke folk dance started)",
+          "answer": "الدَّبْكَة",
+          "accepted": [
+            "الدَّبْكَة",
+            "الدبكة",
+            "ad-dabka"
+          ],
+          "too_formal": {
+            "item": "بلشت الدبكة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The missing word is ad-dabka."
+        },
+        {
+          "id": "unit-14.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'مَنِ الْمَدْعُوُّونَ إِلَى _____' (Who's invited to the wedding?)",
+          "answer": "الْعُرْس",
+          "accepted": [
+            "الْعُرْس",
+            "العرس",
+            "al-3urs"
+          ],
+          "too_formal": {
+            "item": "مين معزوم عالعرس؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The missing word is al-3urs."
+        },
+        {
+          "id": "unit-14.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "You hear: 'مَبْرُوك'. Reply naturally.",
+          "answer": "بَارَكَ اللهُ فِيك",
+          "accepted": [
+            "بَارَكَ اللهُ فِيك",
+            "بارك الله فيك",
+            "baaraka allaahu feek"
+          ],
+          "too_formal": {
+            "item": "ألف مبروك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "baaraka allaahu feek is the usual answer."
+        },
+        {
+          "id": "unit-14.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "You hear: 'أَسْعَدَكُمُ اللهُ'. Reply naturally.",
+          "answer": "آمِين",
+          "accepted": [
+            "آمِين",
+            "آمين",
+            "aameen"
+          ],
+          "too_formal": {
+            "item": "الله يسعدكم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "aameen is the usual answer."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "happy-birthday",
+          "arabic": "عِيدُ مِيلَادٍ سَعِيد",
+          "transliteration": "3eedu meelaadin sa3eed",
+          "reply": {
+            "arabic": "شُكْرًا لَك",
+            "transliteration": "shukran lak",
+            "english": "Thank you."
+          }
+        },
+        {
+          "slot": "happy-birthday-lit-every-year-you-re-well",
+          "arabic": "كُلُّ عَامٍ وَأَنْتَ بِخَيْر",
+          "transliteration": "kullu 3aamin wa anta bikhayr",
+          "reply": {
+            "arabic": "وَأَنْتَ بِخَيْر",
+            "transliteration": "wa anta bikhayr",
+            "english": "And you too."
+          }
+        },
+        {
+          "slot": "congratulations-on-your-success",
+          "arabic": "مَبْرُوكٌ عَلَى نَجَاحِكَ",
+          "transliteration": "mabrookun 3alaa najaa7ika"
+        },
+        {
+          "slot": "congratulations-on-the-promotion",
+          "arabic": "مَبْرُوكٌ عَلَى التَّرْقِيَة",
+          "transliteration": "mabrookun 3alaa at-tarqiya"
+        },
+        {
+          "slot": "congratulations-on-the-newborn",
+          "arabic": "مَبْرُوكٌ عَلَى الْمَوْلُود",
+          "transliteration": "mabrookun 3alaa al-mawlood"
+        },
+        {
+          "slot": "congratulations-on-the-new-house",
+          "arabic": "مَبْرُوكٌ عَلَى الْبَيْتِ الْجَدِيد",
+          "transliteration": "mabrookun 3alaa al-bayti al-jadeed"
+        },
+        {
+          "slot": "we-re-preparing-the-cake",
+          "arabic": "نُحَضِّرُ الْكَعْكَة",
+          "transliteration": "nu7addiru al-ka3ka"
+        },
+        {
+          "slot": "blow-out-the-candles",
+          "arabic": "أَطْفِئِ الشُّمُوع",
+          "transliteration": "atfi2i ash-shumoo3"
+        },
+        {
+          "slot": "how-old-did-you-turn",
+          "arabic": "كَمْ بَلَغْتَ مِنَ الْعُمْر؟",
+          "transliteration": "kam balaghta mina al-3umr?"
+        },
+        {
+          "slot": "what-gift-do-you-want",
+          "arabic": "أَيَّ هَدِيَّةٍ تُرِيد؟",
+          "transliteration": "ayya hadiyyatin tureed?"
+        },
+        {
+          "slot": "birthday-party",
+          "arabic": "حَفْلَةُ عِيدِ الْمِيلَاد",
+          "transliteration": "7aflatu 3eedi al-meelaad"
+        },
+        {
+          "slot": "may-god-lengthen-your-life",
+          "arabic": "أَطَالَ اللهُ عُمُرَك",
+          "transliteration": "ataala allaahu 3umrak",
+          "reply": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Nour",
+          "arabic": "عِيدُ مِيلَادٍ سَعِيد يَا مَازِن.",
+          "transliteration": "3eedu meelaadin sa3eed yaa Maazin.",
+          "english": "Happy birthday, Mazen."
+        },
+        {
+          "speaker": "Mazen",
+          "arabic": "شُكْرًا لَكِ يَا نُور.",
+          "transliteration": "shukran laki yaa Noor.",
+          "english": "Thank you, Nour."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "كَمْ بَلَغْتَ مِنَ الْعُمْر؟",
+          "transliteration": "kam balaghta mina al-3umr?",
+          "english": "How old did you turn?"
+        },
+        {
+          "speaker": "Mazen",
+          "arabic": "بَلَغْتُ الثَّلَاثِينَ.",
+          "transliteration": "balaghtu ath-thalaatheen.",
+          "english": "I turned thirty."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "نُحَضِّرُ الْكَعْكَةَ لِلْحَفْلَة.",
+          "transliteration": "nu7addiru al-ka3kata lil-7afla.",
+          "english": "We are preparing the cake for the party."
+        },
+        {
+          "speaker": "Mazen",
+          "arabic": "وَمَنِ الْمَدْعُوُّون؟",
+          "transliteration": "wa mani al-mad3uwwoon?",
+          "english": "And who is invited?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "الْأَهْلُ وَالْأَصْدِقَاء. أَطْفِئِ الشُّمُوع.",
+          "transliteration": "al-ahlu wal-asdiqaa2. atfi2i ash-shumoo3.",
+          "english": "Family and friends. Blow out the candles."
+        },
+        {
+          "speaker": "Mazen",
+          "arabic": "آمِين. كُلُّ عَامٍ وَأَنْتُمْ بِخَيْر.",
+          "transliteration": "aameen. kullu 3aamin wa antum bikhayr.",
+          "english": "Amen. May you all be well every year."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "أَيَّ هَدِيَّةٍ تُرِيد؟",
+          "transliteration": "ayya hadiyyatin tureed?",
+          "english": "What gift do you want?"
+        },
+        {
+          "speaker": "Mazen",
+          "arabic": "أُرِيدُ كِتَابًا جَدِيدًا.",
+          "transliteration": "ureedu kitaaban jadeedan.",
+          "english": "I want a new book."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "أَطَالَ اللهُ عُمُرَك.",
+          "transliteration": "ataala allaahu 3umrak.",
+          "english": "May God lengthen your life."
+        },
+        {
+          "speaker": "Mazen",
+          "arabic": "آمِين. شُكْرًا لَكُمْ جَمِيعًا.",
+          "transliteration": "aameen. shukran lakum jamee3an.",
+          "english": "Amen. Thank you all."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عِيدُ مِيلَادٍ سَعِيد",
+            "transliteration": "3eedu meelaadin sa3eed",
+            "english": "Happy birthday."
+          },
+          "response": {
+            "arabic": "شُكْرًا لَك",
+            "transliteration": "shukran lak",
+            "english": "Thank you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَمْ بَلَغْتَ مِنَ الْعُمْر؟",
+            "transliteration": "kam balaghta mina al-3umr?",
+            "english": "How old did you turn?"
+          },
+          "response": {
+            "arabic": "بَلَغْتُ الثَّلَاثِين",
+            "transliteration": "balaghtu ath-thalaatheen",
+            "english": "I turned thirty."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَبْرُوكٌ عَلَى التَّرْقِيَة",
+            "transliteration": "mabrookun 3alaa at-tarqiya",
+            "english": "Congratulations on the promotion."
+          },
+          "response": {
+            "arabic": "بَارَكَ اللهُ فِيك",
+            "transliteration": "baaraka allaahu feek",
+            "english": "God bless you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَطَالَ اللهُ عُمُرَك",
+            "transliteration": "ataala allaahu 3umrak",
+            "english": "May God lengthen your life."
+          },
+          "response": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen."
+          }
+        }
+      ],
+      "culture": "Birthdays are celebrated with a cake, candles and gifts, and the usual wish in Fusha is عِيدُ مِيلَادٍ سَعِيد. Good news such as a success, a promotion or a new baby is met with مَبْرُوكٌ عَلَى followed by the news.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Happy birthday'",
+          "answer": "عِيدُ مِيلَادٍ سَعِيد",
+          "accepted": [
+            "عِيدُ مِيلَادٍ سَعِيد",
+            "عيد ميلاد سعيد",
+            "3eedu meelaadin sa3eed"
+          ],
+          "too_formal": {
+            "item": "كل سنة وإنت طيب",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: 3eedu meelaadin sa3eed."
+        },
+        {
+          "id": "unit-14.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Congratulations on the promotion'",
+          "answer": "مَبْرُوكٌ عَلَى التَّرْقِيَة",
+          "accepted": [
+            "مَبْرُوكٌ عَلَى التَّرْقِيَة",
+            "مبروك على الترقية",
+            "mabrookun 3alaa at-tarqiya"
+          ],
+          "too_formal": {
+            "item": "مبروك الترقية",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: mabrookun 3alaa at-tarqiya."
+        },
+        {
+          "id": "unit-14.lesson-04.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'We're preparing the cake'",
+          "answer": "نُحَضِّرُ الْكَعْكَة",
+          "accepted": [
+            "نُحَضِّرُ الْكَعْكَة",
+            "نحضر الكعكة",
+            "nu7addiru al-ka3ka"
+          ],
+          "too_formal": {
+            "item": "عم نجهز التورتة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Learn it as one block: nu7addiru al-ka3ka."
+        },
+        {
+          "id": "unit-14.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which one means 'Happy birthday (lit. every year you're well)'?",
+          "options": [
+            "كُلُّ عَامٍ وَأَنْتَ بِخَيْر",
+            "مَبْرُوكٌ عَلَى التَّرْقِيَة",
+            "نُحَضِّرُ الْكَعْكَة",
+            "أَيَّ هَدِيَّةٍ تُرِيد؟"
+          ],
+          "answer": "كُلُّ عَامٍ وَأَنْتَ بِخَيْر",
+          "accepted": [
+            "كُلُّ عَامٍ وَأَنْتَ بِخَيْر",
+            "كل عام وأنت بخير",
+            "kullu 3aamin wa anta bikhayr"
+          ],
+          "too_formal": {
+            "item": "كل عام وإنت بخير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "kullu 3aamin wa anta bikhayr is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which one means 'Congratulations on the newborn'?",
+          "options": [
+            "نُحَضِّرُ الْكَعْكَة",
+            "أَيَّ هَدِيَّةٍ تُرِيد؟",
+            "عِيدُ مِيلَادٍ سَعِيد",
+            "مَبْرُوكٌ عَلَى الْمَوْلُود"
+          ],
+          "answer": "مَبْرُوكٌ عَلَى الْمَوْلُود",
+          "accepted": [
+            "مَبْرُوكٌ عَلَى الْمَوْلُود",
+            "مبروك على المولود",
+            "mabrookun 3alaa al-mawlood"
+          ],
+          "too_formal": {
+            "item": "مبروك ع الطفل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "mabrookun 3alaa al-mawlood is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-04.choose.03",
+          "type": "choose",
+          "prompt": "Which one means 'Blow out the candles'?",
+          "options": [
+            "عِيدُ مِيلَادٍ سَعِيد",
+            "مَبْرُوكٌ عَلَى التَّرْقِيَة",
+            "أَطْفِئِ الشُّمُوع",
+            "أَيَّ هَدِيَّةٍ تُرِيد؟"
+          ],
+          "answer": "أَطْفِئِ الشُّمُوع",
+          "accepted": [
+            "أَطْفِئِ الشُّمُوع",
+            "أطفئ الشموع",
+            "atfi2i ash-shumoo3"
+          ],
+          "too_formal": {
+            "item": "طفي الشمعات",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "atfi2i ash-shumoo3 is the natural Fusha wording."
+        },
+        {
+          "id": "unit-14.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'Congratulations on your success'",
+          "answer": "مَبْرُوكٌ عَلَى نَجَاحِكَ",
+          "accepted": [
+            "مَبْرُوكٌ عَلَى نَجَاحِكَ",
+            "مبروك على نجاحك",
+            "mabrookun 3alaa najaa7ika"
+          ],
+          "too_formal": {
+            "item": "مبروك النجاح",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'Congratulations on the new house'",
+          "answer": "مَبْرُوكٌ عَلَى الْبَيْتِ الْجَدِيد",
+          "accepted": [
+            "مَبْرُوكٌ عَلَى الْبَيْتِ الْجَدِيد",
+            "مبروك على البيت الجديد",
+            "mabrookun 3alaa al-bayti al-jadeed"
+          ],
+          "too_formal": {
+            "item": "مبروك البيت الجديد",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-04.reorder.03",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'How old did you turn?'",
+          "answer": "كَمْ بَلَغْتَ مِنَ الْعُمْر؟",
+          "accepted": [
+            "كَمْ بَلَغْتَ مِنَ الْعُمْر؟",
+            "كم بلغت من العمر؟",
+            "كم بلغت من العمر",
+            "kam balaghta mina al-3umr?",
+            "kam balaghta mina al-3umr"
+          ],
+          "too_formal": {
+            "item": "قديش صار عمرك؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the finished sentence aloud to check the order."
+        },
+        {
+          "id": "unit-14.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'أَيَّ هَدِيَّةٍ _____' (What gift do you want?)",
+          "answer": "تُرِيد",
+          "accepted": [
+            "تُرِيد",
+            "تريد",
+            "tureed"
+          ],
+          "too_formal": {
+            "item": "شو بدك هدية؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The missing word is tureed."
+        },
+        {
+          "id": "unit-14.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'حَفْلَةُ عِيدِ _____' (Birthday party)",
+          "answer": "الْمِيلَاد",
+          "accepted": [
+            "الْمِيلَاد",
+            "الميلاد",
+            "al-meelaad"
+          ],
+          "too_formal": {
+            "item": "سهرة عيد ميلاد",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The missing word is al-meelaad."
+        },
+        {
+          "id": "unit-14.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "You hear: 'عِيدُ مِيلَادٍ سَعِيد'. Reply naturally.",
+          "answer": "شُكْرًا لَك",
+          "accepted": [
+            "شُكْرًا لَك",
+            "شكرا لك",
+            "shukran lak"
+          ],
+          "too_formal": {
+            "item": "كل سنة وإنت طيب",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "shukran lak is the usual answer."
+        },
+        {
+          "id": "unit-14.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "You hear: 'كُلُّ عَامٍ وَأَنْتَ بِخَيْر'. Reply naturally.",
+          "answer": "وَأَنْتَ بِخَيْر",
+          "accepted": [
+            "وَأَنْتَ بِخَيْر",
+            "وأنت بخير",
+            "wa anta bikhayr"
+          ],
+          "too_formal": {
+            "item": "كل عام وإنت بخير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "wa anta bikhayr is the usual answer."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Celebrate with a friend",
+    "instructions": "Write a short conversation in Fusha in which you greet a friend at the Eid, congratulate them on a wedding or a success, wish someone a happy birthday, and ask what time iftar is.",
+    "required_elements": [
+      "an Eid greeting and its reply",
+      "a question about the time of iftar",
+      "a congratulation with مَبْرُوك",
+      "a birthday wish and thanks",
+      "a prayer or blessing such as بَارَكَ اللهُ فِيك"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Dana",
+          "arabic": "عِيدٌ مُبَارَك يَا كَرِيم.",
+          "transliteration": "3eedun mubaarak yaa Kareem.",
+          "english": "Blessed Eid, Karim."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "بَارَكَ اللهُ فِيكِ. كُلُّ عَامٍ وَأَنْتِ بِخَيْر.",
+          "transliteration": "baaraka allaahu feeki. kullu 3aamin wa anti bikhayr.",
+          "english": "God bless you. May you be well every year."
+        },
+        {
+          "speaker": "Dana",
+          "arabic": "مَبْرُوكٌ عَلَى التَّرْقِيَة.",
+          "transliteration": "mabrookun 3alaa at-tarqiya.",
+          "english": "Congratulations on the promotion."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "شُكْرًا لَكِ. أَسْعَدَكِ اللهُ.",
+          "transliteration": "shukran laki. as3adaki allaahu.",
+          "english": "Thank you. May God make you happy."
+        },
+        {
+          "speaker": "Dana",
+          "arabic": "غَدًا عِيدُ مِيلَادِ أُخْتِي.",
+          "transliteration": "ghadan 3eedu meelaadi ukhtee.",
+          "english": "Tomorrow is my sister's birthday."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "عِيدُ مِيلَادٍ سَعِيد لَهَا مِنِّي.",
+          "transliteration": "3eedu meelaadin sa3eed lahaa minnee.",
+          "english": "Happy birthday to her from me."
+        },
+        {
+          "speaker": "Dana",
+          "arabic": "شُكْرًا. وَمَتَى مَوْعِدُ الْإِفْطَارِ غَدًا؟",
+          "transliteration": "shukran. wa mataa maw3idu al-iftaari ghadan?",
+          "english": "Thanks. And what time is iftar tomorrow?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "بَعْدَ السَّادِسَةِ بِقَلِيل.",
+          "transliteration": "ba3da as-saadisati biqaleel.",
+          "english": "A little after six."
+        },
+        {
+          "speaker": "Dana",
+          "arabic": "تَقَبَّلَ اللهُ صِيَامَكَ.",
+          "transliteration": "taqabbala allaahu siyaamaka.",
+          "english": "May God accept your fasting."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "وَمِنْكِ. أَطَالَ اللهُ عُمُرَك.",
+          "transliteration": "wa minki. ataala allaahu 3umrak.",
+          "english": "And from you. May God lengthen your life."
+        }
+      ]
+    }
+  }
+}

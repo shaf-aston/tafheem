@@ -1,0 +1,876 @@
+{
+  "unit": "unit-02",
+  "dialect": "Fusha (Modern Standard Arabic)",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "q": "ق",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "family",
+          "arabic": "الْعَائِلَة",
+          "transliteration": "al-3aa2ila"
+        },
+        {
+          "slot": "my-mother",
+          "arabic": "أُمِّي",
+          "transliteration": "ummee"
+        },
+        {
+          "slot": "my-father",
+          "arabic": "أَبِي",
+          "transliteration": "abee"
+        },
+        {
+          "slot": "my-brother",
+          "arabic": "أَخِي",
+          "transliteration": "akhee"
+        },
+        {
+          "slot": "my-sister",
+          "arabic": "أُخْتِي",
+          "transliteration": "ukhtee"
+        },
+        {
+          "slot": "my-son",
+          "arabic": "اِبْنِي",
+          "transliteration": "ibnee"
+        },
+        {
+          "slot": "my-daughter",
+          "arabic": "اِبْنَتِي",
+          "transliteration": "ibnatee"
+        },
+        {
+          "slot": "my-husband",
+          "arabic": "زَوْجِي",
+          "transliteration": "zawjee"
+        },
+        {
+          "slot": "my-wife",
+          "arabic": "زَوْجَتِي",
+          "transliteration": "zawjatee"
+        },
+        {
+          "slot": "how-many-people-are-in-your-family-to-a-man",
+          "arabic": "كَمْ فَرْدًا فِي عَائِلَتِكَ؟",
+          "transliteration": "kam fardan fee 3aa2ilatika?",
+          "reply": {
+            "arabic": "فِي عَائِلَتِي خَمْسَةُ أَفْرَاد",
+            "transliteration": "fee 3aa2ilatee khamsatu afraad",
+            "english": "There are five people in my family."
+          }
+        },
+        {
+          "slot": "i-have-a-brother-and-two-sisters",
+          "arabic": "لِي أَخٌ وَأُخْتَان",
+          "transliteration": "lee akhun wa ukhtaan"
+        },
+        {
+          "slot": "are-you-married-to-a-man",
+          "arabic": "هَلْ أَنْتَ مُتَزَوِّج؟",
+          "transliteration": "hal anta mutazawwij?",
+          "reply": {
+            "arabic": "نَعَمْ، أَنَا مُتَزَوِّج",
+            "transliteration": "na3am, anaa mutazawwij",
+            "english": "Yes, I'm married."
+          }
+        },
+        {
+          "slot": "are-you-married-to-a-woman",
+          "arabic": "هَلْ أَنْتِ مُتَزَوِّجَة؟",
+          "transliteration": "hal anti mutazawwija?",
+          "reply": {
+            "arabic": "نَعَمْ، أَنَا مُتَزَوِّجَة",
+            "transliteration": "na3am, anaa mutazawwija",
+            "english": "Yes, I'm married."
+          }
+        },
+        {
+          "slot": "i-m-still-single-male-speaker",
+          "arabic": "مَا زِلْتُ أَعْزَب",
+          "transliteration": "maa ziltu a3zab"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Khalid",
+          "arabic": "كَمْ فَرْدًا فِي عَائِلَتِكِ يَا مُنَى؟",
+          "transliteration": "kam fardan fee 3aa2ilatiki yaa Munaa?",
+          "english": "How many people are in your family, Muna?"
+        },
+        {
+          "speaker": "Muna",
+          "arabic": "فِي عَائِلَتِي سِتَّةُ أَفْرَاد: أَبِي وَأُمِّي وَثَلَاثَةُ إِخْوَة وَأَنَا.",
+          "transliteration": "fee 3aa2ilatee sittatu afraad: abee wa ummee wa thalaathatu ikhwa wa anaa.",
+          "english": "There are six people in my family: my father, my mother, three brothers and me."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "لِي أَخٌ وَأُخْتَان.",
+          "transliteration": "lee akhun wa ukhtaan.",
+          "english": "I have a brother and two sisters."
+        },
+        {
+          "speaker": "Muna",
+          "arabic": "وَهَلْ أَنْتَ مُتَزَوِّج؟",
+          "transliteration": "wa hal anta mutazawwij?",
+          "english": "And are you married?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "لَا، مَا زِلْتُ أَعْزَب. وَأَنْتِ، هَلْ أَنْتِ مُتَزَوِّجَة؟",
+          "transliteration": "laa, maa ziltu a3zab. wa anti, hal anti mutazawwija?",
+          "english": "No, I'm still single. And you, are you married?"
+        },
+        {
+          "speaker": "Muna",
+          "arabic": "نَعَمْ، زَوْجِي مُهَنْدِس.",
+          "transliteration": "na3am, zawjee muhandis.",
+          "english": "Yes, my husband is an engineer."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "وَهَلْ لَدَيْكِ أَوْلَاد؟",
+          "transliteration": "wa hal ladayki awlaad?",
+          "english": "Do you have children?"
+        },
+        {
+          "speaker": "Muna",
+          "arabic": "نَعَمْ، لَدَيَّ اِبْنٌ وَاِبْنَة.",
+          "transliteration": "na3am, ladayya ibnun wa ibna.",
+          "english": "Yes, I have a son and a daughter."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "مَا شَاءَ اللَّه! مَا اسْمُ اِبْنِكِ؟",
+          "transliteration": "maa shaa2a allaah! maa ismu ibnik?",
+          "english": "Wonderful! What's your son's name?"
+        },
+        {
+          "speaker": "Muna",
+          "arabic": "اِسْمُهُ عُمَر، وَاِسْمُ اِبْنَتِي سَارَة.",
+          "transliteration": "ismuhu 3umar, wa ismu ibnatee Saara.",
+          "english": "His name is Omar, and my daughter's name is Sara."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "أَتَمَنَّى لَهُمْ كُلَّ الْخَيْر.",
+          "transliteration": "atamannaa lahum kulla al-khayr.",
+          "english": "I wish them all the best."
+        },
+        {
+          "speaker": "Muna",
+          "arabic": "شُكْرًا يَا خَالِد.",
+          "transliteration": "shukran yaa Khaalid.",
+          "english": "Thank you, Khalid."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كَمْ فَرْدًا فِي عَائِلَتِكَ؟",
+            "transliteration": "kam fardan fee 3aa2ilatika?",
+            "english": "How many people are in your family? (to a man)"
+          },
+          "response": {
+            "arabic": "فِي عَائِلَتِي خَمْسَةُ أَفْرَاد.",
+            "transliteration": "fee 3aa2ilatee khamsatu afraad.",
+            "english": "There are five people in my family."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ أَنْتِ مُتَزَوِّجَة؟",
+            "transliteration": "hal anti mutazawwija?",
+            "english": "Are you married? (to a woman)"
+          },
+          "response": {
+            "arabic": "نَعَمْ، زَوْجِي طَبِيب.",
+            "transliteration": "na3am, zawjee tabeeb.",
+            "english": "Yes, my husband is a doctor."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ لَكَ إِخْوَة؟",
+            "transliteration": "hal laka ikhwa?",
+            "english": "Do you have brothers and sisters? (to a man)"
+          },
+          "response": {
+            "arabic": "لِي أَخٌ وَأُخْتَان.",
+            "transliteration": "lee akhun wa ukhtaan.",
+            "english": "I have a brother and two sisters."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَنْ هَذِهِ؟",
+            "transliteration": "man haathihi?",
+            "english": "Who is this? (a woman)"
+          },
+          "response": {
+            "arabic": "هَذِهِ أُمِّي.",
+            "transliteration": "haathihi ummee.",
+            "english": "This is my mother."
+          }
+        }
+      ],
+      "culture": "In Fusha a family member is named with a possessive ending, so the ending ـِي means 'my' and أُمِّي is 'my mother'. Asking whether someone is married changes for a man and a woman, and it is polite to ask only once you know the person a little.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "A colleague asks you: 'هَلْ أَنْتَ مُتَزَوِّج؟' Say you are still single.",
+          "answer": "مَا زِلْتُ أَعْزَب",
+          "accepted": [
+            "مَا زِلْتُ أَعْزَب",
+            "ما زلت أعزب",
+            "maa ziltu a3zab"
+          ],
+          "too_formal": {
+            "item": "لِسَّا أَعْزَب",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مَا زِلْتُ means 'I am still'; add the state after it."
+        },
+        {
+          "id": "unit-02.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: 'كَمْ فَرْدًا فِي عَائِلَتِكَ؟' Say there are five.",
+          "answer": "فِي عَائِلَتِي خَمْسَةُ أَفْرَاد",
+          "accepted": [
+            "فِي عَائِلَتِي خَمْسَةُ أَفْرَاد",
+            "في عائلتي خمسة أفراد",
+            "fee 3aa2ilatee khamsatu afraad"
+          ],
+          "too_formal": {
+            "item": "إِحْنَا خَمْسَة فِي الْعَائِلَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "فَرْد is one person; أَفْرَاد is the plural."
+        },
+        {
+          "id": "unit-02.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'لِي أَخٌ وَ_____.' (I have a brother and two sisters.)",
+          "answer": "أُخْتَان",
+          "accepted": [
+            "أُخْتَان",
+            "أختان",
+            "ukhtaan"
+          ],
+          "too_formal": {
+            "item": "عِنْدِي أَخ وَأُخْتَيْن",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The ending ـَانِ marks exactly two."
+        },
+        {
+          "id": "unit-02.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَلْ أَنْتِ _____؟' (Are you married? to a woman)",
+          "answer": "مُتَزَوِّجَة",
+          "accepted": [
+            "مُتَزَوِّجَة",
+            "متزوجة",
+            "mutazawwija"
+          ],
+          "too_formal": {
+            "item": "إِنْتِي مُتْجَوِّزَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The ending ـَة makes the word feminine."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I have a son and a daughter.'",
+          "answer": "لَدَيَّ اِبْنٌ وَاِبْنَة",
+          "accepted": [
+            "لَدَيَّ اِبْنٌ وَاِبْنَة",
+            "لدي ابن وابنة",
+            "ladayya ibnun wa ibna"
+          ],
+          "too_formal": {
+            "item": "عِنْدِي وَلَد وَبِنْت",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَدَيَّ means 'I have', like لِي."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Are you married?' (to a woman)",
+          "answer": "هَلْ أَنْتِ مُتَزَوِّجَة؟",
+          "accepted": [
+            "هَلْ أَنْتِ مُتَزَوِّجَة؟",
+            "هل أنت متزوجة؟",
+            "hal anti mutazawwija?",
+            "هَلْ أَنْتِ مُتَزَوِّجَة",
+            "هل أنت متزوجة"
+          ],
+          "too_formal": {
+            "item": "إِنْتِي مُتْجَوِّزَة؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَلْ opens a yes-or-no question."
+        },
+        {
+          "id": "unit-02.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'my sister'?",
+          "options": [
+            "أُخْتِي",
+            "أَخِي",
+            "أُمِّي",
+            "اِبْنَتِي"
+          ],
+          "answer": "أُخْتِي",
+          "accepted": [
+            "أُخْتِي",
+            "أختي",
+            "ukhtee"
+          ],
+          "too_formal": {
+            "item": "أُخْتِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أُخْت is sister, أَخ is brother."
+        },
+        {
+          "id": "unit-02.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence asks a man whether he is married?",
+          "options": [
+            "هَلْ أَنْتَ مُتَزَوِّج؟",
+            "هَلْ أَنْتِ مُتَزَوِّجَة؟",
+            "كَمْ فَرْدًا فِي عَائِلَتِكَ؟",
+            "مَا زِلْتُ أَعْزَب"
+          ],
+          "answer": "هَلْ أَنْتَ مُتَزَوِّج؟",
+          "accepted": [
+            "هَلْ أَنْتَ مُتَزَوِّج؟",
+            "هل أنت متزوج؟",
+            "hal anta mutazawwij?",
+            "هَلْ أَنْتَ مُتَزَوِّج",
+            "هل أنت متزوج"
+          ],
+          "too_formal": {
+            "item": "إِنْتَ مُتْجَوِّز؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَنْتَ is for a man, أَنْتِ for a woman."
+        },
+        {
+          "id": "unit-02.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'أَنْتَ / مُتَزَوِّج / هَلْ'.",
+          "answer": "هَلْ أَنْتَ مُتَزَوِّج؟",
+          "accepted": [
+            "هَلْ أَنْتَ مُتَزَوِّج؟",
+            "هل أنت متزوج؟",
+            "hal anta mutazawwij?",
+            "هَلْ أَنْتَ مُتَزَوِّج",
+            "هل أنت متزوج"
+          ],
+          "too_formal": {
+            "item": "إِنْتَ مُتْجَوِّز؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَلْ always comes first."
+        },
+        {
+          "id": "unit-02.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'فِي / عَائِلَتِي / أَفْرَاد / خَمْسَةُ'.",
+          "answer": "فِي عَائِلَتِي خَمْسَةُ أَفْرَاد",
+          "accepted": [
+            "فِي عَائِلَتِي خَمْسَةُ أَفْرَاد",
+            "في عائلتي خمسة أفراد",
+            "fee 3aa2ilatee khamsatu afraad"
+          ],
+          "too_formal": {
+            "item": "إِحْنَا خَمْسَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Start with فِي عَائِلَتِي, 'in my family'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "hungry-male-speaker",
+          "arabic": "أَنَا جَائِع",
+          "transliteration": "anaa jaa2i3"
+        },
+        {
+          "slot": "hungry-female-speaker",
+          "arabic": "أَنَا جَائِعَة",
+          "transliteration": "anaa jaa2i3a"
+        },
+        {
+          "slot": "thirsty-male-speaker",
+          "arabic": "أَنَا عَطْشَان",
+          "transliteration": "anaa 3atshaan"
+        },
+        {
+          "slot": "i-want-to-eat",
+          "arabic": "أُرِيدُ أَنْ آكُل",
+          "transliteration": "ureedu an aakul"
+        },
+        {
+          "slot": "i-want-to-drink-water",
+          "arabic": "أُرِيدُ أَنْ أَشْرَبَ الْمَاء",
+          "transliteration": "ureedu an ashraba al-maa2"
+        },
+        {
+          "slot": "what-do-you-like-to-eat",
+          "arabic": "مَاذَا تُحِبُّ أَنْ تَأْكُل؟",
+          "transliteration": "maathaa tu7ibbu an ta2kul?",
+          "reply": {
+            "arabic": "أُحِبُّ الْفَلَافِل",
+            "transliteration": "u7ibbu al-falaafil",
+            "english": "I like falafel."
+          }
+        },
+        {
+          "slot": "i-like-falafel",
+          "arabic": "أُحِبُّ الْفَلَافِل",
+          "transliteration": "u7ibbu al-falaafil"
+        },
+        {
+          "slot": "coffee",
+          "arabic": "قَهْوَة",
+          "transliteration": "qahwa"
+        },
+        {
+          "slot": "tea",
+          "arabic": "شَاي",
+          "transliteration": "shaay"
+        },
+        {
+          "slot": "the-bill-please",
+          "arabic": "الْحِسَابَ مِنْ فَضْلِكَ",
+          "transliteration": "al-7isaaba min fadlika"
+        },
+        {
+          "slot": "how-much-is-the-bill",
+          "arabic": "كَمْ هُوَ الْحِسَاب؟",
+          "transliteration": "kam huwa al-7isaab?",
+          "reply": {
+            "arabic": "الْحِسَاب خَمْسُونَ رِيَال",
+            "transliteration": "al-7isaab khamsoona riyaal",
+            "english": "The bill is fifty riyals."
+          }
+        },
+        {
+          "slot": "to-your-health-said-to-someone-after-they-finish",
+          "arabic": "صِحَّةً وَعَافِيَة",
+          "transliteration": "si77atan wa 3aafiya"
+        },
+        {
+          "slot": "enjoy-your-meal-said-to-someone-while-they-are-e",
+          "arabic": "هَنِيئًا مَرِيئًا",
+          "transliteration": "hanee2an maree2an",
+          "reply": {
+            "arabic": "شُكْرًا، تَفَضَّلْ مَعَنَا",
+            "transliteration": "shukran, tafaddal ma3anaa",
+            "english": "Thank you, join us."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Nora",
+          "arabic": "أَنَا جَائِعَة جِدًّا.",
+          "transliteration": "anaa jaa2i3a jiddan.",
+          "english": "I'm very hungry."
+        },
+        {
+          "speaker": "Adel",
+          "arabic": "وَأَنَا أَيْضًا. أُرِيدُ أَنْ آكُل.",
+          "transliteration": "wa anaa aydan. ureedu an aakul.",
+          "english": "Me too. I want to eat."
+        },
+        {
+          "speaker": "Jamal",
+          "arabic": "أَهْلًا وَسَهْلًا. مَاذَا تُرِيدُون؟",
+          "transliteration": "ahlan wa sahlan. maathaa tureedoon?",
+          "english": "Welcome. What would you like?"
+        },
+        {
+          "speaker": "Adel",
+          "arabic": "أُحِبُّ الْفَلَافِل. وَمَاذَا تُحِبِّين يَا نُورَة؟",
+          "transliteration": "u7ibbu al-falaafil. wa maathaa tu7ibbeen yaa Noora?",
+          "english": "I like falafel. And what do you like, Nora?"
+        },
+        {
+          "speaker": "Nora",
+          "arabic": "أُرِيدُ الدَّجَاجَ مَعَ الْأَرُز.",
+          "transliteration": "ureedu ad-dajaaja ma3a al-aruzz.",
+          "english": "I want chicken with rice."
+        },
+        {
+          "speaker": "Jamal",
+          "arabic": "وَمَاذَا تَشْرَبُون؟",
+          "transliteration": "wa maathaa tashraboon?",
+          "english": "And what will you drink?"
+        },
+        {
+          "speaker": "Nora",
+          "arabic": "أَنَا عَطْشَانَة. أُرِيدُ أَنْ أَشْرَبَ الْمَاء.",
+          "transliteration": "anaa 3atshaana. ureedu an ashraba al-maa2.",
+          "english": "I'm thirsty. I want to drink water."
+        },
+        {
+          "speaker": "Adel",
+          "arabic": "وَأَنَا أُرِيدُ قَهْوَة.",
+          "transliteration": "wa anaa ureedu qahwa.",
+          "english": "And I want coffee."
+        },
+        {
+          "speaker": "Jamal",
+          "arabic": "حَاضِر. تَفَضَّلُوا، هَنِيئًا مَرِيئًا.",
+          "transliteration": "7aadir. tafaddaloo, hanee2an maree2an.",
+          "english": "Right away. Here you are, enjoy your meal."
+        },
+        {
+          "speaker": "Adel",
+          "arabic": "شُكْرًا. تَفَضَّلْ مَعَنَا.",
+          "transliteration": "shukran. tafaddal ma3anaa.",
+          "english": "Thank you. Join us."
+        },
+        {
+          "speaker": "Adel",
+          "arabic": "الْحِسَابَ مِنْ فَضْلِكَ.",
+          "transliteration": "al-7isaaba min fadlika.",
+          "english": "The bill, please."
+        },
+        {
+          "speaker": "Jamal",
+          "arabic": "الْحِسَاب خَمْسُونَ رِيَال.",
+          "transliteration": "al-7isaab khamsoona riyaal.",
+          "english": "The bill is fifty riyals."
+        },
+        {
+          "speaker": "Nora",
+          "arabic": "صِحَّةً وَعَافِيَة.",
+          "transliteration": "si77atan wa 3aafiya.",
+          "english": "To your health."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مَاذَا تُحِبُّ أَنْ تَأْكُل؟",
+            "transliteration": "maathaa tu7ibbu an ta2kul?",
+            "english": "What do you like to eat?"
+          },
+          "response": {
+            "arabic": "أُحِبُّ الْفَلَافِل.",
+            "transliteration": "u7ibbu al-falaafil.",
+            "english": "I like falafel."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ أَنْتَ جَائِع؟",
+            "transliteration": "hal anta jaa2i3?",
+            "english": "Are you hungry?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، أَنَا جَائِع جِدًّا.",
+            "transliteration": "na3am, anaa jaa2i3 jiddan.",
+            "english": "Yes, I'm very hungry."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَمْ هُوَ الْحِسَاب؟",
+            "transliteration": "kam huwa al-7isaab?",
+            "english": "How much is the bill?"
+          },
+          "response": {
+            "arabic": "الْحِسَاب خَمْسُونَ رِيَال.",
+            "transliteration": "al-7isaab khamsoona riyaal.",
+            "english": "The bill is fifty riyals."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَنِيئًا مَرِيئًا.",
+            "transliteration": "hanee2an maree2an.",
+            "english": "Enjoy your meal."
+          },
+          "response": {
+            "arabic": "شُكْرًا، تَفَضَّلْ مَعَنَا.",
+            "transliteration": "shukran, tafaddal ma3anaa.",
+            "english": "Thank you, join us."
+          }
+        }
+      ],
+      "culture": "In Fusha people say هَنِيئًا مَرِيئًا to someone who is eating and صِحَّةً وَعَافِيَة after a drink, and the host often answers تَفَضَّلْ مَعَنَا, an invitation to join. Sharing food is a sign of hospitality across the Arab world.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "A waiter asks: 'مَاذَا تُحِبُّ أَنْ تَأْكُل؟' Say you like falafel.",
+          "answer": "أُحِبُّ الْفَلَافِل",
+          "accepted": [
+            "أُحِبُّ الْفَلَافِل",
+            "أحب الفلافل",
+            "u7ibbu al-falaafil"
+          ],
+          "too_formal": {
+            "item": "بْحِبّ الْفَلَافِل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أُحِبُّ means 'I like'; the food follows it."
+        },
+        {
+          "id": "unit-02.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "Someone starts eating near you. Wish them a good meal.",
+          "answer": "هَنِيئًا مَرِيئًا",
+          "accepted": [
+            "هَنِيئًا مَرِيئًا",
+            "هنيئا مريئا",
+            "hanee2an maree2an"
+          ],
+          "too_formal": {
+            "item": "بِالْهَنَا وَالشِّفَا",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "It is said to a person while they eat."
+        },
+        {
+          "id": "unit-02.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أُرِيدُ أَنْ _____ الْمَاء.' (I want to drink water.)",
+          "answer": "أَشْرَبَ",
+          "accepted": [
+            "أَشْرَبَ",
+            "أشرب",
+            "ashraba"
+          ],
+          "too_formal": {
+            "item": "بَدِّي أَشْرَب الْمَيّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "After أَنْ the verb ends with a fatha sound."
+        },
+        {
+          "id": "unit-02.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَنَا _____ جِدًّا.' (I'm very hungry, a woman speaking.)",
+          "answer": "جَائِعَة",
+          "accepted": [
+            "جَائِعَة",
+            "جائعة",
+            "jaa2i3a"
+          ],
+          "too_formal": {
+            "item": "أَنَا جُوعَانَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The ending ـَة makes the word feminine."
+        },
+        {
+          "id": "unit-02.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'The bill, please.'",
+          "answer": "الْحِسَابَ مِنْ فَضْلِكَ",
+          "accepted": [
+            "الْحِسَابَ مِنْ فَضْلِكَ",
+            "الحساب من فضلك",
+            "al-7isaaba min fadlika"
+          ],
+          "too_formal": {
+            "item": "جِيب الْحِسَاب",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مِنْ فَضْلِكَ means 'please'."
+        },
+        {
+          "id": "unit-02.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I want to eat.'",
+          "answer": "أُرِيدُ أَنْ آكُل",
+          "accepted": [
+            "أُرِيدُ أَنْ آكُل",
+            "أريد أن آكل",
+            "ureedu an aakul"
+          ],
+          "too_formal": {
+            "item": "بَدِّي آكُل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أُرِيدُ أَنْ is 'I want to'."
+        },
+        {
+          "id": "unit-02.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'thirsty' (said by a man)?",
+          "options": [
+            "عَطْشَان",
+            "جَائِع",
+            "قَهْوَة",
+            "شَاي"
+          ],
+          "answer": "عَطْشَان",
+          "accepted": [
+            "عَطْشَان",
+            "عطشان",
+            "3atshaan"
+          ],
+          "too_formal": {
+            "item": "عَطْشَان",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عَطْشَان is thirsty; جَائِع is hungry."
+        },
+        {
+          "id": "unit-02.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "What do you say to someone who has just finished drinking?",
+          "options": [
+            "صِحَّةً وَعَافِيَة",
+            "هَنِيئًا مَرِيئًا",
+            "الْحِسَابَ مِنْ فَضْلِكَ",
+            "مَرْحَبًا"
+          ],
+          "answer": "صِحَّةً وَعَافِيَة",
+          "accepted": [
+            "صِحَّةً وَعَافِيَة",
+            "صحة وعافية",
+            "si77atan wa 3aafiya"
+          ],
+          "too_formal": {
+            "item": "صَحْتَيْن",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَنِيئًا مَرِيئًا is for someone still eating."
+        },
+        {
+          "id": "unit-02.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'أَنْ / أُرِيدُ / آكُل'.",
+          "answer": "أُرِيدُ أَنْ آكُل",
+          "accepted": [
+            "أُرِيدُ أَنْ آكُل",
+            "أريد أن آكل",
+            "ureedu an aakul"
+          ],
+          "too_formal": {
+            "item": "بَدِّي آكُل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Start with أُرِيدُ, 'I want'."
+        },
+        {
+          "id": "unit-02.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'هُوَ / كَمْ / الْحِسَاب'.",
+          "answer": "كَمْ هُوَ الْحِسَاب؟",
+          "accepted": [
+            "كَمْ هُوَ الْحِسَاب؟",
+            "كم هو الحساب؟",
+            "kam huwa al-7isaab?",
+            "كَمْ هُوَ الْحِسَاب",
+            "كم هو الحساب"
+          ],
+          "too_formal": {
+            "item": "قَدِّيش الْحِسَاب؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "كَمْ, 'how much', opens the question."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "A family meal",
+    "instructions": "Write a short conversation in Fusha in which two people talk about their families over a meal, say what they like to eat and drink, and ask for the bill.",
+    "required_elements": [
+      "how many people are in each family",
+      "a brother or sister and whether one is married",
+      "hungry or thirsty",
+      "what each person likes to eat",
+      "a drink ordered",
+      "a wish for a good meal",
+      "the bill asked for and its price"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Hind",
+          "arabic": "كَمْ فَرْدًا فِي عَائِلَتِكَ يَا فَهْد؟",
+          "transliteration": "kam fardan fee 3aa2ilatika yaa Fahd?",
+          "english": "How many people are in your family, Fahd?"
+        },
+        {
+          "speaker": "Fahd",
+          "arabic": "فِي عَائِلَتِي أَرْبَعَةُ أَفْرَاد. لِي أُخْتٌ وَاحِدَة، وَهِيَ مُتَزَوِّجَة.",
+          "transliteration": "fee 3aa2ilatee arba3atu afraad. lee ukhtun waa7ida, wa hiya mutazawwija.",
+          "english": "There are four people in my family. I have one sister, and she is married."
+        },
+        {
+          "speaker": "Hind",
+          "arabic": "أَنَا جَائِعَة. مَاذَا تُحِبُّ أَنْ تَأْكُل؟",
+          "transliteration": "anaa jaa2i3a. maathaa tu7ibbu an ta2kul?",
+          "english": "I'm hungry. What do you like to eat?"
+        },
+        {
+          "speaker": "Fahd",
+          "arabic": "أُحِبُّ الْفَلَافِل، وَأُرِيدُ أَنْ أَشْرَبَ شَاي.",
+          "transliteration": "u7ibbu al-falaafil, wa ureedu an ashraba shaay.",
+          "english": "I like falafel, and I want to drink tea."
+        },
+        {
+          "speaker": "Hind",
+          "arabic": "وَأَنَا أُرِيدُ قَهْوَة.",
+          "transliteration": "wa anaa ureedu qahwa.",
+          "english": "And I want coffee."
+        },
+        {
+          "speaker": "Fahd",
+          "arabic": "هَنِيئًا مَرِيئًا.",
+          "transliteration": "hanee2an maree2an.",
+          "english": "Enjoy your meal."
+        },
+        {
+          "speaker": "Hind",
+          "arabic": "شُكْرًا، تَفَضَّلْ مَعَنَا. الْحِسَابَ مِنْ فَضْلِكَ.",
+          "transliteration": "shukran, tafaddal ma3anaa. al-7isaaba min fadlika.",
+          "english": "Thank you, join us. The bill, please."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "الْحِسَاب ثَلَاثُونَ رِيَال.",
+          "transliteration": "al-7isaab thalaathoona riyaal.",
+          "english": "The bill is thirty riyals."
+        }
+      ]
+    }
+  }
+}

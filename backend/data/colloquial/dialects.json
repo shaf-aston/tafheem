@@ -2,6 +2,14 @@
   "_about": "Every spoken dialect the Colloquial tab offers. A dialect is a folder of unit files beside this one, nothing more: adding one is a folder and a line here, with no code change anywhere.",
   "dialects": [
     {
+      "key": "fusha",
+      "folder": "fusha",
+      "label": "Fusha",
+      "arabic": "الفصحى",
+      "where": "Modern Standard Arabic, the written and formal language shared by every country",
+      "order": 0
+    },
+    {
       "key": "damascene",
       "folder": "damascene",
       "label": "Damascene",

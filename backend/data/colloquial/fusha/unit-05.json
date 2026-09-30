@@ -1,0 +1,637 @@
+{
+  "unit": "unit-05",
+  "dialect": "Fusha (Modern Standard Arabic)",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "q": "ق",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        { "slot": "taxi", "arabic": "سَيَّارَة أُجْرَة!", "transliteration": "sayyaarat ujra!" },
+        { "slot": "please-i-want-to-go-to-old-damascus", "arabic": "مِنْ فَضْلِكَ، أُرِيدُ الذَّهَابَ إِلَى دِمَشْقَ الْقَدِيمَة", "transliteration": "min fadlika, ureedu adh-dhahaaba ilaa Dimashqa al-qadeema" },
+        { "slot": "can-you-take-me-to-bab-touma", "arabic": "هَلْ تَسْتَطِيعُ أَنْ تُوصِلَنِي إِلَى بَابِ تُومَا؟", "transliteration": "hal tastatee3u an tuwsilanee ilaa baabi Toomaa?" },
+        { "slot": "turn-on-the-meter-please", "arabic": "شَغِّلِ الْعَدَّاد، مِنْ فَضْلِكَ", "transliteration": "shaghghili al-3addaad, min fadlika" },
+        { "slot": "how-much-is-the-fare-to-here", "arabic": "كَمِ الْأُجْرَةُ إِلَى هُنَا؟", "transliteration": "kami al-ujratu ilaa hunaa?" },
+        { "slot": "stop-right-here", "arabic": "قِفْ هُنَا تَمَام", "transliteration": "qif hunaa tamaam" },
+        { "slot": "keep-to-your-right", "arabic": "اِبْقَ عَلَى الْيَمِين", "transliteration": "ibqa 3alaa al-yameen" },
+        { "slot": "straight-ahead-to-the-end-of-the-street", "arabic": "اِسْتَمِرَّ إِلَى نِهَايَةِ الشَّارِع", "transliteration": "istamirra ilaa nihaayati ash-shaari3" },
+        { "slot": "here-is-fine-stop", "arabic": "هُنَا جَيِّد، تَوَقَّفْ", "transliteration": "hunaa jayyid, tawaqqaf" },
+        { "slot": "keep-the-change", "arabic": "الْبَاقِي لَكَ", "transliteration": "al-baaqee laka" },
+        { "slot": "is-there-a-taxi-nearby-here", "arabic": "هَلْ تُوجَدُ سَيَّارَة أُجْرَة قَرِيبَة مِنْ هُنَا؟", "transliteration": "hal toojadu sayyaara ujra qareeba min hunaa?" },
+        { "slot": "i-don-t-have-change-sorry", "arabic": "لَيْسَ مَعِي نُقُود صَغِيرَة، آسِف", "transliteration": "laysa ma3ee nuqood sagheera, aasif" }
+      ],
+      "dialogue": [
+        { "speaker": "Rami", "arabic": "لَوْ سَمَحْتَ، هَلْ تُوجَدُ سَيَّارَة أُجْرَة قَرِيبَة مِنْ هُنَا؟", "transliteration": "law samahta, hal toojadu sayyaara ujra qareeba min hunaa?", "english": "Excuse me, is there a taxi nearby?" },
+        { "speaker": "Passer-by", "arabic": "نَعَمْ، هُنَاكَ وَاحِدَة عِنْدَ الْإِشَارَة.", "transliteration": "na3am, hunaaka waa7ida 3inda al-ishaara.", "english": "Yes, there is one at the traffic light." },
+        { "speaker": "Rami", "arabic": "سَيَّارَة أُجْرَة! مِنْ فَضْلِكَ، أُرِيدُ الذَّهَابَ إِلَى دِمَشْقَ الْقَدِيمَة.", "transliteration": "sayyaarat ujra! min fadlika, ureedu adh-dhahaaba ilaa Dimashqa al-qadeema.", "english": "Taxi! Please, I want to go to Old Damascus." },
+        { "speaker": "Driver", "arabic": "تَفَضَّلْ، اِرْكَبْ.", "transliteration": "tafaddal, irkab.", "english": "Go ahead, get in." },
+        { "speaker": "Rami", "arabic": "هَلْ تَسْتَطِيعُ أَنْ تُوصِلَنِي إِلَى بَابِ تُومَا؟", "transliteration": "hal tastatee3u an tuwsilanee ilaa baabi Toomaa?", "english": "Can you take me to Bab Touma?" },
+        { "speaker": "Driver", "arabic": "طَبْعًا. سَنَصِلُ خِلَالَ عَشْرِ دَقَائِق.", "transliteration": "tab3an. sanasilu khilaala 3ashri daqaa2iq.", "english": "Of course. We will arrive within ten minutes." },
+        { "speaker": "Rami", "arabic": "شَغِّلِ الْعَدَّاد، مِنْ فَضْلِكَ.", "transliteration": "shaghghili al-3addaad, min fadlika.", "english": "Turn on the meter please." },
+        { "speaker": "Driver", "arabic": "حَاضِر، الْعَدَّاد يَعْمَلُ.", "transliteration": "7aadir, al-3addaadu ya3malu.", "english": "Certainly, the meter is running." },
+        { "speaker": "Rami", "arabic": "اِسْتَمِرَّ إِلَى نِهَايَةِ الشَّارِع، ثُمَّ اِبْقَ عَلَى الْيَمِين.", "transliteration": "istamirra ilaa nihaayati ash-shaari3, thumma ibqa 3alaa al-yameen.", "english": "Go straight to the end of the street, then keep to the right." },
+        { "speaker": "Driver", "arabic": "حَسَنًا. هُنَا؟", "transliteration": "7asanan. hunaa?", "english": "Fine. Here?" },
+        { "speaker": "Rami", "arabic": "نَعَمْ، هُنَا جَيِّد، تَوَقَّفْ. كَمِ الْأُجْرَة؟", "transliteration": "na3am, hunaa jayyid, tawaqqaf. kami al-ujra?", "english": "Yes, here is fine, stop. How much is the fare?" },
+        { "speaker": "Driver", "arabic": "أَلْف وَخَمْسُمِئَة لِيرَة.", "transliteration": "alf wa khamsumi2at leera.", "english": "One thousand five hundred pounds." },
+        { "speaker": "Rami", "arabic": "تَفَضَّلْ، وَالْبَاقِي لَكَ.", "transliteration": "tafaddal, wal-baaqee laka.", "english": "Here you are, and keep the change." }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "أَيْنَ تُرِيدُ أَنْ تَذْهَب؟", "transliteration": "ayna tureedu an tadh-hab?", "english": "Where do you want to go?" },
+          "response": { "arabic": "أُرِيدُ الذَّهَابَ إِلَى بَابِ تُومَا.", "transliteration": "ureedu adh-dhahaaba ilaa baabi Toomaa.", "english": "I want to go to Bab Touma." }
+        },
+        {
+          "pair": { "arabic": "كَمِ الْأُجْرَةُ إِلَى هُنَا؟", "transliteration": "kami al-ujratu ilaa hunaa?", "english": "How much is the fare to here?" },
+          "response": { "arabic": "أَلْف لِيرَة.", "transliteration": "alf leera.", "english": "One thousand pounds." }
+        },
+        {
+          "pair": { "arabic": "شَغِّلِ الْعَدَّاد، مِنْ فَضْلِكَ.", "transliteration": "shaghghili al-3addaad, min fadlika.", "english": "Turn on the meter please." },
+          "response": { "arabic": "حَاضِر.", "transliteration": "7aadir.", "english": "Certainly." }
+        },
+        {
+          "pair": { "arabic": "هُنَا جَيِّد، تَوَقَّفْ.", "transliteration": "hunaa jayyid, tawaqqaf.", "english": "Here is fine, stop." },
+          "response": { "arabic": "حَسَنًا، وَصَلْنَا.", "transliteration": "7asanan, wasalnaa.", "english": "Fine, we have arrived." }
+        }
+      ],
+      "culture": "Taxis in Fusha-speaking cities are hailed with a raised hand and the destination is stated before you get in. Agree on the meter or the price first, and round the fare up with الْبَاقِي لَكَ if the ride was good.",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "You get in a taxi and the driver asks where to. Say you want to go to Old Damascus.",
+          "answer": "أُرِيدُ الذَّهَابَ إِلَى دِمَشْقَ الْقَدِيمَة",
+          "accepted": ["أُرِيدُ الذَّهَابَ إِلَى دِمَشْقَ الْقَدِيمَة", "أريد الذهاب إلى دمشق القديمة", "أريد الذهاب الى دمشق القديمة", "ureedu adh-dhahaaba ilaa Dimashqa al-qadeema"],
+          "too_formal": { "item": "بَدِّي رُوح عَ الشَّام الْقَدِيمَة", "feedback": "spoken, not Fusha" },
+          "tip": "أُرِيدُ الذَّهَابَ إِلَى means 'I want to go to'."
+        },
+        {
+          "id": "unit-05.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "The driver says: 'وَصَلْنَا. أَلْف لِيرَة.' Pay and tell him to keep the change.",
+          "answer": "تَفَضَّلْ، وَالْبَاقِي لَكَ",
+          "accepted": ["تَفَضَّلْ، وَالْبَاقِي لَكَ", "تفضل، والباقي لك", "الْبَاقِي لَكَ", "tafaddal, wal-baaqee laka"],
+          "too_formal": { "item": "خَلِّيهُن إِلَك", "feedback": "spoken, not Fusha" },
+          "tip": "الْبَاقِي is 'the rest', the change."
+        },
+        {
+          "id": "unit-05.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'شَغِّلِ _____، مِنْ فَضْلِكَ.' (Turn on the meter please.)",
+          "answer": "الْعَدَّاد",
+          "accepted": ["الْعَدَّاد", "العداد", "al-3addaad"],
+          "too_formal": { "item": "شَغِّل الْعَدَّاد", "feedback": "spoken, not Fusha" },
+          "tip": "الْعَدَّاد is the taxi meter."
+        },
+        {
+          "id": "unit-05.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'اِسْتَمِرَّ إِلَى _____ الشَّارِع.' (Go straight to the end of the street.)",
+          "answer": "نِهَايَةِ",
+          "accepted": ["نِهَايَةِ", "نهاية", "nihaayati"],
+          "too_formal": { "item": "آخِر", "feedback": "spoken, not Fusha" },
+          "tip": "نِهَايَة means 'end'."
+        },
+        {
+          "id": "unit-05.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Stop right here.'",
+          "answer": "قِفْ هُنَا تَمَام",
+          "accepted": ["قِفْ هُنَا تَمَام", "قف هنا تماما", "قف هنا تمام", "qif hunaa tamaam"],
+          "too_formal": { "item": "وَقِّف هَون", "feedback": "spoken, not Fusha" },
+          "tip": "قِفْ is the command 'stop' to one person."
+        },
+        {
+          "id": "unit-05.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'How much is the fare to here?'",
+          "answer": "كَمِ الْأُجْرَةُ إِلَى هُنَا؟",
+          "accepted": ["كَمِ الْأُجْرَةُ إِلَى هُنَا؟", "كم الأجرة إلى هنا؟", "كم الاجرة الى هنا", "kami al-ujratu ilaa hunaa?"],
+          "too_formal": { "item": "قَدَّيْش الْأُجْرَة لَهَون؟", "feedback": "spoken, not Fusha" },
+          "tip": "الْأُجْرَة is the fare."
+        },
+        {
+          "id": "unit-05.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'Keep to your right.'?",
+          "options": ["اِبْقَ عَلَى الْيَمِين", "اِبْقَ عَلَى الْيَسَار", "قِفْ هُنَا تَمَام", "اِسْتَمِرَّ إِلَى نِهَايَةِ الشَّارِع"],
+          "answer": "اِبْقَ عَلَى الْيَمِين",
+          "accepted": ["اِبْقَ عَلَى الْيَمِين", "ابق على اليمين", "ibqa 3alaa al-yameen", "اِبْقَ عَلَى الْيَمِينِ"],
+          "too_formal": { "item": "خَلِّيك عَ اليَمِين", "feedback": "spoken, not Fusha" },
+          "tip": "الْيَمِين is right and الْيَسَار is left."
+        },
+        {
+          "id": "unit-05.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "You have no small money. What do you say?",
+          "options": ["لَيْسَ مَعِي نُقُود صَغِيرَة، آسِف", "الْبَاقِي لَكَ", "شَغِّلِ الْعَدَّاد", "هُنَا جَيِّد، تَوَقَّفْ"],
+          "answer": "لَيْسَ مَعِي نُقُود صَغِيرَة، آسِف",
+          "accepted": ["لَيْسَ مَعِي نُقُود صَغِيرَة، آسِف", "ليس معي نقود صغيرة، آسف", "laysa ma3ee nuqood sagheera, aasif", "ليس معي نقود صغيرة"],
+          "too_formal": { "item": "مَا مَعِي فَكَّة، سُورِي", "feedback": "spoken, not Fusha" },
+          "tip": "لَيْسَ مَعِي means 'I do not have with me'."
+        },
+        {
+          "id": "unit-05.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'مِنْ فَضْلِكَ، / الْعَدَّاد، / شَغِّلِ'.",
+          "words": ["شَغِّلِ", "الْعَدَّاد،", "مِنْ فَضْلِكَ"],
+          "answer": "شَغِّلِ الْعَدَّاد، مِنْ فَضْلِكَ",
+          "accepted": ["شَغِّلِ الْعَدَّاد، مِنْ فَضْلِكَ", "شغل العداد، من فضلك", "شغل العداد من فضلك", "shaghghili al-3addaad, min fadlika"],
+          "too_formal": { "item": "شَغِّل الْعَدَّاد لَوْ سَمَحْت", "feedback": "spoken, not Fusha" },
+          "tip": "The command comes first and the polite ending last."
+        },
+        {
+          "id": "unit-05.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'هُنَا / تَوَقَّفْ / جَيِّد،'.",
+          "words": ["هُنَا", "جَيِّد،", "تَوَقَّفْ"],
+          "answer": "هُنَا جَيِّد، تَوَقَّفْ",
+          "accepted": ["هُنَا جَيِّد، تَوَقَّفْ", "هنا جيد، توقف", "هنا جيد توقف", "hunaa jayyid, tawaqqaf"],
+          "too_formal": { "item": "هَون تَمَام، وَقِّف", "feedback": "spoken, not Fusha" },
+          "tip": "Say where, say it is fine, then tell him to stop."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        { "slot": "excuse-me-where-is-the-pharmacy", "arabic": "لَوْ سَمَحْتَ، أَيْنَ الصَّيْدَلِيَّة؟", "transliteration": "law samahta, ayna as-saydaliyya?" },
+        { "slot": "straight-ahead", "arabic": "إِلَى الْأَمَامِ مُبَاشَرَة", "transliteration": "ilaa al-amaami mubaashara" },
+        { "slot": "turn-right-at-the-traffic-light", "arabic": "اِنْعَطِفْ يَمِينًا عِنْدَ الْإِشَارَة", "transliteration": "in3atif yameenan 3inda al-ishaara" },
+        { "slot": "turn-left-after-the-mosque", "arabic": "اِنْعَطِفْ يَسَارًا بَعْدَ الْمَسْجِد", "transliteration": "in3atif yasaaran ba3da al-masjid" },
+        { "slot": "is-it-far-or-near", "arabic": "هَلْ هُوَ بَعِيد أَمْ قَرِيب؟", "transliteration": "hal huwa ba3eed am qareeb?" },
+        { "slot": "how-far-is-it-from-here", "arabic": "كَمْ يَبْعُدُ مِنْ هُنَا؟", "transliteration": "kam yab3udu min hunaa?" },
+        { "slot": "i-m-lost-can-you-help-me", "arabic": "أَنَا تَائِه، هَلْ يُمْكِنُكَ مُسَاعَدَتِي؟", "transliteration": "anaa taa2ih, hal yumkinuka musaa3adatee?" },
+        { "slot": "okay-first-alley-on-your-right", "arabic": "حَسَنًا، أَوَّلُ زُقَاق عَلَى يَمِينِكَ", "transliteration": "7asanan, awwalu zuqaaq 3alaa yameenika" },
+        { "slot": "walk-straight-until-the-end-of-the-market", "arabic": "اِمْشِ مُبَاشَرَةً حَتَّى نِهَايَةِ السُّوق", "transliteration": "imshi mubaasharatan 7attaa nihaayati as-sooq" },
+        { "slot": "this-street-is-closed", "arabic": "هَذَا الشَّارِعُ مُغْلَق", "transliteration": "haadha ash-shaari3u mughlaq" },
+        { "slot": "from-where-do-i-get-to-the-umayyad-mosque", "arabic": "مِنْ أَيْنَ أَصِلُ إِلَى الْجَامِعِ الْأُمَوِيّ؟", "transliteration": "min ayna asilu ilaa al-jaami3i al-umawee?" },
+        { "slot": "thanks-a-lot", "arabic": "شُكْرًا جَزِيلًا", "transliteration": "shukran jazeelan" }
+      ],
+      "dialogue": [
+        { "speaker": "Lina", "arabic": "لَوْ سَمَحْتَ، أَيْنَ الصَّيْدَلِيَّة؟", "transliteration": "law samahta, ayna as-saydaliyya?", "english": "Excuse me, where is the pharmacy?" },
+        { "speaker": "Passer-by", "arabic": "إِلَى الْأَمَامِ مُبَاشَرَة، ثُمَّ اِنْعَطِفْ يَمِينًا عِنْدَ الْإِشَارَة.", "transliteration": "ilaa al-amaami mubaashara, thumma in3atif yameenan 3inda al-ishaara.", "english": "Straight ahead, then turn right at the traffic light." },
+        { "speaker": "Lina", "arabic": "هَلْ هِيَ بَعِيدَة أَمْ قَرِيبَة؟", "transliteration": "hal hiya ba3eeda am qareeba?", "english": "Is it far or near?" },
+        { "speaker": "Passer-by", "arabic": "قَرِيبَة. خَمْسُ دَقَائِق سَيْرًا عَلَى الْأَقْدَام.", "transliteration": "qareeba. khamsu daqaa2iq sayran 3alaa al-aqdaam.", "english": "Near. Five minutes on foot." },
+        { "speaker": "Lina", "arabic": "شُكْرًا جَزِيلًا. وَأَنَا أَيْضًا أَبْحَثُ عَنِ الْجَامِعِ الْأُمَوِيّ.", "transliteration": "shukran jazeelan. wa anaa aydan abhathu 3ani al-jaami3i al-umawee.", "english": "Thanks a lot. I am also looking for the Umayyad Mosque." },
+        { "speaker": "Lina", "arabic": "مِنْ أَيْنَ أَصِلُ إِلَى الْجَامِعِ الْأُمَوِيّ؟", "transliteration": "min ayna asilu ilaa al-jaami3i al-umawee?", "english": "From where do I get to the Umayyad Mosque?" },
+        { "speaker": "Passer-by", "arabic": "اِمْشِ مُبَاشَرَةً حَتَّى نِهَايَةِ السُّوق.", "transliteration": "imshi mubaasharatan 7attaa nihaayati as-sooq.", "english": "Walk straight until the end of the market." },
+        { "speaker": "Lina", "arabic": "وَبَعْدَ ذَلِكَ؟", "transliteration": "wa ba3da dhaalika?", "english": "And after that?" },
+        { "speaker": "Passer-by", "arabic": "اِنْعَطِفْ يَسَارًا بَعْدَ الْمَسْجِد. أَوَّلُ زُقَاق عَلَى يَمِينِكَ.", "transliteration": "in3atif yasaaran ba3da al-masjid. awwalu zuqaaq 3alaa yameenika.", "english": "Turn left after the mosque. The first alley is on your right." },
+        { "speaker": "Lina", "arabic": "حَسَنًا. وَلَكِنَّ هَذَا الشَّارِعَ مُغْلَق.", "transliteration": "7asanan. wa lakinna haadha ash-shaari3a mughlaq.", "english": "Okay. But this street is closed." },
+        { "speaker": "Passer-by", "arabic": "آسِف. إِذَنْ اِمْشِ مِنَ الطَّرِيقِ الْآخَر.", "transliteration": "aasif. idhan imshi mina at-tareeqi al-aakhar.", "english": "Sorry. Then walk by the other road." },
+        { "speaker": "Lina", "arabic": "أَنَا تَائِه، هَلْ يُمْكِنُكَ مُسَاعَدَتِي؟ شُكْرًا جَزِيلًا.", "transliteration": "anaa taa2ih, hal yumkinuka musaa3adatee? shukran jazeelan.", "english": "I'm lost, can you help me? Thanks a lot." }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "لَوْ سَمَحْتَ، أَيْنَ الصَّيْدَلِيَّة؟", "transliteration": "law samahta, ayna as-saydaliyya?", "english": "Excuse me, where is the pharmacy?" },
+          "response": { "arabic": "إِلَى الْأَمَامِ مُبَاشَرَة.", "transliteration": "ilaa al-amaami mubaashara.", "english": "Straight ahead." }
+        },
+        {
+          "pair": { "arabic": "هَلْ هُوَ بَعِيد أَمْ قَرِيب؟", "transliteration": "hal huwa ba3eed am qareeb?", "english": "Is it far or near?" },
+          "response": { "arabic": "قَرِيب، خَمْسُ دَقَائِق.", "transliteration": "qareeb, khamsu daqaa2iq.", "english": "Near, five minutes." }
+        },
+        {
+          "pair": { "arabic": "أَنَا تَائِه، هَلْ يُمْكِنُكَ مُسَاعَدَتِي؟", "transliteration": "anaa taa2ih, hal yumkinuka musaa3adatee?", "english": "I'm lost, can you help me?" },
+          "response": { "arabic": "طَبْعًا، إِلَى أَيْنَ تُرِيدُ أَنْ تَذْهَب؟", "transliteration": "tab3an, ilaa ayna tureedu an tadh-hab?", "english": "Of course, where do you want to go?" }
+        },
+        {
+          "pair": { "arabic": "شُكْرًا جَزِيلًا.", "transliteration": "shukran jazeelan.", "english": "Thanks a lot." },
+          "response": { "arabic": "عَفْوًا، لَا شُكْرَ عَلَى وَاجِب.", "transliteration": "3afwan, laa shukra 3alaa waajib.", "english": "You're welcome, no thanks needed." }
+        }
+      ],
+      "culture": "Strangers in Arabic-speaking cities will gladly stop to give directions, and often walk with you part of the way. Landmarks such as a mosque, a traffic light or the market are used more than street names.",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "You stop a passer-by. Ask where the pharmacy is.",
+          "answer": "لَوْ سَمَحْتَ، أَيْنَ الصَّيْدَلِيَّة؟",
+          "accepted": ["لَوْ سَمَحْتَ، أَيْنَ الصَّيْدَلِيَّة؟", "لو سمحت، أين الصيدلية؟", "أين الصيدلية؟", "law samahta, ayna as-saydaliyya?"],
+          "too_formal": { "item": "لَوْ سَمَحْت، وَيْن الصَّيْدَلِيَّة؟", "feedback": "spoken, not Fusha" },
+          "tip": "Open with لَوْ سَمَحْتَ, then the question word أَيْنَ."
+        },
+        {
+          "id": "unit-05.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "A stranger says: 'شُكْرًا جَزِيلًا'. Reply politely.",
+          "answer": "عَفْوًا، لَا شُكْرَ عَلَى وَاجِب",
+          "accepted": ["عَفْوًا، لَا شُكْرَ عَلَى وَاجِب", "عفوا، لا شكر على واجب", "عَفْوًا", "3afwan, laa shukra 3alaa waajib"],
+          "too_formal": { "item": "يَا عَمّ وَلَا يُهِمَّك", "feedback": "spoken, not Fusha" },
+          "tip": "عَفْوًا answers thanks; the longer form means 'no thanks for a duty'."
+        },
+        {
+          "id": "unit-05.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'اِنْعَطِفْ _____ عِنْدَ الْإِشَارَة.' (Turn right at the traffic light.)",
+          "answer": "يَمِينًا",
+          "accepted": ["يَمِينًا", "يمينا", "yameenan"],
+          "too_formal": { "item": "عَ اليَمِين", "feedback": "spoken, not Fusha" },
+          "tip": "يَمِينًا is 'to the right'; يَسَارًا is 'to the left'."
+        },
+        {
+          "id": "unit-05.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَلْ هُوَ بَعِيد _____ قَرِيب؟' (Is it far or near?)",
+          "answer": "أَمْ",
+          "accepted": ["أَمْ", "ام", "am"],
+          "too_formal": { "item": "وَلَّا", "feedback": "spoken, not Fusha" },
+          "tip": "أَمْ means 'or' between two choices in a question."
+        },
+        {
+          "id": "unit-05.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'This street is closed.'",
+          "answer": "هَذَا الشَّارِعُ مُغْلَق",
+          "accepted": ["هَذَا الشَّارِعُ مُغْلَق", "هذا الشارع مغلق", "haadha ash-shaari3u mughlaq", "هَذَا الشَّارِع مُغْلَق"],
+          "too_formal": { "item": "هَادَا الشَّارِع سَكْر", "feedback": "spoken, not Fusha" },
+          "tip": "مُغْلَق means 'closed'."
+        },
+        {
+          "id": "unit-05.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'How far is it from here?'",
+          "answer": "كَمْ يَبْعُدُ مِنْ هُنَا؟",
+          "accepted": ["كَمْ يَبْعُدُ مِنْ هُنَا؟", "كم يبعد من هنا؟", "كم يبعد من هنا", "kam yab3udu min hunaa?"],
+          "too_formal": { "item": "قَدَّيْش بَعِيد مِنْ هَون؟", "feedback": "spoken, not Fusha" },
+          "tip": "يَبْعُدُ means 'it is distant'."
+        },
+        {
+          "id": "unit-05.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'Straight ahead.'?",
+          "options": ["إِلَى الْأَمَامِ مُبَاشَرَة", "اِنْعَطِفْ يَسَارًا", "هَذَا الشَّارِعُ مُغْلَق", "كَمْ يَبْعُدُ مِنْ هُنَا؟"],
+          "answer": "إِلَى الْأَمَامِ مُبَاشَرَة",
+          "accepted": ["إِلَى الْأَمَامِ مُبَاشَرَة", "إلى الأمام مباشرة", "الى الامام مباشرة", "ilaa al-amaami mubaashara"],
+          "too_formal": { "item": "دُغْرِي", "feedback": "spoken, not Fusha" },
+          "tip": "الْأَمَام is 'the front'."
+        },
+        {
+          "id": "unit-05.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "You are lost. What do you say?",
+          "options": ["أَنَا تَائِه، هَلْ يُمْكِنُكَ مُسَاعَدَتِي؟", "شُكْرًا جَزِيلًا", "هَلْ هُوَ بَعِيد أَمْ قَرِيب؟", "اِمْشِ مُبَاشَرَةً"],
+          "answer": "أَنَا تَائِه، هَلْ يُمْكِنُكَ مُسَاعَدَتِي؟",
+          "accepted": ["أَنَا تَائِه، هَلْ يُمْكِنُكَ مُسَاعَدَتِي؟", "أنا تائه، هل يمكنك مساعدتي؟", "anaa taa2ih, hal yumkinuka musaa3adatee?", "أنا تائه هل يمكنك مساعدتي"],
+          "too_formal": { "item": "أَنَا ضَايِع، فِيك تِسَاعِدْنِي؟", "feedback": "spoken, not Fusha" },
+          "tip": "A woman says تَائِهَة for 'lost'."
+        },
+        {
+          "id": "unit-05.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'الْمَسْجِد / يَسَارًا / اِنْعَطِفْ / بَعْدَ'.",
+          "words": ["اِنْعَطِفْ", "يَسَارًا", "بَعْدَ", "الْمَسْجِد"],
+          "answer": "اِنْعَطِفْ يَسَارًا بَعْدَ الْمَسْجِد",
+          "accepted": ["اِنْعَطِفْ يَسَارًا بَعْدَ الْمَسْجِد", "انعطف يسارا بعد المسجد", "in3atif yasaaran ba3da al-masjid", "اِنْعَطِفْ يَسَارًا بَعْدَ الْمَسْجِدِ"],
+          "too_formal": { "item": "لُفّ شِمَال بَعْد الْجَامِع", "feedback": "spoken, not Fusha" },
+          "tip": "Verb, direction, then the landmark."
+        },
+        {
+          "id": "unit-05.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'السُّوق / اِمْشِ / نِهَايَةِ / حَتَّى'.",
+          "words": ["اِمْشِ", "حَتَّى", "نِهَايَةِ", "السُّوق"],
+          "answer": "اِمْشِ حَتَّى نِهَايَةِ السُّوق",
+          "accepted": ["اِمْشِ حَتَّى نِهَايَةِ السُّوق", "امش حتى نهاية السوق", "imshi 7attaa nihaayati as-sooq", "اِمْشِ مُبَاشَرَةً حَتَّى نِهَايَةِ السُّوق"],
+          "too_formal": { "item": "إِمْشِي دُغْرِي لَآخِر السُّوق", "feedback": "spoken, not Fusha" },
+          "tip": "حَتَّى means 'until'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        { "slot": "where-s-the-bus-stop", "arabic": "أَيْنَ مَوْقِفُ الْحَافِلَة؟", "transliteration": "ayna mawqifu al-7aafila?" },
+        { "slot": "does-this-bus-go-to-mazzeh", "arabic": "هَلْ تَذْهَبُ هَذِهِ الْحَافِلَة إِلَى الْمَزَّة؟", "transliteration": "hal tadh-habu haadhihi al-7aafila ilaa al-Mazza?" },
+        { "slot": "how-much-is-the-fare", "arabic": "كَمِ الْأُجْرَة؟", "transliteration": "kami al-ujra?" },
+        { "slot": "microbus-microbus", "arabic": "مِيكْرُوبَاص، مِيكْرُوبَاص!", "transliteration": "meekroobaas, meekroobaas!" },
+        { "slot": "is-there-an-empty-seat", "arabic": "هَلْ يُوجَدُ مَقْعَد فَارِغ؟", "transliteration": "hal yoojadu maq3ad faarigh?" },
+        { "slot": "do-you-stop-at-halbouni-roundabout", "arabic": "هَلْ تَتَوَقَّفُ عِنْدَ دَوَّارِ الْحَلْبُونِيّ؟", "transliteration": "hal tatawaqqafu 3inda dawwaari al-7alboonee?" },
+        { "slot": "please-let-me-off-here", "arabic": "أَنْزِلْنِي هُنَا، مِنْ فَضْلِكَ", "transliteration": "anzilnee hunaa, min fadlika" },
+        { "slot": "the-bus-is-very-crowded", "arabic": "الْحَافِلَة مُزْدَحِمَة جِدًّا", "transliteration": "al-7aafila muzda7ima jiddan" },
+        { "slot": "what-s-the-bus-number-to-the-university", "arabic": "مَا رَقْمُ الْحَافِلَة إِلَى الْجَامِعَة؟", "transliteration": "maa raqmu al-7aafila ilaa al-jaami3a?" },
+        { "slot": "it-comes-every-little-while", "arabic": "تَأْتِي كُلَّ فَتْرَة قَصِيرَة", "transliteration": "ta2tee kulla fatra qaseera" },
+        { "slot": "take-the-change-please", "arabic": "خُذِ الْبَاقِي، مِنْ فَضْلِكَ", "transliteration": "khudhi al-baaqee, min fadlika" },
+        { "slot": "the-next-bus-is-emptier-better", "arabic": "الْحَافِلَة التَّالِيَة أَقَلُّ زِحَامًا، أَفْضَل", "transliteration": "al-7aafila at-taaliya aqallu zi7aaman, afdal" }
+      ],
+      "dialogue": [
+        { "speaker": "Rami", "arabic": "لَوْ سَمَحْتَ، أَيْنَ مَوْقِفُ الْحَافِلَة؟", "transliteration": "law samahta, ayna mawqifu al-7aafila?", "english": "Excuse me, where is the bus stop?" },
+        { "speaker": "Passer-by", "arabic": "هُنَاكَ، أَمَامَ الْمَصْرِف.", "transliteration": "hunaaka, amaama al-masrif.", "english": "Over there, in front of the bank." },
+        { "speaker": "Rami", "arabic": "مَا رَقْمُ الْحَافِلَة إِلَى الْجَامِعَة؟", "transliteration": "maa raqmu al-7aafila ilaa al-jaami3a?", "english": "What's the bus number to the university?" },
+        { "speaker": "Passer-by", "arabic": "الرَّقْمُ اثْنَا عَشَر. تَأْتِي كُلَّ فَتْرَة قَصِيرَة.", "transliteration": "ar-raqmu ithnaa 3ashar. ta2tee kulla fatra qaseera.", "english": "Number twelve. It comes every little while." },
+        { "speaker": "Rami", "arabic": "هَلْ تَذْهَبُ هَذِهِ الْحَافِلَة إِلَى الْمَزَّة؟", "transliteration": "hal tadh-habu haadhihi al-7aafila ilaa al-Mazza?", "english": "Does this bus go to Mazzeh?" },
+        { "speaker": "Driver", "arabic": "نَعَمْ، اِصْعَدْ.", "transliteration": "na3am, is3ad.", "english": "Yes, get on." },
+        { "speaker": "Rami", "arabic": "كَمِ الْأُجْرَة؟", "transliteration": "kami al-ujra?", "english": "How much is the fare?" },
+        { "speaker": "Driver", "arabic": "مِئَة لِيرَة.", "transliteration": "mi2at leera.", "english": "One hundred pounds." },
+        { "speaker": "Rami", "arabic": "خُذِ الْبَاقِي، مِنْ فَضْلِكَ. الْحَافِلَة مُزْدَحِمَة جِدًّا.", "transliteration": "khudhi al-baaqee, min fadlika. al-7aafila muzda7ima jiddan.", "english": "Take the change please. The bus is very crowded." },
+        { "speaker": "Driver", "arabic": "نَعَمْ، الْحَافِلَة التَّالِيَة أَقَلُّ زِحَامًا، أَفْضَل.", "transliteration": "na3am, al-7aafila at-taaliya aqallu zi7aaman, afdal.", "english": "Yes, the next bus is emptier, better." },
+        { "speaker": "Rami", "arabic": "هَلْ يُوجَدُ مَقْعَد فَارِغ؟", "transliteration": "hal yoojadu maq3ad faarigh?", "english": "Is there an empty seat?" },
+        { "speaker": "Driver", "arabic": "نَعَمْ، فِي الْخَلْف. هَلْ تَتَوَقَّفُ عِنْدَ دَوَّارِ الْحَلْبُونِيّ؟ نَعَمْ، أَنْزِلْنِي هُنَاك.", "transliteration": "na3am, fee al-khalf. hal tatawaqqafu 3inda dawwaari al-7alboonee? na3am, anzilnee hunaak.", "english": "Yes, at the back. Do you stop at Halbouni roundabout? Yes, let me off there." }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "هَلْ تَذْهَبُ هَذِهِ الْحَافِلَة إِلَى الْمَزَّة؟", "transliteration": "hal tadh-habu haadhihi al-7aafila ilaa al-Mazza?", "english": "Does this bus go to Mazzeh?" },
+          "response": { "arabic": "نَعَمْ، اِصْعَدْ.", "transliteration": "na3am, is3ad.", "english": "Yes, get on." }
+        },
+        {
+          "pair": { "arabic": "كَمِ الْأُجْرَة؟", "transliteration": "kami al-ujra?", "english": "How much is the fare?" },
+          "response": { "arabic": "مِئَة لِيرَة.", "transliteration": "mi2at leera.", "english": "One hundred pounds." }
+        },
+        {
+          "pair": { "arabic": "هَلْ يُوجَدُ مَقْعَد فَارِغ؟", "transliteration": "hal yoojadu maq3ad faarigh?", "english": "Is there an empty seat?" },
+          "response": { "arabic": "نَعَمْ، فِي الْخَلْف.", "transliteration": "na3am, fee al-khalf.", "english": "Yes, at the back." }
+        },
+        {
+          "pair": { "arabic": "أَنْزِلْنِي هُنَا، مِنْ فَضْلِكَ.", "transliteration": "anzilnee hunaa, min fadlika.", "english": "Please let me off here." },
+          "response": { "arabic": "حَاضِر.", "transliteration": "7aadir.", "english": "Certainly." }
+        }
+      ],
+      "culture": "City buses and microbuses are cheap, busy and run on calling out your stop, so you tell the driver where to let you off. In the rush hour it is common to wait for the next one, which is almost always emptier.",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "You want to get off the bus. Ask the driver to let you off here.",
+          "answer": "أَنْزِلْنِي هُنَا، مِنْ فَضْلِكَ",
+          "accepted": ["أَنْزِلْنِي هُنَا، مِنْ فَضْلِكَ", "أنزلني هنا، من فضلك", "أنزلني هنا من فضلك", "anzilnee hunaa, min fadlika"],
+          "too_formal": { "item": "نَزِّلْنِي هَون لَوْ سَمَحْت", "feedback": "spoken, not Fusha" },
+          "tip": "أَنْزِلْنِي is 'let me down' and هُنَا is 'here'."
+        },
+        {
+          "id": "unit-05.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "The driver says: 'اِصْعَدْ'. Ask how much the fare is.",
+          "answer": "كَمِ الْأُجْرَة؟",
+          "accepted": ["كَمِ الْأُجْرَة؟", "كم الأجرة؟", "كم الاجرة", "kami al-ujra?"],
+          "too_formal": { "item": "قَدَّيْش الْأُجْرَة؟", "feedback": "spoken, not Fusha" },
+          "tip": "كَمِ asks 'how much' before a noun."
+        },
+        {
+          "id": "unit-05.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَيْنَ _____ الْحَافِلَة؟' (Where's the bus stop?)",
+          "answer": "مَوْقِفُ",
+          "accepted": ["مَوْقِفُ", "موقف", "mawqifu"],
+          "too_formal": { "item": "مَحَطَّة", "feedback": "spoken, not Fusha" },
+          "tip": "مَوْقِف is a stopping place."
+        },
+        {
+          "id": "unit-05.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'الْحَافِلَة مُزْدَحِمَة _____.' (The bus is very crowded.)",
+          "answer": "جِدًّا",
+          "accepted": ["جِدًّا", "جدا", "jiddan"],
+          "too_formal": { "item": "كَتِير", "feedback": "spoken, not Fusha" },
+          "tip": "جِدًّا means 'very' and comes after the word."
+        },
+        {
+          "id": "unit-05.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Is there an empty seat?'",
+          "answer": "هَلْ يُوجَدُ مَقْعَد فَارِغ؟",
+          "accepted": ["هَلْ يُوجَدُ مَقْعَد فَارِغ؟", "هل يوجد مقعد فارغ؟", "هل يوجد مقعد فارغ", "hal yoojadu maq3ad faarigh?"],
+          "too_formal": { "item": "فِي كُرْسِي فَاضِي؟", "feedback": "spoken, not Fusha" },
+          "tip": "فَارِغ is 'empty'."
+        },
+        {
+          "id": "unit-05.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'What's the bus number to the university?'",
+          "answer": "مَا رَقْمُ الْحَافِلَة إِلَى الْجَامِعَة؟",
+          "accepted": ["مَا رَقْمُ الْحَافِلَة إِلَى الْجَامِعَة؟", "ما رقم الحافلة إلى الجامعة؟", "ما رقم الحافلة الى الجامعة", "maa raqmu al-7aafila ilaa al-jaami3a?"],
+          "too_formal": { "item": "أَيّ بَاص بِيرُوح عَ الْجَامْعَة؟", "feedback": "spoken, not Fusha" },
+          "tip": "رَقْم is 'number'."
+        },
+        {
+          "id": "unit-05.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence asks whether the bus goes to Mazzeh?",
+          "options": ["هَلْ تَذْهَبُ هَذِهِ الْحَافِلَة إِلَى الْمَزَّة؟", "هَلْ يُوجَدُ مَقْعَد فَارِغ؟", "كَمِ الْأُجْرَة؟", "أَنْزِلْنِي هُنَا"],
+          "answer": "هَلْ تَذْهَبُ هَذِهِ الْحَافِلَة إِلَى الْمَزَّة؟",
+          "accepted": ["هَلْ تَذْهَبُ هَذِهِ الْحَافِلَة إِلَى الْمَزَّة؟", "هل تذهب هذه الحافلة إلى المزة؟", "hal tadh-habu haadhihi al-7aafila ilaa al-Mazza?", "هل تذهب هذه الحافلة الى المزة"],
+          "too_formal": { "item": "هَاد الْبَاص بِيرُوح عَ الْمَزَّة؟", "feedback": "spoken, not Fusha" },
+          "tip": "تَذْهَبُ is 'goes' for a feminine noun like الْحَافِلَة."
+        },
+        {
+          "id": "unit-05.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "The bus is packed. Which sentence says so?",
+          "options": ["الْحَافِلَة مُزْدَحِمَة جِدًّا", "الْحَافِلَة فَارِغَة", "تَأْتِي كُلَّ فَتْرَة قَصِيرَة", "خُذِ الْبَاقِي"],
+          "answer": "الْحَافِلَة مُزْدَحِمَة جِدًّا",
+          "accepted": ["الْحَافِلَة مُزْدَحِمَة جِدًّا", "الحافلة مزدحمة جدا", "al-7aafila muzda7ima jiddan", "الْحَافِلَة مُزْدَحِمَة"],
+          "too_formal": { "item": "الْبَاص مْعَبَّى كَتِير", "feedback": "spoken, not Fusha" },
+          "tip": "مُزْدَحِمَة means 'crowded'."
+        },
+        {
+          "id": "unit-05.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'مِنْ فَضْلِكَ / هُنَا، / أَنْزِلْنِي'.",
+          "words": ["أَنْزِلْنِي", "هُنَا،", "مِنْ فَضْلِكَ"],
+          "answer": "أَنْزِلْنِي هُنَا، مِنْ فَضْلِكَ",
+          "accepted": ["أَنْزِلْنِي هُنَا، مِنْ فَضْلِكَ", "أنزلني هنا، من فضلك", "أنزلني هنا من فضلك", "anzilnee hunaa, min fadlika"],
+          "too_formal": { "item": "نَزِّلْنِي هَون", "feedback": "spoken, not Fusha" },
+          "tip": "Request, place, then the polite ending."
+        },
+        {
+          "id": "unit-05.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'رَقْمُ / مَا / الْجَامِعَة؟ / الْحَافِلَة / إِلَى'.",
+          "words": ["مَا", "رَقْمُ", "الْحَافِلَة", "إِلَى", "الْجَامِعَة؟"],
+          "answer": "مَا رَقْمُ الْحَافِلَة إِلَى الْجَامِعَة؟",
+          "accepted": ["مَا رَقْمُ الْحَافِلَة إِلَى الْجَامِعَة؟", "ما رقم الحافلة إلى الجامعة؟", "ما رقم الحافلة الى الجامعة", "maa raqmu al-7aafila ilaa al-jaami3a?"],
+          "too_formal": { "item": "أَيّ بَاص لَلْجَامْعَة؟", "feedback": "spoken, not Fusha" },
+          "tip": "مَا opens the question, the destination closes it."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        { "slot": "the-market", "arabic": "السُّوق", "transliteration": "as-sooq" },
+        { "slot": "the-pharmacy", "arabic": "الصَّيْدَلِيَّة", "transliteration": "as-saydaliyya" },
+        { "slot": "the-mosque", "arabic": "الْمَسْجِد", "transliteration": "al-masjid" },
+        { "slot": "the-church", "arabic": "الْكَنِيسَة", "transliteration": "al-kaneesa" },
+        { "slot": "the-hospital", "arabic": "الْمُسْتَشْفَى", "transliteration": "al-mustashfaa" },
+        { "slot": "the-school", "arabic": "الْمَدْرَسَة", "transliteration": "al-madrasa" },
+        { "slot": "the-restaurant", "arabic": "الْمَطْعَم", "transliteration": "al-mat3am" },
+        { "slot": "the-bank", "arabic": "الْمَصْرِف", "transliteration": "al-masrif" },
+        { "slot": "the-park", "arabic": "الْحَدِيقَة", "transliteration": "al-7adeeqa" },
+        { "slot": "the-station", "arabic": "الْمَحَطَّة", "transliteration": "al-ma7atta" },
+        { "slot": "where-s-the-nearest-bank-from-here", "arabic": "أَيْنَ أَقْرَبُ مَصْرِف مِنْ هُنَا؟", "transliteration": "ayna aqrabu masrif min hunaa?" },
+        { "slot": "is-there-a-good-restaurant-in-the-area", "arabic": "هَلْ يُوجَدُ مَطْعَم جَيِّد فِي الْمِنْطَقَة؟", "transliteration": "hal yoojadu mat3am jayyid fee al-mintaqa?" }
+      ],
+      "dialogue": [
+        { "speaker": "Lina", "arabic": "لَوْ سَمَحْتَ، أَيْنَ أَقْرَبُ مَصْرِف مِنْ هُنَا؟", "transliteration": "law samahta, ayna aqrabu masrif min hunaa?", "english": "Excuse me, where's the nearest bank from here?" },
+        { "speaker": "Passer-by", "arabic": "الْمَصْرِف بِجَانِبِ الْمَحَطَّة.", "transliteration": "al-masrif bijaanibi al-ma7atta.", "english": "The bank is next to the station." },
+        { "speaker": "Lina", "arabic": "وَأَيْنَ الْمَحَطَّة؟", "transliteration": "wa ayna al-ma7atta?", "english": "And where is the station?" },
+        { "speaker": "Passer-by", "arabic": "أَمَامَ الْحَدِيقَة، قَرِيب مِنَ الْمُسْتَشْفَى.", "transliteration": "amaama al-7adeeqa, qareeb mina al-mustashfaa.", "english": "In front of the park, near the hospital." },
+        { "speaker": "Lina", "arabic": "شُكْرًا. وَهَلْ يُوجَدُ مَطْعَم جَيِّد فِي الْمِنْطَقَة؟", "transliteration": "shukran. wa hal yoojadu mat3am jayyid fee al-mintaqa?", "english": "Thanks. And is there a good restaurant in the area?" },
+        { "speaker": "Passer-by", "arabic": "نَعَمْ، بَعْدَ الْمَدْرَسَة عَلَى الْيَمِين.", "transliteration": "na3am, ba3da al-madrasa 3alaa al-yameen.", "english": "Yes, after the school on the right." },
+        { "speaker": "Lina", "arabic": "وَأَيْنَ الصَّيْدَلِيَّة؟ أُرِيدُ دَوَاءً.", "transliteration": "wa ayna as-saydaliyya? ureedu dawaa2an.", "english": "And where is the pharmacy? I need medicine." },
+        { "speaker": "Passer-by", "arabic": "بِجَانِبِ الْمَسْجِد، قُرْبَ السُّوق.", "transliteration": "bijaanibi al-masjid, qurba as-sooq.", "english": "Next to the mosque, near the market." },
+        { "speaker": "Lina", "arabic": "وَالْكَنِيسَة؟ صَدِيقَتِي تَنْتَظِرُنِي هُنَاك.", "transliteration": "wal-kaneesa? sadeeqatee tantaziruni hunaak.", "english": "And the church? My friend is waiting for me there." },
+        { "speaker": "Passer-by", "arabic": "فِي آخِرِ الشَّارِع، خَلْفَ الْمَدْرَسَة.", "transliteration": "fee aakhiri ash-shaari3, khalfa al-madrasa.", "english": "At the end of the street, behind the school." },
+        { "speaker": "Lina", "arabic": "شُكْرًا جَزِيلًا، الْمِنْطَقَة جَمِيلَة.", "transliteration": "shukran jazeelan, al-mintaqa jameela.", "english": "Thanks a lot, the area is lovely." }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "أَيْنَ أَقْرَبُ مَصْرِف مِنْ هُنَا؟", "transliteration": "ayna aqrabu masrif min hunaa?", "english": "Where's the nearest bank from here?" },
+          "response": { "arabic": "بِجَانِبِ الْمَحَطَّة.", "transliteration": "bijaanibi al-ma7atta.", "english": "Next to the station." }
+        },
+        {
+          "pair": { "arabic": "هَلْ يُوجَدُ مَطْعَم جَيِّد فِي الْمِنْطَقَة؟", "transliteration": "hal yoojadu mat3am jayyid fee al-mintaqa?", "english": "Is there a good restaurant in the area?" },
+          "response": { "arabic": "نَعَمْ، بَعْدَ الْمَدْرَسَة.", "transliteration": "na3am, ba3da al-madrasa.", "english": "Yes, after the school." }
+        },
+        {
+          "pair": { "arabic": "أَيْنَ الصَّيْدَلِيَّة؟", "transliteration": "ayna as-saydaliyya?", "english": "Where is the pharmacy?" },
+          "response": { "arabic": "قُرْبَ السُّوق.", "transliteration": "qurba as-sooq.", "english": "Near the market." }
+        },
+        {
+          "pair": { "arabic": "أَيْنَ الْمُسْتَشْفَى؟", "transliteration": "ayna al-mustashfaa?", "english": "Where is the hospital?" },
+          "response": { "arabic": "أَمَامَ الْحَدِيقَة.", "transliteration": "amaama al-7adeeqa.", "english": "In front of the park." }
+        }
+      ],
+      "culture": "When you ask for a place in Fusha, the answer gives a neighbour: next to, near, in front of, behind. Mosques, churches, schools and markets are the landmarks everyone shares.",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "You need money. Ask where the nearest bank is.",
+          "answer": "أَيْنَ أَقْرَبُ مَصْرِف مِنْ هُنَا؟",
+          "accepted": ["أَيْنَ أَقْرَبُ مَصْرِف مِنْ هُنَا؟", "أين أقرب مصرف من هنا؟", "أين أقرب مصرف من هنا", "ayna aqrabu masrif min hunaa?"],
+          "too_formal": { "item": "وَيْن أَقْرَب بَنْك لَهَون؟", "feedback": "spoken, not Fusha" },
+          "tip": "أَقْرَبُ means 'nearest'."
+        },
+        {
+          "id": "unit-05.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: 'أَيْنَ الْمُسْتَشْفَى؟'. Say it is in front of the park.",
+          "answer": "أَمَامَ الْحَدِيقَة",
+          "accepted": ["أَمَامَ الْحَدِيقَة", "أمام الحديقة", "amaama al-7adeeqa", "هُوَ أَمَامَ الْحَدِيقَة"],
+          "too_formal": { "item": "قُدَّام الْحَدِيقَة", "feedback": "spoken, not Fusha" },
+          "tip": "أَمَامَ means 'in front of'."
+        },
+        {
+          "id": "unit-05.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'الْمَصْرِف _____ الْمَحَطَّة.' (The bank is next to the station.)",
+          "answer": "بِجَانِبِ",
+          "accepted": ["بِجَانِبِ", "بجانب", "bijaanibi"],
+          "too_formal": { "item": "حَدّ", "feedback": "spoken, not Fusha" },
+          "tip": "بِجَانِبِ means 'beside'."
+        },
+        {
+          "id": "unit-05.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَلْ يُوجَدُ _____ جَيِّد فِي الْمِنْطَقَة؟' (Is there a good restaurant in the area?)",
+          "answer": "مَطْعَم",
+          "accepted": ["مَطْعَم", "مطعم", "mat3am"],
+          "too_formal": { "item": "رِسْتُورَان", "feedback": "spoken, not Fusha" },
+          "tip": "مَطْعَم is a place where you eat."
+        },
+        {
+          "id": "unit-05.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'the hospital'",
+          "answer": "الْمُسْتَشْفَى",
+          "accepted": ["الْمُسْتَشْفَى", "المستشفى", "al-mustashfaa", "الْمُسْتَشْفَىٰ"],
+          "too_formal": { "item": "الْمَشْفَى", "feedback": "spoken, not Fusha" },
+          "tip": "الْمُسْتَشْفَى comes from 'to seek a cure'."
+        },
+        {
+          "id": "unit-05.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Where is the pharmacy?'",
+          "answer": "أَيْنَ الصَّيْدَلِيَّة؟",
+          "accepted": ["أَيْنَ الصَّيْدَلِيَّة؟", "أين الصيدلية؟", "أين الصيدلية", "ayna as-saydaliyya?"],
+          "too_formal": { "item": "وَيْن الصَّيْدَلِيَّة؟", "feedback": "spoken, not Fusha" },
+          "tip": "أَيْنَ is 'where' and goes first."
+        },
+        {
+          "id": "unit-05.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'the mosque'?",
+          "options": ["الْمَسْجِد", "الْكَنِيسَة", "الْمَدْرَسَة", "الْمَحَطَّة"],
+          "answer": "الْمَسْجِد",
+          "accepted": ["الْمَسْجِد", "المسجد", "al-masjid", "مسجد"],
+          "too_formal": { "item": "الْجَامِع", "feedback": "spoken, not Fusha" },
+          "tip": "الْمَسْجِد is the place of prostration."
+        },
+        {
+          "id": "unit-05.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which word means 'the park'?",
+          "options": ["الْحَدِيقَة", "السُّوق", "الْمَصْرِف", "الْمَطْعَم"],
+          "answer": "الْحَدِيقَة",
+          "accepted": ["الْحَدِيقَة", "الحديقة", "al-7adeeqa", "حديقة"],
+          "too_formal": { "item": "الْجِنَيْنَة", "feedback": "spoken, not Fusha" },
+          "tip": "الْحَدِيقَة is a garden or park."
+        },
+        {
+          "id": "unit-05.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'مِنْ هُنَا؟ / أَيْنَ / مَصْرِف / أَقْرَبُ'.",
+          "words": ["أَيْنَ", "أَقْرَبُ", "مَصْرِف", "مِنْ هُنَا؟"],
+          "answer": "أَيْنَ أَقْرَبُ مَصْرِف مِنْ هُنَا؟",
+          "accepted": ["أَيْنَ أَقْرَبُ مَصْرِف مِنْ هُنَا؟", "أين أقرب مصرف من هنا؟", "أين أقرب مصرف من هنا", "ayna aqrabu masrif min hunaa?"],
+          "too_formal": { "item": "وَيْن أَقْرَب بَنْك مِنْ هَون؟", "feedback": "spoken, not Fusha" },
+          "tip": "Where, nearest, what, from here."
+        },
+        {
+          "id": "unit-05.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'فِي الْمِنْطَقَة؟ / هَلْ / مَطْعَم / يُوجَدُ / جَيِّد'.",
+          "words": ["هَلْ", "يُوجَدُ", "مَطْعَم", "جَيِّد", "فِي الْمِنْطَقَة؟"],
+          "answer": "هَلْ يُوجَدُ مَطْعَم جَيِّد فِي الْمِنْطَقَة؟",
+          "accepted": ["هَلْ يُوجَدُ مَطْعَم جَيِّد فِي الْمِنْطَقَة؟", "هل يوجد مطعم جيد في المنطقة؟", "هل يوجد مطعم جيد في المنطقة", "hal yoojadu mat3am jayyid fee al-mintaqa?"],
+          "too_formal": { "item": "فِي مَطْعَم كَوِيس بِالْمِنْطَقَة؟", "feedback": "spoken, not Fusha" },
+          "tip": "The adjective جَيِّد follows the noun it describes."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Finding your way",
+    "instructions": "Write a short conversation in Fusha in which you take a taxi to a place, ask a stranger for directions, ride a bus, and ask where a bank or restaurant is.",
+    "required_elements": [
+      "a taxi destination with مِنْ فَضْلِكَ",
+      "a question about the fare",
+      "directions using right, left or straight",
+      "a question about a bus or its stop",
+      "a place in town asked for by name",
+      "thanks and a reply to thanks"
+    ],
+    "model": {
+      "dialogue": [
+        { "speaker": "Rami", "arabic": "سَيَّارَة أُجْرَة! مِنْ فَضْلِكَ، أُرِيدُ الذَّهَابَ إِلَى بَابِ تُومَا.", "transliteration": "sayyaarat ujra! min fadlika, ureedu adh-dhahaaba ilaa baabi Toomaa.", "english": "Taxi! Please, I want to go to Bab Touma." },
+        { "speaker": "Driver", "arabic": "تَفَضَّلْ، اِرْكَبْ.", "transliteration": "tafaddal, irkab.", "english": "Go ahead, get in." },
+        { "speaker": "Rami", "arabic": "كَمِ الْأُجْرَةُ إِلَى هُنَا؟", "transliteration": "kami al-ujratu ilaa hunaa?", "english": "How much is the fare to here?" },
+        { "speaker": "Driver", "arabic": "أَلْف لِيرَة. هُنَا جَيِّد؟", "transliteration": "alf leera. hunaa jayyid?", "english": "One thousand pounds. Is here fine?" },
+        { "speaker": "Rami", "arabic": "نَعَمْ، تَوَقَّفْ. الْبَاقِي لَكَ.", "transliteration": "na3am, tawaqqaf. al-baaqee laka.", "english": "Yes, stop. Keep the change." },
+        { "speaker": "Rami", "arabic": "لَوْ سَمَحْتِ، أَيْنَ أَقْرَبُ مَصْرِف مِنْ هُنَا؟", "transliteration": "law samahti, ayna aqrabu masrif min hunaa?", "english": "Excuse me, where's the nearest bank from here?" },
+        { "speaker": "Lina", "arabic": "إِلَى الْأَمَامِ مُبَاشَرَة، ثُمَّ اِنْعَطِفْ يَسَارًا بَعْدَ الْمَسْجِد.", "transliteration": "ilaa al-amaami mubaashara, thumma in3atif yasaaran ba3da al-masjid.", "english": "Straight ahead, then turn left after the mosque." },
+        { "speaker": "Rami", "arabic": "هَلْ هُوَ بَعِيد أَمْ قَرِيب؟", "transliteration": "hal huwa ba3eed am qareeb?", "english": "Is it far or near?" },
+        { "speaker": "Lina", "arabic": "قَرِيب. وَهَلْ تُرِيدُ مَطْعَمًا جَيِّدًا أَيْضًا؟", "transliteration": "qareeb. wa hal tureedu mat3aman jayyidan aydan?", "english": "Near. Do you want a good restaurant too?" },
+        { "speaker": "Rami", "arabic": "نَعَمْ، وَأَيْنَ مَوْقِفُ الْحَافِلَة؟", "transliteration": "na3am, wa ayna mawqifu al-7aafila?", "english": "Yes, and where's the bus stop?" },
+        { "speaker": "Lina", "arabic": "أَمَامَ الْمَحَطَّة. الْحَافِلَة تَأْتِي كُلَّ فَتْرَة قَصِيرَة.", "transliteration": "amaama al-ma7atta. al-7aafila ta2tee kulla fatra qaseera.", "english": "In front of the station. The bus comes every little while." },
+        { "speaker": "Rami", "arabic": "شُكْرًا جَزِيلًا.", "transliteration": "shukran jazeelan.", "english": "Thanks a lot." },
+        { "speaker": "Lina", "arabic": "عَفْوًا، لَا شُكْرَ عَلَى وَاجِب.", "transliteration": "3afwan, laa shukra 3alaa waajib.", "english": "You're welcome, no thanks needed." }
+      ]
+    }
+  }
+}
