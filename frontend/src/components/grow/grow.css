@@ -143,10 +143,10 @@ button.grow-node:active { transform: translateY(2px); }
 .grow-tag { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); white-space: nowrap; }
 
 .grow-row { position: relative; z-index: var(--layer-raised); display: flex; align-items: flex-start; scroll-margin-top: 130px; }
-.grow-cell { position: relative; z-index: calc(var(--layer-raised) + 1); flex: none; width: var(--cw); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 0 40px; }
+.grow-cell { position: relative; z-index: calc(var(--layer-raised) + 1); flex: none; width: var(--cw); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 0 40px; min-height: 174px; box-sizing: border-box; }
 /* A label sits on the vine, so a halo of the plate colour hides the stem behind it: the stem never runs through the words. */
 .grow-gl { position: relative; z-index: 1; text-shadow: 0 0 3px var(--surface), 0 0 6px var(--surface), 0 0 10px var(--surface); }
-.grow-gl { font-size: var(--type-small); font-weight: 800; text-align: center; line-height: 1.25; max-width: var(--cw); color: var(--text); overflow-wrap: anywhere; }
+.grow-gl { max-width: calc(var(--cw) + 20px); font-size: var(--type-small); font-weight: 800; text-align: center; line-height: 1.25; color: var(--text); overflow-wrap: anywhere; }
 .grow-gl-ar { display: block; color: var(--text-dim); font-weight: 400; }
 .grow-row[data-now] .grow-gl { color: var(--c); }
 
@@ -228,7 +228,7 @@ button.grow-node:active { transform: translateY(2px); }
   to { translate: calc(-50% + var(--dx, 0px)) calc(-50% + var(--dy, 0px)); scale: 0.06; opacity: 0; }
 }
 .grow-sh-top { display: flex; align-items: center; gap: 10px; }
-.grow-sh-top h3 { font-size: var(--type-body); font-weight: 800; flex: 1; color: var(--text); }
+.grow-sh-top h2 { font-size: var(--type-body); font-weight: 800; flex: 1; color: var(--text); }
 .grow-x { width: 44px; height: 44px; border-radius: 50%; background: var(--surface-hi); display: grid; place-items: center; font-size: 1.2rem; color: var(--text-dim); }
 .grow-chip { display: inline-block; font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 9px; border-radius: 999px; background: var(--surface-hi); color: var(--text-dim); margin: 6px 0 0; }
 .grow-chip-done { background: var(--c); color: var(--bg); }
@@ -295,4 +295,11 @@ button.grow-node:active { transform: translateY(2px); }
   .grow-row-open .grow-twig path, .grow-row-open .grow-lane .grow-nw, .grow-row-open .grow-lane .grow-lbl,
   .grow-u3 .grow-cell, .grow-go .grow-fan i { transition-delay: 0s; animation-delay: 0s; }
   .grow-pulse::after { animation: none; }
+}
+
+/* The card's disclosure and links are full-size touch targets. */
+.grow-sheet summary, .grow-sheet a { min-height: 44px; display: inline-flex; align-items: center; }
+/* On a phone the branch scrolls: its right edge fades to show there is more. */
+@media (max-width: 480px) {
+  .grow-lane { mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
 }
