@@ -168,14 +168,28 @@ def is_verb(token: dict) -> bool:
         return True
     # the word is unknown to the morphology, but the reader typed a passive present verb
     typed = token.get("typed") or ""
-    return (token.get("pos_camel") == "noun_prop" and bare_letters(typed)[:1] in PRESENT_PREFIX
-            and typed_passive(typed, True))
+    return token.get("pos_camel") == "noun_prop" and (
+        (bare_letters(typed)[:1] in PRESENT_PREFIX and typed_passive(typed, True))
+        or past_passive_shape(typed))
+
+
+def past_passive_shape(word: str) -> bool:
+    """فُعِلَ by its vowels alone: damma first, a kasra inside, fatha or sukun last
+    (قُرِئَ، سُئِلَ، بُنِيَ، قُرِئَتْ). For a word the morphology could only call a name."""
+    marked = _letters(word)
+    if len(marked) < 3 or "ُ" not in marked[0][1] or marked[0][0] == "ا":
+        return False
+    last = marked[-1][1]
+    return any("ِ" in marks for _, marks in marked[1:-1]) and (
+        "َ" in last or SUKUN in last or marked[-1][0] == "ت")
 
 
 def is_passive(token: dict) -> bool:
     if token.get("vox") == "p":
         return True
-    return typed_passive(token.get("typed"), token.get("asp") == "i" or not token["pos"].startswith("VRB"))
+    typed = token.get("typed")
+    present = token.get("asp") == "i" or not (token["pos"].startswith("VRB") or past_passive_shape(typed))
+    return typed_passive(typed, present)
 
 
 def _is_plain_noun(token: dict) -> bool:

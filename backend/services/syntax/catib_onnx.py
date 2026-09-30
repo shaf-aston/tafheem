@@ -42,10 +42,11 @@ import onnxruntime as ort  # must precede camel_tools (Windows DLL load-order bu
 import numpy as np
 from tokenizers import Tokenizer
 
+from backend.services.arabic_text import bare_letters
 from backend.config import data_path, get_settings
 from backend.services.syntax import decode
 from backend.services.syntax.mask import book_mask
-from backend.services.syntax.naming import agrees_with_typed, typed_case
+from backend.services.syntax.naming import agrees_with_typed, past_passive_shape, typed_case
 
 logger = logging.getLogger(__name__)
 
@@ -284,6 +285,14 @@ def _reading(word: str, readings: list[dict]) -> dict:
         return {"pos": "", "lex": word}
     agreeing = [r for r in readings if "NOAN" not in r.get("atbtok", "")
                 and agrees_with_typed(word, r.get("diac", ""))]
+    # فُعِلَ by its vowels is a passive verb and nothing else: no noun is typed so
+    # (أُكِلَ is not the noun آكِل, بُنِيَ is not بُن + ي)
+    # The analyser often offers only the active verb of the same letters; the
+    # naming layer then reads the passive from the vowels, as it does for بُعْثِرَ.
+    verbs = [r for r in readings
+             if r.get("pos") == "verb" and bare_letters(r.get("diac", "")) == bare_letters(word)]
+    if past_passive_shape(word) and verbs:
+        return verbs[0]
     return agreeing[0] if agreeing else readings[0]
 
 

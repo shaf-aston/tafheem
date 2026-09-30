@@ -83,6 +83,9 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
         return rule_result
     named = 0
     for entry, found in zip(entries, parser_roles):
+        if not found["role"] and not found.get("gap") and (
+                why := teacher.fallback_gap(entry.get("role"), found["case"])):
+            found = {**found, "gap": why}  # the rule engine's name clashes with the typed vowel
         if found.get("gap"):
             # the teacher caught the parser's name breaking a rule; the rule engine's
             # guess must not stand in for it, so the card shows the no-role dash and why

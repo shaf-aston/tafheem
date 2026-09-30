@@ -11,10 +11,10 @@ gives, live in data/nahw_rules/teacher.json.
 """
 from __future__ import annotations
 
-from backend.services.arabic_text import bare_letters
+from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import is_one, teacher
 from backend.services.syntax.naming import (
-    base_tokens, family_of, is_passive, is_verb, takes_tamyeez, typed_case)
+    CASE_NAME, base_tokens, family_of, is_passive, is_verb, takes_tamyeez, typed_case)
 
 DOERS = ("فاعل", "نائب فاعل")
 SUBJECTS = ("مبتدأ", "اسم كان", "اسم إن", "اسم كاد")
@@ -133,3 +133,17 @@ def review(words: list[str], tokens: list[dict], found: list[dict]) -> list[dict
             roles = [None if i in caught else role for i, role in enumerate(roles)]
     return [{**entry, "role": None, "gap": {"ar": rules[caught[i]]["ar"], "en": rules[caught[i]]["en"]}}
             if i in caught else entry for i, entry in enumerate(found)]
+
+
+def fallback_gap(role: str | None, case: str | None) -> dict | None:
+    """The same typed-vowel check for a name the rule engine supplied where naming had
+    none: the teacher never saw that role, so a typed fatha on a "mubtada" slipped by.
+    `case` is the ending as the card prints it (raf' / nasb / jarr)."""
+    cases = teacher()["case_of_role"]
+    plain = strip_diacritics(role or "").split(" (")[0].strip()
+    typed = next((k for k, v in CASE_NAME.items() if v == case), None)
+    wanted = next((k for k in "uai" if plain in cases[k]), None)
+    if not (typed and wanted) or typed == wanted:
+        return None
+    rule = teacher()["checks"]["typed_case_fits_role"]
+    return {"ar": rule["ar"], "en": rule["en"]} if rule["on"] else None

@@ -82,3 +82,16 @@ def test_indefinite_participle_after_a_verb_with_its_doer_is_hal_a_plain_noun_is
 def test_tamyeez_al_nisba_follows_its_verbs_only():
     assert after_doer("هواء", participle=False, verb_lemma="طاب") == "تمييز"
     assert after_doer("هواء", participle=False, verb_lemma="أكل") == "مفعول به"
+
+
+def test_past_passive_shape_is_read_from_the_vowels_alone():
+    for word in ("قُرِئَ", "قُرِئَتِ", "سُئِلَ", "بُنِيَ", "أُكِلَ", "ضُرِبَ"):
+        assert naming.past_passive_shape(word)
+    for word in ("كَتَبَ", "الْكِتَابُ", "قُرَيْشٌ", "كتب"):  # active, a noun, a name, bare
+        assert not naming.past_passive_shape(word)
+
+
+def test_a_word_the_morphology_calls_a_name_is_still_a_passive_verb_by_its_vowels():
+    toks = [token(1, "NOAN", "قرئ", "PROP", 0, "---", pos_camel="noun_prop"),
+            token(2, "الكتاب", "كتاب", "NOM", 1, "OBJ", stt="d", cas="n")]
+    assert roles(["قُرِئَ", "الْكِتَابُ"], toks) == ["فعل", "نائب فاعل"]

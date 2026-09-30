@@ -127,3 +127,11 @@ def test_a_gap_reaches_the_picture_as_a_dashed_leaf_with_the_reason_to_hover():
     assert leaf["detail"] == (f'{config()["checks"]["typed_case_fits_role"]["ar"]} · '
                               f'{config()["checks"]["typed_case_fits_role"]["en"]}')
     assert drawn["coverage"] < 1.0
+
+
+def test_a_name_the_rule_engine_supplied_is_held_to_the_typed_vowel_too():
+    # naming had no name; the rule engine said mubtada, the reader typed a fatha
+    assert teacher.fallback_gap("مبتدأ (مرفوع)", "nasb")["ar"]
+    assert teacher.fallback_gap("مبتدأ", "raf'") is None
+    assert teacher.fallback_gap("مبتدأ", None) is None  # bare: nothing to contradict
+    assert teacher.fallback_gap("حرف", "nasb") is None  # not a case-bearing role
