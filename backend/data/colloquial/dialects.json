@@ -8,6 +8,46 @@
       "arabic": "الشامي",
       "where": "Damascus and the Syrian south",
       "order": 1
+    },
+    {
+      "key": "egyptian",
+      "folder": "egyptian",
+      "label": "Egyptian",
+      "arabic": "المصري",
+      "where": "Cairo and the Nile Delta",
+      "order": 2
+    },
+    {
+      "key": "lebanese",
+      "folder": "lebanese",
+      "label": "Lebanese",
+      "arabic": "اللبناني",
+      "where": "Beirut and the Lebanese coast",
+      "order": 3
+    },
+    {
+      "key": "gulf",
+      "folder": "gulf",
+      "label": "Gulf",
+      "arabic": "الخليجي",
+      "where": "The UAE, Kuwait and the Arabian Gulf",
+      "order": 4
+    },
+    {
+      "key": "iraqi",
+      "folder": "iraqi",
+      "label": "Iraqi",
+      "arabic": "العراقي",
+      "where": "Baghdad and central Iraq",
+      "order": 5
+    },
+    {
+      "key": "moroccan",
+      "folder": "moroccan",
+      "label": "Moroccan",
+      "arabic": "المغربي",
+      "where": "Casablanca, Rabat and Morocco",
+      "order": 6
     }
   ]
 }
