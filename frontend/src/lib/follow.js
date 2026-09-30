@@ -300,12 +300,12 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
 }
 
 /**
- * The marks, with the ear's sureness weighed in at the reader's checking level.
+ * The marks, with the ear's sureness weighed in.
  *
  * `sure` holds, per page word, how likely the ear found that word in the sound
  * (0 to 1). Lining up words compares letters only, so it passes a word said
  * with the wrong vowel and fails a right word the ear wrote down wrong.
- * Sureness is judged on sound, and the level in recite.json says how far to
+ * Sureness is judged on sound, and recite.json's sure-at says how far to
  * trust it either way. A waiting word stays waiting.
  *
  * Two things this will not do, both of them a lie the page used to tell
@@ -324,21 +324,18 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
  * said right: a wrong vowel has the same letters, and the transcript cannot see
  * it. Measured on 390 marked recordings heard by Groq, at 0.9 this caught
  * 58% of vowel slips where needing the transcript to miss too caught 16%, for
- * 3.3% of right words marked against 2.0%; standard now sits at 0.95 (backend/scripts/sweep_sureness.py).
+ * 3.3% of right words marked against 2.0%; it now sits at 0.95 (backend/scripts/sweep_sureness.py).
  */
-export const bySound = (marks, sure, level) => {
-  const rule = config.levels[level] ?? config.levels.standard
+export const bySound = (marks, sure) => {
+  const sureAt = config['sure-at']
   const words = marks.words.map((mark, i) => {
     const s = sure[i]
     if (mark.state === WAITING || mark.state === SAID) {
       if (s == null || mark.state === WAITING) return mark
-      if (s < rule['flag-below']) return { ...mark, state: WRONG, heard: '' }
-      return s < rule['doubt-below'] ? { ...mark, state: CHECK, heard: '' } : mark
+      return s < sureAt ? { ...mark, state: WRONG, heard: '' } : mark
     }
     if (s == null) return { ...mark, state: CHECK, heard: '' }
-    if (s >= rule['pass-sure']) return { ...mark, state: SAID, heard: '' }
-    if (s < rule['flag-below']) return mark
-    return { ...mark, state: CHECK, heard: '' }
+    return s >= sureAt ? { ...mark, state: SAID, heard: '' } : mark
   })
   return { ...marks, words }
 }

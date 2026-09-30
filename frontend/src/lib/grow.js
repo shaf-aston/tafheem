@@ -4,8 +4,8 @@
  * GrowPanel and the map under it are the only callers.
  *
  * Nothing about judging a word is decided here. Lining the words up is
- * follow.js's, weighing the ear's sureness is bySound's at the reader's own
- * checking level, and what each state looks like is reciteColors.js's, so a
+ * follow.js's, weighing the ear's sureness is bySound's, and what each state
+ * looks like is reciteColors.js's, so a
  * word marked orange in Grow means exactly what it means in Memorise.
  *
  * What is Grow's own is the honesty of the score:
@@ -63,7 +63,7 @@ const oneWord = (printed, heard) => {
  * bySound never lets that alone make it red). Nothing of the step heard at
  * all marks every word "not said"; the sound can still rescue each of them.
  */
-const markRecitation = (words, heard, sure, level) => {
+const markRecitation = (words, heard, sure) => {
   const said = wordsHeard(heard)
   let marks
   if (words.length < recite['anchor-words']) {
@@ -74,7 +74,7 @@ const markRecitation = (words, heard, sure, level) => {
       marks = { ...marks, words: words.map((word) => ({ word, state: MISSED, heard: '' })) }
     }
   }
-  const marked = bySound(marks, sure, level)
+  const marked = bySound(marks, sure)
   return { ...marked, words: marked.words.map((mark) => (mark.state === WAITING ? { ...mark, state: MISSED } : mark)) }
 }
 
@@ -86,9 +86,9 @@ export const isClean = (marks) => marks.words.length > 0 && marks.words.every((m
  * be checked, and clean also needs the sound weighed for every word: a run the
  * ear could not check is shown and never counted.
  */
-export const judge = (words, text, sure, level) => {
+export const judge = (words, text, sure) => {
   const weighed = words.length > 0 && sure != null && words.every((_, i) => sure[i] != null)
-  const marks = markRecitation(words, text, sure ?? [], level)
+  const marks = markRecitation(words, text, sure ?? [])
   return { marks, weighed, clean: weighed && isClean(marks) }
 }
 

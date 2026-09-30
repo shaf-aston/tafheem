@@ -8,22 +8,22 @@ import {
 
 const RUKU = ['سُبْحَانَ', 'رَبِّيَ', 'الْعَظِيمِ']
 const states = (marks) => marks.words.map((mark) => mark.state)
-// Marks only, at the reader's own checking level unless one is named.
-const mark = (words, text, sure, level = 'standard') => judge(words, text, sure, level).marks
+// Marks only.
+const mark = (words, text, sure) => judge(words, text, sure).marks
 
 describe('marking one recitation', () => {
   it('marks every word right when every word was said and the sound agrees', () => {
     const marks = mark(RUKU, 'سبحان ربي العظيم', [0.99, 0.99, 0.99])
     expect(states(marks)).toEqual([SAID, SAID, SAID])
-    expect(judge(RUKU, 'سبحان ربي العظيم', [0.99, 0.99, 0.99], 'standard')).toMatchObject({ clean: true, weighed: true })
+    expect(judge(RUKU, 'سبحان ربي العظيم', [0.99, 0.99, 0.99])).toMatchObject({ clean: true, weighed: true })
   })
 
   it('never calls a doubtful word right, so a run with one is not clean', () => {
-    // Heard as another word, and the sound half agrees: at beginner that is
-    // doubt, orange, and not a pass.
-    const marks = mark(RUKU, 'سبحان ربي الكريم', [0.99, 0.99, 0.8], 'beginner')
+    // Heard as another word, and the sound never weighed it: that is doubt,
+    // orange, and not a pass.
+    const marks = mark(RUKU, 'سبحان ربي الكريم', [0.99, 0.99])
     expect(states(marks)).toEqual([SAID, SAID, CHECK])
-    expect(judge(RUKU, 'سبحان ربي الكريم', [0.99, 0.99, 0.8], 'beginner').clean).toBe(false)
+    expect(judge(RUKU, 'سبحان ربي الكريم', [0.99, 0.99]).clean).toBe(false)
   })
 
   it('is never clean when the sound was not weighed for every word, however right it reads', () => {
@@ -57,7 +57,7 @@ describe('marking one recitation', () => {
   })
 
   it('counts each state for the line under the recitation', () => {
-    const marks = mark(RUKU, 'سبحان ربك العظيم', [0.99, 0.8, 0.01], 'beginner')
+    const marks = mark(RUKU, 'سبحان ربك العظيم', [0.99, undefined, 0.01])
     expect(tally(marks)).toEqual({ [SAID]: 1, [CHECK]: 1, [WRONG]: 1, [MISSED]: 0 })
   })
 })

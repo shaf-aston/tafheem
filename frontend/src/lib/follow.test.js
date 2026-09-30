@@ -352,7 +352,7 @@ describe('a word cut in two by the machine', () => {
   })
 })
 
-describe('weighing in the ear at each checking level', () => {
+describe('weighing in the ear', () => {
   // Four words as the page marked them: said, wrong, missed, not reached.
   const marks = {
     at: 3,
@@ -363,50 +363,36 @@ describe('weighing in the ear at each checking level', () => {
       { word: 'd', state: WAITING, heard: '' },
     ],
   }
-  const states = (sure, level) => bySound(marks, sure, level).words.map((w) => w.state)
+  const states = (sure) => bySound(marks, sure).words.map((w) => w.state)
 
   it('softens an accusation the ear never checked into doubt', () => {
-    expect(states([], 'standard')).toEqual([SAID, CHECK, CHECK, WAITING])
+    expect(states([])).toEqual([SAID, CHECK, CHECK, WAITING])
   })
 
-  // The two levels are one dial: how little sureness it takes before doubt
-  // becomes blame. Beginner blames under seven tenths, standard under 0.95, and
-  // the step up marks more right words as well as more real slips.
-  it('beginner blames under seven tenths and shows orange up to nine', () => {
-    expect(states([0.05, 0.8, 0.5, 1], 'beginner')).toEqual([WRONG, CHECK, MISSED, WAITING])
-    expect(states([0.8, 0.4, 0.1], 'beginner')).toEqual([SAID, WRONG, MISSED, WAITING])
-  })
-
-  it('standard blames under 0.95, a said word too, and leaves no orange band', () => {
-    expect(states([0.93, 1, 0.5, 0], 'standard')).toEqual([WRONG, SAID, MISSED, WAITING])
-    expect(states([0.95, 0.94], 'standard')).toEqual([SAID, WRONG, CHECK, WAITING])
+  it('blames under 0.95, a said word too, and leaves no orange band', () => {
+    expect(states([0.93, 1, 0.5, 0])).toEqual([WRONG, SAID, MISSED, WAITING])
+    expect(states([0.95, 0.94])).toEqual([SAID, WRONG, CHECK, WAITING])
   })
 
   it('a said word blamed on sound names no word, because the transcript heard it right', () => {
-    expect(bySound(marks, [0.1], 'standard').words[0]).toEqual({ word: 'a', state: WRONG, heard: '' })
+    expect(bySound(marks, [0.1]).words[0]).toEqual({ word: 'a', state: WRONG, heard: '' })
   })
 
   it('a word passed on sound shows no misheard word under it', () => {
-    expect(bySound(marks, [1, 1], 'standard').words[1]).toEqual({ word: 'b', state: SAID, heard: '' })
+    expect(bySound(marks, [1, 1]).words[1]).toEqual({ word: 'b', state: SAID, heard: '' })
   })
 
   it('a doubtful word never names a word', () => {
     // The orange "← بسم" beside a perfectly recited ٱلرَّحِيمِ came from here.
-    for (const level of ['beginner', 'standard']) {
-      for (const sure of [[], [1, 0.7], [1, 0.95], [0.5, 0.5]]) {
-        for (const word of bySound(marks, sure, level).words) {
-          if (word.state === CHECK) expect(word.heard).toBe('')
-        }
+    for (const sure of [[], [1, 0.7], [1, 0.95], [0.5, 0.5]]) {
+      for (const word of bySound(marks, sure).words) {
+        if (word.state === CHECK) expect(word.heard).toBe('')
       }
     }
   })
 
   it('only a word the ear checked and failed is called wrong', () => {
-    const red = bySound(marks, [], 'standard').words.filter((w) => w.state === WRONG || w.state === MISSED)
+    const red = bySound(marks, []).words.filter((w) => w.state === WRONG || w.state === MISSED)
     expect(red).toEqual([])
-  })
-
-  it('an unknown level is read as standard', () => {
-    expect(states([0.05, 0.6], 'nonsense')).toEqual(states([0.05, 0.6], 'standard'))
   })
 })

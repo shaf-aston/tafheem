@@ -42,18 +42,6 @@
       "default": true
     },
     {
-      "key": "reciting-level",
-      "section": "Reciting",
-      "label": "Checking level",
-      "help": "How closely your Qur'an reciting is checked, by words and vowels. Beginner forgives a little more. Standard checks closely and marks doubtful words orange to look at again. Tajweed is not checked yet.",
-      "type": "choice",
-      "default": "beginner",
-      "options": [
-        { "id": "beginner", "label": "Beginner" },
-        { "id": "standard", "label": "Standard" }
-      ]
-    },
-    {
       "key": "resume-reciting",
       "section": "Reciting",
       "label": "Carry on where you stopped",
