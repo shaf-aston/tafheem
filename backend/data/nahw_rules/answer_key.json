@@ -2,7 +2,8 @@
   "_comment": "How scripts/score_iraab.py compares a role the app wrote with a role a book wrote. Each family lists the terms that name it, written plainly; both sides are folded to bare letters and the longest term found in the role wins, so فعل مع فاعله is a verb, not a fa'il. A book role that matches nothing is reported, never scored.",
   "sources": {
     "books": "data/tarkeeb/examples",
-    "checked": "data/nahw_rules/checked_sentences.json"
+    "checked": "data/nahw_rules/checked_sentences.json",
+    "fresh": "data/nahw_rules/fresh_sentences.json"
   },
   "families": {
     "fil": [
