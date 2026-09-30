@@ -9,30 +9,42 @@ RULES = Path(__file__).parent.parent / "data" / "nahw_rules"
 FILE = RULES / "closed_words.json"
 TEACHER_FILE = RULES / "teacher.json"
 
-
-@lru_cache(maxsize=1)
-def _families() -> dict:
-    return json.loads(FILE.read_text(encoding="utf-8"))["families"]
+# a pronoun, pointer, relative or question word keeps one ending whatever its job
+MABNI_KINDS = ("pron", "dem", "rel", "interrog")
 
 
 @lru_cache(maxsize=1)
+def _closed() -> dict:
+    return json.loads(FILE.read_text(encoding="utf-8"))
+
+
 def vetoes() -> dict[str, bool]:
     """Which link vetoes are switched on (see services/syntax/mask.py)."""
-    data = json.loads(FILE.read_text(encoding="utf-8"))["vetoes"]
-    return {k: v for k, v in data.items() if not k.startswith("_")}
+    return {k: v for k, v in _closed()["vetoes"].items() if not k.startswith("_")}
 
 
-def words(family: str, part: str = "words") -> frozenset[str]:
+@lru_cache(maxsize=None)
+def book_words(family: str, part: str = "words") -> frozenset[str]:
     """One list of a family: its `words`, or another list it keeps (`nouns`, `needs_ma`...)."""
-    return frozenset(_families()[family][part])
+    return frozenset(_closed()["families"][family][part])
 
 
 def is_one(lemma: str, family: str, part: str = "words") -> bool:
     """True when the parser's lemma (an attached clitic's '+' aside) is on that list."""
-    return lemma.strip("+") in words(family, part)
+    return lemma.strip("+") in book_words(family, part)
+
+
+def is_mabni(token: dict) -> bool:
+    """A pronoun, pointer, relative or question word: its ending is not a case."""
+    return any(kind in token.get("pos_camel", "") for kind in MABNI_KINDS)
+
+
+def is_plain_noun(token: dict) -> bool:
+    """A noun that can take a case ending."""
+    return token["pos"] in ("NOM", "PROP") and not is_mabni(token)
 
 
 @lru_cache(maxsize=1)
-def teacher() -> dict:
+def teacher_rules() -> dict:
     """The teacher's checks and their reasons (services/syntax/teacher.py)."""
     return json.loads(TEACHER_FILE.read_text(encoding="utf-8"))

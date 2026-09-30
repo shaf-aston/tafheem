@@ -2,7 +2,8 @@
 import pytest
 
 from backend.services.syntax import naming
-from backend.services.syntax.naming import roles as named, typed_case, typed_passive
+from backend.services.syntax.naming import roles as named
+from backend.services.syntax.vowels import typed_case, typed_passive
 
 
 def roles(words, tokens):
@@ -88,7 +89,7 @@ def test_nothing_is_guessed_when_the_split_does_not_line_up(words):
 # ── أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِي الْقُبُورِ: what the parser path got wrong ──
 
 def test_a_reading_that_contradicts_the_typed_vowels_does_not_agree():
-    from backend.services.syntax.naming import agrees_with_typed
+    from backend.services.syntax.vowels import agrees_with_typed
     assert not agrees_with_typed("أَفَلَا", "آفِلاً")      # kasra and tanween the reader did not type
     assert agrees_with_typed("أَفَلَا", "أَفَلا")
     assert not agrees_with_typed("الْقُبُورِ", "القُبُورَ")  # the case typed is jarr

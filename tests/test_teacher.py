@@ -4,7 +4,7 @@ Every check is paired with the nearest reading that must be left alone, and the
 last tests follow a gap all the way to the card and the picture.
 """
 from backend.services import syntax
-from backend.services.nahw_book import teacher as config
+from backend.services.nahw_book import teacher_rules as config
 from backend.services.syntax import naming, teacher, tree
 from tests.test_naming import token
 
@@ -129,9 +129,44 @@ def test_a_gap_reaches_the_picture_as_a_dashed_leaf_with_the_reason_to_hover():
     assert drawn["coverage"] < 1.0
 
 
+def unnamed(word, lemma, **feats):
+    """One word the parser left without a name, and what `review` keeps on it for the fallback."""
+    toks = [token(1, "رأيت", "رأى", "VRB", 0, "---", **VERB),
+            token(2, word, lemma, "NOM", 0, "---", stt="d", cas="a", **feats)]
+    found = review(["رَأَيْتُ", word], toks)[1]
+    assert found["role"] is None and not found.get("gap")
+    return found
+
+
 def test_a_name_the_rule_engine_supplied_is_held_to_the_typed_vowel_too():
     # naming had no name; the rule engine said mubtada, the reader typed a fatha
-    assert teacher.fallback_gap("مبتدأ (مرفوع)", "nasb")["ar"]
-    assert teacher.fallback_gap("مبتدأ", "raf'") is None
-    assert teacher.fallback_gap("مبتدأ", None) is None  # bare: nothing to contradict
-    assert teacher.fallback_gap("حرف", "nasb") is None  # not a case-bearing role
+    clash = {"case": "nasb", "ending": {"free": [], "mudaf": False}}
+    assert teacher.fallback_gap("مبتدأ (مرفوع)", clash)["ar"]
+    assert teacher.fallback_gap("مبتدأ", {**clash, "case": "raf'"}) is None
+    assert teacher.fallback_gap("مبتدأ", {**clash, "case": None}) is None  # bare: nothing to contradict
+    assert teacher.fallback_gap("حرف", clash) is None  # not a case-bearing role
+    assert teacher.fallback_gap("مبتدأ", {"case": "nasb"}) is None  # no facts kept: nothing to judge by
+
+
+def test_the_fallback_keeps_every_exemption_the_teacher_has():
+    # a sound feminine plural in nasb ends in kasra: a rule-engine مفعول به is right
+    plural = unnamed("الْمُعَلِّمَاتِ", "معلمة")
+    assert teacher.fallback_gap("مفعول به", {**plural, "case": "jarr"}) is None
+    assert teacher.fallback_gap("مبتدأ", {**plural, "case": "jarr"})  # raf' wanted, so it is a clash
+    mabni = unnamed("هَذَا", "هذا", pos_camel="dem")
+    assert teacher.fallback_gap("مبتدأ", {**mabni, "case": "nasb"}) is None
+    assert teacher.fallback_gap("مبتدأ", {**unnamed("الْوَلَدَ", "ولد"), "case": "nasb"})
+
+
+def test_a_head_the_teacher_dashed_stays_a_dash_in_its_unit():
+    toks = [token(1, "الولد", "ولد", "NOM", 0, "---", stt="d", cas="n"),
+            token(2, "المدير", "مدير", "NOM", 1, "IDF", stt="d", cas="g")]
+    words = ["الْوَلَدِ", "الْمُدِيرِ"]
+    drawn = tree.build(words, toks, review(words, toks))
+    head = next(child for child in drawn["tree"]["children"] if child["word"] == 0)
+    assert head["gap"] and head["role"] is None
+
+
+def test_every_role_the_teacher_names_is_a_role_naming_can_give():
+    cases = config()["case_of_role"]
+    assert {role for key, roles in cases.items() if not key.startswith("_") for role in roles} <= set(naming.ROLES)

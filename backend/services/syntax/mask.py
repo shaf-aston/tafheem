@@ -1,8 +1,8 @@
 """Links the book rules out, as masks over the parser's scores.
 
-Pure: takes the words' tags and returns which (dependent, head) arcs and which
-(dependent, head, relation) labels are impossible, so the decoder picks the best
-reading the book allows instead of the best reading full stop. Which vetoes are
+Pure: takes the words' tags and returns which (dependent, head, relation) labels
+are impossible, so the decoder picks the best reading the book allows instead of
+the best reading full stop. Which vetoes are
 on lives in data/nahw_rules/closed_words.json ("vetoes"). Index 0 is the root,
 word i is index i, as in the score matrices.
 """
@@ -10,14 +10,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from backend.services.nahw_book import vetoes
-
-_NOT_A_NOUN = ("pron", "rel", "interrog", "dem")
-
-
-def _is_noun(tok: dict) -> bool:
-    camel = tok.get("pos_camel", "")
-    return tok["pos"] in ("NOM", "PROP") and not any(k in camel for k in _NOT_A_NOUN)
+from backend.services.nahw_book import is_plain_noun, vetoes
 
 
 def _verb_subject_follows(toks, add_rel) -> None:
@@ -27,7 +20,7 @@ def _verb_subject_follows(toks, add_rel) -> None:
     with it, since an untyped noun before its verb is no object either, so
     what is left is the topic (الطعامَ أكل الولدُ)."""
     for d, dep in enumerate(toks, 1):
-        if not _is_noun(dep) or dep.get("case") == "a":
+        if not is_plain_noun(dep) or dep.get("case") == "a":
             continue
         for h in range(d + 1, len(toks) + 1):
             if toks[h - 1]["pos"].startswith("VRB"):
@@ -38,14 +31,9 @@ def _verb_subject_follows(toks, add_rel) -> None:
 _VETOES = {"verb_subject_follows": _verb_subject_follows}
 
 
-def book_mask(toks: list[dict], labels: list[str]) -> tuple[np.ndarray, np.ndarray]:
-    """(arc_ok[L, L], rel_ok[L, L, R]) for L = words + root; True = allowed."""
-    L = len(toks) + 1
-    arc_ok = np.ones((L, L), dtype=bool)
-    rel_ok = np.ones((L, L, len(labels)), dtype=bool)
-
-    def add_arc(d, h):
-        arc_ok[d, h] = False
+def book_mask(toks: list[dict], labels: list[str]) -> np.ndarray:
+    """rel_ok[L, L, R] for L = words + root; True = the label is allowed."""
+    rel_ok = np.ones((len(toks) + 1, len(toks) + 1, len(labels)), dtype=bool)
 
     def add_rel(d, h, label):
         rel_ok[d, h, labels.index(label)] = False
@@ -54,4 +42,4 @@ def book_mask(toks: list[dict], labels: list[str]) -> tuple[np.ndarray, np.ndarr
     for name, rule in _VETOES.items():
         if on.get(name):
             rule(toks, add_rel)
-    return arc_ok, rel_ok
+    return rel_ok

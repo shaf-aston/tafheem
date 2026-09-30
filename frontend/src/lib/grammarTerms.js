@@ -39,6 +39,9 @@ export const ROLE_LEGEND = [
   { key: 'mudaf', arabic: ROLES.mudaf.arabic },
 ]
 
+/** A word the analyser would not name: it writes a dash rather than guess. */
+export const isUnnamed = (word) => word?.role === '–'
+
 /** The Arabic for a backend word type ("ism", "fi'l"), or the string itself. */
 export const typeLabel = (key) => TYPES[key]?.arabic ?? ROLES[key]?.arabic ?? key
 

@@ -6,10 +6,8 @@ re-reads the finished sentence and dashes any word whose name breaks a rule. Thi
 the seam the rest of the app talks to, so a different parser can be put behind
 it without anything else changing.
 
-The parser is preferred over `rule_engine` because it is measured better, and
-this is the one place those numbers are written down: 82% of roles against the
-book examples and 97% against the checked sentences, where the rule engine alone
-gets 56% and 63% (`backend/scripts/score_iraab.py`). A word the
+The parser is preferred over `rule_engine` because it is measured better
+(`backend/scripts/score_iraab.py` holds the scores). A word the
 parser has no name for keeps the rule engine's answer; a word the teacher dashed
 stays dashed, with its reason. If the parser is off or
 fails, nothing changes at all.
@@ -84,7 +82,7 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
     named = 0
     for entry, found in zip(entries, parser_roles):
         if not found["role"] and not found.get("gap") and (
-                why := teacher.fallback_gap(entry.get("role"), found["case"])):
+                why := teacher.fallback_gap(entry.get("role"), found)):
             found = {**found, "gap": why}  # the rule engine's name clashes with the typed vowel
         if found.get("gap"):
             # the teacher caught the parser's name breaking a rule; the rule engine's

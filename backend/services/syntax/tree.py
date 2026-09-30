@@ -112,8 +112,10 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         kid_roles = [role_of[kid["id"]] for kid in kids if role_of[kid["id"]]]
         seen.update(kid["id"] for kid in kids)
         inside = [(at[kid["id"]], node(kid)) for kid in kids]
-        inside.append((index, _leaf(index, _unit_role(role_of[token["id"]], kid_roles), why_of[token["id"]])))
         role = role_of[token["id"]]
+        why = why_of[token["id"]]
+        # a word the teacher dashed stays a dash at the head of its unit: مضاف would name it
+        inside.append((index, _leaf(index, role if why else _unit_role(role, kid_roles), why)))
         label = _label(token, kid_roles) or (_sentence_label(token, role_of, bases)
                                              if token is root else "")
         # A particle's name is what it is, not a job for the unit it heads: the

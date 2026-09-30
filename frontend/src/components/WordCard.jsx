@@ -10,7 +10,7 @@
  */
 import { useEffect, useRef } from 'react'
 
-import { caseLabel, posLabel, signLabel, typeLabel } from '../lib/grammarTerms'
+import { caseLabel, isUnnamed, posLabel, signLabel, typeLabel } from '../lib/grammarTerms'
 import { roleVar } from '../lib/roleColors'
 import { scrollToEl } from '../lib/scrollToEl'
 import ArabicText from './ui/ArabicText'
@@ -20,7 +20,7 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
   const headingRef = useRef(null)
   const key = word?.role_key
   const hasPieces = word?.segments?.length > 1
-  const unsure = word?.role === '–' // the no-role dash the analyser writes when it will not guess
+  const unsure = isUnnamed(word)
 
   useEffect(() => {
     if (!word) return

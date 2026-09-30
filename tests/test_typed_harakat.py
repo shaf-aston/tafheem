@@ -3,7 +3,7 @@
 Each test pairs the case that fires with the nearest one that must not, since
 the parser is fed letters only and the same links come back for both.
 """
-from backend.services.syntax import naming, tree
+from backend.services.syntax import tree, vowels
 from tests.test_naming import roles, token
 from tests.test_syntax_tree import built
 
@@ -61,9 +61,9 @@ def test_a_noun_after_a_preposition_stays_majroor_on_a_typed_kasra():
 
 def test_a_typed_sukun_or_vowel_is_an_answer_when_choosing_a_reading():
     # فَهِمَ (he understood) is not the noun فَهْمَ
-    assert not naming.agrees_with_typed("فَهِمَ", "فَهْمَ")
-    assert naming.agrees_with_typed("فَهِمَ", "فَهِمَ")
-    assert naming.agrees_with_typed("فهم", "فَهْمَ")  # bare letters say nothing
+    assert not vowels.agrees_with_typed("فَهِمَ", "فَهْمَ")
+    assert vowels.agrees_with_typed("فَهِمَ", "فَهِمَ")
+    assert vowels.agrees_with_typed("فهم", "فَهْمَ")  # bare letters say nothing
 
 
 def after_doer(word, *, participle, verb_lemma="جاء", **feats):
@@ -86,9 +86,23 @@ def test_tamyeez_al_nisba_follows_its_verbs_only():
 
 def test_past_passive_shape_is_read_from_the_vowels_alone():
     for word in ("قُرِئَ", "قُرِئَتِ", "سُئِلَ", "بُنِيَ", "أُكِلَ", "ضُرِبَ"):
-        assert naming.past_passive_shape(word)
+        assert vowels.past_passive_shape(word)
     for word in ("كَتَبَ", "الْكِتَابُ", "قُرَيْشٌ", "كتب"):  # active, a noun, a name, bare
-        assert not naming.past_passive_shape(word)
+        assert not vowels.past_passive_shape(word)
+
+
+def test_a_final_ta_is_the_verbs_only_when_it_is_not_a_plural_ending():
+    for word in ("قُرِئَتْ", "كُتِبَتْ", "قُرِئَتِ"):
+        assert vowels.past_passive_shape(word)
+    for word in ("مُسْلِمَاتُ", "مُسْلِمَاتِ"):  # damma first, kasra inside, ends ت: a plural noun
+        assert not vowels.past_passive_shape(word)
+
+
+def test_a_present_passive_is_read_before_its_plural_or_dual_ending():
+    for word in ("يُعَلَّمُونَ", "يُكْتَبْنَ", "يُكْتَبَانِ", "يُكْتَبُ"):
+        assert vowels.typed_passive(word, present=True)
+    for word in ("يُكَافِئُونَ", "يُكْرِمَانِ", "يُكْرِمُ"):  # active: no fatha before the last stem letter
+        assert not vowels.typed_passive(word, present=True)
 
 
 def test_a_word_the_morphology_calls_a_name_is_still_a_passive_verb_by_its_vowels():

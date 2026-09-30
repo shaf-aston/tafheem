@@ -11,7 +11,7 @@ def tok(pos, **feats):
 
 
 def allowed(toks, dep, head, label):
-    _, rel_ok = book_mask(toks, LABELS)
+    rel_ok = book_mask(toks, LABELS)
     return bool(rel_ok[dep, head, LABELS.index(label)])
 
 
@@ -33,5 +33,4 @@ def test_a_typed_fatha_keeps_the_fronted_object_open_and_a_pronoun_is_not_a_noun
 
 
 def test_mask_shapes():
-    arc_ok, rel_ok = book_mask([tok("NOM"), tok("VRB")], LABELS)
-    assert arc_ok.shape == (3, 3) and rel_ok.shape == (3, 3, len(LABELS))
+    assert book_mask([tok("NOM"), tok("VRB")], LABELS).shape == (3, 3, len(LABELS))

@@ -15,20 +15,13 @@ package's `__init__.py`.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import is_one, words as book_words
+from backend.services.nahw_book import book_words, is_mabni, is_one, is_plain_noun
+from backend.services.syntax.vowels import (
+    CASE_NAME, has_tanween, past_passive_shape, typed_case, typed_passive)
 
-VOWEL = {"ً": "a", "ٌ": "u", "ٍ": "i", "َ": "a", "ُ": "u", "ِ": "i"}
-TANWEEN = {"ً", "ٌ", "ٍ"}
-SUKUN = "ْ"
-SHADDA_SUKUN = "ّ" + SUKUN
 # a root letter is what is left once the letters that come and go are removed
 WEAK = set("اويىءأإآئؤة")
 PRESENT_PREFIX = set("أنيت")
-# case shown by an ending, not by a vowel: the plural and the dual
-HIDDEN_CASE = ("ين", "ون", "ان")
-
-
-CASE_NAME = {"u": "raf'", "a": "nasb", "i": "jarr"}
 
 # Every role this module can name, and how each one is drawn: the card's colour
 # key (the contract's, `schemas.ROLE_KEYS`) and the bracket diagram's tone. The
@@ -81,74 +74,14 @@ def role_key(role: str | None) -> str | None:
     return _entry(role)[0]
 
 
+def roles_keyed(*keys: str) -> tuple[str, ...]:
+    """Every role the card colours by one of these keys (`fail` is فاعل and نائب فاعل)."""
+    return tuple(role for role in ROLES if role_key(role) in keys)
+
+
 def tone(role: str | None) -> str | None:
     """The colour the bracket diagram draws this role in."""
     return _entry(role)[1]
-
-
-def _letters(word: str) -> list[tuple[str, set]]:
-    """The typed word as (letter, its marks) pairs."""
-    out: list[tuple[str, set]] = []
-    for char in word or "":
-        if char in VOWEL or char in SHADDA_SUKUN:
-            if out:
-                out[-1][1].add(char)
-        elif char.isalpha():
-            out.append((char, set()))
-    return out
-
-
-def typed_case(word: str, stuck_on: int = 0) -> str | None:
-    """Case read off the last typed vowel, or None when the reader left it bare.
-
-    `stuck_on` is how many letters at the end belong to an attached pronoun, whose
-    own vowel says nothing about the word: the fatha of حَالُكَ is the kaf's, and
-    the case is the damma before it.
-    """
-    marked = _letters(word)
-    if stuck_on:
-        marked = marked[:-stuck_on]
-    if len(marked) < 2 or "".join(letter for letter, _ in marked[-2:]) in HIDDEN_CASE:
-        return None
-    last = marked[-1]
-    if last[0] in "اى" and marked[-2][1] & TANWEEN:
-        last = marked[-2]  # the alef of رَجُلًا carries nothing; the tanween is before it
-    return next((VOWEL[mark] for mark in last[1] if mark in VOWEL), None)
-
-
-def _has_tanween(word: str) -> bool:
-    return any(marks & TANWEEN for _, marks in _letters(word))
-
-
-def agrees_with_typed(typed: str, reading: str) -> bool:
-    """False when a vowelled reading puts a different vowel on a letter the reader
-    vowelled: آفِلًا is not the أَفَلَا typed. A letter either side left bare says
-    nothing, and two spellings that do not line up letter for letter are not
-    evidence either way."""
-    mine, theirs = _letters(typed), _letters(reading)
-    if [bare_letters(c) for c, _ in mine] != [bare_letters(c) for c, _ in theirs]:
-        return True
-    for (_, typed_marks), (_, read_marks) in zip(mine, theirs):
-        # a sukun is an answer too: فَهِمَ is not the noun فَهْمَ
-        said = {mark for mark in typed_marks if mark in VOWEL or mark == SUKUN}
-        read = {mark for mark in read_marks if mark in VOWEL or mark == SUKUN}
-        if said and read and said != read:
-            return False
-    return True
-
-
-def typed_passive(word: str, present: bool) -> bool:
-    """فُعِلَ and يُفْعَلُ by their vowels.
-
-    A past verb never opens with a damma unless it is passive, so that one mark
-    is enough. A present verb does (يُكَافِئُ is active), so there the fatha
-    before the ending is what separates يُكَافَأُ from it. The kasra of كُتِبَتِ
-    sits on a root letter, not the last one, which is why the end is not read.
-    """
-    marked = _letters(word)
-    if len(marked) < 3 or "ُ" not in marked[0][1]:
-        return False
-    return "َ" in marked[-2][1] if present else True
 
 
 def _skeleton(word: str) -> list[str]:
@@ -162,7 +95,7 @@ def _case(token: dict) -> str | None:
 
 
 def is_verb(token: dict) -> bool:
-    if _has_tanween(token.get("typed")):
+    if has_tanween(token.get("typed")):
         return False  # a verb never carries tanween, whatever the parser tagged it
     if token["pos"].startswith("VRB"):  # VRB-PASS is a verb too
         return True
@@ -173,29 +106,12 @@ def is_verb(token: dict) -> bool:
         or past_passive_shape(typed))
 
 
-def past_passive_shape(word: str) -> bool:
-    """فُعِلَ by its vowels alone: damma first, a kasra inside, fatha or sukun last
-    (قُرِئَ، سُئِلَ، بُنِيَ، قُرِئَتْ). For a word the morphology could only call a name."""
-    marked = _letters(word)
-    if len(marked) < 3 or "ُ" not in marked[0][1] or marked[0][0] == "ا":
-        return False
-    last = marked[-1][1]
-    return any("ِ" in marks for _, marks in marked[1:-1]) and (
-        "َ" in last or SUKUN in last or marked[-1][0] == "ت")
-
-
 def is_passive(token: dict) -> bool:
     if token.get("vox") == "p":
         return True
     typed = token.get("typed")
     present = token.get("asp") == "i" or not (token["pos"].startswith("VRB") or past_passive_shape(typed))
     return typed_passive(typed, present)
-
-
-def _is_plain_noun(token: dict) -> bool:
-    """A noun that can take a case ending: not a pronoun, pointer, relative or question word."""
-    return token["pos"] in ("NOM", "PROP") and not any(
-        kind in token.get("pos_camel", "") for kind in ("pron", "dem", "rel", "interrog"))
 
 
 def _participle(token: dict) -> bool:
@@ -216,19 +132,19 @@ def takes_tamyeez(token: dict, tokens: list[dict]) -> bool:
                for t in tokens if t["id"] < token["id"])
 
 
-def _kids(token: dict, tokens: list[dict]) -> list[dict]:
+def _children(token: dict, tokens: list[dict]) -> list[dict]:
     return [t for t in tokens if t["head"] == token["id"]]
 
 
 def _has_particle(verb: dict, tokens: list[dict], family: str, part: str = "words") -> bool:
-    return any(k["pos"] == "PRT" and is_one(k["lemma"], family, part) for k in _kids(verb, tokens))
+    return any(k["pos"] == "PRT" and is_one(k["lemma"], family, part) for k in _children(verb, tokens))
 
 
 def _completed_by_present_verb(verb: dict, tokens: list[dict]) -> bool:
     """كاد يموت, أوشك أن ينتهي: a present verb, bare or behind أن, finishes the clause."""
-    for kid in _kids(verb, tokens):
+    for kid in _children(verb, tokens):
         if kid["pos"] == "PRT" and is_one(kid["lemma"], "nasb_mudari"):
-            if any(k["pos"].startswith("VRB") and k.get("asp") == "i" for k in _kids(kid, tokens)):
+            if any(k["pos"].startswith("VRB") and k.get("asp") == "i" for k in _children(kid, tokens)):
                 return True
         elif kid["pos"].startswith("VRB") and kid.get("asp") == "i":
             return True
@@ -299,7 +215,7 @@ def _by_book(token: dict, tokens: list[dict], by_id: dict, head: dict | None,
     lemma = token["lemma"]
     if token["pos"] == "PRT":
         return None
-    kids = _kids(token, tokens)
+    kids = _children(token, tokens)
     # ثم is a noun to the parser; between two nouns it is the joining particle
     if is_one(lemma, "atf") and _noun_before(token, by_id) and any(k["rel"] == "OBJ" for k in kids):
         return "حرف"
@@ -323,7 +239,7 @@ def _by_book(token: dict, tokens: list[dict], by_id: dict, head: dict | None,
         return "مستثنى"
     # الخليفة عمر: a bare name right after a noun with ال is that noun's badal
     if token["pos"] == "PROP" and token["rel"] == "MOD" and head["id"] == token["id"] - 1 and head["pos"] == "NOM" \
-            and head["form"].startswith("ال") and not is_verb(head) and not _has_tanween(token.get("typed")):
+            and head["form"].startswith("ال") and not is_verb(head) and not has_tanween(token.get("typed")):
         return "بدل"
     case = typed_case(token.get("typed"), token.get("stuck_on", 0))
     tawkeed = "with_pronoun" if any(k.get("pos_camel") == "pron" for k in kids) else "without_pronoun"
@@ -335,7 +251,7 @@ def _by_book(token: dict, tokens: list[dict], by_id: dict, head: dict | None,
             return "مفعول فيه"
         # ظن الولد الأمر سهلا: a first object before it makes it the second
         if family == "zanna" and any(k["rel"] == "OBJ" and k["id"] < token["id"]
-                                     for k in _kids(head, tokens)):
+                                     for k in _children(head, tokens)):
             return "مفعول به"
     return None
 
@@ -346,7 +262,7 @@ def name(token: dict, tokens: list[dict]) -> str | None:
     head = by_id.get(token["head"])
     family = family_of(head, tokens) if head else None
     rel = token["rel"]
-    children = _kids(token, tokens)
+    children = _children(token, tokens)
     verbless = not any(is_verb(t) for t in tokens)
 
     by_book = _by_book(token, tokens, by_id, head, family)
@@ -387,14 +303,14 @@ def name(token: dict, tokens: list[dict]) -> str | None:
     # object unless the book says so: it names how or which part (حال، تمييز)
     if head and is_verb(head) and family is None and rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") \
             and token["id"] > head["id"] and token.get("stt") == "i" \
-            and any(t["rel"] in ("SBJ", "TPC", "OBJ") for t in _kids(head, tokens) if t is not token):
+            and any(t["rel"] in ("SBJ", "TPC", "OBJ") for t in _children(head, tokens) if t is not token):
         if is_one(head["lemma"], "tamyeez_verbs") and not _participle(token):
             return "تمييز"
         if _participle(token):
             return "حال"
     if head and is_verb(head) and (
             rel in ("SBJ", "TPC", "OBJ") or (rel == "IDF" and typed != "i")
-            or (rel == "MOD" and typed == "u" and _is_plain_noun(token))):
+            or (rel == "MOD" and typed == "u" and is_plain_noun(token))):
         siblings = [t for t in tokens if t["head"] == head["id"] and t is not token]
         if family in ("kana", "kaada") and rel != "OBJ":
             return _SUBJECT[family]
@@ -500,6 +416,6 @@ def _ending(role: str | None, token: dict) -> str | None:
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
-    if any(kind in token.get("pos_camel", "") for kind in ("interrog", "dem", "rel", "pron")):
+    if is_mabni(token):
         return "mabni"
     return CASE_NAME.get(typed_case(token["typed"], token["stuck_on"]))

@@ -12,29 +12,30 @@ gives, live in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import is_one, teacher
+from backend.services.nahw_book import is_mabni, is_one, teacher_rules
 from backend.services.syntax.naming import (
-    CASE_NAME, base_tokens, family_of, is_passive, is_verb, takes_tamyeez, typed_case)
+    base_tokens, family_of, is_passive, is_verb, roles_keyed, takes_tamyeez)
+from backend.services.syntax.vowels import CASE_NAME, typed_case
 
-DOERS = ("فاعل", "نائب فاعل")
-SUBJECTS = ("مبتدأ", "اسم كان", "اسم إن", "اسم كاد")
-FOLLOWERS = ("معطوف", "توكيد", "صفة", "بدل")
-# a pronoun, pointer, relative or question word keeps one ending whatever its job
-MABNI = ("pron", "dem", "rel", "interrog")
+# the role groups are the card's colour keys (naming.ROLES), so a new role joins its group there
+DOERS = roles_keyed("fail")
+SUBJECTS = roles_keyed("mubtada")
+FOLLOWERS = roles_keyed("tabi", "sifah")
 
 
 def _is_noun(token: dict) -> bool:
+    """Unlike `nahw_book.is_plain_noun` a pointer counts: هذا can be copied by a follower."""
     return token["pos"] in ("NOM", "PROP") and not is_verb(token)
 
 
-def _kids(token: dict, bases: list[dict]) -> list[int]:
+def _kid_indices(token: dict, bases: list[dict]) -> list[int]:
     return [i for i, b in enumerate(bases) if b["head"] == token["id"]]
 
 
 def _one_subject(bases, tokens, roles):
     """Two words claiming to be the same verb's doer: neither can be trusted."""
     for verb in filter(is_verb, bases):
-        doers = [i for i in _kids(verb, bases) if roles[i] in DOERS]
+        doers = [i for i in _kid_indices(verb, bases) if roles[i] in DOERS]
         if len(doers) > 1:
             yield from doers
 
@@ -42,40 +43,53 @@ def _one_subject(bases, tokens, roles):
 def _passive_has_no_doer(bases, tokens, roles):
     for verb in filter(is_verb, bases):
         if is_passive(verb):
-            yield from (i for i in _kids(verb, bases) if roles[i] == "فاعل")
+            yield from (i for i in _kid_indices(verb, bases) if roles[i] == "فاعل")
 
 
-def _expected_case(role: str, token: dict, bases: list[dict], cases: dict) -> str | None:
+def _expected_case(role: str, mudaf: bool, cases: dict) -> str | None:
     for case in "uai":
         if role in cases[case]:
             return case
-    if role in cases["a_when_mudaf"] and any(b["rel"] == "IDF" for b in bases if b["head"] == token["id"]):
-        return "a"
-    return None
+    return "a" if mudaf and role in cases["a_when_mudaf"] else None
+
+
+def _ending(token: dict, bases: list[dict], roles: list, by_id: dict) -> dict:
+    """What decides whether the vowel typed on a word can be held against its job.
+
+    `free` lists the (wanted, typed) case pairs that only look like a clash ("au":
+    wanted nasb, typed damma); "*" frees all of them. Kept on a word the parser
+    left unnamed, so `fallback_gap` judges the rule engine's name by the same facts."""
+    bare = bare_letters(token.get("typed") or "")
+    free = set()
+    # a pronoun, pointer, relative or question word keeps one ending whatever its job
+    if is_mabni(token):
+        free.add("*")
+    # the noun of لا is raf' when the لا works like ليس (لا رجلٌ في الدار), so its ending is open
+    if is_one(by_id.get(token["head"], {}).get("lemma", ""), "la_jins"):
+        free |= {"au", "ai"}
+    # a sound feminine plural takes kasra for nasb too (رأيت المعلماتِ), and a
+    # diptote takes fatha for jarr (مررت بأحمدَ): both look like a clash and are not
+    if bare.endswith("ات"):
+        free.add("ai")
+    mudaf_ilayh = any(roles[k] == "مضاف إليه" for k in _kid_indices(token, bases))
+    if token.get("stt") == "i" and not bare.startswith("ال") and not mudaf_ilayh:
+        free.add("ia")
+    return {"free": sorted(free), "mudaf": any(b["rel"] == "IDF" for b in bases if b["head"] == token["id"])}
+
+
+def _clashes(role: str | None, shown: str | None, ending: dict) -> bool:
+    """The one test of a typed ending against a role: `shown` is u / a / i, or None when bare."""
+    want = _expected_case(role or "", ending["mudaf"], teacher_rules()["case_of_role"])
+    return bool(want and shown and shown != want
+                and "*" not in ending["free"] and want + shown not in ending["free"])
 
 
 def _typed_case_fits_role(bases, tokens, roles):
-    cases = teacher()["case_of_role"]
     by_id = {t["id"]: t for t in tokens}
     for i, (token, role) in enumerate(zip(bases, roles)):
-        want = _expected_case(role or "", token, bases, cases)
         shown = typed_case(token.get("typed"), token.get("stuck_on", 0))
-        if not want or not shown or shown == want or is_verb(token):
-            continue
-        # the noun of لا is raf' when the لا works like ليس (لا رجلٌ في الدار), so its ending is open
-        if role == "اسم إن" and is_one(by_id.get(token["head"], {}).get("lemma", ""), "la_jins"):
-            continue
-        if any(kind in token.get("pos_camel", "") for kind in MABNI):
-            continue
-        bare = bare_letters(token.get("typed") or "")
-        # a sound feminine plural takes kasra for nasb too (رأيت المعلماتِ), and a
-        # diptote takes fatha for jarr (مررت بأحمدَ): both look like a clash and are not
-        if want == "a" and shown == "i" and bare.endswith("ات"):
-            continue
-        if want == "i" and shown == "a" and token.get("stt") == "i" and not bare.startswith("ال") \
-                and not any(roles[k] == "مضاف إليه" for k in _kids(token, bases)):
-            continue
-        yield i
+        if not is_verb(token) and _clashes(role, shown, _ending(token, bases, roles, by_id)):
+            yield i
 
 
 def _khabar_needs_mubtada(bases, tokens, roles):
@@ -122,7 +136,7 @@ def review(words: list[str], tokens: list[dict], found: list[dict]) -> list[dict
     if len(bases) != len(found):
         return found
     roles = [entry["role"] for entry in found]
-    rules = teacher()["checks"]
+    rules = teacher_rules()["checks"]
     caught: dict[int, str] = {}
     for rule, check in CHECKS.items():
         if rules[rule]["on"]:
@@ -131,19 +145,22 @@ def review(words: list[str], tokens: list[dict], found: list[dict]) -> list[dict
             # the next check reads the sentence without the words already doubted:
             # a khabar whose mubtada was just dashed has lost its mubtada
             roles = [None if i in caught else role for i, role in enumerate(roles)]
+    roles = [None if i in caught else role for i, role in enumerate(roles)]
+    by_id = {t["id"]: t for t in tokens}
     return [{**entry, "role": None, "gap": {"ar": rules[caught[i]]["ar"], "en": rules[caught[i]]["en"]}}
-            if i in caught else entry for i, entry in enumerate(found)]
+            if i in caught else
+            {**entry, "ending": _ending(bases[i], bases, roles, by_id)} if entry["role"] is None else entry
+            for i, entry in enumerate(found)]
 
 
-def fallback_gap(role: str | None, case: str | None) -> dict | None:
+def fallback_gap(role: str | None, found: dict) -> dict | None:
     """The same typed-vowel check for a name the rule engine supplied where naming had
     none: the teacher never saw that role, so a typed fatha on a "mubtada" slipped by.
-    `case` is the ending as the card prints it (raf' / nasb / jarr)."""
-    cases = teacher()["case_of_role"]
+    `found` is the parser's entry for the word, its `case` the ending as the card prints
+    it (raf' / nasb / jarr) and its `ending` the facts `review` left on it."""
+    rule = teacher_rules()["checks"]["typed_case_fits_role"]
     plain = strip_diacritics(role or "").split(" (")[0].strip()
-    typed = next((k for k, v in CASE_NAME.items() if v == case), None)
-    wanted = next((k for k in "uai" if plain in cases[k]), None)
-    if not (typed and wanted) or typed == wanted:
-        return None
-    rule = teacher()["checks"]["typed_case_fits_role"]
-    return {"ar": rule["ar"], "en": rule["en"]} if rule["on"] else None
+    shown = next((k for k, v in CASE_NAME.items() if v == found["case"]), None)
+    if rule["on"] and found.get("ending") and _clashes(plain, shown, found["ending"]):
+        return {"ar": rule["ar"], "en": rule["en"]}
+    return None
