@@ -2,7 +2,7 @@
 
 **[Open the app](https://tafheem-app.vercel.app)**
 
-Understand Quranic and classical Arabic, word by word. Grammar, morphology, the Quran and a dictionary in one study app.
+Understand Quranic and classical Arabic, word by word. Grammar, morphology, the Quran and four classical dictionaries in one study app.
 
 Built on real corpora and classical references. AI explanations are optional; the core app runs fully offline.
 
