@@ -160,14 +160,14 @@ export default function MapPanel({ open, onClose }) {
   )
 }
 
-/** Most-linked sciences sit side by side, in pairs down two columns. The arrow keys walk this same order. */
-const LINKED = ['01', '02', '07', '04', '05', '03', '06', '09', '08']
+/** Most-linked sciences sit side by side, three across where the width allows, fewer on narrower screens. The arrow keys walk this same order. */
+const LINKED = ['01', '02', '07', '05', '03', '04', '06', '09', '08']
 const ORDER = LINKED.map((id) => CHARTS.find((c) => c.id === id))
 
 /** The nine-card overview: one science per card, click opens its chart. */
 function MapIndex({ onOpen }) {
   return (
-    <div className="p-5 grid gap-3 md:grid-cols-2">
+    <div className="p-5 grid gap-5 grid-cols-[repeat(auto-fill,minmax(18rem,1fr))]">
       {ORDER.map((chart, delay) => {
         const fg = `var(--science-${chart.id})`
         return (
@@ -175,14 +175,14 @@ function MapIndex({ onOpen }) {
             key={chart.id}
             type="button"
             onClick={() => onOpen(chart.id)}
-            className="pbs-card pbs-rise md:last:col-span-2 text-right p-4 rounded-[var(--radius-md)] border border-[var(--border)]
+            className="pbs-card pbs-rise text-right p-3 rounded-[var(--radius-md)] border border-[var(--border)]
               border-r-4 bg-[var(--surface-hi)]"
             style={{ borderRightColor: fg, '--d': `${delay * 55}ms` }}
           >
             <span className="pbs-ghost" style={{ color: fg }} aria-hidden="true">{chart.id}</span>
             <span className="pbs-go text-[var(--text-faint)]" aria-hidden="true">↗</span>
             <p className="type-tiny tracking-widest font-bold text-[var(--text-faint)] relative">{chart.id}</p>
-            <ArabicText as="p" size="lg" className="my-0.5 relative" style={{ color: fg }}>
+            <ArabicText as="p" size="base" className="my-0.5 relative" style={{ color: fg }}>
               {chart.ar}
             </ArabicText>
             <p className="type-small text-[var(--text-dim)] relative">{chart.en}</p>
