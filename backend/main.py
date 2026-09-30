@@ -19,6 +19,7 @@ from backend.routers import (
     speak, tamreen, tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
+from backend.services.colloquial import loader as colloquial_loader
 from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, speech, syntax
 from backend.services.morphology import get_engine_name
 
@@ -94,6 +95,9 @@ async def lifespan(_: FastAPI):
         loop.run_in_executor(None, _warm_and_freeze)
     # Same reason: the voice loads once, in the background, before anyone asks.
     loop.run_in_executor(None, speech.warm)
+    # And the spoken-Arabic units: reading and checking all of them took ~3s, which
+    # the first person to open the Colloquial tab after every restart waited out.
+    loop.run_in_executor(None, lambda: _load_optional("Colloquial units", colloquial_loader.catalogue))
 
     # Not awaited either, for the same reason. The Nahw parser takes seconds to
     # load, and before this it loaded inside the first /api/analyze, so the
