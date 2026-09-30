@@ -189,7 +189,7 @@ function AppContent() {
             onClick={startOver}
             title="Start over"
             aria-label="Start over: forget where you have been and your answers, and reopen this tab clean"
-            className="icon-button"
+            className="icon-button phone-hide"
           >
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M3 12a9 9 0 1 0 3-6.7" />
@@ -204,7 +204,7 @@ function AppContent() {
             title="Map"
             aria-label="Open the map: a high-level overview"
             aria-haspopup="dialog"
-            className="icon-button"
+            className="icon-button phone-hide"
           >
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M9 3 3 5.5v15L9 18l6 2.5L21 18V3l-6 2.5L9 3Z" />
@@ -338,7 +338,17 @@ function AppContent() {
         colorOf={accentOf}
         onGo={switchTab}
         here={activeTab}
-      />
+      >
+        {/* The top-bar buttons phones hide, kept one tap inside More. */}
+        <section className="sm:hidden space-y-2">
+          <h3 className="type-small text-[var(--text-faint)]">Tools</h3>
+          <div className="grid grid-cols-2 gap-2">
+            <button type="button" aria-haspopup="dialog" onClick={() => { setSectionsOpen(false); setMapOpen(true) }} className="tap min-h-11 rounded-[var(--radius-sm)] border border-[var(--border)] type-body font-medium">Map</button>
+            <button type="button" aria-describedby="start-over-hint" onClick={() => { setSectionsOpen(false); startOver() }} className="tap min-h-11 rounded-[var(--radius-sm)] border border-[var(--border)] type-body font-medium">Start over</button>
+          </div>
+          <p id="start-over-hint" className="type-small text-[var(--text-faint)]">Start over forgets where you have been and your answers.</p>
+        </section>
+      </SectionsMenu>
       <BottomNav tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
       {/* Drawn last so it sits over the page, and once for the whole app. */}
       <CursorLight />
