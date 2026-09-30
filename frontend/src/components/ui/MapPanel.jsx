@@ -162,9 +162,8 @@ export default function MapPanel({ open, onClose }) {
   )
 }
 
-/** Most-linked sciences sit side by side, three across where the width allows, fewer on narrower screens. The arrow keys walk this same order. */
-const LINKED = ['01', '02', '07', '05', '03', '04', '06', '09', '08']
-const ORDER = LINKED.map((id) => CHARTS.find((c) => c.id === id))
+/** Numbered 1 to 9 by how the sciences lead into each other, in threes that belong together: the law, the sources, the language. The arrow keys walk this same order. */
+const ORDER = [...CHARTS].sort((a, b) => a.id.localeCompare(b.id))
 
 /** The nine-card overview: one science per card, click opens its chart. */
 function MapIndex({ onOpen }) {

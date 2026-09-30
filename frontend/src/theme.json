@@ -39,8 +39,8 @@
   },
   "science": {
     "_comment": "Card colour of each map science (ui/MapPanel), keyed by chart id. One hue each, all readable on the raised surface, borrowed from the tab palette.",
-    "01": "#fbbf24", "02": "#fb923c", "03": "#4ade80", "04": "#38bdf8", "05": "#5eead4",
-    "06": "#a78bfa", "07": "#fb7185", "08": "#f472b6", "09": "#93c5fd"
+    "01": "#fbbf24", "02": "#fb923c", "03": "#fb7185", "04": "#5eead4", "05": "#4ade80",
+    "06": "#38bdf8", "07": "#a78bfa", "08": "#93c5fd", "09": "#f472b6"
   },
   "space": {
     "_comment": "Gaps shared across tabs. panel is the gap between the blocks of every tab, header included (the .panel class).",
