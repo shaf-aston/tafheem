@@ -11,7 +11,7 @@ def client(monkeypatch, tmp_path):
     calls = []
     speak_route._asks.clear()
     monkeypatch.setattr(speech, "CACHE", tmp_path)
-    monkeypatch.setattr(speech.PiperVoice, "say", lambda self, text: calls.append(text) or b"RIFF-fake")
+    monkeypatch.setattr(speech.FastPitchVoice, "say", lambda self, text: calls.append(text) or b"RIFF-fake")
     return TestClient(create_app()), calls
 
 
@@ -35,7 +35,7 @@ def test_same_word_twice_is_one_synthesis(monkeypatch, tmp_path):
 
 
 def test_a_failing_voice_rests_instead_of_retiring(monkeypatch, tmp_path):
-    voice = speech._VOICES["piper"]
+    voice = speech._VOICES["fastpitch"]
     monkeypatch.setattr(voice, "_resting_until", 0.0)
     monkeypatch.setattr(voice, "retired_reason", "")
     monkeypatch.setattr(speech, "CACHE", tmp_path)
@@ -43,7 +43,7 @@ def test_a_failing_voice_rests_instead_of_retiring(monkeypatch, tmp_path):
     def broken(self, text):
         raise OSError("offline")
 
-    monkeypatch.setattr(speech.PiperVoice, "say", broken)
+    monkeypatch.setattr(speech.FastPitchVoice, "say", broken)
     app = TestClient(create_app())
     assert app.get("/api/speak", params={"text": "كِتَاب"}).status_code == 503
     assert voice.resting() and not voice.retired_reason
@@ -67,15 +67,17 @@ def test_the_store_keeps_only_the_newest_words(monkeypatch, tmp_path):
 
 
 class _Model:
-    """Stands in for Piper's phonemizer: ظ as ð (its fault), ض as d ˤ."""
+    """Stands in for FastPitch: a quarter second of quiet, as float samples."""
 
-    def phonemize(self, text):
-        sounds = {"ظ": ["ð"], "ض": ["d", "ˤ"], "ذ": ["ð"]}
-        return [[p for ch in text for p in sounds.get(ch, [ch])]]
+    def infer(self, text, speaker):
+        import numpy as np
+        return np.zeros(22050 // 4, dtype="float32")
 
 
-def test_zaa_is_not_said_as_dhaal():
-    assert speech._phonemes(_Model(), "ظل") == [["ð", "ˤ", "ل"]]
-    assert speech._phonemes(_Model(), "ذل") == [["ð", "ل"]]
-    # A real ض beside it would be changed too, so that text is left alone.
-    assert speech._phonemes(_Model(), "ظض") == [["ð", "d", "ˤ"]]
+def test_the_voice_hands_back_a_playable_wav(monkeypatch):
+    import io, wave
+    voice = speech.FastPitchVoice()
+    monkeypatch.setattr(voice, "_model", _Model())
+    with wave.open(io.BytesIO(voice.say("كِتَاب"))) as file:
+        assert (file.getframerate(), file.getsampwidth(), file.getnchannels()) == (22050, 2, 1)
+        assert file.getnframes() == 22050 // 4
