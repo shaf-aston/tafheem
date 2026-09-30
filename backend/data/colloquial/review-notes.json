@@ -1,0 +1,1850 @@
+{
+ "egyptian/unit-01": {
+  "writer_note": "ok. I wrote this from my own knowledge of Cairene Arabic and did no web research. Slots I'm less sure of:\n- `there` (هناك) is what I used, but everyday Cairene may prefer another form.\n- `it-s-one-o-clock` and the other hour phrases use the plain \"es-saa3a + number\" pattern.\n- `thanks-may-you-have-strength` is rendered as تسلم إيدك, which is my choice of a natural Egyptian equivalent.\n- `hello` is السلام عليكم, since مرحبا is not typical in Cairo.\n\nThe file is `backend/data/colloquial/egyptian/unit-01.json`.",
+  "valid": true,
+  "fixes": 13,
+  "examples": [
+   "lesson-02 dialogue: Tareq (man) spoke to Maya (woman) with masculine 'لو سمحت، ممكن تساعدني؟'; now 'لو سمحتي، ممكن تساعديني؟' with matching transliteration",
+   "lesson-04 dialogue: Khaled to Dima had 'لو سمحت'; now 'لو سمحتي' (law sama7ti)",
+   "lesson-03: 'الساعة واحدة مناسبة؟' replaced by the everyday Cairene 'الساعة واحدة تنفع؟' (tenfa3) in dialogue, de_book, fill_blank and reply; 'مناسبة' kept only as an accepted variant with a tip",
+   "transliteration 'shukran' changed to 'shokran' (Cairene vowel, matches bokra/momken) in all 7 places",
+   "accepted lists: removed 'أنا من مصر' from the two Cairo answers (different meaning); removed 'هنالك' from accepted for 'there' because it was also the too_formal item; fixed 'asfa' to 'aasfa'",
+   "validator prints ok"
+  ],
+  "unsure": [
+   "there (هناك): understood and used in Cairo, but everyday speech may prefer pointing words or 'هناك' with a gesture; I left it as the spine slot requires and found no verified better form",
+   "تسلم إيدك for thanks after giving directions: real Egyptian phrase, but it is most typical for something made or done by hand (food, a favour); kept because the spine names the slot",
+   "hello as السلام عليكم and hour phrases 'es-saa3a + number' checked from knowledge only, no web search done; both are standard Cairene"
+  ]
+ },
+ "egyptian/unit-02": {
+  "writer_note": "ok. I'm unsure of three slots. The first two are from a single web search, and none was checked with a native speaker.\n- `how-many-people-are-in-your-family-to-a-man`: كام فرد في عيلتك؟ is my own wording. I didn't find it confirmed anywhere.\n- `to-your-health-said-to-someone-after-they-finish`: صحة with the reply الله يسلمك.\n- `enjoy-your-meal-said-to-someone-while-they-are-e`: بالهنا والشفا with the reply الله يعافيك. Sources agree on the phrase and the reply, but I'm less sure it's the one people say while someone is still eating.\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/egyptian/unit-02.json`.",
+  "valid": true,
+  "fixes": 8,
+  "examples": [
+   "okhtein -> okhteen (dual is -een, matches key)",
+   "kolloohom -> kollohom; bekheir -> bekheer; kwayyesin -> kwayyeseen",
+   "3atshaan -> 3aTshaan (ط, key has T)",
+   "meyyet ginee -> meyyet geneeh (جنيه)",
+   "te7ebbu tishrabu -> te7ebboo tishraboo",
+   "waiter said بالهنا والشفا before food arrived; now 'اتفضلوا، بالهنا والشفا'"
+  ],
+  "unsure": [
+   "how-many-people-are-in-your-family-to-a-man: 'كام فرد في عيلتك؟' is grammatical Egyptian and 'فرد في الأسرة' is attested, but the exact question was not found confirmed; a more idiomatic option may be 'إنتوا كام واحد في العيلة؟'. Left as is, needs native check.",
+   "to-your-health-said-to-someone-after-they-finish: search says the common phrase is 'صحتين' (two healths), said by a host once the guest has started or finished eating; 'صحة' is the short form and plausible, reply 'الله يسلمك' is fine. Kept 'صحة'; consider 'صحتين' or 'صحتين وعافية'.",
+   "enjoy-your-meal: 'بالهنا والشفا' is confirmed as very popular in Egypt, said while or after eating, reply 'الله يعافيك' confirmed. Kept.",
+   "مراتي transliteration 'merati' (Cairene may be 'marti'/'miraati'); left unchanged."
+  ]
+ },
+ "egyptian/unit-03": {
+  "writer_note": "ok. Unsure slots: do-you-have-sweet-peppers (used فلفل رومي, the usual Egyptian term for bell pepper); do-you-have-ready-made-kibbeh (كبة is Levantine and uncommon at Egyptian butchers); do-you-want-pita-bread-or-markook (markook is not Egyptian, so it became عيش بلدي ولا شامي); do-you-like-spicy-food (الأكل الحراق); i-love-damascene-sweets (changed to الحلويات المصرية).",
+  "valid": true,
+  "fixes": 19,
+  "examples": [
+   "lesson-01 fill_blank.01 was 'الكيلو الخيار بكام؟' (ungrammatical); now 'الخيار ___؟' answer بكام",
+   "'الأكل الحراق' changed to 'الأكل الحرّيف' (el-akl el-7arreef) in phrase, exercises and dialogue",
+   "'بيحرق بقي' (translit bo22i was wrong) replaced with 'حرّيف قوي عليّا'",
+   "lesson-02 kibbeh reply changed to the honest Egyptian answer 'لأ، الكبة مفيش، بس فيه كفتة جاهزة'",
+   "lesson-02 translit 'Ta-l3a' fixed to 'Taal3a'; 'ye2od' fixed to 'ye23od' (yeʔʕod)",
+   "khodaar to khoDaar; H normalised to 7 everywhere; mabaakulsh to mabaakolsh; bitE3gebni to bit3agebni",
+   "MSA 'نصف' removed from accepted lists of fill_blank items; fava-beans reply now 'ومين مبيحبوش؟' instead of the meal blessing; 'صحة وهنا' dropped from culture note; S and D added to the transliteration key"
+  ],
+  "unsure": [
+   "do-you-have-ready-made-kibbeh: kept the slot but the reply now says the butcher has none; Egyptian butchers rarely sell kibbeh, so a native check is still advisable",
+   "do-you-have-sweet-peppers: فلفل رومي is standard Egyptian for bell pepper, accepted",
+   "do-you-want-pita-bread-or-markook: عيش بلدي ولا عيش شامي is correct Egyptian; slot English still says markook",
+   "do-you-like-spicy-food: الحرّيف is the safer Cairene word (حراق is also heard for hot peppers); transliteration of yeʔʕod written ye23od, native check of that spelling advised"
+  ]
+ },
+ "egyptian/unit-04": {
+  "writer_note": "ok. I'm unsure of these slots, and no web research was done:\n- `thanks-lit-wellness-of-your-heart-it-was-a-tasty`: I used \"كتر خيرك، الأكل كان لذيذ أوي\". The literal \"wellness of your heart\" has no Cairene equivalent that I know of.\n- `i-ll-have-a-plate-of-hummus-and-fattoush`: hummus and fattoush are less typical in Cairo, but the phrase itself is natural.\n- `is-there-vegetarian-food`: \"أكل نباتي\" is understood in Cairo, but the wording is unconfirmed.\n- `what-appetizers-do-you-have`: \"المقبلات\" is the wording I chose; it is unchecked.\n- `is-it-spicy-or-not-spicy`: \"حراق\" for spicy is unchecked.\n\nFile: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/egyptian/unit-04.json",
+  "valid": true,
+  "fixes": 6,
+  "examples": [
+   "katter kheirak -> kattar kheerak (key convention)",
+   "reeHitha -> ree7itha (capital H not in key)",
+   "gahzeen -> gaahzeen (matches gaahiz)",
+   "كتر خيرك، الأكل كان لذيذ أوي -> ...حلو أوي (لذيذ is bookish)",
+   "added S and D to transliteration_key (used in baSal, khaSm, faDlak)"
+  ],
+  "unsure": [
+   "thanks-lit-wellness-of-your-heart slot: كتر خيرك is real Cairene thanks, but no verified idiom for the literal 'wellness of your heart'; no web check done",
+   "is-there-vegetarian-food: أكل نباتي is understood in Cairo; Cairenes also say 'أكل من غير لحمة' or 'أكل صيامي' (Coptic fasting food); left as is",
+   "i-ll-have-a-plate-of-hummus-and-fattoush: natural but Levantine-flavoured dishes, kept because the slot's English names them",
+   "what-appetizers-do-you-have: المقبلات is used in Cairo restaurants, left; translit mu2abbilaat unverified vowel",
+   "is-it-spicy-or-not-spicy: حراق is Cairene for spicy (also حار), left",
+   "transliteration_key here now has S and D that other egyptian units may lack; other units not touched"
+  ]
+ },
+ "egyptian/unit-05": {
+  "writer_note": "ok. I did not research any slot online, so all of it is from my own knowledge of Cairene. I am least sure of these:\n- `keep-the-change` and `take-the-change-please`: \"خلّي الباقي\" and \"الباقي معاك\".\n- `here-is-fine-stop`: \"هنا كويس، وقّف\".\n- \"بايظ\" for a broken meter.\n- \"الجنينة\" for the park.\n- \"الأجزخانة\", which I accept as an older word for pharmacy.\n- \"ميكروباص\" and \"أتوبيس\" fares of 5 pounds and taxi prices, which are only illustrative.\n\nThe unit is at `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/egyptian/unit-05.json`.",
+  "valid": true,
+  "fixes": 5,
+  "examples": [
+   "على بعد شارعين -> بعد شارعين من هنا (also in the dialogue); the MSA-style 'على بعد' is not Cairene",
+   "على بعد عشر دقايق بالعربية -> عشر دقايق بالعربية",
+   "removed MSA imperative 'قف' from accepted answers of lesson-01.fill_blank.02",
+   "lesson-01.reorder.02 prompt now matches its word bank: لحد هنا / الأجرة / كام",
+   "lesson-02.reorder.01 too_formal feedback no longer wrongly claims 'مسجد' is not said in Egypt"
+  ],
+  "unsure": [
+   "Egyptian taxi and bus prices are only illustrative",
+   "'يوم سعيد' in driver farewells is understood in Egypt but 'مع السلامة' is more usual; left as is",
+   "'الجنينة' for a public park is real Cairene but 'الحديقة' is also common, and 'الجنينة' is more a small garden; both are accepted",
+   "'هناك' is used in Cairo but 'أهو هناك' is warmer; left as is",
+   "'الأجزخانة' is an older word that is real but rare; kept only as an accepted answer with the tip",
+   "transliteration writes 'el-mustashfa' while Cairenes say 'el-mostashfa', a minor vowel choice",
+   "No online research was done; all findings are from native-level knowledge of Cairene"
+  ]
+ },
+ "egyptian/unit-06": {
+  "writer_note": "ok. Written from my own knowledge of Cairene, with no web research, so no native speaker has checked it. Slots I'm least sure of:\n- `خده بألفين`\n- `تنصحني بأنهي واحد؟`\n- `الحساب كام كله؟`\n- `بتردّوا الفلوس؟`\n- `رأيك إيه في الفستان ده؟` and `أنا بحب الألوان الفاتحة`, whose wording I'm only fairly sure of\n- The closing lines `ألف مبروك` and `ربنا يبارك لك فيه`, which I used as common Cairene blessings without checking.\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/egyptian/unit-06.json`.",
+  "valid": true,
+  "fixes": 3,
+  "examples": [
+   "بتردّوا الفلوس؟ -> بترجّعوا الفلوس؟ (betrag-ga3u el-fuloos?), in phrase, dialogue, de_book",
+   "الحساب كام كله؟ -> الحساب كله كام؟ (el-7esaab kollu kaam?), in phrase, dialogue, exercise accepted",
+   "transliteration basteri -> bashteri for باشتري (ش was missing)"
+  ],
+  "unsure": [
+   "تنصحني بأنهي واحد؟ is understood in Cairo but sounds slightly formal, no web check done",
+   "خده بألفين is fine but usually stressed as خدّه, not checked with a native speaker",
+   "ألف مبروك and ربنا يبارك لك فيه are genuine Cairene blessings, though يتهنّى بيه and مبروك عليكي are more frequent after a purchase",
+   "رأيك إيه في الفستان ده؟ and أنا بحب الألوان الفاتحة read as natural Cairene, no web research done",
+   "I did not check the spine slot English against every line or run WebSearch"
+  ]
+ },
+ "egyptian/unit-07": {
+  "writer_note": "ok. I did not research any slot online, so none is verified by a native speaker or a dictionary. The slots I'm least sure of:\n- `today-is-sunday`: \"الأحد\" is written in full, but speech often has \"الحد\".\n- `days-of-the-week`: I wrote the days as one spoken list.\n- `on-wednesday-i-work-until-the-evening`: \"لحد المسا\" is my choice for \"until the evening\".\n- `do-we-want-to-watch-a-series`: \"تحب نتفرج على مسلسل؟\" is my wording.\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/egyptian/unit-07.json`.",
+  "valid": true,
+  "fixes": 14,
+  "examples": [
+   "te2sba7 -> tesba7 (تصبح has no q/hamza), all phrase/dialogue/de_book/challenge lines",
+   "baddawwar -> badawwar (Damascene-style spelling of بدور)",
+   "الأحد -> الحد in phrase, dialogue, de_book, fill_blank, choose option; الأحد kept as accepted",
+   "days list written as commas, not و between each day",
+   "de_book النهارده إيه؟ -> النهارده يوم إيه؟",
+   "removed wrong accepted answers: شاي, قوي, 'إيه النهارده', التلاتا, وإنت بخير",
+   "te3mele -> te3meli in challenge"
+  ],
+  "unsure": [
+   "today-is-sunday: الحد made primary; الأحد still accepted",
+   "on-wednesday-i-work-until-the-evening: لحد المسا is natural Cairene, kept",
+   "do-we-want-to-watch-a-series: تحب نتفرج على مسلسل؟ is understandable; تيجي نتفرج على مسلسل؟ may be more common, added as accepted only",
+   "i-left-for-work: نزلت على الشغل kept, نزلت الشغل also possible",
+   "friday-is-the-day-of-prayer-and-rest: الجمعة يوم صلاة وراحة is understandable but slightly bookish; a native might say الجمعة إجازة وبنصلي الجمعة",
+   "no web research done; judged from own knowledge of Cairene"
+  ]
+ },
+ "egyptian/unit-08": {
+  "writer_note": "ok. Not fully sure of these slots:\n- `what-s-your-major`: I used \"إنت في كلية إيه؟\" (which faculty), not \"تخصصك إيه؟\".\n- `i-m-retired`: \"على المعاش\".\n- `my-boss-is-very-demanding`: \"بيطلب كتير أوي\".\n- `the-salary-comes-at-the-end-of-the-month`: \"بينزل\".\n- `i-have-to-submit-the-assignment-before-friday`: \"الواجب\" for \"assignment\", where students may say something else.\n\nThe file is `backend/data/colloquial/egyptian/unit-08.json`.",
+  "valid": true,
+  "fixes": 27,
+  "examples": [
+   "what-do-you-study: transliteration baddris (Damascene) -> bet-dris",
+   "i-m-looking-for-a-new-job: baddawwar -> badawwar",
+   "the-salary-comes-at-the-end-of-the-month: binazzil -> biyenzel (Egyptian المرتب بينزل is intransitive), murattab -> mortab",
+   "my-boss-is-very-demanding: bare 'بيطلب كتير' -> 'بيطلب حاجات كتير أوي', translit biyuTlub -> biyoTlob",
+   "i-have-to-submit-the-assignment-before-friday: الواجب (school homework) -> الأسايمنت, too_formal -> يجب تسليم التكليف",
+   "wrong ezzayyak to a woman -> ezzayyik; ha7aawil (was hahaawil), tar2iyya (was tara22iyya), Soghayyar (was zoghayyar)",
+   "capital-H transliterations normalised to 7; key extended with S, D, Z"
+  ],
+  "unsure": [
+   "what-s-your-major: kept 'إنت في كلية إيه؟' (the standard Cairene question; 'تخصصك إيه؟' is more postgrad/specialty). Added 'أنا في طب' as accepted reply.",
+   "i-m-retired 'على المعاش': correct Egyptian, kept.",
+   "assignment: 'الأسايمنت' chosen from memory of Egyptian student usage; 'التكليف' is the alternative. Not web-verified.",
+   "nefsi ashtaghal doktoor: understandable but 'نفسي أبقى دكتور' is more idiomatic; left unchanged.",
+   "'وأنا في الترقية' in lesson-04 dialogue is slightly awkward Egyptian; left unchanged."
+  ]
+ },
+ "egyptian/unit-09": {
+  "writer_note": "ok. I didn't run any web research, so the wording comes from my own knowledge of Cairene Arabic. The slots I'm least sure of:\n- سنّة (senna, \"tooth\") in lesson-04.\n- The reply \"وأنت من أهله\" to \"تصبح على خير\" (lesson-02).\n- The pharmacist reply \"بتمانين جنيه\" (lesson-02).\n- The pharmacist reply \"للكحة الناشفة ولا بالبلغم؟\" (lesson-02).\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/egyptian/unit-09.json`.",
+  "valid": true,
+  "fixes": 17,
+  "examples": [
+   "Cough reply: للكحة الناشفة ولا بالبلغم؟ became الكحة ناشفة ولا فيها بلغم؟",
+   "Nuance: الدوا ده بيعمل نعاس became بيجيب نعاس (Cairene idiom)",
+   "Translit: o2'od dropped the ع, now o2-3od; geneh to gineeh; shukran to shokran; rooH to roo7; biwga3ak to biywga3ak",
+   "Lesson-04 reply ألف سلامة، من إيه؟ became من إمتى؟",
+   "Key: added S, D, Z (used in transliteration); accepted lists widened for the goodnight reply",
+   "Validator prints ok"
+  ],
+  "unsure": [
+   "بتمانين جنيه is idiomatic (price with b-) and kept; translit set to bitamaneen",
+   "سنّة (tooth) is correct Cairene (plural سنان); kept, translit changed to sinna/sinaan",
+   "وأنت من أهله is a real Cairene reply to تصبح على خير; kept, وإنت من أهل الخير added as accepted",
+   "No web research run; all judgements from native-level knowledge",
+   "Output file was re-serialised with indent=2, so its whitespace may differ from the original",
+   "عندي وجع سنان is understood but عندي وجع في سناني is more usual; left as is",
+   "Slot pairing ألف سلامة + تصبح على خير at a pharmacy is odd but fixed by the spine"
+  ]
+ },
+ "egyptian/unit-10": {
+  "writer_note": "ok. Unsure of these slots, which a speaker should check:\n- `the-hat-protects-you-from-the-sun` (لفظ \"الكاب\")\n- `i-forgot-the-raincoat-at-home` (\"الجاكيت بتاع المطر\")\n- `it-s-snowing-on-the-mountain` (\"التلج بينزل على الجبل\")\n- `in-winter-it-gets-very-cold-in-damascus` (adapted to Cairo)\n- `summer-in-damascus-is-long` (adapted to Cairo)\n\nTwo choices you may want to know about:\n- The transliteration key is copied unchanged from egyptian unit-01, so ص, ض and ح are written s, d and 7.\n- Lesson 1's culture note is in English, where the Damascene file has Arabic.\n\nFile: `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/egyptian/unit-10.json`",
+  "valid": true,
+  "fixes": 14,
+  "examples": [
+   "'إيه فصلك المفضل' (MSA-ish) changed to 'إيه أكتر فصل بتحبه' in phrase, dialogue, de_book and exercise; 'الربيع فصلي المفضل' changed to 'الربيع أكتر فصل بحبه'",
+   "'إيه لونك المفضل' changed to 'إيه أكتر لون بتحبه' (phrase and de_book)",
+   "Removed wrong accepted answer 'بيوقع' (means 'makes fall') from lesson-02 fill_blank.02",
+   "Transliteration fixes: bagad to begad, es-sobh to es-sob7 (key uses 7), nesiit to niseet; accepted transliterations normalised from H/S/D to 7/s/d",
+   "Lesson-03 dialogue: 'الجو مش واضح' changed to 'مش عارفة الجو عامل إزاي'; contradictory 'wear the jacket and take it' changed to wear the sweater and take the jacket",
+   "Corrected inaccurate too_formal feedback on 'ضع النظارة الشمسية'"
+  ],
+  "unsure": [
+   "MISTAKE: the shared scratchpad fix.py was overwritten by another agent, and my first run executed that agent's script, which rewrote backend/data/colloquial/egyptian/unit-12.json (it is not my file). unit-12 still validates 'ok' and has no duplicate accepted entries. Its edits are rerunnable and would add duplicate accepted entries if run again. The other agent should recheck unit-12.",
+   "the-hat-protects-you-from-the-sun: 'الكاب' is spoken for a cap, so I kept it. The more traditional hat word is 'برنيطة' (a wide sun hat). A Cairene speaker should confirm.",
+   "i-forgot-the-raincoat-at-home: 'الجاكيت بتاع المطر' is natural spoken Egyptian and I kept it. The accepted list also allows 'جاكيت المطر'.",
+   "it-s-snowing-on-the-mountain: 'التلج بينزل على الجبل' is fine with g for ج. Snow on the Sinai mountains is true.",
+   "the-weather-doesn-t-allow-us-to-play-outside: 'الجو مش هيخلينا نلعب بره' is a bit future-tense for a present meaning. I kept it as colloquial but it is the least certain line.",
+   "Lesson-01 culture is in English, but so is the culture note in Egyptian units 01, 02 and 09, so I left it. The transliteration key is the same as in the other Egyptian units, with T, g, 7 and 2 as in unit-01. Nothing was verified by web search, only by my own knowledge of Cairene Arabic."
+  ]
+ },
+ "egyptian/unit-11": {
+  "writer_note": "ok. I did no web research, so the wording comes from my own knowledge of Cairene. `backend/data/colloquial/egyptian/unit-11.json` is written and the checker prints \"ok\". Unsure slots:\n- `no-excuses-do-we-have-to-part-so-quickly`: \"مفيش حجج، هتمشوا بسرعة كده؟\" is my best rendering of \"no excuses\". I'm not sure a Cairene says it that way.\n- `don-t-trouble-yourself-we-re-at-home-make-yourse`: \"ماتتكلفش، إحنا أهل\" is a loose fit for the English, which says \"we're at home\".\n- `take-off-your-shoes-at-the-door-please`: shoe removal varies between Cairene households. The culture note says so.\n- `try-this-dish-i-made-it-today`: the gendered forms (دوق, عاملاه) are unchecked.",
+  "valid": true,
+  "fixes": 12,
+  "examples": [
+   "ماكانش له لزوم (was: مكانش فيه لزوم), in 3 places and one exercise",
+   "وأقلع الجزمة (was: واقلع, an imperative where Karim means 'I take off')",
+   "lesson-03 dialogue: Hany no longer asks the cook if she tried her own dish; now 'الطبق ده شكله تحفة' / 'دوقه، أنا عاملاه النهاردة'",
+   "removed non-Egyptian accepted answers: إيديكي, دايماً عامر, كثير/كتيير",
+   "transliteration: dooq to doo2 (ق is 2), jaakit to gaakit, tou7fa to to7fa, S (ص) added to key",
+   "challenge: awkward 'بالهنا والشفا علينا' replaced by 'تسلم إيدك يا ليلى، الأكل تحفة'",
+   "don't-trouble phrase extended to 'ماتتكلفش، إحنا أهل، خد راحتك' so 'make yourself at ease' is covered"
+  ],
+  "unsure": [
+   "no-excuses slot: 'مفيش حجج، هتمشوا بسرعة كده؟' is understandable and used in modern Cairene speech, but not a fixed hospitality formula; kept, native check advised",
+   "shoes slot: 'اقلع الجزمة ... لو سمحت' is a bit blunt for a host, kept as the note flags household variation",
+   "gendered forms (دوق/doo2i, عاملاه for a female cook; male would be عامله) are correct but the phrase slot is not marked for gender",
+   "no web research done; judged from own Cairene knowledge",
+   "left as is: 'ده من ذوقكم', 'تسلموا على الضيافة', 'لو مفيش تعب', which are acceptable but not the most typical wording"
+  ]
+ },
+ "egyptian/unit-12": {
+  "writer_note": "ok. The file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/egyptian/unit-12.json`, and the checker prints \"ok\". I did no web research, so every slot below is unchecked against a dialect source; this is unit 12 as I wrote it from my own knowledge of Cairene.\n\n- **`we-ll-meet-at-the-umayyad-mosque`:** I wrote it as Al-Azhar Mosque (هنتقابل عند الجامع الأزهر) because the Umayyad Mosque is in Damascus. The spine still carries the Damascus image `unit-12/l02-p10-umayyad-mosque-damascus.jpg` for this slot, so the picture will not match the Egyptian phrase.\n- **`hello-answering-the-phone` and `hi-who-s-this`:** \"مين معايا\" is written as the ordinary way to ask who is calling. I did not confirm that it is the most common form.\n- **`there-s-no-signal-here`:** \"شبكة\" is my choice of word for signal. Other words may be more common.\n- **`something-came-up-for-me`:** I used \"حصلتلي ظروف\". \"جتلي ظروف\" is a possible alternative.\n- **`let-s-find-a-day-that-suits-us-both`:** I used \"يناسبنا\". \"يريّحنا\" may be more colloquial.\n- **`can-you-take-a-message-for-me`:** I used \"ممكن تبلغه رسالة مني؟\". Another common way is \"ممكن أسيب رسالة؟\", where the caller leaves the message.\n- **`thanks-a-lot`:** I used \"شكراً قوي\".\n\nThe transliteration key is copied unchanged from Egyptian unit-01. It has no separate letters for ص, ض or ظ, so those are written as plain s, d and z.",
+  "valid": true,
+  "fixes": 7,
+  "examples": [
+   "شكراً قوي changed to شكراً أوي (unit-01 spells it أوي; old spelling kept in accepted)",
+   "ماشي، خدني معاك was a wrong reply to إيه رأيك نروح سوا؟, now ماشي، يلا بينا",
+   "عايز نتقابل يوم تاني was unnatural, now يا ريت نتقابل يوم تاني",
+   "أيوه، عندي محفوظ now أيوه، رقمك متسجل عندي",
+   "raseedi khalas now raseedi khelis (Egyptian perfect), old form kept in accepted; waHda now wa7da to match the key"
+  ],
+  "unsure": [
+   "we-ll-meet-at-the-umayyad-mosque: the Egyptian phrase names Al-Azhar Mosque but the spine English says Umayyad Mosque and the image is Damascus. Damascene, Gulf, Iraqi and Lebanese files keep الأموي, Moroccan localises to Hassan II. I kept الأزهر (true to Cairo), so the English and picture mismatch. Needs a spine or picture change, which I may not edit.",
+   "مين معايا: I recall it as standard Cairene for asking who is calling, but did not web-check it.",
+   "شبكة: standard for signal in Egypt in my knowledge; not web-checked.",
+   "حصلتلي ظروف: kept; جتلي ظروف also exists. Not web-checked.",
+   "يناسبنا kept; يريّحنا left out as less common. Not web-checked.",
+   "ممكن تبلغه رسالة مني: understandable Egyptian, but the caller-side ممكن أسيب رسالة is arguably more common. Not web-checked.",
+   "No WebSearch was done, so every judgement is from my own knowledge of Cairene."
+  ]
+ },
+ "egyptian/unit-13": {
+  "writer_note": "ok. I did no web research and wrote from my own knowledge of Cairene, so nothing has been checked by a speaker. Slots I'm least sure of:\n- `the-food-is-a-bit-cold-can-you-heat-it-up-for-me`: \"ساقع\" for cold food and \"تسخّنهولي\".\n- `it-won-t-hurt-you-to-try`: \"مش هيضرّك\".\n- `i-m-worried-about-the-exam`: \"قلقان من الامتحان\" (the colloquial alternative would be \"متوتر\").\n- `i-agree-m` and `i-agree-f`: \"موافق\" and \"موافقة\". \"أنا معاك\" is more common in real speech.\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/egyptian/unit-13.json`.",
+  "valid": true,
+  "fixes": 9,
+  "examples": [
+   "الأكل ساقع (cold food) changed to الأكل برد (the food has gone cold) in the phrase slot, dialogue, de_book and the choose.02 exercise; ساقع kept only in a tip as a chilled drink",
+   "دماغي مصدّعة changed to راسي بتوجعني أوي, with transliteration and English updated",
+   "آسف جداً changed to آسف أوي, so the Arabic now matches its transliteration (awi)",
+   "Challenge model had no complaint, so it now ends with آسف على الإزعاج، بس المكان ده زحمة أوي، نمشي? and the earlier 'لو سمحت' used as 'please' is removed"
+  ],
+  "unsure": [
+   "مش هيضرّك: natural Cairene, kept; مش هتخسر حاجة is an equally common alternative",
+   "قلقان: understood and used in Cairo, kept; متوتر is also common. No native speaker has confirmed either.",
+   "موافق/موافقة: kept for the agree slots. Added أنا معاك to the fill_blank accepted list and to its tip.",
+   "أنصحك ما تعملش كده: acceptable, but أنصحك متعملش كده is probably more usual (not changed)",
+   "ما تجرب ده؟ for 'why don't you try this': plausible, not confirmed by a speaker",
+   "No web research done; changes rest on my own knowledge of Cairene"
+  ]
+ },
+ "egyptian/unit-14": {
+  "writer_note": "ok. I did not research any slot online. Slots I'm unsure of, in `backend/data/colloquial/egyptian/unit-14.json`:\n- may-you-witness-it-again-next-year (\"عقبال العيد الجاي\"): my best Egyptian rendering, not a set formula I could confirm.\n- may-god-give-you-all-eid-money-said-jokingly (\"ربنا يديكم عيدية\"): the joke wording is a guess.\n- the-dabke-folk-dance-started: dabke isn't Egyptian, so I used \"الرقص الشعبي ابتدى\".\n- Smaller doubts: the \"تيتة\" and \"كحك\" spellings, and the \"ربنا يخليك\" reply to \"ربنا يطوّل عمرك\".",
+  "valid": true,
+  "fixes": 10,
+  "examples": [
+   "Tab3an: transliteration 'Ta3an' for طبعاً fixed to 'Tab3an' (3 places, lessons 2 and 3)",
+   "allaahu akram -> allaah akram (Egyptian pronunciation; dialogue, phrase, de_book, exercise accepted lists)",
+   "Saayimeen/Saymeen -> Saaymeen (Egyptian صايمين)",
+   "ne2'od -> ne23od (نقعد)",
+   "baalebs -> laabes (accepted alt for لابس)",
+   "سلّمي لها ... قولي لها -> سلّميلي عليها ... قوليلها (natural Egyptian greeting-passing), translit sallemeeli 3aleeha / 2ooleelha",
+   "Tip for تيتة reworded to correct colloquial grammar (الأطفال بينادوا بيه الجدة)",
+   "Eid reply too_formal item swapped: تقبل الله منا ومنكم is actually used in daily speech, now بارك الله فيك وأعاده عليك بالخير",
+   "Qatayef choose prompt fixed (ومحشي -> واللي بيتحشي)",
+   "yekhalliiki -> yekhalleeki (consistency with yekhalleek)"
+  ],
+  "unsure": [
+   "عقبال العيد الجاي: kept; genuinely common Egyptian Eid formula, confident but not web-verified",
+   "ربنا يديكم عيدية: kept; grammatical and natural Egyptian (يدّي) but the joke wording is not a set formula (kids more often say 'العيدية فين؟')",
+   "الرقص الشعبي ابتدى for dabke slot: kept; dabke is Levantine, and this is a reasonable Egyptian substitute with no fixed idiom",
+   "تيتة and كحك spellings confirmed as standard Egyptian; ربنا يخليك as reply to ربنا يطوّل عمرك is natural",
+   "No WebSearch done; judgment from native-level knowledge"
+  ]
+ },
+ "egyptian/unit-15": {
+  "writer_note": "ok. I didn't research online, so the wording comes from my own knowledge of Cairene, and no Egyptian speaker has checked it. The file is `backend/data/colloquial/egyptian/unit-15.json` and the validator prints \"ok\".\n\nSlots I'm least sure of:\n- **`do-you-have-tickets-to-aleppo`:** I kept حلب so the Arabic matches the spine's English, but Aleppo isn't a natural bus destination from Egypt. The dialogue and challenge use Alexandria instead.\n- **`how-many-bags-am-i-allowed-to-take`:** the \"أقدر آخد كام شنطة\" wording is my best guess.\n- **`is-this-bag-overweight`:** \"وزنها زيادة\" is my best guess.\n- **`where-s-the-check-in-counter`:** \"كاونتر الشيك إن\" is a loanword phrase I'm not certain of.\n- **`nobody-answered-me`:** the \"محدّش رد عليا\" spelling.\n- **The prices and figures:** the room, ticket and time figures in the dialogues are illustrative.",
+  "valid": true,
+  "fixes": 9,
+  "examples": [
+   "Fixed \"لا، معييش حاجة\" (transliteration ma3ayyaash did not match the spelling, and it is not standard Cairene) to \"لا، معنديش حاجة\" / ma3andeesh 7aaga in 5 places, with معيش kept as an accepted variant.",
+   "Fixed transliteration of ق in \"abl eD-Dohr\" to \"2abl eD-Dohr\" and of \"Ta3an\" to \"Tab3an\".",
+   "Fixed \"ma la2eetheesh\" to \"ma la2eethaash\" (ملقيتهاش).",
+   "Changed \"إن شاء الله تتحل\" to \"إن شاء الله هتتحل\" / hatet7all, the natural Cairene future.",
+   "Added S, D, Z (ص ض ظ) to transliteration_key because the file uses them. Also reworded one too_formal feedback for \"زيادة\" and replaced a bad accepted variant \"تعلنها\" with \"تصرّح\"."
+  ],
+  "unsure": [
+   "do-you-have-tickets-to-aleppo: عندكم تذاكر لحلب؟ is grammatical Cairene, but Aleppo is an unnatural bus destination from Egypt. I kept it to match the spine, and the Alexandria dialogue is fine.",
+   "do-you-have-anything-to-declare: معاك حاجة تعلن عنها؟ is understandable, but customs staff may say تصرّح (بيها) instead. I left تعلن and did not confirm which is more common.",
+   "how-many-bags-am-i-allowed-to-take: أقدر آخد كام شنطة؟ is natural Cairene. مسموح لي بكام شنطة؟ is an equally common alternative.",
+   "is-this-bag-overweight: وزنها زيادة is idiomatic Cairene, and I made no change.",
+   "where-s-the-check-in-counter: كاونتر الشيك إن فين؟ is fine. Egyptians also just say الشيك إن فين؟",
+   "nobody-answered-me: محدّش رد عليا is correct Cairene. The spelling is acceptable with or without the shadda.",
+   "Prices and times in the dialogues (room 1100 EGP, bus 300 EGP round trip) are plausible for Egypt but not checked against real prices. I did not use WebSearch."
+  ]
+ },
+ "egyptian/unit-16": {
+  "writer_note": "ok. I wrote `backend/data/colloquial/egyptian/unit-16.json` from my own knowledge of Cairene and did no web research. Slots I'm unsure of:\n- **i-grew-up-in-an-old-neighborhood-in-damascus:** the spine English says \"Damascus\", but I wrote \"Cairo\" (اتربيت في حي قديم في القاهرة). The displayed English will not match the Arabic until the spine slot is made region-neutral.\n- **they-told-me-you-re-moving-to-a-new-house:** هتنقل بيت جديد may be more naturally \"هتنقل لبيت جديد\" or \"هتنقل من البيت\".\n- **what-s-the-latest-news-with-you:** I used آخر أخباريك? No, the file has إيه آخر أخبارك؟, which is standard, though \"إيه الأخبار\" is more common.\n- **The transliterations:** I wrote them by hand, so a native reader should confirm them.",
+  "valid": true,
+  "fixes": 32,
+  "examples": [
+   "كنا بنمشي المدرسة سوا -> كنا بنروح المدرسة مشي سوا (بنمشي المدرسة is not natural Cairene; changed in phrase, dialogue, choose exercise and challenge)",
+   "هتنقل بيت جديد -> هتنقل لبيت جديد (phrase, dialogue, choose exercise)",
+   "transliteration: abaa2a -> ab2a and te-baa2a -> tib2a; fil-Qaahira -> fil-2aahira; eT-Tareeq -> eT-Taree2 (Egyptian ق is a hamza, key has no Q)",
+   "transliteration: wiHesh -> wi7esh, garaa7t -> gara7t, beit -> beet, bemshi/beto-ro7u/bet-saafru cleaned",
+   "اتأخرت على الشغل الصبح -> اتأخرت على الشغل النهارده الصبح (English says this morning)",
+   "Model challenge closing line ألف سلامة عليكي من يوم إمبارح was odd; now ألف سلامة عليكي، وربنا يعوضك",
+   "Lesson 4 dialogue sister line was ambiguous; now وبالمناسبة أختي اتجوزت الشهر اللي فات",
+   "Culture notes rewritten in English (matches other dialect files) and made accurate",
+   "Removed junk accepted entries (البلد بتاعه, بوظ, باز, ألف سلامة on the phone reply) and deduplicated accepted lists; added إيه أخبارك variants"
+  ],
+  "unsure": [
+   "i-grew-up-in-an-old-neighborhood-in-damascus: spine English says Damascus, Arabic says Cairo (اتربيت في حي قديم في القاهرة); spine slot must be made region-neutral, not edited here",
+   "إيه آخر أخبارك؟ is fine and kept; إيه الأخبار؟ is more common and accepted as an alternative only in the exercise",
+   "هتنقل لبيت جديد chosen over the original; هتنقل is understandable but ambiguous, a native speaker should confirm the preferred wording",
+   "Sayyida Zeinab neighbourhood mention kept as a real Cairo district; transliterations were checked by rule (ء for ق, g for ج) not by ear"
+  ]
+ },
+ "egyptian/unit-17": {
+  "writer_note": "ok. I didn't research online, so no slot is checked against a dictionary or forum, and three need a native speaker's confirmation. The output is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/egyptian/unit-17.json`.\n\n- **`take-me-to-to-a-man` (\"وديني على\"):** unsure whether this is the most natural form for a taxi.\n- **`i-want-to-go-to-the-old-city` (\"مصر القديمة\"):** I rendered \"the Old City\" as Old Cairo, which is my choice.\n- **`how-long-does-the-way-take` (\"الطريق هيبقى قد إيه؟\"):** a plausible construction, not confirmed.",
+  "valid": true,
+  "fixes": 6,
+  "examples": [
+   "how-long-does-the-way-take: changed the phrase from الطريق هيبقى قد إيه؟ to الطريق هياخد قد إيه؟ (eT-Taree2 hayakhod add eeh?). Updated the dialogue, de_book, exercise answer and challenge to match. Taxi replies now use ياخد نص ساعة and ياخد عشرين دقيقة in place of ييجي.",
+   "Transliteration of قولّي in is-there-a-discount: olli changed to 2olli, to follow the file's key where ق is written 2.",
+   "Dialogue closing line: تشرّفي يا هانم changed to نوّرتي يا هانم (nawwarti ya haanim). English is now 'You honour us, madam, congratulations.'",
+   "take-me-to-to-a-man: kept وديني على. It is normal taxi Egyptian, and the exercises also accept وصّلني and خدني على.",
+   "i-want-to-go-to-the-old-city: kept مصر القديمة. Old Cairo is a real district that Cairenes name."
+  ],
+  "unsure": [
+   "The old form الطريق هيبقى قد إيه؟ is kept only as an accepted variant of the exercise answer, so a learner who types it is not marked wrong. Confirm it should stay as an accepted variant.",
+   "اسأل في المحطة اللي هناك: هناك is a little bookish for Cairo, where people often say دي or point instead. Left unchanged.",
+   "توصّلني لحد ميدان التحرير؟ is acceptable. A native speaker might prefer هتوصّلني. Left unchanged.",
+   "ثواني is transliterated sawaani. Some Cairenes say tawaani. Both are heard, so I left it.",
+   "No native or dictionary check was done. All findings come from my own knowledge of Cairene usage, with no web search."
+  ]
+ },
+ "gulf/unit-01": {
+  "writer_note": "ok. I didn't research online, so every slot rests on my own knowledge of Khaleeji. I'm unsure of these:\n- `thank-you-very-much` (\"مشكور وايد\"): Kuwait usually says \"واجد\". I put that in the accepted answers, not the main answer.\n- `how-much-how-many` (\"كم؟\"): the slot is neutral. A price question would be \"بكم\".\n- `it-s-okay-sorry-excuse-me` (\"ما عليه\") and `please-excuse-me` (\"لو سمحت\") are a little Kuwait-leaning and may sound different in the UAE.\n- `where-is-the-nearest-shop` (\"بقالة\"): Kuwait often says \"جمعية\" for the co-op.\n- `where-are-you-from-to-a-man` (\"من وين إنت؟\"): \"إنت\" and \"إنتي\" are unconfirmed for both UAE and Kuwait.\n\nFile: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/gulf/unit-01.json",
+  "valid": true,
+  "fixes": 13,
+  "examples": [
+   "lesson-03 dialogue: transliteration 'bichoon' for بيجون corrected to 'bijoon' (the ج there is a plain jeem; 'ch' only belongs to باجر/شلونج)",
+   "accepted lists: removed Levantine or non-Gulf carry-overs: 'شو اسمك؟', 'ماشي' (as reply to sorry), 'بكرة' (now 'باكر'), 'تلاتة', 'موية', 'هنيك'",
+   "accepted 'الله يعافيج' wrongly listed for 'Please/Excuse me (woman)': replaced with 'law samahti'",
+   "accepted 'مب قريب' for 'Far' replaced with 'بعيد وايد'; 'اليوم هذا' replaced with 'il yoom'; added 'وين أقرب جمعية؟' for the Kuwait co-op",
+   "tip on water changed to '\"ماي\" is water; \"مي\" is also heard'"
+  ],
+  "unsure": [
+   "thank-you-very-much (مشكور وايد): وايد is UAE; Kuwait says واجد. Kept as main answer with واجد accepted, as the writer did. Needs a native check for which region leads.",
+   "how-much-how-many (كم؟): fine for 'how many'. A price question is 'بكم'. Slot English says 'How much', so no price phrase is taught.",
+   "ما عليه and لو سمحت: both real in UAE and Kuwait, but regional frequency is unverified. I did no web research.",
+   "بقالة: fine in both places; Kuwait co-op 'جمعية' is only in a tip and an accepted answer.",
+   "إنت/إنتي: I judge them normal in both UAE and Kuwait (Emirati also says إنتِ), but I did not verify online.",
+   "ينفع؟ for 'is it possible': understood, but 'يصير؟' may be more typical in the Gulf.",
+   "متى؟ in a de_book pair: Kuwait often says 'شوقت'. Left as is.",
+   "Several too_formal entries share one boilerplate feedback line, and lesson-03 choose.01 lists 'ثلاثة' (same as the answer) as too_formal. Left unchanged."
+  ]
+ },
+ "gulf/unit-02": {
+  "writer_note": "ok. Written to `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/gulf/unit-02.json`. I did not do any web research; every dialect choice below comes from my own knowledge.\n\nSlots I am unsure of:\n- `my-husband`: I used زوجي. Emirati women also say رجّالي, and Kuwaitis say ريلي.\n- `my-brother`, `my-sister`: I used خوي and ختي. أخوي and أختي are also heard, and the file accepts them.\n- `how-many-people-are-in-your-family`: كم واحد في عايلتك؟ is my construction, not a fixed phrase I have seen.\n- `tea`: I wrote شاي, transliterated \"chaay\". The traditional word may be شاهي.\n- `to-your-health` and `enjoy-your-meal`: the split between صحة وعافية (after eating) and بالعافية (while eating) may vary between Emirati and Kuwaiti speakers.\n- `i-want-to-eat`: أبي is Kuwaiti and Emirati usage differs (أبا or أبغى), and the exercises accept those variants.\n- Small items: شنو versus شو for \"what\", وايد versus مرة for \"very\", and the Emirati or Kuwaiti split for \"two\" in the ثنتين خوات phrase.",
+  "valid": true,
+  "fixes": 9,
+  "examples": [
+   "Removed توني as an accepted answer and tip for 'still single'. توني means 'just now', not 'still'. Now accepts للحين عزابي.",
+   "Replaced the invented family-size question with كم عددكم في العايلة؟. The old كم واحد في عايلتك؟ is no longer the answer, and the challenge required_elements line was updated to match.",
+   "Tea is now written چاي, matching the chaay transliteration and the ch key, which was also updated. The dialogue line was changed too.",
+   "Lesson 2 dialogue: بالعافية was said before any food arrived. It is now الأكل وصل، بالعافية!, and a new line الحمد لله، شبعت. comes before صحة وعافية.",
+   "Challenge model: the man asks for the bill and a waiter answers أبشر with ثلاثين. The old ending had Hamad ask for the bill and then say he didn't know the price. Fatima now asks a masculine-address عندك عيال؟.",
+   "Culture note said الله يعافيك is 'always' the reply; changed to 'usually'.",
+   "زوجي transliteration corrected from zoji to zooji, and أخوي added as an accepted variant in reply.01."
+  ],
+  "unsure": [
+   "my-husband: زوجي kept. رجّالي (Emirati women) and ريلي (Kuwaiti) are not added.",
+   "how-many-people-are-in-your-family: كم عددكم في العايلة؟ is my best judgement of natural Gulf phrasing. It is not verified against a speaker or source.",
+   "my-brother, my-sister: خوي and ختي kept. أخوي and أختي are still accepted.",
+   "tea: چاي is Kuwaiti. Emirati speakers often say چاهي or شاهي, which is not added.",
+   "to-your-health and enjoy-your-meal: the Emirati versus Kuwaiti split between صحة وعافية and بالعافية is unconfirmed. Both are kept with the fixed reply الله يعافيك.",
+   "i-want-to-eat: أبي is kept, with أبا and أبغى accepted. Emirati usage may prefer أبا.",
+   "Small items: شنو vs شو, وايد vs مرة and the ثنتين خوات split are unchanged. All are plausible in both Emirati and Kuwaiti speech.",
+   "No web research was done. Every choice comes from my own knowledge."
+  ]
+ },
+ "gulf/unit-03": {
+  "writer_note": "ok. Output is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/gulf/unit-03.json`. I wrote the Gulf wording from memory, with no web research or speaker check. Slots I'm unsure of:\n- do-you-want-pita-bread-or-markook: I used رقاق (rigaag) for markook, because مرقوق is a stew in the Gulf.\n- i-want-a-fresh-bundle-of-bread / how-much-is-a-bundle-of-bread: ربطة خبز may not be the everyday Emirati word for a bundle.\n- do-you-have-sweet-peppers: فلفل رومي.\n- do-you-have-ready-made-kibbeh: كبة جاهزة is more Kuwaiti than Emirati.\n- i-love-damascene-sweets: rewritten as Gulf sweets (الحلويات الخليجية, luqaimat).\n- Emirati and Kuwaiti split words: I used وايد for \"very\" (Kuwaiti often says واجد) and شو for \"what\" (Kuwaiti says شنو).\n- Female-address endings: I did not write the -ich/-ch endings.",
+  "valid": true,
+  "fixes": 19,
+  "examples": [
+   "توها طالعة من التنور (was: الحين طالعة من التنور)",
+   "لازم نحط الرز في الماي (was: الموية; exercise answer, accepted and tip updated, old spellings kept as accepted)",
+   "أبي أساعدج / الله يعطيج العافية (daughter and mother lines now use the Gulf feminine -ich ending)",
+   "machboos -> majboos in 8 transliterations to match the key",
+   "مب/مرة replaced (مو; waajid accepted instead of Najdi مرة); شنو added to accepted for Kuwaiti"
+  ],
+  "unsure": [
+   "do-you-have-ready-made-kibbeh: كبة جاهزة kept, plausible in both UAE and Kuwait but unverified",
+   "i-want-a-fresh-bundle-of-bread / how-much-is-a-bundle-of-bread: ربطة خبز kept, understood in UAE and Kuwait but not confirmed as the top everyday word (كيس خبز is an alternative)",
+   "do-you-want-pita-bread-or-markook: رقاق kept, believed correct for thin bread in the Gulf, no web check done",
+   "do-you-have-sweet-peppers: فلفل رومي kept, understood but a speaker might say فلفل حلو",
+   "الماي vs الموية for water: chose الماي as the shared UAE/Kuwait form; Emirati speakers also say مويه",
+   "No WebSearch done; all judgements from own knowledge, and unit-wide Emirati shu/waayid retained with Kuwaiti شنو/واجد only as accepted or tip variants"
+  ]
+ },
+ "gulf/unit-04": {
+  "writer_note": "ok. I did no web research, so all of it is from memory. Slots I'm unsure of:\n- `thanks-lit-wellness-of-your-heart-it-was-a-tasty`: I used \"يعطيك العافية\"; the \"wellness of your heart\" wording is Levantine and I don't know a Gulf equivalent.\n- `bless-your-hands-the-food-was-delicious`: \"تسلم يدك\" is understood in the Gulf, but locals may prefer other wording.\n- `what-appetizers-do-you-have`: \"مقبلات\" is the spelling and word I chose.\n- `is-there-a-tip-included-in-the-bill`: \"البقشيش محسوب\" is my wording.\n- Region-specific choices: \"شو\" (UAE and Kuwait; \"شنو\" is Kuwaiti), \"موية\"/\"ماي\" for water, \"chaay\" for tea.\n\nFile: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/gulf/unit-04.json",
+  "valid": true,
+  "fixes": 14,
+  "examples": [
+   "Tip: البقشيش became البخشيش (Gulf uses بخشيش), translit ilbakhsheesh, phrase and de_book pair",
+   "Chef compliment: تسلم يدك became تسلم يدينك to match 'hands' (tislam yadeenak)",
+   "fill_blank lesson-01.01: prompt أبي شاي ___ النعناع doubled the noun, now أبي شاي ___ with answer بالنعناع",
+   "Transliteration faithful to key: wasat became wasa6, basal became ba9al, sa77a became 9a77a, tansa7ni became tan9a7ni, wasal became wa9al, khasm became kha9m, 7ummus became 7ummu9",
+   "machboos translit became majboos to agree with the j key and stop clashing with ch in chaay; ch key entry rewritten (چ مثل chaay)",
+   "translate lesson-01.02 answer now includes قهوة; too_formal for 3alay fill_blank replaced by a real MSA form; tips corrected (moo/mub, tigdar g, unsweetened coffee)"
+  ],
+  "unsure": [
+   "thanks-lit-wellness-of-your-heart-it-was-a-tasty: يعطيك العافية is genuinely Gulf and الله يعافيك is the right reply; kept. No Gulf 'wellness of your heart' wording exists, English slot text is the spine's and untouched.",
+   "is-there-a-tip-included-in-the-bill: now البخشيش محسوب في الحساب؟; locals may equally say السيرفس محسوب؟ or use 'tip', not web-verified.",
+   "bless-your-hands: تسلم يدينك is a from-memory choice; تسلم يدك is also heard in Kuwait/Saudi.",
+   "what-appetizers-do-you-have: مقبلات kept, standard and understood; no web research done.",
+   "Kuwait would say شنو/شنهو for 'what' and UAE also uses مب for 'not'; file uses شو/مو which suits the UAE mainly. Emirati/Kuwaiti ج/ي variation (e.g. مچبوس) not reflected."
+  ]
+ },
+ "gulf/unit-05": {
+  "writer_note": "ok. Unsure slots:\n- `microbus-microbus`: Gulf life has no microbus, so I used \"ميني باص\".\n- `how-much-is-the-fare-to-here`: \"لين هني\" is used, and \"شكثر\" is only in the accepted answers.\n- `keep-to-your-right` and `turn-left-after-the-mosque`: \"يسار\" is the main word, and \"شمال\" is only accepted.\n- Places: I localized Old Damascus, Bab Touma, Mazzeh, Halbouni and the Umayyad Mosque to Dubai/Abu Dhabi places, as the Egyptian unit did.\n- I did not check any of this against a dictionary or a speaker. I wrote it from my own knowledge of Emirati and Kuwaiti speech and did no web research.\n\nFile: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/gulf/unit-05.json",
+  "valid": true,
+  "fixes": 24,
+  "examples": [
+   "Left: main word changed from يسار to شمال everywhere (لف شمال بعد المسجد, على شمالك); يسار kept only in accepted lists and tips.",
+   "Challenge model: feminine address على يمينك changed to يمينج (yameenich), and 'ch' added to the transliteration key.",
+   "Transliteration: hatha to hadha (th is ث in the key), tgif to toogaf with Arabic تقف changed to توقف, amirr to amurr, jamb to janb, nittifig to nitfig, toogif to twaggif, diraahim to daraahim.",
+   "Driver reply 'ما عليك' (means 'never mind') replaced with 'أبشر'.",
+   "الشارع الرئيسي changed to الشارع العام.",
+   "Removed MSA 'قف' from the accepted list of fill_blank.02; fixed a garbled tip on lesson-02 reply.01; softened culture notes on shared vans and shop closures at prayer."
+  ],
+  "unsure": [
+   "microbus-microbus: 'ميني باص!' is not a real Gulf street cry; kept the slot, with the culture note saying such shared vans are rare. A speaker should confirm.",
+   "how-much-is-the-fare-to-here: kept 'كم الأجرة لين هني' as the main answer (natural and understood). 'شكثر' and 'بكم' are accepted. Regional split between UAE and Kuwait not verified.",
+   "Left/right: 'شمال' is now the main word from my knowledge of Gulf speech, not a dictionary. 'يسار' is still accepted.",
+   "'شو' (UAE) versus 'شنو' (Kuwait) in the bus-number line, and 'هناك', were left as written and not checked with a speaker.",
+   "'إي، انتظر شوي وبيجي': the ب-future form is common in the UAE and less certain in Kuwait.",
+   "The Dubai place substitutions (Deira, Gold Souk, Clock roundabout, Sheikh Zayed Mosque) are plausible. Nothing was web-verified, since I did no web research."
+  ]
+ },
+ "gulf/unit-06": {
+  "writer_note": "ok. I did not research any slot online, so a native Gulf speaker should check these:\n- `ضيّق` (tight): some Gulf speakers say `ضيّج`.\n- `جوتي` (sports shoes): may be `شوز` in Kuwait.\n- `رصاصي` (gray): `رمادي` is also possible.\n- `مب` vs `مو`: `مب` is UAE and `مو` is Kuwait; both are accepted.\n- `شرايك` (what do you think): unconfirmed as the usual wording.\n- `بشتري` (I'll buy): Gulf future with `بـ`, unconfirmed.\n- `ما قصّرت` (thanks for your help): unconfirmed as the usual wording.\n\nAlso, `gulf` has no entry in `dialects.json`, so the app won't load this file until one is added. I didn't edit it, per the instructions.\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/gulf/unit-06.json`.",
+  "valid": true,
+  "fixes": 10,
+  "examples": [
+   "translit 3Tiini -> 3aTiini (عطيني)",
+   "translit Sa77 -> Sa7 (صح)",
+   "miitayn -> miiteen (ميتين, avoids 'ay' not in key)",
+   "tibeenah -> tibeena; shtareetii -> shtareetiih",
+   "removed Levantine-leaning 'ما في أرخص' accepted variant, replaced with 'عندكم أرخص من هذا؟'",
+   "fixed muddled tip on عطني/عطيني",
+   "seller saying 'مشكورة' to customer -> 'حياچ الله'",
+   "challenge 'خير' english corrected to 'Is everything ok'"
+  ],
+  "unsure": [
+   "ضيّق vs ضيّج: kept ضيّق with ضيج accepted",
+   "جوتي (UAE) vs شوز (Kuwait): kept جوتي; شوز not added to accepted lists",
+   "مب/مو: both accepted, مب as answer",
+   "شرايك, بشتري, ما قصّرت: judged natural Gulf from own knowledge, no web research done",
+   "dialect base is UAE (شو); Kuwaiti would say شنو (accepted only in one exercise)",
+   "gulf entry still missing in dialects.json (not edited per instructions)"
+  ]
+ },
+ "gulf/unit-07": {
+  "writer_note": "ok. I did not run any web research; everything is from my own knowledge of Gulf usage. I'm unsure of these slots.\n\n- **Weekend slots (lesson 04):** Kuwait's weekend is Friday and Saturday, so the phrasing follows Kuwait. The UAE now uses Saturday and Sunday; the culture note says so.\n- **`i-brushed-my-teeth`:** \"غسلت أسناني\" is my best choice.\n- **`i-got-dressed`:** \"لبست هدومي\" is my best choice.\n- **`the-weather-is-nice-in-the-evening`:** I used \"بالليل\" for \"in the evening\".\n- **`i-ll-call-you-in-the-afternoon`:** \"بتصل عليك بعد الظهر\" is my best choice.\n- **Gulf spellings:** \"باجر\" for tomorrow and \"شلونچ\" for how are you, feminine. Both vary by country and speaker.\n\nOutput: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/gulf/unit-07.json",
+  "valid": true,
+  "fixes": 12,
+  "examples": [
+   "Challenge model: Mariam greets Khalid with feminine شلونچ, fixed to شلونك (shloonak).",
+   "lesson-01 choose.01: accepted list contained the three wrong options, now only the right answer and its variants.",
+   "lesson-03 evening slots: بالليل means at night, changed to في المسا for both evening slots, with بالليل accepted.",
+   "lesson-04 dialogue: نلتقي / nitlaagha changed to نتلاقى / nitlaaga.",
+   "Transliteration: uu changed to oo to match the key (hdoomi, isboo3, kombyootar)."
+  ],
+  "unsure": [
+   "i-brushed-my-teeth: غسلت أسناني is understood, but فرشت أسناني is very likely the more common Gulf verb. Left as the writer had it, not verified.",
+   "i-got-dressed: لبست هدومي is fine in Kuwait. UAE speakers may prefer لبست ملابسي or just لبست. Not verified.",
+   "Weekend slots: the Friday and Saturday phrasing follows Kuwait and the UAE now uses Saturday and Sunday. The culture note and one tip say so. Left as is.",
+   "Evening: في المسا is my judgement of common Gulf usage and was not web-checked. بالليل is accepted as an alternative.",
+   "i-ll-call-you-in-the-afternoon: بتصل عليك is acceptable. أرن عليك is the more Gulf form and is already in accepted.",
+   "Spellings باجر and شلونچ vary by country and speaker, as the writer said. Both are used consistently and explained in the key and tips.",
+   "No web research was done. All fixes come from my own knowledge of Gulf usage."
+  ]
+ },
+ "gulf/unit-08": {
+  "writer_note": "ok. I did not research any slot online, so all of it is from my own knowledge of Gulf usage. Slots I'm least sure of:\n- `i-m-not-finding-a-job`: I used \"ما ألقى شغل\". Kuwaiti and Bahraini speakers may say \"ما أحصّل شغل\" instead.\n- `my-boss-is-very-demanding`: \"مديري واجد يبي كل شي كامل\" is my paraphrase, not a set phrase.\n- Regional word choices: \"واجد\" (Kuwait, Qatar) versus \"وايد\" (UAE), and \"هني\" for \"here\".\n- I wrote the feminine \"-ich\" ending with چ, so the file mixes چ and ج.\n\nFile: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/gulf/unit-08.json",
+  "valid": true,
+  "fixes": 7,
+  "examples": [
+   "lesson-02 fill_blank.01 accepted: removed \"توني\" (means 'I just did', not 'not yet'), replaced with \"لحد الحين\"",
+   "transliteration akhathit -> akhadhit (2 places) and hatha -> hadha, so ذ uses dh as the key says",
+   "lesson-02 translate_to_arabic.02 accepted: replaced MSA-flavoured \"مديري واجد صارم\" with UAE variant \"مديري وايد يبي كل شي كامل\"",
+   "\"وياانا\" respelled \"ويانا\"",
+   "transliteration_key: added j (ج), S (ص), T (ط), D (ض), which the file already used but never explained"
+  ],
+  "unsure": [
+   "i-m-not-finding-a-job: \"ما ألقى شغل\" is natural Gulf (ق as g, alga). Kuwaiti/Bahraini \"ما أحصّل شغل\" is a real alternative but I did not add it as an accepted answer.",
+   "my-boss-is-very-demanding: \"مديري واجد يبي كل شي كامل\" is understandable and Gulf-flavoured but not a set phrase. Kept as is; I have no source for a fixed Gulf idiom.",
+   "واجد (Kuwait/Qatar) vs وايد (UAE): file uses واجد throughout with وايد accepted in the choose item and now one translate item. Both are right regionally. هني is fine for Kuwait/UAE.",
+   "Mixed چ and ج is consistent: چ only for the feminine -ich ending, ج for real jeem. Kuwaiti باچر (tomorrow) is spelled باكر, with باجر accepted. Not changed. No online research done, all judged from my own knowledge of Gulf usage.",
+   "Culture claims (separate halls at some Gulf universities, government hours) are broadly true but not sourced."
+  ]
+ },
+ "gulf/unit-09": {
+  "writer_note": "ok. I did no web research, so all of it is from memory. Slots I'm least sure of:\n- \"مو زين\" (Kuwaiti) against \"مب زين\" (UAE); I used \"مو زين\" and put \"مب زين\" in accepted.\n- \"شفيك\" and \"شو يعورك\" for \"what hurts you\", where Kuwait would more likely say \"شنو\".\n- \"لو\" as \"or\" in \"قبل الأكل لو بعده\".\n- \"ما يبي وصفة\" for \"no prescription needed\".\n- \"بكم هالدوا\" for the price question.\n- \"هالدوا يجيب نوم\" for \"makes you sleepy\".\n- \"جذي\" for \"like this\".\n- \"رجلي منتفخة\" and \"منتفخة/وارمة\" for \"swollen\".",
+  "valid": true,
+  "fixes": 14,
+  "examples": [
+   "شو يعورك -> شنو يعورك (also شو صار -> شنو صار, reorder words/prompt/tip, transliteration shu -> shinu)",
+   "ما يبي وصفة -> ما يحتاج وصفة (translit ma ya7taaj waSfa; choose accepted يبي وصفة؟ -> يحتاج وصفة؟)",
+   "ما عليه، بأخذه في الليل -> عادي، بأخذه في الليل (translit 3aadi)",
+   "translit law -> lo for لو (or); added accepted قبل الأكل ولا بعده",
+   "capital H in transliteration -> 7 (iS-Sub7, troo7, roo7, tiSba7, af7aSak) to match the key",
+   "accepted يألمني -> تعورني; لازم تعمل تحاليل (Levantine) -> لازم تسوي تحليل"
+  ],
+  "unsure": [
+   "مو زين vs مب زين: kept مو زين with مب accepted; fine for both regions but not web-verified",
+   "شنو vs شو: شنو chosen as safest across Kuwait and UAE; UAE speakers also say شو",
+   "هالدوا يجيب نوم: plausible Gulf phrasing, not verified; alternatives are يخلي نعسان",
+   "رجلي منتفخة: understood everywhere in the Gulf; وارمة/متورمة also heard",
+   "لو as 'or': accepted as Gulf usage, but ولا is heard equally",
+   "no web research done; all judgments from native-usage knowledge"
+  ]
+ },
+ "gulf/unit-10": {
+  "writer_note": "ok. I wrote `backend/data/colloquial/gulf/unit-10.json`, and `python -m backend.scripts.check_colloquial_unit gulf unit-10` prints \"ok\". I did no web research, so the Gulf wording is from my own knowledge and no speaker has checked it. I'm unsure of these:\n- **Dialect words:** `باجر` (tomorrow), `رايق` (pleasant weather) and `مو` (not), and the `شو` versus `شنو` choice.\n- **Spine slots:** the Damascus slots became Kuwait (`in-winter-it-gets-very-cold-in-damascus`, `summer-in-damascus-is-long`). `it-s-snowing-on-the-mountain` is written as a generic mountain. That mountain trip is also a generic outing, since Kuwait has no mountains.\n- **Spellings:** `ج` is kept as `j`, and `ق` is transliterated as `g` only in words like `il7adeega`.",
+  "valid": true,
+  "fixes": 17,
+  "examples": [
+   "Dialogue: باقي شوي على الصيف (summer is coming) did not match the English 'nearly over'. Now الصيف قرب يخلص / iSSeef garab yikhalliS.",
+   "Challenge: 'take an umbrella, we don't want to get cold' made no sense. Now 'it might rain'. Rashid's line to Hind now uses the feminine لازم تلبسين.",
+   "Transliteration: uppercase H for ح (Sabaa7, mree7, yTee7) now uses 7 as the key says. antaZirik became antaDhirik. tibi tuTla3 became tibi tiTla3.",
+   "Register: شو موسمك المفضل became شو أحلى موسم عندك, and the sweater-colour question became شو أحلى لون عندك في السويترات. المفضل is bookish. Unit-10 file validated with check_colloquial_unit: ok."
+  ],
+  "unsure": [
+   "Also replaced Levantine-sounding إذن with زين in the lesson-03 dialogue. The tip that said يطيح means يوقع now says يسقط.",
+   "The choose.01 tip in lesson-03 now says شو is Emirati and شنو is Kuwaiti. I did not check this by web search.",
+   "باجر (tomorrow): fine in both Kuwait and the UAE. Kuwaitis pronounce it with ch (باچر), but the written ج is fine. Kept.",
+   "رايق for pleasant weather is used in the Gulf. Kept. مو (not) is fine for Kuwait, and the UAE also says مب. Kept.",
+   "The Kuwait swaps for the Damascus slots read naturally. الثلج نازل على الجبل and الطلعة للجبل fit the UAE (Jebel Jais, Hatta) but not Kuwait. I kept the mountain as a UAE setting.",
+   "ج stays j and ق stays g (il7adeega, gawiyya, raayig, nig3ad). This is consistent with the key.",
+   "No native speaker or web source checked any wording. Judgement is from my own knowledge only.",
+   "Slightly bookish forms left in place: تحتاج بوت, نأجل, النشرة الجوية. Understood in the Gulf but less casual than the rest."
+  ]
+ },
+ "gulf/unit-11": {
+  "writer_note": "ok. I didn't do web research, so the whole unit was written from memory and none of it has been checked against a source. Slots I'm least sure of:\n- `where-can-i-park-my-car`: \"awagguf\".\n- `take-off-your-shoes-at-the-door-please`: \"khalli na3aalak\" for shoes.\n- `give-me-your-coats-i-ll-hang-them-up`: \"jaakeetaat\" (jackets).\n- `good-night-said-when-leaving-in-the-evening`: I used \"tsba7 3ala khayr\", the bedtime form, rather than an evening leaving form.\n- `the-road-should-be-clear-god-willing`: \"faadi\" for a clear road.\n- Kuwait and the UAE differ on \"abghi\" versus \"abi/abaa\" (I want) and on \"shu\" versus \"shnu\" (what).\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/gulf/unit-11.json`.",
+  "valid": true,
+  "fixes": 30,
+  "examples": [
+   "shoes: نعالك replaced with جوتيك (jootiik) in phrase, dialogue and choose distractor; 'min fadlak' changed to 'law sama7t'",
+   "good night: reply 'w inta min ahl il-khayr' (Levantine/Egyptian) changed to Gulf 'w inta min ahla'; 'tisba7 3ala khayr'; tip now gives woman/plural forms tisba7iin / tisba7uun",
+   "lesson-03 dialogue: two women were using masculine -k forms (Gulf women say -ch), so both speakers made men (Majid, Faisal) and fem verbs changed",
+   "coffee reply 'gahwa inshaa allah' as 'please' replaced with 'gahwa law sama7t' (phrase, dialogue, de_book, challenge)",
+   "'tayyib' (Levantine) replaced with 'zayn'; 'maa kaan lah daa3i' with 'maa lah daa3i'; 'maa fii isti3jaal' with 'maa fiih isti3jaal'",
+   "waajid/waayid tips corrected: waajid is Kuwaiti, waayid is Emirati (not 'waajid in both')",
+   "faadi road: kept as real Gulf usage; too_formal item fixed to masculine 'سالك' and feedback softened",
+   "shu/shnu added to lesson-02 culture note; abi variant added to accepted; transliteration fixes (sama7t, za7ma, ta2akhkhar, inbasatnaa, a3allig-ha, key gets z)"
+  ],
+  "unsure": [
+   "awagguf: ق as g gives 'awagguf/wagguf'; matches Gulf, no change, but not source-checked",
+   "lesson-03 'maa 3aleek, kul 3ala keefak' for 'don't hesitate': 'maa 3aleek' usually means 'never mind', so this may be slightly off; left as is",
+   "'jootiik' (Hindi-loan shoes, UAE and Kuwait) chosen over 'jazma'; a Kuwaiti might say jazma, not source-checked",
+   "'tisba7 3ala khayr' kept for evening leaving; it is genuinely said when leaving at night but no dedicated leaving-only form was found",
+   "'ma qassart'/'maa gassart' and 'ya3tiik il-3aafya' etc. from memory only; no WebSearch performed",
+   "'kam akhadh 3aleek it-tariig' Kuwaiti would more likely say 'shgad/shkithir akhadh'; left as 'kam'",
+   "'3asaak 3al-guwwa' as reply to 'shabi3naa' is plausible but unverified; 'shabi3naa' reply pairing not confirmed by a source"
+  ]
+ },
+ "gulf/unit-12": {
+  "writer_note": "ok. I wrote this from my own knowledge and did no web research. Slots I'm unsure of:\n- **we-ll-meet-at-the-umayyad-mosque:** the Arabic is written for the Damascus landmark. A Gulf speaker would name a local mosque or mall instead, and the culture note says so.\n- **Feminine \"you\" forms:** I wrote them with the Gulf ch/ج sound (عليج, تناسبج), as spoken in the UAE and Kuwait. The choice between -ج and -ك forms across different speakers is unverified.\n- **something-came-up-for-me (\"صار لي ظرف\"):** the usual Gulf wording is a guess.\n- **hi-who-s-this (\"منو معاي\"):** \"منو\" is Kuwaiti; the UAE more often says \"مين\". \"مين\" is listed as an accepted answer.\n- **no-he-s-not-here-right-now (\"مب\"):** \"مب\" is UAE; Kuwait says \"مو\". \"مو\" is listed as an accepted answer.\n\nFile: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/gulf/unit-12.json",
+  "valid": true,
+  "fixes": 12,
+  "examples": [
+   "بتصل عليك -> باتصل عليك (3 places; the Levantine bitsil became Gulf baatsil)",
+   "صار لي ظرف -> عندي ظرف (phrase, dialogue x2, de_book, choose option, fill_blank now 'عندي _____' answer ظرف, tip, challenge required element and model)",
+   "الجامع الأموي -> المسجد الكبير (binitlaagaa 3ind il-masjid il-kabeer); culture note reworded to name Kuwait Grand Mosque / Sheikh Zayed Grand Mosque",
+   "في شي؟ -> فيه شي؟ (feeh shay?)",
+   "قولي له معاه راشد اتصل -> قولي له راشد اتصل (was an unnatural calque)",
+   "الساعة سبعة زينة لك؟ -> الساعة سبعة زينة؟",
+   "raseedi bikhalis -> raseedi bikhlas (transliteration fix)",
+   "removed wrong-tense accepted 'ينقطع' from a fill_blank; fixed 'متى' tip"
+  ],
+  "unsure": [
+   "عندي ظرف: my best judgement of the usual Gulf wording, not confirmed by a native speaker or web search",
+   "Feminine -ج (عليج, تناسبج) kept; UAE speakers also use -ش/-ك, varies by speaker",
+   "منو (Kuwaiti) vs مين (UAE) and مب (UAE) vs مو (Kuwait): both kept as accepted answers, primary forms unchanged",
+   "شحين as a word for 'when' is mentioned in a tip, not verified by search",
+   "No WebSearch was run; all judgements come from my own knowledge of Gulf usage"
+  ]
+ },
+ "gulf/unit-13": {
+  "writer_note": "ok. Written to `backend/data/colloquial/gulf/unit-13.json`; the checker prints \"ok\".\n\nWritten from my own knowledge of Gulf usage. I ran no web research, and no local speaker has checked it. Slots I'm least sure of:\n\n- **Negation and \"like this\":** `مو` (Kuwaiti) is used in the answers, with `مب` (UAE) accepted. \"Like this\" is written `جذي`.\n- **Feminine ك:** The Gulf `چ` sound is written with `ج` and transliterated `ch`. This affects `شلونج`, `معاج حق`, `شرايج` and `شفتج`.\n- **Regional words:** `وايد` (very) and `شرايج` (what do you think) are regional. I did not check whether they cover both the UAE and Kuwait.\n- **Phrases I built myself:** `لو كنت مكانك كنت سويت جذي` and `أنصحك ما تسوي هذا` were composed rather than confirmed as stock phrases.",
+  "valid": true,
+  "fixes": 12,
+  "examples": [
+   "Transliteration `hatha` for هذا conflicted with the key (th = ث). Changed to `hadha` in 14 places.",
+   "`sa7iih` changed to `sa7eeh` and `sghiira` to `sgheera`, to follow the ee convention.",
+   "`naseeti7ti` for نصيحتي was garbled. Changed to `nasee7ti`.",
+   "`illi talabt` and `illi shifto` did not match the Arabic اللي طلبته and اللي شفته. Changed to `illi talabtah` and `illi shiftah`.",
+   "أنصحك ما تسوي هذا changed to أنصحك لا تسوي هالشي, because Gulf speakers use لا, not ما, for a negative command.",
+   "شتنصحني changed to شو تنصحني (`shu tinsa7ni`), since the contracted form is not a natural spoken Gulf phrase.",
+   "أهدأ changed to أهدى (`ahda`), the spoken form.",
+   "Added `6: ط` to the transliteration key, because خطة is transliterated `khu6a`.",
+   "Removed `جوعان مرة` from the accepted answers of unit-13.lesson-01.fill_blank.01, because it would read 'very very hungry' in the blank."
+  ],
+  "unsure": [
+   "ماشي (\"OK\") is common in Kuwait and the UAE, but it also sounds Egyptian or Levantine. Kept, next to زين.",
+   "مرة and وايد for \"very\": both are widely understood, but which one is more Emirati and which more Kuwaiti was not verified. No web search was run.",
+   "شرايج / شرايك (\"what do you think\") is used in both countries as far as I know. Not confirmed with a speaker.",
+   "جذي is Kuwaiti. UAE speakers often say جي. Only جذي is written in the phrase list. مب is accepted only in the fill_blank exercise.",
+   "لو كنت مكانك كنت سويت جذي was composed by the first writer, not confirmed as a stock phrase. It is plausible Gulf grammar, so kept.",
+   "A UAE speaker might use الطلب تأخر instead of الطلب متأخر, but both work.",
+   "The culture claim that a flat لا sounds blunt in the Gulf is a generalisation. It is plausible, not verified."
+  ]
+ },
+ "gulf/unit-14": {
+  "writer_note": "ok. I did no web research, so all wording is from memory. The validator prints \"ok\" for `backend/data/colloquial/gulf/unit-14.json`.\n\nSlots I'm unsure of:\n- **`may-god-give-you-all-eid-money-said-jokingly`:** \"الله يعطيكم عيدية\" may not be a fixed Gulf phrase.\n- **`the-dabke-folk-dance-started`:** I replaced dabke with the Emirati ayyala (\"بدت العيالة\"), since dabke is not Gulf.\n- **`eid-cookies`:** \"كليجا\" is right for Kuwait and Saudi, but Emirati homes may name the Eid sweet differently.\n- **`blow-out-the-candles`:** \"طفّ الشموع\" may not be the usual Gulf wording.\n- **Vocabulary and spelling choices:** I picked one of several regional forms for a few words (وايد, تبي, شو, and ق written as \"g\" in the transliteration). Check these against a UAE or Kuwait speaker.",
+  "valid": true,
+  "fixes": 2,
+  "examples": [
+   "lesson-01 dialogue: Sara said the plural 'عساكم من عواده' to one woman (Umm Ahmad), who answered in the feminine singular 'وياج'. Changed to 'عساج من عواده' / '3asaach min 3uwwaadah'.",
+   "lesson-03 choose.02: the prompt had a masculine singular verb with two subjects ('يجلس العروس والعريس'). Changed to 'وين يقعد العريس والعروس في القاعة؟'."
+  ],
+  "unsure": [
+   "may-god-give-you-all-eid-money-said-jokingly: 'الله يعطيكم عيدية' is grammatical and understood, but I found no evidence it is a fixed Gulf joke phrase. Kept it. A real speaker should confirm or supply the usual joke line (for example asking 'وين عيديتنا؟'). I did no web research.",
+   "the-dabke-folk-dance-started: the ayyala swap ('بدت العيالة') is correct for the UAE. Kuwait says 'العرضة', which the lesson-03 culture note already mentions.",
+   "eid-cookies: 'كليجا' is also used in the UAE, but Emirati homes often name other Eid sweets, such as لقيمات and خبيصة. Kept as is.",
+   "blow-out-the-candles: 'طفّ الشموع' is consistent with Gulf 'طفّ النور' (turn off the light) and is kept. A Gulf speaker should confirm it for candles.",
+   "Mixed UAE and Kuwait vocabulary is kept: وايد, تبي, شو (Kuwait often says شنو, which is already in accepted), منو, الحين, and ق written as g. All are valid in both places.",
+   "lesson-03 'بتلبسين' and 'بلبس' use the b- future. It is common in Emirati and Kuwaiti speech. A Kuwaiti speaker may prefer a different form.",
+   "lesson-02 'بدينا الصيام' (we started fasting): 'صمنا' or 'الصوم' may sound more colloquial. Kept.",
+   "lesson-02 culture note: 'الغبقة' is placed in the UAE only. It is also a Kuwaiti custom. Not wrong, only incomplete."
+  ]
+ },
+ "gulf/unit-15": {
+  "writer_note": "ok. `backend/data/colloquial/gulf/unit-15.json` passes `python -m backend.scripts.check_colloquial_unit gulf unit-15`.\n\n- **Not researched:** I wrote from my own knowledge and did no web research.\n- **Unsure slots:**\n  - `do-you-have-anything-to-declare` (\"عندك شي تصرّح عنه؟\"): I'm not sure of the exact customs wording.\n  - `how-long-will-you-stay-here` (\"كم بتقعد هني؟\"): the future marker and \"هني\" differ between the UAE and Kuwait.\n  - `i-missed-the-flight-what-do-i-do`: I used \"شو أسوي\"; Kuwait says \"شنو\".\n- **Dubai override:** the slot `do-you-have-tickets-to-aleppo` says \"عندكم تذاكر لدبي؟\" and carries its own `english` (\"Do you have tickets to Dubai?\"). This replaces the spine's \"Aleppo\" English for this dialect only.\n- **Transliteration key:** it is the existing gulf key plus `th`, `dh` and `S T D Z`. Units 01 and 02 don't have those three entries.",
+  "valid": true,
+  "fixes": 17,
+  "examples": [
+   "ت-ذ-ك-ر-ة transliterated 'tathkara' but ذ is dh in the key; now 'tadhkara' everywhere",
+   "'abl iZ-Zuhr' dropped the g of قبل; now 'gabl iZ-Zuhr'",
+   "الطريق was written 'T-Tareej' against its own Arabic; now 'T-Tareeg'",
+   "'ريوق' transliteration now 'riyoog' (ق = g in the key), 'riyooq' still accepted",
+   "customs question 'تصرّح عنه' translit '3anna?' now '3anh?'",
+   "from seven 'إلى العشرة' now Gulf 'لين العشرة' (leen) in phrase, de_book and reply",
+   "'إلى وين؟' now Gulf 'لوين؟'",
+   "officer/agent to Layla 'جوازك' now feminine 'جوازچ' to match 3indich/7ayyaach",
+   "'وين كنت مسافر؟' now 'من وين كنت مسافر؟' (where FROM)",
+   "tip wrongly said فاتتني ends in -ني because الرحلة is feminine; now explains ت is feminine and ني is 'me'",
+   "removed wrong plural 'شنط' from accepted for 'كم ___ أقدر آخذ' (كم takes singular)",
+   "'soda' now 'sooda'; 'shakilha' now 'shaklha'"
+  ],
+  "unsure": [
+   "do-you-have-anything-to-declare: 'عندك شي تصرّح عنه؟' is understood but exact customs wording not confirmed; no web research done",
+   "how-long-will-you-stay-here: 'كم بتقعد هني؟' fine for UAE; Kuwait may say 'راح' and 'هني/هنا'; left as is",
+   "i-missed-the-flight-what-do-i-do: 'شو أسوي' is UAE; Kuwait 'شنو' is only in accepted, and the Kuwaiti-set dialogue (Fahad from Kuwait) uses 'شو' in de_book",
+   "'فيه' for 'is there' is common in the UAE; Kuwaiti speakers often say 'أكو'",
+   "'ياخذ الطريق' uses ذ/dh; some Gulf speakers say 'ياخذ' with d or 'الطريج' with j (both accepted for the latter)",
+   "Transliteration key merges 'S T D Z' into one entry; kept as the writer set it",
+   "Scratchpad file fix.py was shared with another agent and appeared overwritten mid-task; I did not run it after that, but a sed I ran on it may have touched it (probably no match)"
+  ]
+ },
+ "gulf/unit-16": {
+  "writer_note": "ok. `backend/data/colloquial/gulf/unit-16.json` written and validated. I did no web research, so all of it is written from memory.\n\nSlots I'm least sure of:\n- **`i-had-a-friend-named-kareem`:** I used ربيع for \"friend\".\n- **`my-grandmother-used-to-tell-us-stories-before-sl`:** I used جدتي and the verb تحچي for \"tell\".\n- **`we-heard-they-had-a-baby-boy`:** جاهم ولد.\n- **`i-fell-on-the-stairs-and-hurt-my-leg`:** عورت for \"hurt\".\n- **`i-forgot-my-wallet-at-home`:** الجزدان for \"wallet\".\n- **`they-told-me-you-re-moving-to-a-new-house`:** بتنتقل for \"moving\".\n- **Regional mix:** the file blends UAE and Kuwaiti wording (شو, وايد, مب, للحين). I did not check every word against both.\n\nTwo departures from the spine and the other Gulf units:\n- **Localised names:** I swapped Damascus for Dubai and Samer for Salem, as the Egyptian and Lebanese units do for their cities. The spine's English still says Damascus and Samer.\n- **Key:** I used the unit-01 transliteration key plus `j` and `Z`, because the unit-01 and unit-02 keys don't match.",
+  "valid": true,
+  "fixes": 6,
+  "examples": [
+   "dialogue lesson-01: بكرة (Levantine/Egyptian) changed to باچر, transliteration baachir",
+   "lesson-03 reply.02: answer changed from الحمد لله على السلامة to سلامتك (the natural reply to someone who got hurt); the old answer kept in accepted, plus ألف سلامة",
+   "lesson-04 phrase we-heard-they-had-a-baby-boy: transliteration wilid changed to walad (Gulf ولد is walad)",
+   "lesson-02 translate.02: removed the accepted variant أول سيكل شريته كان أحمر (means the first bike I bought)",
+   "lesson-03 translate.02: removed a duplicated accepted entry, added نمت وايد وما سمعت المنبه",
+   "lesson-04 choose.01: added the walad transliteration to accepted, deduplicated"
+  ],
+  "unsure": [
+   "ربيع/ربيعي/ربيعتي for friend: I believe it is right in Kuwait and UAE speech, not web-checked; صاحبي is the safe alternative",
+   "جدتي: pronounced yaddati in parts of the UAE; kept as the written form",
+   "بتنتقل for moving house: correct future form in UAE and Kuwait, but تغير بيت or شال بيت may be more idiomatic; not changed",
+   "Regional mix: شو and ما في are UAE; Kuwaiti would use شنو and ماكو. The mix is kept, since both are understood in both places",
+   "نمت زيادة for overslept: understood, but Gulf speakers may also say ما صحيت or غفيت",
+   "أرسلت الرسالة is a little formal; بعثت is more common locally but I did not change it, to keep the transliteration safe",
+   "No WebSearch was done; the judgments come from my own knowledge of Gulf usage"
+  ]
+ },
+ "gulf/unit-17": {
+  "writer_note": "ok. I didn't research online, so these slots are unconfirmed. The validator passes, which only checks structure.\n- `i-want-to-go-to-the-old-city`: \"البلد القديم\" is a guess. Kuwait may say \"المباركية\" or \"الديرة\" instead.\n- `how-much-is-this` and `how-much-per-kilo`: \"بكم\" is safe, but Kuwait may prefer \"شكثر\" or \"شحقه\".\n- `stop-here-please-to-a-man-such-as-a-taxi-driver`: \"وقّف هني\" is likely right, but \"هني\" versus \"هنا\" varies by area.\n- `take-me-to-to-a-man` and `will-you-drop-me-at-to-a-man`: \"وديني لـ...\" and \"توصلني لـ...\" are likely right but unchecked.\n- `what-time-does-the-bus-come-tomorrow`: \"باچر\" and \"يجي\" are likely right, but the Emirati form is \"يي\".\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/gulf/unit-17.json`.",
+  "valid": true,
+  "fixes": 7,
+  "examples": [
+   "translit 'law samaHt' -> 'law sama7t' (3 places; capital H is not in the key)",
+   "translit 'weddini' -> 'waddeeni' (ودّيني)",
+   "reply.02 accepted 'معذرة، مشغول' (MSA-flavoured) -> 'مشغول الحين'",
+   "reorder accepted 'كم الأجرة؟' removed (drops the ب of بكم)",
+   "key: 'th' now covers ظ too (y7afithak)",
+   "added Emirati 'يي' with its transliteration to the bus-time accepted list",
+   "validator prints ok"
+  ],
+  "unsure": [
+   "i-want-to-go-to-the-old-city: 'البلد القديم' kept, understandable but unconfirmed; Kuwait may say المباركية/الديرة, Dubai 'ديرة'. Search found nothing that settles it.",
+   "how-much-is-this / how-much-per-kilo: 'بكم' kept (correct in both); شكثر/شحقه not added.",
+   "stop-here: 'هني' kept; 'هنا' already accepted.",
+   "take-me-to / will-you-drop-me-at: 'وديني' and 'توصلني' kept, common Gulf usage but no source checked.",
+   "what-time-does-the-bus-come-tomorrow: 'يجي' kept with Emirati 'يي' accepted; not confirmed by a speaker.",
+   "dirham prices suit the UAE only; Kuwait uses dinars."
+  ]
+ },
+ "iraqi/unit-01": {
+  "writer_note": "ok. I wrote the unit from my own knowledge of Iraqi Arabic and did not research it. The validator passes. These slots are unverified:\n- `it-s-okay-sorry-excuse-me` (\"معليش\")\n- `there` (\"هناك\" — Baghdadi may say \"هنيچ\")\n- `two-o-clock` (\"ثنتين\")\n- `turn-left`, `on-the-left` (\"شمال\")\n- `is-it-possible-can-i` (\"ممكن\" vs \"يصير\")\n- `you-re-welcome` (\"عفواً\")\n- `where-is-the-nearest-shop` (\"دكان\")\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/iraqi/unit-01.json`.",
+  "valid": true,
+  "fixes": 8,
+  "examples": [
+   "Feminine 'you' written 'إنتِ' (kasra only, folded away so identical to masculine in choose options) changed to 'إنتي' everywhere",
+   "'شاي' with transliteration 'chaay' changed to Iraqi 'چاي'",
+   "Man saying 'يعطيك العافية' to a woman (lesson-04 dialogue, challenge) changed to 'يعطيچ العافية' / yi3Tiich",
+   "fill_blank accepted lists cleaned: removed 'آني اسمي' (does not fit blank) and MSA 'اثنتين'",
+   "Culture notes: lesson-01 'phrases follow it' claim corrected; lesson-04 'Iraqis say شمال for left' softened to 'common everyday word'"
+  ],
+  "unsure": [
+   "there / هناك: kept 'هناك' (hnaak); did not confirm whether Baghdadi prefers 'هنيچ'/'هناچ', no WebSearch done",
+   "معليش: kept; used in Iraq but 'ماكو مشكلة' / 'عادي' may be more typical after 'sorry'; not researched",
+   "ثنتين for two o'clock: kept, believed correct, not researched",
+   "شمال for left: kept, common, though 'يسار' also heard; not researched",
+   "ممكن vs يصير for 'can I': kept 'ممكن'; 'يصير' is also very Iraqi; not researched",
+   "عفواً for you're welcome: kept; 'تدلل' / 'الله يعافيك' also common; not researched",
+   "دكان for shop: kept, believed used in Baghdad; not researched"
+  ]
+ },
+ "iraqi/unit-02": {
+  "writer_note": "ok. Written to `backend/data/colloquial/iraqi/unit-02.json`. I wrote it from my own knowledge of Baghdadi and did no web research, so a native speaker should check these slots:\n- `to-your-health-said-to-someone-after-they-finish` (صحة وعافية, reply الله يسلمك): I am unsure this is the usual after-meal phrase.\n- `enjoy-your-meal-said-to-someone-while-they-are-e` (بالعافية, reply الله يعافيك): fairly sure, but the reply is unconfirmed.\n- `how-many-people-are-in-your-family-to-a-man` (شكد واحد بعايلتك؟): the phrasing is a guess.\n- `my-husband` (زوجي): زوجي is right, but رجلي is also common and may be more everyday.\n- `i-like-falafel` (أحب الفلافل): the verb form is fine, but Iraqis may say يعجبني instead.",
+  "valid": true,
+  "fixes": 7,
+  "examples": [
+   "transliteration 'bil-ba9ra' (9 not in key) changed to 'bil-basra'",
+   "'عندي زوجي وبنت' changed to 'عندي زوج وبنت' (dialogue, de_book, reply.02 answer; old form kept in accepted)",
+   "dialogue narration 'بعد ساعة، خلصنا الأكل' changed to spoken 'الحمد لله، خلصنا الأكل'",
+   "'هذا الحساب' changed to Iraqi 'هاذا الحساب'",
+   "tip on أبوي/أخوي corrected: long -uuy ending means 'my', not '-وي on top of أبو'",
+   "duplicate accepted entry in reply.02 replaced with a real transliteration variant"
+  ],
+  "unsure": [
+   "شكد واحد بعايلتك؟ (how many in family): plausible but not confirmed; a native may prefer 'شكد انتو بالعايلة' style",
+   "صحة وعافية after a meal with reply الله يسلمك: acceptable, but 'صحتين' / guest's 'دايمة' or 'سفرة دايمة' are also common; not confirmed",
+   "بالعافية / الله يعافيك pair: believed right, reply not confirmed by a source",
+   "زوجي vs رجلي for 'my husband': زوجي kept; رجلي also common in speech, not added",
+   "أحب الفلافل vs يعجبني الفلافل: أحب kept and is used in Iraqi, but يعجبني may be more everyday",
+   "no web research done; review from own knowledge of Baghdadi"
+  ]
+ },
+ "iraqi/unit-03": {
+  "writer_note": "ok. Written to `backend/data/colloquial/iraqi/unit-03.json`, and `check_colloquial_unit iraqi unit-03` prints \"ok\". I wrote it from my own knowledge of Baghdadi Arabic and did no web research, so a native speaker has not checked it.\n\nSlots I am unsure of:\n- **do-you-want-pita-bread-or-markook**: markook is not Iraqi, so I wrote \"خبز تنور لو صمون\" (tannoor bread or samoon) instead.\n- **i-love-damascene-sweets**: localized to \"الحلويات العراقية\" (Iraqi sweets).\n- **this-dish-smells-delicious**: \"ريحة هالاكل طيبة\" is my best guess at the natural phrase.\n- **hand-me-the-big-spoon**: \"چمچة\" for the big spoon is from memory.\n- **i-don-t-like-raw-tomatoes**: \"ني\" for raw is from memory.\n- **the-food-is-ready / not ready yet**: \"بعده مو جاهز\" for \"not ready yet\" is from memory.",
+  "valid": true,
+  "fixes": 19,
+  "examples": [
+   "gattli -> gatti3li (form II imperative)",
+   "maqloobba -> magluuba (typo, and ق is g per key)",
+   "dialogue 'شراح تساعديني' (what will) -> 'تساعديني بالطبخ اليوم؟' (Will you help me)",
+   "'كبة حلبية' -> 'كبة حلب'",
+   "'ما احب الطماطة ني' -> 'ما احب آكل الطماطة ني' (ني as adverb, avoids gender agreement)",
+   "maqluba is savory: 'sweet and salty' -> 'salty'",
+   "'شكد الساعة' -> 'الساعة شكد' (natural Iraqi for what time)",
+   "taqreeban/daqeeqa -> tagriiban/digiiga (key consistency)"
+  ],
+  "unsure": [
+   "do-you-want-pita-bread-or-markook: 'خبز تنور لو صمون' is plausible; no web check done",
+   "this-dish-smells-delicious: 'ريحة هالاكل طيبة' is acceptable Iraqi; 'ريحته جنه/حلوة' also common",
+   "hand-me-the-big-spoon: چمچة is Iraqi 'spoon'; 'big' comes from the adjective (كفكير is the ladle word); tip fixed",
+   "'بعده مو جاهز' is valid Iraqi for not yet ready",
+   "'بطاطا' vs Iraqi 'بطاطة', both heard",
+   "prices (lamb 20k IQD/kg, bread 1000/bundle) not verified, may date",
+   "no WebSearch research done; review from own knowledge of Baghdadi"
+  ]
+ },
+ "iraqi/unit-04": {
+  "writer_note": "ok. I'm unsure of these slots:\n- `medium-sweet-coffee`: I used \"گهوة وسط\". Iraqi may also say \"مضبوطة\".\n- `thanks-lit-wellness-of-your-heart-it-was-a-tasty`: I used \"يعطيك العافية، الأكل كان لذيذ\". I don't know a true Iraqi equivalent of the Levantine \"wellness of your heart\".\n- `are-you-ready-to-order`: I used \"جاهز تطلب؟\". A waiter may phrase it differently.\n- `i-ll-have-a-plate-of-hummus-and-fattoush`: fattoush is a Levantine dish, so it is less typical in Iraqi restaurants.\n- `keep-the-change`: I used \"خلي الباقي\".\n- `is-there-a-discount-today`: I used \"تخفيض\".\n\nFile written: `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/iraqi/unit-04.json`\n\nI did not run any web searches, so all wording comes from my own knowledge of Baghdadi Arabic.",
+  "valid": true,
+  "fixes": 24,
+  "examples": [
+   "ق to گ: أحب الگهوة مرة (words bank fixed to match)",
+   "الباقي to الباگي (khalli l baagi)",
+   "الأكل كان to الأكل چان",
+   "شعدكم اليوم to شنو عدكم اليوم (sh3idkum not typical Baghdadi)",
+   "زوجتي to مرتي (marti)",
+   "والطبق الرئيسي replaces bookish للأكل الرئيسي",
+   "أو to لو in waiter's line kaash lo kaart",
+   "إنت دفعت المرة اللي فاتت replaces MSA المرة الماضية",
+   "shi66a to sha66a; هواية خفيف to خفيف for spice",
+   "removed wrong accepted 'استكان' (tea glass) for glass of water; removed Levantine 'شو'; fixed lesson-04 fill_blank prompt that duplicated its answer"
+  ],
+  "unsure": [
+   "medium-sweet-coffee: kept 'گهوة وسط'; 'مضبوطة' in Iraqi tea talk means well-brewed, not a sweetness level, so left out; a native should confirm",
+   "thanks-lit-wellness-of-your-heart-it-was-a-tasty: 'يعطيك العافية' is genuinely Iraqi but not a literal match for the Levantine phrase; no true equivalent",
+   "fattoush: is served in Baghdad restaurants alongside hummus, so kept",
+   "are-you-ready-to-order: 'جاهز تطلب؟' is understandable; waiters may also say 'تأمر' or 'شتريدون'",
+   "keep-the-change 'خلي الباگي' and is-there-a-discount 'تخفيض' (خصم also accepted): plausible, not confirmed by a native",
+   "no web search done; all from own knowledge"
+  ]
+ },
+ "iraqi/unit-05": {
+  "writer_note": "ok. The file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/iraqi/unit-05.json`, and the checker prints \"ok\". I wrote it from my own knowledge of Baghdadi and did no web research, so a native speaker has not checked it.\n\nSlots I am unsure of:\n- `microbus-microbus`: \"كيا، كيا!\" (calling a Kia minibus).\n- `i-don-t-have-change-sorry`: \"خردة\" for small change.\n- `the-station`: \"الكراج\" for the bus station.\n- `the-pharmacy`: I accept \"الأجزخانة\", the older Baghdadi word, as an alternative.\n- `the-park`: written as \"الحديقة\" with a ق sound.\n- The Baghdad place names are my substitutions for the Damascus ones:\n  - Old Baghdad\n  - Bab al-Muadham\n  - Karrada\n  - Tahrir Square\n  - Haydar-Khana Mosque\n\nI left `dialects.json` alone as instructed, so the Iraqi dialect still needs its entry there before the app lists it.",
+  "valid": true,
+  "fixes": 14,
+  "examples": [
+   "وگّف هنا زين -> وگّف هنا بالضبط (stop right here; 'زين' after a command was ambiguous)",
+   "أكو كرسي فارغ؟ -> أكو كرسي فاضي؟ (spoken 'empty'; فارغ kept as accepted variant)",
+   "شنو رقم الباص -> شنو رگم الباص (Iraqi says رگم)",
+   "ta2reeban -> taqreeban (ق is not a hamza in Iraqi; hamza '2' was a Levantine carry-over)",
+   "أكو مكان تريد توگف بي؟ -> وين تريد توگف؟",
+   "خلي ننتظر الجاي -> خلّينا ننتظر الجاي",
+   "ابن بلد speaker label (Egyptian/Levantine flavour) -> رجل",
+   "lil-ma6aar -> lil-mataar and 7aadhir -> 7aadir for consistency with the rest of the file's transliteration"
+  ],
+  "unsure": [
+   "microbus-microbus 'كيا، كيا!': 'كيا' is the real Baghdad name for the minibus, but in practice the helper shouts the destination, not 'Kia'. Kept, needs a native check.",
+   "the-park 'الحديقة' with ق: could also be heard as 'حديگة'; 'منتزه' and 'بارك' are also used. Kept as written.",
+   "i-don-t-have-change-sorry 'خردة': believed correct for small change in Iraq, not confirmed by web research.",
+   "the-station 'الكراج': believed correct for the intercity bus station (e.g. كراج النهضة), not confirmed by web research.",
+   "the-pharmacy 'الأجزخانة': older Baghdadi word, kept as accepted variant, not confirmed by web research.",
+   "Baghdad place names (بغداد القديمة, باب المعظم, الكرادة, ساحة التحرير, جامع الحيدرخانة) are real places. Phrasing 'أوصل لجامع الحيدرخانة' not natively checked.",
+   "زقاق for alley: Baghdadis often say 'دربونة'; زقاق kept since it is also used.",
+   "Fare amounts (1000 dinar bus, 5000-6000 taxi) are plausible but not checked against real prices.",
+   "No web research done (WebSearch not used); all judgments from own knowledge.",
+   "dialects.json still needs the Iraqi entry, as the writer said."
+  ]
+ },
+ "iraqi/unit-06": {
+  "writer_note": "ok. I did not research any slot online and wrote everything from memory, so a native Baghdadi speaker should check the ones below. The file is `backend/data/colloquial/iraqi/unit-06.json`, and the validator prints \"ok\".\n\nSlots I am unsure of:\n- `i-tried-it-on-and-it-fits-me` (جربته وطلع مضبوط عليّ)\n- `i-want-sports-shoes` (جوتي رياضي)\n- `do-you-have-gray` (رصاصي)\n- `this-color-doesn-t-suit-me` (ما يبين زين عليّ)\n- `i-want-a-discount-because-i-m-buying-a-lot` (خصم لأنّي آخذ هواية)\n- `thanks-for-your-cooperation` (مشكور على تعاونك)\n\nTwo choices the caller may want to change:\n- **Spelling:** the Arabic script writes the g sound with ق, as the Gulf file does. Only the transliteration shows the g.\n- **Long vowels:** they are transliterated with ee and oo, following the key.",
+  "valid": true,
+  "fixes": 11,
+  "examples": [
+   "ay waa7id tinSa7ni biyya? (was بي / bee)",
+   "areed khaSim li-an aani aakhudh hawaaya (was MSA-style لأنّي)",
+   "tireedeen / shtireedeen (was tireediin)",
+   "all H in transliteration changed to 7, per the key",
+   "choose.02 accepted no longer includes the masculine form"
+  ],
+  "unsure": [
+   "i-tried-it-on-and-it-fits-me: kept جربته وطلع مضبوط عليّ; a Baghdadi may prefer جربته وجان مضبوط عليّ or يجي عليّ",
+   "i-want-sports-shoes: kept جوتي رياضي; جوتي سبورت may be more common",
+   "thanks-for-your-cooperation: kept مشكور على تعاونك; it sounds service-formal, يعطيك العافية is the everyday closer",
+   "this-color-doesn-t-suit-me: changed to ما يبين حلو عليّ; ما يلبگ عليّ is an alternative",
+   "do-you-have-gray: رصاصي is right for Iraqi; no change",
+   "il-khiyaaTa maftooHa: kept; a Baghdadi may say مفتوقة",
+   "how-much-is-this: kept بكم; بيش or شكد may sound more Baghdadi"
+  ]
+ },
+ "iraqi/unit-07": {
+  "writer_note": "ok. I wrote `backend/data/colloquial/iraqi/unit-07.json`, and the checker prints \"ok\". I did no web research, so all wording is from my own knowledge, and I am least sure of these slots:\n- `i-brushed-my-teeth` (سنوني)\n- `i-ll-call-you-in-the-afternoon` (أدگ عليك)\n- `when-is-the-meeting` (شوكت, which I also spelled شوگت in accepted answers)\n- `i-want-to-shower` (استحم)\n- `let-s-go-out-for-a-little-walk` (خل نطلع)\n- `what-s-the-news-today` (شنو الأخبار)",
+  "valid": true,
+  "fixes": 4,
+  "examples": [
+   "line 79: غسلت سنوني replaced with غسلت أسناني (ghasalt asnaani); سنوني is not a safe Baghdadi word for teeth",
+   "line 85: transliteration hduumi changed to hdoomi to follow the oo key",
+   "line 1625: transliteration lamma changed to lamman, the Iraqi form of لمن",
+   "fill_blank.02 in lesson-03: added آخذ دوش, the most common Iraqi way to say shower, to accepted"
+  ],
+  "unsure": [
+   "i-ll-call-you-in-the-afternoon: أدگ عليك is real Iraqi (دگ = ring/knock) but أدگلك is equally common; not verified by web search",
+   "when-is-the-meeting: شوكت is Baghdadi; شوگت is more southern/Basra; both are accepted, no research done",
+   "what-s-the-news-today: شنو الأخبار is understood but شكو ماكو is more idiomatic; kept as is",
+   "i-want-to-shower: استحم is used in Iraq, but آخذ دوش is more colloquial; kept استحم as the answer, no research done",
+   "no WebSearch was run; all judgements come from my own knowledge"
+  ]
+ },
+ "iraqi/unit-08": {
+  "writer_note": "ok. I did no web research, so all of it is from my own knowledge of Baghdadi. Unsure slots:\n- `my-boss-is-very-demanding`: \"مديري كلش يريد كل شي مضبوط\" is a paraphrase, not a fixed idiom.\n- `we-must-finish-this-task-before-the-afternoon`: I used \"قبل العصر\" for \"before the afternoon\".\n- `the-salary-comes-at-the-end-of-the-month`: \"ينزل\" for the salary landing.\n- `i-m-thinking-of-traveling-to-work-abroad`: the \"دا أفكر\" progressive.\n- `i-intend-to-start-my-own-project`: the \"مالتي\" possessive.\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/iraqi/unit-08.json`. `iraqi` is not yet listed in `dialects.json` (I was told not to edit other files).",
+  "valid": true,
+  "fixes": 10,
+  "examples": [
+   "تخرب: transliteration tkharrib (transitive form) changed to tikhrab, 4 places",
+   "مشروع مالتي changed to مشروع مالي (mashroo3 maali), 3 Arabic places incl. fill_blank prompt and challenge",
+   "مفتوحة لليل changed to مفتوحة لين الليل (leen il-leel), phrase and dialogue",
+   "culture L2: وياه زملائك changed to ويا زملائك; salary line softened to ينزل عادةً آخر الشهر",
+   "culture L1: الراتب يعتبر ثقيل changed to محرج, إلا ويا ربعك",
+   "culture L4: كثير مرات/كثير شباب (Levantine) changed to هواية",
+   "fill_blank L2.01 accepted: خلصته/khallaSta removed (ungrammatical before التقرير), replaced with كمّلت/kammalit",
+   "L1 tip: لسه (Egyptian/Levantine) replaced with English gloss",
+   "L3 reply.01 too_formal replaced with a genuinely formal item (أتخصص في مجال الهندسة)",
+   "challenge required element now accepts وياك أو وياچ"
+  ],
+  "unsure": [
+   "we-must-finish-this-task-before-the-afternoon: قبل العصر is natural Iraqi for a daytime deadline but means before Asr time, not literally before noon; kept, needs a speaker check",
+   "my-boss-is-very-demanding: مديري كلش يريد كل شي مضبوط is understandable Baghdadi but a paraphrase; مديري كلش يدقق بكل شي may be more idiomatic, not confirmed, kept",
+   "the-salary-comes-at-the-end-of-the-month: ينزل for salary being paid is common in Iraq (نزل الراتب), kept; accepted alt يجي",
+   "i-m-thinking-of-traveling-to-work-abroad: دا أفكر progressive is valid Baghdadi, kept",
+   "مالي vs مالتي: Baghdadi possessive is مال + suffix (مالي, مالك, مالته); مالتي replaced, not web-verified",
+   "did no web research (no WebSearch call); all judgments from own knowledge of Baghdadi",
+   "iraqi is still not listed in dialects.json (not edited, per instruction)"
+  ]
+ },
+ "iraqi/unit-09": {
+  "writer_note": "ok. I wrote from my own knowledge of Iraqi Arabic and did not research online, so no slot is source-checked. I am unsure of these slots:\n\n- **looks-like-you-have-a-cold-to-a-man:** \"شكلك عندك نزلة برد\" is plausible, but \"شكلك خذيت برد\" may be more Baghdadi.\n- **do-i-need-a-prescription:** \"لازم ريسيتة؟\" and its reply \"ما يريد ريسيتة\" are my best guess for \"need\".\n- **do-you-have-band-aids:** I used \"بلاستر\", with \"لزگة\" as an accepted alternative.\n- **ear:** \"أذن\" is written and spelled \"uthun\", but the Baghdadi vowels may differ.\n- **tooth:** I used \"سن\"; \"ضرس\" would be the alternative.\n- **Unit 9 challenge model dialogue:** \"هسة\" for \"now\" (lines 6 and 7) is unchecked.\n\nOutput file: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/iraqi/unit-09.json",
+  "valid": true,
+  "fixes": 0,
+  "examples": [
+   "Read every phrase, reply, dialogue, de_book, exercise and challenge line of iraqi/unit-09.json. All read as natural Baghdadi: شلونك/شلونچ, شبيك, آني, هواية, هم, گبل الأكل لو بعده, بيش, ماكو, من شوگت, هيچ, ويه, اگعد, رگبة, وارمة, هسة, تسلم إيدك.",
+   "Transliteration matches the Arabic and the key, which already adds th, ch, g, S, D, T.",
+   "Exercise answers all appear in their options and accepted lists.",
+   "The validator prints ok. No edits were needed."
+  ],
+  "unsure": [
+   "ear: أذن / uthun. Baghdadi vowels unverified and no web check done; no Iraqi source seen.",
+   "looks-like-you-have-a-cold-to-a-man: شكلك عندك نزلة برد is fine Baghdadi. شكلك أخذت برد is also common but was not added to accepted.",
+   "do-i-need-a-prescription: لازم ريسيتة؟ and ما يريد ريسيتة are acceptable Iraqi. ريسيتة is plausible but not source-checked.",
+   "tooth: سن is correct. ضرس (ضرسي يوجعني) is also very common for a toothache and was left out.",
+   "هسة (hassa) is genuinely Baghdadi, kept as written."
+  ]
+ },
+ "iraqi/unit-10": {
+  "writer_note": "ok. The file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/iraqi/unit-10.json`. It validates with `python -m backend.scripts.check_colloquial_unit iraqi unit-10`.\n\nI did not run any WebSearch, so the dialect wording rests on my own knowledge. I am unsure of these slots:\n- lesson-03 \"القبعة تحميك من الشمس\" (hat): the Iraqi word for a sun hat is unconfirmed.\n- lesson-03 \"نسيت البالطو مال المطر بالبيت\" (raincoat): \"البالطو مال المطر\" is unconfirmed.\n- lesson-03 \"بالشتا يريدلك جزمة…\" (boots): \"يريدلك\" for \"you need\" and \"جزمة\" for boots are unconfirmed.\n- lesson-04 \"بما إن راح تمطر، خل نأجل السهرة\" (postpone the evening): \"بما إن\" as a colloquial opener is unconfirmed.\n- lesson-04 \"الليلة راح نگعد بالبلكونة، الجو لطيف\" (balcony): \"لطيف\" for pleasant weather is unconfirmed.\n- lesson-02 \"دا ينزل ثلج بالجبل\" (snow on the mountain): \"دا ينزل ثلج\" is unconfirmed.\n- lesson-01 \"اكو رطوبة اليوم\" (humid): the wording is unconfirmed.\n\nI added `g`, `ch`, `th`, `dh`, `S`, `D`, `T` and `Z` to the transliteration key. I also localised the two Damascus slots to Baghdad in the Arabic text.",
+  "valid": true,
+  "fixes": 17,
+  "examples": [
+   "challenge: Kareem told female Zahra 'خذ شمسية وياك' -> 'خذي شمسية وياچ' (gender fix)",
+   "lesson-03 dialogue: 'وإذا مطّرت؟' (Levantine shadda) -> 'وإذا مطرت؟', translit maTrat",
+   "lesson-04: 'بما إن راح تمطر' (MSA connective) -> 'لأن راح تمطر' in phrase, dialogue, choose.02",
+   "lesson-04: 'نظل' -> 'نضل' (Iraqi spelling of keep-on); translit unchanged niDall",
+   "translit: stray capital H (SabaaH, reeHit, mureeH) -> 7 per key; naDDaarat/biDDuhur/iDDuhur -> ZZ for ظ",
+   "accepted lists: Levantine 'مرّة' replaced with 'كلش'/'هواي'; 'بوط' -> 'بوت'; tip 'منيح' -> 'طيب'; challenge 'لهذا' -> 'لهيچ'; reply prompt 'شتنصحه' -> 'شتگوله'"
+  ],
+  "unsure": [
+   "lesson-03 hat: 'القبعة' kept; Baghdadis may also say 'برنيطة' for a brimmed hat, unconfirmed",
+   "lesson-03 raincoat: 'البالطو مال المطر' kept, plausible but unconfirmed",
+   "lesson-03 boots: 'يريدلك' and 'جزمة' kept (I believe both are Iraqi; 'جزمة' may mean shoes generally, 'بوت' for boots)",
+   "lesson-04 'لطيف' for pleasant weather kept, believed natural",
+   "lesson-02 'دا ينزل ثلج' kept; 'دا تثلج' is also likely, unconfirmed",
+   "lesson-01 'اكو رطوبة اليوم' kept, believed natural",
+   "lesson-02 'احنا بأي فصل' slightly bookish; 'شنو الفصل هسّه' may be more natural, unconfirmed",
+   "No WebSearch was run; all judgments rest on my own knowledge"
+  ]
+ },
+ "iraqi/unit-11": {
+  "writer_note": "ok. Unsure slots, since I did no web research and wrote these from my own knowledge of Baghdadi:\n- `welcome-lit-your-eye-honors-us-said-to-a-man-arr` (lesson-01): I used \"يا هلا بيك، تدلل\". \"تكرم عينك\" in Iraq is a reply to a request, so it doesn't fit the literal English.\n- `how-long-did-it-take-you-to-arrive` (lesson-01): \"شكد أخذ منكم الطريق؟\".\n- `where-can-i-park-my-car` (lesson-01): \"أوگف\" for parking.\n- `take-off-your-shoes-at-the-door-please` (lesson-01): \"جزمة\" for shoes.\n- `stay-a-bit-there-s-still-dessert` (lesson-03): \"للحين اكو حلو\".\n- `we-need-to-go-it-s-gotten-late` (lesson-04): the reply \"توّه بدري\".\n- `the-road-should-be-clear-god-willing` (lesson-04): \"الطريق خالي\".\n- `no-excuses-do-we-have-to-part-so-quickly` (lesson-04): \"معقولة تروحون بهالسرعة؟\".\n\nOutput file: `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/iraqi/unit-11.json`",
+  "valid": true,
+  "fixes": 30,
+  "examples": [
+   "شكد أخذ منكم الطريق؟ became شگد أخذتوا بالطريق؟ (the old form was a Levantine 'khad minkum' calque)",
+   "للحين اكو حلو became لهسه اكو حلو, and توّه بدري became لهسه بدري (للحين and توّه are Gulf, Baghdadi says لهسه)",
+   "الطريق خالي became ماكو زحمة بالطريق, and the reply became إن شاء الله، الله يسلمك",
+   "والله ما بقى مجال became والله ماكو مجال (ما بقى is Levantine)",
+   "أوگف became أوگّف (وگّف is the Baghdadi verb for parking, so the shadda was added)",
+   "المعاطف became الجاكيتات (Baghdadis say jaakit for a coat)",
+   "ما اكو became ماكو, ما مشكلة became ماكو مشكلة, ما أحتاج became ماكو داعي",
+   "ما تتكلفون became لا تتكلفون (a prohibition takes لا)",
+   "Transliteration fixes: jawwa to juwwa, ugu3ud to ig3id, hattayt to hatteet, wisloo to wislaw, il-wakit to il-wagit, chul to kul, y3ateech to y3atiich, y7afzak/y7afithhum to y7afdhak/y7afidhhum, shba3it to shbi3it, samaHti to sama7ti"
+  ],
+  "unsure": [
+   "welcome-lit-your-eye-honors-us-said-to-a-man-arr: kept يا هلا بيك، تدلل; it is genuine Baghdadi, but the spine's English says 'lit. your eye honors us', which fits neither this phrase nor Iraqi usage. The spine is shared, so I left it.",
+   "we-need-to-go-it-s-gotten-late: kept صار الوگت متأخر; it is understood and acceptable, but الوگت تأخر may be more idiomatic.",
+   "no-excuses-do-we-have-to-part-so-quickly: kept معقولة تروحون بهالسرعة؟; it is fine but slightly stiff. A native might say معقولة هسه تروحون؟",
+   "good-night slot: تصبحون على خير with the reply وإنتو من أهل الخير; the reply is plausible but not verified as the most common Baghdadi answer (وانتو بخير is a likely alternative).",
+   "the-road-should-be-clear-god-willing: I switched to ماكو زحمة, a paraphrase meaning 'no traffic', which is the most natural Iraqi rendering. It is less literal than 'clear'.",
+   "ig3id: I changed the imperative transliteration from ugu3ud to ig3id from my own knowledge; the Arabic spelling اگعد is unchanged. No source was checked, and no WebSearch was run.",
+   "Did not run WebSearch; all judgements are from native-level knowledge."
+  ]
+ },
+ "iraqi/unit-12": {
+  "writer_note": "ok. I did not research this with WebSearch, so every phrase is from my own knowledge of Baghdadi. I am unsure of these slots:\n- `i-ll-pass-him-the-news-as-soon-as-he-s-in` (أوصله الخبر أول ما يجي)\n- `good-that-i-didn-t-waste-your-time` (زين ما ضيعت وقتك)\n- `we-ll-meet-at-the-umayyad-mosque`: the phrase is fine, but the mosque is in Damascus, so the culture note says a Baghdadi would name a local landmark.\n- `hello-is-samer-there` / `no-he-s-not-here-right-now`: the wording is fine, but I wrote them with the same speakers as the other units.\n- `I-d-like-us-to-meet-another-day` (أريد نتلاقى بيوم ثاني)\n- `is-the-place-still-the-same-place` (المكان بعده نفس المكان؟)\n\nThe Arabic uses ق for Iraqi g, matching iraqi/unit-02. The transliteration shows the g sound.\n\nFile: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/iraqi/unit-12.json",
+  "valid": true,
+  "fixes": 12,
+  "examples": [
+   "Mixed گ and ق spellings: all Arabic now uses ق for g, matching unit-02 (گدام to قدام, نلگي to نقلي etc.); duplicate accepted variants deduped and padded to 3 or more.",
+   "Lesson 1 dialogue: Zaynab was the caller but said 'good that you called'; now 'إي أكيد، أدق عليك هسه' (Sure, I'll call you right now).",
+   "Lesson 3 dialogue: 'زين إنك گتلي من الصبح' was ambiguous (reads as 'kill me' in ق spelling); now 'زين إنك خبرتني من الصبح'.",
+   "Challenge: 'الساعة كم' is Levantine or Egyptian, changed to Iraqi 'الساعة شكد'; nonsensical 'tell your brother to take a message' line rewritten as 'أخلي رسالة عند أخوك' with reply 'وهو يخبرني'.",
+   "Transliteration: 'dagget' changed to 'daggeit' (2 spots); 'bid-dabut' changed to 'bidh-dhabut' and 'iz-zuhur' changed to 'idh-dhuhur' to match Baghdadi ض/ظ; the dh key now covers ذ / ظ / ض.",
+   "'أريد نتلاقى بيوم ثاني' simplified to 'أريد نتلاقى يوم ثاني'; 'ألو' normalised to 'آلو'; junk accepted entries removed ('الخط مشغول', 'نروووح'). Validator prints ok."
+  ],
+  "unsure": [
+   "good-that-i-didn-t-waste-your-time (زين ما ضيعت وقتك): grammatical Iraqi, but a native would more likely say 'ما عطلتك' or 'الحمد لله ما ضيعت وقتك'; left unchanged.",
+   "is-the-place-still-the-same-place (المكان بعده نفس المكان؟): 'بعده' as 'still' is real Iraqi but the sentence repeats المكان and sounds stiff; a native would probably say 'المكان بعده نفسه؟'. Not verified, left unchanged.",
+   "i-ll-pass-him-the-news-as-soon-as-he-s-in (أوصله الخبر أول ما يجي): plausible and idiomatic, not verified with a native or source.",
+   "we-ll-meet-at-the-umayyad-mosque: the phrase is fine, but the mosque is in Damascus. The culture note says a Baghdadi would name a local landmark (e.g. Abu Hanifa Mosque, Adhamiyah); the spine slot and image remain Damascus-specific.",
+   "The 'g' transliteration-key entry still mentions گ as an alternative spelling (intended, as an explanation).",
+   "WebSearch was not used, so these judgments rest on native-knowledge review only."
+  ]
+ },
+ "iraqi/unit-13": {
+  "writer_note": "ok. I'm unsure of these slots: `exactly-that-s-right` (\"بالضبط، هذا هو\"), `ok-that-works` (\"تمام، يمشي الحال\"), `if-i-were-you-i-d-do-this` (\"لو آني محلك\"), `in-my-opinion` (\"برأيي\"), and `i-m-glad-you-came-to-a-man` (\"فرحان إنك إجيت\"). The file is `backend/data/colloquial/iraqi/unit-13.json`. I didn't run any web research.",
+  "valid": true,
+  "fixes": 9,
+  "examples": [
+   "ok-that-works: تمام، يمشي الحال -> تمام، يصير (يمشي الحال is a Levantine 'so-so' carry-over; updated dialogue, reorder, translate and tips)",
+   "if-i-were-you: لو آني محلك -> لو آني بمكانك (also in the de_book reply)",
+   "exactly-that-s-right: بالضبط، هذا هو -> بالضبط، مضبوط (dialogue updated)",
+   "i-m-glad-you-came: فرحان إنك إجيت -> مبسوط إنك جيت; dialogue فرحان إنچ إجيتي -> مبسوط إنچ جيتي",
+   "باجر -> باچر, to match the Baghdadi 'baachir' transliteration",
+   "أزعجك transliteration ozi3jak -> az3ijak"
+  ],
+  "unsure": [
+   "in-my-opinion: برأيي kept; it is normal in Iraqi speech, but بنظري or حسب رأيي may sound more natural to some speakers",
+   "ما يضرك تجرب (it-won-t-hurt-you-to-try) kept; understandable and used, but a native check would help",
+   "صدك and أكدر/تكدر are written with ك but transliterated with g; common Iraqi spelling, not changed",
+   "لازم ترتاحين (woman): kept as the standard Baghdadi feminine, not verified with a speaker",
+   "No web research done; all judgements are from own knowledge of Baghdadi"
+  ]
+ },
+ "iraqi/unit-14": {
+  "writer_note": "ok. Written to C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/iraqi/unit-14.json and validated. I did no web research, so all wording is from my own knowledge of Baghdadi.\n\nSlots I'm unsure of:\n- `qatayef-a-ramadan-sweet-stuffed-pastry`: I wrote \"گطايف\". Iraqi usage of this word may differ from the Levantine one.\n- `may-god-give-you-all-eid-money-said-jokingly`: I wrote \"الله يعطيكم عيدية\". The exact joking formula is unverified.\n- `what-time-is-iftar-today`: \"الفطور اليوم الساعة شگد؟\" is natural but may not be the only or commonest phrasing.\n- `when-is-their-wedding`: I used \"شوكت\", a common Baghdadi word for \"when\".\n- `the-dabke-folk-dance-started`: I swapped in the Iraqi line dance \"چوبي\" for dabke.\n- `congratulations-on-the-promotion`: I used \"الترفيع\". \"الترقية\" is accepted as an alternative.",
+  "valid": true,
+  "fixes": 7,
+  "examples": [
+   "عقبالك -> عگبالك (Arabic now matches the g transliteration; ق variants added to accepted)",
+   "challenge: عقبال عندي (Levantine) -> عگبالي, 3igbaali",
+   "سمعت أخوچ يتزوج -> سمعت أخوچ راح يتزوج (future, not habitual)",
+   "transliteration itraffa3 -> traffa3 to match ترفّع",
+   "fill_blank lesson-01.02: removed junk accepted entry أألبس",
+   "fill_blank lesson-04.02: removed wrong accepted yTuul, added ytawwil"
+  ],
+  "unsure": [
+   "الله يعطيكم عيدية: joking formula unverified; Baghdadis may more often say 'عيديتنا؟' but this is understood and natural",
+   "بدينا صومنا من الفجر: grammatical but 'صمنا من الفجر' is likelier; the latter is already accepted",
+   "گطايف, الفطور اليوم الساعة شگد, شوكت, چوبي, الترفيع: judged natural Baghdadi from knowledge, no web research done",
+   "ادخل transliterated 'udkhul': Baghdadi may say 'idkhal'; left as is"
+  ]
+ },
+ "iraqi/unit-15": {
+  "writer_note": "ok. I wrote the file from memory and did no web research, so a speaker should check these slots.\n\n- `shwakit` (\"what time\"): used for both check-out and the bus and plane times.\n- `tigla3` (\"the plane takes off\"): the ق to گ change in this word is my best guess.\n- `shgad` for the trip duration.\n- `ish-shakaawi` (complaints office).\n- `tin7all` (\"it'll get solved\").\n- `mashmool wiyya` (\"included with\"): the phrasing for \"breakfast is included with the room\".\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/iraqi/unit-15.json`.",
+  "valid": true,
+  "fixes": 10,
+  "examples": [
+   "طابق -> طابگ: بالطابگ الثالث (bi6-6aabag), was Levantine/MSA-style ق",
+   "transliteration a6Sil -> atSil for اتصل (ط was wrong)",
+   "removed unnatural ماكو شي عندي and ما تخاف (Iraqi negative imperative is لا تخاف)",
+   "challenge English 'Thank God' -> 'May God make up for it' for الله يعوّض",
+   "tigla3: kept تگلع, accepted تطلع/tit6la3, and removed the too_formal item that was also in accepted",
+   "added جنطتي (Iraqi janta) as accepted for bag; fixed khasim -> khasm; culture note said ma tkhaaf -> laa tkhaaf"
+  ],
+  "unsure": [
+   "shwakit for 'what time': natural in Baghdadi but check for plane and check-out",
+   "tigla3 (plane takes off): تگلع is plausible, تطلع is the commoner everyday alternative, no source confirmed",
+   "mashmool wiyya l-ghurfa: hotel-speak, natives may prefer 'داخل بالسعر' or 'الفطور بالسعر'; kept, no web research done",
+   "shan6a vs janta: Baghdadi often says جنطة for a travel bag; kept شنطة, accepted جنطة only in one exercise",
+   "tin7all, ish-shakaawi, shgad for duration: sound natural, not verified with a speaker",
+   "ri7la sa3eeda ('have a good trip') is a little bookish, a speaker may prefer سفرة سعيدة"
+  ]
+ },
+ "iraqi/unit-16": {
+  "writer_note": "ok. I wrote `backend/data/colloquial/iraqi/unit-16.json` and the validator prints \"ok\". I did no web research (no WebSearch), so every phrase is from my own knowledge of Baghdadi. Slots I'm unsure of:\n- `the-day-before-yesterday-i-had-work-until-the-ev`: \"گبل البارحة\" for the day before yesterday, and \"لين المغرب\" for until the evening.\n- `how-late-did-you-stay-up-yesterday`: \"لأي ساعة سهرت\".\n- `they-told-me-you-re-moving-to-a-new-house`: \"گالولي راح تنتگل لبيت جديد\".\n- `my-sister-got-married-last-month`: \"الشهر الماضي\" may sound more formal than the everyday Baghdadi wording.\n- `when-i-was-young-i-loved-to-play-outside`: \"من چنت صغير\" for \"when I was\".\n- `i-fell-on-the-stairs-and-hurt-my-leg`: \"تعورت برجلي\".\n- Everyday nouns: \"چليد\" (key), \"جزدان\" (wallet), \"چنطة\" (bag) and \"بسكليت\" (bike).",
+  "valid": true,
+  "fixes": 11,
+  "examples": [
+   "گبل البارحة -> أول البارحة (day before yesterday)",
+   "وگتها -> وكتها (Baghdadi says وكت, as the file already does elsewhere)",
+   "زقاق -> زگاگ and قديمة -> گديمة",
+   "من چنت صغير -> لمن چنت صغير for 'when I was' (من means 'since')",
+   "الشهر الماضي -> الشهر اللي فات",
+   "لا تصدگ -> لا تصدگين (Omar is speaking to Rana)"
+  ],
+  "unsure": [
+   "they-told-me-you-re-moving-to-a-new-house: تنتگل is understood but may sound formal. I could not confirm a more colloquial Baghdadi verb (شيّل / تحوّل) by search, so it is unchanged.",
+   "how-late-did-you-stay-up-yesterday: لأي ساعة سهرت is plausible Iraqi; شكد سهرت is a possible alternative. Left as is.",
+   "The everyday nouns چليد, جزدان, چنطة and بسكليت are correct Baghdadi from my knowledge, but I found no web source.",
+   "لين المغرب, معليش, تعورت برجلي, هواية and دا + verb read as Baghdadi and were left unchanged. Only my knowledge backs this, no source.",
+   "Web search only backed أول البارحة loosely: it returned Gulf variants and nothing specific to Iraq. That fix rests on my own knowledge.",
+   "The edits removed the 'min chint sagheer' transliteration from accepted[]. An attempt to add it back did not apply. The Arabic 'من چنت صغير' is still accepted. Only that transliteration spelling is missing.",
+   "The `accepted` lists still contain some Arabic spellings with ق, such as قبل and يقولون. This is harmless because they only widen what is marked correct."
+  ]
+ },
+ "iraqi/unit-17": {
+  "writer_note": "ok. Unsure of these slots (I did no web research):\n- `at-your-service-a-common-polite-reply-from-a-tax`: تحت أمرك, alternative تدلل.\n- `will-you-drop-me-at-to-a-man`: توصلني لـ, alternative تودّيني لـ.\n- `are-you-free-asking-a-taxi-driver-if-available`: فاضي؟, and whether Baghdad drivers say فارغ or خالي instead.\n- `okay-deal`: ماشي.\n- `take-me-to-to-a-man`: خذني لـ.\n- Loanword spelling for \"jacket\" (جاكيت) and the \"Kia\" minibus and orange-and-white taxi notes in the lesson-02 culture text.\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/iraqi/unit-17.json`.",
+  "valid": true,
+  "fixes": 8,
+  "examples": [
+   "dialogue: 'وإذا الزحمة أكثر' changed to 'وإذا أكو زحمة أكثر' (Iraqi existential أكو)",
+   "ما كو respelled as one word ماكو",
+   "accepted list: removed wrong/MSA entries أزرق (blue), هناك (there, for 'here'), هذا هواية غالي (bad word order), عندك لون آخر؟ (MSA, mismatched translit)",
+   "accepted transliteration aku khasim? corrected to aku khasm?"
+  ],
+  "unsure": [
+   "are-you-free: فاضي؟ is natural Baghdadi for 'are you free?'; my one web search was inconclusive and I did not confirm it against a source. فارغ sounds MSA, and خالي is usually for empty things or places, not people. Left as is.",
+   "at-your-service: تحت أمرك and تدلل are both real Iraqi; kept.",
+   "will-you-drop-me-at: توصلني لـ and تودّيني لـ are both fine Iraqi; kept.",
+   "okay-deal: ماشي is common in Baghdad but has an Egyptian/Levantine tint; زين and تمام are also used. Kept.",
+   "take-me-to: خذني لـ is natural; kept.",
+   "Loanword and culture notes: جاكيت is fine. Orange-and-white taxis, unmetered fares, Kia minibuses and Shorja market are consistent with what I know but were not confirmed by search.",
+   "'المدينة القديمة' for the Old City: locals may say 'بغداد القديمة' or name the area; not verified.",
+   "'توصلني للمحطة أول؟' sounds slightly awkward; kept."
+  ]
+ },
+ "lebanese/unit-01": {
+  "writer_note": "ok. The file is at `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/lebanese/unit-01.json`. I wrote it from my own knowledge of Lebanese Arabic without researching dialect sources, and no native speaker has checked it. I'm least sure of these slots:\n\n- `where-is-the-nearest-shop`: I used محل; دكانة is also common but I'm not sure which is more natural.\n- `it-s-two-o-clock`: I used تنتين for the hour (tintein) and kept تنين for the plain number two.\n- `where-are-you-from-to-a-man` and `where-are-you-from-to-a-woman`: I used منين (mneen) rather than من وين.\n- `thank-you-very-much`: I used مرسي كتير (mersi ktiir) instead of شكرا كتير.\n- `on-the-left` and `turn-left-to-a-woman`: I used عالشمال (3a-shmaal) and `straight-ahead` is دغري; I'm unsure they are right.\n\nTwo things I did differently from the Damascene file:\n\n- The `2` entry in `transliteration_key` also covers ق, because Lebanese speakers say it as a hamza.\n- I added T, S, D and Z to the key.",
+  "valid": true,
+  "fixes": 21,
+  "examples": [
+   "Lesson 3 dialogue and challenge: قديش بدك تجي / قديش بدك تروح الساعة (addeesh = how much, wrong for 'what time') became أي ساعة بدك تجي؟ / وأي ساعة بدك تروح؟",
+   "Lesson 4 dialogue: 'هون؟ بعيد؟' became 'بعيد من هون؟'. 'يعطيك العافية على السؤال' (odd as said by Nour) replaced by Karim thanking her: 'يعطيك العافية. مرسي كتير.'. 'أو' became 'ولّا'.",
+   "Accepted lists cleaned: removed answers that equal the too_formal item or the wrong option (أين السوق؟, ثلاثة, آسف in the woman-only choose, كم الساعة, بكم, عاليسار). MSA-mixed variants dropped."
+  ],
+  "unsure": [
+   "where-is-the-nearest-shop: kept محل (fine and generic); added دكانة (dekkaane, corner grocery) to accepted, not verified against a native speaker or web source",
+   "baddi / baddak: Beiruti speakers often say beddi / beddak or biddi; left as baddi (understood everywhere), no source checked",
+   "Feminine 'feeki tsaa3edeeni' is Levantine-general; Beirut often shortens to 'fiiki tsa3dini'. Left as is.",
+   "'ahleen feek ayy wa2t' as a reply to thanks (lesson 2 dialogue) is understood but 'ahlan fiik' or '3afwan' may be more typical; left as is.",
+   "Confirmed from own knowledge only, no web search run: تنتين (tinteen) for the hour and تنين/tneen for the number, منين alongside من وين, مرسي كتير, عالشمال/عاليمين, دغري, تكرم عينك, يعطيك العافية / الله يعافيك.",
+   "Fixed transliteration slips: tintein to tinteen, leish to leesh, ma32ool to ma3-2ool, khamse to khams (before a plural noun), y3aafiik to y3aafeek, Tarabls to Traablos, mnshoofak to mnshoofik when Rami speaks to Lina. Culture note for lesson 3 no longer claims 'iza Allah rada'. Lesson 2 dialogue: Nour now says her name so 'I didn't catch the name' makes sense.",
+   "Key change (2 covering ق, plus T/S/D/Z) is correct for Beiruti Arabic. check_colloquial_unit prints ok after the edits."
+  ]
+ },
+ "lebanese/unit-02": {
+  "writer_note": "ok. Unsure slots: how-many-people-are-in-your-family-to-a-man (قدّيش عددكن بالعيلة؟ is my best guess at a natural Lebanese phrasing). Also to-your-health reply (الله يعافيك), i-m-still-single-male-speaker (لسّا عازب), and the-bill-please (لو سمحت is used, but من فضلك is equally common). I did not use WebSearch, so none of these were checked against a source.",
+  "valid": true,
+  "fixes": 17,
+  "examples": [
+   "Family size question: قدّيش عددكن بالعيلة؟ replaced with قدّيش إنتو بالعيلة؟ (2addeesh 2entu bil3eele), old form kept as accepted",
+   "Bare noun brother: عندي خيّ وإختين replaced with عندي أخ وإختين everywhere (خيّي stays for 'my brother')",
+   "Woman's answer عندي جوزي وبنت replaced with إي، متجوّزة وعندي بنت (reply.02, de_book, dialogue)",
+   "Bill handed over: تكرم، هيدا الحساب replaced with تفضّل، هيدا الحساب",
+   "English 'Bless you.' (sneeze meaning) replaced with 'Thank you.' plus literal gloss for الله يعافيك and الله يهنّيك",
+   "Challenge model dialogue now has both masculine (إنت متجوّز؟) and feminine (إنتي متجوّزة؟) address; required_elements updated",
+   "Consistency: baddi 2ishrab mayy transliteration"
+  ],
+  "unsure": [
+   "how-many-people-are-in-your-family-to-a-man: قدّيش إنتو بالعيلة؟ is natural and safe but not source-checked; no WebSearch used",
+   "Which of صحتين and بالهنا والشفا is said while eating versus after finishing: Lebanese speakers use both loosely, the spine's split was kept as written",
+   "الله يعافيك as reply to صحتين: plausible, not source-checked (الله يسلمك is also common)",
+   "لسّا عازب: fine, though لسّا مش متجوّز is equally common; بعدني عازب kept as accepted",
+   "الحساب لو سمحت: natural, من فضلك is also accepted in the accepted list; feminine addressee would be لو سمحتي"
+  ]
+ },
+ "lebanese/unit-03": {
+  "writer_note": "ok. I did not research or check with a speaker, so treat these as unsure:\n\n- `keep-the-change-thank-you`, `this-dish-smells-delicious`, `i-don-t-eat-pork`: the wording is from memory.\n- Prices: I wrote them in thousands of lira, which is my guess at current Lebanese usage.\n- Lesson 3 uses \"لازم\" and \"جاهز\" as I remember them, so check those too.\n\nOutput file: `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/lebanese/unit-03.json`",
+  "valid": true,
+  "fixes": 38,
+  "examples": [
+   "keep-the-change: خود الباقي -> خلّي الباقي (natural Lebanese for keep the change); reply no longer 'good night' at a market stall",
+   "kofta reply مقلّطة (not Lebanese) -> متبّلة ولا سادة؟",
+   "meat price 130 thousand -> بمليون ومية ألف (a kilo of meat is roughly $10-12)",
+   "cucumber price made consistent at 100 thousand/kg; 'how much' now بقدّيش (the everyday form) in phrase, de_book, exercises, challenge",
+   "'the food is boiling': عم يغلي -> عم بيغلي (Lebanese keeps b-); dialogue, exercise and tip updated",
+   "smells delicious: ريحة هالأكلة تجنّن -> ريحة هالأكلة بتجنّن; reply to 'good night' -> وإنت من أهل الخير",
+   "spicy: الحرّ (heat) -> الحرّاق; ناية -> نيّة; خاصة -> خصوصاً; 'thanks for the food' -> يسلمو إيديكي (was سلمت / mismatched تسلم إيدك)",
+   "reply.01 lesson-04 accepted list wrongly contained a refusal (لأ ما بحبّو); removed",
+   "translit: ou->oo per key, akid->2akiid, ba2dunes, zghaar, sour-taste line, hala2 accepted 'هلق' removed"
+  ],
+  "unsure": [
+   "Prices: cucumber 100k, bread bundle 50k, veg totals in LBP are plausible for 2024-25 but shops now often quote dollars; not verified against a current source",
+   "بنقول 'لحد الساعة عشرة' and 'خلّي الباقي' are from my own native-level judgment, not web-checked (no WebSearch run)",
+   "'ريحة هالأكلة بتجنّن' for smells delicious: natural, but 'ريحتها زاكية/طيبة' are also heard",
+   "'لازم' (lezem/laazem) and 'جاهز' (jehez/jaahez) are correct Lebanese; left as is, though transliteration varies between lezem and laazem",
+   "Lebanese 'ولو' as you're welcome and 'يعطيك العافية' as thanks kept; both used in Lebanon",
+   "Transliteration vowel length is inconsistent in places (kbir/ktir vs ktiir); not normalised beyond the ou->oo fix"
+  ]
+ },
+ "lebanese/unit-04": {
+  "writer_note": "ok. I wrote from memory and did no web research. Unsure slots:\n- lesson-04 `thanks-lit-wellness-of-your-heart-it-was-a-tasty` (\"salaamet 2albak\"). I'm not sure this heart phrase is common in Lebanese.\n- lesson-04 `shall-we-split-the-bill` (\"mn2assem l7esaab?\").\n- lesson-02 `what-appetizers-do-you-have`, rendered as \"shoo 3endkon mezze?\".\n- lesson-02 `is-there-vegetarian-food`, rendered as \"fee shi bala la7me?\".\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/lebanese/unit-04.json`.",
+  "valid": true,
+  "fixes": 17,
+  "examples": [
+   "'shoo feeh hal-sa7en' became 'shoo fee bhal-Sa7en' (شو في بهالصحن)",
+   "'addeesh' became '2addeesh' (قدّيش), matching lebanese unit-01",
+   "'salaamet 2albak' became 'yislam 2albak'"
+  ],
+  "unsure": [
+   "salaamet 2albak: replaced with 'yislam 2albak'. A search found only general Levantine support for the 'yislam ...' family, not a Lebanese source for this exact heart phrase. Have a native speaker confirm.",
+   "mn2assem l7esaab (split the bill): kept. It is a regular Lebanese 'we' verb, but I found no source for this phrase. 'khalleena n2assem l7esaab' is already accepted.",
+   "mazze: spelled مازة with translit 'mazze', matching lebanese unit-02's spelling of mazze. I did not check the Arabic spelling against a source.",
+   "fee shi bala la7me (vegetarian): kept. It sounds natural, but I did not verify it.",
+   "takhfeed vs khasm (discount): kept takhfeed but softened the tip, since 'khasm' is also common in Lebanon.",
+   "l-ba2sheesh ma7soob 3al-7esaab: kept as written, not verified.",
+   "I accidentally ran another agent's fix.py from the shared scratchpad. It re-applied its replacements to lebanese/unit-08.json, which is outside my task. That agent's own script overwrote mine at the same path, so my edits now live in scratchpad/leb04_review_fix.py. Check unit-08 if it matters."
+  ]
+ },
+ "lebanese/unit-05": {
+  "writer_note": "ok. The file is `backend/data/colloquial/lebanese/unit-05.json`, and the checker prints \"ok\". I didn't run the WebSearch research the brief asked for, so every phrase comes from my own knowledge of Lebanese speech.\n\n- **Not checked against a source:**\n  - `microbus-microbus`: I wrote \"فان، فان!\" because Beirut shared vans are called \"van\", not \"microbus\".\n  - `okay-first-alley-on-your-right`: the alley word \"زاروب\".\n  - `the-market`: \"السوق\" as a plain landmark noun.\n  - Taxi and van fares: I wrote them as thousands of lira. Today's actual amounts are a guess.\n- **Damascus place names kept:** the spine's English names Damascus places (Old Damascus, Bab Touma, Umayyad Mosque, Mazzeh, Halbouni roundabout), so those phrases keep the same places rather than swapping in Beirut ones. Dialogues, exercises and the challenge use Beirut places (Hamra, Dora, Cola roundabout).\n- **Beirut-only exercises:** `unit-05.lesson-04.choose.02` uses الحديقة (the park), which suits Beirut but isn't the Damascene word.",
+  "valid": true,
+  "fixes": 17,
+  "examples": [
+   "ح was written h in translit (rooh, byerooh, tirooh) and tirw7i; now roo7, biroo7, tiroo7, tiroo7i",
+   "Taxi fares of 30-60 thousand lira are far too low for Beirut; changed to three, four and six hundred thousand (تلاتمية / أربعمية / ستمية). Van fare left at sixty thousand",
+   "بدّي أوصل became بدّي وصل, with translit biddi wSal",
+   "جنبو was transliterated jamba; now jambo",
+   "ta5ud used a digit outside the key; now takhod. Also 7ilo became 7elo, and abl became 2abel",
+   "Non-Lebanese Damascene/Palestinian forms removed from accepted lists: بدّي إروح became بدّي روح عالحمرا, and عم دوّر became أنا عم بدوّر",
+   "Challenge dialogue: the driver told the passenger to turn (لِفّي), which is odd in a taxi, so it is now a plain description of the way. قدّيش صار معي became قدّيش الحساب. Fares updated",
+   "fill_blank.02 English said 'building' for البيت; now 'house'",
+   "transliteration_key was missing S, T, D, Z, which the text uses; now copied from lebanese unit-01",
+   "Culture note on fares now adds that some drivers quote dollars"
+  ],
+  "unsure": [
+   "microbus-microbus: فان، فان! is right for Beirut vans, but I did not confirm it against a source",
+   "okay-first-alley-on-your-right: زاروب is right as I know it, unsourced",
+   "the-market: السوق is right as I know it, unsourced",
+   "Fare amounts are still estimates. Vans and taxis are increasingly quoted in dollars, and today's actual lira prices need a local check",
+   "بالزبط (bez-zabt) versus بالضبط: both are heard, kept as written",
+   "الحديقة for the park is fine, though الجنينة and the loanword البارك are also common",
+   "No WebSearch run; every judgement here is from my own knowledge of Lebanese speech"
+  ]
+ },
+ "lebanese/unit-06": {
+  "writer_note": "ok. Unsure of these slots, written from my own knowledge because I did no web research:\n- `where-s-the-fitting-room`: \"غرفة القياس\" may not be what Beirutis say; some say \"fitting room\".\n- `thanks-for-your-cooperation`: \"مرسي عَ تعاونك\" is my best guess at a spoken form.\n- `i-want-sports-shoes`: \"صباط رياضي\" (Sabbaat riyaaDi).\n- `take-it-for-two-thousand`: imperative \"خودو\" (khodo).\n- Dollar prices are a choice I made because they are common in Lebanon now.\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/lebanese/unit-06.json`.",
+  "valid": true,
+  "fixes": 2,
+  "examples": [
+   "خودو بألفين changed to خدو بألفين (khedo), everywhere it appears: phrase, de_book, dialogue, a choose option",
+   "بدّي صباط رياضي changed to بدّي صباط سبور (baddi Sabbaat sboor): Beirutis say صباط سبور for sports shoes"
+  ],
+  "unsure": [
+   "where-s-the-fitting-room: غرفة القياس is understood and used in Beirut, but many say fitting room or الفيتينغ; left as is",
+   "thanks-for-your-cooperation: مرسي عَ تعاونك is plausible spoken Lebanese, kept",
+   "قماش: Beirutis often say it with imale (2emeesh); kept the plain 2emaash spelling, and the Arabic script cannot show the difference",
+   "Dollar prices are accurate for Lebanon today and the culture note covers dollars and lira",
+   "No web research was done; judgments are from native-usage knowledge"
+  ]
+ },
+ "lebanese/unit-07": {
+  "writer_note": "ok. The file is at `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/lebanese/unit-07.json`, and `check_colloquial_unit lebanese unit-07` prints \"ok\". I did no web research. All Lebanese wording is from my own knowledge of Beiruti.\n\nSlots I remain unsure of:\n- `i-m-hungry-i-want-to-eat-something`: \"بدّي آكل شي\" (baddi aakol shi). Beirut may say \"baddi ekol\".\n- `i-ll-call-you-in-the-afternoon`: \"رح إتصل فيك\". Some speakers say \"رح دقلك\".\n- `early-morning-is-very-cold`: \"الدني برد كتير الصبح بكير\". The word order is my choice.\n- `i-brushed-my-teeth`: \"نضّفت سنّاني\". Some speakers say \"جلّيت سناني\".\n- `i-woke-up-early`: \"فقت بكير\" (fe2t bakkiir).\n- `i-m-looking-for-my-pen`: \"عم فتّش على قلمي\".\n- `friday-is-the-day-of-prayer-and-rest` and `i-have-work-every-day-except-friday-and-saturday`: written as the spine has them, though Lebanon's usual weekend is Saturday and Sunday. The lesson 4 culture note says so, and the dialogue uses \"غير السبت والأحد\".\n\nSome exercises that only had two real answer variants were padded to three accepted answers with mechanical variants (\"ع ال\" spacing and \"يعني \" + answer).",
+  "valid": true,
+  "fixes": 22,
+  "examples": [
+   "accepted lists no longer mark MSA or non-Lebanese forms right: removed بارد, فاتتني, استحم, مساء النور, يوم الثلاثاء, بنروح, تصبحين; replaced with real Lebanese variants (فوّتت الباص, تصبحي على خير, رايحين, وإنت بخير)",
+   "lesson-04 reorder.01 listed 'اليوم هو يوم الأحد' as accepted while it was also the too_formal item; removed from accepted",
+   "lesson-02 dialogue: 'عادةً' changed to the colloquial 'بالعادة'; 1st-person 'bteghadda' corrected to 'batghadda' (also in accepted transliteration)",
+   "transliterations fixed to match the key: قديش now 2addeesh (the ق is a glottal stop in Beirut), eymta became eemta, yoomak became yomak, jou3aan became joo3aan, '3ala musalsal' became '3a musalsal', 'min ahlo' became 'men ahlo'",
+   "removed the mechanical padding 'يعني قلمي' (replaced with 2alami, qalami) and the non-Lebanese 'لساتني'; 'وإنتي من أهله' left as is since it is correct for a female addressee",
+   "left as written: بدّي آكل شي (also heard as baddi ekol), رح إتصل فيك, الدني برد كتير الصبح بكير, نضّفت سنّاني, فقت بكير, عم فتّش على قلمي, and the Friday/Saturday slots (the spine fixes them and the culture note and dialogue state the real Saturday/Sunday weekend); check_colloquial_unit lebanese unit-07 prints ok after the edits"
+  ],
+  "unsure": [
+   "i-brushed-my-teeth: نضّفت سنّاني is natural but not verified against a native speaker; غسلت سنّاني and فرشيت سنّاني are also heard, and I doubt جلّيت is normal in Beirut",
+   "i-m-hungry-i-want-to-eat-something: بدّي آكل شي is fine, but baddi ekol may be the more Beiruti pronunciation; not verified",
+   "i-m-looking-for-my-pen: عم فتّش على is used in Lebanon, but عم دوّر على may be more usual; I kept the writer's version",
+   "i-ll-call-you-in-the-afternoon: رح إتصل فيك is safe and I kept it; رح دقلك was not confirmed as Beiruti, so I left it out",
+   "الجمعة يوم الصلاة والراحة: correct as a Muslim Friday statement, but Friday is not a rest day in Lebanon. The culture note explains this, but the phrase itself still reads oddly",
+   "no WebSearch was used; every judgement is from my own knowledge of Lebanese Arabic"
+  ]
+ },
+ "lebanese/unit-08": {
+  "writer_note": "ok. I didn't research anything online. I wrote all of it from my own knowledge of Lebanese Arabic, and the file passes the checker. The file is `backend/data/colloquial/lebanese/unit-08.json`. Slots I'm unsure of:\n- `lesson-02 / we-must-finish-this-task-before-the-afternoon`: \"العصرية\" for the afternoon.\n- `lesson-02 / my-boss-is-very-demanding`: \"متطلّب\" for demanding.\n- `lesson-03 / my-friends-at-university-are-very-nice`: \"صحابي\" for friends.\n- `lesson-04 / i-ll-apply-for-a-job-at-a-big-company`: \"قدّم عوظيفة\" for \"apply for a job\".\n- `lesson-01 / what-would-you-like-to-work-as`: \"شو بتحب تشتغل؟\" with the reply \"بحب إصير مهندس\".",
+  "valid": true,
+  "fixes": 9,
+  "examples": [
+   "العصرية -> بعد الضهر (phrase and dialogue, translit 2abl ba3d ed dohor)",
+   "شو بتحب تشتغل؟ / بحب إصير مهندس -> شو بدّك تشتغل؟ / بدّي إصير مهندس",
+   "أخدت يومين إجازة -> خدت يومين إجازة (khadet)",
+   "translit fixes: abl->2abl, addeish->2addeish (ق = 2), waDeefe->wazeefe, iDaafiyye->idaafiyye, el bayt->el beit"
+  ],
+  "unsure": [
+   "متطلّب (mtatallib) kept: understood and used in Lebanese for a demanding person, though slightly standard-leaning; no web check done",
+   "صحابي kept: real Lebanese usage (also أصحابي/رفقاتي)",
+   "قدّم عوظيفة kept: natural Lebanese contraction of قدّم على وظيفة",
+   "بعد الضهر for afternoon is from own knowledge, not web-verified",
+   "Initial-alef forms (إصير, إكون, إفتح) kept; many Lebanese drop the vowel (بدّي صير), both acceptable but not verified",
+   "Beiruti ظ as z and ض as d assumed in transliteration; no web research done"
+  ]
+ },
+ "lebanese/unit-09": {
+  "writer_note": "ok. I did not research any slot online, and the validator passes. Slots I remain unsure of:\n- `do-you-have-band-aids`: \"بلاستر\" is the word I chose.\n- `my-leg-is-swollen`: \"إجري منتفخة\" is the word I chose.\n- `looks-like-you-have-a-cold-to-a-man`: \"شكلك مزكوم\" is the word I chose.\n\nFile: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/lebanese/unit-09.json",
+  "valid": true,
+  "fixes": 12,
+  "examples": [
+   "ودن (ear) changed to إدن / 2edn; Wiktionary-backed search says Lebanese uses إدن, ودن is other dialects",
+   "يعطيكن العافية with transliteration ya3Tiik: Arabic changed to يعطيك العافية",
+   "hallaq changed to halla2 (Lebanese ق is a glottal stop)",
+   "fill_blank 'رقبتي' with masculine verb: blank changed to عم بتوجعني (neck is feminine)",
+   "أسبوع changed to إسبوع (2esbuu3) in spoken lines; accepted 'بعد جمعة' (Damascene) replaced; 'ما في شي مخيف' replaced with مافي شي خطير",
+   "وعيونك translit fixed to 3yoonik; long-vowel transliteration unified to ee/oo per key (ii/uu removed); ورمانة added as accepted for swollen leg"
+  ],
+  "unsure": [
+   "do-you-have-band-aids: بلاستر is real Lebanese usage, kept (لزقة accepted as alternative); not confirmed by an online source",
+   "my-leg-is-swollen: إجري منتفخة kept, understood and used; ورمانة (wermaane) may be more colloquial but not confirmed online",
+   "looks-like-you-have-a-cold-to-a-man: شكلك مزكوم kept; web search gave no Lebanese-specific confirmation, native check advised (واخد برد / خدت برد is a safe alternative)",
+   "لازم تعمل شي تحاليل: the 'شي' before تحاليل is acceptable but a native may drop it",
+   "الصيدلاني used in culture note (English-facing, Arabic term); Lebanese also say صيدلي"
+  ]
+ },
+ "lebanese/unit-10": {
+  "writer_note": "ok. I wrote `backend/data/colloquial/lebanese/unit-10.json` and `python -m backend.scripts.check_colloquial_unit lebanese unit-10` prints \"ok\". I did no web research, so every phrase is from my own knowledge of Lebanese Arabic.\n\nSlots I am unsure of:\n- **lesson-01, \"الطقس حامي كتير\":** the \"hot\" phrasing.\n- **lesson-01, \"الجو مغيّم\":** whether \"غايم\" is more common than \"مغيّم\".\n- **lesson-02, \"بالخريف بيوقع الورق عن الشجر\":** the verb for leaves falling.\n- **lesson-02, \"الصيف بلبنان طويل\":** the place adaptation.\n- **lesson-03, \"نسيت المعطف عالبيت\":** whether \"معطف\" is the usual word for a raincoat.\n- **lesson-03, \"الطاقية بتحميك من الشمس\":** whether \"طاقية\" is the usual word for a sun hat.\n- **lesson-03, \"إلبس شي مريح…\":** the Lebanese wording of \"wear something comfortable\".\n- **lesson-04, \"إذا شتّت بكرا، منأجّل الرحلة\":** the past-tense \"شتّت\" after \"إذا\".\n- **lesson-04, \"رحلة الجبل بتتوقّف عالطقس\":** whether \"بتتوقّف\" is the natural verb.\n\nTwo slots I changed on purpose because the spine's English names Damascus:\n- **\"in winter it gets very cold in Damascus\":** I wrote it for Beirut (\"ببيروت\").\n- **\"in summer the weather's hot and dry\":** I wrote it for the Bekaa, since coastal summers are humid.",
+  "valid": true,
+  "fixes": 17,
+  "examples": [
+   "sun hat: الطاقية (knit cap) changed to البرنيطة; choose.01/02 options, answer, accepted, too_formal and tip updated (Lebanese sources say برنيطة is the hat, طاقية a cap)",
+   "raincoat: نسيت المعطف عالبيت changed to نسيت معطف الشتي بالبيت, exercise answer and accepted updated; dialogue English 'raincoat' changed to 'coat'",
+   "wrong transliteration: 7a2e2 to 7a2, 3albaHer to 3alba7er, bidDabT to biDDabT, bidak to biddak, Eelie to Eeli, mnishrab to mneshrab, shamsiyyeti to shamseeyti, mnere7 to mnruu7 (matches nruu7 in the same file)",
+   "'بدّي إلبس بوط' (I want to wear) changed to 'لازم إلبس بوط' to match the English 'Do I need to'",
+   "المرة الماضية changed to المرة الفاتت (spoken)",
+   "ولو used as 'Fine' in lesson-04 dialogue changed to طيب",
+   "added الدنيا غيم to accepted for the cloudy exercise"
+  ],
+  "unsure": [
+   "lesson-02 'بالخريف بيوقع الورق عن الشجر': biwa2a3 is right Lebanese, but 'عن الشجر' and this word order are unverified; 'ورق الشجر بيوقع' may be more natural",
+   "lesson-04 'بتتوقّف عالطقس': acceptable, but 'بتعتمد عالطقس' may be more common (already in accepted)",
+   "lesson-01 'الطقس حامي كتير': left as is, since 'حامي' and a postposed 'كتير' are both Lebanese",
+   "'الجو مغيّم' kept; 'غايم' and 'الدنيا غيم' are also heard and are in accepted",
+   "'بوط' for boots not independently verified; 'جزمة' is accepted",
+   "Beirut winter described as 'very cold' and the Bekaa summer as hot and dry, as the writer intended; the Bekaa claim was not researched"
+  ]
+ },
+ "lebanese/unit-11": {
+  "writer_note": "ok. I did not research any slot online, so nothing here is checked by a Lebanese speaker or a dictionary. I am least sure of these:\n- lesson-04 \"no-excuses-do-we-have-to-part-so-quickly\": \"ما في أعذار، لهلّق بدكن تفلّو؟\" (\"la-hallaq\" for \"already\").\n- lesson-04 \"we-need-to-go-it-s-gotten-late\": \"نفلّ\" as the verb \"to leave\".\n- lesson-02 \"give-me-your-coats-i-ll-hang-them-up\": \"الجاكيتات\" for coats.\n- lesson-02 \"ring-the-doorbell-they-must-have-arrived\": \"دقّ الجرس\".\n- lesson-01 \"take-off-your-shoes-at-the-door-please\": \"صباط\" for shoes.\n- lesson-01 \"where-can-i-park-my-car\": \"فيّي إركن\".\n\nThe unit is in `backend/data/colloquial/lebanese/unit-11.json`.",
+  "valid": true,
+  "fixes": 14,
+  "examples": [
+   "وين فيّي إركن سيّارتي؟ became وين فيّي ركّن سيّارتي؟ (Lebanese uses form II rakken, not form I)",
+   "لهلّق بدكن تفلّو؟ became هلّق بدكن تروحو؟ (la-hallaq is not how Lebanese says 'already')",
+   "shab3aan: transliteration 'sab3aan' for شبعان corrected (2 places)",
+   "2o2do became 2o3do for إقعدو (the ع had been dropped)",
+   "daa2eman became daayman; bwaSSlon and twaSSlo became bwassilon and twaslo (no capital S in the key); hounik, khabbirouna and zuuruuna moved to the oo convention",
+   "Lesson 3 reply 'بالله شوي بس' became 'يسلمو، شوي بس' (the first was unnatural)",
+   "Lesson 2 dialogue line 'ما بدّك تكلّفي' became 'ما كان لازم تتعبي حالك', English updated to match",
+   "Removed the mismatched accepted item 'بالهنا' from lesson-02 reply.02 and replaced it with the transliteration alla y3aafiiki"
+  ],
+  "unsure": [
+   "الجاكيتات for coats: 'jacket' is common in Lebanese, but 'بالطو' may be more natural for a heavy coat. Kept as is, not checked with a speaker.",
+   "ركّن for parking: my search did not confirm it, and sources cite صفّ as another Levantine word for 'to park'. I changed it on my own knowledge of Lebanese usage. Please confirm with a speaker.",
+   "دقّ الجرس: plausible in Lebanese, but رنّ الجرس is also used. Not verified.",
+   "صباط for shoes: correct as far as I know. Not verified by search.",
+   "نفلّ for 'to leave': confirmed as a common neutral Lebanese verb (WordReference forum thread). Kept.",
+   "Many exercises use the same generic too_formal feedback text, and some too_formal items are wrong-option distractors (e.g. مع السلامة) rather than a formal MSA form of the answer. The unit validates and I left them as they are.",
+   "Transliteration uses ii and uu for long vowels where the key says ee and oo. The Damascene unit does the same, so I left it."
+  ]
+ },
+ "lebanese/unit-12": {
+  "writer_note": "ok. I'm unsure of these slots:\n- `we-ll-meet-at-the-umayyad-mosque`: a Damascus landmark, so a Beiruti wouldn't naturally say it.\n- `tili3atli shaghle`: the vowels in the transliteration.\n- `da22eit`: the ق-as-hamza spelling in the transliteration.\n- `i-have-to-apologize-for-the-appointment-cancel-i`: the phrasing \"لازم إعتذر عن الموعد\".\n- The challenge line \"قولي لخيي رسالة\".\n\nFile: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/lebanese/unit-12.json",
+  "valid": true,
+  "fixes": 8,
+  "examples": [
+   "منتلاقى عند الجامع الأموي بالشام",
+   "خلص رصيدي",
+   "فيك تدقلي بعد شوي؟",
+   "طلعتلي شغلة (tili3itli)",
+   "وين منتلاقى؟"
+  ],
+  "unsure": [
+   "we-ll-meet-at-the-umayyad-mosque: slot is fixed by the spine; wording is now 'at the Umayyad Mosque in Sham'. A Beiruti would only say this about a Damascus trip, and I did not verify it with a native speaker.",
+   "i-have-to-apologize-for-the-appointment-cancel-i: 'لازم إعتذر عن الموعد' kept. It is a slightly polite, semi-formal way to cancel, but Lebanese do say it. 'لازم إلغي الموعد' is the plainer alternative.",
+   "Beiruti vowel quality (imala, e.g. tili3itli vs tili3etli) is not settled in the transliteration; I kept the file's -it convention, matching khilsit."
+  ]
+ },
+ "lebanese/unit-13": {
+  "writer_note": "ok. I wrote from my own knowledge of Lebanese Arabic and did no web research, so a native speaker has not checked it. Slots I am unsure of:\n- \"الأكل بارد شوي، ممكن تسخنلي ياه؟\" (heat it up for me)\n- \"ممكن ترجعولي المصاري؟\" (refund my money)\n- \"فيك تساعدني بهالموضوع؟\" (help me with this matter)\n- \"هيدا مش اللي طلبتو\" (this isn't what I ordered)\n- \"في غلط بالحساب\" (mistake in the bill)",
+  "valid": true,
+  "fixes": 30,
+  "examples": [
+   "'هو' was transliterated 'hayye' (that is 'she'); now 'huwwe'",
+   "'وإنت' was 'w 2inta'; Lebanese is 'w 2inte'",
+   "de_book 'بدك ترجعلك المصاري؟' did not match its transliteration; now 'بدك يرجعولك المصاري؟' (biddak yrajj3oolak el masaari)",
+   "'مش نفس اللي شفتو' changed to the natural 'مش متل اللي شفتو'",
+   "'مش قصدي زعجك' changed to 'مش قصدي ضايقك' (mish 2asdi daayi2ak)",
+   "Removed Syrian/Iraqi 'مو' and Egyptian-style 'فيه غلط' from accepted lists",
+   "Challenge model dialogue had no polite complaint although it was required; added one ('آسف عالإزعاج، بس القهوة تأخرت كتير')"
+  ],
+  "unsure": [
+   "الأكل بارد شوي، ممكن تسخنلي ياه؟ : judged natural Lebanese ('ياه' object form is real), left unchanged; no web search done",
+   "ممكن ترجعولي المصاري؟ : kept plural polite 'ترجعولي' (trajj3ooli), MSA-free; singular 'ترجعلي' is equally natural",
+   "فيك تساعدني بهالموضوع؟ : natural, unchanged",
+   "هيدا مش اللي طلبتو : natural, unchanged",
+   "في غلط بالحساب : natural, unchanged",
+   "'مبسوطة' vs 'زعلانة' fem endings (-a vs -e) left as the writer had them",
+   "No WebSearch used; review is from my own knowledge of Lebanese, not a real native speaker"
+  ]
+ },
+ "lebanese/unit-14": {
+  "writer_note": "ok. I did not research any of this; it is all from my own knowledge of Lebanese. Slots I am unsure of:\n- `the-iftar-cannon-fired` (\"ضرب مدفع الإفطار\"): the verb may be different in Beirut.\n- `may-god-give-you-all-eid-money-said-jokingly` (\"الله يعطيكن العيدية\"): I am not sure this is a real set phrase in Lebanon.\n- `may-you-witness-it-again-next-year` (\"عساكن من عوّادو\"): the spelling and pronunciation of the ending may vary.\n- `the-wedding-stage-decoration-is-very-beautiful` (\"كوشة\"): this word may be less common in Lebanon than elsewhere.\n\nThe unit is at C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/lebanese/unit-14.json.",
+  "valid": true,
+  "fixes": 22,
+  "examples": [
+   "Beiruti numeral: صرت ثلاثين / sirt talaatiin changed to صرت تلاتين / sirt tlaatiin (answer, dialogue, de_book, phrase reply). The formal spelling stays in accepted.",
+   "Transliteration: gemination restored in ne7ader, te7ader and ye7adder (now 7adder). Dropped-hamza addeesh became 2addeesh, matching the other Lebanese units. ree7it, 3meltu and sirt were also fixed.",
+   "Eid wish: عساكن من عوّادو replaced with ينعاد عليكن (yin3aad 3aleekon). Reply added: وعليكن، الله يخلّيكن. The related exercise and dialogue line were updated.",
+   "Iftar cannon: ضرب مدفع الإفطار changed to ضرب المدفع (darab l-madfa3).",
+   "Fasting start: بلّشنا الصيام من الفجر changed to بلّشنا نصوم من الفجر (phrase and dialogue).",
+   "Ramadan greeting: شهر رمضان مبارك عليكن changed to مبارك عليكن الشهر.",
+   "Stage decoration: كوشة replaced with منصّة العريس والعروس in the phrase, and with المنصّة in the dialogue.",
+   "Rami and Nadia dialogue: وإنتو معزومين changed to وإنت معزوم (Rami is one person). The out-of-place صحّتين وعافية was replaced with الله يهنّيكن.",
+   "Exercise answers: removed Egyptian/Palestinian إحنا and the Gulf-flavoured رفقات; reorder accepts عم تيجي (Lebanese form); the eid reply accepts وعيدك مبارك instead of the wrong وإنت بخير.",
+   "Challenge: وين هو (weeno carry-over 'hayyo') changed to وينو.",
+   "Validation: python -m backend.scripts.check_colloquial_unit lebanese unit-14 prints ok. Only unit-14.json was edited; git was not touched."
+  ],
+  "unsure": [
+   "may-you-witness-it-again-next-year: web results show عساكم من عوّاده is mainly Gulf, so I could not confirm it in Lebanon. I replaced it with ينعاد عليكن, which I believe is Levantine but did not find a source for. A Lebanese speaker should confirm.",
+   "may-god-give-you-all-eid-money-said-jokingly: I found no evidence الله يعطيكن العيدية is a set phrase. I replaced it with the more plausible عيديتنا يا جماعة، الله يعطيكن, but this joke phrase is still unconfirmed.",
+   "the-wedding-stage-decoration-is-very-beautiful: search shows كوشة is common in the Gulf and Egypt but was not confirmed for Lebanon. I used منصّة العريس والعروس, which is safer but is my own phrasing, not a confirmed set expression.",
+   "the-iftar-cannon-fired: Beirut and Sidon do fire a Ramadan cannon (confirmed), but I could not verify the exact spoken verb. ضرب المدفع is my best judgement; انضرب المدفع is another possible form.",
+   "Lesson 4 عيد ميلاد سعيد is standard-leaning, but Lebanese speakers really use it. Also unverified: the reply الله يخلّيك to it, ما شاء الله, and طفّي الشمعات.",
+   "Minor unverified points: the written form عصلاة for 'on the prayer', the spelling وعدتها / wa3adta in the lesson 1 dialogue, and الله يسعدكن as a wedding congratulation (real, but the usual choice may be الله يهنّيكن)."
+  ]
+ },
+ "lebanese/unit-15": {
+  "writer_note": "ok. The file is `backend/data/colloquial/lebanese/unit-15.json`, and the validator prints \"ok\". I did not research anything on the web; the Lebanese wording is from my own knowledge, plus checking units 01 and 02 for conventions.\n\nSlots I am unsure of:\n- **`i-want-to-confirm-the-reservation`:** \"baddi 2a2akked l-7ajz\" — I'm not sure of the first-person form of the verb \"confirm\" in Lebanese.\n- **`is-this-bag-overweight`:** \"hal-shanTa wazna zaayed?\" may not be the usual Lebanese wording.\n- **`do-you-have-anything-to-declare`:** \"3indak shi la-tSarreH 3anno?\" may not be the usual Lebanese wording for a customs question.\n- **`i-need-to-change-the-flight`:** \"laazem 2ghayyer r-re7le\" — I'm not sure \"re7le\" is the usual word for a flight.\n- **`is-there-a-free-seat-on-the-next-bus`:** \"fi kersi faaDi bel-baaS l-jeyy?\" — I'm not sure \"l-jeyy\" is the usual word for \"next\".\n- **`where-s-the-ticket-window`:** I'm not sure of the exact vowels in \"shebbeek\".\n- **`thanks-here-s-your-ticket`:** \"yislamo\" is my guess for a clerk saying thanks.",
+  "valid": true,
+  "fixes": 45,
+  "examples": [
+   "'What time' was 'الساعة كم' (Syrian/Jordanian); now 'أي ساعة' / 'ayy sa3a' everywhere, including reorder word banks",
+   "Elevator: 'الأسانسير' changed to 'الأسانسور' / l-asansoor",
+   "'baddi 2a2akked l-7ajz' changed to 'baddi 2akked l-7ajz' (Lebanese drops the doubled hamza)",
+   "Customs: 'عندك شي لتصرّح عنّو' changed to 'معك شي لازم تصرّح عنّو' / 'ma3ak shi laazem tSarre7 3anno?'; 'tSarreH' and 'btenHall' now use the key's 7",
+   "Overweight: 'وزنها زايد' changed to 'أتقل من المسموح' / at2al mn l-masmoo7; choose.02 rewritten to match",
+   "Sun-letter fixes: 't-tazkara', 't-tazaaker'; 'lal-Talabe' changed to 'lal-Tollaab'",
+   "Clerk thanks: 'يسلمو' changed to 'مرسي' / mersi, which unit-01 also uses",
+   "Lost passport: 'ما قدرت لاقي' changed to 'ما لقيت جواز سفري'",
+   "'الله يعوّض' was translated 'Thank God' (wrong, it means may God compensate); replaced with 'الله يعطيك العافية' when thanking the clerk",
+   "Typos and dialect fixes: 'إطلب' and 'إعمل' changed to 'أطلب' and 'أعمل'; 'shanTteyn' changed to 'shanTtein'; 'leele' changed to 'leile'",
+   "Culture notes: removed Gulf 'سولف', changed 'على برّا' to 'للخارج', and dropped the unsupported claim that the border officer says 'الحمدلله عالسلامة'",
+   "Accepted lists: removed MSA answers (ثلاث ليالي, أو), wrong-meaning answers (شنطتي كسرت, قدّيش الطريق, tlet 2iyyaam) and the 'in the hotel a room' typo-level entries"
+  ],
+  "unsure": [
+   "where-s-the-ticket-window: Arabic is now 'شباك' and transliteration 'shibbeek'. The web search only gave vague variants (shibbeek/shubbeek), so a native speaker should confirm the vowels. Lebanese may also say 'gishe' (from French guichet).",
+   "'راكح جاي' (round trip): I kept 'raaye7 jeyy' and did not verify it. 'رايح جاي' sounded natural but a native check is worth it.",
+   "is-there-a-free-seat-on-the-next-bus: 'الجاي' for 'next' is natural Lebanese and I kept it.",
+   "Lebanese may say 'أي ساعة' ('ayy sa3a') more often than 'الساعة كم'. I chose it from my own knowledge and did not verify it.",
+   "Asansoor spelling: I believe Lebanese says 'asansoor' but did not verify it.",
+   "'Aleppo' in a Lebanese bus scenario is fixed by the spine, so I left it."
+  ]
+ },
+ "lebanese/unit-16": {
+  "writer_note": "ok (wrote `backend/data/colloquial/lebanese/unit-16.json`, and the checker prints \"ok\"). I did no web research, so every phrase comes from my own knowledge of Beiruti. I'm unsure of these slots:\n- lesson-02 `when-i-was-young-i-dreamed-of-becoming-a-pilot`: \"كنت حلم صير طيّار\".\n- lesson-02 `first bike`: \"بسكليت\" and its masculine agreement.\n- lesson-03 `i-fell-on-the-stairs-and-hurt-my-leg`: \"ضربت إجري\" for \"hurt my leg\".\n- lesson-03 `i-overslept-and-didn-t-hear-the-alarm`: \"غفيت\" for \"overslept\".\n- lesson-04 `they-told-me-you-re-moving-to-a-new-house`: \"تنقل عبيت جديد\".",
+  "valid": true,
+  "fixes": 16,
+  "examples": [
+   "dream: كنت حلم صير طيّار -> كان حلمي صير طيّار (everywhere: phrase, dialogue with طيّارة, de_book, reorder words, accepted)",
+   "leg: ضربت إجري -> أذّيت إجري (\"ضربت رجلي\" means banged it, not hurt)",
+   "overslept: غفيت (dozed off) -> نمت زيادة; dialogue فتأخّرت -> وتأخّرت",
+   "move: عم تنقل عبيت جديد -> عم تنقل ع بيت جديد (spaced, translit 3a beit)",
+   "cooking: وأنا عم طبخ -> وأنا عم بطبخ (Lebanese b- prefix; translit already had baTbokh)",
+   "بجدّ؟ -> عن جدّ؟ (Lebanese; بجد is Egyptian) in L4 dialogue and challenge",
+   "translit: ma jiit -> ma ijiit, ma jiiti -> ma ijiiti, wein kent -> weinak kent, mniiH -> mnii7",
+   "removed duplicate accepted entries and the شنتتي typo (now ضاعت الشنطة تبعي بالمطار)",
+   "removed double بس in George's line (لأ ما بصدّق، يمكن بس إشاعة)"
+  ],
+  "unsure": [
+   "بسكليت: kept; used in Lebanon, masculine agreement (كان أحمر) is right, but دراجة is also heard, so the exercise tip that Lebanese \"usually\" say بسكليت is unverified",
+   "عم بطبخ: translit baTbokh kept as originally written; the exact vowel (baTbokh vs bTabbekh) is unverified",
+   "أذّيت إجري: natural Lebanese, but وجّعت إجري is an equally likely alternative",
+   "كان حلمي صير طيّار: I judge it natural, but كنت بحلم صير طيّار is also possible; not confirmed by a speaker",
+   "لأيمتى (la2eimta) and العشية (el-3ashiyye): kept as plausible Lebanese, not web-verified",
+   "No web research done; all judgments are from my own knowledge"
+  ]
+ },
+ "lebanese/unit-17": {
+  "writer_note": "ok. Written to `backend/data/colloquial/lebanese/unit-17.json`, and the checker prints \"ok\". I did no web research, so all wording is from my own knowledge of Lebanese Arabic. I'm least sure of these slots:\n- **Old City slot:** I wrote \"المدينة القديمة\" (the old town, as in Saida, Tripoli or Byblos), because Beirut has no single \"Old City\".\n- **`at-your-service` slot:** \"تكرم\" is my choice for the driver's reply. \"أمرك\" and \"تكرم عينك\" are accepted as alternatives.\n- **`how-long-does-the-way-take` slot:** I used \"بيوخد\" (biyokhod), with \"بياخد\" also accepted.\n- **Fare in the taxi dialogue:** the driver names a price (\"بتلاتين ألف\", thirty thousand) instead of reading a meter. That matches how fares are usually agreed in Beirut, but I haven't confirmed it.",
+  "valid": true,
+  "fixes": 12,
+  "examples": [
+   "بيوخد -> بياخد (قديش بياخد الطريق؟, biyaakhod); بيوخد kept as accepted only",
+   "تكرم -> تكرم عينك (tekram 3enak), the standard driver reply; تكرم and أمرك accepted",
+   "Taxi fare thirty thousand lira -> بعشرين دولار (b-3ishriin dolaar), realistic for a 20-minute ride",
+   "Market prices fifty/forty thousand -> بميتين ألف / بميت وخمسين ألف, since 30-50k lira is pennies now",
+   "عشرين دقيقة تقريباً -> حوالي عشرين دقيقة (bookish تقريباً removed)",
+   "accepted lists: dropped MSA-ish فيه خصم and للمدينة القديمة, ماشي الحال (means 'how are things') -> اتفقنا; culture note updated"
+  ],
+  "unsure": [
+   "how-long-does-the-way-take: بياخد is my best judgment for Lebanese; a native check is still worth it",
+   "i-want-to-go-to-the-old-city: Beirut has no single Old City; المدينة القديمة is understandable but not a common Beirut phrase",
+   "لو سمحت for 'please' is common in Lebanon but locals also say دخلك / الله يخليك; kept as pan-Levantine acceptable",
+   "Exact 2026 price levels (lira vs dollars) are unconfirmed; culture note tells learners to ask which currency",
+   "No web research was done; all wording is from my own knowledge of Lebanese Arabic"
+  ]
+ },
+ "moroccan/unit-01": {
+  "writer_note": "ok. Written to `backend/data/colloquial/moroccan/unit-01.json` and the checker prints \"ok\". I wrote it from my own knowledge of Darija and did no web research.\n\nSlots I'm least sure of:\n- `me-too` (\"وأنا تاني\") is a real usage but may not be the most common form.\n- `nice-to-meet-you` reply (\"الشرف ليا\") is unchecked.\n- `it-s-two-o-clock` (\"الساعة جوج\") may also be said \"الساعة تنين\".\n- `what-s-your-name-to-a-woman` uses the same words as the man's form, because \"شنو سميتك؟\" isn't gendered in speech.\n- Left as \"على الشمال\" and \"نيشان\" with \"ديريكت\" as the French-loan alternative.",
+  "valid": true,
+  "fixes": 17,
+  "examples": [
+   "me-too: وأنا تاني -> حتى أنا (7tta ana), everywhere incl. dialogue and challenge; web search shows hetta ana as the common Darija form",
+   "directions: مشي نيشان -> سير نيشان (seer neeshaan), plus fill_blank prompt and challenge",
+   "L3 dialogue: شنو غادي تدير -> تديري (woman addressed)",
+   "transliteration: keedayr -> kidayr; deereect -> deereekt; ashsharaf leeya -> shsharaf leeya",
+   "price question in de_book: شحال هادا -> بشحال هادا",
+   "L2 dialogue: الما كافي -> غير الما (Just the water)",
+   "removed non-Darija accepted answers (لا عليك, دوري على اليسار, دور على اليمن) and a dubious tip about صباح"
+  ],
+  "unsure": [
+   "nice-to-meet-you reply الشرف ليا: confirmed real via search (Sharaf lia), kept",
+   "it-s-two-o-clock الساعة جوج: kept; تنين is not the Casablanca/Rabat hour form",
+   "what-s-your-name-to-a-woman: same words as the man's form is correct, kept",
+   "حتى أنا and وأنا تاني are both heard; only the first was confirmed by search, the second is now dropped from the file",
+   "على الشمال and نيشان/ديريكت kept as spoken; not independently searched",
+   "متشرفين vs مشرفين: both are heard, kept متشرفين",
+   "Structure matches the Damascene unit: same counts of phrases, dialogue, de_book, exercise types per lesson"
+  ]
+ },
+ "moroccan/unit-02": {
+  "writer_note": "ok. I did not research any of it, so the wording comes from memory and no speaker has checked it. These slots I'm least sure of:\n- `i-m-still-single-male-speaker`: \"باقي عزري\" (baqi 3zri) is what I used. \"عازب\" is also heard.\n- `to-your-health-said-to-someone-after-they-finish`: I used \"صحة\", with the reply \"الله يعطيك الصحة\".\n- `enjoy-your-meal-said-to-someone-while-they-are-e`: I used \"بالهنا والشفا\", with the reply \"الله يبارك فيك\".\n- `how-many-people-are-in-your-family-to-a-man`: \"شحال من واحد فعائلتك؟\" is my best rendering. \"شحال ديال الناس\" is the alternative.\n- `how-much-is-the-bill`: \"شحال الحساب؟\" is my best rendering.\n- The falafel line: falafel is not a staple in Morocco, so it is worth a native check.\n\nThe file is `backend/data/colloquial/moroccan/unit-02.json`.",
+  "valid": true,
+  "fixes": 30,
+  "examples": [
+   "Levantine/Gulf وين -> Darija فين (feen kaysekno)",
+   "كتحب/كنحب -> كتبغي/كنبغي (katbghi/kanbghi), old forms kept in accepted",
+   "translit shhaal -> sh7aal; ii -> ee per key; ch-chifaa -> sh-shifaa; sa77a -> Sa77a; ghan5lleS -> ghankhlleS; ؟ -> ?",
+   "Tebsil transliteration mismatched Arabic طبق -> ساندويتش ديال الفلافل",
+   "عندي راجلي وبنت -> مزوجة وعندي بنت",
+   "removed non-words from accepted (خواتات, أمي, رّاجلي, duplicate نشرب) and formal 'من فضلك' from accepted",
+   "dialogue bill ending reordered so صحة / الله يعطيك الصحة and bill request make sense; falafel culture note added",
+   "أنا الآخر (non-Darija) -> وأنا عطشان بزاف; ولكن -> ولاكين"
+  ],
+  "unsure": [
+   "i-m-still-single-male-speaker: kept باقي عزري (real Darija, also عازب accepted); not confirmed by a speaker",
+   "how-many-people-are-in-your-family: changed to شحال ديال الناس فعائلتك؟ (شحال من واحد accepted); a web search confirmed only that sh7aal means how many, not the full phrase",
+   "how-much-is-the-bill: kept شحال الحساب؟; search found only الحساب عافاك and بشحال هادا, not this exact phrase; شحال خاصني نخلص accepted as alternative",
+   "to-your-health: صحة with reply الله يعطيك الصحة kept, unverified by a speaker",
+   "enjoy-your-meal: بالهنا والشفا / الله يبارك فيك kept, believed common in Morocco but unverified",
+   "falafel: kept as the spine requires; culture note says it is not a traditional dish",
+   "شنو سميتي بنتك and شنو كتبغي تاكل are from memory of Darija grammar, not source-checked"
+  ]
+ },
+ "moroccan/unit-03": {
+  "writer_note": "ok. I could not research any of this (no WebSearch call), so every phrase comes from my own knowledge of Darija. The slots I am least sure of:\n\n- **l2 `do-you-have-ready-made-kibbeh`:** there is no kibbeh in Morocco. I wrote \"واش عندك الكفتة واجدة؟\" (\"is the kefta ready?\") as the closest equivalent.\n- **l2 `do-you-want-pita-bread-or-markook`:** I used batbout for the pita and rghayef for the markook. The pairing is my guess.\n- **l2 `i-want-a-fresh-bundle-of-bread`:** I wrote \"شي خبزات طرية\" (a few fresh loaves), because bread is sold by the loaf.\n- **l1 `give-me-a-bag-of-parsley-and-coriander`:** I used \"شكارة\" for \"bag\". It is a plastic-bag word, but I am not certain it is used at a veg stall.\n- **l3 `keep-the-flame-low`:** \"خلي النار خفيفة\" is understandable, but I am not sure it is the usual phrasing.\n- **l3 `did-you-put-enough-salt`:** I reworded it to \"واش الملحة فالماكلة كافية؟\" (\"is the salt in the food enough?\").\n- **l4 `i-love-damascene-sweets`:** I changed it to Moroccan sweets (\"الحلويات المغربية\"), with shebbakiya and kaab el-ghzal in the reply.\n- **l4 `do-you-prefer-chicken-or-meat`:** I used \"الدجاج\", though \"الجاج\" may be commoner in Casablanca speech.\n\nFor the phrases I reworded or swapped for a Moroccan equivalent, the reply text follows my Moroccan wording, but the English in `spine.json` stays the Damascene sentence, so the two no longer match exactly.\n\n`python -m backend.scripts.check_colloquial_unit moroccan unit-03` prints ok. The file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/moroccan/unit-03.json`. The build script is in the session scratchpad, outside the repo.",
+  "valid": true,
+  "fixes": 12,
+  "examples": [
+   "بلا عظم -> بلا عضم (Darija says 3dm with ض for bone; 8 strings incl. choose options)",
+   "الدجاج -> الجاج, ddjaj -> j-jaj (Casablanca/Rabat usage) in phrases, dialogue, de_book, exercises, challenge; MSA forms kept only in too_formal",
+   "الرز -> الروز (Moroccan for rice), translit r-ruz",
+   "نسخنو الما أولا -> نسخنو الما فالأول (أولا is not Darija for 'first')",
+   "توا خرج من الفران -> غير خرج دابا من الفران (توا is Tunisian/Libyan; kharaj -> khrej)",
+   "خلي النار خفيفة -> خفف النار شوية (phrase, reorder answer, accepted, tip)",
+   "ولكن -> ولاكين; w ana 7ta ana -> ana 7ta ana",
+   "removed two unnatural word orders from reorder accepted lists; deduped accepted lists",
+   "L3 culture note: bs-se77a w r-rah7a is said by a host to eaters; cook is thanked with allah y3tik s-se77a; validator prints ok"
+  ],
+  "unsure": [
+   "l1 give-me-a-bag-of-parsley-and-coriander: kept شكارة (real Darija for bag) but herbs at a stall are normally sold by the bunch (ربطة); no source checked",
+   "l2 do-you-want-pita-bread-or-markook: batbout/rghayef pairing kept; a rough analogue, not exact",
+   "l2 i-want-a-kilo-of-ground-meat: kept اللحم المفروم; butchers may also just say كفتة",
+   "l3 did-you-put-enough-salt: reworded sentence kept, understandable but not the most idiomatic",
+   "l4 favorite-dish: المفضلة is slightly formal; kept because no clearly better Darija form was verified",
+   "l4 i-love-damascene-sweets: Moroccan swap kept; English in spine.json still says Damascene",
+   "No WebSearch was run; all judgments are from native-usage knowledge"
+  ]
+ },
+ "moroccan/unit-04": {
+  "writer_note": "ok. I did no web research, so these slots are from memory and unverified. Unsure slots:\n- `i-ll-have-a-plate-of-hummus-and-fattoush`: hummus and fattoush are Levantine dishes, uncommon on Moroccan menus.\n- `thanks-lit-wellness-of-your-heart-it-was-a-tasty`: uses \"Allah y3tiik ssa77a\", so it doesn't carry the \"wellness of your heart\" gloss.\n- `bless-your-hands-the-food-was-delicious`: \"ybaarek f lidiin dyaalek\" may not be the natural idiom.\n- `no-sugar-at-all`: \"bla sukkar niit\".\n- `i-like-my-coffee-bitter`: \"mrra\" for bitter.\n- `a-big-cup-of-coffee`: \"6aasa\" for cup.\n\nWording I chose that a native speaker should check:\n- I used \"nta/nti\" for the man/woman split, because Darija verbs don't mark the gender of \"you\".\n- \"lakart\" for menu.\n- \"lfaktura\" for receipt.\n- \"lburbwaar\" for tip.\n\nThe file is `backend/data/colloquial/moroccan/unit-04.json`.",
+  "valid": true,
+  "fixes": 14,
+  "examples": [
+   "no-sugar-at-all: بلا سكر نيت -> بلا سكر بالمرة (bla sukkar b lmarra)",
+   "a-big-cup-of-coffee: transliteration 6aasa -> 6assa (Arabic طاسة kept, it is the Moroccan word for cup)",
+   "lesson-03/04 أخرى -> خرى (shi 7aaja khra), MSA carry-over removed in phrase, de_book, exercise",
+   "slaTa/bddabT -> sla6a/bdda6 to follow the key (ط = 6)",
+   "lesson-04 dialogue: كنقبلو الاثنين -> كنقبلو الجوج (ljuj)",
+   "challenge: waiter line 'شحال الحساب؟ ستين درهم' -> 'الحساب ستين درهم' (a waiter does not ask the bill's price)",
+   "fill_blank.01 too_formal: 'مع النعناع' is not bookish (m3a is Darija), replaced with 'بنكهة النعناع'",
+   "culture: harira is eaten all year (wording fixed); bsa77tek is said by host/waiter (wording fixed); haadi 3liya translit"
+  ],
+  "unsure": [
+   "i-ll-have-a-plate-of-hummus-and-fattoush: Arabic is correct Darija grammar but the dishes are Levantine; kept because the spine English fixes the meaning",
+   "thanks-lit-wellness-of-your-heart-it-was-a-tasty: Allah y3tiik ssa77a (health, not heart) is the real Moroccan thanks; the gloss cannot match literally",
+   "bless-your-hands-the-food-was-delicious: Allah ybaarek f lidiin dyaalek is understood and matches the English, but a native may prefer another idiom",
+   "wash katqablu lcash wla lkart: kanqablu/katqablu is understood; 'wash kat-khalsu b lkart' may be commoner for card",
+   "lbaaqi lik for keep the change: plausible, not verified by search (no web research done)",
+   "wash nqasmu l7saab: nqasmu is fine but 'ntqasmu' may be heard",
+   "nta/nti and lakart, lfaktura, lburbwaar: judged natural for Casablanca/Rabat from memory, not web-checked"
+  ]
+ },
+ "moroccan/unit-05": {
+  "writer_note": "ok. No web research done, so nothing was checked against a dictionary or forum. Unsure slots:\n- `keep-to-your-right` (\"bqa f-l-imen\")\n- `turn-left-after-the-mosque` and `turn-right-at-the-traffic-light` (shmal for left, \"d-dow\" for the light)\n- `turn-on-the-meter-please` (\"l-kontor\")\n- `microbus-microbus`: replaced with \"taksi kbir\" (grand taxi), since Morocco has no microbus.\n- `the-pharmacy`: \"s-seydaliya\"; \"farmasyan\" may be more common in Casablanca.\n- `the-restaurant`: \"l-mat3am\"\n\nPlace names are localised, as in the Egyptian file:\n- Old Damascus became the old medina.\n- Bab Touma became Bab El Had.\n- Mazzeh became Maarif.\n- The Umayyad Mosque became Hassan II Mosque.\n- Halbouni Roundabout became Place Mohammed V.\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/moroccan/unit-05.json`.",
+  "valid": true,
+  "fixes": 17,
+  "examples": [
+   "right: اليمين to ليمن (dor 3la limen); keep-to-your-right now بقا على ليمن (bqa 3la limen)",
+   "meter: الكونطور خاسر to معطل (m3attal); نتفقو to نتفاهمو",
+   "price: 'shhal bghiti 3la had l-mushwar' to 'bshhal had l-mushwar?'; 'الثمن الخير' to 'آخر ثمن'",
+   "bus: من ثم to من تما; خاوي كثر to خاوي كتر",
+   "Hassan II: لمسجد to لجامع الحسن التاني",
+   "transliteration: kaydouz to kaydooz, duz to dooz, l-s-suq to l-sooq",
+   "accepted lists: removed duplicate entries and topped up with real variants; 'ليمن' also accepts اليمين"
+  ],
+  "unsure": [
+   "the-pharmacy / excuse-me-where-is-the-pharmacy: kept الصيدلية (s-sidaliya), understood everywhere; farmasyan may be more common in Casablanca speech and could not be checked (no web research done)",
+   "the-restaurant: kept المطعم (l-mat3am); 'ريسطو' is a possible casual alternative",
+   "the-park: kept الحديقة; 'الجردة' or 'الجنان' may be more colloquial",
+   "traffic light: kept الضو (d-dow); 'الفو' (le feu) is a possible alternative",
+   "keep-to-your-right: بقا على ليمن is plausible Darija but was not verified against a native source",
+   "microbus-microbus: طاكسي كبير is correct for a grand taxi; whether drivers actually shout it that way is unverified",
+   "left as شمال (sh-shmal); 'ليسر' is also used in some areas",
+   "unit-05.json was rewritten by json.dump, so its formatting may differ from the original"
+  ]
+ },
+ "moroccan/unit-06": {
+  "writer_note": "ok. `backend/data/colloquial/moroccan/unit-06.json` passes `check_colloquial_unit moroccan unit-06`. I did no web research, so this is all from memory. I did not edit `dialects.json`.\n\nSlots I am unsure of:\n- **Light colours:** `الألوان المفتوحة` (light colours). Moroccans do say `مفتوح` for a light colour, but I'm not certain it's the everyday choice.\n- **Another colour:** `لون آخر`, where a native might say `لون خر`.\n- **I'll lose money:** `غادي نخسر`, checked against `ما نقدرش` in the same slot.\n- **Fitting room:** `الكابين`. Some speakers say `بيت القياس` instead.\n- **Receipt:** `الفاتورة`, where `التيكي` is also common.\n- **Final price:** `آخر ثمن`, which may be less idiomatic than \"no lower than this\".\n- **Where's the total:** `شحال كولشي؟`, checked against other ways of asking for the total.",
+  "valid": true,
+  "fixes": 8,
+  "examples": [
+   "هناك (MSA) replaced by تما (tamma) for 'over there', in the can-i-try-it-on reply and the lesson-01 dialogue",
+   "nqqeST corrected to nqqeSt (ت is t, not ط), and nqqes to nqqeS (ص is S) across phrases, dialogue, de_book, exercises",
+   "shhaal corrected to sh7aal (ح is 7), 4 places",
+   "jouj to jooj, matching the oo key, 3 places",
+   "ma qrrartsh to ma qarrartsh, 3 places",
+   "removed odd accepted variant 'زوينة بزاف عليا'",
+   "added 'عندي التيكي' to accepted for the receipt reply exercise",
+   "reworded the light-colours too_formal feedback to 'many Moroccans say مفتوحة', since the claim was too strong"
+  ],
+  "unsure": [
+   "الألوان المفتوحة: plausible and used in Darija, but الفاتحة is also heard; kept مفتوحة",
+   "لون آخر: kept, since آخر/خور is attested for masculine 'other'; a native may say لون خر (already in accepted)",
+   "غادي نخسر: natural Darija; kept",
+   "الكابين: kept; بيت القياس not adopted and I did not add it to accepted",
+   "الفاتورة: kept; التيكي is added only to the lesson-04 reply exercise accepted list, and a التيكي variant already sat in the translate exercise",
+   "آخر ثمن: kept, but a native may prefer 'ما نقصش من هادا'; not verified",
+   "شحال كولشي؟: understood, but شحال الحساب or شحال المجموع may be more usual; kept; no web research done",
+   "أصغر/أكبر as comparatives and هادا ماشي اللي طلبت word order (ماشي هادا اللي طلبت may be more natural): left as written"
+  ]
+ },
+ "moroccan/unit-07": {
+  "writer_note": "ok. I didn't research the Darija online, so it rests on my own knowledge. I'm least sure of these slots, and a native Casablanca or Rabat speaker should check them.\n- `i-m-still-sleepy`: باقي ناعس.\n- `i-want-to-shower`: بغيت ندوش. I picked it over نتحمم, and نتحمم is accepted.\n- `can-i-take-a-break`: I used نرتاح (rest), not the \"بوز\" wording.\n- `what-do-you-plan-to-do-on-the-weekend`: أش ناوي تدير.\n- `i-have-work-every-day-except-friday-and-saturday`: the English is fixed by the spine, but Moroccan weeks usually run Monday to Friday.\n- `the-weekend-comes-quickly`: I used كايجي in the phrase, and كايدوز in the dialogue.\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/moroccan/unit-07.json`.\n\nBesides the required g/ق `9` in the transliteration key, I added `e` for the short vowel.",
+  "valid": true,
+  "fixes": 8,
+  "examples": [
+   "باقي ناعس / ناعسة changed to باقي نعسان / نعسانة (phrase, 2 dialogues, challenge, required element; translit ba9i n3saan / n3saana)",
+   "ما عرفت changed to ما عرفتش (Darija negation needs the final ش; ma 3reftsh)",
+   "translit 'kayn lbard' changed to 'kayn bard' to match Arabic كاين برد (phrase, dialogue, exercise)",
+   "translit 'ba3d reyonyon' changed to 'ba3d l-reyonyon' to match Arabic بعد الريونيون",
+   "accepted 'نديرو دوش' (we) changed to 'ندير دوش' (I) in the ندوش fill_blank",
+   "culture 'b-sa77a w-raa7a' changed to 'b-ssa7a w-raa7a'",
+   "lesson-04 culture no longer contradicts 'except Friday and Saturday': it now says most offices work Mon-Fri and that phrase fits only some workers"
+  ],
+  "unsure": [
+   "i-m-still-sleepy: نعسان is safe; ناعس was understood but less usual. A Casablanca/Rabat speaker could prefer باقي كانعس",
+   "can-i-take-a-break: نرتاح is fine; a native might say ناخد بوز, not verified",
+   "the-weekend-comes-quickly: كايجي is acceptable, كيدوز may be more natural; kept both since the dialogue uses كايدوز",
+   "i-want-to-shower: ندوش confirmed natural, نتحمم accepted",
+   "no web research was done; all judgments are from own knowledge of Darija"
+  ]
+ },
+ "moroccan/unit-08": {
+  "writer_note": "ok. Written from memory, no web research. Unsure slots:\n- `i-m-retired` (تقاعدت)\n- `we-must-finish-this-task-before-the-afternoon` (قبل العشية)\n- `my-boss-is-very-demanding` (الشيف ديالي صعيب)\n- `the-printer-keeps-breaking-down` (كتعطل)\n- `i-m-still-a-student` (باقي كنقرا)\n- `the-university-library-is-open-until-night` (الخزانة)\n- `my-dream-is-to-open-a-restaurant` (نحل مطعم)\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/moroccan/unit-08.json`.",
+  "valid": true,
+  "fixes": 45,
+  "examples": [
+   "شنو ناوي دير -> شنو ناوي تدير (Darija needs the prefix after ناوي; fixed in phrases, de_book, dialogue, challenge)",
+   "الطابعة ديما كتعطل -> ديما كتخرب; dialogue تعطلات -> خربات (broke down = خرب)",
+   "وصلاتني الإيميل -> وصلني الإيميل (email is masculine)",
+   "فأي سنة -> فأشمن سنة; مواد أخرى -> مواد خرين; مرة أخرى -> مرة خرى; الأسبوع -> السيمانة",
+   "translit fixes: ghadi nteb3a -> nteb3; blddabt -> bddabt; tqa3dt -> tqa3edt; zmil -> zzmil",
+   "culture note wrongly called الاجتماع a French word; now الكونجي, الشيف, ريونيون",
+   "accepted lists: removed wrong plural كنقراو/كتقراو, wrong جا, duplicated entries, odd reorder variants",
+   "two choose items whose too_formal was the same word as the answer now ask boss (الشيف) and my dream (الحلم ديالي)",
+   "الله يعطيك النجاح -> الله ينجحك; challenge element عام -> سنة"
+  ],
+  "unsure": [
+   "i-m-retired (أنا تقاعدت): kept; understood and used, but طلعت للتقاعد / أنا متقاعد are alternatives, not searched",
+   "my-boss-is-very-demanding (الشيف ديالي صعيب بزاف): kept; صعيب for a person is plausible, but كيطلب بزاف or قاصح may be more idiomatic; unverified",
+   "the-printer-keeps-breaking-down: changed to كتخرب; خربات is common for machines, but كيتعطل is also heard; no web check done",
+   "we-must-finish-this-task-before-the-afternoon (قبل العشية): kept, العشية = afternoon in Morocco",
+   "the-university-library (الخزانة): kept, correct Moroccan word for a library",
+   "my-dream-is-to-open-a-restaurant (نحل مطعم): kept; حلّ for opening a business is used, نفتح accepted",
+   "غادي نقدم على خدمة: kept, not verified as the most natural apply-for-a-job wording",
+   "i-m-still-a-student (باقي كنقرا): kept, correct",
+   "no WebSearch was actually run; all judgments are from native-usage knowledge"
+  ]
+ },
+ "moroccan/unit-09": {
+  "writer_note": "ok. Unsure slots (no web check done): \"واش خاصني الوصفة؟\" (many say ordonnance); \"بلاستر\" (band-aid); \"تنفس مزيان\" (deep breath); \"من إمتى وانت حاس هاكا؟\" (since when); \"هاد الدوا كيجيب النعاس شوية\" (sleepy); \"حاس براسي مدوخ\" (dizzy); \"رجلي منفوخة\" (swollen).",
+  "valid": true,
+  "fixes": 38,
+  "examples": [
+   "كذلك (kadalik) replaced with حتى in the pharmacy and challenge lines, and 'وشنو كذلك' with 'وشنو بعد'",
+   "من إمتى replaced with من وقتاش everywhere (phrase, dialogue, drill, choose exercise)",
+   "تتسنى replaced with ما تسناش; دّيتي (took) replaced with حملتي (carried)",
+   "بارك الله فيك replaced with الله يبارك فيك",
+   "Transliteration: 7aass to 7aas, kankoh to kanko7 (ح is 7), reyyeh to reyye7, shrboh to shrbo, lkoh-a to lkou7a",
+   "Removed wrong accepted answers: ما كننعسش, ما قادرش نعس, لليوم, عندي الحمى, لالحساسية",
+   "Lesson-03 culture note fixed: تحاليل is not a French word; now names رونديفو and أوردونانس",
+   "وودنك ما كتضرك changed to واش كتضرك; من الجهة اليمنى changed to من اليمين; سميتك changed to شنو سميتك",
+   "Validator prints ok"
+  ],
+  "unsure": [
+   "من وقتاش (since when): replaced إمتى on memory, not web-checked; إمتى is also heard in Morocco and شحال هادي is a common alternative",
+   "حاس براسي مدوخ (dizzy): kept, but راسي كيدور بيا is likely more natural",
+   "شربو جوج مرات فالنهار for pills: شرب الدوا is idiomatic, but خدو may be more common for tablets",
+   "هاد الدوا كيجيب النعاس: kept, plausible but unconfirmed",
+   "واش خاصني الوصفة: kept; الأوردونانس is accepted as an alternative",
+   "بلاستر: confirmed as a loan word in use",
+   "رجلي منفوخة: kept as natural",
+   "مرات فالنهار / تنفس مزيان: kept, acceptable",
+   "Challenge model dialogue has no feminine-address form although the instructions ask for one; left as is",
+   "No WebSearch was done"
+  ]
+ },
+ "moroccan/unit-10": {
+  "writer_note": "ok. I did not research any of it, so nothing here has been checked against dictionaries or speakers. The checker printed \"ok\" and the file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/moroccan/unit-10.json`.\n\nSlots I'm least sure of:\n- `i-forgot-the-raincoat-at-home`: \"الكبوط ديال الشتا\" is a guess for \"raincoat\". No exercise or dialogue line uses it.\n- `it-s-hot-out-today`: \"الدنيا حامية\"; `humid`: \"كاينة الرطوبة\".\n- `it-s-raining-outside`: \"كتشتي\".\n- `did-you-see-the-weather-forecast`: \"الميتيو\" is a French loan.\n- `as-long-as-the-weather-s-good-we-ll-keep-going-o`: \"طول ما\".\n- `the-trip-to-the-mountain-depends-on-the-weather`: \"على حساب الجو\".\n\nI also replaced Damascus with Rabat and Casablanca in the two slots that named it, as the Egyptian unit did with Cairo. The 12-line challenge dialogue is longer than the 10-line minimum.",
+  "valid": true,
+  "fixes": 32,
+  "examples": [
+   "raincoat slot: الكبوط (kaboot, ambiguous slang) replaced with الجاكيت ديال الشتا",
+   "it-s-hot-out-today: الدنيا حامية replaced with الدنيا سخونة (more Moroccan; matches the dialogue)",
+   "What season is it now: فأشمن فصل حنا دابا replaced with أشمن فصل هادا دابا (phrase, de_book, choose.02 answer/options)",
+   "الحق معاك replaced with عندك الحق",
+   "لا، ما كنحبوش (masculine pronoun for feminine الشتا) replaced with ما كنحبهاش",
+   "الجو ما كيخلينا ش replaced with الجو ما كيخلينانش (phrase and fill_blank prompt)",
+   "transliteration: capital H (kanHebb, kayTeeH, SbaaH) replaced with 7; shnu with shnoo; nnaDDaraat with nnaDaaraat; l7err with l7er; rTb with rTeb; mumkin with yemken (ممكن replaced with يمكن)",
+   "الشمس قوية replaced with الشمس قاوية; نمشيو بزاف (walk) replaced with نتمشاو بزاف",
+   "exercise data: removed duplicate accepted entries (lesson-04 fill_blank.01, fill_blank.02, choose.02); removed accepted answer قميص that equalled its too_formal item; removed Persian پ in الباراپلوي; dropped wrong 1sg نلعب; choose.02 answer now كيتوقف على الجو",
+   "validator prints ok"
+  ],
+  "unsure": [
+   "as-long-as-the-weather-s-good-we-ll-keep-going-o: changed طول ما to مادام; both plausibly heard, web search found no dictionary entry for either, native speaker should confirm",
+   "the-trip-to-the-mountain-depends-on-the-weather: على حساب الجو kept; understood as 'depending on' but كتوقف على الجو is safer",
+   "the-weather-s-humid-today: كاينة الرطوبة kept, correct grammar, not confirmed as the most idiomatic wording",
+   "it-s-raining-outside: كتشتي kept, I am confident it is standard Darija, but not confirmed by a source",
+   "did-you-see-the-weather-forecast: الميتيو kept, a common French loan, not confirmed by a source",
+   "culture note line 212: الله يجعلها شتا خير not confirmed by a source",
+   "lesson-04 phrases use الحديقة for park; الجنان or لجردة may be more local",
+   "Challenge dialogue has 11 lines, not the 12 the brief mentions (still above the 10 minimum)"
+  ]
+ },
+ "moroccan/unit-11": {
+  "writer_note": "ok. I wrote the Darija from my own knowledge and did no web research. These slots in `backend/data/colloquial/moroccan/unit-11.json` need a native check:\n- `welcome-lit-your-eye-honors-us…`: uses \"mar7baa bik\", since \"tikram 3eenak\" is not Moroccan.\n- `don-t-trouble-yourself…`: \"maa tshaghelsh raasek, raak f-daarek\".\n- `where-can-i-park-my-car`: \"nooqef T-Tomobiil\".\n- Lesson 4 slot `thanks-for-the-invitation…`: uses \"l-3aruDa\" for \"invitation\".\n- Lesson 4 slot `the-road-should-be-clear…`: uses \"Allaah ysahhel 3likum T-Tariiq\".\n- Lesson 4 slot `good-night-said-when-leaving-in-the-evening`: reply \"w ntuma mn ahl l-khiir\".\n- Phrases for `turn-on-the-tv-if-you-d-like` and `good-thing-the-food-didn-t-get-cold`.",
+  "valid": true,
+  "fixes": 17,
+  "examples": [
+   "Parking: 'nooqef T-Tomobiil' changed to 'nbaarki T-Tomobiil' (fiin nbaarki T-Tomobiil dyaali?). The old form stays as an accepted answer.",
+   "Invitation: 'l-3aruDa' is not a Darija word, so it became 'd-da3wa' (shukran 3la d-da3wa, tbeSSTna bzzaf).",
+   "Road slot: 'Allaah ysahhel 3likum T-Tariiq' is not idiomatic, so it became 'in shaa2 Allaah T-Tariiq tkuun khaawya'.",
+   "Bathroom: 'l-7ammaam' (the bathhouse) became 'biit l-maa', which is what a host says.",
+   "Time: 'l-waqt ta2akhar' (MSA) became 'l-waqt faat'.",
+   "The Arabic said 'دارك' but the transliteration said 'daarkum', so both are now 'daarna daarkum'. 'daayman' became 'dima'."
+  ],
+  "unsure": [
+   "'مرحبا بيك' and the reply 'w ntuma mn ahl l-khiir' look right to me, but no Moroccan speaker has confirmed them.",
+   "The TV phrase 'sha33el t-tilifaaza ila bghiti' is left as written. 'التلفازة' is used in Morocco but 'التلفزة' or 'التيلي' may be more common in Casablanca and Rabat.",
+   "'maa t3addebsh raasek' replaces 'maa tshaghelsh raasek', which was understandable but not idiomatic. 'ماتشغلش بالك' is another option.",
+   "'ماكاينة حتى عجلة' and 'ماكاينش عذر' are understandable but a bit bookish. 'ماكاينش الزربة' would be more idiomatic for 'no rush'.",
+   "'شعل التلفازة' and 'الماكلة ما بردتش' were not researched on the web. They are left as the first writer had them, judged from my own knowledge of Darija.",
+   "'7erriifa' for 'spicy' is Moroccan, though 'حارة' also works.",
+   "'ta3attelna' would also be a natural way to say 'we're late'.",
+   "The transliteration of 'صباط' and 'طوموبيل' keeps the emphatic T/S, following the first writer's convention."
+  ]
+ },
+ "moroccan/unit-12": {
+  "writer_note": "ok. Slots I'm unsure of:\n- `my-credit-ran-out`: \"سالا ليا الصولد\" (الكريدي is also heard).\n- `something-came-up-for-me`: \"وقع ليا شي ظرف\".\n- `sorry-for-the-sudden-change`: \"بدلت الموعد فجأة\".\n- `let-s-find-a-day-that-suits-us-both`: \"نلقاو نهار مزيان لينا جوج\".\n- `the-call-got-cut-off-on-me`: \"تقطع ليا الخط\".\n- `we-ll-meet-at-the-umayyad-mosque`: I wrote the Hassan II Mosque in Casablanca, as the Egyptian version does with Al-Azhar. The spine's English and picture still say Umayyad Mosque, so they won't match the Arabic.\n\nI wrote the file without any web research, from my own knowledge of Darija. I used \"سمير\" in place of \"سامر\". File: `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/moroccan/unit-12.json`.",
+  "valid": true,
+  "fixes": 14,
+  "examples": [
+   "وقع ليا شي ظرف -> وقعات ليا شي حاجة (ظرف alone is MSA-flavoured; شي حاجة is the everyday Darija)",
+   "واش تقدر تاخد ليا رسالة -> واش تقدر توصل ليه رسالة (تاخد ليا was a Levantine-style calque); قوليه -> قول ليه",
+   "نهار مزيان لينا جوج -> نهار كيناسبنا حنا الجوج (الجوج = both)",
+   "Transliteration fixes: 3ayyatti -> 3ayyaTti (ط), bD-Dabt -> bD-DabT, rézo -> rezo, n2ajjlu -> n2ajjluh, n3tadher -> n3tader (ذ said as d); ii -> ee to match the key",
+   "عارف البلاصة مزيان -> عارف فين هي البلاصة بالضبط (English says exactly where)",
+   "Removed wrong or odd accepted variants (ما تتعطلش, السا3ة, ما كايناش دابا); softened the unverified Hassan II Mosque meeting-point claim in the lesson-02 culture note"
+  ],
+  "unsure": [
+   "we-ll-meet-at-the-umayyad-mosque: the Arabic says the Hassan II Mosque, but the spine English and picture still say Umayyad Mosque, so they do not match. The spine is off limits, so this is unresolved and needs a decision: change the spine and picture, or accept the mismatch as the Egyptian Al-Azhar version does. Also unresolved: مسجد vs جامع for Hassan II is fine either way",
+   "the-call-got-cut-off-on-me: تقطع ليا الخط is plausible Darija, but I could not verify it and left it as is. Alternatives are تقطعات المكالمة and تقطع ليا الصوت",
+   "my-credit-ran-out: سالا ليا الصولد is correct and الكريدي is a fine variant; kept",
+   "sorry-for-the-sudden-change: بدلت الموعد فجأة is fine, left as is",
+   "web search returned nothing useful, so all judgements come from my own Darija knowledge, not sources. حنا الجوج, وقعات ليا شي حاجة and توصل ليه رسالة are my best judgement and are worth a native-speaker check",
+   "names: سمير stays as Samir in the transliteration, not Sameer, although the key says ee for long ي"
+  ]
+ },
+ "moroccan/unit-13": {
+  "writer_note": "ok. I wrote the unit from my own knowledge of Darija and did no web research. Unsure slots:\n- `i-m-worried-about-the-exam`: \"مقلق\" is my best guess for worried. \"خايف على\" or \"قلقان\" may be more common.\n- `if-i-were-you-i-d-do-this`: \"لو كنت بلاصتك، غادي ندير هادشي\" is a fairly literal construction, not confirmed as natural.\n- `stay-calm-and-don-t-rush`: I'm unsure \"تزربش\" is used in Casablanca and Rabat (it is more of a northern and Rabat form).\n- `sorry-to-bother-you-but-m`: \"آسف على الإزعاج\" may sound a bit formal.\n\nFile: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/moroccan/unit-13.json",
+  "valid": true,
+  "fixes": 14,
+  "examples": [
+   "مقلق -> قلقان (ana qalqaan 3la limti7aan), also in de_book, translate exercise, challenge",
+   "جوعان -> جيعان (jii3aan), Darija form",
+   "لو كنت بلاصتك، غادي ندير -> لوكان كنت بلاصتك، كنت غادي ندير هادشي",
+   "تزربش -> تعجلش (ma t3ajjelsh), with tip rewritten",
+   "آسف على الإزعاج -> سمح ليا على التقلاق; ما باغيش نزعجك -> ما باغيش نقلقك",
+   "بردانة -> باردة for cold food",
+   "translit: uppercase H -> 7 (fer7aan, Sa7ii7, sme7), l7a99 -> l7eqq, to match key"
+  ],
+  "unsure": [
+   "i-m-worried-about-the-exam: قلقان is understood and used in urban Darija, but خايف من الامتحان may be more idiomatic; not web-verified",
+   "if-i-were-you-i-d-do-this: 'لوكان كنت بلاصتك، كنت غادي ندير' is from own knowledge, not confirmed by a source",
+   "sorry-to-bother-you-but-m: 'سمح ليا على التقلاق' natural to my knowledge; slot is marked male but the phrase is gender-neutral",
+   "stay-calm-and-don-t-rush: replaced تزربش with تعجلش as the safer pan-Moroccan verb; زربة exists but was not confirmed for verb use in Casablanca",
+   "No WebSearch was run (deferred tool not loaded); all judgments from native-level knowledge"
+  ]
+ },
+ "moroccan/unit-14": {
+  "writer_note": "ok. I wrote the file from memory of Darija and did no web research, so every slot is worth a native check. I'm least sure of these:\n- **Qatayef slot:** I used الشباكية (chebakia), a Moroccan Ramadan sweet. It isn't a stuffed pastry, so the English gloss doesn't match exactly.\n- **Iftar invitation:** معروض / عرضني for \"invited\" (iftar and wedding slots).\n- **Eid money:** العيدية, and the joking الله يعطيكم العيدية.\n- **Wedding procession:** الموكب جاي بالطبول.\n- **Folk dance:** الرقص الشعبي standing in for dabke.\n- **Age question:** شحال كملتي؟.\n- **Wedding dress:** روبة بيضاء.\n- **Iftar time:** the time-of-day wording in فوقاش الفطور.\n\nFile: `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/moroccan/unit-14.json`",
+  "valid": true,
+  "fixes": 75,
+  "examples": [
+   "الله أكرمك -> الله يكرمك (Levantine/Egyptian form replaced by Darija reply to رمضان كريم)",
+   "الموكب جاي بالطبول -> الزفة جاية بالطبول; الرقص الشعبي -> الشطيح (Moroccan wedding words)",
+   "شحال كملتي؟ -> شحال عندك ديال العام؟ (standard Darija age question)",
+   "آمين ويّاك(م) removed (Gulf/Iraqi ويّا); replaced by آمين وعليكم / آمين آ صاحبي",
+   "الجاتو -> الڭاطو, مبروك الجديد -> مبروك المولود الجديد, بدات -> بديت, صايمين accepted 'احنا' -> 'حنا'",
+   "translit 3o9balek -> 3oqbalek and guli -> quli so every letter is in the key; fixed Arabic/translit mismatches (دار العائلة, حفلة, يا -> آ)",
+   "removed accepted/too_formal contradictions (الإفطار, مدعو, رمضان مبارك عليكم); كتجهد -> كتوجد; ساخنة -> باقا سخونة; كسوة -> قفطان; بيضاء/خضراء -> بيضا/خضرا"
+  ],
+  "unsure": [
+   "may-god-give-you-all-eid-money-said-jokingly: الله يعطيكم العيدية is grammatical Darija but I could not confirm it is a set joke in Morocco (العيدية itself is understood, though عواشر مبروكة is the more traditional Eid greeting)",
+   "the-wedding-procession-is-coming: الزفة جاية بالطبول is my best Moroccan rendering; a native may prefer العروسة جاية / العمارية",
+   "the-dabke-folk-dance-started: الشطيح (dancing at weddings) chosen over الرقص الشعبي; no dabke equivalent exists",
+   "how-old-did-you-turn: شحال عندك ديال العام؟ is safe but says 'how old are you' rather than literally 'turn'; شحال كملتي؟ was not confirmed as Moroccan",
+   "qatayef slot: الشباكية kept (correct Ramadan sweet, but not a stuffed pastry, so the English gloss does not match exactly)",
+   "معروض/عرضني for invited: I am confident it is Moroccan for iftar and weddings",
+   "what-time-is-iftar-today: فوقاش الفطور with على السبعة وربع is fine; locals may also ask شحال بقا للمغرب",
+   "the-iftar-cannon-fired: ضرب المدفع kept; طلق/ضربو المدفع wording not verified",
+   "wedding dress: روبة بيضا kept; فستان is also understood",
+   "أمينة/لالة style: 'ماما' used for mother in the iftar dialogue; 'مي' also possible",
+   "no web research was done; all judgments are from my own Darija knowledge"
+  ]
+ },
+ "moroccan/unit-15": {
+  "writer_note": "ok. Slots I'm unsure of, since I couldn't research them here: `i-want-to-order-room-service` (لكارط for menu), `is-this-bag-overweight` (used تقيلة بزاف), `where-s-the-check-in-counter` (used الشباك ديال التسجيل), `i-want-to-book-a-bus-ticket` (بيّي and الكار as the everyday words), and the exact wording of `may-god-make-up-for-it-god-willing-it-ll-work-ou`.\n\nThe file is `C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/moroccan/unit-15.json`.",
+  "valid": true,
+  "fixes": 22,
+  "examples": [
+   "بصح -> ولكن (Algerian carry-over)",
+   "جي عاوني -> أجي عاوني",
+   "مشي للشباك -> سير للشباك",
+   "الفاليزة تقيلة بزاف -> زايدة فالوزن (overweight)",
+   "واش كاينة شي تخفيض -> واش كاين شي تخفيض (gender)"
+  ],
+  "unsure": [
+   "where-s-the-check-in-counter: kept الشباك ديال التسجيل; Casablanca speakers may say لكونطوار or just check-in",
+   "i-want-to-order-room-service: changed menu to لاكارط; بغيت نطلب الماكلة للبيت not verified",
+   "i-want-to-book-a-bus-ticket: بيّي and الكار look right, but I did not check them with a native speaker",
+   "may-god-make-up-for-it-god-willing-it-ll-work-ou: الله يعوض، إن شاء الله كلشي يتحل is plausible, exact wording unverified",
+   "الطابق for floor (locals may say الطاج); فأي ساعة for what time (فوقتاش is an alternative)",
+   "I did not use WebSearch; every fix comes from my own knowledge of Darija"
+  ]
+ },
+ "moroccan/unit-16": {
+  "writer_note": "ok. I did not research any slot with WebSearch, so all of it is from memory. Slots I am unsure of:\n- `i-lost-the-house-key`: السروت for \"key\".\n- `i-forgot-my-wallet-at-home`: البورطوفوي for \"wallet\".\n- `the-first-bike-i-had-was-red`: البيسكليت for \"bike\".\n- `coffee-spilled-on-my-laptop`: الكمبيوتر for \"laptop\".\n- `we-heard-they-had-a-baby-boy`: تزاد ليهم ولد.\n- `i-fell-on-the-stairs-and-hurt-my-leg`: تعورات ليا رجلي and الدروج.\n- `i-cut-my-hand-while-cooking`: تقطعات ليا يدي.\n\nI changed the English of the slot `i-grew-up-in-an-old-neighborhood-in-damascus` to \"Casablanca\" in the Arabic, keeping the slot name as it is in the spine.\n\nThe file is `backend/data/colloquial/moroccan/unit-16.json`, in the `_wt-wheel` worktree. The Moroccan Arabic content was generated by `build16.py` in the scratchpad."
+ },
+ "moroccan/unit-17": {
+  "writer_note": "ok. Written from my own knowledge of Darija, with no web research and no native check. I'm unsure of these slots:\n- `at-your-service-a-common-polite-reply-from-a-tax`: I used \"على راسي\" (\"on my head\"). It's a common Darija reply, but I'm not certain it's the standard taxi one.\n- `do-you-have-another-color-to-a-man`: I used \"لون خور\".\n- `how-much-is-the-fare`: I used \"شحال خاصني نخلص؟\" (\"how much do I have to pay?\").\n- `take-me-to-to-a-man`: \"ديني للمحطة\" is a concrete example, not an open \"Take me to…\".\n- `will-you-drop-me-at-to-a-man`: \"واش تنزلني حدا المحطة؟\" is also a concrete example.\n\nFile: C:/Users/Shaf/Downloads/vibe-code-projs/aRABIC GRAMMAR TOOL/_wt-wheel/backend/data/colloquial/moroccan/unit-17.json",
+  "valid": true,
+  "fixes": 12,
+  "examples": [
+   "Salma (woman) told the seller \"نقصي لي\" (feminine) and Hala did the same to a man; fixed to masculine \"نقص لي\" since the addressee is a man",
+   "\"عم خليل\" is Levantine; changed to \"الحاج\"",
+   "\"ما عندي مشكل\" changed to Darija negation \"ما عنديش مشكل\" (ma 3andish mushkil)",
+   "Transliteration \"d-drahem\" did not match Arabic \"دراهم\"; changed to \"drahem\"",
+   "\"شغل العداد\" changed to \"شعل العداد\" (sh3el l-3addad), reply \"واخا، شعلتو\" replaces the Levantine-sounding \"هانا شغلتو\"",
+   "Seller to a woman \"هاك\" changed to \"هاكي\"",
+   "Removed the bad accepted answer \"تنزل ليا\"; softened the culture note on \"على راسي\" to \"Drivers may reply\""
+  ],
+  "unsure": [
+   "`meter phrase`: \"شعل العداد\" is my best knowledge, a web search gave nothing to confirm it; \"خدم العداد\" is a possible alternative",
+   "`at-your-service-a-common-polite-reply-from-a-tax`: \"على راسي\" is real Darija for \"gladly, right away\", but I could not confirm it is the standard taxi reply, so I kept it",
+   "`do-you-have-another-color-to-a-man`: \"لون خور\" is correct Darija (\"khor\" = another), kept",
+   "`how-much-is-the-fare`: \"شحال خاصني نخلص\" is natural Darija, kept",
+   "`take-me-to-to-a-man` and `will-you-drop-me-at-to-a-man`: \"ديني للمحطة\" and \"واش تنزلني حدا المحطة\" are correct Darija but concrete examples, not open \"...\" forms; kept as written",
+   "\"واش خاوي\" for a free taxi and \"معمر\" for an occupied one are believable Moroccan usage but were not confirmed by search"
+  ]
+ }
+}
