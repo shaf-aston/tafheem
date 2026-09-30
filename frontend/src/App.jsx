@@ -17,6 +17,7 @@ import SettingsPanel from './components/ui/SettingsPanel'
 import SpatialHome from './components/ui/SpatialHome'
 import SourceFooter from './components/ui/SourceFooter'
 import TabStrip from './components/ui/TabStrip'
+import BottomNav from './components/ui/BottomNav'
 import SectionsMenu from './components/ui/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
 
@@ -152,7 +153,7 @@ function AppContent() {
   }, [])
 
   return (
-    <div className="min-h-screen" style={{ '--c': accent }}>
+    <div className="min-h-screen bottom-nav-room" style={{ '--c': accent }}>
       <header ref={pinHeader} className="app-header sticky top-0 z-[var(--layer-header)]">
         <div className="shell py-1 flex items-center justify-between gap-3">
           {/* The name used to be printed here in two lines that said what every
@@ -230,7 +231,8 @@ function AppContent() {
           </div>
         </div>
 
-        <div className="shell">
+        {/* Phones get the tabs at the bottom instead (BottomNav). */}
+        <div className="shell hidden sm:block">
           <TabStrip tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
         </div>
       </header>
@@ -337,6 +339,7 @@ function AppContent() {
         onGo={switchTab}
         here={activeTab}
       />
+      <BottomNav tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
       {/* Drawn last so it sits over the page, and once for the whole app. */}
       <CursorLight />
     </div>

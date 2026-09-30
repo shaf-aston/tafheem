@@ -27,14 +27,17 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
       onClose={onClose}
       onClick={(e) => e.target === dialog.current && onClose()}
       aria-labelledby="sections-title"
-      className="m-auto p-0 bg-transparent max-w-[min(44rem,92vw)] w-full"
+      className="sections-menu m-auto p-0 bg-transparent max-w-[min(44rem,92vw)] w-full"
     >
       <div
         className="rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
-          p-5 space-y-5 max-h-[88vh] overflow-y-auto"
+          p-5 space-y-5 max-h-[88dvh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 id="sections-title" className="text-base font-bold text-[var(--text)]">All sections</h2>
+        <div className="flex items-center justify-between gap-2">
+          <h2 id="sections-title" className="text-base font-bold text-[var(--text)]">All sections</h2>
+          <button type="button" onClick={onClose} className="tap min-h-11 px-3 type-small font-semibold text-[var(--text-dim)]">Close</button>
+        </div>
         {groups.map((group) => (
           <section key={group.id} className="space-y-2">
             <h3 className="type-small text-[var(--text-faint)]">{group.label}</h3>
