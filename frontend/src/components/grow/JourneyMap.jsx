@@ -213,7 +213,6 @@ function Plate({ tier, i, open, openId, record, next, mood, onToggle, onStep, on
         <div className="grow-ht">
           <h2 id={`grow-h-${tier.id}`}>
             {tier.title}
-            {tier.arabic && <ArabicText size="sm" className="grow-h-ar">{tier.arabic}</ArabicText>}
           </h2>
           {locked && <span className="grow-tag">{tier.paths.length ? say('Locked') : say('Proposed, locked')}</span>}
         </div>

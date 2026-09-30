@@ -99,7 +99,7 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
   `derived` (a fixed rule made it) or `guessed` (a model made it and may be wrong).
 - **Token**: a colour, timing or size in `frontend/src/theme.json`; components use
   `var(--...)` and never a literal.
-- **Tier / nodeState**: Grow's levels (Basics, Intermediate, Advanced; `frontend/src/grow.json`,
+- **Tier / nodeState**: Grow's levels (Level 1, 2, 3; `frontend/src/grow.json`,
   a path names its tier in `paths.json`), and where one circle on its map stands:
   `locked`, `open`, `started` or `learnt` (`lib/grow.js`, drawn by `components/grow/`).
 
