@@ -265,7 +265,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       })
       .catch((error) => {
         if (job.abort.signal.aborted) {
-          note('check.failed', { session: sessionId, reading: job.reading, kind: 'timeout' })
+          note('check.failed', { session: sessionId, reading: job.reading, kind: job.turned ? 'turned' : 'timeout' })
           return
         }
         const { text } = problemOf(error)
@@ -410,7 +410,9 @@ export function createRecitingSession({ onChange, deps = {} }) {
             // Scores are placed by position on the page they were asked about,
             // so one that answers after the page has turned lands nowhere.
             const askedOf = page
-            if (checkAyahs.length && heard.text) {
+            // A finished page asks nothing more: what is said now is the
+            // next page's, and checks about this one would hold its turn up.
+            if (checkAyahs.length && heard.text && !page.done) {
               enqueueCheck({
                 window: thisWindow,
                 reading,
@@ -595,7 +597,11 @@ export function createRecitingSession({ onChange, deps = {} }) {
   const turn = (carry = []) => {
     const keep = view.now.words.length ? view.now.from : windows
     forgotten = Math.max(forgotten, keep - 1)
-    checkQueue.find((q) => q.sent)?.abort?.abort()
+    // Not the old page any more, even before the panel says which is new, so
+    // an answer landing in between is not placed on it either.
+    page = { ...page, ayahs: [] }
+    const inFlight = checkQueue.find((q) => q.sent)
+    if (inFlight) { inFlight.turned = true; inFlight.abort?.abort() }
     checkQueue = checkQueue.filter((q) => q.sent)
     set({
       before: carry,

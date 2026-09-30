@@ -406,7 +406,7 @@ describe('a reciting session', () => {
     await h.midPhrase()
     const recording = h.recorder()
     h.session.turn(['مالك'])
-    h.page.pageWords = ['مالك', 'يوم', 'الدين']
+    h.session.update({ fusha: true, pageWords: ['مالك', 'يوم', 'الدين'], ayahs: [] })
     await h.wait(0)
     expect(recording.state).toBe('recording')
     expect(h.session.view().state).toBe('listening')
@@ -447,6 +447,21 @@ describe('a reciting session', () => {
     // Its last reading, whole, still lands, on the new page.
     await h.answer(2, 'الرحمن الرحيم مالك')
     expect(h.heard()).toEqual(['الرحمن', 'الرحيم', 'مالك'])
+  })
+
+  it('asks no more sureness checks about a page that is done, so they cannot hold its turn up', async () => {
+    const h = harness()
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    await h.session.start()
+    h.speak()
+    await h.pause()
+    await h.answer(0, 'الحمد لله رب العالمين')
+    expect(h.checks).toHaveLength(1)
+    h.session.update({ ...h.page, done: true })
+    await h.midPhrase()
+    await h.answer(1, 'الرحمن الرحيم')
+    expect(h.checks).toHaveLength(1)
+    expect(h.session.view().now.words).toEqual(['الرحمن', 'الرحيم'])
   })
 
   it('writes nothing from the last press once the page has been cleared and started again', async () => {
