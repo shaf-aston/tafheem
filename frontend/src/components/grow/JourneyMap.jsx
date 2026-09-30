@@ -75,7 +75,7 @@ function Twig({ i, last }) {
 function Item({ step, i, last, state, now, days, figure, onOpen }) {
   const act = byHand(step)
   return (
-    <div className="grow-item" style={{ '--i': i, '--w': lean(i) }}>
+    <div className="grow-item" data-s={state} data-now={now ? '' : undefined} style={{ '--i': i, '--w': lean(i) }}>
       <Twig i={i} last={last} />
       <div className="grow-nw">
         <button
@@ -104,6 +104,10 @@ function Row({ group, index, open, isOpen, record, next, mood, onToggle, onStep 
   const state = nodeState(steps, record, open)
   const learnt = steps.filter((step) => nodeState([step], record, open) === 'learnt').length
   const now = open && steps.includes(next)
+  // A branch's steps are built the first time it opens, then kept so it can fold
+  // shut: 76 hidden steps built up front cost most of the tab's first frame.
+  const [grown, setGrown] = useState(isOpen)
+  if (isOpen && !grown) setGrown(true)
 
   return (
     <div className={`grow-row${isOpen ? ' grow-row-open' : ''}`} data-now={now ? '' : undefined}>
@@ -141,7 +145,7 @@ function Row({ group, index, open, isOpen, record, next, mood, onToggle, onStep 
         style={{ '--iw': `${STEP}px`, '--n': `${NODE}px`, '--sway': SWAY }}
       >
         <div className="grow-lane-in">
-          {steps.map((step, i) => (
+          {grown && steps.map((step, i) => (
             <Item
               key={step.id}
               step={step}
