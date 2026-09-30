@@ -20,7 +20,6 @@ import { useSetting } from './settings'
  */
 export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   const fusha = useSetting('fusha')
-  const level = useSetting('reciting-level')
   const [view, setView] = useState(EMPTY_VIEW)
 
   // One session for the life of the page. Making one opens nothing; the
@@ -41,7 +40,7 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
     state,
     problem,
     heard,
-    marks: bySound(follow(pageWords, heard, { startAt, ended }), surer(sure.before, sure.now), level),
+    marks: bySound(follow(pageWords, heard, { startAt, ended }), surer(sure.before, sure.now)),
     listening: state === 'listening',
     start: session.start,
     stop: session.stop,

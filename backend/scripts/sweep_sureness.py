@@ -52,7 +52,7 @@ from backend.scripts.score_recitation_checker import (  # noqa: E402
 
 RULES = ("worst", "worst-but-one", "mean")
 # The rule and flag-below of each level in frontend/src/recite.json.
-LEVELS = {"beginner": 0.7, "standard": 0.95}
+LEVELS = {"standard": 0.95}
 CUTS = (0.001, 0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 0.7, 0.8, 0.9, 0.95)
 SWEEP = HERE / "sweep.txt"
 # What every rule is measured against: what the page does today, and the bar.
