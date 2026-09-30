@@ -18,7 +18,8 @@ export default function TopicTile({ topic, index, selected, onPick }) {
         bg-[var(--surface)] p-4 flex flex-col gap-2 hover:border-[var(--c)]`}
     >
       <span className="flex items-baseline justify-between gap-2">
-        <span className="font-semibold text-[var(--c)]">{topic.title}</span>
+        {/* The ﷺ stays with the word before it, never alone on a line. */}
+        <span className="font-semibold text-[var(--c)]">{topic.title.replace(/ (?=ﷺ$)/, '\u00a0')}</span>
         <ArabicText size="sm" className="arabic-inline text-[var(--text-faint)]">{topic.arabic}</ArabicText>
       </span>
       <span className="type-small text-[var(--text-dim)] leading-snug">{topic.blurb}</span>

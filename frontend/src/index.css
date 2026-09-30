@@ -251,6 +251,18 @@ textarea.arabic-lg {
 .type-label  { font-size: var(--type-label); }
 .type-ui     { font-size: var(--type-ui); }
 
+/* On a phone the two smallest rungs are lifted to a readable floor, and on a
+   touch screen .tap (pills, links, small buttons) stands at layout.tap. Both
+   wrap the token rather than redefine it: theme.js writes the tokens inline on
+   the root, which no stylesheet rule could override. */
+@media (max-width: 40rem) {
+  .type-micro, .type-tiny { font-size: max(var(--type-micro), 0.6875rem); }
+  .type-small { font-size: max(var(--type-small), 0.75rem); }
+}
+@media (pointer: coarse) {
+  .tap { min-height: var(--layout-tap); }
+}
+
 /* Tailwind's own two everyday sizes, pointed back at the same config. The app
    is written in text-xs and text-sm in about forty files, and those were a
    second scale nobody could retune from theme.json. The pixel values are

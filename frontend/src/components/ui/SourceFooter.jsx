@@ -72,7 +72,7 @@ export default function SourceFooter({ tab, onSeeAll }) {
         <button
           type="button"
           onClick={onSeeAll}
-          className="type-small text-[var(--text-faint)] hover:text-[var(--text)]
+          className="tap inline-flex items-center type-small text-[var(--text-faint)] hover:text-[var(--text)]
             underline underline-offset-2 decoration-[var(--border-hi)] transition-colors
             leading-relaxed"
         >
@@ -105,7 +105,7 @@ function Source({ source }) {
       <span className="truncate">{source.label}</span>
     </>
   )
-  const row = 'type-small flex items-center gap-2 leading-relaxed'
+  const row = 'tap type-small flex items-center gap-2 leading-relaxed'
 
   if (!source.url) {
     return <span title={title} className={`${row} text-[var(--text-faint)]`}>{inside}</span>
