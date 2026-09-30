@@ -659,16 +659,7 @@ export default function QuizPanel({ accent, onProgress }) {
           className="relative rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] min-h-0"
         >
           <div className="p-4 flex flex-col gap-4 lg:absolute lg:inset-0">
-          <h3 className="-mb-2 type-tiny uppercase tracking-wide text-[var(--text-faint)]">{say('How you’re doing')}</h3>
-          <Scoreboard
-            score={score}
-            bestStreak={bestStreak}
-            bankSize={questionCount}
-            asked={round.asked.size}
-            accent={accent}
-            say={say}
-            onRestart={restart}
-          />
+          <Scoreboard score={score} bestStreak={bestStreak} say={say} onRestart={restart} />
           <MissedList
             history={history}
             reviewing={reviewing}
@@ -767,28 +758,30 @@ function Option({ option, index, lang, say, answered, picked, answerId, accent, 
   )
 }
 
-function Scoreboard({ score, bestStreak, bankSize, asked, accent, say, onRestart }) {
-  const percent = score.total ? Math.round((score.right / score.total) * 100) : 0
-  const progress = Math.min(100, (asked / bankSize) * 100)
+function Scoreboard({ score, bestStreak, say, onRestart }) {
+  const wrong = score.total - score.right
+  const right = score.total ? (score.right / score.total) * 100 : 0
+  // Right runs green from the top, wrong takes the rest; before any answer it is an empty ring.
+  const ring = score.total
+    ? `conic-gradient(var(--success) 0 ${right}%, var(--danger) 0)`
+    : 'var(--border)'
 
   return (
-    <div className="space-y-1.5">
-      <div className="h-1 rounded-full bg-[var(--surface)] overflow-hidden" aria-hidden="true">
-        <div
-          className="h-full rounded-full transition-[width] duration-[calc(var(--motion-spring-ms)*1ms)]"
-          style={{ width: `${progress}%`, background: accent }}
-        />
+    <div className="flex items-center gap-4">
+      <div
+        role="img"
+        aria-label={say('{n}% right', { n: Math.round(right) })}
+        className="shrink-0 w-14 h-14 rounded-full grid place-items-center"
+        style={{ background: ring }}
+      >
+        <span className="w-11 h-11 rounded-full bg-[var(--surface)] grid place-items-center type-small font-semibold tabular-nums">
+          {score.total ? `${Math.round(right)}%` : '–'}
+        </span>
       </div>
-      <div className="flex items-center justify-between gap-4 type-small text-[var(--text-faint)] flex-wrap">
-        <p>
-          <span className="text-[var(--text)] font-medium tabular-nums">
-            {score.total ? `${score.right}/${score.total}` : '0/0'}
-          </span>
-          {score.total > 0 && <> · {percent}%</>}
-          {score.streak > 1 && <> · {say('streak {n}', { n: score.streak })}</>}
-          {bestStreak > 1 && <> · {say('best {n}', { n: bestStreak })}</>}
-          {' · '}{say('{asked} of {total} seen', { asked, total: bankSize })}
-        </p>
+      <div className="type-small text-[var(--text-faint)] space-y-0.5 min-w-0">
+        <p><span className="text-[var(--success)] font-medium tabular-nums">{score.right}</span> {say('right')}</p>
+        <p><span className="text-[var(--danger)] font-medium tabular-nums">{wrong}</span> {say('wrong')}</p>
+        {bestStreak > 1 && <p>{say('streak {n}', { n: score.streak })} · {say('best {n}', { n: bestStreak })}</p>}
         {score.total > 0 && (
           <button
             type="button"
