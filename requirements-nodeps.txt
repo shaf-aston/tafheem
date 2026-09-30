@@ -1,0 +1,5 @@
+# Installed with --no-deps, after requirements.txt: this package's own list asks
+# for onnxruntime-gpu, which would overwrite the plain onnxruntime there. What it
+# really needs (numpy, onnxruntime, gdown, packaging) is in requirements.txt.
+# The server voice, backend/services/speech.py. Pinned: no releases, no PyPI.
+tts_arabic @ git+https://github.com/nipponjo/tts_arabic@eae130c8b94ebf88d3fa727db63c740859106327

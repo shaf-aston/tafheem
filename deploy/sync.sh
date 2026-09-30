@@ -33,8 +33,9 @@ git reset -q --hard origin/master
 rsync -a --exclude data --exclude __pycache__ backend/ /home/ubuntu/tafheem/backend/
 git ls-files -z backend/data | rsync -a --from0 --files-from=- ./ /home/ubuntu/tafheem/
 rsync -a deploy/ /home/ubuntu/tafheem/deploy/
-cp requirements.txt /home/ubuntu/tafheem/requirements.txt
+cp requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements.txt
+/home/ubuntu/tafheem/venv/bin/pip install -q --no-deps -r requirements-nodeps.txt
 # The hadith collections are fetched here from the public CDN and indexed here,
 # never copied from anyone's machine. Each step reruns only when its input is
 # newer than its output, so a quiet sync costs nothing.
