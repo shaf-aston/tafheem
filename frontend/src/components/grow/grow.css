@@ -95,7 +95,7 @@ button.grow-node:active { transform: translateY(2px); }
 .grow-leaf[data-s='learnt'] .grow-in { rotate: 0deg; }
 .grow-say { position: absolute; right: -4px; bottom: -4px; padding: 2px; box-sizing: content-box; border-radius: 50%; background: var(--surface); color: var(--c); }
 .grow-act { border-radius: 30%; }
-.grow-act[data-s] { --bd: var(--text-faint); color: var(--text-dim); background: transparent; }
+.grow-act[data-s] { --bd: var(--text-faint); color: var(--text-dim); background: var(--surface); }
 .grow-act[data-s='locked'] { border-style: dashed; }
 .grow-act .grow-gi { width: 26px; height: 26px; stroke-width: 2; }
 .grow-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; width: var(--iw); }
