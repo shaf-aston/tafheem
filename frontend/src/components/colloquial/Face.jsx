@@ -24,7 +24,6 @@ export default function Face({ phrase, index, arabicSize = 'base', showEnglish =
       <div className="absolute inset-x-0 bottom-0 px-3 pb-3 pt-10 text-center" style={{ background: SCRIM }}>
         <ArabicText as="p" size={arabicSize} className="text-[var(--text)]">{phrase.arabic}</ArabicText>
         {showEnglish && <p className="type-micro text-[var(--text-dim)] truncate">{phrase.english}</p>}
-        {showEnglish && phrase.credit && <p className="type-micro text-[var(--text-faint)] truncate">Photo: {phrase.credit}</p>}
       </div>
     </div>
   )

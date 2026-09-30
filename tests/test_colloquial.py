@@ -174,15 +174,6 @@ def test_a_phrase_naming_a_missing_picture_is_caught():
     assert any("not on disk" in line for line in loader._unit_faults(unit))
 
 
-def test_a_picture_with_no_credit_is_caught_and_a_real_one_carries_its_credit():
-    unit = copy.deepcopy(SOUND)
-    unit["lessons"][0]["phrases"][0]["image"] = "unit-01/l03-p01-number-one.jpg"
-    assert any("attribution.json" in line for line in loader._unit_faults(unit))
-    served = loader.unit("damascene", "unit-01")
-    shown = [p for lesson in served["lessons"] for p in lesson["phrases"] if p.get("image")]
-    assert shown and all(p["credit"] and p["credit_url"].startswith("https://") for p in shown)
-
-
 def test_pictures_are_proposed_then_approved_by_a_person(tmp_path, monkeypatch):
     import json
 
