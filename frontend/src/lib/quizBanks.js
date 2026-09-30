@@ -31,6 +31,8 @@ export const QUIZ = {
   autoNextMs: settings['auto-next-ms'],
   autoNextWrongMs: settings['auto-next-wrong-ms'],
   insightMinAttempts: settings['insight-min-attempts'],
+  stripRows: settings['strip-rows'],
+  stripSideMax: settings['strip-side-max'],
 }
 
 /** Which panel the progress store files this tab's answers under. */

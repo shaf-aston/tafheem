@@ -205,6 +205,12 @@ export default function QuizPanel({ accent, onProgress }) {
   // One pair of values feeds the whole card, whether it is the live question or
   // one being looked at again, so nothing below has to know which it is.
   const past = reviewing === null ? null : history[reviewing]
+  // The answered squares: a column on the far right until the round outgrows it.
+  const railSide = enough && history.length > 0 && history.length < QUIZ.stripSideMax
+  const strip = {
+    history, reviewing, liveAnswered: picked !== null, accent, say,
+    onReview: (i) => { setReviewing(i); setNoteOpen(false) },
+  }
   const shown = past ? past.question : question
   const shownPick = past ? past.picked : picked
 
@@ -511,10 +517,14 @@ export default function QuizPanel({ accent, onProgress }) {
         </EmptyState>
       )}
 
+      {/* Three columns of one height: the question, how the round is going, and
+          every answer so far on the far right. Stacked on phones. The answers
+          move under the quiz as a row once there are too many for the column. */}
+      <div className={`grid gap-4 ${railSide ? 'lg:grid-cols-[minmax(0,1fr)_17rem_auto]' : 'lg:grid-cols-[minmax(0,1fr)_17rem]'}`}>
       {shown && (
         <div
           key={shown.prompt}
-          className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-6 space-y-5"
+          className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-5 space-y-4"
         >
           <div className="relative flex items-center justify-center">
             {/* One note slot, for whatever this question needs said before you
@@ -545,15 +555,18 @@ export default function QuizPanel({ accent, onProgress }) {
               <div className="type-tiny uppercase tracking-wide text-[var(--text-faint)]">
                 {say(arabicPrompt ? 'What does this mean?' : 'Which word is this?')}
               </div>
-              {rtl(shown.promptLang) ? (
-                <ArabicText as="div" size="lg" lang={shown.promptLang} className="text-[var(--text)]">
-                  {shown.prompt}
-                </ArabicText>
-              ) : (
-                <div className="text-3xl font-semibold text-[var(--text)]">{shown.prompt}</div>
-              )}
-              {/* Only the Arabic prompt: speaking an Arabic answer option would give it away. */}
-              {shown.promptLang === 'ar' && <SpeakButton key={shown.prompt} ref={speakRef} text={shown.prompt} />}
+              {/* The speaker sits beside the word, not under it, so it costs no row. */}
+              <div className="inline-flex items-center gap-3">
+                {rtl(shown.promptLang) ? (
+                  <ArabicText as="div" size="lg" lang={shown.promptLang} className="text-[var(--text)]">
+                    {shown.prompt}
+                  </ArabicText>
+                ) : (
+                  <div className="text-3xl font-semibold text-[var(--text)]">{shown.prompt}</div>
+                )}
+                {/* Only the Arabic prompt: speaking an Arabic answer option would give it away. */}
+                {shown.promptLang === 'ar' && <SpeakButton key={shown.prompt} ref={speakRef} text={shown.prompt} />}
+              </div>
             </div>
           </div>
 
@@ -574,17 +587,12 @@ export default function QuizPanel({ accent, onProgress }) {
             ))}
           </div>
 
-          {/* Centred under the whole grid rather than under option 4, where it
-              read as a stray label attached to that one answer. Always in the
-              same place instead of appearing and vanishing with the answer. */}
-          <div className="flex justify-center">
-            <AutoAdvanceToggle value={autoNext} onChange={setAutoNext} accent={accent} say={say} />
-          </div>
-
-          {/* The row every answer gets: what the word meant, and the way on. */}
-          <div aria-live="polite" className={answered ? '' : 'sr-only'}>
-            {answered && (
-              <div className="fade-in flex items-center justify-between gap-3 flex-wrap">
+          {/* One row under the answers, always there so the card never changes
+              height: what the word meant on the left, auto-advance and the way
+              on at the right. */}
+          <div className="flex items-center justify-between gap-3 flex-wrap min-h-9">
+            <div aria-live="polite">
+              {answered && (
                 <p className="text-sm" style={{ color: correct ? 'var(--success)' : 'var(--danger)' }}>
                   {correct ? say('Correct.') : fill('{word} means {meaning}', {
                     // Whichever side is Arabic gets the Arabic face, otherwise the
@@ -612,6 +620,11 @@ export default function QuizPanel({ accent, onProgress }) {
                     ),
                   })}
                 </p>
+              )}
+            </div>
+            <div className="flex items-center gap-3 ms-auto">
+              <AutoAdvanceToggle value={autoNext} onChange={setAutoNext} accent={accent} say={say} />
+              {answered && (
                 <button
                   type="button"
                   onClick={nextQuestion}
@@ -632,14 +645,21 @@ export default function QuizPanel({ accent, onProgress }) {
                     Enter ↵
                   </kbd>
                 </button>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       )}
 
+      {/* Its contents sit absolutely on wide screens, so a long list scrolls
+          inside the column instead of making the row taller than the question. */}
       {enough && (
-        <>
+        <aside
+          aria-label={say('This round')}
+          className="relative rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] min-h-0"
+        >
+          <div className="p-4 flex flex-col gap-4 lg:absolute lg:inset-0">
+          <h3 className="-mb-2 type-tiny uppercase tracking-wide text-[var(--text-faint)]">{say('How you’re doing')}</h3>
           <Scoreboard
             score={score}
             bestStreak={bestStreak}
@@ -649,16 +669,31 @@ export default function QuizPanel({ accent, onProgress }) {
             say={say}
             onRestart={restart}
           />
-          {/* The round so far, one chip a question: go back to any of them; 
-              the ones you got wrong being the point of it. */}
-          <QuestionStrip
+          <MissedList
             history={history}
             reviewing={reviewing}
-            liveAnswered={picked !== null}
-            accent={accent}
             say={say}
-            onReview={(i) => { setReviewing(i); setNoteOpen(false) }}
+            onReview={strip.onReview}
           />
+          </div>
+        </aside>
+      )}
+
+      {railSide && (
+        <aside
+          aria-label={say('Questions answered so far')}
+          className="hidden lg:block rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-3"
+        >
+          <QuestionStrip side {...strip} />
+        </aside>
+      )}
+      </div>
+
+      {/* Phones, or a round too long for the column: the same squares as a row. */}
+      {enough && <div className={railSide ? 'lg:hidden' : ''}><QuestionStrip {...strip} /></div>}
+
+      {enough && (
+        <>
 
           {/* Said once, quietly, and only when it is true. A whole session
               saved to nowhere is worth knowing about while it is happening,
@@ -769,6 +804,54 @@ function Scoreboard({ score, bestStreak, bankSize, asked, accent, say, onRestart
 }
 
 /**
+ * The words got wrong this round, newest first: the Arabic and what it means.
+ * Pressing one puts that question back on screen.
+ */
+function MissedList({ history, reviewing, say, onReview }) {
+  const missed = history
+    .map((entry, i) => ({ ...entry, i }))
+    .filter((entry) => entry.picked !== entry.question.answerId)
+    .reverse()
+
+  return (
+    <div className="flex flex-col gap-2 min-h-0 flex-1">
+      <h3 className="type-tiny uppercase tracking-wide text-[var(--text-faint)]">
+        {say('Got wrong')}{missed.length > 0 && <span className="tabular-nums"> · {missed.length}</span>}
+      </h3>
+      {missed.length === 0 ? (
+        <p className="type-small text-[var(--text-faint)]">{say('Nothing yet.')}</p>
+      ) : (
+        <ul className="space-y-1.5 max-h-72 lg:max-h-none overflow-y-auto">
+          {missed.map(({ question, i }) => {
+            const arabicFirst = question.promptLang === 'ar'
+            const word = arabicFirst ? question.prompt : question.answerText
+            const meaning = arabicFirst ? question.answerText : question.prompt
+            const meaningLang = arabicFirst ? question.answerLang : question.promptLang
+            return (
+              <li key={i}>
+                <button
+                  type="button"
+                  onClick={() => onReview(reviewing === i ? null : i)}
+                  aria-current={reviewing === i || undefined}
+                  className={`w-full flex items-center justify-between gap-3 px-3 py-1 rounded-[var(--radius-md)]
+                    border text-start transition-colors hover:border-[var(--danger)]
+                    ${reviewing === i ? 'border-[var(--danger)] bg-[var(--surface-hi)]' : 'border-[var(--border)]'}`}
+                >
+                  {meaningLang === 'en'
+                    ? <span className="type-small text-[var(--text-dim)] truncate">{meaning}</span>
+                    : <ArabicText size="sm" lang={meaningLang} className="text-[var(--text-dim)] truncate">{meaning}</ArabicText>}
+                  <ArabicText size="sm" lang="ar" className="text-[var(--text)] shrink-0 leading-normal">{word}</ArabicText>
+                </button>
+              </li>
+            )
+          })}
+        </ul>
+      )}
+    </div>
+  )
+}
+
+/**
  * Every question of the round so far, one small square each, newest last: a tick
  * for right, a cross for wrong, and the question's number under it. Clicking one
  * puts that question back on screen exactly as it was answered.
@@ -776,11 +859,15 @@ function Scoreboard({ score, bestStreak, bankSize, asked, accent, say, onRestart
  * It earns its place by being the only way back to a word you got wrong, the
  * round otherwise moves on and the correction is gone in a second or two.
  */
-function QuestionStrip({ history, reviewing, liveAnswered, accent, say, onReview }) {
+function QuestionStrip({ history, reviewing, liveAnswered, accent, say, onReview, side = false }) {
   if (!history.length) return null
 
   return (
-    <div className="flex flex-wrap items-start justify-center gap-1.5" role="group"
+    <div
+      role="group"
+      // Down the column first, then a new column beside it.
+      style={side ? { gridTemplateRows: `repeat(${QUIZ.stripRows}, auto)` } : undefined}
+      className={side ? 'grid grid-flow-col gap-x-2 gap-y-1.5 justify-center' : 'flex flex-wrap items-start justify-center gap-1.5'}
       aria-label={say('Questions answered so far')}>
       {history.map((entry, i) => {
         const right = entry.picked === entry.question.answerId
