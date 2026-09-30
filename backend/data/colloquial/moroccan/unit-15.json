@@ -25,25 +25,25 @@
       "phrases": [
         {
           "slot": "hello-i-have-a-reservation",
-          "arabic": "السلام عليكم، عندي حجز",
+          "arabic": "السَّلامُ عَلَيْكُم، عِندِي حَجْز",
           "transliteration": "salaamu 3alaykum, 3andi 7ajz",
           "reply": {
-            "arabic": "مرحبا بيك، شنو سميتك؟",
+            "arabic": "مَرْحَبَا بِيك، شْنُو سْمِيتَك؟",
             "transliteration": "mer7ba bik, shnu smitek?",
             "english": "Welcome, what's your name?"
           }
         },
         {
           "slot": "under-the-name-nour",
-          "arabic": "الحجز بسمية نور",
+          "arabic": "الْحَجْز بِسْمِيَّة نُور",
           "transliteration": "l-7ajz b-smiyt Nour"
         },
         {
           "slot": "is-there-an-empty-room",
-          "arabic": "واش كاينة شي بيت خاوية؟",
+          "arabic": "وَاش كَايْنَة شِي بِيت خَاوْيَة؟",
           "transliteration": "waash kaayna shi bit khaawya?",
           "reply": {
-            "arabic": "إيه كاينة، شحال من ليلة؟",
+            "arabic": "إِيه كَايْنَة، شْحَال مِن لَيْلَة؟",
             "transliteration": "iyyeh kaayna, shhaal men layla?",
             "english": "Yes there is, how many nights?"
           }
@@ -78,14 +78,14 @@
           "arabic": "واش نقدر نشوف البيت قبل؟",
           "transliteration": "waash nqder nshuf l-bit qbel?",
           "reply": {
-            "arabic": "بلا مشكل، تفضل معايا",
+            "arabic": "بْلَا مْشْكِل، تْفَضَّل مْعَايَا",
             "transliteration": "bla mushkil, tfaDDal m3aya",
             "english": "No problem, come with me."
           }
         },
         {
           "slot": "where-s-the-elevator",
-          "arabic": "فين كاين لاسانسور؟",
+          "arabic": "فِين كَاين لَّاسَانْسُور؟",
           "transliteration": "fin kayn l-asansor?",
           "reply": {
             "arabic": "هنا على اليمين",
@@ -105,7 +105,7 @@
         },
         {
           "slot": "what-time-do-i-need-to-check-out",
-          "arabic": "فأي ساعة خاصني نخرج؟",
+          "arabic": "فْأَي سَاعَة خَاصْنِي نْخْرُج؟",
           "transliteration": "f-ayy saa3a khaSSni nkhrej?",
           "reply": {
             "arabic": "قبل الزوال، فالثناش",
@@ -118,7 +118,7 @@
           "arabic": "بغيت نطلب الماكلة للبيت",
           "transliteration": "bghit nTleb l-maakla l-l-bit",
           "reply": {
-            "arabic": "شنو بغيتي؟ هاك لاكارط",
+            "arabic": "شْنُو بْغِيتِي؟ هَاك لَّاكَارْط",
             "transliteration": "shnu bghiti? haak laakaarT",
             "english": "What would you like? Here's the menu."
           }
@@ -128,7 +128,7 @@
           "arabic": "شكرا، البيت زوينة بزاف",
           "transliteration": "shukran, l-bit zwiina bzaaf",
           "reply": {
-            "arabic": "الله يبارك فيك، مرحبا بيك",
+            "arabic": "اللَّهُ يْبَارِك فِيك، مَرْحَبَا بِيك",
             "transliteration": "allah ybaarek fik, mer7ba bik",
             "english": "God bless you, you're welcome."
           }
@@ -149,7 +149,7 @@
         },
         {
           "speaker": "Nour",
-          "arabic": "تفضل",
+          "arabic": "تْفَضَّل",
           "transliteration": "tfaDDal",
           "english": "Here you are."
         },
@@ -179,13 +179,13 @@
         },
         {
           "speaker": "Receptionist",
-          "arabic": "بلا مشكل، تفضل معايا",
+          "arabic": "بْلَا مْشْكِل، تْفَضَّل مْعَايَا",
           "transliteration": "bla mushkil, tfaDDal m3aya",
           "english": "No problem, come with me."
         },
         {
           "speaker": "Nour",
-          "arabic": "فين كاين لاسانسور؟",
+          "arabic": "فِين كَاين لَّاسَانْسُور؟",
           "transliteration": "fin kayn l-asansor?",
           "english": "Where's the elevator?"
         },
@@ -205,12 +205,12 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "واش كاينة شي بيت خاوية؟",
+            "arabic": "وَاش كَايْنَة شِي بِيت خَاوْيَة؟",
             "transliteration": "waash kaayna shi bit khaawya?",
             "english": "Is there an empty room?"
           },
           "response": {
-            "arabic": "إيه كاينة، شحال من ليلة؟",
+            "arabic": "إِيه كَايْنَة، شْحَال مِن لَيْلَة؟",
             "transliteration": "iyyeh kaayna, shhaal men layla?",
             "english": "Yes there is, how many nights?"
           }
@@ -241,7 +241,7 @@
         },
         {
           "pair": {
-            "arabic": "فأي ساعة خاصني نخرج؟",
+            "arabic": "فْأَي سَاعَة خَاصْنِي نْخْرُج؟",
             "transliteration": "f-ayy saa3a khaSSni nkhrej?",
             "english": "What time do I need to check out?"
           },
@@ -258,9 +258,9 @@
           "id": "unit-15.lesson-01.reply.01",
           "type": "reply",
           "prompt": "The receptionist says: \"مرحبا بيك، شنو سميتك؟\" Say the reservation is under the name Nour.",
-          "answer": "الحجز بسمية نور",
+          "answer": "الْحَجْز بِسْمِيَّة نُور",
           "accepted": [
-            "الحجز بسمية نور",
+            "الْحَجْز بِسْمِيَّة نُور",
             "بسمية نور",
             "سميتي نور",
             "l-7ajz b-smiyt Nour",
@@ -350,9 +350,9 @@
           "id": "unit-15.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where's the elevator?\"",
-          "answer": "فين كاين لاسانسور؟",
+          "answer": "فِين كَاين لَّاسَانْسُور؟",
           "accepted": [
-            "فين كاين لاسانسور؟",
+            "فِين كَاين لَّاسَانْسُور؟",
             "فين كاين لاسانسور",
             "فين كاين الأسانسور؟",
             "فين لاسانسور؟",
@@ -377,7 +377,7 @@
             "3afak, bghit lmftaa7"
           ],
           "options": [
-            "فين كاين لاسانسور؟",
+            "فِين كَاين لَّاسَانْسُور؟",
             "شحال التمن ديال الليلة؟",
             "واش الفطور داخل فالتمن؟",
             "عافاك، بغيت المفتاح"
@@ -466,17 +466,17 @@
           "arabic": "بغيت نحجز بيّي ديال الكار",
           "transliteration": "bghit n7ejz biyyi dyal l-kaar",
           "reply": {
-            "arabic": "لفين؟",
+            "arabic": "لْفِين؟",
             "transliteration": "l-fin?",
             "english": "To where?"
           }
         },
         {
           "slot": "do-you-have-tickets-to-aleppo",
-          "arabic": "واش كاين شي بيّي لمراكش؟",
+          "arabic": "وَاش كَاين شِي بِيّي لْمَرَّاكِش؟",
           "transliteration": "waash kayn shi biyyi l-mrraksh?",
           "reply": {
-            "arabic": "إيه كاين، ليوم ولا غدا؟",
+            "arabic": "إِيه كَاين، لْيُوم وَلَّا غَدَّا؟",
             "transliteration": "iyyeh kayn, l-yuum wla ghedda?",
             "english": "Yes there is, today or tomorrow?"
           }
@@ -486,7 +486,7 @@
           "arabic": "شحال بيّي الذهاب والإياب؟",
           "transliteration": "shhaal biyyi dh-dhhaab w l-iyaab?",
           "reply": {
-            "arabic": "مية وخمسين درهم",
+            "arabic": "مِيَّة وْخَمْسِين دِرْهَم",
             "transliteration": "miyya w khamsiin dirham",
             "english": "A hundred and fifty dirhams."
           }
@@ -496,7 +496,7 @@
           "arabic": "بغيت غير الذهاب",
           "transliteration": "bghit ghir dh-dhhaab",
           "reply": {
-            "arabic": "مزيان، تسعين درهم",
+            "arabic": "مْزِيَان، تْسَعِين دِرْهَم",
             "transliteration": "mezyaan, tes3iin dirham",
             "english": "Fine, ninety dirhams."
           }
@@ -526,7 +526,7 @@
           "arabic": "واش نقدر نخلص بالكارط؟",
           "transliteration": "waash nqder nkhlleS b-l-kaarT?",
           "reply": {
-            "arabic": "لا، غير كاش، عافاك",
+            "arabic": "لَا، غِير كَاش، عَافَاك",
             "transliteration": "laa, ghir kaash, 3afak",
             "english": "No, cash only, please."
           }
@@ -576,7 +576,7 @@
           "arabic": "شكرا، هاك البيّي ديالك",
           "transliteration": "shukran, haak l-biyyi dyaalek",
           "reply": {
-            "arabic": "الله يجازيك بخير",
+            "arabic": "اللَّهُ يْجَازِيك بْخِير",
             "transliteration": "allah yjaazik b-khir",
             "english": "God reward you with good."
           }
@@ -639,7 +639,7 @@
         },
         {
           "speaker": "Clerk",
-          "arabic": "لا، غير كاش، عافاك",
+          "arabic": "لَا، غِير كَاش، عَافَاك",
           "transliteration": "laa, ghir kaash, 3afak",
           "english": "No, cash only, please."
         },
@@ -659,12 +659,12 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "واش كاين شي بيّي لمراكش؟",
+            "arabic": "وَاش كَاين شِي بِيّي لْمَرَّاكِش؟",
             "transliteration": "waash kayn shi biyyi l-mrraksh?",
             "english": "Do you have tickets to Marrakech?"
           },
           "response": {
-            "arabic": "إيه كاين، ليوم ولا غدا؟",
+            "arabic": "إِيه كَاين، لْيُوم وَلَّا غَدَّا؟",
             "transliteration": "iyyeh kayn, l-yuum wla ghedda?",
             "english": "Yes there is, today or tomorrow?"
           }
@@ -676,7 +676,7 @@
             "english": "How much is a round-trip ticket?"
           },
           "response": {
-            "arabic": "مية وخمسين درهم",
+            "arabic": "مِيَّة وْخَمْسِين دِرْهَم",
             "transliteration": "miyya w khamsiin dirham",
             "english": "A hundred and fifty dirhams."
           }
@@ -712,7 +712,7 @@
             "english": "Can I pay by card?"
           },
           "response": {
-            "arabic": "لا، غير كاش، عافاك",
+            "arabic": "لَا، غِير كَاش، عَافَاك",
             "transliteration": "laa, ghir kaash, 3afak",
             "english": "No, cash only, please."
           }
@@ -945,14 +945,14 @@
           "arabic": "عندي الباسبور والبيّي",
           "transliteration": "3andi l-pasapor w l-biyyi",
           "reply": {
-            "arabic": "مزيان، عطيني هوما",
+            "arabic": "مْزِيَان، عْطِينِي هُومَا",
             "transliteration": "mezyaan, 3Tini huma",
             "english": "Good, give them to me."
           }
         },
         {
           "slot": "how-many-bags-am-i-allowed-to-take",
-          "arabic": "شحال من فاليزة نقدر ناخد؟",
+          "arabic": "شْحَال مِن فَالِيزَة نْقْدَر نَاخْد؟",
           "transliteration": "shhaal men faaliza nqder naakhod?",
           "reply": {
             "arabic": "جوج، وحدة كبيرة ووحدة صغيرة",
@@ -965,7 +965,7 @@
           "arabic": "واش هاد الفاليزة زايدة فالوزن؟",
           "transliteration": "waash haad l-faaliza zaayda f-l-wezn?",
           "reply": {
-            "arabic": "إيه، فيها جوج كيلو زايدين",
+            "arabic": "إِيه، فِيهَا جُوج كِيلُو زَايْدِين",
             "transliteration": "iyyeh, fiha jooj kiilu zaaydiin",
             "english": "Yes, it has two extra kilos."
           }
@@ -992,20 +992,20 @@
         },
         {
           "slot": "do-you-have-anything-to-declare",
-          "arabic": "واش عندك شي حاجة تصرح بيها؟",
+          "arabic": "وَاش عْنْدَك شِي حَاجَة تْصَرِّح بِيهَا؟",
           "transliteration": "waash 3andek shi 7aaja tSar7 biha?",
           "reply": {
-            "arabic": "لا، ما عندي والو",
+            "arabic": "لَا، مَا عْنْدِي وَالُو",
             "transliteration": "laa, ma 3andi waalu",
             "english": "No, I don't have anything."
           }
         },
         {
           "slot": "no-i-don-t-have-anything",
-          "arabic": "لا، ما عندي والو",
+          "arabic": "لَا، مَا عْنْدِي وَالُو",
           "transliteration": "laa, ma 3andi waalu",
           "reply": {
-            "arabic": "مزيان، دوز",
+            "arabic": "مْزِيَان، دُوز",
             "transliteration": "mezyaan, dwez",
             "english": "Fine, go ahead."
           }
@@ -1015,7 +1015,7 @@
           "arabic": "الباسبور ديالك عافاك",
           "transliteration": "l-pasapor dyaalek 3afak",
           "reply": {
-            "arabic": "تفضل",
+            "arabic": "تْفَضَّل",
             "transliteration": "tfaDDal",
             "english": "Here you are."
           }
@@ -1032,7 +1032,7 @@
         },
         {
           "slot": "how-long-will-you-stay-here",
-          "arabic": "شحال غادي تبقى هنا؟",
+          "arabic": "شْحَال غَادِي تْبْقَى هْنَا؟",
           "transliteration": "shhaal ghaadi tbqa hna?",
           "reply": {
             "arabic": "غير جوج د السيمانات",
@@ -1045,7 +1045,7 @@
           "arabic": "مرحبا بيك فالمغرب",
           "transliteration": "mer7ba bik f-l-maghrib",
           "reply": {
-            "arabic": "الله يبارك فيك",
+            "arabic": "اللَّهُ يْبَارِك فِيك",
             "transliteration": "allah ybaarek fik",
             "english": "God bless you."
           }
@@ -1146,12 +1146,12 @@
         },
         {
           "pair": {
-            "arabic": "واش عندك شي حاجة تصرح بيها؟",
+            "arabic": "وَاش عْنْدَك شِي حَاجَة تْصَرِّح بِيهَا؟",
             "transliteration": "waash 3andek shi 7aaja tSar7 biha?",
             "english": "Do you have anything to declare?"
           },
           "response": {
-            "arabic": "لا، ما عندي والو",
+            "arabic": "لَا، مَا عْنْدِي وَالُو",
             "transliteration": "laa, ma 3andi waalu",
             "english": "No, I don't have anything."
           }
@@ -1170,7 +1170,7 @@
         },
         {
           "pair": {
-            "arabic": "شحال غادي تبقى هنا؟",
+            "arabic": "شْحَال غَادِي تْبْقَى هْنَا؟",
             "transliteration": "shhaal ghaadi tbqa hna?",
             "english": "How long will you stay here?"
           },
@@ -1302,8 +1302,8 @@
           "options": [
             "الباسبور ديالك عافاك",
             "مرحبا بيك فالمغرب",
-            "فين كاين لاسانسور؟",
-            "شحال غادي تبقى هنا؟"
+            "فِين كَاين لَّاسَانْسُور؟",
+            "شْحَال غَادِي تْبْقَى هْنَا؟"
           ],
           "too_formal": {
             "item": "جواز سفرك من فضلك",
@@ -1339,19 +1339,19 @@
           "id": "unit-15.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"ناخد؟ / نقدر / فاليزة / من / شحال\"",
-          "answer": "شحال من فاليزة نقدر ناخد؟",
+          "answer": "شْحَال مِن فَالِيزَة نْقْدَر نَاخْد؟",
           "accepted": [
-            "شحال من فاليزة نقدر ناخد؟",
+            "شْحَال مِن فَالِيزَة نْقْدَر نَاخْد؟",
             "شحال من فاليزة نقدر ناخد",
             "shhaal men faaliza nqder naakhod?",
             "shhaal men faaliza nqder naakhod"
           ],
           "words": [
-            "شحال",
-            "من",
-            "فاليزة",
-            "نقدر",
-            "ناخد؟"
+            "شْحَال",
+            "مِن",
+            "فَالِيزَة",
+            "نْقْدَر",
+            "نَاخْد؟"
           ],
           "too_formal": {
             "item": "كم حقيبة يمكنني أن آخذ؟",
@@ -1393,7 +1393,7 @@
           "arabic": "ضاعت ليا الفاليزة",
           "transliteration": "Daa3at liya l-faaliza",
           "reply": {
-            "arabic": "ما تقلقش، غادي نقلبو عليها",
+            "arabic": "مَا تْقْلَقْش، غَادِي نْقَلِّبُو عْلِيهَا",
             "transliteration": "ma tqlaqsh, ghaadi nqelbu 3liha",
             "english": "Don't worry, we'll look for it."
           }
@@ -1413,7 +1413,7 @@
           "arabic": "فاتني الكار",
           "transliteration": "faatni l-kaar",
           "reply": {
-            "arabic": "كاين واحد تاني من بعد ساعة",
+            "arabic": "كَاين وَاحِد تَانِي مِن بْعَد سَاعَة",
             "transliteration": "kayn wa7ed taani mn b3d saa3a",
             "english": "There's another one in an hour."
           }
@@ -1430,10 +1430,10 @@
         },
         {
           "slot": "come-help-me-please",
-          "arabic": "عافاك، أجي عاوني",
+          "arabic": "عَافَاك، أْجِي عَاوْنِي",
           "transliteration": "3afak, aji 3awni",
           "reply": {
-            "arabic": "دقيقة، أنا جاي",
+            "arabic": "دْقِيقَة، أَنَا جَاي",
             "transliteration": "dqiiqa, ana jaay",
             "english": "One minute, I'm coming."
           }
@@ -1463,7 +1463,7 @@
           "arabic": "خاصني نبدل الرحلة ديالي",
           "transliteration": "khaSSni nbeddel r-ri7la dyaali",
           "reply": {
-            "arabic": "لأي نهار بغيتي؟",
+            "arabic": "لْأَي نْهَار بْغِيتِي؟",
             "transliteration": "l-ayy nhaar bghiti?",
             "english": "For which day do you want it?"
           }
@@ -1490,20 +1490,20 @@
         },
         {
           "slot": "nobody-answered-me",
-          "arabic": "ما جاوبني حتى واحد",
+          "arabic": "مَا جَاوَبْنِي حْتَّى وَاحِد",
           "transliteration": "ma jaawebni 7ta wa7ed",
           "reply": {
-            "arabic": "سمح لينا، غادي نشوفو",
+            "arabic": "سْمَح لِينَا، غَادِي نْشُوفُو",
             "transliteration": "sme7 lina, ghaadi nshufu",
             "english": "Sorry, we'll look into it."
           }
         },
         {
           "slot": "may-god-make-up-for-it-god-willing-it-ll-work-ou",
-          "arabic": "الله يعوض، إن شاء الله كلشي يتحل",
+          "arabic": "اللَّهُ يْعَوِّض، إِن شَاءَ اللَّهُ كُلْشِي يْتْحَل",
           "transliteration": "allah y3awwed, inshaa2 llah kolshi yta7el",
           "reply": {
-            "arabic": "إن شاء الله، الله يعاونك",
+            "arabic": "إِن شَاءَ اللَّهُ، اللَّهُ يْعَاوْنُك",
             "transliteration": "inshaa2 llah, allah y3awnek",
             "english": "God willing, God help you."
           }
@@ -1554,7 +1554,7 @@
         },
         {
           "speaker": "Agent",
-          "arabic": "كاين واحد تاني من بعد ساعة",
+          "arabic": "كَاين وَاحِد تَانِي مِن بْعَد سَاعَة",
           "transliteration": "kayn wa7ed taani mn b3d saa3a",
           "english": "There's another one in an hour."
         },
@@ -1572,7 +1572,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "الله يعوض، إن شاء الله كلشي يتحل",
+          "arabic": "اللَّهُ يْعَوِّض، إِن شَاءَ اللَّهُ كُلْشِي يْتْحَل",
           "transliteration": "allah y3awwed, inshaa2 llah kolshi yta7el",
           "english": "May God make up for it, God willing it'll all work out."
         }
@@ -1585,7 +1585,7 @@
             "english": "I lost my bag."
           },
           "response": {
-            "arabic": "ما تقلقش، غادي نقلبو عليها",
+            "arabic": "مَا تْقْلَقْش، غَادِي نْقَلِّبُو عْلِيهَا",
             "transliteration": "ma tqlaqsh, ghaadi nqelbu 3liha",
             "english": "Don't worry, we'll look for it."
           }
@@ -1597,7 +1597,7 @@
             "english": "I missed the bus."
           },
           "response": {
-            "arabic": "كاين واحد تاني من بعد ساعة",
+            "arabic": "كَاين وَاحِد تَانِي مِن بْعَد سَاعَة",
             "transliteration": "kayn wa7ed taani mn b3d saa3a",
             "english": "There's another one in an hour."
           }
@@ -1609,7 +1609,7 @@
             "english": "I need to change the flight."
           },
           "response": {
-            "arabic": "لأي نهار بغيتي؟",
+            "arabic": "لْأَي نْهَار بْغِيتِي؟",
             "transliteration": "l-ayy nhaar bghiti?",
             "english": "For which day do you want it?"
           }
@@ -1720,9 +1720,9 @@
           "id": "unit-15.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Nobody answered me.\"",
-          "answer": "ما جاوبني حتى واحد",
+          "answer": "مَا جَاوَبْنِي حْتَّى وَاحِد",
           "accepted": [
-            "ما جاوبني حتى واحد",
+            "مَا جَاوَبْنِي حْتَّى وَاحِد",
             "ما جاوبني حد",
             "ma jaawebni 7ta wa7ed"
           ],
@@ -1872,7 +1872,7 @@
         },
         {
           "speaker": "Clerk",
-          "arabic": "لا، غير كاش، عافاك",
+          "arabic": "لَا، غِير كَاش، عَافَاك",
           "transliteration": "laa, ghir kaash, 3afak",
           "english": "No, cash only, please."
         },
@@ -1896,7 +1896,7 @@
         },
         {
           "speaker": "Clerk",
-          "arabic": "الله يبارك فيك، مرحبا بيك",
+          "arabic": "اللَّهُ يْبَارِك فِيك، مَرْحَبَا بِيك",
           "transliteration": "allah ybaarek fik, mer7ba bik",
           "english": "God bless you, you're welcome."
         }

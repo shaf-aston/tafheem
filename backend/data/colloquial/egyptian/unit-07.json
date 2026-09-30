@@ -20,67 +20,67 @@
       "phrases": [
         {
           "slot": "good-morning",
-          "arabic": "صباح الخير",
+          "arabic": "صَبَاح الْخَيْر",
           "transliteration": "sabaa7 el-kheer",
           "reply": {
-            "arabic": "صباح النور",
+            "arabic": "صَبَاح النُّور",
             "transliteration": "sabaa7 en-noor",
             "english": "Good morning (reply)."
           }
         },
         {
           "slot": "i-woke-up-early",
-          "arabic": "صحيت بدري",
+          "arabic": "صِحِيت بَدْري",
           "transliteration": "se7eet badri"
         },
         {
           "slot": "what-time-is-it-now",
-          "arabic": "الساعة كام دلوقتي؟",
+          "arabic": "السَّاعَة كَام دِلْوَقْتِي؟",
           "transliteration": "es-saa3a kaam dilwa2ti?"
         },
         {
           "slot": "it-s-seven-o-clock",
-          "arabic": "الساعة سبعة",
+          "arabic": "السَّاعَة سَبْعَة",
           "transliteration": "es-saa3a sab3a"
         },
         {
           "slot": "i-m-still-sleepy",
-          "arabic": "لسه نعسان",
+          "arabic": "لِسّه نَعْسَان",
           "transliteration": "lessa na3saan"
         },
         {
           "slot": "i-want-coffee-first-thing",
-          "arabic": "عايز قهوة أول حاجة",
+          "arabic": "عَايِز قَهْوَة أوّل حَاجَة",
           "transliteration": "3aayez 2ahwa awwel 7aaga"
         },
         {
           "slot": "i-washed-my-face",
-          "arabic": "غسلت وشي",
+          "arabic": "غَسَلْت وِشّي",
           "transliteration": "ghasalt wishshi"
         },
         {
           "slot": "i-brushed-my-teeth",
-          "arabic": "غسلت سناني",
+          "arabic": "غَسَلْت سِنّاني",
           "transliteration": "ghasalt sinaani"
         },
         {
           "slot": "i-got-dressed",
-          "arabic": "لبست هدومي",
+          "arabic": "لِبِسْت هُدُومي",
           "transliteration": "lebist hudoomi"
         },
         {
           "slot": "i-left-for-work",
-          "arabic": "نزلت على الشغل",
+          "arabic": "نَزِلْت عَلَى الشُّغِل",
           "transliteration": "nazalt 3ala esh-shoghl"
         },
         {
           "slot": "i-missed-the-bus",
-          "arabic": "الأتوبيس فاتني",
+          "arabic": "الأتُوبِيس فَاتْني",
           "transliteration": "el-otobees faatni"
         },
         {
           "slot": "early-morning-is-very-cold",
-          "arabic": "الدنيا برد أوي الصبح بدري",
+          "arabic": "الدُّنْيا بَرْد أوّي الصُّبْح بَدْري",
           "transliteration": "ed-donya bard awi es-sob7 badri"
         }
       ],
@@ -105,7 +105,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "الساعة كام دلوقتي؟",
+          "arabic": "السَّاعَة كَام دِلْوَقْتِي؟",
           "transliteration": "es-saa3a kaam dilwa2ti?",
           "english": "What time is it now?"
         },
@@ -155,24 +155,24 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "صباح الخير",
+            "arabic": "صَبَاح الْخَيْر",
             "transliteration": "sabaa7 el-kheer",
             "english": "Good morning."
           },
           "response": {
-            "arabic": "صباح النور",
+            "arabic": "صَبَاح النُّور",
             "transliteration": "sabaa7 en-noor",
             "english": "Good morning (reply)."
           }
         },
         {
           "pair": {
-            "arabic": "الساعة كام دلوقتي؟",
+            "arabic": "السَّاعَة كَام دِلْوَقْتِي؟",
             "transliteration": "es-saa3a kaam dilwa2ti?",
             "english": "What time is it now?"
           },
           "response": {
-            "arabic": "الساعة سبعة",
+            "arabic": "السَّاعَة سَبْعَة",
             "transliteration": "es-saa3a sab3a",
             "english": "It's seven o'clock."
           }
@@ -208,9 +208,9 @@
           "id": "unit-07.lesson-01.reply.01",
           "type": "reply",
           "prompt": "Someone says to you: \"صباح الخير\". Reply naturally.",
-          "answer": "صباح النور",
+          "answer": "صَبَاح النُّور",
           "accepted": [
-            "صباح النور",
+            "صَبَاح النُّور",
             "صباح الفل",
             "صباح الورد",
             "sabaa7 en-noor"
@@ -225,9 +225,9 @@
           "id": "unit-07.lesson-01.reply.02",
           "type": "reply",
           "prompt": "Someone asks you: \"الساعة كام دلوقتي؟\" Answer that it's seven o'clock.",
-          "answer": "الساعة سبعة",
+          "answer": "السَّاعَة سَبْعَة",
           "accepted": [
-            "الساعة سبعة",
+            "السَّاعَة سَبْعَة",
             "سبعة",
             "الساعة سبعة دلوقتي",
             "es-saa3a sab3a"
@@ -275,9 +275,9 @@
           "id": "unit-07.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Egyptian Arabic: \"I woke up early.\"",
-          "answer": "صحيت بدري",
+          "answer": "صِحِيت بَدْري",
           "accepted": [
-            "صحيت بدري",
+            "صِحِيت بَدْري",
             "أنا صحيت بدري",
             "se7eet badri",
             "ana se7eet badri"
@@ -292,9 +292,9 @@
           "id": "unit-07.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I missed the bus.\"",
-          "answer": "الأتوبيس فاتني",
+          "answer": "الأتُوبِيس فَاتْني",
           "accepted": [
-            "الأتوبيس فاتني",
+            "الأتُوبِيس فَاتْني",
             "فاتني الأتوبيس",
             "مالحقتش الأتوبيس",
             "el-otobees faatni"
@@ -309,9 +309,9 @@
           "id": "unit-07.lesson-01.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'm still sleepy.\"",
-          "answer": "لسه نعسان",
+          "answer": "لِسّه نَعْسَان",
           "accepted": [
-            "لسه نعسان",
+            "لِسّه نَعْسَان",
             "أنا لسه نعسان",
             "لسه عايز أنام",
             "lessa na3saan"
@@ -327,14 +327,14 @@
           "type": "choose",
           "prompt": "Which sentence means \"I left for work\"?",
           "options": [
-            "نزلت على الشغل",
-            "رجعت البيت",
+            "نَزِلْت عَلَى الشُّغِل",
+            "رِجِعْت الْبيت",
             "نمت بدري",
             "فطرت الصبح"
           ],
-          "answer": "نزلت على الشغل",
+          "answer": "نَزِلْت عَلَى الشُّغِل",
           "accepted": [
-            "نزلت على الشغل",
+            "نَزِلْت عَلَى الشُّغِل",
             "nazalt 3ala esh-shoghl",
             "روحت الشغل"
           ],
@@ -349,14 +349,14 @@
           "type": "choose",
           "prompt": "Which reply fits \"صباح الخير\" best?",
           "options": [
-            "صباح النور",
-            "مساء الخير",
-            "تصبح على خير",
+            "صَبَاح النُّور",
+            "مَسَاء الْخَيْر",
+            "تِصْبَح عَلَى خَيْر",
             "تسلم إيدك"
           ],
-          "answer": "صباح النور",
+          "answer": "صَبَاح النُّور",
           "accepted": [
-            "صباح النور",
+            "صَبَاح النُّور",
             "صباح الفل",
             "صباح الورد",
             "sabaa7 en-noor"
@@ -396,72 +396,72 @@
       "phrases": [
         {
           "slot": "i-arrived-at-work",
-          "arabic": "وصلت الشغل",
+          "arabic": "وِصِلْت الشُّغِل",
           "transliteration": "wesilt esh-shoghl"
         },
         {
           "slot": "i-have-a-meeting-at-ten",
-          "arabic": "عندي اجتماع الساعة عشرة",
+          "arabic": "عِنْدي اجْتِمَاع السَّاعَة عَشْرَة",
           "transliteration": "3andi egtimaa3 es-saa3a 3ashra"
         },
         {
           "slot": "i-m-hungry-i-want-to-eat-something",
-          "arabic": "أنا جعان، عايز آكل حاجة",
+          "arabic": "أنَا جُعَان، عَايِز آكِل حَاجَة",
           "transliteration": "ana ga3aan, 3aayez aakol 7aaga"
         },
         {
           "slot": "where-do-you-have-lunch",
-          "arabic": "بتتغدى فين؟",
+          "arabic": "بِتَتْغَدّى فين؟",
           "transliteration": "betetghadda feen?",
           "reply": {
-            "arabic": "باتغدى في المطعم اللي جنب الشغل",
+            "arabic": "بِاتْغَدَى في الْمَطْعَم اللي جَنْب الشُّغِل",
             "transliteration": "batghadda fil-maT3am elli ganb esh-shoghl",
             "english": "I have lunch at the restaurant next to work."
           }
         },
         {
           "slot": "i-m-a-bit-tired-now",
-          "arabic": "أنا تعبان شوية دلوقتي",
+          "arabic": "أنَا تَعْبَان شُوَيّة دِلْوَقْتِي",
           "transliteration": "ana ta3baan shwayya dilwa2ti"
         },
         {
           "slot": "i-have-to-finish-this-task-before-noon",
-          "arabic": "لازم أخلص الحاجة دي قبل الضهر",
+          "arabic": "لازِم أخْلِص الْحَاجَة دِي قَبْل الضُّهْر",
           "transliteration": "laazem akhallas el-7aaga di 2abl ed-dohr"
         },
         {
           "slot": "can-i-take-a-break",
-          "arabic": "ينفع آخد استراحة؟",
+          "arabic": "يِنْفَع آخِد اسْتِرَاحَة؟",
           "transliteration": "yenfa3 aakhod esteraa7a?",
           "reply": {
-            "arabic": "طبعا، خد راحتك",
+            "arabic": "طَبْعاً، خُد رَاحَتَك",
             "transliteration": "Tab3an, khod raa7tak",
             "english": "Of course, take your time."
           }
         },
         {
           "slot": "i-m-looking-for-my-pen",
-          "arabic": "بدور على القلم بتاعي",
+          "arabic": "بَدُورّ عَلَى الْقَلَم بِتَاعِي",
           "transliteration": "badawwar 3ala el-2alam bitaa3i"
         },
         {
           "slot": "what-s-the-news-today",
-          "arabic": "إيه الأخبار النهارده؟",
+          "arabic": "إيه الأخْبَار النَّهَارِده؟",
           "transliteration": "eh el-akhbaar en-naharda?"
         },
         {
           "slot": "i-have-a-lot-of-work-now",
-          "arabic": "عندي شغل كتير دلوقتي",
+          "arabic": "عِنْدي شُغِل كْتير دِلْوَقْتِي",
           "transliteration": "3andi shoghl ketir dilwa2ti"
         },
         {
           "slot": "i-ll-call-you-in-the-afternoon",
-          "arabic": "هكلمك بعد الضهر",
+          "arabic": "هَكَلّمَك بَعْد الضُّهْر",
           "transliteration": "hakallemak ba3d ed-dohr"
         },
         {
           "slot": "i-finished-my-work-early-today",
-          "arabic": "خلصت شغلي بدري النهارده",
+          "arabic": "خَلّصْت شُغِلي بَدْري النَّهَارِده",
           "transliteration": "khallast shoghli badri en-naharda"
         }
       ],
@@ -548,31 +548,31 @@
         },
         {
           "pair": {
-            "arabic": "بتتغدى فين؟",
+            "arabic": "بِتَتْغَدّى فين؟",
             "transliteration": "betetghadda feen?",
             "english": "Where do you have lunch?"
           },
           "response": {
-            "arabic": "باتغدى في المطعم اللي جنب الشغل",
+            "arabic": "بِاتْغَدَى في الْمَطْعَم اللي جَنْب الشُّغِل",
             "transliteration": "batghadda fil-maT3am elli ganb esh-shoghl",
             "english": "I have lunch at the restaurant next to work."
           }
         },
         {
           "pair": {
-            "arabic": "ينفع آخد استراحة؟",
+            "arabic": "يِنْفَع آخِد اسْتِرَاحَة؟",
             "transliteration": "yenfa3 aakhod esteraa7a?",
             "english": "Can I take a break?"
           },
           "response": {
-            "arabic": "طبعا، خد راحتك",
+            "arabic": "طَبْعاً، خُد رَاحَتَك",
             "transliteration": "Tab3an, khod raa7tak",
             "english": "Of course, take your time."
           }
         },
         {
           "pair": {
-            "arabic": "إيه الأخبار النهارده؟",
+            "arabic": "إيه الأخْبَار النَّهَارِده؟",
             "transliteration": "eh el-akhbaar en-naharda?",
             "english": "What's the news today?"
           },
@@ -589,9 +589,9 @@
           "id": "unit-07.lesson-02.reply.01",
           "type": "reply",
           "prompt": "A colleague asks you: \"بتتغدى فين؟\" Say you have lunch at the restaurant next to work.",
-          "answer": "باتغدى في المطعم اللي جنب الشغل",
+          "answer": "بِاتْغَدَى في الْمَطْعَم اللي جَنْب الشُّغِل",
           "accepted": [
-            "باتغدى في المطعم اللي جنب الشغل",
+            "بِاتْغَدَى في الْمَطْعَم اللي جَنْب الشُّغِل",
             "باتغدى في المطعم",
             "في المطعم اللي جنب الشغل",
             "batghadda fil-maT3am elli ganb esh-shoghl"
@@ -606,9 +606,9 @@
           "id": "unit-07.lesson-02.reply.02",
           "type": "reply",
           "prompt": "You ask your boss \"ينفع آخد استراحة؟\" and he says yes warmly. What does he say?",
-          "answer": "طبعا، خد راحتك",
+          "answer": "طَبْعاً، خُد رَاحَتَك",
           "accepted": [
-            "طبعا، خد راحتك",
+            "طَبْعاً، خُد رَاحَتَك",
             "طبعا خد راحتك",
             "أكيد، خد راحتك",
             "Tab3an, khod raa7tak"
@@ -657,9 +657,9 @@
           "id": "unit-07.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Egyptian Arabic: \"I arrived at work.\"",
-          "answer": "وصلت الشغل",
+          "answer": "وِصِلْت الشُّغِل",
           "accepted": [
-            "وصلت الشغل",
+            "وِصِلْت الشُّغِل",
             "أنا وصلت الشغل",
             "wesilt esh-shoghl",
             "وصلت على الشغل"
@@ -674,9 +674,9 @@
           "id": "unit-07.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I have to finish this task before noon.\"",
-          "answer": "لازم أخلص الحاجة دي قبل الضهر",
+          "answer": "لازِم أخْلِص الْحَاجَة دِي قَبْل الضُّهْر",
           "accepted": [
-            "لازم أخلص الحاجة دي قبل الضهر",
+            "لازِم أخْلِص الْحَاجَة دِي قَبْل الضُّهْر",
             "لازم أخلص الشغل ده قبل الضهر",
             "لازم أخلص الحاجة دي قبل الظهر",
             "laazem akhallas el-7aaga di 2abl ed-dohr"
@@ -691,9 +691,9 @@
           "id": "unit-07.lesson-02.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'm looking for my pen.\"",
-          "answer": "بدور على القلم بتاعي",
+          "answer": "بَدُورّ عَلَى الْقَلَم بِتَاعِي",
           "accepted": [
-            "بدور على القلم بتاعي",
+            "بَدُورّ عَلَى الْقَلَم بِتَاعِي",
             "أنا بدور على القلم بتاعي",
             "بدور على قلمي",
             "badawwar 3ala el-2alam bitaa3i"
@@ -709,14 +709,14 @@
           "type": "choose",
           "prompt": "Which sentence means \"I finished my work early today\"?",
           "options": [
-            "خلصت شغلي بدري النهارده",
+            "خَلّصْت شُغِلي بَدْري النَّهَارِده",
             "لسه عندي شغل كتير",
             "وصلت الشغل متأخر",
             "عندي اجتماع بكرة"
           ],
-          "answer": "خلصت شغلي بدري النهارده",
+          "answer": "خَلّصْت شُغِلي بَدْري النَّهَارِده",
           "accepted": [
-            "خلصت شغلي بدري النهارده",
+            "خَلّصْت شُغِلي بَدْري النَّهَارِده",
             "khallast shoghli badri en-naharda",
             "خلصت الشغل بدري النهارده"
           ],
@@ -731,14 +731,14 @@
           "type": "choose",
           "prompt": "Which sentence means \"What's the news today?\"",
           "options": [
-            "إيه الأخبار النهارده؟",
-            "الساعة كام دلوقتي؟",
-            "بتتغدى فين؟",
-            "ينفع آخد استراحة؟"
+            "إيه الأخْبَار النَّهَارِده؟",
+            "السَّاعَة كَام دِلْوَقْتِي؟",
+            "بِتَتْغَدّى فين؟",
+            "يِنْفَع آخِد اسْتِرَاحَة؟"
           ],
-          "answer": "إيه الأخبار النهارده؟",
+          "answer": "إيه الأخْبَار النَّهَارِده؟",
           "accepted": [
-            "إيه الأخبار النهارده؟",
+            "إيه الأخْبَار النَّهَارِده؟",
             "إيه الأخبار النهاردة؟",
             "eh el-akhbaar en-naharda?"
           ],
@@ -752,9 +752,9 @@
           "id": "unit-07.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"دلوقتي / كتير / شغل / عندي\"",
-          "answer": "عندي شغل كتير دلوقتي",
+          "answer": "عِنْدي شُغِل كْتير دِلْوَقْتِي",
           "accepted": [
-            "عندي شغل كتير دلوقتي",
+            "عِنْدي شُغِل كْتير دِلْوَقْتِي",
             "دلوقتي عندي شغل كتير",
             "3andi shoghl ketir dilwa2ti",
             "dilwa2ti 3andi shoghl ketir"
@@ -772,72 +772,72 @@
       "phrases": [
         {
           "slot": "good-evening",
-          "arabic": "مساء الخير",
+          "arabic": "مَسَاء الْخَيْر",
           "transliteration": "masaa2 el-kheer",
           "reply": {
-            "arabic": "مساء النور",
+            "arabic": "مَسَاء النُّور",
             "transliteration": "masaa2 en-noor",
             "english": "Good evening (reply)."
           }
         },
         {
           "slot": "i-came-back-home",
-          "arabic": "رجعت البيت",
+          "arabic": "رِجِعْت الْبيت",
           "transliteration": "rege3t el-beet"
         },
         {
           "slot": "what-will-we-eat-for-dinner",
-          "arabic": "هنتعشى إيه؟",
+          "arabic": "هَنِتْعَشّى إيه؟",
           "transliteration": "hanet3ashsha eh?"
         },
         {
           "slot": "i-want-to-shower",
-          "arabic": "عايز آخد دش",
+          "arabic": "عَايِز آخِد دِش",
           "transliteration": "3aayez aakhod dosh"
         },
         {
           "slot": "i-got-very-tired-today",
-          "arabic": "تعبت أوي النهارده",
+          "arabic": "تَعِبْت أوّي النَّهَارِده",
           "transliteration": "te3ebt awi en-naharda"
         },
         {
           "slot": "do-we-want-to-watch-a-series",
-          "arabic": "تحب نتفرج على مسلسل؟",
+          "arabic": "تِحِب نِتْفَرّج عَلَى مِسْلِسَل؟",
           "transliteration": "te7ebb netfarrag 3ala mosalsal?"
         },
         {
           "slot": "let-s-go-out-for-a-little-walk",
-          "arabic": "تعالى ننزل نتمشى شوية",
+          "arabic": "تَعالَى نِنْزِل نِتْمَشّى شُوَيّة",
           "transliteration": "ta3aala nenzel netmashsha shwayya"
         },
         {
           "slot": "the-weather-is-nice-in-the-evening",
-          "arabic": "الجو حلو بالليل",
+          "arabic": "الْجَوّ حِلْو بِالْليل",
           "transliteration": "el-gaww 7elw bel-leil"
         },
         {
           "slot": "i-want-to-call-my-family",
-          "arabic": "عايز أكلم أهلي",
+          "arabic": "عَايِز أكَلّم أهْلي",
           "transliteration": "3aayez akallem ahli"
         },
         {
           "slot": "i-ll-sleep-early-tonight",
-          "arabic": "هنام بدري الليلة",
+          "arabic": "هَنام بَدْري الْليْلَة",
           "transliteration": "hanaam badri el-leila"
         },
         {
           "slot": "good-night",
-          "arabic": "تصبح على خير",
+          "arabic": "تِصْبَح عَلَى خَيْر",
           "transliteration": "tesba7 3ala kheer",
           "reply": {
-            "arabic": "وإنت من أهل الخير",
+            "arabic": "وَإنْت مِن أهْل الْخَيْر",
             "transliteration": "w enta men ahl el-kheer",
             "english": "And you too (reply)."
           }
         },
         {
           "slot": "i-saw-my-friends-in-the-evening",
-          "arabic": "شفت صحابي بالليل",
+          "arabic": "شِفْت صِحابي بِالْليل",
           "transliteration": "shoft es7aabi bel-leil"
         }
       ],
@@ -918,19 +918,19 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "مساء الخير",
+            "arabic": "مَسَاء الْخَيْر",
             "transliteration": "masaa2 el-kheer",
             "english": "Good evening."
           },
           "response": {
-            "arabic": "مساء النور",
+            "arabic": "مَسَاء النُّور",
             "transliteration": "masaa2 en-noor",
             "english": "Good evening (reply)."
           }
         },
         {
           "pair": {
-            "arabic": "هنتعشى إيه؟",
+            "arabic": "هَنِتْعَشّى إيه؟",
             "transliteration": "hanet3ashsha eh?",
             "english": "What will we eat for dinner?"
           },
@@ -954,12 +954,12 @@
         },
         {
           "pair": {
-            "arabic": "تصبح على خير",
+            "arabic": "تِصْبَح عَلَى خَيْر",
             "transliteration": "tesba7 3ala kheer",
             "english": "Good night."
           },
           "response": {
-            "arabic": "وإنت من أهل الخير",
+            "arabic": "وَإنْت مِن أهْل الْخَيْر",
             "transliteration": "w enta men ahl el-kheer",
             "english": "And you too."
           }
@@ -971,9 +971,9 @@
           "id": "unit-07.lesson-03.reply.01",
           "type": "reply",
           "prompt": "Someone says to you: \"مساء الخير\". Reply naturally.",
-          "answer": "مساء النور",
+          "answer": "مَسَاء النُّور",
           "accepted": [
-            "مساء النور",
+            "مَسَاء النُّور",
             "مساء الفل",
             "مساء الورد",
             "masaa2 en-noor"
@@ -988,9 +988,9 @@
           "id": "unit-07.lesson-03.reply.02",
           "type": "reply",
           "prompt": "Someone says: \"تصبح على خير\". Reply with the usual phrase.",
-          "answer": "وإنت من أهل الخير",
+          "answer": "وَإنْت مِن أهْل الْخَيْر",
           "accepted": [
-            "وإنت من أهل الخير",
+            "وَإنْت مِن أهْل الْخَيْر",
             "وانت من اهل الخير",
             "وإنت من أهله",
             "w enta men ahl el-kheer"
@@ -1037,9 +1037,9 @@
           "id": "unit-07.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Egyptian Arabic: \"I came back home.\"",
-          "answer": "رجعت البيت",
+          "answer": "رِجِعْت الْبيت",
           "accepted": [
-            "رجعت البيت",
+            "رِجِعْت الْبيت",
             "رجعت على البيت",
             "أنا رجعت البيت",
             "rege3t el-beet"
@@ -1054,9 +1054,9 @@
           "id": "unit-07.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I want to shower.\"",
-          "answer": "عايز آخد دش",
+          "answer": "عَايِز آخِد دِش",
           "accepted": [
-            "عايز آخد دش",
+            "عَايِز آخِد دِش",
             "عايز اخد دش",
             "عاوز آخد دش",
             "3aayez aakhod dosh"
@@ -1071,9 +1071,9 @@
           "id": "unit-07.lesson-03.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'll sleep early tonight.\"",
-          "answer": "هنام بدري الليلة",
+          "answer": "هَنام بَدْري الْليْلَة",
           "accepted": [
-            "هنام بدري الليلة",
+            "هَنام بَدْري الْليْلَة",
             "هنام بدري النهارده",
             "أنا هنام بدري الليلة",
             "hanaam badri el-leila"
@@ -1089,14 +1089,14 @@
           "type": "choose",
           "prompt": "Which sentence means \"Let's go out for a little walk\"?",
           "options": [
-            "تعالى ننزل نتمشى شوية",
-            "عايز أكلم أهلي",
-            "هنتعشى إيه؟",
-            "رجعت البيت"
+            "تَعالَى نِنْزِل نِتْمَشّى شُوَيّة",
+            "عَايِز أكَلّم أهْلي",
+            "هَنِتْعَشّى إيه؟",
+            "رِجِعْت الْبيت"
           ],
-          "answer": "تعالى ننزل نتمشى شوية",
+          "answer": "تَعالَى نِنْزِل نِتْمَشّى شُوَيّة",
           "accepted": [
-            "تعالى ننزل نتمشى شوية",
+            "تَعالَى نِنْزِل نِتْمَشّى شُوَيّة",
             "تعالي ننزل نتمشى شوية",
             "ta3aala nenzel netmashsha shwayya"
           ],
@@ -1111,14 +1111,14 @@
           "type": "choose",
           "prompt": "Which sentence means \"Do we want to watch a series?\"",
           "options": [
-            "تحب نتفرج على مسلسل؟",
-            "عايز آخد دش",
-            "الجو حلو بالليل",
-            "شفت صحابي بالليل"
+            "تِحِب نِتْفَرّج عَلَى مِسْلِسَل؟",
+            "عَايِز آخِد دِش",
+            "الْجَوّ حِلْو بِالْليل",
+            "شِفْت صِحابي بِالْليل"
           ],
-          "answer": "تحب نتفرج على مسلسل؟",
+          "answer": "تِحِب نِتْفَرّج عَلَى مِسْلِسَل؟",
           "accepted": [
-            "تحب نتفرج على مسلسل؟",
+            "تِحِب نِتْفَرّج عَلَى مِسْلِسَل؟",
             "te7ebb netfarrag 3ala mosalsal?",
             "تحبي نتفرج على مسلسل؟",
             "تيجي نتفرج على مسلسل؟"
@@ -1134,13 +1134,13 @@
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"أكلم / أهلي / عايز\"",
           "words": [
-            "عايز",
-            "أكلم",
-            "أهلي"
+            "عَايِز",
+            "أكَلّم",
+            "أهْلي"
           ],
-          "answer": "عايز أكلم أهلي",
+          "answer": "عَايِز أكَلّم أهْلي",
           "accepted": [
-            "عايز أكلم أهلي",
+            "عَايِز أكَلّم أهْلي",
             "3aayez akallem ahli",
             "عاوز أكلم أهلي"
           ],
@@ -1157,67 +1157,67 @@
       "phrases": [
         {
           "slot": "days-of-the-week",
-          "arabic": "الحد، الاتنين، التلات، الأربع، الخميس، الجمعة، السبت",
+          "arabic": "الْحَد، الاتْنين، التِّلات، الأرْبَع، الْخَميس، الْجُمْعَة، السَّبْت",
           "transliteration": "el-7ad, el-etneen, et-talaat, el-arba3, el-khamees, el-gom3a, es-sabt"
         },
         {
           "slot": "today-is-sunday",
-          "arabic": "النهارده الحد",
+          "arabic": "النَّهَارِده الْحَد",
           "transliteration": "en-naharda el-7ad"
         },
         {
           "slot": "tomorrow-is-monday",
-          "arabic": "بكرة الاتنين",
+          "arabic": "بِكْرَة الاتْنين",
           "transliteration": "bokra el-etneen"
         },
         {
           "slot": "next-week-there-s-a-meeting-on-tuesday",
-          "arabic": "الأسبوع الجاي فيه اجتماع يوم التلات",
+          "arabic": "الأسْبُوع الْجاي فيه اجْتِمَاع يَوْم التِّلات",
           "transliteration": "el-osboo3 el-gaay feeh egtimaa3 yoom et-talaat"
         },
         {
           "slot": "on-wednesday-i-work-until-the-evening",
-          "arabic": "يوم الأربع باشتغل لحد المسا",
+          "arabic": "يَوْم الأرْبَع بِاشْتَغِل لِحَدّ الْمَسا",
           "transliteration": "yoom el-arba3 bashtaghal la7add el-masa"
         },
         {
           "slot": "on-thursday-i-see-my-friends",
-          "arabic": "يوم الخميس بشوف صحابي",
+          "arabic": "يَوْم الْخَميس بِشُوف صِحابي",
           "transliteration": "yoom el-khamees bashoof es7aabi"
         },
         {
           "slot": "friday-is-the-day-of-prayer-and-rest",
-          "arabic": "الجمعة يوم صلاة وراحة",
+          "arabic": "الْجُمْعَة يَوْم صَلاة وَرَاحَة",
           "transliteration": "el-gom3a yoom salaa w raa7a"
         },
         {
           "slot": "on-saturday-we-go-to-the-market",
-          "arabic": "يوم السبت بننزل السوق",
+          "arabic": "يَوْم السَّبْت بِنِنْزِل السُّوق",
           "transliteration": "yoom es-sabt benenzel es-soo2"
         },
         {
           "slot": "what-do-you-plan-to-do-on-the-weekend",
-          "arabic": "ناوي تعمل إيه في الويك إند؟",
+          "arabic": "نَاوي تَعْمِل إيه في الْويك إنْد؟",
           "transliteration": "nawi te3mel eh fel-weekend?"
         },
         {
           "slot": "i-have-work-every-day-except-friday-and-saturday",
-          "arabic": "عندي شغل كل يوم غير الجمعة والسبت",
+          "arabic": "عِنْدي شُغِل كُلّ يَوْم غَيْر الْجُمْعَة وَالسَّبْت",
           "transliteration": "3andi shoghl kol yoom gheer el-gom3a wes-sabt"
         },
         {
           "slot": "when-is-the-meeting",
-          "arabic": "الاجتماع إمتى؟",
+          "arabic": "الاجْتِمَاع إمْتَى؟",
           "transliteration": "el-egtimaa3 emta?",
           "reply": {
-            "arabic": "بكرة الساعة عشرة",
+            "arabic": "بِكْرَة السَّاعَة عَشْرَة",
             "transliteration": "bokra es-saa3a 3ashra",
             "english": "Tomorrow at ten."
           }
         },
         {
           "slot": "the-weekend-comes-quickly",
-          "arabic": "الويك إند بييجي بسرعة",
+          "arabic": "الْويك إنْد بِيّيجي بِسُرْعَة",
           "transliteration": "el-weekend byeegi bsor3a"
         }
       ],
@@ -1236,7 +1236,7 @@
         },
         {
           "speaker": "Mona",
-          "arabic": "الاجتماع إمتى؟",
+          "arabic": "الاجْتِمَاع إمْتَى؟",
           "transliteration": "el-egtimaa3 emta?",
           "english": "When is the meeting?"
         },
@@ -1272,7 +1272,7 @@
         },
         {
           "speaker": "Mona",
-          "arabic": "ناوي تعمل إيه في الويك إند؟",
+          "arabic": "نَاوي تَعْمِل إيه في الْويك إنْد؟",
           "transliteration": "nawi te3mel eh fel-weekend?",
           "english": "What do you plan to do on the weekend?"
         },
@@ -1303,14 +1303,14 @@
             "english": "What day is it today?"
           },
           "response": {
-            "arabic": "النهارده الحد",
+            "arabic": "النَّهَارِده الْحَد",
             "transliteration": "en-naharda el-7ad",
             "english": "Today is Sunday."
           }
         },
         {
           "pair": {
-            "arabic": "الاجتماع إمتى؟",
+            "arabic": "الاجْتِمَاع إمْتَى؟",
             "transliteration": "el-egtimaa3 emta?",
             "english": "When is the meeting?"
           },
@@ -1334,7 +1334,7 @@
         },
         {
           "pair": {
-            "arabic": "ناوي تعمل إيه في الويك إند؟",
+            "arabic": "نَاوي تَعْمِل إيه في الْويك إنْد؟",
             "transliteration": "nawi te3mel eh fel-weekend?",
             "english": "What do you plan to do on the weekend?"
           },
@@ -1351,9 +1351,9 @@
           "id": "unit-07.lesson-04.reply.01",
           "type": "reply",
           "prompt": "A colleague asks: \"الاجتماع إمتى؟\" Say it is tomorrow at ten.",
-          "answer": "بكرة الساعة عشرة",
+          "answer": "بِكْرَة السَّاعَة عَشْرَة",
           "accepted": [
-            "بكرة الساعة عشرة",
+            "بِكْرَة السَّاعَة عَشْرَة",
             "بكرة",
             "الاجتماع بكرة",
             "bokra es-saa3a 3ashra"
@@ -1419,9 +1419,9 @@
           "id": "unit-07.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Egyptian Arabic: \"Tomorrow is Monday.\"",
-          "answer": "بكرة الاتنين",
+          "answer": "بِكْرَة الاتْنين",
           "accepted": [
-            "بكرة الاتنين",
+            "بِكْرَة الاتْنين",
             "بكرة يوم الاتنين",
             "بكره الاتنين",
             "bokra el-etneen"
@@ -1436,9 +1436,9 @@
           "id": "unit-07.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"On Thursday I see my friends.\"",
-          "answer": "يوم الخميس بشوف صحابي",
+          "answer": "يَوْم الْخَميس بِشُوف صِحابي",
           "accepted": [
-            "يوم الخميس بشوف صحابي",
+            "يَوْم الْخَميس بِشُوف صِحابي",
             "بشوف صحابي يوم الخميس",
             "يوم الخميس بشوف أصحابي",
             "yoom el-khamees bashoof es7aabi"
@@ -1453,9 +1453,9 @@
           "id": "unit-07.lesson-04.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"When is the meeting?\"",
-          "answer": "الاجتماع إمتى؟",
+          "answer": "الاجْتِمَاع إمْتَى؟",
           "accepted": [
-            "الاجتماع إمتى؟",
+            "الاجْتِمَاع إمْتَى؟",
             "الاجتماع امتى",
             "إمتى الاجتماع",
             "el-egtimaa3 emta?"
@@ -1471,14 +1471,14 @@
           "type": "choose",
           "prompt": "Which sentence means \"The weekend comes quickly\"?",
           "options": [
-            "الويك إند بييجي بسرعة",
-            "النهارده الحد",
-            "بكرة الاتنين",
-            "عندي اجتماع الساعة عشرة"
+            "الْويك إنْد بِيّيجي بِسُرْعَة",
+            "النَّهَارِده الْحَد",
+            "بِكْرَة الاتْنين",
+            "عِنْدي اجْتِمَاع السَّاعَة عَشْرَة"
           ],
-          "answer": "الويك إند بييجي بسرعة",
+          "answer": "الْويك إنْد بِيّيجي بِسُرْعَة",
           "accepted": [
-            "الويك إند بييجي بسرعة",
+            "الْويك إنْد بِيّيجي بِسُرْعَة",
             "el-weekend byeegi bsor3a",
             "الويك إند بيجي بسرعة"
           ],
@@ -1515,15 +1515,15 @@
           "type": "reorder",
           "prompt": "Put these pieces in a natural order: \"الجمعة والسبت / غير / كل يوم / شغل / عندي\"",
           "words": [
-            "عندي",
-            "شغل",
-            "كل يوم",
-            "غير",
-            "الجمعة والسبت"
+            "عِنْدي",
+            "شُغِل",
+            "كُلّ يَوْم",
+            "غَيْر",
+            "الْجُمْعَة وَالسَّبْت"
           ],
-          "answer": "عندي شغل كل يوم غير الجمعة والسبت",
+          "answer": "عِنْدي شُغِل كُلّ يَوْم غَيْر الْجُمْعَة وَالسَّبْت",
           "accepted": [
-            "عندي شغل كل يوم غير الجمعة والسبت",
+            "عِنْدي شُغِل كُلّ يَوْم غَيْر الْجُمْعَة وَالسَّبْت",
             "كل يوم عندي شغل غير الجمعة والسبت",
             "3andi shoghl kol yoom gheer el-gom3a wes-sabt"
           ],
@@ -1567,7 +1567,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "الساعة كام دلوقتي؟",
+          "arabic": "السَّاعَة كَام دِلْوَقْتِي؟",
           "transliteration": "es-saa3a kaam dilwa2ti?",
           "english": "What time is it now?"
         },

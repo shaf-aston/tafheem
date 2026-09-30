@@ -1,0 +1,1694 @@
+{
+  "unit": "unit-03",
+  "dialect": "Yemeni Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "hello-do-you-have-fresh-vegetables",
+          "arabic": "السَّلَامُ عَلَيْكُم، عِندَك خُضْرَة طَازَة؟",
+          "transliteration": "as-salam 3alaykum, 3indak khudra taza?",
+          "reply": {
+            "arabic": "وَعَلَيْكُم السَّلَامُ، أَيْوَة عِندِي، تِفَضَّل",
+            "transliteration": "w 3alaykum as-salam, aywah 3indi, tfaddal",
+            "english": "Welcome, yes I have, go ahead"
+          }
+        },
+        {
+          "slot": "i-want-a-kilo-of-tomatoes-please",
+          "arabic": "أَبِي كِيلُو بَندُورَة لَو سَمَحْت",
+          "transliteration": "abi kilo bandoora law samaht",
+          "reply": {
+            "arabic": "تِكْرَم عَيْنَك، دَلْوَقْتِي أَوْزِنْهَا لَك",
+            "transliteration": "tikram 3aynak, dilwa2ti awzinha lak",
+            "english": "Right away, I'll weigh it for you now"
+          }
+        },
+        {
+          "slot": "how-much-is-the-cucumber",
+          "arabic": "بِكَم الْخِيَار؟",
+          "transliteration": "bikam il-khyar?",
+          "reply": {
+            "arabic": "الْكِيلُو بِمِيَّتَيْن رِيَال",
+            "transliteration": "il-kilo b-miytayn riyal",
+            "english": "The kilo is two hundred riyals"
+          }
+        },
+        {
+          "slot": "do-you-have-onions-and-garlic",
+          "arabic": "عِندَك بَصَل وَتُوم؟",
+          "transliteration": "3indak basal w toom?",
+          "reply": {
+            "arabic": "أَيْوَة، كَم تَبِي مِنّْن؟",
+            "transliteration": "aywah, kam tabi minon?",
+            "english": "Yes, how much of each do you want?"
+          }
+        },
+        {
+          "slot": "i-want-half-a-kilo-of-potatoes",
+          "arabic": "أَبِي نِصّ كِيلُو بَطَاطَا",
+          "transliteration": "abi nuss kilo batata"
+        },
+        {
+          "slot": "is-this-cucumber-fresh-or-not",
+          "arabic": "دَا الْخِيَار طَازَة وِلَّا لَأ؟",
+          "transliteration": "da il-khyar taza wla la2?",
+          "reply": {
+            "arabic": "طَازَة وَاللَّه، دَيْبَة جِيبِتْهَا الْيَوْم",
+            "transliteration": "taza wallah, dayba jibtha il-yom",
+            "english": "Fresh, I brought it today"
+          }
+        },
+        {
+          "slot": "give-me-a-bag-of-parsley-and-coriander",
+          "arabic": "عَطِينِي شُنْطَة بَقْدُونَس وَكِزْبَرَة",
+          "transliteration": "3atini shunta bagdoones w kizbara"
+        },
+        {
+          "slot": "this-price-is-a-bit-expensive",
+          "arabic": "دَا السِّعْر غَالِي شْوَيّ",
+          "transliteration": "da es-si3r ghali shway",
+          "reply": {
+            "arabic": "خَلَاص، أَنْزِل لَك شْوَيّ",
+            "transliteration": "khalaas, anzil lak shway",
+            "english": "Okay, I'll lower it a bit for you"
+          }
+        },
+        {
+          "slot": "do-you-have-sweet-peppers",
+          "arabic": "عِندَك فِلِفِل حِلْو؟",
+          "transliteration": "3indak filful hilw?",
+          "reply": {
+            "arabic": "أَيْوَة، حَمْرَاء وَخَضْرَاء",
+            "transliteration": "aywah, hamra2 w khadra2",
+            "english": "Yes, red and green"
+          }
+        },
+        {
+          "slot": "how-much-are-the-two-kilos-together",
+          "arabic": "كَم الْكِيلُوَيْن مَعَا؟",
+          "transliteration": "kam il-kiloyn ma3a?",
+          "reply": {
+            "arabic": "الِاثْنَيْن بِأَرْبَعْمِيَّة رِيَال",
+            "transliteration": "il-ithnayn b-arba3miyya riyal",
+            "english": "Both together are four hundred riyals"
+          }
+        },
+        {
+          "slot": "keep-the-change-thank-you",
+          "arabic": "خُد الْبَاقِي، اللَّه يِبَارِك فِيك",
+          "transliteration": "khod il-ba2i, alla ybarek fik",
+          "reply": {
+            "arabic": "اللَّه يِبَارِك فِيك، بِالْهَنَا",
+            "transliteration": "alla ybarek fik, bil-hana",
+            "english": "Thank you, enjoy"
+          }
+        },
+        {
+          "slot": "that-s-enough-like-that-thanks",
+          "arabic": "دَا يِكْفِي هَيْك، شُكْرًا",
+          "transliteration": "da yikfi heyk, shukran"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "زَبُون",
+          "arabic": "السَّلَام عَلَيْكُم",
+          "transliteration": "as-salam 3alaykum",
+          "english": "Hello"
+        },
+        {
+          "speaker": "بَيَّاع",
+          "arabic": "وَعَلَيْكُم السَّلَام، أَهْلًا وَسَهْلًا",
+          "transliteration": "w 3alaykum as-salam, ahlan w sahlan",
+          "english": "Welcome"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "أَبِي كِيلُو بَندُورَة وَكِيلُو خِيَار",
+          "transliteration": "abi kilo bandoora w kilo khyar",
+          "english": "I want a kilo of tomatoes and a kilo of cucumbers"
+        },
+        {
+          "speaker": "بَيَّاع",
+          "arabic": "تِكْرَم عَيْنَك، شَيّ غَيْر؟",
+          "transliteration": "tikram 3aynak, shay ghayr?",
+          "english": "Right away, anything else?"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "أَيْوَة، عِندَك بَصَل طَازَة؟",
+          "transliteration": "aywah, 3indak basal taza?",
+          "english": "Yes, do you have fresh onions?"
+        },
+        {
+          "speaker": "بَيَّاع",
+          "arabic": "أَيْوَة، كَم تَبِي؟",
+          "transliteration": "aywah, kam tabi?",
+          "english": "Yes, how much do you want?"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "نِصّ كِيلُو يِكْفِي",
+          "transliteration": "nuss kilo yikfi",
+          "english": "Half a kilo is enough"
+        },
+        {
+          "speaker": "بَيَّاع",
+          "arabic": "تَمَام، شَيّ غَيْر؟",
+          "transliteration": "tamam, shay ghayr?",
+          "english": "Fine, anything else?"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "لَأ، دَا بِس. بِكَم الْحِسَاب كُلّ؟",
+          "transliteration": "la2, da bas. bikam il-hisab kull?",
+          "english": "No, that's it. How much is the total?"
+        },
+        {
+          "speaker": "بَيَّاع",
+          "arabic": "بِأَلْف رِيَال كُلّ",
+          "transliteration": "b-alf riyal kull",
+          "english": "One thousand riyals altogether"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "تِفَضَّل، خُد الْفُلُوس",
+          "transliteration": "tfaddal, khod il-fuloos",
+          "english": "Here you go"
+        },
+        {
+          "speaker": "بَيَّاع",
+          "arabic": "اللَّه يِبَارِك فِيك، بِالْهَنَا",
+          "transliteration": "alla ybarek fik, bil-hana",
+          "english": "Thank you, enjoy"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بِكَم الْخِيَار؟",
+            "transliteration": "bikam il-khyar?",
+            "english": "How much is the cucumber?"
+          },
+          "response": {
+            "arabic": "الْكِيلُو بِمِيَّتَيْن رِيَال",
+            "transliteration": "il-kilo b-miytayn riyal",
+            "english": "The kilo is two hundred riyals"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عِندَك خُضْرَة طَازَة؟",
+            "transliteration": "3indak khudra taza?",
+            "english": "Do you have fresh vegetables?"
+          },
+          "response": {
+            "arabic": "أَيْوَة، كُلّ شَيّ طَازَة الْيَوْم",
+            "transliteration": "aywah, kull shay taza il-yom",
+            "english": "Yes, everything is fresh today"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تَبِي شُنْطَة وِلَّا اثْنَيْن؟",
+            "transliteration": "tabi shunta wla ithnayn?",
+            "english": "Do you want one bag or two?"
+          },
+          "response": {
+            "arabic": "شُنْطَة وَاحِدَة تِكْفِي",
+            "transliteration": "shunta wa7da tikfi",
+            "english": "One bag is enough"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِي خَصْم لَو أَخَدْت أَكْتَر؟",
+            "transliteration": "fi khasm law akhadt aktar?",
+            "english": "Is there a discount if I take more?"
+          },
+          "response": {
+            "arabic": "أَيْوَة، أَنْزِل لَك شْوَيّ",
+            "transliteration": "aywah, anzil lak shway",
+            "english": "Yes, I'll lower it for you"
+          }
+        }
+      ],
+      "culture": "عِند السَّبّاع بِالسُّوق اليمني بِتَحْكِي السّلام الكامل قَبْل مَا تَسْأَل عَن السِّعْر، وَمِن الأَدَب إِنْ تَسْأَل كَم البِضاعة وَتُبّ تِفَاوِض عَالسِّعْر خَفِيف. لمّا تَدْفَع وتَاخِد غِرَاضَك، بِتَقُول اللَّه يِبَارِك فِيك وهُو بِيّرُدّ عَلَيْك، هَيْك الطّريقة بِتِتحكّى دَايِم بِسُوق الخُضِر اليمني.",
+      "exercises": [
+        {
+          "id": "unit-03.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "البَيَّاع سَأَلَك: أَبِي كِيلُو وِلَّا كِيلُوَيْن بَندُورَة؟",
+          "answer": "كِيلُو يِكْفِي",
+          "accepted": [
+            "كِيلُو يِكْفِي",
+            "كيلو يكفي",
+            "kilo yikfi"
+          ],
+          "too_formal": {
+            "item": "كيلوغرام واحد يكفيني",
+            "feedback": "فصيحة لكن في السوق اليمني ما حدا يقول هيك، المتعارف عليه كيلو يكفي"
+          },
+          "tip": "بالسوق اليمني بيقولوا كيلو مش كيلوغرام"
+        },
+        {
+          "id": "unit-03.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "البَيَّاع سَأَلَك: شَيّ غَيْر؟",
+          "answer": "لَأ، دَا بِس",
+          "accepted": [
+            "لَأ، دَا بِس",
+            "لا، دا بس",
+            "la2, da bas"
+          ],
+          "too_formal": {
+            "item": "لا، هذا كل ما أحتاجه",
+            "feedback": "فصيحة، الجملة اليمنية العامية منقول لا، دا بس"
+          },
+          "tip": "دا بس = that's it"
+        },
+        {
+          "id": "unit-03.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "بِكَم ___ الْخِيَار؟",
+          "answer": "سِعْر",
+          "accepted": [
+            "سِعْر",
+            "سعر",
+            "si3r"
+          ],
+          "too_formal": {
+            "item": "ما هو ثمن الخيار",
+            "feedback": "ثمن كلمة فصيحة، الصيغة اليمنية بنقول بكم سعر"
+          },
+          "tip": "بكم سعر = how much is"
+        },
+        {
+          "id": "unit-03.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "أَبِي ___ كِيلُو بَطَاطَا",
+          "answer": "نِصّ",
+          "accepted": [
+            "نِصّ",
+            "نص",
+            "nus"
+          ],
+          "too_formal": {
+            "item": "نصف كيلوغرام من البطاطا",
+            "feedback": "نصف كيلوغرام طويلة وفصيحة، في اليمن بنقول نص كيلو"
+          },
+          "tip": "نص كيلو = half a kilo"
+        },
+        {
+          "id": "unit-03.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Give me a bag of parsley and coriander",
+          "answer": "عَطِينِي شُنْطَة بَقْدُونَس وَكِزْبَرَة",
+          "accepted": [
+            "عَطِينِي شُنْطَة بَقْدُونَس وَكِزْبَرَة",
+            "عطيني شنطة بقدونس وكزبرا",
+            "3atini shunta bagdoones w kizbara"
+          ],
+          "too_formal": {
+            "item": "أعطني كيس من البقدونس والكزبرة",
+            "feedback": "فصيحة زيادة عن اللزوم، في السوق اليمني بيقولوا عطيني شنطة"
+          },
+          "tip": "عطيني = give me"
+        },
+        {
+          "id": "unit-03.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "This price is a bit expensive",
+          "answer": "دَا السِّعْر غَالِي شْوَيّ",
+          "accepted": [
+            "دَا السِّعْر غَالِي شْوَيّ",
+            "دا السعر غالي شوي",
+            "da es-si3r ghali shway"
+          ],
+          "too_formal": {
+            "item": "إن هذا السعر مرتفع بعض الشيء",
+            "feedback": "طويلة وفصيحة، في اليمن بيقولوا دا السعر غالي شوي"
+          },
+          "tip": "شوي = a little"
+        },
+        {
+          "id": "unit-03.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "كَيْف تَسْأَل عَن السِّعْر بِالسُّوق اليمني؟",
+          "answer": "بِكَم السِّعْر؟",
+          "accepted": [
+            "بِكَم السِّعْر؟",
+            "بكم السعر؟",
+            "bikam es-si3r?"
+          ],
+          "too_formal": {
+            "item": "ما هو السعر؟",
+            "feedback": "فصيحة، في السوق اليمني بنسأل بكم السعر"
+          },
+          "tip": "بكم = how much",
+          "options": [
+            "بِكَم السِّعْر؟",
+            "كَم السَّاعَة؟",
+            "وَيْن الْبَيْت؟",
+            "شُو اسْمَك؟"
+          ]
+        },
+        {
+          "id": "unit-03.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "تَرْجِم: fresh vegetables",
+          "answer": "خُضْرَة طَازَة",
+          "accepted": [
+            "خُضْرَة طَازَة",
+            "خضرة طازة",
+            "khudra taza"
+          ],
+          "too_formal": {
+            "item": "خضروات طازجة",
+            "feedback": "فصيحة، في العامية اليمنية بنقول خضرة طازة"
+          },
+          "tip": "طَازَة = fresh",
+          "options": [
+            "خُضْرَة طَازَة",
+            "خُضْرَة قَدِيمَة",
+            "فَوَاكِه نَاشِفَة",
+            "لَحْمَة مَفْرُومَة"
+          ]
+        },
+        {
+          "id": "unit-03.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "رَتِّب الْجُمْلَة: I want a kilo of tomatoes please",
+          "answer": "أَبِي كِيلُو بَندُورَة لَو سَمَحْت",
+          "accepted": [
+            "أَبِي كِيلُو بَندُورَة لَو سَمَحْت",
+            "أبي كيلو بندورة لو سمحت",
+            "abi kilo bandoora law samaht"
+          ],
+          "too_formal": {
+            "item": "أريد كيلو من البندورة من فضلك",
+            "feedback": "فصيحة، في اليمن العامية بنقول أبي مش أريد"
+          },
+          "tip": "أَبِي = I want"
+        },
+        {
+          "id": "unit-03.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "رَتِّب الْجُمْلَة: Do you have onions and garlic?",
+          "answer": "عِندَك بَصَل وَتُوم؟",
+          "accepted": [
+            "عِندَك بَصَل وَتُوم؟",
+            "عندك بصل وتوم؟",
+            "3indak basal w toom?"
+          ],
+          "too_formal": {
+            "item": "هل يوجد لديك بصل وثوم؟",
+            "feedback": "فصيحة، في العامية اليمنية بنقول عندك"
+          },
+          "tip": "عندك = do you have"
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "i-want-a-fresh-bundle-of-bread",
+          "arabic": "أَبِي رِبْطَة خُبْز طَازَة",
+          "transliteration": "abi ribta khubz taza",
+          "reply": {
+            "arabic": "دَلْوَقْتِي طَالِعَة مِن التَّنّور",
+            "transliteration": "dilwa2ti tali3a min it-tannur",
+            "english": "Just out of the oven"
+          }
+        },
+        {
+          "slot": "how-much-is-a-bundle-of-bread",
+          "arabic": "بِكَم رِبْطَة الْخُبْز؟",
+          "transliteration": "bikam ribta il-khubz?",
+          "reply": {
+            "arabic": "بِخَمْسِين رِيَال الرِّبْطَة",
+            "transliteration": "b-khamseen riyal ir-ribta",
+            "english": "Fifty riyals per bundle"
+          }
+        },
+        {
+          "slot": "i-want-a-kilo-of-ground-meat",
+          "arabic": "أَبِي كِيلُو لَحْمَة مَفْرُومَة",
+          "transliteration": "abi kilo lahma mafrooma",
+          "reply": {
+            "arabic": "ضَأْن وِلَّا بَقَر؟",
+            "transliteration": "da2n wla ba2ar?",
+            "english": "Lamb or beef?"
+          }
+        },
+        {
+          "slot": "give-me-a-kilo-of-lamb-without-bone",
+          "arabic": "عَطِينِي كِيلُو لَحْم ضَأْن بِدُون عِظْم",
+          "transliteration": "3atini kilo lahm da2n bidun 3azm"
+        },
+        {
+          "slot": "i-want-half-a-kilo-of-kofta",
+          "arabic": "أَبِي نِصّ كِيلُو كُفْتَة",
+          "transliteration": "abi nuss kilo kufta",
+          "reply": {
+            "arabic": "دَلْوَقْتِي بِحَضِّرْهَا لَك",
+            "transliteration": "dilwa2ti ba-haddirha lak",
+            "english": "I'll prepare it now"
+          }
+        },
+        {
+          "slot": "is-the-bakery-open-now",
+          "arabic": "التَّنّور فَاتِح دَلْوَقْتِي؟",
+          "transliteration": "it-tannur fati7 dilwa2ti?",
+          "reply": {
+            "arabic": "أَيْوَة، فَاتِح مِن الصُّبِح",
+            "transliteration": "aywah, fati7 min is-subuh",
+            "english": "Yes, open since morning"
+          }
+        },
+        {
+          "slot": "do-you-want-pita-bread-or-markook",
+          "arabic": "تَبِي خُبْز عَرَبِي وِلَّا صِاج؟",
+          "transliteration": "tabi khubz 3arabi wla saj?"
+        },
+        {
+          "slot": "cut-the-meat-into-small-pieces-for-me",
+          "arabic": "قَطِّعْلِي اللَّحْمَة قِطَع صِغِيرَة",
+          "transliteration": "qatta3li il-lahma qita3 sghira",
+          "reply": {
+            "arabic": "تِكْرَم عَيْنَك",
+            "transliteration": "tikram 3aynak",
+            "english": "Right away"
+          }
+        },
+        {
+          "slot": "do-you-have-ready-made-kibbeh",
+          "arabic": "عِندَك كِبَّة جَاهِزَة؟",
+          "transliteration": "3indak kibba jahza?",
+          "reply": {
+            "arabic": "أَيْوَة فِي نِيَّة وَمَقْلِيَّة",
+            "transliteration": "aywah fi niyya w ma2liyya",
+            "english": "Yes raw and fried"
+          }
+        },
+        {
+          "slot": "this-bread-is-very-hot",
+          "arabic": "دَا الْخُبْز سَاخِن وَايِد",
+          "transliteration": "da il-khubz sa-khin wa-ayd",
+          "reply": {
+            "arabic": "خَلِّيه شْوَيّ يَبْرُد",
+            "transliteration": "khallih shway yabrud",
+            "english": "Let it cool a bit"
+          }
+        },
+        {
+          "slot": "how-much-is-a-kilo-of-meat-today",
+          "arabic": "بِكَم كِيلُو اللَّحْمَة الْيَوْم؟",
+          "transliteration": "bikam kilo il-lahma il-yom?",
+          "reply": {
+            "arabic": "بِأَرْبَعْمِيَّة رِيَال الْكِيلُو",
+            "transliteration": "b-arba3miyya riyal il-kilo",
+            "english": "Four hundred riyals per kilo"
+          }
+        },
+        {
+          "slot": "god-bless-you-good-night",
+          "arabic": "اللَّه يِبَارِك فِيك، تِصْبَح عَلَى خَيْر",
+          "transliteration": "alla ybarek fik, tisba7 3ala khayr"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "زَبُون",
+          "arabic": "السَّلام عَلَيْكُم",
+          "transliteration": "as-salam 3alaykum",
+          "english": "Hello"
+        },
+        {
+          "speaker": "خَبَّاز",
+          "arabic": "وَعَلَيْكُم السَّلام، أَهْلًا وَسَهْلًا",
+          "transliteration": "w 3alaykum as-salam, ahlan w sahlan",
+          "english": "Welcome"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "أَبِي رِبْطَة خُبْز طَازَة",
+          "transliteration": "abi ribta khubz taza",
+          "english": "Fresh bread"
+        },
+        {
+          "speaker": "خَبَّاز",
+          "arabic": "دَلْوَقْتِي طَالِعَة مِن التَّنّور، تِفَضَّل",
+          "transliteration": "dilwa2ti tali3a min it-tannur, tfaddal",
+          "english": "Just out, here you go"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "تِكْرَم عَيْنَك. أَبِي أَرُوح عِند الْجَزَّار كَمَان",
+          "transliteration": "tikram 3aynak. abi aruuh 3ind il-jazzar kaman",
+          "english": "I also need the butcher"
+        },
+        {
+          "speaker": "جَزَّار",
+          "arabic": "أَهْلًا وَسَهْلًا، تِفَضَّل",
+          "transliteration": "ahlan w sahlan, tfaddal",
+          "english": "Welcome"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "أَبِي كِيلُو لَحْمَة مَفْرُومَة",
+          "transliteration": "abi kilo lahma mafrooma",
+          "english": "Ground meat"
+        },
+        {
+          "speaker": "جَزَّار",
+          "arabic": "ضَأْن وِلَّا بَقَر تَبِي؟",
+          "transliteration": "da2n wla ba2ar tabi?",
+          "english": "Lamb or beef?"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "ضَأْن أَحْسَن",
+          "transliteration": "da2n ahsan",
+          "english": "Lamb is better"
+        },
+        {
+          "speaker": "جَزَّار",
+          "arabic": "تِكْرَم عَيْنَك، دَلْوَقْتِي أَفْرِمُهَا لَك",
+          "transliteration": "tikram 3aynak, dilwa2ti afrumha lak",
+          "english": "Grinding now"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "بِكَم الْحِسَاب كُلّ؟",
+          "transliteration": "bikam il-hisab kull?",
+          "english": "Total bill?"
+        },
+        {
+          "speaker": "جَزَّار",
+          "arabic": "بِأَرْبَعْمِيَّة وَخَمْسِين رِيَال",
+          "transliteration": "b-arba3miyya w khamseen riyal",
+          "english": "450 riyals"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "تَبِي خُبْز عَرَبِي وِلَّا صِاج؟",
+            "transliteration": "tabi khubz 3arabi wla saj?",
+            "english": "Pita or flatbread?"
+          },
+          "response": {
+            "arabic": "أَبِي عَرَبِي",
+            "transliteration": "abi 3arabi",
+            "english": "Pita"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عِندَك لَحْمَة طَازَة؟",
+            "transliteration": "3indak lahma taza?",
+            "english": "Fresh meat?"
+          },
+          "response": {
+            "arabic": "أَيْوَة، جِيبِتْهَا الصُّبِح",
+            "transliteration": "aywah, jibtha is-subuh",
+            "english": "Yes, this morning"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بِكَم الرِّبْطَة الْوَاحِدَة؟",
+            "transliteration": "bikam ir-ribta il-wa7da?",
+            "english": "One bundle?"
+          },
+          "response": {
+            "arabic": "بِخَمْسِين رِيَال",
+            "transliteration": "b-khamseen riyal",
+            "english": "Fifty"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تَبِي أَقَطِّعْ لَك اللَّحْمَة؟",
+            "transliteration": "tabi aqatta3 lak il-lahma?",
+            "english": "Cut it for you?"
+          },
+          "response": {
+            "arabic": "أَيْوَة، قِطَع صِغِيرَة لَو سَمَحْت",
+            "transliteration": "aywah, qita3 sghira law samaht",
+            "english": "Small pieces please"
+          }
+        }
+      ],
+      "culture": "الْخُبْز الطَّازّ بِيشْرِي يَوْمِيًّا عِند اليمنيين، والكثير منهم بيحبوا يجيبوا الخبز من التنور وهو للتو طالع. عِند الجَزَّار، الْسُّؤال الأول دايِمًا ضَأْن وِلَّا بَقَر، لَأَنَّ كُلّ نَوع سِعْره وطَعْمه مختلف. الْلَحْمَة الطّازة والخبز الدافي هما من أساسيات الطعام اليمني اليومي.",
+      "exercises": [
+        {
+          "id": "unit-03.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "الْجَزَّار سَأَلَك: ضَأْن وِلَّا بَقَر تَبِي؟",
+          "answer": "ضَأْن أَحْسَن",
+          "accepted": [
+            "ضَأْن أَحْسَن",
+            "ضان احسن",
+            "da2n ahsan"
+          ],
+          "too_formal": {
+            "item": "أفضل لحم الضأن",
+            "feedback": "فصيحة، في اليمن بنقول ضان احسن"
+          },
+          "tip": "ضَأْن = lamb"
+        },
+        {
+          "id": "unit-03.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "الخَبَّاز سَأَلَك: شَيّ غَيْر؟",
+          "answer": "لَأ، دَا بِس شُكْرًا",
+          "accepted": [
+            "لَأ، دَا بِس شُكْرًا",
+            "لا، دا بس شكرا",
+            "la2, da bas shukran"
+          ],
+          "too_formal": {
+            "item": "لا، هذا كل ما أحتاجه",
+            "feedback": "طويلة وفصيحة"
+          },
+          "tip": "دا بس"
+        },
+        {
+          "id": "unit-03.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "أَبِي ___ كِيلُو كُفْتَة",
+          "answer": "نِصّ",
+          "accepted": [
+            "نِصّ",
+            "نص",
+            "nus"
+          ],
+          "too_formal": {
+            "item": "نصف كيلوغرام من الكفتة",
+            "feedback": "طويلة وفصيحة"
+          },
+          "tip": "نص كيلو"
+        },
+        {
+          "id": "unit-03.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "قَطِّعْلِي اللَّحْمَة قِطَع ___",
+          "answer": "صِغِيرَة",
+          "accepted": [
+            "صِغِيرَة",
+            "صغيرة",
+            "sghira"
+          ],
+          "too_formal": {
+            "item": "قطعا صغيرة الحجم",
+            "feedback": "فصيحة"
+          },
+          "tip": "صِغِيرَة = small"
+        },
+        {
+          "id": "unit-03.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Give me a kilo of lamb without bone",
+          "answer": "عَطِينِي كِيلُو لَحْم ضَأْن بِدُون عِظْم",
+          "accepted": [
+            "عَطِينِي كِيلُو لَحْم ضَأْن بِدُون عِظْم",
+            "عطيني كيلو لحم ضان بدون عظم",
+            "3atini kilo lahm da2n bidun 3azm"
+          ],
+          "too_formal": {
+            "item": "أعطني كيلو من لحم الضأن بدون عظم",
+            "feedback": "طويلة وفصيحة"
+          },
+          "tip": "بدون"
+        },
+        {
+          "id": "unit-03.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "This bread is very hot",
+          "answer": "دَا الْخُبْز سَاخِن وَايِد",
+          "accepted": [
+            "دَا الْخُبْز سَاخِن وَايِد",
+            "دا الخبز ساخن وايد",
+            "da il-khubz sa-khin wa-ayd"
+          ],
+          "too_formal": {
+            "item": "إن هذا الخبز ساخن جداً",
+            "feedback": "فصيحة"
+          },
+          "tip": "وَايِد = very"
+        },
+        {
+          "id": "unit-03.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "شُو بِتَسْأَل الْجَزَّار قَبْل مَا تَطْلُب اللَّحْمَة؟",
+          "answer": "ضَأْن وِلَّا بَقَر؟",
+          "accepted": [
+            "ضَأْن وِلَّا بَقَر؟",
+            "ضان ولا بقر؟",
+            "da2n wla ba2ar?"
+          ],
+          "too_formal": {
+            "item": "أتريد لحم الضأن أم لحم البقر؟",
+            "feedback": "طويلة وفصيحة"
+          },
+          "tip": "ضَأْن = lamb",
+          "options": [
+            "ضَأْن وِلَّا بَقَر؟",
+            "وَيْن الْفُرْن؟",
+            "شُو السَّاعَة؟",
+            "كِيفَك الْيَوْم؟"
+          ]
+        },
+        {
+          "id": "unit-03.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "تَرْجِم: fresh bread",
+          "answer": "خُبْز طَازَة",
+          "accepted": [
+            "خُبْز طَازَة",
+            "خبز طازة",
+            "khubz taza"
+          ],
+          "too_formal": {
+            "item": "خبز طازج",
+            "feedback": "فصيحة"
+          },
+          "tip": "طَازَة",
+          "options": [
+            "خُبْز طَازَة",
+            "لَحْمَة نِيَّة",
+            "بَصَل مَقْلِي",
+            "رِزّ مَسْلُوق"
+          ]
+        },
+        {
+          "id": "unit-03.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "رَتِّب الْجُمْلَة: I want a fresh bundle of bread",
+          "answer": "أَبِي رِبْطَة خُبْز طَازَة",
+          "accepted": [
+            "أَبِي رِبْطَة خُبْز طَازَة",
+            "أبي ربطة خبز طازة",
+            "abi ribta khubz taza"
+          ],
+          "too_formal": {
+            "item": "أريد ربطة من الخبز الطازج",
+            "feedback": "فصيحة"
+          },
+          "tip": "رِبْطَة"
+        },
+        {
+          "id": "unit-03.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "رَتِّب الْجُمْلَة: Do you have ready-made kibbeh?",
+          "answer": "عِندَك كِبَّة جَاهِزَة؟",
+          "accepted": [
+            "عِندَك كِبَّة جَاهِزَة؟",
+            "عندك كبة جاهزة؟",
+            "3indak kibba jahza?"
+          ],
+          "too_formal": {
+            "item": "هل يوجد لديك كبة جاهزة؟",
+            "feedback": "فصيحة"
+          },
+          "tip": "جَاهِزَة"
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "what-are-you-going-to-cook-today",
+          "arabic": "شُو رَح تِطْبُخِي الْيَوْم؟",
+          "transliteration": "shu ra7 tetbukhi il-yom?",
+          "reply": {
+            "arabic": "رَح أَعْمَل مِجَدَّرَة",
+            "transliteration": "ra7 a3mel mjaddara",
+            "english": "Mjaddara"
+          }
+        },
+        {
+          "slot": "we-need-to-put-the-rice-in-the-water",
+          "arabic": "لَازِم نِحِط الرِّزّ بِالْمَيّ",
+          "transliteration": "lazim nhet ir-rizz bil-mayy"
+        },
+        {
+          "slot": "did-you-put-enough-salt",
+          "arabic": "حَطِّيتِي الْمِلْح كِفَايَة؟",
+          "transliteration": "hattayti il-mala7 kfaya?",
+          "reply": {
+            "arabic": "أَيْوَة، حَطِّيت",
+            "transliteration": "aywah, hattayt",
+            "english": "Yes"
+          }
+        },
+        {
+          "slot": "keep-the-flame-low",
+          "arabic": "خَلِّي النَّار هَادِيَة",
+          "transliteration": "khalli en-nar hadya"
+        },
+        {
+          "slot": "the-food-is-boiling",
+          "arabic": "الْأَكْل عِمّ يِغْلِي",
+          "transliteration": "il-akel 3am yighli",
+          "reply": {
+            "arabic": "خَفِّف النَّار شْوَيّ",
+            "transliteration": "khaffif en-nar shway",
+            "english": "Lower flame"
+          }
+        },
+        {
+          "slot": "we-need-to-add-garlic-and-coriander",
+          "arabic": "لَازِم نِزِيد تُوم وَكِزْبَرَة",
+          "transliteration": "lazim nzid toom w kizbara"
+        },
+        {
+          "slot": "what-s-the-recipe-you-want-to-make",
+          "arabic": "شُو الْوَصْفَة اللِي تَبِي تِعْمَلِيهَا؟",
+          "transliteration": "shu il-wasfa elli tabi ta3milha?",
+          "reply": {
+            "arabic": "أَبِي أَعْمَل يَخْنَة بَامِيَة",
+            "transliteration": "abi a3mel yakhne bamya",
+            "english": "Okra stew"
+          }
+        },
+        {
+          "slot": "the-food-is-ready-please-come",
+          "arabic": "الْأَكْل جَاهِز، تِفَضَّلُوا",
+          "transliteration": "il-akel jahez, tfaddalu"
+        },
+        {
+          "slot": "this-dish-smells-delicious",
+          "arabic": "دَا الطَّبْخ رِيحِتُه زَاكِيَة",
+          "transliteration": "da et-tabkh ri7tu zakya",
+          "reply": {
+            "arabic": "هَنِيئًا لَك",
+            "transliteration": "haneeyan lak",
+            "english": "Enjoy"
+          }
+        },
+        {
+          "slot": "how-long-does-it-need-to-stay-on-the-fire",
+          "arabic": "قَدِّيش لَازِم يِقْعُد عَالنَّار؟",
+          "transliteration": "qaddish lazim yo2ud 3an-nar?",
+          "reply": {
+            "arabic": "نِصّ سَاعَة تَقْرِيبًا",
+            "transliteration": "nuss sa3a ta2riban",
+            "english": "Half hour"
+          }
+        },
+        {
+          "slot": "hand-me-the-big-spoon",
+          "arabic": "نَاوِلْنِي الْمِلْعَقَة الْكِبِيرَة",
+          "transliteration": "nawilni il-mal3a2a il-kbira"
+        },
+        {
+          "slot": "we-need-to-wash-the-dishes-afterward",
+          "arabic": "لَازِم نِغْسِل الصُّحُون بَعْدَيْن",
+          "transliteration": "lazim neghsel is-shu7un ba3dayn"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "الْأُم",
+          "arabic": "شُو رَح تِسَاعِدِينِي بِالطَّبْخ الْيَوْم؟",
+          "transliteration": "shu ra7 tsa3dini bet-tabkh il-yom?",
+          "english": "Help cooking?"
+        },
+        {
+          "speaker": "الْبِنْت",
+          "arabic": "أَيْوَة، شُو رَح نِعْمَل؟",
+          "transliteration": "aywah, shu ra7 ni3mel?",
+          "english": "Sure what"
+        },
+        {
+          "speaker": "الْأُم",
+          "arabic": "رَح نِعْمَل مِجَدَّرَة وَسَلَطَة",
+          "transliteration": "ra7 ni3mel mjaddara w salata",
+          "english": "Mjaddara and salad"
+        },
+        {
+          "speaker": "الْبِنْت",
+          "arabic": "تَمَام، وَيْن الرِّزّ؟",
+          "transliteration": "tamam, wayn ir-rizz?",
+          "english": "Where rice"
+        },
+        {
+          "speaker": "الْأُم",
+          "arabic": "فِي الدَّولَاب، وَحِطِّي الْمَيّ عِمّ تِغْلِي",
+          "transliteration": "fi id-dolab, w hitti il-mayy 3am tighli",
+          "english": "Cabinet put water boil"
+        },
+        {
+          "speaker": "الْبِنْت",
+          "arabic": "حَطِّيت الْمَيّ عَالنَّار",
+          "transliteration": "hattayt il-mayy 3an-nar",
+          "english": "Water on fire"
+        },
+        {
+          "speaker": "الْأُم",
+          "arabic": "مَنِيح، دَلْوَقْتِي زِيدِي شْوَيّ بَصَل مَقْلِي",
+          "transliteration": "mni7, dilwa2ti zidi shway basal ma2li",
+          "english": "Good now add fried onion"
+        },
+        {
+          "speaker": "الْبِنْت",
+          "arabic": "تَمَام، بَعْدَيْن شُو؟",
+          "transliteration": "tamam, ba3dayn shu?",
+          "english": "Then what"
+        },
+        {
+          "speaker": "الْأُم",
+          "arabic": "بَعْدَيْن خَلِّيه يِقْعُد عَالنَّار الْهَادِيَة",
+          "transliteration": "ba3dayn khallih yo2ud 3an-nar il-hadya",
+          "english": "Let sit low fire"
+        },
+        {
+          "speaker": "الْبِنْت",
+          "arabic": "قَدِّيش لَازِم يِقْعُد؟",
+          "transliteration": "qaddish lazim yo2ud?",
+          "english": "How long"
+        },
+        {
+          "speaker": "الْأُم",
+          "arabic": "عِشْرِين دَقِيقَة، بَعْدَيْن جَاهِز",
+          "transliteration": "3ishrin da2i2a, ba3dayn jahez",
+          "english": "Twenty minutes then ready"
+        },
+        {
+          "speaker": "الْبِنْت",
+          "arabic": "اللَّه يِبَارِك فِيك، رَح أَحَضِّر السَّلَطَة",
+          "transliteration": "alla ybarek fik, ra7 a-hadddir is-salata",
+          "english": "I'll prep salad"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شُو رَح تِطْبُخِي الْيَوْم؟",
+            "transliteration": "shu ra7 tetbukhi il-yom?",
+            "english": "Cook today?"
+          },
+          "response": {
+            "arabic": "رَح أَعْمَل يَخْنَة بَامِيَة",
+            "transliteration": "ra7 a3mel yakhne bamya",
+            "english": "Okra stew"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "حَطِّيتِي الْمِلْح؟",
+            "transliteration": "hattayti il-mala7?",
+            "english": "Salt?"
+          },
+          "response": {
+            "arabic": "أَيْوَة حَطِّيت، لَكِن شْوَيّ",
+            "transliteration": "aywah hattayt, lakin shway",
+            "english": "Yes bit"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الْأَكْل جَاهِز؟",
+            "transliteration": "il-akel jahez?",
+            "english": "Ready?"
+          },
+          "response": {
+            "arabic": "لِسَّه، خَلِّيه شْوَيّ كَمَان",
+            "transliteration": "lissa, khallih shway kaman",
+            "english": "Not yet"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مِين رَح يِغْسِل الصُّحُون؟",
+            "transliteration": "min ra7 yighsel is-shu7un?",
+            "english": "Who dishes?"
+          },
+          "response": {
+            "arabic": "أَنَا رَح أَغْسِلَهَا بَعْدِ الْأَكْل",
+            "transliteration": "ana ra7 aghaslha ba3d il-akel",
+            "english": "I'll after eating"
+          }
+        }
+      ],
+      "culture": "الطَّبْخ بِالْبَيْت اليمني عَادَة شَيّ مُشْتَرَك بَيْن الْأُم وَالْبِنَات، وَكُلّ وَاحِدَة إِلَهَا دَوْر. الطَّبْخات اليمنية تُشْتَهِر بِالْبُهَارات وَالطُّعْم الْقَوِي. لَمّا الْأَكْل يِنْتَهِي، تِقُول الْأَم أَو الْبِنَات هَنِيئًا لَك أَو بِالْهَنَا، وهَيْك الطَّرِيقَة الْعَادِيَّة فِي كُلّ الْبُيُوت اليمنية.",
+      "exercises": [
+        {
+          "id": "unit-03.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "أُمّك سَأَلَتْك: حَطِّيتِي الْمِلْح كِفَايَة؟",
+          "answer": "أَيْوَة، حَطِّيت",
+          "accepted": [
+            "أَيْوَة، حَطِّيت",
+            "ايوة، حطيت",
+            "aywah, hattayt"
+          ],
+          "too_formal": {
+            "item": "نعم، وضعت الملح",
+            "feedback": "فصيحة"
+          },
+          "tip": "أَيْوَة = yes"
+        },
+        {
+          "id": "unit-03.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "حدا سَأَلَك: الْأَكْل جَاهِز؟",
+          "answer": "لِسَّه، خَلِّيه شْوَيّ كَمَان",
+          "accepted": [
+            "لِسَّه، خَلِّيه شْوَيّ كَمَان",
+            "لسه، خليه شوي كمان",
+            "lissa, khallih shway kaman"
+          ],
+          "too_formal": {
+            "item": "ليس جاهزا بعد",
+            "feedback": "قصيرة وفصيحة"
+          },
+          "tip": "لِسَّه = not yet"
+        },
+        {
+          "id": "unit-03.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "لَازِم نِحِط الرِّزّ ___ الْمَيّ",
+          "answer": "ب",
+          "accepted": [
+            "ب",
+            "بال",
+            "bil"
+          ],
+          "too_formal": {
+            "item": "لازم نضع الأرز في الماء",
+            "feedback": "فصيحة"
+          },
+          "tip": "ب"
+        },
+        {
+          "id": "unit-03.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "خَلِّي النَّار ___",
+          "answer": "هَادِيَة",
+          "accepted": [
+            "هَادِيَة",
+            "هادية",
+            "hadya"
+          ],
+          "too_formal": {
+            "item": "أبق النار منخفضة",
+            "feedback": "فصيحة"
+          },
+          "tip": "هَادِيَة = low"
+        },
+        {
+          "id": "unit-03.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "We need to add garlic and coriander",
+          "answer": "لَازِم نِزِيد تُوم وَكِزْبَرَة",
+          "accepted": [
+            "لَازِم نِزِيد تُوم وَكِزْبَرَة",
+            "لازم نزيد توم وكزبرا",
+            "lazim nzid toom w kizbara"
+          ],
+          "too_formal": {
+            "item": "نحتاج أن نضيف الثوم والكزبرة",
+            "feedback": "طويلة وفصيحة"
+          },
+          "tip": "لَازِم = must"
+        },
+        {
+          "id": "unit-03.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Hand me the big spoon",
+          "answer": "نَاوِلْنِي الْمِلْعَقَة الْكِبِيرَة",
+          "accepted": [
+            "نَاوِلْنِي الْمِلْعَقَة الْكِبِيرَة",
+            "ناولني الملعقة الكبيرة",
+            "nawilni il-mal3a2a il-kbira"
+          ],
+          "too_formal": {
+            "item": "أعطني الملعقة الكبيرة من فضلك",
+            "feedback": "طويلة وفصيحة"
+          },
+          "tip": "نَاوِلْنِي"
+        },
+        {
+          "id": "unit-03.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "شُو بِتَقُول لِحَدّا طَبَخ أَكْلَة زَاكِيَة؟",
+          "answer": "دَا لَذِيذ وَايِد",
+          "accepted": [
+            "دَا لَذِيذ وَايِد",
+            "دا لذيذ وايد",
+            "da ladhidh wa-ayd"
+          ],
+          "too_formal": {
+            "item": "هذا طعام شهي جداً",
+            "feedback": "فصيحة"
+          },
+          "tip": "لَذِيذ = delicious",
+          "options": [
+            "دَا لَذِيذ وَايِد",
+            "اللَّه يِبَارِك فِيك",
+            "مَبْرُوك",
+            "تِصْبَح عَلَى خَيْر"
+          ]
+        },
+        {
+          "id": "unit-03.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "تَرْجِم: put the water to boil",
+          "answer": "حِطِّي الْمَيّ عِمّ تِغْلِي",
+          "accepted": [
+            "حِطِّي الْمَيّ عِمّ تِغْلِي",
+            "حطي الماء يغلي",
+            "hitti il-mayy yighli"
+          ],
+          "too_formal": {
+            "item": "ضعي الماء ليغلي",
+            "feedback": "فصيحة"
+          },
+          "tip": "يِغْلِي = boil",
+          "options": [
+            "حِطِّي الْمَيّ عِمّ تِغْلِي",
+            "اغْسِلِي الصُّحُون",
+            "اقْطَعِي الْبَصَل",
+            "زِيدِي الْمِلْح"
+          ]
+        },
+        {
+          "id": "unit-03.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "رَتِّب الْجُمْلَة: What are you going to cook today?",
+          "answer": "شُو رَح تِطْبُخِي الْيَوْم؟",
+          "accepted": [
+            "شُو رَح تِطْبُخِي الْيَوْم؟",
+            "شو رح تطبخي اليوم؟",
+            "shu ra7 tetbukhi il-yom?"
+          ],
+          "too_formal": {
+            "item": "ماذا ستطبخين اليوم؟",
+            "feedback": "فصيحة"
+          },
+          "tip": "رَح"
+        },
+        {
+          "id": "unit-03.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "رَتِّب الْجُمْلَة: The food is ready, please come",
+          "answer": "الْأَكْل جَاهِز، تِفَضَّلُوا",
+          "accepted": [
+            "الْأَكْل جَاهِز، تِفَضَّلُوا",
+            "الأكل جاهز، تفضلوا",
+            "il-akel jahez, tfaddalu"
+          ],
+          "too_formal": {
+            "item": "الطعام جاهز، تفضلوا بالحضور",
+            "feedback": "طويلة وفصيحة"
+          },
+          "tip": "تِفَضَّلُوا = come (plural)"
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "i-love-fava-beans-a-lot",
+          "arabic": "أَنَا بِحِبّ الْفُول وَايِد",
+          "transliteration": "ana ba7eb il-ful wa-ayd",
+          "reply": {
+            "arabic": "مَنِيح، بِالْهَنَا",
+            "transliteration": "mni7, bil-hana",
+            "english": "Good enjoy"
+          }
+        },
+        {
+          "slot": "i-don-t-like-raw-tomatoes",
+          "arabic": "أَنَا مَا أَحِبّ الْبَندُورَة نِيَّة",
+          "transliteration": "ana ma a7eb il-bandoora niyya"
+        },
+        {
+          "slot": "i-prefer-sweet-food-over-salty",
+          "arabic": "أَنَا أَفَضِّل الْأَكْل الْحِلْو عَالْمَالِح",
+          "transliteration": "ana afaddil il-akel il-hilw 3al-male7",
+          "reply": {
+            "arabic": "أَنَا الْعَكْس",
+            "transliteration": "ana il-3aks",
+            "english": "Opposite"
+          }
+        },
+        {
+          "slot": "do-you-like-spicy-food",
+          "arabic": "أَنْتَ تِحِبّ الْأَكْل الْحَار؟",
+          "transliteration": "inta ta7eb il-akel il-har?",
+          "reply": {
+            "arabic": "أَيْوَة، أَحِبّه وَايِد",
+            "transliteration": "aywah, a7ebbo wa-ayd",
+            "english": "Love it"
+          }
+        },
+        {
+          "slot": "i-don-t-eat-pork",
+          "arabic": "أَنَا مَا أَأْكُل لَحْمَة خِنْزِير",
+          "transliteration": "ana ma a2kol lahma khinzir"
+        },
+        {
+          "slot": "i-love-damascene-sweets",
+          "arabic": "أَنَا أَحِبّ الْحَلْوَيَّات الشَّامِيَّة",
+          "transliteration": "ana a7eb il-halawiyyat esh-shamiyya",
+          "reply": {
+            "arabic": "كُلّنَا نِحِبّهَا",
+            "transliteration": "kullna na7ebba",
+            "english": "We all"
+          }
+        },
+        {
+          "slot": "what-s-your-favorite-dish",
+          "arabic": "شُو الْأَكْلَة الْمِفَضَّلَة عِندَك؟",
+          "transliteration": "shu il-a2la il-mfaddla 3indak?",
+          "reply": {
+            "arabic": "الْمَقْلُوبَة، مَا فِي مِثْلَهَا",
+            "transliteration": "il-ma2luba, ma fi mithla",
+            "english": "Maqluba nothing like it"
+          }
+        },
+        {
+          "slot": "i-don-t-like-sour-taste",
+          "arabic": "أَنَا مَا أَحِبّ الطَّعْم الْحَامِض",
+          "transliteration": "ana ma a7eb et-ta3em il-hames"
+        },
+        {
+          "slot": "do-you-prefer-chicken-or-meat",
+          "arabic": "أَنْتَ تِفَضِّل الدَّجَاج وِلَّا اللَّحْمَة؟",
+          "transliteration": "inta tfaddil id-djaj wla il-lahma?",
+          "reply": {
+            "arabic": "أَفَضِّل الدَّجَاج، أَخَفّ عَالْمِعْدَة",
+            "transliteration": "afaddil id-djaj, akhaf 3al-mi3da",
+            "english": "Chicken lighter"
+          }
+        },
+        {
+          "slot": "i-don-t-like-the-smell-of-fish",
+          "arabic": "أَنَا مَا أَحِبّ رِيحَة السَّمَك",
+          "transliteration": "ana ma a7eb ri7a is-samak"
+        },
+        {
+          "slot": "i-love-trying-new-dishes",
+          "arabic": "أَنَا أَحِبّ أَجَرِّب أَكْلات جَدِيدَة",
+          "transliteration": "ana a7eb ajarrib aklat jdida"
+        },
+        {
+          "slot": "i-don-t-like-this-food",
+          "arabic": "دَا الْأَكْل مَا يُعْجِبْنِي",
+          "transliteration": "da il-akel ma yu3jebni",
+          "reply": {
+            "arabic": "لِيش، شُو فِيه؟",
+            "transliteration": "laysh, shu fih?",
+            "english": "Why what"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "سَامِر",
+          "arabic": "أَنْتِ تِحِبِّين الْأَكْل الْحَار؟",
+          "transliteration": "anti ta7ebbin il-akel il-har?",
+          "english": "Like spicy"
+        },
+        {
+          "speaker": "لَيْلَى",
+          "arabic": "لَأ، مَا أَحِبّه، يِحْرِق فِي فَمِي",
+          "transliteration": "la2, ma a7ebbo, ya7re2 fi fami",
+          "english": "Burns mouth"
+        },
+        {
+          "speaker": "سَامِر",
+          "arabic": "تَمَام، شُو تِفَضِّلِين؟",
+          "transliteration": "tamam, shu tfaddlin?",
+          "english": "Prefer"
+        },
+        {
+          "speaker": "لَيْلَى",
+          "arabic": "أَفَضِّل الْأَكْل الْحِلْو الْمَالِح، مِثْل الْمَقْلُوبَة",
+          "transliteration": "afaddil il-akel il-hilw il-male7, mithl il-ma2luba",
+          "english": "Sweet salty like maqluba"
+        },
+        {
+          "speaker": "سَامِر",
+          "arabic": "أَنَا كَمَان أَحِبّهَا وَايِد",
+          "transliteration": "ana kaman a7ebba wa-ayd",
+          "english": "Me too love"
+        },
+        {
+          "speaker": "لَيْلَى",
+          "arabic": "وَأَنْتَ، شُو الَّذِي مَا تِحِبّ؟",
+          "transliteration": "w inta, shu il-ladhi ma ta7eb?",
+          "english": "You what not like"
+        },
+        {
+          "speaker": "سَامِر",
+          "arabic": "أَنَا مَا أَحِبّ رِيحَة السَّمَك إِطْلَاقًا",
+          "transliteration": "ana ma a7eb ri7a is-samak itlaqan",
+          "english": "Fish smell at all"
+        },
+        {
+          "speaker": "لَيْلَى",
+          "arabic": "لِيش؟ أَنَا أَحِبّ السَّمَك",
+          "transliteration": "laysh? ana a7eb is-samak",
+          "english": "Why I like"
+        },
+        {
+          "speaker": "سَامِر",
+          "arabic": "بَس رِيحِتُه مَا تُعْجِبْنِي",
+          "transliteration": "bas ri7tu ma tu3jebni",
+          "english": "Just smell"
+        },
+        {
+          "speaker": "لَيْلَى",
+          "arabic": "تَمَام، شُو أَكْلَتَك الْمِفَضَّلَة؟",
+          "transliteration": "tamam, shu a2litak il-mfaddla?",
+          "english": "Favorite"
+        },
+        {
+          "speaker": "سَامِر",
+          "arabic": "الْكِبَّة، مَا فِي أَطْيَب مِنْهَا",
+          "transliteration": "il-kibba, ma fi atyab minha",
+          "english": "Kibbeh nothing tastier"
+        },
+        {
+          "speaker": "لَيْلَى",
+          "arabic": "بِالْهَنَا، لَازِم نِجَرِّبْهَا سَوَا يَوْم",
+          "transliteration": "bil-hana, lazim nijarribha sawa yom",
+          "english": "Let's try together"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أَنْتَ تِحِبّ الْأَكْل الْحَار؟",
+            "transliteration": "inta ta7eb il-akel il-har?",
+            "english": "Like spicy?"
+          },
+          "response": {
+            "arabic": "أَيْوَة، أَحِبّه وَايِد",
+            "transliteration": "aywah, a7ebbo wa-ayd",
+            "english": "Very much"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شُو الْأَكْلَة الْمِفَضَّلَة عِندَك؟",
+            "transliteration": "shu il-a2la il-mfaddla 3indak?",
+            "english": "Favorite dish?"
+          },
+          "response": {
+            "arabic": "الْفُول وَالْخُبْز",
+            "transliteration": "il-ful w il-khubz",
+            "english": "Beans bread"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَنْتِ تِفَضِّلِين الدَّجَاج وِلَّا اللَّحْمَة؟",
+            "transliteration": "anti tfaddilin id-djaj wla il-lahma?",
+            "english": "Chicken or meat?"
+          },
+          "response": {
+            "arabic": "أَفَضِّل الدَّجَاج",
+            "transliteration": "afaddil id-djaj",
+            "english": "Chicken"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَا الَّذِي لَا تِحِبُّ فِي الْأَكْل؟",
+            "transliteration": "ma il-ladhi la ta7eb fi il-akel?",
+            "english": "What no like food?"
+          },
+          "response": {
+            "arabic": "مَا أَحِبّ الْحَار وَلَا الرِّيحَة الْقَوِيَّة",
+            "transliteration": "ma a7eb il-har w la ir-ri7a il-2awiyya",
+            "english": "Spicy strong smell"
+          }
+        }
+      ],
+      "culture": "الطَّعَام فِي ثَقَافَة اليمن مِن أَهَمّ جَوَانِب الْحَيَاة الِاجْتِمَاعِيَّة. الْيمنيون يُقَدِّرُون الْفُول وَالْخُبْز كَثِيرًا، وَيَسْتَعْمِلُون الْبُهَارات بِكْثَرَة فِي طَبْخِهِم. لَمّا تِتَحَدَّث عَن الْطَّعَام، يُمْكِنَك أَنْ تَقُول بِالْهَنَا أَوْ هَنِيئًا بَعْد مَا الشَّخْص يِقُول إِنَّه يُحِبّ أَكْلَة مَا.",
+      "exercises": [
+        {
+          "id": "unit-03.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "سَامِر سَأَلَك: أَنْتَ تِحِبّ الْأَكْل الْحَار؟",
+          "answer": "أَيْوَة، أَحِبّه وَايِد",
+          "accepted": [
+            "أَيْوَة، أَحِبّه وَايِد",
+            "ايوة، احبه وايد",
+            "aywah, a7ebbo wa-ayd"
+          ],
+          "too_formal": {
+            "item": "نعم، أحبه كثيراً",
+            "feedback": "فصيحة"
+          },
+          "tip": "أَيْوَة = yes وَايِد = lot"
+        },
+        {
+          "id": "unit-03.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "حَدّا سَأَلَك: شُو الْأَكْلَة الْمِفَضَّلَة عِندَك؟",
+          "answer": "الْمَقْلُوبَة، مَا فِي مِثْلَهَا",
+          "accepted": [
+            "الْمَقْلُوبَة، مَا فِي مِثْلَهَا",
+            "المقلوبة، ما في مثلها",
+            "il-ma2luba, ma fi mithla"
+          ],
+          "too_formal": {
+            "item": "الماقولة لا يوجد لها نظير",
+            "feedback": "فصيحة جداً"
+          },
+          "tip": "مِثْلَهَا"
+        },
+        {
+          "id": "unit-03.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "أَنَا بِحِبّ الْفُول ___",
+          "answer": "وَايِد",
+          "accepted": [
+            "وَايِد",
+            "وايد",
+            "wa-ayd"
+          ],
+          "too_formal": {
+            "item": "كثيراً",
+            "feedback": "فصيحة"
+          },
+          "tip": "وَايِد = very much"
+        },
+        {
+          "id": "unit-03.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "أَفَضِّل الدَّجَاج، أَخَفّ عَالْ___",
+          "answer": "مِعْدَة",
+          "accepted": [
+            "مِعْدَة",
+            "معدة",
+            "mi3da"
+          ],
+          "too_formal": {
+            "item": "أخف على المعدة",
+            "feedback": "فصيحة"
+          },
+          "tip": "عَالْمِعْدَة"
+        },
+        {
+          "id": "unit-03.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "I don't like the smell of fish",
+          "answer": "أَنَا مَا أَحِبّ رِيحَة السَّمَك",
+          "accepted": [
+            "أَنَا مَا أَحِبّ رِيحَة السَّمَك",
+            "انا ما احب ريحة السمك",
+            "ana ma a7eb ri7a is-samak"
+          ],
+          "too_formal": {
+            "item": "لا أحب رائحة السمك",
+            "feedback": "فصيحة"
+          },
+          "tip": "رِيحَة = smell"
+        },
+        {
+          "id": "unit-03.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "I prefer sweet food over salty",
+          "answer": "أَنَا أَفَضِّل الْأَكْل الْحِلْو عَالْمَالِح",
+          "accepted": [
+            "أَنَا أَفَضِّل الْأَكْل الْحِلْو عَالْمَالِح",
+            "انا افضل الاكل الحلو عالمالح",
+            "ana afaddil il-akel il-hilw 3al-male7"
+          ],
+          "too_formal": {
+            "item": "أفضل الطعام الحلو على المالح",
+            "feedback": "فصيحة"
+          },
+          "tip": "أَفَضِّل = prefer"
+        },
+        {
+          "id": "unit-03.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "شُو بِتَقُول لِحَدّا بَعْد مَا يِقُول إِنَّه يِحِبّ أَكْلَة؟",
+          "answer": "بِالْهَنَا",
+          "accepted": [
+            "بِالْهَنَا",
+            "بالهنا",
+            "bil-hana"
+          ],
+          "too_formal": {
+            "item": "بالشفاء والعافية",
+            "feedback": "فصيحة"
+          },
+          "tip": "بِالْهَنَا = enjoy",
+          "options": [
+            "بِالْهَنَا",
+            "اللَّه يِبَارِك فِيك",
+            "مَبْرُوك",
+            "تِصْبَح عَلَى خَيْر"
+          ]
+        },
+        {
+          "id": "unit-03.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "تَرْجِم: I love fava beans",
+          "answer": "أَنَا أَحِبّ الْفُول",
+          "accepted": [
+            "أَنَا أَحِبّ الْفُول",
+            "انا احب الفول",
+            "ana a7eb il-ful"
+          ],
+          "too_formal": {
+            "item": "أنا أحب الفول",
+            "feedback": "هذه فصيحة وعامية"
+          },
+          "tip": "الْفُول = fava beans",
+          "options": [
+            "أَنَا أَحِبّ الْفُول",
+            "أَنَا أَكْرَه الْفُول",
+            "أَنَا لَا أَعْرِف الْفُول",
+            "الْفُول غَالِي وَايِد"
+          ]
+        },
+        {
+          "id": "unit-03.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "رَتِّب الْجُمْلَة: I don't like raw tomatoes",
+          "answer": "أَنَا مَا أَحِبّ الْبَندُورَة نِيَّة",
+          "accepted": [
+            "أَنَا مَا أَحِبّ الْبَندُورَة نِيَّة",
+            "انا ما احب البندورة نية",
+            "ana ma a7eb il-bandoora niyya"
+          ],
+          "too_formal": {
+            "item": "لا أحب البندورة النيئة",
+            "feedback": "فصيحة"
+          },
+          "tip": "نِيَّة = raw"
+        },
+        {
+          "id": "unit-03.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "رَتِّب الْجُمْلَة: Do you prefer chicken or meat?",
+          "answer": "أَنْتَ تِفَضِّل الدَّجَاج وِلَّا اللَّحْمَة؟",
+          "accepted": [
+            "أَنْتَ تِفَضِّل الدَّجَاج وِلَّا اللَّحْمَة؟",
+            "أنت تفضل الدجاج ولا اللحمة؟",
+            "inta tfaddil id-djaj wla il-lahma?"
+          ],
+          "too_formal": {
+            "item": "هل تفضل الدجاج أم اللحم؟",
+            "feedback": "فصيحة"
+          },
+          "tip": "وِلَّا = or"
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "سِوَايَة بِالسُّوق",
+    "instructions": "اِلْقِ عَلَيّ سِوَايَة بِيْنَك وَبَيْن صَاحِبَك فِي السُّوق. تِبِيع أَكْل وَاحِد يِسْأَل وَاحِد يِشْرِي. اسْتَعْمِل أَقِلّ ثَمَانْ جُمَل.",
+    "required_elements": [
+      "greeting",
+      "asking about a product",
+      "price question",
+      "yes/no response",
+      "closing phrase"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "زَبُون",
+          "arabic": "السَّلام عَلَيْكُم",
+          "transliteration": "as-salam 3alaykum",
+          "english": "Hello"
+        },
+        {
+          "speaker": "بَيَّاع",
+          "arabic": "وَعَلَيْكُم السَّلام، أَهْلًا وَسَهْلًا",
+          "transliteration": "w 3alaykum as-salam, ahlan w sahlan",
+          "english": "Welcome"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "عِندَك خُضْرَة طَازَة؟",
+          "transliteration": "3indak khudra taza?",
+          "english": "Fresh vegetables?"
+        },
+        {
+          "speaker": "بَيَّاع",
+          "arabic": "أَيْوَة، كُلّ شَيّ طَازَة الْيَوْم",
+          "transliteration": "aywah, kull shay taza il-yom",
+          "english": "Yes fresh today"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "بِكَم كِيلُو الْبَندُورَة؟",
+          "transliteration": "bikam kilo il-bandoora?",
+          "english": "Tomatoes price?"
+        },
+        {
+          "speaker": "بَيَّاع",
+          "arabic": "بِمِيَّتَيْن رِيَال",
+          "transliteration": "b-miytayn riyal",
+          "english": "Two hundred"
+        },
+        {
+          "speaker": "زَبُون",
+          "arabic": "تَمَام، أَبِي كِيلُو وَاحِد",
+          "transliteration": "tamam, abi kilo wa7d",
+          "english": "One kilo"
+        },
+        {
+          "speaker": "بَيَّاع",
+          "arabic": "اللَّه يِبَارِك فِيك، بِالْهَنَا",
+          "transliteration": "alla ybarek fik, bil-hana",
+          "english": "Enjoy"
+        }
+      ]
+    }
+  }
+}

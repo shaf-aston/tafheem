@@ -23,87 +23,87 @@
       "phrases": [
         {
           "slot": "blessed-eid-happy-eid",
-          "arabic": "عيد مبارك",
+          "arabic": "عِيد مُبَارَك",
           "transliteration": "3eed mubaarak",
           "reply": {
-            "arabic": "الله يبارك فيك",
+            "arabic": "الله يُبَارِك فِيك",
             "transliteration": "allah ybaarik fiik",
             "english": "God bless you too"
           }
         },
         {
           "slot": "may-you-be-well-every-year",
-          "arabic": "كل عام وانتم بخير",
+          "arabic": "كِل عَام وِاِنْتُم بْخَيْر",
           "transliteration": "kil 3aam w-intum bkhair",
           "reply": {
-            "arabic": "وانتم بألف خير",
+            "arabic": "وِاِنْتُم بْأَلْف خَيْر",
             "transliteration": "w-intum b-alf khair",
             "english": "And you a thousand times well"
           }
         },
         {
           "slot": "may-you-witness-it-again-next-year",
-          "arabic": "عساكم من عواده",
+          "arabic": "عَسَاكُم مِن عُوَّادَه",
           "transliteration": "3asaakum min 3uwwaadah",
           "reply": {
-            "arabic": "وياكم",
+            "arabic": "وِيَّاكُم",
             "transliteration": "wiyyaakum",
             "english": "And you too"
           }
         },
         {
           "slot": "blessed-eid-to-you-all",
-          "arabic": "عيدكم مبارك",
+          "arabic": "عِيدْكُم مُبَارَك",
           "transliteration": "3eedkum mubaarak",
           "reply": {
-            "arabic": "وعيدكم مبارك",
+            "arabic": "وِعِيدْكُم مُبَارَك",
             "transliteration": "w-3eedkum mubaarak",
             "english": "And blessed Eid to you too"
           }
         },
         {
           "slot": "eid-money-given-to-children",
-          "arabic": "عيدية",
+          "arabic": "عِيدِيَّة",
           "transliteration": "3eediyya"
         },
         {
           "slot": "i-m-putting-on-my-eid-clothes",
-          "arabic": "قاعد ألبس ثياب العيد",
+          "arabic": "قَاعِد أَلْبَس ثِيَاب الْعِيد",
           "transliteration": "gaa3id albas thiyaab il-3eed"
         },
         {
           "slot": "eid-cookies",
-          "arabic": "كليجا",
+          "arabic": "كْلِيجَا",
           "transliteration": "kleeja"
         },
         {
           "slot": "we-re-going-to-the-eid-prayer",
-          "arabic": "رايحين مصلى العيد",
+          "arabic": "رَايْحِين مُصَلَّى الْعِيد",
           "transliteration": "raay7iin musalla l-3eed"
         },
         {
           "slot": "we-visited-my-grandma-today",
-          "arabic": "رحنا سلمنا على جدتي اليوم",
+          "arabic": "رِحْنَا سَلَّمْنَا عَلَى جَدَّتِي الْيَوم",
           "transliteration": "ri7na sallamna 3ala jaddati l-yoom"
         },
         {
           "slot": "congratulations-on-the-eid",
-          "arabic": "مبروك عليكم العيد",
+          "arabic": "مَبْرُوك عَلَيْكُم الْعِيد",
           "transliteration": "mabrook 3aleikum l-3eed",
           "reply": {
-            "arabic": "الله يبارك فيكم",
+            "arabic": "الله يُبَارِك فِيكُم",
             "transliteration": "allah ybaarik fiikum",
             "english": "God bless you all"
           }
         },
         {
           "slot": "where-were-you-why-didn-t-you-come-to-celebrate-",
-          "arabic": "وينكم؟ ليش ما جيتوا تعيدون معانا؟",
+          "arabic": "وِينْكُم؟ لَيْش مَا جِيتُوا تَعَيِّدُون مَعَانَا؟",
           "transliteration": "weenkum? leish ma jeetoo t3ayyidoon ma3aana?"
         },
         {
           "slot": "may-god-give-you-all-eid-money-said-jokingly",
-          "arabic": "الله يعطيكم عيدية",
+          "arabic": "الله يِعْطِيكُم عِيدِيَّة",
           "transliteration": "allah y3teekum 3eediyya"
         }
       ],
@@ -184,48 +184,48 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "عيد مبارك",
+            "arabic": "عِيد مُبَارَك",
             "transliteration": "3eed mubaarak",
             "english": "Blessed Eid"
           },
           "response": {
-            "arabic": "الله يبارك فيك",
+            "arabic": "الله يُبَارِك فِيك",
             "transliteration": "allah ybaarik fiik",
             "english": "God bless you too"
           }
         },
         {
           "pair": {
-            "arabic": "كل عام وانتم بخير",
+            "arabic": "كِل عَام وِاِنْتُم بْخَيْر",
             "transliteration": "kil 3aam w-intum bkhair",
             "english": "May you be well every year"
           },
           "response": {
-            "arabic": "وانتم بألف خير",
+            "arabic": "وِاِنْتُم بْأَلْف خَيْر",
             "transliteration": "w-intum b-alf khair",
             "english": "And you a thousand times well"
           }
         },
         {
           "pair": {
-            "arabic": "عيدكم مبارك",
+            "arabic": "عِيدْكُم مُبَارَك",
             "transliteration": "3eedkum mubaarak",
             "english": "Blessed Eid to you all"
           },
           "response": {
-            "arabic": "وعيدكم مبارك",
+            "arabic": "وِعِيدْكُم مُبَارَك",
             "transliteration": "w-3eedkum mubaarak",
             "english": "And blessed Eid to you too"
           }
         },
         {
           "pair": {
-            "arabic": "مبروك عليكم العيد",
+            "arabic": "مَبْرُوك عَلَيْكُم الْعِيد",
             "transliteration": "mabrook 3aleikum l-3eed",
             "english": "Congratulations on the Eid"
           },
           "response": {
-            "arabic": "الله يبارك فيكم",
+            "arabic": "الله يُبَارِك فِيكُم",
             "transliteration": "allah ybaarik fiikum",
             "english": "God bless you all"
           }
@@ -237,9 +237,9 @@
           "id": "unit-14.lesson-01.reply.01",
           "type": "reply",
           "prompt": "أحد قال لك: عيد مبارك، شو ترد عليه؟",
-          "answer": "الله يبارك فيك",
+          "answer": "الله يُبَارِك فِيك",
           "accepted": [
-            "الله يبارك فيك",
+            "الله يُبَارِك فِيك",
             "allah ybaarik fiik",
             "وعيدك مبارك"
           ],
@@ -269,9 +269,9 @@
           "id": "unit-14.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Blessed Eid to you all",
-          "answer": "عيدكم مبارك",
+          "answer": "عِيدْكُم مُبَارَك",
           "accepted": [
-            "عيدكم مبارك",
+            "عِيدْكُم مُبَارَك",
             "3eedkum mubaarak",
             "عيد مبارك عليكم"
           ],
@@ -285,9 +285,9 @@
           "id": "unit-14.lesson-01.choose.01",
           "type": "choose",
           "prompt": "شو اسم الفلوس اللي يعطونها الكبار للعيال في العيد؟",
-          "answer": "عيدية",
+          "answer": "عِيدِيَّة",
           "accepted": [
-            "عيدية",
+            "عِيدِيَّة",
             "3eediyya",
             "العيدية"
           ],
@@ -297,7 +297,7 @@
           },
           "tip": "العيدية غالباً فلوس جديدة في ظرف.",
           "options": [
-            "عيدية",
+            "عِيدِيَّة",
             "راتب",
             "أجرة",
             "مكافأة"
@@ -307,9 +307,9 @@
           "id": "unit-14.lesson-01.reorder.01",
           "type": "reorder",
           "prompt": "رتب: We're going to the Eid prayer",
-          "answer": "رايحين مصلى العيد",
+          "answer": "رَايْحِين مُصَلَّى الْعِيد",
           "accepted": [
-            "رايحين مصلى العيد",
+            "رَايْحِين مُصَلَّى الْعِيد",
             "raay7iin musalla l-3eed",
             "نروح مصلى العيد"
           ],
@@ -319,18 +319,18 @@
           },
           "tip": "مصلى العيد هو المكان المفتوح للصلاة.",
           "words": [
-            "رايحين",
-            "مصلى",
-            "العيد"
+            "رَايْحِين",
+            "مُصَلَّى",
+            "الْعِيد"
           ]
         },
         {
           "id": "unit-14.lesson-01.reply.02",
           "type": "reply",
           "prompt": "قال لك أحد: عساكم من عواده، شو ترد؟",
-          "answer": "وياكم",
+          "answer": "وِيَّاكُم",
           "accepted": [
-            "وياكم",
+            "وِيَّاكُم",
             "wiyyaakum",
             "وياك"
           ],
@@ -360,9 +360,9 @@
           "id": "unit-14.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "We went and greeted my grandma today",
-          "answer": "رحنا سلمنا على جدتي اليوم",
+          "answer": "رِحْنَا سَلَّمْنَا عَلَى جَدَّتِي الْيَوم",
           "accepted": [
-            "رحنا سلمنا على جدتي اليوم",
+            "رِحْنَا سَلَّمْنَا عَلَى جَدَّتِي الْيَوم",
             "ri7na sallamna 3ala jaddati l-yoom",
             "زرنا جدتي اليوم"
           ],
@@ -376,9 +376,9 @@
           "id": "unit-14.lesson-01.choose.02",
           "type": "choose",
           "prompt": "شو يجهزون كثير من البيوت للعيد؟",
-          "answer": "كليجا",
+          "answer": "كْلِيجَا",
           "accepted": [
-            "كليجا",
+            "كْلِيجَا",
             "kleeja",
             "الكليجا"
           ],
@@ -388,7 +388,7 @@
           },
           "tip": "الكليجا كعك محشي بالتمر.",
           "options": [
-            "كليجا",
+            "كْلِيجَا",
             "مناقيش",
             "فلافل",
             "شاورما"
@@ -398,9 +398,9 @@
           "id": "unit-14.lesson-01.reorder.02",
           "type": "reorder",
           "prompt": "رتب: God bless you all",
-          "answer": "الله يبارك فيكم",
+          "answer": "الله يُبَارِك فِيكُم",
           "accepted": [
-            "الله يبارك فيكم",
+            "الله يُبَارِك فِيكُم",
             "allah ybaarik fiikum",
             "allah yibaarik fiikum"
           ],
@@ -411,8 +411,8 @@
           "tip": "فيكم للجمع، وفيك لواحد.",
           "words": [
             "الله",
-            "يبارك",
-            "فيكم"
+            "يُبَارِك",
+            "فِيكُم"
           ]
         }
       ]
@@ -422,30 +422,30 @@
       "phrases": [
         {
           "slot": "ramadan-is-generous-greeting",
-          "arabic": "رمضان كريم",
+          "arabic": "رَمَضَان كَرِيم",
           "transliteration": "ramadaan kareem",
           "reply": {
-            "arabic": "الله أكرم",
+            "arabic": "الله أَكْرَم",
             "transliteration": "allah akram",
             "english": "God is more generous"
           }
         },
         {
           "slot": "blessed-ramadan",
-          "arabic": "رمضان مبارك",
+          "arabic": "رَمَضَان مُبَارَك",
           "transliteration": "ramadaan mubaarak",
           "reply": {
-            "arabic": "الله يبارك فيك",
+            "arabic": "الله يُبَارِك فِيك",
             "transliteration": "allah ybaarik fiik",
             "english": "God bless you too"
           }
         },
         {
           "slot": "blessed-month-of-ramadan-to-you",
-          "arabic": "مبارك عليكم الشهر",
+          "arabic": "مُبَارَك عَلَيْكُم الشَّهْر",
           "transliteration": "mubaarak 3aleikum ish-shahr",
           "reply": {
-            "arabic": "عساكم من عواده",
+            "arabic": "عَسَاكُم مِن عُوَّادَه",
             "transliteration": "3asaakum min 3uwwaadah",
             "english": "May you witness it again next year"
           }
@@ -457,45 +457,45 @@
         },
         {
           "slot": "what-time-is-iftar-today",
-          "arabic": "الساعة كم الفطور اليوم؟",
+          "arabic": "الْسَاعَة كَم الْفِطُور الْيَوم؟",
           "transliteration": "is-saa3a kam il-ftoor il-yoom?"
         },
         {
           "slot": "we-re-preparing-for-iftar",
-          "arabic": "قاعدين نجهز الفطور",
+          "arabic": "قَاعِدِين نْجَهِّز الْفِطُور",
           "transliteration": "gaa3diin njahhiz il-ftoor"
         },
         {
           "slot": "we-started-fasting-from-dawn",
-          "arabic": "بدينا الصيام من الفجر",
+          "arabic": "بْدِينَا الصِّيَام مِن الْفَجْر",
           "transliteration": "bdeena s-siyaam min il-fajr"
         },
         {
           "slot": "the-pre-dawn-meal-eaten-before-the-fast",
-          "arabic": "السحور",
+          "arabic": "الْسِحُور",
           "transliteration": "is-sa7oor"
         },
         {
           "slot": "qatayef-a-ramadan-sweet-stuffed-pastry",
-          "arabic": "قطايف",
+          "arabic": "قَطَايِف",
           "transliteration": "gataayif"
         },
         {
           "slot": "the-iftar-cannon-fired",
-          "arabic": "ضرب مدفع الإفطار",
+          "arabic": "ضَرَب مِدْفَع الْإِفْطَار",
           "transliteration": "dharab midfa3 il-iftaar"
         },
         {
           "slot": "whose-iftar-invitation-are-you-going-to-tonight",
-          "arabic": "رايح عزيمة منو الليلة؟",
+          "arabic": "رَايِح عَزِيمَة مِنُو الْلَيْلَة؟",
           "transliteration": "raayi7 3azeemat minu l-leila?"
         },
         {
           "slot": "may-god-accept-your-fasting",
-          "arabic": "تقبل الله صيامكم",
+          "arabic": "تَقَبَّل الله صِيَامْكُم",
           "transliteration": "tagabbal allah siyaamkum",
           "reply": {
-            "arabic": "منا ومنكم",
+            "arabic": "مِنَّا وِمِنْكُم",
             "transliteration": "minna w-minkum",
             "english": "From us and from you"
           }
@@ -528,7 +528,7 @@
         },
         {
           "speaker": "خالد",
-          "arabic": "الساعة كم الفطور اليوم؟",
+          "arabic": "الْسَاعَة كَم الْفِطُور الْيَوم؟",
           "transliteration": "is-saa3a kam il-ftoor il-yoom?",
           "english": "What time is iftar today?"
         },
@@ -578,31 +578,31 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "رمضان كريم",
+            "arabic": "رَمَضَان كَرِيم",
             "transliteration": "ramadaan kareem",
             "english": "Ramadan is generous"
           },
           "response": {
-            "arabic": "الله أكرم",
+            "arabic": "الله أَكْرَم",
             "transliteration": "allah akram",
             "english": "God is more generous"
           }
         },
         {
           "pair": {
-            "arabic": "مبارك عليكم الشهر",
+            "arabic": "مُبَارَك عَلَيْكُم الشَّهْر",
             "transliteration": "mubaarak 3aleikum ish-shahr",
             "english": "Blessed month to you"
           },
           "response": {
-            "arabic": "عساكم من عواده",
+            "arabic": "عَسَاكُم مِن عُوَّادَه",
             "transliteration": "3asaakum min 3uwwaadah",
             "english": "May you witness it again"
           }
         },
         {
           "pair": {
-            "arabic": "الساعة كم الفطور اليوم؟",
+            "arabic": "الْسَاعَة كَم الْفِطُور الْيَوم؟",
             "transliteration": "is-saa3a kam il-ftoor il-yoom?",
             "english": "What time is iftar today?"
           },
@@ -614,12 +614,12 @@
         },
         {
           "pair": {
-            "arabic": "تقبل الله صيامكم",
+            "arabic": "تَقَبَّل الله صِيَامْكُم",
             "transliteration": "tagabbal allah siyaamkum",
             "english": "May God accept your fasting"
           },
           "response": {
-            "arabic": "منا ومنكم",
+            "arabic": "مِنَّا وِمِنْكُم",
             "transliteration": "minna w-minkum",
             "english": "From us and from you"
           }
@@ -631,9 +631,9 @@
           "id": "unit-14.lesson-02.reply.01",
           "type": "reply",
           "prompt": "أحد قال لك: رمضان كريم، شو ترد؟",
-          "answer": "الله أكرم",
+          "answer": "الله أَكْرَم",
           "accepted": [
-            "الله أكرم",
+            "الله أَكْرَم",
             "allah akram",
             "الله يكرمك"
           ],
@@ -647,9 +647,9 @@
           "id": "unit-14.lesson-02.reply.02",
           "type": "reply",
           "prompt": "أحد قال لك: تقبل الله صيامكم، شو ترد؟",
-          "answer": "منا ومنكم",
+          "answer": "مِنَّا وِمِنْكُم",
           "accepted": [
-            "منا ومنكم",
+            "مِنَّا وِمِنْكُم",
             "minna w-minkum",
             "منا ومنك"
           ],
@@ -711,9 +711,9 @@
           "id": "unit-14.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "What time is iftar today?",
-          "answer": "الساعة كم الفطور اليوم؟",
+          "answer": "الْسَاعَة كَم الْفِطُور الْيَوم؟",
           "accepted": [
-            "الساعة كم الفطور اليوم؟",
+            "الْسَاعَة كَم الْفِطُور الْيَوم؟",
             "is-saa3a kam il-ftoor il-yoom?",
             "متى الفطور اليوم؟"
           ],
@@ -727,9 +727,9 @@
           "id": "unit-14.lesson-02.choose.01",
           "type": "choose",
           "prompt": "شو اسم الوجبة اللي تاكلها قبل الفجر؟",
-          "answer": "السحور",
+          "answer": "الْسِحُور",
           "accepted": [
-            "السحور",
+            "الْسِحُور",
             "is-sa7oor",
             "سحور"
           ],
@@ -739,7 +739,7 @@
           },
           "tip": "السحور قبل أذان الفجر.",
           "options": [
-            "السحور",
+            "الْسِحُور",
             "الغداء",
             "العشاء",
             "الفطور"
@@ -771,9 +771,9 @@
           "id": "unit-14.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "رتب: The iftar cannon fired",
-          "answer": "ضرب مدفع الإفطار",
+          "answer": "ضَرَب مِدْفَع الْإِفْطَار",
           "accepted": [
-            "ضرب مدفع الإفطار",
+            "ضَرَب مِدْفَع الْإِفْطَار",
             "dharab midfa3 il-iftaar",
             "ضرب المدفع"
           ],
@@ -783,18 +783,18 @@
           },
           "tip": "المدفع يضرب عند أذان المغرب.",
           "words": [
-            "ضرب",
-            "مدفع",
-            "الإفطار"
+            "ضَرَب",
+            "مِدْفَع",
+            "الْإِفْطَار"
           ]
         },
         {
           "id": "unit-14.lesson-02.reorder.02",
           "type": "reorder",
           "prompt": "رتب: We started fasting from dawn",
-          "answer": "بدينا الصيام من الفجر",
+          "answer": "بْدِينَا الصِّيَام مِن الْفَجْر",
           "accepted": [
-            "بدينا الصيام من الفجر",
+            "بْدِينَا الصِّيَام مِن الْفَجْر",
             "bdeena s-siyaam min il-fajr",
             "صمنا من الفجر"
           ],
@@ -804,10 +804,10 @@
           },
           "tip": "بدينا يعني بدأنا.",
           "words": [
-            "بدينا",
-            "الصيام",
-            "من",
-            "الفجر"
+            "بْدِينَا",
+            "الصِّيَام",
+            "مِن",
+            "الْفَجْر"
           ]
         }
       ]
@@ -817,82 +817,82 @@
       "phrases": [
         {
           "slot": "congratulations",
-          "arabic": "مبروك",
+          "arabic": "مَبْرُوك",
           "transliteration": "mabrook",
           "reply": {
-            "arabic": "الله يبارك فيك",
+            "arabic": "الله يُبَارِك فِيك",
             "transliteration": "allah ybaarik fiik",
             "english": "God bless you"
           }
         },
         {
           "slot": "may-god-make-you-happy-wedding-congrats",
-          "arabic": "الله يسعدكم",
+          "arabic": "الله يِسْعِدْكُم",
           "transliteration": "allah yis3idkum",
           "reply": {
-            "arabic": "الله يسعدك",
+            "arabic": "الله يِسْعِدْك",
             "transliteration": "allah yis3idak",
             "english": "God make you happy too"
           }
         },
         {
           "slot": "may-it-be-your-turn-next",
-          "arabic": "عقبالك",
+          "arabic": "عُقْبَالَك",
           "transliteration": "3ugbaalak",
           "reply": {
-            "arabic": "إن شاء الله",
+            "arabic": "إِن شَاء الله",
             "transliteration": "in shaa allah",
             "english": "God willing"
           }
         },
         {
           "slot": "congratulations-on-the-wedding",
-          "arabic": "مبروك العرس",
+          "arabic": "مَبْرُوك الْعِرْس",
           "transliteration": "mabrook il-3irs",
           "reply": {
-            "arabic": "الله يبارك فيك",
+            "arabic": "الله يُبَارِك فِيك",
             "transliteration": "allah ybaarik fiik",
             "english": "God bless you"
           }
         },
         {
           "slot": "when-is-their-wedding",
-          "arabic": "متى عرسهم؟",
+          "arabic": "مِتَى عِرْسَهُم؟",
           "transliteration": "mita 3irsahum?"
         },
         {
           "slot": "they-re-preparing-for-the-wedding",
-          "arabic": "قاعدين يجهزون للعرس",
+          "arabic": "قَاعِدِين يْجَهِّزُون لِلْعِرْس",
           "transliteration": "gaa3diin yjahhizoon lil-3irs"
         },
         {
           "slot": "the-wedding-stage-decoration-is-very-beautiful",
-          "arabic": "ديكور الكوشة حلو وايد",
+          "arabic": "دِيكُور الْكُوشَة حِلْو وَايِد",
           "transliteration": "deekoor l-koosha 7ilw waayid"
         },
         {
           "slot": "the-wedding-procession-is-coming",
-          "arabic": "الزفة جايّة",
+          "arabic": "الْزَفَّة جَايَّة",
           "transliteration": "iz-zaffa jaayya"
         },
         {
           "slot": "she-wore-a-white-dress",
-          "arabic": "لبست فستان أبيض",
+          "arabic": "لِبْسَت فُسْتَان أَبْيَض",
           "transliteration": "libsat fustaan abyadh"
         },
         {
           "slot": "the-dabke-folk-dance-started",
-          "arabic": "بدت العيالة",
+          "arabic": "بَدَت الْعَيَّالَة",
           "transliteration": "badat il-3ayyaala"
         },
         {
           "slot": "who-s-invited-to-the-wedding",
-          "arabic": "منو المعزومين على العرس؟",
+          "arabic": "مِنُو الْمَعْزُومِين عَلَى الْعِرْس؟",
           "transliteration": "minu l-ma3zoomeen 3ala l-3irs?"
         },
         {
           "slot": "what-gift-did-you-bring-them",
-          "arabic": "شو جبت لهم هدية؟",
+          "arabic": "شُو جِبْت لَهُم هَدِيَّة؟",
           "transliteration": "shu jibt lahum hadiyya?"
         }
       ],
@@ -973,19 +973,19 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "مبروك",
+            "arabic": "مَبْرُوك",
             "transliteration": "mabrook",
             "english": "Congratulations"
           },
           "response": {
-            "arabic": "الله يبارك فيك",
+            "arabic": "الله يُبَارِك فِيك",
             "transliteration": "allah ybaarik fiik",
             "english": "God bless you"
           }
         },
         {
           "pair": {
-            "arabic": "مبروك العرس",
+            "arabic": "مَبْرُوك الْعِرْس",
             "transliteration": "mabrook il-3irs",
             "english": "Congratulations on the wedding"
           },
@@ -997,19 +997,19 @@
         },
         {
           "pair": {
-            "arabic": "عقبالك",
+            "arabic": "عُقْبَالَك",
             "transliteration": "3ugbaalak",
             "english": "May it be your turn next"
           },
           "response": {
-            "arabic": "إن شاء الله",
+            "arabic": "إِن شَاء الله",
             "transliteration": "in shaa allah",
             "english": "God willing"
           }
         },
         {
           "pair": {
-            "arabic": "متى عرسهم؟",
+            "arabic": "مِتَى عِرْسَهُم؟",
             "transliteration": "mita 3irsahum?",
             "english": "When is their wedding?"
           },
@@ -1026,9 +1026,9 @@
           "id": "unit-14.lesson-03.reply.01",
           "type": "reply",
           "prompt": "أحد قال لك: مبروك العرس، شو ترد؟",
-          "answer": "الله يبارك فيك",
+          "answer": "الله يُبَارِك فِيك",
           "accepted": [
-            "الله يبارك فيك",
+            "الله يُبَارِك فِيك",
             "allah ybaarik fiik",
             "الله يبارك فيك وعقبال ما نفرح فيك"
           ],
@@ -1042,9 +1042,9 @@
           "id": "unit-14.lesson-03.reply.02",
           "type": "reply",
           "prompt": "أحد قال لك: عقبالك، شو ترد؟",
-          "answer": "إن شاء الله",
+          "answer": "إِن شَاء الله",
           "accepted": [
-            "إن شاء الله",
+            "إِن شَاء الله",
             "in shaa allah",
             "الله يبلغنا"
           ],
@@ -1090,9 +1090,9 @@
           "id": "unit-14.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "She wore a white dress",
-          "answer": "لبست فستان أبيض",
+          "answer": "لِبْسَت فُسْتَان أَبْيَض",
           "accepted": [
-            "لبست فستان أبيض",
+            "لِبْسَت فُسْتَان أَبْيَض",
             "libsat fustaan abyadh",
             "لابسة فستان أبيض"
           ],
@@ -1106,9 +1106,9 @@
           "id": "unit-14.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Who's invited to the wedding?",
-          "answer": "منو المعزومين على العرس؟",
+          "answer": "مِنُو الْمَعْزُومِين عَلَى الْعِرْس؟",
           "accepted": [
-            "منو المعزومين على العرس؟",
+            "مِنُو الْمَعْزُومِين عَلَى الْعِرْس؟",
             "minu l-ma3zoomeen 3ala l-3irs?",
             "منو معزوم على العرس؟"
           ],
@@ -1137,7 +1137,7 @@
             "الزفة",
             "الفطور",
             "العيدية",
-            "السحور"
+            "الْسِحُور"
           ]
         },
         {
@@ -1166,9 +1166,9 @@
           "id": "unit-14.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "رتب: The wedding procession is coming",
-          "answer": "الزفة جايّة",
+          "answer": "الْزَفَّة جَايَّة",
           "accepted": [
-            "الزفة جايّة",
+            "الْزَفَّة جَايَّة",
             "iz-zaffa jaayya",
             "الزفة جاية"
           ],
@@ -1178,8 +1178,8 @@
           },
           "tip": "جايّة للمؤنث لأن الزفة مؤنث.",
           "words": [
-            "الزفة",
-            "جايّة"
+            "الْزَفَّة",
+            "جَايَّة"
           ]
         },
         {
@@ -1211,95 +1211,95 @@
       "phrases": [
         {
           "slot": "happy-birthday",
-          "arabic": "عيد ميلاد سعيد",
+          "arabic": "عِيد مِيلَاد سَعِيد",
           "transliteration": "3eed meelaad sa3eed",
           "reply": {
-            "arabic": "الله يسلمك",
+            "arabic": "الله يِسْلَمَك",
             "transliteration": "allah yislamak",
             "english": "God keep you (thank you)"
           }
         },
         {
           "slot": "happy-birthday-lit-every-year-you-re-well",
-          "arabic": "كل عام وانت بخير",
+          "arabic": "كِل عَام وِاِنْت بْخَيْر",
           "transliteration": "kil 3aam w-inta bkhair",
           "reply": {
-            "arabic": "وانت بخير",
+            "arabic": "وِاِنْت بْخَيْر",
             "transliteration": "w-inta bkhair",
             "english": "And you too"
           }
         },
         {
           "slot": "congratulations-on-your-success",
-          "arabic": "مبروك النجاح",
+          "arabic": "مَبْرُوك النَّجَاح",
           "transliteration": "mabrook in-najaa7",
           "reply": {
-            "arabic": "الله يبارك فيك",
+            "arabic": "الله يُبَارِك فِيك",
             "transliteration": "allah ybaarik fiik",
             "english": "God bless you"
           }
         },
         {
           "slot": "congratulations-on-the-promotion",
-          "arabic": "مبروك الترقية",
+          "arabic": "مَبْرُوك الْتَرْقِيَة",
           "transliteration": "mabrook it-targiya",
           "reply": {
-            "arabic": "الله يسلمك",
+            "arabic": "الله يِسْلَمَك",
             "transliteration": "allah yislamak",
             "english": "God keep you (thank you)"
           }
         },
         {
           "slot": "congratulations-on-the-newborn",
-          "arabic": "مبروك المولود",
+          "arabic": "مَبْرُوك الْمَوْلُود",
           "transliteration": "mabrook il-mawlood",
           "reply": {
-            "arabic": "الله يبارك فيك",
+            "arabic": "الله يُبَارِك فِيك",
             "transliteration": "allah ybaarik fiik",
             "english": "God bless you"
           }
         },
         {
           "slot": "congratulations-on-the-new-house",
-          "arabic": "مبروك البيت الجديد",
+          "arabic": "مَبْرُوك الْبَيْت الْجَدِيد",
           "transliteration": "mabrook il-beit ij-jadeed",
           "reply": {
-            "arabic": "الله يبارك فيك، تفضل زورنا",
+            "arabic": "الله يُبَارِك فِيك، تِفَضَّل زُورْنَا",
             "transliteration": "allah ybaarik fiik, tfaddal zoorna",
             "english": "God bless you, come and visit us"
           }
         },
         {
           "slot": "we-re-preparing-the-cake",
-          "arabic": "قاعدين نجهز الكيكة",
+          "arabic": "قَاعِدِين نْجَهِّز الْكِيكَة",
           "transliteration": "gaa3diin njahhiz il-keeka"
         },
         {
           "slot": "blow-out-the-candles",
-          "arabic": "طفّ الشموع",
+          "arabic": "طُفّ الْشُّمُوع",
           "transliteration": "tuff ish-shmoo3"
         },
         {
           "slot": "how-old-did-you-turn",
-          "arabic": "كم صار عمرك؟",
+          "arabic": "كَم صَار عُمْرَك؟",
           "transliteration": "kam saar 3umrak?"
         },
         {
           "slot": "what-gift-do-you-want",
-          "arabic": "شو تبي هدية؟",
+          "arabic": "شُو تِبِي هَدِيَّة؟",
           "transliteration": "shu tibi hadiyya?"
         },
         {
           "slot": "birthday-party",
-          "arabic": "حفلة عيد ميلاد",
+          "arabic": "حَفْلَة عِيد مِيلَاد",
           "transliteration": "7aflat 3eed meelaad"
         },
         {
           "slot": "may-god-lengthen-your-life",
-          "arabic": "الله يطول عمرك",
+          "arabic": "الله يِطَوِّل عُمْرَك",
           "transliteration": "allah ytawwil 3umrak",
           "reply": {
-            "arabic": "الله يخليك",
+            "arabic": "الله يْخَلِّيك",
             "transliteration": "allah ykhallik",
             "english": "God keep you"
           }
@@ -1320,7 +1320,7 @@
         },
         {
           "speaker": "ماجد",
-          "arabic": "كم صار عمرك؟",
+          "arabic": "كَم صَار عُمْرَك؟",
           "transliteration": "kam saar 3umrak?",
           "english": "How old did you turn?"
         },
@@ -1382,24 +1382,24 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "عيد ميلاد سعيد",
+            "arabic": "عِيد مِيلَاد سَعِيد",
             "transliteration": "3eed meelaad sa3eed",
             "english": "Happy birthday"
           },
           "response": {
-            "arabic": "الله يسلمك",
+            "arabic": "الله يِسْلَمَك",
             "transliteration": "allah yislamak",
             "english": "God keep you (thank you)"
           }
         },
         {
           "pair": {
-            "arabic": "كل عام وانت بخير",
+            "arabic": "كِل عَام وِاِنْت بْخَيْر",
             "transliteration": "kil 3aam w-inta bkhair",
             "english": "Happy birthday (lit. every year you're well)"
           },
           "response": {
-            "arabic": "وانت بخير",
+            "arabic": "وِاِنْت بْخَيْر",
             "transliteration": "w-inta bkhair",
             "english": "And you too"
           }
@@ -1411,19 +1411,19 @@
             "english": "Congratulations on the newborn, may he be raised in your glory"
           },
           "response": {
-            "arabic": "الله يبارك فيك",
+            "arabic": "الله يُبَارِك فِيك",
             "transliteration": "allah ybaarik fiik",
             "english": "God bless you"
           }
         },
         {
           "pair": {
-            "arabic": "الله يطول عمرك",
+            "arabic": "الله يِطَوِّل عُمْرَك",
             "transliteration": "allah ytawwil 3umrak",
             "english": "May God lengthen your life"
           },
           "response": {
-            "arabic": "الله يخليك",
+            "arabic": "الله يْخَلِّيك",
             "transliteration": "allah ykhallik",
             "english": "God keep you"
           }
@@ -1435,9 +1435,9 @@
           "id": "unit-14.lesson-04.reply.01",
           "type": "reply",
           "prompt": "أحد قال لك: عيد ميلاد سعيد، شو ترد؟",
-          "answer": "الله يسلمك",
+          "answer": "الله يِسْلَمَك",
           "accepted": [
-            "الله يسلمك",
+            "الله يِسْلَمَك",
             "allah yislamak",
             "شكراً"
           ],
@@ -1451,9 +1451,9 @@
           "id": "unit-14.lesson-04.reply.02",
           "type": "reply",
           "prompt": "أحد قال لك: الله يطول عمرك، شو ترد؟",
-          "answer": "الله يخليك",
+          "answer": "الله يْخَلِّيك",
           "accepted": [
-            "الله يخليك",
+            "الله يْخَلِّيك",
             "allah ykhallik",
             "الله يخليك لنا"
           ],
@@ -1467,9 +1467,9 @@
           "id": "unit-14.lesson-04.fill_blank.01",
           "type": "fill_blank",
           "prompt": "____ النجاح",
-          "answer": "مبروك",
+          "answer": "مَبْرُوك",
           "accepted": [
-            "مبروك",
+            "مَبْرُوك",
             "mabrook",
             "ألف مبروك"
           ],
@@ -1499,9 +1499,9 @@
           "id": "unit-14.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Congratulations on the new house",
-          "answer": "مبروك البيت الجديد",
+          "answer": "مَبْرُوك الْبَيْت الْجَدِيد",
           "accepted": [
-            "مبروك البيت الجديد",
+            "مَبْرُوك الْبَيْت الْجَدِيد",
             "mabrook il-beit ij-jadeed",
             "مبروك عليكم البيت"
           ],
@@ -1515,9 +1515,9 @@
           "id": "unit-14.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "May God lengthen your life",
-          "answer": "الله يطول عمرك",
+          "answer": "الله يِطَوِّل عُمْرَك",
           "accepted": [
-            "الله يطول عمرك",
+            "الله يِطَوِّل عُمْرَك",
             "allah ytawwil 3umrak",
             "الله يطول بعمرك"
           ],
@@ -1535,7 +1535,7 @@
           "accepted": [
             "مبروك المولود، يتربى في عزكم",
             "mabrook il-mawlood, yitrabba fi 3izzkum",
-            "مبروك المولود"
+            "مَبْرُوك الْمَوْلُود"
           ],
           "too_formal": {
             "item": "بارك الله لك في الموهوب لك",
@@ -1544,9 +1544,9 @@
           "tip": "يتربى في عزكم يعني يكبر وأنتم في خير.",
           "options": [
             "مبروك المولود، يتربى في عزكم",
-            "عيد مبارك",
-            "تقبل الله صيامكم",
-            "الله يسلمك"
+            "عِيد مُبَارَك",
+            "تَقَبَّل الله صِيَامْكُم",
+            "الله يِسْلَمَك"
           ]
         },
         {
@@ -1575,9 +1575,9 @@
           "id": "unit-14.lesson-04.reorder.01",
           "type": "reorder",
           "prompt": "رتب: We're preparing the cake",
-          "answer": "قاعدين نجهز الكيكة",
+          "answer": "قَاعِدِين نْجَهِّز الْكِيكَة",
           "accepted": [
-            "قاعدين نجهز الكيكة",
+            "قَاعِدِين نْجَهِّز الْكِيكَة",
             "gaa3diin njahhiz il-keeka",
             "احنا قاعدين نجهز الكيك"
           ],
@@ -1587,18 +1587,18 @@
           },
           "tip": "الكيكة كلمة مستعملة في كل الخليج.",
           "words": [
-            "قاعدين",
-            "نجهز",
-            "الكيكة"
+            "قَاعِدِين",
+            "نْجَهِّز",
+            "الْكِيكَة"
           ]
         },
         {
           "id": "unit-14.lesson-04.reorder.02",
           "type": "reorder",
           "prompt": "رتب: Happy birthday",
-          "answer": "عيد ميلاد سعيد",
+          "answer": "عِيد مِيلَاد سَعِيد",
           "accepted": [
-            "عيد ميلاد سعيد",
+            "عِيد مِيلَاد سَعِيد",
             "3eed meelaad sa3eed",
             "عيد ميلادك سعيد"
           ],
@@ -1608,9 +1608,9 @@
           },
           "tip": "التهنئة بسيطة وتنقال لأي واحد.",
           "words": [
-            "عيد",
-            "ميلاد",
-            "سعيد"
+            "عِيد",
+            "مِيلَاد",
+            "سَعِيد"
           ]
         }
       ]

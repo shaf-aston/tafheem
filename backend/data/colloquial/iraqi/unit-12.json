@@ -27,35 +27,35 @@
       "phrases": [
         {
           "slot": "hello-answering-the-phone",
-          "arabic": "آلو؟",
+          "arabic": "آلُو؟",
           "transliteration": "aaloo?",
           "reply": {
-            "arabic": "آلو، منو المتكلم؟",
+            "arabic": "آلُو، مِنُو الْمِتْكَلِّمْ؟",
             "transliteration": "aaloo, minu l-mitkallim?",
             "english": "Hello, who's speaking?"
           }
         },
         {
           "slot": "hi-who-s-this",
-          "arabic": "هلا، منو المتكلم؟",
+          "arabic": "هَلَا، مِنُو الْمِتْكَلِّمْ؟",
           "transliteration": "hala, minu l-mitkallim?"
         },
         {
           "slot": "this-is-samer-speaking",
-          "arabic": "آني سامر",
+          "arabic": "آنِي سَامِرْ",
           "transliteration": "aani Saamer"
         },
         {
           "slot": "good-that-you-called",
-          "arabic": "زين دقيت",
+          "arabic": "زِينْ دَقِّيتْ",
           "transliteration": "zeen daggeit"
         },
         {
           "slot": "what-s-new",
-          "arabic": "شكو ماكو؟",
+          "arabic": "شْكُو مَاكُو؟",
           "transliteration": "shaku maaku?",
           "reply": {
-            "arabic": "ماكو شي، الحمد لله",
+            "arabic": "مَاكُو شِي، الْحَمْدُ لِلَّهْ",
             "transliteration": "maaku shi, il-7amdillah",
             "english": "Nothing much, thank God."
           }
@@ -67,27 +67,27 @@
         },
         {
           "slot": "the-line-was-busy",
-          "arabic": "الخط كان مشغول",
+          "arabic": "الْخِطّ كَانْ مِشْغُولْ",
           "transliteration": "il-khatt kaan mashghuul"
         },
         {
           "slot": "the-call-got-cut-off-on-me",
-          "arabic": "الخط انقطع عليّ",
+          "arabic": "الْخِطّ انْقِطَعْ عَلَيَّ",
           "transliteration": "il-khatt ingita3 3aleyya"
         },
         {
           "slot": "my-credit-ran-out",
-          "arabic": "رصيدي خلص",
+          "arabic": "رَصِيدِي خِلَصْ",
           "transliteration": "rasiidi khilas"
         },
         {
           "slot": "my-battery-died",
-          "arabic": "بطاريتي خلصت",
+          "arabic": "بَطَارِيتِي خِلَصَتْ",
           "transliteration": "bataariiti khilsat"
         },
         {
           "slot": "there-s-no-signal-here",
-          "arabic": "ماكو شبكة هنا",
+          "arabic": "مَاكُو شَبَكَةْ هِنَّا",
           "transliteration": "maaku shabaka hnaa"
         },
         {
@@ -95,7 +95,7 @@
           "arabic": "تقدر تدق عليّ بعد شوية؟",
           "transliteration": "tigdar tdugg 3aleyya ba3d shwayya?",
           "reply": {
-            "arabic": "أكيد، أدق عليك",
+            "arabic": "أَكِيدْ، أَدُقّ عَلِيكْ",
             "transliteration": "akiid, adugg 3aleek",
             "english": "Sure, I'll call you."
           }
@@ -104,7 +104,7 @@
       "dialogue": [
         {
           "speaker": "Samer",
-          "arabic": "آلو؟",
+          "arabic": "آلُو؟",
           "transliteration": "aaloo?",
           "english": "Hello?"
         },
@@ -172,24 +172,24 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "آلو، منو المتكلم؟",
+            "arabic": "آلُو، مِنُو الْمِتْكَلِّمْ؟",
             "transliteration": "aaloo, minu l-mitkallim?",
             "english": "Hello, who's speaking?"
           },
           "response": {
-            "arabic": "آني سامر",
+            "arabic": "آنِي سَامِرْ",
             "transliteration": "aani Saamer",
             "english": "It's Samer."
           }
         },
         {
           "pair": {
-            "arabic": "شكو ماكو؟",
+            "arabic": "شْكُو مَاكُو؟",
             "transliteration": "shaku maaku?",
             "english": "What's new?"
           },
           "response": {
-            "arabic": "ماكو شي، الحمد لله",
+            "arabic": "مَاكُو شِي، الْحَمْدُ لِلَّهْ",
             "transliteration": "maaku shi, il-7amdillah",
             "english": "Nothing much, thank God."
           }
@@ -201,7 +201,7 @@
             "english": "Can you call me back in a bit?"
           },
           "response": {
-            "arabic": "أكيد، أدق عليك",
+            "arabic": "أَكِيدْ، أَدُقّ عَلِيكْ",
             "transliteration": "akiid, adugg 3aleek",
             "english": "Sure, I'll call you."
           }
@@ -225,10 +225,10 @@
           "id": "unit-12.lesson-01.reply.01",
           "type": "reply",
           "prompt": "The phone rings and you answer. Say hello and ask who is speaking.",
-          "answer": "آلو، منو المتكلم؟",
+          "answer": "آلُو، مِنُو الْمِتْكَلِّمْ؟",
           "accepted": [
-            "آلو، منو المتكلم؟",
-            "هلا، منو المتكلم؟",
+            "آلُو، مِنُو الْمِتْكَلِّمْ؟",
+            "هَلَا، مِنُو الْمِتْكَلِّمْ؟",
             "منو المتكلم؟",
             "aaloo, minu l-mitkallim?"
           ],
@@ -242,9 +242,9 @@
           "id": "unit-12.lesson-01.reply.02",
           "type": "reply",
           "prompt": "A friend on the phone asks you: «شكو ماكو؟». Say nothing much, thank God.",
-          "answer": "ماكو شي، الحمد لله",
+          "answer": "مَاكُو شِي، الْحَمْدُ لِلَّهْ",
           "accepted": [
-            "ماكو شي، الحمد لله",
+            "مَاكُو شِي، الْحَمْدُ لِلَّهْ",
             "الحمد لله، زين",
             "الحمد لله زين",
             "الحمد لله"
@@ -291,9 +291,9 @@
           "id": "unit-12.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Iraqi Arabic: \"My credit ran out.\"",
-          "answer": "رصيدي خلص",
+          "answer": "رَصِيدِي خِلَصْ",
           "accepted": [
-            "رصيدي خلص",
+            "رَصِيدِي خِلَصْ",
             "الرصيد خلص",
             "خلص رصيدي",
             "rasiidi khilas"
@@ -308,9 +308,9 @@
           "id": "unit-12.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"There's no signal here.\"",
-          "answer": "ماكو شبكة هنا",
+          "answer": "مَاكُو شَبَكَةْ هِنَّا",
           "accepted": [
-            "ماكو شبكة هنا",
+            "مَاكُو شَبَكَةْ هِنَّا",
             "ماكو شبكة",
             "ماكو تغطية هنا",
             "maaku shabaka hnaa"
@@ -325,17 +325,17 @@
           "id": "unit-12.lesson-01.choose.01",
           "type": "choose",
           "prompt": "Which sentence means \"My battery died\"?",
-          "answer": "بطاريتي خلصت",
+          "answer": "بَطَارِيتِي خِلَصَتْ",
           "accepted": [
-            "بطاريتي خلصت",
+            "بَطَارِيتِي خِلَصَتْ",
             "البطارية خلصت",
             "bataariiti khilsat"
           ],
           "options": [
-            "بطاريتي خلصت",
-            "رصيدي خلص",
-            "الخط كان مشغول",
-            "ماكو شبكة هنا"
+            "بَطَارِيتِي خِلَصَتْ",
+            "رَصِيدِي خِلَصْ",
+            "الْخِطّ كَانْ مِشْغُولْ",
+            "مَاكُو شَبَكَةْ هِنَّا"
           ],
           "too_formal": {
             "item": "نفدت طاقة بطاريتي",
@@ -347,14 +347,14 @@
           "id": "unit-12.lesson-01.choose.02",
           "type": "choose",
           "prompt": "Which is the Iraqi way to ask \"What's new?\"",
-          "answer": "شكو ماكو؟",
+          "answer": "شْكُو مَاكُو؟",
           "accepted": [
-            "شكو ماكو؟",
+            "شْكُو مَاكُو؟",
             "شكو ماكو",
             "shaku maaku"
           ],
           "options": [
-            "شكو ماكو؟",
+            "شْكُو مَاكُو؟",
             "شنو اسمك؟",
             "وين رحت؟",
             "الساعة شكد؟"
@@ -372,7 +372,7 @@
           "answer": "كان الخط مشغول",
           "accepted": [
             "كان الخط مشغول",
-            "الخط كان مشغول",
+            "الْخِطّ كَانْ مِشْغُولْ",
             "il-khatt kaan mashghuul"
           ],
           "words": [
@@ -415,77 +415,77 @@
       "phrases": [
         {
           "slot": "where-should-we-meet",
-          "arabic": "وين نتلاقى؟",
+          "arabic": "وِينْ نِتْلَاقَى؟",
           "transliteration": "wiin nitlaaga?"
         },
         {
           "slot": "let-s-meet-at-the-cafe",
-          "arabic": "خل نتلاقى بالكافيه",
+          "arabic": "خَلّ نِتْلَاقَى بِالْكَافِيهْ",
           "transliteration": "khal nitlaaga bil-kaafeeh"
         },
         {
           "slot": "what-time-suits-you",
-          "arabic": "أي ساعة تناسبك؟",
+          "arabic": "أَيّ سَاعَةْ تِنَاسِبَكْ؟",
           "transliteration": "ay saa3a tnaasbak?",
           "reply": {
-            "arabic": "الساعة سبعة زينة إلي",
+            "arabic": "السَّاعَةْ سَبْعَةْ زِينَةْ إِلِي",
             "transliteration": "is-saa3a sab3a zeena ili",
             "english": "7 o'clock is good for me."
           }
         },
         {
           "slot": "is-7-o-clock-good",
-          "arabic": "الساعة سبعة زينة؟",
+          "arabic": "السَّاعَةْ سَبْعَةْ زِينَةْ؟",
           "transliteration": "is-saa3a sab3a zeena?",
           "reply": {
-            "arabic": "إي، زينة",
+            "arabic": "إِيّ، زِينَةْ",
             "transliteration": "ee, zeena",
             "english": "Yes, good."
           }
         },
         {
           "slot": "where-exactly",
-          "arabic": "وين بالضبط؟",
+          "arabic": "وِينْ بِالضَّبِطْ؟",
           "transliteration": "wiin bidh-dhabut?"
         },
         {
           "slot": "i-ll-meet-you-there",
-          "arabic": "أشوفك هناك",
+          "arabic": "أَشُوفَكْ هِنَّاكْ",
           "transliteration": "ashoofak hnaak"
         },
         {
           "slot": "don-t-be-late",
-          "arabic": "لا تتأخر",
+          "arabic": "لَا تِتَأَخَّرْ",
           "transliteration": "laa titakhkhar"
         },
         {
           "slot": "i-ll-be-there-before-you",
-          "arabic": "أوصل قبلك",
+          "arabic": "أَوْصِلْ قَبْلَكْ",
           "transliteration": "awsal gablak"
         },
         {
           "slot": "what-do-you-think-shall-we-go-together",
-          "arabic": "شرايك، نروح سوا؟",
+          "arabic": "شْرَايِكْ، نِرُوحْ سِوَا؟",
           "transliteration": "shraayak, nruu7 sawa?",
           "reply": {
-            "arabic": "زين، يلا",
+            "arabic": "زِينْ، يَلَّا",
             "transliteration": "zeen, yalla",
             "english": "Fine, let's go."
           }
         },
         {
           "slot": "we-ll-meet-at-the-umayyad-mosque",
-          "arabic": "نتلاقى بالجامع الأموي",
+          "arabic": "نِتْلَاقَى بِالْجَامِعْ الْأُمَوِيّ",
           "transliteration": "nitlaaga bil-jaami3 il-umawi"
         },
         {
           "slot": "i-know-exactly-where-the-place-is",
-          "arabic": "أعرف المكان بالضبط",
+          "arabic": "أَعْرِفْ الْمَكَانْ بِالضَّبِطْ",
           "transliteration": "a3rif il-makaan bidh-dhabut"
         },
         {
           "slot": "if-you-re-late-call-me",
-          "arabic": "إذا تأخرت، دق عليّ",
+          "arabic": "إِذَا تَأَخَّرِتْ، دُقّ عَلَيَّ",
           "transliteration": "idha ta2akhkharit, dugg 3aleyya"
         }
       ],
@@ -510,7 +510,7 @@
         },
         {
           "speaker": "Samer",
-          "arabic": "الساعة سبعة زينة؟",
+          "arabic": "السَّاعَةْ سَبْعَةْ زِينَةْ؟",
           "transliteration": "is-saa3a sab3a zeena?",
           "english": "Is 7 o'clock good?"
         },
@@ -560,19 +560,19 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "وين نتلاقى؟",
+            "arabic": "وِينْ نِتْلَاقَى؟",
             "transliteration": "wiin nitlaaga?",
             "english": "Where should we meet?"
           },
           "response": {
-            "arabic": "خل نتلاقى بالكافيه",
+            "arabic": "خَلّ نِتْلَاقَى بِالْكَافِيهْ",
             "transliteration": "khal nitlaaga bil-kaafeeh",
             "english": "Let's meet at the cafe."
           }
         },
         {
           "pair": {
-            "arabic": "الساعة سبعة زينة؟",
+            "arabic": "السَّاعَةْ سَبْعَةْ زِينَةْ؟",
             "transliteration": "is-saa3a sab3a zeena?",
             "english": "Is 7 o'clock good?"
           },
@@ -584,7 +584,7 @@
         },
         {
           "pair": {
-            "arabic": "وين بالضبط؟",
+            "arabic": "وِينْ بِالضَّبِطْ؟",
             "transliteration": "wiin bidh-dhabut?",
             "english": "Where exactly?"
           },
@@ -596,7 +596,7 @@
         },
         {
           "pair": {
-            "arabic": "لا تتأخر",
+            "arabic": "لَا تِتَأَخَّرْ",
             "transliteration": "laa titakhkhar",
             "english": "Don't be late."
           },
@@ -613,9 +613,9 @@
           "id": "unit-12.lesson-02.reply.01",
           "type": "reply",
           "prompt": "A friend asks: «وين نتلاقى؟». Suggest the cafe.",
-          "answer": "خل نتلاقى بالكافيه",
+          "answer": "خَلّ نِتْلَاقَى بِالْكَافِيهْ",
           "accepted": [
-            "خل نتلاقى بالكافيه",
+            "خَلّ نِتْلَاقَى بِالْكَافِيهْ",
             "نتلاقى بالكافيه",
             "بالكافيه",
             "khal nitlaaga bil-kaafeeh"
@@ -633,7 +633,7 @@
           "answer": "لا تخاف، أوصل قبلك",
           "accepted": [
             "لا تخاف، أوصل قبلك",
-            "أوصل قبلك",
+            "أَوْصِلْ قَبْلَكْ",
             "لا تخاف",
             "awsal gablak"
           ],
@@ -680,9 +680,9 @@
           "id": "unit-12.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Iraqi Arabic: \"Don't be late.\"",
-          "answer": "لا تتأخر",
+          "answer": "لَا تِتَأَخَّرْ",
           "accepted": [
-            "لا تتأخر",
+            "لَا تِتَأَخَّرْ",
             "لا تتأخر عليّ",
             "لا تتأخّر",
             "laa titakhkhar"
@@ -697,9 +697,9 @@
           "id": "unit-12.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I know exactly where the place is.\"",
-          "answer": "أعرف المكان بالضبط",
+          "answer": "أَعْرِفْ الْمَكَانْ بِالضَّبِطْ",
           "accepted": [
-            "أعرف المكان بالضبط",
+            "أَعْرِفْ الْمَكَانْ بِالضَّبِطْ",
             "أعرف وين المكان بالضبط",
             "اعرف المكان بالضبط",
             "a3rif il-makaan bidh-dhabut"
@@ -714,14 +714,14 @@
           "id": "unit-12.lesson-02.choose.01",
           "type": "choose",
           "prompt": "Which means \"Where exactly?\"",
-          "answer": "وين بالضبط؟",
+          "answer": "وِينْ بِالضَّبِطْ؟",
           "accepted": [
-            "وين بالضبط؟",
+            "وِينْ بِالضَّبِطْ؟",
             "وين بالضبط",
             "wiin bidh-dhabut"
           ],
           "options": [
-            "وين بالضبط؟",
+            "وِينْ بِالضَّبِطْ؟",
             "شوكت بالضبط؟",
             "شكد بالضبط؟",
             "منو بالضبط؟"
@@ -736,16 +736,16 @@
           "id": "unit-12.lesson-02.choose.02",
           "type": "choose",
           "prompt": "Which means \"I'll be there before you\"?",
-          "answer": "أوصل قبلك",
+          "answer": "أَوْصِلْ قَبْلَكْ",
           "accepted": [
-            "أوصل قبلك",
+            "أَوْصِلْ قَبْلَكْ",
             "awsal gablak",
             "اوصل قبلك"
           ],
           "options": [
-            "أوصل قبلك",
+            "أَوْصِلْ قَبْلَكْ",
             "أشوفك بعدين",
-            "لا تتأخر",
+            "لَا تِتَأَخَّرْ",
             "أعرف المكان"
           ],
           "too_formal": {
@@ -758,16 +758,16 @@
           "id": "unit-12.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in a natural order: «نتلاقى / خل / بالكافيه».",
-          "answer": "خل نتلاقى بالكافيه",
+          "answer": "خَلّ نِتْلَاقَى بِالْكَافِيهْ",
           "accepted": [
-            "خل نتلاقى بالكافيه",
+            "خَلّ نِتْلَاقَى بِالْكَافِيهْ",
             "خل نتلاقى بالكافي",
             "khal nitlaaga bil-kaafeeh"
           ],
           "words": [
-            "نتلاقى",
-            "خل",
-            "بالكافيه"
+            "نِتْلَاقَى",
+            "خَلّ",
+            "بِالْكَافِيهْ"
           ],
           "too_formal": {
             "item": "لنلتقي في المقهى",
@@ -804,37 +804,37 @@
       "phrases": [
         {
           "slot": "i-want-to-change-the-appointment",
-          "arabic": "أريد أغيّر الموعد",
+          "arabic": "أُرِيدْ أَغَيِّرْ الْمَوْعِدْ",
           "transliteration": "ariid agheyyir il-maw3id",
           "reply": {
-            "arabic": "ما يخالف، شصار؟",
+            "arabic": "مَا يِخَالِفْ، شْصَارْ؟",
             "transliteration": "ma ykhaalif, shsaar?",
             "english": "No problem, what happened?"
           }
         },
         {
           "slot": "i-can-t-come-today",
-          "arabic": "ما أقدر أجي اليوم",
+          "arabic": "مَا أَقْدِرْ أَجِي الْيَوْمْ",
           "transliteration": "ma agdar aji il-yoom"
         },
         {
           "slot": "something-came-up-for-me",
-          "arabic": "طلع عندي شغل",
+          "arabic": "طِلَعْ عِنْدِي شِغِلْ",
           "transliteration": "tila3 3indi shughul"
         },
         {
           "slot": "can-we-postpone-to-tomorrow",
-          "arabic": "نقدر نأجل لباچر؟",
+          "arabic": "نِقْدِرْ نَأَجِّلْ لِبَاچِرْ؟",
           "transliteration": "nigdar n2ajjil la-baachir?",
           "reply": {
-            "arabic": "إي، باچر زين",
+            "arabic": "إِيّ، بَاچِرْ زِينْ",
             "transliteration": "ee, baachir zeen",
             "english": "Yes, tomorrow is fine."
           }
         },
         {
           "slot": "i-d-like-us-to-meet-another-day",
-          "arabic": "أريد نتلاقى يوم ثاني",
+          "arabic": "أُرِيدْ نِتْلَاقَى يَوْمْ ثَانِي",
           "transliteration": "ariid nitlaaga yoom thaani"
         },
         {
@@ -844,42 +844,42 @@
         },
         {
           "slot": "sorry-for-the-sudden-change",
-          "arabic": "آسف على هالتغيير المفاجئ",
+          "arabic": "آسِفْ عَلَى هَالْتِغْيِيرْ الْمُفَاجِئْ",
           "transliteration": "aasif 3ala hal-taghyiir il-mufaaji2",
           "reply": {
-            "arabic": "ما يخالف",
+            "arabic": "مَا يِخَالِفْ",
             "transliteration": "ma ykhaalif",
             "english": "No problem."
           }
         },
         {
           "slot": "can-we-meet-in-the-afternoon-instead-of-the-morn",
-          "arabic": "نقدر نتلاقى بعد الظهر بدال الصبح؟",
+          "arabic": "نِقْدِرْ نِتْلَاقَى بَعِدْ الظُّهِرْ بِدَالْ الصُّبِحْ؟",
           "transliteration": "nigdar nitlaaga ba3d idh-dhuhur badaal is-subu7?"
         },
         {
           "slot": "is-the-place-still-the-same-place",
-          "arabic": "المكان بعده نفس المكان؟",
+          "arabic": "الْمَكَانْ بَعْدُهْ نِفِسْ الْمَكَانْ؟",
           "transliteration": "il-makaan ba3da nafs il-makaan?",
           "reply": {
-            "arabic": "إي، نفس المكان",
+            "arabic": "إِيّ، نِفِسْ الْمَكَانْ",
             "transliteration": "ee, nafs il-makaan",
             "english": "Yes, the same place."
           }
         },
         {
           "slot": "can-we-cancel-the-appointment",
-          "arabic": "نقدر نلغي الموعد؟",
+          "arabic": "نِقْدِرْ نِلْغِي الْمَوْعِدْ؟",
           "transliteration": "nigdar nilghi il-maw3id?"
         },
         {
           "slot": "i-have-to-apologize-for-the-appointment-cancel-i",
-          "arabic": "لازم أعتذر عن الموعد",
+          "arabic": "لَازِمْ أَعْتِذِرْ عَنْ الْمَوْعِدْ",
           "transliteration": "laazim a3tithir 3an il-maw3id"
         },
         {
           "slot": "i-ll-meet-you-friday-instead-of-thursday",
-          "arabic": "أشوفك الجمعة بدال الخميس",
+          "arabic": "أَشُوفَكْ الْجُمْعَةْ بِدَالْ الْخَمِيسْ",
           "transliteration": "ashoofak ij-jum3a badaal il-khamiis"
         }
       ],
@@ -892,7 +892,7 @@
         },
         {
           "speaker": "Zaynab",
-          "arabic": "ما يخالف، شصار؟",
+          "arabic": "مَا يِخَالِفْ، شْصَارْ؟",
           "transliteration": "ma ykhaalif, shsaar?",
           "english": "No problem, what happened?"
         },
@@ -954,43 +954,43 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "أريد أغيّر الموعد",
+            "arabic": "أُرِيدْ أَغَيِّرْ الْمَوْعِدْ",
             "transliteration": "ariid agheyyir il-maw3id",
             "english": "I want to change the appointment."
           },
           "response": {
-            "arabic": "ما يخالف، شصار؟",
+            "arabic": "مَا يِخَالِفْ، شْصَارْ؟",
             "transliteration": "ma ykhaalif, shsaar?",
             "english": "No problem, what happened?"
           }
         },
         {
           "pair": {
-            "arabic": "نقدر نأجل لباچر؟",
+            "arabic": "نِقْدِرْ نَأَجِّلْ لِبَاچِرْ؟",
             "transliteration": "nigdar n2ajjil la-baachir?",
             "english": "Can we postpone to tomorrow?"
           },
           "response": {
-            "arabic": "إي، باچر زين",
+            "arabic": "إِيّ، بَاچِرْ زِينْ",
             "transliteration": "ee, baachir zeen",
             "english": "Yes, tomorrow is fine."
           }
         },
         {
           "pair": {
-            "arabic": "المكان بعده نفس المكان؟",
+            "arabic": "الْمَكَانْ بَعْدُهْ نِفِسْ الْمَكَانْ؟",
             "transliteration": "il-makaan ba3da nafs il-makaan?",
             "english": "Is the place still the same place?"
           },
           "response": {
-            "arabic": "إي، نفس المكان",
+            "arabic": "إِيّ، نِفِسْ الْمَكَانْ",
             "transliteration": "ee, nafs il-makaan",
             "english": "Yes, the same place."
           }
         },
         {
           "pair": {
-            "arabic": "نقدر نلغي الموعد؟",
+            "arabic": "نِقْدِرْ نِلْغِي الْمَوْعِدْ؟",
             "transliteration": "nigdar nilghi il-maw3id?",
             "english": "Can we cancel the appointment?"
           },
@@ -1007,11 +1007,11 @@
           "id": "unit-12.lesson-03.reply.01",
           "type": "reply",
           "prompt": "A friend says: «أريد أغيّر الموعد، طلع عندي شغل.» Tell them it's no problem.",
-          "answer": "ما يخالف",
+          "answer": "مَا يِخَالِفْ",
           "accepted": [
-            "ما يخالف",
-            "ما يخالف، شصار؟",
-            "ولا يهمك",
+            "مَا يِخَالِفْ",
+            "مَا يِخَالِفْ، شْصَارْ؟",
+            "وَلَا يِهِمّْكْ",
             "ma ykhaalif"
           ],
           "too_formal": {
@@ -1024,9 +1024,9 @@
           "id": "unit-12.lesson-03.reply.02",
           "type": "reply",
           "prompt": "A friend asks: «نقدر نأجل لباچر؟». Agree.",
-          "answer": "إي، باچر زين",
+          "answer": "إِيّ، بَاچِرْ زِينْ",
           "accepted": [
-            "إي، باچر زين",
+            "إِيّ، بَاچِرْ زِينْ",
             "باچر زين",
             "إي زين",
             "ee, baachir zeen"
@@ -1073,9 +1073,9 @@
           "id": "unit-12.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Iraqi Arabic: \"Something came up for me.\"",
-          "answer": "طلع عندي شغل",
+          "answer": "طِلَعْ عِنْدِي شِغِلْ",
           "accepted": [
-            "طلع عندي شغل",
+            "طِلَعْ عِنْدِي شِغِلْ",
             "طلعلي شغل",
             "صار عندي ظرف",
             "tila3 3indi shughul"
@@ -1090,9 +1090,9 @@
           "id": "unit-12.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Sorry for the sudden change.\"",
-          "answer": "آسف على هالتغيير المفاجئ",
+          "answer": "آسِفْ عَلَى هَالْتِغْيِيرْ الْمُفَاجِئْ",
           "accepted": [
-            "آسف على هالتغيير المفاجئ",
+            "آسِفْ عَلَى هَالْتِغْيِيرْ الْمُفَاجِئْ",
             "آسف عالتغيير المفاجئ",
             "آسف على التغيير المفاجئ",
             "aasif 3ala hal-taghyiir il-mufaaji2"
@@ -1107,17 +1107,17 @@
           "id": "unit-12.lesson-03.choose.01",
           "type": "choose",
           "prompt": "Which means \"Can we cancel the appointment?\"",
-          "answer": "نقدر نلغي الموعد؟",
+          "answer": "نِقْدِرْ نِلْغِي الْمَوْعِدْ؟",
           "accepted": [
-            "نقدر نلغي الموعد؟",
+            "نِقْدِرْ نِلْغِي الْمَوْعِدْ؟",
             "nigdar nilghi il-maw3id",
             "نقدر نلغي الموعد"
           ],
           "options": [
-            "نقدر نلغي الموعد؟",
-            "نقدر نأجل لباچر؟",
-            "المكان بعده نفس المكان؟",
-            "أريد أغيّر الموعد"
+            "نِقْدِرْ نِلْغِي الْمَوْعِدْ؟",
+            "نِقْدِرْ نَأَجِّلْ لِبَاچِرْ؟",
+            "الْمَكَانْ بَعْدُهْ نِفِسْ الْمَكَانْ؟",
+            "أُرِيدْ أَغَيِّرْ الْمَوْعِدْ"
           ],
           "too_formal": {
             "item": "هل يمكننا إلغاء الموعد؟",
@@ -1129,14 +1129,14 @@
           "id": "unit-12.lesson-03.choose.02",
           "type": "choose",
           "prompt": "Which means \"I'll meet you Friday instead of Thursday\"?",
-          "answer": "أشوفك الجمعة بدال الخميس",
+          "answer": "أَشُوفَكْ الْجُمْعَةْ بِدَالْ الْخَمِيسْ",
           "accepted": [
-            "أشوفك الجمعة بدال الخميس",
+            "أَشُوفَكْ الْجُمْعَةْ بِدَالْ الْخَمِيسْ",
             "ashoofak ij-jum3a badaal il-khamiis",
             "أشوفك الجمعة بدل الخميس"
           ],
           "options": [
-            "أشوفك الجمعة بدال الخميس",
+            "أَشُوفَكْ الْجُمْعَةْ بِدَالْ الْخَمِيسْ",
             "أشوفك الخميس بدال الجمعة",
             "أشوفك باچر بعد الظهر",
             "أشوفك اليوم الصبح"
@@ -1172,17 +1172,17 @@
           "id": "unit-12.lesson-03.reorder.02",
           "type": "reorder",
           "prompt": "Put these words in a natural order: «الجمعة / أشوفك / بدال / الخميس».",
-          "answer": "أشوفك الجمعة بدال الخميس",
+          "answer": "أَشُوفَكْ الْجُمْعَةْ بِدَالْ الْخَمِيسْ",
           "accepted": [
-            "أشوفك الجمعة بدال الخميس",
+            "أَشُوفَكْ الْجُمْعَةْ بِدَالْ الْخَمِيسْ",
             "أشوفك الجمعة بدل الخميس",
             "ashoofak ij-jum3a badaal il-khamiis"
           ],
           "words": [
-            "الجمعة",
-            "أشوفك",
-            "بدال",
-            "الخميس"
+            "الْجُمْعَةْ",
+            "أَشُوفَكْ",
+            "بِدَالْ",
+            "الْخَمِيسْ"
           ],
           "too_formal": {
             "item": "سألتقيك يوم الجمعة بدلاً من الخميس",
@@ -1197,22 +1197,22 @@
       "phrases": [
         {
           "slot": "hello-is-samer-there",
-          "arabic": "آلو، سامر موجود؟",
+          "arabic": "آلُو، سَامِرْ مَوْجُودْ؟",
           "transliteration": "aaloo, Saamer mawjuud?",
           "reply": {
-            "arabic": "لا، مو موجود هسه",
+            "arabic": "لَا، مُو مَوْجُودْ هِسَّهْ",
             "transliteration": "laa, muu mawjuud hassa",
             "english": "No, he's not here right now."
           }
         },
         {
           "slot": "no-he-s-not-here-right-now",
-          "arabic": "لا، مو موجود هسه",
+          "arabic": "لَا، مُو مَوْجُودْ هِسَّهْ",
           "transliteration": "laa, muu mawjuud hassa"
         },
         {
           "slot": "when-will-he-be-back",
-          "arabic": "شوكت يرجع؟",
+          "arabic": "شْوَكِتْ يِرْجَعْ؟",
           "transliteration": "shwakit yirja3?",
           "reply": {
             "arabic": "بعد شوية",
@@ -1227,57 +1227,57 @@
         },
         {
           "slot": "can-you-take-a-message-for-me",
-          "arabic": "تقدر تاخذلي رسالة؟",
+          "arabic": "تِقْدِرْ تَاخِذْلِي رِسَالَةْ؟",
           "transliteration": "tigdar taakhudhli risaala?",
           "reply": {
-            "arabic": "أكيد، تفضل",
+            "arabic": "أَكِيدْ، تِفَضَّلْ",
             "transliteration": "akiid, tfaddal",
             "english": "Sure, go ahead."
           }
         },
         {
           "slot": "tell-him-to-call-me",
-          "arabic": "قله يدق عليّ",
+          "arabic": "قِلَهْ يِدُقّ عَلَيَّ",
           "transliteration": "gil-la yidugg 3aleyya"
         },
         {
           "slot": "let-him-know-i-called",
-          "arabic": "قله آني دقيت",
+          "arabic": "قِلَهْ آنِي دَقِّيتْ",
           "transliteration": "gil-la aani daggeit"
         },
         {
           "slot": "i-ll-tell-him-as-soon-as-he-arrives",
-          "arabic": "أقله أول ما يوصل",
+          "arabic": "أَقِلَهْ أَوَّلْ مَا يُوصِلْ",
           "transliteration": "agul-la awwal ma yoosal"
         },
         {
           "slot": "do-you-have-my-number",
-          "arabic": "عندك رقمي؟",
+          "arabic": "عِنْدَكْ رَقْمِي؟",
           "transliteration": "3indak raqmi?",
           "reply": {
-            "arabic": "إي، عندي",
+            "arabic": "إِيّ، عِنْدِي",
             "transliteration": "ee, 3indi",
             "english": "Yes, I have it."
           }
         },
         {
           "slot": "thanks-a-lot",
-          "arabic": "مشكور كلش",
+          "arabic": "مِشْكُورْ كِلِشْ",
           "transliteration": "mashkuur kullish",
           "reply": {
-            "arabic": "ولا يهمك",
+            "arabic": "وَلَا يِهِمّْكْ",
             "transliteration": "wala yhimmak",
             "english": "Don't mention it."
           }
         },
         {
           "slot": "good-that-i-didn-t-waste-your-time",
-          "arabic": "زين ما ضيعت وقتك",
+          "arabic": "زِينْ مَا ضَيَّعِتْ وَقِتَكْ",
           "transliteration": "zeen ma dhayya3it wakitak"
         },
         {
           "slot": "i-ll-pass-him-the-news-as-soon-as-he-s-in",
-          "arabic": "أوصله الخبر أول ما يجي",
+          "arabic": "أَوصِّلَهْ الْخَبِرْ أَوَّلْ مَا يِجِي",
           "transliteration": "awassil-lu l-khabar awwal ma yiji"
         }
       ],
@@ -1308,7 +1308,7 @@
         },
         {
           "speaker": "Zaynab",
-          "arabic": "شوكت يرجع؟",
+          "arabic": "شْوَكِتْ يِرْجَعْ؟",
           "transliteration": "shwakit yirja3?",
           "english": "When will he be back?"
         },
@@ -1320,7 +1320,7 @@
         },
         {
           "speaker": "Zaynab",
-          "arabic": "تقدر تاخذلي رسالة؟",
+          "arabic": "تِقْدِرْ تَاخِذْلِي رِسَالَةْ؟",
           "transliteration": "tigdar taakhudhli risaala?",
           "english": "Can you take a message for me?"
         },
@@ -1363,14 +1363,14 @@
             "english": "Is Samer there?"
           },
           "response": {
-            "arabic": "لا، مو موجود هسه",
+            "arabic": "لَا، مُو مَوْجُودْ هِسَّهْ",
             "transliteration": "laa, muu mawjuud hassa",
             "english": "No, he's not here right now."
           }
         },
         {
           "pair": {
-            "arabic": "شوكت يرجع؟",
+            "arabic": "شْوَكِتْ يِرْجَعْ؟",
             "transliteration": "shwakit yirja3?",
             "english": "When will he be back?"
           },
@@ -1382,19 +1382,19 @@
         },
         {
           "pair": {
-            "arabic": "تقدر تاخذلي رسالة؟",
+            "arabic": "تِقْدِرْ تَاخِذْلِي رِسَالَةْ؟",
             "transliteration": "tigdar taakhudhli risaala?",
             "english": "Can you take a message for me?"
           },
           "response": {
-            "arabic": "أكيد، تفضل",
+            "arabic": "أَكِيدْ، تِفَضَّلْ",
             "transliteration": "akiid, tfaddal",
             "english": "Sure, go ahead."
           }
         },
         {
           "pair": {
-            "arabic": "قله يدق عليّ",
+            "arabic": "قِلَهْ يِدُقّ عَلَيَّ",
             "transliteration": "gil-la yidugg 3aleyya",
             "english": "Tell him to call me."
           },
@@ -1411,9 +1411,9 @@
           "id": "unit-12.lesson-04.reply.01",
           "type": "reply",
           "prompt": "You call Samer's house. Say hello and ask if Samer is there.",
-          "answer": "آلو، سامر موجود؟",
+          "answer": "آلُو، سَامِرْ مَوْجُودْ؟",
           "accepted": [
-            "آلو، سامر موجود؟",
+            "آلُو، سَامِرْ مَوْجُودْ؟",
             "سامر موجود؟",
             "سامر هنا؟",
             "aaloo, Saamer mawjuud?"
@@ -1428,9 +1428,9 @@
           "id": "unit-12.lesson-04.reply.02",
           "type": "reply",
           "prompt": "Someone asks you: «تقدر تاخذلي رسالة؟». Say sure, go ahead.",
-          "answer": "أكيد، تفضل",
+          "answer": "أَكِيدْ، تِفَضَّلْ",
           "accepted": [
-            "أكيد، تفضل",
+            "أَكِيدْ، تِفَضَّلْ",
             "أكيد",
             "إي أكيد",
             "akiid, tfaddal"
@@ -1477,9 +1477,9 @@
           "id": "unit-12.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Iraqi Arabic: \"Tell him to call me.\"",
-          "answer": "قله يدق عليّ",
+          "answer": "قِلَهْ يِدُقّ عَلَيَّ",
           "accepted": [
-            "قله يدق عليّ",
+            "قِلَهْ يِدُقّ عَلَيَّ",
             "قله يدق علي",
             "gil-la yidugg 3aleyya"
           ],
@@ -1493,9 +1493,9 @@
           "id": "unit-12.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Do you have my number?\"",
-          "answer": "عندك رقمي؟",
+          "answer": "عِنْدَكْ رَقْمِي؟",
           "accepted": [
-            "عندك رقمي؟",
+            "عِنْدَكْ رَقْمِي؟",
             "عندك رقمي",
             "عندك رقم موبايلي",
             "3indak raqmi"
@@ -1513,14 +1513,14 @@
           "answer": "مو موجود هسه",
           "accepted": [
             "مو موجود هسه",
-            "لا، مو موجود هسه",
+            "لَا، مُو مَوْجُودْ هِسَّهْ",
             "muu mawjuud hassa"
           ],
           "options": [
             "مو موجود هسه",
-            "شوكت يرجع؟",
-            "تقدر تاخذلي رسالة؟",
-            "مشكور كلش"
+            "شْوَكِتْ يِرْجَعْ؟",
+            "تِقْدِرْ تَاخِذْلِي رِسَالَةْ؟",
+            "مِشْكُورْ كِلِشْ"
           ],
           "too_formal": {
             "item": "ليس موجوداً الآن",
@@ -1532,17 +1532,17 @@
           "id": "unit-12.lesson-04.choose.02",
           "type": "choose",
           "prompt": "Which is the Iraqi \"Thanks a lot\"?",
-          "answer": "مشكور كلش",
+          "answer": "مِشْكُورْ كِلِشْ",
           "accepted": [
-            "مشكور كلش",
+            "مِشْكُورْ كِلِشْ",
             "مشكور",
             "mashkuur kullish"
           ],
           "options": [
-            "مشكور كلش",
-            "وين بالضبط؟",
-            "لا تتأخر",
-            "أشوفك هناك"
+            "مِشْكُورْ كِلِشْ",
+            "وِينْ بِالضَّبِطْ؟",
+            "لَا تِتَأَخَّرْ",
+            "أَشُوفَكْ هِنَّاكْ"
           ],
           "too_formal": {
             "item": "شكراً جزيلاً",
@@ -1575,17 +1575,17 @@
           "id": "unit-12.lesson-04.reorder.02",
           "type": "reorder",
           "prompt": "Put these words in a natural order: «يوصل / أقله / ما / أول».",
-          "answer": "أقله أول ما يوصل",
+          "answer": "أَقِلَهْ أَوَّلْ مَا يُوصِلْ",
           "accepted": [
-            "أقله أول ما يوصل",
+            "أَقِلَهْ أَوَّلْ مَا يُوصِلْ",
             "agul-la awwal ma yoosal",
             "اقله اول ما يوصل"
           ],
           "words": [
-            "يوصل",
-            "أقله",
-            "ما",
-            "أول"
+            "يُوصِلْ",
+            "أَقِلَهْ",
+            "مَا",
+            "أَوَّلْ"
           ],
           "too_formal": {
             "item": "سأخبره حال وصوله",
@@ -1615,7 +1615,7 @@
       "dialogue": [
         {
           "speaker": "Samer",
-          "arabic": "آلو؟",
+          "arabic": "آلُو؟",
           "transliteration": "aaloo?",
           "english": "Hello?"
         },

@@ -48,6 +48,22 @@
       "arabic": "المغربي",
       "where": "Casablanca, Rabat and Morocco",
       "order": 6
+    },
+    {
+      "key": "hejazi",
+      "folder": "hejazi",
+      "label": "Hejazi",
+      "arabic": "الحجازي",
+      "where": "Makkah, Madinah and Jeddah",
+      "order": 7
+    },
+    {
+      "key": "yemeni",
+      "folder": "yemeni",
+      "label": "Yemeni",
+      "arabic": "اليمني",
+      "where": "Sana'a and Yemen",
+      "order": 8
     }
   ]
 }

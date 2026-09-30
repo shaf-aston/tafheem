@@ -22,72 +22,72 @@
       "phrases": [
         {
           "slot": "what-s-the-weather-like-today",
-          "arabic": "كيفاش الجو اليوم؟",
+          "arabic": "كِيفَاش الْجَو الْيَوْم؟",
           "transliteration": "kifash ljaw lyoom?",
           "reply": {
-            "arabic": "الجو زوين، كاينة الشمس",
+            "arabic": "الْجَو زْوِين، كَايْنَة الشَّمْس",
             "transliteration": "ljaw zween, kayna shshems",
             "english": "The weather's nice, the sun's out."
           }
         },
         {
           "slot": "the-weather-s-very-hot",
-          "arabic": "الجو سخون بزاف",
+          "arabic": "الْجَو سْخُون بْزَاف",
           "transliteration": "ljaw skhoon bzaaf"
         },
         {
           "slot": "it-s-cold-today",
-          "arabic": "اليوم كاين البرد",
+          "arabic": "الْيَوْم كَايْن الْبَرْد",
           "transliteration": "lyoom kayn lberd"
         },
         {
           "slot": "it-s-raining-outside",
-          "arabic": "كتشتي برا",
+          "arabic": "كْتَشْتِي بَرَّا",
           "transliteration": "kteshti barra"
         },
         {
           "slot": "it-s-cloudy",
-          "arabic": "الجو غايم",
+          "arabic": "الْجَو غَايِم",
           "transliteration": "ljaw ghaayem"
         },
         {
           "slot": "there-s-a-lot-of-wind-today",
-          "arabic": "كاين الريح بزاف اليوم",
+          "arabic": "كَايْن الرِّيح بْزَاف الْيَوْم",
           "transliteration": "kayn rreeh bzaaf lyoom"
         },
         {
           "slot": "the-weather-s-humid-today",
-          "arabic": "كاينة الرطوبة اليوم",
+          "arabic": "كَايْنَة الرُّطُوبَة الْيَوْم",
           "transliteration": "kayna rroTooba lyoom"
         },
         {
           "slot": "what-do-you-think-is-it-going-to-rain-tomorrow",
-          "arabic": "واش كتظن غادي تشتي غدا؟",
+          "arabic": "وَاش كْتَظُنّ غَادِي تَشْتِي غَدَّا؟",
           "transliteration": "waash kteDenn ghaadi teshti ghedda?",
           "reply": {
-            "arabic": "ما عرفتش، ولكن الجو غايم شوية",
+            "arabic": "مَا عَرْفْتِش، وَلَكِن الْجَو غَايِم شْوِيَّة",
             "transliteration": "ma 3reftsh, walakin ljaw ghaayem shwiya",
             "english": "I don't know, but it's a bit cloudy."
           }
         },
         {
           "slot": "it-s-hot-out-today",
-          "arabic": "اليوم الدنيا سخونة برا",
+          "arabic": "الْيَوْم الدُّنْيَا سْخُونَة بَرَّا",
           "transliteration": "lyoom ddenya skhoona barra"
         },
         {
           "slot": "it-s-cold-out-right-now",
-          "arabic": "دابا كاين البرد برا",
+          "arabic": "دَابَا كَايْن الْبَرْد بَرَّا",
           "transliteration": "daba kayn lberd barra"
         },
         {
           "slot": "you-need-to-take-an-umbrella-with-you",
-          "arabic": "خاصك تاخد معاك الشمسية",
+          "arabic": "خَاصَّك تَاخْد مَعَاك الشَّمْسِيَّة",
           "transliteration": "khaSSek takhod m3aak shshemsiya"
         },
         {
           "slot": "the-sun-s-out-today",
-          "arabic": "الشمس طالعة اليوم",
+          "arabic": "الشَّمْس طَالِعَة الْيَوْم",
           "transliteration": "shshems Taal3a lyoom"
         }
       ],
@@ -162,7 +162,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "كيفاش الجو اليوم؟",
+            "arabic": "كِيفَاش الْجَو الْيَوْم؟",
             "transliteration": "kifash ljaw lyoom?",
             "english": "What's the weather like today?"
           },
@@ -215,9 +215,9 @@
           "id": "unit-10.lesson-01.reply.01",
           "type": "reply",
           "prompt": "صاحبك سولك: «كيفاش الجو اليوم؟». جاوبو بلي الجو زوين.",
-          "answer": "الجو زوين، كاينة الشمس",
+          "answer": "الْجَو زْوِين، كَايْنَة الشَّمْس",
           "accepted": [
-            "الجو زوين، كاينة الشمس",
+            "الْجَو زْوِين، كَايْنَة الشَّمْس",
             "الجو زوين",
             "الجو زوين والشمس طالعة",
             "زوين، كاينة الشمس",
@@ -305,9 +305,9 @@
           "id": "unit-10.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "ترجم للدارجة: \"There's a lot of wind today.\"",
-          "answer": "كاين الريح بزاف اليوم",
+          "answer": "كَايْن الرِّيح بْزَاف الْيَوْم",
           "accepted": [
-            "كاين الريح بزاف اليوم",
+            "كَايْن الرِّيح بْزَاف الْيَوْم",
             "اليوم كاين الريح بزاف",
             "كاين الهوا بزاف اليوم",
             "كاين بزاف ديال الريح اليوم",
@@ -345,16 +345,16 @@
           "id": "unit-10.lesson-01.choose.02",
           "type": "choose",
           "prompt": "شنو كتقول لواحد خاصو ياخد الشمسية؟",
-          "answer": "خاصك تاخد معاك الشمسية",
+          "answer": "خَاصَّك تَاخْد مَعَاك الشَّمْسِيَّة",
           "accepted": [
-            "خاصك تاخد معاك الشمسية",
+            "خَاصَّك تَاخْد مَعَاك الشَّمْسِيَّة",
             "خود معاك الشمسية",
             "خاصك الشمسية",
             "khaSSek takhod m3aak shshemsiya"
           ],
           "options": [
-            "خاصك تاخد معاك الشمسية",
-            "الجو سخون بزاف",
+            "خَاصَّك تَاخْد مَعَاك الشَّمْسِيَّة",
+            "الْجَو سْخُون بْزَاف",
             "الشمس طالعة",
             "كاين الريح"
           ],
@@ -391,18 +391,18 @@
           "id": "unit-10.lesson-01.reorder.02",
           "type": "reorder",
           "prompt": "رتب الكلمات باش تجي جملة: «معاك / الشمسية / تاخد / خاصك»",
-          "answer": "خاصك تاخد معاك الشمسية",
+          "answer": "خَاصَّك تَاخْد مَعَاك الشَّمْسِيَّة",
           "accepted": [
-            "خاصك تاخد معاك الشمسية",
+            "خَاصَّك تَاخْد مَعَاك الشَّمْسِيَّة",
             "خاصك تاخد الشمسية معاك",
             "خاصك تاخد شمسية معاك",
             "khaSSek takhod m3aak shshemsiya"
           ],
           "words": [
-            "خاصك",
-            "تاخد",
-            "معاك",
-            "الشمسية"
+            "خَاصَّك",
+            "تَاخْد",
+            "مَعَاك",
+            "الشَّمْسِيَّة"
           ],
           "too_formal": {
             "item": "يتحتم عليك أخذ مظلة معك",
@@ -417,67 +417,67 @@
       "phrases": [
         {
           "slot": "what-s-your-favorite-season",
-          "arabic": "أشمن فصل كيعجبك؟",
+          "arabic": "أَشْمَن فَصْل كِيعْجِبَك؟",
           "transliteration": "ashmen faSl kay3jbek?",
           "reply": {
-            "arabic": "الصيف، كنحب البحر",
+            "arabic": "الصَّيْف، كْنَحِبّ الْبَحْر",
             "transliteration": "SSeef, kan7ebb lb7er",
             "english": "Summer, I love the sea."
           }
         },
         {
           "slot": "in-winter-it-gets-very-cold-in-damascus",
-          "arabic": "فالشتا كيكون البرد بزاف فالرباط",
+          "arabic": "فَالشِّتَا كِيكُون الْبَرْد بْزَاف فَالرِّبَاط",
           "transliteration": "fshshta kaykoon lberd bzaaf frrbaaT"
         },
         {
           "slot": "in-summer-the-weather-s-hot-and-dry",
-          "arabic": "فالصيف الجو سخون وناشف",
+          "arabic": "فَالصَّيْف الْجَو سْخُون وْنَاشِف",
           "transliteration": "fSSeef ljaw skhoon w naashef"
         },
         {
           "slot": "it-s-snowing-on-the-mountain",
-          "arabic": "كيطيح التلج فالجبل",
+          "arabic": "كِيطِيح التِّلْج فَالْجَبَل",
           "transliteration": "kayTee7 ttelj fljbel"
         },
         {
           "slot": "spring-is-my-favorite-season",
-          "arabic": "الربيع هو أحسن فصل عندي",
+          "arabic": "الرَّبِيع هُو أَحْسَن فَصْل عِنْدِي",
           "transliteration": "rrbee3 huwa a7sen faSl 3ndi"
         },
         {
           "slot": "in-fall-the-leaves-fall-from-the-trees",
-          "arabic": "فالخريف الورق كيطيح من الشجرة",
+          "arabic": "فَالْخَرِيف الْوَرَق كِيطِيح مِن الشَّجَرَة",
           "transliteration": "flkhreef lwerq kayTee7 mn shshejra"
         },
         {
           "slot": "i-don-t-like-winter-because-it-gets-very-cold",
-          "arabic": "ما كنحبش الشتا حيت كيكون البرد بزاف",
+          "arabic": "مَا كْنَحِبّش الشِّتَا حِيت كِيكُون الْبَرْد بْزَاف",
           "transliteration": "ma kan7ebbsh shshta 7eet kaykoon lberd bzaaf"
         },
         {
           "slot": "what-season-is-it-now",
-          "arabic": "أشمن فصل هادا دابا؟",
+          "arabic": "أَشْمَن فَصْل هَادَا دَابَا؟",
           "transliteration": "ashmen faSl haada daba?"
         },
         {
           "slot": "in-winter-you-need-to-wear-something-heavy",
-          "arabic": "فالشتا خاصك تلبس حوايج تقال",
+          "arabic": "فَالشِّتَا خَاصَّك تِلْبَس حْوَايِج تِقَال",
           "transliteration": "fshshta khaSSek telbes 7waayej teqaal"
         },
         {
           "slot": "the-weather-changes-a-lot-between-the-seasons",
-          "arabic": "الجو كيتبدل بزاف بين الفصول",
+          "arabic": "الْجَو كِيتْبَدِّل بْزَاف بِين الفُصُول",
           "transliteration": "ljaw kaytbeddel bzaaf been lfSool"
         },
         {
           "slot": "i-like-the-smell-of-rain-in-spring",
-          "arabic": "كتعجبني ريحة الشتا فالربيع",
+          "arabic": "كْتَعْجِبْنِي رِيحَة الشِّتَا فَالرَّبِيع",
           "transliteration": "kat3jebni ree7t shshta frrbee3"
         },
         {
           "slot": "summer-in-damascus-is-long",
-          "arabic": "الصيف فالدار البيضاء طويل",
+          "arabic": "الصَّيْف فَالدَّار الْبَيْضَاء طَوِيل",
           "transliteration": "SSeef fddaar lbeyDa Taweel"
         }
       ],
@@ -552,7 +552,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "أشمن فصل كيعجبك؟",
+            "arabic": "أَشْمَن فَصْل كِيعْجِبَك؟",
             "transliteration": "ashmen faSl kay3jbek?",
             "english": "Which season do you like?"
           },
@@ -605,9 +605,9 @@
           "id": "unit-10.lesson-02.reply.01",
           "type": "reply",
           "prompt": "واحد سولك: «أشمن فصل كيعجبك؟». جاوبو بالصيف.",
-          "answer": "الصيف، كنحب البحر",
+          "answer": "الصَّيْف، كْنَحِبّ الْبَحْر",
           "accepted": [
-            "الصيف، كنحب البحر",
+            "الصَّيْف، كْنَحِبّ الْبَحْر",
             "الصيف",
             "كيعجبني الصيف",
             "كنحب الصيف",
@@ -676,9 +676,9 @@
           "id": "unit-10.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "ترجم للدارجة: \"Spring is my favorite season.\"",
-          "answer": "الربيع هو أحسن فصل عندي",
+          "answer": "الرَّبِيع هُو أَحْسَن فَصْل عِنْدِي",
           "accepted": [
-            "الربيع هو أحسن فصل عندي",
+            "الرَّبِيع هُو أَحْسَن فَصْل عِنْدِي",
             "الربيع أحسن فصل عندي",
             "الربيع هو الفصل لي كنفضل",
             "الربيع هو الفصل لي كنحب",
@@ -694,9 +694,9 @@
           "id": "unit-10.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "ترجم للدارجة: \"The weather changes a lot between the seasons.\"",
-          "answer": "الجو كيتبدل بزاف بين الفصول",
+          "answer": "الْجَو كِيتْبَدِّل بْزَاف بِين الفُصُول",
           "accepted": [
-            "الجو كيتبدل بزاف بين الفصول",
+            "الْجَو كِيتْبَدِّل بْزَاف بِين الفُصُول",
             "كيتبدل الجو بزاف بين الفصول",
             "الجو كيتبدل بزاف من فصل لفصل",
             "الجو كيتغير بزاف بين الفصول",
@@ -734,16 +734,16 @@
           "id": "unit-10.lesson-02.choose.02",
           "type": "choose",
           "prompt": "شنو كتقول باش تسول على الفصل دابا؟",
-          "answer": "أشمن فصل هادا دابا؟",
+          "answer": "أَشْمَن فَصْل هَادَا دَابَا؟",
           "accepted": [
-            "أشمن فصل هادا دابا؟",
+            "أَشْمَن فَصْل هَادَا دَابَا؟",
             "أشمن فصل هادا؟",
             "فأشمن فصل حنا دابا؟",
             "ashmen faSl haada daba?"
           ],
           "options": [
-            "أشمن فصل هادا دابا؟",
-            "أشمن فصل كيعجبك؟",
+            "أَشْمَن فَصْل هَادَا دَابَا؟",
+            "أَشْمَن فَصْل كِيعْجِبَك؟",
             "شحال من فصل كاين؟",
             "كيفاش الجو غدا؟"
           ],
@@ -757,20 +757,20 @@
           "id": "unit-10.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "رتب الكلمات باش تجي جملة: «ما / كنحبش / الشتا / حيت / كيكون / البرد / بزاف»",
-          "answer": "ما كنحبش الشتا حيت كيكون البرد بزاف",
+          "answer": "مَا كْنَحِبّش الشِّتَا حِيت كِيكُون الْبَرْد بْزَاف",
           "accepted": [
-            "ما كنحبش الشتا حيت كيكون البرد بزاف",
+            "مَا كْنَحِبّش الشِّتَا حِيت كِيكُون الْبَرْد بْزَاف",
             "ما كنحبش الشتا حيت البرد بزاف",
             "ma kan7ebbsh shshta 7eet kaykoon lberd bzaaf"
           ],
           "words": [
-            "ما",
-            "كنحبش",
-            "الشتا",
-            "حيت",
-            "كيكون",
-            "البرد",
-            "بزاف"
+            "مَا",
+            "كْنَحِبّش",
+            "الشِّتَا",
+            "حِيت",
+            "كِيكُون",
+            "الْبَرْد",
+            "بْزَاف"
           ],
           "too_formal": {
             "item": "لا أحب الشتاء لأنه شديد البرودة",
@@ -782,18 +782,18 @@
           "id": "unit-10.lesson-02.reorder.02",
           "type": "reorder",
           "prompt": "رتب الكلمات باش تجي جملة: «فالشتا / خاصك / تلبس / حوايج / تقال»",
-          "answer": "فالشتا خاصك تلبس حوايج تقال",
+          "answer": "فَالشِّتَا خَاصَّك تِلْبَس حْوَايِج تِقَال",
           "accepted": [
-            "فالشتا خاصك تلبس حوايج تقال",
+            "فَالشِّتَا خَاصَّك تِلْبَس حْوَايِج تِقَال",
             "خاصك تلبس حوايج تقال فالشتا",
             "fshshta khaSSek telbes 7waayej teqaal"
           ],
           "words": [
-            "فالشتا",
-            "خاصك",
-            "تلبس",
-            "حوايج",
-            "تقال"
+            "فَالشِّتَا",
+            "خَاصَّك",
+            "تِلْبَس",
+            "حْوَايِج",
+            "تِقَال"
           ],
           "too_formal": {
             "item": "في الشتاء يجب أن ترتدي ملابس ثقيلة",
@@ -808,62 +808,62 @@
       "phrases": [
         {
           "slot": "what-should-i-wear-today",
-          "arabic": "شنو نلبس اليوم؟",
+          "arabic": "شْنُو نِلْبَس الْيَوْم؟",
           "transliteration": "shnoo nelbes lyoom?"
         },
         {
           "slot": "take-an-umbrella-with-you-it-s-going-to-rain",
-          "arabic": "خود معاك الشمسية، غادي تشتي",
+          "arabic": "خُود مَعَاك الشَّمْسِيَّة، غَادِي تَشْتِي",
           "transliteration": "khood m3aak shshemsiya, ghaadi teshti"
         },
         {
           "slot": "wear-a-sweater-it-s-cold",
-          "arabic": "لبس التريكو، كاين البرد",
+          "arabic": "لْبَس التِّرِيكُو، كَايْن الْبَرْد",
           "transliteration": "lbes ttreeko, kayn lberd"
         },
         {
           "slot": "in-summer-i-wear-shorts-and-a-shirt",
-          "arabic": "فالصيف كنلبس شورت وقميجة",
+          "arabic": "فَالصَّيْف كْنِلْبَس شُورْت وْقَمِيجَة",
           "transliteration": "fSSeef kanelbes short w qmeeja"
         },
         {
           "slot": "put-on-your-sunglasses-the-sun-s-strong",
-          "arabic": "لبس النظارات ديال الشمس، الشمس قاوية",
+          "arabic": "لْبَس النَّظَارَات دِيَال الشَّمْس، الشَّمْس قَاوِيَة",
           "transliteration": "lbes nnaDaaraat dyaal shshems, shshems qaawya"
         },
         {
           "slot": "you-need-boots-in-winter-because-it-rains-a-lot",
-          "arabic": "خاصك البوط فالشتا حيت كتشتي بزاف",
+          "arabic": "خَاصَّك الْبُوط فَالشِّتَا حِيت كْتَشْتِي بْزَاف",
           "transliteration": "khaSSek lboot fshshta 7eet kteshti bzaaf"
         },
         {
           "slot": "i-didn-t-wear-a-jacket-and-i-got-cold",
-          "arabic": "ما لبستش الجاكيت وبردت",
+          "arabic": "مَا لْبَسْتِش الْجَاكِيت وْبَرْدِت",
           "transliteration": "ma lbestsh ljaakeet w berdt"
         },
         {
           "slot": "the-hat-protects-you-from-the-sun",
-          "arabic": "الطاقية كتحميك من الشمس",
+          "arabic": "الطَّاقِيَة كْتَحْمِيك مِن الشَّمْس",
           "transliteration": "TTaaqiya kat7meek mn shshems"
         },
         {
           "slot": "what-s-your-favorite-color-in-sweaters",
-          "arabic": "أشمن لون كيعجبك فالتريكوات؟",
+          "arabic": "أَشْمَن لُون كِيعْجِبَك فَالتِّرِيكُوَات؟",
           "transliteration": "ashmen loon kay3jbek fttreekowaat?"
         },
         {
           "slot": "in-fall-i-wear-a-light-jacket",
-          "arabic": "فالخريف كنلبس جاكيت خفيف",
+          "arabic": "فَالْخَرِيف كْنِلْبَس جَاكِيت خْفِيف",
           "transliteration": "flkhreef kanelbes jaakeet khfeef"
         },
         {
           "slot": "wear-something-comfortable-because-we-re-going-t",
-          "arabic": "لبس شي حاجة مريحة حيت غادي نتمشاو بزاف",
+          "arabic": "لْبَس شِي حَاجَة مْرِيحَة حِيت غَادِي نِتْمَشَّاو بْزَاف",
           "transliteration": "lbes shi 7aaja mree7a 7eet ghaadi ntmeshshaw bzaaf"
         },
         {
           "slot": "i-forgot-the-raincoat-at-home",
-          "arabic": "نسيت الجاكيت ديال الشتا فالدار",
+          "arabic": "نْسِيت الْجَاكِيت دِيَال الشِّتَا فَالدَّار",
           "transliteration": "nseet ljaakeet dyaal shshta fddaar"
         }
       ],
@@ -991,9 +991,9 @@
           "id": "unit-10.lesson-03.reply.01",
           "type": "reply",
           "prompt": "سولك صاحبك: «شنو نلبس اليوم؟» والجو بارد. جاوبو.",
-          "answer": "لبس التريكو، كاين البرد",
+          "answer": "لْبَس التِّرِيكُو، كَايْن الْبَرْد",
           "accepted": [
-            "لبس التريكو، كاين البرد",
+            "لْبَس التِّرِيكُو، كَايْن الْبَرْد",
             "لبس التريكو",
             "لبس تريكو",
             "لبس جاكيت، كاين البرد",
@@ -1062,9 +1062,9 @@
           "id": "unit-10.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "ترجم للدارجة: \"I didn't wear a jacket and I got cold.\"",
-          "answer": "ما لبستش الجاكيت وبردت",
+          "answer": "مَا لْبَسْتِش الْجَاكِيت وْبَرْدِت",
           "accepted": [
-            "ما لبستش الجاكيت وبردت",
+            "مَا لْبَسْتِش الْجَاكِيت وْبَرْدِت",
             "ما لبستش جاكيت وبردت",
             "ما لبست الجاكيت وبردت",
             "ما لبستش الجاكيط وبردت",
@@ -1080,9 +1080,9 @@
           "id": "unit-10.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "ترجم للدارجة: \"What should I wear today?\"",
-          "answer": "شنو نلبس اليوم؟",
+          "answer": "شْنُو نِلْبَس الْيَوْم؟",
           "accepted": [
-            "شنو نلبس اليوم؟",
+            "شْنُو نِلْبَس الْيَوْم؟",
             "اليوم شنو نلبس؟",
             "شنو غادي نلبس اليوم؟",
             "آش نلبس اليوم؟",
@@ -1142,17 +1142,17 @@
           "id": "unit-10.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "رتب الكلمات باش تجي جملة: «الطاقية / كتحميك / من / الشمس»",
-          "answer": "الطاقية كتحميك من الشمس",
+          "answer": "الطَّاقِيَة كْتَحْمِيك مِن الشَّمْس",
           "accepted": [
-            "الطاقية كتحميك من الشمس",
+            "الطَّاقِيَة كْتَحْمِيك مِن الشَّمْس",
             "الطاقية كتحميك من شمس",
             "TTaaqiya kat7meek mn shshems"
           ],
           "words": [
-            "الطاقية",
-            "كتحميك",
-            "من",
-            "الشمس"
+            "الطَّاقِيَة",
+            "كْتَحْمِيك",
+            "مِن",
+            "الشَّمْس"
           ],
           "too_formal": {
             "item": "القبعة تقيك من الشمس",
@@ -1164,17 +1164,17 @@
           "id": "unit-10.lesson-03.reorder.02",
           "type": "reorder",
           "prompt": "رتب الكلمات باش تجي جملة: «ما / لبستش / الجاكيت / وبردت»",
-          "answer": "ما لبستش الجاكيت وبردت",
+          "answer": "مَا لْبَسْتِش الْجَاكِيت وْبَرْدِت",
           "accepted": [
-            "ما لبستش الجاكيت وبردت",
+            "مَا لْبَسْتِش الْجَاكِيت وْبَرْدِت",
             "ما لبستش جاكيت وبردت",
             "ma lbestsh ljaakeet w berdt"
           ],
           "words": [
-            "ما",
-            "لبستش",
-            "الجاكيت",
-            "وبردت"
+            "مَا",
+            "لْبَسْتِش",
+            "الْجَاكِيت",
+            "وْبَرْدِت"
           ],
           "too_formal": {
             "item": "لم أرتد السترة فشعرت بالبرد",
@@ -1189,17 +1189,17 @@
       "phrases": [
         {
           "slot": "if-the-weather-s-nice-we-ll-go-out-to-the-park",
-          "arabic": "إلا كان الجو زوين، غادي نخرجو للحديقة",
+          "arabic": "إِلَا كَان الْجَو زْوِين، غَادِي نِخْرِجُو لِلْحَدِيقَة",
           "transliteration": "ila kaan ljaw zween, ghaadi nkhrjo lel 7adeeqa"
         },
         {
           "slot": "the-weather-s-not-good-we-need-to-cancel-the-out",
-          "arabic": "الجو ماشي زوين، خاصنا نلغيو الخرجة",
+          "arabic": "الْجَو مَاشِي زْوِين، خَاصْنَا نِلْغِيُو الْخَرْجَة",
           "transliteration": "ljaw maashi zween, khaaSSna nelghiw lkhorja"
         },
         {
           "slot": "what-do-you-think-about-staying-home-today",
-          "arabic": "شنو كتقول نبقاو فالدار اليوم؟",
+          "arabic": "شْنُو كْتْقُول نِبْقَاو فَالدَّار الْيَوْم؟",
           "transliteration": "shnoo ktqool nbqaaw fddaar lyoom?"
         },
         {
@@ -1209,12 +1209,12 @@
         },
         {
           "slot": "the-weather-s-nice-let-s-go-out-for-a-walk",
-          "arabic": "الجو زوين، يلا نخرجو نتمشاو",
+          "arabic": "الْجَو زْوِين، يَلَّا نِخْرِجُو نِتْمَشَّاو",
           "transliteration": "ljaw zween, yalla nkhrjo ntmeshshaw"
         },
         {
           "slot": "i-can-t-go-out-it-s-too-hot",
-          "arabic": "ما نقدرش نخرج، الحر بزاف",
+          "arabic": "مَا نِقْدَرِش نِخْرَج، الْحَرّ بْزَاف",
           "transliteration": "ma nqdersh nkhrej, l7er bzaaf"
         },
         {
@@ -1229,22 +1229,22 @@
         },
         {
           "slot": "the-weather-doesn-t-allow-us-to-play-outside",
-          "arabic": "الجو ما كيخلينانش نلعبو برا",
+          "arabic": "الْجَو مَا كِيخَلِّينَانِش نِلْعَبُو بَرَّا",
           "transliteration": "ljaw ma kaykhellinaansh nl3bo barra"
         },
         {
           "slot": "as-long-as-the-weather-s-good-we-ll-keep-going-o",
-          "arabic": "مادام الجو مزيان، غادي نبقاو نخرجو",
+          "arabic": "مَادَام الْجَو مْزِيَان، غَادِي نِبْقَاو نِخْرِجُو",
           "transliteration": "madaam ljaw mzyaan, ghaadi nbqaaw nkhrjo"
         },
         {
           "slot": "the-trip-to-the-mountain-depends-on-the-weather",
-          "arabic": "الرحلة للجبل على حساب الجو",
+          "arabic": "الرَّحْلَة لِلْجَبَل عَلَى حِسَاب الْجَو",
           "transliteration": "rre7la lljbel 3la 7saab ljaw"
         },
         {
           "slot": "did-you-see-the-weather-forecast",
-          "arabic": "واش شفتي الميتيو؟",
+          "arabic": "وَاش شِفْتِي الْمِيتِيُو؟",
           "transliteration": "waash shefti lmeteeyo?"
         }
       ],
@@ -1343,7 +1343,7 @@
         },
         {
           "pair": {
-            "arabic": "واش شفتي الميتيو؟",
+            "arabic": "وَاش شِفْتِي الْمِيتِيُو؟",
             "transliteration": "waash shefti lmeteeyo?",
             "english": "Did you see the forecast?"
           },
@@ -1440,9 +1440,9 @@
           "id": "unit-10.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "ترجم للدارجة: \"I can't go out, it's too hot.\"",
-          "answer": "ما نقدرش نخرج، الحر بزاف",
+          "answer": "مَا نِقْدَرِش نِخْرَج، الْحَرّ بْزَاف",
           "accepted": [
-            "ما نقدرش نخرج، الحر بزاف",
+            "مَا نِقْدَرِش نِخْرَج، الْحَرّ بْزَاف",
             "ما نقدرش نخرج الحر بزاف",
             "ما نقدرش نخرج حيت الحر بزاف",
             "ما نقدرش نخرج، الجو سخون بزاف",
@@ -1458,9 +1458,9 @@
           "id": "unit-10.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "ترجم للدارجة: \"Did you see the weather forecast?\"",
-          "answer": "واش شفتي الميتيو؟",
+          "answer": "وَاش شِفْتِي الْمِيتِيُو؟",
           "accepted": [
-            "واش شفتي الميتيو؟",
+            "وَاش شِفْتِي الْمِيتِيُو؟",
             "شفتي الميتيو؟",
             "واش شفتي النشرة الجوية؟",
             "واش شفتي الميتيو ديال اليوم؟",
@@ -1543,18 +1543,18 @@
           "id": "unit-10.lesson-04.reorder.02",
           "type": "reorder",
           "prompt": "رتب الكلمات باش تجي جملة: «الرحلة / للجبل / على / حساب / الجو»",
-          "answer": "الرحلة للجبل على حساب الجو",
+          "answer": "الرَّحْلَة لِلْجَبَل عَلَى حِسَاب الْجَو",
           "accepted": [
-            "الرحلة للجبل على حساب الجو",
+            "الرَّحْلَة لِلْجَبَل عَلَى حِسَاب الْجَو",
             "على حساب الجو الرحلة للجبل",
             "rre7la lljbel 3la 7saab ljaw"
           ],
           "words": [
-            "الرحلة",
-            "للجبل",
-            "على",
-            "حساب",
-            "الجو"
+            "الرَّحْلَة",
+            "لِلْجَبَل",
+            "عَلَى",
+            "حِسَاب",
+            "الْجَو"
           ],
           "too_formal": {
             "item": "الرحلة إلى الجبل تعتمد على الطقس",

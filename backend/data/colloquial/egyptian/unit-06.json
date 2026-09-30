@@ -23,92 +23,92 @@
       "phrases": [
         {
           "slot": "i-want-a-dress",
-          "arabic": "عايزة فستان",
+          "arabic": "عَايِزَة فُسْتَان",
           "transliteration": "3ayza fustaan",
           "reply": {
-            "arabic": "تحبي لون إيه؟",
+            "arabic": "تَحُبِّي لَون إِيه؟",
             "transliteration": "teHebbi loon eeh?",
             "english": "What color do you like?"
           }
         },
         {
           "slot": "i-want-a-shirt",
-          "arabic": "عايز قميص",
+          "arabic": "عَايِز قَمِيص",
           "transliteration": "3ayez 2ameeS"
         },
         {
           "slot": "what-s-your-size-to-a-man",
-          "arabic": "مقاسك كام؟",
+          "arabic": "مَقَاسَك كَام؟",
           "transliteration": "ma2aasak kaam?",
           "reply": {
-            "arabic": "مقاسي لارج",
+            "arabic": "مَقَاسِي لَارْج",
             "transliteration": "ma2aasi laarg",
             "english": "My size is large."
           }
         },
         {
           "slot": "what-s-your-size-to-a-woman",
-          "arabic": "مقاسِك كام؟",
+          "arabic": "مَقَاسِك كَام؟",
           "transliteration": "ma2aasek kaam?",
           "reply": {
-            "arabic": "مقاسي سمول",
+            "arabic": "مَقَاسِي سْمُول",
             "transliteration": "ma2aasi smool",
             "english": "My size is small."
           }
         },
         {
           "slot": "can-i-try-it-on",
-          "arabic": "ينفع أقيسه؟",
+          "arabic": "يَنْفَع أَقِيسُه؟",
           "transliteration": "yenfa3 a2eesu?",
           "reply": {
-            "arabic": "أكيد، أوضة البروفة هناك",
+            "arabic": "أَكِيد، أَوْضَة الْبُرُوفَة هُنَاك",
             "transliteration": "akeed, owDit el-broofa hunaak",
             "english": "Sure, the fitting room is over there."
           }
         },
         {
           "slot": "where-s-the-fitting-room",
-          "arabic": "أوضة البروفة فين؟",
+          "arabic": "أَوْضَة الْبُرُوفَة فِين؟",
           "transliteration": "owDit el-broofa feen?"
         },
         {
           "slot": "this-is-too-big-for-me",
-          "arabic": "ده كبير عليا أوي",
+          "arabic": "دَه كَبِير عَلَيّا أَوِي",
           "transliteration": "da kebeer 3aleyya awi"
         },
         {
           "slot": "this-is-too-tight-for-me",
-          "arabic": "ده ضيّق عليا أوي",
+          "arabic": "دَه ضَيّق عَلَيّا أَوِي",
           "transliteration": "da Dayya2 3aleyya awi"
         },
         {
           "slot": "do-you-have-a-smaller-size",
-          "arabic": "عندك مقاس أصغر؟",
+          "arabic": "عِنْدَك مَقَاس أَصْغَر؟",
           "transliteration": "3andak ma2aas aSghar?",
           "reply": {
-            "arabic": "ثواني أشوفلك",
+            "arabic": "ثَوَانِي أَشُوفْلَك",
             "transliteration": "tawaani ashoflak",
             "english": "Let me check for you, one moment."
           }
         },
         {
           "slot": "i-tried-it-on-and-it-fits-me",
-          "arabic": "قسته وجه مظبوط عليا",
+          "arabic": "قُسْتُه وِجْه مَظْبُوط عَلَيّا",
           "transliteration": "2ustu we geh maZbuuT 3aleyya"
         },
         {
           "slot": "is-this-fabric-cotton",
-          "arabic": "القماش ده قطن؟",
+          "arabic": "الْقُمَاش دَه قُطْن؟",
           "transliteration": "el-2omaash da 2oTn?",
           "reply": {
-            "arabic": "أيوه، قطن مية في المية",
+            "arabic": "أَيْوَه، قُطْن مِيّة فِي الْمِيّة",
             "transliteration": "aywa, 2oTn miyya fil-miyya",
             "english": "Yes, one hundred percent cotton."
           }
         },
         {
           "slot": "i-want-sports-shoes",
-          "arabic": "عايز كوتشي",
+          "arabic": "عَايِز كُوتْشِي",
           "transliteration": "3ayez kootshi"
         }
       ],
@@ -189,7 +189,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "مقاسك كام؟",
+            "arabic": "مَقَاسَك كَام؟",
             "transliteration": "ma2aasak kaam?",
             "english": "What's your size?"
           },
@@ -201,7 +201,7 @@
         },
         {
           "pair": {
-            "arabic": "ينفع أقيسه؟",
+            "arabic": "يَنْفَع أَقِيسُه؟",
             "transliteration": "yenfa3 a2eesu?",
             "english": "Can I try it on?"
           },
@@ -213,24 +213,24 @@
         },
         {
           "pair": {
-            "arabic": "القماش ده قطن؟",
+            "arabic": "الْقُمَاش دَه قُطْن؟",
             "transliteration": "el-2omaash da 2oTn?",
             "english": "Is this fabric cotton?"
           },
           "response": {
-            "arabic": "أيوه، قطن مية في المية",
+            "arabic": "أَيْوَه، قُطْن مِيّة فِي الْمِيّة",
             "transliteration": "aywa, 2oTn miyya fil-miyya",
             "english": "Yes, 100% cotton."
           }
         },
         {
           "pair": {
-            "arabic": "عندك مقاس أصغر؟",
+            "arabic": "عِنْدَك مَقَاس أَصْغَر؟",
             "transliteration": "3andak ma2aas aSghar?",
             "english": "Do you have a smaller size?"
           },
           "response": {
-            "arabic": "ثواني أشوفلك",
+            "arabic": "ثَوَانِي أَشُوفْلَك",
             "transliteration": "tawaani ashoflak",
             "english": "One moment, I'll check for you."
           }
@@ -242,9 +242,9 @@
           "id": "unit-06.lesson-01.reply.01",
           "type": "reply",
           "prompt": "A shopkeeper asks you: \"مقاسك كام؟\" Answer that your size is large.",
-          "answer": "مقاسي لارج",
+          "answer": "مَقَاسِي لَارْج",
           "accepted": [
-            "مقاسي لارج",
+            "مَقَاسِي لَارْج",
             "لارج",
             "أنا لارج",
             "ma2aasi laarg"
@@ -259,9 +259,9 @@
           "id": "unit-06.lesson-01.reply.02",
           "type": "reply",
           "prompt": "A shopkeeper asks you (you are a woman): \"أخدمك بإيه؟\" Say you want a dress.",
-          "answer": "عايزة فستان",
+          "answer": "عَايِزَة فُسْتَان",
           "accepted": [
-            "عايزة فستان",
+            "عَايِزَة فُسْتَان",
             "عايزة فستان لو سمحت",
             "عايزه فستان",
             "3ayza fustaan"
@@ -309,9 +309,9 @@
           "id": "unit-06.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Type in Cairene: \"Can I try it on?\"",
-          "answer": "ينفع أقيسه؟",
+          "answer": "يَنْفَع أَقِيسُه؟",
           "accepted": [
-            "ينفع أقيسه؟",
+            "يَنْفَع أَقِيسُه؟",
             "ينفع أقيس ده؟",
             "أقدر أقيسه؟",
             "ينفع أجربه؟",
@@ -328,9 +328,9 @@
           "id": "unit-06.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Type in Cairene: \"Do you have a smaller size?\"",
-          "answer": "عندك مقاس أصغر؟",
+          "answer": "عِنْدَك مَقَاس أَصْغَر؟",
           "accepted": [
-            "عندك مقاس أصغر؟",
+            "عِنْدَك مَقَاس أَصْغَر؟",
             "عندك مقاس أصغر من ده؟",
             "فيه مقاس أصغر؟",
             "معاك مقاس أصغر؟",
@@ -391,9 +391,9 @@
           "id": "unit-06.lesson-01.reorder.01",
           "type": "reorder",
           "prompt": "Arrange the words: \"This is too big for me.\"",
-          "answer": "ده كبير عليا أوي",
+          "answer": "دَه كَبِير عَلَيّا أَوِي",
           "accepted": [
-            "ده كبير عليا أوي",
+            "دَه كَبِير عَلَيّا أَوِي",
             "ده كبير عليا قوي",
             "da kebeer 3aleyya awi"
           ],
@@ -403,19 +403,19 @@
           },
           "tip": "أوي (awi) means \"very\" and comes at the end.",
           "words": [
-            "ده",
-            "كبير",
-            "عليا",
-            "أوي"
+            "دَه",
+            "كَبِير",
+            "عَلَيّا",
+            "أَوِي"
           ]
         },
         {
           "id": "unit-06.lesson-01.reorder.02",
           "type": "reorder",
           "prompt": "Arrange the words: \"Where's the fitting room?\"",
-          "answer": "أوضة البروفة فين؟",
+          "answer": "أَوْضَة الْبُرُوفَة فِين؟",
           "accepted": [
-            "أوضة البروفة فين؟",
+            "أَوْضَة الْبُرُوفَة فِين؟",
             "فين أوضة البروفة؟",
             "owDit el-broofa feen?",
             "أوضة البروفة فين"
@@ -426,9 +426,9 @@
           },
           "tip": "فين can come at the end or the start of the question.",
           "words": [
-            "أوضة",
-            "البروفة",
-            "فين؟"
+            "أَوْضَة",
+            "الْبُرُوفَة",
+            "فِين؟"
           ]
         }
       ]
@@ -438,90 +438,90 @@
       "phrases": [
         {
           "slot": "what-do-you-think-of-this-dress",
-          "arabic": "رأيك إيه في الفستان ده؟",
+          "arabic": "رَأْيُك إِيه فِي الْفُسْتَان دَه؟",
           "transliteration": "ra2yak eeh fil-fustaan da?",
           "reply": {
-            "arabic": "حلو أوي، لايق عليكي",
+            "arabic": "حُلْو أَوِي، لايِق عَلَيْكِي",
             "transliteration": "7elw awi, laye2 3aleeki",
             "english": "Very nice, it suits you."
           }
         },
         {
           "slot": "i-like-the-blue-color",
-          "arabic": "عجبني اللون الأزرق",
+          "arabic": "عَجِبْنِي الْلَّون الْأَزْرَق",
           "transliteration": "3agabni el-loon el-azra2"
         },
         {
           "slot": "do-you-have-another-color",
-          "arabic": "عندك لون تاني؟",
+          "arabic": "عِنْدَك لَون تَانِي؟",
           "transliteration": "3andak loon taani?",
           "reply": {
-            "arabic": "أيوه، عندي أحمر وأسود",
+            "arabic": "أَيْوَه، عِنْدِي أَحْمَر وَأَسْوَد",
             "transliteration": "aywa, 3andi a7mar we eswid",
             "english": "Yes, I have red and black."
           }
         },
         {
           "slot": "this-color-doesn-t-suit-me",
-          "arabic": "اللون ده مش لايق عليا",
+          "arabic": "الْلَّون دَه مِش لايِق عَلَيّا",
           "transliteration": "el-loon da mesh laye2 3aleyya"
         },
         {
           "slot": "which-one-do-you-recommend",
-          "arabic": "تنصحني بأنهي واحد؟",
+          "arabic": "تِنْصَحْنِي بِأَنْهِي وَاحِد؟",
           "transliteration": "tensa7ni be-anhi waa7ed?",
           "reply": {
-            "arabic": "خد الأزرق، حلو عليك",
+            "arabic": "خِد الأَزْرَق، حُلْو عَلَيْك",
             "transliteration": "khod el-azra2, 7elw 3aleek",
             "english": "Take the blue, it looks good on you."
           }
         },
         {
           "slot": "this-one-is-nicer-than-that-one",
-          "arabic": "ده أحلى من ده",
+          "arabic": "دَه أَحْلى مِن دَه",
           "transliteration": "da a7la min da"
         },
         {
           "slot": "just-give-me-this-one",
-          "arabic": "خلاص، هاتلي ده",
+          "arabic": "خَلاص، هَاتْلِي دَه",
           "transliteration": "khalaaS, haatli da"
         },
         {
           "slot": "i-haven-t-decided-yet",
-          "arabic": "لسه ما قررتش",
+          "arabic": "لِسّه مَا قَرّرْتِش",
           "transliteration": "lissa ma2arartesh",
           "reply": {
-            "arabic": "خد وقتك",
+            "arabic": "خِد وَقْتَك",
             "transliteration": "khod wa2tak",
             "english": "Take your time."
           }
         },
         {
           "slot": "do-you-have-gray",
-          "arabic": "عندك رمادي؟",
+          "arabic": "عِنْدَك رَمَادِي؟",
           "transliteration": "3andak ramaadi?",
           "reply": {
-            "arabic": "أيوه، فاتح وغامق",
+            "arabic": "أَيْوَه، فَاتِح وَغَامِق",
             "transliteration": "aywa, faatiH we ghaame2",
             "english": "Yes, light and dark."
           }
         },
         {
           "slot": "i-like-light-colors",
-          "arabic": "أنا بحب الألوان الفاتحة",
+          "arabic": "أَنَا بِحُبّ الْأَلْوَان الْفَاتِحَة",
           "transliteration": "ana ba7ebb el-alwaan el-faat7a"
         },
         {
           "slot": "this-is-too-dark-for-me",
-          "arabic": "ده غامق أوي عليا",
+          "arabic": "دَه غَامِق أَوِي عَلَيّا",
           "transliteration": "da ghaame2 awi 3aleyya"
         },
         {
           "slot": "which-is-nicer-red-or-blue",
-          "arabic": "أنهي أحلى، الأحمر ولا الأزرق؟",
+          "arabic": "أَنْهِي أَحْلى، الْأَحْمَر وَلا الْأَزْرَق؟",
           "transliteration": "anhi a7la, el-a7mar walla el-azra2?",
           "reply": {
-            "arabic": "الأزرق أحلى",
+            "arabic": "الْأَزْرَق أَحْلى",
             "transliteration": "el-azra2 a7la",
             "english": "The blue is nicer."
           }
@@ -604,48 +604,48 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "رأيك إيه في الفستان ده؟",
+            "arabic": "رَأْيُك إِيه فِي الْفُسْتَان دَه؟",
             "transliteration": "ra2yak eeh fil-fustaan da?",
             "english": "What do you think of this dress?"
           },
           "response": {
-            "arabic": "حلو أوي، لايق عليكي",
+            "arabic": "حُلْو أَوِي، لايِق عَلَيْكِي",
             "transliteration": "7elw awi, laye2 3aleeki",
             "english": "Very nice, it suits you."
           }
         },
         {
           "pair": {
-            "arabic": "عندك لون تاني؟",
+            "arabic": "عِنْدَك لَون تَانِي؟",
             "transliteration": "3andak loon taani?",
             "english": "Do you have another color?"
           },
           "response": {
-            "arabic": "أيوه، عندي أحمر وأسود",
+            "arabic": "أَيْوَه، عِنْدِي أَحْمَر وَأَسْوَد",
             "transliteration": "aywa, 3andi a7mar we eswid",
             "english": "Yes, I have red and black."
           }
         },
         {
           "pair": {
-            "arabic": "أنهي أحلى، الأحمر ولا الأزرق؟",
+            "arabic": "أَنْهِي أَحْلى، الْأَحْمَر وَلا الْأَزْرَق؟",
             "transliteration": "anhi a7la, el-a7mar walla el-azra2?",
             "english": "Which is nicer, red or blue?"
           },
           "response": {
-            "arabic": "الأزرق أحلى",
+            "arabic": "الْأَزْرَق أَحْلى",
             "transliteration": "el-azra2 a7la",
             "english": "The blue is nicer."
           }
         },
         {
           "pair": {
-            "arabic": "لسه ما قررتش",
+            "arabic": "لِسّه مَا قَرّرْتِش",
             "transliteration": "lissa ma2arartesh",
             "english": "I haven't decided yet."
           },
           "response": {
-            "arabic": "خد وقتك",
+            "arabic": "خِد وَقْتَك",
             "transliteration": "khod wa2tak",
             "english": "Take your time."
           }
@@ -661,7 +661,7 @@
           "accepted": [
             "حلو أوي",
             "حلو قوي",
-            "حلو أوي، لايق عليكي",
+            "حُلْو أَوِي، لايِق عَلَيْكِي",
             "جميل أوي",
             "7elw awi"
           ],
@@ -727,9 +727,9 @@
           "id": "unit-06.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Type in Cairene: \"This color doesn't suit me.\"",
-          "answer": "اللون ده مش لايق عليا",
+          "answer": "الْلَّون دَه مِش لايِق عَلَيّا",
           "accepted": [
-            "اللون ده مش لايق عليا",
+            "الْلَّون دَه مِش لايِق عَلَيّا",
             "اللون ده مش لايق عليّا",
             "اللون ده مش حلو عليا",
             "el-loon da mish laye2 3aleyya",
@@ -745,9 +745,9 @@
           "id": "unit-06.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Type in Cairene: \"I haven't decided yet.\"",
-          "answer": "لسه ما قررتش",
+          "answer": "لِسّه مَا قَرّرْتِش",
           "accepted": [
-            "لسه ما قررتش",
+            "لِسّه مَا قَرّرْتِش",
             "لسه مقررتش",
             "لسه مش عارف",
             "lissa ma2arartesh"
@@ -784,9 +784,9 @@
           "id": "unit-06.lesson-02.choose.02",
           "type": "choose",
           "prompt": "How do you say \"Just give me this one\"?",
-          "answer": "خلاص، هاتلي ده",
+          "answer": "خَلاص، هَاتْلِي دَه",
           "accepted": [
-            "خلاص، هاتلي ده",
+            "خَلاص، هَاتْلِي دَه",
             "خلاص هاتلي ده",
             "khalaaS, haatli da"
           ],
@@ -796,19 +796,19 @@
           },
           "tip": "خلاص here means \"that's it, decided\".",
           "options": [
-            "خلاص، هاتلي ده",
+            "خَلاص، هَاتْلِي دَه",
             "لسه بفكر",
-            "ده غالي أوي",
-            "أوضة البروفة فين؟"
+            "دَه غَالِي أَوِي",
+            "أَوْضَة الْبُرُوفَة فِين؟"
           ]
         },
         {
           "id": "unit-06.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Arrange the words: \"This one is nicer than that one.\"",
-          "answer": "ده أحلى من ده",
+          "answer": "دَه أَحْلى مِن دَه",
           "accepted": [
-            "ده أحلى من ده",
+            "دَه أَحْلى مِن دَه",
             "ده أحلى من دا",
             "da a7la min da"
           ],
@@ -818,19 +818,19 @@
           },
           "tip": "ده is used for this and for that; you point to tell them apart.",
           "words": [
-            "ده",
-            "أحلى",
-            "من",
-            "ده"
+            "دَه",
+            "أَحْلى",
+            "مِن",
+            "دَه"
           ]
         },
         {
           "id": "unit-06.lesson-02.reorder.02",
           "type": "reorder",
           "prompt": "Arrange the words: \"Which is nicer, red or blue?\"",
-          "answer": "أنهي أحلى، الأحمر ولا الأزرق؟",
+          "answer": "أَنْهِي أَحْلى، الْأَحْمَر وَلا الْأَزْرَق؟",
           "accepted": [
-            "أنهي أحلى، الأحمر ولا الأزرق؟",
+            "أَنْهِي أَحْلى، الْأَحْمَر وَلا الْأَزْرَق؟",
             "أنهي أحلى الأحمر ولا الأزرق؟",
             "anhi a7la, el-a7mar walla el-azra2?",
             "أنهي أحلى الأحمر ولا الأزرق"
@@ -841,11 +841,11 @@
           },
           "tip": "ولا (walla) means \"or\" in questions.",
           "words": [
-            "أنهي",
-            "أحلى،",
-            "الأحمر",
-            "ولا",
-            "الأزرق؟"
+            "أَنْهِي",
+            "أَحْلى،",
+            "الْأَحْمَر",
+            "وَلا",
+            "الْأَزْرَق؟"
           ]
         }
       ]
@@ -855,120 +855,120 @@
       "phrases": [
         {
           "slot": "how-much-is-this",
-          "arabic": "بكام ده؟",
+          "arabic": "بِكَام دَه؟",
           "transliteration": "bikaam da?",
           "reply": {
-            "arabic": "بخمسمية جنيه",
+            "arabic": "بِخَمْسُمِيّة جِنِيه",
             "transliteration": "be-khamsumiyyet ginee",
             "english": "Five hundred pounds."
           }
         },
         {
           "slot": "it-s-very-expensive",
-          "arabic": "ده غالي أوي",
+          "arabic": "دَه غَالِي أَوِي",
           "transliteration": "da ghaali awi",
           "reply": {
-            "arabic": "دي خامة ممتازة",
+            "arabic": "دِي خَامَة مِمْتَازَة",
             "transliteration": "dee khaama momtaaza",
             "english": "It's excellent quality."
           }
         },
         {
           "slot": "can-you-lower-the-price",
-          "arabic": "ينفع تنزل السعر؟",
+          "arabic": "يَنْفَع تِنْزِل السّعْر؟",
           "transliteration": "yenfa3 tenazzel es-se3r?",
           "reply": {
-            "arabic": "هنزلك شوية",
+            "arabic": "هِنْزِلَك شْوَيّة",
             "transliteration": "hanazzelak shwayya",
             "english": "I'll lower it a little for you."
           }
         },
         {
           "slot": "lower-it-a-bit-for-me",
-          "arabic": "نزّلي شوية",
+          "arabic": "نَزّلِي شْوَيّة",
           "transliteration": "nazzelli shwayya",
           "reply": {
-            "arabic": "عشان خاطرك بس",
+            "arabic": "عَشَان خَاطِرَك بِس",
             "transliteration": "3ashaan khaTrak bass",
             "english": "Just for your sake."
           }
         },
         {
           "slot": "this-is-the-final-price",
-          "arabic": "ده آخر سعر",
+          "arabic": "دَه آخِر سعْر",
           "transliteration": "da aakher se3r",
           "reply": {
-            "arabic": "طب هفكر وأرجعلك",
+            "arabic": "طِب هِفَكّر وَأَرْجِعْلَك",
             "transliteration": "Tab hafakkar w arga3lak",
             "english": "OK, I'll think it over and come back."
           }
         },
         {
           "slot": "isn-t-there-cheaper-than-this",
-          "arabic": "مفيش أرخص من كده؟",
+          "arabic": "مَفِيش أَرْخَص مِن كِدَه؟",
           "transliteration": "mafeesh arkhaS min keda?",
           "reply": {
-            "arabic": "لأ، ده أقل سعر",
+            "arabic": "لَأ، دَه أَقَل سعْر",
             "transliteration": "la2, da a2all se3r",
             "english": "No, this is the lowest price."
           }
         },
         {
           "slot": "take-it-for-two-thousand",
-          "arabic": "خده بألفين",
+          "arabic": "خُدُه بِأَلْفَين",
           "transliteration": "khodu be-alfeen",
           "reply": {
-            "arabic": "لأ، كتير، ألف وخمسمية",
+            "arabic": "لَأ، كِتِير، أَلْف وَخَمْسُمِيّة",
             "transliteration": "la2, keteer, alf we khamsumiyya",
             "english": "No, that's a lot, fifteen hundred."
           }
         },
         {
           "slot": "i-can-t-i-ll-lose-money",
-          "arabic": "مش هينفع، هخسر",
+          "arabic": "مِش هِيَنْفَع، هِخْسَر",
           "transliteration": "mesh hayenfa3, hakhsar",
           "reply": {
-            "arabic": "طب خليها ألف وتلتمية",
+            "arabic": "طِب خَلِّيهَا أَلْف وَتُلْتُمِيّة",
             "transliteration": "Tab khalleeha alf we tultumiyya",
             "english": "Then make it thirteen hundred."
           }
         },
         {
           "slot": "i-want-a-discount-because-i-m-buying-a-lot",
-          "arabic": "عايز خصم عشان باشتري كتير",
+          "arabic": "عَايِز خِصْم عَشَان بَاشْتَرِي كِتِير",
           "transliteration": "3ayez khaSm 3ashaan bashteri keteer",
           "reply": {
-            "arabic": "خلاص، عشرة في المية خصم",
+            "arabic": "خَلاص، عَشَرَة فِي الْمِيّة خِصْم",
             "transliteration": "khalaaS, 3ashara fil-miyya khaSm",
             "english": "Fine, ten percent off."
           }
         },
         {
           "slot": "ok-we-agreed",
-          "arabic": "ماشي، اتفقنا",
+          "arabic": "مَاشِي، اتّفَقْنَا",
           "transliteration": "maashi, ettafa2na",
           "reply": {
-            "arabic": "اتفقنا، ألف مبروك",
+            "arabic": "اتّفَقْنَا، أَلْف مَبْرُوك",
             "transliteration": "ettafa2na, alf mabrook",
             "english": "Agreed, congratulations on it."
           }
         },
         {
           "slot": "that-s-fine-take-it",
-          "arabic": "خلاص، اتفضل خده",
+          "arabic": "خَلاص، اتّفَضّل خُدُه",
           "transliteration": "khalaaS, etfaDDal khodu",
           "reply": {
-            "arabic": "تسلم إيدك",
+            "arabic": "تِسْلَم إِيدَك",
             "transliteration": "teslam eedak",
             "english": "Thank you (bless your hands)."
           }
         },
         {
           "slot": "how-much-did-the-total-come-to",
-          "arabic": "الحساب كله كام؟",
+          "arabic": "الْحِسَاب كُلّه كَام؟",
           "transliteration": "el-7esaab kollu kaam?",
           "reply": {
-            "arabic": "ألفين ومية جنيه",
+            "arabic": "أَلْفَين وَمِيّة جِنِيه",
             "transliteration": "alfeen we miyya ginee",
             "english": "Twenty-one hundred pounds."
           }
@@ -1051,48 +1051,48 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "بكام ده؟",
+            "arabic": "بِكَام دَه؟",
             "transliteration": "bikaam da?",
             "english": "How much is this?"
           },
           "response": {
-            "arabic": "بخمسمية جنيه",
+            "arabic": "بِخَمْسُمِيّة جِنِيه",
             "transliteration": "be-khamsumiyyet ginee",
             "english": "Five hundred pounds."
           }
         },
         {
           "pair": {
-            "arabic": "ينفع تنزل السعر؟",
+            "arabic": "يَنْفَع تِنْزِل السّعْر؟",
             "transliteration": "yenfa3 tenazzel es-se3r?",
             "english": "Can you lower the price?"
           },
           "response": {
-            "arabic": "هنزلك شوية",
+            "arabic": "هِنْزِلَك شْوَيّة",
             "transliteration": "hanazzelak shwayya",
             "english": "I'll lower it a little for you."
           }
         },
         {
           "pair": {
-            "arabic": "مفيش أرخص من كده؟",
+            "arabic": "مَفِيش أَرْخَص مِن كِدَه؟",
             "transliteration": "mafeesh arkhaS min keda?",
             "english": "Isn't there cheaper than this?"
           },
           "response": {
-            "arabic": "لأ، ده أقل سعر",
+            "arabic": "لَأ، دَه أَقَل سعْر",
             "transliteration": "la2, da a2all se3r",
             "english": "No, this is the lowest price."
           }
         },
         {
           "pair": {
-            "arabic": "ماشي، اتفقنا",
+            "arabic": "مَاشِي، اتّفَقْنَا",
             "transliteration": "maashi, ettafa2na",
             "english": "Ok, we agreed."
           },
           "response": {
-            "arabic": "اتفقنا، ألف مبروك",
+            "arabic": "اتّفَقْنَا، أَلْف مَبْرُوك",
             "transliteration": "ettafa2na, alf mabrook",
             "english": "Agreed, congratulations."
           }
@@ -1104,9 +1104,9 @@
           "id": "unit-06.lesson-03.reply.01",
           "type": "reply",
           "prompt": "A seller says: \"ده بألفين جنيه.\" Say it is very expensive.",
-          "answer": "ده غالي أوي",
+          "answer": "دَه غَالِي أَوِي",
           "accepted": [
-            "ده غالي أوي",
+            "دَه غَالِي أَوِي",
             "غالي أوي",
             "غالي قوي",
             "ده غالي قوي",
@@ -1122,9 +1122,9 @@
           "id": "unit-06.lesson-03.reply.02",
           "type": "reply",
           "prompt": "You are the shopkeeper. A customer asks: \"ينفع تنزل السعر؟\" Agree to lower it a bit for him.",
-          "answer": "هنزلك شوية",
+          "answer": "هِنْزِلَك شْوَيّة",
           "accepted": [
-            "هنزلك شوية",
+            "هِنْزِلَك شْوَيّة",
             "هنزلك شوية، عشان خاطرك",
             "عشان خاطرك",
             "هنزل لك شوية",
@@ -1174,9 +1174,9 @@
           "id": "unit-06.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Type in Cairene: \"Isn't there cheaper than this?\"",
-          "answer": "مفيش أرخص من كده؟",
+          "answer": "مَفِيش أَرْخَص مِن كِدَه؟",
           "accepted": [
-            "مفيش أرخص من كده؟",
+            "مَفِيش أَرْخَص مِن كِدَه؟",
             "مافيش أرخص من كده؟",
             "مفيش أرخص من ده؟",
             "فيه أرخص من كده؟",
@@ -1196,7 +1196,7 @@
           "answer": "الحساب كام؟",
           "accepted": [
             "الحساب كام؟",
-            "الحساب كله كام؟",
+            "الْحِسَاب كُلّه كَام؟",
             "كام الحساب؟",
             "el-7esaab kollu kaam?",
             "el-7esaab kaam?",
@@ -1234,9 +1234,9 @@
           "id": "unit-06.lesson-03.choose.02",
           "type": "choose",
           "prompt": "How do you say \"Ok, we agreed\"?",
-          "answer": "ماشي، اتفقنا",
+          "answer": "مَاشِي، اتّفَقْنَا",
           "accepted": [
-            "ماشي، اتفقنا",
+            "مَاشِي، اتّفَقْنَا",
             "ماشي اتفقنا",
             "maashi, ettafa2na"
           ],
@@ -1246,7 +1246,7 @@
           },
           "tip": "ماشي means okay, agreed.",
           "options": [
-            "ماشي، اتفقنا",
+            "مَاشِي، اتّفَقْنَا",
             "لأ، غالي",
             "مفيش خصم",
             "ثواني أشوف"
@@ -1256,9 +1256,9 @@
           "id": "unit-06.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "Arrange the words: \"Can you lower the price?\"",
-          "answer": "ينفع تنزل السعر؟",
+          "answer": "يَنْفَع تِنْزِل السّعْر؟",
           "accepted": [
-            "ينفع تنزل السعر؟",
+            "يَنْفَع تِنْزِل السّعْر؟",
             "ينفع تنزل السعر",
             "yenfa3 tenazzel es-se3r?"
           ],
@@ -1268,18 +1268,18 @@
           },
           "tip": "ينفع + verb asks \"is it possible to...\".",
           "words": [
-            "ينفع",
-            "تنزل",
-            "السعر؟"
+            "يَنْفَع",
+            "تِنْزِل",
+            "السّعْر؟"
           ]
         },
         {
           "id": "unit-06.lesson-03.reorder.02",
           "type": "reorder",
           "prompt": "Arrange the words: \"I want a discount because I'm buying a lot.\"",
-          "answer": "عايز خصم عشان باشتري كتير",
+          "answer": "عَايِز خِصْم عَشَان بَاشْتَرِي كِتِير",
           "accepted": [
-            "عايز خصم عشان باشتري كتير",
+            "عَايِز خِصْم عَشَان بَاشْتَرِي كِتِير",
             "عايز خصم عشان بشتري كتير",
             "3ayez khaSm 3ashaan bashteri keteer"
           ],
@@ -1289,11 +1289,11 @@
           },
           "tip": "عشان means because or in order to; the present with ب is باشتري.",
           "words": [
-            "عايز",
-            "خصم",
-            "عشان",
-            "باشتري",
-            "كتير"
+            "عَايِز",
+            "خِصْم",
+            "عَشَان",
+            "بَاشْتَرِي",
+            "كِتِير"
           ]
         }
       ]
@@ -1303,120 +1303,120 @@
       "phrases": [
         {
           "slot": "i-want-to-return-this-shirt",
-          "arabic": "عايز أرجّع القميص ده",
+          "arabic": "عَايِز أَرْجِّع الْقَمِيص دَه",
           "transliteration": "3ayez arag-ga3 el-2ameeS da",
           "reply": {
-            "arabic": "فيه إيه فيه؟",
+            "arabic": "فِيه إِيه فِيه؟",
             "transliteration": "feeh eeh feeh?",
             "english": "What's wrong with it?"
           }
         },
         {
           "slot": "there-s-a-defect",
-          "arabic": "فيه عيب",
+          "arabic": "فِيه عِيب",
           "transliteration": "feeh 3eeb",
           "reply": {
-            "arabic": "وريني كده",
+            "arabic": "وَرِينِي كِدَه",
             "transliteration": "wareeni keda",
             "english": "Show me."
           }
         },
         {
           "slot": "i-didn-t-like-the-color",
-          "arabic": "اللون ما عجبنيش",
+          "arabic": "الْلَّون مَا عَجِبْنِيش",
           "transliteration": "el-loon ma 3agabneesh",
           "reply": {
-            "arabic": "تحب تبدله بلون تاني؟",
+            "arabic": "تِحُبّ تِبَدّلُه بِلَون تَانِي؟",
             "transliteration": "te7ebb tebaddelu be-loon taani?",
             "english": "Would you like to exchange it for another color?"
           }
         },
         {
           "slot": "i-want-to-exchange-it-for-another-one",
-          "arabic": "عايز أبدله بواحد تاني",
+          "arabic": "عَايِز أَبَدّلُه بِوَاحِد تَانِي",
           "transliteration": "3ayez abaddelu be-waa7ed taani",
           "reply": {
-            "arabic": "اتفضل اختار",
+            "arabic": "اتّفَضّل اخْتَار",
             "transliteration": "etfaDDal ekhtaar",
             "english": "Go ahead, choose."
           }
         },
         {
           "slot": "i-have-the-receipt",
-          "arabic": "معايا الفاتورة",
+          "arabic": "مَعَايَا الْفَاتُورَة",
           "transliteration": "ma3aaya el-faatuura",
           "reply": {
-            "arabic": "تمام، كده أحسن",
+            "arabic": "تَمَام، كِدَه أَحْسَن",
             "transliteration": "tamaam, keda a7san",
             "english": "Good, that's better."
           }
         },
         {
           "slot": "i-don-t-have-the-receipt",
-          "arabic": "ماعنديش الفاتورة",
+          "arabic": "مَاعِنْدِيش الْفَاتُورَة",
           "transliteration": "ma3andeesh el-faatuura",
           "reply": {
-            "arabic": "للأسف، مش هينفع من غير فاتورة",
+            "arabic": "لِلْأَسَف، مِش هِيَنْفَع مِن غِير فَاتُورَة",
             "transliteration": "lel-asaf, mesh hayenfa3 min gheer faatuura",
             "english": "Sorry, it can't be done without a receipt."
           }
         },
         {
           "slot": "when-did-you-buy-it",
-          "arabic": "اشتريته إمتى؟",
+          "arabic": "اشْتَرَيْتُه إِمْتَى؟",
           "transliteration": "eshtareetu emta?",
           "reply": {
-            "arabic": "من يومين",
+            "arabic": "مِن يُومَين",
             "transliteration": "min yomeen",
             "english": "Two days ago."
           }
         },
         {
           "slot": "do-you-give-money-back",
-          "arabic": "بترجّعوا الفلوس؟",
+          "arabic": "بِتِرْجِّعُوا الْفُلُوس؟",
           "transliteration": "betrag-ga3u el-fuloos?",
           "reply": {
-            "arabic": "لأ، بنبدّل بس",
+            "arabic": "لَأ، بِنِبَدّل بِس",
             "transliteration": "la2, benbaddel bass",
             "english": "No, we only exchange."
           }
         },
         {
           "slot": "this-is-the-wrong-size",
-          "arabic": "ده مقاس غلط",
+          "arabic": "دَه مَقَاس غَلَط",
           "transliteration": "da ma2aas ghalaT",
           "reply": {
-            "arabic": "معلش، هغيّره لك",
+            "arabic": "مَعْلِش، هِغَيّرُه لَك",
             "transliteration": "ma3lesh, hagheyyarhulak",
             "english": "Sorry, I'll change it for you."
           }
         },
         {
           "slot": "this-isn-t-what-i-ordered",
-          "arabic": "ده مش اللي طلبته",
+          "arabic": "دَه مِش الّلِي طَلَبْتُه",
           "transliteration": "da mesh elli Talabtu",
           "reply": {
-            "arabic": "آسف جدا، هراجع الطلب",
+            "arabic": "آسِف جِدّا، هِرَاجِع الطّلَب",
             "transliteration": "aasef giddan, haraaga3 eT-Talab",
             "english": "Very sorry, I'll check the order."
           }
         },
         {
           "slot": "can-i-exchange-it-for-a-bigger-size",
-          "arabic": "ينفع أبدله بمقاس أكبر؟",
+          "arabic": "يَنْفَع أَبَدّلُه بِمَقَاس أَكْبَر؟",
           "transliteration": "yenfa3 abaddelu be-ma2aas akbar?",
           "reply": {
-            "arabic": "أكيد، ثواني أجيبلك",
+            "arabic": "أَكِيد، ثَوَانِي أَجِيبْلَك",
             "transliteration": "akeed, tawaani agiblak",
             "english": "Sure, one moment, I'll bring you one."
           }
         },
         {
           "slot": "thanks-for-your-cooperation",
-          "arabic": "متشكر على تعاونك",
+          "arabic": "مِتْشَكّر عَلَى تَعَاوُنَك",
           "transliteration": "metshakker 3ala ta3aawunak",
           "reply": {
-            "arabic": "العفو، ده واجبنا",
+            "arabic": "الْعَفْو، دَه وَاجِبْنَا",
             "transliteration": "el-3afw, da waagebna",
             "english": "You're welcome, it's our duty."
           }
@@ -1511,12 +1511,12 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "عايز أرجّع القميص ده",
+            "arabic": "عَايِز أَرْجِّع الْقَمِيص دَه",
             "transliteration": "3ayez arag-ga3 el-2ameeS da",
             "english": "I want to return this shirt."
           },
           "response": {
-            "arabic": "فيه إيه فيه؟",
+            "arabic": "فِيه إِيه فِيه؟",
             "transliteration": "feeh eeh feeh?",
             "english": "What's wrong with it?"
           }
@@ -1535,24 +1535,24 @@
         },
         {
           "pair": {
-            "arabic": "اشتريته إمتى؟",
+            "arabic": "اشْتَرَيْتُه إِمْتَى؟",
             "transliteration": "eshtareetu emta?",
             "english": "When did you buy it?"
           },
           "response": {
-            "arabic": "من يومين",
+            "arabic": "مِن يُومَين",
             "transliteration": "min yomeen",
             "english": "Two days ago."
           }
         },
         {
           "pair": {
-            "arabic": "بترجّعوا الفلوس؟",
+            "arabic": "بِتِرْجِّعُوا الْفُلُوس؟",
             "transliteration": "betrag-ga3u el-fuloos?",
             "english": "Do you give money back?"
           },
           "response": {
-            "arabic": "لأ، بنبدّل بس",
+            "arabic": "لَأ، بِنِبَدّل بِس",
             "transliteration": "la2, benbaddel bass",
             "english": "No, we only exchange."
           }
@@ -1569,7 +1569,7 @@
             "أيوه، معايا الفاتورة",
             "معايا",
             "أيوه معايا",
-            "معايا الفاتورة",
+            "مَعَايَا الْفَاتُورَة",
             "aywa, ma3aaya el-faatuura",
             "أيوه معايا الفاتورة"
           ],
@@ -1583,9 +1583,9 @@
           "id": "unit-06.lesson-04.reply.02",
           "type": "reply",
           "prompt": "A shop assistant asks: \"اشتريته إمتى؟\" Say two days ago.",
-          "answer": "من يومين",
+          "answer": "مِن يُومَين",
           "accepted": [
-            "من يومين",
+            "مِن يُومَين",
             "اشتريته من يومين",
             "من يومين بس",
             "قبل يومين",
@@ -1636,9 +1636,9 @@
           "id": "unit-06.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Type in Cairene: \"There's a defect.\"",
-          "answer": "فيه عيب",
+          "answer": "فِيه عِيب",
           "accepted": [
-            "فيه عيب",
+            "فِيه عِيب",
             "في عيب",
             "فيه عيب فيه",
             "فيه عيب في القميص",
@@ -1654,9 +1654,9 @@
           "id": "unit-06.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Type in Cairene: \"I don't have the receipt.\"",
-          "answer": "ماعنديش الفاتورة",
+          "answer": "مَاعِنْدِيش الْفَاتُورَة",
           "accepted": [
-            "ماعنديش الفاتورة",
+            "مَاعِنْدِيش الْفَاتُورَة",
             "معنديش الفاتورة",
             "ما عنديش الفاتورة",
             "معييش الفاتورة",
@@ -1672,9 +1672,9 @@
           "id": "unit-06.lesson-04.choose.01",
           "type": "choose",
           "prompt": "Which sentence means \"I didn't like the color\"?",
-          "answer": "اللون ما عجبنيش",
+          "answer": "الْلَّون مَا عَجِبْنِيش",
           "accepted": [
-            "اللون ما عجبنيش",
+            "الْلَّون مَا عَجِبْنِيش",
             "اللون معجبنيش",
             "el-loon ma 3agabneesh"
           ],
@@ -1684,7 +1684,7 @@
           },
           "tip": "ما عجبنيش is the negative of عجبني.",
           "options": [
-            "اللون ما عجبنيش",
+            "الْلَّون مَا عَجِبْنِيش",
             "اللون حلو أوي",
             "اللون غامق",
             "اللون ده لايق"
@@ -1694,9 +1694,9 @@
           "id": "unit-06.lesson-04.choose.02",
           "type": "choose",
           "prompt": "Which sentence says \"I want to exchange it for another one\"?",
-          "answer": "عايز أبدله بواحد تاني",
+          "answer": "عَايِز أَبَدّلُه بِوَاحِد تَانِي",
           "accepted": [
-            "عايز أبدله بواحد تاني",
+            "عَايِز أَبَدّلُه بِوَاحِد تَانِي",
             "عايز ابدله بواحد تاني",
             "3ayez abaddelu be-waa7ed taani"
           ],
@@ -1706,7 +1706,7 @@
           },
           "tip": "أبدّل (abaddel) is to swap or exchange.",
           "options": [
-            "عايز أبدله بواحد تاني",
+            "عَايِز أَبَدّلُه بِوَاحِد تَانِي",
             "عايز أدفع الحساب",
             "عايز أجرب ده",
             "عايز خصم"
@@ -1716,9 +1716,9 @@
           "id": "unit-06.lesson-04.reorder.01",
           "type": "reorder",
           "prompt": "Arrange the words: \"I want to exchange it for another one.\"",
-          "answer": "عايز أبدله بواحد تاني",
+          "answer": "عَايِز أَبَدّلُه بِوَاحِد تَانِي",
           "accepted": [
-            "عايز أبدله بواحد تاني",
+            "عَايِز أَبَدّلُه بِوَاحِد تَانِي",
             "عايز أبدله بواحد تانى",
             "3ayez abaddelu be-waa7ed taani"
           ],
@@ -1728,19 +1728,19 @@
           },
           "tip": "واحد تاني means another one.",
           "words": [
-            "عايز",
-            "أبدله",
-            "بواحد",
-            "تاني"
+            "عَايِز",
+            "أَبَدّلُه",
+            "بِوَاحِد",
+            "تَانِي"
           ]
         },
         {
           "id": "unit-06.lesson-04.reorder.02",
           "type": "reorder",
           "prompt": "Arrange the words: \"Can I exchange it for a bigger size?\"",
-          "answer": "ينفع أبدله بمقاس أكبر؟",
+          "answer": "يَنْفَع أَبَدّلُه بِمَقَاس أَكْبَر؟",
           "accepted": [
-            "ينفع أبدله بمقاس أكبر؟",
+            "يَنْفَع أَبَدّلُه بِمَقَاس أَكْبَر؟",
             "ينفع أبدله بمقاس أكبر",
             "yenfa3 abaddelu be-ma2aas akbar?"
           ],
@@ -1750,10 +1750,10 @@
           },
           "tip": "بـ before the new thing means \"for\" when exchanging.",
           "words": [
-            "ينفع",
-            "أبدله",
-            "بمقاس",
-            "أكبر؟"
+            "يَنْفَع",
+            "أَبَدّلُه",
+            "بِمَقَاس",
+            "أَكْبَر؟"
           ]
         }
       ]

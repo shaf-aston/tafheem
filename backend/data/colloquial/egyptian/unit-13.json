@@ -22,77 +22,77 @@
       "phrases": [
         {
           "slot": "how-are-you-today-to-a-man",
-          "arabic": "إزيك النهارده؟",
+          "arabic": "إِزيِك النَّهَارِدَه؟",
           "transliteration": "ezzayyak inaharda?",
           "reply": {
-            "arabic": "كويس، الحمد لله",
+            "arabic": "كُوَيِّس، الْحَمْدُ لِلَّه",
             "transliteration": "kwayyis, el-7amdu lillah",
             "english": "Good, thank God."
           }
         },
         {
           "slot": "how-are-you-today-to-a-woman",
-          "arabic": "إزيّك النهارده؟",
+          "arabic": "إِزَيِّك النَّهَارِدَه؟",
           "transliteration": "ezzayyek inaharda?",
           "reply": {
-            "arabic": "تمام، شكراً",
+            "arabic": "تَمَام، شُكْرًا",
             "transliteration": "tamaam, shukran",
             "english": "Fine, thanks."
           }
         },
         {
           "slot": "what-s-wrong-with-you-to-a-man",
-          "arabic": "مالك؟",
+          "arabic": "مَالَك؟",
           "transliteration": "maalak?",
           "reply": {
-            "arabic": "مفيش، بس تعبان شوية",
+            "arabic": "مِفِيش، بَس تَعْبَان شُوَيَّة",
             "transliteration": "mafeesh, bas ta3baan shwayya",
             "english": "Nothing, just a little tired."
           }
         },
         {
           "slot": "i-m-happy-today-m",
-          "arabic": "أنا مبسوط النهارده",
+          "arabic": "أَنَا مَبْسُوط النَّهَارِدَه",
           "transliteration": "ana mabsoot inaharda"
         },
         {
           "slot": "i-m-happy-today-f",
-          "arabic": "أنا مبسوطة النهارده",
+          "arabic": "أَنَا مَبْسُوطَة النَّهَارِدَه",
           "transliteration": "ana mabsoota inaharda"
         },
         {
           "slot": "i-m-a-little-upset-m",
-          "arabic": "أنا زعلان شوية",
+          "arabic": "أَنَا زَعْلَان شُوَيَّة",
           "transliteration": "ana za3laan shwayya"
         },
         {
           "slot": "i-m-a-little-upset-f",
-          "arabic": "أنا زعلانة شوية",
+          "arabic": "أَنَا زَعْلَانَة شُوَيَّة",
           "transliteration": "ana za3laana shwayya"
         },
         {
           "slot": "i-m-very-tired-m",
-          "arabic": "أنا تعبان أوي",
+          "arabic": "أَنَا تَعْبَان أَوّي",
           "transliteration": "ana ta3baan awi"
         },
         {
           "slot": "i-m-hungry-i-want-to-eat-something",
-          "arabic": "أنا جعان، عايز آكل حاجة",
+          "arabic": "أَنَا جِعَان، عَايِز آكِل حَاجَة",
           "transliteration": "ana ga3aan, 3aayez aakol 7aaga"
         },
         {
           "slot": "i-m-worried-about-the-exam",
-          "arabic": "أنا قلقان من الامتحان",
+          "arabic": "أَنَا قِلِقان مِنَ الِامْتِحَان",
           "transliteration": "ana 2al2aan min el-emte7aan"
         },
         {
           "slot": "i-m-scared-of-this",
-          "arabic": "أنا خايف من ده",
+          "arabic": "أَنَا خَايِف مِن دَه",
           "transliteration": "ana khaayef min da"
         },
         {
           "slot": "i-m-glad-you-came-to-a-man",
-          "arabic": "مبسوط إنك جيت",
+          "arabic": "مَبْسُوط إِنَّك جِيت",
           "transliteration": "mabsoot ennak geet"
         }
       ],
@@ -172,7 +172,7 @@
             "english": "How are you? (m)"
           },
           "response": {
-            "arabic": "كويس، الحمد لله",
+            "arabic": "كُوَيِّس، الْحَمْدُ لِلَّه",
             "transliteration": "kwayyis, el-7amdu lillah",
             "english": "Good, thank God."
           }
@@ -220,9 +220,9 @@
           "id": "unit-13.lesson-01.reply.01",
           "type": "reply",
           "prompt": "Someone says: \"إزيك النهارده؟\". Give a natural reply.",
-          "answer": "كويس، الحمد لله",
+          "answer": "كُوَيِّس، الْحَمْدُ لِلَّه",
           "accepted": [
-            "كويس، الحمد لله",
+            "كُوَيِّس، الْحَمْدُ لِلَّه",
             "كويس الحمد لله",
             "تمام الحمد لله",
             "kwayyis, el-7amdu lillah",
@@ -389,9 +389,9 @@
           "id": "unit-13.lesson-01.reorder.02",
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"من / خايف / ده / أنا\".",
-          "answer": "أنا خايف من ده",
+          "answer": "أَنَا خَايِف مِن دَه",
           "accepted": [
-            "أنا خايف من ده",
+            "أَنَا خَايِف مِن دَه",
             "أنا خايفة من ده",
             "خايف من ده",
             "ana khaayef min da"
@@ -402,10 +402,10 @@
           },
           "tip": "\"من\" follows \"خايف\" to name what you fear.",
           "words": [
-            "أنا",
-            "خايف",
-            "من",
-            "ده"
+            "أَنَا",
+            "خَايِف",
+            "مِن",
+            "دَه"
           ]
         }
       ]
@@ -415,62 +415,62 @@
       "phrases": [
         {
           "slot": "right-correct",
-          "arabic": "صح",
+          "arabic": "صَحّ",
           "transliteration": "sa77"
         },
         {
           "slot": "exactly-that-s-right",
-          "arabic": "بالظبط، كده",
+          "arabic": "بِالظَّبْط، كِدَه",
           "transliteration": "bez-zabT, kedda"
         },
         {
           "slot": "you-re-right-to-a-man",
-          "arabic": "عندك حق",
+          "arabic": "عِنْدَك حَقّ",
           "transliteration": "3andak 7a2"
         },
         {
           "slot": "you-re-right-to-a-woman",
-          "arabic": "عندِك حق",
+          "arabic": "عِنْدِك حَقّ",
           "transliteration": "3andik 7a2"
         },
         {
           "slot": "i-agree-m",
-          "arabic": "أنا موافق",
+          "arabic": "أَنَا مُوَافِق",
           "transliteration": "ana muwaafe2"
         },
         {
           "slot": "i-agree-f",
-          "arabic": "أنا موافقة",
+          "arabic": "أَنَا مُوَافِقَة",
           "transliteration": "ana muwaf2a"
         },
         {
           "slot": "no-it-s-not-like-that",
-          "arabic": "لا، مش كده",
+          "arabic": "لَا، مِش كِدَه",
           "transliteration": "la2, mish kedda"
         },
         {
           "slot": "i-don-t-agree-with-you",
-          "arabic": "مش موافق معاك",
+          "arabic": "مِش مُوَافِق مَعَاك",
           "transliteration": "mish muwaafe2 ma3aak"
         },
         {
           "slot": "that-s-not-true-correct",
-          "arabic": "ده مش صح",
+          "arabic": "دَه مِش صَحّ",
           "transliteration": "da mish sa77"
         },
         {
           "slot": "in-my-opinion",
-          "arabic": "في رأيي...",
+          "arabic": "فِي رَأْيِي...",
           "transliteration": "fi ra2yi..."
         },
         {
           "slot": "maybe-but",
-          "arabic": "جايز، بس...",
+          "arabic": "جَايِز، بَس...",
           "transliteration": "gayez, bas..."
         },
         {
           "slot": "ok-that-works",
-          "arabic": "تمام، ماشي",
+          "arabic": "تَمَام، مَاشِي",
           "transliteration": "tamaam, maashi"
         }
       ],
@@ -550,7 +550,7 @@
             "english": "What do you think?"
           },
           "response": {
-            "arabic": "أنا موافق",
+            "arabic": "أَنَا مُوَافِق",
             "transliteration": "ana muwaafe2",
             "english": "I agree."
           }
@@ -601,7 +601,7 @@
           "answer": "بالظبط",
           "accepted": [
             "بالظبط",
-            "صح",
+            "صَحّ",
             "آه صح",
             "bez-zabT"
           ],
@@ -666,9 +666,9 @@
           "id": "unit-13.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I don't agree with you.\"",
-          "answer": "مش موافق معاك",
+          "answer": "مِش مُوَافِق مَعَاك",
           "accepted": [
-            "مش موافق معاك",
+            "مِش مُوَافِق مَعَاك",
             "أنا مش موافق معاك",
             "مش موافقة معاك",
             "mish muwaafe2 ma3aak"
@@ -683,9 +683,9 @@
           "id": "unit-13.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"OK, that works.\"",
-          "answer": "تمام، ماشي",
+          "answer": "تَمَام، مَاشِي",
           "accepted": [
-            "تمام، ماشي",
+            "تَمَام، مَاشِي",
             "تمام ماشي",
             "ماشي",
             "tamaam, maashi"
@@ -700,9 +700,9 @@
           "id": "unit-13.lesson-02.choose.01",
           "type": "choose",
           "prompt": "Which phrase means \"I agree\" said by a woman?",
-          "answer": "أنا موافقة",
+          "answer": "أَنَا مُوَافِقَة",
           "accepted": [
-            "أنا موافقة",
+            "أَنَا مُوَافِقَة",
             "موافقة",
             "ana muwaf2a"
           ],
@@ -712,8 +712,8 @@
           },
           "tip": "\"موافقة\" ends in ة for a woman speaking; \"موافق\" is for a man.",
           "options": [
-            "أنا موافقة",
-            "أنا موافق",
+            "أَنَا مُوَافِقَة",
+            "أَنَا مُوَافِق",
             "أنا مش موافقة",
             "أنا موافقين"
           ]
@@ -744,9 +744,9 @@
           "id": "unit-13.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"حق / عندك\".",
-          "answer": "عندك حق",
+          "answer": "عِنْدَك حَقّ",
           "accepted": [
-            "عندك حق",
+            "عِنْدَك حَقّ",
             "معاك حق",
             "3andak 7a2"
           ],
@@ -756,8 +756,8 @@
           },
           "tip": "\"معاك حق\" is just as common.",
           "words": [
-            "عندك",
-            "حق"
+            "عِنْدَك",
+            "حَقّ"
           ]
         },
         {
@@ -790,62 +790,62 @@
       "phrases": [
         {
           "slot": "you-should-get-some-rest-to-a-man",
-          "arabic": "لازم ترتاح شوية",
+          "arabic": "لَازِم تِرْتَاح شُوَيَّة",
           "transliteration": "laazem tertaa7 shwayya"
         },
         {
           "slot": "you-should-get-some-rest-to-a-woman",
-          "arabic": "لازم ترتاحي شوية",
+          "arabic": "لَازِم تِرْتَاحِي شُوَيَّة",
           "transliteration": "laazem tertaa7i shwayya"
         },
         {
           "slot": "it-s-better-you-go-to-the-doctor",
-          "arabic": "أحسن تروح للدكتور",
+          "arabic": "أَحْسَن تِرُوح لِلدُّكْتُور",
           "transliteration": "a7san terooh lid-doktoor"
         },
         {
           "slot": "why-don-t-you-try-this",
-          "arabic": "ما تجرب ده؟",
+          "arabic": "مَا تِجَرِّب دَه؟",
           "transliteration": "ma tigarrab da?"
         },
         {
           "slot": "if-i-were-you-i-d-do-this",
-          "arabic": "لو كنت مكانك كنت هاعمل كده",
+          "arabic": "لَو كُنْت مَكَانَك كُنْت هَاعْمِل كِدَه",
           "transliteration": "lo kunt makaanak kunt haa3mel kedda"
         },
         {
           "slot": "listen-to-my-advice-to-a-man",
-          "arabic": "اسمع نصيحتي",
+          "arabic": "اسْمَع نَصِيحَتِي",
           "transliteration": "isma3 naSee7ti"
         },
         {
           "slot": "take-care-of-yourself-to-a-man",
-          "arabic": "خد بالك من نفسك",
+          "arabic": "خُد بَالَك مِن نَفْسَك",
           "transliteration": "khod baalak min nafsak"
         },
         {
           "slot": "it-won-t-hurt-you-to-try",
-          "arabic": "مش هيضرّك تجرب",
+          "arabic": "مِش هَيِضَرِّك تِجَرِّب",
           "transliteration": "mish hayeDorrak tegarrab"
         },
         {
           "slot": "try-this-medicine",
-          "arabic": "جرّب الدوا ده",
+          "arabic": "جَرِّب الدَّوَا دَه",
           "transliteration": "garrab id-dawa da"
         },
         {
           "slot": "you-should-talk-to-him",
-          "arabic": "لازم تتكلم معاه",
+          "arabic": "لَازِم تِتْكَلِّم مَعَاه",
           "transliteration": "laazem tetkallem ma3aah"
         },
         {
           "slot": "i-advise-you-not-to-do-this",
-          "arabic": "أنصحك ما تعملش كده",
+          "arabic": "أَنْصَحَك مَا تَعْمَلْش كِدَه",
           "transliteration": "ansa7ak ma ta3melsh kedda"
         },
         {
           "slot": "stay-calm-and-don-t-rush",
-          "arabic": "اهدى وما تستعجلش",
+          "arabic": "اهْدَى وَمَا تِسْتَعْجِلْش",
           "transliteration": "ihda w ma testa3gelsh"
         }
       ],
@@ -920,12 +920,12 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "أنا تعبان أوي",
+            "arabic": "أَنَا تَعْبَان أَوّي",
             "transliteration": "ana ta3baan awi",
             "english": "I'm very tired."
           },
           "response": {
-            "arabic": "لازم ترتاح شوية",
+            "arabic": "لَازِم تِرْتَاح شُوَيَّة",
             "transliteration": "laazem tertaa7 shwayya",
             "english": "You should rest a little."
           }
@@ -937,7 +937,7 @@
             "english": "What should I do?"
           },
           "response": {
-            "arabic": "أحسن تروح للدكتور",
+            "arabic": "أَحْسَن تِرُوح لِلدُّكْتُور",
             "transliteration": "a7san terooh lid-doktoor",
             "english": "It's better you go to the doctor."
           }
@@ -949,7 +949,7 @@
             "english": "My head hurts a lot."
           },
           "response": {
-            "arabic": "جرّب الدوا ده",
+            "arabic": "جَرِّب الدَّوَا دَه",
             "transliteration": "garrab id-dawa da",
             "english": "Try this medicine."
           }
@@ -973,9 +973,9 @@
           "id": "unit-13.lesson-03.reply.01",
           "type": "reply",
           "prompt": "Someone says: \"أنا تعبان أوي النهارده.\". Give friendly advice.",
-          "answer": "لازم ترتاح شوية",
+          "answer": "لَازِم تِرْتَاح شُوَيَّة",
           "accepted": [
-            "لازم ترتاح شوية",
+            "لَازِم تِرْتَاح شُوَيَّة",
             "ريّح شوية",
             "أحسن ترتاح شوية",
             "laazem tertaa7 shwayya"
@@ -990,9 +990,9 @@
           "id": "unit-13.lesson-03.reply.02",
           "type": "reply",
           "prompt": "Someone says: \"أعمل إيه في الصداع ده؟\". Suggest the medicine.",
-          "answer": "جرّب الدوا ده",
+          "answer": "جَرِّب الدَّوَا دَه",
           "accepted": [
-            "جرّب الدوا ده",
+            "جَرِّب الدَّوَا دَه",
             "جرب الدوا ده",
             "خد الدوا ده",
             "garrab id-dawa da",
@@ -1040,9 +1040,9 @@
           "id": "unit-13.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"You should talk to him.\"",
-          "answer": "لازم تتكلم معاه",
+          "answer": "لَازِم تِتْكَلِّم مَعَاه",
           "accepted": [
-            "لازم تتكلم معاه",
+            "لَازِم تِتْكَلِّم مَعَاه",
             "لازم تكلمه",
             "أحسن تتكلم معاه",
             "laazem tetkallem ma3aah"
@@ -1057,9 +1057,9 @@
           "id": "unit-13.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Stay calm and don't rush.\"",
-          "answer": "اهدى وما تستعجلش",
+          "answer": "اهْدَى وَمَا تِسْتَعْجِلْش",
           "accepted": [
-            "اهدى وما تستعجلش",
+            "اهْدَى وَمَا تِسْتَعْجِلْش",
             "اهدا وما تستعجلش",
             "اهدى ومتستعجلش",
             "ihda w ma testa3gelsh"
@@ -1074,9 +1074,9 @@
           "id": "unit-13.lesson-03.choose.01",
           "type": "choose",
           "prompt": "Which means \"Take care of yourself\" (to a man)?",
-          "answer": "خد بالك من نفسك",
+          "answer": "خُد بَالَك مِن نَفْسَك",
           "accepted": [
-            "خد بالك من نفسك",
+            "خُد بَالَك مِن نَفْسَك",
             "khod baalak min nafsak",
             "خد بالك"
           ],
@@ -1086,9 +1086,9 @@
           },
           "tip": "\"بالك\" literally means \"your mind\".",
           "options": [
-            "خد بالك من نفسك",
-            "اسمع نصيحتي",
-            "جرّب الدوا ده",
+            "خُد بَالَك مِن نَفْسَك",
+            "اسْمَع نَصِيحَتِي",
+            "جَرِّب الدَّوَا دَه",
             "اهدى"
           ]
         },
@@ -1118,9 +1118,9 @@
           "id": "unit-13.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"تروح / للدكتور / أحسن\".",
-          "answer": "أحسن تروح للدكتور",
+          "answer": "أَحْسَن تِرُوح لِلدُّكْتُور",
           "accepted": [
-            "أحسن تروح للدكتور",
+            "أَحْسَن تِرُوح لِلدُّكْتُور",
             "لازم تروح للدكتور",
             "a7san terooh lid-doktoor",
             "أحسن تروح عند الدكتور"
@@ -1131,18 +1131,18 @@
           },
           "tip": "\"للدكتور\" fuses \"لـ\" and \"الدكتور\".",
           "words": [
-            "أحسن",
-            "تروح",
-            "للدكتور"
+            "أَحْسَن",
+            "تِرُوح",
+            "لِلدُّكْتُور"
           ]
         },
         {
           "id": "unit-13.lesson-03.reorder.02",
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"نفسك / من / بالك / خد\".",
-          "answer": "خد بالك من نفسك",
+          "answer": "خُد بَالَك مِن نَفْسَك",
           "accepted": [
-            "خد بالك من نفسك",
+            "خُد بَالَك مِن نَفْسَك",
             "خدي بالك من نفسك",
             "khod baalak min nafsak",
             "خد بالك من نفسك."
@@ -1153,10 +1153,10 @@
           },
           "tip": "Verb first, then what to watch, then who.",
           "words": [
-            "نفسك",
-            "من",
-            "بالك",
-            "خد"
+            "نَفْسَك",
+            "مِن",
+            "بَالَك",
+            "خُد"
           ]
         }
       ]
@@ -1166,62 +1166,62 @@
       "phrases": [
         {
           "slot": "excuse-me-there-s-a-small-problem-to-a-man",
-          "arabic": "لو سمحت، فيه مشكلة صغيرة",
+          "arabic": "لَو سَمَحْت، فِيه مِشْكِلَة صُغَيِّرَة",
           "transliteration": "low samaht, feeh moshkela soghayyara"
         },
         {
           "slot": "sorry-to-bother-you-but-m",
-          "arabic": "آسف على الإزعاج، بس...",
+          "arabic": "آسِف عَلَى الْإِزْعَاج، بَس...",
           "transliteration": "aasef 3al-ez3aag, bas..."
         },
         {
           "slot": "can-someone-help-me",
-          "arabic": "حد يقدر يساعدني؟",
+          "arabic": "حَدّ يِقْدِر يِسَاعِدْنِي؟",
           "transliteration": "7add ye2dar yesa3edni?"
         },
         {
           "slot": "this-isn-t-what-i-ordered-m",
-          "arabic": "ده مش اللي أنا طلبته",
+          "arabic": "دَه مِش اللَّي أَنَا طَلَبْتُه",
           "transliteration": "da mish elli ana Talabtu"
         },
         {
           "slot": "there-s-a-mistake-in-the-bill",
-          "arabic": "فيه غلطة في الحساب",
+          "arabic": "فِيه غَلْطَة فِي الْحِسَاب",
           "transliteration": "feeh ghalTa fil-7esaab"
         },
         {
           "slot": "the-food-is-a-bit-cold-can-you-heat-it-up-for-me",
-          "arabic": "الأكل برد شوية، ينفع تسخّنهولي؟",
+          "arabic": "الْأَكْل بِرْد شُوَيَّة، يِنْفَع تِسَخِّنْهُولِي؟",
           "transliteration": "el-akl bard shwayya, yenfa3 tesakhkhenhooli?"
         },
         {
           "slot": "the-order-is-very-late",
-          "arabic": "الطلب اتأخر أوي",
+          "arabic": "الطَّلَب اتْأَخَّر أَوّي",
           "transliteration": "eT-Talab it2akhkhar awi"
         },
         {
           "slot": "i-don-t-mean-to-bother-you-but-this-is-important",
-          "arabic": "مش عايز أزعجك، بس الموضوع مهم",
+          "arabic": "مِش عَايِز أِزْعِجَك، بَس الْمَوْضُوع مُهِمّ",
           "transliteration": "mish 3aayez ez3egak, bas el-mawDoo3 muhemm"
         },
         {
           "slot": "can-you-refund-my-money",
-          "arabic": "ممكن ترجّعلي فلوسي؟",
+          "arabic": "مُمْكِن تِرْجِّعْلِي فُلُوسِي؟",
           "transliteration": "mumken teragga3li floosi?"
         },
         {
           "slot": "this-isn-t-the-same-as-what-i-saw-in-the-picture",
-          "arabic": "ده مش زي اللي شفته في الصورة",
+          "arabic": "دَه مِش زَيّ اللَّي شُفْتُه فِي الصُّورَة",
           "transliteration": "da mish zayy elli shoftu fiS-Soora"
         },
         {
           "slot": "can-you-help-me-with-this-matter",
-          "arabic": "ممكن تساعدني في الموضوع ده؟",
+          "arabic": "مُمْكِن تِسَاعِدْنِي فِي الْمَوْضُوع دَه؟",
           "transliteration": "mumken tesa3edni fil-mawDoo3 da?"
         },
         {
           "slot": "there-s-no-problem-but-i-d-like-to-clarify-m",
-          "arabic": "مفيش مشكلة، بس عايز أوضّح حاجة",
+          "arabic": "مِفِيش مِشْكِلَة، بَس عَايِز أَوَضِّح حَاجَة",
           "transliteration": "mafeesh moshkela, bas 3aayez awaDDa7 7aaga"
         }
       ],
@@ -1308,7 +1308,7 @@
         },
         {
           "pair": {
-            "arabic": "فيه غلطة في الحساب",
+            "arabic": "فِيه غَلْطَة فِي الْحِسَاب",
             "transliteration": "feeh ghalTa fil-7esaab",
             "english": "There's a mistake in the bill."
           },
@@ -1332,7 +1332,7 @@
         },
         {
           "pair": {
-            "arabic": "ممكن ترجّعلي فلوسي؟",
+            "arabic": "مُمْكِن تِرْجِّعْلِي فُلُوسِي؟",
             "transliteration": "mumken teragga3li floosi?",
             "english": "Can you refund my money?"
           },
@@ -1349,9 +1349,9 @@
           "id": "unit-13.lesson-04.reply.01",
           "type": "reply",
           "prompt": "The waiter says: \"خير يا فندم؟\". Tell him there's a mistake in the bill.",
-          "answer": "فيه غلطة في الحساب",
+          "answer": "فِيه غَلْطَة فِي الْحِسَاب",
           "accepted": [
-            "فيه غلطة في الحساب",
+            "فِيه غَلْطَة فِي الْحِسَاب",
             "في غلطة في الحساب",
             "فيه غلط في الحساب",
             "feeh ghalTa fil-7esaab",
@@ -1417,9 +1417,9 @@
           "id": "unit-13.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"There's a mistake in the bill.\"",
-          "answer": "فيه غلطة في الحساب",
+          "answer": "فِيه غَلْطَة فِي الْحِسَاب",
           "accepted": [
-            "فيه غلطة في الحساب",
+            "فِيه غَلْطَة فِي الْحِسَاب",
             "في غلطة في الحساب",
             "فيه غلط في الحساب",
             "feeh ghalTa fil-7esaab"
@@ -1434,9 +1434,9 @@
           "id": "unit-13.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Can someone help me?\"",
-          "answer": "حد يقدر يساعدني؟",
+          "answer": "حَدّ يِقْدِر يِسَاعِدْنِي؟",
           "accepted": [
-            "حد يقدر يساعدني؟",
+            "حَدّ يِقْدِر يِسَاعِدْنِي؟",
             "ممكن حد يساعدني؟",
             "حد يساعدني؟",
             "7add ye2dar yesa3edni"
@@ -1451,9 +1451,9 @@
           "id": "unit-13.lesson-04.choose.01",
           "type": "choose",
           "prompt": "Which is the most polite way to start a complaint?",
-          "answer": "لو سمحت، فيه مشكلة صغيرة",
+          "answer": "لَو سَمَحْت، فِيه مِشْكِلَة صُغَيِّرَة",
           "accepted": [
-            "لو سمحت، فيه مشكلة صغيرة",
+            "لَو سَمَحْت، فِيه مِشْكِلَة صُغَيِّرَة",
             "لو سمحت فيه مشكلة صغيرة",
             "low samaht, feeh moshkela soghayyara"
           ],
@@ -1463,7 +1463,7 @@
           },
           "tip": "\"لو سمحت\" opens almost every polite request.",
           "options": [
-            "لو سمحت، فيه مشكلة صغيرة",
+            "لَو سَمَحْت، فِيه مِشْكِلَة صُغَيِّرَة",
             "إنتوا غلطانين!",
             "ده مش عاجبني",
             "عايز أشتكي دلوقتي"
@@ -1496,9 +1496,9 @@
           "id": "unit-13.lesson-04.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"الحساب / في / غلطة / فيه\".",
-          "answer": "فيه غلطة في الحساب",
+          "answer": "فِيه غَلْطَة فِي الْحِسَاب",
           "accepted": [
-            "فيه غلطة في الحساب",
+            "فِيه غَلْطَة فِي الْحِسَاب",
             "في غلطة في الحساب",
             "فيه غلط في الحساب",
             "feeh ghalTa fil-7esaab"
@@ -1509,19 +1509,19 @@
           },
           "tip": "\"فيه\" opens the sentence, then what there is, then where.",
           "words": [
-            "فيه",
-            "غلطة",
-            "في",
-            "الحساب"
+            "فِيه",
+            "غَلْطَة",
+            "فِي",
+            "الْحِسَاب"
           ]
         },
         {
           "id": "unit-13.lesson-04.reorder.02",
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"طلبته / اللي / مش / أنا / ده\".",
-          "answer": "ده مش اللي أنا طلبته",
+          "answer": "دَه مِش اللَّي أَنَا طَلَبْتُه",
           "accepted": [
-            "ده مش اللي أنا طلبته",
+            "دَه مِش اللَّي أَنَا طَلَبْتُه",
             "ده مش اللي طلبته",
             "da mish elli ana Talabtu",
             "ده مش اللي أنا طلبته."
@@ -1532,11 +1532,11 @@
           },
           "tip": "\"اللي\" links \"ده\" to what you ordered.",
           "words": [
-            "ده",
-            "مش",
-            "اللي",
-            "أنا",
-            "طلبته"
+            "دَه",
+            "مِش",
+            "اللَّي",
+            "أَنَا",
+            "طَلَبْتُه"
           ]
         }
       ]
@@ -1556,7 +1556,7 @@
       "dialogue": [
         {
           "speaker": "Hala",
-          "arabic": "إزيك النهارده؟",
+          "arabic": "إِزيِك النَّهَارِدَه؟",
           "transliteration": "ezzayyak inaharda?",
           "english": "How are you today?"
         },

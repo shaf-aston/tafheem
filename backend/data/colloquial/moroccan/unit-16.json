@@ -21,10 +21,10 @@
       "phrases": [
         {
           "slot": "what-did-you-do-yesterday",
-          "arabic": "البارح شنو درتي؟",
+          "arabic": "الْبَارِحْ شنُو دَرْتِي؟",
           "transliteration": "l-baare7 shnu derti?",
           "reply": {
-            "arabic": "البارح مشيت للسوق",
+            "arabic": "الْبَارِحْ مشِيتْ لِلسُّوقْ",
             "transliteration": "l-baare7 mshit l-s-souq",
             "english": "Yesterday I went to the market."
           }
@@ -36,55 +36,55 @@
         },
         {
           "slot": "i-woke-up-late-yesterday",
-          "arabic": "فقت معطل البارح",
+          "arabic": "فَقْتْ مَعطَّلْ الْبَارِحْ",
           "transliteration": "fqt m3aTTel l-baare7"
         },
         {
           "slot": "where-were-you-last-night",
-          "arabic": "فين كنتي البارح فالليل؟",
+          "arabic": "فِينْ كُنْتِي الْبَارِحْ فَالْلِيلْ؟",
           "transliteration": "fin knti l-baare7 f-l-leel?",
           "reply": {
-            "arabic": "كنت فالدار",
+            "arabic": "كُنْتْ فَالدَّارْ",
             "transliteration": "knt f-d-daar",
             "english": "I was at home."
           }
         },
         {
           "slot": "we-ate-at-a-nice-restaurant-yesterday",
-          "arabic": "كلينا فمطعم زوين البارح",
+          "arabic": "كْلِينَا فْمَطْعَمْ زْوِينْ الْبَارِحْ",
           "transliteration": "kleena f-maT3am zween l-baare7"
         },
         {
           "slot": "who-did-you-see-yesterday",
-          "arabic": "شكون شفتي البارح؟",
+          "arabic": "شْكُونْ شَفْتِي الْبَارِحْ؟",
           "transliteration": "shkoon shefti l-baare7?",
           "reply": {
-            "arabic": "شفت خالتي بالصدفة",
+            "arabic": "شَفْتْ خَالْتِي بَالصَّدْفَة",
             "transliteration": "sheft khaalti b-S-Sodfa",
             "english": "I saw my aunt by chance."
           }
         },
         {
           "slot": "did-you-buy-anything-yesterday",
-          "arabic": "واش شريتي شي حاجة البارح؟",
+          "arabic": "وَاشْ شْرِيتِي شِي حَاجَة الْبَارِحْ؟",
           "transliteration": "waash shreeti shi 7aaja l-baare7?",
           "reply": {
-            "arabic": "إيه، شريت قميجة جديدة",
+            "arabic": "إِيه، شْرِيتْ قْمِيجَة جدِيدَة",
             "transliteration": "eeh, shreet qmeeja jdeeda",
             "english": "Yes, I bought a new shirt."
           }
         },
         {
           "slot": "the-day-before-yesterday-i-had-work-until-the-ev",
-          "arabic": "أول البارح كانت عندي الخدمة حتى للعشية",
+          "arabic": "أوَّلْ الْبَارِحْ كَانَتْ عِنْدِي الْخِدْمَة حْتَّى لِلعَشِيَّة",
           "transliteration": "awwel l-baare7 kant 3endi l-khedma 7ta l-l-3ashiya"
         },
         {
           "slot": "how-late-did-you-stay-up-yesterday",
-          "arabic": "حتى لأمتى بقيتي فايق البارح؟",
+          "arabic": "حْتَّى لأِمْتَى بْقِيتِي فَايِقْ الْبَارِحْ؟",
           "transliteration": "7ta l-imta bqiti fayeq l-baare7?",
           "reply": {
-            "arabic": "حتى للوحدة د الليل",
+            "arabic": "حْتَّى لِلْوَحْدَة د الْلِيلْ",
             "transliteration": "7ta l-l-w7da d l-leel",
             "english": "Until one in the morning."
           }
@@ -96,15 +96,15 @@
         },
         {
           "slot": "yesterday-the-weather-was-very-nice",
-          "arabic": "البارح الجو كان زوين بزاف",
+          "arabic": "الْبَارِحْ الْجَوْ كَانْ زْوِينْ بزَّافْ",
           "transliteration": "l-baare7 l-jaw kan zween bzzaf"
         },
         {
           "slot": "why-didn-t-you-come-yesterday",
-          "arabic": "علاش ما جيتيش البارح؟",
+          "arabic": "عْلَاشْ مَا جِيتِيشْ الْبَارِحْ؟",
           "transliteration": "3laash ma jeetish l-baare7?",
           "reply": {
-            "arabic": "كنت عيان شوية",
+            "arabic": "كُنْتْ عَيّانْ شْوِيَة",
             "transliteration": "knt 3yaan shwiya",
             "english": "I was a bit unwell."
           }
@@ -211,12 +211,12 @@
         },
         {
           "pair": {
-            "arabic": "علاش ما جيتيش البارح؟",
+            "arabic": "عْلَاشْ مَا جِيتِيشْ الْبَارِحْ؟",
             "transliteration": "3laash ma jeetish l-baare7?",
             "english": "Why didn't you come yesterday?"
           },
           "response": {
-            "arabic": "كنت عيان شوية",
+            "arabic": "كُنْتْ عَيّانْ شْوِيَة",
             "transliteration": "knt 3yaan shwiya",
             "english": "I was a bit unwell."
           }
@@ -240,9 +240,9 @@
           "id": "unit-16.lesson-01.reply.01",
           "type": "reply",
           "prompt": "صاحبك سولك: \"البارح شنو درتي؟\". جاوبو بلي مشيتي للسوق.",
-          "answer": "البارح مشيت للسوق",
+          "answer": "الْبَارِحْ مشِيتْ لِلسُّوقْ",
           "accepted": [
-            "البارح مشيت للسوق",
+            "الْبَارِحْ مشِيتْ لِلسُّوقْ",
             "l-baare7 mshit l-s-souq",
             "مشيت للسوق البارح"
           ],
@@ -256,9 +256,9 @@
           "id": "unit-16.lesson-01.reply.02",
           "type": "reply",
           "prompt": "كيسولوك: \"فين كنتي البارح فالليل؟\". جاوب بلي كنتي فالدار.",
-          "answer": "كنت فالدار",
+          "answer": "كُنْتْ فَالدَّارْ",
           "accepted": [
-            "كنت فالدار",
+            "كُنْتْ فَالدَّارْ",
             "knt f-d-daar",
             "كنت فالدار البارح"
           ],
@@ -304,9 +304,9 @@
           "id": "unit-16.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "ترجم: \"What did you do yesterday?\"",
-          "answer": "البارح شنو درتي؟",
+          "answer": "الْبَارِحْ شنُو دَرْتِي؟",
           "accepted": [
-            "البارح شنو درتي؟",
+            "الْبَارِحْ شنُو دَرْتِي؟",
             "l-baare7 shnu derti?",
             "شنو درتي البارح؟"
           ],
@@ -320,9 +320,9 @@
           "id": "unit-16.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "ترجم: \"Who did you see yesterday?\"",
-          "answer": "شكون شفتي البارح؟",
+          "answer": "شْكُونْ شَفْتِي الْبَارِحْ؟",
           "accepted": [
-            "شكون شفتي البارح؟",
+            "شْكُونْ شَفْتِي الْبَارِحْ؟",
             "shkoon shefti l-baare7?",
             "البارح شكون شفتي؟"
           ],
@@ -373,15 +373,15 @@
           "id": "unit-16.lesson-01.reorder.01",
           "type": "reorder",
           "prompt": "رتب الجملة: البارح الجو كان زوين بزاف",
-          "answer": "البارح الجو كان زوين بزاف",
+          "answer": "الْبَارِحْ الْجَوْ كَانْ زْوِينْ بزَّافْ",
           "accepted": [
-            "البارح الجو كان زوين بزاف"
+            "الْبَارِحْ الْجَوْ كَانْ زْوِينْ بزَّافْ"
           ],
           "words": [
-            "البارح",
-            "الجو",
-            "كان",
-            "زوين بزاف"
+            "الْبَارِحْ",
+            "الْجَوْ",
+            "كَانْ",
+            "زْوِينْ بزَّافْ"
           ],
           "tip": "\"الجو\" = the weather."
         },
@@ -407,62 +407,62 @@
       "phrases": [
         {
           "slot": "when-i-was-young-i-loved-to-play-outside",
-          "arabic": "ملي كنت صغير كنت كنبغي نلعب برا",
+          "arabic": "مْلِي كُنْتْ صْغِيرْ كُنْتْ كْنبْغِي نْلَعْبْ بْرَّا",
           "transliteration": "mli kunt Sgheer kunt kanbghi nl3eb brra"
         },
         {
           "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
-          "arabic": "كبرت فدرب قديم فالدار البيضاء",
+          "arabic": "كْبَرْتْ فْدَرْبْ قْدِيمْ فَالدَّارْ الْبِيضَاء",
           "transliteration": "kbert f-derb qdeem f-d-daar l-beeDa"
         },
         {
           "slot": "i-had-a-friend-named-kareem",
-          "arabic": "كان عندي صاحب سميتو كريم",
+          "arabic": "كَانْ عِنْدِي صَاحِبْ سْمِيتُو كْرِيمْ",
           "transliteration": "kan 3endi Saa7eb smiytu Kareem"
         },
         {
           "slot": "we-used-to-play-soccer-in-the-alley",
-          "arabic": "كنا كنلعبو الكورة فالدرب",
+          "arabic": "كُنَّا كْنْلَعْبُو الْكُورَة فَالدَّرْبْ",
           "transliteration": "kunna kanl3bu l-kura f-d-derb"
         },
         {
           "slot": "every-summer-we-used-to-go-to-my-grandfather-s-i",
-          "arabic": "كل صيف كنا كنمشيو عند جدي فالبادية",
+          "arabic": "كُلْ صِيفْ كُنَّا كْنْمشِيو عِنْدْ جَدِّي فَالْبَادِيَة",
           "transliteration": "kol Seef kunna kanmshiw 3and jeddi f-l-baadiya"
         },
         {
           "slot": "my-grandmother-used-to-tell-us-stories-before-sl",
-          "arabic": "جدتي كانت كتحكي لينا حكايات قبل ما ننعسو",
+          "arabic": "جَدِّتِي كَانَتْ كْتْحكِي لِينَا حْكَايَاتْ قْبَلْ مَا ننْعِسُّو",
           "transliteration": "jeddti kant kat7ki leena 7kaayaat qbel ma nn3essu"
         },
         {
           "slot": "the-first-bike-i-had-was-red",
-          "arabic": "البيسكليت لولة لي كان عندي كانت حمرا",
+          "arabic": "الْبِيسْكْلِيتْ لُولَة لِي كَانْ عِنْدِي كَانَتْ حمْرَا",
           "transliteration": "l-bisklit l-luwla li kan 3endi kant 7amra"
         },
         {
           "slot": "i-used-to-be-very-afraid-of-the-dark-when-i-was-",
-          "arabic": "ملي كنت صغير كنت كنخاف بزاف من الضلمة",
+          "arabic": "مْلِي كُنْتْ صْغِيرْ كُنْتْ كْنْخَافْ بزَّافْ مِنْ الضَّلْمَة",
           "transliteration": "mli kunt Sgheer kunt kankhaaf bzzaf mn D-Dlma"
         },
         {
           "slot": "my-teacher-at-school-was-very-kind",
-          "arabic": "المعلم ديالي فالمدرسة كان حنين بزاف",
+          "arabic": "الْمُعَلِّمْ دِيَالِي فَالْمدْرَسَة كَانْ حْنِينْ بزَّافْ",
           "transliteration": "l-m3allem dyaali f-l-medrasa kan 7neen bzzaf"
         },
         {
           "slot": "we-used-to-walk-to-school-together-every-day",
-          "arabic": "كنا كنمشيو للمدرسة مع بعضنا كل نهار",
+          "arabic": "كُنَّا كْنْمشِيو لِلْمدْرَسَة مَعْ بَعْضِنَا كُلْ نْهَارْ",
           "transliteration": "kunna kanmshiw l-l-medrasa m3a b3Dna kol nhar"
         },
         {
           "slot": "when-i-was-young-i-dreamed-of-becoming-a-pilot",
-          "arabic": "ملي كنت صغير كنت كنحلم نولي طيار",
+          "arabic": "مْلِي كُنْتْ صْغِيرْ كُنْتْ كْنْحلِمْ نْوَلِّي طيَّارْ",
           "transliteration": "mli kunt Sgheer kunt kan7lem nwelli Tayyaar"
         },
         {
           "slot": "back-then-life-was-much-simpler",
-          "arabic": "فديك الساعة الدنيا كانت ساهلة بزاف",
+          "arabic": "فْدِيكْ السَّاعَة الدُّنْيَا كَانَتْ سَاهْلَة بزَّافْ",
           "transliteration": "f-deek s-saa3a d-dunya kant saahla bzzaf"
         }
       ],
@@ -596,9 +596,9 @@
           "id": "unit-16.lesson-02.reply.01",
           "type": "reply",
           "prompt": "كيسولوك: \"شكون كان صاحبك فالدرب؟\". جاوب بلي كان عندك صاحب سميتو كريم.",
-          "answer": "كان عندي صاحب سميتو كريم",
+          "answer": "كَانْ عِنْدِي صَاحِبْ سْمِيتُو كْرِيمْ",
           "accepted": [
-            "كان عندي صاحب سميتو كريم",
+            "كَانْ عِنْدِي صَاحِبْ سْمِيتُو كْرِيمْ",
             "kan 3endi Saa7eb smiytu Kareem",
             "كان عندي صاحب اسميتو كريم"
           ],
@@ -660,9 +660,9 @@
           "id": "unit-16.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "ترجم: \"When I was young I dreamed of becoming a pilot.\"",
-          "answer": "ملي كنت صغير كنت كنحلم نولي طيار",
+          "answer": "مْلِي كُنْتْ صْغِيرْ كُنْتْ كْنْحلِمْ نْوَلِّي طيَّارْ",
           "accepted": [
-            "ملي كنت صغير كنت كنحلم نولي طيار",
+            "مْلِي كُنْتْ صْغِيرْ كُنْتْ كْنْحلِمْ نْوَلِّي طيَّارْ",
             "mli kunt Sgheer kunt kan7lem nwelli Tayyaar",
             "كنت كنحلم نولي طيار ملي كنت صغير"
           ],
@@ -676,9 +676,9 @@
           "id": "unit-16.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "ترجم: \"Back then life was much simpler.\"",
-          "answer": "فديك الساعة الدنيا كانت ساهلة بزاف",
+          "answer": "فْدِيكْ السَّاعَة الدُّنْيَا كَانَتْ سَاهْلَة بزَّافْ",
           "accepted": [
-            "فديك الساعة الدنيا كانت ساهلة بزاف",
+            "فْدِيكْ السَّاعَة الدُّنْيَا كَانَتْ سَاهْلَة بزَّافْ",
             "f-deek s-saa3a d-dunya kant saahla bzzaf",
             "وقتها الدنيا كانت ساهلة بزاف"
           ],
@@ -708,13 +708,13 @@
           "id": "unit-16.lesson-02.choose.02",
           "type": "choose",
           "prompt": "أي جملة معناها \"My grandmother used to tell us stories before sleeping\"؟",
-          "answer": "جدتي كانت كتحكي لينا حكايات قبل ما ننعسو",
+          "answer": "جَدِّتِي كَانَتْ كْتْحكِي لِينَا حْكَايَاتْ قْبَلْ مَا ننْعِسُّو",
           "accepted": [
-            "جدتي كانت كتحكي لينا حكايات قبل ما ننعسو",
+            "جَدِّتِي كَانَتْ كْتْحكِي لِينَا حْكَايَاتْ قْبَلْ مَا ننْعِسُّو",
             "jeddti kant kat7ki leena 7kaayaat qbel ma nn3essu"
           ],
           "options": [
-            "جدتي كانت كتحكي لينا حكايات قبل ما ننعسو",
+            "جَدِّتِي كَانَتْ كْتْحكِي لِينَا حْكَايَاتْ قْبَلْ مَا ننْعِسُّو",
             "جدتي غادي تحكي لينا حكاية",
             "جدتي عندها دار كبيرة",
             "نعست عند جدتي"
@@ -725,15 +725,15 @@
           "id": "unit-16.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "رتب الجملة: المعلم ديالي فالمدرسة كان حنين بزاف",
-          "answer": "المعلم ديالي فالمدرسة كان حنين بزاف",
+          "answer": "الْمُعَلِّمْ دِيَالِي فَالْمدْرَسَة كَانْ حْنِينْ بزَّافْ",
           "accepted": [
-            "المعلم ديالي فالمدرسة كان حنين بزاف"
+            "الْمُعَلِّمْ دِيَالِي فَالْمدْرَسَة كَانْ حْنِينْ بزَّافْ"
           ],
           "words": [
-            "المعلم ديالي",
-            "فالمدرسة",
-            "كان",
-            "حنين بزاف"
+            "الْمُعَلِّمْ دِيَالِي",
+            "فَالْمدْرَسَة",
+            "كَانْ",
+            "حْنِينْ بزَّافْ"
           ],
           "tip": "\"حنين\" = kind, gentle."
         },
@@ -741,16 +741,16 @@
           "id": "unit-16.lesson-02.reorder.02",
           "type": "reorder",
           "prompt": "رتب الجملة: جدتي كانت كتحكي لينا حكايات قبل ما ننعسو",
-          "answer": "جدتي كانت كتحكي لينا حكايات قبل ما ننعسو",
+          "answer": "جَدِّتِي كَانَتْ كْتْحكِي لِينَا حْكَايَاتْ قْبَلْ مَا ننْعِسُّو",
           "accepted": [
-            "جدتي كانت كتحكي لينا حكايات قبل ما ننعسو"
+            "جَدِّتِي كَانَتْ كْتْحكِي لِينَا حْكَايَاتْ قْبَلْ مَا ننْعِسُّو"
           ],
           "words": [
-            "جدتي",
-            "كانت كتحكي",
-            "لينا",
-            "حكايات",
-            "قبل ما ننعسو"
+            "جَدِّتِي",
+            "كَانَتْ كْتْحكِي",
+            "لِينَا",
+            "حْكَايَاتْ",
+            "قْبَلْ مَا ننْعِسُّو"
           ],
           "tip": "\"قبل ما\" = before."
         }
@@ -761,62 +761,62 @@
       "phrases": [
         {
           "slot": "my-phone-broke-yesterday",
-          "arabic": "تكسر ليا التيليفون البارح",
+          "arabic": "تْكسَّرْ لِيَا التِّيلِيفُونْ الْبَارِحْ",
           "transliteration": "tkesser lia t-telefon l-baare7"
         },
         {
           "slot": "i-lost-the-house-key",
-          "arabic": "ضاع ليا السروت د الدار",
+          "arabic": "ضَاعْ لِيَا السَّرُوتْ د الدَّارْ",
           "transliteration": "Daa3 lia s-sarut d d-daar"
         },
         {
           "slot": "i-was-late-for-work-this-morning",
-          "arabic": "تعطلت على الخدمة هاد الصباح",
+          "arabic": "تْعَطَّلْتْ عْلَى الْخِدْمَة هَادْ الصَّبَاحْ",
           "transliteration": "t3aTTelt 3la l-khedma haad S-Sbaa7"
         },
         {
           "slot": "i-fell-on-the-stairs-and-hurt-my-leg",
-          "arabic": "طحت فالدروج وتعورات ليا رجلي",
+          "arabic": "طحْتْ فَالدْرُوجْ وْتْعَوْرَاتْ لِيَا رِجْلِي",
           "transliteration": "Tu7t f-d-drooj w t3awrat lia rejli"
         },
         {
           "slot": "i-forgot-my-wallet-at-home",
-          "arabic": "نسيت البورطوفوي ديالي فالدار",
+          "arabic": "نْسِيتْ الْبُورْطُوفُوي دِيَالِي فَالدَّارْ",
           "transliteration": "nsit l-portfoy dyaali f-d-daar"
         },
         {
           "slot": "the-car-broke-down-in-the-middle-of-the-road",
-          "arabic": "الطونوبيل تعطلات فوسط الطريق",
+          "arabic": "الطُّونُوبِيلْ تْعَطَّلَاتْ فْوَسْطْ الطَّرِيقْ",
           "transliteration": "T-Tomobil t3aTTlat f-west T-Treeq"
         },
         {
           "slot": "the-power-went-out-all-night",
-          "arabic": "الضو مشا طول الليل",
+          "arabic": "الضُّو مشَا طُولْ الْلِيلْ",
           "transliteration": "D-Dew msha Tool l-leel"
         },
         {
           "slot": "coffee-spilled-on-my-laptop",
-          "arabic": "تكبات ليا القهوة على الكمبيوتر ديالي",
+          "arabic": "تْكبَّاتْ لِيَا الْقهْوَة عْلَى الْكمْبِيُوتِرْ دِيَالِي",
           "transliteration": "tkebbat lia l-qahwa 3la l-kompyutur dyaali"
         },
         {
           "slot": "my-bag-got-lost-at-the-airport",
-          "arabic": "ضاعت ليا الشنطة فالمطار",
+          "arabic": "ضَاعَتْ لِيَا الشَّنْطَة فَالْمطَارْ",
           "transliteration": "Daa3at lia sh-shanTa f-l-maTaar"
         },
         {
           "slot": "i-cut-my-hand-while-cooking",
-          "arabic": "تقطعات ليا يدي وأنا كنطيب",
+          "arabic": "تْقطِعَاتْ لِيَا يَدِي وْأنَا كْنْطِيبْ",
           "transliteration": "tqTe3at lia yeddi w ana kanTeyyeb"
         },
         {
           "slot": "i-made-a-mistake-and-sent-the-message-to-the-wro",
-          "arabic": "غلطت وصيفطت الميساج لشي واحد آخر",
+          "arabic": "غلَطْتْ وْصِيفْطِتْ الْمِيسَاجْ لْشِي وَاحِدْ آخِرْ",
           "transliteration": "ghleTt w SeefeTt l-messaj l-shi waa7ed aakhor"
         },
         {
           "slot": "i-overslept-and-didn-t-hear-the-alarm",
-          "arabic": "نعست بزاف وما سمعتش المنبه",
+          "arabic": "نْعِسْتْ بزَّافْ وْمَا سْمِعْتْشْ الْمنَّبِهْ",
           "transliteration": "n3est bzzaf w ma sme3tsh l-menabbeh"
         }
       ],
@@ -914,7 +914,7 @@
             "english": "Why were you late for work?"
           },
           "response": {
-            "arabic": "الطونوبيل تعطلات فوسط الطريق",
+            "arabic": "الطُّونُوبِيلْ تْعَطَّلَاتْ فْوَسْطْ الطَّرِيقْ",
             "transliteration": "T-Tomobil t3aTTlat f-west T-Treeq",
             "english": "The car broke down in the middle of the road."
           }
@@ -1014,9 +1014,9 @@
           "id": "unit-16.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "ترجم: \"I lost the house key.\"",
-          "answer": "ضاع ليا السروت د الدار",
+          "answer": "ضَاعْ لِيَا السَّرُوتْ د الدَّارْ",
           "accepted": [
-            "ضاع ليا السروت د الدار",
+            "ضَاعْ لِيَا السَّرُوتْ د الدَّارْ",
             "Daa3 lia s-sarut d d-daar",
             "ضاع ليا السروت ديال الدار"
           ],
@@ -1030,9 +1030,9 @@
           "id": "unit-16.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "ترجم: \"The car broke down in the middle of the road.\"",
-          "answer": "الطونوبيل تعطلات فوسط الطريق",
+          "answer": "الطُّونُوبِيلْ تْعَطَّلَاتْ فْوَسْطْ الطَّرِيقْ",
           "accepted": [
-            "الطونوبيل تعطلات فوسط الطريق",
+            "الطُّونُوبِيلْ تْعَطَّلَاتْ فْوَسْطْ الطَّرِيقْ",
             "T-Tomobil t3aTTlat f-west T-Treeq",
             "الطوموبيل تعطلات فوسط الطريق"
           ],
@@ -1046,13 +1046,13 @@
           "id": "unit-16.lesson-03.choose.01",
           "type": "choose",
           "prompt": "أي جملة معناها \"The power went out all night\"؟",
-          "answer": "الضو مشا طول الليل",
+          "answer": "الضُّو مشَا طُولْ الْلِيلْ",
           "accepted": [
-            "الضو مشا طول الليل",
+            "الضُّو مشَا طُولْ الْلِيلْ",
             "D-Dew msha Tool l-leel"
           ],
           "options": [
-            "الضو مشا طول الليل",
+            "الضُّو مشَا طُولْ الْلِيلْ",
             "نعست طول الليل",
             "الطونوبيل تعطلات فالليل",
             "كنت فالدار البارح"
@@ -1079,15 +1079,15 @@
           "id": "unit-16.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "رتب الجملة: طحت فالدروج وتعورات ليا رجلي",
-          "answer": "طحت فالدروج وتعورات ليا رجلي",
+          "answer": "طحْتْ فَالدْرُوجْ وْتْعَوْرَاتْ لِيَا رِجْلِي",
           "accepted": [
-            "طحت فالدروج وتعورات ليا رجلي"
+            "طحْتْ فَالدْرُوجْ وْتْعَوْرَاتْ لِيَا رِجْلِي"
           ],
           "words": [
-            "طحت",
-            "فالدروج",
-            "وتعورات ليا",
-            "رجلي"
+            "طحْتْ",
+            "فَالدْرُوجْ",
+            "وْتْعَوْرَاتْ لِيَا",
+            "رِجْلِي"
           ],
           "tip": "\"رجلي\" = my leg."
         },
@@ -1095,14 +1095,14 @@
           "id": "unit-16.lesson-03.reorder.02",
           "type": "reorder",
           "prompt": "رتب الجملة: ضاعت ليا الشنطة فالمطار",
-          "answer": "ضاعت ليا الشنطة فالمطار",
+          "answer": "ضَاعَتْ لِيَا الشَّنْطَة فَالْمطَارْ",
           "accepted": [
-            "ضاعت ليا الشنطة فالمطار"
+            "ضَاعَتْ لِيَا الشَّنْطَة فَالْمطَارْ"
           ],
           "words": [
-            "ضاعت ليا",
-            "الشنطة",
-            "فالمطار"
+            "ضَاعَتْ لِيَا",
+            "الشَّنْطَة",
+            "فَالْمطَارْ"
           ],
           "tip": "\"الشنطة\" = the bag; a feminine noun, so ضاعت."
         }
@@ -1113,47 +1113,47 @@
       "phrases": [
         {
           "slot": "i-heard-that-samer-got-engaged",
-          "arabic": "سمعت بلي سمير خطب",
+          "arabic": "سْمِعْتْ بْلِي سْمِيرْ خطِبْ",
           "transliteration": "sme3t bli Sameer khTeb"
         },
         {
           "slot": "there-s-news-you-won-t-believe",
-          "arabic": "عندي ليك خبر ما غاديش تصدقو",
+          "arabic": "عِنْدِي لِيكْ خبِرْ مَا غَادِيشْ تصِدْقُو",
           "transliteration": "3endi leek khbar ma ghaadish tSeddqu"
         },
         {
           "slot": "they-told-me-you-re-moving-to-a-new-house",
-          "arabic": "قالو ليا بلي غادي تبدل الدار",
+          "arabic": "قَالُو لِيَا بْلِي غَادِي تْبدِّلْ الدَّارْ",
           "transliteration": "qaalu lia bli ghaadi tbeddel d-daar"
         },
         {
           "slot": "who-told-you-this-news",
-          "arabic": "شكون قال ليك هاد الخبر؟",
+          "arabic": "شْكُونْ قَالْ لِيكْ هَادْ الْخبِرْ؟",
           "transliteration": "shkoon qaal leek haad l-khbar?",
           "reply": {
-            "arabic": "صاحبتي قالت ليا",
+            "arabic": "صَاحِبْتِي قَالَتْ لِيَا",
             "transliteration": "Saa7abti qaalat lia",
             "english": "My friend told me."
           }
         },
         {
           "slot": "they-re-saying-that-such-and-such-shop-closed",
-          "arabic": "كيقولو بلي حانوت فلان سد",
+          "arabic": "كِيقُولُو بْلِي حَانُوتْ فلَانْ سدِّ",
           "transliteration": "kiqulu bli 7aanut flaan sedd"
         },
         {
           "slot": "we-re-not-sure-yet-it-might-just-be-a-rumor",
-          "arabic": "مازال ما متأكدينش، يمكن غير إشاعة",
+          "arabic": "مَازَالْ مَا مْتأَكِّدِينْشْ، يمْكِنْ غِيرْ إشَاعَة",
           "transliteration": "maazal ma mt2akdeensh, yemken ghir ishaa3a"
         },
         {
           "slot": "you-won-t-believe-what-happened-yesterday-in-the",
-          "arabic": "ما غاديش تصدق شنو وقع البارح فالحومة",
+          "arabic": "مَا غَادِيشْ تصِدِّقْ شنُو وْقعِ الْبَارِحْ فَالْحُومَة",
           "transliteration": "ma ghaadish tSeddeq shnu wq3 l-baare7 f-l-7uma"
         },
         {
           "slot": "my-sister-got-married-last-month",
-          "arabic": "ختي تزوجات الشهر الفايت",
+          "arabic": "خْتِي تْزوَجَاتْ الشَّهْرْ الْفَايتْ",
           "transliteration": "khti tzewjat sh-shhar l-faayt"
         },
         {
@@ -1163,22 +1163,22 @@
         },
         {
           "slot": "what-s-the-latest-news-with-you",
-          "arabic": "شنو الجديد عندك؟",
+          "arabic": "شنُو الْجدِيدْ عِنْدِكْ؟",
           "transliteration": "shnu l-jdeed 3endek?",
           "reply": {
-            "arabic": "والو، غير الخدمة والدار",
+            "arabic": "وَالُو، غِيرْ الْخِدْمَة وَالدَّارْ",
             "transliteration": "waalu, ghir l-khedma w d-daar",
             "english": "Nothing, just work and home."
           }
         },
         {
           "slot": "don-t-tell-anyone-but-i-heard-they-re-going-to-t",
-          "arabic": "ما تقولش لحد، ولاكين سمعت بلي غادي يسافرو",
+          "arabic": "مَا تْقُولْشْ لْحدِّ، وْلَاكِينْ سْمِعْتْ بْلِي غَادِي يْسَافْرُو",
           "transliteration": "ma tqulsh l-7ed, walaakin sme3t bli ghaadi ysaafru"
         },
         {
           "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it",
-          "arabic": "هادشي غير هدرة د الناس، ما عرفتش واش صحيح ولا لا",
+          "arabic": "هَادْشِي غِيرْ هدْرَة د النَّاسْ، مَا عرِفْتْشْ وَاشْ صحِيحْ وْلَا لَا",
           "transliteration": "haadshi ghir hedra d n-naas, ma 3reftsh waash Se7ee7 wla la"
         }
       ],
@@ -1328,9 +1328,9 @@
           "id": "unit-16.lesson-04.reply.02",
           "type": "reply",
           "prompt": "كيسولوك: \"شنو الجديد عندك؟\". جاوب بلي والو، غير الخدمة والدار.",
-          "answer": "والو، غير الخدمة والدار",
+          "answer": "وَالُو، غِيرْ الْخِدْمَة وَالدَّارْ",
           "accepted": [
-            "والو، غير الخدمة والدار",
+            "وَالُو، غِيرْ الْخِدْمَة وَالدَّارْ",
             "waalu, ghir l-khedma w d-daar",
             "والو غير الخدمة والدار"
           ],
@@ -1376,9 +1376,9 @@
           "id": "unit-16.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "ترجم: \"Who told you this news?\"",
-          "answer": "شكون قال ليك هاد الخبر؟",
+          "answer": "شْكُونْ قَالْ لِيكْ هَادْ الْخبِرْ؟",
           "accepted": [
-            "شكون قال ليك هاد الخبر؟",
+            "شْكُونْ قَالْ لِيكْ هَادْ الْخبِرْ؟",
             "shkoon qaal leek haad l-khbar?",
             "شكون قال ليك هاد الخبر"
           ],
@@ -1392,9 +1392,9 @@
           "id": "unit-16.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "ترجم: \"My sister got married last month.\"",
-          "answer": "ختي تزوجات الشهر الفايت",
+          "answer": "خْتِي تْزوَجَاتْ الشَّهْرْ الْفَايتْ",
           "accepted": [
-            "ختي تزوجات الشهر الفايت",
+            "خْتِي تْزوَجَاتْ الشَّهْرْ الْفَايتْ",
             "khti tzewjat sh-shhar l-faayt",
             "ختي تزوجات الشهر اللي فات"
           ],
@@ -1408,13 +1408,13 @@
           "id": "unit-16.lesson-04.choose.01",
           "type": "choose",
           "prompt": "أي جملة معناها \"They're saying that such-and-such shop closed\"؟",
-          "answer": "كيقولو بلي حانوت فلان سد",
+          "answer": "كِيقُولُو بْلِي حَانُوتْ فلَانْ سدِّ",
           "accepted": [
-            "كيقولو بلي حانوت فلان سد",
+            "كِيقُولُو بْلِي حَانُوتْ فلَانْ سدِّ",
             "kiqulu bli 7aanut flaan sedd"
           ],
           "options": [
-            "كيقولو بلي حانوت فلان سد",
+            "كِيقُولُو بْلِي حَانُوتْ فلَانْ سدِّ",
             "غادي نمشي للحانوت",
             "شريت شي حاجة من الحانوت",
             "الحانوت بعيد بزاف"

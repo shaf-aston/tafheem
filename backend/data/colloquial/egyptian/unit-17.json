@@ -22,102 +22,102 @@
       "phrases": [
         {
           "slot": "how-much-is-this",
-          "arabic": "بكام ده؟",
+          "arabic": "بِكَام دَه؟",
           "transliteration": "bikaam da?",
           "reply": {
-            "arabic": "عشرين جنيه.",
+            "arabic": "عِشْرِين جِنِيه.",
             "transliteration": "3eshriin ginee.",
             "english": "Twenty pounds."
           }
         },
         {
           "slot": "expensive",
-          "arabic": "غالي",
+          "arabic": "غَالِي",
           "transliteration": "ghaali"
         },
         {
           "slot": "cheap",
-          "arabic": "رخيص",
+          "arabic": "رَخِيص",
           "transliteration": "rekhiis"
         },
         {
           "slot": "is-there-a-discount",
-          "arabic": "فيه خصم؟",
+          "arabic": "فِيه خَصْم؟",
           "transliteration": "feeh khaSm?",
           "reply": {
-            "arabic": "هنشوف، قولّي عايز تدفع كام.",
+            "arabic": "هَنْشُوف، قُولِّي عَايِز تِدْفَع كَام.",
             "transliteration": "hanshoof, 2olli 3ayez tidfa3 kaam.",
             "english": "We'll see, tell me what you want to pay."
           }
         },
         {
           "slot": "how-much-per-kilo",
-          "arabic": "بكام الكيلو؟",
+          "arabic": "بِكَام الكِيلُو؟",
           "transliteration": "bikaam el-keelo?",
           "reply": {
-            "arabic": "بخمسة وعشرين.",
+            "arabic": "بِخَمْسَة وَعِشْرِين.",
             "transliteration": "bi-khamsa w-3eshriin.",
             "english": "Twenty-five."
           }
         },
         {
           "slot": "i-want-this",
-          "arabic": "عايز ده",
+          "arabic": "عَايِز دَه",
           "transliteration": "3ayez da"
         },
         {
           "slot": "lower-it-a-little-to-a-man-when-bargaining",
-          "arabic": "نزّل شوية",
+          "arabic": "نَزِّل شْوَيَّة",
           "transliteration": "nazzel shweyya",
           "reply": {
-            "arabic": "مش هينفع، ده آخر سعر.",
+            "arabic": "مِش هَيِنْفَع، دَه آخِر سِعْر.",
             "transliteration": "mish hayenfa3, da aakhir se3r.",
             "english": "It won't work, that's the final price."
           }
         },
         {
           "slot": "final-price",
-          "arabic": "آخر سعر",
+          "arabic": "آخِر سِعْر",
           "transliteration": "aakhir se3r"
         },
         {
           "slot": "okay-deal",
-          "arabic": "ماشي",
+          "arabic": "مَاشِي",
           "transliteration": "maashi"
         },
         {
           "slot": "do-you-have-a-smaller-one-to-a-man",
-          "arabic": "عندك أصغر من ده؟",
+          "arabic": "عِنْدَك أَصْغَر مِن دَه؟",
           "transliteration": "3andak aSghar min da?",
           "reply": {
-            "arabic": "أيوه، ثواني.",
+            "arabic": "أَيْوَه، ثَوَانِي.",
             "transliteration": "aywa, sawaani.",
             "english": "Yes, one moment."
           }
         },
         {
           "slot": "do-you-have-another-color-to-a-man",
-          "arabic": "عندك لون تاني؟",
+          "arabic": "عِنْدَك لُون تَانِي؟",
           "transliteration": "3andak loon taani?",
           "reply": {
-            "arabic": "أيوه، فيه أزرق وأحمر.",
+            "arabic": "أَيْوَه، فِيه أَزْرَق وَأَحْمَر.",
             "transliteration": "aywa, feeh azra2 w-a7mar.",
             "english": "Yes, there is blue and red."
           }
         },
         {
           "slot": "this-one-is-nicer",
-          "arabic": "ده أحلى",
+          "arabic": "دَه أَحْلَى",
           "transliteration": "da a7la"
         },
         {
           "slot": "blue",
-          "arabic": "أزرق",
+          "arabic": "أَزْرَق",
           "transliteration": "azra2"
         },
         {
           "slot": "red",
-          "arabic": "أحمر",
+          "arabic": "أَحْمَر",
           "transliteration": "a7mar"
         }
       ],
@@ -148,7 +148,7 @@
         },
         {
           "speaker": "منى",
-          "arabic": "فيه خصم؟",
+          "arabic": "فِيه خَصْم؟",
           "transliteration": "feeh khaSm?",
           "english": "Is there a discount?"
         },
@@ -172,13 +172,13 @@
         },
         {
           "speaker": "منى",
-          "arabic": "عندك لون تاني؟",
+          "arabic": "عِنْدَك لُون تَانِي؟",
           "transliteration": "3andak loon taani?",
           "english": "Do you have another color?"
         },
         {
           "speaker": "عم سيد",
-          "arabic": "أيوه، فيه أزرق وأحمر.",
+          "arabic": "أَيْوَه، فِيه أَزْرَق وَأَحْمَر.",
           "transliteration": "aywa, feeh azra2 w-a7mar.",
           "english": "Yes, there is blue and red."
         },
@@ -198,7 +198,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "بكام ده؟",
+            "arabic": "بِكَام دَه؟",
             "transliteration": "bikaam da?",
             "english": "How much is this?"
           },
@@ -210,7 +210,7 @@
         },
         {
           "pair": {
-            "arabic": "فيه خصم؟",
+            "arabic": "فِيه خَصْم؟",
             "transliteration": "feeh khaSm?",
             "english": "Is there a discount?"
           },
@@ -222,7 +222,7 @@
         },
         {
           "pair": {
-            "arabic": "عندك أصغر من ده؟",
+            "arabic": "عِنْدَك أَصْغَر مِن دَه؟",
             "transliteration": "3andak aSghar min da?",
             "english": "Do you have a smaller one?"
           },
@@ -251,9 +251,9 @@
           "id": "unit-17.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"How much is this?\"",
-          "answer": "بكام ده؟",
+          "answer": "بِكَام دَه؟",
           "accepted": [
-            "بكام ده؟",
+            "بِكَام دَه؟",
             "بكام ده",
             "بكام دي؟",
             "bikam da",
@@ -270,14 +270,14 @@
           "type": "choose",
           "prompt": "Which word means \"expensive\"?",
           "options": [
-            "غالي",
-            "رخيص",
+            "غَالِي",
+            "رَخِيص",
             "جديد",
             "قديم"
           ],
-          "answer": "غالي",
+          "answer": "غَالِي",
           "accepted": [
-            "غالي",
+            "غَالِي",
             "غالي.",
             "ghali",
             "غالى",
@@ -293,9 +293,9 @@
           "id": "unit-17.lesson-01.reply.01",
           "type": "reply",
           "prompt": "The seller's price is too high. Ask him to lower it a little.",
-          "answer": "نزّل شوية",
+          "answer": "نَزِّل شْوَيَّة",
           "accepted": [
-            "نزّل شوية",
+            "نَزِّل شْوَيَّة",
             "نزل شوية",
             "نزّل السعر شوية",
             "نزل شويه",
@@ -315,7 +315,7 @@
           "accepted": [
             "آخر",
             "اخر",
-            "آخر سعر",
+            "آخِر سِعْر",
             "akhir",
             "aakhir"
           ],
@@ -329,9 +329,9 @@
           "id": "unit-17.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Is there a discount?\"",
-          "answer": "فيه خصم؟",
+          "answer": "فِيه خَصْم؟",
           "accepted": [
-            "فيه خصم؟",
+            "فِيه خَصْم؟",
             "فيه خصم",
             "في خصم؟",
             "feeh khasm",
@@ -371,14 +371,14 @@
           "type": "choose",
           "prompt": "Which word means \"red\"?",
           "options": [
-            "أزرق",
-            "أحمر",
-            "رخيص",
-            "ماشي"
+            "أَزْرَق",
+            "أَحْمَر",
+            "رَخِيص",
+            "مَاشِي"
           ],
-          "answer": "أحمر",
+          "answer": "أَحْمَر",
           "accepted": [
-            "أحمر",
+            "أَحْمَر",
             "احمر",
             "a7mar.",
             "أحمر.",
@@ -394,9 +394,9 @@
           "id": "unit-17.lesson-01.reply.02",
           "type": "reply",
           "prompt": "The seller says: \"ده آخر سعر.\" Agree.",
-          "answer": "ماشي",
+          "answer": "مَاشِي",
           "accepted": [
-            "ماشي",
+            "مَاشِي",
             "ماشي كده",
             "تمام",
             "طيب ماشي",
@@ -412,9 +412,9 @@
           "id": "unit-17.lesson-01.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"How much per kilo?\"",
-          "answer": "بكام الكيلو؟",
+          "answer": "بِكَام الكِيلُو؟",
           "accepted": [
-            "بكام الكيلو؟",
+            "بِكَام الكِيلُو؟",
             "بكام الكيلو",
             "بكام كيلو؟",
             "bikam el-kilo",
@@ -448,9 +448,9 @@
           "id": "unit-17.lesson-01.translate_to_arabic.04",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I want this.\" (a man speaking)",
-          "answer": "عايز ده",
+          "answer": "عَايِز دَه",
           "accepted": [
-            "عايز ده",
+            "عَايِز دَه",
             "عاوز ده",
             "عايز دا",
             "3awez da",
@@ -467,14 +467,14 @@
           "type": "choose",
           "prompt": "Which phrase means \"This one is nicer\"?",
           "options": [
-            "ده أحلى",
+            "دَه أَحْلَى",
             "ده غالي",
             "ده رخيص",
             "ده أصغر"
           ],
-          "answer": "ده أحلى",
+          "answer": "دَه أَحْلَى",
           "accepted": [
-            "ده أحلى",
+            "دَه أَحْلَى",
             "دا أحلى",
             "ده احلى",
             "da a7la.",
@@ -493,67 +493,67 @@
       "phrases": [
         {
           "slot": "taxi",
-          "arabic": "تاكسي",
+          "arabic": "تَاكْسِي",
           "transliteration": "taaksi"
         },
         {
           "slot": "bus",
-          "arabic": "أتوبيس",
+          "arabic": "أُتُوبِيس",
           "transliteration": "otoobiis"
         },
         {
           "slot": "i-want-to-go-to-the-old-city",
-          "arabic": "عايز أروح مصر القديمة",
+          "arabic": "عَايِز أَرُوح مِصْر القَدِيمَة",
           "transliteration": "3ayez aroo7 maSr el-2adeema"
         },
         {
           "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-          "arabic": "وقّف هنا لو سمحت",
+          "arabic": "وَقِّف هُنَا لَو سَمَحْت",
           "transliteration": "wa22ef hena law samaht"
         },
         {
           "slot": "how-much-is-the-fare",
-          "arabic": "الأجرة كام؟",
+          "arabic": "الأَجْرَة كَام؟",
           "transliteration": "el-ogra kaam?",
           "reply": {
-            "arabic": "تلاتين جنيه.",
+            "arabic": "تَلَاتِين جِنِيه.",
             "transliteration": "talateen ginee.",
             "english": "Thirty pounds."
           }
         },
         {
           "slot": "take-me-to-to-a-man",
-          "arabic": "وديني على",
+          "arabic": "وَدِّينِي عَلَى",
           "transliteration": "wadeeni 3ala"
         },
         {
           "slot": "are-you-free-asking-a-taxi-driver-if-available",
-          "arabic": "فاضي؟",
+          "arabic": "فَاضِي؟",
           "transliteration": "faaDi?",
           "reply": {
-            "arabic": "أيوه، اتفضل.",
+            "arabic": "أَيْوَه، اِتْفَضِّل.",
             "transliteration": "aywa, itfaDDal.",
             "english": "Yes, please get in."
           }
         },
         {
           "slot": "busy-occupied",
-          "arabic": "مشغول",
+          "arabic": "مَشْغُول",
           "transliteration": "mashghool"
         },
         {
           "slot": "how-long-does-the-way-take",
-          "arabic": "الطريق هياخد قد إيه؟",
+          "arabic": "الطَّرِيق هَيَاخُد قَد إِيه؟",
           "transliteration": "eT-Taree2 hayakhod add eeh?"
         },
         {
           "slot": "will-you-drop-me-at-to-a-man",
-          "arabic": "توصّلني لحد ميدان التحرير؟",
+          "arabic": "تَوَصِّلْنِي لِحَد مِيدَان التَّحْرِير؟",
           "transliteration": "twaSSalni le-7add meedaan et-ta7reer?"
         },
         {
           "slot": "at-your-service-a-common-polite-reply-from-a-tax",
-          "arabic": "تحت أمرك",
+          "arabic": "تَحْت أَمْرَك",
           "transliteration": "ta7t amrak"
         },
         {
@@ -563,7 +563,7 @@
         },
         {
           "slot": "station",
-          "arabic": "محطة",
+          "arabic": "مَحَطَّة",
           "transliteration": "ma7aTTa"
         }
       ],
@@ -594,7 +594,7 @@
         },
         {
           "speaker": "كريم",
-          "arabic": "الطريق هياخد قد إيه؟",
+          "arabic": "الطَّرِيق هَيَاخُد قَد إِيه؟",
           "transliteration": "eT-Taree2 hayakhod add eeh?",
           "english": "How long will the way take?"
         },
@@ -612,7 +612,7 @@
         },
         {
           "speaker": "السواق",
-          "arabic": "تلاتين جنيه.",
+          "arabic": "تَلَاتِين جِنِيه.",
           "transliteration": "talateen ginee.",
           "english": "Thirty pounds."
         },
@@ -644,24 +644,24 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "فاضي؟",
+            "arabic": "فَاضِي؟",
             "transliteration": "faaDi?",
             "english": "Are you free?"
           },
           "response": {
-            "arabic": "أيوه، اتفضل.",
+            "arabic": "أَيْوَه، اِتْفَضِّل.",
             "transliteration": "aywa, itfaDDal.",
             "english": "Yes, please get in."
           }
         },
         {
           "pair": {
-            "arabic": "الأجرة كام؟",
+            "arabic": "الأَجْرَة كَام؟",
             "transliteration": "el-ogra kaam?",
             "english": "How much is the fare?"
           },
           "response": {
-            "arabic": "تلاتين جنيه.",
+            "arabic": "تَلَاتِين جِنِيه.",
             "transliteration": "talateen ginee.",
             "english": "Thirty pounds."
           }
@@ -680,7 +680,7 @@
         },
         {
           "pair": {
-            "arabic": "الطريق هياخد قد إيه؟",
+            "arabic": "الطَّرِيق هَيَاخُد قَد إِيه؟",
             "transliteration": "eT-Taree2 hayakhod add eeh?",
             "english": "How long will the way take?"
           },
@@ -697,9 +697,9 @@
           "id": "unit-17.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Are you free?\" (asking a taxi driver)",
-          "answer": "فاضي؟",
+          "answer": "فَاضِي؟",
           "accepted": [
-            "فاضي؟",
+            "فَاضِي؟",
             "فاضي",
             "انت فاضي؟",
             "fadi",
@@ -716,14 +716,14 @@
           "type": "choose",
           "prompt": "Which word means \"Bus\"?",
           "options": [
-            "أتوبيس",
-            "تاكسي",
-            "محطة",
+            "أُتُوبِيس",
+            "تَاكْسِي",
+            "مَحَطَّة",
             "أجرة"
           ],
-          "answer": "أتوبيس",
+          "answer": "أُتُوبِيس",
           "accepted": [
-            "أتوبيس",
+            "أُتُوبِيس",
             "اتوبيس",
             "otobis",
             "أتوبيس.",
@@ -739,9 +739,9 @@
           "id": "unit-17.lesson-02.reply.01",
           "type": "reply",
           "prompt": "A taxi driver says: \"اتفضل، على فين؟\" Tell him you want to go to Old Cairo.",
-          "answer": "عايز أروح مصر القديمة",
+          "answer": "عَايِز أَرُوح مِصْر القَدِيمَة",
           "accepted": [
-            "عايز أروح مصر القديمة",
+            "عَايِز أَرُوح مِصْر القَدِيمَة",
             "عاوز أروح مصر القديمة",
             "وديني مصر القديمة",
             "وديني على مصر القديمة",
@@ -775,9 +775,9 @@
           "id": "unit-17.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"How much is the fare?\"",
-          "answer": "الأجرة كام؟",
+          "answer": "الأَجْرَة كَام؟",
           "accepted": [
-            "الأجرة كام؟",
+            "الأَجْرَة كَام؟",
             "الأجرة كام",
             "الأجره كام؟",
             "كام الأجرة؟",
@@ -794,14 +794,14 @@
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"سمحت / وقّف / هنا / لو\"",
           "words": [
-            "سمحت",
-            "وقّف",
-            "هنا",
-            "لو"
+            "سَمَحْت",
+            "وَقِّف",
+            "هُنَا",
+            "لَو"
           ],
-          "answer": "وقّف هنا لو سمحت",
+          "answer": "وَقِّف هُنَا لَو سَمَحْت",
           "accepted": [
-            "وقّف هنا لو سمحت",
+            "وَقِّف هُنَا لَو سَمَحْت",
             "وقف هنا لو سمحت",
             "لو سمحت وقّف هنا",
             "لو سمحت وقف هنا",
@@ -818,14 +818,14 @@
           "type": "choose",
           "prompt": "Which phrase is the driver's polite \"At your service\"?",
           "options": [
-            "تحت أمرك",
-            "مشغول",
-            "غالي",
-            "ماشي"
+            "تَحْت أَمْرَك",
+            "مَشْغُول",
+            "غَالِي",
+            "مَاشِي"
           ],
-          "answer": "تحت أمرك",
+          "answer": "تَحْت أَمْرَك",
           "accepted": [
-            "تحت أمرك",
+            "تَحْت أَمْرَك",
             "تحت امرك",
             "ta7t amrak.",
             "تحت أمرك.",
@@ -841,9 +841,9 @@
           "id": "unit-17.lesson-02.reply.02",
           "type": "reply",
           "prompt": "You ask a taxi: \"فاضي؟\" and he is taken. What does he say?",
-          "answer": "مشغول",
+          "answer": "مَشْغُول",
           "accepted": [
-            "مشغول",
+            "مَشْغُول",
             "أنا مشغول",
             "مشغول يا باشا",
             "لأ مشغول",
@@ -859,11 +859,11 @@
           "id": "unit-17.lesson-02.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"How long will the way take?\"",
-          "answer": "الطريق هياخد قد إيه؟",
+          "answer": "الطَّرِيق هَيَاخُد قَد إِيه؟",
           "accepted": [
-            "الطريق هياخد قد إيه؟",
+            "الطَّرِيق هَيَاخُد قَد إِيه؟",
             "الطريق هيبقى قد ايه",
-            "الطريق هياخد قد إيه؟",
+            "الطَّرِيق هَيَاخُد قَد إِيه؟",
             "الطريق هياخد وقت قد إيه؟",
             "eT-Taree2 hayakhod add eeh?"
           ],
@@ -928,7 +928,7 @@
       "dialogue": [
         {
           "speaker": "هالة",
-          "arabic": "بكام ده؟",
+          "arabic": "بِكَام دَه؟",
           "transliteration": "bikaam da?",
           "english": "How much is this?"
         },
@@ -952,7 +952,7 @@
         },
         {
           "speaker": "هالة",
-          "arabic": "عندك لون تاني؟",
+          "arabic": "عِنْدَك لُون تَانِي؟",
           "transliteration": "3andak loon taani?",
           "english": "Do you have another color?"
         },
@@ -994,13 +994,13 @@
         },
         {
           "speaker": "هالة",
-          "arabic": "الأجرة كام؟",
+          "arabic": "الأَجْرَة كَام؟",
           "transliteration": "el-ogra kaam?",
           "english": "How much is the fare?"
         },
         {
           "speaker": "السواق",
-          "arabic": "تلاتين جنيه.",
+          "arabic": "تَلَاتِين جِنِيه.",
           "transliteration": "talateen ginee.",
           "english": "Thirty pounds."
         }

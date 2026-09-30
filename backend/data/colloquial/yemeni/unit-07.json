@@ -1,0 +1,1559 @@
+{
+  "unit": "unit-07",
+  "dialect": "Yemeni Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "good-morning",
+          "arabic": "صَبَاح الخَيْر",
+          "transliteration": "saba7 il-kheer",
+          "reply": {
+            "arabic": "صَبَاح النُّور",
+            "transliteration": "saba7 in-noor",
+            "english": "Good morning (reply)."
+          }
+        },
+        {
+          "slot": "i-woke-up-early",
+          "arabic": "قُمْت بِدْرِي",
+          "transliteration": "qumt bidri"
+        },
+        {
+          "slot": "what-time-is-it-now",
+          "arabic": "إِيش السَّاعَة دَحِين؟",
+          "transliteration": "eesh is-saa3a daheen?"
+        },
+        {
+          "slot": "it-s-seven-o-clock",
+          "arabic": "السَّاعَة سَبْعَة",
+          "transliteration": "is-saa3a sab3a"
+        },
+        {
+          "slot": "i-m-still-sleepy",
+          "arabic": "أَنَا نَايِم شْوَيَّة",
+          "transliteration": "ana naayim shwayya"
+        },
+        {
+          "slot": "i-want-coffee-first-thing",
+          "arabic": "أَبِي قَهْوَة بِدْرِي",
+          "transliteration": "abi 2ahwa bidri"
+        },
+        {
+          "slot": "i-washed-my-face",
+          "arabic": "غَسَلْت وِجْهِي",
+          "transliteration": "ghasalt wijhi"
+        },
+        {
+          "slot": "i-brushed-my-teeth",
+          "arabic": "غَسَلْت أَسْنَاني",
+          "transliteration": "ghasalt asnaani"
+        },
+        {
+          "slot": "i-got-dressed",
+          "arabic": "لَبِسْت هِدُومِي",
+          "transliteration": "libast hduumi"
+        },
+        {
+          "slot": "i-left-for-work",
+          "arabic": "رُحْت لِلشُّغْل",
+          "transliteration": "ru7t lish-shughl"
+        },
+        {
+          "slot": "i-missed-the-bus",
+          "arabic": "فَاتَني الْبَاص",
+          "transliteration": "faatni il-baas"
+        },
+        {
+          "slot": "early-morning-is-very-cold",
+          "arabic": "الصُّبْح بِدْرِي بَارِد كَثِير",
+          "transliteration": "iS-Sub7 bidri baarid katheer"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "فاطمة",
+          "arabic": "صباح الخير يا محمد.",
+          "transliteration": "saba7 il-kheer ya Muhammad.",
+          "english": "Good morning, Muhammad."
+        },
+        {
+          "speaker": "محمد",
+          "arabic": "صباح النور، كيفك أم؟",
+          "transliteration": "saba7 in-noor, keefak om?",
+          "english": "Good morning, how are you?"
+        },
+        {
+          "speaker": "فاطمة",
+          "arabic": "الحمد لله، بس أنا نايمة شوية.",
+          "transliteration": "il-7amdulillah, bas ana naayma shwayya.",
+          "english": "Thank God, but I'm still a bit sleepy."
+        },
+        {
+          "speaker": "محمد",
+          "arabic": "إيش الساعة دحين؟",
+          "transliteration": "eesh is-saa3a daheen?",
+          "english": "What time is it now?"
+        },
+        {
+          "speaker": "فاطمة",
+          "arabic": "الساعة سبعة وشوية.",
+          "transliteration": "is-saa3a sab3a w shwayya.",
+          "english": "It's a little past seven."
+        },
+        {
+          "speaker": "محمد",
+          "arabic": "يالله، لازم أروح الشغل، أبي قهوة بدري.",
+          "transliteration": "yalla, laazim aru7 ash-shughl, abi 2ahwa bidri.",
+          "english": "Come on, I have to go to work, I want coffee first."
+        },
+        {
+          "speaker": "فاطمة",
+          "arabic": "تمام، اشرب واطلع.",
+          "transliteration": "tamaam, ishrab w iTla3.",
+          "english": "Okay, drink and go."
+        },
+        {
+          "speaker": "محمد",
+          "arabic": "يعطيك العافية، بشوفك بالمسية.",
+          "transliteration": "ya3Tiik il-3aafya, bshuufak bil-masya.",
+          "english": "Thank you, see you in the evening."
+        },
+        {
+          "speaker": "فاطمة",
+          "arabic": "مع السلامة، دير بالك.",
+          "transliteration": "ma3 is-salama, diir baalak.",
+          "english": "Goodbye, take care."
+        },
+        {
+          "speaker": "محمد",
+          "arabic": "الله يعافيك.",
+          "transliteration": "allah ya3afik.",
+          "english": "God keep you well."
+        },
+        {
+          "speaker": "فاطمة",
+          "arabic": "وإياك يا حبيبي.",
+          "transliteration": "w iyyaak ya 7abeeki.",
+          "english": "And you, my dear."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "صَبَاح الخَيْر",
+            "transliteration": "saba7 il-kheer",
+            "english": "Good morning."
+          },
+          "response": {
+            "arabic": "صَبَاح النُّور",
+            "transliteration": "saba7 in-noor",
+            "english": "Good morning (reply)."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إِيش السَّاعَة دَحِين؟",
+            "transliteration": "eesh is-saa3a daheen?",
+            "english": "What time is it now?"
+          },
+          "response": {
+            "arabic": "السَّاعَة سَبْعَة",
+            "transliteration": "is-saa3a sab3a",
+            "english": "It's seven o'clock."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قُمْت بِدْرِي؟",
+            "transliteration": "qumt bidri?",
+            "english": "Did you wake up early?"
+          },
+          "response": {
+            "arabic": "إِي، قُمْت الساعة ستة",
+            "transliteration": "ee, qumt is-saa3a sitta",
+            "english": "Yes, I woke up at six."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَبِي قَهْوَة بِدْرِي؟",
+            "transliteration": "abi 2ahwa bidri?",
+            "english": "Do you want coffee first thing?"
+          },
+          "response": {
+            "arabic": "إِي أَكِيد، ما أَقْدِر بِدُون قَهْوَة",
+            "transliteration": "ee akeed, ma a2dar bidoon 2ahwa",
+            "english": "Yes of course, I can't do without coffee."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الصُّبْح بِدْرِي بَارِد؟",
+            "transliteration": "iS-Sub7 bidri baarid?",
+            "english": "Is early morning cold?"
+          },
+          "response": {
+            "arabic": "نَعَم، بَارِد كَثِير",
+            "transliteration": "na3am, baarid katheer",
+            "english": "Yes, very cold."
+          }
+        }
+      ],
+      "culture": "Sanaani mornings start with \"صباح الخير\" answered by \"صباح النور\". A small cup of coffee before leaving the house is nearly universal, even on a rushed morning. The greeting and coffee ritual are central to Yemeni hospitality and morning customs.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "Someone says to you: \"صباح الخير\". Reply naturally.",
+          "answer": "صَبَاح النُّور",
+          "accepted": [
+            "صَبَاح النُّور",
+            "صباح الورد",
+            "صباح النور"
+          ],
+          "too_formal": {
+            "item": "صباح الخير عليكم ورحمة الله وبركاته",
+            "feedback": "This greeting is correct but far more elaborate than the everyday morning reply."
+          },
+          "tip": "The fixed everyday reply to \"صباح الخير\" is \"صباح النور\"."
+        },
+        {
+          "id": "unit-07.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: \"إيش الساعة دحين؟\" Answer that it's seven o'clock.",
+          "answer": "الساعَة سَبْعَة",
+          "accepted": [
+            "الساعَة سَبْعَة",
+            "سبعة",
+            "الساعة سبعة"
+          ],
+          "too_formal": {
+            "item": "الساعة تشير إلى السابعة",
+            "feedback": "This is a bookish way to say the time; nobody says it like this in speech."
+          },
+          "tip": "\"الساعة + number\" is the everyday pattern for telling time in Yemeni."
+        },
+        {
+          "id": "unit-07.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"أَبِي _____ بِدْرِي.\" English meaning: I want coffee first thing.",
+          "answer": "قهوة",
+          "accepted": [
+            "قهوة",
+            "قهوه"
+          ],
+          "too_formal": {
+            "item": "مشروب القهوة",
+            "feedback": "This wording is more explicit and formal than the simple everyday word."
+          },
+          "tip": "\"بِدْرِي\" means first thing, right after waking up."
+        },
+        {
+          "id": "unit-07.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"الصُّبْح بِدْرِي _____ كَثِير.\" English meaning: Early morning is very cold.",
+          "answer": "بارد",
+          "accepted": [
+            "بارد",
+            "بارده"
+          ],
+          "too_formal": {
+            "item": "في الصباح الباكر الطقس بارد جداً",
+            "feedback": "This phrasing is correct but reads like a written weather report, not spoken Yemeni."
+          },
+          "tip": "\"كَثِير\" is the Yemeni word for \"very\", not \"وايد\" which is Gulf."
+        },
+        {
+          "id": "unit-07.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Yemeni Arabic: \"I woke up early.\"",
+          "answer": "قُمْت بِدْرِي",
+          "accepted": [
+            "قُمْت بِدْرِي",
+            "أنا قمت بدري",
+            "قمت بدري"
+          ],
+          "too_formal": {
+            "item": "استيقظت باكراً",
+            "feedback": "This is Modern Standard Arabic, not how it is said in Yemeni speech."
+          },
+          "tip": "\"قُمْت\" is the everyday Yemeni verb for \"woke up\", and \"بِدْرِي\" means \"early\"."
+        },
+        {
+          "id": "unit-07.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I missed the bus.\"",
+          "answer": "فَاتَني الْبَاص",
+          "accepted": [
+            "فَاتَني الْبَاص",
+            "الباص فاتني",
+            "فاتني الباص"
+          ],
+          "too_formal": {
+            "item": "لم أتمكن من اللحاق بالحافلة",
+            "feedback": "This is formal written Arabic; the spoken phrase is much simpler."
+          },
+          "tip": "\"فات\" means \"missed\" and \"الباص\" is the bus."
+        },
+        {
+          "id": "unit-07.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "How do you ask \"What time is it now?\" in Yemeni?",
+          "options": [
+            "إيش الساعة دحين؟",
+            "كم الساعة الحين؟",
+            "شنو الساعة هسع؟",
+            "ويش الوقت دحين؟"
+          ],
+          "answer": "إيش الساعة دحين؟",
+          "accepted": [
+            "إيش الساعة دحين؟",
+            "إيش الساعة دحين",
+            "ويش الساعة دحين"
+          ],
+          "too_formal": {
+            "item": "ما هو الوقت الآن؟",
+            "feedback": "This is Modern Standard Arabic. In Yemeni we say \"إيش\" or \"ويش\" for \"what\" and \"دحين\" for \"now\"."
+          },
+          "tip": "\"إيش\" and \"ويش\" are both Yemeni ways to say \"what\". \"دحين\" is Yemeni for \"now\", not \"هسع\" or \"الحين\"."
+        },
+        {
+          "id": "unit-07.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"very\" in Yemeni?",
+          "options": [
+            "كثير",
+            "وايد",
+            "جداً",
+            "أوي"
+          ],
+          "answer": "كثير",
+          "accepted": [
+            "كثير"
+          ],
+          "too_formal": {
+            "item": "جداً",
+            "feedback": "\"جداً\" is Modern Standard Arabic. Yemeni uses \"كثير\" to mean \"very\"."
+          },
+          "tip": "\"كثير\" is the Yemeni word for \"very\". \"وايد\" is Gulf Arabic, not Yemeni."
+        },
+        {
+          "id": "unit-07.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange the words to make a sentence: \"أبي / قهوة / بدري\"",
+          "answer": "أَبِي قَهْوَة بِدْرِي",
+          "accepted": [
+            "أبي قهوة بدري",
+            "أَبِي قَهْوَة بِدْرِي"
+          ],
+          "too_formal": {
+            "item": "أريد القهوة في الصباح الباكر",
+            "feedback": "This is more formal. The spoken version is simpler: \"أبي قهوة بدري\"."
+          },
+          "tip": "The word order is: \"I want\" + \"coffee\" + \"early\"."
+        },
+        {
+          "id": "unit-07.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange the words to make a question: \"دحين / الساعة / إيش\"",
+          "answer": "إِيش الساعة دحين؟",
+          "accepted": [
+            "إِيش الساعة دحين؟",
+            "إيش الساعة دحين",
+            "ويش الساعة دحين"
+          ],
+          "too_formal": {
+            "item": "كم عدد الساعات الآن؟",
+            "feedback": "This wording is too formal. The natural spoken form is \"إيش الساعة دحين\"."
+          },
+          "tip": "The word order is: \"what\" + \"the time\" + \"now?\""
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "i-arrived-at-work",
+          "arabic": "وَصَلْت لِلشُّغْل",
+          "transliteration": "waSalt lish-shughl"
+        },
+        {
+          "slot": "i-have-a-meeting-at-ten",
+          "arabic": "عِنْدِي اجْتِمَاع الساعَة عَشَرَة",
+          "transliteration": "3indi ijtimaa3 is-saa3a 3ashara"
+        },
+        {
+          "slot": "i-m-hungry-i-want-to-eat-something",
+          "arabic": "أَنَا جُوْعَان، أَبِي أَكُول شَي",
+          "transliteration": "ana joo3aan, abi akool shay"
+        },
+        {
+          "slot": "where-do-you-have-lunch",
+          "arabic": "وَيْن تَاكُول الغِدَا؟",
+          "transliteration": "wayn taakool il-ghida?"
+        },
+        {
+          "slot": "i-m-a-bit-tired-now",
+          "arabic": "أَنَا تَعْبَان شْوَيَّة دَحِين",
+          "transliteration": "ana ta3baan shwayya daheen"
+        },
+        {
+          "slot": "i-have-to-finish-this-task-before-noon",
+          "arabic": "لَازِم أَخِلِّص هالشُّغْل قَبْل الظُّهْر",
+          "transliteration": "laazim akhallAS hal-shughl 2abal iZ-Zuhr"
+        },
+        {
+          "slot": "can-i-take-a-break",
+          "arabic": "أَقْدِر أَاخُذ رَاحَة شْوَيَّة؟",
+          "transliteration": "a2dar aakhuZ raa7a shwayya?"
+        },
+        {
+          "slot": "i-m-looking-for-my-pen",
+          "arabic": "أَنَا دوّر عَلَى قَلَمِي",
+          "transliteration": "ana dawwir 3ala 2alami"
+        },
+        {
+          "slot": "what-s-the-news-today",
+          "arabic": "إِيش الأَخْبَار الْيُوم؟",
+          "transliteration": "eesh il-akhbaar il-yoom?"
+        },
+        {
+          "slot": "i-have-a-lot-of-work-now",
+          "arabic": "عِنْدِي شُغْل كَثِير دَحِين",
+          "transliteration": "3indi shughl katheer daheen"
+        },
+        {
+          "slot": "i-ll-call-you-in-the-afternoon",
+          "arabic": "بَسْتُود عَلَيْك الْعَصْر",
+          "transliteration": "bastaWid 3aleek il-3aSr"
+        },
+        {
+          "slot": "i-finished-my-work-early-today",
+          "arabic": "خَلَّصْت شُغْلِي بِدْرِي الْيُوم",
+          "transliteration": "khallASt shughli bidri il-yoom"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "سالم",
+          "arabic": "صباح الخير يا علي.",
+          "transliteration": "saba7 il-kheer ya 3ali.",
+          "english": "Good morning, Ali."
+        },
+        {
+          "speaker": "علي",
+          "arabic": "صباح النور يا سالم، كيفك؟",
+          "transliteration": "saba7 in-noor ya Salim, keefak?",
+          "english": "Good morning, how are you?"
+        },
+        {
+          "speaker": "سالم",
+          "arabic": "الحمد لله، وصلت لللشغل تو التو.",
+          "transliteration": "il-7amdulillah, waSalt lish-shughl taW it-taW.",
+          "english": "Thank God, I just arrived at work."
+        },
+        {
+          "speaker": "علي",
+          "arabic": "عندي اجتماع الساعة عشرة.",
+          "transliteration": "3indi ijtimaa3 is-saa3a 3ashara.",
+          "english": "I have a meeting at ten."
+        },
+        {
+          "speaker": "سالم",
+          "arabic": "وأنا عندي شغل كثير اليوم.",
+          "transliteration": "w ana 3indi shughl katheer il-yoom.",
+          "english": "And I have a lot of work today."
+        },
+        {
+          "speaker": "علي",
+          "arabic": "تمام، أنا جوعان، بدي أروح للغدا.",
+          "transliteration": "tamaam, ana joo3aan, badi aru7 lil-ghida.",
+          "english": "Okay, I'm hungry, I want to get lunch."
+        },
+        {
+          "speaker": "سالم",
+          "arabic": "طول، تعال نروح سوة.",
+          "transliteration": "Tool, ta3aal nru7 swa.",
+          "english": "Wait, come let's go together."
+        },
+        {
+          "speaker": "علي",
+          "arabic": "تمام، بس بسرعة لازم أرجع قبل الاجتماع.",
+          "transliteration": "tamaam, bas bsur3a laazim arja3 2abal il-ijtimaa3.",
+          "english": "Okay, but quickly, I have to be back before the meeting."
+        },
+        {
+          "speaker": "سالم",
+          "arabic": "لا بأس، نروح من قريب.",
+          "transliteration": "la ba2s, nru7 min 2areeb.",
+          "english": "No problem, it's nearby."
+        },
+        {
+          "speaker": "علي",
+          "arabic": "باستود عليك العصر.",
+          "transliteration": "bastaWid 3aleek il-3aSr.",
+          "english": "I'll call you in the afternoon."
+        },
+        {
+          "speaker": "سالم",
+          "arabic": "ماشي، تمام.",
+          "transliteration": "mashi, tamaam.",
+          "english": "Okay, sure."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وَصَلْت لِلشُّغْل؟",
+            "transliteration": "waSalt lish-shughl?",
+            "english": "Did you arrive at work?"
+          },
+          "response": {
+            "arabic": "إِي، وَصَلْت الساعَة تسْعَة",
+            "transliteration": "ee, waSalt is-saa3a tis3a",
+            "english": "Yes, I arrived at nine."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَنَا جُوْعَان.",
+            "transliteration": "ana joo3aan.",
+            "english": "I'm hungry."
+          },
+          "response": {
+            "arabic": "تَعَال نَأكُول شَي",
+            "transliteration": "ta3aal na2kool shay",
+            "english": "Come on, let's eat something."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَنَا تَعْبَان.",
+            "transliteration": "ana ta3baan.",
+            "english": "I'm tired."
+          },
+          "response": {
+            "arabic": "خُذ رَاحَة شْوَيَّة",
+            "transliteration": "khudh raa7a shwayya",
+            "english": "Take a break for a while."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عِنْدِي شُغْل كَثِير دَحِين.",
+            "transliteration": "3indi shughl katheer daheen.",
+            "english": "I have a lot of work now."
+          },
+          "response": {
+            "arabic": "لَازِم تِخَلِّص بِسُرْعَة",
+            "transliteration": "laazim tkhallAS bisur3a",
+            "english": "You have to finish quickly."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بَاسْتُود عَلَيْك الْعَصْر",
+            "transliteration": "bastaWid 3aleek il-3aSr",
+            "english": "I'll call you in the afternoon."
+          },
+          "response": {
+            "arabic": "تَمَام، بِانْتِظَارِك",
+            "transliteration": "tamaam, bi-intizaarik",
+            "english": "Okay, I'll be waiting for you."
+          }
+        }
+      ],
+      "culture": "In Yemeni workplaces, greetings and small talk about arrival are important. A midday break for lunch with colleagues is common. Yemenis often use the phrase \"دحين\" (now) when talking about current situations or pressing tasks.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "Your colleague says: \"أنا جوعان\". Suggest going to lunch together.",
+          "answer": "تَعَال نَأكُول شَي",
+          "accepted": [
+            "تَعَال نَأكُول شَي",
+            "تعال ناكول شي",
+            "تعال نروح للغدا",
+            "تمام، نروح سوة"
+          ],
+          "too_formal": {
+            "item": "هيا بنا نذهب لتناول الطعام",
+            "feedback": "This is formal written Arabic. In Yemeni we say \"تعال ناكول شي\" or \"تعال نروح للغدا\"."
+          },
+          "tip": "\"تعال\" means \"come\" and \"ناكول شي\" means \"let's eat something\"."
+        },
+        {
+          "id": "unit-07.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: \"عندي شغل كثير دحين\". Show understanding.",
+          "answer": "يا الله، شغل كثير",
+          "accepted": [
+            "يا الله، شغل كثير",
+            "يا الله شغل كثير",
+            "لازم تخلص بسرعة",
+            "ان شاء الله تخلصه بسرعة"
+          ],
+          "too_formal": {
+            "item": "أفهم أن لديك الكثير من العمل",
+            "feedback": "This is too formal. Yemenis respond naturally with \"يا الله، شغل كثير\" or \"لازم تخلص بسرعة\"."
+          },
+          "tip": "\"يا الله\" is a common Yemeni exclamation of acknowledgment or surprise."
+        },
+        {
+          "id": "unit-07.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أَنَا جُوْعَان، أَبِي _____ شَي.\" English: I'm hungry, I want to eat something.",
+          "answer": "اكول",
+          "accepted": [
+            "اكول",
+            "أاكول"
+          ],
+          "too_formal": {
+            "item": "تناول",
+            "feedback": "This is formal. Yemenis say \"أاكول\" in speech."
+          },
+          "tip": "\"أاكول\" is the Yemeni way to say \"eat\" in the present."
+        },
+        {
+          "id": "unit-07.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عِنْدِي شُغْل كَثِير _____.\" English: I have a lot of work now.",
+          "answer": "دحين",
+          "accepted": [
+            "دحين",
+            "داحين"
+          ],
+          "too_formal": {
+            "item": "الآن",
+            "feedback": "This is Modern Standard Arabic. Yemenis say \"دحين\" for \"now\"."
+          },
+          "tip": "\"دحين\" is Yemeni for \"now\". Remember: not \"هسع\" (Iraqi) and not \"الحين\" (Gulf)."
+        },
+        {
+          "id": "unit-07.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I arrived at work.\"",
+          "answer": "وَصَلْت لِلشُّغْل",
+          "accepted": [
+            "وَصَلْت لِلشُّغْل",
+            "وصلت للشغل",
+            "وصلت عالشغل"
+          ],
+          "too_formal": {
+            "item": "وصلت إلى مكان العمل",
+            "feedback": "This is more formal. Yemenis simply say \"وصلت للشغل\"."
+          },
+          "tip": "\"وصلت\" means \"I arrived\" and \"لللشغل\" means \"to work\"."
+        },
+        {
+          "id": "unit-07.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm a bit tired now.\"",
+          "answer": "أَنَا تَعْبَان شْوَيَّة دَحِين",
+          "accepted": [
+            "أَنَا تَعْبَان شْوَيَّة دَحِين",
+            "أنا تعبان شوية دحين",
+            "تعبان شوية دحين",
+            "أنا تعبان شوية"
+          ],
+          "too_formal": {
+            "item": "أشعر بالتعب قليلاً الآن",
+            "feedback": "This is formal written Arabic. Yemenis say \"أنا تعبان شوية دحين\"."
+          },
+          "tip": "\"تعبان\" means \"tired\" and \"شوية\" means \"a bit\". Use \"دحين\" for \"now\"."
+        },
+        {
+          "id": "unit-07.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "What does \"دحين\" mean in Yemeni?",
+          "options": [
+            "Now",
+            "Later",
+            "Tomorrow",
+            "Yesterday"
+          ],
+          "answer": "Now",
+          "accepted": [
+            "Now"
+          ],
+          "too_formal": {
+            "item": "Later",
+            "feedback": "No, \"دحين\" is Yemeni for \"now\", not \"later\". It's an important word to distinguish from \"هسع\" (Iraqi) and \"الحين\" (Gulf)."
+          },
+          "tip": "\"دحين\" is the Yemeni word for \"now\". Learn to recognize it clearly."
+        },
+        {
+          "id": "unit-07.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which is the correct way to say \"I'm hungry\" in Yemeni?",
+          "options": [
+            "أنا جوعان",
+            "أنا جائع جداً",
+            "أنا أشعر بالجوع",
+            "أنا محتاج أكل"
+          ],
+          "answer": "أنا جوعان",
+          "accepted": [
+            "أنا جوعان"
+          ],
+          "too_formal": {
+            "item": "أنا أشعر بالجوع",
+            "feedback": "This is formal written Arabic. Yemenis naturally say \"أنا جوعان\"."
+          },
+          "tip": "\"جوعان\" is the everyday Yemeni word for \"hungry\". It's simple and direct."
+        },
+        {
+          "id": "unit-07.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: \"عندي / اجتماع / الساعة / عشرة\"",
+          "answer": "عِنْدِي اجْتِمَاع الساعَة عَشَرَة",
+          "accepted": [
+            "عِنْدِي اجْتِمَاع الساعَة عَشَرَة",
+            "عندي اجتماع الساعة عشرة"
+          ],
+          "too_formal": {
+            "item": "لدي اجتماع في الساعة العاشرة",
+            "feedback": "Too formal. The spoken version is \"عندي اجتماع الساعة عشرة\"."
+          },
+          "tip": "\"عندي\" = \"I have\", \"اجتماع\" = \"meeting\", \"الساعة عشرة\" = \"at ten o'clock\"."
+        },
+        {
+          "id": "unit-07.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange: \"وصلت / للشغل / تو\"",
+          "answer": "وَصَلْت لِلشُّغْل تَوّ",
+          "accepted": [
+            "وَصَلْت لِلشُّغْل تَوّ",
+            "وصلت للشغل تو",
+            "وصلت عالشغل تو"
+          ],
+          "too_formal": {
+            "item": "لقد وصلت للتو إلى مكان العمل",
+            "feedback": "Too formal. Yemenis simply say \"وصلت للشغل تو\"."
+          },
+          "tip": "\"تو\" or \"تو التو\" means \"just now\", commonly used with verbs to show something just happened."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "good-evening",
+          "arabic": "مَسَاء الخَيْر",
+          "transliteration": "masa2 il-kheer"
+        },
+        {
+          "slot": "i-came-back-home",
+          "arabic": "رَجَعْت لِلْبَيْت",
+          "transliteration": "raja3t lil-bayt"
+        },
+        {
+          "slot": "what-will-we-eat-for-dinner",
+          "arabic": "إِيش رَايِح نَاكُول الْعِشَا؟",
+          "transliteration": "eesh raay7 naakool il-3isha?"
+        },
+        {
+          "slot": "i-want-to-shower",
+          "arabic": "أَبِي اسْتَحَمِّ",
+          "transliteration": "abi istahamma"
+        },
+        {
+          "slot": "i-got-very-tired-today",
+          "arabic": "تَعِبْت كَثِير الْيُوم",
+          "transliteration": "ta3ibt katheer il-yoom"
+        },
+        {
+          "slot": "do-we-want-to-watch-a-series",
+          "arabic": "نَبِي نِتْفَرَّج عَلَى مَسَلسِل؟",
+          "transliteration": "nabi nitfarraj 3ala masalsal?"
+        },
+        {
+          "slot": "let-s-go-out-for-a-little-walk",
+          "arabic": "تَعَال نِطْلَع نْمَشِّي شْوَيَّة",
+          "transliteration": "ta3aal nItla3 nmashe shwayya"
+        },
+        {
+          "slot": "the-weather-is-nice-in-the-evening",
+          "arabic": "الْجَو حِلْو الْمَسِيَة",
+          "transliteration": "il-jaw 7ilw il-masya"
+        },
+        {
+          "slot": "i-want-to-call-my-family",
+          "arabic": "أَبِي اسْتُود عَلَى أَهْلِي",
+          "transliteration": "abi astaaWid 3ala ahli"
+        },
+        {
+          "slot": "i-ll-sleep-early-tonight",
+          "arabic": "بِنَام بِدْرِي اللَّيْلَة",
+          "transliteration": "binam bidri il-leela"
+        },
+        {
+          "slot": "good-night",
+          "arabic": "تِصْبَح عَلَى خَيْر",
+          "transliteration": "tSba7 3ala kheer"
+        },
+        {
+          "slot": "i-saw-my-friends-in-the-evening",
+          "arabic": "شُفْت أَصْحَابِي الْمَسِيَة",
+          "transliteration": "shuft aS7aabi il-masya"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "هند",
+          "arabic": "مساء الخير يا أحمد.",
+          "transliteration": "masa2 il-kheer ya A7mad.",
+          "english": "Good evening, Ahmad."
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "مساء النور، كيفك؟",
+          "transliteration": "masa2 in-noor, keefak?",
+          "english": "Good evening, how are you?"
+        },
+        {
+          "speaker": "هند",
+          "arabic": "الحمد لله، بس تعبت كثير اليوم.",
+          "transliteration": "il-7amdulillah, bas ta3ibt katheer il-yoom.",
+          "english": "Thank God, but I'm very tired today."
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "تمام، ترتاح شوية. إيش رايح ناكول العشا؟",
+          "transliteration": "tamaam, tartaa7 shwayya. eesh raay7 naakool il-3isha?",
+          "english": "That's okay, rest a bit. What are we going to eat for dinner?"
+        },
+        {
+          "speaker": "هند",
+          "arabic": "أنا ما عندي فكرة، أنت شنو بتقول؟",
+          "transliteration": "ana ma 3indi fikra, ant shnu bitqool?",
+          "english": "I have no idea, what do you think?"
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "نروح نشتري من الخارج؟",
+          "transliteration": "nru7 nshteri min il-kharij?",
+          "english": "Shall we order from outside?"
+        },
+        {
+          "speaker": "هند",
+          "arabic": "تمام، بعد ما اجلس شوية وأستحم.",
+          "transliteration": "tamaam, ba3d ma aglus shwayya w astahamma.",
+          "english": "Okay, after I sit a bit and shower."
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "ماشي، أنا بصلي وبفتح التلفاز.",
+          "transliteration": "mashi, ana baSalli w baftah it-tilfiZaaz.",
+          "english": "Okay, I'll pray and turn on the TV."
+        },
+        {
+          "speaker": "هند",
+          "arabic": "نبي نتفرج على مسلسل بعدين.",
+          "transliteration": "nabi nitfarraj 3ala masalsal ba3dayn.",
+          "english": "We want to watch a series after."
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "تمام، الجو حلو، نطلع نمشي شوية بعدين.",
+          "transliteration": "tamaam, il-jaw 7ilw, nItla3 nmashe shwayya ba3dayn.",
+          "english": "Okay, the weather is nice, let's take a walk after."
+        },
+        {
+          "speaker": "هند",
+          "arabic": "بدي استود على أهلي قبل ما نطلع.",
+          "transliteration": "badi astaaWid 3ala ahli 2abal ma nItla3.",
+          "english": "I want to call my family before we go out."
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "تمام، خذي وقتك. أنا بنام بدري اليل.",
+          "transliteration": "tamaam, khadi wa2tik. ana binam bidri il-layl.",
+          "english": "Okay, take your time. I'll sleep early tonight."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مَسَاء الخَيْر",
+            "transliteration": "masa2 il-kheer",
+            "english": "Good evening."
+          },
+          "response": {
+            "arabic": "مَسَاء النُّور",
+            "transliteration": "masa2 in-noor",
+            "english": "Good evening (reply)."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إِيش رَايِح نَاكُول الْعِشَا؟",
+            "transliteration": "eesh raay7 naakool il-3isha?",
+            "english": "What are we going to eat for dinner?"
+          },
+          "response": {
+            "arabic": "نَروح نْشْتَري مِن الخَارِج",
+            "transliteration": "nru7 nshteri min il-kharij",
+            "english": "We'll order from outside."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَبِي اسْتَحَمِّ",
+            "transliteration": "abi istahamma",
+            "english": "I want to shower."
+          },
+          "response": {
+            "arabic": "تَمَام، خُذ وَقْتَك",
+            "transliteration": "tamaam, khudh wa2tak",
+            "english": "Okay, take your time."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تَعِبْت كَثِير الْيُوم.",
+            "transliteration": "ta3ibt katheer il-yoom.",
+            "english": "I'm very tired today."
+          },
+          "response": {
+            "arabic": "ارْتَاح شْوَيَّة وْبُت بِدْرِي",
+            "transliteration": "irtaa7 shwayya w bit bidri",
+            "english": "Rest a bit and go to bed early."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نَبِي نِتْفَرَّج عَلَى مَسَلسِل.",
+            "transliteration": "nabi nitfarraj 3ala masalsal.",
+            "english": "We want to watch a series."
+          },
+          "response": {
+            "arabic": "تَمَام، سِتّة حِلْوَة",
+            "transliteration": "tamaam, sitta 7ilwa",
+            "english": "Okay, that sounds nice."
+          }
+        }
+      ],
+      "culture": "Yemeni evenings often begin with \"مساء الخير\" (good evening). After a tiring day, Yemenis relax at home, socialize with family, and may watch TV together. An evening walk to enjoy the cooler temperature is common in Yemeni culture. Calling family in the evening is an important tradition.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "Someone says to you: \"مساء الخير\". Reply naturally.",
+          "answer": "مَسَاء النُّور",
+          "accepted": [
+            "مَسَاء النُّور",
+            "مساء النور",
+            "مساء الورد"
+          ],
+          "too_formal": {
+            "item": "مساء الخير عليكم ورحمة الله وبركاته",
+            "feedback": "This is correct but more elaborate than the everyday evening reply."
+          },
+          "tip": "The fixed everyday reply to \"مساء الخير\" is \"مساء النور\"."
+        },
+        {
+          "id": "unit-07.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "Someone tells you: \"تعبت كثير اليوم\". Show empathy.",
+          "answer": "ارْتَاح شْوَيَّة",
+          "accepted": [
+            "ارْتَاح شْوَيَّة",
+            "ارتاح شوية",
+            "تمام ارتاح",
+            "يا الله تعبت كثير"
+          ],
+          "too_formal": {
+            "item": "يجب أن تستريح قليلاً",
+            "feedback": "Too formal. Yemenis say naturally \"ارتاح شوية\"."
+          },
+          "tip": "\"ارتاح\" means \"rest\" and \"شوية\" means \"a bit\"."
+        },
+        {
+          "id": "unit-07.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"إِيش رَايِح نَاكُول _____.\" English: What are we going to eat for dinner?",
+          "answer": "العشا",
+          "accepted": [
+            "العشا",
+            "العشاء"
+          ],
+          "too_formal": {
+            "item": "وجبة المساء",
+            "feedback": "This is formal. Yemenis simply say \"العشا\" for dinner."
+          },
+          "tip": "\"العشا\" is the evening meal in Yemeni Arabic."
+        },
+        {
+          "id": "unit-07.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الْجَو _____ الْمَسِيَة.\" English: The weather is nice in the evening.",
+          "answer": "حلو",
+          "accepted": [
+            "حلو",
+            "حلوه"
+          ],
+          "too_formal": {
+            "item": "جميل",
+            "feedback": "\"جميل\" is more formal. Yemenis say \"حلو\" for \"nice\" in speech."
+          },
+          "tip": "\"حلو\" means \"nice\" or \"sweet\" and is commonly used for weather."
+        },
+        {
+          "id": "unit-07.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I came back home.\"",
+          "answer": "رَجَعْت لِلْبَيْت",
+          "accepted": [
+            "رَجَعْت لِلْبَيْت",
+            "رجعت للبيت",
+            "رجعت لالبيت"
+          ],
+          "too_formal": {
+            "item": "عدت إلى المنزل",
+            "feedback": "This is formal. Yemenis say \"رجعت للبيت\"."
+          },
+          "tip": "\"رجعت\" means \"I came back\" and \"للبيت\" means \"to the house\"."
+        },
+        {
+          "id": "unit-07.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to shower.\"",
+          "answer": "أَبِي اسْتَحَمِّ",
+          "accepted": [
+            "أَبِي اسْتَحَمِّ",
+            "ابي استحم",
+            "بدي استحم"
+          ],
+          "too_formal": {
+            "item": "أريد الاستحمام",
+            "feedback": "This is more formal. Yemenis say \"أبي استحم\"."
+          },
+          "tip": "\"أبي\" means \"I want\" and \"استحم\" means \"shower\"."
+        },
+        {
+          "id": "unit-07.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "What does \"الجو حلو\" mean?",
+          "options": [
+            "The weather is nice",
+            "The food is sweet",
+            "The time is good",
+            "The place is nice"
+          ],
+          "answer": "The weather is nice",
+          "accepted": [
+            "The weather is nice"
+          ],
+          "too_formal": {
+            "item": "The food is sweet",
+            "feedback": "No, \"الجو\" refers to the weather. \"حلو\" means \"nice\" here, not \"sweet\"."
+          },
+          "tip": "\"الجو\" literally means \"the atmosphere\" but refers to the weather."
+        },
+        {
+          "id": "unit-07.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which greeting is for the evening in Yemeni?",
+          "options": [
+            "مساء الخير",
+            "صباح الخير",
+            "تحية الليل",
+            "أهلا بالمساء"
+          ],
+          "answer": "مساء الخير",
+          "accepted": [
+            "مساء الخير"
+          ],
+          "too_formal": {
+            "item": "صباح الخير",
+            "feedback": "No, \"صباح الخير\" is for the morning. \"مساء الخير\" is the evening greeting."
+          },
+          "tip": "\"مساء\" = \"evening\", \"صباح\" = \"morning\". Learn both greetings."
+        },
+        {
+          "id": "unit-07.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: \"رجعت / للبيت\"",
+          "answer": "رَجَعْت لِلْبَيْت",
+          "accepted": [
+            "رَجَعْت لِلْبَيْت",
+            "رجعت للبيت"
+          ],
+          "too_formal": {
+            "item": "عدت إلى المنزل",
+            "feedback": "Too formal for everyday speech."
+          },
+          "tip": "Word order: \"I came back\" + \"to the house\"."
+        },
+        {
+          "id": "unit-07.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange: \"نطلع / نمشي / شوية\"",
+          "answer": "نِطْلَع نْمَشِّي شْوَيَّة",
+          "accepted": [
+            "نِطْلَع نْمَشِّي شْوَيَّة",
+            "نطلع نمشي شوية"
+          ],
+          "too_formal": {
+            "item": "هيا بنا نذهب للمشي قليلاً",
+            "feedback": "Too formal. Yemenis say \"نطلع نمشي شوية\"."
+          },
+          "tip": "\"نطلع\" = \"let's go out\", \"نمشي\" = \"walk\", \"شوية\" = \"a little\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "days-of-the-week",
+          "arabic": "أَيَّام الأُسْبُوع",
+          "transliteration": "ayyam il-usbu3"
+        },
+        {
+          "slot": "today-is-sunday",
+          "arabic": "الْيُوم حَد",
+          "transliteration": "il-yoom 7ad"
+        },
+        {
+          "slot": "tomorrow-is-monday",
+          "arabic": "بُكْرَة الإِثْنَيْن",
+          "transliteration": "bukra il-ithneen"
+        },
+        {
+          "slot": "next-week-there-s-a-meeting-on-tuesday",
+          "arabic": "الأُسْبُوع الْجَايِ فِي اجْتِمَاع يَوْم الثّلَاثَة",
+          "transliteration": "il-usbu3 il-jaay fi ijtimaa3 yom ith-thalaatha"
+        },
+        {
+          "slot": "on-wednesday-i-work-until-the-evening",
+          "arabic": "يَوْم الأَرْبِعَة بِشْتَغِل لِحْدِّ الْمَسِيَة",
+          "transliteration": "yom il-arba3a bishtighel li7ad il-masya"
+        },
+        {
+          "slot": "on-thursday-i-see-my-friends",
+          "arabic": "يَوْم الخَمِيس بِشُوف أَصْحَابِي",
+          "transliteration": "yom il-khamis bishouf aS7aabi"
+        },
+        {
+          "slot": "friday-is-the-day-of-prayer-and-rest",
+          "arabic": "يَوْم الجُمْعَة يَوْم الصَّلاة وَالرَّاحَة",
+          "transliteration": "yom il-jum3a yom iS-Salat wir-raa7a"
+        },
+        {
+          "slot": "on-saturday-we-go-to-the-market",
+          "arabic": "يَوْم السَّبْت نِرْوح السُّوق",
+          "transliteration": "yom is-sabt nru7 is-suq"
+        },
+        {
+          "slot": "what-do-you-plan-to-do-on-the-weekend",
+          "arabic": "إِيش رَايِح تْعَمِّل يَوْم الجُمْعَة وَالسَّبْت؟",
+          "transliteration": "eesh raay7 t3ammel yom il-jum3a wis-sabt?"
+        },
+        {
+          "slot": "i-have-work-every-day-except-friday-and-saturday",
+          "arabic": "عِنْدِي شُغْل كُلّ يَوْم إِلاّ الجُمْعَة وَالسَّبْت",
+          "transliteration": "3indi shughl kull yom illa il-jum3a wis-sabt"
+        },
+        {
+          "slot": "when-is-the-meeting",
+          "arabic": "إِيش مِتِّ الاجْتِمَاع؟",
+          "transliteration": "eesh mitta il-ijtimaa3?"
+        },
+        {
+          "slot": "the-weekend-comes-quickly",
+          "arabic": "الْعُطْلَة تَجِي بِسُرْعَة",
+          "transliteration": "il-3uTla taj bisur3a"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "خديجة",
+          "arabic": "إيش مني الاجتماع الأسبوع الجاي؟",
+          "transliteration": "eesh mitti il-ijtimaa3 il-usbu3 il-jaay?",
+          "english": "When is the meeting next week?"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "الاجتماع يوم الثلاثة الساعة عشرة.",
+          "transliteration": "il-ijtimaa3 yom ith-thalaatha is-saa3a 3ashara.",
+          "english": "The meeting is on Tuesday at ten."
+        },
+        {
+          "speaker": "خديجة",
+          "arabic": "تمام، أنا يوم الأربعة بشتغل لحد المسية.",
+          "transliteration": "tamaam, ana yom il-arba3a bishtighel li7ad il-masya.",
+          "english": "Okay, I work on Wednesday until the evening."
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "وأنا يوم الخميس بشوف أصحابي.",
+          "transliteration": "w ana yom il-khamis bishouf aS7aabi.",
+          "english": "And I see my friends on Thursday."
+        },
+        {
+          "speaker": "خديجة",
+          "arabic": "يوم الجمعة ما عندك شغل صح؟",
+          "transliteration": "yom il-jum3a ma 3andak shughl sa7?",
+          "english": "You don't work on Friday, right?"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "إي، يوم الجمعة يوم الصلاة والراحة.",
+          "transliteration": "ee, yom il-jum3a yom iS-Salat wir-raa7a.",
+          "english": "Right, Friday is the day of prayer and rest."
+        },
+        {
+          "speaker": "خديجة",
+          "arabic": "والسبت؟",
+          "transliteration": "wis-sabt?",
+          "english": "And Saturday?"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "يوم السبت نروح السوق نشتري حاجات.",
+          "transliteration": "yom is-sabt nru7 is-suq nshteri 7aajaat.",
+          "english": "On Saturday we go to the market to buy things."
+        },
+        {
+          "speaker": "خديجة",
+          "arabic": "عندك شغل كل يوم إلا الجمعة والسبت؟",
+          "transliteration": "3andak shughl kull yom illa il-jum3a wis-sabt?",
+          "english": "You work every day except Friday and Saturday?"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "تمام، وبعدين العطلة تجي بسرعة.",
+          "transliteration": "tamaam, w ba3dayn il-3uTla taj bisur3a.",
+          "english": "Yes, and besides, the weekend comes quickly."
+        },
+        {
+          "speaker": "خديجة",
+          "arabic": "إيش رايح تعمل يوم الجمعة والسبت؟",
+          "transliteration": "eesh raay7 t3ammel yom il-jum3a wis-sabt?",
+          "english": "What do you plan to do on Friday and Saturday?"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "نام وراحة وقضاء وقت مع العائلة.",
+          "transliteration": "naam w raa7a w 2ada2 wa2t ma3a il-3ayla.",
+          "english": "Sleep, rest, and spend time with the family."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "إِيش مِتِّ الاجْتِمَاع؟",
+            "transliteration": "eesh mitta il-ijtimaa3?",
+            "english": "When is the meeting?"
+          },
+          "response": {
+            "arabic": "يَوْم الثّلَاثَة الساعَة عَشَرَة",
+            "transliteration": "yom ith-thalaatha is-saa3a 3ashara",
+            "english": "On Tuesday at ten."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عِنْدِك شُغْل يَوْم الجُمْعَة؟",
+            "transliteration": "3andak shughl yom il-jum3a?",
+            "english": "Do you work on Friday?"
+          },
+          "response": {
+            "arabic": "لا، يَوْم الجُمْعَة يَوْم الصَّلاة وَالرَّاحَة",
+            "transliteration": "la, yom il-jum3a yom iS-Salat wir-raa7a",
+            "english": "No, Friday is the day of prayer and rest."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إِيش رَايِح تْعَمِّل يَوْم السَّبْت؟",
+            "transliteration": "eesh raay7 t3ammel yom is-sabt?",
+            "english": "What will you do on Saturday?"
+          },
+          "response": {
+            "arabic": "نِرْوح السُّوق نْشْتَري حَاجَات",
+            "transliteration": "nru7 is-suq nshteri 7aajaat",
+            "english": "We'll go to the market to buy things."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الأُسْبُوع الْجَايِ فِي اجْتِمَاع؟",
+            "transliteration": "il-usbu3 il-jaay fi ijtimaa3?",
+            "english": "Is there a meeting next week?"
+          },
+          "response": {
+            "arabic": "إِي، يَوْم الثّلَاثَة",
+            "transliteration": "ee, yom ith-thalaatha",
+            "english": "Yes, on Tuesday."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الْعُطْلَة تَجِي بِسُرْعَة؟",
+            "transliteration": "il-3uTla taj bisur3a?",
+            "english": "Does the weekend come quickly?"
+          },
+          "response": {
+            "arabic": "إِي، الْعُطْلَة تَجِي بِسُرْعَة كَثِير",
+            "transliteration": "ee, il-3uTla taj bisur3a katheer",
+            "english": "Yes, the weekend comes very quickly."
+          }
+        }
+      ],
+      "culture": "In Yemen, as in most Islamic countries, Friday is the holy day, dedicated to prayer and rest. Saturday is often a market day for shopping and socializing. The weekend (Friday and Saturday) is valued as a time for family, prayer, and recovery from the week's work.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks: \"إيش مني الاجتماع؟\" Tell them it's on Tuesday at ten.",
+          "answer": "يَوْم الثّلَاثَة الساعَة عَشَرَة",
+          "accepted": [
+            "يَوْم الثّلَاثَة الساعَة عَشَرَة",
+            "يوم الثلاثة الساعة عشرة",
+            "الاجتماع يوم الثلاثة الساعة عشرة"
+          ],
+          "too_formal": {
+            "item": "الاجتماع مقرر يوم الثلاثاء في الساعة العاشرة",
+            "feedback": "This is formal. Yemenis simply say \"يوم الثلاثة الساعة عشرة\"."
+          },
+          "tip": "Use day names directly: \"يوم الثلاثة\" = \"on Tuesday\", \"الساعة عشرة\" = \"at ten\"."
+        },
+        {
+          "id": "unit-07.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: \"إيش رايح تعمل يوم الجمعة؟\" Suggest something relaxing.",
+          "answer": "نام وراحة",
+          "accepted": [
+            "نام وراحة",
+            "أنام وأرتاح",
+            "أرتاح وأقضي وقت مع العائلة"
+          ],
+          "too_formal": {
+            "item": "سوف أستريح وأقضي الوقت مع أسرتي",
+            "feedback": "Too formal. Yemenis say naturally \"نام وراحة\" or \"أرتاح\"."
+          },
+          "tip": "\"نام\" = \"sleep\", \"راحة\" = \"rest\" - these are the key Friday activities."
+        },
+        {
+          "id": "unit-07.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"يَوْم _____ نِرْوح السُّوق.\" English: We go to the market on Saturday.",
+          "answer": "السبت",
+          "accepted": [
+            "السبت",
+            "السابت"
+          ],
+          "too_formal": {
+            "item": "اليوم السابع",
+            "feedback": "\"السبت\" is the simple Yemeni way to say Saturday."
+          },
+          "tip": "Saturday = \"السبت\" (as-sabt). Remember all the day names."
+        },
+        {
+          "id": "unit-07.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"يَوْم الجُمْعَة يَوْم _____ وَالرَّاحَة.\" English: Friday is the day of prayer and rest.",
+          "answer": "الصلاة",
+          "accepted": [
+            "الصلاة",
+            "الصلات"
+          ],
+          "too_formal": {
+            "item": "التعبد",
+            "feedback": "\"الصلاة\" is the everyday word Yemenis use for prayer."
+          },
+          "tip": "\"الصلاة\" = \"prayer\", \"الراحة\" = \"rest\" - these define Friday in Arab culture."
+        },
+        {
+          "id": "unit-07.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"The meeting is on Tuesday.\"",
+          "answer": "الاجْتِمَاع يَوْم الثّلَاثَة",
+          "accepted": [
+            "الاجْتِمَاع يَوْم الثّلَاثَة",
+            "الاجتماع يوم الثلاثة",
+            "الاجتماع يوم الثلاثاء"
+          ],
+          "too_formal": {
+            "item": "الاجتماع مقرر يوم الثلاثاء",
+            "feedback": "This is formal. Yemenis say \"الاجتماع يوم الثلاثة\"."
+          },
+          "tip": "\"يوم\" = \"on\" (the day) in Yemeni. Direct and simple."
+        },
+        {
+          "id": "unit-07.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I have work every day except Friday and Saturday.\"",
+          "answer": "عِنْدِي شُغْل كُلّ يَوْم إِلاّ الجُمْعَة وَالسَّبْت",
+          "accepted": [
+            "عِنْدِي شُغْل كُلّ يَوْم إِلاّ الجُمْعَة وَالسَّبْت",
+            "عندي شغل كل يوم إلا الجمعة والسبت",
+            "عندي شغل كل يوم غير الجمعة والسبت"
+          ],
+          "too_formal": {
+            "item": "لدي عمل كل يوم ما عدا الجمعة والسبت",
+            "feedback": "This is formal. Yemenis say \"عندي شغل كل يوم إلا الجمعة والسبت\"."
+          },
+          "tip": "\"إلا\" and \"غير\" both mean \"except\" - use whichever feels natural to you."
+        },
+        {
+          "id": "unit-07.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which day is considered the weekend in Yemeni culture?",
+          "options": [
+            "Friday and Saturday",
+            "Saturday and Sunday",
+            "Thursday and Friday",
+            "Sunday and Monday"
+          ],
+          "answer": "Friday and Saturday",
+          "accepted": [
+            "Friday and Saturday"
+          ],
+          "too_formal": {
+            "item": "Saturday and Sunday",
+            "feedback": "No, in the Islamic/Yemeni calendar, Friday is the holy day. The weekend is Friday and Saturday."
+          },
+          "tip": "Remember: Friday (الجمعة) = prayer day + Saturday (السبت) = market/family day in Yemen."
+        },
+        {
+          "id": "unit-07.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "How do you ask \"When is the meeting?\" in Yemeni?",
+          "options": [
+            "إيش مني الاجتماع؟",
+            "كم ميتة الاجتماع؟",
+            "متى الاجتماع؟",
+            "أي وقت الاجتماع؟"
+          ],
+          "answer": "إيش مني الاجتماع؟",
+          "accepted": [
+            "إيش مني الاجتماع؟",
+            "إيش مني الاجتماع"
+          ],
+          "too_formal": {
+            "item": "متى الاجتماع؟",
+            "feedback": "\"متى\" is Modern Standard Arabic. Yemenis say \"إيش مني\" or \"إيش الساعة\"."
+          },
+          "tip": "\"إيش مني\" literally asks \"what (is the) time\", used to ask \"when\" in Yemeni."
+        },
+        {
+          "id": "unit-07.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: \"يوم / السبت / السوق / نروح\"",
+          "answer": "يَوْم السَّبْت نِرْوح السُّوق",
+          "accepted": [
+            "يَوْم السَّبْت نِرْوح السُّوق",
+            "يوم السبت نروح السوق"
+          ],
+          "too_formal": {
+            "item": "في يوم السبت نذهب إلى السوق",
+            "feedback": "Too formal. Yemenis say \"يوم السبت نروح السوق\"."
+          },
+          "tip": "Word order: day + verb + destination. Keep it simple."
+        },
+        {
+          "id": "unit-07.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange: \"الجمعة / يوم / الراحة / والصلاة\"",
+          "answer": "يَوْم الجُمْعَة يَوْم الصَّلاة وَالرَّاحَة",
+          "accepted": [
+            "يَوْم الجُمْعَة يَوْم الصَّلاة وَالرَّاحَة",
+            "يوم الجمعة يوم الصلاة والراحة"
+          ],
+          "too_formal": {
+            "item": "الجمعة هي يوم التعبد والراحة",
+            "feedback": "Too formal. Yemenis say \"يوم الجمعة يوم الصلاة والراحة\"."
+          },
+          "tip": "The structure is: \"day X = day of Y and Z\". A simple definition."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Daily Routine Conversation",
+    "instructions": "Create a conversation between two people about their daily routine. Use at least these elements: greet someone in the morning or evening, ask about the time, mention work or activities, and say goodbye. The conversation should be at least 8 exchanges long.",
+    "required_elements": [
+      "A greeting (morning or evening)",
+      "A question about the time using \"إيش الساعة دحين؟\"",
+      "At least one mention of work or a daily activity",
+      "The phrase \"أبي\" or \"بدي\" (I want)",
+      "A day of the week",
+      "A goodbye"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "محمد",
+          "arabic": "صباح الخير يا هند.",
+          "transliteration": "saba7 il-kheer ya hind.",
+          "english": "Good morning, Hind."
+        },
+        {
+          "speaker": "هند",
+          "arabic": "صباح النور، كيفك؟",
+          "transliteration": "saba7 in-noor, keefak?",
+          "english": "Good morning, how are you?"
+        },
+        {
+          "speaker": "محمد",
+          "arabic": "الحمد لله تمام، إيش الساعة دحين؟",
+          "transliteration": "il-7amdulillah tamaam, eesh is-saa3a daheen?",
+          "english": "Thank God, I'm fine. What time is it now?"
+        },
+        {
+          "speaker": "هند",
+          "arabic": "الساعة سبعة إلا شوية.",
+          "transliteration": "is-saa3a sab3a illa shwayya.",
+          "english": "It's almost seven."
+        },
+        {
+          "speaker": "محمد",
+          "arabic": "يالله، لازم أروح الشغل، أبي قهوة بدري.",
+          "transliteration": "yalla, laazim aru7 ash-shughl, abi 2ahwa bidri.",
+          "english": "Come on, I have to go to work. I want coffee first."
+        },
+        {
+          "speaker": "هند",
+          "arabic": "اشرب القهوة وطلع، عندي اجتماع يوم الثلاثة.",
+          "transliteration": "ishrab il-2ahwa w iTla3, 3indi ijtimaa3 yom ith-thalaatha.",
+          "english": "Drink coffee and go, I have a meeting on Tuesday."
+        },
+        {
+          "speaker": "محمد",
+          "arabic": "تمام، بشوفك بالمسية. مع السلامة.",
+          "transliteration": "tamaam, bshuufak bil-masya. ma3 is-salama.",
+          "english": "Okay, see you in the evening. Goodbye."
+        },
+        {
+          "speaker": "هند",
+          "arabic": "في أمان الله.",
+          "transliteration": "fi amaan illah.",
+          "english": "Goodbye."
+        }
+      ]
+    }
+  }
+}

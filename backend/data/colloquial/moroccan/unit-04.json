@@ -24,72 +24,72 @@
       "phrases": [
         {
           "slot": "what-would-you-like-to-drink-to-a-man",
-          "arabic": "نتا شنو بغيتي تشرب؟",
+          "arabic": "نِتَا شْنُو بْغِيتِي تْشْرَب؟",
           "transliteration": "nta shnoo bghiti tshrab?",
           "reply": {
-            "arabic": "قهوة، عافاك",
+            "arabic": "قَهْوَة، عَافَاك",
             "transliteration": "qahwa, 3afak",
             "english": "Coffee, please."
           }
         },
         {
           "slot": "what-would-you-like-to-drink-to-a-woman",
-          "arabic": "نتي شنو بغيتي تشرب؟",
+          "arabic": "نِتِي شْنُو بْغِيتِي تْشْرَب؟",
           "transliteration": "nti shnoo bghiti tshrab?"
         },
         {
           "slot": "coffee-please",
-          "arabic": "قهوة، عافاك",
+          "arabic": "قَهْوَة، عَافَاك",
           "transliteration": "qahwa, 3afak"
         },
         {
           "slot": "tea-please",
-          "arabic": "أتاي، عافاك",
+          "arabic": "أَتَاي، عَافَاك",
           "transliteration": "atay, 3afak"
         },
         {
           "slot": "medium-sweet-coffee",
-          "arabic": "قهوة بشوية د السكر",
+          "arabic": "قَهْوَة بْشْوِيَة د السُّكَّر",
           "transliteration": "qahwa b shwiya d ssukkar"
         },
         {
           "slot": "coffee-with-no-sugar",
-          "arabic": "قهوة بلا سكر",
+          "arabic": "قَهْوَة بْلَا سُكَّر",
           "transliteration": "qahwa bla sukkar"
         },
         {
           "slot": "sweet-coffee",
-          "arabic": "قهوة حلوة",
+          "arabic": "قَهْوَة حْلُوَة",
           "transliteration": "qahwa 7lwa"
         },
         {
           "slot": "a-big-cup-of-coffee",
-          "arabic": "طاسة كبيرة د القهوة",
+          "arabic": "طَاسَة كْبِيرَة د القَهْوَة",
           "transliteration": "6assa kbiira d lqahwa"
         },
         {
           "slot": "i-want-mint-tea",
-          "arabic": "بغيت أتاي بالنعناع",
+          "arabic": "بْغِيت أَتَاي بَالنِّعْنَاع",
           "transliteration": "bghit atay b nna3na3"
         },
         {
           "slot": "is-there-sugar",
-          "arabic": "واش كاين السكر؟",
+          "arabic": "وَاش كَايِن السُّكَّر؟",
           "transliteration": "wash kayn ssukkar?",
           "reply": {
-            "arabic": "أكيد، غادي نجيب ليك دابا",
+            "arabic": "أَكِيد، غَادِي نْجِيب لِيك دَابَا",
             "transliteration": "akiid, ghaadi njiib lik daba",
             "english": "Sure, I'll bring it to you now."
           }
         },
         {
           "slot": "i-like-my-coffee-bitter",
-          "arabic": "كنبغي القهوة مرة",
+          "arabic": "كَنْبْغِي القَهْوَة مِرَّة",
           "transliteration": "kanbghi lqahwa mrra"
         },
         {
           "slot": "no-sugar-at-all",
-          "arabic": "بلا سكر بالمرة",
+          "arabic": "بْلَا سُكَّر بَالمِرَّة",
           "transliteration": "bla sukkar b lmarra"
         }
       ],
@@ -200,12 +200,12 @@
         },
         {
           "pair": {
-            "arabic": "واش كاين السكر؟",
+            "arabic": "وَاش كَايِن السُّكَّر؟",
             "transliteration": "wash kayn ssukkar?",
             "english": "Is there sugar?"
           },
           "response": {
-            "arabic": "أكيد، غادي نجيب ليك دابا",
+            "arabic": "أَكِيد، غَادِي نْجِيب لِيك دَابَا",
             "transliteration": "akiid, ghaadi njiib lik daba",
             "english": "Sure, I'll bring it to you now."
           }
@@ -217,12 +217,12 @@
           "id": "unit-04.lesson-01.reply.01",
           "type": "reply",
           "prompt": "نتا شنو بغيتي تشرب؟ (nta shnoo bghiti tshrab?)",
-          "answer": "قهوة، عافاك",
+          "answer": "قَهْوَة، عَافَاك",
           "accepted": [
-            "قهوة، عافاك",
+            "قَهْوَة، عَافَاك",
             "qahwa, 3afak",
             "قهوة عافاك",
-            "أتاي، عافاك",
+            "أَتَاي، عَافَاك",
             "atay, 3afak"
           ],
           "too_formal": {
@@ -235,9 +235,9 @@
           "id": "unit-04.lesson-01.reply.02",
           "type": "reply",
           "prompt": "واش كاين السكر؟ (wash kayn ssukkar?)",
-          "answer": "أكيد، غادي نجيب ليك دابا",
+          "answer": "أَكِيد، غَادِي نْجِيب لِيك دَابَا",
           "accepted": [
-            "أكيد، غادي نجيب ليك دابا",
+            "أَكِيد، غَادِي نْجِيب لِيك دَابَا",
             "akiid, ghaadi njiib lik daba",
             "اكيد غادي نجيب ليك دابا",
             "أكيد، غادي نجيب ليك السكر دابا",
@@ -286,9 +286,9 @@
           "id": "unit-04.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I like my coffee bitter.",
-          "answer": "كنبغي القهوة مرة",
+          "answer": "كَنْبْغِي القَهْوَة مِرَّة",
           "accepted": [
-            "كنبغي القهوة مرة",
+            "كَنْبْغِي القَهْوَة مِرَّة",
             "kanbghi lqahwa mrra",
             "كنحب القهوة مرة",
             "kan7ebb lqahwa mrra"
@@ -303,9 +303,9 @@
           "id": "unit-04.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Is there sugar?",
-          "answer": "واش كاين السكر؟",
+          "answer": "وَاش كَايِن السُّكَّر؟",
           "accepted": [
-            "واش كاين السكر؟",
+            "وَاش كَايِن السُّكَّر؟",
             "wash kayn ssukkar?",
             "واش كاين السكر",
             "كاين السكر؟"
@@ -320,18 +320,18 @@
           "id": "unit-04.lesson-01.choose.01",
           "type": "choose",
           "prompt": "Which one means 'A big cup of coffee'?",
-          "answer": "طاسة كبيرة د القهوة",
+          "answer": "طَاسَة كْبِيرَة د القَهْوَة",
           "accepted": [
-            "طاسة كبيرة د القهوة",
+            "طَاسَة كْبِيرَة د القَهْوَة",
             "6assa kbiira d lqahwa",
             "طاسة كبيرة د لقهوة",
             "tassa kbira d lqahwa"
           ],
           "options": [
-            "طاسة كبيرة د القهوة",
-            "قهوة بلا سكر",
-            "قهوة حلوة",
-            "بغيت أتاي بالنعناع"
+            "طَاسَة كْبِيرَة د القَهْوَة",
+            "قَهْوَة بْلَا سُكَّر",
+            "قَهْوَة حْلُوَة",
+            "بْغِيت أَتَاي بَالنِّعْنَاع"
           ],
           "too_formal": {
             "item": "فنجان كبير من القهوة",
@@ -343,16 +343,16 @@
           "id": "unit-04.lesson-01.choose.02",
           "type": "choose",
           "prompt": "How do you ask a woman what she would like to drink?",
-          "answer": "نتي شنو بغيتي تشرب؟",
+          "answer": "نِتِي شْنُو بْغِيتِي تْشْرَب؟",
           "accepted": [
-            "نتي شنو بغيتي تشرب؟",
+            "نِتِي شْنُو بْغِيتِي تْشْرَب؟",
             "nti shnoo bghiti tshrab?",
             "نتي شنو بغيتي تشرب",
             "شنو بغيتي تشرب نتي؟"
           ],
           "options": [
-            "نتي شنو بغيتي تشرب؟",
-            "نتا شنو بغيتي تشرب؟",
+            "نِتِي شْنُو بْغِيتِي تْشْرَب؟",
+            "نِتَا شْنُو بْغِيتِي تْشْرَب؟",
             "شنو بغيتو تشربو؟",
             "شنو كنشرب؟"
           ],
@@ -366,17 +366,17 @@
           "id": "unit-04.lesson-01.reorder.01",
           "type": "reorder",
           "prompt": "Put the words in order: I want mint tea.",
-          "answer": "بغيت أتاي بالنعناع",
+          "answer": "بْغِيت أَتَاي بَالنِّعْنَاع",
           "accepted": [
-            "بغيت أتاي بالنعناع",
+            "بْغِيت أَتَاي بَالنِّعْنَاع",
             "bghit atay b nna3na3",
             "بغيت اتاي بالنعناع",
             "بغيت أتاي بنعناع"
           ],
           "words": [
-            "بغيت",
-            "أتاي",
-            "بالنعناع"
+            "بْغِيت",
+            "أَتَاي",
+            "بَالنِّعْنَاع"
           ],
           "too_formal": {
             "item": "أريد شايا بالنعناع",
@@ -388,18 +388,18 @@
           "id": "unit-04.lesson-01.reorder.02",
           "type": "reorder",
           "prompt": "Put the words in order: Medium-sweet coffee.",
-          "answer": "قهوة بشوية د السكر",
+          "answer": "قَهْوَة بْشْوِيَة د السُّكَّر",
           "accepted": [
-            "قهوة بشوية د السكر",
+            "قَهْوَة بْشْوِيَة د السُّكَّر",
             "qahwa b shwiya d ssukkar",
             "قهوة بشوية د لسكر",
             "قهوة بشوية ديال السكر"
           ],
           "words": [
-            "قهوة",
-            "بشوية",
+            "قَهْوَة",
+            "بْشْوِيَة",
             "د",
-            "السكر"
+            "السُّكَّر"
           ],
           "too_formal": {
             "item": "قهوة معتدلة الحلاوة",
@@ -414,17 +414,17 @@
       "phrases": [
         {
           "slot": "where-s-the-menu",
-          "arabic": "فين لاكارط؟",
+          "arabic": "فِيِن لاكَارْط؟",
           "transliteration": "fiin lakart?"
         },
         {
           "slot": "do-you-have-an-english-menu",
-          "arabic": "واش عندكم لاكارط بالإنجليزية؟",
+          "arabic": "وَاش عِنْدْكُم لاكَارْط بَالإِنْجِلِيزِيَّة؟",
           "transliteration": "wash 3ndkum lakart b linglizya?"
         },
         {
           "slot": "what-do-you-have-today",
-          "arabic": "شنو كاين اليوم؟",
+          "arabic": "شْنُو كَايِن الْيَوْم؟",
           "transliteration": "shnoo kayn lyoum?",
           "reply": {
             "arabic": "كاين الطاجين والكسكس والحريرة",
@@ -434,27 +434,27 @@
         },
         {
           "slot": "what-appetizers-do-you-have",
-          "arabic": "شنو كاين د المقبلات؟",
+          "arabic": "شْنُو كَايِن د الْمُقَبِّلَات؟",
           "transliteration": "shnoo kayn d lmuqabbilaat?"
         },
         {
           "slot": "is-there-vegetarian-food",
-          "arabic": "واش كاين شي حاجة بلا لحم؟",
+          "arabic": "وَاش كَايِن شِي حَاجَة بْلَا لْحَم؟",
           "transliteration": "wash kayn shi 7aaja bla l7em?"
         },
         {
           "slot": "what-s-in-this-dish",
-          "arabic": "شنو كاين ف هاد الطبق؟",
+          "arabic": "شْنُو كَايِن فِ هَاد الطَّبْق؟",
           "transliteration": "shnoo kayn f haad ttebq?"
         },
         {
           "slot": "is-it-spicy-or-not-spicy",
-          "arabic": "واش حرّيف ولا ماشي حرّيف؟",
+          "arabic": "وَاش حَرِّيف وَلَا مَاشِي حَرِّيف؟",
           "transliteration": "wash 7rriif wla mashi 7rriif?"
         },
         {
           "slot": "what-do-you-recommend-i-get",
-          "arabic": "شنو كتنصحني ناخد؟",
+          "arabic": "شْنُو كْتِنْصَحْنِي نَاخْد؟",
           "transliteration": "shnoo katnse7ni nakhud?",
           "reply": {
             "arabic": "خود الطاجين د الدجاج",
@@ -464,22 +464,22 @@
         },
         {
           "slot": "how-much-does-this-cost",
-          "arabic": "بشحال هادا؟",
+          "arabic": "بْشْحَال هَادَا؟",
           "transliteration": "bshhal haada?"
         },
         {
           "slot": "is-there-a-dish-of-the-day",
-          "arabic": "واش كاين طبق اليوم؟",
+          "arabic": "وَاش كَايِن طَبْق الْيَوْم؟",
           "transliteration": "wash kayn 6ebq lyoum?"
         },
         {
           "slot": "i-want-something-light",
-          "arabic": "بغيت شي حاجة خفيفة",
+          "arabic": "بْغِيت شِي حَاجَة خْفِيفَة",
           "transliteration": "bghit shi 7aaja khfiifa"
         },
         {
           "slot": "do-you-have-desserts",
-          "arabic": "واش عندكم شي حلويات؟",
+          "arabic": "وَاش عِنْدْكُم شِي حَلْوِيَّات؟",
           "transliteration": "wash 3ndkum shi 7lawiyyaat?"
         }
       ],
@@ -498,7 +498,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "واش عندكم لاكارط بالإنجليزية؟",
+          "arabic": "وَاش عِنْدْكُم لاكَارْط بَالإِنْجِلِيزِيَّة؟",
           "transliteration": "wash 3ndkum lakart b linglizya?",
           "english": "Do you have an English menu?"
         },
@@ -510,7 +510,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "شنو كاين اليوم؟",
+          "arabic": "شْنُو كَايِن الْيَوْم؟",
           "transliteration": "shnoo kayn lyoum?",
           "english": "What do you have today?"
         },
@@ -522,7 +522,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "واش كاين شي حاجة بلا لحم؟",
+          "arabic": "وَاش كَايِن شِي حَاجَة بْلَا لْحَم؟",
           "transliteration": "wash kayn shi 7aaja bla l7em?",
           "english": "Is there anything without meat?"
         },
@@ -546,7 +546,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "شنو كتنصحني ناخد؟",
+          "arabic": "شْنُو كْتِنْصَحْنِي نَاخْد؟",
           "transliteration": "shnoo katnse7ni nakhud?",
           "english": "What do you recommend I get?"
         },
@@ -572,7 +572,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو كاين اليوم؟",
+            "arabic": "شْنُو كَايِن الْيَوْم؟",
             "transliteration": "shnoo kayn lyoum?",
             "english": "What do you have today?"
           },
@@ -584,7 +584,7 @@
         },
         {
           "pair": {
-            "arabic": "واش حرّيف ولا ماشي حرّيف؟",
+            "arabic": "وَاش حَرِّيف وَلَا مَاشِي حَرِّيف؟",
             "transliteration": "wash 7rriif wla mashi 7rriif?",
             "english": "Is it spicy or not spicy?"
           },
@@ -596,7 +596,7 @@
         },
         {
           "pair": {
-            "arabic": "شنو كتنصحني ناخد؟",
+            "arabic": "شْنُو كْتِنْصَحْنِي نَاخْد؟",
             "transliteration": "shnoo katnse7ni nakhud?",
             "english": "What do you recommend I get?"
           },
@@ -608,7 +608,7 @@
         },
         {
           "pair": {
-            "arabic": "بشحال هادا؟",
+            "arabic": "بْشْحَال هَادَا؟",
             "transliteration": "bshhal haada?",
             "english": "How much is this?"
           },
@@ -696,9 +696,9 @@
           "id": "unit-04.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Do you have desserts?",
-          "answer": "واش عندكم شي حلويات؟",
+          "answer": "وَاش عِنْدْكُم شِي حَلْوِيَّات؟",
           "accepted": [
-            "واش عندكم شي حلويات؟",
+            "وَاش عِنْدْكُم شِي حَلْوِيَّات؟",
             "wash 3ndkum shi 7lawiyyaat?",
             "واش عندكم حلويات؟",
             "عندكم شي حلويات؟"
@@ -713,9 +713,9 @@
           "id": "unit-04.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "I want something light.",
-          "answer": "بغيت شي حاجة خفيفة",
+          "answer": "بْغِيت شِي حَاجَة خْفِيفَة",
           "accepted": [
-            "بغيت شي حاجة خفيفة",
+            "بْغِيت شِي حَاجَة خْفِيفَة",
             "bghit shi 7aaja khfiifa",
             "بغيت حاجة خفيفة",
             "bghit 7aaja khfiifa"
@@ -730,18 +730,18 @@
           "id": "unit-04.lesson-02.choose.01",
           "type": "choose",
           "prompt": "Which one asks 'Is there vegetarian food?'",
-          "answer": "واش كاين شي حاجة بلا لحم؟",
+          "answer": "وَاش كَايِن شِي حَاجَة بْلَا لْحَم؟",
           "accepted": [
-            "واش كاين شي حاجة بلا لحم؟",
+            "وَاش كَايِن شِي حَاجَة بْلَا لْحَم؟",
             "wash kayn shi 7aaja bla l7em?",
             "واش كاين حاجة بلا لحم؟",
             "كاين شي حاجة بلا لحم؟"
           ],
           "options": [
-            "واش كاين شي حاجة بلا لحم؟",
+            "وَاش كَايِن شِي حَاجَة بْلَا لْحَم؟",
             "واش كاين لاكارط؟",
             "واش حرّيف ولا لا؟",
-            "شنو كاين ف هاد الطبق؟"
+            "شْنُو كَايِن فِ هَاد الطَّبْق؟"
           ],
           "too_formal": {
             "item": "هل يوجد طعام نباتي؟",
@@ -753,18 +753,18 @@
           "id": "unit-04.lesson-02.choose.02",
           "type": "choose",
           "prompt": "Which one asks 'What do you recommend I get?'",
-          "answer": "شنو كتنصحني ناخد؟",
+          "answer": "شْنُو كْتِنْصَحْنِي نَاخْد؟",
           "accepted": [
-            "شنو كتنصحني ناخد؟",
+            "شْنُو كْتِنْصَحْنِي نَاخْد؟",
             "shnoo katnse7ni nakhud?",
             "شنو كتنصحني ناخد",
             "شنو تنصحني ناخد؟"
           ],
           "options": [
-            "شنو كتنصحني ناخد؟",
-            "بشحال هادا؟",
-            "شنو كاين اليوم؟",
-            "فين لاكارط؟"
+            "شْنُو كْتِنْصَحْنِي نَاخْد؟",
+            "بْشْحَال هَادَا؟",
+            "شْنُو كَايِن الْيَوْم؟",
+            "فِيِن لاكَارْط؟"
           ],
           "too_formal": {
             "item": "ماذا تنصحني أن آخذ؟",
@@ -776,18 +776,18 @@
           "id": "unit-04.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Put the words in order: Do you have an English menu?",
-          "answer": "واش عندكم لاكارط بالإنجليزية؟",
+          "answer": "وَاش عِنْدْكُم لاكَارْط بَالإِنْجِلِيزِيَّة؟",
           "accepted": [
-            "واش عندكم لاكارط بالإنجليزية؟",
+            "وَاش عِنْدْكُم لاكَارْط بَالإِنْجِلِيزِيَّة؟",
             "wash 3ndkum lakart b linglizya?",
             "واش عندكم لاكارط بالإنجليزية",
             "واش عندكم لاكارط بالانجليزية؟"
           ],
           "words": [
-            "واش",
-            "عندكم",
-            "لاكارط",
-            "بالإنجليزية؟"
+            "وَاش",
+            "عِنْدْكُم",
+            "لاكَارْط",
+            "بَالإِنْجِلِيزِيَّة؟"
           ],
           "too_formal": {
             "item": "هل لديكم قائمة طعام بالإنجليزية؟",
@@ -799,19 +799,19 @@
           "id": "unit-04.lesson-02.reorder.02",
           "type": "reorder",
           "prompt": "Put the words in order: What's in this dish?",
-          "answer": "شنو كاين ف هاد الطبق؟",
+          "answer": "شْنُو كَايِن فِ هَاد الطَّبْق؟",
           "accepted": [
-            "شنو كاين ف هاد الطبق؟",
+            "شْنُو كَايِن فِ هَاد الطَّبْق؟",
             "shnoo kayn f haad ttebq?",
             "شنو كاين ف هاد الطبق",
             "شنو كاين فهاد الطبق؟"
           ],
           "words": [
-            "شنو",
-            "كاين",
+            "شْنُو",
+            "كَايِن",
             "ف",
-            "هاد",
-            "الطبق؟"
+            "هَاد",
+            "الطَّبْق؟"
           ],
           "too_formal": {
             "item": "ماذا يوجد في هذا الطبق؟",
@@ -826,52 +826,52 @@
       "phrases": [
         {
           "slot": "are-you-ready-to-order",
-          "arabic": "واش واجدين تطلبو؟",
+          "arabic": "وَاش وَاجْدِين تِطْلِبُو؟",
           "transliteration": "wash waajdiin t6lbu?",
           "reply": {
-            "arabic": "أه، بغيت هادا وهادا",
+            "arabic": "أَه، بْغِيت هَادَا وَهَادَا",
             "transliteration": "ah, bghit haada w haada",
             "english": "Yes, I want this and this."
           }
         },
         {
           "slot": "i-ll-have-a-plate-of-hummus-and-fattoush",
-          "arabic": "غادي ناخد طبق د الحمص والفتوش",
+          "arabic": "غَادِي نَاخْد طَبْق د الحُمُّص والفَتّوش",
           "transliteration": "ghaadi nakhud 6ebq d l7ummus w lfattoosh"
         },
         {
           "slot": "i-want-this-and-this",
-          "arabic": "بغيت هادا وهادا",
+          "arabic": "بْغِيت هَادَا وَهَادَا",
           "transliteration": "bghit haada w haada"
         },
         {
           "slot": "please-make-it-quick",
-          "arabic": "عافاك، بالعجل",
+          "arabic": "عَافَاك، بَالعَجَل",
           "transliteration": "3afak, b l3jal"
         },
         {
           "slot": "without-onion-please",
-          "arabic": "بلا بصلة، عافاك",
+          "arabic": "بْلَا بْصَلَة، عَافَاك",
           "transliteration": "bla bsla, 3afak"
         },
         {
           "slot": "extra-bread-please",
-          "arabic": "زيدني شوية د الخبز، عافاك",
+          "arabic": "زِيدْنِي شْوِيَة د الخُبْز، عَافَاك",
           "transliteration": "ziidni shwiya d lkhubz, 3afak"
         },
         {
           "slot": "this-dish-is-for-me-and-this-is-for-her",
-          "arabic": "هاد الطبق ديالي وهادا ديالها",
+          "arabic": "هَاد الطَّبْق دِيَالِي وَهَادَا دِيَالْهَا",
           "transliteration": "haad ttebq dyaali w haada dyaalha"
         },
         {
           "slot": "can-i-have-a-glass-of-water",
-          "arabic": "واش ممكن كاس د الما؟",
+          "arabic": "وَاش مُمْكِن كَاس د الْمَا؟",
           "transliteration": "wash mumkin kaas d lma?"
         },
         {
           "slot": "thanks-that-s-good-enough",
-          "arabic": "صافي، شكرا، هادشي مزيان",
+          "arabic": "صَافِي، شُكْرَا، هَادْشِي مْزِيَان",
           "transliteration": "saafi, shukran, haadshi mzyaan"
         },
         {
@@ -973,12 +973,12 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "واش واجدين تطلبو؟",
+            "arabic": "وَاش وَاجْدِين تِطْلِبُو؟",
             "transliteration": "wash waajdiin t6lbu?",
             "english": "Are you ready to order?"
           },
           "response": {
-            "arabic": "أه، بغيت هادا وهادا",
+            "arabic": "أَه، بْغِيت هَادَا وَهَادَا",
             "transliteration": "ah, bghit haada w haada",
             "english": "Yes, I want this and this."
           }
@@ -990,7 +990,7 @@
             "english": "Would you like anything else?"
           },
           "response": {
-            "arabic": "زيدني شوية د الخبز، عافاك",
+            "arabic": "زِيدْنِي شْوِيَة د الخُبْز، عَافَاك",
             "transliteration": "ziidni shwiya d lkhubz, 3afak",
             "english": "Extra bread, please."
           }
@@ -1002,7 +1002,7 @@
             "english": "With onion or without onion?"
           },
           "response": {
-            "arabic": "بلا بصلة، عافاك",
+            "arabic": "بْلَا بْصَلَة، عَافَاك",
             "transliteration": "bla bsla, 3afak",
             "english": "Without onion, please."
           }
@@ -1026,12 +1026,12 @@
           "id": "unit-04.lesson-03.reply.01",
           "type": "reply",
           "prompt": "واش واجدين تطلبو؟ (wash waajdiin t6lbu?)",
-          "answer": "أه، بغيت هادا وهادا",
+          "answer": "أَه، بْغِيت هَادَا وَهَادَا",
           "accepted": [
-            "أه، بغيت هادا وهادا",
+            "أَه، بْغِيت هَادَا وَهَادَا",
             "ah, bghit haada w haada",
             "اه بغيت هادا وهادا",
-            "بغيت هادا وهادا",
+            "بْغِيت هَادَا وَهَادَا",
             "bghit haada w haada"
           ],
           "too_formal": {
@@ -1044,9 +1044,9 @@
           "id": "unit-04.lesson-03.reply.02",
           "type": "reply",
           "prompt": "واش بغيتي شي حاجة خرى؟ (wash bghiti shi 7aaja khra?)",
-          "answer": "صافي، شكرا، هادشي مزيان",
+          "answer": "صَافِي، شُكْرَا، هَادْشِي مْزِيَان",
           "accepted": [
-            "صافي، شكرا، هادشي مزيان",
+            "صَافِي، شُكْرَا، هَادْشِي مْزِيَان",
             "saafi, shukran, haadshi mzyaan",
             "صافي شكرا هادشي مزيان",
             "صافي، شكرا",
@@ -1095,9 +1095,9 @@
           "id": "unit-04.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Extra bread, please.",
-          "answer": "زيدني شوية د الخبز، عافاك",
+          "answer": "زِيدْنِي شْوِيَة د الخُبْز، عَافَاك",
           "accepted": [
-            "زيدني شوية د الخبز، عافاك",
+            "زِيدْنِي شْوِيَة د الخُبْز، عَافَاك",
             "ziidni shwiya d lkhubz, 3afak",
             "زيدني شوية د الخبز",
             "زيد ليا الخبز عافاك"
@@ -1152,14 +1152,14 @@
           "id": "unit-04.lesson-03.choose.02",
           "type": "choose",
           "prompt": "Which one means 'This dish is for me and this is for her'?",
-          "answer": "هاد الطبق ديالي وهادا ديالها",
+          "answer": "هَاد الطَّبْق دِيَالِي وَهَادَا دِيَالْهَا",
           "accepted": [
-            "هاد الطبق ديالي وهادا ديالها",
+            "هَاد الطَّبْق دِيَالِي وَهَادَا دِيَالْهَا",
             "haad ttebq dyaali w haada dyaalha",
             "هاد الطبق ديالي و هادا ديالها"
           ],
           "options": [
-            "هاد الطبق ديالي وهادا ديالها",
+            "هَاد الطَّبْق دِيَالِي وَهَادَا دِيَالْهَا",
             "هاد الطبق ديالها وهادا ديالي",
             "هاد الطبق ديالنا وهادا ديالهم",
             "بغينا نفس الطلب"
@@ -1174,17 +1174,17 @@
           "id": "unit-04.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "Put the words in order: I want this and this.",
-          "answer": "بغيت هادا وهادا",
+          "answer": "بْغِيت هَادَا وَهَادَا",
           "accepted": [
-            "بغيت هادا وهادا",
+            "بْغِيت هَادَا وَهَادَا",
             "bghit haada w haada",
             "بغيت هادا و هادا",
             "بغيت هادي وهادي"
           ],
           "words": [
-            "بغيت",
-            "هادا",
-            "وهادا"
+            "بْغِيت",
+            "هَادَا",
+            "وَهَادَا"
           ],
           "too_formal": {
             "item": "أريد هذا وهذا",
@@ -1220,52 +1220,52 @@
       "phrases": [
         {
           "slot": "the-bill-please",
-          "arabic": "الحساب، عافاك",
+          "arabic": "الحِسَاب، عَافَاك",
           "transliteration": "l7saab, 3afak"
         },
         {
           "slot": "how-much-is-the-bill",
-          "arabic": "شحال الحساب؟",
+          "arabic": "شْحَال الحِسَاب؟",
           "transliteration": "shhal l7saab?",
           "reply": {
-            "arabic": "مية وخمسين درهم",
+            "arabic": "مِيَة وَخَمْسِين دِرْهَم",
             "transliteration": "miya w khamsiin dirham",
             "english": "One hundred and fifty dirhams."
           }
         },
         {
           "slot": "do-you-take-cash-or-card",
-          "arabic": "واش كتقبلو الكاش ولا الكارط؟",
+          "arabic": "وَاش كْتِقْبِلُو الكَاش وَلَا الكَارْط؟",
           "transliteration": "wash katqablu lcash wla lkart?"
         },
         {
           "slot": "i-m-paying-today",
-          "arabic": "اليوم أنا اللي غادي نخلص",
+          "arabic": "الْيَوْم أَنَا الْلِي غَادِي نْخَلِّص",
           "transliteration": "lyoum ana lli ghaadi nkhalles"
         },
         {
           "slot": "no-i-m-paying",
-          "arabic": "لا، أنا اللي غادي نخلص",
+          "arabic": "لَا، أَنَا الْلِي غَادِي نْخَلِّص",
           "transliteration": "la, ana lli ghaadi nkhalles"
         },
         {
           "slot": "shall-we-split-the-bill",
-          "arabic": "واش نقسمو الحساب؟",
+          "arabic": "وَاش نْقَسِّمُو الحِسَاب؟",
           "transliteration": "wash nqasmu l7saab?"
         },
         {
           "slot": "is-there-a-tip-included-in-the-bill",
-          "arabic": "واش البوربوار داخل ف الحساب؟",
+          "arabic": "وَاش البُورْبُوار دَاخِل فِ الحِسَاب؟",
           "transliteration": "wash lburbwaar daakhl f l7saab?"
         },
         {
           "slot": "keep-the-change",
-          "arabic": "الباقي ليك",
+          "arabic": "الْبَاقِي لِيك",
           "transliteration": "lbaaqi lik"
         },
         {
           "slot": "thanks-lit-wellness-of-your-heart-it-was-a-tasty",
-          "arabic": "الله يعطيك الصحة، الماكلة كانت بنينة",
+          "arabic": "الله يُعْطِيك الصِّحَة، الْمَاكْلَة كَانَت بْنِينَة",
           "transliteration": "Allah y3tiik ssa77a, lmakla kaant bniina"
         },
         {
@@ -1275,7 +1275,7 @@
         },
         {
           "slot": "is-there-a-discount-today",
-          "arabic": "واش كاين شي تخفيض اليوم؟",
+          "arabic": "وَاش كَايِن شِي تَخْفِيض الْيَوْم؟",
           "transliteration": "wash kayn shi takhfiid lyoum?"
         },
         {
@@ -1299,7 +1299,7 @@
         },
         {
           "speaker": "Amine",
-          "arabic": "واش كتقبلو الكاش ولا الكارط؟",
+          "arabic": "وَاش كْتِقْبِلُو الكَاش وَلَا الكَارْط؟",
           "transliteration": "wash katqablu lcash wla lkart?",
           "english": "Do you take cash or card?"
         },
@@ -1311,7 +1311,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "واش نقسمو الحساب؟",
+          "arabic": "وَاش نْقَسِّمُو الحِسَاب؟",
           "transliteration": "wash nqasmu l7saab?",
           "english": "Shall we split the bill?"
         },
@@ -1335,7 +1335,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "واش البوربوار داخل ف الحساب؟",
+          "arabic": "وَاش البُورْبُوار دَاخِل فِ الحِسَاب؟",
           "transliteration": "wash lburbwaar daakhl f l7saab?",
           "english": "Is the tip included in the bill?"
         },
@@ -1367,12 +1367,12 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شحال الحساب؟",
+            "arabic": "شْحَال الحِسَاب؟",
             "transliteration": "shhal l7saab?",
             "english": "How much is the bill?"
           },
           "response": {
-            "arabic": "مية وخمسين درهم",
+            "arabic": "مِيَة وَخَمْسِين دِرْهَم",
             "transliteration": "miya w khamsiin dirham",
             "english": "One hundred and fifty dirhams."
           }
@@ -1391,12 +1391,12 @@
         },
         {
           "pair": {
-            "arabic": "واش نقسمو الحساب؟",
+            "arabic": "وَاش نْقَسِّمُو الحِسَاب؟",
             "transliteration": "wash nqasmu l7saab?",
             "english": "Shall we split the bill?"
           },
           "response": {
-            "arabic": "لا، أنا اللي غادي نخلص",
+            "arabic": "لَا، أَنَا الْلِي غَادِي نْخَلِّص",
             "transliteration": "la, ana lli ghaadi nkhalles",
             "english": "No, I'm paying."
           }
@@ -1420,9 +1420,9 @@
           "id": "unit-04.lesson-04.reply.01",
           "type": "reply",
           "prompt": "شحال الحساب؟ (shhal l7saab?)",
-          "answer": "مية وخمسين درهم",
+          "answer": "مِيَة وَخَمْسِين دِرْهَم",
           "accepted": [
-            "مية وخمسين درهم",
+            "مِيَة وَخَمْسِين دِرْهَم",
             "miya w khamsiin dirham",
             "ميه وخمسين درهم",
             "مية وخمسين",
@@ -1438,9 +1438,9 @@
           "id": "unit-04.lesson-04.reply.02",
           "type": "reply",
           "prompt": "واش نقسمو الحساب؟ (wash nqasmu l7saab?)",
-          "answer": "لا، أنا اللي غادي نخلص",
+          "answer": "لَا، أَنَا الْلِي غَادِي نْخَلِّص",
           "accepted": [
-            "لا، أنا اللي غادي نخلص",
+            "لَا، أَنَا الْلِي غَادِي نْخَلِّص",
             "la, ana lli ghaadi nkhalles",
             "لا أنا اللي غادي نخلص",
             "لا، اليوم أنا اللي غادي نخلص",
@@ -1507,9 +1507,9 @@
           "id": "unit-04.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Is there a discount today?",
-          "answer": "واش كاين شي تخفيض اليوم؟",
+          "answer": "وَاش كَايِن شِي تَخْفِيض الْيَوْم؟",
           "accepted": [
-            "واش كاين شي تخفيض اليوم؟",
+            "وَاش كَايِن شِي تَخْفِيض الْيَوْم؟",
             "wash kayn shi takhfiid lyoum?",
             "واش كاين تخفيض اليوم؟",
             "كاين شي تخفيض اليوم؟"
@@ -1533,9 +1533,9 @@
           ],
           "options": [
             "الله يبارك ف ليدين ديالك، الماكلة كانت بنينة بزاف",
-            "الحساب، عافاك",
-            "الباقي ليك",
-            "واش كتقبلو الكاش ولا الكارط؟"
+            "الحِسَاب، عَافَاك",
+            "الْبَاقِي لِيك",
+            "وَاش كْتِقْبِلُو الكَاش وَلَا الكَارْط؟"
           ],
           "too_formal": {
             "item": "بارك الله في يديك، كان الطعام لذيذا جدا",
@@ -1547,18 +1547,18 @@
           "id": "unit-04.lesson-04.choose.02",
           "type": "choose",
           "prompt": "Which one says 'No, I'm paying'?",
-          "answer": "لا، أنا اللي غادي نخلص",
+          "answer": "لَا، أَنَا الْلِي غَادِي نْخَلِّص",
           "accepted": [
-            "لا، أنا اللي غادي نخلص",
+            "لَا، أَنَا الْلِي غَادِي نْخَلِّص",
             "la, ana lli ghaadi nkhalles",
             "لا أنا اللي غادي نخلص",
             "لا، انا اللي غادي نخلص"
           ],
           "options": [
-            "لا، أنا اللي غادي نخلص",
-            "واش نقسمو الحساب؟",
-            "الباقي ليك",
-            "شحال الحساب؟"
+            "لَا، أَنَا الْلِي غَادِي نْخَلِّص",
+            "وَاش نْقَسِّمُو الحِسَاب؟",
+            "الْبَاقِي لِيك",
+            "شْحَال الحِسَاب؟"
           ],
           "too_formal": {
             "item": "لا، أنا من سيدفع",
@@ -1570,16 +1570,16 @@
           "id": "unit-04.lesson-04.reorder.01",
           "type": "reorder",
           "prompt": "Put the words in order: The bill, please.",
-          "answer": "الحساب، عافاك",
+          "answer": "الحِسَاب، عَافَاك",
           "accepted": [
-            "الحساب، عافاك",
+            "الحِسَاب، عَافَاك",
             "l7saab, 3afak",
             "الحساب عافاك",
             "عافاك، الحساب"
           ],
           "words": [
-            "الحساب،",
-            "عافاك"
+            "الحِسَاب،",
+            "عَافَاك"
           ],
           "too_formal": {
             "item": "الحساب من فضلك",
@@ -1591,19 +1591,19 @@
           "id": "unit-04.lesson-04.reorder.02",
           "type": "reorder",
           "prompt": "Put the words in order: Do you take cash or card?",
-          "answer": "واش كتقبلو الكاش ولا الكارط؟",
+          "answer": "وَاش كْتِقْبِلُو الكَاش وَلَا الكَارْط؟",
           "accepted": [
-            "واش كتقبلو الكاش ولا الكارط؟",
+            "وَاش كْتِقْبِلُو الكَاش وَلَا الكَارْط؟",
             "wash katqablu lcash wla lkart?",
             "واش كتقبلو الكاش ولا الكارط",
             "واش كتقبلو الكارط ولا الكاش؟"
           ],
           "words": [
-            "واش",
-            "كتقبلو",
-            "الكاش",
-            "ولا",
-            "الكارط؟"
+            "وَاش",
+            "كْتِقْبِلُو",
+            "الكَاش",
+            "وَلَا",
+            "الكَارْط؟"
           ],
           "too_formal": {
             "item": "هل تقبلون النقد أم البطاقة؟",
@@ -1627,7 +1627,7 @@
       "dialogue": [
         {
           "speaker": "You",
-          "arabic": "شنو كتنصحني ناخد؟",
+          "arabic": "شْنُو كْتِنْصَحْنِي نَاخْد؟",
           "transliteration": "shnoo katnse7ni nakhud?",
           "english": "What do you recommend I get?"
         },
@@ -1651,7 +1651,7 @@
         },
         {
           "speaker": "You",
-          "arabic": "بلا بصلة، عافاك",
+          "arabic": "بْلَا بْصَلَة، عَافَاك",
           "transliteration": "bla bsla, 3afak",
           "english": "Without onion, please."
         },
@@ -1663,7 +1663,7 @@
         },
         {
           "speaker": "You",
-          "arabic": "الحساب، عافاك",
+          "arabic": "الحِسَاب، عَافَاك",
           "transliteration": "l7saab, 3afak",
           "english": "The bill, please."
         },

@@ -23,47 +23,47 @@
       "phrases": [
         {
           "slot": "what-do-you-do-to-a-man",
-          "arabic": "شنو كتخدم؟",
+          "arabic": "شِنُّو كْتَخْدَم؟",
           "transliteration": "shnu katkhdem?",
           "reply": {
-            "arabic": "كنخدم مهندس",
+            "arabic": "كْنَخْدَم مُهَندِس",
             "transliteration": "kankhdem muhandis",
             "english": "I work as an engineer."
           }
         },
         {
           "slot": "what-do-you-do-to-a-woman",
-          "arabic": "شنو كتخدمي؟",
+          "arabic": "شِنُّو كْتَخْدَمِي؟",
           "transliteration": "shnu katkhdemi?",
           "reply": {
-            "arabic": "كنخدم أستاذة",
+            "arabic": "كْنَخْدَم أُسْتَاذَة",
             "transliteration": "kankhdem ostada",
             "english": "I work as a teacher."
           }
         },
         {
           "slot": "where-do-you-work",
-          "arabic": "فين كتخدم؟",
+          "arabic": "فِين كْتَخْدَم؟",
           "transliteration": "feen katkhdem?",
           "reply": {
-            "arabic": "كنخدم فشركة كبيرة",
+            "arabic": "كْنَخْدَم فْشِرْكَة كْبِيرَة",
             "transliteration": "kankhdem f shirka kbira",
             "english": "I work at a big company."
           }
         },
         {
           "slot": "i-m-still-a-student",
-          "arabic": "أنا باقي كنقرا",
+          "arabic": "أَنَا بَاقِي كْنَقْرَا",
           "transliteration": "ana baqi kanqra"
         },
         {
           "slot": "i-m-retired",
-          "arabic": "أنا تقاعدت",
+          "arabic": "أَنَا تَقَاعَدْت",
           "transliteration": "ana tqa3edt"
         },
         {
           "slot": "what-do-you-study",
-          "arabic": "شنو كتقرا؟",
+          "arabic": "شِنُّو كْتَقْرَا؟",
           "transliteration": "shnu katqra?",
           "reply": {
             "arabic": "كنقرا الطب",
@@ -73,40 +73,40 @@
         },
         {
           "slot": "i-work-from-home",
-          "arabic": "كنخدم من الدار",
+          "arabic": "كْنَخْدَم مِن الدَّار",
           "transliteration": "kankhdem mn ddar"
         },
         {
           "slot": "my-job-is-good",
-          "arabic": "الخدمة ديالي مزيانة",
+          "arabic": "الخِدْمَة دِيَالِي مْزِيَانَة",
           "transliteration": "lkhedma dyali mzyana"
         },
         {
           "slot": "i-m-not-finding-a-job",
-          "arabic": "مالقيتش خدمة",
+          "arabic": "مَالْقِيتْش خِدْمَة",
           "transliteration": "malqitsh khedma"
         },
         {
           "slot": "i-m-looking-for-a-new-job",
-          "arabic": "كنقلب على خدمة جديدة",
+          "arabic": "كْنَقَلَّب عَلَى خِدْمَة جْدِيدَة",
           "transliteration": "kanqelleb 3la khedma jdida"
         },
         {
           "slot": "how-many-years-have-you-been-working-here",
-          "arabic": "شحال هادي وانت كتخدم هنا؟",
+          "arabic": "شْحَال هَادِي وَانْت كْتَخْدَم هْنَا؟",
           "transliteration": "shhal hadi w nta katkhdem hna?",
           "reply": {
-            "arabic": "هادي خمس سنين",
+            "arabic": "هَادِي خْمَس سْنِين",
             "transliteration": "hadi khmes snin",
             "english": "It's been five years."
           }
         },
         {
           "slot": "what-would-you-like-to-work-as",
-          "arabic": "شنو بغيتي تخدم؟",
+          "arabic": "شِنُّو بْغِيتِي تْخْدَم؟",
           "transliteration": "shnu bghiti tkhdem?",
           "reply": {
-            "arabic": "بغيت نكون طبيب",
+            "arabic": "بْغِيت نْكُون طْبِيب",
             "transliteration": "bghit nkun tbib",
             "english": "I'd like to be a doctor."
           }
@@ -183,7 +183,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو كتخدم؟",
+            "arabic": "شِنُّو كْتَخْدَم؟",
             "transliteration": "shnu katkhdem?",
             "english": "What do you do?"
           },
@@ -195,7 +195,7 @@
         },
         {
           "pair": {
-            "arabic": "فين كتخدم؟",
+            "arabic": "فِين كْتَخْدَم؟",
             "transliteration": "feen katkhdem?",
             "english": "Where do you work?"
           },
@@ -207,7 +207,7 @@
         },
         {
           "pair": {
-            "arabic": "شنو كتقرا؟",
+            "arabic": "شِنُّو كْتَقْرَا؟",
             "transliteration": "shnu katqra?",
             "english": "What do you study?"
           },
@@ -236,9 +236,9 @@
           "id": "unit-08.lesson-01.reply.01",
           "type": "reply",
           "prompt": "واحد سولك: شنو كتخدم؟ شنو كتجاوب؟",
-          "answer": "كنخدم مهندس",
+          "answer": "كْنَخْدَم مُهَندِس",
           "accepted": [
-            "كنخدم مهندس",
+            "كْنَخْدَم مُهَندِس",
             "kankhdem muhandis",
             "أنا مهندس"
           ],
@@ -251,7 +251,7 @@
         {
           "id": "unit-08.lesson-01.reply.02",
           "type": "reply",
-          "prompt": "فين كتخدم؟",
+          "prompt": "فِين كْتَخْدَم؟",
           "answer": "كنخدم فشركة",
           "accepted": [
             "كنخدم فشركة",
@@ -300,9 +300,9 @@
           "id": "unit-08.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Where do you work?",
-          "answer": "فين كتخدم؟",
+          "answer": "فِين كْتَخْدَم؟",
           "accepted": [
-            "فين كتخدم؟",
+            "فِين كْتَخْدَم؟",
             "feen katkhdem?",
             "فين كتخدم"
           ],
@@ -316,9 +316,9 @@
           "id": "unit-08.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "I'm looking for a new job.",
-          "answer": "كنقلب على خدمة جديدة",
+          "answer": "كْنَقَلَّب عَلَى خِدْمَة جْدِيدَة",
           "accepted": [
-            "كنقلب على خدمة جديدة",
+            "كْنَقَلَّب عَلَى خِدْمَة جْدِيدَة",
             "kanqelleb 3la khedma jdida",
             "كنقلب على خدمة"
           ],
@@ -332,12 +332,12 @@
           "id": "unit-08.lesson-01.choose.01",
           "type": "choose",
           "prompt": "كيفاش كتسول واحد على الخدمة ديالو؟",
-          "answer": "شنو كتخدم؟",
+          "answer": "شِنُّو كْتَخْدَم؟",
           "accepted": [
-            "شنو كتخدم؟"
+            "شِنُّو كْتَخْدَم؟"
           ],
           "options": [
-            "شنو كتخدم؟",
+            "شِنُّو كْتَخْدَم؟",
             "كيداير؟",
             "فين غادي؟",
             "شحال فالساعة؟"
@@ -393,17 +393,17 @@
           "id": "unit-08.lesson-01.reorder.02",
           "type": "reorder",
           "prompt": "رتب الجملة",
-          "answer": "كنقلب على خدمة جديدة",
+          "answer": "كْنَقَلَّب عَلَى خِدْمَة جْدِيدَة",
           "accepted": [
-            "كنقلب على خدمة جديدة",
+            "كْنَقَلَّب عَلَى خِدْمَة جْدِيدَة",
             "kanqelleb 3la khedma jdida",
             "أنا كنقلب على خدمة جديدة"
           ],
           "words": [
-            "كنقلب",
-            "على",
-            "خدمة",
-            "جديدة"
+            "كْنَقَلَّب",
+            "عَلَى",
+            "خِدْمَة",
+            "جْدِيدَة"
           ],
           "too_formal": {
             "item": "أبحث عن عمل جديد",
@@ -418,72 +418,72 @@
       "phrases": [
         {
           "slot": "hi-are-you-coming-to-the-meeting",
-          "arabic": "السلام، غادي تجي للاجتماع؟",
+          "arabic": "السَّلَام، غَادِي تْجِي لِلاجْتِمَاع؟",
           "transliteration": "salam, ghadi tji l-ijtima3?",
           "reply": {
-            "arabic": "إيه، غادي نجي دابا",
+            "arabic": "إِيه، غَادِي نْجِي دَابَا",
             "transliteration": "ah, ghadi nji daba",
             "english": "Yes, I'm coming now."
           }
         },
         {
           "slot": "the-manager-wants-to-talk-to-you",
-          "arabic": "المدير باغي يهضر معاك",
+          "arabic": "الْمُدِير بَاغِي يْهَضِّر مْعَاك",
           "transliteration": "lmudir baghi yhder m3ak"
         },
         {
           "slot": "i-received-your-email",
-          "arabic": "وصلني الإيميل ديالك",
+          "arabic": "وْصَلْنِي الْإِيمِيل دِيَالَك",
           "transliteration": "wselni l-imayl dyalek"
         },
         {
           "slot": "i-haven-t-finished-the-report-yet",
-          "arabic": "مازال ما كملتش التقرير",
+          "arabic": "مَازَال مَا كْمَلْتْش التِّقْرِير",
           "transliteration": "mazal ma kmmeltsh ttaqrir"
         },
         {
           "slot": "i-have-a-meeting-at-ten-o-clock",
-          "arabic": "عندي اجتماع على العاشرة",
+          "arabic": "عِنْدِي اجْتِمَاع عْلَى الْعَاشِرَة",
           "transliteration": "3andi ijtima3 3la l-3ashra"
         },
         {
           "slot": "my-colleague-at-the-office-is-very-nice",
-          "arabic": "الزميل ديالي فالخدمة مزيان بزاف",
+          "arabic": "الزَّمِيل دِيَالِي فَالْخِدْمَة مْزِيَان بْزَاف",
           "transliteration": "zzmil dyali f lkhedma mzyan bzzaf"
         },
         {
           "slot": "we-must-finish-this-task-before-the-afternoon",
-          "arabic": "خاصنا نكملو هاد الخدمة قبل العشية",
+          "arabic": "خَاصْنَا نْكَمْلُو هَاد الْخِدْمَة قْبَل الْعَشِيَّة",
           "transliteration": "khassna nkemmlu had lkhedma qbel l-3shiya"
         },
         {
           "slot": "my-boss-is-very-demanding",
-          "arabic": "الشيف ديالي صعيب بزاف",
+          "arabic": "الشِّيف دِيَالِي صْعِيب بْزَاف",
           "transliteration": "shshif dyali s3eeb bzzaf"
         },
         {
           "slot": "i-took-two-days-off",
-          "arabic": "خديت جوج أيام ديال الكونجي",
+          "arabic": "خْدِيت جُوج أَيَّام دِيَال الكُونْجِي",
           "transliteration": "khdit juj ayyam d lkonji"
         },
         {
           "slot": "the-salary-comes-at-the-end-of-the-month",
-          "arabic": "الخلصة كتجي فآخر الشهر",
+          "arabic": "الخِلْصَة كْتْجِي فَآخِر الشَّهْر",
           "transliteration": "lkhlasa katji f akhir shshhar"
         },
         {
           "slot": "are-there-overtime-hours-today",
-          "arabic": "واش كاينين شي ساعات إضافية اليوم؟",
+          "arabic": "وَاش كَايْنِين شِي سَاعَات إِضَافِيَّة الْيُوم؟",
           "transliteration": "wash kayneen shi sa3at idafiya lyum?",
           "reply": {
-            "arabic": "لا، غادي نسدو فالوقت",
+            "arabic": "لَا، غَادِي نْسَدُّو فَالْوَقْت",
             "transliteration": "la, ghadi nsddu f lwqt",
             "english": "No, we'll close on time."
           }
         },
         {
           "slot": "the-printer-keeps-breaking-down",
-          "arabic": "الطابعة ديما كتخرب",
+          "arabic": "الطَّابِعَة دِيمَا كْتَخْرَب",
           "transliteration": "ttaba3a dima katkherb"
         }
       ],
@@ -610,10 +610,10 @@
         {
           "id": "unit-08.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "السلام، غادي تجي للاجتماع؟",
-          "answer": "إيه، غادي نجي دابا",
+          "prompt": "السَّلَام، غَادِي تْجِي لِلاجْتِمَاع؟",
+          "answer": "إِيه، غَادِي نْجِي دَابَا",
           "accepted": [
-            "إيه، غادي نجي دابا",
+            "إِيه، غَادِي نْجِي دَابَا",
             "ah, ghadi nji daba",
             "إيه، غادي نجي"
           ],
@@ -627,9 +627,9 @@
           "id": "unit-08.lesson-02.reply.02",
           "type": "reply",
           "prompt": "واش كاينين ساعات إضافية اليوم؟",
-          "answer": "لا، غادي نسدو فالوقت",
+          "answer": "لَا، غَادِي نْسَدُّو فَالْوَقْت",
           "accepted": [
-            "لا، غادي نسدو فالوقت",
+            "لَا، غَادِي نْسَدُّو فَالْوَقْت",
             "la, ghadi nsddu f lwqt",
             "لا، ما كاينش"
           ],
@@ -675,9 +675,9 @@
           "id": "unit-08.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I have a meeting at ten o'clock.",
-          "answer": "عندي اجتماع على العاشرة",
+          "answer": "عِنْدِي اجْتِمَاع عْلَى الْعَاشِرَة",
           "accepted": [
-            "عندي اجتماع على العاشرة",
+            "عِنْدِي اجْتِمَاع عْلَى الْعَاشِرَة",
             "3andi ijtima3 3la l-3ashra",
             "عندي ريونيون على العاشرة"
           ],
@@ -691,9 +691,9 @@
           "id": "unit-08.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "The salary comes at the end of the month.",
-          "answer": "الخلصة كتجي فآخر الشهر",
+          "answer": "الخِلْصَة كْتْجِي فَآخِر الشَّهْر",
           "accepted": [
-            "الخلصة كتجي فآخر الشهر",
+            "الخِلْصَة كْتْجِي فَآخِر الشَّهْر",
             "lkhlasa katji f akhir shshhar",
             "الخلصة كتجي فنهاية الشهر"
           ],
@@ -747,17 +747,17 @@
           "id": "unit-08.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "رتب الجملة",
-          "answer": "عندي اجتماع على العاشرة",
+          "answer": "عِنْدِي اجْتِمَاع عْلَى الْعَاشِرَة",
           "accepted": [
-            "عندي اجتماع على العاشرة",
+            "عِنْدِي اجْتِمَاع عْلَى الْعَاشِرَة",
             "3andi ijtima3 3la l-3ashra",
             "على العاشرة عندي اجتماع"
           ],
           "words": [
-            "عندي",
-            "اجتماع",
-            "على",
-            "العاشرة"
+            "عِنْدِي",
+            "اجْتِمَاع",
+            "عْلَى",
+            "الْعَاشِرَة"
           ],
           "too_formal": {
             "item": "لدي اجتماع في العاشرة",
@@ -769,16 +769,16 @@
           "id": "unit-08.lesson-02.reorder.02",
           "type": "reorder",
           "prompt": "رتب الجملة",
-          "answer": "الطابعة ديما كتخرب",
+          "answer": "الطَّابِعَة دِيمَا كْتَخْرَب",
           "accepted": [
-            "الطابعة ديما كتخرب",
+            "الطَّابِعَة دِيمَا كْتَخْرَب",
             "ttaba3a dima katkherb",
             "ديما الطابعة كتخرب"
           ],
           "words": [
-            "الطابعة",
-            "ديما",
-            "كتخرب"
+            "الطَّابِعَة",
+            "دِيمَا",
+            "كْتَخْرَب"
           ],
           "too_formal": {
             "item": "الطابعة تتعطل دائما",
@@ -793,72 +793,72 @@
       "phrases": [
         {
           "slot": "i-have-a-lecture-at-nine",
-          "arabic": "عندي محاضرة على التاسعة",
+          "arabic": "عِنْدِي مُحَاضِرَة عْلَى التَّاسِعَة",
           "transliteration": "3andi muhadara 3la ttas3a"
         },
         {
           "slot": "the-professor-is-absent-today",
-          "arabic": "الأستاذ ما جاش اليوم",
+          "arabic": "الْأُسْتَاذ مَا جَاش الْيُوم",
           "transliteration": "lostad ma jash lyum"
         },
         {
           "slot": "i-have-an-exam-tomorrow",
-          "arabic": "عندي الامتحان غدا",
+          "arabic": "عِنْدِي الِامْتِحَان غَدًّا",
           "transliteration": "3andi limti7an ghedda"
         },
         {
           "slot": "what-s-your-major",
-          "arabic": "شنو هو التخصص ديالك؟",
+          "arabic": "شِنُّو هُوَ التَّخَصُّص دِيَالَك؟",
           "transliteration": "shnu huwa ttakhassus dyalek?",
           "reply": {
-            "arabic": "كنقرا الإعلاميات",
+            "arabic": "كْنَقْرَا الْإِعْلَامِيَّات",
             "transliteration": "kanqra l-i3lamiyat",
             "english": "I study computer science."
           }
         },
         {
           "slot": "what-year-are-you-in",
-          "arabic": "فأشمن سنة نتا؟",
+          "arabic": "فْأَشْمِن سْنَة نْتَا؟",
           "transliteration": "f ashmen sna nta?",
           "reply": {
-            "arabic": "فالسنة الثانية",
+            "arabic": "فَالسِّنَة الثَّانِيَة",
             "transliteration": "f ssna ttanya",
             "english": "In the second year."
           }
         },
         {
           "slot": "i-have-to-study-a-lot-this-semester",
-          "arabic": "خاصني نقرا بزاف هاد السمستر",
+          "arabic": "خَاصْنِي نْقْرَا بْزَاف هَاد السِّمِسْتْر",
           "transliteration": "khassni nqra bzzaf had ssimistr"
         },
         {
           "slot": "the-exam-result-came-out-good",
-          "arabic": "النتيجة ديال الامتحان جات مزيانة",
+          "arabic": "النَّتِيجَة دِيَال الِامْتِحَان جَات مْزِيَانَة",
           "transliteration": "nnatija dyal limti7an jat mzyana"
         },
         {
           "slot": "i-didn-t-understand-the-lecture-well",
-          "arabic": "ما فهمتش المحاضرة مزيان",
+          "arabic": "مَا فْهَمْتْش الْمُحَاضِرَة مْزِيَان",
           "transliteration": "ma fhemtsh lmuhadara mzyan"
         },
         {
           "slot": "i-have-to-submit-the-assignment-before-friday",
-          "arabic": "خاصني نسلم الفرض قبل الجمعة",
+          "arabic": "خَاصْنِي نْسَلِّم الْفَرْض قْبَل الْجُمْعَة",
           "transliteration": "khassni nsellem lfard qbel ljem3a"
         },
         {
           "slot": "my-friends-at-university-are-very-nice",
-          "arabic": "صحابي فالجامعة زوينين بزاف",
+          "arabic": "صْحَابِي فَالْجَامِعَة زُوَيْنِين بْزَاف",
           "transliteration": "sa7abi f ljam3a zwinin bzzaf"
         },
         {
           "slot": "the-university-library-is-open-until-night",
-          "arabic": "الخزانة ديال الجامعة كتبقى مفتوحة حتى للليل",
+          "arabic": "الْخَزَانَة دِيَال الْجَامِعَة كْتَبْقَى مَفْتُوحَة حَتَّى لِلْلَّيْل",
           "transliteration": "lkhizana dyal ljam3a katbqa maftu7a 7ta l-lil"
         },
         {
           "slot": "i-want-to-register-more-courses-next-semester",
-          "arabic": "بغيت نسجل فشي مواد خرين السمستر الجاي",
+          "arabic": "بْغِيت نْسَجِّل فْشِي مَوَاد خْرِين السِّمِسْتْر الْجَاي",
           "transliteration": "bghit nsejjel f shi mawadd khrin ssimistr ljay"
         }
       ],
@@ -933,7 +933,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو هو التخصص ديالك؟",
+            "arabic": "شِنُّو هُوَ التَّخَصُّص دِيَالَك؟",
             "transliteration": "shnu huwa ttakhassus dyalek?",
             "english": "What's your major?"
           },
@@ -945,7 +945,7 @@
         },
         {
           "pair": {
-            "arabic": "فأشمن سنة نتا؟",
+            "arabic": "فْأَشْمِن سْنَة نْتَا؟",
             "transliteration": "f ashmen sna nta?",
             "english": "What year are you in?"
           },
@@ -985,10 +985,10 @@
         {
           "id": "unit-08.lesson-03.reply.01",
           "type": "reply",
-          "prompt": "شنو هو التخصص ديالك؟",
-          "answer": "كنقرا الإعلاميات",
+          "prompt": "شِنُّو هُوَ التَّخَصُّص دِيَالَك؟",
+          "answer": "كْنَقْرَا الْإِعْلَامِيَّات",
           "accepted": [
-            "كنقرا الإعلاميات",
+            "كْنَقْرَا الْإِعْلَامِيَّات",
             "kanqra l-i3lamiyat",
             "كنقرا الطب"
           ],
@@ -1001,10 +1001,10 @@
         {
           "id": "unit-08.lesson-03.reply.02",
           "type": "reply",
-          "prompt": "فأشمن سنة نتا؟",
-          "answer": "فالسنة الثانية",
+          "prompt": "فْأَشْمِن سْنَة نْتَا؟",
+          "answer": "فَالسِّنَة الثَّانِيَة",
           "accepted": [
-            "فالسنة الثانية",
+            "فَالسِّنَة الثَّانِيَة",
             "f ssna ttanya",
             "فالسنة الأولى"
           ],
@@ -1050,9 +1050,9 @@
           "id": "unit-08.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I have an exam tomorrow.",
-          "answer": "عندي الامتحان غدا",
+          "answer": "عِنْدِي الِامْتِحَان غَدًّا",
           "accepted": [
-            "عندي الامتحان غدا",
+            "عِنْدِي الِامْتِحَان غَدًّا",
             "3andi limti7an ghedda",
             "عندي امتحان غدا"
           ],
@@ -1066,9 +1066,9 @@
           "id": "unit-08.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "I didn't understand the lecture well.",
-          "answer": "ما فهمتش المحاضرة مزيان",
+          "answer": "مَا فْهَمْتْش الْمُحَاضِرَة مْزِيَان",
           "accepted": [
-            "ما فهمتش المحاضرة مزيان",
+            "مَا فْهَمْتْش الْمُحَاضِرَة مْزِيَان",
             "ma fhemtsh lmuhadara mzyan",
             "ما فهمتش الكور مزيان"
           ],
@@ -1122,16 +1122,16 @@
           "id": "unit-08.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "رتب الجملة",
-          "answer": "عندي الامتحان غدا",
+          "answer": "عِنْدِي الِامْتِحَان غَدًّا",
           "accepted": [
-            "عندي الامتحان غدا",
+            "عِنْدِي الِامْتِحَان غَدًّا",
             "3andi limti7an ghedda",
             "غدا عندي الامتحان"
           ],
           "words": [
-            "عندي",
-            "الامتحان",
-            "غدا"
+            "عِنْدِي",
+            "الِامْتِحَان",
+            "غَدًّا"
           ],
           "too_formal": {
             "item": "لدي امتحان غدا",
@@ -1143,18 +1143,18 @@
           "id": "unit-08.lesson-03.reorder.02",
           "type": "reorder",
           "prompt": "رتب الجملة",
-          "answer": "خاصني نقرا بزاف هاد السمستر",
+          "answer": "خَاصْنِي نْقْرَا بْزَاف هَاد السِّمِسْتْر",
           "accepted": [
-            "خاصني نقرا بزاف هاد السمستر",
+            "خَاصْنِي نْقْرَا بْزَاف هَاد السِّمِسْتْر",
             "khassni nqra bzzaf had ssimistr",
             "هاد السمستر خاصني نقرا بزاف"
           ],
           "words": [
-            "خاصني",
-            "نقرا",
-            "بزاف",
-            "هاد",
-            "السمستر"
+            "خَاصْنِي",
+            "نْقْرَا",
+            "بْزَاف",
+            "هَاد",
+            "السِّمِسْتْر"
           ],
           "too_formal": {
             "item": "يجب أن أدرس كثيرا هذا الفصل",
@@ -1169,67 +1169,67 @@
       "phrases": [
         {
           "slot": "what-do-you-plan-to-do-after-you-graduate",
-          "arabic": "شنو ناوي تدير من بعد التخرج؟",
+          "arabic": "شِنُّو نَاوِي تْدِير مِن بْعَد التَّخَرُّج؟",
           "transliteration": "shnu nawi tdir mn b3d ttakharruj?",
           "reply": {
-            "arabic": "ناوي نكمل قرايتي",
+            "arabic": "نَاوِي نْكَمِّل قْرَايْتِي",
             "transliteration": "nawi nkemmel qraytti",
             "english": "I plan to continue my studies."
           }
         },
         {
           "slot": "i-want-to-continue-my-studies-for-a-master-s",
-          "arabic": "بغيت نكمل قرايتي فالماستر",
+          "arabic": "بْغِيت نْكَمِّل قْرَايْتِي فَالْمَاسْتَر",
           "transliteration": "bghit nkemmel qraytti f lmaster"
         },
         {
           "slot": "i-intend-to-start-my-own-project",
-          "arabic": "ناوي نبدا مشروع ديالي",
+          "arabic": "نَاوِي نْبْدَا مَشْرُوع دِيَالِي",
           "transliteration": "nawi nbda mashru3 dyali"
         },
         {
           "slot": "i-m-thinking-of-traveling-to-work-abroad",
-          "arabic": "كنفكر نسافر نخدم فالخارج",
+          "arabic": "كْنَفَكِّر نْسَافِر نْخْدَم فَالْخَارِج",
           "transliteration": "kanfekker nsafer nkhdem f lkharij"
         },
         {
           "slot": "in-five-years-where-will-you-be",
-          "arabic": "فين غادي تكون من هنا لخمس سنين؟",
+          "arabic": "فِين غَادِي تْكُون مِن هْنَا لِخْمَس سْنِين؟",
           "transliteration": "feen ghadi tkun mn hna l-khmes snin?"
         },
         {
           "slot": "i-ll-try-to-enter-a-phd-program",
-          "arabic": "غادي نحاول ندخل للدكتوراه",
+          "arabic": "غَادِي نْحَاوِل نْدْخُل لِلدُّكْتُورَاه",
           "transliteration": "ghadi n7awel ndkhul l-doktora"
         },
         {
           "slot": "my-dream-is-to-open-a-restaurant",
-          "arabic": "الحلم ديالي هو نحل مطعم",
+          "arabic": "الْحُلْم دِيَالِي هُوَ نْحَلّ مَطْعَم",
           "transliteration": "l7olm dyali huwa n7ell mat3am"
         },
         {
           "slot": "i-haven-t-decided-yet-what-i-ll-do",
-          "arabic": "مازال ما قررتش شنو غادي ندير",
+          "arabic": "مَازَال مَا قَرَّرْتْش شِنُّو غَادِي نْدِير",
           "transliteration": "mazal ma qarrartsh shnu ghadi ndir"
         },
         {
           "slot": "i-want-to-settle-down-and-get-married-after-i-wo",
-          "arabic": "بغيت نستقر ونتزوج من بعد ما نخدم شوية",
+          "arabic": "بْغِيت نْسْتَقِرّ وْنْتَزَوَّج مِن بْعَد مَا نْخْدَم شْوِيَّة",
           "transliteration": "bghit nstaqer w ntzewwej mn b3d ma nkhdem shwiya"
         },
         {
           "slot": "i-ll-apply-for-a-job-at-a-big-company",
-          "arabic": "غادي نقدم على خدمة فشركة كبيرة",
+          "arabic": "غَادِي نْقَدِّم عْلَى خِدْمَة فْشِرْكَة كْبِيرَة",
           "transliteration": "ghadi nqeddem 3la khedma f shirka kbira"
         },
         {
           "slot": "my-ambition-is-to-become-a-manager-one-day",
-          "arabic": "الطموح ديالي هو نولي مدير نهار من الأيام",
+          "arabic": "الطُّمُوح دِيَالِي هُوَ نْوَلِّي مُدِير نْهَار مِن الْأَيَّام",
           "transliteration": "ttumu7 dyali huwa nwelli mudir nhar mn lay-yam"
         },
         {
           "slot": "the-most-important-thing-is-to-be-comfortable-in",
-          "arabic": "أهم حاجة هي نكون مرتاح فالخدمة ديالي",
+          "arabic": "أَهَمّ حَاجَة هِيَّ نْكُون مْرْتَاح فَالْخِدْمَة دِيَالِي",
           "transliteration": "ahamm 7aja hiya nkun mrta7 f lkhedma dyali"
         }
       ],
@@ -1304,7 +1304,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو ناوي تدير من بعد التخرج؟",
+            "arabic": "شِنُّو نَاوِي تْدِير مِن بْعَد التَّخَرُّج؟",
             "transliteration": "shnu nawi tdir mn b3d ttakharruj?",
             "english": "What do you plan to do after graduating?"
           },
@@ -1316,7 +1316,7 @@
         },
         {
           "pair": {
-            "arabic": "فين غادي تكون من هنا لخمس سنين؟",
+            "arabic": "فِين غَادِي تْكُون مِن هْنَا لِخْمَس سْنِين؟",
             "transliteration": "feen ghadi tkun mn hna l-khmes snin?",
             "english": "Where will you be in five years?"
           },
@@ -1356,10 +1356,10 @@
         {
           "id": "unit-08.lesson-04.reply.01",
           "type": "reply",
-          "prompt": "شنو ناوي تدير من بعد التخرج؟",
-          "answer": "ناوي نكمل قرايتي",
+          "prompt": "شِنُّو نَاوِي تْدِير مِن بْعَد التَّخَرُّج؟",
+          "answer": "نَاوِي نْكَمِّل قْرَايْتِي",
           "accepted": [
-            "ناوي نكمل قرايتي",
+            "نَاوِي نْكَمِّل قْرَايْتِي",
             "nawi nkemmel qraytti",
             "غادي نكمل قرايتي"
           ],
@@ -1372,7 +1372,7 @@
         {
           "id": "unit-08.lesson-04.reply.02",
           "type": "reply",
-          "prompt": "فين غادي تكون من هنا لخمس سنين؟",
+          "prompt": "فِين غَادِي تْكُون مِن هْنَا لِخْمَس سْنِين؟",
           "answer": "إن شاء الله مدير",
           "accepted": [
             "إن شاء الله مدير",
@@ -1421,9 +1421,9 @@
           "id": "unit-08.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I haven't decided yet what I'll do.",
-          "answer": "مازال ما قررتش شنو غادي ندير",
+          "answer": "مَازَال مَا قَرَّرْتْش شِنُّو غَادِي نْدِير",
           "accepted": [
-            "مازال ما قررتش شنو غادي ندير",
+            "مَازَال مَا قَرَّرْتْش شِنُّو غَادِي نْدِير",
             "mazal ma qarrartsh shnu ghadi ndir",
             "مازال ما قررتش"
           ],
@@ -1437,9 +1437,9 @@
           "id": "unit-08.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "I'll apply for a job at a big company.",
-          "answer": "غادي نقدم على خدمة فشركة كبيرة",
+          "answer": "غَادِي نْقَدِّم عْلَى خِدْمَة فْشِرْكَة كْبِيرَة",
           "accepted": [
-            "غادي نقدم على خدمة فشركة كبيرة",
+            "غَادِي نْقَدِّم عْلَى خِدْمَة فْشِرْكَة كْبِيرَة",
             "ghadi nqeddem 3la khedma f shirka kbira",
             "غادي نقدم على خدمة فشركة"
           ],
@@ -1493,17 +1493,17 @@
           "id": "unit-08.lesson-04.reorder.01",
           "type": "reorder",
           "prompt": "رتب الجملة",
-          "answer": "بغيت نكمل قرايتي فالماستر",
+          "answer": "بْغِيت نْكَمِّل قْرَايْتِي فَالْمَاسْتَر",
           "accepted": [
-            "بغيت نكمل قرايتي فالماستر",
+            "بْغِيت نْكَمِّل قْرَايْتِي فَالْمَاسْتَر",
             "bghit nkemmel qraytti f lmaster",
             "أنا بغيت نكمل قرايتي فالماستر"
           ],
           "words": [
-            "بغيت",
-            "نكمل",
-            "قرايتي",
-            "فالماستر"
+            "بْغِيت",
+            "نْكَمِّل",
+            "قْرَايْتِي",
+            "فَالْمَاسْتَر"
           ],
           "too_formal": {
             "item": "أريد إكمال دراستي في الماستر",
@@ -1515,17 +1515,17 @@
           "id": "unit-08.lesson-04.reorder.02",
           "type": "reorder",
           "prompt": "رتب الجملة",
-          "answer": "غادي نحاول ندخل للدكتوراه",
+          "answer": "غَادِي نْحَاوِل نْدْخُل لِلدُّكْتُورَاه",
           "accepted": [
-            "غادي نحاول ندخل للدكتوراه",
+            "غَادِي نْحَاوِل نْدْخُل لِلدُّكْتُورَاه",
             "ghadi n7awel ndkhul l-doktora",
             "أنا غادي نحاول ندخل للدكتوراه"
           ],
           "words": [
-            "غادي",
-            "نحاول",
-            "ندخل",
-            "للدكتوراه"
+            "غَادِي",
+            "نْحَاوِل",
+            "نْدْخُل",
+            "لِلدُّكْتُورَاه"
           ],
           "too_formal": {
             "item": "سأحاول الالتحاق بالدكتوراه",
