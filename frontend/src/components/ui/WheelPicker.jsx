@@ -12,11 +12,15 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { wheelFind } from '../../lib/wheelFind'
 import ArabicText from './ArabicText'
 
+// Card height in px (input, five wheel rows, padding) with a little air.
+const CARD_HEIGHT = 280
+
 export default function WheelPicker({ label, placeholder, options, value, onPick, disabled = false, narrow = false, className = '' }) {
   const [open, setOpen] = useState(false)
   const [typed, setTyped] = useState('')
   const [at, setAt] = useState(0)
   const [flip, setFlip] = useState(false)
+  const [up, setUp] = useState(false)
   const box = useRef(null)
   const pill = useRef(null)
   const wheel = useRef(null)
@@ -85,7 +89,11 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
         disabled={disabled}
         onClick={() => {
           // Opens leftwards when a pill sits too near the right edge for the card.
-          setFlip(pill.current.getBoundingClientRect().left + (narrow ? 144 : 256) > window.innerWidth)
+          const at = pill.current.getBoundingClientRect()
+          setFlip(at.left + (narrow ? 144 : 256) > window.innerWidth)
+          // Opens upwards when the card would run off the bottom and there is more room above.
+          const below = window.innerHeight - at.bottom
+          setUp(below < CARD_HEIGHT && at.top > below)
           setOpen((o) => !o)
         }}
         className="wheel-pill press"
@@ -97,7 +105,7 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
       </button>
 
       {open && (
-        <div className={`wheel-card rise-in ${narrow ? 'wheel-card-narrow' : ''} ${flip ? 'wheel-card-flip' : ''}`}>
+        <div className={`wheel-card rise-in ${narrow ? 'wheel-card-narrow' : ''} ${flip ? 'wheel-card-flip' : ''} ${up ? 'wheel-card-up' : ''}`}>
           <input
             autoFocus
             role="combobox"

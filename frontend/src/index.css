@@ -974,6 +974,7 @@ dialog::backdrop {
 .wheel-item[aria-selected='true'] { color: var(--text); font-weight: 600; }
 .wheel-hint { color: var(--text-faint); }
 .wheel-card-flip { left: auto; right: 0; }
+.wheel-card-up { top: auto; bottom: calc(100% + 0.375rem); }
 
 /* Every tab's outer column: one gap between its blocks, from theme.json space.panel. */
 .panel > * + * { margin-top: var(--space-panel); }
