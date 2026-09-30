@@ -62,8 +62,11 @@ export const BOOKS = {
     // is only wanted when stuck, not while trying.
     meaningDefault: false,
     // Each line is an ayah whose label the backend can check words against by
-    // sound, so the checking level applies. The poem has no such text.
+    // sound, so the ear's sureness applies. The poem has no such text.
     checkedBySound: true,
+    // Printed as a mushaf prints it: the ayahs of a page run on, justified,
+    // each ending in its number. A poem keeps one bayt to a line.
+    flow: true,
     /**
      * One part as lines, plus whatever the book wants to show as its title.
      * The same endpoint the Quran tab reads, the text is not fetched twice
