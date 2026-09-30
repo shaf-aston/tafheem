@@ -1,0 +1,1705 @@
+{
+  "unit": "unit-06",
+  "dialect": "Fusha (Modern Standard Arabic)",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "q": "ق",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "i-want-a-dress",
+          "arabic": "أُرِيدُ فُسْتَانًا",
+          "transliteration": "ureedu fustaanan"
+        },
+        {
+          "slot": "i-want-a-shirt",
+          "arabic": "أُرِيدُ قَمِيصًا",
+          "transliteration": "ureedu qameesan"
+        },
+        {
+          "slot": "what-s-your-size-to-a-man",
+          "arabic": "مَا مَقَاسُكَ؟",
+          "transliteration": "maa maqaasuka?",
+          "reply": {
+            "arabic": "مَقَاسِي مُتَوَسِّط",
+            "transliteration": "maqaasee mutawassit",
+            "english": "My size is medium."
+          }
+        },
+        {
+          "slot": "what-s-your-size-to-a-woman",
+          "arabic": "مَا مَقَاسُكِ؟",
+          "transliteration": "maa maqaasuki?"
+        },
+        {
+          "slot": "can-i-try-it-on",
+          "arabic": "هَلْ أَسْتَطِيعُ أَنْ أُجَرِّبَهُ؟",
+          "transliteration": "hal astatee3u an ujarribahu?",
+          "reply": {
+            "arabic": "نَعَمْ، تَفَضَّلْ",
+            "transliteration": "na3am, tafaddal",
+            "english": "Yes, go ahead."
+          }
+        },
+        {
+          "slot": "where-s-the-fitting-room",
+          "arabic": "أَيْنَ غُرْفَةُ الْقِيَاس؟",
+          "transliteration": "ayna ghurfatu al-qiyaas?",
+          "reply": {
+            "arabic": "هُنَاكَ، عَلَى الْيَمِين",
+            "transliteration": "hunaaka, 3alaa al-yameen",
+            "english": "Over there, on the right."
+          }
+        },
+        {
+          "slot": "this-is-too-big-for-me",
+          "arabic": "هَذَا كَبِيرٌ عَلَيَّ",
+          "transliteration": "haadhaa kabeerun 3alayya"
+        },
+        {
+          "slot": "this-is-too-tight-for-me",
+          "arabic": "هَذَا ضَيِّقٌ عَلَيَّ",
+          "transliteration": "haadhaa dayyiqun 3alayya"
+        },
+        {
+          "slot": "do-you-have-a-smaller-size",
+          "arabic": "هَلْ يُوجَدُ مَقَاسٌ أَصْغَر؟",
+          "transliteration": "hal yoojadu maqaasun asghar?",
+          "reply": {
+            "arabic": "نَعَمْ، سَأُحْضِرُهُ لَكَ",
+            "transliteration": "na3am, sa2u7diruhu laka",
+            "english": "Yes, I'll bring it for you."
+          }
+        },
+        {
+          "slot": "i-tried-it-on-and-it-fits-me",
+          "arabic": "جَرَّبْتُهُ وَهُوَ مُنَاسِبٌ لِي",
+          "transliteration": "jarrabtuhu wa huwa munaasibun lee"
+        },
+        {
+          "slot": "is-this-fabric-cotton",
+          "arabic": "هَلْ هَذَا الْقُمَاشُ قُطْن؟",
+          "transliteration": "hal haadhaa al-qumaashu qutn?",
+          "reply": {
+            "arabic": "نَعَمْ، قُطْنٌ خَالِص",
+            "transliteration": "na3am, qutnun khaalis",
+            "english": "Yes, pure cotton."
+          }
+        },
+        {
+          "slot": "i-want-sports-shoes",
+          "arabic": "أُرِيدُ حِذَاءً رِيَاضِيًّا",
+          "transliteration": "ureedu 7idhaa2an riyaadiyyan"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Omar",
+          "arabic": "أَهْلًا بِكَ. كَيْفَ أُسَاعِدُكَ؟",
+          "transliteration": "ahlan bika. kayfa usaa3iduka?",
+          "english": "Welcome. How can I help you?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "أُرِيدُ قَمِيصًا لِلْعَمَل.",
+          "transliteration": "ureedu qameesan lil-3amal.",
+          "english": "I want a shirt for work."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "مَا مَقَاسُكَ؟",
+          "transliteration": "maa maqaasuka?",
+          "english": "What's your size?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "لَا أَعْرِفُ. أَظُنُّ أَنَّهُ مُتَوَسِّط.",
+          "transliteration": "laa a3rifu. adhunnu annahu mutawassit.",
+          "english": "I don't know. I think it's medium."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "تَفَضَّلْ، هَذَا قَمِيصٌ جَمِيل.",
+          "transliteration": "tafaddal, haadhaa qameesun jameel.",
+          "english": "Here you are, this is a nice shirt."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "هَلْ هَذَا الْقُمَاشُ قُطْن؟",
+          "transliteration": "hal haadhaa al-qumaashu qutn?",
+          "english": "Is this fabric cotton?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "نَعَمْ، قُطْنٌ خَالِص.",
+          "transliteration": "na3am, qutnun khaalis.",
+          "english": "Yes, pure cotton."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "هَلْ أَسْتَطِيعُ أَنْ أُجَرِّبَهُ؟",
+          "transliteration": "hal astatee3u an ujarribahu?",
+          "english": "Can I try it on?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "طَبْعًا. غُرْفَةُ الْقِيَاسِ عَلَى الْيَمِين.",
+          "transliteration": "tab3an. ghurfatu al-qiyaasi 3alaa al-yameen.",
+          "english": "Of course. The fitting room is on the right."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "هَذَا كَبِيرٌ عَلَيَّ. هَلْ يُوجَدُ مَقَاسٌ أَصْغَر؟",
+          "transliteration": "haadhaa kabeerun 3alayya. hal yoojadu maqaasun asghar?",
+          "english": "This is too big for me. Do you have a smaller size?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "نَعَمْ، سَأُحْضِرُهُ لَكَ.",
+          "transliteration": "na3am, sa2u7diruhu laka.",
+          "english": "Yes, I'll bring it for you."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "جَرَّبْتُهُ وَهُوَ مُنَاسِبٌ لِي. سَآخُذُهُ.",
+          "transliteration": "jarrabtuhu wa huwa munaasibun lee. sa2aakhudhuhu.",
+          "english": "I tried it on and it fits me. I'll take it."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أُرِيدُ قَمِيصًا.",
+            "transliteration": "ureedu qameesan.",
+            "english": "I want a shirt."
+          },
+          "response": {
+            "arabic": "تَفَضَّلْ، مَا مَقَاسُكَ؟",
+            "transliteration": "tafaddal, maa maqaasuka?",
+            "english": "Please, what's your size?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ أَسْتَطِيعُ أَنْ أُجَرِّبَهُ؟",
+            "transliteration": "hal astatee3u an ujarribahu?",
+            "english": "Can I try it on?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، غُرْفَةُ الْقِيَاسِ هُنَاكَ.",
+            "transliteration": "na3am, ghurfatu al-qiyaasi hunaaka.",
+            "english": "Yes, the fitting room is over there."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَذَا كَبِيرٌ عَلَيَّ.",
+            "transliteration": "haadhaa kabeerun 3alayya.",
+            "english": "This is too big for me."
+          },
+          "response": {
+            "arabic": "سَأُحْضِرُ لَكَ مَقَاسًا أَصْغَر.",
+            "transliteration": "sa2u7diru laka maqaasan asghar.",
+            "english": "I'll bring you a smaller size."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ هَذَا الْقُمَاشُ قُطْن؟",
+            "transliteration": "hal haadhaa al-qumaashu qutn?",
+            "english": "Is this fabric cotton?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، قُطْنٌ خَالِص.",
+            "transliteration": "na3am, qutnun khaalis.",
+            "english": "Yes, pure cotton."
+          }
+        }
+      ],
+      "culture": "In shops the seller often asks مَا مَقَاسُكَ؟ first, and a polite customer asks هَلْ أَسْتَطِيعُ أَنْ أُجَرِّبَهُ؟ before buying. Sizes are usually given as letters such as S, M and L, or as European numbers.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "The seller asks you: 'مَا مَقَاسُكَ؟'. Say your size is medium.",
+          "answer": "مَقَاسِي مُتَوَسِّط",
+          "accepted": [
+            "مَقَاسِي مُتَوَسِّط",
+            "مقاسي متوسط",
+            "مُتَوَسِّط",
+            "maqaasee mutawassit"
+          ],
+          "too_formal": {
+            "item": "مَقَاسِي مِيدْيَم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مُتَوَسِّط means 'medium'; the ending ـِي on مَقَاسِي means 'my'."
+        },
+        {
+          "id": "unit-06.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "You try a shirt on and it is too big. Tell the seller.",
+          "answer": "هَذَا كَبِيرٌ عَلَيَّ",
+          "accepted": [
+            "هَذَا كَبِيرٌ عَلَيَّ",
+            "هذا كبير علي",
+            "هَذَا كَبِير عَلَيَّ",
+            "haadhaa kabeerun 3alayya"
+          ],
+          "too_formal": {
+            "item": "هَادَا كْبِير عَلَيِّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عَلَيَّ here means 'on me', so 'too big for me'."
+        },
+        {
+          "id": "unit-06.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَلْ _____ مَقَاسٌ أَصْغَر؟' (Do you have a smaller size?)",
+          "answer": "يُوجَدُ",
+          "accepted": [
+            "يُوجَدُ",
+            "يوجد",
+            "عِنْدَكُمْ",
+            "yoojadu"
+          ],
+          "too_formal": {
+            "item": "فِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَلْ يُوجَدُ is the formal way to ask 'is there'."
+        },
+        {
+          "id": "unit-06.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أُرِيدُ _____ رِيَاضِيًّا.' (I want sports shoes.)",
+          "answer": "حِذَاءً",
+          "accepted": [
+            "حِذَاءً",
+            "حذاء",
+            "7idhaa2an"
+          ],
+          "too_formal": {
+            "item": "جَزْمَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "حِذَاء means 'a shoe'; رِيَاضِيّ describes it as 'sports'."
+        },
+        {
+          "id": "unit-06.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I want a dress.'",
+          "answer": "أُرِيدُ فُسْتَانًا",
+          "accepted": [
+            "أُرِيدُ فُسْتَانًا",
+            "أريد فستانا",
+            "ureedu fustaanan"
+          ],
+          "too_formal": {
+            "item": "بَدِّي فُسْتَان",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أُرِيدُ is 'I want'; the thing wanted follows it."
+        },
+        {
+          "id": "unit-06.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Where's the fitting room?'",
+          "answer": "أَيْنَ غُرْفَةُ الْقِيَاس؟",
+          "accepted": [
+            "أَيْنَ غُرْفَةُ الْقِيَاس؟",
+            "أين غرفة القياس؟",
+            "أَيْنَ غُرْفَةُ الْقِيَاس",
+            "ayna ghurfatu al-qiyaas?"
+          ],
+          "too_formal": {
+            "item": "وَيْنْ غُرْفِةْ القِيَاس؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "غُرْفَةُ الْقِيَاس is literally 'the measuring room'."
+        },
+        {
+          "id": "unit-06.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'I tried it on and it fits me.'",
+          "answer": "جَرَّبْتُهُ وَهُوَ مُنَاسِبٌ لِي",
+          "accepted": [
+            "جَرَّبْتُهُ وَهُوَ مُنَاسِبٌ لِي",
+            "جربته وهو مناسب لي",
+            "jarrabtuhu wa huwa munaasibun lee"
+          ],
+          "too_formal": {
+            "item": "جَرَّبْتُه وَمَظْبُوط عَلَيِّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "جَرَّبْتُ is 'I tried'; the ending ـهُ is 'it'."
+        },
+        {
+          "id": "unit-06.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'This is too tight for me'?",
+          "options": [
+            "هَذَا ضَيِّقٌ عَلَيَّ",
+            "هَذَا كَبِيرٌ عَلَيَّ",
+            "هَذَا رَخِيصٌ",
+            "هَذَا قُطْنٌ"
+          ],
+          "answer": "هَذَا ضَيِّقٌ عَلَيَّ",
+          "accepted": [
+            "هَذَا ضَيِّقٌ عَلَيَّ",
+            "هذا ضيق علي",
+            "haadhaa dayyiqun 3alayya"
+          ],
+          "too_formal": {
+            "item": "هَادَا ضَيِّق عَلَيِّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "ضَيِّق is 'tight'; كَبِير is 'big'."
+        },
+        {
+          "id": "unit-06.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which question asks a woman her size?",
+          "options": [
+            "مَا مَقَاسُكِ؟",
+            "مَا مَقَاسُكَ؟",
+            "أَيْنَ غُرْفَةُ الْقِيَاس؟",
+            "هَلْ هَذَا قُطْن؟"
+          ],
+          "answer": "مَا مَقَاسُكِ؟",
+          "accepted": [
+            "مَا مَقَاسُكِ؟",
+            "ما مقاسك؟",
+            "maa maqaasuki?"
+          ],
+          "too_formal": {
+            "item": "شُو قِيَاسِك؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The ending كِ speaks to a woman; كَ to a man."
+        },
+        {
+          "id": "unit-06.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'أَصْغَر؟ / مَقَاسٌ / يُوجَدُ / هَلْ'.",
+          "answer": "هَلْ يُوجَدُ مَقَاسٌ أَصْغَر؟",
+          "accepted": [
+            "هَلْ يُوجَدُ مَقَاسٌ أَصْغَر؟",
+            "هل يوجد مقاس أصغر؟",
+            "hal yoojadu maqaasun asghar?"
+          ],
+          "too_formal": {
+            "item": "فِي مَقَاس أَصْغَر؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The question starts with هَلْ and the size comes last."
+        },
+        {
+          "id": "unit-06.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'رِيَاضِيًّا / حِذَاءً / أُرِيدُ'.",
+          "answer": "أُرِيدُ حِذَاءً رِيَاضِيًّا",
+          "accepted": [
+            "أُرِيدُ حِذَاءً رِيَاضِيًّا",
+            "أريد حذاء رياضيا",
+            "ureedu 7idhaa2an riyaadiyyan"
+          ],
+          "too_formal": {
+            "item": "بَدِّي جَزْمَة رِيَاضِيَّة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The describing word رِيَاضِيًّا follows the noun."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "what-do-you-think-of-this-dress",
+          "arabic": "مَا رَأْيُكَ فِي هَذَا الْفُسْتَان؟",
+          "transliteration": "maa ra2yuka fee haadhaa al-fustaan?",
+          "reply": {
+            "arabic": "جَمِيلٌ جِدًّا",
+            "transliteration": "jameelun jiddan",
+            "english": "Very beautiful."
+          }
+        },
+        {
+          "slot": "i-like-the-blue-color",
+          "arabic": "يُعْجِبُنِي اللَّوْنُ الْأَزْرَق",
+          "transliteration": "yu3jibunee al-lawnu al-azraq"
+        },
+        {
+          "slot": "do-you-have-another-color",
+          "arabic": "هَلْ يُوجَدُ لَوْنٌ آخَر؟",
+          "transliteration": "hal yoojadu lawnun aakhar?",
+          "reply": {
+            "arabic": "نَعَمْ، عِنْدَنَا الْأَحْمَرُ وَالْأَسْوَد",
+            "transliteration": "na3am, 3indanaa al-a7maru wal-aswad",
+            "english": "Yes, we have red and black."
+          }
+        },
+        {
+          "slot": "this-color-doesn-t-suit-me",
+          "arabic": "هَذَا اللَّوْنُ لَا يُنَاسِبُنِي",
+          "transliteration": "haadhaa al-lawnu laa yunaasibunee"
+        },
+        {
+          "slot": "which-one-do-you-recommend",
+          "arabic": "أَيُّهَا تَنْصَحُنِي بِهِ؟",
+          "transliteration": "ayyuhaa tansa7unee bihi?"
+        },
+        {
+          "slot": "this-one-is-nicer-than-that-one",
+          "arabic": "هَذَا أَجْمَلُ مِنْ ذَلِكَ",
+          "transliteration": "haadhaa ajmalu min dhaalika"
+        },
+        {
+          "slot": "just-give-me-this-one",
+          "arabic": "أَعْطِنِي هَذَا فَقَط",
+          "transliteration": "a3tinee haadhaa faqat"
+        },
+        {
+          "slot": "i-haven-t-decided-yet",
+          "arabic": "لَمْ أُقَرِّرْ بَعْد",
+          "transliteration": "lam uqarrir ba3d"
+        },
+        {
+          "slot": "do-you-have-gray",
+          "arabic": "هَلْ عِنْدَكُمْ رَمَادِيّ؟",
+          "transliteration": "hal 3indakum ramaadiyy?"
+        },
+        {
+          "slot": "i-like-light-colors",
+          "arabic": "أُحِبُّ الْأَلْوَانَ الْفَاتِحَة",
+          "transliteration": "u7ibbu al-alwaana al-faati7a"
+        },
+        {
+          "slot": "this-is-too-dark-for-me",
+          "arabic": "هَذَا دَاكِنٌ جِدًّا عَلَيَّ",
+          "transliteration": "haadhaa daakinun jiddan 3alayya"
+        },
+        {
+          "slot": "which-is-nicer-red-or-blue",
+          "arabic": "أَيُّهُمَا أَجْمَلُ، الْأَحْمَرُ أَمِ الْأَزْرَق؟",
+          "transliteration": "ayyuhumaa ajmalu, al-a7maru am al-azraq?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huda",
+          "arabic": "مَا رَأْيُكِ فِي هَذَا الْفُسْتَان؟",
+          "transliteration": "maa ra2yuki fee haadhaa al-fustaan?",
+          "english": "What do you think of this dress?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "جَمِيلٌ جِدًّا، وَهُوَ مِنْ أَحْدَثِ مَا عِنْدَنَا.",
+          "transliteration": "jameelun jiddan, wa huwa min a7dathi maa 3indanaa.",
+          "english": "Very beautiful, and it is one of our newest."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "يُعْجِبُنِي اللَّوْنُ الْأَزْرَق، لَكِنَّهُ دَاكِنٌ جِدًّا عَلَيَّ.",
+          "transliteration": "yu3jibunee al-lawnu al-azraq, lakinnahu daakinun jiddan 3alayya.",
+          "english": "I like the blue color, but it is too dark for me."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "هَلْ تُحِبِّينَ الْأَلْوَانَ الْفَاتِحَة؟",
+          "transliteration": "hal tu7ibbeena al-alwaana al-faati7a?",
+          "english": "Do you like light colors?"
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "نَعَمْ، أُحِبُّهَا. هَلْ يُوجَدُ لَوْنٌ آخَر؟",
+          "transliteration": "na3am, u7ibbuhaa. hal yoojadu lawnun aakhar?",
+          "english": "Yes, I like them. Do you have another color?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "عِنْدَنَا الْأَخْضَرُ وَالْأَبْيَض.",
+          "transliteration": "3indanaa al-akhdaru wal-abyad.",
+          "english": "We have green and white."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "أَيُّهُمَا أَجْمَلُ، الْأَخْضَرُ أَمِ الْأَبْيَض؟",
+          "transliteration": "ayyuhumaa ajmalu, al-akhdaru am al-abyad?",
+          "english": "Which is nicer, green or white?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "الْأَبْيَضُ أَجْمَلُ مِنَ الْأَخْضَر.",
+          "transliteration": "al-abyadu ajmalu mina al-akhdar.",
+          "english": "The white is nicer than the green."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "الْأَخْضَرُ لَا يُنَاسِبُنِي. مَاذَا تَنْصَحِينَ؟",
+          "transliteration": "al-akhdaru laa yunaasibunee. maadhaa tansa7een?",
+          "english": "The green doesn't suit me. What do you recommend?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "اِخْتَارِي هَذَا الْأَبْيَض، فَهُوَ يُنَاسِبُكِ.",
+          "transliteration": "ikhtaaree haadhaa al-abyad, fahuwa yunaasibuki.",
+          "english": "Choose this white one, it suits you."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "لَمْ أُقَرِّرْ بَعْد. هَلْ أَسْتَطِيعُ أَنْ أُفَكِّرَ قَلِيلًا؟",
+          "transliteration": "lam uqarrir ba3d. hal astatee3u an ufakkira qaleelan?",
+          "english": "I haven't decided yet. Can I think for a little while?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "طَبْعًا، خُذِي وَقْتَكِ.",
+          "transliteration": "tab3an, khudhee waqtaki.",
+          "english": "Of course, take your time."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هَلْ يُوجَدُ لَوْنٌ آخَر؟",
+            "transliteration": "hal yoojadu lawnun aakhar?",
+            "english": "Do you have another color?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، عِنْدَنَا الْأَحْمَرُ وَالْأَسْوَد.",
+            "transliteration": "na3am, 3indanaa al-a7maru wal-aswad.",
+            "english": "Yes, we have red and black."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَا رَأْيُكَ فِي هَذَا الْفُسْتَان؟",
+            "transliteration": "maa ra2yuka fee haadhaa al-fustaan?",
+            "english": "What do you think of this dress?"
+          },
+          "response": {
+            "arabic": "جَمِيلٌ جِدًّا.",
+            "transliteration": "jameelun jiddan.",
+            "english": "Very beautiful."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيُّهُمَا أَجْمَلُ؟",
+            "transliteration": "ayyuhumaa ajmalu?",
+            "english": "Which is nicer?"
+          },
+          "response": {
+            "arabic": "هَذَا أَجْمَلُ مِنْ ذَلِكَ.",
+            "transliteration": "haadhaa ajmalu min dhaalika.",
+            "english": "This one is nicer than that one."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لَمْ أُقَرِّرْ بَعْد.",
+            "transliteration": "lam uqarrir ba3d.",
+            "english": "I haven't decided yet."
+          },
+          "response": {
+            "arabic": "خُذْ وَقْتَكَ.",
+            "transliteration": "khudh waqtaka.",
+            "english": "Take your time."
+          }
+        }
+      ],
+      "culture": "Sellers like to ask مَا رَأْيُكَ؟ and to suggest a color, and it is polite to say يُعْجِبُنِي before you say what you dislike. Saying لَمْ أُقَرِّرْ بَعْد is an easy way to keep looking without buying.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "The seller asks: 'مَا رَأْيُكَ فِي هَذَا الْفُسْتَان؟'. Say you like the blue color.",
+          "answer": "يُعْجِبُنِي اللَّوْنُ الْأَزْرَق",
+          "accepted": [
+            "يُعْجِبُنِي اللَّوْنُ الْأَزْرَق",
+            "يعجبني اللون الأزرق",
+            "أُحِبُّ اللَّوْنَ الْأَزْرَق",
+            "yu3jibunee al-lawnu al-azraq"
+          ],
+          "too_formal": {
+            "item": "عَاجِبْنِي اللَّوْن الأَزْرَق",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "يُعْجِبُنِي means 'it pleases me', the usual way to say 'I like'."
+        },
+        {
+          "id": "unit-06.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "The seller asks: 'هَلْ اخْتَرْتَ؟' (Have you chosen?). Say you haven't decided yet.",
+          "answer": "لَمْ أُقَرِّرْ بَعْد",
+          "accepted": [
+            "لَمْ أُقَرِّرْ بَعْد",
+            "لم أقرر بعد",
+            "مَا قَرَّرْتُ بَعْدُ",
+            "lam uqarrir ba3d"
+          ],
+          "too_formal": {
+            "item": "لِسَّا مَا قَرَّرْت",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَمْ before a present verb gives the past negative."
+        },
+        {
+          "id": "unit-06.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَذَا _____ مِنْ ذَلِكَ.' (This one is nicer than that one.)",
+          "answer": "أَجْمَلُ",
+          "accepted": [
+            "أَجْمَلُ",
+            "أجمل",
+            "اجمل",
+            "ajmalu"
+          ],
+          "too_formal": {
+            "item": "أَحْلَى",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَجْمَلُ is 'nicer'; مِنْ gives 'than'."
+        },
+        {
+          "id": "unit-06.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَذَا اللَّوْنُ لَا _____.' (This color doesn't suit me.)",
+          "answer": "يُنَاسِبُنِي",
+          "accepted": [
+            "يُنَاسِبُنِي",
+            "يناسبني",
+            "yunaasibunee"
+          ],
+          "too_formal": {
+            "item": "مَا بِيْنَاسِبْنِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "يُنَاسِبُ is 'suits'; ـنِي is 'me'."
+        },
+        {
+          "id": "unit-06.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Do you have another color?'",
+          "answer": "هَلْ يُوجَدُ لَوْنٌ آخَر؟",
+          "accepted": [
+            "هَلْ يُوجَدُ لَوْنٌ آخَر؟",
+            "هل يوجد لون آخر؟",
+            "هَلْ عِنْدَكُمْ لَوْنٌ آخَر؟",
+            "hal yoojadu lawnun aakhar?"
+          ],
+          "too_formal": {
+            "item": "فِي لَوْن تَانِي؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "آخَر means 'another' and follows the noun."
+        },
+        {
+          "id": "unit-06.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'I like light colors.'",
+          "answer": "أُحِبُّ الْأَلْوَانَ الْفَاتِحَة",
+          "accepted": [
+            "أُحِبُّ الْأَلْوَانَ الْفَاتِحَة",
+            "أحب الألوان الفاتحة",
+            "يُعْجِبُنِي الْأَلْوَانُ الْفَاتِحَة",
+            "u7ibbu al-alwaana al-faati7a"
+          ],
+          "too_formal": {
+            "item": "بَحِبّ الأَلْوَان الفَاتْحَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "فَاتِح is 'light'; دَاكِن is 'dark'."
+        },
+        {
+          "id": "unit-06.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Just give me this one.'",
+          "answer": "أَعْطِنِي هَذَا فَقَط",
+          "accepted": [
+            "أَعْطِنِي هَذَا فَقَط",
+            "أعطني هذا فقط",
+            "أَعْطِنِي هَذَا",
+            "a3tinee haadhaa faqat"
+          ],
+          "too_formal": {
+            "item": "عْطِينِي هَادَا بَسّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "فَقَط means 'only' and softens the request."
+        },
+        {
+          "id": "unit-06.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'gray'?",
+          "options": [
+            "رَمَادِيّ",
+            "أَزْرَق",
+            "أَحْمَر",
+            "أَبْيَض"
+          ],
+          "answer": "رَمَادِيّ",
+          "accepted": [
+            "رَمَادِيّ",
+            "رمادي",
+            "ramaadiyy"
+          ],
+          "too_formal": {
+            "item": "رَصَاصِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "رَمَاد is 'ash', so the color is ash-colored."
+        },
+        {
+          "id": "unit-06.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'This is too dark for me'?",
+          "options": [
+            "هَذَا دَاكِنٌ جِدًّا عَلَيَّ",
+            "هَذَا فَاتِحٌ جِدًّا",
+            "هَذَا أَجْمَلُ مِنْ ذَلِكَ",
+            "لَمْ أُقَرِّرْ بَعْد"
+          ],
+          "answer": "هَذَا دَاكِنٌ جِدًّا عَلَيَّ",
+          "accepted": [
+            "هَذَا دَاكِنٌ جِدًّا عَلَيَّ",
+            "هذا داكن جدا علي",
+            "haadhaa daakinun jiddan 3alayya"
+          ],
+          "too_formal": {
+            "item": "هَادَا غَامِق كْتِير عَلَيِّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "جِدًّا means 'very' or 'too'."
+        },
+        {
+          "id": "unit-06.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْأَزْرَق؟ / أَمِ / الْأَحْمَرُ / أَجْمَلُ، / أَيُّهُمَا'.",
+          "answer": "أَيُّهُمَا أَجْمَلُ، الْأَحْمَرُ أَمِ الْأَزْرَق؟",
+          "accepted": [
+            "أَيُّهُمَا أَجْمَلُ، الْأَحْمَرُ أَمِ الْأَزْرَق؟",
+            "أيهما أجمل، الأحمر أم الأزرق؟",
+            "ayyuhumaa ajmalu, al-a7maru am al-azraq?"
+          ],
+          "too_formal": {
+            "item": "أَيُّهُمَا أَحْلَى، الأَحْمَر وَلَّا الأَزْرَق؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَمِ joins the two choices."
+        },
+        {
+          "id": "unit-06.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'ذَلِكَ / مِنْ / أَجْمَلُ / هَذَا'.",
+          "answer": "هَذَا أَجْمَلُ مِنْ ذَلِكَ",
+          "accepted": [
+            "هَذَا أَجْمَلُ مِنْ ذَلِكَ",
+            "هذا أجمل من ذلك",
+            "haadhaa ajmalu min dhaalika"
+          ],
+          "too_formal": {
+            "item": "هَادَا أَحْلَى مِنْ هَاذَاك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مِنْ comes before the thing compared."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "how-much-is-this",
+          "arabic": "بِكَمْ هَذَا؟",
+          "transliteration": "bikam haadhaa?",
+          "reply": {
+            "arabic": "بِخَمْسِينَ دِينَارًا",
+            "transliteration": "bikhamseena deenaaran",
+            "english": "For fifty dinars."
+          }
+        },
+        {
+          "slot": "it-s-very-expensive",
+          "arabic": "هَذَا غَالٍ جِدًّا",
+          "transliteration": "haadhaa ghaalin jiddan"
+        },
+        {
+          "slot": "can-you-lower-the-price",
+          "arabic": "هَلْ يُمْكِنُكَ تَخْفِيضُ السِّعْر؟",
+          "transliteration": "hal yumkinuka takhfeedu as-si3r?"
+        },
+        {
+          "slot": "lower-it-a-bit-for-me",
+          "arabic": "خَفِّضْ لِي السِّعْرَ قَلِيلًا",
+          "transliteration": "khaffid lee as-si3ra qaleelan"
+        },
+        {
+          "slot": "this-is-the-final-price",
+          "arabic": "هَذَا آخِرُ سِعْر",
+          "transliteration": "haadhaa aakhiru si3r"
+        },
+        {
+          "slot": "isn-t-there-cheaper-than-this",
+          "arabic": "أَلَا يُوجَدُ أَرْخَصُ مِنْ هَذَا؟",
+          "transliteration": "alaa yoojadu arkhasu min haadhaa?"
+        },
+        {
+          "slot": "take-it-for-two-thousand",
+          "arabic": "خُذْهُ بِأَلْفَيْن",
+          "transliteration": "khudhhu bi2alfayn"
+        },
+        {
+          "slot": "i-can-t-i-ll-lose-money",
+          "arabic": "لَا أَسْتَطِيعُ، سَأَخْسَر",
+          "transliteration": "laa astatee3u, sa2akhsar"
+        },
+        {
+          "slot": "i-want-a-discount-because-i-m-buying-a-lot",
+          "arabic": "أُرِيدُ خَصْمًا لِأَنَّنِي أَشْتَرِي كَثِيرًا",
+          "transliteration": "ureedu khasman li2annanee ashtaree katheeran"
+        },
+        {
+          "slot": "ok-we-agreed",
+          "arabic": "حَسَنًا، اِتَّفَقْنَا",
+          "transliteration": "7asanan, ittafaqnaa"
+        },
+        {
+          "slot": "that-s-fine-take-it",
+          "arabic": "لَا بَأْس، خُذْهُ",
+          "transliteration": "laa ba2s, khudhhu"
+        },
+        {
+          "slot": "how-much-did-the-total-come-to",
+          "arabic": "كَمْ بَلَغَ الْمَجْمُوع؟",
+          "transliteration": "kam balagha al-majmoo3?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Samir",
+          "arabic": "بِكَمْ هَذَا الْقَمِيص؟",
+          "transliteration": "bikam haadhaa al-qamees?",
+          "english": "How much is this shirt?"
+        },
+        {
+          "speaker": "Adel",
+          "arabic": "بِمِئَةِ دِينَار.",
+          "transliteration": "bimi2ati deenaar.",
+          "english": "For a hundred dinars."
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "هَذَا غَالٍ جِدًّا. هَلْ يُمْكِنُكَ تَخْفِيضُ السِّعْر؟",
+          "transliteration": "haadhaa ghaalin jiddan. hal yumkinuka takhfeedu as-si3r?",
+          "english": "That's very expensive. Can you lower the price?"
+        },
+        {
+          "speaker": "Adel",
+          "arabic": "كَمْ تُرِيدُ أَنْ تَدْفَع؟",
+          "transliteration": "kam tureedu an tadfa3?",
+          "english": "How much do you want to pay?"
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "خُذْهُ بِسَبْعِين.",
+          "transliteration": "khudhhu bisab3een.",
+          "english": "Take it for seventy."
+        },
+        {
+          "speaker": "Adel",
+          "arabic": "لَا أَسْتَطِيعُ، سَأَخْسَر. هَذَا آخِرُ سِعْر: ثَمَانُونَ دِينَارًا.",
+          "transliteration": "laa astatee3u, sa2akhsar. haadhaa aakhiru si3r: thamaanoona deenaaran.",
+          "english": "I can't, I'll lose money. This is the final price: eighty dinars."
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "أَلَا يُوجَدُ أَرْخَصُ مِنْ هَذَا؟",
+          "transliteration": "alaa yoojadu arkhasu min haadhaa?",
+          "english": "Isn't there anything cheaper than this?"
+        },
+        {
+          "speaker": "Adel",
+          "arabic": "عِنْدِي هَذَا بِخَمْسِينَ دِينَارًا.",
+          "transliteration": "3indee haadhaa bikhamseena deenaaran.",
+          "english": "I have this one for fifty dinars."
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "أُرِيدُ خَصْمًا لِأَنَّنِي أَشْتَرِي كَثِيرًا. سَآخُذُ ثَلَاثَةَ قُمْصَان.",
+          "transliteration": "ureedu khasman li2annanee ashtaree katheeran. sa2aakhudhu thalaathata qumsaan.",
+          "english": "I want a discount because I'm buying a lot. I'll take three shirts."
+        },
+        {
+          "speaker": "Adel",
+          "arabic": "حَسَنًا، خُذْهَا بِمِئَةٍ وَثَلَاثِين.",
+          "transliteration": "7asanan, khudhhaa bimi2atin wa thalaatheen.",
+          "english": "Fine, take them for a hundred and thirty."
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "اِتَّفَقْنَا. كَمْ بَلَغَ الْمَجْمُوع؟",
+          "transliteration": "ittafaqnaa. kam balagha al-majmoo3?",
+          "english": "We agreed. How much did the total come to?"
+        },
+        {
+          "speaker": "Adel",
+          "arabic": "مِئَةٌ وَثَلَاثُونَ دِينَارًا. تَفَضَّلْ.",
+          "transliteration": "mi2atun wa thalaathoona deenaaran. tafaddal.",
+          "english": "A hundred and thirty dinars. Here you are."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بِكَمْ هَذَا؟",
+            "transliteration": "bikam haadhaa?",
+            "english": "How much is this?"
+          },
+          "response": {
+            "arabic": "بِخَمْسِينَ دِينَارًا.",
+            "transliteration": "bikhamseena deenaaran.",
+            "english": "For fifty dinars."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَذَا غَالٍ جِدًّا.",
+            "transliteration": "haadhaa ghaalin jiddan.",
+            "english": "This is very expensive."
+          },
+          "response": {
+            "arabic": "خُذْهُ بِأَرْبَعِين.",
+            "transliteration": "khudhhu bi2arba3een.",
+            "english": "Take it for forty."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ يُمْكِنُكَ تَخْفِيضُ السِّعْر؟",
+            "transliteration": "hal yumkinuka takhfeedu as-si3r?",
+            "english": "Can you lower the price?"
+          },
+          "response": {
+            "arabic": "هَذَا آخِرُ سِعْر.",
+            "transliteration": "haadhaa aakhiru si3r.",
+            "english": "This is the final price."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "حَسَنًا، اِتَّفَقْنَا.",
+            "transliteration": "7asanan, ittafaqnaa.",
+            "english": "Ok, we agreed."
+          },
+          "response": {
+            "arabic": "تَفَضَّلْ، هَذَا لَكَ.",
+            "transliteration": "tafaddal, haadhaa laka.",
+            "english": "Here you are, this is yours."
+          }
+        }
+      ],
+      "culture": "Bargaining is expected in markets and small shops but not in big stores with fixed prices. A calm, friendly tone matters more than the number, and اِتَّفَقْنَا closes the deal.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "You want to know the price of a bag. What do you ask?",
+          "answer": "بِكَمْ هَذَا؟",
+          "accepted": [
+            "بِكَمْ هَذَا؟",
+            "بكم هذا؟",
+            "كَمْ سِعْرُ هَذَا؟",
+            "bikam haadhaa?"
+          ],
+          "too_formal": {
+            "item": "قَدَّيْش هَادَا؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بِكَمْ is 'for how much'."
+        },
+        {
+          "id": "unit-06.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "The seller says: 'هَذَا آخِرُ سِعْر'. You agree.",
+          "answer": "حَسَنًا، اِتَّفَقْنَا",
+          "accepted": [
+            "حَسَنًا، اِتَّفَقْنَا",
+            "حسنا، اتفقنا",
+            "اِتَّفَقْنَا",
+            "لَا بَأْس",
+            "7asanan, ittafaqnaa"
+          ],
+          "too_formal": {
+            "item": "مَاشِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "اِتَّفَقْنَا means 'we agreed'."
+        },
+        {
+          "id": "unit-06.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَذَا _____ جِدًّا.' (It's very expensive.)",
+          "answer": "غَالٍ",
+          "accepted": [
+            "غَالٍ",
+            "غال",
+            "غَالِي",
+            "ghaalin"
+          ],
+          "too_formal": {
+            "item": "غَالِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "غَالٍ is 'expensive' (dear)."
+        },
+        {
+          "id": "unit-06.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: '_____ لِي السِّعْرَ قَلِيلًا.' (Lower the price a bit for me.)",
+          "answer": "خَفِّضْ",
+          "accepted": [
+            "خَفِّضْ",
+            "خفض",
+            "khaffid"
+          ],
+          "too_formal": {
+            "item": "نَزِّل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "خَفِّضْ is the command 'lower', said to one man."
+        },
+        {
+          "id": "unit-06.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Isn't there cheaper than this?'",
+          "answer": "أَلَا يُوجَدُ أَرْخَصُ مِنْ هَذَا؟",
+          "accepted": [
+            "أَلَا يُوجَدُ أَرْخَصُ مِنْ هَذَا؟",
+            "ألا يوجد أرخص من هذا؟",
+            "هَلْ يُوجَدُ أَرْخَصُ مِنْ هَذَا؟",
+            "alaa yoojadu arkhasu min haadhaa?"
+          ],
+          "too_formal": {
+            "item": "مَا فِي أَرْخَص مِنْ هَيْك؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَرْخَصُ is 'cheaper'."
+        },
+        {
+          "id": "unit-06.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'I can't, I'll lose money.'",
+          "answer": "لَا أَسْتَطِيعُ، سَأَخْسَر",
+          "accepted": [
+            "لَا أَسْتَطِيعُ، سَأَخْسَر",
+            "لا أستطيع، سأخسر",
+            "لَا أَسْتَطِيعُ سَأَخْسَرُ",
+            "laa astatee3u, sa2akhsar"
+          ],
+          "too_formal": {
+            "item": "مَا بَقْدَر، رَحْ خْسَر",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "سَـ before a verb makes it future."
+        },
+        {
+          "id": "unit-06.lesson-03.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'How much did the total come to?'",
+          "answer": "كَمْ بَلَغَ الْمَجْمُوع؟",
+          "accepted": [
+            "كَمْ بَلَغَ الْمَجْمُوع؟",
+            "كم بلغ المجموع؟",
+            "كَمِ الْمَجْمُوع؟",
+            "kam balagha al-majmoo3?"
+          ],
+          "too_formal": {
+            "item": "قَدَّيْش الحِسَاب؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بَلَغَ means 'reached'."
+        },
+        {
+          "id": "unit-06.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which phrase closes a deal?",
+          "options": [
+            "اِتَّفَقْنَا",
+            "غَالٍ جِدًّا",
+            "لَا أَسْتَطِيعُ",
+            "بِكَمْ هَذَا؟"
+          ],
+          "answer": "اِتَّفَقْنَا",
+          "accepted": [
+            "اِتَّفَقْنَا",
+            "اتفقنا",
+            "ittafaqnaa"
+          ],
+          "too_formal": {
+            "item": "مَاشِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "It means 'we have agreed'."
+        },
+        {
+          "id": "unit-06.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'I want a discount because I'm buying a lot'?",
+          "options": [
+            "أُرِيدُ خَصْمًا لِأَنَّنِي أَشْتَرِي كَثِيرًا",
+            "أُرِيدُ قَمِيصًا",
+            "هَذَا آخِرُ سِعْر",
+            "خُذْهُ بِأَلْفَيْن"
+          ],
+          "answer": "أُرِيدُ خَصْمًا لِأَنَّنِي أَشْتَرِي كَثِيرًا",
+          "accepted": [
+            "أُرِيدُ خَصْمًا لِأَنَّنِي أَشْتَرِي كَثِيرًا",
+            "أريد خصما لأنني أشتري كثيرا",
+            "ureedu khasman li2annanee ashtaree katheeran"
+          ],
+          "too_formal": {
+            "item": "بَدِّي خَصْم لَأَنِّي عَمْ بَشْتَرِي كْتِير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لِأَنَّنِي means 'because I'."
+        },
+        {
+          "id": "unit-06.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'السِّعْر؟ / تَخْفِيضُ / يُمْكِنُكَ / هَلْ'.",
+          "answer": "هَلْ يُمْكِنُكَ تَخْفِيضُ السِّعْر؟",
+          "accepted": [
+            "هَلْ يُمْكِنُكَ تَخْفِيضُ السِّعْر؟",
+            "هل يمكنك تخفيض السعر؟",
+            "hal yumkinuka takhfeedu as-si3r?"
+          ],
+          "too_formal": {
+            "item": "فِيك تْنَزِّل السِّعْر؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "يُمْكِنُكَ means 'it is possible for you'."
+        },
+        {
+          "id": "unit-06.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'بِأَلْفَيْن / خُذْهُ'.",
+          "answer": "خُذْهُ بِأَلْفَيْن",
+          "accepted": [
+            "خُذْهُ بِأَلْفَيْن",
+            "خذه بألفين",
+            "khudhhu bi2alfayn"
+          ],
+          "too_formal": {
+            "item": "خُدُه بِأَلْفَيْن",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَلْفَيْن is 'two thousand'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "i-want-to-return-this-shirt",
+          "arabic": "أُرِيدُ إِرْجَاعَ هَذَا الْقَمِيص",
+          "transliteration": "ureedu irjaa3a haadhaa al-qamees"
+        },
+        {
+          "slot": "there-s-a-defect",
+          "arabic": "فِيهِ عَيْب",
+          "transliteration": "feehi 3ayb"
+        },
+        {
+          "slot": "i-didn-t-like-the-color",
+          "arabic": "لَمْ يُعْجِبْنِي اللَّوْن",
+          "transliteration": "lam yu3jibnee al-lawn"
+        },
+        {
+          "slot": "i-want-to-exchange-it-for-another-one",
+          "arabic": "أُرِيدُ اسْتِبْدَالَهُ بِآخَر",
+          "transliteration": "ureedu istibdaalahu bi-aakhar"
+        },
+        {
+          "slot": "i-have-the-receipt",
+          "arabic": "مَعِي الْفَاتُورَة",
+          "transliteration": "ma3ee al-faatoora"
+        },
+        {
+          "slot": "i-don-t-have-the-receipt",
+          "arabic": "لَيْسَ مَعِي الْفَاتُورَة",
+          "transliteration": "laysa ma3ee al-faatoora"
+        },
+        {
+          "slot": "when-did-you-buy-it",
+          "arabic": "مَتَى اشْتَرَيْتَهُ؟",
+          "transliteration": "mataa ishtaraytahu?",
+          "reply": {
+            "arabic": "اِشْتَرَيْتُهُ أَمْسِ",
+            "transliteration": "ishtaraytuhu ams",
+            "english": "I bought it yesterday."
+          }
+        },
+        {
+          "slot": "do-you-give-money-back",
+          "arabic": "هَلْ تُعِيدُونَ الْمَال؟",
+          "transliteration": "hal tu3eedoona al-maal?",
+          "reply": {
+            "arabic": "نَعَمْ، خِلَالَ أُسْبُوع",
+            "transliteration": "na3am, khilaala usboo3",
+            "english": "Yes, within a week."
+          }
+        },
+        {
+          "slot": "this-is-the-wrong-size",
+          "arabic": "هَذَا لَيْسَ الْمَقَاسَ الصَّحِيح",
+          "transliteration": "haadhaa laysa al-maqaasa as-sa7eeh"
+        },
+        {
+          "slot": "this-isn-t-what-i-ordered",
+          "arabic": "هَذَا لَيْسَ مَا طَلَبْتُهُ",
+          "transliteration": "haadhaa laysa maa talabtuhu"
+        },
+        {
+          "slot": "can-i-exchange-it-for-a-bigger-size",
+          "arabic": "هَلْ أَسْتَطِيعُ اسْتِبْدَالَهُ بِمَقَاسٍ أَكْبَر؟",
+          "transliteration": "hal astatee3u istibdaalahu bimaqaasin akbar?"
+        },
+        {
+          "slot": "thanks-for-your-cooperation",
+          "arabic": "شُكْرًا عَلَى تَعَاوُنِكُمْ",
+          "transliteration": "shukran 3alaa ta3aawunikum"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Nadia",
+          "arabic": "مَرْحَبًا. أُرِيدُ إِرْجَاعَ هَذَا الْقَمِيص.",
+          "transliteration": "marhaban. ureedu irjaa3a haadhaa al-qamees.",
+          "english": "Hello. I want to return this shirt."
+        },
+        {
+          "speaker": "Hani",
+          "arabic": "أَهْلًا بِكِ. مَا الْمُشْكِلَة؟",
+          "transliteration": "ahlan biki. maa al-mushkila?",
+          "english": "Welcome. What's the problem?"
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "فِيهِ عَيْب، هُنَا عِنْدَ الْكُمّ.",
+          "transliteration": "feehi 3ayb, hunaa 3inda al-kumm.",
+          "english": "There's a defect, here at the sleeve."
+        },
+        {
+          "speaker": "Hani",
+          "arabic": "آسِف. مَتَى اشْتَرَيْتِهِ؟",
+          "transliteration": "aasif. mataa ishtaraytihi?",
+          "english": "Sorry. When did you buy it?"
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "اِشْتَرَيْتُهُ أَمْسِ.",
+          "transliteration": "ishtaraytuhu ams.",
+          "english": "I bought it yesterday."
+        },
+        {
+          "speaker": "Hani",
+          "arabic": "هَلْ مَعَكِ الْفَاتُورَة؟",
+          "transliteration": "hal ma3aki al-faatoora?",
+          "english": "Do you have the receipt?"
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "نَعَمْ، مَعِي الْفَاتُورَة. تَفَضَّلْ.",
+          "transliteration": "na3am, ma3ee al-faatoora. tafaddal.",
+          "english": "Yes, I have the receipt. Here you are."
+        },
+        {
+          "speaker": "Hani",
+          "arabic": "هَلْ تُرِيدِينَ اسْتِبْدَالَهُ بِآخَر؟",
+          "transliteration": "hal tureedeena istibdaalahu bi-aakhar?",
+          "english": "Do you want to exchange it for another one?"
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "لَا، لَمْ يُعْجِبْنِي اللَّوْن أَيْضًا. هَلْ تُعِيدُونَ الْمَال؟",
+          "transliteration": "laa, lam yu3jibnee al-lawn aydan. hal tu3eedoona al-maal?",
+          "english": "No, I didn't like the color either. Do you give money back?"
+        },
+        {
+          "speaker": "Hani",
+          "arabic": "نَعَمْ، نُعِيدُ الْمَالَ خِلَالَ أُسْبُوع.",
+          "transliteration": "na3am, nu3eedu al-maala khilaala usboo3.",
+          "english": "Yes, we give the money back within a week."
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "جَيِّد. شُكْرًا عَلَى تَعَاوُنِكُمْ.",
+          "transliteration": "jayyid. shukran 3alaa ta3aawunikum.",
+          "english": "Good. Thanks for your cooperation."
+        },
+        {
+          "speaker": "Hani",
+          "arabic": "عَفْوًا. نَتَمَنَّى أَنْ نَرَاكِ قَرِيبًا.",
+          "transliteration": "3afwan. natamannaa an naraaki qareeban.",
+          "english": "You're welcome. We hope to see you soon."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أُرِيدُ إِرْجَاعَ هَذَا.",
+            "transliteration": "ureedu irjaa3a haadhaa.",
+            "english": "I want to return this."
+          },
+          "response": {
+            "arabic": "هَلْ مَعَكَ الْفَاتُورَة؟",
+            "transliteration": "hal ma3aka al-faatoora?",
+            "english": "Do you have the receipt?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى اشْتَرَيْتَهُ؟",
+            "transliteration": "mataa ishtaraytahu?",
+            "english": "When did you buy it?"
+          },
+          "response": {
+            "arabic": "اِشْتَرَيْتُهُ أَمْسِ.",
+            "transliteration": "ishtaraytuhu ams.",
+            "english": "I bought it yesterday."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَذَا لَيْسَ الْمَقَاسَ الصَّحِيح.",
+            "transliteration": "haadhaa laysa al-maqaasa as-sa7eeh.",
+            "english": "This is the wrong size."
+          },
+          "response": {
+            "arabic": "هَلْ تُرِيدُ اسْتِبْدَالَهُ؟",
+            "transliteration": "hal tureedu istibdaalahu?",
+            "english": "Do you want to exchange it?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شُكْرًا عَلَى تَعَاوُنِكُمْ.",
+            "transliteration": "shukran 3alaa ta3aawunikum.",
+            "english": "Thanks for your cooperation."
+          },
+          "response": {
+            "arabic": "عَفْوًا، تَفَضَّلْ مَرَّةً أُخْرَى.",
+            "transliteration": "3afwan, tafaddal marratan ukhraa.",
+            "english": "You're welcome, come again."
+          }
+        }
+      ],
+      "culture": "Most shops accept a return with the receipt within a week or two, and staff usually offer an exchange before a refund. End with شُكْرًا عَلَى تَعَاوُنِكُمْ, where the plural form is polite to the whole shop.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "The seller asks: 'هَلْ مَعَكَ الْفَاتُورَة؟'. Say you have it.",
+          "answer": "نَعَمْ، مَعِي الْفَاتُورَة",
+          "accepted": [
+            "نَعَمْ، مَعِي الْفَاتُورَة",
+            "نعم، معي الفاتورة",
+            "مَعِي الْفَاتُورَة",
+            "تَفَضَّلْ",
+            "na3am, ma3ee al-faatoora"
+          ],
+          "too_formal": {
+            "item": "إِي، مَعِي الفَاتُورَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مَعِي means 'with me'."
+        },
+        {
+          "id": "unit-06.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "The seller asks: 'مَتَى اشْتَرَيْتَهُ؟'. Say you bought it yesterday.",
+          "answer": "اِشْتَرَيْتُهُ أَمْسِ",
+          "accepted": [
+            "اِشْتَرَيْتُهُ أَمْسِ",
+            "اشتريته أمس",
+            "ishtaraytuhu ams"
+          ],
+          "too_formal": {
+            "item": "شْتَرَيْتُه مْبَارِح",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The ending تُ is 'I' and هُ is 'it'."
+        },
+        {
+          "id": "unit-06.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'فِيهِ _____.' (There's a defect.)",
+          "answer": "عَيْب",
+          "accepted": [
+            "عَيْب",
+            "عيب",
+            "3ayb"
+          ],
+          "too_formal": {
+            "item": "عُطُل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عَيْب means a fault or defect."
+        },
+        {
+          "id": "unit-06.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَذَا لَيْسَ _____ الصَّحِيح.' (This is the wrong size.)",
+          "answer": "الْمَقَاسَ",
+          "accepted": [
+            "الْمَقَاسَ",
+            "المقاس",
+            "مَقَاسَ",
+            "al-maqaasa"
+          ],
+          "too_formal": {
+            "item": "القِيَاس",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "After لَيْسَ the word takes the ending ـَ."
+        },
+        {
+          "id": "unit-06.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I want to return this shirt.'",
+          "answer": "أُرِيدُ إِرْجَاعَ هَذَا الْقَمِيص",
+          "accepted": [
+            "أُرِيدُ إِرْجَاعَ هَذَا الْقَمِيص",
+            "أريد إرجاع هذا القميص",
+            "أُرِيدُ أَنْ أُرْجِعَ هَذَا الْقَمِيص",
+            "ureedu irjaa3a haadhaa al-qamees"
+          ],
+          "too_formal": {
+            "item": "بَدِّي أَرْجِّع هَادَا القَمِيص",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "إِرْجَاع is 'returning'."
+        },
+        {
+          "id": "unit-06.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'I don't have the receipt.'",
+          "answer": "لَيْسَ مَعِي الْفَاتُورَة",
+          "accepted": [
+            "لَيْسَ مَعِي الْفَاتُورَة",
+            "ليس معي الفاتورة",
+            "لَا أَمْلِكُ الْفَاتُورَة",
+            "laysa ma3ee al-faatoora"
+          ],
+          "too_formal": {
+            "item": "مَا مَعِي الفَاتُورَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَيْسَ is the word for 'is not'."
+        },
+        {
+          "id": "unit-06.lesson-04.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Can I exchange it for a bigger size?'",
+          "answer": "هَلْ أَسْتَطِيعُ اسْتِبْدَالَهُ بِمَقَاسٍ أَكْبَر؟",
+          "accepted": [
+            "هَلْ أَسْتَطِيعُ اسْتِبْدَالَهُ بِمَقَاسٍ أَكْبَر؟",
+            "هل أستطيع استبداله بمقاس أكبر؟",
+            "هَلْ يُمْكِنُنِي اسْتِبْدَالُهُ بِمَقَاسٍ أَكْبَر؟",
+            "hal astatee3u istibdaalahu bimaqaasin akbar?"
+          ],
+          "too_formal": {
+            "item": "فِينِي بَدِّلُه بِمَقَاس أَكْبَر؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بِ after اسْتِبْدَال gives 'for'."
+        },
+        {
+          "id": "unit-06.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'This isn't what I ordered'?",
+          "options": [
+            "هَذَا لَيْسَ مَا طَلَبْتُهُ",
+            "هَذَا لَيْسَ الْمَقَاسَ الصَّحِيح",
+            "فِيهِ عَيْب",
+            "مَعِي الْفَاتُورَة"
+          ],
+          "answer": "هَذَا لَيْسَ مَا طَلَبْتُهُ",
+          "accepted": [
+            "هَذَا لَيْسَ مَا طَلَبْتُهُ",
+            "هذا ليس ما طلبته",
+            "haadhaa laysa maa talabtuhu"
+          ],
+          "too_formal": {
+            "item": "هَادَا مَش اللِّي طَلَبْتُه",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مَا طَلَبْتُهُ is 'what I ordered'."
+        },
+        {
+          "id": "unit-06.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which word means 'receipt'?",
+          "options": [
+            "الْفَاتُورَة",
+            "الْمَقَاس",
+            "الْعَيْب",
+            "الْمَجْمُوع"
+          ],
+          "answer": "الْفَاتُورَة",
+          "accepted": [
+            "الْفَاتُورَة",
+            "الفاتورة",
+            "al-faatoora"
+          ],
+          "too_formal": {
+            "item": "الوَصْل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "فَاتُورَة is the word for a bill or receipt."
+        },
+        {
+          "id": "unit-06.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'بِآخَر / اسْتِبْدَالَهُ / أُرِيدُ'.",
+          "answer": "أُرِيدُ اسْتِبْدَالَهُ بِآخَر",
+          "accepted": [
+            "أُرِيدُ اسْتِبْدَالَهُ بِآخَر",
+            "أريد استبداله بآخر",
+            "ureedu istibdaalahu bi-aakhar"
+          ],
+          "too_formal": {
+            "item": "بَدِّي بَدِّلُه بِوَاحِد تَانِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بِآخَر means 'for another'."
+        },
+        {
+          "id": "unit-06.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْمَال؟ / تُعِيدُونَ / هَلْ'.",
+          "answer": "هَلْ تُعِيدُونَ الْمَال؟",
+          "accepted": [
+            "هَلْ تُعِيدُونَ الْمَال؟",
+            "هل تعيدون المال؟",
+            "hal tu3eedoona al-maal?"
+          ],
+          "too_formal": {
+            "item": "بِتْرَجْعُوا الفُلُوس؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "تُعِيدُونَ is 'you give back' (plural, polite)."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Buy a shirt and bring it back",
+    "instructions": "Write a short conversation in Fusha between a customer and a seller. The customer asks for a shirt, says the size, tries it on, chooses a color, bargains over the price, agrees, and the next day comes back to exchange it.",
+    "required_elements": [
+      "asking for an item and giving a size",
+      "trying it on and saying if it fits",
+      "choosing or rejecting a color",
+      "asking the price and bargaining",
+      "agreeing on a price",
+      "returning or exchanging with a reason and the receipt"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Omar",
+          "arabic": "أَهْلًا بِكَ. كَيْفَ أُسَاعِدُكَ؟",
+          "transliteration": "ahlan bika. kayfa usaa3iduka?",
+          "english": "Welcome. How can I help you?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "أُرِيدُ قَمِيصًا. هَلْ أَسْتَطِيعُ أَنْ أُجَرِّبَهُ؟",
+          "transliteration": "ureedu qameesan. hal astatee3u an ujarribahu?",
+          "english": "I want a shirt. Can I try it on?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "طَبْعًا. مَا مَقَاسُكَ؟",
+          "transliteration": "tab3an. maa maqaasuka?",
+          "english": "Of course. What's your size?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "مَقَاسِي مُتَوَسِّط. يُعْجِبُنِي اللَّوْنُ الْأَزْرَق.",
+          "transliteration": "maqaasee mutawassit. yu3jibunee al-lawnu al-azraq.",
+          "english": "My size is medium. I like the blue color."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "تَفَضَّلْ. غُرْفَةُ الْقِيَاسِ هُنَاكَ.",
+          "transliteration": "tafaddal. ghurfatu al-qiyaasi hunaaka.",
+          "english": "Here you are. The fitting room is over there."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "جَرَّبْتُهُ وَهُوَ مُنَاسِبٌ لِي. بِكَمْ هَذَا؟",
+          "transliteration": "jarrabtuhu wa huwa munaasibun lee. bikam haadhaa?",
+          "english": "I tried it on and it fits me. How much is this?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "بِخَمْسِينَ دِينَارًا.",
+          "transliteration": "bikhamseena deenaaran.",
+          "english": "For fifty dinars."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "هَذَا غَالٍ جِدًّا. خَفِّضْ لِي السِّعْرَ قَلِيلًا.",
+          "transliteration": "haadhaa ghaalin jiddan. khaffid lee as-si3ra qaleelan.",
+          "english": "That's very expensive. Lower the price a bit for me."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "هَذَا آخِرُ سِعْر: أَرْبَعُونَ دِينَارًا.",
+          "transliteration": "haadhaa aakhiru si3r: arba3oona deenaaran.",
+          "english": "This is the final price: forty dinars."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "حَسَنًا، اِتَّفَقْنَا.",
+          "transliteration": "7asanan, ittafaqnaa.",
+          "english": "Ok, we agreed."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "مَرْحَبًا مَرَّةً أُخْرَى. هَذَا لَيْسَ الْمَقَاسَ الصَّحِيح. مَعِي الْفَاتُورَة.",
+          "transliteration": "marhaban marratan ukhraa. haadhaa laysa al-maqaasa as-sa7eeh. ma3ee al-faatoora.",
+          "english": "Hello again. This is the wrong size. I have the receipt."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "لَا بَأْس. هَلْ تُرِيدُ اسْتِبْدَالَهُ بِمَقَاسٍ أَكْبَر؟ شُكْرًا عَلَى تَعَاوُنِكَ.",
+          "transliteration": "laa ba2s. hal tureedu istibdaalahu bimaqaasin akbar? shukran 3alaa ta3aawunika.",
+          "english": "No problem. Do you want to exchange it for a bigger size? Thanks for your cooperation."
+        }
+      ]
+    }
+  }
+}

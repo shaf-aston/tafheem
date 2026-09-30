@@ -1,0 +1,666 @@
+{
+  "unit": "unit-09",
+  "dialect": "Fusha (Modern Standard Arabic)",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "q": "ق",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        { "slot": "how-are-you-today-to-a-man", "arabic": "كَيْفَ حَالُكَ الْيَوْم؟", "transliteration": "kayfa 7aaluka al-yawm?", "reply": { "arabic": "بِخَيْر، الْحَمْدُ لِلَّه", "transliteration": "bikhayr, al7amdu lillaah", "english": "Fine, thank God." } },
+        { "slot": "how-are-you-today-to-a-woman", "arabic": "كَيْفَ حَالُكِ الْيَوْم؟", "transliteration": "kayfa 7aaluki al-yawm?", "reply": { "arabic": "بِخَيْر، الْحَمْدُ لِلَّه", "transliteration": "bikhayr, al7amdu lillaah", "english": "Fine, thank God." } },
+        { "slot": "what-happened-to-you-to-a-man", "arabic": "مَاذَا حَدَثَ لَكَ؟", "transliteration": "maadhaa 7adatha laka?", "reply": { "arabic": "أَنَا مُتْعَب قَلِيلًا", "transliteration": "anaa mut3ab qaleelan", "english": "I'm a little tired." } },
+        { "slot": "i-feel-tired-a-man-speaking", "arabic": "أَنَا مُتْعَب", "transliteration": "anaa mut3ab" },
+        { "slot": "i-feel-tired-a-woman-speaking", "arabic": "أَنَا مُتْعَبَة", "transliteration": "anaa mut3aba" },
+        { "slot": "i-have-a-headache", "arabic": "عِنْدِي صُدَاع", "transliteration": "3indee suda3" },
+        { "slot": "my-stomach-hurts", "arabic": "مَعِدَتِي تُؤْلِمُنِي", "transliteration": "ma3idatee tu2limunee" },
+        { "slot": "i-have-a-fever", "arabic": "عِنْدِي حُمَّى", "transliteration": "3indee 7ummaa" },
+        { "slot": "i-feel-dizzy-a-man-speaking", "arabic": "أَشْعُرُ بِالدُّوَار", "transliteration": "ash3uru bid-duwaar" },
+        { "slot": "i-can-t-sleep-well", "arabic": "لَا أَنَامُ جَيِّدًا", "transliteration": "laa anaamu jayyidan" },
+        { "slot": "looks-like-you-have-a-cold-to-a-man", "arabic": "يَبْدُو أَنَّكَ مُصَابٌ بِالزُّكَام", "transliteration": "yabdoo annaka musaabun biz-zukaam", "reply": { "arabic": "نَعَمْ، أَظُنُّ ذَلِك", "transliteration": "na3am, azunnu dhaalik", "english": "Yes, I think so." } },
+        { "slot": "take-some-rest-to-a-man", "arabic": "اِسْتَرِحْ قَلِيلًا", "transliteration": "istari7 qaleelan", "reply": { "arabic": "شُكْرًا، سَأَفْعَل", "transliteration": "shukran, sa-af3al", "english": "Thanks, I will." } }
+      ],
+      "dialogue": [
+        { "speaker": "Fahd", "arabic": "السَّلَامُ عَلَيْكُمْ يَا رِيم. كَيْفَ حَالُكِ الْيَوْم؟", "transliteration": "as-salaamu 3alaykum yaa Reem. kayfa 7aaluki al-yawm?", "english": "Peace be upon you, Reem. How are you today?" },
+        { "speaker": "Reem", "arabic": "وَعَلَيْكُمُ السَّلَام. أَنَا مُتْعَبَة قَلِيلًا.", "transliteration": "wa 3alaykumu as-salaam. anaa mut3aba qaleelan.", "english": "And peace be upon you. I'm a little tired." },
+        { "speaker": "Fahd", "arabic": "مَاذَا حَدَثَ لَكِ؟", "transliteration": "maadhaa 7adatha laki?", "english": "What happened to you?" },
+        { "speaker": "Reem", "arabic": "عِنْدِي صُدَاعٌ، وَلَا أَنَامُ جَيِّدًا.", "transliteration": "3indee suda3un, wa laa anaamu jayyidan.", "english": "I have a headache, and I can't sleep well." },
+        { "speaker": "Fahd", "arabic": "هَلْ عِنْدَكِ حُمَّى؟", "transliteration": "hal 3indaki 7ummaa?", "english": "Do you have a fever?" },
+        { "speaker": "Reem", "arabic": "لَا، لَكِنِّي أَشْعُرُ بِالدُّوَارِ. وَمَعِدَتِي تُؤْلِمُنِي.", "transliteration": "laa, lakinnee ash3uru bid-duwaari. wa ma3idatee tu2limunee.", "english": "No, but I feel dizzy. And my stomach hurts." },
+        { "speaker": "Fahd", "arabic": "يَبْدُو أَنَّكِ مُصَابَةٌ بِالزُّكَام.", "transliteration": "yabdoo annaki musaabatun biz-zukaam.", "english": "It looks like you have a cold." },
+        { "speaker": "Reem", "arabic": "رُبَّمَا. وَأَنْتَ، كَيْفَ حَالُكَ؟", "transliteration": "rubbamaa. wa anta, kayfa 7aaluka?", "english": "Maybe. And you, how are you?" },
+        { "speaker": "Fahd", "arabic": "بِخَيْر، الْحَمْدُ لِلَّه. لَكِنِّي مُتْعَبٌ أَيْضًا.", "transliteration": "bikhayr, al7amdu lillaah. lakinnee mut3abun aydan.", "english": "Fine, thank God. But I'm tired too." },
+        { "speaker": "Reem", "arabic": "إِذًا عَلَيْنَا أَنْ نَسْتَرِيح.", "transliteration": "idhan 3alaynaa an nastareeh.", "english": "Then we must rest." },
+        { "speaker": "Fahd", "arabic": "اِسْتَرِيحِي قَلِيلًا يَا رِيمُ، وَاشْرَبِي الْمَاء.", "transliteration": "istareehee qaleelan yaa Reemu, washrabee al-maa2.", "english": "Rest a little, Reem, and drink some water." },
+        { "speaker": "Reem", "arabic": "شُكْرًا يَا فَهْد.", "transliteration": "shukran yaa Fahd.", "english": "Thank you, Fahd." }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "كَيْفَ حَالُكَ الْيَوْم؟", "transliteration": "kayfa 7aaluka al-yawm?", "english": "How are you today?" },
+          "response": { "arabic": "بِخَيْر، الْحَمْدُ لِلَّه.", "transliteration": "bikhayr, al7amdu lillaah.", "english": "Fine, thank God." }
+        },
+        {
+          "pair": { "arabic": "مَاذَا حَدَثَ لَكَ؟", "transliteration": "maadhaa 7adatha laka?", "english": "What happened to you?" },
+          "response": { "arabic": "عِنْدِي صُدَاع.", "transliteration": "3indee suda3.", "english": "I have a headache." }
+        },
+        {
+          "pair": { "arabic": "يَبْدُو أَنَّكَ مُصَابٌ بِالزُّكَام.", "transliteration": "yabdoo annaka musaabun biz-zukaam.", "english": "Looks like you have a cold." },
+          "response": { "arabic": "نَعَمْ، أَظُنُّ ذَلِك.", "transliteration": "na3am, azunnu dhaalik.", "english": "Yes, I think so." }
+        },
+        {
+          "pair": { "arabic": "اِسْتَرِحْ قَلِيلًا.", "transliteration": "istari7 qaleelan.", "english": "Take some rest." },
+          "response": { "arabic": "شُكْرًا، سَأَفْعَل.", "transliteration": "shukran, sa-af3al.", "english": "Thanks, I will." }
+        }
+      ],
+      "culture": "In Fusha, people answer كَيْفَ حَالُكَ؟ with بِخَيْر, الْحَمْدُ لِلَّه, even when they are not well, and then explain if asked. A sick person is wished سَلَامَتُكَ, and friends often advise rest and water.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "A man asks you: 'كَيْفَ حَالُكَ الْيَوْم؟'. Say that you are fine, thank God.",
+          "answer": "بِخَيْر، الْحَمْدُ لِلَّه",
+          "accepted": ["بِخَيْر، الْحَمْدُ لِلَّه", "بخير، الحمد لله", "بِخَيْر", "bikhayr, al7amdu lillaah"],
+          "too_formal": { "item": "تَمَام، الْحَمْدُ لِلَّه", "feedback": "spoken, not Fusha" },
+          "tip": "بِخَيْر is 'in goodness'; الْحَمْدُ لِلَّه gives thanks."
+        },
+        {
+          "id": "unit-09.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks you: 'مَاذَا حَدَثَ لَكَ؟'. Say that you have a headache.",
+          "answer": "عِنْدِي صُدَاع",
+          "accepted": ["عِنْدِي صُدَاع", "عندي صداع", "لَدَيَّ صُدَاع", "3indee suda3"],
+          "too_formal": { "item": "رَاسِي عَم يُوجِعْنِي", "feedback": "spoken, not Fusha" },
+          "tip": "عِنْدِي is 'I have'; the pain or illness follows."
+        },
+        {
+          "id": "unit-09.lesson-01.reply.03",
+          "type": "reply",
+          "prompt": "A friend says: 'يَبْدُو أَنَّكَ مُصَابٌ بِالزُّكَام'. Agree with him.",
+          "answer": "نَعَمْ، أَظُنُّ ذَلِك",
+          "accepted": ["نَعَمْ، أَظُنُّ ذَلِك", "نعم، اظن ذلك", "أَظُنُّ ذَلِك", "na3am, azunnu dhaalik"],
+          "too_formal": { "item": "إِي، هَيْك بَظُنّ", "feedback": "spoken, not Fusha" },
+          "tip": "أَظُنُّ ذَلِك means 'I think so'."
+        },
+        {
+          "id": "unit-09.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'عِنْدِي _____.' (I have a fever.)",
+          "answer": "حُمَّى",
+          "accepted": ["حُمَّى", "حمى", "7ummaa", "حَرَارَة"],
+          "too_formal": { "item": "سُخُونِيَّة", "feedback": "spoken, not Fusha" },
+          "tip": "حُمَّى is 'fever'; حَرَارَة is 'temperature'."
+        },
+        {
+          "id": "unit-09.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "A woman says: 'أَنَا _____.' (I'm tired.)",
+          "answer": "مُتْعَبَة",
+          "accepted": ["مُتْعَبَة", "متعبة", "mut3aba", "مُتْعَبَةٌ"],
+          "too_formal": { "item": "تَعْبَانَة", "feedback": "spoken, not Fusha" },
+          "tip": "A woman adds ة to the word: مُتْعَب becomes مُتْعَبَة."
+        },
+        {
+          "id": "unit-09.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I can't sleep well.'",
+          "answer": "لَا أَنَامُ جَيِّدًا",
+          "accepted": ["لَا أَنَامُ جَيِّدًا", "لا انام جيدا", "لَا أَنَامُ نَوْمًا جَيِّدًا", "laa anaamu jayyidan"],
+          "too_formal": { "item": "مَا بَنَام مْنِيح", "feedback": "spoken, not Fusha" },
+          "tip": "لَا before a present verb makes it negative."
+        },
+        {
+          "id": "unit-09.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'My stomach hurts.'",
+          "answer": "مَعِدَتِي تُؤْلِمُنِي",
+          "accepted": ["مَعِدَتِي تُؤْلِمُنِي", "معدتي تؤلمني", "بَطْنِي يُؤْلِمُنِي", "ma3idatee tu2limunee"],
+          "too_formal": { "item": "بَطْنِي عَم يُوجِعْنِي", "feedback": "spoken, not Fusha" },
+          "tip": "أَلَمَ means 'to hurt'; the ending ـنِي means 'me'."
+        },
+        {
+          "id": "unit-09.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Take some rest.' (to a man)",
+          "answer": "اِسْتَرِحْ قَلِيلًا",
+          "accepted": ["اِسْتَرِحْ قَلِيلًا", "استرح قليلا", "خُذْ قِسْطًا مِنَ الرَّاحَة", "istari7 qaleelan"],
+          "too_formal": { "item": "رَيِّح شْوَيّ", "feedback": "spoken, not Fusha" },
+          "tip": "To a woman the command ends in ي: اِسْتَرِيحِي."
+        },
+        {
+          "id": "unit-09.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence asks a woman how she is today?",
+          "options": ["كَيْفَ حَالُكَ الْيَوْم؟", "كَيْفَ حَالُكِ الْيَوْم؟", "مَاذَا حَدَثَ لَكَ؟", "اِسْتَرِحْ قَلِيلًا"],
+          "answer": "كَيْفَ حَالُكِ الْيَوْم؟",
+          "accepted": ["كَيْفَ حَالُكِ الْيَوْم؟", "كيف حالك اليوم؟", "kayfa 7aaluki al-yawm?", "كَيْفَ حَالُكِ الْيَوْم"],
+          "too_formal": { "item": "كِيفِك الْيَوْم؟", "feedback": "spoken, not Fusha" },
+          "tip": "The ending كِ with a long ee sound is for a woman."
+        },
+        {
+          "id": "unit-09.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'I feel dizzy'?",
+          "options": ["أَشْعُرُ بِالدُّوَار", "عِنْدِي حُمَّى", "مَعِدَتِي تُؤْلِمُنِي", "لَا أَنَامُ جَيِّدًا"],
+          "answer": "أَشْعُرُ بِالدُّوَار",
+          "accepted": ["أَشْعُرُ بِالدُّوَار", "اشعر بالدوار", "أَشْعُرُ بِدُوَار", "ash3uru bid-duwaar"],
+          "too_formal": { "item": "حَاسِس بِدُوخَة", "feedback": "spoken, not Fusha" },
+          "tip": "أَشْعُرُ بِ means 'I feel'."
+        },
+        {
+          "id": "unit-09.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'جَيِّدًا / أَنَامُ / لَا'.",
+          "answer": "لَا أَنَامُ جَيِّدًا",
+          "words": ["لَا", "أَنَامُ", "جَيِّدًا"],
+          "accepted": ["لَا أَنَامُ جَيِّدًا", "لا انام جيدا", "لَا أَنَامُ بِشَكْلٍ جَيِّد", "laa anaamu jayyidan"],
+          "too_formal": { "item": "مَا بَنَام مْنِيح", "feedback": "spoken, not Fusha" },
+          "tip": "The negative word comes first, then the verb."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        { "slot": "do-you-have-medicine-for-a-headache", "arabic": "هَلْ عِنْدَكُمْ دَوَاءٌ لِلصُّدَاع؟", "transliteration": "hal 3indakum dawaa2un lis-suda3?", "reply": { "arabic": "نَعَمْ، تَفَضَّلْ", "transliteration": "na3am, tafaddal", "english": "Yes, here you are." } },
+        { "slot": "i-want-pills-for-the-fever", "arabic": "أُرِيدُ أَقْرَاصًا لِلْحُمَّى", "transliteration": "ureedu aqraasan lil-7ummaa" },
+        { "slot": "do-you-have-cough-syrup", "arabic": "هَلْ عِنْدَكُمْ شَرَابٌ لِلسُّعَال؟", "transliteration": "hal 3indakum sharaabun lis-su3aal?" },
+        { "slot": "how-much-does-this-medicine-cost", "arabic": "كَمْ سِعْرُ هَذَا الدَّوَاء؟", "transliteration": "kam si3ru haadhaa ad-dawaa2?", "reply": { "arabic": "عَشَرَةُ دَنَانِير", "transliteration": "3asharatu danaaneer", "english": "Ten dinars." } },
+        { "slot": "do-i-need-a-prescription", "arabic": "هَلْ أَحْتَاجُ إِلَى وَصْفَةٍ طِبِّيَّة؟", "transliteration": "hal a7taaju ilaa wasfatin tibbiyya?", "reply": { "arabic": "لَا، لَيْسَ لِهَذَا الدَّوَاء", "transliteration": "laa, laysa lihaadhaa ad-dawaa2", "english": "No, not for this medicine." } },
+        { "slot": "take-it-twice-a-day-to-a-man", "arabic": "خُذْهُ مَرَّتَيْنِ فِي الْيَوْم", "transliteration": "khudhhu marratayni fee al-yawm" },
+        { "slot": "before-eating-or-after", "arabic": "قَبْلَ الْأَكْلِ أَمْ بَعْدَهُ؟", "transliteration": "qabla al-akli am ba3dahu?", "reply": { "arabic": "بَعْدَ الْأَكْل", "transliteration": "ba3da al-akl", "english": "After eating." } },
+        { "slot": "i-want-something-for-allergies", "arabic": "أُرِيدُ شَيْئًا لِلْحَسَاسِيَّة", "transliteration": "ureedu shay2an lil-7asaasiyya" },
+        { "slot": "do-you-have-band-aids", "arabic": "هَلْ عِنْدَكُمْ لَاصِقُ جُرُوح؟", "transliteration": "hal 3indakum laasiqu juroo7?" },
+        { "slot": "this-medicine-makes-you-a-bit-sleepy", "arabic": "هَذَا الدَّوَاءُ يُسَبِّبُ النُّعَاسَ قَلِيلًا", "transliteration": "haadhaa ad-dawaa2u yusabbibu an-nu3aasa qaleelan" },
+        { "slot": "do-you-have-something-for-the-stomach", "arabic": "هَلْ عِنْدَكُمْ شَيْءٌ لِلْمَعِدَة؟", "transliteration": "hal 3indakum shay2un lil-ma3ida?" },
+        { "slot": "get-well-soon-goodnight-to-a-man", "arabic": "شَفَاكَ اللَّهُ، تُصْبِحُ عَلَى خَيْر", "transliteration": "shafaaka Allaahu, tusbi7u 3alaa khayr", "reply": { "arabic": "وَأَنْتَ بِخَيْر", "transliteration": "wa anta bikhayr", "english": "And you, good night." } }
+      ],
+      "dialogue": [
+        { "speaker": "Saif", "arabic": "السَّلَامُ عَلَيْكُمْ. هَلْ عِنْدَكُمْ دَوَاءٌ لِلصُّدَاع؟", "transliteration": "as-salaamu 3alaykum. hal 3indakum dawaa2un lis-suda3?", "english": "Peace be upon you. Do you have medicine for a headache?" },
+        { "speaker": "Lama", "arabic": "وَعَلَيْكُمُ السَّلَام. نَعَمْ، تَفَضَّلْ.", "transliteration": "wa 3alaykumu as-salaam. na3am, tafaddal.", "english": "And peace be upon you. Yes, here you are." },
+        { "speaker": "Saif", "arabic": "كَمْ سِعْرُ هَذَا الدَّوَاء؟", "transliteration": "kam si3ru haadhaa ad-dawaa2?", "english": "How much does this medicine cost?" },
+        { "speaker": "Lama", "arabic": "عَشَرَةُ دَنَانِير.", "transliteration": "3asharatu danaaneer.", "english": "Ten dinars." },
+        { "speaker": "Saif", "arabic": "هَلْ أَحْتَاجُ إِلَى وَصْفَةٍ طِبِّيَّة؟", "transliteration": "hal a7taaju ilaa wasfatin tibbiyya?", "english": "Do I need a prescription?" },
+        { "speaker": "Lama", "arabic": "لَا، لَيْسَ لِهَذَا الدَّوَاء. خُذْهُ مَرَّتَيْنِ فِي الْيَوْم.", "transliteration": "laa, laysa lihaadhaa ad-dawaa2. khudhhu marratayni fee al-yawm.", "english": "No, not for this medicine. Take it twice a day." },
+        { "speaker": "Saif", "arabic": "قَبْلَ الْأَكْلِ أَمْ بَعْدَهُ؟", "transliteration": "qabla al-akli am ba3dahu?", "english": "Before eating or after?" },
+        { "speaker": "Lama", "arabic": "بَعْدَ الْأَكْل. وَهَذَا الدَّوَاءُ يُسَبِّبُ النُّعَاسَ قَلِيلًا.", "transliteration": "ba3da al-akl. wa haadhaa ad-dawaa2u yusabbibu an-nu3aasa qaleelan.", "english": "After eating. And this medicine makes you a bit sleepy." },
+        { "speaker": "Saif", "arabic": "حَسَنًا. وَأُرِيدُ أَيْضًا شَيْئًا لِلْحَسَاسِيَّة.", "transliteration": "7asanan. wa ureedu aydan shay2an lil-7asaasiyya.", "english": "Alright. And I also want something for allergies." },
+        { "speaker": "Lama", "arabic": "عِنْدَنَا أَقْرَاصٌ جَيِّدَة. هَلْ تُرِيدُ لَاصِقَ جُرُوح؟", "transliteration": "3indanaa aqraasun jayyida. hal tureedu laasiqa juroo7?", "english": "We have good pills. Do you want band-aids?" },
+        { "speaker": "Saif", "arabic": "نَعَمْ، لَوْ سَمَحْتِ. شُكْرًا جَزِيلًا.", "transliteration": "na3am, law samahti. shukran jazeelan.", "english": "Yes, please. Thank you very much." },
+        { "speaker": "Lama", "arabic": "عَفْوًا. سَلَامَتُكَ.", "transliteration": "3afwan. salaamatuka.", "english": "You're welcome. Get well soon." }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "هَلْ عِنْدَكُمْ دَوَاءٌ لِلصُّدَاع؟", "transliteration": "hal 3indakum dawaa2un lis-suda3?", "english": "Do you have medicine for a headache?" },
+          "response": { "arabic": "نَعَمْ، تَفَضَّلْ.", "transliteration": "na3am, tafaddal.", "english": "Yes, here you are." }
+        },
+        {
+          "pair": { "arabic": "كَمْ سِعْرُ هَذَا الدَّوَاء؟", "transliteration": "kam si3ru haadhaa ad-dawaa2?", "english": "How much does this medicine cost?" },
+          "response": { "arabic": "عَشَرَةُ دَنَانِير.", "transliteration": "3asharatu danaaneer.", "english": "Ten dinars." }
+        },
+        {
+          "pair": { "arabic": "قَبْلَ الْأَكْلِ أَمْ بَعْدَهُ؟", "transliteration": "qabla al-akli am ba3dahu?", "english": "Before eating or after?" },
+          "response": { "arabic": "بَعْدَ الْأَكْل.", "transliteration": "ba3da al-akl.", "english": "After eating." }
+        },
+        {
+          "pair": { "arabic": "هَلْ أَحْتَاجُ إِلَى وَصْفَةٍ طِبِّيَّة؟", "transliteration": "hal a7taaju ilaa wasfatin tibbiyya?", "english": "Do I need a prescription?" },
+          "response": { "arabic": "لَا، لَيْسَ لِهَذَا الدَّوَاء.", "transliteration": "laa, laysa lihaadhaa ad-dawaa2.", "english": "No, not for this medicine." }
+        }
+      ],
+      "culture": "A pharmacist in the Arab world often gives advice and sells many medicines without a prescription, and the word الصَّيْدَلِيَّة names the pharmacy. The polite farewell to a sick customer is سَلَامَتُكَ or شَفَاكَ اللَّه.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "You are at the pharmacy. Ask whether they have medicine for a headache.",
+          "answer": "هَلْ عِنْدَكُمْ دَوَاءٌ لِلصُّدَاع؟",
+          "accepted": ["هَلْ عِنْدَكُمْ دَوَاءٌ لِلصُّدَاع؟", "هل عندكم دواء للصداع؟", "هَلْ لَدَيْكُمْ دَوَاءٌ لِلصُّدَاع؟", "hal 3indakum dawaa2un lis-suda3?"],
+          "too_formal": { "item": "فِي عِنْدَكُم دَوَا لِلصُّدَاع؟", "feedback": "spoken, not Fusha" },
+          "tip": "هَلْ turns a statement into a yes or no question."
+        },
+        {
+          "id": "unit-09.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "The pharmacist says: 'خُذْهُ مَرَّتَيْنِ فِي الْيَوْم'. Ask whether it is before eating or after.",
+          "answer": "قَبْلَ الْأَكْلِ أَمْ بَعْدَهُ؟",
+          "accepted": ["قَبْلَ الْأَكْلِ أَمْ بَعْدَهُ؟", "قبل الاكل ام بعده؟", "قَبْلَ الْأَكْلِ أَمْ بَعْدَ الْأَكْل؟", "qabla al-akli am ba3dahu?"],
+          "too_formal": { "item": "قَبْل الْأَكِل وَلَّا بَعْدُه؟", "feedback": "spoken, not Fusha" },
+          "tip": "أَمْ is 'or' when choosing between two options."
+        },
+        {
+          "id": "unit-09.lesson-02.reply.03",
+          "type": "reply",
+          "prompt": "A customer asks: 'هَلْ أَحْتَاجُ إِلَى وَصْفَةٍ طِبِّيَّة؟'. As the pharmacist, say no, not for this medicine.",
+          "answer": "لَا، لَيْسَ لِهَذَا الدَّوَاء",
+          "accepted": ["لَا، لَيْسَ لِهَذَا الدَّوَاء", "لا، ليس لهذا الدواء", "لَا", "laa, laysa lihaadhaa ad-dawaa2"],
+          "too_formal": { "item": "لَا، مَا بَيِلْزَم لِهَالدَّوَا", "feedback": "spoken, not Fusha" },
+          "tip": "لَيْسَ negates the phrase that follows it."
+        },
+        {
+          "id": "unit-09.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أُرِيدُ _____ لِلْحُمَّى.' (I want pills for the fever.)",
+          "answer": "أَقْرَاصًا",
+          "accepted": ["أَقْرَاصًا", "اقراصا", "aqraasan", "حُبُوبًا"],
+          "too_formal": { "item": "حُبُوب", "feedback": "spoken, not Fusha" },
+          "tip": "قُرْص is one pill; أَقْرَاص is pills."
+        },
+        {
+          "id": "unit-09.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'خُذْهُ _____ فِي الْيَوْم.' (Take it twice a day.)",
+          "answer": "مَرَّتَيْنِ",
+          "accepted": ["مَرَّتَيْنِ", "مرتين", "marratayn", "مَرَّتَيْن"],
+          "too_formal": { "item": "مَرْتَيْن", "feedback": "spoken, not Fusha" },
+          "tip": "مَرَّتَيْن is the dual of مَرَّة: exactly two times."
+        },
+        {
+          "id": "unit-09.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'How much does this medicine cost?'",
+          "answer": "كَمْ سِعْرُ هَذَا الدَّوَاء؟",
+          "accepted": ["كَمْ سِعْرُ هَذَا الدَّوَاء؟", "كم سعر هذا الدواء؟", "بِكَمْ هَذَا الدَّوَاء؟", "kam si3ru haadhaa ad-dawaa2?"],
+          "too_formal": { "item": "قَدَّيْش سِعْر هَالدَّوَا؟", "feedback": "spoken, not Fusha" },
+          "tip": "سِعْر is 'price'; كَمْ asks 'how much'."
+        },
+        {
+          "id": "unit-09.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Do you have cough syrup?'",
+          "answer": "هَلْ عِنْدَكُمْ شَرَابٌ لِلسُّعَال؟",
+          "accepted": ["هَلْ عِنْدَكُمْ شَرَابٌ لِلسُّعَال؟", "هل عندكم شراب للسعال؟", "هَلْ عِنْدَكُمْ شَرَابُ سُعَال؟", "hal 3indakum sharaabun lis-su3aal?"],
+          "too_formal": { "item": "عِنْدَكُم شَرَاب كُحَّة؟", "feedback": "spoken, not Fusha" },
+          "tip": "شَرَاب is 'syrup' or 'drink'; سُعَال is 'cough'."
+        },
+        {
+          "id": "unit-09.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'This medicine makes you a bit sleepy.'",
+          "answer": "هَذَا الدَّوَاءُ يُسَبِّبُ النُّعَاسَ قَلِيلًا",
+          "accepted": ["هَذَا الدَّوَاءُ يُسَبِّبُ النُّعَاسَ قَلِيلًا", "هذا الدواء يسبب النعاس قليلا", "هَذَا الدَّوَاءُ يَجْعَلُكَ تَنْعَسُ قَلِيلًا", "haadhaa ad-dawaa2u yusabbibu an-nu3aasa qaleelan"],
+          "too_formal": { "item": "هَالدَّوَا بِيْنَعِّس شْوَيّ", "feedback": "spoken, not Fusha" },
+          "tip": "سَبَّبَ means 'to cause'; نُعَاس is 'sleepiness'."
+        },
+        {
+          "id": "unit-09.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'Do you have band-aids?'",
+          "options": ["هَلْ عِنْدَكُمْ لَاصِقُ جُرُوح؟", "هَلْ عِنْدَكُمْ شَرَابٌ لِلسُّعَال؟", "أُرِيدُ شَيْئًا لِلْحَسَاسِيَّة", "كَمْ سِعْرُ هَذَا الدَّوَاء؟"],
+          "answer": "هَلْ عِنْدَكُمْ لَاصِقُ جُرُوح؟",
+          "accepted": ["هَلْ عِنْدَكُمْ لَاصِقُ جُرُوح؟", "هل عندكم لاصق جروح؟", "هَلْ عِنْدَكُمْ لَاصِقُ جُرُوح", "hal 3indakum laasiqu juroo7?"],
+          "too_formal": { "item": "فِي عِنْدَك لَزْقَات جُرْح؟", "feedback": "spoken, not Fusha" },
+          "tip": "لَاصِق is 'sticking'; جُرُوح is 'wounds'."
+        },
+        {
+          "id": "unit-09.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'I want something for allergies'?",
+          "options": ["أُرِيدُ شَيْئًا لِلْحَسَاسِيَّة", "هَلْ عِنْدَكُمْ شَيْءٌ لِلْمَعِدَة؟", "أُرِيدُ أَقْرَاصًا لِلْحُمَّى", "خُذْهُ مَرَّتَيْنِ فِي الْيَوْم"],
+          "answer": "أُرِيدُ شَيْئًا لِلْحَسَاسِيَّة",
+          "accepted": ["أُرِيدُ شَيْئًا لِلْحَسَاسِيَّة", "اريد شيئا للحساسية", "ureedu shay2an lil-7asaasiyya", "أُرِيدُ دَوَاءً لِلْحَسَاسِيَّة"],
+          "too_formal": { "item": "بَدِّي شِي لَلْحَسَّاسِيَّة", "feedback": "spoken, not Fusha" },
+          "tip": "لِ before a noun means 'for'."
+        },
+        {
+          "id": "unit-09.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'لِلْمَعِدَة؟ / هَلْ / شَيْءٌ / عِنْدَكُمْ'.",
+          "answer": "هَلْ عِنْدَكُمْ شَيْءٌ لِلْمَعِدَة؟",
+          "words": ["هَلْ", "عِنْدَكُمْ", "شَيْءٌ", "لِلْمَعِدَة؟"],
+          "accepted": ["هَلْ عِنْدَكُمْ شَيْءٌ لِلْمَعِدَة؟", "هل عندكم شيء للمعدة؟", "هَلْ لَدَيْكُمْ شَيْءٌ لِلْمَعِدَة؟", "hal 3indakum shay2un lil-ma3ida?"],
+          "too_formal": { "item": "فِي عِنْدَك شِي لَلْمَعِدَة؟", "feedback": "spoken, not Fusha" },
+          "tip": "The question word هَلْ always comes first."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        { "slot": "i-have-an-appointment-with-the-doctor", "arabic": "عِنْدِي مَوْعِدٌ مَعَ الطَّبِيب", "transliteration": "3indee maw3idun ma3a at-tabeeb" },
+        { "slot": "what-hurts-you-doctor-asking-a-man", "arabic": "مَاذَا يُؤْلِمُكَ؟", "transliteration": "maadhaa yu2limuka?", "reply": { "arabic": "رَأْسِي يُؤْلِمُنِي", "transliteration": "ra2see yu2limunee", "english": "My head hurts." } },
+        { "slot": "since-when-have-you-been-feeling-like-this-to-a-", "arabic": "مُنْذُ مَتَى تَشْعُرُ بِهَذَا؟", "transliteration": "mundhu mataa tash3uru bihaadhaa?", "reply": { "arabic": "مُنْذُ يَوْمَيْن", "transliteration": "mundhu yawmayn", "english": "For two days." } },
+        { "slot": "you-need-to-do-some-tests", "arabic": "تَحْتَاجُ إِلَى إِجْرَاءِ بَعْضِ الْفُحُوصَات", "transliteration": "ta7taaju ilaa ijraa2i ba3di al-fu7oosaat" },
+        { "slot": "take-a-deep-breath-to-a-man", "arabic": "خُذْ نَفَسًا عَمِيقًا", "transliteration": "khudh nafasan 3ameeqan" },
+        { "slot": "are-you-allergic-to-any-medicine-to-a-man", "arabic": "هَلْ عِنْدَكَ حَسَاسِيَّةٌ مِنْ أَيِّ دَوَاء؟", "transliteration": "hal 3indaka 7asaasiyyatun min ayyi dawaa2?", "reply": { "arabic": "لَا، لَيْسَ عِنْدِي", "transliteration": "laa, laysa 3indee", "english": "No, I don't." } },
+        { "slot": "you-need-to-rest-for-a-few-days-to-a-man", "arabic": "تَحْتَاجُ إِلَى الرَّاحَةِ لِعِدَّةِ أَيَّام", "transliteration": "ta7taaju ilaa ar-raa7ati li-3iddati ayyaam" },
+        { "slot": "i-ll-write-you-a-prescription-to-a-man", "arabic": "سَأَكْتُبُ لَكَ وَصْفَةً طِبِّيَّة", "transliteration": "sa-aktubu laka wasfatan tibbiyya" },
+        { "slot": "your-blood-pressure-is-a-bit-high-to-a-man", "arabic": "ضَغْطُ دَمِكَ مُرْتَفِعٌ قَلِيلًا", "transliteration": "daghtu damika murtafi3un qaleelan" },
+        { "slot": "it-s-nothing-serious", "arabic": "لَيْسَ الْأَمْرُ خَطِيرًا", "transliteration": "laysa al-amru khateeran" },
+        { "slot": "you-need-to-come-back-after-a-week-to-a-man", "arabic": "عَلَيْكَ أَنْ تَعُودَ بَعْدَ أُسْبُوع", "transliteration": "3alayka an ta3ooda ba3da usboo3" },
+        { "slot": "get-well-soon-take-it-easy-to-a-man", "arabic": "سَلَامَتُكَ، وَخُذْ رَاحَتَكَ", "transliteration": "salaamatuka, wa khudh raa7ataka", "reply": { "arabic": "شُكْرًا يَا دُكْتُور", "transliteration": "shukran yaa duktoor", "english": "Thank you, doctor." } }
+      ],
+      "dialogue": [
+        { "speaker": "Nasser", "arabic": "السَّلَامُ عَلَيْكُمْ. عِنْدِي مَوْعِدٌ مَعَ الطَّبِيب.", "transliteration": "as-salaamu 3alaykum. 3indee maw3idun ma3a at-tabeeb.", "english": "Peace be upon you. I have an appointment with the doctor." },
+        { "speaker": "Dr. Samir", "arabic": "وَعَلَيْكُمُ السَّلَام. تَفَضَّلْ بِالْجُلُوس. مَاذَا يُؤْلِمُكَ؟", "transliteration": "wa 3alaykumu as-salaam. tafaddal bil-juloos. maadhaa yu2limuka?", "english": "And peace be upon you. Please sit. What hurts you?" },
+        { "speaker": "Nasser", "arabic": "رَأْسِي يُؤْلِمُنِي، وَعِنْدِي حُمَّى.", "transliteration": "ra2see yu2limunee, wa 3indee 7ummaa.", "english": "My head hurts, and I have a fever." },
+        { "speaker": "Dr. Samir", "arabic": "مُنْذُ مَتَى تَشْعُرُ بِهَذَا؟", "transliteration": "mundhu mataa tash3uru bihaadhaa?", "english": "Since when have you been feeling this?" },
+        { "speaker": "Nasser", "arabic": "مُنْذُ يَوْمَيْن.", "transliteration": "mundhu yawmayn.", "english": "For two days." },
+        { "speaker": "Dr. Samir", "arabic": "خُذْ نَفَسًا عَمِيقًا، مِنْ فَضْلِكَ. ضَغْطُ دَمِكَ مُرْتَفِعٌ قَلِيلًا.", "transliteration": "khudh nafasan 3ameeqan, min fadlika. daghtu damika murtafi3un qaleelan.", "english": "Take a deep breath, please. Your blood pressure is a bit high." },
+        { "speaker": "Nasser", "arabic": "هَلِ الْأَمْرُ خَطِير؟", "transliteration": "hali al-amru khateer?", "english": "Is it serious?" },
+        { "speaker": "Dr. Samir", "arabic": "لَا، لَيْسَ الْأَمْرُ خَطِيرًا. هَلْ عِنْدَكَ حَسَاسِيَّةٌ مِنْ أَيِّ دَوَاء؟", "transliteration": "laa, laysa al-amru khateeran. hal 3indaka 7asaasiyyatun min ayyi dawaa2?", "english": "No, it's nothing serious. Are you allergic to any medicine?" },
+        { "speaker": "Nasser", "arabic": "لَا، لَيْسَ عِنْدِي.", "transliteration": "laa, laysa 3indee.", "english": "No, I'm not." },
+        { "speaker": "Dr. Samir", "arabic": "سَأَكْتُبُ لَكَ وَصْفَةً طِبِّيَّة، وَتَحْتَاجُ إِلَى الرَّاحَةِ لِعِدَّةِ أَيَّام.", "transliteration": "sa-aktubu laka wasfatan tibbiyya, wa ta7taaju ilaa ar-raa7ati li-3iddati ayyaam.", "english": "I'll write you a prescription, and you need to rest for a few days." },
+        { "speaker": "Nasser", "arabic": "مَتَى أَعُودُ؟", "transliteration": "mataa a3ood?", "english": "When should I come back?" },
+        { "speaker": "Dr. Samir", "arabic": "عَلَيْكَ أَنْ تَعُودَ بَعْدَ أُسْبُوع. سَلَامَتُكَ، وَخُذْ رَاحَتَكَ.", "transliteration": "3alayka an ta3ooda ba3da usboo3. salaamatuka, wa khudh raa7ataka.", "english": "You need to come back after a week. Get well soon, and take it easy." },
+        { "speaker": "Nasser", "arabic": "شُكْرًا يَا دُكْتُور.", "transliteration": "shukran yaa duktoor.", "english": "Thank you, doctor." }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "مَاذَا يُؤْلِمُكَ؟", "transliteration": "maadhaa yu2limuka?", "english": "What hurts you?" },
+          "response": { "arabic": "رَأْسِي يُؤْلِمُنِي.", "transliteration": "ra2see yu2limunee.", "english": "My head hurts." }
+        },
+        {
+          "pair": { "arabic": "مُنْذُ مَتَى تَشْعُرُ بِهَذَا؟", "transliteration": "mundhu mataa tash3uru bihaadhaa?", "english": "Since when have you been feeling this?" },
+          "response": { "arabic": "مُنْذُ يَوْمَيْن.", "transliteration": "mundhu yawmayn.", "english": "For two days." }
+        },
+        {
+          "pair": { "arabic": "هَلْ عِنْدَكَ حَسَاسِيَّةٌ مِنْ أَيِّ دَوَاء؟", "transliteration": "hal 3indaka 7asaasiyyatun min ayyi dawaa2?", "english": "Are you allergic to any medicine?" },
+          "response": { "arabic": "لَا، لَيْسَ عِنْدِي.", "transliteration": "laa, laysa 3indee.", "english": "No, I'm not." }
+        },
+        {
+          "pair": { "arabic": "مَتَى أَعُودُ؟", "transliteration": "mataa a3ood?", "english": "When should I come back?" },
+          "response": { "arabic": "بَعْدَ أُسْبُوع.", "transliteration": "ba3da usboo3.", "english": "After a week." }
+        }
+      ],
+      "culture": "Doctors in the Arab world speak Fusha or a mix of Fusha and their dialect when they explain an illness, and the polite word to a patient is سَلَامَتُكَ. It is normal to be told to rest and to come back for a check after a week.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "The doctor asks: 'مَاذَا يُؤْلِمُكَ؟'. Say that your head hurts.",
+          "answer": "رَأْسِي يُؤْلِمُنِي",
+          "accepted": ["رَأْسِي يُؤْلِمُنِي", "رأسي يؤلمني", "عِنْدِي صُدَاع", "ra2see yu2limunee"],
+          "too_formal": { "item": "رَاسِي عَم يُوجِعْنِي", "feedback": "spoken, not Fusha" },
+          "tip": "رَأْس is 'head'; the ending ي means 'my'."
+        },
+        {
+          "id": "unit-09.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "The doctor asks: 'مُنْذُ مَتَى تَشْعُرُ بِهَذَا؟'. Say for two days.",
+          "answer": "مُنْذُ يَوْمَيْن",
+          "accepted": ["مُنْذُ يَوْمَيْن", "منذ يومين", "مُنْذُ يَوْمَيْنِ", "mundhu yawmayn"],
+          "too_formal": { "item": "مِنْ يَوْمَيْن", "feedback": "spoken, not Fusha" },
+          "tip": "مُنْذُ answers 'since when' with a time."
+        },
+        {
+          "id": "unit-09.lesson-03.reply.03",
+          "type": "reply",
+          "prompt": "The doctor asks: 'هَلْ عِنْدَكَ حَسَاسِيَّةٌ مِنْ أَيِّ دَوَاء؟'. Say no.",
+          "answer": "لَا، لَيْسَ عِنْدِي",
+          "accepted": ["لَا، لَيْسَ عِنْدِي", "لا، ليس عندي", "لَا", "laa, laysa 3indee"],
+          "too_formal": { "item": "لَا، مَا عِنْدِي", "feedback": "spoken, not Fusha" },
+          "tip": "لَيْسَ عِنْدِي means 'I do not have'."
+        },
+        {
+          "id": "unit-09.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'عِنْدِي _____ مَعَ الطَّبِيب.' (I have an appointment with the doctor.)",
+          "answer": "مَوْعِدٌ",
+          "accepted": ["مَوْعِدٌ", "موعد", "maw3idun", "مَوْعِد"],
+          "too_formal": { "item": "إِلِي مَوْعِد عَنْدَ الدُّكْتُور", "feedback": "spoken, not Fusha" },
+          "tip": "مَوْعِد is an appointment or a fixed time."
+        },
+        {
+          "id": "unit-09.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'خُذْ _____ عَمِيقًا.' (Take a deep breath.)",
+          "answer": "نَفَسًا",
+          "accepted": ["نَفَسًا", "نفسا", "nafasan", "نَفَسٌ"],
+          "too_formal": { "item": "نَفَس", "feedback": "spoken, not Fusha" },
+          "tip": "نَفَس is 'a breath'; عَمِيق is 'deep'."
+        },
+        {
+          "id": "unit-09.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'You need to do some tests.'",
+          "answer": "تَحْتَاجُ إِلَى إِجْرَاءِ بَعْضِ الْفُحُوصَات",
+          "accepted": ["تَحْتَاجُ إِلَى إِجْرَاءِ بَعْضِ الْفُحُوصَات", "تحتاج الى اجراء بعض الفحوصات", "يَجِبُ أَنْ تُجْرِيَ بَعْضَ الْفُحُوصَات", "ta7taaju ilaa ijraa2i ba3di al-fu7oosaat"],
+          "too_formal": { "item": "لَازِم تَعْمَل شَوَيّ تَحَالِيل", "feedback": "spoken, not Fusha" },
+          "tip": "فُحُوصَات is 'tests' or 'examinations'."
+        },
+        {
+          "id": "unit-09.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'I'll write you a prescription.' (to a man)",
+          "answer": "سَأَكْتُبُ لَكَ وَصْفَةً طِبِّيَّة",
+          "accepted": ["سَأَكْتُبُ لَكَ وَصْفَةً طِبِّيَّة", "سأكتب لك وصفة طبية", "سَأَكْتُبُ لَكَ وَصْفَة", "sa-aktubu laka wasfatan tibbiyya"],
+          "too_formal": { "item": "رَح إِكْتُبْلَك وَصْفَة", "feedback": "spoken, not Fusha" },
+          "tip": "سَ before the verb makes it future."
+        },
+        {
+          "id": "unit-09.lesson-03.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'It's nothing serious.'",
+          "answer": "لَيْسَ الْأَمْرُ خَطِيرًا",
+          "accepted": ["لَيْسَ الْأَمْرُ خَطِيرًا", "ليس الامر خطيرا", "لَا شَيْءَ خَطِير", "laysa al-amru khateeran"],
+          "too_formal": { "item": "مَا فِي شِي خَطِير", "feedback": "spoken, not Fusha" },
+          "tip": "لَيْسَ makes the description negative: 'not serious'."
+        },
+        {
+          "id": "unit-09.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'Your blood pressure is a bit high'?",
+          "options": ["ضَغْطُ دَمِكَ مُرْتَفِعٌ قَلِيلًا", "سَأَكْتُبُ لَكَ وَصْفَةً طِبِّيَّة", "لَيْسَ الْأَمْرُ خَطِيرًا", "عَلَيْكَ أَنْ تَعُودَ بَعْدَ أُسْبُوع"],
+          "answer": "ضَغْطُ دَمِكَ مُرْتَفِعٌ قَلِيلًا",
+          "accepted": ["ضَغْطُ دَمِكَ مُرْتَفِعٌ قَلِيلًا", "ضغط دمك مرتفع قليلا", "daghtu damika murtafi3un qaleelan", "ضَغْطُ الدَّمِ عِنْدَكَ مُرْتَفِعٌ قَلِيلًا"],
+          "too_formal": { "item": "الضَّغْط عَالِي شْوَيّ", "feedback": "spoken, not Fusha" },
+          "tip": "ضَغْط الدَّم is 'blood pressure'; مُرْتَفِع is 'high'."
+        },
+        {
+          "id": "unit-09.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'You need to come back after a week'?",
+          "options": ["عَلَيْكَ أَنْ تَعُودَ بَعْدَ أُسْبُوع", "تَحْتَاجُ إِلَى الرَّاحَةِ لِعِدَّةِ أَيَّام", "مُنْذُ مَتَى تَشْعُرُ بِهَذَا؟", "خُذْ نَفَسًا عَمِيقًا"],
+          "answer": "عَلَيْكَ أَنْ تَعُودَ بَعْدَ أُسْبُوع",
+          "accepted": ["عَلَيْكَ أَنْ تَعُودَ بَعْدَ أُسْبُوع", "عليك ان تعود بعد اسبوع", "3alayka an ta3ooda ba3da usboo3", "يَجِبُ أَنْ تَعُودَ بَعْدَ أُسْبُوع"],
+          "too_formal": { "item": "لَازِم تِرْجَع بَعْد أُسْبُوع", "feedback": "spoken, not Fusha" },
+          "tip": "عَلَيْكَ أَنْ means 'you must'."
+        },
+        {
+          "id": "unit-09.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'أَيَّام / لِعِدَّةِ / تَحْتَاجُ / إِلَى الرَّاحَةِ'.",
+          "answer": "تَحْتَاجُ إِلَى الرَّاحَةِ لِعِدَّةِ أَيَّام",
+          "words": ["تَحْتَاجُ", "إِلَى الرَّاحَةِ", "لِعِدَّةِ", "أَيَّام"],
+          "accepted": ["تَحْتَاجُ إِلَى الرَّاحَةِ لِعِدَّةِ أَيَّام", "تحتاج الى الراحة لعدة ايام", "تَحْتَاجُ إِلَى الرَّاحَةِ عِدَّةَ أَيَّام", "ta7taaju ilaa ar-raa7ati li-3iddati ayyaam"],
+          "too_formal": { "item": "لَازِم تِرْتَاح كِم يَوْم", "feedback": "spoken, not Fusha" },
+          "tip": "عِدَّة means 'several' and is followed by the plural."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        { "slot": "head", "arabic": "الرَّأْس", "transliteration": "ar-ra2s" },
+        { "slot": "stomach-belly", "arabic": "الْبَطْن", "transliteration": "al-batn" },
+        { "slot": "back", "arabic": "الظَّهْر", "transliteration": "adh-dhahr" },
+        { "slot": "hand-arm", "arabic": "الْيَد", "transliteration": "al-yad" },
+        { "slot": "leg-foot", "arabic": "الرِّجْل", "transliteration": "ar-rijl" },
+        { "slot": "eye", "arabic": "الْعَيْن", "transliteration": "al-3ayn" },
+        { "slot": "ear", "arabic": "الْأُذُن", "transliteration": "al-udhun" },
+        { "slot": "tooth", "arabic": "السِّنّ", "transliteration": "as-sinn" },
+        { "slot": "neck", "arabic": "الرَّقَبَة", "transliteration": "ar-raqaba" },
+        { "slot": "my-back-hurts", "arabic": "ظَهْرِي يُؤْلِمُنِي", "transliteration": "zahree yu2limunee", "reply": { "arabic": "سَلَامَتُكَ", "transliteration": "salaamatuka", "english": "Get well soon." } },
+        { "slot": "i-have-a-toothache", "arabic": "عِنْدِي أَلَمٌ فِي الْأَسْنَان", "transliteration": "3indee alamun fee al-asnaan" },
+        { "slot": "my-leg-is-swollen", "arabic": "رِجْلِي مُتَوَرِّمَة", "transliteration": "rijlee mutawarrima" }
+      ],
+      "dialogue": [
+        { "speaker": "Dr. Laila", "arabic": "أَيْنَ الْأَلَمُ يَا آدَم؟", "transliteration": "ayna al-alamu yaa Aadam?", "english": "Where is the pain, Adam?" },
+        { "speaker": "Adam", "arabic": "ظَهْرِي يُؤْلِمُنِي، وَأَيْضًا رَقَبَتِي.", "transliteration": "zahree yu2limunee, wa aydan raqabatee.", "english": "My back hurts, and also my neck." },
+        { "speaker": "Dr. Laila", "arabic": "هَلْ يُؤْلِمُكَ رَأْسُكَ؟", "transliteration": "hal yu2limuka ra2suka?", "english": "Does your head hurt?" },
+        { "speaker": "Adam", "arabic": "قَلِيلًا. وَعِنْدِي أَلَمٌ فِي الْأَسْنَان.", "transliteration": "qaleelan. wa 3indee alamun fee al-asnaan.", "english": "A little. And I have a toothache." },
+        { "speaker": "Dr. Laila", "arabic": "أَرِنِي سِنَّكَ، لَوْ سَمَحْتَ.", "transliteration": "arinee sinnaka, law samahta.", "english": "Show me your tooth, please." },
+        { "speaker": "Adam", "arabic": "هَا هِيَ. وَرِجْلِي مُتَوَرِّمَة أَيْضًا.", "transliteration": "haa hiya. wa rijlee mutawarrima aydan.", "english": "Here it is. And my leg is swollen too." },
+        { "speaker": "Dr. Laila", "arabic": "مُنْذُ مَتَى؟", "transliteration": "mundhu mataa?", "english": "Since when?" },
+        { "speaker": "Adam", "arabic": "مُنْذُ أَمْس. وَعَيْنِي تُؤْلِمُنِي قَلِيلًا.", "transliteration": "mundhu ams. wa 3aynee tu2limunee qaleelan.", "english": "Since yesterday. And my eye hurts a little." },
+        { "speaker": "Dr. Laila", "arabic": "وَأُذُنُكَ؟ هَلْ تَسْمَعُ جَيِّدًا؟", "transliteration": "wa udhunuka? hal tasma3u jayyidan?", "english": "And your ear? Do you hear well?" },
+        { "speaker": "Adam", "arabic": "نَعَمْ، أُذُنِي بِخَيْر، وَيَدِي بِخَيْر أَيْضًا.", "transliteration": "na3am, udhunee bikhayr, wa yadee bikhayr aydan.", "english": "Yes, my ear is fine, and my hand is fine too." },
+        { "speaker": "Dr. Laila", "arabic": "إِذًا سَنَفْحَصُ الظَّهْرَ وَالرِّجْلَ أَوَّلًا.", "transliteration": "idhan sa-nafhasu adh-dhahra war-rijla awwalan.", "english": "Then we'll check the back and the leg first." },
+        { "speaker": "Adam", "arabic": "شُكْرًا يَا دُكْتُورَة.", "transliteration": "shukran yaa duktoora.", "english": "Thank you, doctor." }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "أَيْنَ الْأَلَم؟", "transliteration": "ayna al-alam?", "english": "Where is the pain?" },
+          "response": { "arabic": "ظَهْرِي يُؤْلِمُنِي.", "transliteration": "zahree yu2limunee.", "english": "My back hurts." }
+        },
+        {
+          "pair": { "arabic": "مَاذَا بِرِجْلِكَ؟", "transliteration": "maadhaa birijlika?", "english": "What is wrong with your leg?" },
+          "response": { "arabic": "رِجْلِي مُتَوَرِّمَة.", "transliteration": "rijlee mutawarrima.", "english": "My leg is swollen." }
+        },
+        {
+          "pair": { "arabic": "هَلْ عِنْدَكَ أَلَمٌ فِي الْأَسْنَان؟", "transliteration": "hal 3indaka alamun fee al-asnaan?", "english": "Do you have a toothache?" },
+          "response": { "arabic": "نَعَمْ، عِنْدِي أَلَمٌ فِي الْأَسْنَان.", "transliteration": "na3am, 3indee alamun fee al-asnaan.", "english": "Yes, I have a toothache." }
+        },
+        {
+          "pair": { "arabic": "هَلْ تَسْمَعُ جَيِّدًا؟", "transliteration": "hal tasma3u jayyidan?", "english": "Do you hear well?" },
+          "response": { "arabic": "نَعَمْ، أُذُنِي بِخَيْر.", "transliteration": "na3am, udhunee bikhayr.", "english": "Yes, my ear is fine." }
+        }
+      ],
+      "culture": "Body parts are named with the article الـ in Fusha, and pain is usually said with the part first and the verb يُؤْلِمُنِي after it. Many Arabic body words are shared across every dialect, so this lesson is useful anywhere.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "The doctor asks: 'أَيْنَ الْأَلَم؟'. Say that your back hurts.",
+          "answer": "ظَهْرِي يُؤْلِمُنِي",
+          "accepted": ["ظَهْرِي يُؤْلِمُنِي", "ظهري يؤلمني", "عِنْدِي أَلَمٌ فِي ظَهْرِي", "zahree yu2limunee"],
+          "too_formal": { "item": "ظَهْرِي عَم يُوجِعْنِي", "feedback": "spoken, not Fusha" },
+          "tip": "The body part comes first, then يُؤْلِمُنِي, 'hurts me'."
+        },
+        {
+          "id": "unit-09.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "The doctor asks: 'هَلْ تَسْمَعُ جَيِّدًا؟'. Say yes, your ear is fine.",
+          "answer": "نَعَمْ، أُذُنِي بِخَيْر",
+          "accepted": ["نَعَمْ، أُذُنِي بِخَيْر", "نعم، اذني بخير", "نَعَمْ", "na3am, udhunee bikhayr"],
+          "too_formal": { "item": "إِي، إِذْنِي تَمَام", "feedback": "spoken, not Fusha" },
+          "tip": "بِخَيْر means 'fine' for a person or a body part."
+        },
+        {
+          "id": "unit-09.lesson-04.reply.03",
+          "type": "reply",
+          "prompt": "The doctor asks: 'مَاذَا بِرِجْلِكَ؟'. Say that your leg is swollen.",
+          "answer": "رِجْلِي مُتَوَرِّمَة",
+          "accepted": ["رِجْلِي مُتَوَرِّمَة", "رجلي متورمة", "رِجْلِي وَارِمَة", "rijlee mutawarrima"],
+          "too_formal": { "item": "رِجْلِي وَارْمِة", "feedback": "spoken, not Fusha" },
+          "tip": "مُتَوَرِّمَة is 'swollen'; رِجْل is a feminine word."
+        },
+        {
+          "id": "unit-09.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'ظَهْرِي _____.' (My back hurts.)",
+          "answer": "يُؤْلِمُنِي",
+          "accepted": ["يُؤْلِمُنِي", "يؤلمني", "yu2limunee", "يُوجِعُنِي"],
+          "too_formal": { "item": "عَم يُوجِعْنِي", "feedback": "spoken, not Fusha" },
+          "tip": "يُؤْلِمُنِي is 'hurts me'; a plural part uses يُؤْلِمَانِنِي or يُؤْلِمْنَنِي."
+        },
+        {
+          "id": "unit-09.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'عِنْدِي أَلَمٌ فِي _____.' (I have a toothache.)",
+          "answer": "الْأَسْنَان",
+          "accepted": ["الْأَسْنَان", "الاسنان", "al-asnaan", "السِّنّ"],
+          "too_formal": { "item": "وَجَع بِالسِّنّ", "feedback": "spoken, not Fusha" },
+          "tip": "أَسْنَان is the plural of سِنّ, 'teeth'."
+        },
+        {
+          "id": "unit-09.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I have a toothache.'",
+          "answer": "عِنْدِي أَلَمٌ فِي الْأَسْنَان",
+          "accepted": ["عِنْدِي أَلَمٌ فِي الْأَسْنَان", "عندي الم في الاسنان", "عِنْدِي وَجَعُ أَسْنَان", "3indee alamun fee al-asnaan"],
+          "too_formal": { "item": "عِنْدِي وَجَع سِنّ", "feedback": "spoken, not Fusha" },
+          "tip": "أَلَم is 'pain'; فِي الْأَسْنَان is 'in the teeth'."
+        },
+        {
+          "id": "unit-09.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'My neck hurts.'",
+          "answer": "رَقَبَتِي تُؤْلِمُنِي",
+          "accepted": ["رَقَبَتِي تُؤْلِمُنِي", "رقبتي تؤلمني", "عُنُقِي يُؤْلِمُنِي", "raqabatee tu2limunee"],
+          "too_formal": { "item": "رَقَبْتِي عَم تُوجِعْنِي", "feedback": "spoken, not Fusha" },
+          "tip": "رَقَبَة is feminine, so the verb starts with ت."
+        },
+        {
+          "id": "unit-09.lesson-04.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'My eye hurts a little.'",
+          "answer": "عَيْنِي تُؤْلِمُنِي قَلِيلًا",
+          "accepted": ["عَيْنِي تُؤْلِمُنِي قَلِيلًا", "عيني تؤلمني قليلا", "عَيْنِي تُؤْلِمُنِي", "3aynee tu2limunee qaleelan"],
+          "too_formal": { "item": "عَيْنِي عَم تُوجِعْنِي شْوَيّ", "feedback": "spoken, not Fusha" },
+          "tip": "قَلِيلًا at the end means 'a little'."
+        },
+        {
+          "id": "unit-09.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'ear'?",
+          "options": ["الْأُذُن", "الْعَيْن", "الْيَد", "السِّنّ"],
+          "answer": "الْأُذُن",
+          "accepted": ["الْأُذُن", "الاذن", "al-udhun", "أُذُن"],
+          "too_formal": { "item": "إِذْن", "feedback": "spoken, not Fusha" },
+          "tip": "الْعَيْن is the eye and السِّنّ is the tooth."
+        },
+        {
+          "id": "unit-09.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which word means 'neck'?",
+          "options": ["الرَّقَبَة", "الظَّهْر", "الرَّأْس", "الْبَطْن"],
+          "answer": "الرَّقَبَة",
+          "accepted": ["الرَّقَبَة", "الرقبة", "ar-raqaba", "رَقَبَة"],
+          "too_formal": { "item": "رَقَبِة", "feedback": "spoken, not Fusha" },
+          "tip": "الظَّهْر is the back and الرَّأْس is the head."
+        },
+        {
+          "id": "unit-09.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'يُؤْلِمُنِي / ظَهْرِي / وَأَيْضًا / رَقَبَتِي'.",
+          "answer": "ظَهْرِي يُؤْلِمُنِي وَأَيْضًا رَقَبَتِي",
+          "words": ["ظَهْرِي", "يُؤْلِمُنِي", "وَأَيْضًا", "رَقَبَتِي"],
+          "accepted": ["ظَهْرِي يُؤْلِمُنِي وَأَيْضًا رَقَبَتِي", "ظهري يؤلمني وايضا رقبتي", "zahree yu2limunee wa aydan raqabatee", "ظَهْرِي وَرَقَبَتِي يُؤْلِمَانِنِي"],
+          "too_formal": { "item": "ظَهْرِي وَرَقَبْتِي عَم يُوجِعُونِي", "feedback": "spoken, not Fusha" },
+          "tip": "وَأَيْضًا adds a second thing: 'and also'."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "At the pharmacy and the doctor",
+    "instructions": "Write a short conversation in Fusha in which you feel unwell and go to a pharmacy. Say how you feel and for how long, ask for a medicine and its price, ask how to take it, and end with a wish of good health.",
+    "required_elements": [
+      "a greeting and how you feel",
+      "a pain or illness with how long",
+      "a request for medicine",
+      "the price and how often to take it",
+      "thanks and a wish of good health"
+    ],
+    "model": {
+      "dialogue": [
+        { "speaker": "Ziad", "arabic": "السَّلَامُ عَلَيْكُمْ. أَنَا مُتْعَب، وَعِنْدِي صُدَاع.", "transliteration": "as-salaamu 3alaykum. anaa mut3ab, wa 3indee suda3.", "english": "Peace be upon you. I'm tired, and I have a headache." },
+        { "speaker": "Huda", "arabic": "وَعَلَيْكُمُ السَّلَام. مُنْذُ مَتَى تَشْعُرُ بِهَذَا؟", "transliteration": "wa 3alaykumu as-salaam. mundhu mataa tash3uru bihaadhaa?", "english": "And peace be upon you. Since when have you felt this?" },
+        { "speaker": "Ziad", "arabic": "مُنْذُ يَوْمَيْن. وَعِنْدِي حُمَّى أَيْضًا.", "transliteration": "mundhu yawmayn. wa 3indee 7ummaa aydan.", "english": "For two days. And I also have a fever." },
+        { "speaker": "Huda", "arabic": "خُذْ هَذَا الدَّوَاءَ مَرَّتَيْنِ فِي الْيَوْم.", "transliteration": "khudh haadhaa ad-dawaa2a marratayni fee al-yawm.", "english": "Take this medicine twice a day." },
+        { "speaker": "Ziad", "arabic": "قَبْلَ الْأَكْلِ أَمْ بَعْدَهُ؟", "transliteration": "qabla al-akli am ba3dahu?", "english": "Before eating or after?" },
+        { "speaker": "Huda", "arabic": "بَعْدَ الْأَكْل. وَهُوَ يُسَبِّبُ النُّعَاسَ قَلِيلًا.", "transliteration": "ba3da al-akl. wa huwa yusabbibu an-nu3aasa qaleelan.", "english": "After eating. And it makes you a bit sleepy." },
+        { "speaker": "Ziad", "arabic": "كَمْ سِعْرُهُ؟", "transliteration": "kam si3ruhu?", "english": "How much does it cost?" },
+        { "speaker": "Huda", "arabic": "عَشَرَةُ دَنَانِير. وَإِنْ لَمْ تَتَحَسَّنْ، فَاذْهَبْ إِلَى الطَّبِيب.", "transliteration": "3asharatu danaaneer. wa in lam tata7assan, fadh-hab ilaa at-tabeeb.", "english": "Ten dinars. And if you don't get better, go to the doctor." },
+        { "speaker": "Ziad", "arabic": "حَسَنًا. شُكْرًا جَزِيلًا.", "transliteration": "7asanan. shukran jazeelan.", "english": "Alright. Thank you very much." },
+        { "speaker": "Huda", "arabic": "عَفْوًا. سَلَامَتُكَ، وَخُذْ رَاحَتَكَ.", "transliteration": "3afwan. salaamatuka, wa khudh raa7ataka.", "english": "You're welcome. Get well soon, and take it easy." }
+      ]
+    }
+  }
+}

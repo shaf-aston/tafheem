@@ -1,0 +1,1684 @@
+{
+  "unit": "unit-12",
+  "dialect": "Fusha (Modern Standard Arabic)",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "q": "ق",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "hello-answering-the-phone",
+          "arabic": "آلُو؟",
+          "transliteration": "aaloo?"
+        },
+        {
+          "slot": "hi-who-s-this",
+          "arabic": "مَرْحَبًا، مَنْ يَتَحَدَّث؟",
+          "transliteration": "marhaban, man yata7addath?"
+        },
+        {
+          "slot": "this-is-samer-speaking",
+          "arabic": "مَعَكَ سَامِر",
+          "transliteration": "ma3aka Saamir"
+        },
+        {
+          "slot": "good-that-you-called",
+          "arabic": "جَيِّدٌ أَنَّكَ اتَّصَلْتَ",
+          "transliteration": "jayyidun annaka ittasalta"
+        },
+        {
+          "slot": "what-s-new",
+          "arabic": "مَا الْجَدِيد؟",
+          "transliteration": "maa al-jadeed?",
+          "reply": {
+            "arabic": "لَا جَدِيد، الْحَمْدُ لِلَّه",
+            "transliteration": "laa jadeed, al7amdu lillaah",
+            "english": "Nothing new, thank God."
+          }
+        },
+        {
+          "slot": "i-couldn-t-answer-you-a-bit-ago",
+          "arabic": "لَمْ أَسْتَطِعِ الرَّدَّ عَلَيْكَ قَبْلَ قَلِيل",
+          "transliteration": "lam astati3i ar-radda 3alayka qabla qaleel"
+        },
+        {
+          "slot": "the-line-was-busy",
+          "arabic": "كَانَ الْخَطُّ مَشْغُولًا",
+          "transliteration": "kaana al-khattu mashghoolan"
+        },
+        {
+          "slot": "the-call-got-cut-off-on-me",
+          "arabic": "اِنْقَطَعَ الِاتِّصَالُ بَيْنَنَا",
+          "transliteration": "inqata3a al-ittisaalu baynanaa"
+        },
+        {
+          "slot": "my-credit-ran-out",
+          "arabic": "اِنْتَهَى رَصِيدِي",
+          "transliteration": "intahaa raseedee"
+        },
+        {
+          "slot": "my-battery-died",
+          "arabic": "نَفِدَتْ بَطَّارِيَّةُ هَاتِفِي",
+          "transliteration": "nafidat battaariyyatu haatifee"
+        },
+        {
+          "slot": "there-s-no-signal-here",
+          "arabic": "لَا تُوجَدُ إِشَارَةٌ هُنَا",
+          "transliteration": "laa toojadu ishaaratun hunaa"
+        },
+        {
+          "slot": "can-you-call-me-back-in-a-bit",
+          "arabic": "هَلْ يُمْكِنُكَ أَنْ تُعَاوِدَ الِاتِّصَالَ بِي بَعْدَ قَلِيل؟",
+          "transliteration": "hal yumkinuka an tu3aawida al-ittisaala bee ba3da qaleel?",
+          "reply": {
+            "arabic": "طَبْعًا، سَأَتَّصِلُ بِكَ بَعْدَ قَلِيل",
+            "transliteration": "tab3an, sa2attasilu bika ba3da qaleel",
+            "english": "Of course, I'll call you in a bit."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rami",
+          "arabic": "آلُو؟",
+          "transliteration": "aaloo?",
+          "english": "Hello?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "مَرْحَبًا، هَلْ هَذَا رَامِي؟",
+          "transliteration": "marhaban, hal haadhaa Raamee?",
+          "english": "Hello, is this Rami?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "نَعَمْ. مَنْ يَتَحَدَّث؟",
+          "transliteration": "na3am. man yata7addath?",
+          "english": "Yes. Who is speaking?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "مَعَكَ سَامِر.",
+          "transliteration": "ma3aka Saamir.",
+          "english": "This is Samer."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "أَهْلًا يَا سَامِر. جَيِّدٌ أَنَّكَ اتَّصَلْتَ.",
+          "transliteration": "ahlan yaa Saamir. jayyidun annaka ittasalta.",
+          "english": "Hello, Samer. Good that you called."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "كَيْفَ حَالُكَ؟ مَا الْجَدِيد؟",
+          "transliteration": "kayfa 7aaluka? maa al-jadeed?",
+          "english": "How are you? What's new?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "لَا جَدِيد، الْحَمْدُ لِلَّه. لَمْ أَسْتَطِعِ الرَّدَّ عَلَيْكَ قَبْلَ قَلِيل.",
+          "transliteration": "laa jadeed, al7amdu lillaah. lam astati3i ar-radda 3alayka qabla qaleel.",
+          "english": "Nothing new, thank God. I couldn't answer you a bit ago."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "لَا بَأْس. كَانَ الْخَطُّ مَشْغُولًا.",
+          "transliteration": "laa ba2s. kaana al-khattu mashghoolan.",
+          "english": "No problem. The line was busy."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "نَعَمْ. وَاِنْقَطَعَ الِاتِّصَالُ بَيْنَنَا أَيْضًا.",
+          "transliteration": "na3am. wa inqata3a al-ittisaalu baynanaa aydan.",
+          "english": "Yes. And the call got cut off between us too."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "اِنْتَهَى رَصِيدِي، وَنَفِدَتْ بَطَّارِيَّةُ هَاتِفِي أَيْضًا.",
+          "transliteration": "intahaa raseedee, wa nafidat battaariyyatu haatifee aydan.",
+          "english": "My credit ran out, and my phone battery died too."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "الصَّوْتُ ضَعِيف، لَا تُوجَدُ إِشَارَةٌ هُنَا.",
+          "transliteration": "as-sawtu da3eef, laa toojadu ishaaratun hunaa.",
+          "english": "The sound is weak, there's no signal here."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "هَلْ يُمْكِنُكَ أَنْ تُعَاوِدَ الِاتِّصَالَ بِي بَعْدَ قَلِيل؟",
+          "transliteration": "hal yumkinuka an tu3aawida al-ittisaala bee ba3da qaleel?",
+          "english": "Can you call me back in a bit?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "طَبْعًا. سَأَتَّصِلُ بِكَ بَعْدَ قَلِيل.",
+          "transliteration": "tab3an. sa2attasilu bika ba3da qaleel.",
+          "english": "Of course. I'll call you in a bit."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "شُكْرًا. إِلَى اللِّقَاء.",
+          "transliteration": "shukran. ilaa al-liqaa2.",
+          "english": "Thanks. Goodbye."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مَنْ يَتَحَدَّث؟",
+            "transliteration": "man yata7addath?",
+            "english": "Who is speaking?"
+          },
+          "response": {
+            "arabic": "مَعَكَ سَامِر.",
+            "transliteration": "ma3aka Saamir.",
+            "english": "This is Samer."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَا الْجَدِيد؟",
+            "transliteration": "maa al-jadeed?",
+            "english": "What's new?"
+          },
+          "response": {
+            "arabic": "لَا جَدِيد، الْحَمْدُ لِلَّه.",
+            "transliteration": "laa jadeed, al7amdu lillaah.",
+            "english": "Nothing new, thank God."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لِمَاذَا لَمْ تَرُدَّ؟",
+            "transliteration": "limaadhaa lam tarudda?",
+            "english": "Why didn't you answer?"
+          },
+          "response": {
+            "arabic": "كَانَ الْخَطُّ مَشْغُولًا.",
+            "transliteration": "kaana al-khattu mashghoolan.",
+            "english": "The line was busy."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ يُمْكِنُكَ أَنْ تُعَاوِدَ الِاتِّصَالَ؟",
+            "transliteration": "hal yumkinuka an tu3aawida al-ittisaal?",
+            "english": "Can you call again?"
+          },
+          "response": {
+            "arabic": "طَبْعًا، بَعْدَ قَلِيل.",
+            "transliteration": "tab3an, ba3da qaleel.",
+            "english": "Of course, in a bit."
+          }
+        }
+      ],
+      "culture": "In Fusha a caller says مَعَكَ followed by their name, and answering with آلُو is normal even in formal settings. A call is kept courteous by greeting first and thanking at the end.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "You answer the phone. Say hello.",
+          "answer": "آلُو",
+          "accepted": [
+            "آلُو",
+            "آلو",
+            "aaloo",
+            "مَرْحَبًا"
+          ],
+          "too_formal": {
+            "item": "أَلُو، مِينْ مَعِي؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "آلُو is how a call is picked up."
+        },
+        {
+          "id": "unit-12.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: 'مَنْ يَتَحَدَّث؟'. Say it is Samer.",
+          "answer": "مَعَكَ سَامِر",
+          "accepted": [
+            "مَعَكَ سَامِر",
+            "معك سامر",
+            "ma3aka Saamir",
+            "أَنَا سَامِر"
+          ],
+          "too_formal": {
+            "item": "مَعَكْ سَامِرْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مَعَكَ means 'with you': the caller names himself after it."
+        },
+        {
+          "id": "unit-12.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: '_____ أَنَّكَ اتَّصَلْتَ' (Good that you called.)",
+          "answer": "جَيِّدٌ",
+          "accepted": [
+            "جَيِّدٌ",
+            "جيد",
+            "jayyidun",
+            "جَيِّد"
+          ],
+          "too_formal": {
+            "item": "كْوَيِّسْ إِنَّكْ اتَّصَلْتْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "جَيِّدٌ is 'good'; أَنَّكَ is 'that you'."
+        },
+        {
+          "id": "unit-12.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'اِنْتَهَى _____' (My credit ran out.)",
+          "answer": "رَصِيدِي",
+          "accepted": [
+            "رَصِيدِي",
+            "رصيدي",
+            "raseedee"
+          ],
+          "too_formal": {
+            "item": "خَلَصَ الرَّصِيدْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "رَصِيد is phone credit; ي means 'my'."
+        },
+        {
+          "id": "unit-12.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I couldn't answer you a bit ago.'",
+          "answer": "لَمْ أَسْتَطِعِ الرَّدَّ عَلَيْكَ قَبْلَ قَلِيل",
+          "accepted": [
+            "لَمْ أَسْتَطِعِ الرَّدَّ عَلَيْكَ قَبْلَ قَلِيل",
+            "لم أستطع الرد عليك قبل قليل",
+            "lam astati3i ar-radda 3alayka qabla qaleel"
+          ],
+          "too_formal": {
+            "item": "مَا قِدِرْتْ رُدّ عَلَيْكْ مِنْ شْوَيّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَمْ plus a short verb means 'did not'."
+        },
+        {
+          "id": "unit-12.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'The line was busy.'",
+          "answer": "كَانَ الْخَطُّ مَشْغُولًا",
+          "accepted": [
+            "كَانَ الْخَطُّ مَشْغُولًا",
+            "كان الخط مشغولا",
+            "kaana al-khattu mashghoolan"
+          ],
+          "too_formal": {
+            "item": "الْخَطْ كَانْ مَشْغُولْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مَشْغُول means 'busy'."
+        },
+        {
+          "id": "unit-12.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'There's no signal here.'",
+          "answer": "لَا تُوجَدُ إِشَارَةٌ هُنَا",
+          "accepted": [
+            "لَا تُوجَدُ إِشَارَةٌ هُنَا",
+            "لا توجد إشارة هنا",
+            "laa toojadu ishaaratun hunaa"
+          ],
+          "too_formal": {
+            "item": "مَا فِي شَبَكَة هُون",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَا تُوجَدُ is 'there is not'."
+        },
+        {
+          "id": "unit-12.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'My battery died'?",
+          "answer": "نَفِدَتْ بَطَّارِيَّةُ هَاتِفِي",
+          "accepted": [
+            "نَفِدَتْ بَطَّارِيَّةُ هَاتِفِي",
+            "نفدت بطارية هاتفي",
+            "nafidat battaariyyatu haatifee"
+          ],
+          "options": [
+            "اِنْتَهَى رَصِيدِي",
+            "كَانَ الْخَطُّ مَشْغُولًا",
+            "اِنْقَطَعَ الِاتِّصَالُ بَيْنَنَا",
+            "نَفِدَتْ بَطَّارِيَّةُ هَاتِفِي"
+          ],
+          "too_formal": {
+            "item": "بَطَّارِيِّتِي خِلْصَتْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "نَفِدَتْ means 'ran out'."
+        },
+        {
+          "id": "unit-12.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence asks someone to call you back?",
+          "answer": "هَلْ يُمْكِنُكَ أَنْ تُعَاوِدَ الِاتِّصَالَ بِي بَعْدَ قَلِيل؟",
+          "accepted": [
+            "هَلْ يُمْكِنُكَ أَنْ تُعَاوِدَ الِاتِّصَالَ بِي بَعْدَ قَلِيل؟",
+            "هل يمكنك أن تعاود الاتصال بي بعد قليل؟",
+            "hal yumkinuka an tu3aawida al-ittisaala bee ba3da qaleel?"
+          ],
+          "options": [
+            "هَلْ يُمْكِنُكَ أَنْ تُعَاوِدَ الِاتِّصَالَ بِي بَعْدَ قَلِيل؟",
+            "لَمْ أَسْتَطِعِ الرَّدَّ عَلَيْكَ قَبْلَ قَلِيل",
+            "مَا الْجَدِيد؟",
+            "اِنْقَطَعَ الِاتِّصَالُ بَيْنَنَا"
+          ],
+          "too_formal": {
+            "item": "فِيكْ تِرْجَعْ تِتَّصِلْ فِيِّي بَعْدَ شْوَيّ؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "تُعَاوِدَ الِاتِّصَالَ means 'repeat the call'."
+        },
+        {
+          "id": "unit-12.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'بَيْنَنَا / الِاتِّصَالُ / اِنْقَطَعَ'.",
+          "answer": "اِنْقَطَعَ الِاتِّصَالُ بَيْنَنَا",
+          "accepted": [
+            "اِنْقَطَعَ الِاتِّصَالُ بَيْنَنَا",
+            "انقطع الاتصال بيننا",
+            "inqata3a al-ittisaalu baynanaa"
+          ],
+          "too_formal": {
+            "item": "الِاتِّصَالْ اِنْقَطَعْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The verb comes first in Fusha."
+        },
+        {
+          "id": "unit-12.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'مَشْغُولًا / الْخَطُّ / كَانَ'.",
+          "answer": "كَانَ الْخَطُّ مَشْغُولًا",
+          "accepted": [
+            "كَانَ الْخَطُّ مَشْغُولًا",
+            "كان الخط مشغولا",
+            "kaana al-khattu mashghoolan"
+          ],
+          "too_formal": {
+            "item": "الْخَطْ كَانْ مَشْغُولْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "كَانَ comes first, then the noun, then the description."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "where-should-we-meet",
+          "arabic": "أَيْنَ نَلْتَقِي؟",
+          "transliteration": "ayna naltaqee?"
+        },
+        {
+          "slot": "let-s-meet-at-the-cafe",
+          "arabic": "لِنَلْتَقِ فِي الْمَقْهَى",
+          "transliteration": "linaltaqi fee al-maqhaa"
+        },
+        {
+          "slot": "what-time-suits-you",
+          "arabic": "أَيُّ سَاعَةٍ تُنَاسِبُكَ؟",
+          "transliteration": "ayyu saa3atin tunaasibuka?"
+        },
+        {
+          "slot": "is-7-o-clock-good",
+          "arabic": "هَلِ السَّاعَةُ السَّابِعَةُ مُنَاسِبَة؟",
+          "transliteration": "hal as-saa3atu as-saabi3atu munaasiba?"
+        },
+        {
+          "slot": "where-exactly",
+          "arabic": "أَيْنَ بِالتَّحْدِيد؟",
+          "transliteration": "ayna bit-ta7deed?"
+        },
+        {
+          "slot": "i-ll-meet-you-there",
+          "arabic": "سَأُقَابِلُكَ هُنَاكَ",
+          "transliteration": "sa-uqaabiluka hunaaka"
+        },
+        {
+          "slot": "don-t-be-late",
+          "arabic": "لَا تَتَأَخَّرْ",
+          "transliteration": "laa tata2akhkhar"
+        },
+        {
+          "slot": "i-ll-be-there-before-you",
+          "arabic": "سَأَكُونُ هُنَاكَ قَبْلَكَ",
+          "transliteration": "sa2akoonu hunaaka qablaka"
+        },
+        {
+          "slot": "what-do-you-think-shall-we-go-together",
+          "arabic": "مَا رَأْيُكَ، هَلْ نَذْهَبُ مَعًا؟",
+          "transliteration": "maa ra2yuka, hal nadh-habu ma3an?"
+        },
+        {
+          "slot": "we-ll-meet-at-the-umayyad-mosque",
+          "arabic": "سَنَلْتَقِي عِنْدَ الْجَامِعِ الْأُمَوِي",
+          "transliteration": "sanaltaqee 3inda al-jaami3i al-umawee"
+        },
+        {
+          "slot": "i-know-exactly-where-the-place-is",
+          "arabic": "أَعْرِفُ تَمَامًا أَيْنَ الْمَكَان",
+          "transliteration": "a3rifu tamaaman ayna al-makaan"
+        },
+        {
+          "slot": "if-you-re-late-call-me",
+          "arabic": "إِذَا تَأَخَّرْتَ فَاتَّصِلْ بِي",
+          "transliteration": "idhaa ta2akhkharta fattasil bee"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Sami",
+          "arabic": "أَيْنَ نَلْتَقِي غَدًا؟",
+          "transliteration": "ayna naltaqee ghadan?",
+          "english": "Where shall we meet tomorrow?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "لِنَلْتَقِ فِي الْمَقْهَى.",
+          "transliteration": "linaltaqi fee al-maqhaa.",
+          "english": "Let's meet at the cafe."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "أَيُّ سَاعَةٍ تُنَاسِبُكِ؟",
+          "transliteration": "ayyu saa3atin tunaasibuki?",
+          "english": "What time suits you?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "هَلِ السَّاعَةُ السَّابِعَةُ مُنَاسِبَة؟",
+          "transliteration": "hal as-saa3atu as-saabi3atu munaasiba?",
+          "english": "Is 7 o'clock good?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "نَعَمْ، مُنَاسِبَة. أَيْنَ بِالتَّحْدِيد؟",
+          "transliteration": "na3am, munaasiba. ayna bit-ta7deed?",
+          "english": "Yes, it's good. Where exactly?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "عِنْدَ بَابِ الْمَقْهَى.",
+          "transliteration": "3inda baabi al-maqhaa.",
+          "english": "At the cafe door."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "أَعْرِفُ تَمَامًا أَيْنَ الْمَكَان.",
+          "transliteration": "a3rifu tamaaman ayna al-makaan.",
+          "english": "I know exactly where the place is."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "مَا رَأْيُكَ، هَلْ نَذْهَبُ مَعًا؟",
+          "transliteration": "maa ra2yuka, hal nadh-habu ma3an?",
+          "english": "What do you think, shall we go together?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "سَأُقَابِلُكِ هُنَاكِ.",
+          "transliteration": "sa-uqaabiluki hunaaki.",
+          "english": "I'll meet you there."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "لَا تَتَأَخَّرْ.",
+          "transliteration": "laa tata2akhkhar.",
+          "english": "Don't be late."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "سَأَكُونُ هُنَاكَ قَبْلَكِ.",
+          "transliteration": "sa2akoonu hunaaka qablaki.",
+          "english": "I'll be there before you."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "إِذَا تَأَخَّرْتَ فَاتَّصِلْ بِي.",
+          "transliteration": "idhaa ta2akhkharta fattasil bee.",
+          "english": "If you're late, call me."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "حَسَنًا، إِلَى اللِّقَاء.",
+          "transliteration": "7asanan, ilaa al-liqaa2.",
+          "english": "OK, goodbye."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أَيْنَ نَلْتَقِي؟",
+            "transliteration": "ayna naltaqee?",
+            "english": "Where shall we meet?"
+          },
+          "response": {
+            "arabic": "لِنَلْتَقِ فِي الْمَقْهَى.",
+            "transliteration": "linaltaqi fee al-maqhaa.",
+            "english": "Let's meet at the cafe."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيُّ سَاعَةٍ تُنَاسِبُكَ؟",
+            "transliteration": "ayyu saa3atin tunaasibuka?",
+            "english": "What time suits you?"
+          },
+          "response": {
+            "arabic": "السَّاعَةُ السَّابِعَة.",
+            "transliteration": "as-saa3atu as-saabi3a.",
+            "english": "Seven o'clock."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لَا تَتَأَخَّرْ.",
+            "transliteration": "laa tata2akhkhar.",
+            "english": "Don't be late."
+          },
+          "response": {
+            "arabic": "سَأَكُونُ هُنَاكَ قَبْلَكَ.",
+            "transliteration": "sa2akoonu hunaaka qablaka.",
+            "english": "I'll be there before you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيْنَ بِالتَّحْدِيد؟",
+            "transliteration": "ayna bit-ta7deed?",
+            "english": "Where exactly?"
+          },
+          "response": {
+            "arabic": "عِنْدَ الْجَامِعِ الْأُمَوِي.",
+            "transliteration": "3inda al-jaami3i al-umawee.",
+            "english": "At the Umayyad Mosque."
+          }
+        }
+      ],
+      "culture": "In Damascus and across the Arab world, people often fix a meeting at a landmark such as the Umayyad Mosque. Being on time is appreciated, and a short call if you are late is expected in Fusha and in every dialect.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: 'أَيْنَ نَلْتَقِي؟'. Suggest the cafe.",
+          "answer": "لِنَلْتَقِ فِي الْمَقْهَى",
+          "accepted": [
+            "لِنَلْتَقِ فِي الْمَقْهَى",
+            "لنلتق في المقهى",
+            "linaltaqi fee al-maqhaa"
+          ],
+          "too_formal": {
+            "item": "خَلِّينَا نِتْلَاقَى بِالْكَافِيه",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لِنَلْتَقِ means 'let us meet'."
+        },
+        {
+          "id": "unit-12.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "A friend says: 'لَا تَتَأَخَّرْ'. Promise to be there before him.",
+          "answer": "سَأَكُونُ هُنَاكَ قَبْلَكَ",
+          "accepted": [
+            "سَأَكُونُ هُنَاكَ قَبْلَكَ",
+            "سأكون هناك قبلك",
+            "sa2akoonu hunaaka qablaka"
+          ],
+          "too_formal": {
+            "item": "رَحْ كُونْ هُنَاكْ قَبْلَكْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "سَـ before a verb marks the future."
+        },
+        {
+          "id": "unit-12.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَيُّ _____ تُنَاسِبُكَ؟' (What time suits you?)",
+          "answer": "سَاعَةٍ",
+          "accepted": [
+            "سَاعَةٍ",
+            "ساعة",
+            "saa3atin"
+          ],
+          "too_formal": {
+            "item": "أَيِّ وَقْتْ بِيْنَاسِبَكْ؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَيُّ سَاعَةٍ literally means 'which hour'."
+        },
+        {
+          "id": "unit-12.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'إِذَا _____ فَاتَّصِلْ بِي' (If you're late, call me.)",
+          "answer": "تَأَخَّرْتَ",
+          "accepted": [
+            "تَأَخَّرْتَ",
+            "تأخرت",
+            "ta2akhkharta"
+          ],
+          "too_formal": {
+            "item": "إِذَا تَأَخَّرْتْ اِتَّصِلْ فِيِّي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "تَأَخَّرْتَ is 'you were late' (to a man)."
+        },
+        {
+          "id": "unit-12.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Where exactly?'",
+          "answer": "أَيْنَ بِالتَّحْدِيد؟",
+          "accepted": [
+            "أَيْنَ بِالتَّحْدِيد؟",
+            "أين بالتحديد؟",
+            "ayna bit-ta7deed?"
+          ],
+          "too_formal": {
+            "item": "وَيْنْ بِالضَّبْطْ؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بِالتَّحْدِيد means 'precisely'."
+        },
+        {
+          "id": "unit-12.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I know exactly where the place is.'",
+          "answer": "أَعْرِفُ تَمَامًا أَيْنَ الْمَكَان",
+          "accepted": [
+            "أَعْرِفُ تَمَامًا أَيْنَ الْمَكَان",
+            "أعرف تماما أين المكان",
+            "a3rifu tamaaman ayna al-makaan"
+          ],
+          "too_formal": {
+            "item": "بَعْرِفْ بِالضَّبْطْ وَيْنْ المَكَانْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "تَمَامًا means 'completely, exactly'."
+        },
+        {
+          "id": "unit-12.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'We'll meet at the Umayyad Mosque.'",
+          "answer": "سَنَلْتَقِي عِنْدَ الْجَامِعِ الْأُمَوِي",
+          "accepted": [
+            "سَنَلْتَقِي عِنْدَ الْجَامِعِ الْأُمَوِي",
+            "سنلتقي عند الجامع الأموي",
+            "sanaltaqee 3inda al-jaami3i al-umawee"
+          ],
+          "too_formal": {
+            "item": "رَحْ نِتْلَاقَى عِنْدْ الْجَامِعْ الأُمَوِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عِنْدَ means 'at, beside'."
+        },
+        {
+          "id": "unit-12.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'I'll meet you there'?",
+          "answer": "سَأُقَابِلُكَ هُنَاكَ",
+          "accepted": [
+            "سَأُقَابِلُكَ هُنَاكَ",
+            "سأقابلك هناك",
+            "sa-uqaabiluka hunaaka"
+          ],
+          "options": [
+            "أَيْنَ نَلْتَقِي؟",
+            "لَا تَتَأَخَّرْ",
+            "أَيْنَ بِالتَّحْدِيد؟",
+            "سَأُقَابِلُكَ هُنَاكَ"
+          ],
+          "too_formal": {
+            "item": "رَحْ قَابِلَكْ هُنَاكْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "قَابَلَ is 'to meet someone'."
+        },
+        {
+          "id": "unit-12.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence asks 'What time suits you?'",
+          "answer": "أَيُّ سَاعَةٍ تُنَاسِبُكَ؟",
+          "accepted": [
+            "أَيُّ سَاعَةٍ تُنَاسِبُكَ؟",
+            "أي ساعة تناسبك؟",
+            "ayyu saa3atin tunaasibuka?"
+          ],
+          "options": [
+            "أَيُّ سَاعَةٍ تُنَاسِبُكَ؟",
+            "هَلْ نَذْهَبُ مَعًا؟",
+            "أَيْنَ نَلْتَقِي؟",
+            "هَلِ السَّاعَةُ السَّابِعَةُ مُنَاسِبَة؟"
+          ],
+          "too_formal": {
+            "item": "أَيِّ سَاعَة بِتْنَاسِبَكْ؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "تُنَاسِبُكَ means 'suits you'."
+        },
+        {
+          "id": "unit-12.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْمَقْهَى / فِي / لِنَلْتَقِ'.",
+          "answer": "لِنَلْتَقِ فِي الْمَقْهَى",
+          "accepted": [
+            "لِنَلْتَقِ فِي الْمَقْهَى",
+            "لنلتق في المقهى",
+            "linaltaqi fee al-maqhaa"
+          ],
+          "too_formal": {
+            "item": "خَلِّينَا نِتْلَاقَى بِالْكَافِيه",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The verb comes first, then the place."
+        },
+        {
+          "id": "unit-12.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'مُنَاسِبَة؟ / السَّابِعَةُ / السَّاعَةُ / هَلِ'.",
+          "answer": "هَلِ السَّاعَةُ السَّابِعَةُ مُنَاسِبَة؟",
+          "accepted": [
+            "هَلِ السَّاعَةُ السَّابِعَةُ مُنَاسِبَة؟",
+            "هل الساعة السابعة مناسبة؟",
+            "hal as-saa3atu as-saabi3atu munaasiba?"
+          ],
+          "too_formal": {
+            "item": "السَّاعَة سَبْعَة مْنَاسْبَة؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَلِ opens a yes-or-no question."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "i-want-to-change-the-appointment",
+          "arabic": "أُرِيدُ تَغْيِيرَ الْمَوْعِد",
+          "transliteration": "ureedu taghyeera al-maw3id",
+          "reply": {
+            "arabic": "نَعَمْ، لَا مُشْكِلَة",
+            "transliteration": "na3am, laa mushkila",
+            "english": "Yes, no problem."
+          }
+        },
+        {
+          "slot": "i-can-t-come-today",
+          "arabic": "لَا أَسْتَطِيعُ الْحُضُورَ الْيَوْم",
+          "transliteration": "laa astatee3u al-7udoora al-yawm"
+        },
+        {
+          "slot": "something-came-up-for-me",
+          "arabic": "حَدَثَ لِي ظَرْفٌ طَارِئ",
+          "transliteration": "7adatha lee dharfun taari2"
+        },
+        {
+          "slot": "can-we-postpone-to-tomorrow",
+          "arabic": "هَلْ يُمْكِنُ أَنْ نُؤَجِّلَ إِلَى الْغَد؟",
+          "transliteration": "hal yumkinu an nu2ajjila ilaa al-ghad?"
+        },
+        {
+          "slot": "i-d-like-us-to-meet-another-day",
+          "arabic": "أَوَدُّ أَنْ نَلْتَقِيَ فِي يَوْمٍ آخَر",
+          "transliteration": "awaddu an naltaqiya fee yawmin aakhar"
+        },
+        {
+          "slot": "let-s-find-a-day-that-suits-us-both",
+          "arabic": "لِنَتَّفِقْ عَلَى يَوْمٍ يُنَاسِبُنَا مَعًا",
+          "transliteration": "linattafiq 3alaa yawmin yunaasibunaa ma3an"
+        },
+        {
+          "slot": "sorry-for-the-sudden-change",
+          "arabic": "آسِف عَلَى التَّغْيِيرِ الْمُفَاجِئ",
+          "transliteration": "aasif 3alaa at-taghyeeri al-mufaaji2"
+        },
+        {
+          "slot": "can-we-meet-in-the-afternoon-instead-of-the-morn",
+          "arabic": "هَلْ نَلْتَقِي بَعْدَ الظُّهْرِ بَدَلًا مِنَ الصَّبَاح؟",
+          "transliteration": "hal naltaqee ba3da adh-dhuhri badalan mina as-sabaa7?"
+        },
+        {
+          "slot": "is-the-place-still-the-same-place",
+          "arabic": "هَلِ الْمَكَانُ هُوَ نَفْسُ الْمَكَان؟",
+          "transliteration": "hal al-makaanu huwa nafsu al-makaan?"
+        },
+        {
+          "slot": "can-we-cancel-the-appointment",
+          "arabic": "هَلْ يُمْكِنُ أَنْ نُلْغِيَ الْمَوْعِد؟",
+          "transliteration": "hal yumkinu an nulghiya al-maw3id?"
+        },
+        {
+          "slot": "i-have-to-apologize-for-the-appointment-cancel-i",
+          "arabic": "عَلَيَّ أَنْ أَعْتَذِرَ عَنِ الْمَوْعِد",
+          "transliteration": "3alayya an a3tadhira 3ani al-maw3id"
+        },
+        {
+          "slot": "i-ll-meet-you-friday-instead-of-thursday",
+          "arabic": "سَأُقَابِلُكَ يَوْمَ الْجُمُعَةِ بَدَلًا مِنْ يَوْمِ الْخَمِيس",
+          "transliteration": "sa-uqaabiluka yawma al-jumu3ati badalan min yawmi al-khamees"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hadi",
+          "arabic": "آلُو دَانَا، أُرِيدُ تَغْيِيرَ الْمَوْعِد.",
+          "transliteration": "aaloo Daanaa, ureedu taghyeera al-maw3id.",
+          "english": "Hello Dana, I want to change the appointment."
+        },
+        {
+          "speaker": "Dana",
+          "arabic": "هَلْ حَدَثَ شَيْء؟",
+          "transliteration": "hal 7adatha shay2?",
+          "english": "Did something happen?"
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "لَا أَسْتَطِيعُ الْحُضُورَ الْيَوْم. حَدَثَ لِي ظَرْفٌ طَارِئ.",
+          "transliteration": "laa astatee3u al-7udoora al-yawm. 7adatha lee dharfun taari2.",
+          "english": "I can't come today. Something came up for me."
+        },
+        {
+          "speaker": "Dana",
+          "arabic": "لَا بَأْس.",
+          "transliteration": "laa ba2s.",
+          "english": "No problem."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "آسِف عَلَى التَّغْيِيرِ الْمُفَاجِئ. هَلْ يُمْكِنُ أَنْ نُؤَجِّلَ إِلَى الْغَد؟",
+          "transliteration": "aasif 3alaa at-taghyeeri al-mufaaji2. hal yumkinu an nu2ajjila ilaa al-ghad?",
+          "english": "Sorry for the sudden change. Can we postpone to tomorrow?"
+        },
+        {
+          "speaker": "Dana",
+          "arabic": "غَدًا عِنْدِي عَمَل. لِنَتَّفِقْ عَلَى يَوْمٍ يُنَاسِبُنَا مَعًا.",
+          "transliteration": "ghadan 3indee 3amal. linattafiq 3alaa yawmin yunaasibunaa ma3an.",
+          "english": "Tomorrow I have work. Let's find a day that suits us both."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "سَأُقَابِلُكِ يَوْمَ الْجُمُعَةِ بَدَلًا مِنْ يَوْمِ الْخَمِيس.",
+          "transliteration": "sa-uqaabiluki yawma al-jumu3ati badalan min yawmi al-khamees.",
+          "english": "I'll meet you Friday instead of Thursday."
+        },
+        {
+          "speaker": "Dana",
+          "arabic": "الْجُمُعَةُ مُنَاسِبَة. هَلْ نَلْتَقِي بَعْدَ الظُّهْرِ بَدَلًا مِنَ الصَّبَاح؟",
+          "transliteration": "al-jumu3atu munaasiba. hal naltaqee ba3da adh-dhuhri badalan mina as-sabaa7?",
+          "english": "Friday suits me. Can we meet in the afternoon instead of the morning?"
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "نَعَمْ، بَعْدَ الظُّهْر.",
+          "transliteration": "na3am, ba3da adh-dhuhr.",
+          "english": "Yes, in the afternoon."
+        },
+        {
+          "speaker": "Dana",
+          "arabic": "وَهَلِ الْمَكَانُ هُوَ نَفْسُ الْمَكَان؟",
+          "transliteration": "wa hal al-makaanu huwa nafsu al-makaan?",
+          "english": "And is the place still the same place?"
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "نَعَمْ، فِي الْمَقْهَى نَفْسِه.",
+          "transliteration": "na3am, fee al-maqhaa nafsih.",
+          "english": "Yes, at the same cafe."
+        },
+        {
+          "speaker": "Dana",
+          "arabic": "حَسَنًا، اِتَّفَقْنَا.",
+          "transliteration": "7asanan, ittafaqnaa.",
+          "english": "OK, agreed."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "شُكْرًا عَلَى تَفَهُّمِكِ.",
+          "transliteration": "shukran 3alaa tafahhumiki.",
+          "english": "Thanks for your understanding."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هَلْ يُمْكِنُ أَنْ نُؤَجِّلَ إِلَى الْغَد؟",
+            "transliteration": "hal yumkinu an nu2ajjila ilaa al-ghad?",
+            "english": "Can we postpone to tomorrow?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، لَا مُشْكِلَة.",
+            "transliteration": "na3am, laa mushkila.",
+            "english": "Yes, no problem."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لَا أَسْتَطِيعُ الْحُضُورَ الْيَوْم.",
+            "transliteration": "laa astatee3u al-7udoora al-yawm.",
+            "english": "I can't come today."
+          },
+          "response": {
+            "arabic": "لَا بَأْس، لِنَلْتَقِ غَدًا.",
+            "transliteration": "laa ba2s, linaltaqi ghadan.",
+            "english": "No problem, let's meet tomorrow."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ نَلْتَقِي بَعْدَ الظُّهْر؟",
+            "transliteration": "hal naltaqee ba3da adh-dhuhr?",
+            "english": "Shall we meet in the afternoon?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، هَذَا مُنَاسِب.",
+            "transliteration": "na3am, haadhaa munaasib.",
+            "english": "Yes, that suits me."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "آسِف عَلَى التَّغْيِيرِ الْمُفَاجِئ.",
+            "transliteration": "aasif 3alaa at-taghyeeri al-mufaaji2.",
+            "english": "Sorry for the sudden change."
+          },
+          "response": {
+            "arabic": "لَا تَقْلَقْ، لَا بَأْس.",
+            "transliteration": "laa taqlaq, laa ba2s.",
+            "english": "Don't worry, it's fine."
+          }
+        }
+      ],
+      "culture": "Cancelling is polite when you apologise first and give a short reason, and the other person almost always answers لَا بَأْس. In Fusha حَدَثَ لِي ظَرْفٌ طَارِئ lets you explain without giving details.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: 'هَلْ يُمْكِنُ أَنْ نُؤَجِّلَ إِلَى الْغَد؟'. Agree.",
+          "answer": "نَعَمْ، لَا مُشْكِلَة",
+          "accepted": [
+            "نَعَمْ، لَا مُشْكِلَة",
+            "نعم، لا مشكلة",
+            "na3am, laa mushkila"
+          ],
+          "too_formal": {
+            "item": "إِي، مَا فِي مُشْكِلَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَا مُشْكِلَة means 'no problem'."
+        },
+        {
+          "id": "unit-12.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: 'آسِف عَلَى التَّغْيِيرِ الْمُفَاجِئ'. Say it is fine.",
+          "answer": "لَا بَأْس",
+          "accepted": [
+            "لَا بَأْس",
+            "لا بأس",
+            "laa ba2s",
+            "لَا تَقْلَقْ"
+          ],
+          "too_formal": {
+            "item": "وَلَا يَهُمَّكْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَا بَأْس answers an apology."
+        },
+        {
+          "id": "unit-12.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'لَا أَسْتَطِيعُ _____ الْيَوْم' (I can't come today.)",
+          "answer": "الْحُضُورَ",
+          "accepted": [
+            "الْحُضُورَ",
+            "الحضور",
+            "al-7udoora"
+          ],
+          "too_formal": {
+            "item": "مَا بَقْدَرْ أَجِي الْيَوْم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "الْحُضُور means 'attending, coming'."
+        },
+        {
+          "id": "unit-12.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'سَأُقَابِلُكَ يَوْمَ الْجُمُعَةِ _____ مِنْ يَوْمِ الْخَمِيس' (I'll meet you Friday instead of Thursday.)",
+          "answer": "بَدَلًا",
+          "accepted": [
+            "بَدَلًا",
+            "بدلا",
+            "badalan"
+          ],
+          "too_formal": {
+            "item": "بَدَلْ يَوْم الْخَمِيسْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بَدَلًا مِنْ means 'instead of'."
+        },
+        {
+          "id": "unit-12.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I want to change the appointment.'",
+          "answer": "أُرِيدُ تَغْيِيرَ الْمَوْعِد",
+          "accepted": [
+            "أُرِيدُ تَغْيِيرَ الْمَوْعِد",
+            "أريد تغيير الموعد",
+            "ureedu taghyeera al-maw3id"
+          ],
+          "too_formal": {
+            "item": "بَدِّي غَيِّرْ المَوْعِدْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "تَغْيِير means 'changing'."
+        },
+        {
+          "id": "unit-12.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Something came up for me.'",
+          "answer": "حَدَثَ لِي ظَرْفٌ طَارِئ",
+          "accepted": [
+            "حَدَثَ لِي ظَرْفٌ طَارِئ",
+            "حدث لي ظرف طارئ",
+            "7adatha lee dharfun taari2"
+          ],
+          "too_formal": {
+            "item": "صَارْ مَعِي شِي طَارِئْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "ظَرْفٌ طَارِئ is an 'urgent circumstance'."
+        },
+        {
+          "id": "unit-12.lesson-03.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Can we cancel the appointment?'",
+          "answer": "هَلْ يُمْكِنُ أَنْ نُلْغِيَ الْمَوْعِد؟",
+          "accepted": [
+            "هَلْ يُمْكِنُ أَنْ نُلْغِيَ الْمَوْعِد؟",
+            "هل يمكن أن نلغي الموعد؟",
+            "hal yumkinu an nulghiya al-maw3id?"
+          ],
+          "too_formal": {
+            "item": "فِينَا نِلْغِي المَوْعِدْ؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "نُلْغِيَ means 'we cancel'."
+        },
+        {
+          "id": "unit-12.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'Let's find a day that suits us both'?",
+          "answer": "لِنَتَّفِقْ عَلَى يَوْمٍ يُنَاسِبُنَا مَعًا",
+          "accepted": [
+            "لِنَتَّفِقْ عَلَى يَوْمٍ يُنَاسِبُنَا مَعًا",
+            "لنتفق على يوم يناسبنا معا",
+            "linattafiq 3alaa yawmin yunaasibunaa ma3an"
+          ],
+          "options": [
+            "أُرِيدُ تَغْيِيرَ الْمَوْعِد",
+            "هَلْ يُمْكِنُ أَنْ نُلْغِيَ الْمَوْعِد؟",
+            "هَلِ الْمَكَانُ هُوَ نَفْسُ الْمَكَان؟",
+            "لِنَتَّفِقْ عَلَى يَوْمٍ يُنَاسِبُنَا مَعًا"
+          ],
+          "too_formal": {
+            "item": "خَلِّينَا نِتَّفِقْ عَلَى يَوْم بِيْنَاسِبْنَا",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "نَتَّفِقُ means 'we agree'."
+        },
+        {
+          "id": "unit-12.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'I have to apologize for the appointment'?",
+          "answer": "عَلَيَّ أَنْ أَعْتَذِرَ عَنِ الْمَوْعِد",
+          "accepted": [
+            "عَلَيَّ أَنْ أَعْتَذِرَ عَنِ الْمَوْعِد",
+            "علي أن أعتذر عن الموعد",
+            "3alayya an a3tadhira 3ani al-maw3id"
+          ],
+          "options": [
+            "عَلَيَّ أَنْ أَعْتَذِرَ عَنِ الْمَوْعِد",
+            "لَا أَسْتَطِيعُ الْحُضُورَ الْيَوْم",
+            "آسِف عَلَى التَّغْيِيرِ الْمُفَاجِئ",
+            "هَلْ نَلْتَقِي بَعْدَ الظُّهْرِ بَدَلًا مِنَ الصَّبَاح؟"
+          ],
+          "too_formal": {
+            "item": "لَازِمْ اعْتَذِرْ عَنِ المَوْعِدْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عَلَيَّ أَنْ means 'I must'."
+        },
+        {
+          "id": "unit-12.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْغَد؟ / إِلَى / نُؤَجِّلَ / أَنْ / يُمْكِنُ / هَلْ'.",
+          "answer": "هَلْ يُمْكِنُ أَنْ نُؤَجِّلَ إِلَى الْغَد؟",
+          "accepted": [
+            "هَلْ يُمْكِنُ أَنْ نُؤَجِّلَ إِلَى الْغَد؟",
+            "هل يمكن أن نؤجل إلى الغد؟",
+            "hal yumkinu an nu2ajjila ilaa al-ghad?"
+          ],
+          "too_formal": {
+            "item": "فِينَا نِأَجِّلْ لَبُكْرَا؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "نُؤَجِّلَ means 'we postpone'."
+        },
+        {
+          "id": "unit-12.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْيَوْم / الْحُضُورَ / أَسْتَطِيعُ / لَا'.",
+          "answer": "لَا أَسْتَطِيعُ الْحُضُورَ الْيَوْم",
+          "accepted": [
+            "لَا أَسْتَطِيعُ الْحُضُورَ الْيَوْم",
+            "لا أستطيع الحضور اليوم",
+            "laa astatee3u al-7udoora al-yawm"
+          ],
+          "too_formal": {
+            "item": "مَا بَقْدَرْ أَجِي الْيَوْم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَا comes first to make the verb negative."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "hello-is-samer-there",
+          "arabic": "آلُو، هَلْ سَامِر مَوْجُود؟",
+          "transliteration": "aaloo, hal Saamir mawjood?"
+        },
+        {
+          "slot": "no-he-s-not-here-right-now",
+          "arabic": "لَا، لَيْسَ مَوْجُودًا الْآن",
+          "transliteration": "laa, laysa mawjoodan al-aan"
+        },
+        {
+          "slot": "when-will-he-be-back",
+          "arabic": "مَتَى سَيَعُود؟",
+          "transliteration": "mataa sa-ya3ood?"
+        },
+        {
+          "slot": "i-don-t-know-exactly-in-a-bit",
+          "arabic": "لَا أَعْرِفُ بِالتَّحْدِيد، بَعْدَ قَلِيل",
+          "transliteration": "laa a3rifu bit-ta7deed, ba3da qaleel"
+        },
+        {
+          "slot": "can-you-take-a-message-for-me",
+          "arabic": "هَلْ يُمْكِنُكَ أَنْ تَأْخُذَ رِسَالَةً مِنِّي؟",
+          "transliteration": "hal yumkinuka an ta2khudha risaalatan minnee?",
+          "reply": {
+            "arabic": "طَبْعًا، تَفَضَّلْ",
+            "transliteration": "tab3an, tafaddal",
+            "english": "Of course, go ahead."
+          }
+        },
+        {
+          "slot": "tell-him-to-call-me",
+          "arabic": "قُلْ لَهُ أَنْ يَتَّصِلَ بِي",
+          "transliteration": "qul lahu an yattasila bee"
+        },
+        {
+          "slot": "let-him-know-i-called",
+          "arabic": "أَخْبِرْهُ أَنِّي اتَّصَلْتُ",
+          "transliteration": "akhbirhu annee ittasaltu"
+        },
+        {
+          "slot": "i-ll-tell-him-as-soon-as-he-arrives",
+          "arabic": "سَأُخْبِرُهُ فَوْرَ وُصُولِه",
+          "transliteration": "sa-ukhbiruhu fawra wusoolihi"
+        },
+        {
+          "slot": "do-you-have-my-number",
+          "arabic": "هَلْ لَدَيْكَ رَقْمِي؟",
+          "transliteration": "hal ladayka raqmee?"
+        },
+        {
+          "slot": "thanks-a-lot",
+          "arabic": "شُكْرًا جَزِيلًا",
+          "transliteration": "shukran jazeelan",
+          "reply": {
+            "arabic": "عَفْوًا",
+            "transliteration": "3afwan",
+            "english": "You're welcome."
+          }
+        },
+        {
+          "slot": "good-that-i-didn-t-waste-your-time",
+          "arabic": "جَيِّدٌ أَنَّنِي لَمْ أُضَيِّعْ وَقْتَكَ",
+          "transliteration": "jayyidun annanee lam udayyi3 waqtaka"
+        },
+        {
+          "slot": "i-ll-pass-him-the-news-as-soon-as-he-s-in",
+          "arabic": "سَأُبَلِّغُهُ الْخَبَرَ فَوْرَ عَوْدَتِه",
+          "transliteration": "sa-uballighuhu al-khabara fawra 3awdatihi"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Dina",
+          "arabic": "آلُو، السَّلَامُ عَلَيْكُمْ. هَلْ سَامِر مَوْجُود؟",
+          "transliteration": "aaloo, as-salaamu 3alaykum. hal Saamir mawjood?",
+          "english": "Hello, peace be upon you. Is Samer there?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وَعَلَيْكُمُ السَّلَامُ. لَا، لَيْسَ مَوْجُودًا الْآن.",
+          "transliteration": "wa 3alaykumu as-salaam. laa, laysa mawjoodan al-aan.",
+          "english": "And upon you peace. No, he's not here right now."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "مَتَى سَيَعُود؟",
+          "transliteration": "mataa sa-ya3ood?",
+          "english": "When will he be back?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "لَا أَعْرِفُ بِالتَّحْدِيد، بَعْدَ قَلِيل.",
+          "transliteration": "laa a3rifu bit-ta7deed, ba3da qaleel.",
+          "english": "I don't know exactly, in a bit."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "هَلْ يُمْكِنُكَ أَنْ تَأْخُذَ رِسَالَةً مِنِّي؟",
+          "transliteration": "hal yumkinuka an ta2khudha risaalatan minnee?",
+          "english": "Can you take a message for me?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "طَبْعًا، تَفَضَّلِي.",
+          "transliteration": "tab3an, tafaddalee.",
+          "english": "Of course, go ahead."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "قُلْ لَهُ أَنْ يَتَّصِلَ بِي.",
+          "transliteration": "qul lahu an yattasila bee.",
+          "english": "Tell him to call me."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "أَخْبِرْهُ أَنِّي اتَّصَلْتُ. هَلْ لَدَيْكَ رَقْمِي؟",
+          "transliteration": "akhbirhu annee ittasaltu. hal ladayka raqmee?",
+          "english": "Let him know I called. Do you have my number?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "نَعَمْ، لَدَيَّ رَقْمُكِ. سَأُخْبِرُهُ فَوْرَ وُصُولِه.",
+          "transliteration": "na3am, ladayya raqmuki. sa-ukhbiruhu fawra wusoolihi.",
+          "english": "Yes, I have your number. I'll tell him as soon as he arrives."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "شُكْرًا جَزِيلًا.",
+          "transliteration": "shukran jazeelan.",
+          "english": "Thanks a lot."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "عَفْوًا.",
+          "transliteration": "3afwan.",
+          "english": "You're welcome."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "جَيِّدٌ أَنَّنِي لَمْ أُضَيِّعْ وَقْتَكَ.",
+          "transliteration": "jayyidun annanee lam udayyi3 waqtaka.",
+          "english": "Good that I didn't waste your time."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "أَبَدًا. سَأُبَلِّغُهُ الْخَبَرَ فَوْرَ عَوْدَتِه. مَعَ السَّلَامَة.",
+          "transliteration": "abadan. sa-uballighuhu al-khabara fawra 3awdatihi. ma3a as-salaama.",
+          "english": "Not at all. I'll pass him the news as soon as he's in. Goodbye."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هَلْ سَامِر مَوْجُود؟",
+            "transliteration": "hal Saamir mawjood?",
+            "english": "Is Samer there?"
+          },
+          "response": {
+            "arabic": "لَا، لَيْسَ مَوْجُودًا الْآن.",
+            "transliteration": "laa, laysa mawjoodan al-aan.",
+            "english": "No, he's not here right now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى سَيَعُود؟",
+            "transliteration": "mataa sa-ya3ood?",
+            "english": "When will he be back?"
+          },
+          "response": {
+            "arabic": "بَعْدَ قَلِيل.",
+            "transliteration": "ba3da qaleel.",
+            "english": "In a bit."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ يُمْكِنُكَ أَنْ تَأْخُذَ رِسَالَةً مِنِّي؟",
+            "transliteration": "hal yumkinuka an ta2khudha risaalatan minnee?",
+            "english": "Can you take a message for me?"
+          },
+          "response": {
+            "arabic": "طَبْعًا، تَفَضَّلْ.",
+            "transliteration": "tab3an, tafaddal.",
+            "english": "Of course, go ahead."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قُلْ لَهُ أَنْ يَتَّصِلَ بِي.",
+            "transliteration": "qul lahu an yattasila bee.",
+            "english": "Tell him to call me."
+          },
+          "response": {
+            "arabic": "سَأُخْبِرُهُ فَوْرَ وُصُولِه.",
+            "transliteration": "sa-ukhbiruhu fawra wusoolihi.",
+            "english": "I'll tell him as soon as he arrives."
+          }
+        }
+      ],
+      "culture": "Phone manners in Fusha start with a greeting such as السَّلَامُ عَلَيْكُمْ before asking for someone. Offering to take a message and promising to pass it on the moment the person returns is standard courtesy.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "You called for Samer and hear 'لَيْسَ مَوْجُودًا الْآن'. Ask when he will be back.",
+          "answer": "مَتَى سَيَعُود؟",
+          "accepted": [
+            "مَتَى سَيَعُود؟",
+            "متى سيعود؟",
+            "mataa sa-ya3ood?"
+          ],
+          "too_formal": {
+            "item": "إِيمْتَى رَحْ يِرْجَعْ؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مَتَى means 'when'."
+        },
+        {
+          "id": "unit-12.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "Someone says 'شُكْرًا جَزِيلًا' to you. Reply.",
+          "answer": "عَفْوًا",
+          "accepted": [
+            "عَفْوًا",
+            "عفوا",
+            "3afwan"
+          ],
+          "too_formal": {
+            "item": "وَلَا يَهُمَّكْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عَفْوًا answers thanks."
+        },
+        {
+          "id": "unit-12.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَلْ سَامِر _____؟' (Is Samer there?)",
+          "answer": "مَوْجُود",
+          "accepted": [
+            "مَوْجُود",
+            "موجود",
+            "mawjood"
+          ],
+          "too_formal": {
+            "item": "سَامِرْ هُونْ؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مَوْجُود means 'present, there'."
+        },
+        {
+          "id": "unit-12.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'قُلْ لَهُ أَنْ _____ بِي' (Tell him to call me.)",
+          "answer": "يَتَّصِلَ",
+          "accepted": [
+            "يَتَّصِلَ",
+            "يتصل",
+            "yattasila"
+          ],
+          "too_formal": {
+            "item": "قِلُّو يِتَّصِلْ فِيِّي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "After أَنْ the verb takes a final fatha."
+        },
+        {
+          "id": "unit-12.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Do you have my number?'",
+          "answer": "هَلْ لَدَيْكَ رَقْمِي؟",
+          "accepted": [
+            "هَلْ لَدَيْكَ رَقْمِي؟",
+            "هل لديك رقمي؟",
+            "hal ladayka raqmee?"
+          ],
+          "too_formal": {
+            "item": "مَعَكْ رَقْمِي؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَدَيْكَ means 'you have' (at hand)."
+        },
+        {
+          "id": "unit-12.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Let him know I called.'",
+          "answer": "أَخْبِرْهُ أَنِّي اتَّصَلْتُ",
+          "accepted": [
+            "أَخْبِرْهُ أَنِّي اتَّصَلْتُ",
+            "أخبره أني اتصلت",
+            "akhbirhu annee ittasaltu"
+          ],
+          "too_formal": {
+            "item": "قِلُّو إِنِّي اتَّصَلْتْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَخْبِرْ means 'inform'."
+        },
+        {
+          "id": "unit-12.lesson-04.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I'll tell him as soon as he arrives.'",
+          "answer": "سَأُخْبِرُهُ فَوْرَ وُصُولِه",
+          "accepted": [
+            "سَأُخْبِرُهُ فَوْرَ وُصُولِه",
+            "سأخبره فور وصوله",
+            "sa-ukhbiruhu fawra wusoolihi"
+          ],
+          "too_formal": {
+            "item": "رَحْ خَبِّرُو أَوَّلْ مَا يِوْصَلْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "فَوْرَ means 'immediately upon'."
+        },
+        {
+          "id": "unit-12.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence asks someone to take a message?",
+          "answer": "هَلْ يُمْكِنُكَ أَنْ تَأْخُذَ رِسَالَةً مِنِّي؟",
+          "accepted": [
+            "هَلْ يُمْكِنُكَ أَنْ تَأْخُذَ رِسَالَةً مِنِّي؟",
+            "هل يمكنك أن تأخذ رسالة مني؟",
+            "hal yumkinuka an ta2khudha risaalatan minnee?"
+          ],
+          "options": [
+            "مَتَى سَيَعُود؟",
+            "هَلْ لَدَيْكَ رَقْمِي؟",
+            "أَخْبِرْهُ أَنِّي اتَّصَلْتُ",
+            "هَلْ يُمْكِنُكَ أَنْ تَأْخُذَ رِسَالَةً مِنِّي؟"
+          ],
+          "too_formal": {
+            "item": "فِيكْ تَاخُدْ رِسَالَة مِنِّي؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "رِسَالَة means 'message'."
+        },
+        {
+          "id": "unit-12.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'No, he's not here right now'?",
+          "answer": "لَا، لَيْسَ مَوْجُودًا الْآن",
+          "accepted": [
+            "لَا، لَيْسَ مَوْجُودًا الْآن",
+            "لا، ليس موجودا الآن",
+            "laa, laysa mawjoodan al-aan"
+          ],
+          "options": [
+            "لَا، لَيْسَ مَوْجُودًا الْآن",
+            "لَا أَعْرِفُ بِالتَّحْدِيد، بَعْدَ قَلِيل",
+            "سَأُخْبِرُهُ فَوْرَ وُصُولِه",
+            "هَلْ سَامِر مَوْجُود؟"
+          ],
+          "too_formal": {
+            "item": "لَا، مِشْ مَوْجُودْ هَلَّقْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَيْسَ is 'is not'."
+        },
+        {
+          "id": "unit-12.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'بِي / يَتَّصِلَ / أَنْ / لَهُ / قُلْ'.",
+          "answer": "قُلْ لَهُ أَنْ يَتَّصِلَ بِي",
+          "accepted": [
+            "قُلْ لَهُ أَنْ يَتَّصِلَ بِي",
+            "قل له أن يتصل بي",
+            "qul lahu an yattasila bee"
+          ],
+          "too_formal": {
+            "item": "قِلُّو يِتَّصِلْ فِيِّي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "قُلْ is the command 'say'."
+        },
+        {
+          "id": "unit-12.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'قَلِيل / بَعْدَ / بِالتَّحْدِيد، / أَعْرِفُ / لَا'.",
+          "answer": "لَا أَعْرِفُ بِالتَّحْدِيد، بَعْدَ قَلِيل",
+          "accepted": [
+            "لَا أَعْرِفُ بِالتَّحْدِيد، بَعْدَ قَلِيل",
+            "لا أعرف بالتحديد، بعد قليل",
+            "laa a3rifu bit-ta7deed, ba3da qaleel"
+          ],
+          "too_formal": {
+            "item": "مَا بَعْرِفْ بِالضَّبْطْ، بَعْدَ شْوَيّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The comma splits the two ideas."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Make a plan by phone",
+    "instructions": "Write a phone conversation in Fusha in which one person calls, says who is speaking, agrees a place and a time, deals with a bad line, then changes the plan with an apology and asks the other to pass the news to a third person.",
+    "required_elements": [
+      "answering the phone and saying who is speaking",
+      "a place and a time for meeting",
+      "a problem with the line or the signal",
+      "an apology and a change of plan",
+      "a message for a third person"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Sami",
+          "arabic": "آلُو؟",
+          "transliteration": "aaloo?",
+          "english": "Hello?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "مَرْحَبًا يَا سَامِي، مَعَكَ رَنَا. أَيْنَ نَلْتَقِي غَدًا؟",
+          "transliteration": "marhaban yaa Saamee, ma3aka Ranaa. ayna naltaqee ghadan?",
+          "english": "Hello Sami, this is Rana. Where shall we meet tomorrow?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "لِنَلْتَقِ فِي الْمَقْهَى. هَلِ السَّاعَةُ السَّابِعَةُ مُنَاسِبَة؟",
+          "transliteration": "linaltaqi fee al-maqhaa. hal as-saa3atu as-saabi3atu munaasiba?",
+          "english": "Let's meet at the cafe. Is 7 o'clock good?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "اِنْقَطَعَ الِاتِّصَالُ بَيْنَنَا. هَلْ يُمْكِنُكَ أَنْ تُعَاوِدَ الِاتِّصَالَ بِي؟",
+          "transliteration": "inqata3a al-ittisaalu baynanaa. hal yumkinuka an tu3aawida al-ittisaala bee?",
+          "english": "The call got cut off. Can you call me back?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "طَبْعًا. آلُو رَنَا، آسِف، لَا أَسْتَطِيعُ الْحُضُورَ غَدًا.",
+          "transliteration": "tab3an. aaloo Ranaa, aasif, laa astatee3u al-7udoora ghadan.",
+          "english": "Of course. Hello Rana, sorry, I can't come tomorrow."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "هَلْ يُمْكِنُ أَنْ نُؤَجِّلَ إِلَى يَوْمِ الْجُمُعَة؟",
+          "transliteration": "hal yumkinu an nu2ajjila ilaa yawmi al-jumu3a?",
+          "english": "Can we postpone to Friday?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "لَا بَأْس. الْجُمُعَةُ مُنَاسِبَة.",
+          "transliteration": "laa ba2s. al-jumu3atu munaasiba.",
+          "english": "No problem. Friday suits me."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "شُكْرًا. سَأَكُونُ هُنَاكَ قَبْلَكِ.",
+          "transliteration": "shukran. sa2akoonu hunaaka qablaki.",
+          "english": "Thanks. I'll be there before you."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "جَيِّد. لَا تَتَأَخَّرْ.",
+          "transliteration": "jayyid. laa tata2akhkhar.",
+          "english": "Good. Don't be late."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "وَإِذَا اتَّصَلَ رَامِي، أَخْبِرْهُ أَنَّ الْمَوْعِدَ يَوْمَ الْجُمُعَة.",
+          "transliteration": "wa idhaa ittasala Raamee, akhbirhu anna al-maw3ida yawma al-jumu3a.",
+          "english": "And if Rami calls, tell him the appointment is on Friday."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "حَاضِر، سَأُخْبِرُهُ. إِلَى اللِّقَاء.",
+          "transliteration": "7aadir, sa-ukhbiruhu. ilaa al-liqaa2.",
+          "english": "Certainly, I'll tell him. Goodbye."
+        }
+      ]
+    }
+  }
+}

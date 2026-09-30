@@ -1,0 +1,645 @@
+{
+  "unit": "unit-10",
+  "dialect": "Fusha (Modern Standard Arabic)",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "q": "ق",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "what-s-the-weather-like-today",
+          "arabic": "كَيْفَ الطَّقْسُ الْيَوْم؟",
+          "transliteration": "kayfa at-taqsu al-yawm?",
+          "reply": { "arabic": "الطَّقْسُ جَمِيلٌ الْيَوْم", "transliteration": "at-taqsu jameelun al-yawm", "english": "The weather is nice today." }
+        },
+        { "slot": "the-weather-s-very-hot", "arabic": "الطَّقْسُ حَارٌّ جِدًّا", "transliteration": "at-taqsu 7aarrun jiddan" },
+        { "slot": "it-s-cold-today", "arabic": "الْجَوُّ بَارِدٌ الْيَوْم", "transliteration": "al-jawwu baaridun al-yawm" },
+        { "slot": "it-s-raining-outside", "arabic": "إِنَّهَا تُمْطِرُ فِي الْخَارِج", "transliteration": "innahaa tumtiru fee al-khaarij" },
+        { "slot": "it-s-cloudy", "arabic": "الْجَوُّ غَائِم", "transliteration": "al-jawwu ghaa2im" },
+        { "slot": "there-s-a-lot-of-wind-today", "arabic": "هُنَاكَ رِيَاحٌ كَثِيرَةٌ الْيَوْم", "transliteration": "hunaaka riyaa7un katheeratun al-yawm" },
+        { "slot": "the-weather-s-humid-today", "arabic": "الْجَوُّ رَطْبٌ الْيَوْم", "transliteration": "al-jawwu ratbun al-yawm" },
+        {
+          "slot": "what-do-you-think-is-it-going-to-rain-tomorrow",
+          "arabic": "مَا رَأْيُكَ، هَلْ سَتُمْطِرُ غَدًا؟",
+          "transliteration": "maa ra2yuka, hal satumtiru ghadan?",
+          "reply": { "arabic": "أَظُنُّ ذَلِكَ", "transliteration": "azunnu dhaalika", "english": "I think so." }
+        },
+        { "slot": "it-s-hot-out-today", "arabic": "الْحَرَارَةُ مُرْتَفِعَةٌ الْيَوْم", "transliteration": "al-7araaratu murtafi3atun al-yawm" },
+        { "slot": "it-s-cold-out-right-now", "arabic": "الْجَوُّ بَارِدٌ فِي الْخَارِجِ الْآن", "transliteration": "al-jawwu baaridun fee al-khaariji al-aan" },
+        { "slot": "you-need-to-take-an-umbrella-with-you", "arabic": "يَجِبُ أَنْ تَأْخُذَ مِظَلَّةً مَعَكَ", "transliteration": "yajibu an ta2khudha mizallatan ma3aka" },
+        { "slot": "the-sun-s-out-today", "arabic": "الشَّمْسُ مُشْرِقَةٌ الْيَوْم", "transliteration": "ash-shamsu mushriqatun al-yawm" }
+      ],
+      "dialogue": [
+        { "speaker": "Omar", "arabic": "كَيْفَ الطَّقْسُ الْيَوْم؟", "transliteration": "kayfa at-taqsu al-yawm?", "english": "How is the weather today?" },
+        { "speaker": "Salma", "arabic": "الْجَوُّ بَارِدٌ وَغَائِم.", "transliteration": "al-jawwu baaridun wa ghaa2im.", "english": "It's cold and cloudy." },
+        { "speaker": "Omar", "arabic": "هَلْ سَتُمْطِرُ غَدًا؟", "transliteration": "hal satumtiru ghadan?", "english": "Is it going to rain tomorrow?" },
+        { "speaker": "Salma", "arabic": "مَا رَأْيُكَ أَنْتَ؟ أَظُنُّ أَنَّهَا سَتُمْطِر.", "transliteration": "maa ra2yuka anta? azunnu annahaa satumtir.", "english": "What do you think? I think it will rain." },
+        { "speaker": "Omar", "arabic": "إِذَنْ يَجِبُ أَنْ تَأْخُذِي مِظَلَّةً مَعَكِ.", "transliteration": "idhan yajibu an ta2khudhee mizallatan ma3aki.", "english": "Then you need to take an umbrella with you." },
+        { "speaker": "Salma", "arabic": "صَحِيح. الرِّيَاحُ قَوِيَّةٌ أَيْضًا.", "transliteration": "sa7eeh. ar-riyaa7u qawiyyatun aydan.", "english": "True. The wind is strong too." },
+        { "speaker": "Omar", "arabic": "وَالْجَوُّ رَطْبٌ فِي الْخَارِج.", "transliteration": "wal-jawwu ratbun fee al-khaarij.", "english": "And it's humid outside." },
+        { "speaker": "Salma", "arabic": "نَعَمْ، لَا أُحِبُّ هَذَا الطَّقْس.", "transliteration": "na3am, laa u7ibbu hadhaa at-taqs.", "english": "Yes, I don't like this weather." },
+        { "speaker": "Omar", "arabic": "أَنَا أُفَضِّلُ الْجَوَّ الْمُشْمِس.", "transliteration": "anaa ufaddilu al-jawwa al-mushmis.", "english": "I prefer sunny weather." },
+        { "speaker": "Salma", "arabic": "غَدًا قَدْ تَكُونُ الشَّمْسُ مُشْرِقَة.", "transliteration": "ghadan qad takoonu ash-shamsu mushriqa.", "english": "Tomorrow the sun may be out." },
+        { "speaker": "Omar", "arabic": "أَتَمَنَّى ذَلِك.", "transliteration": "atamannaa dhaalik.", "english": "I hope so." },
+        { "speaker": "Salma", "arabic": "إِلَى اللِّقَاءِ غَدًا.", "transliteration": "ilaa al-liqaa2i ghadan.", "english": "See you tomorrow." }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "كَيْفَ الطَّقْسُ الْيَوْم؟", "transliteration": "kayfa at-taqsu al-yawm?", "english": "How is the weather today?" },
+          "response": { "arabic": "الْجَوُّ جَمِيلٌ وَمُشْمِس.", "transliteration": "al-jawwu jameelun wa mushmis.", "english": "It's nice and sunny." }
+        },
+        {
+          "pair": { "arabic": "هَلْ سَتُمْطِرُ غَدًا؟", "transliteration": "hal satumtiru ghadan?", "english": "Is it going to rain tomorrow?" },
+          "response": { "arabic": "أَظُنُّ ذَلِك.", "transliteration": "azunnu dhaalik.", "english": "I think so." }
+        },
+        {
+          "pair": { "arabic": "هَلِ الْجَوُّ بَارِدٌ فِي الْخَارِج؟", "transliteration": "hali al-jawwu baaridun fee al-khaarij?", "english": "Is it cold outside?" },
+          "response": { "arabic": "نَعَمْ، بَارِدٌ جِدًّا.", "transliteration": "na3am, baaridun jiddan.", "english": "Yes, very cold." }
+        },
+        {
+          "pair": { "arabic": "هَلْ آخُذُ مِظَلَّة؟", "transliteration": "hal aakhudhu mizalla?", "english": "Should I take an umbrella?" },
+          "response": { "arabic": "نَعَمْ، خُذْ مِظَلَّةً مَعَكَ.", "transliteration": "na3am, khudh mizallatan ma3aka.", "english": "Yes, take an umbrella with you." }
+        }
+      ],
+      "culture": "Fusha has two common words for the weather, الطَّقْسُ and الْجَوُّ, and both are what a forecaster says on the news. In everyday talk people use their own dialect, but a Fusha weather sentence is understood everywhere.",
+      "exercises": [
+        {
+          "id": "unit-10.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks: 'كَيْفَ الطَّقْسُ الْيَوْم؟'. Say it is very hot.",
+          "answer": "الطَّقْسُ حَارٌّ جِدًّا",
+          "accepted": ["الطَّقْسُ حَارٌّ جِدًّا", "الطقس حار جدا", "الْجَوُّ حَارٌّ جِدًّا", "at-taqsu 7aarrun jiddan"],
+          "too_formal": { "item": "الدِّنْيَا حَرّ كْتِير", "feedback": "spoken, not Fusha" },
+          "tip": "الطَّقْسُ is 'the weather'; حَارٌّ is 'hot' and جِدًّا is 'very'."
+        },
+        {
+          "id": "unit-10.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: 'هَلْ سَتُمْطِرُ غَدًا؟'. Say you think so.",
+          "answer": "أَظُنُّ ذَلِك",
+          "accepted": ["أَظُنُّ ذَلِك", "اظن ذلك", "أَعْتَقِدُ ذَلِك", "azunnu dhaalik"],
+          "too_formal": { "item": "بَظُنّ رَح تِشْتِي", "feedback": "spoken, not Fusha" },
+          "tip": "أَظُنُّ ذَلِك is 'I think so'."
+        },
+        {
+          "id": "unit-10.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'الْجَوُّ _____ الْيَوْم.' (It's cold today.)",
+          "answer": "بَارِدٌ",
+          "accepted": ["بَارِدٌ", "بارد", "baaridun", "بَارِد"],
+          "too_formal": { "item": "بَرْد", "feedback": "spoken, not Fusha" },
+          "tip": "بَارِدٌ is 'cold' and describes الْجَوُّ."
+        },
+        {
+          "id": "unit-10.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'الشَّمْسُ _____ الْيَوْم.' (The sun's out today.)",
+          "answer": "مُشْرِقَةٌ",
+          "accepted": ["مُشْرِقَةٌ", "مشرقة", "mushriqatun", "مُشْرِقَة"],
+          "too_formal": { "item": "طَالْعَة", "feedback": "spoken, not Fusha" },
+          "tip": "مُشْرِقَةٌ comes from أَشْرَقَتْ, 'it shone', and is feminine like الشَّمْس."
+        },
+        {
+          "id": "unit-10.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'It's cloudy.'",
+          "answer": "الْجَوُّ غَائِم",
+          "accepted": ["الْجَوُّ غَائِم", "الجو غائم", "الْجَوُّ غَائِمٌ", "al-jawwu ghaa2im"],
+          "too_formal": { "item": "فِي غَيْم", "feedback": "spoken, not Fusha" },
+          "tip": "غَائِم means 'cloudy'; غَيْم is 'clouds'."
+        },
+        {
+          "id": "unit-10.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'You need to take an umbrella with you.' (to a man)",
+          "answer": "يَجِبُ أَنْ تَأْخُذَ مِظَلَّةً مَعَكَ",
+          "accepted": ["يَجِبُ أَنْ تَأْخُذَ مِظَلَّةً مَعَكَ", "يجب ان تاخذ مظلة معك", "عَلَيْكَ أَنْ تَأْخُذَ مِظَلَّةً مَعَكَ", "yajibu an ta2khudha mizallatan ma3aka"],
+          "too_formal": { "item": "لَازِم تِاخُد شَمْسِيَّة مَعَك", "feedback": "spoken, not Fusha" },
+          "tip": "يَجِبُ أَنْ means 'it is necessary that' and is followed by the present verb."
+        },
+        {
+          "id": "unit-10.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'It's raining outside.'?",
+          "options": ["إِنَّهَا تُمْطِرُ فِي الْخَارِج", "الْجَوُّ غَائِم", "الشَّمْسُ مُشْرِقَة", "الرِّيَاحُ قَوِيَّة"],
+          "answer": "إِنَّهَا تُمْطِرُ فِي الْخَارِج",
+          "accepted": ["إِنَّهَا تُمْطِرُ فِي الْخَارِج", "انها تمطر في الخارج", "تُمْطِرُ فِي الْخَارِج", "innahaa tumtiru fee al-khaarij"],
+          "too_formal": { "item": "عَمْ تِشْتِي بَرَّا", "feedback": "spoken, not Fusha" },
+          "tip": "تُمْطِرُ comes from الْمَطَر, 'rain'."
+        },
+        {
+          "id": "unit-10.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which word means 'humid'?",
+          "options": ["رَطْب", "بَارِد", "حَارّ", "غَائِم"],
+          "answer": "رَطْب",
+          "accepted": ["رَطْب", "رطب", "ratb", "رَطْبٌ"],
+          "too_formal": { "item": "الْجَوّ مْكَتِّم", "feedback": "spoken, not Fusha" },
+          "tip": "رَطْب means 'damp', and الرُّطُوبَة is 'humidity'."
+        },
+        {
+          "id": "unit-10.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'الْيَوْم / الطَّقْسُ / كَيْفَ'.",
+          "answer": "كَيْفَ الطَّقْسُ الْيَوْم؟",
+          "accepted": ["كَيْفَ الطَّقْسُ الْيَوْم؟", "كيف الطقس اليوم؟", "kayfa at-taqsu al-yawm?", "كَيْفَ الطَّقْسُ الْيَوْم"],
+          "too_formal": { "item": "شُو الطَّقْس الْيُوم؟", "feedback": "spoken, not Fusha" },
+          "tip": "كَيْفَ comes first, then the subject, then the time."
+        },
+        {
+          "id": "unit-10.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'غَدًا / سَتُمْطِرُ / هَلْ'.",
+          "answer": "هَلْ سَتُمْطِرُ غَدًا؟",
+          "accepted": ["هَلْ سَتُمْطِرُ غَدًا؟", "هل ستمطر غدا؟", "hal satumtiru ghadan?", "هَلْ سَتُمْطِرُ غَدًا"],
+          "too_formal": { "item": "رَح تِشْتِي بُكْرَا؟", "feedback": "spoken, not Fusha" },
+          "tip": "سَ before the verb makes it future: سَتُمْطِرُ, 'it will rain'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "what-s-your-favorite-season",
+          "arabic": "مَا فَصْلُكَ الْمُفَضَّل؟",
+          "transliteration": "maa fasluka al-mufaddal?",
+          "reply": { "arabic": "الرَّبِيعُ فَصْلِي الْمُفَضَّل", "transliteration": "ar-rabee3u faslee al-mufaddal", "english": "Spring is my favorite season." }
+        },
+        { "slot": "in-winter-it-gets-very-cold-in-damascus", "arabic": "فِي الشِّتَاءِ يَشْتَدُّ الْبَرْدُ كَثِيرًا فِي دِمَشْق", "transliteration": "fee ash-shitaa2i yashtaddu al-bardu katheeran fee Dimashq" },
+        { "slot": "in-summer-the-weather-s-hot-and-dry", "arabic": "فِي الصَّيْفِ الْجَوُّ حَارٌّ وَجَاف", "transliteration": "fee as-sayfi al-jawwu 7aarrun wa jaaf" },
+        { "slot": "it-s-snowing-on-the-mountain", "arabic": "تُثْلِجُ عَلَى الْجَبَل", "transliteration": "tuthliju 3alaa al-jabal" },
+        { "slot": "spring-is-my-favorite-season", "arabic": "الرَّبِيعُ فَصْلِي الْمُفَضَّل", "transliteration": "ar-rabee3u faslee al-mufaddal" },
+        { "slot": "in-fall-the-leaves-fall-from-the-trees", "arabic": "فِي الْخَرِيفِ تَسْقُطُ الْأَوْرَاقُ مِنَ الْأَشْجَار", "transliteration": "fee al-khareefi tasqutu al-awraaqu mina al-ashjaar" },
+        { "slot": "i-don-t-like-winter-because-it-gets-very-cold", "arabic": "لَا أُحِبُّ الشِّتَاءَ لِأَنَّ الْجَوَّ بَارِدٌ جِدًّا", "transliteration": "laa u7ibbu ash-shitaa2a li2anna al-jawwa baaridun jiddan" },
+        { "slot": "what-season-is-it-now", "arabic": "فِي أَيِّ فَصْلٍ نَحْنُ الْآن؟", "transliteration": "fee ayyi faslin na7nu al-aan?" },
+        { "slot": "in-winter-you-need-to-wear-something-heavy", "arabic": "فِي الشِّتَاءِ يَجِبُ أَنْ تَلْبَسَ مَلَابِسَ ثَقِيلَة", "transliteration": "fee ash-shitaa2i yajibu an talbasa malaabisa thaqeela" },
+        { "slot": "the-weather-changes-a-lot-between-the-seasons", "arabic": "يَتَغَيَّرُ الطَّقْسُ كَثِيرًا بَيْنَ الْفُصُول", "transliteration": "yataghayyaru at-taqsu katheeran bayna al-fusool" },
+        { "slot": "i-like-the-smell-of-rain-in-spring", "arabic": "أُحِبُّ رَائِحَةَ الْمَطَرِ فِي الرَّبِيع", "transliteration": "u7ibbu raa2i7ata al-matari fee ar-rabee3" },
+        { "slot": "summer-in-damascus-is-long", "arabic": "الصَّيْفُ فِي دِمَشْقَ طَوِيل", "transliteration": "as-sayfu fee Dimashqa taweel" }
+      ],
+      "dialogue": [
+        { "speaker": "Yusuf", "arabic": "مَا فَصْلُكِ الْمُفَضَّلُ يَا هُدَى؟", "transliteration": "maa fasluki al-mufaddalu yaa Hudaa?", "english": "What's your favorite season, Huda?" },
+        { "speaker": "Huda", "arabic": "الرَّبِيعُ فَصْلِي الْمُفَضَّل. وَأَنْتَ؟", "transliteration": "ar-rabee3u faslee al-mufaddal. wa anta?", "english": "Spring is my favorite season. And you?" },
+        { "speaker": "Yusuf", "arabic": "أَنَا أُحِبُّ الصَّيْفَ، لَكِنَّ الصَّيْفَ فِي دِمَشْقَ طَوِيل.", "transliteration": "anaa u7ibbu as-sayfa, lakinna as-sayfa fee Dimashqa taweel.", "english": "I like summer, but summer in Damascus is long." },
+        { "speaker": "Huda", "arabic": "نَعَمْ، وَالْجَوُّ حَارٌّ وَجَاف.", "transliteration": "na3am, wal-jawwu 7aarrun wa jaaf.", "english": "Yes, and the weather is hot and dry." },
+        { "speaker": "Yusuf", "arabic": "وَفِي الشِّتَاءِ يَشْتَدُّ الْبَرْدُ كَثِيرًا.", "transliteration": "wa fee ash-shitaa2i yashtaddu al-bardu katheeran.", "english": "And in winter it gets very cold." },
+        { "speaker": "Huda", "arabic": "لِهَذَا لَا أُحِبُّ الشِّتَاء.", "transliteration": "lihadhaa laa u7ibbu ash-shitaa2.", "english": "That's why I don't like winter." },
+        { "speaker": "Yusuf", "arabic": "هَلْ تُثْلِجُ فِي دِمَشْقَ؟", "transliteration": "hal tuthliju fee Dimashqa?", "english": "Does it snow in Damascus?" },
+        { "speaker": "Huda", "arabic": "أَحْيَانًا، وَدَائِمًا تُثْلِجُ عَلَى الْجَبَل.", "transliteration": "a7yaanan, wa daa2iman tuthliju 3alaa al-jabal.", "english": "Sometimes, and it always snows on the mountain." },
+        { "speaker": "Yusuf", "arabic": "وَمَاذَا عَنِ الْخَرِيف؟", "transliteration": "wa maadhaa 3ani al-khareef?", "english": "And what about fall?" },
+        { "speaker": "Huda", "arabic": "فِي الْخَرِيفِ تَسْقُطُ الْأَوْرَاقُ مِنَ الْأَشْجَار.", "transliteration": "fee al-khareefi tasqutu al-awraaqu mina al-ashjaar.", "english": "In fall the leaves fall from the trees." },
+        { "speaker": "Yusuf", "arabic": "وَأَنَا أُحِبُّ رَائِحَةَ الْمَطَرِ فِي الرَّبِيع.", "transliteration": "wa anaa u7ibbu raa2i7ata al-matari fee ar-rabee3.", "english": "And I like the smell of rain in spring." },
+        { "speaker": "Huda", "arabic": "إِذَنْ فَصْلُنَا الْمُفَضَّلُ وَاحِد!", "transliteration": "idhan faslunaa al-mufaddalu waa7id!", "english": "So our favorite season is the same!" }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "مَا فَصْلُكَ الْمُفَضَّل؟", "transliteration": "maa fasluka al-mufaddal?", "english": "What's your favorite season?" },
+          "response": { "arabic": "الرَّبِيعُ فَصْلِي الْمُفَضَّل.", "transliteration": "ar-rabee3u faslee al-mufaddal.", "english": "Spring is my favorite season." }
+        },
+        {
+          "pair": { "arabic": "فِي أَيِّ فَصْلٍ نَحْنُ الْآن؟", "transliteration": "fee ayyi faslin na7nu al-aan?", "english": "What season is it now?" },
+          "response": { "arabic": "نَحْنُ فِي الصَّيْف.", "transliteration": "na7nu fee as-sayf.", "english": "We're in summer." }
+        },
+        {
+          "pair": { "arabic": "كَيْفَ الطَّقْسُ فِي الصَّيْف؟", "transliteration": "kayfa at-taqsu fee as-sayf?", "english": "What's the weather like in summer?" },
+          "response": { "arabic": "حَارٌّ وَجَاف.", "transliteration": "7aarrun wa jaaf.", "english": "Hot and dry." }
+        },
+        {
+          "pair": { "arabic": "لِمَاذَا لَا تُحِبُّ الشِّتَاء؟", "transliteration": "limaadhaa laa tu7ibbu ash-shitaa2?", "english": "Why don't you like winter?" },
+          "response": { "arabic": "لِأَنَّ الْجَوَّ بَارِدٌ جِدًّا.", "transliteration": "li2anna al-jawwa baaridun jiddan.", "english": "Because it's very cold." }
+        }
+      ],
+      "culture": "Fusha names the four seasons الشِّتَاء, الرَّبِيع, الصَّيْف and الْخَرِيف, and the word فَصْل means both 'season' and 'chapter'. These are the words in school books and on forecasts, and every Arabic speaker knows them.",
+      "exercises": [
+        {
+          "id": "unit-10.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you, a man: 'مَا فَصْلُكَ الْمُفَضَّل؟'. Say spring is your favorite.",
+          "answer": "الرَّبِيعُ فَصْلِي الْمُفَضَّل",
+          "accepted": ["الرَّبِيعُ فَصْلِي الْمُفَضَّل", "الربيع فصلي المفضل", "الرَّبِيعُ هُوَ فَصْلِيَ الْمُفَضَّل", "ar-rabee3u faslee al-mufaddal"],
+          "too_formal": { "item": "أَحْلَى فَصْل عِنْدِي الرَّبِيع", "feedback": "spoken, not Fusha" },
+          "tip": "فَصْلِي is 'my season'; الْمُفَضَّل is 'the favorite'."
+        },
+        {
+          "id": "unit-10.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: 'لِمَاذَا لَا تُحِبُّ الشِّتَاء؟'. Say because it is very cold.",
+          "answer": "لِأَنَّ الْجَوَّ بَارِدٌ جِدًّا",
+          "accepted": ["لِأَنَّ الْجَوَّ بَارِدٌ جِدًّا", "لان الجو بارد جدا", "لِأَنَّ الْبَرْدَ شَدِيد", "li2anna al-jawwa baaridun jiddan"],
+          "too_formal": { "item": "لَأَنُّو كْتِير بَرْد", "feedback": "spoken, not Fusha" },
+          "tip": "لِأَنَّ means 'because' and is followed by a noun, here الْجَوَّ."
+        },
+        {
+          "id": "unit-10.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'فِي _____ تُثْلِجُ عَلَى الْجَبَل.' (In winter it snows on the mountain.)",
+          "answer": "الشِّتَاءِ",
+          "accepted": ["الشِّتَاءِ", "الشتاء", "ash-shitaa2i", "الشِّتَاء"],
+          "too_formal": { "item": "بِالشِّتِي", "feedback": "spoken, not Fusha" },
+          "tip": "After فِي the noun takes a kasra: فِي الشِّتَاءِ."
+        },
+        {
+          "id": "unit-10.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'فِي الْخَرِيفِ تَسْقُطُ _____ مِنَ الْأَشْجَار.' (In fall the leaves fall from the trees.)",
+          "answer": "الْأَوْرَاقُ",
+          "accepted": ["الْأَوْرَاقُ", "الاوراق", "al-awraaqu", "الْأَوْرَاق"],
+          "too_formal": { "item": "الْوَرَق", "feedback": "spoken, not Fusha" },
+          "tip": "الْأَوْرَاق is the plural of وَرَقَة, 'a leaf'."
+        },
+        {
+          "id": "unit-10.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Summer in Damascus is long.'",
+          "answer": "الصَّيْفُ فِي دِمَشْقَ طَوِيل",
+          "accepted": ["الصَّيْفُ فِي دِمَشْقَ طَوِيل", "الصيف في دمشق طويل", "الصَّيْفُ طَوِيلٌ فِي دِمَشْق", "as-sayfu fee Dimashqa taweel"],
+          "too_formal": { "item": "الصَّيْف بِدِمَشْق طْوِيل", "feedback": "spoken, not Fusha" },
+          "tip": "No 'is' is needed: الصَّيْفُ طَوِيل is 'summer long'."
+        },
+        {
+          "id": "unit-10.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'What season is it now?'",
+          "answer": "فِي أَيِّ فَصْلٍ نَحْنُ الْآن؟",
+          "accepted": ["فِي أَيِّ فَصْلٍ نَحْنُ الْآن؟", "في اي فصل نحن الان؟", "أَيُّ فَصْلٍ نَحْنُ فِيهِ الْآن؟", "fee ayyi faslin na7nu al-aan?"],
+          "too_formal": { "item": "أَيّ فَصْل هَلَّق؟", "feedback": "spoken, not Fusha" },
+          "tip": "Literally 'in which season are we now?'."
+        },
+        {
+          "id": "unit-10.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'It's snowing on the mountain.'?",
+          "options": ["تُثْلِجُ عَلَى الْجَبَل", "تُمْطِرُ عَلَى الْجَبَل", "الشَّمْسُ عَلَى الْجَبَل", "الْجَبَلُ بَعِيد"],
+          "answer": "تُثْلِجُ عَلَى الْجَبَل",
+          "accepted": ["تُثْلِجُ عَلَى الْجَبَل", "تثلج على الجبل", "إِنَّهَا تُثْلِجُ عَلَى الْجَبَل", "tuthliju 3alaa al-jabal"],
+          "too_formal": { "item": "عَمْ تِتْلِج عَالْجَبَل", "feedback": "spoken, not Fusha" },
+          "tip": "الثَّلْج is 'snow', and تُثْلِجُ is 'it snows'."
+        },
+        {
+          "id": "unit-10.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence says 'Spring is my favorite season'?",
+          "options": ["الرَّبِيعُ فَصْلِي الْمُفَضَّل", "الصَّيْفُ فَصْلِي الْمُفَضَّل", "الشِّتَاءُ فَصْلٌ بَارِد", "الْخَرِيفُ فَصْلٌ طَوِيل"],
+          "answer": "الرَّبِيعُ فَصْلِي الْمُفَضَّل",
+          "accepted": ["الرَّبِيعُ فَصْلِي الْمُفَضَّل", "الربيع فصلي المفضل", "الرَّبِيعُ هُوَ الْفَصْلُ الْمُفَضَّل", "ar-rabee3u faslee al-mufaddal"],
+          "too_formal": { "item": "الرَّبِيع أَحْلَى فَصْل عِنْدِي", "feedback": "spoken, not Fusha" },
+          "tip": "الرَّبِيع is spring, الصَّيْف summer, الْخَرِيف fall, الشِّتَاء winter."
+        },
+        {
+          "id": "unit-10.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'الْمُفَضَّل / فَصْلِي / الرَّبِيعُ'.",
+          "answer": "الرَّبِيعُ فَصْلِي الْمُفَضَّل",
+          "accepted": ["الرَّبِيعُ فَصْلِي الْمُفَضَّل", "الربيع فصلي المفضل", "ar-rabee3u faslee al-mufaddal", "الرَّبِيعُ فَصْلِيَ الْمُفَضَّل"],
+          "too_formal": { "item": "الرَّبِيع أَحْلَى فَصْل عِنْدِي", "feedback": "spoken, not Fusha" },
+          "tip": "The season comes first, then 'my favorite season'."
+        },
+        {
+          "id": "unit-10.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'الْأَوْرَاقُ / الْخَرِيفِ / فِي / تَسْقُطُ'.",
+          "answer": "فِي الْخَرِيفِ تَسْقُطُ الْأَوْرَاق",
+          "accepted": ["فِي الْخَرِيفِ تَسْقُطُ الْأَوْرَاق", "في الخريف تسقط الاوراق", "fee al-khareefi tasqutu al-awraaq", "تَسْقُطُ الْأَوْرَاقُ فِي الْخَرِيف"],
+          "too_formal": { "item": "بِالْخَرِيف بِتْوَقَّع الْوَرَق", "feedback": "spoken, not Fusha" },
+          "tip": "The season is named first, then what happens in it."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        { "slot": "what-should-i-wear-today", "arabic": "مَاذَا أَلْبَسُ الْيَوْم؟", "transliteration": "maadhaa albasu al-yawm?" },
+        { "slot": "take-an-umbrella-with-you-it-s-going-to-rain", "arabic": "خُذْ مِظَلَّةً مَعَكَ، سَتُمْطِر", "transliteration": "khudh mizallatan ma3aka, satumtir" },
+        { "slot": "wear-a-sweater-it-s-cold", "arabic": "اِلْبَسْ سُتْرَةً صُوفِيَّةً، الْجَوُّ بَارِد", "transliteration": "ilbas sutratan soofiyyatan, al-jawwu baarid" },
+        { "slot": "in-summer-i-wear-shorts-and-a-shirt", "arabic": "فِي الصَّيْفِ أَلْبَسُ شُورْتًا وَقَمِيص", "transliteration": "fee as-sayfi albasu shortan wa qamees" },
+        { "slot": "put-on-your-sunglasses-the-sun-s-strong", "arabic": "ضَعْ نَظَّارَةً شَمْسِيَّةً، فَالشَّمْسُ قَوِيَّة", "transliteration": "da3 nazzaaratan shamsiyyatan, fash-shamsu qawiyya" },
+        { "slot": "you-need-boots-in-winter-because-it-rains-a-lot", "arabic": "تَحْتَاجُ إِلَى جَزْمَةٍ فِي الشِّتَاءِ لِأَنَّ الْمَطَرَ كَثِير", "transliteration": "ta7taaju ilaa jazmatin fee ash-shitaa2i li2anna al-matara katheer" },
+        { "slot": "i-didn-t-wear-a-jacket-and-i-got-cold", "arabic": "لَمْ أَلْبَسْ سُتْرَةً فَشَعَرْتُ بِالْبَرْد", "transliteration": "lam albas sutratan fasha3urtu bil-bard" },
+        { "slot": "the-hat-protects-you-from-the-sun", "arabic": "الْقُبَّعَةُ تَحْمِيكَ مِنَ الشَّمْس", "transliteration": "al-qubba3atu ta7meeka mina ash-shams" },
+        { "slot": "what-s-your-favorite-color-in-sweaters", "arabic": "مَا لَوْنُكَ الْمُفَضَّلُ فِي السُّتَرِ الصُّوفِيَّة؟", "transliteration": "maa lawnuka al-mufaddalu fee as-sutari as-soofiyya?" },
+        { "slot": "in-fall-i-wear-a-light-jacket", "arabic": "فِي الْخَرِيفِ أَلْبَسُ سُتْرَةً خَفِيفَة", "transliteration": "fee al-khareefi albasu sutratan khafeefa" },
+        { "slot": "wear-something-comfortable-because-we-re-going-t", "arabic": "اِلْبَسْ شَيْئًا مُرِيحًا لِأَنَّنَا سَنَمْشِي كَثِيرًا", "transliteration": "ilbas shay2an muree7an li2annanaa sanamshee katheeran" },
+        { "slot": "i-forgot-the-raincoat-at-home", "arabic": "نَسِيتُ مِعْطَفَ الْمَطَرِ فِي الْبَيْت", "transliteration": "naseetu mi3tafa al-matari fee al-bayt" }
+      ],
+      "dialogue": [
+        { "speaker": "Khalid", "arabic": "مَاذَا أَلْبَسُ الْيَوْم؟", "transliteration": "maadhaa albasu al-yawm?", "english": "What should I wear today?" },
+        { "speaker": "Nour", "arabic": "كَيْفَ الطَّقْسُ فِي الْخَارِج؟", "transliteration": "kayfa at-taqsu fee al-khaarij?", "english": "What's the weather like outside?" },
+        { "speaker": "Khalid", "arabic": "الْجَوُّ بَارِدٌ وَغَائِم.", "transliteration": "al-jawwu baaridun wa ghaa2im.", "english": "It's cold and cloudy." },
+        { "speaker": "Nour", "arabic": "اِلْبَسْ سُتْرَةً صُوفِيَّةً، الْجَوُّ بَارِد.", "transliteration": "ilbas sutratan soofiyyatan, al-jawwu baarid.", "english": "Wear a sweater, it's cold." },
+        { "speaker": "Khalid", "arabic": "وَهَلْ سَتُمْطِر؟", "transliteration": "wa hal satumtir?", "english": "And is it going to rain?" },
+        { "speaker": "Nour", "arabic": "نَعَمْ، خُذْ مِظَلَّةً مَعَكَ.", "transliteration": "na3am, khudh mizallatan ma3aka.", "english": "Yes, take an umbrella with you." },
+        { "speaker": "Khalid", "arabic": "لَقَدْ نَسِيتُ مِعْطَفَ الْمَطَرِ فِي الْبَيْت.", "transliteration": "laqad naseetu mi3tafa al-matari fee al-bayt.", "english": "I forgot the raincoat at home." },
+        { "speaker": "Nour", "arabic": "لَا بَأْس، الْمِظَلَّةُ تَكْفِي.", "transliteration": "laa ba2s, al-mizallatu takfee.", "english": "No problem, the umbrella is enough." },
+        { "speaker": "Khalid", "arabic": "وَمَاذَا عَنِ الْحِذَاء؟", "transliteration": "wa maadhaa 3ani al-7idhaa2?", "english": "And what about shoes?" },
+        { "speaker": "Nour", "arabic": "تَحْتَاجُ إِلَى جَزْمَةٍ لِأَنَّ الشَّارِعَ مُبْتَلّ.", "transliteration": "ta7taaju ilaa jazmatin li2anna ash-shaari3a mubtall.", "english": "You need boots because the street is wet." },
+        { "speaker": "Khalid", "arabic": "حَسَنًا، سَأَلْبَسُ الْجَزْمَة.", "transliteration": "7asanan, sa2albasu al-jazma.", "english": "Fine, I'll wear the boots." },
+        { "speaker": "Nour", "arabic": "وَلَا تَنْسَ الْقُبَّعَة، فَالْبَرْدُ شَدِيد.", "transliteration": "wa laa tansa al-qubba3a, fal-bardu shadeed.", "english": "And don't forget the hat, it's very cold." }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "مَاذَا أَلْبَسُ الْيَوْم؟", "transliteration": "maadhaa albasu al-yawm?", "english": "What should I wear today?" },
+          "response": { "arabic": "اِلْبَسْ سُتْرَةً صُوفِيَّة.", "transliteration": "ilbas sutratan soofiyya.", "english": "Wear a sweater." }
+        },
+        {
+          "pair": { "arabic": "هَلْ سَتُمْطِرُ الْيَوْم؟", "transliteration": "hal satumtiru al-yawm?", "english": "Is it going to rain today?" },
+          "response": { "arabic": "نَعَمْ، خُذْ مِظَلَّةً مَعَكَ.", "transliteration": "na3am, khudh mizallatan ma3aka.", "english": "Yes, take an umbrella with you." }
+        },
+        {
+          "pair": { "arabic": "لِمَاذَا تَلْبَسُ الْقُبَّعَة؟", "transliteration": "limaadhaa talbasu al-qubba3a?", "english": "Why are you wearing the hat?" },
+          "response": { "arabic": "لِأَنَّهَا تَحْمِينِي مِنَ الشَّمْس.", "transliteration": "li2annahaa ta7meenee mina ash-shams.", "english": "Because it protects me from the sun." }
+        },
+        {
+          "pair": { "arabic": "مَا لَوْنُكَ الْمُفَضَّل؟", "transliteration": "maa lawnuka al-mufaddal?", "english": "What's your favorite color?" },
+          "response": { "arabic": "لَوْنِي الْمُفَضَّلُ الْأَزْرَق.", "transliteration": "lawnee al-mufaddalu al-azraq.", "english": "My favorite color is blue." }
+        }
+      ],
+      "culture": "When someone asks what to wear, the answer in Fusha is a short command: اِلْبَسْ to a man and اِلْبَسِي to a woman. Advising a friend or a child about clothes for the weather is a common way to show care.",
+      "exercises": [
+        {
+          "id": "unit-10.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "A friend says: 'مَاذَا أَلْبَسُ الْيَوْم؟'. It is cold. Advise a sweater.",
+          "answer": "اِلْبَسْ سُتْرَةً صُوفِيَّةً",
+          "accepted": ["اِلْبَسْ سُتْرَةً صُوفِيَّةً", "البس سترة صوفية", "اِلْبَسْ سُتْرَةً ثَقِيلَةً", "ilbas sutratan soofiyyatan"],
+          "too_formal": { "item": "إِلْبَس كَنْزَة", "feedback": "spoken, not Fusha" },
+          "tip": "اِلْبَسْ is the command 'wear' to a man."
+        },
+        {
+          "id": "unit-10.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "A man says: 'سَتُمْطِرُ الْيَوْم'. Tell him to take an umbrella.",
+          "answer": "خُذْ مِظَلَّةً مَعَكَ",
+          "accepted": ["خُذْ مِظَلَّةً مَعَكَ", "خذ مظلة معك", "خُذْ مِظَلَّةً", "khudh mizallatan ma3aka"],
+          "too_formal": { "item": "خُد شَمْسِيَّة مَعَك", "feedback": "spoken, not Fusha" },
+          "tip": "خُذْ is the command 'take' and مَعَكَ is 'with you'."
+        },
+        {
+          "id": "unit-10.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'فِي الصَّيْفِ أَلْبَسُ شُورْتًا وَ_____.' (In summer I wear shorts and a shirt.)",
+          "answer": "قَمِيص",
+          "accepted": ["قَمِيص", "قميص", "qameesan", "قَمِيصًا"],
+          "too_formal": { "item": "تِيشِرْت", "feedback": "spoken, not Fusha" },
+          "tip": "قَمِيص is a shirt."
+        },
+        {
+          "id": "unit-10.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'ضَعْ _____ شَمْسِيَّةً، فَالشَّمْسُ قَوِيَّة.' (Put on your sunglasses, the sun is strong.)",
+          "answer": "نَظَّارَةً",
+          "accepted": ["نَظَّارَةً", "نظارة", "nazzaaratan", "نَظَّارَات"],
+          "too_formal": { "item": "نَضَّارَة", "feedback": "spoken, not Fusha" },
+          "tip": "نَظَّارَةٌ شَمْسِيَّة is 'sun glasses'."
+        },
+        {
+          "id": "unit-10.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'What should I wear today?'",
+          "answer": "مَاذَا أَلْبَسُ الْيَوْم؟",
+          "accepted": ["مَاذَا أَلْبَسُ الْيَوْم؟", "ماذا البس اليوم؟", "مَاذَا يَنْبَغِي أَنْ أَلْبَسَ الْيَوْم؟", "maadhaa albasu al-yawm?"],
+          "too_formal": { "item": "شُو أَلْبَس الْيُوم؟", "feedback": "spoken, not Fusha" },
+          "tip": "مَاذَا is 'what' before a verb."
+        },
+        {
+          "id": "unit-10.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'I forgot the raincoat at home.'",
+          "answer": "نَسِيتُ مِعْطَفَ الْمَطَرِ فِي الْبَيْت",
+          "accepted": ["نَسِيتُ مِعْطَفَ الْمَطَرِ فِي الْبَيْت", "نسيت معطف المطر في البيت", "نَسِيتُ مِعْطَفَ الْمَطَرِ فِي الْمَنْزِل", "naseetu mi3tafa al-matari fee al-bayt"],
+          "too_formal": { "item": "نْسِيت الْمِعْطَف بِالْبَيْت", "feedback": "spoken, not Fusha" },
+          "tip": "مِعْطَفُ الْمَطَر is 'the coat of rain', a raincoat."
+        },
+        {
+          "id": "unit-10.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'Put on your sunglasses, the sun is strong'?",
+          "options": ["ضَعْ نَظَّارَةً شَمْسِيَّةً، فَالشَّمْسُ قَوِيَّة", "خُذْ مِظَلَّةً مَعَكَ", "اِلْبَسْ سُتْرَةً صُوفِيَّةً", "نَسِيتُ الْقُبَّعَة"],
+          "answer": "ضَعْ نَظَّارَةً شَمْسِيَّةً، فَالشَّمْسُ قَوِيَّة",
+          "accepted": ["ضَعْ نَظَّارَةً شَمْسِيَّةً، فَالشَّمْسُ قَوِيَّة", "ضع نظارة شمسية، فالشمس قوية", "ضَعْ نَظَّارَةً شَمْسِيَّةً", "da3 nazzaaratan shamsiyyatan, fash-shamsu qawiyya"],
+          "too_formal": { "item": "حُطّ النَّضَّارَة، الشَّمْس قَوِيَّة", "feedback": "spoken, not Fusha" },
+          "tip": "فَ here means 'because' and links the reason."
+        },
+        {
+          "id": "unit-10.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which word means 'boots'?",
+          "options": ["جَزْمَة", "قُبَّعَة", "قَمِيص", "سُتْرَة"],
+          "answer": "جَزْمَة",
+          "accepted": ["جَزْمَة", "جزمة", "jazma", "جَزْمَةٌ"],
+          "too_formal": { "item": "بُوط", "feedback": "spoken, not Fusha" },
+          "tip": "قُبَّعَة is a hat and سُتْرَة a jacket or sweater."
+        },
+        {
+          "id": "unit-10.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'مَعَكَ / مِظَلَّةً / خُذْ'.",
+          "answer": "خُذْ مِظَلَّةً مَعَكَ",
+          "accepted": ["خُذْ مِظَلَّةً مَعَكَ", "خذ مظلة معك", "khudh mizallatan ma3aka", "خُذْ مَعَكَ مِظَلَّةً"],
+          "too_formal": { "item": "خُد شَمْسِيَّة مَعَك", "feedback": "spoken, not Fusha" },
+          "tip": "The command comes first."
+        },
+        {
+          "id": "unit-10.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'الشَّمْس / مِنَ / تَحْمِيكَ / الْقُبَّعَةُ'.",
+          "answer": "الْقُبَّعَةُ تَحْمِيكَ مِنَ الشَّمْس",
+          "accepted": ["الْقُبَّعَةُ تَحْمِيكَ مِنَ الشَّمْس", "القبعة تحميك من الشمس", "al-qubba3atu ta7meeka mina ash-shams", "الْقُبَّعَةُ تَحْمِيكَ مِنَ الشَّمْسِ"],
+          "too_formal": { "item": "الطَّاقِيَّة بْتِحْمِيك مِنَ الشَّمْس", "feedback": "spoken, not Fusha" },
+          "tip": "حَمَى مِنْ means 'protect from'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        { "slot": "if-the-weather-s-nice-we-ll-go-out-to-the-park", "arabic": "إِذَا كَانَ الْجَوُّ جَمِيلًا سَنَخْرُجُ إِلَى الْحَدِيقَة", "transliteration": "idhaa kaana al-jawwu jameelan sanakhruju ilaa al-7adeeqa" },
+        { "slot": "the-weather-s-not-good-we-need-to-cancel-the-out", "arabic": "الْجَوُّ لَيْسَ جَيِّدًا، يَجِبُ أَنْ نُلْغِيَ النُّزْهَة", "transliteration": "al-jawwu laysa jayyidan, yajibu an nulghiya an-nuzha" },
+        { "slot": "what-do-you-think-about-staying-home-today", "arabic": "مَا رَأْيُكَ أَنْ نَبْقَى فِي الْبَيْتِ الْيَوْم؟", "transliteration": "maa ra2yuka an nabqaa fee al-bayti al-yawm?" },
+        { "slot": "if-it-rains-tomorrow-we-ll-postpone-the-trip", "arabic": "إِذَا أَمْطَرَتْ غَدًا سَنُؤَجِّلُ الرِّحْلَة", "transliteration": "idhaa amtarat ghadan sanu2ajjilu ar-ri7la" },
+        { "slot": "the-weather-s-nice-let-s-go-out-for-a-walk", "arabic": "الْجَوُّ جَمِيلٌ، هَيَّا نَخْرُجْ لِنَتَمَشَّى", "transliteration": "al-jawwu jameelun, hayyaa nakhruj linatamashshaa" },
+        { "slot": "i-can-t-go-out-it-s-too-hot", "arabic": "لَا أَسْتَطِيعُ الْخُرُوجَ، الْجَوُّ حَارٌّ جِدًّا", "transliteration": "laa astatee3u al-khurooja, al-jawwu 7aarrun jiddan" },
+        { "slot": "we-ll-sit-on-the-balcony-tonight-the-weather-s-p", "arabic": "سَنَجْلِسُ عَلَى الشُّرْفَةِ اللَّيْلَةَ، الْجَوُّ لَطِيف", "transliteration": "sanajlisu 3alaa ash-shurfati al-laylata, al-jawwu lateef" },
+        { "slot": "since-it-s-going-to-rain-let-s-postpone-the-even", "arabic": "بِمَا أَنَّهَا سَتُمْطِرُ، لِنُؤَجِّلْ سَهْرَةَ الْمَسَاء", "transliteration": "bimaa annahaa satumtiru, linu2ajjil sahrata al-masaa2" },
+        { "slot": "the-weather-doesn-t-allow-us-to-play-outside", "arabic": "الطَّقْسُ لَا يَسْمَحُ لَنَا بِاللَّعِبِ فِي الْخَارِج", "transliteration": "at-taqsu laa yasma7u lanaa bil-la3ibi fee al-khaarij" },
+        { "slot": "as-long-as-the-weather-s-good-we-ll-keep-going-o", "arabic": "مَا دَامَ الْجَوُّ جَمِيلًا سَنَسْتَمِرُّ فِي الْخُرُوج", "transliteration": "maa daama al-jawwu jameelan sanastamirru fee al-khurooj" },
+        { "slot": "the-trip-to-the-mountain-depends-on-the-weather", "arabic": "الرِّحْلَةُ إِلَى الْجَبَلِ تَعْتَمِدُ عَلَى الطَّقْس", "transliteration": "ar-ri7latu ilaa al-jabali ta3tamidu 3alaa at-taqs" },
+        {
+          "slot": "did-you-see-the-weather-forecast",
+          "arabic": "هَلْ شَاهَدْتَ نَشْرَةَ الْأَحْوَالِ الْجَوِّيَّة؟",
+          "transliteration": "hal shaahadta nashrata al-a7waali al-jawwiyya?",
+          "reply": { "arabic": "نَعَمْ، سَتُمْطِرُ غَدًا", "transliteration": "na3am, satumtiru ghadan", "english": "Yes, it's going to rain tomorrow." }
+        }
+      ],
+      "dialogue": [
+        { "speaker": "Ziad", "arabic": "هَلْ شَاهَدْتِ نَشْرَةَ الْأَحْوَالِ الْجَوِّيَّة؟", "transliteration": "hal shaahadti nashrata al-a7waali al-jawwiyya?", "english": "Did you see the weather forecast?" },
+        { "speaker": "Layla", "arabic": "نَعَمْ، سَتُمْطِرُ غَدًا.", "transliteration": "na3am, satumtiru ghadan.", "english": "Yes, it's going to rain tomorrow." },
+        { "speaker": "Ziad", "arabic": "إِذَنْ مَا رَأْيُكِ أَنْ نُؤَجِّلَ الرِّحْلَة؟", "transliteration": "idhan maa ra2yuki an nu2ajjila ar-ri7la?", "english": "Then what do you think about postponing the trip?" },
+        { "speaker": "Layla", "arabic": "الرِّحْلَةُ إِلَى الْجَبَلِ تَعْتَمِدُ عَلَى الطَّقْس.", "transliteration": "ar-ri7latu ilaa al-jabali ta3tamidu 3alaa at-taqs.", "english": "The trip to the mountain depends on the weather." },
+        { "speaker": "Ziad", "arabic": "صَحِيح. إِذَا أَمْطَرَتْ غَدًا سَنُؤَجِّلُهَا.", "transliteration": "sa7eeh. idhaa amtarat ghadan sanu2ajjiluhaa.", "english": "True. If it rains tomorrow we'll postpone it." },
+        { "speaker": "Layla", "arabic": "وَمَاذَا عَنِ الْيَوْم؟ الْجَوُّ جَمِيل.", "transliteration": "wa maadhaa 3ani al-yawm? al-jawwu jameel.", "english": "And what about today? The weather is nice." },
+        { "speaker": "Ziad", "arabic": "هَيَّا نَخْرُجْ لِنَتَمَشَّى فِي الْحَدِيقَة.", "transliteration": "hayyaa nakhruj linatamashshaa fee al-7adeeqa.", "english": "Let's go out for a walk in the park." },
+        { "speaker": "Layla", "arabic": "فِكْرَةٌ جَيِّدَة. مَا دَامَ الْجَوُّ جَمِيلًا سَنَسْتَمِرُّ فِي الْخُرُوج.", "transliteration": "fikratun jayyida. maa daama al-jawwu jameelan sanastamirru fee al-khurooj.", "english": "Good idea. As long as the weather is good we'll keep going out." },
+        { "speaker": "Ziad", "arabic": "وَاللَّيْلَةَ سَنَجْلِسُ عَلَى الشُّرْفَة.", "transliteration": "wal-laylata sanajlisu 3alaa ash-shurfa.", "english": "And tonight we'll sit on the balcony." },
+        { "speaker": "Layla", "arabic": "نَعَمْ، الْجَوُّ لَطِيفٌ فِي الْمَسَاء.", "transliteration": "na3am, al-jawwu lateefun fee al-masaa2.", "english": "Yes, the weather is pleasant in the evening." },
+        { "speaker": "Ziad", "arabic": "وَإِنْ أَمْطَرَتْ، نَبْقَى فِي الْبَيْت.", "transliteration": "wa in amtarat, nabqaa fee al-bayt.", "english": "And if it rains, we stay home." },
+        { "speaker": "Layla", "arabic": "اِتَّفَقْنَا.", "transliteration": "ittafaqnaa.", "english": "Agreed." }
+      ],
+      "de_book": [
+        {
+          "pair": { "arabic": "هَلْ شَاهَدْتَ نَشْرَةَ الْأَحْوَالِ الْجَوِّيَّة؟", "transliteration": "hal shaahadta nashrata al-a7waali al-jawwiyya?", "english": "Did you see the weather forecast?" },
+          "response": { "arabic": "نَعَمْ، سَتُمْطِرُ غَدًا.", "transliteration": "na3am, satumtiru ghadan.", "english": "Yes, it's going to rain tomorrow." }
+        },
+        {
+          "pair": { "arabic": "مَا رَأْيُكَ أَنْ نَبْقَى فِي الْبَيْت؟", "transliteration": "maa ra2yuka an nabqaa fee al-bayt?", "english": "What do you think about staying home?" },
+          "response": { "arabic": "فِكْرَةٌ جَيِّدَة.", "transliteration": "fikratun jayyida.", "english": "Good idea." }
+        },
+        {
+          "pair": { "arabic": "هَلْ سَنَخْرُجُ الْيَوْم؟", "transliteration": "hal sanakhruju al-yawm?", "english": "Shall we go out today?" },
+          "response": { "arabic": "إِذَا كَانَ الْجَوُّ جَمِيلًا سَنَخْرُج.", "transliteration": "idhaa kaana al-jawwu jameelan sanakhruj.", "english": "If the weather's nice, we'll go out." }
+        },
+        {
+          "pair": { "arabic": "لِمَاذَا لَا تَخْرُج؟", "transliteration": "limaadhaa laa takhruj?", "english": "Why aren't you going out?" },
+          "response": { "arabic": "لِأَنَّ الْجَوَّ حَارٌّ جِدًّا.", "transliteration": "li2anna al-jawwa 7aarrun jiddan.", "english": "Because it's too hot." }
+        }
+      ],
+      "culture": "Fusha plans use إِذَا, 'if', followed by a past-tense verb, and then the future with سَ. نَشْرَةُ الْأَحْوَالِ الْجَوِّيَّة, 'the bulletin of weather conditions', is what news programmes call the forecast.",
+      "exercises": [
+        {
+          "id": "unit-10.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: 'هَلْ شَاهَدْتَ نَشْرَةَ الْأَحْوَالِ الْجَوِّيَّة؟'. Say yes, it will rain tomorrow.",
+          "answer": "نَعَمْ، سَتُمْطِرُ غَدًا",
+          "accepted": ["نَعَمْ، سَتُمْطِرُ غَدًا", "نعم، ستمطر غدا", "نَعَمْ، سَيَهْطِلُ الْمَطَرُ غَدًا", "na3am, satumtiru ghadan"],
+          "too_formal": { "item": "إِي، رَح تِشْتِي بُكْرَا", "feedback": "spoken, not Fusha" },
+          "tip": "سَتُمْطِرُ is 'it will rain'."
+        },
+        {
+          "id": "unit-10.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: 'مَا رَأْيُكَ أَنْ نَبْقَى فِي الْبَيْتِ الْيَوْم؟'. Agree.",
+          "answer": "فِكْرَةٌ جَيِّدَة",
+          "accepted": ["فِكْرَةٌ جَيِّدَة", "فكرة جيدة", "اِتَّفَقْنَا", "fikratun jayyida"],
+          "too_formal": { "item": "حِلْوَة الْفِكْرَة", "feedback": "spoken, not Fusha" },
+          "tip": "فِكْرَةٌ جَيِّدَة is 'a good idea'."
+        },
+        {
+          "id": "unit-10.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: '_____ أَمْطَرَتْ غَدًا سَنُؤَجِّلُ الرِّحْلَة.' (If it rains tomorrow we'll postpone the trip.)",
+          "answer": "إِذَا",
+          "accepted": ["إِذَا", "اذا", "idhaa", "إِنْ"],
+          "too_formal": { "item": "لَوْ شَتَّتْ", "feedback": "spoken, not Fusha" },
+          "tip": "إِذَا is 'if' and takes a past-tense verb."
+        },
+        {
+          "id": "unit-10.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'الطَّقْسُ لَا _____ لَنَا بِاللَّعِبِ فِي الْخَارِج.' (The weather doesn't allow us to play outside.)",
+          "answer": "يَسْمَحُ",
+          "accepted": ["يَسْمَحُ", "يسمح", "yasma7u", "يُتِيحُ"],
+          "too_formal": { "item": "بِيْسَمِّح", "feedback": "spoken, not Fusha" },
+          "tip": "سَمَحَ لَـ means 'allow'."
+        },
+        {
+          "id": "unit-10.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Did you see the weather forecast?' (to a man)",
+          "answer": "هَلْ شَاهَدْتَ نَشْرَةَ الْأَحْوَالِ الْجَوِّيَّة؟",
+          "accepted": ["هَلْ شَاهَدْتَ نَشْرَةَ الْأَحْوَالِ الْجَوِّيَّة؟", "هل شاهدت نشرة الاحوال الجوية؟", "هَلْ رَأَيْتَ تَوَقُّعَاتِ الطَّقْس؟", "hal shaahadta nashrata al-a7waali al-jawwiyya?"],
+          "too_formal": { "item": "شُفْت النَّشْرَة الْجَوِّيَّة؟", "feedback": "spoken, not Fusha" },
+          "tip": "شَاهَدْتَ is 'you saw' to a man; to a woman it is شَاهَدْتِ."
+        },
+        {
+          "id": "unit-10.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'I can't go out, it's too hot.'",
+          "answer": "لَا أَسْتَطِيعُ الْخُرُوجَ، الْجَوُّ حَارٌّ جِدًّا",
+          "accepted": ["لَا أَسْتَطِيعُ الْخُرُوجَ، الْجَوُّ حَارٌّ جِدًّا", "لا استطيع الخروج، الجو حار جدا", "لَا أَسْتَطِيعُ أَنْ أَخْرُجَ، الْجَوُّ حَارٌّ جِدًّا", "laa astatee3u al-khurooja, al-jawwu 7aarrun jiddan"],
+          "too_formal": { "item": "مَا فِيِّي إِطْلَع، الْجَوّ حَرّ كْتِير", "feedback": "spoken, not Fusha" },
+          "tip": "لَا أَسْتَطِيعُ is 'I cannot', followed by a verbal noun such as الْخُرُوج."
+        },
+        {
+          "id": "unit-10.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'The trip depends on the weather'?",
+          "options": ["الرِّحْلَةُ تَعْتَمِدُ عَلَى الطَّقْس", "الرِّحْلَةُ طَوِيلَة", "الطَّقْسُ جَمِيل", "سَنُؤَجِّلُ السَّهْرَة"],
+          "answer": "الرِّحْلَةُ تَعْتَمِدُ عَلَى الطَّقْس",
+          "accepted": ["الرِّحْلَةُ تَعْتَمِدُ عَلَى الطَّقْس", "الرحلة تعتمد على الطقس", "الرِّحْلَةُ تَتَوَقَّفُ عَلَى الطَّقْس", "ar-ri7latu ta3tamidu 3alaa at-taqs"],
+          "too_formal": { "item": "الرِّحْلَة مْتَوَقِّفَة عَلَى الطَّقْس", "feedback": "spoken, not Fusha" },
+          "tip": "اِعْتَمَدَ عَلَى means 'depend on'."
+        },
+        {
+          "id": "unit-10.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which verb means 'we postpone'?",
+          "options": ["نُؤَجِّلُ", "نَخْرُجُ", "نَبْقَى", "نَجْلِسُ"],
+          "answer": "نُؤَجِّلُ",
+          "accepted": ["نُؤَجِّلُ", "نؤجل", "nu2ajjilu", "نُؤَجِّلْ"],
+          "too_formal": { "item": "مْنْأَجِّل", "feedback": "spoken, not Fusha" },
+          "tip": "أَجَّلَ is 'he postponed'; نَخْرُجُ is 'we go out'."
+        },
+        {
+          "id": "unit-10.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'الرِّحْلَةَ / غَدًا / سَنُؤَجِّلُ / أَمْطَرَتْ / إِذَا'.",
+          "answer": "إِذَا أَمْطَرَتْ غَدًا سَنُؤَجِّلُ الرِّحْلَة",
+          "accepted": ["إِذَا أَمْطَرَتْ غَدًا سَنُؤَجِّلُ الرِّحْلَة", "اذا امطرت غدا سنؤجل الرحلة", "idhaa amtarat ghadan sanu2ajjilu ar-ri7la", "إِذَا أَمْطَرَتْ غَدًا سَنُؤَجِّلُ الرِّحْلَةَ"],
+          "too_formal": { "item": "لَوْ شَتَّتْ بُكْرَا رَح نْأَجِّل الرِّحْلَة", "feedback": "spoken, not Fusha" },
+          "tip": "The condition comes first, then the result."
+        },
+        {
+          "id": "unit-10.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'نَبْقَى / أَنْ / فِي / رَأْيُكَ / مَا / الْبَيْت'.",
+          "answer": "مَا رَأْيُكَ أَنْ نَبْقَى فِي الْبَيْت",
+          "accepted": ["مَا رَأْيُكَ أَنْ نَبْقَى فِي الْبَيْت", "ما رايك ان نبقى في البيت", "maa ra2yuka an nabqaa fee al-bayt", "مَا رَأْيُكَ أَنْ نَبْقَى فِي الْبَيْتِ"],
+          "too_formal": { "item": "شُو رَأْيَك نِبْقَى بِالْبَيْت", "feedback": "spoken, not Fusha" },
+          "tip": "مَا رَأْيُكَ is 'what is your opinion'."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Plan a day around the weather",
+    "instructions": "Write a short conversation in Fusha between two friends. They ask about the weather and the season, say what they like and dislike, advise each other what to wear, and make or postpone a plan depending on the forecast.",
+    "required_elements": [
+      "a question about the weather and its answer",
+      "a favorite season and why",
+      "advice about what to wear or take",
+      "a plan that depends on the weather with إِذَا",
+      "a plan that is postponed or changed"
+    ],
+    "model": {
+      "dialogue": [
+        { "speaker": "Sami", "arabic": "كَيْفَ الطَّقْسُ الْيَوْم؟", "transliteration": "kayfa at-taqsu al-yawm?", "english": "How is the weather today?" },
+        { "speaker": "Rana", "arabic": "الْجَوُّ جَمِيلٌ وَالشَّمْسُ مُشْرِقَة.", "transliteration": "al-jawwu jameelun wash-shamsu mushriqa.", "english": "The weather is nice and the sun is out." },
+        { "speaker": "Sami", "arabic": "مَا فَصْلُكِ الْمُفَضَّل؟", "transliteration": "maa fasluki al-mufaddal?", "english": "What's your favorite season?" },
+        { "speaker": "Rana", "arabic": "الرَّبِيعُ فَصْلِي الْمُفَضَّل، لِأَنَّ الْجَوَّ لَطِيف.", "transliteration": "ar-rabee3u faslee al-mufaddal, li2anna al-jawwa lateef.", "english": "Spring is my favorite season, because the weather is pleasant." },
+        { "speaker": "Sami", "arabic": "هَيَّا نَخْرُجْ لِنَتَمَشَّى فِي الْحَدِيقَة.", "transliteration": "hayyaa nakhruj linatamashshaa fee al-7adeeqa.", "english": "Let's go out for a walk in the park." },
+        { "speaker": "Rana", "arabic": "فِكْرَةٌ جَيِّدَة. هَلْ شَاهَدْتَ نَشْرَةَ الْأَحْوَالِ الْجَوِّيَّة؟", "transliteration": "fikratun jayyida. hal shaahadta nashrata al-a7waali al-jawwiyya?", "english": "Good idea. Did you see the weather forecast?" },
+        { "speaker": "Sami", "arabic": "نَعَمْ، سَتُمْطِرُ غَدًا. يَجِبُ أَنْ تَأْخُذِي مِظَلَّةً مَعَكِ.", "transliteration": "na3am, satumtiru ghadan. yajibu an ta2khudhee mizallatan ma3aki.", "english": "Yes, it's going to rain tomorrow. You need to take an umbrella with you." },
+        { "speaker": "Rana", "arabic": "إِذَا أَمْطَرَتْ غَدًا سَنُؤَجِّلُ الرِّحْلَة.", "transliteration": "idhaa amtarat ghadan sanu2ajjilu ar-ri7la.", "english": "If it rains tomorrow we'll postpone the trip." },
+        { "speaker": "Sami", "arabic": "اِتَّفَقْنَا. وَاللَّيْلَةَ سَنَجْلِسُ عَلَى الشُّرْفَة.", "transliteration": "ittafaqnaa. wal-laylata sanajlisu 3alaa ash-shurfa.", "english": "Agreed. And tonight we'll sit on the balcony." },
+        { "speaker": "Rana", "arabic": "نَعَمْ، لَكِنِ اِلْبَسْ سُتْرَةً، فَالْجَوُّ بَارِدٌ فِي اللَّيْل.", "transliteration": "na3am, lakini ilbas sutratan, fal-jawwu baaridun fee al-layl.", "english": "Yes, but wear a jacket, it's cold at night." }
+      ]
+    }
+  }
+}
