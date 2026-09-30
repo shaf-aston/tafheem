@@ -14,6 +14,7 @@ import ErrorAlert from './components/ui/ErrorAlert'
 import Mascot from './components/ui/Mascot'
 import MapPanel from './components/ui/MapPanel'
 import SettingsPanel from './components/ui/SettingsPanel'
+import { TOOLS } from './lib/tools'
 import SpatialHome from './components/ui/SpatialHome'
 import SourceFooter from './components/ui/SourceFooter'
 import TabStrip from './components/ui/TabStrip'
@@ -89,6 +90,7 @@ function AppContent() {
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [mapOpen, setMapOpen] = useState(false)
+  const runTool = { startOver, map: () => setMapOpen(true) }
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
   // A root handed from one tab to another. Held here because it is the only
@@ -181,36 +183,23 @@ function AppContent() {
               })}
             />
           </button>
-          {/* One click, no arming: it forgets where you have been and the
-              saved answers, and reopens this tab clean. The wipe with
-              real cost, settings and streak, stays two clicks deep in Settings. */}
-          <button
-            type="button"
-            onClick={startOver}
-            title="Start over"
-            aria-label="Start over: forget where you have been and your answers, and reopen this tab clean"
-            className="icon-button phone-hide"
-          >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M3 12a9 9 0 1 0 3-6.7" />
-              <path d="M3 4v5h5" />
-            </svg>
-          </button>
-          {/* A high-level overview, everything at a glance: not a tab, opened
-              the same way Settings is, so it never crowds the tab strip. */}
-          <button
-            type="button"
-            onClick={() => setMapOpen(true)}
-            title="Map"
-            aria-label="Open the map: a high-level overview"
-            aria-haspopup="dialog"
-            className="icon-button phone-hide"
-          >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M9 3 3 5.5v15L9 18l6 2.5L21 18V3l-6 2.5L9 3Z" />
-              <path d="M9 3v15M15 5.5v15" />
-            </svg>
-          </button>
+          {/* Tools from lib/tools.js. Start over is one click, no arming; the wipe
+              with real cost, settings and streak, stays two clicks deep in Settings. */}
+          {TOOLS.map((tool) => (
+            <button
+              key={tool.id}
+              type="button"
+              onClick={runTool[tool.id]}
+              title={tool.label}
+              aria-label={tool.aria}
+              aria-haspopup={tool.dialog ? 'dialog' : undefined}
+              className={`icon-button${tool.phone === 'more' ? ' phone-hide' : ''}`}
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                {tool.paths.map((d) => <path key={d} d={d} />)}
+              </svg>
+            </button>
+          ))}
           </div>
 
           <div className="flex items-center gap-2 min-w-0">
@@ -339,14 +328,26 @@ function AppContent() {
         onGo={switchTab}
         here={activeTab}
       >
-        {/* The top-bar buttons phones hide, kept one tap inside More. */}
+        {/* The tools phones hide from the top bar, kept one tap inside More. */}
         <section className="sm:hidden space-y-2">
           <h3 className="type-small text-[var(--text-faint)]">Tools</h3>
           <div className="grid grid-cols-2 gap-2">
-            <button type="button" aria-haspopup="dialog" onClick={() => { setSectionsOpen(false); setMapOpen(true) }} className="tap min-h-11 rounded-[var(--radius-sm)] border border-[var(--border)] type-body font-medium">Map</button>
-            <button type="button" aria-describedby="start-over-hint" onClick={() => { setSectionsOpen(false); startOver() }} className="tap min-h-11 rounded-[var(--radius-sm)] border border-[var(--border)] type-body font-medium">Start over</button>
+            {TOOLS.filter((tool) => tool.phone === 'more').map((tool) => (
+              <button
+                key={tool.id}
+                type="button"
+                aria-haspopup={tool.dialog ? 'dialog' : undefined}
+                aria-describedby={tool.hint ? `${tool.id}-hint` : undefined}
+                onClick={() => { setSectionsOpen(false); runTool[tool.id]() }}
+                className="tap min-h-11 rounded-[var(--radius-sm)] border border-[var(--border)] type-body font-medium"
+              >
+                {tool.label}
+              </button>
+            ))}
           </div>
-          <p id="start-over-hint" className="type-small text-[var(--text-faint)]">Start over forgets where you have been and your answers.</p>
+          {TOOLS.filter((tool) => tool.phone === 'more' && tool.hint).map((tool) => (
+            <p key={tool.id} id={`${tool.id}-hint`} className="type-small text-[var(--text-faint)]">{tool.hint}</p>
+          ))}
         </section>
       </SectionsMenu>
       <BottomNav tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
