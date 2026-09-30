@@ -159,3 +159,11 @@ def test_wiktionary_adapter_folds_the_joining_alif(monkeypatch):
     monkeypatch.setattr(service, "_arabic_index", index)
     monkeypatch.setattr(service, "_loaded", True)
     assert wiktionary.verb_forms_of("ٱجْتَمَعَ") == entry["verbs"]
+
+
+def test_dictionary_babs_asks_by_root_and_says_nothing_for_an_unknown_one(monkeypatch):
+    _sources(monkeypatch, wiktionary={"سمح": [{"form": "I", "past": "سَمَحَ", "babs": ["a~a"]}]})
+    got = client.get("/api/dictionary/babs", params={"root": "سمح"}).json()
+    assert [(r["label"], [x["key"] for x in r["sources"]]) for r in got["readings"]] == [("سَمَحَ · باب فَتَحَ يَفْتَحُ", ["wiktionary"])]
+    assert client.get("/api/dictionary/babs", params={"root": "زززز"}).json()["readings"] == []
+    assert client.get("/api/dictionary/babs", params={"root": "smh"}).status_code == 422

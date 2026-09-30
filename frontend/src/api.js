@@ -84,6 +84,12 @@ export const searchDictionary = (q, lang = 'ar') =>
 export const getRootMeaning = (root) =>
   api.get('/dictionary/root-meaning', { params: { root } }).then((r) => r.data)
 
+// The باب the root's Form I verb takes, by root so every word on it agrees.
+export const rootBabsQuery = (root) => ({
+  queryKey: ['root-babs', root],
+  queryFn: () => api.get('/dictionary/babs', { params: { root } }).then((r) => r.data),
+})
+
 // Whole entries for a root, from every classical dictionary that has one. Its
 // own call, and asked for only when the shelf is opened: four whole entries run
 // to a hundred kilobytes, which is not worth fetching for a reader who came to
