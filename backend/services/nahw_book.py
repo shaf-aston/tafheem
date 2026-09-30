@@ -1,11 +1,13 @@
-"""The book's closed word lists (a leaf module: rule_engine and syntax both read it), loaded once from data/nahw_rules/closed_words.json."""
+"""The book's closed word lists and the teacher's checks (a leaf module: rule_engine and syntax both read it), loaded once from data/nahw_rules/closed_words.json and teacher.json."""
 from __future__ import annotations
 
 import json
 from functools import lru_cache
 from pathlib import Path
 
-FILE = Path(__file__).parent.parent / "data" / "nahw_rules" / "closed_words.json"
+RULES = Path(__file__).parent.parent / "data" / "nahw_rules"
+FILE = RULES / "closed_words.json"
+TEACHER_FILE = RULES / "teacher.json"
 
 
 @lru_cache(maxsize=1)
@@ -28,3 +30,9 @@ def words(family: str, part: str = "words") -> frozenset[str]:
 def is_one(lemma: str, family: str, part: str = "words") -> bool:
     """True when the parser's lemma (an attached clitic's '+' aside) is on that list."""
     return lemma.strip("+") in words(family, part)
+
+
+@lru_cache(maxsize=1)
+def teacher() -> dict:
+    """The teacher's checks and their reasons (services/syntax/teacher.py)."""
+    return json.loads(TEACHER_FILE.read_text(encoding="utf-8"))

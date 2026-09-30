@@ -218,7 +218,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
     """
     from camel_tools.utils.dediac import dediac_ar
 
-    if "catib6" not in a or "atbtok" not in a:
+    if not a.get("catib6") or "atbtok" not in a:
         # The analyzer found nothing for this word; BERT's own tag is all
         # there is, so it is reported as a single unsplit token.
         catib6 = _POS_TO_CATIB6.get(a.get("pos", ""), "NOM")
@@ -254,6 +254,8 @@ def _split_word(word: str, a: dict) -> list[dict]:
                 "pos": catib6, "pos_camel": a.get("pos", ""), "ud": ud,
                 "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
                 "stt": a.get("stt", "na"), "cas": a.get("cas", "na"),
+                # the analyser's own word-shape, e.g. 1ا2ِ3 for فاعل: how a participle is told from a noun
+                "pattern": a.get("pattern", ""),
                 "token_type": "baseword",
             })
         else:

@@ -11,7 +11,7 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 """
 from __future__ import annotations
 
-from backend.services.syntax.naming import completes_kaada, tone
+from backend.services.syntax.naming import base_tokens, completes_kaada, tone
 from backend.services.tarkeeb import term_ar
 
 # What a unit is called, by the join that makes it. Spelled once, in
@@ -25,9 +25,13 @@ NOMINAL = term_ar("jumlah_ismiyyah")
 QUESTION = term_ar("jumlah_istifhamiyyah")
 
 
-def _leaf(index: int, role: str | None) -> dict:
-    """One word on its own. No role means the rules could not name it."""
-    return {"word": index, "role": role, "tone": tone(role), "gap": role is None}
+def _leaf(index: int, role: str | None, why: dict | None = None) -> dict:
+    """One word on its own. No role means the rules could not name it; `why` is the
+    teacher's reason when a rule took the name away, shown on hover."""
+    leaf = {"word": index, "role": role, "tone": tone(role), "gap": role is None}
+    if role is None and why:
+        leaf["detail"] = f"{why['ar']} · {why['en']}"
+    return leaf
 
 
 def _label(head: dict, child_roles: list[str]) -> str:
@@ -65,14 +69,13 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
 
     `named` is what `naming.roles` returned, one entry per typed word.
     """
-    bases = [t for t in tokens if t.get("token_type") == "baseword"]
-    if len(bases) != len(words):
-        bases = [t for t in tokens if not t["form"].startswith("+")]
+    bases = base_tokens(words, tokens)
     if not words or len(bases) != len(words) or len(named) != len(words):
         return {"words": words, "tree": {"gap": True}, "coverage": 0.0}
 
     at = {token["id"]: index for index, token in enumerate(bases)}
     role_of = {token["id"]: found["role"] for token, found in zip(bases, named)}
+    why_of = {token["id"]: found.get("gap") for token, found in zip(bases, named)}
     children_of: dict[int, list[dict]] = {token["id"]: [] for token in bases}
     by_id = {t["id"]: t for t in tokens}
 
@@ -105,11 +108,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         kids = [kid for kid in children_of[token["id"]] if kid["id"] not in seen]
         index = at[token["id"]]
         if not kids:
-            return _leaf(index, role_of[token["id"]])
+            return _leaf(index, role_of[token["id"]], why_of[token["id"]])
         kid_roles = [role_of[kid["id"]] for kid in kids if role_of[kid["id"]]]
         seen.update(kid["id"] for kid in kids)
         inside = [(at[kid["id"]], node(kid)) for kid in kids]
-        inside.append((index, _leaf(index, _unit_role(role_of[token["id"]], kid_roles))))
+        inside.append((index, _leaf(index, _unit_role(role_of[token["id"]], kid_roles), why_of[token["id"]])))
         role = role_of[token["id"]]
         label = _label(token, kid_roles) or (_sentence_label(token, role_of, bases)
                                              if token is root else "")

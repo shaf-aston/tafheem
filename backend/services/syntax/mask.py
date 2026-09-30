@@ -30,7 +30,7 @@ def _verb_subject_follows(toks, add_rel) -> None:
         if not _is_noun(dep) or dep.get("case") == "a":
             continue
         for h in range(d + 1, len(toks) + 1):
-            if toks[h - 1]["pos"] == "VRB":
+            if toks[h - 1]["pos"].startswith("VRB"):
                 for label in ("SBJ", "OBJ", "MOD"):
                     add_rel(d, h, label)
 

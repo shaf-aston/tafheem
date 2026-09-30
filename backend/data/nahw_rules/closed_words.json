@@ -966,6 +966,21 @@
     "مه": "noun-of-verb 'stop!' vs a variant of 'what' (ما)",
     "صه": "noun-of-verb 'be quiet'; unambiguous"
    }
+  },
+  "tamyeez_head": {
+   "ar": "ألفاظ العدد والمقادير التي يأتي بعدها التمييز",
+   "effect": "a tamyeez (specifier) is named only after a number or a measure: عشرون كتابا، رطل عسلا",
+   "words": ["عشرون", "عشرين", "ثلاثون", "ثلاثين", "أربعون", "أربعين", "خمسون", "خمسين", "ستون", "ستين", "سبعون", "سبعين", "ثمانون", "ثمانين", "تسعون", "تسعين", "عشر", "عشرة", "مئة", "مائة", "ألف", "مليون", "مليار", "كم", "رطل", "كيلو", "لتر", "متر", "فدان", "صاع", "مد", "أوقية", "غرام", "جرام", "ميل", "شبر", "ذراع", "قنطار", "كوب"]
+  },
+  "participle_patterns": {
+   "ar": "أوزان اسم الفاعل واسم المفعول",
+   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal. Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل, مُ is every active or passive participle past form I, مَ1ْ2ُو3 is مفعول.",
+   "words": ["1ا2ِ3", "مُ", "مَ1ْ2ُو3"]
+  },
+  "tamyeez_verbs": {
+   "ar": "أفعال يأتي بعدها تمييز النسبة",
+   "effect": "after a complete sentence built on one of these, an indefinite accusative noun is a tamyeez of the relation: طاب المكان هواء، امتلأ الكوب ماء. Lemmas as the parser spells them (a hamzat-wasl verb comes back with alef wasla).",
+   "words": ["طاب", "امتلأ", "ٱمتلأ", "زاد", "ازداد", "ٱزداد", "تصبب", "تفصد", "فاض", "غزر"]
   }
  }
 }
