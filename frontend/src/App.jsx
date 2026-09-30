@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { GROUPS, SPOTS, TABS, accentOf } from './lib/tabs'
-import { place, read, stripOf } from './lib/spots'
+import { GROUPS, RECENT, TABS, accentOf } from './lib/tabs'
+import { addRecent, readRecent, stripOf } from './lib/recent'
 import { useRemembered } from './lib/useRemembered'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
 import { idle } from './lib/warm'
@@ -129,15 +129,15 @@ function AppContent() {
     setHandoff(incoming ? { tab: id, value: incoming, at: ++arrivals } : null)
   }, [])
 
-  // The strip: fixed tabs plus the spots. Whatever opens a tab (a click, All
-  // sections, the command bar, back) lands here, so one rule fills the spots.
-  const [savedSpots, saveSpots] = useRemembered('tab-spots')
-  const spots = useMemo(() => read(savedSpots, TABS, SPOTS), [savedSpots])
-  const strip = useMemo(() => stripOf(TABS, spots), [spots])
+  // The strip: fixed tabs plus the recent ones. Whatever opens a tab (a click,
+  // All sections, the command bar, back) lands here, so one rule fills it.
+  const [savedRecent, saveRecent] = useRemembered('recent-tabs')
+  const recent = useMemo(() => readRecent(savedRecent, TABS, RECENT), [savedRecent])
+  const strip = useMemo(() => stripOf(TABS, recent), [recent])
   useEffect(() => {
-    const moved = place(spots, activeTab, TABS)
-    if (moved !== spots) saveSpots(JSON.stringify(moved))
-  }, [activeTab, spots, saveSpots])
+    const next = addRecent(recent, activeTab, TABS)
+    if (next !== recent) saveRecent(JSON.stringify(next))
+  }, [activeTab, recent, saveRecent])
 
   useTabShortcuts(strip, switchTab)
 
