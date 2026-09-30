@@ -2,19 +2,11 @@
  * All sections: every tab under its group, opened from the end of the strip.
  * Native <dialog>, as in SettingsPanel: Esc, backdrop and focus trap come free.
  */
-import { useEffect, useRef } from 'react'
-
+import { useModal } from '../../lib/useModal'
 import ArabicText from './ArabicText'
 
 export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here }) {
-  const dialog = useRef(null)
-
-  useEffect(() => {
-    const element = dialog.current
-    if (!element) return
-    if (open && !element.open) element.showModal()
-    if (!open && element.open) element.close()
-  }, [open])
+  const dialog = useModal(open)
 
   const go = (id) => {
     onClose()
