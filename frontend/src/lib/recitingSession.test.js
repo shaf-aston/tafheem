@@ -395,6 +395,75 @@ describe('a reciting session', () => {
     expect(h.session.view().state).toBe('listening')
   })
 
+  it('turns the page without cutting the recording, and carries on from what was said after its last word', async () => {
+    const h = harness()
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    await h.session.start()
+    h.speak()
+    await h.pause()
+    await h.answer(0, 'الحمد لله رب العالمين الرحمن الرحيم مالك')
+    // The next recording is under way, the reciter already on the next page.
+    await h.midPhrase()
+    const recording = h.recorder()
+    h.session.turn(['مالك'])
+    h.session.update({ fusha: true, pageWords: ['مالك', 'يوم', 'الدين'], ayahs: [] })
+    await h.wait(0)
+    expect(recording.state).toBe('recording')
+    expect(h.session.view().state).toBe('listening')
+    expect(h.session.view().sure).toEqual({ before: {}, now: {} })
+    // The old page's check answering late lands nowhere.
+    h.checks[0].answer({ '1:2': [0.1, 0.1, 0.1, 0.1] })
+    await h.wait(0)
+    expect(h.session.view().sure).toEqual({ before: {}, now: {} })
+    // The recording under way is read against the new page, after the word
+    // carried over from the one that finished the old page.
+    await h.answer(1, 'يوم الدين')
+    expect(h.heard()).toEqual(['مالك', 'يوم', 'الدين'])
+  })
+
+  it('keeps the recording that was going when the page turned, and none of its old-page scores', async () => {
+    const h = harness()
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    await h.session.start()
+    h.speak()
+    await h.pause()
+    await h.answer(0, 'الحمد لله رب العالمين')
+    h.checks[0].answer({ '1:2': [1, 1, 1, 1] })
+    await h.wait(0)
+    // Into the next page mid-recording; a word of it is also on the old page,
+    // so the reading was kept and a check asked about the old page.
+    await h.midPhrase()
+    await h.answer(1, 'الرحمن')
+    expect(h.checks).toHaveLength(2)
+    // The reciter pauses: that recording is cut, its last reading asked for,
+    // and the page turns before it answers.
+    await h.pause()
+    h.session.turn([])
+    h.session.update({ fusha: true, pageWords: ['الرحمن', 'الرحيم', 'مالك'], ayahs: [{ key: '1:3', from: 0, count: 2 }] })
+    expect(h.session.view().now.words).toEqual(['الرحمن'])
+    h.checks[1].answer({ '1:2': [0.1, 0.1, 0.1, 0.1] })
+    await h.wait(0)
+    expect(h.session.view().sure).toEqual({ before: {}, now: {} })
+    // Its last reading, whole, still lands, on the new page.
+    await h.answer(2, 'الرحمن الرحيم مالك')
+    expect(h.heard()).toEqual(['الرحمن', 'الرحيم', 'مالك'])
+  })
+
+  it('asks no more sureness checks about a page that is done, so they cannot hold its turn up', async () => {
+    const h = harness()
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    await h.session.start()
+    h.speak()
+    await h.pause()
+    await h.answer(0, 'الحمد لله رب العالمين')
+    expect(h.checks).toHaveLength(1)
+    h.session.update({ ...h.page, done: true })
+    await h.midPhrase()
+    await h.answer(1, 'الرحمن الرحيم')
+    expect(h.checks).toHaveLength(1)
+    expect(h.session.view().now.words).toEqual(['الرحمن', 'الرحيم'])
+  })
+
   it('writes nothing from the last press once the page has been cleared and started again', async () => {
     const h = harness()
     await h.session.start()

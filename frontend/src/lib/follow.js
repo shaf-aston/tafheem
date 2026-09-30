@@ -232,7 +232,7 @@ export const joinWindows = (heard, window) => {
 export const follow = (page, heard, { startAt = 0, ended = false, settle = config['settle-words'] } = {}) => {
   const words = page.map((word) => ({ word, state: WAITING, heard: '' }))
   const extras = []
-  if (!page.length) return { at: 0, began: null, words, extras, started: false }
+  if (!page.length) return { at: 0, began: null, words, extras, started: false, heardTo: null }
 
   const { steps, at } = lineUp(page, heard, startAt)
 
@@ -243,7 +243,7 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
   // enough words of this page have actually been heard, the page holds plain.
   const found = steps.filter(({ step, i, j }) =>
     step === 'joined' || (step === 'together' && asMatch(heard[j], page[i])[1] !== WRONG)).length
-  if (found < config['anchor-words']) return { at: startAt ?? 0, began: null, words, extras, started: false }
+  if (found < config['anchor-words']) return { at: startAt ?? 0, began: null, words, extras, started: false, heardTo: null }
   // A mark may only be shown once this many words have gone past it. `ended`
   // means no more are coming, so waiting any longer would never settle.
   const settled = (j) => ended || heard.length - j > settle
@@ -296,7 +296,10 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
     if (!onThePage && settled(j)) extras.push({ after: lastSaid, heard: heard[j] })
   }
 
-  return { at, began, words, extras, started: true }
+  // How many heard words it took to reach the page's last word, or null while
+  // it has not been reached: the words after that are already the next page's.
+  const last = steps.findLast(({ step, i }) => i === page.length - 1 && (step === 'together' || step === 'joined'))
+  return { at, began, words, extras, started: true, heardTo: last ? last.j + 1 : null }
 }
 
 /**
