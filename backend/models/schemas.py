@@ -692,6 +692,21 @@ class VerbVerdict(BaseModel):
     form_key: str | None = None
     readings: list[VerbReading] = Field(default_factory=list)
 
+    @classmethod
+    def of(cls, verdict: dict) -> "VerbVerdict":
+        """The card's shape from verb_forms.babs_of's answer, source keys made badges."""
+        from backend.services import provenance
+        return cls(
+            form_key=verdict["form_key"],
+            readings=[
+                VerbReading(
+                    label=r["label"],
+                    sources=[Source(**provenance.of(k)) for k in r["source_keys"]],
+                )
+                for r in verdict["readings"]
+            ],
+        )
+
 
 class DictionaryResponse(BaseModel):
     query: str

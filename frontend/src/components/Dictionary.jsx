@@ -1,8 +1,8 @@
 /** Arabic to English, and back the other way. */
 import { useEffect, useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
-import { searchDictionary } from '../api'
+import { rootBabsQuery, searchDictionary } from '../api'
 import { smartError } from '../lib/apiError'
 import { isArabic } from '../lib/arabicText'
 import { entrySpan } from '../lib/entrySpan'
@@ -29,6 +29,7 @@ import RootActions from './ui/RootActions'
 import SearchBox from './ui/SearchBox'
 import SectionHeader from './ui/SectionHeader'
 import SenseBands from './ui/SenseBands'
+import VerbFormTag from './ui/VerbFormTag'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
 import WordGrid from './ui/WordGrid'
@@ -322,6 +323,12 @@ function Forms({ results, accent, onGo, onLookup }) {
   )
 }
 
+/** The root's Form I باب from the classical books; nothing at all when none records one. */
+function RootBabs({ root }) {
+  const { data } = useQuery(rootBabsQuery(root))
+  return data?.readings.length ? <VerbFormTag readings={data.readings} /> : null
+}
+
 /**
  * One dictionary entry. Full for the word searched; compact for the words
  * beside it, where the root is left off when it is the same one printed
@@ -353,6 +360,8 @@ function Entry({ entry, accent, i, onGo, onLookup, compact = false, sameRoot = f
         </div>
         <Pronunciation size="body" className="mt-1">{entry.transliteration}</Pronunciation>
       </div>
+
+      {!compact && entry.root && <RootBabs root={entry.root} />}
 
       {entry.root && (
         // showRoot=false: the root already prints above under "جذر:", so the

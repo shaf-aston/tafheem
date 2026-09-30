@@ -17,6 +17,7 @@ from backend.models.schemas import (
     RootMeaning,
     RootMeaningResponse,
     Source,
+    VerbVerdict,
 )
 from backend.services import ai as ai_service
 from backend.services import (
@@ -26,6 +27,7 @@ from backend.services import (
     root_english,
     root_gloss,
     root_meaning,
+    verb_forms,
 )
 from backend.services.arabic_text import normalize_root, spelled_out
 from backend.utils import call_service, normalize_text, require_arabic
@@ -58,6 +60,20 @@ async def search_dictionary(
         results=[DictionaryEntry(**entry) for entry in searcher(query)],
         source=Source(**provenance.of("wiktionary")),
     )
+
+
+@router.get("/babs", response_model=VerbVerdict)
+async def get_root_babs(
+    root: str = Query(..., min_length=1, max_length=50, description="Arabic root letters"),
+) -> VerbVerdict:
+    """The باب a root's Form I verb takes, as Lane and Wiktionary state it.
+
+    Asked by root, not by the word on screen, so every word on the root shows
+    the same fact. No readings means no source records one.
+    """
+    typed = normalize_text(root, "Root")
+    require_arabic(typed, "Root")
+    return VerbVerdict.of(await asyncio.to_thread(verb_forms.babs_of, normalize_root(typed)))
 
 
 @router.get("/root-meaning", response_model=RootMeaningResponse)

@@ -33,7 +33,6 @@ from backend.models.schemas import (
     MorphologyRequest,
     MorphologyResponse,
     Source,
-    VerbReading,
     VerbVerdict,
 )
 from backend.services import ai as ai_service
@@ -124,16 +123,7 @@ async def analyze_morphology(request: MorphologyRequest) -> MorphologyResponse:
         # The table is a rule table and is always the same.
         source=Source(**provenance.of("rules")) if table else None,
         meaning_source=Source(**provenance.of(meaning_key)) if meaning else None,
-        verb=VerbVerdict(
-            form_key=verdict["form_key"],
-            readings=[
-                VerbReading(
-                    label=reading["label"],
-                    sources=[Source(**provenance.of(k)) for k in reading["source_keys"]],
-                )
-                for reading in verdict["readings"]
-            ],
-        ),
+        verb=VerbVerdict.of(verdict),
     )
 
 
