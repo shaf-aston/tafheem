@@ -3,7 +3,6 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { keyAction, typingElsewhere } from '../lib/answerKeys'
-import { smartError } from '../lib/apiError'
 import { fetchReviewItems, recordAttempt } from '../lib/progress'
 import { buildQuestion, DIRECTIONS, makeRandom, MEANINGS } from '../lib/quiz'
 import {
@@ -24,6 +23,7 @@ import AnswerSquare from './ui/AnswerSquare'
 import ArabicText from './ui/ArabicText'
 import AutoAdvanceToggle from './ui/AutoAdvanceToggle'
 import SpeakButton from './ui/SpeakButton'
+import PillSelect from './ui/PillSelect'
 
 // What each remembered control is allowed to be, taken from the same tables the
 // controls themselves are drawn from, so a set or a direction can never be
@@ -435,21 +435,19 @@ export default function QuizPanel({ accent, onProgress }) {
               onChange={chooseScope}
             />
             {section && (
-              <select
+              <PillSelect
                 aria-label={say('Which {kind}', { kind: say(section.label).toLowerCase() })}
                 value={groupId}
                 onChange={(e) => startRound({ group: e.target.value })}
                 style={{ '--c': accent }}
-                className="py-1 px-2.5 rounded-full text-xs max-w-[13rem]
-                  bg-[var(--surface)] border border-[var(--border)] text-[var(--text-dim)]
-                  hover:text-[var(--text)] focus:border-[var(--c)] focus:outline-none transition-colors"
+                className="py-1 px-2.5 text-xs max-w-[13rem] border-[var(--border)] text-[var(--text-dim)] hover:text-[var(--text)]"
               >
                 {section.options.map((option) => (
                   <option key={option.id} value={option.id} disabled={option.size < QUIZ.optionCount}>
                     {option.label} ({option.size})
                   </option>
                 ))}
-              </select>
+              </PillSelect>
             )}
           </>
         )}
@@ -487,9 +485,11 @@ export default function QuizPanel({ accent, onProgress }) {
       </div>
 
       {words.isError && (
-        <ErrorAlert title={say('Could not load those words')}>
-          {smartError(words.error, say('Those word lists may not have been built yet.'))}
-        </ErrorAlert>
+        <ErrorAlert
+          title={say('Could not load those words')}
+          error={words.error}
+          fallback={say('Those word lists may not have been built yet.')}
+        />
       )}
 
       {words.isPending && <Skeleton className="h-64 w-full" />}
@@ -552,7 +552,7 @@ export default function QuizPanel({ accent, onProgress }) {
               </div>
             )}
             <div className="text-center space-y-1">
-              <div className="type-tiny uppercase tracking-wide text-[var(--text-faint)]">
+              <div className="eyebrow">
                 {say(arabicPrompt ? 'What does this mean?' : 'Which word is this?')}
               </div>
               {/* The speaker sits beside the word, not under it, so it costs no row. */}
@@ -808,7 +808,7 @@ function MissedList({ history, reviewing, say, onReview }) {
 
   return (
     <div className="flex flex-col gap-2 min-h-0 flex-1">
-      <h3 className="type-tiny uppercase tracking-wide text-[var(--text-faint)]">
+      <h3 className="eyebrow">
         {say('Got wrong')}{missed.length > 0 && <span className="tabular-nums"> · {missed.length}</span>}
       </h3>
       {missed.length === 0 ? (

@@ -138,7 +138,7 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
 function Detail({ label, value, arabic }) {
   return (
     <div className="rounded-[var(--radius-sm)] p-3 bg-[var(--surface-hi)]">
-      <div className="text-[var(--text-faint)] type-tiny uppercase tracking-wide mb-1">{label}</div>
+      <div className="eyebrow mb-1">{label}</div>
       {arabic
         ? <ArabicText className="text-[var(--text)]">{value}</ArabicText>
         : <div className="text-[var(--text)]">{value}</div>}
@@ -158,7 +158,7 @@ function Panel({ label, accent = false, children }) {
     >
       {/* text-dim, not text-faint: this label sits on a tinted panel, where the
           fainter token drops below the 4.5:1 contrast minimum. */}
-      <div className="text-[var(--text-dim)] type-tiny uppercase tracking-wide mb-1">{label}</div>
+      <div className="eyebrow text-[var(--text-dim)] mb-1">{label}</div>
       {children}
     </div>
   )

@@ -24,7 +24,6 @@ import Disclosure from './ui/Disclosure'
 import ErrorAlert from './ui/ErrorAlert'
 import ExampleChips from './ui/ExampleChips'
 import MicButton from './ui/MicButton'
-import RetryButton from './ui/RetryButton'
 import SearchBox from './ui/SearchBox'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
@@ -117,14 +116,13 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
 function AnalyzeError({ error, onRetry }) {
   const status = errorStatus(error)
   return (
-    <ErrorAlert title={status === 504 ? 'Timed out' : 'Analysis failed'}>
+    <ErrorAlert title={status === 504 ? 'Timed out' : 'Analysis failed'} onRetry={onRetry}>
       <div>{errorMessage(error)}</div>
       {status === 500 && (
         <div className="text-xs mt-2">
           The richer explanation could not be produced right now. The offline analysis above still stands.
         </div>
       )}
-      <RetryButton onClick={onRetry} />
     </ErrorAlert>
   )
 }
@@ -354,7 +352,7 @@ function PracticeQuestions({ data, accent }) {
               className="fade-in p-3 rounded-[var(--radius-sm)] text-sm"
               style={{
                 color: 'var(--success)',
-                background: 'color-mix(in srgb, var(--success) 10%, transparent)',
+                background: 'var(--success-wash)',
               }}
             >
               {q.answer}

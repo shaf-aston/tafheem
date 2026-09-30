@@ -18,6 +18,7 @@ import { useSyncExternalStore } from 'react'
 
 import config from '../settings.json'
 import { themeVariable } from '../theme'
+import { forgetKey, readSaved, writeSaved } from './stored'
 
 /** Every setting, in the order the panel shows them. */
 export const SETTINGS = config.settings
@@ -43,13 +44,8 @@ function cssValue(setting, value) {
   return String(setting.options.find((one) => one.id === value).write)
 }
 
-function saved() {
-  try {
-    return JSON.parse(globalThis.localStorage?.getItem(STORAGE_KEY) || '{}')
-  } catch {
-    return {} // unreadable or private browsing, the defaults still work
-  }
-}
+// Unreadable or private browsing: the defaults still work.
+const saved = () => readSaved(STORAGE_KEY, {})
 
 // Read once, then keep the answer: useSyncExternalStore compares snapshots by
 // identity, so re-parsing storage on every render would loop forever.
@@ -95,11 +91,7 @@ export function setSetting(key, value) {
   const setting = BY_KEY[key]
   if (!setting) return
   current = { ...values(), [key]: clean(setting, value) }
-  try {
-    globalThis.localStorage?.setItem(STORAGE_KEY, JSON.stringify(current))
-  } catch {
-    /* private browsing, the choice still holds for this session */
-  }
+  writeSaved(STORAGE_KEY, current)
   applySettings()
   for (const listener of listeners) listener()
 }
@@ -107,11 +99,7 @@ export function setSetting(key, value) {
 /** Put everything back to the defaults in settings.json. */
 export function resetSettings() {
   current = Object.fromEntries(SETTINGS.map((one) => [one.key, one.default]))
-  try {
-    globalThis.localStorage?.removeItem(STORAGE_KEY)
-  } catch {
-    /* nothing stored to remove */
-  }
+  forgetKey(STORAGE_KEY)
   applySettings()
   for (const listener of listeners) listener()
 }

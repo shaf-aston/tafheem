@@ -30,6 +30,7 @@ import ArabicText from './ui/ArabicText'
 import NotesLink from './NotesLink'
 import TamreenAnswerNote from './TamreenAnswerNote'
 import TamreenSentence, { TamreenLegend } from './TamreenSentence'
+import PillSelect from './ui/PillSelect'
 
 const STATUS_CLASS = {
   ok: 'border-[var(--success)] text-[var(--success)]',
@@ -304,17 +305,16 @@ export default function TamreenPractise({ exercises, tags = [], accent, onProgre
   // One row: topic, type, show. Each control names itself, so no separate labels.
   const controls = (
     <div className="flex flex-wrap items-center gap-2">
-      <select
+      <PillSelect
         aria-label="Topic"
         value={tag}
         onChange={(e) => choose(() => setTag(e.target.value))}
         style={{ '--c': accent }}
-        className="py-1.5 px-3 rounded-full text-sm min-w-0 w-full sm:w-auto sm:max-w-xs bg-[var(--surface)] border
-          border-[var(--border-hi)] text-[var(--text)] focus:border-[var(--c)] focus:outline-none transition-colors"
+        className="py-1.5 px-3 text-sm min-w-0 w-full sm:w-auto sm:max-w-xs border-[var(--border-hi)] text-[var(--text)]"
       >
         <option value="">Every topic ({ofKind.length})</option>
         {topics.map((t) => <option key={t.key} value={t.key}>{t.en} · {t.ar} ({t.size})</option>)}
-      </select>
+      </PillSelect>
       <Segmented label="Question type" options={KINDS.map((id) => ({ id, label: KIND_LABEL[id] }))}
         value={kind} accent={accent} onChange={(id) => choose(() => setKind(id))} />
       <Segmented

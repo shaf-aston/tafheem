@@ -24,7 +24,6 @@ import { CORPUS_POS, posLabel } from '../lib/grammarTerms'
 import { posColor } from '../lib/roleColors'
 import { RECITERS, stop as stopAudio } from '../lib/ayahAudio'
 import { useRemembered } from '../lib/useRemembered'
-import { smartError } from '../lib/apiError'
 import { scrollToEl } from '../lib/scrollToEl'
 
 import WordCard from './WordCard'
@@ -40,7 +39,6 @@ import { isQuranic } from '../lib/arabicText'
 import ArabicText from './ui/ArabicText'
 import GlossWord from './ui/GlossWord'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import { Skeleton } from './ui/Skeleton'
 
 /** The word a key names, or undefined. Keys are the word's own `position`. */
@@ -232,10 +230,7 @@ function AyahTarkeeb({ surah, ayah }) {
 
       {isPending && <Skeleton className="h-40" />}
       {isError && (
-        <ErrorAlert inline title="Could not load the word joins">
-          {smartError(error)}
-          <RetryButton onClick={() => refetch()} />
-        </ErrorAlert>
+        <ErrorAlert inline title="Could not load the word joins" error={error} onRetry={() => refetch()} />
       )}
       {data?.tree && (
         <>

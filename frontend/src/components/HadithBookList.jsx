@@ -5,14 +5,12 @@ import { useEffect } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithBooksQuery } from '../api'
-import { smartError } from '../lib/apiError'
 import { themeVariable } from '../theme'
 import { onHover, warm } from '../lib/warm'
 import { useFirstSight } from '../lib/firstSight'
 import { topicOf } from '../lib/hadithGrade'
 
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import EmptyState from './ui/EmptyState'
 import TopicIcon from './ui/TopicIcon'
 import { AnalyzerSkeleton } from './ui/Skeleton'
@@ -32,10 +30,7 @@ export default function HadithBookList({ collection, onPick, accent }) {
 
   if (isError) {
     return (
-      <ErrorAlert title="Could not load the books">
-        {smartError(error, 'The books could not be reached.')}
-        <RetryButton onClick={refetch} />
-      </ErrorAlert>
+      <ErrorAlert title="Could not load the books" error={error} fallback="The books could not be reached." onRetry={refetch} />
     )
   }
 

@@ -11,7 +11,6 @@ import { useEffect, useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { getNotes } from '../api'
-import { smartError } from '../lib/apiError'
 import { NOTES, cardsOf, rolesUsed } from '../lib/notes'
 import { scrollToEl } from '../lib/scrollToEl'
 import { readViewParam, writeViewParams } from '../lib/tabUrl'
@@ -24,7 +23,6 @@ import Chip from './ui/Chip'
 import EmptyState from './ui/EmptyState'
 import FlagButton from './ui/FlagButton'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import Segmented from './ui/Segmented'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import SmallButton from './ui/SmallButton'
@@ -80,10 +78,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
   if (isPending) return <AnalyzerSkeleton />
   if (isError) {
     return (
-      <ErrorAlert title="Could not load the notes">
-        {smartError(error, 'The notes could not be reached.')}
-        <RetryButton onClick={refetch} />
-      </ErrorAlert>
+      <ErrorAlert title="Could not load the notes" error={error} fallback="The notes could not be reached." onRetry={refetch} />
     )
   }
   if (!topic) return <EmptyState>No notes are written up yet.</EmptyState>

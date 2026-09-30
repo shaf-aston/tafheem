@@ -265,7 +265,7 @@ function AppContent() {
             aria-label="Dismiss backend warning"
             onClick={() => setBannerDismissed(true)}
             className="absolute top-6 right-6 w-7 h-7 grid place-items-center rounded-full border text-[var(--danger)] bg-[var(--surface)] hover:opacity-70 text-sm"
-            style={{ borderColor: 'color-mix(in srgb, var(--danger) 50%, transparent)' }}
+            style={{ borderColor: 'var(--danger-edge)' }}
           >
             ✕
           </button>

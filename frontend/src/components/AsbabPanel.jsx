@@ -15,14 +15,12 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { asbabQuery, getAyahEditions } from '../api'
-import { smartError } from '../lib/apiError'
 import { bySurah, matching, needsSearch, quotedWords, reportsIn } from '../lib/asbabList'
 
 import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import SearchBox from './ui/SearchBox'
 import SourceBadge from './ui/SourceBadge'
 import TranslationStrip from './ui/TranslationStrip'
@@ -40,10 +38,7 @@ export default function AsbabPanel({ section, event, accent, chosen, onChoose, o
   if (list.isPending) return <Skeleton className="h-24 w-full" />
   if (list.isError) {
     return (
-      <ErrorAlert title="Could not load the reports" inline>
-        {smartError(list.error, 'The reports could not be reached.')}
-        <RetryButton onClick={list.refetch} />
-      </ErrorAlert>
+      <ErrorAlert title="Could not load the reports" inline error={list.error} fallback="The reports could not be reached." onRetry={list.refetch} />
     )
   }
 
@@ -157,10 +152,7 @@ function OneReport({ report, count, books, source, accent, onBack, onGo }) {
 
         {isPending && <Skeleton className="h-24 w-full" />}
         {isError && (
-          <ErrorAlert title="Could not load this report" inline>
-            {smartError(error, 'The report could not be reached.')}
-            <RetryButton onClick={refetch} />
-          </ErrorAlert>
+          <ErrorAlert title="Could not load this report" inline error={error} fallback="The report could not be reached." onRetry={refetch} />
         )}
 
         {arabic.map((text, i) => (

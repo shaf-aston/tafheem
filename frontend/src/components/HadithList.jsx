@@ -6,12 +6,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { hadithBookQuery } from '../api'
-import { smartError } from '../lib/apiError'
 import { scrollToEl } from '../lib/scrollToEl'
 import { topicOf } from '../lib/hadithGrade'
 
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import EmptyState from './ui/EmptyState'
 import TopicIcon from './ui/TopicIcon'
 import { AnalyzerSkeleton } from './ui/Skeleton'
@@ -85,10 +83,7 @@ export default function HadithList({ collection, collections, book, onBack, acce
       {isPending && <AnalyzerSkeleton />}
 
       {isError && (
-        <ErrorAlert title="Could not load this book">
-          {smartError(error, 'The hadiths could not be reached.')}
-          <RetryButton onClick={refetch} />
-        </ErrorAlert>
+        <ErrorAlert title="Could not load this book" error={error} fallback="The hadiths could not be reached." onRetry={refetch} />
       )}
 
       {data && (data.hadiths.length === 0

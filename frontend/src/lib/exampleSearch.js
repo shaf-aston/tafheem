@@ -18,10 +18,7 @@
  *
  * Pure: strings in, true or false out.
  */
-import { bareForm } from './arabicText'
-
-/** One side of the comparison: no vowel marks, no capitals. */
-const fold = (text) => bareForm(text).toLowerCase()
+import { foldForSearch as fold } from './arabicText'
 
 /**
  * True when this example answers to what was typed. Empty text matches every

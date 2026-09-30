@@ -10,7 +10,6 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
 import { colloquialQuery, colloquialUnitQuery } from '../api'
-import { smartError } from '../lib/apiError'
 import { warm } from '../lib/warm'
 import { useRemembered } from '../lib/useRemembered'
 import { colorFor } from '../theme'
@@ -18,21 +17,11 @@ import { FOCUS } from './colloquial/Face'
 import UnitView from './colloquial/UnitView'
 import WordBank from './colloquial/WordBank'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import SectionHeader from './ui/SectionHeader'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
 const HUES = 8
 const unitNumber = (id) => Number(id.replace(/\D/g, '')) || 0
-
-function Failed({ error, onRetry }) {
-  return (
-    <ErrorAlert title="Could not load the lessons">
-      {smartError(error, 'The Colloquial lessons could not be reached.')}
-      <RetryButton onClick={onRetry} />
-    </ErrorAlert>
-  )
-}
 
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
 // Without onClick it is a unit this dialect has not written yet: shown, not openable.
@@ -107,7 +96,7 @@ function UnitWordBank({ dialect, unit }) {
 function Topic({ dialect, unit, at }) {
   const { data, isPending, isError, error, refetch } = useQuery(colloquialUnitQuery(dialect, unit))
   if (isPending) return <AnalyzerSkeleton />
-  if (isError) return <Failed error={error} onRetry={refetch} />
+  if (isError) return <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={error} onRetry={refetch} />
   return <UnitView unit={data} at={at} />
 }
 
@@ -145,7 +134,7 @@ export default function ColloquialPanel() {
     <div className="panel">
       <SectionHeader title="Colloquial" arabic="عامية" subtitle={dialect?.where ?? 'Spoken, everyday Arabic.'} />
       {catalogue.isPending && <AnalyzerSkeleton />}
-      {catalogue.isError && <Failed error={catalogue.error} onRetry={catalogue.refetch} />}
+      {catalogue.isError && <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={catalogue.error} onRetry={catalogue.refetch} />}
       {catalogue.data && (
         <div className="flex flex-wrap items-center gap-3">
           <Trail steps={steps} />

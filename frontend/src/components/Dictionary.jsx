@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
 import { rootBabsQuery, searchDictionary } from '../api'
-import { smartError } from '../lib/apiError'
 import { isArabic } from '../lib/arabicText'
 import { entrySpan } from '../lib/entrySpan'
 import { plainPronunciation } from '../lib/pronounce'
@@ -24,7 +23,6 @@ import MicButton from './ui/MicButton'
 import PlaceLinks from './ui/PlaceLinks'
 import Pronunciation from './ui/Pronunciation'
 import RecentRow from './ui/RecentRow'
-import RetryButton from './ui/RetryButton'
 import RootActions from './ui/RootActions'
 import SearchBox from './ui/SearchBox'
 import SectionHeader from './ui/SectionHeader'
@@ -33,6 +31,7 @@ import VerbFormTag from './ui/VerbFormTag'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
 import WordGrid from './ui/WordGrid'
+import Code from './ui/Code'
 
 // Tailwind needs the literal class names present in source to keep them in the
 // build; a computed string like `sm:col-span-${n}` would be purged.
@@ -128,9 +127,9 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
         <ErrorAlert title="Dictionary not installed">
           No dictionary data on this machine, so every search would come back empty.
           Build it with{' '}
-          <code className="px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
+          <Code>
             python backend/scripts/build_dictionary.py
-          </code>
+          </Code>
         </ErrorAlert>
       )}
 
@@ -194,10 +193,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
       </div>
 
       {mutation.isError && (
-        <ErrorAlert title="Search failed">
-          {smartError(mutation.error, 'The dictionary file may not be installed yet.')}
-          <RetryButton onClick={() => submit()} />
-        </ErrorAlert>
+        <ErrorAlert title="Search failed" error={mutation.error} fallback="The dictionary file may not be installed yet." onRetry={() => submit()} />
       )}
 
       {mutation.isPending && !shown && <AnalyzerSkeleton />}

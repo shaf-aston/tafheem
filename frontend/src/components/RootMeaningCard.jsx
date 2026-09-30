@@ -15,7 +15,6 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { getRootEntryEnglish, getRootEntryLines, getRootMeaning } from '../api'
-import { smartError } from '../lib/apiError'
 import { entryLines } from '../lib/entryLines'
 import { BROKEN, MISSING, READY } from '../lib/rootMeaningStatus'
 import { useHealth } from '../lib/useHealth'
@@ -23,7 +22,6 @@ import { useHealth } from '../lib/useHealth'
 import ArabicText from './ui/ArabicText'
 import ShowRest from './ui/ShowRest'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import Segmented from './ui/Segmented'
 import { Skeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
@@ -112,10 +110,9 @@ function Body({
   // that never ends because nothing is still on its way.
   if (healthFailed) {
     return (
-      <ErrorAlert title="Couldn't reach the backend">
+      <ErrorAlert title="Couldn't reach the backend" onRetry={onRetryHealth}>
         Nothing can be said about <Letters value={asked} /> until the backend answers.
         This is not a statement about the root or about the book.
-        <RetryButton onClick={onRetryHealth} />
       </ErrorAlert>
     )
   }
@@ -167,10 +164,12 @@ function Body({
 
   if (isError) {
     return (
-      <ErrorAlert title="Classical lookup failed">
-        {smartError(error, 'The backend may have stopped since this page was opened.')}
-        <RetryButton onClick={onRetry} />
-      </ErrorAlert>
+      <ErrorAlert
+        title="Classical lookup failed"
+        error={error}
+        fallback="The backend may have stopped since this page was opened."
+        onRetry={onRetry}
+      />
     )
   }
 
@@ -341,10 +340,12 @@ function EntryEnglish({ root, enabled }) {
 
   if (isError) {
     return (
-      <ErrorAlert title="Couldn't put this into English">
-        {smartError(error, 'The Arabic below is unaffected.')}
-        <RetryButton onClick={refetch} />
-      </ErrorAlert>
+      <ErrorAlert
+        title="Couldn't put this into English"
+        error={error}
+        fallback="The Arabic below is unaffected."
+        onRetry={refetch}
+      />
     )
   }
 
@@ -398,10 +399,13 @@ function EntryLineByLine({ root, enabled }) {
 
   if (isError) {
     return (
-      <ErrorAlert title="Couldn't line the English up">
-        {smartError(error, 'The backend may have stopped since this page was opened.')}
+      <ErrorAlert
+        title="Couldn't line the English up"
+        error={error}
+        fallback="The backend may have stopped since this page was opened."
+        onRetry={refetch}
+      >
         {' '}The Together view above still shows the whole entry.
-        <RetryButton onClick={refetch} />
       </ErrorAlert>
     )
   }
