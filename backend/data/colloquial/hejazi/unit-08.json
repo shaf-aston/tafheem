@@ -1,0 +1,1596 @@
+{
+  "unit": "unit-08",
+  "dialect": "Hejazi Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "what-do-you-do-to-a-man",
+          "arabic": "إِيشْ تِشْتَغِلْ؟",
+          "transliteration": "eesh tishtighul?",
+          "reply": {
+            "arabic": "أَشْتَغِلْ مُهَنْدِسْ",
+            "transliteration": "ashtighul muhandis",
+            "english": "I work as an engineer."
+          }
+        },
+        {
+          "slot": "what-do-you-do-to-a-woman",
+          "arabic": "إِيشْ تِشْتَغْلِينْ؟",
+          "transliteration": "eesh tishtighleen?",
+          "reply": {
+            "arabic": "أَشْتَغِلْ مُعَلِّمَة",
+            "transliteration": "ashtighul mu3allima",
+            "english": "I work as a teacher."
+          }
+        },
+        {
+          "slot": "where-do-you-work",
+          "arabic": "وَيِنْ تِشْتَغِلْ؟",
+          "transliteration": "wain tishtighul?",
+          "reply": {
+            "arabic": "أَشْتَغِلْ فِي شِرْكَة كِبِيرَة",
+            "transliteration": "ashtighul fi sharika kabeera",
+            "english": "I work at a big company."
+          }
+        },
+        {
+          "slot": "i-m-still-a-student",
+          "arabic": "أَنَا لِسَّةْ أَدْرُسْ",
+          "transliteration": "ana lissa adrus"
+        },
+        {
+          "slot": "i-m-retired",
+          "arabic": "أَنَا مِتْقَاعِدْ",
+          "transliteration": "ana mitgaa3id"
+        },
+        {
+          "slot": "what-do-you-study",
+          "arabic": "إِيشْ تِدْرُسْ؟",
+          "transliteration": "eesh tidrus?",
+          "reply": {
+            "arabic": "أَدْرُسْ طِبْ",
+            "transliteration": "adrus tib",
+            "english": "I study medicine."
+          }
+        },
+        {
+          "slot": "i-work-from-home",
+          "arabic": "أَشْتَغِلْ مِنْ الْبَيْتْ",
+          "transliteration": "ashtighul min il-bait"
+        },
+        {
+          "slot": "my-job-is-good",
+          "arabic": "شُغْلِي نِمْنِيحْ",
+          "transliteration": "shughli nmnee7"
+        },
+        {
+          "slot": "i-m-not-finding-a-job",
+          "arabic": "مَا أَلْقَى شُغْلْ",
+          "transliteration": "ma alga shughul"
+        },
+        {
+          "slot": "i-m-looking-for-a-new-job",
+          "arabic": "أَدَوِّرْ عَ شُغْلْ جَدِيدْ",
+          "transliteration": "adawwir 3a shughul jdeed"
+        },
+        {
+          "slot": "how-many-years-have-you-been-working-here",
+          "arabic": "مِنْ كَمْ سَنَة تِشْتَغِلْ هِنِي؟",
+          "transliteration": "min kam sana tishtighul hni?",
+          "reply": {
+            "arabic": "مِنْ خَمِسْ سِنِينْ",
+            "transliteration": "min khams sneen",
+            "english": "For five years."
+          }
+        },
+        {
+          "slot": "what-would-you-like-to-work-as",
+          "arabic": "إِيشْ تِبِي تِشْتَغِلْ؟",
+          "transliteration": "eesh tibi tishtighul?",
+          "reply": {
+            "arabic": "أَبِي أَصِيرْ دُكْتُورْ",
+            "transliteration": "abi aseer doktoor",
+            "english": "I want to become a doctor."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Faisal",
+          "arabic": "مرحبا لينا، إيش تشتغلين دحين؟",
+          "transliteration": "marhaba layna, eesh tishtaghleen dhin?",
+          "english": "Hi Layna, what do you do now?"
+        },
+        {
+          "speaker": "Layna",
+          "arabic": "مرحبا فيصل، أشتغل ممرضة في المستشفى.",
+          "transliteration": "marhaba faisal, ashtighul mumarriDa fil mustashfa.",
+          "english": "Hi Faisal, I work as a nurse at the hospital."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "ما شاء الله، من كم سنة وإنت بهالشغل؟",
+          "transliteration": "ma shaa allah, min kam sana w inte bhal-shughul?",
+          "english": "Wonderful, how long have you been in this job?"
+        },
+        {
+          "speaker": "Layna",
+          "arabic": "من سنتين تقريبا.",
+          "transliteration": "min sanateen tagreeban.",
+          "english": "About two years."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "نمنيح، وأنا لسة أدرس الهندسة بالجامعة.",
+          "transliteration": "nmnee7, w ana lissa adrus il-handasa bil-jam3a.",
+          "english": "Good, and I'm still studying engineering at university."
+        },
+        {
+          "speaker": "Layna",
+          "arabic": "في أي سنة إنت دحين؟",
+          "transliteration": "fi ay sana inte dhin?",
+          "english": "What year are you in now?"
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "في السنة الثالثة، وأدور تدريب صيفي.",
+          "transliteration": "fis-sana ith-thaliqa, w adoor tadreeb saifi.",
+          "english": "Third year, and I'm looking for a summer internship."
+        },
+        {
+          "speaker": "Layna",
+          "arabic": "ممكن أسأل بالمستشفى، دايم يحتاجون متدربين.",
+          "transliteration": "mumkin as2al bil-mustashfa, daayim y7tajoon mitdarribeen.",
+          "english": "I can ask at the hospital, they always need trainees."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "الله يخليچ، هذا يفيدني كتير.",
+          "transliteration": "allah ykhallichi, hadha yfeedni kteer.",
+          "english": "God keep you, that would help me a lot."
+        },
+        {
+          "speaker": "Layna",
+          "arabic": "ولا يهمك، بسأل بكرة وأقولك.",
+          "transliteration": "wala yhimmak, bas2al bakra w agoolak.",
+          "english": "Don't worry, I'll ask tomorrow and tell you."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "تسلمي كتير.",
+          "transliteration": "taslami kteer.",
+          "english": "Thank you so much."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "إيش تشتغل؟",
+            "transliteration": "eesh tishtighul?",
+            "english": "What do you do?"
+          },
+          "response": {
+            "arabic": "أشتغل محاسب.",
+            "transliteration": "ashtighul mu7asib.",
+            "english": "I work as an accountant."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين تدرس؟",
+            "transliteration": "wain tidrus?",
+            "english": "Where do you study?"
+          },
+          "response": {
+            "arabic": "أدرس بجامعة الملك عبدالعزيز.",
+            "transliteration": "adrus bi-jam3at il-malik 3abd il-3aziz.",
+            "english": "I study at King Abdulaziz University."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تحب شغلك؟",
+            "transliteration": "tu7ib shughulak?",
+            "english": "Do you like your job?"
+          },
+          "response": {
+            "arabic": "إي، أحبه كتير.",
+            "transliteration": "eh, u7ibbo kteer.",
+            "english": "Yes, I love it a lot."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كم باقي لك على التخرج؟",
+            "transliteration": "kam baagi lak 3ala t-takharraj?",
+            "english": "How long until you graduate?"
+          },
+          "response": {
+            "arabic": "باقي سنتين وأتخرج.",
+            "transliteration": "baagi sanateen w atkhaarraj.",
+            "english": "Two more years and I'll graduate."
+          }
+        }
+      ],
+      "culture": "بالحجاز لما تتعرف على حد جديد أول شي تسأله إيش يشتغل، عشان الشغل جزء كبير من هويتك. لكن تسأل أحد عن الراتب مباشرة يعتبر قلة أدب إلا مع أصحابك المقربين جدا.",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "حد سألك: إيش تشتغل؟ شنو بتجاوب؟",
+          "answer": "أَشْتَغِلْ مُهَنْدِسْ",
+          "accepted": [
+            "أَشْتَغِلْ مُهَنْدِسْ",
+            "ashtighul muhandis",
+            "أنا مهندس"
+          ],
+          "too_formal": {
+            "item": "أعمل مهندساً",
+            "feedback": "فصحى، في الحجاز نقول أشتغل"
+          },
+          "tip": "أشتغل + المهنة"
+        },
+        {
+          "id": "unit-08.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "أنا لسة ___ بالجامعة (I'm still studying)",
+          "answer": "أدرس",
+          "accepted": [
+            "أدرس",
+            "adrus",
+            "بدرس"
+          ],
+          "too_formal": {
+            "item": "أواصل دراستي",
+            "feedback": "فصحى، الحجازي يقول أدرس"
+          },
+          "tip": "الفعل المضارع بدون ب"
+        },
+        {
+          "id": "unit-08.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Where do you work?",
+          "answer": "وَيِنْ تِشْتَغِلْ؟",
+          "accepted": [
+            "وَيِنْ تِشْتَغِلْ؟",
+            "wain tishtighul?",
+            "وين شغلك؟"
+          ],
+          "too_formal": {
+            "item": "أين تعمل؟",
+            "feedback": "فصحى"
+          },
+          "tip": "وين = where"
+        },
+        {
+          "id": "unit-08.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "إيش بتسأل حد عن مهنته؟",
+          "answer": "إِيشْ تِشْتَغِلْ؟",
+          "accepted": [
+            "إِيشْ تِشْتَغِلْ؟"
+          ],
+          "options": [
+            "إِيشْ تِشْتَغِلْ؟",
+            "كيفك أنت؟",
+            "وين رايح؟",
+            "شنو أخبارك؟"
+          ],
+          "too_formal": {
+            "item": "ما هي مهنتك؟",
+            "feedback": "فصحى رسمية"
+          },
+          "tip": "إيش = what (Hejazi)"
+        },
+        {
+          "id": "unit-08.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "أنا أشتغل مهندس",
+          "accepted": [
+            "أنا أشتغل مهندس"
+          ],
+          "words": [
+            "أنا",
+            "أشتغل",
+            "مهندس"
+          ],
+          "too_formal": {
+            "item": "أنا أعمل مهندساً",
+            "feedback": "فصحى"
+          },
+          "tip": "أنا أول شي"
+        },
+        {
+          "id": "unit-08.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "وَيِنْ تِشْتَغِلْ؟",
+          "answer": "أشتغل في شركة",
+          "accepted": [
+            "أشتغل في شركة",
+            "ashtighul fi sharika",
+            "أشتغل بمكتب"
+          ],
+          "too_formal": {
+            "item": "أعمل في شركة",
+            "feedback": "فصحى"
+          },
+          "tip": "في = at/in"
+        },
+        {
+          "id": "unit-08.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "هي ___ طب بالجامعة (she studies medicine)",
+          "answer": "تدرس",
+          "accepted": [
+            "تدرس",
+            "tidrus",
+            "بتدرس"
+          ],
+          "too_formal": {
+            "item": "تقوم بدراسة",
+            "feedback": "فصحى"
+          },
+          "tip": "هو يدرس، هي تدرس"
+        },
+        {
+          "id": "unit-08.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "I'm looking for a new job.",
+          "answer": "أَدَوِّرْ عَ شُغْلْ جَدِيدْ",
+          "accepted": [
+            "أَدَوِّرْ عَ شُغْلْ جَدِيدْ",
+            "adawwir 3a shughul jdeed",
+            "أدور عشغل جديد"
+          ],
+          "too_formal": {
+            "item": "أبحث عن عمل جديد",
+            "feedback": "فصحى"
+          },
+          "tip": "أدور = I'm looking"
+        },
+        {
+          "id": "unit-08.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "أي كلمة معناها 'retired'؟",
+          "answer": "متقاعد",
+          "accepted": [
+            "متقاعد"
+          ],
+          "options": [
+            "متقاعد",
+            "طالب",
+            "عاطل",
+            "مشغول"
+          ],
+          "too_formal": {
+            "item": "متقاعد عن العمل",
+            "feedback": "مطول، الحجازي يقول متقاعد"
+          },
+          "tip": "متقاعد يعني ما بيشتغل"
+        },
+        {
+          "id": "unit-08.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "أدور عشغل جديد",
+          "accepted": [
+            "أدور عشغل جديد"
+          ],
+          "words": [
+            "أدور",
+            "عشغل",
+            "جديد"
+          ],
+          "too_formal": {
+            "item": "أبحث عن وظيفة جديدة",
+            "feedback": "فصحى"
+          },
+          "tip": "الفعل أول"
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "hi-are-you-coming-to-the-meeting",
+          "arabic": "هَلَا، جَايْ الِاجْتِمَاعْ؟",
+          "transliteration": "hala, jaay il-ijtimaa3?",
+          "reply": {
+            "arabic": "إِي، جَايْ دِحِينْ",
+            "transliteration": "eh, jaay dhin",
+            "english": "Yes, coming now."
+          }
+        },
+        {
+          "slot": "the-manager-wants-to-talk-to-you",
+          "arabic": "الْمُدِيرْ بِيَبِي يِحْكِيكْ",
+          "transliteration": "il-mudeer biyabi yi7keek"
+        },
+        {
+          "slot": "i-received-your-email",
+          "arabic": "وَصَلَنِي الْإِيمِيلْ تَبَعَكْ",
+          "transliteration": "wasalni il-imeeil taba3ak"
+        },
+        {
+          "slot": "i-haven-t-finished-the-report-yet",
+          "arabic": "لِسَّةْ مَا خَلِصْتْ التَّقْرِيرْ",
+          "transliteration": "lissa ma khallast it-tagreer"
+        },
+        {
+          "slot": "i-have-a-meeting-at-ten-o-clock",
+          "arabic": "عِنْدِي اجْتِمَاعْ الْسَّاعَة عَشَرَة",
+          "transliteration": "3indi ijtimaa3 is-saa3a 3ashara"
+        },
+        {
+          "slot": "my-colleague-at-the-office-is-very-nice",
+          "arabic": "زَمِيلِي بِالشُّغْلْ نِمْنِيحْ كِتِيرْ",
+          "transliteration": "zameele bil-shughul nmnee7 kteer"
+        },
+        {
+          "slot": "we-must-finish-this-task-before-the-afternoon",
+          "arabic": "لَازِمْ نِخَلِّصْ هَالشُّغْلَة قَبْلْ الْعَصْرْ",
+          "transliteration": "laazim nikhallis hal-shughla gabl il-3aSr"
+        },
+        {
+          "slot": "my-boss-is-very-demanding",
+          "arabic": "مُدِيرِي كِتِيرْ يِبِي كُلْ شَيْ كَامِلْ",
+          "transliteration": "mudiri kteer yibi kul shai kamil"
+        },
+        {
+          "slot": "i-took-two-days-off",
+          "arabic": "أَخَذْتْ إِجَازَة يُومَيِنْ",
+          "transliteration": "akhadhit ijaaza yomayn"
+        },
+        {
+          "slot": "the-salary-comes-at-the-end-of-the-month",
+          "arabic": "الرَّاتِبْ يِنْزِلْ آخِرْ الشَّهْرْ",
+          "transliteration": "ir-raatib yinzil aakher ish-shahr"
+        },
+        {
+          "slot": "are-there-overtime-hours-today",
+          "arabic": "فِيهْ دَوَامْ إِضَافِي الْيُومْ؟",
+          "transliteration": "fi dawaam iDaafi il-yoom?",
+          "reply": {
+            "arabic": "إِي، لِينْ الْسَّاعَة تِمَانِيَة",
+            "transliteration": "eh, lin is-saa3a tmaniya",
+            "english": "Yes, until eight o'clock."
+          }
+        },
+        {
+          "slot": "the-printer-keeps-breaking-down",
+          "arabic": "الطَّابِعَة كُلْ شِوَيْ تِخْرِبْ",
+          "transliteration": "it-taabi3a kul shwai tikhrab"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hamza",
+          "arabic": "صباح الخير مريم، جاية الاجتماع؟",
+          "transliteration": "sabaa7 il-khair mariam, jaaya il-ijtimaa3?",
+          "english": "Good morning Mariam, are you coming to the meeting?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "صباح النور، إي، الساعة عشرة صح؟",
+          "transliteration": "sabaa7 in-noor, eh, is-saa3a 3ashara sa7?",
+          "english": "Good morning, yes, at ten, right?"
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "إي، والمدير بيبي يكلمك بعده.",
+          "transliteration": "eh, wal-mudeer biyabi ykallimak ba3dah.",
+          "english": "Yes, and the manager wants to talk to you after."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "إيش بيبي؟",
+          "transliteration": "eesh biyabi?",
+          "english": "What does he want?"
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "ما أدري، يمكن عن التقرير.",
+          "transliteration": "ma adri, yimkin 3an it-tagreer.",
+          "english": "I don't know, maybe about the report."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "يا ويلي، لسة ما خلصته.",
+          "transliteration": "ya weeli, lissa ma khallastah.",
+          "english": "Oh no, I haven't finished it yet."
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "لا تخافين، لازم تسلمينه قبل العصر بس.",
+          "transliteration": "la tkhaafeen, laazim tsalliminah gabl il-3aSr bas.",
+          "english": "Don't worry, you just have to hand it in before the afternoon."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "إن شاء الله أخلصه قبل الظهر.",
+          "transliteration": "in shaa allah akhallesah gabl iD-Dhuhr.",
+          "english": "God willing I'll finish it before noon."
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "وفيه دوام إضافي اليوم إذا أبيتي.",
+          "transliteration": "w fi dawaam iDaafi il-yoom idha abayyiti.",
+          "english": "And there is overtime today if you want."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "لا، الحمد لله، بخلصه في وقته.",
+          "transliteration": "la, il7amdulillah, bakhallisah fi wagtah.",
+          "english": "No, thank God, I'll finish it on time."
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "الله يعطيك العافية.",
+          "transliteration": "allah y3aTeek il-3aafya.",
+          "english": "God give you strength."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "الساعة كم الاجتماع؟",
+            "transliteration": "is-saa3a kam il-ijtimaa3?",
+            "english": "What time is the meeting?"
+          },
+          "response": {
+            "arabic": "الساعة عشرة ونص.",
+            "transliteration": "is-saa3a 3ashara w nuSS.",
+            "english": "Half past ten."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "خلصت التقرير؟",
+            "transliteration": "khallast it-tagreer?",
+            "english": "Did you finish the report?"
+          },
+          "response": {
+            "arabic": "لا، لسة، باقي شوي.",
+            "transliteration": "la, lissa, baagi shwai.",
+            "english": "No, not yet, a little is left."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "متى ينزل الراتب؟",
+            "transliteration": "mata yinzil ir-raatib?",
+            "english": "When does the salary come?"
+          },
+          "response": {
+            "arabic": "آخر الشهر.",
+            "transliteration": "aakher ish-shahr.",
+            "english": "At the end of the month."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "في دوام إضافي اليوم؟",
+            "transliteration": "fi dawaam iDaafi il-yoom?",
+            "english": "Is there overtime today?"
+          },
+          "response": {
+            "arabic": "إي، لين الساعة ثمان.",
+            "transliteration": "eh, lin is-saa3a tman.",
+            "english": "Yes, until eight."
+          }
+        }
+      ],
+      "culture": "الدوام بالحجاز غالبا يبدأ الساعة سبع أو ثمان الصباح وينتهي بعد الظهر أو العصر. والموظفين يناديون الزعيم أو المدير بـ أستاذ أو باسمه، وكلمة الله يعطيك العافية تنقال في أي وقت احترام.",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "زميل بسألك: جاي الاجتماع؟ إيش تجاوب؟",
+          "answer": "إِي، جَايْ دِحِينْ",
+          "accepted": [
+            "إِي، جَايْ دِحِينْ",
+            "eh, jaay dhin",
+            "إي جاي"
+          ],
+          "too_formal": {
+            "item": "نعم، سأحضر الآن",
+            "feedback": "فصحى"
+          },
+          "tip": "إي = yes"
+        },
+        {
+          "id": "unit-08.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "لِسَّةْ ما ___ التقرير (I haven't finished the report yet)",
+          "answer": "خلصت",
+          "accepted": [
+            "خلصت",
+            "khallast",
+            "انتهيت"
+          ],
+          "too_formal": {
+            "item": "أنهيت",
+            "feedback": "فصحى"
+          },
+          "tip": "خلص = finish"
+        },
+        {
+          "id": "unit-08.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "I received your email.",
+          "answer": "وَصَلَنِي الْإِيمِيلْ تَبَعَكْ",
+          "accepted": [
+            "وَصَلَنِي الْإِيمِيلْ تَبَعَكْ",
+            "wasalni il-imeeil taba3ak",
+            "وصلني إيميلك"
+          ],
+          "too_formal": {
+            "item": "استلمت بريدك الإلكتروني",
+            "feedback": "فصحى رسمية"
+          },
+          "tip": "وصلني = it reached me"
+        },
+        {
+          "id": "unit-08.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "كيف بتقول المدير بيبي يحكيك؟",
+          "answer": "الْمُدِيرْ بِيَبِي يِحْكِيكْ",
+          "accepted": [
+            "الْمُدِيرْ بِيَبِي يِحْكِيكْ"
+          ],
+          "options": [
+            "الْمُدِيرْ بِيَبِي يِحْكِيكْ",
+            "المدير راح البيت",
+            "المدير ما جاء اليوم",
+            "المدير في إجازة"
+          ],
+          "too_formal": {
+            "item": "المدير يريد أن يتحدث إليك",
+            "feedback": "فصحى"
+          },
+          "tip": "بيبي = he wants"
+        },
+        {
+          "id": "unit-08.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "عندي اجتماع الساعة عشرة",
+          "accepted": [
+            "عندي اجتماع الساعة عشرة"
+          ],
+          "words": [
+            "عندي",
+            "اجتماع",
+            "الساعة",
+            "عشرة"
+          ],
+          "too_formal": {
+            "item": "لدي اجتماع في الساعة العاشرة",
+            "feedback": "فصحى"
+          },
+          "tip": "عندي = I have"
+        },
+        {
+          "id": "unit-08.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "المدير يسألك: خلصت التقرير؟ والعنت لسة ما خلصت. إيش بتقول؟",
+          "answer": "لسة، باقي شوي",
+          "accepted": [
+            "لسة، باقي شوي",
+            "lissa, baagi shwai",
+            "لا لسة ما خلصته"
+          ],
+          "too_formal": {
+            "item": "لم أنته منه بعد",
+            "feedback": "فصحى"
+          },
+          "tip": "شوي = a little"
+        },
+        {
+          "id": "unit-08.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "الراتب ___ آخر الشهر (The salary comes)",
+          "answer": "ينزل",
+          "accepted": [
+            "ينزل",
+            "yinzil",
+            "يجي"
+          ],
+          "too_formal": {
+            "item": "يصرف",
+            "feedback": "فصحى"
+          },
+          "tip": "ينزل = it comes"
+        },
+        {
+          "id": "unit-08.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "My boss is very demanding.",
+          "answer": "مُدِيرِي كِتِيرْ يِبِي كُلْ شَيْ كَامِلْ",
+          "accepted": [
+            "مُدِيرِي كِتِيرْ يِبِي كُلْ شَيْ كَامِلْ",
+            "mudiri kteer yibi kul shai kamil",
+            "مديري كتير يبي كل شي كامل"
+          ],
+          "too_formal": {
+            "item": "مديري يطلب الكثير",
+            "feedback": "فصحى"
+          },
+          "tip": "كتير = very"
+        },
+        {
+          "id": "unit-08.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "أي كلمة معناها until في الحجازي؟",
+          "answer": "لين",
+          "accepted": [
+            "لين"
+          ],
+          "options": [
+            "لين",
+            "شوي",
+            "بعدين",
+            "أبد"
+          ],
+          "too_formal": {
+            "item": "حتى",
+            "feedback": "فصحى"
+          },
+          "tip": "لين الساعة = until"
+        },
+        {
+          "id": "unit-08.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "أخذت إجازة يومين",
+          "accepted": [
+            "أخذت إجازة يومين"
+          ],
+          "words": [
+            "أخذت",
+            "إجازة",
+            "يومين"
+          ],
+          "too_formal": {
+            "item": "حصلت على إجازة",
+            "feedback": "فصحى"
+          },
+          "tip": "أخذت = I took"
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "i-have-a-lecture-at-nine",
+          "arabic": "عِنْدِي مُحَاضِرَة الْسَّاعَة تِسْعَة",
+          "transliteration": "3indi mu7adara is-saa3a tis3a"
+        },
+        {
+          "slot": "the-professor-is-absent-today",
+          "arabic": "الدُّكْتُورْ غَايِبْ الْيُومْ",
+          "transliteration": "id-doktoor ghaayib il-yoom"
+        },
+        {
+          "slot": "i-have-an-exam-tomorrow",
+          "arabic": "عِنْدِي امْتِحَانْ بُكْرَة",
+          "transliteration": "3indi imti7aan bukra"
+        },
+        {
+          "slot": "what-s-your-major",
+          "arabic": "إِيشْ تَخَصْصَكْ؟",
+          "transliteration": "eesh takhassosak?",
+          "reply": {
+            "arabic": "تَخَصْصِي طِبْ",
+            "transliteration": "takhassosi tib",
+            "english": "My major is medicine."
+          }
+        },
+        {
+          "slot": "what-year-are-you-in",
+          "arabic": "فِي أَي سَنَة إِنْتْ؟",
+          "transliteration": "fi ay sana int?",
+          "reply": {
+            "arabic": "فِي السَّنَة الثَّانِيَة",
+            "transliteration": "fis-sana ith-thanya",
+            "english": "In the second year."
+          }
+        },
+        {
+          "slot": "i-have-to-study-a-lot-this-semester",
+          "arabic": "لَازِمْ أَدْرُسْ كِتِيرْ هَالْفَصْلْ",
+          "transliteration": "laazim adrus kteer hal-fasl"
+        },
+        {
+          "slot": "the-exam-result-came-out-good",
+          "arabic": "نَتِيجَة الِامْتِحَانْ طَلَعِتْ نِمْنِيحَة",
+          "transliteration": "nateejat il-imti7aan tal3it nmnee7a"
+        },
+        {
+          "slot": "i-didn-t-understand-the-lecture-well",
+          "arabic": "مَا فِهِمْتْ الْمُحَاضِرَة نِمْنِيحْ",
+          "transliteration": "ma fhimt il-mu7adara nmnee7"
+        },
+        {
+          "slot": "i-have-to-submit-the-assignment-before-friday",
+          "arabic": "لَازِمْ أَسَلِّمْ الْوَاجِبْ قَبْلْ الْجُمْعَة",
+          "transliteration": "laazim asallim il-waajib gabl il-jum3a"
+        },
+        {
+          "slot": "my-friends-at-university-are-very-nice",
+          "arabic": "أَصْحَابِي بِالْجَامِعَة نِمْنِيحِينْ كِتِيرْ",
+          "transliteration": "as7abi bil-jam3a nmnee7een kteer"
+        },
+        {
+          "slot": "the-university-library-is-open-until-night",
+          "arabic": "مَكْتَبَة الْجَامِعَة مَفْتُوحَة لِينْ اللَّيْلْ",
+          "transliteration": "maktabat il-jam3a maftoo7a lin il-layl"
+        },
+        {
+          "slot": "i-want-to-register-more-courses-next-semester",
+          "arabic": "أَبِي أَسَجِّلْ مَوَادْ أَكْتَرْ الْفَصْلْ الْجَايْ",
+          "transliteration": "abi asajjel mawaadd aktar il-fasl il-jaay"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Salem",
+          "arabic": "هلا نور، ليش شكلك تعبانة؟",
+          "transliteration": "hala noor, leesh shaklak ta3baana?",
+          "english": "Hi Noor, why do you look tired?"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "عندي امتحان بكرة وما فهمت المحاضرة نمنيح.",
+          "transliteration": "3indi imti7aan bukra w ma fhimt il-mu7adara nmnee7.",
+          "english": "I have an exam tomorrow and I didn't understand the lecture well."
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "أي مادة؟",
+          "transliteration": "ay maada?",
+          "english": "Which subject?"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "الكيمياء، والدكتور غايب اليوم، ما أقدر أسأله.",
+          "transliteration": "il-keemya2, wal-doktoor ghaayib il-yoom, ma agdar as2alah.",
+          "english": "Chemistry, and the professor is absent today, I can't ask him."
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "أنا عندي محاضرة الساعة تسع بكرة، بس أقدر أساعدك دحين.",
+          "transliteration": "ana 3indi mu7adara is-saa3a tis3a bukra, bas agdar asaa3dak dhin.",
+          "english": "I have a lecture at nine tomorrow, but I can help you now."
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "صدق؟ مشكور.",
+          "transliteration": "Sidg? mashkoor.",
+          "english": "Really? Thank you."
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "بس لازم أسلم واجب قبل الجمعة، نروح المكتبة ندرس؟",
+          "transliteration": "bas laazim asallim waajib gabl il-jum3a, nroo7 il-maktaba nidrus?",
+          "english": "But I have to submit an assignment before Friday, shall we go to the library and study?"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "المكتبة مفتوحة لين الليل، تمام نروح.",
+          "transliteration": "il-maktaba maftoo7a lin il-layl, tamam nroo7.",
+          "english": "The library is open until night, okay let's go."
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "وأصحابنا يجون ويانا، نمنيحين كتير.",
+          "transliteration": "w as7abna yijoon wayyaana, nmnee7een kteer.",
+          "english": "And our friends will come with us, they are very nice."
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "إن شاء الله تطلع نتيجتي نمنيحة.",
+          "transliteration": "in shaa allah tiTla3 nateejti nmnee7a.",
+          "english": "God willing my result comes out good."
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "إن شاء الله، وأنا بعد.",
+          "transliteration": "in shaa allah, w ana ba3ad.",
+          "english": "God willing, and mine too."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "إيش تخصصك؟",
+            "transliteration": "eesh takhassosak?",
+            "english": "What's your major?"
+          },
+          "response": {
+            "arabic": "تخصصي هندسة.",
+            "transliteration": "takhassosi handasa.",
+            "english": "My major is engineering."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "في أي سنة إنت؟",
+            "transliteration": "fi ay sana int?",
+            "english": "What year are you in?"
+          },
+          "response": {
+            "arabic": "في السنة الثالثة.",
+            "transliteration": "fis-sana ith-thaliqa.",
+            "english": "In the third year."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فهمت المحاضرة؟",
+            "transliteration": "fhimt il-mu7adara?",
+            "english": "Did you understand the lecture?"
+          },
+          "response": {
+            "arabic": "لا، ما كتير.",
+            "transliteration": "la, ma kteer.",
+            "english": "No, not much."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين المكتبة؟",
+            "transliteration": "wain il-maktaba?",
+            "english": "Where is the library?"
+          },
+          "response": {
+            "arabic": "جنب المبنى الرئيسي.",
+            "transliteration": "jamb il-mabna ir-ra2eese.",
+            "english": "Next to the main building."
+          }
+        }
+      ],
+      "culture": "بالجامعات الحجازية الطلاب ينادون الأستاذ دكتور أو أستاذ احترام لمركزه. المكتبات تضل مفتوحة ساعات طويلة خاصة أيام الامتحانات، والطلاب بيدرسون بمجموعات كتير.",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "إِيشْ تَخَصْصَكْ؟",
+          "answer": "تَخَصْصِي طِبْ",
+          "accepted": [
+            "تَخَصْصِي طِبْ",
+            "takhassosi tib",
+            "أنا أدرس طب"
+          ],
+          "too_formal": {
+            "item": "تخصصي هو الطب",
+            "feedback": "فصحى مطولة"
+          },
+          "tip": "تخصصي + المادة"
+        },
+        {
+          "id": "unit-08.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "عندي ___ بكرة (exam)",
+          "answer": "امتحان",
+          "accepted": [
+            "امتحان",
+            "imti7aan",
+            "فحص"
+          ],
+          "too_formal": {
+            "item": "اختبار",
+            "feedback": "قريبة لكن امتحان أكتر شيوعا"
+          },
+          "tip": "امتحان = exam"
+        },
+        {
+          "id": "unit-08.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "I didn't understand the lecture well.",
+          "answer": "مَا فِهِمْتْ الْمُحَاضِرَة نِمْنِيحْ",
+          "accepted": [
+            "مَا فِهِمْتْ الْمُحَاضِرَة نِمْنِيحْ",
+            "ma fhimt il-mu7adara nmnee7",
+            "ما فهمت المحاضرة كتير"
+          ],
+          "too_formal": {
+            "item": "لم أفهم المحاضرة جيداً",
+            "feedback": "فصحى"
+          },
+          "tip": "ما + الماضي = didn't"
+        },
+        {
+          "id": "unit-08.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "إيش معنى لازم أسلم الواجب؟",
+          "answer": "I must submit the assignment",
+          "accepted": [
+            "I must submit the assignment"
+          ],
+          "options": [
+            "I must submit the assignment",
+            "I must attend the lecture",
+            "I must take the exam",
+            "I must register courses"
+          ],
+          "too_formal": {
+            "item": "لا مقابل",
+            "feedback": "لا توجد صيغة فصحى بديلة"
+          },
+          "tip": "لازم = must"
+        },
+        {
+          "id": "unit-08.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "عندي محاضرة الساعة تسع",
+          "accepted": [
+            "عندي محاضرة الساعة تسع"
+          ],
+          "words": [
+            "عندي",
+            "محاضرة",
+            "الساعة",
+            "تسع"
+          ],
+          "too_formal": {
+            "item": "لدي محاضرة في الساعة التاسعة",
+            "feedback": "فصحى"
+          },
+          "tip": "عندي أول الجملة"
+        },
+        {
+          "id": "unit-08.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "فِي أَي سَنَة إِنْتْ؟",
+          "answer": "فِي السَّنَة الثَّانِيَة",
+          "accepted": [
+            "فِي السَّنَة الثَّانِيَة",
+            "fis-sana ith-thanya",
+            "سنة ثانية"
+          ],
+          "too_formal": {
+            "item": "أنا في السنة الثانية",
+            "feedback": "مطول، في الحجازي نقول السنة الثانية مباشرة"
+          },
+          "tip": "في + السنة + الرقم"
+        },
+        {
+          "id": "unit-08.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "نتيجة الامتحان ___ نمنيحة (came out)",
+          "answer": "طلعت",
+          "accepted": [
+            "طلعت",
+            "tal3it",
+            "جت"
+          ],
+          "too_formal": {
+            "item": "جاءت",
+            "feedback": "فصحى"
+          },
+          "tip": "طلعت = came out"
+        },
+        {
+          "id": "unit-08.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "The library is open until night.",
+          "answer": "مَكْتَبَة الْجَامِعَة مَفْتُوحَة لِينْ اللَّيْلْ",
+          "accepted": [
+            "مَكْتَبَة الْجَامِعَة مَفْتُوحَة لِينْ اللَّيْلْ",
+            "maktabat il-jam3a maftoo7a lin il-layl",
+            "المكتبة مفتوحة لين الليل"
+          ],
+          "too_formal": {
+            "item": "المكتبة مفتوحة حتى الليل",
+            "feedback": "فصحى"
+          },
+          "tip": "لين = until"
+        },
+        {
+          "id": "unit-08.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "مين بيدرس بالجامعة، مش بيشتغل؟",
+          "answer": "طالب",
+          "accepted": [
+            "طالب"
+          ],
+          "options": [
+            "طالب",
+            "موظف",
+            "مدير",
+            "متقاعد"
+          ],
+          "too_formal": {
+            "item": "طالب جامعي",
+            "feedback": "مطول، الحجازي يقول طالب"
+          },
+          "tip": "طالب = student"
+        },
+        {
+          "id": "unit-08.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "لازم أسلم الواجب قبل الجمعة",
+          "accepted": [
+            "لازم أسلم الواجب قبل الجمعة"
+          ],
+          "words": [
+            "لازم",
+            "أسلم",
+            "الواجب",
+            "قبل",
+            "الجمعة"
+          ],
+          "too_formal": {
+            "item": "يجب تسليم الواجب قبل الجمعة",
+            "feedback": "فصحى ثقيلة"
+          },
+          "tip": "لازم = must"
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "what-do-you-plan-to-do-after-you-graduate",
+          "arabic": "إِيشْ نَاوِي تِسَوِّي بَعْدْ مَا تِتْخَرِّجْ؟",
+          "transliteration": "eesh naawi tisawwi ba3d ma titkhaarraj?",
+          "reply": {
+            "arabic": "أَبِي أَدَوِّرْ عَ شُغْلْ",
+            "transliteration": "abi adawwir 3a shughul",
+            "english": "I want to look for a job."
+          }
+        },
+        {
+          "slot": "i-want-to-continue-my-studies-for-a-master-s",
+          "arabic": "أَبِي أِكَمِّلْ دِرَاسْتِي عَالْمَاجِسْتِيرْ",
+          "transliteration": "abi akammil diraaste 3al-majesteer"
+        },
+        {
+          "slot": "i-intend-to-start-my-own-project",
+          "arabic": "نَاوِي أِفْتَحْ مَشْرُوعِي الْخَاصْ",
+          "transliteration": "naawi iftah7 mashroo3i il-khaaS"
+        },
+        {
+          "slot": "i-m-thinking-of-traveling-to-work-abroad",
+          "arabic": "أِفَكِّرْ أِسَافِرْ أِشْتَغِلْ بَرَّا",
+          "transliteration": "afakkir isaafir ashtighul barra"
+        },
+        {
+          "slot": "in-five-years-where-will-you-be",
+          "arabic": "بَعْدْ خَمِسْ سِنِينْ وَيِنْ بِتْكُونْ؟",
+          "transliteration": "ba3d khams sneen wain bitkoon?"
+        },
+        {
+          "slot": "i-ll-try-to-enter-a-phd-program",
+          "arabic": "بِحَاوِلْ أِدْخُلْ عَالدُّكْتُورَاهْ",
+          "transliteration": "bi7aawil adkhul 3ad-doktooraa"
+        },
+        {
+          "slot": "my-dream-is-to-open-a-restaurant",
+          "arabic": "حِلْمِي أِفْتَحْ مَطْعَمْ",
+          "transliteration": "hilmi iftah7 mat3am"
+        },
+        {
+          "slot": "i-haven-t-decided-yet-what-i-ll-do",
+          "arabic": "لِسَّةْ مَا قَرِّرْتْ إِيشْ بِسَوِّي",
+          "transliteration": "lissa ma 2arrart eesh bisawwi"
+        },
+        {
+          "slot": "i-want-to-settle-down-and-get-married-after-i-wo",
+          "arabic": "أَبِي أِسْتَقِرْ وَأِتْجَوِّزْ بَعْدْ مَا أِشْتَغِلْ شْوَيْ",
+          "transliteration": "abi istaqir w atjawwiz ba3d ma ashtighul shwai"
+        },
+        {
+          "slot": "i-ll-apply-for-a-job-at-a-big-company",
+          "arabic": "بِقَدِّمْ عَلَ وَظِيفَة فِي شِرْكَة كِبِيرَة",
+          "transliteration": "bagaddim 3ala wathiifa fi sharika kabeera"
+        },
+        {
+          "slot": "my-ambition-is-to-become-a-manager-one-day",
+          "arabic": "طُمُوحِي أِصِيرْ مُدِيرْ يُومْ مِنْ الْأَيَّامْ",
+          "transliteration": "tumoo7i aseer mudeer yoom min il-ayyaam"
+        },
+        {
+          "slot": "the-most-important-thing-is-to-be-comfortable-in",
+          "arabic": "أِهَمْ شَيْ أِرْتَاحْ فِي شُغْلِي",
+          "transliteration": "ahamm shai irta7 fi shughli"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rashid",
+          "arabic": "حصة، إيش ناوية تسوين بعد ما تتخرجين؟",
+          "transliteration": "7iSSa, eesh naawya tisawween ba3d ma titkharrajeen?",
+          "english": "Hessa, what do you plan to do after you graduate?"
+        },
+        {
+          "speaker": "Hessa",
+          "arabic": "أبي أكمل دراستي ماجستير، وبعدين أشتغل. وأنت؟",
+          "transliteration": "abi akammil diraaste majesteer, w ba3deen ashtighul. w int?",
+          "english": "I want to do a master's, then work. And you?"
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "أنا ناوي أفتح مشروعي الخاص، حلمي أفتح مطعم.",
+          "transliteration": "ana naawi iftah7 mashroo3i il-khaaS, hilmi iftah7 mat3am.",
+          "english": "I intend to start my own project, my dream is to open a restaurant."
+        },
+        {
+          "speaker": "Hessa",
+          "arabic": "ما شاء الله! وين بتفتحه؟",
+          "transliteration": "ma shaa allah! wain bitiftah7ah?",
+          "english": "Wonderful! Where will you open it?"
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "يمكن بجدة، بس لسة ما قررت.",
+          "transliteration": "yimkin bi-jidda, bas lissa ma 2arrart.",
+          "english": "Maybe in Jeddah, but I haven't decided yet."
+        },
+        {
+          "speaker": "Hessa",
+          "arabic": "وبعد خمس سنين وين بتكون إن شاء الله؟",
+          "transliteration": "w ba3d khams sneen wain bitkoon in shaa allah?",
+          "english": "And in five years where will you be, God willing?"
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "إن شاء الله يكون عندي كم فرع.",
+          "transliteration": "in shaa allah ykoon 3indi kam far3.",
+          "english": "God willing I'll have a few branches."
+        },
+        {
+          "speaker": "Hessa",
+          "arabic": "الله يوفقك. أنا طموحي أصير دكتورة بالجامعة.",
+          "transliteration": "allah ywaffigak. ana tumoo7i aseer doktora bil-jam3a.",
+          "english": "God grant you success. My ambition is to become a professor at the university."
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "تستاهلين، إنتِ كتير مجتهدة.",
+          "transliteration": "tistaahleen, inti kteer mujtahida.",
+          "english": "You deserve it, you are very hard-working."
+        },
+        {
+          "speaker": "Hessa",
+          "arabic": "الله يسلمك، وأهم شي نرتاح في شغلنا.",
+          "transliteration": "allah yislimak, w ahamm shai nirta7 fi shughulna.",
+          "english": "God keep you, and the most important thing is to be comfortable in our work."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "إيش ناوي تسوي بعد التخرج؟",
+            "transliteration": "eesh naawi tisawwi ba3d it-takharraj?",
+            "english": "What do you plan to do after graduation?"
+          },
+          "response": {
+            "arabic": "أبي أدور عشغل.",
+            "transliteration": "abi adawwir 3a shughul.",
+            "english": "I want to look for a job."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين تبي تشتغل؟",
+            "transliteration": "wain tibi tishtighul?",
+            "english": "Where do you want to work?"
+          },
+          "response": {
+            "arabic": "أبي أشتغل برا البلد.",
+            "transliteration": "abi ashtighul barra il-balad.",
+            "english": "I want to work abroad."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ليش تبي تفتح مشروع؟",
+            "transliteration": "leesh tibi tiftah7 mashroo3?",
+            "english": "Why do you want to start a project?"
+          },
+          "response": {
+            "arabic": "عشان أكون مديرة نفسي.",
+            "transliteration": "3ashaan akoon mudeera nafsi.",
+            "english": "So that I am my own boss."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بتتجوزين قريب؟",
+            "transliteration": "bitjawwizen garib?",
+            "english": "Will you marry soon?"
+          },
+          "response": {
+            "arabic": "إن شاء الله، بعد ما أشتغل شوي.",
+            "transliteration": "in shaa allah, ba3d ma ashtighul shwai.",
+            "english": "God willing, after I work a bit."
+          }
+        }
+      ],
+      "culture": "لما أحد بالحجاز يحكي عن مستقبله بيزيد إن شاء الله بعد كل خطة، حتى لو كانت شبه أكيدة. وإذا ما قررت بعد بتقول الله يسهل، وإذا حكاك حد عن حلمه بتقول الله يوفقك.",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "إِيشْ نَاوِي تِسَوِّي بَعْدْ مَا تِتْخَرِّجْ؟",
+          "answer": "أَبِي أَدَوِّرْ عَ شُغْلْ",
+          "accepted": [
+            "أَبِي أَدَوِّرْ عَ شُغْلْ",
+            "abi adawwir 3a shughul",
+            "أبي أشتغل"
+          ],
+          "too_formal": {
+            "item": "أنوي البحث عن عمل",
+            "feedback": "فصحى"
+          },
+          "tip": "أبي = I want"
+        },
+        {
+          "id": "unit-08.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "___ أفتح مطعم (My dream is to open a restaurant)",
+          "answer": "حلمي",
+          "accepted": [
+            "حلمي",
+            "hilmi",
+            "طموحي"
+          ],
+          "too_formal": {
+            "item": "أحلم بأن أفتح",
+            "feedback": "فصحى ثقيلة"
+          },
+          "tip": "حلمي = my dream"
+        },
+        {
+          "id": "unit-08.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "I want to continue my studies for a master's.",
+          "answer": "أَبِي أِكَمِّلْ دِرَاسْتِي عَالْمَاجِسْتِيرْ",
+          "accepted": [
+            "أَبِي أِكَمِّلْ دِرَاسْتِي عَالْمَاجِسْتِيرْ",
+            "abi akammil diraaste 3al-majesteer",
+            "أبي أكمل الماجستير"
+          ],
+          "too_formal": {
+            "item": "أرغب في إكمال دراستي للماجستير",
+            "feedback": "فصحى رسمية"
+          },
+          "tip": "أكمل = I continue"
+        },
+        {
+          "id": "unit-08.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "إيش معنى ناوي؟",
+          "answer": "intending / planning to",
+          "accepted": [
+            "intending / planning to"
+          ],
+          "options": [
+            "intending / planning to",
+            "already did",
+            "refusing to",
+            "forgot to"
+          ],
+          "too_formal": {
+            "item": "لا مقابل",
+            "feedback": "لا توجد صيغة فصحى مختلفة"
+          },
+          "tip": "ناوي = بنية"
+        },
+        {
+          "id": "unit-08.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "أهم شي أرتاح في شغلي",
+          "accepted": [
+            "أهم شي أرتاح في شغلي"
+          ],
+          "words": [
+            "أهم",
+            "شي",
+            "أرتاح",
+            "في",
+            "شغلي"
+          ],
+          "too_formal": {
+            "item": "أهم شيء أن أرتاح في عملي",
+            "feedback": "فصحى"
+          },
+          "tip": "أهم شي = the most important thing"
+        },
+        {
+          "id": "unit-08.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "وَيِنْ تَبِي تِشْتَغِلْ؟",
+          "answer": "أبي أشتغل في شركة كبيرة",
+          "accepted": [
+            "أبي أشتغل في شركة كبيرة",
+            "abi ashtighul fi sharika kabeera",
+            "أبي أشتغل برا"
+          ],
+          "too_formal": {
+            "item": "أرغب بالعمل في شركة كبيرة",
+            "feedback": "فصحى رسمية"
+          },
+          "tip": "أبي + الفعل"
+        },
+        {
+          "id": "unit-08.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "لِسَّةْ ما ___ إيش بسوي (I haven't decided yet)",
+          "answer": "قررت",
+          "accepted": [
+            "قررت",
+            "2arrart",
+            "قرّرت"
+          ],
+          "too_formal": {
+            "item": "لم أقرر",
+            "feedback": "فصحى"
+          },
+          "tip": "ما + الماضي = didn't"
+        },
+        {
+          "id": "unit-08.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "In five years where will you be?",
+          "answer": "بَعْدْ خَمِسْ سِنِينْ وَيِنْ بِتْكُونْ؟",
+          "accepted": [
+            "بَعْدْ خَمِسْ سِنِينْ وَيِنْ بِتْكُونْ؟",
+            "ba3d khams sneen wain bitkoon?",
+            "بعد خمس سنوات وين بتكون؟"
+          ],
+          "too_formal": {
+            "item": "بعد خمس سنوات أين ستكون؟",
+            "feedback": "فصحى"
+          },
+          "tip": "بـ قبل الفعل = will"
+        },
+        {
+          "id": "unit-08.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "إيش بتقول لحد قال إنه بيفتح مشروع؟",
+          "answer": "الله يوفقك",
+          "accepted": [
+            "الله يوفقك"
+          ],
+          "options": [
+            "الله يوفقك",
+            "ما عليه",
+            "تعال بكرة",
+            "لا تروح"
+          ],
+          "too_formal": {
+            "item": "أتمنى لك التوفيق",
+            "feedback": "فصحى رسمية"
+          },
+          "tip": "الله يوفقك = God grant you success"
+        },
+        {
+          "id": "unit-08.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "بقدم على وظيفة في شركة كبيرة",
+          "accepted": [
+            "بقدم على وظيفة في شركة كبيرة"
+          ],
+          "words": [
+            "بقدم",
+            "على",
+            "وظيفة",
+            "في",
+            "شركة كبيرة"
+          ],
+          "too_formal": {
+            "item": "سأتقدم لوظيفة في شركة كبيرة",
+            "feedback": "فصحى"
+          },
+          "tip": "بـ + الفعل = I will"
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Talk About Your Work or Studies",
+    "instructions": "اكتب واحك حوار قصير بالحجازي بـ 10 أسطر على الأقل عن شغلك أو دراستك وخططك للمستقبل. استخدم 8 عبارات من unit-08 على الأقل واشمل صيغة مذكر وصيغة مؤنث في الخطاب.",
+    "required_elements": [
+      "سؤال عن المهنة بـ إيش تشتغل أو إيش تشتغلين.",
+      "جواب فيه تحديد المهنة أو المجال.",
+      "سؤال عن مكان الشغل أو الدراسة بـ وين.",
+      "ذكر سنين الخبرة أو السنة الدراسية.",
+      "خطة مستقبلية بـ أبي أو ناوي أو ب.",
+      "ذكر طموح أو حلم بـ طموحي أو حلمي.",
+      "جملة إن شاء الله بعد الخطة.",
+      "إغلاق بـ الله يوفقك أو ولا يهمك."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "فايز",
+          "arabic": "هلا لينا، إيش تشتغلين دحين؟",
+          "transliteration": "hala layna, eesh tishtaghleen dhin?",
+          "english": "Hi Layna, what do you do now?"
+        },
+        {
+          "speaker": "لينا",
+          "arabic": "أشتغل محامية في مكتب صغير، وإنت؟",
+          "transliteration": "ashtighul mu7amiya fi maktab Sagheer, w int?",
+          "english": "I work as a lawyer at a small office, and you?"
+        },
+        {
+          "speaker": "فايز",
+          "arabic": "أنا لسة أدرس الاقتصاد بالجامعة، في السنة الرابعة.",
+          "transliteration": "ana lissa adrus il-iqtiSaad bil-jam3a, fis-sana ir-raab3a.",
+          "english": "I'm still studying economics at university, in the fourth year."
+        },
+        {
+          "speaker": "لينا",
+          "arabic": "ما شاء الله، وبعد ما تتخرج إيش ناوي تسوي؟",
+          "transliteration": "ma shaa allah, w ba3d ma titkhaarraj eesh naawi tisawwi?",
+          "english": "Wonderful, and after you graduate what do you plan to do?"
+        },
+        {
+          "speaker": "فايز",
+          "arabic": "أبي أقدم على وظيفة في بنك، إن شاء الله ألقى شي نمنيح.",
+          "transliteration": "abi agaddim 3ala wathiifa fi bank, in shaa allah alga shai nmnee7.",
+          "english": "I want to apply for a job at a bank, God willing I'll find something good."
+        },
+        {
+          "speaker": "لينا",
+          "arabic": "إن شاء الله، وإيش طموحك؟",
+          "transliteration": "in shaa allah, w eesh tumoo7ak?",
+          "english": "God willing, and what is your ambition?"
+        },
+        {
+          "speaker": "فايز",
+          "arabic": "طموحي أصير مدير فرع يوم من الأيام.",
+          "transliteration": "tumoo7i aseer mudeer far3 yoom min il-ayyaam.",
+          "english": "My ambition is to become a branch manager one day."
+        },
+        {
+          "speaker": "لينا",
+          "arabic": "نمنيح كتير، وأنا أبي أكمل دراستي ماجستير في القانون.",
+          "transliteration": "nmnee7 kteer, w ana abi akammil diraaste majesteer fil-qaanoon.",
+          "english": "Very nice, and I want to continue my studies for a master's in law."
+        },
+        {
+          "speaker": "فايز",
+          "arabic": "الله يوفقك، أكيد بتوصلين.",
+          "transliteration": "allah ywaffigak, akeed bitwaSaleen.",
+          "english": "God grant you success, you'll definitely get there."
+        },
+        {
+          "speaker": "لينا",
+          "arabic": "الله يسلمك، وياليت توصل لهدفك بعد.",
+          "transliteration": "allah yislimak, w yaalait tooSal lihadafak ba3ad.",
+          "english": "God keep you, and I hope you reach your goal too."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1744 @@
+{
+  "unit": "unit-01",
+  "dialect": "Hejazi Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "hello",
+          "arabic": "مَرْحَبَا",
+          "transliteration": "marhaba"
+        },
+        {
+          "slot": "hi-welcome",
+          "arabic": "أَهْلَا",
+          "transliteration": "ahlan",
+          "reply": {
+            "arabic": "أَهْلًا وَسَهْلًا",
+            "transliteration": "ahlan wa sahlan",
+            "english": "Welcome."
+          }
+        },
+        {
+          "slot": "how-are-you-to-a-man",
+          "arabic": "كَيْفَك؟",
+          "transliteration": "keefak?"
+        },
+        {
+          "slot": "how-are-you-to-a-woman",
+          "arabic": "كَيْفِك؟",
+          "transliteration": "keefik?"
+        },
+        {
+          "slot": "good-thank-god",
+          "arabic": "تِمَام، الْحَمْدُ لِلَّهِ",
+          "transliteration": "tamam, alhamdu lillah"
+        },
+        {
+          "slot": "great-fine",
+          "arabic": "تِمَام",
+          "transliteration": "tamam"
+        },
+        {
+          "slot": "what-s-your-name-to-a-man",
+          "arabic": "إِسْمُك إِيش؟",
+          "transliteration": "ismak eesh?"
+        },
+        {
+          "slot": "what-s-your-name-to-a-woman",
+          "arabic": "إِسْمِك إِيش؟",
+          "transliteration": "ismik eesh?"
+        },
+        {
+          "slot": "my-name-is-rami",
+          "arabic": "أَنَا رَامِي",
+          "transliteration": "ana Raami"
+        },
+        {
+          "slot": "i-m-lina",
+          "arabic": "أَنَا لِينَا",
+          "transliteration": "ana Leena"
+        },
+        {
+          "slot": "nice-to-meet-you",
+          "arabic": "تَشَرَّفْنَا",
+          "transliteration": "tsharrafna"
+        },
+        {
+          "slot": "me-too",
+          "arabic": "وَأَنَا كَمَان",
+          "transliteration": "wa ana kaman"
+        },
+        {
+          "slot": "where-are-you-from-to-a-man",
+          "arabic": "مِنْ وَيْن إِنْتَ؟",
+          "transliteration": "min ween inta?"
+        },
+        {
+          "slot": "where-are-you-from-to-a-woman",
+          "arabic": "مِنْ وَيْن إِنْتِي؟",
+          "transliteration": "min ween inti?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Salim",
+          "arabic": "مَرْحَبَا.",
+          "transliteration": "marhaba.",
+          "english": "Hello."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أَهْلَا وَسَهْلَا. كَيْفَك؟",
+          "transliteration": "ahlan wa sahlan. keefak?",
+          "english": "Welcome. How are you?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "تِمَام، الْحَمْدُ لِلَّهِ. وَإِنْتِي كَيْفِك؟",
+          "transliteration": "tamam, alhamdu lillah. wa inti keefik?",
+          "english": "Fine, thank God. And you, how are you?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "تِمَام، الْحَمْدُ لِلَّهِ.",
+          "transliteration": "tamam, alhamdu lillah.",
+          "english": "Fine, thank God."
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "إِسْمِك إِيش؟",
+          "transliteration": "ismik eesh?",
+          "english": "What's your name?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أَنَا لِينَا. وَإِنْتَ إِسْمُك إِيش؟",
+          "transliteration": "ana Leena. wa inta ismak eesh?",
+          "english": "I'm Lina. And what's your name?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "أَنَا سَالِم.",
+          "transliteration": "ana Salim.",
+          "english": "I'm Salim."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "تَشَرَّفْنَا يَا سَالِم.",
+          "transliteration": "tsharrafna ya Salim.",
+          "english": "Nice to meet you, Salim."
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "وَأَنَا كَمَان.",
+          "transliteration": "wa ana kaman.",
+          "english": "Me too."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "مِنْ وَيْن إِنْتَ؟",
+          "transliteration": "min ween inta?",
+          "english": "Where are you from?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "أَنَا مِنْ جَدَّة. وَإِنْتِي مِنْ وَيْن؟",
+          "transliteration": "ana min Jadda. wa inti min ween?",
+          "english": "I'm from Jeddah. And where are you from?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أَنَا مِنْ مَكَّة، بَس سَاكِنَة فِي جَدَّة.",
+          "transliteration": "ana min Makka, bas sakina fi Jadda.",
+          "english": "I'm from Mecca, but I live in Jeddah."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كَيْفَك؟",
+            "transliteration": "keefak?",
+            "english": "How are you? (to a man)"
+          },
+          "response": {
+            "arabic": "تِمَام، الْحَمْدُ لِلَّهِ.",
+            "transliteration": "tamam, alhamdu lillah.",
+            "english": "Fine, thank God."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إِسْمُك إِيش؟",
+            "transliteration": "ismak eesh?",
+            "english": "What's your name?"
+          },
+          "response": {
+            "arabic": "أَنَا فَيْصَل.",
+            "transliteration": "ana Faisal.",
+            "english": "I'm Faisal."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مِنْ وَيْن إِنْتِي؟",
+            "transliteration": "min ween inti?",
+            "english": "Where are you from?"
+          },
+          "response": {
+            "arabic": "أَنَا مِنْ الْمَدِينَة.",
+            "transliteration": "ana min il-Madina.",
+            "english": "I'm from Medina."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تَشَرَّفْنَا.",
+            "transliteration": "tsharrafna.",
+            "english": "Nice to meet you."
+          },
+          "response": {
+            "arabic": "الشَّرَف لِي.",
+            "transliteration": "ash-sharaf li.",
+            "english": "The pleasure is mine."
+          }
+        }
+      ],
+      "culture": "In Hejazi greetings, people are warm and can repeat the greeting a few times, especially with those they haven't seen for a while. Using a person's first name after greeting is natural and friendly. Hejazi people often add \"الحمد لله\" to most good news.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "A man says to you: \"مَرْحَبَا\". Reply warmly.",
+          "answer": "أَهْلَا",
+          "accepted": [
+            "أَهْلَا",
+            "أَهْلًا وَسَهْلًا",
+            "مَرْحَبَا"
+          ],
+          "too_formal": {
+            "item": "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ",
+            "feedback": "This is grammatically correct, but it is much more formal and elaborate than the everyday opening you need here."
+          },
+          "tip": "For a relaxed first greeting, \"أَهْلَا\" or \"أَهْلًا وَسَهْلًا\" is very common."
+        },
+        {
+          "id": "unit-01.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "A woman asks you: \"كَيْفِك؟\". Answer that you are doing well.",
+          "answer": "تِمَام، الْحَمْدُ لِلَّهِ",
+          "accepted": [
+            "تِمَام، الْحَمْدُ لِلَّهِ",
+            "تِمَام",
+            "الْحَمْدُ لِلَّهِ"
+          ],
+          "too_formal": {
+            "item": "أَنَا بِخَيْرٍ وَاللَّهُ الْحَمْدُ",
+            "feedback": "The meaning is fine, but this sounds more formal and bookish than everyday Hejazi speech."
+          },
+          "tip": "Use \"تِمَام\" frequently in Hejazi for saying everything is fine."
+        },
+        {
+          "id": "unit-01.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"أَنَا _____. \" English meaning: I'm Rami.",
+          "answer": "رَامِي",
+          "accepted": [
+            "رَامِي",
+            "رامي"
+          ],
+          "too_formal": {
+            "item": "إِنَّ اسْمِي هُوَ رَامِي",
+            "feedback": "This structure is much more formal than the simple spoken phrase used for introductions."
+          },
+          "tip": "The fixed everyday pattern is \"أَنَا + name\" in Hejazi."
+        },
+        {
+          "id": "unit-01.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Hejazi Arabic: \"What's your name?\" when speaking to a man.",
+          "answer": "إِسْمُك إِيش؟",
+          "accepted": [
+            "إِسْمُك إِيش؟",
+            "إِسْمُك آيش؟",
+            "شُ إِسْمُك؟"
+          ],
+          "too_formal": {
+            "item": "مَا اسْمُك؟",
+            "feedback": "This is understandable Arabic, but \"إِسْمُك إِيش؟\" is the natural everyday Hejazi choice."
+          },
+          "tip": "In Hejazi speech, \"إِيش\" is a very common way to say \"what\"."
+        },
+        {
+          "id": "unit-01.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Where are you from?\" when speaking to a woman?",
+          "options": [
+            "مِنْ وَيْن إِنْتَ؟",
+            "مِنْ وَيْن إِنْتِي؟",
+            "إِسْمِك إِيش؟",
+            "كَيْفِك؟"
+          ],
+          "answer": "مِنْ وَيْن إِنْتِي؟",
+          "accepted": [
+            "مِنْ وَيْن إِنْتِي؟",
+            "مِنْ وَيْن إِنْتِيّ؟",
+            "min ween inti?"
+          ],
+          "too_formal": {
+            "item": "مِنْ أَيِّ بَلَدٍ أَنْتِ؟",
+            "feedback": "The sentence is correct, but it is more formal and specific than the ordinary conversational question."
+          },
+          "tip": "\"إِنْتِي\" marks the feminine singular in this question."
+        },
+        {
+          "id": "unit-01.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Nice to meet you.\"",
+          "answer": "تَشَرَّفْنَا",
+          "accepted": [
+            "تَشَرَّفْنَا",
+            "تشرفنا"
+          ],
+          "too_formal": {
+            "item": "يَسُرُّنِي التَّعَرُّفُ عَلَيْك",
+            "feedback": "This is formal written-style Arabic. In conversation, \"تَشَرَّفْنَا\" is much more natural."
+          },
+          "tip": "\"تَشَرَّفْنَا\" is a useful fixed phrase for first meetings."
+        },
+        {
+          "id": "unit-01.lesson-01.reply.03",
+          "type": "reply",
+          "prompt": "Someone says: \"تَشَرَّفْنَا\". Give a natural reply.",
+          "answer": "الشَّرَف لِي",
+          "accepted": [
+            "الشَّرَف لِي",
+            "وَأَنَا كَمَان",
+            "الشَّرَف لَك"
+          ],
+          "too_formal": {
+            "item": "تَشَرَّفْتُ بِمَعْرِفَتِك الْكَرِيمَة",
+            "feedback": "That response is too elaborate for an ordinary first introduction."
+          },
+          "tip": "\"وَأَنَا كَمَان\" is especially easy to use when you want a simple, friendly reply."
+        },
+        {
+          "id": "unit-01.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"إِسْمِك / إِيش\".",
+          "answer": "إِسْمِك إِيش؟",
+          "accepted": [
+            "إِسْمِك إِيش؟",
+            "إِسْمِك آيش؟",
+            "ismik eesh?"
+          ],
+          "too_formal": {
+            "item": "مَا اسْمُك؟",
+            "feedback": "This is formal rather than the conversational Hejazi pattern the exercise is practicing."
+          },
+          "tip": "Question word at the end is natural in Hejazi: \"إِسْمِك إِيش؟\""
+        },
+        {
+          "id": "unit-01.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm from Jeddah.\"",
+          "answer": "أَنَا مِنْ جَدَّة",
+          "accepted": [
+            "أَنَا مِنْ جَدَّة",
+            "مِنْ جَدَّة",
+            "أنا من جدة"
+          ],
+          "too_formal": {
+            "item": "أَنَا مِنْ مَدِينَةِ جَدَّة",
+            "feedback": "This is correct, but adding \"مَدِينَة\" makes it sound more explicit and formal than needed."
+          },
+          "tip": "For cities, \"أَنَا مِنْ + place\" is the basic pattern."
+        },
+        {
+          "id": "unit-01.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أَنَا مِنْ مَكَّة، _____ سَاكِنَة فِي جَدَّة.\" Meaning: I'm from Mecca, but I live in Jeddah.",
+          "answer": "بَس",
+          "accepted": [
+            "بَس",
+            "بس"
+          ],
+          "too_formal": {
+            "item": "لَكِنَّنِي",
+            "feedback": "It is grammatical, but it is noticeably more formal than the everyday spoken connector \"بَس\"."
+          },
+          "tip": "\"بَس\" is one of the most useful everyday words for \"but\" in Hejazi."
+        },
+        {
+          "id": "unit-01.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which reply fits \"كَيْفَك؟\" most naturally?",
+          "options": [
+            "تِمَام، الْحَمْدُ لِلَّهِ",
+            "أَنَا رَامِي",
+            "مِنْ جَدَّة",
+            "تَشَرَّفْنَا"
+          ],
+          "answer": "تِمَام، الْحَمْدُ لِلَّهِ",
+          "accepted": [
+            "تِمَام، الْحَمْدُ لِلَّهِ",
+            "تِمَام",
+            "الحمد لله"
+          ],
+          "too_formal": {
+            "item": "أَنَا فِي حَالَةٍ جَيِّدَة، أَشْكُرُك",
+            "feedback": "That wording is far too formal for an ordinary spoken exchange."
+          },
+          "tip": "A simple health check usually gets a short answer: \"تِمَام\" or \"الْحَمْدُ لِلَّهِ\"."
+        },
+        {
+          "id": "unit-01.lesson-01.reply.04",
+          "type": "reply",
+          "prompt": "You are a man. Someone asks: \"مِنْ وَيْن إِنْتَ؟\" Say that you are from Medina.",
+          "answer": "أَنَا مِنْ الْمَدِينَة",
+          "accepted": [
+            "أَنَا مِنْ الْمَدِينَة",
+            "مِنْ الْمَدِينَة",
+            "أنا من المدينة"
+          ],
+          "too_formal": {
+            "item": "أَنَا مِنْ مَدِينَةِ الرَّسُول",
+            "feedback": "This is far more formal and elaborate than a natural introduction."
+          },
+          "tip": "You can answer with the full sentence or simply \"مِنْ الْمَدِينَة\" when the context is clear."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "please-excuse-me-to-a-man",
+          "arabic": "لَوْ سَمَحْتَ",
+          "transliteration": "law samaht"
+        },
+        {
+          "slot": "please-excuse-me-to-a-woman",
+          "arabic": "لَوْ سَمَحْتِي",
+          "transliteration": "law samahti"
+        },
+        {
+          "slot": "it-s-okay-sorry-excuse-me",
+          "arabic": "تِمَام، لَا بَاس",
+          "transliteration": "tamam, la baas"
+        },
+        {
+          "slot": "sorry-male-speaker",
+          "arabic": "آسِف",
+          "transliteration": "aasif"
+        },
+        {
+          "slot": "sorry-female-speaker",
+          "arabic": "آسِفَة",
+          "transliteration": "aasfa"
+        },
+        {
+          "slot": "thank-you",
+          "arabic": "شُكْرًا",
+          "transliteration": "shukran"
+        },
+        {
+          "slot": "thank-you-very-much",
+          "arabic": "شُكْرًا كَتِير",
+          "transliteration": "shukran katheer"
+        },
+        {
+          "slot": "you-re-welcome-excuse-me",
+          "arabic": "عَفْوًا",
+          "transliteration": "3afwan"
+        },
+        {
+          "slot": "can-you-help-me-to-a-man",
+          "arabic": "تِقْدَرْ تِسَاعِدْنِي؟",
+          "transliteration": "tigdar tisaa3idni?"
+        },
+        {
+          "slot": "can-you-help-me-to-a-woman",
+          "arabic": "تِقْدَرِي تِسَاعِدِينِي؟",
+          "transliteration": "tigdari tisaa3dini?"
+        },
+        {
+          "slot": "i-want-some-water",
+          "arabic": "أَبْغَى مَايْ",
+          "transliteration": "abgha may"
+        },
+        {
+          "slot": "is-it-possible-can-i",
+          "arabic": "مُمْكِن؟",
+          "transliteration": "mumkin?"
+        },
+        {
+          "slot": "yes-of-course",
+          "arabic": "إِي، طَبْعًا",
+          "transliteration": "ee, taba3an"
+        },
+        {
+          "slot": "sorry-i-didn-t-understand",
+          "arabic": "آسِف، مَا فِهِمْتْ",
+          "transliteration": "aasif, ma fihimt"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Mohammed",
+          "arabic": "لَوْ سَمَحْتِي، تِقْدَرِي تِسَاعِدِينِي؟",
+          "transliteration": "law samahti, tigdari tisaa3dini?",
+          "english": "Excuse me, can you help me?"
+        },
+        {
+          "speaker": "Fatima",
+          "arabic": "إِي، طَبْعًا. شُ اللِي أَبْغَاه؟",
+          "transliteration": "ee, taba3an. shu illi abghaah?",
+          "english": "Yes, of course. What do you need?"
+        },
+        {
+          "speaker": "Mohammed",
+          "arabic": "أَبْغَى مَايْ، لَوْ سَمَحْتِي.",
+          "transliteration": "abgha may, law samahti.",
+          "english": "I'd like some water, please."
+        },
+        {
+          "speaker": "Fatima",
+          "arabic": "طَيِّب، هَسَّع.",
+          "transliteration": "tayyib, hassa3",
+          "english": "Okay, right away."
+        },
+        {
+          "speaker": "Mohammed",
+          "arabic": "شُكْرًا كَتِير.",
+          "transliteration": "shukran katheer.",
+          "english": "Thank you very much."
+        },
+        {
+          "speaker": "Fatima",
+          "arabic": "عَفْوًا.",
+          "transliteration": "3afwan.",
+          "english": "You're welcome."
+        },
+        {
+          "speaker": "Mohammed",
+          "arabic": "لَوْ سَمَحْتِي، وَيْنْ الْحَمَّام؟",
+          "transliteration": "law samahti, ween il-hammam?",
+          "english": "Excuse me, where is the bathroom?"
+        },
+        {
+          "speaker": "Fatima",
+          "arabic": "مِنْ هُنَا، عَلَى يِمِينْك.",
+          "transliteration": "min huna, 3ala yimink.",
+          "english": "From here, on your right."
+        },
+        {
+          "speaker": "Mohammed",
+          "arabic": "آسِف، مَا فِهِمْتْ.",
+          "transliteration": "aasif, ma fihimt.",
+          "english": "Sorry, I didn't understand."
+        },
+        {
+          "speaker": "Fatima",
+          "arabic": "عَلَى يِمِينْك، بَعْدْ الْبَاب.",
+          "transliteration": "3ala yimink, ba3d il-baab.",
+          "english": "On your right, after the door."
+        },
+        {
+          "speaker": "Mohammed",
+          "arabic": "آه، فِهِمْتْ. شُكْرًا.",
+          "transliteration": "aah, fihimt. shukran.",
+          "english": "Ah, I understand. Thank you."
+        },
+        {
+          "speaker": "Fatima",
+          "arabic": "تِمَام.",
+          "transliteration": "tamam.",
+          "english": "No problem."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "تِقْدَرْ تِسَاعِدْنِي؟",
+            "transliteration": "tigdar tisaa3idni?",
+            "english": "Can you help me? (to a man)"
+          },
+          "response": {
+            "arabic": "إِي، طَبْعًا.",
+            "transliteration": "ee, taba3an.",
+            "english": "Yes, of course."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَبْغَى مَايْ.",
+            "transliteration": "abgha may.",
+            "english": "I'd like some water."
+          },
+          "response": {
+            "arabic": "طَيِّب، مَا فِيهِ مِشْكِلَة.",
+            "transliteration": "tayyib, ma fih mishkila.",
+            "english": "Okay, no problem."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شُكْرًا كَتِير.",
+            "transliteration": "shukran katheer.",
+            "english": "Thank you very much."
+          },
+          "response": {
+            "arabic": "عَفْوًا.",
+            "transliteration": "3afwan.",
+            "english": "You're welcome."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "آسِف، مَا فِهِمْتْ.",
+            "transliteration": "aasif, ma fihimt.",
+            "english": "Sorry, I didn't understand."
+          },
+          "response": {
+            "arabic": "تِمَام، لَا بَاس.",
+            "transliteration": "tamam, la baas.",
+            "english": "It's okay."
+          }
+        }
+      ],
+      "culture": "In Hejazi conversation, polite softeners such as \"لَوْ سَمَحْتَ\" are used frequently, even in very ordinary situations. A brief \"شُكْرًا\" followed by \"عَفْوًا\" is completely natural. Hejazi speakers use \"طَيِّب\" (okay) very often to acknowledge a request.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "You need help from a man. Start politely with \"Excuse me, can you help me?\"",
+          "answer": "لَوْ سَمَحْتَ، تِقْدَرْ تِسَاعِدْنِي؟",
+          "accepted": [
+            "لَوْ سَمَحْتَ، تِقْدَرْ تِسَاعِدْنِي؟",
+            "لو سمحت، تقدر تساعدني؟"
+          ],
+          "too_formal": {
+            "item": "هَلْ يُمْكِنُك مُسَاعَدَتِي مِنْ فَضْلِك؟",
+            "feedback": "This is correct formal Arabic, but everyday Hejazi speech normally uses \"لَوْ سَمَحْتَ\" and \"تِقْدَرْ\"."
+          },
+          "tip": "The spoken pattern is \"لَوْ سَمَحْتَ + تِقْدَرْ...؟\" when addressing a man."
+        },
+        {
+          "id": "unit-01.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Thank you very much.\"",
+          "answer": "شُكْرًا كَتِير",
+          "accepted": [
+            "شُكْرًا كَتِير",
+            "شكرا كثير"
+          ],
+          "too_formal": {
+            "item": "أَشْكُرُك جَزِيلَ الشُّكْرِ",
+            "feedback": "This is formal written Arabic. \"شُكْرًا كَتِير\" is the natural conversational phrase."
+          },
+          "tip": "\"كَتِير\" can intensify thanks, praise, and many other everyday expressions."
+        },
+        {
+          "id": "unit-01.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ سَمَحْتِي، وَيْنْ الْحَمَّام؟\"",
+          "answer": "لَوْ",
+          "accepted": [
+            "لَوْ",
+            "لو"
+          ],
+          "too_formal": {
+            "item": "بَعْدَ إِذْنِك، أَيْنَ دَوْرَةُ الْمِيَاه؟",
+            "feedback": "That wording is much more formal and uses a more formal term for bathroom."
+          },
+          "tip": "\"لَوْ سَمَحْتَ\" is a standard polite opener before a request."
+        },
+        {
+          "id": "unit-01.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which phrase is a natural Hejazi way to say \"You're welcome\"?",
+          "options": [
+            "عَفْوًا",
+            "مَرْحَبَا",
+            "آسِف",
+            "تِمَام"
+          ],
+          "answer": "عَفْوًا",
+          "accepted": [
+            "عَفْوًا",
+            "عفوا"
+          ],
+          "too_formal": {
+            "item": "لَا شُكْرَ عَلَى وَاجِب",
+            "feedback": "This is understandable, but it is more formulaic and formal than the simple everyday \"عَفْوًا\"."
+          },
+          "tip": "\"عَفْوًا\" works very naturally as the reply to \"شُكْرًا\"."
+        },
+        {
+          "id": "unit-01.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "Someone says \"شُكْرًا\" to you. Reply naturally.",
+          "answer": "عَفْوًا",
+          "accepted": [
+            "عَفْوًا",
+            "تِمَام"
+          ],
+          "too_formal": {
+            "item": "عَلَى الرَّحْبِ وَالسَّعَة",
+            "feedback": "This is polite but noticeably more formal and ceremonial than the everyday replies."
+          },
+          "tip": "\"تِمَام\" is also used conversationally to mean no problem."
+        },
+        {
+          "id": "unit-01.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want some water.\"",
+          "answer": "أَبْغَى مَايْ",
+          "accepted": [
+            "أَبْغَى مَايْ",
+            "أبغى ماي",
+            "أَبْغَى مَايْ شَوَيْ"
+          ],
+          "too_formal": {
+            "item": "أُرِيدُ بَعْضَ الْمَاء",
+            "feedback": "This is formal Arabic. Hejazi speech normally uses \"أَبْغَى\" for \"I want\"."
+          },
+          "tip": "\"أَبْغَى\" is one of the core spoken patterns for wants and requests in Hejazi."
+        },
+        {
+          "id": "unit-01.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"Sorry\" when the speaker is a man?",
+          "options": [
+            "آسِف",
+            "آسِفَة",
+            "شُكْرًا",
+            "عَفْوًا"
+          ],
+          "answer": "آسِف",
+          "accepted": [
+            "آسِف",
+            "اسف"
+          ],
+          "too_formal": {
+            "item": "أَعْتَذِرُ",
+            "feedback": "This is correct, but it is more formal than the very common spoken \"آسِف\"."
+          },
+          "tip": "The ending changes with the speaker's gender: \"آسِف\" for a man, \"آسِفَة\" for a woman."
+        },
+        {
+          "id": "unit-01.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Sorry, I didn't understand.\"",
+          "answer": "آسِف، مَا فِهِمْتْ",
+          "accepted": [
+            "آسِف، مَا فِهِمْتْ",
+            "اسف، ما فهمت"
+          ],
+          "too_formal": {
+            "item": "أَعْتَذِرُ، لَمْ أَفْهَمْ",
+            "feedback": "That is formal Arabic. The spoken negative uses \"مَا\" here."
+          },
+          "tip": "In this kind of everyday past-tense statement, \"مَا فِهِمْتْ\" is the natural colloquial form."
+        },
+        {
+          "id": "unit-01.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in a natural order: \"تِسَاعِدْنِي / تِقْدَرْ / لَوْ سَمَحْتَ\".",
+          "answer": "لَوْ سَمَحْتَ، تِقْدَرْ تِسَاعِدْنِي؟",
+          "accepted": [
+            "لَوْ سَمَحْتَ، تِقْدَرْ تِسَاعِدْنِي؟",
+            "لو سمحت تقدر تساعدني؟"
+          ],
+          "too_formal": {
+            "item": "هَلْ تَسْتَطِيعُ مُسَاعَدَتِي، مِنْ فَضْلِك؟",
+            "feedback": "This is formal Arabic rather than everyday Hejazi phrasing."
+          },
+          "tip": "Put the polite opener first, then the spoken ability pattern \"تِقْدَرْ + verb\"."
+        },
+        {
+          "id": "unit-01.lesson-02.reply.03",
+          "type": "reply",
+          "prompt": "A woman asks you politely for help and says \"لَوْ سَمَحْتِي، تِقْدَرِي تِسَاعِدِينِي؟\" Reply positively.",
+          "answer": "إِي، طَبْعًا",
+          "accepted": [
+            "إِي، طَبْعًا",
+            "إي، طبعا",
+            "إِي"
+          ],
+          "too_formal": {
+            "item": "بِكُلِّ سُرُور، يَسُرُّنِي ذَلِك",
+            "feedback": "This is warmer in a formal or service context, but it is much more elaborate than necessary in casual conversation."
+          },
+          "tip": "\"إِي، طَبْعًا\" is an easy, friendly yes."
+        },
+        {
+          "id": "unit-01.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the reply: \"شُكْرًا.\" — \"_____ .\"",
+          "answer": "عَفْوًا",
+          "accepted": [
+            "عَفْوًا",
+            "عفوا",
+            "تِمَام"
+          ],
+          "too_formal": {
+            "item": "لَا شُكْرَ عَلَى وَاجِب",
+            "feedback": "It is acceptable Arabic, but it is more formal and less direct than the everyday reply."
+          },
+          "tip": "Keep the reply short; native conversation often does."
+        },
+        {
+          "id": "unit-01.lesson-02.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"It's okay / Don't worry.\"",
+          "answer": "تِمَام، لَا بَاس",
+          "accepted": [
+            "تِمَام، لَا بَاس",
+            "تمام لا باس",
+            "تِمَام"
+          ],
+          "too_formal": {
+            "item": "لَا بَأْسَ",
+            "feedback": "This is correct but sounds more formal than the common spoken \"تِمَام\"."
+          },
+          "tip": "\"تِمَام\" can soften a small apology, reassure someone, or excuse a minor inconvenience."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "one",
+          "arabic": "وَاحِدْ",
+          "transliteration": "wa7id"
+        },
+        {
+          "slot": "two",
+          "arabic": "اثْنَيْنْ",
+          "transliteration": "ithnayn"
+        },
+        {
+          "slot": "three",
+          "arabic": "ثَلَاثَة",
+          "transliteration": "thalaatha"
+        },
+        {
+          "slot": "four",
+          "arabic": "أَرْبَعَة",
+          "transliteration": "arba3a"
+        },
+        {
+          "slot": "five",
+          "arabic": "خَمْسَة",
+          "transliteration": "khamsa"
+        },
+        {
+          "slot": "how-much-how-many",
+          "arabic": "كَمْ؟",
+          "transliteration": "kam?"
+        },
+        {
+          "slot": "what-time-is-it",
+          "arabic": "السَّاعَةْ كَمْ؟",
+          "transliteration": "is-sa3a kam?"
+        },
+        {
+          "slot": "it-s-one-o-clock",
+          "arabic": "السَّاعَةْ وَاحِدَة",
+          "transliteration": "is-sa3a wa7ida"
+        },
+        {
+          "slot": "it-s-two-o-clock",
+          "arabic": "السَّاعَةْ اثْنَيْنْ",
+          "transliteration": "is-sa3a ithnain"
+        },
+        {
+          "slot": "tomorrow",
+          "arabic": "بَكْرَة",
+          "transliteration": "bukra"
+        },
+        {
+          "slot": "today",
+          "arabic": "الْيَوْمْ",
+          "transliteration": "il-yoom"
+        },
+        {
+          "slot": "now",
+          "arabic": "هَسَّع",
+          "transliteration": "hassa3"
+        },
+        {
+          "slot": "we-ll-see-you-tomorrow-to-a-man",
+          "arabic": "نِشُوفَك بَكْرَة",
+          "transliteration": "nishoofak bukra"
+        },
+        {
+          "slot": "i-ll-see-you-tomorrow-to-a-man",
+          "arabic": "أِشُوفَك بَكْرَة",
+          "transliteration": "ashoofak bukra"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hassan",
+          "arabic": "السَّاعَةْ كَمْ؟",
+          "transliteration": "is-sa3a kam?",
+          "english": "What time is it?"
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "السَّاعَةْ اثْنَيْنْ.",
+          "transliteration": "is-sa3a ithnain.",
+          "english": "It's two o'clock."
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "الْيَوْمْ عِنْدَك شُغْلْ؟",
+          "transliteration": "il-yoom 3indak shuGhl?",
+          "english": "Are you working today?"
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "إِي، عِنْدِي شُغْلْ شَوَيْ.",
+          "transliteration": "ee, 3indi shuGhl shaway.",
+          "english": "Yes, I have a little work."
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "وَبَكْرَة؟",
+          "transliteration": "wa bukra?",
+          "english": "And tomorrow?"
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "بَكْرَة فَاضِيَة.",
+          "transliteration": "bukra faadya.",
+          "english": "I'm free tomorrow."
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "تِمَام. نِشُوفَك بَكْرَة؟",
+          "transliteration": "tamam. nishoofak bukra?",
+          "english": "Good. Shall we see you tomorrow?"
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "إِي، طَبْعًا.",
+          "transliteration": "ee, taba3an.",
+          "english": "Yes, definitely."
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "السَّاعَةْ وَاحِدَة مُنَاسِبَة؟",
+          "transliteration": "is-sa3a wa7ida munasiba?",
+          "english": "Is one o'clock suitable?"
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "إِي، وَاحِدَة تِمَام.",
+          "transliteration": "ee, wa7ida tamam.",
+          "english": "Yes, one works."
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "تِمَام، أِشُوفَك بَكْرَة.",
+          "transliteration": "tamam, ashoofak bukra.",
+          "english": "Great, see you tomorrow."
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "تِمَام، مَعَ السَّلَامَة.",
+          "transliteration": "tamam, ma3a is-salama.",
+          "english": "Great, goodbye."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "السَّاعَةْ كَمْ؟",
+            "transliteration": "is-sa3a kam?",
+            "english": "What time is it?"
+          },
+          "response": {
+            "arabic": "السَّاعَةْ اثْنَيْنْ.",
+            "transliteration": "is-sa3a ithnain.",
+            "english": "It's two o'clock."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بَكْرَة فَاضِي؟",
+            "transliteration": "bukra faadi?",
+            "english": "Are you free tomorrow?"
+          },
+          "response": {
+            "arabic": "إِي، فَاضِي.",
+            "transliteration": "ee, faadi.",
+            "english": "Yes, I'm free."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "السَّاعَةْ وَاحِدَة مُنَاسِبَة؟",
+            "transliteration": "is-sa3a wa7ida munasiba?",
+            "english": "Is one o'clock suitable?"
+          },
+          "response": {
+            "arabic": "إِي، مُنَاسِبَة.",
+            "transliteration": "ee, munasiba.",
+            "english": "Yes, it works."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نِشُوفَك بَكْرَة؟",
+            "transliteration": "nishoofak bukra?",
+            "english": "Shall we see you tomorrow?"
+          },
+          "response": {
+            "arabic": "إِي، طَبْعًا.",
+            "transliteration": "ee, taba3an.",
+            "english": "Yes, definitely."
+          }
+        }
+      ],
+      "culture": "In casual Hejazi speech, time is often discussed with simple whole-hour expressions rather than a full formal sentence. \"بَكْرَة\" and \"هَسَّع\" are especially common everyday words for planning and talking about the immediate future and present.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"What time is it?\"",
+          "answer": "السَّاعَةْ كَمْ؟",
+          "accepted": [
+            "السَّاعَةْ كَمْ؟",
+            "الساعة كم؟",
+            "كَمْ السَّاعَة؟"
+          ],
+          "too_formal": {
+            "item": "كَمِ الْسَّاعَةُ الْآنَ؟",
+            "feedback": "This is correct, but the colloquial Hejazi form usually uses \"كَمْ\"."
+          },
+          "tip": "Use \"كَمْ\" for \"how much/how many\" in many everyday questions."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"It's two o'clock.\"",
+          "answer": "السَّاعَةْ اثْنَيْنْ",
+          "accepted": [
+            "السَّاعَةْ اثْنَيْنْ",
+            "الساعة اثنين",
+            "اثْنَيْنْ"
+          ],
+          "too_formal": {
+            "item": "السَّاعَةُ الثَّانِيَة",
+            "feedback": "This is formal Arabic. The spoken Hejazi number is commonly \"اثْنَيْنْ\"."
+          },
+          "tip": "For casual speech, \"اثْنَيْنْ\" is a very common spoken form of two."
+        },
+        {
+          "id": "unit-01.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"tomorrow\"?",
+          "options": [
+            "الْيَوْمْ",
+            "بَكْرَة",
+            "هَسَّع",
+            "أَمْسِ"
+          ],
+          "answer": "بَكْرَة",
+          "accepted": [
+            "بَكْرَة",
+            "بكرة"
+          ],
+          "too_formal": {
+            "item": "غَدًا",
+            "feedback": "This is standard formal Arabic; Hejazi speech uses \"بَكْرَة\"."
+          },
+          "tip": "Remember the three basic time words: الْيَوْمْ, هَسَّع, بَكْرَة."
+        },
+        {
+          "id": "unit-01.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ فَاضِي.\" Meaning: I'm free tomorrow.",
+          "answer": "بَكْرَة",
+          "accepted": [
+            "بَكْرَة",
+            "بكرة"
+          ],
+          "too_formal": {
+            "item": "غَدًا أَنَا مُتَفَرِّغ",
+            "feedback": "This is formal and more explicit than the everyday Hejazi sentence."
+          },
+          "tip": "Colloquial Arabic often lets the context make the pronoun clear."
+        },
+        {
+          "id": "unit-01.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks: \"بَكْرَة فَاضِي؟\" Reply that you are free.",
+          "answer": "إِي، فَاضِي",
+          "accepted": [
+            "إِي، فَاضِي",
+            "إي فاضي",
+            "طَبْعًا، فَاضِي"
+          ],
+          "too_formal": {
+            "item": "نَعَمْ، أَنَا مُتَفَرِّغٌ غَدًا",
+            "feedback": "This is much more formal than a natural spoken answer."
+          },
+          "tip": "A short \"إِي، فَاضِي\" is enough when the question already gives the context."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Today I have a little work.\"",
+          "answer": "الْيَوْمْ عِنْدِي شُغْلْ شَوَيْ",
+          "accepted": [
+            "الْيَوْمْ عِنْدِي شُغْلْ شَوَيْ",
+            "اليوم عندي شغل شوي"
+          ],
+          "too_formal": {
+            "item": "لَدَيَّ بَعْضُ الْعَمَلِ الْيَوْمَ",
+            "feedback": "This sounds like formal Arabic. Hejazi uses \"عِنْدِي\" and \"شُغْلْ\" in casual speech."
+          },
+          "tip": "\"عِنْدِي\" is the everyday way to express possession or something you have to do."
+        },
+        {
+          "id": "unit-01.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural sentence: \"بَكْرَة / أِشُوفَك\".",
+          "answer": "أِشُوفَك بَكْرَة",
+          "accepted": [
+            "أِشُوفَك بَكْرَة",
+            "اشوفك بكرة"
+          ],
+          "too_formal": {
+            "item": "سَوْفَ أَرَاكَ غَدًا",
+            "feedback": "This is formal Arabic. The spoken future here is built with \"أِشُوفَك\"."
+          },
+          "tip": "In colloquial speech, future meaning is often built directly into the verb form."
+        },
+        {
+          "id": "unit-01.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Now\"?",
+          "options": [
+            "بَكْرَة",
+            "الْيَوْمْ",
+            "هَسَّع",
+            "أَمْسِ"
+          ],
+          "answer": "هَسَّع",
+          "accepted": [
+            "هَسَّع",
+            "هسع"
+          ],
+          "too_formal": {
+            "item": "حَالِيًّا",
+            "feedback": "This is understandable, but it is more formal than the everyday Hejazi \"هَسَّع\"."
+          },
+          "tip": "\"هَسَّع\" is one of the most frequent everyday Hejazi time words."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"See you tomorrow.\" when speaking to a man.",
+          "answer": "أِشُوفَك بَكْرَة",
+          "accepted": [
+            "أِشُوفَك بَكْرَة",
+            "اشوفك بكرة",
+            "نِشُوفَك بَكْرَة"
+          ],
+          "too_formal": {
+            "item": "سَوْفَ أَرَاكَ غَدًا",
+            "feedback": "This is formal Arabic. The everyday Hejazi form uses \"أِشُوفَك\" or \"نِشُوفَك\"."
+          },
+          "tip": "\"أِشُوفَك\" is a useful spoken phrase for saying that you will see someone."
+        },
+        {
+          "id": "unit-01.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"السَّاعَةْ _____ مُنَاسِبَة؟\" Meaning: Is one o'clock suitable?",
+          "answer": "وَاحِدَة",
+          "accepted": [
+            "وَاحِدَة",
+            "واحدة"
+          ],
+          "too_formal": {
+            "item": "الْوَاحِدَةُ مُنَاسِبَة؟",
+            "feedback": "This is grammatical, but the short spoken form \"وَاحِدَة\" is more natural in the dialogue style being practiced."
+          },
+          "tip": "When telling the time, the spoken form often drops the formal case ending."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.05",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Three.\"",
+          "answer": "ثَلَاثَة",
+          "accepted": [
+            "ثَلَاثَة",
+            "ثلاثة"
+          ],
+          "too_formal": {
+            "item": "الْعَدَدُ ثَلَاثَة",
+            "feedback": "This adds unnecessary formality. Just the number is enough."
+          },
+          "tip": "Just say the number for counting in everyday conversation."
+        },
+        {
+          "id": "unit-01.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "Someone proposes meeting at one o'clock and asks if that works. Say yes.",
+          "answer": "إِي، وَاحِدَة تِمَام",
+          "accepted": [
+            "إِي، وَاحِدَة تِمَام",
+            "إي واحدة تمام",
+            "تِمَام"
+          ],
+          "too_formal": {
+            "item": "نَعَمْ، السَّاعَةُ الْوَاحِدَةُ مُنَاسِبَةٌ لِي",
+            "feedback": "This is formal and unnecessarily elaborate for a simple scheduling exchange."
+          },
+          "tip": "Use \"مُنَاسِبَة\" or just \"تِمَام\" for a time that works for you."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "where-is-the-market",
+          "arabic": "وَيْنْ السُّوق؟",
+          "transliteration": "ween is-sooq?"
+        },
+        {
+          "slot": "where-is-the-nearest-shop",
+          "arabic": "وَيْنْ أَقْرَبْ مَحَل؟",
+          "transliteration": "ween aqrab ma7al?"
+        },
+        {
+          "slot": "from-here",
+          "arabic": "مِنْ هُنَا",
+          "transliteration": "min huna"
+        },
+        {
+          "slot": "on-the-right",
+          "arabic": "عَلَى يِمِينْك",
+          "transliteration": "3ala yimink"
+        },
+        {
+          "slot": "on-the-left",
+          "arabic": "عَلَى يِسَارْك",
+          "transliteration": "3ala yasarik"
+        },
+        {
+          "slot": "straight-ahead",
+          "arabic": "شُغُلْ مُسْتَقِيم",
+          "transliteration": "shuGhl mustaqeem"
+        },
+        {
+          "slot": "near",
+          "arabic": "قَرِيب",
+          "transliteration": "qareeb"
+        },
+        {
+          "slot": "far",
+          "arabic": "بَعِيد",
+          "transliteration": "ba3eed"
+        },
+        {
+          "slot": "here",
+          "arabic": "هُنَا",
+          "transliteration": "huna"
+        },
+        {
+          "slot": "there",
+          "arabic": "هُنَاكْ",
+          "transliteration": "hunak"
+        },
+        {
+          "slot": "straight-on-directly",
+          "arabic": "عَلَى طُولْ",
+          "transliteration": "3ala tool"
+        },
+        {
+          "slot": "turn-right",
+          "arabic": "لِفْ عَلَى يِمِينْك",
+          "transliteration": "lif 3ala yimink"
+        },
+        {
+          "slot": "turn-left-to-a-woman",
+          "arabic": "لِفِي عَلَى يِسَارِك",
+          "transliteration": "lifi 3ala yasarik"
+        },
+        {
+          "slot": "thanks-may-you-have-strength",
+          "arabic": "يَعْطِيك الْعَافِيَة",
+          "transliteration": "ya3Tik il-3aafya"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Khaled",
+          "arabic": "لَوْ سَمَحْتِي، وَيْنْ السُّوق؟",
+          "transliteration": "law samahti, ween is-sooq?",
+          "english": "Excuse me, where is the market?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "السُّوق قَرِيب.",
+          "transliteration": "is-sooq qareeb.",
+          "english": "The market is near."
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "مِنْ هُنَا؟",
+          "transliteration": "min huna?",
+          "english": "From here?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "إِي، رُوح عَلَى طُولْ.",
+          "transliteration": "ee, roo7 3ala tool.",
+          "english": "Yes, go straight."
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "وَبَعْدَيْنْ؟",
+          "transliteration": "wa ba3dayn?",
+          "english": "And then?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "لِفْ عَلَى يِمِينْك.",
+          "transliteration": "lif 3ala yimink.",
+          "english": "Turn right."
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "عَلَى يِمِينْ بَعْدَيْنْ؟",
+          "transliteration": "3ala yimink ba3dayn?",
+          "english": "Right, then?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "إِي، وَبَعْدَيْنْ بِتِشُوفْ السُّوق عَلَى يِسَارْك.",
+          "transliteration": "ee, wa ba3dayn bitshoofas-sooq 3ala yasarik.",
+          "english": "Yes, then you'll see the market on your left."
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "بَعِيد؟",
+          "transliteration": "ba3eed?",
+          "english": "Is it far?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "لَا، قَرِيب كَتِير.",
+          "transliteration": "la, qareeb katheer.",
+          "english": "No, very close."
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "يَعْطِيك الْعَافِيَة، شُكْرًا.",
+          "transliteration": "ya3Tik il-3aafya, shukran.",
+          "english": "Thanks, thank you."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "عَفْوًا.",
+          "transliteration": "3afwan.",
+          "english": "You're welcome."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وَيْنْ السُّوق؟",
+            "transliteration": "ween is-sooq?",
+            "english": "Where is the market?"
+          },
+          "response": {
+            "arabic": "مِنْ هُنَا، عَلَى يِمِينْك.",
+            "transliteration": "min huna, 3ala yimink.",
+            "english": "From here, on your right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بَعِيد؟",
+            "transliteration": "ba3eed?",
+            "english": "Is it far?"
+          },
+          "response": {
+            "arabic": "لَا، قَرِيب كَتِير.",
+            "transliteration": "la, qareeb katheer.",
+            "english": "No, very close."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَبَعْدَيْنْ؟",
+            "transliteration": "wa ba3dayn?",
+            "english": "And then?"
+          },
+          "response": {
+            "arabic": "لِفْ عَلَى يِسَارْك.",
+            "transliteration": "lif 3ala yasarik.",
+            "english": "Turn left."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "يَعْطِيك الْعَافِيَة.",
+            "transliteration": "ya3Tik il-3aafya.",
+            "english": "Thanks."
+          },
+          "response": {
+            "arabic": "عَفْوًا.",
+            "transliteration": "3afwan.",
+            "english": "You're welcome."
+          }
+        }
+      ],
+      "culture": "Giving directions in Hejazi is often conversational and incremental: a person may give one turn, wait for the listener to react, and then add the next step. \"يَعْطِيك الْعَافِيَة\" is a very common warm expression of thanks, especially after someone helps you.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the market?\"",
+          "answer": "وَيْنْ السُّوق؟",
+          "accepted": [
+            "وَيْنْ السُّوق؟",
+            "وين السوق؟"
+          ],
+          "too_formal": {
+            "item": "أَيْنَ السُّوق؟",
+            "feedback": "This is standard Arabic. \"وَيْنْ السُّوق؟\" is the natural colloquial Hejazi form."
+          },
+          "tip": "\"وَيْنْ\" is one of the first location words to learn for Hejazi conversation."
+        },
+        {
+          "id": "unit-01.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which phrase means \"On your right\"?",
+          "options": [
+            "عَلَى يِمِينْك",
+            "عَلَى يِسَارْك",
+            "عَلَى طُولْ",
+            "هُنَاكْ"
+          ],
+          "answer": "عَلَى يِمِينْك",
+          "accepted": [
+            "عَلَى يِمِينْك",
+            "على يمينك"
+          ],
+          "too_formal": {
+            "item": "إِلَى الْجِهَةِ الْيُمْنَى",
+            "feedback": "This is much more formal and explicit than the normal spoken direction."
+          },
+          "tip": "The spoken form is direct: \"عَلَى يِمِينْك\"."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Straight ahead.\"",
+          "answer": "عَلَى طُولْ",
+          "accepted": [
+            "عَلَى طُولْ",
+            "على طول"
+          ],
+          "too_formal": {
+            "item": "إِلَى الْأَمَامِ مُبَاشَرَة",
+            "feedback": "This is formal and sounds like written instructions rather than everyday speech."
+          },
+          "tip": "\"عَلَى طُولْ\" is an extremely useful conversational phrase for going straight."
+        },
+        {
+          "id": "unit-01.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"لِفْ عَلَى _____ يِمِينْك.\" Meaning: Turn right.",
+          "answer": "يِمِينْ",
+          "accepted": [
+            "يِمِينْ",
+            "يمين"
+          ],
+          "too_formal": {
+            "item": "جِهَةِ الْيَمِينِ",
+            "feedback": "This is unnecessarily formal for a simple spoken direction."
+          },
+          "tip": "In speech, \"عَلَى + يِمِينْ\" is common for turning."
+        },
+        {
+          "id": "unit-01.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks whether the market is far. Tell them it is very close.",
+          "answer": "لَا، قَرِيب كَتِير",
+          "accepted": [
+            "لَا، قَرِيب كَتِير",
+            "لا قريب كثير",
+            "قَرِيب"
+          ],
+          "too_formal": {
+            "item": "كَلَّا، إِنَّهُ قَرِيبٌ جِدًّا",
+            "feedback": "This uses formal vocabulary and structure; the everyday reply is much shorter."
+          },
+          "tip": "\"كَتِير\" often follows an adjective to make it stronger: \"قَرِيب كَتِير\"."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Here.\"",
+          "answer": "هُنَا",
+          "accepted": [
+            "هُنَا",
+            "هنا"
+          ],
+          "too_formal": {
+            "item": "فِي هَذَا الْمَكَان",
+            "feedback": "That is much longer than needed. Just \"هُنَا\" works."
+          },
+          "tip": "Learn the pair \"هُنَا\" for here and \"هُنَاكْ\" for there."
+        },
+        {
+          "id": "unit-01.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"there\"?",
+          "options": [
+            "هُنَا",
+            "هُنَاكْ",
+            "هَسَّع",
+            "بَكْرَة"
+          ],
+          "answer": "هُنَاكْ",
+          "accepted": [
+            "هُنَاكْ",
+            "هناك"
+          ],
+          "too_formal": {
+            "item": "فِي ذَلِكَ الْمَكَانِ",
+            "feedback": "This is formal; conversational Hejazi uses \"هُنَاكْ\"."
+          },
+          "tip": "\"هُنَاكْ\" points to a place away from the speaker."
+        },
+        {
+          "id": "unit-01.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in a natural order: \"السُّوق / وَيْنْ\".",
+          "answer": "وَيْنْ السُّوق؟",
+          "accepted": [
+            "وَيْنْ السُّوق؟",
+            "وين السوق؟"
+          ],
+          "too_formal": {
+            "item": "أَيْنَ السُّوق؟",
+            "feedback": "This is formal Arabic rather than the target colloquial pattern."
+          },
+          "tip": "A location question often starts with \"وَيْنْ\"."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"And then?\"",
+          "answer": "وَبَعْدَيْنْ؟",
+          "accepted": [
+            "وَبَعْدَيْنْ؟",
+            "و بعدين؟"
+          ],
+          "too_formal": {
+            "item": "وَمَاذَا بَعْدَ ذَلِك؟",
+            "feedback": "That is formal and much longer than the normal spoken question."
+          },
+          "tip": "\"بَعْدَيْنْ\" is a very high-frequency conversational word meaning \"then/later\"."
+        },
+        {
+          "id": "unit-01.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "Someone thanks you with \"يَعْطِيك الْعَافِيَة\". Give a natural reply.",
+          "answer": "عَفْوًا",
+          "accepted": [
+            "عَفْوًا",
+            "عفوا"
+          ],
+          "too_formal": {
+            "item": "أَشْكُرُك عَلَى لُطْفِك",
+            "feedback": "That is not the usual conversational response to this fixed expression."
+          },
+          "tip": "Match the response with the same expression or a simple \"عَفْوًا\"."
+        },
+        {
+          "id": "unit-01.lesson-04.choose.03",
+          "type": "choose",
+          "prompt": "Which phrase means \"Turn left\" when speaking to a woman?",
+          "options": [
+            "لِفْ عَلَى يِمِينْك",
+            "لِفِي عَلَى يِسَارِك",
+            "لِفْ عَلَى يِسَارْك",
+            "رُوح عَلَى طُولْ"
+          ],
+          "answer": "لِفِي عَلَى يِسَارِك",
+          "accepted": [
+            "لِفِي عَلَى يِسَارِك",
+            "لفي على يسارك"
+          ],
+          "too_formal": {
+            "item": "انْعَطِفِي إِلَى الْيَسَارِ",
+            "feedback": "This is formal Arabic. The everyday spoken imperative is \"لِفِي\"."
+          },
+          "tip": "The masculine imperative is \"لِفْ\"; the feminine form is \"لِفِي\"."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.05",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"The market is near.\"",
+          "answer": "السُّوق قَرِيب",
+          "accepted": [
+            "السُّوق قَرِيب",
+            "السوق قريب",
+            "قَرِيب السُّوق"
+          ],
+          "too_formal": {
+            "item": "السُّوق قَرِيبٌ جِدًّا مِنْ هُنَا",
+            "feedback": "The longer sentence is grammatical, but unnecessary when simply stating that the market is near."
+          },
+          "tip": "Simple adjective sentences can be very short in Hejazi Arabic."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Your First Hejazi Conversation",
+    "instructions": "Write and say a short Hejazi conversation that lasts at least 10 lines. It must include a greeting, asking and answering names, asking where someone is from, one polite request, one thank-you exchange, one question about a time, and one set of directions. Use at least 8 target phrases from Unit 1 and include both a masculine-address form and a feminine-address form.",
+    "required_elements": [
+      "A natural greeting using مَرْحَبَا, أَهْلَا, or أَهْلًا وَسَهْلًا.",
+      "A name question and a name answer.",
+      "A question using مِنْ وَيْنْ and a place answer.",
+      "A polite request using لَوْ سَمَحْتَ or لَوْ سَمَحْتِي.",
+      "A response using إِي، طَبْعًا or a natural equivalent.",
+      "A thank-you exchange using شُكْرًا and عَفْوًا.",
+      "A time question using السَّاعَةْ كَمْ؟.",
+      "A future plan using بَكْرَة.",
+      "A direction question using وَيْنْ.",
+      "At least two direction phrases such as عَلَى يِمِينْك, عَلَى يِسَارْك, عَلَى طُولْ, هُنَا, or هُنَاكْ."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Salim",
+          "arabic": "مَرْحَبَا، كَيْفَك؟",
+          "transliteration": "marhaba, keefak?",
+          "english": "Hello, how are you?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أَهْلًا وَسَهْلًا، تِمَام الْحَمْدُ لِلَّهِ. إِسْمِك إِيش؟",
+          "transliteration": "ahlan wa sahlan, tamam alhamdu lillah. ismik eesh?",
+          "english": "Welcome, I'm fine, thank God. What's your name?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "أَنَا سَالِم. وَإِنْتِي إِسْمِك إِيش؟",
+          "transliteration": "ana Salim. wa inti ismik eesh?",
+          "english": "I'm Salim. And what's your name?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أَنَا لِينَا. تَشَرَّفْنَا.",
+          "transliteration": "ana Leena. tsharrafna.",
+          "english": "I'm Lina. Nice to meet you."
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "وَأَنَا كَمَان. مِنْ وَيْن إِنْتِي؟",
+          "transliteration": "wa ana kaman. min ween inti?",
+          "english": "Me too. Where are you from?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أَنَا مِنْ مَكَّة، بَس سَاكِنَة فِي جَدَّة.",
+          "transliteration": "ana min Makka, bas sakina fi Jadda.",
+          "english": "I'm from Mecca, but I live in Jeddah."
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "لَوْ سَمَحْتِي، تِقْدَرِي تِسَاعِدِينِي؟",
+          "transliteration": "law samahti, tigdari tisaa3dini?",
+          "english": "Excuse me, can you help me?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "إِي، طَبْعًا. شُ اللِي أَبْغَاه؟",
+          "transliteration": "ee, taba3an. shu illi abghaah?",
+          "english": "Yes, of course. What do you need?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "وَيْنْ السُّوق؟",
+          "transliteration": "ween is-sooq?",
+          "english": "Where is the market?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "مِنْ هُنَا، رُوح عَلَى طُولْ وَبَعْدَيْنْ لِفْ عَلَى يِمِينْك.",
+          "transliteration": "min huna, roo7 3ala tool wa ba3dayn lif 3ala yimink.",
+          "english": "From here, go straight and then turn right."
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "بَعِيد؟",
+          "transliteration": "ba3eed?",
+          "english": "Is it far?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "لَا، قَرِيب كَتِير. السَّاعَةْ كَمْ بِدِّك تَرُوح؟",
+          "transliteration": "la, qareeb katheer. is-sa3a kam biddak troo7?",
+          "english": "No, it's very close. What time do you want to go?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "السَّاعَةْ وَاحِدَة.",
+          "transliteration": "is-sa3a wa7ida.",
+          "english": "At one."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "تِمَام. أِشُوفَك بَكْرَة؟",
+          "transliteration": "tamam. ashoofak bukra?",
+          "english": "Good. See you tomorrow?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "شُكْرًا كَتِير.",
+          "transliteration": "shukran katheer.",
+          "english": "Thank you very much."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "عَفْوًا. يَعْطِيك الْعَافِيَة.",
+          "transliteration": "3afwan. ya3Tik il-3aafya.",
+          "english": "You're welcome. Take care."
+        }
+      ]
+    }
+  }
+}

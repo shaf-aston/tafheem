@@ -1,0 +1,1551 @@
+{
+  "unit": "unit-04",
+  "dialect": "Hejazi Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "what-would-you-like-to-drink-to-a-man",
+          "arabic": "إِيش تِشْرَب؟",
+          "transliteration": "eesh tishrab?",
+          "reply": {
+            "arabic": "قَهْوَة، لَو سَمَحْت",
+            "transliteration": "2ahwa, law samaht",
+            "english": "Coffee, please."
+          }
+        },
+        {
+          "slot": "what-would-you-like-to-drink-to-a-woman",
+          "arabic": "إِيش تِشْرَبِين؟",
+          "transliteration": "eesh tishrabeen?"
+        },
+        {
+          "slot": "coffee-please",
+          "arabic": "قَهْوَة، لَو سَمَحْت",
+          "transliteration": "2ahwa, law samaht"
+        },
+        {
+          "slot": "tea-please",
+          "arabic": "شَاي، لَو سَمَحْت",
+          "transliteration": "shay, law samaht"
+        },
+        {
+          "slot": "medium-sweet-coffee",
+          "arabic": "قَهْوَة سُكِّر وَسِيط",
+          "transliteration": "2ahwa sukkar wa wasi6"
+        },
+        {
+          "slot": "coffee-with-no-sugar",
+          "arabic": "قَهْوَة بِدُون سُكِّر",
+          "transliteration": "2ahwa bidoon sukkar"
+        },
+        {
+          "slot": "sweet-coffee",
+          "arabic": "قَهْوَة حِلْوَة",
+          "transliteration": "2ahwa 7ilwa"
+        },
+        {
+          "slot": "a-big-cup-of-coffee",
+          "arabic": "فِنْجَان قَهْوَة كْبِير",
+          "transliteration": "finjaan 2ahwa kbeer"
+        },
+        {
+          "slot": "i-want-mint-tea",
+          "arabic": "أَبِي شَاي بِالْنَعْنَاع",
+          "transliteration": "abi shay bil na3naa3"
+        },
+        {
+          "slot": "is-there-sugar",
+          "arabic": "فِي سُكِّر؟",
+          "transliteration": "fi sukkar?",
+          "reply": {
+            "arabic": "أَيْوَه، دَحِين أَجِيبُه لَك",
+            "transliteration": "aywah, da7een ajeebuh lak",
+            "english": "Yes, I'll bring it now."
+          }
+        },
+        {
+          "slot": "i-like-my-coffee-bitter",
+          "arabic": "أَحِبّ الْقَهْوَة مُرّة",
+          "transliteration": "a7ibb l2ahwa murra"
+        },
+        {
+          "slot": "no-sugar-at-all",
+          "arabic": "بِدُون سُكِّر خَالِص",
+          "transliteration": "bidoon sukkar khales"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "فاطمة",
+          "arabic": "أَهْلًا وَسَهْلًا، إِيش تِشْرَب؟",
+          "transliteration": "ahlan wa sahlan, eesh tishrab?",
+          "english": "Welcome, what would you like to drink?"
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "أَهْلًا، عِنْدِك قَهْوَة؟",
+          "transliteration": "ahlan, 3indak 2ahwa?",
+          "english": "Hi, do you have coffee?"
+        },
+        {
+          "speaker": "فاطمة",
+          "arabic": "أَيْوَه، تِبِيهَا إِيش؟ حِلْوَة وَلّا مُرّة؟",
+          "transliteration": "aywah, tibeha eesh? 7ilwa walla murra?",
+          "english": "Yes, how do you want it? Sweet or bitter?"
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "سُكِّر وَسِيط، لَو سَمَحْتِ",
+          "transliteration": "sukkar wa wasi6, law samahti",
+          "english": "Medium-sweet, please."
+        },
+        {
+          "speaker": "فاطمة",
+          "arabic": "تِمَام، دَحِين تِجِي",
+          "transliteration": "tamam, da7een tiji",
+          "english": "Okay, it will come right now."
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "فِي سُكِّر عَ الطَّاوْلَة؟",
+          "transliteration": "fi sukkar 3a tta2awla?",
+          "english": "Is there sugar on the table?"
+        },
+        {
+          "speaker": "فاطمة",
+          "arabic": "لَا، دَحِين أَجِيبُه لَك",
+          "transliteration": "la, da7een ajeebuh lak",
+          "english": "No, I'll bring it for you now."
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "يَعْطِيك الْعَافِيَة",
+          "transliteration": "ya36eek l3aafya",
+          "english": "Thank you (lit. may God give you wellness)."
+        },
+        {
+          "speaker": "فاطمة",
+          "arabic": "تَفَضَّل، قَهْوَتِك",
+          "transliteration": "tfaddal, 2ahwatak",
+          "english": "Here you go, your coffee."
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "اللَّهُ يَعْطِيك الْعَافِيَة، كْتِير تِمَام",
+          "transliteration": "allah ya36eek l3aafya, kteer tamam",
+          "english": "Thank you so much, that's perfect."
+        },
+        {
+          "speaker": "فاطمة",
+          "arabic": "صِحّتَيْن",
+          "transliteration": "sa77tayn",
+          "english": "Enjoy (lit. two healths)."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "إِيش تِشْرَب؟",
+            "transliteration": "eesh tishrab?",
+            "english": "What would you like to drink?"
+          },
+          "response": {
+            "arabic": "قَهْوَة سُكِّر وَسِيط، لَو سَمَحْت",
+            "transliteration": "2ahwa sukkar wa wasi6, law samaht",
+            "english": "Coffee with medium sugar, please."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قَهْوَة وَلّا شَاي؟",
+            "transliteration": "2ahwa walla shay?",
+            "english": "Coffee or tea?"
+          },
+          "response": {
+            "arabic": "شَاي بِالنَّعْنَاع، إِذَا فِي",
+            "transliteration": "shay bil na3naa3, iza fi",
+            "english": "Mint tea, if there is any."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تِبِيهَا حِلْوَة وَلّا مُرّة؟",
+            "transliteration": "tibeha 7ilwa walla murra?",
+            "english": "Do you want it sweet or bitter?"
+          },
+          "response": {
+            "arabic": "مُرّة، مَا أَحِبّ السُّكِّر",
+            "transliteration": "murra, ma a7ibb issukkar",
+            "english": "Bitter, I don't like sugar."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِي سُكِّر؟",
+            "transliteration": "fi sukkar?",
+            "english": "Is there sugar?"
+          },
+          "response": {
+            "arabic": "أَيْوَه، دَحِين أَجِيبُه لَك",
+            "transliteration": "aywah, da7een ajeebuh lak",
+            "english": "Yes, I'll bring it now."
+          }
+        }
+      ],
+      "culture": "In Hejazi homes and cafes, coffee is offered as the first gesture of hospitality. Ordering it \"sukkar wa wasi6\" (medium-sweet) is the default, while asking for it \"7ilwa\" (sweet) or \"murra\" (bitter) is equally common. The Arabic word for coffee, \"2ahwa,\" comes from the Hejaz's historic role as a crossroads for coffee trade.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "إِيش تِشْرَب؟ (eesh tishrab?)",
+          "answer": "قَهْوَة، لَو سَمَحْت",
+          "accepted": [
+            "قَهْوَة، لَو سَمَحْت",
+            "2ahwa, law samaht",
+            "قهوة لو سمحت",
+            "شَاي، لَو سَمَحْت"
+          ],
+          "too_formal": {
+            "item": "أَرْغَب فِي فِنْجَان مِن الْقَهْوَة",
+            "feedback": "That's Modern Standard Arabic; nobody orders like that at a cafe table in the Hejaz."
+          },
+          "tip": "law samaht is the everyday word for please in Hejazi."
+        },
+        {
+          "id": "unit-04.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "فِي سُكِّر؟ (fi sukkar?)",
+          "answer": "أَيْوَه، دَحِين أَجِيبُه لَك",
+          "accepted": [
+            "أَيْوَه، دَحِين أَجِيبُه لَك",
+            "aywah, da7een ajeebuh lak",
+            "ايوه دحين اجيبه لك",
+            "أَيْوَه أَجِيبُه لَك دَحِين"
+          ],
+          "too_formal": {
+            "item": "نَعَمْ، سَأَحْضِرُهُ لَك الآن",
+            "feedback": "Correct MSA, but too stiff for a quick answer across a cafe table."
+          },
+          "tip": "da7een means 'right now' in Hejazi, not il7een (Gulf) or halla2 (Levantine)."
+        },
+        {
+          "id": "unit-04.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "أَبِي شَاي ___ النَّعْنَاع (abi shay ___ na3naa3)",
+          "answer": "بِالْ",
+          "accepted": [
+            "بِالْ",
+            "bil"
+          ],
+          "too_formal": {
+            "item": "مَعَ",
+            "feedback": "That's the MSA preposition; Hejazi fuses bi + al into bil."
+          },
+          "tip": "bil- attaches directly to the noun, no separate word for 'with' in Hejazi."
+        },
+        {
+          "id": "unit-04.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "قَهْوَة ___ (2ahwa ___), meaning medium-sweet coffee",
+          "answer": "سُكِّر وَسِيط",
+          "accepted": [
+            "سُكِّر وَسِيط",
+            "sukkar wa wasi6",
+            "سكر وسيط"
+          ],
+          "too_formal": {
+            "item": "مُتَوَسِّطَة الْحَلاوَة",
+            "feedback": "Bookish description; sukkar wa wasi6 is what everyone actually orders with."
+          },
+          "tip": "wasi6 means 'middle'; this is the standard Hejazi way to order medium-sweet coffee."
+        },
+        {
+          "id": "unit-04.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Coffee with no sugar at all.",
+          "answer": "قَهْوَة بِدُون سُكِّر خَالِص",
+          "accepted": [
+            "قَهْوَة بِدُون سُكِّر خَالِص",
+            "2ahwa bidoon sukkar khales",
+            "قهوة بدون سكر خالص"
+          ],
+          "too_formal": {
+            "item": "قَهْوَة بِدُون أَيّ سُكِّر عَلَى الإِطْلاق",
+            "feedback": "Too formal for everyday speech; khales at the end means 'at all' and strengthens the negation simply."
+          },
+          "tip": "khales means 'complete/at all' and strengthens the negation."
+        },
+        {
+          "id": "unit-04.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "I want mint tea.",
+          "answer": "أَبِي شَاي بِالْنَعْنَاع",
+          "accepted": [
+            "أَبِي شَاي بِالْنَعْنَاع",
+            "abi shay bil na3naa3",
+            "ابي شاي بالنعناع"
+          ],
+          "too_formal": {
+            "item": "أُرِيدُ شَايَ النَّعْنَاع",
+            "feedback": "MSA; in Hejazi you say abi (I want)."
+          },
+          "tip": "abi means 'I want' in Hejazi; it's more direct than formal MSA."
+        },
+        {
+          "id": "unit-04.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which one means 'bitter coffee'?",
+          "answer": "قَهْوَة مُرّة",
+          "options": [
+            "قَهْوَة مُرّة",
+            "قَهْوَة حِلْوَة",
+            "قَهْوَة سُكِّر وَسِيط",
+            "فِنْجَان قَهْوَة كْبِير"
+          ],
+          "accepted": [
+            "قَهْوَة مُرّة",
+            "2ahwa murra",
+            "قهوة مرة"
+          ],
+          "too_formal": {
+            "item": "قَهْوَة ذَات طَعْم مِرّ",
+            "feedback": "Bookish; murra alone does the job at a cafe."
+          },
+          "tip": "murra means 'bitter'. Hejazi coffee traditions include both sweet and bitter styles."
+        },
+        {
+          "id": "unit-04.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which one asks a woman 'What do you want to drink?'",
+          "answer": "إِيش تِشْرَبِين؟",
+          "options": [
+            "إِيش تِشْرَب؟",
+            "إِيش تِشْرَبِين؟",
+            "فِي سُكِّر؟",
+            "أَبِي شَاي بِالْنَعْنَاع"
+          ],
+          "accepted": [
+            "إِيش تِشْرَبِين؟",
+            "eesh tishrabeen",
+            "إيش تشربين"
+          ],
+          "too_formal": {
+            "item": "مَاذَا تُرِيدِين أَن تَشْرَبِي؟",
+            "feedback": "MSA; in Hejazi you say eesh tishrabeen with the -een ending for a woman."
+          },
+          "tip": "Man: tishrab. Woman: tishrabeen."
+        },
+        {
+          "id": "unit-04.lesson-01.choose.03",
+          "type": "choose",
+          "prompt": "Which one means 'right now'?",
+          "answer": "دَحِين",
+          "options": [
+            "هَلّق",
+            "دَحِين",
+            "الآن",
+            "بَعْدَيْن"
+          ],
+          "accepted": [
+            "دَحِين",
+            "da7een",
+            "دحين"
+          ],
+          "too_formal": {
+            "item": "الآن",
+            "feedback": "That's MSA; Hejazi says da7een for 'right now'."
+          },
+          "tip": "da7een is unique to Hejazi and means 'right now, immediately'."
+        },
+        {
+          "id": "unit-04.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these in order: تِشْرَب / إِيش",
+          "answer": "إِيش تِشْرَب؟",
+          "accepted": [
+            "إِيش تِشْرَب؟",
+            "إِيش تِشْرَب",
+            "eesh tishrab"
+          ],
+          "too_formal": {
+            "item": "مَاذَا تَشْرَب؟",
+            "feedback": "That's MSA; eesh is the Hejazi question word."
+          },
+          "tip": "eesh is 'what' in Hejazi; always comes before the verb."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "where-s-the-menu",
+          "arabic": "وَيْن الْقَائِمَة؟",
+          "transliteration": "ween l2a2ima?",
+          "reply": {
+            "arabic": "تَفَضَّل، هَنِي",
+            "transliteration": "tfaddal, hanni",
+            "english": "Here you go."
+          }
+        },
+        {
+          "slot": "do-you-have-an-english-menu",
+          "arabic": "عِنْدِك قَائِمَة بِالْإِنْجِلِيزِي؟",
+          "transliteration": "3indak 2a2ima bil ingileezy?"
+        },
+        {
+          "slot": "what-do-you-have-today",
+          "arabic": "إِيش الْمَوْجُود الْيَوْم؟",
+          "transliteration": "eesh l mawjood l yawm?"
+        },
+        {
+          "slot": "what-appetizers-do-you-have",
+          "arabic": "إِيش الْمَزَّة الْمَوْجُودَة؟",
+          "transliteration": "eesh l mozza l mawjooda?"
+        },
+        {
+          "slot": "is-there-vegetarian-food",
+          "arabic": "فِي أَكْلَة بِدُون لَحْمَة؟",
+          "transliteration": "fi 2akla bidoon la7ma?"
+        },
+        {
+          "slot": "what-s-in-this-dish",
+          "arabic": "إِيش الَّلِي فِي الأَكْلَة هَذِي؟",
+          "transliteration": "eesh lli fi l2akla ha-thee?"
+        },
+        {
+          "slot": "is-it-spicy-or-not-spicy",
+          "arabic": "فِيهَا حَرّ وَلّا لَا؟",
+          "transliteration": "fi-ha 7arr walla la?"
+        },
+        {
+          "slot": "what-do-you-recommend-i-get",
+          "arabic": "إِيش الَّلِي تِنْصَح نِي فِيهِ؟",
+          "transliteration": "eesh lli tensa7 ni fi-h?"
+        },
+        {
+          "slot": "how-much-does-this-cost",
+          "arabic": "كَمْ سِعْرِ هَذَا؟",
+          "transliteration": "kam si3ir haza?"
+        },
+        {
+          "slot": "is-there-a-dish-of-the-day",
+          "arabic": "فِي طَبَخَة الْيَوْم؟",
+          "transliteration": "fi 6aba5a l yawm?"
+        },
+        {
+          "slot": "i-want-something-light",
+          "arabic": "أَبِي شَيْ خَفِيف",
+          "transliteration": "abi shay khafif"
+        },
+        {
+          "slot": "do-you-have-desserts",
+          "arabic": "عِنْدِك حَلَوِيّات؟",
+          "transliteration": "3indak 7alawiyyat?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "الْويتِر",
+          "arabic": "أَهْلًا، جَاهِزِين تِطْلِبُون؟",
+          "transliteration": "ahlan, ja-hzeen titluboon?",
+          "english": "Hi, are you ready to order?"
+        },
+        {
+          "speaker": "سَارَة",
+          "arabic": "نِعَم، عِنْدِك الْمَنيُو؟",
+          "transliteration": "ni3am, 3indak l manyoo?",
+          "english": "Yes, do you have the menu?"
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "تَفَضَّلِي، هَنِي",
+          "transliteration": "tfaddali, hanni",
+          "english": "Here you go."
+        },
+        {
+          "speaker": "سَارَة",
+          "arabic": "تِمَام... إِيش الْمَوْجُود الْيَوْم؟",
+          "transliteration": "tamam... eesh l mawjood l yawm?",
+          "english": "Okay... what do you have today?"
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "عِنْدِنَا مَنْدِي وَكَبْسَة وَشَاوِرْمَة",
+          "transliteration": "3indna mandi wa kabsa wa shawarma",
+          "english": "We have mandi, kabsa, and shawarma."
+        },
+        {
+          "speaker": "سَارَة",
+          "arabic": "الْمَنْدِي، فِيهَا حَرّ؟",
+          "transliteration": "l mandi, fi-ha 7arr?",
+          "english": "The mandi—is it spicy?"
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "شُوَيّة، إِذَا بِدِّك بِدُون حَرّ، نِقِيد الْفِلْفِل",
+          "transliteration": "shuwayyah, iza biddk bidoon 7arr, niqad l filfil",
+          "english": "A little; if you want it without spice, we can leave out the peppers."
+        },
+        {
+          "speaker": "سَارَة",
+          "arabic": "تِمَام، مَنْدِي، بِدُون حَرّ",
+          "transliteration": "tamam, mandi, bidoon 7arr",
+          "english": "Okay, mandi without spice."
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "تِمَام، الْمِيَّة تِشْرَبِين إِيش؟",
+          "transliteration": "tamam, l miyyah tishrabeen eesh?",
+          "english": "Okay, what will you drink?"
+        },
+        {
+          "speaker": "سَارَة",
+          "arabic": "شَاي، لَو سَمَحْتِ",
+          "transliteration": "shay, law samahti",
+          "english": "Tea, please."
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "تِمَام، تِمَام",
+          "transliteration": "tamam, tamam",
+          "english": "Okay."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وَيْن الْقَائِمَة؟",
+            "transliteration": "ween l2a2ima?",
+            "english": "Where is the menu?"
+          },
+          "response": {
+            "arabic": "تَفَضَّل، هَنِي",
+            "transliteration": "tfaddal, hanni",
+            "english": "Here you go."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إِيش الْمَوْجُود الْيَوْم؟",
+            "transliteration": "eesh l mawjood l yawm?",
+            "english": "What do you have today?"
+          },
+          "response": {
+            "arabic": "عِنْدِنَا مَنْدِي وَكَبْسَة",
+            "transliteration": "3indna mandi wa kabsa",
+            "english": "We have mandi and kabsa."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إِيش الَّلِي تِنْصَح نِي فِيهِ؟",
+            "transliteration": "eesh lli tensa7 ni fi-h?",
+            "english": "What do you recommend?"
+          },
+          "response": {
+            "arabic": "الْكَبْسَة، تِمَام خَاصّة",
+            "transliteration": "l kabsa, tamam khassa",
+            "english": "The kabsa is really good."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِي حَلَوِيّات؟",
+            "transliteration": "fi 7alawiyyat?",
+            "english": "Do you have desserts?"
+          },
+          "response": {
+            "arabic": "أَيْوَه، عِنْدِنَا أُمّ عَلِي وَقَطَايِف",
+            "transliteration": "aywah, 3indna umm 3ali wa gata2if",
+            "english": "Yes, we have umm ali and qatayef."
+          }
+        }
+      ],
+      "culture": "Hejazi restaurants feature dishes influenced by trade routes and migration: mandi (slow-cooked rice and meat), kabsa (spiced rice with meat), and shawarma (wrapped grilled meat). Many cafes and restaurants serve both traditional and modern Hejazi dishes. It's common to ask for spice adjustments (7arr) to suit your taste.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "وَيْن الْقَائِمَة؟ (ween l2a2ima?)",
+          "answer": "تَفَضَّل، هَنِي",
+          "accepted": [
+            "تَفَضَّل، هَنِي",
+            "tfaddal, hanni",
+            "تفضل هني",
+            "هَنِي الْقَائِمَة"
+          ],
+          "too_formal": {
+            "item": "ها هنَّ الْقَائِمَة",
+            "feedback": "Too formal; hanni is the everyday Hejazi word."
+          },
+          "tip": "hanni means 'here' in Hejazi; it's used when giving something to someone."
+        },
+        {
+          "id": "unit-04.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "إِيش الَّلِي فِي الْأَكْلَة ___ ؟",
+          "answer": "هَذِي",
+          "accepted": [
+            "هَذِي",
+            "ha-thee"
+          ],
+          "too_formal": {
+            "item": "هَذِهِ",
+            "feedback": "That's MSA; Hejazi says ha-thee for 'this' (feminine)."
+          },
+          "tip": "ha-thee is the feminine demonstrative in Hejazi."
+        },
+        {
+          "id": "unit-04.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "فِيهَا حَرّ وَلّا ___؟",
+          "answer": "لَا",
+          "accepted": [
+            "لَا",
+            "la"
+          ],
+          "too_formal": {
+            "item": "لَا حَرّ",
+            "feedback": "Just laa is cleaner and more colloquial."
+          },
+          "tip": "In Hejazi yes-or-no questions, walla la (or not?) is the standard way."
+        },
+        {
+          "id": "unit-04.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Is there vegetarian food?",
+          "answer": "فِي أَكْلَة بِدُون لَحْمَة؟",
+          "accepted": [
+            "فِي أَكْلَة بِدُون لَحْمَة؟",
+            "فِي أَكْلَة بِدُون لَحْمَة",
+            "fi 2akla bidoon la7ma",
+            "في أكلة بدون لحمة"
+          ],
+          "too_formal": {
+            "item": "هَل يُوجَد طَعَام نَبَاتِي؟",
+            "feedback": "MSA; in Hejazi you say fi 2akla (is there food) bidoon la7ma (without meat)."
+          },
+          "tip": "la7ma means 'meat'; bidoon means 'without'."
+        },
+        {
+          "id": "unit-04.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "What do you recommend?",
+          "answer": "إِيش الَّلِي تِنْصَح نِي فِيهِ؟",
+          "accepted": [
+            "إِيش الَّلِي تِنْصَح نِي فِيهِ؟",
+            "إِيش الَّلِي تِنْصَح نِي فِيهِ",
+            "eesh lli tensa7 ni fi-h",
+            "إيش اللي تنصح نيفيه"
+          ],
+          "too_formal": {
+            "item": "مَاذَا تُنْصِحُنِي بِهِ؟",
+            "feedback": "MSA; Hejazi uses eesh lli (what that)."
+          },
+          "tip": "lli is a relative pronoun in Hejazi; eesh asks 'what'."
+        },
+        {
+          "id": "unit-04.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which means 'Where is the menu?'",
+          "answer": "وَيْن الْقَائِمَة؟",
+          "options": [
+            "وَيْن الْقَائِمَة؟",
+            "إِيش الْقَائِمَة؟",
+            "فِي الْقَائِمَة؟",
+            "كَمْ الْقَائِمَة؟"
+          ],
+          "accepted": [
+            "وَيْن الْقَائِمَة؟",
+            "ween l2a2ima"
+          ],
+          "too_formal": {
+            "item": "أَيْنَ الْقَائِمَة؟",
+            "feedback": "That's MSA; ween is the Hejazi form."
+          },
+          "tip": "ween (where) is key in Hejazi; it replaces MSA ayn."
+        },
+        {
+          "id": "unit-04.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which one means 'a little spicy'?",
+          "answer": "شُوَيّة حَرّ",
+          "options": [
+            "كْتِير حَرّ",
+            "شُوَيّة حَرّ",
+            "بِدُون حَرّ",
+            "مِرّة حَرّ"
+          ],
+          "accepted": [
+            "شُوَيّة حَرّ",
+            "shuwayyah 7arr"
+          ],
+          "too_formal": {
+            "item": "قَلِيلًا حَارًّا",
+            "feedback": "That's MSA; shuwayyah is the Hejazi diminutive for 'a little'."
+          },
+          "tip": "shuwayyah means 'a little' (diminutive); 7arr means 'spicy/hot'."
+        },
+        {
+          "id": "unit-04.lesson-02.choose.03",
+          "type": "choose",
+          "prompt": "Which means 'mandi'?",
+          "answer": "أَرْز مَشْوِي مَع لَحْمَة",
+          "options": [
+            "أَرْز مَشْوِي مَع لَحْمَة",
+            "أَرْز بِالدَّهْن وَالتَّوَابِل",
+            "لَحْمَة مَشْوِيّة بِالْجَمْرِ",
+            "خُبْز بِالْعَسَل وَالْجَوْز"
+          ],
+          "accepted": [
+            "أَرْز مَشْوِي مَع لَحْمَة",
+            "مَنْدِي"
+          ],
+          "too_formal": {
+            "item": "معلومة",
+            "feedback": "Mandi is a real dish: slow-cooked meat and rice. It's a Hejazi favorite."
+          },
+          "tip": "Mandi is a traditional Hejazi and Yemeni dish of spiced meat and rice cooked slowly."
+        },
+        {
+          "id": "unit-04.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: الْمَوْجُود / إِيش / الْيَوْم",
+          "answer": "إِيش الْمَوْجُود الْيَوْم؟",
+          "accepted": [
+            "إِيش الْمَوْجُود الْيَوْم؟",
+            "إِيش الْمَوْجُود الْيَوْم",
+            "eesh l mawjood l yawm"
+          ],
+          "too_formal": {
+            "item": "مَاذَا الْمَوْجُود الْيَوْم",
+            "feedback": "eesh is the Hejazi question form, not maaza."
+          },
+          "tip": "eesh always starts the question in Hejazi for 'what'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "are-you-ready-to-order",
+          "arabic": "جَاهِزِين تِطْلِبُون؟",
+          "transliteration": "ja-hzeen titluboon?",
+          "reply": {
+            "arabic": "نِعَم، أَبِي مَنْدِي",
+            "transliteration": "ni3am, abi mandi",
+            "english": "Yes, I want mandi."
+          }
+        },
+        {
+          "slot": "i-ll-have-a-plate-of-hummus-and-fattoush",
+          "arabic": "أَبِي حُمّس وَفَتّوش",
+          "transliteration": "abi hummus wa fattoosh"
+        },
+        {
+          "slot": "i-want-this-and-this",
+          "arabic": "أَبِي هَذَا وَهَذَا",
+          "transliteration": "abi haza wa haza"
+        },
+        {
+          "slot": "please-make-it-quick",
+          "arabic": "لَو سَمَحْتِ، بِسّرْعَة",
+          "transliteration": "law samahti, bi ssor3a"
+        },
+        {
+          "slot": "without-onion-please",
+          "arabic": "بِدُون بَصَل، لَو سَمَحْت",
+          "transliteration": "bidoon basel, law samaht"
+        },
+        {
+          "slot": "extra-bread-please",
+          "arabic": "خُبْز زَيَادَة، لَو سَمَحْت",
+          "transliteration": "khubz ziyada, law samaht"
+        },
+        {
+          "slot": "this-dish-is-for-me-and-this-is-for-her",
+          "arabic": "هَذَا لِي وَهَذَا لَهَا",
+          "transliteration": "haza li wa haza la-ha"
+        },
+        {
+          "slot": "can-i-have-a-glass-of-water",
+          "arabic": "أَقْدِر كُوب مَاي؟",
+          "transliteration": "aqdir koob may?"
+        },
+        {
+          "slot": "thanks-that-s-good-enough",
+          "arabic": "تِمَام، كِفَايَة",
+          "transliteration": "tamam, kifaya"
+        },
+        {
+          "slot": "my-order-hasn-t-arrived-yet",
+          "arabic": "طَلَبِي مَا جَاء بَعْدِين",
+          "transliteration": "6alabi ma ja ba3dayn"
+        },
+        {
+          "slot": "can-you-repeat-the-order",
+          "arabic": "تِكَرِّر الطَّلَب، لَو سَمَحْت؟",
+          "transliteration": "tikarrir l 6alb, law samaht?"
+        },
+        {
+          "slot": "we-want-the-same-order",
+          "arabic": "نِبِي نَفْسِ الطَّلَب",
+          "transliteration": "nibi nafs l 6alb"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "الْويتِر",
+          "arabic": "جَاهِزِين تِطْلِبُون؟",
+          "transliteration": "ja-hzeen titluboon?",
+          "english": "Are you ready to order?"
+        },
+        {
+          "speaker": "عُمَر",
+          "arabic": "نِعَم، أَبِي مَنْدِي",
+          "transliteration": "ni3am, abi mandi",
+          "english": "Yes, I want mandi."
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "وَنِتِك؟",
+          "transliteration": "wa nitik?",
+          "english": "And you?"
+        },
+        {
+          "speaker": "فَاطِمَة",
+          "arabic": "أَنَا أَبِي كَبْسَة",
+          "transliteration": "ana abi kabsa",
+          "english": "I want kabsa."
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "وَالشَّرْب؟",
+          "transliteration": "wa sh sharab?",
+          "english": "And to drink?"
+        },
+        {
+          "speaker": "عُمَر",
+          "arabic": "شَاي، لَو سَمَحْتِ",
+          "transliteration": "shay, law samahti",
+          "english": "Tea, please."
+        },
+        {
+          "speaker": "فَاطِمَة",
+          "arabic": "وَأَنَا شَاي بِالنَّعْنَاع",
+          "transliteration": "wa ana shay bil na3naa3",
+          "english": "And I want mint tea."
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "تِمَام، خُبْز؟",
+          "transliteration": "tamam, khubz?",
+          "english": "Okay, bread?"
+        },
+        {
+          "speaker": "عُمَر",
+          "arabic": "أَيْوَه، زَيَادَة",
+          "transliteration": "aywah, ziyada",
+          "english": "Yes, extra."
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "تِمَام، دَحِين يِجِي",
+          "transliteration": "tamam, da7een yiji",
+          "english": "Okay, it will come right now."
+        },
+        {
+          "speaker": "فَاطِمَة",
+          "arabic": "شُكْرًا",
+          "transliteration": "shukran",
+          "english": "Thank you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "جَاهِزِين تِطْلِبُون؟",
+            "transliteration": "ja-hzeen titluboon?",
+            "english": "Are you ready to order?"
+          },
+          "response": {
+            "arabic": "نِعَم، أَبِي مَنْدِي وَفَتّوش",
+            "transliteration": "ni3am, abi mandi wa fattoosh",
+            "english": "Yes, I want mandi and fattoush."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إِيش الَّلِي تِبِي؟",
+            "transliteration": "eesh lli tibi?",
+            "english": "What do you want?"
+          },
+          "response": {
+            "arabic": "أَبِي كَبْسَة، بِدُون بَصَل",
+            "transliteration": "abi kabsa, bidoon basel",
+            "english": "I want kabsa without onion."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَالشَّرْب؟",
+            "transliteration": "wa sh sharab?",
+            "english": "And to drink?"
+          },
+          "response": {
+            "arabic": "شَاي، وَخُبْز زَيَادَة، لَو سَمَحْتِ",
+            "transliteration": "shay, wa khubz ziyada, law samahti",
+            "english": "Tea and extra bread, please."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَذَا لِي وَهَذَا لِمِين؟",
+            "transliteration": "haza li wa haza li min?",
+            "english": "This is for me and this is for whom?"
+          },
+          "response": {
+            "arabic": "هَذَا لَهَا، وَهَذَا لِي",
+            "transliteration": "haza la-ha, wa haza li",
+            "english": "This is for her and this is for me."
+          }
+        }
+      ],
+      "culture": "In Hejazi restaurants, it's common to order directly by pointing and naming the dish, or asking the waiter for recommendations. Bread (khubz) is always offered and readily available. Requests for modifications (no onion, extra seasoning) are normal and easily accommodated. The meal typically includes tea or coffee after the main course.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "جَاهِزِين تِطْلِبُون؟ (ja-hzeen titluboon?)",
+          "answer": "نِعَم، أَبِي مَنْدِي",
+          "accepted": [
+            "نِعَم، أَبِي مَنْدِي",
+            "ni3am, abi mandi",
+            "نعم ابي ماندي",
+            "أَيْوَه، أَبِي كَبْسَة"
+          ],
+          "too_formal": {
+            "item": "نَعَمْ، أَرْغَب فِي الْمَنْدِي",
+            "feedback": "That's MSA; abi (I want) is much more natural at a restaurant table."
+          },
+          "tip": "abi is the everyday way to order; ni3am is the natural yes."
+        },
+        {
+          "id": "unit-04.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "بِدُون بَصَل، لَو سَمَحْت (bidoon basel, law samaht)",
+          "answer": "تِمَام، بِدُون بَصَل",
+          "accepted": [
+            "تِمَام، بِدُون بَصَل",
+            "tamam, bidoon basel",
+            "تمام بدون بصل",
+            "حَاضِر، بِدُون بَصَل"
+          ],
+          "too_formal": {
+            "item": "سَيْكُون الطَّبْخ بِدُون بَصَل",
+            "feedback": "Too formal; tamam is the quick Hejazi acknowledgment."
+          },
+          "tip": "tamam means 'okay' and is the instant, friendly acknowledgment."
+        },
+        {
+          "id": "unit-04.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "أَبِي ___ بِسّرْعَة",
+          "answer": "الطَّبْخَ",
+          "accepted": [
+            "الطَّبْخَ",
+            "l6abkh"
+          ],
+          "too_formal": {
+            "item": "الطَّهْي",
+            "feedback": "Slightly bookish; tabkh is more colloquial for 'cooking/the dish'."
+          },
+          "tip": "tabkh is the word for cooking/prepared dish in Hejazi."
+        },
+        {
+          "id": "unit-04.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "خُبْز ___ ، لَو سَمَحْت",
+          "answer": "زَيَادَة",
+          "accepted": [
+            "زَيَادَة",
+            "ziyada"
+          ],
+          "too_formal": {
+            "item": "إِضَافِي",
+            "feedback": "MSA; ziyada is the everyday Hejazi word."
+          },
+          "tip": "ziyada means 'extra/additional' in Hejazi."
+        },
+        {
+          "id": "unit-04.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "I want this and that.",
+          "answer": "أَبِي هَذَا وَهَذَا",
+          "accepted": [
+            "أَبِي هَذَا وَهَذَا",
+            "abi haza wa haza",
+            "ابي هذا و هذا"
+          ],
+          "too_formal": {
+            "item": "أُرِيدُ هَذَا وَذَاكَ",
+            "feedback": "MSA; abi is more direct and natural."
+          },
+          "tip": "haza means 'this'; use it twice for 'this and that'."
+        },
+        {
+          "id": "unit-04.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Can I have a glass of water?",
+          "answer": "أَقْدِر كُوب مَاي؟",
+          "accepted": [
+            "أَقْدِر كُوب مَاي؟",
+            "أَقْدِر كُوب مَاي",
+            "aqdir koob may",
+            "اقدر كوب ماي"
+          ],
+          "too_formal": {
+            "item": "هَل يُمْكِنُنِي الحُصُول عَلَى كُوب مِن الْمَاء؟",
+            "feedback": "Overly formal; aqdir (can I?) is the Hejazi way."
+          },
+          "tip": "aqdir is a colloquial way to ask 'can I get' in Hejazi."
+        },
+        {
+          "id": "unit-04.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which means 'without onion'?",
+          "answer": "بِدُون بَصَل",
+          "options": [
+            "مَعَ بَصَل",
+            "بِدُون بَصَل",
+            "كْتِير بَصَل",
+            "شُوَيّة بَصَل"
+          ],
+          "accepted": [
+            "بِدُون بَصَل",
+            "bidoon basel"
+          ],
+          "too_formal": {
+            "item": "فِي الْغِيَاب عَن الْبَصَل",
+            "feedback": "bidoon is the simple, everyday word."
+          },
+          "tip": "bidoon means 'without'; basel is 'onion'."
+        },
+        {
+          "id": "unit-04.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which means 'my order hasn't arrived yet'?",
+          "answer": "طَلَبِي مَا جَاء بَعْدِين",
+          "options": [
+            "طَلَبِي جَاء تِمَام",
+            "طَلَبِي مَا جَاء بَعْدِين",
+            "الطَّلَب خَاصّ",
+            "طَلَبِي كْتِير"
+          ],
+          "accepted": [
+            "طَلَبِي مَا جَاء بَعْدِين",
+            "6alabi ma ja ba3dayn"
+          ],
+          "too_formal": {
+            "item": "لَمْ يَصِلْ طَلَبِي بَعْدُ",
+            "feedback": "MSA; ma ja is the Hejazi negation."
+          },
+          "tip": "ma ja means 'didn't come/arrive' in Hejazi."
+        },
+        {
+          "id": "unit-04.lesson-03.choose.03",
+          "type": "choose",
+          "prompt": "Which means 'That's enough'?",
+          "answer": "تِمَام، كِفَايَة",
+          "options": [
+            "شُوَيّة بَعْدِين",
+            "تِمَام، كِفَايَة",
+            "أَبِي زَيَادَة",
+            "مَا فِيه حَاجِي"
+          ],
+          "accepted": [
+            "تِمَام، كِفَايَة",
+            "tamam, kifaya",
+            "كِفَايَة"
+          ],
+          "too_formal": {
+            "item": "حَسْبُنَا",
+            "feedback": "Bookish; kifaya is the everyday word."
+          },
+          "tip": "kifaya means 'enough'; often paired with tamam (okay)."
+        },
+        {
+          "id": "unit-04.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: الطَّلَب / تِكَرِّر",
+          "answer": "تِكَرِّر الطَّلَب",
+          "accepted": [
+            "تِكَرِّر الطَّلَب",
+            "tikarrir l 6alb"
+          ],
+          "too_formal": {
+            "item": "كَرِّر الطَّلَب",
+            "feedback": "tikarrir (2nd person addressing the waiter) is more polite than karrir (imperative)."
+          },
+          "tip": "tikarrir is 'can you repeat'; 6alb is 'order/request'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "the-bill-please",
+          "arabic": "الْحِسَاب، لَو سَمَحْت",
+          "transliteration": "l 7isab, law samaht",
+          "reply": {
+            "arabic": "تِمَام، دَحِين أَجِيبُه لَك",
+            "transliteration": "tamam, da7een ajeebuh lak",
+            "english": "Okay, I'll bring it for you."
+          }
+        },
+        {
+          "slot": "how-much-is-the-bill",
+          "arabic": "كَمْ الْحِسَاب؟",
+          "transliteration": "kam l 7isab?"
+        },
+        {
+          "slot": "do-you-take-cash-or-card",
+          "arabic": "فِي نَقْد وَلّا كَارِت؟",
+          "transliteration": "fi naqd walla kart?"
+        },
+        {
+          "slot": "i-m-paying-today",
+          "arabic": "أَنَا أَدْفَع الْيَوْم",
+          "transliteration": "ana adf3 l yawm"
+        },
+        {
+          "slot": "no-i-m-paying",
+          "arabic": "لَا، أَنَا الَّلِي أَدْفَع",
+          "transliteration": "la, ana lli adf3"
+        },
+        {
+          "slot": "shall-we-split-the-bill",
+          "arabic": "نِقَسِّم الْحِسَاب؟",
+          "transliteration": "niqassim l 7isab?"
+        },
+        {
+          "slot": "is-there-a-tip-included-in-the-bill",
+          "arabic": "الْبَخْشِيش فِي الْحِسَاب؟",
+          "transliteration": "l bakhsheesh fi l 7isab?"
+        },
+        {
+          "slot": "keep-the-change",
+          "arabic": "اِحْتَفِظ بِالْبَاقِي",
+          "transliteration": "i7tafez bil baqi"
+        },
+        {
+          "slot": "thanks-lit-wellness-of-your-heart-it-was-a-tasty",
+          "arabic": "الْحَمْدُ لِلَّهِ، كَانَ الْأَكْل لَذِيذ",
+          "transliteration": "alhamdu lillah, kan l 2akl lathiz"
+        },
+        {
+          "slot": "can-i-have-the-receipt",
+          "arabic": "فِي إِيصَال، لَو سَمَحْت؟",
+          "transliteration": "fi eesal, law samaht?"
+        },
+        {
+          "slot": "is-there-a-discount-today",
+          "arabic": "فِي خِصُوم الْيَوْم؟",
+          "transliteration": "fi khusoom l yawm?"
+        },
+        {
+          "slot": "bless-your-hands-the-food-was-delicious",
+          "arabic": "يَعْطِيك الْعَافِيَة، الأَكْل كَانَ تِمَام",
+          "transliteration": "ya36eek l 3aafya, l 2akl kan tamam"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "خَالِد",
+          "arabic": "الْحِسَاب، لَو سَمَحْتِ",
+          "transliteration": "l 7isab, law samahti",
+          "english": "The bill, please."
+        },
+        {
+          "speaker": "الْويتِرَة",
+          "arabic": "تِمَام، دَحِين أَجِيبُه لَك",
+          "transliteration": "tamam, da7een ajeebuh lak",
+          "english": "Okay, I'll bring it right away."
+        },
+        {
+          "speaker": "خَالِد",
+          "arabic": "فِي نَقْد وَلّا كَارِت فِقَط؟",
+          "transliteration": "fi naqd walla kart faqat?",
+          "english": "Do you take cash or card only?"
+        },
+        {
+          "speaker": "الْويتِرَة",
+          "arabic": "فِي الاِثْنَيْن",
+          "transliteration": "fi l ithneen",
+          "english": "Both."
+        },
+        {
+          "speaker": "خَالِد",
+          "arabic": "تِمَام، كَارِت",
+          "transliteration": "tamam, kart",
+          "english": "Okay, card."
+        },
+        {
+          "speaker": "الْويتِرَة",
+          "arabic": "حَاضِر",
+          "transliteration": "hazer",
+          "english": "Right away."
+        },
+        {
+          "speaker": "خَالِد",
+          "arabic": "وَعِنْدِك إِيصَال؟",
+          "transliteration": "wa 3indik eesal?",
+          "english": "And do you have a receipt?"
+        },
+        {
+          "speaker": "الْويتِرَة",
+          "arabic": "أَيْوَه، هَنِي",
+          "transliteration": "aywah, hanni",
+          "english": "Yes, here you go."
+        },
+        {
+          "speaker": "خَالِد",
+          "arabic": "يَعْطِيك الْعَافِيَة، الأَكْل كَانَ تِمَام",
+          "transliteration": "ya36eek l 3aafya, l 2akl kan tamam",
+          "english": "Thank you so much, the food was great."
+        },
+        {
+          "speaker": "الْويتِرَة",
+          "arabic": "تِشَرَّفْنَا، شُكْرًا عَلَى الزِّيَارَة",
+          "transliteration": "tsharrafna, shukran 3ala l ziyara",
+          "english": "Thank you for visiting us."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "الْحِسَاب، لَو سَمَحْت",
+            "transliteration": "l 7isab, law samaht",
+            "english": "The bill, please."
+          },
+          "response": {
+            "arabic": "تِمَام، دَحِين أَجِيبُه لَك",
+            "transliteration": "tamam, da7een ajeebuh lak",
+            "english": "Okay, I'll bring it right now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَمْ الْحِسَاب؟",
+            "transliteration": "kam l 7isab?",
+            "english": "How much is the bill?"
+          },
+          "response": {
+            "arabic": "خَمْسِين رِيَال",
+            "transliteration": "khamseen riyal",
+            "english": "Fifty riyals."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِي نَقْد وَلّا كَارِت؟",
+            "transliteration": "fi naqd walla kart?",
+            "english": "Cash or card?"
+          },
+          "response": {
+            "arabic": "كَارِت، لَو سَمَحْتِ",
+            "transliteration": "kart, law samahti",
+            "english": "Card, please."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِي إِيصَال؟",
+            "transliteration": "fi eesal?",
+            "english": "A receipt?"
+          },
+          "response": {
+            "arabic": "أَيْوَه، تِفَضَّلِي",
+            "transliteration": "aywah, tfaddali",
+            "english": "Yes, here you go."
+          }
+        }
+      ],
+      "culture": "In Hejazi restaurants and cafes, tipping (bakhsheesh) is optional and typically given as loose change or a percentage if service is exceptional. Cash is still widely used, but card payment is increasingly common. After paying, it's customary to exchange gratitude and blessings; visitors often thank the establishment with \"yetik l3aafya\" (may God give you wellness).",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "الْحِسَاب، لَو سَمَحْت (l 7isab, law samaht)",
+          "answer": "تِمَام، دَحِين أَجِيبُه لَك",
+          "accepted": [
+            "تِمَام، دَحِين أَجِيبُه لَك",
+            "tamam, da7een ajeebuh lak",
+            "تمام دحين اجيبه لك",
+            "حَاضِر"
+          ],
+          "too_formal": {
+            "item": "سَوْفَ أَحْضِرُهَا لَك عَلَى الفَوْرِ",
+            "feedback": "MSA and slow; tamam + da7een is the quick, friendly way."
+          },
+          "tip": "tamam means 'okay'; da7een means 'right now'."
+        },
+        {
+          "id": "unit-04.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "كَمْ الْحِسَاب؟ (kam l 7isab?)",
+          "answer": "خَمْسِين رِيَال",
+          "accepted": [
+            "خَمْسِين رِيَال",
+            "khamseen riyal",
+            "خمسين ريال",
+            "مِئَة رِيَال"
+          ],
+          "too_formal": {
+            "item": "الْإِجْمَالِي هُوَ خَمْسُون رِيَالًا سَعُودِيًّا",
+            "feedback": "Way too formal; just state the number."
+          },
+          "tip": "Simply state the number; context makes it clear you're answering about the bill."
+        },
+        {
+          "id": "unit-04.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "فِي ___ وَلّا كَارِت؟",
+          "answer": "نَقْد",
+          "accepted": [
+            "نَقْد",
+            "naqd"
+          ],
+          "too_formal": {
+            "item": "نُقُود",
+            "feedback": "That's more formal; naqd is the colloquial form."
+          },
+          "tip": "naqd means 'cash'; it's the way to ask about cash payment."
+        },
+        {
+          "id": "unit-04.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "اِحْتَفِظ بِ___",
+          "answer": "الْبَاقِي",
+          "accepted": [
+            "الْبَاقِي",
+            "l baqi"
+          ],
+          "too_formal": {
+            "item": "الْبَقِيَّة",
+            "feedback": "Close, but baqi is the more colloquial choice."
+          },
+          "tip": "baqi means 'the rest/change'; common when tipping."
+        },
+        {
+          "id": "unit-04.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "The food was delicious.",
+          "answer": "الْأَكْل كَانَ لَذِيذ",
+          "accepted": [
+            "الْأَكْل كَانَ لَذِيذ",
+            "l 2akl kan lathiz",
+            "الأكل كان لذيذ",
+            "الطَّبَخَة كَانَت تِمَام"
+          ],
+          "too_formal": {
+            "item": "الطَّعَام كَانَ شَهِيًّا جِدًّا",
+            "feedback": "Overly formal; lathiz is the simple, warm compliment."
+          },
+          "tip": "lathiz means 'delicious'; 2akl is the everyday word for food."
+        },
+        {
+          "id": "unit-04.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Can I get the receipt?",
+          "answer": "فِي إِيصَال، لَو سَمَحْت؟",
+          "accepted": [
+            "فِي إِيصَال، لَو سَمَحْت؟",
+            "فِي إِيصَال، لَو سَمَحْت",
+            "fi eesal, law samaht",
+            "في إيصال لو سمحت",
+            "أَقْدِر إِيصَال؟"
+          ],
+          "too_formal": {
+            "item": "هَل يُمْكِنُنِي الحُصُول عَلَى الإِيصَال؟",
+            "feedback": "Way too formal; fi + eesal is quick and natural."
+          },
+          "tip": "eesal is the receipt; fi means 'is there'."
+        },
+        {
+          "id": "unit-04.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which means 'the bill'?",
+          "answer": "الْحِسَاب",
+          "options": [
+            "الْقَائِمَة",
+            "الْحِسَاب",
+            "الْمَنيُو",
+            "الطَّلَب"
+          ],
+          "accepted": [
+            "الْحِسَاب",
+            "l 7isab"
+          ],
+          "too_formal": {
+            "item": "الْفَاتُورَة",
+            "feedback": "That's more formal; 7isab is everyday Hejazi."
+          },
+          "tip": "7isab means 'account/bill'; it's what you ask for at the end."
+        },
+        {
+          "id": "unit-04.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which means 'keep the change'?",
+          "answer": "اِحْتَفِظ بِالْبَاقِي",
+          "options": [
+            "أَبِي الْبَاقِي",
+            "اِحْتَفِظ بِالْبَاقِي",
+            "أَرِيدُ الْبَاقِي",
+            "الْبَاقِي لِي"
+          ],
+          "accepted": [
+            "اِحْتَفِظ بِالْبَاقِي",
+            "i7tafez bil baqi"
+          ],
+          "too_formal": {
+            "item": "احْفَظ بَاقِيَ الْمَبْلَغ",
+            "feedback": "Wordy; i7tafez bil baqi is the standard expression."
+          },
+          "tip": "i7tafez means 'keep'; baqi means 'the rest'."
+        },
+        {
+          "id": "unit-04.lesson-04.choose.03",
+          "type": "choose",
+          "prompt": "Which means 'I'm paying today'?",
+          "answer": "أَنَا أَدْفَع الْيَوْم",
+          "options": [
+            "أَنْتَ تَدْفَع الْيَوْم",
+            "أَنَا أَدْفَع الْيَوْم",
+            "هُو يَدْفَع الْيَوْم",
+            "نِحْنُ نَدْفَع الْيَوْم"
+          ],
+          "accepted": [
+            "أَنَا أَدْفَع الْيَوْم",
+            "ana adf3 l yawm"
+          ],
+          "too_formal": {
+            "item": "سَأَقُومُ بِالدَّفْعِ الْيَوْم",
+            "feedback": "Too formal; ana adf3 is direct and warm."
+          },
+          "tip": "adf3 means 'I pay/will pay'; it's assertive and friendly."
+        },
+        {
+          "id": "unit-04.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: الْيَوْم / الْأَكْل / كَانَ",
+          "answer": "الْأَكْل كَانَ تِمَام",
+          "accepted": [
+            "الْأَكْل كَانَ تِمَام",
+            "l 2akl kan tamam"
+          ],
+          "too_formal": {
+            "item": "الطَّعَام كَانَ رَائِعًا",
+            "feedback": "tamam is the warm, everyday Hejazi compliment."
+          },
+          "tip": "kan + adjective is the basic past-tense compliment structure."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Order a Full Meal",
+    "instructions": "You are at a Hejazi restaurant. Order a complete meal including drinks, main course, bread, and payment. Use the words and phrases from this unit.",
+    "required_elements": [
+      "إِيش (what)",
+      "أَبِي (I want)",
+      "لَو سَمَحْت (please)",
+      "دَحِين (right now)",
+      "الْحِسَاب (the bill)"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "الْويتِر",
+          "arabic": "أَهْلًا، إِيش تِشْرَب؟",
+          "transliteration": "ahlan, eesh tishrab?",
+          "english": "Hello, what would you like to drink?"
+        },
+        {
+          "speaker": "الْعَمِيل",
+          "arabic": "أَبِي شَاي بِالنَّعْنَاع، لَو سَمَحْت",
+          "transliteration": "abi shay bil na3naa3, law samaht",
+          "english": "I want mint tea, please."
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "وَالطَّبْخَة؟",
+          "transliteration": "wa t tabkha?",
+          "english": "And the main course?"
+        },
+        {
+          "speaker": "الْعَمِيل",
+          "arabic": "أَبِي كَبْسَة، بِدُون بَصَل، وَخُبْز زَيَادَة",
+          "transliteration": "abi kabsa, bidoon basel, wa khubz ziyada",
+          "english": "I want kabsa without onion, and extra bread."
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "تِمَام، دَحِين يِجِي",
+          "transliteration": "tamam, da7een yiji",
+          "english": "Okay, it will come right now."
+        },
+        {
+          "speaker": "الْعَمِيل",
+          "arabic": "شُكْرًا",
+          "transliteration": "shukran",
+          "english": "Thank you."
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "الْحِسَاب؟",
+          "transliteration": "l 7isab?",
+          "english": "The bill?"
+        },
+        {
+          "speaker": "الْعَمِيل",
+          "arabic": "نِعَم، الْحِسَاب، لَو سَمَحْت",
+          "transliteration": "ni3am, l 7isab, law samaht",
+          "english": "Yes, the bill, please."
+        },
+        {
+          "speaker": "الْويتِر",
+          "arabic": "خَمْسِين رِيَال",
+          "transliteration": "khamseen riyal",
+          "english": "Fifty riyals."
+        },
+        {
+          "speaker": "الْعَمِيل",
+          "arabic": "تِمَام، كَارِت",
+          "transliteration": "tamam, kart",
+          "english": "Okay, card."
+        }
+      ]
+    }
+  }
+}

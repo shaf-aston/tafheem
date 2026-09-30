@@ -1,0 +1,259 @@
+{
+  "unit": "unit-12",
+  "dialect": "Hejazi Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "hello-answering-the-phone",
+          "arabic": "أَلُّو؟",
+          "transliteration": "aaloo?",
+          "reply": {
+            "arabic": "أَلُّو، مِنْ هِذَا؟",
+            "transliteration": "aaloo, min hadha?",
+            "english": "Hello, who's this?"
+          }
+        },
+        {
+          "slot": "hi-who-s-this",
+          "arabic": "مِنْ هِذَا مِعَك؟",
+          "transliteration": "min hadha mi3ak?"
+        },
+        {
+          "slot": "this-is-samer-speaking",
+          "arabic": "مِعَاكَ سَامِر",
+          "transliteration": "mi3aak Saamer"
+        },
+        {
+          "slot": "good-that-you-called",
+          "arabic": "حَلْوَ إِنَّك اتَّصَلْتَ",
+          "transliteration": "hallo ennak attasalt"
+        },
+        {
+          "slot": "what-s-new",
+          "arabic": "كِيْفَكَ أَنْتَ؟",
+          "transliteration": "keefak anta?",
+          "reply": {
+            "arabic": "تَمَام الْحَمْد لِلّٰهِ",
+            "transliteration": "tamaam il7amdella",
+            "english": "Fine, thank God."
+          }
+        },
+        {
+          "slot": "i-couldn-t-answer-you-a-bit-ago",
+          "arabic": "مَا قِدِرْتُ أَرُدّ عَلَيْكَ قَبَل شْوَيَّة",
+          "transliteration": "ma 2dirt arudd 3aleek 2abel shwayya"
+        },
+        {
+          "slot": "the-line-was-busy",
+          "arabic": "الْخَطّ كَانَ مَشْغُول",
+          "transliteration": "il-khatt kaan mashghool"
+        },
+        {
+          "slot": "the-call-got-cut-off-on-me",
+          "arabic": "انْقَطَعَ الْخَطّ مَعِي",
+          "transliteration": "ingata3 il-khatt ma3i"
+        },
+        {
+          "slot": "my-credit-ran-out",
+          "arabic": "رَصِيدِي انْتَهَى",
+          "transliteration": "rasiidi intaha"
+        },
+        {
+          "slot": "my-battery-died",
+          "arabic": "الْبَطّارِيَّة انْتَهَتْ",
+          "transliteration": "il-battariyya intahat"
+        },
+        {
+          "slot": "there-s-no-signal-here",
+          "arabic": "مَا في شِبَّاكَة هِنَا",
+          "transliteration": "ma fee shibbaka hina"
+        },
+        {
+          "slot": "can-you-call-me-back-in-a-bit",
+          "arabic": "تِقْدِر تِتَّصِل عَلَيَّ بَعِد شْوَيَّة؟",
+          "transliteration": "tigdar tittasil 3alayya ba3d shwayya?",
+          "reply": {
+            "arabic": "تَمَام، بَاتَّصِل عَلَيْكَ",
+            "transliteration": "tamaam, baattasil 3aleek",
+            "english": "Sure, I'll call you."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "سامر",
+          "arabic": "أَلُّو؟",
+          "transliteration": "aaloo?",
+          "english": "Hello?"
+        },
+        {
+          "speaker": "نور",
+          "arabic": "السَّلاَمُ عَلَيْكُمْ، مِعَاكَ نُور",
+          "transliteration": "assalamu 3aleekum, mi3aak Noor",
+          "english": "Hi Samer, it's Noor."
+        },
+        {
+          "speaker": "سامر",
+          "arabic": "وَعَلَيْكُمُ السَّلاَمُ، كِيْفَكَ أَنْتَ يَا نُور؟",
+          "transliteration": "wa3aleekum assalam, keefak anta ya Noor?",
+          "english": "Hi Noor, how are you?"
+        },
+        {
+          "speaker": "نور",
+          "arabic": "تَمَام الْحَمْد لِلّٰهِ، اتَّصَلْتُ عَلَيْكَ قَبَل شْوَيَّة بَس الْخَطّ كَانَ مَشْغُول",
+          "transliteration": "tamaam il7amdella, attasalt 3aleek 2abel shwayya bas il-khatt kaan mashghool",
+          "english": "All good. I called you a bit ago but the line was busy."
+        },
+        {
+          "speaker": "سامر",
+          "arabic": "إِيْ، كُنْتُ أَتَكَلَّمُ مَعَ أَخِي. آسِف إِنِّي مَا قِدِرْتُ أَرُدّ عَلَيْكَ",
+          "transliteration": "ee, kuntu atkallam ma3a akhi. aasif inni ma 2dirt arudd 3aleek",
+          "english": "Yeah, I was talking with my brother. Sorry I couldn't answer."
+        },
+        {
+          "speaker": "نور",
+          "arabic": "الْحَمْد لِلّٰهِ عَلَى كُل حَال. أَبْغَى أَتَكَلَّمَ مَعَاكَ عَنْ الْمَوْعِد",
+          "transliteration": "il7amdella 3ala kull 7al. abgha atkallam ma3aak 3an il-maw3id",
+          "english": "It's all good. I want to talk about the appointment."
+        },
+        {
+          "speaker": "سامر",
+          "arabic": "تَفَضَّل، بَس ثَانِيَّة، رَصِيدِي بِيَنْتَهِي",
+          "transliteration": "tafaddal, bas thaniyya, rasiidi biyntahi",
+          "english": "Go ahead, just a second, my credit is about to run out."
+        },
+        {
+          "speaker": "نور",
+          "arabic": "طَيِّب خَلِّينِي أَتَكَلَّمُ بِسُرْعَة قَبْل مَا يَنْقَطِعُ الْخَطّ",
+          "transliteration": "tayyib khallini atkallam bisur3a 2abel ma yingati3 il-khatt",
+          "english": "Okay let me talk fast before the call drops."
+        },
+        {
+          "speaker": "سامر",
+          "arabic": "لاَ لاَ، خَلاَص، انْقَطَعَ! تِقْدِرِي تِتَّصِلِي عَلَيَّ بَعِد شْوَيَّة؟",
+          "transliteration": "la la, khalaas, ingata3! tigdari titasili 3alayya ba3d shwayya?",
+          "english": "No no, that's it, it got cut off! Can you call me back?"
+        },
+        {
+          "speaker": "نور",
+          "arabic": "تَمَام، حَلْوَ إِنَّك اتَّصَلْتَ أَصْلاً. بَاتَّصِل عَلَيْكَ",
+          "transliteration": "tamaam, hallo ennak attasalt aslan. baattasil 3aleek",
+          "english": "Okay, good that you called. I'll call you back."
+        },
+        {
+          "speaker": "سامر",
+          "arabic": "الْحَمْد لِلّٰهِ، بَاسْتِنَى",
+          "transliteration": "il7amdella, bastina",
+          "english": "Thank God, I'll wait."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أَلُّو، مِنْ هِذَا؟",
+            "transliteration": "aaloo, min hadha?",
+            "english": "Hello, who is this?"
+          },
+          "response": {
+            "arabic": "مِعَاكَ سَامِر",
+            "transliteration": "mi3aak Saamer",
+            "english": "This is Samer."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كِيْفَكَ أَنْتَ؟",
+            "transliteration": "keefak anta?",
+            "english": "How are you?"
+          },
+          "response": {
+            "arabic": "تَمَام الْحَمْد لِلّٰهِ",
+            "transliteration": "tamaam il7amdella",
+            "english": "Fine, thank God."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تِقْدِر تِتَّصِل عَلَيَّ بَعِد شْوَيَّة؟",
+            "transliteration": "tigdar tittasil 3alayya ba3d shwayya?",
+            "english": "Can you call me back in a bit?"
+          },
+          "response": {
+            "arabic": "تَمَام، بَاتَّصِل عَلَيْكَ",
+            "transliteration": "tamaam, baattasil 3aleek",
+            "english": "Sure, I'll call you back."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الْخَطّ انْقَطَعَ؟",
+            "transliteration": "il-khatt ingata3?",
+            "english": "Did the call drop?"
+          },
+          "response": {
+            "arabic": "إِيْ، رَصِيدِي انْتَهَى",
+            "transliteration": "ee, rasiidi intaha",
+            "english": "Yeah, my credit ran out."
+          }
+        }
+      ],
+      "culture": "In Hejazi cities, phone calls often open with السلام عليكم and the person answering asks من هذا. Hejazi speakers value warmth, so كيفك comes before the main reason. Ending with الحمد لله or باستني shows respect.",
+      "exercises": []
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [],
+      "dialogue": [],
+      "de_book": [],
+      "culture": "",
+      "exercises": []
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [],
+      "dialogue": [],
+      "de_book": [],
+      "culture": "",
+      "exercises": []
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [],
+      "dialogue": [],
+      "de_book": [],
+      "culture": "",
+      "exercises": []
+    }
+  ],
+  "challenge": {
+    "title": "Plan a Meeting",
+    "instructions": "Imagine you're calling a friend in Hejazi. You want to arrange to meet them, but something has come up for you and you need to change plans.",
+    "required_elements": [
+      "A greeting (السلام عليكم)",
+      "Explanation that something came up (صارت لي حاجة)",
+      "Suggestion for a new day",
+      "Confirmation",
+      "A proper goodbye"
+    ],
+    "model": {
+      "dialogue": []
+    }
+  }
+}

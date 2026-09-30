@@ -1,0 +1,1539 @@
+{
+  "unit": "unit-13",
+  "dialect": "Yemeni Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "how-are-you-today-to-a-man",
+          "arabic": "كَيْفَكَ الْيَوْمَ؟",
+          "transliteration": "kayfak alyoom?"
+        },
+        {
+          "slot": "how-are-you-today-to-a-woman",
+          "arabic": "كَيْفِك الْيَوْمَ؟",
+          "transliteration": "kaynik alyoom?"
+        },
+        {
+          "slot": "what-s-wrong-with-you-to-a-man",
+          "arabic": "شْنُو فِيكَ؟",
+          "transliteration": "shnoo fika?"
+        },
+        {
+          "slot": "i-m-happy-today-m",
+          "arabic": "أَنَا مَرْيُوح الْيَوْمَ",
+          "transliteration": "ana maryoo7 alyoom"
+        },
+        {
+          "slot": "i-m-happy-today-f",
+          "arabic": "أَنَا مَرْيُوحَة الْيَوْمَ",
+          "transliteration": "ana maryoo7a alyoom"
+        },
+        {
+          "slot": "i-m-a-little-upset-m",
+          "arabic": "أَنَا شْوَيَّة حَزِينْ",
+          "transliteration": "ana shwayya 7azeen"
+        },
+        {
+          "slot": "i-m-a-little-upset-f",
+          "arabic": "أَنَا شْوَيَّة حَزِينَة",
+          "transliteration": "ana shwayya 7azeena"
+        },
+        {
+          "slot": "i-m-very-tired-m",
+          "arabic": "أَنَا تَعْبَان وَايْد",
+          "transliteration": "ana ta3baan wayid"
+        },
+        {
+          "slot": "i-m-hungry-i-want-to-eat-something",
+          "arabic": "أَنَا جَايِعْ، أَبِي آكُل حَاجْ",
+          "transliteration": "ana jaa3i, abi aakol 7aaj"
+        },
+        {
+          "slot": "i-m-worried-about-the-exam",
+          "arabic": "أَنَا قَلِقْ عَلَى الِامْتِحَان",
+          "transliteration": "ana 2ali2 3ala limti7aan"
+        },
+        {
+          "slot": "i-m-scared-of-this",
+          "arabic": "أَنَا خَايِفْ مِنْ هَالْحَاجْ",
+          "transliteration": "ana khayif min hal-7aaj"
+        },
+        {
+          "slot": "i-m-glad-you-came-to-a-man",
+          "arabic": "أَنَا مَرْيُوح إِنَّك جِيتَ",
+          "transliteration": "ana maryoo7 innak jeeta"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "أحمد",
+          "arabic": "كَيْفَك الْيَوْمَ يَا عَمْرُو؟",
+          "transliteration": "kayfak alyoom ya 3amru?",
+          "english": "How are you today, Amr?"
+        },
+        {
+          "speaker": "عمرو",
+          "arabic": "بِخَيْرْ، الْحَمْدُ لِلَّهِ. وَأَنْتَ؟",
+          "transliteration": "bi-khayr, il-7amdella. w inta?",
+          "english": "Well, thank God. And you?"
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "أَنَا شْوَيَّة تَعْبَان الْيَوْمَ",
+          "transliteration": "ana shwayya ta3baan alyoom",
+          "english": "I'm a little tired today."
+        },
+        {
+          "speaker": "عمرو",
+          "arabic": "شْنُو فِيكَ؟ فِيه حَاجْ مَضَايِقَكْ؟",
+          "transliteration": "shnoo fika? feeh 7aaj madhaayigak?",
+          "english": "What's wrong? Is something bothering you?"
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "أَيْوَه، قَلِقْ عَلَى الِامْتِحَان بَكِّرَةْ",
+          "transliteration": "aywah, 2ali2 3ala limti7aan bakkra",
+          "english": "Yes, I'm worried about tomorrow's exam."
+        },
+        {
+          "speaker": "عمرو",
+          "arabic": "لَا تَخَافْ، إِنْتَ دَارِسْ زَيْنْ",
+          "transliteration": "la takhaf, inta daaris zayn",
+          "english": "Don't be scared, you've studied well."
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "إِنْ شَاءَ اللَّهُ، بَسْ أَنَا خَايِفْ شْوَيَّة",
+          "transliteration": "in shaa Allah, bas ana khayif shwayya",
+          "english": "God willing, but I'm a bit scared."
+        },
+        {
+          "speaker": "عمرو",
+          "arabic": "أَنَا مَرْيُوحْ إِنَّك جِيتَ الْيَوْمَ. خَلِّنَا نِشْرَبْ شَايْ",
+          "transliteration": "ana maryoo7 innak jeeta alyoom. khallna nishrab shay",
+          "english": "I'm glad you came today. Let's have tea."
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "تَمَام، وَأَنَا جَايِعْ وَايْد، أَبِي آكُل حَاجْ",
+          "transliteration": "tamaam, w ana jaa3i wayid, abi aakol 7aaj",
+          "english": "Good, and I'm very hungry, I want to eat something."
+        },
+        {
+          "speaker": "عمرو",
+          "arabic": "يَلَّا نِرُوحْ الْمَطْعَمْ اللِّي بِقِرْبْ الْبَيْتْ",
+          "transliteration": "yalla niroo7 il-mat3am illi bi-girb il-bayt",
+          "english": "Come on, let's go to the restaurant near the house."
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "يَلَّا، شُكْرًا. أَنَا مَرْيُوحْ إِنِّي شُفْتَكْ",
+          "transliteration": "yalla, shukran. ana maryoo7 inni shuftak",
+          "english": "Come on, thanks. I'm glad I saw you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كَيْفَكَ؟",
+            "transliteration": "kayfak?",
+            "english": "How are you? (m)"
+          },
+          "response": {
+            "arabic": "بِخَيْرْ، الْحَمْدُ لِلَّهِ",
+            "transliteration": "bi-khayr, il-7amdella",
+            "english": "Well, thank God."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْنُو فِيكَ؟",
+            "transliteration": "shnoo fika?",
+            "english": "What's wrong? (m)"
+          },
+          "response": {
+            "arabic": "حَاجْ مَا، بَسْ تَعْبَان شْوَيَّة",
+            "transliteration": "7aaj ma, bas ta3baan shwayya",
+            "english": "Nothing, just a little tired."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَرْيُوحْ الْيَوْمَ؟",
+            "transliteration": "maryoo7 alyoom?",
+            "english": "Are you happy today?"
+          },
+          "response": {
+            "arabic": "أَيْوَه، وَايْدْ مَرْيُوحْ",
+            "transliteration": "aywah, wayid maryoo7",
+            "english": "Yes, very happy."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لِيشْ قَلِقْ؟",
+            "transliteration": "leesh 2ali2?",
+            "english": "Why are you worried?"
+          },
+          "response": {
+            "arabic": "بِسَبَبْ الِامْتِحَان بَكِّرَةْ",
+            "transliteration": "bi-sabab il-imti7aan bakkra",
+            "english": "Because of tomorrow's exam."
+          }
+        }
+      ],
+      "culture": "In Yemen when asked \"كيفك؟\" people answer with \"الحمد لله\" or \"بخير\" out of habit, whatever they feel, and a close friend or family member will push further with \"شنو فيك؟\" if they seem worried. Saying you're \"حزين\" or \"تعبان\" plainly is normal only with people close to you.",
+      "exercises": [
+        {
+          "id": "unit-13.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "Someone says: \"كَيْفَكَ الْيَوْمَ؟\". Give a natural reply.",
+          "answer": "بِخَيْرْ، الْحَمْدُ لِلَّهِ",
+          "accepted": [
+            "بِخَيْرْ، الْحَمْدُ لِلَّهِ",
+            "تَمَام، الْحَمْدُ لِلَّهِ",
+            "بِخَيْرْ وَالْحَمْدُ لِلَّهِ"
+          ],
+          "too_formal": {
+            "item": "أَنَا بِحَالٍ جَيِّدَةٍ، شُكْرًا لَكَ",
+            "feedback": "Correct but bookish; \"الحمد لله\" is the natural spoken answer."
+          },
+          "tip": "\"الحمد لله\" is added almost automatically after saying you're well."
+        },
+        {
+          "id": "unit-13.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: \"شْنُو فِيكَ؟\". Give a natural reply.",
+          "answer": "حَاجْ مَا، بَسْ تَعْبَان شْوَيَّة",
+          "accepted": [
+            "حَاجْ مَا، بَسْ تَعْبَان شْوَيَّة",
+            "حاج ما، بس تعبان شويه",
+            "ما فيني حاج، بس تعبان شويه"
+          ],
+          "too_formal": {
+            "item": "لَا شَيْءَ، أَنَا مُتَعَبٌ قَلِيلًا",
+            "feedback": "That is formal written Arabic, not how it's said in conversation."
+          },
+          "tip": "\"شويه\" softens the admission, like saying \"a little\"."
+        },
+        {
+          "id": "unit-13.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أَنَا ___ وَايْدْ، أَبِي آكُل حَاجْ.\" Meaning: I'm very hungry, I want to eat something.",
+          "answer": "جَايِعْ",
+          "accepted": [
+            "جَايِعْ",
+            "جايع",
+            "جَايِعَة"
+          ],
+          "too_formal": {
+            "item": "أَنَا أَشْعُرُ بِالْجُوعِ",
+            "feedback": "Formal way of stating hunger; \"جايع\" is the word actually used."
+          },
+          "tip": "\"جايع/جايعة\" changes with the speaker's gender."
+        },
+        {
+          "id": "unit-13.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أَنَا ___ مِنْ هَالْحَاجْ.\" Meaning: I'm scared of this.",
+          "answer": "خَايِفْ",
+          "accepted": [
+            "خَايِفْ",
+            "خايف",
+            "خَايِفَة"
+          ],
+          "too_formal": {
+            "item": "أَنَا خَائِفٌ مِنْ ذَلِكَ",
+            "feedback": "Formal spelling and register; \"خايف\" is how it's said out loud."
+          },
+          "tip": "\"خايف\" for a man, \"خايفة\" for a woman."
+        },
+        {
+          "id": "unit-13.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm very happy today.\"",
+          "answer": "أَنَا مَرْيُوحْ وَايْدْ الْيَوْمَ",
+          "accepted": [
+            "أَنَا مَرْيُوحْ وَايْدْ الْيَوْمَ",
+            "أَنَا مَرْيُوحَة وَايْدْ الْيَوْمَ",
+            "مَرْيُوحْ وَايْدْ الْيَوْمَ"
+          ],
+          "too_formal": {
+            "item": "أَنَا سَعِيدٌ جِدًّا الْيَوْمَ",
+            "feedback": "\"سعيد\" is the formal word for happy; Yemenis say \"مريوح\"."
+          },
+          "tip": "\"مريوح\" is the everyday word for happy, not \"سعيد\"."
+        },
+        {
+          "id": "unit-13.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm a little worried about the exam.\"",
+          "answer": "أَنَا قَلِقْ شْوَيَّة عَلَى الِامْتِحَان",
+          "accepted": [
+            "أَنَا قَلِقْ شْوَيَّة عَلَى الِامْتِحَان",
+            "أنا قلق شويه على الامتحان",
+            "أَنَا قَلِقَة شْوَيَّة عَلَى الِامْتِحَان"
+          ],
+          "too_formal": {
+            "item": "أَنَا مُقْلِقٌ بَعْضَ الشَّيْءِ بِخُصُوصِ الِامْتِحَانِ",
+            "feedback": "Overly formal phrasing for a simple everyday worry."
+          },
+          "tip": "\"شويه\" is the fast way of softening the worry."
+        },
+        {
+          "id": "unit-13.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"I'm worried\"?",
+          "answer": "أَنَا قَلِقْ",
+          "accepted": [
+            "أَنَا قَلِقْ",
+            "أَنَا جَايِعْ",
+            "أَنَا مَرْيُوحْ",
+            "أَنَا خَايِفْ"
+          ],
+          "too_formal": {
+            "item": "أَنَا فِي حَالَةٍ مِنْ الْقَلَقِ",
+            "feedback": "Nobody speaks like this out loud; it belongs in writing, not conversation."
+          },
+          "tip": "\"قلق\" comes from the same root as \"قلق\", worry.",
+          "options": [
+            "أَنَا قَلِقْ",
+            "أَنَا جَايِعْ",
+            "أَنَا مَرْيُوحْ",
+            "أَنَا خَايِفْ"
+          ]
+        },
+        {
+          "id": "unit-13.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "\"حَزِينْ\" means:",
+          "answer": "sad / upset",
+          "accepted": [
+            "sad / upset",
+            "happy",
+            "tired",
+            "hungry"
+          ],
+          "too_formal": {
+            "item": "حَزِينٌ وَمُكْتَئِبٌ فِي آنٍ وَاحِدٍ",
+            "feedback": "That is a dictionary-style gloss, not the plain answer expected here."
+          },
+          "tip": "\"حزين\" means sad; it's used when someone is genuinely sad.",
+          "options": [
+            "sad / upset",
+            "happy",
+            "tired",
+            "hungry"
+          ]
+        },
+        {
+          "id": "unit-13.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"وَايْدْ / الْيَوْمَ / مَرْيُوحْ / أَنَا\".",
+          "answer": "أَنَا مَرْيُوحْ وَايْدْ الْيَوْمَ",
+          "accepted": [
+            "أَنَا مَرْيُوحْ وَايْدْ الْيَوْمَ",
+            "أَنَا مَرْيُوحَة وَايْدْ الْيَوْمَ",
+            "أَنَا مَرْيُوحْ الْيَوْمَ وَايْدْ"
+          ],
+          "too_formal": {
+            "item": "أَنَا سَعِيدٌ جِدًّا هَذَا الْيَوْمَ",
+            "feedback": "Formal register and word order, not the conversational sentence being practiced."
+          },
+          "tip": "The subject \"أنا\" comes first, then the feeling, then how much, then when.",
+          "words": [
+            "أَنَا",
+            "مَرْيُوحْ",
+            "وَايْدْ",
+            "الْيَوْمَ"
+          ]
+        },
+        {
+          "id": "unit-13.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"مِنْ / خَايِفْ / هَالْحَاجْ / أَنَا\".",
+          "answer": "أَنَا خَايِفْ مِنْ هَالْحَاجْ",
+          "accepted": [
+            "أَنَا خَايِفْ مِنْ هَالْحَاجْ",
+            "أنا خايفة من هالحاج",
+            "خَايِفْ أَنَا مِنْ هَالْحَاجْ"
+          ],
+          "too_formal": {
+            "item": "أَنَا خَائِفٌ مِنْ هَذَا الْأَمْرِ",
+            "feedback": "Formal spelling \"خائف\" and \"هذا الأمر\" instead of the spoken forms."
+          },
+          "tip": "\"هالحاج\" is the everyday contraction of \"هذا الحاج\".",
+          "words": [
+            "أَنَا",
+            "خَايِفْ",
+            "مِنْ",
+            "هَالْحَاجْ"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "right-correct",
+          "arabic": "صَحِيحْ",
+          "transliteration": "sa7ee7"
+        },
+        {
+          "slot": "exactly-that-s-right",
+          "arabic": "بِالضَّبِطْ",
+          "transliteration": "bid-dabt"
+        },
+        {
+          "slot": "you-re-right-to-a-man",
+          "arabic": "أَنْتَ صَحِيحْ",
+          "transliteration": "anta sa7ee7"
+        },
+        {
+          "slot": "you-re-right-to-a-woman",
+          "arabic": "أَنْتِ صَحِيحَة",
+          "transliteration": "anti sa7ee7a"
+        },
+        {
+          "slot": "i-agree-m",
+          "arabic": "أَنَا مُوَافِقْ",
+          "transliteration": "ana muwaafi2"
+        },
+        {
+          "slot": "i-agree-f",
+          "arabic": "أَنَا مُوَافِقَة",
+          "transliteration": "ana muwaafi2a"
+        },
+        {
+          "slot": "no-it-s-not-like-that",
+          "arabic": "لَا، مُو هِيكَ",
+          "transliteration": "la, mu heeka"
+        },
+        {
+          "slot": "i-don-t-agree-with-you",
+          "arabic": "أَنَا مَا بُوَافِقَكْ",
+          "transliteration": "ana ma buwafi2ak"
+        },
+        {
+          "slot": "that-s-not-true-correct",
+          "arabic": "هَاد مُو صَحِيحْ",
+          "transliteration": "haad mu sa7ee7"
+        },
+        {
+          "slot": "in-my-opinion",
+          "arabic": "بِرَأْيِي",
+          "transliteration": "bira2yi"
+        },
+        {
+          "slot": "maybe-but",
+          "arabic": "يِمْكِنْ، بَسْ",
+          "transliteration": "yimkin, bas"
+        },
+        {
+          "slot": "ok-that-works",
+          "arabic": "تَمَام، تَمَّ",
+          "transliteration": "tamaam, tamm"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "سلمى",
+          "arabic": "بِرَأْيِي نِرُوحْ الْمَدِينَةْ الْقَدِيمَةْ",
+          "transliteration": "bira2yi niroo7 il-madeena il-2adeema",
+          "english": "In my opinion, let's go to the old city."
+        },
+        {
+          "speaker": "محمود",
+          "arabic": "يِمْكِنْ، بَسْ الْجَوّْ حَارّْ وَايْدْ",
+          "transliteration": "yimkin, bas il-jaw 7arr wayid",
+          "english": "Maybe, but the weather is very hot."
+        },
+        {
+          "speaker": "سلمى",
+          "arabic": "أَنْتَ صَحِيحْ. شْنُو رَأْيَكْ فِي السّاحَةْ؟",
+          "transliteration": "anta sa7ee7. shnoo ra2yak fi is-saa7a?",
+          "english": "You're right. What's your opinion of the square?"
+        },
+        {
+          "speaker": "محمود",
+          "arabic": "لَا، مُو هِيكَ. السّاحَةْ مِلْيَانَة نَاسْ يَوْمْ الْجُمْعَةْ",
+          "transliteration": "la, mu heeka. is-saa7a milyaana nas yoom il-jum3a",
+          "english": "No, not like that, the square is full of people on Friday."
+        },
+        {
+          "speaker": "سلمى",
+          "arabic": "صَحِيحْ، هَاد صَحِيحْ. خَلِّنَا نِرُوحْ بَعْدْ الْعَصِرْ",
+          "transliteration": "sa7ee7, haad sa7ee7. khallna niroo7 ba3d il-3asr",
+          "english": "True, that's right. Let's go after the afternoon prayer."
+        },
+        {
+          "speaker": "محمود",
+          "arabic": "أَنَا مُوَافِقْ، بَعْدْ الْعَصِرْ الْجَوّْ أَحْسَنْ",
+          "transliteration": "ana muwaafi2, ba3d il-3asr il-jaw a7san",
+          "english": "I agree, after the afternoon the weather's better."
+        },
+        {
+          "speaker": "سلمى",
+          "arabic": "بِالضَّبِطْ. وَيْنَ نِرُوحْ بَالضَّبِطْ؟",
+          "transliteration": "bid-dabt. wayn niroo7 bid-dabt?",
+          "english": "Exactly. Where exactly shall we go?"
+        },
+        {
+          "speaker": "محمود",
+          "arabic": "أَنَا مَا بُوَافِقَكْ عَلَى السّاحَةْ، الْبَازَارْ أَحْسَنْ",
+          "transliteration": "ana ma buwafi2ak 3ala is-saa7a, il-bazaar a7san",
+          "english": "I don't agree with you about the square, the bazaar is better."
+        },
+        {
+          "speaker": "سلمى",
+          "arabic": "تَمَام، تَمّْ، الْبَازَارْ أَهْدَى وَأَحْلَى",
+          "transliteration": "tamaam, tamm, il-bazaar ahda w a7la",
+          "english": "OK, that works, the bazaar is quieter and nicer."
+        },
+        {
+          "speaker": "محمود",
+          "arabic": "بَسْ لَازِمْ نِجِيبْ شَايْ مَعَانَا",
+          "transliteration": "bas laazim nijib shay ma3aana",
+          "english": "But we must bring tea with us."
+        },
+        {
+          "speaker": "سلمى",
+          "arabic": "أَنْتَ صَحِيحْ، أَنَا بِجِيبْ الْمَاءْ الْبَارِدْ",
+          "transliteration": "anta sa7ee7, ana bijiib il-maa il-baarid",
+          "english": "You're right, I'll bring the cold water."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شْنُو رَأْيَكْ؟",
+            "transliteration": "shnoo ra2yak?",
+            "english": "What's your opinion? (m)"
+          },
+          "response": {
+            "arabic": "بِرَأْيِي نِرُوحْ الْآنْ",
+            "transliteration": "bira2yi niroo7 il-aan",
+            "english": "In my opinion we go now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَاد صَحِيحْ؟",
+            "transliteration": "haad sa7ee7?",
+            "english": "Is this right?"
+          },
+          "response": {
+            "arabic": "أَيْوَه، بِالضَّبِطْ",
+            "transliteration": "aywah, bid-dabt",
+            "english": "Yes, exactly."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الْجَوّْ حَارّْ الْيَوْمَ",
+            "transliteration": "il-jaw 7arr alyoom",
+            "english": "It's hot today."
+          },
+          "response": {
+            "arabic": "أَنْتَ صَحِيحْ، حَارّْ وَايْدْ",
+            "transliteration": "anta sa7ee7, 7arr wayid",
+            "english": "You're right, very hot."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مُوَافِقْ عَلَى الْخِطَّةْ؟",
+            "transliteration": "muwaafi2 3ala il-khi6a?",
+            "english": "Do you agree with the plan?"
+          },
+          "response": {
+            "arabic": "تَمَام، تَمّْ",
+            "transliteration": "tamaam, tamm",
+            "english": "OK, that works."
+          }
+        }
+      ],
+      "culture": "In Yemen a flat \"لا\" can sound blunt, so people soften a disagreement with \"يمكن، بس\" or \"تمام، بس\" before giving their view. \"تمام\" and \"تمّ\" are the light way to say OK, and \"أنت صحيح\" is warm enough to use with elders and friends alike.",
+      "exercises": [
+        {
+          "id": "unit-13.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "Someone says: \"شْنُو رَأْيَكْ؟\". Give a natural reply.",
+          "answer": "بِرَأْيِي مَنْيِحَةْ",
+          "accepted": [
+            "بِرَأْيِي مَنْيِحَةْ",
+            "بِرَأْيِي وَايْدْ مَنْيِحَةْ",
+            "مَنْيِحَةْ بِرَأْيِي"
+          ],
+          "too_formal": {
+            "item": "فِي رَأْيِي هَذِهِ فِكْرَةٌ جَيِّدَةٌ",
+            "feedback": "Grammatically fine but too formal for a casual answer."
+          },
+          "tip": "\"برأيي\" attaches \"my opinion\" directly to the front of the sentence."
+        },
+        {
+          "id": "unit-13.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: \"أَنْتَ مُوَافِقْ؟\". Give a natural reply saying no.",
+          "answer": "لَا، أَنَا مَا بُوَافِقْ",
+          "accepted": [
+            "لَا، أَنَا مَا بُوَافِقْ",
+            "لا، ما موافق",
+            "لَا، مَا بُوَافِقْ"
+          ],
+          "too_formal": {
+            "item": "كَلَّا، لَا أُوَافِقُكَ الرَّأْيَ",
+            "feedback": "Formal negation \"كلا\"; \"لا\" is the spoken word for no."
+          },
+          "tip": "\"مو موافق\" is another way to say it."
+        },
+        {
+          "id": "unit-13.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"___ صَحِيحْ، هِيكَ أَحْسَنْ.\" Meaning: You're right, this is better.",
+          "answer": "أَنْتَ",
+          "accepted": [
+            "أَنْتَ",
+            "انت",
+            "أَنْتِ"
+          ],
+          "too_formal": {
+            "item": "أَنْتَ عَلَى حَقٍّ",
+            "feedback": "\"على حق\" is the formal form; \"أنت صحيح\" is the spoken phrase."
+          },
+          "tip": "\"أنت صحيح\" is the everyday way to say someone's right."
+        },
+        {
+          "id": "unit-13.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أَنَا ___، خَلِّينِي أَفِكِّرْ شْوَيَّةْ.\" Meaning: Maybe, let me think a little.",
+          "answer": "يِمْكِنْ",
+          "accepted": [
+            "يِمْكِنْ",
+            "يمكن",
+            "يِمْكِنْ بَسْ"
+          ],
+          "too_formal": {
+            "item": "مِنْ الْمُحْتَمَلِ ذَلِكَ",
+            "feedback": "Formal phrasing; \"يمكن\" alone is how this is actually said."
+          },
+          "tip": "\"يمكن\" is used constantly to soften an answer that isn't a clear yes."
+        },
+        {
+          "id": "unit-13.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I don't agree with you.\"",
+          "answer": "أَنَا مَا بُوَافِقَكْ",
+          "accepted": [
+            "أَنَا مَا بُوَافِقَكْ",
+            "ما موافق",
+            "ما بوافقك أبدا"
+          ],
+          "too_formal": {
+            "item": "لَا أُوَافِقُكَ الرَّأْيَ إِطْلَاقًا",
+            "feedback": "That's the formal written way of disagreeing."
+          },
+          "tip": "\"ما بوافقك\" needs no extra pronoun; the verb already carries \"I\"."
+        },
+        {
+          "id": "unit-13.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"OK, that works.\"",
+          "answer": "تَمَام، تَمّْ",
+          "accepted": [
+            "تَمَام، تَمّْ",
+            "تمام تم",
+            "تمام"
+          ],
+          "too_formal": {
+            "item": "حَسَنًا، هَذَا مَقْبُولٌ",
+            "feedback": "Overly formal for accepting a plan in conversation."
+          },
+          "tip": "\"تمام\" or \"تمّ\" are the light ways to agree in Yemen."
+        },
+        {
+          "id": "unit-13.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which phrase means \"I agree\" said by a woman?",
+          "options": [
+            "أَنَا مُوَافِقَة",
+            "أَنَا مَا بُوَافِقْ",
+            "أَنَا قَلِقَة",
+            "أَنَا تَعْبَانَة"
+          ],
+          "answer": "أَنَا مُوَافِقَة",
+          "accepted": [
+            "أَنَا مُوَافِقَة",
+            "أَنَا مُوَافِقْ",
+            "انا موافقه",
+            "موافقة"
+          ],
+          "too_formal": {
+            "item": "أَنَا أُوَافِقُ عَلَى ذَلِكَ",
+            "feedback": "Formal, and does not mark gender the way spoken Yemeni does."
+          },
+          "tip": "\"موافقة\" ends in ة for a woman speaking; \"موافق\" is for a man."
+        },
+        {
+          "id": "unit-13.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "\"هَاد مُو صَحِيحْ\" means:",
+          "answer": "That's not right / correct.",
+          "accepted": [
+            "That's not right / correct.",
+            "That's exactly right.",
+            "I agree with that.",
+            "Maybe, let's see."
+          ],
+          "too_formal": {
+            "item": "هَذَا غَيْرُ صَحِيحٍ عَلَى الْإِطْلَاقِ",
+            "feedback": "That's a formal restatement, not the plain meaning asked for."
+          },
+          "tip": "\"مو\" is the everyday negation used before nouns and adjectives.",
+          "options": [
+            "That's not right / correct.",
+            "That's exactly right.",
+            "I agree with that.",
+            "Maybe, let's see."
+          ]
+        },
+        {
+          "id": "unit-13.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"صَحِيحْ / أَنْتَ\".",
+          "answer": "أَنْتَ صَحِيحْ",
+          "accepted": [
+            "أَنْتَ صَحِيحْ",
+            "انت صحيح"
+          ],
+          "too_formal": {
+            "item": "أَنْتَ عَلَى حَقٍّ",
+            "feedback": "\"على حق\" is formal Arabic; \"أنت صحيح\" is what's actually said."
+          },
+          "tip": "\"أنت\" comes first, then \"صحيح\"."
+        },
+        {
+          "id": "unit-13.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"الْقَدِيمَةْ / الْمَدِينَةْ / نِرُوحْ / بِرَأْيِي\".",
+          "answer": "بِرَأْيِي نِرُوحْ الْمَدِينَةْ الْقَدِيمَةْ",
+          "accepted": [
+            "بِرَأْيِي نِرُوحْ الْمَدِينَةْ الْقَدِيمَةْ",
+            "برأيي نروح المدينة القديمة"
+          ],
+          "too_formal": {
+            "item": "فِي رَأْيِي، سَنَذْهَبُ إِلَى الْمَدِينَةِ الْقَدِيمَةِ",
+            "feedback": "Formal wording and word order not used in daily speech."
+          },
+          "tip": "\"برأيي\" opens the sentence; then the plan.",
+          "words": [
+            "بِرَأْيِي",
+            "نِرُوحْ",
+            "الْمَدِينَةْ",
+            "الْقَدِيمَةْ"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "you-should-get-some-rest-to-a-man",
+          "arabic": "لَازِمْ تِرْتَاحْ شْوَيَّةْ",
+          "transliteration": "lazim tirtaa7 shwayya"
+        },
+        {
+          "slot": "you-should-get-some-rest-to-a-woman",
+          "arabic": "لَازِمْ تِرْتَاحِي شْوَيَّةْ",
+          "transliteration": "lazim tirtaa7i shwayya"
+        },
+        {
+          "slot": "it-s-better-you-go-to-the-doctor",
+          "arabic": "الْأَحْسَنْ تِرُوحْ لِلدُّكْتُورْ",
+          "transliteration": "il-a7san tiroo7 lid-duktoor"
+        },
+        {
+          "slot": "why-don-t-you-try-this",
+          "arabic": "لِيشْ مَا تِجَرِّبْ هَاد؟",
+          "transliteration": "leesh ma tijarrib haad?"
+        },
+        {
+          "slot": "if-i-were-you-i-d-do-this",
+          "arabic": "لَوْ كُنْتَ مَكَانِي كُنْتَ سَوِّيتْ هِيكَ",
+          "transliteration": "law kunta makani kunta sawweet heeka"
+        },
+        {
+          "slot": "listen-to-my-advice-to-a-man",
+          "arabic": "اِسْمَعْ نَصِيحْتِي",
+          "transliteration": "isma3 nasee7ti"
+        },
+        {
+          "slot": "take-care-of-yourself-to-a-man",
+          "arabic": "خُدْ بَالَكْ مِنْ نَفْسَكْ",
+          "transliteration": "khod balak min nafsak"
+        },
+        {
+          "slot": "it-won-t-hurt-you-to-try",
+          "arabic": "مَا رَح يِضْرِّكَ تِجَرِّبْ",
+          "transliteration": "ma ra7 yidarrik tijarrib"
+        },
+        {
+          "slot": "try-this-medicine",
+          "arabic": "جَرِّبْ هَالدَّوَاءْ",
+          "transliteration": "jarrib hal-dawaa"
+        },
+        {
+          "slot": "you-should-talk-to-him",
+          "arabic": "لَازِمْ تِحْكِي مَعَاهُ",
+          "transliteration": "lazim ti7ki ma3aa"
+        },
+        {
+          "slot": "i-advise-you-not-to-do-this",
+          "arabic": "أَنَا بِنَصِحَكْ مَا تَسْوِي هِيكَ",
+          "transliteration": "ana binsa7ak ma tasawi heeka"
+        },
+        {
+          "slot": "stay-calm-and-don-t-rush",
+          "arabic": "خَلِّيكْ هَادِي وَمَا تِسْتَعْجِلْ",
+          "transliteration": "khallik haadi w ma ista3jil"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "منى",
+          "arabic": "شْنُو فِيكَ يَا فَهَدْ؟ شَكْلَكَ تَعْبَان",
+          "transliteration": "shnoo fika ya fahad? shaklak ta3baan",
+          "english": "What's wrong, Fahad? You look tired."
+        },
+        {
+          "speaker": "فهد",
+          "arabic": "أَيْوَه، عِنْدِي صُدَاعْ مِنْ يَوْمَيْنْ",
+          "transliteration": "aywah, 3indi suda3 min yoomeen",
+          "english": "Yes, I've had a headache for two days."
+        },
+        {
+          "speaker": "منى",
+          "arabic": "لَازِمْ تِرُوحْ لِلدُّكْتُورْ، مَا تِتَأَخِّرْ",
+          "transliteration": "lazim tiroo7 lid-duktoor, ma tita2akhkhar",
+          "english": "You should go to the doctor, don't delay."
+        },
+        {
+          "speaker": "فهد",
+          "arabic": "مَا أَبِي، أَكِيدْ حَاجْ بَسِيطَةْ",
+          "transliteration": "ma abi, akeed 7aaj basi6a",
+          "english": "I don't want to, it's surely something simple."
+        },
+        {
+          "speaker": "منى",
+          "arabic": "لِيشْ مَا تِجَرِّبْ هَالدَّوَاءْ؟ عِنْدِي وَاحِدْ مَنْيِحْ",
+          "transliteration": "leesh ma tijarrib hal-dawaa? 3indi waa7id manee7",
+          "english": "Why don't you try this medicine? I have a good one."
+        },
+        {
+          "speaker": "فهد",
+          "arabic": "مَا يِضِرّْ، بَسْ أَنَا مَا أَحِبّْ الدَّوَاءْ",
+          "transliteration": "ma yidiRR, bas ana ma a7ibb id-dawaa",
+          "english": "No harm, but I don't like medicine."
+        },
+        {
+          "speaker": "منى",
+          "arabic": "اِسْمَعْ نَصِيحْتِي، خُدْ بَالَكْ مِنْ نَفْسَكْ",
+          "transliteration": "isma3 nasee7ti, khod balak min nafsak",
+          "english": "Listen to my advice, take care of yourself."
+        },
+        {
+          "speaker": "فهد",
+          "arabic": "تَمَام، بَسْ مَا فِيهْ وَقِتْ، عِنْدِي شُغِلْ وَايْدْ",
+          "transliteration": "tamaam, bas ma feeh wa2it, 3indi shughil wayid",
+          "english": "OK, but there's no time, I have a lot of work."
+        },
+        {
+          "speaker": "منى",
+          "arabic": "لَوْ كُنْتَ مَكَانِي كُنْتَ رُحْتَ الْآنْ",
+          "transliteration": "law kunta makani kunta ru7t il-aan",
+          "english": "If I were you, I'd have gone now."
+        },
+        {
+          "speaker": "فهد",
+          "arabic": "أَنْتِ صَحِيحَةْ، بِرُوحْ بَعْدْ الشُّغِلْ إِنْ شَاءَ اللَّهُ",
+          "transliteration": "anti sa7ee7a, biroo7 ba3d ish-shughil in shaa Allah",
+          "english": "You're right, I'll go after work, God willing."
+        },
+        {
+          "speaker": "منى",
+          "arabic": "تَمَام، خَلِّيكْ هَادِي، اللَّهُ يِشَافِيكْ",
+          "transliteration": "tamaam, khallik haadi, alla yishafi2ak",
+          "english": "Good, stay calm, may God heal you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أَنَا تَعْبَان وَايْدْ",
+            "transliteration": "ana ta3baan wayid",
+            "english": "I'm very tired."
+          },
+          "response": {
+            "arabic": "لَازِمْ تِرْتَاحْ شْوَيَّةْ",
+            "transliteration": "lazim tirtaa7 shwayya",
+            "english": "You should rest a little."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لِيشْ مَا تِجَرِّبْ هَاد؟",
+            "transliteration": "leesh ma tijarrib haad?",
+            "english": "Why don't you try this?"
+          },
+          "response": {
+            "arabic": "تَمَام، بِجَرِّبْ",
+            "transliteration": "tamaam, bijarrib",
+            "english": "OK, I'll try."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْنُو تِنْصَحْنِي؟",
+            "transliteration": "shnoo tinsah ni?",
+            "english": "What do you advise me?"
+          },
+          "response": {
+            "arabic": "خُدْ بَالَكْ مِنْ نَفْسَكْ",
+            "transliteration": "khod balak min nafsak",
+            "english": "Take care of yourself."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عِنْدِي صُدَاعْ",
+            "transliteration": "3indi suda3",
+            "english": "I have a headache."
+          },
+          "response": {
+            "arabic": "جَرِّبْ هَالدَّوَاءْ",
+            "transliteration": "jarrib hal-dawaa",
+            "english": "Try this medicine."
+          }
+        }
+      ],
+      "culture": "Yemeni friends and relatives give advice openly and warmly with \"لازم\" and \"خد بالك\", and it is taken as care, not criticism. After someone mentions being ill, the usual reply is \"الله يشافيك\", may God heal you.",
+      "exercises": [
+        {
+          "id": "unit-13.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Take care of yourself\" (to a man)?",
+          "options": [
+            "خُدْ بَالَكْ مِنْ نَفْسَكْ",
+            "لَازِمْ تِرْتَاحْ شْوَيَّةْ",
+            "جَرِّبْ هَالدَّوَاءْ",
+            "خُدِي بَالِج"
+          ],
+          "answer": "خُدْ بَالَكْ مِنْ نَفْسَكْ",
+          "accepted": [
+            "خُدْ بَالَكْ مِنْ نَفْسَكْ",
+            "خد بالك من نفسك",
+            "خد بالك"
+          ],
+          "too_formal": {
+            "item": "اعْتَنِ بِنَفْسِكَ",
+            "feedback": "Formal; \"خد بالك\" is the spoken \"take care\"."
+          },
+          "tip": "\"خد بالك\" literally turns your attention; it also means watch out."
+        },
+        {
+          "id": "unit-13.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "How is a woman told \"You should rest\"?",
+          "options": [
+            "لَازِمْ تِرْتَاحِي شْوَيَّةْ",
+            "خُدِي بَالِج مِنْ نَفْسِج",
+            "جَرِّبْي هَالدَّوَاءْ",
+            "لَازِمْ تِرْتَاحْ"
+          ],
+          "answer": "لَازِمْ تِرْتَاحِي شْوَيَّةْ",
+          "accepted": [
+            "لَازِمْ تِرْتَاحِي شْوَيَّةْ",
+            "لازم ترتاحي",
+            "لازم تريحي"
+          ],
+          "too_formal": {
+            "item": "يَجِبُ عَلَيْكِ أَنْ تَرْتَاحِي",
+            "feedback": "Formal; \"لازم\" is the spoken \"should\"."
+          },
+          "tip": "The feminine ending in Yemen is \"ي\": ترتاح (m), ترتاحي (f)."
+        },
+        {
+          "id": "unit-13.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"لِلدُّكْتُورْ / تِرُوحْ / لَازِمْ\".",
+          "answer": "لَازِمْ تِرُوحْ لِلدُّكْتُورْ",
+          "accepted": [
+            "لَازِمْ تِرُوحْ لِلدُّكْتُورْ",
+            "لازم تروح للدكتور",
+            "لازم تروحي للدكتور"
+          ],
+          "too_formal": {
+            "item": "يَجِبُ أَنْ تَذْهَبَ إِلَى الطَّبِيبِ",
+            "feedback": "Formal; speakers say \"دكتور\" and \"تروح\"."
+          },
+          "tip": "\"لازم\" goes first, then the verb."
+        },
+        {
+          "id": "unit-13.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"هَالدَّوَاءْ / تِجَرِّبْ / مَا / لِيشْ\".",
+          "answer": "لِيشْ مَا تِجَرِّبْ هَالدَّوَاءْ",
+          "accepted": [
+            "لِيشْ مَا تِجَرِّبْ هَالدَّوَاءْ",
+            "ليش ما تجرب هالدواء",
+            "ليش ما تجربي هالدواء"
+          ],
+          "too_formal": {
+            "item": "لِمَاذَا لَا تُجَرِّبْ هَذَا الدَّوَاءَ",
+            "feedback": "Formal; speakers say \"ليش ما\"."
+          },
+          "tip": "\"ليش ما\" plus a verb is the friendly way to suggest something."
+        },
+        {
+          "id": "unit-13.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"___ بَالَكْ مِنْ نَفْسَكْ.\" Meaning: Take care of yourself.",
+          "answer": "خُدْ",
+          "accepted": [
+            "خُدْ",
+            "خد",
+            "خُدِي"
+          ],
+          "too_formal": {
+            "item": "اعْتَنِ",
+            "feedback": "Formal; \"خد بالك\" is what is said."
+          },
+          "tip": "To a woman: \"خدي بالج من نفسج\"."
+        },
+        {
+          "id": "unit-13.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"مَا ___ تِجَرِّبْ.\" Meaning: It won't hurt you to try.",
+          "answer": "يِضِرّْ",
+          "accepted": [
+            "يِضِرّْ",
+            "يضر",
+            "يضرك"
+          ],
+          "too_formal": {
+            "item": "لَا ضَرَرَ فِي الْمُحَاوَلَةِ",
+            "feedback": "A formal, written way to say it."
+          },
+          "tip": "\"يضرك\" is \"hurts you\"; \"ما يضرك\" means no harm done."
+        },
+        {
+          "id": "unit-13.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "Someone says: \"عِنْدِي صُدَاعْ مِنْ يَوْمَيْنْ\". Give a natural piece of advice.",
+          "answer": "لَازِمْ تِرُوحْ لِلدُّكْتُورْ",
+          "accepted": [
+            "لَازِمْ تِرُوحْ لِلدُّكْتُورْ",
+            "جَرِّبْ هَالدَّوَاءْ",
+            "الْأَحْسَنْ تِرُوحْ لِلدُّكْتُورْ",
+            "لَازِمْ تِرْتَاحْ"
+          ],
+          "too_formal": {
+            "item": "أَنْصَحُكَ بِمُرَاجَعَةِ الطَّبِيبِ",
+            "feedback": "Bookish; \"لازم تروح للدكتور\" is the spoken advice."
+          },
+          "tip": "Advice starts with \"لازم\" or \"الأحسن\"."
+        },
+        {
+          "id": "unit-13.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: \"أَنَا تَعْبَان وَايْدْ\". Give a natural piece of advice.",
+          "answer": "لَازِمْ تِرْتَاحْ شْوَيَّةْ",
+          "accepted": [
+            "لَازِمْ تِرْتَاحْ شْوَيَّةْ",
+            "ارتح شويه",
+            "خُدْ بَالَكْ مِنْ نَفْسَكْ",
+            "لَازِمْ تِرْتَاحْ"
+          ],
+          "too_formal": {
+            "item": "يَنْبَغِي لَكَ أَنْ تَأْخُذَ قِسْطًا مِنَ الرَّاحَةِ",
+            "feedback": "Very formal; \"لازم ترتاح\" is what friends say."
+          },
+          "tip": "\"شويه\" softens the advice."
+        },
+        {
+          "id": "unit-13.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Try this medicine.\"",
+          "answer": "جَرِّبْ هَالدَّوَاءْ",
+          "accepted": [
+            "جَرِّبْ هَالدَّوَاءْ",
+            "جرب هالدواء",
+            "جَرِّبْ هَذَا الدَّوَاءْ"
+          ],
+          "too_formal": {
+            "item": "جَرِّبْ هَذَا الْعِقَارْ",
+            "feedback": "\"عقار\" is a written word; speakers say \"دواء\"."
+          },
+          "tip": "\"هالدواء\" is short for \"هذا الدواء\"."
+        },
+        {
+          "id": "unit-13.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Stay calm and don't rush.\"",
+          "answer": "خَلِّيكْ هَادِي وَمَا تِسْتَعْجِلْ",
+          "accepted": [
+            "خَلِّيكْ هَادِي وَمَا تِسْتَعْجِلْ",
+            "خليك هادي وما تستعجل",
+            "خليك هادي لا تستعجل"
+          ],
+          "too_formal": {
+            "item": "حَافِظْ عَلَى هُدُوئِكَ وَلَا تَتَعَجَّلْ",
+            "feedback": "Formal; \"خليك هادي\" is the spoken word."
+          },
+          "tip": "\"وما\" joins two commands: calm down, and do not rush."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "excuse-me-there-s-a-small-problem-to-a-man",
+          "arabic": "لَوْ سَمَحْتَ، فِي مِشْكِلَةْ صَغِيرَةْ",
+          "transliteration": "law sama7t, fi mishkila sghira"
+        },
+        {
+          "slot": "sorry-to-bother-you-but-m",
+          "arabic": "آسِفْ عَلَى الْإِزْعَاجْ، بَسْ",
+          "transliteration": "asif 3ala l-iz3aaj, bas"
+        },
+        {
+          "slot": "can-someone-help-me",
+          "arabic": "فِيهْ حَدّْ يِسَاعِدْنِي؟",
+          "transliteration": "feeh 7add ysaa3idni?"
+        },
+        {
+          "slot": "this-isn-t-what-i-ordered-m",
+          "arabic": "هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
+          "transliteration": "haad ma hoo illi talabtiih"
+        },
+        {
+          "slot": "there-s-a-mistake-in-the-bill",
+          "arabic": "فِي غَلِطَةْ بِالْحِسَابْ",
+          "transliteration": "fi ghali6a bil-7isab"
+        },
+        {
+          "slot": "the-food-is-a-bit-cold-can-you-heat-it-up-for-me",
+          "arabic": "الْأَكِل بَارِدْ شْوَيَّةْ، تِقْدَرْ تِسْخِّنِهْ لِي؟",
+          "transliteration": "il-akil baarid shwayya, tigdar tisakhkhinha li?"
+        },
+        {
+          "slot": "the-order-is-very-late",
+          "arabic": "الطَّلَبْ مِتَأَخِّرْ وَايْدْ",
+          "transliteration": "it-talab mit2akhkhir wayid"
+        },
+        {
+          "slot": "i-don-t-mean-to-bother-you-but-this-is-important",
+          "arabic": "مَا قَصْدِي أُزْعِجَكْ، بَسْ هَاد مُهِمّْ",
+          "transliteration": "ma 2asdi uz3ijak, bas haad muhimm"
+        },
+        {
+          "slot": "can-you-refund-my-money",
+          "arabic": "تِقْدَرْ تِرُدّْ لِي فُلُوسِي؟",
+          "transliteration": "tigdar tirudd li fluusi?"
+        },
+        {
+          "slot": "this-isn-t-the-same-as-what-i-saw-in-the-picture",
+          "arabic": "هَاد مَا هُوّْ مِثِلْ اللِّي شُفْتِهْ بِالصّورَةْ",
+          "transliteration": "haad ma hoo mithl illi shuftih bis-suura"
+        },
+        {
+          "slot": "can-you-help-me-with-this-matter",
+          "arabic": "تِقْدَرْ تِسَاعِدْنِي فِي هَالْمَوْضُوعْ؟",
+          "transliteration": "tigdar tsaa3idni fi hal-mawDoo3?"
+        },
+        {
+          "slot": "there-s-no-problem-but-i-d-like-to-clarify-m",
+          "arabic": "مَا فِي مِشْكِلَةْ، بَسْ أَبِي أُوَضِّحْ",
+          "transliteration": "ma fi mishkila, bas abi awaDDe7"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "يوسف",
+          "arabic": "لَوْ سَمَحْتَ، فِي مِشْكِلَةْ صَغِيرَةْ",
+          "transliteration": "law sama7t, fi mishkila sghira",
+          "english": "Excuse me, I have a small problem."
+        },
+        {
+          "speaker": "علي",
+          "arabic": "تَفَضَّلْ، شْنُو الْمِشْكِلَةْ؟",
+          "transliteration": "tafaDDal, shnoo il-mishkila?",
+          "english": "Go ahead, what's the problem?"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "آسِفْ عَلَى الْإِزْعَاجْ، بَسْ هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
+          "transliteration": "asif 3ala l-iz3aaj, bas haad ma hoo illi talabtiih",
+          "english": "Sorry to bother you, but this isn't what I ordered."
+        },
+        {
+          "speaker": "علي",
+          "arabic": "آسِفْ وَايْدْ، شْنُو طَلَبْتَ؟",
+          "transliteration": "asif wayid, shnoo talabta?",
+          "english": "Very sorry, what did you order?"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "طَلَبْتُ دَجَاجْ مَشْوِي، وَهَاد لَحِمْ",
+          "transliteration": "talabtu dijaj mashwi, w haad la7im",
+          "english": "I ordered grilled chicken, and this is meat."
+        },
+        {
+          "speaker": "علي",
+          "arabic": "لَحِظَةْ، أَغَيِّرُهُ لَكْ الْآنْ",
+          "transliteration": "la7da, aghayyyirah lak il-aan",
+          "english": "One moment, I'll change it for you now."
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "وَكِمَان الْأَكِل بَارِدْ شْوَيَّةْ، تِقْدَرْ تِسْخِّنِهْ لِي؟",
+          "transliteration": "w kiman il-akil baarid shwayya, tigdar tisakhkhinha li?",
+          "english": "Also the food is a bit cold, can you heat it up for me?"
+        },
+        {
+          "speaker": "علي",
+          "arabic": "أَكِيدْ، وَآسِفْ الطَّلَبْ تَأَخِّرَ",
+          "transliteration": "akeed, w asif it-talab ta2akhkhar",
+          "english": "Of course, and sorry the order was late."
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "مَا عَلَيْكَ، بَسْ فِي غَلِطَةْ بِالْحِسَابْ كِمَان",
+          "transliteration": "ma 3aleek, bas fi ghali6a bil-7isab kiman",
+          "english": "No worries, but there's a mistake in the bill too."
+        },
+        {
+          "speaker": "علي",
+          "arabic": "خَلِّينِي أَشُوفْ الْحِسَابْ. صَحِيحْ، أَنْتَ صَحِيحْ، بِصَلِّحُهْ لَكْ",
+          "transliteration": "khalliini ashuuf il-7isab. sa7ee7, anta sa7ee7, bisalli7ah lak",
+          "english": "Let me see the bill. True, you're right, I'll fix it for you."
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "شُكْرًا، اللَّهُ يِعْطِيكَ الْعَافِيَةْ",
+          "transliteration": "shukran, alla yi36i2ak il-3aafya",
+          "english": "Thank you, may God give you strength."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "لَوْ سَمَحْتَ، تِقْدَرْ تِسَاعِدْنِي؟",
+            "transliteration": "law sama7t, tigdar tsaa3idni?",
+            "english": "Excuse me, can you help me?"
+          },
+          "response": {
+            "arabic": "تَفَضَّلْ، شْنُو بِتَبِي؟",
+            "transliteration": "tafaDDal, shnoo bitabi?",
+            "english": "Go ahead, what do you want?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
+            "transliteration": "haad ma hoo illi talabtiih",
+            "english": "This isn't what I ordered."
+          },
+          "response": {
+            "arabic": "آسِفْ، أَغَيِّرُهُ لَكْ الْآنْ",
+            "transliteration": "asif, aghayyyirah lak il-aan",
+            "english": "Sorry, I'll change it for you now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِي غَلِطَةْ بِالْحِسَابْ",
+            "transliteration": "fi ghali6a bil-7isab",
+            "english": "There's a mistake in the bill."
+          },
+          "response": {
+            "arabic": "أَلِفْ آسِفْ، بِصَلِّحُهُ",
+            "transliteration": "alif asif, bisalli7ah",
+            "english": "A thousand sorries, I'll fix it."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تِقْدَرْ تِرُدّْ لِي فُلُوسِي؟",
+            "transliteration": "tigdar tirudd li fluusi?",
+            "english": "Can you refund my money?"
+          },
+          "response": {
+            "arabic": "أَكِيدْ، لَحِظَةْ مِنْ فَضْلَكْ",
+            "transliteration": "akeed, la7da min fadhlak",
+            "english": "Of course, one moment please."
+          }
+        }
+      ],
+      "culture": "A complaint in Yemen starts calmly with \"لو سمحت\" or \"آسف على الإزعاج\", and raising your voice is seen as rude. Staff answer with \"آسف\" and fix it, and it is common to thank them with \"الله يعطيك العافية\".",
+      "exercises": [
+        {
+          "id": "unit-13.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence opens a polite complaint (to a man)?",
+          "options": [
+            "لَوْ سَمَحْتَ، فِي مِشْكِلَةْ صَغِيرَةْ",
+            "هَاد مَرْيُوحْ وَايْدْ",
+            "أَنَا مُوَافِقْ",
+            "شُكْرًا، اللَّهُ يِعْطِيكَ الْعَافِيَةْ"
+          ],
+          "answer": "لَوْ سَمَحْتَ، فِي مِشْكِلَةْ صَغِيرَةْ",
+          "accepted": [
+            "لَوْ سَمَحْتَ، فِي مِشْكِلَةْ صَغِيرَةْ",
+            "لو سمحت عندي مشكلة صغيرة",
+            "لو سمحت في مشكلة"
+          ],
+          "too_formal": {
+            "item": "عَفْوًا، لَدَيّْ مُشْكِلَةٌ بَسِيطَةٌ",
+            "feedback": "Correct but formal; \"لو سمحت، في\" is what is said."
+          },
+          "tip": "Always start with \"لو سمحت\" before the problem."
+        },
+        {
+          "id": "unit-13.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"There's a mistake in the bill\"?",
+          "options": [
+            "فِي غَلِطَةْ بِالْحِسَابْ",
+            "الْأَكِل بَارِدْ شْوَيَّةْ",
+            "آسِفْ عَلَى الْإِزْعَاجْ",
+            "الطَّلَبْ مِتَأَخِّرْ"
+          ],
+          "answer": "فِي غَلِطَةْ بِالْحِسَابْ",
+          "accepted": [
+            "فِي غَلِطَةْ بِالْحِسَابْ",
+            "في غلطة بالحساب",
+            "فِي غَلِطَةْ فِي الْحِسَابْ"
+          ],
+          "too_formal": {
+            "item": "يُوجَدُ خَطَأٌ فِي الْفَاتُورَةِ",
+            "feedback": "Formal; \"في غلطة بالحساب\" is the spoken form."
+          },
+          "tip": "\"في\" means there is; \"الحساب\" is the bill."
+        },
+        {
+          "id": "unit-13.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"طَلَبْتِهْ / اللِّي / هُوّْ / مَا / هَاد\".",
+          "answer": "هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
+          "accepted": [
+            "هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
+            "هاد ما هو اللي طلبته",
+            "هَاد مَا هُوّْ اللِّي طَلَبْتَ"
+          ],
+          "too_formal": {
+            "item": "هَذَا لَيْسَ مَا طَلَبْتُهُ",
+            "feedback": "Formal; speakers say \"مو اللي\"."
+          },
+          "tip": "\"اللي\" means what or which; \"ما هو\" is the spoken not."
+        },
+        {
+          "id": "unit-13.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"هَالْمَوْضُوعْ / فِي / تِسَاعِدْنِي / تِقْدَرْ\".",
+          "answer": "تِقْدَرْ تِسَاعِدْنِي فِي هَالْمَوْضُوعْ",
+          "accepted": [
+            "تِقْدَرْ تِسَاعِدْنِي فِي هَالْمَوْضُوعْ",
+            "تقدر تساعدني في هالموضوع",
+            "تِقْدَرْ تِسَاعِدْنِي بِهَالْمَوْضُوعْ"
+          ],
+          "too_formal": {
+            "item": "هَلْ يُمْكِنُكَ مُسَاعَدَتِي فِي هَذَا الْأَمْرِ",
+            "feedback": "Formal; speakers say \"تقدر\" for can you."
+          },
+          "tip": "\"تقدر\" is how \"can you\" is asked in Yemen."
+        },
+        {
+          "id": "unit-13.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الْأَكِل بَارِدْ شْوَيَّةْ، تِقْدَرْ ___ لِي؟\" Meaning: The food is a bit cold, can you heat it up for me?",
+          "answer": "تِسْخِّنِهْ",
+          "accepted": [
+            "تِسْخِّنِهْ",
+            "تسخنه",
+            "تسخن الأكل"
+          ],
+          "too_formal": {
+            "item": "هَلْ بِإِمْكَانِكَ تَسْخِينُهُ",
+            "feedback": "Formal; \"تسخنه لي\" is spoken."
+          },
+          "tip": "\"سخّن\" means to heat; \"تسخنه\" is you heat it."
+        },
+        {
+          "id": "unit-13.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الطَّلَبْ ___ وَايْدْ.\" Meaning: The order is very late.",
+          "answer": "مِتَأَخِّرْ",
+          "accepted": [
+            "مِتَأَخِّرْ",
+            "متاخر",
+            "متأخر"
+          ],
+          "too_formal": {
+            "item": "الطَّلَبُ تَأَخِّرَ كَثِيرًا",
+            "feedback": "Formal; \"متأخر وايد\" is how it is said."
+          },
+          "tip": "\"وايد\" after an adjective means very."
+        },
+        {
+          "id": "unit-13.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "A waiter says: \"تَفَضَّلْ، شْنُو الْمِشْكِلَةْ؟\". Give a natural reply.",
+          "answer": "فِي غَلِطَةْ بِالْحِسَابْ",
+          "accepted": [
+            "فِي غَلِطَةْ بِالْحِسَابْ",
+            "هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
+            "الْأَكِل بَارِدْ شْوَيَّةْ",
+            "الطَّلَبْ مِتَأَخِّرْ وَايْدْ"
+          ],
+          "too_formal": {
+            "item": "يُوجَدُ خَطَأٌ فِي الْفَاتُورَةِ",
+            "feedback": "Formal; the spoken form is short and direct."
+          },
+          "tip": "Say the problem in one short sentence, with no blame."
+        },
+        {
+          "id": "unit-13.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: \"الْأَكِل بَارِدْ شْوَيَّةْ\". Reply as the waiter.",
+          "answer": "آسِفْ، أَسْخِّنُهُ لَكْ الْآنْ",
+          "accepted": [
+            "آسِفْ، أَسْخِّنُهُ لَكْ الْآنْ",
+            "آسف اسخنه لك الآن",
+            "أَكِيدْ، لَحِظَةْ"
+          ],
+          "too_formal": {
+            "item": "أَعْتَذِرُ، سَأَقُومُ بِتَسْخِينِهِ لَكُمْ",
+            "feedback": "Formal; \"آسف\" and \"الآن\" are what is said."
+          },
+          "tip": "\"الآن\" means now in Yemen."
+        },
+        {
+          "id": "unit-13.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Can you refund my money?\"",
+          "answer": "تِقْدَرْ تِرُدّْ لِي فُلُوسِي؟",
+          "accepted": [
+            "تِقْدَرْ تِرُدّْ لِي فُلُوسِي؟",
+            "تقدر ترد لي فلوسي",
+            "تِقْدَرْ تِرْجِعْ لِي فُلُوسِي؟"
+          ],
+          "too_formal": {
+            "item": "هَلْ يُمْكِنُكَ إِعَادَةُ الْمَبْلَغِ إِلَيّْ",
+            "feedback": "Formal; \"فلوسي\" is my money in speech."
+          },
+          "tip": "\"ترد\" means to give back."
+        },
+        {
+          "id": "unit-13.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Sorry to bother you, but...\" (m)",
+          "answer": "آسِفْ عَلَى الْإِزْعَاجْ، بَسْ",
+          "accepted": [
+            "آسِفْ عَلَى الْإِزْعَاجْ، بَسْ",
+            "آسف على الإزعاج بس",
+            "آسِفْ أُزْعِجَكْ، بَسْ"
+          ],
+          "too_formal": {
+            "item": "أَعْتَذِرُ عَنِ الْإِزْعَاجِ، وَلَكِنْ",
+            "feedback": "Formal; \"بس\" replaces \"ولكن\" in speech."
+          },
+          "tip": "Apologise first, then \"بس\" and the request."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "A Day Out",
+    "instructions": "Write a short conversation between two friends who meet. One asks how the other feels, hears about a worry, gives advice, they agree on a plan, and then one politely raises a small complaint at a restaurant.",
+    "required_elements": [
+      "a question asking how someone feels, using \"كيفك\" or \"كيفك\"",
+      "at least one feeling word such as \"تعبان\", \"مريوح\" or \"قلق\"",
+      "a piece of advice using \"لازم\" or \"الأحسن\"",
+      "agreement or disagreement using \"أنت صحيح\" or \"ما موافق\"",
+      "a polite complaint opened with \"لو سمحت\" or \"آسف على الإزعاج\""
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "هالة",
+          "arabic": "كَيْفَكَ الْيَوْمَ؟",
+          "transliteration": "kayfak alyoom?",
+          "english": "How are you today?"
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "أَنَا شْوَيَّة قَلِقْ، عِنْدِي شُغِلْ وَايْدْ",
+          "transliteration": "ana shwayya 2ali2, 3indi shughil wayid",
+          "english": "I'm a little worried, I have a lot of work."
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "الْأَحْسَنْ تِرْتَاحْ شْوَيَّةْ قَبْلْ مَا تِتَعَبّْ أَكْتَرْ",
+          "transliteration": "il-a7san tirtaa7 shwayya 2abl ma tita3ab aktar",
+          "english": "It's better you rest a little before you get more tired."
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "أَنْتِ صَحِيحَةْ، خَلِّنَا نِرُوحْ نِتَغَدّْ",
+          "transliteration": "anti sa7ee7a, khallna niroo7 nitaghadd",
+          "english": "You're right, let's go have lunch."
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "تَمَام، تَمّْ، وَأَنَا جَايِعَة وَايْدْ",
+          "transliteration": "tamaam, tamm, w ana jaa3a wayid",
+          "english": "OK, that works, and I'm very hungry."
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "لَوْ سَمَحْتَ، هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
+          "transliteration": "law sama7t, haad ma hoo illi talabtiih",
+          "english": "Excuse me, this isn't what I ordered."
+        },
+        {
+          "speaker": "الخادم",
+          "arabic": "آسِفْ وَايْدْ، أَغَيِّرُهُ لَكْ الْآنْ",
+          "transliteration": "asif wayid, aghayyyirah lak il-aan",
+          "english": "Very sorry, I'll change it for you now."
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "شُكْرًا، اللَّهُ يِعْطِيكَ الْعَافِيَةْ",
+          "transliteration": "shukran, alla yi36i2ak il-3aafya",
+          "english": "Thank you, may God give you strength."
+        }
+      ]
+    }
+  }
+}

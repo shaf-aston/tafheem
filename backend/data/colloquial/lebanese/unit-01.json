@@ -26,87 +26,87 @@
       "phrases": [
         {
           "slot": "hello",
-          "arabic": "مرحبا",
+          "arabic": "مَرْحَبًا",
           "transliteration": "marhaba",
           "reply": {
-            "arabic": "مرحبتين",
+            "arabic": "مَرْحَبْتَيْن",
             "transliteration": "marhabteen",
             "english": "Hello to you too."
           }
         },
         {
           "slot": "hi-welcome",
-          "arabic": "أهلا",
+          "arabic": "أَهْلًا",
           "transliteration": "ahla",
           "reply": {
-            "arabic": "أهلين",
+            "arabic": "أَهْلِيْن",
             "transliteration": "ahleen",
             "english": "Welcome / hi to you."
           }
         },
         {
           "slot": "how-are-you-to-a-man",
-          "arabic": "كيفك؟",
+          "arabic": "كِيفَك؟",
           "transliteration": "keefak?"
         },
         {
           "slot": "how-are-you-to-a-woman",
-          "arabic": "كيفِك؟",
+          "arabic": "كِيفِك؟",
           "transliteration": "keefik?"
         },
         {
           "slot": "good-thank-god",
-          "arabic": "منيح، الحمد لله",
+          "arabic": "مِنِيح، الْحَمْدُ لِلَّه",
           "transliteration": "mnee7, el-7amdella"
         },
         {
           "slot": "great-fine",
-          "arabic": "تمام",
+          "arabic": "تَمَام",
           "transliteration": "tamaam"
         },
         {
           "slot": "what-s-your-name-to-a-man",
-          "arabic": "شو اسمك؟",
+          "arabic": "شُو اسْمَك؟",
           "transliteration": "shoo esmak?"
         },
         {
           "slot": "what-s-your-name-to-a-woman",
-          "arabic": "شو اسمِك؟",
+          "arabic": "شُو اسْمِك؟",
           "transliteration": "shoo esmik?"
         },
         {
           "slot": "my-name-is-rami",
-          "arabic": "اسمي رامي",
+          "arabic": "اسْمِي رَامِي",
           "transliteration": "esmi Raami"
         },
         {
           "slot": "i-m-lina",
-          "arabic": "أنا لينا",
+          "arabic": "أَنَا لِينَا",
           "transliteration": "ana Leena"
         },
         {
           "slot": "nice-to-meet-you",
-          "arabic": "تشرفنا",
+          "arabic": "تَشَرَّفْنَا",
           "transliteration": "tsharrafna",
           "reply": {
-            "arabic": "الشرف إلي",
+            "arabic": "الشَّرَف إِلِي",
             "transliteration": "esh-sharaf eli",
             "english": "The pleasure is mine."
           }
         },
         {
           "slot": "me-too",
-          "arabic": "وأنا كمان",
+          "arabic": "وَأَنَا كَمَان",
           "transliteration": "w ana kamaan"
         },
         {
           "slot": "where-are-you-from-to-a-man",
-          "arabic": "منين إنت؟",
+          "arabic": "مِنِيْن إِنْت؟",
           "transliteration": "mneen inte?"
         },
         {
           "slot": "where-are-you-from-to-a-woman",
-          "arabic": "منين إنتِ؟",
+          "arabic": "مِنِيْن إِنْتِ؟",
           "transliteration": "mneen inti?"
         }
       ],
@@ -137,7 +137,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "شو اسمِك؟",
+          "arabic": "شُو اسْمِك؟",
           "transliteration": "shoo esmik?",
           "english": "What's your name?"
         },
@@ -167,7 +167,7 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "منين إنت؟",
+          "arabic": "مِنِيْن إِنْت؟",
           "transliteration": "mneen inte?",
           "english": "Where are you from?"
         },
@@ -187,7 +187,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "كيفك؟",
+            "arabic": "كِيفَك؟",
             "transliteration": "keefak?",
             "english": "How are you? (to a man)"
           },
@@ -199,7 +199,7 @@
         },
         {
           "pair": {
-            "arabic": "شو اسمك؟",
+            "arabic": "شُو اسْمَك؟",
             "transliteration": "shoo esmak?",
             "english": "What's your name?"
           },
@@ -211,7 +211,7 @@
         },
         {
           "pair": {
-            "arabic": "منين إنتِ؟",
+            "arabic": "مِنِيْن إِنْتِ؟",
             "transliteration": "mneen inti?",
             "english": "Where are you from? (to a woman)"
           },
@@ -240,12 +240,12 @@
           "id": "unit-01.lesson-01.reply.01",
           "type": "reply",
           "prompt": "A man says to you: \"مرحبا\". Reply naturally.",
-          "answer": "مرحبتين",
+          "answer": "مَرْحَبْتَيْن",
           "accepted": [
-            "مرحبتين",
+            "مَرْحَبْتَيْن",
             "marhabteen",
-            "أهلين",
-            "أهلا"
+            "أَهْلِيْن",
+            "أَهْلًا"
           ],
           "too_formal": {
             "item": "السلام عليكم ورحمة الله وبركاته",
@@ -290,9 +290,9 @@
           "id": "unit-01.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Lebanese Arabic: \"What's your name?\" (to a man)",
-          "answer": "شو اسمك؟",
+          "answer": "شُو اسْمَك؟",
           "accepted": [
-            "شو اسمك؟",
+            "شُو اسْمَك؟",
             "shoo esmak?",
             "شو اسمك",
             "شو إسمك"
@@ -308,14 +308,14 @@
           "type": "choose",
           "prompt": "Which sentence means \"Where are you from?\" to a woman?",
           "options": [
-            "منين إنت؟",
-            "منين إنتِ؟",
-            "شو اسمِك؟",
-            "كيفك؟"
+            "مِنِيْن إِنْت؟",
+            "مِنِيْن إِنْتِ؟",
+            "شُو اسْمِك؟",
+            "كِيفَك؟"
           ],
-          "answer": "منين إنتِ؟",
+          "answer": "مِنِيْن إِنْتِ؟",
           "accepted": [
-            "منين إنتِ؟",
+            "مِنِيْن إِنْتِ؟",
             "mneen inti?",
             "منين إنتي؟",
             "من وين إنتِ؟"
@@ -330,9 +330,9 @@
           "id": "unit-01.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Nice to meet you.\"",
-          "answer": "تشرفنا",
+          "answer": "تَشَرَّفْنَا",
           "accepted": [
-            "تشرفنا",
+            "تَشَرَّفْنَا",
             "tsharrafna",
             "تشرفنا فيك",
             "تشرّفنا"
@@ -347,11 +347,11 @@
           "id": "unit-01.lesson-01.reply.03",
           "type": "reply",
           "prompt": "Someone says: \"تشرفنا\". Give a natural reply.",
-          "answer": "الشرف إلي",
+          "answer": "الشَّرَف إِلِي",
           "accepted": [
-            "الشرف إلي",
+            "الشَّرَف إِلِي",
             "esh-sharaf eli",
-            "وأنا كمان",
+            "وَأَنَا كَمَان",
             "w ana kamaan"
           ],
           "too_formal": {
@@ -364,9 +364,9 @@
           "id": "unit-01.lesson-01.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in order: \"اسمك / شو\".",
-          "answer": "شو اسمك؟",
+          "answer": "شُو اسْمَك؟",
           "accepted": [
-            "شو اسمك؟",
+            "شُو اسْمَك؟",
             "شو اسمك",
             "shoo esmak?",
             "shoo esmak"
@@ -415,14 +415,14 @@
           "type": "choose",
           "prompt": "A woman asks you how you are. Which is the correct question form for a woman?",
           "options": [
-            "كيفك؟",
-            "كيفِك؟",
-            "شو اسمك؟",
-            "تمام"
+            "كِيفَك؟",
+            "كِيفِك؟",
+            "شُو اسْمَك؟",
+            "تَمَام"
           ],
-          "answer": "كيفِك؟",
+          "answer": "كِيفِك؟",
           "accepted": [
-            "كيفِك؟",
+            "كِيفِك؟",
             "keefik?",
             "كيفك",
             "كيفيك؟"
@@ -437,9 +437,9 @@
           "id": "unit-01.lesson-01.reply.04",
           "type": "reply",
           "prompt": "Someone says \"أهلا\". Answer with the warm reply.",
-          "answer": "أهلين",
+          "answer": "أَهْلِيْن",
           "accepted": [
-            "أهلين",
+            "أَهْلِيْن",
             "ahleen",
             "أهلا وسهلا",
             "ahla w sahla"
@@ -457,82 +457,82 @@
       "phrases": [
         {
           "slot": "please-excuse-me-to-a-man",
-          "arabic": "لو سمحت",
+          "arabic": "لَوْ سَمَحْت",
           "transliteration": "law sama7t"
         },
         {
           "slot": "please-excuse-me-to-a-woman",
-          "arabic": "لو سمحتي",
+          "arabic": "لَوْ سَمَحْتِي",
           "transliteration": "law sama7ti"
         },
         {
           "slot": "it-s-okay-sorry-excuse-me",
-          "arabic": "معليش",
+          "arabic": "مَعْلِيش",
           "transliteration": "ma3leesh"
         },
         {
           "slot": "sorry-male-speaker",
-          "arabic": "آسف",
+          "arabic": "آسِف",
           "transliteration": "aasef"
         },
         {
           "slot": "sorry-female-speaker",
-          "arabic": "آسفة",
+          "arabic": "آسِفَة",
           "transliteration": "aasfe"
         },
         {
           "slot": "thank-you",
-          "arabic": "شكرا",
+          "arabic": "شُكْرًا",
           "transliteration": "shukran"
         },
         {
           "slot": "thank-you-very-much",
-          "arabic": "مرسي كتير",
+          "arabic": "مِرْسِي كْتِيْر",
           "transliteration": "mersi ktiir"
         },
         {
           "slot": "you-re-welcome-excuse-me",
-          "arabic": "عفوا",
+          "arabic": "عَفْوًا",
           "transliteration": "3afwan"
         },
         {
           "slot": "can-you-help-me-to-a-man",
-          "arabic": "فيك تساعدني؟",
+          "arabic": "فِيك تْسَاعِدْنِي؟",
           "transliteration": "feek tsaa3edni?",
           "reply": {
-            "arabic": "تكرم عينك",
+            "arabic": "تِكْرَم عِيْنَك",
             "transliteration": "tekram 3eenak",
             "english": "With pleasure (lit. may your eye be honoured)."
           }
         },
         {
           "slot": "can-you-help-me-to-a-woman",
-          "arabic": "فيكي تساعديني؟",
+          "arabic": "فِيكِي تْسَاعِدِينِي؟",
           "transliteration": "feeki tsaa3edeeni?",
           "reply": {
-            "arabic": "تكرم عينك",
+            "arabic": "تِكْرَم عِيْنَك",
             "transliteration": "tekram 3eenik",
             "english": "With pleasure (said to a woman)."
           }
         },
         {
           "slot": "i-want-some-water",
-          "arabic": "بدي مي",
+          "arabic": "بِدِّي مِي",
           "transliteration": "baddi mayy"
         },
         {
           "slot": "is-it-possible-can-i",
-          "arabic": "ممكن؟",
+          "arabic": "مُمْكِن؟",
           "transliteration": "mumken?"
         },
         {
           "slot": "yes-of-course",
-          "arabic": "إي، أكيد",
+          "arabic": "إِي، أَكِيد",
           "transliteration": "ee, akeed"
         },
         {
           "slot": "sorry-i-didn-t-understand",
-          "arabic": "آسف، ما فهمت",
+          "arabic": "آسِف، مَا فِهِمْت",
           "transliteration": "aasef, ma fhemt"
         }
       ],
@@ -666,9 +666,9 @@
           "id": "unit-01.lesson-02.reply.01",
           "type": "reply",
           "prompt": "Someone says: \"آسف!\" after bumping into you. Reply.",
-          "answer": "معليش",
+          "answer": "مَعْلِيش",
           "accepted": [
-            "معليش",
+            "مَعْلِيش",
             "ma3leesh",
             "ما في مشكلة",
             "مافي مشكلة"
@@ -683,9 +683,9 @@
           "id": "unit-01.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Thank you very much.\"",
-          "answer": "مرسي كتير",
+          "answer": "مِرْسِي كْتِيْر",
           "accepted": [
-            "مرسي كتير",
+            "مِرْسِي كْتِيْر",
             "mersi ktiir",
             "شكرا كتير",
             "shukran ktiir"
@@ -700,9 +700,9 @@
           "id": "unit-01.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Excuse me\" (to a woman).",
-          "answer": "لو سمحتي",
+          "answer": "لَوْ سَمَحْتِي",
           "accepted": [
-            "لو سمحتي",
+            "لَوْ سَمَحْتِي",
             "law sama7ti",
             "من فضلك",
             "min fadlik"
@@ -717,11 +717,11 @@
           "id": "unit-01.lesson-02.reply.02",
           "type": "reply",
           "prompt": "Someone says: \"مرسي كتير\". Reply.",
-          "answer": "عفوا",
+          "answer": "عَفْوًا",
           "accepted": [
-            "عفوا",
+            "عَفْوًا",
             "3afwan",
-            "أهلين",
+            "أَهْلِيْن",
             "ولو"
           ],
           "too_formal": {
@@ -734,9 +734,9 @@
           "id": "unit-01.lesson-02.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I want some water.\"",
-          "answer": "بدي مي",
+          "answer": "بِدِّي مِي",
           "accepted": [
-            "بدي مي",
+            "بِدِّي مِي",
             "baddi mayy",
             "بدي ماي",
             "بدي مية"
@@ -768,14 +768,14 @@
           "type": "choose",
           "prompt": "Which one is said by a woman apologising?",
           "options": [
-            "آسف",
-            "آسفة",
-            "عفوا",
-            "معليش"
+            "آسِف",
+            "آسِفَة",
+            "عَفْوًا",
+            "مَعْلِيش"
           ],
-          "answer": "آسفة",
+          "answer": "آسِفَة",
           "accepted": [
-            "آسفة",
+            "آسِفَة",
             "aasfe",
             "asfe"
           ],
@@ -793,8 +793,8 @@
           "accepted": [
             "إي، تكرم عينك",
             "ee, tekram 3eenak",
-            "تكرم عينك",
-            "إي، أكيد"
+            "تِكْرَم عِيْنَك",
+            "إِي، أَكِيد"
           ],
           "too_formal": {
             "item": "بكل سرور",
@@ -806,9 +806,9 @@
           "id": "unit-01.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in order: \"مي / بدي\".",
-          "answer": "بدي مي",
+          "answer": "بِدِّي مِي",
           "accepted": [
-            "بدي مي",
+            "بِدِّي مِي",
             "baddi mayy",
             "بدي ماي",
             "بدي مي."
@@ -840,9 +840,9 @@
           "id": "unit-01.lesson-02.translate_to_arabic.04",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Is it possible?\" / \"Can I?\"",
-          "answer": "ممكن؟",
+          "answer": "مُمْكِن؟",
           "accepted": [
-            "ممكن؟",
+            "مُمْكِن؟",
             "mumken?",
             "ممكن",
             "فيني؟"
@@ -859,13 +859,13 @@
           "prompt": "You want to say \"Yes, of course.\" Which is right?",
           "options": [
             "لأ، شكرا",
-            "إي، أكيد",
-            "معليش",
-            "آسف"
+            "إِي، أَكِيد",
+            "مَعْلِيش",
+            "آسِف"
           ],
-          "answer": "إي، أكيد",
+          "answer": "إِي، أَكِيد",
           "accepted": [
-            "إي، أكيد",
+            "إِي، أَكِيد",
             "ee, akeed",
             "إيه أكيد",
             "ايه اكيد"
@@ -883,72 +883,72 @@
       "phrases": [
         {
           "slot": "one",
-          "arabic": "واحد",
+          "arabic": "وَاحِد",
           "transliteration": "waa7ad"
         },
         {
           "slot": "two",
-          "arabic": "تنين",
+          "arabic": "تْنِيْن",
           "transliteration": "tneen"
         },
         {
           "slot": "three",
-          "arabic": "تلاتة",
+          "arabic": "تْلَاتَة",
           "transliteration": "tlete"
         },
         {
           "slot": "four",
-          "arabic": "أربعة",
+          "arabic": "أَرْبَعَة",
           "transliteration": "arba3a"
         },
         {
           "slot": "five",
-          "arabic": "خمسة",
+          "arabic": "خَمْسَة",
           "transliteration": "khamse"
         },
         {
           "slot": "how-much-how-many",
-          "arabic": "قديش؟",
+          "arabic": "قِدِّيش؟",
           "transliteration": "addeesh?"
         },
         {
           "slot": "what-time-is-it",
-          "arabic": "قديش الساعة؟",
+          "arabic": "قِدِّيش الْسَّاعَة؟",
           "transliteration": "addeesh es-saa3a?"
         },
         {
           "slot": "it-s-one-o-clock",
-          "arabic": "الساعة وحدة",
+          "arabic": "الْسَّاعَة وَحْدَة",
           "transliteration": "es-saa3a wa7de"
         },
         {
           "slot": "it-s-two-o-clock",
-          "arabic": "الساعة تنتين",
+          "arabic": "الْسَّاعَة تِنْتِيْن",
           "transliteration": "es-saa3a tinteen"
         },
         {
           "slot": "tomorrow",
-          "arabic": "بكرا",
+          "arabic": "بُكْرًا",
           "transliteration": "bukra"
         },
         {
           "slot": "today",
-          "arabic": "اليوم",
+          "arabic": "الْيَوْم",
           "transliteration": "el-yoom"
         },
         {
           "slot": "now",
-          "arabic": "هلق",
+          "arabic": "هَلَّق",
           "transliteration": "halla2"
         },
         {
           "slot": "we-ll-see-you-tomorrow-to-a-man",
-          "arabic": "منشوفك بكرا",
+          "arabic": "مِنْشُوفَك بُكْرًا",
           "transliteration": "mnshoofak bukra"
         },
         {
           "slot": "i-ll-see-you-tomorrow-to-a-man",
-          "arabic": "بشوفك بكرا",
+          "arabic": "بِشُوفَك بُكْرًا",
           "transliteration": "bshoofak bukra"
         }
       ],
@@ -1029,7 +1029,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "قديش الساعة؟",
+            "arabic": "قِدِّيش الْسَّاعَة؟",
             "transliteration": "addeesh es-saa3a?",
             "english": "What time is it?"
           },
@@ -1041,7 +1041,7 @@
         },
         {
           "pair": {
-            "arabic": "قديش؟",
+            "arabic": "قِدِّيش؟",
             "transliteration": "addeesh?",
             "english": "How much?"
           },
@@ -1082,9 +1082,9 @@
           "id": "unit-01.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"What time is it?\"",
-          "answer": "قديش الساعة؟",
+          "answer": "قِدِّيش الْسَّاعَة؟",
           "accepted": [
-            "قديش الساعة؟",
+            "قِدِّيش الْسَّاعَة؟",
             "addeesh es-saa3a?",
             "الساعة قديش؟",
             "قديش الساعة هلق؟"
@@ -1099,9 +1099,9 @@
           "id": "unit-01.lesson-03.reply.01",
           "type": "reply",
           "prompt": "Someone asks: \"قديش الساعة؟\". It is one o'clock. Answer.",
-          "answer": "الساعة وحدة",
+          "answer": "الْسَّاعَة وَحْدَة",
           "accepted": [
-            "الساعة وحدة",
+            "الْسَّاعَة وَحْدَة",
             "es-saa3a wa7de",
             "وحدة",
             "الساعة واحدة"
@@ -1116,9 +1116,9 @@
           "id": "unit-01.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"It's two o'clock.\"",
-          "answer": "الساعة تنتين",
+          "answer": "الْسَّاعَة تِنْتِيْن",
           "accepted": [
-            "الساعة تنتين",
+            "الْسَّاعَة تِنْتِيْن",
             "es-saa3a tinteen",
             "تنتين",
             "الساعة تنتين."
@@ -1133,9 +1133,9 @@
           "id": "unit-01.lesson-03.fill_blank.01",
           "type": "fill_blank",
           "prompt": "Complete: \"_____ منشوفك.\" Meaning: We'll see you tomorrow.",
-          "answer": "بكرا",
+          "answer": "بُكْرًا",
           "accepted": [
-            "بكرا",
+            "بُكْرًا",
             "bukra",
             "بكره"
           ],
@@ -1150,14 +1150,14 @@
           "type": "choose",
           "prompt": "Which word means \"now\"?",
           "options": [
-            "بكرا",
-            "اليوم",
-            "هلق",
+            "بُكْرًا",
+            "الْيَوْم",
+            "هَلَّق",
             "لسا"
           ],
-          "answer": "هلق",
+          "answer": "هَلَّق",
           "accepted": [
-            "هلق",
+            "هَلَّق",
             "halla2",
             "هلأ",
             "halla"
@@ -1172,9 +1172,9 @@
           "id": "unit-01.lesson-03.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'll see you tomorrow.\" (to a man)",
-          "answer": "بشوفك بكرا",
+          "answer": "بِشُوفَك بُكْرًا",
           "accepted": [
-            "بشوفك بكرا",
+            "بِشُوفَك بُكْرًا",
             "bshoofak bukra",
             "بكرا بشوفك",
             "بشوفك بكرا إن شاء الله"
@@ -1189,9 +1189,9 @@
           "id": "unit-01.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in order: \"بكرا / منشوفك\".",
-          "answer": "منشوفك بكرا",
+          "answer": "مِنْشُوفَك بُكْرًا",
           "accepted": [
-            "منشوفك بكرا",
+            "مِنْشُوفَك بُكْرًا",
             "بكرا منشوفك",
             "mnshoofak bukra",
             "bukra mnshoofak"
@@ -1207,14 +1207,14 @@
           "type": "choose",
           "prompt": "Which is the number three?",
           "options": [
-            "تنين",
-            "تلاتة",
-            "خمسة",
-            "أربعة"
+            "تْنِيْن",
+            "تْلَاتَة",
+            "خَمْسَة",
+            "أَرْبَعَة"
           ],
-          "answer": "تلاتة",
+          "answer": "تْلَاتَة",
           "accepted": [
-            "تلاتة",
+            "تْلَاتَة",
             "tlete",
             "تلاته",
             "tlaate"
@@ -1246,9 +1246,9 @@
           "id": "unit-01.lesson-03.translate_to_arabic.04",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Today.\"",
-          "answer": "اليوم",
+          "answer": "الْيَوْم",
           "accepted": [
-            "اليوم",
+            "الْيَوْم",
             "el-yoom",
             "el yoom",
             "اليوم."
@@ -1279,9 +1279,9 @@
           "id": "unit-01.lesson-03.translate_to_arabic.05",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"How much?\"",
-          "answer": "قديش؟",
+          "answer": "قِدِّيش؟",
           "accepted": [
-            "قديش؟",
+            "قِدِّيش؟",
             "addeesh?",
             "قديش",
             "بقديش؟"
@@ -1299,75 +1299,75 @@
       "phrases": [
         {
           "slot": "where-is-the-market",
-          "arabic": "وين السوق؟",
+          "arabic": "وِيْن الْسُّوق؟",
           "transliteration": "ween es-soo2?"
         },
         {
           "slot": "where-is-the-nearest-shop",
-          "arabic": "وين أقرب محل؟",
+          "arabic": "وِيْن أَقْرَب مَحَل؟",
           "transliteration": "ween a2rab ma7all?"
         },
         {
           "slot": "from-here",
-          "arabic": "من هون",
+          "arabic": "مِنْ هُوْن",
           "transliteration": "min hoon"
         },
         {
           "slot": "on-the-right",
-          "arabic": "عاليمين",
+          "arabic": "عَالْيَمِيْن",
           "transliteration": "3al-yameen"
         },
         {
           "slot": "on-the-left",
-          "arabic": "عالشمال",
+          "arabic": "عَالْشِمَال",
           "transliteration": "3a-shmaal"
         },
         {
           "slot": "straight-ahead",
-          "arabic": "دغري",
+          "arabic": "دُغْرِي",
           "transliteration": "dughri"
         },
         {
           "slot": "near",
-          "arabic": "قريب",
+          "arabic": "قْرِيب",
           "transliteration": "2reeb"
         },
         {
           "slot": "far",
-          "arabic": "بعيد",
+          "arabic": "بْعِيد",
           "transliteration": "b3eed"
         },
         {
           "slot": "here",
-          "arabic": "هون",
+          "arabic": "هُوْن",
           "transliteration": "hoon"
         },
         {
           "slot": "there",
-          "arabic": "هونيك",
+          "arabic": "هُوْنِيك",
           "transliteration": "hooneek"
         },
         {
           "slot": "straight-on-directly",
-          "arabic": "عالطول",
+          "arabic": "عَالْطُول",
           "transliteration": "3aT-Tool"
         },
         {
           "slot": "turn-right",
-          "arabic": "لف عاليمين",
+          "arabic": "لَف عَالْيَمِيْن",
           "transliteration": "leff 3al-yameen"
         },
         {
           "slot": "turn-left-to-a-woman",
-          "arabic": "لفّي عالشمال",
+          "arabic": "لَفِّي عَالْشِمَال",
           "transliteration": "leffi 3a-shmaal"
         },
         {
           "slot": "thanks-may-you-have-strength",
-          "arabic": "يعطيك العافية",
+          "arabic": "يَعْطِيك الْعَافِيَة",
           "transliteration": "ya3Teek el-3aafye",
           "reply": {
-            "arabic": "الله يعافيك",
+            "arabic": "الْلَّه يَعَافِيك",
             "transliteration": "allah y3aafeek",
             "english": "May God keep you well."
           }
@@ -1450,7 +1450,7 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "وين السوق؟",
+            "arabic": "وِيْن الْسُّوق؟",
             "transliteration": "ween es-soo2?",
             "english": "Where is the market?"
           },
@@ -1474,7 +1474,7 @@
         },
         {
           "pair": {
-            "arabic": "وين أقرب محل؟",
+            "arabic": "وِيْن أَقْرَب مَحَل؟",
             "transliteration": "ween a2rab ma7all?",
             "english": "Where is the nearest shop?"
           },
@@ -1503,9 +1503,9 @@
           "id": "unit-01.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where is the market?\"",
-          "answer": "وين السوق؟",
+          "answer": "وِيْن الْسُّوق؟",
           "accepted": [
-            "وين السوق؟",
+            "وِيْن الْسُّوق؟",
             "ween es-soo2?",
             "وين السوق",
             "ween es-soo2"
@@ -1521,14 +1521,14 @@
           "type": "choose",
           "prompt": "Which means \"on the left\"?",
           "options": [
-            "عاليمين",
-            "عالشمال",
-            "دغري",
-            "هون"
+            "عَالْيَمِيْن",
+            "عَالْشِمَال",
+            "دُغْرِي",
+            "هُوْن"
           ],
-          "answer": "عالشمال",
+          "answer": "عَالْشِمَال",
           "accepted": [
-            "عالشمال",
+            "عَالْشِمَال",
             "3a-shmaal",
             "عالشمال.",
             "عا الشمال"
@@ -1543,9 +1543,9 @@
           "id": "unit-01.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Turn right.\"",
-          "answer": "لف عاليمين",
+          "answer": "لَف عَالْيَمِيْن",
           "accepted": [
-            "لف عاليمين",
+            "لَف عَالْيَمِيْن",
             "leff 3al-yameen",
             "لفّ عاليمين",
             "خد عاليمين"
@@ -1560,9 +1560,9 @@
           "id": "unit-01.lesson-04.fill_blank.01",
           "type": "fill_blank",
           "prompt": "Complete: \"من _____، امشي دغري.\" Meaning: From here, walk straight.",
-          "answer": "هون",
+          "answer": "هُوْن",
           "accepted": [
-            "هون",
+            "هُوْن",
             "hoon",
             "هون."
           ],
@@ -1580,7 +1580,7 @@
           "accepted": [
             "لأ، قريب",
             "la2, 2reeb",
-            "قريب",
+            "قْرِيب",
             "لا، قريب"
           ],
           "too_formal": {
@@ -1593,9 +1593,9 @@
           "id": "unit-01.lesson-04.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Turn left.\" (to a woman)",
-          "answer": "لفّي عالشمال",
+          "answer": "لَفِّي عَالْشِمَال",
           "accepted": [
-            "لفّي عالشمال",
+            "لَفِّي عَالْشِمَال",
             "leffi 3a-shmaal",
             "لفي عالشمال",
             "لفّي عا الشمال"
@@ -1611,14 +1611,14 @@
           "type": "choose",
           "prompt": "Which word means \"straight ahead\"?",
           "options": [
-            "دغري",
-            "بعيد",
-            "عاليمين",
-            "هونيك"
+            "دُغْرِي",
+            "بْعِيد",
+            "عَالْيَمِيْن",
+            "هُوْنِيك"
           ],
-          "answer": "دغري",
+          "answer": "دُغْرِي",
           "accepted": [
-            "دغري",
+            "دُغْرِي",
             "dughri",
             "دوغري",
             "دغرى"
@@ -1633,9 +1633,9 @@
           "id": "unit-01.lesson-04.reorder.01",
           "type": "reorder",
           "prompt": "Put these words in order: \"السوق / وين\".",
-          "answer": "وين السوق؟",
+          "answer": "وِيْن الْسُّوق؟",
           "accepted": [
-            "وين السوق؟",
+            "وِيْن الْسُّوق؟",
             "وين السوق",
             "ween es-soo2?",
             "ween es-soo2"
@@ -1650,9 +1650,9 @@
           "id": "unit-01.lesson-04.translate_to_arabic.04",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where is the nearest shop?\"",
-          "answer": "وين أقرب محل؟",
+          "answer": "وِيْن أَقْرَب مَحَل؟",
           "accepted": [
-            "وين أقرب محل؟",
+            "وِيْن أَقْرَب مَحَل؟",
             "ween a2rab ma7all?",
             "وين أقرب دكانة؟",
             "ween a2rab dekkaane?"
@@ -1667,9 +1667,9 @@
           "id": "unit-01.lesson-04.reply.02",
           "type": "reply",
           "prompt": "Someone says: \"يعطيك العافية\". Answer.",
-          "answer": "الله يعافيك",
+          "answer": "الْلَّه يَعَافِيك",
           "accepted": [
-            "الله يعافيك",
+            "الْلَّه يَعَافِيك",
             "allah y3aafeek",
             "الله يعافيك.",
             "الله يعافيكي"
@@ -1684,9 +1684,9 @@
           "id": "unit-01.lesson-04.fill_blank.02",
           "type": "fill_blank",
           "prompt": "Complete: \"لف _____.\" Meaning: Turn right.",
-          "answer": "عاليمين",
+          "answer": "عَالْيَمِيْن",
           "accepted": [
-            "عاليمين",
+            "عَالْيَمِيْن",
             "3al-yameen",
             "عاليمين."
           ],
@@ -1700,9 +1700,9 @@
           "id": "unit-01.lesson-04.translate_to_arabic.05",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Straight on / directly.\"",
-          "answer": "عالطول",
+          "answer": "عَالْطُول",
           "accepted": [
-            "عالطول",
+            "عَالْطُول",
             "3aT-Tool",
             "على طول",
             "عا طول"
@@ -1783,7 +1783,7 @@
         },
         {
           "speaker": "Samer",
-          "arabic": "وين السوق؟",
+          "arabic": "وِيْن الْسُّوق؟",
           "transliteration": "ween es-soo2?",
           "english": "Where is the market?"
         },
