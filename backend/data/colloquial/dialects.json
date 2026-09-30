@@ -15,7 +15,7 @@
       "label": "Damascene",
       "arabic": "الشامي",
       "where": "Damascus and the Syrian south",
-      "order": 1
+      "order": 2
     },
     {
       "key": "egyptian",
@@ -23,7 +23,7 @@
       "label": "Egyptian",
       "arabic": "المصري",
       "where": "Cairo and the Nile Delta",
-      "order": 2
+      "order": 1
     },
     {
       "key": "lebanese",
@@ -47,7 +47,7 @@
       "label": "Iraqi",
       "arabic": "العراقي",
       "where": "Baghdad and central Iraq",
-      "order": 5
+      "order": 6
     },
     {
       "key": "moroccan",
@@ -55,7 +55,7 @@
       "label": "Moroccan",
       "arabic": "المغربي",
       "where": "Casablanca, Rabat and Morocco",
-      "order": 6
+      "order": 5
     },
     {
       "key": "hejazi",
