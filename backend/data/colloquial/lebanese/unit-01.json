@@ -1,0 +1,1835 @@
+{
+  "unit": "unit-01",
+  "dialect": "Lebanese Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء / ق (في اللهجة اللبنانية تُنطق همزة)",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ",
+    "T": "ط",
+    "S": "ص",
+    "D": "ض",
+    "Z": "ظ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "hello",
+          "arabic": "مرحبا",
+          "transliteration": "marhaba",
+          "reply": {
+            "arabic": "مرحبتين",
+            "transliteration": "marhabteen",
+            "english": "Hello to you too."
+          }
+        },
+        {
+          "slot": "hi-welcome",
+          "arabic": "أهلا",
+          "transliteration": "ahla",
+          "reply": {
+            "arabic": "أهلين",
+            "transliteration": "ahleen",
+            "english": "Welcome / hi to you."
+          }
+        },
+        {
+          "slot": "how-are-you-to-a-man",
+          "arabic": "كيفك؟",
+          "transliteration": "keefak?"
+        },
+        {
+          "slot": "how-are-you-to-a-woman",
+          "arabic": "كيفِك؟",
+          "transliteration": "keefik?"
+        },
+        {
+          "slot": "good-thank-god",
+          "arabic": "منيح، الحمد لله",
+          "transliteration": "mnee7, el-7amdella"
+        },
+        {
+          "slot": "great-fine",
+          "arabic": "تمام",
+          "transliteration": "tamaam"
+        },
+        {
+          "slot": "what-s-your-name-to-a-man",
+          "arabic": "شو اسمك؟",
+          "transliteration": "shoo esmak?"
+        },
+        {
+          "slot": "what-s-your-name-to-a-woman",
+          "arabic": "شو اسمِك؟",
+          "transliteration": "shoo esmik?"
+        },
+        {
+          "slot": "my-name-is-rami",
+          "arabic": "اسمي رامي",
+          "transliteration": "esmi Raami"
+        },
+        {
+          "slot": "i-m-lina",
+          "arabic": "أنا لينا",
+          "transliteration": "ana Leena"
+        },
+        {
+          "slot": "nice-to-meet-you",
+          "arabic": "تشرفنا",
+          "transliteration": "tsharrafna",
+          "reply": {
+            "arabic": "الشرف إلي",
+            "transliteration": "esh-sharaf eli",
+            "english": "The pleasure is mine."
+          }
+        },
+        {
+          "slot": "me-too",
+          "arabic": "وأنا كمان",
+          "transliteration": "w ana kamaan"
+        },
+        {
+          "slot": "where-are-you-from-to-a-man",
+          "arabic": "منين إنت؟",
+          "transliteration": "mneen inte?"
+        },
+        {
+          "slot": "where-are-you-from-to-a-woman",
+          "arabic": "منين إنتِ؟",
+          "transliteration": "mneen inti?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rami",
+          "arabic": "مرحبا.",
+          "transliteration": "marhaba.",
+          "english": "Hello."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أهلا، كيفك؟",
+          "transliteration": "ahla, keefak?",
+          "english": "Hi, how are you?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "منيح، الحمد لله. إنتِ كيفِك؟",
+          "transliteration": "mnee7, el-7amdella. inti keefik?",
+          "english": "Good, thank God. How are you?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "تمام، الحمد لله.",
+          "transliteration": "tamaam, el-7amdella.",
+          "english": "Fine, thank God."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "شو اسمِك؟",
+          "transliteration": "shoo esmik?",
+          "english": "What's your name?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أنا لينا. وإنت؟",
+          "transliteration": "ana Leena. w inte?",
+          "english": "I'm Lina. And you?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "اسمي رامي.",
+          "transliteration": "esmi Raami.",
+          "english": "My name is Rami."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "تشرفنا يا رامي.",
+          "transliteration": "tsharrafna ya Raami.",
+          "english": "Nice to meet you, Rami."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "وأنا كمان.",
+          "transliteration": "w ana kamaan.",
+          "english": "Me too."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "منين إنت؟",
+          "transliteration": "mneen inte?",
+          "english": "Where are you from?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "أنا من بيروت. وإنتِ؟",
+          "transliteration": "ana min Beyrout. w inti?",
+          "english": "I'm from Beirut. And you?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أنا من صيدا، بس ساكنة ببيروت.",
+          "transliteration": "ana min Sayda, bas sakne b-Beyrout.",
+          "english": "I'm from Sidon, but I live in Beirut."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كيفك؟",
+            "transliteration": "keefak?",
+            "english": "How are you? (to a man)"
+          },
+          "response": {
+            "arabic": "منيح، الحمد لله.",
+            "transliteration": "mnee7, el-7amdella.",
+            "english": "Good, thank God."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو اسمك؟",
+            "transliteration": "shoo esmak?",
+            "english": "What's your name?"
+          },
+          "response": {
+            "arabic": "اسمي سامر.",
+            "transliteration": "esmi Saamer.",
+            "english": "My name is Samer."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "منين إنتِ؟",
+            "transliteration": "mneen inti?",
+            "english": "Where are you from? (to a woman)"
+          },
+          "response": {
+            "arabic": "أنا من طرابلس.",
+            "transliteration": "ana min Traablos.",
+            "english": "I'm from Tripoli."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تشرفنا.",
+            "transliteration": "tsharrafna.",
+            "english": "Nice to meet you."
+          },
+          "response": {
+            "arabic": "الشرف إلي.",
+            "transliteration": "esh-sharaf eli.",
+            "english": "The pleasure is mine."
+          }
+        }
+      ],
+      "culture": "In Beirut people often mix greetings, so \"hi, keefak\" and \"marhaba\" both sound completely normal, and friends kiss on the cheek. Asking \"where are you from?\" is a very common way to start a chat, because most families name a village or town of origin even if they live in the city.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "A man says to you: \"مرحبا\". Reply naturally.",
+          "answer": "مرحبتين",
+          "accepted": [
+            "مرحبتين",
+            "marhabteen",
+            "أهلين",
+            "أهلا"
+          ],
+          "too_formal": {
+            "item": "السلام عليكم ورحمة الله وبركاته",
+            "feedback": "Correct, but far too elaborate for a casual hello. Friends and shop staff say \"marhaba\" and get \"marhabteen\" back."
+          },
+          "tip": "\"مرحبتين\" literally means \"two hellos\": you return the greeting doubled."
+        },
+        {
+          "id": "unit-01.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "A woman asks you: \"كيفِك؟\". Say you are well.",
+          "answer": "منيحة، الحمد لله",
+          "accepted": [
+            "منيحة، الحمد لله",
+            "mnee7a, el-7amdella",
+            "تمام، الحمد لله",
+            "منيحة"
+          ],
+          "too_formal": {
+            "item": "أنا بخير والحمد لله",
+            "feedback": "The meaning is fine, but it sounds like a textbook. Lebanese say \"mnee7, el-7amdella\" in daily speech."
+          },
+          "tip": "A woman says \"منيحة\", a man says \"منيح\"."
+        },
+        {
+          "id": "unit-01.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ رامي.\" Meaning: My name is Rami.",
+          "answer": "اسمي",
+          "accepted": [
+            "اسمي",
+            "esmi",
+            "إسمي"
+          ],
+          "too_formal": {
+            "item": "إنّ اسمي",
+            "feedback": "Grammatical but stiff. The spoken pattern is just \"esmi\" plus the name."
+          },
+          "tip": "\"اسمي + name\" is the whole pattern."
+        },
+        {
+          "id": "unit-01.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Lebanese Arabic: \"What's your name?\" (to a man)",
+          "answer": "شو اسمك؟",
+          "accepted": [
+            "شو اسمك؟",
+            "shoo esmak?",
+            "شو اسمك",
+            "شو إسمك"
+          ],
+          "too_formal": {
+            "item": "ما اسمك؟",
+            "feedback": "Understandable, but \"ma ismuka\" style is written or news Arabic. Lebanese say \"shoo esmak?\"."
+          },
+          "tip": "\"شو\" (shoo) is the everyday Lebanese \"what\"."
+        },
+        {
+          "id": "unit-01.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Where are you from?\" to a woman?",
+          "options": [
+            "منين إنت؟",
+            "منين إنتِ؟",
+            "شو اسمِك؟",
+            "كيفك؟"
+          ],
+          "answer": "منين إنتِ؟",
+          "accepted": [
+            "منين إنتِ؟",
+            "mneen inti?",
+            "منين إنتي؟",
+            "من وين إنتِ؟"
+          ],
+          "too_formal": {
+            "item": "من أي بلد أنتِ؟",
+            "feedback": "Correct but formal and specific. The everyday question is \"mneen inti?\"."
+          },
+          "tip": "Feminine ends in the \"i\" sound: inti, keefik, esmik."
+        },
+        {
+          "id": "unit-01.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Nice to meet you.\"",
+          "answer": "تشرفنا",
+          "accepted": [
+            "تشرفنا",
+            "tsharrafna",
+            "تشرفنا فيك",
+            "تشرّفنا"
+          ],
+          "too_formal": {
+            "item": "يسرني التعرف إليك",
+            "feedback": "That is written, formal Arabic. In conversation people say \"tsharrafna\"."
+          },
+          "tip": "\"تشرفنا\" is said by both people when they meet."
+        },
+        {
+          "id": "unit-01.lesson-01.reply.03",
+          "type": "reply",
+          "prompt": "Someone says: \"تشرفنا\". Give a natural reply.",
+          "answer": "الشرف إلي",
+          "accepted": [
+            "الشرف إلي",
+            "esh-sharaf eli",
+            "وأنا كمان",
+            "w ana kamaan"
+          ],
+          "too_formal": {
+            "item": "تشرفت بمعرفتك الكريمة",
+            "feedback": "Far too elaborate for a first meeting."
+          },
+          "tip": "\"w ana kamaan\" is the simplest reply."
+        },
+        {
+          "id": "unit-01.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"اسمك / شو\".",
+          "answer": "شو اسمك؟",
+          "accepted": [
+            "شو اسمك؟",
+            "شو اسمك",
+            "shoo esmak?",
+            "shoo esmak"
+          ],
+          "too_formal": {
+            "item": "ما اسمك؟",
+            "feedback": "Formal. The spoken question starts with \"shoo\"."
+          },
+          "tip": "Question word first: \"شو + اسمك\"."
+        },
+        {
+          "id": "unit-01.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm from Beirut.\"",
+          "answer": "أنا من بيروت",
+          "accepted": [
+            "أنا من بيروت",
+            "ana min Beyrout",
+            "ana min Beirut",
+            "من بيروت"
+          ],
+          "too_formal": {
+            "item": "أنا من مدينة بيروت",
+            "feedback": "Correct, but adding \"city of\" is unnecessary and formal."
+          },
+          "tip": "\"ana min + place\" works for any city or village."
+        },
+        {
+          "id": "unit-01.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أنا من صيدا، _____ ساكنة ببيروت.\" Meaning: I'm from Sidon, but I live in Beirut.",
+          "answer": "بس",
+          "accepted": [
+            "بس",
+            "bas",
+            "لكن"
+          ],
+          "too_formal": {
+            "item": "ولكنني",
+            "feedback": "Grammatical but bookish. The spoken \"but\" is \"bas\"."
+          },
+          "tip": "\"بس\" also means \"only\" and \"just\", depending on the sentence."
+        },
+        {
+          "id": "unit-01.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "A woman asks you how you are. Which is the correct question form for a woman?",
+          "options": [
+            "كيفك؟",
+            "كيفِك؟",
+            "شو اسمك؟",
+            "تمام"
+          ],
+          "answer": "كيفِك؟",
+          "accepted": [
+            "كيفِك؟",
+            "keefik?",
+            "كيفك",
+            "كيفيك؟"
+          ],
+          "too_formal": {
+            "item": "كيف حالكِ؟",
+            "feedback": "Correct and polite, but formal. Everyday Lebanese is \"keefik?\"."
+          },
+          "tip": "Only the final vowel changes: keefak (to a man), keefik (to a woman)."
+        },
+        {
+          "id": "unit-01.lesson-01.reply.04",
+          "type": "reply",
+          "prompt": "Someone says \"أهلا\". Answer with the warm reply.",
+          "answer": "أهلين",
+          "accepted": [
+            "أهلين",
+            "ahleen",
+            "أهلا وسهلا",
+            "ahla w sahla"
+          ],
+          "too_formal": {
+            "item": "أهلاً بك",
+            "feedback": "Correct but written in style. Speakers say \"ahleen\" or \"ahla w sahla\"."
+          },
+          "tip": "\"أهلين\" is warmer than a plain \"أهلا\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "please-excuse-me-to-a-man",
+          "arabic": "لو سمحت",
+          "transliteration": "law sama7t"
+        },
+        {
+          "slot": "please-excuse-me-to-a-woman",
+          "arabic": "لو سمحتي",
+          "transliteration": "law sama7ti"
+        },
+        {
+          "slot": "it-s-okay-sorry-excuse-me",
+          "arabic": "معليش",
+          "transliteration": "ma3leesh"
+        },
+        {
+          "slot": "sorry-male-speaker",
+          "arabic": "آسف",
+          "transliteration": "aasef"
+        },
+        {
+          "slot": "sorry-female-speaker",
+          "arabic": "آسفة",
+          "transliteration": "aasfe"
+        },
+        {
+          "slot": "thank-you",
+          "arabic": "شكرا",
+          "transliteration": "shukran"
+        },
+        {
+          "slot": "thank-you-very-much",
+          "arabic": "مرسي كتير",
+          "transliteration": "mersi ktiir"
+        },
+        {
+          "slot": "you-re-welcome-excuse-me",
+          "arabic": "عفوا",
+          "transliteration": "3afwan"
+        },
+        {
+          "slot": "can-you-help-me-to-a-man",
+          "arabic": "فيك تساعدني؟",
+          "transliteration": "feek tsaa3edni?",
+          "reply": {
+            "arabic": "تكرم عينك",
+            "transliteration": "tekram 3eenak",
+            "english": "With pleasure (lit. may your eye be honoured)."
+          }
+        },
+        {
+          "slot": "can-you-help-me-to-a-woman",
+          "arabic": "فيكي تساعديني؟",
+          "transliteration": "feeki tsaa3edeeni?",
+          "reply": {
+            "arabic": "تكرم عينك",
+            "transliteration": "tekram 3eenik",
+            "english": "With pleasure (said to a woman)."
+          }
+        },
+        {
+          "slot": "i-want-some-water",
+          "arabic": "بدي مي",
+          "transliteration": "baddi mayy"
+        },
+        {
+          "slot": "is-it-possible-can-i",
+          "arabic": "ممكن؟",
+          "transliteration": "mumken?"
+        },
+        {
+          "slot": "yes-of-course",
+          "arabic": "إي، أكيد",
+          "transliteration": "ee, akeed"
+        },
+        {
+          "slot": "sorry-i-didn-t-understand",
+          "arabic": "آسف، ما فهمت",
+          "transliteration": "aasef, ma fhemt"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "arabic": "لو سمحتي، فيكي تساعديني؟",
+          "transliteration": "law sama7ti, feeki tsaa3edeeni?",
+          "english": "Excuse me, can you help me?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "إي، أكيد. أنا نور، شو بدك؟",
+          "transliteration": "ee, akeed. ana Noor, shoo baddak?",
+          "english": "Yes, of course. I'm Nour, what do you need?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "بدي مي، ممكن؟",
+          "transliteration": "baddi mayy, mumken?",
+          "english": "I want some water, is that possible?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "إي، تكرم عينك. تفضل.",
+          "transliteration": "ee, tekram 3eenak. tfaddal.",
+          "english": "Sure, with pleasure. Here you go."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "مرسي كتير.",
+          "transliteration": "mersi ktiir.",
+          "english": "Thank you very much."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "عفوا. بدك شي تاني؟",
+          "transliteration": "3afwan. baddak shi taani?",
+          "english": "You're welcome. Do you want anything else?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "لأ، شكرا. آسف، ما فهمت الاسم.",
+          "transliteration": "la2, shukran. aasef, ma fhemt el-esem.",
+          "english": "No, thanks. Sorry, I didn't catch the name."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "معليش، اسمي نور.",
+          "transliteration": "ma3leesh, esmi Noor.",
+          "english": "No problem, my name is Nour."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "تشرفنا يا نور.",
+          "transliteration": "tsharrafna ya Noor.",
+          "english": "Nice to meet you, Nour."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "الشرف إلي. فيني ساعدك بشي تاني؟",
+          "transliteration": "esh-sharaf eli. feeni saa3dak b-shi taani?",
+          "english": "The pleasure is mine. Can I help you with anything else?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "لأ، كتير لطيفة. مرسي.",
+          "transliteration": "la2, ktiir laTiife. mersi.",
+          "english": "No, you're very kind. Thanks."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "أهلين فيك أي وقت.",
+          "transliteration": "ahleen feek ayy wa2t.",
+          "english": "You're welcome any time."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "لو سمحت، فيك تساعدني؟",
+            "transliteration": "law sama7t, feek tsaa3edni?",
+            "english": "Excuse me, can you help me?"
+          },
+          "response": {
+            "arabic": "إي، أكيد.",
+            "transliteration": "ee, akeed.",
+            "english": "Yes, of course."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مرسي كتير.",
+            "transliteration": "mersi ktiir.",
+            "english": "Thank you very much."
+          },
+          "response": {
+            "arabic": "عفوا.",
+            "transliteration": "3afwan.",
+            "english": "You're welcome."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "آسف!",
+            "transliteration": "aasef!",
+            "english": "Sorry!"
+          },
+          "response": {
+            "arabic": "معليش.",
+            "transliteration": "ma3leesh.",
+            "english": "It's okay."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بدي مي، ممكن؟",
+            "transliteration": "baddi mayy, mumken?",
+            "english": "I want some water, is that possible?"
+          },
+          "response": {
+            "arabic": "إي، تكرم عينك.",
+            "transliteration": "ee, tekram 3eenak.",
+            "english": "Yes, with pleasure."
+          }
+        }
+      ],
+      "culture": "Beirutis sprinkle \"merci\" and sometimes \"sorry\" into Arabic without thinking, so \"mersi ktiir\" is as normal as \"shukran\". \"Tekram 3eenak\" is a warm way to accept a request, and being generous when someone asks for help or a glass of water is a point of pride.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "Someone says: \"آسف!\" after bumping into you. Reply.",
+          "answer": "معليش",
+          "accepted": [
+            "معليش",
+            "ma3leesh",
+            "ما في مشكلة",
+            "مافي مشكلة"
+          ],
+          "too_formal": {
+            "item": "لا داعي للاعتذار",
+            "feedback": "That is textbook wording. Just say \"ma3leesh\"."
+          },
+          "tip": "\"معليش\" works for \"it's okay\", \"never mind\" and \"sorry\"."
+        },
+        {
+          "id": "unit-01.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Thank you very much.\"",
+          "answer": "مرسي كتير",
+          "accepted": [
+            "مرسي كتير",
+            "mersi ktiir",
+            "شكرا كتير",
+            "shukran ktiir"
+          ],
+          "too_formal": {
+            "item": "أشكرك جزيل الشكر",
+            "feedback": "Very formal. Speakers say \"mersi ktiir\" or \"shukran ktiir\"."
+          },
+          "tip": "\"كتير\" (ktiir) means \"a lot\" or \"very\"."
+        },
+        {
+          "id": "unit-01.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Excuse me\" (to a woman).",
+          "answer": "لو سمحتي",
+          "accepted": [
+            "لو سمحتي",
+            "law sama7ti",
+            "من فضلك",
+            "min fadlik"
+          ],
+          "too_formal": {
+            "item": "أرجو المعذرة",
+            "feedback": "Formal and written. \"law sama7ti\" is what you say to get someone's attention."
+          },
+          "tip": "Add \"i\" at the end for a woman: sama7t / sama7ti."
+        },
+        {
+          "id": "unit-01.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: \"مرسي كتير\". Reply.",
+          "answer": "عفوا",
+          "accepted": [
+            "عفوا",
+            "3afwan",
+            "أهلين",
+            "ولو"
+          ],
+          "too_formal": {
+            "item": "لا شكر على واجب",
+            "feedback": "Correct but bookish. \"3afwan\" or \"walaw\" is what is really said."
+          },
+          "tip": "\"ولو\" (walaw) means \"of course, don't mention it\"."
+        },
+        {
+          "id": "unit-01.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want some water.\"",
+          "answer": "بدي مي",
+          "accepted": [
+            "بدي مي",
+            "baddi mayy",
+            "بدي ماي",
+            "بدي مية"
+          ],
+          "too_formal": {
+            "item": "أريد ماءً",
+            "feedback": "That is Modern Standard Arabic. In Lebanese, \"baddi\" is \"I want\" and water is \"mayy\"."
+          },
+          "tip": "\"بدّ\" + ending shows who wants: baddi, baddak, baddik."
+        },
+        {
+          "id": "unit-01.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ تساعدني؟\" Meaning: Can you help me? (to a man)",
+          "answer": "فيك",
+          "accepted": [
+            "فيك",
+            "feek",
+            "فيّك"
+          ],
+          "too_formal": {
+            "item": "هل يمكنك أن",
+            "feedback": "Correct in writing. The spoken \"can you\" is \"feek\"."
+          },
+          "tip": "\"فيك\" is \"you can\" (m), \"فيكي\" (f)."
+        },
+        {
+          "id": "unit-01.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which one is said by a woman apologising?",
+          "options": [
+            "آسف",
+            "آسفة",
+            "عفوا",
+            "معليش"
+          ],
+          "answer": "آسفة",
+          "accepted": [
+            "آسفة",
+            "aasfe",
+            "asfe"
+          ],
+          "too_formal": {
+            "item": "أعتذر منك",
+            "feedback": "A formal apology. \"aasfe\" is enough in daily life."
+          },
+          "tip": "The woman's form ends in \"e\": aasfe."
+        },
+        {
+          "id": "unit-01.lesson-02.reply.03",
+          "type": "reply",
+          "prompt": "Someone says: \"فيك تساعدني؟\". Say yes, with a warm phrase.",
+          "answer": "إي، تكرم عينك",
+          "accepted": [
+            "إي، تكرم عينك",
+            "ee, tekram 3eenak",
+            "تكرم عينك",
+            "إي، أكيد"
+          ],
+          "too_formal": {
+            "item": "بكل سرور",
+            "feedback": "It is fine but formal. \"tekram 3eenak\" is common and warm."
+          },
+          "tip": "\"أكيد\" (akeed) is the quick, everyday yes."
+        },
+        {
+          "id": "unit-01.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"مي / بدي\".",
+          "answer": "بدي مي",
+          "accepted": [
+            "بدي مي",
+            "baddi mayy",
+            "بدي ماي",
+            "بدي مي."
+          ],
+          "too_formal": {
+            "item": "أريد ماء",
+            "feedback": "Written Arabic, not spoken."
+          },
+          "tip": "The verb-like word comes first: baddi + thing."
+        },
+        {
+          "id": "unit-01.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"آسف، ما _____.\" Meaning: Sorry, I didn't understand.",
+          "answer": "فهمت",
+          "accepted": [
+            "فهمت",
+            "fhemt",
+            "فهمت شي",
+            "فهمت شيء"
+          ],
+          "too_formal": {
+            "item": "لم أفهم",
+            "feedback": "Correct in writing. Speech uses \"ma fhemt\"."
+          },
+          "tip": "\"ما\" plus past verb makes it negative: ma fhemt."
+        },
+        {
+          "id": "unit-01.lesson-02.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is it possible?\" / \"Can I?\"",
+          "answer": "ممكن؟",
+          "accepted": [
+            "ممكن؟",
+            "mumken?",
+            "ممكن",
+            "فيني؟"
+          ],
+          "too_formal": {
+            "item": "هل من الممكن؟",
+            "feedback": "Too wordy. Lebanese just say \"mumken?\"."
+          },
+          "tip": "One word is enough when you point at what you want."
+        },
+        {
+          "id": "unit-01.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "You want to say \"Yes, of course.\" Which is right?",
+          "options": [
+            "لأ، شكرا",
+            "إي، أكيد",
+            "معليش",
+            "آسف"
+          ],
+          "answer": "إي، أكيد",
+          "accepted": [
+            "إي، أكيد",
+            "ee, akeed",
+            "إيه أكيد",
+            "ايه اكيد"
+          ],
+          "too_formal": {
+            "item": "نعم بالتأكيد",
+            "feedback": "Correct but stiff. Speech uses \"ee\" for yes."
+          },
+          "tip": "\"إي\" (ee) is the Lebanese yes; \"لأ\" (la2) is no."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "one",
+          "arabic": "واحد",
+          "transliteration": "waa7ad"
+        },
+        {
+          "slot": "two",
+          "arabic": "تنين",
+          "transliteration": "tneen"
+        },
+        {
+          "slot": "three",
+          "arabic": "تلاتة",
+          "transliteration": "tlete"
+        },
+        {
+          "slot": "four",
+          "arabic": "أربعة",
+          "transliteration": "arba3a"
+        },
+        {
+          "slot": "five",
+          "arabic": "خمسة",
+          "transliteration": "khamse"
+        },
+        {
+          "slot": "how-much-how-many",
+          "arabic": "قديش؟",
+          "transliteration": "addeesh?"
+        },
+        {
+          "slot": "what-time-is-it",
+          "arabic": "قديش الساعة؟",
+          "transliteration": "addeesh es-saa3a?"
+        },
+        {
+          "slot": "it-s-one-o-clock",
+          "arabic": "الساعة وحدة",
+          "transliteration": "es-saa3a wa7de"
+        },
+        {
+          "slot": "it-s-two-o-clock",
+          "arabic": "الساعة تنتين",
+          "transliteration": "es-saa3a tinteen"
+        },
+        {
+          "slot": "tomorrow",
+          "arabic": "بكرا",
+          "transliteration": "bukra"
+        },
+        {
+          "slot": "today",
+          "arabic": "اليوم",
+          "transliteration": "el-yoom"
+        },
+        {
+          "slot": "now",
+          "arabic": "هلق",
+          "transliteration": "halla2"
+        },
+        {
+          "slot": "we-ll-see-you-tomorrow-to-a-man",
+          "arabic": "منشوفك بكرا",
+          "transliteration": "mnshoofak bukra"
+        },
+        {
+          "slot": "i-ll-see-you-tomorrow-to-a-man",
+          "arabic": "بشوفك بكرا",
+          "transliteration": "bshoofak bukra"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rami",
+          "arabic": "قديش الساعة هلق؟",
+          "transliteration": "addeesh es-saa3a halla2?",
+          "english": "What time is it now?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "الساعة وحدة.",
+          "transliteration": "es-saa3a wa7de.",
+          "english": "It's one o'clock."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "معقول؟ كنت فكرها تنتين.",
+          "transliteration": "ma3-2ool? kent fakerha tinteen.",
+          "english": "Really? I thought it was two."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "لأ، لسا وحدة. ليش، عندك موعد؟",
+          "transliteration": "la2, lissa wa7de. leesh, 3endak maw3ad?",
+          "english": "No, it's still one. Why, do you have an appointment?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "إي، بكرا الساعة تنتين.",
+          "transliteration": "ee, bukra es-saa3a tinteen.",
+          "english": "Yes, tomorrow at two."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "وأنا اليوم عندي خمس اجتماعات.",
+          "transliteration": "w ana el-yoom 3indi khams ijtimaa3aat.",
+          "english": "And today I have five meetings."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "خمسة؟ يا ساتر!",
+          "transliteration": "khamse? ya saater!",
+          "english": "Five? Goodness!"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "إي، بس بكرا فاضية.",
+          "transliteration": "ee, bas bukra faadye.",
+          "english": "Yes, but tomorrow I'm free."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "يعني منشوفك بكرا؟",
+          "transliteration": "mnshoofik bukra?",
+          "english": "So, will we see you tomorrow?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "إن شاء الله، بشوفك بكرا.",
+          "transliteration": "in shaa Allah, bshoofak bukra.",
+          "english": "God willing, I'll see you tomorrow."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "أي ساعة بدك تجي؟",
+          "transliteration": "ayy saa3a baddik tiji?",
+          "english": "What time do you want to come?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "الساعة تلاتة. يلا، بشوفك.",
+          "transliteration": "es-saa3a tlete. yalla, bshoofak.",
+          "english": "At three. Okay, see you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "قديش الساعة؟",
+            "transliteration": "addeesh es-saa3a?",
+            "english": "What time is it?"
+          },
+          "response": {
+            "arabic": "الساعة وحدة.",
+            "transliteration": "es-saa3a wa7de.",
+            "english": "It's one o'clock."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قديش؟",
+            "transliteration": "addeesh?",
+            "english": "How much?"
+          },
+          "response": {
+            "arabic": "خمسة.",
+            "transliteration": "khamse.",
+            "english": "Five."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "منشوفك بكرا؟",
+            "transliteration": "mnshoofak bukra?",
+            "english": "Will we see you tomorrow?"
+          },
+          "response": {
+            "arabic": "إن شاء الله.",
+            "transliteration": "in shaa Allah.",
+            "english": "God willing."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الساعة تنتين هلق؟",
+            "transliteration": "es-saa3a tinteen halla2?",
+            "english": "Is it two o'clock now?"
+          },
+          "response": {
+            "arabic": "لأ، لسا وحدة.",
+            "transliteration": "la2, lissa wa7de.",
+            "english": "No, it's still one."
+          }
+        }
+      ],
+      "culture": "Plans are almost always followed by \"in shaa Allah\", and Christian Lebanese say it too as an ordinary habit of speech. Casual plans are relaxed, so \"bukra\" (tomorrow) can be loose unless an hour is named.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"What time is it?\"",
+          "answer": "قديش الساعة؟",
+          "accepted": [
+            "قديش الساعة؟",
+            "addeesh es-saa3a?",
+            "الساعة قديش؟",
+            "قديش الساعة هلق؟"
+          ],
+          "too_formal": {
+            "item": "كم الساعة الآن؟",
+            "feedback": "That is the standard Arabic question. Lebanese say \"addeesh es-saa3a?\"."
+          },
+          "tip": "\"قديش\" (addeesh) means \"how much\"; put \"الساعة\" after it and it asks the time."
+        },
+        {
+          "id": "unit-01.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks: \"قديش الساعة؟\". It is one o'clock. Answer.",
+          "answer": "الساعة وحدة",
+          "accepted": [
+            "الساعة وحدة",
+            "es-saa3a wa7de",
+            "وحدة",
+            "الساعة واحدة"
+          ],
+          "too_formal": {
+            "item": "الساعة الواحدة",
+            "feedback": "Formal wording. Speech uses \"wa7de\"."
+          },
+          "tip": "The number for time is feminine: وحدة, not واحد."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"It's two o'clock.\"",
+          "answer": "الساعة تنتين",
+          "accepted": [
+            "الساعة تنتين",
+            "es-saa3a tinteen",
+            "تنتين",
+            "الساعة تنتين."
+          ],
+          "too_formal": {
+            "item": "الساعة الثانية",
+            "feedback": "This is the standard/written form. Speech says \"tinteen\" for two o'clock."
+          },
+          "tip": "Two o'clock is \"tinteen\", but the plain number two is \"tneen\"."
+        },
+        {
+          "id": "unit-01.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ منشوفك.\" Meaning: We'll see you tomorrow.",
+          "answer": "بكرا",
+          "accepted": [
+            "بكرا",
+            "bukra",
+            "بكره"
+          ],
+          "too_formal": {
+            "item": "غداً",
+            "feedback": "Correct but formal. Speech uses \"bukra\"."
+          },
+          "tip": "\"بكرا\" can go at the start or the end of a sentence."
+        },
+        {
+          "id": "unit-01.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"now\"?",
+          "options": [
+            "بكرا",
+            "اليوم",
+            "هلق",
+            "لسا"
+          ],
+          "answer": "هلق",
+          "accepted": [
+            "هلق",
+            "halla2",
+            "هلأ",
+            "halla"
+          ],
+          "too_formal": {
+            "item": "الآن",
+            "feedback": "Modern Standard, not spoken. Lebanese say \"halla2\"."
+          },
+          "tip": "\"هلق\" (halla2) is the everyday Lebanese \"now\"."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'll see you tomorrow.\" (to a man)",
+          "answer": "بشوفك بكرا",
+          "accepted": [
+            "بشوفك بكرا",
+            "bshoofak bukra",
+            "بكرا بشوفك",
+            "بشوفك بكرا إن شاء الله"
+          ],
+          "too_formal": {
+            "item": "سأراك غداً",
+            "feedback": "Formal. The spoken future starts with \"b-\"."
+          },
+          "tip": "\"ب\" plus the verb shows the plan: bshoofak, bektob."
+        },
+        {
+          "id": "unit-01.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"بكرا / منشوفك\".",
+          "answer": "منشوفك بكرا",
+          "accepted": [
+            "منشوفك بكرا",
+            "بكرا منشوفك",
+            "mnshoofak bukra",
+            "bukra mnshoofak"
+          ],
+          "too_formal": {
+            "item": "سنراك غداً",
+            "feedback": "Formal. The spoken \"we\" starts with \"m-\"."
+          },
+          "tip": "Both orders are natural in speech."
+        },
+        {
+          "id": "unit-01.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which is the number three?",
+          "options": [
+            "تنين",
+            "تلاتة",
+            "خمسة",
+            "أربعة"
+          ],
+          "answer": "تلاتة",
+          "accepted": [
+            "تلاتة",
+            "tlete",
+            "تلاته",
+            "tlaate"
+          ],
+          "too_formal": {
+            "item": "ثلاثة",
+            "feedback": "The written form. Spoken has a \"t\" sound instead of \"th\"."
+          },
+          "tip": "In Lebanese, ث usually becomes \"t\" (تلاتة, tlete)."
+        },
+        {
+          "id": "unit-01.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: \"منشوفك بكرا؟\". Say yes, God willing.",
+          "answer": "إن شاء الله",
+          "accepted": [
+            "إن شاء الله",
+            "in shaa Allah",
+            "إي، إن شاء الله",
+            "إنشالله"
+          ],
+          "too_formal": {
+            "item": "إن شاء الله تعالى",
+            "feedback": "It is fine but heavy. Speech shortens it."
+          },
+          "tip": "\"إنشالله\" (inshalla) is the fast spoken version."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Today.\"",
+          "answer": "اليوم",
+          "accepted": [
+            "اليوم",
+            "el-yoom",
+            "el yoom",
+            "اليوم."
+          ],
+          "too_formal": {
+            "item": "هذا اليوم",
+            "feedback": "Unnatural filler."
+          },
+          "tip": "\"اليوم\" is used as it is."
+        },
+        {
+          "id": "unit-01.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الساعة _____.\" Meaning: It's one o'clock.",
+          "answer": "وحدة",
+          "accepted": [
+            "وحدة",
+            "wa7de",
+            "واحدة"
+          ],
+          "too_formal": {
+            "item": "الواحدة",
+            "feedback": "Formal spelling. Speech drops the middle letter: \"wa7de\"."
+          },
+          "tip": "Hours use feminine numbers."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.05",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How much?\"",
+          "answer": "قديش؟",
+          "accepted": [
+            "قديش؟",
+            "addeesh?",
+            "قديش",
+            "بقديش؟"
+          ],
+          "too_formal": {
+            "item": "بكم هذا؟",
+            "feedback": "Written or shop-window style. Speech says \"addeesh?\"."
+          },
+          "tip": "Say it while pointing at the price."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "where-is-the-market",
+          "arabic": "وين السوق؟",
+          "transliteration": "ween es-soo2?"
+        },
+        {
+          "slot": "where-is-the-nearest-shop",
+          "arabic": "وين أقرب محل؟",
+          "transliteration": "ween a2rab ma7all?"
+        },
+        {
+          "slot": "from-here",
+          "arabic": "من هون",
+          "transliteration": "min hoon"
+        },
+        {
+          "slot": "on-the-right",
+          "arabic": "عاليمين",
+          "transliteration": "3al-yameen"
+        },
+        {
+          "slot": "on-the-left",
+          "arabic": "عالشمال",
+          "transliteration": "3a-shmaal"
+        },
+        {
+          "slot": "straight-ahead",
+          "arabic": "دغري",
+          "transliteration": "dughri"
+        },
+        {
+          "slot": "near",
+          "arabic": "قريب",
+          "transliteration": "2reeb"
+        },
+        {
+          "slot": "far",
+          "arabic": "بعيد",
+          "transliteration": "b3eed"
+        },
+        {
+          "slot": "here",
+          "arabic": "هون",
+          "transliteration": "hoon"
+        },
+        {
+          "slot": "there",
+          "arabic": "هونيك",
+          "transliteration": "hooneek"
+        },
+        {
+          "slot": "straight-on-directly",
+          "arabic": "عالطول",
+          "transliteration": "3aT-Tool"
+        },
+        {
+          "slot": "turn-right",
+          "arabic": "لف عاليمين",
+          "transliteration": "leff 3al-yameen"
+        },
+        {
+          "slot": "turn-left-to-a-woman",
+          "arabic": "لفّي عالشمال",
+          "transliteration": "leffi 3a-shmaal"
+        },
+        {
+          "slot": "thanks-may-you-have-strength",
+          "arabic": "يعطيك العافية",
+          "transliteration": "ya3Teek el-3aafye",
+          "reply": {
+            "arabic": "الله يعافيك",
+            "transliteration": "allah y3aafeek",
+            "english": "May God keep you well."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "arabic": "لو سمحتي، وين السوق؟",
+          "transliteration": "law sama7ti, ween es-soo2?",
+          "english": "Excuse me, where is the market?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "من هون، امشي دغري.",
+          "transliteration": "min hoon, imshi dughri.",
+          "english": "From here, walk straight."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "بعيد من هون؟",
+          "transliteration": "b3eed min hoon?",
+          "english": "Is it far from here?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "لأ، قريب كتير.",
+          "transliteration": "la2, 2reeb ktiir.",
+          "english": "No, very close."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "بعدين لف عاليمين عند الفرن.",
+          "transliteration": "ba3deen leff 3al-yameen 3ind el-forn.",
+          "english": "Then turn right at the bakery."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "عاليمين، مفهوم. وبعدين؟",
+          "transliteration": "3al-yameen, mafhoom. w ba3deen?",
+          "english": "Right, understood. And then?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "بتمشي عالطول، والسوق هونيك.",
+          "transliteration": "btemshi 3aT-Tool, w es-soo2 hooneek.",
+          "english": "You keep going and the market is there."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "وين أقرب محل هون؟",
+          "transliteration": "ween a2rab ma7all hoon?",
+          "english": "Where is the nearest shop here?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "عالشمال، بعد الصيدلية.",
+          "transliteration": "3a-shmaal, ba3d es-saydaliye.",
+          "english": "On the left, after the pharmacy."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "آسف، ما فهمت. عاليمين ولّا عالشمال؟",
+          "transliteration": "aasef, ma fhemt. 3al-yameen willa 3a-shmaal?",
+          "english": "Sorry, I didn't understand. Right or left?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "عالشمال، جنب الفرن.",
+          "transliteration": "3a-shmaal, janb el-forn.",
+          "english": "On the left, next to the bakery."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "يعطيك العافية. مرسي كتير.",
+          "transliteration": "ya3Teek el-3aafye. mersi ktiir.",
+          "english": "Thank you, may you have strength. Thanks a lot."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين السوق؟",
+            "transliteration": "ween es-soo2?",
+            "english": "Where is the market?"
+          },
+          "response": {
+            "arabic": "من هون، دغري.",
+            "transliteration": "min hoon, dughri.",
+            "english": "From here, straight ahead."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بعيد؟",
+            "transliteration": "b3eed?",
+            "english": "Is it far?"
+          },
+          "response": {
+            "arabic": "لأ، قريب.",
+            "transliteration": "la2, 2reeb.",
+            "english": "No, near."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين أقرب محل؟",
+            "transliteration": "ween a2rab ma7all?",
+            "english": "Where is the nearest shop?"
+          },
+          "response": {
+            "arabic": "عالشمال.",
+            "transliteration": "3a-shmaal.",
+            "english": "On the left."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "يعطيك العافية.",
+            "transliteration": "ya3Teek el-3aafye.",
+            "english": "Thank you, may you have strength."
+          },
+          "response": {
+            "arabic": "الله يعافيك.",
+            "transliteration": "allah y3aafeek.",
+            "english": "May God keep you well."
+          }
+        }
+      ],
+      "culture": "Beirut streets often have no visible names, so people give directions by landmarks such as a bakery, a pharmacy or a roundabout (\"dawwar\") rather than by street name. \"Ya3Teek el-3aafye\" is said to anyone who has helped you or is working, and the usual reply is \"allah y3aafeek\".",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the market?\"",
+          "answer": "وين السوق؟",
+          "accepted": [
+            "وين السوق؟",
+            "ween es-soo2?",
+            "وين السوق",
+            "ween es-soo2"
+          ],
+          "too_formal": {
+            "item": "أين السوق؟",
+            "feedback": "Standard Arabic. Lebanese use \"ween\"."
+          },
+          "tip": "\"وين\" (ween) starts the question, like \"where\"."
+        },
+        {
+          "id": "unit-01.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which means \"on the left\"?",
+          "options": [
+            "عاليمين",
+            "عالشمال",
+            "دغري",
+            "هون"
+          ],
+          "answer": "عالشمال",
+          "accepted": [
+            "عالشمال",
+            "3a-shmaal",
+            "عالشمال.",
+            "عا الشمال"
+          ],
+          "too_formal": {
+            "item": "إلى اليسار",
+            "feedback": "The formal word \"yasaar\" is understood, but spoken Lebanese says \"shmaal\"."
+          },
+          "tip": "\"عاليمين\" (right) and \"عالشمال\" (left) go together."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Turn right.\"",
+          "answer": "لف عاليمين",
+          "accepted": [
+            "لف عاليمين",
+            "leff 3al-yameen",
+            "لفّ عاليمين",
+            "خد عاليمين"
+          ],
+          "too_formal": {
+            "item": "انعطف إلى اليمين",
+            "feedback": "Formal instruction wording. Speech says \"leff\"."
+          },
+          "tip": "Add \"i\" to speak to a woman: leffi."
+        },
+        {
+          "id": "unit-01.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"من _____، امشي دغري.\" Meaning: From here, walk straight.",
+          "answer": "هون",
+          "accepted": [
+            "هون",
+            "hoon",
+            "هون."
+          ],
+          "too_formal": {
+            "item": "هنا",
+            "feedback": "Written form. Lebanese say \"hoon\"."
+          },
+          "tip": "\"من هون\" = from here; \"هونيك\" = there."
+        },
+        {
+          "id": "unit-01.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks: \"بعيد؟\". It's close. Answer.",
+          "answer": "لأ، قريب",
+          "accepted": [
+            "لأ، قريب",
+            "la2, 2reeb",
+            "قريب",
+            "لا، قريب"
+          ],
+          "too_formal": {
+            "item": "كلا، إنه قريب جداً",
+            "feedback": "Sounds like a textbook. Speech says \"la2, 2reeb\"."
+          },
+          "tip": "\"لأ\" (la2) is the spoken no."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Turn left.\" (to a woman)",
+          "answer": "لفّي عالشمال",
+          "accepted": [
+            "لفّي عالشمال",
+            "leffi 3a-shmaal",
+            "لفي عالشمال",
+            "لفّي عا الشمال"
+          ],
+          "too_formal": {
+            "item": "انعطفي إلى اليسار",
+            "feedback": "Formal. Speech says \"leffi 3a-shmaal\"."
+          },
+          "tip": "The woman's command ends with \"i\": leffi."
+        },
+        {
+          "id": "unit-01.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"straight ahead\"?",
+          "options": [
+            "دغري",
+            "بعيد",
+            "عاليمين",
+            "هونيك"
+          ],
+          "answer": "دغري",
+          "accepted": [
+            "دغري",
+            "dughri",
+            "دوغري",
+            "دغرى"
+          ],
+          "too_formal": {
+            "item": "على الاستقامة",
+            "feedback": "Written wording."
+          },
+          "tip": "\"دغري\" is spoken all over the Levant."
+        },
+        {
+          "id": "unit-01.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"السوق / وين\".",
+          "answer": "وين السوق؟",
+          "accepted": [
+            "وين السوق؟",
+            "وين السوق",
+            "ween es-soo2?",
+            "ween es-soo2"
+          ],
+          "too_formal": {
+            "item": "أين السوق؟",
+            "feedback": "Formal."
+          },
+          "tip": "Question word first."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the nearest shop?\"",
+          "answer": "وين أقرب محل؟",
+          "accepted": [
+            "وين أقرب محل؟",
+            "ween a2rab ma7all?",
+            "وين أقرب دكانة؟",
+            "ween a2rab dekkaane?"
+          ],
+          "too_formal": {
+            "item": "أين أقرب متجر؟",
+            "feedback": "\"matjar\" is written Arabic. People say \"ma7all\" or \"dekkaane\"."
+          },
+          "tip": "\"أقرب\" is \"the nearest\"."
+        },
+        {
+          "id": "unit-01.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: \"يعطيك العافية\". Answer.",
+          "answer": "الله يعافيك",
+          "accepted": [
+            "الله يعافيك",
+            "allah y3aafeek",
+            "الله يعافيك.",
+            "الله يعافيكي"
+          ],
+          "too_formal": {
+            "item": "شكراً لك",
+            "feedback": "Fine but plain. Lebanese answer with a blessing back."
+          },
+          "tip": "Say \"الله يعافيك\" to a man or a woman: allah y3aafeek."
+        },
+        {
+          "id": "unit-01.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"لف _____.\" Meaning: Turn right.",
+          "answer": "عاليمين",
+          "accepted": [
+            "عاليمين",
+            "3al-yameen",
+            "عاليمين."
+          ],
+          "too_formal": {
+            "item": "إلى اليمين",
+            "feedback": "Formal. Speech says \"3al-yameen\"."
+          },
+          "tip": "\"عا + اليمين\" run together in speech."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.05",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Straight on / directly.\"",
+          "answer": "عالطول",
+          "accepted": [
+            "عالطول",
+            "3aT-Tool",
+            "على طول",
+            "عا طول"
+          ],
+          "too_formal": {
+            "item": "مباشرة",
+            "feedback": "Written form. Speech says \"3aT-Tool\"."
+          },
+          "tip": "\"عالطول\" also means \"right away\"."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Your First Lebanese Conversation",
+    "instructions": "Write and say a short Lebanese conversation of at least 10 lines. It must include a greeting, asking and answering names, asking where someone is from, one polite request, one thank-you exchange, one question about the time, and one set of directions. Use at least 8 target phrases from Unit 1 and include both a masculine-address form and a feminine-address form.",
+    "required_elements": [
+      "A natural greeting using مرحبا, أهلا or أهلين.",
+      "A name question and a name answer.",
+      "A question using منين and a place answer.",
+      "A polite request using لو سمحت or لو سمحتي.",
+      "A response using إي، أكيد or a natural equivalent.",
+      "A thank-you exchange using مرسي or شكرا and عفوا.",
+      "A time question using قديش الساعة؟",
+      "A future plan using بكرا or a similar target expression.",
+      "A direction question using وين.",
+      "At least two direction phrases such as عاليمين, عالشمال, دغري, هون or هونيك."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Samer",
+          "arabic": "مرحبا، كيفك؟",
+          "transliteration": "marhaba, keefak?",
+          "english": "Hello, how are you?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أهلين، منيحة الحمد لله. شو اسمك؟",
+          "transliteration": "ahleen, mnee7a el-7amdella. shoo esmak?",
+          "english": "Hi, I'm good, thank God. What's your name?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "اسمي سامر. وإنتِ؟",
+          "transliteration": "esmi Saamer. w inti?",
+          "english": "My name is Samer. And you?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أنا لينا. تشرفنا.",
+          "transliteration": "ana Leena. tsharrafna.",
+          "english": "I'm Lina. Nice to meet you."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "وأنا كمان. منين إنتِ؟",
+          "transliteration": "w ana kamaan. mneen inti?",
+          "english": "Me too. Where are you from?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أنا من صيدا، بس ساكنة ببيروت.",
+          "transliteration": "ana min Sayda, bas sakne b-Beyrout.",
+          "english": "I'm from Sidon, but I live in Beirut."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "لو سمحتي، فيكي تساعديني؟",
+          "transliteration": "law sama7ti, feeki tsaa3edeeni?",
+          "english": "Excuse me, can you help me?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "إي، أكيد. شو بدك؟",
+          "transliteration": "ee, akeed. shoo baddak?",
+          "english": "Yes, of course. What do you need?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "وين السوق؟",
+          "transliteration": "ween es-soo2?",
+          "english": "Where is the market?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "من هون، امشي دغري وبعدين لف عاليمين.",
+          "transliteration": "min hoon, imshi dughri w ba3deen leff 3al-yameen.",
+          "english": "From here, walk straight and then turn right."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "بعيد؟",
+          "transliteration": "b3eed?",
+          "english": "Is it far?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "لأ، قريب كتير. وأي ساعة بدك تروح؟",
+          "transliteration": "la2, 2reeb ktiir. w ayy saa3a baddak trooh?",
+          "english": "No, very close. And what time do you want to go?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "الساعة وحدة.",
+          "transliteration": "es-saa3a wa7de.",
+          "english": "At one."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "تمام. بشوفك بكرا إن شاء الله.",
+          "transliteration": "tamaam. bshoofak bukra in shaa Allah.",
+          "english": "Great. See you tomorrow, God willing."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "مرسي كتير.",
+          "transliteration": "mersi ktiir.",
+          "english": "Thank you very much."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "عفوا. يعطيك العافية.",
+          "transliteration": "3afwan. ya3Teek el-3aafye.",
+          "english": "You're welcome. Take care."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1010 @@
+{
+  "unit": "unit-17",
+  "dialect": "Egyptian Arabic",
+  "transliteration_key": {
+    "T": "ط",
+    "S": "ص",
+    "D": "ض",
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "g": "ج (في مصر تُنطق g مثل gate)",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء / ق (في مصر القاف همزة)",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "how-much-is-this",
+          "arabic": "بكام ده؟",
+          "transliteration": "bikaam da?",
+          "reply": {
+            "arabic": "عشرين جنيه.",
+            "transliteration": "3eshriin ginee.",
+            "english": "Twenty pounds."
+          }
+        },
+        {
+          "slot": "expensive",
+          "arabic": "غالي",
+          "transliteration": "ghaali"
+        },
+        {
+          "slot": "cheap",
+          "arabic": "رخيص",
+          "transliteration": "rekhiis"
+        },
+        {
+          "slot": "is-there-a-discount",
+          "arabic": "فيه خصم؟",
+          "transliteration": "feeh khaSm?",
+          "reply": {
+            "arabic": "هنشوف، قولّي عايز تدفع كام.",
+            "transliteration": "hanshoof, 2olli 3ayez tidfa3 kaam.",
+            "english": "We'll see, tell me what you want to pay."
+          }
+        },
+        {
+          "slot": "how-much-per-kilo",
+          "arabic": "بكام الكيلو؟",
+          "transliteration": "bikaam el-keelo?",
+          "reply": {
+            "arabic": "بخمسة وعشرين.",
+            "transliteration": "bi-khamsa w-3eshriin.",
+            "english": "Twenty-five."
+          }
+        },
+        {
+          "slot": "i-want-this",
+          "arabic": "عايز ده",
+          "transliteration": "3ayez da"
+        },
+        {
+          "slot": "lower-it-a-little-to-a-man-when-bargaining",
+          "arabic": "نزّل شوية",
+          "transliteration": "nazzel shweyya",
+          "reply": {
+            "arabic": "مش هينفع، ده آخر سعر.",
+            "transliteration": "mish hayenfa3, da aakhir se3r.",
+            "english": "It won't work, that's the final price."
+          }
+        },
+        {
+          "slot": "final-price",
+          "arabic": "آخر سعر",
+          "transliteration": "aakhir se3r"
+        },
+        {
+          "slot": "okay-deal",
+          "arabic": "ماشي",
+          "transliteration": "maashi"
+        },
+        {
+          "slot": "do-you-have-a-smaller-one-to-a-man",
+          "arabic": "عندك أصغر من ده؟",
+          "transliteration": "3andak aSghar min da?",
+          "reply": {
+            "arabic": "أيوه، ثواني.",
+            "transliteration": "aywa, sawaani.",
+            "english": "Yes, one moment."
+          }
+        },
+        {
+          "slot": "do-you-have-another-color-to-a-man",
+          "arabic": "عندك لون تاني؟",
+          "transliteration": "3andak loon taani?",
+          "reply": {
+            "arabic": "أيوه، فيه أزرق وأحمر.",
+            "transliteration": "aywa, feeh azra2 w-a7mar.",
+            "english": "Yes, there is blue and red."
+          }
+        },
+        {
+          "slot": "this-one-is-nicer",
+          "arabic": "ده أحلى",
+          "transliteration": "da a7la"
+        },
+        {
+          "slot": "blue",
+          "arabic": "أزرق",
+          "transliteration": "azra2"
+        },
+        {
+          "slot": "red",
+          "arabic": "أحمر",
+          "transliteration": "a7mar"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "منى",
+          "arabic": "لو سمحت، بكام ده؟",
+          "transliteration": "law samaht, bikaam da?",
+          "english": "Excuse me, how much is this?"
+        },
+        {
+          "speaker": "عم سيد",
+          "arabic": "ده بمية جنيه يا آنسة.",
+          "transliteration": "da bi-meet ginee ya aanisa.",
+          "english": "This is a hundred pounds, miss."
+        },
+        {
+          "speaker": "منى",
+          "arabic": "لأ، غالي أوي!",
+          "transliteration": "la2, ghaali awi!",
+          "english": "No, that's very expensive!"
+        },
+        {
+          "speaker": "عم سيد",
+          "arabic": "ده قماش حلو، مش غالي.",
+          "transliteration": "da 2omaash 7elw, mish ghaali.",
+          "english": "It's nice fabric, not expensive."
+        },
+        {
+          "speaker": "منى",
+          "arabic": "فيه خصم؟",
+          "transliteration": "feeh khaSm?",
+          "english": "Is there a discount?"
+        },
+        {
+          "speaker": "عم سيد",
+          "arabic": "عشانك، بتمانين.",
+          "transliteration": "3ashaanik, bi-tamaneen.",
+          "english": "For you, eighty."
+        },
+        {
+          "speaker": "منى",
+          "arabic": "نزّل شوية كمان.",
+          "transliteration": "nazzel shweyya kamaan.",
+          "english": "Lower it a bit more."
+        },
+        {
+          "speaker": "عم سيد",
+          "arabic": "ده آخر سعر والله.",
+          "transliteration": "da aakhir se3r wallaahi.",
+          "english": "That's the final price, I swear."
+        },
+        {
+          "speaker": "منى",
+          "arabic": "عندك لون تاني؟",
+          "transliteration": "3andak loon taani?",
+          "english": "Do you have another color?"
+        },
+        {
+          "speaker": "عم سيد",
+          "arabic": "أيوه، فيه أزرق وأحمر.",
+          "transliteration": "aywa, feeh azra2 w-a7mar.",
+          "english": "Yes, there is blue and red."
+        },
+        {
+          "speaker": "منى",
+          "arabic": "الأزرق أحلى. ماشي، آخده.",
+          "transliteration": "el-azra2 a7la. maashi, aakhdu.",
+          "english": "The blue is nicer. Okay, I'll take it."
+        },
+        {
+          "speaker": "عم سيد",
+          "arabic": "نوّرتي يا هانم، ألف مبروك.",
+          "transliteration": "nawwarti ya haanim, alf mabrook.",
+          "english": "You honour us, madam, congratulations."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بكام ده؟",
+            "transliteration": "bikaam da?",
+            "english": "How much is this?"
+          },
+          "response": {
+            "arabic": "ده بخمسين جنيه.",
+            "transliteration": "da bi-khamseen ginee.",
+            "english": "This is fifty pounds."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فيه خصم؟",
+            "transliteration": "feeh khaSm?",
+            "english": "Is there a discount?"
+          },
+          "response": {
+            "arabic": "أيوه، بس شوية.",
+            "transliteration": "aywa, bas shweyya.",
+            "english": "Yes, but only a little."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك أصغر من ده؟",
+            "transliteration": "3andak aSghar min da?",
+            "english": "Do you have a smaller one?"
+          },
+          "response": {
+            "arabic": "أيوه، عندي أصغر.",
+            "transliteration": "aywa, 3andi aSghar.",
+            "english": "Yes, I have a smaller one."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نزّل شوية.",
+            "transliteration": "nazzel shweyya.",
+            "english": "Lower it a little."
+          },
+          "response": {
+            "arabic": "طيب، بأربعين، آخر سعر.",
+            "transliteration": "Tayyeb, bi-arba3een, aakhir se3r.",
+            "english": "Okay, forty, final price."
+          }
+        }
+      ],
+      "culture": "Bargaining (الفصال) is normal in Cairo's street markets like Khan el-Khalili and Attaba, but not in supermarkets or shops with fixed price tags. Sellers often start high and expect you to go back and forth; a friendly joke and a smile help more than a hard face.",
+      "exercises": [
+        {
+          "id": "unit-17.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How much is this?\"",
+          "answer": "بكام ده؟",
+          "accepted": [
+            "بكام ده؟",
+            "بكام ده",
+            "بكام دي؟",
+            "bikam da",
+            "bikaam da?"
+          ],
+          "too_formal": {
+            "item": "كم سعر هذا؟",
+            "feedback": "That is the formal written question; Cairenes say بكام for how much."
+          },
+          "tip": "\"بكام\" is the everyday way to ask a price."
+        },
+        {
+          "id": "unit-17.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"expensive\"?",
+          "options": [
+            "غالي",
+            "رخيص",
+            "جديد",
+            "قديم"
+          ],
+          "answer": "غالي",
+          "accepted": [
+            "غالي",
+            "غالي.",
+            "ghali",
+            "غالى",
+            "ghaali"
+          ],
+          "too_formal": {
+            "item": "باهظ الثمن",
+            "feedback": "That is a literary way to say expensive; everyday speech uses غالي."
+          },
+          "tip": "\"غالي\" is expensive, \"رخيص\" is cheap."
+        },
+        {
+          "id": "unit-17.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "The seller's price is too high. Ask him to lower it a little.",
+          "answer": "نزّل شوية",
+          "accepted": [
+            "نزّل شوية",
+            "نزل شوية",
+            "نزّل السعر شوية",
+            "نزل شويه",
+            "nazzel shweyya"
+          ],
+          "too_formal": {
+            "item": "هل يمكنك أن تخفض السعر قليلاً؟",
+            "feedback": "That is a formal, wordy version of the same simple request."
+          },
+          "tip": "\"نزّل\" means bring it down; شوية is a little."
+        },
+        {
+          "id": "unit-17.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"ده _____ سعر.\" Meaning: This is the final price.",
+          "answer": "آخر",
+          "accepted": [
+            "آخر",
+            "اخر",
+            "آخر سعر",
+            "akhir",
+            "aakhir"
+          ],
+          "too_formal": {
+            "item": "هذا هو السعر النهائي",
+            "feedback": "That is a formal full sentence; spoken Egyptian keeps it short."
+          },
+          "tip": "\"آخر سعر\" is the phrase sellers use to close a bargain."
+        },
+        {
+          "id": "unit-17.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is there a discount?\"",
+          "answer": "فيه خصم؟",
+          "accepted": [
+            "فيه خصم؟",
+            "فيه خصم",
+            "في خصم؟",
+            "feeh khasm",
+            "feeh khaSm?"
+          ],
+          "too_formal": {
+            "item": "هل يوجد خصم؟",
+            "feedback": "That is a formal question; everyday speech says فيه خصم؟"
+          },
+          "tip": "\"فيه\" means \"there is\" and is used constantly."
+        },
+        {
+          "id": "unit-17.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"ده / أوي / غالي\"",
+          "words": [
+            "ده",
+            "أوي",
+            "غالي"
+          ],
+          "answer": "ده غالي أوي",
+          "accepted": [
+            "ده غالي أوي",
+            "ده غالي قوي",
+            "دا غالي أوي",
+            "da ghaali 2awi",
+            "da ghaali awi"
+          ],
+          "too_formal": {
+            "item": "هذا غالٍ جداً",
+            "feedback": "That is formal Arabic rather than the everyday spoken sentence."
+          },
+          "tip": "\"أوي\" goes after the adjective and means very."
+        },
+        {
+          "id": "unit-17.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"red\"?",
+          "options": [
+            "أزرق",
+            "أحمر",
+            "رخيص",
+            "ماشي"
+          ],
+          "answer": "أحمر",
+          "accepted": [
+            "أحمر",
+            "احمر",
+            "a7mar.",
+            "أحمر.",
+            "a7mar"
+          ],
+          "too_formal": {
+            "item": "لون أحمر",
+            "feedback": "That is a slightly formal way to name the color; just say أحمر."
+          },
+          "tip": "\"أزرق\" is blue and \"أحمر\" is red."
+        },
+        {
+          "id": "unit-17.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "The seller says: \"ده آخر سعر.\" Agree.",
+          "answer": "ماشي",
+          "accepted": [
+            "ماشي",
+            "ماشي كده",
+            "تمام",
+            "طيب ماشي",
+            "maashi"
+          ],
+          "too_formal": {
+            "item": "موافق",
+            "feedback": "That is correct but bookish; ماشي is what people actually say."
+          },
+          "tip": "\"ماشي\" means okay, deal, fine."
+        },
+        {
+          "id": "unit-17.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How much per kilo?\"",
+          "answer": "بكام الكيلو؟",
+          "accepted": [
+            "بكام الكيلو؟",
+            "بكام الكيلو",
+            "بكام كيلو؟",
+            "bikam el-kilo",
+            "bikaam el-keelo?"
+          ],
+          "too_formal": {
+            "item": "كم سعر الكيلوغرام؟",
+            "feedback": "That is a formal written phrasing; the market says بكام الكيلو."
+          },
+          "tip": "The market asks the price by the kilo with بكام الكيلو."
+        },
+        {
+          "id": "unit-17.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عندك لون _____؟\" Meaning: Do you have another color?",
+          "answer": "تاني",
+          "accepted": [
+            "تاني",
+            "تانى",
+            "تاني؟",
+            "tani",
+            "taani"
+          ],
+          "too_formal": {
+            "item": "هل لديك لون آخر؟",
+            "feedback": "That is formal; Egyptians say تاني for other."
+          },
+          "tip": "\"تاني\" means other or another in Egyptian."
+        },
+        {
+          "id": "unit-17.lesson-01.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want this.\" (a man speaking)",
+          "answer": "عايز ده",
+          "accepted": [
+            "عايز ده",
+            "عاوز ده",
+            "عايز دا",
+            "3awez da",
+            "3ayez da"
+          ],
+          "too_formal": {
+            "item": "أريد هذا",
+            "feedback": "That is formal; everyday Egyptian uses عايز."
+          },
+          "tip": "A woman says عايزة ده. The word is عايز, not بدي."
+        },
+        {
+          "id": "unit-17.lesson-01.choose.03",
+          "type": "choose",
+          "prompt": "Which phrase means \"This one is nicer\"?",
+          "options": [
+            "ده أحلى",
+            "ده غالي",
+            "ده رخيص",
+            "ده أصغر"
+          ],
+          "answer": "ده أحلى",
+          "accepted": [
+            "ده أحلى",
+            "دا أحلى",
+            "ده احلى",
+            "da a7la.",
+            "da a7la"
+          ],
+          "too_formal": {
+            "item": "هذا أجمل",
+            "feedback": "That is correct but formal; أحلى is the everyday word."
+          },
+          "tip": "\"أحلى\" is nicer or sweeter."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "taxi",
+          "arabic": "تاكسي",
+          "transliteration": "taaksi"
+        },
+        {
+          "slot": "bus",
+          "arabic": "أتوبيس",
+          "transliteration": "otoobiis"
+        },
+        {
+          "slot": "i-want-to-go-to-the-old-city",
+          "arabic": "عايز أروح مصر القديمة",
+          "transliteration": "3ayez aroo7 maSr el-2adeema"
+        },
+        {
+          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
+          "arabic": "وقّف هنا لو سمحت",
+          "transliteration": "wa22ef hena law samaht"
+        },
+        {
+          "slot": "how-much-is-the-fare",
+          "arabic": "الأجرة كام؟",
+          "transliteration": "el-ogra kaam?",
+          "reply": {
+            "arabic": "تلاتين جنيه.",
+            "transliteration": "talateen ginee.",
+            "english": "Thirty pounds."
+          }
+        },
+        {
+          "slot": "take-me-to-to-a-man",
+          "arabic": "وديني على",
+          "transliteration": "wadeeni 3ala"
+        },
+        {
+          "slot": "are-you-free-asking-a-taxi-driver-if-available",
+          "arabic": "فاضي؟",
+          "transliteration": "faaDi?",
+          "reply": {
+            "arabic": "أيوه، اتفضل.",
+            "transliteration": "aywa, itfaDDal.",
+            "english": "Yes, please get in."
+          }
+        },
+        {
+          "slot": "busy-occupied",
+          "arabic": "مشغول",
+          "transliteration": "mashghool"
+        },
+        {
+          "slot": "how-long-does-the-way-take",
+          "arabic": "الطريق هياخد قد إيه؟",
+          "transliteration": "eT-Taree2 hayakhod add eeh?"
+        },
+        {
+          "slot": "will-you-drop-me-at-to-a-man",
+          "arabic": "توصّلني لحد ميدان التحرير؟",
+          "transliteration": "twaSSalni le-7add meedaan et-ta7reer?"
+        },
+        {
+          "slot": "at-your-service-a-common-polite-reply-from-a-tax",
+          "arabic": "تحت أمرك",
+          "transliteration": "ta7t amrak"
+        },
+        {
+          "slot": "what-time-does-the-bus-come-tomorrow",
+          "arabic": "الأتوبيس بييجي الساعة كام بكرة؟",
+          "transliteration": "el-otoobiis biyeegi es-saa3a kaam bokra?"
+        },
+        {
+          "slot": "station",
+          "arabic": "محطة",
+          "transliteration": "ma7aTTa"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "كريم",
+          "arabic": "تاكسي! فاضي؟",
+          "transliteration": "taaksi! faaDi?",
+          "english": "Taxi! Are you free?"
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "أيوه، اتفضل يا باشا.",
+          "transliteration": "aywa, itfaDDal ya baasha.",
+          "english": "Yes, get in, sir."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "عايز أروح مصر القديمة.",
+          "transliteration": "3ayez aroo7 maSr el-2adeema.",
+          "english": "I want to go to Old Cairo."
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "تحت أمرك.",
+          "transliteration": "ta7t amrak.",
+          "english": "At your service."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "الطريق هياخد قد إيه؟",
+          "transliteration": "eT-Taree2 hayakhod add eeh?",
+          "english": "How long will the way take?"
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "ياخد نص ساعة لو مفيش زحمة.",
+          "transliteration": "yakhod nuSS saa3a law meefeesh zo7ma.",
+          "english": "About half an hour if there's no traffic."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "والأجرة كام؟",
+          "transliteration": "wil-ogra kaam?",
+          "english": "And the fare, how much?"
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "تلاتين جنيه.",
+          "transliteration": "talateen ginee.",
+          "english": "Thirty pounds."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "ماشي. وقّف هنا لو سمحت.",
+          "transliteration": "maashi. wa22ef hena law samaht.",
+          "english": "Okay. Stop here, please."
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "حاضر يا باشا. وصلنا.",
+          "transliteration": "7aaDir ya baasha. waSalna.",
+          "english": "Right away, sir. We've arrived."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "تسلم. الأتوبيس بييجي الساعة كام بكرة؟",
+          "transliteration": "tislam. el-otoobiis biyeegi es-saa3a kaam bokra?",
+          "english": "Thanks. What time does the bus come tomorrow?"
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "اسأل في المحطة اللي هناك.",
+          "transliteration": "es2al fil-ma7aTTa illi henaak.",
+          "english": "Ask at the station over there."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فاضي؟",
+            "transliteration": "faaDi?",
+            "english": "Are you free?"
+          },
+          "response": {
+            "arabic": "أيوه، اتفضل.",
+            "transliteration": "aywa, itfaDDal.",
+            "english": "Yes, please get in."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الأجرة كام؟",
+            "transliteration": "el-ogra kaam?",
+            "english": "How much is the fare?"
+          },
+          "response": {
+            "arabic": "تلاتين جنيه.",
+            "transliteration": "talateen ginee.",
+            "english": "Thirty pounds."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وديني على المحطة.",
+            "transliteration": "wadeeni 3ala el-ma7aTTa.",
+            "english": "Take me to the station."
+          },
+          "response": {
+            "arabic": "تحت أمرك.",
+            "transliteration": "ta7t amrak.",
+            "english": "At your service."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الطريق هياخد قد إيه؟",
+            "transliteration": "eT-Taree2 hayakhod add eeh?",
+            "english": "How long will the way take?"
+          },
+          "response": {
+            "arabic": "ياخد عشرين دقيقة.",
+            "transliteration": "yakhod 3eshreen de2ee2a.",
+            "english": "About twenty minutes."
+          }
+        }
+      ],
+      "culture": "In Cairo you usually agree the fare with the driver before you get in, or ask him to turn on the meter, because many drivers name a price by look. Drivers call passengers يا باشا, and answering with a friendly greeting makes the whole ride easier; ride apps like Uber are also very common.",
+      "exercises": [
+        {
+          "id": "unit-17.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Are you free?\" (asking a taxi driver)",
+          "answer": "فاضي؟",
+          "accepted": [
+            "فاضي؟",
+            "فاضي",
+            "انت فاضي؟",
+            "fadi",
+            "faaDi?"
+          ],
+          "too_formal": {
+            "item": "هل أنت متاح؟",
+            "feedback": "That is formal; a driver is asked فاضي؟ on the street."
+          },
+          "tip": "\"فاضي\" literally means empty."
+        },
+        {
+          "id": "unit-17.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"Bus\"?",
+          "options": [
+            "أتوبيس",
+            "تاكسي",
+            "محطة",
+            "أجرة"
+          ],
+          "answer": "أتوبيس",
+          "accepted": [
+            "أتوبيس",
+            "اتوبيس",
+            "otobis",
+            "أتوبيس.",
+            "otoobiis"
+          ],
+          "too_formal": {
+            "item": "حافلة",
+            "feedback": "That is the Modern Standard word; Cairenes say أتوبيس."
+          },
+          "tip": "\"أتوبيس\" is bus; \"تاكسي\" is taxi."
+        },
+        {
+          "id": "unit-17.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "A taxi driver says: \"اتفضل، على فين؟\" Tell him you want to go to Old Cairo.",
+          "answer": "عايز أروح مصر القديمة",
+          "accepted": [
+            "عايز أروح مصر القديمة",
+            "عاوز أروح مصر القديمة",
+            "وديني مصر القديمة",
+            "وديني على مصر القديمة",
+            "3ayez aroo7 maSr el-2adeema"
+          ],
+          "too_formal": {
+            "item": "أريد الذهاب إلى مصر القديمة",
+            "feedback": "That is formal Arabic; speech uses عايز أروح."
+          },
+          "tip": "\"على فين؟\" means where to; answer with عايز أروح plus the place."
+        },
+        {
+          "id": "unit-17.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"وقّف _____ لو سمحت.\" Meaning: Stop here, please.",
+          "answer": "هنا",
+          "accepted": [
+            "هنا",
+            "هنا.",
+            "hena.",
+            "هُنا",
+            "hena"
+          ],
+          "too_formal": {
+            "item": "قف هنا من فضلك",
+            "feedback": "That is a formal command; speech says وقّف هنا لو سمحت."
+          },
+          "tip": "\"هنا\" is here, \"هناك\" is there."
+        },
+        {
+          "id": "unit-17.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How much is the fare?\"",
+          "answer": "الأجرة كام؟",
+          "accepted": [
+            "الأجرة كام؟",
+            "الأجرة كام",
+            "الأجره كام؟",
+            "كام الأجرة؟",
+            "el-ogra kaam?"
+          ],
+          "too_formal": {
+            "item": "كم الأجرة؟",
+            "feedback": "That is a formal question order; Egyptians put كام at the end."
+          },
+          "tip": "\"كام\" comes last in Egyptian questions about price or number."
+        },
+        {
+          "id": "unit-17.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"سمحت / وقّف / هنا / لو\"",
+          "words": [
+            "سمحت",
+            "وقّف",
+            "هنا",
+            "لو"
+          ],
+          "answer": "وقّف هنا لو سمحت",
+          "accepted": [
+            "وقّف هنا لو سمحت",
+            "وقف هنا لو سمحت",
+            "لو سمحت وقّف هنا",
+            "لو سمحت وقف هنا",
+            "wa22ef hena law samaht"
+          ],
+          "too_formal": {
+            "item": "قف هنا من فضلك",
+            "feedback": "That is a stiff command; speech uses وقّف."
+          },
+          "tip": "\"لو سمحت\" can come at the start or the end."
+        },
+        {
+          "id": "unit-17.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase is the driver's polite \"At your service\"?",
+          "options": [
+            "تحت أمرك",
+            "مشغول",
+            "غالي",
+            "ماشي"
+          ],
+          "answer": "تحت أمرك",
+          "accepted": [
+            "تحت أمرك",
+            "تحت امرك",
+            "ta7t amrak.",
+            "تحت أمرك.",
+            "ta7t amrak"
+          ],
+          "too_formal": {
+            "item": "أنا في خدمتك",
+            "feedback": "That is a formal service phrase; drivers say تحت أمرك."
+          },
+          "tip": "\"تحت أمرك\" literally means under your command."
+        },
+        {
+          "id": "unit-17.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "You ask a taxi: \"فاضي؟\" and he is taken. What does he say?",
+          "answer": "مشغول",
+          "accepted": [
+            "مشغول",
+            "أنا مشغول",
+            "مشغول يا باشا",
+            "لأ مشغول",
+            "mashghool"
+          ],
+          "too_formal": {
+            "item": "أنا غير متاح",
+            "feedback": "That is formal; a driver just says مشغول."
+          },
+          "tip": "\"مشغول\" means busy."
+        },
+        {
+          "id": "unit-17.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How long will the way take?\"",
+          "answer": "الطريق هياخد قد إيه؟",
+          "accepted": [
+            "الطريق هياخد قد إيه؟",
+            "الطريق هيبقى قد ايه",
+            "الطريق هياخد قد إيه؟",
+            "الطريق هياخد وقت قد إيه؟",
+            "eT-Taree2 hayakhod add eeh?"
+          ],
+          "too_formal": {
+            "item": "كم يستغرق الطريق؟",
+            "feedback": "That is formal; Cairenes say قد إيه for how much or how long."
+          },
+          "tip": "\"قد إيه\" asks how much or how long."
+        },
+        {
+          "id": "unit-17.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الأتوبيس بييجي الساعة _____ بكرة؟\" Meaning: What time does the bus come tomorrow?",
+          "answer": "كام",
+          "accepted": [
+            "كام",
+            "كم",
+            "كام؟",
+            "kam",
+            "kaam"
+          ],
+          "too_formal": {
+            "item": "متى يأتي الحافلة غداً؟",
+            "feedback": "That is formal; the Egyptian way is الساعة كام."
+          },
+          "tip": "\"الساعة كام؟\" asks what time it is."
+        },
+        {
+          "id": "unit-17.lesson-02.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Take me to the station.\" (to a man)",
+          "answer": "وديني على المحطة",
+          "accepted": [
+            "وديني على المحطة",
+            "وديني المحطة",
+            "وصّلني المحطة",
+            "خدني على المحطة",
+            "wadeeni 3ala el-ma7aTTa"
+          ],
+          "too_formal": {
+            "item": "أوصلني إلى المحطة",
+            "feedback": "That is formal; speech uses وديني."
+          },
+          "tip": "\"وديني\" means take me, and \"على\" gives the place."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Bargaining and Getting There",
+    "instructions": "Write and say a short Egyptian conversation of at least 10 lines. It must ask a price, bargain at least once, agree on a price, hail a taxi or ask about a bus, say where you want to go, and ask about the fare or the time. Use at least 8 target phrases from this unit and include both a masculine-address form and a feminine-address form.",
+    "required_elements": [
+      "A price question using بكام ده؟ or بكام الكيلو؟",
+      "At least one attempt to lower the price, using نزّل شوية or فيه خصم؟",
+      "An agreement using ماشي or آخر سعر.",
+      "Hailing transport using فاضي؟ or naming تاكسي or أتوبيس.",
+      "A destination using عايز أروح or وديني على.",
+      "A question about fare or time using الأجرة كام؟ or الطريق هياخد قد إيه؟",
+      "Both a masculine-address form (such as عندك) and a feminine-address form (such as عندكِ or اتفضلي)."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "هالة",
+          "arabic": "بكام ده؟",
+          "transliteration": "bikaam da?",
+          "english": "How much is this?"
+        },
+        {
+          "speaker": "عم صابر",
+          "arabic": "ده بمية جنيه.",
+          "transliteration": "da bi-meet ginee.",
+          "english": "This is a hundred pounds."
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "غالي أوي، نزّل شوية.",
+          "transliteration": "ghaali awi, nazzel shweyya.",
+          "english": "Very expensive, lower it a little."
+        },
+        {
+          "speaker": "عم صابر",
+          "arabic": "طيب بتمانين، آخر سعر.",
+          "transliteration": "Tayyeb bi-tamaneen, aakhir se3r.",
+          "english": "Okay, eighty, final price."
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "عندك لون تاني؟",
+          "transliteration": "3andak loon taani?",
+          "english": "Do you have another color?"
+        },
+        {
+          "speaker": "عم صابر",
+          "arabic": "أيوه، فيه أزرق.",
+          "transliteration": "aywa, feeh azra2.",
+          "english": "Yes, there is blue."
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "ماشي، عايزة الأزرق.",
+          "transliteration": "maashi, 3ayza el-azra2.",
+          "english": "Okay, I want the blue one."
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "تاكسي! فاضي؟",
+          "transliteration": "taaksi! faaDi?",
+          "english": "Taxi! Are you free?"
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "أيوه، اتفضلي.",
+          "transliteration": "aywa, itfaDDali.",
+          "english": "Yes, please get in."
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "وديني على مصر القديمة.",
+          "transliteration": "wadeeni 3ala maSr el-2adeema.",
+          "english": "Take me to Old Cairo."
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "تحت أمرك.",
+          "transliteration": "ta7t amrak.",
+          "english": "At your service."
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "الأجرة كام؟",
+          "transliteration": "el-ogra kaam?",
+          "english": "How much is the fare?"
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "تلاتين جنيه.",
+          "transliteration": "talateen ginee.",
+          "english": "Thirty pounds."
+        }
+      ]
+    }
+  }
+}

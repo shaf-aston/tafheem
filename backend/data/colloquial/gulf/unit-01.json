@@ -1,0 +1,1859 @@
+{
+  "unit": "unit-01",
+  "dialect": "Gulf Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "g": "ق (تُنطق كالجيم المصرية في الخليج)",
+    "ch": "ج أو ك مكسورة (تشين) كما في شلونج و باجر",
+    "S": "ص",
+    "T": "ط",
+    "D": "ض",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "hello",
+          "arabic": "مرحبا",
+          "transliteration": "marhaba",
+          "reply": {
+            "arabic": "هلا",
+            "transliteration": "hala",
+            "english": "Hi."
+          }
+        },
+        {
+          "slot": "hi-welcome",
+          "arabic": "هلا وغلا",
+          "transliteration": "hala w ghala",
+          "reply": {
+            "arabic": "هلا بيك",
+            "transliteration": "hala beek",
+            "english": "Welcome to you."
+          }
+        },
+        {
+          "slot": "how-are-you-to-a-man",
+          "arabic": "شلونك؟",
+          "transliteration": "shloonak?"
+        },
+        {
+          "slot": "how-are-you-to-a-woman",
+          "arabic": "شلونج؟",
+          "transliteration": "shloonich?"
+        },
+        {
+          "slot": "good-thank-god",
+          "arabic": "زين، الحمد لله",
+          "transliteration": "zeen, alhamdulillah"
+        },
+        {
+          "slot": "great-fine",
+          "arabic": "تمام",
+          "transliteration": "tamaam"
+        },
+        {
+          "slot": "what-s-your-name-to-a-man",
+          "arabic": "شسمك؟",
+          "transliteration": "shismak?"
+        },
+        {
+          "slot": "what-s-your-name-to-a-woman",
+          "arabic": "شسمج؟",
+          "transliteration": "shismich?"
+        },
+        {
+          "slot": "my-name-is-rami",
+          "arabic": "اسمي رامي",
+          "transliteration": "ismi Raami"
+        },
+        {
+          "slot": "i-m-lina",
+          "arabic": "أنا لينا",
+          "transliteration": "ana Leena"
+        },
+        {
+          "slot": "nice-to-meet-you",
+          "arabic": "تشرفنا",
+          "transliteration": "tsharrafna",
+          "reply": {
+            "arabic": "الشرف لنا",
+            "transliteration": "ash-sharaf lana",
+            "english": "The honour is ours."
+          }
+        },
+        {
+          "slot": "me-too",
+          "arabic": "وأنا بعد",
+          "transliteration": "w ana ba3ad"
+        },
+        {
+          "slot": "where-are-you-from-to-a-man",
+          "arabic": "من وين إنت؟",
+          "transliteration": "min ween inta?"
+        },
+        {
+          "slot": "where-are-you-from-to-a-woman",
+          "arabic": "من وين إنتي؟",
+          "transliteration": "min ween inti?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Khalid",
+          "arabic": "مرحبا.",
+          "transliteration": "marhaba.",
+          "english": "Hello."
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "هلا والله، شلونك؟",
+          "transliteration": "hala wallah, shloonak?",
+          "english": "Hi there, how are you?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "زين، الحمد لله. وإنتي شلونج؟",
+          "transliteration": "zeen, alhamdulillah. w inti shloonich?",
+          "english": "Good, thank God. And you, how are you?"
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "تمام، الحمد لله. شسمك؟",
+          "transliteration": "tamaam, alhamdulillah. shismak?",
+          "english": "Fine, thank God. What's your name?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "اسمي خالد. وإنتي شسمج؟",
+          "transliteration": "ismi Khaalid. w inti shismich?",
+          "english": "My name is Khalid. And yours?"
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "أنا نورة. تشرفنا.",
+          "transliteration": "ana Noora. tsharrafna.",
+          "english": "I'm Noora. Nice to meet you."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "الشرف لنا. من وين إنتي؟",
+          "transliteration": "ash-sharaf lana. min ween inti?",
+          "english": "The honour is ours. Where are you from?"
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "أنا من الكويت. وإنت؟",
+          "transliteration": "ana min il-Kuwait. w inta?",
+          "english": "I'm from Kuwait. And you?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "أنا من دبي.",
+          "transliteration": "ana min Dubai.",
+          "english": "I'm from Dubai."
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "حياك الله في الكويت.",
+          "transliteration": "hayyaak allah fil-Kuwait.",
+          "english": "You're welcome in Kuwait."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "الله يحييج.",
+          "transliteration": "allah yhayyich.",
+          "english": "God keep you well."
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "تشرفنا يا خالد، إن شاء الله نشوفك مرة ثانية.",
+          "transliteration": "tsharrafna ya Khaalid, inshaallah nshoofak marra thaanya.",
+          "english": "Nice to meet you, Khalid, God willing we'll see you again."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شلونك؟",
+            "transliteration": "shloonak?",
+            "english": "How are you? (to a man)"
+          },
+          "response": {
+            "arabic": "زين، الحمد لله.",
+            "transliteration": "zeen, alhamdulillah.",
+            "english": "Good, thank God."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شسمج؟",
+            "transliteration": "shismich?",
+            "english": "What's your name? (to a woman)"
+          },
+          "response": {
+            "arabic": "اسمي نورة.",
+            "transliteration": "ismi Noora.",
+            "english": "My name is Noora."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "من وين إنت؟",
+            "transliteration": "min ween inta?",
+            "english": "Where are you from? (to a man)"
+          },
+          "response": {
+            "arabic": "أنا من أبوظبي.",
+            "transliteration": "ana min Abu Dhabi.",
+            "english": "I'm from Abu Dhabi."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تشرفنا.",
+            "transliteration": "tsharrafna.",
+            "english": "Nice to meet you."
+          },
+          "response": {
+            "arabic": "الشرف لنا.",
+            "transliteration": "ash-sharaf lana.",
+            "english": "The honour is ours."
+          }
+        }
+      ],
+      "culture": "In the Gulf, greetings are warm and a little long: men often shake hands or touch noses with close friends, and \"هلا\" or \"هلا والله\" is the everyday hello. Alhamdulillah always comes with the answer to \"how are you\", and a man and a woman who are not related usually greet with words only.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "A man says to you: \"مرحبا\". Reply warmly.",
+          "answer": "هلا والله",
+          "accepted": [
+            "هلا والله",
+            "هلا",
+            "هلا بيك",
+            "hala wallah"
+          ],
+          "too_formal": {
+            "item": "أهلا وسهلا بك",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "In the Gulf \"هلا\" is the ordinary answer to a hello."
+        },
+        {
+          "id": "unit-01.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "A man asks you: \"شلونك؟\". Say you are well, thank God.",
+          "answer": "زين، الحمد لله",
+          "accepted": [
+            "زين، الحمد لله",
+            "تمام، الحمد لله",
+            "زين الحمد لله",
+            "zeen alhamdulillah",
+            "تمام"
+          ],
+          "too_formal": {
+            "item": "أنا بخير والحمد لله",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"زين\" means good here, and \"الحمد لله\" always follows."
+        },
+        {
+          "id": "unit-01.lesson-01.reply.03",
+          "type": "reply",
+          "prompt": "A woman asks you: \"شلونج؟\". You are a woman. Say you are well.",
+          "answer": "زينة، الحمد لله",
+          "accepted": [
+            "زينة، الحمد لله",
+            "تمام، الحمد لله",
+            "زينة الحمد لله",
+            "zeena alhamdulillah",
+            "زينة"
+          ],
+          "too_formal": {
+            "item": "أنا بخير والحمد لله",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "A woman says \"زينة\" and a man says \"زين\"."
+        },
+        {
+          "id": "unit-01.lesson-01.reply.04",
+          "type": "reply",
+          "prompt": "Someone says: \"تشرفنا\". Reply.",
+          "answer": "الشرف لنا",
+          "accepted": [
+            "الشرف لنا",
+            "وأنا بعد",
+            "الشرف لي",
+            "ash-sharaf lana"
+          ],
+          "too_formal": {
+            "item": "تشرفت بمعرفتك",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"وأنا بعد\" is the easiest reply: me too."
+        },
+        {
+          "id": "unit-01.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ رامي.\" Meaning: My name is Rami.",
+          "answer": "اسمي",
+          "accepted": [
+            "اسمي",
+            "اسمي أنا",
+            "ismi",
+            "أنا اسمي"
+          ],
+          "too_formal": {
+            "item": "إن اسمي",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "The fixed pattern is \"اسمي\" plus the name."
+        },
+        {
+          "id": "unit-01.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete, speaking to a woman: \"من وين _____؟\" Where are you from?",
+          "answer": "إنتي",
+          "accepted": [
+            "إنتي",
+            "انتي",
+            "inti",
+            "إنتِ"
+          ],
+          "too_formal": {
+            "item": "أنتِ",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "To a woman it is \"إنتي\", to a man \"إنت\"."
+        },
+        {
+          "id": "unit-01.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"What's your name?\" (to a man)",
+          "answer": "شسمك؟",
+          "accepted": [
+            "شسمك؟",
+            "شنو اسمك؟",
+            "shismak",
+            "shsmak"
+          ],
+          "too_formal": {
+            "item": "ما اسمك؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"شسمك\" is short for \"شنو اسمك\", what is your name."
+        },
+        {
+          "id": "unit-01.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How are you?\" (to a woman)",
+          "answer": "شلونج؟",
+          "accepted": [
+            "شلونج؟",
+            "شخبارج؟",
+            "shloonich",
+            "شلونچ؟"
+          ],
+          "too_formal": {
+            "item": "كيف حالكِ؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "The woman ending is the \"ch\" sound, written ج."
+        },
+        {
+          "id": "unit-01.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm from Dubai.\"",
+          "answer": "أنا من دبي",
+          "accepted": [
+            "أنا من دبي",
+            "من دبي",
+            "ana min Dubai",
+            "انا من دبي"
+          ],
+          "too_formal": {
+            "item": "أنا من مدينة دبي",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "Just \"أنا من\" plus the place."
+        },
+        {
+          "id": "unit-01.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Where are you from?\" to a woman?",
+          "options": [
+            "من وين إنتي؟",
+            "من وين إنت؟",
+            "شسمج؟",
+            "شلونج؟"
+          ],
+          "answer": "من وين إنتي؟",
+          "accepted": [
+            "من وين إنتي؟",
+            "من وين إنتي",
+            "min ween inti",
+            "من وين إنتِ؟"
+          ],
+          "too_formal": {
+            "item": "من أين أنتِ؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "The ending \"إنتي\" marks the woman."
+        },
+        {
+          "id": "unit-01.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which reply fits \"شلونك؟\" best?",
+          "options": [
+            "زين، الحمد لله",
+            "اسمي خالد",
+            "من دبي",
+            "تشرفنا"
+          ],
+          "answer": "زين، الحمد لله",
+          "accepted": [
+            "زين، الحمد لله",
+            "تمام، الحمد لله",
+            "zeen alhamdulillah",
+            "زين"
+          ],
+          "too_formal": {
+            "item": "أنا في حالة جيدة",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "A short answer with \"الحمد لله\" is enough."
+        },
+        {
+          "id": "unit-01.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"خالد / اسمي\".",
+          "answer": "اسمي خالد",
+          "accepted": [
+            "اسمي خالد",
+            "اسمي خالد.",
+            "ismi Khaalid"
+          ],
+          "too_formal": {
+            "item": "اسمي هو خالد",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "The word for \"my name\" comes first."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "please-excuse-me-to-a-man",
+          "arabic": "لو سمحت",
+          "transliteration": "law samaHt"
+        },
+        {
+          "slot": "please-excuse-me-to-a-woman",
+          "arabic": "لو سمحتي",
+          "transliteration": "law samaHti"
+        },
+        {
+          "slot": "it-s-okay-sorry-excuse-me",
+          "arabic": "ما عليه",
+          "transliteration": "maa 3aleyh"
+        },
+        {
+          "slot": "sorry-male-speaker",
+          "arabic": "آسف",
+          "transliteration": "aasif"
+        },
+        {
+          "slot": "sorry-female-speaker",
+          "arabic": "آسفة",
+          "transliteration": "aasfa"
+        },
+        {
+          "slot": "thank-you",
+          "arabic": "شكرا",
+          "transliteration": "shukran",
+          "reply": {
+            "arabic": "العفو",
+            "transliteration": "al-3afw",
+            "english": "You're welcome."
+          }
+        },
+        {
+          "slot": "thank-you-very-much",
+          "arabic": "مشكور وايد",
+          "transliteration": "mashkoor waayid"
+        },
+        {
+          "slot": "you-re-welcome-excuse-me",
+          "arabic": "العفو",
+          "transliteration": "al-3afw"
+        },
+        {
+          "slot": "can-you-help-me-to-a-man",
+          "arabic": "تقدر تساعدني؟",
+          "transliteration": "tigdar tsaa3idni?"
+        },
+        {
+          "slot": "can-you-help-me-to-a-woman",
+          "arabic": "تقدرين تساعديني؟",
+          "transliteration": "tigdareen tsaa3deeni?"
+        },
+        {
+          "slot": "i-want-some-water",
+          "arabic": "أبي ماي",
+          "transliteration": "abi maay"
+        },
+        {
+          "slot": "is-it-possible-can-i",
+          "arabic": "ينفع؟",
+          "transliteration": "yinfa3?"
+        },
+        {
+          "slot": "yes-of-course",
+          "arabic": "إي أكيد",
+          "transliteration": "ee akeed"
+        },
+        {
+          "slot": "sorry-i-didn-t-understand",
+          "arabic": "آسف، ما فهمت",
+          "transliteration": "aasif, maa fhimt"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Sultan",
+          "arabic": "لو سمحتي.",
+          "transliteration": "law samaHti.",
+          "english": "Excuse me."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "هلا، تفضل.",
+          "transliteration": "hala, tfaDDal.",
+          "english": "Yes, go ahead."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "تقدرين تساعديني؟",
+          "transliteration": "tigdareen tsaa3deeni?",
+          "english": "Can you help me?"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "إي أكيد. شتبي؟",
+          "transliteration": "ee akeed. shtibi?",
+          "english": "Yes, of course. What do you want?"
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "أبي ماي، لو سمحتي.",
+          "transliteration": "abi maay, law samaHti.",
+          "english": "I want some water, please."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "أبشر، تفضل.",
+          "transliteration": "abshir, tfaDDal.",
+          "english": "Gladly, here you are."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "مشكور وايد.",
+          "transliteration": "mashkoor waayid.",
+          "english": "Thank you very much."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "العفو. تبي شي ثاني؟",
+          "transliteration": "al-3afw. tibi shay thaani?",
+          "english": "You're welcome. Do you want anything else?"
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "آسف، ما فهمت.",
+          "transliteration": "aasif, maa fhimt.",
+          "english": "Sorry, I didn't understand."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "قلت، تبي شي ثاني؟",
+          "transliteration": "gilt, tibi shay thaani?",
+          "english": "I said, do you want anything else?"
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "لا، ما عليه. شكرا.",
+          "transliteration": "laa, maa 3aleyh. shukran.",
+          "english": "No, it's okay. Thanks."
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "الله يعافيك.",
+          "transliteration": "allah y3aafeek.",
+          "english": "God give you health."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "تقدر تساعدني؟",
+            "transliteration": "tigdar tsaa3idni?",
+            "english": "Can you help me? (to a man)"
+          },
+          "response": {
+            "arabic": "إي أكيد.",
+            "transliteration": "ee akeed.",
+            "english": "Yes, of course."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شكرا.",
+            "transliteration": "shukran.",
+            "english": "Thank you."
+          },
+          "response": {
+            "arabic": "العفو.",
+            "transliteration": "al-3afw.",
+            "english": "You're welcome."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "آسف.",
+            "transliteration": "aasif.",
+            "english": "Sorry."
+          },
+          "response": {
+            "arabic": "ما عليه.",
+            "transliteration": "maa 3aleyh.",
+            "english": "It's okay."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ينفع؟",
+            "transliteration": "yinfa3?",
+            "english": "Is it possible?"
+          },
+          "response": {
+            "arabic": "إي، ينفع.",
+            "transliteration": "ee, yinfa3.",
+            "english": "Yes, it's fine."
+          }
+        }
+      ],
+      "culture": "Politeness in the Gulf leans on warm, ready phrases: \"أبشر\" (gladly, consider it done) is how you accept a request, and \"مشكور\" or \"يعطيك العافية\" thanks someone for their effort. \"أبي\" is the normal, polite way to say \"I want\", it is not rude.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "A man says: \"تقدر تساعدني؟\". Answer that you can.",
+          "answer": "إي أكيد",
+          "accepted": [
+            "إي أكيد",
+            "أكيد",
+            "أبشر",
+            "ee akeed",
+            "إي، أكيد"
+          ],
+          "too_formal": {
+            "item": "نعم بالتأكيد",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"أبشر\" is the warm Gulf way to say gladly."
+        },
+        {
+          "id": "unit-01.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "Someone says to you: \"شكرا\". Reply.",
+          "answer": "العفو",
+          "accepted": [
+            "العفو",
+            "حياك الله",
+            "الله يعافيك",
+            "al-3afw"
+          ],
+          "too_formal": {
+            "item": "عفوا، على الرحب والسعة",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"العفو\" is the short everyday answer."
+        },
+        {
+          "id": "unit-01.lesson-02.reply.03",
+          "type": "reply",
+          "prompt": "You bump into someone and he says: \"آسف\". Reply.",
+          "answer": "ما عليه",
+          "accepted": [
+            "ما عليه",
+            "ما فيه مشكلة",
+            "عادي",
+            "maa 3aleyh"
+          ],
+          "too_formal": {
+            "item": "لا بأس عليك",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"ما عليه\" means never mind."
+        },
+        {
+          "id": "unit-01.lesson-02.reply.04",
+          "type": "reply",
+          "prompt": "You did not hear what a man said. Say you are sorry, you did not understand.",
+          "answer": "آسف، ما فهمت",
+          "accepted": [
+            "آسف، ما فهمت",
+            "آسف ما فهمت",
+            "ما فهمت",
+            "aasif maa fhimt"
+          ],
+          "too_formal": {
+            "item": "عذرا، لم أفهم",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "A woman says \"آسفة\"."
+        },
+        {
+          "id": "unit-01.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ ماي.\" Meaning: I want some water.",
+          "answer": "أبي",
+          "accepted": [
+            "أبي",
+            "أبغى",
+            "abi",
+            "ابي"
+          ],
+          "too_formal": {
+            "item": "أريد",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"أبي\" is the everyday Gulf word for I want."
+        },
+        {
+          "id": "unit-01.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ وايد.\" Meaning: Thank you very much.",
+          "answer": "مشكور",
+          "accepted": [
+            "مشكور",
+            "شكرا",
+            "mashkoor",
+            "مشكورة"
+          ],
+          "too_formal": {
+            "item": "شكرا جزيلا",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"وايد\" means very. In Kuwait many say \"واجد\"."
+        },
+        {
+          "id": "unit-01.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"Can you help me?\" (to a man)",
+          "answer": "تقدر تساعدني؟",
+          "accepted": [
+            "تقدر تساعدني؟",
+            "تقدر تساعدني",
+            "tigdar tsaa3idni",
+            "تگدر تساعدني؟"
+          ],
+          "too_formal": {
+            "item": "هل تستطيع مساعدتي؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "Gulf speakers say the ق as \"g\": \"تقدر\" sounds like \"tigdar\"."
+        },
+        {
+          "id": "unit-01.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Please / Excuse me.\" (to a woman)",
+          "answer": "لو سمحتي",
+          "accepted": [
+            "لو سمحتي",
+            "لو سمحتي؟",
+            "law samaHti",
+            "law samahti"
+          ],
+          "too_formal": {
+            "item": "من فضلك",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "Add the \"-i\" ending for a woman."
+        },
+        {
+          "id": "unit-01.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is it possible? / Can I?\"",
+          "answer": "ينفع؟",
+          "accepted": [
+            "ينفع؟",
+            "ينفع",
+            "yinfa3",
+            "أقدر؟"
+          ],
+          "too_formal": {
+            "item": "هل يمكن؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"ينفع\" is short and very common."
+        },
+        {
+          "id": "unit-01.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"I want some water\"?",
+          "options": [
+            "أبي ماي",
+            "أبي شاهي",
+            "شكرا وايد",
+            "آسف"
+          ],
+          "answer": "أبي ماي",
+          "accepted": [
+            "أبي ماي",
+            "ابي ماي",
+            "abi maay",
+            "أبي مي"
+          ],
+          "too_formal": {
+            "item": "أريد بعض الماء",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"ماي\" is water; \"مي\" is also heard."
+        },
+        {
+          "id": "unit-01.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which means \"Sorry, I didn't understand\"?",
+          "options": [
+            "آسف، ما فهمت",
+            "إي أكيد",
+            "العفو",
+            "ينفع؟"
+          ],
+          "answer": "آسف، ما فهمت",
+          "accepted": [
+            "آسف، ما فهمت",
+            "آسف ما فهمت",
+            "aasif maa fhimt",
+            "آسفة، ما فهمت"
+          ],
+          "too_formal": {
+            "item": "عذرا، لم أفهم",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "Start with \"آسف\", end with \"ما فهمت\"."
+        },
+        {
+          "id": "unit-01.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"وايد / مشكور\".",
+          "answer": "مشكور وايد",
+          "accepted": [
+            "مشكور وايد",
+            "مشكور وايد.",
+            "mashkoor waayid",
+            "مشكور واجد"
+          ],
+          "too_formal": {
+            "item": "شكرا جزيلا",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "The thanks comes first, then \"وايد\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "one",
+          "arabic": "واحد",
+          "transliteration": "waaHid"
+        },
+        {
+          "slot": "two",
+          "arabic": "ثنين",
+          "transliteration": "ithnain"
+        },
+        {
+          "slot": "three",
+          "arabic": "ثلاثة",
+          "transliteration": "thalaatha"
+        },
+        {
+          "slot": "four",
+          "arabic": "أربعة",
+          "transliteration": "arba3a"
+        },
+        {
+          "slot": "five",
+          "arabic": "خمسة",
+          "transliteration": "khamsa"
+        },
+        {
+          "slot": "how-much-how-many",
+          "arabic": "كم؟",
+          "transliteration": "kam?"
+        },
+        {
+          "slot": "what-time-is-it",
+          "arabic": "كم الساعة؟",
+          "transliteration": "kam is-saa3a?"
+        },
+        {
+          "slot": "it-s-one-o-clock",
+          "arabic": "الساعة وحدة",
+          "transliteration": "is-saa3a waHda"
+        },
+        {
+          "slot": "it-s-two-o-clock",
+          "arabic": "الساعة ثنتين",
+          "transliteration": "is-saa3a thintain"
+        },
+        {
+          "slot": "tomorrow",
+          "arabic": "باجر",
+          "transliteration": "baachir"
+        },
+        {
+          "slot": "today",
+          "arabic": "اليوم",
+          "transliteration": "il-yoom"
+        },
+        {
+          "slot": "now",
+          "arabic": "الحين",
+          "transliteration": "il-Heen"
+        },
+        {
+          "slot": "we-ll-see-you-tomorrow-to-a-man",
+          "arabic": "نشوفك باجر",
+          "transliteration": "nshoofak baachir",
+          "reply": {
+            "arabic": "إن شاء الله",
+            "transliteration": "inshaallah",
+            "english": "God willing."
+          }
+        },
+        {
+          "slot": "i-ll-see-you-tomorrow-to-a-man",
+          "arabic": "أشوفك باجر",
+          "transliteration": "ashoofak baachir",
+          "reply": {
+            "arabic": "إن شاء الله",
+            "transliteration": "inshaallah",
+            "english": "God willing."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Fahad",
+          "arabic": "كم الساعة الحين؟",
+          "transliteration": "kam is-saa3a il-Heen?",
+          "english": "What time is it now?"
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "الساعة ثنتين.",
+          "transliteration": "is-saa3a thintain.",
+          "english": "It's two o'clock."
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "اليوم ما أقدر، بس باجر أقدر.",
+          "transliteration": "il-yoom maa agdar, bas baachir agdar.",
+          "english": "Today I can't, but tomorrow I can."
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "زين. الساعة كم؟",
+          "transliteration": "zeen. is-saa3a kam?",
+          "english": "Good. At what time?"
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "الساعة وحدة.",
+          "transliteration": "is-saa3a waHda.",
+          "english": "At one o'clock."
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "كم واحد بيجون؟",
+          "transliteration": "kam waaHid bijoon?",
+          "english": "How many people are coming?"
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "خمسة.",
+          "transliteration": "khamsa.",
+          "english": "Five."
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "عندي ثلاثة كراسي بس.",
+          "transliteration": "3indi thalaatha karaasi bas.",
+          "english": "I have only three chairs."
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "ما عليه، أجيب كرسيين.",
+          "transliteration": "maa 3aleyh, ajeeb kursiyyain.",
+          "english": "No problem, I'll bring two chairs."
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "زين. أشوفك باجر إن شاء الله.",
+          "transliteration": "zeen. ashoofak baachir inshaallah.",
+          "english": "Good. I'll see you tomorrow, God willing."
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "نشوفج باجر يا عائشة.",
+          "transliteration": "nshoofich baachir ya 3aaisha.",
+          "english": "We'll see you tomorrow, Aisha."
+        },
+        {
+          "speaker": "Aisha",
+          "arabic": "في أمان الله.",
+          "transliteration": "fi amaan illah.",
+          "english": "Go in God's protection."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كم الساعة؟",
+            "transliteration": "kam is-saa3a?",
+            "english": "What time is it?"
+          },
+          "response": {
+            "arabic": "الساعة وحدة.",
+            "transliteration": "is-saa3a waHda.",
+            "english": "It's one o'clock."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "متى؟",
+            "transliteration": "mita?",
+            "english": "When?"
+          },
+          "response": {
+            "arabic": "باجر.",
+            "transliteration": "baachir.",
+            "english": "Tomorrow."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كم واحد؟",
+            "transliteration": "kam waaHid?",
+            "english": "How many?"
+          },
+          "response": {
+            "arabic": "خمسة.",
+            "transliteration": "khamsa.",
+            "english": "Five."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نشوفك باجر.",
+            "transliteration": "nshoofak baachir.",
+            "english": "We'll see you tomorrow."
+          },
+          "response": {
+            "arabic": "إن شاء الله.",
+            "transliteration": "inshaallah.",
+            "english": "God willing."
+          }
+        }
+      ],
+      "culture": "Plans in the Gulf almost always carry \"إن شاء الله\", even a simple \"see you tomorrow\". Time is often given by the prayer or by \"بعد العصر\" (after the afternoon prayer) as much as by the clock, and the working week runs Monday to Friday in the UAE and Sunday to Thursday in Kuwait.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "A man asks: \"كم الساعة؟\". It is one o'clock. Answer.",
+          "answer": "الساعة وحدة",
+          "accepted": [
+            "الساعة وحدة",
+            "وحدة",
+            "الساعة واحدة",
+            "is-saa3a waHda"
+          ],
+          "too_formal": {
+            "item": "الساعة الواحدة تماما",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "Say the hour after \"الساعة\"."
+        },
+        {
+          "id": "unit-01.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "A man says: \"نشوفك باجر\". Reply.",
+          "answer": "إن شاء الله",
+          "accepted": [
+            "إن شاء الله",
+            "إي، إن شاء الله",
+            "ان شاء الله",
+            "inshaallah"
+          ],
+          "too_formal": {
+            "item": "إن شاء الله تعالى سنلتقي غدا",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "Plans always get \"إن شاء الله\"."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Now.\"",
+          "answer": "الحين",
+          "accepted": [
+            "الحين",
+            "il-Heen",
+            "al-Heen",
+            "ilheen"
+          ],
+          "too_formal": {
+            "item": "الآن",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"الحين\" is the everyday Gulf word for now."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Tomorrow.\"",
+          "answer": "باجر",
+          "accepted": [
+            "باجر",
+            "باكر",
+            "baachir",
+            "باچر"
+          ],
+          "too_formal": {
+            "item": "غدا",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "The ج in \"باجر\" sounds like \"ch\" or \"y\"."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Today.\"",
+          "answer": "اليوم",
+          "accepted": [
+            "اليوم",
+            "il-yoom",
+            "alyoom",
+            "il yoom"
+          ],
+          "too_formal": {
+            "item": "في هذا اليوم",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"اليوم\" is the same in speech."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"What time is it?\"",
+          "answer": "كم الساعة؟",
+          "accepted": [
+            "كم الساعة؟",
+            "الساعة كم؟",
+            "kam is-saa3a",
+            "كم الساعة"
+          ],
+          "too_formal": {
+            "item": "ما هي الساعة الآن؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "Both \"كم الساعة\" and \"الساعة كم\" are said."
+        },
+        {
+          "id": "unit-01.lesson-03.translate_to_arabic.05",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'll see you tomorrow.\" (to a man)",
+          "answer": "أشوفك باجر",
+          "accepted": [
+            "أشوفك باجر",
+            "نشوفك باجر",
+            "ashoofak baachir",
+            "أشوفك باكر"
+          ],
+          "too_formal": {
+            "item": "سأراك غدا",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "Add \"إن شاء الله\" to sound natural."
+        },
+        {
+          "id": "unit-01.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which word is the number \"three\"?",
+          "options": [
+            "ثلاثة",
+            "ثنين",
+            "خمسة",
+            "أربعة"
+          ],
+          "answer": "ثلاثة",
+          "accepted": [
+            "ثلاثة",
+            "thalaatha",
+            "thalatha",
+            "ثلاثه"
+          ],
+          "too_formal": {
+            "item": "ثلاثة",
+            "feedback": "It is the same in speech; this item is only here to compare."
+          },
+          "tip": "The Gulf says the ث as \"th\"."
+        },
+        {
+          "id": "unit-01.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"It's two o'clock\"?",
+          "options": [
+            "الساعة ثنتين",
+            "الساعة وحدة",
+            "الساعة ثلاثة",
+            "الساعة خمسة"
+          ],
+          "answer": "الساعة ثنتين",
+          "accepted": [
+            "الساعة ثنتين",
+            "الساعه ثنتين",
+            "is-saa3a thintain",
+            "الساعة اثنتين"
+          ],
+          "too_formal": {
+            "item": "الساعة الثانية",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"ثنتين\" is the spoken form of two for the hour."
+        },
+        {
+          "id": "unit-01.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الساعة _____.\" Meaning: It's one o'clock.",
+          "answer": "وحدة",
+          "accepted": [
+            "وحدة",
+            "وحده",
+            "waHda",
+            "واحدة"
+          ],
+          "too_formal": {
+            "item": "الواحدة",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "For the hour one, use the feminine \"وحدة\"."
+        },
+        {
+          "id": "unit-01.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ ما أقدر، بس باجر أقدر.\" Meaning: Today I can't, but tomorrow I can.",
+          "answer": "اليوم",
+          "accepted": [
+            "اليوم",
+            "il-yoom",
+            "alyoom",
+            "il yoom"
+          ],
+          "too_formal": {
+            "item": "في هذا اليوم",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"بس\" means but."
+        },
+        {
+          "id": "unit-01.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"ثنتين / الساعة\".",
+          "answer": "الساعة ثنتين",
+          "accepted": [
+            "الساعة ثنتين",
+            "الساعة ثنتين.",
+            "is-saa3a thintain",
+            "الساعه ثنتين"
+          ],
+          "too_formal": {
+            "item": "الساعة الثانية",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"الساعة\" comes first."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "where-is-the-market",
+          "arabic": "وين السوق؟",
+          "transliteration": "ween is-sooq?"
+        },
+        {
+          "slot": "where-is-the-nearest-shop",
+          "arabic": "وين أقرب بقالة؟",
+          "transliteration": "ween agrab bagaala?"
+        },
+        {
+          "slot": "from-here",
+          "arabic": "من هني",
+          "transliteration": "min hini"
+        },
+        {
+          "slot": "on-the-right",
+          "arabic": "على اليمين",
+          "transliteration": "3ala l-yimeen"
+        },
+        {
+          "slot": "on-the-left",
+          "arabic": "على اليسار",
+          "transliteration": "3ala l-yasaar"
+        },
+        {
+          "slot": "straight-ahead",
+          "arabic": "على طول",
+          "transliteration": "3ala Tool"
+        },
+        {
+          "slot": "near",
+          "arabic": "قريب",
+          "transliteration": "gareeb"
+        },
+        {
+          "slot": "far",
+          "arabic": "بعيد",
+          "transliteration": "ba3eed"
+        },
+        {
+          "slot": "here",
+          "arabic": "هني",
+          "transliteration": "hini"
+        },
+        {
+          "slot": "there",
+          "arabic": "هناك",
+          "transliteration": "hinaak"
+        },
+        {
+          "slot": "straight-on-directly",
+          "arabic": "دغري",
+          "transliteration": "doghri"
+        },
+        {
+          "slot": "turn-right",
+          "arabic": "لف يمين",
+          "transliteration": "liff yimeen"
+        },
+        {
+          "slot": "turn-left-to-a-woman",
+          "arabic": "لفي يسار",
+          "transliteration": "liffi yasaar"
+        },
+        {
+          "slot": "thanks-may-you-have-strength",
+          "arabic": "يعطيك العافية",
+          "transliteration": "ya3Teek il-3aafya",
+          "reply": {
+            "arabic": "الله يعافيك",
+            "transliteration": "allah y3aafeek",
+            "english": "God give you health too."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yousef",
+          "arabic": "لو سمحتي، وين السوق؟",
+          "transliteration": "law samaHti, ween is-sooq?",
+          "english": "Excuse me, where is the market?"
+        },
+        {
+          "speaker": "Hessa",
+          "arabic": "السوق مب بعيد.",
+          "transliteration": "is-sooq mub ba3eed.",
+          "english": "The market isn't far."
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "وين أقرب بقالة؟",
+          "transliteration": "ween agrab bagaala?",
+          "english": "Where is the nearest shop?"
+        },
+        {
+          "speaker": "Hessa",
+          "arabic": "هناك، على اليمين.",
+          "transliteration": "hinaak, 3ala l-yimeen.",
+          "english": "There, on the right."
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "من هني؟",
+          "transliteration": "min hini?",
+          "english": "From here?"
+        },
+        {
+          "speaker": "Hessa",
+          "arabic": "إي، امش دغري وبعدين لف يمين.",
+          "transliteration": "ee, imshi doghri w ba3deen liff yimeen.",
+          "english": "Yes, walk straight and then turn right."
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "على طول؟",
+          "transliteration": "3ala Tool?",
+          "english": "Straight ahead?"
+        },
+        {
+          "speaker": "Hessa",
+          "arabic": "إي، على طول، والسوق قدامك.",
+          "transliteration": "ee, 3ala Tool, w is-sooq gidaamak.",
+          "english": "Yes, straight on, and the market is in front of you."
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "قريب؟",
+          "transliteration": "gareeb?",
+          "english": "Is it near?"
+        },
+        {
+          "speaker": "Hessa",
+          "arabic": "إي، قريب وايد.",
+          "transliteration": "ee, gareeb waayid.",
+          "english": "Yes, very near."
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "يعطيج العافية.",
+          "transliteration": "ya3Teech il-3aafya.",
+          "english": "Thank you, well done."
+        },
+        {
+          "speaker": "Hessa",
+          "arabic": "الله يعافيك.",
+          "transliteration": "allah y3aafeek.",
+          "english": "God give you health."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين السوق؟",
+            "transliteration": "ween is-sooq?",
+            "english": "Where is the market?"
+          },
+          "response": {
+            "arabic": "على طول، قريب.",
+            "transliteration": "3ala Tool, gareeb.",
+            "english": "Straight ahead, it's near."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين أقرب بقالة؟",
+            "transliteration": "ween agrab bagaala?",
+            "english": "Where is the nearest shop?"
+          },
+          "response": {
+            "arabic": "هناك، على اليمين.",
+            "transliteration": "hinaak, 3ala l-yimeen.",
+            "english": "There, on the right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بعيد؟",
+            "transliteration": "ba3eed?",
+            "english": "Is it far?"
+          },
+          "response": {
+            "arabic": "لا، قريب.",
+            "transliteration": "laa, gareeb.",
+            "english": "No, it's near."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "يعطيك العافية.",
+            "transliteration": "ya3Teek il-3aafya.",
+            "english": "Thank you."
+          },
+          "response": {
+            "arabic": "الله يعافيك.",
+            "transliteration": "allah y3aafeek.",
+            "english": "You're welcome."
+          }
+        }
+      ],
+      "culture": "Asking directions in the Gulf, people often point out a landmark such as a mall, mosque or roundabout (\"دوار\") more than a street name, and a helper is thanked with \"يعطيك العافية\", to which one answers \"الله يعافيك\". Spoken words like \"مب\" (not) and \"وايد\" (very) mark the Khaleeji way of speaking.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "A visitor asks: \"وين السوق؟\". It is straight ahead and near. Answer.",
+          "answer": "على طول، قريب",
+          "accepted": [
+            "على طول، قريب",
+            "دغري، قريب",
+            "على طول",
+            "3ala Tool gareeb"
+          ],
+          "too_formal": {
+            "item": "استمر إلى الأمام، إنه قريب",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"على طول\" and \"دغري\" both mean straight on."
+        },
+        {
+          "id": "unit-01.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "A man says to you: \"يعطيك العافية\". Reply.",
+          "answer": "الله يعافيك",
+          "accepted": [
+            "الله يعافيك",
+            "الله يعطيك العافية",
+            "allah y3aafeek",
+            "الله يعافيج"
+          ],
+          "too_formal": {
+            "item": "بارك الله فيك",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "The answer wishes the same health back."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"Where is the market?\"",
+          "answer": "وين السوق؟",
+          "accepted": [
+            "وين السوق؟",
+            "وين السوق",
+            "ween is-sooq",
+            "السوق وين؟"
+          ],
+          "too_formal": {
+            "item": "أين السوق؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"وين\" is where."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"On the right.\"",
+          "answer": "على اليمين",
+          "accepted": [
+            "على اليمين",
+            "يمين",
+            "3ala l-yimeen",
+            "على يمين"
+          ],
+          "too_formal": {
+            "item": "إلى جهة اليمين",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "Short and enough."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Turn left.\" (to a woman)",
+          "answer": "لفي يسار",
+          "accepted": [
+            "لفي يسار",
+            "لفي على اليسار",
+            "liffi yasaar",
+            "لفي يسار."
+          ],
+          "too_formal": {
+            "item": "انعطفي إلى اليسار",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "Add \"-i\" for a woman."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Far.\"",
+          "answer": "بعيد",
+          "accepted": [
+            "بعيد",
+            "ba3eed",
+            "بعيده",
+            "بعيد وايد"
+          ],
+          "too_formal": {
+            "item": "مسافة بعيدة",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"مب\" means not."
+        },
+        {
+          "id": "unit-01.lesson-04.translate_to_arabic.05",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the nearest shop?\"",
+          "answer": "وين أقرب بقالة؟",
+          "accepted": [
+            "وين أقرب بقالة؟",
+            "وين أقرب دكان؟", "وين أقرب جمعية؟",
+            "ween agrab bagaala",
+            "أقرب بقالة وين؟"
+          ],
+          "too_formal": {
+            "item": "أين أقرب متجر؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "In Kuwait the co-op is called \"جمعية\"."
+        },
+        {
+          "id": "unit-01.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which means \"straight ahead\"?",
+          "options": [
+            "على طول",
+            "على اليمين",
+            "على اليسار",
+            "بعيد"
+          ],
+          "answer": "على طول",
+          "accepted": [
+            "على طول",
+            "3ala Tool",
+            "على طول.",
+            "دغري"
+          ],
+          "too_formal": {
+            "item": "إلى الأمام مباشرة",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"طول\" means length."
+        },
+        {
+          "id": "unit-01.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"there\"?",
+          "options": [
+            "هناك",
+            "هني",
+            "قريب",
+            "دغري"
+          ],
+          "answer": "هناك",
+          "accepted": [
+            "هناك",
+            "hinaak",
+            "hnaak",
+            "هناك."
+          ],
+          "too_formal": {
+            "item": "في ذلك المكان",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"هني\" is here, \"هناك\" is there."
+        },
+        {
+          "id": "unit-01.lesson-04.choose.03",
+          "type": "choose",
+          "prompt": "Which means \"near\"?",
+          "options": [
+            "قريب",
+            "بعيد",
+            "هناك",
+            "لف يمين"
+          ],
+          "answer": "قريب",
+          "accepted": [
+            "قريب",
+            "gareeb",
+            "قريبة",
+            "قريب."
+          ],
+          "too_formal": {
+            "item": "على مقربة",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "The ق sounds like a \"g\"."
+        },
+        {
+          "id": "unit-01.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"لف _____.\" Meaning: Turn right.",
+          "answer": "يمين",
+          "accepted": [
+            "يمين",
+            "yimeen",
+            "على اليمين",
+            "اليمين"
+          ],
+          "too_formal": {
+            "item": "إلى اليمين",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"لف\" is turn."
+        },
+        {
+          "id": "unit-01.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"أقرب / بقالة / وين\".",
+          "answer": "وين أقرب بقالة؟",
+          "accepted": [
+            "وين أقرب بقالة؟",
+            "وين أقرب بقالة",
+            "ween agrab bagaala",
+            "وين أقرب بقاله؟"
+          ],
+          "too_formal": {
+            "item": "أين أقرب متجر؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "The question word comes first."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Your First Gulf Conversation",
+    "instructions": "Write and say a short Gulf Arabic conversation of at least 10 lines. It must include a greeting, asking and answering names, asking where someone is from, one polite request, one thank-you exchange, one question about the time, and one set of directions. Use at least 8 target phrases from Unit 1 and include both a man-address form and a woman-address form.",
+    "required_elements": [
+      "A natural greeting using مرحبا, هلا, or هلا والله.",
+      "A name question and a name answer.",
+      "A question using من وين and a place answer.",
+      "A polite request using لو سمحت or لو سمحتي.",
+      "A response using إي أكيد or أبشر.",
+      "A thank-you exchange using شكرا or مشكور and العفو.",
+      "A time question using كم الساعة؟.",
+      "A future plan using باجر with إن شاء الله.",
+      "A direction question using وين.",
+      "At least two direction phrases such as على اليمين, على اليسار, دغري, على طول, هني, or هناك."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Sultan",
+          "arabic": "مرحبا، شلونك؟",
+          "transliteration": "marhaba, shloonak?",
+          "english": "Hello, how are you?"
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "هلا والله، زينة الحمد لله. شسمك؟",
+          "transliteration": "hala wallah, zeena alhamdulillah. shismak?",
+          "english": "Hi, I'm good, thank God. What's your name?"
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "اسمي سلطان. وإنتي شسمج؟",
+          "transliteration": "ismi Sultaan. w inti shismich?",
+          "english": "My name is Sultan. And yours?"
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "أنا نورة. تشرفنا.",
+          "transliteration": "ana Noora. tsharrafna.",
+          "english": "I'm Noora. Nice to meet you."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "وأنا بعد. من وين إنتي؟",
+          "transliteration": "w ana ba3ad. min ween inti?",
+          "english": "Me too. Where are you from?"
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "أنا من الشارقة، بس ساكنة في دبي.",
+          "transliteration": "ana min ash-Shaarga, bas saakna fi Dubai.",
+          "english": "I'm from Sharjah, but I live in Dubai."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "لو سمحتي، تقدرين تساعديني؟",
+          "transliteration": "law samaHti, tigdareen tsaa3deeni?",
+          "english": "Excuse me, can you help me?"
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "إي أكيد. شتبي؟",
+          "transliteration": "ee akeed. shtibi?",
+          "english": "Yes, of course. What do you want?"
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "وين السوق؟",
+          "transliteration": "ween is-sooq?",
+          "english": "Where is the market?"
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "من هني، امش دغري وبعدين لف يمين.",
+          "transliteration": "min hini, imshi doghri w ba3deen liff yimeen.",
+          "english": "From here, walk straight and then turn right."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "بعيد؟",
+          "transliteration": "ba3eed?",
+          "english": "Is it far?"
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "لا، قريب وايد. كم الساعة الحين؟",
+          "transliteration": "laa, gareeb waayid. kam is-saa3a il-Heen?",
+          "english": "No, very near. What time is it now?"
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "الساعة ثنتين.",
+          "transliteration": "is-saa3a thintain.",
+          "english": "It's two o'clock."
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "زين. أشوفك باجر إن شاء الله.",
+          "transliteration": "zeen. ashoofak baachir inshaallah.",
+          "english": "Good. I'll see you tomorrow, God willing."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "مشكور وايد.",
+          "transliteration": "mashkoor waayid.",
+          "english": "Thank you very much."
+        },
+        {
+          "speaker": "Noora",
+          "arabic": "العفو. الله يعافيك.",
+          "transliteration": "al-3afw. allah y3aafeek.",
+          "english": "You're welcome. God give you health."
+        }
+      ]
+    }
+  }
+}

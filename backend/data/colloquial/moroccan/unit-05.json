@@ -1,0 +1,1730 @@
+{
+  "unit": "unit-05",
+  "dialect": "Moroccan Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "q": "ق",
+    "g": "ڭ (مثل gate، في بعض الكلمات)",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "e": "حركة قصيرة خفيفة (شوا)"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "taxi",
+          "arabic": "طاكسي!",
+          "transliteration": "taksi!"
+        },
+        {
+          "slot": "please-i-want-to-go-to-old-damascus",
+          "arabic": "عافاك، بغيت نمشي للمدينة القديمة.",
+          "transliteration": "3afak, bghit nmshi l-l-mdina l-qdima.",
+          "reply": {
+            "arabic": "واخا، اركب.",
+            "transliteration": "wakha, rkeb.",
+            "english": "Okay, get in."
+          }
+        },
+        {
+          "slot": "can-you-take-me-to-bab-touma",
+          "arabic": "واش تقدر توصلني لباب الحد؟",
+          "transliteration": "wash tqder twesslni l-bab l-7ed?"
+        },
+        {
+          "slot": "turn-on-the-meter-please",
+          "arabic": "شعل الكونطور عافاك.",
+          "transliteration": "sha3el l-kontor 3afak."
+        },
+        {
+          "slot": "how-much-is-the-fare-to-here",
+          "arabic": "شحال الثمن حتى لهنا؟",
+          "transliteration": "shhal t-tmen 7ta l-hna?",
+          "reply": {
+            "arabic": "تلاتين درهم تقريبا.",
+            "transliteration": "tlatin dirham taqriban.",
+            "english": "About thirty dirhams."
+          }
+        },
+        {
+          "slot": "stop-right-here",
+          "arabic": "وقف غير هنا.",
+          "transliteration": "wqef ghir hna."
+        },
+        {
+          "slot": "keep-to-your-right",
+          "arabic": "بقا على ليمن.",
+          "transliteration": "bqa 3la limen."
+        },
+        {
+          "slot": "straight-ahead-to-the-end-of-the-street",
+          "arabic": "سير نيشان حتى لآخر الزنقة.",
+          "transliteration": "sir nishan 7ta l-akhir z-zenqa."
+        },
+        {
+          "slot": "here-is-fine-stop",
+          "arabic": "هنا مزيان، وقف.",
+          "transliteration": "hna mzyan, wqef."
+        },
+        {
+          "slot": "keep-the-change",
+          "arabic": "الباقي ليك.",
+          "transliteration": "l-baqi lik.",
+          "reply": {
+            "arabic": "الله يعطيك الصحة.",
+            "transliteration": "llah y3tik s-se77a.",
+            "english": "Thank you (God give you health)."
+          }
+        },
+        {
+          "slot": "is-there-a-taxi-nearby-here",
+          "arabic": "واش كاين شي طاكسي قريب من هنا؟",
+          "transliteration": "wash kayn shi taksi qrib men hna?"
+        },
+        {
+          "slot": "i-don-t-have-change-sorry",
+          "arabic": "ما عنديش الصرف، سمح ليا.",
+          "transliteration": "ma 3endish s-sarf, sme7 liya.",
+          "reply": {
+            "arabic": "واخا، ماشي مشكل.",
+            "transliteration": "wakha, mashi mushkil.",
+            "english": "Okay, no problem."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "راكب",
+          "arabic": "السلام عليكم، عافاك بغيت نمشي لباب الحد.",
+          "transliteration": "s-salamu 3alaykum, 3afak bghit nmshi l-bab l-7ed.",
+          "english": "Peace be upon you, please I want to go to Bab El Had."
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "وعليكم السلام، واخا، اركب.",
+          "transliteration": "w-3alaykum s-salam, wakha, rkeb.",
+          "english": "And upon you peace, okay, get in."
+        },
+        {
+          "speaker": "راكب",
+          "arabic": "شعل الكونطور عافاك.",
+          "transliteration": "sha3el l-kontor 3afak.",
+          "english": "Turn on the meter please."
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "واخا، ما تخافش.",
+          "transliteration": "wakha, ma tkhafsh.",
+          "english": "Okay, don't worry."
+        },
+        {
+          "speaker": "راكب",
+          "arabic": "شحال غادي يجي الثمن تقريبا؟",
+          "transliteration": "shhal ghadi yji t-tmen taqriban?",
+          "english": "About how much will it come to?"
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "تقريبا عشرين درهم.",
+          "transliteration": "taqriban 3ashrin dirham.",
+          "english": "About twenty dirhams."
+        },
+        {
+          "speaker": "راكب",
+          "arabic": "مزيان، دور فأول زنقة على ليمن.",
+          "transliteration": "mzyan, dor f-awel zenqa 3la limen.",
+          "english": "Good, turn into the first street on the right."
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "واخا، عارف الطريق.",
+          "transliteration": "wakha, 3aref t-triq.",
+          "english": "Okay, I know the way."
+        },
+        {
+          "speaker": "راكب",
+          "arabic": "وقف غير هنا، هادي هي الدار.",
+          "transliteration": "wqef ghir hna, hadi hiya d-dar.",
+          "english": "Stop just here, this is the house."
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "تفضل، وصلنا.",
+          "transliteration": "tfeddel, wsselna.",
+          "english": "There you go, we have arrived."
+        },
+        {
+          "speaker": "راكب",
+          "arabic": "شحال خاصني نخلص؟",
+          "transliteration": "shhal khasni nkhelles?",
+          "english": "How much must I pay?"
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "تسعطاش درهم غير.",
+          "transliteration": "tes3tash dirham ghir.",
+          "english": "Just nineteen dirhams."
+        },
+        {
+          "speaker": "راكب",
+          "arabic": "تفضل، والباقي ليك.",
+          "transliteration": "tfeddel, w-l-baqi lik.",
+          "english": "Here, and the change is yours."
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "الله يعطيك الصحة، بسلامة.",
+          "transliteration": "llah y3tik s-se77a, bslama.",
+          "english": "Thank you, goodbye."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عافاك، بغيت نمشي للمطار.",
+            "transliteration": "3afak, bghit nmshi l-l-matar.",
+            "english": "Please, I want to go to the airport."
+          },
+          "response": {
+            "arabic": "واخا، ولكن كاين الزحام دابا.",
+            "transliteration": "wakha, walakin kayn z-zee7am daba.",
+            "english": "Okay, but there is traffic right now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش تقدر تشعل الكونطور؟",
+            "transliteration": "wash tqder tsha3el l-kontor?",
+            "english": "Can you turn on the meter?"
+          },
+          "response": {
+            "arabic": "الكونطور معطل، نتفاهمو على ثمن.",
+            "transliteration": "l-kontor m3attal, ntfahmu 3la tmen.",
+            "english": "The meter is broken, let's agree a price."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بشحال هاد المشوار؟",
+            "transliteration": "bshhal had l-mushwar?",
+            "english": "How much for this ride?"
+          },
+          "response": {
+            "arabic": "ستين درهم، هادا آخر ثمن.",
+            "transliteration": "stin dirham, hada akhir tmen.",
+            "english": "Sixty dirhams, that is my last price."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش كاين شي طاكسي قريب من هنا؟",
+            "transliteration": "wash kayn shi taksi qrib men hna?",
+            "english": "Is there a taxi nearby?"
+          },
+          "response": {
+            "arabic": "إيه، كاين واحد فآخر الزنقة.",
+            "transliteration": "iyeh, kayn wahed f-akhir z-zenqa.",
+            "english": "Yes, there is one at the end of the street."
+          }
+        }
+      ],
+      "culture": "In Casablanca and Rabat the small red or blue petit taxis are metered, but drivers sometimes claim the meter is broken, so asking for the kontor first is normal. Say 3afak (please) and wakha (okay) and greet with s-salamu 3alaykum before asking.",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "The driver asks: “فين بغيتي تمشي؟” (Where do you want to go?) Tell him you want to go to Bab El Had.",
+          "answer": "بغيت نمشي لباب الحد",
+          "accepted": [
+            "بغيت نمشي لباب الحد",
+            "بغيت نمشي لباب الحد عافاك",
+            "bghit nmshi l-bab l-7ed"
+          ],
+          "too_formal": {
+            "item": "أريد الذهاب إلى باب الحد",
+            "feedback": "Correct written Arabic, but not how a passenger speaks in Casablanca."
+          },
+          "tip": "bghit + verb is the everyday way to say what you want to do."
+        },
+        {
+          "id": "unit-05.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "You are the driver. The passenger says: “تفضل، والباقي ليك.” Thank him naturally.",
+          "answer": "الله يعطيك الصحة",
+          "accepted": [
+            "الله يعطيك الصحة",
+            "الله يجازيك بخير",
+            "llah y3tik s-se77a"
+          ],
+          "too_formal": {
+            "item": "أشكرك جزيل الشكر",
+            "feedback": "Understandable, but bookish for a small tip."
+          },
+          "tip": "llah y3tik s-se77a is the usual thank-you for a tip."
+        },
+        {
+          "id": "unit-05.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: “شعل _____ عافاك.” English meaning: Turn on the meter please.",
+          "answer": "الكونطور",
+          "accepted": [
+            "الكونطور",
+            "كونطور",
+            "l-kontor"
+          ],
+          "too_formal": {
+            "item": "جهاز قياس الأجرة",
+            "feedback": "A dictionary description, not the word people say."
+          },
+          "tip": "kontor comes from French compteur."
+        },
+        {
+          "id": "unit-05.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: “_____ غير هنا.” English meaning: Stop just here.",
+          "answer": "وقف",
+          "accepted": [
+            "وقف",
+            "وقّف",
+            "wqef"
+          ],
+          "too_formal": {
+            "item": "توقف من فضلك",
+            "feedback": "Fine in writing, but longer and more formal than the spoken command."
+          },
+          "tip": "A short command like wqef is normal with a driver."
+        },
+        {
+          "id": "unit-05.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Moroccan Arabic: “I want to go to the old medina.”",
+          "answer": "بغيت نمشي للمدينة القديمة",
+          "accepted": [
+            "بغيت نمشي للمدينة القديمة",
+            "بغيت نمشي للمدينة القديمة عافاك",
+            "bghit nmshi l-l-mdina l-qdima"
+          ],
+          "too_formal": {
+            "item": "أريد الذهاب إلى المدينة القديمة",
+            "feedback": "Correct meaning, but written-style Arabic."
+          },
+          "tip": "nmshi (I go) has no b- prefix after bghit."
+        },
+        {
+          "id": "unit-05.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: “Keep the change.”",
+          "answer": "الباقي ليك",
+          "accepted": [
+            "الباقي ليك",
+            "خلي الباقي",
+            "l-baqi lik"
+          ],
+          "too_formal": {
+            "item": "احتفظ بالباقي من فضلك",
+            "feedback": "Far too formal for tipping a driver."
+          },
+          "tip": "l-baqi lik is the short everyday way."
+        },
+        {
+          "id": "unit-05.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means “How much is the fare to here?”",
+          "options": [
+            "شحال الثمن حتى لهنا؟",
+            "فين الثمن؟",
+            "شنو اسم الثمن؟",
+            "كيفاش الثمن؟"
+          ],
+          "answer": "شحال الثمن حتى لهنا؟",
+          "accepted": [
+            "شحال الثمن حتى لهنا؟",
+            "شحال الثمن لهنا؟",
+            "shhal t-tmen 7ta l-hna?"
+          ],
+          "too_formal": {
+            "item": "كم تبلغ الأجرة إلى هنا",
+            "feedback": "Correct meaning, but more formal than the everyday question."
+          },
+          "tip": "shhal is the everyday Moroccan word for how much."
+        },
+        {
+          "id": "unit-05.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which is the natural way to say straight ahead to the end of the street?",
+          "options": [
+            "سير نيشان حتى لآخر الزنقة",
+            "دور على الشمال",
+            "وقف غير هنا",
+            "شعل الكونطور"
+          ],
+          "answer": "سير نيشان حتى لآخر الزنقة",
+          "accepted": [
+            "سير نيشان حتى لآخر الزنقة",
+            "سير نيشان حتى آخر الزنقة",
+            "sir nishan 7ta l-akhir z-zenqa"
+          ],
+          "too_formal": {
+            "item": "امش إلى الأمام حتى نهاية الشارع",
+            "feedback": "Understandable, but not spoken Darija."
+          },
+          "tip": "nishan means straight on."
+        },
+        {
+          "id": "unit-05.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in a natural order: “عافاك / الكونطور / شعل”.",
+          "words": [
+            "عافاك",
+            "الكونطور",
+            "شعل"
+          ],
+          "answer": "شعل الكونطور عافاك",
+          "accepted": [
+            "شعل الكونطور عافاك",
+            "شعل الكونطور",
+            "sha3el l-kontor 3afak"
+          ],
+          "too_formal": {
+            "item": "من فضلك، شغل العداد",
+            "feedback": "Fine in formal writing, but the spoken order puts 3afak last."
+          },
+          "tip": "3afak usually comes at the end of a request."
+        },
+        {
+          "id": "unit-05.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in a natural order: “لهنا / الثمن / شحال”.",
+          "words": [
+            "لهنا",
+            "الثمن",
+            "شحال"
+          ],
+          "answer": "شحال الثمن لهنا",
+          "accepted": [
+            "شحال الثمن لهنا",
+            "شحال الثمن حتى لهنا",
+            "shhal t-tmen l-hna"
+          ],
+          "too_formal": {
+            "item": "كم تكون الأجرة إلى هذا المكان",
+            "feedback": "A formal written order, not the quick spoken question."
+          },
+          "tip": "Question words like shhal open the sentence."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "excuse-me-where-is-the-pharmacy",
+          "arabic": "سمح ليا، فين كاينة الصيدلية؟",
+          "transliteration": "sme7 liya, fin kayna s-sidaliya?",
+          "reply": {
+            "arabic": "نيشان، من بعد الضو.",
+            "transliteration": "nishan, men b3d d-dow.",
+            "english": "Straight ahead, after the light."
+          }
+        },
+        {
+          "slot": "straight-ahead",
+          "arabic": "نيشان.",
+          "transliteration": "nishan."
+        },
+        {
+          "slot": "turn-right-at-the-traffic-light",
+          "arabic": "دور على ليمن عند الضو.",
+          "transliteration": "dor 3la limen 3and d-dow."
+        },
+        {
+          "slot": "turn-left-after-the-mosque",
+          "arabic": "دور على الشمال من بعد الجامع.",
+          "transliteration": "dor 3la sh-shmal men b3d l-jam3."
+        },
+        {
+          "slot": "is-it-far-or-near",
+          "arabic": "واش بعيد ولا قريب؟",
+          "transliteration": "wash b3id wla qrib?",
+          "reply": {
+            "arabic": "قريب، غير عشر دقايق على رجليك.",
+            "transliteration": "qrib, ghir 3ashr dqayeq 3la rjilik.",
+            "english": "Near, only ten minutes on foot."
+          }
+        },
+        {
+          "slot": "how-far-is-it-from-here",
+          "arabic": "شحال بعيد من هنا؟",
+          "transliteration": "shhal b3id men hna?"
+        },
+        {
+          "slot": "i-m-lost-can-you-help-me",
+          "arabic": "ضيعت الطريق، واش تقدر تعاوني؟",
+          "transliteration": "dy3t t-triq, wash tqder t3awni?",
+          "reply": {
+            "arabic": "واخا، فين بغيتي تمشي؟",
+            "transliteration": "wakha, fin bghiti tmshi?",
+            "english": "Sure, where do you want to go?"
+          }
+        },
+        {
+          "slot": "okay-first-alley-on-your-right",
+          "arabic": "واخا، أول زنقة على ليمن.",
+          "transliteration": "wakha, awel zenqa 3la limen."
+        },
+        {
+          "slot": "walk-straight-until-the-end-of-the-market",
+          "arabic": "سير نيشان حتى لآخر السوق.",
+          "transliteration": "sir nishan 7ta l-akhir s-sooq."
+        },
+        {
+          "slot": "this-street-is-closed",
+          "arabic": "هاد الزنقة مسدودة.",
+          "transliteration": "had z-zenqa msduda."
+        },
+        {
+          "slot": "from-where-do-i-get-to-the-umayyad-mosque",
+          "arabic": "من فين نمشي لجامع الحسن التاني؟",
+          "transliteration": "men fin nmshi l-jam3 l-7asan t-tani?",
+          "reply": {
+            "arabic": "دوز من الكورنيش، غادي تشوفو.",
+            "transliteration": "dooz men l-kornish, ghadi tshoofu.",
+            "english": "Go along the corniche, you will see it."
+          }
+        },
+        {
+          "slot": "thanks-a-lot",
+          "arabic": "شكرا بزاف.",
+          "transliteration": "shukran bzaf.",
+          "reply": {
+            "arabic": "بلا جميل.",
+            "transliteration": "bla jmil.",
+            "english": "Not at all."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "ياسين",
+          "arabic": "السلام عليكم، سمح ليا، فين كاينة الصيدلية؟",
+          "transliteration": "s-salamu 3alaykum, sme7 liya, fin kayna s-sidaliya?",
+          "english": "Peace be upon you, excuse me, where is the pharmacy?"
+        },
+        {
+          "speaker": "راجل",
+          "arabic": "وعليكم السلام، نيشان، من بعد الضو.",
+          "transliteration": "w-3alaykum s-salam, nishan, men b3d d-dow.",
+          "english": "And upon you peace, straight ahead, after the light."
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "واش بعيد ولا قريب؟",
+          "transliteration": "wash b3id wla qrib?",
+          "english": "Is it far or near?"
+        },
+        {
+          "speaker": "راجل",
+          "arabic": "قريب، غير عشر دقايق على رجليك.",
+          "transliteration": "qrib, ghir 3ashr dqayeq 3la rjilik.",
+          "english": "Near, only ten minutes on foot."
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "واخا، ومن بعد الضو؟",
+          "transliteration": "wakha, w-men b3d d-dow?",
+          "english": "Okay, and after the light?"
+        },
+        {
+          "speaker": "راجل",
+          "arabic": "دور على ليمن، وأول زنقة على الشمال.",
+          "transliteration": "dor 3la limen, w-awel zenqa 3la sh-shmal.",
+          "english": "Turn right, and the first street on the left."
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "ضيعت الطريق شوية، واش تقدر تعاوني؟",
+          "transliteration": "dy3t t-triq shwiya, wash tqder t3awni?",
+          "english": "I have got a bit lost, can you help me?"
+        },
+        {
+          "speaker": "راجل",
+          "arabic": "واخا، سير نيشان حتى لآخر السوق.",
+          "transliteration": "wakha, sir nishan 7ta l-akhir s-sooq.",
+          "english": "Sure, walk straight until the end of the market."
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "وإلا لقيت الزنقة مسدودة؟",
+          "transliteration": "w-illa lqit z-zenqa msduda?",
+          "english": "And if I find the street closed?"
+        },
+        {
+          "speaker": "راجل",
+          "arabic": "دور على الشمال من بعد الجامع.",
+          "transliteration": "dor 3la sh-shmal men b3d l-jam3.",
+          "english": "Turn left after the mosque."
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "واخا، من فين نمشي للجامع الكبير؟",
+          "transliteration": "wakha, men fin nmshi l-l-jam3 l-kbir?",
+          "english": "Okay, from where do I get to the big mosque?"
+        },
+        {
+          "speaker": "راجل",
+          "arabic": "هو قدامك، غادي تشوفو.",
+          "transliteration": "huwa qddamek, ghadi tshoofu.",
+          "english": "It is in front of you, you will see it."
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "شكرا بزاف، الله يعطيك الصحة.",
+          "transliteration": "shukran bzaf, llah y3tik s-se77a.",
+          "english": "Thanks a lot, God give you health."
+        },
+        {
+          "speaker": "راجل",
+          "arabic": "بلا جميل، بسلامة.",
+          "transliteration": "bla jmil, bslama.",
+          "english": "Not at all, goodbye."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "سمح ليا، فين كاينة الصيدلية؟",
+            "transliteration": "sme7 liya, fin kayna s-sidaliya?",
+            "english": "Excuse me, where is the pharmacy?"
+          },
+          "response": {
+            "arabic": "نيشان، من بعد الضو على ليمن.",
+            "transliteration": "nishan, men b3d d-dow 3la limen.",
+            "english": "Straight ahead, after the light on the right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش بعيد ولا قريب؟",
+            "transliteration": "wash b3id wla qrib?",
+            "english": "Is it far or near?"
+          },
+          "response": {
+            "arabic": "قريب، غير خمس دقايق.",
+            "transliteration": "qrib, ghir khams dqayeq.",
+            "english": "Near, only five minutes."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ضيعت الطريق، واش تقدر تعاوني؟",
+            "transliteration": "dy3t t-triq, wash tqder t3awni?",
+            "english": "I'm lost, can you help me?"
+          },
+          "response": {
+            "arabic": "واخا، فين بغيتي تمشي؟",
+            "transliteration": "wakha, fin bghiti tmshi?",
+            "english": "Sure, where do you want to go?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هاد الزنقة مسدودة؟",
+            "transliteration": "had z-zenqa msduda?",
+            "english": "Is this street closed?"
+          },
+          "response": {
+            "arabic": "إيه، خاصك تدور على الشمال.",
+            "transliteration": "iyeh, khasek tdoor 3la sh-shmal.",
+            "english": "Yes, you have to turn left."
+          }
+        }
+      ],
+      "culture": "People give directions by landmarks (the mosque, the light, the market) and nishan for straight on, and a stranger will usually stop and help. Start with sme7 liya, and thank with shukran bzaf or llah y3tik s-se77a.",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "A man asks you: “فين بغيتي تمشي؟” Tell him you are looking for the pharmacy.",
+          "answer": "كنقلب على الصيدلية",
+          "accepted": [
+            "كنقلب على الصيدلية",
+            "بغيت الصيدلية",
+            "kanqelleb 3la s-sidaliya"
+          ],
+          "too_formal": {
+            "item": "أبحث عن الصيدلية",
+            "feedback": "Correct but formal for a street chat."
+          },
+          "tip": "kanqelleb 3la means I am looking for."
+        },
+        {
+          "id": "unit-05.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "Someone thanks you: “شكرا بزاف!” Answer politely.",
+          "answer": "بلا جميل",
+          "accepted": [
+            "بلا جميل",
+            "لا شكر على واجب",
+            "bla jmil"
+          ],
+          "too_formal": {
+            "item": "العفو، لا داعي للشكر",
+            "feedback": "Bookish; in the street people say bla jmil."
+          },
+          "tip": "bla jmil means not at all."
+        },
+        {
+          "id": "unit-05.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: “سير _____ حتى لآخر السوق.” English meaning: Walk straight until the end of the market.",
+          "answer": "نيشان",
+          "accepted": [
+            "نيشان",
+            "nishan",
+            "nichan"
+          ],
+          "too_formal": {
+            "item": "مباشرة",
+            "feedback": "Correct, but not the usual Moroccan word for straight on."
+          },
+          "tip": "nishan is the everyday word."
+        },
+        {
+          "id": "unit-05.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: “دور على _____ عند الضو.” English meaning: Turn right at the traffic light.",
+          "answer": "ليمن",
+          "accepted": [
+            "ليمن",
+            "لليمن",
+            "limen",
+            "اليمين",
+            "ليمين",
+            "limin"
+          ],
+          "too_formal": {
+            "item": "انعطف يمينا",
+            "feedback": "Correct, but written Arabic, not the spoken turn right."
+          },
+          "tip": "dor 3la limen means turn right."
+        },
+        {
+          "id": "unit-05.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: “I'm lost, can you help me?”",
+          "answer": "ضيعت الطريق، واش تقدر تعاوني؟",
+          "accepted": [
+            "ضيعت الطريق، واش تقدر تعاوني؟",
+            "ضيعت الطريق واش تقدر تعاوني",
+            "dy3t t-triq, wash tqder t3awni?"
+          ],
+          "too_formal": {
+            "item": "لقد تهت، هل يمكنك مساعدتي؟",
+            "feedback": "Correct, but written Arabic."
+          },
+          "tip": "wash starts a yes-no question."
+        },
+        {
+          "id": "unit-05.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: “Is it far or near?”",
+          "answer": "واش بعيد ولا قريب؟",
+          "accepted": [
+            "واش بعيد ولا قريب؟",
+            "بعيد ولا قريب",
+            "wash b3id wla qrib?"
+          ],
+          "too_formal": {
+            "item": "هل هو بعيد أم قريب",
+            "feedback": "Formal written question with hal and am."
+          },
+          "tip": "wla means or."
+        },
+        {
+          "id": "unit-05.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means “This street is closed”?",
+          "options": [
+            "هاد الزنقة مسدودة",
+            "هاد الزنقة قريبة",
+            "هاد الزنقة كبيرة",
+            "هاد الزنقة جديدة"
+          ],
+          "answer": "هاد الزنقة مسدودة",
+          "accepted": [
+            "هاد الزنقة مسدودة",
+            "هاد الطريق مسدود",
+            "had z-zenqa msduda"
+          ],
+          "too_formal": {
+            "item": "هذا الشارع مغلق",
+            "feedback": "Correct, but not everyday Darija."
+          },
+          "tip": "had means this."
+        },
+        {
+          "id": "unit-05.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which is the natural way to ask “Excuse me, where is the pharmacy?”",
+          "options": [
+            "سمح ليا، فين كاينة الصيدلية؟",
+            "شحال الصيدلية؟",
+            "واش الصيدلية بزاف؟",
+            "شكرا بزاف الصيدلية"
+          ],
+          "answer": "سمح ليا، فين كاينة الصيدلية؟",
+          "accepted": [
+            "سمح ليا، فين كاينة الصيدلية؟",
+            "سمح ليا فين الصيدلية",
+            "sme7 liya, fin kayna s-sidaliya?"
+          ],
+          "too_formal": {
+            "item": "عفوا، أين توجد الصيدلية؟",
+            "feedback": "Correct but too formal."
+          },
+          "tip": "fin kayn/kayna means where is."
+        },
+        {
+          "id": "unit-05.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in a natural order: “الضو / على ليمن / دور / عند”.",
+          "words": [
+            "الضو",
+            "على ليمن",
+            "دور",
+            "عند"
+          ],
+          "answer": "دور على ليمن عند الضو",
+          "accepted": [
+            "دور على ليمن عند الضو",
+            "دور لليمن عند الضو",
+            "dor 3la limen 3and d-dow"
+          ],
+          "too_formal": {
+            "item": "انعطف يمينا عند إشارة المرور",
+            "feedback": "Correct, but not spoken."
+          },
+          "tip": "The place comes last, after the direction."
+        },
+        {
+          "id": "unit-05.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in a natural order: “بعيد / من / شحال / هنا”.",
+          "words": [
+            "بعيد",
+            "من",
+            "شحال",
+            "هنا"
+          ],
+          "answer": "شحال بعيد من هنا",
+          "accepted": [
+            "شحال بعيد من هنا",
+            "شحال بعيد من هنا؟",
+            "shhal b3id men hna"
+          ],
+          "too_formal": {
+            "item": "كم تبعد من هنا",
+            "feedback": "Correct meaning, but formal."
+          },
+          "tip": "shhal opens the question."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "where-s-the-bus-stop",
+          "arabic": "فين كاينة محطة الطوبيس؟",
+          "transliteration": "fin kayna ma7attat t-tobis?"
+        },
+        {
+          "slot": "does-this-bus-go-to-mazzeh",
+          "arabic": "واش هاد الطوبيس كيمشي للمعاريف؟",
+          "transliteration": "wash had t-tobis kaymshi l-l-ma3arif?",
+          "reply": {
+            "arabic": "إيه، كيدوز من تما.",
+            "transliteration": "iyeh, kaydooz men tma.",
+            "english": "Yes, it passes through there."
+          }
+        },
+        {
+          "slot": "how-much-is-the-fare",
+          "arabic": "شحال الثمن؟",
+          "transliteration": "shhal t-tmen?",
+          "reply": {
+            "arabic": "خمسة دراهم ونص.",
+            "transliteration": "khamsa drahem w-nuss.",
+            "english": "Five and a half dirhams."
+          }
+        },
+        {
+          "slot": "microbus-microbus",
+          "arabic": "طاكسي كبير، طاكسي كبير!",
+          "transliteration": "taksi kbir, taksi kbir!"
+        },
+        {
+          "slot": "is-there-an-empty-seat",
+          "arabic": "واش كاينة شي بلاصة خاوية؟",
+          "transliteration": "wash kayna shi blasa khawya?",
+          "reply": {
+            "arabic": "إيه، فالورا.",
+            "transliteration": "iyeh, f-l-wra.",
+            "english": "Yes, at the back."
+          }
+        },
+        {
+          "slot": "do-you-stop-at-halbouni-roundabout",
+          "arabic": "واش كتوقف عند بلاص محمد الخامس؟",
+          "transliteration": "wash katweqqef 3and blas m7emmed l-khamis?",
+          "reply": {
+            "arabic": "إيه، كنوقف تما.",
+            "transliteration": "iyeh, kanweqqef tma.",
+            "english": "Yes, I stop there."
+          }
+        },
+        {
+          "slot": "please-let-me-off-here",
+          "arabic": "نزلني هنا، عافاك.",
+          "transliteration": "nezzelni hna, 3afak."
+        },
+        {
+          "slot": "the-bus-is-very-crowded",
+          "arabic": "الطوبيس عامر بزاف.",
+          "transliteration": "t-tobis 3amer bzaf."
+        },
+        {
+          "slot": "what-s-the-bus-number-to-the-university",
+          "arabic": "شنو نمرة الطوبيس اللي كيمشي للجامعة؟",
+          "transliteration": "shnu nemrat t-tobis lli kaymshi l-l-jam3a?",
+          "reply": {
+            "arabic": "نمرة تلاتة وعشرين.",
+            "transliteration": "nemra tlata w-3ashrin.",
+            "english": "Number twenty-three."
+          }
+        },
+        {
+          "slot": "it-comes-every-little-while",
+          "arabic": "كيدوز كل شوية.",
+          "transliteration": "kaydooz kol shwiya."
+        },
+        {
+          "slot": "take-the-change-please",
+          "arabic": "خود الصرف عافاك.",
+          "transliteration": "khood s-sarf 3afak."
+        },
+        {
+          "slot": "the-next-bus-is-emptier-better",
+          "arabic": "الطوبيس الجاي خاوي كتر، أحسن.",
+          "transliteration": "t-tobis j-jay khawi ktar, a7sen."
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "سلمى",
+          "arabic": "سمح ليا، فين كاينة محطة الطوبيس؟",
+          "transliteration": "sme7 liya, fin kayna ma7attat t-tobis?",
+          "english": "Excuse me, where is the bus stop?"
+        },
+        {
+          "speaker": "راجل",
+          "arabic": "هاديك تما، قدام البنكة.",
+          "transliteration": "hadik tma, qddam l-banka.",
+          "english": "That one over there, in front of the bank."
+        },
+        {
+          "speaker": "سلمى",
+          "arabic": "واش هاد الطوبيس كيمشي للجامعة؟",
+          "transliteration": "wash had t-tobis kaymshi l-l-jam3a?",
+          "english": "Does this bus go to the university?"
+        },
+        {
+          "speaker": "السائق",
+          "arabic": "لا، خاصك تاخد نمرة تلاتة وعشرين.",
+          "transliteration": "la, khasek takhood nemra tlata w-3ashrin.",
+          "english": "No, you must take number twenty-three."
+        },
+        {
+          "speaker": "سلمى",
+          "arabic": "كيدوز كل شوية؟",
+          "transliteration": "kaydooz kol shwiya?",
+          "english": "Does it come every little while?"
+        },
+        {
+          "speaker": "السائق",
+          "arabic": "إيه، كل عشر دقايق.",
+          "transliteration": "iyeh, kol 3ashr dqayeq.",
+          "english": "Yes, every ten minutes."
+        },
+        {
+          "speaker": "سلمى",
+          "arabic": "شحال الثمن؟",
+          "transliteration": "shhal t-tmen?",
+          "english": "How much is the fare?"
+        },
+        {
+          "speaker": "السائق",
+          "arabic": "خمسة دراهم ونص.",
+          "transliteration": "khamsa drahem w-nuss.",
+          "english": "Five and a half dirhams."
+        },
+        {
+          "speaker": "سلمى",
+          "arabic": "عافاك، واش كاينة شي بلاصة خاوية؟",
+          "transliteration": "3afak, wash kayna shi blasa khawya?",
+          "english": "Please, is there an empty seat?"
+        },
+        {
+          "speaker": "السائق",
+          "arabic": "الطوبيس عامر بزاف، غير فالورا.",
+          "transliteration": "t-tobis 3amer bzaf, ghir f-l-wra.",
+          "english": "The bus is very crowded, only at the back."
+        },
+        {
+          "speaker": "سلمى",
+          "arabic": "واش كتوقف عند بلاص محمد الخامس؟",
+          "transliteration": "wash katweqqef 3and blas m7emmed l-khamis?",
+          "english": "Do you stop at Place Mohammed V?"
+        },
+        {
+          "speaker": "السائق",
+          "arabic": "إيه، كنوقف تما.",
+          "transliteration": "iyeh, kanweqqef tma.",
+          "english": "Yes, I stop there."
+        },
+        {
+          "speaker": "سلمى",
+          "arabic": "واخا، نزلني هنا عافاك.",
+          "transliteration": "wakha, nezzelni hna 3afak.",
+          "english": "Okay, let me off here please."
+        },
+        {
+          "speaker": "السائق",
+          "arabic": "تفضلي، بسلامة.",
+          "transliteration": "tfeddli, bslama.",
+          "english": "Here you are, goodbye."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "واش هاد الطوبيس كيمشي للمعاريف؟",
+            "transliteration": "wash had t-tobis kaymshi l-l-ma3arif?",
+            "english": "Does this bus go to Maarif?"
+          },
+          "response": {
+            "arabic": "لا، خاصك تاخد اللي من بعد.",
+            "transliteration": "la, khasek takhood lli men b3d.",
+            "english": "No, you have to take the next one."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شحال الثمن؟",
+            "transliteration": "shhal t-tmen?",
+            "english": "How much is the fare?"
+          },
+          "response": {
+            "arabic": "خمسة دراهم ونص.",
+            "transliteration": "khamsa drahem w-nuss.",
+            "english": "Five and a half dirhams."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش كاينة شي بلاصة خاوية؟",
+            "transliteration": "wash kayna shi blasa khawya?",
+            "english": "Is there an empty seat?"
+          },
+          "response": {
+            "arabic": "لا، الطوبيس عامر بزاف.",
+            "transliteration": "la, t-tobis 3amer bzaf.",
+            "english": "No, the bus is very crowded."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نزلني هنا، عافاك.",
+            "transliteration": "nezzelni hna, 3afak.",
+            "english": "Let me off here, please."
+          },
+          "response": {
+            "arabic": "واخا، غير شوية.",
+            "transliteration": "wakha, ghir shwiya.",
+            "english": "Okay, just a moment."
+          }
+        }
+      ],
+      "culture": "In Casablanca the city bus is called t-tobis, and the tram is another common way to travel; between towns and across the city people also share big white grand taxis, which leave when full. Drivers and passengers are courteous, and a bslama on stepping off is common.",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "The driver says: “فين غادي؟” Tell him you are going to Place Mohammed V.",
+          "answer": "غادي لبلاص محمد الخامس",
+          "accepted": [
+            "غادي لبلاص محمد الخامس",
+            "غادي لمحمد الخامس",
+            "ghadi l-blas m7emmed l-khamis"
+          ],
+          "too_formal": {
+            "item": "أنا ذاهب إلى ساحة محمد الخامس",
+            "feedback": "Correct but written."
+          },
+          "tip": "ghadi + l- means I am going to."
+        },
+        {
+          "id": "unit-05.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "You get off and the driver says: “بسلامة.” Answer him.",
+          "answer": "الله يحفظك",
+          "accepted": [
+            "الله يحفظك",
+            "بسلامة",
+            "llah y7fdek"
+          ],
+          "too_formal": {
+            "item": "في أمان الله، شكرا لك",
+            "feedback": "Correct, but written-style, not the quick spoken goodbye."
+          },
+          "tip": "llah y7fdek is a warm goodbye."
+        },
+        {
+          "id": "unit-05.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: “واش كاينة شي _____ خاوية؟” English meaning: Is there an empty seat?",
+          "answer": "بلاصة",
+          "accepted": [
+            "بلاصة",
+            "blasa",
+            "بلاصا"
+          ],
+          "too_formal": {
+            "item": "مقعد",
+            "feedback": "Correct but bookish."
+          },
+          "tip": "blasa comes from French place."
+        },
+        {
+          "id": "unit-05.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: “الطوبيس _____ بزاف.” English meaning: The bus is very crowded.",
+          "answer": "عامر",
+          "accepted": [
+            "عامر",
+            "3amer",
+            "3amar"
+          ],
+          "too_formal": {
+            "item": "مزدحم",
+            "feedback": "Correct but written Arabic."
+          },
+          "tip": "3amer literally means full."
+        },
+        {
+          "id": "unit-05.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: “Where's the bus stop?”",
+          "answer": "فين كاينة محطة الطوبيس؟",
+          "accepted": [
+            "فين كاينة محطة الطوبيس؟",
+            "فين محطة الطوبيس",
+            "fin kayna ma7attat t-tobis?"
+          ],
+          "too_formal": {
+            "item": "أين توجد محطة الحافلة",
+            "feedback": "Correct but formal."
+          },
+          "tip": "t-tobis is the bus."
+        },
+        {
+          "id": "unit-05.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: “It comes every little while.”",
+          "answer": "كيدوز كل شوية",
+          "accepted": [
+            "كيدوز كل شوية",
+            "كيجي كل شوية",
+            "kaydooz kol shwiya"
+          ],
+          "too_formal": {
+            "item": "تمر كل فترة قصيرة",
+            "feedback": "Correct but formal."
+          },
+          "tip": "ka- marks the habitual verb."
+        },
+        {
+          "id": "unit-05.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means “Let me off here, please”?",
+          "options": [
+            "نزلني هنا، عافاك",
+            "ركبني هنا عافاك",
+            "وقف بزاف هنا",
+            "دور هنا الطوبيس"
+          ],
+          "answer": "نزلني هنا، عافاك",
+          "accepted": [
+            "نزلني هنا، عافاك",
+            "نزلني هنا",
+            "nezzelni hna, 3afak"
+          ],
+          "too_formal": {
+            "item": "أنزلني هنا من فضلك",
+            "feedback": "Correct, but written."
+          },
+          "tip": "nezzelni means let me off."
+        },
+        {
+          "id": "unit-05.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which is the natural way to say “The next bus is emptier, better”?",
+          "options": [
+            "الطوبيس الجاي خاوي كتر، أحسن",
+            "الطوبيس الجاي عامر بزاف",
+            "الطوبيس مشى خاوي",
+            "الطوبيس ما جاش"
+          ],
+          "answer": "الطوبيس الجاي خاوي كتر، أحسن",
+          "accepted": [
+            "الطوبيس الجاي خاوي كتر، أحسن",
+            "الطوبيس اللي من بعد خاوي كتر أحسن",
+            "t-tobis j-jay khawi ktar, a7sen"
+          ],
+          "too_formal": {
+            "item": "الحافلة القادمة أقل ازدحاما وأفضل",
+            "feedback": "Correct but bookish."
+          },
+          "tip": "ktar means more."
+        },
+        {
+          "id": "unit-05.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in a natural order: “الطوبيس / كيمشي / للجامعة / هاد / واش”.",
+          "words": [
+            "الطوبيس",
+            "كيمشي",
+            "للجامعة",
+            "هاد",
+            "واش"
+          ],
+          "answer": "واش هاد الطوبيس كيمشي للجامعة",
+          "accepted": [
+            "واش هاد الطوبيس كيمشي للجامعة",
+            "هاد الطوبيس كيمشي للجامعة",
+            "wash had t-tobis kaymshi l-l-jam3a"
+          ],
+          "too_formal": {
+            "item": "هل تذهب هذه الحافلة إلى الجامعة",
+            "feedback": "Correct, but spoken order puts wash first."
+          },
+          "tip": "wash opens a yes-no question."
+        },
+        {
+          "id": "unit-05.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in a natural order: “الصرف / خود / عافاك”.",
+          "words": [
+            "الصرف",
+            "خود",
+            "عافاك"
+          ],
+          "answer": "خود الصرف عافاك",
+          "accepted": [
+            "خود الصرف عافاك",
+            "خود الصرف",
+            "khood s-sarf 3afak"
+          ],
+          "too_formal": {
+            "item": "خذ الباقي من فضلك",
+            "feedback": "Formal and written."
+          },
+          "tip": "s-sarf means the change."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "the-market",
+          "arabic": "السوق",
+          "transliteration": "s-sooq"
+        },
+        {
+          "slot": "the-pharmacy",
+          "arabic": "الصيدلية",
+          "transliteration": "s-sidaliya"
+        },
+        {
+          "slot": "the-mosque",
+          "arabic": "الجامع",
+          "transliteration": "l-jam3"
+        },
+        {
+          "slot": "the-church",
+          "arabic": "الكنيسة",
+          "transliteration": "l-knisa"
+        },
+        {
+          "slot": "the-hospital",
+          "arabic": "السبيطار",
+          "transliteration": "s-sbitar"
+        },
+        {
+          "slot": "the-school",
+          "arabic": "المدرسة",
+          "transliteration": "l-mdersa"
+        },
+        {
+          "slot": "the-restaurant",
+          "arabic": "المطعم",
+          "transliteration": "l-mat3am"
+        },
+        {
+          "slot": "the-bank",
+          "arabic": "البنكة",
+          "transliteration": "l-banka"
+        },
+        {
+          "slot": "the-park",
+          "arabic": "الحديقة",
+          "transliteration": "l-7adiqa"
+        },
+        {
+          "slot": "the-station",
+          "arabic": "المحطة",
+          "transliteration": "l-ma7atta"
+        },
+        {
+          "slot": "where-s-the-nearest-bank-from-here",
+          "arabic": "فين كاينة أقرب بنكة من هنا؟",
+          "transliteration": "fin kayna aqrab banka men hna?",
+          "reply": {
+            "arabic": "نيشان، من بعد الضو.",
+            "transliteration": "nishan, men b3d d-dow.",
+            "english": "Straight ahead, past the light."
+          }
+        },
+        {
+          "slot": "is-there-a-good-restaurant-in-the-area",
+          "arabic": "واش كاين شي مطعم مزيان فهاد الحي؟",
+          "transliteration": "wash kayn shi mat3am mzyan f-had l-7ay?",
+          "reply": {
+            "arabic": "إيه، كاين واحد قريب من الجامع.",
+            "transliteration": "iyeh, kayn wahed qrib men l-jam3.",
+            "english": "Yes, there is one near the mosque."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "أمينة",
+          "arabic": "السلام عليكم، فين كاينة أقرب بنكة من هنا؟",
+          "transliteration": "s-salamu 3alaykum, fin kayna aqrab banka men hna?",
+          "english": "Peace be upon you, where is the nearest bank from here?"
+        },
+        {
+          "speaker": "هشام",
+          "arabic": "وعليكم السلام، نيشان، من بعد الضو.",
+          "transliteration": "w-3alaykum s-salam, nishan, men b3d d-dow.",
+          "english": "And upon you peace, straight ahead, past the light."
+        },
+        {
+          "speaker": "أمينة",
+          "arabic": "واش كاينة شي صيدلية فالجنب؟",
+          "transliteration": "wash kayna shi sidaliya f-l-jenb?",
+          "english": "Is there a pharmacy next to it?"
+        },
+        {
+          "speaker": "هشام",
+          "arabic": "إيه، قدام الجامع.",
+          "transliteration": "iyeh, qddam l-jam3.",
+          "english": "Yes, opposite the mosque."
+        },
+        {
+          "speaker": "أمينة",
+          "arabic": "وفين كاين السبيطار؟",
+          "transliteration": "w-fin kayn s-sbitar?",
+          "english": "And where is the hospital?"
+        },
+        {
+          "speaker": "هشام",
+          "arabic": "بعيد شوية، خاصك طاكسي.",
+          "transliteration": "b3id shwiya, khasek taksi.",
+          "english": "A bit far, you need a taxi."
+        },
+        {
+          "speaker": "أمينة",
+          "arabic": "واش كاين شي مطعم مزيان فهاد الحي؟",
+          "transliteration": "wash kayn shi mat3am mzyan f-had l-7ay?",
+          "english": "Is there a good restaurant in this area?"
+        },
+        {
+          "speaker": "هشام",
+          "arabic": "إيه، كاين واحد قريب من المحطة.",
+          "transliteration": "iyeh, kayn wahed qrib men l-ma7atta.",
+          "english": "Yes, there is one near the station."
+        },
+        {
+          "speaker": "أمينة",
+          "arabic": "والمدرسة فين كاينة؟",
+          "transliteration": "w-l-mdersa fin kayna?",
+          "english": "And where is the school?"
+        },
+        {
+          "speaker": "هشام",
+          "arabic": "من ورا الحديقة.",
+          "transliteration": "men wra l-7adiqa.",
+          "english": "Behind the park."
+        },
+        {
+          "speaker": "أمينة",
+          "arabic": "واش السوق قريب؟",
+          "transliteration": "wash s-sooq qrib?",
+          "english": "Is the market near?"
+        },
+        {
+          "speaker": "هشام",
+          "arabic": "إيه، غير دقيقتين على رجليك.",
+          "transliteration": "iyeh, ghir dqiqtin 3la rjilik.",
+          "english": "Yes, only two minutes on foot."
+        },
+        {
+          "speaker": "أمينة",
+          "arabic": "شكرا بزاف، الله يعطيك الصحة.",
+          "transliteration": "shukran bzaf, llah y3tik s-se77a.",
+          "english": "Thanks a lot, God give you health."
+        },
+        {
+          "speaker": "هشام",
+          "arabic": "بلا جميل، الله يحفظك.",
+          "transliteration": "bla jmil, llah y7fdek.",
+          "english": "Not at all, God keep you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فين كاينة أقرب بنكة؟",
+            "transliteration": "fin kayna aqrab banka?",
+            "english": "Where is the nearest bank?"
+          },
+          "response": {
+            "arabic": "نيشان، من بعد المحطة.",
+            "transliteration": "nishan, men b3d l-ma7atta.",
+            "english": "Straight ahead, past the station."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش كاين شي مطعم مزيان؟",
+            "transliteration": "wash kayn shi mat3am mzyan?",
+            "english": "Is there a good restaurant?"
+          },
+          "response": {
+            "arabic": "إيه، قدام الحديقة.",
+            "transliteration": "iyeh, qddam l-7adiqa.",
+            "english": "Yes, opposite the park."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش الصيدلية قريبة؟",
+            "transliteration": "wash s-sidaliya qriba?",
+            "english": "Is the pharmacy near?"
+          },
+          "response": {
+            "arabic": "إيه، حدا الجامع.",
+            "transliteration": "iyeh, 7da l-jam3.",
+            "english": "Yes, next to the mosque."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فين كاينة المدرسة؟",
+            "transliteration": "fin kayna l-mdersa?",
+            "english": "Where is the school?"
+          },
+          "response": {
+            "arabic": "من ورا السوق.",
+            "transliteration": "men wra s-sooq.",
+            "english": "Behind the market."
+          }
+        }
+      ],
+      "culture": "Locals name places by the landmark beside them, like the mosque or the station, more than by street name. Say sme7 liya before asking, and expect a friendly answer ending in bslama or llah y7fdek.",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: “فين غادي؟” Say you are going to the market.",
+          "answer": "غادي للسوق",
+          "accepted": [
+            "غادي للسوق",
+            "غادي للسوق دابا",
+            "ghadi l-sooq"
+          ],
+          "too_formal": {
+            "item": "أنا ذاهب إلى السوق",
+            "feedback": "Correct but written."
+          },
+          "tip": "ghadi l- + place means I am going to."
+        },
+        {
+          "id": "unit-05.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: “واش كاين شي مطعم مزيان؟” Say yes, near the station.",
+          "answer": "إيه، قريب من المحطة",
+          "accepted": [
+            "إيه، قريب من المحطة",
+            "إيه كاين قريب من المحطة",
+            "iyeh, qrib men l-ma7atta"
+          ],
+          "too_formal": {
+            "item": "نعم، يوجد قرب المحطة",
+            "feedback": "Correct but formal."
+          },
+          "tip": "iyeh means yes."
+        },
+        {
+          "id": "unit-05.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: “فين كاينة أقرب _____؟” English meaning: Where is the nearest bank?",
+          "answer": "بنكة",
+          "accepted": [
+            "بنكة",
+            "بانكا",
+            "banka"
+          ],
+          "too_formal": {
+            "item": "مصرف",
+            "feedback": "Correct but bookish."
+          },
+          "tip": "banka is the everyday bank."
+        },
+        {
+          "id": "unit-05.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: “فين كاين _____؟” English meaning: Where is the hospital?",
+          "answer": "السبيطار",
+          "accepted": [
+            "السبيطار",
+            "سبيطار",
+            "s-sbitar"
+          ],
+          "too_formal": {
+            "item": "المستشفى",
+            "feedback": "Correct but written Arabic."
+          },
+          "tip": "sbitar is the everyday word."
+        },
+        {
+          "id": "unit-05.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: “the mosque”",
+          "answer": "الجامع",
+          "accepted": [
+            "الجامع",
+            "المسجد",
+            "l-jam3"
+          ],
+          "too_formal": {
+            "item": "بيت العبادة",
+            "feedback": "A descriptive phrase, not the plain word."
+          },
+          "tip": "l-jam3 and l-mesjed are both used."
+        },
+        {
+          "id": "unit-05.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: “Is there a good restaurant in the area?”",
+          "answer": "واش كاين شي مطعم مزيان فهاد الحي؟",
+          "accepted": [
+            "واش كاين شي مطعم مزيان فهاد الحي؟",
+            "واش كاين شي مطعم مزيان فهاد المنطقة",
+            "wash kayn shi mat3am mzyan f-had l-7ay?"
+          ],
+          "too_formal": {
+            "item": "هل يوجد مطعم جيد في المنطقة",
+            "feedback": "Correct but formal."
+          },
+          "tip": "mzyan means good."
+        },
+        {
+          "id": "unit-05.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which word means “the station”?",
+          "options": [
+            "المحطة",
+            "المدرسة",
+            "الحديقة",
+            "السوق"
+          ],
+          "answer": "المحطة",
+          "accepted": [
+            "المحطة",
+            "محطة",
+            "l-ma7atta"
+          ],
+          "too_formal": {
+            "item": "المحطة الرئيسية",
+            "feedback": "Correct meaning, but longer than needed."
+          },
+          "tip": "ma7atta is the station."
+        },
+        {
+          "id": "unit-05.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which word means “the school”?",
+          "options": [
+            "المدرسة",
+            "المحطة",
+            "السبيطار",
+            "البنكة"
+          ],
+          "answer": "المدرسة",
+          "accepted": [
+            "المدرسة",
+            "مدرسة",
+            "l-mdersa"
+          ],
+          "too_formal": {
+            "item": "المؤسسة التعليمية",
+            "feedback": "Correct meaning, but written Arabic."
+          },
+          "tip": "mdersa is the school."
+        },
+        {
+          "id": "unit-05.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in a natural order: “أقرب / كاينة / فين / بنكة”.",
+          "words": [
+            "أقرب",
+            "كاينة",
+            "فين",
+            "بنكة"
+          ],
+          "answer": "فين كاينة أقرب بنكة",
+          "accepted": [
+            "فين كاينة أقرب بنكة",
+            "فين كاينة أقرب بنكة من هنا",
+            "fin kayna aqrab banka"
+          ],
+          "too_formal": {
+            "item": "أين يوجد أقرب مصرف",
+            "feedback": "Correct meaning, but formal."
+          },
+          "tip": "fin opens the question."
+        },
+        {
+          "id": "unit-05.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in a natural order: “الحي / مطعم / كاين / واش / فهاد”.",
+          "words": [
+            "الحي",
+            "مطعم",
+            "كاين",
+            "واش",
+            "فهاد"
+          ],
+          "answer": "واش كاين مطعم فهاد الحي",
+          "accepted": [
+            "واش كاين مطعم فهاد الحي",
+            "واش كاين شي مطعم فهاد الحي",
+            "wash kayn mat3am f-had l-7ay"
+          ],
+          "too_formal": {
+            "item": "هل يوجد مطعم في هذا الحي",
+            "feedback": "Correct meaning, but formal."
+          },
+          "tip": "wash kayn asks is there."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Getting Around Casablanca",
+    "instructions": "Write and act out a conversation of at least 10 lines about getting to a meeting place across town. It must include taking a taxi or bus, asking the fare, asking for directions to a specific place, naming at least two places in town, and thanking the driver or the person who helped you. Use at least 8 target phrases from Unit 5.",
+    "required_elements": [
+      "A request to a driver using bghit nmshi (بغيت نمشي) or a similar phrase.",
+      "A question about the fare using shhal (شحال).",
+      "A direction question using fin (فين).",
+      "At least one turn instruction using dor (دور) or nishan (نيشان).",
+      "At least two named places, for example السوق, الجامع, البنكة, or المحطة.",
+      "A thank-you exchange using شكرا بزاف or الله يعطيك الصحة."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "ياسين",
+          "arabic": "عافاك، بغيت نمشي للسوق.",
+          "transliteration": "3afak, bghit nmshi l-sooq.",
+          "english": "Please, I want to go to the market."
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "واخا، اركب.",
+          "transliteration": "wakha, rkeb.",
+          "english": "Okay, get in."
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "شحال الثمن تقريبا؟",
+          "transliteration": "shhal t-tmen taqriban?",
+          "english": "About how much is the fare?"
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "تقريبا خمستاش درهم.",
+          "transliteration": "taqriban khamstash dirham.",
+          "english": "About fifteen dirhams."
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "واخا، والبنكة فين كاينة من السوق؟",
+          "transliteration": "wakha, w-l-banka fin kayna men s-sooq?",
+          "english": "Okay, and where is the bank from the market?"
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "قريبة، دور على ليمن من بعد الجامع.",
+          "transliteration": "qriba, dor 3la limen men b3d l-jam3.",
+          "english": "Near, turn right after the mosque."
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "مزيان، وقف غير هنا عافاك.",
+          "transliteration": "mzyan, wqef ghir hna 3afak.",
+          "english": "Good, stop just here please."
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "تفضل، وصلنا.",
+          "transliteration": "tfeddel, wsselna.",
+          "english": "There you go, we have arrived."
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "تفضل، والباقي ليك.",
+          "transliteration": "tfeddel, w-l-baqi lik.",
+          "english": "Here, and the change is yours."
+        },
+        {
+          "speaker": "الشوفور",
+          "arabic": "شكرا بزاف، الله يعطيك الصحة.",
+          "transliteration": "shukran bzaf, llah y3tik s-se77a.",
+          "english": "Thanks a lot, God give you health."
+        }
+      ]
+    }
+  }
+}

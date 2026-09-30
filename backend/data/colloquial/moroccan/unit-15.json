@@ -1,0 +1,1906 @@
+{
+  "unit": "unit-15",
+  "dialect": "Moroccan Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "q": "ق",
+    "j": "ج",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "e": "حركة قصيرة خفيفة (شوا)",
+    "T": "ط",
+    "S": "ص",
+    "D": "ض",
+    "dh": "ذ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "hello-i-have-a-reservation",
+          "arabic": "السلام عليكم، عندي حجز",
+          "transliteration": "salaamu 3alaykum, 3andi 7ajz",
+          "reply": {
+            "arabic": "مرحبا بيك، شنو سميتك؟",
+            "transliteration": "mer7ba bik, shnu smitek?",
+            "english": "Welcome, what's your name?"
+          }
+        },
+        {
+          "slot": "under-the-name-nour",
+          "arabic": "الحجز بسمية نور",
+          "transliteration": "l-7ajz b-smiyt Nour"
+        },
+        {
+          "slot": "is-there-an-empty-room",
+          "arabic": "واش كاينة شي بيت خاوية؟",
+          "transliteration": "waash kaayna shi bit khaawya?",
+          "reply": {
+            "arabic": "إيه كاينة، شحال من ليلة؟",
+            "transliteration": "iyyeh kaayna, shhaal men layla?",
+            "english": "Yes there is, how many nights?"
+          }
+        },
+        {
+          "slot": "i-want-a-room-for-two-people",
+          "arabic": "بغيت بيت لجوج ديال الناس",
+          "transliteration": "bghit bit l-jooj dyal n-naas"
+        },
+        {
+          "slot": "how-much-is-the-price-per-night",
+          "arabic": "شحال التمن ديال الليلة؟",
+          "transliteration": "shhaal t-taman dyal l-layla?",
+          "reply": {
+            "arabic": "الليلة بخمسمية درهم",
+            "transliteration": "l-layla b-khamsmiya dirham",
+            "english": "The night is five hundred dirhams."
+          }
+        },
+        {
+          "slot": "is-breakfast-included-with-the-room",
+          "arabic": "واش الفطور داخل فالتمن؟",
+          "transliteration": "waash l-ftoor dakhel f-t-taman?",
+          "reply": {
+            "arabic": "إيه، من السبعة حتى للعشرة",
+            "transliteration": "iyyeh, mn s-sb3a 7ta l-3ashra",
+            "english": "Yes, from seven to ten."
+          }
+        },
+        {
+          "slot": "can-i-see-the-room-first",
+          "arabic": "واش نقدر نشوف البيت قبل؟",
+          "transliteration": "waash nqder nshuf l-bit qbel?",
+          "reply": {
+            "arabic": "بلا مشكل، تفضل معايا",
+            "transliteration": "bla mushkil, tfaDDal m3aya",
+            "english": "No problem, come with me."
+          }
+        },
+        {
+          "slot": "where-s-the-elevator",
+          "arabic": "فين كاين لاسانسور؟",
+          "transliteration": "fin kayn l-asansor?",
+          "reply": {
+            "arabic": "هنا على اليمين",
+            "transliteration": "hna 3la l-yemiin",
+            "english": "Here on the right."
+          }
+        },
+        {
+          "slot": "i-want-the-key-please",
+          "arabic": "عافاك، بغيت المفتاح",
+          "transliteration": "3afak, bghit l-mftaa7",
+          "reply": {
+            "arabic": "تفضل، البيت فالطابق التاني",
+            "transliteration": "tfaDDal, l-bit f-T-Taabaq t-taani",
+            "english": "Here you go, the room is on the second floor."
+          }
+        },
+        {
+          "slot": "what-time-do-i-need-to-check-out",
+          "arabic": "فأي ساعة خاصني نخرج؟",
+          "transliteration": "f-ayy saa3a khaSSni nkhrej?",
+          "reply": {
+            "arabic": "قبل الزوال، فالثناش",
+            "transliteration": "qbel z-zwaal, f-tnaash",
+            "english": "Before noon, at twelve."
+          }
+        },
+        {
+          "slot": "i-want-to-order-room-service",
+          "arabic": "بغيت نطلب الماكلة للبيت",
+          "transliteration": "bghit nTleb l-maakla l-l-bit",
+          "reply": {
+            "arabic": "شنو بغيتي؟ هاك لاكارط",
+            "transliteration": "shnu bghiti? haak laakaarT",
+            "english": "What would you like? Here's the menu."
+          }
+        },
+        {
+          "slot": "thanks-the-room-is-very-nice",
+          "arabic": "شكرا، البيت زوينة بزاف",
+          "transliteration": "shukran, l-bit zwiina bzaaf",
+          "reply": {
+            "arabic": "الله يبارك فيك، مرحبا بيك",
+            "transliteration": "allah ybaarek fik, mer7ba bik",
+            "english": "God bless you, you're welcome."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Nour",
+          "arabic": "السلام عليكم، عندي حجز بسمية نور",
+          "transliteration": "salaamu 3alaykum, 3andi 7ajz b-smiyt Nour",
+          "english": "Peace be upon you, I have a reservation under the name Nour."
+        },
+        {
+          "speaker": "Receptionist",
+          "arabic": "وعليكم السلام، مرحبا بيك، عطيني الباسبور عافاك",
+          "transliteration": "w 3alaykum s-salaam, mer7ba bik, 3Tini l-pasapor 3afak",
+          "english": "And upon you peace, welcome, give me your passport please."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "تفضل",
+          "transliteration": "tfaDDal",
+          "english": "Here you are."
+        },
+        {
+          "speaker": "Receptionist",
+          "arabic": "مزيان، لقيت الحجز، بيت لجوج ديال الناس، صافي؟",
+          "transliteration": "mezyaan, lqit l-7ajz, bit l-jooj dyal n-naas, Saafi?",
+          "english": "Good, I found the reservation, a room for two, right?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "إيه هادشي هو، واش الفطور داخل فالتمن؟",
+          "transliteration": "iyyeh haadshi huwa, waash l-ftoor dakhel f-t-taman?",
+          "english": "Yes that's it, is breakfast included with the room?"
+        },
+        {
+          "speaker": "Receptionist",
+          "arabic": "إيه، من السبعة حتى للعشرة",
+          "transliteration": "iyyeh, mn s-sb3a 7ta l-3ashra",
+          "english": "Yes, from seven to ten."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "واش نقدر نشوف البيت قبل؟",
+          "transliteration": "waash nqder nshuf l-bit qbel?",
+          "english": "Can I see the room first?"
+        },
+        {
+          "speaker": "Receptionist",
+          "arabic": "بلا مشكل، تفضل معايا",
+          "transliteration": "bla mushkil, tfaDDal m3aya",
+          "english": "No problem, come with me."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "فين كاين لاسانسور؟",
+          "transliteration": "fin kayn l-asansor?",
+          "english": "Where's the elevator?"
+        },
+        {
+          "speaker": "Receptionist",
+          "arabic": "هنا على اليمين، والبيت فالطابق التاني",
+          "transliteration": "hna 3la l-yemiin, w l-bit f-T-Taabaq t-taani",
+          "english": "Here on the right, and the room is on the second floor."
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "شكرا، البيت زوينة بزاف، الله يعطيك الصحة",
+          "transliteration": "shukran, l-bit zwiina bzaaf, allah y3Tiik S-Sa7a",
+          "english": "Thanks, the room is very nice, God give you health."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "واش كاينة شي بيت خاوية؟",
+            "transliteration": "waash kaayna shi bit khaawya?",
+            "english": "Is there an empty room?"
+          },
+          "response": {
+            "arabic": "إيه كاينة، شحال من ليلة؟",
+            "transliteration": "iyyeh kaayna, shhaal men layla?",
+            "english": "Yes there is, how many nights?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شحال التمن ديال الليلة؟",
+            "transliteration": "shhaal t-taman dyal l-layla?",
+            "english": "How much is the price per night?"
+          },
+          "response": {
+            "arabic": "الليلة بخمسمية درهم",
+            "transliteration": "l-layla b-khamsmiya dirham",
+            "english": "The night is five hundred dirhams."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش الفطور داخل فالتمن؟",
+            "transliteration": "waash l-ftoor dakhel f-t-taman?",
+            "english": "Is breakfast included with the room?"
+          },
+          "response": {
+            "arabic": "إيه، من السبعة حتى للعشرة",
+            "transliteration": "iyyeh, mn s-sb3a 7ta l-3ashra",
+            "english": "Yes, from seven to ten."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فأي ساعة خاصني نخرج؟",
+            "transliteration": "f-ayy saa3a khaSSni nkhrej?",
+            "english": "What time do I need to check out?"
+          },
+          "response": {
+            "arabic": "قبل الزوال، فالثناش",
+            "transliteration": "qbel z-zwaal, f-tnaash",
+            "english": "Before noon, at twelve."
+          }
+        }
+      ],
+      "culture": "In Moroccan hotels and riads in Casablanca, Rabat, Marrakech or Fes the reception often greets you in Darija, French or both, and switching between them is normal. Riads often welcome guests with mint tea, and prices are quoted in dirhams per night.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "The receptionist says: \"مرحبا بيك، شنو سميتك؟\" Say the reservation is under the name Nour.",
+          "answer": "الحجز بسمية نور",
+          "accepted": [
+            "الحجز بسمية نور",
+            "بسمية نور",
+            "سميتي نور",
+            "l-7ajz b-smiyt Nour",
+            "l7ajz bsmiyt Nour",
+            "حجز بسمية نور",
+            "l-7ajz b-smiyt nour"
+          ],
+          "too_formal": {
+            "item": "الحجز باسم نور",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الحجز بسمية نور\"."
+          },
+          "tip": "\"سمية\" is \"name\"; \"بسمية\" is \"under the name of\"."
+        },
+        {
+          "id": "unit-15.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "The receptionist says: \"مرحبا بيك، شنو بغيتي؟\" Say you want a room for two people.",
+          "answer": "بغيت بيت لجوج ديال الناس",
+          "accepted": [
+            "بغيت بيت لجوج ديال الناس",
+            "بغيت بيت لجوج د الناس",
+            "بغيت بيت لجوج",
+            "bghit bit l-jooj dyal n-naas",
+            "bghit bit ljooj dyal nnaas"
+          ],
+          "too_formal": {
+            "item": "أريد غرفة لشخصين",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بغيت بيت لجوج ديال الناس\"."
+          },
+          "tip": "\"بغيت\" is the everyday \"I want\"; \"جوج\" is two."
+        },
+        {
+          "id": "unit-15.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بغيت بيت ___ ديال الناس.\" Meaning: I want a room for two people.",
+          "answer": "لجوج",
+          "accepted": [
+            "لجوج",
+            "ل جوج",
+            "l-jooj",
+            "ljooj"
+          ],
+          "too_formal": {
+            "item": "لاثنين",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"لجوج\"."
+          },
+          "tip": "\"ل\" + \"جوج\" means \"for two\"."
+        },
+        {
+          "id": "unit-15.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"شحال ___ ديال الليلة؟\" Meaning: How much is the price per night?",
+          "answer": "التمن",
+          "accepted": [
+            "التمن",
+            "تمن",
+            "t-taman",
+            "ttaman",
+            "ثمن"
+          ],
+          "too_formal": {
+            "item": "السعر",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"التمن\"."
+          },
+          "tip": "\"التمن\" is the price; \"شحال\" opens a how-much question."
+        },
+        {
+          "id": "unit-15.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is breakfast included with the room?\"",
+          "answer": "واش الفطور داخل فالتمن؟",
+          "accepted": [
+            "واش الفطور داخل فالتمن؟",
+            "واش الفطور داخل فالتمن",
+            "واش الفطور مع البيت؟",
+            "waash l-ftoor dakhel f-t-taman?",
+            "waash lftoor dakhel f-ttaman",
+            "واش الفطور داخل مع البيت؟"
+          ],
+          "too_formal": {
+            "item": "هل الفطور مشمول مع الغرفة؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"واش الفطور داخل فالتمن\"."
+          },
+          "tip": "\"واش\" opens a yes/no question, like \"هل\"."
+        },
+        {
+          "id": "unit-15.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where's the elevator?\"",
+          "answer": "فين كاين لاسانسور؟",
+          "accepted": [
+            "فين كاين لاسانسور؟",
+            "فين كاين لاسانسور",
+            "فين كاين الأسانسور؟",
+            "فين لاسانسور؟",
+            "fin kayn l-asansor?",
+            "fin kayn lasansor"
+          ],
+          "too_formal": {
+            "item": "أين المصعد؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فين كاين لاسانسور\"."
+          },
+          "tip": "\"فين\" is \"where\"; \"لاسانسور\" comes from French \"ascenseur\"."
+        },
+        {
+          "id": "unit-15.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"I want the key please\"?",
+          "answer": "عافاك، بغيت المفتاح",
+          "accepted": [
+            "عافاك، بغيت المفتاح",
+            "عافاك بغيت المفتاح",
+            "3afak, bghit l-mftaa7",
+            "3afak, bghit lmftaa7"
+          ],
+          "options": [
+            "فين كاين لاسانسور؟",
+            "شحال التمن ديال الليلة؟",
+            "واش الفطور داخل فالتمن؟",
+            "عافاك، بغيت المفتاح"
+          ],
+          "too_formal": {
+            "item": "أريد المفتاح من فضلك",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"عافاك بغيت المفتاح\"."
+          },
+          "tip": "\"عافاك\" is the everyday \"please\"."
+        },
+        {
+          "id": "unit-15.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"elevator\"?",
+          "answer": "لاسانسور",
+          "accepted": [
+            "لاسانسور",
+            "l-asansor",
+            "lasansor"
+          ],
+          "options": [
+            "لاسانسور",
+            "المفتاح",
+            "الفطور",
+            "البيت"
+          ],
+          "too_formal": {
+            "item": "المصعد",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"لاسانسور\"."
+          },
+          "tip": "\"لاسانسور\" is heard everywhere in Morocco, from French."
+        },
+        {
+          "id": "unit-15.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"الناس / ديال / لجوج / بيت / بغيت\"",
+          "answer": "بغيت بيت لجوج ديال الناس",
+          "accepted": [
+            "بغيت بيت لجوج ديال الناس",
+            "bghit bit l-jooj dyal n-naas",
+            "bghit bit ljooj dyal nnaas"
+          ],
+          "words": [
+            "بغيت",
+            "بيت",
+            "لجوج",
+            "ديال",
+            "الناس"
+          ],
+          "too_formal": {
+            "item": "أريد غرفة لشخصين",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بغيت بيت لجوج ديال الناس\"."
+          },
+          "tip": "\"بيت\" is the everyday word for a room."
+        },
+        {
+          "id": "unit-15.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"الليلة؟ / ديال / التمن / شحال\"",
+          "answer": "شحال التمن ديال الليلة؟",
+          "accepted": [
+            "شحال التمن ديال الليلة؟",
+            "شحال التمن ديال الليلة",
+            "shhaal t-taman dyal l-layla?",
+            "shhaal ttaman dyal llayla"
+          ],
+          "words": [
+            "شحال",
+            "التمن",
+            "ديال",
+            "الليلة؟"
+          ],
+          "too_formal": {
+            "item": "كم سعر الليلة؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"شحال التمن ديال الليلة\"."
+          },
+          "tip": "\"ديال\" means \"of\", linking price and night."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "i-want-to-book-a-bus-ticket",
+          "arabic": "بغيت نحجز بيّي ديال الكار",
+          "transliteration": "bghit n7ejz biyyi dyal l-kaar",
+          "reply": {
+            "arabic": "لفين؟",
+            "transliteration": "l-fin?",
+            "english": "To where?"
+          }
+        },
+        {
+          "slot": "do-you-have-tickets-to-aleppo",
+          "arabic": "واش كاين شي بيّي لمراكش؟",
+          "transliteration": "waash kayn shi biyyi l-mrraksh?",
+          "reply": {
+            "arabic": "إيه كاين، ليوم ولا غدا؟",
+            "transliteration": "iyyeh kayn, l-yuum wla ghedda?",
+            "english": "Yes there is, today or tomorrow?"
+          }
+        },
+        {
+          "slot": "how-much-is-a-round-trip-ticket",
+          "arabic": "شحال بيّي الذهاب والإياب؟",
+          "transliteration": "shhaal biyyi dh-dhhaab w l-iyaab?",
+          "reply": {
+            "arabic": "مية وخمسين درهم",
+            "transliteration": "miyya w khamsiin dirham",
+            "english": "A hundred and fifty dirhams."
+          }
+        },
+        {
+          "slot": "i-want-a-one-way-ticket-only",
+          "arabic": "بغيت غير الذهاب",
+          "transliteration": "bghit ghir dh-dhhaab",
+          "reply": {
+            "arabic": "مزيان، تسعين درهم",
+            "transliteration": "mezyaan, tes3iin dirham",
+            "english": "Fine, ninety dirhams."
+          }
+        },
+        {
+          "slot": "is-there-a-free-seat-on-the-next-bus",
+          "arabic": "واش كاينة شي بلاصة خاوية فالكار الجاي؟",
+          "transliteration": "waash kaayna shi blaaSa khaawya f-l-kaar j-jaay?",
+          "reply": {
+            "arabic": "إيه، فالكار د العشرة",
+            "transliteration": "iyyeh, f-l-kaar d l-3ashra",
+            "english": "Yes, on the ten o'clock bus."
+          }
+        },
+        {
+          "slot": "what-time-does-the-bus-leave",
+          "arabic": "فأي ساعة كيمشي الكار؟",
+          "transliteration": "f-ayy saa3a kaymshi l-kaar?",
+          "reply": {
+            "arabic": "فالتسعة ونص",
+            "transliteration": "f-t-tes3a w nuS",
+            "english": "At half past nine."
+          }
+        },
+        {
+          "slot": "can-i-pay-by-card",
+          "arabic": "واش نقدر نخلص بالكارط؟",
+          "transliteration": "waash nqder nkhlleS b-l-kaarT?",
+          "reply": {
+            "arabic": "لا، غير كاش، عافاك",
+            "transliteration": "laa, ghir kaash, 3afak",
+            "english": "No, cash only, please."
+          }
+        },
+        {
+          "slot": "i-want-to-confirm-the-reservation",
+          "arabic": "بغيت نأكد الحجز",
+          "transliteration": "bghit n2akked l-7ajz",
+          "reply": {
+            "arabic": "عطيني سميتك ورقم التيليفون",
+            "transliteration": "3Tini smitek w raqm t-tilifun",
+            "english": "Give me your name and phone number."
+          }
+        },
+        {
+          "slot": "is-there-a-discount-for-students",
+          "arabic": "واش كاين شي تخفيض للطلبة؟",
+          "transliteration": "waash kayn shi takhfiiD l-T-Tolba?",
+          "reply": {
+            "arabic": "إيه، إلا كان عندك كارط الطالب",
+            "transliteration": "iyyeh, ila kaan 3andek kaarT T-Taalib",
+            "english": "Yes, if you have a student card."
+          }
+        },
+        {
+          "slot": "where-s-the-ticket-window",
+          "arabic": "فين كاين الشباك ديال البيّي؟",
+          "transliteration": "fin kayn sh-shebbaak dyal l-biyyi?",
+          "reply": {
+            "arabic": "هناك، حدا الباب",
+            "transliteration": "hnaak, 7da l-baab",
+            "english": "Over there, next to the door."
+          }
+        },
+        {
+          "slot": "how-long-does-the-trip-take",
+          "arabic": "شحال كياخد الطريق؟",
+          "transliteration": "shhaal kiyaakhod T-Triiq?",
+          "reply": {
+            "arabic": "تقريبا ربعة د الساعات",
+            "transliteration": "taqriiban rb3a d s-saa3aat",
+            "english": "About four hours."
+          }
+        },
+        {
+          "slot": "thanks-here-s-your-ticket",
+          "arabic": "شكرا، هاك البيّي ديالك",
+          "transliteration": "shukran, haak l-biyyi dyaalek",
+          "reply": {
+            "arabic": "الله يجازيك بخير",
+            "transliteration": "allah yjaazik b-khir",
+            "english": "God reward you with good."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Youssef",
+          "arabic": "السلام عليكم، بغيت نحجز بيّي ديال الكار لمراكش",
+          "transliteration": "salaamu 3alaykum, bghit n7ejz biyyi dyal l-kaar l-mrraksh",
+          "english": "Peace be upon you, I want to book a bus ticket to Marrakech."
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "وعليكم السلام، ليوم ولا غدا؟",
+          "transliteration": "w 3alaykum s-salaam, l-yuum wla ghedda?",
+          "english": "And upon you peace, today or tomorrow?"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "ليوم، واش كاينة شي بلاصة خاوية فالكار الجاي؟",
+          "transliteration": "l-yuum, waash kaayna shi blaaSa khaawya f-l-kaar j-jaay?",
+          "english": "Today, is there a free seat on the next bus?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "إيه، فالكار د العشرة، الذهاب والإياب ولا غير الذهاب؟",
+          "transliteration": "iyyeh, f-l-kaar d l-3ashra, dh-dhhaab w l-iyaab wla ghir dh-dhhaab?",
+          "english": "Yes, on the ten o'clock bus, round trip or one way only?"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "غير الذهاب، شحال التمن؟",
+          "transliteration": "ghir dh-dhhaab, shhaal t-taman?",
+          "english": "One way only, how much is it?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "تسعين درهم",
+          "transliteration": "tes3iin dirham",
+          "english": "Ninety dirhams."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "واش كاين شي تخفيض للطلبة؟",
+          "transliteration": "waash kayn shi takhfiiD l-T-Tolba?",
+          "english": "Is there a discount for students?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "إيه، إلا كان عندك كارط الطالب",
+          "transliteration": "iyyeh, ila kaan 3andek kaarT T-Taalib",
+          "english": "Yes, if you have a student card."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "عندي، واش نقدر نخلص بالكارط؟",
+          "transliteration": "3andi, waash nqder nkhlleS b-l-kaarT?",
+          "english": "I have one, can I pay by card?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "لا، غير كاش، عافاك",
+          "transliteration": "laa, ghir kaash, 3afak",
+          "english": "No, cash only, please."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "مزيان، شحال كياخد الطريق؟",
+          "transliteration": "mezyaan, shhaal kiyaakhod T-Triiq?",
+          "english": "Fine, how long does the trip take?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "تقريبا ربعة د الساعات، هاك البيّي ديالك",
+          "transliteration": "taqriiban rb3a d s-saa3aat, haak l-biyyi dyaalek",
+          "english": "About four hours, here's your ticket."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "واش كاين شي بيّي لمراكش؟",
+            "transliteration": "waash kayn shi biyyi l-mrraksh?",
+            "english": "Do you have tickets to Marrakech?"
+          },
+          "response": {
+            "arabic": "إيه كاين، ليوم ولا غدا؟",
+            "transliteration": "iyyeh kayn, l-yuum wla ghedda?",
+            "english": "Yes there is, today or tomorrow?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شحال بيّي الذهاب والإياب؟",
+            "transliteration": "shhaal biyyi dh-dhhaab w l-iyaab?",
+            "english": "How much is a round-trip ticket?"
+          },
+          "response": {
+            "arabic": "مية وخمسين درهم",
+            "transliteration": "miyya w khamsiin dirham",
+            "english": "A hundred and fifty dirhams."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فأي ساعة كيمشي الكار؟",
+            "transliteration": "f-ayy saa3a kaymshi l-kaar?",
+            "english": "What time does the bus leave?"
+          },
+          "response": {
+            "arabic": "فالتسعة ونص",
+            "transliteration": "f-t-tes3a w nuS",
+            "english": "At half past nine."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شحال كياخد الطريق؟",
+            "transliteration": "shhaal kiyaakhod T-Triiq?",
+            "english": "How long does the trip take?"
+          },
+          "response": {
+            "arabic": "تقريبا ربعة د الساعات",
+            "transliteration": "taqriiban rb3a d s-saa3aat",
+            "english": "About four hours."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش نقدر نخلص بالكارط؟",
+            "transliteration": "waash nqder nkhlleS b-l-kaarT?",
+            "english": "Can I pay by card?"
+          },
+          "response": {
+            "arabic": "لا، غير كاش، عافاك",
+            "transliteration": "laa, ghir kaash, 3afak",
+            "english": "No, cash only, please."
+          }
+        }
+      ],
+      "culture": "Long-distance coaches such as CTM and Supratours, and ONCF trains between Casablanca, Rabat and Marrakech, are the usual ways to travel between cities. You buy at the station window or online, and many small offices still prefer cash. Tickets are called \"بيّي\", from French billet.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "The clerk says: \"مرحبا بيك، شنو بغيتي؟\" Say you want to book a bus ticket.",
+          "answer": "بغيت نحجز بيّي ديال الكار",
+          "accepted": [
+            "بغيت نحجز بيّي ديال الكار",
+            "بغيت نحجز بيي ديال الكار",
+            "بغيت بيّي ديال الكار",
+            "bghit n7ejz biyyi dyal l-kaar",
+            "bghit n7ejz biyyi dyal lkaar"
+          ],
+          "too_formal": {
+            "item": "أريد أن أحجز تذكرة حافلة",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بغيت نحجز بيّي ديال الكار\"."
+          },
+          "tip": "\"بيّي\" is a ticket and \"الكار\" is the long-distance coach."
+        },
+        {
+          "id": "unit-15.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "The clerk says: \"الذهاب والإياب ولا غير الذهاب؟\" Say one way only.",
+          "answer": "غير الذهاب",
+          "accepted": [
+            "غير الذهاب",
+            "بغيت غير الذهاب",
+            "غير الذهاب عافاك",
+            "ghir dh-dhhaab",
+            "ghir dhdhhaab"
+          ],
+          "too_formal": {
+            "item": "ذهاب فقط",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"غير الذهاب\"."
+          },
+          "tip": "\"غير\" means \"only\" in Moroccan speech."
+        },
+        {
+          "id": "unit-15.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"واش كاين شي ___ لمراكش؟\" Meaning: Do you have tickets to Marrakech?",
+          "answer": "بيّي",
+          "accepted": [
+            "بيّي",
+            "بيي",
+            "biyyi"
+          ],
+          "too_formal": {
+            "item": "تذكرة",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بيّي\"."
+          },
+          "tip": "\"بيّي\" is the everyday word for a ticket."
+        },
+        {
+          "id": "unit-15.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"واش نقدر ___ بالكارط؟\" Meaning: Can I pay by card?",
+          "answer": "نخلص",
+          "accepted": [
+            "نخلص",
+            "نخلّص",
+            "nkhelleS",
+            "nkhlleS"
+          ],
+          "too_formal": {
+            "item": "أدفع",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"نخلص\"."
+          },
+          "tip": "\"خلص\" means to pay in Moroccan Arabic."
+        },
+        {
+          "id": "unit-15.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"What time does the bus leave?\"",
+          "answer": "فأي ساعة كيمشي الكار؟",
+          "accepted": [
+            "فأي ساعة كيمشي الكار؟",
+            "فأي ساعة كيمشي الكار",
+            "فأي ساعة كيخرج الكار؟",
+            "f-ayy saa3a kaymshi l-kaar?",
+            "fayy saa3a kaymshi lkaar"
+          ],
+          "too_formal": {
+            "item": "متى تنطلق الحافلة؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فأي ساعة كيمشي الكار\"."
+          },
+          "tip": "\"كيمشي\" is \"leaves\"; \"فأي ساعة\" is \"at what time\"."
+        },
+        {
+          "id": "unit-15.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How long does the trip take?\"",
+          "answer": "شحال كياخد الطريق؟",
+          "accepted": [
+            "شحال كياخد الطريق؟",
+            "شحال كياخد الطريق",
+            "شحال كتاخد الرحلة؟",
+            "shhaal kiyaakhod T-Triiq?",
+            "shhaal kiyaakhod TTriiq",
+            "shhaal kiyaakhod t-triiq?",
+            "شحال كتاخد الطريق؟"
+          ],
+          "too_formal": {
+            "item": "كم تستغرق الرحلة؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"شحال كياخد الطريق\"."
+          },
+          "tip": "\"شحال\" is how much or how long; \"الطريق\" is the road or trip."
+        },
+        {
+          "id": "unit-15.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Is there a discount for students?\"",
+          "answer": "واش كاين شي تخفيض للطلبة؟",
+          "accepted": [
+            "واش كاين شي تخفيض للطلبة؟",
+            "واش كاين شي تخفيض للطلبة",
+            "waash kayn shi takhfiiD l-T-Tolba?",
+            "waash kayn shi takhfiiD lTTolba",
+            "waash kayn shi takhfiid l-t-tolba?"
+          ],
+          "options": [
+            "واش كاين شي تخفيض للطلبة؟",
+            "واش نقدر نخلص بالكارط؟",
+            "فين كاين الشباك؟",
+            "بغيت نأكد الحجز"
+          ],
+          "too_formal": {
+            "item": "هل يوجد تخفيض للطلاب؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"واش كاين شي تخفيض للطلبة\"."
+          },
+          "tip": "\"تخفيض\" is a discount, \"الطلبة\" the students."
+        },
+        {
+          "id": "unit-15.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"seat, place\"?",
+          "answer": "بلاصة",
+          "accepted": [
+            "بلاصة",
+            "blaaSa",
+            "blaasa"
+          ],
+          "options": [
+            "كاش",
+            "بلاصة",
+            "شباك",
+            "تخفيض"
+          ],
+          "too_formal": {
+            "item": "مقعد",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بلاصة\"."
+          },
+          "tip": "\"بلاصة\" comes from French \"place\" and is used for a seat."
+        },
+        {
+          "id": "unit-15.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"الجاي؟ / فالكار / خاوية / بلاصة / شي / كاينة / واش\"",
+          "answer": "واش كاينة شي بلاصة خاوية فالكار الجاي؟",
+          "accepted": [
+            "واش كاينة شي بلاصة خاوية فالكار الجاي؟",
+            "واش كاينة شي بلاصة خاوية فالكار الجاي",
+            "waash kaayna shi blaaSa khaawya f-l-kaar j-jaay?",
+            "waash kaayna shi blaaSa khaawya flkaar jjaay",
+            "waash kaayna shi blaasa khaawya f-l-kaar j-jaay?"
+          ],
+          "words": [
+            "واش",
+            "كاينة",
+            "شي",
+            "بلاصة",
+            "خاوية",
+            "فالكار",
+            "الجاي؟"
+          ],
+          "too_formal": {
+            "item": "هل يوجد مقعد شاغر في الحافلة القادمة؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"واش كاينة شي بلاصة خاوية فالكار الجاي\"."
+          },
+          "tip": "\"خاوية\" is empty and free."
+        },
+        {
+          "id": "unit-15.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"البيّي؟ / ديال / الشباك / كاين / فين\"",
+          "answer": "فين كاين الشباك ديال البيّي؟",
+          "accepted": [
+            "فين كاين الشباك ديال البيّي؟",
+            "فين كاين الشباك ديال البيّي",
+            "fin kayn sh-shebbaak dyal l-biyyi?",
+            "fin kayn shshebbaak dyal lbiyyi",
+            "فين كاين الشباك ديال البيي؟"
+          ],
+          "words": [
+            "فين",
+            "كاين",
+            "الشباك",
+            "ديال",
+            "البيّي؟"
+          ],
+          "too_formal": {
+            "item": "أين شباك التذاكر؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فين كاين الشباك ديال البيّي\"."
+          },
+          "tip": "\"الشباك\" is the window or counter."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "where-s-the-check-in-counter",
+          "arabic": "فين كاين الشباك ديال التسجيل؟",
+          "transliteration": "fin kayn sh-shebbaak dyal t-tasjiil?",
+          "reply": {
+            "arabic": "هناك، حدا الباب نمرة جوج",
+            "transliteration": "hnaak, 7da l-baab nomra jooj",
+            "english": "Over there, next to door number two."
+          }
+        },
+        {
+          "slot": "i-have-my-passport-and-my-ticket",
+          "arabic": "عندي الباسبور والبيّي",
+          "transliteration": "3andi l-pasapor w l-biyyi",
+          "reply": {
+            "arabic": "مزيان، عطيني هوما",
+            "transliteration": "mezyaan, 3Tini huma",
+            "english": "Good, give them to me."
+          }
+        },
+        {
+          "slot": "how-many-bags-am-i-allowed-to-take",
+          "arabic": "شحال من فاليزة نقدر ناخد؟",
+          "transliteration": "shhaal men faaliza nqder naakhod?",
+          "reply": {
+            "arabic": "جوج، وحدة كبيرة ووحدة صغيرة",
+            "transliteration": "jooj, wa7da kbiira w wa7da Sghiira",
+            "english": "Two, one big and one small."
+          }
+        },
+        {
+          "slot": "is-this-bag-overweight",
+          "arabic": "واش هاد الفاليزة زايدة فالوزن؟",
+          "transliteration": "waash haad l-faaliza zaayda f-l-wezn?",
+          "reply": {
+            "arabic": "إيه، فيها جوج كيلو زايدين",
+            "transliteration": "iyyeh, fiha jooj kiilu zaaydiin",
+            "english": "Yes, it has two extra kilos."
+          }
+        },
+        {
+          "slot": "where-s-the-boarding-gate",
+          "arabic": "فين كاينة البوابة ديال الطيارة؟",
+          "transliteration": "fin kaayna l-bawwaaba dyal T-Tayyaara?",
+          "reply": {
+            "arabic": "البوابة نمرة تلاتة، دوز على اليسار",
+            "transliteration": "l-bawwaaba nomra tlaata, dwez 3la l-ysaar",
+            "english": "Gate number three, go left."
+          }
+        },
+        {
+          "slot": "what-time-does-the-plane-depart",
+          "arabic": "فأي ساعة كتقلع الطيارة؟",
+          "transliteration": "f-ayy saa3a katqla3 T-Tayyaara?",
+          "reply": {
+            "arabic": "فالسبعة ونص",
+            "transliteration": "f-s-sb3a w nuS",
+            "english": "At half past seven."
+          }
+        },
+        {
+          "slot": "do-you-have-anything-to-declare",
+          "arabic": "واش عندك شي حاجة تصرح بيها؟",
+          "transliteration": "waash 3andek shi 7aaja tSar7 biha?",
+          "reply": {
+            "arabic": "لا، ما عندي والو",
+            "transliteration": "laa, ma 3andi waalu",
+            "english": "No, I don't have anything."
+          }
+        },
+        {
+          "slot": "no-i-don-t-have-anything",
+          "arabic": "لا، ما عندي والو",
+          "transliteration": "laa, ma 3andi waalu",
+          "reply": {
+            "arabic": "مزيان، دوز",
+            "transliteration": "mezyaan, dwez",
+            "english": "Fine, go ahead."
+          }
+        },
+        {
+          "slot": "your-passport-please",
+          "arabic": "الباسبور ديالك عافاك",
+          "transliteration": "l-pasapor dyaalek 3afak",
+          "reply": {
+            "arabic": "تفضل",
+            "transliteration": "tfaDDal",
+            "english": "Here you are."
+          }
+        },
+        {
+          "slot": "are-you-coming-for-tourism-or-work",
+          "arabic": "واش جاي للسياحة ولا للخدمة؟",
+          "transliteration": "waash jaay l-siyaa7a wla l-khedma?",
+          "reply": {
+            "arabic": "جاي للسياحة",
+            "transliteration": "jaay l-siyaa7a",
+            "english": "I'm coming for tourism."
+          }
+        },
+        {
+          "slot": "how-long-will-you-stay-here",
+          "arabic": "شحال غادي تبقى هنا؟",
+          "transliteration": "shhaal ghaadi tbqa hna?",
+          "reply": {
+            "arabic": "غير جوج د السيمانات",
+            "transliteration": "ghir jooj d s-simaanaat",
+            "english": "Just two weeks."
+          }
+        },
+        {
+          "slot": "welcome",
+          "arabic": "مرحبا بيك فالمغرب",
+          "transliteration": "mer7ba bik f-l-maghrib",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah ybaarek fik",
+            "english": "God bless you."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Sara",
+          "arabic": "السلام عليكم، فين كاين الشباك ديال التسجيل؟",
+          "transliteration": "salaamu 3alaykum, fin kayn sh-shebbaak dyal t-tasjiil?",
+          "english": "Peace be upon you, where's the check-in counter?"
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "وعليكم السلام، هناك حدا الباب نمرة جوج",
+          "transliteration": "w 3alaykum s-salaam, hnaak 7da l-baab nomra jooj",
+          "english": "And upon you peace, over there next to door number two."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "عندي الباسبور والبيّي، شحال من فاليزة نقدر ناخد؟",
+          "transliteration": "3andi l-pasapor w l-biyyi, shhaal men faaliza nqder naakhod?",
+          "english": "I have my passport and ticket, how many bags am I allowed to take?"
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "جوج، حطي الفاليزة هنا فالميزان",
+          "transliteration": "jooj, 7eTTi l-faaliza hna f-l-miizaan",
+          "english": "Two, put the bag here on the scale."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "فين كاينة البوابة ديال الطيارة؟",
+          "transliteration": "fin kaayna l-bawwaaba dyal T-Tayyaara?",
+          "english": "Where's the boarding gate?"
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "البوابة نمرة تلاتة، دوز على اليسار",
+          "transliteration": "l-bawwaaba nomra tlaata, dwez 3la l-ysaar",
+          "english": "Gate number three, go left."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "فأي ساعة كتقلع الطيارة؟",
+          "transliteration": "f-ayy saa3a katqla3 T-Tayyaara?",
+          "english": "What time does the plane depart?"
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "فالسبعة ونص، الله يوصلك بالسلامة",
+          "transliteration": "f-s-sb3a w nuS, allah yweSSlek b-s-salaama",
+          "english": "At half past seven, God get you there safely."
+        },
+        {
+          "speaker": "Officer",
+          "arabic": "الباسبور ديالك عافاك، واش جاي للسياحة ولا للخدمة؟",
+          "transliteration": "l-pasapor dyaalek 3afak, waash jaay l-siyaa7a wla l-khedma?",
+          "english": "Your passport please, are you coming for tourism or work?"
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "جاية للسياحة",
+          "transliteration": "jaaya l-siyaa7a",
+          "english": "I'm coming for tourism."
+        },
+        {
+          "speaker": "Officer",
+          "arabic": "شحال غادي تبقي هنا؟",
+          "transliteration": "shhaal ghaadi tbqi hna?",
+          "english": "How long will you stay here?"
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "غير جوج د السيمانات",
+          "transliteration": "ghir jooj d s-simaanaat",
+          "english": "Just two weeks."
+        },
+        {
+          "speaker": "Officer",
+          "arabic": "مرحبا بيك فالمغرب",
+          "transliteration": "mer7ba bik f-l-maghrib",
+          "english": "Welcome to Morocco."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فين كاينة البوابة ديال الطيارة؟",
+            "transliteration": "fin kaayna l-bawwaaba dyal T-Tayyaara?",
+            "english": "Where's the boarding gate?"
+          },
+          "response": {
+            "arabic": "البوابة نمرة تلاتة، دوز على اليسار",
+            "transliteration": "l-bawwaaba nomra tlaata, dwez 3la l-ysaar",
+            "english": "Gate number three, go left."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش عندك شي حاجة تصرح بيها؟",
+            "transliteration": "waash 3andek shi 7aaja tSar7 biha?",
+            "english": "Do you have anything to declare?"
+          },
+          "response": {
+            "arabic": "لا، ما عندي والو",
+            "transliteration": "laa, ma 3andi waalu",
+            "english": "No, I don't have anything."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش جاي للسياحة ولا للخدمة؟",
+            "transliteration": "waash jaay l-siyaa7a wla l-khedma?",
+            "english": "Are you coming for tourism or work?"
+          },
+          "response": {
+            "arabic": "جاي للسياحة",
+            "transliteration": "jaay l-siyaa7a",
+            "english": "I'm coming for tourism."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شحال غادي تبقى هنا؟",
+            "transliteration": "shhaal ghaadi tbqa hna?",
+            "english": "How long will you stay here?"
+          },
+          "response": {
+            "arabic": "غير جوج د السيمانات",
+            "transliteration": "ghir jooj d s-simaanaat",
+            "english": "Just two weeks."
+          }
+        }
+      ],
+      "culture": "At Mohammed V airport in Casablanca or Rabat-Salé, staff and border officers usually use Darija, French or both, and greeting with \"السلام عليكم\" first is polite. Officers commonly ask why you came and how long you will stay, and \"مرحبا بيك فالمغرب\" is the standard welcome.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "The officer says: \"الباسبور ديالك عافاك، واش جاي للسياحة ولا للخدمة؟\" (You are a man.) Say you're coming for tourism.",
+          "answer": "جاي للسياحة",
+          "accepted": [
+            "جاي للسياحة",
+            "جاي غير للسياحة",
+            "للسياحة",
+            "jaay l-siyaa7a",
+            "jaay lsiyaa7a"
+          ],
+          "too_formal": {
+            "item": "أتيت للسياحة",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"جاي للسياحة\"."
+          },
+          "tip": "\"جاي\" is \"coming\" for a man; a woman says \"جاية\"."
+        },
+        {
+          "id": "unit-15.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "The officer says: \"شحال غادي تبقى هنا؟\" Say just two weeks.",
+          "answer": "غير جوج د السيمانات",
+          "accepted": [
+            "غير جوج د السيمانات",
+            "غير جوج ديال السيمانات",
+            "جوج د السيمانات",
+            "ghir jooj d s-simaanaat",
+            "ghir jooj d ssimaanaat"
+          ],
+          "too_formal": {
+            "item": "أسبوعين فقط",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"غير جوج د السيمانات\"."
+          },
+          "tip": "\"سيمانة\" is a week, from French \"semaine\"."
+        },
+        {
+          "id": "unit-15.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"لا، ما عندي ___.\" Meaning: No, I don't have anything.",
+          "answer": "والو",
+          "accepted": [
+            "والو",
+            "walu",
+            "waalu"
+          ],
+          "too_formal": {
+            "item": "شيء",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"والو\"."
+          },
+          "tip": "\"ما ... والو\" means \"nothing at all\"."
+        },
+        {
+          "id": "unit-15.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"فأي ساعة ___ الطيارة؟\" Meaning: What time does the plane depart?",
+          "answer": "كتقلع",
+          "accepted": [
+            "كتقلع",
+            "تقلع",
+            "katqla3"
+          ],
+          "too_formal": {
+            "item": "تقلع",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"كتقلع\"."
+          },
+          "tip": "\"قلع\" is the verb for taking off."
+        },
+        {
+          "id": "unit-15.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where's the boarding gate?\"",
+          "answer": "فين كاينة البوابة ديال الطيارة؟",
+          "accepted": [
+            "فين كاينة البوابة ديال الطيارة؟",
+            "فين كاينة البوابة ديال الطيارة",
+            "فين كاين الباب ديال الطيارة؟",
+            "fin kaayna l-bawwaaba dyal T-Tayyaara?",
+            "fin kaayna lbawwaaba dyal TTayyaara",
+            "fin kaayna l-bawwaaba dyal t-tayyaara?"
+          ],
+          "too_formal": {
+            "item": "أين بوابة الصعود إلى الطائرة؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فين كاينة البوابة ديال الطيارة\"."
+          },
+          "tip": "\"فين كاينة\" is \"where is\" for a feminine noun."
+        },
+        {
+          "id": "unit-15.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I have my passport and my ticket.\"",
+          "answer": "عندي الباسبور والبيّي",
+          "accepted": [
+            "عندي الباسبور والبيّي",
+            "عندي الباسبور ديالي والبيّي",
+            "3andi l-pasapor w l-biyyi",
+            "3andi lpasapor w lbiyyi",
+            "عندي الباسبور والبيي"
+          ],
+          "too_formal": {
+            "item": "لدي جواز السفر والتذكرة",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"عندي الباسبور والبيّي\"."
+          },
+          "tip": "\"الباسبور\" is everyday; \"جواز السفر\" is formal."
+        },
+        {
+          "id": "unit-15.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Your passport please\"?",
+          "answer": "الباسبور ديالك عافاك",
+          "accepted": [
+            "الباسبور ديالك عافاك",
+            "l-pasapor dyaalek 3afak",
+            "lpasapor dyaalek 3afak",
+            "باسبور ديالك عافاك"
+          ],
+          "options": [
+            "الباسبور ديالك عافاك",
+            "مرحبا بيك فالمغرب",
+            "فين كاين لاسانسور؟",
+            "شحال غادي تبقى هنا؟"
+          ],
+          "too_formal": {
+            "item": "جواز سفرك من فضلك",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الباسبور ديالك عافاك\"."
+          },
+          "tip": "\"ديالك\" means \"yours\" and follows the noun."
+        },
+        {
+          "id": "unit-15.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"flight, plane\"?",
+          "answer": "الطيارة",
+          "accepted": [
+            "الطيارة",
+            "T-Tayyaara",
+            "TTayyaara",
+            "طيارة",
+            "t-tayyaara"
+          ],
+          "options": [
+            "الباسبور",
+            "الشباك",
+            "الفاليزة",
+            "الطيارة"
+          ],
+          "too_formal": {
+            "item": "الطائرة",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الطيارة\"."
+          },
+          "tip": "\"الطيارة\" is the everyday word for a plane."
+        },
+        {
+          "id": "unit-15.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"ناخد؟ / نقدر / فاليزة / من / شحال\"",
+          "answer": "شحال من فاليزة نقدر ناخد؟",
+          "accepted": [
+            "شحال من فاليزة نقدر ناخد؟",
+            "شحال من فاليزة نقدر ناخد",
+            "shhaal men faaliza nqder naakhod?",
+            "shhaal men faaliza nqder naakhod"
+          ],
+          "words": [
+            "شحال",
+            "من",
+            "فاليزة",
+            "نقدر",
+            "ناخد؟"
+          ],
+          "too_formal": {
+            "item": "كم حقيبة يمكنني أن آخذ؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"شحال من فاليزة نقدر ناخد\"."
+          },
+          "tip": "\"فاليزة\" is a suitcase, from French \"valise\"."
+        },
+        {
+          "id": "unit-15.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"للخدمة؟ / ولا / للسياحة / جاي / واش\"",
+          "answer": "واش جاي للسياحة ولا للخدمة؟",
+          "accepted": [
+            "واش جاي للسياحة ولا للخدمة؟",
+            "واش جاي للسياحة ولا للخدمة",
+            "waash jaay l-siyaa7a wla l-khedma?",
+            "waash jaay lsiyaa7a wla lkhedma"
+          ],
+          "words": [
+            "واش",
+            "جاي",
+            "للسياحة",
+            "ولا",
+            "للخدمة؟"
+          ],
+          "too_formal": {
+            "item": "هل جئت للسياحة أم للعمل؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"واش جاي للسياحة ولا للخدمة\"."
+          },
+          "tip": "\"الخدمة\" is work in Darija."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "i-lost-my-bag",
+          "arabic": "ضاعت ليا الفاليزة",
+          "transliteration": "Daa3at liya l-faaliza",
+          "reply": {
+            "arabic": "ما تقلقش، غادي نقلبو عليها",
+            "transliteration": "ma tqlaqsh, ghaadi nqelbu 3liha",
+            "english": "Don't worry, we'll look for it."
+          }
+        },
+        {
+          "slot": "the-plane-is-very-delayed",
+          "arabic": "الطيارة تعطلات بزاف",
+          "transliteration": "T-Tayyaara t3TTlat bzaaf",
+          "reply": {
+            "arabic": "سمح لينا على هاد التأخير",
+            "transliteration": "sme7 lina 3la haad t-ta2khiir",
+            "english": "Sorry for this delay."
+          }
+        },
+        {
+          "slot": "i-missed-the-bus",
+          "arabic": "فاتني الكار",
+          "transliteration": "faatni l-kaar",
+          "reply": {
+            "arabic": "كاين واحد تاني من بعد ساعة",
+            "transliteration": "kayn wa7ed taani mn b3d saa3a",
+            "english": "There's another one in an hour."
+          }
+        },
+        {
+          "slot": "i-couldn-t-find-my-passport",
+          "arabic": "ما لقيتش الباسبور ديالي",
+          "transliteration": "ma lqiitsh l-pasapor dyaali",
+          "reply": {
+            "arabic": "قلب مزيان فالساك",
+            "transliteration": "qelleb mezyaan f-s-saak",
+            "english": "Look carefully in the bag."
+          }
+        },
+        {
+          "slot": "come-help-me-please",
+          "arabic": "عافاك، أجي عاوني",
+          "transliteration": "3afak, aji 3awni",
+          "reply": {
+            "arabic": "دقيقة، أنا جاي",
+            "transliteration": "dqiiqa, ana jaay",
+            "english": "One minute, I'm coming."
+          }
+        },
+        {
+          "slot": "there-s-a-problem-with-the-reservation",
+          "arabic": "كاين مشكل فالحجز",
+          "transliteration": "kayn mushkil f-l-7ajz",
+          "reply": {
+            "arabic": "عطيني رقم الحجز",
+            "transliteration": "3Tini raqm l-7ajz",
+            "english": "Give me the reservation number."
+          }
+        },
+        {
+          "slot": "the-bag-got-broken",
+          "arabic": "تكسرات الفاليزة",
+          "transliteration": "tkessrat l-faaliza",
+          "reply": {
+            "arabic": "سمح لينا، عمر هاد الاستمارة",
+            "transliteration": "sme7 lina, 3emmer haad l-istimaara",
+            "english": "Sorry, fill in this form."
+          }
+        },
+        {
+          "slot": "i-need-to-change-the-flight",
+          "arabic": "خاصني نبدل الرحلة ديالي",
+          "transliteration": "khaSSni nbeddel r-ri7la dyaali",
+          "reply": {
+            "arabic": "لأي نهار بغيتي؟",
+            "transliteration": "l-ayy nhaar bghiti?",
+            "english": "For which day do you want it?"
+          }
+        },
+        {
+          "slot": "i-missed-the-flight-what-do-i-do",
+          "arabic": "فاتتني الطيارة، شنو ندير؟",
+          "transliteration": "faatatni T-Tayyaara, shnu ndiir?",
+          "reply": {
+            "arabic": "سير للشباك، غادي يعاونوك",
+            "transliteration": "sir l-sh-shebbaak, ghaadi y3awnuk",
+            "english": "Go to the counter, they'll help you."
+          }
+        },
+        {
+          "slot": "where-s-the-complaints-office",
+          "arabic": "فين كاين مكتب الشكايات؟",
+          "transliteration": "fin kayn maktab sh-shikaayaat?",
+          "reply": {
+            "arabic": "فالطابق الأول",
+            "transliteration": "f-T-Taabaq l-awwal",
+            "english": "On the first floor."
+          }
+        },
+        {
+          "slot": "nobody-answered-me",
+          "arabic": "ما جاوبني حتى واحد",
+          "transliteration": "ma jaawebni 7ta wa7ed",
+          "reply": {
+            "arabic": "سمح لينا، غادي نشوفو",
+            "transliteration": "sme7 lina, ghaadi nshufu",
+            "english": "Sorry, we'll look into it."
+          }
+        },
+        {
+          "slot": "may-god-make-up-for-it-god-willing-it-ll-work-ou",
+          "arabic": "الله يعوض، إن شاء الله كلشي يتحل",
+          "transliteration": "allah y3awwed, inshaa2 llah kolshi yta7el",
+          "reply": {
+            "arabic": "إن شاء الله، الله يعاونك",
+            "transliteration": "inshaa2 llah, allah y3awnek",
+            "english": "God willing, God help you."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "arabic": "السلام عليكم، ضاعت ليا الفاليزة",
+          "transliteration": "salaamu 3alaykum, Daa3at liya l-faaliza",
+          "english": "Peace be upon you, I lost my bag."
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "وعليكم السلام، ما تقلقش، غادي نقلبو عليها. فين كنتي مسافر؟",
+          "transliteration": "w 3alaykum s-salaam, ma tqlaqsh, ghaadi nqelbu 3liha. fin kunti msaafer?",
+          "english": "And upon you peace, don't worry, we'll look for it. Where were you travelling from?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "من باريس، والطيارة تعطلات بزاف",
+          "transliteration": "mn Paris, w T-Tayyaara t3TTlat bzaaf",
+          "english": "From Paris, and the plane was very delayed."
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "سمح لينا على هاد التأخير، واش عندك رقم الحجز؟",
+          "transliteration": "sme7 lina 3la haad t-ta2khiir, waash 3andek raqm l-7ajz?",
+          "english": "Sorry for this delay, do you have the reservation number?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "ما لقيتش الباسبور ديالي، عافاك أجي عاوني",
+          "transliteration": "ma lqiitsh l-pasapor dyaali, 3afak aji 3awni",
+          "english": "I can't find my passport, please come help me."
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "دقيقة، أنا جاي. قلب مزيان فالساك",
+          "transliteration": "dqiiqa, ana jaay. qelleb mezyaan f-s-saak",
+          "english": "One minute, I'm coming. Look carefully in the bag."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "لقيتو، الحمد لله، ولكن فاتني الكار ديال مراكش",
+          "transliteration": "lqiito, l-7amdu lillaah, walakin faatni l-kaar dyal mrraksh",
+          "english": "I found it, thank God, but I missed the Marrakech bus."
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "كاين واحد تاني من بعد ساعة",
+          "transliteration": "kayn wa7ed taani mn b3d saa3a",
+          "english": "There's another one in an hour."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "وفين كاين مكتب الشكايات؟ ما جاوبني حتى واحد فالتيليفون",
+          "transliteration": "w fin kayn maktab sh-shikaayaat? ma jaawebni 7ta wa7ed f-t-tilifun",
+          "english": "And where's the complaints office? Nobody answered me on the phone."
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "فالطابق الأول، وسمح لينا مرة أخرى",
+          "transliteration": "f-T-Taabaq l-awwal, w sme7 lina merra okhra",
+          "english": "On the first floor, and sorry again."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "الله يعوض، إن شاء الله كلشي يتحل",
+          "transliteration": "allah y3awwed, inshaa2 llah kolshi yta7el",
+          "english": "May God make up for it, God willing it'll all work out."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "ضاعت ليا الفاليزة",
+            "transliteration": "Daa3at liya l-faaliza",
+            "english": "I lost my bag."
+          },
+          "response": {
+            "arabic": "ما تقلقش، غادي نقلبو عليها",
+            "transliteration": "ma tqlaqsh, ghaadi nqelbu 3liha",
+            "english": "Don't worry, we'll look for it."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فاتني الكار",
+            "transliteration": "faatni l-kaar",
+            "english": "I missed the bus."
+          },
+          "response": {
+            "arabic": "كاين واحد تاني من بعد ساعة",
+            "transliteration": "kayn wa7ed taani mn b3d saa3a",
+            "english": "There's another one in an hour."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "خاصني نبدل الرحلة ديالي",
+            "transliteration": "khaSSni nbeddel r-ri7la dyaali",
+            "english": "I need to change the flight."
+          },
+          "response": {
+            "arabic": "لأي نهار بغيتي؟",
+            "transliteration": "l-ayy nhaar bghiti?",
+            "english": "For which day do you want it?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فين كاين مكتب الشكايات؟",
+            "transliteration": "fin kayn maktab sh-shikaayaat?",
+            "english": "Where's the complaints office?"
+          },
+          "response": {
+            "arabic": "فالطابق الأول",
+            "transliteration": "f-T-Taabaq l-awwal",
+            "english": "On the first floor."
+          }
+        }
+      ],
+      "culture": "When something goes wrong while travelling in Morocco, people usually stay polite and say \"الله يعوض\" or \"إن شاء الله كلشي يتحل\" rather than complain loudly. Airline and station staff generally respond well to a calm \"عافاك\" and often help with a form at the counter or the complaints office.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "The agent says: \"ما تقلقش، شنو وقع؟\" Say you lost your bag.",
+          "answer": "ضاعت ليا الفاليزة",
+          "accepted": [
+            "ضاعت ليا الفاليزة",
+            "ضاعت لي الفاليزة",
+            "ضاعت ليا الساك",
+            "Daa3at liya l-faaliza",
+            "Daa3at liya lfaaliza",
+            "daa3at liya l-faaliza"
+          ],
+          "too_formal": {
+            "item": "فقدت حقيبتي",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"ضاعت ليا الفاليزة\"."
+          },
+          "tip": "\"ضاعت ليا\" is \"was lost to me\"; the bag is the subject."
+        },
+        {
+          "id": "unit-15.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "The agent says: \"شنو وقع؟\" Say you missed the bus.",
+          "answer": "فاتني الكار",
+          "accepted": [
+            "فاتني الكار",
+            "فاتني الطوبيس",
+            "فاتني لكار",
+            "faatni l-kaar",
+            "faatni lkaar"
+          ],
+          "too_formal": {
+            "item": "فاتتني الحافلة",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فاتني الكار\"."
+          },
+          "tip": "\"فاتني\" is \"it passed me by\"."
+        },
+        {
+          "id": "unit-15.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"كاين ___ فالحجز.\" Meaning: There's a problem with the reservation.",
+          "answer": "مشكل",
+          "accepted": [
+            "مشكل",
+            "mshkil",
+            "mushkil"
+          ],
+          "too_formal": {
+            "item": "مشكلة",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"مشكل\"."
+          },
+          "tip": "\"مشكل\" is the everyday word for a problem."
+        },
+        {
+          "id": "unit-15.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"خاصني ___ الرحلة ديالي.\" Meaning: I need to change my flight.",
+          "answer": "نبدل",
+          "accepted": [
+            "نبدل",
+            "نبدّل",
+            "nbdl",
+            "nbeddel"
+          ],
+          "too_formal": {
+            "item": "أغير",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"نبدل\"."
+          },
+          "tip": "\"خاصني\" is \"I need to\" and takes a verb like \"نبدل\"."
+        },
+        {
+          "id": "unit-15.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I couldn't find my passport.\"",
+          "answer": "ما لقيتش الباسبور ديالي",
+          "accepted": [
+            "ما لقيتش الباسبور ديالي",
+            "ما لقيت الباسبور ديالي",
+            "ma lqiitsh l-pasapor dyaali",
+            "ma lqiitsh lpasapor dyaali"
+          ],
+          "too_formal": {
+            "item": "لم أجد جواز سفري",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"ما لقيتش الباسبور ديالي\"."
+          },
+          "tip": "\"ما ... ش\" wraps the verb to make it negative."
+        },
+        {
+          "id": "unit-15.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Nobody answered me.\"",
+          "answer": "ما جاوبني حتى واحد",
+          "accepted": [
+            "ما جاوبني حتى واحد",
+            "ما جاوبني حد",
+            "ma jaawebni 7ta wa7ed"
+          ],
+          "too_formal": {
+            "item": "لم يجبني أحد",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"ما جاوبني حتى واحد\"."
+          },
+          "tip": "\"حتى واحد\" means \"not even one\", so \"nobody\"."
+        },
+        {
+          "id": "unit-15.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"The plane is very delayed\"?",
+          "answer": "الطيارة تعطلات بزاف",
+          "accepted": [
+            "الطيارة تعطلات بزاف",
+            "T-Tayyaara t3TTlat bzaaf",
+            "TTayyaara t3TTlat bzaaf",
+            "طيارة تعطلات بزاف",
+            "t-tayyaara t3ttlat bzaaf"
+          ],
+          "options": [
+            "ضاعت ليا الفاليزة",
+            "فاتني الكار",
+            "مرحبا بيك فالمغرب",
+            "الطيارة تعطلات بزاف"
+          ],
+          "too_formal": {
+            "item": "الطائرة متأخرة كثيرا",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الطيارة تعطلات بزاف\"."
+          },
+          "tip": "\"بزاف\" means \"a lot\"."
+        },
+        {
+          "id": "unit-15.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase means \"May God make up for it\"?",
+          "answer": "الله يعوض",
+          "accepted": [
+            "الله يعوض",
+            "allah y3awwed",
+            "له يعوض"
+          ],
+          "options": [
+            "الله يعوض",
+            "الله يعاونك",
+            "سمح لينا",
+            "عافاك"
+          ],
+          "too_formal": {
+            "item": "عوضك الله",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الله يعوض\"."
+          },
+          "tip": "People say \"الله يعوض\" when something has been lost or gone wrong."
+        },
+        {
+          "id": "unit-15.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"الشكايات؟ / مكتب / كاين / فين\"",
+          "answer": "فين كاين مكتب الشكايات؟",
+          "accepted": [
+            "فين كاين مكتب الشكايات؟",
+            "فين كاين مكتب الشكايات",
+            "fin kayn maktab sh-shikaayaat?",
+            "fin kayn maktab shshikaayaat"
+          ],
+          "words": [
+            "فين",
+            "كاين",
+            "مكتب",
+            "الشكايات؟"
+          ],
+          "too_formal": {
+            "item": "أين مكتب الشكاوى؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فين كاين مكتب الشكايات\"."
+          },
+          "tip": "\"الشكايات\" is the plural of complaint."
+        },
+        {
+          "id": "unit-15.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"ندير؟ / شنو / الطيارة، / فاتتني\"",
+          "answer": "فاتتني الطيارة، شنو ندير؟",
+          "accepted": [
+            "فاتتني الطيارة، شنو ندير؟",
+            "فاتتني الطيارة شنو ندير",
+            "faatatni T-Tayyaara, shnu ndiir?",
+            "faatatni TTayyaara, shnu ndiir",
+            "faatatni t-tayyaara, shnu ndiir?"
+          ],
+          "words": [
+            "فاتتني",
+            "الطيارة،",
+            "شنو",
+            "ندير؟"
+          ],
+          "too_formal": {
+            "item": "فاتتني الرحلة، ماذا أفعل؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فاتتني الطيارة شنو ندير\"."
+          },
+          "tip": "\"شنو ندير\" is \"what do I do\", using \"شنو\" for \"what\"."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Book a Trip and Handle a Problem",
+    "instructions": "Write and say a short Moroccan Arabic conversation of at least 10 lines. Book a hotel room or a ticket, ask the price or the time, describe a problem that happens while travelling (a delay, a lost bag or a missed bus), and ask for help. End with a polite wish.",
+    "required_elements": [
+      "A request to book a room or a ticket using بغيت نحجز or بغيت بيت",
+      "A question about the price or the time using شحال or فأي ساعة",
+      "A problem described using ضاعت ليا, فاتني, تعطلات or كاين مشكل",
+      "A request for help using عافاك",
+      "A polite closing wish such as الله يعوض or الله يعطيك الصحة"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Samir",
+          "arabic": "السلام عليكم، بغيت نحجز بيّي ديال الكار لمراكش",
+          "transliteration": "salaamu 3alaykum, bghit n7ejz biyyi dyal l-kaar l-mrraksh",
+          "english": "Peace be upon you, I want to book a bus ticket to Marrakech."
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "وعليكم السلام، الذهاب والإياب ولا غير الذهاب؟",
+          "transliteration": "w 3alaykum s-salaam, dh-dhhaab w l-iyaab wla ghir dh-dhhaab?",
+          "english": "And upon you peace, round trip or one way only?"
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "الذهاب والإياب، شحال التمن؟",
+          "transliteration": "dh-dhhaab w l-iyaab, shhaal t-taman?",
+          "english": "Round trip, how much is it?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "مية وخمسين درهم، والكار كيمشي فالتسعة",
+          "transliteration": "miyya w khamsiin dirham, w l-kaar kaymshi f-t-tes3a",
+          "english": "A hundred and fifty dirhams, and the bus leaves at nine."
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "شكرا، واش نقدر نخلص بالكارط؟",
+          "transliteration": "shukran, waash nqder nkhlleS b-l-kaarT?",
+          "english": "Thanks, can I pay by card?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "لا، غير كاش، عافاك",
+          "transliteration": "laa, ghir kaash, 3afak",
+          "english": "No, cash only, please."
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "مزيان، هاك. للأسف فاتني الكار الأول، واش كاين واحد تاني؟",
+          "transliteration": "mezyaan, haak. l-lasaf faatni l-kaar l-lawwal, waash kayn wa7ed taani?",
+          "english": "Fine, here you go. Unfortunately I missed the first bus, is there another one?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "ما تقلقش، كاين واحد من بعد ساعة",
+          "transliteration": "ma tqlaqsh, kayn wa7ed mn b3d saa3a",
+          "english": "Don't worry, there's one in an hour."
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "الله يعوض، الله يعطيك الصحة",
+          "transliteration": "allah y3awwed, allah y3Tiik S-Sa7a",
+          "english": "May God make up for it, God give you health."
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "الله يبارك فيك، مرحبا بيك",
+          "transliteration": "allah ybaarek fik, mer7ba bik",
+          "english": "God bless you, you're welcome."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,934 @@
+{
+  "unit": "unit-02",
+  "dialect": "Moroccan Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "q": "ق",
+    "j": "ج",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "e": "حركة قصيرة خفيفة (شوا)",
+    "T": "ط",
+    "S": "ص",
+    "D": "ض"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "family",
+          "arabic": "عائلة",
+          "transliteration": "3aa2ila"
+        },
+        {
+          "slot": "my-mother",
+          "arabic": "ماما",
+          "transliteration": "mama"
+        },
+        {
+          "slot": "my-father",
+          "arabic": "بابا",
+          "transliteration": "baba"
+        },
+        {
+          "slot": "my-brother",
+          "arabic": "خويا",
+          "transliteration": "khuya"
+        },
+        {
+          "slot": "my-sister",
+          "arabic": "ختي",
+          "transliteration": "khti"
+        },
+        {
+          "slot": "my-son",
+          "arabic": "ولدي",
+          "transliteration": "weldi"
+        },
+        {
+          "slot": "my-daughter",
+          "arabic": "بنتي",
+          "transliteration": "binti"
+        },
+        {
+          "slot": "my-husband",
+          "arabic": "راجلي",
+          "transliteration": "raajli"
+        },
+        {
+          "slot": "my-wife",
+          "arabic": "مراتي",
+          "transliteration": "mraati"
+        },
+        {
+          "slot": "how-many-people-are-in-your-family-to-a-man",
+          "arabic": "شحال ديال الناس فعائلتك?",
+          "transliteration": "sh7aal dyal n-naas f 3aa2iltek?"
+        },
+        {
+          "slot": "i-have-a-brother-and-two-sisters",
+          "arabic": "عندي خويا واحد وجوج خوات",
+          "transliteration": "3andi khuya waa7ed w joj khwaat"
+        },
+        {
+          "slot": "are-you-married-to-a-man",
+          "arabic": "واش نتا مزوج?",
+          "transliteration": "waash nta mzawwej?"
+        },
+        {
+          "slot": "are-you-married-to-a-woman",
+          "arabic": "واش نتي مزوجة?",
+          "transliteration": "waash nti mzawwja?"
+        },
+        {
+          "slot": "i-m-still-single-male-speaker",
+          "arabic": "باقي عزري",
+          "transliteration": "baaqi 3zri"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Youssef",
+          "arabic": "السلام عليكم سلمى، لاباس?",
+          "transliteration": "salaamu 3alaykum Salma, laa baas?",
+          "english": "Peace be upon you Salma, how are you?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "وعليكم السلام يوسف، لاباس، الحمد لله.",
+          "transliteration": "w 3alaykum s-salaam Youssef, laa baas, l-7amdu lillaah.",
+          "english": "And upon you peace Youssef, fine, thank God."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "واش عندك عائلة كبيرة?",
+          "transliteration": "waash 3andek 3aa2ila kbeera?",
+          "english": "Do you have a big family?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "إيه، عندي خويا واحد وجوج خوات.",
+          "transliteration": "iyyeh, 3andi khuya waa7ed w joj khwaat.",
+          "english": "Yes, I have a brother and two sisters."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "فين كيسكنو دابا?",
+          "transliteration": "feen kaysekno daba?",
+          "english": "Where do they live now?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "خويا فالدار البيضاء، وختي الكبيرة فالرباط.",
+          "transliteration": "khuya f d-daar l-bayDa, w khti l-kbeera f r-rbaat.",
+          "english": "My brother is in Casablanca, and my older sister is in Rabat."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "وواش نتي مزوجة?",
+          "transliteration": "w waash nti mzawwja?",
+          "english": "And are you married?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "إيه، مزوجة وعندي بنت.",
+          "transliteration": "iyyeh, mzawwja w 3andi bint.",
+          "english": "Yes, I am married and I have a daughter."
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "ونتا، باقي عزري?",
+          "transliteration": "w nta, baqi 3zri?",
+          "english": "And you, still single?"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "إيه، باقي عزري.",
+          "transliteration": "iyyeh, baqi 3zri.",
+          "english": "Yes, still single."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "شنو سميتي بنتك?",
+          "transliteration": "shnu smiti bntek?",
+          "english": "What did you name your daughter?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "سميتها ليلى.",
+          "transliteration": "smiyyetha Layla.",
+          "english": "Her name is Layla."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "واش عندك عائلة كبيرة?",
+            "transliteration": "waash 3andek 3aa2ila kbeera?",
+            "english": "Do you have a big family?"
+          },
+          "response": {
+            "arabic": "إيه، عندي خويا واحد وجوج خوات.",
+            "transliteration": "iyyeh, 3andi khuya waa7ed w joj khwaat.",
+            "english": "Yes, I have a brother and two sisters."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش نتي مزوجة?",
+            "transliteration": "waash nti mzawwja?",
+            "english": "Are you married? (to a woman)"
+          },
+          "response": {
+            "arabic": "إيه، مزوجة وعندي بنت.",
+            "transliteration": "iyyeh, mzawwja w 3andi bint.",
+            "english": "Yes, I am married and I have a daughter."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شنو سميتي بنتك?",
+            "transliteration": "shnu smiti bntek?",
+            "english": "What did you name your daughter?"
+          },
+          "response": {
+            "arabic": "سميتها ليلى.",
+            "transliteration": "smiyyetha Layla.",
+            "english": "Her name is Layla."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فين كيسكنو دابا?",
+            "transliteration": "feen kaysekno daba?",
+            "english": "Where do they live now?"
+          },
+          "response": {
+            "arabic": "فالدار البيضاء.",
+            "transliteration": "f d-daar l-bayDa.",
+            "english": "In Casablanca."
+          }
+        }
+      ],
+      "culture": "In Morocco people often ask about family early on, and the answer usually includes where relatives live, since many families are spread between Casablanca, Rabat and abroad. Saying you are not married yet is an ordinary answer, and \"إن شاء الله\" often follows when the talk turns to marriage.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"واش عندك عائلة كبيرة?\" Say yes, you have a brother and two sisters.",
+          "answer": "إيه، عندي خويا واحد وجوج خوات",
+          "accepted": [
+            "إيه، عندي خويا واحد وجوج خوات",
+            "عندي خويا واحد وجوج خوات",
+            "إيه، عندي خويا وجوج خوات",
+            "iyyeh, 3andi khuya waa7ed w joj khwaat"
+          ],
+          "too_formal": {
+            "item": "نعم، لدي أخ وأختان",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"عندي خويا واحد وجوج خوات\"."
+          },
+          "tip": "\"عندي\" is how you say what you have, including family; \"جوج\" is two."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"My mother.\"",
+          "answer": "ماما",
+          "accepted": [
+            "ماما",
+            "مي",
+            "mama",
+            "mmi"
+          ],
+          "too_formal": {
+            "item": "والدتي",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"ماما\"."
+          },
+          "tip": "\"ماما\" and \"بابا\" are the everyday words; \"مي\" is also heard."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"My father.\"",
+          "answer": "بابا",
+          "accepted": [
+            "بابا",
+            "با",
+            "baba",
+            "ba"
+          ],
+          "too_formal": {
+            "item": "والدي",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بابا\"."
+          },
+          "tip": "Many people also say \"با\" for father, short and warm."
+        },
+        {
+          "id": "unit-02.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"my sister\"?",
+          "answer": "ختي",
+          "accepted": [
+            "ختي",
+            "ختّي",
+            "khti"
+          ],
+          "options": [
+            "خويا",
+            "ختي",
+            "ولدي",
+            "بنتي"
+          ],
+          "too_formal": {
+            "item": "أختي",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"ختي\"."
+          },
+          "tip": "\"ختي\" drops the first letter of \"أخت\"; \"خويا\" is brother."
+        },
+        {
+          "id": "unit-02.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عندي خويا واحد و جوج _____.\" Meaning: I have a brother and two sisters.",
+          "answer": "خوات",
+          "accepted": [
+            "خوات",
+            "جوج خوات",
+            "khwaat",
+            "khwat"
+          ],
+          "too_formal": {
+            "item": "أخوات",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"خوات\"."
+          },
+          "tip": "\"خوات\" is the plural of \"ختي\" and follows \"جوج\"."
+        },
+        {
+          "id": "unit-02.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "A man asks you: \"واش نتي مزوجة?\" (You are a woman.) Say yes, you are married and have a daughter.",
+          "answer": "إيه، مزوجة وعندي بنت",
+          "accepted": [
+            "إيه، مزوجة وعندي بنت",
+            "مزوجة وعندي بنت",
+            "إيه، مزوجة، عندي بنت",
+            "iyyeh, mzawwja w 3andi bint"
+          ],
+          "too_formal": {
+            "item": "نعم، لدي زوج وابنة",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"مزوجة وعندي بنت\"."
+          },
+          "tip": "\"راجلي\" means both \"my man\" and \"my husband\"."
+        },
+        {
+          "id": "unit-02.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"كبيرة / عائلة / عندك / واش?\"",
+          "answer": "واش عندك عائلة كبيرة?",
+          "accepted": [
+            "واش عندك عائلة كبيرة?",
+            "واش عندك عائلة كبيرة",
+            "عندك عائلة كبيرة?",
+            "waash 3andek 3aa2ila kbeera"
+          ],
+          "too_formal": {
+            "item": "هل لديك عائلة كبيرة?",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"واش عندك عائلة كبيرة\"."
+          },
+          "tip": "\"واش\" opens a yes/no question, like \"هل\"."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm still single.\" (male speaker)",
+          "answer": "باقي عزري",
+          "accepted": [
+            "باقي عزري",
+            "باقي عازب",
+            "مازال عزري",
+            "baaqi 3zri",
+            "baqi 3zri"
+          ],
+          "too_formal": {
+            "item": "لا أزال أعزب",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"باقي عزري\"."
+          },
+          "tip": "\"باقي\" means \"still\"; \"عزري\" is the Moroccan word for single."
+        },
+        {
+          "id": "unit-02.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"my husband\"?",
+          "answer": "راجلي",
+          "accepted": [
+            "راجلي",
+            "raajli",
+            "rajli"
+          ],
+          "options": [
+            "راجلي",
+            "مراتي",
+            "خويا",
+            "ولدي"
+          ],
+          "too_formal": {
+            "item": "زوجي",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"راجلي\"."
+          },
+          "tip": "\"مراتي\" is the wife; \"راجلي\" the husband."
+        },
+        {
+          "id": "unit-02.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"شنو سميتي _____?\" Meaning: What did you name your daughter? (to a woman)",
+          "answer": "بنتك",
+          "accepted": [
+            "بنتك",
+            "bntek",
+            "bentek"
+          ],
+          "too_formal": {
+            "item": "ابنتك",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بنتك\"."
+          },
+          "tip": "\"ـك\" on the end means \"your\"; \"بنت\" is daughter."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How many people are in your family?\" (to a man)",
+          "answer": "شحال ديال الناس فعائلتك?",
+          "accepted": [
+            "شحال ديال الناس فعائلتك?",
+            "شحال ديال الناس فعائلتك",
+            "شحال من واحد فعائلتك",
+            "sh7aal dyal n-naas f 3aa2iltek",
+            "sh7aal men waa7ed f 3aa2iltek"
+          ],
+          "too_formal": {
+            "item": "كم فرداً في عائلتك?",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"شحال ديال الناس فعائلتك\"."
+          },
+          "tip": "\"شحال\" asks \"how much/many\" and is the everyday word for it."
+        },
+        {
+          "id": "unit-02.lesson-01.reply.03",
+          "type": "reply",
+          "prompt": "Someone asks: \"فين كيسكنو دابا?\" about your brother and sister. Say they are in Casablanca.",
+          "answer": "فالدار البيضاء",
+          "accepted": [
+            "فالدار البيضاء",
+            "فالبيضاء",
+            "فكازا",
+            "f d-daar l-bayDa",
+            "f kaza"
+          ],
+          "too_formal": {
+            "item": "في الدار البيضاء",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فالدار البيضاء\"."
+          },
+          "tip": "\"ف\" joins onto the place; people also say \"كازا\" for Casablanca."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "hungry-male-speaker",
+          "arabic": "جيعان",
+          "transliteration": "jee3aan"
+        },
+        {
+          "slot": "hungry-female-speaker",
+          "arabic": "جيعانة",
+          "transliteration": "jee3aana"
+        },
+        {
+          "slot": "thirsty-male-speaker",
+          "arabic": "عطشان",
+          "transliteration": "3atshaan"
+        },
+        {
+          "slot": "i-want-to-eat",
+          "arabic": "بغيت ناكل",
+          "transliteration": "bghit nakol"
+        },
+        {
+          "slot": "i-want-to-drink-water",
+          "arabic": "بغيت نشرب الما",
+          "transliteration": "bghit nshrab l-maa"
+        },
+        {
+          "slot": "what-do-you-like-to-eat",
+          "arabic": "شنو كتبغي تاكل?",
+          "transliteration": "shnu katbghi takol?"
+        },
+        {
+          "slot": "i-like-falafel",
+          "arabic": "كنبغي الفلافل",
+          "transliteration": "kanbghi l-falaafel"
+        },
+        {
+          "slot": "coffee",
+          "arabic": "قهوة",
+          "transliteration": "qahwa"
+        },
+        {
+          "slot": "tea",
+          "arabic": "أتاي",
+          "transliteration": "ataay"
+        },
+        {
+          "slot": "the-bill-please",
+          "arabic": "الحساب عافاك",
+          "transliteration": "l-7saab 3afaak"
+        },
+        {
+          "slot": "how-much-is-the-bill",
+          "arabic": "شحال الحساب?",
+          "transliteration": "sh7aal l-7saab?"
+        },
+        {
+          "slot": "to-your-health-said-to-someone-after-they-finish",
+          "arabic": "صحة",
+          "transliteration": "Sa77a",
+          "reply": {
+            "arabic": "الله يعطيك الصحة",
+            "transliteration": "llaah y3Teek s-Sa77a",
+            "english": "May God give you health."
+          }
+        },
+        {
+          "slot": "enjoy-your-meal-said-to-someone-while-they-are-e",
+          "arabic": "بالهنا والشفا",
+          "transliteration": "bl-hanaa w sh-shifaa",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "llaah ybaarek feek",
+            "english": "May God bless you."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "arabic": "السلام عليكم، لاباس?",
+          "transliteration": "salaamu 3alaykum, laa baas?",
+          "english": "Peace be upon you, how are you?"
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "لاباس الحمد لله. أنا جيعانة بزاف.",
+          "transliteration": "laa baas l-7amdu lillaah. ana jee3aana bzaaf.",
+          "english": "Fine, thank God. I am very hungry."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "وأنا جيعان بحالك. شنو كتبغي تاكلي?",
+          "transliteration": "w ana jee3aan b7aalek. shnu katbghi takli?",
+          "english": "Me too, I'm hungry like you. What do you like to eat?"
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "كنبغي الفلافل، ولاكين بغيت نشرب الما الأول.",
+          "transliteration": "kanbghi l-falaafel, walaakin bghit nshrab l-maa l-lewwel.",
+          "english": "I like falafel, but first I want to drink water."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "وأنا عطشان بزاف. واش نشربو أتاي?",
+          "transliteration": "w ana 3atshaan bzaaf. waash nshrabu ataay?",
+          "english": "I'm thirsty too. Shall we drink tea?"
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "لا، أنا بغيت قهوة.",
+          "transliteration": "laa, ana bghit qahwa.",
+          "english": "No, I want coffee."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "مزيان. عافاك، جوج قهاوي وساندويتش ديال الفلافل.",
+          "transliteration": "mezyaan. 3afaak, joj qhaawi w sandweetsh dyal l-falaafel.",
+          "english": "Fine. Please, two coffees and a plate of falafel."
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "بالهنا والشفا!",
+          "transliteration": "bl-hanaa w sh-shifaa!",
+          "english": "Enjoy your meal!"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "الله يبارك فيك.",
+          "transliteration": "llaah ybaarek feek.",
+          "english": "May God bless you."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "الحمد لله. الحساب عافاك.",
+          "transliteration": "l-7amdu lillaah. l-7saab 3afaak.",
+          "english": "Thank God. The bill, please."
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "صحة!",
+          "transliteration": "Sa77a!",
+          "english": "To your health!"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "الله يعطيك الصحة. شحال الحساب?",
+          "transliteration": "llaah y3Teek s-Sa77a. sh7aal l-7saab?",
+          "english": "May God give you health. How much is the bill?"
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "أنا غنخلص.",
+          "transliteration": "ana ghankhlleS.",
+          "english": "I will pay."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شنو كتبغي تاكل?",
+            "transliteration": "shnu katbghi takol?",
+            "english": "What do you like to eat?"
+          },
+          "response": {
+            "arabic": "كنبغي الفلافل.",
+            "transliteration": "kanbghi l-falaafel.",
+            "english": "I like falafel."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش نتا جيعان?",
+            "transliteration": "waash nta jee3aan?",
+            "english": "Are you hungry? (to a man)"
+          },
+          "response": {
+            "arabic": "إيه، جيعان بزاف.",
+            "transliteration": "iyyeh, jee3aan bzaaf.",
+            "english": "Yes, very hungry."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بالهنا والشفا!",
+            "transliteration": "bl-hanaa w sh-shifaa!",
+            "english": "Enjoy your meal!"
+          },
+          "response": {
+            "arabic": "الله يبارك فيك.",
+            "transliteration": "llaah ybaarek feek.",
+            "english": "May God bless you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "صحة!",
+            "transliteration": "Sa77a!",
+            "english": "To your health!"
+          },
+          "response": {
+            "arabic": "الله يعطيك الصحة.",
+            "transliteration": "llaah y3Teek s-Sa77a.",
+            "english": "May God give you health."
+          }
+        }
+      ],
+      "culture": "Moroccans often share food from one plate and say \"بسم الله\" before starting and \"الحمد لله\" after. Mint tea (أتاي) is offered almost everywhere, and refusing it outright can seem cold, so a guest usually accepts at least one glass. Falafel is not a traditional Moroccan dish (people more often eat tajine, couscous or harira), but it is sold as a street snack in some cities.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm hungry.\" (male speaker)",
+          "answer": "جيعان",
+          "accepted": [
+            "جيعان",
+            "أنا جيعان",
+            "ana jee3aan",
+            "jee3aan"
+          ],
+          "too_formal": {
+            "item": "جائع",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"جيعان\"."
+          },
+          "tip": "\"جيعان\" is masculine; a woman says \"جيعانة\"."
+        },
+        {
+          "id": "unit-02.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to eat.\"",
+          "answer": "بغيت ناكل",
+          "accepted": [
+            "بغيت ناكل",
+            "بغيت نكل",
+            "أنا بغيت ناكل",
+            "bghit nakol"
+          ],
+          "too_formal": {
+            "item": "أريد أن آكل",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بغيت ناكل\"."
+          },
+          "tip": "\"بغيت\" is \"I want\" in Moroccan Arabic, where other dialects say \"بدي\" or \"عايز\"."
+        },
+        {
+          "id": "unit-02.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which phrase is said to someone after they finish eating or drinking?",
+          "answer": "صحة",
+          "accepted": [
+            "صحة",
+            "Sa77a",
+            "sa77a"
+          ],
+          "options": [
+            "صحة",
+            "بالهنا والشفا",
+            "عافاك",
+            "شكرا"
+          ],
+          "too_formal": {
+            "item": "هنيئاً لك",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"صحة\"."
+          },
+          "tip": "\"بالهنا والشفا\" is for while they eat; \"صحة\" is for after."
+        },
+        {
+          "id": "unit-02.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"شنو كتبغي تاكل?\" Say you like falafel.",
+          "answer": "كنبغي الفلافل",
+          "accepted": [
+            "كنبغي الفلافل",
+            "كنحب الفلافل",
+            "كنبغي فلافل",
+            "kanbghi l-falaafel"
+          ],
+          "too_formal": {
+            "item": "أحب الفلافل",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"كنبغي الفلافل\"."
+          },
+          "tip": "The \"ك\" at the start of \"كنبغي\" marks an ongoing habit: \"I like\"."
+        },
+        {
+          "id": "unit-02.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بغيت _____ الما.\" Meaning: I want to drink water.",
+          "answer": "نشرب",
+          "accepted": [
+            "نشرب",
+            "nshrab",
+            "nshreb"
+          ],
+          "too_formal": {
+            "item": "أشرب",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"نشرب\"."
+          },
+          "tip": "After \"بغيت\", the verb starts with \"ن\": \"نشرب\", \"ناكل\"."
+        },
+        {
+          "id": "unit-02.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "Someone says \"بالهنا والشفا\" to you while you are eating. Reply naturally.",
+          "answer": "الله يبارك فيك",
+          "accepted": [
+            "الله يبارك فيك",
+            "الله يبارك",
+            "الله يعطيك الصحة",
+            "llaah ybaarek fiik"
+          ],
+          "too_formal": {
+            "item": "شكراً لك",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الله يبارك فيك\"."
+          },
+          "tip": "A short prayer for the other person is the usual reply."
+        },
+        {
+          "id": "unit-02.lesson-02.reply.03",
+          "type": "reply",
+          "prompt": "Someone says \"صحة\" to you after you finish eating. Reply naturally.",
+          "answer": "الله يعطيك الصحة",
+          "accepted": [
+            "الله يعطيك الصحة",
+            "الله يعطيك الصحة والعافية",
+            "الله يعافيك",
+            "llaah y3Tiik s-Sa77a"
+          ],
+          "too_formal": {
+            "item": "بارك الله فيك",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الله يعطيك الصحة\"."
+          },
+          "tip": "You return the wish: \"may God give you health\"."
+        },
+        {
+          "id": "unit-02.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"The bill, please.\"",
+          "answer": "الحساب عافاك",
+          "accepted": [
+            "الحساب عافاك",
+            "الحساب عفاك",
+            "عطيني الحساب عافاك",
+            "l-7saab 3afaak"
+          ],
+          "too_formal": {
+            "item": "الحساب من فضلك",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الحساب عافاك\"."
+          },
+          "tip": "\"عافاك\" is the everyday \"please\" in Morocco."
+        },
+        {
+          "id": "unit-02.lesson-02.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How much is the bill?\"",
+          "answer": "شحال الحساب?",
+          "accepted": [
+            "شحال الحساب?",
+            "شحال الحساب",
+            "شحال خاصني نخلص",
+            "sh7aal l-7saab",
+            "sh7aal khaaSSni nkhlleS"
+          ],
+          "too_formal": {
+            "item": "كم الحساب?",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"شحال الحساب\"."
+          },
+          "tip": "\"شحال\" is \"how much\" for prices and quantities."
+        },
+        {
+          "id": "unit-02.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"تاكل / كتبغي / شنو?\"",
+          "answer": "شنو كتبغي تاكل?",
+          "accepted": [
+            "شنو كتبغي تاكل?",
+            "شنو كتبغي تاكل",
+            "شنو كتحب تاكل",
+            "shnu katbghi takol"
+          ],
+          "too_formal": {
+            "item": "ماذا تحب أن تأكل?",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"شنو كتبغي تاكل\"."
+          },
+          "tip": "\"شنو\" is \"what\" and comes first."
+        },
+        {
+          "id": "unit-02.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"thirsty\" for a man?",
+          "answer": "عطشان",
+          "accepted": [
+            "عطشان",
+            "3atshaan",
+            "3atshan"
+          ],
+          "options": [
+            "جيعان",
+            "عطشان",
+            "جيعانة",
+            "عطشانة"
+          ],
+          "too_formal": {
+            "item": "ظمآن",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"عطشان\"."
+          },
+          "tip": "Add \"ة\" for a woman: \"عطشانة\"."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Meeting Family Over a Meal",
+    "instructions": "Write and say a short Moroccan Arabic conversation of at least 10 lines. It must ask about someone's family, describe a relative, say you are hungry or thirsty, order food or drink, use the exchange بالهنا والشفا / الله يبارك فيك or صحة / الله يعطيك الصحة, and ask for the bill. Use at least 8 phrases from Unit 2, with a masculine and a feminine address form.",
+    "required_elements": [
+      "A question about family using واش عندك عائلة? or شحال ديال الناس فعائلتك?",
+      "A relative described using ماما, بابا, خويا, ختي, راجلي, مراتي, ولدي or بنتي.",
+      "Hunger or thirst using جيعان, جيعانة or عطشان.",
+      "An order or wish for food or drink using بغيت ناكل or بغيت نشرب.",
+      "The exchange بالهنا والشفا / الله يبارك فيك, or صحة / الله يعطيك الصحة.",
+      "A request for the bill using الحساب عافاك or شحال الحساب?",
+      "Both a masculine form (واش نتا) and a feminine form (واش نتي)."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Samir",
+          "arabic": "السلام عليكم ديما، لاباس?",
+          "transliteration": "salaamu 3alaykum Dima, laa baas?",
+          "english": "Peace be upon you Dima, how are you?"
+        },
+        {
+          "speaker": "Dima",
+          "arabic": "لاباس الحمد لله. واش نتا عندك عائلة كبيرة?",
+          "transliteration": "laa baas l-7amdu lillaah. waash nta 3andek 3aa2ila kbeera?",
+          "english": "Fine, thank God. Do you have a big family?"
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "لا، عندي غير مراتي وولدي. ونتي?",
+          "transliteration": "laa, 3andi ghir mraati w weldi. w nti?",
+          "english": "No, I just have my wife and my son. And you?"
+        },
+        {
+          "speaker": "Dima",
+          "arabic": "عندي خويا واحد وجوج خوات. واش نتا جيعان?",
+          "transliteration": "3andi khuya waa7ed w joj khwaat. waash nta jee3aan?",
+          "english": "I have a brother and two sisters. Are you hungry?"
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "إيه، أنا جيعان بزاف. بغيت ناكل شي حاجة. ونتي، واش نتي جيعانة?",
+          "transliteration": "iyyeh, ana jee3aan bzaaf. bghit nakol shi 7aaja. w nti, waash nti jee3aana?",
+          "english": "Yes, I am very hungry. I want to eat something. And you, are you hungry?"
+        },
+        {
+          "speaker": "Dima",
+          "arabic": "شوية. شنو كتبغي تاكل?",
+          "transliteration": "shwiyya. shnu katbghi takol?",
+          "english": "A little. What do you like to eat?"
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "كنبغي الفلافل، وبغيت نشرب أتاي.",
+          "transliteration": "kanbghi l-falaafel, w bghit nshrab ataay.",
+          "english": "I like falafel, and I want to drink tea."
+        },
+        {
+          "speaker": "Dima",
+          "arabic": "بالهنا والشفا!",
+          "transliteration": "bl-hanaa w sh-shifaa!",
+          "english": "Enjoy your meal!"
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "الله يبارك فيك. صحة!",
+          "transliteration": "llaah ybaarek feek. Sa77a!",
+          "english": "May God bless you. To your health!"
+        },
+        {
+          "speaker": "Dima",
+          "arabic": "الله يعطيك الصحة. الحساب عافاك.",
+          "transliteration": "llaah y3Teek s-Sa77a. l-7saab 3afaak.",
+          "english": "May God give you health. The bill, please."
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "شحال الحساب?",
+          "transliteration": "sh7aal l-7saab?",
+          "english": "How much is the bill?"
+        }
+      ]
+    }
+  }
+}

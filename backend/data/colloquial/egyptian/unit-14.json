@@ -1,0 +1,1721 @@
+{
+  "unit": "unit-14",
+  "dialect": "Egyptian Arabic",
+  "transliteration_key": {
+    "T": "ط",
+    "D": "ض",
+    "S": "ص",
+    "Z": "ظ",
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "g": "ج (في مصر تُنطق g مثل gate)",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء / ق (في مصر القاف همزة)",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "blessed-eid-happy-eid",
+          "arabic": "عيد مبارك",
+          "transliteration": "3eed mubaarak",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you too"
+          }
+        },
+        {
+          "slot": "may-you-be-well-every-year",
+          "arabic": "كل سنة وانتو طيبين",
+          "transliteration": "kol sana w-entu Tayyibeen",
+          "reply": {
+            "arabic": "وانتو طيبين",
+            "transliteration": "w-entu Tayyibeen",
+            "english": "And you be well too"
+          }
+        },
+        {
+          "slot": "may-you-witness-it-again-next-year",
+          "arabic": "عقبال العيد الجاي",
+          "transliteration": "3o2baal el-3eed el-gaay",
+          "reply": {
+            "arabic": "يا رب",
+            "transliteration": "ya rabb",
+            "english": "God willing"
+          }
+        },
+        {
+          "slot": "blessed-eid-to-you-all",
+          "arabic": "عيدكم مبارك",
+          "transliteration": "3eedukum mubaarak",
+          "reply": {
+            "arabic": "وعيدكم مبارك",
+            "transliteration": "w-3eedukum mubaarak",
+            "english": "And blessed Eid to you too"
+          }
+        },
+        {
+          "slot": "eid-money-given-to-children",
+          "arabic": "عيدية",
+          "transliteration": "3eediyya"
+        },
+        {
+          "slot": "i-m-putting-on-my-eid-clothes",
+          "arabic": "بلبس هدوم العيد",
+          "transliteration": "ballebs hudoom el-3eed"
+        },
+        {
+          "slot": "eid-cookies",
+          "arabic": "كحك العيد",
+          "transliteration": "ka7k el-3eed"
+        },
+        {
+          "slot": "we-re-going-to-the-eid-prayer",
+          "arabic": "رايحين نصلي العيد",
+          "transliteration": "raay7een neSalli el-3eed"
+        },
+        {
+          "slot": "we-visited-my-grandma-today",
+          "arabic": "زرنا تيتة النهارده",
+          "transliteration": "zurna teeta en-nahaarda"
+        },
+        {
+          "slot": "congratulations-on-the-eid",
+          "arabic": "مبروك العيد",
+          "transliteration": "mabrook el-3eed",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "where-were-you-why-didn-t-you-come-to-celebrate-",
+          "arabic": "كنت فين؟ ليه ما جيتش تعيّد معانا؟",
+          "transliteration": "kunt feen? leeh ma geetsh te3ayyed ma3aana?"
+        },
+        {
+          "slot": "may-god-give-you-all-eid-money-said-jokingly",
+          "arabic": "ربنا يديكم عيدية",
+          "transliteration": "rabbina yeddeekum 3eediyya"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "منى",
+          "arabic": "عيد مبارك يا طنط سامية!",
+          "transliteration": "3eed mubaarak ya TanT saamya!",
+          "english": "Blessed Eid, Aunt Samia!"
+        },
+        {
+          "speaker": "سامية",
+          "arabic": "الله يبارك فيكي يا منى، كل سنة وانتي طيبة",
+          "transliteration": "allah yebaarek feeki ya mona, kol sana w-enti Tayyiba",
+          "english": "God bless you, Mona, may you be well every year"
+        },
+        {
+          "speaker": "منى",
+          "arabic": "وانتي طيبة، عقبال العيد الجاي",
+          "transliteration": "w-enti Tayyiba, 3o2baal el-3eed el-gaay",
+          "english": "And you, may we reach next Eid too"
+        },
+        {
+          "speaker": "سامية",
+          "arabic": "يا رب، اتفضلي ادخلي",
+          "transliteration": "ya rabb, etfaDDali odkhuli",
+          "english": "God willing, please come in"
+        },
+        {
+          "speaker": "منى",
+          "arabic": "الله! ريحة الكحك تجنن!",
+          "transliteration": "allaah! re7et el-ka7k tegannen!",
+          "english": "Wow! The smell of the cookies is amazing!"
+        },
+        {
+          "speaker": "سامية",
+          "arabic": "عملناه إمبارح مع الولاد، خدي براحتك",
+          "transliteration": "3amalnaah embaare7 ma3a el-wilaad, khudi bar7etek",
+          "english": "We made it yesterday with the kids, help yourself"
+        },
+        {
+          "speaker": "منى",
+          "arabic": "تسلم إيدك! هو فين الولاد؟",
+          "transliteration": "teslam eedek! huwwa feen el-wilaad?",
+          "english": "Bless your hands! Where are the kids?"
+        },
+        {
+          "speaker": "سامية",
+          "arabic": "راحوا يصلّوا العيد مع باباهم وراجعين دلوقتي",
+          "transliteration": "raa7u yeSallu el-3eed ma3a babaahum w-raag3een delwa2ti",
+          "english": "They went to the Eid prayer with their dad and are coming back now"
+        },
+        {
+          "speaker": "منى",
+          "arabic": "وأنا جايبالهم العيدية، اتفضلي",
+          "transliteration": "w-ana gaybaalhum el-3eediyya, etfaDDali",
+          "english": "And I brought their Eid money, here you go"
+        },
+        {
+          "speaker": "سامية",
+          "arabic": "ربنا يخليكي، كتر خيرك، ما كانش له لزوم",
+          "transliteration": "rabbina yekhalleeki, ketr kheerek, ma kaanesh leh luzoom",
+          "english": "God keep you, thank you, there was no need"
+        },
+        {
+          "speaker": "منى",
+          "arabic": "ده أقل واجب. أنا لازم أعدّي على تيتة كمان النهارده",
+          "transliteration": "da a2all waagib. ana laazem a3addi 3ala teeta kamaan en-nahaarda",
+          "english": "It's the least I can do. I have to drop by Grandma's today too"
+        },
+        {
+          "speaker": "سامية",
+          "arabic": "سلّميلي عليها كتير وقوليلها كل سنة وهي طيبة",
+          "transliteration": "sallemeeli 3aleeha kteer w-2ooleelha kol sana w-heyya Tayyiba",
+          "english": "Give her my best and tell her may she be well every year"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عيد مبارك",
+            "transliteration": "3eed mubaarak",
+            "english": "Blessed Eid"
+          },
+          "response": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you too"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كل سنة وانتو طيبين",
+            "transliteration": "kol sana w-entu Tayyibeen",
+            "english": "May you be well every year"
+          },
+          "response": {
+            "arabic": "وانتو طيبين",
+            "transliteration": "w-entu Tayyibeen",
+            "english": "And you be well too"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عيدكم مبارك",
+            "transliteration": "3eedukum mubaarak",
+            "english": "Blessed Eid to you all"
+          },
+          "response": {
+            "arabic": "وعيدكم مبارك",
+            "transliteration": "w-3eedukum mubaarak",
+            "english": "And blessed Eid to you too"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مبروك العيد",
+            "transliteration": "mabrook el-3eed",
+            "english": "Congratulations on the Eid"
+          },
+          "response": {
+            "arabic": "الله يبارك فيكم",
+            "transliteration": "allah yebaarek feekum",
+            "english": "God bless you all"
+          }
+        }
+      ],
+      "culture": "في مصر الكحك بيتعمل في البيت قبل العيد بأيام، والعيلة بتلف على بعض تزور وتهنّي. الكبار بيدّوا الأطفال العيدية، والأطفال بيلبسوا هدوم جديدة ويخرجوا يتفسحوا.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "حد قالك \"عيد مبارك\"، ترد تقول إيه؟",
+          "answer": "الله يبارك فيك",
+          "accepted": [
+            "الله يبارك فيك",
+            "allah yebaarek feek",
+            "الله يبارك فيكي",
+            "وعيدك مبارك",
+            "w-3eedak mubaarak"
+          ],
+          "too_formal": {
+            "item": "بارك الله فيك وأعاده عليك بالخير",
+            "feedback": "دعاء فصيح مطوّل، بالمصري بنقول الله يبارك فيك."
+          },
+          "tip": "\"يبارك\" بتفضل زي ما هي، بس \"فيك\" بتتغير للمخاطبة: فيك للراجل وفيكي للست."
+        },
+        {
+          "id": "unit-14.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "كل سنة وانتو ____",
+          "answer": "طيبين",
+          "accepted": [
+            "طيبين",
+            "Tayyibeen",
+            "بخير",
+            "طيبين يا رب"
+          ],
+          "too_formal": {
+            "item": "كل عام وأنتم بخير",
+            "feedback": "\"كل عام\" و\"أنتم\" فصحى، بالمصري بنقول \"كل سنة\" و\"انتو\"."
+          },
+          "tip": "\"طيب\" هنا معناها بخير وبصحة."
+        },
+        {
+          "id": "unit-14.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Blessed Eid to you all (plural)",
+          "answer": "عيدكم مبارك",
+          "accepted": [
+            "عيدكم مبارك",
+            "3eedukum mubaarak",
+            "3eedkum mubaarak",
+            "عيد مبارك عليكم"
+          ],
+          "too_formal": {
+            "item": "أعاده الله عليكم بالخير واليمن والبركات",
+            "feedback": "صيغة فصيحة مطوّلة، مش هي المطلوبة في التمرين."
+          },
+          "tip": "\"كم\" في آخر الكلمة علامة الجمع."
+        },
+        {
+          "id": "unit-14.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "إيه اسم الفلوس اللي الكبار بيدّوها للأطفال في العيد؟",
+          "answer": "عيدية",
+          "accepted": [
+            "عيدية",
+            "3eediyya",
+            "العيدية",
+            "عيديه"
+          ],
+          "too_formal": {
+            "item": "هبة العيد",
+            "feedback": "\"هبة\" كلمة فصيحة، محدش بيقولها في الشارع."
+          },
+          "tip": "العيدية بتبقى فلوس غالباً، مش هدية.",
+          "options": [
+            "عيدية",
+            "مرتّب",
+            "أجرة",
+            "حلوان"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "رتّب: We're going to the Eid prayer",
+          "answer": "رايحين نصلي العيد",
+          "accepted": [
+            "رايحين نصلي العيد",
+            "raay7een neSalli el-3eed",
+            "رايحين صلاة العيد",
+            "رايحين نصلّي العيد"
+          ],
+          "too_formal": {
+            "item": "ذاهبون لأداء صلاة العيد",
+            "feedback": "\"ذاهبون\" فصحى، بالمصري بنقول \"رايحين\"."
+          },
+          "tip": "\"رايحين نصلي\" من غير \"أن\" في النص، ببساطة فعلين ورا بعض.",
+          "words": [
+            "رايحين",
+            "نصلي",
+            "العيد"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "حد قالك \"عقبال العيد الجاي\"، ترد إيه؟",
+          "answer": "يا رب",
+          "accepted": [
+            "يا رب",
+            "ya rabb",
+            "يا رب وعقبالك",
+            "ya rabb w-3o2baalak",
+            "ياا رب"
+          ],
+          "too_formal": {
+            "item": "اللهم آمين وأعاده الله علينا بالخير",
+            "feedback": "دعاء مطوّل ورسمي، الرد اليومي أقصر بكتير."
+          },
+          "tip": "\"يا رب\" بتتقال كتير كرد على أي دعاء."
+        },
+        {
+          "id": "unit-14.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "أنا ____ هدوم العيد الجديدة دلوقتي",
+          "answer": "بلبس",
+          "accepted": [
+            "بلبس",
+            "ballebs",
+            "لابس",
+            "laabes"
+          ],
+          "too_formal": {
+            "item": "أرتدي",
+            "feedback": "\"أرتدي\" فصحى، بالمصري بنقول \"بلبس\" أو \"لابس\"."
+          },
+          "tip": "\"ب\" قبل الفعل بتدل إن الحاجة بتحصل دلوقتي أو دايماً."
+        },
+        {
+          "id": "unit-14.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "We visited grandma today",
+          "answer": "زرنا تيتة النهارده",
+          "accepted": [
+            "زرنا تيتة النهارده",
+            "zurna teeta en-nahaarda",
+            "زرنا تيتة النهاردة",
+            "رحنا زرنا تيتة النهارده",
+            "زرنا تيتا النهارده"
+          ],
+          "too_formal": {
+            "item": "زرنا جدتنا اليوم",
+            "feedback": "\"جدتنا\" و\"اليوم\" فصحى، بالمصري \"تيتة\" و\"النهارده\"."
+          },
+          "tip": "\"تيتة\" هي الاسم اللي الأطفال بينادوا بيه الجدة في مصر."
+        },
+        {
+          "id": "unit-14.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "إيه الحلو اللي بيتعمل في البيوت المصرية في العيد؟",
+          "answer": "كحك",
+          "accepted": [
+            "كحك",
+            "ka7k",
+            "كحك العيد",
+            "الكحك"
+          ],
+          "too_formal": {
+            "item": "الحلويات التقليدية",
+            "feedback": "تعبير عام مش اسم أكلة معينة."
+          },
+          "tip": "الكحك بيتعمل قبل العيد وبيتوزّع على الجيران والأهل.",
+          "options": [
+            "كحك",
+            "قطايف",
+            "كنافة",
+            "بسبوسة"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "رتّب: Why didn't you come?",
+          "answer": "ليه ما جيتش",
+          "accepted": [
+            "ليه ما جيتش",
+            "leeh ma geetsh",
+            "ليه ما جيتيش",
+            "ليه مجيتش"
+          ],
+          "too_formal": {
+            "item": "لماذا لم تأتِ",
+            "feedback": "\"لماذا لم تأتِ\" فصحى، بالمصري \"ليه ما جيتش\"."
+          },
+          "tip": "\"ما ... ش\" هي طريقة النفي: \"ما\" قبل الفعل و\"ش\" في آخره.",
+          "words": [
+            "ليه",
+            "ما",
+            "جيتش"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "ramadan-is-generous-greeting",
+          "arabic": "رمضان كريم",
+          "transliteration": "ramaDaan kareem",
+          "reply": {
+            "arabic": "الله أكرم",
+            "transliteration": "allaah akram",
+            "english": "God is more generous"
+          }
+        },
+        {
+          "slot": "blessed-ramadan",
+          "arabic": "رمضان مبارك",
+          "transliteration": "ramaDaan mubaarak",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "blessed-month-of-ramadan-to-you",
+          "arabic": "شهر مبارك عليكم",
+          "transliteration": "shahr mubaarak 3aleekum",
+          "reply": {
+            "arabic": "الله يبارك فيكم",
+            "transliteration": "allah yebaarek feekum",
+            "english": "God bless you all"
+          }
+        },
+        {
+          "slot": "we-re-fasting",
+          "arabic": "إحنا صايمين",
+          "transliteration": "e7na Saaymeen"
+        },
+        {
+          "slot": "what-time-is-iftar-today",
+          "arabic": "الفطار الساعة كام النهارده؟",
+          "transliteration": "el-feTaar es-saa3a kaam en-nahaarda?"
+        },
+        {
+          "slot": "we-re-preparing-for-iftar",
+          "arabic": "بنحضّر للفطار",
+          "transliteration": "benna7aDDar lel-feTaar"
+        },
+        {
+          "slot": "we-started-fasting-from-dawn",
+          "arabic": "صمنا من الفجر",
+          "transliteration": "Sumna min el-fagr"
+        },
+        {
+          "slot": "the-pre-dawn-meal-eaten-before-the-fast",
+          "arabic": "السحور",
+          "transliteration": "es-sa7oor"
+        },
+        {
+          "slot": "qatayef-a-ramadan-sweet-stuffed-pastry",
+          "arabic": "قطايف",
+          "transliteration": "2aTaayef"
+        },
+        {
+          "slot": "the-iftar-cannon-fired",
+          "arabic": "مدفع الإفطار ضرب",
+          "transliteration": "madfa3 el-eftaar Darab"
+        },
+        {
+          "slot": "whose-iftar-invitation-are-you-going-to-tonight",
+          "arabic": "رايح عزومة فطار مين النهارده؟",
+          "transliteration": "raayi7 3ozoomit feTaar meen en-nahaarda?"
+        },
+        {
+          "slot": "may-god-accept-your-fasting",
+          "arabic": "ربنا يتقبل صيامك",
+          "transliteration": "rabbina yet2abbal Seyaamak",
+          "reply": {
+            "arabic": "منا ومنك يا رب",
+            "transliteration": "menna w-minnak ya rabb",
+            "english": "From us and from you, God willing"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "أحمد",
+          "arabic": "رمضان كريم يا خالد!",
+          "transliteration": "ramaDaan kareem ya khaaled!",
+          "english": "Ramadan is generous, Khaled!"
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "الله أكرم يا أحمد، كل سنة وانت طيب",
+          "transliteration": "allaah akram ya a7mad, kol sana w-enta Tayyeb",
+          "english": "God is more generous, Ahmad, may you be well every year"
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "إنت صايم النهارده؟",
+          "transliteration": "enta Saayem en-nahaarda?",
+          "english": "Are you fasting today?"
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "طبعاً، صمنا من الفجر، وأنا هموت من العطش",
+          "transliteration": "Tab3an, Sumna min el-fagr, w-ana hamoot min el-3aTash",
+          "english": "Of course, we started at dawn, and I'm dying of thirst"
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "ربنا يتقبل منك. الفطار الساعة كام النهارده؟",
+          "transliteration": "rabbina yet2abbal minnak. el-feTaar es-saa3a kaam en-nahaarda?",
+          "english": "God accept it from you. What time is iftar today?"
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "المغرب بعد ستة ونص تقريباً، لما المدفع يضرب",
+          "transliteration": "el-maghrib ba3d setta w-noS ta2reeban, lamma el-madfa3 yeDrab",
+          "english": "Maghrib is around half past six, when the cannon fires"
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "رايح عزومة فطار مين النهارده؟",
+          "transliteration": "raayi7 3ozoomit feTaar meen en-nahaarda?",
+          "english": "Whose iftar invitation are you going to today?"
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "عند ماما، عاملة محشي وقطايف",
+          "transliteration": "3and maama, 3aamla ma7shi w-2aTaayef",
+          "english": "At my mum's, she made stuffed vegetables and qatayef"
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "يا سلام! وهتصحّي نفسك على السحور؟",
+          "transliteration": "ya salaam! w-hatSa77i nafsak 3ala es-sa7oor?",
+          "english": "Wow! And will you wake yourself up for suhoor?"
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "أكيد، بنتسحّر الساعة تلاتة ونص",
+          "transliteration": "akeed, benetsa77ar es-saa3a talaata w-noS",
+          "english": "Sure, we have suhoor at half past three"
+        },
+        {
+          "speaker": "أحمد",
+          "arabic": "ربنا يتقبل منا ومنكم، أشوفك بعد الفطار",
+          "transliteration": "rabbina yet2abbal menna w-minkum, ashoofak ba3d el-feTaar",
+          "english": "God accept from us and from you, see you after iftar"
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "منا ومنك يا رب، تعالى نشرب شاي بعد التراويح",
+          "transliteration": "menna w-minnak ya rabb, ta3aala nishrab shaay ba3d et-taraaweeh",
+          "english": "From us and you, God willing, come for tea after taraweeh"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "رمضان كريم",
+            "transliteration": "ramaDaan kareem",
+            "english": "Ramadan is generous"
+          },
+          "response": {
+            "arabic": "الله أكرم",
+            "transliteration": "allaah akram",
+            "english": "God is more generous"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "رمضان مبارك",
+            "transliteration": "ramaDaan mubaarak",
+            "english": "Blessed Ramadan"
+          },
+          "response": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شهر مبارك عليكم",
+            "transliteration": "shahr mubaarak 3aleekum",
+            "english": "Blessed month to you"
+          },
+          "response": {
+            "arabic": "الله يبارك فيكم",
+            "transliteration": "allah yebaarek feekum",
+            "english": "God bless you all"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ربنا يتقبل صيامك",
+            "transliteration": "rabbina yet2abbal Seyaamak",
+            "english": "May God accept your fasting"
+          },
+          "response": {
+            "arabic": "منا ومنك يا رب",
+            "transliteration": "menna w-minnak ya rabb",
+            "english": "From us and from you, God willing"
+          }
+        }
+      ],
+      "culture": "في رمضان في مصر الشوارع بتتزيّن بالفوانيس، ومدفع الإفطار بيضرب من القلعة في القاهرة وقت المغرب. فيه كمان موائد الرحمن اللي بتفطّر الصايمين ببلاش، والناس بتعزم على بعض في الفطار.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "حد قالك \"رمضان كريم\"، ترد إيه؟",
+          "answer": "الله أكرم",
+          "accepted": [
+            "الله أكرم",
+            "allaah akram",
+            "allah akram",
+            "الله أكرم يا حبيبي"
+          ],
+          "too_formal": {
+            "item": "أهلاً بشهر رمضان المبارك",
+            "feedback": "عبارة فصيحة رسمية، الرد اليومي هو \"الله أكرم\"."
+          },
+          "tip": "\"الله أكرم\" معناها إن الله أكرم منّا كلنا، وبتتقال لكل حد."
+        },
+        {
+          "id": "unit-14.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "إحنا ____ النهارده",
+          "answer": "صايمين",
+          "accepted": [
+            "صايمين",
+            "Saaymeen",
+            "صايمين النهارده",
+            "Saaymeen"
+          ],
+          "too_formal": {
+            "item": "صائمون",
+            "feedback": "\"صائمون\" فصحى، بالمصري بنقول \"صايمين\"."
+          },
+          "tip": "\"إحنا\" معناها نحن، وبتتقال قبل الفعل أو الصفة."
+        },
+        {
+          "id": "unit-14.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "What time is iftar today?",
+          "answer": "الفطار الساعة كام النهارده؟",
+          "accepted": [
+            "الفطار الساعة كام النهارده؟",
+            "el-feTaar es-saa3a kaam en-nahaarda",
+            "الفطار امتى النهارده",
+            "المغرب الساعة كام النهارده"
+          ],
+          "too_formal": {
+            "item": "متى موعد الإفطار اليوم؟",
+            "feedback": "\"متى موعد\" فصحى، بالمصري \"الساعة كام\" أو \"امتى\"."
+          },
+          "tip": "\"كام\" هي كلمة السؤال عن العدد والوقت."
+        },
+        {
+          "id": "unit-14.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "إيه الأكلة اللي بتتاكل قبل الفجر في رمضان؟",
+          "answer": "السحور",
+          "accepted": [
+            "السحور",
+            "es-sa7oor",
+            "سحور",
+            "السحور"
+          ],
+          "too_formal": {
+            "item": "وجبة ما قبل الفجر",
+            "feedback": "وصف فصيح عام، مش الاسم اللي الناس بتقوله."
+          },
+          "tip": "\"السحور\" بيتقال عن الأكل وعن وقته كمان.",
+          "options": [
+            "السحور",
+            "الغدا",
+            "العشا",
+            "الفطار"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "رتّب: We're preparing for iftar",
+          "answer": "بنحضّر للفطار",
+          "accepted": [
+            "بنحضّر للفطار",
+            "benna7aDDar lel-feTaar",
+            "بنجهّز للفطار",
+            "بنجهز الفطار"
+          ],
+          "too_formal": {
+            "item": "نُعدّ الإفطار",
+            "feedback": "\"نُعدّ\" فصحى، بالمصري \"بنحضّر\" أو \"بنجهّز\"."
+          },
+          "tip": "\"ب\" في أول الفعل بتدل على اللي بيحصل دلوقتي.",
+          "words": [
+            "بنحضّر",
+            "للفطار"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "حد قالك \"ربنا يتقبل صيامك\"، ترد إيه؟",
+          "answer": "منا ومنك يا رب",
+          "accepted": [
+            "منا ومنك يا رب",
+            "menna w-minnak ya rabb",
+            "منا ومنك",
+            "ومنك",
+            "menna w-minnak"
+          ],
+          "too_formal": {
+            "item": "تقبل الله منا ومنكم صالح الأعمال",
+            "feedback": "صيغة الخطبة الرسمية، الرد اليومي أقصر."
+          },
+          "tip": "\"منا ومنك\" يعني \"يتقبل الله منّا ومنك\"."
+        },
+        {
+          "id": "unit-14.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "مدفع الفطار ____",
+          "answer": "ضرب",
+          "accepted": [
+            "ضرب",
+            "Darab",
+            "ضرب دلوقتي",
+            "ضرب المدفع"
+          ],
+          "too_formal": {
+            "item": "أُطلق",
+            "feedback": "\"أُطلق\" فصحى، بالمصري بنقول \"ضرب\" للمدفع."
+          },
+          "tip": "المدفع \"بيضرب\" بالمصري، مش \"بيُطلق\"."
+        },
+        {
+          "id": "unit-14.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "We started fasting from dawn",
+          "answer": "صمنا من الفجر",
+          "accepted": [
+            "صمنا من الفجر",
+            "Sumna min el-fagr",
+            "صمنا من الفجر النهارده",
+            "صمنا م الفجر"
+          ],
+          "too_formal": {
+            "item": "بدأنا الصيام منذ الفجر",
+            "feedback": "\"بدأنا ... منذ\" فصحى، بالمصري \"صمنا من الفجر\"."
+          },
+          "tip": "\"من\" هنا بتحدد بداية الوقت."
+        },
+        {
+          "id": "unit-14.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "إيه الحلو المشهور في رمضان واللي بيتحشي جبنة أو مكسرات؟",
+          "answer": "قطايف",
+          "accepted": [
+            "قطايف",
+            "2aTaayef",
+            "القطايف",
+            "قطايف بالمكسرات"
+          ],
+          "too_formal": {
+            "item": "الحلويات الرمضانية",
+            "feedback": "تعبير عام، مش اسم الحلو نفسه."
+          },
+          "tip": "القطايف بتتحشي وبتتقلي أو بتتخبز وتتغمّس في القطر.",
+          "options": [
+            "قطايف",
+            "كحك",
+            "بسبوسة",
+            "بقلاوة"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "رتّب: Whose iftar invitation are you going to tonight?",
+          "answer": "رايح عزومة فطار مين النهارده",
+          "accepted": [
+            "رايح عزومة فطار مين النهارده",
+            "raayi7 3ozoomit feTaar meen en-nahaarda",
+            "رايح فطار مين النهارده",
+            "رايح عزومة مين النهارده"
+          ],
+          "too_formal": {
+            "item": "إلى دعوة إفطار من تذهب الليلة؟",
+            "feedback": "جملة فصيحة ثقيلة على اللسان في الكلام اليومي."
+          },
+          "tip": "\"عزومة\" هي الكلمة المصرية للدعوة على الأكل.",
+          "words": [
+            "رايح",
+            "عزومة",
+            "فطار",
+            "مين",
+            "النهارده"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "congratulations",
+          "arabic": "مبروك",
+          "transliteration": "mabrook",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "may-god-make-you-happy-wedding-congrats",
+          "arabic": "ربنا يسعدكم",
+          "transliteration": "rabbina yes3edkum",
+          "reply": {
+            "arabic": "ويسعدك",
+            "transliteration": "w-yes3edak",
+            "english": "And may He make you happy"
+          }
+        },
+        {
+          "slot": "may-it-be-your-turn-next",
+          "arabic": "عقبالك",
+          "transliteration": "3o2baalak",
+          "reply": {
+            "arabic": "يا رب",
+            "transliteration": "ya rabb",
+            "english": "God willing"
+          }
+        },
+        {
+          "slot": "congratulations-on-the-wedding",
+          "arabic": "مبروك الفرح",
+          "transliteration": "mabrook el-fara7",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "when-is-their-wedding",
+          "arabic": "الفرح بتاعهم امتى؟",
+          "transliteration": "el-fara7 betaa3hum emta?"
+        },
+        {
+          "slot": "they-re-preparing-for-the-wedding",
+          "arabic": "بيجهزوا للفرح",
+          "transliteration": "beyegahhezu lel-fara7"
+        },
+        {
+          "slot": "the-wedding-stage-decoration-is-very-beautiful",
+          "arabic": "كوشة الفرح حلوة أوي",
+          "transliteration": "kooshet el-fara7 7elwa awi"
+        },
+        {
+          "slot": "the-wedding-procession-is-coming",
+          "arabic": "الزفة جاية",
+          "transliteration": "ez-zaffa gayya"
+        },
+        {
+          "slot": "she-wore-a-white-dress",
+          "arabic": "لبست فستان أبيض",
+          "transliteration": "lebset festaan abyaD"
+        },
+        {
+          "slot": "the-dabke-folk-dance-started",
+          "arabic": "الرقص الشعبي ابتدى",
+          "transliteration": "er-ra2S esh-sha3bi ebtada"
+        },
+        {
+          "slot": "who-s-invited-to-the-wedding",
+          "arabic": "مين معزوم على الفرح؟",
+          "transliteration": "meen ma3zoom 3al-fara7?"
+        },
+        {
+          "slot": "what-gift-did-you-bring-them",
+          "arabic": "جبتلهم إيه هدية؟",
+          "transliteration": "gebtilhum eeh hediyya?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "هالة",
+          "arabic": "مبروك يا دينا! سمعت إن فرح أخوكي يوم الجمعة",
+          "transliteration": "mabrook ya deena! semi3t enn fara7 akhooki yoom el-gum3a",
+          "english": "Congratulations Dina! I heard your brother's wedding is on Friday"
+        },
+        {
+          "speaker": "دينا",
+          "arabic": "الله يبارك فيكي يا هالة، أيوه إن شاء الله",
+          "transliteration": "allah yebaarek feeki ya haala, aywa in shaa2 allah",
+          "english": "God bless you, Hala, yes God willing"
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "ربنا يسعدكم. بيجهزوا للفرح من زمان بقى؟",
+          "transliteration": "rabbina yes3edkum. beyegahhezu lel-fara7 min zamaan ba2a?",
+          "english": "May God make you happy. Have they been preparing for a while?"
+        },
+        {
+          "speaker": "دينا",
+          "arabic": "أيوه، من شهرين. وكوشة الفرح حلوة أوي",
+          "transliteration": "aywa, min shahreen. w-kooshet el-fara7 7elwa awi",
+          "english": "Yes, two months. And the stage decoration is so beautiful"
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "والعروسة هتلبس إيه؟",
+          "transliteration": "wel-3aroosa hatelbes eeh?",
+          "english": "And what will the bride wear?"
+        },
+        {
+          "speaker": "دينا",
+          "arabic": "فستان أبيض تحفة، شفتها لابساه امبارح",
+          "transliteration": "festaan abyaD to7fa, shoftaha laabsaa embaare7",
+          "english": "A stunning white dress, I saw her in it yesterday"
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "وهتعملوا زفة؟",
+          "transliteration": "w-hate3malu zaffa?",
+          "english": "And will you have a procession?"
+        },
+        {
+          "speaker": "دينا",
+          "arabic": "طبعاً، الزفة جاية بالطبل والمزمار قدام القاعة",
+          "transliteration": "Tab3an, ez-zaffa gayya biT-Tabl wel-mizmaar 2oddaam el-2aa3a",
+          "english": "Of course, the procession comes with drum and pipe in front of the hall"
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "مين معزوم على الفرح؟",
+          "transliteration": "meen ma3zoom 3al-fara7?",
+          "english": "Who's invited to the wedding?"
+        },
+        {
+          "speaker": "دينا",
+          "arabic": "العيلة كلها والجيران، وإنتي طبعاً",
+          "transliteration": "el-3eela kolloha wel-giraan, w-enti Tab3an",
+          "english": "The whole family and the neighbours, and you of course"
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "وأنا هجيب لهم إيه هدية؟",
+          "transliteration": "w-ana hagiblohum eeh hediyya?",
+          "english": "And what gift should I bring them?"
+        },
+        {
+          "speaker": "دينا",
+          "arabic": "يكفي إنك تيجي، بس هما محتاجين حاجات للبيت",
+          "transliteration": "yekfi enn-ek teegi, bass humma me7taageen 7agaat lel-beet",
+          "english": "Just coming is enough, but they need things for the house"
+        },
+        {
+          "speaker": "هالة",
+          "arabic": "تمام، وعقبالك يا دينا",
+          "transliteration": "tamaam, w-3o2baalek ya deena",
+          "english": "Alright, and may it be your turn, Dina"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مبروك",
+            "transliteration": "mabrook",
+            "english": "Congratulations"
+          },
+          "response": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ربنا يسعدكم",
+            "transliteration": "rabbina yes3edkum",
+            "english": "May God make you happy"
+          },
+          "response": {
+            "arabic": "ويسعدك",
+            "transliteration": "w-yes3edak",
+            "english": "And may He make you happy"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عقبالك",
+            "transliteration": "3o2baalak",
+            "english": "May it be your turn next"
+          },
+          "response": {
+            "arabic": "يا رب",
+            "transliteration": "ya rabb",
+            "english": "God willing"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الفرح بتاعهم امتى؟",
+            "transliteration": "el-fara7 betaa3hum emta?",
+            "english": "When is their wedding?"
+          },
+          "response": {
+            "arabic": "يوم الجمعة إن شاء الله",
+            "transliteration": "yoom el-gum3a in shaa2 allah",
+            "english": "Friday, God willing"
+          }
+        }
+      ],
+      "culture": "الفرح المصري غالباً بيبقى فيه زفة بالطبل والمزمار وكوشة بيقعد عليها العروسة والعريس. المعازيم بيدّوا العرسان نقوط أو هدية، وبيقولوا للعزّاب \"عقبالك\".",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "حد قالك \"ربنا يسعدكم\"، ترد إيه؟",
+          "answer": "ويسعدك",
+          "accepted": [
+            "ويسعدك",
+            "w-yes3edak",
+            "الله يبارك فيك",
+            "ويسعدكم",
+            "w-yes3edkum"
+          ],
+          "too_formal": {
+            "item": "أسعدك الله كما أسعدتنا",
+            "feedback": "دعاء فصيح مصنوع، مش بيتقال في الكلام اليومي."
+          },
+          "tip": "\"ويسعدك\" ردّ سريع بيتقال لأي حد."
+        },
+        {
+          "id": "unit-14.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "حد قالك \"عقبالك\"، ترد إيه؟",
+          "answer": "يا رب",
+          "accepted": [
+            "يا رب",
+            "ya rabb",
+            "يا رب وعقبالك",
+            "ياا رب",
+            "ya rabb w-3o2baalak"
+          ],
+          "too_formal": {
+            "item": "آمين وعقبال كل الشباب",
+            "feedback": "رد مطوّل ومش بيتقال عادةً."
+          },
+          "tip": "\"عقبالك\" معناها \"إن شاء الله يجيلك نفس الفرح\"."
+        },
+        {
+          "id": "unit-14.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "الفرح ____ امتى؟ (their)",
+          "answer": "بتاعهم",
+          "accepted": [
+            "بتاعهم",
+            "betaa3hum",
+            "بتاعهم امتى",
+            "بتاعُهم"
+          ],
+          "too_formal": {
+            "item": "موعد زفافهم",
+            "feedback": "\"موعد زفافهم\" صياغة فصيحة رسمية."
+          },
+          "tip": "\"بتاع\" معناها \"يخص\" وبتتصرّف: بتاعي، بتاعك، بتاعهم."
+        },
+        {
+          "id": "unit-14.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "هي لبست فستان ____",
+          "answer": "أبيض",
+          "accepted": [
+            "أبيض",
+            "abyaD",
+            "ابيض",
+            "أبيض حلو"
+          ],
+          "too_formal": {
+            "item": "ارتدت فستاناً أبيض",
+            "feedback": "\"ارتدت\" فصحى، بالمصري \"لبست\"."
+          },
+          "tip": "\"فستان\" مذكّر في المصري، فالصفة \"أبيض\" مذكّر."
+        },
+        {
+          "id": "unit-14.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Congratulations on the wedding",
+          "answer": "مبروك الفرح",
+          "accepted": [
+            "مبروك الفرح",
+            "mabrook el-fara7",
+            "مبروك عليكم الفرح",
+            "مبروك الفرح عليكم"
+          ],
+          "too_formal": {
+            "item": "بارك الله لكما وجمع بينكما في خير",
+            "feedback": "دعاء فصيح بيتقال في عقد القران، مش كلام الفرح اليومي."
+          },
+          "tip": "\"فرح\" في مصر معناها حفلة الزفاف نفسها."
+        },
+        {
+          "id": "unit-14.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Who's invited to the wedding?",
+          "answer": "مين معزوم على الفرح؟",
+          "accepted": [
+            "مين معزوم على الفرح؟",
+            "meen ma3zoom 3al-fara7",
+            "مين معزوم عالفرح",
+            "مين اللي معزوم على الفرح"
+          ],
+          "too_formal": {
+            "item": "من المدعوون إلى حفل الزفاف؟",
+            "feedback": "جملة فصيحة رسمية، مش الكلام اللي بيتقال."
+          },
+          "tip": "\"معزوم\" معناها مدعو، ومنها \"عزومة\"."
+        },
+        {
+          "id": "unit-14.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "إيه اللي بيمشي فيه العرسان بالطبل والمزمار في الأول؟",
+          "answer": "الزفة",
+          "accepted": [
+            "الزفة",
+            "ez-zaffa",
+            "زفة",
+            "الزفه"
+          ],
+          "too_formal": {
+            "item": "الموكب",
+            "feedback": "\"موكب\" كلمة فصيحة عامة."
+          },
+          "tip": "الزفة بتبقى في أول الفرح أو قبل دخول القاعة.",
+          "options": [
+            "الزفة",
+            "الكوشة",
+            "الدبلة",
+            "الصالة"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "إيه اسم المكان اللي بيقعد عليه العروسة والعريس في الفرح؟",
+          "answer": "الكوشة",
+          "accepted": [
+            "الكوشة",
+            "el-koosha",
+            "كوشة",
+            "الكوشه"
+          ],
+          "too_formal": {
+            "item": "منصة العرسان",
+            "feedback": "وصف فصيح، مش الكلمة المصرية."
+          },
+          "tip": "\"كوشة\" كلمة مصرية شهيرة للمنصة المزيّنة.",
+          "options": [
+            "الكوشة",
+            "الزفة",
+            "السجادة",
+            "الحلبة"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "رتّب: They're preparing for the wedding",
+          "answer": "بيجهزوا للفرح",
+          "accepted": [
+            "بيجهزوا للفرح",
+            "beyegahhezu lel-fara7",
+            "بيجهزوا الفرح",
+            "بيحضّروا للفرح"
+          ],
+          "too_formal": {
+            "item": "يستعدون لحفل الزفاف",
+            "feedback": "\"يستعدون\" و\"حفل الزفاف\" فصحى."
+          },
+          "tip": "\"بي\" في أول الفعل علامة المضارع للغائبين.",
+          "words": [
+            "بيجهزوا",
+            "للفرح"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "رتّب: What gift did you bring them?",
+          "answer": "جبتلهم إيه هدية",
+          "accepted": [
+            "جبتلهم إيه هدية",
+            "gebtilhum eeh hediyya",
+            "جبتلهم إيه",
+            "جبت لهم إيه هدية"
+          ],
+          "too_formal": {
+            "item": "ماذا أحضرت لهم هدية؟",
+            "feedback": "\"أحضرت\" فصحى، بالمصري \"جبت\"."
+          },
+          "tip": "\"جبت\" من \"جاب\" يعني أحضر.",
+          "words": [
+            "جبتلهم",
+            "إيه",
+            "هدية"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "happy-birthday",
+          "arabic": "عيد ميلاد سعيد",
+          "transliteration": "3eed meelaad sa3eed",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "happy-birthday-lit-every-year-you-re-well",
+          "arabic": "كل سنة وانت طيب",
+          "transliteration": "kol sana w-enta Tayyeb",
+          "reply": {
+            "arabic": "وانت طيب",
+            "transliteration": "w-enta Tayyeb",
+            "english": "And you be well too"
+          }
+        },
+        {
+          "slot": "congratulations-on-your-success",
+          "arabic": "مبروك النجاح",
+          "transliteration": "mabrook en-nagaa7",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "congratulations-on-the-promotion",
+          "arabic": "مبروك الترقية",
+          "transliteration": "mabrook et-tar2iyya",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "congratulations-on-the-newborn",
+          "arabic": "مبروك المولود",
+          "transliteration": "mabrook el-mawlood",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "congratulations-on-the-new-house",
+          "arabic": "مبروك البيت الجديد",
+          "transliteration": "mabrook el-beet el-gedeed",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "we-re-preparing-the-cake",
+          "arabic": "بنجهّز التورتة",
+          "transliteration": "benegahhez et-torta"
+        },
+        {
+          "slot": "blow-out-the-candles",
+          "arabic": "طفّي الشمع",
+          "transliteration": "Taffi esh-sham3"
+        },
+        {
+          "slot": "how-old-did-you-turn",
+          "arabic": "بقيت كام سنة؟",
+          "transliteration": "ba2eet kaam sana?"
+        },
+        {
+          "slot": "what-gift-do-you-want",
+          "arabic": "عايز هدية إيه؟",
+          "transliteration": "3ayez hediyya eeh?"
+        },
+        {
+          "slot": "birthday-party",
+          "arabic": "حفلة عيد ميلاد",
+          "transliteration": "ha2let 3eed meelaad"
+        },
+        {
+          "slot": "may-god-lengthen-your-life",
+          "arabic": "ربنا يطوّل عمرك",
+          "transliteration": "rabbina yeTawwel 3omrak",
+          "reply": {
+            "arabic": "ربنا يخليك",
+            "transliteration": "rabbina yekhalleek",
+            "english": "God keep you"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "كريم",
+          "arabic": "كل سنة وانت طيب يا يوسف! عيد ميلاد سعيد",
+          "transliteration": "kol sana w-enta Tayyeb ya yoosef! 3eed meelaad sa3eed",
+          "english": "Happy birthday Youssef, may you be well every year!"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "الله يبارك فيك يا كريم، ميرسي إنك جيت",
+          "transliteration": "allah yebaarek feek ya kareem, mersi enn-ak geet",
+          "english": "God bless you Karim, thanks for coming"
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "ده واجب. بقيت كام سنة؟",
+          "transliteration": "da waagib. ba2eet kaam sana?",
+          "english": "It's a duty. How old did you turn?"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "بقيت تلاتين، الوقت بيجري",
+          "transliteration": "ba2eet talateen, el-wa2t beyegri",
+          "english": "I turned thirty, time flies"
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "ربنا يطوّل عمرك. طيب فين التورتة؟",
+          "transliteration": "rabbina yeTawwel 3omrak. Tayyeb feen et-torta?",
+          "english": "May God lengthen your life. So where's the cake?"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "ماما بتجهّزها في المطبخ، هتطفّي الشمع معانا",
+          "transliteration": "maama betegahhezha fel-maTbakh, hateTaffi esh-sham3 ma3aana",
+          "english": "Mum is preparing it in the kitchen, you'll blow the candles with us"
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "طيب لما تيجي، طفّي الشمع وتمنّى أمنية",
+          "transliteration": "Tayyeb lamma teegi, Taffi esh-sham3 w-etmanna omniyya",
+          "english": "Fine, when it comes, blow out the candles and make a wish"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "حاضر. وإنت جبتلي إيه هدية؟",
+          "transliteration": "7aaDer. w-enta gebtili eeh hediyya?",
+          "english": "Okay. And what gift did you bring me?"
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "ده سر! هتفتحها بعد الحفلة",
+          "transliteration": "da serr! hatefta7ha ba3d el-ha2la",
+          "english": "It's a secret! You'll open it after the party"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "ماشي. تعالى نقعد، الحفلة هتبدأ",
+          "transliteration": "maashi. ta3aala ne23od, el-ha2la hatebda",
+          "english": "Alright. Come sit, the party is about to start"
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "وبالمرة مبروك الترقية، سمعت إنك اترقّيت!",
+          "transliteration": "w-bel-marra mabrook et-tar2iyya, semi3t enn-ak etra22eet!",
+          "english": "And while I'm at it, congratulations on the promotion, I heard you got promoted!"
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "الله يبارك فيك، كله بفضل ربنا",
+          "transliteration": "allah yebaarek feek, kolloh bi-faDl rabbina",
+          "english": "God bless you, it's all by God's grace"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عيد ميلاد سعيد",
+            "transliteration": "3eed meelaad sa3eed",
+            "english": "Happy birthday"
+          },
+          "response": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كل سنة وانت طيب",
+            "transliteration": "kol sana w-enta Tayyeb",
+            "english": "May you be well every year"
+          },
+          "response": {
+            "arabic": "وانت طيب",
+            "transliteration": "w-enta Tayyeb",
+            "english": "And you be well too"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مبروك المولود",
+            "transliteration": "mabrook el-mawlood",
+            "english": "Congratulations on the newborn"
+          },
+          "response": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "allah yebaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ربنا يطوّل عمرك",
+            "transliteration": "rabbina yeTawwel 3omrak",
+            "english": "May God lengthen your life"
+          },
+          "response": {
+            "arabic": "ربنا يخليك",
+            "transliteration": "rabbina yekhalleek",
+            "english": "God keep you"
+          }
+        }
+      ],
+      "culture": "في مصر عيد الميلاد بيتحتفل بيه بتورتة وشمع وبلالين، وكل مناسبة سعيدة بتتقابل بـ \"مبروك\" و\"كل سنة وانت طيب\". وللمولود الجديد فيه السبوع، وهو احتفال بيتعمل في اليوم السابع من ولادته.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "حد قالك \"كل سنة وانت طيب\" في عيد ميلادك، ترد إيه؟",
+          "answer": "وانت طيب",
+          "accepted": [
+            "وانت طيب",
+            "w-enta Tayyeb",
+            "وانتي طيبة",
+            "الله يبارك فيك",
+            "allah yebaarek feek"
+          ],
+          "too_formal": {
+            "item": "وأنت بخير وسلامة",
+            "feedback": "صيغة فصيحة مش بتتقال في الكلام اليومي."
+          },
+          "tip": "\"طيب\" للراجل و\"طيبة\" للست."
+        },
+        {
+          "id": "unit-14.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "حد قالك \"مبروك المولود\"، ترد إيه؟",
+          "answer": "الله يبارك فيك",
+          "accepted": [
+            "الله يبارك فيك",
+            "allah yebaarek feek",
+            "ربنا يبارك فيك",
+            "الله يبارك فيكم",
+            "allah yebaarek feekum"
+          ],
+          "too_formal": {
+            "item": "بارك الله لك في الموهوب",
+            "feedback": "دعاء فصيح قديم، مش بيتقال في الكلام اليومي."
+          },
+          "tip": "نفس الرد بيتقال على أي \"مبروك\"."
+        },
+        {
+          "id": "unit-14.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "____ الشمع",
+          "answer": "طفّي",
+          "accepted": [
+            "طفّي",
+            "Taffi",
+            "اطفي",
+            "طفي"
+          ],
+          "too_formal": {
+            "item": "أطفئ",
+            "feedback": "\"أطفئ\" فصحى، بالمصري \"طفّي\"."
+          },
+          "tip": "\"طفّي\" أمر للراجل وللست بنفس الشكل."
+        },
+        {
+          "id": "unit-14.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "ربنا يطوّل ____",
+          "answer": "عمرك",
+          "accepted": [
+            "عمرك",
+            "3omrak",
+            "عمرك يا رب",
+            "عمره"
+          ],
+          "too_formal": {
+            "item": "أطال الله في عمرك",
+            "feedback": "دعاء فصيح، بالمصري بنقول \"ربنا يطوّل عمرك\"."
+          },
+          "tip": "\"عمر\" معناها العمر، و\"ك\" ضمير المخاطب."
+        },
+        {
+          "id": "unit-14.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "How old did you turn?",
+          "answer": "بقيت كام سنة؟",
+          "accepted": [
+            "بقيت كام سنة؟",
+            "ba2eet kaam sana",
+            "بقيت كام",
+            "بقيتي كام سنة"
+          ],
+          "too_formal": {
+            "item": "كم بلغت من العمر؟",
+            "feedback": "\"بلغت\" فصحى، بالمصري \"بقيت\"."
+          },
+          "tip": "\"بقيت\" معناها \"أصبحت\"."
+        },
+        {
+          "id": "unit-14.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Congratulations on the new house",
+          "answer": "مبروك البيت الجديد",
+          "accepted": [
+            "مبروك البيت الجديد",
+            "mabrook el-beet el-gedeed",
+            "مبروك الشقة الجديدة",
+            "مبروك البيت الجديد عليك"
+          ],
+          "too_formal": {
+            "item": "بارك الله لك في مسكنك الجديد",
+            "feedback": "دعاء فصيح، بالمصري \"مبروك البيت الجديد\"."
+          },
+          "tip": "\"جديد\" بتتنطق \"gedeed\" بجيم زي gate."
+        },
+        {
+          "id": "unit-14.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "إيه اللي بنطفّيه في عيد الميلاد؟",
+          "answer": "الشمع",
+          "accepted": [
+            "الشمع",
+            "esh-sham3",
+            "شمع",
+            "الشموع"
+          ],
+          "too_formal": {
+            "item": "الشموع",
+            "feedback": "\"الشموع\" جمع فصيح، بالمصري بنقول \"الشمع\"."
+          },
+          "tip": "\"شمع\" بتتقال للجمع والمفرد.",
+          "options": [
+            "الشمع",
+            "النور",
+            "التورتة",
+            "البلالين"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "إيه اللي بتقوله لواحد اترقّى في شغله؟",
+          "answer": "مبروك الترقية",
+          "accepted": [
+            "مبروك الترقية",
+            "mabrook et-tar2iyya",
+            "مبروك الترقيه",
+            "مبروك عليك الترقية"
+          ],
+          "too_formal": {
+            "item": "بارك الله لك في منصبك الجديد",
+            "feedback": "دعاء فصيح مش بيتقال في المكتب."
+          },
+          "tip": "\"الترقية\" بتتنطق بالهمزة بدل القاف: tar2iyya.",
+          "options": [
+            "مبروك الترقية",
+            "عقبال العيد",
+            "رمضان كريم",
+            "ربنا يتقبل"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "رتّب: What gift do you want?",
+          "answer": "عايز هدية إيه",
+          "accepted": [
+            "عايز هدية إيه",
+            "3ayez hediyya eeh",
+            "عايزة هدية إيه",
+            "عايز إيه هدية"
+          ],
+          "too_formal": {
+            "item": "أي هدية تريد؟",
+            "feedback": "\"تريد\" فصحى، بالمصري \"عايز\"."
+          },
+          "tip": "\"عايز\" للراجل و\"عايزة\" للست.",
+          "words": [
+            "عايز",
+            "هدية",
+            "إيه"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "رتّب: Blow out the candles",
+          "answer": "طفّي الشمع",
+          "accepted": [
+            "طفّي الشمع",
+            "Taffi esh-sham3",
+            "اطفي الشمع",
+            "طفي الشمع"
+          ],
+          "too_formal": {
+            "item": "أطفئ الشموع",
+            "feedback": "\"أطفئ الشموع\" فصحى."
+          },
+          "tip": "\"الشمع\" بتتقال للجمع بالمصري.",
+          "words": [
+            "طفّي",
+            "الشمع"
+          ]
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "هنّي صاحبك على مناسبته",
+    "instructions": "اختار مناسبة (عيد، رمضان، فرح، أو عيد ميلاد) واكتب حوار قصير بينك وبين صاحبك، تهنّيه فيه وهو يرد عليك.",
+    "required_elements": [
+      "تهنئة مناسبة للمناسبة اللي اخترتها",
+      "رد طبيعي على التهنئة",
+      "سؤال عن تفاصيل المناسبة (وقت أو مكان أو ناس)",
+      "دعاء زي \"عقبال\" أو \"ربنا يسعدكم\" أو \"يا رب\""
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "خالد",
+          "arabic": "مبروك يا أبو ليث، سمعت إن الشقة الجديدة جاهزة!",
+          "transliteration": "mabrook ya abu leith, semi3t enn esh-sha22a el-gedeeda gahza!",
+          "english": "Congratulations Abu Leith, I heard the new flat is ready!"
+        },
+        {
+          "speaker": "أبو ليث",
+          "arabic": "الله يبارك فيك يا خالد",
+          "transliteration": "allah yebaarek feek ya khaaled",
+          "english": "God bless you Khaled"
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "مبروك الشقة الجديدة، هي فين بالظبط؟",
+          "transliteration": "mabrook esh-sha22a el-gedeeda, heyya feen biZ-ZabT?",
+          "english": "Congratulations on the new flat, where exactly is it?"
+        },
+        {
+          "speaker": "أبو ليث",
+          "arabic": "في مدينة نصر، جنب أهلي",
+          "transliteration": "fi madeenet naSr, ganb ahli",
+          "english": "In Nasr City, next to my family"
+        },
+        {
+          "speaker": "خالد",
+          "arabic": "ربنا يسعدكم فيها، وعقبالي أنا كمان",
+          "transliteration": "rabbina yes3edkum feeha, w-3o2baali ana kamaan",
+          "english": "May God make you happy in it, and may it be my turn too"
+        },
+        {
+          "speaker": "أبو ليث",
+          "arabic": "يا رب يا خالد، وتيجي تزورنا",
+          "transliteration": "ya rabb ya khaaled, w-teegi tezoorna",
+          "english": "God willing Khaled, and come visit us"
+        }
+      ]
+    }
+  }
+}

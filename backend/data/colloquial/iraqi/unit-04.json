@@ -1,0 +1,1672 @@
+{
+  "unit": "unit-04",
+  "dialect": "Iraqi Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "ch": "چ",
+    "g": "گ (ق في الكلمات العراقية)",
+    "j": "ج",
+    "3": "ع",
+    "7": "ح",
+    "6": "ط",
+    "2": "ء",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "what-would-you-like-to-drink-to-a-man",
+          "arabic": "شتريد تشرب؟",
+          "transliteration": "shtreed tishrab?",
+          "reply": {
+            "arabic": "گهوة، لو سمحت",
+            "transliteration": "gahwa, law sama7t",
+            "english": "Coffee, please."
+          }
+        },
+        {
+          "slot": "what-would-you-like-to-drink-to-a-woman",
+          "arabic": "شتريدين تشربين؟",
+          "transliteration": "shtreedeen tishrabeen?"
+        },
+        {
+          "slot": "coffee-please",
+          "arabic": "گهوة، لو سمحت",
+          "transliteration": "gahwa, law sama7t"
+        },
+        {
+          "slot": "tea-please",
+          "arabic": "چاي، لو سمحت",
+          "transliteration": "chaay, law sama7t"
+        },
+        {
+          "slot": "medium-sweet-coffee",
+          "arabic": "گهوة وسط",
+          "transliteration": "gahwa wasat"
+        },
+        {
+          "slot": "coffee-with-no-sugar",
+          "arabic": "گهوة سادة",
+          "transliteration": "gahwa saada"
+        },
+        {
+          "slot": "sweet-coffee",
+          "arabic": "گهوة حلوة",
+          "transliteration": "gahwa 7ilwa"
+        },
+        {
+          "slot": "a-big-cup-of-coffee",
+          "arabic": "فنجان گهوة كبير",
+          "transliteration": "finjaan gahwa kbeer"
+        },
+        {
+          "slot": "i-want-mint-tea",
+          "arabic": "أريد چاي بالنعناع",
+          "transliteration": "areed chaay bil na3na3"
+        },
+        {
+          "slot": "is-there-sugar",
+          "arabic": "أكو سكر؟",
+          "transliteration": "aku sukkar?",
+          "reply": {
+            "arabic": "أكو، هسه أجيبلك",
+            "transliteration": "aku, hassa ajeeblak",
+            "english": "Yes, I'll bring it now."
+          }
+        },
+        {
+          "slot": "i-like-my-coffee-bitter",
+          "arabic": "أحب الگهوة مرة",
+          "transliteration": "a7ibb il gahwa murra"
+        },
+        {
+          "slot": "no-sugar-at-all",
+          "arabic": "بدون سكر أبد",
+          "transliteration": "bidoon sukkar abad"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Saad",
+          "arabic": "هلا، شتريد تشرب؟",
+          "transliteration": "hala, shtreed tishrab?",
+          "english": "Hello, what would you like to drink?"
+        },
+        {
+          "speaker": "Zainab",
+          "arabic": "هلا بيك، عدكم گهوة؟",
+          "transliteration": "hala beek, 3idkum gahwa?",
+          "english": "Hi, do you have coffee?"
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "أكيد، شلون تحبها، وسط لو سادة؟",
+          "transliteration": "akeed, shlon ti7ibha, wasat lo saada?",
+          "english": "Sure, how do you like it, medium or plain?"
+        },
+        {
+          "speaker": "Zainab",
+          "arabic": "وسط، لو سمحت",
+          "transliteration": "wasat, law sama7t",
+          "english": "Medium, please."
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "تمام، هسه أجهزها",
+          "transliteration": "tamaam, hassa ajahhizha",
+          "english": "Okay, I'll get it ready now."
+        },
+        {
+          "speaker": "Zainab",
+          "arabic": "أكو سكر على الميز؟",
+          "transliteration": "aku sukkar 3ala l meez?",
+          "english": "Is there sugar on the table?"
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "لا، هسه أجيبلچ",
+          "transliteration": "la, hassa ajeeblich",
+          "english": "No, I'll bring it to you now."
+        },
+        {
+          "speaker": "Zainab",
+          "arabic": "مشكور، يعطيك العافية",
+          "transliteration": "mashkoor, y3a6eek il 3aafya",
+          "english": "Thank you, may God give you health."
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "تفضلي، گهوتچ",
+          "transliteration": "tfaddali, gahwatich",
+          "english": "Here you go, your coffee."
+        },
+        {
+          "speaker": "Zainab",
+          "arabic": "الله يعافيك، هواية حلوة",
+          "transliteration": "alla y3aafeek, hawaaya 7ilwa",
+          "english": "Bless you, it's really nice."
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "بالعافية",
+          "transliteration": "bil 3aafya",
+          "english": "Enjoy (lit. with wellness)."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شتريد تشرب؟",
+            "transliteration": "shtreed tishrab?",
+            "english": "What would you like to drink?"
+          },
+          "response": {
+            "arabic": "گهوة وسط، لو سمحت",
+            "transliteration": "gahwa wasat, law sama7t",
+            "english": "Medium coffee, please."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "گهوة لو چاي؟",
+            "transliteration": "gahwa lo chaay?",
+            "english": "Coffee or tea?"
+          },
+          "response": {
+            "arabic": "چاي بالنعناع، إذا أكو",
+            "transliteration": "chaay bil na3na3, iza aku",
+            "english": "Mint tea, if there is any."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تحبها حلوة لو سادة؟",
+            "transliteration": "ti7ibha 7ilwa lo saada?",
+            "english": "Do you like it sweet or plain?"
+          },
+          "response": {
+            "arabic": "سادة، ما أحب السكر",
+            "transliteration": "saada, ma a7ibb is sukkar",
+            "english": "Plain, I don't like sugar."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أكو سكر؟",
+            "transliteration": "aku sukkar?",
+            "english": "Is there sugar?"
+          },
+          "response": {
+            "arabic": "أكيد، هسه أجيبلك",
+            "transliteration": "akeed, hassa ajeeblak",
+            "english": "Sure, I'll bring it now."
+          }
+        }
+      ],
+      "culture": "Offering tea to a guest is the first move of Iraqi hospitality, and chaay (strong, sweet, in a small waisted glass called an istikaan) is far more common than coffee in most homes and cafes. Iraqi coffee, gahwa, is the small bitter cup served at gatherings and after meals.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "شتريد تشرب؟ (shtreed tishrab?)",
+          "answer": "گهوة، لو سمحت",
+          "accepted": [
+            "گهوة، لو سمحت",
+            "قهوة، لو سمحت",
+            "gahwa, law sama7t",
+            "گهوة لو سمحت",
+            "چاي، لو سمحت",
+            "قهوة لو سمحت",
+            "جاي، لو سمحت"
+          ],
+          "too_formal": {
+            "item": "أرغب في فنجان من القهوة من فضلك",
+            "feedback": "That is Modern Standard Arabic; nobody says it that way at a cafe table."
+          },
+          "tip": "law sama7t is the everyday word for please."
+        },
+        {
+          "id": "unit-04.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "أكو سكر؟ (aku sukkar?)",
+          "answer": "أكو، هسه أجيبلك",
+          "accepted": [
+            "أكو، هسه أجيبلك",
+            "aku, hassa ajeeblak",
+            "اكو هسه اجيبلك",
+            "أكيد، هسه أجيبلك"
+          ],
+          "too_formal": {
+            "item": "نعم، سأحضره لك الآن",
+            "feedback": "Correct MSA, but too stiff for a quick answer across a cafe table."
+          },
+          "tip": "hassa means right now."
+        },
+        {
+          "id": "unit-04.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "أريد چاي ___ (areed chaay ___ na3na3), with mint",
+          "answer": "بالنعناع",
+          "accepted": [
+            "بالنعناع",
+            "bil na3na3",
+            "بنعناع",
+            "bi na3na3"
+          ],
+          "too_formal": {
+            "item": "مع النعناع",
+            "feedback": "ma3a is the MSA word for with; Iraqi fuses bi + al into one word."
+          },
+          "tip": "bi- is glued to the noun, there is no separate word for with."
+        },
+        {
+          "id": "unit-04.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "گهوة ___ (gahwa ___), meaning plain, no sugar",
+          "answer": "سادة",
+          "accepted": [
+            "سادة",
+            "saada",
+            "ساده",
+            "بدون سكر"
+          ],
+          "too_formal": {
+            "item": "خالية من السكر",
+            "feedback": "Bookish description; saada is the one word everyone uses."
+          },
+          "tip": "saada is used for coffee and tea alike."
+        },
+        {
+          "id": "unit-04.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Coffee with no sugar at all.",
+          "answer": "گهوة بدون سكر أبد",
+          "accepted": [
+            "گهوة بدون سكر أبد",
+            "قهوة بدون سكر أبد",
+            "gahwa bidoon sukkar abad",
+            "گهوة بلا سكر أبد",
+            "gahwa bala sukkar abad",
+            "قهوة بلا سكر أبد"
+          ],
+          "too_formal": {
+            "item": "قهوة من غير أي سكر على الإطلاق",
+            "feedback": "Grammatically fine MSA, but nobody strings it together this formally in speech."
+          },
+          "tip": "abad at the end means at all, it strengthens the no."
+        },
+        {
+          "id": "unit-04.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "I want mint tea.",
+          "answer": "أريد چاي بالنعناع",
+          "accepted": [
+            "أريد چاي بالنعناع",
+            "أريد جاي بالنعناع",
+            "أريد شاي بالنعناع",
+            "areed chaay bil na3na3",
+            "اريد چاي بنعناع",
+            "اريد جاي بنعناع"
+          ],
+          "too_formal": {
+            "item": "أرغب في شاي بالنعناع",
+            "feedback": "arghab is textbook Arabic; Iraqis say areed for I want, and mean it politely."
+          },
+          "tip": "areed is the everyday I want in Iraqi, not rude."
+        },
+        {
+          "id": "unit-04.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which one means 'bitter coffee'?",
+          "answer": "گهوة مرة",
+          "accepted": [
+            "گهوة مرة",
+            "قهوة مرة",
+            "gahwa murra",
+            "گهوه مره",
+            "قهوه مره"
+          ],
+          "options": [
+            "گهوة مرة",
+            "گهوة حلوة",
+            "گهوة سادة",
+            "گهوة وسط"
+          ],
+          "too_formal": {
+            "item": "قهوة ذات طعم مر",
+            "feedback": "Overexplained; murra alone does the job in speech."
+          },
+          "tip": "murra also means bitter for any taste."
+        },
+        {
+          "id": "unit-04.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "How do you ask 'what would you like to drink?' to a woman?",
+          "answer": "شتريدين تشربين؟",
+          "accepted": [
+            "شتريدين تشربين؟",
+            "shtreedeen tishrabeen?",
+            "شتريدين تشربين",
+            "shtreedeen tishrabeen"
+          ],
+          "options": [
+            "شتريدين تشربين؟",
+            "شتريد تشرب؟",
+            "شتريدون تشربون؟",
+            "شكو تشرب؟"
+          ],
+          "too_formal": {
+            "item": "ماذا تريدين أن تشربي؟",
+            "feedback": "Correct MSA question, too formal for a waiter chatting with a customer."
+          },
+          "tip": "The -een ending marks that you are speaking to a woman."
+        },
+        {
+          "id": "unit-04.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: I like my coffee bitter.",
+          "answer": "أحب الگهوة مرة",
+          "accepted": [
+            "أحب الگهوة مرة",
+            "a7ibb il gahwa murra",
+            "احب القهوة مرة",
+            "أحب القهوة مرة"
+          ],
+          "words": [
+            "أحب",
+            "الگهوة",
+            "مرة"
+          ],
+          "too_formal": {
+            "item": "قهوتي المفضلة مرة",
+            "feedback": "MSA phrasing; the dialect says I like the coffee bitter directly."
+          },
+          "tip": "murra comes last, describing how you like it."
+        },
+        {
+          "id": "unit-04.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: A big cup of coffee.",
+          "answer": "فنجان گهوة كبير",
+          "accepted": [
+            "فنجان گهوة كبير",
+            "فنجان قهوة كبير",
+            "finjaan gahwa kbeer",
+            "فنجان گهوه كبير",
+            "فنجان قهوه كبير"
+          ],
+          "words": [
+            "فنجان",
+            "گهوة",
+            "كبير"
+          ],
+          "too_formal": {
+            "item": "فنجان كبير من القهوة",
+            "feedback": "Fine MSA order but not how it is said casually."
+          },
+          "tip": "kbeer (big) comes after the whole phrase finjaan gahwa."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "where-s-the-menu",
+          "arabic": "وين المنيو؟",
+          "transliteration": "ween il menu?"
+        },
+        {
+          "slot": "do-you-have-an-english-menu",
+          "arabic": "أكو منيو بالانگليزي؟",
+          "transliteration": "aku menu bil ingleezi?",
+          "reply": {
+            "arabic": "أكو، هسه أجيبه",
+            "transliteration": "aku, hassa ajeebah",
+            "english": "Yes, I'll bring it now."
+          }
+        },
+        {
+          "slot": "what-do-you-have-today",
+          "arabic": "شنو عدكم اليوم؟",
+          "transliteration": "shinu 3idkum il yoom?"
+        },
+        {
+          "slot": "what-appetizers-do-you-have",
+          "arabic": "شنو عدكم مقبلات؟",
+          "transliteration": "shinu 3idkum mqabbilaat?"
+        },
+        {
+          "slot": "is-there-vegetarian-food",
+          "arabic": "أكو أكل نباتي؟",
+          "transliteration": "aku akil nabaati?"
+        },
+        {
+          "slot": "what-s-in-this-dish",
+          "arabic": "شنو بهاي الأكلة؟",
+          "transliteration": "shinu bhaay il akla?"
+        },
+        {
+          "slot": "is-it-spicy-or-not-spicy",
+          "arabic": "حار لو مو حار؟",
+          "transliteration": "7aar lo mu 7aar?"
+        },
+        {
+          "slot": "what-do-you-recommend-i-get",
+          "arabic": "شتنصحني آخذ؟",
+          "transliteration": "shtinsa7ni aakhuz?"
+        },
+        {
+          "slot": "how-much-does-this-cost",
+          "arabic": "بيش هاي؟",
+          "transliteration": "beesh haay?"
+        },
+        {
+          "slot": "is-there-a-dish-of-the-day",
+          "arabic": "أكو طبق اليوم؟",
+          "transliteration": "aku 6abaq il yoom?"
+        },
+        {
+          "slot": "i-want-something-light",
+          "arabic": "أريد شي خفيف",
+          "transliteration": "areed shee khafeef"
+        },
+        {
+          "slot": "do-you-have-desserts",
+          "arabic": "عدكم حلويات؟",
+          "transliteration": "3idkum 7alaweeyaat?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ali",
+          "arabic": "السلام عليكم، وين المنيو؟",
+          "transliteration": "is salaamu 3aleykum, ween il menu?",
+          "english": "Peace be upon you, where is the menu?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "وعليكم السلام، تفضل",
+          "transliteration": "w 3aleykum is salaam, tfaddal",
+          "english": "And upon you peace, here you go."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "أكو منيو بالانگليزي؟",
+          "transliteration": "aku menu bil ingleezi?",
+          "english": "Do you have an English menu?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "أكو، هسه أجيبه",
+          "transliteration": "aku, hassa ajeebah",
+          "english": "Yes, I'll bring it now."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "شنو عدكم اليوم؟",
+          "transliteration": "shinu 3idkum il yoom?",
+          "english": "What do you have today?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "اليوم عدنا سمچ مسگوف وكباب",
+          "transliteration": "il yoom 3idna simach masgoof w kabaab",
+          "english": "Today we have masgouf fish and kebab."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "أكو أكل نباتي؟",
+          "transliteration": "aku akil nabaati?",
+          "english": "Is there vegetarian food?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "إي، أكو دولمة وشوربة عدس وفتوش",
+          "transliteration": "ee, aku dolma w shorbat 3adas w fattoosh",
+          "english": "Yes, there is dolma, lentil soup and fattoush."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "شتنصحني آخذ؟",
+          "transliteration": "shtinsa7ni aakhuz?",
+          "english": "What do you recommend I get?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "المسگوف هواية حلو عدنا",
+          "transliteration": "il masgoof hawaaya 7ilu 3idna",
+          "english": "The masgouf is really good with us."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "حار لو مو حار؟",
+          "transliteration": "7aar lo mu 7aar?",
+          "english": "Is it spicy or not spicy?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "مو حار، بس أكو شطة على الجنب",
+          "transliteration": "mu 7aar, bass aku sha66a 3ala l janib",
+          "english": "Not spicy, but there is chili on the side."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أكو منيو بالانگليزي؟",
+            "transliteration": "aku menu bil ingleezi?",
+            "english": "Do you have an English menu?"
+          },
+          "response": {
+            "arabic": "أكو، هسه أجيبه",
+            "transliteration": "aku, hassa ajeebah",
+            "english": "Yes, I'll bring it now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شنو عدكم اليوم؟",
+            "transliteration": "shinu 3idkum il yoom?",
+            "english": "What do you have today?"
+          },
+          "response": {
+            "arabic": "عدنا سمچ مسگوف وكباب",
+            "transliteration": "3idna simach masgoof w kabaab",
+            "english": "We have masgouf fish and kebab."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "حار لو مو حار؟",
+            "transliteration": "7aar lo mu 7aar?",
+            "english": "Is it spicy or not spicy?"
+          },
+          "response": {
+            "arabic": "مو حار، خفيف",
+            "transliteration": "mu 7aar, khafeef",
+            "english": "Not spicy, mild."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بيش هاي؟",
+            "transliteration": "beesh haay?",
+            "english": "How much is this?"
+          },
+          "response": {
+            "arabic": "بخمسة آلاف",
+            "transliteration": "bikhamsat aalaaf",
+            "english": "Five thousand."
+          }
+        }
+      ],
+      "culture": "Masgouf, river fish split open and grilled beside an open fire, is Baghdad's signature restaurant meal, and it is usually ordered by weight. Prices are quoted in dinars, and people often say only the thousands, so five means five thousand.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "أكو منيو بالانگليزي؟ (aku menu bil ingleezi?)",
+          "answer": "أكو، هسه أجيبه",
+          "accepted": [
+            "أكو، هسه أجيبه",
+            "aku, hassa ajeebah",
+            "اكو هسه اجيبه",
+            "إي، هسه أجيبه"
+          ],
+          "too_formal": {
+            "item": "نعم، سأحضره حالا",
+            "feedback": "MSA and stiff; a waiter just says aku, hassa."
+          },
+          "tip": "aku means there is; maaku means there isn't."
+        },
+        {
+          "id": "unit-04.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "حار لو مو حار؟ (7aar lo mu 7aar?)",
+          "answer": "مو حار، خفيف",
+          "accepted": [
+            "مو حار، خفيف",
+            "mu 7aar, khafeef",
+            "مو حار",
+            "mu 7aar",
+            "مو حار خفيف"
+          ],
+          "too_formal": {
+            "item": "ليس حارا، بل خفيف جدا",
+            "feedback": "Correct MSA, but Iraqis say mu for not, not laysa."
+          },
+          "tip": "mu (not) goes right before the word it negates."
+        },
+        {
+          "id": "unit-04.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "___ عدكم اليوم؟ (___ 3idkum il yoom?), what",
+          "answer": "شنو",
+          "accepted": [
+            "شنو",
+            "shinu",
+            "شكو",
+            "shaku"
+          ],
+          "too_formal": {
+            "item": "ماذا",
+            "feedback": "maadha is MSA; Iraqis say shinu for what."
+          },
+          "tip": "shinu is what in Iraqi; it opens most questions."
+        },
+        {
+          "id": "unit-04.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "___ منيو بالانگليزي؟ (___ menu bil ingleezi?), is there",
+          "answer": "أكو",
+          "accepted": [
+            "أكو",
+            "aku",
+            "اكو",
+            "عدكم",
+            "3idkum"
+          ],
+          "too_formal": {
+            "item": "هل يوجد",
+            "feedback": "hal yujad is MSA; aku is the Iraqi there-is."
+          },
+          "tip": "aku is the most Iraqi word there is; it works for anything you are looking for."
+        },
+        {
+          "id": "unit-04.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Is there vegetarian food?",
+          "answer": "أكو أكل نباتي؟",
+          "accepted": [
+            "أكو أكل نباتي؟",
+            "aku akil nabaati?",
+            "اكو اكل نباتي",
+            "عدكم أكل نباتي؟"
+          ],
+          "too_formal": {
+            "item": "هل يتوفر طعام نباتي؟",
+            "feedback": "Correct MSA, but it sounds like a written notice."
+          },
+          "tip": "akil means food; it also covers a dish."
+        },
+        {
+          "id": "unit-04.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "I want something light.",
+          "answer": "أريد شي خفيف",
+          "accepted": [
+            "أريد شي خفيف",
+            "areed shee khafeef",
+            "اريد شي خفيف",
+            "areed shay khafeef"
+          ],
+          "too_formal": {
+            "item": "أريد شيئا خفيفا",
+            "feedback": "Right in MSA; the dialect says shee, not shay'an."
+          },
+          "tip": "shee is the short everyday word for thing."
+        },
+        {
+          "id": "unit-04.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which one asks 'How much is this?'",
+          "answer": "بيش هاي؟",
+          "accepted": [
+            "بيش هاي؟",
+            "beesh haay?",
+            "بيش هاي",
+            "beesh haay"
+          ],
+          "options": [
+            "بيش هاي؟",
+            "شنو هاي؟",
+            "وين هاي؟",
+            "شكو هاي؟"
+          ],
+          "too_formal": {
+            "item": "كم سعر هذا؟",
+            "feedback": "kam si3r hadha is MSA; Iraqis just say beesh."
+          },
+          "tip": "beesh is the market word for how much."
+        },
+        {
+          "id": "unit-04.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which one asks 'What's in this dish?'",
+          "answer": "شنو بهاي الأكلة؟",
+          "accepted": [
+            "شنو بهاي الأكلة؟",
+            "shinu bhaay il akla?",
+            "شنو بهاي الاكلة",
+            "shinu bhaay il akla"
+          ],
+          "options": [
+            "شنو بهاي الأكلة؟",
+            "بيش هاي الأكلة؟",
+            "وين هاي الأكلة؟",
+            "أكو هاي الأكلة؟"
+          ],
+          "too_formal": {
+            "item": "ماذا يوجد في هذا الطبق؟",
+            "feedback": "Correct MSA, but stiff for a quick question to a waiter."
+          },
+          "tip": "haay is this for a feminine noun such as akla."
+        },
+        {
+          "id": "unit-04.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: Is there a dish of the day?",
+          "answer": "أكو طبق اليوم؟",
+          "accepted": [
+            "أكو طبق اليوم؟",
+            "aku 6abaq il yoom?",
+            "اكو طبق اليوم",
+            "أكو طبق اليوم"
+          ],
+          "words": [
+            "أكو",
+            "طبق",
+            "اليوم"
+          ],
+          "too_formal": {
+            "item": "هل هناك طبق لهذا اليوم؟",
+            "feedback": "Textbook style; the dialect keeps it to four words."
+          },
+          "tip": "aku always leads the question."
+        },
+        {
+          "id": "unit-04.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: What do you recommend I get?",
+          "answer": "شتنصحني آخذ؟",
+          "accepted": [
+            "شتنصحني آخذ؟",
+            "shtinsa7ni aakhuz?",
+            "شتنصحني اخذ",
+            "shtinsa7ni aakhuz"
+          ],
+          "words": [
+            "شتنصحني",
+            "آخذ"
+          ],
+          "too_formal": {
+            "item": "ماذا تنصحني أن آخذ؟",
+            "feedback": "Correct MSA; the dialect drops the that-clause and joins the words."
+          },
+          "tip": "sh- plus tinsa7ni is what-you-advise-me, one breath."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "are-you-ready-to-order",
+          "arabic": "جاهز تطلب؟",
+          "transliteration": "jaahiz ti6lub?",
+          "reply": {
+            "arabic": "إي، أريد كباب",
+            "transliteration": "ee, areed kabaab",
+            "english": "Yes, I want kebab."
+          }
+        },
+        {
+          "slot": "i-ll-have-a-plate-of-hummus-and-fattoush",
+          "arabic": "أريد صحن حمص وفتوش",
+          "transliteration": "areed sa7in 7ummus w fattoosh"
+        },
+        {
+          "slot": "i-want-this-and-this",
+          "arabic": "أريد هذا وهذا",
+          "transliteration": "areed haadha w haadha"
+        },
+        {
+          "slot": "please-make-it-quick",
+          "arabic": "بسرعة، لو سمحت",
+          "transliteration": "bsur3a, law sama7t"
+        },
+        {
+          "slot": "without-onion-please",
+          "arabic": "بدون بصل، لو سمحت",
+          "transliteration": "bidoon basal, law sama7t"
+        },
+        {
+          "slot": "extra-bread-please",
+          "arabic": "خبز زايد، لو سمحت",
+          "transliteration": "khubz zaayid, law sama7t"
+        },
+        {
+          "slot": "this-dish-is-for-me-and-this-is-for-her",
+          "arabic": "هذا الطبق إلي وهذا إلها",
+          "transliteration": "haadha l 6abaq ili w haadha ilha"
+        },
+        {
+          "slot": "can-i-have-a-glass-of-water",
+          "arabic": "أگدر آخذ كلاص ماي؟",
+          "transliteration": "agdar aakhuz glaas maay?"
+        },
+        {
+          "slot": "thanks-that-s-good-enough",
+          "arabic": "تسلم، يكفي",
+          "transliteration": "tislam, yikfi"
+        },
+        {
+          "slot": "my-order-hasn-t-arrived-yet",
+          "arabic": "طلبي ما وصل لهسه",
+          "transliteration": "6alabi ma wasal lihassa"
+        },
+        {
+          "slot": "can-you-repeat-the-order",
+          "arabic": "تگدر تعيد الطلب؟",
+          "transliteration": "tigdar ti3eed il 6alab?"
+        },
+        {
+          "slot": "we-want-the-same-order",
+          "arabic": "نريد نفس الطلب",
+          "transliteration": "nireed nafs il 6alab"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Waiter",
+          "arabic": "جاهزين تطلبون؟",
+          "transliteration": "jaahzeen ti6lboon?",
+          "english": "Are you ready to order?"
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "إي، أريد صحن حمص وفتوش",
+          "transliteration": "ee, areed sa7in 7ummus w fattoosh",
+          "english": "Yes, I want a plate of hummus and fattoush."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "والطبق الرئيسي؟",
+          "transliteration": "w il 6abaq ir ra2eesi?",
+          "english": "And for the main course?"
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "أريد هذا، ومرتي تريد هذا",
+          "transliteration": "areed haadha, w marti treed haadha",
+          "english": "I want this one, and my wife wants this one."
+        },
+        {
+          "speaker": "Zainab",
+          "arabic": "بدون بصل، لو سمحت",
+          "transliteration": "bidoon basal, law sama7t",
+          "english": "Without onion, please."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "تمام، شي ثاني؟",
+          "transliteration": "tamaam, shee thaani?",
+          "english": "Okay, anything else?"
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "خبز زايد، وأگدر آخذ كلاص ماي؟",
+          "transliteration": "khubz zaayid, w agdar aakhuz glaas maay?",
+          "english": "Extra bread, and can I have a glass of water?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "أكيد، هسه أجيبهم",
+          "transliteration": "akeed, hassa ajeebhum",
+          "english": "Sure, I'll bring it now."
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "بعد شوية: طلبنا ما وصل لهسه",
+          "transliteration": "ba3d shwayya: 6alabna ma wasal lihassa",
+          "english": "A bit later: our order hasn't arrived yet."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "آسف، هسه يوصل، دقيقتين",
+          "transliteration": "aasif, hassa yoosal, daqeeqtayn",
+          "english": "Sorry, it's coming now, two minutes."
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "تگدر تعيد الطلب حتى نتأكد؟",
+          "transliteration": "tigdar ti3eed il 6alab 7atta nita2akkad?",
+          "english": "Can you repeat the order so we're sure?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "حمص وفتوش، ومشاوي مرتين بدون بصل",
+          "transliteration": "7ummus w fattoosh, w mashaawi marratayn bidoon basal",
+          "english": "Hummus and fattoush, and grilled meat twice without onion."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "جاهز تطلب؟",
+            "transliteration": "jaahiz ti6lub?",
+            "english": "Are you ready to order?"
+          },
+          "response": {
+            "arabic": "إي، أريد كباب وسلطة",
+            "transliteration": "ee, areed kabaab w sala6a",
+            "english": "Yes, I want kebab and salad."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شي ثاني؟",
+            "transliteration": "shee thaani?",
+            "english": "Anything else?"
+          },
+          "response": {
+            "arabic": "خبز زايد، لو سمحت",
+            "transliteration": "khubz zaayid, law sama7t",
+            "english": "Extra bread, please."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بصل لو بدون؟",
+            "transliteration": "basal lo bidoon?",
+            "english": "With onion or without?"
+          },
+          "response": {
+            "arabic": "بدون بصل",
+            "transliteration": "bidoon basal",
+            "english": "Without onion."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أكو شي ثاني؟",
+            "transliteration": "aku shee thaani?",
+            "english": "Is there anything else?"
+          },
+          "response": {
+            "arabic": "تسلم، يكفي",
+            "transliteration": "tislam, yikfi",
+            "english": "Thanks, that's enough."
+          }
+        }
+      ],
+      "culture": "Iraqi tables fill up with shared plates and stacks of samoon or khubz, so asking for zaayid (extra) bread is normal and never rude. Water is called maay, and a polite no-more is tislam, yikfi (thank you, that's enough).",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "جاهز تطلب؟ (jaahiz ti6lub?)",
+          "answer": "إي، أريد كباب",
+          "accepted": [
+            "إي، أريد كباب",
+            "ee, areed kabaab",
+            "اي اريد كباب",
+            "إي، أريد صحن حمص"
+          ],
+          "too_formal": {
+            "item": "نعم، أرغب في طبق من الكباب",
+            "feedback": "MSA; at a table people say ee and areed."
+          },
+          "tip": "ee is the Iraqi yes, the same as na3am but softer."
+        },
+        {
+          "id": "unit-04.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "شي ثاني؟ (shee thaani?)",
+          "answer": "تسلم، يكفي",
+          "accepted": [
+            "تسلم، يكفي",
+            "tislam, yikfi",
+            "تسلم يكفي",
+            "مشكور، يكفي"
+          ],
+          "too_formal": {
+            "item": "شكرا، هذا كاف",
+            "feedback": "Correct MSA, but flat and formal at a meal."
+          },
+          "tip": "tislam (may you be safe) is a warm thank you."
+        },
+        {
+          "id": "unit-04.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "بدون ___ (bidoon ___), without onion",
+          "answer": "بصل",
+          "accepted": [
+            "بصل",
+            "basal",
+            "البصل",
+            "il basal",
+            "بصله"
+          ],
+          "too_formal": {
+            "item": "دون بصل",
+            "feedback": "duuna is MSA; bidoon is what is said."
+          },
+          "tip": "bidoon goes straight before the noun."
+        },
+        {
+          "id": "unit-04.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "أگدر آخذ ___ ماي؟ (agdar aakhuz ___ maay?), a glass of water",
+          "answer": "كلاص",
+          "accepted": [
+            "كلاص",
+            "glaas",
+            "كلاس",
+            "glass",
+            "گلاص",
+            "قلاص"
+          ],
+          "too_formal": {
+            "item": "كأس",
+            "feedback": "ka's is MSA; Iraqis borrow English and say glaas."
+          },
+          "tip": "maay is Iraqi for water; glaas maay is a glass of water."
+        },
+        {
+          "id": "unit-04.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Extra bread, please.",
+          "answer": "خبز زايد، لو سمحت",
+          "accepted": [
+            "خبز زايد، لو سمحت",
+            "khubz zaayid, law sama7t",
+            "خبز زايد لو سمحت",
+            "khubz zaayid law sama7t",
+            "خبز زيادة، لو سمحت"
+          ],
+          "too_formal": {
+            "item": "من فضلك أضف المزيد من الخبز",
+            "feedback": "Too wordy; Iraqis just name the thing and add zaayid."
+          },
+          "tip": "zaayid means extra, more than usual."
+        },
+        {
+          "id": "unit-04.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "My order hasn't arrived yet.",
+          "answer": "طلبي ما وصل لهسه",
+          "accepted": [
+            "طلبي ما وصل لهسه",
+            "6alabi ma wasal lihassa",
+            "طلبي ما وصل لحد هسه",
+            "6alabi ma wasal l7add hassa",
+            "طلبي ما جا لهسه"
+          ],
+          "too_formal": {
+            "item": "لم يصل طلبي بعد",
+            "feedback": "lam yasil is MSA; the dialect uses ma plus the past verb."
+          },
+          "tip": "lihassa means until now, so not yet."
+        },
+        {
+          "id": "unit-04.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which one means 'Without onion, please'?",
+          "answer": "بدون بصل، لو سمحت",
+          "accepted": [
+            "بدون بصل، لو سمحت",
+            "bidoon basal, law sama7t",
+            "بدون بصل لو سمحت",
+            "bidoon basal law sama7t"
+          ],
+          "options": [
+            "بدون بصل، لو سمحت",
+            "بصل زايد، لو سمحت",
+            "بدون خبز، لو سمحت",
+            "بسرعة، لو سمحت"
+          ],
+          "too_formal": {
+            "item": "من دون بصل من فضلك",
+            "feedback": "Correct MSA, but bidoon plus law sama7t is what is said."
+          },
+          "tip": "basal is onion; bidoon is without."
+        },
+        {
+          "id": "unit-04.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which one asks 'Can you repeat the order?'",
+          "answer": "تگدر تعيد الطلب؟",
+          "accepted": [
+            "تگدر تعيد الطلب؟",
+            "تقدر تعيد الطلب؟",
+            "tigdar ti3eed il 6alab?",
+            "تقدر تعيد الطلب",
+            "tigdar ti3eed il 6alab"
+          ],
+          "options": [
+            "تگدر تعيد الطلب؟",
+            "أگدر آخذ الطلب؟",
+            "أكو طلب؟",
+            "شنو الطلب؟"
+          ],
+          "too_formal": {
+            "item": "هل يمكنك إعادة الطلب؟",
+            "feedback": "Correct MSA; tigdar is the natural can you."
+          },
+          "tip": "gaf becomes g in Iraqi: tigdar, not taqdir."
+        },
+        {
+          "id": "unit-04.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: We want the same order.",
+          "answer": "نريد نفس الطلب",
+          "accepted": [
+            "نريد نفس الطلب",
+            "nireed nafs il 6alab",
+            "نريد الطلب نفسه"
+          ],
+          "words": [
+            "نريد",
+            "نفس",
+            "الطلب"
+          ],
+          "too_formal": {
+            "item": "نرغب في الطلب نفسه",
+            "feedback": "Formal phrasing; nafs before the noun is the everyday order."
+          },
+          "tip": "nafs (same) goes before the noun."
+        },
+        {
+          "id": "unit-04.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: I'll have a plate of hummus and fattoush.",
+          "answer": "أريد صحن حمص وفتوش",
+          "accepted": [
+            "أريد صحن حمص وفتوش",
+            "areed sa7in 7ummus w fattoosh",
+            "اريد صحن حمص وفتوش"
+          ],
+          "words": [
+            "أريد",
+            "صحن",
+            "حمص",
+            "وفتوش"
+          ],
+          "too_formal": {
+            "item": "أود تناول طبق من الحمص والفتوش",
+            "feedback": "Too literary; areed plus the plate is all you need."
+          },
+          "tip": "The plate word comes first, then the two dishes joined by w."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "the-bill-please",
+          "arabic": "الحساب، لو سمحت",
+          "transliteration": "il 7isaab, law sama7t"
+        },
+        {
+          "slot": "how-much-is-the-bill",
+          "arabic": "شكد الحساب؟",
+          "transliteration": "shgad il 7isaab?",
+          "reply": {
+            "arabic": "عشرين ألف",
+            "transliteration": "3ishreen alif",
+            "english": "Twenty thousand."
+          }
+        },
+        {
+          "slot": "do-you-take-cash-or-card",
+          "arabic": "تاخذون كاش لو كارت؟",
+          "transliteration": "taakhzoon kaash lo kaart?"
+        },
+        {
+          "slot": "i-m-paying-today",
+          "arabic": "اليوم آني أدفع",
+          "transliteration": "il yoom aani adfa3"
+        },
+        {
+          "slot": "no-i-m-paying",
+          "arabic": "لا، آني أدفع",
+          "transliteration": "la, aani adfa3"
+        },
+        {
+          "slot": "shall-we-split-the-bill",
+          "arabic": "نگسم الحساب؟",
+          "transliteration": "nigsim il 7isaab?"
+        },
+        {
+          "slot": "is-there-a-tip-included-in-the-bill",
+          "arabic": "أكو بخشيش بالحساب؟",
+          "transliteration": "aku bakhsheesh bil 7isaab?"
+        },
+        {
+          "slot": "keep-the-change",
+          "arabic": "خلي الباگي",
+          "transliteration": "khalli l baagi"
+        },
+        {
+          "slot": "thanks-lit-wellness-of-your-heart-it-was-a-tasty",
+          "arabic": "يعطيك العافية، الأكل چان لذيذ",
+          "transliteration": "y3a6eek il 3aafya, il akil chaan lazeez"
+        },
+        {
+          "slot": "can-i-have-the-receipt",
+          "arabic": "أگدر آخذ الوصل؟",
+          "transliteration": "agdar aakhuz il wasil?"
+        },
+        {
+          "slot": "is-there-a-discount-today",
+          "arabic": "أكو تخفيض اليوم؟",
+          "transliteration": "aku takhfeed il yoom?"
+        },
+        {
+          "slot": "bless-your-hands-the-food-was-delicious",
+          "arabic": "تسلم إيدك، الأكل لذيذ",
+          "transliteration": "tislam eedak, il akil lazeez"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Saad",
+          "arabic": "الحساب، لو سمحت",
+          "transliteration": "il 7isaab, law sama7t",
+          "english": "The bill, please."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "حاضر، هسه أجيبه",
+          "transliteration": "7aadir, hassa ajeebah",
+          "english": "Right away, I'll bring it now."
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "شكد الحساب؟",
+          "transliteration": "shgad il 7isaab?",
+          "english": "How much is the bill?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "خمسة وعشرين ألف",
+          "transliteration": "khamsa w 3ishreen alif",
+          "english": "Twenty-five thousand."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "لا، اليوم آني أدفع",
+          "transliteration": "la, il yoom aani adfa3",
+          "english": "No, I'm paying today."
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "لا والله، آني أدفع، إنت دفعت المرة اللي فاتت",
+          "transliteration": "la wallah, aani adfa3, inta dafa3it il marra illi faatat",
+          "english": "No, I swear, I'm paying, you paid last time."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "طيب، نگسم الحساب؟",
+          "transliteration": "6ayyib, nigsim il 7isaab?",
+          "english": "Okay, shall we split the bill?"
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "تمام، تاخذون كاش لو كارت؟",
+          "transliteration": "tamaam, taakhzoon kaash lo kaart?",
+          "english": "Fine, do you take cash or card?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "كاش لو كارت، مثل ما تريدون",
+          "transliteration": "kaash lo kaart, mithil ma treedoon",
+          "english": "Cash or card, as you like."
+        },
+        {
+          "speaker": "Saad",
+          "arabic": "أگدر آخذ الوصل؟ وخلي الباگي",
+          "transliteration": "agdar aakhuz il wasil? w khalli l baagi",
+          "english": "Can I have the receipt? And keep the change."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "مشكور، الله يخليك",
+          "transliteration": "mashkoor, alla ykhalleek",
+          "english": "Thank you, God keep you."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "تسلم إيدك، الأكل لذيذ",
+          "transliteration": "tislam eedak, il akil lazeez",
+          "english": "Bless your hands, the food was delicious."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "الحساب، لو سمحت",
+            "transliteration": "il 7isaab, law sama7t",
+            "english": "The bill, please."
+          },
+          "response": {
+            "arabic": "حاضر، هسه أجيبه",
+            "transliteration": "7aadir, hassa ajeebah",
+            "english": "Right away, I'll bring it now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شكد الحساب؟",
+            "transliteration": "shgad il 7isaab?",
+            "english": "How much is the bill?"
+          },
+          "response": {
+            "arabic": "عشرين ألف",
+            "transliteration": "3ishreen alif",
+            "english": "Twenty thousand."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "اليوم آني أدفع",
+            "transliteration": "il yoom aani adfa3",
+            "english": "I'm paying today."
+          },
+          "response": {
+            "arabic": "لا، آني أدفع",
+            "transliteration": "la, aani adfa3",
+            "english": "No, I'm paying."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تسلم إيدك، الأكل لذيذ",
+            "transliteration": "tislam eedak, il akil lazeez",
+            "english": "Bless your hands, the food was delicious."
+          },
+          "response": {
+            "arabic": "الله يسلمك، بالعافية",
+            "transliteration": "alla ysallmak, bil 3aafya",
+            "english": "God keep you safe, enjoy it."
+          }
+        }
+      ],
+      "culture": "Arguing warmly over who pays is a normal Iraqi ritual, and insisting aani adfa3 (I'm paying) is a sign of generosity, so expect the other person to protest too. Tislam eedak (bless your hands) is the compliment to whoever cooked, and the answer is bil 3aafya or alla ysallmak.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "شكد الحساب؟ (shgad il 7isaab?)",
+          "answer": "عشرين ألف",
+          "accepted": [
+            "عشرين ألف",
+            "3ishreen alif",
+            "عشرين الف",
+            "بعشرين ألف",
+            "20 ألف"
+          ],
+          "too_formal": {
+            "item": "الحساب عشرون ألف دينار",
+            "feedback": "Full MSA form; a waiter says just the number."
+          },
+          "tip": "3ishreen (twenty) is the Iraqi form, not 3ishroon."
+        },
+        {
+          "id": "unit-04.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "تسلم إيدك، الأكل لذيذ (tislam eedak, il akil lazeez)",
+          "answer": "الله يسلمك، بالعافية",
+          "accepted": [
+            "الله يسلمك، بالعافية",
+            "alla ysallmak, bil 3aafya",
+            "بالعافية",
+            "bil 3aafya",
+            "الله يسلمك"
+          ],
+          "too_formal": {
+            "item": "شكرا لك، هنيئا مريئا",
+            "feedback": "Correct but bookish; bil 3aafya is the warm everyday reply."
+          },
+          "tip": "bil 3aafya means with wellness, said to someone eating."
+        },
+        {
+          "id": "unit-04.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "___ لو سمحت (___ law sama7t), the bill",
+          "answer": "الحساب",
+          "accepted": [
+            "الحساب",
+            "il 7isaab",
+            "حساب",
+            "الحساب،",
+            "7isaab"
+          ],
+          "too_formal": {
+            "item": "الفاتورة",
+            "feedback": "faatoora is understood, but 7isaab is what Iraqis ask for."
+          },
+          "tip": "7isaab literally means account or reckoning."
+        },
+        {
+          "id": "unit-04.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "اليوم آني ___ (il yoom aani ___), I'm paying",
+          "answer": "أدفع",
+          "accepted": [
+            "أدفع",
+            "adfa3",
+            "ادفع"
+          ],
+          "too_formal": {
+            "item": "سأدفع أنا",
+            "feedback": "sa-adfa3u ana is MSA; the plain present adfa3 already means I'm paying."
+          },
+          "tip": "aani is the Iraqi I; adding it stresses that it is you."
+        },
+        {
+          "id": "unit-04.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Keep the change.",
+          "answer": "خلي الباگي",
+          "accepted": [
+            "خلي الباگي",
+            "khalli l baagi",
+            "خلّي الباگي",
+            "خلي الباگي إلك",
+            "khalli l baagi ilak",
+            "خلي الباقي",
+            "خلّي الباقي",
+            "خلي الباقي إلك"
+          ],
+          "too_formal": {
+            "item": "احتفظ بالباگي",
+            "feedback": "Correct MSA; khalli is what is said when leaving change."
+          },
+          "tip": "baagi means the rest, also used for the change from a note."
+        },
+        {
+          "id": "unit-04.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Can I have the receipt?",
+          "answer": "أگدر آخذ الوصل؟",
+          "accepted": [
+            "أگدر آخذ الوصل؟",
+            "أقدر آخذ الوصل؟",
+            "agdar aakhuz il wasil?",
+            "اگدر اخذ الوصل",
+            "agdar aakhuz il wasil",
+            "أگدر آخذ وصل؟",
+            "اقدر اخذ الوصل",
+            "أقدر آخذ وصل؟"
+          ],
+          "too_formal": {
+            "item": "هل يمكنني الحصول على الإيصال؟",
+            "feedback": "Correct MSA, but far too stiff for a cafe."
+          },
+          "tip": "wasil is the Iraqi receipt; agdar aakhuz is can I take."
+        },
+        {
+          "id": "unit-04.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which one means 'Shall we split the bill?'",
+          "answer": "نگسم الحساب؟",
+          "accepted": [
+            "نگسم الحساب؟",
+            "نقسم الحساب؟",
+            "nigsim il 7isaab?",
+            "نقسم الحساب",
+            "nigsim il 7isaab"
+          ],
+          "options": [
+            "نگسم الحساب؟",
+            "أدفع الحساب؟",
+            "شكد الحساب؟",
+            "أخذ الحساب؟"
+          ],
+          "too_formal": {
+            "item": "هل نقسم الفاتورة؟",
+            "feedback": "Correct MSA; the dialect says nigsim with a g sound."
+          },
+          "tip": "nigsim starts with n-, the we form."
+        },
+        {
+          "id": "unit-04.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which one asks 'Is there a discount today?'",
+          "answer": "أكو تخفيض اليوم؟",
+          "accepted": [
+            "أكو تخفيض اليوم؟",
+            "aku takhfeed il yoom?",
+            "اكو تخفيض اليوم",
+            "aku takhfeed il yoom",
+            "أكو خصم اليوم؟"
+          ],
+          "options": [
+            "أكو تخفيض اليوم؟",
+            "أكو بخشيش اليوم؟",
+            "شكد التخفيض اليوم؟",
+            "أكو طبق اليوم؟"
+          ],
+          "too_formal": {
+            "item": "هل هناك خصم اليوم؟",
+            "feedback": "Correct MSA, but aku is what is actually said."
+          },
+          "tip": "takhfeed and khasim both mean discount."
+        },
+        {
+          "id": "unit-04.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: No, I'm paying.",
+          "answer": "لا، آني أدفع",
+          "accepted": [
+            "لا، آني أدفع",
+            "la, aani adfa3",
+            "لا آني أدفع",
+            "la aani adfa3"
+          ],
+          "words": [
+            "لا،",
+            "آني",
+            "أدفع"
+          ],
+          "too_formal": {
+            "item": "كلا، سأدفع أنا",
+            "feedback": "kalla and sa-adfa3 are MSA; la, aani adfa3 is spoken."
+          },
+          "tip": "la comes first, then aani, then the verb."
+        },
+        {
+          "id": "unit-04.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: Is there a tip included in the bill?",
+          "answer": "أكو بخشيش بالحساب؟",
+          "accepted": [
+            "أكو بخشيش بالحساب؟",
+            "aku bakhsheesh bil 7isaab?",
+            "اكو بخشيش بالحساب",
+            "aku bakhsheesh bil 7isaab",
+            "أكو بقشيش بالحساب؟"
+          ],
+          "words": [
+            "أكو",
+            "بخشيش",
+            "بالحساب"
+          ],
+          "too_formal": {
+            "item": "هل الإكرامية مشمولة في الفاتورة؟",
+            "feedback": "Correct MSA; bakhsheesh is the everyday word for a tip."
+          },
+          "tip": "bil (in the) is glued to 7isaab."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "At the Restaurant",
+    "instructions": "Have a full conversation ordering a drink and a meal at an Iraqi restaurant, then ask for and settle the bill.",
+    "required_elements": [
+      "Ask what's on the menu or what's recommended",
+      "Order at least one drink and one dish, including one preference (e.g. no onion, extra bread, sweet or plain)",
+      "Ask for the bill and how much it costs",
+      "Say something to close the meal, like a compliment to the food or a thank you"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "You",
+          "arabic": "شتنصحني آخذ؟",
+          "transliteration": "shtinsa7ni aakhuz?",
+          "english": "What do you recommend I get?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "المسگوف هواية حلو عدنا",
+          "transliteration": "il masgoof hawaaya 7ilu 3idna",
+          "english": "The masgouf is really good with us."
+        },
+        {
+          "speaker": "You",
+          "arabic": "تمام، أريد مسگوف وچاي وسط",
+          "transliteration": "tamaam, areed masgoof w chaay wasat",
+          "english": "Okay, I'll have masgouf and a medium-sweet tea."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "بصل لو بدون؟",
+          "transliteration": "basal lo bidoon?",
+          "english": "With onion or without?"
+        },
+        {
+          "speaker": "You",
+          "arabic": "بدون بصل، لو سمحت",
+          "transliteration": "bidoon basal, law sama7t",
+          "english": "Without onion, please."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "تمام، هسه يجهز",
+          "transliteration": "tamaam, hassa yjahhiz",
+          "english": "Okay, coming right up."
+        },
+        {
+          "speaker": "You",
+          "arabic": "الحساب، لو سمحت",
+          "transliteration": "il 7isaab, law sama7t",
+          "english": "The bill, please."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "شكد الحساب؟ عشرين ألف",
+          "transliteration": "shgad il 7isaab? 3ishreen alif",
+          "english": "How much is the bill? Twenty thousand."
+        },
+        {
+          "speaker": "You",
+          "arabic": "تسلم إيدك، الأكل چان لذيذ هواية",
+          "transliteration": "tislam eedak, il akil chaan lazeez hawaaya",
+          "english": "Bless your hands, the food was really delicious."
+        }
+      ]
+    }
+  }
+}
