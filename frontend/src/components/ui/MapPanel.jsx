@@ -160,62 +160,36 @@ export default function MapPanel({ open, onClose }) {
   )
 }
 
-/** The charts as the board shows them: by group, then by id. The arrow keys walk this same order. */
-const GROUPS = []
-for (const chart of CHARTS) {
-  let g = GROUPS.find((x) => x.name === chart.group)
-  if (!g) { g = { name: chart.group, items: [] }; GROUPS.push(g) }
-  g.items.push(chart)
-}
-for (const g of GROUPS) g.items.sort((a, b) => a.id.localeCompare(b.id))
-const ORDER = GROUPS.flatMap((g) => g.items)
+/** Most-linked sciences sit side by side, in pairs down two columns. The arrow keys walk this same order. */
+const LINKED = ['01', '02', '07', '04', '05', '03', '06', '09', '08']
+const ORDER = LINKED.map((id) => CHARTS.find((c) => c.id === id))
 
 /** The nine-card overview: one science per card, click opens its chart. */
 function MapIndex({ onOpen }) {
-
-  // A running index across every card, groups included, so the stagger reads
-  // top to bottom the way the eye does, not restarting at each group.
-  let seen = 0
-
   return (
-    <div className="p-5 max-w-[64rem]">
-      <p className="type-small text-[var(--text-dim)] max-w-[42rem] mb-6">
-        One rule across all nine: every level-2 node is a book-level division of its own science,
-        never a باب lifted from elsewhere. Click a science to see its tree, then any node for what
-        sits inside it.
-      </p>
-      {GROUPS.map((g) => (
-        <section key={g.name} className="mb-7">
-          <h3 className="type-tiny tracking-widest font-bold text-[var(--text-faint)] uppercase mb-2.5">
-            {g.name}
-          </h3>
-          <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(14rem, 1fr))' }}>
-            {g.items.map((chart) => {
-              const delay = seen++
-              const fg = `var(--science-${chart.id})`
-              return (
-                <button
-                  key={chart.id}
-                  type="button"
-                  onClick={() => onOpen(chart.id)}
-                  className="pbs-card pbs-rise text-right p-4 rounded-[var(--radius-md)] border border-[var(--border)]
-                    border-r-4 bg-[var(--surface-hi)]"
-                  style={{ borderRightColor: fg, '--d': `${delay * 55}ms` }}
-                >
-                  <span className="pbs-ghost" style={{ color: fg }} aria-hidden="true">{chart.id}</span>
-                  <span className="pbs-go text-[var(--text-faint)]" aria-hidden="true">↗</span>
-                  <p className="type-tiny tracking-widest font-bold text-[var(--text-faint)] relative">{chart.id}</p>
-                  <ArabicText as="p" size="lg" className="my-0.5 relative" style={{ color: fg }}>
-                    {chart.ar}
-                  </ArabicText>
-                  <p className="type-small text-[var(--text-dim)] relative">{chart.en}</p>
-                  <p className="type-tiny text-[var(--text-faint)] mt-1.5 relative">{chart.frame}</p>
-                </button>
-              )
-            })}
-          </div>
-        </section>
-      ))}
+    <div className="p-5 grid gap-3 md:grid-cols-2">
+      {ORDER.map((chart, delay) => {
+        const fg = `var(--science-${chart.id})`
+        return (
+          <button
+            key={chart.id}
+            type="button"
+            onClick={() => onOpen(chart.id)}
+            className="pbs-card pbs-rise md:last:col-span-2 text-right p-4 rounded-[var(--radius-md)] border border-[var(--border)]
+              border-r-4 bg-[var(--surface-hi)]"
+            style={{ borderRightColor: fg, '--d': `${delay * 55}ms` }}
+          >
+            <span className="pbs-ghost" style={{ color: fg }} aria-hidden="true">{chart.id}</span>
+            <span className="pbs-go text-[var(--text-faint)]" aria-hidden="true">↗</span>
+            <p className="type-tiny tracking-widest font-bold text-[var(--text-faint)] relative">{chart.id}</p>
+            <ArabicText as="p" size="lg" className="my-0.5 relative" style={{ color: fg }}>
+              {chart.ar}
+            </ArabicText>
+            <p className="type-small text-[var(--text-dim)] relative">{chart.en}</p>
+            <p className="type-tiny text-[var(--text-faint)] mt-1.5 relative">{chart.frame}</p>
+          </button>
+        )
+      })}
     </div>
   )
 }

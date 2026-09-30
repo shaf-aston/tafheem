@@ -18,7 +18,7 @@
 export const CHARTS = [
 
 /* ---------------------------------------------------------- 06 */
-{ id:"06", group:"الآلات · Instrumental", ar:"عُلوم اللُّغة", en:"Arabic Language", frame:"البصريون",
+{ id:"06", ar:"عُلوم اللُّغة", en:"Arabic Language", frame:"البصريون",
   config:{
   root:{ar:"عُلوم اللُّغة العَرَبِيَّة", en:"Arabic Language Sciences"},
   footnote:[
@@ -51,7 +51,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 09 */
-{ id:"09", group:"الآلات · Instrumental", ar:"المَنطِق", en:"Logic", frame:"آلة, not a Sharʿī science",
+{ id:"09", ar:"المَنطِق", en:"Logic", frame:"آلة, not a Sharʿī science",
   config:{
   root:{ar:"المَنطِق", en:"Logic"},
   footnote:[
@@ -74,7 +74,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 05 */
-{ id:"05", group:"النَّقل · Revelation", ar:"عُلوم القُرآن", en:"Qur'anic Sciences", frame:"السيوطي / الزركشي",
+{ id:"05", ar:"عُلوم القُرآن", en:"Qur'anic Sciences", frame:"السيوطي / الزركشي",
   config:{
   root:{ar:"عُلوم القُرآن", en:"Qur'anic Sciences"},
   footnote:[
@@ -111,7 +111,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 03 */
-{ id:"03", group:"النَّقل · Revelation", ar:"عُلوم الحَديث", en:"Hadith Sciences", frame:"ابن الصلاح / ابن حجر",
+{ id:"03", ar:"عُلوم الحَديث", en:"Hadith Sciences", frame:"ابن الصلاح / ابن حجر",
   config:{
   root:{ar:"عُلوم الحَديث", en:"Hadith Sciences"},
   footnote:[
@@ -143,7 +143,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 04 */
-{ id:"04", group:"الاعتِقاد · Creed", ar:"العَقيدة", en:"Creed", frame:"الماتريدية",
+{ id:"04", ar:"العَقيدة", en:"Creed", frame:"الماتريدية",
   config:{
   root:{ar:"العَقيدة", en:"Islamic Creed"},
   footnote:[
@@ -184,7 +184,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 02 */
-{ id:"02", group:"الشَّريعة · Law", ar:"أُصول الفِقه", en:"Legal Theory", frame:"Hanafi · طريقة الفقهاء",
+{ id:"02", ar:"أُصول الفِقه", en:"Legal Theory", frame:"Hanafi · طريقة الفقهاء",
   config:{
   root:{ar:"أُصول الفِقه", en:"Legal Theory & Methodology"},
   footnote:[
@@ -220,7 +220,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 01 */
-{ id:"01", group:"الشَّريعة · Law", ar:"الفِقه", en:"Jurisprudence", frame:"Hanafi · القدوري",
+{ id:"01", ar:"الفِقه", en:"Jurisprudence", frame:"Hanafi · القدوري",
   config:{
   root:{ar:"الفِقْه", en:"Islamic Jurisprudence"},
   footnote:[
@@ -268,7 +268,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 07 */
-{ id:"07", group:"الشَّريعة · Law", ar:"القَواعِد الفِقهِيّة", en:"Legal Maxims", frame:"Hanafi · ابن نجيم / المجلة",
+{ id:"07", ar:"القَواعِد الفِقهِيّة", en:"Legal Maxims", frame:"Hanafi · ابن نجيم / المجلة",
   config:{
   root:{ar:"القَواعِد الفِقهِيَّة", en:"Legal Maxims"},
   footnote:[
@@ -304,7 +304,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 08 */
-{ id:"08", group:"السُّلوك · The Path", ar:"التَّزكية", en:"Purification of the Soul", frame:"الغزالي · الإحياء",
+{ id:"08", ar:"التَّزكية", en:"Purification of the Soul", frame:"الغزالي · الإحياء",
   config:{
   root:{ar:"التَّزكِية", en:"Purification of the Soul"},
   footnote:[
