@@ -431,26 +431,51 @@ export default function MemorisePanel({ accent }) {
           </div>
 
           <div className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4">
-            {page.map((line, l) => (
-              <Line
-                key={line.id}
-                line={line}
-                index={l}
-                blanks={blanks}
-                answers={answers}
-                checked={checked}
-                meaning={meaning}
-                choices={choices}
-                accent={accent}
-                recite={way === 'recite'
-                  ? { ...reciting.marks, from: recitedPage.lines[l].from, shown }
-                  : null}
-                // Pressable while listening too: jumping back or ahead must not
-                // mean stopping first. forget() keeps the microphone running.
-                onStartAt={way === 'recite' ? openAt : null}
-                onAnswer={(key, value) => setAnswers((was) => ({ ...was, [key]: value }))}
-              />
-            ))}
+            {/* A flowing book runs its lines on as a printed mushaf does: one
+                block, justified, each ayah ending in its number, and never a
+                new row per ayah, which left short ayahs a gutter of empty space.
+                The last row's leftover space goes to the ::after filler, so
+                only that row sits to the start instead of being stretched. */}
+            <div
+              className={book.flow
+                ? "flex flex-wrap items-baseline justify-between gap-x-2 gap-y-2 after:content-[''] after:flex-auto"
+                : 'space-y-4'}
+              dir="rtl"
+            >
+              {page.map((line, l) => (
+                <Line
+                  key={line.id}
+                  flow={book.flow}
+                  line={line}
+                  index={l}
+                  blanks={blanks}
+                  answers={answers}
+                  checked={checked}
+                  meaning={meaning}
+                  choices={choices}
+                  accent={accent}
+                  recite={way === 'recite'
+                    ? { ...reciting.marks, from: recitedPage.lines[l].from, shown }
+                    : null}
+                  // Pressable while listening too: jumping back or ahead must not
+                  // mean stopping first. forget() keeps the microphone running.
+                  onStartAt={way === 'recite' ? openAt : null}
+                  onAnswer={(key, value) => setAnswers((was) => ({ ...was, [key]: value }))}
+                />
+              ))}
+            </div>
+            {/* Run on, a line has nowhere under it for its English, so the
+                page's translation follows the Arabic, one ayah to a line. */}
+            {book.flow && meaning && (
+              <ol className="space-y-2">
+                {page.filter((line) => line.english).map((line) => (
+                  <li key={line.id} className="type-body text-[var(--text-dim)] leading-relaxed max-w-prose">
+                    <span className="type-small text-[var(--text-faint)] tabular-nums">{withinPart(line.label)}. </span>
+                    {line.english}
+                  </li>
+                ))}
+              </ol>
+            )}
           </div>
 
           {way === 'recite' ? (
@@ -525,7 +550,7 @@ function StepButton({ onClick, disabled, children }) {
  * never of the missing word on its own, so it is a reminder of where you are
  * rather than the answer.
  */
-function Line({ line, index, blanks, answers, checked, meaning, choices, accent, recite, onStartAt, onAnswer }) {
+function Line({ line, flow, index, blanks, answers, checked, meaning, choices, accent, recite, onStartAt, onAnswer }) {
   const words = wordsOf(line.arabic)
   // One width for every typed blank on this line, from the longest recited
   // word among them: sizing each blank to its own answer leaks the length.
@@ -534,13 +559,15 @@ function Line({ line, index, blanks, answers, checked, meaning, choices, accent,
     ...words
       .map((word, w) => (blanks.has(`${index}:${w}`) ? recitedForm(word).length : 0)),
   ) + 1
+  // Flowing, the line's two boxes step aside (display: contents) so its words
+  // join the page's one run; the words themselves are drawn the same either way.
   return (
-    <div className="space-y-1">
+    <div className={flow ? 'contents' : 'space-y-1'}>
       {/* Right to left, wrapping downward, exactly as the line is printed. The
           reference goes last so it sits at the end of the line the way a mushaf
           puts the ayah number, in a right-to-left row, last is leftmost. */}
       <div
-        className="flex flex-wrap items-baseline gap-x-2 gap-y-1"
+        className={flow ? 'contents' : 'flex flex-wrap items-baseline gap-x-2 gap-y-1'}
         dir="rtl"
         data-script={isQuranic(line.arabic) ? 'quran' : undefined}
       >
@@ -597,12 +624,14 @@ function Line({ line, index, blanks, answers, checked, meaning, choices, accent,
             </Fragment>
           )
         })}
-        <span className="type-small text-[var(--text-faint)] shrink-0">{line.label}</span>
+        <span className="type-small text-[var(--text-faint)] shrink-0 tabular-nums">
+          {flow ? `﴿${withinPart(line.label)}﴾` : line.label}
+        </span>
       </div>
       {/* The body size, not a label size: this is the translation being read,
           and it is the same text the surah reader one tab away already sets at
           this size. */}
-      {meaning && line.english && (
+      {!flow && meaning && line.english && (
         <p className="type-body text-[var(--text-dim)] leading-relaxed max-w-prose">
           {line.english}
         </p>
