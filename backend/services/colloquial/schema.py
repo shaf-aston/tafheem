@@ -20,6 +20,9 @@ AnyExercise = Annotated[Union[tuple(PAYLOADS.values())], Field(discriminator="ty
 
 
 class Phrase(BaseModel):
+    # The spine slot a lesson phrase fills, the same in every dialect; empty on
+    # replies and dialogue lines, which fill no slot.
+    slot: str = ""
     arabic: str
     transliteration: str
     english: str
@@ -95,3 +98,23 @@ class DialectCard(BaseModel):
 class Catalogue(BaseModel):
     dialects: list[DialectCard]
     source: Source
+
+
+class Said(BaseModel):
+    slot: str
+    arabic: str
+    transliteration: str
+
+
+class DialectSays(BaseModel):
+    key: str
+    label: str
+    # None while this dialect has not written the unit: shown as coming.
+    phrases: list[Said] | None
+
+
+class Compare(BaseModel):
+    """One lesson's phrases as every dialect says them."""
+    unit: str
+    lesson: str
+    dialects: list[DialectSays]

@@ -288,6 +288,12 @@ export const colloquialUnitQuery = (dialect, unit) => ({
   queryFn: () => api.get(`/colloquial/${encodeURIComponent(dialect)}/${encodeURIComponent(unit)}`).then((r) => r.data),
 })
 
+// One lesson's phrases as every dialect says them, matched by slot.
+export const colloquialCompareQuery = (unit, lesson) => ({
+  queryKey: ['colloquial-compare', unit, lesson],
+  queryFn: () => api.get(`/colloquial/compare/${encodeURIComponent(unit)}/${encodeURIComponent(lesson)}`).then((r) => r.data),
+})
+
 // A phrase picture: `file` is the path the lesson names, like "unit-01/greeting.jpg".
 export const colloquialImageUrl = (file) =>
   `${api.defaults.baseURL}/colloquial/image/${file.split('/').map(encodeURIComponent).join('/')}`

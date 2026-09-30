@@ -18,6 +18,9 @@ import { useSources } from '../../lib/useSources'
 import Disclosure from './Disclosure'
 import Segmented from './Segmented'
 
+// Settings grouped by the module they change, in the order settings.json first names each.
+const SECTIONS = Object.entries(Object.groupBy(SETTINGS, (setting) => setting.section))
+
 export default function SettingsPanel({ open, onClose }) {
   const dialog = useRef(null)
 
@@ -58,11 +61,14 @@ export default function SettingsPanel({ open, onClose }) {
           </button>
         </div>
 
-        <div className="space-y-5">
-          {SETTINGS.map((setting) => (
-            <Setting key={setting.key} setting={setting} />
-          ))}
-        </div>
+        {SECTIONS.map(([section, settings]) => (
+          <section key={section} aria-label={section} className="space-y-4">
+            <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{section}</h3>
+            {settings.map((setting) => (
+              <Setting key={setting.key} setting={setting} />
+            ))}
+          </section>
+        ))}
 
         <SourceList />
 

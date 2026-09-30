@@ -20,7 +20,7 @@ function Act({ kicker, title, children }) {
   )
 }
 
-function Scene({ lesson, number }) {
+function Scene({ lesson, number, place }) {
   const [open, setOpen] = useState(null)
   return (
     <article className="space-y-12">
@@ -31,7 +31,7 @@ function Scene({ lesson, number }) {
       </header>
 
       <Mosaic phrases={lesson.phrases} onOpen={setOpen} />
-      {open !== null && <Sheet phrases={lesson.phrases} at={open} onAt={setOpen} onClose={() => setOpen(null)} />}
+      {open !== null && <Sheet phrases={lesson.phrases} at={open} onAt={setOpen} onClose={() => setOpen(null)} place={place} />}
 
       <Act kicker="On stage" title="Hear it said">
         <Dialogue lines={lesson.dialogue} />
@@ -56,7 +56,8 @@ function Scene({ lesson, number }) {
 export default function UnitView({ unit, at }) {
   return (
     <div className="max-w-3xl mx-auto">
-      <Scene lesson={unit.lessons[at]} number={at + 1} />
+      <Scene lesson={unit.lessons[at]} number={at + 1}
+        place={{ dialect: unit.dialect_key, unit: unit.unit, lesson: unit.lessons[at].lesson }} />
     </div>
   )
 }

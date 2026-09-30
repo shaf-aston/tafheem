@@ -1,24 +1,12 @@
 {
-  "_comment": "Every setting a reader is allowed to change, and exactly what it drives. Adding an entry here adds it to the settings panel, no component is edited. A 'choice' writes its chosen option's 'write' value into one CSS variable. A 'range' writes its own number. A 'switch' either writes the variables under 'off' while it is off, or is read directly by a component (the dictionary's synonyms). Defaults live here, so this file is the whole answer to 'what can be configured'.",
+  "_comment": "Every setting a reader is allowed to change, and exactly what it drives. Adding an entry here adds it to the settings panel, no component is edited. A 'choice' writes its chosen option's 'write' value into one CSS variable. A 'range' writes its own number. A 'switch' either writes the variables under 'off' while it is off, or is read directly by a component (the dictionary's synonyms). 'section' groups a setting under its module in the panel, in first-seen order. Defaults live here, so this file is the whole answer to 'what can be configured'.",
 
   "storage-key": "settings",
 
   "settings": [
     {
-      "key": "study-size",
-      "label": "Study text size",
-      "help": "Arabic and English in Quran, tarkeeb, i'raab and sarf. Nothing else moves.",
-      "type": "choice",
-      "css": "--study-zoom",
-      "default": "normal",
-      "options": [
-        { "id": "small",  "label": "Small",  "write": 0.9 },
-        { "id": "normal", "label": "Normal", "write": 1 },
-        { "id": "large",  "label": "Large",  "write": 1.25 }
-      ]
-    },
-    {
       "key": "motion",
+      "section": "General",
       "label": "Animations",
       "help": "Movement as things appear. Turn off if distracting.",
       "type": "switch",
@@ -32,7 +20,22 @@
       }
     },
     {
+      "key": "study-size",
+      "section": "Reading",
+      "label": "Study text size",
+      "help": "Arabic and English in Quran, tarkeeb, i'raab and sarf. Nothing else moves.",
+      "type": "choice",
+      "css": "--study-zoom",
+      "default": "normal",
+      "options": [
+        { "id": "small",  "label": "Small",  "write": 0.9 },
+        { "id": "normal", "label": "Normal", "write": 1 },
+        { "id": "large",  "label": "Large",  "write": 1.25 }
+      ]
+    },
+    {
       "key": "fusha",
+      "section": "Dictation",
       "label": "Prefer Fusha",
       "help": "Dictation leans to classical Arabic. Off: any Arabic.",
       "type": "switch",
@@ -40,6 +43,7 @@
     },
     {
       "key": "reciting-level",
+      "section": "Reciting",
       "label": "Checking level",
       "help": "How closely your Qur'an reciting is checked, by words and vowels. Beginner forgives a little more. Standard checks closely and marks doubtful words orange to look at again. Tajweed is not checked yet.",
       "type": "choice",
@@ -51,6 +55,7 @@
     },
     {
       "key": "resume-reciting",
+      "section": "Reciting",
       "label": "Carry on where you stopped",
       "help": "Recording again in Memorise continues the same recitation. Off: it starts the page over.",
       "type": "switch",
@@ -58,10 +63,27 @@
     },
     {
       "key": "synonyms",
+      "section": "Dictionary",
       "label": "Show synonyms",
       "help": "Other Arabic words with the same meaning, under each dictionary definition.",
       "type": "switch",
       "default": true
+    },
+    {
+      "key": "colloq-other-dialects",
+      "section": "Colloquial",
+      "label": "Other dialects",
+      "help": "A quiet line under each phrase that shows it in the other dialects.",
+      "type": "switch",
+      "default": true
+    },
+    {
+      "key": "colloq-spelling",
+      "section": "Colloquial",
+      "label": "English-letter spelling",
+      "help": "The sound written in English letters under the Arabic. Off: the Arabic alone.",
+      "type": "switch",
+      "default": false
     }
   ]
 }
