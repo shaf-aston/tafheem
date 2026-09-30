@@ -137,15 +137,14 @@ def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, 
     """(word, card role, leaf role) for each tree leaf whose role differs from its card.
 
     Compared after stripping harakat. Not counted: a leaf or card with no role (a
-    gap); a leaf saying مضاف or موصوف; a leaf saying حرف جر against a card saying
-    حرف (the card has one name for every particle).
+    gap); a leaf saying مضاف or موصوف.
     """
     if not tree or len(tree.get("words") or []) != len(cards):
         return []
     out = []
     for leaf in tree_leaves(tree.get("tree")):
         card, pic = plain_role(cards[leaf["word"]].get("role")), plain_role(leaf.get("role"))
-        if not card or not pic or pic in UNIT_WORDING or (pic, card) == ("حرف جر", "حرف"):
+        if not card or not pic or pic in UNIT_WORDING:
             continue
         if card != pic:
             out.append((leaf["word"], card, pic))

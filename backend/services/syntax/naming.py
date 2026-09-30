@@ -288,6 +288,11 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
                                 if t["head"] == token["id"] and t["form"].startswith("+"))
     named = [name(token, tokens) for token in bases]
+    # a particle with a مجرور under it is a حرف جر: the one name, for card and picture
+    for index, token in enumerate(bases):
+        if token["pos"] == "PRT" and any(
+                named[j] == "مجرور" for j, kid in enumerate(bases) if kid["head"] == token["id"]):
+            named[index] = "حرف جر"
     return [{"role": role, "case": _ending(role, token)} for role, token in zip(named, bases)]
 
 
@@ -297,7 +302,7 @@ def _ending(role: str | None, token: dict) -> str | None:
         # only the present tense takes a case, and only when nothing jazms it
         present = bare_letters(token["typed"])[:1] in PRESENT_PREFIX and token.get("asp") == "i"
         return "raf'" if present and typed_case(token["typed"]) == "u" else "mabni"
-    if role == "حرف":
+    if role in ("حرف", "حرف جر"):
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case

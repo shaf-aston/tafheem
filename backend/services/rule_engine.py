@@ -378,20 +378,19 @@ def _process_tag(
                  "reason": "–", "notes": "", "source": "rule_engine"}, 1.0)
 
     if _is_conjunction(tag):
-        return (_harf_entry(tag, "harf 'atf (حرف عطف)", "حرف عطف مبني لا محل له من الإعراب"), 0.88)
+        return (_harf_entry(tag, "حرف", "حرف عطف مبني لا محل له من الإعراب"), 0.88)
 
     if _is_jarr_particle(tag):
         state["after_jarr"] = True
-        return (_harf_entry(tag, "harf jarr (حرف جر)", "حرف جر مبني لا محل له من الإعراب"), 0.92)
+        return (_harf_entry(tag, "حرف جر", "حرف جر مبني لا محل له من الإعراب"), 0.92)
 
     if _is_inna_sister(tag) and i == 0:
         state["after_inna"] = True
-        return (_harf_entry(tag, "حرف إن وأخواتها (ناسخ)",
+        return (_harf_entry(tag, "حرف",
                            "حرف ناسخ مبني لا محل له من الإعراب، ينصب الاسم ويرفع الخبر"), 0.92)
 
     if pos in ("part", "det"):
-        label = "أداة تعريف" if _bare(tag.get("word", "")) in ("ال", "الـ") else "حرف"
-        return (_harf_entry(tag, label, "مبني لا محل له من الإعراب"), 0.82)
+        return (_harf_entry(tag, "حرف", "مبني لا محل له من الإعراب"), 0.82)
 
     if pos == "pron":
         return _process_pronoun(tag, state, is_verbal)
@@ -409,21 +408,21 @@ def _process_pronoun(tag: dict, state: dict, is_verbal: bool) -> tuple[dict, flo
     """Process pronoun tag."""
     if state["after_jarr"]:
         state["after_jarr"] = False
-        return (_pron_entry(tag, "ضمير متصل في محل جر", "ضمير متصل مبني في محل جر", "harf"), 0.80)
+        return (_pron_entry(tag, "مجرور", "ضمير متصل مبني في محل جر", "harf"), 0.80)
 
     if is_verbal and not state["fa3il_done"]:
         state["fa3il_done"] = True
-        return (_pron_entry(tag, "ضمير في محل رفع فاعل",
+        return (_pron_entry(tag, "فاعل",
                            "ضمير مبني في محل رفع فاعل. القاعدة: الفاعل مرفوع", "fail"), 0.75)
 
-    return (_pron_entry(tag, "ضمير (محله يُحدّس بالسياق)",
+    return (_pron_entry(tag, "–",
                        "ضمير مبني، محله من الإعراب يُحدّد بالسياق", None), 0.60)
 
 
 def _process_verb(tag: dict, state: dict, is_verbal: bool) -> tuple[dict, float]:
     """Process verb tag."""
     if state["verb_done"]:
-        return (_verb_entry(tag, "فعل (جملة فعلية فرعية)", "فعل في جملة فعلية"), 0.65)
+        return (_verb_entry(tag, "فعل", "فعل في جملة فعلية"), 0.65)
 
     asp = tag.get("aspect", "na") or "na"
     roles = {
@@ -444,26 +443,26 @@ def _process_noun(tag: dict, state: dict, is_verbal: bool, tags: list[dict]) -> 
 
     if state["after_jarr"]:
         state["after_jarr"] = False
-        return (_noun_entry(tag, "اسم مجرور",
+        return (_noun_entry(tag, "مجرور",
                            "مجرور بحرف الجر السابق. القاعدة: الاسم بعد حرف الجر مجرور", "harf", force_case="g"), 0.88)
 
     if state["after_inna"] and not state["ism_inna_done"]:
         state["ism_inna_done"] = True
         state["after_inna"] = False
-        return (_noun_entry(tag, "اسم إن (منصوب)",
+        return (_noun_entry(tag, "اسم إن",
                            "منصوب لأنه اسم إن. القاعدة: إن وأخواتها تنصب الاسم", "mubtada", force_case="a"), 0.85)
 
     if state["ism_inna_done"] and not state["khabar_done"] and not is_verbal:
         state["khabar_done"] = True
         state["mubtada_done"] = True
-        return (_noun_entry(tag, "خبر إن (مرفوع)",
+        return (_noun_entry(tag, "خبر إن",
                            "مرفوع لأنه خبر إن. القاعدة: إن وأخواتها ترفع الخبر", "khabar", force_case="n"), 0.82)
 
     if state["ism_inna_done"] and state["khabar_done"] and not is_verbal:
         if pos == "adj":
-            return (_noun_entry(tag, "خبر ثانٍ (مرفوع)",
+            return (_noun_entry(tag, "خبر إن",
                                "مرفوع لأنه خبر ثانٍ لإن. القاعدة: إن وأخواتها ترفع الخبر", "khabar", force_case="n"), 0.75)
-        return (_noun_entry(tag, "اسم (يُحدّد بالسياق)", "يحتاج إلى تحليل سياقي أدق", None), 0.45)
+        return (_noun_entry(tag, "–", "يحتاج إلى تحليل سياقي أدق", None), 0.45)
 
     if is_verbal:
         return _process_noun_verbal(tag, state, tags, pos)
@@ -475,7 +474,7 @@ def _process_noun_verbal(tag: dict, state: dict, tags: list[dict], pos: str) -> 
     """Process noun in verbal sentence (jumlah fi'liyyah)."""
     if not state["fa3il_done"]:
         is_passive = any(t.get("voice") == "p" for t in tags if t.get("pos") == "verb")
-        role = "نائب فاعل (مرفوع)" if is_passive else "فاعل (مرفوع)"
+        role = "نائب فاعل" if is_passive else "فاعل"
         reason = ("مرفوع لأنه نائب فاعل. القاعدة: نائب الفاعل مرفوع"
                  if is_passive else "مرفوع لأنه فاعل. القاعدة: الفاعل مرفوع بالضمة")
         state["fa3il_done"] = True
@@ -484,7 +483,7 @@ def _process_noun_verbal(tag: dict, state: dict, tags: list[dict], pos: str) -> 
     if pos == "adj":
         return (_noun_entry(tag, "صفة", "صفة تتبع موصوفها في الإعراب", "sifah"), 0.72)
 
-    return (_noun_entry(tag, "مفعول به (منصوب)",
+    return (_noun_entry(tag, "مفعول به",
                        "منصوب لأنه مفعول به. القاعدة: المفعول به منصوب بالفتحة", "mafool", force_case="a"), 0.75)
 
 
@@ -492,15 +491,15 @@ def _process_noun_nominal(tag: dict, state: dict, pos: str) -> tuple[dict, float
     """Process noun in nominal sentence (jumlah ismiyyah)."""
     if not state["mubtada_done"]:
         state["mubtada_done"] = True
-        return (_noun_entry(tag, "مبتدأ (مرفوع)",
+        return (_noun_entry(tag, "مبتدأ",
                            "مرفوع لأنه مبتدأ. القاعدة: المبتدأ مرفوع بالضمة الظاهرة", "mubtada", force_case="n"), 0.82)
 
     if not state["khabar_done"]:
         state["khabar_done"] = True
-        return (_noun_entry(tag, "خبر (مرفوع)",
+        return (_noun_entry(tag, "خبر",
                            "مرفوع لأنه خبر. القاعدة: الخبر مرفوع بالضمة الظاهرة", "khabar", force_case="n"), 0.78)
 
     if pos == "adj":
         return (_noun_entry(tag, "صفة", "صفة تتبع موصوفها في الإعراب", "sifah"), 0.68)
 
-    return (_noun_entry(tag, "اسم (يُحدّد بالسياق)", "يحتاج إلى تحليل سياقي أدق", None), 0.45)
+    return (_noun_entry(tag, "–", "يحتاج إلى تحليل سياقي أدق", None), 0.45)

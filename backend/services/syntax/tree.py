@@ -23,8 +23,6 @@ JARR = term_ar("jar_majroor")
 VERBAL = term_ar("jumlah_filiyyah")
 NOMINAL = term_ar("jumlah_ismiyyah")
 QUESTION = term_ar("jumlah_istifhamiyyah")
-# What a particle is called inside the jar-majroor it heads
-JARR_HEAD = "حرف جر"
 
 
 def _leaf(index: int, role: str | None) -> dict:
@@ -53,8 +51,6 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
         return "مضاف"
     if "صفة" in child_roles:
         return "موصوف"
-    if "مجرور" in child_roles:
-        return JARR_HEAD
     return role
 
 
