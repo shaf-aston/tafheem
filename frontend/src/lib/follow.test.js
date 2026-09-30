@@ -55,7 +55,34 @@ describe('reciting it right', () => {
   })
 
   it('gives nothing back for no page', () => {
-    expect(follow([], ['الله'])).toEqual({ at: 0, began: null, words: [], extras: [], started: false })
+    expect(follow([], ['الله'])).toEqual({ at: 0, began: null, words: [], extras: [], started: false, heardTo: null })
+  })
+})
+
+describe('the end of the page, where the next one takes over', () => {
+  // The next page's first words, and a word that is on both pages.
+  const ON = ['بسم', 'الله', 'الرحمن', 'عليهم']
+
+  it('says how many heard words it took to reach the last word, so the rest go with the reciter', () => {
+    expect(follow(PAGE, [...SPOKEN, ...ON], { ended: true }).heardTo).toBe(SPOKEN.length)
+  })
+
+  it('has not reached it while the last word is still to come', () => {
+    expect(follow(PAGE, SPOKEN.slice(0, -1), { ended: true }).heardTo).toBeNull()
+  })
+
+  it('reaches it on a wrong last word too, which must not hold the page up', () => {
+    const answer = follow(PAGE, [...SPOKEN.slice(0, -1), 'المستعين'], { ended: true })
+    expect(answer.heardTo).toBe(SPOKEN.length)
+    expect(answer.words.at(-1).state).toBe(WRONG)
+  })
+
+  it('marks a whole page carried over from a long one as said, none of the old words counted against it', () => {
+    // A full page of earlier words has gone with the old page; only what came
+    // after its last word is followed on the new one.
+    const old = follow(PAGE, [...SPOKEN, ...SPOKEN.slice(0, 2)], { ended: true })
+    const carried = [...SPOKEN, ...SPOKEN.slice(0, 2)].slice(old.heardTo)
+    expect(statesOf(PAGE, carried).slice(0, 2)).toEqual([SAID, SAID])
   })
 })
 

@@ -170,6 +170,9 @@ export const EMPTY_VIEW = {
   // surer one wins: a word is said once, and one clipped at a recording's
   // edge should not unsay it.
   sure: { before: {}, now: {} },
+  // How many sureness checks are queued or on their way. A page only turns
+  // once its own are back, or its last ayah would never be weighed.
+  checking: 0,
 }
 
 const REAL = {
@@ -272,6 +275,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
         clearTimeout(timer)
         checkQueue = checkQueue.slice(1)
         checkBusy = false
+        set({ checking: checkQueue.length })
         pumpChecks()
       })
   }
@@ -288,6 +292,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       if (at !== -1) note('check.aborted', { session: sessionId, reading: was[at].reading })
     }
     checkQueue = next
+    set({ checking: checkQueue.length })
     pumpChecks()
   }
 
@@ -402,6 +407,9 @@ export function createRecitingSession({ onChange, deps = {} }) {
             // each one is scored separately and applied when it comes back,
             // never waited for here.
             const checkAyahs = page.ayahs
+            // Scores are placed by position on the page they were asked about,
+            // so one that answers after the page has turned lands nowhere.
+            const askedOf = page
             if (checkAyahs.length && heard.text) {
               enqueueCheck({
                 window: thisWindow,
@@ -411,7 +419,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
                 ayahs: checkAyahs.map((line) => line.key),
                 sent: false,
                 apply: (scored) => {
-                  if (!live()) return
+                  if (!live() || page !== askedOf) return
                   const placed = byPlace(scored, checkAyahs)
                   set(({ sure }) => ({
                     sure: folded
@@ -574,6 +582,30 @@ export function createRecitingSession({ onChange, deps = {} }) {
     set({ before: [], now: { from: windows, words: [] }, sure: { before: {}, now: {} }, ended: false })
   }
 
+  /**
+   * Carry on onto the next page, microphone still running. `carry` is what the
+   * finished recordings held after the old page's last word: the new page's
+   * start.
+   *
+   * Not forget(): that cuts the recording under way, and the reciter is
+   * already saying the new page into it. So the recording on show is kept and
+   * goes on being read, now against the new page, and only the finished ones
+   * before it go: their late readings were about the old page.
+   */
+  const turn = (carry = []) => {
+    const keep = view.now.words.length ? view.now.from : windows
+    forgotten = Math.max(forgotten, keep - 1)
+    checkQueue.find((q) => q.sent)?.abort?.abort()
+    checkQueue = checkQueue.filter((q) => q.sent)
+    set({
+      before: carry,
+      now: view.now.words.length ? view.now : { from: windows, words: [] },
+      sure: { before: {}, now: {} },
+      ended: false,
+      checking: checkQueue.length,
+    })
+  }
+
   const start = async () => {
     set({ problem: '', ended: false })
     if (!canRecord()) {
@@ -619,5 +651,5 @@ export function createRecitingSession({ onChange, deps = {} }) {
 
   const update = (next) => { page = next }
 
-  return { start, stop, forget, dispose, update, view: () => view }
+  return { start, stop, forget, turn, dispose, update, view: () => view }
 }

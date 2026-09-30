@@ -11,7 +11,7 @@
  * no knowledge of the screen; the books are in lib/books.js, with no knowledge
  * of either. This file only shows what those two decide.
  */
-import { Fragment, useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { isQuranic, recitedForm } from '../lib/arabicText'
@@ -23,9 +23,11 @@ import {
 } from '../lib/memorise'
 
 import { readViewParam, writeViewParams } from '../lib/tabUrl'
+import { scrollToEl } from '../lib/scrollToEl'
 import { useReciting } from '../lib/useReciting'
 import { useSetting } from '../lib/settings'
 import { warm } from '../lib/warm'
+import recite from '../recite.json'
 
 import { LOOK, SHOWN } from '../lib/reciteColors'
 
@@ -53,6 +55,9 @@ const HIDDEN = DEFAULT_DIFFICULTY
 // control beside it already names. Inside that surah the number alone says it.
 // A book whose lines are not numbered this way is left exactly as it is.
 const withinPart = (label) => label.split(':').pop()
+
+// How long a finished page stays up, marked, before the next one turns in.
+const TURN_AFTER_MS = recite['turn-after-s'] * 1000
 
 // Two ways to answer the same gap. Typing is recall; choosing is recognition,
 // which is easier, and the only one that works without an Arabic keyboard.
@@ -279,7 +284,10 @@ export default function MemorisePanel({ accent }) {
   useEffect(() => {
     if (listening && way !== 'recite') reciting.stop()
   }, [listening, way, reciting])
-  useEffect(() => reciting.stop, [pageNumber, part, bookId])  // eslint-disable-line react-hooks/exhaustive-deps
+  // A page turned by the recitation itself carries on listening: set just
+  // before it turns, read by the two effects below, and put down by the second.
+  const turning = useRef(false)
+  useEffect(() => () => { if (!turning.current) reciting.stop() }, [pageNumber, part, bookId])  // eslint-disable-line react-hooks/exhaustive-deps
   // Carrying on is only ever carrying on with the same page from the same
   // place. Move either and the words already heard were about somewhere else,
   // so they go, whatever the setting says.
@@ -287,7 +295,35 @@ export default function MemorisePanel({ accent }) {
   // Not on startFrom: that moves by itself the moment the recitation says
   // where it began, and forgetting then would throw away the very words that
   // said it. Only a place the reader chose, or a page they turned to.
-  useEffect(() => { forget() }, [forget, pageNumber, part, bookId, pinned])
+  useEffect(() => {
+    if (turning.current) { turning.current = false; return }
+    forget()
+  }, [forget, pageNumber, part, bookId, pinned])
+
+  /**
+   * On to the next page, or the next part's first, without stopping: the
+   * reciter reached the end of this one and is carrying on. What was heard
+   * goes with the old page (turn(), not forget(), so the recording under way
+   * is kept), and the new page is followed from wherever they are on it.
+   */
+  const card = useRef(null)
+  const turnPage = () => {
+    const at = parts?.findIndex((p) => p.id === part) ?? -1
+    const nextPart = at >= 0 ? parts[at + 1] : null
+    if (pageNumber + 1 >= pages.length && !nextPart) return
+    turning.current = true
+    reciting.turn()
+    if (pageNumber + 1 < pages.length) openPage(pageNumber + 1)
+    else openPart(nextPart.id)
+    scrollToEl(card.current, 'top')
+  }
+  // A moment on the finished page first, marks settled and weighed, so a
+  // slip in its last ayah is seen before the page goes.
+  useEffect(() => {
+    if (way !== 'recite' || !listening || !reciting.finished) return
+    const timer = setTimeout(turnPage, TURN_AFTER_MS)
+    return () => clearTimeout(timer)
+  }, [way, listening, reciting.finished])  // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="panel">
@@ -430,7 +466,7 @@ export default function MemorisePanel({ accent }) {
             </div>
           </div>
 
-          <div className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4">
+          <div ref={card} className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4 scroll-mt-4">
             {/* A flowing book runs its lines on as a printed mushaf does: one
                 block, justified, each ayah ending in its number, and never a
                 new row per ayah, which left short ayahs a gutter of empty space.
