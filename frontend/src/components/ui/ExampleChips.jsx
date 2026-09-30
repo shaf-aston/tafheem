@@ -10,7 +10,7 @@ import ArabicText from './ArabicText'
 export default function ExampleChips({ label = 'Try one', examples, onPick, accent }) {
   return (
     <div className="flex flex-wrap gap-2 items-center" style={{ '--c': accent }}>
-      <span className="text-[var(--text-faint)] text-xs shrink-0">{label}</span>
+      <span className="text-[var(--text-faint)] text-xs shrink-0 basis-full sm:basis-auto">{label}</span>
       {examples.map((ex, i) => {
         const arabic = typeof ex === 'string' ? ex : ex.arabic
         const meaning = typeof ex === 'object' ? ex.meaning : null

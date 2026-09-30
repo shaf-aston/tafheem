@@ -77,7 +77,7 @@ export default function Chip({
           ? { background: `color-mix(in srgb, ${accent} 14%, transparent)` }
           : null),
       }}
-      className={`press type-small leading-none rounded-full transition-colors
+      className={`press tap type-small leading-none rounded-full transition-colors
         inline-flex items-center justify-center shrink-0 whitespace-nowrap
         h-[var(--layout-chip)]
         hover:border-[var(--c)] hover:text-[var(--text)]

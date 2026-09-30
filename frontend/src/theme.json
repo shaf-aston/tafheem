@@ -190,7 +190,9 @@
     "_control_comment": "One square for every small control in the page chrome: the settings gear, the pen that opens the launcher, and the height of the command bar between them. One number, so the two ends of the header can never disagree about how tall the row is.",
     "control": "2.5rem",
     "_chip_comment": "How tall a chip stands, whatever is written in it. Said here rather than left to the text because a pill that takes its height from its own letters is a different height in Arabic than in English: a Recent row holding both came out with the Arabic pills at exactly twice the height of the English ones, a ragged row that looked like a browser bug and was not.",
-    "chip": "1.9rem"
+    "chip": "1.9rem",
+    "_tap_comment": "The least height a pill or link stands on a touch screen, where a finger needs more than a pointer does. index.css applies it to .tap and to chips when the pointer is coarse; a mouse keeps the compact sizes.",
+    "tap": "2.25rem"
   },
   "radius": {
     "sm": "0.5rem",

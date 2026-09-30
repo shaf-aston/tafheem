@@ -119,6 +119,8 @@
 }
 
 .cb[data-open] .cb-key { opacity: 0; }
+/* No keyboard shortcut on a touch screen, and the room is the placeholder's. */
+@media (pointer: coarse) { .cb-key { display: none; } }
 
 .cb-results {
   position: absolute;

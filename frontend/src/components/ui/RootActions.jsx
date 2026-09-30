@@ -23,7 +23,7 @@ export function GoButton({ children, ...props }) {
   return (
     <button
       type="button"
-      className="type-small leading-none px-2 py-1 rounded-full
+      className="tap inline-flex items-center type-small leading-none px-2 py-1 rounded-full
         border border-[var(--border)] text-[var(--text-dim)]
         hover:text-[var(--text)] hover:border-[var(--c)] transition-colors"
       {...props}

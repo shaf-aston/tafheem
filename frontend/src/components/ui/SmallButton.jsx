@@ -10,7 +10,7 @@ const SmallButton = forwardRef(function SmallButton({ className = '', ...props }
     <button
       ref={ref}
       type="button"
-      className={`press type-small px-3 py-1.5 rounded-[var(--radius-sm)] border border-[var(--border)]
+      className={`press tap type-small px-3 py-1.5 rounded-[var(--radius-sm)] border border-[var(--border)]
         hover:border-[var(--border-hi)] transition-colors disabled:opacity-40 ${className}`}
       {...props}
     />
