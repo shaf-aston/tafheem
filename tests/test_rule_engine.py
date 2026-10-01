@@ -138,7 +138,7 @@ def test_a_command_is_described_as_one(sentence: str, lemma: str):
 
 
 @pytest.mark.parametrize("sentence, verbal", [
-    ("لَمْ يَكْتُبْ الطَّالِبُ", True), ("قَدْ نَجَحَ الطَّالِبُ", True),
+    ("لَمْ يَكْتُبْ الطَّالِبُ", True), ("قَدْ نَجَحَ الطَّالِبُ", True), ("مَتَى سَافَرَ الرَّجُلُ", True),
     ("إِنَّ الطَّالِبَ مُجْتَهِدٌ", False)])  # nearest case: a particle before a noun
 def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, verbal: bool):
     from backend.services import morphology, syntax

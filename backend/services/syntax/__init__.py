@@ -115,9 +115,11 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
 def _sentence_type(parser_roles: list[dict]) -> str | None:
     """Verbal when a verb opens it. The words themselves are the rule engine's."""
     names = [found["role"] for found in parser_roles if found["role"]]
-    # لم يكتب، قد نجح: a particle before the verb leaves the sentence verbal
-    if names[:2] == ["حرف", "فعل"]:
-        names = names[1:]
+    # لم يكتب، متى سافر: a particle or a fronted adverb before the verb leaves the
+    # sentence verbal; the book judges it by the word it rests on, not the one put first
+    lead = next((i for i, role in enumerate(names) if role not in ("حرف", "مفعول فيه")), len(names))
+    if lead < len(names) and names[lead] == "فعل":
+        names = names[lead:]
     if not names or (names[0] in ("حرف", "حرف جر") and "اسم إن" not in names):
         return None
     return rule_engine.sentence_type(is_verbal=names[0] == "فعل", is_inna="اسم إن" in names)
