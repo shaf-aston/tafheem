@@ -19,7 +19,7 @@ import unicodedata
 from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
-from backend.services.syntax.vowels import command_shape
+from backend.services.syntax.vowels import CAMEL_CASE, CASE_NAME, TANWEEN, command_shape, typed_case
 
 logger = logging.getLogger(__name__)
 
@@ -130,9 +130,6 @@ def _pos_type(pos: str) -> str:
         return _POS_TYPE[pos]
     return "harf" if pos.startswith(("part", "conj", "prep", "interj")) else "ism"
 
-_CAS_MAP: dict[str, str | None] = {
-    "n": "raf'", "a": "nasb", "g": "jarr", "na": None, "u": None,
-}
 
 _ASP_LABEL: dict[str, str] = {
     "p": "perfect (ماضٍ)", "i": "imperfect (مضارع)", "c": "command (أمر)",
@@ -181,23 +178,6 @@ def _bw_root_to_arabic(root: str) -> str:
     return shown_root(clean)
 
 
-# Single owner of diacritics stripping lives in services/arabic_text.py
-_strip_diacritics = strip_diacritics
-
-
-def _harakat_case(word: str) -> str | None:
-    # The mark can sit either side of a shadda (رَبِّ, الجَوُّ), and a tanween
-    # fath is usually written before a closing alef (حَقًّا), so both are set
-    # aside before the last mark is read.
-    end = word.replace("ّ", "")
-    end = end.removesuffix("ا") if end.endswith("ًا") else end
-    if end.endswith(("ٌ", "ُ")):
-        return "raf'"
-    if end.endswith(("ً", "َ")):
-        return "nasb"
-    return "jarr" if end.endswith(("ٍ", "ِ")) else None
-
-
 def _build_features(a: dict) -> str:
     parts: list[str] = []
     asp = a.get("asp", "na") or "na"
@@ -241,7 +221,7 @@ def _as_command(word: str, a: dict) -> dict:
     A two-letter one is a hollow verb that dropped its middle letter (قُمْ from قام), so
     its root and lemma come from that past form, not from the قَمَّ it was misread as."""
     a = {**a, "asp": "c", "mod": "na", "per": "2"}
-    bare = _strip_diacritics(word)
+    bare = strip_diacritics(word)
     if len(bare) == 2 and (past := next((p for p in _camel_analyzer.analyze(f"{bare[0]}ا{bare[1]}")
                                          if p.get("pos") == "verb"), None)):
         a.update(root=past.get("root"), lex=past.get("lex"))
@@ -258,12 +238,12 @@ def _analysis_dict_from_camel(word: str, a: dict) -> dict[str, Any]:
     root_ar = "" if word_type == "harf" else _bw_root_to_arabic(a.get("root") or "")
 
     lex = a.get("lex") or a.get("diac") or word
-    lemma = _strip_diacritics(lex)
+    lemma = strip_diacritics(lex)
 
     cas = a.get("cas", "na") or "na"
     # A past or imperative verb is mabni: its last vowel is not a case.
     mabni = pos == "verb" and a.get("asp") in ("p", "c")
-    case_str = _CAS_MAP.get(cas) or (None if mabni else _harakat_case(word))
+    case_str = CASE_NAME.get(CAMEL_CASE.get(cas)) or (None if mabni else CASE_NAME.get(typed_case(word)))
 
     return {
         "word": word,
@@ -289,7 +269,6 @@ def _analysis_dict_from_camel(word: str, a: dict) -> dict[str, Any]:
 
 _NOUN_POS = {"noun", "noun_prop", "adj", "abbrev"}
 _PART_POS = {"prep", "conj_sub", "part_focus", "conj", "part", "det"}
-_TANWIN = {"ٌ", "ً", "ٍ"}  # ٌ ً ٍ  dammatan/fathatan/kasratan
 _FATHA = "َ"           # ـَ  Arabic Fathah
 
 
@@ -320,10 +299,10 @@ def _pick_best_analysis(word: str, analyses: list[dict]) -> dict | None:
     if exact := [a for a in analyses if a.get("diac") == word]:
         return _handle_exact_match(word, exact)
 
-    bare = _strip_diacritics(word)
-    norm = [a for a in analyses if _strip_diacritics(a.get("diac", "")) == bare]
+    bare = strip_diacritics(word)
+    norm = [a for a in analyses if strip_diacritics(a.get("diac", "")) == bare]
 
-    if word and word[-1] in _TANWIN:
+    if word and word[-1] in TANWEEN:
         if result := _handle_tanwin_bias(norm or analyses):
             return result
 
@@ -409,17 +388,17 @@ def _analyze_qalsadi(word: str) -> dict[str, Any]:
         lemma = str(result[0]) if isinstance(result, list) and result else str(result)
     except Exception as exc:
         logger.debug("qalsadi lemmatize failed for %r: %s", word, exc)
-        lemma = _strip_diacritics(word)
+        lemma = strip_diacritics(word)
     return _unanalysed(word, lemma, "qalsadi")
 
 
 def _analyze_bare(word: str) -> dict[str, Any]:
-    return _unanalysed(word, _strip_diacritics(word), "bare")
+    return _unanalysed(word, strip_diacritics(word), "bare")
 
 
 def _unanalysed(word: str, lemma: str, engine: str) -> dict[str, Any]:
     """A word no analyser placed: only its lemma and the case its harakat show."""
-    case_str = _harakat_case(word)
+    case_str = CASE_NAME.get(typed_case(word))
     return {
         "word": word, "lemma": lemma, "root": "", "pos": "unknown",
         "type": "ism", "case": case_str, "case_raw": "u", "gloss": "",

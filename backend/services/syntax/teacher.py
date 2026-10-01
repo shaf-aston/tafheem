@@ -12,7 +12,7 @@ gives, live in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import is_mabni, is_one, teacher_rules
+from backend.services.nahw_book import case_of, is_mabni, is_one, teacher_rules
 from backend.services.syntax.naming import (
     base_tokens, family_of, is_passive, is_verb, roles_keyed, takes_tamyeez)
 from backend.services.syntax.vowels import CASE_NAME, typed_case
@@ -47,13 +47,10 @@ def _passive_has_no_doer(bases, tokens, roles):
 
 
 def _expected_case(role: str, mudaf: bool, cases: dict) -> str | None:
-    for case in "uai":
-        if role in cases[case]:
-            return case
-    return "a" if mudaf and role in cases["a_when_mudaf"] else None
+    return case_of(role) or ("a" if mudaf and role in cases["a_when_mudaf"] else None)
 
 
-def _ending(token: dict, bases: list[dict], roles: list, by_id: dict) -> dict:
+def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> dict:
     """What decides whether the vowel typed on a word can be held against its job.
 
     `free` lists the (wanted, typed) case pairs that only look like a clash ("au":
@@ -88,7 +85,7 @@ def _typed_case_fits_role(bases, tokens, roles):
     by_id = {t["id"]: t for t in tokens}
     for i, (token, role) in enumerate(zip(bases, roles)):
         shown = typed_case(token.get("typed"), token.get("stuck_on", 0))
-        if not is_verb(token) and _clashes(role, shown, _ending(token, bases, roles, by_id)):
+        if not is_verb(token) and _clashes(role, shown, _vowel_facts(token, bases, roles, by_id)):
             yield i
 
 
@@ -149,7 +146,7 @@ def review(words: list[str], tokens: list[dict], found: list[dict]) -> list[dict
     by_id = {t["id"]: t for t in tokens}
     return [{**entry, "role": None, "gap": {"ar": rules[caught[i]]["ar"], "en": rules[caught[i]]["en"]}}
             if i in caught else
-            {**entry, "ending": _ending(bases[i], bases, roles, by_id)} if entry["role"] is None else entry
+            {**entry, "ending": _vowel_facts(bases[i], bases, roles, by_id)} if entry["role"] is None else entry
             for i, entry in enumerate(found)]
 
 

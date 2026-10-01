@@ -18,6 +18,7 @@ import pytest
 
 from backend.models.schemas import ROLE_KEYS, WordAnalysis
 from backend.services import rule_engine
+from backend.services.tarkeeb import term_ar
 
 # Two sentences, one of each kind, so both branches of the engine are walked.
 VERBAL = "ذهب الولد إلى المدرسة"     # jumlah fi'liyyah
@@ -144,4 +145,48 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
     from backend.services import morphology, syntax
     rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
     summary = syntax.with_parser_roles(rules, syntax.read(sentence)["roles"])["summary"]
-    assert ("فعلية" in summary) is verbal, summary
+    assert (summary == term_ar("jumlah_filiyyah")) is verbal, summary
+
+
+def _read(sentence: str) -> dict:
+    """The route's two steps: the rules, then the parser over them."""
+    from backend.services import morphology, syntax
+    rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
+    return syntax.with_parser_roles(rules, syntax.read(sentence)["roles"])
+
+
+# One card field each, found by typing the sentence in (backend/scripts/analyse.py).
+CARDS = [
+    ("لَنْ يَذْهَبَ أَخِي", 2, "role", "فاعل"),            # the kasra before ya al-mutakallim is no case
+    ("يَا عَبْدَ اللهِ", 2, "role", "مضاف إليه"),
+    ("هَذَا بَيْتٌ كَبِيرٌ", 1, "role", "خبر"),            # an indefinite noun after a pointer
+    ("هَذَا البَيْتُ كَبِيرٌ", 2, "role", "خبر"),          # nearest case: with ال the khabar comes later
+    ("كَانَ الجَوُّ بَارِدًا", 0, "reason", "فعل ماضٍ"),   # CAMeL calls كان a pseudo-verb
+    ("ضُرِبَ اللِّصُّ", 0, "sign", "مبني على الفتح"),      # CAMeL calls ضُرِبَ a noun
+    ("الطُّلَّابُ يَدْرُسُونَ فِي المَكْتَبَةِ", 1, "sign", "ثبوت النون"),
+    ("لَنْ يَكْتُبُوا", 1, "sign", "حذف النون"),
+    ("يَكْتُبُ الطَّالِبُ", 0, "sign", "ضمة"),             # nearest case: one of the five verbs it is not
+    ("الطُّلَّابُ كَتَبُوا الدَّرْسَ", 1, "sign", "مبني على الضم"),
+    ("كَتَبَتْ البِنْتُ الدَّرْسَ", 0, "sign", "مبني على الفتح"),  # تاء التأنيث
+    ("كَتَبْتُ الدَّرْسَ", 0, "sign", "مبني على السكون"),
+    ("جَاءَ الَّذِي نَجَحَ", 1, "reason", "مبني في محل رفع"),
+    ("لَا تَكْذِبْ", 0, "reason", "لا الناهية"),
+    ("لَا يَكْذِبُ المُؤْمِنُ", 0, "reason", "لا النافية"),
+]
+
+
+@pytest.mark.parametrize("sentence, index, field, expected", CARDS)
+def test_card_field(sentence: str, index: int, field: str, expected: str):
+    word = _read(sentence)["words"][index]
+    assert expected in (word[field] or ""), word
+
+
+@pytest.mark.parametrize("sentence, term", [
+    ("يَا عَبْدَ اللهِ", "jumlah_nidaiyyah"),
+    ("الطُّلَّابُ يَدْرُسُونَ فِي المَكْتَبَةِ", "jumlah_ismiyyah"),  # a مبتدأ before the verb
+    ("هَذَا البَيْتُ كَبِيرٌ", "jumlah_ismiyyah"),
+    ("قُمْ يَا وَلَدُ", "jumlah_filiyyah")])  # nearest case: a command before the call
+def test_summary_and_tree_name_the_sentence_alike(sentence: str, term: str):
+    answer = _read(sentence)
+    from backend.services import syntax
+    assert (answer["summary"], syntax.read(sentence)["tree"]["tree"]["label"]) == (term_ar(term), term_ar(term))

@@ -16,6 +16,7 @@ cd frontend && npm test && npm run lint                    # frontend tests
 EAR=http://127.0.0.1:8000 node frontend/scripts/probe-ear.mjs  # reciting, end to end
 venv/Scripts/python -m backend.scripts.score_iraab             # i'raab roles vs the books, as a score
 venv/Scripts/python -m backend.scripts.score_iraab --set checked  # and vs the 72 checked sentences
+venv/Scripts/python -m backend.scripts.analyse "جملة" [--api URL] [--json]  # one sentence's cards and tree; stdin takes one per line
 ```
 
 Data is built once by the scripts in `backend/scripts/`, each explained in its own

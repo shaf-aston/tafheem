@@ -3,7 +3,7 @@
 The answer key is either the book examples the Tarkeeb view draws (data/tarkeeb/examples):
 every word there carries the role the book gave it; or --set checked, fresh
 sentences no rule was written against (data/nahw_rules/checked_sentences.json). Each sentence goes through
-the same path a typed one does, morphology then rule_engine, and each word's
+the route a typed one does (routed below), and each word's
 role is compared by family (data/nahw_rules/answer_key.json), since the app
 writes "مبتدأ (مرفوع)" where the book writes مُبْتَدَأٌ.
 
@@ -33,7 +33,6 @@ import urllib.request
 from collections import Counter
 from pathlib import Path
 
-from backend.services import morphology, rule_engine, syntax
 from backend.services.arabic_text import bare_letters, strip_diacritics, words
 
 DATA = Path(__file__).resolve().parent.parent / "data"
@@ -85,11 +84,7 @@ SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_se
 
 
 def analysed(sentence: str, api: str | None) -> list[dict]:
-    if not api:
-        # the same two steps the route runs: the rules, then the parser over them
-        rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
-        return syntax.with_parser_roles(rules, syntax.read(sentence)["roles"])["words"]
-    return post(api, sentence)["words"]
+    return routed(sentence, api)["words"]
 
 
 def post(api: str, sentence: str) -> dict:

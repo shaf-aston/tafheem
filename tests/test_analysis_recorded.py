@@ -58,7 +58,7 @@ def test_a_typed_ayah_is_read_from_its_record_not_the_parser(monkeypatch):
                      SETTINGS["relation_terms"]["نائب فاعل"], tarkeeb.term_ar("jarr"),
                      SETTINGS["relation_terms"]["مجرور"]]
     assert "تمييز" not in json.dumps(answer, ensure_ascii=False)
-    assert "(جملة فعلية)" in answer["summary"]
+    assert answer["summary"] == tarkeeb.term_ar("jumlah_filiyyah")
 
 
 def test_a_card_is_coloured_the_same_whoever_named_it():

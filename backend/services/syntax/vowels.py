@@ -16,6 +16,8 @@ SHADDA_SUKUN = "ّ" + SUKUN
 HIDDEN_CASE = ("ين", "ون", "ان")
 
 CASE_NAME = {"u": "raf'", "a": "nasb", "i": "jarr"}
+# CAMeL's own case letters, as the vowel each one is
+CAMEL_CASE = {"n": "u", "a": "a", "g": "i"}
 
 
 def letters(word: str) -> list[tuple[str, set]]:
@@ -39,6 +41,9 @@ def typed_case(word: str, stuck_on: int = 0) -> str | None:
     """
     marked = letters(word)
     if stuck_on:
+        # أَخِي: the kasra before ya al-mutakallim is the ya's, and the case is unseen
+        if marked and marked[-1][0] == "ي":
+            return None
         marked = marked[:-stuck_on]
     if len(marked) < 2 or "".join(letter for letter, _ in marked[-2:]) in HIDDEN_CASE:
         return None

@@ -7,6 +7,24 @@
   "i": ["مجرور", "مضاف إليه"],
   "a_when_mudaf": ["منادى"]
  },
+ "signs": {
+  "_comment": "The sign a card prints for its case (rule_engine.sign). A dual, a sound masculine plural and one of the five verbs show case by a letter instead of a vowel.",
+  "vowel": {"raf'": "ضمة", "nasb": "فتحة", "jarr": "كسرة", "jazm": "سكون", "mabni": "مبني"},
+  "dual": {"raf'": "الألف، مثنى", "nasb": "الياء، مثنى", "jarr": "الياء، مثنى"},
+  "sound_plural": {"raf'": "الواو، جمع مذكر سالم", "nasb": "الياء، جمع مذكر سالم", "jarr": "الياء، جمع مذكر سالم"},
+  "five_verbs": {"raf'": "ثبوت النون", "nasb": "حذف النون", "jazm": "حذف النون"}
+ },
+ "case_said": {
+  "_comment": "A case as a reason says it: the word itself, and the place a mabni word fills (مبني في محل رفع).",
+  "word": {"raf'": "مرفوع", "nasb": "منصوب", "jarr": "مجرور", "jazm": "مجزوم"},
+  "place": {"u": "رفع", "a": "نصب", "i": "جر"},
+  "mabni_noun": "مبني في محل {place} لأنه {role}"
+ },
+ "past_ending": {
+  "_comment": "What a past verb is built on, by its last letters (longest first): the damma before واو الجماعة, the sukun before a raf' pronoun; otherwise the fatha. A typed sukun on a last ت makes it تاء التأنيث (كَتَبَتْ), built on the fatha.",
+  "الضم": ["وا"],
+  "السكون": ["تما", "تم", "تن", "نا", "ت"]
+ },
  "reasons": {
   "_comment": "The reason a card shows, one per role, so it always explains the role the card wears (rule_engine writes it, syntax/__init__ rewrites it when the parser renames the word). Every name in syntax/naming.ROLES has one; the keys after it are the rule engine's own variants.",
   "فعل": "فعل في جملة فعلية",
@@ -42,6 +60,8 @@
   "حرف": "حرف مبني لا محل له من الإعراب",
   "حرف جر": "حرف جر مبني لا محل له من الإعراب",
   "حرف عطف": "حرف عطف مبني لا محل له من الإعراب",
+  "لا ناهية": "لا الناهية، حرف مبني لا محل له من الإعراب، يجزم الفعل المضارع",
+  "لا نافية": "لا النافية، حرف مبني لا محل له من الإعراب، لا يعمل في الفعل المضارع",
   "حرف ناسخ": "حرف ناسخ مبني لا محل له من الإعراب، ينصب الاسم ويرفع الخبر",
   "فاعل ضمير": "ضمير مبني في محل رفع فاعل. القاعدة: الفاعل مرفوع",
   "مجرور ضمير": "ضمير متصل مبني في محل جر، فهو مجرور",
