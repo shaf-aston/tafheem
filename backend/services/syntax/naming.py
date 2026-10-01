@@ -17,7 +17,7 @@ from __future__ import annotations
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_words, is_mabni, is_one, is_plain_noun
 from backend.services.syntax.vowels import (
-    CASE_NAME, has_tanween, past_passive_shape, typed_case, typed_passive)
+    CASE_NAME, SUKUN, has_tanween, letters, past_passive_shape, typed_case, typed_passive)
 
 # a root letter is what is left once the letters that come and go are removed
 WEAK = set("اويىءأإآئؤة")
@@ -408,19 +408,39 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         if token["pos"] == "PRT" and any(
                 named[j] == "مجرور" for j, kid in enumerate(bases) if kid["head"] == token["id"]):
             named[index] = "حرف جر"
-    return [{"role": role, "case": _ending(role, token)} for role, token in zip(named, bases)]
+    return [{"role": role, "case": _ending(role, token, bases[i - 1] if i else None)}
+            for i, (role, token) in enumerate(zip(named, bases))]
 
 
-def _ending(role: str | None, token: dict) -> str | None:
-    """What to print under the word: a case for a noun, mabni or raf' for a verb."""
+def _ending(role: str | None, token: dict, before: dict | None) -> str | None:
+    """What to print under the word: a case for a noun or a present verb, else mabni."""
     if role == "فعل":
-        # only the present tense takes a case, and only when nothing jazms it
         present = bare_letters(token["typed"])[:1] in PRESENT_PREFIX and token.get("asp") == "i"
-        return "raf'" if present and typed_case(token["typed"]) == "u" else "mabni"
+        return _mood(token["typed"], before) if present else "mabni"
     if role in ("حرف", "حرف جر"):
+        return "mabni"
+    # يَا وَلَدُ: a single called noun is built on the damma (in the place of nasb)
+    if role == "منادى" and typed_case(token["typed"]) == "u":
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
     if is_mabni(token):
         return "mabni"
     return CASE_NAME.get(typed_case(token["typed"], token["stuck_on"]))
+
+
+def _mood(typed: str, before: dict | None) -> str:
+    """A present verb's case: the ending the reader typed, else the particle straight
+    before it when the book's list says that particle settles it (لم يكتب، لن يذهب),
+    else raf'. A kasra on the end is the sukun meeting a sakin (لم يكتبِ الطالب)."""
+    last = letters(typed)[-1][1] if letters(typed) else set()
+    shown = typed_case(typed)
+    if SUKUN in last:
+        return "jazm"
+    if shown in ("u", "a"):
+        return CASE_NAME[shown]
+    particle = strip_diacritics(before["typed"]) if before else ""
+    for family, case in (("jazm", "jazm"), ("nasb_mudari", "nasb")):
+        if is_one(particle, family, "before_a_present_verb"):
+            return case
+    return "raf'"

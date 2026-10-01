@@ -3,6 +3,8 @@
 Each test pairs the case that fires with the nearest one that must not, since
 the parser is fed letters only and the same links come back for both.
 """
+import pytest
+
 from backend.services.syntax import tree, vowels
 from tests.test_naming import roles, token
 from tests.test_syntax_tree import built
@@ -109,3 +111,10 @@ def test_a_word_the_morphology_calls_a_name_is_still_a_passive_verb_by_its_vowel
     toks = [token(1, "NOAN", "قرئ", "PROP", 0, "---", pos_camel="noun_prop"),
             token(2, "الكتاب", "كتاب", "NOM", 1, "OBJ", stt="d", cas="n")]
     assert roles(["قُرِئَ", "الْكِتَابُ"], toks) == ["فعل", "نائب فاعل"]
+
+
+@pytest.mark.parametrize("word, command", [
+    ("اُكْتُبْ", True), ("اِجْلِسْ", True), ("قُمْ", True), ("بِعْ", True),
+    ("أَكْتُبُ", False), ("يَكْتُبْ", False), ("كَتَبَ", False), ("اكتب", False), ("قم", False)])
+def test_command_shape(word: str, command: bool):
+    assert vowels.command_shape(word) is command
