@@ -3,7 +3,7 @@
  "case_of_role": {
   "_comment": "The case each role takes (u = raf', a = nasb, i = jarr). A vowel the reader typed that says otherwise contradicts the role. The called noun (منادى) takes nasb only when it is the first word of an idafa.",
   "u": ["فاعل", "نائب فاعل", "مبتدأ", "خبر", "اسم كان", "خبر إن", "اسم كاد"],
-  "a": ["مفعول به", "مفعول مطلق", "مفعول فيه", "حال", "تمييز", "مستثنى", "اسم إن", "خبر كان"],
+  "a": ["مفعول به", "مفعول مطلق", "مفعول فيه", "حال", "تمييز", "اسم إن", "خبر كان"],
   "i": ["مجرور", "مضاف إليه"],
   "a_when_mudaf": ["منادى"]
  },
@@ -26,22 +26,22 @@
   "khabar_needs_mubtada": {
    "on": true,
    "ar": "الخبر يحتاج إلى مبتدأ",
-   "en": "A khabar needs a mubtada, and none was found."
+   "en": "A خبر needs a مبتدأ, and none was found."
   },
   "ism_inna_needs_inna": {
    "on": true,
    "ar": "اسم إن يحتاج إلى إن أو إحدى أخواتها",
-   "en": "An ism of inna needs inna or one of its sisters before it."
+   "en": "The اسم إن needs إن or one of its sisters before it."
   },
   "follower_needs_noun": {
    "on": true,
    "ar": "التابع يحتاج إلى اسم قبله",
-   "en": "A follower (atf, tawkeed, sifah, badal) copies a noun that comes before it, and none was found."
+   "en": "A follower (معطوف, توكيد, صفة, بدل) copies a noun that comes before it, and none was found."
   },
   "tamyeez_needs_number": {
    "on": true,
    "ar": "منصوب: حال أو تمييز أو مفعول لأجله",
-   "en": "Accusative, and the book allows several names here: hal, tamyeez or maf'ul li-ajlih. A tamyeez follows a number or a measure."
+   "en": "Accusative. It could be a حال, تمييز or مفعول لأجله, and I can't tell which. A تمييز follows a number or a measure."
   }
  }
 }

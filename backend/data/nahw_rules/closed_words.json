@@ -84,7 +84,8 @@
     "أي",
     "أ",
     "آ",
-    "وا"
+    "وا",
+    "آي"
    ],
    "ambiguous": {
     "يا": "vocative vs 'ya' of the speaker/dual ending on a noun; a particle only when it stands as its own word",
@@ -92,8 +93,9 @@
     "أ": "vocative (near) vs interrogative hamza; vocative if a noun then follows in calling sense, interrogative if a verb or full sentence follows",
     "آ": "vocative (far, lengthened) vs the exclamation آه",
     "وا": "lamentation (nudba) vs conjunction waw plus alif; only with a lament",
-    "أيا": "vocative vs the plural of اي in rare text; vocative in practice",
-    "هيا": "vocative vs a rare exclamation"
+    "أيا": "vocative (far); no real rival",
+    "هيا": "vocative vs a rare exclamation",
+    "آي": "vocative (far); no real rival"
    }
   },
   "istithna": {
@@ -178,7 +180,7 @@
     "أمسى": "defective 'became' vs complete verb 'entered the evening'",
     "أضحى": "defective 'became' vs complete verb 'entered the forenoon'",
     "ظل": "defective 'remained' vs the noun ظِلّ 'shade'",
-    "بات": "defective 'became (at night)' vs complete verb 'spent the night'",
+    "بات": "defective 'spent the night in a state' vs complete verb 'spent the night'",
     "زال": "defective with a negation before it (ما زال) vs complete verb 'ceased / passed away' without it",
     "برح": "defective with a negation vs complete verb 'left'",
     "فتئ": "defective with a negation vs complete verb",
@@ -336,7 +338,7 @@
    ],
    "ambiguous": {
     "أن": "nasb particle vs anna (see inna) vs the explanatory أن; nasb when a present verb follows",
-    "كي": "nasb particle vs interrogative 'how' in كيف; nasb when a present verb follows",
+    "كي": "nasb particle 'so that' vs the different word كيف 'how'; nasb when a present verb follows",
     "إذن": "nasb particle only when at the start of the answer and followed by a present verb; otherwise a plain adverb 'then'",
     "لن": "always nasb particle; no real rival",
     "حتى": "hidden-أن nasb vs jarr vs conjunction; nasb when a present verb follows",
@@ -365,7 +367,8 @@
     "أنى",
     "حيثما",
     "كيفما",
-    "أي"
+    "أي",
+    "أينما"
    ],
    "ambiguous": {
     "لا": "prohibition (jazm) vs negation (no jazm) vs la of genus; prohibition when it is followed by a present jussive verb",
@@ -383,12 +386,13 @@
     "كيفما": "conditional 'however'; no real rival",
     "أيان": "conditional 'whenever' vs interrogative 'when'",
     "إذما": "conditional particle 'if ever' (Tasheel note 1 calls it a particle, not a noun)",
-    "لم": "always jazm 'did not'; no real rival"
+    "لم": "always jazm 'did not'; no real rival",
+    "أينما": "conditional 'wherever'; see family zarf_makan"
    }
   },
   "negation": {
-   "ar": "حروف النفي غير العاملة",
-   "effect": "negates the sentence; does not govern (except ما and لا when they act like ليس, see family kana in tarkeeb.json)",
+   "ar": "حروف النفي",
+   "effect": "negates the sentence; some govern (لن، لم، لما، لات), and ما and لا act like ليس in some sentences (see family kana in tarkeeb.json)",
    "words": [
     "ما",
     "لا",
@@ -424,7 +428,6 @@
     "جير",
     "أي",
     "هلا",
-    "ألا",
     "لولا",
     "لوما",
     "قد",
@@ -434,8 +437,7 @@
     "سوف",
     "أ",
     "هل",
-    "لو",
-    "إذ"
+    "لو"
    ],
    "ambiguous": {
     "أما": "notification/detail 'as for' (أما ... فـ) vs أم + ما (interrogative) vs أما الاستفتاحية",
@@ -447,13 +449,12 @@
     "هلا": "exhortation 'why not'; no real rival",
     "قد": "anticipation/tahqiq/taqlil (before a verb) vs 'enough' (قدْ) as a noun; particle when a verb follows",
     "لقد": "lam al-tahqiq + qad; oath answer",
-    "كلا": "rebuke 'never' vs kila (two, see tawkeed) when spelled with hamza-less alif; rebuke when alone or before a verb",
+    "كلا": "rebuke 'never' vs كلا 'both' (see tawkeed), same spelling; rebuke when alone or before a verb",
     "س": "future prefix on a present verb vs a letter inside a noun; particle when attached to a present verb",
     "سوف": "future word; no real rival",
     "أ": "interrogative hamza vs vocative أ vs first-person present prefix (أفعل)",
     "هل": "interrogative 'is it'; no real rival",
     "لو": "conditional 'if' (non-governing) vs wish 'would that' vs masdariyya",
-    "إذ": "see family zarf_zaman",
     "نعم": "affirmation 'yes' vs the verb of praise 'what an excellent' (see family praise_blame)",
     "بلى": "'yes, indeed' answering a negative; no real rival",
     "أجل": "'yes' vs noun 'term / appointed time'",
@@ -533,7 +534,7 @@
   },
   "tawkeed": {
    "ar": "ألفاظ التوكيد المعنوي",
-   "effect": "follows the word it emphasises (muakkad) in case, gender and number; a pronoun joined to the muakkad is required for the first group",
+   "effect": "follows the word it emphasises (muakkad) in case, gender and number; the first group (نفسه، عينه، كله) carries a pronoun joined to the tawkeed word that refers back to the muakkad",
    "ambiguous": {
     "نفس": "emphasis 'itself' (with pronoun suffix, after a definite noun) vs noun 'soul / self'",
     "عين": "emphasis 'itself' (with pronoun suffix) vs noun 'eye / spring'",
@@ -561,7 +562,13 @@
     "جمع",
     "أكتع",
     "أبصع",
-    "أبتع"
+    "أبتع",
+    "أكتعون",
+    "أبصعون",
+    "أبتعون",
+    "كتعاء",
+    "بصعاء",
+    "بتعاء"
    ]
   },
   "zarf_zaman": {
@@ -581,7 +588,6 @@
     "قط",
     "عوض",
     "أبدا",
-    "دائما",
     "يوم",
     "صباحا",
     "مساء",
@@ -608,10 +614,8 @@
     "قبل",
     "بعد",
     "لدن",
-    "مرة",
     "حينا",
-    "دهرا",
-    "ثم"
+    "دهرا"
    ],
    "ambiguous": {
     "إذ": "adverb 'when' (past) vs preposition-like 'since / then' vs a particle of surprise",
@@ -626,7 +630,6 @@
     "قط": "adverb 'never' (used with a past negation) vs noun 'cat' (قِطّ)",
     "عوض": "adverb 'never' (future negation) vs noun 'compensation'",
     "أبدا": "adverb 'ever' vs noun 'eternity' after a preposition",
-    "دائما": "adverb 'always' vs a hal 'continuously' with a noun",
     "يوم": "adverb 'day' vs plain noun 'day' as mubtada, khabar, mudaf ilayhi, or majroor",
     "صباحا": "adverb 'in the morning' vs plain noun (hal or masdar)",
     "مساء": "adverb 'in the evening' vs plain noun 'evening'",
@@ -653,10 +656,8 @@
     "قبل": "adverb 'before' vs plain mudaf noun (بعد / قبل after من); needs the next noun",
     "بعد": "adverb 'after' vs plain mudaf noun; also the word 'after' in بعد أن",
     "لدن": "adverb 'from the time of' vs none; see also zarf_makan",
-    "مرة": "adverb 'once' vs plain noun 'a time' as masdar or object",
     "حينا": "adverb 'for a while' vs plain noun",
-    "دهرا": "adverb 'for ages' vs plain noun 'time / era'",
-    "ثم": "adverb 'there' (ثَمَّ, place) vs conjunction 'then' (see atf)"
+    "دهرا": "adverb 'for ages' vs plain noun 'time / era'"
    }
   },
   "zarf_makan": {
@@ -743,8 +744,6 @@
     "إزاء": "adverb 'opposite' vs plain mudaf noun",
     "تجاه": "adverb 'towards' vs plain mudaf noun",
     "بإزاء": "composed form 'opposite'; jar-majroor in form, adverbial in meaning",
-    "بعيد": "adverb 'far from' vs plain adjective 'far'",
-    "قريب": "adverb 'near' vs plain adjective 'near'",
     "جوار": "adverb 'beside' vs plain noun 'neighbourhood'",
     "مكان": "adverb 'in place of' vs plain noun 'place'",
     "يمينا": "adverb 'to the right' vs plain noun 'an oath'",
@@ -790,7 +789,7 @@
   },
   "ishara": {
    "ar": "أسماء الإشارة",
-   "effect": "points to a thing; nearly always mabni (fixed case); as the subject or complement it takes a role, before a definite noun with ال it is the mushar and the noun is its badal/na't",
+   "effect": "points to a thing; nearly always mabni (fixed case); as the subject or complement it takes a role; the noun with ال after it is the مشار إليه (a صفة or بدل)",
    "words": [
     "هذا",
     "هذه",
@@ -824,7 +823,10 @@
     "هنالك",
     "ثم",
     "هاته",
-    "هاذا"
+    "هاذا",
+    "ذه",
+    "تي",
+    "هذي"
    ],
    "ambiguous": {
     "ذا": "demonstrative 'this' vs relative after ما or من vs part of ماذا; demonstrative on its own",
@@ -841,7 +843,7 @@
   },
   "damir_munfasil": {
    "ar": "الضمائر المنفصلة",
-   "effect": "stands as its own word: mubtada, khabar, or emphatic subject (fasl); in the object slot only إيا plus suffix works",
+   "effect": "stands as its own word: mubtada, khabar, or or a fasl pronoun, a separator between mubtada and khabar that has no i'raab position of its own; in the object slot only إيا plus suffix works",
    "words": [
     "أنا",
     "نحن",
@@ -969,18 +971,68 @@
   },
   "tamyeez_head": {
    "ar": "ألفاظ العدد والمقادير التي يأتي بعدها التمييز",
-   "effect": "a tamyeez (specifier) is named only after a number or a measure: عشرون كتابا، رطل عسلا",
-   "words": ["عشرون", "عشرين", "ثلاثون", "ثلاثين", "أربعون", "أربعين", "خمسون", "خمسين", "ستون", "ستين", "سبعون", "سبعين", "ثمانون", "ثمانين", "تسعون", "تسعين", "عشر", "عشرة", "مئة", "مائة", "ألف", "مليون", "مليار", "كم", "رطل", "كيلو", "لتر", "متر", "فدان", "صاع", "مد", "أوقية", "غرام", "جرام", "ميل", "شبر", "ذراع", "قنطار", "كوب"]
+   "effect": "a tamyeez (specifier) is named only after the numbers 11 to 99, كم, or a measure: عشرون كتابا، رطل عسلا. Hundreds and thousands take a genitive مضاف إليه instead (مئة كتاب)",
+   "words": [
+    "عشرون",
+    "عشرين",
+    "ثلاثون",
+    "ثلاثين",
+    "أربعون",
+    "أربعين",
+    "خمسون",
+    "خمسين",
+    "ستون",
+    "ستين",
+    "سبعون",
+    "سبعين",
+    "ثمانون",
+    "ثمانين",
+    "تسعون",
+    "تسعين",
+    "عشر",
+    "عشرة",
+    "كم",
+    "رطل",
+    "كيلو",
+    "لتر",
+    "متر",
+    "فدان",
+    "صاع",
+    "مد",
+    "أوقية",
+    "غرام",
+    "جرام",
+    "ميل",
+    "شبر",
+    "ذراع",
+    "قنطار",
+    "كوب"
+   ]
   },
   "participle_patterns": {
    "ar": "أوزان اسم الفاعل واسم المفعول",
-   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal. Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل, مُ is every active or passive participle past form I, مَ1ْ2ُو3 is مفعول.",
-   "words": ["1ا2ِ3", "مُ", "مَ1ْ2ُو3"]
+   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal. Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل, مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول.",
+   "words": [
+    "1ا2ِ3",
+    "مُ",
+    "مَ1ْ2ُو3"
+   ]
   },
   "tamyeez_verbs": {
    "ar": "أفعال يأتي بعدها تمييز النسبة",
    "effect": "after a complete sentence built on one of these, an indefinite accusative noun is a tamyeez of the relation: طاب المكان هواء، امتلأ الكوب ماء. Lemmas as the parser spells them (a hamzat-wasl verb comes back with alef wasla).",
-   "words": ["طاب", "امتلأ", "ٱمتلأ", "زاد", "ازداد", "ٱزداد", "تصبب", "تفصد", "فاض", "غزر"]
+   "words": [
+    "طاب",
+    "امتلأ",
+    "ٱمتلأ",
+    "زاد",
+    "ازداد",
+    "ٱزداد",
+    "تصبب",
+    "تفصد",
+    "فاض",
+    "غزر"
+   ]
   }
  }
 }
