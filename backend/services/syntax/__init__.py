@@ -19,6 +19,7 @@ import logging
 from backend.config import get_settings
 from backend.services import provenance, rule_engine
 from backend.services.arabic_text import words as split_words
+from backend.services.nahw_book import reason
 from backend.services.syntax import teacher, tree
 from backend.services.syntax.naming import role_key
 from backend.services.syntax.naming import roles as name_roles
@@ -90,6 +91,9 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
             entry.update(role="–", role_key=None, case=found["case"], sign=None,
                          reason=found["gap"]["ar"], notes=found["gap"]["en"])
         elif found["role"]:
+            # the reason must explain the new name; a verb keeps its mabni/mu'rab detail
+            if found["role"] != entry.get("role") and not (found["role"] == "فعل" and entry.get("type") == "fi'l"):
+                entry["reason"] = reason(found["role"])
             entry["role"] = found["role"]
             # the colour must follow the new name, never the one it replaced
             entry["role_key"] = role_key(found["role"])

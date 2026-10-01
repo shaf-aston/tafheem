@@ -84,3 +84,26 @@ def test_a_role_key_the_grid_knows_survives():
 def test_a_word_with_no_key_at_all_is_accepted_uncoloured():
     """An older AI reply, or one that skipped the field; not an error."""
     assert WordAnalysis.from_raw({"word": "زيدٌ"}).role_key is None
+
+
+# A card's reason must explain the role the card wears, whoever named it.
+REASON_SENTENCES = ["مَتَى سَافَرَ الرَّجُلُ", "كُتِبَ الدَّرْسُ", "جاء محمد وعلي", "يا محمد اجلس",
+                    "إِنَّ الطَّالِبَ مُجْتَهِدٌ", "كَتَبَ الطَّالِبُ الدَّرْسَ فِي الْبَيْتِ"]
+
+
+def test_every_role_has_a_reason():
+    from backend.services.nahw_book import teacher_rules
+    from backend.services.syntax.naming import ROLES
+    assert [role for role in ROLES if role not in teacher_rules()["reasons"]] == []
+
+
+@pytest.mark.parametrize("sentence", REASON_SENTENCES)
+def test_each_reason_explains_its_own_role(sentence: str):
+    from backend.services import morphology, syntax
+    rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
+    words = syntax.with_parser_roles(rules, syntax.read(sentence)["roles"])["words"]
+    for word in words:
+        role = word["role"]
+        if word["type"] == "punc" or role == "–":
+            continue
+        assert role in word["reason"] or (role == "فعل" and word["type"] == "fi'l"), (word["word"], role, word["reason"])

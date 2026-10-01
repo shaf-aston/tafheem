@@ -48,3 +48,8 @@ def is_plain_noun(token: dict) -> bool:
 def teacher_rules() -> dict:
     """The teacher's checks and their reasons (services/syntax/teacher.py)."""
     return json.loads(TEACHER_FILE.read_text(encoding="utf-8"))
+
+
+def reason(role: str) -> str:
+    """The reason a card wearing this role shows; a role with no entry is just named, never given another role's text."""
+    return teacher_rules()["reasons"].get(role) or f"{role}."
