@@ -321,6 +321,8 @@
   "nasb_mudari": {
    "ar": "نواصب الفعل المضارع",
    "effect": "puts the present verb after it in nasb (fatha; the nun of the five verbs is dropped)",
+   "before_a_present_verb": ["أن", "لن", "كي", "لكي", "كيلا", "لئلا", "حتى"],
+   "_before_a_present_verb": "the ones that settle an unvowelled present verb as منصوب when it comes straight after them; the rest need a reading of the sentence (services/syntax/naming.py)",
    "words": [
     "أن",
     "لن",
@@ -351,6 +353,8 @@
   "jazm": {
    "ar": "جوازم الفعل المضارع",
    "effect": "puts the present verb after it in jazm (sukun; nun of the five verbs dropped; a weak last letter dropped); conditionals govern two verbs, the condition and the result",
+   "before_a_present_verb": ["لم", "لما"],
+   "_before_a_present_verb": "the ones that settle an unvowelled present verb as مجزوم when it comes straight after them; لا and the conditionals need a reading of the sentence (services/syntax/naming.py)",
    "words": [
     "لم",
     "لما",

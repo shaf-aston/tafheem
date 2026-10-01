@@ -89,6 +89,20 @@ _SIGNS: dict[tuple[str, str], tuple[str, str]] = {
     ("a", "p"): ("nasb",  "فتحة"),
     ("g", "p"): ("jarr",  "كسرة"),
 }
+# The sign of a case the typed vowel showed, for a card whose case the parser changed
+# (syntax.with_parser_roles); the vowel is on one letter, so the singular's sign.
+# a present verb's case, as said and as shown on its last letter
+PRESENT_CASE = {"raf'": ("مرفوع", "الضمة الظاهرة"), "nasb": ("منصوب", "الفتحة الظاهرة"), "jazm": ("مجزوم", "السكون")}
+
+
+def present_verb(case: str, reason_ar: str) -> dict:
+    """Case, sign and reason of a مضارع, so the three agree; syntax.with_parser_roles
+    redoes them when the particle before the verb changes its case."""
+    said, sign = PRESENT_CASE[case]
+    return {"case": case, "sign": sign, "reason": f"فعل مضارع {said}. {reason_ar}"}
+
+
+SIGN_OF_CASE = {case: sign for (_, num), (case, sign) in _SIGNS.items() if num == "s"} | {"mabni": "مبني"}
 
 # ── Detection helpers ─────────────────────────────────────────────────────────
 
@@ -162,22 +176,12 @@ def _verb_entry(tag: dict, role: str, reason_ar: str, key: str | None = "fil") -
         }
 
     elif asp == "i":
-        mood_map = {
-            "i": ("raf'",  "الضمة"),   # الضمة
-            "s": ("nasb",  "الفتحة"),  # الفتحة
-            "j": ("jazm",  "السكون"),  # السكون
-        }
-        case_label, sign_ar = mood_map.get(mod, ("raf'", "الضمة"))
-        mood_labels = {"i": "مرفوع", "s": "منصوب", "j": "مجزوم"}
-        ml = mood_labels.get(mod, "مرفوع")
         return {
             **_common(tag),
             "type": "fi'l",
             "role": role,
             "role_key": key,
-            "case": case_label,
-            "sign": f"{sign_ar} الظاهرة",
-            "reason": f"فعل مضارع {ml}. {reason_ar}",
+            **present_verb({"s": "nasb", "j": "jazm"}.get(mod, "raf'"), reason_ar),
             "notes": tag.get("features") or "",
             "source": "rule_engine",
         }

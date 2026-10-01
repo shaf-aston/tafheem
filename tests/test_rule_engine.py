@@ -107,3 +107,23 @@ def test_each_reason_explains_its_own_role(sentence: str):
         if word["type"] == "punc" or role == "–":
             continue
         assert role in word["reason"] or (role == "فعل" and word["type"] == "fi'l"), (word["word"], role, word["reason"])
+
+
+# The verb's card: a command by its typed shape, a present verb's case by its ending or the particle before it.
+VERB_CARDS = [
+    ("اُكْتُبْ الدَّرْسَ", 0, "mabni", "فعل أمر"),
+    ("قُمْ يَا وَلَدُ", 0, "mabni", "فعل أمر"),
+    ("لَمْ يَكْتُبْ الطَّالِبُ", 1, "jazm", "مجزوم"),
+    ("لم يكتب الطالب", 1, "jazm", "مجزوم"),
+    ("لن يذهب زيد", 1, "nasb", "منصوب"),
+    ("يَكْتُبُ الطَّالِبُ", 0, "raf'", "مرفوع"),
+    ("كَتَبَ الطَّالِبُ", 0, "mabni", "فعل ماضٍ"),  # nearest case: a past verb is untouched
+]
+
+
+@pytest.mark.parametrize("sentence, index, case, said", VERB_CARDS)
+def test_verb_card_case_and_reason_agree(sentence: str, index: int, case: str, said: str):
+    from backend.services import morphology, syntax
+    rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
+    word = syntax.with_parser_roles(rules, syntax.read(sentence)["roles"])["words"][index]
+    assert (word["case"], said in word["reason"]) == (case, True), word

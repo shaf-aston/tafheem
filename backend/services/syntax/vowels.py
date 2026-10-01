@@ -96,6 +96,20 @@ def typed_passive(word: str, present: bool) -> bool:
     return len(stem) >= 3 and "َ" in stem[-2][1]
 
 
+def command_shape(word: str) -> bool:
+    """فعل أمر by its vowels, for a word already known to be a verb: a sukun last, and
+    either the voweled hamzat al-wasl before a sakin letter (اُكْتُبْ، اِجْلِسْ) or two
+    letters only, the hollow verb's (قُمْ، بِعْ، نَمْ). A present verb's prefix is never a
+    bare voweled alef, and no past verb ends in a sukun on its own."""
+    marked = letters(word)
+    if len(marked) < 2 or SUKUN not in marked[-1][1]:
+        return False
+    first, second = marked[0], marked[1]
+    if len(marked) == 2:
+        return bool(first[1] & {"َ", "ُ", "ِ"})
+    return first[0] == "ا" and bool(first[1] & {"ُ", "ِ"}) and SUKUN in second[1]
+
+
 def past_passive_shape(word: str) -> bool:
     """فُعِلَ by its vowels alone: damma first, a kasra inside, fatha or sukun last
     (قُرِئَ، سُئِلَ، بُنِيَ، قُرِئَتْ). For a word the morphology could only call a name.

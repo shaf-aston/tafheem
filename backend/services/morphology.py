@@ -19,6 +19,7 @@ import unicodedata
 from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
+from backend.services.syntax.vowels import command_shape
 
 logger = logging.getLogger(__name__)
 
@@ -245,8 +246,11 @@ def _analysis_dict_from_camel(word: str, a: dict) -> dict[str, Any]:
     lemma = _strip_diacritics(lex)
 
     cas = a.get("cas", "na") or "na"
+    # CAMeL's word list has no اُكْتُبْ or قُمْ, so it offers أَكْتُبُ or قَمَّ; the typed
+    # shape of a command overrules it (the book forms the امر from the مضارع that way)
+    asp = "c" if pos == "verb" and command_shape(word) else a.get("asp")
     # A past or imperative verb is mabni: its last vowel is not a case.
-    mabni = pos == "verb" and a.get("asp") in ("p", "c")
+    mabni = pos == "verb" and asp in ("p", "c")
     case_str = _CAS_MAP.get(cas) or (None if mabni else _harakat_case(word))
 
     return {
@@ -261,8 +265,8 @@ def _analysis_dict_from_camel(word: str, a: dict) -> dict[str, Any]:
         "gender": a.get("gen") or "na",
         "number": a.get("num") or "na",
         "person": a.get("per") or "na",
-        "aspect": a.get("asp") or "na",
-        "mood": a.get("mod") or "na",
+        "aspect": asp or "na",
+        "mood": "na" if asp == "c" else a.get("mod") or "na",
         "voice": a.get("vox") or "na",
         "state": a.get("stt") or "na",
         "pattern": a.get("pattern") or "",

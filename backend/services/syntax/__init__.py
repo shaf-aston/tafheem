@@ -99,8 +99,12 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
             entry["role_key"] = role_key(found["role"])
             # the ending must not contradict the reader's own vowel, and a verb
             # or a particle is mabni rather than carrying a case
-            if found["case"]:
-                entry["case"] = found["case"]
+            if found["case"] and found["case"] != entry.get("case"):
+                # the sign (and a verb's reason) must show the new case, never the one it replaced
+                if entry.get("type") == "fi'l" and found["case"] in rule_engine.PRESENT_CASE:
+                    entry.update(rule_engine.present_verb(found["case"], reason("فعل مضارع")))
+                else:
+                    entry.update(case=found["case"], sign=rule_engine.SIGN_OF_CASE.get(found["case"]))
             named += 1
     share = named / len(entries)
     confidence = round(share + (1 - share) * rule_result.get("confidence", 0.0), 2)
