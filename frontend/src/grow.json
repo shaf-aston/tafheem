@@ -14,13 +14,13 @@
     { "id": "advanced", "title": "Level 3", "proposed": [] }
   ],
 
-  "_branch": "The shape of a branch of steps, in pixels. step: the width each step takes along the branch. node: how tall a step's circle is. sway: how far each step sits above or below the branch line, alternating, which is what makes it wind. tail: how far the branch runs on past its last step.",
-  "branch": { "step": 88, "node": 56, "sway": 8, "tail": 22 },
+  "_vine": "The shape of a vine of steps, in pixels (lib/vine.js). cell: the least room a step needs, so a group's steps wrap into a curl once the row is narrower than that many. row: the height of one row of steps. top: where the vine runs, down from the top of a row. sway: how far each step sits above or below the vine, alternating, which makes it wind. spread: how many cells apart the steps of a short branch may spread before they stop filling the row. bud: the room a group's own circle takes at the start of its branch.",
+  "vine": { "cell": 104, "row": 132, "top": 40, "sway": 6, "spread": 1.6, "bud": 100 },
 
   "_daleel-words": "How many opening words of a ruling are handed to Daleel by its Open in Daleel link.",
   "daleel-words": 8,
 
-  "_unlock-ms": "The tier unlock, in four waits: the gate stays shut, the gate opens, the dotted path draws, the vine grows and the groups appear. Each number is how long that beat lasts before the next one starts; after the last, the tier's first group opens by itself. Read in JavaScript, so it is skipped when animations are off.",
+  "_unlock-ms": "The tier unlock, in four waits: the gate stays shut, the gate opens, the vine draws, the steps appear. Each number is how long that beat lasts before the next one starts. Read in JavaScript, so it is skipped when animations are off.",
   "unlock-ms": [500, 1100, 1000, 800],
 
   "_mood-ms": "How long Qalam holds a reaction to a recitation before going back to resting. Longer than the motion itself so the reaction is seen, short enough that the next one reads as new.",

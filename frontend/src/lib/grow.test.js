@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { CHECK, MISSED, SAID, WRONG } from './follow'
 import { byHand } from './growKinds'
 import {
-  afterDone, afterRecitation, becomesLearnt, currentGroup, daysOf, groupsOf, isLearnt, judge, nodeState, pageOf, reactionTo, score, tally, tiersOf,
+  afterDone, afterRecitation, becomesLearnt, daysOf, groupsOf, isLearnt, judge, mapOf, nodeState, pageOf, reactionTo, score, tally, tiersOf,
   today, unlocked, upNext,
 } from './grow'
 
@@ -172,9 +172,16 @@ describe('the map', () => {
     expect(groupsOf(TIERS[2])).toEqual([])
   })
 
-  it('finds the group holding the step to work on, and none when there is none', () => {
-    expect(currentGroup(TIERS, TIERS[0].paths[0].steps[1])).toBe('g')
-    expect(currentGroup(TIERS, null)).toBeNull()
+  it('lays out each tier for the map: paths, group states, the step up next, and alongside groups apart', () => {
+    const along = { ...PATH, groups: [...PATH.groups, { id: 'care', alongside: true, steps: ['ruku'] }] }
+    const [first, second] = mapOf(tiersOf([{ id: 'basics' }, { id: 'next', proposed: [] }], [along]), { takbir: learnt }, along.steps[1])
+    expect(first).toMatchObject({ open: true, learnt: 1, total: 3 })
+    const [salah] = first.paths
+    expect(salah.groups.map((one) => one.group.id)).toEqual(['g'])
+    expect(salah.alongside.map((one) => one.group.id)).toEqual(['care'])
+    expect(salah.groups[0]).toMatchObject({ state: 'started', learnt: 1 })
+    expect(salah.groups[0].steps.map((one) => [one.state, one.now])).toEqual([['learnt', false], ['open', true]])
+    expect(second).toMatchObject({ open: false, total: 0, paths: [{ groups: [], alongside: [] }] })
   })
 
   it('points at the first step not yet learnt, and at none once the open tiers are done', () => {

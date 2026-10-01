@@ -970,12 +970,15 @@ class GrowStep(BaseModel):
 class GrowGroup(BaseModel):
     """One node on the map: a few steps that belong together. `steps` are step
     ids, and `icon` names the picture the page draws for it (the figures in
-    the page's grow/icons.jsx; one it lacks would draw nothing)."""
+    the page's grow/icons.jsx; one it lacks would draw nothing). `alongside`
+    marks a group that runs through its whole path (wudu's good manners), which
+    the map draws beside the path instead of after the group before it."""
     id: str
     title: str
     arabic: str = ""
     icon: Literal["stand", "bow", "prostrate", "sit", "book", "lock", "drop"]
     steps: list[str]
+    alongside: bool = False
 
 
 class GrowPath(BaseModel):

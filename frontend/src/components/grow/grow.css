@@ -3,40 +3,77 @@
    calc(var(--motion-*-ms) * 1ms), because the tokens are bare numbers. The
    reduced-motion block at the end stops the staggers too. */
 
+/* ── the map: a plate per tier, a trunk per path, a branch per group ── */
 .grow-map {
-  --cw: 92px;
-  /* The vine is laid out once where it stands with a branch open (--vx), and
-     slid to the middle when none is (--shift, 50cqw = half its plate). Sliding
-     is translate, so it moves on the GPU; the padding-left it replaced laid out
-     every row on every frame of the slide. Opening names the moving parts
-     rather than resetting --shift: a changed inherited variable restyles all
-     ~500 nodes of the map, a class rule only these few. */
-  --vx: calc(52px + var(--cw) / 2);
-  --shift: calc(50cqw - var(--vx));
-  --nc: 48px; /* a group circle's centre, down from the top of its row */
+  --stem: color-mix(in srgb, var(--c) 45%, var(--surface-hi));
   --stem-w: 3px;
-  /* The pressable shadow under a group circle: a darker step of the same colour. */
   --sh-m: color-mix(in srgb, var(--c) 50%, var(--bg));
   --sh-o: color-mix(in srgb, var(--c) 28%, var(--bg));
   --sh-l: var(--surface-hi);
-  --lift: color-mix(in srgb, var(--bg) 90%, transparent);
-  max-width: 760px;
-  margin: 0 auto;
-  padding-top: 26px;
-  overflow-x: clip;
+  --draw: calc(var(--motion-spring-ms) * 2.6ms);
+  display: grid;
+  gap: 44px;
+  margin-top: 8px;
+  padding-top: 18px;
 }
-.grow-map-open :is(.grow-hd, .grow-cell, .grow-stem) { translate: none; }
-.grow-map-open .grow-light { left: var(--vx); }
-@media (max-width: 480px) { .grow-map { --cw: 84px; } }
-/* Wide screens: the levels stand side by side instead of one long column, so
-   there is less to scroll. Each plate is its own vine, so the joins between
-   plates and the tail of each vine go. */
-@media (min-width: 1100px) {
-  .grow-map { max-width: 1240px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 26px; align-items: start; }
-  .grow-stub, .grow-row:last-child .grow-stem { display: none; }
+.grow-tier { position: relative; padding: 22px 22px 18px; border-radius: var(--radius-lg); background: linear-gradient(180deg, var(--surface-hi), var(--surface)); border: 1px solid var(--border-hi); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 10%, transparent), 0 26px 40px -14px color-mix(in srgb, var(--bg) 90%, transparent); }
+/* The stem joining each tier to the one above it, through its gate. */
+.grow-tier + .grow-tier::before { content: ''; position: absolute; left: calc(22px + var(--knot) / 2 - var(--stem-w) / 2); top: -46px; height: 46px; width: var(--stem-w); border-radius: var(--stem-w); background: var(--stem); }
+.grow-locked { --stem: color-mix(in srgb, var(--c) 16%, var(--surface-hi)); background: var(--surface); border-style: dashed; }
+.grow-locked .grow-body { opacity: 0.55; }
+.grow-hd { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; margin-bottom: 8px; }
+.grow-hd h2 { font-size: var(--type-body); font-weight: 800; color: var(--text); }
+.grow-n { display: grid; place-items: center; min-width: 32px; height: 32px; padding: 0 8px; border-radius: 10px; background: var(--c); color: var(--bg); font-weight: 800; font-size: var(--type-ui); }
+.grow-locked .grow-n { background: var(--border-hi); color: var(--text); }
+.grow-tag { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
+
+.grow-path { display: grid; gap: 16px 24px; align-items: start; padding-top: 8px; }
+.grow-path + .grow-path { margin-top: 10px; padding-top: 16px; border-top: 1px solid var(--border-hi); }
+.grow-path[data-alongside] { grid-template-columns: minmax(0, 1fr) minmax(220px, 280px); }
+.grow-sign { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; font-size: var(--type-small); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-dim); }
+.grow-trunk { position: relative; }
+.grow-trunk::before { content: ''; position: absolute; left: calc(var(--knot) / 2 - var(--stem-w) / 2); top: 40px; bottom: 70px; width: var(--stem-w); border-radius: var(--stem-w); background: var(--stem); }
+
+/* Branches share a line while they fit: a long one takes the line, a short one curls into what is left. */
+.grow-branches { display: flex; flex-wrap: wrap; gap: 4px 0; }
+.grow-branch { position: relative; flex: 1 1 var(--basis); max-width: 100%; display: grid; grid-template-columns: var(--knot) minmax(0, 1fr); align-items: start; }
+/* a branch that wrapped mid-line: a stem from the branch before it to its bud */
+.grow-branch[data-joined]::before { content: ''; position: absolute; left: -24px; width: calc(var(--knot) / 2 + 24px); top: calc(8px + var(--n, 64px) / 2 - var(--stem-w) / 2); height: var(--stem-w); border-radius: var(--stem-w); background: var(--stem); }
+.grow-single { flex-grow: 0; grid-template-columns: var(--knot); }
+.grow-knot { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; padding-top: 8px; }
+.grow-single .grow-knot { --n: 64px; }
+.grow-gnode { --n: 64px; }
+.grow-gl { max-width: calc(var(--knot) + 10px); font-size: var(--type-small); font-weight: 800; text-align: center; line-height: 1.25; color: var(--text); overflow-wrap: anywhere; text-shadow: 0 0 4px var(--surface), 0 0 8px var(--surface); }
+.grow-gl-ar { display: block; color: var(--text-dim); font-weight: 400; }
+
+/* the vine: an SVG stem drawn on; each step pops in as the vine reaches it */
+.grow-vine { position: relative; --n: 54px; margin-left: -18px; }
+.grow-stem { position: absolute; inset: 0; overflow: visible; pointer-events: none; }
+.grow-stem path { fill: none; stroke: var(--stem); stroke-width: var(--stem-w); stroke-linecap: round; stroke-dasharray: 1; animation: grow-draw var(--draw) ease-out both; }
+@keyframes grow-draw { from { stroke-dashoffset: 1; } }
+.grow-spot { position: absolute; translate: -50% calc(var(--n) / -2); display: flex; flex-direction: column; align-items: center; gap: 6px; width: 104px; animation: grow-popin calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) both; animation-delay: calc(var(--k) * var(--draw)); }
+.grow-spot-in { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 84px; --n: 50px; }
+.grow-lbl { font-size: var(--type-small); font-weight: 700; color: var(--text-dim); text-align: center; line-height: 1.25; max-width: 92px; overflow-wrap: anywhere; text-shadow: 0 0 4px var(--surface), 0 0 8px var(--surface); }
+.grow-lbl[data-s='learnt'] { color: var(--text); }
+.grow-lbl[data-now] { color: var(--c); }
+.grow-qalam { position: absolute; bottom: calc(100% - 6px); left: 50%; translate: -50% 0; pointer-events: none; }
+
+/* a group running through its whole path: one big leaf beside it */
+.grow-alongside { position: relative; display: grid; gap: 14px; padding: 22px 20px 20px; border-radius: 70% 10% 70% 10% / 26% 6% 26% 6%; background: radial-gradient(120% 90% at 20% 0%, color-mix(in srgb, var(--c) 20%, var(--surface)), var(--surface)); border: 2px solid color-mix(in srgb, var(--c) 45%, var(--border-hi)); animation: grow-popin calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) both; animation-delay: var(--draw); }
+.grow-alongside::before { content: ''; position: absolute; left: 12%; right: 12%; top: 50%; border-top: 2px solid color-mix(in srgb, var(--c) 25%, transparent); rotate: -18deg; pointer-events: none; }
+.grow-alongside[data-s='locked'] { background: var(--surface); border-style: dashed; border-color: var(--border-hi); }
+.grow-alongside-hd { display: flex; align-items: center; gap: 18px; }
+.grow-alongside-hd > div { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.grow-alongside-hd h3 { font-size: var(--type-body); font-weight: 800; color: var(--text); }
+.grow-alongside-steps { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 6px; }
+
+@media (max-width: 720px) {
+  .grow-tier { padding: 18px 12px 14px; }
+  .grow-tier + .grow-tier::before { left: calc(12px + var(--knot) / 2 - var(--stem-w) / 2); }
+  .grow-path[data-alongside] { grid-template-columns: minmax(0, 1fr); }
 }
 
-/* ── the circle: colour set by state; only a group's circle is pressable ── */
+/* ── the circle: colour set by state ── */
 .grow-nw { position: relative; }
 .grow-node {
   --bd: var(--border-hi);
@@ -116,10 +153,6 @@ button.grow-node:active { transform: translateY(2px); }
 .grow-act[data-s] { --bd: var(--text-faint); color: var(--text-dim); background: var(--surface); }
 .grow-act[data-s='locked'] { border-style: dashed; }
 .grow-act .grow-gi { width: 26px; height: 26px; stroke-width: 2; }
-.grow-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; width: var(--iw); }
-.grow-lbl { font-size: var(--type-small); font-weight: 700; color: var(--text-dim); text-align: center; line-height: 1.25; max-width: 84px; min-height: 2.4em; overflow-wrap: anywhere; }
-.grow-item[data-now] .grow-lbl { color: var(--c); }
-.grow-item[data-s='learnt'] .grow-lbl { color: var(--text); }
 
 /* group circles sit on the vine */
 .grow-ring { position: absolute; inset: -8px; width: calc(100% + 16px); height: calc(100% + 16px); pointer-events: none; overflow: visible; }
@@ -129,94 +162,6 @@ button.grow-node:active { transform: translateY(2px); }
 .grow-gi { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .grow-cnt { position: absolute; top: -8px; right: -18px; padding: 0 4px; border-radius: 8px; background: var(--surface); font-size: var(--type-tiny); font-weight: 700; color: var(--text-dim); font-variant-numeric: tabular-nums; }
 .grow-gnode[data-s='learnt'] .grow-cnt { color: var(--c); }
-
-/* ── the vine: a plate holds rows, each row a group circle and the winding stem
-   down to the next one (drawn in the row, so it follows however tall the row is) ── */
-.grow-plate {
-  --stem: color-mix(in srgb, var(--c) 45%, var(--surface-hi));
-  position: relative;
-  container-type: inline-size;
-  margin: 0 0 34px;
-  padding: 18px 0 8px;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, var(--surface-hi), var(--surface));
-  border: 1px solid var(--border-hi);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 10%, transparent), 0 10px 0 -2px var(--bg), 0 26px 40px -10px var(--lift);
-}
-.grow-plate.grow-locked { --stem: color-mix(in srgb, var(--c) 16%, var(--surface-hi)); background: var(--surface); border-style: dashed; }
-.grow-hd, .grow-cell, .grow-stem { translate: var(--shift) 0; transition: translate calc(var(--motion-spring-ms) * 1ms) ease-in-out; }
-.grow-stem { position: absolute; z-index: 0; left: calc(var(--vx) - var(--cw) / 2); top: var(--nc); width: var(--cw); height: 100%; overflow: visible; pointer-events: none; }
-.grow-stem path, .grow-twig path { fill: none; stroke: var(--stem); stroke-width: var(--stem-w); stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
-.grow-plate:last-child .grow-row:last-child .grow-stem { display: none; }
-/* Joins the stem up to the tier before it, and down to the first circle. */
-.grow-stub { position: absolute; z-index: -1; left: var(--vx); top: -52px; height: calc(100% + 54px + var(--nc)); width: var(--stem-w); translate: -50% 0; border-radius: var(--stem-w); background: var(--stem); }
-.grow-plate:first-child .grow-stub { top: 50%; height: calc(50% + 2px + var(--nc)); }
-.grow-hd, .grow-row { padding-left: calc(var(--vx) - var(--cw) / 2); }
-.grow-hd { position: relative; z-index: var(--layer-raised); display: flex; align-items: center; padding-right: 14px; margin-bottom: 2px; }
-.grow-hn { width: var(--cw); flex: none; display: flex; justify-content: center; }
-.grow-n { background: var(--c); color: var(--bg); border-radius: 8px; padding: 1px 10px; font-weight: 800; font-size: var(--type-ui); }
-.grow-plate.grow-locked .grow-n { background: var(--border-hi); color: var(--text); }
-.grow-ht { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
-.grow-ht h2 { font-size: var(--type-body); font-weight: 800; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; color: var(--text); }
-.grow-tag { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
-
-.grow-row { position: relative; z-index: var(--layer-raised); display: flex; align-items: flex-start; scroll-margin-top: 130px; }
-.grow-cell { position: relative; z-index: calc(var(--layer-raised) + 1); flex: none; width: var(--cw); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 0 30px; min-height: 150px; box-sizing: border-box; }
-/* A label sits on the vine, so a halo of the plate colour hides the stem behind it: the stem never runs through the words. */
-.grow-gl { position: relative; z-index: 1; text-shadow: 0 0 3px var(--surface), 0 0 6px var(--surface), 0 0 10px var(--surface); }
-.grow-gl { max-width: calc(var(--cw) + 20px); font-size: var(--type-small); font-weight: 800; text-align: center; line-height: 1.25; color: var(--text); overflow-wrap: anywhere; }
-.grow-gl-ar { display: block; color: var(--text-dim); font-weight: 400; }
-.grow-row[data-now] .grow-gl { color: var(--c); }
-
-/* The branch: a lane to the right of the group. It scrolls inside itself so a
-   long one never widens the page, and shows only as far as its last step: each
-   step brings its own twig, drawn on from the step before, then the step pops
-   in. --iw, --n and --sway come from grow.json (JourneyMap). */
-.grow-lane {
-  position: relative;
-  z-index: var(--layer-raised);
-  flex: 1 1 0;
-  min-width: 0;
-  margin: -16px 0 0 calc(var(--cw) / -2);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: thin;
-  visibility: hidden;
-  transition: visibility 0s linear calc(var(--motion-base-ms) * 1ms);
-}
-.grow-row-open .grow-lane { visibility: visible; transition-delay: 0s; }
-.grow-lane-in { display: flex; width: max-content; min-width: 100%; padding: calc(var(--nc) - var(--n) / 2 + 16px) 14px 16px calc(var(--iw) / 2); }
-.grow-twig { position: absolute; top: 0; left: calc(var(--iw) / -2); overflow: visible; pointer-events: none; }
-.grow-twig path { stroke-dashoffset: 1; transition: stroke-dashoffset calc(var(--motion-base-ms) * 1ms) ease; }
-.grow-row-open .grow-twig path {
-  stroke-dashoffset: 0;
-  transition-duration: calc(var(--motion-base-ms) * 1.5ms);
-  transition-delay: calc(var(--i) * var(--motion-stagger-ms) * 3 * 1ms);
-}
-.grow-lane .grow-nw, .grow-lane .grow-lbl {
-  translate: 0 calc(var(--w) * var(--sway) * 1px);
-  opacity: 0;
-  transition: scale calc(var(--motion-base-ms) * 1ms) ease, opacity calc(var(--motion-base-ms) * 1ms) ease;
-}
-.grow-lane .grow-nw { z-index: 1; scale: 0.6; transform-origin: 50% 40%; }
-.grow-row-open .grow-lane .grow-nw, .grow-row-open .grow-lane .grow-lbl {
-  scale: 1;
-  opacity: 1;
-  transition-duration: calc(var(--motion-spring-ms) * 1ms), calc(var(--motion-base-ms) * 1ms);
-  transition-delay: calc((var(--i) * 3 * var(--motion-stagger-ms) + var(--motion-base-ms)) * 1ms);
-}
-.grow-row-open .grow-lane .grow-nw { transition-timing-function: var(--motion-spring-ease), ease; }
-/* A branch's steps are built on its first opening (JourneyMap), already open,
-   so they start from the folded look here and still grow out. */
-@starting-style {
-  .grow-row-open .grow-twig path { stroke-dashoffset: 1; }
-  .grow-row-open .grow-lane .grow-nw { scale: 0.6; opacity: 0; }
-  .grow-row-open .grow-lane .grow-lbl { opacity: 0; }
-}
-
-/* Qalam stands left of the current group, clear of its ring, and only ever
-   reacts, never speaks. The open map's --vx leaves it room at 360px. */
-.grow-qalam { position: absolute; top: 50%; translate: 0 -50%; right: calc(100% + 10px); pointer-events: none; }
 
 /* ── progress in the header ── */
 .grow-progress { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: var(--type-small); color: var(--text-dim); }
@@ -293,19 +238,13 @@ button.grow-node:active { transform: translateY(2px); }
 .grow-door::after { content: ''; position: absolute; top: 50%; left: 10px; right: 10px; border-top: 2px dashed var(--border-hi); }
 .grow-u1 .grow-door-l { translate: -101% 0; }
 .grow-u1 .grow-door-r { translate: 101% 0; }
-.grow-light { position: absolute; left: calc(var(--vx) + var(--shift)); top: 0; bottom: 0; width: 180px; translate: -50% 0; background: radial-gradient(closest-side, color-mix(in srgb, var(--warn) 45%, var(--text)), transparent); opacity: 0; }
+.grow-light { position: absolute; left: 50%; top: 0; bottom: 0; width: 180px; translate: -50% 0; background: radial-gradient(closest-side, color-mix(in srgb, var(--warn) 45%, var(--text)), transparent); opacity: 0; }
 .grow-u1 .grow-light { animation: grow-glow calc(1100ms * var(--motion-scale)) ease-out both; }
 @keyframes grow-glow {
   0% { opacity: 0; scale: 0.3 1; }
   40% { opacity: 1; scale: 1.6 1; }
   100% { opacity: 0; scale: 2 1; }
 }
-.grow-pre .grow-stem path { transition: stroke-dashoffset calc(var(--motion-spring-ms) * 1.8ms) ease-out; }
-.grow-pre:not(.grow-u2) .grow-stem path { stroke-dashoffset: 1; }
-.grow-pre .grow-stub { transition: clip-path calc(var(--motion-spring-ms) * 1.8ms) ease-out; }
-.grow-pre:not(.grow-u2) .grow-stub { clip-path: inset(0 0 100% 0); }
-.grow-pre:not(.grow-u3) .grow-cell { opacity: 0; scale: 0.2; }
-.grow-u3 .grow-cell { animation: grow-popin calc(520ms * var(--motion-scale)) var(--motion-spring-ease) both; animation-delay: calc(500ms * var(--motion-scale)); }
 @keyframes grow-popin { from { opacity: 0; scale: 0.2; } }
 
 @media (max-width: 400px) {
@@ -317,14 +256,9 @@ button.grow-node:active { transform: translateY(2px); }
 /* Reduced motion already zeroes every duration (index.css); the staggers are
    delays, so they are cleared here or a branch would still wait its turn. */
 @media (prefers-reduced-motion: reduce) {
-  .grow-row-open .grow-twig path, .grow-row-open .grow-lane .grow-nw, .grow-row-open .grow-lane .grow-lbl,
-  .grow-u3 .grow-cell, .grow-go .grow-fan i { transition-delay: 0s; animation-delay: 0s; }
+  .grow-spot, .grow-go .grow-fan i { animation-delay: 0s; }
   .grow-pulse::after { animation: none; }
 }
 
 /* The card's disclosure and links are full-size touch targets. */
 .grow-sheet summary, .grow-sheet a { min-height: 44px; display: inline-flex; align-items: center; }
-/* On a phone the branch scrolls: its right edge fades to show there is more. */
-@media (max-width: 480px), (min-width: 1100px) {
-  .grow-lane { mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
-}

@@ -179,9 +179,26 @@ export const groupsOf = (tier) => {
   })))
 }
 
-/** The group holding the step to work on next, so the map can open it. */
-export const currentGroup = (tiers, next) =>
-  tiers.flatMap(groupsOf).find((group) => group.steps.includes(next))?.id ?? null
+/**
+ * Everything the map draws, in one pass: each tier with whether it is open and
+ * how much of it is learnt, its paths, and each path's groups with every step's
+ * state. A group marked `alongside` runs through its whole path rather than
+ * after the group before it, so it is kept apart for the map to draw beside.
+ */
+export const mapOf = (tiers, record, next) => tiers.map((tier, i) => {
+  const open = unlocked(tiers, i, record)
+  const groups = groupsOf(tier).map((group) => {
+    const steps = group.steps.map((step) => ({ step, state: nodeState([step], record, open), now: step === next }))
+    return { group, steps, state: nodeState(group.steps, record, open), learnt: steps.filter((one) => one.state === 'learnt').length }
+  })
+  const paths = (tier.paths.length ? tier.paths : [{ id: tier.id, title: '', arabic: '' }]).map((path) => {
+    const own = groups.filter((one) => (one.group.path ?? tier.id) === path.id)
+    return { path, groups: own.filter((one) => !one.group.alongside), alongside: own.filter((one) => one.group.alongside) }
+  })
+  const learnt = groups.reduce((sum, one) => sum + one.learnt, 0)
+  const total = groups.reduce((sum, one) => sum + one.steps.length, 0)
+  return { tier, i, open, paths, learnt, total }
+})
 
 /**
  * Whether saying this step clean just now is the one that makes it learnt, so
