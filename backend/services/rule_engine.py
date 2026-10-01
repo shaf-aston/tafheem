@@ -10,14 +10,19 @@ Coverage:
   * harf jarr + majrur
   * sifah / na't
   * harf 'atf (conjunctions)
+
+The words a card prints (signs, reasons, what a past verb is built on) are the
+book's, in data/nahw_rules/teacher.json; this file only decides which to use.
 """
 from __future__ import annotations
 
 import logging
 from typing import Any
 
-from backend.services.arabic_text import strip_diacritics as _bare
-from backend.services.nahw_book import book_words, reason
+from backend.services.arabic_text import strip_diacritics
+from backend.services.nahw_book import book_words, case_of, reason, teacher_rules
+from backend.services.syntax.vowels import CASE_NAME, SUKUN, letters, typed_case
+from backend.services.tarkeeb import term_ar
 
 logger = logging.getLogger(__name__)
 
@@ -25,48 +30,6 @@ logger = logging.getLogger(__name__)
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
 # themselves are the contract's, `schemas.ROLE_KEYS`, and
 # tests/test_rule_engine.py holds the two lists together.
-
-# ── Word-sets (stored bare) ───────────────────────────────────────────────────
-
-_HUROOF_JARR_BARE = {
-    "من",   # من
-    "إلى",  # إلى
-    "حتى",  # حتى
-    "في",   # في
-    "عن",   # عن
-    "على",  # على
-    "عند",  # عند
-    "مع",   # مع
-    "بعد",  # بعد
-    "قبل",  # قبل
-    "خلف",  # خلف
-    "أمام",  # أمام
-    "تحت",  # تحت
-    "فوق",  # فوق
-    "بين",  # بين
-    "حول",  # حول
-    "منذ",  # منذ
-    "مذ",   # مذ
-    "رب",   # رب
-    "خلا",  # خلا
-    "عدا",  # عدا
-    "حاشا",  # حاشا
-    "ب",   # ب
-    "ل",   # ل
-    "ك",   # ك
-}
-
-_CONJUNCTIONS_BARE = {
-    "و",   # و
-    "ف",   # ف
-    "ثم",  # ثم
-    "أو",  # أو
-    "أم",  # أم
-    "لا",  # لا
-    "بل",  # بل
-    "لكن",  # لكن
-    "حتى",  # حتى
-}
 
 # CAMeL POS tags for inna/sisters (conj_sub = subordinating conjunction)
 _INNA_POS = {"conj_sub", "part_focus"}
@@ -76,33 +39,61 @@ _JARR_POS = {"prep"}
 
 # ── Case signs ────────────────────────────────────────────────────────────────
 
-_SIGNS: dict[tuple[str, str], tuple[str, str]] = {
-    # Arabic only, like every other sign here: the term stands alone on the
-    # page and the glossary carries the English.
-    ("n", "s"): ("raf'",  "ضمة"),
-    ("a", "s"): ("nasb",  "فتحة"),
-    ("g", "s"): ("jarr",  "كسرة"),
-    ("n", "d"): ("raf'",  "الألف، مثنى"),
-    ("a", "d"): ("nasb",  "الياء، مثنى"),
-    ("g", "d"): ("jarr",  "الياء، مثنى"),
-    ("n", "p"): ("raf'",  "ضمة"),
-    ("a", "p"): ("nasb",  "فتحة"),
-    ("g", "p"): ("jarr",  "كسرة"),
-}
-# The sign of a case the typed vowel showed, for a card whose case the parser changed
-# (syntax.with_parser_roles); the vowel is on one letter, so the singular's sign.
-# a present verb's case, as said and as shown on its last letter
-PRESENT_CASE = {"raf'": ("مرفوع", "الضمة الظاهرة"), "nasb": ("منصوب", "الفتحة الظاهرة"), "jazm": ("مجزوم", "السكون")}
+
+def sign(case: str | None, kind: str = "vowel") -> str | None:
+    """The sign a card prints for a case; `kind` names the letter that shows it
+    instead of a vowel (dual, sound_plural, five_verbs)."""
+    return teacher_rules()["signs"][kind].get(case)
 
 
-def present_verb(case: str, reason_ar: str) -> dict:
-    """Case, sign and reason of a مضارع, so the three agree; syntax.with_parser_roles
-    redoes them when the particle before the verb changes its case."""
-    said, sign = PRESENT_CASE[case]
-    return {"case": case, "sign": sign, "reason": f"فعل مضارع {said}. {reason_ar}"}
+def _noun_kind(tag: dict) -> str:
+    """Which sign table a noun's case is read from."""
+    num = tag.get("number")
+    if num == "p" and tag.get("gender") == "m" and strip_diacritics(tag.get("word", "")).endswith(("ون", "ين")):
+        return "sound_plural"
+    return "dual" if num == "d" else "vowel"
 
 
-SIGN_OF_CASE = {case: sign for (_, num), (case, sign) in _SIGNS.items() if num == "s"} | {"mabni": "مبني"}
+def _past_ending(word: str) -> str:
+    """What a past verb is built on, from its last letters (teacher.json past_ending)."""
+    bare = strip_diacritics(word)
+    marked = letters(word)
+    for ending, tails in teacher_rules()["past_ending"].items():
+        if ending.startswith("_"):
+            continue
+        tail = next((t for t in tails if bare.endswith(t)), None)
+        # كَتَبَتْ: a ت the reader closed with a sukun is تاء التأنيث, not a pronoun
+        if tail and not (tail == "ت" and marked and SUKUN in marked[-1][1]):
+            return ending
+    return "الفتح"
+
+
+def _five_verbs(word: str, case: str) -> bool:
+    """يكتبون، تكتبين، يكتبان (and يكتبوا once the nun is dropped): case by the nun.
+    A damma typed on the nun makes it the verb's own letter (يَبِينُ)."""
+    bare = strip_diacritics(word)
+    if typed_case(word) == "u" or len(bare) < 4:
+        return False
+    return bare.endswith(("ون", "ين", "ان") if case == "raf'" else ("وا",))
+
+
+def verb_card(word: str, aspect: str | None, case: str | None = None) -> dict:
+    """Case, sign and reason of a verb by its tense, so the three always agree.
+    syntax.with_parser_roles calls it again when the parser reads a word as a verb
+    or the particle before a present verb settles its mood."""
+    if aspect == "p":
+        on = _past_ending(word)
+        return {"case": "mabni", "sign": f"مبني على {on}", "reason": f"فعل ماضٍ مبني على {on}. {reason('فعل ماضٍ')}"}
+    if aspect == "c":
+        return {"case": "mabni", "sign": "مبني على السكون",
+                "reason": f"فعل أمر مبني على السكون. {reason('فعل أمر')}"}
+    if aspect == "i":
+        case = case if case in teacher_rules()["signs"]["five_verbs"] else "raf'"
+        said = teacher_rules()["case_said"]["word"][case]
+        return {"case": case, "sign": sign(case, "five_verbs" if _five_verbs(word, case) else "vowel"),
+                "reason": f"فعل مضارع {said}. {reason('فعل مضارع')}"}
+    return {"case": "mabni", "sign": sign("mabni"), "reason": reason("فعل")}
+
 
 # ── Detection helpers ─────────────────────────────────────────────────────────
 
@@ -111,7 +102,7 @@ def _is_jarr_particle(tag: dict) -> bool:
     pos = (tag.get("pos") or "").lower()
     if pos in _JARR_POS:
         return True
-    return _bare(tag.get("word", "")) in _HUROOF_JARR_BARE
+    return strip_diacritics(tag.get("word", "")) in book_words("jarr")
 
 
 def _is_inna_sister(tag: dict) -> bool:
@@ -119,166 +110,52 @@ def _is_inna_sister(tag: dict) -> bool:
     pos = (tag.get("pos") or "").lower()
     if pos in _INNA_POS:
         return True
-    return _bare(tag.get("word", "")) in book_words("inna")
+    return strip_diacritics(tag.get("word", "")) in book_words("inna")
 
 
 def _is_conjunction(tag: dict) -> bool:
     pos = (tag.get("pos") or "").lower()
     if pos == "conj":
         return True
-    return _bare(tag.get("word", "")) in _CONJUNCTIONS_BARE
+    return strip_diacritics(tag.get("word", "")) in book_words("atf")
 
 
-# ── Entry-builder helpers ─────────────────────────────────────────────────────
+# ── Entry builders ────────────────────────────────────────────────────────────
 
-def _common(tag: dict) -> dict:
-    return {"word": tag["word"], "root": tag.get("root") or None}
-
-
-def _harf_entry(tag: dict, role: str, reason_ar: str, key: str | None = "harf") -> dict:
-    return {
-        **_common(tag),
-        "type": "harf",
-        "role": role,
-        "role_key": key,
-        "case": "mabni",
-        "sign": "مبني لا محل له من الإعراب",  # مبني لا محل له من الإعراب
-        "reason": reason_ar,
-        "notes": tag.get("features") or "",
-        "source": "rule_engine",
-    }
+def _entry(tag: dict, kind: str, role: str, key: str | None, case: str | None,
+           sign_ar: str | None, reason_ar: str) -> dict:
+    """One card, every field named once."""
+    return {"word": tag["word"], "root": tag.get("root") or None, "type": kind, "role": role,
+            "role_key": key, "case": case, "sign": sign_ar, "reason": reason_ar,
+            "notes": tag.get("features") or "", "source": "rule_engine"}
 
 
-def _verb_entry(tag: dict, role: str, reason_ar: str, key: str | None = "fil") -> dict:
-    asp = tag.get("aspect", "na") or "na"
-    mod = tag.get("mood", "i") or "i"
-
-    if asp == "p":
-        # Past: mabni
-        w = _bare(tag.get("word", ""))
-        ending = (
-            "السكون"
-            if w.endswith(
-                ("ت", "نا", "تم", "تن", "تما")  # ت  # نا  # تم  # تن
-            )
-            else "الفتح"
-        )
-        return {
-            **_common(tag),
-            "type": "fi'l",
-            "role": role,
-            "role_key": key,
-            "case": "mabni",
-            "sign": f"مبني على {ending}",
-            "reason": f"فعل ماضٍ مبني على {ending}. {reason_ar}",
-            "notes": tag.get("features") or "",
-            "source": "rule_engine",
-        }
-
-    elif asp == "i":
-        return {
-            **_common(tag),
-            "type": "fi'l",
-            "role": role,
-            "role_key": key,
-            **present_verb({"s": "nasb", "j": "jazm"}.get(mod, "raf'"), reason_ar),
-            "notes": tag.get("features") or "",
-            "source": "rule_engine",
-        }
-
-    elif asp == "c":
-        return {
-            **_common(tag),
-            "type": "fi'l",
-            "role": role,
-            "role_key": key,
-            "case": "mabni",
-            "sign": "مبني على السكون",
-            "reason": f"فعل أمر مبني على السكون. {reason_ar}",
-            "notes": tag.get("features") or "",
-            "source": "rule_engine",
-        }
-
-    return {
-        **_common(tag),
-        "type": "fi'l",
-        "role": role,
-        "role_key": key,
-        "case": "mabni",
-        "sign": "مبني",
-        "reason": reason_ar,
-        "notes": tag.get("features") or "",
-        "source": "rule_engine",
-    }
+def _harf_entry(tag: dict, role: str, why: str, key: str | None = "harf") -> dict:
+    return _entry(tag, "harf", role, key, "mabni", sign("mabni"), reason(why))
 
 
-def _noun_entry(tag: dict, role: str, reason_ar: str, key: str | None = None,
-                force_case: str | None = None) -> dict:
-    cas = force_case or tag.get("case_raw", "u") or "u"
-    num = tag.get("number", "s") or "s"
-
-    # Sound masculine plural heuristic
-    bare_w = _bare(tag.get("word", ""))
-    smp_endings = (
-        "ون",   # ون
-        "ين",   # ين
-    )
-    is_smp = (num == "p" and tag.get("gender") == "m"
-              and any(bare_w.endswith(e) for e in smp_endings))
-
-    if is_smp:
-        smp = {
-            "n": ("raf'", "الواو، جمع مذكر سالم"),
-            "a": ("nasb", "الياء، جمع مذكر سالم"),
-            "g": ("jarr", "الياء، جمع مذكر سالم"),
-        }
-        case_label, sign_label = smp.get(cas, (None, None))
-    else:
-        case_label, sign_label = _SIGNS.get((cas, num if num in ("s", "d") else "s"), (None, None))
-
-    if not case_label:
-        case_label = tag.get("case")
-        sign_label = None
-
-    return {
-        **_common(tag),
-        "type": tag.get("type") or "ism",
-        "role": role,
-        "role_key": key,
-        "case": case_label,
-        "sign": sign_label,
-        "reason": reason_ar,
-        "notes": tag.get("features") or "",
-        "source": "rule_engine",
-    }
+def _verb_entry(tag: dict, key: str | None = "fil") -> dict:
+    mood = {"s": "nasb", "j": "jazm"}.get(tag.get("mood"), "raf'")
+    card = verb_card(tag.get("word", ""), tag.get("aspect"), mood)
+    return _entry(tag, "fi'l", "فعل", key, card["case"], card["sign"], card["reason"])
 
 
-def _pron_entry(tag: dict, role: str, reason_ar: str, key: str | None = None) -> dict:
-    return {
-        **_common(tag),
-        "type": "damir",
-        "role": role,
-        "role_key": key,
-        "case": "mabni",
-        "sign": "مبني",
-        "reason": reason_ar,
-        "notes": tag.get("features") or "",
-        "source": "rule_engine",
-    }
+def _noun_entry(tag: dict, role: str, key: str | None = None, why: str | None = None) -> dict:
+    """A noun's card. A role with a case of its own (case_of_role) sets it; a follower
+    keeps the one CAMeL or the typed vowel showed; a mabni word fills the place instead."""
+    forced = case_of(role)
+    case = CASE_NAME[forced] if forced else tag.get("case")
+    mabni = case == "mabni"
+    return _entry(tag, tag.get("type") or "ism", role, key, case,
+                  sign(case, "vowel" if mabni else _noun_kind(tag)), reason(why or role, mabni=mabni))
+
+
+def _pron_entry(tag: dict, role: str, why: str, key: str | None = None) -> dict:
+    return _entry(tag, "damir", role, key, "mabni", sign("mabni"), reason(why))
 
 
 def _unknown_entry(tag: dict) -> dict:
-    return {
-        **_common(tag),
-        "type": tag.get("type") or "ism",
-        "role": "–",
-        "role_key": None,
-        "case": tag.get("case"),
-        "sign": None,
-        "reason": reason("–"),
-        "notes": tag.get("features") or "",
-        "source": "rule_engine",
-    }
+    return _entry(tag, tag.get("type") or "ism", "–", None, tag.get("case"), None, reason("–"))
 
 
 # ── Main engine ───────────────────────────────────────────────────────────────
@@ -291,8 +168,8 @@ def with_engine_roots(words: list[dict[str, Any]], engine_words: list[dict[str, 
     same sentence. Matched on the bare word so a stray harakah does not unpair
     them; a word the analyzer never saw keeps no root rather than a guessed one.
     """
-    roots = {_bare(w.get("word", "")): w.get("root") for w in engine_words}
-    return [{**w, "root": roots.get(_bare(w.get("word", "")))} for w in words]
+    roots = {strip_diacritics(w.get("word", "")): w.get("root") for w in engine_words}
+    return [{**w, "root": roots.get(strip_diacritics(w.get("word", "")))} for w in words]
 
 
 def analyze(sentence: str, tags: list[dict[str, Any]]) -> dict[str, Any]:
@@ -340,13 +217,12 @@ def _detect_verbal_sentence(tags: list[dict], is_inna: bool) -> bool:
 
 
 def sentence_type(is_verbal: bool, is_inna: bool) -> str:
-    """Return the sentence type label. The one place these words are written:
-    services/syntax names the same three from the parser's own reading."""
+    """The sentence type a summary prints, in the tree's own words (tarkeeb.json),
+    so the line above the cards and the top of the picture say the same."""
     if is_verbal:
-        return "jumlah fi'liyyah (جملة فعلية)"
-    if is_inna:
-        return "jumlah ismiyyah · إنّ (جملة اسمية)"
-    return "jumlah ismiyyah (جملة اسمية)"
+        return term_ar("jumlah_filiyyah")
+    nominal = term_ar("jumlah_ismiyyah")
+    return f"{nominal} · إنّ" if is_inna else nominal
 
 
 def _init_state(is_verbal: bool, is_inna: bool) -> dict[str, bool]:
@@ -355,7 +231,7 @@ def _init_state(is_verbal: bool, is_inna: bool) -> dict[str, bool]:
         "after_jarr": False,
         "after_inna": is_inna,
         "ism_inna_done": False,
-        "fa3il_done": not is_verbal,
+        "fail_done": not is_verbal,
         "mubtada_done": is_verbal,
         "khabar_done": is_verbal,
         "verb_done": not is_verbal,
@@ -369,29 +245,32 @@ def _process_tag(
     pos = (tag.get("pos") or "").lower()
 
     if pos == "punc":
-        return ({**_common(tag), "type": "punc", "role": "–", "role_key": None,
-                 "case": None, "sign": None,
-                 "reason": "–", "notes": "", "source": "rule_engine"}, 1.0)
+        return (_entry(tag, "punc", "–", None, None, None, "–"), 1.0)
 
     if _is_conjunction(tag):
-        return (_harf_entry(tag, "حرف", reason("حرف عطف")), 0.88)
+        # لا العاطفة joins single words; before a verb it negates (لا يكذبُ) or forbids (لا تكذبْ)
+        verb = tags[i + 1] if i + 1 < len(tags) and tags[i + 1].get("pos") == "verb" else None
+        if verb and strip_diacritics(tag["word"]) == "لا":
+            forbids = verb.get("mood") == "j" or verb["word"].endswith(SUKUN)
+            return (_harf_entry(tag, "حرف", "لا ناهية" if forbids else "لا نافية"), 0.88)
+        return (_harf_entry(tag, "حرف", "حرف عطف"), 0.88)
 
     if _is_jarr_particle(tag):
         state["after_jarr"] = True
-        return (_harf_entry(tag, "حرف جر", reason("حرف جر")), 0.92)
+        return (_harf_entry(tag, "حرف جر", "حرف جر"), 0.92)
 
     if _is_inna_sister(tag) and i == 0:
         state["after_inna"] = True
-        return (_harf_entry(tag, "حرف", reason("حرف ناسخ")), 0.92)
+        return (_harf_entry(tag, "حرف", "حرف ناسخ"), 0.92)
 
     if pos in ("part", "det"):
-        return (_harf_entry(tag, "حرف", reason("حرف")), 0.82)
+        return (_harf_entry(tag, "حرف", "حرف"), 0.82)
 
     if pos == "pron":
         return _process_pronoun(tag, state, is_verbal)
 
     if pos == "verb":
-        return _process_verb(tag, state, is_verbal)
+        return _process_verb(tag, state)
 
     if pos in ("noun", "noun_prop", "adj", "adv", "abbrev", "unknown", ""):
         return _process_noun(tag, state, is_verbal, tags)
@@ -403,26 +282,20 @@ def _process_pronoun(tag: dict, state: dict, is_verbal: bool) -> tuple[dict, flo
     """Process pronoun tag."""
     if state["after_jarr"]:
         state["after_jarr"] = False
-        return (_pron_entry(tag, "مجرور", reason("مجرور ضمير"), "harf"), 0.80)
+        return (_pron_entry(tag, "مجرور", "مجرور ضمير", "harf"), 0.80)
 
-    if is_verbal and not state["fa3il_done"]:
-        state["fa3il_done"] = True
-        return (_pron_entry(tag, "فاعل", reason("فاعل ضمير"), "fail"), 0.75)
+    if is_verbal and not state["fail_done"]:
+        state["fail_done"] = True
+        return (_pron_entry(tag, "فاعل", "فاعل ضمير", "fail"), 0.75)
 
-    return (_pron_entry(tag, "–", reason("ضمير"), None), 0.60)
+    return (_pron_entry(tag, "–", "ضمير", None), 0.60)
 
 
-def _process_verb(tag: dict, state: dict, is_verbal: bool) -> tuple[dict, float]:
-    """Process verb tag."""
-    if state["verb_done"]:
-        return (_verb_entry(tag, "فعل", reason("فعل")), 0.65)
-
-    asp = tag.get("aspect", "na") or "na"
-    role = {"c": "فعل أمر", "i": "فعل مضارع", "p": "فعل ماضٍ"}.get(asp, "فعل")
-
+def _process_verb(tag: dict, state: dict) -> tuple[dict, float]:
+    """Process verb tag; the first verb is the sentence's own, so it is surer."""
+    first = not state["verb_done"]
     state["verb_done"] = True
-
-    return (_verb_entry(tag, role, reason(role)), 0.88)
+    return (_verb_entry(tag), 0.88 if first else 0.65)
 
 
 def _process_noun(tag: dict, state: dict, is_verbal: bool, tags: list[dict]) -> tuple[dict | None, float]:
@@ -431,22 +304,22 @@ def _process_noun(tag: dict, state: dict, is_verbal: bool, tags: list[dict]) -> 
 
     if state["after_jarr"]:
         state["after_jarr"] = False
-        return (_noun_entry(tag, "مجرور", reason("مجرور"), "harf", force_case="g"), 0.88)
+        return (_noun_entry(tag, "مجرور", "harf"), 0.88)
 
     if state["after_inna"] and not state["ism_inna_done"]:
         state["ism_inna_done"] = True
         state["after_inna"] = False
-        return (_noun_entry(tag, "اسم إن", reason("اسم إن"), "mubtada", force_case="a"), 0.85)
+        return (_noun_entry(tag, "اسم إن", "mubtada"), 0.85)
 
     if state["ism_inna_done"] and not state["khabar_done"] and not is_verbal:
         state["khabar_done"] = True
         state["mubtada_done"] = True
-        return (_noun_entry(tag, "خبر إن", reason("خبر إن"), "khabar", force_case="n"), 0.82)
+        return (_noun_entry(tag, "خبر إن", "khabar"), 0.82)
 
     if state["ism_inna_done"] and state["khabar_done"] and not is_verbal:
         if pos == "adj":
-            return (_noun_entry(tag, "خبر إن", reason("خبر إن ثانٍ"), "khabar", force_case="n"), 0.75)
-        return (_noun_entry(tag, "–", reason("–"), None), 0.45)
+            return (_noun_entry(tag, "خبر إن", "khabar", why="خبر إن ثانٍ"), 0.75)
+        return (_noun_entry(tag, "–", None), 0.45)
 
     if is_verbal:
         return _process_noun_verbal(tag, state, tags, pos)
@@ -456,29 +329,29 @@ def _process_noun(tag: dict, state: dict, is_verbal: bool, tags: list[dict]) -> 
 
 def _process_noun_verbal(tag: dict, state: dict, tags: list[dict], pos: str) -> tuple[dict, float]:
     """Process noun in verbal sentence (jumlah fi'liyyah)."""
-    if not state["fa3il_done"]:
+    if not state["fail_done"]:
         is_passive = any(t.get("voice") == "p" for t in tags if t.get("pos") == "verb")
         role = "نائب فاعل" if is_passive else "فاعل"
-        state["fa3il_done"] = True
-        return (_noun_entry(tag, role, reason(role), "fail", force_case="n"), 0.80)
+        state["fail_done"] = True
+        return (_noun_entry(tag, role, "fail"), 0.80)
 
     if pos == "adj":
-        return (_noun_entry(tag, "صفة", reason("صفة"), "sifah"), 0.72)
+        return (_noun_entry(tag, "صفة", "sifah"), 0.72)
 
-    return (_noun_entry(tag, "مفعول به", reason("مفعول به"), "mafool", force_case="a"), 0.75)
+    return (_noun_entry(tag, "مفعول به", "mafool"), 0.75)
 
 
 def _process_noun_nominal(tag: dict, state: dict, pos: str) -> tuple[dict, float]:
     """Process noun in nominal sentence (jumlah ismiyyah)."""
     if not state["mubtada_done"]:
         state["mubtada_done"] = True
-        return (_noun_entry(tag, "مبتدأ", reason("مبتدأ"), "mubtada", force_case="n"), 0.82)
+        return (_noun_entry(tag, "مبتدأ", "mubtada"), 0.82)
 
     if not state["khabar_done"]:
         state["khabar_done"] = True
-        return (_noun_entry(tag, "خبر", reason("خبر"), "khabar", force_case="n"), 0.78)
+        return (_noun_entry(tag, "خبر", "khabar"), 0.78)
 
     if pos == "adj":
-        return (_noun_entry(tag, "صفة", reason("صفة"), "sifah"), 0.68)
+        return (_noun_entry(tag, "صفة", "sifah"), 0.68)
 
-    return (_noun_entry(tag, "–", reason("–"), None), 0.45)
+    return (_noun_entry(tag, "–", None), 0.45)

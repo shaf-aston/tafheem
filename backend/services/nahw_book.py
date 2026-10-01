@@ -50,6 +50,21 @@ def teacher_rules() -> dict:
     return json.loads(TEACHER_FILE.read_text(encoding="utf-8"))
 
 
-def reason(role: str) -> str:
-    """The reason a card wearing this role shows; a role with no entry is just named, never given another role's text."""
-    return teacher_rules()["reasons"].get(role) or f"{role}."
+def case_of(role: str) -> str | None:
+    """u / a / i, the case a role takes (teacher.json case_of_role), or None for a
+    follower or a role whose case depends on more than its name."""
+    cases = teacher_rules()["case_of_role"]
+    return next((case for case in "uai" if role in cases[case]), None)
+
+
+def reason(role: str, mabni: bool = False) -> str:
+    """The reason a card wearing this role shows; a role with no entry is just named, never
+    given another role's text. A mabni word (الذي، هذا) fills the place of its case
+    rather than wearing it, so its reason says so and keeps only the rule."""
+    said = teacher_rules()["reasons"].get(role) or f"{role}."
+    place = case_of(role)
+    if not (mabni and place):
+        return said
+    words = teacher_rules()["case_said"]
+    rule = said[said.find("القاعدة"):] if "القاعدة" in said else ""
+    return f"{words['mabni_noun'].format(place=words['place'][place], role=role)}. {rule}".strip()

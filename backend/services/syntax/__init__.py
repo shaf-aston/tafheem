@@ -21,7 +21,8 @@ from backend.services import provenance, rule_engine
 from backend.services.arabic_text import words as split_words
 from backend.services.nahw_book import reason
 from backend.services.syntax import teacher, tree
-from backend.services.syntax.naming import role_key
+from backend.services.tarkeeb import term_ar
+from backend.services.syntax.naming import opens_with_verb, role_key
 from backend.services.syntax.naming import roles as name_roles
 
 logger = logging.getLogger(__name__)
@@ -91,20 +92,25 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
             entry.update(role="–", role_key=None, case=found["case"], sign=None,
                          reason=found["gap"]["ar"], notes=found["gap"]["en"])
         elif found["role"]:
-            # the reason must explain the new name; a verb keeps its mabni/mu'rab detail
-            if found["role"] != entry.get("role") and not (found["role"] == "فعل" and entry.get("type") == "fi'l"):
-                entry["reason"] = reason(found["role"])
+            renamed = found["role"] != entry.get("role")
             entry["role"] = found["role"]
             # the colour must follow the new name, never the one it replaced
             entry["role_key"] = role_key(found["role"])
-            # the ending must not contradict the reader's own vowel, and a verb
-            # or a particle is mabni rather than carrying a case
-            if found["case"] and found["case"] != entry.get("case"):
-                # the sign (and a verb's reason) must show the new case, never the one it replaced
-                if entry.get("type") == "fi'l" and found["case"] in rule_engine.PRESENT_CASE:
-                    entry.update(rule_engine.present_verb(found["case"], reason("فعل مضارع")))
-                else:
-                    entry.update(case=found["case"], sign=rule_engine.SIGN_OF_CASE.get(found["case"]))
+            moved = found["case"] and found["case"] != entry.get("case")
+            if found["role"] == "فعل":
+                # a word CAMeL took for a noun (ضُرِبَ، كان) or a mood the particle before
+                # settled (لن يذهب): the card is the verb's own, by the parser's tense
+                if entry.get("type") != "fi'l" or moved:
+                    aspect = found.get("aspect") or ("i" if found["case"] != "mabni" else None)
+                    entry.update(type="fi'l", **rule_engine.verb_card(entry["word"], aspect, found["case"]))
+            else:
+                if renamed:
+                    entry["reason"] = reason(found["role"])  # the reason must explain the new name
+                if moved:
+                    # the sign must show the new case, never the one it replaced
+                    entry.update(case=found["case"], sign=rule_engine.sign(found["case"]))
+                if entry["case"] == "mabni" and entry.get("type") != "harf":
+                    entry["reason"] = reason(found["role"], mabni=True)  # الذي، هذا: in the place of a case
             named += 1
     share = named / len(entries)
     confidence = round(share + (1 - share) * rule_result.get("confidence", 0.0), 2)
@@ -113,13 +119,10 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
 
 
 def _sentence_type(parser_roles: list[dict]) -> str | None:
-    """Verbal when a verb opens it. The words themselves are the rule engine's."""
+    """The type the parser's names give, or None when it named nothing."""
     names = [found["role"] for found in parser_roles if found["role"]]
-    # لم يكتب، متى سافر: a particle or a fronted adverb before the verb leaves the
-    # sentence verbal; the book judges it by the word it rests on, not the one put first
-    lead = next((i for i, role in enumerate(names) if role not in ("حرف", "مفعول فيه")), len(names))
-    if lead < len(names) and names[lead] == "فعل":
-        names = names[lead:]
-    if not names or (names[0] in ("حرف", "حرف جر") and "اسم إن" not in names):
+    if not names:
         return None
-    return rule_engine.sentence_type(is_verbal=names[0] == "فعل", is_inna="اسم إن" in names)
+    if "منادى" in names and not opens_with_verb(names):
+        return term_ar("jumlah_nidaiyyah")  # يا عبدَ الله: a call, the same words the tree uses
+    return rule_engine.sentence_type(is_verbal=opens_with_verb(names), is_inna="اسم إن" in names)

@@ -17,7 +17,7 @@ from __future__ import annotations
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_words, is_mabni, is_one, is_plain_noun
 from backend.services.syntax.vowels import (
-    CASE_NAME, SUKUN, has_tanween, letters, past_passive_shape, typed_case, typed_passive)
+    CAMEL_CASE, CASE_NAME, SUKUN, has_tanween, letters, past_passive_shape, typed_case, typed_passive)
 
 # a root letter is what is left once the letters that come and go are removed
 WEAK = set("اويىءأإآئؤة")
@@ -91,7 +91,7 @@ def _skeleton(word: str) -> list[str]:
 def _case(token: dict) -> str | None:
     """What the reader typed first, the parser's guess second."""
     return (typed_case(token.get("typed"), token.get("stuck_on", 0))
-            or {"n": "u", "a": "a", "g": "i"}.get(token.get("cas")))
+            or CAMEL_CASE.get(token.get("cas")))
 
 
 def is_verb(token: dict) -> bool:
@@ -339,6 +339,12 @@ def name(token: dict, tokens: list[dict]) -> str | None:
         # the word the sentence hangs on, with its subject under it, is the khabar
         if any(c["rel"] in ("SBJ", "TPC") for c in children):
             return "خبر"
+        # يا عبدَ اللهِ: a kasra straight after a noun, with no particle to cause it, is idafa
+        if head and is_plain_noun(head) and head["id"] == token["id"] - 1 and _case(token) == "i":
+            return "مضاف إليه"
+        # هذا بيتٌ: an indefinite noun after a pointer is what is said of it, never its na't
+        if pointer and pointer["id"] < token["id"] and token.get("stt") == "i" and verbless:
+            return "خبر"
         if token["pos"] == "NOM" and verbless:
             # the parser sometimes leaves a nominal sentence as two loose halves:
             # the first is the mubtada it starts with, the second its khabar
@@ -408,8 +414,22 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         if token["pos"] == "PRT" and any(
                 named[j] == "مجرور" for j, kid in enumerate(bases) if kid["head"] == token["id"]):
             named[index] = "حرف جر"
-    return [{"role": role, "case": _ending(role, token, bases[i - 1] if i else None)}
+    # the parser's tense goes with a فعل, so a card CAMeL took for a noun (ضُرِبَ) still says ماضٍ
+    return [{"role": role, "case": _ending(role, token, bases[i - 1] if i else None),
+             "aspect": token.get("asp") if role == "فعل" else None}
             for i, (role, token) in enumerate(zip(named, bases))]
+
+
+def opens_with_verb(roles: list[str | None]) -> bool:
+    """Verbal unless a مبتدأ (or the اسم of إنّ) comes before the first verb. A particle,
+    a fronted adverb or a fronted object leaves it verbal (لم يكتب، متى سافر، القرآنَ قرأ):
+    the book judges a sentence by the word it rests on, not the one put first."""
+    for role in roles:
+        if role == "فعل":
+            return True
+        if role in ("مبتدأ", "اسم إن", "خبر"):
+            return False
+    return False
 
 
 def _ending(role: str | None, token: dict, before: dict | None) -> str | None:

@@ -4,7 +4,7 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
 import pytest
 
-from backend.services import morphology
+from backend.services.syntax.vowels import CASE_NAME, typed_case
 
 
 @pytest.mark.parametrize("word, case", [
@@ -16,10 +16,10 @@ from backend.services import morphology
     ("كتاباً", "nasb"),        # tanween written on the alef
 ])
 def test_the_last_mark_gives_the_case(word, case):
-    assert morphology._harakat_case(word) == case
+    assert CASE_NAME.get(typed_case(word)) == case
 
 
 @pytest.mark.parametrize("word", ["كتاب", "هذا", "دَعَا", "قَلَمْ"])
 def test_no_mark_means_no_case(word):
     # دَعَا ends in a plain alef, not a tanween seat; قَلَمْ shows a sukun.
-    assert morphology._harakat_case(word) is None
+    assert CASE_NAME.get(typed_case(word)) is None
