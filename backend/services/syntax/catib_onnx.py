@@ -42,9 +42,11 @@ import onnxruntime as ort  # must precede camel_tools (Windows DLL load-order bu
 import numpy as np
 from tokenizers import Tokenizer
 
+from backend.services.arabic_text import bare_letters
 from backend.config import data_path, get_settings
 from backend.services.syntax import decode
-from backend.services.syntax.naming import agrees_with_typed
+from backend.services.syntax.mask import book_mask
+from backend.services.syntax.vowels import agrees_with_typed, past_passive_shape, typed_case
 
 logger = logging.getLogger(__name__)
 
@@ -217,7 +219,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
     """
     from camel_tools.utils.dediac import dediac_ar
 
-    if "catib6" not in a or "atbtok" not in a:
+    if not a.get("catib6") or "atbtok" not in a:
         # The analyzer found nothing for this word; BERT's own tag is all
         # there is, so it is reported as a single unsplit token.
         catib6 = _POS_TO_CATIB6.get(a.get("pos", ""), "NOM")
@@ -253,6 +255,8 @@ def _split_word(word: str, a: dict) -> list[dict]:
                 "pos": catib6, "pos_camel": a.get("pos", ""), "ud": ud,
                 "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
                 "stt": a.get("stt", "na"), "cas": a.get("cas", "na"),
+                # the analyser's own word-shape, e.g. 1ا2ِ3 for فاعل: how a participle is told from a noun
+                "pattern": a.get("pattern", ""),
                 "token_type": "baseword",
             })
         else:
@@ -281,6 +285,14 @@ def _reading(word: str, readings: list[dict]) -> dict:
         return {"pos": "", "lex": word}
     agreeing = [r for r in readings if "NOAN" not in r.get("atbtok", "")
                 and agrees_with_typed(word, r.get("diac", ""))]
+    # فُعِلَ by its vowels is a passive verb and nothing else: no noun is typed so
+    # (أُكِلَ is not the noun آكِل, بُنِيَ is not بُن + ي)
+    # The analyser often offers only the active verb of the same letters; the
+    # naming layer then reads the passive from the vowels, as it does for بُعْثِرَ.
+    verbs = [r for r in readings
+             if r.get("pos") == "verb" and bare_letters(r.get("diac", "")) == bare_letters(word)]
+    if past_passive_shape(word) and verbs:
+        return verbs[0]
     return agreeing[0] if agreeing else readings[0]
 
 
@@ -319,20 +331,24 @@ def _pool_words(mixed_hidden: np.ndarray, spans: list[tuple[int, int]]) -> tuple
     return out, wmask
 
 
-def _decode(s_arc: np.ndarray, s_rel: np.ndarray, n_words: int) -> tuple[list[int], list[str]]:
+def _decode(s_arc: np.ndarray, s_rel: np.ndarray, toks: list[dict]) -> tuple[list[int], list[str]]:
+    """Heads and labels, best first among the links the book allows (mask.py)."""
+    n_words = len(toks)
     L = n_words + 1
+    rel_ok = book_mask(toks, _rel_labels)
     heads = decode.heads(s_arc[:L, :L])
-    rels = [_rel_labels[int(np.argmax(s_rel[i + 1, heads[i]]))] for i in range(n_words)]
+    rels = [_rel_labels[int(np.argmax(np.where(rel_ok[i + 1, heads[i]], s_rel[i + 1, heads[i]], -np.inf)))]
+            for i in range(n_words)]
     return heads, rels
 
 
-def _parse_forms(forms: list[str]) -> tuple[list[int], list[str]]:
-    ids, mask, spans = _tokenize_and_pack(forms)
+def _parse_forms(toks: list[dict]) -> tuple[list[int], list[str]]:
+    ids, mask, spans = _tokenize_and_pack([t["form"] for t in toks])
     (mixed,) = _enc_sess.run(None, {"input_ids": ids, "attention_mask": mask})
     word_embed, wmask = _pool_words(mixed, spans)
     s_arc, s_rel = _scorer_sess.run(
         None, {"word_embed": word_embed.astype(np.float32), "mask": wmask})
-    return _decode(s_arc[0], s_rel[0], len(forms))
+    return _decode(s_arc[0], s_rel[0], toks)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -359,9 +375,9 @@ def parse(words: list[str]) -> list[dict]:
     subtokens: list[dict] = []
     for word, dw in zip(words, disambiguated):
         readings = [scored.analysis for scored in dw.analyses]
-        subtokens.extend(_split_word(word, _reading(word, readings)))
+        subtokens.extend({**t, "case": typed_case(word)} for t in _split_word(word, _reading(word, readings)))
 
-    heads, rels = _parse_forms([t["form"] for t in subtokens])
+    heads, rels = _parse_forms(subtokens)
 
     return [
         {"id": i + 1, **tok, "head": heads[i], "rel": rels[i]}

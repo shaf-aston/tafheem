@@ -14,7 +14,7 @@ import { GLOSSARY, ROLE_LEGEND, ROLES, caseLabel, signLabel, typeLabel } from '.
 import { roleVar } from './roleColors'
 
 // The role names the backend can send, schemas.ROLE_KEYS.
-const KEYS = ['fil', 'fail', 'mubtada', 'khabar', 'mafool', 'sifah', 'haal', 'mudaf', 'harf']
+const KEYS = ['fil', 'fail', 'mubtada', 'khabar', 'mafool', 'sifah', 'haal', 'mudaf', 'harf', 'mansub', 'tabi']
 
 describe('roleVar', () => {
   it('turns a role name into that role\'s own token', () => {

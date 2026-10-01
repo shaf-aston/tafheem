@@ -12,7 +12,7 @@ import { useMutation } from '@tanstack/react-query'
 import { analyzeIraab, generatePractice } from '../api'
 import { errorMessage, errorStatus } from '../lib/apiError'
 import { buildIraabExportText } from '../lib/iraabExport'
-import { caseLabel, ROLE_LEGEND, signLabel } from '../lib/grammarTerms'
+import { caseLabel, isUnnamed, ROLE_LEGEND, signLabel } from '../lib/grammarTerms'
 import { roleVar } from '../lib/roleColors'
 
 import SourceBadge from './ui/SourceBadge'
@@ -224,7 +224,7 @@ function WordGrid({ words, onClick }) {
             key={`${word.word}-${i}`}
             type="button"
             onClick={() => onClick(word)}
-            aria-label={`${word.word}, ${word.role || 'details'}`}
+            aria-label={`${word.word}, ${isUnnamed(word) ? 'not named, see why' : word.role || 'details'}`}
             style={{ '--i': i, '--c': roleVar(key) }}
             className="word rise-in role glow
               flex flex-col items-center gap-1.5 px-4 py-3 rounded-[var(--radius-md)]
@@ -234,7 +234,7 @@ function WordGrid({ words, onClick }) {
             {/* The term alone. What it means is in the glossary at the foot
                 of the page, once, not under every tag. */}
             {word.role && (
-              <span className="text-xs px-2 py-0.5 rounded-full role-tag">
+              <span className="type-tiny px-2 py-0.5 rounded-full role-tag">
                 {word.role}
               </span>
             )}

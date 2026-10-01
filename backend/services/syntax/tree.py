@@ -11,7 +11,7 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 """
 from __future__ import annotations
 
-from backend.services.syntax.naming import tone
+from backend.services.syntax.naming import base_tokens, completes_kaada, tone
 from backend.services.tarkeeb import term_ar
 
 # What a unit is called, by the join that makes it. Spelled once, in
@@ -23,13 +23,15 @@ JARR = term_ar("jar_majroor")
 VERBAL = term_ar("jumlah_filiyyah")
 NOMINAL = term_ar("jumlah_ismiyyah")
 QUESTION = term_ar("jumlah_istifhamiyyah")
-# What a particle is called inside the jar-majroor it heads
-JARR_HEAD = "حرف جر"
 
 
-def _leaf(index: int, role: str | None) -> dict:
-    """One word on its own. No role means the rules could not name it."""
-    return {"word": index, "role": role, "tone": tone(role), "gap": role is None}
+def _leaf(index: int, role: str | None, why: dict | None = None) -> dict:
+    """One word on its own. No role means the rules could not name it; `why` is the
+    teacher's reason when a rule took the name away, shown on hover."""
+    leaf = {"word": index, "role": role, "tone": tone(role), "gap": role is None}
+    if role is None and why:
+        leaf["detail"] = f"{why['ar']} · {why['en']}"
+    return leaf
 
 
 def _label(head: dict, child_roles: list[str]) -> str:
@@ -53,8 +55,6 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
         return "مضاف"
     if "صفة" in child_roles:
         return "موصوف"
-    if "مجرور" in child_roles:
-        return JARR_HEAD
     return role
 
 
@@ -69,19 +69,31 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
 
     `named` is what `naming.roles` returned, one entry per typed word.
     """
-    bases = [t for t in tokens if t.get("token_type") == "baseword"]
-    if len(bases) != len(words):
-        bases = [t for t in tokens if not t["form"].startswith("+")]
+    bases = base_tokens(words, tokens)
     if not words or len(bases) != len(words) or len(named) != len(words):
         return {"words": words, "tree": {"gap": True}, "coverage": 0.0}
 
     at = {token["id"]: index for index, token in enumerate(bases)}
     role_of = {token["id"]: found["role"] for token, found in zip(bases, named)}
+    why_of = {token["id"]: found.get("gap") for token, found in zip(bases, named)}
     children_of: dict[int, list[dict]] = {token["id"]: [] for token in bases}
+    by_id = {t["id"]: t for t in tokens}
+
+    def parent(token: dict) -> int:
+        # an attached و or بِ is not a word the reader typed apart, so a word hung
+        # on one hangs on whatever that particle hung on
+        head = token["head"]
+        for _ in tokens:
+            if head in children_of or head not in by_id:
+                break
+            head = by_id[head]["head"]
+        return head
+
     roots = []
     for token in bases:
-        if token["head"] in children_of and token["head"] != token["id"]:
-            children_of[token["head"]].append(token)
+        up = parent(token)
+        if up in children_of and up != token["id"]:
+            children_of[up].append(token)
         else:
             roots.append(token)
     roots = roots or [bases[0]]
@@ -96,21 +108,25 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         kids = [kid for kid in children_of[token["id"]] if kid["id"] not in seen]
         index = at[token["id"]]
         if not kids:
-            return _leaf(index, role_of[token["id"]])
+            return _leaf(index, role_of[token["id"]], why_of[token["id"]])
         kid_roles = [role_of[kid["id"]] for kid in kids if role_of[kid["id"]]]
         seen.update(kid["id"] for kid in kids)
         inside = [(at[kid["id"]], node(kid)) for kid in kids]
-        inside.append((index, _leaf(index, _unit_role(role_of[token["id"]], kid_roles))))
         role = role_of[token["id"]]
+        why = why_of[token["id"]]
+        # a word the teacher dashed stays a dash at the head of its unit: مضاف would name it
+        inside.append((index, _leaf(index, role if why else _unit_role(role, kid_roles), why)))
         label = _label(token, kid_roles) or (_sentence_label(token, role_of, bases)
                                              if token is root else "")
         # A particle's name is what it is, not a job for the unit it heads: the
         # parser gives no job for a jar-majroor or a clause under إِذَا, so none
-        # is written rather than calling the whole unit a حرف.
-        job = None if token is root or token["pos"] == "PRT" else role
+        # is written rather than calling the whole unit a حرف. The clause a كاد-type
+        # verb is finished by is that verb's khabar as a whole.
+        job = "خبر كاد" if completes_kaada(token, tokens) else (
+            None if token is root or token["pos"] == "PRT" else role)
         return {"role": job,
                 "label": label,
-                "tone": tone(role),
+                "tone": tone(job or role),
                 # right to left, so the picture reads in the order they were typed
                 "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
 

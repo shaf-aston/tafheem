@@ -77,3 +77,14 @@ def test_the_labels_are_the_shared_terms():
     from backend.services.tarkeeb import term_ar
     assert (tree.JARR, tree.IDAFA, tree.VERBAL) == (
         term_ar("jar_majroor"), term_ar("murakkab_idafi"), term_ar("jumlah_filiyyah"))
+
+
+def test_a_word_hung_on_an_attached_particle_is_drawn_under_what_the_particle_joins():
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", vox="a", asp="p"),
+            token(2, "محمد", "محمد", "PROP", 1, "SBJ"),
+            token(3, "و+", "و+", "PRT", 2, "MOD", token_type="prc2", pos_camel="conj"),
+            token(4, "علي", "علي", "PROP", 3, "OBJ")]
+    drawn = built(["جَاءَ", "مُحَمَّدٌ", "وَعَلِيٌّ"], toks)
+    joined = drawn["tree"]["children"][1]  # the noun with its معطوف inside, not a second root
+    assert [leaf["word"] for leaf in joined["children"]] == [1, 2]
+    assert roles_in(drawn["tree"]) == ["فعل", "فاعل", "فاعل", "معطوف"]  # the unit plays the faa'il

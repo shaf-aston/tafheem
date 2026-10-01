@@ -189,8 +189,8 @@ class Settings(BaseSettings):
 
     catib_parser_enabled: bool = True
     # The top disambiguator reading comes from bare letters and can contradict typed vowels (آفِلًا for typed أَفَلَا);
-    # the first of these that agrees is used. Scoring all costs nothing extra.
-    catib_readings: int = 20
+    # the first of these that agrees is used. Scoring all costs nothing extra. 40 because a rare passive (أُكِلَ) can rank below the 20th.
+    catib_readings: int = 40
     # Holds encoder.onnx (int8), scorer.onnx, tokenizer.json, labels.json, config.json, clitic_feats.csv.
     # See catib_onnx.py's docstring for sources. Relative paths resolve inside backend/.
     catib_parser_dir: str = "data/parser"
