@@ -127,3 +127,21 @@ def test_verb_card_case_and_reason_agree(sentence: str, index: int, case: str, s
     rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
     word = syntax.with_parser_roles(rules, syntax.read(sentence)["roles"])["words"][index]
     assert (word["case"], said in word["reason"]) == (case, True), word
+
+
+@pytest.mark.parametrize("sentence, lemma", [("قُمْ يَا وَلَدُ", "قام"), ("اُكْتُبْ الدَّرْسَ", "كتب")])
+def test_a_command_is_described_as_one(sentence: str, lemma: str):
+    """Not the قَمَّ or أَكْتُبُ CAMeL misread it as: its notes and lemma are the command's."""
+    from backend.services import morphology
+    word = morphology.analyze_sentence(sentence)[0]
+    assert (word["lemma"], word["features"].startswith("command"), "perfect" in word["features"]) == (lemma, True, False)
+
+
+@pytest.mark.parametrize("sentence, verbal", [
+    ("لَمْ يَكْتُبْ الطَّالِبُ", True), ("قَدْ نَجَحَ الطَّالِبُ", True),
+    ("إِنَّ الطَّالِبَ مُجْتَهِدٌ", False)])  # nearest case: a particle before a noun
+def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, verbal: bool):
+    from backend.services import morphology, syntax
+    rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
+    summary = syntax.with_parser_roles(rules, syntax.read(sentence)["roles"])["summary"]
+    assert ("فعلية" in summary) is verbal, summary

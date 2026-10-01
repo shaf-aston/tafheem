@@ -115,6 +115,9 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
 def _sentence_type(parser_roles: list[dict]) -> str | None:
     """Verbal when a verb opens it. The words themselves are the rule engine's."""
     names = [found["role"] for found in parser_roles if found["role"]]
+    # لم يكتب، قد نجح: a particle before the verb leaves the sentence verbal
+    if names[:2] == ["حرف", "فعل"]:
+        names = names[1:]
     if not names or (names[0] in ("حرف", "حرف جر") and "اسم إن" not in names):
         return None
     return rule_engine.sentence_type(is_verbal=names[0] == "فعل", is_inna="اسم إن" in names)
