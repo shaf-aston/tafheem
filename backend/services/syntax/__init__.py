@@ -1,15 +1,15 @@
 """Roles for a typed sentence, worked out from the links between its words.
 
-Two steps, each in its own file: `catib_onnx` draws the links (which word hangs
-off which), `naming` turns a link into the word a nahw book uses. This file is
+Three steps, each in its own file: `catib_onnx` draws the links (which word hangs
+off which), `naming` turns a link into the word a nahw book uses, and `teacher`
+re-reads the finished sentence and dashes any word whose name breaks a rule. This file is
 the seam the rest of the app talks to, so a different parser can be put behind
 it without anything else changing.
 
-The parser is preferred over `rule_engine` because it is measured better, and
-this is the one place those numbers are written down: 81% of roles against the
-book examples and 97% against the checked sentences, where the rule engine alone
-gets 56% and 63% (`backend/scripts/score_iraab.py`). A word the
-parser cannot name keeps the rule engine's answer, and if the parser is off or
+The parser is preferred over `rule_engine` because it is measured better
+(`backend/scripts/score_iraab.py` holds the scores). A word the
+parser has no name for keeps the rule engine's answer; a word the teacher dashed
+stays dashed, with its reason. If the parser is off or
 fails, nothing changes at all.
 """
 from __future__ import annotations
@@ -19,7 +19,7 @@ import logging
 from backend.config import get_settings
 from backend.services import provenance, rule_engine
 from backend.services.arabic_text import words as split_words
-from backend.services.syntax import tree
+from backend.services.syntax import teacher, tree
 from backend.services.syntax.naming import role_key
 from backend.services.syntax.naming import roles as name_roles
 
@@ -60,7 +60,7 @@ def read(sentence: str) -> dict:
         from backend.services.syntax import catib_onnx
 
         tokens = catib_onnx.parse(typed)
-        found = name_roles(typed, tokens)
+        found = teacher.review(typed, tokens, name_roles(typed, tokens))
         drawn = tree.build(typed, tokens, found)
         drawn["source"] = provenance.of("nahw")  # worked out here, not looked up
         return {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
@@ -77,11 +77,19 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
     scored, which is already baked into the engine's own number.
     """
     entries = rule_result.get("words", [])
-    if len(parser_roles) != len(entries) or not any(found["role"] for found in parser_roles):
+    if len(parser_roles) != len(entries) or not any(found["role"] or found.get("gap") for found in parser_roles):
         return rule_result
     named = 0
     for entry, found in zip(entries, parser_roles):
-        if found["role"]:
+        if not found["role"] and not found.get("gap") and (
+                why := teacher.fallback_gap(entry.get("role"), found)):
+            found = {**found, "gap": why}  # the rule engine's name clashes with the typed vowel
+        if found.get("gap"):
+            # the teacher caught the parser's name breaking a rule; the rule engine's
+            # guess must not stand in for it, so the card shows the no-role dash and why
+            entry.update(role="–", role_key=None, case=found["case"], sign=None,
+                         reason=found["gap"]["ar"], notes=found["gap"]["en"])
+        elif found["role"]:
             entry["role"] = found["role"]
             # the colour must follow the new name, never the one it replaced
             entry["role_key"] = role_key(found["role"])
@@ -99,6 +107,6 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
 def _sentence_type(parser_roles: list[dict]) -> str | None:
     """Verbal when a verb opens it. The words themselves are the rule engine's."""
     names = [found["role"] for found in parser_roles if found["role"]]
-    if not names or (names[0] == "حرف" and "اسم إن" not in names):
+    if not names or (names[0] in ("حرف", "حرف جر") and "اسم إن" not in names):
         return None
     return rule_engine.sentence_type(is_verbal=names[0] == "فعل", is_inna="اسم إن" in names)

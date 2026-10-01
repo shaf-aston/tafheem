@@ -8,17 +8,16 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { searchHadith } from '../api'
-import { smartError } from '../lib/apiError'
 import { useHistory } from '../lib/useHistory'
 
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import EmptyState from './ui/EmptyState'
 import MicButton from './ui/MicButton'
 import RecentRow from './ui/RecentRow'
 import SearchBox from './ui/SearchBox'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import HadithCards from './HadithCards'
+import Code from './ui/Code'
 
 export default function HadithSearchResults({ collections, accent, children }) {
   const [query, setQuery] = useState('')
@@ -64,19 +63,16 @@ export default function HadithSearchResults({ collections, accent, children }) {
       {!searching && children}
 
       {mutation.isError && (
-        <ErrorAlert title="Search failed">
-          {smartError(mutation.error, 'Could not reach the backend.')}
-          <RetryButton onClick={() => submit()} />
-        </ErrorAlert>
+        <ErrorAlert title="Search failed" error={mutation.error} fallback="Could not reach the backend." onRetry={() => submit()} />
       )}
 
       {/* Not an EmptyState: an unbuilt index is not a search that found nothing. */}
       {data?.ready === false && (
         <ErrorAlert title="Search index not built">
           Every search would come back empty until it is built:{' '}
-          <code className="px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
+          <Code>
             python backend/scripts/build_hadith_index.py
-          </code>
+          </Code>
         </ErrorAlert>
       )}
 

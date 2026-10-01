@@ -394,6 +394,15 @@ def _analyze_qalsadi(word: str) -> dict[str, Any]:
     except Exception as exc:
         logger.debug("qalsadi lemmatize failed for %r: %s", word, exc)
         lemma = _strip_diacritics(word)
+    return _unanalysed(word, lemma, "qalsadi")
+
+
+def _analyze_bare(word: str) -> dict[str, Any]:
+    return _unanalysed(word, _strip_diacritics(word), "bare")
+
+
+def _unanalysed(word: str, lemma: str, engine: str) -> dict[str, Any]:
+    """A word no analyser placed: only its lemma and the case its harakat show."""
     case_str = _harakat_case(word)
     return {
         "word": word, "lemma": lemma, "root": "", "pos": "unknown",
@@ -401,19 +410,7 @@ def _analyze_qalsadi(word: str) -> dict[str, Any]:
         "gender": "na", "number": "na", "person": "na", "aspect": "na",
         "mood": "na", "voice": "na", "state": "na", "pattern": "",
         "features": f"case={case_str}" if case_str else "",
-        "engine": "qalsadi",
-    }
-
-
-def _analyze_bare(word: str) -> dict[str, Any]:
-    case_str = _harakat_case(word)
-    return {
-        "word": word, "lemma": _strip_diacritics(word), "root": "", "pos": "unknown",
-        "type": "ism", "case": case_str, "case_raw": "u", "gloss": "",
-        "gender": "na", "number": "na", "person": "na", "aspect": "na",
-        "mood": "na", "voice": "na", "state": "na", "pattern": "",
-        "features": f"case={case_str}" if case_str else "",
-        "engine": "bare",
+        "engine": engine,
     }
 
 

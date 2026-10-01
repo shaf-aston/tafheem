@@ -30,7 +30,9 @@ groq>=0.9.0
 # the user's own profile; "small" is enough for recitation, and the size is a
 # setting rather than a code change.
 faster-whisper>=1.2.0
-piper-tts>=1.8.0
+# The server voice (requirements-nodeps.txt) needs these beside onnxruntime.
+gdown>=5.1.0
+packaging
 # The letters model (backend/services/recitation/letters.py). 1.22 cannot run
 # its int8 layers; the model files are in backend/data/models/tilawa.
 onnxruntime>=1.23

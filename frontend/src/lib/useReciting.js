@@ -6,7 +6,7 @@
  * last showed and turns it into marks; the panel that uses it draws them and
  * decides nothing.
  */
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { bySound, follow, joinWindows } from './follow'
 import { createRecitingSession, EMPTY_VIEW, surer } from './recitingSession'
@@ -20,31 +20,53 @@ import { useSetting } from './settings'
  */
 export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   const fusha = useSetting('fusha')
-  const level = useSetting('reciting-level')
   const [view, setView] = useState(EMPTY_VIEW)
 
   // One session for the life of the page. Making one opens nothing; the
   // microphone waits for start().
   const [session] = useState(() => createRecitingSession({ onChange: setView }))
 
-  // What a recording in progress listens against, without a new session for it:
-  // the dialect setting, and the words of the page being recited.
-  useEffect(() => { session.update({ fusha, pageWords, ayahs }) }, [session, fusha, pageWords, ayahs])
 
   // However this page is left, the microphone goes off with it.
   useEffect(() => () => session.dispose(), [session])
 
-  const { state, problem, before, now, ended, sure } = view
+  const { state, problem, before, now, ended, sure, checking } = view
   const heard = before.length ? joinWindows(before, now.words) : now.words
+
+  // The page is finished once its last word is in what has already been read
+  // for the last time (`before`, folded at a pause), so no later reading can
+  // take it back. Marked then from those words alone and as ended: waiting
+  // for more words after the last would wait for ever, and anything said
+  // since belongs to the next page, even where a word like ٱللَّهِ is on both.
+  const final = useMemo(
+    () => (before.length ? follow(pageWords, before, { startAt, ended: true }) : null),
+    [pageWords, before, startAt],
+  )
+  const finished = final?.heardTo != null
+
+  // What a recording in progress listens against, without a new session for it:
+  // the dialect setting, the words of the page being recited, and whether that
+  // page is done.
+  useEffect(() => { session.update({ fusha, pageWords, ayahs, done: finished }) }, [session, fusha, pageWords, ayahs, finished])
+  // What the finished recordings held after this page's last word goes with
+  // the reciter; the recording still going is kept by the session. Read
+  // when the page turns, not when it was found finished: the panel waits a
+  // moment first, and words said in that moment belong to the next page too.
+  const carry = useRef([])
+  useEffect(() => { carry.current = finished ? before.slice(final.heardTo) : [] })
 
   return {
     state,
     problem,
     heard,
-    marks: bySound(follow(pageWords, heard, { startAt, ended }), surer(sure.before, sure.now), level),
+    marks: bySound(finished ? final : follow(pageWords, heard, { startAt, ended }), surer(sure.before, sure.now)),
+    // Finished and weighed: every check of this page is back. The panel turns
+    // the page on this, so the last ayah is marked by sound before it goes.
+    finished: finished && checking === 0,
     listening: state === 'listening',
     start: session.start,
     stop: session.stop,
     forget: session.forget,
+    turn: () => session.turn(carry.current),
   }
 }

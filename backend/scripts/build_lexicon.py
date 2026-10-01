@@ -749,14 +749,18 @@ def main() -> None:
             print(f"    {count:>5} {reason}")
 
     # A word a person has checked beats every list's declaration.
-    overrides = json.loads((DATA / "word_kinds.json").read_text("utf-8"))["kinds"]
+    checked = json.loads((DATA / "word_kinds.json").read_text("utf-8"))
+    overrides, meanings = checked["kinds"], checked["meanings"]
     by_spelling = {word.ar: word for word in lexicon.words}
-    if unknown := sorted(set(overrides) - set(by_spelling)):
+    if unknown := sorted((set(overrides) | set(meanings)) - set(by_spelling)):
         raise SystemExit(f"word_kinds.json names words that are not in any list: {unknown}")
     for spelling, word_type in overrides.items():
         if word_type not in WORD_TYPES:
             raise SystemExit(f"word_kinds.json gives {spelling} an unknown type: {word_type}")
         by_spelling[spelling].wordType = word_type
+    for spelling, meaning in meanings.items():
+        word = by_spelling[spelling]
+        word.en, word.ur, word.meaningKey = meaning["en"], meaning["ur"], meaning["en"].lower()
 
     # What the picker needs to name each set on screen. Kept with the words
     # because it belongs to the list it describes.

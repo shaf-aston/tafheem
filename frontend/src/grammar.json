@@ -7,17 +7,19 @@
     "khabar":  { "arabic": "خبر",       "said": "khabar",     "meaning": "What is said about the مبتدأ. Its ending is مرفوع." },
     "fail":    { "arabic": "فاعل",      "said": "faa'il",     "meaning": "The one doing the verb. Always مرفوع." },
     "mafool":  { "arabic": "مفعول به",  "said": "maf'ool bih", "meaning": "The one the verb is done to. Always منصوب." },
+    "mansub":  { "arabic": "مفعول فيه / منادى / مستثنى", "said": "maf'ool feeh", "meaning": "The other words in (or in place of) the nasb: when or where it happened (مفعول فيه), the one called (منادى), the one left out (مستثنى)." },
+    "tabi":    { "arabic": "معطوف / توكيد / بدل", "said": "ma'toof",    "meaning": "A word that copies the case of the word before it: after a joining word like و or ثم (معطوف), as emphasis (توكيد), or as a replacement naming it (بدل)." },
     "harf":    { "arabic": "حرف",       "said": "harf",       "meaning": "A small word that does a job: على, و, لم. It never changes; a noun after a preposition becomes مجرور." },
     "sifah":   { "arabic": "صفة",       "said": "sifah",      "meaning": "Describes the noun before it, and copies that noun's gender, number, definiteness and ending." },
     "haal":    { "arabic": "حال",       "said": "haal",       "meaning": "The state someone was in while the verb happened. منصوب and without ال." },
-    "mudaf":   { "arabic": "مضاف",      "said": "mudaaf",     "meaning": "The first word of an 'X of Y' pair: كتابُ الطالبِ. Never takes ال; the second word is مجرور." }
+    "mudaf":   { "arabic": "مضاف",      "said": "mudaaf",     "meaning": "The first word of an 'X of Y' pair: كتابُ الطالبِ. Almost never takes ال; the second word is مجرور." }
   },
 
   "cases": {
     "raf'": { "arabic": "مرفوع", "said": "marfoo'", "meaning": "The ending for a subject: a ضمة on one noun, و on a sound masculine plural." },
     "nasb": { "arabic": "منصوب", "said": "mansoob", "meaning": "The ending for an object and for what comes after إن: a فتحة on one noun." },
     "jarr": { "arabic": "مجرور", "said": "majroor", "meaning": "The ending after a preposition or as the second word of a مضاف pair: a كسرة on one noun." },
-    "jazm": { "arabic": "مجزوم", "said": "majzoom", "meaning": "The ending of a present verb after لم, لا of command and their like: a سكون, or a dropped final letter." },
+    "jazm": { "arabic": "مجزوم", "said": "majzoom", "meaning": "The ending of a present verb after لم, the لا that forbids, the لام of command and their like: a سكون, or a dropped final letter." },
     "mabni": { "arabic": "مبني", "said": "mabni", "meaning": "Fixed. The ending never changes whatever the word is doing: past verbs, pronouns, particles." }
   },
 

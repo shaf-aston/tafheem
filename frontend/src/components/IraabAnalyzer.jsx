@@ -12,7 +12,7 @@ import { useMutation } from '@tanstack/react-query'
 import { analyzeIraab, generatePractice } from '../api'
 import { errorMessage, errorStatus } from '../lib/apiError'
 import { buildIraabExportText } from '../lib/iraabExport'
-import { caseLabel, ROLE_LEGEND, signLabel } from '../lib/grammarTerms'
+import { caseLabel, isUnnamed, ROLE_LEGEND, signLabel } from '../lib/grammarTerms'
 import { roleVar } from '../lib/roleColors'
 
 import SourceBadge from './ui/SourceBadge'
@@ -24,7 +24,6 @@ import Disclosure from './ui/Disclosure'
 import ErrorAlert from './ui/ErrorAlert'
 import ExampleChips from './ui/ExampleChips'
 import MicButton from './ui/MicButton'
-import RetryButton from './ui/RetryButton'
 import SearchBox from './ui/SearchBox'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
@@ -117,14 +116,13 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
 function AnalyzeError({ error, onRetry }) {
   const status = errorStatus(error)
   return (
-    <ErrorAlert title={status === 504 ? 'Timed out' : 'Analysis failed'}>
+    <ErrorAlert title={status === 504 ? 'Timed out' : 'Analysis failed'} onRetry={onRetry}>
       <div>{errorMessage(error)}</div>
       {status === 500 && (
         <div className="text-xs mt-2">
           The richer explanation could not be produced right now. The offline analysis above still stands.
         </div>
       )}
-      <RetryButton onClick={onRetry} />
     </ErrorAlert>
   )
 }
@@ -226,7 +224,7 @@ function WordGrid({ words, onClick }) {
             key={`${word.word}-${i}`}
             type="button"
             onClick={() => onClick(word)}
-            aria-label={`${word.word}, ${word.role || 'details'}`}
+            aria-label={`${word.word}, ${isUnnamed(word) ? 'not named, see why' : word.role || 'details'}`}
             style={{ '--i': i, '--c': roleVar(key) }}
             className="word rise-in role glow
               flex flex-col items-center gap-1.5 px-4 py-3 rounded-[var(--radius-md)]
@@ -236,7 +234,7 @@ function WordGrid({ words, onClick }) {
             {/* The term alone. What it means is in the glossary at the foot
                 of the page, once, not under every tag. */}
             {word.role && (
-              <span className="text-xs px-2 py-0.5 rounded-full role-tag">
+              <span className="type-tiny px-2 py-0.5 rounded-full role-tag">
                 {word.role}
               </span>
             )}
@@ -354,7 +352,7 @@ function PracticeQuestions({ data, accent }) {
               className="fade-in p-3 rounded-[var(--radius-sm)] text-sm"
               style={{
                 color: 'var(--success)',
-                background: 'color-mix(in srgb, var(--success) 10%, transparent)',
+                background: 'var(--success-wash)',
               }}
             >
               {q.answer}

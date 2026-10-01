@@ -1,6 +1,6 @@
 /**
  * The strip along the bottom while you recite: the microphone, what it is
- * hearing, how strictly it is marking, and how each ayah went.
+ * hearing, and how each ayah went.
  *
  * It holds no rules. Every state on it was decided by lib/follow.js; this only
  * says what each one looks like, and the colours are the app's own tokens so
@@ -8,17 +8,10 @@
  */
 import { CHECK, MISSED, SAID, WRONG } from '../lib/follow'
 import { LOOK, verdictOf } from '../lib/reciteColors'
-import { SETTINGS, setSetting, useSetting } from '../lib/settings'
 
 import ArabicText from './ui/ArabicText'
-import Segmented from './ui/Segmented'
-
-// The same three choices the Settings page offers, read from the one place
-// they are written down rather than copied, so they can never drift apart.
-const LEVELS = SETTINGS.find((one) => one.key === 'reciting-level').options
 
 export default function ReciteStrip({ listening, problem, heard, marks, lines, accent, onStart, onStop }) {
-  const level = useSetting('reciting-level')
   const tally = { [SAID]: 0, [CHECK]: 0, [WRONG]: 0, [MISSED]: 0 }
   for (const word of marks.words) if (word.state in tally) tally[word.state] += 1
 
@@ -69,22 +62,6 @@ export default function ReciteStrip({ listening, problem, heard, marks, lines, a
           )}
         </div>
 
-        {/* How strictly to mark, here rather than only buried in Settings,
-            because it is the one thing a reciter wants to change the moment a
-            mark looks unfair. Changing it re-marks the page at once, including
-            what has already been recited: the marks are worked out afresh on
-            every render from sureness already gathered, so nothing is recorded
-            or read again. It stays the app's one setting, written to the same
-            place, so Settings and this agree without either being told. */}
-        <Segmented
-          label="Checking level"
-          captioned
-          options={LEVELS}
-          value={level}
-          onChange={(id) => setSetting('reciting-level', id)}
-          accent={accent}
-          className="shrink-0"
-        />
       </div>
 
       {/* One pill an ayah, settled at the pause, so a whole page is one glance. */}

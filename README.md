@@ -41,7 +41,7 @@ Or by hand, from the project root:
 
 ```bash
 python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.txt && pip install --no-deps -r requirements-nodeps.txt
 python -m uvicorn backend.main:app --reload     # API on :8000
 
 cd frontend && npm install && npm run dev       # app on http://localhost:5173

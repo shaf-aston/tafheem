@@ -10,7 +10,7 @@
  */
 import { useEffect, useRef } from 'react'
 
-import { caseLabel, posLabel, signLabel, typeLabel } from '../lib/grammarTerms'
+import { caseLabel, isUnnamed, posLabel, signLabel, typeLabel } from '../lib/grammarTerms'
 import { roleVar } from '../lib/roleColors'
 import { scrollToEl } from '../lib/scrollToEl'
 import ArabicText from './ui/ArabicText'
@@ -20,6 +20,7 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
   const headingRef = useRef(null)
   const key = word?.role_key
   const hasPieces = word?.segments?.length > 1
+  const unsure = isUnnamed(word)
 
   useEffect(() => {
     if (!word) return
@@ -116,10 +117,14 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
         </div>
       )}
 
+      {/* A dash for the role is the analyser saying "not sure": what sits in
+          these two panels is then the rule that stopped it, not a proof. */}
       {word.reason && (
-        <Panel label="Proof (الدليل)" accent>{word.reason}</Panel>
+        unsure
+          ? <Panel label="Why no name (لماذا لا اسم)" accent><ArabicText as="p" size="sm">{word.reason}</ArabicText></Panel>
+          : <Panel label="Proof (الدليل)" accent>{word.reason}</Panel>
       )}
-      {word.notes && <Panel label="Notes">{word.notes}</Panel>}
+      {word.notes && <Panel label={unsure ? 'In plain words' : 'Notes'}>{word.notes}</Panel>}
 
       {/* The root is a doorway, not just a fact: from here the same root
           can be conjugated, defined, or found in the Qur'an. */}
@@ -138,7 +143,7 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
 function Detail({ label, value, arabic }) {
   return (
     <div className="rounded-[var(--radius-sm)] p-3 bg-[var(--surface-hi)]">
-      <div className="text-[var(--text-faint)] type-tiny uppercase tracking-wide mb-1">{label}</div>
+      <div className="eyebrow mb-1">{label}</div>
       {arabic
         ? <ArabicText className="text-[var(--text)]">{value}</ArabicText>
         : <div className="text-[var(--text)]">{value}</div>}
@@ -158,7 +163,7 @@ function Panel({ label, accent = false, children }) {
     >
       {/* text-dim, not text-faint: this label sits on a tinted panel, where the
           fainter token drops below the 4.5:1 contrast minimum. */}
-      <div className="text-[var(--text-dim)] type-tiny uppercase tracking-wide mb-1">{label}</div>
+      <div className="eyebrow text-[var(--text-dim)] mb-1">{label}</div>
       {children}
     </div>
   )

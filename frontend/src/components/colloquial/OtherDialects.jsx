@@ -8,13 +8,15 @@ import { useState } from 'react'
 import { colloquialCompareQuery } from '../../api'
 import { useSetting } from '../../lib/settings'
 import ArabicText from '../ui/ArabicText'
+import ErrorAlert from '../ui/ErrorAlert'
+import { Skeleton } from '../ui/Skeleton'
 import { FOCUS } from './Face'
 import Spelling from './Spelling'
 
 function Rows({ place, slot }) {
-  const { data, isPending, isError } = useQuery(colloquialCompareQuery(place.unit, place.lesson))
-  if (isPending) return <p className="type-small text-center text-[var(--text-faint)]">Loading…</p>
-  if (isError) return <p className="type-small text-center text-[var(--text-faint)]">The other dialects could not be reached.</p>
+  const { data, isPending, isError, error, refetch } = useQuery(colloquialCompareQuery(place.unit, place.lesson))
+  if (isPending) return <Skeleton className="h-24" />
+  if (isError) return <ErrorAlert inline title="Other dialects" error={error} fallback="The other dialects could not be reached." onRetry={refetch} />
   return (
     <ul className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] divide-y divide-[var(--border)]">
       {data.dialects.filter((d) => d.key !== place.dialect).map((d) => {

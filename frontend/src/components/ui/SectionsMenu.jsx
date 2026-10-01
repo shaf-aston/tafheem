@@ -2,19 +2,11 @@
  * All sections: every tab under its group, opened from the end of the strip.
  * Native <dialog>, as in SettingsPanel: Esc, backdrop and focus trap come free.
  */
-import { useEffect, useRef } from 'react'
-
+import { useModal } from '../../lib/useModal'
 import ArabicText from './ArabicText'
 
-export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here }) {
-  const dialog = useRef(null)
-
-  useEffect(() => {
-    const element = dialog.current
-    if (!element) return
-    if (open && !element.open) element.showModal()
-    if (!open && element.open) element.close()
-  }, [open])
+export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here, children }) {
+  const dialog = useModal(open)
 
   const go = (id) => {
     onClose()
@@ -27,14 +19,17 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
       onClose={onClose}
       onClick={(e) => e.target === dialog.current && onClose()}
       aria-labelledby="sections-title"
-      className="m-auto p-0 bg-transparent max-w-[min(44rem,92vw)] w-full"
+      className="sections-menu m-auto p-0 bg-transparent max-w-[min(44rem,92vw)] w-full"
     >
       <div
         className="rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
-          p-5 space-y-5 max-h-[88vh] overflow-y-auto"
+          p-5 space-y-5 max-h-[88dvh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 id="sections-title" className="text-base font-bold text-[var(--text)]">All sections</h2>
+        <div className="flex items-center justify-between gap-2">
+          <h2 id="sections-title" className="text-base font-bold text-[var(--text)]">All sections</h2>
+          <button type="button" onClick={onClose} className="tap min-h-11 px-3 type-small font-semibold text-[var(--text-dim)]">Close</button>
+        </div>
         {groups.map((group) => (
           <section key={group.id} className="space-y-2">
             <h3 className="type-small text-[var(--text-faint)]">{group.label}</h3>
@@ -57,6 +52,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
             </div>
           </section>
         ))}
+        {children}
       </div>
     </dialog>
   )

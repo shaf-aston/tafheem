@@ -88,6 +88,17 @@ export function makeRandom(seed = 1) {
 const wordCount = (text) => text.trim().split(/\s+/).length
 
 /**
+ * The separate senses of a word's meanings, in every meaning language:
+ * "Necessity, obligation" is necessity | obligation. Two words sharing one
+ * sense are synonyms however the rest reads; meaningKey is the whole gloss, so
+ * alone it let "necessity, requirement" stand beside it.
+ */
+const senses = (word) => new Set(Object.keys(MEANINGS).flatMap((key) => (word[key] ?? '')
+  .toLowerCase().split(/[,;،؛]/)
+  .map((part) => part.trim().replace(/^(to|a|an|the) /, ''))
+  .filter(Boolean)))
+
+/**
  * Wrong options for one answer: never a different type of word, never two that
  * mean the same thing, and within that, trickiest first.
  *
@@ -157,12 +168,13 @@ export function pickDistractors(bank, answer, count, random, answerKey = 'en') {
   ).sort(byPlausibility)
 
   const chosen = []
-  const usedMeanings = new Set([answer.meaningKey])
+  const usedSenses = senses(answer)
 
   for (const candidate of candidates) {
     if (chosen.length === count) break
-    if (usedMeanings.has(candidate.meaningKey)) continue // options stay distinct from each other
-    usedMeanings.add(candidate.meaningKey)
+    const own = senses(candidate)
+    if ([...own].some((sense) => usedSenses.has(sense))) continue // options stay distinct from each other
+    own.forEach((sense) => usedSenses.add(sense))
     chosen.push(candidate)
   }
 

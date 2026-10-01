@@ -44,11 +44,12 @@ else
     exit 1
 fi
 
-REQ_HASH=$(sha256sum requirements.txt 2>/dev/null || shasum -a 256 requirements.txt)
+REQ_HASH=$(cat requirements.txt requirements-nodeps.txt | (sha256sum 2>/dev/null || shasum -a 256))
 HASH_FILE="venv/.requirements.hash"
 if [ ! -f "$HASH_FILE" ] || [ "$(cat "$HASH_FILE")" != "$REQ_HASH" ]; then
     echo "Installing/updating Python dependencies..."
     pip install -q -r requirements.txt
+    pip install -q --no-deps -r requirements-nodeps.txt
     echo "$REQ_HASH" > "$HASH_FILE"
 else
     echo "✓ Python dependencies up to date (skipped install)"

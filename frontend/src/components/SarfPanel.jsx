@@ -20,6 +20,7 @@ import SourceBadge from './ui/SourceBadge'
 import VerbFormTag from './ui/VerbFormTag'
 import { Skeleton, AnalyzerSkeleton } from './ui/Skeleton'
 import { verbClass } from '../lib/verbClass'
+import PillSelect from './ui/PillSelect'
 
 // The book prints the four active columns together and keeps the passives for
 // later, so the first four columns the server sends are what opens by default.
@@ -180,9 +181,8 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
       </div>
 
       {mutation.isError && (
-        <ErrorAlert title="Analysis failed">
+        <ErrorAlert title="Analysis failed" onRetry={() => submit()}>
           {errorMessage(mutation.error)}
-          <RetryButton onClick={() => submit()} />
         </ErrorAlert>
       )}
 
@@ -272,7 +272,7 @@ function SarfResult({ data, loading, meaningPending, swapPending, swapError, onR
 
       {data.notes && (
         <div className="p-3 rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)] text-sm text-[var(--text-dim)]">
-          <div className="text-[var(--text-faint)] type-tiny uppercase tracking-wide mb-1">Notes</div>
+          <div className="eyebrow mb-1">Notes</div>
           {data.notes}
         </div>
       )}
@@ -291,7 +291,7 @@ function TableNote({ accent, title = 'Why there is no table', children }) {
       className="p-4 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
         border-l-4 border-l-[var(--c)] space-y-1"
     >
-      <div className="text-[var(--text-faint)] type-tiny uppercase tracking-wide">{title}</div>
+      <div className="eyebrow">{title}</div>
       <p className="text-sm leading-relaxed text-[var(--text-dim)]">{children}</p>
     </div>
   )
@@ -346,16 +346,13 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
             {swapPending && (
               <span className="type-small text-[var(--text-faint)]">Rebuilding the table…</span>
             )}
-            <select
+            <PillSelect
               aria-label="Verb form"
               value={picked || form || ''}
               onChange={(e) => choose(e.target.value)}
               disabled={swapPending}
               style={{ '--c': accent }}
-              className="py-1 px-2.5 rounded-full text-xs max-w-[14rem]
-                bg-[var(--surface)] border border-[var(--border)] text-[var(--text-dim)]
-                hover:text-[var(--text)] focus:border-[var(--c)] focus:outline-none transition-colors
-                disabled:opacity-60 disabled:cursor-wait"
+              className="py-1 px-2.5 text-xs max-w-[14rem] border-[var(--border)] text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-60 disabled:cursor-wait"
             >
               {/* No form chosen yet (no book records the باب): the control must not
                   read as an answer, so it opens on a blank prompt, never on a form. */}
@@ -363,7 +360,7 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
               {Object.entries(options).map(([id, label]) => (
                 <option key={id} value={id}>{label}</option>
               ))}
-            </select>
+            </PillSelect>
             {/* Beside the control that failed, not at the top of the page: the
                 word's own answer above is still good, only the swap broke. */}
             {swapError && (
@@ -494,7 +491,7 @@ function SarfSagheer({ summary, accent }) {
             className="rise-in rounded-[var(--radius-md)] p-3 text-center
               bg-[var(--surface-hi)] border border-[var(--border)]"
           >
-            <div dir="ltr" className="text-[var(--text-faint)] type-tiny uppercase tracking-wide mb-1">{slot.label}</div>
+            <div dir="ltr" className="eyebrow mb-1">{slot.label}</div>
             <ArabicText className="block text-[var(--text)]">{slot.arabic}</ArabicText>
           </div>
         ))}
@@ -524,7 +521,7 @@ function MeaningCard({ meaning, pending, root, onGo, accent, i }) {
       className="rise-in rounded-[var(--radius-md)] p-4 bg-[var(--surface)] border border-[var(--border)]
         flex flex-col gap-2"
     >
-      <div className="text-[var(--text-faint)] type-tiny uppercase tracking-wide">Meaning</div>
+      <div className="eyebrow">Meaning</div>
 
       {/* Three lines, then the rest one press away. Half the dictionary's senses
           are a handful of words, but the longest is 800 characters of prose about
@@ -560,7 +557,7 @@ function InfoCard({ label, value, gloss, arabic, accent, i }) {
       style={{ '--i': i, '--c': accent }}
       className="rise-in rounded-[var(--radius-md)] p-4 bg-[var(--surface)] border border-[var(--border)]"
     >
-      <div className="text-[var(--text-faint)] type-tiny uppercase tracking-wide mb-1">{label}</div>
+      <div className="eyebrow mb-1">{label}</div>
       {/* The card itself reads left to right, so the Arabic stays inline and
           starts where the label starts, a block would push it to the far edge
           and leave the label and the gloss pointing the other way. */}

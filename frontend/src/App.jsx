@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { GROUPS, TABS, accentOf } from './lib/tabs'
+import { GROUPS, RECENT, TABS, accentOf } from './lib/tabs'
+import { addRecent, readRecent, stripOf } from './lib/recent'
+import { useRemembered } from './lib/useRemembered'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
 import { idle } from './lib/warm'
 import { useTabShortcuts } from './lib/useTabShortcuts'
@@ -14,9 +16,11 @@ import ErrorAlert from './components/ui/ErrorAlert'
 import Mascot from './components/ui/Mascot'
 import MapPanel from './components/ui/MapPanel'
 import SettingsPanel from './components/ui/SettingsPanel'
+import { TOOLS } from './lib/tools'
 import SpatialHome from './components/ui/SpatialHome'
 import SourceFooter from './components/ui/SourceFooter'
 import TabStrip from './components/ui/TabStrip'
+import BottomNav from './components/ui/BottomNav'
 import SectionsMenu from './components/ui/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
 
@@ -88,6 +92,7 @@ function AppContent() {
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [mapOpen, setMapOpen] = useState(false)
+  const runTool = { startOver, map: () => setMapOpen(true) }
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
   // A root handed from one tab to another. Held here because it is the only
@@ -124,7 +129,17 @@ function AppContent() {
     setHandoff(incoming ? { tab: id, value: incoming, at: ++arrivals } : null)
   }, [])
 
-  useTabShortcuts(TABS, switchTab)
+  // The strip: fixed tabs plus the recent ones. Whatever opens a tab (a click,
+  // All sections, the command bar, back) lands here, so one rule fills it.
+  const [savedRecent, saveRecent] = useRemembered('recent-tabs')
+  const recent = useMemo(() => readRecent(savedRecent, TABS, RECENT), [savedRecent])
+  const strip = useMemo(() => stripOf(TABS, recent), [recent])
+  useEffect(() => {
+    const next = addRecent(recent, activeTab, TABS)
+    if (next !== recent) saveRecent(JSON.stringify(next))
+  }, [activeTab, recent, saveRecent])
+
+  useTabShortcuts(strip, switchTab)
 
   // Every tab's opening data, fetched once the page is idle.
   useEffect(() => { idle(() => TABS.forEach((t) => openTab(t.id))) }, [])
@@ -152,7 +167,7 @@ function AppContent() {
   }, [])
 
   return (
-    <div className="min-h-screen" style={{ '--c': accent }}>
+    <div className="min-h-screen bottom-nav-room" style={{ '--c': accent }}>
       <header ref={pinHeader} className="app-header sticky top-0 z-[var(--layer-header)]">
         <div className="shell py-1 flex items-center justify-between gap-3">
           {/* The name used to be printed here in two lines that said what every
@@ -180,36 +195,23 @@ function AppContent() {
               })}
             />
           </button>
-          {/* One click, no arming: it forgets where you have been and the
-              saved answers, and reopens this tab clean. The wipe with
-              real cost, settings and streak, stays two clicks deep in Settings. */}
-          <button
-            type="button"
-            onClick={startOver}
-            title="Start over"
-            aria-label="Start over: forget where you have been and your answers, and reopen this tab clean"
-            className="icon-button"
-          >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M3 12a9 9 0 1 0 3-6.7" />
-              <path d="M3 4v5h5" />
-            </svg>
-          </button>
-          {/* A high-level overview, everything at a glance: not a tab, opened
-              the same way Settings is, so it never crowds the tab strip. */}
-          <button
-            type="button"
-            onClick={() => setMapOpen(true)}
-            title="Map"
-            aria-label="Open the map: a high-level overview"
-            aria-haspopup="dialog"
-            className="icon-button"
-          >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M9 3 3 5.5v15L9 18l6 2.5L21 18V3l-6 2.5L9 3Z" />
-              <path d="M9 3v15M15 5.5v15" />
-            </svg>
-          </button>
+          {/* Tools from lib/tools.js. Start over is one click, no arming; the wipe
+              with real cost, settings and streak, stays two clicks deep in Settings. */}
+          {TOOLS.map((tool) => (
+            <button
+              key={tool.id}
+              type="button"
+              onClick={runTool[tool.id]}
+              title={tool.label}
+              aria-label={tool.aria}
+              aria-haspopup={tool.dialog ? 'dialog' : undefined}
+              className={`icon-button${tool.phone === 'more' ? ' phone-hide' : ''}`}
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                {tool.paths.map((d) => <path key={d} d={d} />)}
+              </svg>
+            </button>
+          ))}
           </div>
 
           <div className="flex items-center gap-2 min-w-0">
@@ -230,8 +232,9 @@ function AppContent() {
           </div>
         </div>
 
-        <div className="shell">
-          <TabStrip tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
+        {/* Phones get the tabs at the bottom instead (BottomNav). */}
+        <div className="shell hidden sm:block">
+          <TabStrip tabs={strip} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
         </div>
       </header>
 
@@ -262,7 +265,7 @@ function AppContent() {
             aria-label="Dismiss backend warning"
             onClick={() => setBannerDismissed(true)}
             className="absolute top-6 right-6 w-7 h-7 grid place-items-center rounded-full border text-[var(--danger)] bg-[var(--surface)] hover:opacity-70 text-sm"
-            style={{ borderColor: 'color-mix(in srgb, var(--danger) 50%, transparent)' }}
+            style={{ borderColor: 'var(--danger-edge)' }}
           >
             ✕
           </button>
@@ -336,7 +339,30 @@ function AppContent() {
         colorOf={accentOf}
         onGo={switchTab}
         here={activeTab}
-      />
+      >
+        {/* The tools phones hide from the top bar, kept one tap inside More. */}
+        <section className="sm:hidden space-y-2">
+          <h3 className="type-small text-[var(--text-faint)]">Tools</h3>
+          <div className="grid grid-cols-2 gap-2">
+            {TOOLS.filter((tool) => tool.phone === 'more').map((tool) => (
+              <button
+                key={tool.id}
+                type="button"
+                aria-haspopup={tool.dialog ? 'dialog' : undefined}
+                aria-describedby={tool.hint ? `${tool.id}-hint` : undefined}
+                onClick={() => { setSectionsOpen(false); runTool[tool.id]() }}
+                className="tap min-h-11 rounded-[var(--radius-sm)] border border-[var(--border)] type-body font-medium"
+              >
+                {tool.label}
+              </button>
+            ))}
+          </div>
+          {TOOLS.filter((tool) => tool.phone === 'more' && tool.hint).map((tool) => (
+            <p key={tool.id} id={`${tool.id}-hint`} className="type-small text-[var(--text-faint)]">{tool.hint}</p>
+          ))}
+        </section>
+      </SectionsMenu>
+      <BottomNav tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
       {/* Drawn last so it sits over the page, and once for the whole app. */}
       <CursorLight />
     </div>

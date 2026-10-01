@@ -11,21 +11,22 @@
  * no knowledge of the screen; the books are in lib/books.js, with no knowledge
  * of either. This file only shows what those two decide.
  */
-import { Fragment, useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { isQuranic, recitedForm } from '../lib/arabicText'
 import { BOOKS, bookPartQuery, bookPartsQuery, DEFAULT_BOOK } from '../lib/books'
-import { smartError } from '../lib/apiError'
 import {
   blanksFor, CHOICES, DEFAULT_DIFFICULTY, DIFFICULTIES, fromMemory, isRight, makeRandom,
   optionsFor, pagesOf, printedPageOf, score, wordsOf,
 } from '../lib/memorise'
 
 import { readViewParam, writeViewParams } from '../lib/tabUrl'
+import { scrollToEl } from '../lib/scrollToEl'
 import { useReciting } from '../lib/useReciting'
 import { useSetting } from '../lib/settings'
 import { warm } from '../lib/warm'
+import recite from '../recite.json'
 
 import { LOOK, SHOWN } from '../lib/reciteColors'
 
@@ -34,7 +35,6 @@ import ReciteStrip from './ReciteStrip'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import PrimaryButton from './ui/PrimaryButton'
-import RetryButton from './ui/RetryButton'
 import SectionHeader from './ui/SectionHeader'
 import Segmented from './ui/Segmented'
 import { Skeleton } from './ui/Skeleton'
@@ -53,6 +53,9 @@ const HIDDEN = DEFAULT_DIFFICULTY
 // control beside it already names. Inside that surah the number alone says it.
 // A book whose lines are not numbered this way is left exactly as it is.
 const withinPart = (label) => label.split(':').pop()
+
+// How long a finished page stays up, marked, before the next one turns in.
+const TURN_AFTER_MS = recite['turn-after-s'] * 1000
 
 // Two ways to answer the same gap. Typing is recall; choosing is recognition,
 // which is easier, and the only one that works without an Arabic keyboard.
@@ -279,7 +282,10 @@ export default function MemorisePanel({ accent }) {
   useEffect(() => {
     if (listening && way !== 'recite') reciting.stop()
   }, [listening, way, reciting])
-  useEffect(() => reciting.stop, [pageNumber, part, bookId])  // eslint-disable-line react-hooks/exhaustive-deps
+  // A page turned by the recitation itself carries on listening: set just
+  // before it turns, read by the two effects below, and put down by the second.
+  const turning = useRef(false)
+  useEffect(() => () => { if (!turning.current) reciting.stop() }, [pageNumber, part, bookId])  // eslint-disable-line react-hooks/exhaustive-deps
   // Carrying on is only ever carrying on with the same page from the same
   // place. Move either and the words already heard were about somewhere else,
   // so they go, whatever the setting says.
@@ -287,7 +293,35 @@ export default function MemorisePanel({ accent }) {
   // Not on startFrom: that moves by itself the moment the recitation says
   // where it began, and forgetting then would throw away the very words that
   // said it. Only a place the reader chose, or a page they turned to.
-  useEffect(() => { forget() }, [forget, pageNumber, part, bookId, pinned])
+  useEffect(() => {
+    if (turning.current) { turning.current = false; return }
+    forget()
+  }, [forget, pageNumber, part, bookId, pinned])
+
+  /**
+   * On to the next page, or the next part's first, without stopping: the
+   * reciter reached the end of this one and is carrying on. What was heard
+   * goes with the old page (turn(), not forget(), so the recording under way
+   * is kept), and the new page is followed from wherever they are on it.
+   */
+  const card = useRef(null)
+  const turnPage = () => {
+    const at = parts?.findIndex((p) => p.id === part) ?? -1
+    const nextPart = at >= 0 ? parts[at + 1] : null
+    if (pageNumber + 1 >= pages.length && !nextPart) return
+    turning.current = true
+    reciting.turn()
+    if (pageNumber + 1 < pages.length) openPage(pageNumber + 1)
+    else openPart(nextPart.id)
+    scrollToEl(card.current, 'top')
+  }
+  // A moment on the finished page first, marks settled and weighed, so a
+  // slip in its last ayah is seen before the page goes.
+  useEffect(() => {
+    if (way !== 'recite' || !listening || !reciting.finished) return
+    const timer = setTimeout(turnPage, TURN_AFTER_MS)
+    return () => clearTimeout(timer)
+  }, [way, listening, reciting.finished])  // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="panel">
@@ -355,10 +389,7 @@ export default function MemorisePanel({ accent }) {
       {isPending && <Skeleton className="h-40 w-full" />}
 
       {isError && (
-        <ErrorAlert title="That part could not be read">
-          {smartError(error, 'The text comes from the Qur\'an tab\'s own source.')}
-          <RetryButton onClick={refetch} />
-        </ErrorAlert>
+        <ErrorAlert title="That part could not be read" error={error} fallback="The text comes from the Qur\'an tab\'s own source." onRetry={refetch} />
       )}
 
       {data && pages.length === 0 && <EmptyState>Nothing to memorise here.</EmptyState>}
@@ -430,27 +461,54 @@ export default function MemorisePanel({ accent }) {
             </div>
           </div>
 
-          <div className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4">
-            {page.map((line, l) => (
-              <Line
-                key={line.id}
-                line={line}
-                index={l}
-                blanks={blanks}
-                answers={answers}
-                checked={checked}
-                meaning={meaning}
-                choices={choices}
-                accent={accent}
-                recite={way === 'recite'
-                  ? { ...reciting.marks, from: recitedPage.lines[l].from, shown }
-                  : null}
-                // Pressable while listening too: jumping back or ahead must not
-                // mean stopping first. forget() keeps the microphone running.
-                onStartAt={way === 'recite' ? openAt : null}
-                onAnswer={(key, value) => setAnswers((was) => ({ ...was, [key]: value }))}
-              />
-            ))}
+          <div ref={card} className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4 scroll-mt-4">
+            {/* A flowing book runs its lines on as a printed mushaf does: one
+                block, justified, each ayah ending in its number, and never a
+                new row per ayah, which left short ayahs a gutter of empty space.
+                The last row's leftover space goes to the ::after filler, so
+                only that row sits to the start instead of being stretched. On a
+                phone a row holds two or three words, and stretching those left
+                holes wider than the words, so there it simply packs. */}
+            <div
+              className={book.flow
+                ? "flex flex-wrap items-baseline gap-x-2 gap-y-2 sm:justify-between after:content-[''] after:flex-1"
+                : 'space-y-4'}
+              dir="rtl"
+            >
+              {page.map((line, l) => (
+                <Line
+                  key={line.id}
+                  flow={book.flow}
+                  line={line}
+                  index={l}
+                  blanks={blanks}
+                  answers={answers}
+                  checked={checked}
+                  meaning={meaning}
+                  choices={choices}
+                  accent={accent}
+                  recite={way === 'recite'
+                    ? { ...reciting.marks, from: recitedPage.lines[l].from, shown }
+                    : null}
+                  // Pressable while listening too: jumping back or ahead must not
+                  // mean stopping first. forget() keeps the microphone running.
+                  onStartAt={way === 'recite' ? openAt : null}
+                  onAnswer={(key, value) => setAnswers((was) => ({ ...was, [key]: value }))}
+                />
+              ))}
+            </div>
+            {/* Run on, a line has nowhere under it for its English, so the
+                page's translation follows the Arabic, one ayah to a line. */}
+            {book.flow && meaning && (
+              <ol className="space-y-2">
+                {page.filter((line) => line.english).map((line) => (
+                  <li key={line.id} className="type-body text-[var(--text-dim)] leading-relaxed max-w-prose">
+                    <span className="type-small text-[var(--text-faint)] tabular-nums" aria-hidden="true">{withinPart(line.label)}. </span>
+                    {line.english}
+                  </li>
+                ))}
+              </ol>
+            )}
           </div>
 
           {way === 'recite' ? (
@@ -525,7 +583,7 @@ function StepButton({ onClick, disabled, children }) {
  * never of the missing word on its own, so it is a reminder of where you are
  * rather than the answer.
  */
-function Line({ line, index, blanks, answers, checked, meaning, choices, accent, recite, onStartAt, onAnswer }) {
+function Line({ line, flow, index, blanks, answers, checked, meaning, choices, accent, recite, onStartAt, onAnswer }) {
   const words = wordsOf(line.arabic)
   // One width for every typed blank on this line, from the longest recited
   // word among them: sizing each blank to its own answer leaks the length.
@@ -534,75 +592,99 @@ function Line({ line, index, blanks, answers, checked, meaning, choices, accent,
     ...words
       .map((word, w) => (blanks.has(`${index}:${w}`) ? recitedForm(word).length : 0)),
   ) + 1
+  const drawn = words.map((word, w) => {
+    const key = `${index}:${w}`
+    // A poem's bayt is two hemistichs, sadr then ajuz, printed as one
+    // line but never run together, forcing a wrap here after the sadr
+    // shows that split without needing a second Line per bayt, which
+    // would let pagesOf and the blank-picker split them across a page.
+    const hemistichBreak = line.breakAfter === w && (
+      <span key={`${key}:break`} className="basis-full h-0" aria-hidden="true" />
+    )
+    if (!blanks.has(key)) {
+      return (
+        <Fragment key={key}>
+          {recite
+            ? <RecitedWord word={word} at={recite.from + w} recite={recite} accent={accent} onStartAt={onStartAt} />
+            : <ArabicText size="base">{word}</ArabicText>}
+          {hemistichBreak}
+        </Fragment>
+      )
+    }
+    // Reciting a page you can read is not a test of remembering it. So
+    // the same words that would be gaps to type stay covered here, and
+    // the only thing that uncovers one is saying it.
+    if (recite) {
+      return (
+        <Fragment key={key}>
+          <RecitedWord
+            word={word}
+            at={recite.from + w}
+            recite={recite}
+            accent={accent}
+            coverWidth={typeWidth}
+            onStartAt={onStartAt}
+          />
+          {hemistichBreak}
+        </Fragment>
+      )
+    }
+    return (
+      <Fragment key={key}>
+        <Gap
+          word={word}
+          options={choices?.get(key)}
+          value={answers[key] ?? ''}
+          checked={checked}
+          accent={accent}
+          lineLabel={line.label}
+          typeWidth={typeWidth}
+          onChange={(value) => onAnswer(key, value)}
+        />
+        {hemistichBreak}
+      </Fragment>
+    )
+  })
+  const marker = flow ? (
+    <span className="type-small text-[var(--text-dim)] shrink-0 tabular-nums" aria-label={`ayah ${withinPart(line.label)}`}>
+      {`﴿${withinPart(line.label)}﴾`}
+    </span>
+  ) : (
+    <span className="type-small text-[var(--text-faint)] shrink-0">{line.label}</span>
+  )
+  // Flowing, the line's two boxes step aside (display: contents) so its words
+  // join the page's one run; the words themselves are drawn the same either way.
   return (
-    <div className="space-y-1">
+    <div className={flow ? 'contents' : 'space-y-1'}>
       {/* Right to left, wrapping downward, exactly as the line is printed. The
           reference goes last so it sits at the end of the line the way a mushaf
           puts the ayah number, in a right-to-left row, last is leftmost. */}
       <div
-        className="flex flex-wrap items-baseline gap-x-2 gap-y-1"
+        className={flow ? 'contents' : 'flex flex-wrap items-baseline gap-x-2 gap-y-1'}
         dir="rtl"
         data-script={isQuranic(line.arabic) ? 'quran' : undefined}
       >
-        {words.map((word, w) => {
-          const key = `${index}:${w}`
-          // A poem's bayt is two hemistichs, sadr then ajuz, printed as one
-          // line but never run together, forcing a wrap here after the sadr
-          // shows that split without needing a second Line per bayt, which
-          // would let pagesOf and the blank-picker split them across a page.
-          const hemistichBreak = line.breakAfter === w && (
-            <span key={`${key}:break`} className="basis-full h-0" aria-hidden="true" />
-          )
-          if (!blanks.has(key)) {
-            return (
-              <Fragment key={key}>
-                {recite
-                  ? <RecitedWord word={word} at={recite.from + w} recite={recite} accent={accent} onStartAt={onStartAt} />
-                  : <ArabicText size="base">{word}</ArabicText>}
-                {hemistichBreak}
-              </Fragment>
-            )
-          }
-          // Reciting a page you can read is not a test of remembering it. So
-          // the same words that would be gaps to type stay covered here, and
-          // the only thing that uncovers one is saying it.
-          if (recite) {
-            return (
-              <Fragment key={key}>
-                <RecitedWord
-                  word={word}
-                  at={recite.from + w}
-                  recite={recite}
-                  accent={accent}
-                  coverWidth={typeWidth}
-                  onStartAt={onStartAt}
-                />
-                {hemistichBreak}
-              </Fragment>
-            )
-          }
-          return (
-            <Fragment key={key}>
-              <Gap
-                word={word}
-                options={choices?.get(key)}
-                value={answers[key] ?? ''}
-                checked={checked}
-                accent={accent}
-                lineLabel={line.label}
-                typeWidth={typeWidth}
-                onChange={(value) => onAnswer(key, value)}
-              />
-              {hemistichBreak}
-            </Fragment>
-          )
-        })}
-        <span className="type-small text-[var(--text-faint)] shrink-0">{line.label}</span>
+        {flow ? (
+          <>
+            {drawn.slice(0, -1)}
+            {/* The last word and the ayah's number wrap as one, so a number
+                is never left alone at the start of a row. */}
+            <span className="inline-flex items-baseline gap-x-2">
+              {drawn.at(-1)}
+              {marker}
+            </span>
+          </>
+        ) : (
+          <>
+            {drawn}
+            {marker}
+          </>
+        )}
       </div>
       {/* The body size, not a label size: this is the translation being read,
           and it is the same text the surah reader one tab away already sets at
           this size. */}
-      {meaning && line.english && (
+      {!flow && meaning && line.english && (
         <p className="type-body text-[var(--text-dim)] leading-relaxed max-w-prose">
           {line.english}
         </p>

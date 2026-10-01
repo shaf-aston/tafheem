@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
+import config from '../speak.json'
+
 const played = []
 let refuse = () => false
 let tell = null
@@ -31,7 +33,8 @@ describe('which voice says a word', () => {
   it('passes a word with no recording to the server voice', async () => {
     const voice = await speak('قِطَار')
     expect(voice.id).toBe('server')
-    expect(played[0]).toBe(`/api/speak?text=${encodeURIComponent('قِطَار')}`)
+    // The voice's version rides along, so a browser never replays a word kept from an older voice.
+    expect(played[0]).toBe(`/api/speak?text=${encodeURIComponent('قِطَار')}&voice=${config.voices.server.version}`)
   })
 
   it('falls through to the next voice when a file will not load', async () => {

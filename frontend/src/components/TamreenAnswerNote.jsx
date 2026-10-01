@@ -18,7 +18,7 @@ export default function TamreenAnswerNote({ example }) {
         <p key={part.letter} className="type-small text-[var(--text-dim)] border-l-2 border-[var(--border-hi)] pl-3">
           <span
             className="type-small mr-2 px-2 py-0.5 rounded-full border"
-            style={{ color: 'var(--success)', borderColor: 'color-mix(in srgb, var(--success) 40%, transparent)' }}
+            style={{ color: 'var(--success)', borderColor: 'var(--success-edge)' }}
           >
             {BY_LABEL[part.by] ?? part.by}
           </span>
@@ -31,8 +31,8 @@ export default function TamreenAnswerNote({ example }) {
           role="note"
           className="type-small rounded-[var(--radius-sm)] border px-3 py-2"
           style={{
-            borderColor: 'color-mix(in srgb, var(--warn) 40%, transparent)',
-            background: 'color-mix(in srgb, var(--warn) 10%, transparent)',
+            borderColor: 'var(--warn-edge)',
+            background: 'var(--warn-wash)',
             color: 'var(--text-dim)',
           }}
         >

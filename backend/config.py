@@ -105,9 +105,9 @@ class Settings(BaseSettings):
     recitation_deepgram_api_key: str = ""
 
     # Real reciters are played by the page, not listed here.
-    speech_voices: str = "piper"
-    # Path inside the rhasspy/piper-voices repo; fetched once on first use.
-    speech_piper_model: str = "ar/ar_JO/kareem/medium/ar_JO-kareem-medium.onnx"
+    speech_voices: str = "fastpitch"
+    # FastPitch has four speakers; 3 was heard best by Whisper (21% letters wrong, speaker 0 41%).
+    speech_fastpitch_speaker: int = Field(default=3, ge=0, le=3)
     speech_max_chars: int = Field(default=40, gt=0)
     speech_rest_s: float = Field(default=60.0, gt=0)
     # ~25 KB each, so 20,000 is about 500 MB.
@@ -181,8 +181,6 @@ class Settings(BaseSettings):
     # Measured on 12 recitations each, read/check ms: 4 threads 4029/1300, 8 3660/1109, 12 3147/912, 16 2717/887.
     # More is faster all the way up. 12 not 16: 16 buys 14% more and leaves nothing to draw the page while someone recites.
     recitation_threads: int = 12
-    # Loads the model and folds the Qur'an at startup (~1s, 150MB). Off on a small machine; first recitation then loads it.
-    recitation_warm: bool = True
     recitation_matches: int = 5
     # A minute of browser audio is about 1 MB.
     recitation_max_mb: int = Field(default=12, gt=0)
@@ -190,12 +188,9 @@ class Settings(BaseSettings):
     # A setting would be a second source that could disagree.
 
     catib_parser_enabled: bool = True
-    # Warm-up loads a ~110MB ONNX encoder plus CAMeL's BERT disambiguator (~8s for BERT alone on a fast machine, far more on a laptop).
-    # Costs ~600MB from startup. Off on a small machine.
-    catib_parser_warm: bool = True
     # The top disambiguator reading comes from bare letters and can contradict typed vowels (آفِلًا for typed أَفَلَا);
-    # the first of these that agrees is used. Scoring all costs nothing extra.
-    catib_readings: int = 20
+    # the first of these that agrees is used. Scoring all costs nothing extra. 40 because a rare passive (أُكِلَ) can rank below the 20th.
+    catib_readings: int = 40
     # Holds encoder.onnx (int8), scorer.onnx, tokenizer.json, labels.json, config.json, clitic_feats.csv.
     # See catib_onnx.py's docstring for sources. Relative paths resolve inside backend/.
     catib_parser_dir: str = "data/parser"
@@ -255,6 +250,13 @@ class Settings(BaseSettings):
     # Declared because .env sets PORT and this class forbids unknown keys; dropping it fails startup.
     # The running port comes from the --port flag start.sh passes to uvicorn.
     port: int = 8000
+    # Startup loaders by name (services/startup.py STEPS). wait: done before the first request is served.
+    startup_wait: list[str] = ["nahw_rules", "dictionary", "root_meanings"]
+    # background: started and left to finish, so the first use finds them loaded. Drop a name on a small machine:
+    # recitation ~1s, 150MB (first recitation loads it instead); nahw_parser ~110MB ONNX + CAMeL BERT, ~600MB, ~8s+;
+    # colloquial reads and checks every unit, ~3s, which the first Colloquial visit after a restart waited out.
+    startup_background: list[str] = ["recitation", "speech", "colloquial", "nahw_parser"]
+
     cors_origins: list[str] = Field(
         default_factory=lambda: [
             "http://localhost:5173",

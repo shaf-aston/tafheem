@@ -16,11 +16,12 @@
  * has gone through a science; a `progress` prop could later decorate a box in
  * PbsChart without restructuring it.
  */
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import ArabicText from './ArabicText'
 import PbsChart from './PbsChart'
 import './pbs.css'
+import { useModal } from '../../lib/useModal'
 import { CHARTS } from '../../lib/pbsData'
 import { chartTree, nodeAt, viewConfig } from '../../lib/pbsTree'
 
@@ -31,18 +32,11 @@ const ZOOM_STEP = 0.2
 const CHART_MIN_REM = 56
 
 export default function MapPanel({ open, onClose }) {
-  const dialog = useRef(null)
+  const dialog = useModal(open)
   const [currentId, setCurrentId] = useState(null)
   const [path, setPath] = useState([]) // child indices from the chart root to the zoomed box
   const [hoverBranch, setHoverBranch] = useState(null)
   const [zoom, setZoom] = useState(1)
-
-  useEffect(() => {
-    const element = dialog.current
-    if (!element) return
-    if (open && !element.open) element.showModal()
-    if (!open && element.open) element.close()
-  }, [open])
 
   // Reopening should not resume where a previous visit left off: reset on the
   // way out, once the dialog has actually closed (Esc, backdrop, or the

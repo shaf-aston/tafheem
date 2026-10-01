@@ -20,7 +20,6 @@ import { memo, useDeferredValue, useEffect } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { getSurahGlosses, quranSurahQuery } from '../api'
-import { smartError } from '../lib/apiError'
 import { warm } from '../lib/warm'
 import { useTranslation } from '../lib/useTranslation'
 import { useRecitation } from '../lib/useRecitation'
@@ -33,7 +32,6 @@ import ArabicText from './ui/ArabicText'
 import GlossWord from './ui/GlossWord'
 import ErrorAlert from './ui/ErrorAlert'
 import PlayAyah from './ui/PlayAyah'
-import RetryButton from './ui/RetryButton'
 import Segmented from './ui/Segmented'
 import { Skeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
@@ -266,19 +264,13 @@ function SurahReader({ surah, accent, onOpenAyah, onChangeSurah, onClose }) {
 
       {translation.isError && (
         <div className="p-4" aria-live="assertive">
-          <ErrorAlert title="The translation could not be read">
-            {smartError(translation.error, 'The Arabic and its word-by-word English are unaffected.')}
-            <RetryButton onClick={() => translation.refetch()} />
-          </ErrorAlert>
+          <ErrorAlert title="The translation could not be read" error={translation.error} fallback="The Arabic and its word-by-word English are unaffected." onRetry={() => translation.refetch()} />
         </div>
       )}
 
       {isError && (
         <div className="p-4" aria-live="assertive">
-          <ErrorAlert title="Could not open that surah">
-            {smartError(error, 'The surah could not be loaded.')}
-            <RetryButton onClick={() => refetch()} />
-          </ErrorAlert>
+          <ErrorAlert title="Could not open that surah" error={error} fallback="The surah could not be loaded." onRetry={() => refetch()} />
         </div>
       )}
 

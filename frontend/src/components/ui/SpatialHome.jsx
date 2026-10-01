@@ -13,6 +13,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { useCommandLine } from '../../lib/useCommandLine'
+import { useModal } from '../../lib/useModal'
 import { isArabic } from '../../lib/arabicText'
 import { moodFrom } from '../../lib/mood'
 import ArabicText from './ArabicText'
@@ -23,7 +24,7 @@ import Mascot from './Mascot'
 const NAME = 'sh'
 
 export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }) {
-  const dialog = useRef(null)
+  const dialog = useModal(open)
   const input = useRef(null)
 
   // Which satellite the ring is turned to. Counted as steps rather than held as
@@ -68,13 +69,7 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
   }
 
   useEffect(() => {
-    const element = dialog.current
-    if (!element) return
-    if (open && !element.open) {
-      element.showModal()
-      input.current?.focus()
-    }
-    if (!open && element.open) element.close()
+    if (open) input.current?.focus()
   }, [open])
 
   const go = (id, value = null) => { onClose(); onGo(id, value) }

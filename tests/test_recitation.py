@@ -440,9 +440,8 @@ def test_one_dictation_language_is_nothing_to_choose_between(bilingual, monkeypa
 def test_startup_freezes_the_loaded_dictionaries_from_the_collector(monkeypatch):
     """decode_audio's per-recording gc.collect() must not sweep the app's own data.
 
-    Not the model, which needs no proving here: recitation_warm is turned off
-    so the test costs nothing beyond the real dictionary loaders main.py always
-    runs at startup.
+    Not the model, which needs no proving here: nothing is loaded in the
+    background, so the test costs only the loaders startup waits for.
     """
     import gc
 
@@ -451,7 +450,7 @@ def test_startup_freezes_the_loaded_dictionaries_from_the_collector(monkeypatch)
     from backend.config import get_settings
     from backend.main import app
 
-    monkeypatch.setattr(get_settings(), "recitation_warm", False)
+    monkeypatch.setattr(get_settings(), "startup_background", [])
     before = gc.get_freeze_count()
     with TestClient(app):
         pass
@@ -508,3 +507,18 @@ def test_the_ear_is_handed_the_recording_and_not_thirty_seconds_of_silence():
     assert window_of(0, 100) == 100
     # And the block that turns the saving off again is the old behaviour exactly.
     assert window_of(601, _WINDOW_FRAMES) == _WINDOW_FRAMES
+
+
+def test_an_unknown_startup_step_stops_startup(monkeypatch):
+    """A misspelt name in startup_background must fail loud, not leave a tab slow unexplained."""
+    import asyncio
+
+    import pytest
+
+    from backend.config import get_settings
+    from backend.services import startup
+
+    monkeypatch.setattr(get_settings(), "startup_wait", [])
+    monkeypatch.setattr(get_settings(), "startup_background", ["colloquail"])
+    with pytest.raises(ValueError, match="colloquail"):
+        asyncio.run(startup.run())

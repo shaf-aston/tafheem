@@ -88,7 +88,7 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
   `recite_ear`, `recite_sure`).
 - **Voice**: anything that says a word aloud, the ear's opposite. `lib/speak.js` tries
   them in `frontend/src/speak.json`'s order: `recorded` (a reciter from quran.com, for
-  Qur'an words mapped by `scripts/build_word_audio.py`), `server` (Piper via
+  Qur'an words mapped by `scripts/build_word_audio.py`), `server` (FastPitch via
   `/api/speak`, `services/speech.py`) and `browser` (the device). `ui/SpeakButton` is
   the one button; it names the voice that spoke.
 - **Recitation / reading**: Qur'an said aloud. A **reading** is one request about one

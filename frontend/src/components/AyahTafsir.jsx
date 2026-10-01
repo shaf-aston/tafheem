@@ -30,14 +30,12 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { getAyahEditions, getQuranEditions } from '../api'
-import { smartError } from '../lib/apiError'
 import { passageLabel } from '../lib/tafsir'
 import { useRemembered } from '../lib/useRemembered'
 
 import ArabicText from './ui/ArabicText'
 import Disclosure from './ui/Disclosure'
 import ErrorAlert from './ui/ErrorAlert'
-import RetryButton from './ui/RetryButton'
 import Segmented from './ui/Segmented'
 import ShowRest from './ui/ShowRest'
 import { Skeleton } from './ui/Skeleton'
@@ -126,10 +124,7 @@ export default function AyahTafsir({ surah, ayah, accent, defaultOpen = false })
         )}
 
         {isError && (
-          <ErrorAlert title="The commentary could not be read">
-            {smartError(error, 'The ayah and its grammar above are unaffected.')}
-            <RetryButton onClick={refetch} />
-          </ErrorAlert>
+          <ErrorAlert title="The commentary could not be read" error={error} fallback="The ayah and its grammar above are unaffected." onRetry={refetch} />
         )}
 
         {passage && (

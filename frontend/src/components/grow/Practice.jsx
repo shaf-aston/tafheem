@@ -16,7 +16,6 @@ import { byHand, checkStep } from '../../lib/growKinds'
 import { isQuranic } from '../../lib/arabicText'
 import { LOOK } from '../../lib/reciteColors'
 import { sayIn } from '../../lib/say'
-import { useSetting } from '../../lib/settings'
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'
 import ErrorAlert from '../ui/ErrorAlert'
@@ -144,7 +143,6 @@ function Action({ step, record, accent, onGo, onDone, onBloom }) {
 
 /** The words, the microphone, the marks and the days, for a step that is open. */
 function Recital({ step, record, accent, onRecited, onGo, onBloom }) {
-  const level = useSetting('reciting-level')
   const ayahText = useAyahText(step)
   const page = useMemo(() => pageOf(step, ayahText.text), [step, ayahText.text])
   // idle, checking (words back, sound being weighed), done
@@ -152,9 +150,9 @@ function Recital({ step, record, accent, onRecited, onGo, onBloom }) {
   const [result, setResult] = useState(null)
 
   async function heard({ text }, recording) {
-    setResult(judge(page.words, text, null, level))
+    setResult(judge(page.words, text, null))
     setPhase('checking')
-    const final = judge(page.words, text, await checkStep(step, recording, text, page), level)
+    const final = judge(page.words, text, await checkStep(step, recording, text, page))
     setResult(final)
     setPhase('done')
     // A run whose sound was not weighed is shown, and never counted.
