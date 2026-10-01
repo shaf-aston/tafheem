@@ -26,7 +26,6 @@ export default function Practice({ exercises }) {
             number={n + 1}
             current={n === at}
             label={`Exercise ${n + 1}: ${status(e.id) || 'not done'}`}
-            accent={ACCENT}
             onClick={() => setAt(n)}
           />
         ))}

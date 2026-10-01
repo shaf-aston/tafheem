@@ -208,7 +208,7 @@ export default function QuizPanel({ accent, onProgress }) {
   // The answered squares: a column on the far right until the round outgrows it.
   const railSide = enough && history.length > 0 && history.length < QUIZ.stripSideMax
   const strip = {
-    history, reviewing, liveAnswered: picked !== null, accent, say,
+    history, reviewing, liveAnswered: picked !== null, say,
     onReview: (i) => { setReviewing(i); setNoteOpen(false) },
   }
   const shown = past ? past.question : question
@@ -852,7 +852,7 @@ function MissedList({ history, reviewing, say, onReview }) {
  * It earns its place by being the only way back to a word you got wrong, the
  * round otherwise moves on and the correction is gone in a second or two.
  */
-function QuestionStrip({ history, reviewing, liveAnswered, accent, say, onReview, side = false }) {
+function QuestionStrip({ history, reviewing, liveAnswered, say, onReview, side = false }) {
   if (!history.length) return null
 
   return (
@@ -884,7 +884,6 @@ function QuestionStrip({ history, reviewing, liveAnswered, accent, say, onReview
           number={history.length + 1}
           current={reviewing === null}
           label={`Question ${history.length + 1}, the one you are on`}
-          accent={accent}
           onClick={() => onReview(null)}
         />
       )}

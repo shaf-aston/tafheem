@@ -359,7 +359,6 @@ export default function TamreenPractise({ exercises, tags = [], accent, onProgre
         number={n + 1}
         current={n === i}
         label={`Question ${n + 1}: ${status || 'not done'}`}
-        accent={accent}
         onClick={() => go(n)}
       />
     )

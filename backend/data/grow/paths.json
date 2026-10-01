@@ -23,19 +23,21 @@
         },
         {
           "id": "wudu-wash",
-          "title": "Washing",
-          "arabic": "الغسل",
+          "title": "Washing, then the dua",
+          "arabic": "الغسل والدعاء",
           "icon": "drop",
           "steps": [
             "wudu-face",
             "wudu-arms",
             "wudu-head",
             "wudu-ears",
-            "wudu-feet"
+            "wudu-feet",
+            "wudu-dua"
           ]
         },
         {
           "id": "wudu-care",
+          "alongside": true,
           "title": "Good manners",
           "arabic": "الآداب",
           "icon": "drop",
@@ -43,15 +45,6 @@
             "wudu-between",
             "wudu-thrice",
             "wudu-order"
-          ]
-        },
-        {
-          "id": "wudu-after",
-          "title": "After wudu",
-          "arabic": "الدعاء",
-          "icon": "book",
-          "steps": [
-            "wudu-dua"
           ]
         }
       ],
@@ -690,7 +683,7 @@
       "arabic": "الصلاة كاملة",
       "groups": [
         {
-          "id": "fs-first",
+          "id": "fs-rakah-1",
           "title": "First rak'ah",
           "arabic": "الركعة الأولى",
           "icon": "stand",
@@ -702,7 +695,7 @@
           ]
         },
         {
-          "id": "fs-second",
+          "id": "fs-rakah-2",
           "title": "Second rak'ah",
           "arabic": "الركعة الثانية",
           "icon": "stand",
@@ -713,20 +706,12 @@
           ]
         },
         {
-          "id": "fs-last-two",
+          "id": "fs-end",
           "title": "Last rak'ahs",
-          "arabic": "الركعتان الأخريان",
+          "arabic": "الركعتان الأخريان والقعدة",
           "icon": "bow",
           "steps": [
-            "fs-last-two"
-          ]
-        },
-        {
-          "id": "fs-last-sit",
-          "title": "Final sitting",
-          "arabic": "القعدة الأخيرة",
-          "icon": "sit",
-          "steps": [
+            "fs-last-two",
             "fs-last-sitting",
             "fs-dua",
             "fs-salam"
