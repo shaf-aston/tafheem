@@ -224,6 +224,11 @@ def _by_book(token: dict, tokens: list[dict], by_id: dict, head: dict | None,
     follower = by_id.get(token["id"] + 1)
     if is_one(lemma, "atf") and typed and typed == strip_diacritics(typed) and follower and is_verb(follower):
         return "حرف"
+    # مَتَى سافر: a listed time or place word before the verb is that verb's مفعول فيه even when
+    # this CAMeL/onnx build makes it the root with the verb hanging off it
+    if _listed(token, "zarf_zaman", "zarf_makan") and _case(token) in (None, "a") and any(
+            is_verb(k) and k["id"] > token["id"] for k in kids) and not (head and is_verb(head)):
+        return "مفعول فيه"
     if not head:
         return None
     if head["pos"] == "PRT":

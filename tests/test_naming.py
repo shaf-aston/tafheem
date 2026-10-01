@@ -284,3 +284,12 @@ def test_bare_thumma_before_a_verb_is_the_particle_not_the_adverb():
             token(3, "نام", "نام", "VRB", 2, "OBJ")]
     assert roles(["قرأ", "ثم", "نام"], toks)[1] == "حرف"
     assert roles(["قرأ", "ثَمَّ", "نام"], toks)[1] != "حرف"
+
+
+@pytest.mark.parametrize("zarf_head, verb_head, verb_rel", [(2, 0, "---"), (0, 1, "MOD")])
+def test_fronted_zarf_is_mafool_fihi_whichever_way_the_parser_hangs_it(zarf_head, verb_head, verb_rel):
+    # one CAMeL/onnx build makes the verb the root, another makes متى the root with the verb under it
+    toks = [token(1, "متى", "متى", "NOM", zarf_head, "MOD" if zarf_head else "---", pos_camel="adv_interrog"),
+            token(2, "سافر", "سافر", "VRB", verb_head, verb_rel, vox="a", asp="p"),
+            token(3, "الرجل", "رجل", "NOM", 2, "SBJ", stt="d", cas="n")]
+    assert roles(["مَتَى", "سَافَرَ", "الرَّجُلُ"], toks) == ["مفعول فيه", "فعل", "فاعل"]
