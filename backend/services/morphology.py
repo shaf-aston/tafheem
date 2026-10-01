@@ -235,9 +235,24 @@ def _build_features(a: dict) -> str:
     return ", ".join(parts)
 
 
+def _as_command(word: str, a: dict) -> dict:
+    """CAMeL's word list has no اُكْتُبْ or قُمْ, so it offers أَكْتُبُ or قَمَّ; the typed
+    shape of a command overrules it (the book forms the امر from the مضارع that way).
+    A two-letter one is a hollow verb that dropped its middle letter (قُمْ from قام), so
+    its root and lemma come from that past form, not from the قَمَّ it was misread as."""
+    a = {**a, "asp": "c", "mod": "na", "per": "2"}
+    bare = _strip_diacritics(word)
+    if len(bare) == 2 and (past := next((p for p in _camel_analyzer.analyze(f"{bare[0]}ا{bare[1]}")
+                                         if p.get("pos") == "verb"), None)):
+        a.update(root=past.get("root"), lex=past.get("lex"))
+    return a
+
+
 def _analysis_dict_from_camel(word: str, a: dict) -> dict[str, Any]:
     """Convert a raw CAMeL analysis dict into our standard morphology dict."""
     pos = (a.get("pos") or "").lower()
+    if pos == "verb" and command_shape(word):
+        a = _as_command(word, a)
     word_type = _pos_type(pos)
     # A harf has no root in nahw; CAMeL still files one for لم and its kind.
     root_ar = "" if word_type == "harf" else _bw_root_to_arabic(a.get("root") or "")
@@ -246,11 +261,8 @@ def _analysis_dict_from_camel(word: str, a: dict) -> dict[str, Any]:
     lemma = _strip_diacritics(lex)
 
     cas = a.get("cas", "na") or "na"
-    # CAMeL's word list has no اُكْتُبْ or قُمْ, so it offers أَكْتُبُ or قَمَّ; the typed
-    # shape of a command overrules it (the book forms the امر from the مضارع that way)
-    asp = "c" if pos == "verb" and command_shape(word) else a.get("asp")
     # A past or imperative verb is mabni: its last vowel is not a case.
-    mabni = pos == "verb" and asp in ("p", "c")
+    mabni = pos == "verb" and a.get("asp") in ("p", "c")
     case_str = _CAS_MAP.get(cas) or (None if mabni else _harakat_case(word))
 
     return {
@@ -265,8 +277,8 @@ def _analysis_dict_from_camel(word: str, a: dict) -> dict[str, Any]:
         "gender": a.get("gen") or "na",
         "number": a.get("num") or "na",
         "person": a.get("per") or "na",
-        "aspect": asp or "na",
-        "mood": "na" if asp == "c" else a.get("mod") or "na",
+        "aspect": a.get("asp") or "na",
+        "mood": a.get("mod") or "na",
         "voice": a.get("vox") or "na",
         "state": a.get("stt") or "na",
         "pattern": a.get("pattern") or "",
