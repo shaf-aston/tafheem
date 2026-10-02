@@ -510,6 +510,17 @@ describe('a reciting session', () => {
     await h.wait(0)
     await h.midPhrase()
     expect(h.readings[4].options.before).toBe('')
+    // A pause that places nowhere clears a carry too, or an old phrase rides along.
+    await h.pause()
+    h.readings[5].answer({ text: 'ولا هم يحزنون', place: unsure })
+    await h.wait(0)
+    await h.midPhrase()
+    expect(h.readings[6].options.before).toBe('ولا هم يحزنون')
+    await h.pause()
+    h.readings[7].answer({ text: 'موسيقى', place: null })
+    await h.wait(0)
+    await h.midPhrase()
+    expect(h.readings[8].options.before).toBe('')
   })
 
   it("asks no place for a page that is not the Qur'an, and keeps a reading too short to place by its words", async () => {

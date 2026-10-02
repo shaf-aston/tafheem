@@ -190,8 +190,7 @@ async def listen(
         description="The open page's first and last ayah, 2:1-2:5: also say where in the Qur'an this was",
     ),
     before: str = Query(
-        "", max_length=600,
-        description="The words of the last reading whose place was not sure, so this one is placed with them in front",
+        "", description="The words of the last reading whose place was not sure, so this one is placed with them in front",
     ),
 ) -> Heard:
     """What was said, and optionally which ayahs it was.
@@ -201,6 +200,11 @@ async def listen(
     read as the feature being broken when it is working exactly as it should.
     """
     with _filing(request, response, "reading") as filed:
+        # The same cap as /check's heard text: both are one reading's words.
+        if len(before) > get_settings().recitation_check_heard_max_chars:
+            raise filed.fail(
+                422, f"before must be at most {get_settings().recitation_check_heard_max_chars} characters.", "validate",
+            )
         body = await _read_recording(audio, filed)
         is_recitation = recite or match
         journal.note("reading.received", bytes=len(body), recite=is_recitation)

@@ -415,8 +415,9 @@ export function createRecitingSession({ onChange, deps = {} }) {
           const { place } = heard
           // Only the reading at the pause: a recording is read again as it
           // grows, and carrying a mid-phrase reading put its words in front
-          // of the next reading of the same sound, twice over.
-          if (last && place) carried = place.sure || place.home ? '' : heard.text
+          // of the next reading of the same sound, twice over. A pause with no
+          // place at all clears it too, or an old phrase would ride along.
+          if (last) carried = place && !place.sure && !place.home ? heard.text : ''
           const ofPage = place ? place.home : isOfPage(words, page.pageWords)
           if (ofPage) {
             latest = words
