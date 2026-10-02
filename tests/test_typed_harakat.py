@@ -5,7 +5,7 @@ the parser is fed letters only and the same links come back for both.
 """
 import pytest
 
-from backend.services.syntax import tree, vowels
+from backend.services.syntax import naming, tree, vowels
 from tests.test_naming import roles, token
 from tests.test_syntax_tree import built
 
@@ -124,3 +124,18 @@ def test_a_hollow_form_iv_command_needs_the_root_to_say_so():
     assert vowels.command_shape("أَقِمْ", hollow=True)
     assert not vowels.command_shape("أَقِمْ")                      # أَمِنْ, أَحْمَدْ: no hollow root, no command
     assert not vowels.command_shape("أَقِمْ", after_jazm=True, hollow=True)  # لم أَقِمْ is a present verb
+
+
+def test_a_kasra_before_hamzat_al_wasl_is_the_paused_sukun():
+    assert vowels.paused("أَقِمِ", "الصَّلَاةَ") == "أَقِمْ"
+    assert vowels.paused("اُكْتُبِ", "ٱلدَّرْسَ") == "اُكْتُبْ"  # the Qur'an's own alef of wasl
+    assert vowels.paused("أَقِمِ") == "أَقِمِ"                  # said alone, the kasra stays
+    assert vowels.paused("الْبَيْتِ", "إِلَى") == "الْبَيْتِ"     # hamzat al-qat' moves nothing
+
+
+def test_a_command_moved_to_kasra_is_still_built_on_the_sukun():
+    toks = [token(1, "اكتب", "كتب", "VRB", 0, "---", vox="a", asp="i"),
+            token(2, "الدرس", "درس", "NOM", 1, "OBJ", stt="d", cas="a")]
+    found = naming.roles(["اُكْتُبِ", "الدَّرْسَ"], toks)
+    assert [w["role"] for w in found] == ["فعل", "مفعول به"]
+    assert found[0]["case"] == "mabni" and found[0]["aspect"] == "c"

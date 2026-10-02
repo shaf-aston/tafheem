@@ -15,6 +15,7 @@ export function buildIraabExportText(data) {
     if (w.case) lines.push(`  Case: ${caseLabel(w.case)}${w.sign ? ` (${signLabel(w.sign)})` : ''}`)
     if (w.root) lines.push(`  Root: ${w.root}`)
     if (w.reason) lines.push(`  Reason: ${w.reason}`)
+    if (w.book) lines.push(`  Book: ${w.book}`)
     lines.push('')
   }
   return lines.join('\n')

@@ -69,6 +69,17 @@ def test_typed_vowels_overrule_the_statistics():
 
 
 @needs_camel
+@pytest.mark.parametrize("sentence, word, kind", [
+    ("أَقِمِ الصَّلَاةَ", "أَقِمِ", "fi'l"), ("بِعِ الْكِتَابَ", "بِعِ", "fi'l"),  # the sukun moved to a kasra
+    ("قَدِ اسْتَقَامَ الْأَمْرُ", "قَدِ", "harf"),  # the same kasra on a particle leaves it a particle
+    ("بِسْمِ اللَّهِ", "بِسْمِ", "ism")])           # and on a noun it is the kasra of jarr
+def test_a_kasra_before_hamzat_al_wasl_settles_nothing(sentence, word, kind):
+    tag = next(t for t in morphology.analyze_sentence(sentence) if t["word"] == word)
+    assert tag["type"] == kind
+    assert (tag.get("aspect") == "c") is (kind == "fi'l")
+
+
+@needs_camel
 def test_glued_punctuation_no_longer_hides_the_word():
     tags = morphology.analyze_sentence("مَرْحَبًا، كَيْفَ حَالُكَ؟")
     assert [t["word"] for t in tags] == ["مَرْحَبًا", "كَيْفَ", "حَالُكَ"]

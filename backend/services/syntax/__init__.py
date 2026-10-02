@@ -95,6 +95,7 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
         elif found["role"]:
             renamed = found["role"] != entry.get("role")
             entry["role"] = found["role"]
+            entry["book"] = found.get("book")  # the branches of the book that named it
             # the colour must follow the new name, never the one it replaced
             entry["role_key"] = role_key(found["role"])
             moved = found["case"] and found["case"] != entry.get("case")

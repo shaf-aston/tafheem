@@ -20,7 +20,7 @@ from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
 from backend.services.nahw_book import is_one
-from backend.services.syntax.vowels import CAMEL_CASE, CASE_NAME, TANWEEN, command_shape, typed_case
+from backend.services.syntax.vowels import CAMEL_CASE, CASE_NAME, TANWEEN, command_shape, moved_for_wasl, paused, typed_case
 
 logger = logging.getLogger(__name__)
 
@@ -224,7 +224,7 @@ def _build_features(a: dict) -> str:
     return ", ".join(parts)
 
 
-def _as_command(word: str, a: dict, before: str) -> dict:
+def _as_command(word: str, a: dict, before: str, after: str) -> dict:
     """CAMeL's word list has no اُكْتُبْ, قُمْ or أَكْرِمْ, so it offers أَكْتُبُ, قَمَّ or the
     name بِع; the typed shape of a command overrules it (the book forms the امر from the
     مضارع that way). A two-letter one is a hollow verb that dropped its middle letter
@@ -232,6 +232,7 @@ def _as_command(word: str, a: dict, before: str) -> dict:
     verb is what makes it a command even where CAMeL saw only a name. A longer shape
     overrules a verb reading only: أَحْمَدْ paused on is a name, not a command."""
     bare = strip_diacritics(word)
+    word = paused(word, after)
     past = None
     if len(bare) == 2:
         past = next((p for p in _camel_analyzer.analyze(f"{bare[0]}ا{bare[1]}") if p.get("pos") == "verb"), None)
@@ -251,10 +252,11 @@ def _as_command(word: str, a: dict, before: str) -> dict:
     return a
 
 
-def _analysis_dict_from_camel(word: str, a: dict, before: str = "") -> dict[str, Any]:
+def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str = "") -> dict[str, Any]:
     """Convert a raw CAMeL analysis dict into our standard morphology dict; `before` is
-    the bare word typed before it, which can make a command shape a present verb."""
-    a = _as_command(word, a, before)
+    the bare word typed before it, which can make a command shape a present verb, and
+    `after` the word typed after it, whose hamzat al-wasl can turn a sukun to kasra."""
+    a = _as_command(word, a, before, after)
     pos = (a.get("pos") or "").lower()
     word_type = _pos_type(pos)
     # A harf has no root in nahw; CAMeL still files one for لم and its kind.
@@ -482,7 +484,10 @@ def _analyze_sentence_camel_mle(tokens: list[str]) -> list[dict[str, Any]] | Non
             out.append(_analyze_bare(token))
             continue
         before = strip_diacritics(tokens[i - 1]) if i else ""
-        out.append(_analysis_dict_from_camel(token, _heeding_vowels(token, ranked), before))
+        after = tokens[i + 1] if i + 1 < len(tokens) else ""
+        # a kasra that may be a moved sukun is no evidence for the reading
+        evidence = token[:-1] if moved_for_wasl(token, after) else token
+        out.append(_analysis_dict_from_camel(token, _heeding_vowels(evidence, ranked), before, after))
     return out
 
 

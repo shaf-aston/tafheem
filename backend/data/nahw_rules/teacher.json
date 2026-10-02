@@ -28,6 +28,11 @@
   "command_on": "السكون",
   "tense": {"p": "فعل ماضٍ", "c": "فعل أمر", "i": "فعل مضارع"}
  },
+ "book_path": {
+  "_comment": "The proof line under a word the book's tree named (syntax/naming.py): the branches walked below كلمة, a branch repeated by its leaf said once, then the leaf's section and page in Tasheel al-Nahw.",
+  "joint": " ← ",
+  "said": "{path} (تسهيل النحو {section}، ص {page})"
+ },
  "past_ending": {
   "_comment": "What a past verb is built on, by its last letters (longest first): the damma before واو الجماعة, the sukun before a raf' pronoun; otherwise the fatha. A typed sukun on a last ت makes it تاء التأنيث (كَتَبَتْ), built on the fatha.",
   "الضم": ["وا"],

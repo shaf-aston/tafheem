@@ -92,7 +92,7 @@ async def analyze_sentence(request: AnalyzeRequest) -> AnalyzeResponse:
 
     return AnalyzeResponse(
         sentence=sentence,
-        words=[WordAnalysis.from_raw(w) for w in word_dicts],
+        words=[WordAnalysis.from_raw(w, from_ai=bool(ai_result)) for w in word_dicts],
         summary=summary,
         source=Source(**source_note),
         # the picture is the parser's own reading, so it is only drawn when the
