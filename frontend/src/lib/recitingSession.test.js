@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { batchOf } from './journal'
 import {
-  allowanceLeft, byPlace, createRecitingSession, cutReason, problemOf, queueCheck, readyToSend, recentAsks, spokeSince, surer,
+  allowanceLeft, byPlace, createRecitingSession, cutReason, problemOf, queueCheck, readyToSend, recentAsks, settledScores, spokeSince, surer,
 } from './recitingSession'
 
 const ayahs = [{ key: '1:6', from: 17, count: 3 }, { key: '1:7', from: 20, count: 9 }]
@@ -17,6 +17,12 @@ describe('sureness by page place', () => {
     const early = byPlace({ '1:7': [1, 1, 0.95, null, null, null, null, null, null] }, ayahs)
     const later = byPlace({ '1:7': [1, 1, 0.02, 1, null, null, null, null, null] }, ayahs)
     expect({ ...early, ...later }[22]).toBe(0.02)
+  })
+
+  it('lets a low score accuse only words the recording heard, a high one anywhere', () => {
+    // 21 before the recording began; 22 heard; 23 at its end and 24 past it.
+    expect(settledScores({ 21: 0.004, 22: 0.02, 23: 0.03, 24: 0.001, 25: 1 }, 22, 23)).toEqual({ 22: 0.02, 25: 1 })
+    expect(settledScores({ 22: 0.94, 23: 0.95 }, -1, 0)).toEqual({ 23: 0.95 })
   })
 
   it('keeps the surer score across recordings, one clipped at its edge does not unsay a word', () => {
