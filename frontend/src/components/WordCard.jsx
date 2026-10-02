@@ -14,6 +14,7 @@ import { caseLabel, isUnnamed, posLabel, signLabel, typeLabel } from '../lib/gra
 import { roleVar } from '../lib/roleColors'
 import { scrollToEl } from '../lib/scrollToEl'
 import ArabicText from './ui/ArabicText'
+import BookPath from './ui/BookPath'
 import RootActions from './ui/RootActions'
 
 // A word of these types has no root by nature; any other rootless word is one
@@ -129,10 +130,7 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
           : (
             <Panel label="Proof (الدليل)" accent>
               {word.reason}
-              {/* the book's divisions that named the word, so the proof has a source */}
-              {word.book && (
-                <ArabicText as="p" size="tiny" className="mt-1.5 text-[var(--text-dim)]">{word.book}</ArabicText>
-              )}
+              <BookPath path={word.book} />
             </Panel>
           )
       )}
