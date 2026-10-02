@@ -353,9 +353,9 @@ def kept(monkeypatch, tmp_path):
     from backend.services import root_english
 
     monkeypatch.setattr(root_english, "STORE_FILE", tmp_path / "english_entries.json")
-    monkeypatch.setattr(root_english, "_entries", None)
     monkeypatch.setattr(root_english, "LINES_FILE", tmp_path / "english_lines.json")
-    monkeypatch.setattr(root_english, "_line_entries", None)
+    monkeypatch.setattr(root_english, "LINES_KEPT_FILE", tmp_path / "english_lines.kept.json")
+    monkeypatch.setattr(root_english, "_cache", {})
     return root_english
 
 
@@ -503,19 +503,37 @@ def test_a_store_written_by_something_else_is_ignored_not_trusted(kept):
     assert kept.get("كتب") is None
 
 
-def test_a_reading_never_drops_what_another_writer_kept(kept):
-    """What wiped it once: another writer rewrote the file from its own copy.
-
-    A reading made from a stale copy carries over whatever the file has gained
-    since, so the store only ever grows.
-    """
+def test_a_write_never_drops_what_another_writer_kept(kept):
+    """What wiped it once: a writer rewrote the file from its own stale copy."""
     kept.put("كتب", "gathering")
-    kept.put("علم", "knowing")
-    kept._entries = {"كتب": "gathering"}      # a stale copy, as an outside writer would have
+    kept.STORE_FILE.write_text(  # another process adds a root behind this one's back
+        json.dumps({"كتب": "gathering", "علم": "knowing"}, ensure_ascii=False), encoding="utf-8"
+    )
 
     kept.put("جعل", "making")
 
     assert set(json.loads(kept.STORE_FILE.read_text(encoding="utf-8"))) == {"كتب", "علم", "جعل"}
+
+
+def test_lines_kept_by_the_other_backend_copy_are_seen_without_a_restart(kept):
+    """Two copies serve the site in turn; one asking the AI again cost 5 s."""
+    assert kept.get_lines("كتب") is None
+    kept.LINES_KEPT_FILE.write_text(json.dumps({"كتب": ["one", "two"]}), encoding="utf-8")
+    assert kept.get_lines("كتب") == ["one", "two"]
+
+
+def test_lines_made_on_the_server_go_where_a_deploy_cannot_erase_them(kept):
+    kept.LINES_FILE.write_text(json.dumps({"علم": ["shipped"]}), encoding="utf-8")
+    kept.put_lines("كتب", ["made", "here"])
+    assert json.loads(kept.LINES_FILE.read_text(encoding="utf-8")) == {"علم": ["shipped"]}
+    assert kept.get_lines("كتب") == ["made", "here"]
+    assert kept.get_lines("علم") == ["shipped"]
+
+
+def test_the_shipped_lines_win_over_lines_made_on_the_server(kept):
+    kept.LINES_KEPT_FILE.write_text(json.dumps({"كتب": ["older"]}), encoding="utf-8")
+    kept.LINES_FILE.write_text(json.dumps({"كتب": ["whole-book run"]}), encoding="utf-8")
+    assert kept.get_lines("كتب") == ["whole-book run"]
 
 
 def test_two_roots_that_fold_together_each_answer_for_themselves(tmp_path):
