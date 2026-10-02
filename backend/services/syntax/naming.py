@@ -17,7 +17,7 @@ from __future__ import annotations
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_words, is_mabni, is_one, is_plain_noun, role_table
 from backend.services.syntax import facts, walker
-from backend.services.syntax.facts import PRESENT_PREFIX, case_of, children_of, is_verb, noun_before
+from backend.services.syntax.facts import PRESENT_PREFIX, case_of, children_of, family_of, is_verb, negated_before, noun_before
 from backend.services.syntax.vowels import (
     CASE_NAME, SUKUN, command_shape, letters, past_passive_shape, typed_case,
     typed_passive)
@@ -80,35 +80,6 @@ def takes_tamyeez(token: dict, tokens: list[dict]) -> bool:
                for t in tokens if t["id"] < token["id"])
 
 
-def _has_particle(verb: dict, tokens: list[dict], family: str, part: str = "words") -> bool:
-    return any(k["pos"] == "PRT" and is_one(k["lemma"], family, part) for k in children_of(verb, tokens))
-
-
-def _completed_by_present_verb(verb: dict, tokens: list[dict]) -> bool:
-    """كاد يموت, أوشك أن ينتهي: a present verb, bare or behind أن, finishes the clause."""
-    for kid in children_of(verb, tokens):
-        if kid["pos"] == "PRT" and is_one(kid["lemma"], "nasb_mudari"):
-            if any(k["pos"].startswith("VRB") and k.get("asp") == "i" for k in children_of(kid, tokens)):
-                return True
-        elif kid["pos"].startswith("VRB") and kid.get("asp") == "i":
-            return True
-    return False
-
-
-def family_of(word: dict, tokens: list[dict]) -> str | None:
-    """Which family a governing word belongs to: inna, kana, kaada or zanna."""
-    lemma = word["lemma"]
-    if is_one(lemma, "inna") or is_one(lemma, "la_jins"):
-        return "inna"
-    if is_one(lemma, "kana") or is_one(lemma, "kana", "like_laysa") \
-            or (is_one(lemma, "kana", "needs_negation") and _has_particle(word, tokens, "negation")) \
-            or (is_one(lemma, "kana", "needs_ma") and _has_particle(word, tokens, "kana", "like_laysa")):
-        return "kana"
-    if is_one(lemma, "kaada") and _completed_by_present_verb(word, tokens):
-        return "kaada"
-    return "zanna" if is_one(lemma, "zanna") else None
-
-
 def completes_kaada(token: dict, tokens: list[dict]) -> bool:
     """The present verb that finishes a كاد-type verb; its clause is that verb's khabar."""
     head = next((t for t in tokens if t["id"] == token["head"]), None)
@@ -134,11 +105,6 @@ def _listed(token: dict, *families: str) -> bool:
     and يوم, while the parser lemmatises the first to صباح."""
     return any(is_one(spelling, family) for family in families
                for spelling in (token["lemma"], strip_diacritics(token["form"])))
-
-
-def _negated_before(word: dict, tokens: list[dict]) -> bool:
-    return any(t["pos"] == "PRT" and t["id"] < word["id"] and is_one(t["lemma"], "negation")
-               for t in tokens)
 
 
 def _by_book(token: dict, tokens: list[dict], by_id: dict, head: dict | None,
@@ -171,9 +137,9 @@ def _by_book(token: dict, tokens: list[dict], by_id: dict, head: dict | None,
     if head["pos"] == "PRT":
         if is_one(head["lemma"], "nida") and "interrog" not in head.get("pos_camel", ""):
             return "منادى"
-        if is_one(head["lemma"], "istithna") and not _negated_before(head, tokens):
+        if is_one(head["lemma"], "istithna") and not negated_before(head, tokens):
             return "مستثنى"
-    if is_one(lemma, "istithna", "nouns") and is_verb(head) and not _negated_before(token, tokens):
+    if is_one(lemma, "istithna", "nouns") and is_verb(head) and not negated_before(token, tokens):
         return "مستثنى"
     case = typed_case(token.get("typed"), token.get("stuck_on", 0))
     if token["rel"] == "MOD" and is_verb(head) and case in (None, "a"):
@@ -268,9 +234,6 @@ def name(token: dict, tokens: list[dict]) -> str | None:
         # the word the sentence hangs on, with its subject under it, is the khabar
         if any(c["rel"] in ("SBJ", "TPC") for c in children):
             return "خبر"
-        # يا عبدَ اللهِ: a kasra straight after a noun, with no particle to cause it, is idafa
-        if head and is_plain_noun(head) and head["id"] == token["id"] - 1 and case_of(token) == "i":
-            return "مضاف إليه"
         # هذا بيتٌ: an indefinite noun after a pointer is what is said of it, never its na't
         if pointer and pointer["id"] < token["id"] and token.get("stt") == "i" and verbless:
             return "خبر"
@@ -280,9 +243,7 @@ def name(token: dict, tokens: list[dict]) -> str | None:
             loose = [t for t in tokens if t["rel"] == "---" and t["pos"] == "NOM"]
             return "مبتدأ" if not loose or token is loose[0] else "خبر"
     if rel == "OBJ":
-        return "مجرور" if head and head["pos"] == "PRT" else "مفعول به"
-    if rel == "IDF":
-        return "مضاف إليه"
+        return "مفعول به"
     if rel == "TMZ":
         return "تمييز"
     if rel == "MOD" and head:

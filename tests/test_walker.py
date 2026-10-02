@@ -57,4 +57,20 @@ def test_walk_falls_to_else():
 
 def test_walk_no_match_is_none():
     assert walker.walk({"kind": "ism"}, root(leaf("h", "harf"))) is None
-    assert walker.walk({"kind": "ism", "follows": "none"}) is None  # the rest of اسم is not filled in yet
+    assert walker.walk({"kind": "ism", "follows": "none", "governor": "verb"}) is None  # a word with another governor is not filled in yet
+
+
+def test_a_child_may_take_several_answers():
+    group = {"branch": "g", "book": "x", "is": ["harf", "fil"], "split": "kind",
+             "children": [leaf("h", "harf"), leaf("f", "fil", "فعل")]}
+    tree = root(group, leaf("rest", "else", "فعل"))
+    walker.validate(tree)
+    assert walker.walk({"kind": "fil"}, tree) == ("فعل", ["root", "g", "f"])
+    assert walker.walk({"kind": "ism"}, tree) == ("فعل", ["root", "rest"])
+
+
+def test_rejects_listed_answer_outside_axis_or_repeated_across_children():
+    with pytest.raises(ValueError, match="not one of"):
+        walker.validate(root({**leaf("a", "harf"), "is": ["harf", "dual"]}))
+    with pytest.raises(ValueError, match="same answer"):
+        walker.validate(root({**leaf("a", "harf"), "is": ["harf", "fil"]}, leaf("b", "fil", "فعل")))

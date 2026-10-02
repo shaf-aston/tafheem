@@ -12,7 +12,7 @@ from __future__ import annotations
 from typing import Callable
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import is_one
+from backend.services.nahw_book import is_one, is_plain_noun
 from backend.services.syntax.vowels import (
     CAMEL_CASE, command_shape, has_tanween, past_passive_shape, typed_case, typed_passive)
 
@@ -96,12 +96,82 @@ def _follows(token: dict, tokens: list[dict]) -> str:
     return "naat" if token.get("ud") == "ADJ" else "none"
 
 
+def _has_particle(verb: dict, tokens: list[dict], family: str, part: str = "words") -> bool:
+    return any(k["pos"] == "PRT" and is_one(k["lemma"], family, part) for k in children_of(verb, tokens))
+
+
+def _completed_by_present_verb(verb: dict, tokens: list[dict]) -> bool:
+    """كاد يموت, أوشك أن ينتهي: a present verb, bare or behind أن, finishes the clause."""
+    for kid in children_of(verb, tokens):
+        if kid["pos"] == "PRT" and is_one(kid["lemma"], "nasb_mudari"):
+            if any(k["pos"].startswith("VRB") and k.get("asp") == "i" for k in children_of(kid, tokens)):
+                return True
+        elif kid["pos"].startswith("VRB") and kid.get("asp") == "i":
+            return True
+    return False
+
+
+def family_of(word: dict, tokens: list[dict]) -> str | None:
+    """Which family a governing word belongs to: inna, kana, kaada or zanna."""
+    lemma = word["lemma"]
+    if is_one(lemma, "inna") or is_one(lemma, "la_jins"):
+        return "inna"
+    if is_one(lemma, "kana") or is_one(lemma, "kana", "like_laysa") \
+            or (is_one(lemma, "kana", "needs_negation") and _has_particle(word, tokens, "negation")) \
+            or (is_one(lemma, "kana", "needs_ma") and _has_particle(word, tokens, "kana", "like_laysa")):
+        return "kana"
+    if is_one(lemma, "kaada") and _completed_by_present_verb(word, tokens):
+        return "kaada"
+    return "zanna" if is_one(lemma, "zanna") else None
+
+
+def negated_before(word: dict, tokens: list[dict]) -> bool:
+    return any(t["pos"] == "PRT" and t["id"] < word["id"] and is_one(t["lemma"], "negation")
+               for t in tokens)
+
+
+def _governor(token: dict, tokens: list[dict]) -> str:
+    """What gives this noun its case (Tasheel 3.3 p79), decided in this order:
+    a calling or excepting particle it hangs on (the excepting one only when no
+    negation came before it), any other particle it is the object of (harf jarr),
+    a noun it is the idafa of (a verb takes an idafa-linked word as its argument
+    unless the reader typed kasra), the inna/kana/kaada/zanna family or plain verb it
+    is an argument of, else none. A bare noun with kasra straight after a plain noun
+    and no particle between is idafa too (يا عبدَ اللهِ)."""
+    head = next((t for t in tokens if t["id"] == token["head"]), None)
+    rel = token["rel"]
+    typed = typed_case(token.get("typed"), token.get("stuck_on", 0))
+    if head and head["pos"] == "PRT":
+        if is_one(head["lemma"], "nida") and "interrog" not in head.get("pos_camel", ""):
+            return "nida"
+        if is_one(head["lemma"], "istithna") and not negated_before(head, tokens):
+            return "istithna"
+    if head and is_verb(head) and is_one(token["lemma"], "istithna", "nouns")             and not negated_before(token, tokens):
+        return "istithna"
+    if rel == "OBJ" and head and head["pos"] == "PRT":
+        return "harf_jarr"
+    under_verb = bool(head) and is_verb(head)
+    if rel == "IDF" and not (under_verb and typed != "i"):
+        return "idafa"
+    if rel == "---" and head and is_plain_noun(head) and head["id"] == token["id"] - 1             and case_of(token) == "i" and not any(c["rel"] in ("SBJ", "TPC") for c in children_of(token, tokens))             and not ("dem" in token.get("pos_camel", "") and not any(is_verb(t) for t in tokens)):
+        return "idafa"
+    if head and (rel in ("SBJ", "TPC", "OBJ", "PRD") or (rel == "IDF" and typed != "i")):
+        family = family_of(head, tokens)
+        if family:
+            return family
+        if under_verb:
+            return "verb"
+    return "none"
+
+
 # Each axis is one question the book asks of a word, with a closed list of answers
 # and a function that gives exactly one. Siblings in the tree split on one axis
 # and each takes one answer, so they cannot overlap.
 AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, list[dict]], str]]] = {
     "kind": (("harf", "fil", "ism"), _kind),
     "follows": (("naat", "atf", "tawkeed", "badal", "none"), _follows),
+    "governor": (("harf_jarr", "idafa", "verb", "inna", "kana", "kaada", "zanna", "nida", "istithna", "none"),
+                 _governor),
 }
 
 
