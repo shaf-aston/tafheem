@@ -5,6 +5,7 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 import pytest
 
 from backend.services import morphology
+from backend.services.syntax.vowels import vowel_agreement
 
 VERB_SENTENCE = "ذهب الولد إلى المدرسة"  # "the boy went to school"
 NOUN_SENTENCE = "الذهب غالٍ"  # "gold is expensive"
@@ -87,10 +88,10 @@ def test_glued_punctuation_no_longer_hides_the_word():
 
 
 def test_vowel_agreement():
-    agree = morphology._vowel_agreement
+    agree = vowel_agreement
     assert agree("فَتَحَ", "فَتْحَ") is None          # fatha typed where the reading has sukun
-    assert agree("فَتَحَ", "فَتَحَ") == 3
-    assert agree("زَيْدٌ", "زَيْد") == 2               # a bare letter in the reading agrees
-    assert agree("كتب", "كَتَبَ") == 0                 # nothing typed, nothing to weigh
+    assert agree("فَتَحَ", "فَتَحَ") == (3, 0)
+    assert agree("زَيْدٌ", "زَيْد") == (2, 0)               # a bare letter in the reading agrees
+    assert agree("كتب", "كَتَبَ") == (0, 0)                 # nothing typed, nothing to weigh
     assert agree("زَيْدٌ", "زَيْدٍ") is None          # the same letter, a different ending
-    assert agree("زَيْدٌ", "زَيْدًا") == 0             # the tanween alef adds a letter: no verdict
+    assert agree("زَيْدٌ", "زَيْدًا") == (0, 0)             # the tanween alef adds a letter: no verdict

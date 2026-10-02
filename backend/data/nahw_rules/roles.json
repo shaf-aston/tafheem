@@ -1,12 +1,12 @@
 {
- "_comment": "Every role the Nahw page can name, and how each is drawn: `key` is the card's colour key (the contract's, schemas.ROLE_KEYS; null for a role said only inside a unit the diagram draws) and `tone` the bracket diagram's. One table, so a role added once gets both. Read by nahw_book.role_table; a role missing here is left uncoloured. Every role here has a reason in teacher.json (tests/test_rule_engine.py). `clause_of` on a role: the verb clause hung on a word with that role is this `job`, standing in this case (u / a / i). `named`: the roles the code itself tests for, by the id it uses (nahw_book.named_roles). `units`, in order: a word whose child wears the `child` role heads a unit labelled `label` (a tarkeeb term), only when the head is a particle if `on_particle`, and is itself called `head_as` inside it.",
+ "_comment": "Every role the Nahw page can name, and how each is drawn: `key` is the card's colour key (the contract's, schemas.ROLE_KEYS; null for a role said only inside a unit the diagram draws) and `tone` the bracket diagram's. One table, so a role added once gets both. Read by nahw_book.role_table; a role missing here is left uncoloured. Every role here has a reason in teacher.json (tests/test_rule_engine.py). `clause_of` on a role: the verb clause hung on a word with that role (or beside it, as the khabar under its governor) is this `job`, standing in this case (u / a / i). `named`: the roles the code itself tests for, by the id it uses (nahw_book.named_roles). `units`, in order: a word whose child wears the `child` role heads a unit labelled `label` (a tarkeeb term), only when the head is a particle if `on_particle`, and is itself called `head_as` inside it.",
  "roles": {
   "فعل": {"key": "fil", "tone": "fil"},
   "فاعل": {"key": "fail", "tone": "fail"},
   "نائب فاعل": {"key": "fail", "tone": "fail"},
   "مبتدأ": {"key": "mubtada", "tone": "fail", "clause_of": {"job": "خبر", "case": "u"}},
   "اسم كان": {"key": "mubtada", "tone": "fail", "clause_of": {"job": "خبر كان", "case": "a"}},
-  "اسم إن": {"key": "mubtada", "tone": "fail"},
+  "اسم إن": {"key": "mubtada", "tone": "fail", "clause_of": {"job": "خبر إن", "case": "u"}},
   "اسم كاد": {"key": "mubtada", "tone": "fail"},
   "خبر": {"key": "khabar", "tone": "mafool"},
   "خبر كان": {"key": "khabar", "tone": "mafool"},
@@ -14,6 +14,7 @@
   "خبر كاد": {"key": "khabar", "tone": "mafool"},
   "مفعول به": {"key": "mafool", "tone": "mafool"},
   "مفعول فيه": {"key": "mansub", "tone": "mansub"},
+  "مفعول معه": {"key": "mansub", "tone": "mansub"},
   "منادى": {"key": "mansub", "tone": "mansub"},
   "مستثنى": {"key": "mansub", "tone": "mansub"},
   "معطوف": {"key": "tabi", "tone": "tabi"},

@@ -3,7 +3,7 @@
   "sources": {
     "books": "data/tarkeeb/examples",
     "checked": "data/nahw_rules/checked_sentences.json",
-    "fresh": "data/nahw_rules/fresh_sentences.json"
+    "fresh": "data/nahw_rules/fresh_sentences.json", "exam": "data/nahw_rules/exam_sentences.json"
   },
   "families": {
     "fil": [

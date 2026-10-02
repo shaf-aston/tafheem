@@ -96,7 +96,7 @@ def test_rejects_empty_children_a_non_true_else_and_an_else_with_nothing_left():
 # Where the real tree has no child for an answer its axis can give, a word stops unnamed
 # (a gap, never a guess). Each stop is listed with the book reason; a new one is a new
 # hole and must be argued for here or filled in naming_tree.json.
-VERB_ONLY = {"object", "second_object", "absolute", "place_time"}
+VERB_ONLY = {"object", "second_object", "absolute", "place_time", "accompaniment"}
 ALLOWED_STOPS = {
     ("إن وأخواتها", "slot"): (VERB_ONLY | {"specification", "none"},
                               "إن takes an اسم and a خبر; the particle has no object, and the other places are a verb's"),
@@ -106,12 +106,13 @@ ALLOWED_STOPS = {
                                "كاد names its اسم and خبر; an object of it stays unnamed"),
     ("ظن وأخواتها", "voice"): ({"passive", "none"},
                                "a passive ظن has no places of its own (none cannot occur: ظن is a verb)"),
-    ("ظن المبنية للمعلوم", "slot"): ({"predicate", "absolute", "place_time", "none"},
+    ("ظن المبنية للمعلوم", "slot"): ({"predicate", "absolute", "place_time", "accompaniment", "none"},
                                      "ظن's places are its doer and two objects; a khabar or an adverb is not one"),
     ("الفعل", "slot"): ({"predicate", "none"}, "a khabar is not a place a verb gives"),
     ("الفاعل ونائبه", "voice"): ({"none"}, "a doer always has its verb above it"),
-    ("ما له عامل آخر", "slot"): (VERB_ONLY | {"none"},
-                                 "only a verb gives those places; none is a word the nominal sentence cannot place"),
+    ("ما له عامل آخر", "slot"): ((VERB_ONLY - {"place_time"}) | {"none"},
+                                 "only a verb gives those places (a place or time word there is the khabar's, "
+                                 "its own leaf); none is a word the nominal sentence cannot place"),
 }
 
 

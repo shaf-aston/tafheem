@@ -14,6 +14,7 @@ what a reader actually sees.
 word (data/nahw_rules/fresh_sentences.json), split into "tune" (may be looked at)
 and "hold" (never looked at while tuning). Offline it runs the router itself. It also counts
 confident wrong answers, gaps, and places where a card and the picture disagree.
+--set exam is the same format, a larger set per Tasheel chapter, all held out.
 
 Only roles are scored: the books record no case field, and reading case back
 off the harakat would score the reader's vowels, not the analyser.
@@ -80,7 +81,16 @@ def fresh_sentences() -> list[dict]:
     return json.loads((DATA.parent / KEY["sources"]["fresh"]).read_text(encoding="utf-8"))
 
 
-SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences}
+def exam_sentences() -> list[dict]:
+    """Tasheel-chapter sentences in the fresh format, written and keyed blind by two
+    separate readers and kept where they agreed; all held out ("hold")."""
+    rows = json.loads((DATA.parent / KEY["sources"]["exam"]).read_text(encoding="utf-8"))
+    return [{**row, "split": "hold"} for row in rows]
+
+
+SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences, "exam": exam_sentences}
+# the sets keyed one exact role per typed word, scored by score_exact
+EXACT = ("fresh", "exam")
 
 
 def analysed(sentence: str, api: str | None) -> list[dict]:
@@ -144,12 +154,12 @@ def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, 
     return out
 
 
-def score_fresh(api: str | None, show: int) -> None:
-    """Score the fresh set. A blank card role is a gap; any other role that is not
-    the key is confident wrong. Roles are compared exactly, harakat aside."""
+def score_exact(name: str, api: str | None, show: int) -> None:
+    """Score a set keyed one exact role per word. A blank card role is a gap; any other
+    role that is not the key is confident wrong. Roles are compared exactly, harakat aside."""
     stats: dict[str, Counter] = {}
     bad_lines, clashes = [], []
-    for ex in fresh_sentences():
+    for ex in SETS[name]():
         answer = routed(ex["sentence"], api)
         cards, key = answer["words"], ex["key"]
         aligned = len(cards) == len(key)
@@ -182,7 +192,7 @@ def score_fresh(api: str | None, show: int) -> None:
         return (f"{name:<28} roles {c['right']}/{c['roles']} = {pct:>4}  whole {c['whole']}/{c['sentences']}  "
                 f"confident wrong {c['confident_wrong']}  gaps {c['gaps']}  card/tree disagree {c['disagree']}")
 
-    print("Fresh set" + (f" via {api}" if api else " (local)"))
+    print(f"{name.capitalize()} set" + (f" via {api}" if api else " (local)"))
     for name in ("all", "tune", "hold"):
         if name in stats:
             print(line(name, stats[name]))
@@ -205,8 +215,8 @@ def main() -> None:
     if args.show < 0:
         parser.error("--show cannot be negative")
 
-    if args.set == "fresh":
-        return score_fresh(args.api, args.show)
+    if args.set in EXACT:
+        return score_exact(args.set, args.api, args.show)
     right = total = 0
     unmapped, misaligned, confusions, misses = Counter(), [], Counter(), []
     for ex in SETS[args.set]():

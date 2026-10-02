@@ -63,9 +63,17 @@ def test_a_noun_after_a_preposition_stays_majroor_on_a_typed_kasra():
 
 def test_a_typed_sukun_or_vowel_is_an_answer_when_choosing_a_reading():
     # فَهِمَ (he understood) is not the noun فَهْمَ
-    assert not vowels.agrees_with_typed("فَهِمَ", "فَهْمَ")
-    assert vowels.agrees_with_typed("فَهِمَ", "فَهِمَ")
-    assert vowels.agrees_with_typed("فهم", "فَهْمَ")  # bare letters say nothing
+    assert vowels.vowel_agreement("فَهِمَ", "فَهْمَ") is None
+    assert vowels.vowel_agreement("فَهِمَ", "فَهِمَ") == (3, 0)
+    assert vowels.vowel_agreement("فهم", "فَهْمَ") == (0, 0)  # bare letters say nothing
+    # a full reading beats a bare one the reader's vowels cannot contradict
+    assert vowels.best_reading("إِنَّكَ", [{"diac": "انك"}, {"diac": "إِنَّكَ"}]) == {"diac": "إِنَّكَ"}
+    # the dagger alef is the fatha typed: لٰكِنْ keeps its rank over a stray لَ+كِن
+    assert vowels.best_reading("لَكِنْ", [{"diac": "لٰكِن"}, {"diac": "لَكِن"}]) == {"diac": "لٰكِن"}
+    # a doubling the reader did not type on a voweled letter counts against: أَبُوْهُ, not أَبُّوهُ
+    assert vowels.best_reading("أَبُوْهُ", [{"diac": "أَبُوه"}, {"diac": "أَبُّوهُ"}]) == {"diac": "أَبُوه"}
+    assert vowels.best_reading("أَبُوْهُ", [{"diac": "أَبُّوهُ"}, {"diac": "أَبُوه"}]) == {"diac": "أَبُوه"}  # whatever the order
+    assert vowels.vowel_agreement("أَبُوْهُ", "أَبُّوهُ") is not None  # a dropped shadda is no contradiction
 
 
 def after_doer(word, *, participle, verb_lemma="جاء", **feats):
@@ -139,3 +147,78 @@ def test_a_command_moved_to_kasra_is_still_built_on_the_sukun():
     found = naming.roles(["اُكْتُبِ", "الدَّرْسَ"], toks)
     assert [w["role"] for w in found] == ["فعل", "مفعول به"]
     assert found[0]["case"] == "mabni" and found[0]["aspect"] == "c"
+
+
+@pytest.mark.parametrize("word, command", [
+    ("اُكْتُبُوا", True), ("اعْبُدُوا", True), ("اِسْتَخْرِجُوا", True),  # its vowel on hamzat al-wasl may be left untyped
+    ("اِجْتَمَعُوا", False), ("اِنْكَسَرُوا", False),                       # the past of a longer form: fatha in the middle
+    ("كَتَبُوا", False), ("يَكْتُبُوا", False)])
+def test_a_command_to_many_is_read_by_its_waw(word: str, command: bool):
+    assert vowels.command_shape(word) is command
+
+
+def test_the_light_lakin_joins_and_the_shadda_one_is_the_inna_sister():
+    from backend.services.syntax.facts import is_light
+    assert is_light({"typed": "لَكِنْ"})
+    assert not is_light({"typed": "لَكِنَّ"})
+    assert not is_light({"typed": "لكن"})  # untyped: the sentence decides
+
+
+def test_the_six_nouns_show_their_case_by_a_letter():
+    from backend.services.syntax.facts import typed_case_of
+    six = lambda typed, lemma="أب", stuck_on=0: typed_case_of({"typed": typed, "lemma": lemma, "stuck_on": stuck_on})
+    assert six("أَبَاهُ", stuck_on=1) == "a"
+    assert six("أَخُوْ", "أخ") == "u"
+    assert six("أَخِيْ", "أخ") == "i"
+    assert six("أبو") == "u"                      # the letter is typed even when no vowel is
+    assert six("أَبِي", stuck_on=1) is None       # the ya of the speaker: the case is unseen
+    assert six("عَصَا", "عصا") is None            # a long alef on any other noun is no case
+
+
+def test_a_word_before_its_noun_is_no_sifa():
+    # هَذَانِ قَلَمَانِ, the pointer hung on the noun after it
+    toks = [token(1, "هذان", "هذا", "NOM", 2, "MOD", pos_camel="pron_dem"),
+            token(2, "قلمان", "قلم", "NOM", 0, "---")]
+    assert roles(["هَذَانِ", "قَلَمَانِ"], toks) == ["مبتدأ", "خبر"]
+
+
+def test_a_noun_sharing_a_verbs_lemma_governs_nothing():
+    from backend.services.syntax.facts import Sentence
+    noun = token(2, "علم", "علم", "NOM", 1, "MOD", stt="c")
+    verb = token(1, "علمت", "علم", "VRB", 0, "---", **VERB)
+    s = Sentence([verb, noun])
+    assert s.family(verb) == "zanna"
+    assert s.family(noun) is None
+
+
+def test_a_noun_with_its_own_pronoun_after_a_definite_noun_is_its_badal():
+    # نَفَعَنِي الْمُعَلِّمُ عِلْمُهُ, the pronoun drawn as an object of the noun
+    toks = [token(1, "نفع", "نفع", "VRB", 0, "---", **VERB),
+            token(2, "+ني", "+ني", "NOM", 1, "OBJ", pos_camel="pron", stt="d", cas="a"),
+            token(3, "المعلم", "معلم", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(4, "علم", "علم", "NOM", 3, "MOD", stt="c", cas="n"),
+            token(5, "+ه", "+ه", "NOM", 4, "OBJ", pos_camel="pron", stt="d", cas="g")]
+    assert roles(["نَفَعَنِي", "الْمُعَلِّمُ", "عِلْمُهُ"], toks)[2] == "بدل"
+    # the nearest that is not: an object in another case keeps its own job
+    toks[3]["cas"], toks[2]["rel"] = "a", "SBJ"
+    assert roles(["نَفَعَنِي", "الْمُعَلِّمُ", "عِلْمَهُ"], toks)[2] != "بدل"
+
+
+def test_ma_after_a_verb_with_no_object_is_that_object():
+    # قَرَأْتُ مَا كَتَبْتُهُ: the relative ما; مَا رَأَيْتُهُ (nothing before it) negates
+    def ma(words, before):
+        toks = ([token(1, "قرأت", "قرأ", "VRB", 0, "---", **VERB)] if before else []) + [
+            token(len(words) - 1, "ما", "ما", "NOM", 0 if not before else 1, "OBJ" if before else "---", pos_camel="pron_rel"),
+            token(len(words), "كتبت", "كتب", "VRB", len(words) - 1, "MOD", **VERB),
+            token(len(words) + 1, "+ه", "+ه", "NOM", len(words), "OBJ", pos_camel="pron", stt="d")]
+        return roles(words, toks)[-2]
+    assert ma(["قَرَأْتُ", "مَا", "كَتَبْتُهُ"], True) != "حرف"
+    assert ma(["مَا", "كَتَبْتُهُ"], False) == "حرف"
+
+
+def test_after_a_pointer_the_noun_carrying_a_verb_is_no_mubtada():
+    # هَذَا رَجُلٌ يَعْمَلُ: the verb is the صفة's clause, the noun not the sentence's mubtada
+    toks = [token(1, "هذا", "هذا", "NOM", 2, "MOD", pos_camel="pron_dem"),
+            token(2, "رجل", "رجل", "NOM", 0, "---", stt="i", cas="n"),
+            token(3, "يعمل", "عمل", "VRB", 2, "MOD", vox="a", asp="i")]
+    assert roles(["هَذَا", "رَجُلٌ", "يَعْمَلُ"], toks)[1] != "مبتدأ"

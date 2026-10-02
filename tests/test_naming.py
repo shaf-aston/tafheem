@@ -89,11 +89,11 @@ def test_nothing_is_guessed_when_the_split_does_not_line_up(words):
 # ── أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِي الْقُبُورِ: what the parser path got wrong ──
 
 def test_a_reading_that_contradicts_the_typed_vowels_does_not_agree():
-    from backend.services.syntax.vowels import agrees_with_typed
-    assert not agrees_with_typed("أَفَلَا", "آفِلاً")      # kasra and tanween the reader did not type
-    assert agrees_with_typed("أَفَلَا", "أَفَلا")
-    assert not agrees_with_typed("الْقُبُورِ", "القُبُورَ")  # the case typed is jarr
-    assert agrees_with_typed("افلا", "آفِلاً")              # nothing typed, nothing contradicted
+    from backend.services.syntax.vowels import vowel_agreement
+    assert vowel_agreement("أَفَلَا", "آفِلاً") is None      # kasra and tanween the reader did not type
+    assert vowel_agreement("أَفَلَا", "أَفَلا") is not None
+    assert vowel_agreement("الْقُبُورِ", "القُبُورَ") is None  # the case typed is jarr
+    assert vowel_agreement("افلا", "آفِلاً") == (0, 0)              # nothing typed, nothing contradicted
 
 
 def test_the_parser_keeps_the_best_reading_that_agrees_with_the_vowels():
@@ -315,3 +315,14 @@ def test_every_role_the_code_names_is_declared_in_roles_json():
         if clause := clause_of(role):
             used.add(clause["job"])
     assert used - declared == set()
+
+
+def test_a_word_is_split_where_its_tokenisation_splits_it(monkeypatch):
+    # ثُلْثَ_+هُ comes tagged NOM alone; its pronoun is still its own token
+    from backend.services.syntax import catib_onnx
+    monkeypatch.setattr(catib_onnx, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
+        ("pos_camel", "asp", "vox", "stt", "cas", "token_type"), "na"))
+    _split_word = catib_onnx._split_word
+    reading = {"atbtok": "ثُلْثَ_+هُ", "catib6": "NOM", "ud": "NOUN", "pos": "noun", "lex": "ثُلْث",
+               "enc0": "3ms_poss", "stt": "c", "cas": "a"}
+    assert [t["form"] for t in _split_word("ثُلُثَهُ", reading)] == ["ثلث", "+ه"]

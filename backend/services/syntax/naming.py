@@ -115,14 +115,14 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str) -> s
         return _mood(paused(token["typed"], after), before) if present else "mabni"
     if role in (NAMED.harf, NAMED.harf_jarr):
         return "mabni"
-    # يَا وَلَدُ: a single called noun is built on the damma (in the place of nasb)
-    if role == NAMED.munada and typed_case(token["typed"]) == "u":
+    # يَا وَلَدُ، يا أيها: a single called noun is built on the damma (in the place of nasb)
+    if role == NAMED.munada and (typed_case(token["typed"]) == "u" or facts.is_called_noun(token)):
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
     if is_mabni(token):
         return "mabni"
-    return CASE_NAME.get(typed_case(token["typed"], token["stuck_on"]))
+    return CASE_NAME.get(facts.typed_case_of(token))
 
 
 def _mood(typed: str, before: dict | None) -> str:

@@ -1,8 +1,12 @@
 {
  "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw_book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word.",
  "vetoes": {
-  "_comment": "Links the book rules out, removed from the parser's choices before its tree is picked. true = on. Read by services/syntax/mask.py.",
-  "verb_subject_follows": true
+  "_comment": "Links the book rules out, removed from the parser's choices before its tree is picked, and links it settles outright, written over the parser's tree after (mask.book_links). true = on. Read by services/syntax/mask.py.",
+  "verb_subject_follows": true,
+  "pointer_heads_its_noun": true,
+  "listed_preposition_takes_majrur": true,
+  "topic_carries_its_verb": true,
+  "inner_sentence": true
  },
  "families": {
   "jarr": {
@@ -77,6 +81,8 @@
   "nida": {
    "ar": "حروف النداء",
    "effect": "calls the noun after it (munada); a single definite munada is built on damma, else nasb",
+   "_called_nouns": "أيّ (أيّة) with the ها of attention is the munada itself, built on damma; the noun with ال after it is its صفة (Tasheel, al-nida)",
+   "called_nouns": ["أيها", "أيتها"],
    "words": [
     "يا",
     "أيا",
@@ -490,6 +496,8 @@
   "istifham": {
    "ar": "أدوات الاستفهام",
    "effect": "turns the sentence into a question; the particles govern nothing, the nouns take a role in the sentence (subject, object, adverb, ...)",
+   "_before_verb": "The place a question noun fills when it opens a verb clause whose verb has no object of its own (Tasheel 2.4.7 p47): what or how many is asked is the object (ماذا قرأت، كم كتابًا قرأت), how is the hal (كيف جئت), when and where the maf'ul fihi (متى سافر، أين جلس). Read by services/syntax/facts.py.",
+   "before_verb": {"ماذا": "object", "كم": "object", "كيف": "state", "متى": "place_time", "أين": "place_time", "أيان": "place_time"},
    "words": [
     "أ",
     "هل",
@@ -544,7 +552,7 @@
     "عين": "emphasis 'itself' (with pronoun suffix) vs noun 'eye / spring'",
     "كل": "emphasis 'all of it' (with pronoun suffix, after a noun) vs ordinary mudaf noun 'every / all' before an indefinite noun (كل رجل) or a definite plural",
     "جميع": "emphasis 'all' (with pronoun suffix) vs ordinary noun 'all' as mudaf or hal",
-    "كلا": "emphasis 'both' (with pronoun suffix, masculine dual) vs ordinary mudaf 'both' vs rebuke particle كلا",
+    "كلا": "emphasis 'both' (with pronoun suffix, masculine dual) vs ordinary mudaf 'both' vs rebuke particle كلا; CAMeL spells it كلى (كلتى) before the pronoun, so the list holds both",
     "كلتا": "emphasis 'both' (with pronoun suffix, feminine dual) vs ordinary mudaf 'both'",
     "عامة": "emphasis 'all' (rare) vs noun 'general / common'",
     "أجمع": "emphasis after كل (كله أجمع); hardly used as an ordinary word",
@@ -557,6 +565,8 @@
     "جميع",
     "كلا",
     "كلتا",
+    "كلى",
+    "كلتى",
     "عامة"
    ],
    "without_pronoun": [
@@ -578,6 +588,8 @@
   "zarf_zaman": {
    "ar": "ظروف الزمان",
    "effect": "adverb of time (maf'ul fihi), nasb, or mudaf; a few are built (mabni) as in إذ إذا متى",
+   "_carriers": "A word of whole or part added to a time or place word stands in its place as the maf'ul fihi (كلَّ يومٍ، بعضَ الليلِ).",
+   "carriers": ["كل", "بعض"],
    "words": [
     "إذ",
     "إذا",
@@ -1014,13 +1026,34 @@
    ]
   },
   "participle_patterns": {
-   "ar": "أوزان اسم الفاعل واسم المفعول",
-   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal. Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل, مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول.",
+   "ar": "أوزان اسم الفاعل واسم المفعول والصفة المشبهة",
+   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal (a derived describing word, Tasheel 3.8.6). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل, 1ا2ِي the same with a weak last letter (باكية، داعيًا), مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول; the صفة مشبهة: 1َ2ِ3 فَعِل (فَرِحًا), 1َ2ِي3 فَعِيل (سَعِيدًا), 1َ2ْ3َان فَعْلان (غَضْبَانَ).",
    "words": [
     "1ا2ِ3",
+    "1ا2ِي",
     "مُ",
-    "مَ1ْ2ُو3"
+    "مَ1ْ2ُو3",
+    "1َ2ِ3",
+    "1َ2ِي3",
+    "1َ2ْ3َان"
    ]
+  },
+  "six_nouns": {
+   "ar": "الأسماء الستة",
+   "book": "I'raab types p2",
+   "effect": "as a مضاف (not to the ya of the speaker) the case is a letter, not a vowel: و raf', ا nasb, ي jarr (جاء أخو زيد، رأيت أخا زيد، مررت بأخي زيد). هن is left out: it usually takes the vowels.",
+   "words": [
+    "أب",
+    "أخ",
+    "حم",
+    "فو",
+    "ذو"
+   ],
+   "case_by_letter": {
+    "و": "u",
+    "ا": "a",
+    "ي": "i"
+   }
   },
   "tamyeez_verbs": {
    "ar": "أفعال يأتي بعدها تمييز النسبة",

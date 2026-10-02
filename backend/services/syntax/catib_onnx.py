@@ -45,8 +45,8 @@ from tokenizers import Tokenizer
 from backend.services.arabic_text import bare_letters
 from backend.config import data_path, get_settings
 from backend.services.syntax import decode
-from backend.services.syntax.mask import book_mask
-from backend.services.syntax.vowels import agrees_with_typed, past_passive_shape, typed_case
+from backend.services.syntax.mask import book_links, book_mask
+from backend.services.syntax.vowels import best_reading, past_passive_shape, typed_case
 
 logger = logging.getLogger(__name__)
 
@@ -223,19 +223,31 @@ def _split_word(word: str, a: dict) -> list[dict]:
         # The analyzer found nothing for this word; BERT's own tag is all
         # there is, so it is reported as a single unsplit token.
         catib6 = _POS_TO_CATIB6.get(a.get("pos", ""), "NOM")
-        return [{
+        base = {
             "form": dediac_ar(word).replace("_", "").replace("ـ", "") or word,
             "lemma": dediac_ar(a.get("lex", word)),
             "pos": catib6, "pos_camel": a.get("pos", ""), "ud": catib6,
             "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
             "stt": a.get("stt", "na"), "cas": a.get("cas", "na"),
             "token_type": "baseword",
-        }]
+        }
+        if not str(a.get("prc1", "")).endswith("_prep"):
+            return [base]
+        # لِلّٰهِ: the analyser knows the word opens with a preposition but files it unsplit;
+        # the preposition is its first letter, and the noun is its lemma (الله)
+        letter = base["form"][:1]
+        return [{"form": f"{letter}+", "lemma": f"{letter}+", "pos": "PRT", "pos_camel": "prep", "ud": "ADP",
+                 "asp": "na", "vox": "na", "stt": "na", "cas": "na", "token_type": "prc1"},
+                {**base, "form": base["lemma"], "cas": "g"}]
 
-    if "+" not in a["catib6"]:
+    # the pieces are the tokenisation's, not the tags': ثُلْثَ_+هُ is tagged NOM alone, and
+    # left whole its pronoun is lost to the sentence (the بدل's pronoun back to its noun).
+    # Only a trailing pronoun is split untagged: it is a noun as the padding below makes it.
+    pieces = a["atbtok"].split("_")
+    if len(pieces) == 1 or ("+" not in a["catib6"] and not all(p.startswith("+") for p in pieces[1:])):
         toks, catib6s, uds = [a["atbtok"]], [a["catib6"]], [a["ud"]]
     else:
-        toks = a["atbtok"].split("_")
+        toks = pieces
         catib6s = a["catib6"].split("+")
         uds = a["ud"].split("+")
         # A rare tokenization/tagging length mismatch: repeat the last known
@@ -276,15 +288,14 @@ def _reading(word: str, readings: list[dict]) -> dict:
 
     The disambiguator reads bare letters, so its favourite may be a word the
     reader plainly did not write. The vowels typed are the reader's own evidence
-    and win: the first reading, best first, that agrees with them is used. The
+    and win: the reading sharing most of them is used (vowels.best_reading). The
     analyser's guessed proper noun has no vowels to disagree with, so it never
     wins that way. When no real reading agrees the favourite is kept, since the
     naming layer still reads the vowels itself (a passive بُعْثِرَ).
     """
     if not readings:
         return {"pos": "", "lex": word}
-    agreeing = [r for r in readings if "NOAN" not in r.get("atbtok", "")
-                and agrees_with_typed(word, r.get("diac", ""))]
+    real = [r for r in readings if "NOAN" not in r.get("atbtok", "")]
     # فُعِلَ by its vowels is a passive verb and nothing else: no noun is typed so
     # (أُكِلَ is not the noun آكِل, بُنِيَ is not بُن + ي)
     # The analyser often offers only the active verb of the same letters; the
@@ -293,7 +304,7 @@ def _reading(word: str, readings: list[dict]) -> dict:
              if r.get("pos") == "verb" and bare_letters(r.get("diac", "")) == bare_letters(word)]
     if past_passive_shape(word) and verbs:
         return verbs[0]
-    return agreeing[0] if agreeing else readings[0]
+    return best_reading(word, real) or readings[0]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -339,7 +350,7 @@ def _decode(s_arc: np.ndarray, s_rel: np.ndarray, toks: list[dict]) -> tuple[lis
     heads = decode.heads(s_arc[:L, :L])
     rels = [_rel_labels[int(np.argmax(np.where(rel_ok[i + 1, heads[i]], s_rel[i + 1, heads[i]], -np.inf)))]
             for i in range(n_words)]
-    return heads, rels
+    return book_links(toks, heads, rels)
 
 
 def _parse_forms(toks: list[dict]) -> tuple[list[int], list[str]]:
@@ -375,7 +386,10 @@ def parse(words: list[str]) -> list[dict]:
     subtokens: list[dict] = []
     for word, dw in zip(words, disambiguated):
         readings = [scored.analysis for scored in dw.analyses]
-        subtokens.extend({**t, "case": typed_case(word)} for t in _split_word(word, _reading(word, readings)))
+        pieces = _split_word(word, _reading(word, readings))
+        # the vowel of an attached pronoun is the pronoun's: عِلْمَهُ is in nasb, not raf'
+        stuck_on = sum(len(bare_letters(t["form"].strip("+"))) for t in pieces if t["form"].startswith("+"))
+        subtokens.extend({**t, "case": typed_case(word, stuck_on)} for t in pieces)
 
     heads, rels = _parse_forms(subtokens)
 

@@ -13,9 +13,9 @@ from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import case_of, is_mabni, is_one, named_roles, teacher_rules
-from backend.services.syntax.facts import Sentence, is_passive, is_verb, takes_tamyeez
+from backend.services.syntax.facts import Sentence, is_called_noun, is_passive, is_verb, takes_tamyeez, typed_case_of
 from backend.services.syntax.naming import base_tokens, roles_keyed
-from backend.services.syntax.vowels import CASE_NAME, typed_case
+from backend.services.syntax.vowels import CASE_NAME
 
 # the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there
 NAMED = named_roles()
@@ -25,8 +25,9 @@ FOLLOWERS = roles_keyed("tabi", "sifah")
 
 
 def _is_noun(token: dict) -> bool:
-    """Unlike `nahw_book.is_plain_noun` a pointer counts: هذا can be copied by a follower."""
-    return token["pos"] in ("NOM", "PROP") and not is_verb(token)
+    """Unlike `nahw_book.is_plain_noun` a pointer counts: هذا can be copied by a follower,
+    and so does the called أيها, which the parser tags a particle."""
+    return (token["pos"] in ("NOM", "PROP") and not is_verb(token)) or is_called_noun(token)
 
 
 def _kid_indices(token: dict, bases: list[dict]) -> list[int]:
@@ -85,7 +86,7 @@ def _clashes(role: str | None, shown: str | None, ending: dict) -> bool:
 def _typed_case_fits_role(bases, tokens, roles):
     by_id = {t["id"]: t for t in tokens}
     for i, (token, role) in enumerate(zip(bases, roles)):
-        shown = typed_case(token.get("typed"), token.get("stuck_on", 0))
+        shown = typed_case_of(token)
         if not is_verb(token) and _clashes(role, shown, _vowel_facts(token, bases, roles, by_id)):
             yield i
 

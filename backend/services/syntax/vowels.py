@@ -6,12 +6,15 @@ parser layer (`catib_onnx`) uses them to pick among readings.
 """
 from __future__ import annotations
 
+
 from backend.services.arabic_text import bare_letters
 
 VOWEL = {"ً": "a", "ٌ": "u", "ٍ": "i", "َ": "a", "ُ": "u", "ِ": "i"}
 TANWEEN = {"ً", "ٌ", "ٍ"}
 SUKUN = "ْ"
-SHADDA_SUKUN = "ّ" + SUKUN
+SHADDA = "ّ"
+SHADDA_SUKUN = SHADDA + SUKUN
+DAGGER_ALEF = "ٰ"
 # case shown by an ending, not by a vowel: the plural and the dual
 HIDDEN_CASE = ("ين", "ون", "ان")
 
@@ -24,7 +27,7 @@ def letters(word: str) -> list[tuple[str, set]]:
     """The typed word as (letter, its marks) pairs."""
     out: list[tuple[str, set]] = []
     for char in word or "":
-        if char in VOWEL or char in SHADDA_SUKUN:
+        if char in VOWEL or char in SHADDA_SUKUN or char == DAGGER_ALEF:
             if out:
                 out[-1][1].add(char)
         elif char.isalpha():
@@ -57,21 +60,49 @@ def has_tanween(word: str) -> bool:
     return any(marks & TANWEEN for _, marks in letters(word))
 
 
-def agrees_with_typed(typed: str, reading: str) -> bool:
-    """False when a vowelled reading puts a different vowel on a letter the reader
-    vowelled: آفِلًا is not the أَفَلَا typed. A letter either side left bare says
-    nothing, and two spellings that do not line up letter for letter are not
-    evidence either way."""
+# The vowel a mark writes, so a fatha and a fathatan on the same letter still
+# disagree (one is definite, one is not) while a missing mark agrees with anything.
+# The dagger alef is a fatha said long: لٰكِنْ is what a reader types as لَكِنْ.
+_MARK = {"َ": "a", "ُ": "u", "ِ": "i", "ً": "an", "ٌ": "un", "ٍ": "in", SUKUN: "o", DAGGER_ALEF: "a"}
+
+
+def vowel_agreement(typed: str, reading: str) -> tuple[int, int] | None:
+    """(how many vowels typed on a word a reading also has, how many letters both voweled
+    that it doubles differently), or None when a typed vowel contradicts it (فَتَحَ against
+    فَتْح, فَهِمَ against فَهْمَ: a sukun is an answer too).
+
+    A letter the reading leaves bare agrees with whatever was typed on it. Letters are
+    lined up with their hamza seats folded (آفِلًا is still checked against أَفَلَا); two
+    spellings that do not line up even so say nothing either way, so they score nothing.
+    A shadda is a doubled letter, not a vowel, and readers drop it, so it never contradicts;
+    the second count is kept apart for best_reading to weigh (أَبُوْهُ is not أَبُّوهُ).
+    """
     mine, theirs = letters(typed), letters(reading)
     if [bare_letters(c) for c, _ in mine] != [bare_letters(c) for c, _ in theirs]:
-        return True
-    for (_, typed_marks), (_, read_marks) in zip(mine, theirs):
-        # a sukun is an answer too: فَهِمَ is not the noun فَهْمَ
-        said = {mark for mark in typed_marks if mark in VOWEL or mark == SUKUN}
-        read = {mark for mark in read_marks if mark in VOWEL or mark == SUKUN}
-        if said and read and said != read:
-            return False
-    return True
+        return 0, 0
+    agreed = doubled = 0
+    for (_, said), (_, read) in zip(mine, theirs):
+        said_v, read_v = {_MARK[m] for m in said if m in _MARK}, {_MARK[m] for m in read if m in _MARK}
+        if not said or not read:
+            continue
+        if said_v and read_v and said_v != read_v:
+            return None
+        agreed += len(said_v & read_v) + (SHADDA in said and SHADDA in read)
+        doubled += (SHADDA in said) != (SHADDA in read)
+    return agreed, doubled
+
+
+def best_reading(typed: str, readings: list[dict]) -> dict | None:
+    """The reading the typed vowels support best, None when every reading contradicts them.
+    Vowels the reader wrote are evidence the statistics lack: ranked alone, فَتَحَ came back
+    as the noun فَتْح. A reading spelled with the very letters typed comes first, then the
+    one doubling no letter otherwise than typed, then the one sharing most typed vowels,
+    then the given (best first) order: a bare انك agrees with anything but must not beat
+    إِنَّكَ, nor the أَلْبَاب sharing more vowels beat الْبَاب, nor أَبُّوهُ beat أَبُوه for أَبُوْهُ."""
+    letters_typed = [c for c, _ in letters(typed)]
+    scored = [((letters_typed == [c for c, _ in letters(r.get("diac", ""))], -found[1], found[0]), i)
+              for i, r in enumerate(readings) if (found := vowel_agreement(typed, r.get("diac", ""))) is not None]
+    return readings[max(scored, key=lambda pair: (pair[0], -pair[1]))[1]] if scored else None
 
 
 def _without_ending(marked: list[tuple[str, set]]) -> list[tuple[str, set]]:
@@ -123,6 +154,8 @@ def command_shape(word: str, after_jazm: bool = False, hollow: bool = False) -> 
     command lost its middle letter (أَقِمْ، أَجِبْ): three letters, a kasra on the second,
     and only the root can tell it from a name (أَحْمَدْ), so the caller passes `hollow`."""
     marked = letters(word)
+    if _plural_command(marked):
+        return True
     if len(marked) < 2 or SUKUN not in marked[-1][1]:
         return False
     first, second = marked[0], marked[1]
@@ -134,6 +167,19 @@ def command_shape(word: str, after_jazm: bool = False, hollow: bool = False) -> 
         return False
     return (first[0] == "ا" and bool(first[1] & {"ُ", "ِ"})) or (
         first[0] == "أ" and "َ" in first[1] and len(marked) >= 4 and not after_jazm)
+
+
+def _plural_command(marked: list[tuple[str, set]]) -> bool:
+    """اُكْتُبُوا، اعْبُدُوا: a command to many drops its nun and keeps واو الجماعة (Tasheel
+    2.2 p27), so it ends وا, not in a sukun; it opens with hamzat al-wasl (its vowel often
+    left untyped) before a sakin letter. A past verb with that opening is a longer form
+    (اِجْتَمَعُوا، اِنْكَسَرُوا) and has a fatha on its middle root letter, a command never."""
+    if len(marked) < 6 or [letter for letter, _ in marked[-2:]] != ["و", "ا"]:
+        return False
+    first, second = marked[0], marked[1]
+    if first[0] != "ا" or (first[1] and not first[1] & {"ُ", "ِ"}) or SUKUN not in second[1]:
+        return False
+    return len(marked) == 6 or "َ" not in marked[-4][1]
 
 
 def past_passive_shape(word: str) -> bool:
