@@ -40,9 +40,14 @@ function set(next) {
   for (const listener of listeners) listener()
 }
 
-/** The path with `place` reached from step `at`: it goes next, and what was ahead is dropped. */
+/**
+ * The path with `place` reached from step `at`: it goes next, and what was ahead is dropped.
+ * A tab opened with nothing, then given a place on that same tab, is one step: the
+ * blank one is filled in, or back would land on a page that looks unchanged.
+ */
 function stepOnto(steps, at, place) {
-  const walked = [...steps.slice(0, at + 1), place]
+  const blank = steps[at] && steps[at].tab === place.tab && !steps[at].value
+  const walked = [...steps.slice(0, blank ? at : at + 1), place]
   return { steps: walked, at: walked.length - 1 }
 }
 
@@ -129,7 +134,7 @@ export function onJump(listener) {
 export function visit(tab, value = null) {
   if (samePlace(snapshot.steps[snapshot.at], { tab, value })) return false
   const next = stepOnto(snapshot.steps, snapshot.at, { tab, value })
-  writeTabToUrl(tab, value, { state: { step: next.at } })
+  writeTabToUrl(tab, value, { replace: next.at === snapshot.at, state: { step: next.at } })
   set(next)
   return true
 }

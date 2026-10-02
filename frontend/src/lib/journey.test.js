@@ -103,6 +103,12 @@ describe('resume', () => {
     expect(resume({ steps: STEPS, at: 2 }, link, undefined))
       .toEqual({ steps: [...STEPS.slice(0, 3), link], at: 3 })
   })
+
+  it('a place on a tab opened with nothing fills that step in, not one after it', () => {
+    const blank = [STEPS[0], { tab: 'mem', value: null }]
+    const link = { tab: 'mem', value: '2:6' }
+    expect(resume({ steps: blank, at: 1 }, link, undefined)).toEqual({ steps: [STEPS[0], link], at: 1 })
+  })
 })
 
 describe('lastOn', () => {
