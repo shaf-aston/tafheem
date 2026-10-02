@@ -30,7 +30,7 @@ import * as api from '../api'
 import dictationConfig from '../dictation.json'
 import config from '../recite.json'
 import * as dictation from './dictation'
-import { isOfPage, joinWindows, wordsHeard } from './follow'
+import { CHECK, SAID, follow, isOfPage, joinWindows, wordsHeard } from './follow'
 import * as journal from './journal'
 import * as microphone from './microphone'
 
@@ -112,6 +112,17 @@ export const byPlace = (answer = {}, ayahs) => {
   }
   return out
 }
+
+/**
+ * A recording's scores, less the low ones it has no right to give: a low score
+ * accuses only a word in [from, to), the page words it heard right and settled.
+ * Outside them the sound was cut mid-word or never held the word (check() scores
+ * the whole ayah), so low there means "not in this recording", and it showed
+ * the next words red until a later check, two seconds on, cleared them.
+ */
+export const settledScores = (placed, from, to) => Object.fromEntries(
+  Object.entries(placed).filter(([at, score]) => score >= config['sure-at'] || (Number(at) >= from && Number(at) < to)),
+)
 
 /** The surer of two recordings' scores for each page place. */
 export const surer = (a, b) => {
@@ -429,6 +440,14 @@ export function createRecitingSession({ onChange, deps = {} }) {
             // Scores are placed by position on the page they were asked about,
             // so one that answers after the page has turned lands nowhere.
             const askedOf = page
+            // follow()'s own rule for a wrong word: settle-words past it, or a
+            // pause. Counted between the first and last words heard right, not
+            // lineUp's `at`: the ear's made-up tail (نهاية الدرس) pairs with the
+            // next page words.
+            const right = follow(page.pageWords, words, { startAt: null, ended: true }).words
+              .map(({ state }) => state === SAID || state === CHECK)
+            const from = right.indexOf(true)
+            const to = right.lastIndexOf(true) + 1 - (last ? 0 : config['settle-words'])
             // A finished page asks nothing more: what is said now is the
             // next page's, and checks about this one would hold its turn up.
             if (checkAyahs.length && heard.text && !page.done) {
@@ -441,7 +460,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
                 sent: false,
                 apply: (scored) => {
                   if (!live() || page !== askedOf) return
-                  const placed = byPlace(scored, checkAyahs)
+                  const placed = settledScores(byPlace(scored, checkAyahs), from, to)
                   set(({ sure }) => ({
                     sure: folded
                       ? { ...sure, before: surer(sure.before, placed) }
