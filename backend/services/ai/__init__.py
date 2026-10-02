@@ -7,14 +7,12 @@ Backend resolution order (auto mode):
 
 Public functions mirror the old groq/__init__.py interface so routers
 need no changes:
-    analyze_iraab, analyze_sarf,
-    generate_practice, load_nahw_rules, get_backend_name
+    analyze_sarf, explain_root_entry, explain_root_entry_lines,
+    load_nahw_rules, get_backend_name
 """
 from __future__ import annotations
 
 import logging
-import threading
-from functools import lru_cache
 
 from backend.config import get_settings
 from backend.services.ai import prompts
@@ -101,45 +99,11 @@ def _ask(user_prompt: str, max_tokens: int) -> dict:
 
 # ── High-level analyzers ──────────────────────────────────────────────────────
 
-# One I'raab at a time, and each answer kept. The page fires the same
-# sentence twice on arrival (React StrictMode) and again on every reload; run
-# in parallel both pay Groq, and the free tier's 8,000 tokens a minute is
-# spent by the fourth call. Serialised, the second finds the first's answer.
-# A failed call is not kept (lru_cache stores results, never exceptions).
-_iraab_turn = threading.Lock()
-
-
-@lru_cache(maxsize=get_settings().ai_answer_cache_size)
-def _iraab(sentence: str, morpho_tags: str) -> dict:
-    return _ask(
-        prompts.IRAAB_USER.format(sentence=sentence, qalsadi_tags=morpho_tags or "Not available"),
-        max_tokens=get_settings().iraab_max_tokens,
-    )
-
-
-def analyze_iraab(sentence: str, morpho_tags: str) -> dict:
-    """Full proof-based I'raab analysis of an Arabic sentence."""
-    with _iraab_turn:
-        return _iraab(sentence, morpho_tags)
-
-
 def analyze_sarf(word: str, morpho_tags: str) -> dict:
     """Sarf (morphology) analysis of a single Arabic word."""
     return _ask(
         prompts.SARF_USER.format(word=word, qalsadi_tags=morpho_tags or "Not available"),
         max_tokens=get_settings().sarf_max_tokens,
-    )
-
-
-def generate_practice(sentence: str, iraab_summary: str) -> dict:
-    """Generate 4 practice questions for a sentence's I'raab."""
-    settings = get_settings()
-    return _ask(
-        prompts.PRACTICE_USER.format(
-            sentence=sentence,
-            iraab_summary=iraab_summary[: settings.iraab_summary_truncate_chars],
-        ),
-        max_tokens=settings.practice_max_tokens,
     )
 
 

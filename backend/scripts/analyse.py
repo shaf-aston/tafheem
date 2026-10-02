@@ -1,8 +1,8 @@
 """Type a sentence, read what the Analyse page would show: one line per word, then the tree.
 
 Sentences come from the command line, or one per line on stdin (safer for
-Arabic in a Windows shell). Offline it runs the route itself with the AI step
-off; --api asks a running app instead, e.g. the live one.
+Arabic in a Windows shell). Offline it runs the route itself; --api asks a
+running app instead, e.g. the live one.
 
     venv/Scripts/python -m backend.scripts.analyse "لَمْ يَكْتُبْ الوَلَدُ"
     venv/Scripts/python -m backend.scripts.analyse --api https://tafheem-app.vercel.app < sentences.txt

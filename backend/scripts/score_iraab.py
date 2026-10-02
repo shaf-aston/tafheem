@@ -7,13 +7,12 @@ the route a typed one does (routed below), and each word's
 role is compared by family (data/nahw_rules/answer_key.json), since the app
 writes "مبتدأ (مرفوع)" where the book writes مُبْتَدَأٌ.
 
-Offline by default. --api scores what the running app returns instead, AI
-fallback included, which is what a reader actually sees; it spends AI calls.
+Offline by default. --api scores what the running app returns instead, which is
+what a reader actually sees.
 
 --set fresh is the yardstick for tuning: sentences with one exact role per typed
 word (data/nahw_rules/fresh_sentences.json), split into "tune" (may be looked at)
-and "hold" (never looked at while tuning). Offline it runs the router itself with
-the AI step off, so it scores the rules and the parser alone. It also counts
+and "hold" (never looked at while tuning). Offline it runs the router itself. It also counts
 confident wrong answers, gaps, and places where a card and the picture disagree.
 
 Only roles are scored: the books record no case field, and reading case back
@@ -97,14 +96,11 @@ def post(api: str, sentence: str) -> dict:
 
 
 def routed(sentence: str, api: str | None) -> dict:
-    """The whole /api/analyze answer. Offline it calls the router itself with the
-    AI step off (ai_backend "none"), so cards and picture are the route's own."""
+    """The whole /api/analyze answer; offline, from the router itself."""
     if api:
         return post(api, sentence)
-    from backend.config import get_settings
     from backend.models.schemas import AnalyzeRequest
     from backend.routers.analysis import analyze_sentence
-    get_settings().ai_backend = "none"
     return asyncio.run(analyze_sentence(AnalyzeRequest(sentence=sentence))).model_dump()
 
 
@@ -186,7 +182,7 @@ def score_fresh(api: str | None, show: int) -> None:
         return (f"{name:<28} roles {c['right']}/{c['roles']} = {pct:>4}  whole {c['whole']}/{c['sentences']}  "
                 f"confident wrong {c['confident_wrong']}  gaps {c['gaps']}  card/tree disagree {c['disagree']}")
 
-    print("Fresh set" + (f" via {api}" if api else " (local, AI off)"))
+    print("Fresh set" + (f" via {api}" if api else " (local)"))
     for name in ("all", "tune", "hold"):
         if name in stats:
             print(line(name, stats[name]))

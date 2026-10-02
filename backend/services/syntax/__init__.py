@@ -73,16 +73,10 @@ def read(sentence: str) -> dict:
 
 
 def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
-    """The rule engine's answer with every role the parser could name written over it.
-
-    Confidence is what the router uses to decide whether to ask an AI. A word the
-    parser named needs no AI, so it counts as sure; the rest keep what the rules
-    scored, which is already baked into the engine's own number.
-    """
+    """The rule engine's answer with every role the parser could name written over it."""
     entries = rule_result.get("words", [])
     if len(parser_roles) != len(entries) or not any(found["role"] or found.get("gap") for found in parser_roles):
         return rule_result
-    named = 0
     for entry, found in zip(entries, parser_roles):
         if not found["role"] and not found.get("gap") and (
                 why := teacher.fallback_gap(entry.get("role"), found)):
@@ -120,11 +114,8 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
                     entry.update(case=found["case"], sign=rule_engine.resign(entry.get("sign"), found["case"]))
                 if entry["case"] == "mabni" and entry.get("type") != "harf":
                     entry["reason"] = reason(found["role"], mabni=True)  # الذي، هذا: in the place of a case
-            named += 1
-    share = named / len(entries)
-    confidence = round(share + (1 - share) * rule_result.get("confidence", 0.0), 2)
     summary = _sentence_type(parser_roles) or rule_result.get("summary")
-    return {**rule_result, "words": entries, "summary": summary, "confidence": confidence}
+    return {**rule_result, "words": entries, "summary": summary}
 
 
 def _sentence_type(parser_roles: list[dict]) -> str | None:

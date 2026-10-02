@@ -88,16 +88,11 @@ class WordAnalysis(BaseModel):
     book: str | None = None
 
     @classmethod
-    def from_raw(cls, w: dict, from_ai: bool = False) -> "WordAnalysis":
-        """Build one from a word dict that may not be trustworthy.
-
-        The rule engine's dicts are already the right shape, but the AI's are a
-        model's answer to a prompt and can carry anything, or be missing fields.
-        Both paths come through here so neither can put a role name on screen
-        that the grid would draw in a colour meaning a different role.
-        """
+    def from_raw(cls, w: dict) -> "WordAnalysis":
+        """One card from the analyser's word dict. A colour key or word type the page does
+        not know is dropped, so a typo goes uncoloured instead of wearing another role's colour."""
         key = w.get("role_key")
-        # A particle has no root in nahw, whatever the AI wrote for it, and a
+        # A particle has no root in nahw, whatever CAMeL filed for it, and a
         # root that is a code rather than letters is no root at all. Judged by
         # the word's own type: role_key "harf" also covers the noun a
         # preposition governs, which does have a root.
@@ -112,8 +107,7 @@ class WordAnalysis(BaseModel):
             sign=w.get("sign"),
             reason=w.get("reason"),
             notes=w.get("notes"),
-            # a model's answer never walked the book's tree, so it cannot cite it
-            book=None if from_ai else w.get("book"),
+            book=w.get("book"),
         )
 
 
