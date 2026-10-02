@@ -78,6 +78,15 @@ def teacher_rules() -> dict:
     return json.loads(TEACHER_FILE.read_text(encoding="utf-8"))
 
 
+def book_path(path: list[str], book: str) -> str:
+    """The book's divisions a word was named through, below كلمة, with the leaf's section
+    and page (`book` as the tree writes it, "3.1 p60"); فعل ← فعل is said once."""
+    words = teacher_rules()["book_path"]
+    said = [branch for i, branch in enumerate(path) if i and branch != path[i - 1]]
+    section, page = book.split(" p")
+    return words["said"].format(path=words["joint"].join(said), section=section, page=page)
+
+
 def case_of(role: str) -> str | None:
     """u / a / i, the case a role takes (teacher.json case_of_role), or None for a
     follower or a role whose case depends on more than its name."""

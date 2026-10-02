@@ -1,6 +1,7 @@
 """The naming tree is data, so the walker is tested on tiny trees of its own."""
 import pytest
 
+from backend.services.nahw_book import book_path
 from backend.services.syntax import walker
 from backend.services.syntax.facts import AXES
 
@@ -8,11 +9,11 @@ from backend.services.syntax.facts import AXES
 def leaf(branch, answer, role="حرف"):
     """`else` as the answer makes the one fall-through child."""
     pick = {"else": True} if answer == "else" else {"is": answer}
-    return {"branch": branch, "book": "x", "role": role, **pick}
+    return {"branch": branch, "book": "1.1 p1", "role": role, **pick}
 
 
 def root(*children):
-    return {"branch": "root", "book": "x", "split": "kind", "children": list(children)}
+    return {"branch": "root", "book": "1.1 p1", "split": "kind", "children": list(children)}
 
 
 def test_real_tree_is_valid():
@@ -43,17 +44,17 @@ def test_rejects_unknown_role_and_both_or_neither():
     with pytest.raises(ValueError, match="unknown role"):
         walker.validate(root(leaf("a", "harf", "not a role")))
     with pytest.raises(ValueError, match="exactly one"):
-        walker.validate(root({"branch": "a", "book": "x", "is": "harf"}))
+        walker.validate(root({"branch": "a", "book": "1.1 p1", "is": "harf"}))
 
 
 def test_walk_reaches_leaf():
     tree = root(leaf("h", "harf"), leaf("f", "fil", "فعل"))
-    assert walker.walk({"kind": "fil"}, tree) == ("فعل", ["root", "f"])
+    assert walker.walk({"kind": "fil"}, tree) == ("فعل", ["root", "f"], "1.1 p1")
 
 
 def test_walk_falls_to_else():
     tree = root(leaf("h", "harf"), leaf("rest", "else", "فعل"))
-    assert walker.walk({"kind": "ism"}, tree) == ("فعل", ["root", "rest"])
+    assert walker.walk({"kind": "ism"}, tree) == ("فعل", ["root", "rest"], "1.1 p1")
 
 
 def test_walk_no_match_is_none():
@@ -62,12 +63,12 @@ def test_walk_no_match_is_none():
 
 
 def test_a_child_may_take_several_answers():
-    group = {"branch": "g", "book": "x", "is": ["harf", "fil"], "split": "kind",
+    group = {"branch": "g", "book": "1.1 p1", "is": ["harf", "fil"], "split": "kind",
              "children": [leaf("h", "harf"), leaf("f", "fil", "فعل")]}
     tree = root(group, leaf("rest", "else", "فعل"))
     walker.validate(tree)
-    assert walker.walk({"kind": "fil"}, tree) == ("فعل", ["root", "g", "f"])
-    assert walker.walk({"kind": "ism"}, tree) == ("فعل", ["root", "rest"])
+    assert walker.walk({"kind": "fil"}, tree) == ("فعل", ["root", "g", "f"], "1.1 p1")
+    assert walker.walk({"kind": "ism"}, tree) == ("فعل", ["root", "rest"], "1.1 p1")
 
 
 def test_rejects_listed_answer_outside_axis_or_repeated_across_children():
@@ -78,16 +79,16 @@ def test_rejects_listed_answer_outside_axis_or_repeated_across_children():
 
 
 def test_rejects_a_nested_split_naming_an_answer_its_parent_did_not_take():
-    group = {"branch": "g", "book": "x", "is": "harf", "split": "kind", "children": [leaf("f", "fil", "فعل")]}
+    group = {"branch": "g", "book": "1.1 p1", "is": "harf", "split": "kind", "children": [leaf("f", "fil", "فعل")]}
     with pytest.raises(ValueError, match="not one of"):
         walker.validate(root(group, leaf("rest", "else", "فعل")))
 
 
 def test_rejects_empty_children_a_non_true_else_and_an_else_with_nothing_left():
     with pytest.raises(ValueError, match="empty"):
-        walker.validate(root({"branch": "g", "book": "x", "is": "harf", "split": "kind", "children": []}))
+        walker.validate(root({"branch": "g", "book": "1.1 p1", "is": "harf", "split": "kind", "children": []}))
     with pytest.raises(ValueError, match="must be true"):
-        walker.validate(root({"branch": "a", "book": "x", "role": "حرف", "else": 1}))
+        walker.validate(root({"branch": "a", "book": "1.1 p1", "role": "حرف", "else": 1}))
     with pytest.raises(ValueError, match="every answer"):
         walker.validate(root(leaf("a", "harf"), leaf("b", "fil", "فعل"), leaf("c", "ism"), leaf("rest", "else")))
 
@@ -135,3 +136,15 @@ def test_every_answer_reaches_a_leaf_except_the_listed_stops():
         stops.setdefault((branch, axis), set()).add(answer)
     print({key: sorted(value) for key, value in stops.items()})
     assert stops == {key: answers for key, (answers, _) in ALLOWED_STOPS.items()}
+
+
+def test_rejects_a_book_reference_without_section_and_page():
+    with pytest.raises(ValueError, match="like '3.1 p60'"):
+        walker.validate(root({**leaf("a", "harf"), "book": "Tasheel"}))
+
+
+def test_the_proof_line_names_the_branches_below_kalima_once_each():
+    said = book_path(["كلمة", "فعل", "فعل"], "1.2 p2")
+    assert said.startswith("فعل (") and "1.2" in said and "2" in said
+    said = book_path(["كلمة", "اسم", "المرفوعات", "فاعل"], "3.1 p60")
+    assert said.split(" (")[0] == "اسم ← المرفوعات ← فاعل"

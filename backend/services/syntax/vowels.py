@@ -101,6 +101,18 @@ def typed_passive(word: str, present: bool) -> bool:
     return len(stem) >= 3 and "َ" in stem[-2][1]
 
 
+def moved_for_wasl(word: str, after: str = "") -> bool:
+    """A last kasra that may be a sukun moved (التقاء الساكنين): the sakin end meets the
+    sakin after hamzat al-wasl (أَقِمِ الصَّلَاةَ، لم يَكْتُبِ الطالبُ، قَدِ اسْتَقَامَ). A noun's
+    kasra of jarr looks the same (بِسْمِ اللَّهِ), so that kasra alone settles nothing."""
+    return after.lstrip()[:1] in ("ا", "ٱ") and word.endswith("ِ")
+
+
+def paused(word: str, after: str = "") -> str:
+    """The word as said alone: a moved kasra back to the sukun a verb's shape is read by."""
+    return word[:-1] + SUKUN if moved_for_wasl(word, after) else word
+
+
 def command_shape(word: str, after_jazm: bool = False, hollow: bool = False) -> bool:
     """فعل أمر by its vowels: a sukun last, and either the voweled hamzat al-wasl before a
     sakin letter (اُكْتُبْ، اِجْلِسْ), two letters only, the hollow verb's (قُمْ، بِعْ، نَمْ),

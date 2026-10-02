@@ -84,9 +84,11 @@ class WordAnalysis(BaseModel):
     sign: str | None = None
     reason: str | None = None
     notes: str | None = None
+    # The book's divisions that named the role (اسم ← ... (تسهيل النحو 3.1 p60)): the proof's source.
+    book: str | None = None
 
     @classmethod
-    def from_raw(cls, w: dict) -> "WordAnalysis":
+    def from_raw(cls, w: dict, from_ai: bool = False) -> "WordAnalysis":
         """Build one from a word dict that may not be trustworthy.
 
         The rule engine's dicts are already the right shape, but the AI's are a
@@ -110,6 +112,8 @@ class WordAnalysis(BaseModel):
             sign=w.get("sign"),
             reason=w.get("reason"),
             notes=w.get("notes"),
+            # a model's answer never walked the book's tree, so it cannot cite it
+            book=None if from_ai else w.get("book"),
         )
 
 

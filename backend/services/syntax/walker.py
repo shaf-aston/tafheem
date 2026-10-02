@@ -11,12 +11,23 @@ Pure and offline; a malformed tree fails loud on first use.
 from __future__ import annotations
 
 import json
+import re
 from functools import lru_cache
+from typing import NamedTuple
 
 from backend.services.nahw_book import RULES, role_table
 from backend.services.syntax.facts import AXES
 
 TREE_FILE = RULES / "naming_tree.json"
+# a book reference is the Tasheel section and its page: "3.1 p60"
+BOOK_REF = re.compile(r"\d+(\.\d+)* p\d+")
+
+
+class Walked(NamedTuple):
+    """The leaf a word reached: its role, the branch names from the root down, the leaf's book section."""
+    role: str
+    path: list[str]
+    book: str
 
 
 def _answers(child: dict) -> list[str]:
@@ -34,8 +45,8 @@ def validate(node: dict, axes: dict = AXES, roles: dict | None = None, left: dic
     roles = role_table() if roles is None else roles
     left = left or {}
     branch = node.get("branch")
-    if not branch or not node.get("book"):
-        raise ValueError(f"naming tree: a node needs `branch` and `book`: {node!r}")
+    if not branch or not BOOK_REF.fullmatch(node.get("book") or ""):
+        raise ValueError(f"naming tree: a node needs `branch` and a `book` like '3.1 p60': {node!r}")
     if ("children" in node) == ("role" in node):
         raise ValueError(f"naming tree: {branch} needs exactly one of `children` or `role`")
     if "role" in node:
@@ -80,8 +91,8 @@ def load() -> dict:
     return tree
 
 
-def walk(values: dict[str, str], tree: dict | None = None) -> tuple[str, list[str]] | None:
-    """(role, path) of the leaf the word reaches, or None where the tree has no child for it."""
+def walk(values: dict[str, str], tree: dict | None = None) -> Walked | None:
+    """The leaf the word reaches, or None where the tree has no child for it."""
     node = tree or load()
     path = [node["branch"]]
     while "children" in node:
@@ -91,4 +102,4 @@ def walk(values: dict[str, str], tree: dict | None = None) -> tuple[str, list[st
         if node is None:
             return None
         path.append(node["branch"])
-    return node["role"], path
+    return Walked(node["role"], path, node["book"])

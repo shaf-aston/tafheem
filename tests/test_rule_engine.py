@@ -82,6 +82,13 @@ def test_a_role_key_the_grid_knows_survives():
     assert word.role_key == "fail"
 
 
+def test_only_the_books_tree_may_cite_the_book():
+    """A proof line says which book division named the word; a model's answer walked none."""
+    raw = {"word": "زيدٌ", "role": "فاعل", "book": "اسم ← فاعل (تسهيل النحو 3.1، ص 60)"}
+    assert WordAnalysis.from_raw(raw).book == raw["book"]
+    assert WordAnalysis.from_raw(raw, from_ai=True).book is None
+
+
 def test_a_word_with_no_key_at_all_is_accepted_uncoloured():
     """An older AI reply, or one that skipped the field; not an error."""
     assert WordAnalysis.from_raw({"word": "زيدٌ"}).role_key is None

@@ -126,7 +126,15 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
       {word.reason && (
         unsure
           ? <Panel label="Why no name (لماذا لا اسم)" accent><ArabicText as="p" size="sm">{word.reason}</ArabicText></Panel>
-          : <Panel label="Proof (الدليل)" accent>{word.reason}</Panel>
+          : (
+            <Panel label="Proof (الدليل)" accent>
+              {word.reason}
+              {/* the book's divisions that named the word, so the proof has a source */}
+              {word.book && (
+                <ArabicText as="p" size="tiny" className="mt-1.5 text-[var(--text-dim)]">{word.book}</ArabicText>
+              )}
+            </Panel>
+          )
       )}
       {word.notes && <Panel label={unsure ? 'In plain words' : 'Notes'}>{word.notes}</Panel>}
 
