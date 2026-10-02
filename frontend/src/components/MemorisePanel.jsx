@@ -59,6 +59,11 @@ const withinPart = (label) => label.split(':').pop()
 // How long a finished page stays up, marked, before the next one turns in.
 const TURN_AFTER_MS = recite['turn-after-s'] * 1000
 
+// A page as a step on the back arrow's path: its first line, "2:6", with the
+// book in front when it is not the Qur'an, "jazariyya/3:12".
+const PLACE = /^(?:([a-z]+)\/)?(\d+):(\d+)$/
+const placeOf = (bookId, part, line) => `${bookId === DEFAULT_BOOK ? '' : `${bookId}/`}${part}:${line.id}`
+
 // Two ways to answer the same gap. Typing is recall; choosing is recognition,
 // which is easier, and the only one that works without an Arabic keyboard.
 const WAYS = [
@@ -71,7 +76,7 @@ const WAYS = [
   { id: 'recite', label: 'Recite it' },
 ]
 
-export default function MemorisePanel({ accent }) {
+export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const [bookId, setBookId] = useState(DEFAULT_BOOK)
   // What the reader picked, which is nothing until they pick; the part
   // actually open is derived below, once the book has said what its parts are.
@@ -316,12 +321,52 @@ export default function MemorisePanel({ accent }) {
     openPart(partId, n)
     scrollToEl(card.current, 'top')
   }
+  // The part `by` either side of this one: past a surah's last page is the next
+  // surah, before its first is the one before.
+  const partBy = (by) => parts?.[parts.findIndex((p) => p.id === part) + by]
   const turnPage = () => {
     if (pageNumber + 1 < pages.length) return carryOnAt(part, pageNumber + 1)
-    const at = parts?.findIndex((p) => p.id === part) ?? -1
-    const nextPart = at >= 0 ? parts[at + 1] : null
-    if (nextPart) carryOnAt(nextPart.id, 0)
+    if (partBy(1)) carryOnAt(partBy(1).id, 0)
   }
+  // The pages of a part, fetched (or cached), and which holds a line (-1 for none).
+  const pageOfLine = (b, partId, lineId) => client.fetchQuery(bookPartQuery(b, partId)).then(({ lines }) => {
+    const all = pagesOf(lines, BOOKS[b].wordsPerPage)
+    return [all.findIndex((p) => p.some((line) => line.id === lineId)), all]
+  })
+  const stepPage = (by) => {
+    const n = pageNumber + by
+    if (n >= 0 && n < pages.length) return openPage(n)
+    const next = partBy(by)
+    if (by > 0) return openPart(next.id, 0)
+    pageOfLine(bookId, next.id).then(([, all]) => openPart(next.id, all.length - 1)).catch(() => {})
+  }
+  const atStart = pageNumber === 0 && !partBy(-1)
+  const atEnd = pageNumber >= pages.length - 1 && !partBy(1)
+
+  // Each page opened is a step the back arrow returns to; a step returned to,
+  // or handed over from another tab, opens its page here.
+  // The page landed on is that step already, even when the step named a later
+  // line on it ("2:255" opens the page from 2:250): recording it again would
+  // push a new step and trap the back arrow there.
+  const arriving = useRef(false)
+  const landed = useRef(null)
+  useEffect(() => {
+    const [, b = DEFAULT_BOOK, p, line] = PLACE.exec(incoming ?? '') ?? []
+    if (!p || !BOOKS[b]) return
+    arriving.current = true
+    pageOfLine(b, Number(p), Number(line)).then(([n, all]) => {
+      const at = Math.max(n, 0)
+      landed.current = placeOf(b, Number(p), all[at][0])
+      if (b !== bookId) openBook(b)
+      openPart(Number(p), at)
+    }).catch(() => {}).finally(() => { arriving.current = false })
+  }, [arrival])  // eslint-disable-line react-hooks/exhaustive-deps
+  const here = page && placeOf(bookId, part, page[0])
+  useEffect(() => {
+    if (!here || arriving.current || here === landed.current) return
+    landed.current = null
+    onVisit?.(here)
+  }, [here])  // eslint-disable-line react-hooks/exhaustive-deps
 
   // Reciting from somewhere else in the Qur'an. Being tested on a page, the
   // reader is asked first, since leaving it is their call; just reciting,
@@ -337,10 +382,8 @@ export default function MemorisePanel({ accent }) {
   // name, and Stay holds for the whole surah until reciting starts again.
   const where = elsewhere && `${elsewhere.surah}:${elsewhere.ayah}`
   const [stayed, setStayed] = useState(null)
-  const goElsewhere = () => client.fetchQuery(bookPartQuery(bookId, elsewhere.surah)).then(({ lines }) => {
-    const n = pagesOf(lines, book.wordsPerPage).findIndex((p) => p.some((line) => line.id === elsewhere.ayah))
-    if (n >= 0) carryOnAt(elsewhere.surah, n)
-  })
+  const goElsewhere = () => pageOfLine(bookId, elsewhere.surah, elsewhere.ayah)
+    .then(([n]) => { if (n >= 0) carryOnAt(elsewhere.surah, n) })
   useEffect(() => {
     if (elsewhere && way === 'recite' && listening && !hidden) goElsewhere()
   }, [where])  // eslint-disable-line react-hooks/exhaustive-deps
@@ -352,6 +395,14 @@ export default function MemorisePanel({ accent }) {
     const timer = setTimeout(turnPage, TURN_AFTER_MS)
     return () => clearTimeout(timer)
   }, [way, listening, reciting.finished])  // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Above the page and again under it, so a page read to its end turns from there.
+  const pageSteps = (
+    <span className="flex items-center gap-2">
+      <StepButton onClick={() => stepPage(-1)} disabled={atStart}>Previous</StepButton>
+      <StepButton onClick={() => stepPage(1)} disabled={atEnd}>Next</StepButton>
+    </span>
+  )
 
   return (
     <div className="panel">
@@ -433,17 +484,7 @@ export default function MemorisePanel({ accent }) {
                   accent={accent}
                 />
               </span>
-              {/* Stepping only means something when there is another page. */}
-              {pages.length > 1 && (
-                <>
-                  <StepButton onClick={() => openPage(pageNumber - 1)} disabled={pageNumber === 0}>
-                    Previous
-                  </StepButton>
-                  <StepButton onClick={() => openPage(pageNumber + 1)} disabled={pageNumber >= pages.length - 1}>
-                    Next
-                  </StepButton>
-                </>
-              )}
+              {pageSteps}
               {/* One short live line: where reciting is following from, or the
                   one thing worth knowing before typing. Where to begin is
                   chosen on the page itself, a word at a time. */}
@@ -585,6 +626,7 @@ export default function MemorisePanel({ accent }) {
               )}
             </div>
           )}
+          <div className="flex justify-center">{pageSteps}</div>
         </>
       )}
     </div>

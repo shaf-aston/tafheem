@@ -25,7 +25,6 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
   const [open, setOpen] = useState(false)
   const [typed, setTyped] = useState('')
   const [at, setAt] = useState(0)
-  const [flip, setFlip] = useState(false)
   const [up, setUp] = useState(false)
   const box = useRef(null)
   const pill = useRef(null)
@@ -89,6 +88,17 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
     if (found >= 0) spin(found)
   }
 
+  // Kept on screen by measuring the card itself, never a guess at its width:
+  // nudged in from whichever edge it crosses, as far from it as the pill is.
+  // Layout sizes, not the animated box, which starts the rise scaled down.
+  const fit = (card) => {
+    if (!card) return
+    const left = box.current.getBoundingClientRect().left
+    const room = document.documentElement.clientWidth
+    const edge = Math.min((room - card.offsetWidth) / 2, left)
+    card.style.translate = `${Math.max(edge - left, Math.min(0, room - edge - left - card.offsetWidth))}px 0`
+  }
+
   return (
     <div ref={box} className={`relative ${className}`.trim()} style={accent ? { '--c': accent } : undefined}>
       <button
@@ -101,9 +111,7 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
         disabled={disabled}
         onClick={() => {
           if (readOnly) return
-          // Opens leftwards when a pill sits too near the right edge for the card.
           const at = pill.current.getBoundingClientRect()
-          setFlip(at.left + (narrow ? 144 : 384) > window.innerWidth)
           // Opens upwards when the card would run off the bottom and there is more room above.
           const below = window.innerHeight - at.bottom
           setUp(below < CARD_HEIGHT && at.top > below)
@@ -118,7 +126,7 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
       </button>
 
       {open && (
-        <div onKeyDown={onKeyDown} className={`wheel-card rise-in ${narrow ? 'wheel-card-narrow' : ''} ${flip ? 'wheel-card-flip' : ''} ${up ? 'wheel-card-up' : ''}`}>
+        <div ref={fit} onKeyDown={onKeyDown} className={`wheel-card rise-in ${narrow ? 'wheel-card-narrow' : ''} ${up ? 'wheel-card-up' : ''}`}>
           {typeable && (
             <input
               ref={typeBox}
