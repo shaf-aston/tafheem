@@ -634,9 +634,11 @@ function Line({ line, flow, index, blanks, answers, checked, meaning, choices, a
     if (!blanks.has(key)) {
       return (
         <Fragment key={key}>
+          {/* The display size, as the Qur'an tab and the surah reader set the
+              text being read; the reading size made the mushaf look smaller. */}
           {recite
             ? <RecitedWord word={word} at={recite.from + w} recite={recite} accent={accent} onStartAt={onStartAt} />
-            : <ArabicText size="base">{word}</ArabicText>}
+            : <ArabicText size="lg">{word}</ArabicText>}
           {hemistichBreak}
         </Fragment>
       )
@@ -756,7 +758,7 @@ function RecitedWord({ word, at, recite, accent, coverWidth, onStartAt }) {
     />
   ) : (
     <ArabicText
-      size="base"
+      size="lg"
       title={wasShown ? SHOWN.label : look?.label}
       style={{
         color: look?.colour,
@@ -852,7 +854,7 @@ function Gap({ word, options, value, checked, accent, lineLabel, typeWidth, onCh
       ) : (
       <ArabicText
         as="input"
-        size="base"
+        size="lg"
         value={value}
         onChange={(event) => onChange(event.target.value)}
         readOnly={checked}
