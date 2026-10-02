@@ -86,10 +86,10 @@ def test_the_control_section_is_sound():
     ("hijri year zero", lambda s: s["events"][0].update(hijri="0 AH"), "not like '5 AH'"),
     ("missing summary", lambda s: s["events"][0].update(summary=" "), "no summary"),
     ("no events", lambda s: s.update(events=[]), "no events"),
-    ("a date with no source", lambda s: s["events"][0].update(dates=[{"says": "c. 570"}]), "exactly one"),
+    ("a date with no source", lambda s: s["events"][0].update(dates=[{"says": "c. 570"}]), "not {says, ref}"),
     ("a date that says nothing", lambda s: s["events"][0].update(dates=[{"says": " ", "ref": {"book": "raheeq"}}]), "says nothing"),
     ("a page on a book with no page link",
-     lambda s: s["events"][0].update(refs=[{"book": "raheeq", "page": "12"}]), "no page link"),
+     lambda s: s["events"][0].update(refs=[{"book": "raheeq", "page": "12"}]), "disagree"),
 ])
 def test_each_fault_is_caught_by_name(name, change, said):
     faults = broken(change)

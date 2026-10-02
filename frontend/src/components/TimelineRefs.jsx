@@ -10,6 +10,7 @@
  * reference opens the Qur'an tab at its first ayah, because that tab reads one
  * ayah at a time. A hadith reference opens the collection where its number was
  * checked, named in the data as `checked` with the link shape in library.json.
+ * A book reference with a `page` opens that page the same way.
  *
  * A hadith number with no `checked` on it keeps the amber dot and says so: no
  * hadith collection is installed here, so the app itself can confirm nothing,
