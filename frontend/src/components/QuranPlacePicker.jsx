@@ -16,7 +16,7 @@ import { SURAH_CHOICES } from '../lib/surahRef'
 import WheelPicker from './ui/WheelPicker'
 
 export default function QuranPlacePicker({ surah, ayah, accent, onReadSurah, onOpenAyah }) {
-  // The surah in the first select: the open one, until another is picked here.
+  // The surah in the first wheel: the open one, until another is picked here.
   const [picked, setPicked] = useState(surah)
   const [followed, setFollowed] = useState(surah)
   if (surah !== followed) { setFollowed(surah); setPicked(surah) }

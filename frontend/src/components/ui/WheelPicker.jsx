@@ -95,8 +95,8 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
         ref={pill}
         type="button"
         aria-label={label}
-        aria-haspopup="listbox"
-        aria-expanded={open}
+        aria-haspopup={readOnly ? undefined : 'listbox'}
+        aria-expanded={readOnly ? undefined : open}
         aria-disabled={readOnly || undefined}
         disabled={disabled}
         onClick={() => {

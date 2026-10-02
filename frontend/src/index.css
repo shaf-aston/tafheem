@@ -1026,7 +1026,7 @@ dialog::backdrop {
   border-bottom: 2px solid var(--gap-border);
   border-radius: 0;
 }
-.memorise-gap .wheel-pill:focus-visible { outline: none; border-bottom-color: var(--c); box-shadow: 0 2px 0 0 color-mix(in srgb, var(--c) 40%, transparent); }
+.memorise-gap .wheel-pill:focus-visible:not(:disabled) { outline: none; border-bottom-color: var(--c); box-shadow: 0 2px 0 0 color-mix(in srgb, var(--c) 40%, transparent); }
 
 /* Every tab's outer column: one gap between its blocks, from theme.json space.panel. */
 .panel > * + * { margin-top: var(--space-panel); }
