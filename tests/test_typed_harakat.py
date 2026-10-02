@@ -222,3 +222,23 @@ def test_after_a_pointer_the_noun_carrying_a_verb_is_no_mubtada():
             token(2, "رجل", "رجل", "NOM", 0, "---", stt="i", cas="n"),
             token(3, "يعمل", "عمل", "VRB", 2, "MOD", vox="a", asp="i")]
     assert roles(["هَذَا", "رَجُلٌ", "يَعْمَلُ"], toks)[1] != "مبتدأ"
+
+
+def test_after_illa_in_a_negated_sentence_the_noun_in_its_case_is_the_badal():
+    # مَا جَاءَ أَحَدٌ إِلَّا زَيْدٌ, as one parser draws it: زيد under إلا, which is no preposition
+    toks = [token(1, "ما", "ما", "PRT", 2, "MOD", pos_camel="part_neg"),
+            token(2, "جاء", "جاء", "VRB", 0, "---", **VERB),
+            token(3, "أحد", "أحد", "NOM", 2, "SBJ", cas="n"),
+            token(4, "إلا", "إلا", "PRT", 2, "MOD", pos_camel="part"),
+            token(5, "زيد", "زيد", "PROP", 4, "OBJ", pos_camel="noun_prop")]
+    named = roles(["مَا", "جَاءَ", "أَحَدٌ", "إِلَّا", "زَيْدٌ"], toks)
+    assert named[3] != "حرف جر" and named[4] == "بدل"
+
+
+def test_a_dual_describes_only_a_dual():
+    # مُحَمَّدٌ وَعَلِيٌّ مُجْتَهِدَانِ, drawn with the dual under محمد: it is the khabar, not his صفة
+    toks = [token(1, "محمد", "محمد", "PROP", 0, "---", pos_camel="noun_prop", num="s"),
+            token(2, "و+", "و+", "PRT", 1, "MOD", pos_camel="conj", token_type="prc2"),
+            token(3, "علي", "علي", "NOM", 2, "OBJ", cas="n", num="s"),
+            token(4, "مجتهدان", "مجتهد", "NOM", 1, "MOD", cas="n", num="d")]
+    assert roles(["مُحَمَّدٌ", "وَعَلِيٌّ", "مُجْتَهِدَانِ"], toks) == ["مبتدأ", "معطوف", "خبر"]

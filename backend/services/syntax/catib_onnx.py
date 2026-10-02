@@ -228,7 +228,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
             "lemma": dediac_ar(a.get("lex", word)),
             "pos": catib6, "pos_camel": a.get("pos", ""), "ud": catib6,
             "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
-            "stt": a.get("stt", "na"), "cas": a.get("cas", "na"),
+            "stt": a.get("stt", "na"), "cas": a.get("cas", "na"), "num": a.get("num", "na"),
             "token_type": "baseword",
         }
         if not str(a.get("prc1", "")).endswith("_prep"):
@@ -266,7 +266,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
                 "form": form, "lemma": dediac_ar(a.get("lex", tok)),
                 "pos": catib6, "pos_camel": a.get("pos", ""), "ud": ud,
                 "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
-                "stt": a.get("stt", "na"), "cas": a.get("cas", "na"),
+                "stt": a.get("stt", "na"), "cas": a.get("cas", "na"), "num": a.get("num", "na"),
                 # the analyser's own word-shape, e.g. 1ا2ِ3 for فاعل: how a participle is told from a noun
                 "pattern": a.get("pattern", ""),
                 "token_type": "baseword",

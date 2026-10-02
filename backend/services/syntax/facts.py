@@ -167,9 +167,13 @@ def same_case(token: dict, head: dict) -> bool:
 
 
 def agrees(token: dict, head: dict) -> bool:
-    """A na't matches its noun in case and in "the": a word in idafa counts as
-    definite, so an indefinite word after a definite or construct noun does not agree."""
-    return same_case(token, head) and not (token.get("stt") == "i" and head.get("stt") in ("d", "c"))
+    """A na't matches its noun in case, in "the" and in number (Tasheel 3.10.1): a word in
+    idafa counts as definite, so an indefinite word after a definite or construct noun does
+    not agree; a dual describes only a dual (مُحَمَّدٌ وَعَلِيٌّ مُجْتَهِدَانِ: the khabar of both).
+    Only the dual is compared: a plural not of people takes a singular na't (الكتبُ الجديدةُ);
+    and only a noun's: a verb reading's number is its doer's (ضَحِكًا read as ضَحِكَا)."""
+    dual = [t.get("num") == "d" for t in (token, head) if t["pos"] in ("NOM", "PROP")]
+    return same_case(token, head) and not (token.get("stt") == "i" and head.get("stt") in ("d", "c"))         and len(set(dual)) < 2
 
 
 def is_state_word(token: dict) -> bool:
@@ -303,8 +307,9 @@ def jarr_takes(token: dict, s: Sentence) -> bool:
     """A preposition works only on the noun straight after it (Tasheel 1.7 p18): a second
     noun the parser hung on it (لله الحمدُ) is not its majrur."""
     head = s.head(token)
-    if not (token["rel"] == "OBJ" and head and head["pos"] == "PRT" and not is_called_noun(head)):
-        return False
+    if not (token["rel"] == "OBJ" and head and head["pos"] == "PRT" and not is_called_noun(head)
+            and (head.get("pos_camel") == "prep" or is_one(head["lemma"], "jarr"))):
+        return False  # إلا، و: a particle that is no preposition takes no majrur
     return not any(t["pos"] in ("NOM", "PROP") and head["id"] < t["id"] < token["id"] for t in s.tokens)
 
 
@@ -333,6 +338,13 @@ def _follows(token: dict, s: Sentence) -> str:
     bare name after a noun with ال, a listed تأكيد word) that a plain na't lacks."""
     if s.asked_of(token) or calling_head(token, s) or with_waw(token, s):
         return "none"  # غيرُ خالدٍ after a complete clause is the مستثنى, not a صفة
+    # ما جاء أحدٌ إلا زيدٌ: after إلا in a negated complete sentence the excepted noun in the
+    # case of the noun before إلا is its بدل (Tasheel 3.2 p67)
+    excepting = s.by_id.get(token["id"] - 1)
+    if excepting and excepting["pos"] == "PRT" and is_one(excepting["lemma"], "istithna")             and s.negated_before(excepting):
+        before = previous_noun(excepting, s)
+        if before and typed_or_parsed_case(token) and typed_or_parsed_case(token) == typed_or_parsed_case(before):
+            return "badal"
     head = s.head(token)
     # هذا البستانُ: the noun with ال a pointer points at, hung on it or (as some parses
     # have it) under it; a pointer is mabni, so its own vowel says nothing of the case
@@ -626,8 +638,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         # noun is the khabar and the verb its صفة
         if not pointer and any(c["rel"] == "PRD" or (is_verb(c) and c["id"] > token["id"]) for c in kids):
             return "subject"
-        if token["pos"] == "NOM" and s.verbless:
-            loose = [t for t in s.tokens if t["rel"] == "---" and t["pos"] == "NOM"]
+        if token["pos"] in ("NOM", "PROP") and s.verbless:
+            loose = [t for t in s.tokens if t["rel"] == "---" and t["pos"] in ("NOM", "PROP")]
             return "subject" if not loose or token is loose[0] else "predicate"
     if rel == "MOD" and head:
         mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
