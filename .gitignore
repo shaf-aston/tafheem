@@ -244,3 +244,6 @@ backend/data/hadith/*.json
 backend/data/speech_cache/
 # quran.com word list, fetched once by backend/scripts/build_word_audio.py.
 backend/data/quran/wbw_words.json
+
+# Ear training results fetched from Kaggle (models are hundreds of MB)
+backend/data/models/finetune-ear/
