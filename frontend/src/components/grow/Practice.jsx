@@ -21,6 +21,7 @@ import Disclosure from '../ui/Disclosure'
 import ErrorAlert from '../ui/ErrorAlert'
 import MicButton from '../ui/MicButton'
 import PrimaryButton from '../ui/PrimaryButton'
+import { Skeleton } from '../ui/Skeleton'
 
 const say = sayIn('en')
 const NEED = config['clean-days']
@@ -70,7 +71,7 @@ function useAyahText(step) {
     for (const ayah of found.data?.ayahs ?? []) out[`${surah}:${ayah.ayah}`] = ayah.arabic
     return out
   }, [found.data, surah])
-  return { text, loading: found.isLoading, failed: found.isError }
+  return { text, loading: found.isLoading, error: found.isError && found.error, retry: found.refetch }
 }
 
 /** One honest line under a recitation. Nothing is called right that was not. */
@@ -165,8 +166,8 @@ function Recital({ step, record, accent, onRecited, onGo, onBloom }) {
 
   return (
     <>
-      {ayahText.loading && <p className="grow-verdict">{say('Loading the ayahs…')}</p>}
-      {ayahText.failed && <ErrorAlert inline title={say('Could not load the ayahs')} />}
+      {ayahText.loading && <Skeleton className="h-10 w-full mb-3" />}
+      {ayahText.error && <div className="mb-3"><ErrorAlert inline title={say('Could not load the ayahs')} error={ayahText.error} onRetry={ayahText.retry} /></div>}
 
       <p
         className="leading-loose text-center"
