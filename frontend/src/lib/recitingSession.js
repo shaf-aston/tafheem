@@ -445,7 +445,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
                   set(({ sure }) => ({
                     sure: folded
                       ? { ...sure, before: surer(sure.before, placed) }
-                      : { ...sure, now: { ...sure.now, ...placed } },
+                      : { ...sure, now: placed },
                   }))
                 },
               })
