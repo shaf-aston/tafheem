@@ -15,15 +15,16 @@ package's `__init__.py`.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import is_mabni, is_one, role_table
+from backend.services.nahw_book import is_mabni, is_one, named_roles, role_table
 from backend.services.syntax import facts, walker
-from backend.services.syntax.facts import PRESENT_PREFIX, family_of, is_verb
+from backend.services.syntax.facts import PRESENT_PREFIX
 from backend.services.syntax.vowels import (
     CASE_NAME, SUKUN, command_shape, letters, typed_case)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
 ROLES = role_table()
+NAMED = named_roles()
 
 
 def _entry(role: str | None) -> tuple:
@@ -44,27 +45,6 @@ def roles_keyed(*keys: str) -> tuple[str, ...]:
 def tone(role: str | None) -> str | None:
     """The colour the bracket diagram draws this role in."""
     return _entry(role)[1]
-
-
-def takes_tamyeez(token: dict, tokens: list[dict]) -> bool:
-    """A tamyeez stands after a number or a measure, or after a verb of tamyeez al-nisba."""
-    head = next((t for t in tokens if t["id"] == token["head"]), None)
-    if head and is_one(head["lemma"], "tamyeez_verbs"):
-        return True
-    return any(is_one(t["lemma"], "tamyeez_head") or is_one(strip_diacritics(t["form"]), "tamyeez_head")
-               for t in tokens if t["id"] < token["id"])
-
-
-def completes_kaada(token: dict, tokens: list[dict]) -> bool:
-    """The present verb that finishes a كاد-type verb; its clause is that verb's khabar."""
-    head = next((t for t in tokens if t["id"] == token["head"]), None)
-    return bool(head and is_verb(token) and family_of(head, tokens) == "kaada")
-
-
-def name(token: dict, tokens: list[dict]) -> str | None:
-    """The role for one word, or None when the book's tree has no leaf for it."""
-    found = walker.walk(facts.of(token, tokens))
-    return found[0] if found else None
 
 
 def base_tokens(words: list[str], tokens: list[dict]) -> list[dict]:
@@ -96,15 +76,17 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         # letters at the end that belong to an attached pronoun, not to the word
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
                                 if t["head"] == token["id"] and t["form"].startswith("+"))
-    named = [name(token, tokens) for token in bases]
+    answers = {t["id"]: a for t, a in zip(tokens, facts.of_sentence(tokens))}
+    # the book's tree has no leaf for some answers: that word stays unnamed
+    named = [(found[0] if (found := walker.walk(answers[token["id"]])) else None) for token in bases]
     # a particle with a مجرور under it is a حرف جر: the one name, for card and picture
     for index, token in enumerate(bases):
         if token["pos"] == "PRT" and any(
-                named[j] == "مجرور" for j, kid in enumerate(bases) if kid["head"] == token["id"]):
-            named[index] = "حرف جر"
+                named[j] == NAMED.majroor for j, kid in enumerate(bases) if kid["head"] == token["id"]):
+            named[index] = NAMED.harf_jarr
     # the parser's tense goes with a فعل, so a card CAMeL took for a noun (ضُرِبَ) still says ماضٍ
     return [{"role": role, "case": _ending(role, token, bases[i - 1] if i else None),
-             "aspect": token.get("asp") if role == "فعل" else None}
+             "aspect": token.get("asp") if role == NAMED.fil else None}
             for i, (role, token) in enumerate(zip(named, bases))]
 
 
@@ -113,23 +95,23 @@ def opens_with_verb(roles: list[str | None]) -> bool:
     a fronted adverb or a fronted object leaves it verbal (لم يكتب، متى سافر، القرآنَ قرأ):
     the book judges a sentence by the word it rests on, not the one put first."""
     for role in roles:
-        if role == "فعل":
+        if role == NAMED.fil:
             return True
-        if role in ("مبتدأ", "اسم إن", "خبر"):
+        if role in (NAMED.mubtada, NAMED.ism_inna, NAMED.khabar):
             return False
     return False
 
 
 def _ending(role: str | None, token: dict, before: dict | None) -> str | None:
     """What to print under the word: a case for a noun or a present verb, else mabni."""
-    if role == "فعل":
+    if role == NAMED.fil:
         # not bare_letters: it folds the أ of أَجْلِسُ into an alef
         present = strip_diacritics(token["typed"])[:1] in PRESENT_PREFIX and token.get("asp") == "i"
         return _mood(token["typed"], before) if present else "mabni"
-    if role in ("حرف", "حرف جر"):
+    if role in (NAMED.harf, NAMED.harf_jarr):
         return "mabni"
     # يَا وَلَدُ: a single called noun is built on the damma (in the place of nasb)
-    if role == "منادى" and typed_case(token["typed"]) == "u":
+    if role == NAMED.munada and typed_case(token["typed"]) == "u":
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case

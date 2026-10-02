@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 from functools import lru_cache
 from pathlib import Path
+from types import SimpleNamespace
 
 RULES = Path(__file__).parent.parent / "data" / "nahw_rules"
 FILE = RULES / "closed_words.json"
@@ -46,10 +47,29 @@ def is_plain_noun(token: dict) -> bool:
 
 
 @lru_cache(maxsize=1)
+def _roles() -> dict:
+    return json.loads(ROLES_FILE.read_text(encoding="utf-8"))
+
+
 def role_table() -> dict[str, tuple[str | None, str | None]]:
     """Every role the page can name, as (card colour key, bracket tone)."""
-    roles = json.loads(ROLES_FILE.read_text(encoding="utf-8"))["roles"]
-    return {role: (drawn["key"], drawn["tone"]) for role, drawn in roles.items()}
+    return {role: (drawn["key"], drawn["tone"]) for role, drawn in _roles()["roles"].items()}
+
+
+@lru_cache(maxsize=1)
+def named_roles() -> SimpleNamespace:
+    """The roles the code itself tests for, by id (`named_roles().mubtada`); roles.json spells them."""
+    return SimpleNamespace(**_roles()["named"])
+
+
+def clause_of(role: str | None) -> dict | None:
+    """{job, case} of the verb clause hung on a word wearing this role, or None."""
+    return _roles()["roles"].get(role, {}).get("clause_of")
+
+
+def role_units() -> list[dict]:
+    """The units a role heads in the bracket picture, in the order they are tested."""
+    return _roles()["units"]
 
 
 @lru_cache(maxsize=1)

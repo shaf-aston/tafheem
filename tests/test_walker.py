@@ -2,6 +2,7 @@
 import pytest
 
 from backend.services.syntax import walker
+from backend.services.syntax.facts import AXES
 
 
 def leaf(branch, answer, role="حرف"):
@@ -74,3 +75,63 @@ def test_rejects_listed_answer_outside_axis_or_repeated_across_children():
         walker.validate(root({**leaf("a", "harf"), "is": ["harf", "dual"]}))
     with pytest.raises(ValueError, match="same answer"):
         walker.validate(root({**leaf("a", "harf"), "is": ["harf", "fil"]}, leaf("b", "fil", "فعل")))
+
+
+def test_rejects_a_nested_split_naming_an_answer_its_parent_did_not_take():
+    group = {"branch": "g", "book": "x", "is": "harf", "split": "kind", "children": [leaf("f", "fil", "فعل")]}
+    with pytest.raises(ValueError, match="not one of"):
+        walker.validate(root(group, leaf("rest", "else", "فعل")))
+
+
+def test_rejects_empty_children_a_non_true_else_and_an_else_with_nothing_left():
+    with pytest.raises(ValueError, match="empty"):
+        walker.validate(root({"branch": "g", "book": "x", "is": "harf", "split": "kind", "children": []}))
+    with pytest.raises(ValueError, match="must be true"):
+        walker.validate(root({"branch": "a", "book": "x", "role": "حرف", "else": 1}))
+    with pytest.raises(ValueError, match="every answer"):
+        walker.validate(root(leaf("a", "harf"), leaf("b", "fil", "فعل"), leaf("c", "ism"), leaf("rest", "else")))
+
+
+# Where the real tree has no child for an answer its axis can give, a word stops unnamed
+# (a gap, never a guess). Each stop is listed with the book reason; a new one is a new
+# hole and must be argued for here or filled in naming_tree.json.
+VERB_ONLY = {"object", "second_object", "absolute", "place_time"}
+ALLOWED_STOPS = {
+    ("إن وأخواتها", "slot"): (VERB_ONLY | {"specification", "none"},
+                              "إن takes an اسم and a خبر; the particle has no object, and the other places are a verb's"),
+    ("كان وأخواتها", "slot"): (VERB_ONLY | {"specification", "none"},
+                               "كان names its اسم and خبر; an object of it stays unnamed"),
+    ("كاد وأخواتها", "slot"): (VERB_ONLY | {"specification", "none"},
+                               "كاد names its اسم and خبر; an object of it stays unnamed"),
+    ("ظن وأخواتها", "voice"): ({"passive", "none"},
+                               "a passive ظن has no places of its own (none cannot occur: ظن is a verb)"),
+    ("ظن المبنية للمعلوم", "slot"): ({"predicate", "absolute", "place_time", "none"},
+                                     "ظن's places are its doer and two objects; a khabar or an adverb is not one"),
+    ("الفعل", "slot"): ({"predicate", "none"}, "a khabar is not a place a verb gives"),
+    ("الفاعل ونائبه", "voice"): ({"none"}, "a doer always has its verb above it"),
+    ("ما له عامل آخر", "slot"): (VERB_ONLY | {"none"},
+                                 "only a verb gives those places; none is a word the nominal sentence cannot place"),
+}
+
+
+def dead_ends(node, path=(), left=None):
+    """(branch, axis, answer) for every answer a split's axis can give that no child takes."""
+    left = left or {}
+    if "role" in node:
+        return
+    axis = node["split"]
+    allowed = left.get(axis, AXES[axis][0])
+    taken = {a for c in node["children"] if "is" in c for a in walker._answers(c)}
+    rest = tuple(a for a in allowed if a not in taken)
+    if not any("else" in c for c in node["children"]):
+        yield from ((node["branch"], axis, a) for a in rest)
+    for c in node["children"]:
+        yield from dead_ends(c, path, {**left, axis: tuple(walker._answers(c)) if "is" in c else rest})
+
+
+def test_every_answer_reaches_a_leaf_except_the_listed_stops():
+    stops = {}
+    for branch, axis, answer in dead_ends(walker.load()):
+        stops.setdefault((branch, axis), set()).add(answer)
+    print({key: sorted(value) for key, value in stops.items()})
+    assert stops == {key: answers for key, (answers, _) in ALLOWED_STOPS.items()}

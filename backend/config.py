@@ -31,6 +31,8 @@ class Settings(BaseSettings):
 
     # AI is called only when rule-engine confidence is below this.
     confidence_threshold: float = 0.72
+    # Longer sentences are refused (422): the parser, the rules and the AI prompt all grow with length.
+    max_sentence_words: int = Field(default=160, gt=0)  # the longest ayah (2:282) is about 130 words
     # Low so grammar answers repeat. Every AI backend reads this one.
     ai_temperature: float = 0.1
     iraab_max_tokens: int = 2000

@@ -8,6 +8,7 @@ from typing import Any, Callable, TypeVar
 
 from fastapi import HTTPException
 
+from backend.config import get_settings
 from backend.services.arabic_text import has_arabic, words
 
 logger = logging.getLogger(__name__)
@@ -24,14 +25,18 @@ def normalize_text(text: str, field: str = "input") -> str:
 
 
 def arabic_sentence(text: str, field: str = "input") -> str:
-    """A sentence ready to analyse: non-empty, Arabic, and words only.
+    """A sentence ready to analyse: non-empty, Arabic, words only, and no longer than
+    settings.max_sentence_words (HTTP 422).
 
     An ayah pasted from the Qur'an tab carries its pause signs and its number;
     left in, the tagger and the AI each gave the ayah number a grammar card.
     """
     text = normalize_text(text, field)
     require_arabic(text, field)
-    return " ".join(words(text))
+    kept = words(text)
+    if len(kept) > (limit := get_settings().max_sentence_words):
+        raise HTTPException(status_code=422, detail=f"{field} is longer than {limit} words.")
+    return " ".join(kept)
 
 
 def require_arabic(text: str, field: str = "input") -> None:

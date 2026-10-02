@@ -1,11 +1,11 @@
 {
- "_comment": "Every role the Nahw page can name, and how each is drawn: `key` is the card's colour key (the contract's, schemas.ROLE_KEYS; null for a role said only inside a unit the diagram draws) and `tone` the bracket diagram's. One table, so a role added once gets both. Read by nahw_book.role_table; a role missing here is left uncoloured. Every role here has a reason in teacher.json (tests/test_rule_engine.py).",
+ "_comment": "Every role the Nahw page can name, and how each is drawn: `key` is the card's colour key (the contract's, schemas.ROLE_KEYS; null for a role said only inside a unit the diagram draws) and `tone` the bracket diagram's. One table, so a role added once gets both. Read by nahw_book.role_table; a role missing here is left uncoloured. Every role here has a reason in teacher.json (tests/test_rule_engine.py). `clause_of` on a role: the verb clause hung on a word with that role is this `job`, standing in this case (u / a / i). `named`: the roles the code itself tests for, by the id it uses (nahw_book.named_roles). `units`, in order: a word whose child wears the `child` role heads a unit labelled `label` (a tarkeeb term), only when the head is a particle if `on_particle`, and is itself called `head_as` inside it.",
  "roles": {
   "فعل": {"key": "fil", "tone": "fil"},
   "فاعل": {"key": "fail", "tone": "fail"},
   "نائب فاعل": {"key": "fail", "tone": "fail"},
-  "مبتدأ": {"key": "mubtada", "tone": "fail"},
-  "اسم كان": {"key": "mubtada", "tone": "fail"},
+  "مبتدأ": {"key": "mubtada", "tone": "fail", "clause_of": {"job": "خبر", "case": "u"}},
+  "اسم كان": {"key": "mubtada", "tone": "fail", "clause_of": {"job": "خبر كان", "case": "a"}},
   "اسم إن": {"key": "mubtada", "tone": "fail"},
   "اسم كاد": {"key": "mubtada", "tone": "fail"},
   "خبر": {"key": "khabar", "tone": "mafool"},
@@ -31,5 +31,17 @@
   "موصوف": {"key": null, "tone": "fail"},
   "اسم موصول": {"key": null, "tone": "rel"},
   "صلة": {"key": null, "tone": "rel"}
- }
+ },
+ "named": {
+  "fil": "فعل", "fail": "فاعل", "harf": "حرف", "harf_jarr": "حرف جر", "majroor": "مجرور",
+  "munada": "منادى", "mubtada": "مبتدأ", "khabar": "خبر", "khabar_kaada": "خبر كاد",
+  "ism_inna": "اسم إن", "tamyeez": "تمييز", "mudaf_ilayh": "مضاف إليه", "sifah": "صفة", "silah": "صلة"
+ },
+ "units": [
+  {"child": "مجرور", "label": "jar_majroor", "on_particle": true},
+  {"child": "منادى", "label": "jumlah_nidaiyyah", "on_particle": true},
+  {"child": "صلة", "label": "mawsool_silah", "head_as": "اسم موصول"},
+  {"child": "مضاف إليه", "label": "murakkab_idafi", "head_as": "مضاف"},
+  {"child": "صفة", "label": "murakkab_tawsifi", "head_as": "موصوف"}
+ ]
 }
