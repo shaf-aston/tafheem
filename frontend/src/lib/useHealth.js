@@ -8,7 +8,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { healthCheck } from '../api'
-import { MISSING } from './bookStatus'
+import { MISSING } from './loadStatus'
 
 export function useHealth() {
   const { data, isPending, isError, refetch } = useQuery({
