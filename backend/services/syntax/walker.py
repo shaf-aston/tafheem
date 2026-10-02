@@ -19,6 +19,12 @@ from backend.services.syntax.facts import AXES
 TREE_FILE = RULES / "naming_tree.json"
 
 
+def _answers(child: dict) -> list[str]:
+    """The answers a child takes: `is` is one answer or a list of them."""
+    answer = child["is"]
+    return [answer] if isinstance(answer, str) else list(answer)
+
+
 def validate(node: dict, axes: dict = AXES, roles: dict | None = None) -> None:
     """Raise ValueError naming the branch if the node or any below it is malformed."""
     roles = role_table() if roles is None else roles
@@ -44,10 +50,11 @@ def validate(node: dict, axes: dict = AXES, roles: dict | None = None) -> None:
             raise ValueError(f"naming tree: {child.get('branch')} needs exactly one of `is` or `else`")
         if "else" in child:
             elses += 1
-        elif child["is"] not in allowed:
-            raise ValueError(f"naming tree: {child.get('branch')} is {child['is']!r}, not one of {allowed}")
         else:
-            taken.append(child["is"])
+            for answer in _answers(child):
+                if answer not in allowed:
+                    raise ValueError(f"naming tree: {child.get('branch')} is {answer!r}, not one of {allowed}")
+                taken.append(answer)
     if elses > 1:
         raise ValueError(f"naming tree: {branch} has more than one `else`")
     if len(taken) != len(set(taken)):
@@ -71,7 +78,7 @@ def walk(values: dict[str, str], tree: dict | None = None) -> tuple[str, list[st
         if not node["children"]:
             return None
         value = values[node["split"]]
-        node = (next((c for c in node["children"] if c.get("is") == value), None)
+        node = (next((c for c in node["children"] if "is" in c and value in _answers(c)), None)
                 or next((c for c in node["children"] if "else" in c), None))
         if node is None:
             return None

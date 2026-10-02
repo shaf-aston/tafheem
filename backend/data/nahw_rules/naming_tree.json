@@ -8,7 +8,11 @@
      {"branch": "العطف", "book": "3.10 p88", "is": "atf", "role": "معطوف"},
      {"branch": "التوكيد", "book": "3.10 p88", "is": "tawkeed", "role": "توكيد"},
      {"branch": "البدل", "book": "3.10 p88", "is": "badal", "role": "بدل"},
-     {"branch": "ليس تابعا", "book": "3.10 p88", "is": "none", "children": []}
+     {"branch": "ليس تابعا", "book": "3.10 p88", "is": "none", "split": "governor", "children": [
+       {"branch": "المجرورات", "book": "3.3 p79", "is": ["harf_jarr", "idafa"], "split": "governor", "children": [
+         {"branch": "مجرور", "book": "3.3 p79", "is": "harf_jarr", "role": "مجرور"},
+         {"branch": "مضاف إليه", "book": "3.3 p79", "is": "idafa", "role": "مضاف إليه"}]},
+       {"branch": "ما له عامل آخر", "book": "3.1 p60", "else": true, "children": []}]}
    ]}
  ]}
 }
