@@ -17,7 +17,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getRootEntryEnglish, getRootEntryLines, getRootMeaning } from '../api'
 import config from '../dictionary.json'
 import { entryLines } from '../lib/entryLines'
-import { BROKEN, MISSING, READY } from '../lib/bookStatus'
+import { BROKEN, MISSING, READY } from '../lib/loadStatus'
 import { useHealth } from '../lib/useHealth'
 
 import ArabicText from './ui/ArabicText'

@@ -50,7 +50,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   const [heard, setHeard] = useState(null)
   // Which surah is open for reading, or null. Separate from the ayah lookup so
   // closing the reader leaves the ayah you were on untouched.
-  const [reading, setReading] = useState(null)
+  const [openSurah, setOpenSurah] = useState(null)
   // The place last opened, a surah or an ayah in it, for the picker to follow.
   // Neither of the two above says it alone: an ayah opened from the reader
   // leaves the reader open.
@@ -84,7 +84,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   // whether it has just come in.
   const { arrived: justCame } = useArrival(arrival)
   if (justCame && incoming) {
-    setReading(null)
+    setOpenSurah(null)
     setHeard(null)
     if (arrived) {
       setShowMatches(false)
@@ -126,7 +126,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
       })),
     )
   }
-  const readSurah = (n) => { setShowMatches(false); setReading(n); setAt({ surah: n, ayah: null }) }
+  const readSurah = (n) => { setShowMatches(false); setOpenSurah(n); setAt({ surah: n, ayah: null }) }
 
   const openResult = (r) => {
     setShowMatches(false)
@@ -195,12 +195,12 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
         />
       )}
 
-      {reading && (
+      {openSurah && (
         <SurahReader
-          surah={reading}
+          surah={openSurah}
           accent={accent}
           onChangeSurah={readSurah}
-          onClose={() => setReading(null)}
+          onClose={() => setOpenSurah(null)}
           onOpenAyah={openResult}
         />
       )}

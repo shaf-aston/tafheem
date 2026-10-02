@@ -268,7 +268,7 @@ it is the term that is wrong.
 - `frontend/src/lib/`, client helpers (errors, export, history, colour, quiz generation).
   The vocabularies shared with the backend live here as one file each, so a name is written
   down once rather than retyped: `roleColors.js` (role → colour token),
-  `bookStatus.js` (a classical book's three states), `verbClass.js`.
+  `loadStatus.js` (a classical book's three states), `verbClass.js`.
 - `backend/services/arabic_text.py`, the single owner of "is this Arabic?" and of root
   spelling. `normalize_root` keeps the Arabic letters rather than dropping a list of
   separators, because that list can never be complete; an en-dash or a zero-width space
