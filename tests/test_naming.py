@@ -293,3 +293,13 @@ def test_fronted_zarf_is_mafool_fihi_whichever_way_the_parser_hangs_it(zarf_head
             token(2, "سافر", "سافر", "VRB", verb_head, verb_rel, vox="a", asp="p"),
             token(3, "الرجل", "رجل", "NOM", 2, "SBJ", stt="d", cas="n")]
     assert roles(["مَتَى", "سَافَرَ", "الرَّجُلُ"], toks) == ["مفعول فيه", "فعل", "فاعل"]
+
+
+@pytest.mark.parametrize("typed, stt, role", [
+    ("الكِتَابَ", "d", "مفعول به"),   # the server's parser hangs it as MOD, not OBJ
+    ("مُسْرِعًا", "i", "حال"),         # nearest case: an indefinite fatha there is still a hal
+])
+def test_a_definite_fatha_hung_on_a_verb_is_its_object(typed, stt, role):
+    toks = [token(1, "NOAN", "بع", "PROP", 0, "---", pos_camel="noun_prop"),
+            token(2, "x", "كتاب" if stt == "d" else "مسرع", "NOM", 1, "MOD", stt=stt, pos_camel="noun")]
+    assert roles(["بِعْ", typed], toks) == ["فعل", role]
