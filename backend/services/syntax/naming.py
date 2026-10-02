@@ -17,10 +17,9 @@ from __future__ import annotations
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_words, is_mabni, is_one, is_plain_noun, role_table
 from backend.services.syntax import facts, walker
-from backend.services.syntax.facts import PRESENT_PREFIX, case_of, children_of, family_of, is_verb, negated_before, noun_before
+from backend.services.syntax.facts import PRESENT_PREFIX, case_of, children_of, family_of, is_passive, is_verb, noun_before
 from backend.services.syntax.vowels import (
-    CASE_NAME, SUKUN, command_shape, letters, past_passive_shape, typed_case,
-    typed_passive)
+    CASE_NAME, SUKUN, command_shape, letters, typed_case)
 
 # a root letter is what is left once the letters that come and go are removed
 WEAK = set("اويىءأإآئؤة")
@@ -54,14 +53,6 @@ def _skeleton(word: str) -> list[str]:
     return [letter for letter in bare_letters(word) if letter not in WEAK]
 
 
-def is_passive(token: dict) -> bool:
-    if token.get("vox") == "p":
-        return True
-    typed = token.get("typed")
-    present = token.get("asp") == "i" or not (token["pos"].startswith("VRB") or past_passive_shape(typed))
-    return typed_passive(typed, present)
-
-
 def _participle(token: dict) -> bool:
     """An active or passive participle, or an adjective: what a hal is made of.
     A word the morphology does not know (مسرعا) is judged by its مـ and its ending ـا."""
@@ -93,7 +84,6 @@ def _governor_family(token: dict, by_id: dict, tokens: list[dict]) -> str | None
 
 
 _PREDICATE = {"kana": "خبر كان", "inna": "خبر إن"}
-_SUBJECT = {"kana": "اسم كان", "inna": "اسم إن", "kaada": "اسم كاد"}
 
 
 def _predicate(family: str | None) -> str:
@@ -134,21 +124,10 @@ def _by_book(token: dict, tokens: list[dict], by_id: dict, head: dict | None,
         return "مفعول فيه"
     if not head:
         return None
-    if head["pos"] == "PRT":
-        if is_one(head["lemma"], "nida") and "interrog" not in head.get("pos_camel", ""):
-            return "منادى"
-        if is_one(head["lemma"], "istithna") and not negated_before(head, tokens):
-            return "مستثنى"
-    if is_one(lemma, "istithna", "nouns") and is_verb(head) and not negated_before(token, tokens):
-        return "مستثنى"
     case = typed_case(token.get("typed"), token.get("stuck_on", 0))
     if token["rel"] == "MOD" and is_verb(head) and case in (None, "a"):
         if _listed(token, "zarf_zaman", "zarf_makan"):
             return "مفعول فيه"
-        # ظن الولد الأمر سهلا: a first object before it makes it the second
-        if family == "zanna" and any(k["rel"] == "OBJ" and k["id"] < token["id"]
-                                     for k in children_of(head, tokens)):
-            return "مفعول به"
     return None
 
 
@@ -180,10 +159,6 @@ def name(token: dict, tokens: list[dict]) -> str | None:
     if "dem" in token.get("pos_camel", "") and verbless and rel not in ("IDF", "OBJ"):
         return "مبتدأ"
     pointer = next((c for c in children if "dem" in c.get("pos_camel", "")), None)
-    if rel == "PRD" and family == "inna" and token["pos"] != "PRT" and any(
-            t["head"] == head["id"] and t["rel"] == "PRD" and t["pos"] == "PRT" and t["id"] < token["id"]
-            for t in tokens):
-        return _SUBJECT[family]  # إن في البيت رجلا: the fronted jar-wa-majroor is the khabar, the noun after it the ism
     if rel == "PRD" and not (is_verb(token) and family in ("kaada", "inna")):
         return _predicate(family)  # كاد يموت, ليت الشباب يعود: the verb stays a verb, its clause is the khabar
     if found:
@@ -212,8 +187,6 @@ def name(token: dict, tokens: list[dict]) -> str | None:
             or (rel == "MOD" and typed == "a" and token.get("stt") == "d" and is_plain_noun(token)
                 and family is None and _skeleton(token["lemma"]) != _skeleton(head["lemma"]))):
         siblings = [t for t in tokens if t["head"] == head["id"] and t is not token]
-        if family in ("kana", "kaada") and rel != "OBJ":
-            return _SUBJECT[family]
         if is_passive(head):
             if typed in ("u", "a"):  # damma stands in for the doer, fatha is a kept object
                 return "نائب فاعل" if typed == "u" else "مفعول به"
@@ -229,7 +202,7 @@ def name(token: dict, tokens: list[dict]) -> str | None:
             return "مفعول به"
         return "فاعل"
     if rel in ("SBJ", "TPC"):
-        return _SUBJECT.get(family, "مبتدأ")
+        return "مبتدأ"
     if rel == "---":
         # the word the sentence hangs on, with its subject under it, is the khabar
         if any(c["rel"] in ("SBJ", "TPC") for c in children):
