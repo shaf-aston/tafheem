@@ -68,7 +68,7 @@ def read(sentence: str) -> dict:
         drawn["source"] = provenance.of("nahw")  # worked out here, not looked up
         return {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
     except Exception as exc:  # a missing model file, or a sentence it chokes on
-        logger.warning("Syntax parser unavailable, keeping the rule engine: %s", exc)
+        logger.exception("Syntax parser unavailable, keeping the rule engine")
         return nothing
 
 

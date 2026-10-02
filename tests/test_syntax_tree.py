@@ -1,5 +1,7 @@
 """The bracket picture for a typed sentence, built from the parser's links."""
+from backend.services.nahw_book import role_units
 from backend.services.syntax import naming, tree
+from backend.services.tarkeeb import term_ar
 from tests.test_naming import token
 
 
@@ -33,7 +35,7 @@ def test_idafa_is_a_unit_that_plays_one_role():
             token(3, "جديد", "جديد", "NOM", 1, "MOD", ud="ADJ", cas="n")]
     drawn = built(["كِتَابُ", "الطَّالِبِ", "جَدِيدٌ"], toks)
     unit = drawn["tree"]
-    assert unit["label"] == tree.IDAFA  # what it is
+    assert unit["label"] == term_ar("murakkab_idafi")  # what it is
     assert [child.get("role") for child in unit["children"]] == ["مضاف", "مضاف إليه", "خبر"]
 
 
@@ -68,15 +70,14 @@ def test_a_jar_majroor_is_not_given_the_job_harf():
             token(3, "القبور", "قبر", "NOM", 2, "OBJ", stt="d", cas="g")]
     drawn = built(["مَا", "فِي", "الْقُبُورِ"], toks)
     unit = next(child for child in drawn["tree"]["children"] if child.get("children"))
-    assert unit["label"] == tree.JARR
+    assert unit["label"] == term_ar("jar_majroor")
     assert unit["role"] is None
     assert [child["role"] for child in unit["children"]] == ["حرف جر", "مجرور"]
 
 
 def test_the_labels_are_the_shared_terms():
-    from backend.services.tarkeeb import term_ar
-    assert (tree.JARR, tree.IDAFA, tree.VERBAL) == (
-        term_ar("jar_majroor"), term_ar("murakkab_idafi"), term_ar("jumlah_filiyyah"))
+    assert tree.VERBAL == term_ar("jumlah_filiyyah")
+    assert {tree._label({"pos": "NOM"}, [unit["child"]]) for unit in role_units() if not unit.get("on_particle")}         == {term_ar(unit["label"]) for unit in role_units() if not unit.get("on_particle")}
 
 
 def test_a_word_hung_on_an_attached_particle_is_drawn_under_what_the_particle_joins():
@@ -88,3 +89,13 @@ def test_a_word_hung_on_an_attached_particle_is_drawn_under_what_the_particle_jo
     joined = drawn["tree"]["children"][1]  # the noun with its معطوف inside, not a second root
     assert [leaf["word"] for leaf in joined["children"]] == [1, 2]
     assert roles_in(drawn["tree"]) == ["فعل", "فاعل", "فاعل", "معطوف"]  # the unit plays the faa'il
+
+
+def test_a_verb_clause_hung_on_a_mubtada_is_its_khabar_in_the_place_of_raf():
+    # الولدُ يكتبُ: the clause is the khabar, and a clause stands in a place, never in a case
+    toks = [token(1, "الولد", "ولد", "NOM", 0, "SBJ", stt="d", cas="n"),
+            token(2, "يكتب", "كتب", "VRB", 1, "MOD", vox="a", asp="i")]
+    drawn = built(["الْوَلَدُ", "يَكْتُبُ"], toks)
+    clause = drawn["tree"]["children"][1]
+    assert (clause["role"], clause["detail"]) == ("خبر", "في محل رفع")
+    assert [leaf["role"] for leaf in clause["children"]] == ["فعل"]

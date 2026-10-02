@@ -12,12 +12,13 @@ gives, live in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import case_of, is_mabni, is_one, teacher_rules
-from backend.services.syntax.facts import family_of, is_passive, is_verb
-from backend.services.syntax.naming import base_tokens, roles_keyed, takes_tamyeez
+from backend.services.nahw_book import case_of, is_mabni, is_one, named_roles, teacher_rules
+from backend.services.syntax.facts import Sentence, is_passive, is_verb, takes_tamyeez
+from backend.services.syntax.naming import base_tokens, roles_keyed
 from backend.services.syntax.vowels import CASE_NAME, typed_case
 
 # the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there
+NAMED = named_roles()
 DOERS = roles_keyed("fail")
 SUBJECTS = roles_keyed("mubtada")
 FOLLOWERS = roles_keyed("tabi", "sifah")
@@ -43,7 +44,7 @@ def _one_subject(bases, tokens, roles):
 def _passive_has_no_doer(bases, tokens, roles):
     for verb in filter(is_verb, bases):
         if is_passive(verb):
-            yield from (i for i in _kid_indices(verb, bases) if roles[i] == "فاعل")
+            yield from (i for i in _kid_indices(verb, bases) if roles[i] == NAMED.fail)
 
 
 def _expected_case(role: str, mudaf: bool, cases: dict) -> str | None:
@@ -68,7 +69,7 @@ def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> di
     # diptote takes fatha for jarr (مررت بأحمدَ): both look like a clash and are not
     if bare.endswith("ات"):
         free.add("ai")
-    mudaf_ilayh = any(roles[k] == "مضاف إليه" for k in _kid_indices(token, bases))
+    mudaf_ilayh = any(roles[k] == NAMED.mudaf_ilayh for k in _kid_indices(token, bases))
     if token.get("stt") == "i" and not bare.startswith("ال") and not mudaf_ilayh:
         free.add("ia")
     return {"free": sorted(free), "mudaf": any(b["rel"] == "IDF" for b in bases if b["head"] == token["id"])}
@@ -91,13 +92,14 @@ def _typed_case_fits_role(bases, tokens, roles):
 
 def _khabar_needs_mubtada(bases, tokens, roles):
     if not any(role in SUBJECTS for role in roles):
-        yield from (i for i, role in enumerate(roles) if role == "خبر")
+        yield from (i for i, role in enumerate(roles) if role == NAMED.khabar)
 
 
 def _ism_inna_needs_inna(bases, tokens, roles):
-    has_inna = any(family_of(t, tokens) == "inna" for t in tokens)
+    s = Sentence(tokens)
+    has_inna = any(s.family(t) == "inna" for t in tokens)
     if not has_inna:
-        yield from (i for i, role in enumerate(roles) if role == "اسم إن")
+        yield from (i for i, role in enumerate(roles) if role == NAMED.ism_inna)
 
 
 def _follower_needs_noun(bases, tokens, roles):
@@ -108,10 +110,9 @@ def _follower_needs_noun(bases, tokens, roles):
 
 
 def _tamyeez_needs_number(bases, tokens, roles):
+    s = Sentence(tokens)
     for i, (token, role) in enumerate(zip(bases, roles)):
-        if role != "تمييز":
-            continue
-        if not takes_tamyeez(token, tokens):
+        if role == NAMED.tamyeez and not takes_tamyeez(token, s):
             yield i
 
 

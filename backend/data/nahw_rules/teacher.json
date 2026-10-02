@@ -22,6 +22,7 @@
   "word": {"raf'": "مرفوع", "nasb": "منصوب", "jarr": "مجرور", "jazm": "مجزوم"},
   "place": {"u": "رفع", "a": "نصب", "i": "جر"},
   "mabni_noun": "مبني في محل {place} لأنه {role}",
+  "in_place": "في محل {place}",
   "built_on": "مبني على {ending}",
   "past_on": "الفتح",
   "command_on": "السكون",

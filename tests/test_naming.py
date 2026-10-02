@@ -1,7 +1,7 @@
 """The naming layer reads links plus typed vowels, so both are tested without a model."""
 import pytest
 
-from backend.services.syntax import naming
+from backend.services.syntax import facts, naming
 from backend.services.syntax.naming import roles as named
 from backend.services.syntax.vowels import typed_case, typed_passive
 
@@ -192,7 +192,7 @@ def test_kaada_takes_a_ism_and_leaves_its_present_verb_a_verb():
             token(2, "المريض", "مريض", "NOM", 1, "SBJ", stt="d", cas="n"),
             token(3, "يموت", "مات", "VRB", 1, "PRD", vox="a", asp="i")]
     assert roles(["كَادَ", "الْمَرِيضُ", "يَمُوتُ"], toks) == ["فعل", "اسم كاد", "فعل"]
-    assert naming.completes_kaada(toks[2], toks) and not naming.completes_kaada(toks[0], toks)
+    assert facts.completes_kaada(toks[2], facts.Sentence(toks)) and not facts.completes_kaada(toks[0], facts.Sentence(toks))
     # أخذ with a noun object is the ordinary verb 'took', not a commencement verb
     toks = [token(1, "أخذ", "أخذ", "VRB", 0, "---", **VERB),
             token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),
@@ -303,3 +303,15 @@ def test_a_definite_fatha_hung_on_a_verb_is_its_object(typed, stt, role):
     toks = [token(1, "NOAN", "بع", "PROP", 0, "---", pos_camel="noun_prop"),
             token(2, "x", "كتاب" if stt == "d" else "مسرع", "NOM", 1, "MOD", stt=stt, pos_camel="noun")]
     assert roles(["بِعْ", typed], toks) == ["فعل", role]
+
+
+def test_every_role_the_code_names_is_declared_in_roles_json():
+    from backend.services.nahw_book import clause_of, named_roles, role_units
+    declared = set(naming.ROLES)
+    used = set(vars(named_roles()).values())
+    for unit in role_units():
+        used |= {unit["child"], unit.get("head_as", unit["child"])}
+    for role in declared:
+        if clause := clause_of(role):
+            used.add(clause["job"])
+    assert used - declared == set()

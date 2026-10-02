@@ -43,8 +43,8 @@ async def analyze_sentence(request: AnalyzeRequest) -> AnalyzeResponse:
     confidence = rule_result.get("confidence", 0.0)
     threshold = get_settings().confidence_threshold
     logger.info(
-        "Rule engine confidence for '%s': %.2f (threshold %.2f)",
-        sentence[:40], confidence, threshold,
+        "Rule engine confidence for a %d-character sentence: %.2f (threshold %.2f)",
+        len(sentence), confidence, threshold,
     )
 
     # ── Step 2b: the recorded ayah, else the parser, names what it can ───────

@@ -2,7 +2,12 @@
  "_comment": "The book's classification tree for naming a word's role (Tasheel al-Nahw). A node is a branch of the book: `branch` its Arabic name, `book` its section and page. A branch with `children` has a `split`, the axis (services/syntax/facts.py AXES, each a question with a closed list of answers) its children divide on; each child takes one answer with `is`, or is the one `else`. A leaf has a `role` (in roles.json). Siblings answer the same question once, so they cannot overlap. Walked by services/syntax/walker.py.",
  "tree": {"branch": "كلمة", "book": "1.2 p2", "split": "kind", "children": [
    {"branch": "حرف", "book": "1.2 p3", "is": "harf", "role": "حرف"},
-   {"branch": "فعل", "book": "1.2 p2", "is": "fil", "role": "فعل"},
+   {"branch": "فعل", "book": "1.2 p2", "is": "fil", "split": "slot", "children": [
+     {"branch": "الخبر جملة فعلية", "book": "1.4 p6", "is": "predicate", "split": "governor", "children": [
+       {"branch": "خبر كان", "book": "1.9 p24", "is": "kana", "role": "خبر كان"},
+       {"branch": "فعل خبر كاد أو إن", "book": "1.2 p2", "is": ["kaada", "inna"], "role": "فعل"},
+       {"branch": "خبر", "book": "1.4 p6", "else": true, "role": "خبر"}]},
+     {"branch": "فعل", "book": "1.2 p2", "else": true, "role": "فعل"}]},
    {"branch": "اسم", "book": "1.2 p2", "is": "ism", "split": "follows", "children": [
      {"branch": "النعت", "book": "3.10 p88", "is": "naat", "role": "صفة"},
      {"branch": "العطف", "book": "3.10 p88", "is": "atf", "role": "معطوف"},
@@ -16,27 +21,34 @@
        {"branch": "المستثنى", "book": "3.2 p67", "is": "istithna", "role": "مستثنى"},
        {"branch": "إن وأخواتها", "book": "1.8 p21", "is": "inna", "split": "slot", "children": [
          {"branch": "اسم إن", "book": "1.8 p21", "is": "subject", "role": "اسم إن"},
-         {"branch": "خبر إن", "book": "1.8 p21", "is": "predicate", "role": "خبر إن"}]},
+         {"branch": "خبر إن", "book": "1.8 p21", "is": ["predicate", "state"], "role": "خبر إن"}]},
        {"branch": "كان وأخواتها", "book": "1.9 p24", "is": "kana", "split": "slot", "children": [
          {"branch": "اسم كان", "book": "1.9 p24", "is": "subject", "role": "اسم كان"},
-         {"branch": "خبر كان", "book": "1.9 p24", "is": "predicate", "role": "خبر كان"}]},
+         {"branch": "خبر كان", "book": "1.9 p24", "is": ["predicate", "state"], "role": "خبر كان"}]},
        {"branch": "كاد وأخواتها", "book": "1.9 p24", "is": "kaada", "split": "slot", "children": [
-         {"branch": "اسم كاد", "book": "1.9 p24", "is": "subject", "role": "اسم كاد"}]},
-       {"branch": "ظن وأخواتها", "book": "1.10 p26", "is": "zanna", "split": "slot", "children": [
-         {"branch": "فاعل ظن", "book": "1.10 p26", "is": "subject", "role": "فاعل"},
-         {"branch": "المفعول الأول", "book": "1.10 p26", "is": "object", "role": "مفعول به"},
-         {"branch": "المفعول الثاني", "book": "1.10 p26", "is": "second_object", "role": "مفعول به"}]},
+         {"branch": "اسم كاد", "book": "1.9 p24", "is": "subject", "role": "اسم كاد"},
+         {"branch": "خبر كاد", "book": "1.9 p24", "is": ["predicate", "state"], "role": "خبر كاد"}]},
+       {"branch": "ظن وأخواتها", "book": "1.10 p26", "is": "zanna", "split": "voice", "children": [
+         {"branch": "ظن المبنية للمعلوم", "book": "1.10 p26", "is": "active", "split": "slot", "children": [
+           {"branch": "فاعل ظن", "book": "1.10 p26", "is": "subject", "role": "فاعل"},
+           {"branch": "المفعول الأول", "book": "1.10 p26", "is": "object", "role": "مفعول به"},
+           {"branch": "المفعول الثاني", "book": "1.10 p26", "is": ["second_object", "state", "specification"], "role": "مفعول به"}]}]},
+       {"branch": "التمييز بعد العدد أو المقياس", "book": "3.2 p67", "is": "noun", "role": "تمييز"},
        {"branch": "الفعل", "book": "3.1 p60", "is": "verb", "split": "slot", "children": [
          {"branch": "الفاعل ونائبه", "book": "3.1 p60", "is": "subject", "split": "voice", "children": [
            {"branch": "فاعل", "book": "3.1 p60", "is": "active", "role": "فاعل"},
            {"branch": "نائب فاعل", "book": "3.1 p60", "is": "passive", "role": "نائب فاعل"}]},
-         {"branch": "المفعولات", "book": "3.2 p67", "is": ["object", "absolute", "place_time"], "split": "slot", "children": [
-           {"branch": "المفعول به", "book": "3.2 p67", "is": "object", "role": "مفعول به"},
+         {"branch": "المفعولات", "book": "3.2 p67", "is": ["object", "second_object", "absolute", "place_time"], "split": "slot", "children": [
+           {"branch": "المفعول به", "book": "3.2 p67", "is": ["object", "second_object"], "role": "مفعول به"},
            {"branch": "المفعول المطلق", "book": "3.2 p67", "is": "absolute", "role": "مفعول مطلق"},
            {"branch": "المفعول فيه", "book": "3.2 p67", "is": "place_time", "role": "مفعول فيه"}]},
          {"branch": "الحال", "book": "3.2 p67", "is": "state", "role": "حال"},
          {"branch": "التمييز", "book": "3.2 p67", "is": "specification", "role": "تمييز"}]},
-       {"branch": "ما له عامل آخر", "book": "3.1 p60", "else": true, "children": []}]}
+       {"branch": "ما له عامل آخر", "book": "3.1 p60", "else": true, "split": "slot", "children": [
+         {"branch": "المبتدأ", "book": "1.4 p6", "is": "subject", "role": "مبتدأ"},
+         {"branch": "الخبر", "book": "1.4 p6", "is": "predicate", "role": "خبر"},
+         {"branch": "الحال", "book": "3.2 p67", "is": "state", "role": "حال"},
+         {"branch": "التمييز", "book": "3.2 p67", "is": "specification", "role": "تمييز"}]}]}
    ]}
  ]}
 }

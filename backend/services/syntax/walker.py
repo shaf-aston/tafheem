@@ -25,9 +25,14 @@ def _answers(child: dict) -> list[str]:
     return [answer] if isinstance(answer, str) else list(answer)
 
 
-def validate(node: dict, axes: dict = AXES, roles: dict | None = None) -> None:
-    """Raise ValueError naming the branch if the node or any below it is malformed."""
+def validate(node: dict, axes: dict = AXES, roles: dict | None = None, left: dict | None = None) -> None:
+    """Raise ValueError naming the branch if the node or any below it is malformed.
+
+    `left` maps an axis to the answers that can still reach this node: a split on an axis
+    already split above may use only the answers its parent child took (the rest, for an
+    `else`), so a nested branch can never name an answer it cannot be given."""
     roles = role_table() if roles is None else roles
+    left = left or {}
     branch = node.get("branch")
     if not branch or not node.get("book"):
         raise ValueError(f"naming tree: a node needs `branch` and `book`: {node!r}")
@@ -39,16 +44,18 @@ def validate(node: dict, axes: dict = AXES, roles: dict | None = None) -> None:
         return
     children = node["children"]
     if not children:
-        return  # a branch the book has but the tree has not filled yet
+        raise ValueError(f"naming tree: {branch} has empty `children`: fill every branch or delete it")
     axis = node.get("split")
     if axis not in axes:
         raise ValueError(f"naming tree: {branch} splits on unknown axis {axis!r}")
-    allowed = axes[axis][0]
+    allowed = left.get(axis, axes[axis][0])
     taken, elses = [], 0
     for child in children:
         if ("is" in child) == ("else" in child):
             raise ValueError(f"naming tree: {child.get('branch')} needs exactly one of `is` or `else`")
         if "else" in child:
+            if child["else"] is not True:
+                raise ValueError(f"naming tree: {child.get('branch')} `else` must be true")
             elses += 1
         else:
             for answer in _answers(child):
@@ -59,8 +66,11 @@ def validate(node: dict, axes: dict = AXES, roles: dict | None = None) -> None:
         raise ValueError(f"naming tree: {branch} has more than one `else`")
     if len(taken) != len(set(taken)):
         raise ValueError(f"naming tree: {branch} has two children for the same answer")
+    rest = tuple(answer for answer in allowed if answer not in taken)
+    if elses and not rest:
+        raise ValueError(f"naming tree: {branch} has an `else` but its other children take every answer")
     for child in children:
-        validate(child, axes, roles)
+        validate(child, axes, roles, {**left, axis: tuple(_answers(child)) if "is" in child else rest})
 
 
 @lru_cache(maxsize=1)
@@ -71,12 +81,10 @@ def load() -> dict:
 
 
 def walk(values: dict[str, str], tree: dict | None = None) -> tuple[str, list[str]] | None:
-    """(role, path) of the leaf the word reaches, or None where the tree has no child for it yet."""
+    """(role, path) of the leaf the word reaches, or None where the tree has no child for it."""
     node = tree or load()
     path = [node["branch"]]
     while "children" in node:
-        if not node["children"]:
-            return None
         value = values[node["split"]]
         node = (next((c for c in node["children"] if "is" in c and value in _answers(c)), None)
                 or next((c for c in node["children"] if "else" in c), None))
