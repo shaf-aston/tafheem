@@ -28,6 +28,7 @@ import { afterDone, afterRecitation, reactionTo, score, tiersOf, upNext } from '
 import { moodFrom } from '../lib/mood'
 import { recordAttempt } from '../lib/progress'
 import { sayIn } from '../lib/say'
+import { progressKey } from '../lib/stored'
 import { useRemembered } from '../lib/useRemembered'
 import { useHealth } from '../lib/useHealth'
 import ErrorAlert from './ui/ErrorAlert'
@@ -41,7 +42,7 @@ export default function GrowPanel({ accent, onGo }) {
   const paths = useQuery(growPathsQuery)
   const { status } = useHealth()
   // The record is kept as JSON text in this browser only (useRemembered).
-  const [saved, save] = useRemembered(config['storage-key'])
+  const [saved, save] = useRemembered(progressKey(config['storage-key']))
   const record = useMemo(() => JSON.parse(saved || '{}'), [saved])
   const [sheet, setSheet] = useState(null)
   const [reaction, setReaction] = useState(null)

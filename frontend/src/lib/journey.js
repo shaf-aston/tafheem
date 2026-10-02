@@ -19,8 +19,9 @@
 import { useSyncExternalStore } from 'react'
 
 import { forgetProgress } from './progress'
-import { forgetTamreenAnswers } from './tamreenAnswers'
+import { scrollToTop } from './scrollToEl'
 import { forgetSession, loadSession, samePlace, saveSession } from './session'
+import { forgetProgressKeys } from './stored'
 import { readRouteFromUrl, readStateFromHistory, writeTabToUrl } from './tabUrl'
 
 const listeners = new Set()
@@ -146,11 +147,14 @@ export function visit(tab, value = null) {
  * thing that resets them all. Reopening the same tab, not the first: pressed
  * on the quiz it read as "reset the quiz", and landing on Nahw looked like a
  * wrong turn. Settings and remembered choices stay; that wipe lives in Settings.
+ * The page goes to the top first: reloading the same address restores the
+ * scroll, and a clean tab opened halfway down does not read as clean.
  */
 export async function startOver() {
   const tab = tabNow(snapshot.steps, snapshot.at) ?? tabIds[0]
   forgetSession()
-  forgetTamreenAnswers()
+  forgetProgressKeys()
+  scrollToTop()
   await forgetProgress()
   globalThis.location?.assign(`${globalThis.location.pathname}?tab=${tab}`)
 }

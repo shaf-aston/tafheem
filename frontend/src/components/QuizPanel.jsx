@@ -9,6 +9,7 @@ import {
   allWords, BANKS, bankInfo, groupsFor, moduleFor, QUIZ, WHOLE_SET_SCOPES, wordsFor,
 } from '../lib/quizBanks'
 import { fillIn, sayIn } from '../lib/say'
+import { progressKey } from '../lib/stored'
 import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
 
 import QuizInsights from './QuizInsights'
@@ -92,7 +93,7 @@ export default function QuizPanel({ accent, onProgress }) {
   const [score, setScore] = useState({ right: 0, total: 0, streak: 0 })
   // The one thing a round leaves behind. Stored as what it is, a number written
   // out, so nothing has to interpret it years later.
-  const [best, rememberBest] = useRemembered('quiz-best-streak')
+  const [best, rememberBest] = useRemembered(progressKey('quiz-best-streak'))
   const bestStreak = Number(best) || 0
 
   const bank = BANKS[bankId]

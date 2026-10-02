@@ -9,3 +9,8 @@ export function scrollToEl(el, align = 'nearest') {
   const reduce = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches
   el.scrollIntoView({ block: ALIGN[align], behavior: reduce ? 'auto' : 'smooth' })
 }
+
+/** Back to the top of the page at once, as a fresh page would open. */
+export function scrollToTop() {
+  globalThis.scrollTo?.({ top: 0, behavior: 'instant' })
+}

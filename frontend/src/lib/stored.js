@@ -49,6 +49,25 @@ export function writeSaved(key, value) {
   writeRaw(key, JSON.stringify(value))
 }
 
+/**
+ * The learner's own record (Grow steps, Tamreen answers, best streak) is kept
+ * under this prefix, so Start over forgets all of it by one rule: a new module's
+ * record is covered the day it is named through progressKey, with no list to update.
+ */
+const PROGRESS = 'progress:'
+export const progressKey = (name) => `${PROGRESS}${name}`
+
+/** Forget every record kept under progressKey; choices and settings stay. */
+export function forgetProgressKeys() {
+  try {
+    const store = globalThis.localStorage
+    const keys = Array.from({ length: store?.length ?? 0 }, (_, index) => store.key(index))
+    keys.filter((key) => key?.startsWith(PROGRESS)).forEach((key) => store.removeItem(key))
+  } catch {
+    /* private browsing: nothing was kept */
+  }
+}
+
 /** Forget one key. */
 export function forgetKey(key) {
   try {

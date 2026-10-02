@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { forgetKey, readRaw, readSaved, writeRaw, writeSaved } from './stored'
+import { forgetKey, forgetProgressKeys, progressKey, readRaw, readSaved, writeRaw, writeSaved } from './stored'
 
 let data
 beforeEach(() => {
@@ -9,11 +9,22 @@ beforeEach(() => {
     getItem: (k) => (data.has(k) ? data.get(k) : null),
     setItem: (k, v) => data.set(k, String(v)),
     removeItem: (k) => data.delete(k),
+    get length() { return data.size },
+    key: (i) => [...data.keys()][i] ?? null,
   })
 })
 afterEach(() => vi.unstubAllGlobals())
 
 describe('stored', () => {
+  it('forgets every progress record and nothing else', () => {
+    writeRaw(progressKey('grow-record'), '{}')
+    writeRaw(progressKey('tamreen-answers'), '{}')
+    writeRaw('settings', '{}')
+    writeRaw('reciter', 'alafasy')
+    forgetProgressKeys()
+    expect([...data.keys()]).toEqual(['settings', 'reciter'])
+  })
+
   it('round-trips JSON', () => {
     writeSaved('k', { a: [1, 2] })
     expect(data.get('k')).toBe('{"a":[1,2]}')
