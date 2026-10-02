@@ -57,4 +57,4 @@ def test_walk_falls_to_else():
 
 def test_walk_no_match_is_none():
     assert walker.walk({"kind": "ism"}, root(leaf("h", "harf"))) is None
-    assert walker.walk({"kind": "ism"}) is None  # اسم is not filled in yet
+    assert walker.walk({"kind": "ism", "follows": "none"}) is None  # the rest of اسم is not filled in yet
