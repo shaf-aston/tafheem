@@ -773,7 +773,7 @@ class LexiconEntry(BaseModel):
     # The spelling this book files the root under, sent only when it differs from
     # the letters searched, so "filed under أمر" can be said rather than leaving
     # the reader to wonder why the letters changed.
-    filed_under: str | None = None
+    book_root: str | None = None
     text: str
     source: Source
 

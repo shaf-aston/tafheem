@@ -72,7 +72,7 @@ def books() -> list[dict]:
     return [dict(row) for row in rows]
 
 
-def credits() -> list[str]:
+def sources() -> list[str]:
     """Which entries in data/sources.json the books here are credited to.
 
     Read from the books themselves rather than written down a second time, which
@@ -95,7 +95,7 @@ def credits() -> list[str]:
     return [row["source"] for row in rows]
 
 
-def entries_by_credit(credit: str) -> Iterator[tuple[str, str, str]]:
+def entries_by_source(source: str) -> Iterator[tuple[str, str, str]]:
     """(book title, root, entry) for every entry credited to one source.
 
     Streamed one row at a time: these three books are sixty-six million
@@ -109,12 +109,12 @@ def entries_by_credit(credit: str) -> Iterator[tuple[str, str, str]]:
             "SELECT b.title, e.head, e.body"
             "  FROM entry e JOIN book b ON b.id = e.book"
             " WHERE b.source = ? ORDER BY b.ord, e.rowid",
-            (credit,),
+            (source,),
         )
         for title, head, body in rows:
             yield title, head, zlib.decompress(body).decode("utf-8")
     except sqlite3.Error as exc:
-        logger.warning("could not read the books credited to %r: %s", credit, exc)
+        logger.warning("could not read the books credited to %r: %s", source, exc)
 
 
 def _folded(key: str) -> str:
@@ -199,7 +199,7 @@ def entries_for(root: str) -> list[dict] | None:
             # The spelling this book files it under, sent only when it differs
             # from what was typed, so the page can say "filed under أمر" rather
             # than leaving the reader wondering why the letters changed.
-            "filed_under": row["head"] if row["root"] != key else None,
+            "book_root": row["head"] if row["root"] != key else None,
             "text": said,
         }
     return list(shelf.values())

@@ -17,7 +17,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getRootEntryEnglish, getRootEntryLines, getRootMeaning } from '../api'
 import config from '../dictionary.json'
 import { entryLines } from '../lib/entryLines'
-import { BROKEN, MISSING, READY } from '../lib/rootMeaningStatus'
+import { BROKEN, MISSING, READY } from '../lib/bookStatus'
 import { useHealth } from '../lib/useHealth'
 
 import ArabicText from './ui/ArabicText'
@@ -28,10 +28,10 @@ import { Skeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
 
 /**
- * The two English readings of the rest of the entry, one shape each. Both cost a
+ * The rest of the entry in English, in two shapes. Both cost a
  * model call, so neither retries: the message offers to try again.
  */
-const READINGS = {
+const ENGLISH = {
   together: {
     key: 'root-entry-english',
     get: getRootEntryEnglish,
@@ -117,7 +117,7 @@ function Body({
   status, healthFailed, onRetryHealth,
   asked, data, isPending, isError, error, onRetry, accent, hasAlternates,
 }) {
-  // Whether the rest of the entry is open. The English reading below it is
+  // Whether the rest of the entry is open. The English below it is
   // fetched on that alone, so a root looked up and never opened costs nothing.
   const [opened, setOpened] = useState(false)
 
@@ -204,7 +204,7 @@ function Body({
   }
 
   // rest: the entry after its origin sense, cut by the backend
-  // (services/root_gloss.rest_of), the same cut its line-by-line reading pairs.
+  // (services/root_gloss.rest_of), the same cut its line-by-line English pairs.
   const { core_meaning, sarf_pattern, variances, rest, english } = data.meaning
 
   return (
@@ -279,7 +279,7 @@ function Body({
           book spoke. A snippet answers "is this what I came for" without the
           press.
 
-          The English reading, and the view toggle, arrive on that press.
+          The English, and the view toggle, arrive on that press.
           Reading it costs a call to a model, so it waits to be asked for; the
           Arabic beside it costs nothing and is already there. */}
       {rest && (
@@ -300,10 +300,10 @@ function Body({
           )}
 
           {opened && view === 'lines' ? (
-            <EntryReading view="lines" root={data.root} />
+            <EntryEnglish view="lines" root={data.root} />
           ) : (
             <ShowRest lines={config['root-meaning']['rest-lines']} accent={accent} onOpen={() => setOpened(true)}>
-              {/* The book first, its reading under it. This panel is the
+              {/* The book first, its English under it. This panel is the
                   book's own words; the English is what a machine made of them,
                   and printing the machine first put a retelling where the
                   reader came looking for the text. */}
@@ -311,7 +311,7 @@ function Body({
             </ShowRest>
           )}
 
-          {opened && view === 'together' && <EntryReading view="together" root={data.root} />}
+          {opened && view === 'together' && <EntryEnglish view="together" root={data.root} />}
         </div>
       )}
 
@@ -328,11 +328,11 @@ function Body({
  * Either carries its own badge saying a machine wrote it, and never replaces
  * the Arabic beside it.
  */
-function EntryReading({ view, root }) {
-  const reading = READINGS[view]
+function EntryEnglish({ view, root }) {
+  const english = ENGLISH[view]
   const { data, isFetching, isError, error, refetch } = useQuery({
-    queryKey: [reading.key, root],
-    queryFn: () => reading.get(root),
+    queryKey: [english.key, root],
+    queryFn: () => english.get(root),
     retry: false,
   })
 
@@ -347,8 +347,8 @@ function EntryReading({ view, root }) {
 
   if (isError) {
     return (
-      <ErrorAlert title={reading.failed} error={error} fallback={reading.fallback} onRetry={refetch}>
-        {reading.after}
+      <ErrorAlert title={english.failed} error={error} fallback={english.fallback} onRetry={refetch}>
+        {english.after}
       </ErrorAlert>
     )
   }

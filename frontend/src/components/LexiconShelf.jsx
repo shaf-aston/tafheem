@@ -29,7 +29,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getLexicons } from '../api'
 import { paragraphs } from '../lib/entryLines'
 import { laneEntry } from '../lib/laneEntry'
-import { BROKEN, MISSING, READY } from '../lib/rootMeaningStatus'
+import { BROKEN, MISSING, READY } from '../lib/bookStatus'
 import { scrollToEl } from '../lib/scrollToEl'
 import { accentOf } from '../lib/tabs'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../lib/useLaneTidy'
@@ -139,10 +139,10 @@ function BookEntry({ entry, root, accent }) {
       <div className="p-3 space-y-2">
         {/* Said before the entry, not after: a reader who typed امر and is shown
             the book's أمر must know that before they read a word of it. */}
-        {entry.filed_under && (
+        {entry.book_root && (
           <p className="type-small text-[var(--text-faint)]">
             Nothing under {root}; this is the entry the book files under{' '}
-            <ArabicText size="tiny">{entry.filed_under}</ArabicText>.
+            <ArabicText size="tiny">{entry.book_root}</ArabicText>.
           </p>
         )}
 

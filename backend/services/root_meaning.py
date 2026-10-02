@@ -51,7 +51,7 @@ class RootMeaningProvider(Protocol):
     def status(self) -> str:
         """MISSING, BROKEN or READY; see above."""
 
-    def resolve(self, root: str) -> str | None:
+    def book_root_of(self, root: str) -> str | None:
         """The spelling the book files this root under, or None if it has none."""
 
     def lookup(self, root: str) -> dict | None:
@@ -194,7 +194,7 @@ class JsonFileProvider:
     def roots(self) -> list[str]:
         return list(self._entries)
 
-    def resolve(self, root: str) -> str | None:
+    def book_root_of(self, root: str) -> str | None:
         """The spelling the book files this root under, or None if it has none.
 
         The letters typed answer for themselves first. Only when the book has
@@ -208,7 +208,7 @@ class JsonFileProvider:
         return self._folded.get(key.translate(self._fold)) if self._fold else None
 
     def lookup(self, root: str) -> dict | None:
-        key = self.resolve(root)
+        key = self.book_root_of(root)
         entry = self._entries.get(key) if key else None
         if entry is None:
             return None
@@ -259,8 +259,8 @@ def roots() -> list[str]:
     return get_provider().roots()
 
 
-def resolve(root: str) -> str | None:
-    return get_provider().resolve(root)
+def book_root_of(root: str) -> str | None:
+    return get_provider().book_root_of(root)
 
 
 def lookup(root: str) -> dict | None:
@@ -288,7 +288,7 @@ class Entry:
     english_source_key: str | None
 
 
-def entry_for(key: str) -> Entry | None:
+def entry_for(root: str) -> Entry | None:
     """The book's entry for these letters, with the better English already chosen.
 
     There can be two English glosses of the same sentence and they are not worth
@@ -301,17 +301,17 @@ def entry_for(key: str) -> Entry | None:
     None means the book has no entry under these letters. It is not the same
     answer as `status()` saying the book is not installed at all.
     """
-    filed_under = resolve(key)
-    entry = lookup(key)
+    book_root = book_root_of(root)
+    entry = lookup(root)
     if entry is None:
         return None
 
-    read_from_the_book = root_gloss.opening_of(root_english.get(filed_under or key) or "")
+    read_from_the_book = root_gloss.opening_of(root_english.get(book_root or root) or "")
     if read_from_the_book:
         entry["english"] = read_from_the_book
 
     return Entry(
-        book_root=filed_under if filed_under != key else None,
+        book_root=book_root if book_root != root else None,
         meaning=entry,
         source_key=get_provider().source_key,
         english_source_key=(

@@ -256,7 +256,7 @@ def _spelled(tmp_path, payload, fold=None):
 def test_a_root_is_found_under_the_other_spelling_of_its_letters(tmp_path):
     """The book prints أمر; nobody types the hamza into a search box."""
     provider = _spelled(tmp_path, {"أمر": {"core_meaning": "الأمر"}}, {"أ": "ا"})
-    assert provider.resolve("امر") == "أمر"
+    assert provider.book_root_of("امر") == "أمر"
     assert provider.lookup("امر")["core_meaning"] == "الأمر"
 
 
@@ -264,7 +264,7 @@ def test_the_second_spelling_works_in_both_directions(tmp_path):
     """هدي is what the book wrote and هدى is what a reader writes. Folding only
     one way left the reader's spelling reading as "the book has no entry"."""
     provider = _spelled(tmp_path, {"هدي": {"core_meaning": "الهداية"}}, {"ى": "ي"})
-    assert provider.resolve("هدى") == "هدي"
+    assert provider.book_root_of("هدى") == "هدي"
 
 
 def test_two_roots_that_look_alike_never_answer_for_each_other(tmp_path):
@@ -277,7 +277,7 @@ def test_two_roots_that_look_alike_never_answer_for_each_other(tmp_path):
     assert provider.lookup("هنأ")["core_meaning"] == "إصابة الخير"
     assert provider.lookup("هنا")["core_meaning"] == "الحرف المعتل"
     # A third spelling folding onto the pair is answered by neither.
-    assert provider.resolve("هنآ") is None
+    assert provider.book_root_of("هنآ") is None
 
 
 def test_the_spelling_the_reader_typed_is_answered_before_any_other(tmp_path):
@@ -295,7 +295,7 @@ def test_without_the_spelling_file_only_the_books_own_spelling_is_found(tmp_path
     but it must not quietly look like the book having no such root."""
     provider = _spelled(tmp_path, {"أمر": {"core_meaning": "الأمر"}})
     assert provider.status() == READY
-    assert provider.resolve("أمر") == "أمر"
+    assert provider.book_root_of("أمر") == "أمر"
     assert provider.lookup("امر") is None
 
 
@@ -522,7 +522,7 @@ def test_two_roots_that_fold_together_each_answer_for_themselves(tmp_path):
     """حدا and حدأ are different entries whose folded spelling is the same.
 
     The fold index deliberately holds neither, so only the literal spelling can
-    tell them apart. If resolve() were ever simplified to fold first, حدأ would
+    tell them apart. If book_root_of() were ever simplified to fold first, حدأ would
     quietly come back with حدا's meaning, which reads perfectly plausible and
     would be caught by nobody. Four such pairs exist, and three of them are
     entries recovered from headings the book's contents page leaves out.
@@ -534,7 +534,7 @@ def test_two_roots_that_fold_together_each_answer_for_themselves(tmp_path):
     }, ensure_ascii=False))
     for pair in pairs:
         for root in pair:
-            assert book.resolve(root) == root
+            assert book.book_root_of(root) == root
             assert book.lookup(root)["core_meaning"] == f"the meaning of {root}"
 
 
@@ -551,7 +551,7 @@ def book(monkeypatch, tmp_path):
         provider = _provider(tmp_path, payload)
         monkeypatch.setattr(module, "get_provider", lambda: provider)
         monkeypatch.setattr(module, "lookup", provider.lookup)
-        monkeypatch.setattr(module, "resolve", provider.resolve)
+        monkeypatch.setattr(module, "book_root_of", provider.book_root_of)
         return module
 
     return _install
