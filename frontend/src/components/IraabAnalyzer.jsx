@@ -19,6 +19,7 @@ import SourceBadge from './ui/SourceBadge'
 import TarkeebDiagram from './TarkeebDiagram'
 import WordCard from './WordCard'
 import ArabicText from './ui/ArabicText'
+import BookPath from './ui/BookPath'
 import CopyButton from './ui/CopyButton'
 import Disclosure from './ui/Disclosure'
 import ErrorAlert from './ui/ErrorAlert'
@@ -288,7 +289,10 @@ function FullIraabTable({ words, onRowClick }) {
                 <ArabicText as="td" size="sm" className="py-2 px-3 text-[var(--text-dim)]">{w.case ? caseLabel(w.case) : '–'}</ArabicText>
                 <ArabicText as="td" size="sm" className="py-2 px-3 text-[var(--text-dim)]">{w.sign ? signLabel(w.sign) : '–'}</ArabicText>
                 <ArabicText as="td" className="py-2 px-3 text-[var(--text-dim)]">{w.root || '–'}</ArabicText>
-                <td className="py-2 px-3 text-[var(--text-faint)] max-w-xs">{w.reason || '–'}</td>
+                <td className="py-2 px-3 text-[var(--text-faint)] max-w-xs">
+                  {w.reason || '–'}
+                  {w.reason && <BookPath path={w.book} />}
+                </td>
               </tr>
             ))}
           </tbody>
