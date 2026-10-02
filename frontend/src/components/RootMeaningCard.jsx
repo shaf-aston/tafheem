@@ -5,9 +5,9 @@
  * the three letters themselves have meant, which is a different question and is
  * kept in its own card so the two are never read as one answer.
  *
- * The book is Ibn Faris's Maqayees al-Lugha and it is not shipped with the app.
- * Until it is installed this card exists to say exactly that. It must never be
- * possible to read "we don't have the book" as "this root has no origin sense", 
+ * The book is Ibn Faris's Maqayees al-Lugha. Where it is not installed the card
+ * says so. It must never be possible to read "we don't have the book" as "this
+ * root has no origin sense",
  * so the three situations get three different sentences, and the card always
  * prints the letters that were actually searched.
  */
@@ -206,10 +206,6 @@ function Body({
             The book spells this root <Letters value={data.book_root} />, and that is the entry below.
           </p>
         )}
-        {/* Capped to a readable measure, like the panel subtitles: a long
-            classical definition set across the full card is a line the eye
-            loses its place on. ml-auto is deliberately physical: this element is
-            itself right-to-left, so the logical ms-auto pushed it the wrong way. */}
         {/* The sense itself sometimes ends on a line of verse the book cites,
             so it is laid out line by line for the same reason the rest is. */}
         <div className="space-y-1">
@@ -223,7 +219,7 @@ function Body({
           of the stronger. */}
       {english && (
         <div className="space-y-1.5">
-          <p className="text-sm text-[var(--text-dim)] max-w-prose">{english}</p>
+          <p className="type-body text-[var(--text-dim)] max-w-prose">{english}</p>
           {/* Pushed to the same edge the card's own badge sits on, so the two
               read as one column of sources rather than one label adrift in the
               middle of the card. */}
@@ -245,7 +241,7 @@ function Body({
               then sits against the same edge as the origin sense above it. A
               flex row reversed the numbering to the far side and left the two
               halves of the card aligned against opposite edges. */}
-          <ol className="space-y-1 text-right" dir="rtl">
+          <ol className="space-y-1" dir="rtl">
             {variances.map((v, i) => (
               <li key={i}>
                 <span className="type-small text-[var(--text-faint)] ml-2">{i + 1}.</span>
@@ -360,7 +356,7 @@ function EntryEnglish({ root, enabled }) {
           The entry was longer than could be read at once, so this covers its opening.
         </p>
       )}
-      <p className="text-sm text-[var(--text-dim)] max-w-prose whitespace-pre-line">
+      <p className="type-body text-[var(--text-dim)] max-w-prose whitespace-pre-line">
         {data.english}
       </p>
       <SourceBadge source={data.source} className="ms-auto flex" />
@@ -428,7 +424,7 @@ function EntryLineByLine({ root, enabled }) {
           sitting one under the other: that is why the Arabic is written first
           here and the wide layout puts it on the right, rather than the markup
           being ordered for the wide case and reading backwards on a phone. */}
-      <ol className="space-y-0">
+      <ol>
         {data.lines.map((pair, i) => (
           <li
             key={i}
@@ -446,7 +442,7 @@ function EntryLineByLine({ root, enabled }) {
             <div className="sm:[grid-area:2/2] min-w-0">
               <Lines text={pair.arabic} />
             </div>
-            <p className="text-sm text-[var(--text-dim)] sm:[grid-area:2/1] self-start" dir="ltr">
+            <p className="type-body text-[var(--text-dim)] sm:[grid-area:2/1] self-start" dir="ltr">
               {pair.english}
             </p>
           </li>
@@ -463,18 +459,20 @@ function EntryLineByLine({ root, enabled }) {
  * A verse is one thought in two halves with a gap down the middle of the page,
  * and printing it as a sentence loses the shape that makes it readable as
  * poetry. Everything else is prose and stays against the right edge with the
- * origin sense above it.
+ * origin sense above it. Capped to a readable measure; ml-auto is deliberately
+ * physical, since the line is itself right-to-left and ms-auto pushed it the
+ * wrong way.
  */
 const Line = ({ line, size = 'sm', style }) => (line.halves ? (
   <div
-    className="max-w-prose ml-auto flex flex-wrap justify-center gap-x-10 gap-y-1 leading-loose"
+    className="max-w-prose ml-auto flex flex-wrap justify-center gap-x-10 gap-y-1"
     dir="rtl"
     style={style}
   >
     {line.halves.map((half, i) => <ArabicText key={i} size={size}>{half}</ArabicText>)}
   </div>
 ) : (
-  <ArabicText as="p" size={size} className="max-w-prose ml-auto leading-loose" style={style}>
+  <ArabicText as="p" size={size} className="max-w-prose ml-auto" style={style}>
     {line.text}
   </ArabicText>
 ))
@@ -484,7 +482,7 @@ const Lines = ({ text, size, style }) =>
   entryLines(text).map((line, i) => <Line key={i} line={line} size={size} style={style} />)
 
 /** Explanatory prose. Body text, so it keeps the reading size the panels use. */
-const Note = ({ children }) => <p className="text-sm text-[var(--text-dim)]">{children}</p>
+const Note = ({ children }) => <p className="type-body text-[var(--text-dim)]">{children}</p>
 
 /** The exact letters searched, shown so a spelling mismatch is visible, not guessed at. */
 const Letters = ({ value }) => <ArabicText size="sm" className="text-[var(--text)]">{value}</ArabicText>

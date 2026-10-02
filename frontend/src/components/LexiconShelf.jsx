@@ -27,6 +27,7 @@ import { flushSync } from 'react-dom'
 import { useQuery } from '@tanstack/react-query'
 
 import { getLexicons } from '../api'
+import { paragraphs } from '../lib/entryLines'
 import { laneEntry } from '../lib/laneEntry'
 import { scrollToEl } from '../lib/scrollToEl'
 import { accentOf } from '../lib/tabs'
@@ -62,8 +63,8 @@ export default function LexiconShelf({ root: asked, hasAlternates }) {
 
   return (
     <section className="rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden">
-      <header className="px-4 py-2.5 bg-[var(--surface)] space-y-1">
-        <h3 className="text-sm font-medium text-[var(--text)]">
+      <header className="px-4 py-2.5 bg-[var(--surface)]">
+        <h3 className="type-body font-medium text-[var(--text)]">
           What the classical dictionaries say: Lisan al-Arab, Taj al-Arus, Lane
         </h3>
       </header>
@@ -94,7 +95,7 @@ export default function LexiconShelf({ root: asked, hasAlternates }) {
  * is not installed is not going to be found under different letters either.
  */
 const Nothing = ({ said, hasAlternates }) => (
-  <p className="type-small text-[var(--text-faint)]">
+  <p className="type-body text-[var(--text-dim)]">
     {said}{hasAlternates && said === NOTHING.ready && ELSEWHERE}
   </p>
 )
@@ -104,7 +105,8 @@ function BookEntry({ entry, root }) {
   const lane = entry.book === LANE
   const [tidy, setTidy] = useLaneTidy()
   const [open, setOpen] = useState(false)
-  const forms = useMemo(() => (lane ? laneEntry(entry.text, { tidy }) : null), [lane, entry.text, tidy])
+  // Lane in his own sections; the Arabic books as paragraphs (lib/entryLines).
+  const shown = useMemo(() => (lane ? laneEntry(entry.text, { tidy }) : paragraphs(entry.text)), [lane, entry.text, tidy])
   const anchor = useId()
   // Open the fold first, synchronously: a section still under the cut would
   // scroll the clipped box, not the page.
@@ -118,7 +120,7 @@ function BookEntry({ entry, root }) {
       <header className="px-3 py-2 bg-[var(--surface)] flex items-baseline gap-2 flex-wrap">
         {arabic
           ? <ArabicText size="sm">{entry.title}</ArabicText>
-          : <span className="text-sm text-[var(--text)]">{entry.title}</span>}
+          : <span className="type-body text-[var(--text)]">{entry.title}</span>}
         <span className="type-small text-[var(--text-faint)]">
           {entry.author}{entry.died ? `, d. ${entry.died}` : ''}
           {arabic ? '' : ' · in English'}
@@ -147,12 +149,16 @@ function BookEntry({ entry, root }) {
             own scrollbar, which hid the same words and also took the wheel off
             the page inside it. How tall the snippet stands is theme.json's
             lexicon.entry-h, the same knob that used to set the box. */}
-        {lane && <LaneIndex forms={forms} onJump={jump} />}
+        {lane && <LaneIndex forms={shown} onJump={jump} />}
 
         <ShowRest height="var(--lexicon-entry-h)" open={open} onOpenChange={setOpen}>
-          {lane
-            ? <LaneEntry forms={forms} anchor={anchor} />
-            : <ArabicText as="p" size="sm" className="leading-relaxed whitespace-pre-line">{entry.text}</ArabicText>}
+          {lane ? <LaneEntry forms={shown} anchor={anchor} /> : (
+            <div className="space-y-2">
+              {shown.map((said, i) => (
+                <ArabicText key={i} as="p" size="sm" className="max-w-prose ml-auto">{said}</ArabicText>
+              ))}
+            </div>
+          )}
         </ShowRest>
 
         <SourceBadge source={entry.source} />
@@ -204,7 +210,7 @@ function LaneEntry({ forms, anchor }) {
             <h4 className="flex items-baseline gap-2">
               {form.word && <ArabicText size="base" className="text-[var(--text)]">{form.word}</ArabicText>}
               {form.form && (
-                <span className="type-small font-medium text-[var(--text-dim)] uppercase tracking-wide">
+                <span className="eyebrow font-medium">
                   Form {form.form}
                 </span>
               )}
