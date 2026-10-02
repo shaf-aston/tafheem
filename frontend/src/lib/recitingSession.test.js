@@ -491,18 +491,25 @@ describe('a reciting session', () => {
   it('sends an unsure reading in front of the next so it is placed with it, and a home answer clears it', async () => {
     const h = harness()
     h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    const unsure = { surah: 2, ayah: 38, sure: false, home: false }
     await h.session.start()
     await h.midPhrase()
     expect(h.readings[0].options.before).toBe('')
-    // Said twelve times in the Qur'an: not sure, and not this page.
-    h.readings[0].answer({ text: 'ولا هم يحزنون', place: { surah: 2, ayah: 38, sure: false, home: false } })
+    // Said twelve times in the Qur'an: not sure, and not this page. A reading
+    // mid-phrase carries nothing: the one at the pause holds the same words.
+    h.readings[0].answer({ text: 'ولا هم', place: unsure })
+    await h.wait(0)
+    await h.pause()
+    expect(h.readings[1].options.before).toBe('')
+    h.readings[1].answer({ text: 'ولا هم يحزنون', place: unsure })
     await h.wait(0)
     await h.midPhrase()
-    expect(h.readings[1].options.before).toBe('ولا هم يحزنون')
-    h.readings[1].answer({ text: 'الحمد لله رب العالمين', place: { surah: 1, ayah: 2, sure: true, home: true } })
+    expect(h.readings[2].options.before).toBe('ولا هم يحزنون')
+    await h.pause()
+    h.readings[3].answer({ text: 'الحمد لله رب العالمين', place: { surah: 1, ayah: 2, sure: true, home: true } })
     await h.wait(0)
     await h.midPhrase()
-    expect(h.readings[2].options.before).toBe('')
+    expect(h.readings[4].options.before).toBe('')
   })
 
   it("asks no place for a page that is not the Qur'an, and keeps a reading too short to place by its words", async () => {

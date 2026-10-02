@@ -413,8 +413,10 @@ export function createRecitingSession({ onChange, deps = {} }) {
           // was found here: ٱللَّهِ alone once kept every reading of 2:255 on
           // al-Fatihah. Too short to place, one shared word is enough.
           const { place } = heard
-          if (place && !place.sure && !place.home) carried = heard.text
-          else if (place) carried = ''
+          // Only the reading at the pause: a recording is read again as it
+          // grows, and carrying a mid-phrase reading put its words in front
+          // of the next reading of the same sound, twice over.
+          if (last && place) carried = place.sure || place.home ? '' : heard.text
           const ofPage = place ? place.home : isOfPage(words, page.pageWords)
           if (ofPage) {
             latest = words
