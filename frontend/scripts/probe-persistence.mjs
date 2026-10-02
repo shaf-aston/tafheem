@@ -72,7 +72,7 @@ const heading = await page.locator('.type-tiny.uppercase').first().textContent()
 check('everyday still asks a question', /mean|word/i.test(heading ?? ''), true)
 
 // ── Best streak: the one thing a round leaves behind ─────────────────────────
-await page.evaluate(() => localStorage.setItem('quiz-best-streak', '7'))
+await page.evaluate(() => localStorage.setItem('progress:quiz-best-streak', '7'))
 await page.reload()
 await page.waitForSelector('[role="group"][aria-label="Words"]')
 check('best streak read back', /best 7/.test(await page.locator('body').innerText()), true)
