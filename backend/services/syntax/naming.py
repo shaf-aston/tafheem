@@ -15,14 +15,12 @@ package's `__init__.py`.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import book_words, is_mabni, is_one, is_plain_noun, role_table
+from backend.services.nahw_book import is_mabni, is_one, role_table
 from backend.services.syntax import facts, walker
-from backend.services.syntax.facts import PRESENT_PREFIX, case_of, children_of, family_of, is_passive, is_verb, noun_before
+from backend.services.syntax.facts import (
+    PRESENT_PREFIX, case_of, children_of, family_of, is_participle, is_verb, noun_before)
 from backend.services.syntax.vowels import (
     CASE_NAME, SUKUN, command_shape, letters, typed_case)
-
-# a root letter is what is left once the letters that come and go are removed
-WEAK = set("اويىءأإآئؤة")
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -47,19 +45,6 @@ def roles_keyed(*keys: str) -> tuple[str, ...]:
 def tone(role: str | None) -> str | None:
     """The colour the bracket diagram draws this role in."""
     return _entry(role)[1]
-
-
-def _skeleton(word: str) -> list[str]:
-    return [letter for letter in bare_letters(word) if letter not in WEAK]
-
-
-def _participle(token: dict) -> bool:
-    """An active or passive participle, or an adjective: what a hal is made of.
-    A word the morphology does not know (مسرعا) is judged by its مـ and its ending ـا."""
-    typed = bare_letters(token.get("typed") or "")
-    return (token.get("ud") == "ADJ" or token.get("pos_camel") == "adj"
-            or token.get("pattern", "").startswith(tuple(book_words("participle_patterns")))
-            or (token.get("pos_camel") == "noun_prop" and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
 def takes_tamyeez(token: dict, tokens: list[dict]) -> bool:
@@ -90,15 +75,7 @@ def _predicate(family: str | None) -> str:
     return _PREDICATE.get(family, "خبر")
 
 
-def _listed(token: dict, *families: str) -> bool:
-    """On a book list by its lemma or by the form as typed: the list holds صباحا
-    and يوم, while the parser lemmatises the first to صباح."""
-    return any(is_one(spelling, family) for family in families
-               for spelling in (token["lemma"], strip_diacritics(token["form"])))
-
-
-def _by_book(token: dict, tokens: list[dict], by_id: dict, head: dict | None,
-             family: str | None) -> str | None:
+def _by_book(token: dict, tokens: list[dict], by_id: dict) -> str | None:
     """Roles the book decides by a closed word list, before the links are read.
 
     Each test pairs a listed word with the shape round it (what it hangs on, what
@@ -117,17 +94,6 @@ def _by_book(token: dict, tokens: list[dict], by_id: dict, head: dict | None,
     follower = by_id.get(token["id"] + 1)
     if is_one(lemma, "atf") and typed and typed == strip_diacritics(typed) and follower and is_verb(follower):
         return "حرف"
-    # مَتَى سافر: a listed time or place word before the verb is that verb's مفعول فيه even when
-    # this CAMeL/onnx build makes it the root with the verb hanging off it
-    if _listed(token, "zarf_zaman", "zarf_makan") and case_of(token) in (None, "a") and any(
-            is_verb(k) and k["id"] > token["id"] for k in kids) and not (head and is_verb(head)):
-        return "مفعول فيه"
-    if not head:
-        return None
-    case = typed_case(token.get("typed"), token.get("stuck_on", 0))
-    if token["rel"] == "MOD" and is_verb(head) and case in (None, "a"):
-        if _listed(token, "zarf_zaman", "zarf_makan"):
-            return "مفعول فيه"
     return None
 
 
@@ -140,7 +106,7 @@ def name(token: dict, tokens: list[dict]) -> str | None:
     children = children_of(token, tokens)
     verbless = not any(is_verb(t) for t in tokens)
 
-    by_book = _by_book(token, tokens, by_id, head, family)
+    by_book = _by_book(token, tokens, by_id)
     if by_book:
         return by_book
     # a question particle (هل، أ) only asks; it leaves the rest a plain sentence
@@ -163,44 +129,8 @@ def name(token: dict, tokens: list[dict]) -> str | None:
         return _predicate(family)  # كاد يموت, ليت الشباب يعود: the verb stays a verb, its clause is the khabar
     if found:
         return found[0]  # a verb, once it is not a khabar
-    if head and is_verb(head) and rel in ("SBJ", "TPC") and token["id"] < head["id"] and family is None             and typed_case(token.get("typed"), token.get("stuck_on", 0)) == "a":
-        return "مفعول به"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object
     if head and is_verb(head) and rel == "TPC" and token["id"] < head["id"] and family is None:
         return "مبتدأ"  # a فاعل never comes first: the noun opens the sentence, the verb's clause is its khabar
-    # the vowel the reader typed on this word: the book's evidence for its job, which
-    # the parser (it never sees vowels) may not overrule
-    typed = typed_case(token.get("typed"), token.get("stuck_on", 0))
-    # an indefinite word after a verb that already has its doer is not the verb's
-    # object unless the book says so: it names how or which part (حال، تمييز)
-    if head and is_verb(head) and family is None and rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") \
-            and token["id"] > head["id"] and token.get("stt") == "i" \
-            and any(t["rel"] in ("SBJ", "TPC", "OBJ") for t in children_of(head, tokens) if t is not token):
-        if is_one(head["lemma"], "tamyeez_verbs") and not _participle(token):
-            return "تمييز"
-        if _participle(token):
-            return "حال"
-    if head and is_verb(head) and (
-            rel in ("SBJ", "TPC", "OBJ") or (rel == "IDF" and typed != "i")
-            or (rel == "MOD" and typed == "u" and is_plain_noun(token))
-            # بِعْ الكِتَابَ: hung on the verb as a modifier, but a definite word is never a
-            # hal or tamyeez, so its fatha makes it the object (unless it is the verb's own masdar)
-            or (rel == "MOD" and typed == "a" and token.get("stt") == "d" and is_plain_noun(token)
-                and family is None and _skeleton(token["lemma"]) != _skeleton(head["lemma"]))):
-        siblings = [t for t in tokens if t["head"] == head["id"] and t is not token]
-        if is_passive(head):
-            if typed in ("u", "a"):  # damma stands in for the doer, fatha is a kept object
-                return "نائب فاعل" if typed == "u" else "مفعول به"
-            # a passive verb has no doer to take an object from: its first noun
-            # stands in for the doer, and only a second one is an object
-            standing = [t for t in (*siblings, token) if t["rel"] in ("SBJ", "TPC", "OBJ")]
-            first = min(standing, key=lambda t: (t["rel"] == "OBJ", t["id"]))
-            return "نائب فاعل" if token is first or rel != "OBJ" else "مفعول به"
-        if typed in ("u", "a"):  # after an active verb: damma is the doer, fatha the done-to
-            return "فاعل" if typed == "u" else "مفعول به"
-        # the parser reads letters only, so a nominative "object" with no subject is the subject
-        if rel == "OBJ" and (case_of(token) != "u" or any(s["rel"] == "SBJ" for s in siblings)):
-            return "مفعول به"
-        return "فاعل"
     if rel in ("SBJ", "TPC"):
         return "مبتدأ"
     if rel == "---":
@@ -215,10 +145,6 @@ def name(token: dict, tokens: list[dict]) -> str | None:
             # the first is the mubtada it starts with, the second its khabar
             loose = [t for t in tokens if t["rel"] == "---" and t["pos"] == "NOM"]
             return "مبتدأ" if not loose or token is loose[0] else "خبر"
-    if rel == "OBJ":
-        return "مفعول به"
-    if rel == "TMZ":
-        return "تمييز"
     if rel == "MOD" and head:
         mine, theirs = case_of(token), case_of(head)
         if mine and mine == theirs and not is_verb(head):
@@ -232,12 +158,10 @@ def name(token: dict, tokens: list[dict]) -> str | None:
         if mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a":
             return _predicate(_governor_family(head, by_id, tokens))
         if mine == "a" and token.get("stt") != "d":
-            verb = head if is_verb(head) else by_id.get(head["head"])
-            if verb and is_verb(verb) and _skeleton(token["lemma"]) == _skeleton(verb["lemma"]):
-                return "مفعول مطلق"  # same root as its verb: فَرِحَ فَرَحًا
-            if _participle(token) or bare_letters(token.get("typed", ""))[:1] == "م":
+            # no verb above it (a verb's hal and tamyeez are in the tree): ما زيدٌ قائمًا.
+            # A tamyeez clarifies what came before it and never goes first
+            if is_participle(token) or bare_letters(token.get("typed") or "")[:1] == "م":
                 return "حال"
-            # a tamyeez clarifies what came before it and never goes first
             return "تمييز" if token["id"] > head["id"] else None
     return None
 
