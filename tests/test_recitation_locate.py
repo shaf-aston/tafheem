@@ -26,10 +26,11 @@ AYAHS = {
 LINE = locate.build(sorted(AYAHS.items()))
 FATIHAH = locate.span(LINE, (1, 1), (1, 6))
 MARGIN = 0.1
+FIT = 0.9
 
 
 def place(heard, near=None):
-    return locate.find(heard, LINE, MARGIN, near)
+    return locate.find(heard, LINE, MARGIN, FIT, near)
 
 
 def test_words_two_ayahs_share_are_not_sure_until_more_is_said():
@@ -61,6 +62,17 @@ def test_one_shared_word_or_none_is_no_place(heard):
 
 def test_a_reading_that_runs_from_one_ayah_into_the_next_is_found_where_it_starts():
     found = place("وما في الأرض لا إكراه في الدين")
+    assert (found.surah, found.ayah, found.sure) == (2, 255, True)
+
+
+def test_a_lone_place_that_fits_poorly_is_not_sure():
+    # No rival, so before the fit floor this was sure at any fit (here 0.89).
+    found = place("قد تبين الرشد من الغيب والنور")
+    assert found and not found.sure
+
+
+def test_a_right_place_beside_a_near_duplicate_is_sure():
+    found = place("لا تأخذه سنة ولا نوم")
     assert (found.surah, found.ayah, found.sure) == (2, 255, True)
 
 

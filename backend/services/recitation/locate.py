@@ -10,8 +10,9 @@ ayah into the next is found like any other.
 
 Sure means no other place fits nearly as well: the first words of 2:255 are
 also all of 3:2, and until the reciter says more the two tie. Measured on
-1,050 Groq readings cut into 4-word pieces: 1,247 placed right, 0 wrong, the
-rest not sure (backend/scripts/score_place.py; recitation_place_margin).
+1,050 Groq readings: in 4-word pieces 1,501 placed right, 0 wrong, 589 not
+sure; whole readings 965, 0, 85; everyday Arabic sure 0 of 20
+(backend/scripts/score_place.py; recitation_place_margin, recitation_place_fit).
 """
 from __future__ import annotations
 
@@ -82,14 +83,22 @@ def _spots(heard: list[str], line: Line) -> list[tuple[float, int]]:
         hits = [b for b in SequenceMatcher(None, heard, list(span), autojunk=False).get_matching_blocks() if b.size]
         if sum(b.size for b in hits) < PLACES_IT:
             continue
-        shared = sum(b.size for b in SequenceMatcher(None, said, " ".join(span), autojunk=False).get_matching_blocks())
-        out.append((shared / len(said), lo + hits[0].b))
+        # Compared only over the stretch the reading covers: first to last
+        # matched word, widened by the heard words left unmatched at either
+        # edge. Scoring the whole padded span diluted a right place to ~0.91
+        # and lost the gap to a wrong one (472 of 843 unsure 4-word pieces).
+        a = max(hits[0].b - hits[0].a, 0)
+        z = min(hits[-1].b + hits[-1].size + (len(heard) - hits[-1].a - hits[-1].size), len(span))
+        fit = SequenceMatcher(None, said, " ".join(span[a:z]), autojunk=False).ratio()
+        out.append((fit, lo + hits[0].b))
     return sorted(out, reverse=True)
 
 
-def find(heard: str, line: Line, margin: float, near: tuple[int, int] | None = None) -> Place | None:
+def find(heard: str, line: Line, margin: float, fit: float, near: tuple[int, int] | None = None) -> Place | None:
     """Where `heard` starts, or None when no place holds PLACES_IT of its words.
 
+    Sure needs the best place to fit at least `fit` (0 to 1) and beat the next
+    by `margin`; a lone candidate has no rival, so fit alone guards it.
     `near` is (first, last + 1) on the line: the open page. A place there that
     fits within `margin` of the best is taken, since carrying on is likelier
     than a jump that the words cannot tell apart.
@@ -102,7 +111,7 @@ def find(heard: str, line: Line, margin: float, near: tuple[int, int] | None = N
     if home and home[0][0] >= best[0] - margin:
         return Place(*line.where[home[0][1]], sure=True, home=True)
     rival = found[1][0] if len(found) > 1 else 0.0
-    return Place(*line.where[best[1]], sure=best[0] - rival >= margin, home=False)
+    return Place(*line.where[best[1]], sure=best[0] >= fit and best[0] - rival >= margin, home=False)
 
 
 def span(line: Line, first: tuple[int, int], last: tuple[int, int]) -> tuple[int, int]:
