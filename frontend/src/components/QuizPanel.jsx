@@ -23,7 +23,7 @@ import AnswerSquare from './ui/AnswerSquare'
 import ArabicText from './ui/ArabicText'
 import AutoAdvanceToggle from './ui/AutoAdvanceToggle'
 import SpeakButton from './ui/SpeakButton'
-import PillSelect from './ui/PillSelect'
+import WheelPicker from './ui/WheelPicker'
 
 // What each remembered control is allowed to be, taken from the same tables the
 // controls themselves are drawn from, so a set or a direction can never be
@@ -435,19 +435,18 @@ export default function QuizPanel({ accent, onProgress }) {
               onChange={chooseScope}
             />
             {section && (
-              <PillSelect
-                aria-label={say('Which {kind}', { kind: say(section.label).toLowerCase() })}
+              <WheelPicker
+                label={say('Which {kind}', { kind: say(section.label).toLowerCase() })}
+                options={section.options.map((option) => ({
+                  value: option.id,
+                  label: `${option.label} (${option.size})`,
+                  disabled: option.size < QUIZ.optionCount,
+                }))}
                 value={groupId}
-                onChange={(e) => startRound({ group: e.target.value })}
-                style={{ '--c': accent }}
-                className="py-1 px-2.5 text-xs max-w-[13rem] border-[var(--border)] text-[var(--text-dim)] hover:text-[var(--text)]"
-              >
-                {section.options.map((option) => (
-                  <option key={option.id} value={option.id} disabled={option.size < QUIZ.optionCount}>
-                    {option.label} ({option.size})
-                  </option>
-                ))}
-              </PillSelect>
+                onPick={(group) => startRound({ group })}
+                accent={accent}
+                className="max-w-[13rem]"
+              />
             )}
           </>
         )}

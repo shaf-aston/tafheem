@@ -14,7 +14,7 @@ import surahs from '../data/surahs.json'
 import { JUZ_COUNT, juzOf, juzStart } from '../lib/juz'
 import WheelPicker from './ui/WheelPicker'
 
-export default function QuranPlacePicker({ surah, ayah, onReadSurah, onOpenAyah }) {
+export default function QuranPlacePicker({ surah, ayah, accent, onReadSurah, onOpenAyah }) {
   // The surah in the first select: the open one, until another is picked here.
   const [picked, setPicked] = useState(surah)
   const [followed, setFollowed] = useState(surah)
@@ -32,9 +32,9 @@ export default function QuranPlacePicker({ surah, ayah, onReadSurah, onOpenAyah 
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <WheelPicker label="Surah" placeholder="Surah" options={surahOptions} value={picked} onPick={pickSurah} className="max-w-[16rem]" />
-      <WheelPicker label="Ayah" placeholder="Ayah" options={ayahOptions} value={shownAyah} disabled={!current} narrow onPick={(n) => onOpenAyah(picked, n)} />
-      <WheelPicker label="Juz" placeholder="Juz" options={juzOptions} narrow value={picked ? juzOf(picked, shownAyah ?? 1) : null} onPick={pickJuz} />
+      <WheelPicker label="Surah" placeholder="Surah" options={surahOptions} value={picked} onPick={pickSurah} accent={accent} className="max-w-[16rem]" />
+      <WheelPicker label="Ayah" placeholder="Ayah" options={ayahOptions} value={shownAyah} disabled={!current} narrow accent={accent} onPick={(n) => onOpenAyah(picked, n)} />
+      <WheelPicker label="Juz" placeholder="Juz" options={juzOptions} narrow accent={accent} value={picked ? juzOf(picked, shownAyah ?? 1) : null} onPick={pickJuz} />
     </div>
   )
 }

@@ -31,12 +31,14 @@ import recite from '../recite.json'
 import { LOOK, SHOWN } from '../lib/reciteColors'
 
 import ArabicText from './ui/ArabicText'
+import AyahNumber from './ui/AyahNumber'
 import ReciteStrip from './ReciteStrip'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import PrimaryButton from './ui/PrimaryButton'
 import SectionHeader from './ui/SectionHeader'
 import Segmented from './ui/Segmented'
+import WheelPicker from './ui/WheelPicker'
 import { Skeleton } from './ui/Skeleton'
 
 // The setting itself, not a copy of one of its numbers. Every id here comes
@@ -363,33 +365,22 @@ export default function MemorisePanel({ accent }) {
           and the captions were a second row of grey restating them. Their
           words stay as screen-reader labels and hover titles. */}
       <div className="flex flex-wrap items-center gap-2">
-        <select
-          aria-label="Book"
+        <WheelPicker
+          label="Book"
+          options={Object.values(BOOKS).map((b) => ({ value: b.id, label: b.label }))}
           value={bookId}
-          onChange={(event) => openBook(event.target.value)}
-          className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius-md)]
-            px-3 py-1.5 text-sm text-[var(--text)]"
-        >
-          {Object.values(BOOKS).map((b) => (
-            <option key={b.id} value={b.id}>{b.label}</option>
-          ))}
-        </select>
+          onPick={openBook}
+          accent={accent}
+        />
 
-        {/* auto, not rtl: a baab's name is Arabic and a surah's number is
-            not. The open part shows its full title, so "1" reads
-            "1. Al-Fatihah" and the title needs no line of its own below. */}
-        <select
-          aria-label={book.partLabel}
-          dir="auto"
-          value={part ?? ''}
-          onChange={(event) => openPart(Number(event.target.value))}
-          className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius-md)]
-            px-3 py-1.5 text-sm text-[var(--text)] max-w-[18rem]"
-        >
-          {(parts ?? []).map((p) => (
-            <option key={p.id} value={p.id}>{p.id === part && data?.title ? data.title : p.label}</option>
-          ))}
-        </select>
+        <WheelPicker
+          label={book.partLabel}
+          options={(parts ?? []).map(({ id, ...rest }) => ({ value: id, ...rest }))}
+          value={part}
+          onPick={openPart}
+          accent={accent}
+          className="max-w-[18rem]"
+        />
 
         <Segmented
           label="How you answer"
@@ -429,20 +420,19 @@ export default function MemorisePanel({ accent }) {
               {/* A picker, not steps alone: stepping is fine for the next page
                   and useless for the fifteenth. The mushaf page, when known,
                   is the number a memoriser already uses, so it is the label. */}
-              <select
-                value={pageNumber}
-                onChange={(event) => openPage(Number(event.target.value))}
-                aria-label="page"
-                title={printedPage != null ? 'Page in the 604-page Madani mushaf' : undefined}
-                className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius-md)]
-                  px-2 py-1 text-sm text-[var(--text)]"
-              >
-                {pages.map((p, n) => (
-                  <option key={n} value={n}>
-                    {`${printedPageOf(p) != null ? `Mushaf p.${printedPageOf(p)}` : `Page ${n + 1} of ${pages.length}`} · ${withinPart(p[0].label)}–${withinPart(p[p.length - 1].label)}`}
-                  </option>
-                ))}
-              </select>
+              {/* Valued by the number it shows, so typing "177" finds Mushaf p.177. */}
+              <span title={printedPage != null ? 'Page in the 604-page Madani mushaf' : undefined}>
+                <WheelPicker
+                  label="Page"
+                  options={pages.map((p, n) => ({
+                    value: printedPageOf(p) ?? n + 1,
+                    label: `${printedPageOf(p) != null ? `Mushaf p.${printedPageOf(p)}` : `Page ${n + 1} of ${pages.length}`} · ${withinPart(p[0].label)}–${withinPart(p[p.length - 1].label)}`,
+                  }))}
+                  value={printedPage ?? pageNumber + 1}
+                  onPick={(no) => openPage(pages.findIndex((p, n) => (printedPageOf(p) ?? n + 1) === no))}
+                  accent={accent}
+                />
+              </span>
               {/* Stepping only means something when there is another page. */}
               {pages.length > 1 && (
                 <>
@@ -685,13 +675,9 @@ function Line({ line, flow, index, blanks, answers, checked, meaning, choices, a
       </Fragment>
     )
   })
-  const marker = flow ? (
-    <span className="type-small text-[var(--text-dim)] shrink-0 tabular-nums" aria-label={`ayah ${withinPart(line.label)}`}>
-      {`﴿${withinPart(line.label)}﴾`}
-    </span>
-  ) : (
-    <span className="type-small text-[var(--text-faint)] shrink-0">{line.label}</span>
-  )
+  const marker = flow
+    ? <AyahNumber aria-label={`ayah ${withinPart(line.label)}`}>{withinPart(line.label)}</AyahNumber>
+    : <AyahNumber>{line.label}</AyahNumber>
   // Flowing, the line's two boxes step aside (display: contents) so its words
   // join the page's one run; the words themselves are drawn the same either way.
   return (

@@ -20,7 +20,7 @@ import SourceBadge from './ui/SourceBadge'
 import VerbFormTag from './ui/VerbFormTag'
 import { Skeleton, AnalyzerSkeleton } from './ui/Skeleton'
 import { verbClass } from '../lib/verbClass'
-import PillSelect from './ui/PillSelect'
+import WheelPicker from './ui/WheelPicker'
 
 // The book prints the four active columns together and keeps the passives for
 // later, so the first four columns the server sends are what opens by default.
@@ -346,21 +346,18 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
             {swapPending && (
               <span className="type-small text-[var(--text-faint)]">Rebuilding the table…</span>
             )}
-            <PillSelect
-              aria-label="Verb form"
-              value={picked || form || ''}
-              onChange={(e) => choose(e.target.value)}
+            {/* No form chosen yet (no book records the باب): the control must not
+                read as an answer, so it shows a prompt, never a form. */}
+            <WheelPicker
+              label="Verb form"
+              placeholder="Choose a باب"
+              options={Object.entries(options).map(([id, label]) => ({ value: id, label }))}
+              value={picked || form}
+              onPick={choose}
               disabled={swapPending}
-              style={{ '--c': accent }}
-              className="py-1 px-2.5 text-xs max-w-[14rem] border-[var(--border)] text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-60 disabled:cursor-wait"
-            >
-              {/* No form chosen yet (no book records the باب): the control must not
-                  read as an answer, so it opens on a blank prompt, never on a form. */}
-              {!(picked || form) && <option value="">Choose a باب</option>}
-              {Object.entries(options).map(([id, label]) => (
-                <option key={id} value={id}>{label}</option>
-              ))}
-            </PillSelect>
+              accent={accent}
+              className="max-w-[14rem]"
+            />
             {/* Beside the control that failed, not at the top of the page: the
                 word's own answer above is still good, only the swap broke. */}
             {swapError && (

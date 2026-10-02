@@ -17,10 +17,11 @@
  */
 
 import { getQuranSurah } from '../api'
+import surahs from '../data/surahs.json'
 import { PAGE_WORDS, wordsOf } from './memorise'
 
-/** 114 surahs, numbered. Their names arrive with the text, so none are held here. */
-const SURAHS = Array.from({ length: 114 }, (_, i) => ({ id: i + 1, label: String(i + 1) }))
+/** 114 surahs, named as the Quran tab's wheel names them, so either can be typed to. */
+const SURAHS = surahs.map((s) => ({ id: s.n, label: `${s.n}. ${s.en}`, hint: s.ar, keys: [s.ar] }))
 
 /**
  * The poem, fetched at most once however many times it is asked for; its

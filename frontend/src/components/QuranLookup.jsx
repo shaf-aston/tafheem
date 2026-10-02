@@ -163,6 +163,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
       />
 
       <QuranPlacePicker
+        accent={accent}
         surah={at?.surah ?? null}
         ayah={at?.ayah ?? null}
         onReadSurah={readSurah}

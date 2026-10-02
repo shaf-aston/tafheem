@@ -18,6 +18,7 @@ import UnitView from './colloquial/UnitView'
 import WordBank from './colloquial/WordBank'
 import ErrorAlert from './ui/ErrorAlert'
 import SectionHeader from './ui/SectionHeader'
+import WheelPicker from './ui/WheelPicker'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
 const HUES = 8
@@ -77,13 +78,11 @@ function Trail({ steps }) {
 // the other dialect has not written yet drops back to its unit list.
 function Switch({ dialects, current, onPick }) {
   return (
-    <label className="ms-auto flex items-center gap-2 type-small text-[var(--text-faint)]">
+    <div className="ms-auto flex items-center gap-2 type-small text-[var(--text-faint)]">
       <span>Same place in</span>
-      <select value={current} onChange={(e) => onPick(e.target.value)}
-        className={`bg-transparent text-[var(--text-dim)] hover:text-[var(--text)] rounded ${FOCUS}`}>
-        {dialects.map((d) => <option key={d.key} value={d.key}>{d.label}</option>)}
-      </select>
-    </label>
+      <WheelPicker label="Dialect" options={dialects.map((d) => ({ value: d.key, label: d.label }))}
+        value={current} onPick={onPick} accent={colorFor('tab', 'colloq')} />
+    </div>
   )
 }
 
