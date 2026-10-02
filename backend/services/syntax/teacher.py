@@ -17,7 +17,7 @@ from backend.services.syntax.naming import (
     base_tokens, family_of, is_passive, is_verb, roles_keyed, takes_tamyeez)
 from backend.services.syntax.vowels import CASE_NAME, typed_case
 
-# the role groups are the card's colour keys (naming.ROLES), so a new role joins its group there
+# the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there
 DOERS = roles_keyed("fail")
 SUBJECTS = roles_keyed("mubtada")
 FOLLOWERS = roles_keyed("tabi", "sifah")

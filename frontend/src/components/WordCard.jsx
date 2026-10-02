@@ -16,6 +16,10 @@ import { scrollToEl } from '../lib/scrollToEl'
 import ArabicText from './ui/ArabicText'
 import RootActions from './ui/RootActions'
 
+// A word of these types has no root by nature; any other rootless word is one
+// the dictionary failed on (جاء: a hamza CAMeL leaves as a placeholder).
+const ROOTLESS = new Set(['harf', 'damir'])
+
 export default function WordCard({ word, onClose, onGo, exclude }) {
   const headingRef = useRef(null)
   const key = word?.role_key
@@ -130,7 +134,9 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
           can be conjugated, defined, or found in the Qur'an. */}
       {!word.root && (
         <p className="type-small text-[var(--text-faint)]">
-          No root: particles and pronouns are not built from one.
+          {ROOTLESS.has(word.type) || (word.case === 'mabni' && word.type !== "fi'l")
+            ? 'No root: particles, pronouns and pointing words are not built from one.'
+            : "Root not found: the dictionary could not settle this word's root."}
         </p>
       )}
       {word.root && onGo && (

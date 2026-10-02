@@ -34,6 +34,7 @@ from collections import Counter
 from pathlib import Path
 
 from backend.services.arabic_text import bare_letters, strip_diacritics, words
+from backend.services.nahw_book import role_table
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 KEY = json.loads((DATA / "nahw_rules" / "answer_key.json").read_text(encoding="utf-8"))
@@ -124,15 +125,16 @@ def tree_leaves(node: dict | None) -> list[dict]:
 
 
 # The picture names a unit's head by what it is to its unit; the card keeps the
-# word's job in the sentence. These are the picture's own wording, not a clash.
-UNIT_WORDING = {"مضاف", "موصوف"}
+# word's job in the sentence. These are the picture's own wording, not a clash:
+# the roles roles.json gives no card colour (مضاف، موصوف، اسم موصول).
+UNIT_WORDING = {role for role, (key, _) in role_table().items() if key is None}
 
 
 def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, str]]:
     """(word, card role, leaf role) for each tree leaf whose role differs from its card.
 
     Compared after stripping harakat. Not counted: a leaf or card with no role (a
-    gap); a leaf saying مضاف or موصوف.
+    gap); a leaf in the picture's own wording (UNIT_WORDING).
     """
     if not tree or len(tree.get("words") or []) != len(cards):
         return []

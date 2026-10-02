@@ -119,6 +119,10 @@ VERB_CARDS = [
     ("لن يذهب زيد", 1, "nasb", "منصوب"),
     ("يَكْتُبُ الطَّالِبُ", 0, "raf'", "مرفوع"),
     ("كَتَبَ الطَّالِبُ", 0, "mabni", "فعل ماضٍ"),  # nearest case: a past verb is untouched
+    ("بِعْ الكِتَابَ", 0, "mabni", "فعل أمر"),      # CAMeL offers only the name بِع
+    ("نَمْ مُبَكِّرًا", 0, "mabni", "فعل أمر"),     # and the parser's reading is the noun نَمّ
+    ("أَكْرِمْ الضَّيْفَ", 0, "mabni", "فعل أمر"),   # Form IV, hamzat al-qat'
+    ("لَمْ أَجْلِسْ", 1, "jazm", "مجزوم"),          # nearest case: the same shape after لم is a present verb
 ]
 
 
@@ -172,6 +176,14 @@ CARDS = [
     ("جَاءَ الَّذِي نَجَحَ", 1, "reason", "مبني في محل رفع"),
     ("لَا تَكْذِبْ", 0, "reason", "لا الناهية"),
     ("لَا يَكْذِبُ المُؤْمِنُ", 0, "reason", "لا النافية"),
+    ("كِتَابِي جَدِيدٌ", 0, "sign", "ضمة مقدرة على ما قبل ياء المتكلم"),
+    ("قَرَأْتُ فِي كِتَابِي", 2, "sign", "كسرة مقدرة"),
+    ("جَاءَ الفَتَى", 1, "sign", "ضمة مقدرة على الألف"),
+    ("رَأَيْتُ أَخِي", 1, "case", "nasb"),                # renamed by the parser, the case follows
+    ("رَأَيْتُ الطَّالِبَيْنِ", 1, "sign", "الياء، مثنى"),  # and a dual keeps its kind of sign
+    ("لَنْ يَكْتُبَا", 1, "sign", "حذف النون"),
+    ("لَمْ تَكْتُبِي", 1, "sign", "حذف النون"),
+    ("لَنْ يَمْشِيَ", 1, "sign", "فتحة"),                 # nearest case: the ي is the root's
 ]
 
 
@@ -190,3 +202,24 @@ def test_summary_and_tree_name_the_sentence_alike(sentence: str, term: str):
     answer = _read(sentence)
     from backend.services import syntax
     assert (answer["summary"], syntax.read(sentence)["tree"]["tree"]["label"]) == (term_ar(term), term_ar(term))
+
+
+def test_a_relative_and_its_silah_are_one_unit():
+    """جاء الذي نجح: the الذي unit does the فاعل's job, made of the relative and its صلة."""
+    from backend.services import syntax
+    doer = syntax.read("جَاءَ الَّذِي نَجَحَ")["tree"]["tree"]["children"][1]
+    inside = [(kid.get("role"), kid.get("label")) for kid in doer["children"]]
+    assert (doer["role"], doer["label"], inside) == (
+        "فاعل", term_ar("mawsool_silah"), [("اسم موصول", None), ("صلة", term_ar("jumlah_filiyyah"))])
+
+
+def test_word_types_are_the_pages():
+    """The types a card may carry are the ones grammar.json labels, and the rules use no other."""
+    import json
+    from pathlib import Path
+    from backend.models.schemas import WORD_TYPES
+    labelled = json.loads((Path(__file__).parent.parent / "frontend/src/grammar.json").read_text(encoding="utf-8"))["types"]
+    assert WORD_TYPES - {"punc"} == set(labelled)
+    for sentence in (VERBAL, NOMINAL, "جَاءَ الَّذِي نَجَحَ، هُوَ فِي البَيْتِ"):
+        assert {w["type"] for w in _read(sentence)["words"]} <= WORD_TYPES
+    assert WordAnalysis.from_raw({"word": "زيدٌ", "type": "noun"}).type is None

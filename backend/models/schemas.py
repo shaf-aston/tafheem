@@ -66,6 +66,10 @@ ROLE_KEYS = frozenset({
     "tabi",     # a follower that copies the word before it: عطف, توكيد, بدل
 })
 
+# Every word type a card can carry, as frontend/src/grammar.json `types` names them
+# (punc is the one the page never labels). tests/test_rule_engine.py holds the two together.
+WORD_TYPES = frozenset({"ism", "fi'l", "harf", "damir", "zarf", "punc"})
+
 
 class WordAnalysis(BaseModel):
     word: str
@@ -99,7 +103,7 @@ class WordAnalysis(BaseModel):
         return cls(
             word=w.get("word", ""),
             root=root or None,
-            type=w.get("type"),
+            type=w.get("type") if w.get("type") in WORD_TYPES else None,
             role=w.get("role"),
             role_key=key if key in ROLE_KEYS else None,
             case=w.get("case"),

@@ -24,6 +24,7 @@ VERBAL = term_ar("jumlah_filiyyah")
 NOMINAL = term_ar("jumlah_ismiyyah")
 QUESTION = term_ar("jumlah_istifhamiyyah")
 NIDA = term_ar("jumlah_nidaiyyah")
+MAWSOOL = term_ar("mawsool_silah")
 
 
 def _leaf(index: int, role: str | None, why: dict | None = None) -> dict:
@@ -41,6 +42,8 @@ def _label(head: dict, child_roles: list[str]) -> str:
         return JARR
     if head["pos"] == "PRT" and "منادى" in child_roles:
         return NIDA
+    if "صلة" in child_roles:
+        return MAWSOOL
     if "مضاف إليه" in child_roles:
         return IDAFA
     if "صفة" in child_roles:
@@ -54,6 +57,8 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
     On its own it is a مبتدأ; inside كِتَابُ الطَّالِبِ it is the مضاف and the
     unit as a whole is the مبتدأ, which is how the books draw it.
     """
+    if "صلة" in child_roles:
+        return "اسم موصول"
     if "مضاف إليه" in child_roles:
         return "مضاف"
     if "صفة" in child_roles:
@@ -84,6 +89,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     job_of = {token["id"]: "مبتدأ" if role_of[token["id"]] == "صفة" and any(
         t["head"] == token["id"] and t["id"] < token["id"] and role_of.get(t["id"]) == "مبتدأ" for t in bases)
         else role_of[token["id"]] for token in bases}
+    # جاء الذي نجح: the verb after a relative opens its صلة, a clause with no place of its own
+    for token in bases:
+        up = next((t for t in bases if t["id"] == token["head"]), None)
+        if up and "rel" in up.get("pos_camel", "") and up["id"] < token["id"] and role_of[token["id"]] == "فعل":
+            job_of[token["id"]] = "صلة"
     children_of: dict[int, list[dict]] = {token["id"]: [] for token in bases}
     by_id = {t["id"]: t for t in tokens}
 
@@ -123,7 +133,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         kids = [kid for kid in children_of[token["id"]] if kid["id"] not in seen]
         index = at[token["id"]]
         if not kids:
-            return _leaf(index, role_of[token["id"]], why_of[token["id"]])
+            leaf = _leaf(index, role_of[token["id"]], why_of[token["id"]])
+            # a صلة of one verb is still a clause, its doer the pronoun hidden in it
+            return {"role": "صلة", "label": VERBAL, "tone": tone("صلة"), "children": [leaf]}                 if job_of[token["id"]] == "صلة" else leaf
         kid_roles = [job_of[kid["id"]] for kid in kids if job_of[kid["id"]]]
         seen.update(kid["id"] for kid in kids)
         inside = [(at[kid["id"]], node(kid)) for kid in kids]
@@ -131,8 +143,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         why = why_of[token["id"]]
         # a word the teacher dashed stays a dash at the head of its unit: مضاف would name it
         inside.append((index, _leaf(index, role if why else _unit_role(role, kid_roles), why)))
-        label = _label(token, kid_roles) or (_sentence_label(role_of, bases)
-                                             if token is root else "")
+        label = _label(token, kid_roles) or (_sentence_label(role_of, bases) if token is root
+                                             else VERBAL if job_of[token["id"]] == "صلة" else "")
         # A particle's name is what it is, not a job for the unit it heads: the
         # parser gives no job for a jar-majroor or a clause under إِذَا, so none
         # is written rather than calling the whole unit a حرف. The clause a كاد-type

@@ -19,6 +19,7 @@ import unicodedata
 from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
+from backend.services.nahw_book import is_one
 from backend.services.syntax.vowels import CAMEL_CASE, CASE_NAME, TANWEEN, command_shape, typed_case
 
 logger = logging.getLogger(__name__)
@@ -101,7 +102,7 @@ _POS_TYPE: dict[str, str] = {
     "noun":      "ism",
     "noun_prop": "ism",   # CAMeL: proper nouns; still ism in Nahw
     "verb":      "fi'l",
-    "adj":       "sifah",
+    "adj":       "ism",   # an adjective is an ism; صفة is a role it may not hold (جَدِيدٌ as khabar)
     "prep":      "harf",
     "conj":      "harf",
     "conj_sub":  "harf",  # subordinating conjunction (إنّ / أنّ etc.)
@@ -215,24 +216,33 @@ def _build_features(a: dict) -> str:
     return ", ".join(parts)
 
 
-def _as_command(word: str, a: dict) -> dict:
-    """CAMeL's word list has no اُكْتُبْ or قُمْ, so it offers أَكْتُبُ or قَمَّ; the typed
-    shape of a command overrules it (the book forms the امر from the مضارع that way).
-    A two-letter one is a hollow verb that dropped its middle letter (قُمْ from قام), so
-    its root and lemma come from that past form, not from the قَمَّ it was misread as."""
-    a = {**a, "asp": "c", "mod": "na", "per": "2"}
+def _as_command(word: str, a: dict, before: str) -> dict:
+    """CAMeL's word list has no اُكْتُبْ, قُمْ or أَكْرِمْ, so it offers أَكْتُبُ, قَمَّ or the
+    name بِع; the typed shape of a command overrules it (the book forms the امر from the
+    مضارع that way). A two-letter one is a hollow verb that dropped its middle letter
+    (قُمْ from قام), so its root and lemma come from that past form, and finding that past
+    verb is what makes it a command even where CAMeL saw only a name. A longer shape
+    overrules a verb reading only: أَحْمَدْ paused on is a name, not a command."""
+    if not command_shape(word, is_one(before, "jazm", "before_a_present_verb")):
+        return a
     bare = strip_diacritics(word)
-    if len(bare) == 2 and (past := next((p for p in _camel_analyzer.analyze(f"{bare[0]}ا{bare[1]}")
-                                         if p.get("pos") == "verb"), None)):
+    past = next((p for p in _camel_analyzer.analyze(f"{bare[0]}ا{bare[1]}") if p.get("pos") == "verb"),
+                None) if len(bare) == 2 else None
+    pos = (a.get("pos") or "").lower()
+    # لَمْ and مِنْ have the shape too; only a word CAMeL could call nothing but a name is overruled
+    if pos != "verb" and not (past and pos in ("noun", "noun_prop")):
+        return a
+    a = {**a, "pos": "verb", "asp": "c", "mod": "na", "per": "2"}
+    if past:
         a.update(root=past.get("root"), lex=past.get("lex"))
     return a
 
 
-def _analysis_dict_from_camel(word: str, a: dict) -> dict[str, Any]:
-    """Convert a raw CAMeL analysis dict into our standard morphology dict."""
+def _analysis_dict_from_camel(word: str, a: dict, before: str = "") -> dict[str, Any]:
+    """Convert a raw CAMeL analysis dict into our standard morphology dict; `before` is
+    the bare word typed before it, which can make a command shape a present verb."""
+    a = _as_command(word, a, before)
     pos = (a.get("pos") or "").lower()
-    if pos == "verb" and command_shape(word):
-        a = _as_command(word, a)
     word_type = _pos_type(pos)
     # A harf has no root in nahw; CAMeL still files one for لم and its kind.
     root_ar = "" if word_type == "harf" else _bw_root_to_arabic(a.get("root") or "")
@@ -262,6 +272,8 @@ def _analysis_dict_from_camel(word: str, a: dict) -> dict[str, Any]:
         "voice": a.get("vox") or "na",
         "state": a.get("stt") or "na",
         "pattern": a.get("pattern") or "",
+        # an attached pronoun: 1s_poss is ya al-mutakallim, which hides the case (كِتَابِي)
+        "enclitic": a.get("enc0") or "",
         "features": _build_features(a),
         "engine": "camel",
     }
@@ -449,12 +461,13 @@ def _analyze_sentence_camel_mle(tokens: list[str]) -> list[dict[str, Any]] | Non
         return None
 
     out: list[dict[str, Any]] = []
-    for token, word_disambig in zip(tokens, disambiguated):
+    for i, (token, word_disambig) in enumerate(zip(tokens, disambiguated)):
         ranked = [scored.analysis for scored in word_disambig.analyses]
         if not ranked:
             out.append(_analyze_bare(token))
             continue
-        out.append(_analysis_dict_from_camel(token, _heeding_vowels(token, ranked)))
+        before = strip_diacritics(tokens[i - 1]) if i else ""
+        out.append(_analysis_dict_from_camel(token, _heeding_vowels(token, ranked), before))
     return out
 
 

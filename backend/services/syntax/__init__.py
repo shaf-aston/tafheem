@@ -19,8 +19,9 @@ import logging
 from backend.config import get_settings
 from backend.services import provenance, rule_engine
 from backend.services.arabic_text import words as split_words
-from backend.services.nahw_book import reason
+from backend.services.nahw_book import case_of, reason
 from backend.services.syntax import teacher, tree
+from backend.services.syntax.vowels import CASE_NAME
 from backend.services.tarkeeb import term_ar
 from backend.services.syntax.naming import opens_with_verb, role_key
 from backend.services.syntax.naming import roles as name_roles
@@ -106,9 +107,13 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
             else:
                 if renamed:
                     entry["reason"] = reason(found["role"])  # the reason must explain the new name
+                    # رأيتُ أخي: no vowel shows, so a new name brings its own case (case_of_role)
+                    if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
+                        moved = CASE_NAME[own] != entry.get("case")
+                        found = {**found, "case": CASE_NAME[own]}
                 if moved:
-                    # the sign must show the new case, never the one it replaced
-                    entry.update(case=found["case"], sign=rule_engine.sign(found["case"]))
+                    # the sign must show the new case, in the old sign's kind (a dual stays a dual)
+                    entry.update(case=found["case"], sign=rule_engine.resign(entry.get("sign"), found["case"]))
                 if entry["case"] == "mabni" and entry.get("type") != "harf":
                     entry["reason"] = reason(found["role"], mabni=True)  # الذي، هذا: in the place of a case
             named += 1
