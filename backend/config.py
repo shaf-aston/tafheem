@@ -113,6 +113,9 @@ class Settings(BaseSettings):
     # Chosen over plain "base" on 36 mid-surah ayahs (310 words, frontend/scripts/ears.test.js):
     # this scored 8.1% error at 2050ms/ayah on this CPU; base 42.6% at 1504ms. Groq whisper-large-v3-turbo also 8.1%.
     # Over 16 recitations "base" beat "small" (both right first 15/16; 26s vs 64s), so smaller wins; sloppy words are absorbed by the matching.
+    # A folder works too. To try a model tuned by scripts/finetune_ear, put in .env:
+    #   RECITATION_MODEL=data/models/finetune-ear/ear-tuned
+    #   LISTENING_EARS=here          (else Groq answers first and the folder is only the fallback)
     recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
     # Search boxes are dictation, and the Qur'an model knows no other words:
     # "knowledge" came back as ذَرَ ضِرِّ الْمُؤْمِنِينَ, "mercy" as مَسْكُوبُ, where base heard both.
@@ -319,8 +322,8 @@ def get_settings() -> Settings:
 
 
 @lru_cache()
-def _resolved(name: str, value: str) -> Path:
-    """Checking half of data_path, cached per value (not per name, which froze the first path a test set)."""
+def confined(name: str, value: str) -> Path:
+    """Checking half of data_path, also for a model folder named by its value (services/recitation/listen.py); cached per value (not per name, which froze the first path a test set)."""
     base = Path(__file__).resolve().parent
     target = (base / value).resolve()
     if not target.is_relative_to(base):
@@ -336,4 +339,4 @@ def data_path(name: str) -> Path:
     Takes the setting's name so the error says which to fix.
     Resolving is cached: ~1ms on Windows, and ayah lookups ask three times, which cost 20x the query.
     """
-    return _resolved(name, getattr(get_settings(), name))
+    return confined(name, getattr(get_settings(), name))

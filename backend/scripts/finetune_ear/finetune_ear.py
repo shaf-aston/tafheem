@@ -15,8 +15,8 @@ model only if it gets at least BAR points fewer words wrong on new ayahs and at 
 SLIP points more wrong on professionals. verdict.json says which; ear-tuned/ exists
 only on a win, and is the folder `recitation_model` (backend/config.py) points at.
 
-Model: tarteel-ai/whisper-base-ar-quran (Apache 2.0), the original of the
-CTranslate2 export the app runs. Recordings: MuazAhmad7/Surah_Ikhlas-Labeled_Dataset
+Model: tarteel-ai/whisper-SIZE-ar-quran (Apache 2.0); base is the original of the
+CTranslate2 export the app runs, tiny the faster one. Recordings: MuazAhmad7/Surah_Ikhlas-Labeled_Dataset
 (CC BY 4.0) and RetaSy/quranic_audio_dataset (learners; no licence stated, so a
 model taught on it is an experiment until its authors say otherwise).
 """
@@ -45,7 +45,8 @@ from datasets import Audio, Dataset, load_dataset
 from peft import LoraConfig, get_peft_model
 from transformers import GenerationConfig, Seq2SeqTrainer, Seq2SeqTrainingArguments, WhisperForConditionalGeneration, WhisperProcessor
 
-NAME = 'tarteel-ai/whisper-base-ar-quran'
+SIZE = 'base'  # 'tiny': two thirds the time at home, pros 1.2 points worse; tuned on 45 ayahs it slipped 3 more
+NAME = f'tarteel-ai/whisper-{SIZE}-ar-quran'
 RATE = 16000
 LONGEST = 30 * RATE  # Whisper hears 30 seconds at most; a longer clip's text would be cut short
 PER_AYAH = 40  # two thirds of the clips are al-Ikhlas; uncapped it teaches that one surah
@@ -161,7 +162,7 @@ print(len(whole), 'learner clips of', len(ayahs), 'ayahs;', len(taught), 'to lea
 processor = WhisperProcessor.from_pretrained(NAME, language='ar', task='transcribe')
 model = WhisperForConditionalGeneration.from_pretrained(NAME).cuda()
 # tarteel ships no generation_config.json, so it lacks the language table; its base model has it.
-model.generation_config = GenerationConfig.from_pretrained('openai/whisper-base')
+model.generation_config = GenerationConfig.from_pretrained(f'openai/whisper-{SIZE}')
 model.generation_config.language = 'ar'
 model.generation_config.task = 'transcribe'
 model.generation_config.forced_decoder_ids = None
@@ -217,10 +218,10 @@ def gather(rows):
 
 
 # LoRA, not a full retrain: a few hundred clips must not wash out thousands of hours.
-# On every layer, encoder too: a phone microphone and an accent are heard in the encoder,
-# and on Whisper base attention-only LoRA trailed a full retrain badly (arXiv 2604.06507).
+# Attention only (q/k/v/out, encoder and decoder). Swept 2026-10-02, 7 plans on 45 ayahs: all
+# within noise on new ayahs, so layers are not the lever, data is; this kept pros best and trains fastest.
 tuned = get_peft_model(model, LoraConfig(r=32, lora_alpha=64, lora_dropout=0.05, bias='none',
-                                         target_modules=['q_proj', 'k_proj', 'v_proj', 'out_proj', 'fc1', 'fc2']))
+                                         target_modules=['q_proj', 'k_proj', 'v_proj', 'out_proj']))
 tuned.print_trainable_parameters()
 Seq2SeqTrainer(
     model=tuned,

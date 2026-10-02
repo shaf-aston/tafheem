@@ -50,7 +50,7 @@ import time
 
 import numpy as np
 
-from backend.config import get_settings
+from backend.config import confined, get_settings
 from backend.services.timing import timed
 
 log = logging.getLogger(__name__)
@@ -180,17 +180,23 @@ def _engine(name: str):
         compute_type=settings.recitation_compute,
         cpu_threads=settings.recitation_threads,
     )
-    try:
-        # The copy already on this machine, without asking the internet whether
-        # there is a newer one. That question costs a second every startup and
-        # the answer never changes; more to the point, this app works with the
-        # network unplugged and loading a model should not be the exception.
-        _models[name] = WhisperModel(name, local_files_only=True, **build)
-    except Exception:
-        # Not on this machine yet. Fetching it is a one-off of a few hundred
-        # megabytes, and after that the line above is the one that runs.
-        log.info("downloading the %s model, once", name)
-        _models[name] = WhisperModel(name, **build)
+    # A folder inside backend/ (a model tuned by scripts/finetune_ear) is loaded as it is,
+    # and a broken one fails here with its own error; anything else is a model name.
+    folder = confined("recitation_model", name)
+    if folder.is_dir():
+        _models[name] = WhisperModel(str(folder), **build)
+    else:
+        try:
+            # The copy already on this machine, without asking the internet whether
+            # there is a newer one. That question costs a second every startup and
+            # the answer never changes; more to the point, this app works with the
+            # network unplugged and loading a model should not be the exception.
+            _models[name] = WhisperModel(name, local_files_only=True, **build)
+        except Exception:
+            # Not on this machine yet. Fetching it is a one-off of a few hundred
+            # megabytes, and after that the line above is the one that runs.
+            log.info("downloading the %s model, once", name)
+            _models[name] = WhisperModel(name, **build)
     log.info("loaded  model=%s  threads=%d  %.0fms", name, settings.recitation_threads,
              (time.perf_counter() - started) * 1000)
     return _models[name]
