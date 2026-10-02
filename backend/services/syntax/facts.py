@@ -44,8 +44,21 @@ def is_passive(token: dict) -> bool:
     return typed_passive(typed, present)
 
 
+def _joins_clauses(token: dict, tokens: list[dict]) -> bool:
+    """ثم is a noun to the parser, but a listed joining word between two nouns, or bare
+    before a verb, is the particle (the place-word ثَمَّ wears its shadda)."""
+    if not is_one(token["lemma"], "atf"):
+        return False
+    by_id = {t["id"]: t for t in tokens}
+    if noun_before(token, by_id) and any(k["rel"] == "OBJ" for k in children_of(token, tokens)):
+        return True
+    typed = token.get("typed") or ""
+    follower = by_id.get(token["id"] + 1)
+    return bool(typed and typed == strip_diacritics(typed) and follower and is_verb(follower))
+
+
 def _kind(token: dict, tokens: list[dict]) -> str:
-    if token["pos"] == "PRT":
+    if token["pos"] == "PRT" or _joins_clauses(token, tokens):
         return "harf"
     # a calling or excepting particle takes a noun, whatever the parser tagged the word
     if _governor(token, tokens) in ("nida", "istithna"):
@@ -70,6 +83,20 @@ def noun_before(particle: dict, by_id: dict) -> bool:
                 and not is_verb(before))
 
 
+def _asks(tokens: list[dict]) -> bool:
+    """A verbless sentence with a question word in it (كيف حالك). A question particle
+    (هل، أ) only asks; it leaves the rest a plain sentence."""
+    return not any(is_verb(t) for t in tokens) and any(
+        "interrog" in t.get("pos_camel", "") and t["pos"] != "PRT" for t in tokens)
+
+
+def _asked_of(token: dict, tokens: list[dict]) -> bool:
+    """The word hangs off the question word, so it is what is asked about: the mubtada,
+    whatever the parser drew it as."""
+    head = next((t for t in tokens if t["id"] == token["head"]), None)
+    return bool(head and "interrog" in head.get("pos_camel", "") and _asks(tokens))
+
+
 def _follows(token: dict, tokens: list[dict]) -> str:
     """Which follower (tabi') the word is, or none: a follower takes its case from the
     word it follows, every other noun from a governor (Tasheel 3.10 p88).
@@ -77,6 +104,8 @@ def _follows(token: dict, tokens: list[dict]) -> str:
     A word is a follower only on the evidence of both its link and what it hangs on;
     an indefinite word after a definite or construct noun is a khabar or hal, so it
     answers none and the rest of the naming decides it."""
+    if _asked_of(token, tokens):
+        return "none"
     by_id = {t["id"]: t for t in tokens}
     head = by_id.get(token["head"])
     # the noun pointed at by a demonstrative child: هذا البستانُ
@@ -258,6 +287,8 @@ def _governor(token: dict, tokens: list[dict]) -> str:
     head = next((t for t in tokens if t["id"] == token["head"]), None)
     rel = token["rel"]
     typed = typed_case(token.get("typed"), token.get("stuck_on", 0))
+    if _asked_of(token, tokens):
+        return "none"
     if _place_time(token, tokens):
         return "verb"
     if head and head["pos"] == "PRT":
@@ -281,7 +312,85 @@ def _governor(token: dict, tokens: list[dict]) -> str:
         family = family_of(head, tokens)
         if family:
             return family
-    return "verb" if _verb_slot(token, tokens) != "none" else "none"
+    if _verb_slot(token, tokens) != "none":
+        return "verb"
+    return _khabar_family(token, tokens) or "none"
+
+
+def _khabar_family(token: dict, tokens: list[dict]) -> str | None:
+    """كان or إن when the word hangs off a noun but is that family's khabar, so its case
+    comes from the family: a modifier indefinite after a definite noun in the same case
+    (a na't would be definite too), or one whose case is not nasb under a subject
+    (لا رجلَ حاضرٌ). The family is the one the noun itself is governed by."""
+    by_id = {t["id"]: t for t in tokens}
+    head = by_id.get(token["head"])
+    if token["rel"] != "MOD" or not head or is_verb(token):
+        return None
+    mine, theirs = case_of(token), case_of(head)
+    agrees = mine and mine == theirs and not is_verb(head)         and token.get("stt") == "i" and head.get("stt") in ("d", "c")
+    under_subject = mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a"
+    if not (agrees or under_subject):
+        return None
+    above = by_id.get(head["head"])
+    family = family_of(above, tokens) if above else None
+    return family if family in ("kana", "inna") else None
+
+
+def _nominal_slot(token: dict, tokens: list[dict]) -> str:
+    """The place of a word no verb or family governs: the nominal sentence, mubtada and
+    khabar (Tasheel 1.4 p6), with the hal and tamyeez a noun can take, decided in this order.
+
+    In a verbless sentence a question word is the khabar, brought to the front, and the
+    nominative noun (or the one the question word governs) the mubtada; a pointer is
+    the mubtada. A khabar (PRD) is the predicate; a noun a verb has fronted, or a SBJ
+    or TPC, the subject; the word the sentence rests on, with its subject under it, the
+    predicate, as is an indefinite noun after a pointer (هذا بيتٌ). A parser that leaves
+    two loose halves gives the first the subject and the second the predicate. A
+    modifier in the same case as a definite noun and indefinite is its khabar, or its
+    hal in nasb; under a subject, in any case but nasb, a khabar; in nasb it is a hal
+    (a participle or مـ) or a tamyeez after its head."""
+    rel = token["rel"]
+    if is_verb(token):  # a verb is only ever a khabar by its link; its clause is named from the tree above
+        return "predicate" if rel == "PRD" else "none"
+    by_id = {t["id"]: t for t in tokens}
+    head = by_id.get(token["head"])
+    camel = token.get("pos_camel", "")
+    verbless = not any(is_verb(t) for t in tokens)
+    if _asks(tokens):
+        if "interrog" in camel:
+            return "predicate"  # كيف حالك: the question word is the khabar, brought to the front
+        if (token["pos"] == "NOM" and case_of(token) == "u" and rel != "IDF") or _asked_of(token, tokens):
+            return "subject"
+    if "dem" in camel and verbless and rel not in ("IDF", "OBJ"):
+        return "subject"
+    if rel == "PRD":
+        return "predicate"
+    if head and is_verb(head) and rel == "TPC" and token["id"] < head["id"] and family_of(head, tokens) is None:
+        return "subject"  # a doer never comes first: the noun opens the sentence, the verb's clause is its khabar
+    if rel in ("SBJ", "TPC"):
+        return "subject"
+    kids = children_of(token, tokens)
+    if rel == "---":
+        if any(c["rel"] in ("SBJ", "TPC") for c in kids):
+            return "predicate"
+        pointer = next((c for c in kids if "dem" in c.get("pos_camel", "")), None)
+        if pointer and pointer["id"] < token["id"] and token.get("stt") == "i" and verbless:
+            return "predicate"
+        if token["pos"] == "NOM" and verbless:
+            loose = [t for t in tokens if t["rel"] == "---" and t["pos"] == "NOM"]
+            return "subject" if not loose or token is loose[0] else "predicate"
+    if rel == "MOD" and head:
+        mine, theirs = case_of(token), case_of(head)
+        if mine and mine == theirs and not is_verb(head):
+            if token.get("stt") == "i" and head.get("stt") in ("d", "c"):
+                return "state" if mine == "a" else "predicate"
+        if mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a":
+            return "predicate"
+        if mine == "a" and token.get("stt") != "d":
+            if is_participle(token) or bare_letters(token.get("typed") or "")[:1] == "م":
+                return "state"
+            return "specification" if token["id"] > head["id"] else "none"
+    return "none"
 
 
 def _slot(token: dict, tokens: list[dict]) -> str:
@@ -294,8 +403,13 @@ def _slot(token: dict, tokens: list[dict]) -> str:
     object, and an object or modifier after an earlier object the second. A passive
     ظن has no such places (none). A word a plain verb governs takes its place from
     _verb_slot: subject is the doer or its deputy, object the done-to."""
-    if _governor(token, tokens) == "verb":
+    governor = _governor(token, tokens)
+    if governor == "verb":
         return _verb_slot(token, tokens)
+    if governor == "none":
+        return _nominal_slot(token, tokens)
+    if _khabar_family(token, tokens):
+        return "predicate"
     head = next((t for t in tokens if t["id"] == token["head"]), None)
     family = family_of(head, tokens) if head else None
     rel = token["rel"]

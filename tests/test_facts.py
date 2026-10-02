@@ -60,7 +60,7 @@ def test_a_subject_follows_nothing():
 def test_each_follower_reaches_its_leaf():
     for answer, role in (("naat", "صفة"), ("atf", "معطوف"), ("tawkeed", "توكيد"), ("badal", "بدل")):
         assert walker.walk({"kind": "ism", "follows": answer})[0] == role
-    assert walker.walk({"kind": "ism", "follows": "none", "governor": "none"}) is None
+    assert walker.walk({"kind": "ism", "follows": "none", "governor": "none", "slot": "none"}) is None
 
 
 def governor(words, toks, index):
@@ -168,10 +168,10 @@ def test_slot_zanna_subject_object_second_object():
     assert [slot(words, toks, i) for i in (1, 2, 3)] == ["subject", "object", "second_object"]
 
 
-def test_slot_none_for_a_khabar_under_a_plain_verb():
+def test_slot_predicate_for_a_khabar_under_a_plain_verb():
     toks = [token(1, "كتب", "كتب", "VRB", 0, "---", **VERB),
             token(2, "الطالب", "طالب", "NOM", 1, "PRD", stt="d", cas="n")]
-    assert slot(["كَتَبَ", "الطَّالِبُ"], toks, 1) == "none"
+    assert slot(["كَتَبَ", "الطَّالِبُ"], toks, 1) == "predicate"  # no family governs it: the nominal sentence names it
     assert governor(["كَتَبَ", "الطَّالِبُ"], toks, 1) == "none"
 
 

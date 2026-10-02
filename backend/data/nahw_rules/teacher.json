@@ -18,10 +18,12 @@
   "manqus": {"raf'": "ضمة مقدرة على الياء للثقل", "nasb": "فتحة", "jarr": "كسرة مقدرة على الياء للثقل"}
  },
  "case_said": {
-  "_comment": "A case as a reason says it: the word itself, the place a mabni word fills (مبني في محل رفع), what a mabni verb is built on, and a verb's opening words by its tense (rule_engine.verb_card).",
+  "_comment": "A case as a reason says it: the word itself, the place a mabni word fills (مبني في محل رفع), the job and case of the verb clause hung on a word (clause_of), what a mabni verb is built on, and a verb's opening words by its tense (rule_engine.verb_card).",
   "word": {"raf'": "مرفوع", "nasb": "منصوب", "jarr": "مجرور", "jazm": "مجزوم"},
   "place": {"u": "رفع", "a": "نصب", "i": "جر"},
   "mabni_noun": "مبني في محل {place} لأنه {role}",
+  "in_place": "في محل {place}",
+  "clause_of": {"مبتدأ": {"job": "خبر", "case": "u"}, "اسم كان": {"job": "خبر كان", "case": "a"}},
   "built_on": "مبني على {ending}",
   "past_on": "الفتح",
   "command_on": "السكون",

@@ -88,3 +88,13 @@ def test_a_word_hung_on_an_attached_particle_is_drawn_under_what_the_particle_jo
     joined = drawn["tree"]["children"][1]  # the noun with its معطوف inside, not a second root
     assert [leaf["word"] for leaf in joined["children"]] == [1, 2]
     assert roles_in(drawn["tree"]) == ["فعل", "فاعل", "فاعل", "معطوف"]  # the unit plays the faa'il
+
+
+def test_a_verb_clause_hung_on_a_mubtada_is_its_khabar_in_the_place_of_raf():
+    # الولدُ يكتبُ: the clause is the khabar, and a clause stands in a place, never in a case
+    toks = [token(1, "الولد", "ولد", "NOM", 0, "SBJ", stt="d", cas="n"),
+            token(2, "يكتب", "كتب", "VRB", 1, "MOD", vox="a", asp="i")]
+    drawn = built(["الْوَلَدُ", "يَكْتُبُ"], toks)
+    clause = drawn["tree"]["children"][1]
+    assert (clause["role"], clause["detail"]) == ("خبر", "في محل رفع")
+    assert [leaf["role"] for leaf in clause["children"]] == ["فعل"]

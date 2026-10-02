@@ -57,7 +57,7 @@ def test_walk_falls_to_else():
 
 def test_walk_no_match_is_none():
     assert walker.walk({"kind": "ism"}, root(leaf("h", "harf"))) is None
-    assert walker.walk({"kind": "ism", "follows": "none", "governor": "none"}) is None  # a word with another governor is not filled in yet
+    assert walker.walk({"kind": "ism", "follows": "none", "governor": "none", "slot": "none"}) is None  # a word with another governor is not filled in yet
 
 
 def test_a_child_may_take_several_answers():

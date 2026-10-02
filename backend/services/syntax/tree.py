@@ -11,6 +11,7 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 """
 from __future__ import annotations
 
+from backend.services.nahw_book import teacher_rules
 from backend.services.syntax.naming import base_tokens, completes_kaada, opens_with_verb, tone
 from backend.services.tarkeeb import term_ar
 
@@ -94,6 +95,16 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         up = next((t for t in bases if t["id"] == token["head"]), None)
         if up and "rel" in up.get("pos_camel", "") and up["id"] < token["id"] and role_of[token["id"]] == "فعل":
             job_of[token["id"]] = "صلة"
+    # الولدُ يكتبُ: the verb's clause hung on a مبتدأ (or اسم كان) is its khabar, standing in a case
+    said = teacher_rules()["case_said"]
+    place_of: dict[int, str] = {}
+    for token in bases:
+        up = next((t for t in bases if t["id"] == token["head"]), None)
+        clause = said["clause_of"].get(role_of.get(up["id"])) if up else None
+        if clause and role_of[token["id"]] == "فعل":
+            job_of[token["id"]] = clause["job"]
+            place_of[token["id"]] = said["in_place"].format(place=said["place"][clause["case"]])
+    clauses = {token["id"] for token in bases if job_of[token["id"]] == "صلة"} | set(place_of)
     children_of: dict[int, list[dict]] = {token["id"]: [] for token in bases}
     by_id = {t["id"]: t for t in tokens}
 
@@ -135,7 +146,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if not kids:
             leaf = _leaf(index, role_of[token["id"]], why_of[token["id"]])
             # a صلة of one verb is still a clause, its doer the pronoun hidden in it
-            return {"role": "صلة", "label": VERBAL, "tone": tone("صلة"), "children": [leaf]}                 if job_of[token["id"]] == "صلة" else leaf
+            return {"role": job_of[token["id"]], "label": VERBAL, "tone": tone(job_of[token["id"]]),
+                    "detail": place_of.get(token["id"]), "children": [leaf]} if token["id"] in clauses else leaf
         kid_roles = [job_of[kid["id"]] for kid in kids if job_of[kid["id"]]]
         seen.update(kid["id"] for kid in kids)
         inside = [(at[kid["id"]], node(kid)) for kid in kids]
@@ -144,7 +156,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         # a word the teacher dashed stays a dash at the head of its unit: مضاف would name it
         inside.append((index, _leaf(index, role if why else _unit_role(role, kid_roles), why)))
         label = _label(token, kid_roles) or (_sentence_label(role_of, bases) if token is root
-                                             else VERBAL if job_of[token["id"]] == "صلة" else "")
+                                             else VERBAL if token["id"] in clauses else "")
         # A particle's name is what it is, not a job for the unit it heads: the
         # parser gives no job for a jar-majroor or a clause under إِذَا, so none
         # is written rather than calling the whole unit a حرف. The clause a كاد-type
@@ -154,6 +166,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         return {"role": job,
                 "label": label,
                 "tone": tone(job or role),
+                "detail": place_of.get(token["id"]),
                 # right to left, so the picture reads in the order they were typed
                 "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
 

@@ -17,8 +17,7 @@ from __future__ import annotations
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import is_mabni, is_one, role_table
 from backend.services.syntax import facts, walker
-from backend.services.syntax.facts import (
-    PRESENT_PREFIX, case_of, children_of, family_of, is_participle, is_verb, noun_before)
+from backend.services.syntax.facts import PRESENT_PREFIX, family_of, is_verb
 from backend.services.syntax.vowels import (
     CASE_NAME, SUKUN, command_shape, letters, typed_case)
 
@@ -62,108 +61,10 @@ def completes_kaada(token: dict, tokens: list[dict]) -> bool:
     return bool(head and is_verb(token) and family_of(head, tokens) == "kaada")
 
 
-def _governor_family(token: dict, by_id: dict, tokens: list[dict]) -> str | None:
-    """Which family the word this one hangs off belongs to."""
-    head = by_id.get(token["head"])
-    return family_of(head, tokens) if head else None
-
-
-_PREDICATE = {"kana": "خبر كان", "inna": "خبر إن"}
-
-
-def _predicate(family: str | None) -> str:
-    return _PREDICATE.get(family, "خبر")
-
-
-def _by_book(token: dict, tokens: list[dict], by_id: dict) -> str | None:
-    """Roles the book decides by a closed word list, before the links are read.
-
-    Each test pairs a listed word with the shape round it (what it hangs on, what
-    hangs on it, what the reader typed), because most listed words have a second
-    life: و swears, كل is a noun, يوم can be a subject.
-    """
-    lemma = token["lemma"]
-    if token["pos"] == "PRT":
-        return None
-    kids = children_of(token, tokens)
-    # ثم is a noun to the parser; between two nouns it is the joining particle
-    if is_one(lemma, "atf") and noun_before(token, by_id) and any(k["rel"] == "OBJ" for k in kids):
-        return "حرف"
-    # ثم bare, before a verb, joins two clauses; the place-word ثَمَّ wears its shadda
-    typed = token.get("typed") or ""
-    follower = by_id.get(token["id"] + 1)
-    if is_one(lemma, "atf") and typed and typed == strip_diacritics(typed) and follower and is_verb(follower):
-        return "حرف"
-    return None
-
-
 def name(token: dict, tokens: list[dict]) -> str | None:
-    """The role for one word, or None when the links do not say."""
-    by_id = {t["id"]: t for t in tokens}
-    head = by_id.get(token["head"])
-    family = family_of(head, tokens) if head else None
-    rel = token["rel"]
-    children = children_of(token, tokens)
-    verbless = not any(is_verb(t) for t in tokens)
-
-    by_book = _by_book(token, tokens, by_id)
-    if by_book:
-        return by_book
-    # a question particle (هل، أ) only asks; it leaves the rest a plain sentence
-    asking = verbless and any("interrog" in t.get("pos_camel", "") and t["pos"] != "PRT" for t in tokens)
-    if asking:
-        # كيف حالك: the question word is the khabar, brought to the front
-        if "interrog" in token.get("pos_camel", ""):
-            return "خبر"
-        if (token["pos"] == "NOM" and case_of(token) == "u" and rel != "IDF") or \
-                (head and "interrog" in head.get("pos_camel", "")):
-            return "مبتدأ"
-    held = facts.of(token, tokens)
-    found = walker.walk(held)  # the book's tree: حرف، فعل، التوابع
-    if found and held["kind"] != "fil":
-        return found[0]
-    if "dem" in token.get("pos_camel", "") and verbless and rel not in ("IDF", "OBJ"):
-        return "مبتدأ"
-    pointer = next((c for c in children if "dem" in c.get("pos_camel", "")), None)
-    if rel == "PRD" and not (is_verb(token) and family in ("kaada", "inna")):
-        return _predicate(family)  # كاد يموت, ليت الشباب يعود: the verb stays a verb, its clause is the khabar
-    if found:
-        return found[0]  # a verb, once it is not a khabar
-    if head and is_verb(head) and rel == "TPC" and token["id"] < head["id"] and family is None:
-        return "مبتدأ"  # a فاعل never comes first: the noun opens the sentence, the verb's clause is its khabar
-    if rel in ("SBJ", "TPC"):
-        return "مبتدأ"
-    if rel == "---":
-        # the word the sentence hangs on, with its subject under it, is the khabar
-        if any(c["rel"] in ("SBJ", "TPC") for c in children):
-            return "خبر"
-        # هذا بيتٌ: an indefinite noun after a pointer is what is said of it, never its na't
-        if pointer and pointer["id"] < token["id"] and token.get("stt") == "i" and verbless:
-            return "خبر"
-        if token["pos"] == "NOM" and verbless:
-            # the parser sometimes leaves a nominal sentence as two loose halves:
-            # the first is the mubtada it starts with, the second its khabar
-            loose = [t for t in tokens if t["rel"] == "---" and t["pos"] == "NOM"]
-            return "مبتدأ" if not loose or token is loose[0] else "خبر"
-    if rel == "MOD" and head:
-        mine, theirs = case_of(token), case_of(head)
-        if mine and mine == theirs and not is_verb(head):
-            # a na't matches its noun in "the" as well as case, and a word in idafa
-            # counts as definite, so an indefinite word after either is the khabar
-            if token.get("stt") == "i" and head.get("stt") in ("d", "c"):
-                predicate = _predicate(_governor_family(head, by_id, tokens))
-                # a plain khabar is raf'; an indefinite nasb word after a definite noun is its hal
-                return "حال" if mine == "a" and predicate == "خبر" else predicate
-        # لا رجلَ حاضرٌ: hung off the noun, but its case says it is the noun's khabar
-        if mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a":
-            return _predicate(_governor_family(head, by_id, tokens))
-        if mine == "a" and token.get("stt") != "d":
-            # no verb above it (a verb's hal and tamyeez are in the tree): ما زيدٌ قائمًا.
-            # A tamyeez clarifies what came before it and never goes first
-            if is_participle(token) or bare_letters(token.get("typed") or "")[:1] == "م":
-                return "حال"
-            return "تمييز" if token["id"] > head["id"] else None
-    return None
+    """The role for one word, or None when the book's tree has no leaf for it."""
+    found = walker.walk(facts.of(token, tokens))
+    return found[0] if found else None
 
 
 def base_tokens(words: list[str], tokens: list[dict]) -> list[dict]:
