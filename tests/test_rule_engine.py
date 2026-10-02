@@ -3,7 +3,7 @@
 The grid used to work out its colour by searching the role text for English
 words ('fail', 'mafool') while this engine writes that text in Arabic. Nothing
 ever matched, so every noun and verb the engine identified was drawn in the
-default grey and only the AI's answers were ever coloured.
+default grey.
 
 So these check the two halves of the seam that replaced it: every entry the
 engine builds carries a `role_key`, and every key it uses is one the contract
@@ -68,10 +68,7 @@ def test_a_verbal_sentence_colours_its_verb_and_its_doer():
 # ── The router's half of the seam ────────────────────────────────────────────
 
 def test_a_role_key_the_grid_does_not_know_is_dropped():
-    """The AI answers a prompt and can return anything.
-
-    An unknown name must become no colour, never a colour meaning another role.
-    """
+    """An unknown name must become no colour, never a colour meaning another role."""
     word = WordAnalysis.from_raw({"word": "زيدٌ", "role": "فاعل", "role_key": "subject"})
     assert word.role_key is None
     assert word.role == "فاعل"
@@ -82,15 +79,8 @@ def test_a_role_key_the_grid_knows_survives():
     assert word.role_key == "fail"
 
 
-def test_only_the_books_tree_may_cite_the_book():
-    """A proof line says which book division named the word; a model's answer walked none."""
-    raw = {"word": "زيدٌ", "role": "فاعل", "book": "اسم ← فاعل (تسهيل النحو 3.1، ص 60)"}
-    assert WordAnalysis.from_raw(raw).book == raw["book"]
-    assert WordAnalysis.from_raw(raw, from_ai=True).book is None
-
-
 def test_a_word_with_no_key_at_all_is_accepted_uncoloured():
-    """An older AI reply, or one that skipped the field; not an error."""
+    """A word the engine gave no role; not an error."""
     assert WordAnalysis.from_raw({"word": "زيدٌ"}).role_key is None
 
 

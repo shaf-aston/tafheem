@@ -1,17 +1,7 @@
 """I'raab (grammatical case and function) analysis endpoint.
 
-Strategy:
-  1. Run local morphology (CAMeL / Qalsadi / PyArabic), always fast, offline.
-  2. Run the rule engine, deterministic Nahw rules, no network needed.
-  2b. Name the roles from the best reading there is. A sentence that is an ayah
-     the Quranic Treebank recorded is read from that record (tarkeeb_store), hand
-     checked, word for word. Anything else goes to the syntax parser
-     (services/syntax), which reads the links between the words and scores far
-     better than the rules alone. Either way its name wins wherever it has one
-     and the rules fill the gaps, and cards and picture come from that one reading.
-  3. If rule engine confidence < settings.confidence_threshold **and** an AI backend is
-     available, call the AI to get richer explanations / handle complex cases.
-  4. Merge: AI word list is preferred when present; rule engine is the fallback.
+Thin: the reading itself is services/iraab.py, the book's rules and the parser,
+offline. No AI: a word the rules cannot settle is shown as a gap, never guessed.
 """
 from __future__ import annotations
 
@@ -20,11 +10,9 @@ import logging
 
 from fastapi import APIRouter
 
-from backend.config import get_settings
 from backend.models.schemas import AnalyzeRequest, AnalyzeResponse, Source, WordAnalysis
-from backend.services import ai as ai_service
-from backend.services import morphology, provenance, rule_engine, syntax, tarkeeb, tarkeeb_store
-from backend.utils import arabic_sentence, call_service
+from backend.services import iraab
+from backend.utils import arabic_sentence
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/analyze", tags=["analysis"])
@@ -33,85 +21,12 @@ router = APIRouter(prefix="/api/analyze", tags=["analysis"])
 @router.post("", response_model=AnalyzeResponse)
 async def analyze_sentence(request: AnalyzeRequest) -> AnalyzeResponse:
     sentence = arabic_sentence(request.sentence, "Sentence")
-
-    # ── Step 1: Local morphological analysis ─────────────────────────────────
-    tags = await asyncio.to_thread(morphology.analyze_sentence, sentence)
-    tags_str = morphology.tags_as_string(tags)
-
-    # ── Step 2: Rule engine (always runs, offline) ────────────────────────────
-    rule_result = await asyncio.to_thread(rule_engine.analyze, sentence, tags)
-    confidence = rule_result.get("confidence", 0.0)
-    threshold = get_settings().confidence_threshold
-    logger.info(
-        "Rule engine confidence for a %d-character sentence: %.2f (threshold %.2f)",
-        len(sentence), confidence, threshold,
-    )
-
-    # ── Step 2b: the recorded ayah, else the parser, names what it can ───────
-    recorded = await asyncio.to_thread(tarkeeb_store.for_sentence, sentence)
-    parsed = recorded or await asyncio.to_thread(syntax.read, sentence)
-    rule_result = syntax.with_parser_roles(rule_result, parsed["roles"])
-    if recorded:
-        rule_result["summary"] = _recorded_summary(recorded) or rule_result.get("summary")
-    confidence = rule_result.get("confidence", 0.0)
-
-    # ── Step 3: AI augmentation (optional) ───────────────────────────────────
-    ai_result: dict | None = None
-    if await asyncio.to_thread(ai_service.is_ai_available) and confidence < threshold:
-        try:
-            ai_result = await call_service(
-                ai_service.analyze_iraab,
-                sentence,
-                tags_str,
-                operation="AI I'raab analysis",
-                timeout_msg="AI service timed out. Showing local analysis.",
-            )
-        except Exception as exc:
-            logger.warning("AI I'raab failed, using rule engine: %s", exc)
-
-    # ── Step 4: Build response ────────────────────────────────────────────────
-    if ai_result:
-        # AI may return a summary but an empty word list, or a list of bare
-        # strings instead of word dicts; either way the rule engine's words
-        # stand in, field by field.
-        ai_words = ai_result.get("words")
-        if not (isinstance(ai_words, list) and ai_words and all(isinstance(w, dict) for w in ai_words)):
-            if ai_words:
-                logger.warning("AI word list malformed, using rule engine words")
-            ai_words = None
-        engine_words = rule_result.get("words", [])
-        word_dicts = rule_engine.with_engine_roots(ai_words, engine_words) if ai_words else engine_words
-        summary = ai_result.get("summary") or rule_result.get("summary")
-        source_note = provenance.of("ai")
-    else:
-        word_dicts = rule_result.get("words", [])
-        summary = rule_result.get("summary")
-        source_note = provenance.of("treebank" if recorded else "nahw")
-
-    logger.info("Analysis source: %s", source_note["label"])
-
+    read = await asyncio.to_thread(iraab.analyse, sentence)
+    logger.info("Analysed a %d-word sentence from %s", len(read["words"]), read["source"]["label"])
     return AnalyzeResponse(
         sentence=sentence,
-        words=[WordAnalysis.from_raw(w, from_ai=bool(ai_result)) for w in word_dicts],
-        summary=summary,
-        source=Source(**source_note),
-        # the picture is the parser's own reading, so it is only drawn when the
-        # words on screen are still the parser's; an AI answer replaces them
-        tree=None if ai_result else _drawn(recorded) if recorded else parsed["tree"],
+        words=[WordAnalysis.from_raw(w) for w in read["words"]],
+        summary=read["summary"],
+        source=Source(**read["source"]),
+        tree=read["tree"],
     )
-
-
-def _drawn(recorded: dict) -> dict:
-    """The recorded tree, in the shape the page draws a typed sentence's in."""
-    keep = ("surah", "ayah", "words", "tree", "coverage", "unwritten")
-    return {**{key: recorded[key] for key in keep}, "source": provenance.of("treebank")}
-
-
-def _recorded_summary(recorded: dict) -> str | None:
-    """The sentence type the record names, in the words the rules use for it."""
-    top = recorded["tree"]
-    if not top.get("label"):
-        return None
-    return rule_engine.sentence_type(
-        is_verbal=top["label"] == tarkeeb.term_ar("jumlah_filiyyah"),
-        is_inna=top.get("role") == tarkeeb.term_ar("harf_nasikh"))

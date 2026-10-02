@@ -22,36 +22,6 @@ SYSTEM_BASE = (
     "You MUST respond with ONLY valid JSON, no markdown, no extra text.\n"
 )
 
-IRAAB_USER = """Perform a full proof-based I'raab (الإعراب مع الدليل) of this Arabic sentence, word by word.
-
-Sentence: {sentence}
-Morphological hints (from local NLP engine): {qalsadi_tags}
-
-For EACH word provide:
-- Its grammatical role (fa'il, maf'ul bihi, mubtada, khabar, mudaf, sifah, haal, etc.)
-- Its case (raf' / nasb / jarr / jazm) OR state it is mabni with its fixed harakat
-- The sign of its case, in Arabic (ضمة / فتحة / كسرة / سكون / الواو / الألف / الياء / ثبوت النون / حركة مقدرة)
-- The PROOF (الدليل): cite the exact Nahw rule by name in Arabic, e.g. 'الفاعل مرفوع',
-  'المفعول به منصوب', 'اسم إن منصوب', and identify the 'amil (العامل)
-- Whether it is mu'rab (معرب) or mabni (مبني), and why if mabni
-
-Return a JSON object with this exact structure:
-{{
-  "summary": "sentence type: jumlah fi'liyyah / ismiyyah, and the main predication",
-  "words": [
-    {{
-      "word": "Arabic word exactly as written",
-      "type": "ism | fi'l | harf",
-      "role": "precise grammatical role in Arabic terminology",
-      "role_key": "that same role as ONE of: fil, fail, mubtada, khabar, mafool, sifah, haal, mudaf, harf; or \\"\\" if none of them fits. This is only used to pick a colour, so leave it empty rather than choose a near-miss",
-      "case": "raf' | nasb | jarr | jazm | mabni (specify fixed harakat if mabni)",
-      "sign": "ضمة | فتحة | كسرة | سكون | الواو | الألف | الياء | ثبوت النون | حركة مقدرة",
-      "reason": "cite the Nahw rule by name in Arabic + identify the 'amil. E.g.: مرفوع لأنه فاعل، والعامل فيه الفعل المتقدم. القاعدة: الفاعل مرفوع",
-      "notes": "mabni/mu'rab status, any irregular forms, relevant Sarf notes"
-    }}
-  ]
-}}"""
-
 SARF_USER = """Perform a Sarf (morphology) analysis of this Arabic word.
 
 Word: {word}
@@ -69,29 +39,6 @@ Return a JSON object with this exact structure:
   "meaning": "core meaning in English",
   "notes": "any important morphological notes"
 }}"""
-
-PRACTICE_USER = """Generate 4 practice questions to test understanding of the I'raab of this Arabic sentence.
-
-Sentence: {sentence}
-I'raab analysis: {iraab_summary}
-
-Create questions of varying difficulty:
-- 1 identification question (e.g. "What is the grammatical role of X?")
-- 1 case/sign question (e.g. "Why is X in the nominative case?")
-- 1 fill-in-the-blank (remove a word, ask what it is)
-- 1 transformation question (e.g. "Change this jumlah fi'liyyah to jumlah ismiyyah")
-
-Return a JSON object with this exact structure:
-{{
-  "questions": [
-    {{
-      "question": "the question text (can be in English or Arabic)",
-      "answer": "the correct answer with explanation",
-      "hint": "a one-line hint (optional)"
-    }}
-  ]
-}}"""
-
 
 ROOT_ENTRY_USER = """Put this entry from Ibn Faris's Maqayees al-Lugha into plain English for a
 learner who cannot read classical Arabic.

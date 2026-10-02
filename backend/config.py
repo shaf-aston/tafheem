@@ -23,26 +23,19 @@ class Settings(BaseSettings):
     # SDK default is 60s plus two silent retries, and on a rate limit it sleeps as long as Groq says
     # (29s seen 2026-09-05). Ours is the only retry loop now.
     groq_timeout_seconds: float = 20.0
-    # Free tier is 8,000 tokens/min and one I'raab costs ~2,100, so a repeat sentence must be free.
-    ai_answer_cache_size: int = 256
 
     ollama_url: str = "http://localhost:11434"
     ollama_model: str = "qwen2.5:3b"
 
-    # AI is called only when rule-engine confidence is below this.
-    confidence_threshold: float = 0.72
-    # Longer sentences are refused (422): the parser, the rules and the AI prompt all grow with length.
+    # Longer sentences are refused (422): the parser and the rules grow with length.
     max_sentence_words: int = Field(default=160, gt=0)  # the longest ayah (2:282) is about 130 words
     # Low so grammar answers repeat. Every AI backend reads this one.
     ai_temperature: float = 0.1
-    iraab_max_tokens: int = 2000
     sarf_max_tokens: int = 1500
-    practice_max_tokens: int = 1200
     # Between two ceilings, measured 2026-09-01. Below: thinking and the ~40-line JSON share this budget;
     # at 2000 the answer was cut off, failed the count check and retried for 20-40s.
     # Above: groq free refuses requests over 8000 tokens including prompt (biggest prompt ~3500); at 6000 got 413.
     root_entry_max_tokens: int = 3500
-    iraab_summary_truncate_chars: int = 1500
     # Longest Maqayees entry is ~15,000 chars; 6000 is what the smallest local model can hold.
     root_entry_truncate_chars: int = 6000
 

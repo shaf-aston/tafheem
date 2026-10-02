@@ -183,18 +183,6 @@ def _unknown_entry(tag: dict) -> dict:
 
 # ── Main engine ───────────────────────────────────────────────────────────────
 
-def with_engine_roots(words: list[dict[str, Any]], engine_words: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """The AI's word dicts, each carrying the analyzer's root instead of its own.
-
-    A root is the analyzer's finding, not a thing to ask a language model for:
-    it wrote "ل-م-" for لم and dropped roots at random between two runs of the
-    same sentence. Matched on the bare word so a stray harakah does not unpair
-    them; a word the analyzer never saw keeps no root rather than a guessed one.
-    """
-    roots = {strip_diacritics(w.get("word", "")): w.get("root") for w in engine_words}
-    return [{**w, "root": roots.get(strip_diacritics(w.get("word", "")))} for w in words]
-
-
 def analyze(sentence: str, tags: list[dict[str, Any]]) -> dict[str, Any]:
     """
     Apply classical Nahw rules to produce an I'raab analysis.
@@ -203,26 +191,18 @@ def analyze(sentence: str, tags: list[dict[str, Any]]) -> dict[str, Any]:
         {
           "summary":    str,
           "words":      list[dict],
-          "confidence": float,   # 0-1; routers use this to decide AI call
         }
     """
     if not tags:
-        return {"summary": "", "words": [], "confidence": 0.0}
+        return {"summary": "", "words": []}
 
     is_inna_sentence = _is_inna_sister(tags[0])
     is_verbal = _detect_verbal_sentence(tags, is_inna_sentence)
     summary = sentence_type(is_verbal, is_inna_sentence)
     state = _init_state(is_verbal, is_inna_sentence)
 
-    words, scores = [], []
-    for i, tag in enumerate(tags):
-        entry, score = _process_tag(tag, i, tags, state, is_verbal)
-        if entry:
-            words.append(entry)
-            scores.append(score)
-
-    confidence = round(sum(scores) / len(scores), 2) if scores else 0.0
-    return {"summary": summary, "words": words, "confidence": confidence}
+    words = [entry for i, tag in enumerate(tags) if (entry := _process_tag(tag, i, tags, state, is_verbal))]
+    return {"summary": summary, "words": words}
 
 
 def _detect_verbal_sentence(tags: list[dict], is_inna: bool) -> bool:
@@ -263,31 +243,31 @@ def _init_state(is_verbal: bool, is_inna: bool) -> dict[str, bool]:
 
 def _process_tag(
     tag: dict[str, Any], i: int, tags: list[dict], state: dict, is_verbal: bool
-) -> tuple[dict | None, float]:
-    """Process a single tag and return (entry, score) tuple."""
+) -> dict | None:
+    """The rule engine's card for one word, or None for a word it drops."""
     pos = (tag.get("pos") or "").lower()
 
     if pos == "punc":
-        return (_entry(tag, "punc", "–", None, None, None, "–"), 1.0)
+        return _entry(tag, "punc", "–", None, None, None, "–")
 
     if _is_conjunction(tag):
         # لا العاطفة joins single words; before a verb it negates (لا يكذبُ) or forbids (لا تكذبْ)
         verb = tags[i + 1] if i + 1 < len(tags) and tags[i + 1].get("pos") == "verb" else None
         if verb and strip_diacritics(tag["word"]) == "لا":
             forbids = verb.get("mood") == "j" or verb["word"].endswith(SUKUN)
-            return (_harf_entry(tag, "حرف", "لا ناهية" if forbids else "لا نافية"), 0.88)
-        return (_harf_entry(tag, "حرف", "حرف عطف"), 0.88)
+            return _harf_entry(tag, "حرف", "لا ناهية" if forbids else "لا نافية")
+        return _harf_entry(tag, "حرف", "حرف عطف")
 
     if _is_jarr_particle(tag):
         state["after_jarr"] = True
-        return (_harf_entry(tag, "حرف جر", "حرف جر"), 0.92)
+        return _harf_entry(tag, "حرف جر", "حرف جر")
 
     if _is_inna_sister(tag) and i == 0:
         state["after_inna"] = True
-        return (_harf_entry(tag, "حرف", "حرف ناسخ"), 0.92)
+        return _harf_entry(tag, "حرف", "حرف ناسخ")
 
     if pos in ("part", "det"):
-        return (_harf_entry(tag, "حرف", "حرف"), 0.82)
+        return _harf_entry(tag, "حرف", "حرف")
 
     if pos == "pron":
         return _process_pronoun(tag, state, is_verbal)
@@ -298,51 +278,51 @@ def _process_tag(
     if pos in ("noun", "noun_prop", "adj", "adv", "abbrev", "unknown", ""):
         return _process_noun(tag, state, is_verbal, tags)
 
-    return (_unknown_entry(tag), 0.30)
+    return _unknown_entry(tag)
 
 
-def _process_pronoun(tag: dict, state: dict, is_verbal: bool) -> tuple[dict, float]:
+def _process_pronoun(tag: dict, state: dict, is_verbal: bool) -> dict:
     """Process pronoun tag."""
     if state["after_jarr"]:
         state["after_jarr"] = False
-        return (_pron_entry(tag, "مجرور", "مجرور ضمير", "harf"), 0.80)
+        return _pron_entry(tag, "مجرور", "مجرور ضمير", "harf")
 
     if is_verbal and not state["fail_done"]:
         state["fail_done"] = True
-        return (_pron_entry(tag, "فاعل", "فاعل ضمير", "fail"), 0.75)
+        return _pron_entry(tag, "فاعل", "فاعل ضمير", "fail")
 
-    return (_pron_entry(tag, "–", "ضمير", None), 0.60)
+    return _pron_entry(tag, "–", "ضمير", None)
 
 
-def _process_verb(tag: dict, state: dict) -> tuple[dict, float]:
-    """Process verb tag; the first verb is the sentence's own, so it is surer."""
+def _process_verb(tag: dict, state: dict) -> dict:
+    """Process verb tag; marks the sentence's verb as seen."""
     first = not state["verb_done"]
     state["verb_done"] = True
-    return (_verb_entry(tag), 0.88 if first else 0.65)
+    return _verb_entry(tag)
 
 
-def _process_noun(tag: dict, state: dict, is_verbal: bool, tags: list[dict]) -> tuple[dict | None, float]:
+def _process_noun(tag: dict, state: dict, is_verbal: bool, tags: list[dict]) -> dict | None:
     """Process noun/adjective/adverb tag."""
     pos = (tag.get("pos") or "").lower()
 
     if state["after_jarr"]:
         state["after_jarr"] = False
-        return (_noun_entry(tag, "مجرور", "harf"), 0.88)
+        return _noun_entry(tag, "مجرور", "harf")
 
     if state["after_inna"] and not state["ism_inna_done"]:
         state["ism_inna_done"] = True
         state["after_inna"] = False
-        return (_noun_entry(tag, "اسم إن", "mubtada"), 0.85)
+        return _noun_entry(tag, "اسم إن", "mubtada")
 
     if state["ism_inna_done"] and not state["khabar_done"] and not is_verbal:
         state["khabar_done"] = True
         state["mubtada_done"] = True
-        return (_noun_entry(tag, "خبر إن", "khabar"), 0.82)
+        return _noun_entry(tag, "خبر إن", "khabar")
 
     if state["ism_inna_done"] and state["khabar_done"] and not is_verbal:
         if pos == "adj":
-            return (_noun_entry(tag, "خبر إن", "khabar", why="خبر إن ثانٍ"), 0.75)
-        return (_noun_entry(tag, "–", None), 0.45)
+            return _noun_entry(tag, "خبر إن", "khabar", why="خبر إن ثانٍ")
+        return _noun_entry(tag, "–", None)
 
     if is_verbal:
         return _process_noun_verbal(tag, state, tags, pos)
@@ -350,31 +330,31 @@ def _process_noun(tag: dict, state: dict, is_verbal: bool, tags: list[dict]) -> 
     return _process_noun_nominal(tag, state, pos)
 
 
-def _process_noun_verbal(tag: dict, state: dict, tags: list[dict], pos: str) -> tuple[dict, float]:
+def _process_noun_verbal(tag: dict, state: dict, tags: list[dict], pos: str) -> dict:
     """Process noun in verbal sentence (jumlah fi'liyyah)."""
     if not state["fail_done"]:
         is_passive = any(t.get("voice") == "p" for t in tags if t.get("pos") == "verb")
         role = "نائب فاعل" if is_passive else "فاعل"
         state["fail_done"] = True
-        return (_noun_entry(tag, role, "fail"), 0.80)
+        return _noun_entry(tag, role, "fail")
 
     if pos == "adj":
-        return (_noun_entry(tag, "صفة", "sifah"), 0.72)
+        return _noun_entry(tag, "صفة", "sifah")
 
-    return (_noun_entry(tag, "مفعول به", "mafool"), 0.75)
+    return _noun_entry(tag, "مفعول به", "mafool")
 
 
-def _process_noun_nominal(tag: dict, state: dict, pos: str) -> tuple[dict, float]:
+def _process_noun_nominal(tag: dict, state: dict, pos: str) -> dict:
     """Process noun in nominal sentence (jumlah ismiyyah)."""
     if not state["mubtada_done"]:
         state["mubtada_done"] = True
-        return (_noun_entry(tag, "مبتدأ", "mubtada"), 0.82)
+        return _noun_entry(tag, "مبتدأ", "mubtada")
 
     if not state["khabar_done"]:
         state["khabar_done"] = True
-        return (_noun_entry(tag, "خبر", "khabar"), 0.78)
+        return _noun_entry(tag, "خبر", "khabar")
 
     if pos == "adj":
-        return (_noun_entry(tag, "صفة", "sifah"), 0.68)
+        return _noun_entry(tag, "صفة", "sifah")
 
-    return (_noun_entry(tag, "–", None), 0.45)
+    return _noun_entry(tag, "–", None)
