@@ -1,7 +1,7 @@
 """The classical dictionaries reaching Daleel, and doing it without being named.
 
 The point of this adapter is that nothing lists which dictionaries exist: the
-books say which credit they carry and the registry grows a source for each. So
+books say which source they carry and the registry grows a source for each. So
 what is worth pinning down is exactly that, a book nobody has ever heard of
 appearing in the search simply because it was built into data/lexicons.db.
 
@@ -24,12 +24,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from backend.scripts import build_lexicons as builder  # noqa: E402
 from backend.services import lexicons  # noqa: E402
 from backend.services.daleel.sources.lexicons import LexiconsSource  # noqa: E402
-from backend.services.lexicons import sources  # noqa: E402
+from backend.services.lexicons import source_keys  # noqa: E402
 
 
 @pytest.fixture
 def shelf(tmp_path, monkeypatch):
-    """Two dictionaries under one credit, and a third under its own."""
+    """Two dictionaries under one source, and a third under its own."""
     path = tmp_path / "lexicons.db"
     db = sqlite3.connect(path)
     db.executescript(builder.Shelf.SCHEMA)
@@ -62,11 +62,11 @@ def shelf(tmp_path, monkeypatch):
 
 
 def test_a_dictionary_reaches_daleel_without_anything_naming_it(shelf):
-    """Two credits in the file, two sources for the registry to grow."""
-    assert sources() == ["openiti-lexicons", "lane"]
+    """Two source keys in the file, two sources for the registry to grow."""
+    assert source_keys() == ["openiti-lexicons", "lane"]
 
 
-def test_books_sharing_a_credit_share_one_source(shelf):
+def test_books_sharing_a_source_key_share_one_source(shelf):
     """Two dictionaries, one badge, and the citation says which is which.
 
     Grouped so three dictionaries cannot take three of the nine places on a
@@ -95,5 +95,5 @@ def test_an_empty_entry_is_not_quoted(shelf):
 
 def test_no_dictionaries_installed_is_no_sources_rather_than_a_crash(tmp_path, monkeypatch):
     monkeypatch.setattr(lexicons, "DATABASE", tmp_path / "never-built.db")
-    assert sources() == []
+    assert source_keys() == []
     assert not list(LexiconsSource("lane").passages())

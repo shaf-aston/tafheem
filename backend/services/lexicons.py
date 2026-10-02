@@ -72,14 +72,14 @@ def books() -> list[dict]:
     return [dict(row) for row in rows]
 
 
-def sources() -> list[str]:
+def source_keys() -> list[str]:
     """Which entries in data/sources.json the books here are credited to.
 
     Read from the books themselves rather than written down a second time, which
     is what makes a new dictionary searchable in Daleel without a line of code:
     build_lexicons.py puts the book in, this finds it, and the Daleel registry
     grows a source for it. A book credited to something already listed costs
-    nothing at all; a book with a new credit needs that credit adding to
+    nothing at all; a book with a new source needs that source adding to
     sources.json, which is data.
     """
     db = _db()
@@ -95,7 +95,7 @@ def sources() -> list[str]:
     return [row["source"] for row in rows]
 
 
-def entries_by_source(source: str) -> Iterator[tuple[str, str, str]]:
+def entries_by_source(source_key: str) -> Iterator[tuple[str, str, str]]:
     """(book title, root, entry) for every entry credited to one source.
 
     Streamed one row at a time: these three books are sixty-six million
@@ -109,12 +109,12 @@ def entries_by_source(source: str) -> Iterator[tuple[str, str, str]]:
             "SELECT b.title, e.head, e.body"
             "  FROM entry e JOIN book b ON b.id = e.book"
             " WHERE b.source = ? ORDER BY b.ord, e.rowid",
-            (source,),
+            (source_key,),
         )
         for title, head, body in rows:
             yield title, head, zlib.decompress(body).decode("utf-8")
     except sqlite3.Error as exc:
-        logger.warning("could not read the books credited to %r: %s", source, exc)
+        logger.warning("could not read the books credited to %r: %s", source_key, exc)
 
 
 def _folded(key: str) -> str:
@@ -137,8 +137,8 @@ def entries_for(root: str) -> list[dict] | None:
     None when the database fails mid-read, which is not the same answer as no entry.
     """
     db = _db()
-    key = normalize_root(root)
-    if db is None or not key:
+    root = normalize_root(root)
+    if db is None or not root:
         return []
 
     try:
@@ -148,7 +148,7 @@ def entries_for(root: str) -> list[dict] | None:
             "       e.head, e.body, e.root"
             "  FROM entry e JOIN book b ON b.id = e.book"
             " WHERE e.root = ?",
-            (key,),
+            (root,),
         ).fetchall()
         answered = {row["id"] for row in rows}
 
@@ -163,7 +163,7 @@ def entries_for(root: str) -> list[dict] | None:
             " WHERE e.folded = ?"
             "   AND (SELECT COUNT(DISTINCT root) FROM entry"
             "         WHERE folded = e.folded AND book = e.book) = 1",
-            (_folded(key),),
+            (_folded(root),),
         ).fetchall()
     except sqlite3.Error as exc:
         logger.warning("could not read the dictionaries: %s", exc)
@@ -199,7 +199,7 @@ def entries_for(root: str) -> list[dict] | None:
             # The spelling this book files it under, sent only when it differs
             # from what was typed, so the page can say "filed under أمر" rather
             # than leaving the reader wondering why the letters changed.
-            "book_root": row["head"] if row["root"] != key else None,
+            "book_root": row["head"] if row["root"] != root else None,
             "text": said,
         }
     return list(shelf.values())
