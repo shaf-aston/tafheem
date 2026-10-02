@@ -111,7 +111,12 @@ class Sentence:
         lemma = word["lemma"]
         if (is_one(lemma, "inna") and not is_light(word)) or is_one(lemma, "la_jins"):
             return "inna"
-        if is_one(lemma, "kana") or is_one(lemma, "kana", "like_laysa") \
+        if is_one(lemma, "kana", "like_laysa"):
+            return "kana"
+        # the other families are verbs: the noun عِلْمُهُ shares a lemma with عَلِمَ and governs nothing
+        if not is_verb(word):
+            return None
+        if is_one(lemma, "kana") \
                 or (is_one(lemma, "kana", "needs_negation") and self._has_particle(word, "negation")) \
                 or (is_one(lemma, "kana", "needs_ma") and self._has_particle(word, "kana", "like_laysa")):
             return "kana"
@@ -137,10 +142,22 @@ class Sentence:
         return bool(head and "interrog" in head.get("pos_camel", "") and self.asks)
 
 
+def typed_case_of(token: dict) -> str | None:
+    """The case the reader typed on the word: its last vowel, or for one of the six nouns
+    as a مضاف the long letter standing for it (أَخُوْ، أَخَا، أَخِيْ زَيْدٍ; أَبَاهُ)."""
+    typed, stuck_on = token.get("typed") or "", token.get("stuck_on", 0)
+    shown = typed_case(typed, stuck_on)
+    if shown or not is_one(token["lemma"], "six_nouns"):
+        return shown
+    base = bare_letters(typed)[:len(bare_letters(typed)) - stuck_on]
+    if base[:-1] != bare_letters(token["lemma"]):
+        return None
+    return book_map("six_nouns", "case_by_letter").get(base[-1:])
+
+
 def typed_or_parsed_case(token: dict) -> str | None:
     """What the reader typed first, the parser's guess second."""
-    return (typed_case(token.get("typed"), token.get("stuck_on", 0))
-            or CAMEL_CASE.get(token.get("cas")))
+    return typed_case_of(token) or CAMEL_CASE.get(token.get("cas"))
 
 
 def same_case(token: dict, head: dict) -> bool:
@@ -215,6 +232,23 @@ def _joins_clauses(token: dict, s: Sentence) -> bool:
     return bool(typed and typed == strip_diacritics(typed) and follower and is_verb(follower))
 
 
+def is_object_pronoun(token: dict) -> bool:
+    """إيّاك، إيّاه: the detached pronoun of nasb, only ever an object (Tasheel 2.4.1 p31),
+    though the parser tags its إيا a particle."""
+    return strip_diacritics(token["form"]).startswith("إيا") and _listed(token, "damir_munfasil")
+
+
+def negates(token: dict, s: Sentence) -> bool:
+    """ما رأيتُه: ما straight before a verb that has its object already can only negate it
+    (a relative or question ما would be that object). Straight after a verb with no object
+    of its own it is that object, the relative (قرأتُ ما كتبتُه)."""
+    verb, before = s.by_id.get(token["id"] + 1), s.by_id.get(token["id"] - 1)
+    if before and is_verb(before) and not any(k["rel"] == "OBJ" and k is not token for k in s.kids(before)):
+        return False
+    return bool(token["lemma"] == "ما" and token["pos"] != "PRT" and verb and is_verb(verb)
+                and any(k["rel"] == "OBJ" for k in s.kids(verb)))
+
+
 def is_called_noun(token: dict) -> bool:
     """أيها، أيتها: the noun يا calls, though the parser tags it a particle."""
     return _listed(token, "nida", "called_nouns")
@@ -238,9 +272,16 @@ def stands_for(token: dict, s: Sentence) -> bool:
     before = previous_noun(token, s)
     if s.verbless or not before or token["rel"] == "IDF":
         return False
-    names = token["pos"] == "PROP" or any(k.get("pos_camel") == "pron" and k["rel"] == "IDF" for k in s.kids(token))
+    # the pronoun stuck on a noun is its مضاف إليه whatever link the parser drew (عِلْمُهُ)
+    names = token["pos"] == "PROP" or any(k.get("pos_camel") == "pron" and k["form"].startswith("+")
+                                          for k in s.kids(token))
     mine = typed_or_parsed_case(token)
     if not (names and before.get("stt") in ("d", "c") and mine and mine == typed_or_parsed_case(before)):
+        return False
+    # جاء الرجلُ أبوه عالمٌ: an indefinite noun in its case after it is its khabar, so the
+    # noun opens a sentence of its own (a حال) and stands for nothing
+    after = next((t for t in s.tokens if t["id"] > token["id"] and not t["form"].startswith("+")), None)
+    if after and after["pos"] in ("NOM", "PROP") and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
         return False
     verb = verb_above(before, s)
     return not (verb and (is_one(verb["lemma"], "zanna") or is_one(verb["lemma"], "two_objects_give")))
@@ -252,7 +293,7 @@ def with_waw(token: dict, s: Sentence) -> bool:
     معطوف would wear the case of what it joins."""
     head = s.head(token)
     if not (head and head["pos"] == "PRT" and head["lemma"].strip("+") == "و"
-            and typed_case(token.get("typed"), token.get("stuck_on", 0)) == "a" and verb_above(head, s) is not None):
+            and typed_case_of(token) == "a" and verb_above(head, s) is not None):
         return False
     joined = previous_noun(head, s)
     return joined is None or typed_or_parsed_case(joined) != "a"
@@ -270,8 +311,10 @@ def jarr_takes(token: dict, s: Sentence) -> bool:
 def _kind(token: dict, s: Sentence) -> str:
     """Particle, verb or noun. A word a calling or excepting particle takes is a noun,
     whatever the parser tagged it, so that test comes before the verb test."""
-    if is_called_noun(token):
+    if is_called_noun(token) or is_object_pronoun(token):
         return "ism"
+    if negates(token, s):
+        return "harf"
     if token["pos"] == "PRT" or _joins_clauses(token, s) or (s.hijazi and token is s.hijazi[0]):
         return "harf"
     if calling_head(token, s):
@@ -323,7 +366,8 @@ def _follows(token: dict, s: Sentence) -> str:
     if _listed(token, "tawkeed", "with_pronoun" if with_pronoun else "without_pronoun") \
             and head["id"] < token["id"] and not is_verb(head) and head["pos"] != "PRT":
         return "tawkeed"
-    if token["rel"] != "MOD" or is_verb(head):
+    # a صفة comes after the noun it describes: هَذَانِ hung on the قَلَمَانِ after it is the mubtada
+    if token["rel"] != "MOD" or is_verb(head) or head["id"] > token["id"]:
         return "none"
     mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
     if mine and mine == theirs:
@@ -396,7 +440,7 @@ def _place_time(token: dict, s: Sentence) -> bool:
         return False
     head = s.head(token)
     if head and is_verb(head):
-        return token["rel"] in ("MOD", "IDF") and typed_case(token.get("typed"), token.get("stuck_on", 0)) in (None, "a")
+        return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a")
     return typed_or_parsed_case(token) in (None, "a") and any(
         is_verb(k) and k["id"] > token["id"] for k in s.kids(token))
 
@@ -417,10 +461,12 @@ def _verb_place(token: dict, s: Sentence) -> str:
         return "accompaniment"
     head = s.head(token)
     rel = token["rel"]
-    typed = typed_case(token.get("typed"), token.get("stuck_on", 0))
+    typed = typed_case_of(token)
     if head and is_verb(head):
         before = token["id"] < head["id"]
         siblings = [t for t in s.kids(head) if t is not token]
+        if before and is_object_pronoun(token):
+            return "object"  # إيّاك نعبد: the object put first
         asked = book_map("istifham", "before_verb").get(strip_diacritics(token["form"]))
         if asked and before and not any(t["rel"] == "OBJ" for t in siblings):
             return asked  # ماذا قرأت، كيف جئت: the question noun fills the place it asks about
@@ -481,7 +527,7 @@ def _governor(token: dict, s: Sentence) -> str:
     to agree with it (a na't would agree), or that is not in nasb under a subject."""
     head = s.head(token)
     rel = token["rel"]
-    typed = typed_case(token.get("typed"), token.get("stuck_on", 0))
+    typed = typed_case_of(token)
     if s.asked_of(token):
         return "none"
     if s.hijazi and token in s.hijazi[1:]:
@@ -538,7 +584,7 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     the mubtada. A khabar (PRD) is the predicate, except that after a fronted
     jar-wa-majroor (إن في البيت رجلا) the noun is the subject. A SBJ or TPC is the
     subject; the word the sentence rests on, with its subject under it, the predicate,
-    as is an indefinite noun after a pointer (هذا بيتٌ). A parser that leaves two loose
+    as is a noun without ال after a pointer (هذا بيتٌ، هذا أبي). A parser that leaves two loose
     halves gives the first the subject and the second the predicate. A modifier in the
     same case as a definite noun and indefinite is its khabar, or its hal in nasb; under
     a subject, in any case but nasb, a khabar; in nasb it is a hal or a tamyeez."""
@@ -571,9 +617,15 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     if rel == "---":
         if any(c["rel"] in ("SBJ", "TPC") for c in kids):
             return "predicate"
-        pointer = next((c for c in kids if "dem" in c.get("pos_camel", "")), None)
-        if pointer and pointer["id"] < token["id"] and token.get("stt") == "i" and s.verbless:
+        pointer = next((c for c in kids if "dem" in c.get("pos_camel", "") and c["id"] < token["id"]), None)
+        # only a noun with ال is the pointer's مشار إليه: هذا بيتٌ and هذا أبي are sentences
+        if pointer and token.get("stt") != "d" and s.verbless:
             return "predicate"
+        # زيدٌ أبوه عالمٌ، زيدٌ أكلَ الطعامَ: the sentence rests on the noun, its khabar (or the
+        # verb whose clause is the khabar) hung after it; after a pointer (هذا رجلٌ يعملُ) the
+        # noun is the khabar and the verb its صفة
+        if not pointer and any(c["rel"] == "PRD" or (is_verb(c) and c["id"] > token["id"]) for c in kids):
+            return "subject"
         if token["pos"] == "NOM" and s.verbless:
             loose = [t for t in s.tokens if t["rel"] == "---" and t["pos"] == "NOM"]
             return "subject" if not loose or token is loose[0] else "predicate"

@@ -99,3 +99,25 @@ def test_a_verb_clause_hung_on_a_mubtada_is_its_khabar_in_the_place_of_raf():
     clause = drawn["tree"]["children"][1]
     assert (clause["role"], clause["detail"]) == ("خبر", "في محل رفع")
     assert [leaf["role"] for leaf in clause["children"]] == ["فعل"]
+
+
+def test_a_nominal_sentence_as_khabar_is_drawn_as_a_sentence_in_place_of_raf():
+    # زيدٌ أبوه عالمٌ, as the book links write it
+    toks = [token(1, "زيد", "زيد", "PROP", 0, "---", pos_camel="noun_prop"),
+            token(2, "أبو", "أب", "NOM", 4, "SBJ", stt="c", cas="n", pos_camel="noun"),
+            token(3, "+ه", "+ه", "NOM", 2, "IDF", stt="d", cas="g", pos_camel="pron"),
+            token(4, "عالم", "عالم", "NOM", 1, "PRD", stt="i", cas="n", pos_camel="noun")]
+    drawn = built(["زَيْدٌ", "أَبُوْهُ", "عَالِمٌ"], toks)["tree"]
+    khabar = drawn["children"][1]
+    assert khabar["role"] == "خبر" and khabar["label"] == "جُمْلَةٌ اِسْمِيَّةٌ" and khabar["detail"]
+    assert [kid["role"] for kid in khabar["children"]] == ["مبتدأ", "خبر"]
+
+
+def test_a_verb_beside_the_ism_under_its_governor_is_the_khabar_clause():
+    # كانَ الولدُ يكتبُ: the verb is the khabar (PRD) of كان, its clause in place of nasb
+    toks = [token(1, "كان", "كان", "VRB", 0, "---", vox="a", asp="p", pos_camel="verb"),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n", pos_camel="noun"),
+            token(3, "يكتب", "كتب", "VRB", 1, "PRD", vox="a", asp="i", pos_camel="verb")]
+    drawn = built(["كَانَ", "الْوَلَدُ", "يَكْتُبُ"], toks)["tree"]
+    clause = drawn["children"][2]
+    assert clause["role"] == "خبر كان" and clause["detail"]

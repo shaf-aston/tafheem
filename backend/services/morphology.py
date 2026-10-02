@@ -2,7 +2,7 @@
 
 Priority fallback chain (highest quality first):
   1. CAMeL Tools Analyzer, readings ranked by the MLE disambiguator, then
-     the typed harakat choose among them (_heeding_vowels).
+     the typed harakat choose among them (vowels.best_reading).
   2. Qalsadi: lemmatisation + basic info
   3. PyArabic / bare harakat, case from diacritics only
 
@@ -15,12 +15,11 @@ from __future__ import annotations
 
 import logging
 import re
-import unicodedata
 from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
 from backend.services.nahw_book import is_one
-from backend.services.syntax.vowels import CAMEL_CASE, CASE_NAME, TANWEEN, command_shape, moved_for_wasl, paused, typed_case
+from backend.services.syntax.vowels import CAMEL_CASE, CASE_NAME, TANWEEN, best_reading, command_shape, moved_for_wasl, paused, typed_case
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +48,7 @@ try:
     try:
         from camel_tools.disambig.mle import MLEDisambiguator
         # Every reading, ranked, not just the top one: the typed vowels then
-        # choose among them (_heeding_vowels), which a single pick cannot allow.
+        # choose among them (vowels.best_reading), which a single pick cannot allow.
         _camel_mle = MLEDisambiguator.pretrained(top=1_000_000)
         logger.info("CAMeL Tools MLE disambiguator ready")
     except Exception as _exc:
@@ -487,56 +486,8 @@ def _analyze_sentence_camel_mle(tokens: list[str]) -> list[dict[str, Any]] | Non
         after = tokens[i + 1] if i + 1 < len(tokens) else ""
         # a kasra that may be a moved sukun is no evidence for the reading
         evidence = token[:-1] if moved_for_wasl(token, after) else token
-        out.append(_analysis_dict_from_camel(token, _heeding_vowels(evidence, ranked), before, after))
+        out.append(_analysis_dict_from_camel(token, best_reading(evidence, ranked) or ranked[0], before, after))
     return out
-
-
-# The vowel a mark writes, so a fatha and a fathatan on the same letter still
-# disagree (one is definite, one is not) while a missing mark agrees with anything.
-_VOWEL = {"َ": "a", "ُ": "u", "ِ": "i", "ً": "an", "ٌ": "un", "ٍ": "in", "ْ": "o", "ّ": "~"}
-
-
-def _marks_by_letter(text: str) -> list[set[str]]:
-    letters: list[set[str]] = []
-    for ch in text:
-        if ch in _VOWEL:
-            if letters:
-                letters[-1].add(_VOWEL[ch])
-        elif not unicodedata.combining(ch):
-            letters.append(set())
-    return letters
-
-
-def _vowel_agreement(token: str, diac: str) -> int | None:
-    """How many of the vowels typed on `token` this reading also has, or None
-    when a typed vowel contradicts it (فَتَحَ against فَتْح).
-
-    A letter the reading leaves bare agrees with whatever was typed on it; the
-    two spellings disagreeing on how many letters there are (hamza seats, the
-    dagger alef) says nothing either way, so it scores nothing.
-    """
-    typed, read = _marks_by_letter(token), _marks_by_letter(diac)
-    if len(typed) != len(read):
-        return 0
-    agreed = 0
-    for mine, theirs in zip(typed, read):
-        if not mine or not theirs:
-            continue
-        if (mine - {"~"}) and (theirs - {"~"}) and (mine - {"~"}) != (theirs - {"~"}):
-            return None
-        agreed += len(mine & theirs)
-    return agreed
-
-
-def _heeding_vowels(token: str, ranked: list[dict]) -> dict:
-    """The reading the typed vowels support best, in the disambiguator's order
-    among equals. Vowels the reader wrote are evidence the statistics lack:
-    ranked alone, فَتَحَ came back as the noun فَتْح."""
-    scored = [(s, i) for i, a in enumerate(ranked) if (s := _vowel_agreement(token, a.get("diac", ""))) is not None]
-    if not scored:
-        return ranked[0]
-    best = max(scored, key=lambda pair: (pair[0], -pair[1]))
-    return ranked[best[1]]
 
 
 def analyze_sentence(sentence: str) -> list[dict[str, Any]]:

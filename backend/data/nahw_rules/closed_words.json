@@ -1,9 +1,12 @@
 {
  "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw_book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word.",
  "vetoes": {
-  "_comment": "Links the book rules out, removed from the parser's choices before its tree is picked. true = on. Read by services/syntax/mask.py.",
+  "_comment": "Links the book rules out, removed from the parser's choices before its tree is picked, and links it settles outright, written over the parser's tree after (mask.book_links). true = on. Read by services/syntax/mask.py.",
   "verb_subject_follows": true,
-  "pointer_heads_its_noun": true
+  "pointer_heads_its_noun": true,
+  "listed_preposition_takes_majrur": true,
+  "topic_carries_its_verb": true,
+  "inner_sentence": true
  },
  "families": {
   "jarr": {
@@ -1034,6 +1037,23 @@
     "1َ2ِي3",
     "1َ2ْ3َان"
    ]
+  },
+  "six_nouns": {
+   "ar": "الأسماء الستة",
+   "book": "I'raab types p2",
+   "effect": "as a مضاف (not to the ya of the speaker) the case is a letter, not a vowel: و raf', ا nasb, ي jarr (جاء أخو زيد، رأيت أخا زيد، مررت بأخي زيد). هن is left out: it usually takes the vowels.",
+   "words": [
+    "أب",
+    "أخ",
+    "حم",
+    "فو",
+    "ذو"
+   ],
+   "case_by_letter": {
+    "و": "u",
+    "ا": "a",
+    "ي": "i"
+   }
   },
   "tamyeez_verbs": {
    "ar": "أفعال يأتي بعدها تمييز النسبة",
