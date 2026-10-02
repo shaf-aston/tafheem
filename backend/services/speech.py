@@ -54,6 +54,8 @@ class FastPitchVoice(Voice):
     """
 
     name = "fastpitch"
+    # The engine pauses on Latin marks written as their own word; an Arabic ، or ؟ it drops silently.
+    PAUSES = str.maketrans({"،": " ,", "؛": " ,", "؟": " ?", ",": " ,", "?": " ?", ".": " .", "!": " !"})
 
     def __init__(self) -> None:
         self._model = None
@@ -70,7 +72,7 @@ class FastPitchVoice(Voice):
                 from tts_arabic import get_model
 
                 self._model = get_model("fastpitch", "hifigan", cuda=None)
-            audio = self._model.infer(text, speaker=get_settings().speech_fastpitch_speaker)
+            audio = self._model.infer(text.translate(self.PAUSES), speaker=get_settings().speech_fastpitch_speaker)
         out = io.BytesIO()
         with wave.open(out, "wb") as file:
             file.setframerate(22050)
@@ -105,18 +107,19 @@ def warm() -> None:
 
 
 def _trim() -> None:
-    """Keep the store under `speech_cache_max_files`, dropping the oldest first.
+    """Keep the store under `speech_cache_max_mb`, dropping the oldest first.
 
     Anyone can ask for any Arabic, so without a cap the disk fills. A word
     dropped here is only made again the next time someone asks.
     """
-    limit = get_settings().speech_cache_max_files
-    files = list(CACHE.glob("*.wav"))
-    if len(files) <= limit:
-        return
-    files.sort(key=lambda f: f.stat().st_mtime)
-    for old in files[: len(files) - limit]:
+    room = get_settings().speech_cache_max_mb * 1_000_000
+    files = sorted(((f.stat(), f) for f in CACHE.glob("*.wav")), key=lambda pair: pair[0].st_mtime)
+    excess = sum(stat.st_size for stat, _ in files) - room
+    for stat, old in files:
+        if excess <= 0:
+            break
         old.unlink(missing_ok=True)
+        excess -= stat.st_size
 
 
 def say(text: str) -> bytes:

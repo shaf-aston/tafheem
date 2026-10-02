@@ -72,7 +72,7 @@ export async function speak(text) {
       if (turn !== latest || err?.name === 'AbortError') throw Object.assign(new Error('Interrupted'), { interrupted: true })
     }
   }
-  throw new Error('No voice could say this word')
+  throw new Error('No voice could say this')
 }
 
 export function stop() {
