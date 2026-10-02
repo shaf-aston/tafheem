@@ -14,6 +14,9 @@ import surahs from '../data/surahs.json'
 import { bareForm, isArabic } from './arabicText'
 import { editDistance } from './editDistance'
 
+/** The 114 surahs as wheel choices (ui/WheelPicker), for every wheel that picks a surah. */
+export const SURAH_CHOICES = surahs.map((s) => ({ id: s.n, label: `${s.n}. ${s.en}`, hint: s.ar, keys: [s.ar] }))
+
 /** How close a match is. Lower is closer; callers pick the loosest they accept. */
 export const CLOSE = { exact: 0, prefix: 1, inside: 2, typo: 3 }
 

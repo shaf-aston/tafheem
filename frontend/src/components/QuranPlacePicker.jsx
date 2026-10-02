@@ -12,6 +12,7 @@ import { useState } from 'react'
 
 import surahs from '../data/surahs.json'
 import { JUZ_COUNT, juzOf, juzStart } from '../lib/juz'
+import { SURAH_CHOICES } from '../lib/surahRef'
 import WheelPicker from './ui/WheelPicker'
 
 export default function QuranPlacePicker({ surah, ayah, accent, onReadSurah, onOpenAyah }) {
@@ -26,15 +27,14 @@ export default function QuranPlacePicker({ surah, ayah, accent, onReadSurah, onO
   const pickSurah = (n) => { setPicked(n); onReadSurah(n) }
   const pickJuz = (n) => { const start = juzStart(n); onOpenAyah(start.surah, start.ayah) }
 
-  const surahOptions = surahs.map((s) => ({ value: s.n, label: `${s.n}. ${s.en}`, hint: s.ar, keys: [s.ar] }))
-  const ayahOptions = current ? Array.from({ length: current.ayahs }, (_, i) => ({ value: i + 1, label: `Ayah ${i + 1}` })) : []
-  const juzOptions = Array.from({ length: JUZ_COUNT }, (_, i) => ({ value: i + 1, label: `Juz ${i + 1}` }))
+  const ayahOptions = current ? Array.from({ length: current.ayahs }, (_, i) => ({ id: i + 1, label: `Ayah ${i + 1}` })) : []
+  const juzOptions = Array.from({ length: JUZ_COUNT }, (_, i) => ({ id: i + 1, label: `Juz ${i + 1}` }))
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <WheelPicker label="Surah" placeholder="Surah" options={surahOptions} value={picked} onPick={pickSurah} accent={accent} className="max-w-[16rem]" />
-      <WheelPicker label="Ayah" placeholder="Ayah" options={ayahOptions} value={shownAyah} disabled={!current} narrow accent={accent} onPick={(n) => onOpenAyah(picked, n)} />
-      <WheelPicker label="Juz" placeholder="Juz" options={juzOptions} narrow accent={accent} value={picked ? juzOf(picked, shownAyah ?? 1) : null} onPick={pickJuz} />
+      <WheelPicker label="Surah" placeholder="Surah" options={SURAH_CHOICES} value={picked} onChange={pickSurah} accent={accent} className="max-w-[16rem]" />
+      <WheelPicker label="Ayah" placeholder="Ayah" options={ayahOptions} value={shownAyah} disabled={!current} narrow accent={accent} onChange={(n) => onOpenAyah(picked, n)} />
+      <WheelPicker label="Juz" placeholder="Juz" options={juzOptions} narrow accent={accent} value={picked ? juzOf(picked, shownAyah ?? 1) : null} onChange={pickJuz} />
     </div>
   )
 }

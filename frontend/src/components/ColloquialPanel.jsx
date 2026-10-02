@@ -80,8 +80,8 @@ function Switch({ dialects, current, onPick }) {
   return (
     <div className="ms-auto flex items-center gap-2 type-small text-[var(--text-faint)]">
       <span>Same place in</span>
-      <WheelPicker label="Dialect" options={dialects.map((d) => ({ value: d.key, label: d.label }))}
-        value={current} onPick={onPick} accent={colorFor('tab', 'colloq')} />
+      <WheelPicker label="Dialect" options={dialects.map((d) => ({ id: d.key, label: d.label }))}
+        value={current} onChange={onPick} accent={colorFor('tab', 'colloq')} />
     </div>
   )
 }

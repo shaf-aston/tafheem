@@ -438,12 +438,12 @@ export default function QuizPanel({ accent, onProgress }) {
               <WheelPicker
                 label={say('Which {kind}', { kind: say(section.label).toLowerCase() })}
                 options={section.options.map((option) => ({
-                  value: option.id,
+                  id: option.id,
                   label: `${option.label} (${option.size})`,
                   disabled: option.size < QUIZ.optionCount,
                 }))}
                 value={groupId}
-                onPick={(group) => startRound({ group })}
+                onChange={(group) => startRound({ group })}
                 accent={accent}
                 className="max-w-[13rem]"
               />

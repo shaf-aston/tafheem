@@ -351,9 +351,9 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
             <WheelPicker
               label="Verb form"
               placeholder="Choose a باب"
-              options={Object.entries(options).map(([id, label]) => ({ value: id, label }))}
+              options={Object.entries(options).map(([id, label]) => ({ id, label }))}
               value={picked || form}
-              onPick={choose}
+              onChange={choose}
               disabled={swapPending}
               accent={accent}
               className="max-w-[14rem]"
