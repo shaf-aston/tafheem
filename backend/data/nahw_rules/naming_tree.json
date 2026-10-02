@@ -26,6 +26,16 @@
          {"branch": "فاعل ظن", "book": "1.10 p26", "is": "subject", "role": "فاعل"},
          {"branch": "المفعول الأول", "book": "1.10 p26", "is": "object", "role": "مفعول به"},
          {"branch": "المفعول الثاني", "book": "1.10 p26", "is": "second_object", "role": "مفعول به"}]},
+       {"branch": "الفعل", "book": "3.1 p60", "is": "verb", "split": "slot", "children": [
+         {"branch": "الفاعل ونائبه", "book": "3.1 p60", "is": "subject", "split": "voice", "children": [
+           {"branch": "فاعل", "book": "3.1 p60", "is": "active", "role": "فاعل"},
+           {"branch": "نائب فاعل", "book": "3.1 p60", "is": "passive", "role": "نائب فاعل"}]},
+         {"branch": "المفعولات", "book": "3.2 p67", "is": ["object", "absolute", "place_time"], "split": "slot", "children": [
+           {"branch": "المفعول به", "book": "3.2 p67", "is": "object", "role": "مفعول به"},
+           {"branch": "المفعول المطلق", "book": "3.2 p67", "is": "absolute", "role": "مفعول مطلق"},
+           {"branch": "المفعول فيه", "book": "3.2 p67", "is": "place_time", "role": "مفعول فيه"}]},
+         {"branch": "الحال", "book": "3.2 p67", "is": "state", "role": "حال"},
+         {"branch": "التمييز", "book": "3.2 p67", "is": "specification", "role": "تمييز"}]},
        {"branch": "ما له عامل آخر", "book": "3.1 p60", "else": true, "children": []}]}
    ]}
  ]}

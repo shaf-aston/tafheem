@@ -60,7 +60,7 @@ def test_a_subject_follows_nothing():
 def test_each_follower_reaches_its_leaf():
     for answer, role in (("naat", "صفة"), ("atf", "معطوف"), ("tawkeed", "توكيد"), ("badal", "بدل")):
         assert walker.walk({"kind": "ism", "follows": answer})[0] == role
-    assert walker.walk({"kind": "ism", "follows": "none", "governor": "verb"}) is None
+    assert walker.walk({"kind": "ism", "follows": "none", "governor": "none"}) is None
 
 
 def governor(words, toks, index):
@@ -168,10 +168,85 @@ def test_slot_zanna_subject_object_second_object():
     assert [slot(words, toks, i) for i in (1, 2, 3)] == ["subject", "object", "second_object"]
 
 
-def test_slot_none_under_a_plain_verb():
+def test_slot_none_for_a_khabar_under_a_plain_verb():
     toks = [token(1, "كتب", "كتب", "VRB", 0, "---", **VERB),
-            token(2, "الطالب", "طالب", "NOM", 1, "SBJ", stt="d", cas="n")]
+            token(2, "الطالب", "طالب", "NOM", 1, "PRD", stt="d", cas="n")]
     assert slot(["كَتَبَ", "الطَّالِبُ"], toks, 1) == "none"
+    assert governor(["كَتَبَ", "الطَّالِبُ"], toks, 1) == "none"
+
+
+def voice(words, toks, index):
+    named(words, toks)
+    bases = [t for t in toks if t.get("typed")]
+    return facts.of(bases[index], toks)["voice"]
+
+
+def test_slot_and_voice_subject_and_object_under_a_plain_verb():
+    toks = [token(1, "كتب", "كتب", "VRB", 0, "---", **VERB),
+            token(2, "الطالب", "طالب", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "الدرس", "درس", "NOM", 1, "OBJ", stt="d", cas="a")]
+    words = ["كَتَبَ", "الطَّالِبُ", "الدَّرْسَ"]
+    assert [slot(words, toks, i) for i in (1, 2)] == ["subject", "object"]
+    assert [voice(words, toks, i) for i in (0, 1, 2)] == ["none", "active", "active"]
+
+
+def test_voice_passive_makes_the_subject_a_deputy():
+    toks = [token(1, "ضرب", "ضرب", "VRB", 0, "---", vox="p", asp="p"),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n")]
+    assert slot(["ضُرِبَ", "الْوَلَدُ"], toks, 1) == "subject"
+    assert voice(["ضُرِبَ", "الْوَلَدُ"], toks, 1) == "passive"
+
+
+def test_slot_fronted_fatha_is_the_object_and_fronted_topic_stays_with_the_chain():
+    toks = [token(1, "القرآن", "قرآن", "NOM", 2, "SBJ", stt="d", cas="a"),
+            token(2, "قرأ", "قرأ", "VRB", 0, "---", **VERB)]
+    assert slot(["الْقُرْآنَ", "قَرَأَ"], toks, 0) == "object"
+    toks = [token(1, "الطالب", "طالب", "NOM", 2, "TPC", stt="d", cas="n"),
+            token(2, "قرأ", "قرأ", "VRB", 0, "---", **VERB)]
+    assert governor(["الطَّالِبُ", "قَرَأَ"], toks, 0) == "none"
+
+
+def test_slot_absolute_under_a_noun_that_hangs_on_a_verb():
+    toks = [token(1, "فرح", "فرح", "VRB", 0, "---", **VERB),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "فرحا", "فرح", "NOM", 2, "MOD", stt="i", cas="a")]
+    words = ["فَرِحَ", "الْوَلَدُ", "فَرَحًا"]
+    assert slot(words, toks, 2) == "absolute"
+    assert governor(words, toks, 2) == "verb"
+
+
+def test_slot_place_time_for_a_listed_word_on_a_verb():
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", **VERB),
+            token(2, "يوم", "يوم", "NOM", 1, "MOD", stt="c", cas="a")]
+    assert slot(["جَاءَ", "يَوْمًا"], toks, 1) == "place_time"
+
+
+def test_slot_state_for_a_participle_after_a_verb_with_its_doer():
+    toks = [token(1, "شرب", "شرب", "VRB", 0, "---", **VERB),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "باردا", "بارد", "NOM", 1, "MOD", ud="ADJ", stt="i", cas="a")]
+    assert slot(["شَرِبَ", "الْوَلَدُ", "بَارِدًا"], toks, 2) == "state"
+
+
+def test_slot_specification_after_a_tamyeez_verb_and_for_a_tmz_link():
+    toks = [token(1, "زاد", "زاد", "VRB", 0, "---", **VERB),
+            token(2, "الماء", "ماء", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "عمقا", "عمق", "NOM", 1, "MOD", stt="i", cas="a")]
+    assert slot(["زَادَ", "الْمَاءُ", "عُمْقًا"], toks, 2) == "specification"
+    toks[2]["rel"] = "TMZ"
+    toks[0]["lemma"] = "كتب"
+    assert slot(["كَتَبَ", "الْمَاءُ", "عُمْقًا"], toks, 2) == "specification"
+
+
+def test_each_verb_slot_reaches_its_leaf():
+    base = {"kind": "ism", "follows": "none", "governor": "verb"}
+    for slot_answer, voice_answer, role in (
+            ("subject", "active", "فاعل"), ("subject", "passive", "نائب فاعل"),
+            ("object", "none", "مفعول به"), ("absolute", "none", "مفعول مطلق"),
+            ("place_time", "none", "مفعول فيه"), ("state", "none", "حال"),
+            ("specification", "none", "تمييز")):
+        assert walker.walk({**base, "slot": slot_answer, "voice": voice_answer})[0] == role
+    assert walker.walk({**base, "slot": "subject", "voice": "none"}) is None
 
 
 def test_each_family_slot_reaches_its_leaf():
@@ -184,5 +259,5 @@ def test_each_family_slot_reaches_its_leaf():
             ("nida", "none", "منادى"), ("istithna", "none", "مستثنى")):
         assert walker.walk({**base, "governor": governor, "slot": slot_answer})[0] == role
     for governor in ("verb", "none"):
-        assert walker.walk({**base, "governor": governor, "slot": "none"}) is None
+        assert walker.walk({**base, "governor": governor, "slot": "none", "voice": "none"}) is None
     assert walker.walk({**base, "governor": "kaada", "slot": "predicate"}) is None
