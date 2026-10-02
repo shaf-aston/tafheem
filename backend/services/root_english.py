@@ -2,8 +2,8 @@
 
 Putting an entry into English costs a call to a model and gives roughly the same
 answer every time, so it is worth doing once. This is where those answers live:
-files beside the book, keyed by the root, read on startup and added to whenever
-a new entry is read.
+files beside the book, keyed by the root, re-read whenever another process has
+added to them.
 
 Two shapes of English, two files, one machinery. The prose file holds the whole
 entry retold as paragraphs; the lines file holds it as a list, one English line
@@ -32,12 +32,18 @@ logger = logging.getLogger(__name__)
 _DATA = Path(__file__).parent.parent / "data" / "maqayees"
 STORE_FILE = _DATA / "english_entries.json"
 LINES_FILE = _DATA / "english_lines.json"
+# What readers' presses add on the server. Apart from LINES_FILE because a
+# deploy copies every tracked file over the server's copy, which erased them;
+# this one is untracked, so a deploy never touches it.
+LINES_KEPT_FILE = _DATA / "english_lines.kept.json"
 
-# One writer at a time. Two readers pressing the button at once would otherwise
-# each write the whole file from their own copy, and one would lose the other's.
+# One writer at a time within a process. Two backend copies share these files
+# too; a write from each at the same instant can lose one root, which costs
+# only a remake the next time it is asked for.
 _lock = threading.Lock()
-_entries: dict[str, str] | None = None
-_line_entries: dict[str, list[str]] | None = None
+# File -> (its stamp when read, its entries). Checked on each read, so one
+# backend copy sees what the other kept.
+_cache: dict[Path, tuple[tuple, dict]] = {}
 
 
 def _is_prose(value: object) -> bool:
@@ -58,7 +64,7 @@ def _read_store(path: Path, keeps) -> dict:
     """The file as it stands, or an empty store if there isn't one yet.
 
     An unreadable file is a warning and an empty store, never a failure: the
-    worst it can cost is re-reading entries that had already been read, and the
+    worst it can cost is making English that had already been made, and the
     card it feeds has a book to show either way.
     """
     try:
@@ -74,37 +80,55 @@ def _read_store(path: Path, keeps) -> dict:
     return {k: v for k, v in raw.items() if isinstance(k, str) and keeps(v)}
 
 
-def _loaded() -> dict[str, str]:
-    global _entries
-    if _entries is None:
-        _entries = _read_store(STORE_FILE, _is_prose)
-        logger.info("%d Maqayees entries already read into English", len(_entries))
-    return _entries
+def _stamp(path: Path) -> tuple | None:
+    # Size and inode beside the time: two writes inside one clock tick share a
+    # time, and every write moves a new file into place.
+    try:
+        st = path.stat()
+    except FileNotFoundError:
+        return None
+    return st.st_mtime_ns, st.st_size, st.st_ino
 
 
-def _loaded_lines() -> dict[str, list[str]]:
-    global _line_entries
-    if _line_entries is None:
-        _line_entries = _read_store(LINES_FILE, _is_lines)
-        logger.info("%d Maqayees entries already read line by line", len(_line_entries))
-    return _line_entries
+def _store(path: Path, keeps) -> dict:
+    """The file's entries, re-read only when it has changed."""
+    stamp = _stamp(path)
+    hit = _cache.get(path)
+    if hit is None or hit[0] != stamp:
+        hit = _cache[path] = (stamp, _read_store(path, keeps))
+        logger.info("%d Maqayees entries in English in %s", len(hit[1]), path.name)
+    return hit[1]
+
+
+def _prose() -> dict[str, str]:
+    return _store(STORE_FILE, _is_prose)
 
 
 def get(root: str) -> str | None:
-    """The prose English kept for this root, if it has been read before."""
-    return _loaded().get(root) or None
+    """The prose English kept for this root, if it has been made."""
+    return _prose().get(root) or None
 
 
-def get_lines(root: str) -> list[str] | None:
-    """The line-by-line English kept for this root, if it has been made."""
-    return _loaded_lines().get(root) or None
+def get_lines(root: str, count: int) -> list[str] | None:
+    """The line-by-line English kept for this root with this many lines.
+
+    The shipped file is asked first, as the whole-book run. A list of the wrong
+    length was made against an older shape of the book; passing it over lets
+    the other file's newer list answer, instead of remaking it on every press.
+    """
+    for path in (LINES_FILE, LINES_KEPT_FILE):
+        lines = _store(path, _is_lines).get(root)
+        if lines and len(lines) == count:
+            return lines
+    return None
 
 
 def put(root: str, english: str) -> None:
-    """Keep this prose English, so the same entry is never read twice."""
+    """Keep this prose English. Only the backfill script makes it, so it goes
+    into the shipped file."""
     english = english.strip()
     if root and english:
-        _keep(STORE_FILE, _loaded, _is_prose, root, english)
+        _keep(STORE_FILE, _is_prose, root, english)
 
 
 def put_lines(root: str, lines: list[str]) -> None:
@@ -112,34 +136,21 @@ def put_lines(root: str, lines: list[str]) -> None:
     dropped here rather than trusted later."""
     lines = [line.strip() for line in lines]
     if root and _is_lines(lines):
-        _keep(LINES_FILE, _loaded_lines, _is_lines, root, lines)
+        _keep(LINES_KEPT_FILE, _is_lines, root, lines)
 
 
-def _keep(path: Path, loaded, keeps, root: str, value) -> None:
-    """Write one English into its store.
+def _keep(path: Path, keeps, root: str, value) -> None:
+    """Add one root to a file.
 
-    Written to a neighbouring file and moved into place, so a crash midway
-    leaves the old file whole rather than half a new one.
+    Added to the file as it stands on disk, never to a copy in memory: writing
+    from a stale copy is how 123 entries' English was once lost. Written to a
+    neighbouring file and moved into place, so a crash midway leaves the old
+    file whole rather than half a new one.
     """
     with _lock:
-        cache = loaded()
-        kept = dict(cache)
+        kept = _read_store(path, keeps)
         kept[root] = value
-
-        # The store only ever grows. Anything on disk that this process has not
-        # seen was written by something else while it was running, so it is
-        # carried over rather than overwritten, writing from a stale copy is
-        # how 123 entries' English was once lost. What is in memory wins a clash,
-        # because that is the newer English of the same root.
-        on_disk = _read_store(path, keeps)
-        if unseen := set(on_disk) - set(kept):
-            logger.warning(
-                "%d entries in %s were written by something else, keeping them.",
-                len(unseen), path,
-            )
-            kept = {**on_disk, **kept}
-
-        scratch = path.with_suffix(".writing")
+        scratch = path.with_suffix(f".{os.getpid()}.writing")
         try:
             path.parent.mkdir(parents=True, exist_ok=True)
             scratch.write_text(
@@ -151,10 +162,8 @@ def _keep(path: Path, loaded, keeps, root: str, value) -> None:
             # still returned to whoever asked for it.
             logger.warning("Could not keep the English for %s (%s)", root, exc)
             scratch.unlink(missing_ok=True)
-            return
-        cache.update({root: value})
 
 
 def count() -> int:
-    """How many entries have been read into prose English so far."""
-    return len(_loaded())
+    """How many entries have prose English so far."""
+    return len(_prose())

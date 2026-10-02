@@ -247,3 +247,7 @@ backend/data/quran/wbw_words.json
 
 # Ear training results fetched from Kaggle (models are hundreds of MB)
 backend/data/models/finetune-ear/
+
+# Line-by-line English made on the server; a deploy must never overwrite it.
+backend/data/maqayees/english_lines.kept.json
+backend/data/maqayees/*.writing
