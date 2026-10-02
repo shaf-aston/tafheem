@@ -1,8 +1,10 @@
 /**
  * Recent tabs: the strip's last places, after the fixed tabs (row 1, 2). A
  * list, oldest first. Opening a tab not on the strip drops the oldest and adds
- * it far right, so the strip never grows. App keeps it with useRemembered.
+ * it far right, so the strip never grows. App sees only useStrip.
  */
+import { useEffect, useMemo } from 'react'
+import { useRemembered } from './useRemembered'
 
 const fixed = (tab) => tab.row < 3
 
@@ -29,4 +31,15 @@ export function readRecent(text, tabs, seed) {
     /* nothing saved yet */
   }
   return seed
+}
+
+/** The strip for `active`, remembered between visits. Every way into a tab passes here. */
+export function useStrip(tabs, seed, active) {
+  const [saved, save] = useRemembered('recent-tabs')
+  const recent = useMemo(() => readRecent(saved, tabs, seed), [saved, tabs, seed])
+  useEffect(() => {
+    const next = addRecent(recent, active, tabs)
+    if (next !== recent) save(JSON.stringify(next))
+  }, [recent, active, tabs, save])
+  return useMemo(() => stripOf(tabs, recent), [tabs, recent])
 }

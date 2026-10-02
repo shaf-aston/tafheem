@@ -34,7 +34,8 @@ import GrowPanel from '../components/GrowPanel'
 // `mark`: one Arabic letter for where only a letter fits (search rail, launcher
 //   ring). Taken from the tab's own name, unique across tabs.
 // `open`: fetches the tab's opening data, run on idle and on hovering its tab.
-// Order = strip order = number-key shortcuts. Related tabs sit together.
+// Order = All sections order; the strip is the fixed tabs in this order, then
+// the recent ones (lib/recent.js). Related tabs sit together.
 export const GROUPS = [
   { id: 'language', label: 'Language' },
   { id: 'quran',    label: 'Quran' },

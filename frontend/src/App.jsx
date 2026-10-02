@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { GROUPS, RECENT, TABS, accentOf } from './lib/tabs'
-import { addRecent, readRecent, stripOf } from './lib/recent'
-import { useRemembered } from './lib/useRemembered'
+import { useStrip } from './lib/recent'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
 import { idle } from './lib/warm'
 import { useTabShortcuts } from './lib/useTabShortcuts'
@@ -129,15 +128,7 @@ function AppContent() {
     setHandoff(incoming ? { tab: id, value: incoming, at: ++arrivals } : null)
   }, [])
 
-  // The strip: fixed tabs plus the recent ones. Whatever opens a tab (a click,
-  // All sections, the command bar, back) lands here, so one rule fills it.
-  const [savedRecent, saveRecent] = useRemembered('recent-tabs')
-  const recent = useMemo(() => readRecent(savedRecent, TABS, RECENT), [savedRecent])
-  const strip = useMemo(() => stripOf(TABS, recent), [recent])
-  useEffect(() => {
-    const next = addRecent(recent, activeTab, TABS)
-    if (next !== recent) saveRecent(JSON.stringify(next))
-  }, [activeTab, recent, saveRecent])
+  const strip = useStrip(TABS, RECENT, activeTab)
 
   useTabShortcuts(strip, switchTab)
 
