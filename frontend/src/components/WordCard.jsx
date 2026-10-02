@@ -129,7 +129,7 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
           ? <Panel label="Why no name (لماذا لا اسم)" accent><ArabicText as="p" size="sm">{word.reason}</ArabicText></Panel>
           : (
             <Panel label="Proof (الدليل)" accent>
-              {word.reason}
+              <ArabicText as="p" size="sm">{word.reason}</ArabicText>
               <BookPath path={word.book} />
             </Panel>
           )
