@@ -197,6 +197,7 @@ def test_a_root_the_book_covers_comes_back_with_its_source(client):
     client.install(json.dumps({"كتب": {"core_meaning": "الجمع"}}, ensure_ascii=False))
     body = _get(client, "كَتَبَ")
     assert body["status"] == "ready"
+    assert "body" not in body["meaning"], "the rest is cut here, never on the page"
     assert body["root"] == "كتب"          # the letters searched, echoed back
     assert body["meaning"]["core_meaning"] == "الجمع"
     assert body["source"]["label"]
@@ -445,15 +446,30 @@ def test_letters_that_are_not_arabic_never_reach_the_model(client, ai):
 # instead of a second call, and that failing to keep one never costs the reader
 # the answer they already have.
 
-def test_the_same_entry_is_never_put_into_english_twice(client, ai, kept):
+def test_a_kept_reading_is_used_instead_of_the_model(client, ai, kept):
+    kept.put("كتب", "gathering one thing to another")
     client.install(json.dumps({"كتب": {"core_meaning": "الجمع", "body": "نص"}}, ensure_ascii=False))
     assert _english(client, "كتب").json()["english"] == "gathering one thing to another"
+    assert ai["seen"] is None, "the model was asked for an entry already read"
 
-    ai["seen"] = None
-    ai["answer"] = {"english": "a second, different answer"}
-    again = _english(client, "كتب").json()
-    assert again["english"] == "gathering one thing to another"
-    assert ai["seen"] is None, "the model was asked again for an entry already read"
+
+def test_a_reading_made_on_the_spot_is_never_kept(client, ai, kept):
+    """Kept, it would come back next time wearing the whole-book run's badge."""
+    client.install(json.dumps({"كتب": {"core_meaning": "الجمع", "body": "نص"}}, ensure_ascii=False))
+    first = _english(client, "كتب").json()
+    assert kept.get("كتب") is None
+    assert _english(client, "كتب").json() == first
+
+
+@pytest.mark.parametrize("from_the_store", [True, False])
+def test_the_origin_sense_is_not_printed_twice(client, ai, kept, from_the_store):
+    """The card already shows the opening sentence; kept or fresh, it is cut."""
+    whole = "Gathering one thing to another. From it the book, kitab."
+    if from_the_store:
+        kept.put("كتب", whole)
+    ai["answer"] = {"english": whole}
+    client.install(json.dumps({"كتب": {"core_meaning": "الجمع", "body": "نص"}}, ensure_ascii=False))
+    assert _english(client, "كتب").json()["english"] == "From it the book, kitab."
 
 
 def test_a_kept_reading_answers_even_with_no_ai_at_all(client, ai, kept):

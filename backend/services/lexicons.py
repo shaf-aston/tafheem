@@ -124,7 +124,7 @@ def _folded(key: str) -> str:
     return key.translate(_fold) if _fold else key
 
 
-def entries_for(root: str) -> list[dict]:
+def entries_for(root: str) -> list[dict] | None:
     """Every book's entry for this root, best-attested spelling first.
 
     The letters typed answer for themselves first. Only a book with nothing
@@ -133,6 +133,8 @@ def entries_for(root: str) -> list[dict]:
     it. And a folded spelling that two different roots share, هنأ and هنا, is
     refused outright rather than settled by whichever was written first: a
     reader shown the wrong root's entry has no way of knowing.
+
+    None when the database fails mid-read, which is not the same answer as no entry.
     """
     db = _db()
     key = normalize_root(root)
@@ -145,7 +147,7 @@ def entries_for(root: str) -> list[dict]:
             "       b.source, b.ord,"
             "       e.head, e.body, e.root"
             "  FROM entry e JOIN book b ON b.id = e.book"
-            " WHERE e.root = ? ORDER BY b.ord, LENGTH(e.body) DESC",
+            " WHERE e.root = ?",
             (key,),
         ).fetchall()
         answered = {row["id"] for row in rows}
@@ -160,20 +162,21 @@ def entries_for(root: str) -> list[dict]:
             "  FROM entry e JOIN book b ON b.id = e.book"
             " WHERE e.folded = ?"
             "   AND (SELECT COUNT(DISTINCT root) FROM entry"
-            "         WHERE folded = e.folded AND book = e.book) = 1"
-            " ORDER BY b.ord, LENGTH(e.body) DESC",
+            "         WHERE folded = e.folded AND book = e.book) = 1",
             (_folded(key),),
         ).fetchall()
     except sqlite3.Error as exc:
-        logger.warning("could not read the dictionaries for %r: %s", root, exc)
-        return []
+        logger.warning("could not read the dictionaries: %s", exc)
+        return None
 
-    # Merged, then put back into the books' own order. Without this a book that
-    # happened to hold the exact spelling would jump ahead of the ones that only
-    # matched folded, and the shelf would reorder itself from root to root.
+    # Merged, then put back into the books' own order, longest entry first
+    # within a book. Without this a book that happened to hold the exact spelling
+    # would jump ahead of the ones that only matched folded. Measured on the
+    # unpacked text: the stored body is compressed, and its size is not its length.
     found = sorted(
-        list(rows) + [row for row in loose if row["id"] not in answered],
-        key=lambda row: (row["ord"], -len(row["body"])),
+        ((row, zlib.decompress(row["body"]).decode("utf-8"))
+         for row in [*rows, *(row for row in loose if row["id"] not in answered)]),
+        key=lambda pair: (pair[0]["ord"], -len(pair[1])),
     )
     # One card per book, not per entry. A book returns to a root in a later
     # volume, Lane adds a supplement to كتب and Lisan says more about هنا, and
@@ -181,8 +184,7 @@ def entries_for(root: str) -> list[dict]:
     # author, which reads as the page having repeated itself. They are the same
     # book on the same root, so they are one entry with a break between them.
     shelf: dict[str, dict] = {}
-    for row in found:
-        said = zlib.decompress(row["body"]).decode("utf-8")
+    for row, said in found:
         if row["id"] in shelf:
             shelf[row["id"]]["text"] += "\n\n" + said
             continue

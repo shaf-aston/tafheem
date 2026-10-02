@@ -52,8 +52,3 @@ class LexiconsSource:
                 # entries as an index hit rather than by matching their prose.
                 roots=normalize_root(head),
             )
-
-
-def credits() -> list[str]:
-    """The credits the installed dictionaries carry, in the books' own order."""
-    return lexicons.credits()

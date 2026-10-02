@@ -180,7 +180,7 @@ stronger.
     *al-wisāda*, the cushion.
   - The first sentence of the whole-entry translation in `english_entries.json`,
     badged `maqayees_translation`. Made from the typed Arabic with the Arabic in
-    front of it and read back against it by a second reader.
+    front of it, one entry at a time, by `scripts/backfill_root_english.py`.
   Ibn Fāris always opens by naming the letters and stating the one sense, so
   these two say the same thing, and `services/root_gloss.py` prefers the second
   wherever it exists, which is also how the wrong and thin glosses above get

@@ -15,6 +15,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { getRootEntryEnglish, getRootEntryLines, getRootMeaning } from '../api'
+import config from '../dictionary.json'
 import { entryLines } from '../lib/entryLines'
 import { BROKEN, MISSING, READY } from '../lib/rootMeaningStatus'
 import { useHealth } from '../lib/useHealth'
@@ -26,10 +27,25 @@ import Segmented from './ui/Segmented'
 import { Skeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
 
-/** Sentence punctuation, Arabic and Latin, at the start of what is left over. */
-const LEADING_PUNCTUATION = /^[.،؛:\s]+/
-/** Whether anything but that punctuation is left, otherwise there is no rest. */
-const HAS_WORDS = /[^.،؛:\s]/
+/**
+ * The two English readings of the rest of the entry, one shape each. Both cost a
+ * model call, so neither retries: the message offers to try again.
+ */
+const READINGS = {
+  together: {
+    key: 'root-entry-english',
+    get: getRootEntryEnglish,
+    failed: "Couldn't put this into English",
+    fallback: 'The Arabic below is unaffected.',
+  },
+  lines: {
+    key: 'root-entry-lines',
+    get: getRootEntryLines,
+    failed: "Couldn't line the English up",
+    fallback: 'The backend may have stopped since this page was opened.',
+    after: ' The Together view above still shows the whole entry.',
+  },
+}
 
 export default function RootMeaningCard({ root: asked, hasAlternates, accent }) {
   const { rootMeaningStatus, healthFailed, retryHealth } = useHealth()
@@ -74,6 +90,10 @@ export default function RootMeaningCard({ root: asked, hasAlternates, accent }) 
           silent to anyone who cannot see it happen. */}
       <div aria-live="polite">
         <Body
+          // Keyed by the root asked about: whether the rest was opened is a
+          // question about one root, and carried over it fetched the next
+          // root's English, a model call nobody asked for.
+          key={asked}
           // The answer the backend just sent wins over the check made when the
           // page opened: the book can be installed, or fail, after that check.
           status={data?.status ?? rootMeaningStatus}
@@ -183,13 +203,9 @@ function Body({
     )
   }
 
-  const { core_meaning, sarf_pattern, variances, body, english } = data.meaning
-  // The entry always opens with the origin sense, so showing both in full would
-  // print it twice. What is left is the rest of the entry, and for 226 roots
-  // that is only the full stop the sense ended on, which must not open a panel
-  // onto a single piece of punctuation.
-  const tail = body?.startsWith(core_meaning) ? body.slice(core_meaning.length) : body
-  const rest = HAS_WORDS.test(tail || '') ? tail.replace(LEADING_PUNCTUATION, '') : ''
+  // rest: the entry after its origin sense, cut by the backend
+  // (services/root_gloss.rest_of), the same cut its line-by-line reading pairs.
+  const { core_meaning, sarf_pattern, variances, rest, english } = data.meaning
 
   return (
     <div className="space-y-3">
@@ -244,7 +260,7 @@ function Body({
           <ol className="space-y-1" dir="rtl">
             {variances.map((v, i) => (
               <li key={i}>
-                <span className="type-small text-[var(--text-faint)] ml-2">{i + 1}.</span>
+                <span className="type-small text-[var(--text-faint)] me-2">{i + 1}.</span>
                 <ArabicText size="sm">{v}</ArabicText>
               </li>
             ))}
@@ -284,11 +300,9 @@ function Body({
           )}
 
           {opened && view === 'lines' ? (
-            // Keyed by the root so asking about a different one starts this
-            // over, rather than showing a reading nobody asked for.
-            <EntryLineByLine key={data.root} root={data.root} enabled={opened} />
+            <EntryReading view="lines" root={data.root} />
           ) : (
-            <ShowRest lines={6} accent={accent} onOpen={() => setOpened(true)}>
+            <ShowRest lines={config['root-meaning']['rest-lines']} accent={accent} onOpen={() => setOpened(true)}>
               {/* The book first, its reading under it. This panel is the
                   book's own words; the English is what a machine made of them,
                   and printing the machine first put a retelling where the
@@ -297,9 +311,7 @@ function Body({
             </ShowRest>
           )}
 
-          {opened && view === 'together' && (
-            <EntryEnglish key={data.root} root={data.root} enabled={opened} />
-          )}
+          {opened && view === 'together' && <EntryReading view="together" root={data.root} />}
         </div>
       )}
 
@@ -308,81 +320,21 @@ function Body({
 }
 
 /**
- * The whole entry retold in English, when the reader asks for it.
+ * The rest of the entry in English, fetched when the reader opens it.
  *
- * The gloss higher up the card covers the origin sense only. Everything below
- * it, the examples, the verses, the poetry; is untranslated, which is a wall
- * to anyone who cannot read classical Arabic.
- *
- * It costs a call to a model to make, so nothing is fetched until the entry is
- * opened, but opening the entry is the whole request, and a second button in
- * front of the answer is a riddle rather than a saving. When it arrives it
- * carries its own badge saying a machine wrote it, and it is never allowed to
- * replace the Arabic beside it.
+ * Together: the entry retold as prose under the Arabic. Lines: one English line
+ * under each Arabic line; the backend does the pairing and refuses an answer it
+ * could not line up, so every English line belongs to the Arabic above it.
+ * Either carries its own badge saying a machine wrote it, and never replaces
+ * the Arabic beside it.
  */
-function EntryEnglish({ root, enabled }) {
+function EntryReading({ view, root }) {
+  const reading = READINGS[view]
   const { data, isFetching, isError, error, refetch } = useQuery({
-    queryKey: ['root-entry-english', root],
-    queryFn: () => getRootEntryEnglish(root),
-    enabled,
-    // One failed reading is one failed reading. Retrying spends more calls on
-    // the same answer, and the message below already offers to try again.
+    queryKey: [reading.key, root],
+    queryFn: () => reading.get(root),
     retry: false,
   })
-
-  if (!enabled) return null
-
-  if (isFetching) return <Skeleton className="h-4 w-1/2" />
-
-  if (isError) {
-    return (
-      <ErrorAlert
-        title="Couldn't put this into English"
-        error={error}
-        fallback="The Arabic below is unaffected."
-        onRetry={refetch}
-      />
-    )
-  }
-
-  if (!data?.english) return null
-
-  return (
-    <div className="space-y-1.5">
-      {/* The longest entries run past what the model is handed. Saying so is the
-          difference between a short retelling and a retelling that stops. */}
-      {data.truncated && (
-        <p className="type-small text-[var(--text-faint)]">
-          The entry was longer than could be read at once, so this covers its opening.
-        </p>
-      )}
-      <p className="type-body text-[var(--text-dim)] max-w-prose whitespace-pre-line">
-        {data.english}
-      </p>
-      <SourceBadge source={data.source} className="ms-auto flex" />
-    </div>
-  )
-}
-
-/**
- * The same entry with its English interleaved, one line under each Arabic line.
- *
- * The backend does the pairing and refuses an answer it could not line up, so
- * every English line printed here belongs to the Arabic line above it. When
- * that refusal happens, this shows the refusal and nothing else: the Together
- * view is one press away and unaffected, and the error says so.
- */
-function EntryLineByLine({ root, enabled }) {
-  const { data, isFetching, isError, error, refetch } = useQuery({
-    queryKey: ['root-entry-lines', root],
-    queryFn: () => getRootEntryLines(root),
-    enabled,
-    // One failed pairing is one failed pairing. The message below offers to
-    // try again, and the Together view still has the whole entry.
-    retry: false,
-  })
-
-  if (!enabled) return null
 
   if (isFetching) {
     return (
@@ -395,63 +347,65 @@ function EntryLineByLine({ root, enabled }) {
 
   if (isError) {
     return (
-      <ErrorAlert
-        title="Couldn't line the English up"
-        error={error}
-        fallback="The backend may have stopped since this page was opened."
-        onRetry={refetch}
-      >
-        {' '}The Together view above still shows the whole entry.
+      <ErrorAlert title={reading.failed} error={error} fallback={reading.fallback} onRetry={refetch}>
+        {reading.after}
       </ErrorAlert>
     )
   }
 
-  if (!data?.lines?.length) return null
+  if (!(data?.english || data?.lines?.length)) return null
 
   return (
     <div className="space-y-1.5">
+      {/* The longest entries run past what the model is handed. Saying so is the
+          difference between a short retelling and a retelling that stops. */}
       {data.truncated && (
         <p className="type-small text-[var(--text-faint)]">
           The entry was longer than could be read at once, so this covers its opening.
         </p>
       )}
-      {/* Facing columns. The Arabic keeps the right, where every other piece of
-          Arabic on this card sits, and the English takes the width beside it
-          that used to be empty. Level with each other, and numbered, so the eye
-          can cross the gutter and land on the right line.
-
-          On a narrow screen there is only one column, so the two go back to
-          sitting one under the other: that is why the Arabic is written first
-          here and the wide layout puts it on the right, rather than the markup
-          being ordered for the wide case and reading backwards on a phone. */}
-      <ol>
-        {data.lines.map((pair, i) => (
-          <li
-            key={i}
-            className="grid gap-x-8 gap-y-1 py-3 border-t border-[var(--border)] first:border-t-0
-              sm:grid-cols-[1fr_1.1fr]"
-          >
-            <span
-              className="type-micro tabular-nums uppercase tracking-[0.14em] text-[var(--text-faint)]
-                sm:[grid-area:1/1/2/-1]"
-            >
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            {/* The Arabic through the same layout as the Together view, so a
-                verse keeps its two halves; only where it sits is new. */}
-            <div className="sm:[grid-area:2/2] min-w-0">
-              <Lines text={pair.arabic} />
-            </div>
-            <p className="type-body text-[var(--text-dim)] sm:[grid-area:2/1] self-start" dir="ltr">
-              {pair.english}
-            </p>
-          </li>
-        ))}
-      </ol>
+      {view === 'lines' ? <PairedLines lines={data.lines} /> : (
+        <p className="type-body text-[var(--text-dim)] max-w-prose whitespace-pre-line">
+          {data.english}
+        </p>
+      )}
       <SourceBadge source={data.source} className="ms-auto flex" />
     </div>
   )
 }
+
+/**
+ * Facing columns. The Arabic keeps the right, where every other piece of Arabic
+ * on this card sits, and the English takes the width beside it. Level with each
+ * other, and numbered, so the eye can cross the gutter and land on the right line.
+ *
+ * On a narrow screen there is only one column, so the two sit one under the
+ * other: that is why the Arabic is written first here and the wide layout puts
+ * it on the right, rather than the markup reading backwards on a phone.
+ */
+const PairedLines = ({ lines }) => (
+  <ol>
+    {lines.map((pair, i) => (
+      <li
+        key={i}
+        className="grid gap-x-8 gap-y-1 py-3 border-t border-[var(--border)] first:border-t-0
+          sm:grid-cols-[1fr_1.1fr]"
+      >
+        <span className="eyebrow tabular-nums sm:[grid-area:1/1/2/-1]">
+          {String(i + 1).padStart(2, '0')}
+        </span>
+        {/* The Arabic through the same layout as the Together view, so a verse
+            keeps its two halves; only where it sits is new. */}
+        <div className="sm:[grid-area:2/2] min-w-0">
+          <Lines text={pair.arabic} />
+        </div>
+        <p className="type-body text-[var(--text-dim)] sm:[grid-area:2/1] self-start" dir="ltr">
+          {pair.english}
+        </p>
+      </li>
+    ))}
+  </ol>
+)
 
 /**
  * One line of the entry, laid out the way the book lays it out.

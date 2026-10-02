@@ -10,12 +10,13 @@ give every new book a chance to alter how every other book is found.
 """
 from __future__ import annotations
 
+from backend.services import lexicons
 from backend.services.daleel.model import Source
 from backend.services.daleel.sources.maqayees import MaqayeesSource
 from backend.services.daleel.sources.openiti import OpenItiSource
 from backend.services.daleel.sources.quran import QuranSource
 from backend.services.daleel.sources.jazariyya import JazariyyaSource
-from backend.services.daleel.sources.lexicons import LexiconsSource, credits as lexicon_credits
+from backend.services.daleel.sources.lexicons import LexiconsSource
 from backend.services.daleel.sources.library import LibrarySource
 from backend.services.daleel.sources.tasheel import TasheelSource
 from backend.services.daleel.sources.wiktionary import WiktionarySource
@@ -46,7 +47,7 @@ SOURCES: tuple[Source, ...] = (
     # on the next index build with nothing edited; only a book carrying a credit
     # sources.json has never heard of needs anything done, and that is a data
     # file, not this one.
-    *(LexiconsSource(credit) for credit in lexicon_credits()),
+    *(LexiconsSource(credit) for credit in lexicons.credits()),
     WiktionarySource(),
 )
 
