@@ -205,6 +205,14 @@ async def listen(
             filed.done(200)
             return Heard(text="", ayahs=[])
         _refuse_unless_audio(body, filed)
+        # Checked before the ear is paid for, so a bad page never costs a reading.
+        span = None
+        if near:
+            first, last = (tuple(map(int, key.split(":"))) for key in near.split("-"))
+            try:
+                span = await run_in_threadpool(recitation.page_span, first, last)
+            except ValueError as exc:
+                raise filed.fail(422, f"{near} is not a page of the Qur'an", "place", exc) from None
 
         async def do_hear() -> tuple[str, list]:
             try:
@@ -249,12 +257,8 @@ async def listen(
             text, hits = await do_hear()
 
         place = None
-        if near and text:
-            first, last = (tuple(map(int, key.split(":"))) for key in near.split("-"))
-            try:
-                found = await run_in_threadpool(recitation.find_place, text, (first, last))
-            except ValueError as exc:
-                raise filed.fail(422, f"{near} is not a page of the Qur'an", "place", exc) from None
+        if span and text:
+            found = await run_in_threadpool(recitation.find_place, text, span)
             place = found and HeardPlace(surah=found.surah, ayah=found.ayah, sure=found.sure, home=found.home)
 
         filed.done(200)

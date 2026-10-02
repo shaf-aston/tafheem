@@ -255,6 +255,7 @@ export default function MemorisePanel({ accent }) {
    */
   const listen = () => {
     if (!resume) reciting.forget()
+    setStayed(null)
     reciting.start()
   }
 
@@ -330,6 +331,9 @@ export default function MemorisePanel({ accent }) {
       && recitedPage.lines.some((line) => line.key === `${reciting.elsewhere.surah}:${reciting.elsewhere.ayah}`))
     ? reciting.elsewhere
     : null
+  // A reading names a fresh place each time, so the place is followed by its
+  // name, and Stay holds for the whole surah until reciting starts again.
+  const where = elsewhere && `${elsewhere.surah}:${elsewhere.ayah}`
   const [stayed, setStayed] = useState(null)
   const goElsewhere = () => client.fetchQuery(bookPartQuery(bookId, elsewhere.surah)).then(({ lines }) => {
     const n = pagesOf(lines, book.wordsPerPage).findIndex((p) => p.some((line) => line.id === elsewhere.ayah))
@@ -337,8 +341,8 @@ export default function MemorisePanel({ accent }) {
   })
   useEffect(() => {
     if (elsewhere && way === 'recite' && listening && !hidden) goElsewhere()
-  }, [elsewhere])  // eslint-disable-line react-hooks/exhaustive-deps
-  const askToGo = elsewhere && elsewhere !== stayed && way === 'recite' && listening && hidden
+  }, [where])  // eslint-disable-line react-hooks/exhaustive-deps
+  const askToGo = elsewhere && elsewhere.surah !== stayed && way === 'recite' && listening && hidden
   // A moment on the finished page first, marks settled and weighed, so a
   // slip in its last ayah is seen before the page goes.
   useEffect(() => {
@@ -485,18 +489,17 @@ export default function MemorisePanel({ accent }) {
             </div>
           </div>
 
-          {askToGo && (
-            <div
-              role="status"
-              className="flex items-center gap-3 flex-wrap rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] px-3 py-2"
-            >
-              <span className="type-small text-[var(--text-dim)] flex-1 min-w-0">
-                You seem to be reciting {elsewhere.surah}:{elsewhere.ayah}.
-              </span>
-              <StepButton onClick={goElsewhere}>Go there</StepButton>
-              <StepButton onClick={() => setStayed(elsewhere)}>Stay</StepButton>
-            </div>
-          )}
+          {/* Mounted always, so a screen reader hears the question when it
+              appears; empty, it takes no room. */}
+          <div role="status" className="empty:absolute">
+            {askToGo && (
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className="type-small text-[var(--text-dim)]">You seem to be reciting {where}.</span>
+                <StepButton onClick={goElsewhere}>Go there</StepButton>
+                <StepButton onClick={() => setStayed(elsewhere.surah)}>Stay</StepButton>
+              </div>
+            )}
+          </div>
 
           <div ref={card} className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4 scroll-mt-4">
             {/* A flowing book runs its lines on as a printed mushaf does: one

@@ -194,7 +194,10 @@ it is the term that is wrong.
   back misspelt. How sure the model on this machine is of each page word decides the mark
   instead (`recite_sure` on `/api/health`; only that model can score, see ears.py), and the
   one threshold (`sure-at` in `frontend/src/recite.json`, no levels) says
-  how far. Words and vowels only: tajweed is not checked. A quiet reciter is kept twice over:
+  how far. Where in the whole Qur'an a reading is comes from the words too
+  (`recitation/locate.py`, asked with the open page as `near`): a reading found elsewhere,
+  surely, never lands on the page; the page jumps there, or asks first while words are
+  hidden. Words and vowels only: tajweed is not checked. A quiet reciter is kept twice over:
   `lib/dictation.js` calls a voice anything above the quietest that microphone has heard
   rather than above one fixed number, and `recitation/loudness.py` lifts a soft recording
   before the model. `lib/microphone.js` is the only place a microphone is opened. **Dictation** is a search box

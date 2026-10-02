@@ -11,7 +11,7 @@ ayah into the next is found like any other.
 Sure means no other place fits nearly as well: the first words of 2:255 are
 also all of 3:2, and until the reciter says more the two tie. Measured on
 1,050 Groq readings cut into 4-word pieces: 1,247 placed right, 0 wrong, the
-rest not sure (see recitation_place_margin).
+rest not sure (backend/scripts/score_place.py; recitation_place_margin).
 """
 from __future__ import annotations
 
@@ -109,10 +109,13 @@ def span(line: Line, first: tuple[int, int], last: tuple[int, int]) -> tuple[int
     """(first, last + 1) on the line for the ayahs first..last, and the ayah after.
 
     The ayah after the page is home too: reciting on past the page's end is
-    the page turning, not the reciter being elsewhere.
+    the page turning, not the reciter being elsewhere. Raises ValueError for
+    an ayah the Qur'an does not have, or a last that comes before first.
     """
     start = line.where.index(first)
     end = len(line.where) - line.where[::-1].index(last)
+    if start >= end:
+        raise ValueError(f"{first} comes after {last}")
     after = line.where[end] if end < len(line.where) else None
     while end < len(line.where) and line.where[end] == after:
         end += 1

@@ -88,5 +88,9 @@ def test_a_malformed_page_is_refused(heard, near):
     assert heard(near).status_code == 422
 
 
-def test_an_ayah_the_quran_does_not_have_is_refused(heard):
-    assert heard("1:1-1:99").status_code == 422
+@pytest.mark.parametrize("near", ["1:1-1:99", "0:0-1:1", "2:255-1:1"])
+def test_a_page_the_quran_does_not_have_is_refused_before_anything_is_heard(heard, monkeypatch, near):
+    def never(*a, **k):
+        raise AssertionError("heard a recording for a page that is not there")
+    monkeypatch.setattr("backend.routers.listen.recitation.hear", never)
+    assert heard(near).status_code == 422

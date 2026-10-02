@@ -137,11 +137,15 @@ def _line() -> locate.Line:
     return locate.build(sorted((key(k), text) for k, text in _plain().items()))
 
 
-def find_place(heard: str, near: tuple[tuple[int, int], tuple[int, int]] | None = None) -> locate.Place | None:
-    """Where in the Qur'an `heard` was recited; `near` is the open page's first
-    and last ayah. Raises ValueError for an ayah the Qur'an does not have."""
-    line = _line()
-    return locate.find(heard, line, get_settings().recitation_place_margin, near and locate.span(line, *near))
+def page_span(first: tuple[int, int], last: tuple[int, int]) -> tuple[int, int]:
+    """The open page, first and last ayah, as find_place's `near`. Raises
+    ValueError for an ayah the Qur'an does not have or a backwards page."""
+    return locate.span(_line(), first, last)
+
+
+def find_place(heard: str, near: tuple[int, int] | None = None) -> locate.Place | None:
+    """Where in the Qur'an `heard` was recited; `near` is from page_span."""
+    return locate.find(heard, _line(), get_settings().recitation_place_margin, near)
 
 
 def check(audio: bytes, heard: str, ayahs: list[str]) -> dict[str, list[float | None]]:
