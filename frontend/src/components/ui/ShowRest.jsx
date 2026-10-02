@@ -131,7 +131,7 @@ export default function ShowRest({
           onClick={reveal}
           aria-expanded={open}
           style={{ '--c': accent }}
-          className="type-small text-[var(--text-faint)] hover:text-[var(--c)] transition-colors"
+          className="type-small py-1 -my-1 text-[var(--text-faint)] hover:text-[var(--c)] transition-colors"
         >
           {open ? less : more}
         </button>
