@@ -106,3 +106,17 @@ def test_a_page_the_quran_does_not_have_is_refused_before_anything_is_heard(hear
         raise AssertionError("heard a recording for a page that is not there")
     monkeypatch.setattr("backend.routers.listen.recitation.hear", never)
     assert heard(near).status_code == 422
+
+
+def test_words_carried_from_an_unsure_reading_place_the_next_with_them(monkeypatch):
+    monkeypatch.setattr(recitation, "_line", lambda: LINE)
+    monkeypatch.setattr("backend.routers.listen.recitation.hear", lambda *a, **k: ("الرحمن الرحيم", []))
+
+    def post(**before):
+        return TestClient(app).post(
+            "/api/listen", params={"recite": True, "near": "3:3-3:3", **before},
+            files={"audio": ("r.webm", b"\x1a\x45\xdf\xa3 sound", "audio/webm")},
+        ).json()["place"]
+    # In 1:1 and 1:3 alike, so not sure alone; after 1:2's words, only 1:2 holds both.
+    assert post()["sure"] is False
+    assert post(before="الحمد لله رب العالمين") == {"surah": 1, "ayah": 2, "sure": True, "home": False}

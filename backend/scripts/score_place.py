@@ -65,6 +65,18 @@ def main() -> None:
         tally(f"{size or 'whole'} words", [(t, p, None) for t, x in rows for p in pieces(x, size)])
     fatihah = locate.span(line, (1, 1), (1, 7))
     tally("4 words, al-Fatihah open", [(t, p, fatihah) for t, x in rows if t[0] != 1 for p in pieces(x, 4)])
+
+    # As the page does it: a piece whose place was not sure goes in front of the next.
+    carry = get_settings().recitation_place_carry_words
+
+    def carried(size):
+        for t, x in rows:
+            last = None
+            for p in pieces(x, size):
+                f = last and locate.find(last, line, margin, fit)
+                yield t, (" ".join(last.split()[-carry:]) + " " + p if f and not f.sure else p), None
+                last = p
+    tally("4 words, carried", list(carried(4)))
     sure = [s for s in EVERYDAY if (f := locate.find(s, line, margin, fit)) and f.sure]
     print(f"everyday Arabic taken as a sure place: {len(sure)} of {len(EVERYDAY)} {sure}")
 

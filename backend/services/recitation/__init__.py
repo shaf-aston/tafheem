@@ -143,10 +143,18 @@ def page_span(first: tuple[int, int], last: tuple[int, int]) -> tuple[int, int]:
     return locate.span(_line(), first, last)
 
 
-def find_place(heard: str, near: tuple[int, int] | None = None) -> locate.Place | None:
-    """Where in the Qur'an `heard` was recited; `near` is from page_span."""
+def find_place(heard: str, near: tuple[int, int] | None = None, before: str = "") -> locate.Place | None:
+    """Where in the Qur'an `heard` was recited; `near` is from page_span.
+
+    `before` is the last reading whose place was not sure: a phrase said in
+    many places (ولا هم يحزنون, 12) is told apart by what came next.
+    """
     settings = get_settings()
-    return locate.find(heard, _line(), settings.recitation_place_margin, settings.recitation_place_fit, near)
+    carried = " ".join(before.split()[-settings.recitation_place_carry_words:])
+    return locate.find(
+        f"{carried} {heard}".strip(), _line(),
+        settings.recitation_place_margin, settings.recitation_place_fit, near,
+    )
 
 
 def check(audio: bytes, heard: str, ayahs: list[str]) -> dict[str, list[float | None]]:

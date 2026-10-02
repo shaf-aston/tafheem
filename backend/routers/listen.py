@@ -189,6 +189,10 @@ async def listen(
         None, pattern=f"^{AYAH_KEY.pattern}-{AYAH_KEY.pattern}$",
         description="The open page's first and last ayah, 2:1-2:5: also say where in the Qur'an this was",
     ),
+    before: str = Query(
+        "", max_length=600,
+        description="The words of the last reading whose place was not sure, so this one is placed with them in front",
+    ),
 ) -> Heard:
     """What was said, and optionally which ayahs it was.
 
@@ -258,7 +262,7 @@ async def listen(
 
         place = None
         if span and text:
-            found = await run_in_threadpool(recitation.find_place, text, span)
+            found = await run_in_threadpool(recitation.find_place, text, span, before)
             place = found and HeardPlace(surah=found.surah, ayah=found.ayah, sure=found.sure, home=found.home)
 
         filed.done(200)
