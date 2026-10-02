@@ -1,0 +1,8 @@
+{
+ "_comment": "The book's classification tree for naming a word's role (Tasheel al-Nahw). A node is a branch of the book: `branch` its Arabic name, `book` its section and page. A branch with `children` has a `split`, the axis (services/syntax/facts.py AXES, each a question with a closed list of answers) its children divide on; each child takes one answer with `is`, or is the one `else`. A leaf has a `role` (in roles.json). Siblings answer the same question once, so they cannot overlap. Walked by services/syntax/walker.py.",
+ "tree": {"branch": "كلمة", "book": "1.2 p2", "split": "kind", "children": [
+   {"branch": "حرف", "book": "1.2 p3", "is": "harf", "role": "حرف"},
+   {"branch": "فعل", "book": "1.2 p2", "is": "fil", "role": "فعل"},
+   {"branch": "اسم", "book": "1.2 p2", "is": "ism", "children": []}
+ ]}
+}

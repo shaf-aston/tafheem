@@ -16,13 +16,14 @@ from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_words, is_mabni, is_one, is_plain_noun, role_table
+from backend.services.syntax import facts, walker
+from backend.services.syntax.facts import PRESENT_PREFIX, is_verb
 from backend.services.syntax.vowels import (
     CAMEL_CASE, CASE_NAME, SUKUN, command_shape, has_tanween, letters, past_passive_shape, typed_case,
     typed_passive)
 
 # a root letter is what is left once the letters that come and go are removed
 WEAK = set("اويىءأإآئؤة")
-PRESENT_PREFIX = set("أنيت")
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -57,21 +58,6 @@ def _case(token: dict) -> str | None:
     """What the reader typed first, the parser's guess second."""
     return (typed_case(token.get("typed"), token.get("stuck_on", 0))
             or CAMEL_CASE.get(token.get("cas")))
-
-
-def is_verb(token: dict) -> bool:
-    if has_tanween(token.get("typed")):
-        return False  # a verb never carries tanween, whatever the parser tagged it
-    if token["pos"].startswith("VRB"):  # VRB-PASS is a verb too
-        return True
-    # the word is unknown to the morphology, but the reader typed a passive verb or a
-    # hollow command (بِعْ, which CAMeL takes for a name)
-    typed = token.get("typed") or ""
-    if len(bare_letters(typed)) == 2 and command_shape(typed):
-        return token.get("pos_camel") in ("noun", "noun_prop")  # نَمْ is not the noun نَمّ
-    return token.get("pos_camel") == "noun_prop" and (
-        (strip_diacritics(typed)[:1] in PRESENT_PREFIX and typed_passive(typed, True))
-        or past_passive_shape(typed))
 
 
 def is_passive(token: dict) -> bool:
@@ -250,8 +236,10 @@ def name(token: dict, tokens: list[dict]) -> str | None:
         if (token["pos"] == "NOM" and _case(token) == "u" and rel != "IDF") or \
                 (head and "interrog" in head.get("pos_camel", "")):
             return "مبتدأ"
-    if token["pos"] == "PRT":
-        return "حرف"
+    held = facts.of(token, tokens)
+    found = walker.walk(held)  # the book's tree: حرف and فعل so far
+    if held["kind"] == "harf":
+        return found[0]
     if "dem" in token.get("pos_camel", "") and verbless and rel not in ("IDF", "OBJ"):
         return "مبتدأ"
     pointer = next((c for c in children if "dem" in c.get("pos_camel", "")), None)
@@ -263,8 +251,8 @@ def name(token: dict, tokens: list[dict]) -> str | None:
         return _SUBJECT[family]  # إن في البيت رجلا: the fronted jar-wa-majroor is the khabar, the noun after it the ism
     if rel == "PRD" and not (is_verb(token) and family in ("kaada", "inna")):
         return _predicate(family)  # كاد يموت, ليت الشباب يعود: the verb stays a verb, its clause is the khabar
-    if is_verb(token):
-        return "فعل"
+    if found:
+        return found[0]
     if head and is_verb(head) and rel in ("SBJ", "TPC") and token["id"] < head["id"] and family is None             and typed_case(token.get("typed"), token.get("stuck_on", 0)) == "a":
         return "مفعول به"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object
     if head and is_verb(head) and rel == "TPC" and token["id"] < head["id"] and family is None:
