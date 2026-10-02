@@ -3,6 +3,12 @@
  "tree": {"branch": "كلمة", "book": "1.2 p2", "split": "kind", "children": [
    {"branch": "حرف", "book": "1.2 p3", "is": "harf", "role": "حرف"},
    {"branch": "فعل", "book": "1.2 p2", "is": "fil", "role": "فعل"},
-   {"branch": "اسم", "book": "1.2 p2", "is": "ism", "children": []}
+   {"branch": "اسم", "book": "1.2 p2", "is": "ism", "split": "follows", "children": [
+     {"branch": "النعت", "book": "3.10 p88", "is": "naat", "role": "صفة"},
+     {"branch": "العطف", "book": "3.10 p88", "is": "atf", "role": "معطوف"},
+     {"branch": "التوكيد", "book": "3.10 p88", "is": "tawkeed", "role": "توكيد"},
+     {"branch": "البدل", "book": "3.10 p88", "is": "badal", "role": "بدل"},
+     {"branch": "ليس تابعا", "book": "3.10 p88", "is": "none", "children": []}
+   ]}
  ]}
 }
