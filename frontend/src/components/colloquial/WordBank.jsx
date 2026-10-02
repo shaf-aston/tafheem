@@ -7,6 +7,7 @@ import BottomSheet from '../ui/BottomSheet'
 import CloseButton from '../ui/CloseButton'
 import Segmented from '../ui/Segmented'
 import SmallButton from '../ui/SmallButton'
+import SpeakButton from '../ui/SpeakButton'
 import { FOCUS } from './Face'
 import Spelling from './Spelling'
 
@@ -38,7 +39,10 @@ function Bank({ rows, onClose, scope, title }) {
               <span className="type-small text-[var(--text)]">{r.english}</span>
               <Spelling className="block">{r.transliteration}</Spelling>
             </span>
-            <ArabicText as="span" size="base" className="shrink-0 text-[var(--text)]">{r.arabic}</ArabicText>
+            <span className="shrink-0 flex items-center gap-2">
+              <SpeakButton inline="start" text={r.arabic} />
+              <ArabicText as="span" size="base" className="text-[var(--text)]">{r.arabic}</ArabicText>
+            </span>
           </li>
         ))}
       </ul>

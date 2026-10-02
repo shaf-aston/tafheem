@@ -18,9 +18,11 @@ from backend.services import speech
 
 router = APIRouter(prefix="/api/speak", tags=["speak"])
 
-# Arabic letters and marks, and single spaces between words. Nothing else is
-# spoken, so nothing else can reach the engine or the cache's file names.
-ARABIC = re.compile(r"[ء-غف-ٰٕٱ]+( [ء-غف-ٰٕٱ]+)*")
+# Arabic words, single spaces, and the pause marks a phrase ends or breathes
+# on. Nothing else is spoken, so nothing else can reach the engine.
+WORD = "[ء-غف-ٰٕٱ]+"
+PAUSE = "[،؛؟.!?,]"
+ARABIC = re.compile(f"{WORD}{PAUSE}?( {WORD}{PAUSE}?)*")
 
 
 # Recent asks per visitor, for speech_per_minute. In memory: a restart forgets
@@ -28,16 +30,16 @@ ARABIC = re.compile(r"[ء-غف-ٰٕٱ]+( [ء-غف-ٰٕٱ]+)*")
 _asks: dict[str, deque[float]] = {}
 
 
-def _too_many(visitor: str) -> bool:
+def _too_many(visitor: str, cost: int) -> bool:
     now = time.monotonic()
     if len(_asks) > 10_000:  # never grows without end
         _asks.clear()
     recent = _asks.setdefault(visitor, deque())
     while recent and now - recent[0] > 60:
         recent.popleft()
-    if len(recent) >= get_settings().speech_per_minute:
+    if len(recent) + cost > get_settings().speech_per_minute:
         return True
-    recent.append(now)
+    recent.extend([now] * cost)
     return False
 
 
@@ -47,13 +49,16 @@ async def speak(request: Request, text: str = Query(..., min_length=1)) -> Respo
     # visitor can fake that header, so this slows casual abuse, not a determined one.
     forwarded = request.headers.get("x-forwarded-for", "")
     visitor = forwarded.split(",")[0].strip() or (request.client.host if request.client else "")
-    if _too_many(visitor):
-        raise HTTPException(429, "Too many words at once; try again in a minute")
-    text = text.strip()
-    if len(text) > get_settings().speech_max_chars:
+    # One space between words and none before a mark, so كيفك ؟ and كيفك؟ are one phrase.
+    text = re.sub(f" (?={PAUSE})", "", " ".join(text.split()))
+    settings = get_settings()
+    if len(text) > settings.speech_max_chars:
         raise HTTPException(413, "Too long to say")
     if not ARABIC.fullmatch(text):
         raise HTTPException(422, "Only Arabic can be said")
+    # A long phrase costs the voice what several words do, so it counts as several asks.
+    if _too_many(visitor, -(-len(text) // settings.speech_chars_per_ask)):
+        raise HTTPException(429, "Too many words at once; try again in a minute")
     try:
         audio = await run_in_threadpool(speech.say, text)
     except RuntimeError as exc:

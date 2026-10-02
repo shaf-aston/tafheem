@@ -103,12 +103,14 @@ class Settings(BaseSettings):
     speech_voices: str = "fastpitch"
     # FastPitch has four speakers; 3 was heard best by Whisper (21% letters wrong, speaker 0 41%).
     speech_fastpitch_speaker: int = Field(default=3, ge=0, le=3)
-    speech_max_chars: int = Field(default=40, gt=0)
+    # Whole colloquial dialogue lines; the longest is 104.
+    speech_max_chars: int = Field(default=120, gt=0)
     speech_rest_s: float = Field(default=60.0, gt=0)
-    # ~25 KB each, so 20,000 is about 500 MB.
-    speech_cache_max_files: int = Field(default=20000, gt=0)
-    # Only newly made words count; cached ones are served from disk, so a learner never nears this.
+    # A word is ~25 KB, a dialogue line a few hundred; the oldest go first past this.
+    speech_cache_max_mb: float = Field(default=500.0, gt=0)
+    # Asks a minute per visitor; a phrase counts one ask per speech_chars_per_ask letters.
     speech_per_minute: int = Field(default=60, gt=0)
+    speech_chars_per_ask: int = Field(default=40, gt=0)
 
     # Chosen over plain "base" on 36 mid-surah ayahs (310 words, frontend/scripts/ears.test.js):
     # this scored 8.1% error at 2050ms/ayah on this CPU; base 42.6% at 1504ms. Groq whisper-large-v3-turbo also 8.1%.

@@ -9,8 +9,12 @@ import { useEffect, useRef, useState } from 'react'
 
 import { speak, stop } from '../../lib/speak'
 
-// `ref` reaches the button itself, so a keyboard shortcut can press it.
-export default function SpeakButton({ text, ref, className = '' }) {
+// `ref` reaches the button itself, so a keyboard shortcut can press it; `shortcut`
+// names that key in the tooltip. `inline` puts the voice's name in the row, for a
+// tight spot (a chat bubble) where a name hanging beside would be cut off: 'end'
+// after the icon, 'start' before it, whichever side the row is not anchored to,
+// so the icon stays under the finger when the name appears.
+export default function SpeakButton({ text, ref, shortcut, inline, className = '' }) {
   // idle | busy (finding a voice) | speaking | failed
   const [state, setState] = useState('idle')
   const [credit, setCredit] = useState('')
@@ -52,17 +56,17 @@ export default function SpeakButton({ text, ref, className = '' }) {
     : state === 'idle'
       ? 'text-[var(--text-faint)] border-[var(--border)] hover:text-[var(--text)] hover:border-[var(--border-hi)]'
       : 'text-[var(--primary)] border-[var(--primary)]'
-  const label = state === 'speaking' ? credit : state === 'failed' ? 'No voice could say this word' : ''
+  const label = state === 'speaking' ? credit : state === 'failed' ? FAILED : ''
   return (
-    // The label hangs beside the icon rather than inside the row, so a centred
-    // icon stays put when the label comes and goes.
-    <span className={`relative inline-flex ${className}`}>
+    // By default the label hangs beside the icon rather than inside the row, so
+    // a centred icon stays put when the label comes and goes.
+    <span className={`relative inline-flex items-center ${inline === 'start' ? 'flex-row-reverse' : ''} ${className}`}>
       <button
         ref={ref}
         type="button"
         onClick={press}
         aria-label={state === 'speaking' ? 'Stop' : 'Say it aloud'}
-        title={state === 'failed' ? 'No voice could say this word' : 'Say it aloud (S)'}
+        title={state === 'failed' ? FAILED : shortcut ? `Say it aloud (${shortcut})` : 'Say it aloud'}
         aria-busy={state === 'busy'}
         className={`shrink-0 w-7 h-7 grid place-items-center rounded-full border transition-colors ${look}
           ${state === 'busy' ? 'animate-pulse' : ''}`}
@@ -70,11 +74,13 @@ export default function SpeakButton({ text, ref, className = '' }) {
         <SpeakerGlyph />
       </button>
       {/* Always mounted, so a screen reader announces the text when it changes. */}
-      <span aria-live="polite" className={`absolute start-full ms-2 top-1/2 -translate-y-1/2 whitespace-nowrap type-tiny
+      <span aria-live="polite" className={`${inline ? (label ? (inline === 'start' ? 'me-2' : 'ms-2') : '') : 'absolute start-full ms-2 top-1/2 -translate-y-1/2'} whitespace-nowrap type-tiny
         ${state === 'failed' ? 'text-[var(--warn)]' : 'text-[var(--text-faint)]'}`}>{label}</span>
     </span>
   )
 }
+
+const FAILED = 'No voice could say this'
 
 function SpeakerGlyph() {
   return (

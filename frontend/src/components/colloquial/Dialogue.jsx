@@ -4,6 +4,7 @@ import { useState } from 'react'
 import ArabicText from '../ui/ArabicText'
 import PrimaryButton from '../ui/PrimaryButton'
 import SmallButton from '../ui/SmallButton'
+import SpeakButton from '../ui/SpeakButton'
 import Spelling from './Spelling'
 
 const SIDE_TINT = ['--primary', '--warn']
@@ -35,7 +36,11 @@ function Line({ line, side, latest }) {
           ${side ? 'rounded-ee-none text-end' : 'rounded-es-none text-start'}`}
       >
         <ArabicText as="p" size="base" className="text-[var(--text)]">{line.arabic}</ArabicText>
-        <Spelling className="block">{line.transliteration}</Spelling>
+        <div className={`flex flex-wrap items-center gap-x-2 ${side ? 'justify-end' : ''}`}>
+          {!side && <Spelling>{line.transliteration}</Spelling>}
+          <SpeakButton inline={side ? 'start' : 'end'} text={line.arabic} />
+          {!!side && <Spelling>{line.transliteration}</Spelling>}
+        </div>
         <span className="block type-small text-[var(--text)]">{line.english}</span>
       </div>
     </li>
