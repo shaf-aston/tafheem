@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import { entryLines } from './entryLines'
+import config from '../dictionary.json'
+import { entryLines, paragraphs } from './entryLines'
 
 describe('entryLines', () => {
   it('gives back one line per line the book broke', () => {
@@ -32,5 +33,33 @@ describe('entryLines', () => {
   it('has nothing to show for an entry with no rest', () => {
     expect(entryLines('')).toEqual([])
     expect(entryLines(undefined)).toEqual([])
+  })
+})
+
+const LETTERS = config.entry['paragraph-letters']
+const sentence = (n) => `${'ب'.repeat(n)} .`
+
+describe('paragraphs', () => {
+  it('joins lines wrapped at the printed width', () => {
+    expect(paragraphs('( علمه - كسمعه :\nعرفه ) هكذا في الصحاح')).toEqual(['( علمه - كسمعه : عرفه ) هكذا في الصحاح'])
+  })
+
+  it('gathers sentences until a paragraph is long enough, then starts the next', () => {
+    const long = sentence(LETTERS)
+    expect(paragraphs(`قال . ${long} تم`)).toEqual([`قال . ${long}`, 'تم'])
+  })
+
+  it('does not cut at the dots between the halves of a verse', () => {
+    const verse = `${'ب'.repeat(LETTERS)} ... ثم`
+    expect(paragraphs(verse)).toEqual([verse])
+  })
+
+  it('keeps the break where a book returns to the root', () => {
+    expect(paragraphs('أول\n\nثان')).toEqual(['أول', 'ثان'])
+  })
+
+  it('reads nothing as no paragraphs', () => {
+    expect(paragraphs(undefined)).toEqual([])
+    expect(paragraphs('')).toEqual([])
   })
 })

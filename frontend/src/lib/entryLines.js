@@ -11,6 +11,7 @@
  * looks for. A line with any other number of gaps is left as prose rather than
  * cut at a guess.
  */
+import config from '../dictionary.json'
 
 /** The gap between the two halves of a verse, as the book writes it. */
 export const VERSE_GAP = ' ... '
@@ -30,4 +31,33 @@ export function entryLines(body) {
       const halves = text.split(VERSE_GAP)
       return { text, halves: halves.length === 2 ? halves : null }
     })
+}
+
+/**
+ * Lisan and Taj al-Arus entries as paragraphs to read.
+ *
+ * Taj al-Arus arrives broken at every printed line, so it read as a column of
+ * forty-letter scraps; Lisan arrives as one block with no break at all. Both
+ * are the same fix: join the printed lines, cut at each full stop, and gather
+ * sentences until a paragraph is long enough to read as one. A blank line is
+ * kept: the server puts it where a book returns to the root in a later volume.
+ * The length is dictionary.json's entry.paragraph-letters.
+ */
+const LETTERS = config.entry['paragraph-letters']
+
+// After a full stop or question mark, never inside the "..." between the two
+// halves of a verse.
+const SENTENCE_END = /(?<=(?<!\.)[.؟!])\s+/
+
+export function paragraphs(text) {
+  return (text ?? '').split(/\n\s*\n/).flatMap((part) => {
+    const said = []
+    let run = ''
+    for (const sentence of part.replace(/\s*\n\s*/g, ' ').trim().split(SENTENCE_END)) {
+      run = run ? `${run} ${sentence}` : sentence
+      if (run.length >= LETTERS) { said.push(run); run = '' }
+    }
+    if (run) said.push(run)
+    return said
+  })
 }

@@ -52,8 +52,8 @@ const languageOf = (text) => (/[a-z]/i.test(text) && !isArabic(text) ? 'en' : 'a
 export default function Dictionary({ accent, incoming, arrival, onGo, onVisit }) {
   const [query, setQuery] = useState(incoming ?? '')
 
-  // 16, judged in the running app: one row on desktop, three short rows on a
-  // phone. Unlimited was tried and forty words buried the search box there.
+  // How many are kept is session.json's recent-kept; unlimited buried the
+  // search box under forty words on a phone.
   const { history, push: remember } = useHistory('dict-history')
   const { dictionaryLoaded } = useHealth()
   const missing = dictionaryLoaded === false
@@ -356,7 +356,7 @@ function Entry({ entry, accent, i, onGo, onLookup, refs = false, compact = false
       className={`rise-in rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)]
         ${compact ? 'p-3 space-y-2' : 'p-4 space-y-3'} ${SPAN_CLASS[span] ?? ''}`}
     >
-      <div className="flex items-start justify-between gap-3" dir="rtl" lang="ar">
+      <div className="flex items-start justify-between gap-3" dir="rtl">
         <div>
           <ArabicText as="div" style={{ color: accent }}>{entry.arabic}</ArabicText>
           {entry.root && !sameRoot && (

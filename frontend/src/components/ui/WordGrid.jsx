@@ -125,18 +125,18 @@ function Word({ entry, query, accent, i, open, onGo, onToggle, onToggleLine }) {
           onClick={onToggle}
           aria-expanded={open}
           title="Open this word's other senses"
-          className="text-start text-sm text-[var(--text)]
+          className="text-start type-body text-[var(--text)]
             focus-visible:outline-none focus-visible:underline
             decoration-[var(--c)] underline-offset-4"
         >
           {lead}
         </button>
       ) : (
-        <div className="text-sm text-[var(--text)]">{lead}</div>
+        <div className="type-body text-[var(--text)]">{lead}</div>
       )}
 
       {open && (
-        <ul className="text-sm text-[var(--text-dim)] space-y-1">
+        <ul className="type-body text-[var(--text-dim)] space-y-1.5">
           {rest.map((d) => <li key={d}>{d}</li>)}
         </ul>
       )}
