@@ -42,7 +42,7 @@ _SEARCHERS = {
 _ARABIC_UNHARMED = "The Arabic above is unaffected."
 
 
-def _root_key(
+def _asked_root(
     root: str = Query(..., min_length=1, max_length=50, description="Arabic root letters"),
 ) -> str:
     """The root as every handler here asks about it.
@@ -57,7 +57,7 @@ def _root_key(
     return normalize_root(typed)
 
 
-RootKey = Annotated[str, Depends(_root_key)]
+Root = Annotated[str, Depends(_asked_root)]
 
 
 @router.get("/search", response_model=DictionaryResponse)
@@ -85,17 +85,17 @@ async def search_dictionary(
 
 
 @router.get("/babs", response_model=VerbVerdict)
-async def get_root_babs(key: RootKey) -> VerbVerdict:
+async def get_root_babs(root: Root) -> VerbVerdict:
     """The باب a root's Form I verb takes, as Lane and Wiktionary state it.
 
     Asked by root, not by the word on screen, so every word on the root shows
     the same fact. No readings means no source records one.
     """
-    return VerbVerdict.of(await asyncio.to_thread(verb_forms.babs_of, key))
+    return VerbVerdict.of(await asyncio.to_thread(verb_forms.babs_of, root))
 
 
 @router.get("/root-meaning", response_model=RootMeaningResponse)
-async def get_root_meaning(key: RootKey) -> RootMeaningResponse:
+async def get_root_meaning(root: Root) -> RootMeaningResponse:
     """What the classical books say this root means at its origin.
 
     Answers with the letters it actually searched, so a root written one way here
@@ -103,16 +103,16 @@ async def get_root_meaning(key: RootKey) -> RootMeaningResponse:
     """
     state = root_meaning.status()
     if state != root_meaning.READY:
-        return RootMeaningResponse(root=key, status=state)
+        return RootMeaningResponse(root=root, status=state)
 
-    entry = root_meaning.entry_for(key)
+    entry = root_meaning.entry_for(root)
     if entry is None:
         # No entry means no book to credit: a source badge with nothing above it
         # reads as though the book had been consulted and had answered.
-        return RootMeaningResponse(root=key, status=state)
+        return RootMeaningResponse(root=root, status=state)
 
     return RootMeaningResponse(
-        root=key,
+        root=root,
         status=state,
         book_root=entry.book_root,
         meaning=RootMeaning(**entry.meaning, rest=root_gloss.rest_of(entry.meaning)),
@@ -125,7 +125,7 @@ async def get_root_meaning(key: RootKey) -> RootMeaningResponse:
 
 
 @router.get("/lexicons", response_model=LexiconsResponse)
-async def get_lexicons(key: RootKey) -> LexiconsResponse:
+async def get_lexicons(root: Root) -> LexiconsResponse:
     """Whole entries for this root, from every classical dictionary that has one.
 
     The long answer to the short one root-meaning gives. Thin on purpose: which
@@ -134,14 +134,14 @@ async def get_lexicons(key: RootKey) -> LexiconsResponse:
     """
     state = lexicons.status()
     # A worker thread: a common root is a hundred kilobytes to unpack.
-    found = await asyncio.to_thread(lexicons.entries_for, key) if state == lexicons.READY else []
+    found = await asyncio.to_thread(lexicons.entries_for, root) if state == lexicons.READY else []
     if found is None:
         # The database stopped answering mid-read. "No entry" here would be a
         # claim about the books, made because of a failure.
         state, found = lexicons.BROKEN, []
 
     return LexiconsResponse(
-        root=key,
+        root=root,
         status=state,
         entries=[
             LexiconEntry(
@@ -153,18 +153,18 @@ async def get_lexicons(key: RootKey) -> LexiconsResponse:
     )
 
 
-def _book_entry(key: str) -> tuple[str, dict]:
+def _book_entry(root: str) -> tuple[str, dict]:
     """(the spelling the book files it under, its entry), or 503 with no book.
 
     Readings are kept under the book's spelling: a reader who writes هدى where
-    the book wrote هدي reaches the same entry and the same reading of it.
+    the book wrote هدي reaches the same entry and the same English of it.
     """
     if root_meaning.status() != root_meaning.READY:
         raise HTTPException(
             status_code=503,
             detail="The classical entries are not loaded, so there is nothing to put into English.",
         )
-    return root_meaning.resolve(key) or key, root_meaning.lookup(key) or {}
+    return root_meaning.book_root_of(root) or root, root_meaning.lookup(root) or {}
 
 
 async def _ask_ai(func, *args, operation: str) -> dict:
@@ -180,15 +180,15 @@ async def _ask_ai(func, *args, operation: str) -> dict:
 
 
 @router.get("/root-meaning/english", response_model=RootEntryEnglishResponse)
-async def explain_root_meaning(key: RootKey) -> RootEntryEnglishResponse:
+async def get_root_entry_english(root: Root) -> RootEntryEnglishResponse:
     """The entry retold in English, for a reader who cannot read the Arabic.
 
     Made only when the reader asks for it. The card already prints the opening
     sentence as the origin sense, so the answer carries only what follows, the
-    way the Arabic beside it does; a one-sentence reading is kept whole rather
+    way the Arabic beside it does; a one-sentence answer is kept whole rather
     than answered with nothing.
     """
-    filed_under, entry = _book_entry(key)
+    book_root, entry = _book_entry(root)
     arabic = entry.get("body", "")
     if not arabic:
         # Nothing to retell is not a failure of the model, and must not be
@@ -198,20 +198,20 @@ async def explain_root_meaning(key: RootKey) -> RootEntryEnglishResponse:
             detail="The book prints no entry under those letters, so there is nothing to put into English.",
         )
 
-    # The whole-book run has read every root. A reading made here, on the spot
+    # The whole-book run has read every root. English made here, on the spot
     # by whichever model answers, is shown under its own badge and never kept:
     # kept, it would come back next time wearing the whole-book run's badge.
-    english, source = root_english.get(filed_under), "maqayees_translation"
+    english, source = root_english.get(book_root), "maqayees_translation"
     if english is None:
         answer = await _ask_ai(
-            ai_service.explain_root_entry, key, arabic, operation="English reading of a Maqayees entry",
+            ai_service.explain_root_entry, root, arabic, operation="English of a Maqayees entry",
         )
         english, source = str(answer.get("english", "")).strip(), "ai"
         if not english:
             raise HTTPException(status_code=502, detail="The AI answered with nothing to show.")
 
     return RootEntryEnglishResponse(
-        root=key,
+        root=root,
         english=english.removeprefix(root_gloss.opening_of(english)).lstrip() or english,
         truncated=len(arabic) > get_settings().root_entry_truncate_chars,
         source=Source(**provenance.of(source)),
@@ -219,13 +219,13 @@ async def explain_root_meaning(key: RootKey) -> RootEntryEnglishResponse:
 
 
 @router.get("/root-meaning/english/lines", response_model=RootEntryLinesResponse)
-async def explain_root_meaning_lines(key: RootKey) -> RootEntryLinesResponse:
+async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
     """The rest of the entry with one English line under each Arabic line.
 
     Covers what the card's "rest of the entry" panel shows. The backend owns the
     split and pairs the two, so the screen never lines them up itself.
     """
-    filed_under, entry = _book_entry(key)
+    book_root, entry = _book_entry(root)
     lines, truncated = root_gloss.line_budget(
         root_gloss.rest_of(entry), get_settings().root_entry_truncate_chars,
     )
@@ -236,27 +236,27 @@ async def explain_root_meaning_lines(key: RootKey) -> RootEntryLinesResponse:
         )
 
     # Trusted only while it still matches the entry line for line: a book file
-    # that has changed shape since makes the kept reading a mispairing.
-    kept = root_english.get_lines(filed_under)
+    # that has changed shape since makes the kept English a mispairing.
+    kept = root_english.get_lines(book_root)
     if kept is None or len(kept) != len(lines):
         answer = await _ask_ai(
-            ai_service.explain_root_entry_lines, key, lines,
+            ai_service.explain_root_entry_lines, root, lines,
             operation="line-by-line English of a Maqayees entry",
         )
         made = answer.get("lines")
         kept = [str(line).strip() for line in made] if isinstance(made, list) else []
         if len(kept) != len(lines) or not all(kept):
             # English under the wrong Arabic is a false claim about the book;
-            # the prose reading is still there, so the card loses only this view.
+            # the prose English is still there, so the card loses only this view.
             raise HTTPException(
                 status_code=502,
                 detail="The English could not be lined up with the Arabic this time, "
-                       "so it is not shown. The paragraph reading is unaffected.",
+                       "so it is not shown. The English of the whole entry is unaffected.",
             )
-        await asyncio.to_thread(root_english.put_lines, filed_under, kept)
+        await asyncio.to_thread(root_english.put_lines, book_root, kept)
 
     return RootEntryLinesResponse(
-        root=key,
+        root=root,
         lines=[EntryLine(arabic=a, english=e) for a, e in zip(lines, kept)],
         truncated=truncated,
         source=Source(**provenance.of("ai")),

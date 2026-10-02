@@ -47,7 +47,7 @@ SOURCES: tuple[Source, ...] = (
     # on the next index build with nothing edited; only a book carrying a credit
     # sources.json has never heard of needs anything done, and that is a data
     # file, not this one.
-    *(LexiconsSource(credit) for credit in lexicons.credits()),
+    *(LexiconsSource(source) for source in lexicons.sources()),
     WiktionarySource(),
 )
 

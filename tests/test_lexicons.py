@@ -173,22 +173,22 @@ def test_the_letters_typed_answer_for_themselves_first(shelf):
     """
     found = {e["book"]: e for e in lexicons.entries_for("أمر")}
     assert set(found) == {"lisan", "lane"}
-    assert found["lisan"]["filed_under"] is None
-    assert found["lane"]["filed_under"] == "امر"
+    assert found["lisan"]["book_root"] is None
+    assert found["lane"]["book_root"] == "امر"
 
 
 def test_a_book_spelling_it_differently_is_still_found_and_says_so(shelf):
     """Typing امر must reach Lisan's أمر, and the reader must be told it did."""
     found = {e["book"]: e for e in lexicons.entries_for("امر")}
     assert set(found) == {"lisan", "lane"}
-    assert found["lisan"]["filed_under"] == "أمر"
+    assert found["lisan"]["book_root"] == "أمر"
     # Lane files it under exactly what was typed, so there is nothing to explain.
-    assert found["lane"]["filed_under"] is None
+    assert found["lane"]["book_root"] is None
 
 
 def test_two_real_roots_that_look_alike_are_refused_rather_than_guessed(shelf):
     """هنأ and هنا fold together and are different words. Neither may stand in."""
-    assert lexicons.entries_for("هنا")[0]["filed_under"] is None
+    assert lexicons.entries_for("هنا")[0]["book_root"] is None
     assert len(lexicons.entries_for("هنا")) == 1
     # A spelling neither root uses gets nothing at all, rather than one of them.
     assert lexicons.entries_for("هنء") == []

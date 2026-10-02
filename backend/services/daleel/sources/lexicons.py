@@ -38,7 +38,7 @@ class LexiconsSource:
         self.id = credit
 
     def passages(self) -> Iterable[Passage]:
-        for title, head, said in lexicons.entries_by_credit(self.id):
+        for title, head, said in lexicons.entries_by_source(self.id):
             if not said:
                 continue
             yield Passage(

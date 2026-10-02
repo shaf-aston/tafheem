@@ -80,6 +80,13 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
   shares.
 - **Bab**: which vowel pattern (or which form, II to X) a verb follows, read from Lane's
   Lexicon or Wiktionary, never worked out from a bare root.
+- **Entry / book root**: what one book prints under one headword. A word's entry comes from
+  Wiktionary (`dictionary_service.py`), a root's from a classical book: Maqayees via
+  `root_meaning.py`, all four on the shelf via `lexicons.py`. The **book root** is the root as
+  that book spells it (`book_root_of`). A Maqayees entry opens with the **origin sense**
+  (`core_meaning`); the **rest** follows (`root_gloss.rest_of`). Its **English** comes whole
+  (`together`) or line by line (`lines`), kept by `root_english.py`; never called a reading,
+  which is reciting's word.
 - **Edition**: one book hung on the ayahs, a tafsir or a translation, all stored one way.
 - **Ear**: anything that turns sound into words. Three: `hosted` (Groq, about 250 ms),
   `letters` (tilawa's small Qur'an model on this computer, recitations only,

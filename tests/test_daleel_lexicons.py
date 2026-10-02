@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from backend.scripts import build_lexicons as builder  # noqa: E402
 from backend.services import lexicons  # noqa: E402
 from backend.services.daleel.sources.lexicons import LexiconsSource  # noqa: E402
-from backend.services.lexicons import credits  # noqa: E402
+from backend.services.lexicons import sources  # noqa: E402
 
 
 @pytest.fixture
@@ -63,7 +63,7 @@ def shelf(tmp_path, monkeypatch):
 
 def test_a_dictionary_reaches_daleel_without_anything_naming_it(shelf):
     """Two credits in the file, two sources for the registry to grow."""
-    assert credits() == ["openiti-lexicons", "lane"]
+    assert sources() == ["openiti-lexicons", "lane"]
 
 
 def test_books_sharing_a_credit_share_one_source(shelf):
@@ -95,5 +95,5 @@ def test_an_empty_entry_is_not_quoted(shelf):
 
 def test_no_dictionaries_installed_is_no_sources_rather_than_a_crash(tmp_path, monkeypatch):
     monkeypatch.setattr(lexicons, "DATABASE", tmp_path / "never-built.db")
-    assert credits() == []
+    assert sources() == []
     assert not list(LexiconsSource("lane").passages())
