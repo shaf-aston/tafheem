@@ -101,19 +101,23 @@ def typed_passive(word: str, present: bool) -> bool:
     return len(stem) >= 3 and "َ" in stem[-2][1]
 
 
-def command_shape(word: str, after_jazm: bool = False) -> bool:
+def command_shape(word: str, after_jazm: bool = False, hollow: bool = False) -> bool:
     """فعل أمر by its vowels: a sukun last, and either the voweled hamzat al-wasl before a
     sakin letter (اُكْتُبْ، اِجْلِسْ), two letters only, the hollow verb's (قُمْ، بِعْ، نَمْ),
     or Form IV's hamzat al-qat' with a fatha before a sakin letter (أَكْرِمْ، أَرْسِلْ).
     A present verb's prefix is never a bare voweled alef, and no past verb ends in a
     sukun on its own. Only the last shape is also a present verb, the first person's
-    after a jazm particle (لم أَجْلِسْ), so `after_jazm` rules it out."""
+    after a jazm particle (لم أَجْلِسْ), so `after_jazm` rules it out. A hollow Form IV
+    command lost its middle letter (أَقِمْ، أَجِبْ): three letters, a kasra on the second,
+    and only the root can tell it from a name (أَحْمَدْ), so the caller passes `hollow`."""
     marked = letters(word)
     if len(marked) < 2 or SUKUN not in marked[-1][1]:
         return False
     first, second = marked[0], marked[1]
     if len(marked) == 2:
         return bool(first[1] & {"َ", "ُ", "ِ"})
+    if len(marked) == 3 and hollow:
+        return first[0] == "أ" and "َ" in first[1] and "ِ" in second[1] and not after_jazm
     if SUKUN not in second[1]:
         return False
     return (first[0] == "ا" and bool(first[1] & {"ُ", "ِ"})) or (

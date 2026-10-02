@@ -179,6 +179,14 @@ def _bw_root_to_arabic(root: str) -> str:
     return shown_root(clean)
 
 
+def _weak_radical(raw_root: str | None, place: int) -> bool:
+    """Whether CAMeL's root has a weak letter (و or ي) as its radical at `place` (-1 last,
+    1 middle). `#` is how it writes one; _bw_root_to_arabic drops such a root, so this
+    reads the raw one."""
+    radicals = (raw_root or "").split(".")
+    return len(radicals) == 3 and radicals[place] in ("#", "w", "y", "Y")
+
+
 def _build_features(a: dict) -> str:
     parts: list[str] = []
     asp = a.get("asp", "na") or "na"
@@ -223,11 +231,16 @@ def _as_command(word: str, a: dict, before: str) -> dict:
     (قُمْ from قام), so its root and lemma come from that past form, and finding that past
     verb is what makes it a command even where CAMeL saw only a name. A longer shape
     overrules a verb reading only: أَحْمَدْ paused on is a name, not a command."""
-    if not command_shape(word, is_one(before, "jazm", "before_a_present_verb")):
-        return a
     bare = strip_diacritics(word)
-    past = next((p for p in _camel_analyzer.analyze(f"{bare[0]}ا{bare[1]}") if p.get("pos") == "verb"),
-                None) if len(bare) == 2 else None
+    past = None
+    if len(bare) == 2:
+        past = next((p for p in _camel_analyzer.analyze(f"{bare[0]}ا{bare[1]}") if p.get("pos") == "verb"), None)
+    elif len(bare) == 3:
+        # أَقِمْ: Form IV's hollow command is the past قام with its alef gone, so a hollow root vouches for it
+        past = next((p for p in _camel_analyzer.analyze(f"{bare[1]}ا{bare[2]}")
+                     if p.get("pos") == "verb" and _weak_radical(p.get("root"), 1)), None)
+    if not command_shape(word, is_one(before, "jazm", "before_a_present_verb"), hollow=len(bare) == 3 and bool(past)):
+        return a
     pos = (a.get("pos") or "").lower()
     # لَمْ and مِنْ have the shape too; only a word CAMeL could call nothing but a name is overruled
     if pos != "verb" and not (past and pos in ("noun", "noun_prop")):
@@ -272,6 +285,8 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "") -> dict[str,
         "voice": a.get("vox") or "na",
         "state": a.get("stt") or "na",
         "pattern": a.get("pattern") or "",
+        # the root's last letter is و or ي (عصا, قاضي): the root string above is empty for those
+        "weak_last": _weak_radical(a.get("root"), -1),
         # an attached pronoun: 1s_poss is ya al-mutakallim, which hides the case (كِتَابِي)
         "enclitic": a.get("enc0") or "",
         "features": _build_features(a),

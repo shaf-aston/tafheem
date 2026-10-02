@@ -122,7 +122,10 @@ VERB_CARDS = [
     ("بِعْ الكِتَابَ", 0, "mabni", "فعل أمر"),      # CAMeL offers only the name بِع
     ("نَمْ مُبَكِّرًا", 0, "mabni", "فعل أمر"),     # and the parser's reading is the noun نَمّ
     ("أَكْرِمْ الضَّيْفَ", 0, "mabni", "فعل أمر"),   # Form IV, hamzat al-qat'
-    ("لَمْ أَجْلِسْ", 1, "jazm", "مجزوم"),          # nearest case: the same shape after لم is a present verb
+    ("أَقِمْ الصَّلَاةَ", 0, "mabni", "فعل أمر"),     # hollow Form IV: the middle letter is gone
+    ("لَمْ أَقِمْ", 1, "jazm", "مجزوم"),             # nearest case: after لم it is a present verb
+    ("أَحْمَدْ جَاءَ", 0, "raf'", "مرفوع"),         # a name paused on is no command
+    ("لَمْ أَجْلِسْ", 1, "jazm", "مجزوم"),        # nearest case: the same shape after لم is a present verb
 ]
 
 
@@ -179,7 +182,12 @@ CARDS = [
     ("كِتَابِي جَدِيدٌ", 0, "sign", "ضمة مقدرة على ما قبل ياء المتكلم"),
     ("قَرَأْتُ فِي كِتَابِي", 2, "sign", "كسرة مقدرة"),
     ("جَاءَ الفَتَى", 1, "sign", "ضمة مقدرة على الألف"),
-    ("رَأَيْتُ أَخِي", 1, "case", "nasb"),                # renamed by the parser, the case follows
+    ("جَاءَ العَصَا", 1, "sign", "ضمة مقدرة على الألف"),
+    ("جَاءَ القَاضِي", 1, "sign", "ضمة مقدرة على الياء"),
+    ("مَرَرْتُ بِالقَاضِي", 1, "sign", "كسرة مقدرة على الياء"),
+    ("رَأَيْتُ القَاضِيَ", 1, "sign", "فتحة"),            # the fatha shows on a manqus
+    ("قَرَأْتُ كِتَابًا", 1, "sign", "فتحة"),             # nearest case: a tall alef whose root is strong
+    ("رَأَيْتُ أَخِي", 1, "case", "nasb"),               # renamed by the parser, the case follows
     ("رَأَيْتُ الطَّالِبَيْنِ", 1, "sign", "الياء، مثنى"),  # and a dual keeps its kind of sign
     ("لَنْ يَكْتُبَا", 1, "sign", "حذف النون"),
     ("لَمْ تَكْتُبِي", 1, "sign", "حذف النون"),

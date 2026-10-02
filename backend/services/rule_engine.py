@@ -64,8 +64,15 @@ def _noun_kind(tag: dict) -> str:
         return "dual"
     if tag.get("enclitic") == "1s_poss":
         return "before_ya"  # كِتَابِي: the kasra belongs to the ya, the case cannot show
-    # الفَتَى: an alef cannot carry a vowel (العصا, spelled with a tall alef, is not caught)
-    return "on_alef" if bare.endswith("ى") else "vowel"
+    marked = letters(tag.get("word", ""))
+    # no root read (key absent): the old test, a final ى is مقصور
+    weak = tag.get("weak_last", bare.endswith("ى"))
+    if bare.endswith(("ا", "ى")) and weak:
+        return "on_alef"  # الفَتَى، العَصَا: an alef cannot carry a vowel (كِتَابًا's root ends in a strong letter)
+    if "weak_last" in tag and weak and len(marked) > 1 and bare.endswith("ي") and not (
+            marked[-1][1] & {"ّ"} or marked[-2][1] & {"َ", "ُ", "ّ", SUKUN}):
+        return "manqus"  # القَاضِي: a damma or kasra is too heavy for the ya, the fatha shows
+    return "vowel"
 
 
 def _past_ending(word: str) -> str:

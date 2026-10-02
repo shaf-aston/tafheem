@@ -98,6 +98,9 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
             # the colour must follow the new name, never the one it replaced
             entry["role_key"] = role_key(found["role"])
             moved = found["case"] and found["case"] != entry.get("case")
+            # أَقِمْ: the root made it a command; the parser, seeing only a sukun, says jazm
+            if entry.get("type") == "fi'l" and entry.get("case") == "mabni" and found["case"] == "jazm":
+                moved = False
             if found["role"] == "فعل":
                 # a word CAMeL took for a noun (ضُرِبَ، كان) or a mood the particle before
                 # settled (لن يذهب): the card is the verb's own, by the parser's tense
