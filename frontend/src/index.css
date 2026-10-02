@@ -1014,6 +1014,19 @@ dialog::backdrop {
 .wheel-hint { color: var(--text-faint); white-space: nowrap; flex-shrink: 0; }
 .wheel-card-flip { left: auto; right: 0; }
 .wheel-card-up { top: auto; bottom: calc(100% + 0.375rem); }
+/* Memorise's missing word: the same wheel, its pill drawn as a blank in the line. */
+.memorise-gap { display: inline-block; }
+.memorise-gap .wheel-pill,
+.memorise-gap .wheel-pill:hover:not(:disabled) {
+  justify-content: center;
+  padding: 0 0.25rem;
+  color: var(--gap-text, var(--text));
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--gap-border);
+  border-radius: 0;
+}
+.memorise-gap .wheel-pill:focus-visible:not(:disabled) { outline: none; border-bottom-color: var(--c); box-shadow: 0 2px 0 0 color-mix(in srgb, var(--c) 40%, transparent); }
 
 /* Every tab's outer column: one gap between its blocks, from theme.json space.panel. */
 .panel > * + * { margin-top: var(--space-panel); }

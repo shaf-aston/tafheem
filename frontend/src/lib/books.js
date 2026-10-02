@@ -17,11 +17,8 @@
  */
 
 import { getQuranSurah } from '../api'
-import surahs from '../data/surahs.json'
 import { PAGE_WORDS, wordsOf } from './memorise'
-
-/** 114 surahs, named as the Quran tab's wheel names them, so either can be typed to. */
-const SURAHS = surahs.map((s) => ({ id: s.n, label: `${s.n}. ${s.en}`, hint: s.ar, keys: [s.ar] }))
+import { SURAH_CHOICES } from './surahRef'
 
 /**
  * The poem, fetched at most once however many times it is asked for; its
@@ -55,7 +52,7 @@ export const BOOKS = {
     arabic: 'القرآن',
     /** What the reader picks from, and what one of them is called. */
     partLabel: 'Surah',
-    parts: async () => SURAHS,
+    parts: async () => SURAH_CHOICES,
     // Only used if the Madani layout has never been built. When it has, each
     // ayah arrives knowing its printed page and pagesOf groups by that instead.
     wordsPerPage: PAGE_WORDS,

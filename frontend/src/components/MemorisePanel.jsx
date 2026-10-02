@@ -367,17 +367,17 @@ export default function MemorisePanel({ accent }) {
       <div className="flex flex-wrap items-center gap-2">
         <WheelPicker
           label="Book"
-          options={Object.values(BOOKS).map((b) => ({ value: b.id, label: b.label }))}
+          options={Object.values(BOOKS)}
           value={bookId}
-          onPick={openBook}
+          onChange={openBook}
           accent={accent}
         />
 
         <WheelPicker
           label={book.partLabel}
-          options={(parts ?? []).map(({ id, ...rest }) => ({ value: id, ...rest }))}
+          options={parts ?? []}
           value={part}
-          onPick={openPart}
+          onChange={openPart}
           accent={accent}
           className="max-w-[18rem]"
         />
@@ -425,11 +425,11 @@ export default function MemorisePanel({ accent }) {
                 <WheelPicker
                   label="Page"
                   options={pages.map((p, n) => ({
-                    value: printedPageOf(p) ?? n + 1,
+                    id: printedPageOf(p) ?? n + 1,
                     label: `${printedPageOf(p) != null ? `Mushaf p.${printedPageOf(p)}` : `Page ${n + 1} of ${pages.length}`} · ${withinPart(p[0].label)}–${withinPart(p[p.length - 1].label)}`,
                   }))}
                   value={printedPage ?? pageNumber + 1}
-                  onPick={(no) => openPage(pages.findIndex((p, n) => (printedPageOf(p) ?? n + 1) === no))}
+                  onChange={(no) => openPage(pages.findIndex((p, n) => (printedPageOf(p) ?? n + 1) === no))}
                   accent={accent}
                 />
               </span>
@@ -824,37 +824,31 @@ function Gap({ word, options, value, checked, accent, lineLabel, typeWidth, onCh
   return (
     <span className="inline-flex flex-col items-center">
       {options ? (
-        // The four words themselves, in the box. A dropdown rather than four
-        // buttons side by side because a page can hold a dozen gaps, and four
-        // buttons each would be a wall rather than a line of text to read.
-        <ArabicText
-          as="select"
-          size="base"
-          value={value}
-          // Left enabled after checking, so the answer stays in the tab
-          // order and keeps its focus ring; the change itself is ignored so
-          // a marked answer cannot be edited.
-          onChange={(event) => { if (!checked) onChange(event.target.value) }}
-          aria-label={gapLabel}
-          aria-readonly={checked}
-          // Every gap on the page is as wide as its own longest choice, so
-          // the row does not jump about as words are picked. Sizing it by the
-          // answer would quietly tell the reader how long the answer is.
+        // The four words, on the app's one picker (ui/WheelPicker), drawn as a
+        // blank in the line: a page can hold a dozen gaps, and four buttons
+        // each would be a wall rather than a line of text to read. Every gap
+        // is as wide as its own longest choice, so the row does not jump as
+        // words are picked; sizing by the answer would give its length away.
+        // Read-only after checking, so a marked answer keeps its focus ring.
+        <span
+          className="memorise-gap"
           style={{
             '--gap-border': border,
-            color: right || wrong ? border : undefined,
-            width: `${Math.max(...options.map((o) => recitedForm(o).length)) + 3}ch`,
+            '--gap-text': right || wrong ? border : undefined,
+            width: `${Math.max(...options.map((o) => recitedForm(o).length)) + 5}ch`,
           }}
-          className="bg-transparent border-b-2 text-center outline-none
-            border-[color:var(--gap-border)] focus-visible:border-[color:var(--c)]
-            focus-visible:ring-2 focus-visible:ring-[color:var(--c)]/40 focus-visible:outline-none
-            aria-[readonly=true]:opacity-100 transition-colors"
         >
-          <option value="">…</option>
-          {options.map((option) => (
-            <option key={option} value={option}>{option}</option>
-          ))}
-        </ArabicText>
+          <WheelPicker
+            label={gapLabel}
+            placeholder="…"
+            options={options.map((option) => ({ id: option, label: option }))}
+            value={value}
+            onChange={onChange}
+            readOnly={checked}
+            arabic
+            accent={accent}
+          />
+        </span>
       ) : (
       <ArabicText
         as="input"

@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest'
 import surahs from '../data/surahs.json'
 import { wheelFind } from './wheelFind'
 
-const options = surahs.map((s) => ({ value: s.n, label: s.en, keys: [s.ar] }))
-const find = (typed) => options[wheelFind(options, typed)]?.value
+const options = surahs.map((s) => ({ id: s.n, label: s.en, keys: [s.ar] }))
+const find = (typed) => options[wheelFind(options, typed)]?.id
 
 describe('wheelFind', () => {
   it('jumps to a number', () => {

@@ -308,11 +308,11 @@ export default function TamreenPractise({ exercises, tags = [], accent, onProgre
       <WheelPicker
         label="Topic"
         options={[
-          { value: '', label: `Every topic (${ofKind.length})` },
-          ...topics.map((t) => ({ value: t.key, label: `${t.en} (${t.size})`, hint: t.ar, keys: [t.ar] })),
+          { id: '', label: `Every topic (${ofKind.length})` },
+          ...topics.map((t) => ({ id: t.key, label: `${t.en} (${t.size})`, hint: t.ar, keys: [t.ar] })),
         ]}
         value={tag}
-        onPick={(key) => choose(() => setTag(key))}
+        onChange={(key) => choose(() => setTag(key))}
         accent={accent}
         className="min-w-0 w-full sm:w-auto sm:max-w-xs"
       />

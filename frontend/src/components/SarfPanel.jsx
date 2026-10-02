@@ -121,7 +121,7 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
     else submit(word, id)
   }
 
-  // A failed baab swap is answered right beside the select that caused it, not
+  // A failed baab swap is answered right beside the picker that caused it, not
   // at the top of the page; the top alert is left for the word lookup only.
   const retrySwap = () => swap.mutate({ root: data.root, form })
 
@@ -255,7 +255,7 @@ function SarfResult({ data, loading, meaningPending, swapPending, swapError, onR
       )}
 
       {!data.table && data.table_note && <TableNote accent={accent}>{data.table_note}</TableNote>}
-      {/* Gardaan draws the form select with no grid when table is null, so a
+      {/* Gardaan draws the form picker with no grid when table is null, so a
           word with no recorded باب still lets the reader pick one. */}
       {(data.table || Object.keys(data.form_options ?? {}).length > 0) && (
         <Gardaan
@@ -304,13 +304,13 @@ function TableNote({ accent, title = 'Why there is no table', children }) {
  * scrolls inside its own box and the person column stays pinned beside it.
  */
 function Gardaan({ table, accent, form, options, onForm, swapPending, swapError, onRetrySwap }) {
-  // table is null when no source names a باب yet: the select below still
+  // table is null when no source names a باب yet: the picker below still
   // lets the reader choose one, it is only the grid that has nothing to show.
   const { columns = [], rows = [], summary = [], notes = [] } = table ?? {}
   const allIds = columns.map((c) => c.id)
 
   // A pick answers instantly in the UI even though the table itself is still
-  // rebuilding on the server; without this the select snaps back to the old
+  // rebuilding on the server; without this the picker snaps back to the old
   // form until that swap resolves, which reads as the click having failed.
   const [picked, setPicked] = useState(form ?? '')
   const choose = (id) => { setPicked(id); onForm(id) }
@@ -351,9 +351,9 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
             <WheelPicker
               label="Verb form"
               placeholder="Choose a باب"
-              options={Object.entries(options).map(([id, label]) => ({ value: id, label }))}
+              options={Object.entries(options).map(([id, label]) => ({ id, label }))}
               value={picked || form}
-              onPick={choose}
+              onChange={choose}
               disabled={swapPending}
               accent={accent}
               className="max-w-[14rem]"

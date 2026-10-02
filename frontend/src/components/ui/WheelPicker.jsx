@@ -3,11 +3,14 @@
  * Spin it, or, on a long list, type and it spins there ("nis" or "4" lands on
  * An-Nisa, lib/wheelFind). The option in the middle band is the one Enter picks.
  *
- * options: [{ value, label, hint?, keys?, disabled? }]; hint prints faint at the
+ * Same words as ui/Segmented: options [{ id, label, hint?, keys?, disabled? }],
+ * value is the chosen id, onChange gets the new one. hint prints faint at the
  * right (an Arabic name, say), keys are extra words typing may match, and a
  * disabled option shows but cannot be picked.
  * narrow: a numbers-only wheel (ayah, juz) gets a slim card and a "No." hint.
  * accent: the tab's colour, for the middle band and the focused type box.
+ * arabic: the labels are Arabic words. readOnly: shows the choice, stays in the
+ * tab order, does not open (a marked answer).
  */
 import { useEffect, useId, useRef, useState } from 'react'
 
@@ -18,7 +21,7 @@ import ArabicText from './ArabicText'
 // Card height in px (input, five wheel rows, padding) with a little air.
 const CARD_HEIGHT = 280
 
-export default function WheelPicker({ label, placeholder, options, value, onPick, disabled = false, narrow = false, accent, className = '' }) {
+export default function WheelPicker({ label, placeholder, options, value, onChange, disabled = false, readOnly = false, narrow = false, arabic = false, accent, className = '' }) {
   const [open, setOpen] = useState(false)
   const [typed, setTyped] = useState('')
   const [at, setAt] = useState(0)
@@ -33,7 +36,8 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
   const id = useId()
   const typeable = options.length >= theme.wheel['type-from']
 
-  const chosen = options.find((o) => o.value === value)
+  const chosen = options.find((o) => o.id === value)
+  const text = (words) => (arabic ? <ArabicText size="base">{words}</ArabicText> : words)
 
   const spin = (index, smooth = true) => {
     const list = wheel.current
@@ -45,12 +49,12 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
   }
 
   const close = (refocus) => { setOpen(false); setTyped(''); if (refocus) pill.current?.focus() }
-  const pick = (index) => { const o = options[index]; if (o && !o.disabled) { onPick(o.value); close(true) } }
+  const pick = (index) => { const o = options[index]; if (o && !o.disabled) { onChange(o.id); close(true) } }
 
   // On opening, the wheel starts at the chosen option, keys going to the type box or the wheel.
   useEffect(() => {
     if (!open) return
-    spin(Math.max(0, options.findIndex((o) => o.value === value)), false)
+    spin(Math.max(0, options.findIndex((o) => o.id === value)), false)
     ;(typeBox.current ?? wheel.current)?.focus()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
@@ -91,10 +95,12 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
         ref={pill}
         type="button"
         aria-label={label}
-        aria-haspopup="listbox"
-        aria-expanded={open}
+        aria-haspopup={readOnly ? undefined : 'listbox'}
+        aria-expanded={readOnly ? undefined : open}
+        aria-disabled={readOnly || undefined}
         disabled={disabled}
         onClick={() => {
+          if (readOnly) return
           // Opens leftwards when a pill sits too near the right edge for the card.
           const at = pill.current.getBoundingClientRect()
           setFlip(at.left + (narrow ? 144 : 384) > window.innerWidth)
@@ -105,7 +111,7 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
         }}
         className="wheel-pill press"
       >
-        <span className={chosen ? '' : 'text-[var(--text-dim)]'}>{chosen?.label ?? placeholder}</span>
+        <span className={chosen ? '' : 'text-[var(--text-dim)]'}>{chosen ? text(chosen.label) : placeholder}</span>
         <svg aria-hidden="true" viewBox="0 0 24 24" className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
           <path d="M8 9l4-4 4 4M8 15l4 4 4-4" />
         </svg>
@@ -131,7 +137,7 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
             <ul ref={wheel} id={id} role="listbox" aria-label={label} tabIndex={-1} aria-activedescendant={typeable ? undefined : `${id}-${at}`} onScroll={onScroll} onScrollEnd={() => { steering.current = false }} onWheel={() => { steering.current = false }} onTouchStart={() => { steering.current = false }} className="wheel-list">
               {options.map((o, i) => (
                 <li
-                  key={o.value}
+                  key={o.id}
                   id={`${id}-${i}`}
                   role="option"
                   aria-selected={i === at}
@@ -139,7 +145,7 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
                   onClick={() => pick(i)}
                   className="wheel-item"
                 >
-                  <span className="truncate">{o.label}</span>
+                  <span className="truncate">{text(o.label)}</span>
                   {o.hint && <ArabicText size="tiny" className="wheel-hint">{o.hint}</ArabicText>}
                 </li>
               ))}
