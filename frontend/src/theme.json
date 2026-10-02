@@ -132,6 +132,10 @@
     "results-h": "22rem",
     "dim": "0.5"
   },
+  "wheel": {
+    "_comment": "Every dropdown is ui/WheelPicker. type-from is how many choices a list needs before its card shows a box to type in; a shorter list is quicker to spin.",
+    "type-from": 8
+  },
   "dance": {
     "_comment": "How a group of things arrives: each one small and gathered at the middle, then springing out to where it belongs, one after another. Written as its own group rather than inside the launcher because it is the .dance class in index.css, which anything can wear: a ring of tabs, a row of cards, a set of chips. from-scale is how small each starts, from-spread how far along its own spoke it starts as a fraction of the full distance (1 means it does not travel, only grows), and beats how many springs the whole arrival lasts. The gap between one and the next is motion.stagger-ms, shared with every other staggered thing in the app.",
     "from-scale": "0.5",

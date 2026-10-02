@@ -30,7 +30,7 @@ import ArabicText from './ui/ArabicText'
 import NotesLink from './NotesLink'
 import TamreenAnswerNote from './TamreenAnswerNote'
 import TamreenSentence, { TamreenLegend } from './TamreenSentence'
-import PillSelect from './ui/PillSelect'
+import WheelPicker from './ui/WheelPicker'
 
 const STATUS_CLASS = {
   ok: 'border-[var(--success)] text-[var(--success)]',
@@ -305,16 +305,17 @@ export default function TamreenPractise({ exercises, tags = [], accent, onProgre
   // One row: topic, type, show. Each control names itself, so no separate labels.
   const controls = (
     <div className="flex flex-wrap items-center gap-2">
-      <PillSelect
-        aria-label="Topic"
+      <WheelPicker
+        label="Topic"
+        options={[
+          { value: '', label: `Every topic (${ofKind.length})` },
+          ...topics.map((t) => ({ value: t.key, label: `${t.en} (${t.size})`, hint: t.ar, keys: [t.ar] })),
+        ]}
         value={tag}
-        onChange={(e) => choose(() => setTag(e.target.value))}
-        style={{ '--c': accent }}
-        className="py-1.5 px-3 text-sm min-w-0 w-full sm:w-auto sm:max-w-xs border-[var(--border-hi)] text-[var(--text)]"
-      >
-        <option value="">Every topic ({ofKind.length})</option>
-        {topics.map((t) => <option key={t.key} value={t.key}>{t.en} · {t.ar} ({t.size})</option>)}
-      </PillSelect>
+        onPick={(key) => choose(() => setTag(key))}
+        accent={accent}
+        className="min-w-0 w-full sm:w-auto sm:max-w-xs"
+      />
       <Segmented label="Question type" options={KINDS.map((id) => ({ id, label: KIND_LABEL[id] }))}
         value={kind} accent={accent} onChange={(id) => choose(() => setKind(id))} />
       <Segmented

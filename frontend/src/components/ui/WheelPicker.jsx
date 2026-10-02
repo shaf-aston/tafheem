@@ -1,21 +1,24 @@
 /**
- * A pill that opens a small floating wheel of choices: spin it, or type and it
- * spins there ("nis" or "4" lands on An-Nisa, lib/wheelFind). The option in the
- * middle band is the one Enter picks. Meant to replace any long <select>.
+ * The app's one dropdown: a pill that opens a small floating wheel of choices.
+ * Spin it, or, on a long list, type and it spins there ("nis" or "4" lands on
+ * An-Nisa, lib/wheelFind). The option in the middle band is the one Enter picks.
  *
- * options: [{ value, label, hint?, keys? }]; hint prints faint at the right
- * (an Arabic name, say) and keys are extra words typing may match.
+ * options: [{ value, label, hint?, keys?, disabled? }]; hint prints faint at the
+ * right (an Arabic name, say), keys are extra words typing may match, and a
+ * disabled option shows but cannot be picked.
  * narrow: a numbers-only wheel (ayah, juz) gets a slim card and a "No." hint.
+ * accent: the tab's colour, for the middle band and the focused type box.
  */
 import { useEffect, useId, useRef, useState } from 'react'
 
 import { wheelFind } from '../../lib/wheelFind'
+import theme from '../../theme.json'
 import ArabicText from './ArabicText'
 
 // Card height in px (input, five wheel rows, padding) with a little air.
 const CARD_HEIGHT = 280
 
-export default function WheelPicker({ label, placeholder, options, value, onPick, disabled = false, narrow = false, className = '' }) {
+export default function WheelPicker({ label, placeholder, options, value, onPick, disabled = false, narrow = false, accent, className = '' }) {
   const [open, setOpen] = useState(false)
   const [typed, setTyped] = useState('')
   const [at, setAt] = useState(0)
@@ -24,9 +27,11 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
   const box = useRef(null)
   const pill = useRef(null)
   const wheel = useRef(null)
+  const typeBox = useRef(null)
   // While the wheel spins itself to a typed match, scroll events are its own, not a hand.
   const steering = useRef(false)
   const id = useId()
+  const typeable = options.length >= theme.wheel['type-from']
 
   const chosen = options.find((o) => o.value === value)
 
@@ -40,11 +45,13 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
   }
 
   const close = (refocus) => { setOpen(false); setTyped(''); if (refocus) pill.current?.focus() }
-  const pick = (index) => { const o = options[index]; if (o) { onPick(o.value); close(true) } }
+  const pick = (index) => { const o = options[index]; if (o && !o.disabled) { onPick(o.value); close(true) } }
 
-  // On opening, the wheel starts at the chosen option.
+  // On opening, the wheel starts at the chosen option, keys going to the type box or the wheel.
   useEffect(() => {
-    if (open) spin(Math.max(0, options.findIndex((o) => o.value === value)), false)
+    if (!open) return
+    spin(Math.max(0, options.findIndex((o) => o.value === value)), false)
+    ;(typeBox.current ?? wheel.current)?.focus()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
 
@@ -79,7 +86,7 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
   }
 
   return (
-    <div ref={box} className={`relative ${className}`.trim()}>
+    <div ref={box} className={`relative ${className}`.trim()} style={accent ? { '--c': accent } : undefined}>
       <button
         ref={pill}
         type="button"
@@ -90,7 +97,7 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
         onClick={() => {
           // Opens leftwards when a pill sits too near the right edge for the card.
           const at = pill.current.getBoundingClientRect()
-          setFlip(at.left + (narrow ? 144 : 256) > window.innerWidth)
+          setFlip(at.left + (narrow ? 144 : 384) > window.innerWidth)
           // Opens upwards when the card would run off the bottom and there is more room above.
           const below = window.innerHeight - at.bottom
           setUp(below < CARD_HEIGHT && at.top > below)
@@ -105,28 +112,30 @@ export default function WheelPicker({ label, placeholder, options, value, onPick
       </button>
 
       {open && (
-        <div className={`wheel-card rise-in ${narrow ? 'wheel-card-narrow' : ''} ${flip ? 'wheel-card-flip' : ''} ${up ? 'wheel-card-up' : ''}`}>
-          <input
-            autoFocus
-            role="combobox"
-            aria-label={`Type a ${label.toLowerCase()} ${narrow ? 'number' : 'name or number'}`}
-            aria-controls={id}
-            aria-expanded="true"
-            aria-activedescendant={`${id}-${at}`}
-            value={typed}
-            onChange={(e) => onType(e.target.value)}
-            onKeyDown={onKeyDown}
-            placeholder={narrow ? 'No.' : 'No. or name'}
-            className="wheel-type"
-          />
+        <div onKeyDown={onKeyDown} className={`wheel-card rise-in ${narrow ? 'wheel-card-narrow' : ''} ${flip ? 'wheel-card-flip' : ''} ${up ? 'wheel-card-up' : ''}`}>
+          {typeable && (
+            <input
+              ref={typeBox}
+              role="combobox"
+              aria-label={`Find a ${label.toLowerCase()}`}
+              aria-controls={id}
+              aria-expanded="true"
+              aria-activedescendant={`${id}-${at}`}
+              value={typed}
+              onChange={(e) => onType(e.target.value)}
+              placeholder={narrow ? 'No.' : 'Type to find'}
+              className="wheel-type"
+            />
+          )}
           <div className="wheel-window">
-            <ul ref={wheel} id={id} role="listbox" aria-label={label} onScroll={onScroll} onScrollEnd={() => { steering.current = false }} onWheel={() => { steering.current = false }} onTouchStart={() => { steering.current = false }} className="wheel-list">
+            <ul ref={wheel} id={id} role="listbox" aria-label={label} tabIndex={-1} aria-activedescendant={typeable ? undefined : `${id}-${at}`} onScroll={onScroll} onScrollEnd={() => { steering.current = false }} onWheel={() => { steering.current = false }} onTouchStart={() => { steering.current = false }} className="wheel-list">
               {options.map((o, i) => (
                 <li
                   key={o.value}
                   id={`${id}-${i}`}
                   role="option"
                   aria-selected={i === at}
+                  aria-disabled={o.disabled || undefined}
                   onClick={() => pick(i)}
                   className="wheel-item"
                 >

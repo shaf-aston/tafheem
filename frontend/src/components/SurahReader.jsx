@@ -29,6 +29,7 @@ import { useRemembered } from '../lib/useRemembered'
 
 import AyahTafsir from './AyahTafsir'
 import ArabicText from './ui/ArabicText'
+import AyahNumber from './ui/AyahNumber'
 import GlossWord from './ui/GlossWord'
 import ErrorAlert from './ui/ErrorAlert'
 import PlayAyah from './ui/PlayAyah'
@@ -107,12 +108,7 @@ function AyahRow({ surah, ayah, english, glosses, src, segments, reciter, accent
           focus:outline-none focus:bg-[var(--surface-hi)]"
         title={`Open ${surah}:${ayah.ayah} word by word`}
       >
-        <span
-          className="shrink-0 mt-1 type-small font-mono rounded-full px-2 py-0.5
-            border border-[var(--border)] text-[var(--text-faint)]"
-        >
-          {ayah.ayah}
-        </span>
+        <AyahNumber className="mt-1">{ayah.ayah}</AyahNumber>
         <span className="min-w-0 flex-1 space-y-1">
           {/* The display size, not the word size: this is the thing being read,
               and it is the same text the single-ayah view one panel away
