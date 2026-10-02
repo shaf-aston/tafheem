@@ -187,6 +187,8 @@ class Settings(BaseSettings):
     recitation_place_margin: float = Field(default=0.1, gt=0, lt=1)
     # How well the best place must fit (0 to 1) before it can be sure; a lone candidate used to be sure at any fit.
     recitation_place_fit: float = Field(default=0.9, gt=0, le=1)
+    # Words of an unsure reading carried in front of the next one's lookup; more drags the fit of a fresh reading down.
+    recitation_place_carry_words: int = Field(default=8, gt=0)
     # A minute of browser audio is about 1 MB.
     recitation_max_mb: int = Field(default=12, gt=0)
     # No default-book setting on purpose: the panel opens on the manifest's first book, then the reader's last choice.

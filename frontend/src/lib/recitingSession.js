@@ -240,6 +240,10 @@ export function createRecitingSession({ onChange, deps = {} }) {
   // When a voice was last heard, so a recording can end at the pause after a phrase.
   let lastVoice = 0
   let stopWatching = null
+  // The words of the last reading whose place was not sure and not home, sent
+  // in front of the next so a phrase said in twelve places is placed by the
+  // one after it.
+  let carried = ''
 
   // Sureness checks, queued and sent one at a time: see queueCheck. Words never
   // wait on this, a check is only ever fired and forgotten from send() below.
@@ -383,6 +387,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
             // A Qur'an page also asks where in the Qur'an this was (locate.py).
             near: page.ayahs.length ? `${page.ayahs[0].key}-${page.ayahs.at(-1).key}` : undefined,
             fusha: page.fusha,
+            before: carried,
             signal: stopper.signal,
             reading,
           })
@@ -408,6 +413,11 @@ export function createRecitingSession({ onChange, deps = {} }) {
           // was found here: ٱللَّهِ alone once kept every reading of 2:255 on
           // al-Fatihah. Too short to place, one shared word is enough.
           const { place } = heard
+          // Only the reading at the pause: a recording is read again as it
+          // grows, and carrying a mid-phrase reading put its words in front
+          // of the next reading of the same sound, twice over. A pause with no
+          // place at all clears it too, or an old phrase would ride along.
+          if (last) carried = place && !place.sure && !place.home ? heard.text : ''
           const ofPage = place ? place.home : isOfPage(words, page.pageWords)
           if (ofPage) {
             latest = words
@@ -587,6 +597,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
    * about somewhere else.
    */
   const forget = () => {
+    carried = ''
     // A stopped recording's last reading is still on its way and would write
     // the old page back over the blank one. Only once stopped: a start word
     // pressed mid-recitation forgets too, and must keep hearing the recording.
@@ -614,6 +625,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
   const turn = (carry = []) => {
     const keep = view.now.words.length ? view.now.from : windows
     forgotten = Math.max(forgotten, keep - 1)
+    carried = ''
     // Not the old page any more, even before the panel says which is new, so
     // an answer landing in between is not placed on it either.
     page = { ...page, ayahs: [] }
@@ -640,6 +652,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       mic = await openMicrophone()
       going = true
       session += 1
+      carried = ''
       // A check still in flight belongs to the recitation that just ended;
       // waiting out its timeout would hold the new session's own checks
       // behind it. Queued-but-unsent ones are simply stale.
