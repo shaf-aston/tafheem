@@ -283,7 +283,11 @@ def name(token: dict, tokens: list[dict]) -> str | None:
             return "حال"
     if head and is_verb(head) and (
             rel in ("SBJ", "TPC", "OBJ") or (rel == "IDF" and typed != "i")
-            or (rel == "MOD" and typed == "u" and is_plain_noun(token))):
+            or (rel == "MOD" and typed == "u" and is_plain_noun(token))
+            # بِعْ الكِتَابَ: hung on the verb as a modifier, but a definite word is never a
+            # hal or tamyeez, so its fatha makes it the object (unless it is the verb's own masdar)
+            or (rel == "MOD" and typed == "a" and token.get("stt") == "d" and is_plain_noun(token)
+                and family is None and _skeleton(token["lemma"]) != _skeleton(head["lemma"]))):
         siblings = [t for t in tokens if t["head"] == head["id"] and t is not token]
         if family in ("kana", "kaada") and rel != "OBJ":
             return _SUBJECT[family]
