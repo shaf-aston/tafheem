@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
 import { rootBabsQuery, searchDictionary } from '../api'
+import config from '../dictionary.json'
 import { isArabic } from '../lib/arabicText'
 import { entrySpan } from '../lib/entrySpan'
 import { plainPronunciation } from '../lib/pronounce'
@@ -103,16 +104,6 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
     if (incoming) lookUp({ q: incoming, l: languageOf(incoming) })
   }, [arrival, incoming, lookUp])
 
-  // Which root the two classical cards below are asking about. Held here, one
-  // level above both, because they must ask about the same one: مدرسة finds
-  // nothing in any of the books and درس finds all of it, and a choice that
-  // moved only the card it sits in left the other saying the root does not
-  // exist. The chips are drawn once, above both, for the same reason.
-  const { primary, alternates } = pickRoots(shown?.query, shown?.results)
-  const [root, setRoot] = useState(primary)
-  // A new search is a new question: go back to asking about what was typed.
-  useEffect(() => { setRoot(primary) }, [primary])
-
   return (
     <div className="panel">
       <SectionHeader
@@ -179,11 +170,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
             </p>
             {/* First visit has nothing to click; these give it something. */}
             <ExampleChips
-              examples={[
-                { arabic: 'كتب', meaning: 'to write' },
-                { arabic: 'رحم', meaning: 'mercy' },
-                { arabic: 'علم', meaning: 'to know' },
-              ]}
+              examples={config.examples}
               onPick={lookUpWord}
               accent={accent}
             />
@@ -206,40 +193,54 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
           answer, and the root's origin sense is the wider context behind it. On a
           phone the card was pushing the entries a whole screen down. Arabic only,
           Maqayees is a root book, so an English search has no root to ask about. */}
-      {shown?.lang === 'ar' && (
-        <>
-          {/* Above both cards, not inside one, because it moves both. A word
-              like مدرسة is not itself a root; the root it is built on is
-              offered, and the books answer on whichever is chosen. */}
-          {alternates.length > 0 && (
-            <div
-              className="flex flex-wrap gap-1.5 items-center"
-              role="group"
-              aria-label="Which root to look up"
-            >
-              <span className="text-[var(--text-faint)] type-small shrink-0">
-                Which root to look up
-              </span>
-              {[primary, ...alternates].map((one) => (
-                <Chip
-                  key={one}
-                  arabic
-                  accent={accent}
-                  selected={root === one}
-                  onClick={() => setRoot(one)}
-                >
-                  {one}
-                </Chip>
-              ))}
-            </div>
-          )}
-          <RootMeaningCard root={root} hasAlternates={alternates.length > 0} accent={accent} />
-          {/* Under the short answer, and shut: the books it was drawn from, for
-              a reader who wants more than a sentence. */}
-          <LexiconShelf root={root} hasAlternates={alternates.length > 0} />
-        </>
-      )}
+      {/* Keyed by the search: a new search is a new question, so the choice of
+          root starts over on the one it found. */}
+      {shown?.lang === 'ar' && <ClassicalRoot key={shown.query} found={shown} accent={accent} />}
     </div>
+  )
+}
+
+/**
+ * The two classical cards, and which root they ask about.
+ *
+ * One root for both, because they must ask about the same one: مدرسة finds
+ * nothing in any of the books and درس finds all of it, and a choice that moved
+ * only the card it sits in left the other saying the root does not exist. The
+ * chips sit above both, not inside one, for the same reason.
+ */
+function ClassicalRoot({ found, accent }) {
+  const { primary, alternates } = pickRoots(found.query, found.results)
+  const [root, setRoot] = useState(primary)
+  const hasAlternates = alternates.length > 0
+  return (
+    <>
+      {hasAlternates && (
+        <div
+          className="flex flex-wrap gap-1.5 items-center"
+          role="group"
+          aria-label="Which root to look up"
+        >
+          <span className="text-[var(--text-faint)] type-small shrink-0">
+            Which root to look up
+          </span>
+          {[primary, ...alternates].map((one) => (
+            <Chip
+              key={one}
+              arabic
+              accent={accent}
+              selected={root === one}
+              onClick={() => setRoot(one)}
+            >
+              {one}
+            </Chip>
+          ))}
+        </div>
+      )}
+      <RootMeaningCard root={root} hasAlternates={hasAlternates} accent={accent} />
+      {/* Under the short answer: the books it was drawn from, for a reader who
+          wants more than a sentence. */}
+      <LexiconShelf root={root} hasAlternates={hasAlternates} accent={accent} />
+    </>
   )
 }
 

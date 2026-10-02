@@ -29,6 +29,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getLexicons } from '../api'
 import { paragraphs } from '../lib/entryLines'
 import { laneEntry } from '../lib/laneEntry'
+import { BROKEN, MISSING, READY } from '../lib/rootMeaningStatus'
 import { scrollToEl } from '../lib/scrollToEl'
 import { accentOf } from '../lib/tabs'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../lib/useLaneTidy'
@@ -43,15 +44,15 @@ import SourceBadge from './ui/SourceBadge'
 
 /** How the three kinds of nothing are told apart. Never one sentence for all. */
 const NOTHING = {
-  missing: 'The dictionaries are not built on this machine yet. Run backend/scripts/build_lexicons.py.',
-  broken: 'The dictionaries are here but could not be read. The rest of the page is unaffected.',
-  ready: 'None of these books has an entry under these letters.',
+  [MISSING]: 'The dictionaries are not built on this machine yet. Run backend/scripts/build_lexicons.py.',
+  [BROKEN]: 'The dictionaries are here but could not be read. The rest of the page is unaffected.',
+  [READY]: 'None of these books has an entry under these letters.',
 }
 
 /** Added to that one sentence only, and only when there is another root to try. */
 const ELSEWHERE = ' The other root above may be the one they file it under.'
 
-export default function LexiconShelf({ root: asked, hasAlternates }) {
+export default function LexiconShelf({ root: asked, hasAlternates, accent }) {
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ['lexicons', asked],
     queryFn: () => getLexicons(asked),
@@ -77,11 +78,11 @@ export default function LexiconShelf({ root: asked, hasAlternates }) {
         )}
 
         {data && entries.length === 0 && (
-          <Nothing said={NOTHING[data.status] ?? NOTHING.ready} hasAlternates={hasAlternates} />
+          <Nothing said={NOTHING[data.status] ?? NOTHING[READY]} hasAlternates={hasAlternates} />
         )}
 
         {entries.map((entry) => (
-          <BookEntry key={entry.book} entry={entry} root={data.root} />
+          <BookEntry key={entry.book} entry={entry} root={data.root} accent={accent} />
         ))}
       </div>
     </section>
@@ -96,11 +97,11 @@ export default function LexiconShelf({ root: asked, hasAlternates }) {
  */
 const Nothing = ({ said, hasAlternates }) => (
   <p className="type-body text-[var(--text-dim)]">
-    {said}{hasAlternates && said === NOTHING.ready && ELSEWHERE}
+    {said}{hasAlternates && said === NOTHING[READY] && ELSEWHERE}
   </p>
 )
 
-function BookEntry({ entry, root }) {
+function BookEntry({ entry, root, accent }) {
   const arabic = entry.language === 'ar'
   const lane = entry.book === LANE
   const [tidy, setTidy] = useLaneTidy()
@@ -128,7 +129,7 @@ function BookEntry({ entry, root }) {
         {/* Only Lane carries the scholar's marks, so only his title has the switch. */}
         {lane && (
           <div className="ms-auto self-center">
-            <FlagButton value={tidy} onChange={setTidy} accent={accentOf('dict')} title={LANE_TIDY_TITLE}>
+            <FlagButton value={tidy} onChange={setTidy} accent={accent} title={LANE_TIDY_TITLE}>
               {LANE_TIDY_LABEL}
             </FlagButton>
           </div>
@@ -149,7 +150,7 @@ function BookEntry({ entry, root }) {
             own scrollbar, which hid the same words and also took the wheel off
             the page inside it. How tall the snippet stands is theme.json's
             lexicon.entry-h, the same knob that used to set the box. */}
-        {lane && <LaneIndex forms={shown} onJump={jump} />}
+        {lane && <LaneIndex forms={shown} onJump={jump} accent={accent} />}
 
         <ShowRest height="var(--lexicon-entry-h)" open={open} onOpenChange={setOpen}>
           {lane ? <LaneEntry forms={shown} anchor={anchor} /> : (
@@ -172,10 +173,10 @@ function BookEntry({ entry, root }) {
  * root runs to thousands of words; this is how a reader finds the one they came
  * for without reading down to it. Right to left, like the words themselves.
  */
-const LaneIndex = ({ forms, onJump }) => (
+const LaneIndex = ({ forms, onJump, accent }) => (
   <nav dir="rtl" aria-label="Words in this entry" className="flex flex-wrap gap-1.5">
     {forms.map((form, i) => form.word && (
-      <Chip key={i} arabic accent={accentOf('dict')} onClick={() => onJump(i)}
+      <Chip key={i} arabic accent={accent} onClick={() => onJump(i)}
         title={form.form ? `Form ${form.form}` : undefined}>
         {form.word}
       </Chip>

@@ -74,3 +74,27 @@ def test_every_stored_translation_yields_an_opening_that_says_something():
         and not root_gloss._says_only_the_letters(whole)
     ]
     assert not silent, silent
+
+
+# ── The Arabic after the origin sense ────────────────────────────────────────
+
+@pytest.mark.parametrize(("body", "rest"), [
+    ("الجمع. ومن ذلك الكتاب", "ومن ذلك الكتاب"),  # the sense, then the rest
+    ("الجمع.", ""),                                 # only its full stop is left
+    ("الجمع .، ", ""),                              # only punctuation, mixed
+    ("نص آخر", "نص آخر"),                           # does not open with the sense
+])
+def test_the_rest_is_what_follows_the_origin_sense(body, rest):
+    assert root_gloss.rest_of({"core_meaning": "الجمع", "body": body}) == rest
+
+
+def test_a_verse_is_one_line_and_prose_is_cut_at_its_full_stops():
+    lines, cut = root_gloss.line_budget("أ. ب.\nصدر. البيت ... عجزه", 100)
+    assert lines == ["أ.", "ب.", "صدر. البيت ... عجزه"]
+    assert cut is False
+
+
+def test_the_budget_ends_at_a_whole_line_and_says_so():
+    assert root_gloss.line_budget("أول.\nثان.\nثالث.", 10) == (["أول.", "ثان."], True)
+    # The first line is kept even past the budget: nothing is not an answer.
+    assert root_gloss.line_budget("طويل جدا جدا.", 3) == (["طويل جدا جدا."], False)

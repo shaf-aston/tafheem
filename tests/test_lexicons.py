@@ -206,6 +206,20 @@ def test_one_book_returning_to_a_root_is_one_entry_not_two(shelf):
     )
 
 
+def test_longest_means_the_text_not_the_stored_bytes(shelf):
+    """Bodies are stored compressed, and a long repetitive entry packs smaller
+    than a short varied one; ordering by stored size put the supplement first."""
+    db = sqlite3.connect(shelf)
+    db.execute("DELETE FROM entry WHERE root = 'كتب'")
+    db.executemany("INSERT INTO entry VALUES ('lane', 'كتب', 'كتب', 'كتب', ?)", [
+        (zlib.compress(("main " * 400).encode()),),
+        (zlib.compress(bytes(range(32, 127)).decode().encode()),),
+    ])
+    db.commit()
+    db.close()
+    assert lexicons.entries_for("كتب")[0]["text"].startswith("main main")
+
+
 def test_the_books_keep_their_own_order(shelf):
     assert [e["book"] for e in lexicons.entries_for("امر")] == ["lisan", "lane"]
 

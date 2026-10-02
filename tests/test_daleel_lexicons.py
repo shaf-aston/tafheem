@@ -23,7 +23,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.scripts import build_lexicons as builder  # noqa: E402
 from backend.services import lexicons  # noqa: E402
-from backend.services.daleel.sources.lexicons import LexiconsSource, credits  # noqa: E402
+from backend.services.daleel.sources.lexicons import LexiconsSource  # noqa: E402
+from backend.services.lexicons import credits  # noqa: E402
 
 
 @pytest.fixture

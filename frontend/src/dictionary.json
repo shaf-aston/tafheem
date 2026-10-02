@@ -19,5 +19,23 @@
   "entry": {
     "_comment": "How an Arabic dictionary entry (Lisan, Taj al-Arus) is set as paragraphs. The books arrive either wrapped at the printed line, Taj every forty letters, or as one unbroken block, Lisan on a common root twelve thousand letters. Both are joined, cut at full stops, and the sentences gathered until a paragraph holds at least paragraph-letters. lib/entryLines.js is the only reader.",
     "paragraph-letters": 350
+  },
+  "examples": [
+    {
+      "arabic": "كتب",
+      "meaning": "to write"
+    },
+    {
+      "arabic": "رحم",
+      "meaning": "mercy"
+    },
+    {
+      "arabic": "علم",
+      "meaning": "to know"
+    }
+  ],
+  "root-meaning": {
+    "_comment": "The classical root card (RootMeaningCard.jsx). rest-lines: how many lines of the rest of Ibn Faris's entry show before 'Show the rest'.",
+    "rest-lines": 6
   }
 }

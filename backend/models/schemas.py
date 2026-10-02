@@ -731,10 +731,10 @@ class RootMeaning(BaseModel):
     core_meaning: str
     sarf_pattern: str = ""
     variances: list[str] = Field(default_factory=list)
-    # The rest of the entry, the examples, the Qur'an verses and their
-    # references, the poetry. Prose, never split into pieces: Ibn Faris marks
-    # where one sense ends in only a minority of entries.
-    body: str = ""
+    # The rest of the entry after the origin sense (services/root_gloss.rest_of):
+    # the examples, the Qur'an verses and their references, the poetry. Prose,
+    # never split into senses: Ibn Faris marks where one ends in only a minority.
+    rest: str = ""
     # A plain English gloss of the origin sense. Read off a page image by a
     # machine, unlike everything above it, so it carries its own weaker badge on
     # the card and must never be presented as the book's own words.
