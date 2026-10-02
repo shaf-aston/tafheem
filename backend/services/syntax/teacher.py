@@ -13,8 +13,8 @@ from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import case_of, is_mabni, is_one, teacher_rules
-from backend.services.syntax.naming import (
-    base_tokens, family_of, is_passive, is_verb, roles_keyed, takes_tamyeez)
+from backend.services.syntax.facts import is_verb
+from backend.services.syntax.naming import base_tokens, family_of, is_passive, roles_keyed, takes_tamyeez
 from backend.services.syntax.vowels import CASE_NAME, typed_case
 
 # the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there
