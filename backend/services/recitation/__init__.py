@@ -145,7 +145,8 @@ def page_span(first: tuple[int, int], last: tuple[int, int]) -> tuple[int, int]:
 
 def find_place(heard: str, near: tuple[int, int] | None = None) -> locate.Place | None:
     """Where in the Qur'an `heard` was recited; `near` is from page_span."""
-    return locate.find(heard, _line(), get_settings().recitation_place_margin, near)
+    settings = get_settings()
+    return locate.find(heard, _line(), settings.recitation_place_margin, settings.recitation_place_fit, near)
 
 
 def check(audio: bytes, heard: str, ayahs: list[str]) -> dict[str, list[float | None]]:

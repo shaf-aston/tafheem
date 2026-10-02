@@ -185,6 +185,8 @@ class Settings(BaseSettings):
     # How much better the best place in the Qur'an must fit than the next before it is sure (locate.py).
     # 1,050 Groq readings in 4-word pieces: 0.05 placed 1,602 right and 2 wrong, 0.1 1,247 and 0, 0.15 1,012 and 0.
     recitation_place_margin: float = Field(default=0.1, gt=0, lt=1)
+    # How well the best place must fit (0 to 1) before it can be sure; a lone candidate used to be sure at any fit.
+    recitation_place_fit: float = Field(default=0.9, gt=0, le=1)
     # A minute of browser audio is about 1 MB.
     recitation_max_mb: int = Field(default=12, gt=0)
     # No default-book setting on purpose: the panel opens on the manifest's first book, then the reader's last choice.
