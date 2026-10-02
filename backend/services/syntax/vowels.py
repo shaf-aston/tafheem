@@ -11,7 +11,8 @@ from backend.services.arabic_text import bare_letters
 VOWEL = {"ً": "a", "ٌ": "u", "ٍ": "i", "َ": "a", "ُ": "u", "ِ": "i"}
 TANWEEN = {"ً", "ٌ", "ٍ"}
 SUKUN = "ْ"
-SHADDA_SUKUN = "ّ" + SUKUN
+SHADDA = "ّ"
+SHADDA_SUKUN = SHADDA + SUKUN
 # case shown by an ending, not by a vowel: the plural and the dual
 HIDDEN_CASE = ("ين", "ون", "ان")
 
@@ -123,6 +124,8 @@ def command_shape(word: str, after_jazm: bool = False, hollow: bool = False) -> 
     command lost its middle letter (أَقِمْ، أَجِبْ): three letters, a kasra on the second,
     and only the root can tell it from a name (أَحْمَدْ), so the caller passes `hollow`."""
     marked = letters(word)
+    if _plural_command(marked):
+        return True
     if len(marked) < 2 or SUKUN not in marked[-1][1]:
         return False
     first, second = marked[0], marked[1]
@@ -134,6 +137,19 @@ def command_shape(word: str, after_jazm: bool = False, hollow: bool = False) -> 
         return False
     return (first[0] == "ا" and bool(first[1] & {"ُ", "ِ"})) or (
         first[0] == "أ" and "َ" in first[1] and len(marked) >= 4 and not after_jazm)
+
+
+def _plural_command(marked: list[tuple[str, set]]) -> bool:
+    """اُكْتُبُوا، اعْبُدُوا: a command to many drops its nun and keeps واو الجماعة (Tasheel
+    2.2 p27), so it ends وا, not in a sukun; it opens with hamzat al-wasl (its vowel often
+    left untyped) before a sakin letter. A past verb with that opening is a longer form
+    (اِجْتَمَعُوا، اِنْكَسَرُوا) and has a fatha on its middle root letter, a command never."""
+    if len(marked) < 6 or [letter for letter, _ in marked[-2:]] != ["و", "ا"]:
+        return False
+    first, second = marked[0], marked[1]
+    if first[0] != "ا" or (first[1] and not first[1] & {"ُ", "ِ"}) or SUKUN not in second[1]:
+        return False
+    return len(marked) == 6 or "َ" not in marked[-4][1]
 
 
 def past_passive_shape(word: str) -> bool:

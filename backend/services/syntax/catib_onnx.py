@@ -45,7 +45,7 @@ from tokenizers import Tokenizer
 from backend.services.arabic_text import bare_letters
 from backend.config import data_path, get_settings
 from backend.services.syntax import decode
-from backend.services.syntax.mask import book_mask
+from backend.services.syntax.mask import book_links, book_mask
 from backend.services.syntax.vowels import agrees_with_typed, past_passive_shape, typed_case
 
 logger = logging.getLogger(__name__)
@@ -339,7 +339,7 @@ def _decode(s_arc: np.ndarray, s_rel: np.ndarray, toks: list[dict]) -> tuple[lis
     heads = decode.heads(s_arc[:L, :L])
     rels = [_rel_labels[int(np.argmax(np.where(rel_ok[i + 1, heads[i]], s_rel[i + 1, heads[i]], -np.inf)))]
             for i in range(n_words)]
-    return heads, rels
+    return book_links(toks, heads, rels)
 
 
 def _parse_forms(toks: list[dict]) -> tuple[list[int], list[str]]:

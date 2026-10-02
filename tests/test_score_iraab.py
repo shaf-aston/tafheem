@@ -2,7 +2,7 @@
 import re
 
 from backend.scripts.score_iraab import (
-    KEY, book_sentences, disagreements, family, fresh_sentences, routed)
+    KEY, book_sentences, disagreements, exam_sentences, family, fresh_sentences, routed)
 from backend.services.syntax.naming import ROLES
 from backend.services.arabic_text import bare_letters, words
 
@@ -50,6 +50,17 @@ def test_fresh_set_is_well_formed():
     for s in fresh:
         assert len(s["key"]) == len(words(s["sentence"])), s["id"]
         assert set(s["key"]) <= FRESH_ROLES, s["id"]
+
+
+def test_exam_set_is_well_formed():
+    exam = exam_sentences()
+    assert len(exam) > 200
+    assert len({s["id"] for s in exam}) == len(exam)
+    assert len({s["sentence"] for s in exam}) == len(exam)
+    for s in exam:
+        assert len(s["key"]) == len(words(s["sentence"])), s["id"]
+        assert set(s["key"]) <= FRESH_ROLES, s["id"]
+        assert s["book"] and s["chapter"], s["id"]
 
 
 def test_tree_leaf_clash_ignores_the_pictures_own_wording():

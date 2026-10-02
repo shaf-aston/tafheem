@@ -2,12 +2,7 @@
  "_comment": "The book's classification tree for naming a word's role (Tasheel al-Nahw). A node is a branch of the book: `branch` its Arabic name, `book` its section and page. A branch with `children` has a `split`, the axis (services/syntax/facts.py AXES, each a question with a closed list of answers) its children divide on; each child takes one answer with `is`, or is the one `else`. A leaf has a `role` (in roles.json). Siblings answer the same question once, so they cannot overlap. Walked by services/syntax/walker.py.",
  "tree": {"branch": "كلمة", "book": "1.2 p2", "split": "kind", "children": [
    {"branch": "حرف", "book": "1.2 p3", "is": "harf", "role": "حرف"},
-   {"branch": "فعل", "book": "1.2 p2", "is": "fil", "split": "slot", "children": [
-     {"branch": "الخبر جملة فعلية", "book": "1.4 p6", "is": "predicate", "split": "governor", "children": [
-       {"branch": "خبر كان", "book": "1.9 p24", "is": "kana", "role": "خبر كان"},
-       {"branch": "فعل خبر كاد أو إن", "book": "1.2 p2", "is": ["kaada", "inna"], "role": "فعل"},
-       {"branch": "خبر", "book": "1.4 p6", "else": true, "role": "خبر"}]},
-     {"branch": "فعل", "book": "1.2 p2", "else": true, "role": "فعل"}]},
+   {"branch": "فعل", "book": "1.2 p2", "is": "fil", "role": "فعل"},
    {"branch": "اسم", "book": "1.2 p2", "is": "ism", "split": "follows", "children": [
      {"branch": "النعت", "book": "3.10 p88", "is": "naat", "role": "صفة"},
      {"branch": "العطف", "book": "3.10 p88", "is": "atf", "role": "معطوف"},

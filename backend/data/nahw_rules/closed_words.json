@@ -2,7 +2,8 @@
  "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw_book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word.",
  "vetoes": {
   "_comment": "Links the book rules out, removed from the parser's choices before its tree is picked. true = on. Read by services/syntax/mask.py.",
-  "verb_subject_follows": true
+  "verb_subject_follows": true,
+  "pointer_heads_its_noun": true
  },
  "families": {
   "jarr": {
@@ -77,6 +78,8 @@
   "nida": {
    "ar": "حروف النداء",
    "effect": "calls the noun after it (munada); a single definite munada is built on damma, else nasb",
+   "_called_nouns": "أيّ (أيّة) with the ها of attention is the munada itself, built on damma; the noun with ال after it is its صفة (Tasheel, al-nida)",
+   "called_nouns": ["أيها", "أيتها"],
    "words": [
     "يا",
     "أيا",
@@ -544,7 +547,7 @@
     "عين": "emphasis 'itself' (with pronoun suffix) vs noun 'eye / spring'",
     "كل": "emphasis 'all of it' (with pronoun suffix, after a noun) vs ordinary mudaf noun 'every / all' before an indefinite noun (كل رجل) or a definite plural",
     "جميع": "emphasis 'all' (with pronoun suffix) vs ordinary noun 'all' as mudaf or hal",
-    "كلا": "emphasis 'both' (with pronoun suffix, masculine dual) vs ordinary mudaf 'both' vs rebuke particle كلا",
+    "كلا": "emphasis 'both' (with pronoun suffix, masculine dual) vs ordinary mudaf 'both' vs rebuke particle كلا; CAMeL spells it كلى (كلتى) before the pronoun, so the list holds both",
     "كلتا": "emphasis 'both' (with pronoun suffix, feminine dual) vs ordinary mudaf 'both'",
     "عامة": "emphasis 'all' (rare) vs noun 'general / common'",
     "أجمع": "emphasis after كل (كله أجمع); hardly used as an ordinary word",
@@ -557,6 +560,8 @@
     "جميع",
     "كلا",
     "كلتا",
+    "كلى",
+    "كلتى",
     "عامة"
    ],
    "without_pronoun": [
