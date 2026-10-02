@@ -237,8 +237,8 @@ async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
 
     # Trusted only while it still matches the entry line for line: a book file
     # that has changed shape since makes the kept English a mispairing.
-    kept = root_english.get_lines(book_root)
-    if kept is None or len(kept) != len(lines):
+    kept = root_english.get_lines(book_root, len(lines))
+    if kept is None:
         answer = await _ask_ai(
             ai_service.explain_root_entry_lines, root, lines,
             operation="line-by-line English of a Maqayees entry",

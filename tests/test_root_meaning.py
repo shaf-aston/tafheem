@@ -517,23 +517,30 @@ def test_a_write_never_drops_what_another_writer_kept(kept):
 
 def test_lines_kept_by_the_other_backend_copy_are_seen_without_a_restart(kept):
     """Two copies serve the site in turn; one asking the AI again cost 5 s."""
-    assert kept.get_lines("كتب") is None
+    assert kept.get_lines("كتب", 2) is None
     kept.LINES_KEPT_FILE.write_text(json.dumps({"كتب": ["one", "two"]}), encoding="utf-8")
-    assert kept.get_lines("كتب") == ["one", "two"]
+    assert kept.get_lines("كتب", 2) == ["one", "two"]
 
 
 def test_lines_made_on_the_server_go_where_a_deploy_cannot_erase_them(kept):
     kept.LINES_FILE.write_text(json.dumps({"علم": ["shipped"]}), encoding="utf-8")
     kept.put_lines("كتب", ["made", "here"])
     assert json.loads(kept.LINES_FILE.read_text(encoding="utf-8")) == {"علم": ["shipped"]}
-    assert kept.get_lines("كتب") == ["made", "here"]
-    assert kept.get_lines("علم") == ["shipped"]
+    assert kept.get_lines("كتب", 2) == ["made", "here"]
+    assert kept.get_lines("علم", 1) == ["shipped"]
 
 
 def test_the_shipped_lines_win_over_lines_made_on_the_server(kept):
     kept.LINES_KEPT_FILE.write_text(json.dumps({"كتب": ["older"]}), encoding="utf-8")
     kept.LINES_FILE.write_text(json.dumps({"كتب": ["whole-book run"]}), encoding="utf-8")
-    assert kept.get_lines("كتب") == ["whole-book run"]
+    assert kept.get_lines("كتب", 1) == ["whole-book run"]
+
+
+def test_a_shipped_list_of_the_wrong_length_lets_the_newer_one_answer(kept):
+    """Otherwise the stale shipped list wins and the AI is asked on every press."""
+    kept.LINES_FILE.write_text(json.dumps({"كتب": ["old shape"]}), encoding="utf-8")
+    kept.put_lines("كتب", ["new", "shape"])
+    assert kept.get_lines("كتب", 2) == ["new", "shape"]
 
 
 def test_two_roots_that_fold_together_each_answer_for_themselves(tmp_path):
@@ -688,7 +695,7 @@ def test_a_miscounted_answer_is_refused_and_never_kept(client, line_ai, kept):
     response = _lined(client, "كتب")
     assert response.status_code == 502
     assert "lined up" in response.json()["detail"]
-    assert kept.get_lines("كتب") is None
+    assert kept.get_lines("كتب", 3) is None
 
 
 def test_a_blank_line_in_the_answer_is_a_miscount_too(client, line_ai):

@@ -41,8 +41,8 @@ LINES_KEPT_FILE = _DATA / "english_lines.kept.json"
 # too; a write from each at the same instant can lose one root, which costs
 # only a remake the next time it is asked for.
 _lock = threading.Lock()
-# First file -> (every file's change time when read, their merged entries).
-# Checked on each read, so one backend copy sees what the other kept.
+# File -> (its stamp when read, its entries). Checked on each read, so one
+# backend copy sees what the other kept.
 _cache: dict[Path, tuple[tuple, dict]] = {}
 
 
@@ -80,34 +80,28 @@ def _read_store(path: Path, keeps) -> dict:
     return {k: v for k, v in raw.items() if isinstance(k, str) and keeps(v)}
 
 
-def _changed_at(path: Path) -> int | None:
+def _stamp(path: Path) -> tuple | None:
+    # Size and inode beside the time: two writes inside one clock tick share a
+    # time, and every write moves a new file into place.
     try:
-        return path.stat().st_mtime_ns
+        st = path.stat()
     except FileNotFoundError:
         return None
+    return st.st_mtime_ns, st.st_size, st.st_ino
 
 
-def _store(paths: tuple[Path, ...], keeps) -> dict:
-    """Every file's entries, the first file winning a clash; re-read only when one changed."""
-    stamp = tuple(_changed_at(path) for path in paths)
-    hit = _cache.get(paths[0])
+def _store(path: Path, keeps) -> dict:
+    """The file's entries, re-read only when it has changed."""
+    stamp = _stamp(path)
+    hit = _cache.get(path)
     if hit is None or hit[0] != stamp:
-        merged: dict = {}
-        for path in reversed(paths):
-            merged.update(_read_store(path, keeps))
-        logger.info("%d Maqayees entries in English in %s", len(merged), paths[0].name)
-        hit = _cache[paths[0]] = (stamp, merged)
+        hit = _cache[path] = (stamp, _read_store(path, keeps))
+        logger.info("%d Maqayees entries in English in %s", len(hit[1]), path.name)
     return hit[1]
 
 
 def _prose() -> dict[str, str]:
-    return _store((STORE_FILE,), _is_prose)
-
-
-def _lines() -> dict[str, list[str]]:
-    # The shipped file wins: it is the whole-book run, made against the book as
-    # it now stands.
-    return _store((LINES_FILE, LINES_KEPT_FILE), _is_lines)
+    return _store(STORE_FILE, _is_prose)
 
 
 def get(root: str) -> str | None:
@@ -115,9 +109,18 @@ def get(root: str) -> str | None:
     return _prose().get(root) or None
 
 
-def get_lines(root: str) -> list[str] | None:
-    """The line-by-line English kept for this root, if it has been made."""
-    return _lines().get(root) or None
+def get_lines(root: str, count: int) -> list[str] | None:
+    """The line-by-line English kept for this root with this many lines.
+
+    The shipped file is asked first, as the whole-book run. A list of the wrong
+    length was made against an older shape of the book; passing it over lets
+    the other file's newer list answer, instead of remaking it on every press.
+    """
+    for path in (LINES_FILE, LINES_KEPT_FILE):
+        lines = _store(path, _is_lines).get(root)
+        if lines and len(lines) == count:
+            return lines
+    return None
 
 
 def put(root: str, english: str) -> None:
