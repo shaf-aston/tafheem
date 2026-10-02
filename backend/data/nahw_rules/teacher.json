@@ -14,7 +14,8 @@
   "sound_plural": {"raf'": "الواو، جمع مذكر سالم", "nasb": "الياء، جمع مذكر سالم", "jarr": "الياء، جمع مذكر سالم"},
   "five_verbs": {"raf'": "ثبوت النون", "nasb": "حذف النون", "jazm": "حذف النون"},
   "before_ya": {"raf'": "ضمة مقدرة على ما قبل ياء المتكلم", "nasb": "فتحة مقدرة على ما قبل ياء المتكلم", "jarr": "كسرة مقدرة على ما قبل ياء المتكلم"},
-  "on_alef": {"raf'": "ضمة مقدرة على الألف للتعذر", "nasb": "فتحة مقدرة على الألف للتعذر", "jarr": "كسرة مقدرة على الألف للتعذر"}
+  "on_alef": {"raf'": "ضمة مقدرة على الألف للتعذر", "nasb": "فتحة مقدرة على الألف للتعذر", "jarr": "كسرة مقدرة على الألف للتعذر"},
+  "manqus": {"raf'": "ضمة مقدرة على الياء للثقل", "nasb": "فتحة", "jarr": "كسرة مقدرة على الياء للثقل"}
  },
  "case_said": {
   "_comment": "A case as a reason says it: the word itself, the place a mabni word fills (مبني في محل رفع), what a mabni verb is built on, and a verb's opening words by its tense (rule_engine.verb_card).",

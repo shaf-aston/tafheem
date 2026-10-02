@@ -118,3 +118,9 @@ def test_a_word_the_morphology_calls_a_name_is_still_a_passive_verb_by_its_vowel
     ("أَكْتُبُ", False), ("يَكْتُبْ", False), ("كَتَبَ", False), ("اكتب", False), ("قم", False)])
 def test_command_shape(word: str, command: bool):
     assert vowels.command_shape(word) is command
+
+
+def test_a_hollow_form_iv_command_needs_the_root_to_say_so():
+    assert vowels.command_shape("أَقِمْ", hollow=True)
+    assert not vowels.command_shape("أَقِمْ")                      # أَمِنْ, أَحْمَدْ: no hollow root, no command
+    assert not vowels.command_shape("أَقِمْ", after_jazm=True, hollow=True)  # لم أَقِمْ is a present verb
