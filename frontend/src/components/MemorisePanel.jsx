@@ -190,7 +190,7 @@ export default function MemorisePanel({ accent }) {
   // means nothing on it. Changing the starting word itself also starts over,
   // because it moves what is covered.
   const openAt = (at) => { setPinned(at); fresh() }
-  const openPart = (id) => { setChosen(id); setPageNumber(0); setPinned(null); fresh() }
+  const openPart = (id, n = 0) => { setChosen(id); setPageNumber(n); setPinned(null); fresh() }
   const openPage = (n) => { setPageNumber(n); setPinned(null); fresh() }
   // Switching books starts over at that book's own first part and its own
   // meaning-shown default, the Qur'an's "off by default" is not a preference
@@ -299,22 +299,46 @@ export default function MemorisePanel({ accent }) {
   }, [forget, pageNumber, part, bookId, pinned])
 
   /**
-   * On to the next page, or the next part's first, without stopping: the
-   * reciter reached the end of this one and is carrying on. What was heard
-   * goes with the old page (turn(), not forget(), so the recording under way
-   * is kept), and the new page is followed from wherever they are on it.
+   * Carry the recitation on to another page without stopping: the next one,
+   * because the reciter reached the end of this one, or wherever in the
+   * Qur'an they turned out to be. What was heard goes with the old page
+   * (turn(), not forget(), so the recording under way is kept), and the new
+   * page is followed from wherever they are on it.
    */
   const card = useRef(null)
-  const turnPage = () => {
-    const at = parts?.findIndex((p) => p.id === part) ?? -1
-    const nextPart = at >= 0 ? parts[at + 1] : null
-    if (pageNumber + 1 >= pages.length && !nextPart) return
+  const carryOnAt = (partId, n) => {
+    if (partId === part && n === pageNumber) return
     turning.current = true
     reciting.turn()
-    if (pageNumber + 1 < pages.length) openPage(pageNumber + 1)
-    else openPart(nextPart.id)
+    openPart(partId, n)
     scrollToEl(card.current, 'top')
   }
+  const turnPage = () => {
+    if (pageNumber + 1 < pages.length) return carryOnAt(part, pageNumber + 1)
+    const at = parts?.findIndex((p) => p.id === part) ?? -1
+    const nextPart = at >= 0 ? parts[at + 1] : null
+    if (nextPart) carryOnAt(nextPart.id, 0)
+  }
+
+  // Reciting from somewhere else in the Qur'an. Being tested on a page, the
+  // reader is asked first, since leaving it is their call; just reciting,
+  // the page follows them without asking.
+  // An ayah on this very page is not elsewhere: the ear garbled it, and the
+  // page already follows it.
+  const elsewhere = reciting.elsewhere
+    && !(part === reciting.elsewhere.surah
+      && recitedPage.lines.some((line) => line.key === `${reciting.elsewhere.surah}:${reciting.elsewhere.ayah}`))
+    ? reciting.elsewhere
+    : null
+  const [stayed, setStayed] = useState(null)
+  const goElsewhere = () => client.fetchQuery(bookPartQuery(bookId, elsewhere.surah)).then(({ lines }) => {
+    const n = pagesOf(lines, book.wordsPerPage).findIndex((p) => p.some((line) => line.id === elsewhere.ayah))
+    if (n >= 0) carryOnAt(elsewhere.surah, n)
+  })
+  useEffect(() => {
+    if (elsewhere && way === 'recite' && listening && !hidden) goElsewhere()
+  }, [elsewhere])  // eslint-disable-line react-hooks/exhaustive-deps
+  const askToGo = elsewhere && elsewhere !== stayed && way === 'recite' && listening && hidden
   // A moment on the finished page first, marks settled and weighed, so a
   // slip in its last ayah is seen before the page goes.
   useEffect(() => {
@@ -460,6 +484,19 @@ export default function MemorisePanel({ accent }) {
               </StepButton>
             </div>
           </div>
+
+          {askToGo && (
+            <div
+              role="status"
+              className="flex items-center gap-3 flex-wrap rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] px-3 py-2"
+            >
+              <span className="type-small text-[var(--text-dim)] flex-1 min-w-0">
+                You seem to be reciting {elsewhere.surah}:{elsewhere.ayah}.
+              </span>
+              <StepButton onClick={goElsewhere}>Go there</StepButton>
+              <StepButton onClick={() => setStayed(elsewhere)}>Stay</StepButton>
+            </div>
+          )}
 
           <div ref={card} className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4 scroll-mt-4">
             {/* A flowing book runs its lines on as a printed mushaf does: one

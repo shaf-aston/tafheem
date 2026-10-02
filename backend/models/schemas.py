@@ -909,6 +909,18 @@ class HeardAyah(BaseModel):
     heard_of_ayah: float
 
 
+class HeardPlace(BaseModel):
+    """Where in the Qur'an a recitation was, asked of the page the reciter has open.
+
+    `sure`: no other place fits nearly as well. `home`: it is on that page or
+    the ayah just after it, so the reciter is carrying on rather than elsewhere.
+    """
+    surah: int
+    ayah: int
+    sure: bool
+    home: bool
+
+
 class Heard(BaseModel):
     """What a recording turned out to be.
 
@@ -919,6 +931,7 @@ class Heard(BaseModel):
     """
     text: str
     ayahs: list[HeardAyah] = []
+    place: HeardPlace | None = None
 
 
 class Sureness(BaseModel):

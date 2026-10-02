@@ -43,6 +43,9 @@
   "_turn-after-s": "How long a finished page stays up before the next one turns in by itself, while reciting carries on. The page is finished once its last word is reached and the reciter has paused, and every sureness check of it is back; this is then only the moment to see how its last ayah went. Long enough to catch a red word, short enough that the new page is up before the reciter is far into it (the words said meanwhile are kept either way).",
   "turn-after-s": 1.5,
 
+  "_journal-heard-chars": "How much of what the ear wrote goes into the journal's reading note. A long recording writes a few hundred letters; the cap keeps one reading from filling the journal's page allowance.",
+  "journal-heard-chars": 400,
+
   "_comment-silence": "How quiet counts as silence is not here: it is voice-level in dictation.json, already read by the microphone button, and one idea of 'nobody is speaking' is enough for the app. A window under it is never sent, because a silent one costs the engine on this machine up to seventeen seconds and returns nothing.",
 
   "_check-timeout-s": "The longest a sureness check may take before it is given up on. Without one, a request that never answers left checkBusy stuck true forever and nothing after it in the queue was ever sent.",

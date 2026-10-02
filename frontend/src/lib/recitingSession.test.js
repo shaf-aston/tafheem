@@ -262,7 +262,7 @@ describe('a reciting session', () => {
       // Given up on the way axios gives up: rejected as cancelled.
       listen: (_blob, options) => new Promise((resolve, reject) => {
         options.signal.addEventListener('abort', () => reject({ code: 'ERR_CANCELED' }))
-        readings.push({ options, answer: (text) => resolve({ text }) })
+        readings.push({ options, answer: (said) => resolve(typeof said === 'string' ? { text: said } : said) })
       }),
       checkReading: (_blob, options) => new Promise((resolve) => {
         checks.push({ options, answer: (sure) => resolve({ sure }) })
@@ -462,6 +462,40 @@ describe('a reciting session', () => {
     await h.answer(1, 'الرحمن الرحيم')
     expect(h.checks).toHaveLength(1)
     expect(h.session.view().now.words).toEqual(['الرحمن', 'الرحيم'])
+  })
+
+  it("takes the server's place: sure elsewhere moves nothing onto the page, home clears it", async () => {
+    const h = harness()
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    await h.session.start()
+    await h.midPhrase()
+    expect(h.readings[0].options.near).toBe('1:2-1:2')
+    // 3:2 and the start of 2:255 are the same words: not sure, so nothing moves.
+    h.readings[0].answer({ text: 'الله لا إله إلا هو الحي القيوم', place: { surah: 3, ayah: 2, sure: false, home: false } })
+    await h.wait(0)
+    expect(h.session.view().elsewhere).toBeNull()
+    expect(h.heard()).toEqual([])
+    await h.midPhrase()
+    // 6:45 ends with this page's words, and is still not this page.
+    h.readings[1].answer({ text: 'فقطع دابر القوم الذين ظلموا والحمد لله رب العالمين', place: { surah: 6, ayah: 45, sure: true, home: false } })
+    await h.wait(0)
+    expect(h.session.view().elsewhere).toEqual({ surah: 6, ayah: 45 })
+    expect(h.heard()).toEqual([])
+    await h.midPhrase()
+    h.readings[2].answer({ text: 'الحمد لله رب العالمين', place: { surah: 1, ayah: 2, sure: true, home: true } })
+    await h.wait(0)
+    expect(h.session.view().elsewhere).toBeNull()
+    expect(h.heard()).toEqual(['الحمد', 'لله', 'رب', 'العالمين'])
+  })
+
+  it("asks no place for a page that is not the Qur'an, and keeps a reading too short to place by its words", async () => {
+    const h = harness()
+    await h.session.start()
+    await h.midPhrase()
+    expect(h.readings[0].options.near).toBeUndefined()
+    h.readings[0].answer({ text: 'الحمد', place: null })
+    await h.wait(0)
+    expect(h.heard()).toEqual(['الحمد'])
   })
 
   it('writes nothing from the last press once the page has been cleared and started again', async () => {

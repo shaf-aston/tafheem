@@ -8,6 +8,7 @@ others noticing:
     ears.py     the two above as one interface, and the order they are tried in
     match.py    words  -> ayahs        pure, no files, no network
     place.py    words  -> page stretch pure, where a recording sits on a page
+    locate.py   words  -> place        pure, where in the whole Qur'an a reading is
     this file   asks for words, and hands the corpus to the matcher
 
 Which ear answers is ears.py's business and nothing above this package knows
@@ -28,7 +29,7 @@ from functools import lru_cache
 from backend.config import data_path, get_settings
 from backend.services import quran_corpus
 from backend.services.timing import timed
-from backend.services.recitation import ears, letters, listen, match, place
+from backend.services.recitation import ears, letters, listen, locate, match, place
 # Re-exported so a caller catches them from the package it already talks
 # to. Which piece in here raises which is this package's own business,
 # and a route that imports them by submodule has to know.
@@ -77,6 +78,7 @@ def warm() -> None:
         letters.warm()
     try:
         _ayahs()
+        _line()
     except Exception:  # pragma: no cover, a corpus that is not built yet
         pass
 
@@ -126,6 +128,20 @@ def hear(audio: bytes, match_ayahs: bool, recite: bool = False, fusha: bool = Tr
 def _plain() -> dict[str, str]:
     """Every ayah in the ear's own spelling source, by "surah:ayah". Read once."""
     return json.loads(data_path("quran_imlaei_path").read_text(encoding="utf-8"))
+
+
+@lru_cache(maxsize=1)
+def _line() -> locate.Line:
+    """The ear's spelling of the whole Qur'an as one line, for find_place. Built once."""
+    key = lambda k: tuple(map(int, k.split(":")))
+    return locate.build(sorted((key(k), text) for k, text in _plain().items()))
+
+
+def find_place(heard: str, near: tuple[tuple[int, int], tuple[int, int]] | None = None) -> locate.Place | None:
+    """Where in the Qur'an `heard` was recited; `near` is the open page's first
+    and last ayah. Raises ValueError for an ayah the Qur'an does not have."""
+    line = _line()
+    return locate.find(heard, line, get_settings().recitation_place_margin, near and locate.span(line, *near))
 
 
 def check(audio: bytes, heard: str, ayahs: list[str]) -> dict[str, list[float | None]]:

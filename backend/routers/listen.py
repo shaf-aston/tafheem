@@ -31,7 +31,7 @@ from fastapi import APIRouter, File, HTTPException, Query, Request, Response, Up
 from starlette.concurrency import run_in_threadpool
 
 from backend.config import get_settings
-from backend.models.schemas import Heard, HeardAyah, Sureness, TextSureness
+from backend.models.schemas import Heard, HeardAyah, HeardPlace, Sureness, TextSureness
 from backend.services import journal, recitation
 from backend.services.recitation import NotInstalled, Unreadable
 from backend.services.recitation.recording import kind_of
@@ -185,6 +185,10 @@ async def listen(
     match: bool = Query(False, description="Also return the ayahs these words came from; heard as a recitation, like recite"),
     recite: bool = Query(False, description="Qur'an being recited: heard in Arabic by the Qur'an ear, no ayahs looked up"),
     fusha: bool = Query(True, description="Lean towards classical Arabic; off hears any Arabic"),
+    near: str | None = Query(
+        None, pattern=f"^{AYAH_KEY.pattern}-{AYAH_KEY.pattern}$",
+        description="The open page's first and last ayah, 2:1-2:5: also say where in the Qur'an this was",
+    ),
 ) -> Heard:
     """What was said, and optionally which ayahs it was.
 
@@ -244,9 +248,19 @@ async def listen(
         else:
             text, hits = await do_hear()
 
+        place = None
+        if near and text:
+            first, last = (tuple(map(int, key.split(":"))) for key in near.split("-"))
+            try:
+                found = await run_in_threadpool(recitation.find_place, text, (first, last))
+            except ValueError as exc:
+                raise filed.fail(422, f"{near} is not a page of the Qur'an", "place", exc) from None
+            place = found and HeardPlace(surah=found.surah, ayah=found.ayah, sure=found.sure, home=found.home)
+
         filed.done(200)
         return Heard(
             text=text,
+            place=place,
             ayahs=[
                 HeardAyah(
                     surah=hit.surah,

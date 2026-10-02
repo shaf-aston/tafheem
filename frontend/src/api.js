@@ -217,7 +217,8 @@ export const daleelBooksQuery = {
 }
 
 // A recording, and what was said. `match` also asks which ayahs those words
-// were, which only the Qur'an tab wants; Daleel just searches the words. Sent as
+// were, which only the Qur'an tab wants; Daleel just searches the words. `near`,
+// the open page as "2:1-2:5", asks where in the whole Qur'an they were. Sent as
 // a file rather than JSON because audio is not text and base64 would be a third
 // larger for nothing. The Content-Type is left to the browser on purpose: it has
 // to add the multipart boundary itself.
@@ -230,10 +231,10 @@ export const daleelBooksQuery = {
 // for it costs the seconds it takes to read.
 // `reading` names this one request, as `X-Reading-Id`, so the server's own
 // log and lib/journal.js's trail can be lined up on the same reading.
-export const listen = (recording, { match = false, recite = false, fusha = true, signal, reading } = {}) => {
+export const listen = (recording, { match = false, recite = false, fusha = true, near, signal, reading } = {}) => {
   const body = new FormData()
   body.append('audio', recording, 'recitation.webm')
-  const asked = new URLSearchParams({ match, recite, fusha })
+  const asked = new URLSearchParams({ match, recite, fusha, ...(near && { near }) })
   const headers = { 'Content-Type': undefined }
   if (reading) headers['X-Reading-Id'] = reading
   return api.post(`/listen?${asked}`, body, { headers, signal })
