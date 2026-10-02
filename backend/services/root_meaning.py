@@ -208,8 +208,8 @@ class JsonFileProvider:
         return self._folded.get(key.translate(self._fold)) if self._fold else None
 
     def lookup(self, root: str) -> dict | None:
-        key = self.book_root_of(root)
-        entry = self._entries.get(key) if key else None
+        book_root = self.book_root_of(root)
+        entry = self._entries.get(book_root) if book_root else None
         if entry is None:
             return None
         # Read the fields by name, and only where they are text. Spreading the

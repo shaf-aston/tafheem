@@ -1,13 +1,13 @@
 """The classical dictionaries, as passages Daleel can quote.
 
-One adapter, instantiated once per credit, the same shape as OpenItiSource and
+One adapter, instantiated once per source, the same shape as OpenItiSource and
 LibrarySource. Which books exist is data/lexicons.db, built by
 scripts/build_lexicons.py; this file names none of them, so a dictionary added
 to that build is searchable here without a line of code being written. That is
-the whole point of doing it this way: the registry asks the books which credits
+the whole point of doing it this way: the registry asks the books which sources
 they carry, and grows a source for each.
 
-Grouped by credit rather than one source per book, for the reason written at the
+Grouped by source rather than one source per book, for the reason written at the
 top of sources/openiti.py: Daleel guarantees every matching source one slot, and
 a source per book would let three dictionaries take three of the nine places on
 a page before anything is judged on merit.
@@ -34,8 +34,8 @@ from backend.services.daleel.model import Passage
 class LexiconsSource:
     """Every entry of every classical dictionary credited to one source."""
 
-    def __init__(self, credit: str) -> None:
-        self.id = credit
+    def __init__(self, source_key: str) -> None:
+        self.id = source_key
 
     def passages(self) -> Iterable[Passage]:
         for title, head, said in lexicons.entries_by_source(self.id):

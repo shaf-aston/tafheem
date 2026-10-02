@@ -130,7 +130,7 @@ async def get_lexicons(root: Root) -> LexiconsResponse:
 
     The long answer to the short one root-meaning gives. Thin on purpose: which
     books exist and how a root is matched to an entry are both decided in
-    services/lexicons.py; this hands each entry its book's credit.
+    services/lexicons.py; this hands each entry its book's source.
     """
     state = lexicons.status()
     # A worker thread: a common root is a hundred kilobytes to unpack.

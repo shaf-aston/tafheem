@@ -81,7 +81,7 @@ def opening_of(translation: str) -> str:
 
 # ── The Arabic after the origin sense ────────────────────────────────────────
 # What the card's "rest of the entry" panel shows, and what the line-by-line
-# reading pairs against. Decided here once and sent to the page, so the panel
+# English pairs against. Decided here once and sent to the page, so the panel
 # and the pairing can never read two different rests.
 
 _LEADING_PUNCTUATION = re.compile(r"^[.،؛:\s]+")
@@ -109,7 +109,7 @@ def rest_of(entry: dict) -> str:
 
 
 def line_budget(arabic: str, budget: int) -> tuple[list[str], bool]:
-    """The text cut into reading lines, whole ones only, up to `budget` characters.
+    """The text cut into lines, whole ones only, up to `budget` characters.
 
     The printing's own breaks are paragraphs (one can hold six lines of prose),
     so each is cut again at its full stops, about one claim a line. A verse is

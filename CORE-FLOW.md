@@ -83,7 +83,8 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 - **Entry / book root**: what one book prints under one headword. A word's entry comes from
   Wiktionary (`dictionary_service.py`), a root's from a classical book: Maqayees via
   `root_meaning.py`, all four on the shelf via `lexicons.py`. The **book root** is the root as
-  that book spells it (`book_root_of`). A Maqayees entry opens with the **origin sense**
+  that book spells it (`book_root_of`); an answer carries it only when it differs from
+  the letters typed. A Maqayees entry opens with the **origin sense**
   (`core_meaning`); the **rest** follows (`root_gloss.rest_of`). Its **English** comes whole
   (`together`) or line by line (`lines`), kept by `root_english.py`; never called a reading,
   which is reciting's word.

@@ -1,11 +1,11 @@
-"""English readings of Maqayees entries, kept once they have been made.
+"""The English of Maqayees entries, kept once they have been made.
 
 Putting an entry into English costs a call to a model and gives roughly the same
 answer every time, so it is worth doing once. This is where those answers live:
 files beside the book, keyed by the root, read on startup and added to whenever
 a new entry is read.
 
-Two shapes of reading, two files, one machinery. The prose file holds the whole
+Two shapes of English, two files, one machinery. The prose file holds the whole
 entry retold as paragraphs; the lines file holds it as a list, one English line
 per Arabic line, for the view that prints them interleaved. They are separate
 files because a reader with one is not owed the other, and mixing shapes in one
@@ -101,14 +101,14 @@ def get_lines(root: str) -> list[str] | None:
 
 
 def put(root: str, english: str) -> None:
-    """Keep this prose reading, so the same entry is never read twice."""
+    """Keep this prose English, so the same entry is never read twice."""
     english = english.strip()
     if root and english:
         _keep(STORE_FILE, _loaded, _is_prose, root, english)
 
 
 def put_lines(root: str, lines: list[str]) -> None:
-    """Keep this line-by-line reading. A list that fails the shape check is
+    """Keep this line-by-line English. A list that fails the shape check is
     dropped here rather than trusted later."""
     lines = [line.strip() for line in lines]
     if root and _is_lines(lines):
@@ -116,7 +116,7 @@ def put_lines(root: str, lines: list[str]) -> None:
 
 
 def _keep(path: Path, loaded, keeps, root: str, value) -> None:
-    """Write one reading into its store.
+    """Write one English into its store.
 
     Written to a neighbouring file and moved into place, so a crash midway
     leaves the old file whole rather than half a new one.
@@ -129,12 +129,12 @@ def _keep(path: Path, loaded, keeps, root: str, value) -> None:
         # The store only ever grows. Anything on disk that this process has not
         # seen was written by something else while it was running, so it is
         # carried over rather than overwritten, writing from a stale copy is
-        # how 123 readings were once lost. What is in memory wins a clash,
-        # because that is the newer reading of the same root.
+        # how 123 entries' English was once lost. What is in memory wins a clash,
+        # because that is the newer English of the same root.
         on_disk = _read_store(path, keeps)
         if unseen := set(on_disk) - set(kept):
             logger.warning(
-                "%d readings in %s were written by something else, keeping them.",
+                "%d entries in %s were written by something else, keeping them.",
                 len(unseen), path,
             )
             kept = {**on_disk, **kept}
@@ -147,7 +147,7 @@ def _keep(path: Path, loaded, keeps, root: str, value) -> None:
             )
             os.replace(scratch, path)
         except OSError as exc:
-            # Losing the file costs time, never correctness; the reading is
+            # Losing the file costs time, never correctness; the English is
             # still returned to whoever asked for it.
             logger.warning("Could not keep the English for %s (%s)", root, exc)
             scratch.unlink(missing_ok=True)
