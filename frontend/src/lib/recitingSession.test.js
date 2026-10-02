@@ -522,6 +522,22 @@ describe('a reciting session', () => {
     expect(h.notes.filter((n) => n.kind === 'reading.skipped')).toHaveLength(1)
   })
 
+  it('drops an early score the newer reading of the same recording did not give, so it cannot turn a word red', async () => {
+    const h = harness()
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    await h.session.start()
+    await h.midPhrase()
+    await h.answer(0, 'الحمد لله')
+    // An early reading scored رب before it was said.
+    h.checks[0].answer({ '1:2': [1, 1, 0.05, null] })
+    await h.wait(0)
+    await h.midPhrase()
+    await h.answer(1, 'الحمد لله رب العالمين')
+    h.checks[1].answer({ '1:2': [1, 1, null, 1] })
+    await h.wait(0)
+    expect(h.session.view().sure.now).toEqual({ 0: 1, 1: 1, 3: 1 })
+  })
+
   it('files a sureness answer that arrives after the fold under the words already kept', async () => {
     const h = harness()
     h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
