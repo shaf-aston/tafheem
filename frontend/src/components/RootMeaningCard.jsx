@@ -225,7 +225,7 @@ function Body({
         {/* The sense itself sometimes ends on a line of verse the book cites,
             so it is laid out line by line for the same reason the rest is. */}
         <div className="space-y-1">
-          <Lines text={core_meaning} size="base" style={{ color: accent }} />
+          <Lines text={core_meaning} style={{ color: accent }} />
         </div>
       </div>
 
@@ -412,21 +412,16 @@ const PairedLines = ({ lines }) => (
  *
  * A verse is one thought in two halves with a gap down the middle of the page,
  * and printing it as a sentence loses the shape that makes it readable as
- * poetry. Everything else is prose and stays against the right edge with the
- * origin sense above it. Capped to a readable measure; ml-auto is deliberately
- * physical, since the line is itself right-to-left and ms-auto pushed it the
- * wrong way.
+ * poetry. Everything else is prose against the right edge. Full width at the
+ * reading size: a capped measure left half the card empty and doubled the
+ * scrolling.
  */
-const Line = ({ line, size = 'sm', style }) => (line.halves ? (
-  <div
-    className="max-w-prose ml-auto flex flex-wrap justify-center gap-x-10 gap-y-1"
-    dir="rtl"
-    style={style}
-  >
+const Line = ({ line, size = 'base', style }) => (line.halves ? (
+  <div className="flex flex-wrap justify-center gap-x-10 gap-y-1" dir="rtl" style={style}>
     {line.halves.map((half, i) => <ArabicText key={i} size={size}>{half}</ArabicText>)}
   </div>
 ) : (
-  <ArabicText as="p" size={size} className="max-w-prose ml-auto" style={style}>
+  <ArabicText as="p" size={size} style={style}>
     {line.text}
   </ArabicText>
 ))
