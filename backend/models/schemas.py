@@ -420,6 +420,13 @@ class TimelineRef(BaseModel):
     part: str | None = None
     checked: str | None = None        # where the number was looked up, e.g. "sunnah.com"
     book: str | None = None
+    page: str | None = None           # a book's own page, filled into its cite link
+
+
+class TimelineDate(BaseModel):
+    """An estimate of when, in the words of the one reference that states it."""
+    says: str
+    ref: TimelineRef
 
 
 class TimelineStep(BaseModel):
@@ -453,6 +460,7 @@ class TimelineEvent(BaseModel):
     title: str
     arabic: str
     when: str
+    dates: list[TimelineDate] = []  # estimates of when, each beside its source
     at: float
     hijri: str | None = None        # "5 AH" or "13 BH", beside the common-era year
     until: str | None = None

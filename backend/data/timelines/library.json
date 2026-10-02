@@ -10,6 +10,7 @@
     "  paths        where a run of steps splits, e.g. the believer and the disbeliever; a step naming a path is read side by side with its neighbours on the other paths.",
     "  collections  what a reference may name. kind hadith carries a number, kind book does not.",
     "  places       where an event happened, lon and lat in degrees.",
+    "An event may carry dates: [{says, ref}], an estimate of when, each with the one reference that states it. A book reference may carry page, filled into its cite link.",
     "An event may carry hijri, its Hijri year as '5 AH' or '13 BH', shown beside the common-era year.",
     "  map          land (lon, lat rings, Natural Earth 1:50m, public domain) and one view per map, as a lon/lat box."
   ],
@@ -37,7 +38,8 @@
   "flags": {
     "disputed": "Scholars differ on order",
     "tradplace": "site known from tradition, not the Qur'an",
-    "weakchain": "Chain graded weak by some"
+    "weakchain": "Chain graded weak by some",
+    "qarn": "A qarn is a century or a generation; scholars differ"
   },
   "collections": {
     "bukhari": {
@@ -68,6 +70,16 @@
     "raheeq": {
       "kind": "book",
       "name": "Ar-Raheeq al-Makhtum"
+    },
+    "britannica": {
+      "kind": "book",
+      "name": "Britannica",
+      "cite": "https://www.britannica.com/{page}"
+    },
+    "hadeethenc": {
+      "kind": "book",
+      "name": "Abu Umamah, sahih (at-Tabarani, al-Hakim)",
+      "cite": "https://hadeethenc.com/en/browse/hadith/{page}"
     }
   },
   "places": {

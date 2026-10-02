@@ -27,6 +27,12 @@ export const stepIds = (steps = [], test) => steps.flatMap((s) => [
 /** The flag that says a place is known from tradition; printed beside the place, not as a pill. */
 export const TRAD = 'tradplace'
 
+/** Said where a section gives dates and this event has none a source states. */
+export const NO_DATE = 'No sourced date'
+
+/** Whether any event in the section carries a sourced date. */
+export const isDated = (section) => section.events.some((e) => e.dates.length > 0)
+
 /** Every step at any depth in reading order, each with the steps it sits inside. */
 export const readingOrder = (steps = [], above = []) => steps.flatMap((step) => [
   { step, above },

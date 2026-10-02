@@ -13,9 +13,20 @@
       "title": "Adam",
       "arabic": "آدم",
       "when": "The first",
+      "dates": [
+        {
+          "says": "Ten qarn before Nuh",
+          "ref": {
+            "book": "hadeethenc",
+            "page": "10858"
+          }
+        }
+      ],
       "at": 1,
       "summary": "Created and placed in the Garden; taught the names; descends to the earth as its first khalifah.",
-      "flags": [],
+      "flags": [
+        "qarn"
+      ],
       "refs": [
         {
           "quran": "2:30-37"
@@ -77,11 +88,27 @@
       "title": "Nuh",
       "arabic": "نوح",
       "when": "After Adam",
+      "dates": [
+        {
+          "says": "Ten qarn after Adam",
+          "ref": {
+            "book": "hadeethenc",
+            "page": "10858"
+          }
+        },
+        {
+          "says": "950 years among his people",
+          "ref": {
+            "quran": "29:14"
+          }
+        }
+      ],
       "at": 2,
       "place": "judi",
       "summary": "Calls his people for 950 years; the flood; the ark comes to rest on al-Judi.",
       "flags": [
-        "tradplace"
+        "tradplace",
+        "qarn"
       ],
       "refs": [
         {
@@ -294,11 +321,28 @@
       "title": "Ibrahim",
       "arabic": "إبراهيم",
       "when": "Lut lives in his time",
+      "dates": [
+        {
+          "says": "Early 2nd millennium BCE",
+          "ref": {
+            "book": "britannica",
+            "page": "biography/Abraham"
+          }
+        },
+        {
+          "says": "Ten qarn after Nuh",
+          "ref": {
+            "book": "hadeethenc",
+            "page": "10858"
+          }
+        }
+      ],
       "at": 5,
       "place": "makkah",
       "summary": "Breaks the idols, is saved from the fire, and raises the foundations of the Ka'bah with Isma'il.",
       "flags": [
-        "tradplace"
+        "tradplace",
+        "qarn"
       ],
       "refs": [
         {
@@ -377,6 +421,15 @@
       "title": "Lut",
       "arabic": "لوط",
       "when": "In the time of Ibrahim",
+      "dates": [
+        {
+          "says": "Ibrahim's age, early 2nd millennium BCE",
+          "ref": {
+            "book": "britannica",
+            "page": "biography/Abraham"
+          }
+        }
+      ],
       "at": 5,
       "place": "sodom",
       "summary": "Angels come to him as guests; he leaves by night with his family before his town is overturned.",
@@ -445,6 +498,15 @@
       "title": "Yusuf",
       "arabic": "يوسف",
       "when": "Great-grandson of Ibrahim",
+      "dates": [
+        {
+          "says": "The patriarchs' age, early 2nd millennium BCE",
+          "ref": {
+            "book": "britannica",
+            "page": "biography/Abraham"
+          }
+        }
+      ],
       "at": 6,
       "place": "egypt",
       "summary": "Thrown in the well, sold in Egypt, imprisoned, then placed over the storehouses of the land.",
@@ -540,6 +602,15 @@
       "title": "Musa",
       "arabic": "موسى",
       "when": "With his brother Harun",
+      "dates": [
+        {
+          "says": "14th to 13th century BCE",
+          "ref": {
+            "book": "britannica",
+            "page": "biography/Moses-Hebrew-prophet"
+          }
+        }
+      ],
       "at": 7,
       "place": "sinai",
       "summary": "Confronts Pharaoh with Harun beside him, the sea is parted, and he receives the Tawrah.",
@@ -642,6 +713,22 @@
       "title": "Dawud and Sulayman",
       "arabic": "داود وسليمان",
       "when": "Father, then son",
+      "dates": [
+        {
+          "says": "Dawud c. 1000 BCE",
+          "ref": {
+            "book": "britannica",
+            "page": "biography/David"
+          }
+        },
+        {
+          "says": "Sulayman c. 975 to 926 BCE",
+          "ref": {
+            "book": "britannica",
+            "page": "biography/Solomon"
+          }
+        }
+      ],
       "at": 8,
       "place": "jerusalem",
       "summary": "Dawud is given the Zabur and iron made soft; Sulayman is given the wind and the jinn.",
@@ -740,6 +827,15 @@
       "title": "Yunus",
       "arabic": "يونس",
       "when": "Before Zakariyya",
+      "dates": [
+        {
+          "says": "c. 785 BCE",
+          "ref": {
+            "book": "britannica",
+            "page": "biography/Jonah-biblical-figure"
+          }
+        }
+      ],
       "at": 9,
       "place": "nineveh",
       "summary": "Leaves his people, is swallowed by the whale, and returns to a people who believed.",
@@ -826,6 +922,15 @@
       "title": "Zakariyya and Yahya",
       "arabic": "زكريا ويحيى",
       "when": "In the time of Isa",
+      "dates": [
+        {
+          "says": "His son Yahya born in the 1st decade BCE",
+          "ref": {
+            "book": "britannica",
+            "page": "biography/Saint-John-the-Baptist"
+          }
+        }
+      ],
       "at": 10,
       "place": "jerusalem",
       "summary": "Zakariyya, old and childless, is given Yahya, who is given judgement while still a boy.",
@@ -893,6 +998,23 @@
       "title": "Isa",
       "arabic": "عيسى",
       "when": "In the time of Yahya",
+      "dates": [
+        {
+          "says": "Born c. 6 to 4 BCE",
+          "ref": {
+            "book": "britannica",
+            "page": "biography/Jesus"
+          }
+        },
+        {
+          "says": "600 years before the Prophet",
+          "ref": {
+            "hadith": "bukhari",
+            "number": 3948,
+            "checked": "sunnah.com"
+          }
+        }
+      ],
       "at": 10,
       "place": "bethlehem",
       "summary": "Born to Maryam without a father; not killed nor crucified, but raised up.",
