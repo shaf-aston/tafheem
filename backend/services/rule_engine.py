@@ -46,12 +46,26 @@ def sign(case: str | None, kind: str = "vowel") -> str | None:
     return teacher_rules()["signs"][kind].get(case)
 
 
+def resign(old_sign: str | None, case: str) -> str | None:
+    """The sign for a new case, from the table the old sign came from, so a dual or a
+    كِتَابِي keeps its kind of sign when the parser moves its case."""
+    tables = {k: t for k, t in teacher_rules()["signs"].items() if not k.startswith("_")}
+    kind = next((k for k, table in tables.items() if old_sign in table.values()), "vowel")
+    return sign(case, kind) or sign(case)
+
+
 def _noun_kind(tag: dict) -> str:
     """Which sign table a noun's case is read from."""
     num = tag.get("number")
-    if num == "p" and tag.get("gender") == "m" and strip_diacritics(tag.get("word", "")).endswith(("ون", "ين")):
+    bare = strip_diacritics(tag.get("word", ""))
+    if num == "p" and tag.get("gender") == "m" and bare.endswith(("ون", "ين")):
         return "sound_plural"
-    return "dual" if num == "d" else "vowel"
+    if num == "d":
+        return "dual"
+    if tag.get("enclitic") == "1s_poss":
+        return "before_ya"  # كِتَابِي: the kasra belongs to the ya, the case cannot show
+    # الفَتَى: an alef cannot carry a vowel (العصا, spelled with a tall alef, is not caught)
+    return "on_alef" if bare.endswith("ى") else "vowel"
 
 
 def _past_ending(word: str) -> str:
@@ -65,33 +79,35 @@ def _past_ending(word: str) -> str:
         # كَتَبَتْ: a ت the reader closed with a sukun is تاء التأنيث, not a pronoun
         if tail and not (tail == "ت" and marked and SUKUN in marked[-1][1]):
             return ending
-    return "الفتح"
+    return teacher_rules()["case_said"]["past_on"]
 
 
 def _five_verbs(word: str, case: str) -> bool:
-    """يكتبون، تكتبين، يكتبان (and يكتبوا once the nun is dropped): case by the nun.
-    A damma typed on the nun makes it the verb's own letter (يَبِينُ)."""
+    """يكتبون، تكتبين، يكتبان (and يكتبوا، يكتبا، تكتبي once the nun is dropped): case by
+    the nun. A damma typed on the nun makes it the verb's own letter (يَبِينُ), and a
+    fatha on a last ي makes it a weak root letter (لن يَمْشِيَ), not the ya of تكتبي."""
     bare = strip_diacritics(word)
-    if typed_case(word) == "u" or len(bare) < 4:
+    shown = typed_case(word)
+    if shown == "u" or len(bare) < 4:
         return False
-    return bare.endswith(("ون", "ين", "ان") if case == "raf'" else ("وا",))
+    if case == "raf'":
+        return bare.endswith(("ون", "ين", "ان"))
+    return bare.endswith(("وا", "ا")) or (bare.startswith("ت") and bare.endswith("ي") and shown != "a")
 
 
 def verb_card(word: str, aspect: str | None, case: str | None = None) -> dict:
     """Case, sign and reason of a verb by its tense, so the three always agree.
     syntax.with_parser_roles calls it again when the parser reads a word as a verb
     or the particle before a present verb settles its mood."""
-    if aspect == "p":
-        on = _past_ending(word)
-        return {"case": "mabni", "sign": f"مبني على {on}", "reason": f"فعل ماضٍ مبني على {on}. {reason('فعل ماضٍ')}"}
-    if aspect == "c":
-        return {"case": "mabni", "sign": "مبني على السكون",
-                "reason": f"فعل أمر مبني على السكون. {reason('فعل أمر')}"}
+    words = teacher_rules()["case_said"]
+    tense = words["tense"].get(aspect)
+    if aspect in ("p", "c"):
+        built = words["built_on"].format(ending=_past_ending(word) if aspect == "p" else words["command_on"])
+        return {"case": "mabni", "sign": built, "reason": f"{tense} {built}. {reason(tense)}"}
     if aspect == "i":
         case = case if case in teacher_rules()["signs"]["five_verbs"] else "raf'"
-        said = teacher_rules()["case_said"]["word"][case]
         return {"case": case, "sign": sign(case, "five_verbs" if _five_verbs(word, case) else "vowel"),
-                "reason": f"فعل مضارع {said}. {reason('فعل مضارع')}"}
+                "reason": f"{tense} {words['word'][case]}. {reason(tense)}"}
     return {"case": "mabni", "sign": sign("mabni"), "reason": reason("فعل")}
 
 

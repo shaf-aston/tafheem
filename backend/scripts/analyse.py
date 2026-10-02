@@ -26,7 +26,8 @@ def tree_lines(node: dict | None, words: list[str], depth: int = 0) -> list[str]
     """The bracket tree, one bracket per line, indented by depth; a gap says so."""
     if not node:
         return []
-    name = node.get("role") or node.get("label") or ("(gap)" if node.get("gap") else "")
+    named = [part for part in (node.get("role"), node.get("label")) if part]
+    name = " / ".join(named) or ("(gap)" if node.get("gap") else "")
     said = f"  {words[node['word']]}" if node.get("word") is not None else ""
     own = [f"{'  ' * depth}{name}{said}"]
     return own + [line for child in node.get("parts", []) + node.get("children", [])

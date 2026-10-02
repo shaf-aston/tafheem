@@ -8,17 +8,23 @@
   "a_when_mudaf": ["منادى"]
  },
  "signs": {
-  "_comment": "The sign a card prints for its case (rule_engine.sign). A dual, a sound masculine plural and one of the five verbs show case by a letter instead of a vowel.",
+  "_comment": "The sign a card prints for its case (rule_engine.sign). A dual, a sound masculine plural and one of the five verbs show case by a letter instead of a vowel; a noun before ya al-mutakallim (كِتَابِي) or ending in alef maqsura (الفَتَى) has its vowel assumed, not seen. The rules in reasons name no sign, so they hold for all of these.",
   "vowel": {"raf'": "ضمة", "nasb": "فتحة", "jarr": "كسرة", "jazm": "سكون", "mabni": "مبني"},
   "dual": {"raf'": "الألف، مثنى", "nasb": "الياء، مثنى", "jarr": "الياء، مثنى"},
   "sound_plural": {"raf'": "الواو، جمع مذكر سالم", "nasb": "الياء، جمع مذكر سالم", "jarr": "الياء، جمع مذكر سالم"},
-  "five_verbs": {"raf'": "ثبوت النون", "nasb": "حذف النون", "jazm": "حذف النون"}
+  "five_verbs": {"raf'": "ثبوت النون", "nasb": "حذف النون", "jazm": "حذف النون"},
+  "before_ya": {"raf'": "ضمة مقدرة على ما قبل ياء المتكلم", "nasb": "فتحة مقدرة على ما قبل ياء المتكلم", "jarr": "كسرة مقدرة على ما قبل ياء المتكلم"},
+  "on_alef": {"raf'": "ضمة مقدرة على الألف للتعذر", "nasb": "فتحة مقدرة على الألف للتعذر", "jarr": "كسرة مقدرة على الألف للتعذر"}
  },
  "case_said": {
-  "_comment": "A case as a reason says it: the word itself, and the place a mabni word fills (مبني في محل رفع).",
+  "_comment": "A case as a reason says it: the word itself, the place a mabni word fills (مبني في محل رفع), what a mabni verb is built on, and a verb's opening words by its tense (rule_engine.verb_card).",
   "word": {"raf'": "مرفوع", "nasb": "منصوب", "jarr": "مجرور", "jazm": "مجزوم"},
   "place": {"u": "رفع", "a": "نصب", "i": "جر"},
-  "mabni_noun": "مبني في محل {place} لأنه {role}"
+  "mabni_noun": "مبني في محل {place} لأنه {role}",
+  "built_on": "مبني على {ending}",
+  "past_on": "الفتح",
+  "command_on": "السكون",
+  "tense": {"p": "فعل ماضٍ", "c": "فعل أمر", "i": "فعل مضارع"}
  },
  "past_ending": {
   "_comment": "What a past verb is built on, by its last letters (longest first): the damma before واو الجماعة, the sukun before a raf' pronoun; otherwise the fatha. A typed sukun on a last ت makes it تاء التأنيث (كَتَبَتْ), built on the fatha.",
@@ -26,23 +32,25 @@
   "السكون": ["تما", "تم", "تن", "نا", "ت"]
  },
  "reasons": {
-  "_comment": "The reason a card shows, one per role, so it always explains the role the card wears (rule_engine writes it, syntax/__init__ rewrites it when the parser renames the word). Every name in syntax/naming.ROLES has one; the keys after it are the rule engine's own variants.",
+  "_comment": "The reason a card shows, one per role, so it always explains the role the card wears (rule_engine writes it, syntax/__init__ rewrites it when the parser renames the word). Every name in roles.json has one; the keys after it are the rule engine's own variants.",
   "فعل": "فعل في جملة فعلية",
+  "اسم موصول": "اسم موصول مبني، والجملة بعده صلته",
+  "صلة": "جملة صلة الموصول، لا محل لها من الإعراب",
   "فعل أمر": "القاعدة: فعل الأمر مبني",
   "فعل مضارع": "القاعدة: الفعل المضارع معرب",
   "فعل ماضٍ": "القاعدة: الفعل الماضي مبني",
-  "فاعل": "مرفوع لأنه فاعل. القاعدة: الفاعل مرفوع بالضمة",
+  "فاعل": "مرفوع لأنه فاعل. القاعدة: الفاعل مرفوع",
   "نائب فاعل": "مرفوع لأنه نائب فاعل. القاعدة: نائب الفاعل مرفوع",
-  "مبتدأ": "مرفوع لأنه مبتدأ. القاعدة: المبتدأ مرفوع بالضمة الظاهرة",
+  "مبتدأ": "مرفوع لأنه مبتدأ. القاعدة: المبتدأ مرفوع",
   "اسم كان": "مرفوع لأنه اسم كان. القاعدة: كان وأخواتها ترفع الاسم",
   "اسم إن": "منصوب لأنه اسم إن. القاعدة: إن وأخواتها تنصب الاسم",
   "اسم كاد": "مرفوع لأنه اسم كاد. القاعدة: كاد وأخواتها ترفع الاسم",
-  "خبر": "مرفوع لأنه خبر. القاعدة: الخبر مرفوع بالضمة الظاهرة",
+  "خبر": "مرفوع لأنه خبر. القاعدة: الخبر مرفوع",
   "خبر كان": "منصوب لأنه خبر كان. القاعدة: كان وأخواتها تنصب الخبر",
   "خبر إن": "مرفوع لأنه خبر إن. القاعدة: إن وأخواتها ترفع الخبر",
   "خبر إن ثانٍ": "مرفوع لأنه خبر ثانٍ لإن. القاعدة: إن وأخواتها ترفع الخبر",
   "خبر كاد": "في محل نصب لأنه خبر كاد. القاعدة: كاد وأخواتها تنصب الخبر",
-  "مفعول به": "منصوب لأنه مفعول به. القاعدة: المفعول به منصوب بالفتحة",
+  "مفعول به": "منصوب لأنه مفعول به. القاعدة: المفعول به منصوب",
   "مفعول فيه": "مفعول فيه. القاعدة: ظرف الزمان والمكان منصوب، والمبني منه (إذ، متى، حيث) في محل نصب",
   "مفعول مطلق": "منصوب لأنه مفعول مطلق. القاعدة: المفعول المطلق منصوب",
   "منادى": "منادى. القاعدة: المنادى المفرد مبني على الضم في محل نصب، والمضاف منصوب",

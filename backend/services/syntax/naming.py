@@ -15,53 +15,18 @@ package's `__init__.py`.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import book_words, is_mabni, is_one, is_plain_noun
+from backend.services.nahw_book import book_words, is_mabni, is_one, is_plain_noun, role_table
 from backend.services.syntax.vowels import (
-    CAMEL_CASE, CASE_NAME, SUKUN, has_tanween, letters, past_passive_shape, typed_case, typed_passive)
+    CAMEL_CASE, CASE_NAME, SUKUN, command_shape, has_tanween, letters, past_passive_shape, typed_case,
+    typed_passive)
 
 # a root letter is what is left once the letters that come and go are removed
 WEAK = set("اويىءأإآئؤة")
 PRESENT_PREFIX = set("أنيت")
 
-# Every role this module can name, and how each one is drawn: the card's colour
-# key (the contract's, `schemas.ROLE_KEYS`) and the bracket diagram's tone. The
-# two are different vocabularies over the same roles, so they are one table:
-# two tables drift the moment a role is added to only one of them. A role
-# missing here is left uncoloured rather than given a plausible colour.
-ROLES = {
-    #              card key,    bracket tone
-    "فعل": ("fil", "fil"),
-    "فاعل": ("fail", "fail"),
-    "نائب فاعل": ("fail", "fail"),
-    "مبتدأ": ("mubtada", "fail"),
-    "اسم كان": ("mubtada", "fail"),
-    "اسم إن": ("mubtada", "fail"),
-    "اسم كاد": ("mubtada", "fail"),
-    "خبر": ("khabar", "mafool"),
-    "خبر كان": ("khabar", "mafool"),
-    "خبر إن": ("khabar", "mafool"),
-    "خبر كاد": ("khabar", "mafool"),
-    "مفعول به": ("mafool", "mafool"),
-    # the other nasb extras (time and place, the called, the excepted) share one colour,
-    # and the followers that copy the word before them (عطف، توكيد، بدل) share another
-    "مفعول فيه": ("mansub", "mansub"),
-    "منادى": ("mansub", "mansub"),
-    "مستثنى": ("mansub", "mansub"),
-    "معطوف": ("tabi", "tabi"),
-    "توكيد": ("tabi", "tabi"),
-    "بدل": ("tabi", "tabi"),
-    "مفعول مطلق": ("mafool", "mafool"),
-    "تمييز": ("mafool", "mafool"),
-    "صفة": ("sifah", "rel"),
-    "حال": ("haal", "mafool"),
-    "مضاف إليه": ("mudaf", "mudaf"),
-    "حرف": ("harf", "harf"),
-    "حرف جر": ("harf", "harf"),
-    "مجرور": ("harf", "mafool"),
-    # said only inside a unit the diagram draws, so no card ever shows them
-    "مضاف": (None, "mudaf"),
-    "موصوف": (None, "fail"),
-}
+# Every role this module can name, with its card colour key and bracket tone
+# (data/nahw_rules/roles.json); a role missing there is left uncoloured.
+ROLES = role_table()
 
 
 def _entry(role: str | None) -> tuple:
@@ -99,10 +64,13 @@ def is_verb(token: dict) -> bool:
         return False  # a verb never carries tanween, whatever the parser tagged it
     if token["pos"].startswith("VRB"):  # VRB-PASS is a verb too
         return True
-    # the word is unknown to the morphology, but the reader typed a passive present verb
+    # the word is unknown to the morphology, but the reader typed a passive verb or a
+    # hollow command (بِعْ, which CAMeL takes for a name)
     typed = token.get("typed") or ""
+    if len(bare_letters(typed)) == 2 and command_shape(typed):
+        return token.get("pos_camel") in ("noun", "noun_prop")  # نَمْ is not the noun نَمّ
     return token.get("pos_camel") == "noun_prop" and (
-        (bare_letters(typed)[:1] in PRESENT_PREFIX and typed_passive(typed, True))
+        (strip_diacritics(typed)[:1] in PRESENT_PREFIX and typed_passive(typed, True))
         or past_passive_shape(typed))
 
 
@@ -403,8 +371,11 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     bases = base_tokens(words, tokens)
     if len(bases) != len(words):
         return [{"role": None, "case": None} for _ in words]  # the split does not line up
-    for word, token in zip(words, bases):
+    for i, (word, token) in enumerate(zip(words, bases)):
         token["typed"] = word
+        # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever reading the parser had
+        if command_shape(word, i > 0 and is_one(strip_diacritics(words[i - 1]), "jazm", "before_a_present_verb")):
+            token["asp"] = "c"
         # letters at the end that belong to an attached pronoun, not to the word
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
                                 if t["head"] == token["id"] and t["form"].startswith("+"))
@@ -435,7 +406,8 @@ def opens_with_verb(roles: list[str | None]) -> bool:
 def _ending(role: str | None, token: dict, before: dict | None) -> str | None:
     """What to print under the word: a case for a noun or a present verb, else mabni."""
     if role == "فعل":
-        present = bare_letters(token["typed"])[:1] in PRESENT_PREFIX and token.get("asp") == "i"
+        # not bare_letters: it folds the أ of أَجْلِسُ into an alef
+        present = strip_diacritics(token["typed"])[:1] in PRESENT_PREFIX and token.get("asp") == "i"
         return _mood(token["typed"], before) if present else "mabni"
     if role in ("حرف", "حرف جر"):
         return "mabni"
