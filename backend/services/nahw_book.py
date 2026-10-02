@@ -31,6 +31,11 @@ def book_words(family: str, part: str = "words") -> frozenset[str]:
     return frozenset(_closed()["families"][family][part])
 
 
+def book_map(family: str, part: str) -> dict[str, str]:
+    """A family's word -> value table (the place a question noun fills, ...)."""
+    return _closed()["families"][family][part]
+
+
 def is_one(lemma: str, family: str, part: str = "words") -> bool:
     """True when the parser's lemma (an attached clitic's '+' aside) is on that list."""
     return lemma.strip("+") in book_words(family, part)

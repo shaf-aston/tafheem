@@ -12,7 +12,7 @@ from __future__ import annotations
 from typing import Callable
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import book_words, is_one, is_plain_noun
+from backend.services.nahw_book import book_map, book_words, is_one, is_plain_noun
 from backend.services.syntax.vowels import (
     CAMEL_CASE, SHADDA, SUKUN, has_tanween, past_passive_shape, typed_case, typed_passive)
 
@@ -74,8 +74,9 @@ class Sentence:
         """(ما, its ism, its khabar) of ما الحجازية, which works like ليس (Tasheel 1.9 n6
         p23): a verbless sentence opening ما, a noun, then an indefinite noun in nasb."""
         words = [t for t in self.tokens if not t["form"].startswith("+")]
+        # its ism is marfu': ما أحسنَ زيدًا is the ما of wonder
         if not (self.verbless and len(words) >= 3 and words[0]["lemma"] == "ما"
-                and words[1]["pos"] in ("NOM", "PROP")):
+                and words[1]["pos"] in ("NOM", "PROP") and typed_or_parsed_case(words[1]) != "a"):
             return None
         khabar = next((t for t in words[2:] if t["pos"] in ("NOM", "PROP") and t.get("stt") == "i"
                        and typed_or_parsed_case(t) == "a"), None)
@@ -219,6 +220,53 @@ def is_called_noun(token: dict) -> bool:
     return _listed(token, "nida", "called_nouns")
 
 
+def previous_noun(token: dict, s: Sentence) -> dict | None:
+    """The noun straight before this word, past any pronoun joined to that noun (أخو+ك)."""
+    for t in sorted((t for t in s.tokens if t["id"] < token["id"]), key=lambda t: -t["id"]):
+        if not t["form"].startswith("+"):
+            return t if t["pos"] in ("NOM", "PROP") and not is_verb(t) else None
+    return None
+
+
+def stands_for(token: dict, s: Sentence) -> bool:
+    """The بدل (Tasheel 3.10.4 p95), straight after a definite noun in the same case: a name
+    that names it again (جاء أخوك زيدٌ), or a noun with a pronoun back to it, a part or a
+    quality of it (أكلت الرغيفَ ثلثَه، نفعني المعلمُ علمُه). A صفة is neither a name nor
+    carries that pronoun. Only in a sentence with a verb: after a bare mubtada a definite
+    noun is its khabar (اللهُ ربُّنا); nor after a verb of two objects, whose second object
+    stands there (أعطيت الولدَ كتابَه)."""
+    before = previous_noun(token, s)
+    if s.verbless or not before or token["rel"] == "IDF":
+        return False
+    names = token["pos"] == "PROP" or any(k.get("pos_camel") == "pron" and k["rel"] == "IDF" for k in s.kids(token))
+    mine = typed_or_parsed_case(token)
+    if not (names and before.get("stt") in ("d", "c") and mine and mine == typed_or_parsed_case(before)):
+        return False
+    verb = verb_above(before, s)
+    return not (verb and (is_one(verb["lemma"], "zanna") or is_one(verb["lemma"], "two_objects_give")))
+
+
+def with_waw(token: dict, s: Sentence) -> bool:
+    """سرتُ والشاطئَ: after واو المعية (و meaning "with") a noun the reader put in nasb is the
+    مفعول معه when nothing before the و is in nasb for it to join (Tasheel 3.8.5 p76); a
+    معطوف would wear the case of what it joins."""
+    head = s.head(token)
+    if not (head and head["pos"] == "PRT" and head["lemma"].strip("+") == "و"
+            and typed_case(token.get("typed"), token.get("stuck_on", 0)) == "a" and verb_above(head, s) is not None):
+        return False
+    joined = previous_noun(head, s)
+    return joined is None or typed_or_parsed_case(joined) != "a"
+
+
+def jarr_takes(token: dict, s: Sentence) -> bool:
+    """A preposition works only on the noun straight after it (Tasheel 1.7 p18): a second
+    noun the parser hung on it (لله الحمدُ) is not its majrur."""
+    head = s.head(token)
+    if not (token["rel"] == "OBJ" and head and head["pos"] == "PRT" and not is_called_noun(head)):
+        return False
+    return not any(t["pos"] in ("NOM", "PROP") and head["id"] < t["id"] < token["id"] for t in s.tokens)
+
+
 def _kind(token: dict, s: Sentence) -> str:
     """Particle, verb or noun. A word a calling or excepting particle takes is a noun,
     whatever the parser tagged it, so that test comes before the verb test."""
@@ -240,7 +288,7 @@ def _follows(token: dict, s: Sentence) -> str:
     answers none and the rest of the naming decides it. Tested in this order because
     each earlier follower has a mark of its own (a pointer child, a joining particle, a
     bare name after a noun with ال, a listed تأكيد word) that a plain na't lacks."""
-    if s.asked_of(token) or calling_head(token, s):
+    if s.asked_of(token) or calling_head(token, s) or with_waw(token, s):
         return "none"  # غيرُ خالدٍ after a complete clause is the مستثنى, not a صفة
     head = s.head(token)
     # هذا البستانُ: the noun with ال a pointer points at, hung on it or (as some parses
@@ -269,6 +317,9 @@ def _follows(token: dict, s: Sentence) -> str:
             and not has_tanween(token.get("typed")):
         return "badal"
     with_pronoun = any(k.get("pos_camel") == "pron" for k in s.kids(token))
+    if not _listed(token, "tawkeed", "with_pronoun" if with_pronoun else "without_pronoun") \
+            and stands_for(token, s):
+        return "badal"
     if _listed(token, "tawkeed", "with_pronoun" if with_pronoun else "without_pronoun") \
             and head["id"] < token["id"] and not is_verb(head) and head["pos"] != "PRT":
         return "tawkeed"
@@ -294,7 +345,7 @@ def is_participle(token: dict) -> bool:
     A word the morphology does not know (مسرعا) is judged by its مـ and its ending ـا."""
     typed = bare_letters(token.get("typed") or "")
     return (token.get("ud") == "ADJ" or token.get("pos_camel") == "adj"
-            or token.get("pattern", "").startswith(tuple(book_words("participle_patterns")))
+            or token.get("pattern", "").removeprefix("ال").startswith(tuple(book_words("participle_patterns")))
             or (token.get("pos_camel") == "noun_prop" and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
@@ -319,15 +370,33 @@ def _listed(token: dict, family: str, part: str = "words") -> bool:
     return any(is_one(spelling, family, part) for spelling in (token["lemma"], strip_diacritics(token["form"])))
 
 
+def _is_zarf(token: dict, s: Sentence) -> bool:
+    """A listed time or place word, or كل/بعض added to one (كلَّ يومٍ)."""
+    if token["pos"] == "PRT":
+        return False
+    if _listed(token, "zarf_zaman") or _listed(token, "zarf_makan"):
+        return True
+    return _listed(token, "zarf_zaman", "carriers") and any(
+        k["rel"] == "IDF" and (_listed(k, "zarf_zaman") or _listed(k, "zarf_makan")) for k in s.kids(token))
+
+
+def zarf_of_khabar(token: dict, s: Sentence) -> bool:
+    """الأستاذُ عندَ البابِ: in a verbless sentence a place or time word with its mudaf ilayh
+    is the khabar's maf'ul fihi (the khabar itself is understood, Tasheel 1.4.4 p13)."""
+    return (s.verbless and _is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
+            and token["rel"] in ("---", "MOD", "PRD")
+            and typed_or_parsed_case(token) in (None, "a") and any(k["rel"] == "IDF" for k in s.kids(token)))
+
+
 def _place_time(token: dict, s: Sentence) -> bool:
     """A listed time or place word that is a verb's مفعول فيه (Tasheel 3.2 p67): it
-    modifies the verb with no vowel or fatha, or it stands before its verb with the
-    verb hanging off it (مَتَى سافر), whichever way this CAMeL/onnx build drew the link."""
-    if token["pos"] == "PRT" or not (_listed(token, "zarf_zaman") or _listed(token, "zarf_makan")):
+    modifies the verb with no vowel or fatha (the parser may draw that as idafa), or it
+    stands before its verb with the verb hanging off it (مَتَى سافر)."""
+    if not _is_zarf(token, s):
         return False
     head = s.head(token)
     if head and is_verb(head):
-        return token["rel"] == "MOD" and typed_case(token.get("typed"), token.get("stuck_on", 0)) in (None, "a")
+        return token["rel"] in ("MOD", "IDF") and typed_case(token.get("typed"), token.get("stuck_on", 0)) in (None, "a")
     return typed_or_parsed_case(token) in (None, "a") and any(
         is_verb(k) and k["id"] > token["id"] for k in s.kids(token))
 
@@ -344,12 +413,17 @@ def _verb_place(token: dict, s: Sentence) -> str:
     absolute object (same root), a hal or a tamyeez."""
     if _place_time(token, s):
         return "place_time"
+    if with_waw(token, s):
+        return "accompaniment"
     head = s.head(token)
     rel = token["rel"]
     typed = typed_case(token.get("typed"), token.get("stuck_on", 0))
     if head and is_verb(head):
         before = token["id"] < head["id"]
         siblings = [t for t in s.kids(head) if t is not token]
+        asked = book_map("istifham", "before_verb").get(strip_diacritics(token["form"]))
+        if asked and before and not any(t["rel"] == "OBJ" for t in siblings):
+            return asked  # ماذا قرأت، كيف جئت: the question noun fills the place it asks about
         if before and rel in ("SBJ", "TPC") and typed == "a":
             return "object"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object
         if before and rel in ("SBJ", "TPC"):
@@ -416,7 +490,9 @@ def _governor(token: dict, s: Sentence) -> str:
         return "verb"
     if calling := calling_head(token, s):
         return calling
-    if rel == "OBJ" and head and head["pos"] == "PRT" and not is_called_noun(head):
+    if with_waw(token, s):
+        return "verb"  # the verb before واو المعية works on the noun after it
+    if jarr_takes(token, s):
         return "harf_jarr"
     under_verb = bool(head) and is_verb(head)
     if rel == "IDF" and not (under_verb and typed != "i"):
@@ -435,7 +511,7 @@ def _governor(token: dict, s: Sentence) -> str:
         family = s.family(head)
         if family:
             return family
-    if rel in ("TMZ", "OBJ") and head and not under_verb:
+    if rel in ("TMZ", "OBJ") and head and not under_verb and head["pos"] != "PRT":
         return "noun"  # عشرون كتابًا: a number or measure
     if _verb_place(token, s) != "none":
         return "verb"
@@ -469,6 +545,11 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     rel = token["rel"]
     if s.hijazi and token in s.hijazi[1:]:
         return "subject" if token is s.hijazi[1] else "predicate"
+    if zarf_of_khabar(token, s):
+        return "place_time"
+    if (s.verbless and rel == "OBJ" and s.head(token) and s.head(token)["pos"] == "PRT" and not jarr_takes(token, s)
+            and typed_or_parsed_case(token) == "u"):
+        return "subject"  # لله الحمدُ: the noun after a fronted jar-majrur khabar is the مبتدأ
     if is_verb(token):  # a verb is only ever a khabar by its link; its clause is named from the tree above
         return "predicate" if rel == "PRD" else "none"
     head = s.head(token)
@@ -533,8 +614,8 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, Sentence], str]]] = {
     "follows": (("naat", "atf", "tawkeed", "badal", "none"), _follows),
     "governor": (("harf_jarr", "idafa", "verb", "noun", "inna", "kana", "kaada", "zanna", "nida", "istithna",
                   "none"), _governor),
-    "slot": (("subject", "predicate", "object", "second_object", "absolute", "place_time", "state",
-              "specification", "none"), _slot),
+    "slot": (("subject", "predicate", "object", "second_object", "absolute", "place_time", "accompaniment",
+              "state", "specification", "none"), _slot),
     "voice": (("active", "passive", "none"), _voice),
 }
 

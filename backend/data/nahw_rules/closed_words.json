@@ -493,6 +493,8 @@
   "istifham": {
    "ar": "أدوات الاستفهام",
    "effect": "turns the sentence into a question; the particles govern nothing, the nouns take a role in the sentence (subject, object, adverb, ...)",
+   "_before_verb": "The place a question noun fills when it opens a verb clause whose verb has no object of its own (Tasheel 2.4.7 p47): what or how many is asked is the object (ماذا قرأت، كم كتابًا قرأت), how is the hal (كيف جئت), when and where the maf'ul fihi (متى سافر، أين جلس). Read by services/syntax/facts.py.",
+   "before_verb": {"ماذا": "object", "كم": "object", "كيف": "state", "متى": "place_time", "أين": "place_time", "أيان": "place_time"},
    "words": [
     "أ",
     "هل",
@@ -583,6 +585,8 @@
   "zarf_zaman": {
    "ar": "ظروف الزمان",
    "effect": "adverb of time (maf'ul fihi), nasb, or mudaf; a few are built (mabni) as in إذ إذا متى",
+   "_carriers": "A word of whole or part added to a time or place word stands in its place as the maf'ul fihi (كلَّ يومٍ، بعضَ الليلِ).",
+   "carriers": ["كل", "بعض"],
    "words": [
     "إذ",
     "إذا",
@@ -1019,12 +1023,16 @@
    ]
   },
   "participle_patterns": {
-   "ar": "أوزان اسم الفاعل واسم المفعول",
-   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal. Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل, مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول.",
+   "ar": "أوزان اسم الفاعل واسم المفعول والصفة المشبهة",
+   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal (a derived describing word, Tasheel 3.8.6). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل, 1ا2ِي the same with a weak last letter (باكية، داعيًا), مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول; the صفة مشبهة: 1َ2ِ3 فَعِل (فَرِحًا), 1َ2ِي3 فَعِيل (سَعِيدًا), 1َ2ْ3َان فَعْلان (غَضْبَانَ).",
    "words": [
     "1ا2ِ3",
+    "1ا2ِي",
     "مُ",
-    "مَ1ْ2ُو3"
+    "مَ1ْ2ُو3",
+    "1َ2ِ3",
+    "1َ2ِي3",
+    "1َ2ْ3َان"
    ]
   },
   "tamyeez_verbs": {

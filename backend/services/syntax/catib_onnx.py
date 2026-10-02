@@ -223,14 +223,22 @@ def _split_word(word: str, a: dict) -> list[dict]:
         # The analyzer found nothing for this word; BERT's own tag is all
         # there is, so it is reported as a single unsplit token.
         catib6 = _POS_TO_CATIB6.get(a.get("pos", ""), "NOM")
-        return [{
+        base = {
             "form": dediac_ar(word).replace("_", "").replace("ـ", "") or word,
             "lemma": dediac_ar(a.get("lex", word)),
             "pos": catib6, "pos_camel": a.get("pos", ""), "ud": catib6,
             "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
             "stt": a.get("stt", "na"), "cas": a.get("cas", "na"),
             "token_type": "baseword",
-        }]
+        }
+        if not str(a.get("prc1", "")).endswith("_prep"):
+            return [base]
+        # لِلّٰهِ: the analyser knows the word opens with a preposition but files it unsplit;
+        # the preposition is its first letter, and the noun is its lemma (الله)
+        letter = base["form"][:1]
+        return [{"form": f"{letter}+", "lemma": f"{letter}+", "pos": "PRT", "pos_camel": "prep", "ud": "ADP",
+                 "asp": "na", "vox": "na", "stt": "na", "cas": "na", "token_type": "prc1"},
+                {**base, "form": base["lemma"], "cas": "g"}]
 
     if "+" not in a["catib6"]:
         toks, catib6s, uds = [a["atbtok"]], [a["catib6"]], [a["ud"]]

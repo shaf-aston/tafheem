@@ -14,6 +14,7 @@
   "خبر كاد": {"key": "khabar", "tone": "mafool"},
   "مفعول به": {"key": "mafool", "tone": "mafool"},
   "مفعول فيه": {"key": "mansub", "tone": "mansub"},
+  "مفعول معه": {"key": "mansub", "tone": "mansub"},
   "منادى": {"key": "mansub", "tone": "mansub"},
   "مستثنى": {"key": "mansub", "tone": "mansub"},
   "معطوف": {"key": "tabi", "tone": "tabi"},

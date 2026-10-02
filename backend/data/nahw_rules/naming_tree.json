@@ -33,15 +33,17 @@
          {"branch": "الفاعل ونائبه", "book": "3.1 p60", "is": "subject", "split": "voice", "children": [
            {"branch": "فاعل", "book": "3.1 p60", "is": "active", "role": "فاعل"},
            {"branch": "نائب فاعل", "book": "3.1 p60", "is": "passive", "role": "نائب فاعل"}]},
-         {"branch": "المفعولات", "book": "3.2 p67", "is": ["object", "second_object", "absolute", "place_time"], "split": "slot", "children": [
+         {"branch": "المفعولات", "book": "3.2 p67", "is": ["object", "second_object", "absolute", "place_time", "accompaniment"], "split": "slot", "children": [
            {"branch": "المفعول به", "book": "3.2 p67", "is": ["object", "second_object"], "role": "مفعول به"},
            {"branch": "المفعول المطلق", "book": "3.2 p67", "is": "absolute", "role": "مفعول مطلق"},
-           {"branch": "المفعول فيه", "book": "3.2 p67", "is": "place_time", "role": "مفعول فيه"}]},
+           {"branch": "المفعول فيه", "book": "3.2 p67", "is": "place_time", "role": "مفعول فيه"},
+           {"branch": "المفعول معه", "book": "3.8.5 p76", "is": "accompaniment", "role": "مفعول معه"}]},
          {"branch": "الحال", "book": "3.2 p67", "is": "state", "role": "حال"},
          {"branch": "التمييز", "book": "3.2 p67", "is": "specification", "role": "تمييز"}]},
        {"branch": "ما له عامل آخر", "book": "3.1 p60", "else": true, "split": "slot", "children": [
          {"branch": "المبتدأ", "book": "1.4 p6", "is": "subject", "role": "مبتدأ"},
          {"branch": "الخبر", "book": "1.4 p6", "is": "predicate", "role": "خبر"},
+         {"branch": "ظرف متعلق بالخبر", "book": "1.4 p13", "is": "place_time", "role": "مفعول فيه"},
          {"branch": "الحال", "book": "3.2 p67", "is": "state", "role": "حال"},
          {"branch": "التمييز", "book": "3.2 p67", "is": "specification", "role": "تمييز"}]}]}
    ]}

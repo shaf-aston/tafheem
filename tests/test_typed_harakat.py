@@ -139,3 +139,18 @@ def test_a_command_moved_to_kasra_is_still_built_on_the_sukun():
     found = naming.roles(["اُكْتُبِ", "الدَّرْسَ"], toks)
     assert [w["role"] for w in found] == ["فعل", "مفعول به"]
     assert found[0]["case"] == "mabni" and found[0]["aspect"] == "c"
+
+
+@pytest.mark.parametrize("word, command", [
+    ("اُكْتُبُوا", True), ("اعْبُدُوا", True), ("اِسْتَخْرِجُوا", True),  # its vowel on hamzat al-wasl may be left untyped
+    ("اِجْتَمَعُوا", False), ("اِنْكَسَرُوا", False),                       # the past of a longer form: fatha in the middle
+    ("كَتَبُوا", False), ("يَكْتُبُوا", False)])
+def test_a_command_to_many_is_read_by_its_waw(word: str, command: bool):
+    assert vowels.command_shape(word) is command
+
+
+def test_the_light_lakin_joins_and_the_shadda_one_is_the_inna_sister():
+    from backend.services.syntax.facts import is_light
+    assert is_light({"typed": "لَكِنْ"})
+    assert not is_light({"typed": "لَكِنَّ"})
+    assert not is_light({"typed": "لكن"})  # untyped: the sentence decides
