@@ -169,6 +169,8 @@ button.grow-node:active { transform: translateY(2px); }
 .grow-bar i { display: block; height: 100%; background: var(--c); border-radius: 9px; transition: width calc(var(--motion-spring-ms) * 1ms) ease; }
 
 /* ── the practice card: grows out of the tapped circle and back ── */
+.grow-dialog { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; overflow: visible; }
+.grow-dialog::backdrop { background: transparent; }
 .grow-scrim { position: fixed; inset: 0; z-index: var(--layer-overlay); background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(2px); animation: grow-fade calc(var(--motion-base-ms) * 1ms) ease both; }
 .grow-scrim[data-closing] { animation-name: grow-fade-out; }
 @keyframes grow-fade { from { opacity: 0; } }

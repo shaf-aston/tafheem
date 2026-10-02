@@ -2,7 +2,7 @@
  * Failure banner. role="alert" so it is announced the moment it appears.
  *
  * `inline` puts the title and the reason on one line, title left, reason
- * right, for a failure inside a section rather than across a page: the
+ * right (stacked left on a phone, where right-aligned wrapping read as stray), for a failure inside a section rather than across a page: the
  * stacked shape stood as tall as the diagram it was standing in for.
  *
  * `error` + `fallback` print the reason, `onRetry` the way forward, so the
@@ -22,7 +22,7 @@ export default function ErrorAlert({ title, error, fallback, onRetry, children, 
       }`}
     >
       {title && <div className="font-semibold">{title}</div>}
-      <div className={`text-[var(--text-dim)] ${inline ? 'text-right flex flex-col items-end' : ''}`}>
+      <div className={`text-[var(--text-dim)] ${inline ? 'flex flex-col sm:items-end sm:text-right' : ''}`}>
         {error !== undefined && smartError(error, fallback)}
         {children}
         {onRetry && <div><RetryButton onClick={onRetry} /></div>}

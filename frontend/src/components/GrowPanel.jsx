@@ -93,7 +93,7 @@ export default function GrowPanel({ accent, onGo }) {
           )}
         />
 
-        {paths.isError && <ErrorAlert title={say('Could not load the paths')}>{say('Check the connection and try again.')}</ErrorAlert>}
+        {paths.isError && <ErrorAlert title={say('Could not load the paths')} error={paths.error} onRetry={paths.refetch} />}
 
         {paths.data && (
           <GrowMap tiers={tiers} record={record} next={next} mood={mood} onStep={(step, at) => setSheet({ step, ...at })} />

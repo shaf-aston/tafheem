@@ -1,7 +1,8 @@
 /**
  * One step's practice card. It grows out of the circle that was tapped and
- * shrinks back into it, so the map never feels left; Escape or the scrim
- * closes it, and Tab stays inside it while it is open.
+ * shrinks back into it, so the map never feels left. A native <dialog>
+ * through useModal keeps Tab inside and stills the page; Escape and the scrim
+ * play the shrink before it closes.
  *
  * This file is the dialog shell: the heading, the picture, and the focus and
  * close handling. What is inside an open step is grow/Practice.jsx.
@@ -13,12 +14,12 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { nodeState } from '../../lib/grow'
 import { byHand } from '../../lib/growKinds'
 import { sayIn } from '../../lib/say'
+import { useModal } from '../../lib/useModal'
 import ArabicText from '../ui/ArabicText'
 import Practice from './Practice'
 import { StateIcon } from './icons'
 
 const say = sayIn('en')
-const FOCUSABLE = 'button, summary, input, select, textarea, [href], [tabindex]:not([tabindex="-1"])'
 
 const CHIP = {
   learnt: ['grow-chip-done', say('Learnt')],
@@ -28,6 +29,7 @@ const CHIP = {
 }
 
 export default function StepSheet({ step, from, state, figure, tier, before, record, accent, onRecited, onDone, onGo, onClosed }) {
+  const dialog = useModal(true)
   const box = useRef(null)
   const closeRef = useRef(null)
   const [closing, setClosing] = useState(false)
@@ -57,43 +59,20 @@ export default function StepSheet({ step, from, state, figure, tier, before, rec
 
   useEffect(() => {
     closeRef.current.focus()
-    const { overflow } = document.body.style
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = overflow
-      if (from.isConnected) from.focus()
-    }
+    return () => from.isConnected && from.focus()
   }, [from])
-
-  useEffect(() => {
-    const onKey = (event) => {
-      if (event.key === 'Escape') close()
-      else if (event.key === 'Tab') {
-        const items = [...box.current.querySelectorAll(FOCUSABLE)].filter((el) => !el.disabled)
-        const first = items[0]
-        const last = items[items.length - 1]
-        const at = document.activeElement
-        if (!box.current.contains(at)) { event.preventDefault(); first.focus() }
-        else if (event.shiftKey && at === first) { event.preventDefault(); last.focus() }
-        else if (!event.shiftKey && at === last) { event.preventDefault(); first.focus() }
-      }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [close])
 
   const [chipClass, chipText] = step.proposed
     ? ['', `${say('Proposed')} · ${tier.title}`]
     : CHIP[shown]
 
   return (
-    <>
+    // Escape asks to cancel; the shrink runs first. A close the browser forces anyway ends at once.
+    <dialog ref={dialog} aria-labelledby="grow-sheet-title" className="grow-dialog"
+      onCancel={(e) => { e.preventDefault(); close() }} onClose={onClosed}>
       <div className="grow-scrim" data-closing={closing ? '' : undefined} onMouseDown={close} />
       <div
         ref={box}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="grow-sheet-title"
         className="grow-sheet"
         data-closing={closing ? '' : undefined}
       >
@@ -139,6 +118,6 @@ export default function StepSheet({ step, from, state, figure, tier, before, rec
           />
         )}
       </div>
-    </>
+    </dialog>
   )
 }
