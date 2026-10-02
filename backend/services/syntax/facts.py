@@ -34,9 +34,20 @@ def is_verb(token: dict) -> bool:
         or past_passive_shape(typed))
 
 
+def is_passive(token: dict) -> bool:
+    if token.get("vox") == "p":
+        return True
+    typed = token.get("typed")
+    present = token.get("asp") == "i" or not (token["pos"].startswith("VRB") or past_passive_shape(typed))
+    return typed_passive(typed, present)
+
+
 def _kind(token: dict, tokens: list[dict]) -> str:
     if token["pos"] == "PRT":
         return "harf"
+    # a calling or excepting particle takes a noun, whatever the parser tagged the word
+    if _governor(token, tokens) in ("nida", "istithna"):
+        return "ism"
     return "fil" if is_verb(token) else "ism"
 
 
@@ -155,13 +166,56 @@ def _governor(token: dict, tokens: list[dict]) -> str:
         return "idafa"
     if rel == "---" and head and is_plain_noun(head) and head["id"] == token["id"] - 1             and case_of(token) == "i" and not any(c["rel"] in ("SBJ", "TPC") for c in children_of(token, tokens))             and not ("dem" in token.get("pos_camel", "") and not any(is_verb(t) for t in tokens)):
         return "idafa"
-    if head and (rel in ("SBJ", "TPC", "OBJ", "PRD") or (rel == "IDF" and typed != "i")):
+    # ظن الولد الأمر سهلا: a modifier after the first object is the verb's second
+    second = (rel == "MOD" and under_verb and typed in (None, "a") and family_of(head, tokens) == "zanna"
+              and any(k["rel"] == "OBJ" and k["id"] < token["id"] for k in children_of(head, tokens)))
+    if head and (second or rel in ("SBJ", "TPC", "OBJ", "PRD") or (rel == "IDF" and typed != "i")):
         family = family_of(head, tokens)
         if family:
             return family
         if under_verb:
             return "verb"
     return "none"
+
+
+def _slot(token: dict, tokens: list[dict]) -> str:
+    """Which place the word fills under the inna/kana/kaada/zanna word it hangs on.
+
+    A khabar (PRD) is the predicate, except that after a fronted jar-wa-majroor under
+    إن the noun is the subject, and a verb under كاد or إن stays a verb (none).
+    Under كان or كاد every argument but an OBJ is the subject; under إن a SBJ or TPC
+    is. Under an active ظن a nominative word is the subject, a word in nasb the
+    object, and an object or modifier after an earlier object the second. A passive
+    ظن has no such places (none), and neither has a word under no family."""
+    head = next((t for t in tokens if t["id"] == token["head"]), None)
+    family = family_of(head, tokens) if head else None
+    rel = token["rel"]
+    if not family:
+        return "none"
+    if rel == "PRD":
+        if family == "inna" and token["pos"] != "PRT" and any(
+                t["head"] == head["id"] and t["rel"] == "PRD" and t["pos"] == "PRT" and t["id"] < token["id"]
+                for t in tokens):
+            return "subject"  # إن في البيت رجلا
+        return "none" if is_verb(token) and family in ("kaada", "inna") else "predicate"
+    typed = typed_case(token.get("typed"), token.get("stuck_on", 0))
+    if family in ("kana", "kaada"):
+        if rel in ("SBJ", "TPC") or (rel == "IDF" and is_verb(head) and typed != "i"):
+            return "subject"
+        return "object" if rel == "OBJ" else "none"
+    if family == "inna":
+        return "subject" if rel in ("SBJ", "TPC") else "object" if rel == "OBJ" else "none"
+    if is_passive(head) or not (rel in ("SBJ", "TPC", "OBJ", "MOD") or (rel == "IDF" and typed != "i")):
+        return "none"
+    if rel in ("OBJ", "MOD") and typed in (None, "a") and any(
+            k["rel"] == "OBJ" and k["id"] < token["id"] for k in children_of(head, tokens)):
+        return "second_object"
+    if typed:
+        return "subject" if typed == "u" else "object"
+    if rel == "OBJ":
+        others = [t for t in children_of(head, tokens) if t is not token]
+        return "object" if case_of(token) != "u" or any(s["rel"] == "SBJ" for s in others) else "subject"
+    return "none" if rel == "MOD" else "subject"
 
 
 # Each axis is one question the book asks of a word, with a closed list of answers
@@ -172,6 +226,7 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, list[dict]], str]]] = {
     "follows": (("naat", "atf", "tawkeed", "badal", "none"), _follows),
     "governor": (("harf_jarr", "idafa", "verb", "inna", "kana", "kaada", "zanna", "nida", "istithna", "none"),
                  _governor),
+    "slot": (("subject", "predicate", "object", "second_object", "none"), _slot),
 }
 
 

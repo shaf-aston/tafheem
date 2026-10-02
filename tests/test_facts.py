@@ -120,3 +120,69 @@ def test_governor_family_heads_and_none():
     assert governor(["كَادَ", "الْوَلَدُ", "يَمُوتُ"], toks, 1) == "kaada"
     toks = [token(1, "الولد", "ولد", "NOM", 0, "---", stt="d", cas="n")]
     assert governor(["الْوَلَدُ"], toks, 0) == "none"
+
+
+def slot(words, toks, index):
+    named(words, toks)
+    bases = [t for t in toks if t.get("typed")]
+    return facts.of(bases[index], toks)["slot"]
+
+
+def test_slot_inna_subject_and_predicate():
+    toks = [token(1, "إن", "إن", "PRT", 0, "---"),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="a"),
+            token(3, "مجتهد", "مجتهد", "NOM", 1, "PRD", stt="i", cas="n")]
+    assert slot(["إِنَّ", "الْوَلَدَ", "مُجْتَهِدٌ"], toks, 1) == "subject"
+    assert slot(["إِنَّ", "الْوَلَدَ", "مُجْتَهِدٌ"], toks, 2) == "predicate"
+
+
+def test_slot_inna_fronted_jar_makes_the_noun_the_subject():
+    toks = [token(1, "إن", "إن", "PRT", 0, "---"),
+            token(2, "في", "في", "PRT", 1, "PRD"),
+            token(3, "رجلا", "رجل", "NOM", 1, "PRD", stt="i", cas="a")]
+    assert slot(["إِنَّ", "فِي", "رَجُلًا"], toks, 2) == "subject"
+
+
+def test_slot_kana_subject_and_predicate():
+    toks = [token(1, "كان", "كان", "VRB", 0, "---", **VERB),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "مجتهدا", "مجتهد", "NOM", 1, "PRD", stt="i", cas="a")]
+    assert slot(["كَانَ", "الْوَلَدُ", "مُجْتَهِدًا"], toks, 1) == "subject"
+    assert slot(["كَانَ", "الْوَلَدُ", "مُجْتَهِدًا"], toks, 2) == "predicate"
+
+
+def test_slot_a_verb_that_finishes_kaada_stays_a_verb():
+    toks = [token(1, "كاد", "كاد", "VRB", 0, "---", **VERB),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "يموت", "مات", "VRB", 1, "PRD", vox="a", asp="i")]
+    assert slot(["كَادَ", "الْوَلَدُ", "يَمُوتُ"], toks, 1) == "subject"
+    assert slot(["كَادَ", "الْوَلَدُ", "يَمُوتُ"], toks, 2) == "none"
+
+
+def test_slot_zanna_subject_object_second_object():
+    toks = [token(1, "ظن", "ظن", "VRB", 0, "---", **VERB),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "الأمر", "أمر", "NOM", 1, "OBJ", stt="d", cas="a"),
+            token(4, "سهلا", "سهل", "NOM", 1, "OBJ", stt="i", cas="a")]
+    words = ["ظَنَّ", "الْوَلَدُ", "الْأَمْرَ", "سَهْلًا"]
+    assert [slot(words, toks, i) for i in (1, 2, 3)] == ["subject", "object", "second_object"]
+
+
+def test_slot_none_under_a_plain_verb():
+    toks = [token(1, "كتب", "كتب", "VRB", 0, "---", **VERB),
+            token(2, "الطالب", "طالب", "NOM", 1, "SBJ", stt="d", cas="n")]
+    assert slot(["كَتَبَ", "الطَّالِبُ"], toks, 1) == "none"
+
+
+def test_each_family_slot_reaches_its_leaf():
+    base = {"kind": "ism", "follows": "none"}
+    for governor, slot_answer, role in (
+            ("inna", "subject", "اسم إن"), ("inna", "predicate", "خبر إن"),
+            ("kana", "subject", "اسم كان"), ("kana", "predicate", "خبر كان"),
+            ("kaada", "subject", "اسم كاد"), ("zanna", "subject", "فاعل"),
+            ("zanna", "object", "مفعول به"), ("zanna", "second_object", "مفعول به"),
+            ("nida", "none", "منادى"), ("istithna", "none", "مستثنى")):
+        assert walker.walk({**base, "governor": governor, "slot": slot_answer})[0] == role
+    for governor in ("verb", "none"):
+        assert walker.walk({**base, "governor": governor, "slot": "none"}) is None
+    assert walker.walk({**base, "governor": "kaada", "slot": "predicate"}) is None
