@@ -17,7 +17,7 @@ import TimelineRefs from './TimelineRefs'
 import TimelineSteps from './TimelineSteps'
 import TimelineWhere from './TimelineWhere'
 import { printedBy } from '../lib/hadithWords'
-import { TRAD, sectionLook } from '../lib/timelineLayout'
+import { NO_DATE, TRAD, isDated, sectionLook } from '../lib/timelineLayout'
 
 export default function TimelineEvent({ section, event, library, accent, onGo, here, onHere, onPick, at }) {
   const place = event.place ? library.places[event.place] : null
@@ -55,6 +55,22 @@ export default function TimelineEvent({ section, event, library, accent, onGo, h
           <p className="tl-layer">Summary</p>
           <p className="text-[var(--text)] leading-relaxed max-w-prose">{event.summary}</p>
         </div>
+
+        {/* Each estimate beside the one source that states it; none is ours. */}
+        {isDated(section) && (
+          <div>
+            <p className="tl-layer">When, estimated</p>
+            {event.dates.length === 0 && <p className="text-[var(--text-dim)]">{NO_DATE}</p>}
+            <ul className="space-y-1.5">
+              {event.dates.map((date) => (
+                <li key={date.says} className="flex flex-wrap items-center gap-2 text-[var(--text)]">
+                  <span>{date.says}</span>
+                  <TimelineRefs refs={[date.ref]} library={library} accent={accent} onGo={onGo} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <TimelineRefs flags={cautions} library={library} accent={accent} onGo={onGo} />
 

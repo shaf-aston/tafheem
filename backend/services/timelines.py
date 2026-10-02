@@ -84,6 +84,9 @@ def _ref_faults(ref: dict, collections: dict, ayahs: dict[int, int]) -> list[str
     # take it on trust with the caution taken away and nothing put in its place.
     if ref.get("checked") and not collections[key].get("cite"):
         return [f"reference to {key!r} says its number is checked, but library.json gives it no cite link"]
+    # A page link needs its page, and a page needs a link to fill.
+    if (ref.get("page") is not None) != ("{page}" in collections[key].get("cite", "")):
+        return [f"reference to {key!r} and its library.json cite link disagree on whether it has a page"]
     return []
 
 
@@ -187,6 +190,15 @@ def _faults(section: dict, library: dict, ayahs: dict[int, int]) -> list[str]:
         if not event.get("refs"):
             said.append(f"{name} has no references")
         said.extend(f"{name}: {why}" for why in refs_faults(event.get("refs") or [], library["collections"], ayahs))
+        # An estimate of when is only shown beside the source that states it.
+        for date in event.get("dates") or []:
+            if not isinstance(date, dict) or not isinstance(date.get("ref"), dict):
+                said.append(f"{name} has a date {date!r} that is not {{says, ref}}")
+                continue
+            if not str(date.get("says") or "").strip():
+                said.append(f"{name} has a date that says nothing")
+            said.extend(f"{name} date {date.get('says')!r}: {why}"
+                        for why in _ref_faults(date["ref"], library["collections"], ayahs))
         said.extend(_step_faults(event.get("steps") or [], library, ayahs, name, set()))
     return said
 

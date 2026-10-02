@@ -15,7 +15,7 @@ import ArabicText from './ui/ArabicText'
 import TileCard from './ui/TileCard'
 import { asbabQuery } from '../api'
 import { onHover } from '../lib/warm'
-import { eventIcon, sectionLook } from '../lib/timelineLayout'
+import { NO_DATE, eventIcon, isDated, sectionLook } from '../lib/timelineLayout'
 
 const WEAK = 'weakchain'
 const PAGE = 0.8   // share of the visible width one arrow press moves
@@ -26,6 +26,7 @@ export default function TimelineRail({ section, library, chosenId, onPick }) {
   const client = useQueryClient()
   const [ends, setEnds] = useState({ start: true, end: false })
   const { hue } = sectionLook(section.id)
+  const dated = isDated(section)
 
   const measure = useCallback(() => {
     const el = strip.current
@@ -79,6 +80,8 @@ export default function TimelineRail({ section, library, chosenId, onPick }) {
                 <span className="tl-chip">{section.kind === 'dated' && event.hijri ? event.hijri : event.when}</span>
                 <h4 className="tl-title">{event.title}</h4>
                 <ArabicText size="sm" className="tl-ar arabic-inline">{event.arabic}</ArabicText>
+                {/* Where the section is dated at all, a prophet with no source says so. */}
+                {(event.dates[0] || dated) && <span className="tl-sub truncate">{event.dates[0]?.says ?? NO_DATE}</span>}
                 <p className="tl-sum">{event.summary}</p>
                 <span className="tl-meta">
                   {inside ? `${inside} ${inside === 1 ? 'step' : 'steps'}` : 'Read'}

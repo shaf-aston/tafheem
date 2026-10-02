@@ -10,6 +10,7 @@
  * reference opens the Qur'an tab at its first ayah, because that tab reads one
  * ayah at a time. A hadith reference opens the collection where its number was
  * checked, named in the data as `checked` with the link shape in library.json.
+ * A book reference with a `page` opens that page the same way.
  *
  * A hadith number with no `checked` on it keeps the amber dot and says so: no
  * hadith collection is installed here, so the app itself can confirm nothing,
@@ -46,13 +47,16 @@ export default function TimelineRefs({ flags = [], refs = [], library, accent, o
             // sunnah.com letters the narrations that share one number, and the
             // letter belongs to the reference: 157 and 157c are two hadiths.
             const number = `${ref.number}${ref.part ?? ''}`
+            // A checked hadith links by number; a book cited at a page links by page.
+            const link = checked ? source.cite.replace('{number}', number)
+              : ref.page ? source.cite.replace('{page}', ref.page) : undefined
             return (
               <Chip cite
                 key={refKey(ref, i)}
                 accent={ref.hadith && !checked ? 'var(--warn)' : accent}
-                href={checked ? source.cite.replace('{number}', number) : undefined}
+                href={link}
                 title={
-                  checked ? `Read it on ${new URL(source.cite).host}`
+                  link ? `Read it on ${new URL(link).host}`
                     : ref.hadith ? 'The number is as commonly cited; nothing here checks it'
                       : undefined
                 }
