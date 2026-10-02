@@ -170,6 +170,9 @@ export const EMPTY_VIEW = {
   // surer one wins: a word is said once, and one clipped at a recording's
   // edge should not unsay it.
   sure: { before: {}, now: {} },
+  // Where in the Qur'an the reciter seems to be, { surah, ayah }, when what
+  // they recite is not on this page; null while they are on it.
+  elsewhere: null,
   // How many sureness checks are queued or on their way. A page only turns
   // once its own are back, or its last ayah would never be weighed.
   checking: 0,
@@ -377,6 +380,8 @@ export function createRecitingSession({ onChange, deps = {} }) {
         try {
           heard = await listen(blob, {
             recite: true,
+            // A Qur'an page also asks where in the Qur'an this was (locate.py).
+            near: page.ayahs.length ? `${page.ayahs[0].key}-${page.ayahs.at(-1).key}` : undefined,
             fusha: page.fusha,
             signal: stopper.signal,
             reading,
@@ -399,7 +404,11 @@ export function createRecitingSession({ onChange, deps = {} }) {
           // A window with nothing of this page in it is the room, not the
           // reciter. Letting one through put موسيقى on the page as a word said.
           if (!live()) return
-          const ofPage = isOfPage(words, page.pageWords)
+          // Placed on the whole Qur'an, a reading is this page's only if it
+          // was found here: ٱللَّهِ alone once kept every reading of 2:255 on
+          // al-Fatihah. Too short to place, one shared word is enough.
+          const { place } = heard
+          const ofPage = place ? place.home : isOfPage(words, page.pageWords)
           if (ofPage) {
             latest = words
             set((was) => (was.now.from > thisWindow ? {} : { now: { from: thisWindow, words } }))
@@ -432,6 +441,10 @@ export function createRecitingSession({ onChange, deps = {} }) {
               })
             }
           }
+          if (place?.home && view.elsewhere) set({ elsewhere: null })
+          else if (place?.sure && !place.home && words.length >= config['anchor-words']) {
+            set({ elsewhere: { surah: place.surah, ayah: place.ayah } })
+          }
           set({ problem: '' })
           note('reading.answered', {
             session: sessionId,
@@ -440,6 +453,10 @@ export function createRecitingSession({ onChange, deps = {} }) {
             chars: heard.text?.length || 0,
             words: words.length,
             kept: ofPage,
+            // What the ear wrote, so a real session shows which words a
+            // microphone loses; and where it was placed in the Qur'an.
+            heard: heard.text?.slice(0, config['journal-heard-chars']) ?? '',
+            place: place ?? null,
           })
         } catch (error) {
           // A bug in the page's own code after a good answer, not a network or
@@ -581,7 +598,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       clearInterval(cutTimer)
       if (recorder?.state === 'recording') recorder.stop()
     }
-    set({ before: [], now: { from: windows, words: [] }, sure: { before: {}, now: {} }, ended: false })
+    set({ before: [], now: { from: windows, words: [] }, sure: { before: {}, now: {} }, ended: false, elsewhere: null })
   }
 
   /**
@@ -604,6 +621,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
     if (inFlight) { inFlight.turned = true; inFlight.abort?.abort() }
     checkQueue = checkQueue.filter((q) => q.sent)
     set({
+      elsewhere: null,
       before: carry,
       now: view.now.words.length ? view.now : { from: windows, words: [] },
       sure: { before: {}, now: {} },

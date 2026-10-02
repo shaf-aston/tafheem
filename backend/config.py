@@ -182,6 +182,9 @@ class Settings(BaseSettings):
     # More is faster all the way up. 12 not 16: 16 buys 14% more and leaves nothing to draw the page while someone recites.
     recitation_threads: int = 12
     recitation_matches: int = 5
+    # How much better the best place in the Qur'an must fit than the next before it is sure (locate.py).
+    # 1,050 Groq readings in 4-word pieces: 0.05 placed 1,602 right and 2 wrong, 0.1 1,247 and 0, 0.15 1,012 and 0.
+    recitation_place_margin: float = Field(default=0.1, gt=0, lt=1)
     # A minute of browser audio is about 1 MB.
     recitation_max_mb: int = Field(default=12, gt=0)
     # No default-book setting on purpose: the panel opens on the manifest's first book, then the reader's last choice.

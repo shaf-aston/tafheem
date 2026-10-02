@@ -30,7 +30,7 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   // However this page is left, the microphone goes off with it.
   useEffect(() => () => session.dispose(), [session])
 
-  const { state, problem, before, now, ended, sure, checking } = view
+  const { state, problem, before, now, ended, sure, checking, elsewhere } = view
   const heard = before.length ? joinWindows(before, now.words) : now.words
 
   // The page is finished once its last word is in what has already been read
@@ -64,6 +64,7 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
     // the page on this, so the last ayah is marked by sound before it goes.
     finished: finished && checking === 0,
     listening: state === 'listening',
+    elsewhere,
     start: session.start,
     stop: session.stop,
     forget: session.forget,
