@@ -20,7 +20,6 @@ import ArabicText from '../ui/ArabicText'
 import { useUnlock, useWidth } from './hooks'
 import { Bud, GroupLabel, Step } from './Step'
 import Vine from './Vine'
-import './grow.css'
 
 const say = sayIn('en')
 const { cell: CELL, bud: BUD } = config.vine

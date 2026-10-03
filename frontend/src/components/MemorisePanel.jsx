@@ -12,8 +12,9 @@
  * of either. This file only shows what those two decide.
  */
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
 
+import { getSimilar, getSimilarSurah } from '../api'
 import { isQuranic, recitedForm } from '../lib/arabicText'
 import { BOOKS, bookPartQuery, bookPartsQuery, DEFAULT_BOOK } from '../lib/books'
 import {
@@ -21,6 +22,7 @@ import {
   optionsFor, pagesOf, printedPageOf, score, wordsOf,
 } from '../lib/memorise'
 
+import { closestSpans, flagsOnPage, twinKeys } from '../lib/similar'
 import { readViewParam, writeViewParams } from '../lib/tabUrl'
 import { scrollToEl } from '../lib/scrollToEl'
 import { useReciting } from '../lib/useReciting'
@@ -38,6 +40,7 @@ import ErrorAlert from './ui/ErrorAlert'
 import PrimaryButton from './ui/PrimaryButton'
 import SectionHeader from './ui/SectionHeader'
 import Segmented from './ui/Segmented'
+import TwinCards from './ui/TwinCard'
 import WheelPicker from './ui/WheelPicker'
 import { Skeleton } from './ui/Skeleton'
 
@@ -74,6 +77,9 @@ const WAYS = [
   // Neither recall nor recognition: saying it, with the page following along.
   // Nothing is taken out here, so the whole page is shown.
   { id: 'recite', label: 'Recite it' },
+  // Only the words that tell a verse from its twin are taken out, typed like
+  // any other gap. Offered only by a book that has twins to show.
+  { id: 'similar', label: 'Similar verses', onlyIf: (book) => book.similar },
 ]
 
 export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
@@ -92,6 +98,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   // can open the page already reciting.
   const [way, setWay] = useState(() => readViewParam('mode', WAYS.map((w) => w.id)) ?? 'type')
   useEffect(() => { writeViewParams({ mode: way === 'type' ? '' : way }) }, [way])
+  const similar = way === 'similar'
   // The word the reader pressed to start on, or null for "they did not say".
   // A page is not always begun at its top: somebody revising picks up where
   // they stopped, or goes back over the one ayah they keep losing. It is
@@ -173,15 +180,49 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
     Math.max(0, recitedPage.words.length - 1),
   )
 
+  // Which ayahs of this surah have a twin, and the twins of the ones on this
+  // page. Asked only in this mode, and only for ayahs that have one.
+  const twinsOfSurah = useQuery({
+    queryKey: ['similar-surah', part],
+    queryFn: () => getSimilarSurah(part),
+    enabled: similar && part !== null,
+    staleTime: Infinity,
+  })
+  const twinned = useMemo(() => twinKeys(twinsOfSurah.data?.groups), [twinsOfSurah.data])
+  const twinLines = useMemo(
+    () => (page ?? []).map((line, l) => ({ line, l })).filter(({ line }) => twinned.has(line.label)),
+    [page, twinned],
+  )
+  const twinQueries = useQueries({
+    queries: twinLines.map(({ line }) => {
+      const [surah, ayah] = line.label.split(':').map(Number)
+      return { queryKey: ['similar', surah, ayah], queryFn: () => getSimilar(surah, ayah), staleTime: Infinity }
+    }),
+  })
+  // The query array is new every render, so the gaps are keyed on when each
+  // answer last arrived instead.
+  const twinData = twinQueries.map((q) => q.data)
+  const twinStamp = twinQueries.map((q) => q.dataUpdatedAt).join()
+
   // The gaps depend on the page, the difficulty and the deal; and on nothing
   // else, so typing an answer never moves them.
   const blanks = useMemo(
     () => {
       if (!page) return new Set()
+      if (similar) {
+        const gaps = new Set()
+        twinLines.forEach(({ line, l }, i) => {
+          const words = wordsOf(line.arabic)
+          const flags = flagsOnPage(words, twinData[i]?.text ?? '', closestSpans(twinData[i]?.text ?? '', twinData[i]?.partners))
+          flags.forEach((on, w) => { if (on) gaps.add(`${l}:${w}`) })
+        })
+        return gaps
+      }
       if (hidden) return fromMemory(page, startFrom)
       return blanksFor(page, difficultyOf(difficulty).share, makeRandom(pageNumber * 131 + deal))
     },
-    [page, hidden, startFrom, difficulty, pageNumber, deal],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [page, hidden, similar, twinLines, twinStamp, startFrom, difficulty, pageNumber, deal],
   )
 
   // Anything that changes which words are missing starts the attempt over.
@@ -208,6 +249,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
     setPageNumber(0)
     setPinned(null)
     setMeaning(BOOKS[id].meaningDefault ?? false)
+    if (!BOOKS[id].similar) setWay((was) => (was === 'similar' ? 'type' : was))
     fresh()
   }
   const chooseDifficulty = (id) => { setDifficulty(id); fresh() }
@@ -435,7 +477,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
 
         <Segmented
           label="How you answer"
-          options={WAYS}
+          options={WAYS.filter((w) => !w.onlyIf || w.onlyIf(book))}
           value={way}
           onChange={chooseWay}
           accent={accent}
@@ -443,7 +485,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
 
         {/* Reciting has two states worth choosing between, not five: the page
             read from, or the page said from memory. */}
-        <div title={way === 'recite' ? undefined : difficultyOf(difficulty).title}>
+        {!similar && <div title={way === 'recite' ? undefined : difficultyOf(difficulty).title}>
           <Segmented
             label={way === 'recite' ? 'Words to say from memory' : 'How much is missing'}
             options={way === 'recite'
@@ -453,7 +495,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             onChange={chooseDifficulty}
             accent={accent}
           />
-        </div>
+        </div>}
       </div>
 
       {isPending && <Skeleton className="h-40 w-full" />}
@@ -495,7 +537,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                     : reciting.listening
                       ? 'listening for where you are'
                       : 'tap a word to start'
-                  : way === 'type' ? 'vowels not needed' : null}
+                  : way === 'type' || similar ? 'vowels not needed' : null}
               </span>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
@@ -508,7 +550,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                   <StepButton onClick={() => show(false)}>Show a word</StepButton>
                   <StepButton onClick={() => show(true)}>Show this ayah</StepButton>
                 </>
-              ) : (
+              ) : !similar && (
                 <StepButton onClick={reDeal}>New gaps</StepButton>
               )}
               {/* Off to start with, and that is the point: "Say He (is) Allah
@@ -558,6 +600,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                   meaning={meaning}
                   choices={choices}
                   accent={accent}
+                  twin={similar && twinned.has(line.label)}
                   recite={way === 'recite'
                     ? { ...reciting.marks, from: recitedPage.lines[l].from, shown }
                     : null}
@@ -598,7 +641,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             // read the page, or every line on it is one word long so there was
             // nothing to take out even at a harder setting. Only the second is
             // worth saying, the first is exactly what was asked for.
-            difficulty !== 'none' && (
+            !similar && difficulty !== 'none' && (
               <EmptyState>
                 Every line here is one word long, so there is nothing to take out.
               </EmptyState>
@@ -626,9 +669,30 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
               )}
             </div>
           )}
+          {similar && (
+            <SimilarCards
+              lines={twinLines}
+              queries={twinQueries}
+              surah={twinsOfSurah}
+              accent={accent}
+            />
+          )}
           <div className="flex justify-center">{pageSteps}</div>
         </>
       )}
+    </div>
+  )
+}
+
+/** The twin cards under the page: the surah's groups first, then one set per twinned ayah. */
+function SimilarCards({ lines, queries, surah, accent }) {
+  if (surah.isPending || surah.isError) return <TwinCards mine={null} query={surah} accent={accent} />
+  if (lines.length === 0) return <EmptyState>No similar verses recorded on this page.</EmptyState>
+  return (
+    <div className="space-y-4">
+      {lines.map(({ line }, i) => (
+        <TwinCards key={line.label} mine={{ key: line.label, text: line.arabic }} query={queries[i]} accent={accent} />
+      ))}
     </div>
   )
 }
@@ -655,7 +719,7 @@ function StepButton({ onClick, disabled, children }) {
  * never of the missing word on its own, so it is a reminder of where you are
  * rather than the answer.
  */
-function Line({ line, flow, index, blanks, answers, checked, meaning, choices, accent, recite, onStartAt, onAnswer }) {
+function Line({ line, flow, index, blanks, answers, checked, meaning, choices, accent, twin, recite, onStartAt, onAnswer }) {
   const words = wordsOf(line.arabic)
   // One width for every typed blank on this line, from the longest recited
   // word among them: sizing each blank to its own answer leaks the length.
@@ -719,9 +783,20 @@ function Line({ line, flow, index, blanks, answers, checked, meaning, choices, a
       </Fragment>
     )
   })
-  const marker = flow
+  const number = flow
     ? <AyahNumber aria-label={`ayah ${withinPart(line.label)}`}>{withinPart(line.label)}</AyahNumber>
     : <AyahNumber>{line.label}</AyahNumber>
+  const marker = twin ? (
+    <>
+      {number}
+      <span
+        role="img"
+        aria-label="has similar verses"
+        title="has similar verses"
+        className="w-1.5 h-1.5 rounded-full shrink-0 bg-[var(--text-faint)]"
+      />
+    </>
+  ) : number
   // Flowing, the line's two boxes step aside (display: contents) so its words
   // join the page's one run; the words themselves are drawn the same either way.
   return (

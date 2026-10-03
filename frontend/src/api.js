@@ -306,3 +306,11 @@ export const colloquialCompareQuery = (unit, lesson) => ({
 // A phrase picture: `file` is the path the lesson names, like "unit-01/greeting.jpg".
 export const colloquialImageUrl = (file) =>
   `${api.defaults.baseURL}/colloquial/image/${file.split('/').map(encodeURIComponent).join('/')}`
+
+// Verses that read almost the same as this one (mutashabihat), with the words
+// that differ marked. A surah's groups say which ayahs have twins at all.
+export const getSimilar = (surah, ayah) =>
+  api.get(`/quran/similar/${surah}/${ayah}`).then((r) => r.data)
+
+export const getSimilarSurah = (surah) =>
+  api.get(`/quran/similar/surah/${surah}`).then((r) => r.data)

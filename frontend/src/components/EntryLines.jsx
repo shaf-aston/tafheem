@@ -18,7 +18,6 @@ import { Line } from './EntryArabic'
 import ArabicText from './ui/ArabicText'
 import SmallButton from './ui/SmallButton'
 
-import './entryLines.css'
 
 /** Which line is current. Clamped at both ends, not wrapped: the entry has an end. */
 function useLineCursor(count) {

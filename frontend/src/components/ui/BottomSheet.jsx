@@ -2,7 +2,7 @@
  * A pop-up that rises from the bottom on a phone and sits centred on a wider
  * screen. Mounted only while open. Native <dialog> through useModal, so Esc,
  * the backdrop, the focus trap and focus returning to the opener come free;
- * the page behind stops scrolling through the :modal rule in index.css.
+ * the page behind stops scrolling through the :modal rule in styles/components.css.
  * Closing by unmounting skips the browser's own focus return, so the opener
  * is noted on the first render and handed focus back here.
  */

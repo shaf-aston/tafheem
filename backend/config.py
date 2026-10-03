@@ -68,6 +68,18 @@ class Settings(BaseSettings):
     # quran.com imlaei spelling, which the Qur'an ear writes. On 80 clean recitations the ear was
     # >=0.9 sure of 74% of right words in this spelling vs 51% in Uthmani. Fetched by fetch_recitation_checks.py.
     quran_imlaei_path: str = "data/quran/imlaei.json"
+    # Verbally similar verses (mutashabihat). The catalogue is built by
+    # scripts/build_mutashabihat.py; the rest tune the finder in
+    # services/mutashabihat.py, judged by scripts/score_mutashabihat.py.
+    mutashabihat_path: str = "data/quran/mutashabihat.json"
+    # Words per shingle. Two reached 77% pair recall over the benchmark.
+    mutashabihat_shingle_size: int = Field(2, ge=1)
+    # A shingle in more verses than this is a stock phrase, not a clue.
+    mutashabihat_shingle_cap: int = Field(200, ge=1)
+    mutashabihat_candidate_limit: int = Field(10, ge=1)
+    # Shared shingles over the shorter verse's shingles, 0-1, to be proposed.
+    mutashabihat_propose_min_score: float = Field(0.5, gt=0, le=1)
+    mutashabihat_propose_limit: int = Field(50, ge=1)
     # Floor, not exact count: tafsirs skip ayahs (Ibn Kathir, the fullest, reaches 6,011 of 6,236).
     # Below it the download broke. A partial-coverage book (juz-thirty commentary) is added by lowering this.
     quran_tafsir_ayah_floor: int = 3000
@@ -232,6 +244,11 @@ class Settings(BaseSettings):
     quran_surah_type_path: str = "data/quran/surah-type.json"
     # Written by the same script; lets the panel say how many reports are not shown.
     asbab_unmatched_path: str = "data/quran/asbab-unmatched.json"
+
+    # Hadith that seem to conflict, grouped by al-Tahawi's own chapters, and the
+    # paragraphs the cutter could not place. Both written by build_mushkil.py.
+    mushkil_path: str = "data/hadith/mushkil-tahawi.json"
+    mushkil_unplaced_path: str = "data/hadith/mushkil-unplaced.json"
 
     # library.json plus one file per section under sections/; checked on load by services/timelines.py.
     timelines_dir: str = "data/timelines"

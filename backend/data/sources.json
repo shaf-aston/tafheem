@@ -347,5 +347,36 @@
     "used_in": [
       "hadith"
     ]
+  },
+  "mushkil-tahawi": {
+    "label": "al-Tahawi, Sharh Mushkil al-Athar",
+    "confidence": "verified",
+    "detail": "Hadith that seem to conflict, grouped by the scholar's own chapters, with his reconciliation after them. Printed page numbers dropped; no harakat in this text.",
+    "url": "https://github.com/OpenITI",
+    "where": "The book as OpenITI published it (Shu'ayb al-Arna'ut's edition), cut into one issue per chapter by backend/scripts/build_mushkil.py. The grouping is al-Tahawi's, never ours or a model's; paragraphs that fit no chapter are listed in data/hadith/mushkil-unplaced.json rather than guessed at.",
+    "used_in": [
+      "daleel"
+    ],
+    "category": "Hadith"
+  },
+  "mutashabihat-benchmark": {
+    "label": "Mutashabihat benchmark",
+    "confidence": "verified",
+    "detail": "Similar-verse pairs recorded by scholars in Hidayat al-Murtab and Tatimmat al-Bayan, collected for the paper \"Detecting and Localizing Verbally Similar Verses (Mutashabihat) in the Quran\". GPL-3.0",
+    "url": "https://github.com/ambaqasah/mutashabihat",
+    "where": "Two classical books on verses that read almost alike, gathered into a public dataset by the paper's authors. Downloaded once and merged by backend/scripts/build_mutashabihat.py into data/quran/mutashabihat.json; the highlighted words are worked out here against this app's own text.",
+    "used_in": [
+      "quran"
+    ]
+  },
+  "mutashabihat-waqar144": {
+    "label": "Mutashabihat list (Waqar144)",
+    "confidence": "verified",
+    "detail": "A hafiz's list of similar verses, curated from the work of Qari Idrees Al Asim, shared by Waqar144 free to use with credit",
+    "url": "",
+    "where": "A public JSON file of similar-verse pairs kept by a hafiz. Downloaded once and merged by backend/scripts/build_mutashabihat.py into data/quran/mutashabihat.json; the highlighted words are worked out here against this app's own text.",
+    "used_in": [
+      "quran"
+    ]
   }
 }

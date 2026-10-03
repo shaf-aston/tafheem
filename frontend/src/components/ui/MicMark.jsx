@@ -1,4 +1,3 @@
-import './micMark.css'
 
 /**
  * The capsule microphone: the mark that means dictation.
@@ -18,7 +17,7 @@ import './micMark.css'
  *              so it never reads as listening
  *
  * The states are a `data-state` attribute and nothing more. Every stroke and
- * animation is a CSS consequence of it (see micMark.css), and the numbers behind
+ * animation is a CSS consequence of it (see styles/micMark.css), and the numbers behind
  * them are theme.json's `mic` group, so retuning the mark is a config edit and
  * not a code change.
  *

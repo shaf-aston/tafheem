@@ -4,7 +4,7 @@
  *
  * Mounted once by App, never by a panel, so no page wires anything and a page
  * added later has it for free. Its look and strength live in theme.json and
- * index.css (.cursor-light); the Animations setting turns it off.
+ * styles/layers.css (.cursor-light); the Animations setting turns it off.
  *
  * Moved by transform alone, one write per animation frame, so following the
  * pointer never repaints the page under it.

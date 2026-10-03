@@ -23,6 +23,7 @@ import TimelinesPanel from '../components/TimelinesPanel'
 import DawahPanel from '../components/DawahPanel'
 import ColloquialPanel from '../components/ColloquialPanel'
 import GrowPanel from '../components/GrowPanel'
+import KitPanel from '../components/KitPanel'
 
 // `study`: read closely, so the text-size setting applies.
 // `half`: two tabs share one slot. Nahw + Sarf: shortest labels, used together,
@@ -34,6 +35,8 @@ import GrowPanel from '../components/GrowPanel'
 // `mark`: one Arabic letter for where only a letter fits (search rail, launcher
 //   ring). Taken from the tab's own name, unique across tabs.
 // `open`: fetches the tab's opening data, run on idle and on hovering its tab.
+// `hidden`: reachable by URL only (journey and the panel mapping read TABS), left out of
+//   everything a person browses; those read LISTED.
 // Order = All sections order; the strip is the fixed tabs in this order, then
 // the recent ones (lib/recent.js). Related tabs sit together.
 export const GROUPS = [
@@ -57,7 +60,11 @@ export const TABS = [
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', mark: 'ت', Component: TimelinesPanel, open: load(timelinesQuery), study: true, row: 3, group: 'tools' },
   { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   mark: 'و', Component: DawahPanel, open: load(dawahQuery), study: true, row: 3, group: 'tools' },
   { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, open: load(colloquialQuery), row: 3, group: 'language', study: true },
+  { id: 'kit',    label: 'Kit',        short: 'Kit',    arabic: 'عدة',    mark: 'ك', Component: KitPanel, hidden: true, group: 'tools' },
 ]
+
+/** The tabs a person can browse to: strip, All sections, command bar, launcher, number keys. */
+export const LISTED = TABS.filter((tab) => !tab.hidden)
 
 // The recent tabs at the strip's far right: how many, and what they are before
 // anything is opened, oldest first. Opening a row 3 tab drops the oldest

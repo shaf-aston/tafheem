@@ -47,8 +47,9 @@
     "panel": "1.25rem"
   },
   "layer": {
-    "_comment": "The one stacking scale: every z-index in the app is one of these, never a bare number. Lowest first: raised lifts a piece over its neighbours, seal is the Quran backdrop, below the page so results sit over it, sticky is a bar that pins while scrolling, popover a floating panel opened from a button, header the app bar, overlay a full-screen sheet, tip a tooltip over everything.",
+    "_comment": "The one stacking scale: every z-index in the app is one of these, never a bare number. Lowest first: raised lifts a piece over its neighbours, seal is the Quran backdrop, below the page so results sit over it, backdrop is the drifting-lights canvas, below even the seal, sticky is a bar that pins while scrolling, popover a floating panel opened from a button, header the app bar, overlay a full-screen sheet, tip a tooltip over everything.",
     "raised": 1,
+    "backdrop": -2,
     "seal": -1,
     "sticky": 10,
     "popover": 30,
@@ -63,6 +64,33 @@
     "strength-hover": "19%",
     "strength-wide": "6%",
     "glow": "10px"
+  },
+  "lights": {
+    "_comment": "The lantern backdrop: soft out-of-focus lights drifting slowly on a dark warm ground, behind every tab. count is how many lights, size-min-px and size-max-px how wide the smallest and largest are, speed how far one drifts per frame at motion.scale 1 (so the Animations setting slows it, and 0 stops it), alpha how bright a light is at its middle. tint is the share of lights that wear the tab's own colour instead of one of the warm lights, so the tab changes the room without painting it. Kept faint on purpose: the words on top are the point, and lights that compete with them are a distraction rather than a mood. ground-top and ground-bottom are the dark the lights float on. colors is the warm lights, comma separated, that the rest of the lights are drawn from.",
+    "count": 34,
+    "size-min-px": 30,
+    "size-max-px": 110,
+    "speed": 0.25,
+    "alpha": 0.35,
+    "tint": 0.25,
+    "ground-top": "#120f0d",
+    "ground-bottom": "#0c0a09",
+    "colors": "#e9b85a,#c0563a,#6b8fb8,#8a6b3a"
+  },
+  "marks": {
+    "_comment": "Large faint Arabic letters drawn on the backdrop canvas under the lights, in the tab's colour, so the page reads as Arabic before a word is on it. count is how many (0 draws none), size-min-rem and size-max-rem the range of letter heights, alpha how visible each is (kept far below the lights so the words on the glass stay the point), drift-px how far a letter wanders from where it sits (0 holds it still; speed is the backdrop's, so the Animations setting slows it), letters the pool drawn from, repeats welcome, and font the face, which must be the one the app already loads for Arabic.",
+    "count": 6,
+    "size-min-rem": 6,
+    "size-max-rem": 14,
+    "alpha": 0.09,
+    "drift-px": 24,
+    "letters": "ع,ر,ب,ك,ت,ب,ن,ح,و",
+    "font": "var(--font-arabic)"
+  },
+  "glass": {
+    "_comment": "The frosted pane the page content sits on, so the lights behind it read as a soft glow rather than as noise under the words. blur-px is how far the lights are smeared, alpha how much of the surface colour covers them (100% would hide them).",
+    "blur-px": 22,
+    "alpha": "72%"
   },
   "tabstrip": {
     "_comment": "How much of its own colour an unselected tab keeps. 0% is plain grey, 100% is as loud as the selected one.",
@@ -137,7 +165,7 @@
     "type-from": 8
   },
   "dance": {
-    "_comment": "How a group of things arrives: each one small and gathered at the middle, then springing out to where it belongs, one after another. Written as its own group rather than inside the launcher because it is the .dance class in index.css, which anything can wear: a ring of tabs, a row of cards, a set of chips. from-scale is how small each starts, from-spread how far along its own spoke it starts as a fraction of the full distance (1 means it does not travel, only grows), and beats how many springs the whole arrival lasts. The gap between one and the next is motion.stagger-ms, shared with every other staggered thing in the app.",
+    "_comment": "How a group of things arrives: each one small and gathered at the middle, then springing out to where it belongs, one after another. Written as its own group rather than inside the launcher because it is the .dance class in styles/motion.css, which anything can wear: a ring of tabs, a row of cards, a set of chips. from-scale is how small each starts, from-spread how far along its own spoke it starts as a fraction of the full distance (1 means it does not travel, only grows), and beats how many springs the whole arrival lasts. The gap between one and the next is motion.stagger-ms, shared with every other staggered thing in the app.",
     "from-scale": "0.5",
     "from-spread": "0.06",
     "beats": "2"
@@ -197,7 +225,7 @@
     "control": "2.5rem",
     "_chip_comment": "How tall a chip stands, whatever is written in it. Said here rather than left to the text because a pill that takes its height from its own letters is a different height in Arabic than in English: a Recent row holding both came out with the Arabic pills at exactly twice the height of the English ones, a ragged row that looked like a browser bug and was not.",
     "chip": "1.9rem",
-    "_tap_comment": "The least height a pill or link stands on a touch screen, where a finger needs more than a pointer does. index.css applies it to .tap when the pointer is coarse; a mouse keeps the compact sizes.",
+    "_tap_comment": "The least height a pill or link stands on a touch screen, where a finger needs more than a pointer does. styles/text.css applies it to .tap when the pointer is coarse; a mouse keeps the compact sizes.",
     "tap": "2.25rem"
   },
   "radius": {
@@ -219,7 +247,7 @@
     "input-line-height": 1.6
   },
   "urdu": {
-    "_comment": "Urdu rides the Arabic ladder above; only what genuinely differs is here. Nastaliq slopes each word down to the left, so a line needs far more room under it than Naskh does, and two lines set at the Arabic height overlap. Raise this if descenders touch the line below; index.css swaps it in wherever lang=\"ur\".",
+    "_comment": "Urdu rides the Arabic ladder above; only what genuinely differs is here. Nastaliq slopes each word down to the left, so a line needs far more room under it than Naskh does, and two lines set at the Arabic height overlap. Raise this if descenders touch the line below; styles/text.css swaps it in wherever lang=\"ur\".",
     "line-height": 2.6
   },
   "hadith": {
@@ -237,7 +265,7 @@
     "body": "0.9375rem",
     "_figure_comment": "A number read at a glance rather than in a sentence: the three counts on the quiz panel's shut bar. Larger than body on purpose, it is what the row exists to show and it has to win against the words beside it.",
     "figure": "1.375rem",
-    "_label_comment": "The two rungs the rest of the app is written in: label is a control's own words (a chip, a select, a count) and ui is a line of English inside a control or a card. Tailwind's text-xs and text-sm are pointed at these two in index.css, so every size in the app comes from this file and there is no second scale hiding in the components.",
+    "_label_comment": "The two rungs the rest of the app is written in: label is a control's own words (a chip, a select, a count) and ui is a line of English inside a control or a card. Tailwind's text-xs and text-sm are pointed at these two in styles/base.css, so every size in the app comes from this file and there is no second scale hiding in the components.",
     "label": "0.75rem",
     "ui": "0.875rem"
   },
