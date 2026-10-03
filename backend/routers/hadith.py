@@ -77,6 +77,7 @@ async def search(
         collections=list(chosen),
         corrected=[HadithCorrection(typed=t, used=u) for t, u in found.corrected],
         unmatched=found.unmatched,
+        partial=found.partial,
         chapters=[HadithChapter(collection=c.collection, number=c.number, name=c.name, count=c.count)
                   for c in found.chapters],
         hits=[

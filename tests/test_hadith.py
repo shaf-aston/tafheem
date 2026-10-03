@@ -102,6 +102,10 @@ def test_search_takes_plain_arabic_and_loose_words(db):
     found = search.search("light nonexistentword", 10)
     assert [h.number for h in found.hits] == [3]
     assert found.unmatched == ["nonexistentword"]
+    assert found.partial is False
+    # Two real words no single hadith holds: the fallback says so.
+    found = search.search("light revelation", 10)
+    assert len(found.hits) == 2 and found.partial is True
     assert search.search("qqqq zzzz", 10).hits == []
 
 
@@ -159,7 +163,7 @@ def test_router_search(db, client):
 def test_router_search_with_no_query_says_ready_without_searching(db, client):
     resp = client.get("/api/hadith/search")
     assert resp.json() == {"query": "", "collections": [], "hits": [], "corrected": [], "unmatched": [],
-                            "chapters": [], "ready": True, "source": resp.json()["source"]}
+                            "partial": False, "chapters": [], "ready": True, "source": resp.json()["source"]}
 
 
 def test_router_search_before_the_database_is_built(tmp_path, monkeypatch, client):

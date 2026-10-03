@@ -54,6 +54,8 @@ class Result:
     corrected: list[tuple[str, str]] = field(default_factory=list)
     # Typed words no hadith holds and nothing is near.
     unmatched: list[str] = field(default_factory=list)
+    # True when no hadith holds every word, so the hits hold only some of them.
+    partial: bool = False
     chapters: list[Chapter] = field(default_factory=list)
 
 
@@ -78,12 +80,12 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
     conn = sqlite3.connect(f"file:{data_path('hadith_index_path')}?mode=ro", uri=True)
     try:
         terms, corrected, unmatched = _terms(conn, asked, settings)
-        rows = []
+        rows, partial = [], False
         if terms:
-            for joiner in (" ", " OR "):
-                rows = _rows(conn, joiner.join(terms), only, params, limit * _CHAPTER_SAMPLE_FACTOR)
-                if rows:
-                    break
+            rows = _rows(conn, " ".join(terms), only, params, limit * _CHAPTER_SAMPLE_FACTOR)
+            if not rows and len(terms) > 1:
+                rows = _rows(conn, " OR ".join(terms), only, params, limit * _CHAPTER_SAMPLE_FACTOR)
+                partial = bool(rows)
     except sqlite3.OperationalError:
         # A query FTS5 cannot parse (bare punctuation) is nothing found, not a server error.
         return Result()
@@ -92,7 +94,7 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
 
     hits = [Hit(collection=c, book=b, number=n, part=p, arabic=a, english=e, grades=json.loads(g))
             for c, b, n, p, a, e, g in rows[:limit]]
-    return Result(hits, corrected, unmatched, _chapters(rows, settings.hadith_chapter_hints))
+    return Result(hits, corrected, unmatched, partial, _chapters(rows, settings.hadith_chapter_hints))
 
 
 def _terms(conn, asked, settings) -> tuple[list[str], list[tuple[str, str]], list[str]]:
@@ -105,7 +107,8 @@ def _terms(conn, asked, settings) -> tuple[list[str], list[tuple[str, str]], lis
         lang = "ar" if has_arabic(folded) else "en"
         near = repair.nearest(conn, folded, lang, min_ratio=settings.hadith_repair_min_ratio,
                               candidates=settings.hadith_repair_candidates)
-        if near:
+        # The nearest word is matched by its stem too; a stem that reaches nothing is no repair.
+        if near and _matches(conn, _term(near)):
             corrected.append((typed, near))
             terms.append(_term(near))
         else:

@@ -102,6 +102,10 @@ export default function HadithSearchResults({ collections, accent, onOpenBook, c
         </p>
       )}
 
+      {data?.partial && (
+        <p role="status" className="type-small text-[var(--text-dim)]">no hadith has every word, so these hold some of them</p>
+      )}
+
       {data?.ready !== false && data && data.hits.length === 0 && (
         <EmptyState>Nothing matches &ldquo;{data.query}&rdquo;.</EmptyState>
       )}
