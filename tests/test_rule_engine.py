@@ -213,6 +213,7 @@ CARDS = [
     ("أَتَانَا الرَّسُولُ", 0, "sign", "مبني على الفتح"),     # the alef before نا is a fatha
     ("رَأَيْتُ أَخًا", 1, "sign", "فتحة"),                   # indefinite: no مضاف, the vowel shows
     ("سَلَّمْتُ عَلَى أَبِي الطَّبِيبِ", 2, "sign", "الياء"),    # CAMeL's name أبي is the noun أب
+    ("يَسِّرُوا وَلَا تُعَسِّرُوا", 2, "sign", "حذف النون"),   # لا with a و joined to it
 ]
 
 
