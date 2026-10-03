@@ -121,3 +121,14 @@ def test_a_verb_beside_the_ism_under_its_governor_is_the_khabar_clause():
     drawn = built(["كَانَ", "الْوَلَدُ", "يَكْتُبُ"], toks)["tree"]
     clause = drawn["children"][2]
     assert clause["role"] == "خبر كان" and clause["detail"]
+
+
+def test_a_role_has_one_colour_in_every_tree():
+    """A typed sentence draws like a book example: a role both tree files name wears one tone."""
+    from backend.services.arabic_text import strip_diacritics
+    from backend.services.nahw_book import role_table, tarkeeb_rules
+    tones = {role: tone for role, (_, tone) in role_table().items()}
+    clash = {key: (term["tone"], tones[strip_diacritics(term["ar"])])
+             for key, term in tarkeeb_rules()["terms"].items()
+             if tones.get(strip_diacritics(term["ar"]), term["tone"]) != term["tone"]}
+    assert not clash
