@@ -15,7 +15,7 @@ package's `__init__.py`.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import book_path, is_mabni, is_one, named_roles, role_table
+from backend.services.nahw_book import book_path, is_mabni, is_one, named_roles, role_table, unjoined
 from backend.services.syntax import facts, walker
 from backend.services.harakat import (
     CASE_NAME, SUKUN, command_shape, five_verb_nun, opens_present, letters, paused, typed_case)
@@ -72,7 +72,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         token["typed"] = word
         # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever reading the parser had
         after = words[i + 1] if i + 1 < len(words) else ""
-        if command_shape(paused(word, after), i > 0 and is_one(strip_diacritics(words[i - 1]), "jazm", "before_a_present_verb")):
+        if command_shape(paused(word, after), i > 0 and is_one(unjoined(strip_diacritics(words[i - 1])), "jazm", "before_a_present_verb")):
             token["asp"] = "c"
         # letters at the end that belong to an attached pronoun, not to the word
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
@@ -136,7 +136,7 @@ def _mood(typed: str, before: dict | None, stuck_on: int = 0) -> str:
         return "jazm"
     if shown in ("u", "a"):
         return CASE_NAME[shown]
-    particle = strip_diacritics(before["typed"]) if before else ""
+    particle = unjoined(strip_diacritics(before["typed"])) if before else ""
     dropped = five_verb_nun(typed) == "dropped"
     for family, case in (("jazm", "jazm"), ("nasb_mudari", "nasb")):
         if is_one(particle, family, "before_a_present_verb") or (dropped and is_one(particle, family)):

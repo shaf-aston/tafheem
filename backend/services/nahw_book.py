@@ -46,6 +46,12 @@ def is_one(lemma: str, family: str, part: str = "words") -> bool:
     return lemma.strip("+") in book_words(family, part)
 
 
+def unjoined(bare: str) -> str:
+    """A typed particle without the و or ف joined to it (وَلَا، فَلَنْ), so the book's
+    lists, which hold the particle alone, can find it."""
+    return bare[1:] if bare[:1] in ("و", "ف") and len(bare) == 3 else bare
+
+
 def is_mabni(token: dict) -> bool:
     """A pronoun, pointer, relative or question word: its ending is not a case."""
     return any(kind in token.get("pos_camel", "") for kind in MABNI_KINDS)

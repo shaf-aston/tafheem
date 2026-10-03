@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import SUKUN, TANWEEN, five_verb_nun, has_tanween, letters
-from backend.services.nahw_book import book_map, book_words, reason, teacher_rules
+from backend.services.nahw_book import book_map, book_words, reason, teacher_rules, unjoined
 
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
 _WEAK_END = {"ي": "manqus", "و": "on_waw", "ا": "on_alef", "ى": "on_alef"}
@@ -98,9 +98,7 @@ def _after_la_jins(card: dict, before: dict | None, after: dict | None) -> bool:
     مضاف, no tanween (that لا works like ليس and its noun takes the vowels)."""
     if card.get("role") != "اسم إن" or not before:
         return False
-    la = strip_diacritics(before["word"])
-    la = la[1:] if la[:1] in ("و", "ف") and len(la) == 3 else la
-    return la in book_words("la_jins") and not has_tanween(card["word"]) and not (
+    return unjoined(strip_diacritics(before["word"])) in book_words("la_jins") and not has_tanween(card["word"]) and not (
         after and after.get("role") == "مضاف إليه")
 
 
