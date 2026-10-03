@@ -371,6 +371,7 @@ async def listen_check_text(
     audio: UploadFile = File(..., description="The same recording the words reading already heard"),
     heard: str = Query(..., description="What that reading wrote down"),
     expected: str = Query(..., description="The phrase the reader was asked to say, vowelled"),
+    trial: bool = Query(False, description="Score with the trial model; 503 when none is installed"),
 ) -> TextSureness:
     """How sure the ear is of each word of a phrase that is not an ayah.
 
@@ -387,6 +388,7 @@ async def listen_check_text(
                 "validate",
             )
 
+        model = _trial_model(trial, filed)
         body = await _read_recording(audio, filed)
         journal.note("check-text.received", bytes=len(body), chars=len(expected))
 
@@ -401,7 +403,7 @@ async def listen_check_text(
                 return TextSureness(sure=[])
 
             try:
-                sure = await run_in_threadpool(recitation.check_text, body, heard, expected)
+                sure = await run_in_threadpool(recitation.check_text, body, heard, expected, model)
             except Exception as exc:
                 log.exception("checking a phrase failed")
                 raise filed.fail(

@@ -200,7 +200,7 @@ def check(audio: bytes, heard: str, ayahs: list[str], model: str | None = None) 
     return out
 
 
-def check_text(audio: bytes, heard: str, expected: str) -> list[float | None]:
+def check_text(audio: bytes, heard: str, expected: str, model: str | None = None) -> list[float | None]:
     """How sure the ear is of each word of `expected`, a phrase that is not an ayah.
 
     For words a learner was shown and asked to say, a takbir or a tashahhud:
@@ -215,5 +215,5 @@ def check_text(audio: bytes, heard: str, expected: str) -> list[float | None]:
     words = as_heard(expected)
     if not heard.strip() or not words or len(words) > get_settings().recitation_sure_max_words:
         return []
-    sure = timed("checked-text", listen.sureness, audio, words, words=len(words))
+    sure = timed("checked-text", listen.sureness, audio, words, model, words=len(words))
     return [round(score, 3) for score in sure]

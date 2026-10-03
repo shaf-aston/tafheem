@@ -42,6 +42,7 @@ def sound(monkeypatch):
 
 
 SOUND = b"pretend this is a recording"
+KEY = "gsk_pretend"
 
 
 class FakeGroq:
@@ -66,8 +67,8 @@ class FakeGroq:
 def groq(monkeypatch):
     """Install a stand-in Groq, with a key present so hosted hearing is on."""
     settings = get_settings()
-    monkeypatch.setattr(settings, "groq_api_key", "gsk_pretend")
-    monkeypatch.setattr(settings, "recitation_hosted", True)
+    monkeypatch.setattr(settings, "listening_groq_api_keys", KEY)
+    monkeypatch.setattr(settings, "listening_hosted", True)
 
     def install(replies=(("قل هو الله أحد", "Arabic"),), fail=None):
         fake = FakeGroq(replies, fail)
@@ -83,16 +84,16 @@ def groq(monkeypatch):
 def test_a_spoken_word_goes_to_groq_with_no_language_named(groq):
     """Groq works the language out better than this machine can, so it is let to."""
     fake = groq([("Knowledge", "English")])
-    assert hosted.transcribe(SOUND) == "Knowledge"
+    assert hosted.transcribe(SOUND, KEY) == "Knowledge"
     assert "language" not in fake.asked[0]
     assert fake.asked[0]["response_format"] == "verbose_json"
 
 
 def test_a_hint_is_sent_when_given_and_nothing_when_not(groq):
     fake = groq([("علم", "Arabic"), ("علم", "Arabic")])
-    hosted.transcribe(SOUND, hint="register")
+    hosted.transcribe(SOUND, KEY, hint="register")
     assert fake.asked[0]["prompt"] == "register"
-    hosted.transcribe(SOUND)
+    hosted.transcribe(SOUND, KEY)
     assert "prompt" not in fake.asked[1]
 
 
@@ -101,7 +102,8 @@ def test_a_recitation_is_heard_on_groq_when_it_is_available_too(monkeypatch):
     separate question now, asked of this machine's model directly (see
     services/recitation/__init__.py's `check`), so a recitation takes the
     normal ear order, quick one first, same as a search."""
-    monkeypatch.setattr(hosted, "is_available", lambda: True)
+    monkeypatch.setattr(get_settings(), "listening_groq_api_keys", KEY)
+    monkeypatch.setattr(hosted, "is_available", lambda key: True)
     asked = []
     monkeypatch.setattr(hosted, "transcribe", lambda *a, **k: asked.append("groq") or "x")
     monkeypatch.setattr(listen, "transcribe", lambda *a, **k: asked.append("here") or "x")
@@ -118,9 +120,9 @@ def test_a_recitation_never_gets_the_register_hint(monkeypatch):
         fake.how = how
         return [], None
     monkeypatch.setattr(listen, "_engine", lambda name: type("M", (), {"transcribe": staticmethod(read)})())
-    monkeypatch.setattr(hosted, "is_available", lambda: False)
+    monkeypatch.setattr(hosted, "is_available", lambda key: False)
     # The hint is Whisper's, so the Whisper ear is the one asked here.
-    monkeypatch.setattr(get_settings(), "recitation_ears", "hosted,here")
+    monkeypatch.setattr(get_settings(), "listening_ears", "hosted,here")
     recitation.hear(SOUND, match_ayahs=False, recite=True, fusha=True)
     assert fake.how["initial_prompt"] is None
 
@@ -137,13 +139,13 @@ def test_the_fusha_switch_decides_the_hint(monkeypatch):
     monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="", model=None: hints.append(hint) or "علم")
     recitation.hear(SOUND, match_ayahs=False, fusha=True)
     recitation.hear(SOUND, match_ayahs=False, fusha=False)
-    assert hints == [get_settings().recitation_fusha_hint, ""]
+    assert hints == [get_settings().listening_fusha_hint, ""]
     assert hints[0]
 
 
 def test_a_recitation_is_named_as_arabic(groq):
     fake = groq([("قل هو الله أحد", "Arabic")])
-    assert hosted.transcribe(SOUND, language="ar") == "قل هو الله أحد"
+    assert hosted.transcribe(SOUND, KEY, language="ar") == "قل هو الله أحد"
     assert fake.asked[0]["language"] == "ar"
 
 
@@ -154,13 +156,13 @@ def test_an_answer_in_neither_language_is_asked_again_as_arabic(groq):
     "much less often" is not "never", and this app is Arabic and English only.
     """
     fake = groq([("نالج", "Urdu"), ("علم", "Arabic")])
-    assert hosted.transcribe(SOUND) == "علم"
+    assert hosted.transcribe(SOUND, KEY) == "علم"
     assert [how.get("language") for how in fake.asked] == [None, "ar"]
 
 
 def test_a_language_it_did_get_right_is_not_asked_twice(groq):
     fake = groq([("Knowledge", "English")])
-    hosted.transcribe(SOUND)
+    hosted.transcribe(SOUND, KEY)
     assert len(fake.asked) == 1
 
 
@@ -179,38 +181,35 @@ def test_a_retired_key_or_a_spent_allowance_falls_back_too(groq, monkeypatch):
         assert recitation.transcribe(SOUND) == "heard here"
 
 
-def test_with_no_key_nothing_is_sent_anywhere(monkeypatch):
-    """Neither key, so there is nothing to send with and nothing is sent."""
-    settings = get_settings()
-    monkeypatch.setattr(settings, "groq_api_key", "")
-    monkeypatch.setattr(settings, "recitation_groq_api_key", "")
-    assert not hosted.is_available()
+def test_with_no_key_nothing_is_sent_anywhere():
+    """No key to send with, so the hosted ear is never available."""
+    assert not hosted.is_available("")
 
 
-def test_listening_spends_its_own_key(monkeypatch):
-    """The whole point of the second key: an hour of reciting must not spend
-    the allowance the grammar explanations run on."""
+def test_listening_spends_its_own_keys(monkeypatch):
+    """The whole point of the separate keys: an hour of reciting must not spend
+    the allowance the grammar explanations run on. Repeats collapse."""
     settings = get_settings()
     monkeypatch.setattr(settings, "groq_api_key", "gsk_explanations")
-    monkeypatch.setattr(settings, "recitation_groq_api_key", "gsk_listening")
-    assert settings.listening_key == "gsk_listening"
+    monkeypatch.setattr(settings, "listening_groq_api_keys", "gsk_a, gsk_b,gsk_a")
+    assert settings.listening_keys == ["gsk_a", "gsk_b"]
 
 
 def test_without_its_own_key_listening_falls_back_to_the_shared_one(monkeypatch):
-    """A machine that never set a second key listens exactly as it did before."""
+    """A machine that never set a listening key listens exactly as it did before."""
     settings = get_settings()
     monkeypatch.setattr(settings, "groq_api_key", "gsk_explanations")
-    monkeypatch.setattr(settings, "recitation_groq_api_key", "")
-    assert settings.listening_key == "gsk_explanations"
-    assert hosted.is_available()
+    monkeypatch.setattr(settings, "listening_groq_api_keys", "")
+    assert settings.listening_keys == ["gsk_explanations"]
+    assert hosted.is_available(settings.listening_keys[0])
 
 
 def test_switching_it_off_keeps_every_recording_on_this_machine(monkeypatch):
     """The privacy switch: off means no sound leaves, key or no key."""
     settings = get_settings()
-    monkeypatch.setattr(settings, "recitation_groq_api_key", "gsk_pretend")
-    monkeypatch.setattr(settings, "recitation_hosted", False)
-    assert not hosted.is_available()
+    monkeypatch.setattr(settings, "listening_groq_api_keys", KEY)
+    monkeypatch.setattr(settings, "listening_hosted", False)
+    assert not hosted.is_available(KEY)
 
 
 def test_an_empty_recording_is_never_sent(groq, monkeypatch):
@@ -243,8 +242,8 @@ def test_an_upload_is_named_by_what_it_really_is(monkeypatch):
     fake = FakeGroq([("قل", "Arabic"), ("قل", "Arabic")])
     monkeypatch.setattr(hosted, "_client", lambda key, timeout: fake)
     mp4 = b"\x00\x00\x00\x20ftypisom" + bytes(16)
-    hosted.transcribe(mp4, "gsk_pretend", "ar")
+    hosted.transcribe(mp4, KEY, "ar")
     assert fake.asked[0]["file"].name == "recording.mp4"
     webm = b"\x1a\x45\xdf\xa3" + bytes(16)
-    hosted.transcribe(webm, "gsk_pretend", "ar")
+    hosted.transcribe(webm, KEY, "ar")
     assert fake.asked[1]["file"].name == "recording.webm"

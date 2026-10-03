@@ -129,15 +129,19 @@ class LocalEar(Ear):
 
     local = True
 
+    def __init__(self, model: str | None = None) -> None:
+        #: A Qur'an model other than recitation_model, the trial one; None is the configured one.
+        self.model = model
+
     def transcribe(self, audio: bytes, language: str | None, hint: str) -> str:
-        return listen.transcribe(audio, language, hint)
+        return listen.transcribe(audio, language, hint, self.model)
 
     def is_available(self) -> bool:
         return True
 
     def name(self, reciting: bool = False) -> str:
         settings = get_settings()
-        return f"local-{settings.recitation_model if reciting else settings.dictation_model}"
+        return f"local-{(self.model or settings.recitation_model) if reciting else settings.dictation_model}"
 
 
 class LettersEar(Ear):
@@ -235,11 +239,8 @@ def hear(audio: bytes, language: str | None, hint: str, model: str | None = None
     or two does not pay for the same failure again.
     """
     reciting = language is not None
-    if model:
-        return timed("heard", listen.transcribe, audio, language, hint, model,
-                     ear=f"local-{model}", bytes=len(audio), hint=bool(hint))
     last: Exception | None = None
-    for ear in order(reciting):
+    for ear in [LocalEar(model)] if model else order(reciting):
         if not _ready(ear):
             continue
         name = ear.name(reciting)

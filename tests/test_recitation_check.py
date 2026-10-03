@@ -261,7 +261,8 @@ def test_a_standard_reading_carries_no_model(monkeypatch):
 def test_a_trial_without_an_installed_model_is_a_503_never_another_ear(monkeypatch):
     monkeypatch.setattr(recitation.listen, "trial_model", lambda: "")
     monkeypatch.setattr(recitation, "hear", lambda *a, **k: (_ for _ in ()).throw(AssertionError("heard")))
-    for path, params in (("/api/listen", {"recite": "true", "trial": "true"}), ("/api/listen/check", {"heard": "قل", "check": "112:1", "trial": "true"})):
+    for path, params in (("/api/listen", {"recite": "true", "trial": "true"}), ("/api/listen/check", {"heard": "قل", "check": "112:1", "trial": "true"}),
+                         ("/api/listen/check-text", {"heard": "الله", "expected": "اللَّهُ", "trial": "true"})):
         resp = client.post(path, params=params, files={"audio": ("r.webm", WEBM)})
         assert resp.status_code == 503, path
 
@@ -273,5 +274,16 @@ def test_a_trial_check_scores_with_the_trial_model(monkeypatch):
     monkeypatch.setattr(listen, "sureness", lambda audio, words, model=None: seen.update(model=model) or [0.5] * len(words))
     resp = client.post(
         "/api/listen/check", params={"heard": "قل هو", "check": "112:1", "trial": "true"}, files={"audio": ("r.webm", WEBM)},
+    )
+    assert resp.status_code == 200 and seen["model"] == "data/trial"
+
+
+def test_a_trial_phrase_check_scores_with_the_trial_model(monkeypatch):
+    seen = {}
+    monkeypatch.setattr(recitation.listen, "trial_model", lambda: "data/trial")
+    monkeypatch.setattr(listen, "sureness", lambda audio, words, model=None: seen.update(model=model) or [0.5] * len(words))
+    resp = client.post(
+        "/api/listen/check-text", params={"heard": "الله اكبر", "expected": "اللَّهُ أَكْبَرُ", "trial": "true"},
+        files={"audio": ("r.webm", WEBM)},
     )
     assert resp.status_code == 200 and seen["model"] == "data/trial"

@@ -31,8 +31,9 @@ class Rejected(Exception):
 
 
 @pytest.fixture(autouse=True)
-def fresh():
-    """No ear stays retired or resting from one test into the next."""
+def fresh(monkeypatch):
+    """One listening key, so "hosted" is one stable ear, and none stays retired or resting between tests."""
+    monkeypatch.setattr(get_settings(), "listening_groq_api_keys", "gsk_pretend")
     def reset():
         for ear in (ears.named("hosted"), ears.named("letters"), ears.named("here")):
             ear.retired_reason = ""
@@ -150,7 +151,7 @@ def test_a_permanent_failure_is_not_also_left_resting(both):
 
 
 def test_the_order_comes_from_config(both, monkeypatch):
-    monkeypatch.setattr(get_settings(), "recitation_ears", "here,hosted")
+    monkeypatch.setattr(get_settings(), "listening_ears", "here,hosted")
     asked = both()
     assert ears.hear(SOUND, None, "") == "here heard it"
     assert asked == ["here"]
@@ -159,7 +160,7 @@ def test_the_order_comes_from_config(both, monkeypatch):
 def test_a_mistyped_ear_name_still_leaves_the_app_able_to_listen(both, monkeypatch, caplog):
     """A typo in a setting must not make the app deaf: this machine is always
     there at the end of the order, whatever the setting says."""
-    monkeypatch.setattr(get_settings(), "recitation_ears", "hosted,ear-trumpet")
+    monkeypatch.setattr(get_settings(), "listening_ears", "hosted,ear-trumpet")
     asked = both(hosted_fails=ConnectionError("no internet"))
     assert ears.hear(SOUND, None, "") == "here heard it"
     assert asked == ["hosted", "here"]
@@ -194,7 +195,7 @@ def test_an_unreadable_recording_is_answered_415_and_not_500(monkeypatch):
 def test_the_health_line_says_which_ear_would_answer(both):
     both()
     body = TestClient(app).get("/api/health").json()
-    assert body["ear"] == get_settings().recitation_hosted_model
+    assert body["ear"] == get_settings().listening_model
 
     ears.named("hosted").retire("the API key was rejected")
     assert TestClient(app).get("/api/health").json()["ear"].startswith("local-")
@@ -207,7 +208,7 @@ def test_the_health_line_names_recitation_words_and_sureness_separately(both, mo
     both()
     monkeypatch.setattr(ears.letters, "installed", lambda: True)
     body = TestClient(app).get("/api/health").json()
-    assert body["recite_ear"] == get_settings().recitation_hosted_model
+    assert body["recite_ear"] == get_settings().listening_model
     assert body["recite_sure"] == f"local-{get_settings().recitation_model}"
 
     ears.named("hosted").retire("the API key was rejected")

@@ -56,7 +56,7 @@ def asked(monkeypatch):
         monkeypatch.setattr(ear, "is_available", lambda: True)
         monkeypatch.setattr(ear, "retired_reason", "")
         monkeypatch.setattr(ear, "_resting_until", 0.0)
-    monkeypatch.setattr(get_settings(), "recitation_ears", "letters,here")
+    monkeypatch.setattr(get_settings(), "listening_ears", "letters,here")
     return who
 
 
