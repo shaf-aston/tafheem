@@ -17,7 +17,6 @@
  *          reciting softly or sitting back from the microphone: -30 is about a
  *          thirtieth of the loudness, and used to reach the page as nothing
  *   VIEW   phone for a phone-sized screen
- *   LEVEL  beginner or standard: the checking level the page uses
  *   LISTEN trial to hear with the server's trial model (Settings, Listening);
  *          every reading and check must then carry trial=true
  *   JUMP   a clip in CLIPS, e.g. 001005: just before it plays, its first word
@@ -31,7 +30,7 @@
  * the clips have ended and a last window has gone by. The model's own
  * misreadings are allowed to show: hiding them would make this lie.
  */
-import { readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { chromium } from 'playwright'
 
 const EAR = process.env.EAR ?? 'http://127.0.0.1:8011'
@@ -44,7 +43,6 @@ const GAP_S = Number(process.env.GAP_S ?? 1)
 const QUIET_DB = Number(process.env.QUIET ?? 0)
 const DUMP = process.env.DUMP
 const JUMP = process.env.JUMP
-const LEVEL = process.env.LEVEL ?? 'standard'
 const LISTEN = process.env.LISTEN ?? 'standard'
 const viewport = process.env.VIEW === 'phone' ? { width: 390, height: 844 } : { width: 1280, height: 1000 }
 // The first word of the first clip, as the page counts words: 1:1 to 1:4 is 15 words.
@@ -65,9 +63,9 @@ const page = await browser.newPage({ viewport, permissions: ['microphone'] })
 page.on('pageerror', (e) => console.log('PAGEERROR', e.message.slice(0, 200)))
 page.on('console', (m) => { if (m.type() === 'error') console.log('CONSOLE', m.text().slice(0, 200)) })
 
-await page.addInitScript(({ level, listen }) => {
-  localStorage.setItem('settings', JSON.stringify({ 'reciting-level': level, 'listening-ear': listen }))
-}, { level: LEVEL, listen: LISTEN })
+await page.addInitScript(({ listen }) => {
+  localStorage.setItem('settings', JSON.stringify({ 'listening-ear': listen }))
+}, { listen: LISTEN })
 let askedTrial = 0, askedAll = 0
 
 // The microphone: the clips decoded and played one after another, a breath apart.
@@ -150,7 +148,7 @@ await page.route('**/api/listen**', async (route) => {
 
 // Not networkidle: the page keeps asking the backend how it is, so it never
 // falls idle, and waiting for that timed the probe out instead of running it.
-await page.goto(`${APP}/?tab=mem`, { waitUntil: 'domcontentloaded' })
+await page.goto(`${APP}/app?tab=mem`, { waitUntil: 'domcontentloaded' })
 await page.getByRole('button', { name: 'Recite it' }).click({ timeout: 30000 })
 await page.waitForTimeout(500)
 await page.getByRole('button', { name: 'Start reciting', exact: true }).click()
@@ -168,34 +166,49 @@ if (JUMP) {
   const still = await page.getByRole('button', { name: 'Stop', exact: true }).count()
   check('a word can be pressed while reciting, and reciting carries on', still > 0)
 }
+// How the recited page stands right now. Read while reciting, not after: once
+// the last word is said the page turns to the next surah by itself, and a
+// look taken after that turn found a fresh page and failed 3 runs in 4.
+const look = () => page.evaluate((start) => {
+  const words = [...document.querySelectorAll('button[aria-label^="start reciting from"]')]
+  const count = (list, css) => list.reduce((n, w) => n + w.querySelectorAll(`span[style*="${css}"]`).length, 0)
+  const line = [...document.querySelectorAll('[aria-live="polite"]')].map((e) => e.innerText)
+    .find((t) => /following you from|listening for where you are|tap a word to start/.test(t)) ?? ''
+  return {
+    first: words[0]?.getAttribute('aria-label'),
+    line,
+    total: words.length,
+    said: count(words.slice(start), '--text-dim'),
+    above: count(words.slice(0, start), '--danger'),
+    aboveSaid: count(words.slice(0, start), '--text-dim'),
+    covered: document.querySelectorAll('[aria-label="a word to say from memory"]').length,
+    named: document.querySelectorAll('[title="what the microphone heard"][style*="--warn"]').length,
+  }
+}, START)
+const opened = await look()
+let seen = opened
+let turned = false
+const watch = async (ms) => {
+  for (const until = Date.now() + ms; Date.now() < until; await page.waitForTimeout(400)) {
+    const now = await look()
+    if (now.first === opened.first) seen = now
+    else turned = true
+  }
+}
+
 // The clips, then one more window so the tail is heard and settled.
-await page.waitForTimeout((ends + 12 - waitedS) * 1000)
+await watch((ends + 12 - waitedS) * 1000)
 const stop = page.getByRole('button', { name: 'Stop', exact: true })
 if (await stop.count()) await stop.click()
 else console.log('  the page stopped by itself once the clips fell quiet')
-await page.waitForTimeout(3000)
+await watch(3000)
 
-const hint = page.getByText(/following you from|listening for where you are|tap a word to start/)
-const line = await hint.first().innerText().catch(() => '')
+const { line, total, said, above, aboveSaid, covered, named } = seen
 check('the ear was asked', heard.length > 0, `${heard.length} readings, ${gaveUp} given up on`)
 check(`Listening ${LISTEN} reached the server`, askedTrial === (LISTEN === 'trial' ? askedAll : 0), `${askedTrial} of ${askedAll} asked for trial`)
-check('it checked words by sound', checked.some((n) => n > 0), `${checked.join(', ')} words per reading, ${LEVEL}`)
+check('it checked words by sound', checked.some((n) => n > 0), `${checked.join(', ')} words per reading`)
 check(`it worked out it was 1:${AYAH} by itself`, new RegExp(`following you from\\s*${AYAH}`).test(line), line.trim())
-
-const words = page.locator('button[aria-label^="start reciting from"]')
-const total = await words.count()
-let said = 0
-let above = 0
-let aboveSaid = 0
-for (let i = 0; i < total; i += 1) {
-  const word = words.nth(i)
-  if (i < START) {
-    above += await word.locator('span[style*="--danger"]').count()
-    aboveSaid += await word.locator('span[style*="--text-dim"]').count()
-  }
-  else said += await word.locator('span[style*="--text-dim"]').count()
-}
-const covered = await page.locator('[aria-label="a word to say from memory"]').count()
+if (CLIPS.includes('001007')) check('the page turned on by itself after its last word', turned)
 check('most words recited are marked said', said >= (total - START) * 0.75, `${said} of ${total - START} said`)
 check('the words above the start are not accused', above === 0, `${above} accused`)
 if (JUMP) check('what was recited before the jump is forgotten', aboveSaid === 0, `${aboveSaid} still said`)
@@ -204,32 +217,18 @@ check('nothing stays covered but the ear\'s own slips', covered <= 1, `${covered
 // Orange means "I cannot tell". A word printed beside an orange one is the
 // transcript's guess, and the transcript is the part that gets it wrong: a
 // perfect al-Fatihah showed the first word of 1:1 beside the last word of 1:1.
-const named = await page.locator('[title="what the microphone heard"][style*="--warn"]').count()
 check('no doubtful word names a word', named === 0, `${named} named`)
-
-// The strictness dial, used the way a reciter would: it sits on the reciting
-// strip, it shows which level is on, and pressing another one re-marks the page
-// there and then, without reciting anything again. Clicked rather than assumed,
-// because a control that renders and does nothing looks identical in a test.
-const dial = page.getByRole('group', { name: 'Checking level' })
-const onNow = await dial.getByRole('button', { pressed: true }).innerText().catch(() => '')
-check('the checking level is on the reciting strip', onNow.toLowerCase() === LEVEL, onNow)
-const other = LEVEL === 'standard' ? 'Beginner' : 'Standard'
-await dial.getByRole('button', { name: other, exact: true }).click()
-await page.waitForTimeout(300)
-const swapped = await dial.getByRole('button', { pressed: true }).innerText()
-const stillSaid = await page.locator('button[aria-label^="start reciting from"] span[style*="--text-dim"]').count()
-check(`pressing ${other} changes the level and keeps the page marked`,
-  swapped === other && stillSaid > 0, `${swapped}, ${stillSaid} still said`)
 
 const middle = waited.length ? [...waited].sort((a, b) => a - b)[waited.length >> 1] : 0
 console.log(`\n  a reading came back in ${(middle / 1000).toFixed(1)}s typically,`
   + ` ${(Math.max(...waited, 0) / 1000).toFixed(1)}s at worst, over ${waited.length} readings`)
 
 // How long after a clip's last sound the page cut the recording there. The
-// page stamps each cut in the journal; a cut more than 3s late is another pause.
+// page stamps each cut in the journal, which only a backend on this machine
+// writes; a cut more than 3s late is another pause.
 const clipEnds = await page.evaluate(() => window.__clipEnds)
-const cuts = readFileSync('../logs/recite-journal.jsonl', 'utf8').trim().split('\n').map((l) => JSON.parse(l))
+const JOURNAL = '../logs/recite-journal.jsonl'
+const cuts = (existsSync(JOURNAL) ? readFileSync(JOURNAL, 'utf8').trim().split('\n') : []).map((l) => JSON.parse(l))
   .filter((e) => e.kind === 'window.cut' && e.detail?.why === 'pause').map((e) => Date.parse(e.at))
 const lags = clipEnds.map((end) => cuts.find((cut) => cut > end - 300) - end).filter((ms) => ms < 3000).sort((a, b) => a - b)
 if (lags.length) console.log(`  a pause was noticed ${(lags[lags.length >> 1] / 1000).toFixed(2)}s after the sound ended, typically`
