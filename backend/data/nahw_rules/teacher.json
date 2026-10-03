@@ -8,17 +8,20 @@
   "a_when_mudaf": ["منادى"]
  },
  "signs": {
-  "_comment": "The sign a card prints for its case (rule_engine.sign). A dual, a sound masculine plural and one of the five verbs show case by a letter instead of a vowel; a noun before ya al-mutakallim (كِتَابِي) or ending in alef maqsura (الفَتَى) has its vowel assumed, not seen. The rules in reasons name no sign, so they hold for all of these.",
+  "_comment": "The sign a card prints for its case (services/signs.py). A dual, a sound masculine plural, one of the six nouns as a مضاف and one of the five verbs show case by a letter instead of a vowel; a noun before ya al-mutakallim (كِتَابِي) or ending in alef maqsura (الفَتَى), and a present verb ending in a weak letter (يَهْدِي، يَدْعُو، يَسْعَى), have their vowel assumed, not seen; a jazm verb that loses its weak letter (لم يَبْكِ) shows it by the loss. The rules in reasons name no sign, so they hold for all of these.",
   "vowel": {"raf'": "ضمة", "nasb": "فتحة", "jarr": "كسرة", "jazm": "سكون", "mabni": "مبني"},
   "dual": {"raf'": "الألف، مثنى", "nasb": "الياء، مثنى", "jarr": "الياء، مثنى"},
   "sound_plural": {"raf'": "الواو، جمع مذكر سالم", "nasb": "الياء، جمع مذكر سالم", "jarr": "الياء، جمع مذكر سالم"},
   "five_verbs": {"raf'": "ثبوت النون", "nasb": "حذف النون", "jazm": "حذف النون"},
   "before_ya": {"raf'": "ضمة مقدرة على ما قبل ياء المتكلم", "nasb": "فتحة مقدرة على ما قبل ياء المتكلم", "jarr": "كسرة مقدرة على ما قبل ياء المتكلم"},
   "on_alef": {"raf'": "ضمة مقدرة على الألف للتعذر", "nasb": "فتحة مقدرة على الألف للتعذر", "jarr": "كسرة مقدرة على الألف للتعذر"},
-  "manqus": {"raf'": "ضمة مقدرة على الياء للثقل", "nasb": "فتحة", "jarr": "كسرة مقدرة على الياء للثقل"}
+  "manqus": {"raf'": "ضمة مقدرة على الياء للثقل", "nasb": "فتحة", "jarr": "كسرة مقدرة على الياء للثقل"},
+  "on_waw": {"raf'": "ضمة مقدرة على الواو للثقل", "nasb": "فتحة"},
+  "six_nouns": {"raf'": "الواو، من الأسماء الستة", "nasb": "الألف، من الأسماء الستة", "jarr": "الياء، من الأسماء الستة"},
+  "dropped_weak": {"jazm": "حذف حرف العلة"}
  },
  "case_said": {
-  "_comment": "A case as a reason says it: the word itself, the place a mabni word fills (مبني في محل رفع), what a mabni verb is built on, and a verb's opening words by its tense (rule_engine.verb_card).",
+  "_comment": "A case as a reason says it: the word itself, the place a mabni word fills (مبني في محل رفع), what a mabni verb is built on, and a verb's opening words by its tense (signs.py).",
   "word": {"raf'": "مرفوع", "nasb": "منصوب", "jarr": "مجرور", "jazm": "مجزوم"},
   "place": {"u": "رفع", "a": "نصب", "i": "جر"},
   "mabni_noun": "مبني في محل {place} لأنه {role}",
@@ -26,6 +29,11 @@
   "built_on": "مبني على {ending}",
   "past_on": "الفتح",
   "command_on": "السكون",
+  "_built_on": "What else a verb or a noun is built on (services/signs.py): a command to many or to one woman drops its nun (اُكْتُبُوا، اُكْتُبِي), a command from a weak root drops its last letter (اِسْقِ، اِتَّقِ), a present verb is built on the fatha with the nun of emphasis (لَيَنْصُرَنَّ) and on the sukun with the nun of women (يَرْسُمْنَ), and the single indefinite noun after لا of the genus is built on what its nasb would show (لا ضَرَرَ، لا قَلَمَيْنِ).",
+  "dropped_nun": "حذف النون",
+  "dropped_weak": "حذف حرف العلة",
+  "nun_on": {"emphasis": "الفتح", "women": "السكون"},
+  "la_jins_on": {"vowel": "الفتح", "dual": "الياء", "sound_plural": "الياء", "on_alef": "الفتح المقدر على الألف"},
   "tense": {"p": "فعل ماضٍ", "c": "فعل أمر", "i": "فعل مضارع"}
  },
  "book_path": {
@@ -34,12 +42,12 @@
   "said": "{path} (تسهيل النحو {section}، ص {page})"
  },
  "past_ending": {
-  "_comment": "What a past verb is built on, by its last letters (longest first): the damma before واو الجماعة, the sukun before a raf' pronoun; otherwise the fatha. A typed sukun on a last ت makes it تاء التأنيث (كَتَبَتْ), built on the fatha.",
-  "الضم": ["وا"],
-  "السكون": ["تما", "تم", "تن", "نا", "ت"]
+  "_comment": "What a past verb is built on, by its last letters (longest first) and the mark the letter before them must carry: the damma with واو الجماعة (كَتَبُوا، دَعَوْا), the sukun before a raf' pronoun; otherwise the fatha. A vowel typed before the letters says they are something else: the object نا of غَشَّنَا or the تاء التأنيث of كَتَبَتْ، حُفَّتِ, built on the fatha. A bare letter before them settles nothing, so there a typed sukun on a last ت makes it تاء التأنيث.",
+  "الضم": {"tails": ["وا"]},
+  "السكون": {"before": "ْ", "tails": ["تما", "تم", "تن", "نا", "ت"]}
  },
  "reasons": {
-  "_comment": "The reason a card shows, one per role, so it always explains the role the card wears (rule_engine writes it, syntax/__init__ rewrites it when the parser renames the word). Every name in roles.json has one; the keys after it are the rule engine's own variants.",
+  "_comment": "The reason a card shows, one per role, so it always explains the role the card wears (rule_engine writes it, iraab.with_parser_roles rewrites it when the parser renames the word, signs.py writes a verb's). Every name in roles.json has one; the keys after it are the rule engine's own variants.",
   "فعل": "فعل في جملة فعلية",
   "اسم موصول": "اسم موصول مبني، والجملة بعده صلته",
   "صلة": "جملة صلة الموصول، لا محل لها من الإعراب",

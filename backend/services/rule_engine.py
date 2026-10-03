@@ -1,16 +1,18 @@
-"""Every word's card (type, case, sign, reason) from CAMeL's tags, by fixed rule.
+"""Every word's card (type, role, case, reason) from CAMeL's tags, by fixed rule.
 
 Its roles are a first guess by position; the parser's book-tree names replace them
-wherever it has one (iraab.with_parser_roles). The words a card prints (signs, reasons, what a past verb is built on) are the
-book's, in data/nahw_rules/teacher.json; this file only decides which to use.
+wherever it has one (iraab.with_parser_roles). The sign is written last, once the
+case is final (signs.settle). The words a card prints are the book's, in
+data/nahw_rules/teacher.json; this file only decides which to use.
 """
 from __future__ import annotations
 
 from typing import Any
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import CASE_NAME, SUKUN, letters, typed_case
-from backend.services.nahw_book import book_words, case_of, reason, teacher_rules, term_ar
+from backend.services import signs
+from backend.services.harakat import CASE_NAME, SUKUN, opens_present
+from backend.services.nahw_book import book_words, case_of, reason, term_ar
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
@@ -20,85 +22,20 @@ from backend.services.nahw_book import book_words, case_of, reason, teacher_rule
 # CAMeL's tags for each particle family; a word on the family's list counts too
 _FAMILY_POS = {"jarr": {"prep"}, "inna": {"conj_sub", "part_focus"}, "atf": {"conj"}}
 
-# ── Case signs ────────────────────────────────────────────────────────────────
-
-
-def sign(case: str | None, kind: str = "vowel") -> str | None:
-    """The sign a card prints for a case; `kind` names the letter that shows it
-    instead of a vowel (dual, sound_plural, five_verbs)."""
-    return teacher_rules()["signs"][kind].get(case)
-
-
-def resign(old_sign: str | None, case: str) -> str | None:
-    """The sign for a new case, from the table the old sign came from, so a dual or a
-    كِتَابِي keeps its kind of sign when the parser moves its case."""
-    tables = {k: t for k, t in teacher_rules()["signs"].items() if not k.startswith("_")}
-    kind = next((k for k, table in tables.items() if old_sign in table.values()), "vowel")
-    return sign(case, kind) or sign(case)
-
-
-def _noun_kind(tag: dict) -> str:
-    """Which sign table a noun's case is read from."""
-    num = tag.get("number")
-    bare = strip_diacritics(tag.get("word", ""))
-    if num == "p" and tag.get("gender") == "m" and bare.endswith(("ون", "ين")):
-        return "sound_plural"
-    if num == "d":
-        return "dual"
-    if tag.get("enclitic") == "1s_poss":
-        return "before_ya"  # كِتَابِي: the kasra belongs to the ya, the case cannot show
-    marked = letters(tag.get("word", ""))
-    # no root read (key absent): the old test, a final ى is مقصور
-    weak = tag.get("weak_last", bare.endswith("ى"))
-    if bare.endswith(("ا", "ى")) and weak:
-        return "on_alef"  # الفَتَى، العَصَا: an alef cannot carry a vowel (كِتَابًا's root ends in a strong letter)
-    if "weak_last" in tag and weak and len(marked) > 1 and bare.endswith("ي") and not (
-            marked[-1][1] & {"ّ"} or marked[-2][1] & {"َ", "ُ", "ّ", SUKUN}):
-        return "manqus"  # القَاضِي: a damma or kasra is too heavy for the ya, the fatha shows
-    return "vowel"
-
-
-def _past_ending(word: str) -> str:
-    """What a past verb is built on, from its last letters (teacher.json past_ending)."""
-    bare = strip_diacritics(word)
-    marked = letters(word)
-    for ending, tails in teacher_rules()["past_ending"].items():
-        if ending.startswith("_"):
-            continue
-        tail = next((t for t in tails if bare.endswith(t)), None)
-        # كَتَبَتْ: a ت the reader closed with a sukun is تاء التأنيث, not a pronoun
-        if tail and not (tail == "ت" and marked and SUKUN in marked[-1][1]):
-            return ending
-    return teacher_rules()["case_said"]["past_on"]
-
-
-def _five_verbs(word: str, case: str) -> bool:
-    """يكتبون، تكتبين، يكتبان (and يكتبوا، يكتبا، تكتبي once the nun is dropped): case by
-    the nun. A damma typed on the nun makes it the verb's own letter (يَبِينُ), and a
-    fatha on a last ي makes it a weak root letter (لن يَمْشِيَ), not the ya of تكتبي."""
-    bare = strip_diacritics(word)
-    shown = typed_case(word)
-    if shown == "u" or len(bare) < 4:
-        return False
-    if case == "raf'":
-        return bare.endswith(("ون", "ين", "ان"))
-    return bare.endswith(("وا", "ا")) or (bare.startswith("ت") and bare.endswith("ي") and shown != "a")
+# ── Verb case ─────────────────────────────────────────────────────────────────
 
 
 def verb_card(word: str, aspect: str | None, case: str | None = None) -> dict:
-    """Case, sign and reason of a verb by its tense, so the three always agree.
-    iraab.with_parser_roles calls it again when the parser reads a word as a verb
-    or the particle before a present verb settles its mood."""
-    words = teacher_rules()["case_said"]
-    tense = words["tense"].get(aspect)
-    if aspect in ("p", "c"):
-        built = words["built_on"].format(ending=_past_ending(word) if aspect == "p" else words["command_on"])
-        return {"case": "mabni", "sign": built, "reason": f"{tense} {built}. {reason(tense)}"}
+    """A verb's tense and case: built for a past verb or a command, by its mood for a
+    present one. iraab.with_parser_roles calls it again when the parser reads a word
+    as a verb or the particle before a present verb settles its mood; signs.settle
+    writes the sign and the reason from these. A "present" verb without a present
+    prefix is a command (اِتَّقِ، read by CAMeL as يتقي's mood)."""
+    if aspect == "i" and not opens_present(word):
+        aspect = "c"
     if aspect == "i":
-        case = case if case in teacher_rules()["signs"]["five_verbs"] else "raf'"
-        return {"case": case, "sign": sign(case, "five_verbs" if _five_verbs(word, case) else "vowel"),
-                "reason": f"{tense} {words['word'][case]}. {reason(tense)}"}
-    return {"case": "mabni", "sign": sign("mabni"), "reason": reason("فعل")}
+        return {"aspect": aspect, "case": case if case in ("raf'", "nasb", "jazm") else "raf'"}
+    return {"aspect": aspect, "case": "mabni"}
 
 
 # ── Detection helpers ─────────────────────────────────────────────────────────
@@ -115,21 +52,25 @@ def _is(tag: dict, family: str) -> bool:
 # ── Entry builders ────────────────────────────────────────────────────────────
 
 def _entry(tag: dict, kind: str, role: str, key: str | None, case: str | None,
-           sign_ar: str | None, reason_ar: str) -> dict:
-    """One card, every field named once."""
+           reason_ar: str) -> dict:
+    """One card, every field named once. `kind` (the sign table, not the word type),
+    `weak_last`, `aspect` and `enclitic` are what signs.settle reads the sign from;
+    the page never shows them."""
     return {"word": tag["word"], "root": tag.get("root") or None, "type": kind, "role": role,
-            "role_key": key, "case": case, "sign": sign_ar, "reason": reason_ar,
-            "notes": tag.get("features") or "", "source": "rule_engine"}
+            "role_key": key, "case": case, "sign": None, "reason": reason_ar,
+            "notes": tag.get("features") or "", "source": "rule_engine",
+            "kind": signs.kind_of(tag), "weak_last": tag.get("weak_last"), "aspect": tag.get("aspect"),
+            "enclitic": tag.get("enclitic")}
 
 
 def _harf_entry(tag: dict, role: str, why: str) -> dict:
-    return _entry(tag, "harf", role, "harf", "mabni", sign("mabni"), reason(why))
+    return _entry(tag, "harf", role, "harf", "mabni", reason(why))
 
 
 def _verb_entry(tag: dict) -> dict:
     mood = {"s": "nasb", "j": "jazm"}.get(tag.get("mood"), "raf'")
-    card = verb_card(tag.get("word", ""), tag.get("aspect"), mood)
-    return _entry(tag, "fi'l", "فعل", "fil", card["case"], card["sign"], card["reason"])
+    return {**_entry(tag, "fi'l", "فعل", "fil", None, reason("فعل")),
+            **verb_card(tag.get("word", ""), tag.get("aspect"), mood)}
 
 
 def _noun_entry(tag: dict, role: str, key: str | None = None, why: str | None = None) -> dict:
@@ -138,16 +79,15 @@ def _noun_entry(tag: dict, role: str, key: str | None = None, why: str | None = 
     forced = case_of(role)
     case = CASE_NAME[forced] if forced else tag.get("case")
     mabni = case == "mabni"
-    return _entry(tag, tag.get("type") or "ism", role, key, case,
-                  sign(case, "vowel" if mabni else _noun_kind(tag)), reason(why or role, mabni=mabni))
+    return _entry(tag, tag.get("type") or "ism", role, key, case, reason(why or role, mabni=mabni))
 
 
 def _pron_entry(tag: dict, role: str, why: str, key: str | None = None) -> dict:
-    return _entry(tag, "damir", role, key, "mabni", sign("mabni"), reason(why))
+    return _entry(tag, "damir", role, key, "mabni", reason(why))
 
 
 def _unknown_entry(tag: dict) -> dict:
-    return _entry(tag, tag.get("type") or "ism", "–", None, tag.get("case"), None, reason("–"))
+    return _entry(tag, tag.get("type") or "ism", "–", None, tag.get("case"), reason("–"))
 
 
 # ── Main engine ───────────────────────────────────────────────────────────────
@@ -163,7 +103,7 @@ def analyze(sentence: str, tags: list[dict[str, Any]]) -> dict[str, Any]:
     state = _init_state(is_verbal, is_inna_sentence)
 
     words = [entry for i, tag in enumerate(tags) if (entry := _process_tag(tag, i, tags, state, is_verbal))]
-    return {"summary": summary, "words": words}
+    return {"summary": summary, "words": signs.settle(words)}
 
 
 def _detect_verbal_sentence(tags: list[dict], is_inna: bool) -> bool:
@@ -206,7 +146,7 @@ def _process_tag(
     pos = _pos(tag)
 
     if pos == "punc":
-        return _entry(tag, "punc", "–", None, None, None, "–")
+        return _entry(tag, "punc", "–", None, None, "–")
 
     if _is(tag, "atf"):
         # لا العاطفة joins single words; before a verb it negates (لا يكذبُ) or forbids (لا تكذبْ)

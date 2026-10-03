@@ -11,11 +11,11 @@ The Analyse page and the practice questions both read sentences through here.
 """
 from __future__ import annotations
 
-from backend.services import morphology, provenance, rule_engine, syntax, tarkeeb_store
+from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb_store
 from backend.services.harakat import CASE_NAME
 from backend.services.nahw_book import case_of, reason, term_ar
 from backend.services.syntax import teacher
-from backend.services.syntax.naming import opens_with_verb, role_key
+from backend.services.syntax.naming import NAMED, opens_with_verb, role_key
 
 
 def analyse(sentence: str) -> dict:
@@ -62,7 +62,7 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
         if found.get("gap"):
             # the teacher caught the parser's name breaking a rule; the rule engine's
             # guess must not stand in for it, so the card shows the no-role dash and why
-            entry.update(role="–", role_key=None, case=found["case"], sign=None,
+            entry.update(role="–", role_key=None, case=found["case"], sign=None, gap=True,
                          reason=found["gap"]["ar"], notes=found["gap"]["en"])
         elif found["role"]:
             renamed = found["role"] != entry.get("role")
@@ -70,6 +70,9 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
             entry["book"] = found.get("book")  # the branches of the book that named it
             # the colour must follow the new name, never the one it replaced
             entry["role_key"] = role_key(found["role"])
+            if found["role"] != "فعل" and entry.get("type") == "fi'l":
+                # لَسِحْرًا: CAMeL's verb is the parser's noun, so the verb's case goes with it
+                entry.update(type="harf" if found["role"] in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
             moved = found["case"] and found["case"] != entry.get("case")
             # أَقِمْ: the root made it a command; the parser, seeing only a sukun, says jazm
             if entry.get("type") == "fi'l" and entry.get("case") == "mabni" and found["case"] == "jazm":
@@ -88,12 +91,11 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
                         moved = CASE_NAME[own] != entry.get("case")
                         found = {**found, "case": CASE_NAME[own]}
                 if moved:
-                    # the sign must show the new case, in the old sign's kind (a dual stays a dual)
-                    entry.update(case=found["case"], sign=rule_engine.resign(entry.get("sign"), found["case"]))
+                    entry["case"] = found["case"]  # signs.settle writes the sign for it
                 if entry["case"] == "mabni" and entry.get("type") != "harf":
                     entry["reason"] = reason(found["role"], mabni=True)  # الذي، هذا: in the place of a case
     summary = _sentence_type(parser_roles) or rule_result.get("summary")
-    return {**rule_result, "words": entries, "summary": summary}
+    return {**rule_result, "words": signs.settle(entries), "summary": summary}
 
 
 def _sentence_type(parser_roles: list[dict]) -> str | None:
