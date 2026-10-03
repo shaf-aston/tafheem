@@ -10,15 +10,13 @@ Pure and offline; a malformed tree fails loud on first use.
 """
 from __future__ import annotations
 
-import json
 import re
 from functools import lru_cache
 from typing import NamedTuple
 
-from backend.services.nahw_book import RULES, role_table
+from backend.services.nahw_book import book_file, role_table
 from backend.services.syntax.facts import AXES
 
-TREE_FILE = RULES / "naming_tree.json"
 # a book reference is the Tasheel section and its page: "3.1 p60"
 BOOK_REF = re.compile(r"\d+(\.\d+)* p\d+")
 
@@ -86,7 +84,7 @@ def validate(node: dict, axes: dict = AXES, roles: dict | None = None, left: dic
 
 @lru_cache(maxsize=1)
 def load() -> dict:
-    tree = json.loads(TREE_FILE.read_text(encoding="utf-8"))["tree"]
+    tree = book_file("naming_tree.json")["tree"]
     validate(tree)
     return tree
 

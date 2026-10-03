@@ -96,9 +96,9 @@
   "nahw": {
     "label": "Nahw rule engine",
     "confidence": "derived",
-    "detail": "Grammar rules applied in order, from data/nahw_rules/rules.json",
-    "url": "@repo:nahw_rules/rules.json",
-    "where": "Grammar rules applied in order. Same sentence, same answer.",
+    "detail": "The book's rules as data: word lists, the naming tree and the teacher's checks, in data/nahw_rules",
+    "url": "@repo:nahw_rules/naming_tree.json",
+    "where": "The book's rules as data. Same sentence, same answer.",
     "used_in": [
       "nahw"
     ]
@@ -200,7 +200,6 @@
     "url": "https://groq.com",
     "where": "Model-written each time. Wording aid, not evidence.",
     "used_in": [
-      "nahw",
       "sarf",
       "quran",
       "dict"

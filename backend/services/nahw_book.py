@@ -1,4 +1,7 @@
-"""The book's closed word lists, its roles and the teacher's checks (a leaf module: rule_engine and syntax both read it), loaded once from data/nahw_rules/closed_words.json, roles.json and teacher.json."""
+"""The book's rules as data (a leaf module: rule_engine, syntax and tarkeeb all read it).
+
+Every file in data/nahw_rules is read once, by `book_file`: the closed word lists,
+the roles, the teacher's checks, the naming tree and the bracket tree's vocabulary."""
 from __future__ import annotations
 
 import json
@@ -7,22 +10,24 @@ from pathlib import Path
 from types import SimpleNamespace
 
 RULES = Path(__file__).parent.parent / "data" / "nahw_rules"
-FILE = RULES / "closed_words.json"
-TEACHER_FILE = RULES / "teacher.json"
-ROLES_FILE = RULES / "roles.json"
 
 # a pronoun, pointer, relative or question word keeps one ending whatever its job
 MABNI_KINDS = ("pron", "dem", "rel", "interrog")
 
 
-@lru_cache(maxsize=1)
+@lru_cache(maxsize=None)
+def book_file(name: str) -> dict:
+    """One file of data/nahw_rules, parsed once."""
+    return json.loads((RULES / name).read_text(encoding="utf-8"))
+
+
 def _closed() -> dict:
-    return json.loads(FILE.read_text(encoding="utf-8"))
+    return book_file("closed_words.json")
 
 
 def vetoes() -> dict[str, bool]:
     """Which link vetoes are switched on (see services/syntax/mask.py)."""
-    return {k: v for k, v in _closed()["vetoes"].items() if not k.startswith("_")}
+    return _closed()["vetoes"]
 
 
 @lru_cache(maxsize=None)
@@ -51,9 +56,8 @@ def is_plain_noun(token: dict) -> bool:
     return token["pos"] in ("NOM", "PROP") and not is_mabni(token)
 
 
-@lru_cache(maxsize=1)
 def _roles() -> dict:
-    return json.loads(ROLES_FILE.read_text(encoding="utf-8"))
+    return book_file("roles.json")
 
 
 def role_table() -> dict[str, tuple[str | None, str | None]]:
@@ -77,10 +81,9 @@ def role_units() -> list[dict]:
     return _roles()["units"]
 
 
-@lru_cache(maxsize=1)
 def teacher_rules() -> dict:
     """The teacher's checks and their reasons (services/syntax/teacher.py)."""
-    return json.loads(TEACHER_FILE.read_text(encoding="utf-8"))
+    return book_file("teacher.json")
 
 
 def book_path(path: list[str], book: str) -> str:
@@ -110,3 +113,64 @@ def reason(role: str, mabni: bool = False) -> str:
     words = teacher_rules()["case_said"]
     rule = said[said.find("القاعدة"):] if "القاعدة" in said else ""
     return f"{words['mabni_noun'].format(place=words['place'][place], role=role)}. {rule}".strip()
+
+
+# ── The bracket tree's vocabulary (tarkeeb.json): one wording for every tree ──
+
+def tarkeeb_rules() -> dict:
+    """The bracket tree's vocabulary: its terms, tones and treebank wording."""
+    return book_file("tarkeeb.json")
+
+
+def term(key: str) -> dict:
+    """One grammatical term: the Arabic the diagram prints and the colour it uses."""
+    term = tarkeeb_rules()["terms"][key]
+    out = {"ar": term["ar"], "tone": term["tone"]}
+    if "detail" in term:
+        out["detail"] = term["detail"]
+    return out
+
+
+def shown(term: dict) -> dict:
+    """A term as a node wears it: its wording, its colour and its note, if any."""
+    return {"role": term["ar"], "tone": term["tone"],
+            **({"detail": term["detail"]} if "detail" in term else {})}
+
+
+def term_ar(key: str) -> str:
+    """Just the Arabic of a term, for comparing against what a tree printed."""
+    return tarkeeb_rules()["terms"][key]["ar"]
+
+
+def relation_wording(relation: str | None) -> tuple[str, bool]:
+    """What to call a treebank relation, and whether any of it is still unchecked wording.
+
+    Three cases, in order: the app has a wording for the whole name; the name is
+    "خبر / اسم" plus the word that governs it, so the frame is the app's and the
+    governing word is spelled the app's way when it is one a book names; or
+    nothing is known, and the treebank's own wording is used and said to be so,
+    its wording beats no wording, but it must not read as a finished term.
+
+    The recorded treebank and the rules below both name a governed word through
+    this, so اِسْمُ إِنَّ is spelled one way whichever path drew it.
+    """
+    settings = tarkeeb_rules()["treebank"]
+    if not relation:
+        return "", False
+    if known := settings["relation_terms"].get(relation):
+        return known, False
+
+    head, _, rest = relation.partition(" ")
+    frame = settings["relation_frames"].get(head)
+    if frame and rest:
+        governor = settings["governors"].get(rest)
+        return f"{frame} {governor or rest}", governor is None
+    return relation, True
+
+
+def relation_tone(relation: str | None) -> str:
+    """A relation's colour: the first listed name it contains, else the default."""
+    for needle, tone in tarkeeb_rules()["treebank"]["relation_tones"]:
+        if relation and needle in relation:
+            return tone
+    return "default"

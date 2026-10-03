@@ -17,8 +17,7 @@ from fastapi.testclient import TestClient
 
 from backend.main import app
 from backend.scripts import build_tarkeeb
-from backend.services import ai as ai_service
-from backend.services import syntax, tarkeeb, tarkeeb_store
+from backend.services import nahw_book, syntax, tarkeeb_store
 from tests.test_tarkeeb_treebank import AL_ADIYAT_9, SETTINGS
 
 client = TestClient(app)
@@ -28,7 +27,7 @@ TYPED = "أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِ
 @pytest.fixture(autouse=True)
 def recorded(tmp_path, monkeypatch):
     words, _ = build_tarkeeb._words_of(AL_ADIYAT_9, SETTINGS)
-    tree = build_tarkeeb._tree_of(words, SETTINGS, tarkeeb.relation_tone)
+    tree = build_tarkeeb._tree_of(words, SETTINGS, nahw_book.relation_tone)
     written = [i for i, word in enumerate(words) if not word["elided"]]
     path = tmp_path / "tarkeeb.db"
     db = sqlite3.connect(path)
@@ -40,7 +39,6 @@ def recorded(tmp_path, monkeypatch):
     db.commit()
     db.close()
     monkeypatch.setattr(tarkeeb_store, "DATABASE", path)
-    monkeypatch.setattr(ai_service, "is_ai_available", lambda: False)
 
 
 def test_a_typed_ayah_is_read_from_its_record_not_the_parser(monkeypatch):
@@ -53,12 +51,12 @@ def test_a_typed_ayah_is_read_from_its_record_not_the_parser(monkeypatch):
     assert answer["tree"]["source"]["key"] == "treebank"
     assert (answer["tree"]["surah"], answer["tree"]["ayah"]) == (100, 9)
     roles = [word["role"] for word in answer["words"]]
-    assert roles == [SETTINGS["particle_kinds"]["حرف استفهام"], tarkeeb.term_ar("fil"),
-                     tarkeeb.term_ar("zarf_zaman"), tarkeeb.term_ar("fil"),
-                     SETTINGS["relation_terms"]["نائب فاعل"], tarkeeb.term_ar("jarr"),
+    assert roles == [SETTINGS["particle_kinds"]["حرف استفهام"], nahw_book.term_ar("fil"),
+                     nahw_book.term_ar("zarf_zaman"), nahw_book.term_ar("fil"),
+                     SETTINGS["relation_terms"]["نائب فاعل"], nahw_book.term_ar("jarr"),
                      SETTINGS["relation_terms"]["مجرور"]]
     assert "تمييز" not in json.dumps(answer, ensure_ascii=False)
-    assert answer["summary"] == tarkeeb.term_ar("jumlah_filiyyah")
+    assert answer["summary"] == nahw_book.term_ar("jumlah_filiyyah")
 
 
 def test_a_card_is_coloured_the_same_whoever_named_it():

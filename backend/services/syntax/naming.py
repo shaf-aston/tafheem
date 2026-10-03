@@ -18,7 +18,7 @@ from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_path, is_mabni, is_one, named_roles, role_table
 from backend.services.syntax import facts, walker
 from backend.services.syntax.facts import PRESENT_PREFIX
-from backend.services.syntax.vowels import (
+from backend.services.harakat import (
     CASE_NAME, SUKUN, command_shape, letters, paused, typed_case)
 
 # Every role this module can name, with its card colour key and bracket tone
@@ -128,7 +128,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str) -> s
 def _mood(typed: str, before: dict | None) -> str:
     """A present verb's case: the ending the reader typed, else the particle straight
     before it when the book's list says that particle settles it (لم يكتب، لن يذهب),
-    else raf'. `typed` is the word as paused on (vowels.paused)."""
+    else raf'. `typed` is the word as paused on (harakat.paused)."""
     last = letters(typed)[-1][1] if letters(typed) else set()
     shown = typed_case(typed)
     if SUKUN in last:

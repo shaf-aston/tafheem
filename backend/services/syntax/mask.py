@@ -14,7 +14,7 @@ import numpy as np
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import is_one, is_plain_noun, vetoes
-from backend.services.syntax.vowels import CAMEL_CASE
+from backend.services.harakat import CAMEL_CASE
 
 
 def _verb_subject_follows(toks, add_rel) -> None:
@@ -42,11 +42,14 @@ def book_mask(toks: list[dict], labels: list[str]) -> np.ndarray:
     def add_rel(d, h, label):
         rel_ok[d, h, labels.index(label)] = False
 
-    on = vetoes()
-    for name, rule in _VETOES.items():
-        if on.get(name):
-            rule(toks, add_rel)
+    for rule in _switched_on(_VETOES):
+        rule(toks, add_rel)
     return rel_ok
+
+
+def _switched_on(rules: dict) -> list:
+    """The rules closed_words.json "vetoes" turns on, in the order of the table passed."""
+    return [rule for name, rule in rules.items() if vetoes().get(name)]
 
 
 def _above(heads: list[int], word: int, target: int) -> bool:
@@ -150,8 +153,6 @@ def book_links(toks: list[dict], heads: list[int], rels: list[str]) -> tuple[lis
     """The parser's heads and labels with every link the book settles written over them
     (a listed preposition's word class is corrected on its token too)."""
     heads, rels = list(heads), list(rels)
-    on = vetoes()
-    for name, rule in _LINKS.items():
-        if on.get(name):
-            rule(toks, heads, rels)
+    for rule in _switched_on(_LINKS):
+        rule(toks, heads, rels)
     return heads, rels

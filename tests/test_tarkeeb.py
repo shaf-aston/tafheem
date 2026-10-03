@@ -7,13 +7,13 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
 import pytest
 
-from backend.services import arabic_text, quran_corpus, tarkeeb
+from backend.services import arabic_text, nahw_book, quran_corpus, tarkeeb
 
 needs_corpus = pytest.mark.skipif(
     not quran_corpus.is_loaded(), reason="corpus.db not built"
 )
 
-TERMS = tarkeeb._rules()["terms"]
+TERMS = nahw_book.tarkeeb_rules()["terms"]
 
 
 def ayah(surah: int, number: int) -> dict:
@@ -159,7 +159,7 @@ def roles(result: dict) -> dict[int, list[str]]:
 
 
 def governed(relation: str) -> str:
-    return tarkeeb.relation_wording(relation)[0]
+    return nahw_book.relation_wording(relation)[0]
 
 
 def typed(*words: tuple[str, str, str]) -> list[dict]:

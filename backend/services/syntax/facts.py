@@ -13,7 +13,7 @@ from typing import Callable
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_map, book_words, is_one, is_plain_noun
-from backend.services.syntax.vowels import (
+from backend.services.harakat import (
     CAMEL_CASE, SHADDA, SUKUN, has_tanween, past_passive_shape, typed_case, typed_passive)
 
 PRESENT_PREFIX = set("أنيت")
@@ -173,7 +173,24 @@ def agrees(token: dict, head: dict) -> bool:
     Only the dual is compared: a plural not of people takes a singular na't (الكتبُ الجديدةُ);
     and only a noun's: a verb reading's number is its doer's (ضَحِكًا read as ضَحِكَا)."""
     dual = [t.get("num") == "d" for t in (token, head) if t["pos"] in ("NOM", "PROP")]
-    return same_case(token, head) and not (token.get("stt") == "i" and head.get("stt") in ("d", "c"))         and len(set(dual)) < 2
+    return same_case(token, head) and not (token.get("stt") == "i" and head.get("stt") in ("d", "c")) \
+        and len(set(dual)) < 2
+
+
+def unlike(token: dict, head: dict) -> bool:
+    """In its noun's case yet not agreeing: no na't, so a khabar or a hal."""
+    return same_case(token, head) and not agrees(token, head)
+
+
+def told_of_subject(token: dict, head: dict) -> bool:
+    """A modifier of a subject in raf' or jarr: the khabar (لا رجلَ حاضرٌ), not a follower."""
+    mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
+    return bool(mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a")
+
+
+def indefinite_nasb(token: dict) -> bool:
+    """An indefinite word in nasb: a hal or tamyeez, never a na't."""
+    return typed_or_parsed_case(token) == "a" and token.get("stt") != "d"
 
 
 def is_state_word(token: dict) -> bool:
@@ -341,7 +358,8 @@ def _follows(token: dict, s: Sentence) -> str:
     # ما جاء أحدٌ إلا زيدٌ: after إلا in a negated complete sentence the excepted noun in the
     # case of the noun before إلا is its بدل (Tasheel 3.2 p67)
     excepting = s.by_id.get(token["id"] - 1)
-    if excepting and excepting["pos"] == "PRT" and is_one(excepting["lemma"], "istithna")             and s.negated_before(excepting):
+    if excepting and excepting["pos"] == "PRT" and is_one(excepting["lemma"], "istithna") \
+            and s.negated_before(excepting):
         before = previous_noun(excepting, s)
         if before and typed_or_parsed_case(token) and typed_or_parsed_case(token) == typed_or_parsed_case(before):
             return "badal"
@@ -372,11 +390,10 @@ def _follows(token: dict, s: Sentence) -> str:
             and not has_tanween(token.get("typed")):
         return "badal"
     with_pronoun = any(k.get("pos_camel") == "pron" for k in s.kids(token))
-    if not _listed(token, "tawkeed", "with_pronoun" if with_pronoun else "without_pronoun") \
-            and stands_for(token, s):
+    tawkeed_word = _listed(token, "tawkeed", "with_pronoun" if with_pronoun else "without_pronoun")
+    if not tawkeed_word and stands_for(token, s):
         return "badal"
-    if _listed(token, "tawkeed", "with_pronoun" if with_pronoun else "without_pronoun") \
-            and head["id"] < token["id"] and not is_verb(head) and head["pos"] != "PRT":
+    if tawkeed_word and head["id"] < token["id"] and not is_verb(head) and head["pos"] != "PRT":
         return "tawkeed"
     # a صفة comes after the noun it describes: هَذَانِ hung on the قَلَمَانِ after it is the mubtada
     if token["rel"] != "MOD" or is_verb(head) or head["id"] > token["id"]:
@@ -385,9 +402,7 @@ def _follows(token: dict, s: Sentence) -> str:
     if mine and mine == theirs:
         return "naat" if agrees(token, head) else "none"
     # لا رجلَ حاضرٌ (khabar) and a hal or tamyeez in nasb are not followers
-    if mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a":
-        return "none"
-    if mine == "a" and token.get("stt") != "d":
+    if told_of_subject(token, head) or indefinite_nasb(token):
         return "none"
     return "naat" if token.get("ud") == "ADJ" else "none"
 
@@ -513,9 +528,8 @@ def _verb_place(token: dict, s: Sentence) -> str:
         if rel == "TMZ":
             return "specification"
     if rel == "MOD" and head:
-        mine = typed_or_parsed_case(token)
         # an indefinite nasb word after a definite noun is that noun's hal, not the verb's
-        if mine == "a" and token.get("stt") != "d" and not (same_case(token, head) and not agrees(token, head)):
+        if indefinite_nasb(token) and not unlike(token, head):
             verb = verb_above(token, s)
             if verb:
                 if _skeleton(token["lemma"]) == _skeleton(verb["lemma"]):
@@ -526,17 +540,9 @@ def _verb_place(token: dict, s: Sentence) -> str:
 
 def _governor(token: dict, s: Sentence) -> str:
     """What gives this word its case (Tasheel 3.3 p79). A word has one governor and the
-    nearest wins: what is joined to it by form outranks what reaches it through a verb.
-    Tested in this order: a word a question is about has none; a listed time or place
-    word belongs to its verb; a particle that calls or excepts it, or that it is the
-    object of (harf jarr), because a particle works only on the word straight after it;
-    the noun it is the idafa of (a verb takes an idafa-linked word as its argument
-    unless the reader typed kasra; a bare noun with kasra straight after a plain noun
-    is idafa too, يا عبدَ اللهِ); the inna/kana/kaada/zanna family or plain verb it is an
-    argument of (the verb's second object included); the number or measure a TMZ or OBJ
-    under a noun specifies; a verb that reaches it by any other place (_verb_place);
-    last, the family whose khabar it is: a modifier of that family's subject that fails
-    to agree with it (a na't would agree), or that is not in nasb under a subject."""
+    nearest wins, so the tests run nearest first: a particle straight before it, then the
+    noun it is the idafa of, then a family or verb it is an argument of, then a number or
+    measure, then any verb that reaches it, and last the family whose khabar it is."""
     head = s.head(token)
     rel = token["rel"]
     typed = typed_case_of(token)
@@ -574,9 +580,7 @@ def _governor(token: dict, s: Sentence) -> str:
     if _verb_place(token, s) != "none":
         return "verb"
     if rel == "MOD" and head and not is_verb(token):
-        mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
-        if (same_case(token, head) and not agrees(token, head)) \
-                or (mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a"):
+        if unlike(token, head) or told_of_subject(token, head):
             above = s.head(head)
             family = s.family(above) if above else None
             if family in ("kana", "inna"):
@@ -586,20 +590,10 @@ def _governor(token: dict, s: Sentence) -> str:
 
 def _nominal_place(token: dict, s: Sentence) -> str:
     """The place of a word no verb governs: the nominal sentence, mubtada and khabar
-    (Tasheel 1.4 p6), with the hal and tamyeez a noun can take. Tested in this order
-    because the parser's link is trusted last: the question word and the pointer say
-    what the sentence is about before any link does; then the khabar link; then the
-    subject links; then a word the sentence rests on; then a modifier by its case.
-
-    In a verbless sentence a question word is the khabar, brought to the front, and the
-    nominative noun (or the one the question word governs) the mubtada; a pointer is
-    the mubtada. A khabar (PRD) is the predicate, except that after a fronted
-    jar-wa-majroor (إن في البيت رجلا) the noun is the subject. A SBJ or TPC is the
-    subject; the word the sentence rests on, with its subject under it, the predicate,
-    as is a noun without ال after a pointer (هذا بيتٌ، هذا أبي). A parser that leaves two loose
-    halves gives the first the subject and the second the predicate. A modifier in the
-    same case as a definite noun and indefinite is its khabar, or its hal in nasb; under
-    a subject, in any case but nasb, a khabar; in nasb it is a hal or a tamyeez."""
+    (Tasheel 1.4 p6), with the hal and tamyeez a noun can take. The parser's link is
+    trusted last: the question word and the pointer say what the sentence is about
+    before any link does, then the khabar link, the subject links, the word the
+    sentence rests on, and last a modifier by its case."""
     rel = token["rel"]
     if s.hijazi and token in s.hijazi[1:]:
         return "subject" if token is s.hijazi[1] else "predicate"
@@ -642,12 +636,11 @@ def _nominal_place(token: dict, s: Sentence) -> str:
             loose = [t for t in s.tokens if t["rel"] == "---" and t["pos"] in ("NOM", "PROP")]
             return "subject" if not loose or token is loose[0] else "predicate"
     if rel == "MOD" and head:
-        mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
-        if same_case(token, head) and not agrees(token, head):
-            return "state" if mine == "a" else "predicate"
-        if mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a":
+        if unlike(token, head):
+            return "state" if typed_or_parsed_case(token) == "a" else "predicate"
+        if told_of_subject(token, head):
             return "predicate"
-        if mine == "a" and token.get("stt") != "d":
+        if indefinite_nasb(token):
             return state_or_specification(token, head)
     return "none"
 

@@ -110,7 +110,7 @@ def test_governor_istithna_particle_head_unless_negated():
             token(2, "زيدا", "زيد", "PROP", 1, "OBJ", cas="a")]
     assert governor(["إِلَّا", "زَيْدًا"], toks, 1) == "istithna"
     toks.insert(0, token(0, "ما", "ما", "PRT", 0, "---"))
-    assert governor(["مَا", "إِلَّا", "زَيْدًا"], toks, 2) == "harf_jarr"
+    assert governor(["مَا", "إِلَّا", "زَيْدًا"], toks, 2) == "none"  # إلا is no preposition (jarr_takes)
 
 
 def test_governor_family_heads_and_none():

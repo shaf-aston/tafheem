@@ -4,7 +4,7 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
 import pytest
 
-from backend.services.syntax.vowels import CASE_NAME, typed_case
+from backend.services.harakat import CASE_NAME, typed_case
 
 
 @pytest.mark.parametrize("word, case", [

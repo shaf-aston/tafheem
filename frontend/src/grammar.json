@@ -32,19 +32,6 @@
     "zarf":  { "arabic": "ظرف",   "said": "zarf",  "meaning": "A word for when or where: قبل, عند, فوق." }
   },
 
-  "_signs_comment": "The mark that shows a case, keyed by the English the AI writes. Matched whole, in lower case; anything else prints as sent.",
-  "signs": {
-    "damma": "ضمة",
-    "fatha": "فتحة",
-    "kasra": "كسرة",
-    "sukun": "سكون",
-    "waw": "الواو",
-    "alif": "الألف",
-    "ya": "الياء",
-    "nun": "ثبوت النون",
-    "harakat muqaddara": "حركة مقدرة"
-  },
-
   "_corpus_pos_comment": "The Quranic corpus files every word as N, V or P. Each names the type above it prints as.",
   "corpus_pos": { "N": "ism", "V": "fi'l", "P": "harf" }
 }

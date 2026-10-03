@@ -6,24 +6,17 @@ re-reads the finished sentence and dashes any word whose name breaks a rule. Thi
 the seam the rest of the app talks to, so a different parser can be put behind
 it without anything else changing.
 
-The parser is preferred over `rule_engine` because it is measured better
-(`backend/scripts/score_iraab.py` holds the scores). A word the
-parser has no name for keeps the rule engine's answer; a word the teacher dashed
-stays dashed, with its reason. If the parser is off or
-fails, nothing changes at all.
+If the parser is off or fails, every role comes back empty and the rule
+engine's cards stand alone (iraab.with_parser_roles).
 """
 from __future__ import annotations
 
 import logging
 
 from backend.config import get_settings
-from backend.services import provenance, rule_engine
+from backend.services import provenance
 from backend.services.arabic_text import words as split_words
-from backend.services.nahw_book import case_of, reason
 from backend.services.syntax import teacher, tree
-from backend.services.syntax.vowels import CASE_NAME
-from backend.services.tarkeeb import term_ar
-from backend.services.syntax.naming import opens_with_verb, role_key
 from backend.services.syntax.naming import roles as name_roles
 
 logger = logging.getLogger(__name__)
@@ -67,62 +60,6 @@ def read(sentence: str) -> dict:
         drawn = tree.build(typed, tokens, found)
         drawn["source"] = provenance.of("nahw")  # worked out here, not looked up
         return {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
-    except Exception as exc:  # a missing model file, or a sentence it chokes on
+    except Exception:  # a missing model file, or a sentence it chokes on
         logger.exception("Syntax parser unavailable, keeping the rule engine")
         return nothing
-
-
-def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
-    """The rule engine's answer with every role the parser could name written over it."""
-    entries = rule_result.get("words", [])
-    if len(parser_roles) != len(entries) or not any(found["role"] or found.get("gap") for found in parser_roles):
-        return rule_result
-    for entry, found in zip(entries, parser_roles):
-        if not found["role"] and not found.get("gap") and (
-                why := teacher.fallback_gap(entry.get("role"), found)):
-            found = {**found, "gap": why}  # the rule engine's name clashes with the typed vowel
-        if found.get("gap"):
-            # the teacher caught the parser's name breaking a rule; the rule engine's
-            # guess must not stand in for it, so the card shows the no-role dash and why
-            entry.update(role="–", role_key=None, case=found["case"], sign=None,
-                         reason=found["gap"]["ar"], notes=found["gap"]["en"])
-        elif found["role"]:
-            renamed = found["role"] != entry.get("role")
-            entry["role"] = found["role"]
-            entry["book"] = found.get("book")  # the branches of the book that named it
-            # the colour must follow the new name, never the one it replaced
-            entry["role_key"] = role_key(found["role"])
-            moved = found["case"] and found["case"] != entry.get("case")
-            # أَقِمْ: the root made it a command; the parser, seeing only a sukun, says jazm
-            if entry.get("type") == "fi'l" and entry.get("case") == "mabni" and found["case"] == "jazm":
-                moved = False
-            if found["role"] == "فعل":
-                # a word CAMeL took for a noun (ضُرِبَ، كان) or a mood the particle before
-                # settled (لن يذهب): the card is the verb's own, by the parser's tense
-                if entry.get("type") != "fi'l" or moved:
-                    aspect = found.get("aspect") or ("i" if found["case"] != "mabni" else None)
-                    entry.update(type="fi'l", **rule_engine.verb_card(entry["word"], aspect, found["case"]))
-            else:
-                if renamed:
-                    entry["reason"] = reason(found["role"])  # the reason must explain the new name
-                    # رأيتُ أخي: no vowel shows, so a new name brings its own case (case_of_role)
-                    if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
-                        moved = CASE_NAME[own] != entry.get("case")
-                        found = {**found, "case": CASE_NAME[own]}
-                if moved:
-                    # the sign must show the new case, in the old sign's kind (a dual stays a dual)
-                    entry.update(case=found["case"], sign=rule_engine.resign(entry.get("sign"), found["case"]))
-                if entry["case"] == "mabni" and entry.get("type") != "harf":
-                    entry["reason"] = reason(found["role"], mabni=True)  # الذي، هذا: in the place of a case
-    summary = _sentence_type(parser_roles) or rule_result.get("summary")
-    return {**rule_result, "words": entries, "summary": summary}
-
-
-def _sentence_type(parser_roles: list[dict]) -> str | None:
-    """The type the parser's names give, or None when it named nothing."""
-    names = [found["role"] for found in parser_roles if found["role"]]
-    if not names:
-        return None
-    if "منادى" in names and not opens_with_verb(names):
-        return term_ar("jumlah_nidaiyyah")  # يا عبدَ الله: a call, the same words the tree uses
-    return rule_engine.sentence_type(is_verbal=opens_with_verb(names), is_inna="اسم إن" in names)

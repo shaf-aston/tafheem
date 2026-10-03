@@ -3,7 +3,7 @@ import pytest
 
 from backend.services.syntax import facts, naming
 from backend.services.syntax.naming import roles as named
-from backend.services.syntax.vowels import typed_case, typed_passive
+from backend.services.harakat import typed_case, typed_passive
 
 
 def roles(words, tokens):
@@ -89,7 +89,7 @@ def test_nothing_is_guessed_when_the_split_does_not_line_up(words):
 # ── أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِي الْقُبُورِ: what the parser path got wrong ──
 
 def test_a_reading_that_contradicts_the_typed_vowels_does_not_agree():
-    from backend.services.syntax.vowels import vowel_agreement
+    from backend.services.harakat import vowel_agreement
     assert vowel_agreement("أَفَلَا", "آفِلاً") is None      # kasra and tanween the reader did not type
     assert vowel_agreement("أَفَلَا", "أَفَلا") is not None
     assert vowel_agreement("الْقُبُورِ", "القُبُورَ") is None  # the case typed is jarr

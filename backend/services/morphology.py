@@ -2,7 +2,7 @@
 
 Priority fallback chain (highest quality first):
   1. CAMeL Tools Analyzer, readings ranked by the MLE disambiguator, then
-     the typed harakat choose among them (vowels.best_reading).
+     the typed harakat choose among them (harakat.best_reading).
   2. Qalsadi: lemmatisation + basic info
   3. PyArabic / bare harakat, case from diacritics only
 
@@ -19,7 +19,7 @@ from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
 from backend.services.nahw_book import is_one
-from backend.services.syntax.vowels import CAMEL_CASE, CASE_NAME, TANWEEN, best_reading, command_shape, moved_for_wasl, paused, typed_case
+from backend.services.harakat import CAMEL_CASE, CASE_NAME, TANWEEN, best_reading, command_shape, moved_for_wasl, paused, typed_case
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +48,7 @@ try:
     try:
         from camel_tools.disambig.mle import MLEDisambiguator
         # Every reading, ranked, not just the top one: the typed vowels then
-        # choose among them (vowels.best_reading), which a single pick cannot allow.
+        # choose among them (harakat.best_reading), which a single pick cannot allow.
         _camel_mle = MLEDisambiguator.pretrained(top=1_000_000)
         logger.info("CAMeL Tools MLE disambiguator ready")
     except Exception as _exc:

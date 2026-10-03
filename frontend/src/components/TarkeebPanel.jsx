@@ -1,13 +1,7 @@
 /**
- * Tarkeeb, worked examples, straight from the books that drew them.
- *
- * The drawer at the foot of the Nahw page. The reader's own sentence is drawn
- * above it now, so these are no longer the only diagrams the page can show:
- * they are the checked ones, to read and to compare against. Reading a diagram
- * is the skill, and these are the sentences the books teach it with.
- *
- * The whole set is small and fixed, so it is fetched once and filtered here; 
- * typing never goes back to the server.
+ * The books' own worked tarkeeb, in the drawer at the foot of the Nahw page: the
+ * checked diagrams to compare a typed sentence against. The set is small and
+ * fixed, so it is fetched once and filtered here.
  */
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -27,16 +21,8 @@ import SourceBadge from './ui/SourceBadge'
 import { Skeleton } from './ui/Skeleton'
 import TarkeebDiagram from './TarkeebDiagram'
 
-/**
- * Examples are browsed by grammar topic, not by where a book happens to print
- * them, a reader looks for "kana and its sisters", not for §1.8. Topics are
- * shared by every book (topics.json on the server), so a second book teaching
- * kana lands under the same chip rather than starting a rival list. Each card
- * still names its book and section for anyone checking the page.
- *
- * A book chip row appears only once there is more than one book: with one, every
- * card would say the same word and the filter would filter nothing.
- */
+// Browsed by grammar topic, shared by every book, so a second book teaching kana
+// lands under the same chip. The book chips appear only with more than one book.
 
 export default function TarkeebPanel({ accent, onWordByWord }) {
   const [query, setQuery] = useState('')

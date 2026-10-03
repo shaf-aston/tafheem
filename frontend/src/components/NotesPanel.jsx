@@ -68,7 +68,8 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
 
   // What has been revealed belongs to one topic, mode and choice of what to
   // hide; change any of them and everything is hidden again.
-  const scope = `${topic?.id}:${mode}:${[...hidden].sort().join()}`
+  const hiddenKey = [...hidden].sort().join()
+  const scope = `${topic?.id}:${mode}:${hiddenKey}`
   const [shownNow, setShownNow] = useState({ scope, keys: NOTHING })
   const revealed = shownNow.scope === scope ? shownNow.keys : NOTHING
 
@@ -146,7 +147,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
       </header>
 
       {mode === 'cards' ? (
-        <NoteCards key={`${topic.id}:${[...hidden].sort().join()}`} cards={cards} accent={accent} onPage={goToPage} />
+        <NoteCards key={`${topic.id}:${hiddenKey}`} cards={cards} accent={accent} onPage={goToPage} />
       ) : (
         <div className="space-y-5">
           {topic.blocks.map((block) => {

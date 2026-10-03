@@ -1,41 +1,24 @@
-"""Deterministic Nahw rule engine for Arabic I'raab analysis.
+"""Every word's card (type, case, sign, reason) from CAMeL's tags, by fixed rule.
 
-Converts morphological tags (from morphology.py) into a structured I'raab
-result using classical grammar rules, no API call needed.
-
-Coverage:
-  * fi'l, fa'il / na'ib fa'il, maf'ul bihi  (jumlah fi'liyyah)
-  * mubtada, khabar                          (jumlah ismiyyah)
-  * inna and sisters  (ism mansub / khabar marfu')
-  * harf jarr + majrur
-  * sifah / na't
-  * harf 'atf (conjunctions)
-
-The words a card prints (signs, reasons, what a past verb is built on) are the
+Its roles are a first guess by position; the parser's book-tree names replace them
+wherever it has one (iraab.with_parser_roles). The words a card prints (signs, reasons, what a past verb is built on) are the
 book's, in data/nahw_rules/teacher.json; this file only decides which to use.
 """
 from __future__ import annotations
 
-import logging
 from typing import Any
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.nahw_book import book_words, case_of, reason, teacher_rules
-from backend.services.syntax.vowels import CASE_NAME, SUKUN, letters, typed_case
-from backend.services.tarkeeb import term_ar
-
-logger = logging.getLogger(__name__)
+from backend.services.harakat import CASE_NAME, SUKUN, letters, typed_case
+from backend.services.nahw_book import book_words, case_of, reason, teacher_rules, term_ar
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
 # themselves are the contract's, `schemas.ROLE_KEYS`, and
 # tests/test_rule_engine.py holds the two lists together.
 
-# CAMeL POS tags for inna/sisters (conj_sub = subordinating conjunction)
-_INNA_POS = {"conj_sub", "part_focus"}
-
-# CAMeL POS tags for prepositions
-_JARR_POS = {"prep"}
+# CAMeL's tags for each particle family; a word on the family's list counts too
+_FAMILY_POS = {"jarr": {"prep"}, "inna": {"conj_sub", "part_focus"}, "atf": {"conj"}}
 
 # ── Case signs ────────────────────────────────────────────────────────────────
 
@@ -104,7 +87,7 @@ def _five_verbs(word: str, case: str) -> bool:
 
 def verb_card(word: str, aspect: str | None, case: str | None = None) -> dict:
     """Case, sign and reason of a verb by its tense, so the three always agree.
-    syntax.with_parser_roles calls it again when the parser reads a word as a verb
+    iraab.with_parser_roles calls it again when the parser reads a word as a verb
     or the particle before a present verb settles its mood."""
     words = teacher_rules()["case_said"]
     tense = words["tense"].get(aspect)
@@ -120,27 +103,13 @@ def verb_card(word: str, aspect: str | None, case: str | None = None) -> dict:
 
 # ── Detection helpers ─────────────────────────────────────────────────────────
 
-def _is_jarr_particle(tag: dict) -> bool:
-    """True if the word is a preposition (harf jarr)."""
-    pos = (tag.get("pos") or "").lower()
-    if pos in _JARR_POS:
-        return True
-    return strip_diacritics(tag.get("word", "")) in book_words("jarr")
+def _pos(tag: dict) -> str:
+    return (tag.get("pos") or "").lower()
 
 
-def _is_inna_sister(tag: dict) -> bool:
-    """True if the word is إنّ or one of her sisters."""
-    pos = (tag.get("pos") or "").lower()
-    if pos in _INNA_POS:
-        return True
-    return strip_diacritics(tag.get("word", "")) in book_words("inna")
-
-
-def _is_conjunction(tag: dict) -> bool:
-    pos = (tag.get("pos") or "").lower()
-    if pos == "conj":
-        return True
-    return strip_diacritics(tag.get("word", "")) in book_words("atf")
+def _is(tag: dict, family: str) -> bool:
+    """A preposition (jarr), إنّ or a sister (inna), or a joining word (atf)."""
+    return _pos(tag) in _FAMILY_POS[family] or strip_diacritics(tag.get("word", "")) in book_words(family)
 
 
 # ── Entry builders ────────────────────────────────────────────────────────────
@@ -153,14 +122,14 @@ def _entry(tag: dict, kind: str, role: str, key: str | None, case: str | None,
             "notes": tag.get("features") or "", "source": "rule_engine"}
 
 
-def _harf_entry(tag: dict, role: str, why: str, key: str | None = "harf") -> dict:
-    return _entry(tag, "harf", role, key, "mabni", sign("mabni"), reason(why))
+def _harf_entry(tag: dict, role: str, why: str) -> dict:
+    return _entry(tag, "harf", role, "harf", "mabni", sign("mabni"), reason(why))
 
 
-def _verb_entry(tag: dict, key: str | None = "fil") -> dict:
+def _verb_entry(tag: dict) -> dict:
     mood = {"s": "nasb", "j": "jazm"}.get(tag.get("mood"), "raf'")
     card = verb_card(tag.get("word", ""), tag.get("aspect"), mood)
-    return _entry(tag, "fi'l", "فعل", key, card["case"], card["sign"], card["reason"])
+    return _entry(tag, "fi'l", "فعل", "fil", card["case"], card["sign"], card["reason"])
 
 
 def _noun_entry(tag: dict, role: str, key: str | None = None, why: str | None = None) -> dict:
@@ -184,19 +153,11 @@ def _unknown_entry(tag: dict) -> dict:
 # ── Main engine ───────────────────────────────────────────────────────────────
 
 def analyze(sentence: str, tags: list[dict[str, Any]]) -> dict[str, Any]:
-    """
-    Apply classical Nahw rules to produce an I'raab analysis.
-
-    Returns::
-        {
-          "summary":    str,
-          "words":      list[dict],
-        }
-    """
+    """{summary, words}: the sentence type and one card per word."""
     if not tags:
         return {"summary": "", "words": []}
 
-    is_inna_sentence = _is_inna_sister(tags[0])
+    is_inna_sentence = _is(tags[0], "inna")
     is_verbal = _detect_verbal_sentence(tags, is_inna_sentence)
     summary = sentence_type(is_verbal, is_inna_sentence)
     state = _init_state(is_verbal, is_inna_sentence)
@@ -206,10 +167,9 @@ def analyze(sentence: str, tags: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def _detect_verbal_sentence(tags: list[dict], is_inna: bool) -> bool:
-    """Detect if sentence is verbal (fi'liyyah) or nominal (ismiyyah)."""
     if is_inna:
         return False
-    first_pos = (tags[0].get("pos") or "").lower()
+    first_pos = _pos(tags[0])
     if first_pos == "verb":
         return True
     return (
@@ -229,7 +189,6 @@ def sentence_type(is_verbal: bool, is_inna: bool) -> str:
 
 
 def _init_state(is_verbal: bool, is_inna: bool) -> dict[str, bool]:
-    """Initialize analysis state flags."""
     return {
         "after_jarr": False,
         "after_inna": is_inna,
@@ -237,7 +196,6 @@ def _init_state(is_verbal: bool, is_inna: bool) -> dict[str, bool]:
         "fail_done": not is_verbal,
         "mubtada_done": is_verbal,
         "khabar_done": is_verbal,
-        "verb_done": not is_verbal,
     }
 
 
@@ -245,12 +203,12 @@ def _process_tag(
     tag: dict[str, Any], i: int, tags: list[dict], state: dict, is_verbal: bool
 ) -> dict | None:
     """The rule engine's card for one word, or None for a word it drops."""
-    pos = (tag.get("pos") or "").lower()
+    pos = _pos(tag)
 
     if pos == "punc":
         return _entry(tag, "punc", "–", None, None, None, "–")
 
-    if _is_conjunction(tag):
+    if _is(tag, "atf"):
         # لا العاطفة joins single words; before a verb it negates (لا يكذبُ) or forbids (لا تكذبْ)
         verb = tags[i + 1] if i + 1 < len(tags) and tags[i + 1].get("pos") == "verb" else None
         if verb and strip_diacritics(tag["word"]) == "لا":
@@ -258,11 +216,11 @@ def _process_tag(
             return _harf_entry(tag, "حرف", "لا ناهية" if forbids else "لا نافية")
         return _harf_entry(tag, "حرف", "حرف عطف")
 
-    if _is_jarr_particle(tag):
+    if _is(tag, "jarr"):
         state["after_jarr"] = True
         return _harf_entry(tag, "حرف جر", "حرف جر")
 
-    if _is_inna_sister(tag) and i == 0:
+    if _is(tag, "inna") and i == 0:
         state["after_inna"] = True
         return _harf_entry(tag, "حرف", "حرف ناسخ")
 
@@ -273,16 +231,15 @@ def _process_tag(
         return _process_pronoun(tag, state, is_verbal)
 
     if pos == "verb":
-        return _process_verb(tag, state)
+        return _verb_entry(tag)
 
     if pos in ("noun", "noun_prop", "adj", "adv", "abbrev", "unknown", ""):
-        return _process_noun(tag, state, is_verbal, tags)
+        return _process_noun(tag, pos, state, is_verbal, tags)
 
     return _unknown_entry(tag)
 
 
 def _process_pronoun(tag: dict, state: dict, is_verbal: bool) -> dict:
-    """Process pronoun tag."""
     if state["after_jarr"]:
         state["after_jarr"] = False
         return _pron_entry(tag, "مجرور", "مجرور ضمير", "harf")
@@ -294,17 +251,7 @@ def _process_pronoun(tag: dict, state: dict, is_verbal: bool) -> dict:
     return _pron_entry(tag, "–", "ضمير", None)
 
 
-def _process_verb(tag: dict, state: dict) -> dict:
-    """Process verb tag; marks the sentence's verb as seen."""
-    first = not state["verb_done"]
-    state["verb_done"] = True
-    return _verb_entry(tag)
-
-
-def _process_noun(tag: dict, state: dict, is_verbal: bool, tags: list[dict]) -> dict | None:
-    """Process noun/adjective/adverb tag."""
-    pos = (tag.get("pos") or "").lower()
-
+def _process_noun(tag: dict, pos: str, state: dict, is_verbal: bool, tags: list[dict]) -> dict | None:
     if state["after_jarr"]:
         state["after_jarr"] = False
         return _noun_entry(tag, "مجرور", "harf")
@@ -331,7 +278,6 @@ def _process_noun(tag: dict, state: dict, is_verbal: bool, tags: list[dict]) -> 
 
 
 def _process_noun_verbal(tag: dict, state: dict, tags: list[dict], pos: str) -> dict:
-    """Process noun in verbal sentence (jumlah fi'liyyah)."""
     if not state["fail_done"]:
         is_passive = any(t.get("voice") == "p" for t in tags if t.get("pos") == "verb")
         role = "نائب فاعل" if is_passive else "فاعل"
@@ -345,7 +291,6 @@ def _process_noun_verbal(tag: dict, state: dict, tags: list[dict], pos: str) -> 
 
 
 def _process_noun_nominal(tag: dict, state: dict, pos: str) -> dict:
-    """Process noun in nominal sentence (jumlah ismiyyah)."""
     if not state["mubtada_done"]:
         state["mubtada_done"] = True
         return _noun_entry(tag, "مبتدأ", "mubtada")

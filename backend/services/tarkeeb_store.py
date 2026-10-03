@@ -15,7 +15,7 @@ import json
 import sqlite3
 from pathlib import Path
 
-from backend.services import tarkeeb
+from backend.services import nahw_book
 from backend.services.arabic_text import alef_written_out
 from backend.services.arabic_text import words as split_words
 from backend.services.readonly_db import ReadOnlyDb
@@ -103,7 +103,7 @@ def for_ayah(surah: int, ayah: int) -> dict | None:
     if row is None:
         return None
 
-    settings = tarkeeb._rules()["treebank"]
+    settings = nahw_book.tarkeeb_rules()["treebank"]
     words = json.loads(row["words"])
     tree = json.loads(row["tree"])
     named = [0]

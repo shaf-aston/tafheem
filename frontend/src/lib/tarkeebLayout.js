@@ -11,8 +11,8 @@
  */
 
 /** The API sends empty arrays where the artifact's data had nothing at all. */
-const kids = (node) => (node.children?.length ? node.children : null)
-const pieces = (node) => (node.parts?.length ? node.parts : null)
+export const kids = (node) => (node.children?.length ? node.children : null)
+export const pieces = (node) => (node.parts?.length ? node.parts : null)
 
 /**
  * A copy of the tree with `from`, `to` and `level` filled in.
@@ -92,8 +92,9 @@ export const share = (piece) =>
 export function splitConnectors(words, tree) {
   const splits = new Map() // original word index -> { text, piece }
   const find = (node) => {
-    if (node.children?.length) return node.children.forEach(find)
-    if (node.word == null || !node.prefix_arabic || !node.parts?.length) return
+    const children = kids(node)
+    if (children) return children.forEach(find)
+    if (node.word == null || !node.prefix_arabic || !pieces(node)) return
     const piece = node.parts.find((p) => p.ghair_aamil)
     if (piece) splits.set(node.word, { text: node.prefix_arabic, piece })
   }
@@ -114,7 +115,8 @@ export function splitConnectors(words, tree) {
   })
 
   const rewrite = (node) => {
-    if (node.children?.length) return [{ ...node, children: node.children.flatMap(rewrite) }]
+    const children = kids(node)
+    if (children) return [{ ...node, children: children.flatMap(rewrite) }]
     if (node.word == null) return [node]
     const split = splits.get(node.word)
     if (!split || connectorAt[node.word] === undefined) return [{ ...node, word: wordAt[node.word] }]

@@ -51,19 +51,8 @@ SOURCES: tuple[Source, ...] = (
     WiktionarySource(),
 )
 
-# Two of the app's data files are deliberately NOT searched here, and the
-# reason is the same in both cases: what they hold is not a quotation.
-#
-#   nahw_rules/rules.json  its Arabic came out of a PDF backwards, so
-#                          "هداية النحو" is stored as "وحنلا ةياده". The rule
-#                          engine only ever matches it against itself, which is
-#                          why that has never mattered; quoting it to a reader
-#                          would put nonsense on the screen under a book's name.
-#   sarf/patterns.json     a table of endings, not prose. There is no sentence
-#                          in it that anyone would cite.
-#
-# Both are worth revisiting: rules.json needs re-extracting from the PDF, and
-# only then is it quotable.
+# sarf/patterns.json is deliberately NOT searched here: a table of endings,
+# not prose, so there is no sentence in it anyone would cite.
 
 
 def by_id(source_id: str) -> Source | None:

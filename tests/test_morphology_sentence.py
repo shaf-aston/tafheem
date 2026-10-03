@@ -5,7 +5,7 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 import pytest
 
 from backend.services import morphology
-from backend.services.syntax.vowels import vowel_agreement
+from backend.services.harakat import vowel_agreement
 
 VERB_SENTENCE = "ذهب الولد إلى المدرسة"  # "the boy went to school"
 NOUN_SENTENCE = "الذهب غالٍ"  # "gold is expensive"
