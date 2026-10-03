@@ -2,7 +2,8 @@
 import re
 
 from backend.scripts.score_iraab import (
-    KEY, book_sentences, disagreements, exam_sentences, family, fresh_sentences, routed)
+    KEY, book_sentences, disagreements, family, fresh_sentences, held_out, routed,
+    sign_matches)
 from backend.services.syntax.naming import ROLES
 from backend.services.arabic_text import bare_letters, words
 
@@ -53,7 +54,7 @@ def test_fresh_set_is_well_formed():
 
 
 def test_exam_set_is_well_formed():
-    exam = exam_sentences()
+    exam = held_out("exam")
     assert len(exam) > 200
     assert len({s["id"] for s in exam}) == len(exam)
     assert len({s["sentence"] for s in exam}) == len(exam)
@@ -61,6 +62,24 @@ def test_exam_set_is_well_formed():
         assert len(s["key"]) == len(words(s["sentence"])), s["id"]
         assert set(s["key"]) <= FRESH_ROLES, s["id"]
         assert s["book"] and s["chapter"], s["id"]
+
+
+def test_hadith_and_rules_sets_are_well_formed():
+    for name in ("hadith", "rules"):
+        rows = held_out(name)
+        assert len({s["id"] for s in rows}) == len(rows)
+        assert len({s["sentence"] for s in rows}) == len(rows)
+        for s in rows:
+            n = len(words(s["sentence"]))
+            assert len(s["key"]) == n and set(s["key"]) <= FRESH_ROLES, s["id"]
+            assert s["source"] and all(0 <= int(i) < n for i in s.get("signs", {})), s["id"]
+
+
+def test_a_sign_matches_with_or_without_the_cards_note():
+    assert sign_matches("الواو، جمع مذكر سالم", "الواو")
+    assert sign_matches("مبني على الفتح", "مبني على الفتح")
+    assert not sign_matches("فتحة مقدرة على الألف للتعذر", "فتحة")  # شَيْئًا shows its fatha
+    assert not sign_matches(None, "ضمة")
 
 
 def test_tree_leaf_clash_ignores_the_pictures_own_wording():
