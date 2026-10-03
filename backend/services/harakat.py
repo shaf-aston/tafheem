@@ -7,7 +7,7 @@ parser layer (`catib_onnx`) uses them to pick among readings.
 from __future__ import annotations
 
 
-from backend.services.arabic_text import bare_letters
+from backend.services.arabic_text import bare_letters, strip_diacritics
 
 VOWEL = {"ً": "a", "ٌ": "u", "ٍ": "i", "َ": "a", "ُ": "u", "ِ": "i"}
 TANWEEN = {"ً", "ٌ", "ٍ"}
@@ -15,6 +15,10 @@ SUKUN = "ْ"
 SHADDA = "ّ"
 SHADDA_SUKUN = SHADDA + SUKUN
 DAGGER_ALEF = "ٰ"
+# the letters a present verb opens with; a bare alef is hamzat al-wasl (اِتَّقِ is a command)
+PRESENT_PREFIX = set("أنيت")
+# the joined letters that may stand before that prefix (فَتَرْسُبَ، لِيَظْلِمَ، وَيَكْتُبُ، سَيَكْتُبُ)
+PROCLITICS = set("فولس")
 # case shown by an ending, not by a vowel: the plural and the dual
 HIDDEN_CASE = ("ين", "ون", "ان")
 
@@ -58,6 +62,29 @@ def typed_case(word: str, stuck_on: int = 0) -> str | None:
 
 def has_tanween(word: str) -> bool:
     return any(marks & TANWEEN for _, marks in letters(word))
+
+
+def opens_present(word: str) -> bool:
+    """A present verb's prefix opens the word, behind at most two joined letters
+    (وَلْيَكْتُبْ، وَسَيَكْتُبُ)."""
+    bare = strip_diacritics(word)  # not bare_letters: it folds the أ of أَجْلِسُ into an alef
+    joined = len(bare) - len(bare.lstrip("".join(PROCLITICS)))
+    return any(bare[i:i + 1] in PRESENT_PREFIX for i in range(min(joined, 2) + 1))
+
+
+def five_verb_nun(word: str) -> str | None:
+    """"kept" or "dropped": the nun of one of the five verbs, which shows the case in place
+    of a vowel (يكتبون، تكتبين، يكتبان raf'; يكتبوا، يكتبا، تكتبي nasb or jazm), else None.
+    A damma typed on the nun makes it the verb's own letter (يَبِينُ), and a fatha on a
+    last ي makes it a weak root letter (لن يَمْشِيَ), not the ya of تكتبي."""
+    bare, shown = strip_diacritics(word), typed_case(word)  # not bare_letters: it folds يقرأ's أ into an alef
+    if shown == "u" or len(bare) < 4:
+        return None
+    if bare.endswith(HIDDEN_CASE):
+        return "kept"
+    if bare.endswith(("وا", "ا")) or (bare.startswith("ت") and bare.endswith("ي") and shown != "a"):
+        return "dropped"
+    return None
 
 
 # The vowel a mark writes, so a fatha and a fathatan on the same letter still

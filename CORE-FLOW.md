@@ -36,6 +36,7 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
    book's tree (`data/nahw_rules/naming_tree.json`) to the role and its page, `teacher.py`
    dashes any name that breaks a stated rule, and `tree.py` draws the same reading as
    brackets, so the cards and the picture cannot disagree. A word no rule settles stays a gap.
+   Last, `signs.py` writes every card's sign once, from the word and its final case.
 3. **The Qur'an is looked up, never guessed.** `services/quran_corpus.py` reads the
    hand-tagged corpus; `quran_service.py` joins it with the English gloss. Tafsirs and
    translations are **editions**, all in `data/quran/library.db`, read only by

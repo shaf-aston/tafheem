@@ -189,7 +189,39 @@ CARDS = [
     ("لَنْ يَكْتُبَا", 1, "sign", "حذف النون"),
     ("لَمْ تَكْتُبِي", 1, "sign", "حذف النون"),
     ("لَنْ يَمْشِيَ", 1, "sign", "فتحة"),                 # nearest case: the ي is the root's
+    # signs found wrong by the hadith and rules sets (score_iraab --set hadith / rules)
+    ("لَا تَسُبُّوا أَصْحَابِي", 1, "sign", "حذف النون"),     # the dropped nun after لا
+    ("اِحْفَظُوا الدَّرْسَ", 0, "sign", "مبني على حذف النون"),
+    ("اِسْقِ الزَّرْعَ", 0, "sign", "مبني على حذف حرف العلة"),
+    ("اتَّقِ اللَّهَ", 0, "sign", "مبني على حذف حرف العلة"),  # no present prefix, so a command
+    ("لَمْ يَبْكِ الطِّفْلُ", 1, "sign", "حذف حرف العلة"),
+    ("إِنَّ الصِّدْقَ يَهْدِي إِلَى الْبِرِّ", 2, "sign", "ضمة مقدرة على الياء"),
+    ("مَنْ يُرِدِ اللَّهُ بِهِ خَيْرًا يُفَقِّهْهُ فِي الدِّينِ", 5, "sign", "سكون"),  # the sukun before the pronoun
+    ("مَنْ غَشَّنَا فَلَيْسَ مِنَّا", 1, "sign", "مبني على الفتح"),  # نا the object
+    ("كَتَبْنَا الدَّرْسَ", 0, "sign", "مبني على السكون"),        # nearest case: نا the doer
+    ("حُفَّتِ الْجَنَّةُ بِالْمَكَارِهِ", 0, "sign", "مبني على الفتح"),
+    ("لَيَنْصُرَنَّ اللَّهُ الْمُؤْمِنِينَ", 0, "sign", "مبني على الفتح"),
+    ("اَلْبَنَاتُ يَرْسُمْنَ الْوَرْدَ", 1, "sign", "مبني على السكون"),
+    ("جَاءَ أَبُو الطَّالِبِ", 1, "sign", "الواو"),
+    ("لَا ضَرَرَ وَلَا ضِرَارَ", 1, "sign", "مبني على الفتح"),
+    ("لَا قَلَمَيْنِ فِي الْحَقِيبَةِ", 1, "sign", "مبني على الياء"),
+    ("يَا غَافِلًا اِنْتَبِهْ", 1, "sign", "فتحة"),           # a tanween is never a dual's
+    ("إِنَّ مِنَ الْبَيَانِ لَسِحْرًا", 3, "sign", "فتحة"),    # CAMeL's verb, the parser's noun
+    ("سَيَكْتُبُ الطَّالِبُ", 0, "sign", "ضمة"),           # nearest case: a joined letter before the prefix
+    ("وَسَيَكْتُبُ الطَّالِبُ", 0, "sign", "ضمة"),          # and two of them
+    ("الطُّلَّابُ دَعَوْا رَبَّهُمْ", 1, "sign", "مبني على الضم"),
+    ("أَتَانَا الرَّسُولُ", 0, "sign", "مبني على الفتح"),     # the alef before نا is a fatha
+    ("رَأَيْتُ أَخًا", 1, "sign", "فتحة"),                   # indefinite: no مضاف, the vowel shows
+    ("سَلَّمْتُ عَلَى أَبِي الطَّبِيبِ", 2, "sign", "الياء"),    # CAMeL's name أبي is the noun أب
 ]
+
+
+@pytest.mark.parametrize("sentence, index, wrong", [
+    ("اِهْدِنَا الصِّرَاطَ", 0, "حذف النون"),
+    ("هُوَ يَظُنُّ ذَلِكَ", 1, "مبني"),                       # a root's doubled nun is no nun of emphasis
+])
+def test_card_sign_is_not(sentence: str, index: int, wrong: str):
+    assert wrong not in (_read(sentence)["words"][index]["sign"] or "")
 
 
 @pytest.mark.parametrize("sentence, index, field, expected", CARDS)

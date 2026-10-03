@@ -17,9 +17,8 @@ from __future__ import annotations
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_path, is_mabni, is_one, named_roles, role_table
 from backend.services.syntax import facts, walker
-from backend.services.syntax.facts import PRESENT_PREFIX
 from backend.services.harakat import (
-    CASE_NAME, SUKUN, command_shape, letters, paused, typed_case)
+    CASE_NAME, SUKUN, command_shape, five_verb_nun, opens_present, letters, paused, typed_case)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -110,9 +109,8 @@ def opens_with_verb(roles: list[str | None]) -> bool:
 def _ending(role: str | None, token: dict, before: dict | None, after: str) -> str | None:
     """What to print under the word: a case for a noun or a present verb, else mabni."""
     if role == NAMED.fil:
-        # not bare_letters: it folds the أ of أَجْلِسُ into an alef
-        present = strip_diacritics(token["typed"])[:1] in PRESENT_PREFIX and token.get("asp") == "i"
-        return _mood(paused(token["typed"], after), before) if present else "mabni"
+        present = opens_present(token["typed"]) and token.get("asp") == "i"
+        return _mood(paused(token["typed"], after), before, token.get("stuck_on", 0)) if present else "mabni"
     if role in (NAMED.harf, NAMED.harf_jarr):
         return "mabni"
     # يَا وَلَدُ، يا أيها: a single called noun is built on the damma (in the place of nasb)
@@ -125,18 +123,22 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str) -> s
     return CASE_NAME.get(facts.typed_case_of(token))
 
 
-def _mood(typed: str, before: dict | None) -> str:
-    """A present verb's case: the ending the reader typed, else the particle straight
-    before it when the book's list says that particle settles it (لم يكتب، لن يذهب),
-    else raf'. `typed` is the word as paused on (harakat.paused)."""
-    last = letters(typed)[-1][1] if letters(typed) else set()
-    shown = typed_case(typed)
+def _mood(typed: str, before: dict | None, stuck_on: int = 0) -> str:
+    """A present verb's case: the ending the reader typed (on the verb's own last letter,
+    not an attached pronoun's: يُفَقِّهْهُ), else the particle straight before it when the
+    book's list says that particle settles it (لم يكتب، لن يذهب), else raf'. One of the
+    five verbs that dropped its nun is not raf', so any jazm or nasb particle before it
+    settles it (لا تَسُبُّوا). `typed` is the word as paused on (harakat.paused)."""
+    own = letters(typed)[:len(letters(typed)) - stuck_on]
+    last = own[-1][1] if own else set()
+    shown = typed_case(typed, stuck_on)
     if SUKUN in last:
         return "jazm"
     if shown in ("u", "a"):
         return CASE_NAME[shown]
     particle = strip_diacritics(before["typed"]) if before else ""
+    dropped = five_verb_nun(typed) == "dropped"
     for family, case in (("jazm", "jazm"), ("nasb_mudari", "nasb")):
-        if is_one(particle, family, "before_a_present_verb"):
+        if is_one(particle, family, "before_a_present_verb") or (dropped and is_one(particle, family)):
             return case
     return "raf'"
