@@ -18,6 +18,8 @@
  *          thirtieth of the loudness, and used to reach the page as nothing
  *   VIEW   phone for a phone-sized screen
  *   LEVEL  beginner or standard: the checking level the page uses
+ *   LISTEN trial to hear with the server's trial model (Settings, Listening);
+ *          every reading and check must then carry trial=true
  *   JUMP   a clip in CLIPS, e.g. 001005: just before it plays, its first word
  *          is pressed while still recording, as a reciter skipping ahead does;
  *          the words before it must then be neither said nor accused
@@ -43,6 +45,7 @@ const QUIET_DB = Number(process.env.QUIET ?? 0)
 const DUMP = process.env.DUMP
 const JUMP = process.env.JUMP
 const LEVEL = process.env.LEVEL ?? 'standard'
+const LISTEN = process.env.LISTEN ?? 'standard'
 const viewport = process.env.VIEW === 'phone' ? { width: 390, height: 844 } : { width: 1280, height: 1000 }
 // The first word of the first clip, as the page counts words: 1:1 to 1:4 is 15 words.
 const FIRST = { '001001': 0, '001002': 4, '001003': 8, '001004': 10, '001005': 13, '001006': 17, '001007': 20 }
@@ -62,9 +65,10 @@ const page = await browser.newPage({ viewport, permissions: ['microphone'] })
 page.on('pageerror', (e) => console.log('PAGEERROR', e.message.slice(0, 200)))
 page.on('console', (m) => { if (m.type() === 'error') console.log('CONSOLE', m.text().slice(0, 200)) })
 
-await page.addInitScript((level) => {
-  localStorage.setItem('settings', JSON.stringify({ 'reciting-level': level }))
-}, LEVEL)
+await page.addInitScript(({ level, listen }) => {
+  localStorage.setItem('settings', JSON.stringify({ 'reciting-level': level, 'listening-ear': listen }))
+}, { level: LEVEL, listen: LISTEN })
+let askedTrial = 0, askedAll = 0
 
 // The microphone: the clips decoded and played one after another, a breath apart.
 await page.addInitScript(({ clips, gap, quiet }) => {
@@ -109,6 +113,8 @@ let gaveUp = 0
 const t0 = Date.now()
 await page.route('**/api/listen**', async (route) => {
   const url = new URL(route.request().url())
+  askedAll += 1
+  if (url.searchParams.get('trial') === 'true') askedTrial += 1
   if (DUMP) {
     // Multipart: the webm sits between the first blank line and the last boundary.
     const body = route.request().postDataBuffer()
@@ -172,6 +178,7 @@ await page.waitForTimeout(3000)
 const hint = page.getByText(/following you from|listening for where you are|tap a word to start/)
 const line = await hint.first().innerText().catch(() => '')
 check('the ear was asked', heard.length > 0, `${heard.length} readings, ${gaveUp} given up on`)
+check(`Listening ${LISTEN} reached the server`, askedTrial === (LISTEN === 'trial' ? askedAll : 0), `${askedTrial} of ${askedAll} asked for trial`)
 check('it checked words by sound', checked.some((n) => n > 0), `${checked.join(', ')} words per reading, ${LEVEL}`)
 check(`it worked out it was 1:${AYAH} by itself`, new RegExp(`following you from\\s*${AYAH}`).test(line), line.trim())
 

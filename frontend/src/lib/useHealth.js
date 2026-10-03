@@ -24,6 +24,8 @@ export function useHealth() {
     // backend is: an engine that quietly stopped working should be readable,
     // not guessed at from how slow the microphone feels.
     ear: data?.ear ?? '',
+    // The trial listening model's name, empty when the server offers none.
+    reciteTrial: data?.recite_trial ?? '',
     // Null until the answer arrives, so a panel can tell "not installed" apart
     // from "not asked yet" and stay quiet in the meantime.
     dictionaryLoaded: data ? data.dictionary_loaded === true : null,

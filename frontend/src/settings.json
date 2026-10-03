@@ -1,5 +1,5 @@
 {
-  "_comment": "Every setting a reader is allowed to change, and exactly what it drives. Adding an entry here adds it to the settings panel, no component is edited. A 'choice' writes its chosen option's 'write' value into one CSS variable. A 'range' writes its own number. A 'switch' either writes the variables under 'off' while it is off, or is read directly by a component (the dictionary's synonyms). 'section' groups a setting under its module in the panel, in first-seen order. Defaults live here, so this file is the whole answer to 'what can be configured'.",
+  "_comment": "Every setting a reader is allowed to change, and exactly what it drives. Adding an entry here adds it to the settings panel, no component is edited. A 'choice' writes its chosen option's 'write' value into one CSS variable. A 'range' writes its own number. A 'switch' either writes the variables under 'off' while it is off, or is read directly by a component (the dictionary's synonyms). 'section' groups a setting under its module in the panel, in first-seen order. A setting with needs-health is shown only while that useHealth field is non-empty. Defaults live here, so this file is the whole answer to 'what can be configured'.",
 
   "storage-key": "settings",
 
@@ -48,6 +48,19 @@
       "help": "Recording again in Memorise continues the same recitation. Off: it starts the page over.",
       "type": "switch",
       "default": true
+    },
+    {
+      "key": "listening-ear",
+      "section": "Reciting",
+      "label": "Listening",
+      "help": "Trial hears and checks your recitation with a tuned model on the server, instead of the usual one.",
+      "needs-health": "reciteTrial",
+      "type": "choice",
+      "default": "standard",
+      "options": [
+        { "id": "standard", "label": "Standard" },
+        { "id": "trial",    "label": "Trial (tuned model, slower)" }
+      ]
     },
     {
       "key": "synonyms",

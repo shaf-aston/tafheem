@@ -119,6 +119,9 @@ class Settings(BaseSettings):
     #   RECITATION_MODEL=data/models/finetune-ear/ear-tuned
     #   LISTENING_EARS=here          (else Groq answers first and the folder is only the fallback)
     recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
+    # Empty means no trial offered. A folder inside backend/ (data/models/finetune-ear/ear-tuned),
+    # loaded like recitation_model; a learner's "Trial" listening hears and checks with it alone.
+    recitation_trial_model: str = ""
     # Search boxes are dictation, and the Qur'an model knows no other words:
     # "knowledge" came back as ذَرَ ضِرِّ الْمُؤْمِنِينَ, "mercy" as مَسْكُوبُ, where base heard both.
     # A recording is a recitation only when its language is asked for by name.

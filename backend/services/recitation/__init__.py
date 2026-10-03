@@ -83,7 +83,7 @@ def warm() -> None:
         pass
 
 
-def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str:
+def transcribe(audio: bytes, language: str | None = None, hint: str = "", model: str | None = None) -> str:
     """What was said, as words. Empty when nothing could be made out.
 
     Name a language to hear it in that one; leave it out and it is heard in
@@ -96,7 +96,7 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str
     """
     if not audio:
         return ""
-    return ears.hear(audio, language, hint)
+    return ears.hear(audio, language, hint, model)
 
 
 def find(heard: str, limit: int = 5) -> list[Match]:
@@ -104,7 +104,9 @@ def find(heard: str, limit: int = 5) -> list[Match]:
     return match.best(heard, _ayahs(), limit=limit)
 
 
-def hear(audio: bytes, match_ayahs: bool, recite: bool = False, fusha: bool = True) -> tuple[str, list[Match]]:
+def hear(
+    audio: bytes, match_ayahs: bool, recite: bool = False, fusha: bool = True, model: str | None = None,
+) -> tuple[str, list[Match]]:
     """Words, plus the ayahs they came from when asked.
 
     Rules live here, beside the ears, not in the route:
@@ -118,6 +120,7 @@ def hear(audio: bytes, match_ayahs: bool, recite: bool = False, fusha: bool = Tr
         audio,
         language=settings.recitation_language if match_ayahs or recite else None,
         hint=settings.listening_fusha_hint if fusha else "",
+        model=model,
     )
     if not text or not match_ayahs:
         return text, []
@@ -157,7 +160,7 @@ def find_place(heard: str, near: tuple[int, int] | None = None, before: str = ""
     )
 
 
-def check(audio: bytes, heard: str, ayahs: list[str]) -> dict[str, list[float | None]]:
+def check(audio: bytes, heard: str, ayahs: list[str], model: str | None = None) -> dict[str, list[float | None]]:
     """How sure the ear is of each word of these ayahs, from this recording.
 
     Per ayah, one number per word, 0 to 1, or None for a word this recording
@@ -189,7 +192,7 @@ def check(audio: bytes, heard: str, ayahs: list[str]) -> dict[str, list[float | 
     if last - first > settings.recitation_sure_max_words:
         log.info("placed on %d words, more than one recording holds; not checked", last - first)
         return {}
-    sure = timed("checked", listen.sureness, audio, words[first:last], words=last - first)
+    sure = timed("checked", listen.sureness, audio, words[first:last], model, words=last - first)
     out = {key: [None] * owner.count(key) for key in dict.fromkeys(owner)}
     for i, score in zip(range(first, last), sure):
         key = owner[i]

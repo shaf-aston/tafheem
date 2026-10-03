@@ -226,16 +226,17 @@ export const daleelBooksQuery = {
 // How sure the ear is of each word is a separate question, `checkReading`
 // below, never asked here: a slow score must never hold back the words a
 // reciter is already reading by.
+// `trial` hears this with the server's trial model instead of the usual ears.
 // `signal` lets a reading be given up on. A recitation asks about the same
 // recording again as it grows, so a reading already on its way is sometimes
 // known to be out of date before it comes back, and on this machine waiting
 // for it costs the seconds it takes to read.
 // `reading` names this one request, as `X-Reading-Id`, so the server's own
 // log and lib/journal.js's trail can be lined up on the same reading.
-export const listen = (recording, { match = false, recite = false, fusha = true, near, before, signal, reading } = {}) => {
+export const listen = (recording, { match = false, recite = false, fusha = true, near, before, trial, signal, reading } = {}) => {
   const body = new FormData()
   body.append('audio', recording, 'recitation.webm')
-  const asked = new URLSearchParams({ match, recite, fusha, ...(near && { near }), ...(before && { before }) })
+  const asked = new URLSearchParams({ match, recite, fusha, ...(near && { near }), ...(before && { before }), ...(trial && { trial }) })
   const headers = { 'Content-Type': undefined }
   if (reading) headers['X-Reading-Id'] = reading
   return api.post(`/listen?${asked}`, body, { headers, signal })
@@ -246,10 +247,10 @@ export const listen = (recording, { match = false, recite = false, fusha = true,
 // the same recording `listen` already wrote `heard` down from. Its own request
 // so a slow score never holds back the words a reciter is already reading by;
 // see lib/recitingSession.js for how the two are paced against each other.
-export const checkReading = (recording, { heard = '', check = [], signal, reading } = {}) => {
+export const checkReading = (recording, { heard = '', check = [], trial, signal, reading } = {}) => {
   const body = new FormData()
   body.append('audio', recording, 'recitation.webm')
-  const asked = new URLSearchParams({ heard, check: check.join(',') })
+  const asked = new URLSearchParams({ heard, check: check.join(','), ...(trial && { trial }) })
   const headers = { 'Content-Type': undefined }
   if (reading) headers['X-Reading-Id'] = reading
   return api.post(`/listen/check?${asked}`, body, { headers, signal })

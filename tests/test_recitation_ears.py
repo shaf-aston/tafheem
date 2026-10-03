@@ -266,3 +266,11 @@ def test_every_question_about_the_next_ear_goes_by_the_same_test(both):
     assert asked == ["here"]
     assert ears.active().startswith("local-")
     assert ears.would_answer_locally(reciting=False) is True
+
+
+def test_a_trial_model_is_heard_by_this_machine_alone(both, monkeypatch):
+    asked = both()
+    seen = []
+    monkeypatch.setattr(ears.listen, "transcribe", lambda audio, language, hint, model=None: seen.append(model) or "tuned heard it")
+    assert ears.hear(SOUND, "ar", "", "data/trial") == "tuned heard it"
+    assert seen == ["data/trial"] and asked == []

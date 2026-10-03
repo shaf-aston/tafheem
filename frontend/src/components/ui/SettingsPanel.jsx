@@ -11,6 +11,7 @@
 import { useEffect, useState } from 'react'
 
 import { SETTINGS, resetSettings, setSetting, useSetting } from '../../lib/settings'
+import { useHealth } from '../../lib/useHealth'
 import { useModal } from '../../lib/useModal'
 import { levelOf } from '../../lib/confidence'
 import { forgetSaved } from '../../lib/stored'
@@ -24,6 +25,7 @@ const SECTIONS = Object.entries(Object.groupBy(SETTINGS, (setting) => setting.se
 
 export default function SettingsPanel({ open, onClose }) {
   const dialog = useModal(open)
+  const health = useHealth()
 
   return (
     <dialog
@@ -55,14 +57,17 @@ export default function SettingsPanel({ open, onClose }) {
           </button>
         </div>
 
-        {SECTIONS.map(([section, settings]) => (
-          <section key={section} aria-label={section} className="space-y-4">
-            <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{section}</h3>
-            {settings.map((setting) => (
-              <Setting key={setting.key} setting={setting} />
-            ))}
-          </section>
-        ))}
+        {SECTIONS.map(([section, all]) => {
+          const settings = all.filter((setting) => !setting['needs-health'] || health[setting['needs-health']])
+          return settings.length > 0 && (
+            <section key={section} aria-label={section} className="space-y-4">
+              <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{section}</h3>
+              {settings.map((setting) => (
+                <Setting key={setting.key} setting={setting} />
+              ))}
+            </section>
+          )
+        })}
 
         <SourceList />
 

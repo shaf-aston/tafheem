@@ -11,6 +11,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { bySound, follow, joinWindows } from './follow'
 import { createRecitingSession, EMPTY_VIEW, surer } from './recitingSession'
 import { useSetting } from './settings'
+import { useHealth } from './useHealth'
 
 /**
  * `ayahs` are the page's lines the ear can check by sound, each { key, from,
@@ -20,6 +21,9 @@ import { useSetting } from './settings'
  */
 export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   const fusha = useSetting('fusha')
+  // Only while the server still offers the trial model; a saved choice must not outlive it.
+  const { reciteTrial } = useHealth()
+  const trial = useSetting('listening-ear') === 'trial' && Boolean(reciteTrial)
   const [view, setView] = useState(EMPTY_VIEW)
 
   // One session for the life of the page. Making one opens nothing; the
@@ -47,7 +51,7 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   // What a recording in progress listens against, without a new session for it:
   // the dialect setting, the words of the page being recited, and whether that
   // page is done.
-  useEffect(() => { session.update({ fusha, pageWords, ayahs, done: finished }) }, [session, fusha, pageWords, ayahs, finished])
+  useEffect(() => { session.update({ fusha, trial, pageWords, ayahs, done: finished }) }, [session, fusha, trial, pageWords, ayahs, finished])
   // What the finished recordings held after this page's last word goes with
   // the reciter; the recording still going is kept by the session. Read
   // when the page turns, not when it was found finished: the panel waits a

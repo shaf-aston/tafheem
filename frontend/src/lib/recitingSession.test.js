@@ -322,6 +322,24 @@ describe('a reciting session', () => {
     expect(h.session.view().now.words).toEqual([])
   })
 
+  it('asks for the trial ear on the reading and its check only when the page says so', async () => {
+    const h = harness()
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    await h.session.start()
+    h.speak()
+    await h.pause()
+    await h.answer(0, 'الحمد لله رب العالمين')
+    expect(h.readings[0].options.trial).toBeFalsy()
+    expect(h.checks[0].options.trial).toBeFalsy()
+    h.session.update({ ...h.page, trial: true })
+    await h.midPhrase()
+    await h.answer(1, 'الحمد لله رب العالمين الرحمن')
+    expect(h.readings[1].options.trial).toBe(true)
+    h.checks[0].answer({ '1:2': [1, 1, 1, 1] })
+    await h.wait(0)
+    expect(h.checks.at(-1).options.trial).toBe(true)
+  })
+
   it('gives up on a reading still out when the phrase ends, and keeps the one taken at the pause', async () => {
     const h = harness()
     await h.session.start()
