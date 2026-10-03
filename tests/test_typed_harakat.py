@@ -5,7 +5,8 @@ the parser is fed letters only and the same links come back for both.
 """
 import pytest
 
-from backend.services.syntax import naming, tree, vowels
+from backend.services import harakat
+from backend.services.syntax import naming, tree
 from tests.test_naming import roles, token
 from tests.test_syntax_tree import built
 
@@ -63,17 +64,17 @@ def test_a_noun_after_a_preposition_stays_majroor_on_a_typed_kasra():
 
 def test_a_typed_sukun_or_vowel_is_an_answer_when_choosing_a_reading():
     # فَهِمَ (he understood) is not the noun فَهْمَ
-    assert vowels.vowel_agreement("فَهِمَ", "فَهْمَ") is None
-    assert vowels.vowel_agreement("فَهِمَ", "فَهِمَ") == (3, 0)
-    assert vowels.vowel_agreement("فهم", "فَهْمَ") == (0, 0)  # bare letters say nothing
+    assert harakat.vowel_agreement("فَهِمَ", "فَهْمَ") is None
+    assert harakat.vowel_agreement("فَهِمَ", "فَهِمَ") == (3, 0)
+    assert harakat.vowel_agreement("فهم", "فَهْمَ") == (0, 0)  # bare letters say nothing
     # a full reading beats a bare one the reader's vowels cannot contradict
-    assert vowels.best_reading("إِنَّكَ", [{"diac": "انك"}, {"diac": "إِنَّكَ"}]) == {"diac": "إِنَّكَ"}
+    assert harakat.best_reading("إِنَّكَ", [{"diac": "انك"}, {"diac": "إِنَّكَ"}]) == {"diac": "إِنَّكَ"}
     # the dagger alef is the fatha typed: لٰكِنْ keeps its rank over a stray لَ+كِن
-    assert vowels.best_reading("لَكِنْ", [{"diac": "لٰكِن"}, {"diac": "لَكِن"}]) == {"diac": "لٰكِن"}
+    assert harakat.best_reading("لَكِنْ", [{"diac": "لٰكِن"}, {"diac": "لَكِن"}]) == {"diac": "لٰكِن"}
     # a doubling the reader did not type on a voweled letter counts against: أَبُوْهُ, not أَبُّوهُ
-    assert vowels.best_reading("أَبُوْهُ", [{"diac": "أَبُوه"}, {"diac": "أَبُّوهُ"}]) == {"diac": "أَبُوه"}
-    assert vowels.best_reading("أَبُوْهُ", [{"diac": "أَبُّوهُ"}, {"diac": "أَبُوه"}]) == {"diac": "أَبُوه"}  # whatever the order
-    assert vowels.vowel_agreement("أَبُوْهُ", "أَبُّوهُ") is not None  # a dropped shadda is no contradiction
+    assert harakat.best_reading("أَبُوْهُ", [{"diac": "أَبُوه"}, {"diac": "أَبُّوهُ"}]) == {"diac": "أَبُوه"}
+    assert harakat.best_reading("أَبُوْهُ", [{"diac": "أَبُّوهُ"}, {"diac": "أَبُوه"}]) == {"diac": "أَبُوه"}  # whatever the order
+    assert harakat.vowel_agreement("أَبُوْهُ", "أَبُّوهُ") is not None  # a dropped shadda is no contradiction
 
 
 def after_doer(word, *, participle, verb_lemma="جاء", **feats):
@@ -96,23 +97,23 @@ def test_tamyeez_al_nisba_follows_its_verbs_only():
 
 def test_past_passive_shape_is_read_from_the_vowels_alone():
     for word in ("قُرِئَ", "قُرِئَتِ", "سُئِلَ", "بُنِيَ", "أُكِلَ", "ضُرِبَ"):
-        assert vowels.past_passive_shape(word)
+        assert harakat.past_passive_shape(word)
     for word in ("كَتَبَ", "الْكِتَابُ", "قُرَيْشٌ", "كتب"):  # active, a noun, a name, bare
-        assert not vowels.past_passive_shape(word)
+        assert not harakat.past_passive_shape(word)
 
 
 def test_a_final_ta_is_the_verbs_only_when_it_is_not_a_plural_ending():
     for word in ("قُرِئَتْ", "كُتِبَتْ", "قُرِئَتِ"):
-        assert vowels.past_passive_shape(word)
+        assert harakat.past_passive_shape(word)
     for word in ("مُسْلِمَاتُ", "مُسْلِمَاتِ"):  # damma first, kasra inside, ends ت: a plural noun
-        assert not vowels.past_passive_shape(word)
+        assert not harakat.past_passive_shape(word)
 
 
 def test_a_present_passive_is_read_before_its_plural_or_dual_ending():
     for word in ("يُعَلَّمُونَ", "يُكْتَبْنَ", "يُكْتَبَانِ", "يُكْتَبُ"):
-        assert vowels.typed_passive(word, present=True)
+        assert harakat.typed_passive(word, present=True)
     for word in ("يُكَافِئُونَ", "يُكْرِمَانِ", "يُكْرِمُ"):  # active: no fatha before the last stem letter
-        assert not vowels.typed_passive(word, present=True)
+        assert not harakat.typed_passive(word, present=True)
 
 
 def test_a_word_the_morphology_calls_a_name_is_still_a_passive_verb_by_its_vowels():
@@ -125,20 +126,20 @@ def test_a_word_the_morphology_calls_a_name_is_still_a_passive_verb_by_its_vowel
     ("اُكْتُبْ", True), ("اِجْلِسْ", True), ("قُمْ", True), ("بِعْ", True),
     ("أَكْتُبُ", False), ("يَكْتُبْ", False), ("كَتَبَ", False), ("اكتب", False), ("قم", False)])
 def test_command_shape(word: str, command: bool):
-    assert vowels.command_shape(word) is command
+    assert harakat.command_shape(word) is command
 
 
 def test_a_hollow_form_iv_command_needs_the_root_to_say_so():
-    assert vowels.command_shape("أَقِمْ", hollow=True)
-    assert not vowels.command_shape("أَقِمْ")                      # أَمِنْ, أَحْمَدْ: no hollow root, no command
-    assert not vowels.command_shape("أَقِمْ", after_jazm=True, hollow=True)  # لم أَقِمْ is a present verb
+    assert harakat.command_shape("أَقِمْ", hollow=True)
+    assert not harakat.command_shape("أَقِمْ")                      # أَمِنْ, أَحْمَدْ: no hollow root, no command
+    assert not harakat.command_shape("أَقِمْ", after_jazm=True, hollow=True)  # لم أَقِمْ is a present verb
 
 
 def test_a_kasra_before_hamzat_al_wasl_is_the_paused_sukun():
-    assert vowels.paused("أَقِمِ", "الصَّلَاةَ") == "أَقِمْ"
-    assert vowels.paused("اُكْتُبِ", "ٱلدَّرْسَ") == "اُكْتُبْ"  # the Qur'an's own alef of wasl
-    assert vowels.paused("أَقِمِ") == "أَقِمِ"                  # said alone, the kasra stays
-    assert vowels.paused("الْبَيْتِ", "إِلَى") == "الْبَيْتِ"     # hamzat al-qat' moves nothing
+    assert harakat.paused("أَقِمِ", "الصَّلَاةَ") == "أَقِمْ"
+    assert harakat.paused("اُكْتُبِ", "ٱلدَّرْسَ") == "اُكْتُبْ"  # the Qur'an's own alef of wasl
+    assert harakat.paused("أَقِمِ") == "أَقِمِ"                  # said alone, the kasra stays
+    assert harakat.paused("الْبَيْتِ", "إِلَى") == "الْبَيْتِ"     # hamzat al-qat' moves nothing
 
 
 def test_a_command_moved_to_kasra_is_still_built_on_the_sukun():
@@ -154,7 +155,7 @@ def test_a_command_moved_to_kasra_is_still_built_on_the_sukun():
     ("اِجْتَمَعُوا", False), ("اِنْكَسَرُوا", False),                       # the past of a longer form: fatha in the middle
     ("كَتَبُوا", False), ("يَكْتُبُوا", False)])
 def test_a_command_to_many_is_read_by_its_waw(word: str, command: bool):
-    assert vowels.command_shape(word) is command
+    assert harakat.command_shape(word) is command
 
 
 def test_the_light_lakin_joins_and_the_shadda_one_is_the_inna_sister():

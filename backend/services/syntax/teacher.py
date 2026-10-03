@@ -15,7 +15,7 @@ from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import case_of, is_mabni, is_one, named_roles, teacher_rules
 from backend.services.syntax.facts import Sentence, is_called_noun, is_passive, is_verb, takes_tamyeez, typed_case_of
 from backend.services.syntax.naming import base_tokens, roles_keyed
-from backend.services.syntax.vowels import CASE_NAME
+from backend.services.harakat import CASE_NAME
 
 # the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there
 NAMED = named_roles()

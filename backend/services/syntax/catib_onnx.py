@@ -46,7 +46,7 @@ from backend.services.arabic_text import bare_letters
 from backend.config import data_path, get_settings
 from backend.services.syntax import decode
 from backend.services.syntax.mask import book_links, book_mask
-from backend.services.syntax.vowels import best_reading, past_passive_shape, typed_case
+from backend.services.harakat import best_reading, past_passive_shape, typed_case
 
 logger = logging.getLogger(__name__)
 
@@ -288,7 +288,7 @@ def _reading(word: str, readings: list[dict]) -> dict:
 
     The disambiguator reads bare letters, so its favourite may be a word the
     reader plainly did not write. The vowels typed are the reader's own evidence
-    and win: the reading sharing most of them is used (vowels.best_reading). The
+    and win: the reading sharing most of them is used (harakat.best_reading). The
     analyser's guessed proper noun has no vowels to disagree with, so it never
     wins that way. When no real reading agrees the favourite is kept, since the
     naming layer still reads the vowels itself (a passive بُعْثِرَ).

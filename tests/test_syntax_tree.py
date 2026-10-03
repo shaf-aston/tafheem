@@ -1,7 +1,7 @@
 """The bracket picture for a typed sentence, built from the parser's links."""
 from backend.services.nahw_book import role_units
 from backend.services.syntax import naming, tree
-from backend.services.tarkeeb import term_ar
+from backend.services.nahw_book import term_ar
 from tests.test_naming import token
 
 

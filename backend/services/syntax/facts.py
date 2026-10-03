@@ -13,7 +13,7 @@ from typing import Callable
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_map, book_words, is_one, is_plain_noun
-from backend.services.syntax.vowels import (
+from backend.services.harakat import (
     CAMEL_CASE, SHADDA, SUKUN, has_tanween, past_passive_shape, typed_case, typed_passive)
 
 PRESENT_PREFIX = set("أنيت")

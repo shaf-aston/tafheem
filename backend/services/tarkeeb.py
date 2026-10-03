@@ -33,85 +33,21 @@ Every Arabic word and every corpus tag comes from data/nahw_rules/tarkeeb.json.
 """
 from __future__ import annotations
 
-import json
 import re
-from functools import lru_cache
-from pathlib import Path
 from typing import Any
 
-from backend.services import quran_corpus
+from backend.services import nahw_book, quran_corpus
 from backend.services.arabic_text import DIACRITICS_RE
-
-RULES_FILE = Path(__file__).parent.parent / "data" / "nahw_rules" / "tarkeeb.json"
-
-
-@lru_cache(maxsize=1)
-def _rules() -> dict:
-    return json.loads(RULES_FILE.read_text(encoding="utf-8"))
-
-
-def _term(key: str) -> dict:
-    """One grammatical term: the Arabic the diagram prints and the colour it uses."""
-    term = _rules()["terms"][key]
-    out = {"ar": term["ar"], "tone": term["tone"]}
-    if "detail" in term:
-        out["detail"] = term["detail"]
-    return out
-
-
-def shown(term: dict) -> dict:
-    """A term as a node wears it: its wording, its colour and its note, if any."""
-    return {"role": term["ar"], "tone": term["tone"],
-            **({"detail": term["detail"]} if "detail" in term else {})}
-
-
-def term_ar(key: str) -> str:
-    """Just the Arabic of a term, for comparing against what a tree printed."""
-    return _rules()["terms"][key]["ar"]
-
-
-def relation_wording(relation: str | None) -> tuple[str, bool]:
-    """What to call a treebank relation, and whether any of it is still unchecked wording.
-
-    Three cases, in order: the app has a wording for the whole name; the name is
-    "خبر / اسم" plus the word that governs it, so the frame is the app's and the
-    governing word is spelled the app's way when it is one a book names; or
-    nothing is known, and the treebank's own wording is used and said to be so,
-    its wording beats no wording, but it must not read as a finished term.
-
-    The recorded treebank and the rules below both name a governed word through
-    this, so اِسْمُ إِنَّ is spelled one way whichever path drew it.
-    """
-    settings = _rules()["treebank"]
-    if not relation:
-        return "", False
-    if known := settings["relation_terms"].get(relation):
-        return known, False
-
-    head, _, rest = relation.partition(" ")
-    frame = settings["relation_frames"].get(head)
-    if frame and rest:
-        governor = settings["governors"].get(rest)
-        return f"{frame} {governor or rest}", governor is None
-    return relation, True
-
-
-def relation_tone(relation: str | None) -> str:
-    """A relation's colour: the first listed name it contains, else the default."""
-    for needle, tone in _rules()["treebank"]["relation_tones"]:
-        if relation and needle in relation:
-            return tone
-    return "default"
-
+from backend.services.nahw_book import relation_tone, relation_wording, shown
 
 def _named(name: str) -> dict:
     """A role's wording, colour and note, from a term key or a treebank relation."""
-    if name in _rules()["terms"]:
-        return shown(_term(name))
+    if name in nahw_book.tarkeeb_rules()["terms"]:
+        return shown(nahw_book.term(name))
     wording, raw = relation_wording(name)
     out = {"role": wording, "tone": relation_tone(name)}
     if raw:
-        out["detail"] = _rules()["treebank"]["raw_note"]
+        out["detail"] = nahw_book.tarkeeb_rules()["treebank"]["raw_note"]
     return out
 
 
@@ -124,11 +60,11 @@ def _read(word: dict) -> dict:
     on the stem (its case), some on any segment (the definite article is its own
     prefix), so the two are kept apart rather than merged into one bag.
     """
-    tag = _rules()["feature"]
-    pos = _rules()["pos"]
-    governing = _rules()["governing"]
-    person = _rules()["person"]
-    subject_words = _rules()["subject_words"]
+    tag = nahw_book.tarkeeb_rules()["feature"]
+    pos = nahw_book.tarkeeb_rules()["pos"]
+    governing = nahw_book.tarkeeb_rules()["governing"]
+    person = nahw_book.tarkeeb_rules()["person"]
+    subject_words = nahw_book.tarkeeb_rules()["subject_words"]
     stem = set(word["features"].split("|")) - {""}
     segments = [(s["pos"], set(s["features"].split("|")) - {""}) for s in word["segments"]]
 
@@ -139,7 +75,7 @@ def _read(word: dict) -> dict:
         return next((t for t in tags if re.fullmatch(person["pattern"], t)), None)
 
     is_verb = word["pos"] == pos["verb"]
-    is_noun = word["pos"] == pos["noun"] and not (stem & set(_rules()["not_a_noun"]))
+    is_noun = word["pos"] == pos["noun"] and not (stem & set(nahw_book.tarkeeb_rules()["not_a_noun"]))
     endings = [person_of(tags) for _, tags in segments
                if tag["suffix"] in tags and tag["pronoun"] in tags]
     own_person = person_of(stem)
@@ -210,7 +146,7 @@ def _connector_text(word: dict, marker: str) -> str | None:
     """The exact Arabic of a glued prefix carrying `marker`, و or ف, never
     the word it is stuck to, so the diagram can peel the two apart on
     request instead of guessing where one ends and the other begins."""
-    tag = _rules()["feature"]
+    tag = nahw_book.tarkeeb_rules()["feature"]
     for segment in word["segments"]:
         tags = set(segment["features"].split("|")) - {""}
         if tag["prefix"] in tags and marker in tags:
@@ -234,7 +170,7 @@ def _leaf(index: int, fact: dict) -> dict:
     # any join to reach, they are named here, once, and skip every join and
     # claim below rather than falling through to an unworked-out gap.
     if fact["atf_word"] or fact["rem_word"]:
-        node.update(shown(_term("harf_atf" if fact["atf_word"] else "harf_istinaf")),
+        node.update(shown(nahw_book.term("harf_atf" if fact["atf_word"] else "harf_istinaf")),
                     ghair_aamil=True)
         return node
     before, after = [], []
@@ -292,8 +228,8 @@ def _governed(fact: dict, slot: str) -> str:
     A governor the treebank table does not list, a conjugated كَانَ, is named
     after its family, as nahw names كَانَ وَأَخَوَاتُهَا.
     """
-    governing = _rules()["governing"]
-    listed = fact["governor"] in _rules()["treebank"]["governors"]
+    governing = nahw_book.tarkeeb_rules()["governing"]
+    listed = fact["governor"] in nahw_book.tarkeeb_rules()["treebank"]["governors"]
     word = fact["governor"] if listed else governing["families"][fact["family"]]["word"]
     return f"{governing['frames'][slot]} {word}"
 
@@ -308,7 +244,7 @@ def _same_case(a: dict, b: dict) -> bool:
 
 def _joined(left: dict, right: dict, label: str, head: int) -> dict:
     """Two units become one, named by what the pair is."""
-    term = _term(label)
+    term = nahw_book.term(label)
     return _unit(
         left["lo"], right["hi"], head,
         {"label": term["ar"], "tone": term["tone"], "role": None,
@@ -331,7 +267,7 @@ def _join_naat(units: list[dict], facts: list[dict]) -> list[dict]:
             _as(units[i + 1]["node"], "naat")
             # الرَّحْمَٰنِ الرَّحِيمِ both describe اللَّهِ, they are its two descriptions,
             # not one description of the other, so a run of them stays flat.
-            if units[i]["node"].get("label") == _term("murakkab_tawsifi")["ar"]:
+            if units[i]["node"].get("label") == nahw_book.term("murakkab_tawsifi")["ar"]:
                 units[i]["node"]["children"].append(units[i + 1]["node"])
                 units[i]["hi"] = units[i + 1]["hi"]
                 del units[i + 1]
@@ -520,7 +456,7 @@ def _governed_clause(units: list[dict], facts: list[dict], at: int, stop: int,
                      khabar: bool, unlinked: bool) -> str:
     """إِنَّ, كَانَ, كَادَ and their sisters: the governing word decides the case
     of its ism and its khabar, so the case is looked for rather than read."""
-    spec = _rules()["governing"]["families"][head["family"]]
+    spec = nahw_book.tarkeeb_rules()["governing"]["families"][head["family"]]
     if not khabar:
         kind = "verb" if head["verb"] else "negation" if head["negative"] else "particle"
         _as(units[at]["node"], spec[kind])
@@ -613,7 +549,7 @@ def tree_for(words: list[dict]) -> dict:
 
     summary = _sentence(units, facts)
     placed = sum(u["hi"] - u["lo"] + 1 for u in units if not u["node"].get("gap"))
-    root = _term(summary)
+    root = nahw_book.term(summary)
     tree = {
         "label": root["ar"], "tone": root["tone"],
         "children": [_finish(u["node"]) for u in units],

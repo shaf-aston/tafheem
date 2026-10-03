@@ -19,9 +19,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services import quran_corpus, tarkeeb, tarkeeb_store  # noqa: E402
+from backend.services import nahw_book, quran_corpus, tarkeeb, tarkeeb_store  # noqa: E402
 
-TERMS = tarkeeb._rules()["terms"]
+TERMS = nahw_book.tarkeeb_rules()["terms"]
 EXACT = {TERMS[k]["ar"]: k for k in ("fail", "naib_fail", "mafool", "mubtada", "khabar")}
 ATTACHED = "مُتَعَلِّقٌ"
 LETTER = re.compile("[ء-ي]")

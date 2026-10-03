@@ -14,7 +14,7 @@ from __future__ import annotations
 from backend.services.nahw_book import clause_of, named_roles, role_units, teacher_rules
 from backend.services.syntax.facts import Sentence, completes_kaada
 from backend.services.syntax.naming import base_tokens, opens_with_verb, tone
-from backend.services.tarkeeb import term_ar
+from backend.services.nahw_book import term_ar
 
 # What a unit is called, by the join that makes it. Spelled once, in
 # data/nahw_rules/tarkeeb.json, so a typed sentence, a book example and an ayah

@@ -39,7 +39,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services import arabic_text, quran_corpus, tarkeeb, tarkeeb_store  # noqa: E402
+from backend.services import arabic_text, nahw_book, quran_corpus, tarkeeb_store  # noqa: E402
 
 DATABASE = Path(__file__).parent.parent / "data" / "tarkeeb" / "tarkeeb.db"
 
@@ -180,7 +180,7 @@ def _sentence_label(word: dict | None, settings: dict) -> dict:
     (أَفَلَا يَعْلَمُ rests on يَعْلَمُ), or None when a particle governs no clause.
     """
     kind = settings["sentence_labels"]["verb" if word and word.get("pos") == "V" else "other"]
-    return tarkeeb._term(kind)
+    return nahw_book.term(kind)
 
 
 def _opening_role(word: dict, settings: dict) -> dict:
@@ -193,20 +193,20 @@ def _opening_role(word: dict, settings: dict) -> dict:
     """
     if word.get("particle"):
         return _particle(word["pieces"][0], settings)
-    return tarkeeb._term("fil" if word.get("pos") == "V" else "mubtada")
+    return nahw_book.term("fil" if word.get("pos") == "V" else "mubtada")
 
 
 def _sentence_names(settings: dict) -> set[str]:
     """How a whole clause is labelled, whichever kind it is."""
-    return {tarkeeb._term(key)["ar"] for key in settings["sentence_labels"].values()}
+    return {nahw_book.term(key)["ar"] for key in settings["sentence_labels"].values()}
 
 
 def _particle(kind: str, settings: dict) -> dict:
     """A particle named by what it is, in the app's spelling: a shared term where
     the rules name it too, so إِنَّ reads the same on every path."""
     named = settings["particle_kinds"][kind]
-    if named in tarkeeb._rules()["terms"]:
-        return tarkeeb._term(named)
+    if named in nahw_book.tarkeeb_rules()["terms"]:
+        return nahw_book.term(named)
     return {"ar": named, "tone": settings["particle_tone"]}
 
 
@@ -272,24 +272,24 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
         opening = _opening_role(word, settings) if opens_clause else None
         # Written the app's way where the app has a wording for it, and left in
         # the treebank's own words where it does not.
-        said, raw = tarkeeb.relation_wording(relation)
+        said, raw = nahw_book.relation_wording(relation)
         role = opening["ar"] if opens_clause else said
         tone = opening["tone"] if opens_clause else tone_of(relation)
         # Inside its own unit a particle is what it is (فِى is حَرْفُ جَرٍّ); the
         # unit it heads carries the job (the jar-majroor is مُتَعَلِّقٌ).
         kind = (word.get("pieces") or [""])[0]
         own = (_particle(kind, settings) if word.get("particle")
-               else tarkeeb._term(settings["unit_heads"][kind])
+               else nahw_book.term(settings["unit_heads"][kind])
                if children[index] and kind in settings["unit_heads"] else None)
         clause = settings["constituent_labels"].get(word.get("constituent"))
         if own is None and children[index] and clause in _sentence_names(settings):
             # هُوَ heading هُوَ ٱللَّهُ أَحَدٌ is its mubtada; the clause is the مفعول به
             own = _opening_role(word, settings)
 
-        leaf = {"word": index, **(tarkeeb.shown(own) if own else {"role": role, "tone": tone})}
+        leaf = {"word": index, **(nahw_book.shown(own) if own else {"role": role, "tone": tone})}
         if word.get("particle") and len(word["pieces"]) > 1:
             # أَفَلَا: question, extra فَ, negation, each named by what it is.
-            leaf["parts"] = [tarkeeb.shown(_particle(piece, settings)) for piece in word["pieces"]]
+            leaf["parts"] = [nahw_book.shown(_particle(piece, settings)) for piece in word["pieces"]]
         if raw and not opens_clause and not own:
             # Said plainly rather than dressed up: this wording is the treebank's,
             # not the book's, and the page draws it as the weaker claim it is.
@@ -299,11 +299,11 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
         if lone := word.get("connector_only"):
             # ثُمَّ joins nothing to anything by governing it, so the treebank
             # gives it no relation. It still has a name, and a blank is worse.
-            leaf.update(tarkeeb.shown(tarkeeb._term(lone)), ghair_aamil=True)
+            leaf.update(nahw_book.shown(nahw_book.term(lone)), ghair_aamil=True)
         elif joined := word.get("connector"):
             # The two pieces of فَسَوَّىٰهُنَّ, named separately, so the diagram can
             # peel them apart on request instead of drawing one fused column.
-            piece = {**tarkeeb.shown(tarkeeb._term(joined["key"])), "ghair_aamil": True}
+            piece = {**nahw_book.shown(nahw_book.term(joined["key"])), "ghair_aamil": True}
             leaf["prefix_arabic"] = joined["text"]
             leaf["parts"] = [piece, {"role": leaf["role"], "tone": leaf["tone"]}]
 
@@ -380,7 +380,7 @@ def gates(words: list[dict], tree: dict, corpus_words: list[str], vocabulary: se
 # ── Build ────────────────────────────────────────────────────────────────────
 
 def build(treebank: Path, labels: Path) -> None:
-    rules = tarkeeb._rules()
+    rules = nahw_book.tarkeeb_rules()
     settings = rules["treebank"]
 
     vocabulary = known_relations(labels) | {settings["root"]}
@@ -403,7 +403,7 @@ def build(treebank: Path, labels: Path) -> None:
 
         for rows in sentences:
             piece, _ = _words_of(rows, settings)
-            tree = _tree_of(piece, settings, tarkeeb.relation_tone)
+            tree = _tree_of(piece, settings, nahw_book.relation_tone)
             if tree is None:
                 failed = "contiguity"
                 break

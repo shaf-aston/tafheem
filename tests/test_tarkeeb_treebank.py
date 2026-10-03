@@ -8,9 +8,9 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 import pytest
 
 from backend.scripts import build_tarkeeb
-from backend.services import arabic_text, tarkeeb, tarkeeb_store
+from backend.services import arabic_text, nahw_book, tarkeeb_store
 
-SETTINGS = tarkeeb._rules()["treebank"]
+SETTINGS = nahw_book.tarkeeb_rules()["treebank"]
 TONE = lambda relation: "default"  # noqa: E731, colour is not what these tests are about
 
 needs_database = pytest.mark.skipif(
@@ -55,14 +55,14 @@ def test_the_root_marker_never_reaches_the_reader():
     printed = {tree.get("role"), tree.get("label")}
     printed |= {child.get("role") for child in tree["children"]}
     assert SETTINGS["root"] not in printed
-    assert tree["label"] == tarkeeb._term("jumlah_filiyyah")["ar"]
-    assert tree["children"][0]["role"] == tarkeeb._term("fil")["ar"]
+    assert tree["label"] == nahw_book.term("jumlah_filiyyah")["ar"]
+    assert tree["children"][0]["role"] == nahw_book.term("fil")["ar"]
 
 
 def test_a_nominal_sentence_names_its_opening_word_the_mubtada():
     words = [word("زَيْدٌ", "root", 0), word("قَائِمٌ", "خبر", 0)]
     tree = build_tarkeeb._tree_of(words, SETTINGS, TONE)
-    assert tree["children"][0]["role"] == tarkeeb._term("mubtada")["ar"]
+    assert tree["children"][0]["role"] == nahw_book.term("mubtada")["ar"]
 
 
 # ── Particles: what the treebank's arrows say about them ─────────────────────
@@ -94,7 +94,7 @@ AL_ADIYAT_9 = [
 
 def drawn(rows):
     words, _ = build_tarkeeb._words_of(rows, SETTINGS)
-    tree = build_tarkeeb._tree_of(words, SETTINGS, tarkeeb.relation_tone)
+    tree = build_tarkeeb._tree_of(words, SETTINGS, nahw_book.relation_tone)
     columns = {}
 
     def walk(node):
@@ -108,7 +108,7 @@ def drawn(rows):
 
 
 def term(key):
-    return tarkeeb._term(key)["ar"]
+    return nahw_book.term(key)["ar"]
 
 
 def test_a_particle_is_named_for_what_it_is_never_as_a_mubtada():
@@ -226,22 +226,22 @@ def test_an_ayah_that_was_refused_is_absent_rather_than_wrong():
 # ── Wording ──────────────────────────────────────────────────────────────────
 
 def test_a_name_the_app_knows_is_spelled_the_app_way():
-    assert tarkeeb.relation_wording("فاعل") == (SETTINGS["relation_terms"]["فاعل"], False)
+    assert nahw_book.relation_wording("فاعل") == (SETTINGS["relation_terms"]["فاعل"], False)
 
 
 def test_khabar_plus_its_governing_word_is_spelled_out_when_both_are_known():
-    said, raw = tarkeeb.relation_wording("خبر كان")
+    said, raw = nahw_book.relation_wording("خبر كان")
     assert said == "خَبَرُ كَانَ" and raw is False
 
 
 def test_a_conjugated_governor_keeps_the_treebanks_spelling_and_says_so():
     # The frame is the app's; يكون is left exactly as the treebank wrote it.
-    said, raw = tarkeeb.relation_wording("خبر يكون")
+    said, raw = nahw_book.relation_wording("خبر يكون")
     assert said == "خَبَرُ يكون" and raw is True
 
 
 def test_a_name_nobody_has_checked_is_used_but_not_passed_off_as_checked():
-    said, raw = tarkeeb.relation_wording("شيء غريب")
+    said, raw = nahw_book.relation_wording("شيء غريب")
     assert said == "شيء غريب" and raw is True
 
 
@@ -265,6 +265,6 @@ def test_the_recorded_tarkeeb_marks_every_unchecked_wording():
         if (found := tarkeeb_store.for_ayah(surah, ayah)):
             walk(found["tree"])
     assert not set(unflagged) - {
-        tarkeeb._rules()["terms"][key]["ar"]
-        for key in tarkeeb._rules()["terms"]
+        nahw_book.tarkeeb_rules()["terms"][key]["ar"]
+        for key in nahw_book.tarkeeb_rules()["terms"]
     }

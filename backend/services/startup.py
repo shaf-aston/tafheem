@@ -15,7 +15,7 @@ import logging
 from typing import Callable
 
 from backend.config import get_settings
-from backend.services import ai, dictionary_service, recitation, root_meaning, speech, syntax
+from backend.services import dictionary_service, recitation, root_meaning, speech, syntax
 from backend.services.colloquial import loader as colloquial
 
 logger = logging.getLogger(__name__)

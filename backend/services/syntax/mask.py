@@ -14,7 +14,7 @@ import numpy as np
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import is_one, is_plain_noun, vetoes
-from backend.services.syntax.vowels import CAMEL_CASE
+from backend.services.harakat import CAMEL_CASE
 
 
 def _verb_subject_follows(toks, add_rel) -> None:

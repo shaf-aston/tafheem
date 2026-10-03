@@ -17,8 +17,8 @@ from __future__ import annotations
 import pytest
 
 from backend.models.schemas import ROLE_KEYS, WordAnalysis
-from backend.services import rule_engine
-from backend.services.tarkeeb import term_ar
+from backend.services import iraab, rule_engine
+from backend.services.nahw_book import term_ar
 
 # Two sentences, one of each kind, so both branches of the engine are walked.
 VERBAL = "ذهب الولد إلى المدرسة"     # jumlah fi'liyyah
@@ -99,7 +99,7 @@ def test_every_role_has_a_reason():
 def test_each_reason_explains_its_own_role(sentence: str):
     from backend.services import morphology, syntax
     rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
-    words = syntax.with_parser_roles(rules, syntax.read(sentence)["roles"])["words"]
+    words = iraab.with_parser_roles(rules, syntax.read(sentence)["roles"])["words"]
     for word in words:
         role = word["role"]
         if word["type"] == "punc" or role == "–":
@@ -130,7 +130,7 @@ VERB_CARDS = [
 def test_verb_card_case_and_reason_agree(sentence: str, index: int, case: str, said: str):
     from backend.services import morphology, syntax
     rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
-    word = syntax.with_parser_roles(rules, syntax.read(sentence)["roles"])["words"][index]
+    word = iraab.with_parser_roles(rules, syntax.read(sentence)["roles"])["words"][index]
     assert (word["case"], said in word["reason"]) == (case, True), word
 
 
@@ -148,7 +148,7 @@ def test_a_command_is_described_as_one(sentence: str, lemma: str):
 def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, verbal: bool):
     from backend.services import morphology, syntax
     rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
-    summary = syntax.with_parser_roles(rules, syntax.read(sentence)["roles"])["summary"]
+    summary = iraab.with_parser_roles(rules, syntax.read(sentence)["roles"])["summary"]
     assert (summary == term_ar("jumlah_filiyyah")) is verbal, summary
 
 
@@ -156,7 +156,7 @@ def _read(sentence: str) -> dict:
     """The route's two steps: the rules, then the parser over them."""
     from backend.services import morphology, syntax
     rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
-    return syntax.with_parser_roles(rules, syntax.read(sentence)["roles"])
+    return iraab.with_parser_roles(rules, syntax.read(sentence)["roles"])
 
 
 # One card field each, found by typing the sentence in (backend/scripts/analyse.py).
