@@ -19,7 +19,7 @@ export default function TarkeebFigure({ words, tree, unwritten, coverage, openWh
       >
         <TarkeebDiagram words={words} tree={tree} unwritten={unwritten} />
       </div>
-      {placed < 100 && (
+      {(coverage ?? 0) < 1 && (
         <p className="text-center type-small text-[var(--text-faint)]">
           {placed}% of the words placed, the rest {open}
         </p>

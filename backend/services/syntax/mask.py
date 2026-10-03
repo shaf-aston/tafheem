@@ -48,7 +48,7 @@ def book_mask(toks: list[dict], labels: list[str]) -> np.ndarray:
 
 
 def _switched_on(rules: dict) -> list:
-    """The rules closed_words.json "vetoes" turns on, in their listed order."""
+    """The rules closed_words.json "vetoes" turns on, in the order of the table passed."""
     return [rule for name, rule in rules.items() if vetoes().get(name)]
 
 

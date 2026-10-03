@@ -36,7 +36,7 @@ export function smartError(error, fallback = 'Request failed.') {
   // which. Telling the reader to wait for a startup that already finished sends
   // them to watch the wrong thing.
   if (status === 503) return detail || 'Backend is starting up. Wait a moment, then try again.'
-  if (status === 504) return 'Request timed out. The AI model is busy. Try again in a few seconds.'
+  if (status === 504) return 'Request timed out. Try again in a few seconds.'
 
   return detail || fallback
 }

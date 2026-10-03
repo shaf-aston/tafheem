@@ -9,9 +9,8 @@ from __future__ import annotations
 from typing import Any
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.nahw_book import book_words, case_of, reason, teacher_rules
 from backend.services.harakat import CASE_NAME, SUKUN, letters, typed_case
-from backend.services.nahw_book import term_ar
+from backend.services.nahw_book import book_words, case_of, reason, teacher_rules, term_ar
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
