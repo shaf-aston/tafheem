@@ -1,4 +1,7 @@
-"""The book's closed word lists, its roles and the teacher's checks (a leaf module: rule_engine and syntax both read it), loaded once from data/nahw_rules/closed_words.json, roles.json and teacher.json."""
+"""The book's rules as data (a leaf module: rule_engine, syntax and tarkeeb all read it).
+
+Every file in data/nahw_rules is read once, by `book_file`: the closed word lists,
+the roles, the teacher's checks, the naming tree and the bracket tree's vocabulary."""
 from __future__ import annotations
 
 import json
@@ -7,22 +10,24 @@ from pathlib import Path
 from types import SimpleNamespace
 
 RULES = Path(__file__).parent.parent / "data" / "nahw_rules"
-FILE = RULES / "closed_words.json"
-TEACHER_FILE = RULES / "teacher.json"
-ROLES_FILE = RULES / "roles.json"
 
 # a pronoun, pointer, relative or question word keeps one ending whatever its job
 MABNI_KINDS = ("pron", "dem", "rel", "interrog")
 
 
-@lru_cache(maxsize=1)
+@lru_cache(maxsize=None)
+def book_file(name: str) -> dict:
+    """One file of data/nahw_rules, parsed once."""
+    return json.loads((RULES / name).read_text(encoding="utf-8"))
+
+
 def _closed() -> dict:
-    return json.loads(FILE.read_text(encoding="utf-8"))
+    return book_file("closed_words.json")
 
 
 def vetoes() -> dict[str, bool]:
     """Which link vetoes are switched on (see services/syntax/mask.py)."""
-    return {k: v for k, v in _closed()["vetoes"].items() if not k.startswith("_")}
+    return _closed()["vetoes"]
 
 
 @lru_cache(maxsize=None)
@@ -51,9 +56,8 @@ def is_plain_noun(token: dict) -> bool:
     return token["pos"] in ("NOM", "PROP") and not is_mabni(token)
 
 
-@lru_cache(maxsize=1)
 def _roles() -> dict:
-    return json.loads(ROLES_FILE.read_text(encoding="utf-8"))
+    return book_file("roles.json")
 
 
 def role_table() -> dict[str, tuple[str | None, str | None]]:
@@ -77,10 +81,9 @@ def role_units() -> list[dict]:
     return _roles()["units"]
 
 
-@lru_cache(maxsize=1)
 def teacher_rules() -> dict:
     """The teacher's checks and their reasons (services/syntax/teacher.py)."""
-    return json.loads(TEACHER_FILE.read_text(encoding="utf-8"))
+    return book_file("teacher.json")
 
 
 def book_path(path: list[str], book: str) -> str:
@@ -114,13 +117,9 @@ def reason(role: str, mabni: bool = False) -> str:
 
 # ── The bracket tree's vocabulary (tarkeeb.json): one wording for every tree ──
 
-TARKEEB_FILE = RULES / "tarkeeb.json"
-
-
-@lru_cache(maxsize=1)
 def tarkeeb_rules() -> dict:
     """The bracket tree's vocabulary: its terms, tones and treebank wording."""
-    return json.loads(TARKEEB_FILE.read_text(encoding="utf-8"))
+    return book_file("tarkeeb.json")
 
 
 def term(key: str) -> dict:

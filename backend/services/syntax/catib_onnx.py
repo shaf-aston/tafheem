@@ -1,33 +1,13 @@
-"""Torch-free CATiB dependency parser: whitespace-split words -> a head/rel
-link for each word plus the light clitic split those links assume.
+"""Torch-free CATiB dependency parser: whitespace-split words -> a head/rel link
+for each word, over the light clitic split those links assume.
 
-Pipeline: CAMeL Tools' BERT disambiguator (camel_tools.disambig.bert) picks
-one morphological reading per word -- this pulls in torch itself, but that
-import happens inside camel_tools, never in this file. Each reading's own
-'atbtok'/'catib6'/'ud' fields say whether it is one token or several (CATiB
-splits off conjunctions, prepositions and pronoun suffixes as their own
-tokens, but folds the determiner ال into a feature instead of a token). Those
-split forms are fed to an ONNX biaffine parser (BERT encoder + arc/label
-scorer, exported from CAMeLBERT-CATiB-biaffine) for head/rel -- onnxruntime
-and numpy only, no torch.
-
-Proven first as a spike (see the project's camel_parser_trial scratchpad,
-onnx_spike/parse_onnx.py + decode.py): this module ports that pipeline,
-unchanged in shape, into the app.
-
-Windows import-order bug (hit while building the spike, see its
-build_fresh_conll.py): onnxruntime must be imported before pandas/camel_tools
-or the pyd segfaults on load. onnxruntime is imported first below for that
-reason, even though this file uses no pandas.
-
-Origin note: data/parser/clitic_feats.csv and the lookup in
-_clitic_token_feats() are copied/adapted, with attribution, from
-CAMeL-Lab/camel_parser (MIT licence, Copyright 2023 NYU Abu Dhabi),
-src/parse_disambiguation/feature_extraction.py (get_clitic_feats,
-build_clitic_feats_dict). That table is the only record of a clitic's own
-case/state (e.g. an attached pronoun's case is not the stem's case), and
-this port reads it with the stdlib csv module instead of camel_parser's
-pandas lookup.
+CAMeL Tools' BERT disambiguator picks one reading per word; its atbtok/catib6/ud
+fields say whether the word is one token or several (CATiB splits off
+conjunctions, prepositions and pronoun suffixes, but folds the determiner ال into
+a feature). The split forms go to an ONNX biaffine parser (onnxruntime and numpy
+only) for head/rel. onnxruntime must be imported before camel_tools (Windows DLL
+load order). data/parser/clitic_feats.csv, the only record of a clitic's own
+case/state, is adapted from CAMeL-Lab/camel_parser (MIT, Copyright 2023 NYU Abu Dhabi).
 """
 from __future__ import annotations
 
@@ -36,8 +16,9 @@ import json
 import logging
 import threading
 import time
+from typing import NamedTuple
 
-import onnxruntime as ort  # must precede camel_tools (Windows DLL load-order bug, see module docstring)
+import onnxruntime as ort  # must precede camel_tools (see module docstring)
 
 import numpy as np
 from tokenizers import Tokenizer
@@ -50,18 +31,20 @@ from backend.services.harakat import best_reading, past_passive_shape, typed_cas
 
 logger = logging.getLogger(__name__)
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Module state, built once by _ensure_loaded (at startup by warm(), or else by
-# the first parse())
-# ─────────────────────────────────────────────────────────────────────────────
-_enc_sess = None
-_scorer_sess = None
-_bpe: Tokenizer | None = None
-_cfg: dict | None = None
-_rel_labels: list[str] | None = None
-_clitic_table: list[dict[str, str]] | None = None
-_disambiguator = None
-_ar2bw = None
+
+class _Parser(NamedTuple):
+    cfg: dict
+    rel_labels: list[str]
+    clitic_table: list[dict[str, str]]
+    bpe: Tokenizer
+    enc_sess: object
+    scorer_sess: object
+    ar2bw: object
+    disambiguator: object
+
+
+# Built once by warm() (at startup, or else the first parse()) and published whole.
+_parser: _Parser | None = None
 
 # Loading takes seconds (the BERT disambiguator alone is ~8s on a fast machine),
 # so a second request always arrives while the first is still loading. Without
@@ -84,7 +67,7 @@ def files_present() -> bool:
 
 def state() -> str:
     """"ready", "loading", "not loaded" or "failed: <why>", for /api/health."""
-    if _disambiguator is not None:
+    if _parser is not None:
         return "ready"
     if _load_error:
         return f"failed: {_load_error}"
@@ -92,37 +75,26 @@ def state() -> str:
 
 
 def warm() -> None:
-    """Load everything now, so the first sentence typed does not wait for it."""
-    _ensure_loaded()
-
-
-def _ensure_loaded() -> None:
-    """Load the ONNX sessions, tokenizer and BERT disambiguator once, and
-    keep them in the module globals above. Heavy (a ~110MB int8 encoder plus
-    CAMeL's BERT disambiguator), so it runs in the background at startup
-    (warm()), or on the first parse() when warming is off.
-
-    Everything is loaded into locals and published together, last of all the
-    disambiguator, so a reader that sees it set sees a whole parser.
+    """Load the ONNX sessions, tokenizer and BERT disambiguator once (a ~110MB
+    int8 encoder plus CAMeL's BERT), at startup so the first sentence typed does
+    not wait, or on the first parse() when warming is off.
     """
-    global _enc_sess, _scorer_sess, _bpe, _cfg, _rel_labels, _clitic_table, _disambiguator, _ar2bw
-    global _load_error
-    if _disambiguator is not None:
+    global _parser, _load_error
+    if _parser is not None:
         return
     with _load_lock:
-        if _disambiguator is not None:
+        if _parser is not None:
             return
         if _load_error:
             raise RuntimeError(f"CATiB parser failed to load: {_load_error}")
         try:
-            loaded = _load()
+            _parser = _load()
         except Exception as exc:
             _load_error = f"{type(exc).__name__}: {exc}"
             raise
-        _cfg, _rel_labels, _clitic_table, _bpe, _enc_sess, _scorer_sess, _ar2bw, _disambiguator = loaded
 
 
-def _load() -> tuple:
+def _load() -> _Parser:
     settings = get_settings()
     if not settings.catib_parser_enabled:
         raise RuntimeError("CATiB parser is disabled (catib_parser_enabled=False)")
@@ -144,7 +116,7 @@ def _load() -> tuple:
     scorer_sess = ort.InferenceSession(str(d / "scorer.onnx"), providers=["CPUExecutionProvider"])
 
     # Imported here, not at module top: camel_tools pulls in pandas/torch,
-    # which must load after onnxruntime (see module docstring).
+    # which must load after onnxruntime.
     from camel_tools.disambig.bert import BERTUnfactoredDisambiguator
     from camel_tools.utils.charmap import CharMapper
 
@@ -152,7 +124,7 @@ def _load() -> tuple:
         "msa", top=settings.catib_readings, use_gpu=False)
     ar2bw = CharMapper.builtin_mapper("ar2bw")
     logger.info("CATiB ONNX parser ready (%s) in %.1fs", d, time.perf_counter() - started)
-    return cfg, rel_labels, clitic_table, bpe, enc_sess, scorer_sess, ar2bw, disambiguator
+    return _Parser(cfg, rel_labels, clitic_table, bpe, enc_sess, scorer_sess, ar2bw, disambiguator)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -161,7 +133,6 @@ def _load() -> tuple:
 
 # CATiB folds the ال determiner into a feature (prc0=Al_det) rather than a
 # token, so only these clitic slots ever produce a separate token.
-_CLITIC_SLOTS = ("prc3", "prc2", "prc1", "prc0", "enc0")
 # A word the analyzer could not read at all: BERT's own prediction has no
 # atbtok/catib6/ud (those come from the morphology DB, not the tagger), so it
 # is reported as one unsplit token with a coarse guess at its CATiB tag.
@@ -178,25 +149,20 @@ def _is_clitic(token: str) -> bool:
     return (token.startswith("+") or token.endswith("+")) and token.strip("+") != ""
 
 
-def _clitic_order(token: str) -> str:
-    return "prc" if token.endswith("+") else "enc"
-
-
 def _clitic_token_feats(token: str, order: str, stem: dict) -> dict:
     """Look up token's own asp/vox/stt/cas/pos in clitic_feats.csv, keyed by
     the clitic's surface form and by whichever prcN/enc0 slot is active on
     the stem. UD is not looked up here: the stem analysis's own 'ud' field is
     already split per subtoken by the caller, clitics included, so this only
     supplies what the CSV alone records (a clitic's own case/state/pos).
-    See module docstring for where this table comes from.
     """
     from camel_tools.utils.dediac import dediac_ar
 
-    surface = _ar2bw(dediac_ar(token.strip("+")))
+    surface = _parser.ar2bw(dediac_ar(token.strip("+")))
     active = [f"{k}:{v}" for k, v in stem.items()
               if k.startswith(order) and v not in ("0", "na")]
     for deciding_feat in active:
-        for row in _clitic_table:
+        for row in _parser.clitic_table:
             if row["clitic"] == surface and row["deciding_feat"] == deciding_feat:
                 return {
                     "pos_camel": row["pos"],
@@ -214,23 +180,28 @@ def _split_word(word: str, a: dict) -> list[dict]:
     """One CAMeL analysis dict -> a list of subtoken dicts (one per CATiB
     clitic/baseword), each with form/lemma/pos/pos_camel/ud/asp/vox/stt/cas/
     token_type. Mirrors camel_parser's get_main_features_df +
-    add_remaining_features (see module docstring), trimmed to the feature
-    set this app keeps.
+    add_remaining_features, trimmed to the feature set this app keeps.
     """
     from camel_tools.utils.dediac import dediac_ar
+
+    def clean(text: str, fallback: str | None = None) -> str:
+        d = dediac_ar(text)
+        return d.replace("_", "").replace("ـ", "") or (d if fallback is None else fallback)
+
+    def baseword(form: str, lex_default: str, pos: str, ud: str, **extra) -> dict:
+        return {
+            "form": form, "lemma": dediac_ar(a.get("lex", lex_default)),
+            "pos": pos, "pos_camel": a.get("pos", ""), "ud": ud,
+            "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
+            "stt": a.get("stt", "na"), "cas": a.get("cas", "na"), "num": a.get("num", "na"),
+            **extra, "token_type": "baseword",
+        }
 
     if not a.get("catib6") or "atbtok" not in a:
         # The analyzer found nothing for this word; BERT's own tag is all
         # there is, so it is reported as a single unsplit token.
         catib6 = _POS_TO_CATIB6.get(a.get("pos", ""), "NOM")
-        base = {
-            "form": dediac_ar(word).replace("_", "").replace("ـ", "") or word,
-            "lemma": dediac_ar(a.get("lex", word)),
-            "pos": catib6, "pos_camel": a.get("pos", ""), "ud": catib6,
-            "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
-            "stt": a.get("stt", "na"), "cas": a.get("cas", "na"), "num": a.get("num", "na"),
-            "token_type": "baseword",
-        }
+        base = baseword(clean(word, word), word, catib6, catib6)
         if not str(a.get("prc1", "")).endswith("_prep"):
             return [base]
         # لِلّٰهِ: the analyser knows the word opens with a preposition but files it unsplit;
@@ -259,20 +230,12 @@ def _split_word(word: str, a: dict) -> list[dict]:
 
     out: list[dict] = []
     for tok, catib6, ud in zip(toks, catib6s, uds):
-        form = dediac_ar(tok)
-        form = form.replace("_", "").replace("ـ", "") or form
+        form = clean(tok)
         if not _is_clitic(tok):
-            out.append({
-                "form": form, "lemma": dediac_ar(a.get("lex", tok)),
-                "pos": catib6, "pos_camel": a.get("pos", ""), "ud": ud,
-                "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
-                "stt": a.get("stt", "na"), "cas": a.get("cas", "na"), "num": a.get("num", "na"),
-                # the analyser's own word-shape, e.g. 1ا2ِ3 for فاعل: how a participle is told from a noun
-                "pattern": a.get("pattern", ""),
-                "token_type": "baseword",
-            })
+            # pattern: the analyser's own word-shape, e.g. 1ا2ِ3 for فاعل: how a participle is told from a noun
+            out.append(baseword(form, tok, catib6, ud, pattern=a.get("pattern", "")))
         else:
-            feats = _clitic_token_feats(tok, _clitic_order(tok), a)
+            feats = _clitic_token_feats(tok, "prc" if tok.endswith("+") else "enc", a)
             out.append({
                 "form": form, "lemma": form,
                 "pos": catib6, "pos_camel": feats["pos_camel"], "ud": ud,
@@ -296,10 +259,6 @@ def _reading(word: str, readings: list[dict]) -> dict:
     if not readings:
         return {"pos": "", "lex": word}
     real = [r for r in readings if "NOAN" not in r.get("atbtok", "")]
-    # فُعِلَ by its vowels is a passive verb and nothing else: no noun is typed so
-    # (أُكِلَ is not the noun آكِل, بُنِيَ is not بُن + ي)
-    # The analyser often offers only the active verb of the same letters; the
-    # naming layer then reads the passive from the vowels, as it does for بُعْثِرَ.
     verbs = [r for r in readings
              if r.get("pos") == "verb" and bare_letters(r.get("diac", "")) == bare_letters(word)]
     if past_passive_shape(word) and verbs:
@@ -309,14 +268,14 @@ def _reading(word: str, readings: list[dict]) -> dict:
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ONNX biaffine parser: subtoken forms -> heads + rel labels
-# (ports the spike's parse_onnx.py; decoding lives in decode.py)
+# (decoding lives in decode.py)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def _tokenize_and_pack(forms: list[str]) -> tuple[np.ndarray, np.ndarray, list[tuple[int, int]]]:
-    bos, pad, fix_len = _cfg["bos_index"], _cfg["pad_index"], _cfg["fix_len"]
+    bos, fix_len = _parser.cfg["bos_index"], _parser.cfg["fix_len"]
     groups = [[bos]]
     for w in forms:
-        ids = _bpe.encode(w, add_special_tokens=False).ids[:fix_len]
+        ids = _parser.bpe.encode(w, add_special_tokens=False).ids[:fix_len]
         groups.append(ids if ids else [bos])
 
     flat: list[int] = []
@@ -325,39 +284,34 @@ def _tokenize_and_pack(forms: list[str]) -> tuple[np.ndarray, np.ndarray, list[t
         spans.append((len(flat), len(flat) + len(g)))
         flat.extend(g)
 
-    ids = np.full((1, len(flat)), pad, dtype=np.int64)
-    mask = np.zeros((1, len(flat)), dtype=np.int64)
-    ids[0, :len(flat)] = flat
-    mask[0, :len(flat)] = 1
-    return ids, mask, spans
+    return np.array([flat], dtype=np.int64), np.ones((1, len(flat)), dtype=np.int64), spans
 
 
 def _pool_words(mixed_hidden: np.ndarray, spans: list[tuple[int, int]]) -> tuple[np.ndarray, np.ndarray]:
     _, _, hidden = mixed_hidden.shape
     out = np.zeros((1, len(spans), hidden), dtype=np.float32)
-    wmask = np.zeros((1, len(spans)), dtype=bool)
     for j, (s, e) in enumerate(spans):
         out[0, j] = mixed_hidden[0, s:e].mean(axis=0)
-        wmask[0, j] = True
-    return out, wmask
+    return out, np.ones((1, len(spans)), dtype=bool)
 
 
 def _decode(s_arc: np.ndarray, s_rel: np.ndarray, toks: list[dict]) -> tuple[list[int], list[str]]:
     """Heads and labels, best first among the links the book allows (mask.py)."""
     n_words = len(toks)
     L = n_words + 1
-    rel_ok = book_mask(toks, _rel_labels)
+    rel_labels = _parser.rel_labels
+    rel_ok = book_mask(toks, rel_labels)
     heads = decode.heads(s_arc[:L, :L])
-    rels = [_rel_labels[int(np.argmax(np.where(rel_ok[i + 1, heads[i]], s_rel[i + 1, heads[i]], -np.inf)))]
+    rels = [rel_labels[int(np.argmax(np.where(rel_ok[i + 1, heads[i]], s_rel[i + 1, heads[i]], -np.inf)))]
             for i in range(n_words)]
     return book_links(toks, heads, rels)
 
 
 def _parse_forms(toks: list[dict]) -> tuple[list[int], list[str]]:
     ids, mask, spans = _tokenize_and_pack([t["form"] for t in toks])
-    (mixed,) = _enc_sess.run(None, {"input_ids": ids, "attention_mask": mask})
+    (mixed,) = _parser.enc_sess.run(None, {"input_ids": ids, "attention_mask": mask})
     word_embed, wmask = _pool_words(mixed, spans)
-    s_arc, s_rel = _scorer_sess.run(
+    s_arc, s_rel = _parser.scorer_sess.run(
         None, {"word_embed": word_embed.astype(np.float32), "mask": wmask})
     return _decode(s_arc[0], s_rel[0], toks)
 
@@ -380,9 +334,9 @@ def parse(words: list[str]) -> list[dict]:
     if not words:
         return []
 
-    _ensure_loaded()
+    warm()
 
-    disambiguated = _disambiguator.disambiguate(words)
+    disambiguated = _parser.disambiguator.disambiguate(words)
     subtokens: list[dict] = []
     for word, dw in zip(words, disambiguated):
         readings = [scored.analysis for scored in dw.analyses]

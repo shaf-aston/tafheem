@@ -21,9 +21,7 @@ class _Disambiguator:
 
 @pytest.fixture
 def fresh(monkeypatch):
-    for name in ("_enc_sess", "_scorer_sess", "_bpe", "_cfg", "_rel_labels",
-                 "_clitic_table", "_disambiguator", "_ar2bw"):
-        monkeypatch.setattr(catib_onnx, name, None)
+    monkeypatch.setattr(catib_onnx, "_parser", None)
     monkeypatch.setattr(catib_onnx, "_load_error", "")
     monkeypatch.setattr(catib_onnx, "_load_lock", threading.Lock())
     return monkeypatch
@@ -35,7 +33,7 @@ def test_overlapping_requests_share_one_load(fresh):
     def slow_load():
         loads.append(1)
         time.sleep(0.3)
-        return ({}, [], [], None, object(), object(), None, _Disambiguator())
+        return catib_onnx._Parser({}, [], [], None, object(), object(), None, _Disambiguator())
 
     fresh.setattr(catib_onnx, "_load", slow_load)
     failures = []
@@ -43,8 +41,8 @@ def test_overlapping_requests_share_one_load(fresh):
     def request(delay):
         time.sleep(delay)
         try:
-            catib_onnx._ensure_loaded()
-            catib_onnx._disambiguator.disambiguate(["x"])
+            catib_onnx.warm()
+            catib_onnx._parser.disambiguator.disambiguate(["x"])
         except Exception as exc:  # the old crash: 'NoneType' has no 'disambiguate'
             failures.append(exc)
 
@@ -69,11 +67,11 @@ def test_failed_load_is_kept_and_reported_not_retried(fresh):
     fresh.setattr(catib_onnx, "_load", broken_load)
     for _ in range(3):
         with pytest.raises(Exception):
-            catib_onnx._ensure_loaded()
+            catib_onnx.warm()
 
     assert len(calls) == 1
     assert catib_onnx.state().startswith("failed: ImportError")
-    assert catib_onnx._disambiguator is None and catib_onnx._enc_sess is None
+    assert catib_onnx._parser is None
 
 
 def test_not_loaded_until_asked(fresh):
