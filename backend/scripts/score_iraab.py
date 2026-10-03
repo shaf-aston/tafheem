@@ -14,10 +14,17 @@ what a reader actually sees.
 word (data/nahw_rules/fresh_sentences.json), split into "tune" (may be looked at)
 and "hold" (never looked at while tuning). Offline it runs the router itself. It also counts
 confident wrong answers, gaps, and places where a card and the picture disagree.
---set exam is the same format, a larger set per Tasheel chapter, all held out.
+--set exam is the same format, a larger set per Tasheel chapter, written and keyed
+blind by two separate readers and kept where they agreed; all held out.
+--set hadith is the same format again: sayings found word for word in the hadith
+collections, keyed the same way, some typed again without vowels.
+--set rules has one new sentence per Tasheel rule (the "rule" field is its number
+in the rule audit), in vocabulary the other sets do not use; a debatable key was dropped.
+Rows in these two may carry "signs", the sign the book gives chosen words (word
+index to sign), so the case line is scored as well as the role.
 
-Only roles are scored: the books record no case field, and reading case back
-off the harakat would score the reader's vowels, not the analyser.
+The other sets score roles only: the books record no case field, and reading case
+back off the harakat would score the reader's vowels, not the analyser.
 
     venv/Scripts/python -m backend.scripts.score_iraab
     venv/Scripts/python -m backend.scripts.score_iraab --set fresh
@@ -31,6 +38,7 @@ import json
 import re
 import urllib.request
 from collections import Counter
+from functools import partial
 from pathlib import Path
 
 from backend.services.arabic_text import bare_letters, strip_diacritics, words
@@ -81,16 +89,23 @@ def fresh_sentences() -> list[dict]:
     return json.loads((DATA.parent / KEY["sources"]["fresh"]).read_text(encoding="utf-8"))
 
 
-def exam_sentences() -> list[dict]:
-    """Tasheel-chapter sentences in the fresh format, written and keyed blind by two
-    separate readers and kept where they agreed; all held out ("hold")."""
-    rows = json.loads((DATA.parent / KEY["sources"]["exam"]).read_text(encoding="utf-8"))
+def held_out(name: str) -> list[dict]:
+    """A set in the fresh format that nothing was tuned on, so all of it is "hold"."""
+    rows = json.loads((DATA.parent / KEY["sources"][name]).read_text(encoding="utf-8"))
     return [{**row, "split": "hold"} for row in rows]
 
 
-SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences, "exam": exam_sentences}
+SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences,
+        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules")}}
 # the sets keyed one exact role per typed word, scored by score_exact
-EXACT = ("fresh", "exam")
+EXACT = ("fresh", "exam", "hadith", "rules")
+
+
+def sign_matches(have: str | None, want: str) -> bool:
+    """The card's sign is the book's, or the book's followed by the card's note
+    ("الواو، جمع مذكر سالم" answers الواو)."""
+    have = strip_diacritics(have or "").strip()
+    return have == want or have.startswith(want + "،")
 
 
 def analysed(sentence: str, api: str | None) -> list[dict]:
@@ -178,6 +193,13 @@ def score_exact(name: str, api: str | None, show: int) -> None:
             else:
                 row["gaps"] += 1
                 wrong.append(f"word {i + 1}: blank (key {want})")
+        for i, want in ex.get("signs", {}).items() if aligned else ():
+            card = cards[int(i)]
+            row["signs"] += 1
+            if sign_matches(card.get("sign"), want):
+                row["signs_right"] += 1
+            else:
+                wrong.append(f"{strip_diacritics(card['word'])}: sign {card.get('sign') or 'none'} (key {want})")
         clash = disagreements(cards, answer.get("tree")) if aligned else []
         row["disagree"] = len(clash)
         clashes += [f"{ex['id']:>6}  {cards[i]['word']}: card {c}, tree {t}" for i, c, t in clash]
@@ -189,8 +211,9 @@ def score_exact(name: str, api: str | None, show: int) -> None:
 
     def line(name: str, c: Counter) -> str:
         pct = f"{c['right'] / c['roles']:.0%}" if c["roles"] else "-"
+        signs = f"  signs {c['signs_right']}/{c['signs']}" if c["signs"] else ""
         return (f"{name:<28} roles {c['right']}/{c['roles']} = {pct:>4}  whole {c['whole']}/{c['sentences']}  "
-                f"confident wrong {c['confident_wrong']}  gaps {c['gaps']}  card/tree disagree {c['disagree']}")
+                f"confident wrong {c['confident_wrong']}  gaps {c['gaps']}  card/tree disagree {c['disagree']}{signs}")
 
     print(f"{name.capitalize()} set" + (f" via {api}" if api else " (local)"))
     for name in ("all", "tune", "hold"):
