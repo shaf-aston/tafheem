@@ -1,22 +1,20 @@
 /**
  * An Arabic sentence, analysed: the bracket picture of how its words join, then
- * a card for each word with its role, case and the reason.
- *
- * One request brings both (`/api/analyze` returns `tree` beside `words`), so the
- * picture and the cards are the same reading and cannot contradict each other.
- * The picture is left out when the parser could join nothing.
+ * a card for each word. One `/api/analyze` request returns both, so they are the
+ * same reading. The picture is left out when nothing could be joined.
  */
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { analyzeIraab, generatePractice } from '../api'
 import { errorMessage, errorStatus } from '../lib/apiError'
 import { buildIraabExportText } from '../lib/iraabExport'
-import { caseLabel, isUnnamed, ROLE_LEGEND, signLabel } from '../lib/grammarTerms'
+import { caseLabel, isUnnamed, ROLE_LEGEND } from '../lib/grammarTerms'
 import { roleVar } from '../lib/roleColors'
 
 import SourceBadge from './ui/SourceBadge'
-import TarkeebDiagram from './TarkeebDiagram'
+import TarkeebFigure from './TarkeebFigure'
+import PracticePanel from './PracticePanel'
 import WordCard from './WordCard'
 import ArabicText from './ui/ArabicText'
 import BookPath from './ui/BookPath'
@@ -45,20 +43,18 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
   })
   const practice = useMutation({ mutationFn: generatePractice })
 
-  const submit = useCallback(() => {
+  const submit = () => {
     const trimmed = sentence.trim()
     if (trimmed) analyze.mutate(trimmed)
-  }, [sentence, analyze])
+  }
 
   const runExample = (text) => {
     setSentence(text)
     analyze.mutate(text)
   }
 
-  // A sentence arriving from the wide view is analysed on sight, so the reader
-  // does not have to press anything to see the close-up of what they clicked.
-  // Analysing it is the whole point of having been handed it, so it happens on
-  // arrival. The box is already filled from the same prop, so nothing is set here.
+  // A sentence handed over from the wide view is analysed on arrival; the box
+  // is already filled from the same prop.
   useEffect(() => {
     if (analyse) analyze.mutate(analyse)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -119,11 +115,6 @@ function AnalyzeError({ error, onRetry }) {
   return (
     <ErrorAlert title={status === 504 ? 'Timed out' : 'Analysis failed'} onRetry={onRetry}>
       <div>{errorMessage(error)}</div>
-      {status === 500 && (
-        <div className="text-xs mt-2">
-          The richer explanation could not be produced right now. The offline analysis above still stands.
-        </div>
-      )}
     </ErrorAlert>
   )
 }
@@ -148,7 +139,16 @@ function AnalysisResults({ data, accent, onWordClick, practice, detail }) {
       </div>
 
       <RoleLegend accent={accent} />
-      {data.tree && <SentencePicture tree={data.tree} />}
+      {data.tree && (
+        // An ayah drawn from its record carries the words the book supplies,
+        // (هُوَ) or an elided khabar, and the mark it writes them with.
+        <TarkeebFigure
+          words={data.tree.words}
+          tree={data.tree.tree}
+          unwritten={data.tree.unwritten}
+          coverage={data.tree.coverage}
+        />
+      )}
       <WordGrid words={data.words} onClick={onWordClick} />
       <p className="text-center type-small text-[var(--text-faint)]">
         Tap any word for its full breakdown
@@ -156,37 +156,7 @@ function AnalysisResults({ data, accent, onWordClick, practice, detail }) {
       {detail}
 
       <FullIraabTable words={data.words} onRowClick={onWordClick} />
-      <PracticeSection practice={practice} sentence={data.sentence} accent={accent} />
-    </div>
-  )
-}
-
-/**
- * The same reading, drawn: which words join into a unit and what that unit does.
- *
- * It sits above the cards because it is the wider view of the one sentence, and
- * it comes back with them from the same request, so the two can never disagree.
- * A word no rule could name is drawn as a gap by the diagram itself, and when
- * any was left open a line underneath says how much was placed, rather than
- * letting a tidy picture imply everything was. A whole placing says nothing.
- */
-function SentencePicture({ tree }) {
-  const placed = Math.round((tree.coverage ?? 0) * 100)
-  return (
-    <div className="space-y-2">
-      <div
-        className="rise-in p-5 rounded-[var(--radius-lg)] bg-[var(--surface)]
-          border border-[var(--border)]"
-      >
-        {/* an ayah drawn from its record carries the words the book supplies,
-            (هُوَ) or an elided khabar, and the mark it writes them with */}
-        <TarkeebDiagram words={tree.words} tree={tree.tree} unwritten={tree.unwritten} />
-      </div>
-      {placed < 100 && (
-        <p className="text-center type-small text-[var(--text-faint)]">
-          {placed}% of the words placed, the rest left open
-        </p>
-      )}
+      <PracticePanel practice={practice} sentence={data.sentence} accent={accent} />
     </div>
   )
 }
@@ -250,10 +220,8 @@ function WordGrid({ words, onClick }) {
 }
 
 /**
- * A row opens its word. The click lives on the row and the keyboard on the
- * word: one handler on the table body reads which row was hit, and each word
- * is a real button, so Tab reaches it and Enter opens it. The ring is the
- * browser's own :focus-visible, drawn for a key and never for a click.
+ * The click lives on the row, one handler on the table body; the keyboard lives
+ * on each word, a real button, so Tab reaches it and Enter opens it.
  */
 function FullIraabTable({ words, onRowClick }) {
   const pick = (e) => {
@@ -287,7 +255,7 @@ function FullIraabTable({ words, onRowClick }) {
                 </td>
                 <td className="py-2 px-3" style={{ color: 'var(--c)' }}>{w.role || '–'}</td>
                 <ArabicText as="td" size="sm" className="py-2 px-3 text-[var(--text-dim)]">{w.case ? caseLabel(w.case) : '–'}</ArabicText>
-                <ArabicText as="td" size="sm" className="py-2 px-3 text-[var(--text-dim)]">{w.sign ? signLabel(w.sign) : '–'}</ArabicText>
+                <ArabicText as="td" size="sm" className="py-2 px-3 text-[var(--text-dim)]">{w.sign || '–'}</ArabicText>
                 <ArabicText as="td" className="py-2 px-3 text-[var(--text-dim)]">{w.root || '–'}</ArabicText>
                 <td className="py-2 px-3 text-[var(--text-faint)] max-w-xs">
                   {w.reason || '–'}
@@ -298,81 +266,5 @@ function FullIraabTable({ words, onRowClick }) {
           </tbody>
         </table>
     </Disclosure>
-  )
-}
-
-function PracticeSection({ practice, sentence, accent }) {
-  return (
-    <div className="border-t border-[var(--border)] pt-4">
-      <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
-        <div>
-          <div className="text-sm font-medium text-[var(--text)]">Practice questions</div>
-          <div className="text-xs text-[var(--text-faint)]">Check you followed this sentence</div>
-        </div>
-        <button
-          type="button"
-          onClick={() => practice.mutate(sentence)}
-          disabled={practice.isPending}
-          style={{ '--c': accent, color: accent }}
-          className="px-4 py-1.5 text-sm rounded-[var(--radius-md)] border border-[var(--border)]
-            hover:border-[var(--c)] disabled:opacity-50 transition-colors"
-        >
-          {practice.isPending ? 'Generating…' : 'Generate'}
-        </button>
-      </div>
-
-      {practice.isError && (
-        <p className="text-sm" style={{ color: 'var(--danger)' }}>
-          {errorMessage(practice.error, 'Could not generate questions.')}
-        </p>
-      )}
-      {practice.data && !practice.isPending && (
-        <PracticeQuestions data={practice.data} accent={accent} />
-      )}
-    </div>
-  )
-}
-
-function PracticeQuestions({ data, accent }) {
-  const [revealed, setRevealed] = useState({})
-
-  return (
-    <div className="space-y-3">
-      <div className="flex justify-end">
-        <SourceBadge source={data.source} />
-      </div>
-      {data.questions.map((q, i) => (
-        <div
-          key={i}
-          style={{ '--i': i }}
-          className="rise-in p-4 rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)] space-y-2"
-        >
-          <p className="text-sm font-medium text-[var(--text)]">{i + 1}. {q.question}</p>
-          {q.hint && !revealed[i] && (
-            <p className="text-xs text-[var(--text-faint)] italic">Hint: {q.hint}</p>
-          )}
-          {revealed[i] ? (
-            <div
-              className="fade-in p-3 rounded-[var(--radius-sm)] text-sm"
-              style={{
-                color: 'var(--success)',
-                background: 'var(--success-wash)',
-              }}
-            >
-              {q.answer}
-            </div>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setRevealed((r) => ({ ...r, [i]: true }))}
-              style={{ '--c': accent, color: accent }}
-              className="text-xs underline underline-offset-2 hover:opacity-80 transition-opacity"
-            >
-              Show answer
-            </button>
-          )}
-        </div>
-      ))}
-    </div>
   )
 }

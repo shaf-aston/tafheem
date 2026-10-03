@@ -3,12 +3,12 @@ import { describe, expect, it } from 'vitest'
 import { buildIraabExportText } from './iraabExport'
 
 describe('buildIraabExportText', () => {
-  it('copies the case and sign in Arabic, from either engine', () => {
+  it('copies the case and sign in Arabic', () => {
     const text = buildIraabExportText({
       sentence: 'ذهب الطالب',
       words: [
         { word: 'الطالب', role: 'فاعل', case: "raf'", sign: 'ضمة', root: 'طلب' },
-        { word: 'الدرس', role: 'مفعول به', case: 'nasb', sign: 'fatha' },
+        { word: 'الدرس', role: 'مفعول به', case: 'nasb', sign: 'فتحة' },
         { word: 'لم', case: 'mabni (سكون على اللام)' },
       ],
     })

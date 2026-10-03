@@ -9,14 +9,13 @@
 import config from '../grammar.json'
 
 export const ROLES = config.roles
-export const CASES = config.cases
-export const TYPES = config.types
-const SIGNS = config.signs
+const CASES = config.cases
+const TYPES = config.types
 
 /**
  * The Arabic for a backend case string, or the string itself if unknown.
- * The AI writes "mabni (سكون على اللام)": the first word is the case, the
- * rest is its fixed harakah and stays as written.
+ * "mabni (سكون على اللام)": the first word is the case, the rest is its fixed
+ * harakah and stays as written.
  */
 export const caseLabel = (key) => {
   const [head, ...rest] = String(key ?? '').split(' ')
@@ -39,24 +38,17 @@ export const ROLE_LEGEND = [
   { key: 'mudaf', arabic: ROLES.mudaf.arabic },
 ]
 
-/** A word the analyser would not name: it writes a dash rather than guess. */
+/** A word the analyser would not name: it sends a dash rather than guess. */
 export const isUnnamed = (word) => word?.role === '–'
 
 /** The Arabic for a backend word type ("ism", "fi'l"), or the string itself. */
-export const typeLabel = (key) => TYPES[key]?.arabic ?? ROLES[key]?.arabic ?? key
+export const typeLabel = (key) => TYPES[key]?.arabic ?? key
 
 /** The corpus part-of-speech codes, for the Quran tab's colour key. */
 export const CORPUS_POS = Object.keys(config.corpus_pos)
 
 /** The Arabic for a corpus part-of-speech code ("N", "V", "P"). */
 export const posLabel = (tag) => typeLabel(config.corpus_pos[tag] ?? tag)
-
-/**
- * The Arabic for a case sign. The rule engine already writes Arabic; the AI
- * writes "damma" or "Damma ", so a whole-string match after trimming and
- * lower-casing, and anything unmatched prints as it came.
- */
-export const signLabel = (text) => SIGNS[String(text ?? '').trim().toLowerCase()] ?? text
 
 /**
  * Every term for the glossary: types, roles, then cases, each with its key.

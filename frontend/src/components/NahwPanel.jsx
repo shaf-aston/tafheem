@@ -1,17 +1,8 @@
 /**
- * Nahw: the reader's own sentence, analysed.
- *
- * Analyse answers both questions at once, because one reading produces both:
- * which words join and what that unit does (the bracket picture), and what each
- * word is, its case and the reason (the cards under it). They were two tabs,
- * Tarkeeb and I'raab, and splitting them meant the picture could only ever show
- * a stored example while a typed sentence got cards alone.
- *
- * Tamreen is practice and Notes is the theory. The books' own worked tarkeeb
- * lives in a drawer inside Analyse: it is what to compare against, not the point.
- *
- * This file only picks which of the three is on screen and carries a sentence in
- * from elsewhere.
+ * Nahw: Analyse (the reader's own sentence: bracket picture and a card per word,
+ * from one reading), Tamreen (practice) and Notes (theory). The books' worked
+ * tarkeeb sits in a drawer inside Analyse, to compare against. This file only
+ * picks which view is on screen and carries a sentence in from elsewhere.
  */
 import { useEffect, useState } from 'react'
 
@@ -76,20 +67,15 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
   // their own, which is what tells the box above which sentence it is showing.
   const [fromExample, setFromExample] = useState(null)
 
-  // A sentence arriving on the tab already open, from the command bar or from
-  // the back arrow, is the same event as one arriving with the tab: it is the
-  // sentence to analyse, and the example the reader was on is not it. App
-  // used to remount the panel for it, which faded the whole page back in; see
-  // lib/useArrival.
+  // A sentence arriving on the open tab (command bar, back arrow) is the one to
+  // analyse, same as arriving with the tab. Remounting for it re-faded the page.
   const { arrived } = useArrival(arrival)
   if (arrived && incoming) {
     setFromExample(null)
     setView('analyse')
   }
 
-  // Not remembered either, for the same reason: the example goes when the page
-  // does, and coming back to an empty box would be worse than coming back to
-  // the drawer of examples they were reading.
+  // Not remembered: coming back to an empty box beats losing the drawer they were reading.
   const openWordByWord = (sentence) => {
     setFromExample(sentence)
     setView('analyse')
@@ -97,9 +83,7 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
 
   return (
     <div className="panel">
-      {/* The views ride on the title line, in the space a two-word title leaves
-          empty. On their own row they cost a whole row and read as a step to
-          take before typing, which they are not. */}
+      {/* The views ride on the title line: on their own row they read as a step before typing. */}
       <SectionHeader
         title="Nahw"
         arabic="نحو"
@@ -117,9 +101,7 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
 
       {view === 'analyse' && (
         <div className="space-y-5">
-          {/* Keyed by the sentence: a new one arriving starts fresh on it
-              rather than leaving the last analysis on screen. One prop,
-              whether it came from an example or from the command bar. */}
+          {/* Keyed by the sentence, so a new one starts fresh. */}
           <IraabAnalyzer
             key={fromExample ?? incoming ?? 'typed'}
             accent={accent}
@@ -127,11 +109,7 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
             onVisit={onVisit}
             analyse={fromExample ?? incoming}
           />
-          {/* The books' own tarkeeb sentences, now the second thing on the page:
-              the reader's own sentence is the first. Shut until asked for, and
-              picking one sends it up to the box above. Named for tarkeeb, not
-              "worked examples": that reads as questions to answer, which is
-              Tamreen, and it is where the reader went looking for tarkeeb. */}
+          {/* Named for tarkeeb, not "worked examples": that reads as questions, which is Tamreen. */}
           <Disclosure label="Tarkeeb book examples" tone="strong">
             <div className="pt-4">
               <TarkeebPanel accent={accent} onWordByWord={openWordByWord} />
@@ -142,7 +120,7 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
       {view === 'tamreen' && <TamreenPanel accent={accent} onProgress={onProgress} onNotes={openNotes} />}
       {view === 'notes' && <NotesPanel accent={accent} topic={noteTopic} onTamreen={() => chooseView('tamreen')} />}
 
-      {/* The one place the terms are put into English. Shut until asked. */}
+      {/* The one place the terms are put into English. */}
       <GrammarGlossary />
     </div>
   )

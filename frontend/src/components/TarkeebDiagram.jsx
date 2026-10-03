@@ -13,7 +13,7 @@ import { Fragment, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import { isQuranic, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
-import { rows, share, splitConnectors } from '../lib/tarkeebLayout'
+import { kids, pieces, rows, share, splitConnectors } from '../lib/tarkeebLayout'
 import { colorFor } from '../theme'
 
 import ArabicText from './ui/ArabicText'
@@ -29,11 +29,6 @@ const MODES = [
   { id: 'split', label: 'Split' },
 ]
 
-// The same lookup the word grid uses, so a role named here and named there can
-// never end up in two different colours.
-const color = (node) => roleVar(node?.tone)
-const grouped = (node) => (node.children?.length ? node.children : node.parts)
-
 /**
  * One brace, the row of names above it, and the name of the unit itself.
  *
@@ -43,8 +38,8 @@ const grouped = (node) => (node.children?.length ? node.children : node.parts)
  * the name drops under its own brace instead of being drawn over the neighbour.
  */
 function Bracket({ node, atEdge, style }) {
-  const pieces = grouped(node)
-  const inside = !node.children?.length
+  // roleVar is the word grid's own lookup, so one role is one colour in both.
+  const inside = !kids(node)
   const name = node.label && (
     <div className="tk-name">
       {/* RTL reading order: the brace, then "=", then the name on the left. */}
@@ -56,12 +51,12 @@ function Bracket({ node, atEdge, style }) {
   return (
     <div className={`tk-group${inside ? ' tk-inside' : ''}`} data-level={node.level} style={style}>
       <div className="tk-roles">
-        {pieces.map((piece, index) => (
+        {(kids(node) ?? pieces(node)).map((piece, index) => (
           <Fragment key={index}>
             {index > 0 && <span className="tk-plus" aria-hidden="true">+</span>}
             <div
               className={`tk-role${piece.gap ? ' tk-gap' : ''}${piece.raw_wording ? ' tk-raw' : ''}`}
-              style={{ flexGrow: share(piece), '--tone': color(piece) }}
+              style={{ flexGrow: share(piece), '--tone': roleVar(piece.tone) }}
             >
               {/* Tooltip is a no-op without text, so every role can pass through
                   it, only the roles with a `detail` (currently the ghair-عامل
@@ -71,13 +66,13 @@ function Bracket({ node, atEdge, style }) {
           </Fragment>
         ))}
       </div>
-      <div className="tk-brace" style={{ '--tone': color(node) }}>{atEdge && name}</div>
+      <div className="tk-brace" style={{ '--tone': roleVar(node.tone) }}>{atEdge && name}</div>
       {!atEdge && name}
     </div>
   )
 }
 
-export default function TarkeebDiagram({ words, tree, unwritten, className = '' }) {
+export default function TarkeebDiagram({ words, tree, unwritten }) {
   const [mode, setMode] = useState('split')
   const scroller = useRef(null)
   const split = useMemo(
@@ -98,7 +93,7 @@ export default function TarkeebDiagram({ words, tree, unwritten, className = '' 
   const levels = rows(shown.tree, shown.words.length)
 
   return (
-    <div className={className}>
+    <div>
       {canSplit && (
         <div className="flex items-center justify-end gap-2 pb-3 flex-wrap">
           {/* The caption reuses the connective's own term text from the tree

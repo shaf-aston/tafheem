@@ -27,13 +27,12 @@ import { useRemembered } from '../lib/useRemembered'
 import { scrollToEl } from '../lib/scrollToEl'
 
 import WordCard from './WordCard'
-import TarkeebDiagram from './TarkeebDiagram'
+import TarkeebFigure from './TarkeebFigure'
 import PlayAyah from './ui/PlayAyah'
 import Segmented from './ui/Segmented'
 import SourceBadge from './ui/SourceBadge'
 import TranslationStrip from './ui/TranslationStrip'
 import { GoButton } from './ui/RootActions'
-import Tooltip from './ui/Tooltip'
 import AyahTafsir from './AyahTafsir'
 import { isQuranic } from '../lib/arabicText'
 import ArabicText from './ui/ArabicText'
@@ -211,11 +210,8 @@ function AyahTarkeeb({ surah, ayah }) {
   // so a dropped connection read as "this ayah has no joins". Now it says so.
   if (!isPending && !isError && !data?.tree) return null
 
-  const total = data?.words.length ?? 0
-  const placed = data ? Math.round(data.coverage * total) : 0
-  const open = total - placed
   // Why a join is open depends on who did the work; said in a hover, not a paragraph.
-  const why = data?.source?.key === 'treebank'
+  const openWhy = data?.source?.key === 'treebank'
     ? 'Left open by the people who worked this ayah out.'
     : 'Worked out by rule from each word’s own tags, which never link one word to another. Drawn open, not hidden.'
 
@@ -233,16 +229,7 @@ function AyahTarkeeb({ surah, ayah }) {
         <ErrorAlert inline title="Could not load the word joins" error={error} onRetry={() => refetch()} />
       )}
       {data?.tree && (
-        <>
-          <div className="p-5 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]">
-            <TarkeebDiagram words={data.words} tree={data.tree} unwritten={data.unwritten} />
-          </div>
-          <p className="text-xs text-[var(--text-faint)]">
-            {open === 0
-              ? `All ${total} words placed.`
-              : <>{placed} of {total} words placed, {open} <Tooltip text={why}><span className="underline decoration-dotted cursor-help">left open</span></Tooltip>.</>}
-          </p>
-        </>
+        <TarkeebFigure words={data.words} tree={data.tree} unwritten={data.unwritten} coverage={data.coverage} openWhy={openWhy} />
       )}
     </section>
   )

@@ -1,16 +1,14 @@
 /**
- * One word's full grammar and root, shown inline in the page flow. Used by
- * both Nahw's word grid and AyahStudy's reading line, so the two tabs cannot
- * drift into showing different facts for the same kind of word.
+ * One word's full grammar and root, shown inline. Shared by Nahw's word grid and
+ * AyahStudy's reading line so the two cannot show different facts.
  *
- * Not a dialog: an overlay put half the card off screen for a word at the
- * line's right edge, and covered the words on the line below so the next one
- * could not be tapped. Escape still closes it, and opening moves focus and
- * scroll to the card, but there is no backdrop and no focus trap.
+ * Not a dialog: an overlay put half the card off screen at the line's right edge
+ * and covered the next line's words. Escape closes it and opening moves focus and
+ * scroll to it; there is no backdrop or focus trap.
  */
 import { useEffect, useRef } from 'react'
 
-import { caseLabel, isUnnamed, posLabel, signLabel, typeLabel } from '../lib/grammarTerms'
+import { caseLabel, isUnnamed, posLabel, typeLabel } from '../lib/grammarTerms'
 import { roleVar } from '../lib/roleColors'
 import { scrollToEl } from '../lib/scrollToEl'
 import ArabicText from './ui/ArabicText'
@@ -73,14 +71,9 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
       </div>
 
       {word.role && (
-        <div className="flex flex-col items-center gap-2">
-          <span
-            style={{ '--c': roleVar(key) }}
-            className="px-3 py-1 rounded-full type-small font-medium role-tag"
-          >
-            {word.role}
-          </span>
-        </div>
+        <span className="block w-fit mx-auto px-3 py-1 rounded-full type-small font-medium role-tag">
+          {word.role}
+        </span>
       )}
 
       {/* Only when the source speaks in sentences (segments/lemma) rather than
@@ -118,7 +111,7 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
           {word.root && <Detail label="Root" value={word.root} arabic />}
           {word.type && <Detail label="Type" value={typeLabel(word.type)} arabic />}
           {word.case && <Detail label="Case" value={caseLabel(word.case)} arabic />}
-          {word.sign && <Detail label="Sign" value={signLabel(word.sign)} arabic />}
+          {word.sign && <Detail label="Sign" value={word.sign} arabic />}
         </div>
       )}
 

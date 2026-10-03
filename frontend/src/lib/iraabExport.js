@@ -2,7 +2,7 @@
  * Render an I'raab analysis result as plain text suitable for the clipboard.
  * Terms print in Arabic, as on the page: مرفوع, not "raf'".
  */
-import { caseLabel, signLabel } from './grammarTerms'
+import { caseLabel } from './grammarTerms'
 
 export function buildIraabExportText(data) {
   const lines = [`I'raab Analysis: ${data.sentence}`]
@@ -12,7 +12,7 @@ export function buildIraabExportText(data) {
   for (const w of data.words) {
     lines.push(w.word)
     if (w.role) lines.push(`  Role: ${w.role}`)
-    if (w.case) lines.push(`  Case: ${caseLabel(w.case)}${w.sign ? ` (${signLabel(w.sign)})` : ''}`)
+    if (w.case) lines.push(`  Case: ${caseLabel(w.case)}${w.sign ? ` (${w.sign})` : ''}`)
     if (w.root) lines.push(`  Root: ${w.root}`)
     if (w.reason) lines.push(`  Reason: ${w.reason}`)
     if (w.book) lines.push(`  Book: ${w.book}`)

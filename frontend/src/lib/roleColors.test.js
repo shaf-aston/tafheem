@@ -1,16 +1,11 @@
 /**
- * The word grid used to pick its colour by searching the role text for English
- * words, 'fail', 'mafool', while the rule engine writes that text in Arabic.
- * Nothing ever matched, so every noun and verb the engine identified came out
- * in the default grey, and only the AI's answers were ever coloured.
- *
- * These tests pin the shape that replaced it: a colour comes from the key the
- * backend sends and from nothing else, and a role that has a colour also has an
- * explanation. The Arabic role strings below are copied from rule_engine.py.
+ * A word's colour comes from the key the backend sends and from nothing else,
+ * and a role that has a colour also has an explanation. Role keys are copied
+ * from schemas.ROLE_KEYS.
  */
 import { describe, expect, it } from 'vitest'
 
-import { GLOSSARY, ROLE_LEGEND, ROLES, caseLabel, signLabel, typeLabel } from './grammarTerms'
+import { GLOSSARY, ROLE_LEGEND, ROLES, caseLabel, typeLabel } from './grammarTerms'
 import { roleVar } from './roleColors'
 
 // The role names the backend can send, schemas.ROLE_KEYS.
@@ -65,15 +60,10 @@ describe('the glossary and the legend', () => {
     expect(caseLabel('odd')).toBe('odd')
   })
 
-  it('names a word type and a case sign in Arabic, however the AI spells it', () => {
+  it('names a word type in Arabic, and leaves an unknown one as it came', () => {
     expect(typeLabel('ism')).toBe('اسم')
     expect(typeLabel("fi'l")).toBe('فعل')
-    expect(typeLabel('sifah')).toBe('صفة')
     expect(typeLabel('punc')).toBe('punc')
-    expect(signLabel('damma')).toBe('ضمة')
-    expect(signLabel(' Fatha ')).toBe('فتحة')
-    expect(signLabel('ضمة')).toBe('ضمة')
-    expect(signLabel('مبني على السكون')).toBe('مبني على السكون')
   })
 
   it('lists every term once, each with Arabic, a saying and a meaning', () => {
