@@ -7,8 +7,7 @@ Backend resolution order (auto mode):
 
 Public functions mirror the old groq/__init__.py interface so routers
 need no changes:
-    analyze_sarf, explain_root_entry, explain_root_entry_lines,
-    load_nahw_rules, get_backend_name
+    analyze_sarf, explain_root_entry, explain_root_entry_lines, get_backend_name
 """
 from __future__ import annotations
 
@@ -137,6 +136,3 @@ def explain_root_entry_lines(root: str, lines: list[str]) -> dict:
         max_tokens=get_settings().root_entry_max_tokens,
     )
 
-
-# ── Re-export for main.py startup ─────────────────────────────────────────────
-load_nahw_rules = prompts.load_nahw_rules

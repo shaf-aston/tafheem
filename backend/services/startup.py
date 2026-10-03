@@ -12,7 +12,6 @@ from __future__ import annotations
 import asyncio
 import gc
 import logging
-from pathlib import Path
 from typing import Callable
 
 from backend.config import get_settings
@@ -20,9 +19,6 @@ from backend.services import ai, dictionary_service, recitation, root_meaning, s
 from backend.services.colloquial import loader as colloquial
 
 logger = logging.getLogger(__name__)
-
-NAHW_RULES_PATH = Path(__file__).resolve().parent.parent / "data" / "nahw_rules" / "rules.json"
-
 
 def _freeze() -> None:
     # faster_whisper.audio.decode_audio runs a full gc.collect() after every
@@ -40,7 +36,6 @@ def _recitation() -> None:
 
 
 STEPS: dict[str, tuple[str, Callable[[], object]]] = {
-    "nahw_rules": ("Nahw rules", lambda: ai.load_nahw_rules(str(NAHW_RULES_PATH))),
     "dictionary": ("Arabic-English dictionary", dictionary_service.load_dictionary),
     "root_meanings": ("Classical root meanings", root_meaning.load),
     "recitation": ("Recitation model", _recitation),

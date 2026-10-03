@@ -17,7 +17,6 @@ from fastapi.testclient import TestClient
 
 from backend.main import app
 from backend.scripts import build_tarkeeb
-from backend.services import ai as ai_service
 from backend.services import syntax, tarkeeb, tarkeeb_store
 from tests.test_tarkeeb_treebank import AL_ADIYAT_9, SETTINGS
 
@@ -40,7 +39,6 @@ def recorded(tmp_path, monkeypatch):
     db.commit()
     db.close()
     monkeypatch.setattr(tarkeeb_store, "DATABASE", path)
-    monkeypatch.setattr(ai_service, "is_ai_available", lambda: False)
 
 
 def test_a_typed_ayah_is_read_from_its_record_not_the_parser(monkeypatch):

@@ -4,12 +4,6 @@ Identical in content to the original groq/prompts.py but backend-agnostic.
 """
 from __future__ import annotations
 
-import json
-import logging
-
-logger = logging.getLogger(__name__)
-
-
 SYSTEM_BASE = (
     "You are an expert classical Arabic grammarian trained in the traditional Islamic seminary (madrasa) method.\n"
     "You specialize in Nahw (syntax) and Sarf (morphology) of Classical and Quranic Arabic.\n"
@@ -89,28 +83,5 @@ the same order as the numbering:
 }}"""
 
 
-_RULES_EXCERPT_CHARS = 3000
-_system_prompt: str = SYSTEM_BASE
-
-
 def system_prompt() -> str:
-    return _system_prompt
-
-
-def load_nahw_rules(rules_json_path: str) -> None:
-    """Augment the system prompt with an excerpt from the local rules JSON."""
-    global _system_prompt
-    with open(rules_json_path, encoding="utf-8") as f:
-        rules = json.load(f)
-    if not isinstance(rules, list):
-        raise ValueError("Rules JSON must contain a list of topics")
-
-    lines: list[str] = []
-    for entry in rules:
-        if not isinstance(entry, dict):
-            continue
-        lines.append(f"Topic: {entry.get('topic', '')}")
-        lines.extend(f"  - {rule}" for rule in entry.get("rules", []))
-    excerpt = "\n".join(lines)[:_RULES_EXCERPT_CHARS]
-    _system_prompt = f"{SYSTEM_BASE}\nKey grammar rules reference:\n{excerpt}\n"
-    logger.info("Loaded %d grammar rule lines from %s", len(lines), rules_json_path)
+    return SYSTEM_BASE
