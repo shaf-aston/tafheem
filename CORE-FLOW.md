@@ -27,15 +27,14 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 
 1. **A tab picks the tool.** `frontend/src/App.jsx` holds the tabs and checks `/api/health`,
    and carries a root from one tab to another (`onGo`), so the tabs work as one app.
-2. **A typed sentence is tagged, parsed, then named.** `services/morphology.py` (CAMeL)
-   gives each word's root and features; `services/rule_engine.py` works out the i'raab with
-   no network; then `services/syntax/` reads which word hangs off which
-   (`catib_onnx.py`, offline), names the role (`naming.py`), which is right far
-   more often, so its name wins and the rules fill the gaps, and draws the same
-   reading as brackets (`tree.py`), so the cards and the picture cannot disagree.
-   Only below the confidence in `backend/config.py` does
-   `routers/analysis.py` ask an AI backend (`services/ai/`), which retires itself when its
-   key is dead (`services/fallback.py`).
+2. **A typed sentence is read by the book's rules alone, no AI.** `services/iraab.py` runs it:
+   `morphology.py` (CAMeL) reads each word, `rule_engine.py` gives each a card from its
+   vowels, then an ayah the Treebank recorded is read from that record (`tarkeeb_store.py`)
+   and anything else goes to `services/syntax/`: the offline parser links the words
+   (`catib_onnx.py`), `facts.py` answers five questions per word and `walker.py` walks the
+   book's tree (`data/nahw_rules/naming_tree.json`) to the role and its page, `teacher.py`
+   dashes any name that breaks a stated rule, and `tree.py` draws the same reading as
+   brackets, so the cards and the picture cannot disagree. A word no rule settles stays a gap.
 3. **The Qur'an is looked up, never guessed.** `services/quran_corpus.py` reads the
    hand-tagged corpus; `quran_service.py` joins it with the English gloss. Tafsirs and
    translations are **editions**, all in `data/quran/library.db`, read only by
@@ -122,7 +121,7 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 - `backend/data/`: reference data, built by `backend/scripts/`; derived files are
   rebuilt, never hand-edited (see `backend/data/maqayees/README.md`).
 - `backend/data/progress.db`: learners' answers, and every Nahw practice question as it was
-  generated (AI or template, filed under its badge's source; `GET /api/practice/kept`). The
+  generated (from `data/practice/templates.json`, filed under its badge's source; `GET /api/practice/kept`). The
   one database written while running, opened only by `services/progress_store.py`.
 - `backend/data/nahw_notes/`: the teacher's theory notes, one file per topic, read only by
   `services/nahw_notes.py` (format: its `FORMAT.md`). Testable pieces are marked in place as

@@ -62,16 +62,16 @@ python backend/scripts/build_daleel_index.py --meta  # just the source/book tabl
    an ayah number never gets a card. Then `backend/services/morphology.py` runs CAMeL
    Tools (falling back to Qalsadi, then PyArabic) for root, POS, case and diacritics. Neighbouring
    words disambiguate homographs (ذهب = "gold" or "he went"). This is a guess and is labelled as one.
-3. **The rule engine derives I'raab deterministically**: `backend/services/rule_engine.py`
-   applies classical Nahw rules to those tags and scores its own confidence, so the tool works
-   with no network and no API cost. Every word it names carries a `role_key` beside the Arabic
-   role, the stable name the grid colours by, checked against `schemas.ROLE_KEYS` on the way
-   out so the AI's answer cannot invent one. `lib/roleColors.js` turns that name into a theme
-   token and reads nothing else; the Arabic prose is for the reader, never for the colour.
-   Only when that confidence falls below the threshold in `backend/config.py` does
-   `backend/routers/analysis.py` call an AI backend, one sentence at a time with the answer kept
-   (`ai_answer_cache_size`), because the free tier allows about three I'raabs a minute. A backend that fails permanently (dead
-   key, missing model) retires itself, so the app stops claiming it.
+3. **The book's rules name every role, with no network**: `backend/services/iraab.py` is the
+   one reader. `rule_engine.py` gives each word a card (type, case, sign, reason) from its tags
+   and typed vowels. Then `services/syntax/` reads the sentence: `catib_onnx.py` links the
+   words offline, `mask.py` overrules links the book settles, `facts.py` answers five
+   independent questions per word (kind, follows, governor, slot, voice) and `walker.py`
+   walks `data/nahw_rules/naming_tree.json`, the book's divisions as data, to a role and its
+   page. `teacher.py` re-reads the set and dashes a name that breaks a stated rule. Those
+   names replace the cards' first guess (`iraab.with_parser_roles`); a word no rule names
+   stays a gap. Every word carries a `role_key` beside the Arabic role, checked against
+   `schemas.ROLE_KEYS`; `lib/roleColors.js` turns it into a theme token and reads nothing else.
 4. **Tarkeeb is a tree, and a separate question**: which words join into a unit, and what that
    unit then does. Two sources, and the badge always says which: `tarkeeb_store.py` reads what
    scholars recorded (`data/tarkeeb/tarkeeb.db`, 5,023 of the 6,236 ayahs), and where that has
@@ -160,7 +160,7 @@ it is the term that is wrong.
 - **CAMeL**: CAMeL Tools, the Arabic morphology library installed here. It reads a word
   apart into root and features, and can build a verb's present tense by rule. Called CAMeL
   everywhere, never "tagger" or "engine".
-- **Nahw**: Arabic syntax rules; `data/nahw_rules/rules.json` is the rule data.
+- **Nahw**: Arabic syntax rules; `data/nahw_rules/` holds them as data (word lists, roles, the naming tree, the teacher's checks).
 - **Root**: the three letters nearly every Arabic word is built from. The one identifier
   shared by every tab, and the thing a cross-tab link carries.
 - **Corpus / segment**: the Quranic Arabic Corpus v0.4 (GNU GPL), 130,030 hand-tagged
