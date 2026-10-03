@@ -16,6 +16,7 @@ cd frontend && npm test && npm run lint                    # frontend tests
 EAR=http://127.0.0.1:8000 node frontend/scripts/probe-ear.mjs  # reciting, end to end
 venv/Scripts/python -m backend.scripts.score_iraab             # i'raab roles vs the books, as a score
 venv/Scripts/python -m backend.scripts.score_iraab --set checked  # and vs the 72 checked sentences
+venv/Scripts/python -m backend.scripts.score_mutashabihat  # similar-verse finder vs the benchmark
 venv/Scripts/python -m backend.scripts.analyse "جملة" [--api URL] [--json]  # one sentence's cards and tree; stdin takes one per line
 ```
 
@@ -39,6 +40,8 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
    hand-tagged corpus; `quran_service.py` joins it with the English gloss. Tafsirs and
    translations are **editions**, all in `data/quran/library.db`, read only by
    `quran_library.py` and named only in `data/quran/editions.json`.
+   Verses that read alike: `data/quran/mutashabihat.json` (built by `scripts/build_mutashabihat.py`),
+   read by `services/mutashabihat.py`, which also proposes pairs the books missed.
 4. **The root is the spine.** One click sends a word's root to Sarf
    (`services/conjugation.py`), the dictionary, or every place it occurs. A verb's bab
    comes only from a dictionary that states it (`services/verb_forms.py`), never a guess.
@@ -115,6 +118,8 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 
 - `backend/routers/`: thin endpoints. `backend/services/`: the logic.
   `backend/config.py`: every setting, and the only reader of the environment.
+- `services/mushkil_split.py` cuts al-Tahawi's Mushkil al-Athar into issues (hadith that seem to
+  conflict); `scripts/build_mushkil.py` writes `data/hadith/mushkil-tahawi.json`. No tab reads it yet.
 - `backend/services/sarf/`: the pure core of morphology. `word.py` holds a word as letters
   that know their job, and names the alphabet once; `ilal.py` the rules. `conjugation.py`
   is the only caller. Every label, column and template is in `data/sarf/`, never in code.
@@ -129,4 +134,6 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
   (`lib/notes.js`), so the stored note stays the reference. Tamreen questions link to it.
 - `frontend/src/components/`: one component per tab, shared parts in `ui/`.
   `frontend/src/lib/`: helpers, and `journey.js` for where the reader has been.
+  `frontend/src/components/Backdrop.jsx`: the drifting-lights canvas behind every tab, tinted by the tab colour; it exists so the dark page has depth, and it stops when Animations is off. Maths in `lib/bokeh.js`, knobs in theme.json `lights` and `marks` (the faint drifting letters under the lights). The kit page (`/app?tab=kit`, hidden from every menu) is where every element and token is seen.
+- Styles live in `frontend/src/styles/`, one file per job (base, layers, motion, text, components, ...); `index.css` there imports them in cascade order.
 - `logs/recite-journal.jsonl`: the reciting log, rolled over at 5 MB, last 3 kept.

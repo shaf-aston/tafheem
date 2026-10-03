@@ -1,0 +1,585 @@
+/* ── Chrome controls ────────────────────────────────────────────────────────
+   A square button in the page furniture rather than inside a panel: the settings
+   gear, the pen that opens the launcher. One class and one size token, so the
+   two ends of the header row line up instead of being two lookalikes that drift
+   apart the first time one of them is edited. */
+.icon-button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: var(--layout-control);
+  height: var(--layout-control);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-faint);
+  transition:
+    color calc(var(--motion-base-ms) * 1ms) ease,
+    border-color calc(var(--motion-base-ms) * 1ms) ease,
+    background-color calc(var(--motion-base-ms) * 1ms) ease,
+    box-shadow calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  color: var(--text);
+  border-color: var(--border-hi);
+}
+
+
+/* ── Role colouring ─────────────────────────────────────────────────────────
+   A word's grammatical role is carried by one variable, so text, border and
+   glow can never drift apart. */
+.role {
+  --c: var(--role-default);
+  color: var(--c);
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+}
+
+
+.role-tag {
+  color: var(--c, var(--role-default));
+  background: color-mix(in srgb, var(--c, var(--role-default)) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c, var(--role-default)) 35%, transparent);
+}
+
+
+.glow {
+  box-shadow: 0 0 var(--glow-blur)
+    color-mix(in srgb, var(--c, var(--primary)) calc(var(--glow-strength) * 40%), transparent);
+}
+
+
+.text-glow {
+  text-shadow: 0 0 calc(var(--glow-blur) * 0.7)
+    color-mix(in srgb, var(--c, var(--primary)) calc(var(--glow-strength) * 60%), transparent);
+}
+
+
+/* The hover a card-like container gets everywhere in the app: a small rise and
+   its shadow deepening with it, the same settle the quiz option below already
+   had, now shared rather than redrawn per tab. */
+.lift {
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
+    box-shadow calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+}
+
+
+.lift:hover,
+.lift:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-pop);
+}
+
+
+/* The press every button gets: a small, instant give under the finger, so a
+   tap reads as having landed before whatever it did shows up. */
+.press {
+  transition: transform calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+
+.press:active {
+  transform: scale(0.98);
+}
+
+
+/* A Disclosure's body, opening as a glide rather than a snap. Grid rows, not
+   height: height needs a measured pixel number to animate to, and this content
+   is unmeasured text of any length. 0fr collapses to nothing without the
+   content ever being display:none, so it still exists for layout underneath. */
+.glide {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+
+.glide > * {
+  overflow: hidden;
+}
+
+
+.glide[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+
+
+/* A <details> hides everything past its <summary> the instant it shuts, via the
+   browser's own stylesheet, which would cut the glide off before it could play.
+   Overridden only for a .glide body: it stays a real grid at every state, and
+   0fr does the collapsing instead. */
+details:not([open]) > .glide {
+  display: grid;
+}
+
+
+/* One answer in the quiz. Hover is a settle, not a hop: the lift is small, the
+   border and the surface come up with it so movement is not carrying the whole
+   message, and every part of it runs on the shared motion tokens. */
+.option {
+  transition:
+    transform calc(var(--motion-base-ms) * 1ms) ease-out,
+    border-color calc(var(--motion-base-ms) * 1ms) ease-out,
+    background-color calc(var(--motion-base-ms) * 1ms) ease-out,
+    color calc(var(--motion-base-ms) * 1ms) ease-out;
+}
+
+
+.option:not(:disabled):hover,
+.option:not(:disabled):focus-visible {
+  transform: translateY(-2px);
+  background-color: color-mix(in srgb, var(--c) 7%, var(--surface-hi));
+  border-color: var(--c);
+}
+
+
+/* The dialog's dimmed backing. ::backdrop sits in the browser's top layer and
+   cannot be relied on to read the :root tokens, so this one scrim is written
+   directly, it is a shade over the page, not a colour of the design. */
+/* The page behind any open pop-up holds still, for every dialog at once. */
+html:has(dialog:modal) {
+  overflow: hidden;
+}
+
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 55%);
+}
+
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface) 25%,
+    var(--surface-hi) 50%,
+    var(--surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer calc(1.4s * var(--motion-scale)) infinite;
+  border-radius: var(--radius-sm);
+}
+
+
+/* Sibling dimming: hovering one word pushes the rest back so the pair you are
+   comparing stands out. Pure CSS, so it costs nothing per keystroke.
+
+   Deliberately gentle. At 0.45 opacity the rest of the ayah read as switched
+   off, and an ayah is a sentence: the words around the one under the cursor are
+   the context that makes it mean anything. This is a half-step back, enough to
+   see which word is being pointed at and not enough to stop reading the rest. */
+.peer-dim:has(.word:hover) .word:not(:hover),
+.peer-dim:has(.word:focus-visible) .word:not(:focus-visible) {
+  opacity: 0.72;
+  filter: saturate(0.85);
+}
+
+
+/* A word's English while the pointer rests on it, in the reading view.
+   The same idea as .peer-dim above and deliberately quieter: there, one word is
+   being studied; here, a surah is being read, and a page that reacts loudly to
+   every word the pointer crosses is a page nobody can read. */
+.gloss-line:hover .gloss-word:not(:hover),
+.gloss-line:focus-within .gloss-word:not(:focus-visible) {
+  color: var(--text-dim);
+}
+
+
+/* One ayah of the reading view. Rows off the screen are not laid out until they
+   scroll near it: al-Baqarah is 286 rows and 27,000 elements, and laying all of
+   them out at once was a full second of the two the surah took to appear.
+   The intrinsic size is a guess at a row's height, only used for the scrollbar
+   while a row is skipped. */
+.surah-row {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 8rem;
+}
+
+
+.gloss-word {
+  position: relative;
+  border-radius: var(--radius-sm);
+  transition:
+    color calc(var(--motion-instant-ms) * 1ms) ease,
+    background calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+
+.gloss-word:hover,
+.gloss-word:focus-visible {
+  color: var(--text);
+}
+
+
+/* The word being recited. Read at arm's length while the recitation runs, so it
+   is a lit background rather than a colour change: a tinted word is hard to
+   pick out of a line of the same colour, and the reader is following along, not
+   inspecting one word. The transition is short on purpose, at three or four
+   words a second a slow fade never finishes before the next word starts. */
+.gloss-word-lit,
+.gloss-line:hover .gloss-word-lit:not(:hover),
+.gloss-line:focus-within .gloss-word-lit:not(:focus-visible) {
+  color: var(--bg);
+  background: var(--c);
+}
+
+
+/* Hover-only text is generated content, which a selection never copies. */
+.tip-bubble::after {
+  content: attr(data-tip);
+}
+
+
+/* Isolated left to right, or "(is) for Allah" has its bracket flipped. */
+.gloss-word[data-gloss]::after {
+  content: attr(data-gloss);
+  direction: ltr;
+  unicode-bidi: isolate;
+  position: absolute;
+  /* Pulled into the line's own leading rather than clear above it: at this
+     line-height a gloss that clears the glyphs entirely lands nearer the line
+     above than the word it belongs to. */
+  bottom: calc(100% - 0.35em);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: var(--layer-raised);
+  background: var(--c);
+  color: var(--bg);
+  font-family: var(--font-ui);
+  font-size: var(--type-small);
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0.4rem 0.55rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-pop);
+  transition:
+    opacity calc(var(--motion-instant-ms) * 1ms) ease,
+    transform calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+
+/* Focus reveals the gloss exactly as the pointer does. The words are buttons, so
+   a keyboard reaches every one of them; without this it reached them and was
+   shown nothing. */
+.gloss-word[data-gloss]:hover::after,
+.gloss-word[data-gloss]:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+.word {
+  transition:
+    opacity calc(var(--motion-instant-ms) * 1ms) ease,
+    filter calc(var(--motion-instant-ms) * 1ms) ease,
+    transform calc(var(--motion-instant-ms) * 1ms) ease,
+    box-shadow calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+
+.word:hover,
+.word:focus-visible {
+  transform: translateY(-3px);
+}
+
+
+/* The word you opened. It grows a little and lifts, so the detail panel hanging
+   below it reads as belonging to a particular word rather than floating over
+   the row; and the word itself comes up a shade, because the one you are
+   reading about should be the one your eye returns to. Both are small on
+   purpose: the row still has to scan as a row of equals. */
+/* The word being recited, in the word-by-word view. This card cannot be filled
+   the way a word in a line of text is: it already carries a colour for its part
+   of speech, and painting over that trades one piece of information for
+   another. A ring in that same colour instead, so both are readable at once,
+   and it never moves the card, since ten cards nudging in turn is a page that
+   twitches through a whole recitation. */
+.word-lit {
+  border-color: var(--c);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--c) 45%, transparent);
+}
+
+
+.word-open,
+.word-open:hover {
+  transform: translateY(-3px) scale(1.06);
+}
+
+
+/* Only the button, never the whole chip: the panel is a child of it, and
+   brightening that too washed out the text it exists to show. */
+.word-open > button {
+  filter: brightness(1.15);
+}
+
+
+/* The header bar. The tint ratio lives here with every other surface mix
+   rather than inlined in the component. */
+.app-header {
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+
+/* One tab on the strip, and the lit line under the chosen one. */
+.tab-btn {
+  transition: color calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+
+.tab-line {
+  transition:
+    background-color calc(var(--motion-base-ms) * 1ms) ease,
+    box-shadow calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+
+/* An unselected tab already hints at the colour it will turn, enough to tell
+   Sarf's red from Quran's teal at a glance, not enough to compete with the tab
+   you are actually on. How much of the hint shows is a theme.json knob. */
+.tab-idle {
+  color: color-mix(in srgb, var(--c) var(--tabstrip-idle-tint), var(--text-faint));
+}
+
+
+.tab-idle:hover {
+  color: color-mix(in srgb, var(--c) var(--tabstrip-hover-tint), var(--text));
+}
+
+
+/* ── The book picker's list ─────────────────────────────────────────────────
+   Two columns of books, some named in Arabic and some in English, each with a
+   quieter English name under it. Arabic carries the reading line-height, which
+   is nearly twice as tall as the English label beside it, so no two names on a
+   row began on the same line and the list came out ragged.
+
+   Both names sit on one rung here, and the rung under it is kept even where a
+   book has no English name, so every row is the same height whatever it holds
+   and the eye can run down either column. Set on the rows rather than on the
+   Arabic ladder, because the ladder is right everywhere else: it is only in a
+   list beside English that Arabic has something to line up with. */
+.book-name {
+  line-height: 1.6rem;
+}
+
+
+.book-sub {
+  line-height: 1.1rem;
+  min-height: 1.1rem;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .word:hover,
+  .word:focus-visible {
+    transform: none;
+  }
+}
+
+
+/* command.css sets the satellite caption in --text-faint, which fails AA
+   against the satellite background (about 3.4:1). --text-dim clears AA
+   comfortably; the unselected dimming stays, it runs on opacity, not colour. */
+.sh-sat-arabic { color: var(--text-dim); }
+
+
+/* ui/WheelPicker: a pill, and the floating wheel it opens. */
+.wheel-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+
+.wheel-pill:hover:not(:disabled) { border-color: var(--border-hi); }
+
+
+.wheel-pill:disabled { opacity: 0.5; }
+
+
+.wheel-card {
+  position: absolute;
+  z-index: var(--layer-popover);
+  top: calc(100% + 0.375rem);
+  left: 0;
+  /* Grows to its longest choice, between 16rem and 24rem; WheelPicker keeps it on screen. */
+  width: max-content;
+  min-width: 16rem;
+  max-width: min(24rem, calc(100vw - 2rem));
+  padding: 0.5rem;
+  background: var(--surface-hi);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pop);
+}
+
+
+.wheel-card-narrow { width: 9rem; min-width: 0; }
+
+
+.wheel-type {
+  width: 100%;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.875rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+
+.wheel-type:focus { outline: none; border-color: var(--c); }
+
+
+/* Five rows show; the middle band marks the one Enter picks. */
+.wheel-window {
+  --wheel-row: 2.25rem;
+  position: relative;
+}
+
+
+.wheel-type + .wheel-window { margin-top: 0.5rem; }
+
+
+.wheel-window::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--wheel-row) * 2) 0 auto;
+  height: var(--wheel-row);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--c) 14%, transparent);
+  pointer-events: none;
+}
+
+
+.wheel-list {
+  height: calc(var(--wheel-row) * 5);
+  overflow-y: auto;
+  padding-block: calc(var(--wheel-row) * 2);
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  mask-image: linear-gradient(transparent, #000 35%, #000 65%, transparent);
+}
+
+
+.wheel-list::-webkit-scrollbar { display: none; }
+
+
+.wheel-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: var(--wheel-row);
+  padding-inline: 0.625rem;
+  scroll-snap-align: center;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+
+.wheel-item[aria-selected='true'] { color: var(--text); font-weight: 600; }
+
+
+.wheel-item[aria-disabled='true'] { color: var(--text-faint); cursor: not-allowed; }
+
+
+.wheel-list:focus { outline: none; }
+
+
+.wheel-hint { color: var(--text-faint); white-space: nowrap; flex-shrink: 0; }
+
+
+.wheel-card-up { top: auto; bottom: calc(100% + 0.375rem); }
+
+
+/* Memorise's missing word: the same wheel, its pill drawn as a blank in the line. */
+.memorise-gap { display: inline-block; }
+
+
+.memorise-gap .wheel-pill,
+.memorise-gap .wheel-pill:hover:not(:disabled) {
+  justify-content: center;
+  padding: 0 0.25rem;
+  color: var(--gap-text, var(--text));
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--gap-border);
+  border-radius: 0;
+}
+
+
+.memorise-gap .wheel-pill:focus-visible:not(:disabled) { outline: none; border-bottom-color: var(--c); box-shadow: 0 2px 0 0 color-mix(in srgb, var(--c) 40%, transparent); }
+
+
+/* Every tab's outer column: one gap between its blocks, from theme.json space.panel. */
+.panel > * + * { margin-top: var(--space-panel); }
+
+
+/* The phone tab bar (ui/BottomNav): pinned at the bottom, clear of the home
+   indicator, and the page keeps room under it so nothing hides behind. */
+.bottom-nav {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  border-top: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+
+.bottom-nav-mark {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: background-color calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+
+.bottom-nav-on {
+  background: color-mix(in srgb, currentColor 18%, transparent);
+}
+
+
+@media (max-width: 39.99rem) {
+  .bottom-nav-room {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
+  /* Phones keep the top bar to pen, search and settings; these move into More. */
+  .phone-hide {
+    display: none;
+  }
+  /* More opens as a sheet rising from the bottom, where the finger already is. */
+  .sections-menu {
+    margin: auto 0 0;
+    max-width: 100vw;
+  }
+  .sections-menu > div {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+

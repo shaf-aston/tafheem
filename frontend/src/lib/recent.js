@@ -17,9 +17,9 @@ function withPartner(tabs, id) {
 /** Fixed tabs in list order, then the recent ones. Strip order = number keys. */
 export const stripOf = (tabs, recent) => [...tabs.filter(fixed), ...recent.flatMap((id) => withPartner(tabs, id))]
 
-/** Opening `id`: unchanged if it already shows, else the oldest goes and it comes in far right. */
+/** Opening `id`: unchanged if it already shows or is a hidden tab (not in `tabs`), else the oldest goes and it comes in far right. */
 export const addRecent = (recent, id, tabs) =>
-  stripOf(tabs, recent).some((t) => t.id === id) ? recent : [...recent.slice(1), id]
+  !tabs.some((t) => t.id === id) || stripOf(tabs, recent).some((t) => t.id === id) ? recent : [...recent.slice(1), id]
 
 /** Saved text back to the list; anything broken or stale starts again from `seed`. */
 export function readRecent(text, tabs, seed) {

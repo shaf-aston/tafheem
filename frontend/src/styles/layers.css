@@ -1,0 +1,117 @@
+/* ── Glass ──────────────────────────────────────────────────────────────────
+   The frosted pane the page content sits on, so the backdrop's lights read as a
+   glow behind the words. Worn by the content shell only, never by each card:
+   cards keep their opaque surface. Knobs are theme.json's glass group.
+   The pane is a ::before, not the element itself: a backdrop-filter makes its
+   element the box every position:fixed child measures from, and the Colloquial
+   sheet is a fixed child of the shell.
+   isolation keeps that ::before (z-index -1) inside the pane, above the fixed
+   backdrop canvas, so no page layer is needed. */
+.glass {
+  position: relative;
+  isolation: isolate;
+}
+
+
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--surface) var(--glass-alpha), transparent);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur-px) * 1px)) saturate(1.2);
+  backdrop-filter: blur(calc(var(--glass-blur-px) * 1px)) saturate(1.2);
+}
+
+
+/* The backdrop canvas: behind the page, never in the way of a click. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--layer-backdrop);
+  pointer-events: none;
+}
+
+
+/* ── The cursor light ───────────────────────────────────────────────────────
+   One faint circle, drawn once in the page and moved by CursorLight to wherever
+   the pointer is, on every tab. It says "this is
+   the thing being read" in the tab's own colour, which is a thing a caption
+   cannot do without taking space from what it is captioning.
+
+   Moved by transform alone and composited on its own layer, so following the
+   pointer costs no repaint of the page under it. Its knobs are in theme.json;
+   the Animations setting drives --motion-scale to 0, which takes it with it. */
+.cursor-light {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--layer-seal);
+  pointer-events: none;
+  opacity: 0;
+  width: calc(var(--cursor-light-size-px) * 1px);
+  height: calc(var(--cursor-light-size-px) * 1px);
+  margin: calc(var(--cursor-light-size-px) * -0.5px) 0 0 calc(var(--cursor-light-size-px) * -0.5px);
+  border-radius: 50%;
+  background: radial-gradient(closest-side,
+    color-mix(in srgb, #fff var(--cursor-light-white), transparent),
+    color-mix(in srgb, var(--c, var(--primary)) var(--cursor-light-tint), transparent) 40%,
+    transparent 70%);
+  transition: opacity calc(var(--motion-base-ms) * 1ms) ease,
+    background calc(var(--motion-base-ms) * 1ms) ease;
+  will-change: transform, opacity;
+}
+
+
+.cursor-light[data-on='1'] {
+  opacity: var(--motion-scale, 1);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-light { display: none; }
+}
+
+
+/* The Quran tab's faint seal (ui/QuranSeal). Behind the page, so search
+   results sit over it: clicks pass through, and ui/QuranSeal lights it when the
+   pointer is over it. Fixed, so after a search it can glide to the middle and
+   grow to cover the whole page; every property it moves by is one it animates. */
+.quran-seal {
+  position: fixed;
+  z-index: var(--layer-seal);
+  top: 9rem;
+  right: 1rem;
+  width: min(20rem, 60vw);
+  transform: translate(0, 0);
+  pointer-events: none;
+  color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength), transparent);
+  transition-property: top, right, width, transform, color, filter;
+  transition-duration: calc(var(--motion-base-ms) * 4ms);
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.quran-seal-wide {
+  top: 50%;
+  right: 50%;
+  width: min(44rem, 92vw);
+  transform: translate(50%, -50%);
+  color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength-wide), transparent);
+}
+
+
+.quran-seal-lit {
+  color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength-hover), transparent);
+  filter: drop-shadow(0 0 var(--backdrop-glow) color-mix(in srgb, var(--backdrop-ink) 30%, transparent));
+}
+
+
+.quran-seal-script {
+  font-family: 'Amiri', var(--font-quran);
+  font-weight: 700;
+}
+

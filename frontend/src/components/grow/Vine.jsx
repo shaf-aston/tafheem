@@ -1,7 +1,7 @@
 /**
  * Things on one winding vine, as many to a row as the width allows, curling
  * back when they run out of room (lib/vine.js). The vine draws itself on and
- * each thing pops in as it is reached (grow.css). `items` are { key, node };
+ * each thing pops in as it is reached (styles/grow.css). `items` are { key, node };
  * `from` grows the vine in from the left edge, off its group's bud.
  */
 import config from '../../grow.json'

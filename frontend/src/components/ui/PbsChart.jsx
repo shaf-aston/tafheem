@@ -11,7 +11,6 @@
  * many-sizes diagram needs the pixel sizes tuned for it, not the prose size
  * ladder ArabicText hands out elsewhere in the app.
  */
-import './pbs.css'
 import { layoutChart } from '../../lib/pbsLayout'
 
 const M_ = 18

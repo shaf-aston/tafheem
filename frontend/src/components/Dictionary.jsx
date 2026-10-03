@@ -339,7 +339,7 @@ function RootBabs({ root, refs }) {
  * One dictionary entry. Full for the word searched; compact for the words
  * beside it, where the root is left off when it is the same one printed
  * above, and the card spans more columns when it holds more than a glance.
- * One type scale throughout (index.css tokens): a card holding eight senses
+ * One type scale throughout (styles/text.css tokens): a card holding eight senses
  * reads at the same size as one holding a single line, only its footprint
  * differs.
  */

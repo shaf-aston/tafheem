@@ -62,6 +62,8 @@ export const BOOKS = {
     // Each line is an ayah whose label the backend can check words against by
     // sound, so the ear's sureness applies. The poem has no such text.
     checkedBySound: true,
+    // Has twin verses to drill, see lib/similar.js.
+    similar: true,
     // Printed as a mushaf prints it: the ayahs of a page run on, justified,
     // each ending in its number. A poem keeps one bayt to a line.
     flow: true,

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { GROUPS, RECENT, TABS, accentOf } from './lib/tabs'
+import { GROUPS, LISTED, RECENT, TABS, accentOf } from './lib/tabs'
 import { useStrip } from './lib/recent'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
 import { idle } from './lib/warm'
@@ -9,6 +9,7 @@ import { useTabShortcuts } from './lib/useTabShortcuts'
 import { useHealth } from './lib/useHealth'
 import { moodFrom } from './lib/mood'
 
+import Backdrop from './components/Backdrop'
 import CursorLight from './components/CursorLight'
 import CommandBar from './components/ui/CommandBar'
 import ErrorAlert from './components/ui/ErrorAlert'
@@ -128,7 +129,7 @@ function AppContent() {
     setHandoff(incoming ? { tab: id, value: incoming, at: ++arrivals } : null)
   }, [])
 
-  const strip = useStrip(TABS, RECENT, activeTab)
+  const strip = useStrip(LISTED, RECENT, activeTab)
 
   useTabShortcuts(strip, switchTab)
 
@@ -159,6 +160,8 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bottom-nav-room" style={{ '--c': accent }}>
+      {/* First child, so it paints under everything: its layer is below the page. */}
+      <Backdrop />
       <header ref={pinHeader} className="app-header sticky top-0 z-[var(--layer-header)]">
         <div className="shell py-1 flex items-center justify-between gap-3">
           {/* The name used to be printed here in two lines that said what every
@@ -206,7 +209,7 @@ function AppContent() {
           </div>
 
           <div className="flex items-center gap-2 min-w-0">
-            <CommandBar tabs={TABS} colorOf={accentOf} onGo={switchTab} />
+            <CommandBar tabs={LISTED} colorOf={accentOf} onGo={switchTab} />
             <StatusPill status={status} nlpEngine={nlpEngine} aiBackend={aiBackend} ear={ear} />
             <button
               type="button"
@@ -265,7 +268,7 @@ function AppContent() {
 
       {/* The tabpanel role sits on the inner element, not on <main>: overriding
           main's own role would leave the page with no main landmark to skip to. */}
-      <main className="shell py-8">
+      <main className="shell py-8 glass rounded-[var(--radius-lg)]">
         <div role="tabpanel" id="tabpanel" aria-labelledby={`tab-${activeTab}`}>
           {/* Keyed by the tab and nothing else. Remounting on tab change is
               what replays each panel's entrance animation; a word arriving on
@@ -317,7 +320,7 @@ function AppContent() {
       <SpatialHome
         open={spatialOpen}
         onClose={() => setSpatialOpen(false)}
-        tabs={TABS}
+        tabs={LISTED}
         colorOf={accentOf}
         onGo={switchTab}
         here={activeTab}
@@ -326,7 +329,7 @@ function AppContent() {
         open={sectionsOpen}
         onClose={() => setSectionsOpen(false)}
         groups={GROUPS}
-        tabs={TABS}
+        tabs={LISTED}
         colorOf={accentOf}
         onGo={switchTab}
         here={activeTab}
@@ -353,7 +356,7 @@ function AppContent() {
           ))}
         </section>
       </SectionsMenu>
-      <BottomNav tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
+      <BottomNav tabs={LISTED} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
       {/* Drawn last so it sits over the page, and once for the whole app. */}
       <CursorLight />
     </div>

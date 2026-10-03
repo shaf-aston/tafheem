@@ -20,7 +20,6 @@ import { useMemo, useState } from 'react'
 
 import ArabicText from './ArabicText'
 import PbsChart from './PbsChart'
-import './pbs.css'
 import { useModal } from '../../lib/useModal'
 import { CHARTS } from '../../lib/pbsData'
 import { chartTree, nodeAt, viewConfig } from '../../lib/pbsTree'

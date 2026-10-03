@@ -1,0 +1,173 @@
+/* Urdu rides the same size ladder as Arabic, so an Urdu answer and an Arabic one
+   in the same grid line up. Only the two things that actually differ are swapped
+   here, and they are swapped as tokens rather than as a second set of classes:
+   Nastaliq slopes each word down to the left, so it needs noticeably more room
+   between lines than Naskh, and at the same nominal size it reads smaller.
+   ArabicText puts lang on the element, so this reaches every rung at once.
+
+   Matched on the size classes, not on lang alone: the Urdu tab sets lang="ur"
+   on the whole panel, and a rule that stopped at the attribute would hand the
+   Nastaliq to the Arabic word being asked, which sits inside it. */
+.arabic[lang="ur"],
+.arabic-tiny[lang="ur"],
+.arabic-sm[lang="ur"],
+.arabic-lg[lang="ur"] {
+  --font-arabic: var(--font-urdu);
+  --arabic-line-height: var(--urdu-line-height);
+  --arabic-input-line-height: var(--urdu-line-height);
+}
+
+
+/* ── Study text size ────────────────────────────────────────────────────────
+   The one control a reader has over size. It scales a whole panel, the Arabic
+   and the English together, which is why it is zoom rather than a font-size:
+   everything inside is measured in rem and would otherwise ignore it. Only the
+   panels that are read closely carry this class; the header and its tabs never
+   move. The variable is written by settings.js. */
+.study {
+  zoom: var(--study-zoom, 1);
+}
+
+
+/* ── Arabic type ────────────────────────────────────────────────────────────
+   Three classes off the one ladder in theme.json, small, reading, display; 
+   so no component writes a size of its own. The tarkeeb diagram lower down
+   takes its rungs from the same ladder. */
+.arabic,
+.arabic-tiny,
+.arabic-sm,
+.arabic-lg {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  /* isolate, not embed: an embedded run still swallows the neutral text next to
+     it, so "حَفِظَ means جو حفاظت کی" laid its three parts out right to left and
+     the sentence read backwards the moment both halves were right-to-left.
+     Isolated, each run is one opaque object to the English sentence around it,
+     which is what puts them in the order they were written. */
+  unicode-bidi: isolate;
+  line-height: var(--arabic-line-height);
+}
+
+
+/* Qur'an text, flagged by ArabicText and the tarkeeb diagram (lib/arabicText
+   isQuranic). The face itself, not the token: a diagram word inherits its
+   container's already-resolved font, so a token swap there changes nothing.
+   A flag on a line or passage reaches every Arabic word inside it: judged word
+   by word, a word with no mushaf mark (يَوْمِ) kept Naskh beside Amiri words
+   and the line sat on two baselines. Only Arabic takes it: an ayah number or
+   English label in the same row keeps its own face, and Urdu its Nastaliq. */
+:is(.arabic, .arabic-tiny, .arabic-sm, .arabic-lg, .tk-word):not([lang="ur"]):is([data-script="quran"], [data-script="quran"] *) {
+  font-family: var(--font-quran);
+}
+
+
+/* Arabic sitting on one line beside English, a panel title, a label; rather
+   than in a paragraph. The reading line-height spaces stacked lines; a single
+   word has nothing to be spaced from, and its tall empty line box otherwise
+   pushes everything under the header down the page. Still loose enough for the
+   descenders and the marks above the letters. */
+.arabic-inline {
+  line-height: 1.3;
+}
+
+
+.arabic {
+  font-size: calc(var(--arabic-reading-rem) * 1rem);
+}
+
+
+.arabic-lg {
+  font-size: calc(var(--arabic-display-rem) * 1rem);
+}
+
+
+/* The smallest rung. For an Arabic name sitting in a control beside English
+   names, a picker button, where the two have to look the same size. Arabic at
+   the same nominal size reads larger than Latin, so this rung is deliberately
+   above the English label size rather than equal to it. */
+.arabic-tiny {
+  font-size: calc(var(--arabic-tiny-rem) * 1rem);
+}
+
+
+/* For long lists of the same word, a conjugation table, where reading size
+   matters less than seeing the whole pattern at once. */
+.arabic-sm {
+  font-size: calc(var(--arabic-small-rem) * 1rem);
+}
+
+
+input.arabic,
+input.arabic-lg,
+textarea.arabic,
+textarea.arabic-lg {
+  line-height: var(--arabic-input-line-height);
+}
+
+
+/* ── The page's own width ───────────────────────────────────────────────────
+   One class for every band down the middle of the app: the header, the tab
+   strip, the offline banner, the panels. They used to write the same width out
+   five times, which is five chances to drift apart. The number itself lives in
+   theme.json. A maximum, not a width, so a narrow screen still fills. */
+.shell {
+  width: 100%;
+  max-width: var(--layout-shell);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+
+/* ── English text sizes ────────────────────────────────────────
+   Sizes come from theme.json, never from a literal in a component, so one edit
+   moves them all. The first three are labels: badges, captions, section
+   headings. type-body is English being read rather than labelled, an ayah's
+   translation, a verse's gloss, and is the one to reach for when the English
+   is the content. type-figure is the odd one out: not text but a number meant
+   to be read at a glance, so it sits above body rather than among the labels. */
+.type-micro  { font-size: var(--type-micro); }
+
+
+.type-tiny   { font-size: var(--type-tiny); }
+
+
+.type-small  { font-size: var(--type-small); }
+
+
+.type-body   { font-size: var(--type-body); }
+
+
+.type-figure { font-size: var(--type-figure); line-height: 1.1; }
+
+
+.type-label  { font-size: var(--type-label); }
+
+
+.type-ui     { font-size: var(--type-ui); }
+
+
+/* Small grey capitals label. In the components layer so a utility beside it wins. */
+@layer components {
+  .eyebrow {
+    font-size: var(--type-tiny);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    color: var(--text-faint);
+  }
+}
+
+
+/* On a phone the two smallest rungs are lifted to a readable floor, and on a
+   touch screen .tap (pills, links, small buttons) stands at layout.tap. Both
+   wrap the token rather than redefine it: theme.js writes the tokens inline on
+   the root, which no stylesheet rule could override. */
+@media (max-width: 40rem) {
+  .type-micro, .type-tiny, .eyebrow { font-size: max(var(--type-micro), 0.6875rem); }
+  .type-small { font-size: max(var(--type-small), 0.75rem); }
+}
+
+
+@media (pointer: coarse) {
+  .tap { min-height: var(--layout-tap); }
+}
+

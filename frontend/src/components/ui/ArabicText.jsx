@@ -4,12 +4,12 @@
  * rather than leaving it to CSS.
  *
  * Arabic is what it is nearly always for, and the default. `lang="ur"` is the
- * other one: Urdu is the same direction and the same size ladder, and index.css
+ * other one: Urdu is the same direction and the same size ladder, and styles/text.css
  * swaps the font and the line height on the element for it, so nothing here has
  * to know which script it is holding.
  *
  * Size is a prop, not a class a caller writes, so the four sizes in
- * index.css stay the only sizes any of this text can be.
+ * styles/text.css stay the only sizes any of this text can be.
  *
  * Qur'an text is recognised by its own marks (isQuranic) and flagged
  * data-script="quran" for the face drawn for them, and every piece of text

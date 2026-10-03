@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+
+/* Self-hosted, so the app still looks right with no network.
+   Noto Naskh is chosen over a calligraphic face because diacritics stay
+   legible at small sizes, this text gets read closely, not admired. */
+@import "@fontsource/noto-naskh-arabic/400.css";
+
+
+@import "@fontsource/noto-naskh-arabic/700.css";
+
+
+/* Urdu is read in Nastaliq, not Naskh. Naskh would render it legibly and still
+   look wrong to anyone who reads Urdu, the way a serif Arabic would. */
+@import "@fontsource/noto-nastaliq-urdu/400.css";
+
+
+/* The mushaf's marks: Naskh squeezes a small alef and its madda onto the letter
+   below; Amiri Quran was drawn for them. */
+@import "@fontsource/amiri-quran/400.css";
+
+
+@import "@fontsource-variable/inter/index.css";
+
+
+/* Colour, timing and size tokens are injected onto :root from theme.json by
+   theme.js at startup. Anything below reads them; nothing redefines them. */
+:root {
+  --font-arabic: 'Noto Naskh Arabic', serif;
+  --font-urdu: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif;
+  --font-quran: 'Amiri Quran', 'Noto Naskh Arabic', serif;
+  --font-ui: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  /* Tone tints: the edge and the wash of a danger, warn or success box, one pair
+     of strengths for all three so no box drifts to its own. */
+  --danger-edge: color-mix(in srgb, var(--danger) 40%, transparent);
+  --danger-wash: color-mix(in srgb, var(--danger) 10%, transparent);
+  --warn-edge: color-mix(in srgb, var(--warn) 40%, transparent);
+  --warn-wash: color-mix(in srgb, var(--warn) 10%, transparent);
+  --success-edge: color-mix(in srgb, var(--success) 40%, transparent);
+  --success-wash: color-mix(in srgb, var(--success) 10%, transparent);
+}
+
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  color: var(--text);
+  background:
+    radial-gradient(90rem 50rem at 50% -20%, var(--bg-glow) 0%, transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+
+/* The list a dropdown drops open is drawn by the browser, not by us, and it
+   takes its sheet from the control's own background. The gap picker in Memorise
+   is deliberately transparent so it sits in the line of Arabic, so that sheet
+   came out plain white and the page's pale text vanished into it. Painting the
+   options is the only reach we have into that list, and it leaves the closed
+   control looking exactly as it did. */
+select option {
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+
+/* Tailwind's own two everyday sizes, pointed back at the same config. The app
+   is written in text-xs and text-sm in about forty files, and those were a
+   second scale nobody could retune from theme.json. The pixel values are
+   unchanged; only where they come from is. Line heights stay Tailwind's.
+   Set in @theme rather than as .text-xs rules so md:text-sm and every other
+   variant follows too. */
+@theme inline {
+  --text-xs: var(--type-label);
+  --text-sm: var(--type-ui);
+}
+
+
+/* One honest focus ring everywhere, in the accent of whatever it belongs to. */
+:where(button, a, input, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--c, var(--primary));
+  outline-offset: 2px;
+}
+

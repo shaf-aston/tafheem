@@ -1,0 +1,328 @@
+/* ── Arriving as a group ────────────────────────────────────────────────────
+   Things that come in together: each one small and gathered at the middle, then
+   springing out to where it belongs, one after another. Worn by the ring of tabs
+   in the launcher, and by anything else that should arrive rather than appear.
+   Set --i on a thing to say where it falls in the order; leave it off and it
+   arrives first. How small, how far and how long are theme.json's `dance` group.
+
+   --spread is how far out along its own line a thing sits, as a fraction of the
+   full distance, and --pop how big it is drawn. Both are registered as numbers
+   because only a registered custom property interpolates: left unregistered they
+   would jump from one value to the other and the arrival would be a flicker
+   rather than a movement. Something that only grows can ignore --spread;
+   something on a ring multiplies its own radius by it. */
+@property --spread {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+
+@property --pop {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+
+.dance {
+  animation:
+    dance-in calc(var(--motion-spring-ms) * var(--dance-beats) * 1ms)
+    var(--motion-spring-ease) backwards;
+  animation-delay: calc(var(--i, 0) * var(--motion-stagger-ms) * 1ms);
+}
+
+
+@keyframes dance-in {
+  from {
+    --spread: var(--dance-from-spread);
+    --pop: var(--dance-from-scale);
+    opacity: 0;
+  }
+  55% { opacity: 1; }
+  to {
+    --spread: 1;
+    --pop: 1;
+    opacity: 1;
+  }
+}
+
+
+/* ── Motion ─────────────────────────────────────────────────────────────────
+   Everything here is triggered by something the reader did. Nothing loops
+   forever except the loading shimmer, which stops when the answer arrives. */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+
+
+/* A star landing: it swells past its size and settles, the same spring as the rest. */
+@keyframes pop {
+  0%   { transform: scale(0.6); }
+  60%  { transform: scale(1.3); }
+  100% { transform: none; }
+}
+
+
+.pop {
+  animation: pop calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+}
+
+
+.rise-in {
+  /* `backwards`, not `both`: `both` holds the final keyframe forever, and since an
+     animation outranks a plain declaration, `transform: none` then silently beat
+     every hover lift on the element. Measured on the quiz options, they jumped
+     2px with no transition at all. `backwards` still hides the element before its
+     stagger delay, and hands transform back afterwards. */
+  animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
+  animation-delay: calc(var(--i, 0) * var(--motion-stagger-ms) * 1ms);
+}
+
+
+.fade-in {
+  /* `backwards`, as .rise-in: `both` keeps the opacity animation applied forever,
+     which makes the whole panel its own stacking layer, and the footer drawn
+     after it then paints over anything that floats out of it (the wheels). */
+  animation: fade-in calc(var(--motion-base-ms) * 1ms) ease backwards;
+}
+
+
+/* ============================================================
+   Qalam mascot, a reed pen that mirrors what the app is doing.
+
+   Colour comes from --c (the active tab's accent) and every duration from
+   theme.json's motion group, so this block sets shape and behaviour only.
+   Moods are switched by the data-mood attribute the component writes.
+   ============================================================ */
+
+.qalam { overflow: visible; }
+
+
+.qalam-barrel { fill: var(--c, var(--primary)); }
+
+
+.qalam-nib { fill: color-mix(in srgb, var(--c, var(--primary)) 72%, #000); }
+
+
+.qalam-band { fill: color-mix(in srgb, var(--c, var(--primary)) 45%, var(--bg)); }
+
+
+.qalam-eye { fill: var(--bg); }
+
+
+.qalam-drop { fill: var(--c, var(--primary)); opacity: 0; }
+
+
+.qalam-shine {
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.28;
+  fill: none;
+}
+
+
+.qalam-slit,
+.qalam-mouth {
+  stroke: var(--bg);
+  fill: none;
+  stroke-linecap: round;
+}
+
+
+.qalam-slit { stroke-width: 2; }
+
+
+.qalam-mouth { stroke-width: 2.6; }
+
+
+/* The pen pivots on its nib; the ink drop falls on its own. */
+.qalam-pen {
+  transform-box: view-box;
+  transform-origin: 64px 118px;
+}
+
+
+.qalam-drop {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+
+
+.qalam[data-mood='idle'] .qalam-pen {
+  /* The ambient loops each keep their own tempo, multiplied by --motion-scale
+     so the Animations setting (which drives it to 0) stops them all at once. */
+  animation: qalam-bob calc(3.4s * var(--motion-scale)) ease-in-out infinite;
+}
+
+
+.qalam[data-mood='thinking'] .qalam-pen {
+  animation: qalam-tap calc(900ms * var(--motion-scale)) ease-in-out infinite;
+}
+
+
+.qalam[data-mood='correct'] .qalam-pen {
+  animation: qalam-pop calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) both;
+}
+
+
+.qalam[data-mood='wrong'] .qalam-pen {
+  animation: qalam-droop calc(var(--motion-spring-ms) * 1ms) ease-out both;
+}
+
+
+.qalam[data-mood='streak'] .qalam-pen {
+  animation: qalam-hop calc(700ms * var(--motion-scale)) var(--motion-spring-ease) infinite;
+}
+
+
+.qalam[data-mood='offline'] .qalam-pen {
+  animation: qalam-sink calc(var(--motion-spring-ms) * 1ms) ease-out both;
+}
+
+
+.qalam[data-mood='correct'] .qalam-drop,
+.qalam[data-mood='wrong'] .qalam-drop {
+  animation: qalam-drip calc(800ms * var(--motion-scale)) ease-in 120ms both;
+}
+
+
+@keyframes qalam-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(2deg); }
+}
+
+
+@keyframes qalam-tap {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-14deg); }
+}
+
+
+@keyframes qalam-pop {
+  0% { transform: scale(1) rotate(0deg); }
+  45% { transform: scale(1.16) rotate(8deg) translateY(-8px); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+
+@keyframes qalam-droop {
+  to { transform: rotate(26deg) translateY(6px); }
+}
+
+
+@keyframes qalam-hop {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  30% { transform: translateY(-14px) rotate(-6deg); }
+  60% { transform: translateY(0) rotate(4deg); }
+}
+
+
+@keyframes qalam-sink {
+  to { transform: translateY(10px) scale(0.92); opacity: 0.45; }
+}
+
+
+/* In the launcher the pen is not resting, it is dancing. Nothing is happening
+   in there yet, no answer is being waited for and nothing has been got right or
+   wrong, so the mood is idle and the idle bob is a pen sitting still. The orb
+   is the one place the pen has the stage to itself, so it gets a step of its
+   own: a sway from foot to foot with a turn on each side and a little lift in
+   the middle. Written against the mood as well as the place so that a real mood
+   still wins if this orb is ever given one; nothing here overrides being wrong.
+   Its tempo carries --motion-scale like every other loop, which is how the
+   Animations setting stops it with everything else. */
+.qalam[data-place='orb'][data-mood='idle'] .qalam-pen {
+  animation: qalam-dance calc(2s * var(--motion-scale)) ease-in-out infinite;
+}
+
+
+/* Six steps rather than three, and a jump between them: it leans hard onto one
+   side, springs up off it, lands leaning the other way, and comes back. The
+   scale is what makes it read as weight going into the floor and coming off it
+   again, which is the difference between a pen dancing and a pen wobbling. */
+@keyframes qalam-dance {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  15% { transform: translate(-7px, 1px) rotate(-18deg) scale(0.97); }
+  30% { transform: translate(-4px, -14px) rotate(-8deg) scale(1.04); }
+  50% { transform: translate(0, -3px) rotate(0deg) scale(1); }
+  65% { transform: translate(7px, 1px) rotate(18deg) scale(0.97); }
+  80% { transform: translate(4px, -14px) rotate(8deg) scale(1.04); }
+}
+
+
+@keyframes qalam-drip {
+  0% { opacity: 0; transform: translateY(-4px) scale(0.4); }
+  30% { opacity: 1; transform: translateY(2px) scale(1); }
+  100% { opacity: 0; transform: translateY(22px) scale(0.7); }
+}
+
+
+/* ── Hover: one stroke of the pen ───────────────────────────────────────────
+   The pen leans right, sweeps across to the left through about 45 degrees, and
+   settles back where it was. Ink follows the nib and dries away after.
+
+   Three decisions worth keeping:
+   - It pivots at the band, not the nib. Every mood turns on the nib because a
+     pen resting on paper turns there, but a nib that never moves cannot leave
+     a line. From the band the tip traces a real arc, which is what the ink is.
+   - Only the header pen answers to hover. The small one marking a source is a
+     label, and a label that moves when the cursor passes reads as a button.
+   - Both animations share one duration and one easing, so the ink is drawn at
+     the speed the nib is actually travelling instead of drifting ahead of it.
+   The duration is built from --motion-spring-ms, which the Animations setting
+   drives to zero, so turning animations off turns this off with everything
+   else, and no component has to know the setting exists. */
+
+.qalam-ink {
+  fill: none;
+  stroke: var(--c, var(--primary));
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  opacity: 0;
+  /* The whole length hidden to begin with, then uncovered from the right-hand
+     end, which is the end the nib starts from. */
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+}
+
+
+.qalam[data-place='header']:hover .qalam-pen {
+  transform-origin: 64px 92px;
+  animation: qalam-sweep calc(var(--motion-spring-ms) * 2ms) cubic-bezier(0.4, 0, 0.25, 1);
+}
+
+
+.qalam[data-place='header']:hover .qalam-ink {
+  animation: qalam-write calc(var(--motion-spring-ms) * 2ms) cubic-bezier(0.4, 0, 0.25, 1);
+}
+
+
+@keyframes qalam-sweep {
+  0% { transform: rotate(0deg); }
+  18% { transform: rotate(20deg); }
+  62% { transform: rotate(-22deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+@keyframes qalam-write {
+  0%, 18% { stroke-dashoffset: 22; opacity: 0.9; }
+  62%, 78% { stroke-dashoffset: 0; opacity: 0.9; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
