@@ -219,8 +219,11 @@ def order(reciting: bool = False) -> list[Ear]:
     return chain
 
 
-def hear(audio: bytes, language: str | None, hint: str) -> str:
+def hear(audio: bytes, language: str | None, hint: str, model: str | None = None) -> str:
     """Ask each ear in turn until one answers. Raises only when none can.
+
+    `model` is the trial model: this machine's ear alone, no Groq, no letters,
+    and no fallback, so a trial is never quietly heard by another ear.
 
     Every way of not answering is the same thing to the reader, a moment longer,
     so they are caught together rather than told apart: no internet, a key that
@@ -232,6 +235,9 @@ def hear(audio: bytes, language: str | None, hint: str) -> str:
     or two does not pay for the same failure again.
     """
     reciting = language is not None
+    if model:
+        return timed("heard", listen.transcribe, audio, language, hint, model,
+                     ear=f"local-{model}", bytes=len(audio), hint=bool(hint))
     last: Exception | None = None
     for ear in order(reciting):
         if not _ready(ear):

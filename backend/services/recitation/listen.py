@@ -202,6 +202,12 @@ def _engine(name: str):
     return _models[name]
 
 
+def trial_model() -> str:
+    """The trial model's folder as configured, or "" when none is set or it is not on disk."""
+    name = get_settings().recitation_trial_model
+    return name if name and confined("recitation_trial_model", name).is_dir() else ""
+
+
 def warm() -> None:
     """Load the model now, so nobody waits for it later. Never raises.
 
@@ -216,14 +222,14 @@ def warm() -> None:
         log.info("listening is unavailable: %s", exc)
 
 
-def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str:
+def transcribe(audio: bytes, language: str | None = None, hint: str = "", model: str | None = None) -> str:
     """What was said, as plain words. Empty when there was nothing to hear.
 
     `language` is the language to hear it in, and naming one makes this a
     recitation: the Qur'an model, no register hint, and a word it is not sure
     of left out. Leaving it out is dictation, heard by the
     general model in whichever of the dictation languages the recording sounds
-    like.
+    like. `model` swaps the Qur'an model for a recitation (the trial one).
 
     The recording becomes sound in sound_of, which is the only place it does,
     and which keeps the last one so the check that follows does not decode the
@@ -236,7 +242,7 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str
     sound = sound_of(audio)
     reciting = language is not None
     how = dict(
-        model=settings.recitation_model if reciting else settings.dictation_model,
+        model=(model or settings.recitation_model) if reciting else settings.dictation_model,
         language=language or _which_language(sound),
         hint="" if reciting else hint,
         word_min=settings.recitation_word_min if reciting else 0.0,
@@ -272,7 +278,7 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str
     return heard
 
 
-def scores(audio: bytes, words: list[str]) -> list[dict]:
+def scores(audio: bytes, words: list[str], model: str | None = None) -> list[dict]:
     """What the Qur'an ear makes of each of `words`, in order, given the sound.
 
     Per word: `probs`, how likely each piece of it was, 0 to 1; and `at`, the
@@ -308,7 +314,7 @@ def scores(audio: bytes, words: list[str]) -> list[dict]:
     if not words:
         return []
     settings = get_settings()
-    model = _engine(settings.recitation_model)
+    model = _engine(model or settings.recitation_model)
     features = model.feature_extractor(sound_of(audio))
     frames = min(features.shape[-1], _WINDOW_FRAMES)
     padded = np.zeros((features.shape[0], window_of(frames, settings.recitation_window_block)),
@@ -344,10 +350,10 @@ def scores(audio: bytes, words: list[str]) -> list[dict]:
     return out
 
 
-def sureness(audio: bytes, words: list[str]) -> list[float]:
+def sureness(audio: bytes, words: list[str], model: str | None = None) -> list[float]:
     """How sure the ear is of each word, one number each, at the rule in config."""
     rule = get_settings().recitation_sure_of_word
-    return [aggregate(word["probs"], rule) for word in scores(audio, words)]
+    return [aggregate(word["probs"], rule) for word in scores(audio, words, model)]
 
 
 def aggregate(probs: list[float], rule: str) -> float:
