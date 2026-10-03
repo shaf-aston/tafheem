@@ -8,7 +8,8 @@ from fastapi import APIRouter, HTTPException, Query
 from pydantic import StringConstraints
 
 from backend.models.schemas import (
-    HadithBook, HadithBookResponse, HadithCollection, HadithEntry, HadithSearchResponse,
+    HadithBook, HadithBookResponse, HadithChapter, HadithCollection, HadithCorrection, HadithEntry,
+    HadithSearchResponse,
 )
 from backend.services import provenance
 from backend.services.hadith import loader
@@ -70,17 +71,22 @@ async def search(
     known = {cid for cid, *_ in await asyncio.to_thread(loader.collections)}
     chosen = tuple(dict.fromkeys(c for c in collections[:_MAX_COLLECTIONS] if c in known))
 
-    hits = await asyncio.to_thread(hadith_search.search, query, None, chosen)
+    found = await asyncio.to_thread(hadith_search.search, query, None, chosen)
     return HadithSearchResponse(
         query=query,
         collections=list(chosen),
+        corrected=[HadithCorrection(typed=t, used=u) for t, u in found.corrected],
+        unmatched=found.unmatched,
+        partial=found.partial,
+        chapters=[HadithChapter(collection=c.collection, number=c.number, name=c.name, count=c.count)
+                  for c in found.chapters],
         hits=[
             HadithEntry(
                 collection=h.collection, book=h.book, number=h.number, part=h.part,
                 arabic=h.arabic, english=h.english, grades=h.grades,
                 cite=loader.cite_url(loader.cite_of(h.collection), h.number, h.part),
             )
-            for h in hits
+            for h in found.hits
         ],
         source=provenance.of("hadith"),
     )

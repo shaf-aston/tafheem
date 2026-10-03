@@ -23,21 +23,10 @@ from dataclasses import dataclass
 from typing import Protocol
 
 from backend.services.arabic_text import bare_letters, has_arabic, normalize_root
+from backend.services.noise_words import ENGLISH_NOISE
 
 
-# Words that carry no question. Asked as they are, each one is looked up in the
-# dictionary and comes back with six Arabic words of its own, so "what does the
-# Qur'an say about patience" was searched as roughly forty terms and took three
-# seconds to answer something the last two words already asked. They are the
-# English words with no Arabic content, nothing cleverer than that; the list is
-# deliberately short, because a word wrongly on it is a word nobody can search
-# for.
-_NOISE = frozenset("""
-a an and are as at be but by can did do does for from had has have how i if in
-is it its me my no not of on or say says shall should so than that the their
-them then there these they this to was we were what when where which who why
-will with would you your
-""".split())
+# The English words with no Arabic content, kept in one place for every search.
 
 
 class Lexicon(Protocol):
@@ -103,7 +92,7 @@ def expand(
     """
     words = _words(query)
 
-    if content := [word for word in words if word not in _NOISE]:
+    if content := [word for word in words if word not in ENGLISH_NOISE]:
         words = tuple(content)
 
     typed: list[str] = []
