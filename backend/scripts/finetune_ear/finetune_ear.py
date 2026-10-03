@@ -225,7 +225,8 @@ def gather(rows):
     marked = processor.tokenizer([r['said'] for r in rows], padding=True, return_tensors='pt')
     # Padding is not something to say, so it is masked out of the loss.
     labels = marked['input_ids'].masked_fill(marked.attention_mask.ne(1), -100)
-    if (labels[:, 0] == processor.tokenizer.bos_token_id).all():
+    # The model puts the start mark in front itself; left in, it would be there twice.
+    if (labels[:, 0] == model.config.decoder_start_token_id).all():
         labels = labels[:, 1:]
     batch['labels'] = labels
     return batch
