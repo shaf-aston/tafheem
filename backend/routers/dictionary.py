@@ -1,6 +1,7 @@
 """Arabic-English dictionary search."""
 
 import asyncio
+import sys
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -223,13 +224,15 @@ async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
     """The rest of the entry with one English line under each Arabic line.
 
     Covers what the card's "rest of the entry" panel shows. The backend owns the
-    split and pairs the two, so the screen never lines them up itself.
+    split and pairs the two, so the screen never lines them up itself. English
+    kept for every line of the entry (the shipped whole-book run) is answered
+    whole; only when none is kept is the opening cut to what the model can read
+    and asked for on the spot.
     """
     book_root, entry = _book_entry(root)
-    lines, truncated = root_gloss.line_budget(
-        root_gloss.rest_of(entry), get_settings().root_entry_truncate_chars,
-    )
-    if not lines:
+    rest = root_gloss.rest_of(entry)
+    every_line, _ = root_gloss.line_budget(rest, sys.maxsize)
+    if not every_line:
         raise HTTPException(
             status_code=404,
             detail="The book prints nothing after the origin sense here, so there is nothing to line up.",
@@ -237,6 +240,16 @@ async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
 
     # Trusted only while it still matches the entry line for line: a book file
     # that has changed shape since makes the kept English a mispairing.
+    kept = root_english.get_lines(book_root, len(every_line))
+    if kept is not None:
+        return RootEntryLinesResponse(
+            root=root,
+            lines=[EntryLine(arabic=a, english=e) for a, e in zip(every_line, kept)],
+            truncated=False,
+            source=Source(**provenance.of("ai")),
+        )
+
+    lines, truncated = root_gloss.line_budget(rest, get_settings().root_entry_truncate_chars)
     kept = root_english.get_lines(book_root, len(lines))
     if kept is None:
         answer = await _ask_ai(

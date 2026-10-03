@@ -13,8 +13,9 @@ file would make every reader check which it got.
 
 Two things fill the prose store. A reader pressing the button fills one root.
 The backfill script fills the rest, and can be stopped and started because it
-skips whatever is already here. The lines store is filled only by readers
-asking. Either way an entry is only ever put into English once per shape.
+skips whatever is already here. The lines store is filled by the same script
+(--lines) into the shipped file, and by readers' presses into the kept one.
+Either way an entry is only ever put into English once per shape.
 
 These are caches, not sources: deleting a file loses nothing but the time it
 took to make. The book itself is untouched by any of this.
@@ -131,12 +132,13 @@ def put(root: str, english: str) -> None:
         _keep(STORE_FILE, _is_prose, root, english)
 
 
-def put_lines(root: str, lines: list[str]) -> None:
+def put_lines(root: str, lines: list[str], shipped: bool = False) -> None:
     """Keep this line-by-line English. A list that fails the shape check is
-    dropped here rather than trusted later."""
+    dropped here rather than trusted later. The backfill script passes
+    shipped=True to fill the tracked file; readers' presses go to the kept one."""
     lines = [line.strip() for line in lines]
     if root and _is_lines(lines):
-        _keep(LINES_KEPT_FILE, _is_lines, root, lines)
+        _keep(LINES_FILE if shipped else LINES_KEPT_FILE, _is_lines, root, lines)
 
 
 def _keep(path: Path, keeps, root: str, value) -> None:

@@ -1,0 +1,43 @@
+/* Line-by-line views of a Maqayees entry (EntryLines.jsx). Colour comes in as
+   --c from the card's accent; times are the motion tokens, as everywhere. */
+
+/* One line of the entry inside the flowing paragraph. clone repeats the padding
+   and rounding on every wrapped fragment, so a line that breaks across two rows
+   still reads as one highlighted thing. */
+.entry-seg {
+  font: inherit;
+  color: inherit;
+  padding: 0.1em 0.3em;
+  border-radius: var(--radius-sm);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  cursor: pointer;
+  transition: background-color calc(var(--motion-base-ms) * 1ms) ease;
+}
+.entry-seg:hover { background: var(--surface-hi); }
+.entry-seg[aria-pressed='true'] {
+  color: var(--c);
+  background: color-mix(in srgb, var(--c) 16%, transparent);
+}
+/* A verse keeps its gap, so it takes its own row rather than flowing; a flex
+   row keeps its number beside the first half instead of on a row of its own. */
+.entry-seg--verse { display: flex; width: 100%; justify-content: center; align-items: baseline; }
+.entry-seg sup { color: var(--c); margin-inline-end: 0.2em; }
+
+/* The English re-enters with a short rise each time the line changes. */
+.entry-rise { animation: entry-rise calc(var(--motion-base-ms) * 1ms) ease backwards; }
+@keyframes entry-rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .entry-rise { animation: none; } }
+
+/* The English the reader is asked to try for first. */
+.entry-english {
+  display: block;
+  width: 100%;
+  text-align: start;
+  color: var(--text);
+  transition: filter calc(var(--motion-base-ms) * 1ms) ease;
+}
+.entry-english[data-hidden='true'] { filter: blur(7px); cursor: pointer; }
