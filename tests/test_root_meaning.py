@@ -530,6 +530,22 @@ def test_lines_made_on_the_server_go_where_a_deploy_cannot_erase_them(kept):
     assert kept.get_lines("علم", 1) == ["shipped"]
 
 
+def test_lines_put_as_shipped_land_in_the_tracked_file(kept):
+    kept.put_lines("كتب", ["one", "two"], shipped=True)
+    assert json.loads(kept.LINES_FILE.read_text(encoding="utf-8")) == {"كتب": ["one", "two"]}
+    assert not kept.LINES_KEPT_FILE.exists()
+    assert kept.get_lines("كتب", 2) == ["one", "two"]
+
+
+def test_chunks_keep_whole_lines_within_the_budget():
+    from backend.scripts.backfill_root_english import chunks
+
+    assert chunks(["aa", "bb", "cc"], 4) == [["aa", "bb"], ["cc"]]
+    # A line over the budget is a chunk of its own, never split or dropped.
+    assert chunks(["a", "bbbbbb", "c"], 3) == [["a"], ["bbbbbb"], ["c"]]
+    assert chunks([], 5) == []
+
+
 def test_the_shipped_lines_win_over_lines_made_on_the_server(kept):
     kept.LINES_KEPT_FILE.write_text(json.dumps({"كتب": ["older"]}), encoding="utf-8")
     kept.LINES_FILE.write_text(json.dumps({"كتب": ["whole-book run"]}), encoding="utf-8")
@@ -738,6 +754,20 @@ def test_a_long_entry_is_cut_at_whole_lines_and_says_so(client, line_ai, monkeyp
     # Whole lines only: nothing the model saw was half a line.
     assert all(pair["arabic"] in _LINED_BODY.split("\n") for pair in body["lines"])
     assert len(body["lines"]) < 3
+
+
+def test_shipped_lines_answer_whole_even_past_the_model_budget(client, line_ai, kept, monkeypatch):
+    from backend.routers import dictionary as router_module
+
+    settings = router_module.get_settings()
+    monkeypatch.setattr(settings, "root_entry_truncate_chars", 20, raising=False)
+    kept.put_lines("كتب", ["one", "two", "three"], shipped=True)
+    client.install(json.dumps({"كتب": {"core_meaning": "الجمع", "body": _LINED_BODY}},
+                              ensure_ascii=False))
+    body = _lined(client, "كتب").json()
+    assert [pair["english"] for pair in body["lines"]] == ["one", "two", "three"]
+    assert body["truncated"] is False
+    assert line_ai["asked"] == 0
 
 
 def test_an_entry_that_is_all_origin_sense_has_nothing_to_line_up(client, line_ai):

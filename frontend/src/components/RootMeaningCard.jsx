@@ -16,10 +16,12 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getRootEntryEnglish, getRootEntryLines, getRootMeaning } from '../api'
 import config from '../dictionary.json'
-import { entryLines } from '../lib/entryLines'
 import { BROKEN, MISSING, READY } from '../lib/loadStatus'
 import { useHealth } from '../lib/useHealth'
+import { useRemembered } from '../lib/useRemembered'
 
+import { Lines } from './EntryArabic'
+import { LinePage, LineSpotlight } from './EntryLines'
 import ArabicText from './ui/ArabicText'
 import ShowRest from './ui/ShowRest'
 import ErrorAlert from './ui/ErrorAlert'
@@ -28,8 +30,8 @@ import { Skeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
 
 /**
- * The rest of the entry in English, in two shapes. Both cost a
- * model call, so neither retries: the message offers to try again.
+ * The rest of the entry in English, in two shapes (read three ways, see VIEWS).
+ * Both cost a model call, so neither retries: the message offers to try again.
  */
 const ENGLISH = {
   together: {
@@ -46,6 +48,9 @@ const ENGLISH = {
     after: ' The Together view above still shows the whole entry.',
   },
 }
+
+/** The ways to read the rest of the entry; the first is the default. */
+const VIEWS = ['together', 'lines', 'one']
 
 export default function RootMeaningCard({ root: asked, hasAlternates, accent }) {
   const { rootMeaningStatus, healthFailed, retryHealth } = useHealth()
@@ -121,10 +126,12 @@ function Body({
   // fetched on that alone, so a root looked up and never opened costs nothing.
   const [opened, setOpened] = useState(false)
 
-  // How the panel reads: the book whole with its English after it, or the two
-  // interleaved, one English line under each Arabic line. Together is the
-  // default because it is the book as printed; the pairing is a convenience.
-  const [view, setView] = useState('together')
+  // How the panel reads: the book whole with its English after it, one flowing
+  // page with the English of the line you touch, or one line at a time.
+  // Together is the default because it is the book as printed; the pairings
+  // are a convenience. Remembered, so a reader who prefers one keeps it.
+  const [view, setView] = useRemembered('dict.entry-view', VIEWS, 'together')
+  const paired = view !== 'together'
 
   // Asked and got no answer at all. Say so, rather than showing a loading bar
   // that never ends because nothing is still on its way.
@@ -279,7 +286,8 @@ function Body({
           book spoke. A snippet answers "is this what I came for" without the
           press.
 
-          The English, and the view toggle, arrive on that press.
+          The English, and the view toggle (Together, Line by line, One at a
+          time), arrive on that press.
           Reading it costs a call to a model, so it waits to be asked for; the
           Arabic beside it costs nothing and is already there. */}
       {rest && (
@@ -293,14 +301,15 @@ function Body({
               options={[
                 { id: 'together', label: 'Together' },
                 { id: 'lines', label: 'Line by line' },
+                { id: 'one', label: 'One at a time' },
               ]}
               value={view}
               onChange={setView}
             />
           )}
 
-          {opened && view === 'lines' ? (
-            <EntryEnglish view="lines" root={data.root} />
+          {opened && paired ? (
+            <EntryEnglish view={view} root={data.root} accent={accent} />
           ) : (
             <ShowRest lines={config['root-meaning']['rest-lines']} accent={accent} onOpen={() => setOpened(true)}>
               {/* The book first, its English under it. This panel is the
@@ -311,7 +320,7 @@ function Body({
             </ShowRest>
           )}
 
-          {opened && view === 'together' && <EntryEnglish view="together" root={data.root} />}
+          {opened && !paired && <EntryEnglish view="together" root={data.root} />}
         </div>
       )}
 
@@ -322,14 +331,15 @@ function Body({
 /**
  * The rest of the entry in English, fetched when the reader opens it.
  *
- * Together: the entry retold as prose under the Arabic. Lines: one English line
- * under each Arabic line; the backend does the pairing and refuses an answer it
+ * Together: the entry retold as prose under the Arabic. Lines and one: one English
+ * line for each Arabic line; the backend does the pairing and refuses an answer it
  * could not line up, so every English line belongs to the Arabic above it.
  * Either carries its own badge saying a machine wrote it, and never replaces
  * the Arabic beside it.
  */
-function EntryEnglish({ view, root }) {
-  const english = ENGLISH[view]
+function EntryEnglish({ view, root, accent }) {
+  // 'lines' and 'one' are two ways to read the same pairs: one entry, one query.
+  const english = ENGLISH[view === 'one' ? 'lines' : view]
   const { data, isFetching, isError, error, refetch } = useQuery({
     queryKey: [english.key, root],
     queryFn: () => english.get(root),
@@ -364,7 +374,9 @@ function EntryEnglish({ view, root }) {
           The entry was longer than could be read at once, so this covers its opening.
         </p>
       )}
-      {view === 'lines' ? <PairedLines lines={data.lines} /> : (
+      {view === 'lines' && <LinePage lines={data.lines} accent={accent} />}
+      {view === 'one' && <LineSpotlight lines={data.lines} accent={accent} />}
+      {view === 'together' && (
         <p className="type-body text-[var(--text-dim)] max-w-prose whitespace-pre-line">
           {data.english}
         </p>
@@ -373,62 +385,6 @@ function EntryEnglish({ view, root }) {
     </div>
   )
 }
-
-/**
- * Facing columns. The Arabic keeps the right, where every other piece of Arabic
- * on this card sits, and the English takes the width beside it. Level with each
- * other, and numbered, so the eye can cross the gutter and land on the right line.
- *
- * On a narrow screen there is only one column, so the two sit one under the
- * other: that is why the Arabic is written first here and the wide layout puts
- * it on the right, rather than the markup reading backwards on a phone.
- */
-const PairedLines = ({ lines }) => (
-  <ol>
-    {lines.map((pair, i) => (
-      <li
-        key={i}
-        className="grid gap-x-8 gap-y-1 py-3 border-t border-[var(--border)] first:border-t-0
-          sm:grid-cols-[1fr_1.1fr]"
-      >
-        <span className="eyebrow tabular-nums sm:[grid-area:1/1/2/-1]">
-          {String(i + 1).padStart(2, '0')}
-        </span>
-        {/* The Arabic through the same layout as the Together view, so a verse
-            keeps its two halves; only where it sits is new. */}
-        <div className="sm:[grid-area:2/2] min-w-0">
-          <Lines text={pair.arabic} />
-        </div>
-        <p className="type-body text-[var(--text-dim)] sm:[grid-area:2/1] self-start" dir="ltr">
-          {pair.english}
-        </p>
-      </li>
-    ))}
-  </ol>
-)
-
-/**
- * One line of the entry, laid out the way the book lays it out.
- *
- * A verse is one thought in two halves with a gap down the middle of the page,
- * and printing it as a sentence loses the shape that makes it readable as
- * poetry. Everything else is prose against the right edge. Full width at the
- * reading size: a capped measure left half the card empty and doubled the
- * scrolling.
- */
-const Line = ({ line, size = 'base', style }) => (line.halves ? (
-  <div className="flex flex-wrap justify-center gap-x-10 gap-y-1" dir="rtl" style={style}>
-    {line.halves.map((half, i) => <ArabicText key={i} size={size}>{half}</ArabicText>)}
-  </div>
-) : (
-  <ArabicText as="p" size={size} style={style}>
-    {line.text}
-  </ArabicText>
-))
-
-/** Every line of a passage, laid out. The card's two Arabic passages share it. */
-const Lines = ({ text, size, style }) =>
-  entryLines(text).map((line, i) => <Line key={i} line={line} size={size} style={style} />)
 
 /** Explanatory prose. Body text, so it keeps the reading size the panels use. */
 const Note = ({ children }) => <p className="type-body text-[var(--text-dim)]">{children}</p>
