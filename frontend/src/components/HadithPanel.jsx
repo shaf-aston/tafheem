@@ -94,7 +94,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
         </p>
       )}
 
-      <HadithSearchResults collections={collections} accent={accent}>
+      <HadithSearchResults collections={collections} accent={accent} onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}>
         <div className="flex items-center gap-2 flex-wrap">
           <HadithCollectionPicker collections={collections} value={collection} onChange={pickCollection} accent={accent} />
           <Chip selected={starred} tinted accent={accent} onClick={() => setStarred(!starred)}>

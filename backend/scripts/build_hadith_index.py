@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
+from collections import Counter
 import sys
 from pathlib import Path
 
@@ -22,6 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.arabic_text import bare_letters  # noqa: E402
+from backend.services.hadith import words  # noqa: E402
 
 _SCHEMA = """
 CREATE TABLE collection (
@@ -51,10 +53,16 @@ CREATE TABLE hadith (
 );
 CREATE INDEX hadith_by_book ON hadith (collection_id, book_number, number);
 
--- Arabic is indexed with its marks and spelling variants folded away, and the
--- English stemmed, so a plain typed word finds the pointed or inflected one.
+-- Arabic is indexed with its marks and spelling variants folded away, once as
+-- written and once with its front particles off (stem), and the English
+-- stemmed, so a plain typed word finds the pointed, prefixed or inflected one.
 -- rowid ties a search hit straight back to its row in `hadith`.
-CREATE VIRTUAL TABLE hadith_fts USING fts5(arabic, english, tokenize = 'porter unicode61');
+CREATE VIRTUAL TABLE hadith_fts USING fts5(arabic, stem, english, tokenize = 'porter unicode61');
+
+-- Every distinct word the index holds, by three-letter runs, so a misspelt
+-- word can be matched to the word meant (services/hadith/repair.py). lang is
+-- ar or en, n how many hadiths hold the word. (A column may not share the table's name.)
+CREATE VIRTUAL TABLE word USING fts5(spelling, lang UNINDEXED, n UNINDEXED, tokenize = 'trigram');
 """
 
 
@@ -62,6 +70,20 @@ def _collections() -> dict:
     path = data_path("hadith_dir") / "collections.json"
     data = json.loads(path.read_text(encoding="utf-8"))
     return {key: value for key, value in data.items() if not key.startswith("_")}
+
+
+def index_text(conn: sqlite3.Connection) -> None:
+    """Fill hadith_fts and word from the hadith table. Shared with the tests' tiny database."""
+    rows = conn.execute("SELECT rowid, arabic, english FROM hadith").fetchall()
+    vocabulary: Counter[tuple[str, str]] = Counter()
+    for rowid, arabic, english in rows:
+        folded = bare_letters(arabic)
+        conn.execute("INSERT INTO hadith_fts (rowid, arabic, stem, english) VALUES (?, ?, ?, ?)",
+                     (rowid, folded, words.stems(folded), english))
+        vocabulary.update(("ar", w) for w in set(words.ARABIC_WORD.findall(folded)))
+        vocabulary.update(("en", w) for w in set(words.ENGLISH_WORD.findall(english.lower())))
+    conn.executemany("INSERT INTO word (spelling, lang, n) VALUES (?, ?, ?)",
+                     [(w, lang, n) for (lang, w), n in vocabulary.items()])
 
 
 def build() -> dict[str, int]:
@@ -99,11 +121,7 @@ def build() -> dict[str, int]:
             counts[key] = len(raw.get("hadith", []))
             print(f"  {key}: {counts[key]:,} hadiths across {len(raw.get('books', [])):,} books")
 
-        conn.executemany(
-            "INSERT INTO hadith_fts (rowid, arabic, english) VALUES (?, ?, ?)",
-            [(rowid, bare_letters(arabic), english)
-             for rowid, arabic, english in conn.execute("SELECT rowid, arabic, english FROM hadith").fetchall()],
-        )
+        index_text(conn)
         conn.commit()
         conn.close()
     except Exception:

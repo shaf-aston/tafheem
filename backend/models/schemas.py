@@ -1160,10 +1160,25 @@ class HadithBookResponse(BaseModel):
     source: Source
 
 
+class HadithChapter(HadithBook):
+    """A book the hits fall in, offered as a way to narrow a loose question."""
+    collection: str
+
+
+class HadithCorrection(BaseModel):
+    """A typed word no hadith holds, and the indexed word searched in its place."""
+    typed: str
+    used: str
+
+
 class HadithSearchResponse(BaseModel):
     query: str
     collections: list[str] = []
     hits: list[HadithEntry] = []
+    corrected: list[HadithCorrection] = []
+    # Typed words no hadith holds and nothing is near enough to stand in for.
+    unmatched: list[str] = []
+    chapters: list[HadithChapter] = []
     # False when the database has not been built yet (see services/hadith),
     # same shape as DaleelResponse.ready: the panel tells the two apart rather
     # than showing "nothing matches" for a search that could not run.
