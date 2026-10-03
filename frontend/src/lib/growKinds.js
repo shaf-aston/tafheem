@@ -15,10 +15,10 @@ import { checkReading, checkText } from '../api'
 import { byPlace } from './recitingSession'
 
 const KINDS = {
-  phrase: { check: async (recording, heard, step) => (await checkText(recording, { heard, expected: step.arabic })).sure },
+  phrase: { check: async (recording, heard, step, page, trial) => (await checkText(recording, { heard, expected: step.arabic, trial })).sure },
   ayahs: {
-    check: async (recording, heard, step, page) =>
-      byPlace((await checkReading(recording, { heard, check: step.ayahs })).sure, page.ayahs),
+    check: async (recording, heard, step, page, trial) =>
+      byPlace((await checkReading(recording, { heard, check: step.ayahs, trial })).sure, page.ayahs),
   },
   action: { byHand: true },
 }
@@ -28,9 +28,9 @@ const kindOf = (step) => step.kind ?? (step.ayahs.length ? 'ayahs' : 'phrase')
 /** Whether the reader ticks this step off themselves, instead of saying it to the ear. */
 export const byHand = (step) => Boolean(KINDS[kindOf(step)].byHand)
 
-export async function checkStep(step, recording, heard, page) {
+export async function checkStep(step, recording, heard, page, trial) {
   try {
-    return await KINDS[kindOf(step)].check(recording, heard, step, page)
+    return await KINDS[kindOf(step)].check(recording, heard, step, page, trial)
   } catch {
     return null
   }

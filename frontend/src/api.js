@@ -233,40 +233,31 @@ export const daleelBooksQuery = {
 // for it costs the seconds it takes to read.
 // `reading` names this one request, as `X-Reading-Id`, so the server's own
 // log and lib/journal.js's trail can be lined up on the same reading.
-export const listen = (recording, { match = false, recite = false, fusha = true, near, before, trial, signal, reading } = {}) => {
+// Every recording goes to the server this one way. `trial` is sent only when on,
+// so a server without a trial model never sees the word.
+const postRecording = (path, recording, params, { trial, signal, reading } = {}) => {
   const body = new FormData()
   body.append('audio', recording, 'recitation.webm')
-  const asked = new URLSearchParams({ match, recite, fusha, ...(near && { near }), ...(before && { before }), ...(trial && { trial }) })
-  const headers = { 'Content-Type': undefined }
-  if (reading) headers['X-Reading-Id'] = reading
-  return api.post(`/listen?${asked}`, body, { headers, signal })
-    .then((r) => r.data)
+  const asked = new URLSearchParams({ ...params, ...(trial && { trial }) })
+  const headers = { 'Content-Type': undefined, ...(reading && { 'X-Reading-Id': reading }) }
+  return api.post(`${path}?${asked}`, body, { headers, signal }).then((r) => r.data)
 }
+
+export const listen = (recording, { match = false, recite = false, fusha = true, near, before, ...how } = {}) =>
+  postRecording('/listen', recording, { match, recite, fusha, ...(near && { near }), ...(before && { before }) }, how)
 
 // How sure the ear is of each word of `check`'s ayahs (as "1:1"), scored from
 // the same recording `listen` already wrote `heard` down from. Its own request
 // so a slow score never holds back the words a reciter is already reading by;
 // see lib/recitingSession.js for how the two are paced against each other.
-export const checkReading = (recording, { heard = '', check = [], trial, signal, reading } = {}) => {
-  const body = new FormData()
-  body.append('audio', recording, 'recitation.webm')
-  const asked = new URLSearchParams({ heard, check: check.join(','), ...(trial && { trial }) })
-  const headers = { 'Content-Type': undefined }
-  if (reading) headers['X-Reading-Id'] = reading
-  return api.post(`/listen/check?${asked}`, body, { headers, signal })
-    .then((r) => r.data)
-}
+export const checkReading = (recording, { heard = '', check = [], ...how } = {}) =>
+  postRecording('/listen/check', recording, { heard, check: check.join(',') }, how)
 
 // How sure the ear is of each word of `expected`, a phrase that is not an ayah
 // (Grow's takbir, tashahhud and the rest), from the same recording `listen`
 // wrote `heard` down from. One number per word, in order.
-export const checkText = (recording, { heard = '', expected = '' } = {}) => {
-  const body = new FormData()
-  body.append('audio', recording, 'recitation.webm')
-  const asked = new URLSearchParams({ heard, expected })
-  return api.post(`/listen/check-text?${asked}`, body, { headers: { 'Content-Type': undefined } })
-    .then((r) => r.data)
-}
+export const checkText = (recording, { heard = '', expected = '', ...how } = {}) =>
+  postRecording('/listen/check-text', recording, { heard, expected }, how)
 
 // Grow's paths: the steps to learn and a scholar's words on each.
 export const growPathsQuery = {

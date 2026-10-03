@@ -4,6 +4,7 @@ import config from '../../dictation.json'
 import { watchForVoice } from '../../lib/dictation'
 import { CANNOT_RECORD, canRecord, createRecorder, openMicrophone, refusal } from '../../lib/microphone'
 import { useSetting } from '../../lib/settings'
+import { useTrial } from '../../lib/useHealth'
 import MicMark from './MicMark'
 
 /**
@@ -45,6 +46,7 @@ export default function MicButton({ onHeard, match = false, recite = false, acce
   const live = accent || 'var(--primary)'
   const [state, setState] = useState('idle')
   const fusha = useSetting('fusha')
+  const trial = useTrial()
   const [problem, setProblem] = useState('')
   const recorder = useRef(null)
   const chunks = useRef([])
@@ -120,7 +122,7 @@ export default function MicButton({ onHeard, match = false, recite = false, acce
         setState('thinking')
         try {
           const recording = new Blob(chunks.current, { type: made.mimeType })
-          const heard = await listen(recording, { match, recite, fusha })
+          const heard = await listen(recording, { match, recite, fusha, trial: recite && trial })
           // Nothing heard is answered here rather than passed on. It is the
           // ordinary result of a quiet room, and every box this button sits in
           // would otherwise show its own "nothing matched", which blames what

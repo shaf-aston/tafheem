@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { healthCheck } from '../api'
 import { MISSING } from './loadStatus'
+import { useSetting } from './settings'
 
 export function useHealth() {
   const { data, isPending, isError, refetch } = useQuery({
@@ -39,4 +40,14 @@ export function useHealth() {
     healthFailed: isError,
     retryHealth: refetch,
   }
+}
+
+/**
+ * Whether a recitation is heard by the trial model: chosen under Settings,
+ * Listening, and only while the server still offers one, so a saved choice
+ * never outlives the model. Every recitation asks here: Memorise, Grow, checks.
+ */
+export function useTrial() {
+  const { reciteTrial } = useHealth()
+  return useSetting('listening-ear') === 'trial' && Boolean(reciteTrial)
 }

@@ -177,7 +177,7 @@ def test_every_phrase_is_one_ear_word_per_written_word():
 
 def test_a_phrase_is_scored_whole(monkeypatch):
     asked = []
-    monkeypatch.setattr(listen, "sureness", lambda audio, words: asked.append(words) or [0.91234] * len(words))
+    monkeypatch.setattr(listen, "sureness", lambda audio, words, model=None: asked.append(words) or [0.91234] * len(words))
     assert recitation.check_text(b"x", "سبحان ربي", "سُبْحَانَ رَبِّيَ الْعَظِيمِ") == [0.912] * 3
     assert len(asked[0]) == 3
 
@@ -190,7 +190,7 @@ def test_nothing_heard_or_too_long_is_not_scored(monkeypatch):
 
 
 def test_check_text_route_answers_per_word(monkeypatch):
-    monkeypatch.setattr(recitation, "check_text", lambda audio, heard, expected: [1.0, 0.4])
+    monkeypatch.setattr(recitation, "check_text", lambda audio, heard, expected, model=None: [1.0, 0.4])
     resp = client.post(
         "/api/listen/check-text", params={"heard": "الله اكبر", "expected": "اللَّهُ أَكْبَرُ"},
         files={"audio": ("r.webm", WEBM)},

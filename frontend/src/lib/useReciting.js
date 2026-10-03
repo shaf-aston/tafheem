@@ -11,7 +11,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { bySound, follow, joinWindows } from './follow'
 import { createRecitingSession, EMPTY_VIEW, surer } from './recitingSession'
 import { useSetting } from './settings'
-import { useHealth } from './useHealth'
+import { useTrial } from './useHealth'
 
 /**
  * `ayahs` are the page's lines the ear can check by sound, each { key, from,
@@ -21,9 +21,7 @@ import { useHealth } from './useHealth'
  */
 export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   const fusha = useSetting('fusha')
-  // Only while the server still offers the trial model; a saved choice must not outlive it.
-  const { reciteTrial } = useHealth()
-  const trial = useSetting('listening-ear') === 'trial' && Boolean(reciteTrial)
+  const trial = useTrial()
   const [view, setView] = useState(EMPTY_VIEW)
 
   // One session for the life of the page. Making one opens nothing; the

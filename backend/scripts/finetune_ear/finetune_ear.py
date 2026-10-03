@@ -17,7 +17,7 @@ only on a win, and is the folder `recitation_model` (backend/config.py) points a
 
 Model: tarteel-ai/whisper-SIZE-ar-quran (Apache 2.0); base is the original of the
 CTranslate2 export the app runs, tiny the faster one. Recordings: MuazAhmad7/Surah_Ikhlas-Labeled_Dataset
-(CC BY 4.0) and RetaSy/quranic_audio_dataset (learners; no licence stated, so a
+(CC BY 4.0), RetaSy/quranic_audio_dataset and Tarteel v1 (learners; no licence stated, so a
 model taught on it is an experiment until its authors say otherwise).
 """
 # ruff: noqa: E402  (the tools are installed before they are imported)
@@ -54,6 +54,9 @@ HELD = 5  # one voice in HELD and one ayah in HELD are never trained on
 BAR = 1.5  # points fewer words wrong on new ayahs the new model must win by
 SLIP = 1.0  # points more wrong on professionals it may lose; more means it forgot
 PROS = 40  # professional clips, 5 to 20 words each
+TESTED = 600  # clips per test group at most: 3,000 held clips heard twice would cost an hour
+EPOCHS = 2  # 18,000 clips: two passes is already ten times the steps four passes over 45 ayahs took
+TARTEEL_V1 = 'tarteel-v1'
 RECITERS = ['Alafasy_128kbps', 'Husary_128kbps', 'Abdul_Basit_Murattal_192kbps', 'Minshawy_Murattal_128kbps',
             'Saood_ash-Shuraym_128kbps', 'Abdurrahmaan_As-Sudais_192kbps', 'Hudhaify_128kbps']
 OUT = Path.cwd()
@@ -95,7 +98,20 @@ SOURCES = {
     'RetaSy/quranic_audio_dataset': (
         lambda r: r['final_label'] == 'correct', lambda r: SPELT.get(letters(r['Aya'] or '')),
         lambda r: None if r['reciter_id'] in (None, 'Unknown') else r['reciter_id']),
+    # Tarteel v1 (2019): 18,400 phone recordings by app users, 5,846 ayahs. Already filtered by
+    # its uploader; files are <surah>_<ayah>_<id>.wav, and who recited is not recorded.
+    # Attached on Kaggle as dhiauji/user-tarteel. No licence stated: experiment only.
+    TARTEEL_V1: (lambda r: True, lambda r: '{}:{}'.format(*Path(r['audio']['path']).name.split('_')[:2]), lambda r: None),
 }
+
+
+def rows_of(name):
+    """A source's clips, sound undecoded. Tarteel v1 is files plus a list, not a Hugging Face set."""
+    if name != TARTEEL_V1:
+        return load_dataset(name, split='train')
+    listing = next(Path('/kaggle/input').rglob('tusers_filtered.csv'))
+    files = [line.split(',')[0].replace('\\', '/') for line in listing.read_text(encoding='utf-8').splitlines()[1:]]
+    return Dataset.from_dict({'audio': [{'bytes': None, 'path': str(listing.parent / f)} for f in files]})
 
 
 def sound_of(recording):
@@ -110,7 +126,7 @@ def learner_clips():
     seen = Counter()
     for name, (clean, ayah, who) in SOURCES.items():
         # Judged with the sound still undecoded, so rejected clips cost nothing.
-        rows = (load_dataset(name, split='train').cast_column('audio', Audio(decode=False))
+        rows = (rows_of(name).cast_column('audio', Audio(decode=False))
                 .filter(lambda r: clean(r) and ayah(r) in IMLAEI)
                 .map(lambda r, at: {'who': f'{name}:{who(r) or at}'}, with_indices=True))
         damaged = 0
@@ -150,11 +166,14 @@ voices, ayahs = sorted(set(whole['who'])), sorted(set(whole['ayah']))
 pick.shuffle(voices)
 pick.shuffle(ayahs)
 new_voices, new_ayahs = set(voices[::HELD]), set(ayahs[::HELD])
+taught_ayahs = set(ayahs) - new_ayahs
 TESTS = {
     'new voices': whole.filter(lambda r: r['who'] in new_voices and r['ayah'] not in new_ayahs),
     'new ayahs': whole.filter(lambda r: r['ayah'] in new_ayahs),
-    'professional': Dataset.from_list(list(professional_clips(set(ayahs)))),
+    # Unseen by training is what matters; learners now cover nearly every ayah, so skipping all of them left too few.
+    'professional': Dataset.from_list(list(professional_clips(taught_ayahs))),
 }
+TESTS = {k: v.shuffle(seed=7).select(range(min(TESTED, len(v)))) for k, v in TESTS.items()}
 taught = whole.filter(lambda r: r['who'] not in new_voices and r['ayah'] not in new_ayahs).shuffle(seed=7)
 print(len(whole), 'learner clips of', len(ayahs), 'ayahs;', len(taught), 'to learn from; tests:',
       {k: len(v) for k, v in TESTS.items()}, flush=True)
@@ -200,15 +219,10 @@ before, _ = scored(model)
 print('today:', before, flush=True)
 
 
-def prepared(row):
-    row['input_features'] = processor(np.asarray(row['sound'], dtype=np.float32), sampling_rate=RATE).input_features[0]
-    row['labels'] = processor.tokenizer(row['said']).input_ids
-    return row
-
-
 def gather(rows):
-    batch = processor.feature_extractor.pad([{'input_features': r['input_features']} for r in rows], return_tensors='pt')
-    marked = processor.tokenizer.pad([{'input_ids': r['labels']} for r in rows], return_tensors='pt')
+    # Features made per batch, not stored: 18,000 clips' features would take 17 GB.
+    batch = processor([np.asarray(r['sound'], dtype=np.float32) for r in rows], sampling_rate=RATE, return_tensors='pt')
+    marked = processor.tokenizer([r['said'] for r in rows], padding=True, return_tensors='pt')
     # Padding is not something to say, so it is masked out of the loss.
     labels = marked['input_ids'].masked_fill(marked.attention_mask.ne(1), -100)
     if (labels[:, 0] == processor.tokenizer.bos_token_id).all():
@@ -227,10 +241,10 @@ Seq2SeqTrainer(
     model=tuned,
     args=Seq2SeqTrainingArguments(
         output_dir=str(OUT / 'ear-lora'), per_device_train_batch_size=8, gradient_accumulation_steps=2,
-        learning_rate=5e-4, warmup_steps=40, num_train_epochs=4, fp16=True, logging_steps=25,
+        learning_rate=5e-4, warmup_steps=40, num_train_epochs=EPOCHS, fp16=True, logging_steps=25,
         save_strategy='no', remove_unused_columns=False, label_names=['labels'], report_to=[],
     ),
-    train_dataset=taught.map(prepared, remove_columns=taught.column_names),
+    train_dataset=taught.select_columns(['sound', 'said']),
     data_collator=gather,
 ).train()
 
