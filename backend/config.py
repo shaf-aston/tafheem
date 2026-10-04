@@ -269,6 +269,10 @@ class Settings(BaseSettings):
     # log-frequency, so a word a slip further must be that much more common.
     hadith_repair_edits_per_letter: float = 0.25
     hadith_repair_edit_cost: float = 3.0
+    # How common a word is: this much its share of everyday writing
+    # (services/hadith/language.py), the rest its share of the hadith. Everyday
+    # writing keeps real words the hadith never use ("jail") from being "fixed".
+    hadith_repair_everyday_weight: float = 0.9
     # Words that describe the question, not the hadith: "hadith about the cat".
     # No index can count these, since the hadith never say them of themselves.
     hadith_query_framing: tuple[str, ...] = ("hadith", "hadeeth", "ahadith", "narration", "narrations",

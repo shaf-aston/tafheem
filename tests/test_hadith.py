@@ -267,6 +267,12 @@ def test_a_distant_word_is_not_passed_off_as_a_repair(db):
     assert found.corrected == [] and found.unmatched == ["ستكجاري"]
 
 
+def test_a_real_word_no_hadith_uses_is_not_fixed_into_one_that_does(db):
+    """"right" is one letter from the fixture's "light", but people write it far more, so nobody meant light."""
+    found = search.search("right", 10)
+    assert found.corrected == [] and found.unmatched == ["right"]
+
+
 class _Meanings:
     """Stands in for the sentence model: "light" and the intentions hadith mean the same; all else differs."""
 

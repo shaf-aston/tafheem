@@ -132,7 +132,7 @@ def _terms(conn, asked, settings, forms: bool) -> tuple[list[str], list[tuple[st
         lang = "ar" if has_arabic(folded) else "en"
         near = None if words.is_number(folded) else repair.nearest(
             conn, folded, lang, edits_per_letter=settings.hadith_repair_edits_per_letter,
-            edit_cost=settings.hadith_repair_edit_cost)
+            edit_cost=settings.hadith_repair_edit_cost, everyday_weight=settings.hadith_repair_everyday_weight)
         if near and _matches(conn, _term(near, forms)):
             corrected.append((typed, near))
             terms.append(_term(near, forms))
