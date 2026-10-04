@@ -288,8 +288,9 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
         "pattern": a.get("pattern") or "",
         # the root's last letter is و or ي (عصا, قاضي): the root string above is empty for those
         "weak_last": _weak_radical(a.get("root"), -1),
-        # an attached pronoun: 1s_poss is ya al-mutakallim, which hides the case (كِتَابِي)
-        "enclitic": a.get("enc0") or "",
+        # an attached pronoun: 1s_poss is ya al-mutakallim, which hides the case (كِتَابِي);
+        # CAMeL writes "0" for none
+        "enclitic": "" if a.get("enc0") in (None, "0") else a["enc0"],
         "features": _build_features(a),
         "engine": "camel",
     }

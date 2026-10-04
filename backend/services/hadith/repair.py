@@ -17,9 +17,6 @@ import sqlite3
 # shorter word is matched exactly or not at all.
 _TRIGRAM_MIN = 3
 
-# Spellings that differ only in these are the same word to a typist: نيه for نية.
-_SAME_TO_A_TYPIST = str.maketrans({"ة": "ه"})
-
 
 def nearest(conn: sqlite3.Connection, word: str, lang: str, *, min_ratio: float, candidates: int) -> str | None:
     """The closest indexed word in `lang` ("ar" or "en"), or None when none is close enough.
@@ -39,10 +36,9 @@ def nearest(conn: sqlite3.Connection, word: str, lang: str, *, min_ratio: float,
         # An index built before the word table existed, or a run FTS5 cannot parse.
         return None
 
-    typed = word.translate(_SAME_TO_A_TYPIST)
     best: tuple[float, float, str] | None = None
     for found, n in rows:
-        ratio = difflib.SequenceMatcher(None, typed, found.translate(_SAME_TO_A_TYPIST)).ratio()
+        ratio = difflib.SequenceMatcher(None, word, found).ratio()
         if ratio >= min_ratio and (best is None or (ratio, math.log(n)) > best[:2]):
             best = (ratio, math.log(n), found)
     return best[2] if best else None

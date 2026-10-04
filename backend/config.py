@@ -266,7 +266,7 @@ class Settings(BaseSettings):
     # A typed word no hadith holds is swapped for the nearest indexed word
     # (services/hadith/repair.py): this close by letters (0..1) or not at all,
     # chosen among this many words sharing its three-letter runs.
-    hadith_repair_min_ratio: float = 0.78
+    hadith_repair_min_ratio: float = 0.85
     hadith_repair_candidates: int = 40
     # Chapters offered beside the hits, counted from where the hits fall.
     hadith_chapter_hints: int = 5
