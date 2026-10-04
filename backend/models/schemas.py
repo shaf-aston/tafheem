@@ -1106,7 +1106,9 @@ class ItemStats(BaseModel):
     attempts: int
     wrong: int
     avgMs: int | None = None
-    inReview: bool = False
+    due: bool = False
+    known: bool = False
+    dueAt: str | None = None
 
 
 class ProgressSummary(BaseModel):

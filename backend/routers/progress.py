@@ -67,7 +67,7 @@ async def forget_progress() -> Forgotten:
 
 @router.get("/summary", response_model=ProgressSummary)
 async def get_summary(module: str = _MODULE) -> ProgressSummary:
-    """Every item answered in this module, with its record and whether it is still owed."""
+    """Every item answered in this module, with its record and whether it is due or known."""
     return ProgressSummary(
         module=module,
         items=[
@@ -76,7 +76,9 @@ async def get_summary(module: str = _MODULE) -> ProgressSummary:
                 attempts=row["attempts"],
                 wrong=row["wrong"],
                 avgMs=row["avg_ms"],
-                inReview=row["in_review"],
+                due=row["due"],
+                known=row["known"],
+                dueAt=row["due_at"],
             )
             for row in progress_store.summary(module, LOCAL_USER)
         ],
@@ -85,5 +87,5 @@ async def get_summary(module: str = _MODULE) -> ProgressSummary:
 
 @router.get("/review", response_model=ReviewList)
 async def get_review(module: str = _MODULE) -> ReviewList:
-    """Just the items still waiting to be got right."""
+    """Items due for review now, earliest first."""
     return ReviewList(module=module, items=progress_store.review_items(module, LOCAL_USER))

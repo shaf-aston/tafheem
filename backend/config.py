@@ -276,8 +276,13 @@ class Settings(BaseSettings):
     # Slower answers keep right/wrong but skip timing averages: past two minutes the question likely sat open,
     # and one such value buries every real answer around it.
     progress_timing_cap_ms: int = 120_000
-    # One right answer can be a lucky guess among four options; three keeps a plainly learnt word in the way.
-    progress_review_clear_streak: int = 2
+    # FSRS-6 spaced review (services/review_schedule.py): the chance of still remembering a word
+    # when it comes due. Higher means more reviews; both knobs must be inside (0, 1).
+    progress_review_retention: float = 0.9
+    # A word counts as known once it has left learning and the chance of recalling it is at least this.
+    progress_known_retrievability: float = 0.9
+    # A first right answer waits this long before the word is asked again; a wrong one is due at once.
+    progress_learning_minutes: int = 10
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
     progress_busy_timeout_ms: int = 5000
 
@@ -312,6 +317,22 @@ class Settings(BaseSettings):
                 "Remove inline comments from .env. "
                 f"Example: {name}=your_key_here"
             )
+        return value
+
+    @field_validator("progress_review_retention", "progress_known_retrievability", mode="after")
+    @classmethod
+    def _check_probability(cls, value: float, info: ValidationInfo) -> float:
+        """A chance of 0 or 1 breaks the schedule maths, so startup stops."""
+        if not 0 < value < 1:
+            raise ValueError(f"{info.field_name.upper()} must be between 0 and 1 (exclusive), got {value!r}")
+        return value
+
+    @field_validator("progress_learning_minutes", mode="after")
+    @classmethod
+    def _check_learning_minutes(cls, value: int) -> int:
+        """No wait would let one lucky guess count as learnt, so startup stops."""
+        if value <= 0:
+            raise ValueError(f"PROGRESS_LEARNING_MINUTES must be above 0, got {value!r}")
         return value
 
     @field_validator("quran_search_source", mode="after")

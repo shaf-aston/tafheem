@@ -2,10 +2,10 @@
 
 Three things here can go wrong quietly, which is why each has its own check.
 
-The review rule is the feature: a word joins the list the first time it is got
-wrong and leaves after two right answers in a row. Both halves matter. A rule
-that never lets go turns the list into a graveyard; one that lets go on a single
-right answer lets a lucky guess between four options count as learning.
+The review schedule is the feature (FSRS-6, replayed from the saved answers): a
+wrong answer is due at once, and a right one pushes the next ask further out. A
+single right answer must not count as learnt, or a lucky guess between four
+options would pass for knowing the word.
 
 The timing cap is the subtle one. A question left open while somebody makes tea
 is still a real answer, so it must keep its right or wrong, and must not reach
@@ -18,6 +18,8 @@ answers here, so a second module's rows must not touch the first's.
 Run: python -m pytest tests/test_progress_store.py
 """
 from __future__ import annotations
+
+from datetime import datetime, timedelta, timezone
 
 import pytest
 
@@ -65,29 +67,73 @@ def test_records_right_and_wrong(store):
     assert (row["attempts"], row["wrong"]) == (2, 1)
 
 
-def test_a_wrong_answer_puts_a_word_in_review(store):
+def answer_at(store, item, correct, when, module="quiz"):
+    """File an answer with an explicit UTC time, as the column stores it."""
+    db = store._db()
+    with db:
+        db.execute(
+            "INSERT INTO attempts (module, item, correct, at) VALUES (?, ?, ?, ?)",
+            (module, item, 1 if correct else 0, when.strftime("%Y-%m-%d %H:%M:%S")),
+        )
+
+
+def ago(**delta):
+    return datetime.now(timezone.utc) - timedelta(**delta)
+
+
+def test_a_wrong_answer_is_due_now(store):
     answer(store, "to-write", False)
     assert store.review_items("quiz") == ["to-write"]
+    assert stats_for(store, "to-write")["due"] is True
 
 
-def test_two_rights_in_a_row_clear_it(store):
-    answer(store, "to-write", False)
-    answer(store, "to-write", True)
-    assert store.review_items("quiz") == ["to-write"], "one right answer is a coin flip"
-    answer(store, "to-write", True)
+def test_a_word_right_a_minute_ago_is_not_due(store):
+    answer_at(store, "to-write", True, ago(minutes=1))
+    row = stats_for(store, "to-write")
+    assert (row["due"], row["known"]) == (False, False)
     assert store.review_items("quiz") == []
 
 
-def test_a_new_mistake_puts_it_back(store):
+def test_right_twice_is_due_again_after_three_days(store):
+    answer_at(store, "to-write", True, ago(days=3))
+    answer_at(store, "to-write", True, ago(days=3) + timedelta(minutes=10))
+    assert store.review_items("quiz") == ["to-write"]
+
+
+def test_right_twice_is_known_but_a_lucky_guess_is_not(store):
+    answer_at(store, "learnt", True, ago(hours=1))
+    answer_at(store, "learnt", True, ago(minutes=50))
+    answer_at(store, "guess", True, ago(minutes=50))
+    assert stats_for(store, "learnt")["known"] is True
+    assert stats_for(store, "guess")["known"] is False
+
+
+def test_right_twice_in_the_same_minute_is_not_known(store):
+    # The old Mistakes rule cleared a word on exactly this; it proves short-term memory only.
+    answer_at(store, "rushed", True, ago(minutes=2))
+    answer_at(store, "rushed", True, ago(minutes=1))
+    assert stats_for(store, "rushed")["known"] is False
+
+
+def test_a_new_mistake_makes_it_due_again(store):
     for correct in (False, True, True, False):
         answer(store, "to-write", correct)
     assert store.review_items("quiz") == ["to-write"]
+    assert stats_for(store, "to-write")["known"] is False
 
 
-def test_a_word_never_got_wrong_is_never_in_review(store):
-    answer(store, "to-write", True)
-    assert store.review_items("quiz") == []
-    assert stats_for(store, "to-write")["in_review"] is False
+def test_review_lists_the_longest_waiting_first(store):
+    answer_at(store, "later", False, ago(hours=1))
+    answer_at(store, "earlier", False, ago(days=2))
+    assert store.review_items("quiz") == ["earlier", "later"]
+
+
+def test_the_schedule_is_the_same_every_time_it_is_read(store):
+    for when, correct in ((ago(days=5), False), (ago(days=4), True), (ago(days=1), True)):
+        answer_at(store, "to-write", correct, when)
+    first = stats_for(store, "to-write")
+    assert stats_for(store, "to-write") == first
+    assert first["due_at"].endswith("+00:00")
 
 
 def test_a_slow_answer_counts_but_is_not_timed(store):

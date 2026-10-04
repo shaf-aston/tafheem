@@ -43,6 +43,9 @@ JUZ_CACHE = QURAN / "juz.json"
 # ask a word of that type on its own.
 OPTION_COUNT = json.loads((ROOT / "frontend" / "src" / "quiz.json").read_text("utf-8"))["option-count"]
 USER_AGENT = "tafheem export_quiz_words"
+# Ayahs where the printed text and the corpus disagree on the word count, so a
+# word position there may not match the printed word (see quran_service.py).
+UNALIGNED_AYAHS = {(37, 130)}
 URDU_LINKS = DATA / "urdu_links.json"
 URDU_OVERRIDES = DATA / "urdu_links.overrides.json"
 
@@ -119,6 +122,49 @@ def already_taught(identity: dict[int, tuple[str, str]], book: set[int]) -> set[
     """
     taught = {identity[word_id] for word_id in book}
     return {word_id for word_id, key in identity.items() if key in taught}
+
+
+def add_coverage(lexicon: sqlite3.Connection, words: list[dict], position: dict[int, int]) -> dict:
+    """Give each word its lemmas and one short ayah, and return coverage.json.
+
+    A lemma's count is the Qur'an's word positions it names, so the browser can
+    add up exactly how much of the text the words you know cover. The ayah is
+    the shortest one using any of the word's lemmas: the easiest to read.
+    """
+    corpus = sqlite3.connect(f"file:{QURAN / 'corpus.db'}?mode=ro", uri=True)
+    positions: dict[str, set[tuple[int, int, int]]] = defaultdict(set)
+    every = set()
+    for surah, ayah, word, lemma in corpus.execute(
+        "SELECT surah, ayah, word, lemma FROM segment"
+    ):
+        every.add((surah, ayah, word))
+        if lemma:
+            positions[lemma].add((surah, ayah, word))
+    length = defaultdict(int)
+    for surah, ayah, _ in every:
+        length[(surah, ayah)] += 1
+
+    carried: dict[int, list[str]] = defaultdict(list)
+    for word_id, lemma in lexicon.execute("SELECT word_id, lemma FROM word_lemma ORDER BY lemma"):
+        carried[word_id].append(lemma)
+    lemmas = sorted({lemma for found in carried.values() for lemma in found})
+    index = {lemma: i for i, lemma in enumerate(lemmas)}
+    counts = [len(positions[lemma]) for lemma in lemmas]
+    # A lemma is counted once per position, but one position may carry two
+    # lemmas (a compound), so the sum can only be at most the whole text.
+    assert sum(counts) <= len(every), "lemma counts add up to more than the Qur'an has"
+
+    for word_id, found in carried.items():
+        word = words[position[word_id]]
+        word["lemmas"] = sorted(index[lemma] for lemma in found)
+        usable = [
+            place for lemma in found for place in positions[lemma]
+            if (place[0], place[1]) not in UNALIGNED_AYAHS
+        ]
+        if usable:
+            best = min(usable, key=lambda p: (length[(p[0], p[1])], p))
+            word["ayah"] = list(best)
+    return {"total": len(every), "lemmas": lemmas, "counts": counts}
 
 
 def main() -> None:
@@ -221,12 +267,15 @@ def main() -> None:
         "juz": juz,
     }
 
+    coverage = add_coverage(lexicon, words, position)
+
+    # Only the files written below are replaced: the folder also holds
+    # word_audio.json, which another script builds.
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    for stale in OUT_DIR.glob("*.json"):
-        stale.unlink()
     (OUT_DIR / "words.json").write_text(
         json.dumps({"words": words}, ensure_ascii=False), "utf-8"
     )
+    (OUT_DIR / "coverage.json").write_text(json.dumps(coverage, ensure_ascii=False), "utf-8")
     (OUT_DIR / "cuts.json").write_text(json.dumps(cuts, ensure_ascii=False), "utf-8")
     (OUT_DIR / "index.json").write_text(
         json.dumps(index, ensure_ascii=False, indent=2), "utf-8"

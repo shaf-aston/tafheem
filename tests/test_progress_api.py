@@ -53,8 +53,9 @@ def test_the_summary_reads_back_what_was_written():
     post(module="quiz", item="to-write", correct=False, ms=1000)
     post(module="quiz", item="to-write", correct=True, ms=3000)
     item = client.get("/api/progress/summary", params={"module": "quiz"}).json()["items"][0]
-    assert item == {"item": "to-write", "attempts": 2, "wrong": 1,
-                    "avgMs": 2000, "inReview": True}
+    assert {k: item[k] for k in ("item", "attempts", "wrong", "avgMs", "due", "known")} == {
+        "item": "to-write", "attempts": 2, "wrong": 1, "avgMs": 2000, "due": False, "known": False}
+    assert item["dueAt"].endswith("+00:00")
 
 
 def test_review_lists_what_is_still_owed():

@@ -131,6 +131,14 @@ CREATE TABLE word_place (
   ayah    INTEGER NOT NULL,
   PRIMARY KEY (word_id, surah, ayah)
 );
+
+-- The corpus lemmas a word stands for, so the export can count how much of the
+-- Qur'an the word covers and pick one ayah that shows it.
+CREATE TABLE word_lemma (
+  word_id INTEGER NOT NULL REFERENCES word(id),
+  lemma   TEXT NOT NULL,
+  PRIMARY KEY (word_id, lemma)
+);
 """
 
 
@@ -150,6 +158,7 @@ class Word:
     sets: set[str] = field(default_factory=set)
     groups: set[str] = field(default_factory=set)
     places: set[tuple[int, int]] = field(default_factory=set)
+    lemmas: set[str] = field(default_factory=set)
 
     @property
     def bare(self) -> str:
@@ -185,6 +194,7 @@ class Lexicon:
         kept.sets |= word.sets
         kept.groups |= word.groups
         kept.places |= word.places
+        kept.lemmas |= word.lemmas
         kept.wordType = kept.wordType or word.wordType
         # The hand-written lists have no Urdu, so whichever copy of this word came
         # from the corpus is the only one that can supply it.
@@ -599,6 +609,7 @@ def corpus_words(corpus: sqlite3.Connection, meanings: sqlite3.Connection) -> li
                 attached=pieces > 1,
                 sets={"quran"},
                 places=where[lemma],
+                lemmas={lemma},
             )
         )
 
@@ -672,6 +683,7 @@ def content_digest(db: sqlite3.Connection) -> str:
         "SELECT ar, en, meaning_key, word_type, times_in_quran, attached FROM word ORDER BY id",
         "SELECT word_id, axis, value FROM word_tag ORDER BY word_id, axis, value",
         "SELECT word_id, surah, ayah FROM word_place ORDER BY word_id, surah, ayah",
+        "SELECT word_id, lemma FROM word_lemma ORDER BY word_id, lemma",
     ):
         for row in db.execute(query):
             fingerprint.update(repr(row).encode())
@@ -699,6 +711,10 @@ def write(lexicon: Lexicon, sets: list[dict]) -> None:
         db.executemany(
             "INSERT INTO word_place (word_id, surah, ayah) VALUES (?,?,?)",
             [(word_id, surah, ayah) for surah, ayah in sorted(word.places)],
+        )
+        db.executemany(
+            "INSERT INTO word_lemma (word_id, lemma) VALUES (?,?)",
+            [(word_id, lemma) for lemma in sorted(word.lemmas)],
         )
     db.executemany(
         "INSERT INTO meta (key, value) VALUES (?,?)",
