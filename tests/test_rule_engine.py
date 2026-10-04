@@ -26,9 +26,8 @@ NOMINAL = "الكتاب جديد"              # jumlah ismiyyah
 
 
 def analysed(sentence: str) -> list[dict]:
-    from backend.services import morphology
-    tags = morphology.analyze_sentence(sentence)
-    return rule_engine.analyze(sentence, tags).get("words", [])
+    """The cards as the page gets them: the rule engine names no job, the book's tree does."""
+    return _read(sentence)["words"]
 
 
 @pytest.mark.parametrize("sentence", [VERBAL, NOMINAL])
@@ -161,6 +160,11 @@ def _read(sentence: str) -> dict:
 
 # One card field each, found by typing the sentence in (backend/scripts/analyse.py).
 CARDS = [
+    ("الدِّينُ النَّصِيحَةُ", 1, "role", "خبر"),           # nothing else is said of the mubtada
+    ("الكِتَابُ الجَدِيدُ مُفِيدٌ", 1, "role", "صفة"),       # nearest case: a khabar follows, so a صفة
+    ("مَدْرَسَةُ الْبَلَدِ الْكَبِيرَةُ جَمِيلَةٌ", 2, "role", "صفة"),  # the مضاف's صفة, after its مضاف إليه
+    ("الْيَدُ الْعُلْيَا خَيْرٌ", 1, "sign", "ضمة مقدرة"),    # a صفة wears its noun's case
+    ("يَا عِبَادِي", 1, "case", "nasb"),                   # a مضاف منادى is منصوب
     ("لَنْ يَذْهَبَ أَخِي", 2, "role", "فاعل"),            # the kasra before ya al-mutakallim is no case
     ("يَا عَبْدَ اللهِ", 2, "role", "مضاف إليه"),
     ("هَذَا بَيْتٌ كَبِيرٌ", 1, "role", "خبر"),            # an indefinite noun after a pointer

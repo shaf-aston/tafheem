@@ -21,6 +21,9 @@ PRESENT_PREFIX = set("أنيت")
 WEAK_ENDS = set("اىوي")
 # case shown by an ending, not by a vowel: the plural and the dual
 HIDDEN_CASE = ("ين", "ون", "ان")
+# the vowels their nun carries (the plural's fatha, the dual's kasra); any other
+# (الدِّينُ، بَيَانٌ) is the word's own case
+ENDING_NUN = {"ين": {"َ", "ِ"}, "ون": {"َ"}, "ان": {"ِ"}}
 
 CASE_NAME = {"u": "raf'", "a": "nasb", "i": "jarr"}
 # CAMeL's own case letters, as the vowel each one is
@@ -52,7 +55,10 @@ def typed_case(word: str, stuck_on: int = 0) -> str | None:
         if marked and marked[-1][0] == "ي":
             return None
         marked = marked[:-stuck_on]
-    if len(marked) < 2 or "".join(letter for letter, _ in marked[-2:]) in HIDDEN_CASE:
+    if len(marked) < 2:
+        return None
+    ending = "".join(letter for letter, _ in marked[-2:])
+    if ending in HIDDEN_CASE and marked[-1][1] & VOWEL.keys() <= ENDING_NUN[ending]:
         return None
     last = marked[-1]
     if last[0] in "اى" and marked[-2][1] & TANWEEN:

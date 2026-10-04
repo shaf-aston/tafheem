@@ -15,7 +15,7 @@ package's `__init__.py`.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import book_path, family_cards, in_family, is_mabni, is_one, named_roles, role_table
+from backend.services.nahw_book import book_path, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table
 from backend.services.syntax import facts, walker
 from backend.services.harakat import (
     CASE_NAME, PRESENT_PREFIX, SUKUN, command_shape, drops_weak, five_verb_nun, letters, paused, typed_case)
@@ -41,6 +41,9 @@ def roles_keyed(*keys: str) -> tuple[str, ...]:
     return tuple(role for role in ROLES if role_key(role) in keys)
 
 
+FOLLOWERS = roles_keyed("tabi", "sifah")
+
+
 def tone(role: str | None) -> str | None:
     """The colour the bracket diagram draws this role in."""
     return _entry(role)[1]
@@ -62,8 +65,8 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
 
     The parser splits بِ and ـه off as their own tokens; the words a reader types
     are the base words, so only those are named and the vowels are carried over.
-    The case is given only when the reader typed it, since the parser never sees
-    a harakah and a guessed case would look like a read one.
+    The case is decided here, once: the vowel the reader typed, else the case the
+    role itself takes (رأيتُ أخي shows none, yet a مفعول به is منصوب).
     """
     bases = base_tokens(words, tokens)
     if len(bases) != len(words):
@@ -77,6 +80,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         # letters at the end that belong to an attached pronoun, not to the word
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
                                 if t["head"] == token["id"] and t["form"].startswith("+"))
+        token["mudaf"] = any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
     answers = {t["id"]: a for t, a in zip(tokens, facts.of_sentence(tokens))}
     # the book's tree has no leaf for some answers: that word stays unnamed
     walked = [walker.walk(answers[token["id"]]) for token in bases]
@@ -88,6 +92,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
             named[index] = NAMED.harf_jarr
     cases = [_ending(role, token, bases[i - 1] if i else None, words[i + 1] if i + 1 < len(words) else "")
              for i, (role, token) in enumerate(zip(named, bases))]
+    _followers_take_their_case(named, cases, bases, tokens)
     # what each word shows: the governor and follower the tree gave it, and its case
     shown = [{answers[token["id"]]["governor"], answers[token["id"]]["follows"], case}
              for token, case in zip(bases, cases)]
@@ -97,6 +102,21 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "book": book_path(found.path, found.book) if found else None}
             for role, case, token, found in zip(named, cases, bases, walked)]
+
+
+def _followers_take_their_case(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
+    """A صفة، معطوف، توكيد or بدل with no vowel typed wears the case of the word it
+    follows (اليدُ العليا), reached through the و of a معطوف; in order, so a chain follows too."""
+    at = {token["id"]: i for i, token in enumerate(bases)}
+    by_id = {t["id"]: t for t in tokens}
+    for i, (role, token) in enumerate(zip(named, bases)):
+        if cases[i] is not None or role not in FOLLOWERS:
+            continue
+        head = by_id.get(token["head"])
+        while head and (head["id"] not in at or head["pos"] == "PRT"):
+            head = by_id.get(head["head"])
+        if head and cases[at[head["id"]]] != "mabni":
+            cases[i] = cases[at[head["id"]]]
 
 
 def _family(token: dict, bases: list[dict], shown: list[set]) -> str | None:
@@ -123,7 +143,8 @@ def opens_with_verb(roles: list[str | None]) -> bool:
 
 
 def _ending(role: str | None, token: dict, before: dict | None, after: str) -> str | None:
-    """What to print under the word: a case for a noun or a present verb, else mabni."""
+    """What to print under the word: a case for a noun or a present verb, else mabni.
+    A noun's case is the vowel typed on it, else its role's own."""
     if role == NAMED.fil:
         present = token["base"][:1] in PRESENT_PREFIX and token.get("asp") == "i"
         return _mood(paused(token["typed"], after), token, before) if present else "mabni"
@@ -136,7 +157,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str) -> s
     # ending, so the vowel on it is part of the word and not a case
     if is_mabni(token):
         return "mabni"
-    return CASE_NAME.get(facts.typed_case_of(token))
+    return CASE_NAME.get(facts.typed_case_of(token) or case_of(role or "", token["mudaf"]))
 
 
 def _mood(typed: str, token: dict, before: dict | None) -> str:
