@@ -7,6 +7,7 @@
  * and hand the actual work to small named components that read from there.
  */
 import { useState } from 'react'
+import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery } from '@tanstack/react-query'
 
 import { hadithCollectionsQuery } from '../api'
@@ -32,13 +33,9 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
   const { favorites } = useHadithFavorites()
 
   // A deep link, a link from another tab, or the back arrow landing here: all
-  // three read the same way, once per arrival. See TimelinesPanel for why
-  // this is adjusted during render rather than in an effect.
-  const [seenLink, setSeenLink] = useState(null)
+  // three read the same way, once per arrival (see lib/useArrival).
   const [missed, setMissed] = useState(false)
-  const link = `${arrival}:${incoming}`
-  if (collections && link !== seenLink) {
-    setSeenLink(link)
+  if (useArrivalWhenReady(arrival, Boolean(collections))) {
     const asked = parsePlace(incoming, collections)
     if (asked) setPlace(asked)
     else if (collections.length) setPlace({ collection: collections[0].id, book: null, number: null, part: '' })

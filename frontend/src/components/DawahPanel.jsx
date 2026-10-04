@@ -12,6 +12,7 @@
  * IslamQA fatwa is linked at the foot as further reading.
  */
 import { useState } from 'react'
+import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery } from '@tanstack/react-query'
 
 import { dawahQuery } from '../api'
@@ -37,12 +38,9 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
   const [query, setQuery] = useState('')
   const [mode, setMode] = useRemembered('dawah-mode', knobs.modes.map((m) => m.id), knobs['reading-mode'])
 
-  // An arrival names a question; followed during render like the Timelines tab,
-  // so a deep link paints on its answer rather than the tiles first.
-  const [seenLink, setSeenLink] = useState(null)
-  const link = `${arrival}:${incoming}`
-  if (data && link !== seenLink) {
-    setSeenLink(link)
+  // An arrival names a question; followed during render, so a deep link paints
+  // on its answer rather than the tiles first.
+  if (useArrivalWhenReady(arrival, Boolean(data))) {
     const home = data.topics.find((t) => t.questions.some((q) => q.id === incoming))
     if (home) {
       setTopicId(home.id)

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { nextHeld } from './useArrival'
+import { isDue, nextHeld } from './useArrival'
 
 describe('nextHeld', () => {
   it('shows the answer that came back', () => {
@@ -33,5 +33,21 @@ describe('nextHeld', () => {
     const shown = nextHeld(null, answer, false)
     expect(nextHeld(shown, undefined, true)).toBe(answer)
     expect(nextHeld(shown, answer, false)).toBe(answer)
+  })
+})
+
+describe('isDue', () => {
+  it('waits for the data, then takes the arrival once', () => {
+    expect(isDue(undefined, 3, false)).toBe(false)
+    expect(isDue(undefined, 3, true)).toBe(true)
+    expect(isDue(3, 3, true)).toBe(false)
+  })
+
+  it('takes the first arrival even when it is null', () => {
+    expect(isDue(undefined, null, true)).toBe(true)
+  })
+
+  it('follows a repeat arrival of the same word, which has a new number', () => {
+    expect(isDue(3, 4, true)).toBe(true)
   })
 })
