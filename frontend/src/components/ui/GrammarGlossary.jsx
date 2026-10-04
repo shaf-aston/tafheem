@@ -18,12 +18,12 @@ export default function GrammarGlossary() {
       <div className="grid gap-y-5 sm:grid-cols-[auto_1fr]">
         {GLOSSARY.map(({ title, terms }) => (
           <section key={title} className="col-span-full grid grid-cols-subgrid">
-            <h3 className="col-span-full type-label text-[var(--text-faint)] mb-2">{title}</h3>
+            <ArabicText as="h3" size="tiny" className="col-span-full text-left text-[var(--text-faint)] mb-2">{title}</ArabicText>
             <dl className="col-span-full grid grid-cols-subgrid gap-x-4 gap-y-2 items-baseline">
               {terms.map(({ arabic, meaning }) => (
                 <div key={arabic} className="contents">
-                  <dt className="whitespace-nowrap">
-                    <ArabicText size="sm">{arabic}</ArabicText>
+                  <dt>
+                    <ArabicText size="sm" className="whitespace-nowrap">{arabic}</ArabicText>
                   </dt>
                   <dd className="type-small text-[var(--text-dim)] leading-relaxed">{meaning}</dd>
                 </div>

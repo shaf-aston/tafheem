@@ -31,12 +31,8 @@ export const typeLabel = (key) => TYPES[key]?.arabic ?? key
 /** The Arabic for a corpus part-of-speech code ("N", "V", "P"). */
 export const posLabel = (tag) => typeLabel(config.corpus_pos[tag] ?? tag)
 
-/**
- * The glossary, in the order a nahw book teaches: kinds of word and endings
- * first, since every role after them is explained in their terms.
- */
-export const GLOSSARY = [
-  { title: 'Kinds of word', terms: Object.values(TYPES) },
-  { title: 'Endings', terms: Object.values(CASES) },
-  ...config.sections,
-]
+/** The glossary, in Tasheel al-Nahw's chapters; a `from` section lists the types or cases. */
+export const GLOSSARY = config.sections.map(({ title, from, terms }) => ({
+  title,
+  terms: from ? Object.values(config[from]) : terms,
+}))
