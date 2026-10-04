@@ -67,7 +67,7 @@ def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> di
     if bare.endswith("ات"):
         free.add("ai")
     mudaf_ilayh = any(roles[k] == NAMED.mudaf_ilayh for k in _kid_indices(token, bases))
-    if token.get("stt") == "i" and not bare.startswith("ال") and not mudaf_ilayh:
+    if token.get("stt") != "d" and not bare.startswith("ال") and not mudaf_ilayh:
         free.add("ia")
     return {"free": sorted(free), "mudaf": any(b["rel"] == "IDF" for b in bases if b["head"] == token["id"])}
 

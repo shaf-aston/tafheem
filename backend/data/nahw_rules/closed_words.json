@@ -6,7 +6,8 @@
   "pointer_heads_its_noun": true,
   "listed_preposition_takes_majrur": true,
   "topic_carries_its_verb": true,
-  "inner_sentence": true
+  "inner_sentence": true,
+  "ma_cancels_inna": true
  },
  "families": {
   "jarr": {

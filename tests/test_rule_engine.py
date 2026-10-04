@@ -192,6 +192,17 @@ CARDS = [
     # signs found wrong by the hadith and rules sets (score_iraab --set hadith / rules)
     ("لَا تَسُبُّوا أَصْحَابِي", 1, "sign", "حذف النون"),     # the dropped nun after لا
     ("اِحْفَظُوا الدَّرْسَ", 0, "sign", "مبني على حذف النون"),
+    # a sound feminine plural's kasra is its nasb, a diptote's fatha its jarr
+    ("رَأَيْتُ الْمُعَلِّمَاتِ", 1, "case", "nasb"),
+    ("رَأَيْتُ الْمُعَلِّمَاتِ", 1, "sign", "كسرة، نيابة عن الفتحة"),
+    ("صَلَّيْتُ فِي مَسَاجِدَ كَثِيرَةٍ", 2, "case", "jarr"),
+    ("مَرَرْتُ بِأَحْمَدَ", 1, "sign", "فتحة، نيابة عن الكسرة"),
+    # ما الكافة stops إنّ working: a plain mubtada and khabar follow
+    ("إِنَّمَا زَيْدٌ قَائِمٌ", 1, "role", "مبتدأ"),
+    ("إِنَّمَا زَيْدٌ قَائِمٌ", 2, "role", "خبر"),
+    # the governor named by its family
+    ("كَانَ زَيْدٌ قَائِمًا", 0, "reason", "فعل ماضٍ ناقص"),
+    ("إِنَّ اللَّهَ غَفُورٌ", 0, "reason", "حرف ناسخ مشبه بالفعل"),
     ("اِسْقِ الزَّرْعَ", 0, "sign", "مبني على حذف حرف العلة"),
     ("اتَّقِ اللَّهَ", 0, "sign", "مبني على حذف حرف العلة"),  # no present prefix, so a command
     ("لَمْ يَبْكِ الطِّفْلُ", 1, "sign", "حذف حرف العلة"),

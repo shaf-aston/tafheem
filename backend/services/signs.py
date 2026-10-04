@@ -34,6 +34,13 @@ def kind_of(tag: dict) -> str:
             return "sound_plural"
         if tag.get("number") == "d":
             return "dual"
+        if tag.get("number") == "p" and tag.get("gender") == "f" and tag["base"].endswith("ات"):
+            return "fem_plural"  # المعلماتِ: nasb shows by the kasra
+        # بِمَسَاجِدَ: an indefinite word typed with a bare fatha takes no tanween, a diptote
+        # (CAMeL's construct state is no guide: a صفة after it reads as a مضاف إليه)
+        if marked and marked[-1][1] & {"َ"} and not bare.startswith("ال") and not _has_pronoun(tag) \
+                and tag.get("case") in ("jarr", "nasb"):
+            return "diptote"
         if tag.get("enclitic") != "1s_poss" and six_noun_case(tag["base"], tag.get("lemma") or ""):
             return "six_nouns"  # أَخًا has a tanween: not a مضاف, so the vowels show
     if tag.get("enclitic") == "1s_poss":
