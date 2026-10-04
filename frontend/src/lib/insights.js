@@ -115,6 +115,6 @@ export function overall(rows) {
     wrong,
     words: rows.length,
     accuracy: attempts ? (attempts - wrong) / attempts : null,
-    inReview: rows.filter((row) => row.inReview).length,
+    due: rows.filter((row) => row.due).length,
   }
 }

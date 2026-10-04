@@ -127,9 +127,9 @@ describe('narrowing to one group', () => {
 describe('the bank registry', () => {
   it('offers every set and rejects one it does not have', async () => {
     // Qur'anic first: it is the default, and the pills read in that order.
-    // "All" is last of the cuts because it is the widest, and Mistakes last of
+    // "All" is last of the cuts because it is the widest, and Review last of
     // all: it is not a cut of the table but whatever the learner still owes.
-    expect(Object.keys(BANKS)).toEqual(['quranic', 'everyday', 'all', 'mistakes'])
+    expect(Object.keys(BANKS)).toEqual(['quranic', 'everyday', 'all', 'review'])
     expect(await wordsFor('quranic')).toHaveLength(BANK.length)
     await expect(wordsFor('nope')).rejects.toThrow(/Unknown quiz bank/)
   })

@@ -244,6 +244,8 @@ export function buildQuestion(bank, {
     answerLang: shape.answerLang,
     answerId: answer.meaningKey,
     answerText: answer[shape.answerKey],
+    // [surah, ayah, word number] of the answer word in the Qur'an, if it has one.
+    ayah: answer.ayah ?? null,
     // Set when this word never stands alone in the Qur'an, so its English is
     // borrowed from a place it was attached to another word. Carried through to
     // the question rather than dropped, so the panel can say so.

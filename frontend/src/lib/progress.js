@@ -12,7 +12,7 @@
  * is down is a worse failure than a lost row. So `recordAttempt` never throws,
  * never blocks the next question, and reports whether it landed rather than
  * swallowing the news: a whole session saved to nowhere has to be sayable on
- * screen, or the mistakes list is mysteriously empty a week later.
+ * screen, or the review list is mysteriously empty a week later.
  */
 const BASE = '/api/progress'
 
@@ -36,7 +36,7 @@ export async function recordAttempt({ module, item, correct, ms, context }) {
 }
 
 /**
- * Delete every saved answer, so Mistakes empties too. Never rejects: the wipe
+ * Delete every saved answer, so Review empties too. Never rejects: the wipe
  * that calls it goes on to clear the browser and reload whether or not the
  * backend was there to hear.
  */
@@ -56,10 +56,10 @@ export async function fetchSummary(module) {
   return (await response.json()).items
 }
 
-/** Just the items still waiting to be got right. Throws, for react-query. */
+/** Just the items due for review now, longest-waiting first. Throws, for react-query. */
 export async function fetchReviewItems(module) {
   const response = await fetch(`${BASE}/review?module=${encodeURIComponent(module)}`)
-  if (!response.ok) throw new Error(`Could not read the mistakes list (${response.status})`)
+  if (!response.ok) throw new Error(`Could not read the review list (${response.status})`)
   return (await response.json()).items
 }
 
