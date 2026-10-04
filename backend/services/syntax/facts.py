@@ -191,6 +191,16 @@ def told_of_subject(token: dict, head: dict) -> bool:
     return bool(mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a")
 
 
+def told_of_lone_mubtada(token: dict, head: dict, s: Sentence) -> bool:
+    """الدينُ النصيحةُ: a verbless sentence resting on one noun with nothing else said of
+    it, so the plain noun in its case after it is its khabar; a describing word
+    (الطبيبُ الماهرُ) stays its صفة (Tasheel 1.4 p6)."""
+    return s.verbless and head["rel"] == "---" and head["pos"] in ("NOM", "PROP") \
+        and same_case(token, head) and token.get("stt") == "d" and token.get("ud") != "ADJ" \
+        and [t for t in s.tokens if t["rel"] == "---"] == [head] \
+        and all(k is token or k["rel"] == "IDF" for k in s.kids(head))
+
+
 def indefinite_nasb(token: dict) -> bool:
     """An indefinite word in nasb: a hal or tamyeez, never a na't."""
     return typed_or_parsed_case(token) == "a" and token.get("stt") != "d"
@@ -411,8 +421,15 @@ def _follows(token: dict, s: Sentence) -> str:
     if _listed(token, "mawsul") and head.get("stt") == "d" and head["id"] == token["id"] - 1 and not owed:
         return "naat"
     mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
+    # مدرسةُ البلدِ الكبيرةُ: a صفة of the مضاف comes after its مضاف إليه, in the مضاف's case
+    mudaf = s.head(head) if head["rel"] == "IDF" else None
+    if mine and mine != theirs and mudaf and not is_verb(mudaf) and mine == typed_or_parsed_case(mudaf) \
+            and token.get("stt") == head.get("stt") == "d":
+        return "naat"
     if mine and theirs and mine != theirs and token.get("stt") == head.get("stt") == "d":
         return "none"  # أعطى الغنيُّ الفقيرَ: with ال both show their case, and a na't wears its noun's
+    if told_of_lone_mubtada(token, head, s):
+        return "none"
     if mine and mine == theirs:
         # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't
         measure = _listed(head, "tamyeez_head") and not is_participle(token)
@@ -658,6 +675,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
             loose = [t for t in s.tokens if t["rel"] == "---" and t["pos"] in ("NOM", "PROP")]
             return "subject" if not loose or token is loose[0] else "predicate"
     if rel == "MOD" and head:
+        if told_of_lone_mubtada(token, head, s):
+            return "predicate"
         if unlike(token, head):
             return "state" if typed_or_parsed_case(token) == "a" else "predicate"
         if told_of_subject(token, head):

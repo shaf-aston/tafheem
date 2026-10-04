@@ -123,11 +123,13 @@ def book_path(path: list[str], book: str) -> str:
     return words["said"].format(path=words["joint"].join(said), section=section, page=page)
 
 
-def case_of(role: str) -> str | None:
+def case_of(role: str, mudaf: bool = False) -> str | None:
     """u / a / i, the case a role takes (teacher.json case_of_role), or None for a
-    follower or a role whose case depends on more than its name."""
+    follower or a role whose case depends on more than its name. `mudaf`: the word
+    is the first of an idafa, which makes a called noun منصوب (يا عبادي)."""
     cases = teacher_rules()["case_of_role"]
-    return next((case for case in "uai" if role in cases[case]), None)
+    return next((case for case in "uai" if role in cases[case]), None) or (
+        "a" if mudaf and role in cases["a_when_mudaf"] else None)
 
 
 def reason(role: str, mabni: bool = False) -> str:

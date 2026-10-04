@@ -6,8 +6,8 @@ re-reads the finished sentence and dashes any word whose name breaks a rule. Thi
 the seam the rest of the app talks to, so a different parser can be put behind
 it without anything else changing.
 
-If the parser is off or fails, every role comes back empty and the rule
-engine's cards stand alone (iraab.with_parser_roles).
+If the parser is off or fails, every role comes back empty and each card
+says only what its word is, with no job (iraab.with_parser_roles).
 """
 from __future__ import annotations
 
@@ -61,5 +61,5 @@ def read(sentence: str) -> dict:
         drawn["source"] = provenance.of("nahw")  # worked out here, not looked up
         return {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
     except Exception:  # a missing model file, or a sentence it chokes on
-        logger.exception("Syntax parser unavailable, keeping the rule engine")
+        logger.exception("Syntax parser unavailable, every word left unnamed")
         return nothing

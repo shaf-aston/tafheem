@@ -11,17 +11,16 @@ gives, live in data/nahw_rules/teacher.json.
 """
 from __future__ import annotations
 
-from backend.services.arabic_text import bare_letters, strip_diacritics
+from backend.services.arabic_text import bare_letters
 from backend.services.nahw_book import case_of, is_mabni, is_one, named_roles, teacher_rules
 from backend.services.syntax.facts import Sentence, is_called_noun, is_passive, is_verb, takes_tamyeez, typed_case_of
-from backend.services.syntax.naming import base_tokens, roles_keyed
+from backend.services.syntax.naming import FOLLOWERS, base_tokens, roles_keyed
 from backend.services.harakat import CASE_NAME
 
 # the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there
 NAMED = named_roles()
 DOERS = roles_keyed("fail")
 SUBJECTS = roles_keyed("mubtada")
-FOLLOWERS = roles_keyed("tabi", "sifah")
 
 
 def _is_noun(token: dict) -> bool:
@@ -52,8 +51,7 @@ def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> di
     """What decides whether the vowel typed on a word can be held against its job.
 
     `free` lists the (wanted, typed) case pairs that only look like a clash ("au":
-    wanted nasb, typed damma); "*" frees all of them. Kept on a word the parser
-    left unnamed, so `fallback_gap` judges the rule engine's name by the same facts."""
+    wanted nasb, typed damma); "*" frees all of them."""
     bare = bare_letters(token.get("typed") or "")
     free = set()
     # a pronoun, pointer, relative or question word keeps one ending whatever its job
@@ -75,7 +73,7 @@ def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> di
 def _clashes(role: str | None, shown: str | None, ending: dict) -> bool:
     """The one test of a typed ending against a role: `shown` is u / a / i, or None when bare."""
     role = role or ""
-    want = case_of(role) or ("a" if ending["mudaf"] and role in teacher_rules()["case_of_role"]["a_when_mudaf"] else None)
+    want = case_of(role, ending["mudaf"])
     return bool(want and shown and shown != want
                 and "*" not in ending["free"] and want + shown not in ending["free"])
 
@@ -141,21 +139,9 @@ def review(words: list[str], tokens: list[dict], found: list[dict]) -> list[dict
             # the next check reads the sentence without the words already doubted:
             # a khabar whose mubtada was just dashed has lost its mubtada
             roles = [None if i in caught else role for i, role in enumerate(roles)]
-    by_id = {t["id"]: t for t in tokens}
-    return [{**entry, "role": None, "gap": {"ar": rules[caught[i]]["ar"], "en": rules[caught[i]]["en"]}}
-            if i in caught else
-            {**entry, "ending": _vowel_facts(bases[i], bases, roles, by_id)} if entry["role"] is None else entry
+    # a dashed word keeps only the case it shows: the typed vowel, or mabni; never its lost role's
+    return [{**entry, "role": None,
+             "case": CASE_NAME.get(typed_case_of(bases[i])) or (entry["case"] if entry["case"] == "mabni" else None),
+             "gap": {"ar": rules[caught[i]]["ar"], "en": rules[caught[i]]["en"]}}
+            if i in caught else entry
             for i, entry in enumerate(found)]
-
-
-def fallback_gap(role: str | None, found: dict) -> dict | None:
-    """The same typed-vowel check for a name the rule engine supplied where naming had
-    none: the teacher never saw that role, so a typed fatha on a "mubtada" slipped by.
-    `found` is the parser's entry for the word, its `case` the ending as the card prints
-    it (raf' / nasb / jarr) and its `ending` the facts `review` left on it."""
-    rule = teacher_rules()["checks"]["typed_case_fits_role"]
-    plain = strip_diacritics(role or "").split(" (")[0].strip()
-    shown = next((k for k, v in CASE_NAME.items() if v == found["case"]), None)
-    if rule["on"] and found.get("ending") and _clashes(plain, shown, found["ending"]):
-        return {"ar": rule["ar"], "en": rule["en"]}
-    return None

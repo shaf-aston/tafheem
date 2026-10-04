@@ -129,35 +129,6 @@ def test_a_gap_reaches_the_picture_as_a_dashed_leaf_with_the_reason_to_hover():
     assert drawn["coverage"] < 1.0
 
 
-def unnamed(word, lemma, **feats):
-    """One word the parser left without a name, and what `review` keeps on it for the fallback."""
-    toks = [token(1, "رأيت", "رأى", "VRB", 0, "---", **VERB),
-            token(2, word, lemma, "NOM", 0, "---", stt="d", cas="a", **feats)]
-    found = review(["رَأَيْتُ", word], toks)[1]
-    assert found["role"] is None and not found.get("gap")
-    return found
-
-
-def test_a_name_the_rule_engine_supplied_is_held_to_the_typed_vowel_too():
-    # naming had no name; the rule engine said mubtada, the reader typed a fatha
-    clash = {"case": "nasb", "ending": {"free": [], "mudaf": False}}
-    assert teacher.fallback_gap("مبتدأ (مرفوع)", clash)["ar"]
-    assert teacher.fallback_gap("مبتدأ", {**clash, "case": "raf'"}) is None
-    assert teacher.fallback_gap("مبتدأ", {**clash, "case": None}) is None  # bare: nothing to contradict
-    assert teacher.fallback_gap("حرف", clash) is None  # not a case-bearing role
-    assert teacher.fallback_gap("مبتدأ", {"case": "nasb"}) is None  # no facts kept: nothing to judge by
-
-
-def test_the_fallback_keeps_every_exemption_the_teacher_has():
-    # a sound feminine plural in nasb ends in kasra: a rule-engine مفعول به is right
-    plural = unnamed("الْمُعَلِّمَاتِ", "معلمة")
-    assert teacher.fallback_gap("مفعول به", {**plural, "case": "jarr"}) is None
-    assert teacher.fallback_gap("مبتدأ", {**plural, "case": "jarr"})  # raf' wanted, so it is a clash
-    mabni = unnamed("هَذَا", "هذا", pos_camel="dem")
-    assert teacher.fallback_gap("مبتدأ", {**mabni, "case": "nasb"}) is None
-    assert teacher.fallback_gap("مبتدأ", {**unnamed("الْوَلَدَ", "ولد"), "case": "nasb"})
-
-
 def test_a_head_the_teacher_dashed_stays_a_dash_in_its_unit():
     toks = [token(1, "الولد", "ولد", "NOM", 0, "---", stt="d", cas="n"),
             token(2, "المدير", "مدير", "NOM", 1, "IDF", stt="d", cas="g")]
