@@ -11,7 +11,7 @@
  */
 import { useCallback, useState } from 'react'
 
-import { entryLines, VERSE_GAP } from '../lib/entryLines'
+import { entryLines } from '../lib/entryLines'
 import { useRememberedFlag } from '../lib/useRemembered'
 
 import { Line } from './EntryArabic'
@@ -76,7 +76,7 @@ export function LinePage({ lines, accent }) {
                 <div className="flex-1 min-w-0 space-y-0.5">
                   <Line line={entryLines(pair.arabic)[0]} />
                   {shown && (
-                    <p dir="ltr" className={`type-body text-[var(--text-dim)] ${tapToShow ? 'entry-rise' : ''}`}>
+                    <p dir="ltr" className={`type-small text-[var(--text-faint)] ${tapToShow ? 'entry-rise' : ''}`}>
                       {pair.english}
                     </p>
                   )}

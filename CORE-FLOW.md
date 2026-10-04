@@ -64,6 +64,8 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 
 ## Glossary
 
+Per-module glossaries, one word per idea across backend and frontend: `docs/glossary/`.
+
 - **I'raab**: the ending on one word, its case and the reason for it.
 - **Tarkeeb**: which words join into a unit and what that unit does. A bracket tree,
   never a per-word list. One Nahw page now draws it above the i'raab cards for the

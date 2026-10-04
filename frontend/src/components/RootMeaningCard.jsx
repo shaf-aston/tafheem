@@ -33,6 +33,9 @@ import SourceBadge from './ui/SourceBadge'
  * The rest of the entry in English, in two shapes (read three ways, see VIEWS).
  * Both cost a model call, so neither retries: the message offers to try again.
  */
+/** Said when the backend stops answering mid-visit. */
+const STOPPED = 'The backend may have stopped since this page was opened.'
+
 const ENGLISH = {
   together: {
     key: 'root-entry-english',
@@ -44,13 +47,17 @@ const ENGLISH = {
     key: 'root-entry-lines',
     get: getRootEntryLines,
     failed: "Couldn't line the English up",
-    fallback: 'The backend may have stopped since this page was opened.',
+    fallback: STOPPED,
     after: ' The Together view above still shows the whole entry.',
   },
 }
 
 /** The ways to read the rest of the entry; the first is the default. */
-const VIEWS = ['together', 'lines', 'one']
+const VIEWS = [
+  { id: 'together', label: 'Together' },
+  { id: 'lines', label: 'Line by line' },
+  { id: 'one', label: 'One at a time' },
+]
 
 export default function RootMeaningCard({ root: asked, hasAlternates, accent }) {
   const { rootMeaningStatus, healthFailed, retryHealth } = useHealth()
@@ -130,7 +137,7 @@ function Body({
   // page with the English of the line you touch, or one line at a time.
   // Together is the default because it is the book as printed; the pairings
   // are a convenience. Remembered, so a reader who prefers one keeps it.
-  const [view, setView] = useRemembered('dict.entry-view', VIEWS, 'together')
+  const [view, setView] = useRemembered('dict.entry-view', VIEWS.map((v) => v.id))
   const paired = view !== 'together'
 
   // Asked and got no answer at all. Say so, rather than showing a loading bar
@@ -194,7 +201,7 @@ function Body({
       <ErrorAlert
         title="Classical lookup failed"
         error={error}
-        fallback="The backend may have stopped since this page was opened."
+        fallback={STOPPED}
         onRetry={onRetry}
       />
     )
@@ -298,11 +305,7 @@ function Body({
             <Segmented
               label="How to read the entry"
               accent={accent}
-              options={[
-                { id: 'together', label: 'Together' },
-                { id: 'lines', label: 'Line by line' },
-                { id: 'one', label: 'One at a time' },
-              ]}
+              options={VIEWS}
               value={view}
               onChange={setView}
             />
