@@ -187,10 +187,7 @@ def test_grades_and_lettered_cite_reach_the_reader(db):
 
 
 def test_a_misspelt_word_is_swapped_for_the_word_meant_and_said_so(db):
-    """الصلاه is how people type الصلاة; chairty is a slip. Neither is in any hadith, both find it."""
-    found = search.search("الصلاه", 10)
-    assert [h.number for h in found.hits] == [3]
-    assert found.corrected == [("الصلاه", "الصلاة")]
+    """chairty is a slip no hadith holds; it still finds charity, and says so."""
     found = search.search("chairty", 10)
     assert [h.number for h in found.hits] == [3]
     assert found.corrected == [("chairty", "charity")]
@@ -237,3 +234,16 @@ def test_router_search_reports_corrections_and_chapters(db, client):
     body = client.get("/api/hadith/search", params={"q": "chairty"}).json()
     assert body["corrected"] == [{"typed": "chairty", "used": "charity"}]
     assert body["chapters"] == [{"collection": "bukhari", "number": 2, "name": "Faith", "count": 1}]
+
+
+def test_ta_marbuta_typed_as_ha_is_the_same_word(db):
+    """الصلاه and الصلاة find the same hadith, with nothing called a correction."""
+    for typed in ("الصلاه", "الصلاة"):
+        found = search.search(typed, 10)
+        assert [h.number for h in found.hits] == [3] and found.corrected == []
+
+
+def test_a_distant_word_is_not_passed_off_as_a_repair(db):
+    """Sharing a few letters is not enough: ستكجاري is near nothing in the fixture."""
+    found = search.search("ستكجاري", 10)
+    assert found.corrected == [] and found.unmatched == ["ستكجاري"]

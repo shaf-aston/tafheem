@@ -32,8 +32,8 @@ ENGLISH_WORD = re.compile("[a-z]{2,}")
 
 
 def fold(word: str) -> str:
-    """The word as the index spells it."""
-    return bare_letters(word) if has_arabic(word) else word.lower()
+    """The word (or text) as the index spells it; ة as ه, since typists write الجنه for الجنة."""
+    return bare_letters(word).replace("ة", "ه") if has_arabic(word) else word.lower()
 
 
 def stem(word: str) -> str:
