@@ -20,7 +20,7 @@ import { getQuranTarkeeb } from '../api'
 import { useTranslation } from '../lib/useTranslation'
 import { useRecitation } from '../lib/useRecitation'
 import { useRecitedWord } from '../lib/useRecitedWord'
-import { CORPUS_POS, posLabel } from '../lib/grammarTerms'
+import { posLabel } from '../lib/grammarTerms'
 import { posColor } from '../lib/roleColors'
 import { RECITERS, stop as stopAudio } from '../lib/ayahAudio'
 import { useRemembered } from '../lib/useRemembered'
@@ -171,13 +171,6 @@ export default function AyahStudy({ data, onGo, onReadSurah, accent }) {
             />
           )
         })}
-      </div>
-
-      <div className="flex flex-wrap gap-2 justify-center text-xs">
-        <span className="text-[var(--text-faint)]">Key</span>
-        {CORPUS_POS.map((pos) => (
-          <ArabicText key={pos} size="tiny" style={{ color: posColor(pos) }}>{posLabel(pos)}</ArabicText>
-        ))}
       </div>
 
       <AyahTarkeeb surah={data.surah} ayah={data.ayah} />

@@ -5,7 +5,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { GLOSSARY, ROLE_LEGEND, ROLES, caseLabel, typeLabel } from './grammarTerms'
+import { GLOSSARY, ROLES, caseLabel, typeLabel } from './grammarTerms'
 import { roleVar } from './roleColors'
 
 // The role names the backend can send, schemas.ROLE_KEYS.
@@ -32,7 +32,7 @@ describe('roleVar', () => {
   })
 })
 
-describe('the glossary and the legend', () => {
+describe('the glossary', () => {
   it('explains every role the backend can send', () => {
     for (const key of KEYS) expect(ROLES[key]?.meaning, key).toBeTruthy()
   })
@@ -40,13 +40,6 @@ describe('the glossary and the legend', () => {
   // A glossary entry with no matching role would be a note nobody can ever see.
   it('explains nothing the backend cannot send', () => {
     for (const key of Object.keys(ROLES)) expect(KEYS, key).toContain(key)
-  })
-
-  it('shows a key made only of real roles', () => {
-    for (const { key, arabic } of ROLE_LEGEND) {
-      expect(KEYS, arabic).toContain(key)
-      expect(arabic).toBeTruthy()
-    }
   })
 
   // A tag prints the Arabic term alone; the English lives in the glossary.
