@@ -11,6 +11,7 @@
  * read rather than leaving the app.
  */
 import { useState } from 'react'
+import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery } from '@tanstack/react-query'
 
 import { timelinesQuery } from '../api'
@@ -35,16 +36,10 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
   // landing here. All three name a place in the same words the journey was
   // written in, so all three are read the same way: once per arrival, and once
   // on the first render that has the sections to check the name against.
-  //
-  // Adjusted during render rather than in an effect, the pattern React blesses
-  // for following a prop (see lib/useArrival): the corrected render is the
-  // first one painted, so a deep link never shows the shut tab for a frame.
-  const [seenLink, setSeenLink] = useState(null)
+  // See lib/useArrival for why this is adjusted during render, not in an effect.
   // A link naming an event that does not exist opens the tab plainly, and says so.
   const [missed, setMissed] = useState(false)
-  const link = `${arrival}:${incoming}`
-  if (data && link !== seenLink) {
-    setSeenLink(link)
+  if (useArrivalWhenReady(arrival, Boolean(data))) {
     const asked = parsePlace(incoming, data.sections)
     if (asked) setPlace(asked)
     setMissed(Boolean(incoming) && !asked)

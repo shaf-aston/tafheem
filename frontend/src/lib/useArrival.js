@@ -55,6 +55,21 @@ export function useArrival(arrival, pending = false) {
   return { arrived, returning }
 }
 
+/** Pure, so it can be tested. */
+export const isDue = (followed, arrival, ready) => ready && arrival !== followed
+
+/**
+ * For a panel whose arrival names something it can only check once its data has
+ * loaded (a deep link opened cold): true on the one render that has `ready` and
+ * has not yet followed this arrival. The first arrival counts, null or not.
+ */
+export function useArrivalWhenReady(arrival, ready) {
+  const [followed, setFollowed] = useState()
+  const follow = isDue(followed, arrival, ready)
+  if (follow) setFollowed(arrival)
+  return follow
+}
+
 /** What to keep showing, given what is held now. Pure, so it can be tested. */
 export function nextHeld(held, data, returning) {
   if (data) return data
