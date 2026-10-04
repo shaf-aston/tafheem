@@ -114,10 +114,19 @@ def test_governor_istithna_particle_head_unless_negated():
 
 
 def test_governor_family_heads_and_none():
-    for lemma, family in (("إن", "inna"), ("كان", "kana"), ("ظن", "zanna")):
+    for lemma, family in (("إن", "inna"), ("كان", "kana")):
         toks = [token(1, lemma, lemma, "VRB" if family != "inna" else "PRT", 0, "---", **VERB),
                 token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n")]
         assert governor([lemma, "الْوَلَدُ"], toks, 1) == family
+    # ظن governs as a ناسخ only with its two objects: ظن الولدُ الأمرَ سهلًا
+    toks = [token(1, "ظن", "ظن", "VRB", 0, "---", **VERB),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "الأمر", "أمر", "NOM", 1, "OBJ", stt="d", cas="a"),
+            token(4, "سهلا", "سهل", "NOM", 1, "MOD", stt="i", cas="a")]
+    assert governor(["ظَنَّ", "الْوَلَدُ", "الْأَمْرَ", "سَهْلًا"], toks, 1) == "zanna"
+    toks = [token(1, "تعلم", "تعلم", "VRB", 0, "---", **VERB),
+            token(2, "القرآن", "قرآن", "NOM", 1, "OBJ", stt="d", cas="a")]
+    assert governor(["تَعَلَّمَ", "الْقُرْآنَ"], toks, 1) == "verb"  # one object: a plain verb
     toks = [token(1, "كاد", "كاد", "VRB", 0, "---", **VERB),
             token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),
             token(3, "يموت", "مات", "VRB", 1, "PRD", vox="a", asp="i")]

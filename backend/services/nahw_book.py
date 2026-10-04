@@ -48,6 +48,19 @@ def is_one(lemma: str, family: str, part: str = "words") -> bool:
     return lemma.strip("+") in book_words(family, part)
 
 
+@lru_cache(maxsize=None)
+def family_cards() -> tuple[tuple[str, dict], ...]:
+    """(family, card) for every family whose words govern (إن وأخواتها، حروف الجر...): what
+    a member is named on its own card, what it does, and the effect that proves it."""
+    return tuple((family, kept["card"]) for family, kept in _closed()["families"].items() if "card" in kept)
+
+
+def in_family(lemma: str, family: str) -> bool:
+    """The lemma is on any of the family's word lists (زال is kana's, behind a negation)."""
+    kept = _closed()["families"][family]
+    return any(is_one(lemma, family, part) for part, words in kept.items() if isinstance(words, list))
+
+
 def six_noun_case(base: str, lemma: str) -> str | None:
     """The case one of the six nouns shows by its long letter as a مضاف (أَخُو، أَبَا،
     لِأَخِيهِ), from the bare base word (joined letters and pronoun off) and its lemma.

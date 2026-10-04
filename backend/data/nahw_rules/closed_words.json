@@ -1,5 +1,5 @@
 {
- "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw_book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word.",
+ "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw_book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word. 'card' on a governing family: what a member is named on its own card (named), what it does (does), and the effect on a word linked to it that proves it governs here (governs: a governor or follower answer of services/syntax/facts.py, or a verb's case), and a member's own name where the book gives one (named_as); read by naming._family and signs.py.",
  "vetoes": {
   "_comment": "Links the book rules out, removed from the parser's choices before its tree is picked, and links it settles outright, written over the parser's tree after (mask.book_links). true = on. Read by services/syntax/mask.py.",
   "verb_subject_follows": true,
@@ -11,6 +11,7 @@
  "families": {
   "jarr": {
    "ar": "حروف الجر",
+   "card": {"named": "حرف جر", "does": "يجر الاسم بعده", "governs": "harf_jarr"},
    "effect": "puts the noun after it in the genitive (majroor); the pair is jar-wa-majroor",
    "words": [
     "ب",
@@ -52,6 +53,7 @@
   },
   "atf": {
    "ar": "حروف العطف",
+   "card": {"named": "حرف عطف", "does": "يتبع ما بعده ما قبله في إعرابه", "governs": "atf"},
    "effect": "makes the next word follow the case of the word before it (معطوف on معطوف عليه); governs nothing itself",
    "words": [
     "و",
@@ -80,6 +82,7 @@
   },
   "nida": {
    "ar": "حروف النداء",
+   "card": {"named": "حرف نداء", "does": "ينادي الاسم بعده", "governs": "nida"},
    "effect": "calls the noun after it (munada); a single definite munada is built on damma, else nasb",
    "_called_nouns": "أيّ (أيّة) with the ها of attention is the munada itself, built on damma; the noun with ال after it is its صفة (Tasheel, al-nida)",
    "called_nouns": ["أيها", "أيتها"],
@@ -106,6 +109,7 @@
   },
   "istithna": {
    "ar": "أدوات الاستثناء",
+   "card": {"named": "أداة استثناء", "does": "يُستثنى بها ما بعدها", "governs": "istithna"},
    "effect": "the word after it is the mustathna, usually nasb after a complete positive sentence; after غير/سوى it is genitive (mudaf ilayhi) and the tool itself takes the case",
    "words": [
     "إلا",
@@ -138,6 +142,7 @@
   },
   "inna": {
    "ar": "إن وأخواتها",
+   "card": {"named": "حرف ناسخ مشبه بالفعل", "does": "ينصب الاسم ويرفع الخبر", "governs": "inna"},
    "effect": "nasb the ism and raf' the khabar; attached ما cancels the effect (إنما)",
    "words": [
     "إن",
@@ -158,6 +163,7 @@
   },
   "la_jins": {
    "ar": "لا النافية للجنس",
+   "card": {"named": "لا النافية للجنس", "does": "تعمل عمل إن، تنصب الاسم وترفع الخبر", "governs": "inna"},
    "effect": "nasb the ism (built on fatha when indefinite and single) and raf' the khabar",
    "words": [
     "لا"
@@ -168,6 +174,7 @@
   },
   "kana": {
    "ar": "كان وأخواتها",
+   "card": {"named": "ناقص", "does": "يرفع الاسم وينصب الخبر", "governs": "kana"},
    "effect": "raf' the ism and nasb the khabar; all conjugated forms follow (كانوا، يكون، كن)",
    "words": [
     "كان",
@@ -210,6 +217,7 @@
   },
   "kaada": {
    "ar": "كاد وأخواتها (أفعال المقاربة والرجاء والشروع)",
+   "card": {"named": "ناقص من أفعال المقاربة والرجاء والشروع", "does": "يرفع الاسم وخبره جملة فعلية", "governs": "kaada"},
    "effect": "raf' the ism; the khabar is a present verb (usually with أن after أوشك and عسى, without it after كاد and the verbs of commencement)",
    "words": [
     "كاد",
@@ -247,6 +255,7 @@
   },
   "zanna": {
    "ar": "ظن وأخواتها (أفعال القلوب والتحويل)",
+   "card": {"named": "ناسخ من أفعال القلوب والتحويل", "does": "ينصب مفعولين أصلهما مبتدأ وخبر", "governs": "zanna"},
    "effect": "both objects are nasb and their subject-predicate pair is mubtada-khabar in origin; the verb enters a nominal sentence",
    "words": [
     "ظن",
@@ -326,6 +335,7 @@
   },
   "nasb_mudari": {
    "ar": "نواصب الفعل المضارع",
+   "card": {"named": "حرف نصب", "does": "ينصب الفعل المضارع", "governs": "nasb"},
    "effect": "puts the present verb after it in nasb (fatha; the nun of the five verbs is dropped)",
    "before_a_present_verb": ["أن", "لن", "كي", "لكي", "كيلا", "لئلا", "حتى"],
    "_before_a_present_verb": "the ones that settle an unvowelled present verb as منصوب when it comes straight after them; the rest need a reading of the sentence (services/syntax/naming.py)",
@@ -358,6 +368,7 @@
   },
   "jazm": {
    "ar": "جوازم الفعل المضارع",
+   "card": {"named": "حرف جزم", "does": "يجزم الفعل المضارع", "governs": "jazm", "named_as": {"لا": "لا الناهية، حرف", "لم": "حرف نفي وجزم وقلب", "لما": "حرف نفي وجزم وقلب"}},
    "effect": "puts the present verb after it in jazm (sukun; nun of the five verbs dropped; a weak last letter dropped); conditionals govern two verbs, the condition and the result",
    "before_a_present_verb": ["لم", "لما"],
    "_before_a_present_verb": "the ones that settle an unvowelled present verb as مجزوم when it comes straight after them; لا and the conditionals need a reading of the sentence (services/syntax/naming.py)",
