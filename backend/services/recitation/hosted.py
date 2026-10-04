@@ -2,7 +2,7 @@
 
 The same job as listen.py and the same one function, so the two are swappable:
 whoever calls `transcribe` cannot tell which of them answered. This one sends the
-recording to Groq, who run Whisper large-v3-turbo. Free, and nothing here is paid
+recording to Groq, who run `listening_model`. Free, and nothing here is paid
 for.
 
 It spends whichever of `LISTENING_GROQ_API_KEYS` the asking ear holds, never

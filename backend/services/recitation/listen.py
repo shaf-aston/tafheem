@@ -320,7 +320,7 @@ def scores(audio: bytes, words: list[str], model: str | None = None) -> list[dic
     padded = np.zeros((features.shape[0], window_of(frames, settings.recitation_window_block)),
                       dtype=features.dtype)
     padded[:, :frames] = features[:, :frames]
-    tokenizer = Tokenizer(model.hf_tokenizer, True, task="transcribe", language="ar")
+    tokenizer = Tokenizer(model.hf_tokenizer, True, task="transcribe", language=settings.recitation_language)
     # The first word has no space before it, as the ear writes it.
     pieces = [tokenizer.encode(("" if i == 0 else " ") + w) for i, w in enumerate(words)]
     # Two separate costs, and they answer different questions. "encoded" is the
