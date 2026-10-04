@@ -49,6 +49,10 @@ done
 if [ ! -f "$H/backend/data/hadith.db" ] || [ -n "$(find "$HD" "$H/backend/scripts/build_hadith_index.py" -newer "$H/backend/data/hadith.db" -print -quit)" ]; then
 	(cd "$H" && venv/bin/python backend/scripts/build_hadith_index.py)
 fi
+# Meaning vectors: only changed hadith are re-encoded, at low priority so the live site stays quick.
+if [ ! -f "$H/backend/data/hadith_meaning.db" ] || [ -n "$(find "$H/backend/data/hadith.db" "$H/backend/scripts/build_hadith_meaning.py" -newer "$H/backend/data/hadith_meaning.db" -print -quit)" ]; then
+	(cd "$H" && nice -n 19 venv/bin/python backend/scripts/build_hadith_meaning.py) || echo "hadith: meaning build failed, search runs on words alone"
+fi
 (cd frontend && npm ci --silent && npm run build)
 rm -rf /home/ubuntu/site.new
 cp -r frontend/dist /home/ubuntu/site.new

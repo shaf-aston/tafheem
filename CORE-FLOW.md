@@ -120,9 +120,10 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 - `backend/routers/`: thin endpoints. `backend/services/`: the logic.
   `backend/config.py`: every setting, and the only reader of the environment.
 - Hadith search (`services/hadith/search.py`): words matched as written and by dictionary form
-  (`lemma.py`, CAMeL), words in most hadith dropped by count, numbers matched however written,
-  misspellings swapped by `repair.py` (fewest slips, most common word). Scored by
-  `scripts/score_hadith_search.py` against `data/hadith/search_yardstick.json`.
+  (`lemma.py`, CAMeL), numbers matched however written, misspellings swapped by `repair.py`
+  (fewest slips, most common word), and hadith close in meaning merged in by `meaning.py`
+  (multilingual sentence model on onnxruntime; vectors from `scripts/build_hadith_meaning.py`).
+  Scored by `scripts/score_hadith_search.py` against `data/hadith/search_yardstick.json`.
 - `services/mushkil_split.py` cuts al-Tahawi's Mushkil al-Athar into issues (hadith that seem to
   conflict); `scripts/build_mushkil.py` writes `data/hadith/mushkil-tahawi.json`. No tab reads it yet.
 - `backend/services/sarf/`: the pure core of morphology. `word.py` holds a word as letters

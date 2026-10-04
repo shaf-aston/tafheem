@@ -1180,7 +1180,7 @@ class HadithSearchResponse(BaseModel):
     corrected: list[HadithCorrection] = []
     # Typed words no hadith holds and nothing is near enough to stand in for.
     unmatched: list[str] = []
-    # No hadith holds every word; the hits hold some of them.
+    # No hadith holds every word; the hits are the closest by words and meaning.
     partial: bool = False
     chapters: list[HadithChapter] = []
     # False when the database has not been built yet (see services/hadith),
