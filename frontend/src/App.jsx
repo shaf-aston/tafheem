@@ -303,15 +303,12 @@ function AppContent() {
         <div className="shell space-y-5">
           <SourceFooter tab={activeTab} onSeeAll={() => setSettingsOpen(true)} />
 
-          {/* The two lines that belong to the whole app rather than to this
-              tab, under the list and centred, which is where a colophon goes. */}
-          <div className="text-center space-y-2 pt-4 border-t border-[var(--border)]">
-            <p className="type-small">
-              {aiBackend && !aiBackend.startsWith('none')
-                ? `Local NLP + ${aiBackend.split(' ')[0]}`
-                : 'Local NLP, works offline'}
-            </p>
-            <ArabicText as="p">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ</ArabicText>
+          {/* The colophon, on the same pane as the page and only as wide as its
+              words, so the backdrop still shows around it. */}
+          <div className="pt-4 border-t border-[var(--border)]">
+            <div className="glass rounded-[var(--radius-lg)] w-fit mx-auto px-8 py-4">
+              <ArabicText as="p">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ</ArabicText>
+            </div>
           </div>
         </div>
       </footer>
