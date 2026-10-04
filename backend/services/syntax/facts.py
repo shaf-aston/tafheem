@@ -121,7 +121,17 @@ class Sentence:
             return "kana"
         if is_one(lemma, "kaada") and self._completed_by_present_verb(word):
             return "kaada"
-        return "zanna" if is_one(lemma, "zanna") else None
+        return "zanna" if is_one(lemma, "zanna") and self._two_objects(word) else None
+
+    def _two_objects(self, verb: dict) -> bool:
+        """ظن الولدُ الأمرَ سهلًا: an object and a second word in nasb after it, or an أنّ
+        clause standing for both (علمت أنّ الحق منتصر). تعلّمَ القرآنَ has one, and is a plain verb."""
+        kids = self.kids(verb)
+        first = next((k for k in kids if k["rel"] == "OBJ" and k["pos"] != "PRT"), None)
+        if any(k["pos"] == "PRT" and is_one(k["lemma"], "inna") for k in kids):
+            return True
+        return bool(first) and any(k["id"] > first["id"] and k["rel"] in ("OBJ", "MOD") and k["pos"] in ("NOM", "PROP")
+                                   and typed_or_parsed_case(k) in (None, "a") for k in kids)
 
     def noun_before(self, particle: dict) -> bool:
         """The particle follows a noun it can join to, which an oath و does not: the noun it
@@ -391,9 +401,22 @@ def _follows(token: dict, s: Sentence) -> str:
     # a صفة comes after the noun it describes: هَذَانِ hung on the قَلَمَانِ after it is the mubtada
     if token["rel"] != "MOD" or is_verb(head) or head["id"] > token["id"]:
         return "none"
+    # زيدٌ أبوه كريمٌ: a word whose subject stands before it is told of that subject, a khabar
+    if any(k["rel"] == "SBJ" and k["id"] < token["id"] for k in s.kids(token)):
+        return "none"
+    # الطالبُ الذي نجح: a relative straight after a noun with ال is its صفة, unless that
+    # noun is the doer of a verb still without its object (كافأ المديرُ الذي نجح)
+    verb = s.head(head)
+    owed = bool(verb) and is_verb(verb) and typed_or_parsed_case(head) == "u"         and not any(k["rel"] == "OBJ" and k is not head for k in s.kids(verb))
+    if _listed(token, "mawsul") and head.get("stt") == "d" and head["id"] == token["id"] - 1 and not owed:
+        return "naat"
     mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
+    if mine and theirs and mine != theirs and token.get("stt") == head.get("stt") == "d":
+        return "none"  # أعطى الغنيُّ الفقيرَ: with ال both show their case, and a na't wears its noun's
     if mine and mine == theirs:
-        return "naat" if agrees(token, head) else "none"
+        # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't
+        measure = _listed(head, "tamyeez_head") and not is_participle(token)
+        return "naat" if agrees(token, head) and not measure else "none"
     # لا رجلَ حاضرٌ (khabar) and a hal or tamyeez in nasb are not followers
     if told_of_subject(token, head) or indefinite_nasb(token):
         return "none"
@@ -418,8 +441,7 @@ def takes_tamyeez(token: dict, s: Sentence) -> bool:
     head = s.head(token)
     if head and is_one(head["lemma"], "tamyeez_verbs"):
         return True
-    return any(is_one(t["lemma"], "tamyeez_head") or is_one(strip_diacritics(t["form"]), "tamyeez_head")
-               for t in s.tokens if t["id"] < token["id"])
+    return any(_listed(t, "tamyeez_head") for t in s.tokens if t["id"] < token["id"])
 
 
 def completes_kaada(token: dict, s: Sentence) -> bool:
@@ -429,9 +451,12 @@ def completes_kaada(token: dict, s: Sentence) -> bool:
 
 
 def _listed(token: dict, family: str, part: str = "words") -> bool:
-    """On a book list by its lemma or by the form as typed: the list holds صباحا
-    and يوم, while the parser lemmatises the first to صباح."""
-    return any(is_one(spelling, family, part) for spelling in (token["lemma"], strip_diacritics(token["form"])))
+    """On a book list by its lemma, by the form as typed, or by that form without its
+    tanween alef: the list holds صباحا and كوب, while the parser lemmatises the first
+    to صباح and may misread the second (كُوبًا as كوان)."""
+    form = strip_diacritics(token["form"])
+    bare = form[:-1] if form.endswith("ا") and has_tanween(token.get("typed") or "") else form
+    return any(is_one(spelling, family, part) for spelling in (token["lemma"], form, bare))
 
 
 def _is_zarf(token: dict, s: Sentence) -> bool:
@@ -459,7 +484,8 @@ def _place_time(token: dict, s: Sentence) -> bool:
     if not _is_zarf(token, s):
         return False
     head = s.head(token)
-    if head and is_verb(head):
+    # مسافرٌ غدًا: a participle works like its verb
+    if head and (is_verb(head) or (is_participle(head) and token["rel"] == "MOD")):
         return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a")
     return typed_or_parsed_case(token) in (None, "a") and any(
         is_verb(k) and k["id"] > token["id"] for k in s.kids(token))
@@ -553,6 +579,9 @@ def _governor(token: dict, s: Sentence) -> str:
         return "harf_jarr"
     under_verb = bool(head) and is_verb(head)
     if rel == "IDF" and not (under_verb and typed != "i"):
+        return "idafa"
+    # ذائقةُ الموتِ: the noun in jarr straight after a noun in construct is its mudaf ilayh
+    if head and head.get("stt") == "c" and head["id"] == token["id"] - 1 and typed == "i" and not under_verb:
         return "idafa"
     if rel == "---" and head and is_plain_noun(head) and head["id"] == token["id"] - 1 \
             and typed_or_parsed_case(token) == "i" and not any(c["rel"] in ("SBJ", "TPC") for c in s.kids(token)) \

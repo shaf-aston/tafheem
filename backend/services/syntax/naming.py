@@ -15,7 +15,7 @@ package's `__init__.py`.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import book_path, is_mabni, is_one, named_roles, role_table
+from backend.services.nahw_book import book_path, family_cards, in_family, is_mabni, is_one, named_roles, role_table
 from backend.services.syntax import facts, walker
 from backend.services.harakat import (
     CASE_NAME, PRESENT_PREFIX, SUKUN, command_shape, drops_weak, five_verb_nun, letters, paused, typed_case)
@@ -86,12 +86,28 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         if token["pos"] == "PRT" and any(
                 named[j] == NAMED.majroor for j, kid in enumerate(bases) if kid["head"] == token["id"]):
             named[index] = NAMED.harf_jarr
+    cases = [_ending(role, token, bases[i - 1] if i else None, words[i + 1] if i + 1 < len(words) else "")
+             for i, (role, token) in enumerate(zip(named, bases))]
+    # what each word shows: the governor and follower the tree gave it, and its case
+    shown = [{answers[token["id"]]["governor"], answers[token["id"]]["follows"], case}
+             for token, case in zip(bases, cases)]
     # the parser's tense goes with a فعل, so a card CAMeL took for a noun (ضُرِبَ) still says ماضٍ
-    return [{"role": role, "case": _ending(role, token, bases[i - 1] if i else None,
-                                           words[i + 1] if i + 1 < len(words) else ""),
+    return [{"role": role, "case": case,
              "aspect": token.get("asp") if role == NAMED.fil else None,
+             "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "book": book_path(found.path, found.book) if found else None}
-            for i, (role, token, found) in enumerate(zip(named, bases, walked))]
+            for role, case, token, found in zip(named, cases, bases, walked)]
+
+
+def _family(token: dict, bases: list[dict], shown: list[set]) -> str | None:
+    """The family a particle or verb is named by (كان فعل ماضٍ ناقص، إنّ حرف مشبه بالفعل):
+    one whose list holds it and whose effect shows on a word linked to it, the noun hung
+    on إنّ or كان, or the verb لم hangs on. A listed word that governs nothing here (the
+    لا of a plain negation) keeps its plain name."""
+    linked = set().union(*(said for other, said in zip(bases, shown)
+                           if other["head"] == token["id"] or other["id"] == token["head"]))
+    return next((family for family, card in family_cards()
+                 if card["governs"] in linked and in_family(token["lemma"], family)), None)
 
 
 def opens_with_verb(roles: list[str | None]) -> bool:

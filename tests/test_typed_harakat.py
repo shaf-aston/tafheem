@@ -189,9 +189,10 @@ def test_a_word_before_its_noun_is_no_sifa():
 
 def test_a_noun_sharing_a_verbs_lemma_governs_nothing():
     from backend.services.syntax.facts import Sentence
-    noun = token(2, "علم", "علم", "NOM", 1, "MOD", stt="c")
+    noun = token(2, "علم", "علم", "NOM", 1, "OBJ", stt="c", cas="a")
     verb = token(1, "علمت", "علم", "VRB", 0, "---", **VERB)
-    s = Sentence([verb, noun])
+    second = token(3, "نافعا", "نافع", "NOM", 1, "MOD", stt="i", cas="a")
+    s = Sentence([verb, noun, second])
     assert s.family(verb) == "zanna"
     assert s.family(noun) is None
 

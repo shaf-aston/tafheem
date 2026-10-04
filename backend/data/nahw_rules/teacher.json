@@ -32,7 +32,10 @@
   "_built_on": "What else a verb or a noun is built on (services/signs.py): a command to many or to one woman drops its nun (اُكْتُبُوا، اُكْتُبِي), a command from a weak root drops its last letter (اِسْقِ، اِتَّقِ), a present verb is built on the fatha with the nun of emphasis (لَيَنْصُرَنَّ) and on the sukun with the nun of women (يَرْسُمْنَ), and the single indefinite noun after لا of the genus is built on what its nasb would show (لا ضَرَرَ، لا قَلَمَيْنِ).",
   "nun_on": {"emphasis": "الفتح", "women": "السكون"},
   "la_jins_on": {"vowel": "الفتح", "dual": "الياء", "sound_plural": "الياء", "on_alef": "الفتح المقدر على الألف"},
-  "tense": {"p": "فعل ماضٍ", "c": "فعل أمر", "i": "فعل مضارع"}
+  "tense": {"p": "فعل ماضٍ", "c": "فعل أمر", "i": "فعل مضارع"},
+  "_by_family": "A particle or verb named by the family it governs as (closed_words.json card, services/signs.py): its name and what it does, said in place of the plain حرف or after the tense.",
+  "harf_by_family": "{named} مبني لا محل له من الإعراب، {does}",
+  "verb_by_family": "{tense} {named} {state}، {does}"
  },
  "book_path": {
   "_comment": "The proof line under a word the book's tree named (syntax/naming.py): the branches walked below كلمة, a branch repeated by its leaf said once, then the leaf's section and page in Tasheel al-Nahw.",

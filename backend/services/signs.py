@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import SHADDA, SUKUN, TANWEEN, drops_weak, five_verb_nun, has_tanween, letters
-from backend.services.nahw_book import book_words, reason, six_noun_case, teacher_rules
+from backend.services.nahw_book import book_words, family_cards, reason, six_noun_case, teacher_rules
 
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
 _WEAK_END = {"ي": "manqus", "و": "on_waw", "ا": "on_alef", "ى": "on_alef"}
@@ -66,7 +66,18 @@ def settle(cards: list[dict]) -> list[dict]:
             card.update(_verb(card))
         else:
             card["sign"] = _noun_sign(card, before, after)
+            if card.get("type") == "harf" and (said := _family_said(card)):
+                card["reason"] = teacher_rules()["case_said"]["harf_by_family"].format(**said)
     return cards
+
+
+def _family_said(card: dict) -> dict | None:
+    """{named, does} of the family the word governs as (iraab.with_parser_roles sets it),
+    by the member's own name where the book gives one (لم حرف نفي وجزم وقلب)."""
+    family = dict(family_cards()).get(card.get("family"))
+    if not family:
+        return None
+    return {"named": family.get("named_as", {}).get(card["camel"]["base"], family["named"]), "does": family["does"]}
 
 
 def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | None:
@@ -104,12 +115,12 @@ def _verb(card: dict) -> dict:
     if not tense:
         return {"case": "mabni", "sign": sign("mabni"), "reason": reason("فعل")}
     built_on = _built_on(card, aspect)
-    if built_on:
-        built = _built(built_on)
-        return {"case": "mabni", "sign": built, "reason": f"{tense} {built}. {reason(tense)}"}
-    case = card["case"]  # rule_engine.verb_card settled the mood
-    return {"case": case, "sign": _present_sign(card, case),
-            "reason": f"{tense} {said['word'][case]}. {reason(tense)}"}
+    case = "mabni" if built_on else card["case"]  # rule_engine.verb_card settled the mood
+    shown = _built(built_on) if built_on else _present_sign(card, case)
+    state = shown if built_on else said["word"][case]
+    family = _family_said(card)
+    told = said["verb_by_family"].format(tense=tense, state=state, **family) if family else f"{tense} {state}"
+    return {"case": case, "sign": shown, "reason": f"{told}. {reason(tense)}"}
 
 
 def _built_on(card: dict, aspect: str) -> str | None:
