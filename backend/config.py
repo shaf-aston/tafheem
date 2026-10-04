@@ -285,6 +285,9 @@ class Settings(BaseSettings):
     # Word and meaning rankings are merged by reciprocal rank: 1/(k + rank) summed.
     # 60 is the standard constant; larger flattens the difference between ranks.
     hadith_meaning_fusion_k: int = 60
+    # After the model fails to load (no network for its first fetch), searches
+    # answer by words alone for this long before loading is tried again.
+    hadith_meaning_retry_seconds: float = 300.0
 
     # The only database written while serving. Created on first use; deleting the file forgets everything.
     progress_db_path: str = "data/progress.db"

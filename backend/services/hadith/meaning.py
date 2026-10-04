@@ -15,6 +15,7 @@ from __future__ import annotations
 import platform
 import sqlite3
 import threading
+import time
 from functools import lru_cache
 from typing import Protocol
 
@@ -55,13 +56,25 @@ class _OnnxSentenceModel:
 
 
 _lock = threading.Lock()
+_model: Encoder | None = None
+# When loading last failed: a missing download is not retried by every search.
+_failed_at: float | None = None
 
 
-@lru_cache(maxsize=1)
 def encoder() -> Encoder:
-    settings = get_settings()
-    with _lock:
-        return _OnnxSentenceModel(settings.hadith_meaning_model, settings.hadith_meaning_max_tokens)
+    global _model, _failed_at
+    if _model is None:
+        settings = get_settings()
+        with _lock:
+            if _model is None:
+                if _failed_at is not None and time.monotonic() - _failed_at < settings.hadith_meaning_retry_seconds:
+                    raise RuntimeError("meaning model failed to load recently; not retrying yet")
+                try:
+                    _model = _OnnxSentenceModel(settings.hadith_meaning_model, settings.hadith_meaning_max_tokens)
+                except Exception:
+                    _failed_at = time.monotonic()
+                    raise
+    return _model
 
 
 def is_built() -> bool:
@@ -89,6 +102,8 @@ def _index(path: str, _mtime: float) -> tuple[list[tuple[str, int, str]], np.nda
         rows = conn.execute("SELECT collection_id, number, part, vector FROM meaning").fetchall()
     finally:
         conn.close()
+    if not rows:
+        return [], np.zeros((0, 0), dtype=np.float32)
     keys = [(c, n, p) for c, n, p, _ in rows]
     vectors = np.frombuffer(b"".join(v for *_, v in rows), dtype=np.float16).reshape(len(rows), -1)
     return keys, vectors.astype(np.float32)

@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.config import data_path  # noqa: E402, needs the path above
+from backend.config import data_path, get_settings  # noqa: E402, needs the path above
 from backend.services.hadith import meaning  # noqa: E402
 
 BATCH = 64
@@ -35,16 +35,18 @@ CREATE TABLE IF NOT EXISTS meaning (
 
 
 def _hash(text: str) -> str:
-    return hashlib.sha1(text.encode("utf-8")).hexdigest()
+    """Of the text and what turned it, so a new model or length re-encodes everything."""
+    settings = get_settings()
+    made_by = f"{settings.hadith_meaning_model}|{settings.hadith_meaning_max_tokens}|"
+    return hashlib.sha1((made_by + text).encode("utf-8")).hexdigest()
 
 
 def main() -> None:
     target = data_path("hadith_meaning_path")
     building = target.with_suffix(".building.db")
+    # With no finished file, a half-built one left by a stopped run is resumed, not restarted.
     if target.exists():
         shutil.copyfile(target, building)
-    else:
-        building.unlink(missing_ok=True)
 
     source = sqlite3.connect(f"file:{data_path('hadith_index_path')}?mode=ro", uri=True)
     rows = source.execute("SELECT collection_id, number, part, english FROM hadith").fetchall()

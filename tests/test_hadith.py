@@ -298,3 +298,24 @@ def test_a_rebuild_encodes_only_changed_hadith(meanings, db, monkeypatch):
     monkeypatch.setattr(meaning, "encoder", lambda: type("Spy", (), {"encode": lambda _s, t: calls.append(t) or _Meanings().encode(t)})())
     build_hadith_meaning.main()
     assert calls == []
+
+
+
+_REAL_ENCODER = meaning.encoder
+
+
+def test_a_model_that_cannot_load_costs_meaning_once_not_every_search(meanings, monkeypatch):
+    """No network for the model: searches still answer by words, and loading is not retried each time."""
+    tries = []
+
+    def unreachable(*_args):
+        tries.append(1)
+        raise OSError("no network")
+
+    monkeypatch.setattr(meaning, "encoder", _REAL_ENCODER)
+    monkeypatch.setattr(meaning, "_OnnxSentenceModel", unreachable)
+    monkeypatch.setattr(meaning, "_model", None)
+    monkeypatch.setattr(meaning, "_failed_at", None)
+    for _ in range(3):
+        assert [h.number for h in search.search("light", 10).hits] == [3]
+    assert len(tries) == 1
