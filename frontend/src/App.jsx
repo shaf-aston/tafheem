@@ -208,6 +208,9 @@ function AppContent() {
           ))}
           </div>
 
+          {/* Sits midway between the tools and the search, matching the colophon at the foot. */}
+          <ArabicText as="p" className="phone-hide whitespace-nowrap">فَفِرُّوا إِلَى اللَّهِ</ArabicText>
+
           <div className="flex items-center gap-2 min-w-0">
             <CommandBar tabs={LISTED} colorOf={accentOf} onGo={switchTab} />
             <StatusPill status={status} nlpEngine={nlpEngine} aiBackend={aiBackend} ear={ear} />
