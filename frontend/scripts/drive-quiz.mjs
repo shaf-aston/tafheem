@@ -4,9 +4,9 @@
  *   node scripts/drive-quiz.mjs
  *
  * Not a test: the suites prove the parts. This answers questions in the running
- * page, on purpose getting some wrong, and then checks that the mistakes come
- * back, that a single mistake still makes a four-option question, that two
- * right answers clear it, and that the reading at the foot says something.
+ * page, on purpose getting some wrong, and then checks that a wrong word lands
+ * in Review, that a single one still makes a four-option question, that putting
+ * it right sends it away until tomorrow, and that the reading at the foot says something.
  */
 import { chromium } from 'playwright'
 
@@ -38,7 +38,7 @@ const bankButton = (label) => page.getByRole('button', { name: new RegExp(`^${la
  *
  * Which option is right cannot be known before answering, so this gets a mix
  * of right and wrong, which is what the drive needs: a run of only right
- * answers would leave the mistakes list empty and prove nothing.
+ * answers would leave Review empty and prove nothing.
  */
 async function answer() {
   await options().first().waitFor({ state: 'visible' })
@@ -72,24 +72,24 @@ check('timings are plausible, not the age of the page',
   timed.every((row) => row.avgMs > 0 && row.avgMs < 120000),
   timed.map((row) => row.avgMs).join(', '))
 
-// ── 2. The Mistakes control appears with a count ─────────────────────────────
+// ── 2. The Review control appears with a count ─────────────────────────────
 const owed = (await (await fetch(`${API}/review?module=quiz`)).json()).items
-const mistakesLabel = await bankButton('Mistakes').innerText().catch(() => '')
-check('the Mistakes control shows how many are waiting',
-  owed.length === 0 || /\d/.test(mistakesLabel), `label "${mistakesLabel}", ${owed.length} owed`)
+const reviewLabel = await bankButton('Review').innerText().catch(() => '')
+check('the Review control shows how many are due',
+  owed.length === 0 || /\d/.test(reviewLabel), `label "${reviewLabel}", ${owed.length} owed`)
 
-// ── 3. Mistakes mode asks a full question ───────────────────────────────────
+// ── 3. Review mode asks a full question ───────────────────────────────────
 if (owed.length > 0) {
-  await bankButton('Mistakes').click()
+  await bankButton('Review').click()
   await page.waitForTimeout(900)
   const shown = await options().count()
-  check('a mistakes question still has four options', shown === 4,
-    `${shown} options from ${owed.length} mistake(s)`)
+  check('a Review question still has four options', shown === 4,
+    `${shown} options from ${owed.length} due`)
 
   const asked = await page.locator('.rise-in .text-center').first().innerText().catch(() => '')
   check('the word asked is one that was got wrong', asked.length > 0, asked.slice(0, 40))
 } else {
-  check('a mistakes question still has four options', false, 'no mistakes were made to test with')
+  check('a Review question still has four options', false, 'nothing was due to test with')
 }
 
 // ── 4. The reading at the foot says something before it is even opened ──────
@@ -140,26 +140,22 @@ const owedNow = async () => (await (await fetch(`${API}/review?module=quiz`)).js
 
 await file(false)
 const withProbe = await owedNow()
-check('a wrong answer puts a word in the mistakes list', withProbe.includes(PROBE))
+check('a wrong answer puts a word in Review', withProbe.includes(PROBE))
 
 await page.reload({ waitUntil: 'networkidle' })
 await page.waitForTimeout(700)
-const labelUp = await bankButton('Mistakes').innerText().catch(() => '')
+const labelUp = await bankButton('Review').innerText().catch(() => '')
 check('the control counts it', labelUp.includes(String(withProbe.length)),
   `label "${labelUp}", ${withProbe.length} owed`)
 
 await file(true)
-check('one right answer is not enough, it could be a lucky guess',
-  (await owedNow()).includes(PROBE))
-
-await file(true)
 const cleared = await owedNow()
-check('two right answers clear it', !cleared.includes(PROBE),
+check('putting it right sends it away until tomorrow', !cleared.includes(PROBE),
   `${withProbe.length} owed, now ${cleared.length}`)
 
 await page.reload({ waitUntil: 'networkidle' })
 await page.waitForTimeout(700)
-const labelDown = await bankButton('Mistakes').innerText().catch(() => '')
+const labelDown = await bankButton('Review').innerText().catch(() => '')
 check('the control shows the new number', labelDown.includes(String(cleared.length)) || !cleared.length,
   `label "${labelDown}", ${cleared.length} owed`)
 

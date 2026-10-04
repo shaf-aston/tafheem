@@ -6,7 +6,7 @@ const word = (meaningKey, extra = {}) => ({
   ar: 'كلمة', en: 'word', meaningKey, wordType: 'noun', ...extra,
 })
 const stat = (item, extra = {}) => ({
-  item, attempts: 1, wrong: 0, avgMs: null, inReview: false, ...extra,
+  item, attempts: 1, wrong: 0, avgMs: null, due: false, ...extra,
 })
 
 describe('joining a record of answers to the words themselves', () => {
@@ -122,10 +122,10 @@ describe('the words themselves', () => {
 describe('the line at the top', () => {
   it('counts answers, not words', () => {
     const rows = [
-      { ...stat('a', { attempts: 8, wrong: 2, inReview: true }), word: word('a') },
+      { ...stat('a', { attempts: 8, wrong: 2, due: true }), word: word('a') },
       { ...stat('b', { attempts: 2, wrong: 0 }), word: word('b') },
     ]
-    expect(overall(rows)).toMatchObject({ attempts: 10, wrong: 2, words: 2, inReview: 1 })
+    expect(overall(rows)).toMatchObject({ attempts: 10, wrong: 2, words: 2, due: 1 })
     expect(overall(rows).accuracy).toBeCloseTo(0.8)
   })
 

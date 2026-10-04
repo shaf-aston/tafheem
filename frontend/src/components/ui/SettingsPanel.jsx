@@ -147,7 +147,7 @@ function StorageFooter() {
       <p aria-live="polite" className="type-small text-[var(--text-faint)] leading-snug">
         {asking
           ? 'Settings, what you last chose on each tab, recent searches, your best '
-            + 'streak, and every quiz answer, so Mistakes empties too.'
+            + 'streak, and every quiz answer, so Review empties too.'
           : 'Kept on this device.'}
       </p>
     </div>

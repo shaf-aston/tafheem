@@ -24,10 +24,11 @@
 import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
+import { coverageOf } from '../lib/coverage'
 import { byCategory, hardestWords, joinStats, overall, slowestWords } from '../lib/insights'
 import { fetchSummary } from '../lib/progress'
 import { sayIn } from '../lib/say'
-import { allWords, groupsFor, moduleFor, QUIZ } from '../lib/quizBanks'
+import { allWords, coverage, groupsFor, moduleFor, QUIZ } from '../lib/quizBanks'
 
 import ArabicText from './ui/ArabicText'
 import Disclosure from './ui/Disclosure'
@@ -47,6 +48,13 @@ const NAMES = {
 }
 
 const percent = (fraction) => `${Math.round(fraction * 100)}%`
+// A whole number from 10% up, one decimal below, where a small share is news.
+// Under a tenth of a percent says so rather than round a known word down to 0%.
+const shareOf = (fraction, language) => {
+  const format = (n, digits) => new Intl.NumberFormat(language, { maximumFractionDigits: digits }).format(n)
+  if (fraction < 0.001) return `<${format(0.1, 1)}`
+  return format(fraction * 100, fraction >= 0.1 ? 0 : 1)
+}
 const seconds = (ms) => `${(ms / 1000).toFixed(1)}s`
 
 export default function QuizInsights({ accent, language }) {
@@ -66,6 +74,7 @@ export default function QuizInsights({ accent, language }) {
     refetchOnWindowFocus: false,
   })
   const words = useQuery({ queryKey: ['quiz-words', 'all'], queryFn: allWords })
+  const covering = useQuery({ queryKey: ['quiz-coverage'], queryFn: coverage })
   const groups = useQuery({ queryKey: ['quiz-groups', 'quranic'], queryFn: () => groupsFor('quranic') })
 
   // Joined and totalled once per round, not once per render: the bar reads the
@@ -80,11 +89,18 @@ export default function QuizInsights({ accent, language }) {
     [joined],
   )
 
+  const share = useMemo(
+    () => (stats.data && words.data && covering.data
+      ? coverageOf(words.data, covering.data, stats.data.filter((row) => row.known).map((row) => row.item))
+      : null),
+    [stats.data, words.data, covering.data],
+  )
+
   return (
     <Disclosure
       framed
       bodyClassName="px-4 pt-1 pb-4"
-      label={<StatBar totals={totals} say={say} />}
+      label={<StatBar totals={totals} share={share} say={say} language={language} />}
     >
       <Body joined={joined} stats={stats} words={words} groups={groups} accent={accent}
         say={say} language={language} />
@@ -93,8 +109,8 @@ export default function QuizInsights({ accent, language }) {
 }
 
 /**
- * The three figures on the shut bar: how much stuck, how much was answered,
- * how much is still owed. Chosen because they are the three a learner between
+ * The figures on the shut bar: how much stuck, how much was answered,
+ * how much of the Qur'an the known words cover, how much is due. Chosen because they are the three a learner between
  * rounds actually asks for, and because each is a plain count that cannot be
  * argued with.
  *
@@ -102,16 +118,19 @@ export default function QuizInsights({ accent, language }) {
  * and then jumps once the answers load would have told you something untrue in
  * the meantime, and this bar's whole job is being readable without opening it.
  */
-function StatBar({ totals, say }) {
+function StatBar({ totals, share, say, language }) {
   if (!totals || totals.accuracy === null) return <>{say('How you’re doing, all time')}</>
 
   return (
     <span className="flex items-center justify-between gap-3 min-w-0">
-      <span className="flex items-baseline gap-5 sm:gap-8 min-w-0">
+      <span className="flex flex-wrap items-baseline gap-x-5 sm:gap-x-8 gap-y-2 min-w-0">
         <Figure value={percent(totals.accuracy)} name={say('right')} tone="var(--success)" />
         <Figure value={totals.attempts} name={say('answered')} />
-        {totals.inReview > 0 && (
-          <Figure value={totals.inReview} name={say('to review')} tone="var(--danger)" />
+        {share !== null && (
+          <Figure value={`${shareOf(share, language)}%`} name={say('of the Qur’an')} />
+        )}
+        {totals.due > 0 && (
+          <Figure value={totals.due} name={say('to review')} tone="var(--danger)" />
         )}
       </span>
       <span className="type-small text-[var(--text-faint)] shrink-0 hidden sm:inline">
@@ -125,14 +144,14 @@ function StatBar({ totals, say }) {
 // figures across the bar and only drops to the labels if it needs them.
 function Figure({ value, name, tone }) {
   return (
-    <span className="flex flex-col gap-0.5 min-w-0">
+    <span className="flex flex-col gap-0.5">
       <span
         className="type-figure font-semibold tabular-nums"
         style={{ color: tone ?? 'var(--text)' }}
       >
         {value}
       </span>
-      <span className="type-small uppercase tracking-wide text-[var(--text-faint)] truncate">
+      <span className="type-small uppercase tracking-wide text-[var(--text-faint)] whitespace-nowrap">
         {name}
       </span>
     </span>
@@ -176,8 +195,8 @@ function Body({ joined, stats, words, groups, accent, say, language }) {
           answers covered. */}
       <p className="type-body text-[var(--text-dim)]">
         {say(totals.words === 1 ? 'Across {n} word.' : 'Across {n} words.', { n: totals.words })}
-        {totals.inReview > 0 && (
-          <> {say('{n} still waiting in Mistakes.', { n: totals.inReview })}</>
+        {totals.due > 0 && (
+          <> {say('{n} still waiting in Review.', { n: totals.due })}</>
         )}
       </p>
 

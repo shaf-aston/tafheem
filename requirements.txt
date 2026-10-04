@@ -43,3 +43,7 @@ python-multipart>=0.0.9
 # backend/scripts/render_note_pages.py turns the teacher's PDFs into page
 # pictures; the running app never opens a PDF.
 pypdfium2>=4.30
+
+# ── Spaced review ─────────────────────────────────────────────────────────────
+# FSRS-6 schedule for the quiz review list (backend/services/review_schedule.py).
+fsrs==6.3.2

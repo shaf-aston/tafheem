@@ -131,6 +131,14 @@ CREATE TABLE word_place (
   ayah    INTEGER NOT NULL,
   PRIMARY KEY (word_id, surah, ayah)
 );
+
+-- The corpus lemmas a word stands for, so the export can count how much of the
+-- Qur'an the word covers and pick one ayah that shows it.
+CREATE TABLE word_lemma (
+  word_id INTEGER NOT NULL REFERENCES word(id),
+  lemma   TEXT NOT NULL,
+  PRIMARY KEY (word_id, lemma)
+);
 """
 
 
@@ -150,6 +158,7 @@ class Word:
     sets: set[str] = field(default_factory=set)
     groups: set[str] = field(default_factory=set)
     places: set[tuple[int, int]] = field(default_factory=set)
+    lemmas: set[str] = field(default_factory=set)
 
     @property
     def bare(self) -> str:
@@ -185,6 +194,7 @@ class Lexicon:
         kept.sets |= word.sets
         kept.groups |= word.groups
         kept.places |= word.places
+        kept.lemmas |= word.lemmas
         kept.wordType = kept.wordType or word.wordType
         # The hand-written lists have no Urdu, so whichever copy of this word came
         # from the corpus is the only one that can supply it.
@@ -530,6 +540,42 @@ def words_with_lemmas(
     return found
 
 
+def link_book_lemmas(
+    words: list[Word], corpus: sqlite3.Connection, checked: dict[str, list[str]]
+) -> None:
+    """Give each 80% book word the corpus lemmas it stands for.
+
+    A book word whose spelling or meaning matched a corpus word was merged with
+    it and already has them. The rest are matched on their letters and on verb
+    against not-verb, the same line only_new_words draws. A word the corpus
+    writes another way (يَتَفَكَّرُ for تَفَكَّرَ, a plural for its singular)
+    cannot be matched by rule, so word_kinds.json names its lemmas by hand.
+    """
+    is_verb = {lemma: word_type == "verb" for lemma, _, _, word_type, _ in words_with_lemmas(corpus).values()}
+    if unknown := sorted({lemma for found in checked.values() for lemma in found} - set(is_verb)):
+        raise SystemExit(f"word_kinds.json names lemmas the corpus does not have: {unknown}")
+    by_spelling = {word.ar: word for word in words}
+    if unknown := sorted(set(checked) - set(by_spelling)):
+        raise SystemExit(f"word_kinds.json links words that are not in any list: {unknown}")
+
+    by_letters: dict[str, set[str]] = defaultdict(set)
+    for lemma in is_verb:
+        by_letters[bare_letters(lemma)].add(lemma)
+    unlinked = []
+    for word in words:
+        if word.lemmas or "book" not in word.sets:
+            continue
+        if word.ar in checked:
+            word.lemmas = set(checked[word.ar])
+            continue
+        verb = word.wordType == "verb"
+        word.lemmas = {lemma for lemma in by_letters.get(word.bare, ()) if is_verb[lemma] == verb}
+        if not word.lemmas:
+            unlinked.append(word.ar)
+    if unlinked:
+        print(f"  {len(unlinked)} book words with no corpus lemma, no ayah or coverage: {' '.join(unlinked)}")
+
+
 def corpus_words(corpus: sqlite3.Connection, meanings: sqlite3.Connection) -> list[Word]:
     """Every Qur'anic lemma worth asking about, glossed from its cleanest place.
 
@@ -599,6 +645,7 @@ def corpus_words(corpus: sqlite3.Connection, meanings: sqlite3.Connection) -> li
                 attached=pieces > 1,
                 sets={"quran"},
                 places=where[lemma],
+                lemmas={lemma},
             )
         )
 
@@ -672,6 +719,7 @@ def content_digest(db: sqlite3.Connection) -> str:
         "SELECT ar, en, meaning_key, word_type, times_in_quran, attached FROM word ORDER BY id",
         "SELECT word_id, axis, value FROM word_tag ORDER BY word_id, axis, value",
         "SELECT word_id, surah, ayah FROM word_place ORDER BY word_id, surah, ayah",
+        "SELECT word_id, lemma FROM word_lemma ORDER BY word_id, lemma",
     ):
         for row in db.execute(query):
             fingerprint.update(repr(row).encode())
@@ -700,6 +748,10 @@ def write(lexicon: Lexicon, sets: list[dict]) -> None:
             "INSERT INTO word_place (word_id, surah, ayah) VALUES (?,?,?)",
             [(word_id, surah, ayah) for surah, ayah in sorted(word.places)],
         )
+        db.executemany(
+            "INSERT INTO word_lemma (word_id, lemma) VALUES (?,?)",
+            [(word_id, lemma) for lemma in sorted(word.lemmas)],
+        )
     db.executemany(
         "INSERT INTO meta (key, value) VALUES (?,?)",
         [
@@ -727,9 +779,8 @@ def main() -> None:
     hand_written = list(lexicon.words)
 
     print("Reading the hand-tagged corpus…")
-    for word in corpus_words(
-        sqlite3.connect(QURAN / "corpus.db"), sqlite3.connect(QURAN / "meanings.db")
-    ):
+    corpus = sqlite3.connect(QURAN / "corpus.db")
+    for word in corpus_words(corpus, sqlite3.connect(QURAN / "meanings.db")):
         lexicon.add(word)
 
     # Last, and only what is new. Read after the Qur'an so the drop rule can see
@@ -761,6 +812,7 @@ def main() -> None:
     for spelling, meaning in meanings.items():
         word = by_spelling[spelling]
         word.en, word.ur, word.meaningKey = meaning["en"], meaning["ur"], meaning["en"].lower()
+    link_book_lemmas(lexicon.words, corpus, checked["lemmas"])
 
     # What the picker needs to name each set on screen. Kept with the words
     # because it belongs to the list it describes.

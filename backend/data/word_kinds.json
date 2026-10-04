@@ -16,5 +16,33 @@
   "_meanings": "Hand-checked meanings for Qur'anic words whose one chosen word-by-word gloss only fits its own verse. Each replaces en, ur and the meaning key.",
   "meanings": {
     "تَأْوِيل": { "en": "interpretation", "ur": "تاویل، تعبیر" }
+  },
+  "_lemmas": "Corpus lemmas for 80% book words the build cannot match by letters, because the corpus writes them another way: a present tense, a plural's singular, the Qur'an's own hamza. Each was checked by its Qur'an count against the book's. The build stops if a lemma is not in the corpus.",
+  "lemmas": {
+    "قُرْآن": ["قُرْءان"],
+    "أَنْعَام": ["نَعَم"],
+    "الآخِرَة": ["آخِر"],
+    "أَجْمَعُون": ["أَجْمَع"],
+    "أَعْمَال": ["عَمَل"],
+    "أَبْصَار": ["بَصَر"],
+    "اِمْرَأَة": ["امْرَأَت"],
+    "خَلَدَ": ["يَخْلُدْ", "أَخْلَدَ"],
+    "شَعَرَ": ["يَشْعُرُ"],
+    "مَلَكَ": ["مَلَكَتْ"],
+    "حَزِنَ": ["يَحْزُن"],
+    "بَصُرَ": ["بَصُرَتْ"],
+    "ضَرَّ": ["يَضُرَّ"],
+    "وَذَرَ": ["يَذَرَ"],
+    "وَزَرَ": ["يَزِرُ"],
+    "وَصَفَ": ["يَصِفُ"],
+    "تَلَا": ["تَلَى"],
+    "أَنْكَرَ": ["يُنكِرُ"],
+    "أَحَبَّ": ["أَحْبَبْ"],
+    "آذَى": ["أُوذِيَ"],
+    "تَفَكَّرَ": ["يَتَفَكَّرُ"],
+    "تَسَاءَلَ": ["يَتَساءَلُ"],
+    "اسْوَدَّ": ["اسْوَدَّتْ"],
+    "ابْيَضَّ": ["ابْيَضَّتْ"],
+    "اسْتَهْزَأَ": ["اسْتُهْزِئَ"]
   }
 }

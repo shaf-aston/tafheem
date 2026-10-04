@@ -22,8 +22,10 @@ from __future__ import annotations
 import json
 import sqlite3
 import threading
+from datetime import datetime, timezone
 
 from backend.config import data_path, get_settings
+from backend.services import review_schedule
 
 _local = threading.local()
 
@@ -66,28 +68,20 @@ CREATE TABLE IF NOT EXISTS feedback (
 );
 """
 
-# One pass for everything the callers ask. `last_wrong` is the newest wrong
-# answer for an item and `since_wrong` counts what has been answered after it,
-# all of which is necessarily right, so the review rule below is a comparison
-# rather than a second query.
+# Counts and timing in one pass. Whether an item is due is not here: it is worked
+# out by replaying the item's answers (see _replay), so nothing extra is stored.
 _SUMMARY = """
-WITH agg AS (
-    SELECT item,
-           COUNT(*)                                              AS attempts,
-           SUM(1 - correct)                                      AS wrong,
-           AVG(CASE WHEN ms IS NOT NULL AND ms <= ? THEN ms END) AS avg_ms,
-           MAX(CASE WHEN correct = 0 THEN id END)                AS last_wrong
-    FROM attempts
-    WHERE user = ? AND module = ?
-    GROUP BY item
-)
-SELECT agg.*,
-       (SELECT COUNT(*) FROM attempts a
-         WHERE a.user = ? AND a.module = ? AND a.item = agg.item
-           AND a.id > agg.last_wrong)                            AS since_wrong
-FROM agg
-ORDER BY agg.item
+SELECT item,
+       COUNT(*)                                              AS attempts,
+       SUM(1 - correct)                                      AS wrong,
+       AVG(CASE WHEN ms IS NOT NULL AND ms <= ? THEN ms END) AS avg_ms
+FROM attempts
+WHERE user = ? AND module = ?
+GROUP BY item
+ORDER BY item
 """
+
+_ANSWERS = "SELECT item, at, correct FROM attempts WHERE user = ? AND module = ? ORDER BY id"
 
 
 def _db() -> sqlite3.Connection:
@@ -211,10 +205,10 @@ def summary(module: str, user: str = "local") -> list[dict]:
     or wrong, but letting it into an average would say the learner is slow when
     what happened is that they walked away. None means nothing timed honestly.
     """
-    settings = get_settings()
-    cap = settings.progress_timing_cap_ms
-    clear_streak = settings.progress_review_clear_streak
-    rows = _db().execute(_SUMMARY, (cap, user, module, user, module)).fetchall()
+    cap = get_settings().progress_timing_cap_ms
+    rows = _db().execute(_SUMMARY, (cap, user, module)).fetchall()
+    cards = _replay(module, user)
+    now = datetime.now(timezone.utc)
 
     return [
         {
@@ -222,16 +216,25 @@ def summary(module: str, user: str = "local") -> list[dict]:
             "attempts": row["attempts"],
             "wrong": row["wrong"],
             "avg_ms": round(row["avg_ms"]) if row["avg_ms"] is not None else None,
-            # An item joins the review list the first time it is got wrong and
-            # leaves after enough right answers in a row since then, counted
-            # wherever they happened. Held nowhere: it is read back out of the
-            # answers themselves, so there is no second record to drift.
-            "in_review": row["last_wrong"] is not None and row["since_wrong"] < clear_streak,
+            "due": review_schedule.is_due(cards[row["item"]], now),
+            "known": review_schedule.is_known(cards[row["item"]], now),
+            "due_at": cards[row["item"]].due.isoformat(),
         }
         for row in rows
     ]
 
 
+def _replay(module: str, user: str) -> dict:
+    """Each item's FSRS card, folded from its saved answers in the order given.
+    `at` is UTC text with no zone, so the zone is added here."""
+    answers: dict[str, list[tuple[datetime, bool]]] = {}
+    for row in _db().execute(_ANSWERS, (user, module)):
+        at = datetime.fromisoformat(row["at"]).replace(tzinfo=timezone.utc)
+        answers.setdefault(row["item"], []).append((at, bool(row["correct"])))
+    return {item: review_schedule.card_of(rows) for item, rows in answers.items()}
+
+
 def review_items(module: str, user: str = "local") -> list[str]:
-    """Just the items still waiting to be got right, newest rule, same one pass."""
-    return [row["item"] for row in summary(module, user) if row["in_review"]]
+    """Items due now, earliest due first."""
+    due = [row for row in summary(module, user) if row["due"]]
+    return [row["item"] for row in sorted(due, key=lambda row: datetime.fromisoformat(row["due_at"]))]

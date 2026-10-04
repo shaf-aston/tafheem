@@ -43,7 +43,7 @@ export const MODULE = 'quiz'
  *
  * Knowing that كِتاب means "book" and knowing it means "کتاب" are two things a
  * reader learns separately, so they are counted separately: an Urdu round never
- * moves an English score, and Mistakes offers back the words got wrong in the
+ * moves an English score, and Review offers back the words due in the
  * language they were asked in. The store files under whatever name it is given
  * and cares about nothing else, so this costs one name.
  *
@@ -64,10 +64,10 @@ export const BANKS = {
   everyday: { label: 'Everyday', cut: 'everyday', grouped: false },
   all: { label: 'All', cut: null, grouped: false },
   // The only set that is not a cut of the table. Its words are whichever ones
-  // have been got wrong and not yet got right twice, which the progress store
-  // decides and this module only asks for. `live` marks that: a cut is the same
-  // every time it is read, this changes as the learner answers.
-  mistakes: { label: 'Mistakes', cut: null, grouped: false, live: true },
+  // are due for another look, which the progress store decides (spaced review)
+  // and this module only asks for. `live` marks that: a cut is the same every
+  // time it is read, this changes as the learner answers.
+  review: { label: 'Review', cut: null, grouped: false, live: true },
 }
 
 /**
@@ -98,6 +98,13 @@ export function table() {
   return loading
 }
 
+/** How much of the Qur'an each lemma covers, fetched once and remembered. */
+let covering = null
+export function coverage() {
+  covering ??= fetchJson(`${WORDS_DIR}/coverage.json`)
+  return covering
+}
+
 /** Which cut a bank and a group id name between them. */
 const cutFor = (bankId, groupId) => {
   const bank = BANKS[bankId]
@@ -107,15 +114,15 @@ const cutFor = (bankId, groupId) => {
   return groupId === 'quran:all' ? 'quran' : groupId
 }
 
-/** Every word there is, which the mistakes round draws its wrong options from. */
+/** Every word there is, which the review round draws its wrong options from. */
 export async function allWords() {
   return (await table()).words
 }
 
 /**
- * The words to quiz on: a whole set, one group inside it, or the mistakes.
+ * The words to quiz on: a whole set, one group inside it, or the review pile.
  *
- * `language` only matters to Mistakes, which has to ask the store for the pile
+ * `language` only matters to Review, which has to ask the store for the pile
  * owed in the language being asked; every other set is the same words whichever
  * language they are shown in, and buildQuestion drops the ones with nothing
  * written in it.
@@ -127,8 +134,12 @@ export async function wordsFor(bankId, groupId = '', language = QUIZ.language) {
   // wrong long enough ago that it has since left the word list simply does not
   // come back, which is the honest answer: it cannot be asked any more.
   if (BANKS[bankId]?.live) {
-    const owed = new Set(await fetchReviewItems(moduleFor(language)))
-    return words.filter((word) => owed.has(word.meaningKey))
+    // In the order the store gives, longest overdue first.
+    const owed = await fetchReviewItems(moduleFor(language))
+    const rank = new Map(owed.map((item, i) => [item, i]))
+    return words
+      .filter((word) => rank.has(word.meaningKey))
+      .sort((a, b) => rank.get(a.meaningKey) - rank.get(b.meaningKey))
   }
 
   const cut = cutFor(bankId, groupId)

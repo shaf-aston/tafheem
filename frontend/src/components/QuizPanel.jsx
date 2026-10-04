@@ -8,10 +8,12 @@ import { buildQuestion, DIRECTIONS, makeRandom, MEANINGS } from '../lib/quiz'
 import {
   allWords, BANKS, bankInfo, groupsFor, moduleFor, QUIZ, WHOLE_SET_SCOPES, wordsFor,
 } from '../lib/quizBanks'
+import { ayahQueries } from '../lib/quizAyah'
 import { fillIn, sayIn } from '../lib/say'
 import { progressKey } from '../lib/stored'
 import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
 
+import QuizAyah from './QuizAyah'
 import QuizInsights from './QuizInsights'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
@@ -43,7 +45,7 @@ const directionsIn = (language) => [`ar-${language}`, `${language}-ar`]
 const freshRound = (previous) => ({
   seed: (Math.random() * 0x7fffffff) | 0 || 1,
   asked: new Set(),
-  // Bumped once per round, and the mistakes list is read under it. The list
+  // Bumped once per round, and the review list is read under it. The list
   // shrinks as the round is answered, so left to refetch on its own it would
   // rebuild the question already on screen underneath the player, and the
   // answer they then clicked would be scored against a different word.
@@ -78,7 +80,7 @@ export default function QuizPanel({ accent, onProgress }) {
   const askedAt = useRef(null)
   const speakRef = useRef(null)
   // Set once if the store cannot be reached, so a session is never silently
-  // saved to nowhere: without it the mistakes list is mysteriously empty later.
+  // saved to nowhere: without it the review list is mysteriously empty later.
   const [saving, setSaving] = useState(true)
   const [picked, setPicked] = useState(null)
   // Whether the "why" behind the phrase/dialect badge is expanded. Reset per
@@ -131,17 +133,17 @@ export default function QuizPanel({ accent, onProgress }) {
   // A surah's words are fetched, the bundled sets are not; react-query hides
   // the difference and remembers what has already been loaded.
   const words = useQuery({
-    // The mistakes set is keyed by round as well, so it is re-read when a round
+    // The review set is keyed by round as well, so it is re-read when a round
     // starts and never while one is being played.
-    // The language is part of the key only because Mistakes reads a different
+    // The language is part of the key only because Review reads a different
     // pile for each; every other set is the same words either way.
     queryKey: ['quiz-words', bankId, groupId, bank.live ? language : '', bank.live ? round.at : 0],
     queryFn: () => wordsFor(bankId, groupId, language),
     refetchOnWindowFocus: false,
   })
 
-  // Wrong options for a mistakes question come from every word there is, not
-  // from the mistakes themselves: three mistakes of three different types
+  // Wrong options for a review question come from every word there is, not
+  // from the due words themselves: three words of three different types
   // cannot fill a four-option question between them.
   const everyWord = useQuery({
     queryKey: ['quiz-words', 'all'],
@@ -168,25 +170,25 @@ export default function QuizPanel({ accent, onProgress }) {
   // written in this language, and picking a longer one would not help.
   const noneInLanguage = pool.length === 0 && (words.data ?? []).length > 0
 
-  // How many words are waiting to be put right, for the label on the Mistakes
+  // How many words are waiting to be put right, for the label on the Review
   // control. Read again after every answer, unlike the pool: which words a
   // round asks has to hold still while it is played, but the count on a
   // control the player is not looking at is only ever news, and a control
   // reading "1" while four are waiting is worse than one that moves.
-  const mistakes = useQuery({
+  const review = useQuery({
     queryKey: ['quiz-review', language],
     queryFn: () => fetchReviewItems(moduleFor(language)),
     refetchOnWindowFocus: false,
   })
-  const owed = mistakes.data?.length ?? 0
+  const owed = review.data?.length ?? 0
 
   // How many questions this selection can actually ask. A question is keyed on
   // meaning, not spelling, so two words meaning the same thing are one question
   //, counting words would show a total the round can never reach.
   const questionCount = useMemo(() => new Set(pool.map((w) => w.meaningKey)).size, [pool])
-  // A cut has to hold a whole question. The mistakes set does not: its wrong
-  // options come from everywhere, so a single word got wrong is already
-  // askable, which is the point of it on the day the first mistake is made.
+  // A cut has to hold a whole question. The review set does not: its wrong
+  // options come from everywhere, so a single due word is already
+  // askable.
   const enough = questionCount >= (bank.live ? 1 : QUIZ.optionCount)
 
   const question = useMemo(() => {
@@ -202,6 +204,15 @@ export default function QuizPanel({ accent, onProgress }) {
       distractorBank: bank.live ? everyWord.data : null,
     })
   }, [pool, enough, direction, round, bank.live, everyWord.data])
+
+  // Fetch the answer word's ayah the moment its question appears, so it is
+  // ready when the answer lands. Failures here are silent; QuizAyah reads the
+  // same cache and draws nothing without data.
+  const ayahAt = question?.ayah
+  useEffect(() => {
+    if (!ayahAt) return
+    for (const query of ayahQueries(ayahAt[0], ayahAt[1])) client.prefetchQuery(query)
+  }, [client, ayahAt])
 
   // One pair of values feeds the whole card, whether it is the live question or
   // one being looked at again, so nothing below has to know which it is.
@@ -247,6 +258,7 @@ export default function QuizPanel({ accent, onProgress }) {
     if (past) return
     setPicked(null)
     setRound((r) => ({
+      at: r.at,
       seed: r.seed + 1,
       asked: question ? new Set(r.asked).add(question.answerId) : r.asked,
     }))
@@ -259,7 +271,7 @@ export default function QuizPanel({ accent, onProgress }) {
     setNoteOpen(false)
     setReviewing(null)
     setHistory([])
-    setRound(freshRound())
+    setRound(freshRound)
     setScore({ right: 0, total: 0, streak: 0 })
   }
 
@@ -306,7 +318,7 @@ export default function QuizPanel({ accent, onProgress }) {
     }).then((result) => {
       setSaving(result.saved)
       // The answer just changed two numbers on screen: what is owed, on the
-      // Mistakes control, and the reading at the foot of the page. Both are
+      // Review control, and the reading at the foot of the page. Both are
       // re-read; the words of the round being played are not, so the question
       // in front of you cannot change underneath your hand.
       if (result.saved) {
@@ -508,7 +520,7 @@ export default function QuizPanel({ accent, onProgress }) {
               { language: say(MEANINGS[language].name) },
             )
             : bank.live
-              ? say('Nothing to put right yet. A word you get wrong is kept here until you have got it right twice.')
+              ? say('Nothing due now. A word comes back here when it is time to see it again.')
               : say(
                 'Only {n} words here, too few for a {k}-option question.'
                 + ' Pick a longer surah or a whole juz.',
@@ -648,6 +660,8 @@ export default function QuizPanel({ accent, onProgress }) {
               )}
             </div>
           </div>
+
+          {answered && shown.ayah && <QuizAyah key={shown.ayah.join(':')} ayah={shown.ayah} accent={accent} />}
         </div>
       )}
 
@@ -688,10 +702,10 @@ export default function QuizPanel({ accent, onProgress }) {
 
           {/* Said once, quietly, and only when it is true. A whole session
               saved to nowhere is worth knowing about while it is happening,
-              not a week later when Mistakes is mysteriously empty. */}
+              not a week later when Review is mysteriously empty. */}
           {!saving && (
             <p className="text-center type-small text-[var(--text-faint)]">
-              {say('Answers aren’t being saved right now, so they won’t reach Mistakes.')}
+              {say('Answers aren’t being saved right now, so they won’t reach Review.')}
             </p>
           )}
 

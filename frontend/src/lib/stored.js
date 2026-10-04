@@ -8,7 +8,7 @@
  * than the button says. The store holds this app's things only.
  *
  * Quiz answers are rows in a database on the machine, not in the browser, so
- * they go through lib/progress.js first; "clear it all" has to mean Mistakes
+ * they go through lib/progress.js first; "clear it all" has to mean Review
  * as well, or the button says more than it does.
  */
 import { forgetProgress } from './progress'
