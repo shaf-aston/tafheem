@@ -43,7 +43,7 @@ import requests
 import torch
 from datasets import Audio, Dataset, load_dataset
 from peft import LoraConfig, get_peft_model
-from transformers import GenerationConfig, Seq2SeqTrainer, Seq2SeqTrainingArguments, WhisperConfig, WhisperForConditionalGeneration, WhisperProcessor
+from transformers import GenerationConfig, Seq2SeqTrainer, Seq2SeqTrainingArguments, WhisperConfig, WhisperForConditionalGeneration, WhisperProcessor, WhisperTokenizerFast
 
 SIZE = 'base'  # 'tiny': two thirds the time at home, pros 1.2 points worse; tuned on 45 ayahs it slipped 3 more
 NAME = f'tarteel-ai/whisper-{SIZE}-ar-quran'
@@ -270,10 +270,12 @@ print(json.dumps(verdict, ensure_ascii=False, indent=1), flush=True)
 
 if keep:
     # Folded back in and converted the way the shipped ear was, so only recitation_model changes at home.
+    # tokenizer.json from openai/whisper-SIZE: same words as Tarteel's, plus the timestamp marks theirs lacks.
+    # Without the file faster-whisper silently fetches openai/whisper-tiny's.
     merged = OUT / 'ear-merged'
     tuned.merge_and_unload().save_pretrained(merged)
-    processor.tokenizer.save_pretrained(merged)
+    WhisperTokenizerFast.from_pretrained(f'openai/whisper-{SIZE}').save_pretrained(merged)
     processor.feature_extractor.save_pretrained(merged)  # the processor alone no longer writes this file
     subprocess.run(['ct2-transformers-converter', '--model', str(merged), '--output_dir', str(OUT / 'ear-tuned'),
-                    '--copy_files', 'preprocessor_config.json', '--quantization', 'float16'], check=True)
+                    '--copy_files', 'preprocessor_config.json', 'tokenizer.json', '--quantization', 'float16'], check=True)
     shutil.rmtree(merged)  # 280 MB that would otherwise be downloaded for nothing
