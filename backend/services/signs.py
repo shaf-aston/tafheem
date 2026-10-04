@@ -9,7 +9,7 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SUKUN, TANWEEN, five_verb_nun, has_tanween, letters
+from backend.services.harakat import SHADDA, SUKUN, TANWEEN, five_verb_nun, has_tanween, letters
 from backend.services.nahw_book import book_map, book_words, reason, teacher_rules, unjoined
 
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
@@ -19,7 +19,8 @@ _WEAK_END = {"ي": "manqus", "و": "on_waw", "ا": "on_alef", "ى": "on_alef"}
 def sign(case: str | None, kind: str = "vowel") -> str | None:
     """The sign a card prints for a case; `kind` names the letter or the assumed vowel
     that shows it (dual, sound_plural, five_verbs, ...), the plain vowel otherwise."""
-    return teacher_rules()["signs"][kind].get(case) or teacher_rules()["signs"]["vowel"].get(case)
+    tables = teacher_rules()["signs"]
+    return tables[kind].get(case) or tables["vowel"].get(case)
 
 
 def kind_of(tag: dict) -> str:
@@ -43,7 +44,7 @@ def kind_of(tag: dict) -> str:
         # الفَتَى، العَصَا: an alef cannot carry a vowel (شَيْئًا's alef is the tanween's, أَخَوَاتِهَا's the pronoun's)
         return "on_alef"
     if "weak_last" in tag and weak and len(marked) > 1 and bare.endswith("ي") and not (
-            marked[-1][1] & {"ّ"} or marked[-2][1] & {"َ", "ُ", "ّ", SUKUN}):
+            SHADDA in marked[-1][1] or marked[-2][1] & {"َ", "ُ", SHADDA, SUKUN}):
         return "manqus"  # القَاضِي: a damma or kasra is too heavy for the ya, the fatha shows
     return "vowel"
 
@@ -61,8 +62,8 @@ def _six_noun(tag: dict, bare: str) -> bool:
 
 
 def _has_pronoun(card: dict) -> bool:
-    """CAMeL saw an attached pronoun at the end ("0" is its word for none)."""
-    return card.get("enclitic") not in (None, "", "0")
+    """CAMeL saw an attached pronoun at the end."""
+    return bool(card.get("enclitic"))
 
 
 def settle(cards: list[dict]) -> list[dict]:
@@ -117,7 +118,7 @@ def _verb(card: dict) -> dict:
     if built_on:
         built = _built(built_on)
         return {"case": "mabni", "sign": built, "reason": f"{tense} {built}. {reason(tense)}"}
-    case = card.get("case") if card.get("case") in teacher_rules()["signs"]["five_verbs"] else "raf'"
+    case = card["case"]  # rule_engine.verb_card settled the mood
     return {"case": case, "sign": _present_sign(card, case),
             "reason": f"{tense} {said['word'][case]}. {reason(tense)}"}
 
@@ -130,10 +131,11 @@ def _built_on(card: dict, aspect: str) -> str | None:
         return _past_ending(word)
     nun = _nun(word)
     if aspect == "c":
+        # a command is built on what its jazm would show
         if not _has_pronoun(card) and strip_diacritics(word).endswith(("وا", "ا", "ي")):
-            return said["dropped_nun"]  # اُكْتُبُوا، اُكْتُبَا، اُكْتُبِي: the five verbs' nun is gone
+            return sign("jazm", "five_verbs")  # اُكْتُبُوا، اُكْتُبَا، اُكْتُبِي: the five verbs' nun is gone
         if _dropped_weak(card):
-            return said["dropped_weak"]
+            return sign("jazm", "dropped_weak")  # اِسْقِ
         return said["nun_on"]["emphasis"] if nun == "emphasis" else said["command_on"]
     return said["nun_on"].get(nun)
 
@@ -164,7 +166,7 @@ def _nun(word: str) -> str | None:
     marked = letters(word)
     if len(marked) < 3 or marked[-1][0] != "ن" or "َ" not in marked[-1][1]:
         return None
-    if "ّ" in marked[-1][1]:
+    if SHADDA in marked[-1][1]:
         return "emphasis" if "َ" in marked[-2][1] else None
     return "women" if SUKUN in marked[-2][1] and marked[-2][0] not in "اوي" else None
 
