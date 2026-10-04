@@ -1,16 +1,16 @@
 """The sign every card prints, decided once, after the roles are settled.
 
 A sign comes from three things: the word as typed (its last letters, the vowels the
-reader wrote), what CAMeL knew of it (the card's `kind`, `weak_last` and `aspect`) and
-the case the card ended on. The rule engine's cards and the parser's names both end
+reader wrote), CAMeL's reading of it (the card's `camel`) and the case the card ended
+on. The rule engine's cards and the parser's names both end
 here (`settle`), so a case the parser moved never keeps a sign worked out for the old
 one. The words printed are the book's, in data/nahw_rules/teacher.json.
 """
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SHADDA, SUKUN, TANWEEN, five_verb_nun, has_tanween, letters
-from backend.services.nahw_book import book_map, book_words, reason, teacher_rules, unjoined
+from backend.services.harakat import SHADDA, SUKUN, TANWEEN, drops_weak, five_verb_nun, has_tanween, letters
+from backend.services.nahw_book import book_words, reason, six_noun_case, teacher_rules
 
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
 _WEAK_END = {"ي": "manqus", "و": "on_waw", "ا": "on_alef", "ى": "on_alef"}
@@ -34,36 +34,24 @@ def kind_of(tag: dict) -> str:
             return "sound_plural"
         if tag.get("number") == "d":
             return "dual"
-        if _six_noun(tag, bare):
+        if tag.get("enclitic") != "1s_poss" and six_noun_case(tag["base"], tag.get("lemma") or ""):
             return "six_nouns"  # أَخًا has a tanween: not a مضاف, so the vowels show
     if tag.get("enclitic") == "1s_poss":
         return "before_ya"  # كِتَابِي: the kasra belongs to the ya, the case cannot show
-    # no root read (key absent): the old test, a final ى is مقصور
-    weak = tag.get("weak_last", bare.endswith("ى"))
-    if bare.endswith(("ا", "ى")) and weak and not _has_pronoun(tag) and not (len(marked) > 1 and marked[-2][1] & TANWEEN):
+    # ى is always an alef maqsura; a plain alef is one only on a weak root (العَصَا)
+    weak = tag.get("weak_last")
+    if (bare.endswith("ى") or (bare.endswith("ا") and weak)) and not _has_pronoun(tag) and not (len(marked) > 1 and marked[-2][1] & TANWEEN):
         # الفَتَى، العَصَا: an alef cannot carry a vowel (شَيْئًا's alef is the tanween's, أَخَوَاتِهَا's the pronoun's)
         return "on_alef"
-    if "weak_last" in tag and weak and len(marked) > 1 and bare.endswith("ي") and not (
+    if weak and len(marked) > 1 and bare.endswith("ي") and not (
             SHADDA in marked[-1][1] or marked[-2][1] & {"َ", "ُ", SHADDA, SUKUN}):
         return "manqus"  # القَاضِي: a damma or kasra is too heavy for the ya, the fatha shows
     return "vowel"
 
 
-def _six_noun(tag: dict, bare: str) -> bool:
-    """أَخُو، أَبَا، لِأَخِيهِ: one of the six nouns with the long letter that is its case,
-    which it has only as a مضاف (to a noun, or to an attached pronoun other than the ya)."""
-    lemma = strip_diacritics(tag.get("lemma") or "")
-    if lemma[-1:] in book_map("six_nouns", "case_by_letter") and lemma[:-1] in book_words("six_nouns"):
-        lemma = lemma[:-1]  # CAMeL's names أبو، أبي are the noun أب with its case letter (not أخت)
-    if tag.get("enclitic") == "1s_poss" or lemma not in book_words("six_nouns") or lemma not in bare:
-        return False
-    rest = bare[bare.rindex(lemma) + len(lemma):]
-    return rest[:1] in book_map("six_nouns", "case_by_letter") and (len(rest) == 1 or _has_pronoun(tag))
-
-
-def _has_pronoun(card: dict) -> bool:
+def _has_pronoun(reading: dict) -> bool:
     """CAMeL saw an attached pronoun at the end."""
-    return bool(card.get("enclitic"))
+    return bool(reading.get("enclitic"))
 
 
 def settle(cards: list[dict]) -> list[dict]:
@@ -82,11 +70,12 @@ def settle(cards: list[dict]) -> list[dict]:
 
 
 def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | None:
-    case, kind = card.get("case"), card.get("kind") or "vowel"
+    case = card.get("case")
     if case is None:
         return None
     if card.get("type") in ("harf", "damir"):
         return sign("mabni")  # a particle or a pronoun never shows a case of its own
+    kind = kind_of(card["camel"])
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
         on = teacher_rules()["case_said"]["la_jins_on"]
@@ -99,7 +88,7 @@ def _after_la_jins(card: dict, before: dict | None, after: dict | None) -> bool:
     مضاف, no tanween (that لا works like ليس and its noun takes the vowels)."""
     if card.get("role") != "اسم إن" or not before:
         return False
-    return unjoined(strip_diacritics(before["word"])) in book_words("la_jins") and not has_tanween(card["word"]) and not (
+    return before["camel"]["base"] in book_words("la_jins") and not has_tanween(card["word"]) and not (
         after and after.get("role") == "مضاف إليه")
 
 
@@ -132,7 +121,7 @@ def _built_on(card: dict, aspect: str) -> str | None:
     nun = _nun(word)
     if aspect == "c":
         # a command is built on what its jazm would show
-        if not _has_pronoun(card) and strip_diacritics(word).endswith(("وا", "ا", "ي")):
+        if not _has_pronoun(card["camel"]) and strip_diacritics(word).endswith(("وا", "ا", "ي")):
             return sign("jazm", "five_verbs")  # اُكْتُبُوا، اُكْتُبَا، اُكْتُبِي: the five verbs' nun is gone
         if _dropped_weak(card):
             return sign("jazm", "dropped_weak")  # اِسْقِ
@@ -142,10 +131,10 @@ def _built_on(card: dict, aspect: str) -> str | None:
 
 def _present_sign(card: dict, case: str) -> str | None:
     word = card["word"]
-    nun = None if _has_pronoun(card) else five_verb_nun(word)  # لن يَكْتُبَهَا: the ا is the pronoun's
+    nun = None if _has_pronoun(card["camel"]) else five_verb_nun(word)  # لن يَكْتُبَهَا: the ا is the pronoun's
     if nun and (case == "raf'") == (nun == "kept"):
         return sign(case, "five_verbs")
-    if card.get("weak_last"):
+    if card["camel"].get("weak_last"):
         if case == "jazm" and _dropped_weak(card):
             return sign(case, "dropped_weak")  # لم يَبْكِ: the weak letter went
         weak_end = _WEAK_END.get(strip_diacritics(word)[-1:])
@@ -155,8 +144,7 @@ def _present_sign(card: dict, case: str) -> str | None:
 
 
 def _dropped_weak(card: dict) -> bool:
-    """The root ends in a weak letter the word no longer ends in (اِسْقِ، لم يَبْكِ)."""
-    return bool(card.get("weak_last")) and strip_diacritics(card["word"])[-1:] not in _WEAK_END
+    return drops_weak(card["camel"]["base"], card["camel"].get("weak_last"))
 
 
 def _nun(word: str) -> str | None:

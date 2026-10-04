@@ -167,7 +167,11 @@ def test_the_light_lakin_joins_and_the_shadda_one_is_the_inna_sister():
 
 def test_the_six_nouns_show_their_case_by_a_letter():
     from backend.services.syntax.facts import typed_case_of
-    six = lambda typed, lemma="أب", stuck_on=0: typed_case_of({"typed": typed, "lemma": lemma, "stuck_on": stuck_on})
+    from backend.services.arabic_text import strip_diacritics
+    # the parser's base word: the typed letters less the attached pronoun's
+    six = lambda typed, lemma="أب", stuck_on=0: typed_case_of(
+        {"typed": typed, "lemma": lemma, "stuck_on": stuck_on,
+         "base": strip_diacritics(typed)[:len(strip_diacritics(typed)) - stuck_on]})
     assert six("أَبَاهُ", stuck_on=1) == "a"
     assert six("أَخُوْ", "أخ") == "u"
     assert six("أَخِيْ", "أخ") == "i"

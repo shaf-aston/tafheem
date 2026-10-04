@@ -11,7 +11,7 @@ from typing import Any
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services import signs
-from backend.services.harakat import CASE_NAME, SUKUN, opens_present
+from backend.services.harakat import CASE_NAME, PRESENT_PREFIX, SUKUN
 from backend.services.nahw_book import book_words, case_of, reason, term_ar
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
@@ -25,13 +25,14 @@ _FAMILY_POS = {"jarr": {"prep"}, "inna": {"conj_sub", "part_focus"}, "atf": {"co
 # ── Verb case ─────────────────────────────────────────────────────────────────
 
 
-def verb_card(word: str, aspect: str | None, case: str | None = None) -> dict:
+def verb_card(base: str, aspect: str | None, case: str | None = None) -> dict:
     """A verb's tense and case: built for a past verb or a command, by its mood for a
     present one. iraab.with_parser_roles calls it again when the parser reads a word
     as a verb or the particle before a present verb settles its mood; signs.settle
-    writes the sign and the reason from these. A "present" verb without a present
-    prefix is a command (اِتَّقِ، read by CAMeL as يتقي's mood)."""
-    if aspect == "i" and not opens_present(word):
+    writes the sign and the reason from these. A "present" verb whose base word (its
+    joined letters off) has no present prefix is a command (اِتَّقِ، read by CAMeL as
+    يتقي's mood)."""
+    if aspect == "i" and base[:1] not in PRESENT_PREFIX:
         aspect = "c"
     if aspect == "i":
         return {"aspect": aspect, "case": case if case in ("raf'", "nasb", "jazm") else "raf'"}
@@ -53,14 +54,12 @@ def _is(tag: dict, family: str) -> bool:
 
 def _entry(tag: dict, kind: str, role: str, key: str | None, case: str | None,
            reason_ar: str) -> dict:
-    """One card, every field named once. `kind` (the sign table, not the word type),
-    `weak_last`, `aspect` and `enclitic` are what signs.settle reads the sign from;
-    the page never shows them."""
+    """One card, every field named once. `camel` is CAMeL's reading of the word, which
+    signs.settle reads the sign from once the case is final; the page never shows it."""
     return {"word": tag["word"], "root": tag.get("root") or None, "type": kind, "role": role,
             "role_key": key, "case": case, "sign": None, "reason": reason_ar,
             "notes": tag.get("features") or "", "source": "rule_engine",
-            "kind": signs.kind_of(tag), "weak_last": tag.get("weak_last"), "aspect": tag.get("aspect"),
-            "enclitic": tag.get("enclitic")}
+            "aspect": tag.get("aspect"), "camel": tag}
 
 
 def _harf_entry(tag: dict, role: str, why: str) -> dict:
@@ -70,7 +69,7 @@ def _harf_entry(tag: dict, role: str, why: str) -> dict:
 def _verb_entry(tag: dict) -> dict:
     mood = {"s": "nasb", "j": "jazm"}.get(tag.get("mood"), "raf'")
     return {**_entry(tag, "fi'l", "فعل", "fil", None, reason("فعل")),
-            **verb_card(tag.get("word", ""), tag.get("aspect"), mood)}
+            **verb_card(tag["base"], tag.get("aspect"), mood)}
 
 
 def _noun_entry(tag: dict, role: str, key: str | None = None, why: str | None = None) -> dict:

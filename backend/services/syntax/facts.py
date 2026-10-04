@@ -12,7 +12,7 @@ from __future__ import annotations
 from typing import Callable
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import book_map, book_words, is_one, is_plain_noun
+from backend.services.nahw_book import book_map, book_words, is_one, is_plain_noun, six_noun_case
 from backend.services.harakat import (
     CAMEL_CASE, PRESENT_PREFIX, SHADDA, SUKUN, has_tanween, past_passive_shape, typed_case, typed_passive)
 
@@ -33,7 +33,7 @@ def is_verb(token: dict) -> bool:
     if token.get("asp") == "c" and strip_diacritics(typed)[:1] != "أ":
         return token.get("pos_camel") in ("noun", "noun_prop")  # نَمْ is not the noun نَمّ
     return token.get("pos_camel") == "noun_prop" and (
-        (strip_diacritics(typed)[:1] in PRESENT_PREFIX and typed_passive(typed, True))
+        (token["base"][:1] in PRESENT_PREFIX and typed_passive(typed, True))
         or past_passive_shape(typed))
 
 
@@ -144,14 +144,8 @@ class Sentence:
 def typed_case_of(token: dict) -> str | None:
     """The case the reader typed on the word: its last vowel, or for one of the six nouns
     as a مضاف the long letter standing for it (أَخُوْ، أَخَا، أَخِيْ زَيْدٍ; أَبَاهُ)."""
-    typed, stuck_on = token.get("typed") or "", token.get("stuck_on", 0)
-    shown = typed_case(typed, stuck_on)
-    if shown or not is_one(token["lemma"], "six_nouns"):
-        return shown
-    base = bare_letters(typed)[:len(bare_letters(typed)) - stuck_on]
-    if base[:-1] != bare_letters(token["lemma"]):
-        return None
-    return book_map("six_nouns", "case_by_letter").get(base[-1:])
+    shown = typed_case(token.get("typed") or "", token.get("stuck_on", 0))
+    return shown or six_noun_case(token["base"], token["lemma"])
 
 
 def typed_or_parsed_case(token: dict) -> str | None:
