@@ -209,7 +209,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
         letter = base["form"][:1]
         return [{"form": f"{letter}+", "lemma": f"{letter}+", "base": letter, "pos": "PRT", "pos_camel": "prep", "ud": "ADP",
                  "asp": "na", "vox": "na", "stt": "na", "cas": "na", "token_type": "prc1"},
-                {**base, "form": base["lemma"], "base": base["base"][1:], "cas": "g"}]
+                {**base, "form": base["lemma"], "base": base["form"][1:], "cas": "g"}]
 
     # the pieces are the tokenisation's, not the tags': ثُلْثَ_+هُ is tagged NOM alone, and
     # left whole its pronoun is lost to the sentence (the بدل's pronoun back to its noun).

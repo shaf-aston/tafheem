@@ -82,10 +82,16 @@ def base_of(word: str, atbtok: str | None) -> str:
     files as joined before ("+" after) or as an attached pronoun ("+" before). The letters
     stay the reader's: CAMeL's reading may spell them otherwise (اتَّقِ read as أَتَّقِي)."""
     bare = strip_diacritics(word)  # not bare_letters: it folds the أ of أَجْلِسُ into an alef
-    pieces = (atbtok or "").split("_")
-    before = sum(len(strip_diacritics(p)) - 1 for p in pieces if p.endswith("+") and len(pieces) > 1)
-    after = sum(len(strip_diacritics(p)) - 1 for p in pieces if p.startswith("+") and len(pieces) > 1)
-    return bare[before:len(bare) - after] or bare
+    pieces = [strip_diacritics(p) for p in (atbtok or "").split("_")]
+    joined = "".join(p[:-1] for p in pieces if p.endswith("+"))
+    pronoun = "".join(p[1:] for p in pieces if p.startswith("+"))
+    stem = next((p for p in pieces if "+" not in p), "")
+    middle = bare[len(joined):len(bare) - len(pronoun)]
+    # the split is used only where its joined letters are the reader's own and the rest
+    # opens with CAMeL's stem (أَخ for أخي); a letter written once (لِ+ال as لل, عَلَى+يَ
+    # as عليّ) fails and the word stays whole
+    fits = bare.startswith(joined) and bare.endswith(pronoun)
+    return middle if stem and fits and bare_letters(middle).startswith(bare_letters(stem)) else bare
 
 
 def drops_weak(base: str, weak_last: bool) -> bool:

@@ -34,16 +34,16 @@ def kind_of(tag: dict) -> str:
             return "sound_plural"
         if tag.get("number") == "d":
             return "dual"
-        if tag.get("enclitic") != "1s_poss" and six_noun_case(tag["base"], strip_diacritics(tag.get("lemma") or "")):
+        if tag.get("enclitic") != "1s_poss" and six_noun_case(tag["base"], tag.get("lemma") or ""):
             return "six_nouns"  # أَخًا has a tanween: not a مضاف, so the vowels show
     if tag.get("enclitic") == "1s_poss":
         return "before_ya"  # كِتَابِي: the kasra belongs to the ya, the case cannot show
-    # no root read (key absent): the old test, a final ى is مقصور
-    weak = tag.get("weak_last", bare.endswith("ى"))
-    if bare.endswith(("ا", "ى")) and weak and not _has_pronoun(tag) and not (len(marked) > 1 and marked[-2][1] & TANWEEN):
+    # ى is always an alef maqsura; a plain alef is one only on a weak root (العَصَا)
+    weak = tag.get("weak_last")
+    if (bare.endswith("ى") or (bare.endswith("ا") and weak)) and not _has_pronoun(tag) and not (len(marked) > 1 and marked[-2][1] & TANWEEN):
         # الفَتَى، العَصَا: an alef cannot carry a vowel (شَيْئًا's alef is the tanween's, أَخَوَاتِهَا's the pronoun's)
         return "on_alef"
-    if "weak_last" in tag and weak and len(marked) > 1 and bare.endswith("ي") and not (
+    if weak and len(marked) > 1 and bare.endswith("ي") and not (
             SHADDA in marked[-1][1] or marked[-2][1] & {"َ", "ُ", SHADDA, SUKUN}):
         return "manqus"  # القَاضِي: a damma or kasra is too heavy for the ya, the fatha shows
     return "vowel"

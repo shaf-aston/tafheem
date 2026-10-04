@@ -9,7 +9,7 @@ from functools import lru_cache
 from pathlib import Path
 from types import SimpleNamespace
 
-from backend.services.arabic_text import bare_letters
+from backend.services.arabic_text import bare_letters, strip_diacritics
 
 RULES = Path(__file__).parent.parent / "data" / "nahw_rules"
 
@@ -53,6 +53,7 @@ def six_noun_case(base: str, lemma: str) -> str | None:
     لِأَخِيهِ), from the bare base word (joined letters and pronoun off) and its lemma.
     A lemma ending in a case letter (CAMeL's أبو، the book's ذو، فو) carries it on its stem."""
     by_letter = book_map("six_nouns", "case_by_letter")
+    lemma = strip_diacritics(lemma)
     one_of = lemma in book_words("six_nouns") or lemma[:-1] in book_words("six_nouns")
     stem = lemma[:-1] if lemma[-1:] in by_letter else lemma
     if not one_of or bare_letters(base[:-1]) != bare_letters(stem):

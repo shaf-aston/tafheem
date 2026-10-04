@@ -427,7 +427,7 @@ def _unanalysed(word: str, lemma: str, engine: str) -> dict[str, Any]:
         "type": "ism", "case": case_str, "case_raw": "u", "gloss": "",
         "gender": "na", "number": "na", "person": "na", "aspect": "na",
         "mood": "na", "voice": "na", "state": "na", "pattern": "",
-        "enclitic": "", "base": strip_diacritics(word),  # no root read: no weak_last key
+        "weak_last": False, "enclitic": "", "base": strip_diacritics(word),
         "features": f"case={case_str}" if case_str else "",
         "engine": engine,
     }
