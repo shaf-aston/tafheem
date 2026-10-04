@@ -357,18 +357,14 @@ function Entry({ entry, accent, i, onGo, onLookup, refs = false, compact = false
       className={`rise-in rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)]
         ${compact ? 'p-3 space-y-2' : 'p-4 space-y-3'} ${SPAN_CLASS[span] ?? ''}`}
     >
-      <div className="flex items-start justify-between gap-3" dir="rtl">
-        <div>
-          <ArabicText as="div" style={{ color: accent }}>{entry.arabic}</ArabicText>
-          {entry.root && !sameRoot && (
-            <ArabicText as="div" className="text-[var(--text-faint)] mt-0.5">جذر: {entry.root}</ArabicText>
-          )}
-        </div>
-        {/* The bab reads beside the sound of the word, from the books, never typed in. */}
-        <div className="flex items-start gap-3 mt-1" dir="ltr">
-          <Pronunciation size="body">{entry.transliteration}</Pronunciation>
-          {!compact && entry.root && <RootBabs root={entry.root} refs={refs} />}
-        </div>
+      {/* Two rows: word beside its sound, root beside its bab (from the books, never typed in). */}
+      <div className="grid grid-cols-[auto_auto] justify-between items-baseline gap-x-3 gap-y-0.5" dir="rtl">
+        <ArabicText as="div" style={{ color: accent }}>{entry.arabic}</ArabicText>
+        <Pronunciation size="body">{entry.transliteration}</Pronunciation>
+        {entry.root && !sameRoot && (
+          <ArabicText as="div" className="text-[var(--text-faint)]">جذر: {entry.root}</ArabicText>
+        )}
+        {!compact && entry.root && <div dir="ltr"><RootBabs root={entry.root} refs={refs} /></div>}
       </div>
 
       {/* A one-column card has no synonyms (that is what keeps it narrow), and
