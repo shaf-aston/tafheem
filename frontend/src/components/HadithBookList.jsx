@@ -37,7 +37,7 @@ export default function HadithBookList({ collection, onPick, accent }) {
   if (!data.length) return <EmptyState>This collection has no books yet.</EmptyState>
 
   return (
-    <ul className="m-0 p-0 list-none grid gap-2 sm:grid-cols-2">
+    <ul className="m-0 p-0 list-none grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
       {data.map((book, i) => (
         <li key={book.number} className={rise ? 'rise-in' : undefined} style={{ '--i': Math.min(i, STAGGER_CAP) }}>
           <button
