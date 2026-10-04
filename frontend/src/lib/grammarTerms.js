@@ -23,29 +23,11 @@ export const caseLabel = (key) => {
   return term ? [term, ...rest].join(' ') : key
 }
 
-/**
- * The colour key above results: one entry per colour actually used, labelled
- * by the Arabic terms sharing that colour.
- */
-export const ROLE_LEGEND = [
-  { key: 'fail', arabic: `${ROLES.mubtada.arabic} / ${ROLES.fail.arabic}` },
-  { key: 'khabar', arabic: `${ROLES.khabar.arabic} / ${ROLES.mafool.arabic}` },
-  { key: 'fil', arabic: ROLES.fil.arabic },
-  { key: 'harf', arabic: ROLES.harf.arabic },
-  { key: 'mansub', arabic: ROLES.mansub.arabic },
-  { key: 'tabi', arabic: ROLES.tabi.arabic },
-  { key: 'sifah', arabic: `${ROLES.sifah.arabic} / ${ROLES.haal.arabic}` },
-  { key: 'mudaf', arabic: ROLES.mudaf.arabic },
-]
-
 /** A word the analyser would not name: it sends a dash rather than guess. */
 export const isUnnamed = (word) => word?.role === '–'
 
 /** The Arabic for a backend word type ("ism", "fi'l"), or the string itself. */
 export const typeLabel = (key) => TYPES[key]?.arabic ?? key
-
-/** The corpus part-of-speech codes, for the Quran tab's colour key. */
-export const CORPUS_POS = Object.keys(config.corpus_pos)
 
 /** The Arabic for a corpus part-of-speech code ("N", "V", "P"). */
 export const posLabel = (tag) => typeLabel(config.corpus_pos[tag] ?? tag)

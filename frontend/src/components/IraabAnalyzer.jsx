@@ -9,7 +9,7 @@ import { useMutation } from '@tanstack/react-query'
 import { analyzeIraab, generatePractice } from '../api'
 import { errorMessage, errorStatus } from '../lib/apiError'
 import { buildIraabExportText } from '../lib/iraabExport'
-import { caseLabel, isUnnamed, ROLE_LEGEND } from '../lib/grammarTerms'
+import { caseLabel, isUnnamed } from '../lib/grammarTerms'
 import { roleVar } from '../lib/roleColors'
 
 import SourceBadge from './ui/SourceBadge'
@@ -88,8 +88,6 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
         <ExampleChips examples={EXAMPLES} onPick={runExample} accent={accent} />
       </div>
 
-      {!sentence && !analyze.data && <RoleLegend accent={accent} intro />}
-
       {analyze.isError && <AnalyzeError error={analyze.error} onRetry={submit} />}
       {analyze.isPending && <AnalyzerSkeleton />}
 
@@ -138,7 +136,6 @@ function AnalysisResults({ data, accent, onWordClick, practice, detail }) {
         <CopyButton text={buildIraabExportText(data)} />
       </div>
 
-      <RoleLegend accent={accent} />
       {data.tree && (
         // An ayah drawn from its record carries the words the book supplies,
         // (هُوَ) or an elided khabar, and the mark it writes them with.
@@ -157,26 +154,6 @@ function AnalysisResults({ data, accent, onWordClick, practice, detail }) {
 
       <FullIraabTable words={data.words} onRowClick={onWordClick} />
       <PracticePanel practice={practice} sentence={data.sentence} accent={accent} />
-    </div>
-  )
-}
-
-function RoleLegend({ accent, intro = false }) {
-  return (
-    <div className="flex flex-wrap gap-1.5 items-center" style={{ '--c': accent }}>
-      <span className="text-[var(--text-faint)] text-xs shrink-0">
-        {intro ? 'Colours you will see:' : 'Key'}
-      </span>
-      {ROLE_LEGEND.map(({ arabic, key }, i) => (
-        <ArabicText
-          key={key}
-          size="tiny"
-          style={{ '--i': i, '--c': roleVar(key) }}
-          className="rise-in px-2 py-0.5 rounded-full role-tag"
-        >
-          {arabic}
-        </ArabicText>
-      ))}
     </div>
   )
 }
