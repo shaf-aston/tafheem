@@ -364,7 +364,11 @@ function Entry({ entry, accent, i, onGo, onLookup, refs = false, compact = false
             <ArabicText as="div" className="text-[var(--text-faint)] mt-0.5">جذر: {entry.root}</ArabicText>
           )}
         </div>
-        <Pronunciation size="body" className="mt-1">{entry.transliteration}</Pronunciation>
+        {/* The bab reads beside the sound of the word, from the books, never typed in. */}
+        <div className="flex items-start gap-3 mt-1" dir="ltr">
+          <Pronunciation size="body">{entry.transliteration}</Pronunciation>
+          {!compact && entry.root && <RootBabs root={entry.root} refs={refs} />}
+        </div>
       </div>
 
       {/* A one-column card has no synonyms (that is what keeps it narrow), and
@@ -383,9 +387,6 @@ function Entry({ entry, accent, i, onGo, onLookup, refs = false, compact = false
           </ol>
         )
       )}
-
-      {/* Under the meaning, not above it: the senses are what was asked for. */}
-      {!compact && entry.root && <RootBabs root={entry.root} refs={refs} />}
 
       {entry.root && (
         // showRoot=false: the root already prints above under "جذر:", so the
