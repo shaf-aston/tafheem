@@ -1,11 +1,10 @@
 /**
- * A word's colour comes from the key the backend sends and from nothing else,
- * and a role that has a colour also has an explanation. Role keys are copied
- * from schemas.ROLE_KEYS.
+ * A word's colour comes from the key the backend sends and from nothing else.
+ * Role keys are copied from schemas.ROLE_KEYS.
  */
 import { describe, expect, it } from 'vitest'
 
-import { GLOSSARY, ROLES, caseLabel, typeLabel } from './grammarTerms'
+import { GLOSSARY, caseLabel, typeLabel } from './grammarTerms'
 import { roleVar } from './roleColors'
 
 // The role names the backend can send, schemas.ROLE_KEYS.
@@ -33,15 +32,6 @@ describe('roleVar', () => {
 })
 
 describe('the glossary', () => {
-  it('explains every role the backend can send', () => {
-    for (const key of KEYS) expect(ROLES[key]?.meaning, key).toBeTruthy()
-  })
-
-  // A glossary entry with no matching role would be a note nobody can ever see.
-  it('explains nothing the backend cannot send', () => {
-    for (const key of Object.keys(ROLES)) expect(KEYS, key).toContain(key)
-  })
-
   // A tag prints the Arabic term alone; the English lives in the glossary.
   it('names a case in Arabic, and leaves an unknown case as it came', () => {
     expect(caseLabel('nasb')).toBe('منصوب')
@@ -59,12 +49,13 @@ describe('the glossary', () => {
     expect(typeLabel('punc')).toBe('punc')
   })
 
-  it('lists every term once, each with Arabic, a saying and a meaning', () => {
-    expect(new Set(GLOSSARY.map((t) => t.key)).size).toBe(GLOSSARY.length)
-    for (const t of GLOSSARY) {
-      expect(t.arabic, t.key).toMatch(/[؀-ۿ]/)
-      expect(t.said, t.key).toBeTruthy()
-      expect(t.meaning, t.key).toBeTruthy()
+  // Completeness against what the backend prints: tests/test_rule_engine.py.
+  it('lists every term once, each with Arabic and a meaning', () => {
+    const terms = GLOSSARY.flatMap((section) => section.terms)
+    expect(new Set(terms.map((t) => t.arabic)).size).toBe(terms.length)
+    for (const t of terms) {
+      expect(t.arabic).toMatch(/[؀-ۿ]/)
+      expect(t.meaning, t.arabic).toBeTruthy()
     }
   })
 })

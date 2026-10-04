@@ -8,7 +8,6 @@
  */
 import config from '../grammar.json'
 
-export const ROLES = config.roles
 const CASES = config.cases
 const TYPES = config.types
 
@@ -33,14 +32,11 @@ export const typeLabel = (key) => TYPES[key]?.arabic ?? key
 export const posLabel = (tag) => typeLabel(config.corpus_pos[tag] ?? tag)
 
 /**
- * Every term for the glossary: types, roles, then cases, each with its key.
- * فعل and حرف are both a type and a role; the glossary lists each Arabic
- * term once, keeping the role's entry so it carries the role's colour.
+ * The glossary, in the order a nahw book teaches: kinds of word and endings
+ * first, since every role after them is explained in their terms.
  */
-const entries = (group) => Object.entries(group).map(([key, term]) => ({ key, ...term }))
-const roleTerms = new Set(entries(ROLES).map((t) => t.arabic))
 export const GLOSSARY = [
-  ...entries(TYPES).filter((t) => !roleTerms.has(t.arabic)),
-  ...entries(ROLES),
-  ...entries(CASES),
+  { title: 'Kinds of word', terms: Object.values(TYPES) },
+  { title: 'Endings', terms: Object.values(CASES) },
+  ...config.sections,
 ]

@@ -5,8 +5,7 @@
  * the English is: a reader who needs it opens it once, a reader who does not
  * never sees a paragraph under every tag. Every term comes from grammar.json.
  */
-import { GLOSSARY, ROLES } from '../../lib/grammarTerms'
-import { roleVar } from '../../lib/roleColors'
+import { GLOSSARY } from '../../lib/grammarTerms'
 
 import ArabicText from './ArabicText'
 import Disclosure from './Disclosure'
@@ -14,24 +13,25 @@ import Disclosure from './Disclosure'
 export default function GrammarGlossary() {
   return (
     <Disclosure label="What the terms mean">
-      <dl className="grid gap-x-4 gap-y-2 sm:grid-cols-[auto_1fr] items-baseline">
-        {GLOSSARY.map(({ key, arabic, said, meaning }) => (
-          /* One fragment per term, laid straight into the two-column grid so
-             every meaning starts on the same edge however long the term. */
-          <div key={key} className="contents">
-            <dt className="flex items-baseline gap-2 whitespace-nowrap">
-              {/* The role's own colour, so the glossary reads as the key to
-                  the tags above it and not a separate list. A case has no
-                  colour of its own and stays in the ordinary text colour. */}
-              <ArabicText size="sm" style={{ color: roleVar(key in ROLES ? key : null) }}>
-                {arabic}
-              </ArabicText>
-              <span className="type-small text-[var(--text-faint)]">{said}</span>
-            </dt>
-            <dd className="type-small text-[var(--text-dim)] leading-relaxed">{meaning}</dd>
-          </div>
+      {/* One grid shared by every section (subgrid), so every meaning on the
+          list starts on the same edge however long the term. */}
+      <div className="grid gap-y-5 sm:grid-cols-[auto_1fr]">
+        {GLOSSARY.map(({ title, terms }) => (
+          <section key={title} className="col-span-full grid grid-cols-subgrid">
+            <h3 className="col-span-full type-label text-[var(--text-faint)] mb-2">{title}</h3>
+            <dl className="col-span-full grid grid-cols-subgrid gap-x-4 gap-y-2 items-baseline">
+              {terms.map(({ arabic, meaning }) => (
+                <div key={arabic} className="contents">
+                  <dt className="whitespace-nowrap">
+                    <ArabicText size="sm">{arabic}</ArabicText>
+                  </dt>
+                  <dd className="type-small text-[var(--text-dim)] leading-relaxed">{meaning}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
         ))}
-      </dl>
+      </div>
     </Disclosure>
   )
 }
