@@ -1,81 +1,126 @@
 {
-  "_comment": "The grammar terms the app names, in one place. On a tag the Arabic term stands alone: مبتدأ, منصوب. Its English is here, in the glossary at the foot of the Nahw page, in the order a nahw book teaches them: kinds of word, endings, sentences, then the roles grouped as the books group them. 'types' and 'cases' are keyed by the string the backend sends and also give the tags their Arabic; 'sections' hold every role and tarkeeb term the page can print, once each (tests/test_rule_engine.py checks it against roles.json and tarkeeb.json). lib/grammarTerms.js is the only reader.",
+  "_comment": "The grammar terms the app names, in one place. On a tag the Arabic term stands alone: مبتدأ, منصوب. Its English is here, in the glossary at the foot of the Nahw page. 'types' and 'cases' are keyed by the string the backend sends and also give the tags their Arabic. 'sections' are the glossary itself, titled and ordered by Tasheel al-Nahw's own chapters; a section with 'from' lists that group above. One entry per idea: a label that is a form of another (اسم ليس, اسم كان مؤخر) is named in that entry's meaning, not given its own. tests/test_rule_engine.py checks every role, tarkeeb term and label in the book's worked examples has an entry or is named in one. lib/grammarTerms.js is the only reader.",
 
   "types": {
     "ism":   { "arabic": "اسم",  "meaning": "A noun: a person, thing, place, quality or name. It takes case endings." },
     "fi'l":  { "arabic": "فعل",  "meaning": "A verb: something done, in past, present or command form. The past form never changes its ending; the present one does." },
     "harf":  { "arabic": "حرف",  "meaning": "A particle: a small word with no meaning of its own until joined to others, such as في, و, لم. Its ending never changes." },
-    "damir": { "arabic": "ضمير", "meaning": "A pronoun: هو, أنت, or one attached to a word like the ـه in كتابه." },
-    "zarf":  { "arabic": "ظرف",  "meaning": "A word for when or where: قبل, عند, فوق." }
+    "damir": { "arabic": "ضمير", "meaning": "A pronoun: هو, أنت, or one attached to a word like the ـه in كتابه. It is a kind of اسم." },
+    "zarf":  { "arabic": "ظرف",  "meaning": "A word for when or where: قبل, عند, فوق. It is a kind of اسم." }
   },
 
   "cases": {
     "raf'":  { "arabic": "مرفوع", "meaning": "The ending for a subject: a ضمة on one noun, و on a sound masculine plural." },
     "nasb":  { "arabic": "منصوب", "meaning": "The ending for an object and for what comes after إن: a فتحة on one noun." },
     "jarr":  { "arabic": "مجرور", "meaning": "The ending after a preposition or as the second word of a مضاف pair: a كسرة on one noun." },
-    "jazm":  { "arabic": "مجزوم", "meaning": "The ending of a present verb after لم, the لا that forbids, the لام of command and their like: a سكون, or a dropped final letter." },
+    "jazm":  { "arabic": "مجزوم", "meaning": "The ending of a present verb after لم, the لا that forbids, the لام of command and their like: a سكون, or a dropped final letter. A verb in this state is a فعل مجزوم." },
     "mabni": { "arabic": "مبني", "meaning": "Fixed. The ending never changes whatever the word is doing: past verbs, pronouns, particles." }
   },
 
   "sections": [
-    { "title": "Sentences", "terms": [
+    { "title": "الكلمة", "from": "types" },
+    { "title": "الإعراب", "from": "cases" },
+    { "title": "الجملة", "terms": [
+      { "arabic": "جملة اسمية", "meaning": "A sentence that starts with a noun: الطالب مجتهد." },
       { "arabic": "جملة فعلية", "meaning": "A sentence that starts with a verb: كتب الطالب." },
-      { "arabic": "جملة اسمية", "meaning": "A sentence that starts with a noun and has no verb at its head: الطالب مجتهد." },
-      { "arabic": "جملة إنشائية استفهامية", "meaning": "A sentence that asks a question, with هل, أ, متى, أين and their like." },
-      { "arabic": "جملة إنشائية ندائية", "meaning": "A sentence that calls someone with يا, as in يا محمد." }
+      { "arabic": "جملة خبرية", "meaning": "A sentence that tells something, so it can be true or false: a جملة اسمية خبرية or a جملة فعلية خبرية." },
+      { "arabic": "جملة إنشائية", "meaning": "A sentence that does not tell but asks, calls, wonders, swears or commands, so it cannot be true or false." },
+      { "arabic": "جملة إنشائية استفهامية", "meaning": "A sentence that asks a question." },
+      { "arabic": "حرف استفهام", "meaning": "A particle that asks: هل, أ." },
+      { "arabic": "جملة إنشائية ندائية", "meaning": "A sentence that calls someone with يا, as in يا محمد." },
+      { "arabic": "جملة إنشائية تعجبية", "meaning": "A sentence that wonders at something, as in ما أحسنَ زيدًا." },
+      { "arabic": "فعل التعجب", "meaning": "The verb of wonder, on the pattern ما أفعلَ or أفعِلْ بـ." },
+      { "arabic": "جملة إنشائية قسمية", "meaning": "A sentence that swears by something, as in واللهِ." },
+      { "arabic": "حرف قسم", "meaning": "The و, ب or ت of swearing." },
+      { "arabic": "مقسم به", "meaning": "What is sworn by, such as the word الله after the و of واللهِ. It is مجرور." },
+      { "arabic": "متعلق", "meaning": "What a جار ومجرور or a ظرف hangs on: the verb (متعلق بالفعل), or a خبر left unsaid (متعلق بالخبر)." },
+      { "arabic": "حرف استئناف", "meaning": "A و or ف that starts a fresh sentence rather than joining a word to the one before." }
     ]},
-    { "title": "Always مرفوع", "terms": [
-      { "arabic": "فاعل", "meaning": "The one doing the verb: كتب الطالبُ." },
-      { "arabic": "نائب فاعل", "meaning": "The word standing in for the doer when the verb is passive: كُتِبَ الدرسُ." },
-      { "arabic": "مبتدأ", "meaning": "What a sentence without a verb is about: الطالبُ مجتهد." },
-      { "arabic": "خبر", "meaning": "What is said about the مبتدأ, as in الطالب مجتهدٌ." }
+    { "title": "المبتدأ والخبر", "terms": [
+      { "arabic": "مبتدأ", "meaning": "What a جملة اسمية is about. It is مرفوع. When the خبر is itself a جملة اسمية, that clause has a second one, called مبتدأ ثان." },
+      { "arabic": "خبر", "meaning": "What is said about the مبتدأ, as in الطالب مجتهدٌ. It is مرفوع." }
     ]},
-    { "title": "كان, إن and their sisters", "terms": [
-      { "arabic": "فعل ناقص", "meaning": "كان or one of its sisters (صار, أصبح, ليس...). It comes before a مبتدأ and خبر and changes the خبر to منصوب." },
-      { "arabic": "اسم كان", "meaning": "The مبتدأ after كان. It stays مرفوع." },
-      { "arabic": "خبر كان", "meaning": "The خبر after كان. It becomes منصوب." },
-      { "arabic": "فعل مقاربة", "meaning": "كاد or one of its sisters (أوشك, عسى...): something nearly or about to happen. Its خبر is a present verb." },
+    { "title": "كان وأخواتها", "terms": [
+      { "arabic": "فعل ناقص", "meaning": "كان or one of its sisters (صار, أصبح, أمسى, ليس and others). It comes before a مبتدأ and خبر and makes the خبر become منصوب." },
+      { "arabic": "اسم كان", "meaning": "The مبتدأ after كان or a sister, named after it (اسم ليس, اسم صار, اسم أمسى). It stays مرفوع. When it comes after its خبر it is called اسم كان مؤخر." },
+      { "arabic": "خبر كان", "meaning": "The خبر after كان or a sister, named after it (خبر ليس, خبر صار, خبر أمسى). It becomes منصوب. When it comes before its اسم it is called خبر كان مقدم." }
+    ]},
+    { "title": "إن وأخواتها", "terms": [
+      { "arabic": "حرف مشبه بالفعل", "meaning": "إن or one of its sisters (أن, كأن, لكن, ليت, لعل). It comes before a مبتدأ and خبر and makes the مبتدأ become منصوب." },
+      { "arabic": "اسم إن", "meaning": "The مبتدأ after إن or a sister, named after it (اسم ليت, اسم لعل). It becomes منصوب." },
+      { "arabic": "خبر إن", "meaning": "The خبر after إن or a sister, named after it (خبر ليت, خبر لعل). It stays مرفوع." }
+    ]},
+    { "title": "ظن وأخواتها", "terms": [
+      { "arabic": "المفعول الأول", "meaning": "After ظن or a sister (حسب, علم, رأى), the first of its two objects: what was the مبتدأ. It is منصوب." },
+      { "arabic": "المفعول الثاني", "meaning": "After ظن or a sister, the second object: what was the خبر. Also منصوب." }
+    ]},
+    { "title": "لا النافية للجنس", "terms": [
+      { "arabic": "لا النافية للجنس", "meaning": "The لا that denies a whole kind, as in لا ريبَ فيه. It works like إن. Also written لا لنفي الجنس." },
+      { "arabic": "اسم لا", "meaning": "The noun after لا. After the لا that denies a kind it is منصوب, or مبني on a فتحة when it is one word." },
+      { "arabic": "خبر لا", "meaning": "What is said after لا about its اسم. After the لا that denies a kind it is مرفوع." }
+    ]},
+    { "title": "المشبهات بليس", "terms": [
+      { "arabic": "ما الحجازية", "meaning": "The ما that denies the way ليس does, as in ما هذا بشرًا. Its خبر is منصوب. Also called ما المشبهة بليس." },
+      { "arabic": "لا المشبهة بليس", "meaning": "A لا that denies the way ليس does. Its خبر is منصوب." },
+      { "arabic": "اسم ما", "meaning": "The noun after the ما that works like ليس. It stays مرفوع." },
+      { "arabic": "خبر ما", "meaning": "What is said after that ما. It becomes منصوب." }
+    ]},
+    { "title": "كاد وأخواتها", "terms": [
+      { "arabic": "فعل مقاربة", "meaning": "كاد or one of its sisters (أوشك, عسى and others): something nearly or about to happen. Its خبر is a present verb." },
       { "arabic": "اسم كاد", "meaning": "The مبتدأ after كاد. It stays مرفوع." },
-      { "arabic": "خبر كاد", "meaning": "The present verb after كاد saying what nearly happened." },
-      { "arabic": "حرف مشبه بالفعل", "meaning": "إن or one of its sisters (أن, كأن, لكن, ليت, لعل). It comes before a مبتدأ and خبر and changes the مبتدأ to منصوب." },
-      { "arabic": "اسم إن", "meaning": "The مبتدأ after إن. It becomes منصوب." },
-      { "arabic": "خبر إن", "meaning": "The خبر after إن. It stays مرفوع." },
-      { "arabic": "لا النافية للجنس", "meaning": "The لا that denies a whole kind: لا ريبَ فيه. It works like إن." },
-      { "arabic": "ما الحجازية", "meaning": "The ما that denies the way ليس does, as in ما هذا بشرًا. Its خبر is منصوب." }
+      { "arabic": "خبر كاد", "meaning": "The present verb after كاد saying what nearly happened." }
     ]},
-    { "title": "Mostly منصوب", "terms": [
-      { "arabic": "مفعول به", "meaning": "The one the verb is done to: كتب الطالب الدرسَ." },
-      { "arabic": "مفعول مطلق", "meaning": "The verb's own noun repeated to stress it or say how: ضربته ضربًا." },
-      { "arabic": "مفعول فيه", "meaning": "When or where the verb happened: سافرت ليلًا." },
+    { "title": "الأسماء المبنية", "terms": [
+      { "arabic": "اسم موصول", "meaning": "A word like الذي or التي that a clause after it describes." },
+      { "arabic": "صلة", "meaning": "The clause after a اسم موصول that completes it, as in الذي نجحَ." },
+      { "arabic": "اسم موصول وصلته", "meaning": "A اسم موصول and its صلة read together as one unit." },
+      { "arabic": "اسم الإشارة", "meaning": "A pointing word: هذا, هذه, ذلك, تلك." },
+      { "arabic": "مشار إليه", "meaning": "The noun pointed at, after a اسم الإشارة." },
+      { "arabic": "مركب إشاري", "meaning": "A اسم الإشارة and its مشار إليه read together as one unit, as in هذا الكتاب." },
+      { "arabic": "مركب بنائي عددي", "meaning": "A number from 11 to 19 made of two words joined as one, as in أحد عشر. Both parts (جزء أول, جزء ثان) are مبني on a فتحة." }
+    ]},
+    { "title": "الفاعل ونائبه", "terms": [
+      { "arabic": "فاعل", "meaning": "The one doing the verb, as in كتب الطالبُ. It is مرفوع." },
+      { "arabic": "فاعل مستتر", "meaning": "A doer not written but understood inside the verb, such as the أنت in اكتبْ." },
+      { "arabic": "فعل مع فاعله", "meaning": "A verb and its doer read together as one unit." },
+      { "arabic": "فعل مجهول", "meaning": "A passive verb, whose doer is not named, as in كُتِبَ." },
+      { "arabic": "نائب فاعل", "meaning": "The word standing in for the doer after a فعل مجهول, as in كُتِبَ الدرسُ. It is مرفوع. Also written نائب الفاعل." }
+    ]},
+    { "title": "المنصوبات", "terms": [
+      { "arabic": "مفعول به", "meaning": "The one the verb is done to, as in كتب الطالب الدرسَ." },
+      { "arabic": "منادى", "meaning": "The one called after يا, as in يا محمدُ. It is منصوب when it is the first word of a مضاف pair, otherwise usually مبني on a ضمة." },
+      { "arabic": "حرف نداء", "meaning": "A calling particle: يا, أيها." },
+      { "arabic": "مفعول مطلق", "meaning": "The verb's own noun repeated to stress it or say how, as in ضربته ضربًا." },
+      { "arabic": "مفعول له", "meaning": "Why the verb was done, as in قمت احترامًا (out of respect). Also called مفعول لأجله." },
+      { "arabic": "مفعول معه", "meaning": "What the verb happened alongside, after a و meaning 'with', as in سرت والنيلَ." },
+      { "arabic": "مفعول فيه", "meaning": "When or where the verb happened, as in سافرت ليلًا." },
       { "arabic": "ظرف زمان", "meaning": "A مفعول فيه that says when: يومَ, ليلًا, قبلَ." },
       { "arabic": "ظرف مكان", "meaning": "A مفعول فيه that says where: عندَ, فوقَ, أمامَ." },
-      { "arabic": "مفعول معه", "meaning": "What the verb happened alongside, after a و meaning 'with': سرت والنيلَ." },
-      { "arabic": "حال", "meaning": "The state someone was in while the verb happened: جاء راكبًا. It has no ال." },
-      { "arabic": "تمييز", "meaning": "A word that makes a vague one clear: عشرون كتابًا. It has no ال." },
-      { "arabic": "منادى", "meaning": "The one called after يا, as in يا محمدُ. It is منصوب when it is the first word of a مضاف pair, otherwise usually مبني on a ضمة." },
-      { "arabic": "مستثنى", "meaning": "The one left out after إلا, as in جاء القوم إلا زيدًا." }
+      { "arabic": "حال", "meaning": "The state someone was in while the verb happened, as in جاء راكبًا. It has no ال." },
+      { "arabic": "تمييز", "meaning": "A word that makes a vague one clear, as in عشرون كتابًا. It has no ال." },
+      { "arabic": "مستثنى", "meaning": "The one left out after إلا, as in جاء القوم إلا زيدًا." },
+      { "arabic": "حرف استثناء", "meaning": "The particle that leaves something out: إلا." }
     ]},
-    { "title": "مجرور", "terms": [
+    { "title": "المجرورات", "terms": [
       { "arabic": "حرف جر", "meaning": "A preposition: في, على, من, إلى, بـ, لـ. The noun after it is مجرور." },
-      { "arabic": "جار ومجرور", "meaning": "A preposition and the noun after it, read together as one unit: في البيتِ." },
-      { "arabic": "مضاف", "meaning": "The first word of an 'X of Y' pair: كتابُ الطالب. It takes no ال." },
-      { "arabic": "مضاف إليه", "meaning": "The second word of an 'X of Y' pair: كتاب الطالبِ. Always مجرور." },
+      { "arabic": "جار ومجرور", "meaning": "A preposition and the noun after it, read together as one unit, as in في البيتِ." },
+      { "arabic": "مضاف", "meaning": "The first word of an 'X of Y' pair, as in كتابُ الطالب. It takes no ال." },
+      { "arabic": "مضاف إليه", "meaning": "The second word of an 'X of Y' pair, as in كتاب الطالبِ. Always مجرور." },
       { "arabic": "مركب إضافي", "meaning": "A مضاف and its مضاف إليه read together as one unit." }
     ]},
-    { "title": "Followers: they copy the word before them", "terms": [
+    { "title": "التوابع", "terms": [
       { "arabic": "موصوف", "meaning": "The noun a صفة describes." },
-      { "arabic": "صفة", "meaning": "Describes the noun before it and copies its gender, number, ال and ending: الطالبُ المجتهدُ." },
+      { "arabic": "صفة", "meaning": "Describes the noun before it and copies its gender, number, ال and ending, as in الطالبُ المجتهدُ. Also called نعت." },
       { "arabic": "مركب توصيفي", "meaning": "A موصوف and its صفة read together as one unit." },
+      { "arabic": "توكيد", "meaning": "A word that stresses the one before it and copies its ending, as in جاء القوم كلُّهم." },
+      { "arabic": "بدل", "meaning": "A word that renames the one before it and copies its ending, as in جاء أخوك زيدٌ." },
       { "arabic": "حرف عطف", "meaning": "A joining word: و, ف, ثم, أو." },
-      { "arabic": "معطوف", "meaning": "The word after a حرف عطف. It copies the ending of the word it is joined to." },
-      { "arabic": "توكيد", "meaning": "A word that stresses the one before it: جاء القوم كلُّهم." },
-      { "arabic": "بدل", "meaning": "A word that renames the one before it: جاء أخوك زيدٌ." }
+      { "arabic": "معطوف", "meaning": "The word after a حرف عطف. It copies the ending of the word it is joined to." }
     ]},
-    { "title": "Linking clauses", "terms": [
-      { "arabic": "اسم موصول", "meaning": "A word like الذي or التي that a clause after it describes." },
-      { "arabic": "صلة", "meaning": "The clause after a اسم موصول that completes it: الذي نجحَ." },
-      { "arabic": "اسم موصول وصلته", "meaning": "A اسم موصول and its صلة read together as one unit." },
-      { "arabic": "حرف استئناف", "meaning": "A و or ف that starts a fresh sentence rather than joining a word to the one before." }
+    { "title": "إعراب الفعل", "terms": [
+      { "arabic": "فعل أمر", "meaning": "A command verb, as in اكتبْ. It is مبني." },
+      { "arabic": "حرف نفي", "meaning": "A particle that says 'not': لا, ما, لم, لن. After لم the verb is مجزوم; after لن it is منصوب." },
+      { "arabic": "حرف نهي", "meaning": "The لا that forbids, as in لا تكتبْ. The verb after it is مجزوم." }
     ]}
   ],
 

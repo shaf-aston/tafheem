@@ -269,7 +269,8 @@ def test_word_types_are_the_pages():
 
 
 def test_the_glossary_explains_every_term_the_page_prints():
-    """Every role a card can carry and every tarkeeb term is in grammar.json, so the glossary is never short."""
+    """Every role a card can carry, every tarkeeb term and every label in the book's worked
+    examples is in grammar.json, as an entry or named in one's meaning, so the glossary is never short."""
     import json
     from pathlib import Path
     from backend.services.arabic_text import strip_diacritics
@@ -278,7 +279,19 @@ def test_the_glossary_explains_every_term_the_page_prints():
     root = Path(__file__).parent.parent
     grammar = json.loads((root / "frontend/src/grammar.json").read_text(encoding="utf-8"))
     tarkeeb = json.loads((root / "backend/data/nahw_rules/tarkeeb.json").read_text(encoding="utf-8"))["terms"]
-    explained = {t["arabic"] for group in ("types", "cases") for t in grammar[group].values()}
-    explained |= {t["arabic"] for s in grammar["sections"] for t in s["terms"]}
-    printed = set(role_table()) | set(ROLES) | {strip_diacritics(t["ar"]) for k, t in tarkeeb.items() if k != "unresolved"}
-    assert sorted(printed - explained) == []
+    entries = [*grammar["types"].values(), *grammar["cases"].values(),
+               *(t for s in grammar["sections"] for t in s.get("terms", []))]
+    names = {t["arabic"] for t in entries}
+    meanings = " ".join(t["meaning"] for t in entries)
+
+    def labels(node):
+        yield from (node[k] for k in ("role", "label") if node.get(k))
+        for child in node.get("children", []) + node.get("parts", []):
+            yield from labels(child)
+
+    book = root / "backend/data/tarkeeb/examples"
+    worked = {strip_diacritics(label) for f in book.glob("*.json")
+              for e in json.loads(f.read_text(encoding="utf-8"))["examples"] for label in labels(e["tree"])}
+    printed = set(role_table()) | set(ROLES) | worked | {
+        strip_diacritics(t["ar"]) for k, t in tarkeeb.items() if k != "unresolved"}
+    assert sorted(label for label in printed - names if label not in meanings) == []
