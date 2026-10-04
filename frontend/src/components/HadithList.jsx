@@ -14,6 +14,7 @@ import { useRememberedFlag } from '../lib/useRemembered'
 import ErrorAlert from './ui/ErrorAlert'
 import EmptyState from './ui/EmptyState'
 import TopicIcon from './ui/TopicIcon'
+import ChainSheet from './ui/ChainSheet'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import HadithCards from './HadithCards'
 
@@ -37,6 +38,7 @@ export default function HadithList({ collection, collections, book, onBack, acce
   const [missing, setMissing] = useState(false)
   const [columns, setColumns] = useRememberedFlag('hadith-two-columns', false)
   const [hideChain, setHideChain] = useRememberedFlag('hadith-hide-chain', false)
+  const [guide, setGuide] = useState(false)
 
   const jump = (event) => {
     event.preventDefault()
@@ -68,7 +70,16 @@ export default function HadithList({ collection, collections, book, onBack, acce
             // A phone has room for one hadith a row, so it is not offered there.
             { label: 'Two columns', on: columns, set: setColumns, wide: true },
             { label: 'Hide the chain', on: hideChain, set: setHideChain },
-          ]} />
+          ]}>
+            <button
+              type="button"
+              onClick={() => setGuide(true)}
+              className="press type-small text-[var(--text-dim)] hover:text-[var(--c)] underline underline-offset-4 decoration-dotted"
+            >
+              Chain words
+            </button>
+          </ReadingOptions>
+          {guide && <ChainSheet accent={accent} onClose={() => setGuide(false)} />}
           <form onSubmit={jump} className="flex items-center gap-2">
             {missing && <span role="status" className="type-small text-[var(--text-faint)]">Not in this book</span>}
             <input
@@ -102,8 +113,8 @@ export default function HadithList({ collection, collections, book, onBack, acce
   )
 }
 
-/** A small sliders icon; pressed, its tick boxes slide out beside it in the bar. */
-function ReadingOptions({ options, accent }) {
+/** A small sliders icon; pressed, its tick boxes (and `children`) slide out beside it in the bar. */
+function ReadingOptions({ options, accent, children }) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -116,6 +127,7 @@ function ReadingOptions({ options, accent }) {
               {label}
             </label>
           ))}
+          {children}
         </div>
       )}
       <button

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import { chainOf, hadithKey, narrated, printedBy, saying } from './hadithWords'
+import HADITH from '../hadith.json'
+import { chainLinks, chainOf, hadithKey, narrated, printedBy, saying, termOf } from './hadithWords'
 
 describe('saying', () => {
   it('marks a quoted stretch as said and the rest as told', () => {
@@ -154,5 +155,64 @@ describe('chainOf', () => {
   it('leaves a hadith with no chain at all whole', () => {
     expect(chainOf('قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم')).toEqual({ chain: '', body: 'قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم' })
     expect(chainOf('')).toEqual({ chain: '', body: '' })
+  })
+})
+
+describe('termOf', () => {
+  it('has a guide entry for every word the chain walker reads', () => {
+    const { verbs, endings, words } = HADITH.chain.links
+    const all = [...words, ...HADITH.chain.says, ...verbs.flatMap((v) => endings.map((e) => v + e))]
+    expect(all.filter((word) => !termOf(word))).toEqual([])
+  })
+
+  it('finds a verb by its stem, joined wa and vowels and all', () => {
+    expect(termOf('وَحَدَّثَتْنِي').way).toBe('heard')
+    expect(termOf('عَنْ').way).toBe('loose')
+  })
+})
+
+describe('chainLinks', () => {
+  const links = (chain) => chainLinks(chainOf(chain).chain)
+
+  it('names each narrator with the word that passed it on', () => {
+    const { main, branches } = links('حَدَّثَنَا الْحُمَيْدِيُّ، قَالَ حَدَّثَنَا سُفْيَانُ، عَنْ يَحْيَى بْنِ سَعِيدٍ، قَالَ سَمِعْتُ عُمَرَ، قَالَ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ إِنَّمَا')
+    expect(main.map(({ term, way, name }) => [term, way, name])).toEqual([
+      ['حَدَّثَنَا', 'heard', 'الْحُمَيْدِيُّ'],
+      ['حَدَّثَنَا', 'heard', 'سُفْيَانُ'],
+      ['عَنْ', 'loose', 'يَحْيَى بْنِ سَعِيدٍ'],
+      ['سَمِعْتُ', 'heard', 'عُمَرَ'],
+      ['سَمِعْتُ', 'heard', 'رَسُولَ اللَّهِ صلى الله عليه وسلم'],
+    ])
+    expect(branches).toEqual([])
+  })
+
+  it('joins a second chain at the first narrator both name, in any case ending', () => {
+    const { main, branches } = links('حَدَّثَنَا مُحَمَّدُ بْنُ يُوسُفَ، قَالَ حَدَّثَنَا سُفْيَانُ، عَنْ عَمْرِو بْنِ عَامِرٍ، قَالَ سَمِعْتُ أَنَسًا، ح قَالَ وَحَدَّثَنَا مُسَدَّدٌ، قَالَ حَدَّثَنَا يَحْيَى، عَنْ سُفْيَانَ، قَالَ حَدَّثَنِي عَمْرُو بْنُ عَامِرٍ، عَنْ أَنَسٍ، قَالَ كَانَ')
+    expect(main.map((l) => l.name)).toEqual(['مُسَدَّدٌ', 'يَحْيَى', 'سُفْيَانَ', 'عَمْرُو بْنُ عَامِرٍ', 'أَنَسٍ'])
+    expect(branches).toEqual([{
+      links: [expect.objectContaining({ name: 'مُحَمَّدُ بْنُ يُوسُفَ' })],
+      at: 2,
+      join: expect.objectContaining({ term: 'حَدَّثَنَا', name: 'سُفْيَانُ' }),
+    }])
+  })
+
+  it('joins where the books say both passed it on', () => {
+    const { main, branches } = links('وَحَدَّثَنَا أَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ، حَدَّثَنَا أَبُو خَالِدٍ الأَحْمَرُ، ح وَحَدَّثَنِيهِ زُهَيْرُ بْنُ حَرْبٍ، حَدَّثَنَا يَزِيدُ بْنُ هَارُونَ، كِلاَهُمَا عَنْ أَبِي مَالِكٍ، عَنْ أَبِيهِ، أَنَّهُ سَمِعَ النَّبِيَّ صلى الله عليه وسلم يَقُولُ مَنْ')
+    expect(main[branches[0].at].name).toBe('أَبِي مَالِكٍ')
+    expect(branches[0].links.map((l) => l.name)).toEqual(['أَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ', 'أَبُو خَالِدٍ الأَحْمَرُ'])
+  })
+
+  it('does not join two strands on "my father", nor claim a meeting the books do not name', () => {
+    const { branches } = links('حَدَّثَنَا مُحَمَّدُ بْنُ سِنَانٍ، قَالَ حَدَّثَنَا فُلَيْحٌ، ح وَحَدَّثَنِي إِبْرَاهِيمُ بْنُ الْمُنْذِرِ، قَالَ حَدَّثَنَا مُحَمَّدُ بْنُ فُلَيْحٍ، قَالَ حَدَّثَنِي أَبِي قَالَ، حَدَّثَنِي هِلاَلُ بْنُ عَلِيٍّ، عَنْ عَطَاءِ بْنِ يَسَارٍ، عَنْ أَبِي هُرَيْرَةَ، أَنَّ رَسُولَ اللَّهِ')
+    expect(branches[0].at).toBeNull()
+  })
+
+  it('keeps الله in a name, so عبد الله never joins عبد الرحمن', () => {
+    const { branches } = links('حَدَّثَنَا قُتَيْبَةُ، حَدَّثَنَا عَبْدُ اللَّهِ، ح وَحَدَّثَنَا مُسَدَّدٌ، حَدَّثَنَا عَبْدُ الرَّحْمَنِ بْنُ مَهْدِيٍّ، عَنْ سُفْيَانَ، قَالَ كَانَ')
+    expect(branches[0].at).toBeNull()
+  })
+
+  it('has nothing to draw for no chain', () => {
+    expect(chainLinks('')).toEqual({ main: [], branches: [] })
   })
 })
