@@ -195,6 +195,11 @@ CARDS = [
     ("اِسْقِ الزَّرْعَ", 0, "sign", "مبني على حذف حرف العلة"),
     ("اتَّقِ اللَّهَ", 0, "sign", "مبني على حذف حرف العلة"),  # no present prefix, so a command
     ("لَمْ يَبْكِ الطِّفْلُ", 1, "sign", "حذف حرف العلة"),
+    ("لَمْ يَدْعُ الرَّجُلُ رَبَّهُ", 1, "sign", "حذف حرف العلة"),  # the damma left is the stem's, not raf'
+    ("لَمْ يَخْشَ الْعَبْدُ", 1, "sign", "حذف حرف العلة"),       # nor is the fatha nasb
+    ("لَا تَنْسَ ذِكْرَ اللَّهِ", 1, "sign", "حذف حرف العلة"),     # the dropped letter settles لا as forbidding
+    ("لَمْ يَقْرَأْ زَيْدٌ", 1, "sign", "سكون"),                 # nearest case: a hamza is no weak letter
+    ("زَيْدٌ يَقْرَأُ", 1, "sign", "ضمة"),                         # so a hamza-final verb keeps its raf'
     ("إِنَّ الصِّدْقَ يَهْدِي إِلَى الْبِرِّ", 2, "sign", "ضمة مقدرة على الياء"),
     ("مَنْ يُرِدِ اللَّهُ بِهِ خَيْرًا يُفَقِّهْهُ فِي الدِّينِ", 5, "sign", "سكون"),  # the sukun before the pronoun
     ("مَنْ غَشَّنَا فَلَيْسَ مِنَّا", 1, "sign", "مبني على الفتح"),  # نا the object

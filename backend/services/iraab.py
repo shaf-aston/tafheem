@@ -82,7 +82,7 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
                 # settled (لن يذهب): the card is the verb's own, by the parser's tense
                 if entry.get("type") != "fi'l" or moved:
                     aspect = found.get("aspect") or ("i" if found["case"] != "mabni" else None)
-                    entry.update(type="fi'l", **rule_engine.verb_card(entry["word"], aspect, found["case"]))
+                    entry.update(type="fi'l", **rule_engine.verb_card(entry["camel"]["base"], aspect, found["case"]))
             else:
                 if renamed:
                     entry["reason"] = reason(found["role"])  # the reason must explain the new name

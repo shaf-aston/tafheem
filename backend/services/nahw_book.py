@@ -9,6 +9,8 @@ from functools import lru_cache
 from pathlib import Path
 from types import SimpleNamespace
 
+from backend.services.arabic_text import bare_letters
+
 RULES = Path(__file__).parent.parent / "data" / "nahw_rules"
 
 # a pronoun, pointer, relative or question word keeps one ending whatever its job
@@ -46,10 +48,16 @@ def is_one(lemma: str, family: str, part: str = "words") -> bool:
     return lemma.strip("+") in book_words(family, part)
 
 
-def unjoined(bare: str) -> str:
-    """A typed particle without the و or ف joined to it (وَلَا، فَلَنْ), so the book's
-    lists, which hold the particle alone, can find it."""
-    return bare[1:] if bare[:1] in ("و", "ف") and len(bare) == 3 else bare
+def six_noun_case(base: str, lemma: str) -> str | None:
+    """The case one of the six nouns shows by its long letter as a مضاف (أَخُو، أَبَا،
+    لِأَخِيهِ), from the bare base word (joined letters and pronoun off) and its lemma.
+    A lemma ending in a case letter (CAMeL's أبو، the book's ذو، فو) carries it on its stem."""
+    by_letter = book_map("six_nouns", "case_by_letter")
+    one_of = lemma in book_words("six_nouns") or lemma[:-1] in book_words("six_nouns")
+    stem = lemma[:-1] if lemma[-1:] in by_letter else lemma
+    if not one_of or bare_letters(base[:-1]) != bare_letters(stem):
+        return None  # folded: a reader may type أخوك as اخوك
+    return by_letter.get(base[-1:])
 
 
 def is_mabni(token: dict) -> bool:

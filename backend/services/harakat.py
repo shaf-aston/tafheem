@@ -17,8 +17,8 @@ SHADDA_SUKUN = SHADDA + SUKUN
 DAGGER_ALEF = "ٰ"
 # the letters a present verb opens with; a bare alef is hamzat al-wasl (اِتَّقِ is a command)
 PRESENT_PREFIX = set("أنيت")
-# the joined letters that may stand before that prefix (فَتَرْسُبَ، لِيَظْلِمَ، وَيَكْتُبُ، سَيَكْتُبُ)
-PROCLITICS = set("فولس")
+# the long letters a weak root's last radical shows as (يَهْدِي، يَدْعُو، يَسْعَى، العَصَا)
+WEAK_ENDS = set("اىوي")
 # case shown by an ending, not by a vowel: the plural and the dual
 HIDDEN_CASE = ("ين", "ون", "ان")
 
@@ -64,12 +64,34 @@ def has_tanween(word: str) -> bool:
     return any(marks & TANWEEN for _, marks in letters(word))
 
 
-def opens_present(word: str) -> bool:
-    """A present verb's prefix opens the word, behind at most two joined letters
-    (وَلْيَكْتُبْ، وَسَيَكْتُبُ)."""
+def weak_radical(raw_root: str | None, place: int) -> bool:
+    """Whether CAMeL's root has a weak letter (و or ي) as its radical at `place` (-1 last,
+    1 middle). `#` is how CAMeL writes one (and a hamza too: see weak_last)."""
+    radicals = (raw_root or "").split(".")
+    return len(radicals) == 3 and radicals[place] in ("#", "w", "y", "Y")
+
+
+def weak_last(analysis: dict) -> bool:
+    """A CAMeL reading whose root ends in و or ي: the root says weak and the dictionary
+    form ends in a long letter (دَعَا، رَمَى، نَسِيَ، القَاضِي), not a hamza (قَرَأَ، جَاءَ)."""
+    return weak_radical(analysis.get("root"), -1) and strip_diacritics(analysis.get("lex") or "")[-1:] in WEAK_ENDS
+
+
+def base_of(word: str, atbtok: str | None) -> str:
+    """The typed word's bare letters less the ones CAMeL's split (atbtok, "وَ+_سَ+_يَكْتُب_+هُ")
+    files as joined before ("+" after) or as an attached pronoun ("+" before). The letters
+    stay the reader's: CAMeL's reading may spell them otherwise (اتَّقِ read as أَتَّقِي)."""
     bare = strip_diacritics(word)  # not bare_letters: it folds the أ of أَجْلِسُ into an alef
-    joined = len(bare) - len(bare.lstrip("".join(PROCLITICS)))
-    return any(bare[i:i + 1] in PRESENT_PREFIX for i in range(min(joined, 2) + 1))
+    pieces = (atbtok or "").split("_")
+    before = sum(len(strip_diacritics(p)) - 1 for p in pieces if p.endswith("+") and len(pieces) > 1)
+    after = sum(len(strip_diacritics(p)) - 1 for p in pieces if p.startswith("+") and len(pieces) > 1)
+    return bare[before:len(bare) - after] or bare
+
+
+def drops_weak(base: str, weak_last: bool) -> bool:
+    """The root ends in a weak letter the word no longer ends in (اِسْقِ، لم يَدْعُ): the
+    book's sign of jazm for a present verb. `base` is the word without its joined letters."""
+    return bool(weak_last) and strip_diacritics(base)[-1:] not in WEAK_ENDS
 
 
 def five_verb_nun(word: str) -> str | None:

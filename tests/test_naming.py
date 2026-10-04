@@ -13,7 +13,7 @@ def roles(words, tokens):
 def token(id, form, lemma, pos, head, rel, **feats):
     base = {"id": id, "form": form, "lemma": lemma, "pos": pos, "head": head, "rel": rel,
             "token_type": "baseword", "ud": "", "pos_camel": "", "vox": "na", "asp": "na",
-            "stt": "i", "cas": "u"}
+            "stt": "i", "cas": "u", "base": form.strip("+")}
     return {**base, **feats}
 
 

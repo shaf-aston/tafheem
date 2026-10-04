@@ -27,7 +27,7 @@ from backend.services.arabic_text import bare_letters
 from backend.config import data_path, get_settings
 from backend.services.syntax import decode
 from backend.services.syntax.mask import book_links, book_mask
-from backend.services.harakat import best_reading, past_passive_shape, typed_case
+from backend.services.harakat import best_reading, past_passive_shape, typed_case, weak_last, base_of
 
 logger = logging.getLogger(__name__)
 
@@ -194,7 +194,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
             "pos": pos, "pos_camel": a.get("pos", ""), "ud": ud,
             "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
             "stt": a.get("stt", "na"), "cas": a.get("cas", "na"), "num": a.get("num", "na"),
-            **extra, "token_type": "baseword",
+            "weak_last": weak_last(a), "base": base_of(word, a.get("atbtok")), **extra, "token_type": "baseword",
         }
 
     if not a.get("catib6") or "atbtok" not in a:
@@ -207,9 +207,9 @@ def _split_word(word: str, a: dict) -> list[dict]:
         # لِلّٰهِ: the analyser knows the word opens with a preposition but files it unsplit;
         # the preposition is its first letter, and the noun is its lemma (الله)
         letter = base["form"][:1]
-        return [{"form": f"{letter}+", "lemma": f"{letter}+", "pos": "PRT", "pos_camel": "prep", "ud": "ADP",
+        return [{"form": f"{letter}+", "lemma": f"{letter}+", "base": letter, "pos": "PRT", "pos_camel": "prep", "ud": "ADP",
                  "asp": "na", "vox": "na", "stt": "na", "cas": "na", "token_type": "prc1"},
-                {**base, "form": base["lemma"], "cas": "g"}]
+                {**base, "form": base["lemma"], "base": base["base"][1:], "cas": "g"}]
 
     # the pieces are the tokenisation's, not the tags': ثُلْثَ_+هُ is tagged NOM alone, and
     # left whole its pronoun is lost to the sentence (the بدل's pronoun back to its noun).
@@ -237,7 +237,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
         else:
             feats = _clitic_token_feats(tok, "prc" if tok.endswith("+") else "enc", a)
             out.append({
-                "form": form, "lemma": form,
+                "form": form, "lemma": form, "base": form.strip("+"),
                 "pos": catib6, "pos_camel": feats["pos_camel"], "ud": ud,
                 "asp": feats["asp"], "vox": feats["vox"],
                 "stt": feats["stt"], "cas": feats["cas"],

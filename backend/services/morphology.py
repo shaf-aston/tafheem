@@ -19,7 +19,7 @@ from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
 from backend.services.nahw_book import is_one
-from backend.services.harakat import CAMEL_CASE, CASE_NAME, TANWEEN, best_reading, command_shape, moved_for_wasl, paused, typed_case
+from backend.services.harakat import CAMEL_CASE, CASE_NAME, TANWEEN, base_of, best_reading, command_shape, weak_last, weak_radical, moved_for_wasl, paused, typed_case
 
 logger = logging.getLogger(__name__)
 
@@ -178,14 +178,6 @@ def _bw_root_to_arabic(root: str) -> str:
     return shown_root(clean)
 
 
-def _weak_radical(raw_root: str | None, place: int) -> bool:
-    """Whether CAMeL's root has a weak letter (و or ي) as its radical at `place` (-1 last,
-    1 middle). `#` is how it writes one; _bw_root_to_arabic drops such a root, so this
-    reads the raw one."""
-    radicals = (raw_root or "").split(".")
-    return len(radicals) == 3 and radicals[place] in ("#", "w", "y", "Y")
-
-
 def _build_features(a: dict) -> str:
     parts: list[str] = []
     asp = a.get("asp", "na") or "na"
@@ -238,7 +230,7 @@ def _as_command(word: str, a: dict, before: str, after: str) -> dict:
     elif len(bare) == 3:
         # أَقِمْ: Form IV's hollow command is the past قام with its alef gone, so a hollow root vouches for it
         past = next((p for p in _camel_analyzer.analyze(f"{bare[1]}ا{bare[2]}")
-                     if p.get("pos") == "verb" and _weak_radical(p.get("root"), 1)), None)
+                     if p.get("pos") == "verb" and weak_radical(p.get("root"), 1)), None)
     if not command_shape(word, is_one(before, "jazm", "before_a_present_verb"), hollow=len(bare) == 3 and bool(past)):
         return a
     pos = (a.get("pos") or "").lower()
@@ -287,7 +279,9 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
         "state": a.get("stt") or "na",
         "pattern": a.get("pattern") or "",
         # the root's last letter is و or ي (عصا, قاضي): the root string above is empty for those
-        "weak_last": _weak_radical(a.get("root"), -1),
+        "weak_last": weak_last(a),
+        # the word without the letters joined to it (وَ+لا، سَ+يَكْتُبُ، أَخُو+كَ), by CAMeL's own split
+        "base": base_of(word, a.get("atbtok")),
         # an attached pronoun: 1s_poss is ya al-mutakallim, which hides the case (كِتَابِي);
         # CAMeL writes "0" for none
         "enclitic": "" if a.get("enc0") in (None, "0") else a["enc0"],
@@ -433,6 +427,7 @@ def _unanalysed(word: str, lemma: str, engine: str) -> dict[str, Any]:
         "type": "ism", "case": case_str, "case_raw": "u", "gloss": "",
         "gender": "na", "number": "na", "person": "na", "aspect": "na",
         "mood": "na", "voice": "na", "state": "na", "pattern": "",
+        "enclitic": "", "base": strip_diacritics(word),  # no root read: no weak_last key
         "features": f"case={case_str}" if case_str else "",
         "engine": engine,
     }
