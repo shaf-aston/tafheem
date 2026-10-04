@@ -160,7 +160,9 @@ def professional_clips(skip):
 
 
 # A held voice is never trained on, nor a held ayah by anyone.
-whole = Dataset.from_list(list(learner_clips()))
+# Written to disk 1,000 clips at a time: held as one list, 19k decoded clips pass
+# Arrow's 2 GB limit for a single column block and the run dies before training.
+whole = Dataset.from_generator(learner_clips)
 pick = random.Random(7)
 voices, ayahs = sorted(set(whole['who'])), sorted(set(whole['ayah']))
 pick.shuffle(voices)
@@ -171,7 +173,7 @@ TESTS = {
     'new voices': whole.filter(lambda r: r['who'] in new_voices and r['ayah'] not in new_ayahs),
     'new ayahs': whole.filter(lambda r: r['ayah'] in new_ayahs),
     # Unseen by training is what matters; learners now cover nearly every ayah, so skipping all of them left too few.
-    'professional': Dataset.from_list(list(professional_clips(taught_ayahs))),
+    'professional': Dataset.from_generator(professional_clips, gen_kwargs={'skip': taught_ayahs}),
 }
 TESTS = {k: v.shuffle(seed=7).select(range(min(TESTED, len(v)))) for k, v in TESTS.items()}
 taught = whole.filter(lambda r: r['who'] not in new_voices and r['ayah'] not in new_ayahs).shuffle(seed=7)
