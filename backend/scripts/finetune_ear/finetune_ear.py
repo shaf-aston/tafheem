@@ -43,7 +43,7 @@ import requests
 import torch
 from datasets import Audio, Dataset, load_dataset
 from peft import LoraConfig, get_peft_model
-from transformers import GenerationConfig, Seq2SeqTrainer, Seq2SeqTrainingArguments, WhisperForConditionalGeneration, WhisperProcessor
+from transformers import GenerationConfig, Seq2SeqTrainer, Seq2SeqTrainingArguments, WhisperConfig, WhisperForConditionalGeneration, WhisperProcessor
 
 SIZE = 'base'  # 'tiny': two thirds the time at home, pros 1.2 points worse; tuned on 45 ayahs it slipped 3 more
 NAME = f'tarteel-ai/whisper-{SIZE}-ar-quran'
@@ -105,6 +105,14 @@ SOURCES = {
 }
 
 
+processor = WhisperProcessor.from_pretrained(NAME, language='ar', task='transcribe')
+# Whisper writes so many marks at most, start marks included. An ayah spelt in more can be
+# neither taught (training stops on it) nor heard whole, so it is left out on both sides.
+MOST_MARKS = WhisperConfig.from_pretrained(NAME).max_target_positions
+SAYABLE = {k for k, t in IMLAEI.items() if len(processor.tokenizer(t).input_ids) <= MOST_MARKS}
+print(len(IMLAEI) - len(SAYABLE), 'ayahs too long for the model to write, left out', flush=True)
+
+
 def rows_of(name):
     """A source's clips, sound undecoded. Tarteel v1 is files plus a list, not a Hugging Face set."""
     if name != TARTEEL_V1:
@@ -127,7 +135,7 @@ def learner_clips():
     for name, (clean, ayah, who) in SOURCES.items():
         # Judged with the sound still undecoded, so rejected clips cost nothing.
         rows = (rows_of(name).cast_column('audio', Audio(decode=False))
-                .filter(lambda r: clean(r) and ayah(r) in IMLAEI)
+                .filter(lambda r: clean(r) and ayah(r) in SAYABLE)
                 .map(lambda r, at: {'who': f'{name}:{who(r) or at}'}, with_indices=True))
         damaged = 0
         for row in rows:
@@ -160,7 +168,9 @@ def professional_clips(skip):
 
 
 # A held voice is never trained on, nor a held ayah by anyone.
-whole = Dataset.from_list(list(learner_clips()))
+# Written to disk 1,000 clips at a time: held as one list, 19k decoded clips pass
+# Arrow's 2 GB limit for a single column block and the run dies before training.
+whole = Dataset.from_generator(learner_clips)
 pick = random.Random(7)
 voices, ayahs = sorted(set(whole['who'])), sorted(set(whole['ayah']))
 pick.shuffle(voices)
@@ -171,14 +181,13 @@ TESTS = {
     'new voices': whole.filter(lambda r: r['who'] in new_voices and r['ayah'] not in new_ayahs),
     'new ayahs': whole.filter(lambda r: r['ayah'] in new_ayahs),
     # Unseen by training is what matters; learners now cover nearly every ayah, so skipping all of them left too few.
-    'professional': Dataset.from_list(list(professional_clips(taught_ayahs))),
+    'professional': Dataset.from_generator(professional_clips, gen_kwargs={'skip': taught_ayahs}),
 }
 TESTS = {k: v.shuffle(seed=7).select(range(min(TESTED, len(v)))) for k, v in TESTS.items()}
 taught = whole.filter(lambda r: r['who'] not in new_voices and r['ayah'] not in new_ayahs).shuffle(seed=7)
 print(len(whole), 'learner clips of', len(ayahs), 'ayahs;', len(taught), 'to learn from; tests:',
       {k: len(v) for k, v in TESTS.items()}, flush=True)
 
-processor = WhisperProcessor.from_pretrained(NAME, language='ar', task='transcribe')
 model = WhisperForConditionalGeneration.from_pretrained(NAME).cuda()
 # tarteel ships no generation_config.json, so it lacks the language table; its base model has it.
 model.generation_config = GenerationConfig.from_pretrained(f'openai/whisper-{SIZE}')
@@ -204,7 +213,7 @@ def listen(m, rows, batch=8):
         feats = processor([np.asarray(s, dtype=np.float32) for s in part['sound']],
                           sampling_rate=RATE, return_tensors='pt').input_features.cuda()
         with torch.no_grad():
-            out = m.generate(input_features=feats, max_new_tokens=180)
+            out = m.generate(input_features=feats, max_new_tokens=MOST_MARKS - len(processor.tokenizer.prefix_tokens))
         heard += [bare(t) for t in processor.batch_decode(out, skip_special_tokens=True)]
     return heard
 
