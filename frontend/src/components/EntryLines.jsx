@@ -5,8 +5,8 @@
  * an answer it could not line up. These views never split anything again: a
  * second cut on the client is how English ends up under the wrong Arabic.
  *
- * Two ways to read the same pairs. LinePage prints the entry as the book does,
- * one flowing paragraph, and shows the English of whichever line you touch.
+ * Two ways to read the same pairs. LinePage gives every line its own row with
+ * its English under it (a tick box hides the English until a line is tapped).
  * LineSpotlight takes one line at a time, English hidden until asked for.
  */
 import { useCallback, useState } from 'react'
@@ -15,7 +15,6 @@ import { entryLines, VERSE_GAP } from '../lib/entryLines'
 import { useRememberedFlag } from '../lib/useRemembered'
 
 import { Line } from './EntryArabic'
-import ArabicText from './ui/ArabicText'
 import SmallButton from './ui/SmallButton'
 
 
@@ -36,43 +35,57 @@ function useLineCursor(count) {
 /** Two digits in Arabic-Indic figures, to sit among the Arabic. */
 const arabicNumber = (n) => n.toLocaleString('ar-EG', { minimumIntegerDigits: 2, useGrouping: false })
 
-const Gloss = ({ cursor, count, english }) => (
-  <div className="flex items-start gap-3 pt-3 border-t border-[var(--border)]">
-    <SmallButton aria-label="Previous line" disabled={cursor.i === 0} onClick={cursor.prev}>←</SmallButton>
-    <div key={cursor.i} className="entry-rise flex-1 min-w-0 space-y-0.5" aria-live="polite">
-      <div className="eyebrow">Line {cursor.i + 1} of {count}</div>
-      <p className="type-body text-[var(--text)]" dir="ltr">{english}</p>
-    </div>
-    <SmallButton aria-label="Next line" disabled={cursor.i === count - 1} onClick={cursor.next}>→</SmallButton>
-  </div>
+/** A quiet tick box above a view, for how it reads; the choice is remembered. */
+const Tick = ({ checked, onChange, accent, children }) => (
+  <label className="type-small text-[var(--text-dim)] flex items-center justify-end gap-2">
+    <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} style={{ accentColor: accent }} />
+    {children}
+  </label>
 )
 
 export function LinePage({ lines, accent }) {
-  const cursor = useLineCursor(lines.length)
+  const [tapToShow, setTapToShow] = useRememberedFlag('dict.lines-tap', false)
+  const [open, setOpen] = useState(() => new Set())
+  const toggle = (n) => setOpen((was) => {
+    const now = new Set(was)
+    if (!now.delete(n)) now.add(n)
+    return now
+  })
 
   return (
-    <div className="space-y-3" style={{ '--c': accent }} onKeyDown={cursor.onKeyDown}>
-      <div dir="rtl" className="arabic text-justify" role="group" aria-label="Lines of the entry">
+    <div className="space-y-2" style={{ '--c': accent }}>
+      <Tick checked={tapToShow} onChange={setTapToShow} accent={accent}>Tap a line for its English</Tick>
+      <div role="list" aria-label="Lines of the entry">
         {lines.map((pair, n) => {
-          const verse = pair.arabic.includes(VERSE_GAP)
+          const shown = !tapToShow || open.has(n)
+          const tap = tapToShow && {
+            role: 'button',
+            tabIndex: 0,
+            'aria-expanded': shown,
+            onClick: () => toggle(n),
+            onKeyDown: (e) => {
+              if (e.key !== 'Enter' && e.key !== ' ') return
+              e.preventDefault()
+              toggle(n)
+            },
+          }
           return (
-            <span key={n}>
-              <button
-                type="button"
-                aria-pressed={n === cursor.i}
-                onClick={() => cursor.go(n)}
-                className={`entry-seg ${verse ? 'entry-seg--verse' : ''}`}
-              >
-                <sup className="type-tiny" aria-hidden="true">{arabicNumber(n + 1)}</sup>
-                {verse
-                  ? <Line line={entryLines(pair.arabic)[0]} />
-                  : <ArabicText>{pair.arabic}</ArabicText>}
-              </button>{' '}
-            </span>
+            <div key={n} role="listitem" className="entry-row">
+              <div className="entry-row-body" {...tap}>
+                <span className="entry-num type-tiny" aria-hidden="true">{arabicNumber(n + 1)}</span>
+                <div className="flex-1 min-w-0 space-y-0.5">
+                  <Line line={entryLines(pair.arabic)[0]} />
+                  {shown && (
+                    <p dir="ltr" className={`type-body text-[var(--text-dim)] ${tapToShow ? 'entry-rise' : ''}`}>
+                      {pair.english}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
           )
         })}
       </div>
-      <Gloss cursor={cursor} count={lines.length} english={lines[cursor.i].english} />
     </div>
   )
 }
@@ -88,15 +101,7 @@ export function LineSpotlight({ lines, accent }) {
 
   return (
     <div className="space-y-3" style={{ '--c': accent }} onKeyDown={cursor.onKeyDown}>
-      <label className="type-small text-[var(--text-dim)] flex items-center justify-end gap-2">
-        <input
-          type="checkbox"
-          checked={tryFirst}
-          onChange={(e) => setTryFirst(e.target.checked)}
-          style={{ accentColor: accent }}
-        />
-        Try it first, then show the English
-      </label>
+      <Tick checked={tryFirst} onChange={setTryFirst} accent={accent}>Try it first, then show the English</Tick>
 
       <div className="flex gap-0.5">
         {lines.map((_, n) => (

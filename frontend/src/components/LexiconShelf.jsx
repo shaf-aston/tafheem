@@ -156,7 +156,7 @@ function BookEntry({ entry, root, accent }) {
           {lane ? <LaneEntry forms={shown} anchor={anchor} /> : (
             <div className="space-y-2">
               {shown.map((said, i) => (
-                <ArabicText key={i} as="p" size="sm" className="max-w-prose ml-auto">{said}</ArabicText>
+                <ArabicText key={i} as="p" size="sm">{said}</ArabicText>
               ))}
             </div>
           )}
