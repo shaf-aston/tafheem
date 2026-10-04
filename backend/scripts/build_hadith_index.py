@@ -22,7 +22,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services.arabic_text import bare_letters  # noqa: E402
 from backend.services.hadith import words  # noqa: E402
 
 _SCHEMA = """
@@ -77,7 +76,7 @@ def index_text(conn: sqlite3.Connection) -> None:
     rows = conn.execute("SELECT rowid, arabic, english FROM hadith").fetchall()
     vocabulary: Counter[tuple[str, str]] = Counter()
     for rowid, arabic, english in rows:
-        folded = bare_letters(arabic)
+        folded = words.fold(arabic)
         conn.execute("INSERT INTO hadith_fts (rowid, arabic, stem, english) VALUES (?, ?, ?, ?)",
                      (rowid, folded, words.stems(folded), english))
         vocabulary.update(("ar", w) for w in set(words.ARABIC_WORD.findall(folded)))
