@@ -30,6 +30,11 @@ if [ "$NEW" = "$(cat /home/ubuntu/.deployed-sha 2>/dev/null || true)" ]; then
 	exit 0
 fi
 git reset -q --hard origin/master
+# The reset may have changed this very script; bash would finish the old one,
+# so a change here would only apply a deploy late. Run the new copy once.
+if [ -z "${SYNC_FRESH:-}" ]; then
+	SYNC_FRESH=1 exec bash "$0" "$@"
+fi
 rsync -a --exclude data --exclude __pycache__ backend/ /home/ubuntu/tafheem/backend/
 git ls-files -z backend/data | rsync -a --from0 --files-from=- ./ /home/ubuntu/tafheem/
 rsync -a deploy/ /home/ubuntu/tafheem/deploy/
