@@ -1,5 +1,13 @@
 {
   "_comment": "Hadith tab knobs. grades: which scholar's verdict leads on a card (the first here who graded it), and which words put a verdict in which family; the first family whose word appears wins, so weak words are checked first ('Hasan Sahih' is sound, 'Sahih Isnaad Daif' is not). topics: which picture a book wears, the first whose word appears in its English name wins, so the specific ones come first. Words are lower case, matched anywhere in the name.",
+  "chain": {
+    "_comment": "How the chain of narrators is found, so it can be hidden (lib/hadithWords chainOf). links pass the hadith on from one narrator to the next; says end a link and start the hadith unless another link follows. about are words a chain uses to speak of itself (with this chain, the same as it): the hadith that holds one stays whole, since that note is what it says. name is how many words one narrator's name may run, free words (the blessings said after a name) not counted, before the chain counts as unclear and the hadith stays whole. Written without vowels; a leading wa or fa is read off.",
+    "links": ["حدثنا", "حدثني", "حدثه", "حدثهم", "يحدث", "أخبرنا", "أخبرني", "أخبره", "أنبأنا", "أنبأني", "عن", "سمعت", "سمع", "سمعنا", "ح"],
+    "says": ["قال", "قالا", "قالوا", "قالت", "أن", "أنه", "أنها", "أنهم", "يقول", "تقول"],
+    "about": ["الإسناد", "بإسناد", "بإسناده", "إسناده", "الحديث", "حديث", "حديثه", "مثله", "بمثله", "بمثل", "مثل", "نحوه", "بنحوه", "نحو", "بمعناه", "غير"],
+    "free": ["رضي", "رضى", "الله", "عنه", "عنها", "عنهما", "عنهم", "صلى", "عليه", "وسلم"],
+    "name": 6
+  },
   "grades": {
     "lead": ["Al-Albani", "Zubair Ali Zai", "Shuaib Al Arnaut", "Ahmad Muhammad Shakir", "Abu Ghuddah"],
     "families": [

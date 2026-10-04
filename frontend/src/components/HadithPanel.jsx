@@ -56,7 +56,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
   if (!collections.length) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" subtitle="Search and read the hadith collections." />
+        <SectionHeader title="Hadith" arabic="الحديث" />
         <ErrorAlert title="No collection is built yet">
           Fetch and build one with{' '}
           <Code>
@@ -86,7 +86,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
 
   return (
     <div className="panel">
-      <SectionHeader title="Hadith" arabic="الحديث" subtitle="Search and read the hadith collections." />
+      <SectionHeader title="Hadith" arabic="الحديث" />
 
       {missed && (
         <p role="status" className="type-small text-[var(--text-dim)]">
@@ -105,10 +105,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
           <p className="type-small text-[var(--text-faint)] flex items-center gap-2">
             {open.name}
             {open.sahih && (
-              <>
-                <span aria-hidden="true" className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--success)]" />
-                every hadith in it is graded sahih
-              </>
+              <span role="img" aria-label="every hadith graded sahih" title="Every hadith graded sahih" className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--success)]" />
             )}
           </p>
         )}
