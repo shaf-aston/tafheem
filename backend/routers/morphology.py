@@ -27,34 +27,18 @@ from fastapi import APIRouter, HTTPException
 from backend.models.schemas import (
     ConjugationRequest,
     ConjugationResponse,
-    ConjugationTable,
     MeaningRequest,
     MeaningResponse,
     MorphologyRequest,
     MorphologyResponse,
     Source,
-    VerbVerdict,
 )
 from backend.services import ai as ai_service
-from backend.services import conjugation, dictionary_service, morphology, provenance, verb_forms
+from backend.services import conjugation, morphology, provenance, sarf_word
 from backend.utils import call_service, normalize_text, require_arabic
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/morphology", tags=["morphology"])
-
-def _table(radicals: str, form: str) -> tuple[ConjugationTable | None, str | None, str | None]:
-    """The table for these letters in this باب, or the reason there isn't one.
-
-    Both routes end here, the full analysis once it has worked out the باب, and
-    the form switch, which changes nothing else; so the reason a root has no
-    table is worded once.
-    """
-    try:
-        return ConjugationTable(**conjugation.conjugate(radicals, form)), None, form
-    except ValueError as exc:
-        return None, str(exc), None
-
-
 
 @router.post("", response_model=MorphologyResponse)
 async def analyze_morphology(request: MorphologyRequest) -> MorphologyResponse:
@@ -64,67 +48,7 @@ async def analyze_morphology(request: MorphologyRequest) -> MorphologyResponse:
     # down and echoed back inside the "why there is no table" message.
     if request.form and request.form not in conjugation.forms():
         raise HTTPException(422, "Unknown verb form.")
-
-    # ── Step 1: Local morphology ──────────────────────────────────────────────
-    tag = await asyncio.to_thread(morphology.analyze_word, word)
-
-    root = tag.get("root") or None
-    notes = tag.get("features") or None
-
-    # The dictionary before the tagger. Wiktionary writes the commonest sense
-    # first and writes it for a reader; the tagger's gloss is a lexicon label
-    # ("understand;comprehend") written for a parser. The Define button beside
-    # the meaning is for the reader who wants the whole entry, so what stands in
-    # the card should be the first line of the entry that button opens.
-    meaning = await asyncio.to_thread(dictionary_service.meaning_of, word)
-    meaning_key = "wiktionary" if meaning else "rules"
-    if not meaning:
-        meaning = morphology.clean_gloss(tag.get("gloss") or "") or None
-
-    # ── Step 2: Which باب, and can this word have a table at all ─────────────
-    # The reasoning is the service's; the router only says what the tagger thought
-    # the word was and hands the answer on.
-    radicals = conjugation.radicals_of(root or word)
-    verdict = verb_forms.babs_of(word)
-    form, table_note = conjugation.resolve_form(
-        word, radicals, tag.get("pos") in morphology.NOUNISH, request.form, verdict["form_key"],
-    )
-
-    # ── Step 3: Conjugate from the rule tables ────────────────────────────────
-    # Always local and always the same answer, so the table never depends on an
-    # AI being reachable. The meaning is fetched separately, by /meaning.
-    table: ConjugationTable | None = None
-    if form:
-        table, note, form = _table(radicals, form)
-        table_note = note or table_note
-
-    # The pattern is the chosen form's own template written in the scale letters,
-    # so it always agrees with the table beside it. The tagger's own `pattern`
-    # field was digits, `ٱِسْتَ1ْ2َ3َ`, and never belonged on screen.
-    wazn = conjugation.scale_name(form) if form else None
-    # Which family the root belongs to is worked out, not guessed. When the
-    # letters are not a root we can judge locally, /meaning's AI call may still
-    # supply one, the frontend merges it in once it arrives.
-    vclass = conjugation.root_type(radicals) if len(radicals) in {3, 4} else None
-
-    return MorphologyResponse(
-        word=word,
-        root=root,
-        wazn=wazn,
-        verb_class=vclass,
-        meaning=meaning,
-        table=table,
-        notes=notes,
-        form=form,
-        # Only the أبواب this root's letters can take, so switching باب can never
-        # land on one that has no table to show.
-        form_options=conjugation.forms(len(radicals)),
-        table_note=table_note,
-        # The table is a rule table and is always the same.
-        source=Source(**provenance.of("rules")) if table else None,
-        meaning_source=Source(**provenance.of(meaning_key)) if meaning else None,
-        verb=VerbVerdict.of(verdict),
-    )
+    return await asyncio.to_thread(sarf_word.analyze, word, request.form)
 
 
 @router.post("/meaning", response_model=MeaningResponse)
@@ -179,11 +103,4 @@ async def conjugate_form(request: ConjugationRequest) -> ConjugationResponse:
     if request.form not in conjugation.forms():
         raise HTTPException(422, "Unknown verb form.")
 
-    table, table_note, form = _table(conjugation.radicals_of(root), request.form)
-    return ConjugationResponse(
-        form=form,
-        wazn=conjugation.scale_name(form) if form else None,
-        table=table,
-        table_note=table_note,
-        source=Source(**provenance.of("rules")) if table else None,
-    )
+    return sarf_word.table_for(conjugation.radicals_of(root), request.form)
