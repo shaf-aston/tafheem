@@ -266,3 +266,19 @@ def test_word_types_are_the_pages():
     for sentence in (VERBAL, NOMINAL, "جَاءَ الَّذِي نَجَحَ، هُوَ فِي البَيْتِ"):
         assert {w["type"] for w in _read(sentence)["words"]} <= WORD_TYPES
     assert WordAnalysis.from_raw({"word": "زيدٌ", "type": "noun"}).type is None
+
+
+def test_the_glossary_explains_every_term_the_page_prints():
+    """Every role a card can carry and every tarkeeb term is in grammar.json, so the glossary is never short."""
+    import json
+    from pathlib import Path
+    from backend.services.arabic_text import strip_diacritics
+    from backend.services.nahw_book import role_table
+    from backend.services.syntax.naming import ROLES
+    root = Path(__file__).parent.parent
+    grammar = json.loads((root / "frontend/src/grammar.json").read_text(encoding="utf-8"))
+    tarkeeb = json.loads((root / "backend/data/nahw_rules/tarkeeb.json").read_text(encoding="utf-8"))["terms"]
+    explained = {t["arabic"] for group in ("types", "cases") for t in grammar[group].values()}
+    explained |= {t["arabic"] for s in grammar["sections"] for t in s["terms"]}
+    printed = set(role_table()) | set(ROLES) | {strip_diacritics(t["ar"]) for k, t in tarkeeb.items() if k != "unresolved"}
+    assert sorted(printed - explained) == []
