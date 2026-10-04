@@ -31,8 +31,8 @@ export const typeLabel = (key) => TYPES[key]?.arabic ?? key
 /** The Arabic for a corpus part-of-speech code ("N", "V", "P"). */
 export const posLabel = (tag) => typeLabel(config.corpus_pos[tag] ?? tag)
 
-/** The glossary, in Tasheel al-Nahw's chapters; a `from` section lists the types or cases. */
+/** The glossary, in Tasheel al-Nahw's chapters; a `from` section lists the types or cases first, then its own terms. */
 export const GLOSSARY = config.sections.map(({ title, from, terms }) => ({
   title,
-  terms: from ? Object.values(config[from]) : terms,
+  terms: [...(from ? Object.values(config[from]) : []), ...(terms ?? [])],
 }))
