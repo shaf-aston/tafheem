@@ -61,7 +61,8 @@ export function narrated(english) {
 export const hadithKey = (ref) => (ref?.hadith ? `${ref.hadith}:${ref.number}${ref.part ?? ''}` : '')
 
 // The chain words from hadith.json, read without vowels or punctuation.
-const LINKS = new Set(HADITH.chain.links)
+const { verbs, endings, words: linkWords } = HADITH.chain.links
+const LINKS = new Set([...linkWords, ...verbs.flatMap((verb) => endings.map((ending) => verb + ending))])
 const SAYS = new Set(HADITH.chain.says)
 const ABOUT = new Set(HADITH.chain.about)
 const FREE = new Set(HADITH.chain.free)
