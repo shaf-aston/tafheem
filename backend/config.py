@@ -313,8 +313,9 @@ class Settings(BaseSettings):
     startup_wait: list[str] = ["dictionary", "root_meanings"]
     # background: started and left to finish, so the first use finds them loaded. Drop a name on a small machine:
     # recitation ~1s, 150MB (first recitation loads it instead); nahw_parser ~110MB ONNX + CAMeL BERT, ~600MB, ~8s+;
-    # colloquial reads and checks every unit, ~3s, which the first Colloquial visit after a restart waited out.
-    startup_background: list[str] = ["recitation", "speech", "colloquial", "nahw_parser"]
+    # colloquial reads and checks every unit, ~3s, which the first Colloquial visit after a restart waited out;
+    # hadith_meaning ~2s, ~150MB model + 50MB vectors, which the first hadith search waited out.
+    startup_background: list[str] = ["recitation", "speech", "colloquial", "nahw_parser", "hadith_meaning"]
 
     cors_origins: list[str] = Field(
         default_factory=lambda: [

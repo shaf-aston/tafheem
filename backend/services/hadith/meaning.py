@@ -77,6 +77,12 @@ def encoder() -> Encoder:
     return _model
 
 
+def warm() -> None:
+    """Load the model and the stored vectors now, so the first search does not wait ~2s for them."""
+    if is_built():
+        nearest("warm", 1)
+
+
 def is_built() -> bool:
     return data_path("hadith_meaning_path").exists()
 
