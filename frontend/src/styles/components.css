@@ -583,3 +583,37 @@ dialog::backdrop {
   }
 }
 
+
+/* ── Chain drawing ─────────────────────────────────────────────────────────
+   ui/ChainDrawing. A rung is a one-pixel line; a row of strands that split
+   from one narrator (chain-split) or meet at one (chain-merge) gets a bar
+   across the tops or feet of its columns, from the middle of the first to the
+   middle of the last, so the lines read as one tree. */
+.chain-line {
+  background: var(--border-hi);
+}
+.chain-split > *,
+.chain-merge > * {
+  position: relative;
+}
+.chain-split > *::before,
+.chain-merge > *::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  border-top: 1px solid var(--border-hi);
+}
+.chain-split > *::before {
+  top: 0;
+}
+.chain-merge > *::after {
+  bottom: 0;
+}
+.chain-split > :first-child::before,
+.chain-merge > :first-child::after {
+  inset-inline-start: 50%;
+}
+.chain-split > :last-child::before,
+.chain-merge > :last-child::after {
+  inset-inline-end: 50%;
+}

@@ -117,6 +117,88 @@ export function chainOf(arabic) {
   return whole
 }
 
+// Each chain word's entry in the guide (hadith.json chain.terms): a verb by its
+// stem (حدثتني is حدث), any other word whole.
+const TERMS = new Map(HADITH.chain.terms.groups.flatMap(({ way, terms }) =>
+  terms.flatMap((term) => (term.match ?? []).map((m) => [m, { ...term, way }]))))
+const STEMS = [...verbs].sort((a, b) => b.length - a.length)
+
+/** The guide's entry for one chain word as written, or null. */
+export function termOf(word) {
+  const plain = bare(word)
+  return TERMS.get(STEMS.find((stem) => plain.startsWith(stem)) ?? plain) ?? null
+}
+
+// A name reduced to what two spellings of one narrator share: case endings,
+// the article and أبو/أبا/أبي as one word (alone, أبي is "my father"). Blessings
+// stay: they trail the name, so the prefix rule below reads past them, while
+// dropping الله would leave عبد الله as عبد.
+const SPELLINGS = HADITH.chain.spellings
+const keyOf = (name) => name.split(/\s+/).map(bare).filter(Boolean)
+  .map((w, _, all) => (all.length > 1 && SPELLINGS[w]) || w.replace(/^ال/, '').replace(/(.{3,})ا$/, '$1').replace(/ة$/, 'ه').replace(/ى$/, 'ي'))
+const KIN = new Set(HADITH.chain.kin)
+const TOGETHER = new Set(HADITH.chain.together)
+// One narrator when the shorter key opens the longer (سليمان is سليمان بن يسار):
+// inside one hadith's chain a name is rarely shared by two men. "My father" in
+// two strands is two fathers, so it never joins them.
+const same = (a, b) => {
+  const [short, long] = a.length <= b.length ? [a, b] : [b, a]
+  if (!short.length || (short.length === 1 && KIN.has(short[0]))) return false
+  return short.every((w, i) => w === long[i])
+}
+
+// A word as printed, vowels kept, commas and direction marks gone.
+const shown = (raw) => raw.replace(/[^\u0621-\u063A\u0641-\u065F\u0670\u0671]/g, '')
+
+/**
+ * A chain (from chainOf) as narrators and the word that passed it between
+ * each two: [{ term, way, name }], in the book's order, teacher of the author
+ * first. ح starts another strand; each one but the last becomes a branch of
+ * `main` (the last): `at` is the place in `main` it joins, the first narrator
+ * both name, and `join` the link that names him there, for its word. No
+ * narrator named in both, and `at` is null: the books do not say where that
+ * strand meets (حدثني أبي names a father, not a name), so neither do we.
+ */
+export function chainLinks(chain) {
+  const strands = [[]]
+  let term = null
+  let name = []
+  const close = () => {
+    if (name.length) strands.at(-1).push({ term: term?.word ?? '', way: term?.way ?? '', name: name.join(' ') })
+    name = []
+    term = null
+  }
+  for (const raw of String(chain ?? '').match(/\S+/g) ?? []) {
+    const word = bare(raw)
+    if (word === HADITH.chain.strand) { close(); strands.push([]); continue }
+    if (TOGETHER.has(word)) {
+      close()
+      const last = strands.at(-1).at(-1)
+      if (last) last.together = true
+      continue
+    }
+    if (LINKS.has(word)) { close(); term = { word: shown(raw), way: termOf(raw)?.way ?? '' }; continue }
+    if (SAYS.has(word)) { close(); continue }
+    if (word) name.push(shown(raw))
+  }
+  close()
+  const [main = [], ...rest] = strands.filter((s) => s.length).reverse()
+  const keys = main.map((link) => keyOf(link.name))
+  // The author heard each strand from a different teacher, so the first
+  // narrators never join; past them a shared name, or else the main strand's
+  // "both said", is where a strand meets it.
+  const together = main.findIndex((link, i) => i > 0 && link.together)
+  const branches = rest.reverse().map((links) => {
+    for (const [i, link] of links.entries()) {
+      const at = i ? keys.findIndex((key, j) => j > 0 && same(key, keyOf(link.name))) : -1
+      if (at > 0) return { links: links.slice(0, i), at, join: link }
+    }
+    const at = together >= 0 && together + 1 < main.length ? together + 1 : null
+    return { links, at, join: at === null ? null : main[at] }
+  })
+  return { main, branches }
+}
+
 /**
  * Which hadiths each part of one event prints, so none is printed twice.
  *
