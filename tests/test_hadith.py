@@ -325,3 +325,17 @@ def test_a_model_that_cannot_load_costs_meaning_once_not_every_search(meanings, 
     for _ in range(3):
         assert [h.number for h in search.search("light", 10).hits] == [3]
     assert len(tries) == 1
+
+
+def test_a_name_in_the_chain_is_not_searched(db):
+    """الصبر finds the hadith that says it, not the one whose chain names a narrator صبر or صبرة."""
+    conn = sqlite3.connect(db)
+    conn.execute("INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) "
+                 "VALUES ('bukhari', 2, 4, '', 'حدثنا صبر بن صبرة، عن أبيه، قال كان رسول الله يأكل', 'Laqit bin Sabira narrated')")
+    conn.execute("INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) "
+                 "VALUES ('bukhari', 2, 5, '', 'حدثنا لقيط، قال وما أعطي أحد عطاء خيرا من الصبر', 'No gift is better than patience')")
+    conn.execute("DELETE FROM hadith_fts"); conn.execute("DELETE FROM word"); conn.execute("DELETE FROM deletion")
+    index_text(conn)
+    conn.commit()
+    conn.close()
+    assert [h.number for h in search.search("الصبر", 10).hits] == [5]

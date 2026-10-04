@@ -4,7 +4,7 @@
 
 Reads collections.json and every <collection>.json beside it, and writes one
 SQLite file: collections, their books, every hadith, and an FTS5 index over
-the Arabic and English text for search. Read-only at request time, like
+the Arabic (hadith only, chain left out) and English text for search. Read-only at request time, like
 daleel.db and quran/library.db beside it.
 
 Rebuilding is safe at any time: it writes a fresh file beside the old one and
@@ -23,6 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.hadith import words  # noqa: E402
+from backend.services.hadith.chain import chain_of  # noqa: E402
 from backend.services.hadith.lemma import lemma  # noqa: E402
 
 _SCHEMA = """
@@ -90,9 +91,11 @@ def index_text(conn: sqlite3.Connection) -> None:
     rows = conn.execute("SELECT rowid, arabic, english FROM hadith").fetchall()
     vocabulary: Counter[tuple[str, str]] = Counter()
     for rowid, arabic, english in rows:
-        folded = words.fold(arabic)
+        # Only the hadith, never its chain: a narrator's name is not what the hadith says.
+        _, matn = chain_of(arabic)
+        folded = words.fold(matn)
         # Analysed as written, marks and all: the marks are what tell صَبْرَة the name from الصَّبْر.
-        lemmas = " ".join(filter(None, (lemma(t) for t in words.ARABIC_TOKEN.findall(arabic))))
+        lemmas = " ".join(filter(None, (lemma(t) for t in words.ARABIC_TOKEN.findall(matn))))
         conn.execute("INSERT INTO hadith_fts (rowid, arabic, lemma, english) VALUES (?, ?, ?, ?)",
                      (rowid, folded, lemmas, english))
         vocabulary.update(("ar", w) for w in set(words.ARABIC_WORD.findall(folded)))
