@@ -6,7 +6,7 @@
  * `collections` is every collection, for names and which are Sahih. A book's
  * own list also passes `collection`, since its rows do not say which; there
  * the label is the number alone, and a Sahih book's cards carry no grading
- * because the note under the picker already says it once for all of them.
+ * because the green dot by the collection's name says it once for all of them.
  * Without it (search, Starred) hadiths from several collections meet, so the
  * label names the collection and every card carries its grading.
  */
@@ -17,12 +17,12 @@ import FavoriteStar from './ui/FavoriteStar'
 import GradeMark from './ui/GradeMark'
 import HadithText from './ui/HadithText'
 
-export default function HadithCards({ items, accent, collection, collections }) {
+export default function HadithCards({ items, accent, collection, collections, columns = false, hideChain = false }) {
   const { isFavorite, toggle } = useHadithFavorites()
   const of = (id) => collections.find((c) => c.id === id)
 
   return (
-    <ul className="list-none m-0 p-0 space-y-2">
+    <ul className={`list-none m-0 p-0 ${columns ? 'grid gap-2 items-start md:grid-cols-2' : 'space-y-2'}`}>
       {items.map((item, i) => {
         const h = { ...item, collection: item.collection ?? collection }
         const ref = `${h.number}${h.part ?? ''}`
@@ -35,6 +35,7 @@ export default function HadithCards({ items, accent, collection, collections }) 
             arabic={h.arabic}
             english={h.english}
             accent={accent}
+            hideChain={hideChain}
             action={(
               <span className="flex items-center gap-2">
                 {!(collection && of(collection)?.sahih) && (

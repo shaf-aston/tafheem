@@ -1,6 +1,7 @@
 /**
  * One book's hadiths in full. The title bar stays under the app header while
- * you read: the way back, how far through you are, and a jump to a number.
+ * you read: the way back, how far through you are, a jump to a number, and a
+ * quiet icon that opens how the hadiths are laid out (two per row, chain hidden).
  */
 import { useEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -8,6 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 import { hadithBookQuery } from '../api'
 import { scrollToEl } from '../lib/scrollToEl'
 import { topicOf } from '../lib/hadithGrade'
+import { useRememberedFlag } from '../lib/useRemembered'
 
 import ErrorAlert from './ui/ErrorAlert'
 import EmptyState from './ui/EmptyState'
@@ -33,6 +35,8 @@ export default function HadithList({ collection, collections, book, onBack, acce
   const rail = useRef(null)
   useReadingRail(rail)
   const [missing, setMissing] = useState(false)
+  const [columns, setColumns] = useRememberedFlag('hadith-two-columns', false)
+  const [hideChain, setHideChain] = useRememberedFlag('hadith-hide-chain', false)
 
   const jump = (event) => {
     event.preventDefault()
@@ -54,12 +58,17 @@ export default function HadithList({ collection, collections, book, onBack, acce
             &larr; Books
           </button>
           {data && (
-            <h3 className="flex-1 min-w-0 flex items-center gap-2 text-sm font-medium text-[var(--text)]">
+            <h3 className="flex-1 min-w-[min(100%,14rem)] flex items-center gap-2 text-sm font-medium text-[var(--text)]">
               <TopicIcon topic={topicOf(data.book.name)} className="w-4 h-4" />
               {data.book.number}. {data.book.name}
               <span className="ms-2 type-small font-normal text-[var(--text-faint)]">{data.hadiths.length} hadiths</span>
             </h3>
           )}
+          <ReadingOptions accent={accent} options={[
+            // A phone has room for one hadith a row, so it is not offered there.
+            { label: 'Two columns', on: columns, set: setColumns, wide: true },
+            { label: 'Hide the chain', on: hideChain, set: setHideChain },
+          ]} />
           <form onSubmit={jump} className="flex items-center gap-2">
             {missing && <span role="status" className="type-small text-[var(--text-faint)]">Not in this book</span>}
             <input
@@ -88,7 +97,43 @@ export default function HadithList({ collection, collections, book, onBack, acce
 
       {data && (data.hadiths.length === 0
         ? <EmptyState>This book has no hadiths yet.</EmptyState>
-        : <HadithCards items={data.hadiths} collection={collection} collections={collections} accent={accent} />)}
+        : <HadithCards items={data.hadiths} collection={collection} collections={collections} accent={accent} columns={columns} hideChain={hideChain} />)}
+    </div>
+  )
+}
+
+/** A small sliders icon; pressed, its tick boxes slide out beside it in the bar. */
+function ReadingOptions({ options, accent }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className="flex items-center gap-3" style={{ '--c': accent }}>
+      {open && (
+        <div className="fade-in flex items-center gap-3">
+          {options.map(({ label, on, set, wide }) => (
+            <label key={label} className={`${wide ? 'hidden md:flex' : 'flex'} type-small text-[var(--text-dim)] items-center gap-1.5 cursor-pointer`}>
+              <input type="checkbox" checked={on} onChange={(e) => set(e.target.checked)} style={{ accentColor: accent }} />
+              {label}
+            </label>
+          ))}
+        </div>
+      )}
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-label="Reading options"
+        title="Reading options"
+        className={`press grid place-items-center w-[var(--layout-chip)] h-[var(--layout-chip)] rounded-full transition-colors ${
+          open ? 'text-[var(--c)]' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
+        }`}
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <path d="M4 7h10M18 7h2M4 17h4M12 17h8" />
+          <circle cx="16" cy="7" r="2" />
+          <circle cx="10" cy="17" r="2" />
+        </svg>
+      </button>
     </div>
   )
 }

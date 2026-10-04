@@ -16,7 +16,7 @@
  */
 import ArabicText from './ArabicText'
 import ShowRest from './ShowRest'
-import { narrated, saying } from '../../lib/hadithWords'
+import { chainOf, narrated, saying } from '../../lib/hadithWords'
 import { useFirstSight } from '../../lib/firstSight'
 import { themeVariable } from '../../theme'
 
@@ -39,9 +39,14 @@ function Spans({ text, marks }) {
   ))
 }
 
-/** `action` is a slot beside the number: a favorite star or a collection badge. */
-export default function HadithText({ label, arabic, english = '', accent, action = null, id, index = 0, className = '' }) {
+/**
+ * `action` is a slot beside the number: a favorite star or a collection badge.
+ * `hideChain` drops the chain of narrators: the Arabic as far as lib/hadithWords
+ * can tell where it ends, the English its "Narrated X:" line.
+ */
+export default function HadithText({ label, arabic, english = '', accent, action = null, id, index = 0, className = '', hideChain = false }) {
   const { narrator, body } = narrated(english)
+  const said = hideChain ? chainOf(arabic).body : arabic
   const rise = useFirstSight(`hadith:${arabic.slice(0, 30)}`)
 
   return (
@@ -62,12 +67,12 @@ export default function HadithText({ label, arabic, english = '', accent, action
 
       <ShowRest lines={LINES} accent={accent} more="Show the rest" less="Show less">
         <ArabicText as="p" size="base" className="block leading-loose m-0">
-          <Spans text={arabic} marks={['«', '»']} />
+          <Spans text={said} marks={['«', '»']} />
         </ArabicText>
 
         {english && (
           <p className="type-ui leading-relaxed mt-3 pt-3 border-t border-[var(--border)]">
-            {narrator && <span style={TONE.told}>{narrator} </span>}
+            {narrator && !hideChain && <span style={TONE.told}>{narrator} </span>}
             <Spans text={body} marks={['“', '”']} />
           </p>
         )}

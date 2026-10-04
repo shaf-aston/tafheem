@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { hadithKey, narrated, printedBy, saying } from './hadithWords'
+import { chainOf, hadithKey, narrated, printedBy, saying } from './hadithWords'
 
 describe('saying', () => {
   it('marks a quoted stretch as said and the rest as told', () => {
@@ -90,5 +90,59 @@ describe('printedBy', () => {
 
   it('has an answer for an event with nothing in it', () => {
     expect([...printedBy({}).get('')]).toEqual([])
+  })
+})
+
+describe('chainOf', () => {
+  // Real openings from the books, shortened after the first words of the hadith.
+  it('ends the chain at the said that no further link follows', () => {
+    expect(chainOf('حَدَّثَنَا يَحْيَى بْنُ بُكَيْرٍ، قَالَ حَدَّثَنَا اللَّيْثُ، عَنْ عُقَيْلٍ، عَنْ عَائِشَةَ أُمِّ الْمُؤْمِنِينَ، أَنَّهَا قَالَتْ أَوَّلُ مَا بُدِئَ بِهِ').body)
+      .toBe('قَالَتْ أَوَّلُ مَا بُدِئَ بِهِ')
+  })
+
+  it('walks through a companion who heard the Prophet to the words', () => {
+    const { chain, body } = chainOf('حَدَّثَنَا سُفْيَانُ ، قَالَ : سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ إِنَّمَا الأَعْمَالُ')
+    expect(body).toBe('يَقُولُ ‏"‏ إِنَّمَا الأَعْمَالُ')
+    expect(chain.startsWith('حَدَّثَنَا')).toBe(true)
+  })
+
+  it('keeps a said whose speaker is in the hadith, not the chain', () => {
+    expect(chainOf('حَدَّثَنَا آدَمُ، قَالَ سَمِعْتُ أَبَا صَالِحٍ، ذَكْوَانَ يُحَدِّثُ عَنْ أَبِي سَعِيدٍ الْخُدْرِيِّ،‏.‏ قَالَتِ النِّسَاءُ لِلنَّبِيِّ').body)
+      .toBe('قَالَتِ النِّسَاءُ لِلنَّبِيِّ')
+  })
+
+  it('reads a second chain joined by ح', () => {
+    expect(chainOf('حَدَّثَنَا عَبْدَانُ، عَنِ الزُّهْرِيِّ، ح وَحَدَّثَنَا بِشْرٌ، عَنِ الزُّهْرِيِّ، قَالَ أَخْبَرَنِي عُبَيْدُ اللَّهِ، عَنِ ابْنِ عَبَّاسٍ، قَالَ كَانَ رَسُولُ اللَّهِ').body)
+      .toBe('قَالَ كَانَ رَسُولُ اللَّهِ')
+  })
+
+  it('leaves the hadith whole where the end of the chain is not plain', () => {
+    const text = 'حَدَّثَنَا أَبُو حَيَّانَ التَّيْمِيُّ، بِهَذَا الإِسْنَادِ مِثْلَهُ غَيْرَ أَنَّ فِي رِوَايَتِهِ ‏"‏ إِذَا وَلَدَتِ الأَمَةُ'
+    expect(chainOf(text)).toEqual({ chain: '', body: text })
+  })
+
+  it('ends the chain at a plain "that" before the story', () => {
+    expect(chainOf('حَدَّثَنَا عَبْدُ اللَّهِ بْنُ يُوسُفَ، قَالَ أَخْبَرَنَا مَالِكٌ، عَنْ هِشَامِ بْنِ عُرْوَةَ، عَنْ أَبِيهِ، عَنْ عَائِشَةَ أُمِّ الْمُؤْمِنِينَ ـ رضى الله عنها ـ أَنَّ الْحَارِثَ بْنَ هِشَامٍ ـ رضى الله عنه ـ سَأَلَ').body)
+      .toBe('أَنَّ الْحَارِثَ بْنَ هِشَامٍ ـ رضى الله عنه ـ سَأَلَ')
+  })
+
+  it('never hides a short report run on from the last name', () => {
+    const text = 'حَدَّثَنَا إِسْحَاقُ بْنُ إِبْرَاهِيمَ، عَنْ إِسْمَاعِيلَ، عَنْ قَيْسٍ، كَانَ عَطَاءُ الْبَدْرِيِّينَ خَمْسَةَ آلاَفٍ خَمْسَةَ آلاَفٍ‏.‏ وَقَالَ عُمَرُ لأُفَضِّلَنَّهُمْ'
+    expect(chainOf(text)).toEqual({ chain: '', body: text })
+  })
+
+  it('never hides a sentence after a full stop', () => {
+    const text = 'حَدَّثَنَا مُسَدَّدٌ، عَنْ أَبِيهِ، عَنِ النَّبِيِّ صلى الله عليه وسلم‏.‏ وَذَكَرَ الَّذِي عَقَرَ النَّاقَةَ قَالَ'
+    expect(chainOf(text)).toEqual({ chain: '', body: text })
+  })
+
+  it('never hides a verse sitting where a name would be', () => {
+    const text = 'حَدَّثَنَا يَحْيَى، عَنْ عَائِشَةَ ـ رضى الله عنها – ‏{‏وَالَّذِي تَوَلَّى كِبْرَهُ‏}‏ قَالَتْ عَبْدُ اللَّهِ'
+    expect(chainOf(text)).toEqual({ chain: '', body: text })
+  })
+
+  it('leaves a hadith with no chain at all whole', () => {
+    expect(chainOf('قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم')).toEqual({ chain: '', body: 'قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم' })
+    expect(chainOf('')).toEqual({ chain: '', body: '' })
   })
 })
