@@ -44,13 +44,15 @@ class _OnnxSentenceModel:
         self._tokenizer = Tokenizer.from_file(hf_hub_download(repo, "tokenizer.json"))
         self._tokenizer.enable_truncation(max_tokens)
         self._tokenizer.enable_padding()
+        # BERT-family models also take token types; XLM-R ones (mpnet) do not.
+        self._inputs = {i.name for i in self._session.get_inputs()}
 
     def encode(self, texts: list[str]) -> np.ndarray:
         batch = self._tokenizer.encode_batch(texts)
         ids = np.array([b.ids for b in batch], dtype=np.int64)
         mask = np.array([b.attention_mask for b in batch], dtype=np.int64)
-        tokens = self._session.run(None, {"input_ids": ids, "attention_mask": mask,
-                                          "token_type_ids": np.zeros_like(ids)})[0]
+        feed = {"input_ids": ids, "attention_mask": mask, "token_type_ids": np.zeros_like(ids)}
+        tokens = self._session.run(None, {k: v for k, v in feed.items() if k in self._inputs})[0]
         summed = (tokens * mask[..., None]).sum(axis=1) / mask.sum(axis=1, keepdims=True)
         return (summed / np.linalg.norm(summed, axis=1, keepdims=True)).astype(np.float32)
 

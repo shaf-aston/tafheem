@@ -4,7 +4,9 @@
     python backend/scripts/score_hadith_search.py --check  # how many hadith each marker matches
 
 A search scores when one of its top 10 hits carries the marker wording; MRR
-also rewards finding it higher. Needs a built hadith.db.
+also rewards finding it higher. Words "corrected" in a search not marked as a
+typo are counted too: each is a real word the fixer rewrote. Needs a built
+hadith.db.
 """
 from __future__ import annotations
 
@@ -52,10 +54,13 @@ def check() -> None:
 
 def score(show_misses: bool = True) -> float:
     by_kind: dict[str, list[float]] = defaultdict(list)
-    misses = []
+    misses, needless = [], []
     for item in _yardstick():
         english, arabic = _markers(item)
-        hits = search.search(item["q"], TOP).hits
+        result = search.search(item["q"], TOP)
+        hits = result.hits
+        if "typo" not in item["kind"]:
+            needless += [f"{typed} -> {near}" for typed, near in result.corrected]
         rank = next((i for i, h in enumerate(hits, 1) if _carries(english, arabic, h.english, h.arabic)), None)
         by_kind[item["kind"]].append(1 / rank if rank else 0.0)
         if not rank:
@@ -65,12 +70,14 @@ def score(show_misses: bool = True) -> float:
     for kind, ranks in sorted(by_kind.items()):
         print(f"  {kind:14} {sum(r > 0 for r in ranks):2}/{len(ranks):<2}  MRR {sum(ranks) / len(ranks):.2f}")
     print(f"  {'all':14} {found:2}/{len(total):<2}  MRR {sum(total) / len(total):.2f}")
+    print(f"  needless corrections: {len(needless)}", *needless, sep="\n    ")
     if show_misses and misses:
         print("missed:", *misses, sep="\n  ")
     return found / len(total)
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8")  # Arabic searches print on a Windows console
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()

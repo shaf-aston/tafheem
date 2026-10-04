@@ -17,6 +17,8 @@ qalsadi>=0.5.1
 pyarabic>=0.6.15
 # Numbers typed as digits searched as the hadith write them (services/hadith/words.py)
 num2words>=0.5.13
+# Everyday English and Arabic word counts, so the spelling fixer keeps real words (services/hadith/language.py)
+pyspellchecker>=0.9.0
 
 # ── PDF text extraction (for Nahw rules extractor script) ─────────────────────
 pymupdf>=1.24.0
