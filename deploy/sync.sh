@@ -38,6 +38,8 @@ fi
 rsync -a --exclude data --exclude __pycache__ backend/ /home/ubuntu/tafheem/backend/
 git ls-files -z backend/data | rsync -a --from0 --files-from=- ./ /home/ubuntu/tafheem/
 rsync -a deploy/ /home/ubuntu/tafheem/deploy/
+# The hadith index reads the chain rule from the app's own file (backend/services/hadith/chain.py).
+mkdir -p /home/ubuntu/tafheem/frontend/src && cp frontend/src/hadith.json /home/ubuntu/tafheem/frontend/src/
 cp requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements.txt
 /home/ubuntu/tafheem/venv/bin/pip install -q --no-deps -r requirements-nodeps.txt
