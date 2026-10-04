@@ -1,44 +1,64 @@
 """The indexed word a misspelt one was meant to be.
 
-A misspelling shares most of its three-letter runs with the word meant, so the
-`word` table (every distinct word in the index, trigram-tokenised) is asked for
-the words sharing the most runs, and the closest of those by letter-for-letter
-likeness is taken when it is close enough. Nothing is guessed from meaning:
-the answer is always a word some hadith actually holds, and the caller shows
-it as a correction rather than passing it off as what was typed.
+One rule for every slip: a letter missing, added, swapped with its neighbour
+or replaced (ظ for ض, chairty for charity) is one edit. Candidates come from
+the `deletion` table (each indexed word, and it with one letter dropped): any
+word one slip away shares an entry with the typed word, as do some two slips
+away (a letter dropped and another added). The winner is the one a typist
+most likely meant: common in the hadith and few edits away. The answer is
+always a word some hadith holds; the caller shows it as a correction.
 """
 from __future__ import annotations
 
-import difflib
 import math
 import sqlite3
 
-# The trigram tokenizer cannot see anything shorter than three letters; a
-# shorter word is matched exactly or not at all.
-_TRIGRAM_MIN = 3
+from backend.services.hadith.words import deletes
+
+# Below this a word is mostly particle; one edit turns it into too many others.
+_MIN_LETTERS = 3
 
 
-def nearest(conn: sqlite3.Connection, word: str, lang: str, *, min_ratio: float, candidates: int) -> str | None:
-    """The closest indexed word in `lang` ("ar" or "en"), or None when none is close enough.
+def edits(a: str, b: str) -> int:
+    """Letters missing, added, replaced, or swapped with a neighbour, to turn a into b."""
+    rows = [list(range(len(b) + 1))]
+    for i, ca in enumerate(a, 1):
+        row = [i]
+        for j, cb in enumerate(b, 1):
+            row.append(min(rows[-1][j] + 1, row[j - 1] + 1, rows[-1][j - 1] + (ca != cb)))
+            if i > 1 and j > 1 and ca == b[j - 2] and a[i - 2] == cb:
+                row[j] = min(row[j], rows[-2][j - 2] + 1)
+        rows.append(row)
+    return rows[-1][-1]
 
-    Among words equally close the more frequent wins: الجنة over الجن for الجنه.
+
+def nearest(conn: sqlite3.Connection, word: str, lang: str, *, edits_per_letter: float, edit_cost: float) -> str | None:
+    """The likeliest meant word in `lang` ("ar" or "en"), or None when nothing is close.
+
+    A word may be `edits_per_letter` wrong (a quarter: one slip in a short word,
+    two in a long one). Each edit costs `edit_cost` in log-frequency, so a word
+    one edit further must be that much more common to win.
     """
-    if len(word) < _TRIGRAM_MIN:
+    if len(word) < _MIN_LETTERS:
         return None
-    runs = {word[i:i + _TRIGRAM_MIN] for i in range(len(word) - _TRIGRAM_MIN + 1)}
-    match = " OR ".join('"' + run.replace('"', "") + '"' for run in runs)
+    allowed = max(1, int(len(word) * edits_per_letter))
+    variants = sorted({word} | deletes(word))
     try:
         rows = conn.execute(
-            "SELECT spelling, n FROM word WHERE word MATCH ? AND lang = ? ORDER BY rank LIMIT ?",
-            (match, lang, candidates),
+            "SELECT DISTINCT w.spelling, w.n FROM deletion d "
+            "JOIN word w ON w.spelling = d.spelling AND w.lang = d.lang "
+            f"WHERE d.lang = ? AND d.variant IN ({','.join('?' * len(variants))})",
+            (lang, *variants),
         ).fetchall()
     except sqlite3.OperationalError:
-        # An index built before the word table existed, or a run FTS5 cannot parse.
+        # An index built before the deletion table existed.
         return None
 
-    best: tuple[float, float, str] | None = None
-    for found, n in rows:
-        ratio = difflib.SequenceMatcher(None, word, found).ratio()
-        if ratio >= min_ratio and (best is None or (ratio, math.log(n)) > best[:2]):
-            best = (ratio, math.log(n), found)
-    return best[2] if best else None
+    best: tuple[float, str] | None = None
+    for spelling, n in rows:
+        distance = edits(word, spelling)
+        if 1 <= distance <= allowed:
+            score = math.log(n) - distance * edit_cost
+            if best is None or score > best[0]:
+                best = (score, spelling)
+    return best[1] if best else None

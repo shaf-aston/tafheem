@@ -263,11 +263,16 @@ class Settings(BaseSettings):
     hadith_index_path: str = "data/hadith.db"
     # A hadith is read in full, so a long results page stops being read.
     hadith_result_limit: int = 20
-    # A typed word no hadith holds is swapped for the nearest indexed word
-    # (services/hadith/repair.py): this close by letters (0..1) or not at all,
-    # chosen among this many words sharing its three-letter runs.
-    hadith_repair_min_ratio: float = 0.85
-    hadith_repair_candidates: int = 40
+    # A typed word no hadith holds is swapped for the likeliest meant word
+    # (services/hadith/repair.py): at most this many slips per letter (a quarter:
+    # one in a short word, two in a long one), each slip costing this much
+    # log-frequency, so a word a slip further must be that much more common.
+    hadith_repair_edits_per_letter: float = 0.25
+    hadith_repair_edit_cost: float = 3.0
+    # Words that describe the question, not the hadith: "hadith about the cat".
+    # No index can count these, since the hadith never say them of themselves.
+    hadith_query_framing: tuple[str, ...] = ("hadith", "hadeeth", "ahadith", "narration", "narrations",
+                                             "about", "regarding", "concerning", "حديث", "احاديث")
     # Chapters offered beside the hits, counted from where the hits fall.
     hadith_chapter_hints: int = 5
 

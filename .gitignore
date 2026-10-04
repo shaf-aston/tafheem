@@ -239,6 +239,7 @@ tunnel/cloudflared.exe
 # Hadith collections are fetched on the server by deploy/sync.sh, never committed.
 backend/data/hadith/*.json
 !backend/data/hadith/collections.json
+!backend/data/hadith/search_yardstick.json
 
 # Spoken words, remade on demand by services/speech.py.
 backend/data/speech_cache/

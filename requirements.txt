@@ -15,6 +15,8 @@ qalsadi>=0.5.1
 
 # PyArabic: lightweight Arabic text utilities (always used for tokenisation)
 pyarabic>=0.6.15
+# Numbers typed as digits searched as the hadith write them (services/hadith/words.py)
+num2words>=0.5.13
 
 # ── PDF text extraction (for Nahw rules extractor script) ─────────────────────
 pymupdf>=1.24.0
