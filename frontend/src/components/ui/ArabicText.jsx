@@ -26,7 +26,12 @@ const seated = (node) => {
   if (typeof node === 'string') return seatSmallAlef(node)
   if (Array.isArray(node)) return node.map(seated)
   if (isValidElement(node) && node.props.children != null) {
-    return cloneElement(node, { children: seated(node.props.children) })
+    const { children } = node.props
+    // Spread, not passed as an array: an array prop reads to React as a list and
+    // demands keys of children that were written side by side.
+    return Array.isArray(children)
+      ? cloneElement(node, undefined, ...seated(children))
+      : cloneElement(node, { children: seated(children) })
   }
   return node
 }

@@ -134,8 +134,12 @@ export async function wordsFor(bankId, groupId = '', language = QUIZ.language) {
   // wrong long enough ago that it has since left the word list simply does not
   // come back, which is the honest answer: it cannot be asked any more.
   if (BANKS[bankId]?.live) {
-    const owed = new Set(await fetchReviewItems(moduleFor(language)))
-    return words.filter((word) => owed.has(word.meaningKey))
+    // In the order the store gives, longest overdue first.
+    const owed = await fetchReviewItems(moduleFor(language))
+    const rank = new Map(owed.map((item, i) => [item, i]))
+    return words
+      .filter((word) => rank.has(word.meaningKey))
+      .sort((a, b) => rank.get(a.meaningKey) - rank.get(b.meaningKey))
   }
 
   const cut = cutFor(bankId, groupId)

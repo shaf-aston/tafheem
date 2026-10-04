@@ -280,9 +280,11 @@ class Settings(BaseSettings):
     # when it comes due. Higher means more reviews; both knobs must be inside (0, 1).
     progress_review_retention: float = 0.9
     # A word counts as known once it has left learning and the chance of recalling it is at least this.
-    progress_known_retrievability: float = 0.9
-    # A first right answer waits this long before the word is asked again; a wrong one is due at once.
-    progress_learning_minutes: int = 10
+    # Below the retention target, so a word stays known a while after it falls due rather than the day it does.
+    progress_known_retrievability: float = 0.8
+    # A first right answer comes back after this many hours to be confirmed; a wrong one is due at once.
+    # A day keeps same-session guesses out of Review and makes "known" mean right on two separate days.
+    progress_learning_hours: int = 24
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
     progress_busy_timeout_ms: int = 5000
 
@@ -327,12 +329,12 @@ class Settings(BaseSettings):
             raise ValueError(f"{info.field_name.upper()} must be between 0 and 1 (exclusive), got {value!r}")
         return value
 
-    @field_validator("progress_learning_minutes", mode="after")
+    @field_validator("progress_learning_hours", mode="after")
     @classmethod
-    def _check_learning_minutes(cls, value: int) -> int:
+    def _check_learning_hours(cls, value: int) -> int:
         """No wait would let one lucky guess count as learnt, so startup stops."""
         if value <= 0:
-            raise ValueError(f"PROGRESS_LEARNING_MINUTES must be above 0, got {value!r}")
+            raise ValueError(f"PROGRESS_LEARNING_HOURS must be above 0, got {value!r}")
         return value
 
     @field_validator("quran_search_source", mode="after")

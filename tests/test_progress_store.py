@@ -94,15 +94,20 @@ def test_a_word_right_a_minute_ago_is_not_due(store):
     assert store.review_items("quiz") == []
 
 
-def test_right_twice_is_due_again_after_three_days(store):
-    answer_at(store, "to-write", True, ago(days=3))
-    answer_at(store, "to-write", True, ago(days=3) + timedelta(minutes=10))
+def test_right_once_comes_back_the_next_day(store):
+    answer_at(store, "to-write", True, ago(hours=25))
+    assert store.review_items("quiz") == ["to-write"]
+
+
+def test_right_on_two_days_comes_back_a_week_later(store):
+    answer_at(store, "to-write", True, ago(days=10))
+    answer_at(store, "to-write", True, ago(days=9))
     assert store.review_items("quiz") == ["to-write"]
 
 
 def test_right_twice_is_known_but_a_lucky_guess_is_not(store):
-    answer_at(store, "learnt", True, ago(hours=1))
-    answer_at(store, "learnt", True, ago(minutes=50))
+    answer_at(store, "learnt", True, ago(days=2))
+    answer_at(store, "learnt", True, ago(days=1))
     answer_at(store, "guess", True, ago(minutes=50))
     assert stats_for(store, "learnt")["known"] is True
     assert stats_for(store, "guess")["known"] is False

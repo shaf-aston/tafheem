@@ -237,4 +237,4 @@ def _replay(module: str, user: str) -> dict:
 def review_items(module: str, user: str = "local") -> list[str]:
     """Items due now, earliest due first."""
     due = [row for row in summary(module, user) if row["due"]]
-    return [row["item"] for row in sorted(due, key=lambda row: row["due_at"])]
+    return [row["item"] for row in sorted(due, key=lambda row: datetime.fromisoformat(row["due_at"]))]

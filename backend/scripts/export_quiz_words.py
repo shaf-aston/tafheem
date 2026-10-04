@@ -129,7 +129,8 @@ def add_coverage(lexicon: sqlite3.Connection, words: list[dict], position: dict[
 
     A lemma's count is the Qur'an's word positions it names, so the browser can
     add up exactly how much of the text the words you know cover. The ayah is
-    the shortest one using any of the word's lemmas: the easiest to read.
+    the shortest one using any of the word's lemmas with enough words around it
+    to read the word in (ayah-min-words), the easiest to read.
     """
     corpus = sqlite3.connect(f"file:{QURAN / 'corpus.db'}?mode=ro", uri=True)
     positions: dict[str, set[tuple[int, int, int]]] = defaultdict(set)
@@ -162,7 +163,8 @@ def add_coverage(lexicon: sqlite3.Connection, words: list[dict], position: dict[
             if (place[0], place[1]) not in UNALIGNED_AYAHS
         ]
         if usable:
-            best = min(usable, key=lambda p: (length[(p[0], p[1])], p))
+            size = lambda p: length[(p[0], p[1])]  # noqa: E731
+            best = min(usable, key=lambda p: (size(p) < CONFIG["ayah-min-words"], size(p), p))
             word["ayah"] = list(best)
     return {"total": len(every), "lemmas": lemmas, "counts": counts}
 

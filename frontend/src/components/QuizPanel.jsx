@@ -258,6 +258,7 @@ export default function QuizPanel({ accent, onProgress }) {
     if (past) return
     setPicked(null)
     setRound((r) => ({
+      at: r.at,
       seed: r.seed + 1,
       asked: question ? new Set(r.asked).add(question.answerId) : r.asked,
     }))
@@ -270,7 +271,7 @@ export default function QuizPanel({ accent, onProgress }) {
     setNoteOpen(false)
     setReviewing(null)
     setHistory([])
-    setRound(freshRound())
+    setRound(freshRound)
     setScore({ right: 0, total: 0, streak: 0 })
   }
 

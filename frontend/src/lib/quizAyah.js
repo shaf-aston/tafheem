@@ -9,10 +9,12 @@ import { getAyahEditions, getQuranAyah } from '../api'
 export const ENGLISH_EDITION = 'saheeh-en'
 
 export const ayahQueries = (surah, ayah) => [
-  { queryKey: ['quran-ayah', surah, ayah], queryFn: () => getQuranAyah(surah, ayah), retry: false },
+  // A printed ayah never changes, so once fetched it is never fetched again.
+  { queryKey: ['quran-ayah', surah, ayah], queryFn: () => getQuranAyah(surah, ayah), retry: false, staleTime: Infinity },
   {
     queryKey: ['ayah-editions', surah, ayah, [ENGLISH_EDITION]],
     queryFn: () => getAyahEditions(surah, ayah, [ENGLISH_EDITION]),
     retry: false,
+    staleTime: Infinity,
   },
 ]

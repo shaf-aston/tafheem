@@ -19,18 +19,22 @@ export default function QuizAyah({ ayah: [surah, ayah, wordNumber], accent }) {
   const arabic = useQuery(arabicQuery)
   const english = useQuery(englishQuery)
 
-  if (!arabic.data) return null
+  // Drawn once both have settled, so the card grows once; a failed English still shows the Arabic.
+  if (!arabic.data || english.isPending) return null
   const text = english.data?.passages?.[0]?.text
 
   return (
     <div className="border-t border-[var(--border)] pt-3 space-y-2">
       <ArabicText as="p" size="lg" className="text-[var(--text)] text-center">
         {arabic.data.words.map((word, i) => (
-          <span
-            key={i}
-            style={numberOf(word) === wordNumber ? { color: accent } : undefined}
-          >
-            {i > 0 && ' '}{word.uthmani || word.arabic}
+          <span key={i}>
+            {i > 0 && ' '}
+            {numberOf(word) === wordNumber ? (
+              // Colour and an underline, so the word is found without seeing colour.
+              <mark className="bg-transparent underline underline-offset-8 decoration-2" style={{ color: accent }}>
+                {word.uthmani || word.arabic}
+              </mark>
+            ) : (word.uthmani || word.arabic)}
           </span>
         ))}
       </ArabicText>

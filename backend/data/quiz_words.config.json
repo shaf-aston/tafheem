@@ -23,6 +23,8 @@
   ],
   "_filter": "A word-by-word gloss is often a fragment, '(is)', 'and', 'O'. Those make impossible questions, so they are dropped rather than shown.",
   "min-arabic-chars": 3,
+  "_ayah_min_words": "The ayah shown after a quiz answer is the shortest one using the word, but not shorter than this when a longer one exists: a one or two word ayah gives the word no surroundings.",
+  "ayah-min-words": 4,
   "_gloss_shape": "A word-by-word gloss describes the word in its place, so it drags its neighbours in: لَبِثَ reads 'and not he delayed' where it happens to follow a wa. A lemma is glossed from its cleanest reading in the whole Qur'an, and a word with no clean reading anywhere is dropped rather than asked as a clause.",
   "max-gloss-words": 3,
   "_lead_fragments": "A gloss starting with one of these is carrying the word before it, 'on the bank' is the bank with an 'ala stuck to its front. 'to' is not here: 'to bring forth' is the English of a verb, not a leak.",

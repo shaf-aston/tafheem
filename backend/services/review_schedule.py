@@ -17,12 +17,12 @@ from backend.config import get_settings
 @lru_cache(maxsize=1)
 def _scheduler() -> Scheduler:
     # A wrong answer is due again at once (the first step is zero); a first right
-    # answer waits a few minutes, so one lucky guess among four is not learnt.
+    # answer waits to be confirmed another day, so one lucky guess is not learnt.
     settings = get_settings()
     return Scheduler(
         desired_retention=settings.progress_review_retention,
         enable_fuzzing=False,
-        learning_steps=(timedelta(0), timedelta(minutes=settings.progress_learning_minutes)),
+        learning_steps=(timedelta(0), timedelta(hours=settings.progress_learning_hours)),
         relearning_steps=(timedelta(0),),
     )
 

@@ -66,7 +66,7 @@ async def forget_progress() -> Forgotten:
 
 
 @router.get("/summary", response_model=ProgressSummary)
-async def get_summary(module: str = _MODULE) -> ProgressSummary:
+def get_summary(module: str = _MODULE) -> ProgressSummary:
     """Every item answered in this module, with its record and whether it is due or known."""
     return ProgressSummary(
         module=module,
@@ -86,6 +86,6 @@ async def get_summary(module: str = _MODULE) -> ProgressSummary:
 
 
 @router.get("/review", response_model=ReviewList)
-async def get_review(module: str = _MODULE) -> ReviewList:
+def get_review(module: str = _MODULE) -> ReviewList:
     """Items due for review now, earliest first."""
     return ReviewList(module=module, items=progress_store.review_items(module, LOCAL_USER))
