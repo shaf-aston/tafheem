@@ -23,6 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.hadith import words  # noqa: E402
+from backend.services.hadith.lemma import lemma  # noqa: E402
 
 _SCHEMA = """
 CREATE TABLE collection (
@@ -53,15 +54,28 @@ CREATE TABLE hadith (
 CREATE INDEX hadith_by_book ON hadith (collection_id, book_number, number);
 
 -- Arabic is indexed with its marks and spelling variants folded away, once as
--- written and once with its front particles off (stem), and the English
--- stemmed, so a plain typed word finds the pointed, prefixed or inflected one.
+-- written and once as each word's dictionary form (lemma, from CAMeL), and the
+-- English stemmed, so a plain typed word finds the pointed or inflected one.
 -- rowid ties a search hit straight back to its row in `hadith`.
-CREATE VIRTUAL TABLE hadith_fts USING fts5(arabic, stem, english, tokenize = 'porter unicode61');
+CREATE VIRTUAL TABLE hadith_fts USING fts5(arabic, lemma, english, tokenize = 'porter unicode61');
 
--- Every distinct word the index holds, by three-letter runs, so a misspelt
--- word can be matched to the word meant (services/hadith/repair.py). lang is
--- ar or en, n how many hadiths hold the word. (A column may not share the table's name.)
-CREATE VIRTUAL TABLE word USING fts5(spelling, lang UNINDEXED, n UNINDEXED, tokenize = 'trigram');
+-- Every distinct written word, lang ar or en, and n: how many hadiths hold it.
+-- Repair reads n to prefer the commoner of two equally close words.
+CREATE TABLE word (
+    spelling TEXT NOT NULL,
+    lang     TEXT NOT NULL,
+    n        INTEGER NOT NULL,
+    PRIMARY KEY (spelling, lang)
+) WITHOUT ROWID;
+
+-- Each word, and each word with one letter dropped, so a misspelling finds the
+-- words within two slips of it by plain lookup (services/hadith/repair.py).
+CREATE TABLE deletion (
+    variant  TEXT NOT NULL,
+    spelling TEXT NOT NULL,
+    lang     TEXT NOT NULL
+);
+CREATE INDEX deletion_by_variant ON deletion (variant, lang);
 """
 
 
@@ -72,17 +86,21 @@ def _collections() -> dict:
 
 
 def index_text(conn: sqlite3.Connection) -> None:
-    """Fill hadith_fts and word from the hadith table. Shared with the tests' tiny database."""
+    """Fill hadith_fts, word and deletion from the hadith table. Shared with the tests' tiny database."""
     rows = conn.execute("SELECT rowid, arabic, english FROM hadith").fetchall()
     vocabulary: Counter[tuple[str, str]] = Counter()
     for rowid, arabic, english in rows:
         folded = words.fold(arabic)
-        conn.execute("INSERT INTO hadith_fts (rowid, arabic, stem, english) VALUES (?, ?, ?, ?)",
-                     (rowid, folded, words.stems(folded), english))
+        # Analysed as written, marks and all: the marks are what tell صَبْرَة the name from الصَّبْر.
+        lemmas = " ".join(filter(None, (lemma(t) for t in words.ARABIC_TOKEN.findall(arabic))))
+        conn.execute("INSERT INTO hadith_fts (rowid, arabic, lemma, english) VALUES (?, ?, ?, ?)",
+                     (rowid, folded, lemmas, english))
         vocabulary.update(("ar", w) for w in set(words.ARABIC_WORD.findall(folded)))
         vocabulary.update(("en", w) for w in set(words.ENGLISH_WORD.findall(english.lower())))
     conn.executemany("INSERT INTO word (spelling, lang, n) VALUES (?, ?, ?)",
                      [(w, lang, n) for (lang, w), n in vocabulary.items()])
+    conn.executemany("INSERT INTO deletion (variant, spelling, lang) VALUES (?, ?, ?)",
+                     ((v, w, lang) for lang, w in vocabulary for v in {w} | words.deletes(w)))
 
 
 def build() -> dict[str, int]:

@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.main import app  # noqa: E402
 from backend.scripts.build_hadith_index import _SCHEMA, index_text  # noqa: E402
-from backend.services.hadith import loader, search, words  # noqa: E402
+from backend.services.hadith import loader, repair, search, words  # noqa: E402
 
 _ROWS = [
     # collection_id, book_number, number, part, arabic, english
@@ -217,17 +217,32 @@ def test_hits_come_with_the_chapters_they_fall_in(db):
     assert found.chapters[0].collection == "bukhari"
 
 
-def test_content_words_keep_a_noise_only_question():
-    assert words.content_words("قال") == [("قال", "قال")]
-    assert words.content_words("Prophet said: patience!") == [("patience!", "patience")]
-    assert words.content_words("الصَّبْرُ الصبر") == [("الصَّبْرُ", "الصبر")]
+def test_words_read_numbers_as_written_out():
+    assert words.tokens("Prophet said: 99 patience!") == [("Prophet", "prophet"), ("said:", "said"), ("99", "99"), ("patience!", "patience")]
+    assert words.number_phrases("99")[:2] == [["99"], ["ninety", "nine"]]
 
 
-def test_stem_takes_particles_off_the_front_only_when_a_word_remains():
-    assert words.stem("بالصبر") == "صبر"
-    assert words.stem("والصلاة") == "صلاة"
-    assert words.stem("ولم") == "ولم"
-    assert words.stem("صبروا") == "صبروا"
+def test_one_edit_covers_every_kind_of_slip():
+    """Missing, added, replaced and swapped letters each count as one."""
+    assert repair.edits("chairty", "charity") == 1
+    assert repair.edits("رمظان", "رمضان") == 1
+    assert repair.edits("siwaak", "siwak") == 1
+    assert repair.edits("ستكجاري", "تجاري") == 2
+
+
+def test_a_name_is_not_the_word_it_spells(db):
+    """صَبْرَة the narrator's name is not الصبر patience; the dictionary form keeps them apart."""
+    conn = sqlite3.connect(db)
+    conn.execute("INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) "
+                 "VALUES ('bukhari', 2, 4, '', 'حَدَّثَنَا لَقِيطُ بْنُ صَبْرَةَ', 'Laqit bin Sabira narrated')")
+    conn.execute("INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) "
+                 "VALUES ('bukhari', 2, 5, '', 'وَمَا أُعْطِيَ أَحَدٌ عَطَاءً خَيْرًا مِنَ الصَّبْرِ', 'No gift is better than patience')")
+    conn.execute("DELETE FROM hadith_fts"); conn.execute("DELETE FROM word"); conn.execute("DELETE FROM deletion")
+    index_text(conn)
+    conn.commit()
+    conn.close()
+    assert [h.number for h in search.search("الصبر", 10).hits] == [5]
+    assert [h.number for h in search.search("بالصبر", 10).hits] == [5]
 
 
 def test_router_search_reports_corrections_and_chapters(db, client):

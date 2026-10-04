@@ -23,10 +23,17 @@ from dataclasses import dataclass
 from typing import Protocol
 
 from backend.services.arabic_text import bare_letters, has_arabic, normalize_root
-from backend.services.noise_words import ENGLISH_NOISE
 
 
-# The English words with no Arabic content, kept in one place for every search.
+# Words that carry no question; asked as they are, each would be looked up and
+# fan out into Arabic of its own. Deliberately short: a word wrongly on it is a
+# word nobody can search for.
+ENGLISH_NOISE = frozenset("""
+a an and about are as at be but by can did do does for from had has have how i if in
+is it its me my no not of on or say says shall should so than that the their
+them then there these they this to was we were what when where which who why
+will with would you your
+""".split())
 
 
 class Lexicon(Protocol):
