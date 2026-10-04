@@ -3,9 +3,12 @@
 An ear turns sound into words. There are two, they do the same job at very
 different speeds, and nothing above this file knows which one answered:
 
-    hosted   Groq's machines, whisper-large-v3-turbo   about 250ms, one per key
-    letters  this computer, tilawa's Qur'an model      about 640ms, recitations only
-    here     this computer, faster-whisper             about 1,600ms
+    hosted   Groq's machines, `listening_model`         about 250ms, one per key
+    letters  this computer, `recitation_letters_path`   about 640ms, recitations only
+    here     this computer, `recitation_model`, or       about 1,600ms
+             `dictation_model` for search boxes
+
+Each model is set in config.py (or .env) only; changing one is a setting, not code.
 
 Measured on this machine, from the timing log. The order comes from config
 (`listening_ears`), so putting this computer first is a setting and not a code

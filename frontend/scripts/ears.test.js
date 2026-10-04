@@ -146,11 +146,13 @@ const textOf = async ([surah, ayah]) => {
   return text
 }
 
-/** Groq, as the app calls it today. */
+/** Groq, as the app calls it today: the model backend/config.py names, never a copy. */
+const GROQ_MODEL = readFileSync(new URL('../../backend/config.py', import.meta.url), 'utf8').match(/listening_model: str = "([^"]+)"/)?.[1]
+if (!GROQ_MODEL) throw new Error('listening_model not found in backend/config.py')
 const groqHears = async (mp3) => {
   const form = new FormData()
   form.append('file', new Blob([mp3], { type: 'audio/mpeg' }), 'a.mp3')
-  form.append('model', 'whisper-large-v3-turbo')
+  form.append('model', GROQ_MODEL)
   form.append('language', 'ar')
   const got = await fetch('https://api.groq.com/openai/v1/audio/transcriptions', {
     method: 'POST', headers: { Authorization: `Bearer ${GROQ}` }, body: form,

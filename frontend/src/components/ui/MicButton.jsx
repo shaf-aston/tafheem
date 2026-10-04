@@ -122,7 +122,7 @@ export default function MicButton({ onHeard, match = false, recite = false, acce
         setState('thinking')
         try {
           const recording = new Blob(chunks.current, { type: made.mimeType })
-          const heard = await listen(recording, { match, recite, fusha, trial: recite && trial })
+          const heard = await listen(recording, { match, recite, fusha, trial })
           // Nothing heard is answered here rather than passed on. It is the
           // ordinary result of a quiet room, and every box this button sits in
           // would otherwise show its own "nothing matched", which blames what

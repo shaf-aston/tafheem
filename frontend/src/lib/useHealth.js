@@ -44,7 +44,7 @@ export function useHealth() {
 
 /**
  * Whether a recitation is heard by the trial model: chosen under Settings,
- * Listening, and only while the server still offers one, so a saved choice
+ * Speech to text, and only while the server still offers one, so a saved choice
  * never outlives the model. Every recitation asks here: Memorise, Grow, checks.
  */
 export function useTrial() {

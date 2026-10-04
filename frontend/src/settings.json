@@ -52,7 +52,7 @@
     {
       "key": "listening-ear",
       "section": "Reciting",
-      "label": "Listening",
+      "label": "Speech to text",
       "help": "Trial hears and checks your recitation with a tuned model on the server, instead of the usual one.",
       "needs-health": "reciteTrial",
       "type": "choice",
