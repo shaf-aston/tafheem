@@ -275,6 +275,19 @@ class Settings(BaseSettings):
                                              "about", "regarding", "concerning", "حديث", "احاديث")
     # Chapters offered beside the hits, counted from where the hits fall.
     hadith_chapter_hints: int = 5
+    # Search by meaning (services/hadith/meaning.py). Built from hadith_index_path by
+    # scripts/build_hadith_meaning.py; absent means words alone. Chosen on the
+    # yardstick against e5-small and potion-multilingual: 61/70 found vs 54 by words.
+    hadith_meaning_path: str = "data/hadith_meaning.db"
+    hadith_meaning_model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    # The model was trained on 128 tokens; a long hadith is judged by its opening.
+    hadith_meaning_max_tokens: int = 128
+    # Word and meaning rankings are merged by reciprocal rank: 1/(k + rank) summed.
+    # 60 is the standard constant; larger flattens the difference between ranks.
+    hadith_meaning_fusion_k: int = 60
+    # After the model fails to load (no network for its first fetch), searches
+    # answer by words alone for this long before loading is tried again.
+    hadith_meaning_retry_seconds: float = 300.0
 
     # The only database written while serving. Created on first use; deleting the file forgets everything.
     progress_db_path: str = "data/progress.db"

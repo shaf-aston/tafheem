@@ -17,7 +17,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.main import app  # noqa: E402
 from backend.scripts.build_hadith_index import _SCHEMA, index_text  # noqa: E402
-from backend.services.hadith import loader, repair, search, words  # noqa: E402
+from backend.scripts import build_hadith_meaning  # noqa: E402
+from backend.services.hadith import loader, meaning, repair, search, words  # noqa: E402
 
 _ROWS = [
     # collection_id, book_number, number, part, arabic, english
@@ -48,6 +49,8 @@ def db(tmp_path, monkeypatch):
 
     monkeypatch.setattr(loader, "data_path", lambda _key: path)
     monkeypatch.setattr(search, "data_path", lambda _key: path)
+    # No meaning index unless a test builds one, so a real one on disk never leaks in.
+    monkeypatch.setattr(meaning, "data_path", lambda _key: tmp_path / "hadith_meaning.db")
     # lru_cache is module-level and would otherwise carry a previous test's
     # (or a previous run's real) database into this one.
     loader.collections.cache_clear()
@@ -262,3 +265,57 @@ def test_a_distant_word_is_not_passed_off_as_a_repair(db):
     """Sharing a few letters is not enough: ستكجاري is near nothing in the fixture."""
     found = search.search("ستكجاري", 10)
     assert found.corrected == [] and found.unmatched == ["ستكجاري"]
+
+
+class _Meanings:
+    """Stands in for the sentence model: "light" and the intentions hadith mean the same; all else differs."""
+
+    def encode(self, texts):
+        import numpy as np
+        return np.array([[1.0, 0.0] if ("light" == t or "intentions" in t) else [0.0, 1.0] for t in texts])
+
+
+@pytest.fixture()
+def meanings(db, tmp_path, monkeypatch):
+    paths = {"hadith_index_path": db, "hadith_meaning_path": tmp_path / "hadith_meaning.db"}
+    monkeypatch.setattr(meaning, "encoder", _Meanings)
+    monkeypatch.setattr(build_hadith_meaning, "data_path", paths.__getitem__)
+    build_hadith_meaning.main()
+
+
+def test_a_hadith_close_in_meaning_is_found_without_its_words(meanings):
+    """Only hadith 3 says "light"; hadith 1 shares no word but means the same, so it ranks next, above unrelated 2."""
+    assert [h.number for h in search.search("light", 10).hits] == [3, 1, 2]
+
+
+def test_meaning_never_answers_a_question_whose_words_are_all_unknown(meanings):
+    found = search.search("ستكجاري", 10)
+    assert found.hits == [] and found.unmatched == ["ستكجاري"]
+
+
+def test_a_rebuild_encodes_only_changed_hadith(meanings, db, monkeypatch):
+    calls = []
+    monkeypatch.setattr(meaning, "encoder", lambda: type("Spy", (), {"encode": lambda _s, t: calls.append(t) or _Meanings().encode(t)})())
+    build_hadith_meaning.main()
+    assert calls == []
+
+
+
+_REAL_ENCODER = meaning.encoder
+
+
+def test_a_model_that_cannot_load_costs_meaning_once_not_every_search(meanings, monkeypatch):
+    """No network for the model: searches still answer by words, and loading is not retried each time."""
+    tries = []
+
+    def unreachable(*_args):
+        tries.append(1)
+        raise OSError("no network")
+
+    monkeypatch.setattr(meaning, "encoder", _REAL_ENCODER)
+    monkeypatch.setattr(meaning, "_OnnxSentenceModel", unreachable)
+    monkeypatch.setattr(meaning, "_model", None)
+    monkeypatch.setattr(meaning, "_failed_at", None)
+    for _ in range(3):
+        assert [h.number for h in search.search("light", 10).hits] == [3]
+    assert len(tries) == 1

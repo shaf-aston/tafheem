@@ -9,20 +9,25 @@ yardstick scored the same with or without). A number is matched however a
 hadith writes it. Every word must appear; when no hadith holds them all, the
 best holding any are returned and flagged partial. A word no hadith holds is
 swapped for the likeliest meant word (repair.py) and the swap is reported.
-The chapters the hits fall in come back too, for narrowing by topic.
+Hadith close in meaning (meaning.py) are merged in by rank, so "lose your
+temper" finds "do not get angry"; only once some typed word is known, so
+nonsense still finds nothing. The chapters the hits fall in come back too.
 """
 from __future__ import annotations
 
 import json
+import logging
 import sqlite3
 from collections import Counter
 from dataclasses import dataclass, field
 
 from backend.config import data_path, get_settings
 from backend.services.arabic_text import has_arabic
-from backend.services.hadith import repair, words
+from backend.services.hadith import meaning, repair, words
 from backend.services.hadith.lemma import lemma
 from backend.services.hadith.loader import books, is_built
+
+logger = logging.getLogger(__name__)
 
 # How many words one question may put to the index. Past this, more words
 # widen the OR fallback rather than narrow the search.
@@ -86,12 +91,20 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
         # An index built before dictionary forms were stored still answers, by spelling alone.
         forms = any(row[1] == "lemma" for row in conn.execute("PRAGMA table_info(hadith_fts)"))
         terms, corrected, unmatched = _terms(conn, asked, settings, forms)
-        rows, partial = [], False
+        rows, partial, pool = [], False, limit * _CHAPTER_SAMPLE_FACTOR
         if terms:
-            rows = _rows(conn, " AND ".join(terms), only, params, limit * _CHAPTER_SAMPLE_FACTOR)
+            rows = _rows(conn, " AND ".join(terms), only, params, pool)
             if not rows and len(terms) > 1:
-                rows = _rows(conn, " OR ".join(terms), only, params, limit * _CHAPTER_SAMPLE_FACTOR)
+                rows = _rows(conn, " OR ".join(terms), only, params, pool)
                 partial = bool(rows)
+            if meaning.is_built():
+                try:
+                    near = meaning.nearest(query, pool, collections)
+                except Exception:
+                    # A model that cannot load (no network for the first fetch) costs meaning, not search.
+                    logger.exception("hadith meaning search failed; answering by words alone")
+                    near = []
+                rows = _with_meaning(conn, rows, near, settings, pool)
     except sqlite3.OperationalError:
         # A query FTS5 cannot parse (bare punctuation) is nothing found, not a server error.
         return Result()
@@ -140,6 +153,25 @@ def _rows(conn, match: str, only: str, params, limit: int) -> list:
         "ORDER BY rank LIMIT ?",
         (match, *params, limit),
     ).fetchall()
+
+
+def _with_meaning(conn, rows, near: list[tuple[str, int, str]], settings, pool: int) -> list:
+    """Word hits and meaning hits as one ranking: each scores 1/(k + rank) in every list it is in."""
+    found = [(r[0], r[2], r[3]) for r in rows]
+    by_key = dict(zip(found, rows))
+    # One primary-key lookup each: a row-value IN list here scans the table (~100ms).
+    for key in near:
+        if key not in by_key:
+            row = conn.execute(
+                "SELECT collection_id, book_number, number, part, arabic, english, grades FROM hadith "
+                "WHERE collection_id = ? AND number = ? AND part = ?", key).fetchone()
+            if row:
+                by_key[key] = row
+    score = Counter()
+    for ranking in (found, near):
+        for rank, key in enumerate(ranking, 1):
+            score[key] += 1 / (settings.hadith_meaning_fusion_k + rank)
+    return [by_key[k] for k, _ in score.most_common(pool) if k in by_key]
 
 
 def _chapters(rows, top: int) -> list[Chapter]:

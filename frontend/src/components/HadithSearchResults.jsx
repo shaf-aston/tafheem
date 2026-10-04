@@ -103,7 +103,7 @@ export default function HadithSearchResults({ collections, accent, onOpenBook, c
       )}
 
       {data?.partial && (
-        <p role="status" className="type-small text-[var(--text-dim)]">no hadith has every word, so these hold some of them</p>
+        <p role="status" className="type-small text-[var(--text-dim)]">no hadith has every word, so these are the closest</p>
       )}
 
       {data?.ready !== false && data && data.hits.length === 0 && (

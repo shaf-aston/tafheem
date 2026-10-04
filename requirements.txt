@@ -37,6 +37,8 @@ gdown>=5.1.0
 packaging
 # The letters model (backend/services/recitation/letters.py). 1.22 cannot run
 # its int8 layers; the model files are in backend/data/models/tilawa.
+# Also runs hadith search by meaning (services/hadith/meaning.py), whose
+# tokenizers and huggingface_hub arrive with faster-whisper.
 onnxruntime>=1.23
 # FastAPI needs this to accept an uploaded recording at all.
 python-multipart>=0.0.9
