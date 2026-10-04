@@ -143,7 +143,24 @@ def _inner_sentence(toks, heads, rels) -> None:
         heads[n2 - 1], rels[n2 - 1] = n3, "SBJ"
 
 
+def _ma_cancels_inna(toks, heads, rels) -> None:
+    """إنّما زيدٌ قائمٌ: the ما joined to إنّ or a sister is ما الكافة, a particle that stops
+    it working (Tasheel 1.8 n4 p21); the noun after the pair is the mubtada and what is
+    told of it the khabar. The parser takes the ما for a noun and makes it the subject, so
+    the ما hangs on the particle as a plain modifier and the noun under it takes its place."""
+    for m, tok in enumerate(toks, 1):
+        particle = heads[m - 1]
+        if strip_diacritics(tok.get("form", "")) != "+ما" or not particle or rels[m - 1] != "SBJ" \
+                or not is_one(toks[particle - 1]["lemma"].removesuffix("ما"), "inna"):
+            continue
+        for n, h in enumerate(heads, 1):
+            if h == m:
+                heads[n - 1], rels[n - 1] = particle, "SBJ"
+        rels[m - 1] = "MOD"
+
+
 _LINKS = {"pointer_heads_its_noun": _pointer_heads_its_noun,
+          "ma_cancels_inna": _ma_cancels_inna,
           "listed_preposition_takes_majrur": _listed_preposition_takes_majrur,
           "topic_carries_its_verb": _topic_carries_its_verb,
           "inner_sentence": _inner_sentence}

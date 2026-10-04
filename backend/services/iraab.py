@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb_store
 from backend.services.harakat import CASE_NAME
-from backend.services.nahw_book import case_of, reason, term_ar
+from backend.services.nahw_book import case_of, reason, teacher_rules, term_ar
 from backend.services.syntax import teacher
 from backend.services.syntax.naming import NAMED, opens_with_verb, role_key
 
@@ -91,12 +91,26 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
                     if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
                         moved = CASE_NAME[own] != entry.get("case")
                         found = {**found, "case": CASE_NAME[own]}
+                if moved and _stands_for_own(entry, found):
+                    moved = False  # رأيت المعلماتِ: the kasra is the object's own nasb
                 if moved:
                     entry["case"] = found["case"]  # signs.settle writes the sign for it
                 if entry["case"] == "mabni" and entry.get("type") != "harf":
                     entry["reason"] = reason(found["role"], mabni=True)  # الذي، هذا: in the place of a case
     summary = _sentence_type(parser_roles) or rule_result.get("summary")
     return {**rule_result, "words": signs.settle(entries), "summary": summary}
+
+
+def _stands_for_own(entry: dict, found: dict) -> bool:
+    """The typed vowel is the sign of the role's own case for this kind of word (a sound
+    feminine plural's kasra in nasb, a diptote's fatha in jarr), so the role's case stands."""
+    own = case_of(found["role"])
+    typed = next((letter for letter, name in CASE_NAME.items() if name == found["case"]), None)
+    stands = teacher_rules()["signs"]["stands_for"].get(signs.kind_of(entry["camel"]), {})
+    if own and stands.get(typed) == own:
+        entry["case"] = CASE_NAME[own]
+        return True
+    return False
 
 
 def _sentence_type(parser_roles: list[dict]) -> str | None:
