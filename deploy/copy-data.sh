@@ -13,6 +13,7 @@ REMOTE=tafheem
 
 FILES="
 backend/data/hadith.db
+backend/data/rijal.db
 backend/data/arabic_dictionary.json
 backend/data/daleel.db
 backend/data/lexicons.db
