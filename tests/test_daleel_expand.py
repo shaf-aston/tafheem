@@ -144,7 +144,8 @@ def test_wildcards_are_not_treated_as_search_syntax():
     Same twelve quotations, same lie, different mechanism, so the test outlives
     the escaping it was written for.
     """
-    from backend.services.daleel.search import _escape, _is_a_word, search
+    from backend.services.daleel.search import _is_a_word, search
+    from backend.services.fts import quoted
 
     assert not _is_a_word("%") and not _is_a_word("_")
     assert _is_a_word("في")
@@ -152,4 +153,4 @@ def test_wildcards_are_not_treated_as_search_syntax():
     assert search("_") == []
     # A quote is the one character that is syntax here, and it is doubled
     # rather than passed through, so a term cannot close its own phrase.
-    assert _escape('a"b') == 'a""b'
+    assert quoted('a"b') == '"a""b"'

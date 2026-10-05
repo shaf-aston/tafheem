@@ -20,6 +20,7 @@ import EmptyState from './ui/EmptyState'
 import SectionHeader from './ui/SectionHeader'
 import ErrorAlert from './ui/ErrorAlert'
 import { AnalyzerSkeleton } from './ui/Skeleton'
+import StatusNote from './ui/StatusNote'
 import HadithCollectionPicker from './HadithCollectionPicker'
 import HadithBookList from './HadithBookList'
 import HadithCards from './HadithCards'
@@ -97,9 +98,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
       <SectionHeader title="Hadith" arabic="الحديث" />
 
       {missed && (
-        <p role="status" className="type-small text-[var(--text-dim)]">
-          That link names a hadith that is not here, so the collection opens plainly.
-        </p>
+        <StatusNote>That link names a hadith that is not here, so the collection opens plainly.</StatusNote>
       )}
 
       <HadithSearchResults accent={accent} onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}>

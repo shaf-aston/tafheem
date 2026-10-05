@@ -7,6 +7,7 @@ from typing import Annotated
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import StringConstraints
 
+from backend.config import get_settings
 from backend.models.schemas import (
     HadithBook, HadithBookResponse, HadithChapter, HadithCollection, HadithCorrection, HadithEntry,
     HadithReference, HadithSearchResponse,
@@ -17,7 +18,6 @@ from backend.services.hadith import search as hadith_search
 
 router = APIRouter(prefix="/api/hadith", tags=["hadith"])
 
-_MAX_QUERY_CHARS = 200
 _MAX_COLLECTIONS = 10
 CollectionName = Annotated[str, StringConstraints(max_length=60)]
 
@@ -57,7 +57,7 @@ async def get_book(collection: str, number: int) -> HadithBookResponse:
 
 @router.get("/search", response_model=HadithSearchResponse)
 async def search(
-    q: str = Query("", max_length=_MAX_QUERY_CHARS),
+    q: str = Query("", max_length=get_settings().search_max_query_chars),
     collections: list[CollectionName] = Query(default=[]),
 ) -> HadithSearchResponse:
     query = q.strip()
@@ -74,7 +74,7 @@ async def search(
     found = await asyncio.to_thread(hadith_search.search, query, None, chosen)
     return HadithSearchResponse(
         query=query,
-        collections=list(chosen),
+        collections=list(found.collections),
         corrected=[HadithCorrection(typed=t, used=u) for t, u in found.corrected],
         unmatched=found.unmatched,
         partial=found.partial,

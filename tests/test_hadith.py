@@ -343,7 +343,7 @@ def test_a_name_in_the_chain_is_not_searched(db):
 
 def test_a_collection_and_number_opens_that_hadith(db):
     """'bukhari 2' is the hadith numbered 2, not a word search for 'bukhari'."""
-    for typed in ("bukhari 2", "Sahih al-Bukhari 2", "bukhari:2", "bukari 2", "bukhary 2"):
+    for typed in ("bukhari 2", "Sahih al-Bukhari 2", "bukhari:2", "bukari 2", "bukhary 2", "bukhari 2.", '"bukhari" 2'):
         found = search.search(typed)
         assert [h.number for h in found.hits] == [2], typed
         assert found.reference == ("bukhari", "2", "2")
@@ -357,3 +357,50 @@ def test_a_number_the_collection_skips_shows_the_nearest_and_says_so(db):
 
 def test_words_that_name_no_collection_stay_a_word_search(db):
     assert search.search("prayer 2").reference is None
+    # Part of a name is no name, even for a collection with no short name.
+    assert search.search("sahih 2").reference is None
+    # A number larger than any hadith is no hadith, not a server error.
+    assert search.search("bukhari 99999999999999999999").reference is None
+
+
+def test_a_long_vowel_spelt_doubled_is_one_slip(db):
+    """bukhaaree is bukhari written the way it sounds: one slip, not three."""
+    assert search.search("bukhaaree 2").reference == ("bukhari", "2", "2")
+
+
+@pytest.fixture()
+def two_collections(db):
+    """The tiny database plus a Muslim collection holding its own prayer hadith."""
+    conn = sqlite3.connect(db)
+    conn.execute("INSERT INTO collection (id, name, short, cite) VALUES ('muslim', 'Sahih Muslim', 'Muslim', '')")
+    conn.execute("INSERT INTO book (collection_id, number, name) VALUES ('muslim', 1, 'Prayer')")
+    conn.execute("INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) "
+                 "VALUES ('muslim', 1, 8, '', 'الصلاة نور', 'Prayer is light for a Muslim')")
+    conn.execute("DELETE FROM hadith_fts"); conn.execute("DELETE FROM word"); conn.execute("DELETE FROM deletion")
+    index_text(conn)
+    conn.commit()
+    conn.close()
+    loader.collections.cache_clear()
+    return db
+
+
+def test_a_collection_named_among_the_words_narrows_the_search_to_it(two_collections):
+    """'bukari prayer' searches prayer in Bukhari; the misspelt name is never swapped for a text word."""
+    for typed in ("bukari prayer", "sahih bukhari prayer", "Prayer, Bukhari"):
+        found = search.search(typed)
+        assert [(h.collection, h.number) for h in found.hits] == [("bukhari", 3)], typed
+        assert found.collections == ("bukhari",)
+        assert found.corrected == [] and found.unmatched == []
+
+
+def test_an_everyday_word_names_a_collection_only_alone_or_with_a_number(two_collections):
+    """'a muslim' is about Muslims; 'muslim 8' and 'muslim' alone mean the collection."""
+    found = search.search("prayer for a muslim")
+    assert found.collections == () and [h.number for h in found.hits] == [8]
+    assert search.search("muslim 8").reference == ("muslim", "8", "8")
+    assert search.search("muslim").reference == ("muslim", "", "")
+
+
+def test_a_search_that_is_only_a_collection_name_opens_it(two_collections):
+    found = search.search("bukhari")
+    assert found.reference == ("bukhari", "", "") and found.hits == []

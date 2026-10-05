@@ -234,7 +234,7 @@ async def get_ayah(surah: int, ayah: int) -> QuranAyah:
 
 
 @router.get("/search", response_model=list[QuranSearchResult])
-async def search_quran(q: str = Query(..., min_length=1, max_length=200)) -> list[QuranSearchResult]:
+async def search_quran(q: str = Query(..., min_length=1, max_length=get_settings().search_max_query_chars)) -> list[QuranSearchResult]:
     query = normalize_text(q, "Search query")
     hits = await asyncio.to_thread(quran_search.search, query)
     # The badge is per hit, not per response: one search can be answered by the

@@ -15,10 +15,6 @@ from backend.services.daleel import titles
 
 router = APIRouter(prefix="/api/daleel", tags=["daleel"])
 
-# Long enough for a sentence, short enough that nothing enormous is folded and
-# expanded per keystroke. A boundary check, not a style rule.
-_MAX_QUERY_CHARS = 200
-
 # How many books one search may be narrowed to. There are twenty-three, and a
 # request naming hundreds is not a reader choosing; it is a boundary worth
 # holding. Naming every book is the same search as naming none.
@@ -58,7 +54,7 @@ async def catalogue() -> list[DaleelBook]:
 
 @router.get("", response_model=DaleelResponse)
 async def find(
-    q: str = Query("", max_length=_MAX_QUERY_CHARS),
+    q: str = Query("", max_length=get_settings().search_max_query_chars),
     books: list[BookName] = Query(default=[]),
 ) -> DaleelResponse:
     """Passages from the app's books that match what was asked.

@@ -63,7 +63,7 @@ Root = Annotated[str, Depends(_asked_root)]
 
 @router.get("/search", response_model=DictionaryResponse)
 async def search_dictionary(
-    q: str = Query(..., min_length=1, max_length=200, description="Search query"),
+    q: str = Query(..., min_length=1, max_length=get_settings().search_max_query_chars, description="Search query"),
     lang: str = Query("ar", description="Search language: 'ar' for Arabic, 'en' for English"),
 ) -> DictionaryResponse:
     # The answer carries the joined word, and the two classical cards ask about

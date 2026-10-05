@@ -21,6 +21,7 @@ import Chip from './ui/Chip'
 import Disclosure from './ui/Disclosure'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
+import IndexNotBuilt from './ui/IndexNotBuilt'
 import Mascot from './ui/Mascot'
 import MicButton from './ui/MicButton'
 import Popover from './ui/Popover'
@@ -34,6 +35,7 @@ import { AnalyzerSkeleton, Skeleton } from './ui/Skeleton'
 import SmallButton from './ui/SmallButton'
 import SourceBadge from './ui/SourceBadge'
 import SpeakButton from './ui/SpeakButton'
+import StatusNote from './ui/StatusNote'
 import Tooltip from './ui/Tooltip'
 import TranslationStrip from './ui/TranslationStrip'
 import TwinCards from './ui/TwinCard'
@@ -219,11 +221,13 @@ function Elements({ accent }) {
         </ShowRest>
       </Demo>
 
-      <Demo name="EmptyState, ErrorAlert" tokens="--text-dim --danger --radius-md">
+      <Demo name="StatusNote, EmptyState, ErrorAlert, IndexNotBuilt" tokens="--text-dim --danger --radius-md">
         <div className="space-y-3">
+          <State label="note"><StatusNote>searched prayer for pryer</StatusNote></State>
           <State label="empty"><EmptyState>Nothing here yet.</EmptyState></State>
           <State label="error"><ErrorAlert title="Could not load">The backend did not answer.</ErrorAlert></State>
           <State label="error, inline"><ErrorAlert title="Failed" inline>Try again in a moment.</ErrorAlert></State>
+          <State label="no index"><IndexNotBuilt command="python backend/scripts/build_hadith_index.py" /></State>
         </div>
       </Demo>
 

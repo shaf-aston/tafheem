@@ -26,18 +26,12 @@ import sqlite3
 from dataclasses import dataclass
 
 from backend.config import data_path, get_settings
+from backend.services import fts
 from backend.services.daleel import registry
 from backend.services.daleel.expand import Expansion, expand
 from backend.services.daleel.lexicon import DictionaryLexicon
 
 log = logging.getLogger(__name__)
-
-# The shortest string SQLite's trigram tokenizer can match. Not a preference,
-# a property of the tokenizer, so it is a constant here and not a setting.
-# expand.py is told this number rather than carrying its own: two copies of it
-# would let a config change switch off typo tolerance with nothing to show for
-# it, because _runs() would go on returning nothing for a shorter term.
-_TRIGRAM_MIN = 3
 
 # How many two-letter words one question may put to the word index. It was a
 # cap on full scans, which is why the number is small; each one is now an
@@ -101,7 +95,7 @@ def search(query: str, limit: int | None = None, books: tuple[str, ...] = ()) ->
         DictionaryLexicon(),
         max_expand=settings.daleel_root_expand_max,
         max_translations=settings.daleel_english_expand_max,
-        min_trigram_len=_TRIGRAM_MIN,
+        min_trigram_len=fts.TRIGRAM_MIN,
     )
     if expansion.is_empty():
         return []
@@ -257,7 +251,7 @@ def _candidates(
     # Deduplicated before the cap: a translation is often its own root (صبر),
     # and each repeat spent one of the twelve places on nothing.
     long_terms = list(dict.fromkeys(t for t in (*expansion.all_terms, *expansion.roots)
-                                    if len(t) >= _TRIGRAM_MIN))[:_MAX_TERMS]
+                                    if len(t) >= fts.TRIGRAM_MIN))[:_MAX_TERMS]
 
     # The words the trigram index cannot see, because it cannot match anything
     # shorter than three characters. They go to the `word` index, which holds
@@ -267,7 +261,7 @@ def _candidates(
     # The terms past the cap are not lost; they are still matched by the
     # trigram path when they are long enough.
     short_terms = [t for t in expansion.all_terms
-                   if len(t) < _TRIGRAM_MIN and _is_a_word(t)][:_MAX_SHORT_TERMS]
+                   if len(t) < fts.TRIGRAM_MIN and _is_a_word(t)][:_MAX_SHORT_TERMS]
 
     # An index built before the word table existed still opens and still
     # answers every long word, so it must not turn a short one into a 500.
@@ -280,7 +274,7 @@ def _candidates(
         short_terms = []
 
     if long_terms:
-        match = " OR ".join(f'"{_escape(term)}"' for term in long_terms)
+        match = " OR ".join(fts.quoted(term) for term in long_terms)
         for row in _fairly(conn, columns, match, per_source, books):
             found[(row[0], row[2])] = row
 
@@ -328,7 +322,7 @@ def _fairly(
     costs about 20 ms on a typical question and 0.3 s on the slowest. Putting
     passages holding every typed word first was tried too and kept only 121.
     """
-    only, chosen = _only_books(books)
+    only, chosen = fts.only_in("book", books)
     passage_columns = ", ".join(f"p.{name}" for name in columns.split(", "))
     return list(conn.execute(
         f"SELECT {passage_columns} FROM ("
@@ -357,7 +351,7 @@ def _loosely(
     if not runs:
         return []
 
-    match = " OR ".join(f'"{_escape(run)}"' for run in sorted(runs))
+    match = " OR ".join(fts.quoted(run) for run in sorted(runs))
     return _fairly(conn, columns, match, per_source, books)
 
 
@@ -368,7 +362,7 @@ def _runs(term: str, size: int) -> set[str]:
 
 def _trigrams(term: str) -> set[str]:
     """Every three-character window. What the index itself is built from."""
-    return _runs(term, _TRIGRAM_MIN)
+    return _runs(term, fts.TRIGRAM_MIN)
 
 
 def _closeness(terms: tuple, haystack: str) -> int:
@@ -381,15 +375,10 @@ def _closeness(terms: tuple, haystack: str) -> int:
     a reader would: الرحيم keeps more of the word in one piece.
     """
     score = 0
-    for size in (_TRIGRAM_MIN, _TRIGRAM_MIN + 1):
+    for size in (fts.TRIGRAM_MIN, fts.TRIGRAM_MIN + 1):
         for term in terms:
             score += sum(run in haystack for run in _runs(term, size))
     return score
-
-
-def _escape(term: str) -> str:
-    """A term safe to sit inside an FTS5 double-quoted string."""
-    return term.replace('"', '""')
 
 
 def _has_table(conn: sqlite3.Connection, name: str) -> bool:
@@ -419,22 +408,12 @@ def _word_match(term: str, source: str, books: tuple[str, ...]) -> str:
     because a WHERE only runs once the index has already found every passage
     holding the word and fetched each one to look at.
     """
-    query = f'source:"{_escape(source)}" fold:"{_escape(term)}"'
+    query = f"source:{fts.quoted(source)} fold:{fts.quoted(term)}"
     if books:
-        inside = " OR ".join(f'"{_escape(name)}"' for name in books)
+        inside = " OR ".join(map(fts.quoted, books))
         query += f" AND book:({inside})"
     return query
 
-
-def _only_books(books: tuple[str, ...]) -> tuple[str, tuple[str, ...]]:
-    """The SQL that narrows `passage_meta` to those books, and the values it needs.
-
-    Empty in, empty out: no clause and no values, which is every query in this
-    file behaving exactly as it did before a filter existed.
-    """
-    if not books:
-        return "", ()
-    return " AND book IN (" + ",".join("?" * len(books)) + ")", books
 
 
 def books() -> list[tuple[str, str]]:
