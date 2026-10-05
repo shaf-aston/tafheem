@@ -1,0 +1,856 @@
+{
+  "id": "after-four",
+  "order": 4,
+  "name": "After the Four",
+  "arabic": "ما بعد الخلفاء الراشدين",
+  "science": "tarikh",
+  "kind": "dated",
+  "sub": "41 AH to the fall of Baghdad, 661 to 1258 CE",
+  "map": "caliphate",
+  "events": [
+    {
+      "id": "hasan-unity",
+      "title": "Hasan hands over: the Year of Unity",
+      "arabic": "تنازل الحسن وعام الجماعة",
+      "when": "661 CE, 41 AH",
+      "at": 661.65,
+      "hijri": "41 AH",
+      "place": "kufa",
+      "summary": "After Ali's death the people of Kufa pledge to his son Hasan. After some months he gives the caliphate to Mu'awiyah to end the bloodshed, and the year is called the Year of the Community.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 2704,
+          "checked": "sunnah.com numbering, read on the hadith-api copy"
+        },
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "ibnsad"
+        }
+      ],
+      "steps": [
+        {
+          "id": "hasan-pledged",
+          "title": "Hasan is pledged",
+          "arabic": "بيعة الحسن",
+          "when": "Ramadan 40 AH",
+          "summary": "The people of Kufa pledge to Hasan, the Prophet's grandson, who rules for about six months.",
+          "place": "kufa",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "the-agreement",
+          "title": "The agreement",
+          "arabic": "الصلح",
+          "when": "Rabi al-Awwal to Jumada al-Ula 41 AH",
+          "summary": "Both armies face each other, and Hasan gives the matter to Mu'awiyah on terms, to spare Muslim blood. Reports differ on the terms.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "sayyid-saying",
+          "title": "The Prophet's saying",
+          "arabic": "قول النبي",
+          "when": "41 AH",
+          "summary": "The Prophet had called Hasan a leader and said Allah would make peace between two large groups of Muslims through him. The scholars of hadith note this as it came true.",
+          "aside": true,
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 2704,
+              "checked": "sunnah.com numbering, read on the hadith-api copy"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "year-of-community",
+          "title": "The Year of the Community",
+          "arabic": "عام الجماعة",
+          "when": "41 AH",
+          "summary": "The people gather under one caliph, and the year is named the Year of the Community.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "muawiyah-umayyad",
+      "title": "Mu'awiyah and the Umayyad caliphate in Damascus",
+      "arabic": "معاوية والدولة الأموية",
+      "when": "661 to 680 CE, 41 to 60 AH",
+      "at": 661.75,
+      "hijri": "41 AH",
+      "place": "damascus",
+      "summary": "Mu'awiyah ibn Abi Sufyan, governor of Sham for about twenty years, is now caliph from Damascus. His reign lasts about nineteen to twenty years and passes to his son Yazid.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "ibnsad"
+        }
+      ],
+      "steps": [
+        {
+          "id": "capital-damascus",
+          "title": "Damascus as the seat",
+          "arabic": "دمشق عاصمة",
+          "when": "41 AH",
+          "summary": "The capital moves from Madinah and Kufa to Damascus; Mu'awiyah governs Iraq through governors such as al-Mughirah and Ziyad ibn Abihi.",
+          "place": "damascus",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "sea-and-frontiers",
+          "title": "Fleet and frontiers",
+          "arabic": "الأسطول والثغور",
+          "when": "41 to 60 AH",
+          "summary": "He maintains a navy, sends repeated campaigns toward Constantinople, and continues the push into North Africa, where Uqbah ibn Nafi founds Qayrawan in 50 AH.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "baladhuri"
+            }
+          ]
+        },
+        {
+          "id": "succession-yazid",
+          "title": "Yazid named heir",
+          "arabic": "ولاية يزيد",
+          "when": "About 56 AH",
+          "summary": "Mu'awiyah has the oath taken for his son Yazid, the first time a caliph's son is named in his lifetime; some leading figures object. Scholars judge the step differently.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "muawiyah-dies",
+          "title": "Mu'awiyah's death",
+          "arabic": "وفاة معاوية",
+          "when": "Rajab 60 AH",
+          "summary": "He dies in Damascus in Rajab 60 AH, in old age, and Yazid succeeds.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "karbala",
+      "title": "Karbala and the martyrdom of Husayn",
+      "arabic": "كربلاء واستشهاد الحسين",
+      "when": "680 CE, 61 AH",
+      "at": 680.78,
+      "hijri": "61 AH",
+      "place": "karbala",
+      "summary": "Husayn ibn Ali, the Prophet's grandson, leaves Makkah after letters from Kufa and is killed with many of his family at Karbala on 10 Muharram 61 AH.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "husayn-declines",
+          "title": "Husayn will not pledge to Yazid",
+          "arabic": "امتناع الحسين",
+          "when": "60 AH",
+          "summary": "After Mu'awiyah's death Husayn declines to pledge to Yazid and leaves Madinah for Makkah. Ibn Abbas and others advise him not to go to Iraq.",
+          "place": "makkah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "kufa-letters",
+          "title": "Letters from Kufa",
+          "arabic": "كتب الكوفيين",
+          "when": "60 to 61 AH",
+          "summary": "Kufans write inviting him; his cousin Muslim ibn Aqil is sent ahead and is killed in Kufa by the governor Ubaydullah ibn Ziyad, and the support melts away.",
+          "place": "kufa",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "the-day",
+          "title": "The day of Ashura",
+          "arabic": "يوم عاشوراء",
+          "when": "10 Muharram 61 AH",
+          "summary": "Husayn's small party is met by an army of the governor at Karbala; after refusing to give way he is killed with most of the men of his household.",
+          "place": "karbala",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "aftermath",
+          "title": "Aftermath",
+          "arabic": "ما بعد المقتل",
+          "when": "61 AH",
+          "summary": "The survivors are taken to Damascus and then sent home to Madinah. Sources agree on the main events but differ on details and on where his head was kept.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "second-fitnah",
+      "title": "The second fitnah and Ibn al-Zubayr",
+      "arabic": "الفتنة الثانية وابن الزبير",
+      "when": "683 to 692 CE, 64 to 73 AH",
+      "at": 683.7,
+      "hijri": "64 AH",
+      "place": "makkah",
+      "summary": "Abdullah ibn al-Zubayr refuses to pledge to Yazid and is acknowledged as caliph in Hijaz and much of the empire. Abd al-Malik ends the split in 73 AH.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "harra",
+          "title": "The people of Madinah and al-Harra",
+          "arabic": "وقعة الحرة",
+          "when": "Dhu al-Hijjah 63 AH",
+          "summary": "Madinah rejects Yazid, and a Syrian army defeats its people at al-Harra. Many companions' children are killed, and the city is plundered.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "siege-makkah",
+          "title": "The siege of Makkah",
+          "arabic": "حصار مكة",
+          "when": "64 AH",
+          "summary": "The Syrian army besieges Makkah, the Ka'bah is damaged, and Yazid's death stops the siege. Ibn al-Zubayr later rebuilds the Ka'bah.",
+          "place": "makkah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "two-caliphs",
+          "title": "Rival claims",
+          "arabic": "الخلافتان",
+          "when": "64 to 72 AH",
+          "summary": "Ibn al-Zubayr is accepted in Hijaz, Iraq and Egypt for a time; Marwan ibn al-Hakam, then Abd al-Malik, hold Syria.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "hajjaj-ends",
+          "title": "The end",
+          "arabic": "نهاية ابن الزبير",
+          "when": "Jumada al-Ula 73 AH",
+          "summary": "Al-Hajjaj ibn Yusuf besieges Makkah; Ibn al-Zubayr is killed fighting, and the empire is again under one ruler.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "abd-malik-reforms",
+      "title": "Abd al-Malik, Arabic coinage and the Dome of the Rock",
+      "arabic": "عبد الملك وقبة الصخرة",
+      "when": "691 CE, 72 AH",
+      "at": 691.9,
+      "hijri": "72 AH",
+      "place": "jerusalem",
+      "summary": "Abd al-Malik builds the Dome of the Rock, whose inscription is dated 72 AH, and makes Arabic the language of the registers and coin.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "dome-rock",
+          "title": "The Dome of the Rock",
+          "arabic": "قبة الصخرة",
+          "when": "72 AH",
+          "summary": "The building's inscription gives 72 AH. Its purpose is debated: honouring the rock of the Night Journey, a rival to Byzantine churches, or a sign of the new state.",
+          "place": "jerusalem",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "arabic-coinage",
+          "title": "Arabic coinage",
+          "arabic": "السكة العربية",
+          "when": "About 77 AH",
+          "summary": "Coins with Arabic Islamic inscriptions replace Byzantine and Persian types, minted in the name of the caliph's government. Some scholars date the first full reform to 77 AH.",
+          "refs": [
+            {
+              "book": "tabari"
+            }
+          ]
+        },
+        {
+          "id": "diwan-arabic",
+          "title": "The registers in Arabic",
+          "arabic": "تعريب الدواوين",
+          "when": "About 81 AH",
+          "summary": "The diwans of Iraq and Sham move from Persian and Greek into Arabic.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "baladhuri"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spain-sindh",
+      "title": "The conquest of Spain and Sindh",
+      "arabic": "فتح الأندلس والسند",
+      "when": "711 CE, 92 to 93 AH",
+      "at": 711.3,
+      "hijri": "92 AH",
+      "place": "debal",
+      "summary": "At either end of the empire, Tariq ibn Ziyad crosses to Spain in 92 AH and Muhammad ibn al-Qasim reaches Sindh in 93 AH.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "baladhuri"
+        }
+      ],
+      "steps": [
+        {
+          "id": "tariq-crosses",
+          "title": "Tariq crosses",
+          "arabic": "عبور طارق",
+          "when": "Rajab 92 AH",
+          "summary": "Tariq ibn Ziyad, a lieutenant of Musa ibn Nusayr, lands near the rock later called Jabal Tariq with a small force.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "guadalete",
+          "title": "Defeat of Roderic",
+          "arabic": "وادي لكة",
+          "when": "Ramadan 92 AH",
+          "summary": "He defeats the Visigothic king Roderic near the river Guadalete. Toledo and Cordoba are taken in the following months, and Musa follows in 93 AH.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "sindh-conquest",
+          "title": "Sindh",
+          "arabic": "فتح السند",
+          "when": "92 to 94 AH",
+          "summary": "Muhammad ibn al-Qasim takes Debal and later Aror and Multan. Sources differ on the order and the exact years.",
+          "refs": [
+            {
+              "book": "baladhuri"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "umar-ibn-abd-aziz",
+      "title": "Umar ibn Abd al-Aziz",
+      "arabic": "عمر بن عبد العزيز",
+      "when": "717 to 720 CE, 99 to 101 AH",
+      "at": 717.7,
+      "hijri": "99 AH",
+      "place": "damascus",
+      "summary": "A short reign of about two and a half years that later scholars remember for justice, fair taxes and care for the Sunnah; some call him the fifth of the rightly-guided.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "accession-99",
+          "title": "Accession",
+          "arabic": "الخلافة",
+          "when": "Safar 99 AH",
+          "summary": "He is named by Sulayman ibn Abd al-Malik, accepts reluctantly, and gives up the luxury of his household.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "justice-taxes",
+          "title": "Justice and the treasury",
+          "arabic": "العدل",
+          "when": "99 to 101 AH",
+          "summary": "He returns property taken unjustly, relieves converts of the poll tax in practice, and lowers burdens on the provinces.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "hadith-writing",
+          "title": "Writing down the Sunnah",
+          "arabic": "تدوين السنة",
+          "when": "99 to 101 AH",
+          "summary": "He writes to governors and scholars, including Abu Bakr ibn Hazm, to record the hadith before its carriers are lost.",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "umar-dies",
+          "title": "His death",
+          "arabic": "وفاته",
+          "when": "Rajab 101 AH",
+          "summary": "He dies at Dayr Sim'an in Syria in Rajab 101 AH, at about forty; some reports say he was poisoned, and this is not settled.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "abbasid-revolution",
+      "title": "The Abbasid revolution",
+      "arabic": "الثورة العباسية",
+      "when": "749 to 750 CE, 132 AH",
+      "at": 749.9,
+      "hijri": "132 AH",
+      "place": "kufa",
+      "summary": "A movement from Khurasan under Abu Muslim brings down the Umayyads. Abu al-Abbas al-Saffah is pledged as caliph in Kufa, and Marwan II is defeated at the Zab.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "khurasan-rising",
+          "title": "The rising in Khurasan",
+          "arabic": "ثورة خراسان",
+          "when": "129 AH",
+          "summary": "Abu Muslim al-Khurasani raises the black banners in Marw in the name of the Prophet's family and wins the east.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "saffah-pledge",
+          "title": "Al-Saffah pledged",
+          "arabic": "بيعة السفاح",
+          "when": "Rabi al-Awwal 132 AH",
+          "summary": "Abu al-Abbas, a descendant of the Prophet's uncle al-Abbas, is pledged in Kufa and gives his first speech in the mosque.",
+          "place": "kufa",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "zab-battle",
+          "title": "The Greater Zab",
+          "arabic": "معركة الزاب",
+          "when": "Jumada al-Akhirah 132 AH",
+          "summary": "The last Umayyad caliph Marwan ibn Muhammad is beaten near the Zab river, flees through Syria to Egypt, and is killed there in Dhu al-Hijjah 132 AH.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "andalus-survivor",
+          "title": "A survivor in the west",
+          "arabic": "عبد الرحمن الداخل",
+          "when": "138 AH",
+          "summary": "Abd al-Rahman ibn Muawiyah escapes the purge and founds an Umayyad emirate in Cordoba in 138 AH.",
+          "aside": true,
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "baghdad-founded",
+      "title": "Baghdad founded",
+      "arabic": "تأسيس بغداد",
+      "when": "762 CE, 145 AH",
+      "at": 762.5,
+      "hijri": "145 AH",
+      "place": "baghdad",
+      "summary": "Al-Mansur builds the Round City on the Tigris as the Abbasid capital. In the following century it becomes a centre of translation and learning, and four imams live there or nearby.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "round-city",
+          "title": "The Round City",
+          "arabic": "المدينة المدورة",
+          "when": "145 AH",
+          "summary": "Al-Mansur chooses the site on the Tigris and lays out a round walled city with the palace and mosque at its centre.",
+          "place": "baghdad",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "translation-age",
+          "title": "The age of translation",
+          "arabic": "عصر الترجمة",
+          "when": "2nd to 3rd century AH",
+          "summary": "Under Harun al-Rashid and al-Ma'mun, Greek, Persian and Indian works are translated into Arabic with state support. The scale of the Bayt al-Hikmah is debated among historians.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "four-imams",
+          "title": "The four imams",
+          "arabic": "الأئمة الأربعة",
+          "when": "80 to 241 AH",
+          "summary": "Abu Hanifah (died 150), Malik ibn Anas (died 179), al-Shafi'i (died 204) and Ahmad ibn Hanbal (died 241) lived across this period; al-Shafi'i and Ahmad taught in Baghdad.",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mihnah",
+      "title": "The Mihnah and Ahmad ibn Hanbal",
+      "arabic": "المحنة والإمام أحمد",
+      "when": "833 CE, 218 AH",
+      "at": 833.2,
+      "hijri": "218 AH",
+      "place": "baghdad",
+      "summary": "Al-Ma'mun orders scholars to affirm that the Qur'an is created. Ahmad ibn Hanbal refuses, is imprisoned and flogged, and his steadfastness is widely remembered.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "mamun-order",
+          "title": "The order",
+          "arabic": "أمر المأمون",
+          "when": "218 AH",
+          "summary": "Al-Ma'mun, shortly before his death, writes to his governor in Baghdad to test judges and scholars on the createdness of the Qur'an.",
+          "place": "baghdad",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "ahmad-refuses",
+          "title": "Ahmad refuses",
+          "arabic": "ثبات أحمد",
+          "when": "218 to 220 AH",
+          "summary": "Ahmad ibn Hanbal and a few others refuse; he is taken in chains toward Tarsus, and returned to Baghdad after Ma'mun's death.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "flogging",
+          "title": "The flogging",
+          "arabic": "الجلد",
+          "when": "About 220 AH",
+          "summary": "Under al-Mu'tasim he is flogged and held for months, and does not change his words.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "mihnah-ends",
+          "title": "The end of the Mihnah",
+          "arabic": "نهاية المحنة",
+          "when": "234 AH",
+          "summary": "Al-Mutawakkil ends the test, and Ahmad's position becomes the standard one; he dies in 241 AH.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "baghdad-falls",
+      "title": "The Mongol sack of Baghdad",
+      "arabic": "سقوط بغداد",
+      "when": "1258 CE, 656 AH",
+      "at": 1258.1,
+      "hijri": "656 AH",
+      "place": "baghdad",
+      "summary": "Hulagu's Mongol army besieges Baghdad, takes it in Safar 656 AH, and ends the Abbasid caliphate there.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "siege-baghdad",
+          "title": "The siege",
+          "arabic": "الحصار",
+          "when": "Muharram 656 AH, January 1258 CE",
+          "summary": "Hulagu's army surrounds the city and shells the walls; the caliph al-Musta'sim negotiates and fails.",
+          "place": "baghdad",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "fall-sack",
+          "title": "The fall and the sack",
+          "arabic": "السقوط",
+          "when": "Safar 656 AH, February 1258 CE",
+          "summary": "The city surrenders after about two weeks and is plundered for about a week; sources give death tolls from tens of thousands to a million, and none is reliable.",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "caliph-killed",
+          "title": "The caliph killed",
+          "arabic": "مقتل الخليفة",
+          "when": "656 AH",
+          "summary": "Al-Musta'sim is put to death, ending the Abbasid caliphate in Baghdad.",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
