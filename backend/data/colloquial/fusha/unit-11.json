@@ -23,59 +23,199 @@
     {
       "lesson": "lesson-01",
       "phrases": [
-        { "slot": "welcome-lit-your-eye-honors-us-said-to-a-man-arr", "arabic": "أَهْلًا بِكَ يَا ضَيْفَنَا الْعَزِيز", "transliteration": "ahlan bika yaa dayfanaa al-3azeez" },
+        {
+          "slot": "welcome-lit-your-eye-honors-us-said-to-a-man-arr",
+          "arabic": "أَهْلًا بِكَ يَا ضَيْفَنَا الْعَزِيز",
+          "transliteration": "ahlan bika yaa dayfanaa al-3azeez"
+        },
         {
           "slot": "welcome-please-come-in",
           "arabic": "أَهْلًا وَسَهْلًا، تَفَضَّلْ بِالدُّخُول",
           "transliteration": "ahlan wa sahlan, tafaddal bid-dukhool",
-          "reply": { "arabic": "شُكْرًا لَكَ", "transliteration": "shukran laka", "english": "Thank you." }
+          "reply": {
+            "arabic": "شُكْرًا لَكَ",
+            "transliteration": "shukran laka",
+            "english": "Thank you."
+          }
         },
         {
           "slot": "you-have-honored-us-said-to-guests-who-arrived",
           "arabic": "شَرَّفْتُمُونَا",
           "transliteration": "sharraftumoonaa",
-          "reply": { "arabic": "بَلِ الشَّرَفُ لَنَا", "transliteration": "bali ash-sharafu lanaa", "english": "No, the honor is ours." }
+          "reply": {
+            "arabic": "بَلِ الشَّرَفُ لَنَا",
+            "transliteration": "bali ash-sharafu lanaa",
+            "english": "No, the honor is ours."
+          }
         },
-        { "slot": "don-t-trouble-yourself-we-re-at-home-make-yourse", "arabic": "لَا تَتَكَلَّفْ، أَنْتَ فِي بَيْتِكَ", "transliteration": "laa tatakallaf, anta fee baytika" },
-        { "slot": "where-can-i-park-my-car", "arabic": "أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي؟", "transliteration": "ayna astatee3u an arkuna sayyaaratee?" },
-        { "slot": "take-off-your-shoes-at-the-door-please", "arabic": "مِنْ فَضْلِكَ، اِخْلَعْ حِذَاءَكَ عِنْدَ الْبَاب", "transliteration": "min fadlika, ikhla3 7idhaa2aka 3inda al-baab" },
-        { "slot": "i-brought-you-a-few-simple-things-a-small-gift", "arabic": "أَحْضَرْتُ لَكُمْ شَيْئًا بَسِيط", "transliteration": "a7dartu lakum shay2an baseet" },
-        { "slot": "this-house-is-very-nice", "arabic": "بَيْتُكُمْ جَمِيلٌ جِدًّا", "transliteration": "baytukum jameelun jiddan" },
-        { "slot": "how-long-did-it-take-you-to-arrive", "arabic": "كَمِ اسْتَغْرَقَتْ رِحْلَتُكَ؟", "transliteration": "kami istaghraqat ri7latuka?" },
-        { "slot": "excuse-me-i-want-to-wash-my-hands", "arabic": "عَنْ إِذْنِكُمْ، أُرِيدُ أَنْ أَغْسِلَ يَدَيَّ", "transliteration": "3an idhnikum, ureedu an aghsila yadayya" },
-        { "slot": "good-i-found-the-house-easily", "arabic": "جَيِّد، وَجَدْتُ الْبَيْتَ بِسُهُولَة", "transliteration": "jayyid, wajadtu al-bayta bisuhoola" },
-        { "slot": "you-went-to-trouble-for-us-said-appreciatively-a", "arabic": "لَقَدْ تَكَلَّفْتُمْ كَثِيرًا مِنْ أَجْلِنَا", "transliteration": "laqad takallaftum katheeran min ajlinaa" }
+        {
+          "slot": "don-t-trouble-yourself-we-re-at-home-make-yourse",
+          "arabic": "لَا تَتَكَلَّفْ، أَنْتَ فِي بَيْتِكَ",
+          "transliteration": "laa tatakallaf, anta fee baytika"
+        },
+        {
+          "slot": "where-can-i-park-my-car",
+          "arabic": "أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي؟",
+          "transliteration": "ayna astatee3u an arkuna sayyaaratee?"
+        },
+        {
+          "slot": "take-off-your-shoes-at-the-door-please",
+          "arabic": "مِنْ فَضْلِكَ، اِخْلَعْ حِذَاءَكَ عِنْدَ الْبَاب",
+          "transliteration": "min fadlika, ikhla3 7idhaa2aka 3inda al-baab"
+        },
+        {
+          "slot": "i-brought-you-a-few-simple-things-a-small-gift",
+          "arabic": "أَحْضَرْتُ لَكُمْ شَيْئًا بَسِيط",
+          "transliteration": "a7dartu lakum shay2an baseet"
+        },
+        {
+          "slot": "this-house-is-very-nice",
+          "arabic": "بَيْتُكُمْ جَمِيلٌ جِدًّا",
+          "transliteration": "baytukum jameelun jiddan"
+        },
+        {
+          "slot": "how-long-did-it-take-you-to-arrive",
+          "arabic": "كَمِ اسْتَغْرَقَتْ رِحْلَتُكَ؟",
+          "transliteration": "kami istaghraqat ri7latuka?"
+        },
+        {
+          "slot": "excuse-me-i-want-to-wash-my-hands",
+          "arabic": "عَنْ إِذْنِكُمْ، أُرِيدُ أَنْ أَغْسِلَ يَدَيَّ",
+          "transliteration": "3an idhnikum, ureedu an aghsila yadayya"
+        },
+        {
+          "slot": "good-i-found-the-house-easily",
+          "arabic": "جَيِّد، وَجَدْتُ الْبَيْتَ بِسُهُولَة",
+          "transliteration": "jayyid, wajadtu al-bayta bisuhoola"
+        },
+        {
+          "slot": "you-went-to-trouble-for-us-said-appreciatively-a",
+          "arabic": "لَقَدْ تَكَلَّفْتُمْ كَثِيرًا مِنْ أَجْلِنَا",
+          "transliteration": "laqad takallaftum katheeran min ajlinaa"
+        }
       ],
       "dialogue": [
-        { "speaker": "Ahmad", "arabic": "السَّلَامُ عَلَيْكُمْ. أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي؟", "transliteration": "as-salaamu 3alaykum. ayna astatee3u an arkuna sayyaaratee?", "english": "Peace be upon you. Where can I park my car?" },
-        { "speaker": "Faisal", "arabic": "وَعَلَيْكُمُ السَّلَام. اُرْكُنْهَا أَمَامَ الْبَيْت، ثُمَّ تَفَضَّلْ بِالدُّخُول.", "transliteration": "wa 3alaykumu as-salaam. urkunhaa amaama al-bayt, thumma tafaddal bid-dukhool.", "english": "And upon you peace. Park it in front of the house, then please come in." },
-        { "speaker": "Ahmad", "arabic": "شُكْرًا. أَحْضَرْتُ لَكَ شَيْئًا بَسِيط.", "transliteration": "shukran. a7dartu laka shay2an baseet.", "english": "Thanks. I brought you a few simple things." },
-        { "speaker": "Faisal", "arabic": "لَا تَتَكَلَّفْ، أَنْتَ فِي بَيْتِكَ.", "transliteration": "laa tatakallaf, anta fee baytika.", "english": "Don't trouble yourself, you're at home." },
-        { "speaker": "Faisal", "arabic": "مِنْ فَضْلِكَ، اِخْلَعْ حِذَاءَكَ عِنْدَ الْبَاب.", "transliteration": "min fadlika, ikhla3 7idhaa2aka 3inda al-baab.", "english": "Please take off your shoes at the door." },
-        { "speaker": "Ahmad", "arabic": "حَاضِر. بَيْتُكَ جَمِيلٌ جِدًّا.", "transliteration": "7aadir. baytuka jameelun jiddan.", "english": "Of course. Your house is very nice." },
-        { "speaker": "Faisal", "arabic": "كَمِ اسْتَغْرَقَتْ رِحْلَتُكَ؟", "transliteration": "kami istaghraqat ri7latuka?", "english": "How long did it take you to arrive?" },
-        { "speaker": "Ahmad", "arabic": "جَيِّد، وَجَدْتُ الْبَيْتَ بِسُهُولَة. اسْتَغْرَقَتْ نِصْفَ سَاعَة.", "transliteration": "jayyid, wajadtu al-bayta bisuhoola. istaghraqat nisfa saa3a.", "english": "Fine, I found the house easily. It took half an hour." },
-        { "speaker": "Ahmad", "arabic": "عَنْ إِذْنِكَ، أُرِيدُ أَنْ أَغْسِلَ يَدَيَّ.", "transliteration": "3an idhnika, ureedu an aghsila yadayya.", "english": "Excuse me, I want to wash my hands." },
-        { "speaker": "Faisal", "arabic": "طَبْعًا، الْحَمَّامُ عَلَى الْيَمِين.", "transliteration": "tab3an, al-7ammaamu 3alaa al-yameen.", "english": "Of course, the bathroom is on the right." },
-        { "speaker": "Ahmad", "arabic": "شُكْرًا. لَقَدْ تَكَلَّفْتَ كَثِيرًا مِنْ أَجْلِي.", "transliteration": "shukran. laqad takallafta katheeran min ajlee.", "english": "Thanks. You went to a lot of trouble for me." },
-        { "speaker": "Faisal", "arabic": "شَرَّفْتَنَا يَا أَحْمَد.", "transliteration": "sharraftanaa yaa A7mad.", "english": "You have honored us, Ahmad." }
+        {
+          "speaker": "Ahmad",
+          "arabic": "السَّلَامُ عَلَيْكُمْ. أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي؟",
+          "transliteration": "as-salaamu 3alaykum. ayna astatee3u an arkuna sayyaaratee?",
+          "english": "Peace be upon you. Where can I park my car?"
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "وَعَلَيْكُمُ السَّلَام. اُرْكُنْهَا أَمَامَ الْبَيْت، ثُمَّ تَفَضَّلْ بِالدُّخُول.",
+          "transliteration": "wa 3alaykumu as-salaam. urkunhaa amaama al-bayt, thumma tafaddal bid-dukhool.",
+          "english": "And upon you peace. Park it in front of the house, then please come in."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "شُكْرًا. أَحْضَرْتُ لَكَ شَيْئًا بَسِيط.",
+          "transliteration": "shukran. a7dartu laka shay2an baseet.",
+          "english": "Thanks. I brought you a few simple things."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "لَا تَتَكَلَّفْ، أَنْتَ فِي بَيْتِكَ.",
+          "transliteration": "laa tatakallaf, anta fee baytika.",
+          "english": "Don't trouble yourself, you're at home."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "مِنْ فَضْلِكَ، اِخْلَعْ حِذَاءَكَ عِنْدَ الْبَاب.",
+          "transliteration": "min fadlika, ikhla3 7idhaa2aka 3inda al-baab.",
+          "english": "Please take off your shoes at the door."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "حَاضِر. بَيْتُكَ جَمِيلٌ جِدًّا.",
+          "transliteration": "7aadir. baytuka jameelun jiddan.",
+          "english": "Of course. Your house is very nice."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "كَمِ اسْتَغْرَقَتْ رِحْلَتُكَ؟",
+          "transliteration": "kami istaghraqat ri7latuka?",
+          "english": "How long did it take you to arrive?"
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "جَيِّد، وَجَدْتُ الْبَيْتَ بِسُهُولَة. اسْتَغْرَقَتْ نِصْفَ سَاعَة.",
+          "transliteration": "jayyid, wajadtu al-bayta bisuhoola. istaghraqat nisfa saa3a.",
+          "english": "Fine, I found the house easily. It took half an hour."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "عَنْ إِذْنِكَ، أُرِيدُ أَنْ أَغْسِلَ يَدَيَّ.",
+          "transliteration": "3an idhnika, ureedu an aghsila yadayya.",
+          "english": "Excuse me, I want to wash my hands."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "طَبْعًا، الْحَمَّامُ عَلَى الْيَمِين.",
+          "transliteration": "tab3an, al-7ammaamu 3alaa al-yameen.",
+          "english": "Of course, the bathroom is on the right."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "شُكْرًا. لَقَدْ تَكَلَّفْتَ كَثِيرًا مِنْ أَجْلِي.",
+          "transliteration": "shukran. laqad takallafta katheeran min ajlee.",
+          "english": "Thanks. You went to a lot of trouble for me."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "شَرَّفْتَنَا يَا أَحْمَد.",
+          "transliteration": "sharraftanaa yaa A7mad.",
+          "english": "You have honored us, Ahmad."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "أَهْلًا وَسَهْلًا، تَفَضَّلْ.", "transliteration": "ahlan wa sahlan, tafaddal.", "english": "Welcome, please come in." },
-          "response": { "arabic": "شُكْرًا لَكَ.", "transliteration": "shukran laka.", "english": "Thank you." }
+          "pair": {
+            "arabic": "أَهْلًا وَسَهْلًا، تَفَضَّلْ.",
+            "transliteration": "ahlan wa sahlan, tafaddal.",
+            "english": "Welcome, please come in."
+          },
+          "response": {
+            "arabic": "شُكْرًا لَكَ.",
+            "transliteration": "shukran laka.",
+            "english": "Thank you."
+          }
         },
         {
-          "pair": { "arabic": "أَحْضَرْتُ لَكَ شَيْئًا بَسِيط.", "transliteration": "a7dartu laka shay2an baseet.", "english": "I brought you a few simple things." },
-          "response": { "arabic": "لَا تَتَكَلَّفْ، شُكْرًا لَكَ.", "transliteration": "laa tatakallaf, shukran laka.", "english": "You shouldn't have, thank you." }
+          "pair": {
+            "arabic": "أَحْضَرْتُ لَكَ شَيْئًا بَسِيط.",
+            "transliteration": "a7dartu laka shay2an baseet.",
+            "english": "I brought you a few simple things."
+          },
+          "response": {
+            "arabic": "لَا تَتَكَلَّفْ، شُكْرًا لَكَ.",
+            "transliteration": "laa tatakallaf, shukran laka.",
+            "english": "You shouldn't have, thank you."
+          }
         },
         {
-          "pair": { "arabic": "كَمِ اسْتَغْرَقَتْ رِحْلَتُكَ؟", "transliteration": "kami istaghraqat ri7latuka?", "english": "How long did it take you to arrive?" },
-          "response": { "arabic": "نِصْفَ سَاعَة.", "transliteration": "nisfa saa3a.", "english": "Half an hour." }
+          "pair": {
+            "arabic": "كَمِ اسْتَغْرَقَتْ رِحْلَتُكَ؟",
+            "transliteration": "kami istaghraqat ri7latuka?",
+            "english": "How long did it take you to arrive?"
+          },
+          "response": {
+            "arabic": "نِصْفَ سَاعَة.",
+            "transliteration": "nisfa saa3a.",
+            "english": "Half an hour."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ وَجَدْتَ الْبَيْتَ بِسُهُولَة؟", "transliteration": "hal wajadta al-bayta bisuhoola?", "english": "Did you find the house easily?" },
-          "response": { "arabic": "نَعَمْ، وَجَدْتُهُ بِسُهُولَة.", "transliteration": "na3am, wajadtuhu bisuhoola.", "english": "Yes, I found it easily." }
+          "pair": {
+            "arabic": "هَلْ وَجَدْتَ الْبَيْتَ بِسُهُولَة؟",
+            "transliteration": "hal wajadta al-bayta bisuhoola?",
+            "english": "Did you find the house easily?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، وَجَدْتُهُ بِسُهُولَة.",
+            "transliteration": "na3am, wajadtuhu bisuhoola.",
+            "english": "Yes, I found it easily."
+          }
         }
       ],
       "culture": "A guest is welcomed at the door with أَهْلًا وَسَهْلًا, and the host says أَنْتَ فِي بَيْتِكَ, 'you are in your own house'. Bringing a small gift is polite, and the host will usually say you did not need to.",
@@ -85,8 +225,16 @@
           "type": "reply",
           "prompt": "Your host says: 'أَهْلًا وَسَهْلًا، تَفَضَّلْ بِالدُّخُول'. Thank him.",
           "answer": "شُكْرًا لَكَ",
-          "accepted": ["شُكْرًا لَكَ", "شكرا لك", "شُكْرًا جَزِيلًا", "shukran laka"],
-          "too_formal": { "item": "يِسْلَمُو", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "شُكْرًا لَكَ",
+            "شكرا لك",
+            "شُكْرًا جَزِيلًا",
+            "shukran laka"
+          ],
+          "too_formal": {
+            "item": "يِسْلَمُو",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "شُكْرًا لَكَ is 'thank you' to a man; to a woman it is شُكْرًا لَكِ."
         },
         {
@@ -94,8 +242,16 @@
           "type": "reply",
           "prompt": "Your host says: 'شَرَّفْتَنَا'. Reply modestly.",
           "answer": "بَلِ الشَّرَفُ لَنَا",
-          "accepted": ["بَلِ الشَّرَفُ لَنَا", "بل الشرف لنا", "الشَّرَفُ لِي", "bali ash-sharafu lanaa"],
-          "too_formal": { "item": "اللَّه يِشَرِّفَك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بَلِ الشَّرَفُ لَنَا",
+            "بل الشرف لنا",
+            "الشَّرَفُ لِي",
+            "bali ash-sharafu lanaa"
+          ],
+          "too_formal": {
+            "item": "اللَّه يِشَرِّفَك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "بَلْ means 'no, rather' and returns the compliment."
         },
         {
@@ -103,8 +259,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'لَا تَتَكَلَّفْ، أَنْتَ فِي _____.' (You're at home.)",
           "answer": "بَيْتِكَ",
-          "accepted": ["بَيْتِكَ", "بيتك", "baytika", "بَيْتِكُمْ"],
-          "too_formal": { "item": "بْبَيْتَك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بَيْتِكَ",
+            "بيتك",
+            "baytika",
+            "بَيْتِكُمْ"
+          ],
+          "too_formal": {
+            "item": "بْبَيْتَك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "فِي بَيْتِكَ is 'in your house'; the host says it to put you at ease."
         },
         {
@@ -112,8 +276,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'مِنْ فَضْلِكَ، _____ حِذَاءَكَ عِنْدَ الْبَاب.' (Please take off your shoes at the door.)",
           "answer": "اِخْلَعْ",
-          "accepted": ["اِخْلَعْ", "اخلع", "ikhla3", "اُخْلَعْ"],
-          "too_formal": { "item": "شِيل", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "اِخْلَعْ",
+            "اخلع",
+            "ikhla3",
+            "اُخْلَعْ"
+          ],
+          "too_formal": {
+            "item": "شِيل",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "اِخْلَعْ is the command 'take off' to a man."
         },
         {
@@ -121,8 +293,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'Welcome, please come in.'",
           "answer": "أَهْلًا وَسَهْلًا، تَفَضَّلْ بِالدُّخُول",
-          "accepted": ["أَهْلًا وَسَهْلًا، تَفَضَّلْ بِالدُّخُول", "اهلا وسهلا، تفضل بالدخول", "أَهْلًا وَسَهْلًا، تَفَضَّلْ", "ahlan wa sahlan, tafaddal bid-dukhool"],
-          "too_formal": { "item": "يَا هَلَا، تَفَضَّل جُوَّا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَهْلًا وَسَهْلًا، تَفَضَّلْ بِالدُّخُول",
+            "اهلا وسهلا، تفضل بالدخول",
+            "أَهْلًا وَسَهْلًا، تَفَضَّلْ",
+            "ahlan wa sahlan, tafaddal bid-dukhool"
+          ],
+          "too_formal": {
+            "item": "يَا هَلَا، تَفَضَّل جُوَّا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "تَفَضَّلْ is the polite 'please, go ahead' to a man."
         },
         {
@@ -130,28 +310,62 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'Where can I park my car?'",
           "answer": "أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي؟",
-          "accepted": ["أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي؟", "اين استطيع ان اركن سيارتي؟", "أَيْنَ أَرْكُنُ سَيَّارَتِي؟", "ayna astatee3u an arkuna sayyaaratee?"],
-          "too_formal": { "item": "وَيْن فِيِّي رُكُن سَيَّارَتِي؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي؟",
+            "اين استطيع ان اركن سيارتي؟",
+            "أَيْنَ أَرْكُنُ سَيَّارَتِي؟",
+            "ayna astatee3u an arkuna sayyaaratee?"
+          ],
+          "too_formal": {
+            "item": "وَيْن فِيِّي رُكُن سَيَّارَتِي؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَسْتَطِيعُ أَنْ is 'I am able to' and is followed by the present verb."
         },
         {
           "id": "unit-11.lesson-01.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'This house is very nice.'?",
-          "options": ["بَيْتُكُمْ جَمِيلٌ جِدًّا", "الْبَيْتُ بَعِيدٌ جِدًّا", "أَيْنَ الْبَيْت؟", "لَا تَتَكَلَّفْ"],
+          "options": [
+            "بَيْتُكُمْ جَمِيلٌ جِدًّا",
+            "الْبَيْتُ بَعِيدٌ جِدًّا",
+            "أَيْنَ الْبَيْت؟",
+            "لَا تَتَكَلَّفْ"
+          ],
           "answer": "بَيْتُكُمْ جَمِيلٌ جِدًّا",
-          "accepted": ["بَيْتُكُمْ جَمِيلٌ جِدًّا", "بيتكم جميل جدا", "هَذَا الْبَيْتُ جَمِيلٌ جِدًّا", "baytukum jameelun jiddan"],
-          "too_formal": { "item": "بَيْتَكُم كْتِير حِلْو", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بَيْتُكُمْ جَمِيلٌ جِدًّا",
+            "بيتكم جميل جدا",
+            "هَذَا الْبَيْتُ جَمِيلٌ جِدًّا",
+            "baytukum jameelun jiddan"
+          ],
+          "too_formal": {
+            "item": "بَيْتَكُم كْتِير حِلْو",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "بَيْتُكُمْ is 'your house' said to a family."
         },
         {
           "id": "unit-11.lesson-01.choose.02",
           "type": "choose",
           "prompt": "What does a host say to put a guest at ease?",
-          "options": ["لَا تَتَكَلَّفْ، أَنْتَ فِي بَيْتِكَ", "اِخْلَعْ حِذَاءَك", "أَيْنَ سَيَّارَتُك؟", "مَعَ السَّلَامَة"],
+          "options": [
+            "لَا تَتَكَلَّفْ، أَنْتَ فِي بَيْتِكَ",
+            "اِخْلَعْ حِذَاءَك",
+            "أَيْنَ سَيَّارَتُك؟",
+            "مَعَ السَّلَامَة"
+          ],
           "answer": "لَا تَتَكَلَّفْ، أَنْتَ فِي بَيْتِكَ",
-          "accepted": ["لَا تَتَكَلَّفْ، أَنْتَ فِي بَيْتِكَ", "لا تتكلف، انت في بيتك", "لَا تَتَكَلَّفْ", "laa tatakallaf, anta fee baytika"],
-          "too_formal": { "item": "لَا تِتْكَلَّف، إِنْتَ بْبَيْتَك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لَا تَتَكَلَّفْ، أَنْتَ فِي بَيْتِكَ",
+            "لا تتكلف، انت في بيتك",
+            "لَا تَتَكَلَّفْ",
+            "laa tatakallaf, anta fee baytika"
+          ],
+          "too_formal": {
+            "item": "لَا تِتْكَلَّف، إِنْتَ بْبَيْتَك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "تَكَلَّفَ means 'put oneself to trouble'."
         },
         {
@@ -159,8 +373,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'بِالدُّخُول / تَفَضَّلْ / وَسَهْلًا، / أَهْلًا'.",
           "answer": "أَهْلًا وَسَهْلًا، تَفَضَّلْ بِالدُّخُول",
-          "accepted": ["أَهْلًا وَسَهْلًا، تَفَضَّلْ بِالدُّخُول", "اهلا وسهلا، تفضل بالدخول", "أَهْلًا وَسَهْلًا تَفَضَّلْ بِالدُّخُول", "ahlan wa sahlan, tafaddal bid-dukhool"],
-          "too_formal": { "item": "يَا هَلَا، تَفَضَّل جُوَّا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَهْلًا وَسَهْلًا، تَفَضَّلْ بِالدُّخُول",
+            "اهلا وسهلا، تفضل بالدخول",
+            "أَهْلًا وَسَهْلًا تَفَضَّلْ بِالدُّخُول",
+            "ahlan wa sahlan, tafaddal bid-dukhool"
+          ],
+          "too_formal": {
+            "item": "يَا هَلَا، تَفَضَّل جُوَّا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The greeting comes first, then the invitation."
         },
         {
@@ -168,8 +390,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'سَيَّارَتِي؟ / أَسْتَطِيعُ / أَيْنَ / أَنْ / أَرْكُنَ'.",
           "answer": "أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي؟",
-          "accepted": ["أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي؟", "اين استطيع ان اركن سيارتي؟", "ayna astatee3u an arkuna sayyaaratee?", "أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي"],
-          "too_formal": { "item": "وَيْن فِيِّي رُكُن سَيَّارَتِي؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي؟",
+            "اين استطيع ان اركن سيارتي؟",
+            "ayna astatee3u an arkuna sayyaaratee?",
+            "أَيْنَ أَسْتَطِيعُ أَنْ أَرْكُنَ سَيَّارَتِي"
+          ],
+          "too_formal": {
+            "item": "وَيْن فِيِّي رُكُن سَيَّارَتِي؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The question word أَيْنَ opens the sentence."
         }
       ]
@@ -177,59 +407,199 @@
     {
       "lesson": "lesson-02",
       "phrases": [
-        { "slot": "sit-down-relax-a-little", "arabic": "اِجْلِسْ وَاسْتَرِحْ قَلِيلًا", "transliteration": "ijlis wastari7 qaleelan" },
+        {
+          "slot": "sit-down-relax-a-little",
+          "arabic": "اِجْلِسْ وَاسْتَرِحْ قَلِيلًا",
+          "transliteration": "ijlis wastari7 qaleelan"
+        },
         {
           "slot": "what-would-you-like-to-drink",
           "arabic": "مَاذَا تُرِيدُ أَنْ تَشْرَب؟",
           "transliteration": "maadhaa tureedu an tashrab?",
-          "reply": { "arabic": "أُرِيدُ كَأْسَ شَاي", "transliteration": "ureedu ka2sa shaay", "english": "I'd like a glass of tea." }
+          "reply": {
+            "arabic": "أُرِيدُ كَأْسَ شَاي",
+            "transliteration": "ureedu ka2sa shaay",
+            "english": "I'd like a glass of tea."
+          }
         },
         {
           "slot": "coffee-or-tea",
           "arabic": "قَهْوَةٌ أَمْ شَاي؟",
           "transliteration": "qahwatun am shaay?",
-          "reply": { "arabic": "شَاي، مِنْ فَضْلِك", "transliteration": "shaay, min fadlik", "english": "Tea, please." }
+          "reply": {
+            "arabic": "شَاي، مِنْ فَضْلِك",
+            "transliteration": "shaay, min fadlik",
+            "english": "Tea, please."
+          }
         },
-        { "slot": "do-you-take-sugar-in-your-coffee", "arabic": "هَلْ تَأْخُذُ السُّكَّرَ فِي الْقَهْوَة؟", "transliteration": "hal ta2khudhu as-sukkara fee al-qahwa?" },
-        { "slot": "ring-the-doorbell-they-must-have-arrived", "arabic": "اِضْغَطْ عَلَى الْجَرَسِ، لَا بُدَّ أَنَّهُمْ وَصَلُوا", "transliteration": "idghat 3alaa al-jarasi, laa budda annahum wasaloo" },
-        { "slot": "give-me-your-coats-i-ll-hang-them-up", "arabic": "أَعْطِنِي مَعَاطِفَكُمْ، سَأُعَلِّقُهَا", "transliteration": "a3tinee ma3aatifakum, sa-u3alliquhaa" },
-        { "slot": "take-your-time-no-rush", "arabic": "خُذْ وَقْتَكَ، لَا تَسْتَعْجِل", "transliteration": "khudh waqtaka, laa tasta3jil" },
-        { "slot": "i-put-the-sweets-on-the-table", "arabic": "وَضَعْتُ الْحَلْوَى عَلَى الطَّاوِلَة", "transliteration": "wada3tu al-7alwaa 3alaa at-taawila" },
-        { "slot": "turn-on-the-tv-if-you-d-like", "arabic": "شَغِّلِ التِّلْفَازَ إِنْ أَحْبَبْتَ", "transliteration": "shaghghili at-tilfaaza in a7babta" },
-        { "slot": "your-kids-have-grown-up-so-much", "arabic": "كَمْ كَبُرَ أَوْلَادُك!", "transliteration": "kam kabura awlaaduk!" },
-        { "slot": "today-s-gathering-is-very-nice", "arabic": "جَلْسَةُ الْيَوْمِ جَمِيلَةٌ جِدًّا", "transliteration": "jalsatu al-yawmi jameelatun jiddan" },
-        { "slot": "don-t-be-shy-the-house-is-your-house", "arabic": "لَا تَخْجَلْ، الْبَيْتُ بَيْتُك", "transliteration": "laa takhjal, al-baytu baytuk" }
+        {
+          "slot": "do-you-take-sugar-in-your-coffee",
+          "arabic": "هَلْ تَأْخُذُ السُّكَّرَ فِي الْقَهْوَة؟",
+          "transliteration": "hal ta2khudhu as-sukkara fee al-qahwa?"
+        },
+        {
+          "slot": "ring-the-doorbell-they-must-have-arrived",
+          "arabic": "اِضْغَطْ عَلَى الْجَرَسِ، لَا بُدَّ أَنَّهُمْ وَصَلُوا",
+          "transliteration": "idghat 3alaa al-jarasi, laa budda annahum wasaloo"
+        },
+        {
+          "slot": "give-me-your-coats-i-ll-hang-them-up",
+          "arabic": "أَعْطِنِي مَعَاطِفَكُمْ، سَأُعَلِّقُهَا",
+          "transliteration": "a3tinee ma3aatifakum, sa-u3alliquhaa"
+        },
+        {
+          "slot": "take-your-time-no-rush",
+          "arabic": "خُذْ وَقْتَكَ، لَا تَسْتَعْجِل",
+          "transliteration": "khudh waqtaka, laa tasta3jil"
+        },
+        {
+          "slot": "i-put-the-sweets-on-the-table",
+          "arabic": "وَضَعْتُ الْحَلْوَى عَلَى الطَّاوِلَة",
+          "transliteration": "wada3tu al-7alwaa 3alaa at-taawila"
+        },
+        {
+          "slot": "turn-on-the-tv-if-you-d-like",
+          "arabic": "شَغِّلِ التِّلْفَازَ إِنْ أَحْبَبْتَ",
+          "transliteration": "shaghghili at-tilfaaza in a7babta"
+        },
+        {
+          "slot": "your-kids-have-grown-up-so-much",
+          "arabic": "كَمْ كَبُرَ أَوْلَادُك!",
+          "transliteration": "kam kabura awlaaduk!"
+        },
+        {
+          "slot": "today-s-gathering-is-very-nice",
+          "arabic": "جَلْسَةُ الْيَوْمِ جَمِيلَةٌ جِدًّا",
+          "transliteration": "jalsatu al-yawmi jameelatun jiddan"
+        },
+        {
+          "slot": "don-t-be-shy-the-house-is-your-house",
+          "arabic": "لَا تَخْجَلْ، الْبَيْتُ بَيْتُك",
+          "transliteration": "laa takhjal, al-baytu baytuk"
+        }
       ],
       "dialogue": [
-        { "speaker": "Mona", "arabic": "اِجْلِسْ وَاسْتَرِحْ قَلِيلًا يَا طَارِق.", "transliteration": "ijlis wastari7 qaleelan yaa Taariq.", "english": "Sit down and relax a little, Tariq." },
-        { "speaker": "Tariq", "arabic": "شُكْرًا يَا مُنَى. بَيْتُكُمْ جَمِيلٌ جِدًّا.", "transliteration": "shukran yaa Munaa. baytukum jameelun jiddan.", "english": "Thanks, Mona. Your house is very nice." },
-        { "speaker": "Mona", "arabic": "مَاذَا تُرِيدُ أَنْ تَشْرَب؟ قَهْوَةٌ أَمْ شَاي؟", "transliteration": "maadhaa tureedu an tashrab? qahwatun am shaay?", "english": "What would you like to drink? Coffee or tea?" },
-        { "speaker": "Tariq", "arabic": "شَاي، مِنْ فَضْلِك.", "transliteration": "shaay, min fadlik.", "english": "Tea, please." },
-        { "speaker": "Mona", "arabic": "هَلْ تَأْخُذُ السُّكَّرَ فِي الشَّاي؟", "transliteration": "hal ta2khudhu as-sukkara fee ash-shaay?", "english": "Do you take sugar in your tea?" },
-        { "speaker": "Tariq", "arabic": "قَلِيلًا مِنَ السُّكَّر.", "transliteration": "qaleelan mina as-sukkar.", "english": "A little sugar." },
-        { "speaker": "Mona", "arabic": "وَضَعْتُ الْحَلْوَى عَلَى الطَّاوِلَة.", "transliteration": "wada3tu al-7alwaa 3alaa at-taawila.", "english": "I put the sweets on the table." },
-        { "speaker": "Tariq", "arabic": "لَقَدْ تَكَلَّفْتِ كَثِيرًا.", "transliteration": "laqad takallafti katheeran.", "english": "You went to a lot of trouble." },
-        { "speaker": "Mona", "arabic": "لَا تَخْجَلْ، الْبَيْتُ بَيْتُك.", "transliteration": "laa takhjal, al-baytu baytuk.", "english": "Don't be shy, the house is your house." },
-        { "speaker": "Tariq", "arabic": "كَمْ كَبُرَ أَوْلَادُكِ!", "transliteration": "kam kabura awlaaduki!", "english": "Your kids have grown up so much!" },
-        { "speaker": "Mona", "arabic": "نَعَمْ، الْحَمْدُ لِلَّه. شَغِّلِ التِّلْفَازَ إِنْ أَحْبَبْتَ.", "transliteration": "na3am, al7amdu lillaah. shaghghili at-tilfaaza in a7babta.", "english": "Yes, thank God. Turn on the TV if you'd like." },
-        { "speaker": "Tariq", "arabic": "جَلْسَةُ الْيَوْمِ جَمِيلَةٌ جِدًّا.", "transliteration": "jalsatu al-yawmi jameelatun jiddan.", "english": "Today's gathering is very nice." }
+        {
+          "speaker": "Mona",
+          "arabic": "اِجْلِسْ وَاسْتَرِحْ قَلِيلًا يَا طَارِق.",
+          "transliteration": "ijlis wastari7 qaleelan yaa Taariq.",
+          "english": "Sit down and relax a little, Tariq."
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "شُكْرًا يَا مُنَى. بَيْتُكُمْ جَمِيلٌ جِدًّا.",
+          "transliteration": "shukran yaa Munaa. baytukum jameelun jiddan.",
+          "english": "Thanks, Mona. Your house is very nice."
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "مَاذَا تُرِيدُ أَنْ تَشْرَب؟ قَهْوَةٌ أَمْ شَاي؟",
+          "transliteration": "maadhaa tureedu an tashrab? qahwatun am shaay?",
+          "english": "What would you like to drink? Coffee or tea?"
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "شَاي، مِنْ فَضْلِك.",
+          "transliteration": "shaay, min fadlik.",
+          "english": "Tea, please."
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "هَلْ تَأْخُذُ السُّكَّرَ فِي الشَّاي؟",
+          "transliteration": "hal ta2khudhu as-sukkara fee ash-shaay?",
+          "english": "Do you take sugar in your tea?"
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "قَلِيلًا مِنَ السُّكَّر.",
+          "transliteration": "qaleelan mina as-sukkar.",
+          "english": "A little sugar."
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "وَضَعْتُ الْحَلْوَى عَلَى الطَّاوِلَة.",
+          "transliteration": "wada3tu al-7alwaa 3alaa at-taawila.",
+          "english": "I put the sweets on the table."
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "لَقَدْ تَكَلَّفْتِ كَثِيرًا.",
+          "transliteration": "laqad takallafti katheeran.",
+          "english": "You went to a lot of trouble."
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "لَا تَخْجَلْ، الْبَيْتُ بَيْتُك.",
+          "transliteration": "laa takhjal, al-baytu baytuk.",
+          "english": "Don't be shy, the house is your house."
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "كَمْ كَبُرَ أَوْلَادُكِ!",
+          "transliteration": "kam kabura awlaaduki!",
+          "english": "Your kids have grown up so much!"
+        },
+        {
+          "speaker": "Mona",
+          "arabic": "نَعَمْ، الْحَمْدُ لِلَّه. شَغِّلِ التِّلْفَازَ إِنْ أَحْبَبْتَ.",
+          "transliteration": "na3am, al7amdu lillaah. shaghghili at-tilfaaza in a7babta.",
+          "english": "Yes, thank God. Turn on the TV if you'd like."
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "جَلْسَةُ الْيَوْمِ جَمِيلَةٌ جِدًّا.",
+          "transliteration": "jalsatu al-yawmi jameelatun jiddan.",
+          "english": "Today's gathering is very nice."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "مَاذَا تُرِيدُ أَنْ تَشْرَب؟", "transliteration": "maadhaa tureedu an tashrab?", "english": "What would you like to drink?" },
-          "response": { "arabic": "شَاي، مِنْ فَضْلِك.", "transliteration": "shaay, min fadlik.", "english": "Tea, please." }
+          "pair": {
+            "arabic": "مَاذَا تُرِيدُ أَنْ تَشْرَب؟",
+            "transliteration": "maadhaa tureedu an tashrab?",
+            "english": "What would you like to drink?"
+          },
+          "response": {
+            "arabic": "شَاي، مِنْ فَضْلِك.",
+            "transliteration": "shaay, min fadlik.",
+            "english": "Tea, please."
+          }
         },
         {
-          "pair": { "arabic": "قَهْوَةٌ أَمْ شَاي؟", "transliteration": "qahwatun am shaay?", "english": "Coffee or tea?" },
-          "response": { "arabic": "قَهْوَة، مِنْ فَضْلِك.", "transliteration": "qahwa, min fadlik.", "english": "Coffee, please." }
+          "pair": {
+            "arabic": "قَهْوَةٌ أَمْ شَاي؟",
+            "transliteration": "qahwatun am shaay?",
+            "english": "Coffee or tea?"
+          },
+          "response": {
+            "arabic": "قَهْوَة، مِنْ فَضْلِك.",
+            "transliteration": "qahwa, min fadlik.",
+            "english": "Coffee, please."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ تَأْخُذُ السُّكَّر؟", "transliteration": "hal ta2khudhu as-sukkar?", "english": "Do you take sugar?" },
-          "response": { "arabic": "قَلِيلًا مِنَ السُّكَّر.", "transliteration": "qaleelan mina as-sukkar.", "english": "A little sugar." }
+          "pair": {
+            "arabic": "هَلْ تَأْخُذُ السُّكَّر؟",
+            "transliteration": "hal ta2khudhu as-sukkar?",
+            "english": "Do you take sugar?"
+          },
+          "response": {
+            "arabic": "قَلِيلًا مِنَ السُّكَّر.",
+            "transliteration": "qaleelan mina as-sukkar.",
+            "english": "A little sugar."
+          }
         },
         {
-          "pair": { "arabic": "اِجْلِسْ وَاسْتَرِحْ قَلِيلًا.", "transliteration": "ijlis wastari7 qaleelan.", "english": "Sit down and relax a little." },
-          "response": { "arabic": "شُكْرًا لَك.", "transliteration": "shukran lak.", "english": "Thank you." }
+          "pair": {
+            "arabic": "اِجْلِسْ وَاسْتَرِحْ قَلِيلًا.",
+            "transliteration": "ijlis wastari7 qaleelan.",
+            "english": "Sit down and relax a little."
+          },
+          "response": {
+            "arabic": "شُكْرًا لَك.",
+            "transliteration": "shukran lak.",
+            "english": "Thank you."
+          }
         }
       ],
       "culture": "A Fusha host offers a drink at once, and the guest is expected to accept something. Phrases such as الْبَيْتُ بَيْتُكَ, 'the house is your house', make the guest feel at ease.",
@@ -239,8 +609,16 @@
           "type": "reply",
           "prompt": "Your host asks: 'قَهْوَةٌ أَمْ شَاي؟'. Ask for tea.",
           "answer": "شَاي، مِنْ فَضْلِك",
-          "accepted": ["شَاي، مِنْ فَضْلِك", "شاي، من فضلك", "شَاي", "shaay, min fadlik"],
-          "too_formal": { "item": "بَدِّي شَاي", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "شَاي، مِنْ فَضْلِك",
+            "شاي، من فضلك",
+            "شَاي",
+            "shaay, min fadlik"
+          ],
+          "too_formal": {
+            "item": "بَدِّي شَاي",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مِنْ فَضْلِكَ is 'please', literally 'from your favor'."
         },
         {
@@ -248,8 +626,16 @@
           "type": "reply",
           "prompt": "The host says: 'لَا تَخْجَلْ، الْبَيْتُ بَيْتُك'. Thank him.",
           "answer": "شُكْرًا لَكَ، أَنْتَ كَرِيم",
-          "accepted": ["شُكْرًا لَكَ، أَنْتَ كَرِيم", "شكرا لك، انت كريم", "شُكْرًا لَكَ", "shukran laka, anta kareem"],
-          "too_formal": { "item": "يِسْلَمُو، كَرَم مِنَّك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "شُكْرًا لَكَ، أَنْتَ كَرِيم",
+            "شكرا لك، انت كريم",
+            "شُكْرًا لَكَ",
+            "shukran laka, anta kareem"
+          ],
+          "too_formal": {
+            "item": "يِسْلَمُو، كَرَم مِنَّك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كَرِيم means 'generous', a common compliment for a host."
         },
         {
@@ -257,8 +643,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'قَهْوَةٌ _____ شَاي؟' (Coffee or tea?)",
           "answer": "أَمْ",
-          "accepted": ["أَمْ", "ام", "am", "أَوْ"],
-          "too_formal": { "item": "وَلَّا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَمْ",
+            "ام",
+            "am",
+            "أَوْ"
+          ],
+          "too_formal": {
+            "item": "وَلَّا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَمْ is 'or' in a question that offers a choice."
         },
         {
@@ -266,8 +660,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'اِجْلِسْ وَ_____ قَلِيلًا.' (Sit down and relax a little.)",
           "answer": "اِسْتَرِحْ",
-          "accepted": ["اِسْتَرِحْ", "استرح", "istari7", "اُسْتَرِحْ"],
-          "too_formal": { "item": "اِرْتَاح", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "اِسْتَرِحْ",
+            "استرح",
+            "istari7",
+            "اُسْتَرِحْ"
+          ],
+          "too_formal": {
+            "item": "اِرْتَاح",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "اِسْتَرِحْ is the command 'rest' to a man."
         },
         {
@@ -275,8 +677,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'What would you like to drink?'",
           "answer": "مَاذَا تُرِيدُ أَنْ تَشْرَب؟",
-          "accepted": ["مَاذَا تُرِيدُ أَنْ تَشْرَب؟", "ماذا تريد ان تشرب؟", "مَاذَا تُحِبُّ أَنْ تَشْرَب؟", "maadhaa tureedu an tashrab?"],
-          "too_formal": { "item": "شُو بِدَّك تِشْرَب؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مَاذَا تُرِيدُ أَنْ تَشْرَب؟",
+            "ماذا تريد ان تشرب؟",
+            "مَاذَا تُحِبُّ أَنْ تَشْرَب؟",
+            "maadhaa tureedu an tashrab?"
+          ],
+          "too_formal": {
+            "item": "شُو بِدَّك تِشْرَب؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "تُرِيدُ أَنْ is 'you want to'."
         },
         {
@@ -284,28 +694,62 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'Don't be shy, the house is your house.' (to a man)",
           "answer": "لَا تَخْجَلْ، الْبَيْتُ بَيْتُك",
-          "accepted": ["لَا تَخْجَلْ، الْبَيْتُ بَيْتُك", "لا تخجل، البيت بيتك", "لَا تَخْجَلْ", "laa takhjal, al-baytu baytuk"],
-          "too_formal": { "item": "لَا تِسْتَحِي، الْبَيْت بَيْتَك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لَا تَخْجَلْ، الْبَيْتُ بَيْتُك",
+            "لا تخجل، البيت بيتك",
+            "لَا تَخْجَلْ",
+            "laa takhjal, al-baytu baytuk"
+          ],
+          "too_formal": {
+            "item": "لَا تِسْتَحِي، الْبَيْت بَيْتَك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "لَا plus a short verb form is the negative command."
         },
         {
           "id": "unit-11.lesson-02.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'Take your time, no rush'?",
-          "options": ["خُذْ وَقْتَكَ، لَا تَسْتَعْجِل", "اُخْرُجْ بِسُرْعَة", "أَيْنَ الْبَاب؟", "هَلْ تُرِيدُ سُكَّرًا؟"],
+          "options": [
+            "خُذْ وَقْتَكَ، لَا تَسْتَعْجِل",
+            "اُخْرُجْ بِسُرْعَة",
+            "أَيْنَ الْبَاب؟",
+            "هَلْ تُرِيدُ سُكَّرًا؟"
+          ],
           "answer": "خُذْ وَقْتَكَ، لَا تَسْتَعْجِل",
-          "accepted": ["خُذْ وَقْتَكَ، لَا تَسْتَعْجِل", "خذ وقتك، لا تستعجل", "خُذْ وَقْتَكَ", "khudh waqtaka, laa tasta3jil"],
-          "too_formal": { "item": "خُد وَقْتَك، لَا تِسْتَعْجِل", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "خُذْ وَقْتَكَ، لَا تَسْتَعْجِل",
+            "خذ وقتك، لا تستعجل",
+            "خُذْ وَقْتَكَ",
+            "khudh waqtaka, laa tasta3jil"
+          ],
+          "too_formal": {
+            "item": "خُد وَقْتَك، لَا تِسْتَعْجِل",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "اِسْتَعْجَلَ means 'hurry'."
         },
         {
           "id": "unit-11.lesson-02.choose.02",
           "type": "choose",
           "prompt": "Which word means 'sweets'?",
-          "options": ["الْحَلْوَى", "الشَّاي", "السُّكَّر", "الْقَهْوَة"],
+          "options": [
+            "الْحَلْوَى",
+            "الشَّاي",
+            "السُّكَّر",
+            "الْقَهْوَة"
+          ],
           "answer": "الْحَلْوَى",
-          "accepted": ["الْحَلْوَى", "الحلوى", "al-7alwaa", "الْحَلَوِيَّات"],
-          "too_formal": { "item": "الْحُلْو", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "الْحَلْوَى",
+            "الحلوى",
+            "al-7alwaa",
+            "الْحَلَوِيَّات"
+          ],
+          "too_formal": {
+            "item": "الْحُلْو",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "الْحَلْوَى comes from حُلْو, 'sweet'."
         },
         {
@@ -313,8 +757,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'الْبَيْتُ / بَيْتُك / تَخْجَلْ، / لَا'.",
           "answer": "لَا تَخْجَلْ، الْبَيْتُ بَيْتُك",
-          "accepted": ["لَا تَخْجَلْ، الْبَيْتُ بَيْتُك", "لا تخجل، البيت بيتك", "لَا تَخْجَلْ الْبَيْتُ بَيْتُك", "laa takhjal, al-baytu baytuk"],
-          "too_formal": { "item": "لَا تِسْتَحِي، الْبَيْت بَيْتَك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لَا تَخْجَلْ، الْبَيْتُ بَيْتُك",
+            "لا تخجل، البيت بيتك",
+            "لَا تَخْجَلْ الْبَيْتُ بَيْتُك",
+            "laa takhjal, al-baytu baytuk"
+          ],
+          "too_formal": {
+            "item": "لَا تِسْتَحِي، الْبَيْت بَيْتَك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The advice comes first, then the reason."
         },
         {
@@ -322,8 +774,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'شَاي؟ / أَمْ / قَهْوَةٌ'.",
           "answer": "قَهْوَةٌ أَمْ شَاي؟",
-          "accepted": ["قَهْوَةٌ أَمْ شَاي؟", "قهوة ام شاي؟", "qahwatun am shaay?", "قَهْوَةٌ أَمْ شَاي"],
-          "too_formal": { "item": "قَهْوَة وَلَّا شَاي؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "قَهْوَةٌ أَمْ شَاي؟",
+            "قهوة ام شاي؟",
+            "qahwatun am shaay?",
+            "قَهْوَةٌ أَمْ شَاي"
+          ],
+          "too_formal": {
+            "item": "قَهْوَة وَلَّا شَاي؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The two choices sit on either side of أَمْ."
         }
       ]
@@ -331,54 +791,194 @@
     {
       "lesson": "lesson-03",
       "phrases": [
-        { "slot": "please-come-to-the-table-dinner-is-ready", "arabic": "تَفَضَّلُوا إِلَى الْمَائِدَةِ، الْعَشَاءُ جَاهِز", "transliteration": "tafaddaloo ilaa al-maa2ida, al-3ashaa2u jaahiz" },
+        {
+          "slot": "please-come-to-the-table-dinner-is-ready",
+          "arabic": "تَفَضَّلُوا إِلَى الْمَائِدَةِ، الْعَشَاءُ جَاهِز",
+          "transliteration": "tafaddaloo ilaa al-maa2ida, al-3ashaa2u jaahiz"
+        },
         {
           "slot": "enjoy-your-meal-said-to-those-eating",
           "arabic": "هَنِيئًا لَكُمْ",
           "transliteration": "haneee2an lakum",
-          "reply": { "arabic": "بَارَكَ اللَّهُ فِيكُمْ", "transliteration": "baaraka allaahu feekum", "english": "God bless you." }
+          "reply": {
+            "arabic": "بَارَكَ اللَّهُ فِيكُمْ",
+            "transliteration": "baaraka allaahu feekum",
+            "english": "God bless you."
+          }
         },
-        { "slot": "take-some-more-there-s-plenty-of-food", "arabic": "خُذْ مَزِيدًا، فَالطَّعَامُ كَثِير", "transliteration": "khudh mazeedan, fat-ta3aamu katheer" },
-        { "slot": "try-this-dish-i-made-it-today", "arabic": "جَرِّبْ هَذَا الطَّبَق، أَعْدَدْتُهُ الْيَوْم", "transliteration": "jarrib hadhaa at-tabaq, a3dadtuhu al-yawm" },
-        { "slot": "don-t-hesitate-eat-as-you-like", "arabic": "لَا تَتَرَدَّدْ، كُلْ كَمَا تُحِبّ", "transliteration": "laa tataraddad, kul kamaa tu7ibb" },
-        { "slot": "do-you-want-a-bit-more-bread", "arabic": "هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز؟", "transliteration": "hal tureedu mazeedan mina al-khubz?" },
-        { "slot": "this-food-is-a-bit-spicy-be-careful", "arabic": "هَذَا الطَّعَامُ حَارٌّ قَلِيلًا، اِنْتَبِهْ", "transliteration": "hadhaa at-ta3aamu 7aarrun qaleelan, intabih" },
-        { "slot": "what-do-you-think-of-the-dish", "arabic": "مَا رَأْيُكَ فِي الطَّبَق؟", "transliteration": "maa ra2yuka fee at-tabaq?" },
-        { "slot": "don-t-be-shy-tell-me-if-you-want-anything-else", "arabic": "لَا تَخْجَلْ، قُلْ لِي إِنْ أَرَدْتَ شَيْئًا آخَر", "transliteration": "laa takhjal, qul lee in aradta shay2an aakhar" },
-        { "slot": "thank-god-we-re-full-and-satisfied", "arabic": "الْحَمْدُ لِلَّهِ، شَبِعْنَا وَاكْتَفَيْنَا", "transliteration": "al7amdu lillaahi, shabi3naa wa iktafaynaa" },
-        { "slot": "good-thing-the-food-didn-t-get-cold", "arabic": "جَيِّدٌ أَنَّ الطَّعَامَ لَمْ يَبْرُد", "transliteration": "jayyidun anna at-ta3aama lam yabrud" },
-        { "slot": "stay-a-bit-there-s-still-dessert", "arabic": "اِبْقَ قَلِيلًا، لَمْ نَأْكُلِ الْحَلْوَى بَعْد", "transliteration": "ibqa qaleelan, lam na2kuli al-7alwaa ba3d" }
+        {
+          "slot": "take-some-more-there-s-plenty-of-food",
+          "arabic": "خُذْ مَزِيدًا، فَالطَّعَامُ كَثِير",
+          "transliteration": "khudh mazeedan, fat-ta3aamu katheer"
+        },
+        {
+          "slot": "try-this-dish-i-made-it-today",
+          "arabic": "جَرِّبْ هَذَا الطَّبَق، أَعْدَدْتُهُ الْيَوْم",
+          "transliteration": "jarrib hadhaa at-tabaq, a3dadtuhu al-yawm"
+        },
+        {
+          "slot": "don-t-hesitate-eat-as-you-like",
+          "arabic": "لَا تَتَرَدَّدْ، كُلْ كَمَا تُحِبّ",
+          "transliteration": "laa tataraddad, kul kamaa tu7ibb"
+        },
+        {
+          "slot": "do-you-want-a-bit-more-bread",
+          "arabic": "هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز؟",
+          "transliteration": "hal tureedu mazeedan mina al-khubz?"
+        },
+        {
+          "slot": "this-food-is-a-bit-spicy-be-careful",
+          "arabic": "هَذَا الطَّعَامُ حَارٌّ قَلِيلًا، اِنْتَبِهْ",
+          "transliteration": "hadhaa at-ta3aamu 7aarrun qaleelan, intabih"
+        },
+        {
+          "slot": "what-do-you-think-of-the-dish",
+          "arabic": "مَا رَأْيُكَ فِي الطَّبَق؟",
+          "transliteration": "maa ra2yuka fee at-tabaq?"
+        },
+        {
+          "slot": "don-t-be-shy-tell-me-if-you-want-anything-else",
+          "arabic": "لَا تَخْجَلْ، قُلْ لِي إِنْ أَرَدْتَ شَيْئًا آخَر",
+          "transliteration": "laa takhjal, qul lee in aradta shay2an aakhar"
+        },
+        {
+          "slot": "thank-god-we-re-full-and-satisfied",
+          "arabic": "الْحَمْدُ لِلَّهِ، شَبِعْنَا وَاكْتَفَيْنَا",
+          "transliteration": "al7amdu lillaahi, shabi3naa wa iktafaynaa"
+        },
+        {
+          "slot": "good-thing-the-food-didn-t-get-cold",
+          "arabic": "جَيِّدٌ أَنَّ الطَّعَامَ لَمْ يَبْرُد",
+          "transliteration": "jayyidun anna at-ta3aama lam yabrud"
+        },
+        {
+          "slot": "stay-a-bit-there-s-still-dessert",
+          "arabic": "اِبْقَ قَلِيلًا، لَمْ نَأْكُلِ الْحَلْوَى بَعْد",
+          "transliteration": "ibqa qaleelan, lam na2kuli al-7alwaa ba3d"
+        }
       ],
       "dialogue": [
-        { "speaker": "Hana", "arabic": "تَفَضَّلُوا إِلَى الْمَائِدَةِ، الْعَشَاءُ جَاهِز.", "transliteration": "tafaddaloo ilaa al-maa2ida, al-3ashaa2u jaahiz.", "english": "Please come to the table, dinner is ready." },
-        { "speaker": "Ali", "arabic": "شُكْرًا، رَائِحَتُهُ طَيِّبَة.", "transliteration": "shukran, raa2i7atuhu tayyiba.", "english": "Thanks, it smells good." },
-        { "speaker": "Hana", "arabic": "جَرِّبْ هَذَا الطَّبَق، أَعْدَدْتُهُ الْيَوْم.", "transliteration": "jarrib hadhaa at-tabaq, a3dadtuhu al-yawm.", "english": "Try this dish, I made it today." },
-        { "speaker": "Ali", "arabic": "مَا شَاءَ اللَّه، لَذِيذٌ جِدًّا.", "transliteration": "maa shaa2a allaah, ladheedhun jiddan.", "english": "Masha'Allah, it's delicious." },
-        { "speaker": "Hana", "arabic": "هَذَا الطَّعَامُ حَارٌّ قَلِيلًا، اِنْتَبِهْ.", "transliteration": "hadhaa at-ta3aamu 7aarrun qaleelan, intabih.", "english": "This food is a bit spicy, be careful." },
-        { "speaker": "Ali", "arabic": "لَا بَأْس، أُحِبُّ الطَّعَامَ الْحَارّ.", "transliteration": "laa ba2s, u7ibbu at-ta3aama al-7aarr.", "english": "No problem, I like spicy food." },
-        { "speaker": "Hana", "arabic": "هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز؟", "transliteration": "hal tureedu mazeedan mina al-khubz?", "english": "Do you want some more bread?" },
-        { "speaker": "Ali", "arabic": "نَعَمْ، شُكْرًا.", "transliteration": "na3am, shukran.", "english": "Yes, thanks." },
-        { "speaker": "Hana", "arabic": "لَا تَخْجَلْ، قُلْ لِي إِنْ أَرَدْتَ شَيْئًا آخَر.", "transliteration": "laa takhjal, qul lee in aradta shay2an aakhar.", "english": "Don't be shy, tell me if you want anything else." },
-        { "speaker": "Ali", "arabic": "الْحَمْدُ لِلَّهِ، شَبِعْنَا وَاكْتَفَيْنَا.", "transliteration": "al7amdu lillaahi, shabi3naa wa iktafaynaa.", "english": "Thank God, we're full and satisfied." },
-        { "speaker": "Hana", "arabic": "اِبْقَ قَلِيلًا، لَمْ نَأْكُلِ الْحَلْوَى بَعْد.", "transliteration": "ibqa qaleelan, lam na2kuli al-7alwaa ba3d.", "english": "Stay a bit, we haven't had dessert yet." },
-        { "speaker": "Ali", "arabic": "جَيِّدٌ أَنَّ الطَّعَامَ لَمْ يَبْرُد، وَالْآنَ الْحَلْوَى!", "transliteration": "jayyidun anna at-ta3aama lam yabrud, wal-aana al-7alwaa!", "english": "Good thing the food didn't get cold, and now dessert!" }
+        {
+          "speaker": "Hana",
+          "arabic": "تَفَضَّلُوا إِلَى الْمَائِدَةِ، الْعَشَاءُ جَاهِز.",
+          "transliteration": "tafaddaloo ilaa al-maa2ida, al-3ashaa2u jaahiz.",
+          "english": "Please come to the table, dinner is ready."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "شُكْرًا، رَائِحَتُهُ طَيِّبَة.",
+          "transliteration": "shukran, raa2i7atuhu tayyiba.",
+          "english": "Thanks, it smells good."
+        },
+        {
+          "speaker": "Hana",
+          "arabic": "جَرِّبْ هَذَا الطَّبَق، أَعْدَدْتُهُ الْيَوْم.",
+          "transliteration": "jarrib hadhaa at-tabaq, a3dadtuhu al-yawm.",
+          "english": "Try this dish, I made it today."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "مَا شَاءَ اللَّه، لَذِيذٌ جِدًّا.",
+          "transliteration": "maa shaa2a allaah, ladheedhun jiddan.",
+          "english": "Masha'Allah, it's delicious."
+        },
+        {
+          "speaker": "Hana",
+          "arabic": "هَذَا الطَّعَامُ حَارٌّ قَلِيلًا، اِنْتَبِهْ.",
+          "transliteration": "hadhaa at-ta3aamu 7aarrun qaleelan, intabih.",
+          "english": "This food is a bit spicy, be careful."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "لَا بَأْس، أُحِبُّ الطَّعَامَ الْحَارّ.",
+          "transliteration": "laa ba2s, u7ibbu at-ta3aama al-7aarr.",
+          "english": "No problem, I like spicy food."
+        },
+        {
+          "speaker": "Hana",
+          "arabic": "هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز؟",
+          "transliteration": "hal tureedu mazeedan mina al-khubz?",
+          "english": "Do you want some more bread?"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "نَعَمْ، شُكْرًا.",
+          "transliteration": "na3am, shukran.",
+          "english": "Yes, thanks."
+        },
+        {
+          "speaker": "Hana",
+          "arabic": "لَا تَخْجَلْ، قُلْ لِي إِنْ أَرَدْتَ شَيْئًا آخَر.",
+          "transliteration": "laa takhjal, qul lee in aradta shay2an aakhar.",
+          "english": "Don't be shy, tell me if you want anything else."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "الْحَمْدُ لِلَّهِ، شَبِعْنَا وَاكْتَفَيْنَا.",
+          "transliteration": "al7amdu lillaahi, shabi3naa wa iktafaynaa.",
+          "english": "Thank God, we're full and satisfied."
+        },
+        {
+          "speaker": "Hana",
+          "arabic": "اِبْقَ قَلِيلًا، لَمْ نَأْكُلِ الْحَلْوَى بَعْد.",
+          "transliteration": "ibqa qaleelan, lam na2kuli al-7alwaa ba3d.",
+          "english": "Stay a bit, we haven't had dessert yet."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "جَيِّدٌ أَنَّ الطَّعَامَ لَمْ يَبْرُد، وَالْآنَ الْحَلْوَى!",
+          "transliteration": "jayyidun anna at-ta3aama lam yabrud, wal-aana al-7alwaa!",
+          "english": "Good thing the food didn't get cold, and now dessert!"
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "تَفَضَّلُوا إِلَى الْمَائِدَة.", "transliteration": "tafaddaloo ilaa al-maa2ida.", "english": "Please come to the table." },
-          "response": { "arabic": "شُكْرًا، رَائِحَتُهُ طَيِّبَة.", "transliteration": "shukran, raa2i7atuhu tayyiba.", "english": "Thanks, it smells good." }
+          "pair": {
+            "arabic": "تَفَضَّلُوا إِلَى الْمَائِدَة.",
+            "transliteration": "tafaddaloo ilaa al-maa2ida.",
+            "english": "Please come to the table."
+          },
+          "response": {
+            "arabic": "شُكْرًا، رَائِحَتُهُ طَيِّبَة.",
+            "transliteration": "shukran, raa2i7atuhu tayyiba.",
+            "english": "Thanks, it smells good."
+          }
         },
         {
-          "pair": { "arabic": "مَا رَأْيُكَ فِي الطَّبَق؟", "transliteration": "maa ra2yuka fee at-tabaq?", "english": "What do you think of the dish?" },
-          "response": { "arabic": "لَذِيذٌ جِدًّا.", "transliteration": "ladheedhun jiddan.", "english": "Very delicious." }
+          "pair": {
+            "arabic": "مَا رَأْيُكَ فِي الطَّبَق؟",
+            "transliteration": "maa ra2yuka fee at-tabaq?",
+            "english": "What do you think of the dish?"
+          },
+          "response": {
+            "arabic": "لَذِيذٌ جِدًّا.",
+            "transliteration": "ladheedhun jiddan.",
+            "english": "Very delicious."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز؟", "transliteration": "hal tureedu mazeedan mina al-khubz?", "english": "Do you want some more bread?" },
-          "response": { "arabic": "نَعَمْ، شُكْرًا.", "transliteration": "na3am, shukran.", "english": "Yes, thanks." }
+          "pair": {
+            "arabic": "هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز؟",
+            "transliteration": "hal tureedu mazeedan mina al-khubz?",
+            "english": "Do you want some more bread?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، شُكْرًا.",
+            "transliteration": "na3am, shukran.",
+            "english": "Yes, thanks."
+          }
         },
         {
-          "pair": { "arabic": "هَنِيئًا لَكُمْ.", "transliteration": "haneee2an lakum.", "english": "Enjoy your meal." },
-          "response": { "arabic": "بَارَكَ اللَّهُ فِيكُمْ.", "transliteration": "baaraka allaahu feekum.", "english": "God bless you." }
+          "pair": {
+            "arabic": "هَنِيئًا لَكُمْ.",
+            "transliteration": "haneee2an lakum.",
+            "english": "Enjoy your meal."
+          },
+          "response": {
+            "arabic": "بَارَكَ اللَّهُ فِيكُمْ.",
+            "transliteration": "baaraka allaahu feekum.",
+            "english": "God bless you."
+          }
         }
       ],
       "culture": "Hosts urge guests to eat more, and a guest often refuses once out of politeness before accepting. هَنِيئًا لَكُمْ is said to people who are eating, بَارَكَ اللَّهُ فِيكُمْ is the reply, and ending with الْحَمْدُ لِلَّه shows thanks for the meal.",
@@ -388,8 +988,16 @@
           "type": "reply",
           "prompt": "Someone says to you while you eat: 'هَنِيئًا لَكُمْ'. Reply.",
           "answer": "بَارَكَ اللَّهُ فِيكُمْ",
-          "accepted": ["بَارَكَ اللَّهُ فِيكُمْ", "بارك الله فيكم", "جَزَاكُمُ اللَّهُ خَيْرًا", "baaraka allaahu feekum"],
-          "too_formal": { "item": "اللَّه يِبَارِك فِيك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بَارَكَ اللَّهُ فِيكُمْ",
+            "بارك الله فيكم",
+            "جَزَاكُمُ اللَّهُ خَيْرًا",
+            "baaraka allaahu feekum"
+          ],
+          "too_formal": {
+            "item": "اللَّه يِبَارِك فِيك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "بَارَكَ اللَّهُ فِيكُمْ is the usual blessing in return."
         },
         {
@@ -397,8 +1005,16 @@
           "type": "reply",
           "prompt": "The host asks: 'هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز؟'. You are full. Decline politely.",
           "answer": "شُكْرًا، شَبِعْتُ",
-          "accepted": ["شُكْرًا، شَبِعْتُ", "شكرا، شبعت", "الْحَمْدُ لِلَّهِ، شَبِعْتُ", "shukran, shabi3tu"],
-          "too_formal": { "item": "يِسْلَمُو، شَبْعَان", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "شُكْرًا، شَبِعْتُ",
+            "شكرا، شبعت",
+            "الْحَمْدُ لِلَّهِ، شَبِعْتُ",
+            "shukran, shabi3tu"
+          ],
+          "too_formal": {
+            "item": "يِسْلَمُو، شَبْعَان",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "شَبِعْتُ is 'I am full'."
         },
         {
@@ -406,8 +1022,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'تَفَضَّلُوا إِلَى _____، الْعَشَاءُ جَاهِز.' (Please come to the table, dinner is ready.)",
           "answer": "الْمَائِدَةِ",
-          "accepted": ["الْمَائِدَةِ", "المائدة", "al-maa2ida", "الْمَائِدَة"],
-          "too_formal": { "item": "السُّفْرَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "الْمَائِدَةِ",
+            "المائدة",
+            "al-maa2ida",
+            "الْمَائِدَة"
+          ],
+          "too_formal": {
+            "item": "السُّفْرَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "الْمَائِدَة is the table set for a meal."
         },
         {
@@ -415,8 +1039,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'جَرِّبْ هَذَا _____، أَعْدَدْتُهُ الْيَوْم.' (Try this dish, I made it today.)",
           "answer": "الطَّبَق",
-          "accepted": ["الطَّبَق", "الطبق", "at-tabaq", "الطَّبَقَ"],
-          "too_formal": { "item": "الْأَكْلَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "الطَّبَق",
+            "الطبق",
+            "at-tabaq",
+            "الطَّبَقَ"
+          ],
+          "too_formal": {
+            "item": "الْأَكْلَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "الطَّبَق means both 'plate' and 'dish'."
         },
         {
@@ -424,8 +1056,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'What do you think of the dish?' (to a man)",
           "answer": "مَا رَأْيُكَ فِي الطَّبَق؟",
-          "accepted": ["مَا رَأْيُكَ فِي الطَّبَق؟", "ما رايك في الطبق؟", "كَيْفَ وَجَدْتَ الطَّبَق؟", "maa ra2yuka fee at-tabaq?"],
-          "too_formal": { "item": "شُو رَأْيَك بِالْأَكْلَة؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مَا رَأْيُكَ فِي الطَّبَق؟",
+            "ما رايك في الطبق؟",
+            "كَيْفَ وَجَدْتَ الطَّبَق؟",
+            "maa ra2yuka fee at-tabaq?"
+          ],
+          "too_formal": {
+            "item": "شُو رَأْيَك بِالْأَكْلَة؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مَا رَأْيُكَ is 'what is your opinion'."
         },
         {
@@ -433,28 +1073,62 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'Thank God, we're full and satisfied.'",
           "answer": "الْحَمْدُ لِلَّهِ، شَبِعْنَا وَاكْتَفَيْنَا",
-          "accepted": ["الْحَمْدُ لِلَّهِ، شَبِعْنَا وَاكْتَفَيْنَا", "الحمد لله، شبعنا واكتفينا", "الْحَمْدُ لِلَّهِ، شَبِعْنَا", "al7amdu lillaahi, shabi3naa wa iktafaynaa"],
-          "too_formal": { "item": "الْحَمْدُ لِلَّه، شَبْعَانِين", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "الْحَمْدُ لِلَّهِ، شَبِعْنَا وَاكْتَفَيْنَا",
+            "الحمد لله، شبعنا واكتفينا",
+            "الْحَمْدُ لِلَّهِ، شَبِعْنَا",
+            "al7amdu lillaahi, shabi3naa wa iktafaynaa"
+          ],
+          "too_formal": {
+            "item": "الْحَمْدُ لِلَّه، شَبْعَانِين",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "اِكْتَفَى means 'had enough'."
         },
         {
           "id": "unit-11.lesson-03.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'Don't hesitate, eat as you like'?",
-          "options": ["لَا تَتَرَدَّدْ، كُلْ كَمَا تُحِبّ", "لَا تَأْكُلْ كَثِيرًا", "الطَّعَامُ بَارِدٌ جِدًّا", "أَيْنَ الْمَائِدَة؟"],
+          "options": [
+            "لَا تَتَرَدَّدْ، كُلْ كَمَا تُحِبّ",
+            "لَا تَأْكُلْ كَثِيرًا",
+            "الطَّعَامُ بَارِدٌ جِدًّا",
+            "أَيْنَ الْمَائِدَة؟"
+          ],
           "answer": "لَا تَتَرَدَّدْ، كُلْ كَمَا تُحِبّ",
-          "accepted": ["لَا تَتَرَدَّدْ، كُلْ كَمَا تُحِبّ", "لا تتردد، كل كما تحب", "لَا تَتَرَدَّدْ", "laa tataraddad, kul kamaa tu7ibb"],
-          "too_formal": { "item": "لَا تِتْرَدَّد، كُلْ مِثْل مَا بَدَّك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لَا تَتَرَدَّدْ، كُلْ كَمَا تُحِبّ",
+            "لا تتردد، كل كما تحب",
+            "لَا تَتَرَدَّدْ",
+            "laa tataraddad, kul kamaa tu7ibb"
+          ],
+          "too_formal": {
+            "item": "لَا تِتْرَدَّد، كُلْ مِثْل مَا بَدَّك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كُلْ is the command 'eat' to a man."
         },
         {
           "id": "unit-11.lesson-03.choose.02",
           "type": "choose",
           "prompt": "Which word means 'dessert'?",
-          "options": ["الْحَلْوَى", "الْخُبْز", "الْمَاء", "الْمِلْح"],
+          "options": [
+            "الْحَلْوَى",
+            "الْخُبْز",
+            "الْمَاء",
+            "الْمِلْح"
+          ],
           "answer": "الْحَلْوَى",
-          "accepted": ["الْحَلْوَى", "الحلوى", "al-7alwaa", "الْحَلَوِيَّات"],
-          "too_formal": { "item": "الْحُلْو", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "الْحَلْوَى",
+            "الحلوى",
+            "al-7alwaa",
+            "الْحَلَوِيَّات"
+          ],
+          "too_formal": {
+            "item": "الْحُلْو",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "الْخُبْز is bread, الْمَاء water and الْمِلْح salt."
         },
         {
@@ -462,8 +1136,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'الْعَشَاءُ / جَاهِز / الْمَائِدَةِ، / إِلَى / تَفَضَّلُوا'.",
           "answer": "تَفَضَّلُوا إِلَى الْمَائِدَةِ، الْعَشَاءُ جَاهِز",
-          "accepted": ["تَفَضَّلُوا إِلَى الْمَائِدَةِ، الْعَشَاءُ جَاهِز", "تفضلوا الى المائدة، العشاء جاهز", "تَفَضَّلُوا إِلَى الْمَائِدَةِ الْعَشَاءُ جَاهِز", "tafaddaloo ilaa al-maa2ida, al-3ashaa2u jaahiz"],
-          "too_formal": { "item": "تَفَضَّلُوا عَالسُّفْرَة، الْعَشَا جَاهِز", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "تَفَضَّلُوا إِلَى الْمَائِدَةِ، الْعَشَاءُ جَاهِز",
+            "تفضلوا الى المائدة، العشاء جاهز",
+            "تَفَضَّلُوا إِلَى الْمَائِدَةِ الْعَشَاءُ جَاهِز",
+            "tafaddaloo ilaa al-maa2ida, al-3ashaa2u jaahiz"
+          ],
+          "too_formal": {
+            "item": "تَفَضَّلُوا عَالسُّفْرَة، الْعَشَا جَاهِز",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The invitation comes first, then the reason."
         },
         {
@@ -471,8 +1153,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'الْخُبْز؟ / مِنَ / مَزِيدًا / تُرِيدُ / هَلْ'.",
           "answer": "هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز؟",
-          "accepted": ["هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز؟", "هل تريد مزيدا من الخبز؟", "hal tureedu mazeedan mina al-khubz?", "هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز"],
-          "too_formal": { "item": "بَدَّك شْوَيّ خُبْز كَمَان؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز؟",
+            "هل تريد مزيدا من الخبز؟",
+            "hal tureedu mazeedan mina al-khubz?",
+            "هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز"
+          ],
+          "too_formal": {
+            "item": "بَدَّك شْوَيّ خُبْز كَمَان؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مَزِيدًا مِنَ means 'more of'."
         }
       ]
@@ -484,55 +1174,195 @@
           "slot": "thank-you-for-the-hospitality-lit-god-give-you-s",
           "arabic": "جَزَاكُمُ اللَّهُ خَيْرًا عَلَى الضِّيَافَة",
           "transliteration": "jazaakumu allaahu khayran 3alaa ad-diyaafa",
-          "reply": { "arabic": "الْبَيْتُ بَيْتُكُمْ", "transliteration": "al-baytu baytukum", "english": "The house is yours." }
+          "reply": {
+            "arabic": "الْبَيْتُ بَيْتُكُمْ",
+            "transliteration": "al-baytu baytukum",
+            "english": "The house is yours."
+          }
         },
-        { "slot": "we-need-to-go-it-s-gotten-late", "arabic": "يَجِبُ أَنْ نَذْهَبَ، لَقَدْ تَأَخَّرَ الْوَقْت", "transliteration": "yajibu an nadhhaba, laqad ta2akhkhara al-waqt" },
-        { "slot": "a-very-nice-gathering-god-keep-you", "arabic": "جَلْسَةٌ جَمِيلَةٌ جِدًّا، حَفِظَكُمُ اللَّه", "transliteration": "jalsatun jameelatun jiddan, 7afizakumu allaah" },
-        { "slot": "don-t-forget-our-house-is-always-your-house", "arabic": "لَا تَنْسَ أَنَّ بَيْتَنَا بَيْتُكَ دَائِمًا", "transliteration": "laa tansa anna baytanaa baytuka daa2iman" },
-        { "slot": "give-my-regards-to-the-family", "arabic": "سَلِّمْ لِي عَلَى الْعَائِلَة", "transliteration": "sallim lee 3alaa al-3aa2ila" },
-        { "slot": "good-night-said-when-leaving-in-the-evening", "arabic": "تُصْبِحُونَ عَلَى خَيْر", "transliteration": "tus7iboona 3alaa khayr" },
-        { "slot": "no-excuses-do-we-have-to-part-so-quickly", "arabic": "لَا أَعْذَار، هَلْ يَجِبُ أَنْ نَفْتَرِقَ بِهَذِهِ السُّرْعَة؟", "transliteration": "laa a3dhaar, hal yajibu an naftariqa bihadhihi as-sur3a?" },
-        { "slot": "thanks-for-the-invitation-we-had-a-great-time", "arabic": "شُكْرًا عَلَى الدَّعْوَة، قَضَيْنَا وَقْتًا رَائِع", "transliteration": "shukran 3alaa ad-da3wa, qadaynaa waqtan raa2i3" },
-        { "slot": "let-us-know-when-you-get-home", "arabic": "أَخْبِرْنَا عِنْدَمَا تَصِلُ إِلَى الْبَيْت", "transliteration": "akhbirnaa 3indamaa tasilu ilaa al-bayt" },
-        { "slot": "the-road-should-be-clear-god-willing", "arabic": "أَتَمَنَّى أَنْ يَكُونَ الطَّرِيقُ خَالِيًا إِنْ شَاءَ اللَّه", "transliteration": "atamannaa an yakoona at-tareequ khaaliyan in shaa2a allaah" },
-        { "slot": "visit-me-again-soon", "arabic": "زُرْنِي مَرَّةً أُخْرَى قَرِيبًا", "transliteration": "zurnee marratan ukhraa qareeban" },
+        {
+          "slot": "we-need-to-go-it-s-gotten-late",
+          "arabic": "يَجِبُ أَنْ نَذْهَبَ، لَقَدْ تَأَخَّرَ الْوَقْت",
+          "transliteration": "yajibu an nadhhaba, laqad ta2akhkhara al-waqt"
+        },
+        {
+          "slot": "a-very-nice-gathering-god-keep-you",
+          "arabic": "جَلْسَةٌ جَمِيلَةٌ جِدًّا، حَفِظَكُمُ اللَّه",
+          "transliteration": "jalsatun jameelatun jiddan, 7afizakumu allaah"
+        },
+        {
+          "slot": "don-t-forget-our-house-is-always-your-house",
+          "arabic": "لَا تَنْسَ أَنَّ بَيْتَنَا بَيْتُكَ دَائِمًا",
+          "transliteration": "laa tansa anna baytanaa baytuka daa2iman"
+        },
+        {
+          "slot": "give-my-regards-to-the-family",
+          "arabic": "سَلِّمْ لِي عَلَى الْعَائِلَة",
+          "transliteration": "sallim lee 3alaa al-3aa2ila"
+        },
+        {
+          "slot": "good-night-said-when-leaving-in-the-evening",
+          "arabic": "تُصْبِحُونَ عَلَى خَيْر",
+          "transliteration": "tus7iboona 3alaa khayr"
+        },
+        {
+          "slot": "no-excuses-do-we-have-to-part-so-quickly",
+          "arabic": "لَا أَعْذَار، هَلْ يَجِبُ أَنْ نَفْتَرِقَ بِهَذِهِ السُّرْعَة؟",
+          "transliteration": "laa a3dhaar, hal yajibu an naftariqa bihadhihi as-sur3a?"
+        },
+        {
+          "slot": "thanks-for-the-invitation-we-had-a-great-time",
+          "arabic": "شُكْرًا عَلَى الدَّعْوَة، قَضَيْنَا وَقْتًا رَائِع",
+          "transliteration": "shukran 3alaa ad-da3wa, qadaynaa waqtan raa2i3"
+        },
+        {
+          "slot": "let-us-know-when-you-get-home",
+          "arabic": "أَخْبِرْنَا عِنْدَمَا تَصِلُ إِلَى الْبَيْت",
+          "transliteration": "akhbirnaa 3indamaa tasilu ilaa al-bayt"
+        },
+        {
+          "slot": "the-road-should-be-clear-god-willing",
+          "arabic": "أَتَمَنَّى أَنْ يَكُونَ الطَّرِيقُ خَالِيًا إِنْ شَاءَ اللَّه",
+          "transliteration": "atamannaa an yakoona at-tareequ khaaliyan in shaa2a allaah"
+        },
+        {
+          "slot": "visit-me-again-soon",
+          "arabic": "زُرْنِي مَرَّةً أُخْرَى قَرِيبًا",
+          "transliteration": "zurnee marratan ukhraa qareeban"
+        },
         {
           "slot": "goodbye-god-be-with-you",
           "arabic": "مَعَ السَّلَامَة، فِي أَمَانِ اللَّه",
           "transliteration": "ma3a as-salaama, fee amaani allaah",
-          "reply": { "arabic": "فِي أَمَانِ اللَّه", "transliteration": "fee amaani allaah", "english": "Go in God's safekeeping." }
+          "reply": {
+            "arabic": "فِي أَمَانِ اللَّه",
+            "transliteration": "fee amaani allaah",
+            "english": "Go in God's safekeeping."
+          }
         }
       ],
       "dialogue": [
-        { "speaker": "Jamal", "arabic": "جَزَاكُمُ اللَّهُ خَيْرًا عَلَى الضِّيَافَة.", "transliteration": "jazaakumu allaahu khayran 3alaa ad-diyaafa.", "english": "Thank you for the hospitality." },
-        { "speaker": "Reem", "arabic": "الْبَيْتُ بَيْتُكَ يَا جَمَال.", "transliteration": "al-baytu baytuka yaa Jamaal.", "english": "The house is yours, Jamal." },
-        { "speaker": "Jamal", "arabic": "يَجِبُ أَنْ نَذْهَبَ، لَقَدْ تَأَخَّرَ الْوَقْت.", "transliteration": "yajibu an nadhhaba, laqad ta2akhkhara al-waqt.", "english": "We need to go, it's gotten late." },
-        { "speaker": "Reem", "arabic": "لَا أَعْذَار، هَلْ يَجِبُ أَنْ نَفْتَرِقَ بِهَذِهِ السُّرْعَة؟", "transliteration": "laa a3dhaar, hal yajibu an naftariqa bihadhihi as-sur3a?", "english": "No excuses, do we have to part so quickly?" },
-        { "speaker": "Jamal", "arabic": "شُكْرًا عَلَى الدَّعْوَة، قَضَيْنَا وَقْتًا رَائِع.", "transliteration": "shukran 3alaa ad-da3wa, qadaynaa waqtan raa2i3.", "english": "Thanks for the invitation, we had a great time." },
-        { "speaker": "Reem", "arabic": "جَلْسَةٌ جَمِيلَةٌ جِدًّا، حَفِظَكُمُ اللَّه.", "transliteration": "jalsatun jameelatun jiddan, 7afizakumu allaah.", "english": "A very nice gathering, God keep you." },
-        { "speaker": "Jamal", "arabic": "سَلِّمِي لِي عَلَى الْعَائِلَة.", "transliteration": "sallimee lee 3alaa al-3aa2ila.", "english": "Give my regards to the family." },
-        { "speaker": "Reem", "arabic": "إِنْ شَاءَ اللَّه. لَا تَنْسَ أَنَّ بَيْتَنَا بَيْتُكَ دَائِمًا.", "transliteration": "in shaa2a allaah. laa tansa anna baytanaa baytuka daa2iman.", "english": "God willing. Don't forget our house is always your house." },
-        { "speaker": "Reem", "arabic": "أَخْبِرْنَا عِنْدَمَا تَصِلُ إِلَى الْبَيْت.", "transliteration": "akhbirnaa 3indamaa tasilu ilaa al-bayt.", "english": "Let us know when you get home." },
-        { "speaker": "Jamal", "arabic": "بِالتَّأْكِيد. أَتَمَنَّى أَنْ يَكُونَ الطَّرِيقُ خَالِيًا إِنْ شَاءَ اللَّه.", "transliteration": "bit-ta2keed. atamannaa an yakoona at-tareequ khaaliyan in shaa2a allaah.", "english": "Of course. The road should be clear, God willing." },
-        { "speaker": "Reem", "arabic": "زُرْنَا مَرَّةً أُخْرَى قَرِيبًا.", "transliteration": "zurnaa marratan ukhraa qareeban.", "english": "Visit us again soon." },
-        { "speaker": "Jamal", "arabic": "مَعَ السَّلَامَة، فِي أَمَانِ اللَّه.", "transliteration": "ma3a as-salaama, fee amaani allaah.", "english": "Goodbye, God be with you." }
+        {
+          "speaker": "Jamal",
+          "arabic": "جَزَاكُمُ اللَّهُ خَيْرًا عَلَى الضِّيَافَة.",
+          "transliteration": "jazaakumu allaahu khayran 3alaa ad-diyaafa.",
+          "english": "Thank you for the hospitality."
+        },
+        {
+          "speaker": "Reem",
+          "arabic": "الْبَيْتُ بَيْتُكَ يَا جَمَال.",
+          "transliteration": "al-baytu baytuka yaa Jamaal.",
+          "english": "The house is yours, Jamal."
+        },
+        {
+          "speaker": "Jamal",
+          "arabic": "يَجِبُ أَنْ نَذْهَبَ، لَقَدْ تَأَخَّرَ الْوَقْت.",
+          "transliteration": "yajibu an nadhhaba, laqad ta2akhkhara al-waqt.",
+          "english": "We need to go, it's gotten late."
+        },
+        {
+          "speaker": "Reem",
+          "arabic": "لَا أَعْذَار، هَلْ يَجِبُ أَنْ نَفْتَرِقَ بِهَذِهِ السُّرْعَة؟",
+          "transliteration": "laa a3dhaar, hal yajibu an naftariqa bihadhihi as-sur3a?",
+          "english": "No excuses, do we have to part so quickly?"
+        },
+        {
+          "speaker": "Jamal",
+          "arabic": "شُكْرًا عَلَى الدَّعْوَة، قَضَيْنَا وَقْتًا رَائِع.",
+          "transliteration": "shukran 3alaa ad-da3wa, qadaynaa waqtan raa2i3.",
+          "english": "Thanks for the invitation, we had a great time."
+        },
+        {
+          "speaker": "Reem",
+          "arabic": "جَلْسَةٌ جَمِيلَةٌ جِدًّا، حَفِظَكُمُ اللَّه.",
+          "transliteration": "jalsatun jameelatun jiddan, 7afizakumu allaah.",
+          "english": "A very nice gathering, God keep you."
+        },
+        {
+          "speaker": "Jamal",
+          "arabic": "سَلِّمِي لِي عَلَى الْعَائِلَة.",
+          "transliteration": "sallimee lee 3alaa al-3aa2ila.",
+          "english": "Give my regards to the family."
+        },
+        {
+          "speaker": "Reem",
+          "arabic": "إِنْ شَاءَ اللَّه. لَا تَنْسَ أَنَّ بَيْتَنَا بَيْتُكَ دَائِمًا.",
+          "transliteration": "in shaa2a allaah. laa tansa anna baytanaa baytuka daa2iman.",
+          "english": "God willing. Don't forget our house is always your house."
+        },
+        {
+          "speaker": "Reem",
+          "arabic": "أَخْبِرْنَا عِنْدَمَا تَصِلُ إِلَى الْبَيْت.",
+          "transliteration": "akhbirnaa 3indamaa tasilu ilaa al-bayt.",
+          "english": "Let us know when you get home."
+        },
+        {
+          "speaker": "Jamal",
+          "arabic": "بِالتَّأْكِيد. أَتَمَنَّى أَنْ يَكُونَ الطَّرِيقُ خَالِيًا إِنْ شَاءَ اللَّه.",
+          "transliteration": "bit-ta2keed. atamannaa an yakoona at-tareequ khaaliyan in shaa2a allaah.",
+          "english": "Of course. The road should be clear, God willing."
+        },
+        {
+          "speaker": "Reem",
+          "arabic": "زُرْنَا مَرَّةً أُخْرَى قَرِيبًا.",
+          "transliteration": "zurnaa marratan ukhraa qareeban.",
+          "english": "Visit us again soon."
+        },
+        {
+          "speaker": "Jamal",
+          "arabic": "مَعَ السَّلَامَة، فِي أَمَانِ اللَّه.",
+          "transliteration": "ma3a as-salaama, fee amaani allaah.",
+          "english": "Goodbye, God be with you."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "شُكْرًا عَلَى الدَّعْوَة.", "transliteration": "shukran 3alaa ad-da3wa.", "english": "Thanks for the invitation." },
-          "response": { "arabic": "الْبَيْتُ بَيْتُك.", "transliteration": "al-baytu baytuk.", "english": "The house is yours." }
+          "pair": {
+            "arabic": "شُكْرًا عَلَى الدَّعْوَة.",
+            "transliteration": "shukran 3alaa ad-da3wa.",
+            "english": "Thanks for the invitation."
+          },
+          "response": {
+            "arabic": "الْبَيْتُ بَيْتُك.",
+            "transliteration": "al-baytu baytuk.",
+            "english": "The house is yours."
+          }
         },
         {
-          "pair": { "arabic": "يَجِبُ أَنْ نَذْهَب.", "transliteration": "yajibu an nadhhab.", "english": "We need to go." },
-          "response": { "arabic": "لَا تَذْهَبْ بِهَذِهِ السُّرْعَة.", "transliteration": "laa tadhhab bihadhihi as-sur3a.", "english": "Don't go so quickly." }
+          "pair": {
+            "arabic": "يَجِبُ أَنْ نَذْهَب.",
+            "transliteration": "yajibu an nadhhab.",
+            "english": "We need to go."
+          },
+          "response": {
+            "arabic": "لَا تَذْهَبْ بِهَذِهِ السُّرْعَة.",
+            "transliteration": "laa tadhhab bihadhihi as-sur3a.",
+            "english": "Don't go so quickly."
+          }
         },
         {
-          "pair": { "arabic": "سَلِّمْ لِي عَلَى الْعَائِلَة.", "transliteration": "sallim lee 3alaa al-3aa2ila.", "english": "Give my regards to the family." },
-          "response": { "arabic": "إِنْ شَاءَ اللَّه.", "transliteration": "in shaa2a allaah.", "english": "God willing." }
+          "pair": {
+            "arabic": "سَلِّمْ لِي عَلَى الْعَائِلَة.",
+            "transliteration": "sallim lee 3alaa al-3aa2ila.",
+            "english": "Give my regards to the family."
+          },
+          "response": {
+            "arabic": "إِنْ شَاءَ اللَّه.",
+            "transliteration": "in shaa2a allaah.",
+            "english": "God willing."
+          }
         },
         {
-          "pair": { "arabic": "مَعَ السَّلَامَة.", "transliteration": "ma3a as-salaama.", "english": "Goodbye." },
-          "response": { "arabic": "فِي أَمَانِ اللَّه.", "transliteration": "fee amaani allaah.", "english": "In God's safekeeping." }
+          "pair": {
+            "arabic": "مَعَ السَّلَامَة.",
+            "transliteration": "ma3a as-salaama.",
+            "english": "Goodbye."
+          },
+          "response": {
+            "arabic": "فِي أَمَانِ اللَّه.",
+            "transliteration": "fee amaani allaah.",
+            "english": "In God's safekeeping."
+          }
         }
       ],
       "culture": "Leaving a Fusha home takes time: the guest says they must go, the host insists they stay, and both exchange prayers such as فِي أَمَانِ اللَّه, 'in God's safekeeping'. Asking a guest to send word on reaching home shows care.",
@@ -542,8 +1372,16 @@
           "type": "reply",
           "prompt": "You are leaving. Thank the host for the invitation.",
           "answer": "شُكْرًا عَلَى الدَّعْوَة",
-          "accepted": ["شُكْرًا عَلَى الدَّعْوَة", "شكرا على الدعوة", "شُكْرًا عَلَى الضِّيَافَة", "shukran 3alaa ad-da3wa"],
-          "too_formal": { "item": "يِسْلَمُو عَالْعَزِيمَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "شُكْرًا عَلَى الدَّعْوَة",
+            "شكرا على الدعوة",
+            "شُكْرًا عَلَى الضِّيَافَة",
+            "shukran 3alaa ad-da3wa"
+          ],
+          "too_formal": {
+            "item": "يِسْلَمُو عَالْعَزِيمَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "الدَّعْوَة is 'the invitation'."
         },
         {
@@ -551,8 +1389,16 @@
           "type": "reply",
           "prompt": "The host says: 'مَعَ السَّلَامَة'. Reply.",
           "answer": "فِي أَمَانِ اللَّه",
-          "accepted": ["فِي أَمَانِ اللَّه", "في امان الله", "مَعَ السَّلَامَة", "fee amaani allaah"],
-          "too_formal": { "item": "اللَّه يْسَلِّمَك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "فِي أَمَانِ اللَّه",
+            "في امان الله",
+            "مَعَ السَّلَامَة",
+            "fee amaani allaah"
+          ],
+          "too_formal": {
+            "item": "اللَّه يْسَلِّمَك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "فِي أَمَانِ اللَّه is a blessing for the traveler."
         },
         {
@@ -560,8 +1406,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'سَلِّمْ لِي عَلَى _____.' (Give my regards to the family.)",
           "answer": "الْعَائِلَة",
-          "accepted": ["الْعَائِلَة", "العائلة", "al-3aa2ila", "الْأُسْرَة"],
-          "too_formal": { "item": "أَهْلَك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "الْعَائِلَة",
+            "العائلة",
+            "al-3aa2ila",
+            "الْأُسْرَة"
+          ],
+          "too_formal": {
+            "item": "أَهْلَك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "سَلِّمْ لِي عَلَى is 'greet for me'."
         },
         {
@@ -569,8 +1423,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'يَجِبُ أَنْ نَذْهَبَ، لَقَدْ _____ الْوَقْت.' (We need to go, it's gotten late.)",
           "answer": "تَأَخَّرَ",
-          "accepted": ["تَأَخَّرَ", "تاخر", "ta2akhkhara", "تَأَخَّرَ"],
-          "too_formal": { "item": "اِتْأَخَّر", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "تَأَخَّرَ",
+            "تاخر",
+            "ta2akhkhara",
+            "تَأَخَّرَ"
+          ],
+          "too_formal": {
+            "item": "اِتْأَخَّر",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "تَأَخَّرَ الْوَقْت is 'the time has become late'."
         },
         {
@@ -578,8 +1440,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'Thanks for the invitation, we had a great time.'",
           "answer": "شُكْرًا عَلَى الدَّعْوَة، قَضَيْنَا وَقْتًا رَائِع",
-          "accepted": ["شُكْرًا عَلَى الدَّعْوَة، قَضَيْنَا وَقْتًا رَائِع", "شكرا على الدعوة، قضينا وقتا رائعا", "شُكْرًا عَلَى الدَّعْوَة، اسْتَمْتَعْنَا كَثِيرًا", "shukran 3alaa ad-da3wa, qadaynaa waqtan raa2i3"],
-          "too_formal": { "item": "يِسْلَمُو عَالْعَزِيمَة، قَضَّيْنَا وَقْت حِلْو", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "شُكْرًا عَلَى الدَّعْوَة، قَضَيْنَا وَقْتًا رَائِع",
+            "شكرا على الدعوة، قضينا وقتا رائعا",
+            "شُكْرًا عَلَى الدَّعْوَة، اسْتَمْتَعْنَا كَثِيرًا",
+            "shukran 3alaa ad-da3wa, qadaynaa waqtan raa2i3"
+          ],
+          "too_formal": {
+            "item": "يِسْلَمُو عَالْعَزِيمَة، قَضَّيْنَا وَقْت حِلْو",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "قَضَى وَقْتًا is 'spent time'."
         },
         {
@@ -587,28 +1457,62 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'Visit me again soon.'",
           "answer": "زُرْنِي مَرَّةً أُخْرَى قَرِيبًا",
-          "accepted": ["زُرْنِي مَرَّةً أُخْرَى قَرِيبًا", "زرني مرة اخرى قريبا", "زُرْنِي قَرِيبًا", "zurnee marratan ukhraa qareeban"],
-          "too_formal": { "item": "زُورْنِي مَرَّة تَانْيَة قَرِيب", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "زُرْنِي مَرَّةً أُخْرَى قَرِيبًا",
+            "زرني مرة اخرى قريبا",
+            "زُرْنِي قَرِيبًا",
+            "zurnee marratan ukhraa qareeban"
+          ],
+          "too_formal": {
+            "item": "زُورْنِي مَرَّة تَانْيَة قَرِيب",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "زُرْنِي is 'visit me'; مَرَّةً أُخْرَى is 'another time'."
         },
         {
           "id": "unit-11.lesson-04.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'Let us know when you get home'?",
-          "options": ["أَخْبِرْنَا عِنْدَمَا تَصِلُ إِلَى الْبَيْت", "لَا تَنْسَ حِذَاءَك", "هَلْ وَصَلْتَ؟", "اُخْرُجْ مِنَ الْبَيْت"],
+          "options": [
+            "أَخْبِرْنَا عِنْدَمَا تَصِلُ إِلَى الْبَيْت",
+            "لَا تَنْسَ حِذَاءَك",
+            "هَلْ وَصَلْتَ؟",
+            "اُخْرُجْ مِنَ الْبَيْت"
+          ],
           "answer": "أَخْبِرْنَا عِنْدَمَا تَصِلُ إِلَى الْبَيْت",
-          "accepted": ["أَخْبِرْنَا عِنْدَمَا تَصِلُ إِلَى الْبَيْت", "اخبرنا عندما تصل الى البيت", "أَخْبِرْنَا حِينَ تَصِلُ", "akhbirnaa 3indamaa tasilu ilaa al-bayt"],
-          "too_formal": { "item": "خَبِّرْنَا لَمَّا تُوصَل عَالْبَيْت", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَخْبِرْنَا عِنْدَمَا تَصِلُ إِلَى الْبَيْت",
+            "اخبرنا عندما تصل الى البيت",
+            "أَخْبِرْنَا حِينَ تَصِلُ",
+            "akhbirnaa 3indamaa tasilu ilaa al-bayt"
+          ],
+          "too_formal": {
+            "item": "خَبِّرْنَا لَمَّا تُوصَل عَالْبَيْت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "عِنْدَمَا means 'when' and is followed by a verb."
         },
         {
           "id": "unit-11.lesson-04.choose.02",
           "type": "choose",
           "prompt": "Which phrase is a parting blessing meaning 'in God's safekeeping'?",
-          "options": ["فِي أَمَانِ اللَّه", "أَهْلًا وَسَهْلًا", "هَنِيئًا لَكُمْ", "مِنْ فَضْلِك"],
+          "options": [
+            "فِي أَمَانِ اللَّه",
+            "أَهْلًا وَسَهْلًا",
+            "هَنِيئًا لَكُمْ",
+            "مِنْ فَضْلِك"
+          ],
           "answer": "فِي أَمَانِ اللَّه",
-          "accepted": ["فِي أَمَانِ اللَّه", "في امان الله", "فِي حِفْظِ اللَّه", "fee amaani allaah"],
-          "too_formal": { "item": "اللَّه مَعَك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "فِي أَمَانِ اللَّه",
+            "في امان الله",
+            "فِي حِفْظِ اللَّه",
+            "fee amaani allaah"
+          ],
+          "too_formal": {
+            "item": "اللَّه مَعَك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَمَان is 'safety'."
         },
         {
@@ -616,8 +1520,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'مَرَّةً / قَرِيبًا / أُخْرَى / زُرْنِي'.",
           "answer": "زُرْنِي مَرَّةً أُخْرَى قَرِيبًا",
-          "accepted": ["زُرْنِي مَرَّةً أُخْرَى قَرِيبًا", "زرني مرة اخرى قريبا", "zurnee marratan ukhraa qareeban", "زُرْنِي قَرِيبًا مَرَّةً أُخْرَى"],
-          "too_formal": { "item": "زُورْنِي مَرَّة تَانْيَة قَرِيب", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "زُرْنِي مَرَّةً أُخْرَى قَرِيبًا",
+            "زرني مرة اخرى قريبا",
+            "zurnee marratan ukhraa qareeban",
+            "زُرْنِي قَرِيبًا مَرَّةً أُخْرَى"
+          ],
+          "too_formal": {
+            "item": "زُورْنِي مَرَّة تَانْيَة قَرِيب",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The command comes first, then how often, then when."
         },
         {
@@ -625,9 +1537,695 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'السَّلَامَة، / مَعَ / اللَّه / أَمَانِ / فِي'.",
           "answer": "مَعَ السَّلَامَة، فِي أَمَانِ اللَّه",
-          "accepted": ["مَعَ السَّلَامَة، فِي أَمَانِ اللَّه", "مع السلامة، في امان الله", "مَعَ السَّلَامَةِ فِي أَمَانِ اللَّه", "ma3a as-salaama, fee amaani allaah"],
-          "too_formal": { "item": "مَعَ السَّلَامَة، اللَّه يْسَلِّمَك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مَعَ السَّلَامَة، فِي أَمَانِ اللَّه",
+            "مع السلامة، في امان الله",
+            "مَعَ السَّلَامَةِ فِي أَمَانِ اللَّه",
+            "ma3a as-salaama, fee amaani allaah"
+          ],
+          "too_formal": {
+            "item": "مَعَ السَّلَامَة، اللَّه يْسَلِّمَك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The plain goodbye comes first, then the blessing."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "ramadan-kareem-welcome",
+          "arabic": "رَمَضَانُ كَرِيم، أَهْلًا بِكَ",
+          "transliteration": "ramadaanu kareem, ahlan bika"
+        },
+        {
+          "slot": "come-in-the-call-to-prayer-is-near",
+          "arabic": "تَفَضَّلْ، اقْتَرَبَ الْأَذَان",
+          "transliteration": "tafaddal, iqtaraba al-adhaan"
+        },
+        {
+          "slot": "it-is-time-to-break-the-fast",
+          "arabic": "حَانَ وَقْتُ الْإِفْطَار",
+          "transliteration": "7aana waqtu al-iftaar"
+        },
+        {
+          "slot": "let-us-break-our-fast-with-dates-and-water",
+          "arabic": "لِنُفْطِرْ عَلَى التَّمْرِ وَالْمَاء",
+          "transliteration": "linufTir 3alaa at-tamri wal-maa2"
+        },
+        {
+          "slot": "the-thirst-is-gone-the-veins-are-wet-and-the-rew",
+          "arabic": "ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّه",
+          "transliteration": "dhahaba az-zama2u wabtallati al-3uroogu wathabata al-ajru in shaa2a allaah"
+        },
+        {
+          "slot": "please-take-some-soup",
+          "arabic": "تَفَضَّلْ، خُذْ بَعْضَ الْحَسَاء",
+          "transliteration": "tafaddal, khudh ba3da al-7asaa2"
+        },
+        {
+          "slot": "may-allah-accept-our-fasting-and-yours",
+          "arabic": "تَقَبَّلَ اللَّهُ صِيَامَنَا وَصِيَامَكُمْ",
+          "transliteration": "taqabbala allaahu siyaamanaa wasiyaamakum",
+          "reply": {
+            "arabic": "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ",
+            "transliteration": "taqabbala allaahu minnaa waminkum",
+            "english": "May Allah accept from us and from you."
+          }
+        },
+        {
+          "slot": "the-table-is-ready-please-come",
+          "arabic": "السُّفْرَةُ جَاهِزَة، تَفَضَّلُوا",
+          "transliteration": "as-sufratu jaahiza, tafaddaloo"
+        },
+        {
+          "slot": "take-another-date",
+          "arabic": "خُذْ تَمْرَةً أُخْرَى",
+          "transliteration": "khudh tamratan ukhraa"
+        },
+        {
+          "slot": "we-pray-maghrib-first-then-we-eat",
+          "arabic": "نُصَلِّي الْمَغْرِبَ أَوَّلًا ثُمَّ نَأْكُل",
+          "transliteration": "nusallee al-maghriba awwalan thumma na2kul"
+        },
+        {
+          "slot": "i-fasted-all-day-and-i-am-very-hungry",
+          "arabic": "صُمْتُ الْيَوْمَ كُلَّهُ وَأَنَا جَائِعٌ جِدًّا",
+          "transliteration": "sumtu al-yawma kullahu wa-ana jaa2i3un jiddan"
+        },
+        {
+          "slot": "may-allah-bless-you-for-the-invitation-to-iftar",
+          "arabic": "بَارَكَ اللَّهُ فِيكُمْ عَلَى دَعْوَةِ الْإِفْطَار",
+          "transliteration": "baaraka allaahu feekum 3alaa da3wati al-iftaar",
+          "reply": {
+            "arabic": "وَفِيكُمْ بَارَكَ اللَّه",
+            "transliteration": "wafeekum baaraka allaah",
+            "english": "And may He bless you too."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Khalid",
+          "arabic": "رَمَضَانُ كَرِيم، أَهْلًا بِكَ يَا عُمَر.",
+          "transliteration": "ramadaanu kareem, ahlan bika yaa 3umar.",
+          "english": "Ramadan Kareem, welcome, Omar."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "بَارَكَ اللَّهُ فِيكَ يَا خَالِد. جِئْتُ قَبْلَ الْأَذَانِ بِقَلِيل.",
+          "transliteration": "baaraka allaahu feeka yaa Khaalid. ji2tu qabla al-adhaani biqaleel.",
+          "english": "May Allah bless you, Khalid. I came a little before the call to prayer."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "تَفَضَّلْ، اقْتَرَبَ الْأَذَان. السُّفْرَةُ جَاهِزَة.",
+          "transliteration": "tafaddal, iqtaraba al-adhaan. as-sufratu jaahiza.",
+          "english": "Come in, the call to prayer is near. The table is ready."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "صُمْتُ الْيَوْمَ كُلَّهُ وَأَنَا جَائِعٌ جِدًّا.",
+          "transliteration": "sumtu al-yawma kullahu wa-ana jaa2i3un jiddan.",
+          "english": "I fasted all day and I am very hungry."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "اِصْبِرْ قَلِيلًا، سَنَسْمَعُ الْأَذَانَ الْآن.",
+          "transliteration": "isbir qaleelan, sanasma3u al-adhaana al-aan.",
+          "english": "Be patient a little, we will hear the call now."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "هَذَا هُوَ الْأَذَان! حَانَ وَقْتُ الْإِفْطَار.",
+          "transliteration": "haadhaa huwa al-adhaan! 7aana waqtu al-iftaar.",
+          "english": "This is the call! It is time to break the fast."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "لِنُفْطِرْ عَلَى التَّمْرِ وَالْمَاء.",
+          "transliteration": "linufTir 3alaa at-tamri wal-maa2.",
+          "english": "Let us break our fast with dates and water."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّه.",
+          "transliteration": "dhahaba az-zama2u wabtallati al-3uroogu wathabata al-ajru in shaa2a allaah.",
+          "english": "The thirst is gone, the veins are wet, and the reward is certain, Allah willing."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "تَقَبَّلَ اللَّهُ صِيَامَنَا وَصِيَامَكَ. خُذْ بَعْضَ الْحَسَاء.",
+          "transliteration": "taqabbala allaahu siyaamanaa wasiyaamaka. khudh ba3da al-7asaa2.",
+          "english": "May Allah accept our fasting and yours. Take some soup."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكَ. مَا أَطْيَبَ هَذَا الْحَسَاء!",
+          "transliteration": "taqabbala allaahu minnaa waminka. maa aTyaba haadhaa al-7asaa2!",
+          "english": "May Allah accept from us and from you. How delicious this soup is!"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "خُذْ تَمْرَةً أُخْرَى، ثُمَّ نُصَلِّي الْمَغْرِبَ أَوَّلًا.",
+          "transliteration": "khudh tamratan ukhraa, thumma nusallee al-maghriba awwalan.",
+          "english": "Take another date, then we pray Maghrib first."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "بَارَكَ اللَّهُ فِيكُمْ عَلَى دَعْوَةِ الْإِفْطَار.",
+          "transliteration": "baaraka allaahu feekum 3alaa da3wati al-iftaar.",
+          "english": "May Allah bless you for the invitation to iftar."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "تَقَبَّلَ اللَّهُ صِيَامَنَا وَصِيَامَكُمْ.",
+            "transliteration": "taqabbala allaahu siyaamanaa wasiyaamakum.",
+            "english": "May Allah accept our fasting and yours."
+          },
+          "response": {
+            "arabic": "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ.",
+            "transliteration": "taqabbala allaahu minnaa waminkum.",
+            "english": "May Allah accept from us and from you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ تُحِبُّ التَّمْرَ؟",
+            "transliteration": "hal tu7ibbu at-tamra?",
+            "english": "Do you like dates?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، أُحِبُّهُ كَثِيرًا.",
+            "transliteration": "na3am, u7ibbuhu katheeran.",
+            "english": "Yes, I like them very much."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ صُمْتَ الْيَوْمَ؟",
+            "transliteration": "hal sumta al-yawma?",
+            "english": "Did you fast today?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، الْحَمْدُ لِلَّه.",
+            "transliteration": "na3am, al-7amdu lillaah.",
+            "english": "Yes, praise be to Allah."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى الْأَذَان؟",
+            "transliteration": "mataa al-adhaan?",
+            "english": "When is the call to prayer?"
+          },
+          "response": {
+            "arabic": "بَعْدَ عَشْرِ دَقَائِق.",
+            "transliteration": "ba3da 3ashri daqaa2iq.",
+            "english": "In ten minutes."
+          }
+        }
+      ],
+      "culture": "At sunset the fast is broken with dates and water, as the Prophet (peace be upon him) did, and the dua ذَهَبَ الظَّمَأُ is said after the first sip. Feeding a fasting person earns the host the same reward as the one who fasted, so hosts invite gladly and guests answer تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ. Guests thank the family with بَارَكَ اللَّهُ فِيكُمْ.",
+      "exercises": [
+        {
+          "id": "unit-11.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "Your host says: 'تَقَبَّلَ اللَّهُ صِيَامَنَا وَصِيَامَكُمْ'. Reply.",
+          "answer": "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ",
+          "accepted": [
+            "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ",
+            "تقبل الله منا ومنكم",
+            "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكَ",
+            "تقبل الله منا ومنك",
+            "taqabbala allaahu minnaa waminkum"
+          ],
+          "tip": "The reply is 'may Allah accept from us and from you'."
+        },
+        {
+          "id": "unit-11.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "You were invited to iftar. Thank your hosts for the invitation.",
+          "answer": "بَارَكَ اللَّهُ فِيكُمْ عَلَى دَعْوَةِ الْإِفْطَار",
+          "accepted": [
+            "بَارَكَ اللَّهُ فِيكُمْ عَلَى دَعْوَةِ الْإِفْطَار",
+            "بارك الله فيكم على دعوة الإفطار",
+            "جَزَاكُمُ اللَّهُ خَيْرًا عَلَى الدَّعْوَة",
+            "جزاكم الله خيرا على الدعوة",
+            "baaraka allaahu feekum 3alaa da3wati al-iftaar"
+          ],
+          "tip": "فِيكُمْ is 'in you' (more than one person)."
+        },
+        {
+          "id": "unit-11.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'حَانَ وَقْتُ _____' (It is time to break the fast.)",
+          "answer": "اِلْإِفْطَار",
+          "accepted": [
+            "اِلْإِفْطَار",
+            "الإفطار",
+            "al-iftaar"
+          ],
+          "tip": "حَانَ الْوَقْتُ would also be understood; الْإِفْطَار is 'the breaking of the fast'."
+        },
+        {
+          "id": "unit-11.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'لِنُفْطِرْ عَلَى _____ وَالْمَاء' (Let us break our fast with dates and water.)",
+          "answer": "التَّمْرِ",
+          "accepted": [
+            "التَّمْرِ",
+            "التمر",
+            "at-tamri"
+          ],
+          "tip": "The dates come after عَلَى: 'break the fast on dates'."
+        },
+        {
+          "id": "unit-11.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Please, take some soup.'",
+          "answer": "تَفَضَّلْ، خُذْ بَعْضَ الْحَسَاء",
+          "accepted": [
+            "تَفَضَّلْ، خُذْ بَعْضَ الْحَسَاء",
+            "تفضل، خذ بعض الحساء",
+            "tafaddal, khudh ba3da al-7asaa2"
+          ],
+          "tip": "بَعْضَ is 'some of'."
+        },
+        {
+          "id": "unit-11.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'I fasted all day and I am very hungry.'",
+          "answer": "صُمْتُ الْيَوْمَ كُلَّهُ وَأَنَا جَائِعٌ جِدًّا",
+          "accepted": [
+            "صُمْتُ الْيَوْمَ كُلَّهُ وَأَنَا جَائِعٌ جِدًّا",
+            "صمت اليوم كله وأنا جائع جدا",
+            "sumtu al-yawma kullahu wa-ana jaa2i3un jiddan"
+          ],
+          "tip": "صُمْتُ is 'I fasted'; كُلَّهُ goes after الْيَوْمَ and means 'all of it'."
+        },
+        {
+          "id": "unit-11.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'It is time to break the fast.'?",
+          "options": [
+            "نُصَلِّي الْمَغْرِبَ أَوَّلًا ثُمَّ نَأْكُل",
+            "حَانَ وَقْتُ الْإِفْطَار",
+            "السُّفْرَةُ جَاهِزَة، تَفَضَّلُوا",
+            "تَفَضَّلْ، اقْتَرَبَ الْأَذَان"
+          ],
+          "answer": "حَانَ وَقْتُ الْإِفْطَار",
+          "accepted": [
+            "حَانَ وَقْتُ الْإِفْطَار",
+            "حان وقت الإفطار",
+            "7aana waqtu al-iftaar"
+          ],
+          "tip": "حَانَ means 'the time has come'."
+        },
+        {
+          "id": "unit-11.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'May Allah accept our fasting and yours.'?",
+          "options": [
+            "بَارَكَ اللَّهُ فِيكُمْ عَلَى دَعْوَةِ الْإِفْطَار",
+            "خُذْ تَمْرَةً أُخْرَى",
+            "تَقَبَّلَ اللَّهُ صِيَامَنَا وَصِيَامَكُمْ",
+            "صُمْتُ الْيَوْمَ كُلَّهُ وَأَنَا جَائِعٌ جِدًّا"
+          ],
+          "answer": "تَقَبَّلَ اللَّهُ صِيَامَنَا وَصِيَامَكُمْ",
+          "accepted": [
+            "تَقَبَّلَ اللَّهُ صِيَامَنَا وَصِيَامَكُمْ",
+            "تقبل الله صيامنا وصيامكم",
+            "taqabbala allaahu siyaamanaa wasiyaamakum"
+          ],
+          "tip": "تَقَبَّلَ is 'accepted'; the fast is what we ask Allah to accept."
+        },
+        {
+          "id": "unit-11.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'نَأْكُل / ثُمَّ / أَوَّلًا / الْمَغْرِبَ / نُصَلِّي'.",
+          "answer": "نُصَلِّي الْمَغْرِبَ أَوَّلًا ثُمَّ نَأْكُل",
+          "accepted": [
+            "نُصَلِّي الْمَغْرِبَ أَوَّلًا ثُمَّ نَأْكُل",
+            "نصلي المغرب أولا ثم نأكل",
+            "nusallee al-maghriba awwalan thumma na2kul"
+          ],
+          "tip": "Prayer first, then the meal."
+        },
+        {
+          "id": "unit-11.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'وَقْتُ / الْإِفْطَار / حَانَ'.",
+          "answer": "حَانَ وَقْتُ الْإِفْطَار",
+          "accepted": [
+            "حَانَ وَقْتُ الْإِفْطَار",
+            "حان وقت الإفطار",
+            "7aana waqtu al-iftaar"
+          ],
+          "tip": "The verb comes first, then the time, then what it is the time for."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "you-will-sleep-at-our-house-tonight-no-problem",
+          "arabic": "سَتَنَامُ عِنْدَنَا اللَّيْلَةَ، لَا مُشْكِلَة",
+          "transliteration": "satanaamu 3indanaa al-laylata, laa mushkila"
+        },
+        {
+          "slot": "this-is-your-room",
+          "arabic": "هَذِهِ غُرْفَتُكَ",
+          "transliteration": "haadhihi ghurfatuka"
+        },
+        {
+          "slot": "i-put-clean-towels-on-the-bed-for-you",
+          "arabic": "وَضَعْتُ لَكَ مَنَاشِفَ نَظِيفَةً عَلَى السَّرِير",
+          "transliteration": "wada3tu laka manaashifa nazeefatan 3alaa as-sareer"
+        },
+        {
+          "slot": "here-are-folded-blankets-in-case-you-feel-cold",
+          "arabic": "هَذِهِ بَطَّانِيَّاتٌ مَطْوِيَّةٌ إِنْ شَعَرْتَ بِالْبَرْد",
+          "transliteration": "haadhihi baTTaaniyyaatun maTwiyyatun in sha3arta bil-bard"
+        },
+        {
+          "slot": "do-you-need-anything-else",
+          "arabic": "هَلْ تَحْتَاجُ إِلَى شَيْءٍ آخَر؟",
+          "transliteration": "hal ta7taaju ilaa shay2in aakhar?"
+        },
+        {
+          "slot": "where-is-the-bathroom",
+          "arabic": "أَيْنَ الْحَمَّام؟",
+          "transliteration": "ayna al-7ammaam?"
+        },
+        {
+          "slot": "here-is-a-new-toothbrush-for-you",
+          "arabic": "هَذِهِ فُرْشَاةُ أَسْنَانٍ جَدِيدَةٌ لَكَ",
+          "transliteration": "haadhihi furshaatu asnaanin jadeedatun laka"
+        },
+        {
+          "slot": "what-time-do-you-want-to-wake-up",
+          "arabic": "فِي أَيِّ سَاعَةٍ تُرِيدُ أَنْ تَسْتَيْقِظ؟",
+          "transliteration": "fee ayyi saa3atin tureedu an tastayqiz?"
+        },
+        {
+          "slot": "i-will-wake-you-up-for-the-dawn-prayer",
+          "arabic": "سَأُوقِظُكَ لِصَلَاةِ الْفَجْر",
+          "transliteration": "sa-uqizuka lisalaati al-fajr"
+        },
+        {
+          "slot": "did-you-sleep-well",
+          "arabic": "هَلْ نِمْتَ جَيِّدًا؟",
+          "transliteration": "hal nimta jayyidan?",
+          "reply": {
+            "arabic": "نَعَمْ، الْحَمْدُ لِلَّه",
+            "transliteration": "na3am, al-7amdu lillaah",
+            "english": "Yes, praise be to Allah."
+          }
+        },
+        {
+          "slot": "sleep-well",
+          "arabic": "نَوْمًا هَنِيئًا",
+          "transliteration": "nawman hanee2an",
+          "reply": {
+            "arabic": "وَأَنْتَ بِخَيْر",
+            "transliteration": "wa-anta bikhayr",
+            "english": "And you, may you be well."
+          }
+        },
+        {
+          "slot": "may-allah-honour-you-you-honoured-me-greatly",
+          "arabic": "أَكْرَمَكَ اللَّه، لَقَدْ أَكْرَمْتَنِي كَثِيرًا",
+          "transliteration": "akramaka allaah, laqad akramtanee katheeran"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Sami",
+          "arabic": "سَتَنَامُ عِنْدَنَا اللَّيْلَةَ يَا طَارِق، لَا مُشْكِلَة.",
+          "transliteration": "satanaamu 3indanaa al-laylata yaa Taariq, laa mushkila.",
+          "english": "You will sleep at our house tonight, Tariq, no problem."
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "بَارَكَ اللَّهُ فِيكَ يَا سَامِي، لَا أُرِيدُ أَنْ أُتْعِبَكُمْ.",
+          "transliteration": "baaraka allaahu feeka yaa Saamee, laa ureedu an ut3ibakum.",
+          "english": "May Allah bless you, Sami, I do not want to trouble you."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "لَا تَعَبَ أَبَدًا. هَذِهِ غُرْفَتُكَ.",
+          "transliteration": "laa ta3aba abadan. haadhihi ghurfatuka.",
+          "english": "No trouble at all. This is your room."
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "مَا أَجْمَلَ الْغُرْفَة! أَيْنَ الْحَمَّام؟",
+          "transliteration": "maa ajmala al-ghurfa! ayna al-7ammaam?",
+          "english": "How nice the room is! Where is the bathroom?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "عَلَى الْيَمِين. وَضَعْتُ لَكَ مَنَاشِفَ نَظِيفَةً عَلَى السَّرِير.",
+          "transliteration": "3alaa al-yameen. wada3tu laka manaashifa nazeefatan 3alaa as-sareer.",
+          "english": "On the right. I put clean towels on the bed for you."
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "جَزَاكَ اللَّهُ خَيْرًا. هَلْ عِنْدَكَ بَطَّانِيَّةٌ إِضَافِيَّة؟",
+          "transliteration": "jazaaka allaahu khayran. hal 3indaka baTTaaniyyatun iDaafiyya?",
+          "english": "May Allah reward you with good. Do you have an extra blanket?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "نَعَمْ، هَذِهِ بَطَّانِيَّاتٌ مَطْوِيَّةٌ إِنْ شَعَرْتَ بِالْبَرْد.",
+          "transliteration": "na3am, haadhihi baTTaaniyyaatun maTwiyyatun in sha3arta bil-bard.",
+          "english": "Yes, here are folded blankets in case you feel cold."
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "شُكْرًا. فِي أَيِّ سَاعَةٍ أَسْتَيْقِظُ لِلْفَجْر؟",
+          "transliteration": "shukran. fee ayyi saa3atin astayqizu lil-fajr?",
+          "english": "Thanks. What time do I wake up for dawn prayer?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "سَأُوقِظُكَ لِصَلَاةِ الْفَجْر. نَوْمًا هَنِيئًا.",
+          "transliteration": "sa-uqizuka lisalaati al-fajr. nawman hanee2an.",
+          "english": "I will wake you up for the dawn prayer. Sleep well."
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "وَأَنْتَ بِخَيْر، تُصْبِحُ عَلَى خَيْر.",
+          "transliteration": "wa-anta bikhayr, tus7ibu 3alaa khayr.",
+          "english": "And you, may you be well, good night."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "صَبَاحُ الْخَيْر! هَلْ نِمْتَ جَيِّدًا؟",
+          "transliteration": "sabaa7u al-khayr! hal nimta jayyidan?",
+          "english": "Good morning! Did you sleep well?"
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "نَعَمْ، الْحَمْدُ لِلَّه. أَكْرَمَكَ اللَّه، لَقَدْ أَكْرَمْتَنِي كَثِيرًا.",
+          "transliteration": "na3am, al-7amdu lillaah. akramaka allaah, laqad akramtanee katheeran.",
+          "english": "Yes, praise be to Allah. May Allah honour you, you honoured me greatly."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هَلْ تَحْتَاجُ إِلَى شَيْءٍ آخَر؟",
+            "transliteration": "hal ta7taaju ilaa shay2in aakhar?",
+            "english": "Do you need anything else?"
+          },
+          "response": {
+            "arabic": "لَا، شُكْرًا، كُلُّ شَيْءٍ مَوْجُود.",
+            "transliteration": "laa, shukran, kullu shay2in mawjood.",
+            "english": "No, thanks, everything is here."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ نِمْتَ جَيِّدًا؟",
+            "transliteration": "hal nimta jayyidan?",
+            "english": "Did you sleep well?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، الْحَمْدُ لِلَّه.",
+            "transliteration": "na3am, al-7amdu lillaah.",
+            "english": "Yes, praise be to Allah."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيْنَ الْحَمَّام؟",
+            "transliteration": "ayna al-7ammaam?",
+            "english": "Where is the bathroom?"
+          },
+          "response": {
+            "arabic": "عَلَى الْيَمِين.",
+            "transliteration": "3alaa al-yameen.",
+            "english": "On the right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِي أَيِّ سَاعَةٍ تُرِيدُ أَنْ تَسْتَيْقِظ؟",
+            "transliteration": "fee ayyi saa3atin tureedu an tastayqiz?",
+            "english": "What time do you want to wake up?"
+          },
+          "response": {
+            "arabic": "قَبْلَ الْفَجْرِ بِقَلِيل.",
+            "transliteration": "qabla al-fajri biqaleel.",
+            "english": "A little before dawn."
+          }
+        }
+      ],
+      "culture": "Honouring the guest is part of faith: the Prophet (peace be upon him) taught that whoever believes in Allah and the Last Day should honour his guest. The host gives the best room and bedding and says لَا مُشْكِلَة if the guest worries about being a burden. The guest answers جَزَاكَ اللَّهُ خَيْرًا and prays for the host in the morning.",
+      "exercises": [
+        {
+          "id": "unit-11.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Your host asks: 'هَلْ نِمْتَ جَيِّدًا؟'. Say yes, praise be to Allah.",
+          "answer": "نَعَمْ، الْحَمْدُ لِلَّه",
+          "accepted": [
+            "نَعَمْ، الْحَمْدُ لِلَّه",
+            "نعم، الحمد لله",
+            "نَعَمْ، نِمْتُ جَيِّدًا",
+            "نعم، نمت جيدا",
+            "na3am, al-7amdu lillaah"
+          ],
+          "tip": "الْحَمْدُ لِلَّه is the usual thanks after a good night."
+        },
+        {
+          "id": "unit-11.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Your host says: 'هَذِهِ غُرْفَتُكَ'. Thank him.",
+          "answer": "جَزَاكَ اللَّهُ خَيْرًا",
+          "accepted": [
+            "جَزَاكَ اللَّهُ خَيْرًا",
+            "جزاك الله خيرا",
+            "شُكْرًا لَكَ",
+            "شكرا لك",
+            "بَارَكَ اللَّهُ فِيكَ",
+            "بارك الله فيك",
+            "jazaaka allaahu khayran"
+          ],
+          "tip": "جَزَاكَ اللَّهُ خَيْرًا is 'may Allah reward you with good'."
+        },
+        {
+          "id": "unit-11.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَيْنَ _____؟' (Where is the bathroom?)",
+          "answer": "الْحَمَّام",
+          "accepted": [
+            "الْحَمَّام",
+            "الحمام",
+            "al-7ammaam"
+          ],
+          "tip": "الْحَمَّام means 'the bathroom'."
+        },
+        {
+          "id": "unit-11.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'سَأُوقِظُكَ لِصَلَاةِ _____' (I will wake you up for the dawn prayer.)",
+          "answer": "الْفَجْر",
+          "accepted": [
+            "الْفَجْر",
+            "الفجر",
+            "al-fajr"
+          ],
+          "tip": "لِصَلَاةِ الْفَجْر is 'for the dawn prayer'."
+        },
+        {
+          "id": "unit-11.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Do you need anything else?'",
+          "answer": "هَلْ تَحْتَاجُ إِلَى شَيْءٍ آخَر؟",
+          "accepted": [
+            "هَلْ تَحْتَاجُ إِلَى شَيْءٍ آخَر؟",
+            "هل تحتاج إلى شيء آخر؟",
+            "hal ta7taaju ilaa shay2in aakhar?"
+          ],
+          "tip": "شَيْءٍ آخَر is 'something else'."
+        },
+        {
+          "id": "unit-11.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'What time do you want to wake up?'",
+          "answer": "فِي أَيِّ سَاعَةٍ تُرِيدُ أَنْ تَسْتَيْقِظ؟",
+          "accepted": [
+            "فِي أَيِّ سَاعَةٍ تُرِيدُ أَنْ تَسْتَيْقِظ؟",
+            "في أي ساعة تريد أن تستيقظ؟",
+            "fee ayyi saa3atin tureedu an tastayqiz?"
+          ],
+          "tip": "فِي أَيِّ سَاعَةٍ is 'at what hour'."
+        },
+        {
+          "id": "unit-11.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'Here are folded blankets in case you feel cold.'?",
+          "options": [
+            "وَضَعْتُ لَكَ مَنَاشِفَ نَظِيفَةً عَلَى السَّرِير",
+            "هَذِهِ فُرْشَاةُ أَسْنَانٍ جَدِيدَةٌ لَكَ",
+            "سَتَنَامُ عِنْدَنَا اللَّيْلَةَ، لَا مُشْكِلَة",
+            "هَذِهِ بَطَّانِيَّاتٌ مَطْوِيَّةٌ إِنْ شَعَرْتَ بِالْبَرْد"
+          ],
+          "answer": "هَذِهِ بَطَّانِيَّاتٌ مَطْوِيَّةٌ إِنْ شَعَرْتَ بِالْبَرْد",
+          "accepted": [
+            "هَذِهِ بَطَّانِيَّاتٌ مَطْوِيَّةٌ إِنْ شَعَرْتَ بِالْبَرْد",
+            "هذه بطانيات مطوية إن شعرت بالبرد",
+            "haadhihi baTTaaniyyaatun maTwiyyatun in sha3arta bil-bard"
+          ],
+          "tip": "إِنْ شَعَرْتَ بِالْبَرْد is 'if you feel cold'."
+        },
+        {
+          "id": "unit-11.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'Did you sleep well?'?",
+          "options": [
+            "هَلْ نِمْتَ جَيِّدًا؟",
+            "هَلْ تَحْتَاجُ إِلَى شَيْءٍ آخَر؟",
+            "أَيْنَ الْحَمَّام؟",
+            "فِي أَيِّ سَاعَةٍ تُرِيدُ أَنْ تَسْتَيْقِظ؟"
+          ],
+          "answer": "هَلْ نِمْتَ جَيِّدًا؟",
+          "accepted": [
+            "هَلْ نِمْتَ جَيِّدًا؟",
+            "هل نمت جيدا؟",
+            "hal nimta jayyidan?"
+          ],
+          "tip": "نِمْتَ is 'you slept'."
+        },
+        {
+          "id": "unit-11.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'لِصَلَاةِ / الْفَجْر / سَأُوقِظُكَ'.",
+          "answer": "سَأُوقِظُكَ لِصَلَاةِ الْفَجْر",
+          "accepted": [
+            "سَأُوقِظُكَ لِصَلَاةِ الْفَجْر",
+            "سأوقظك لصلاة الفجر",
+            "sa-uqizuka lisalaati al-fajr"
+          ],
+          "tip": "The verb comes first, then 'for the dawn prayer'."
+        },
+        {
+          "id": "unit-11.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'مُشْكِلَة / لَا / اللَّيْلَةَ، / عِنْدَنَا / سَتَنَامُ'.",
+          "answer": "سَتَنَامُ عِنْدَنَا اللَّيْلَةَ، لَا مُشْكِلَة",
+          "accepted": [
+            "سَتَنَامُ عِنْدَنَا اللَّيْلَةَ، لَا مُشْكِلَة",
+            "ستنام عندنا الليلة، لا مشكلة",
+            "satanaamu 3indanaa al-laylata, laa mushkila"
+          ],
+          "tip": "سَتَنَامُ means 'you will sleep'."
         }
       ]
     }
@@ -644,16 +2242,66 @@
     ],
     "model": {
       "dialogue": [
-        { "speaker": "Nadia", "arabic": "أَهْلًا وَسَهْلًا، تَفَضَّلِي بِالدُّخُول.", "transliteration": "ahlan wa sahlan, tafaddalee bid-dukhool.", "english": "Welcome, please come in." },
-        { "speaker": "Lubna", "arabic": "شُكْرًا لَكِ. بَيْتُكُمْ جَمِيلٌ جِدًّا.", "transliteration": "shukran laki. baytukum jameelun jiddan.", "english": "Thank you. Your house is very nice." },
-        { "speaker": "Nadia", "arabic": "اِجْلِسِي وَاسْتَرِيحِي. قَهْوَةٌ أَمْ شَاي؟", "transliteration": "ijlisee wastaree7ee. qahwatun am shaay?", "english": "Sit down and relax. Coffee or tea?" },
-        { "speaker": "Lubna", "arabic": "شَاي، مِنْ فَضْلِك.", "transliteration": "shaay, min fadlik.", "english": "Tea, please." },
-        { "speaker": "Nadia", "arabic": "تَفَضَّلِي إِلَى الْمَائِدَةِ، الْعَشَاءُ جَاهِز.", "transliteration": "tafaddalee ilaa al-maa2ida, al-3ashaa2u jaahiz.", "english": "Please come to the table, dinner is ready." },
-        { "speaker": "Lubna", "arabic": "مَا شَاءَ اللَّه، الطَّعَامُ لَذِيذٌ جِدًّا.", "transliteration": "maa shaa2a allaah, at-ta3aamu ladheedhun jiddan.", "english": "Masha'Allah, the food is delicious." },
-        { "speaker": "Nadia", "arabic": "هَنِيئًا لَكِ. هَلْ تُرِيدِينَ مَزِيدًا؟", "transliteration": "haneee2an laki. hal tureedeena mazeedan?", "english": "Enjoy. Would you like some more?" },
-        { "speaker": "Lubna", "arabic": "شُكْرًا، شَبِعْتُ. جَزَاكُمُ اللَّهُ خَيْرًا عَلَى الضِّيَافَة.", "transliteration": "shukran, shabi3tu. jazaakumu allaahu khayran 3alaa ad-diyaafa.", "english": "Thanks, I'm full. Thank you for the hospitality." },
-        { "speaker": "Nadia", "arabic": "الْبَيْتُ بَيْتُكِ. زُورِينَا قَرِيبًا.", "transliteration": "al-baytu baytuki. zooreenaa qareeban.", "english": "The house is yours. Visit us soon." },
-        { "speaker": "Lubna", "arabic": "إِنْ شَاءَ اللَّه. مَعَ السَّلَامَة، فِي أَمَانِ اللَّه.", "transliteration": "in shaa2a allaah. ma3a as-salaama, fee amaani allaah.", "english": "God willing. Goodbye, God be with you." }
+        {
+          "speaker": "Nadia",
+          "arabic": "أَهْلًا وَسَهْلًا، تَفَضَّلِي بِالدُّخُول.",
+          "transliteration": "ahlan wa sahlan, tafaddalee bid-dukhool.",
+          "english": "Welcome, please come in."
+        },
+        {
+          "speaker": "Lubna",
+          "arabic": "شُكْرًا لَكِ. بَيْتُكُمْ جَمِيلٌ جِدًّا.",
+          "transliteration": "shukran laki. baytukum jameelun jiddan.",
+          "english": "Thank you. Your house is very nice."
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "اِجْلِسِي وَاسْتَرِيحِي. قَهْوَةٌ أَمْ شَاي؟",
+          "transliteration": "ijlisee wastaree7ee. qahwatun am shaay?",
+          "english": "Sit down and relax. Coffee or tea?"
+        },
+        {
+          "speaker": "Lubna",
+          "arabic": "شَاي، مِنْ فَضْلِك.",
+          "transliteration": "shaay, min fadlik.",
+          "english": "Tea, please."
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "تَفَضَّلِي إِلَى الْمَائِدَةِ، الْعَشَاءُ جَاهِز.",
+          "transliteration": "tafaddalee ilaa al-maa2ida, al-3ashaa2u jaahiz.",
+          "english": "Please come to the table, dinner is ready."
+        },
+        {
+          "speaker": "Lubna",
+          "arabic": "مَا شَاءَ اللَّه، الطَّعَامُ لَذِيذٌ جِدًّا.",
+          "transliteration": "maa shaa2a allaah, at-ta3aamu ladheedhun jiddan.",
+          "english": "Masha'Allah, the food is delicious."
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "هَنِيئًا لَكِ. هَلْ تُرِيدِينَ مَزِيدًا؟",
+          "transliteration": "haneee2an laki. hal tureedeena mazeedan?",
+          "english": "Enjoy. Would you like some more?"
+        },
+        {
+          "speaker": "Lubna",
+          "arabic": "شُكْرًا، شَبِعْتُ. جَزَاكُمُ اللَّهُ خَيْرًا عَلَى الضِّيَافَة.",
+          "transliteration": "shukran, shabi3tu. jazaakumu allaahu khayran 3alaa ad-diyaafa.",
+          "english": "Thanks, I'm full. Thank you for the hospitality."
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "الْبَيْتُ بَيْتُكِ. زُورِينَا قَرِيبًا.",
+          "transliteration": "al-baytu baytuki. zooreenaa qareeban.",
+          "english": "The house is yours. Visit us soon."
+        },
+        {
+          "speaker": "Lubna",
+          "arabic": "إِنْ شَاءَ اللَّه. مَعَ السَّلَامَة، فِي أَمَانِ اللَّه.",
+          "transliteration": "in shaa2a allaah. ma3a as-salaama, fee amaani allaah.",
+          "english": "God willing. Goodbye, God be with you."
+        }
       ]
     }
   }

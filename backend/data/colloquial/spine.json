@@ -17,7 +17,8 @@
             {
               "slot": "hi-welcome",
               "english": "Hi / Welcome.",
-              "search_term": "welcome sign"
+              "search_term": "welcome sign",
+              "image": "unit-01/l01-p02-welcome-sign.jpg"
             },
             {
               "slot": "how-are-you-to-a-man",
@@ -71,12 +72,14 @@
             {
               "slot": "where-are-you-from-to-a-man",
               "english": "Where are you from? (to a man)",
-              "search_term": "world map pin"
+              "search_term": "world map pin",
+              "image": "unit-01/l01-p13-world-map-pin.jpg"
             },
             {
               "slot": "where-are-you-from-to-a-woman",
               "english": "Where are you from? (to a woman)",
-              "search_term": "world map pin"
+              "search_term": "world map pin",
+              "image": "unit-01/l01-p14-world-map-pin.jpg"
             }
           ]
         },
@@ -111,12 +114,14 @@
             {
               "slot": "thank-you",
               "english": "Thank you.",
-              "search_term": "thank you card"
+              "search_term": "thank you card",
+              "image": "unit-01/l02-p06-thank-you-card.jpg"
             },
             {
               "slot": "thank-you-very-much",
               "english": "Thank you very much.",
-              "search_term": "thank you card"
+              "search_term": "thank you card",
+              "image": "unit-01/l02-p07-thank-you-card.jpg"
             },
             {
               "slot": "you-re-welcome-excuse-me",
@@ -135,7 +140,8 @@
             {
               "slot": "i-want-some-water",
               "english": "I want some water.",
-              "search_term": "glass of water"
+              "search_term": "glass of water",
+              "image": "unit-01/l02-p11-glass-of-water.jpg"
             },
             {
               "slot": "is-it-possible-can-i",
@@ -185,12 +191,14 @@
             {
               "slot": "how-much-how-many",
               "english": "How much? / How many?",
-              "search_term": "coins counting money"
+              "search_term": "coins counting money",
+              "image": "unit-01/l03-p06-coins-counting-money.jpg"
             },
             {
               "slot": "what-time-is-it",
               "english": "What time is it?",
-              "search_term": "wall clock"
+              "search_term": "wall clock",
+              "image": "unit-01/l03-p07-wall-clock.jpg"
             },
             {
               "slot": "it-s-one-o-clock",
@@ -205,7 +213,8 @@
             {
               "slot": "tomorrow",
               "english": "Tomorrow.",
-              "search_term": "calendar"
+              "search_term": "calendar",
+              "image": "unit-01/l03-p10-calendar.jpg"
             },
             {
               "slot": "today",
@@ -234,7 +243,8 @@
             {
               "slot": "where-is-the-market",
               "english": "Where is the market?",
-              "search_term": "old market souk"
+              "search_term": "old market souk",
+              "image": "unit-01/l04-p01-old-market-souk.jpg"
             },
             {
               "slot": "where-is-the-nearest-shop",
@@ -248,17 +258,20 @@
             {
               "slot": "on-the-right",
               "english": "On the right.",
-              "search_term": "right arrow sign"
+              "search_term": "right arrow sign",
+              "image": "unit-01/l04-p04-right-arrow-sign.jpg"
             },
             {
               "slot": "on-the-left",
               "english": "On the left.",
-              "search_term": "left arrow sign"
+              "search_term": "left arrow sign",
+              "image": "unit-01/l04-p05-left-arrow-sign.jpg"
             },
             {
               "slot": "straight-ahead",
               "english": "Straight ahead.",
-              "search_term": "straight road ahead"
+              "search_term": "straight road ahead",
+              "image": "unit-01/l04-p06-straight-road-ahead.jpg"
             },
             {
               "slot": "near",
@@ -267,7 +280,8 @@
             {
               "slot": "far",
               "english": "Far.",
-              "search_term": "long road distance"
+              "search_term": "long road distance",
+              "image": "unit-01/l04-p08-long-road-distance.jpg"
             },
             {
               "slot": "here",
@@ -280,22 +294,149 @@
             {
               "slot": "straight-on-directly",
               "english": "Straight on / directly.",
-              "search_term": "straight road ahead"
+              "search_term": "straight road ahead",
+              "image": "unit-01/l04-p11-straight-road-ahead.jpg"
             },
             {
               "slot": "turn-right",
               "english": "Turn right.",
-              "search_term": "turn right sign"
+              "search_term": "turn right sign",
+              "image": "unit-01/l04-p12-turn-right-sign.jpg"
             },
             {
               "slot": "turn-left-to-a-woman",
               "english": "Turn left. (to a woman)",
-              "search_term": "turn left sign"
+              "search_term": "turn left sign",
+              "image": "unit-01/l04-p13-turn-left-sign.jpg"
             },
             {
               "slot": "thanks-may-you-have-strength",
               "english": "Thanks / May you have strength.",
               "search_term": "thumbs up"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Family and Introductions",
+          "phrases": [
+            {
+              "slot": "this-is-my-brother",
+              "english": "This is my brother."
+            },
+            {
+              "slot": "this-is-my-father",
+              "english": "This is my father."
+            },
+            {
+              "slot": "this-is-my-mother",
+              "english": "This is my mother."
+            },
+            {
+              "slot": "do-you-have-brothers-and-sisters-to-a-man",
+              "english": "Do you have brothers and sisters? (to a man)"
+            },
+            {
+              "slot": "i-have-two-brothers-and-a-sister",
+              "english": "I have two brothers and a sister."
+            },
+            {
+              "slot": "how-many-people-are-in-your-family-to-a-man",
+              "english": "How many people are in your family? (to a man)",
+              "search_term": "family tree chart"
+            },
+            {
+              "slot": "my-family-is-big",
+              "english": "My family is big.",
+              "search_term": "large dining table"
+            },
+            {
+              "slot": "this-is-my-friend-samer",
+              "english": "This is my friend Samer."
+            },
+            {
+              "slot": "i-d-like-to-introduce-you-to-my-father-to-a-man",
+              "english": "I'd like to introduce you to my father. (to a man)",
+              "search_term": "business card"
+            },
+            {
+              "slot": "a-pleasure",
+              "english": "A pleasure."
+            },
+            {
+              "slot": "how-old-are-you-to-a-man",
+              "english": "How old are you? (to a man)"
+            },
+            {
+              "slot": "my-father-works-as-a-teacher",
+              "english": "My father works as a teacher.",
+              "search_term": "chalkboard",
+              "image": "unit-01/l05-p12-chalkboard.jpg"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Where Are You From?",
+          "phrases": [
+            {
+              "slot": "which-city-are-you-from-to-a-man",
+              "english": "Which city are you from? (to a man)"
+            },
+            {
+              "slot": "i-m-from-damascus",
+              "english": "I'm from Damascus.",
+              "search_term": "map of Syria"
+            },
+            {
+              "slot": "i-m-from-egypt",
+              "english": "I'm from Egypt.",
+              "search_term": "world map",
+              "image": "unit-01/l06-p03-world-map.jpg"
+            },
+            {
+              "slot": "what-is-your-nationality-to-a-man",
+              "english": "What is your nationality? (to a man)",
+              "search_term": "passport",
+              "image": "unit-01/l06-p04-passport.jpg"
+            },
+            {
+              "slot": "my-nationality-is-syrian",
+              "english": "My nationality is Syrian."
+            },
+            {
+              "slot": "where-do-you-live-to-a-man",
+              "english": "Where do you live? (to a man)"
+            },
+            {
+              "slot": "i-live-in-amman",
+              "english": "I live in Amman.",
+              "search_term": "apartment buildings",
+              "image": "unit-01/l06-p07-apartment-buildings.jpg"
+            },
+            {
+              "slot": "which-languages-do-you-speak-to-a-man",
+              "english": "Which languages do you speak? (to a man)",
+              "search_term": "language dictionary",
+              "image": "unit-01/l06-p08-language-dictionary.jpg"
+            },
+            {
+              "slot": "i-speak-arabic-and-english",
+              "english": "I speak Arabic and English."
+            },
+            {
+              "slot": "i-m-here-on-a-visit",
+              "english": "I'm here on a visit.",
+              "search_term": "suitcase",
+              "image": "unit-01/l06-p10-suitcase.jpg"
+            },
+            {
+              "slot": "is-this-your-first-visit-to-a-man",
+              "english": "Is this your first visit? (to a man)"
+            },
+            {
+              "slot": "welcome-to-our-city-to-a-man",
+              "english": "Welcome to our city. (to a man)"
             }
           ]
         }
@@ -3161,12 +3302,14 @@
             {
               "slot": "what-s-the-weather-like-today",
               "english": "What's the weather like today?",
-              "search_term": "sunny blue sky"
+              "search_term": "blue sky with clouds",
+              "image": "unit-10/l01-p01-blue-sky-with-clouds.jpg"
             },
             {
               "slot": "the-weather-s-very-hot",
               "english": "The weather's very hot.",
-              "search_term": "hot sunny street"
+              "search_term": "sun over desert dunes",
+              "image": "unit-10/l01-p02-sun-over-desert-dunes.jpg"
             },
             {
               "slot": "it-s-cold-today",
@@ -3176,17 +3319,19 @@
             {
               "slot": "it-s-raining-outside",
               "english": "It's raining outside.",
-              "search_term": "rain falling outside window"
+              "search_term": "raindrops on window glass",
+              "image": "unit-10/l01-p04-raindrops-on-window-glass.jpg"
             },
             {
               "slot": "it-s-cloudy",
               "english": "It's cloudy.",
-              "search_term": "cloudy overcast sky"
+              "search_term": "grey cloudy sky",
+              "image": "unit-10/l01-p05-grey-cloudy-sky.jpg"
             },
             {
               "slot": "there-s-a-lot-of-wind-today",
               "english": "There's a lot of wind today.",
-              "search_term": "strong wind in trees"
+              "search_term": "wind blowing trees leaves"
             },
             {
               "slot": "the-weather-s-humid-today",
@@ -3229,12 +3374,14 @@
             {
               "slot": "in-winter-it-gets-very-cold-in-damascus",
               "english": "In winter it gets very cold in Damascus.",
-              "search_term": "snowy winter street"
+              "search_term": "snowy winter street",
+              "image": "unit-10/l02-p02-snowy-winter-street.jpg"
             },
             {
               "slot": "in-summer-the-weather-s-hot-and-dry",
               "english": "In summer the weather's hot and dry.",
-              "search_term": "hot dry summer field"
+              "search_term": "hot dry summer field",
+              "image": "unit-10/l02-p03-hot-dry-summer-field.jpg"
             },
             {
               "slot": "it-s-snowing-on-the-mountain",
@@ -3245,12 +3392,14 @@
             {
               "slot": "spring-is-my-favorite-season",
               "english": "Spring is my favorite season.",
-              "search_term": "spring flowers blooming"
+              "search_term": "spring flowers blooming",
+              "image": "unit-10/l02-p05-spring-flowers-blooming.jpg"
             },
             {
               "slot": "in-fall-the-leaves-fall-from-the-trees",
               "english": "In fall the leaves fall from the trees.",
-              "search_term": "autumn leaves falling"
+              "search_term": "autumn leaves falling",
+              "image": "unit-10/l02-p06-autumn-leaves-falling.jpg"
             },
             {
               "slot": "i-don-t-like-winter-because-it-gets-very-cold",
@@ -3295,7 +3444,8 @@
             {
               "slot": "wear-a-sweater-it-s-cold",
               "english": "Wear a sweater, it's cold.",
-              "search_term": "wool sweater"
+              "search_term": "wool sweater",
+              "image": "unit-10/l03-p03-wool-sweater.jpg"
             },
             {
               "slot": "in-summer-i-wear-shorts-and-a-shirt",
@@ -3305,12 +3455,14 @@
             {
               "slot": "put-on-your-sunglasses-the-sun-s-strong",
               "english": "Put on your sunglasses, the sun's strong.",
-              "search_term": "sunglasses"
+              "search_term": "sunglasses",
+              "image": "unit-10/l03-p05-sunglasses.jpg"
             },
             {
               "slot": "you-need-boots-in-winter-because-it-rains-a-lot",
               "english": "You need boots in winter because it rains a lot.",
-              "search_term": "rain boots"
+              "search_term": "rain boots",
+              "image": "unit-10/l03-p06-rain-boots.jpg"
             },
             {
               "slot": "i-didn-t-wear-a-jacket-and-i-got-cold",
@@ -3347,7 +3499,8 @@
             {
               "slot": "if-the-weather-s-nice-we-ll-go-out-to-the-park",
               "english": "If the weather's nice, we'll go out to the park.",
-              "search_term": "green park"
+              "search_term": "green park",
+              "image": "unit-10/l04-p01-green-park.jpg"
             },
             {
               "slot": "the-weather-s-not-good-we-need-to-cancel-the-out",
@@ -3397,6 +3550,135 @@
               "search_term": "weather forecast on phone"
             }
           ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Rain and Storms",
+          "phrases": [
+            {
+              "slot": "the-rain-is-heavy-today",
+              "english": "The rain is heavy today.",
+              "search_term": "heavy rain on street"
+            },
+            {
+              "slot": "the-sky-is-covered-with-clouds",
+              "english": "The sky is covered with clouds.",
+              "search_term": "dark rain clouds",
+              "image": "unit-10/l05-p02-dark-rain-clouds.jpg"
+            },
+            {
+              "slot": "the-storm-is-strong-tonight",
+              "english": "The storm is strong tonight.",
+              "search_term": "storm over sea",
+              "image": "unit-10/l05-p03-storm-over-sea.jpg"
+            },
+            {
+              "slot": "there-is-lightning-and-thunder",
+              "english": "There is lightning and thunder.",
+              "search_term": "lightning",
+              "image": "unit-10/l05-p04-lightning.jpg"
+            },
+            {
+              "slot": "water-flooded-the-street",
+              "english": "Water flooded the street.",
+              "search_term": "flooded street",
+              "image": "unit-10/l05-p05-flooded-street.jpg"
+            },
+            {
+              "slot": "the-wind-is-strong-and-the-trees-are-shaking",
+              "english": "The wind is strong and the trees are shaking."
+            },
+            {
+              "slot": "the-rain-stopped",
+              "english": "The rain stopped."
+            },
+            {
+              "slot": "stay-home-until-the-storm-passes",
+              "english": "Stay home until the storm passes."
+            },
+            {
+              "slot": "i-got-soaked-by-the-rain",
+              "english": "I got soaked by the rain."
+            },
+            {
+              "slot": "the-electricity-was-cut-because-of-the-storm",
+              "english": "The electricity was cut because of the storm.",
+              "search_term": "lit candle in the dark",
+              "image": "unit-10/l05-p10-lit-candle-in-the-dark.jpg"
+            },
+            {
+              "slot": "the-road-is-slippery-after-the-rain",
+              "english": "The road is slippery after the rain."
+            },
+            {
+              "slot": "thank-allah-for-this-rain",
+              "english": "Thank Allah for this rain."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "The Weather Forecast",
+          "phrases": [
+            {
+              "slot": "what-s-the-temperature-tomorrow",
+              "english": "What's the temperature tomorrow?",
+              "search_term": "thermometer",
+              "image": "unit-10/l06-p01-thermometer.jpg"
+            },
+            {
+              "slot": "the-temperature-will-be-thirty-degrees",
+              "english": "The temperature will be thirty degrees."
+            },
+            {
+              "slot": "the-weather-will-be-sunny-all-week",
+              "english": "The weather will be sunny all week.",
+              "search_term": "weather forecast chart"
+            },
+            {
+              "slot": "rain-is-expected-on-friday",
+              "english": "Rain is expected on Friday.",
+              "search_term": "rain clouds",
+              "image": "unit-10/l06-p04-rain-clouds.jpg"
+            },
+            {
+              "slot": "the-temperature-will-drop-at-night",
+              "english": "The temperature will drop at night."
+            },
+            {
+              "slot": "the-weather-will-be-better-tomorrow",
+              "english": "The weather will be better tomorrow."
+            },
+            {
+              "slot": "the-bulletin-says-snow-will-fall",
+              "english": "The bulletin says snow will fall.",
+              "search_term": "snowflakes",
+              "image": "unit-10/l06-p07-snowflakes.jpg"
+            },
+            {
+              "slot": "are-the-forecasts-always-accurate",
+              "english": "Are the forecasts always accurate?"
+            },
+            {
+              "slot": "i-check-the-weather-on-my-phone",
+              "english": "I check the weather on my phone.",
+              "search_term": "smartphone weather app"
+            },
+            {
+              "slot": "the-weather-will-be-cloudy-with-light-rain",
+              "english": "The weather will be cloudy with light rain."
+            },
+            {
+              "slot": "the-humidity-is-high-this-week",
+              "english": "The humidity is high this week."
+            },
+            {
+              "slot": "listen-to-the-news-bulletin-to-a-man",
+              "english": "Listen to the news bulletin. (to a man)",
+              "search_term": "old radio",
+              "image": "unit-10/l06-p12-old-radio.jpg"
+            }
+          ]
         }
       ]
     },
@@ -3415,7 +3697,8 @@
             {
               "slot": "welcome-please-come-in",
               "english": "Welcome, please come in.",
-              "search_term": "open front door of a house"
+              "search_term": "open front door of a house",
+              "image": "unit-11/l01-p02-open-front-door-of-a-house.jpg"
             },
             {
               "slot": "you-have-honored-us-said-to-guests-who-arrived",
@@ -3428,7 +3711,8 @@
             {
               "slot": "where-can-i-park-my-car",
               "english": "Where can I park my car?",
-              "search_term": "parked car outside a house"
+              "search_term": "parked car outside a house",
+              "image": "unit-11/l01-p05-parked-car-outside-a-house.jpg"
             },
             {
               "slot": "take-off-your-shoes-at-the-door-please",
@@ -3451,7 +3735,8 @@
             {
               "slot": "excuse-me-i-want-to-wash-my-hands",
               "english": "Excuse me, I want to wash my hands.",
-              "search_term": "bathroom sink"
+              "search_term": "bathroom sink",
+              "image": "unit-11/l01-p10-bathroom-sink.jpg"
             },
             {
               "slot": "good-i-found-the-house-easily",
@@ -3470,7 +3755,8 @@
             {
               "slot": "sit-down-relax-a-little",
               "english": "Sit down, relax a little.",
-              "search_term": "living room sofa"
+              "search_term": "living room sofa",
+              "image": "unit-11/l02-p01-living-room-sofa.jpg"
             },
             {
               "slot": "what-would-you-like-to-drink",
@@ -3494,7 +3780,8 @@
             {
               "slot": "give-me-your-coats-i-ll-hang-them-up",
               "english": "Give me your coats, I'll hang them up.",
-              "search_term": "coats on a hanger"
+              "search_term": "coats on a hanger",
+              "image": "unit-11/l02-p06-coats-on-a-hanger.jpg"
             },
             {
               "slot": "take-your-time-no-rush",
@@ -3503,12 +3790,14 @@
             {
               "slot": "i-put-the-sweets-on-the-table",
               "english": "I put the sweets on the table.",
-              "search_term": "plate of Middle Eastern sweets"
+              "search_term": "plate of Middle Eastern sweets",
+              "image": "unit-11/l02-p08-plate-of-middle-eastern-sweets.jpg"
             },
             {
               "slot": "turn-on-the-tv-if-you-d-like",
               "english": "Turn on the TV if you'd like.",
-              "search_term": "television remote control"
+              "search_term": "television remote control",
+              "image": "unit-11/l02-p09-television-remote-control.jpg"
             },
             {
               "slot": "your-kids-have-grown-up-so-much",
@@ -3544,7 +3833,8 @@
             {
               "slot": "try-this-dish-i-made-it-today",
               "english": "Try this dish, I made it today.",
-              "search_term": "plate of homemade food"
+              "search_term": "plate of homemade food",
+              "image": "unit-11/l03-p04-plate-of-homemade-food.jpg"
             },
             {
               "slot": "don-t-hesitate-eat-as-you-like",
@@ -3558,7 +3848,8 @@
             {
               "slot": "this-food-is-a-bit-spicy-be-careful",
               "english": "This food is a bit spicy, be careful.",
-              "search_term": "spicy dish with chili"
+              "search_term": "spicy dish with chili",
+              "image": "unit-11/l03-p07-spicy-dish-with-chili.jpg"
             },
             {
               "slot": "what-do-you-think-of-the-dish",
@@ -3612,7 +3903,8 @@
             {
               "slot": "good-night-said-when-leaving-in-the-evening",
               "english": "Good night (said when leaving in the evening).",
-              "search_term": "night street with house lights"
+              "search_term": "night street with house lights",
+              "image": "unit-11/l04-p06-night-street-with-house-lights.jpg"
             },
             {
               "slot": "no-excuses-do-we-have-to-part-so-quickly",
@@ -3630,7 +3922,8 @@
             {
               "slot": "the-road-should-be-clear-god-willing",
               "english": "The road should be clear, God willing.",
-              "search_term": "road at night with car lights"
+              "search_term": "road at night with car lights",
+              "image": "unit-11/l04-p10-road-at-night-with-car-lights.jpg"
             },
             {
               "slot": "visit-me-again-soon",
@@ -3640,6 +3933,130 @@
               "slot": "goodbye-god-be-with-you",
               "english": "Goodbye, God be with you.",
               "search_term": "hands waving goodbye at a doorway"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Hosting for Iftar",
+          "phrases": [
+            {
+              "slot": "ramadan-kareem-welcome",
+              "english": "Ramadan Kareem, welcome.",
+              "search_term": "Ramadan lantern",
+              "image": "unit-11/l05-p01-ramadan-lantern.jpg"
+            },
+            {
+              "slot": "come-in-the-call-to-prayer-is-near",
+              "english": "Come in, the call to prayer is near."
+            },
+            {
+              "slot": "it-is-time-to-break-the-fast",
+              "english": "It is time to break the fast."
+            },
+            {
+              "slot": "let-us-break-our-fast-with-dates-and-water",
+              "english": "Let us break our fast with dates and water.",
+              "search_term": "dates and water"
+            },
+            {
+              "slot": "the-thirst-is-gone-the-veins-are-wet-and-the-rew",
+              "english": "The thirst is gone, the veins are wet, and the reward is certain, Allah willing."
+            },
+            {
+              "slot": "please-take-some-soup",
+              "english": "Please, take some soup.",
+              "search_term": "bowl of soup",
+              "image": "unit-11/l05-p06-bowl-of-soup.jpg"
+            },
+            {
+              "slot": "may-allah-accept-our-fasting-and-yours",
+              "english": "May Allah accept our fasting and yours."
+            },
+            {
+              "slot": "the-table-is-ready-please-come",
+              "english": "The table is ready, please come.",
+              "search_term": "table set with plates"
+            },
+            {
+              "slot": "take-another-date",
+              "english": "Take another date."
+            },
+            {
+              "slot": "we-pray-maghrib-first-then-we-eat",
+              "english": "We pray Maghrib first, then we eat.",
+              "search_term": "prayer mat",
+              "image": "unit-11/l05-p10-prayer-mat.jpg"
+            },
+            {
+              "slot": "i-fasted-all-day-and-i-am-very-hungry",
+              "english": "I fasted all day and I am very hungry."
+            },
+            {
+              "slot": "may-allah-bless-you-for-the-invitation-to-iftar",
+              "english": "May Allah bless you for the invitation to iftar."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Staying the Night",
+          "phrases": [
+            {
+              "slot": "you-will-sleep-at-our-house-tonight-no-problem",
+              "english": "You will sleep at our house tonight, no problem."
+            },
+            {
+              "slot": "this-is-your-room",
+              "english": "This is your room.",
+              "search_term": "guest bedroom",
+              "image": "unit-11/l06-p02-guest-bedroom.jpg"
+            },
+            {
+              "slot": "i-put-clean-towels-on-the-bed-for-you",
+              "english": "I put clean towels on the bed for you.",
+              "search_term": "folded towels"
+            },
+            {
+              "slot": "here-are-folded-blankets-in-case-you-feel-cold",
+              "english": "Here are folded blankets in case you feel cold.",
+              "search_term": "folded blankets"
+            },
+            {
+              "slot": "do-you-need-anything-else",
+              "english": "Do you need anything else?"
+            },
+            {
+              "slot": "where-is-the-bathroom",
+              "english": "Where is the bathroom?"
+            },
+            {
+              "slot": "here-is-a-new-toothbrush-for-you",
+              "english": "Here is a new toothbrush for you.",
+              "search_term": "toothbrush",
+              "image": "unit-11/l06-p07-toothbrush.jpg"
+            },
+            {
+              "slot": "what-time-do-you-want-to-wake-up",
+              "english": "What time do you want to wake up?",
+              "search_term": "alarm clock",
+              "image": "unit-11/l06-p08-alarm-clock.jpg"
+            },
+            {
+              "slot": "i-will-wake-you-up-for-the-dawn-prayer",
+              "english": "I will wake you up for the dawn prayer."
+            },
+            {
+              "slot": "did-you-sleep-well",
+              "english": "Did you sleep well?"
+            },
+            {
+              "slot": "sleep-well",
+              "english": "Sleep well."
+            },
+            {
+              "slot": "may-allah-honour-you-you-honoured-me-greatly",
+              "english": "May Allah honour you, you honoured me greatly."
             }
           ]
         }
@@ -4212,7 +4629,8 @@
             {
               "slot": "there-s-a-mistake-in-the-bill",
               "english": "There's a mistake in the bill.",
-              "search_term": "restaurant bill"
+              "search_term": "restaurant bill",
+              "image": "unit-13/l04-p05-restaurant-bill.jpg"
             },
             {
               "slot": "the-food-is-a-bit-cold-can-you-heat-it-up-for-me",
@@ -4243,6 +4661,131 @@
             {
               "slot": "there-s-no-problem-but-i-d-like-to-clarify-m",
               "english": "There's no problem, but I'd like to clarify. (m)"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Thanking and Praising",
+          "phrases": [
+            {
+              "slot": "thank-you-very-much",
+              "english": "Thank you very much.",
+              "search_term": "thank you card",
+              "image": "unit-13/l05-p01-thank-you-card.jpg"
+            },
+            {
+              "slot": "may-allah-reward-you-with-good-to-a-man",
+              "english": "May Allah reward you with good. (to a man)"
+            },
+            {
+              "slot": "may-allah-reward-you-with-good-to-a-woman",
+              "english": "May Allah reward you with good. (to a woman)"
+            },
+            {
+              "slot": "may-allah-bless-you-to-a-man",
+              "english": "May Allah bless you. (to a man)"
+            },
+            {
+              "slot": "congratulations",
+              "english": "Congratulations!",
+              "search_term": "bouquet of flowers",
+              "image": "unit-13/l05-p05-bouquet-of-flowers.jpg"
+            },
+            {
+              "slot": "congratulations-on-your-success",
+              "english": "Congratulations on your success.",
+              "search_term": "graduation cap",
+              "image": "unit-13/l05-p06-graduation-cap.jpg"
+            },
+            {
+              "slot": "masha-allah-excellent-work",
+              "english": "Masha'Allah, excellent work.",
+              "search_term": "trophy",
+              "image": "unit-13/l05-p07-trophy.jpg"
+            },
+            {
+              "slot": "i-am-very-grateful-to-you-m",
+              "english": "I am very grateful to you. (m)"
+            },
+            {
+              "slot": "you-are-very-kind-to-a-man",
+              "english": "You are very kind. (to a man)"
+            },
+            {
+              "slot": "i-will-never-forget-your-kindness-to-a-man",
+              "english": "I will never forget your kindness. (to a man)"
+            },
+            {
+              "slot": "praise-be-to-allah-everything-is-fine",
+              "english": "Praise be to Allah, everything is fine."
+            },
+            {
+              "slot": "don-t-mention-it-it-was-my-duty",
+              "english": "Don't mention it, it was my duty."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Saying Sorry",
+          "phrases": [
+            {
+              "slot": "i-am-sorry-m",
+              "english": "I am sorry. (m)"
+            },
+            {
+              "slot": "i-am-sorry-f",
+              "english": "I am sorry. (f)"
+            },
+            {
+              "slot": "forgive-me-i-made-a-mistake",
+              "english": "Forgive me, I made a mistake.",
+              "search_term": "pencil eraser",
+              "image": "unit-13/l06-p03-pencil-eraser.jpg"
+            },
+            {
+              "slot": "it-is-my-fault",
+              "english": "It is my fault."
+            },
+            {
+              "slot": "i-did-not-mean-it",
+              "english": "I did not mean it."
+            },
+            {
+              "slot": "i-apologize-for-being-late",
+              "english": "I apologize for being late.",
+              "search_term": "wall clock",
+              "image": "unit-13/l06-p06-wall-clock.jpg"
+            },
+            {
+              "slot": "i-broke-your-cup-i-am-very-sorry-m",
+              "english": "I broke your cup, I am very sorry. (m)",
+              "search_term": "broken cup",
+              "image": "unit-13/l06-p07-broken-cup.jpg"
+            },
+            {
+              "slot": "no-harm-done-it-is-a-small-matter",
+              "english": "No harm done, it is a small matter."
+            },
+            {
+              "slot": "may-allah-forgive-us-all",
+              "english": "May Allah forgive us all."
+            },
+            {
+              "slot": "i-accept-your-apology-to-a-man",
+              "english": "I accept your apology. (to a man)"
+            },
+            {
+              "slot": "don-t-be-sad-it-happens-to-everyone-to-a-man",
+              "english": "Don't be sad, it happens to everyone. (to a man)",
+              "search_term": "box of tissues",
+              "image": "unit-13/l06-p11-box-of-tissues.jpg"
+            },
+            {
+              "slot": "i-will-be-more-careful-next-time",
+              "english": "I will be more careful next time.",
+              "search_term": "calendar page"
             }
           ]
         }
@@ -5391,7 +5934,8 @@
             {
               "slot": "what-did-you-do-yesterday",
               "english": "What did you do yesterday?",
-              "search_term": "street market"
+              "search_term": "street market",
+              "image": "unit-16/l01-p01-street-market.jpg"
             },
             {
               "slot": "yesterday-was-a-very-long-day",
@@ -5417,7 +5961,8 @@
             {
               "slot": "did-you-buy-anything-yesterday",
               "english": "Did you buy anything yesterday?",
-              "search_term": "a new shirt on a hanger"
+              "search_term": "a new shirt on a hanger",
+              "image": "unit-16/l01-p07-a-new-shirt-on-a-hanger.jpg"
             },
             {
               "slot": "the-day-before-yesterday-i-had-work-until-the-ev",
@@ -5434,7 +5979,8 @@
             {
               "slot": "yesterday-the-weather-was-very-nice",
               "english": "Yesterday the weather was very nice.",
-              "search_term": "a clear sunny sky"
+              "search_term": "a clear sunny sky",
+              "image": "unit-16/l01-p11-a-clear-sunny-sky.jpg"
             },
             {
               "slot": "why-didn-t-you-come-yesterday",
@@ -5454,7 +6000,8 @@
             {
               "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
               "english": "I grew up in an old neighborhood in Damascus.",
-              "search_term": "an old narrow alley"
+              "search_term": "an old narrow alley",
+              "image": "unit-16/l02-p02-an-old-narrow-alley.jpg"
             },
             {
               "slot": "i-had-a-friend-named-kareem",
@@ -5468,7 +6015,8 @@
             {
               "slot": "every-summer-we-used-to-go-to-my-grandfather-s-i",
               "english": "Every summer we used to go to my grandfather's in the village.",
-              "search_term": "a village house with a garden"
+              "search_term": "a village house with a garden",
+              "image": "unit-16/l02-p05-a-village-house-with-a-garden.jpg"
             },
             {
               "slot": "my-grandmother-used-to-tell-us-stories-before-sl",
@@ -5516,7 +6064,8 @@
             {
               "slot": "i-lost-the-house-key",
               "english": "I lost the house key.",
-              "search_term": "a set of house keys"
+              "search_term": "a set of house keys",
+              "image": "unit-16/l03-p02-a-set-of-house-keys.jpg"
             },
             {
               "slot": "i-was-late-for-work-this-morning",
@@ -5535,7 +6084,8 @@
             {
               "slot": "the-car-broke-down-in-the-middle-of-the-road",
               "english": "The car broke down in the middle of the road.",
-              "search_term": "a broken down car on a road"
+              "search_term": "a broken down car on a road",
+              "image": "unit-16/l03-p06-a-broken-down-car-on-a-road.jpg"
             },
             {
               "slot": "the-power-went-out-all-night",
@@ -5544,7 +6094,8 @@
             {
               "slot": "coffee-spilled-on-my-laptop",
               "english": "Coffee spilled on my laptop.",
-              "search_term": "spilled coffee on a keyboard"
+              "search_term": "spilled coffee on a keyboard",
+              "image": "unit-16/l03-p08-spilled-coffee-on-a-keyboard.jpg"
             },
             {
               "slot": "my-bag-got-lost-at-the-airport",
@@ -5572,7 +6123,8 @@
             {
               "slot": "i-heard-that-samer-got-engaged",
               "english": "I heard that Samer got engaged.",
-              "search_term": "an engagement ring"
+              "search_term": "an engagement ring",
+              "image": "unit-16/l04-p01-an-engagement-ring.jpg"
             },
             {
               "slot": "there-s-news-you-won-t-believe",
@@ -5619,6 +6171,132 @@
             {
               "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it",
               "english": "That's all just people's talk, I don't know if it's true or not."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "A Journey I Took",
+          "phrases": [
+            {
+              "slot": "i-traveled-to-another-city-last-week",
+              "english": "I traveled to another city last week."
+            },
+            {
+              "slot": "i-took-the-train-from-the-main-station",
+              "english": "I took the train from the main station.",
+              "search_term": "train station platform",
+              "image": "unit-16/l05-p02-train-station-platform.jpg"
+            },
+            {
+              "slot": "i-bought-the-ticket-the-day-before",
+              "english": "I bought the ticket the day before.",
+              "search_term": "train ticket"
+            },
+            {
+              "slot": "i-packed-my-suitcase-the-night-before",
+              "english": "I packed my suitcase the night before.",
+              "search_term": "suitcase",
+              "image": "unit-16/l05-p04-suitcase.jpg"
+            },
+            {
+              "slot": "the-journey-took-four-hours",
+              "english": "The journey took four hours."
+            },
+            {
+              "slot": "i-sat-next-to-the-window",
+              "english": "I sat next to the window.",
+              "search_term": "train window"
+            },
+            {
+              "slot": "i-saw-green-fields-and-mountains",
+              "english": "I saw green fields and mountains.",
+              "search_term": "green fields",
+              "image": "unit-16/l05-p07-green-fields.jpg"
+            },
+            {
+              "slot": "we-arrived-after-noon",
+              "english": "We arrived after noon."
+            },
+            {
+              "slot": "i-stayed-in-a-small-hotel-near-the-sea",
+              "english": "I stayed in a small hotel near the sea."
+            },
+            {
+              "slot": "i-took-many-photos",
+              "english": "I took many photos.",
+              "search_term": "camera",
+              "image": "unit-16/l05-p10-camera.jpg"
+            },
+            {
+              "slot": "i-tried-the-local-food",
+              "english": "I tried the local food."
+            },
+            {
+              "slot": "i-came-back-tired-but-happy",
+              "english": "I came back tired but happy."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Good News",
+          "phrases": [
+            {
+              "slot": "i-have-good-news-for-you",
+              "english": "I have good news for you."
+            },
+            {
+              "slot": "i-passed-the-exam",
+              "english": "I passed the exam!",
+              "search_term": "exam paper",
+              "image": "unit-16/l06-p02-exam-paper.jpg"
+            },
+            {
+              "slot": "i-got-the-job",
+              "english": "I got the job.",
+              "search_term": "office desk",
+              "image": "unit-16/l06-p03-office-desk.jpg"
+            },
+            {
+              "slot": "we-will-have-a-new-baby-allah-willing",
+              "english": "We will have a new baby, Allah willing."
+            },
+            {
+              "slot": "my-brother-got-engaged-yesterday",
+              "english": "My brother got engaged yesterday.",
+              "search_term": "engagement ring",
+              "image": "unit-16/l06-p05-engagement-ring.jpg"
+            },
+            {
+              "slot": "we-bought-a-new-house",
+              "english": "We bought a new house.",
+              "search_term": "house keys",
+              "image": "unit-16/l06-p06-house-keys.jpg"
+            },
+            {
+              "slot": "my-father-came-back-from-the-hospital-and-he-is",
+              "english": "My father came back from the hospital and he is well now."
+            },
+            {
+              "slot": "praise-be-to-allah-this-is-a-great-blessing",
+              "english": "Praise be to Allah, this is a great blessing."
+            },
+            {
+              "slot": "congratulations-i-am-very-happy-for-you-to-a-man",
+              "english": "Congratulations, I am very happy for you. (to a man)"
+            },
+            {
+              "slot": "may-allah-bless-it-for-you",
+              "english": "May Allah bless it for you."
+            },
+            {
+              "slot": "when-did-you-hear-the-news",
+              "english": "When did you hear the news?"
+            },
+            {
+              "slot": "let-us-celebrate-together-this-evening",
+              "english": "Let us celebrate together this evening."
             }
           ]
         }

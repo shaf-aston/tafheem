@@ -27,70 +27,210 @@
           "slot": "what-did-you-do-yesterday",
           "arabic": "مَاذَا فَعَلْتَ أَمْسِ؟",
           "transliteration": "maadhaa fa3alta amsi?",
-          "reply": { "arabic": "ذَهَبْتُ إِلَى السُّوق", "transliteration": "dhahabtu ilaa as-sooq", "english": "I went to the market." }
+          "reply": {
+            "arabic": "ذَهَبْتُ إِلَى السُّوق",
+            "transliteration": "dhahabtu ilaa as-sooq",
+            "english": "I went to the market."
+          }
         },
-        { "slot": "yesterday-was-a-very-long-day", "arabic": "كَانَ أَمْسِ يَوْمًا طَوِيلًا جِدًّا", "transliteration": "kaana amsi yawman taweelan jiddan" },
-        { "slot": "i-woke-up-late-yesterday", "arabic": "اِسْتَيْقَظْتُ مُتَأَخِّرًا أَمْسِ", "transliteration": "istayqadtu muta2akhkhiran amsi" },
+        {
+          "slot": "yesterday-was-a-very-long-day",
+          "arabic": "كَانَ أَمْسِ يَوْمًا طَوِيلًا جِدًّا",
+          "transliteration": "kaana amsi yawman taweelan jiddan"
+        },
+        {
+          "slot": "i-woke-up-late-yesterday",
+          "arabic": "اِسْتَيْقَظْتُ مُتَأَخِّرًا أَمْسِ",
+          "transliteration": "istayqadtu muta2akhkhiran amsi"
+        },
         {
           "slot": "where-were-you-last-night",
           "arabic": "أَيْنَ كُنْتَ لَيْلَةَ أَمْسِ؟",
           "transliteration": "ayna kunta laylata amsi?",
-          "reply": { "arabic": "كُنْتُ فِي الْبَيْت", "transliteration": "kuntu fee al-bayt", "english": "I was at home." }
+          "reply": {
+            "arabic": "كُنْتُ فِي الْبَيْت",
+            "transliteration": "kuntu fee al-bayt",
+            "english": "I was at home."
+          }
         },
-        { "slot": "we-ate-at-a-nice-restaurant-yesterday", "arabic": "أَكَلْنَا أَمْسِ فِي مَطْعَمٍ جَمِيل", "transliteration": "akalnaa amsi fee mat3amin jameel" },
+        {
+          "slot": "we-ate-at-a-nice-restaurant-yesterday",
+          "arabic": "أَكَلْنَا أَمْسِ فِي مَطْعَمٍ جَمِيل",
+          "transliteration": "akalnaa amsi fee mat3amin jameel"
+        },
         {
           "slot": "who-did-you-see-yesterday",
           "arabic": "مَنْ رَأَيْتَ أَمْسِ؟",
           "transliteration": "man ra2ayta amsi?",
-          "reply": { "arabic": "رَأَيْتُ صَدِيقِي", "transliteration": "ra2aytu sadeeqee", "english": "I saw my friend." }
+          "reply": {
+            "arabic": "رَأَيْتُ صَدِيقِي",
+            "transliteration": "ra2aytu sadeeqee",
+            "english": "I saw my friend."
+          }
         },
         {
           "slot": "did-you-buy-anything-yesterday",
           "arabic": "هَلِ اشْتَرَيْتَ شَيْئًا أَمْسِ؟",
           "transliteration": "hali shtarayta shay2an amsi?",
-          "reply": { "arabic": "نَعَمْ، اشْتَرَيْتُ قَمِيصًا", "transliteration": "na3am, ishtaraytu qameesan", "english": "Yes, I bought a shirt." }
+          "reply": {
+            "arabic": "نَعَمْ، اشْتَرَيْتُ قَمِيصًا",
+            "transliteration": "na3am, ishtaraytu qameesan",
+            "english": "Yes, I bought a shirt."
+          }
         },
-        { "slot": "the-day-before-yesterday-i-had-work-until-the-ev", "arabic": "قَبْلَ أَمْسِ كَانَ عِنْدِي عَمَلٌ حَتَّى الْمَسَاء", "transliteration": "qabla amsi kaana 3indee 3amalun 7attaa al-masaa2" },
-        { "slot": "how-late-did-you-stay-up-yesterday", "arabic": "إِلَى أَيِّ سَاعَةٍ سَهِرْتَ أَمْسِ؟", "transliteration": "ilaa ayyi saa3atin sahirta amsi?" },
-        { "slot": "i-got-very-tired-from-work-yesterday", "arabic": "تَعِبْتُ كَثِيرًا مِنَ الْعَمَلِ أَمْسِ", "transliteration": "ta3ibtu katheeran mina al-3amali amsi" },
-        { "slot": "yesterday-the-weather-was-very-nice", "arabic": "كَانَ الْجَوُّ جَمِيلًا جِدًّا أَمْسِ", "transliteration": "kaana al-jawwu jameelan jiddan amsi" },
+        {
+          "slot": "the-day-before-yesterday-i-had-work-until-the-ev",
+          "arabic": "قَبْلَ أَمْسِ كَانَ عِنْدِي عَمَلٌ حَتَّى الْمَسَاء",
+          "transliteration": "qabla amsi kaana 3indee 3amalun 7attaa al-masaa2"
+        },
+        {
+          "slot": "how-late-did-you-stay-up-yesterday",
+          "arabic": "إِلَى أَيِّ سَاعَةٍ سَهِرْتَ أَمْسِ؟",
+          "transliteration": "ilaa ayyi saa3atin sahirta amsi?"
+        },
+        {
+          "slot": "i-got-very-tired-from-work-yesterday",
+          "arabic": "تَعِبْتُ كَثِيرًا مِنَ الْعَمَلِ أَمْسِ",
+          "transliteration": "ta3ibtu katheeran mina al-3amali amsi"
+        },
+        {
+          "slot": "yesterday-the-weather-was-very-nice",
+          "arabic": "كَانَ الْجَوُّ جَمِيلًا جِدًّا أَمْسِ",
+          "transliteration": "kaana al-jawwu jameelan jiddan amsi"
+        },
         {
           "slot": "why-didn-t-you-come-yesterday",
           "arabic": "لِمَاذَا لَمْ تَأْتِ أَمْسِ؟",
           "transliteration": "limaadhaa lam ta2ti amsi?",
-          "reply": { "arabic": "كُنْتُ مُتْعَبًا", "transliteration": "kuntu mut3aban", "english": "I was tired." }
+          "reply": {
+            "arabic": "كُنْتُ مُتْعَبًا",
+            "transliteration": "kuntu mut3aban",
+            "english": "I was tired."
+          }
         }
       ],
       "dialogue": [
-        { "speaker": "Khalid", "arabic": "مَرْحَبًا يَا نُور. مَاذَا فَعَلْتِ أَمْسِ؟", "transliteration": "marhaban yaa Noor. maadhaa fa3alti amsi?", "english": "Hello, Noor. What did you do yesterday?" },
-        { "speaker": "Noor", "arabic": "أَهْلًا يَا خَالِد. كَانَ أَمْسِ يَوْمًا طَوِيلًا جِدًّا.", "transliteration": "ahlan yaa Khaalid. kaana amsi yawman taweelan jiddan.", "english": "Hello, Khalid. Yesterday was a very long day." },
-        { "speaker": "Khalid", "arabic": "لِمَاذَا؟", "transliteration": "limaadhaa?", "english": "Why?" },
-        { "speaker": "Noor", "arabic": "اِسْتَيْقَظْتُ مُتَأَخِّرَةً، ثُمَّ ذَهَبْتُ إِلَى الْعَمَل.", "transliteration": "istayqadtu muta2akhkhiratan, thumma dhahabtu ilaa al-3amal.", "english": "I woke up late, then I went to work." },
-        { "speaker": "Khalid", "arabic": "وَأَيْنَ كُنْتِ لَيْلَةَ أَمْسِ؟", "transliteration": "wa ayna kunti laylata amsi?", "english": "And where were you last night?" },
-        { "speaker": "Noor", "arabic": "كُنْتُ فِي الْبَيْتِ. تَعِبْتُ كَثِيرًا مِنَ الْعَمَل.", "transliteration": "kuntu fee al-bayti. ta3ibtu katheeran mina al-3amal.", "english": "I was at home. I got very tired from work." },
-        { "speaker": "Khalid", "arabic": "هَلِ اشْتَرَيْتِ شَيْئًا أَمْسِ؟", "transliteration": "hali shtarayti shay2an amsi?", "english": "Did you buy anything yesterday?" },
-        { "speaker": "Noor", "arabic": "نَعَمْ، اشْتَرَيْتُ قَمِيصًا جَدِيدًا.", "transliteration": "na3am, ishtaraytu qameesan jadeedan.", "english": "Yes, I bought a new shirt." },
-        { "speaker": "Khalid", "arabic": "وَمَنْ رَأَيْتِ أَمْسِ؟", "transliteration": "wa man ra2ayti amsi?", "english": "And who did you see yesterday?" },
-        { "speaker": "Noor", "arabic": "رَأَيْتُ أُخْتِي، وَأَكَلْنَا فِي مَطْعَمٍ جَمِيل.", "transliteration": "ra2aytu ukhtee, wa akalnaa fee mat3amin jameel.", "english": "I saw my sister, and we ate at a nice restaurant." },
-        { "speaker": "Khalid", "arabic": "وَكَيْفَ كَانَ الْجَوُّ؟", "transliteration": "wa kayfa kaana al-jawwu?", "english": "And how was the weather?" },
-        { "speaker": "Noor", "arabic": "كَانَ الْجَوُّ جَمِيلًا جِدًّا أَمْسِ.", "transliteration": "kaana al-jawwu jameelan jiddan amsi.", "english": "The weather was very nice yesterday." }
+        {
+          "speaker": "Khalid",
+          "arabic": "مَرْحَبًا يَا نُور. مَاذَا فَعَلْتِ أَمْسِ؟",
+          "transliteration": "marhaban yaa Noor. maadhaa fa3alti amsi?",
+          "english": "Hello, Noor. What did you do yesterday?"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "أَهْلًا يَا خَالِد. كَانَ أَمْسِ يَوْمًا طَوِيلًا جِدًّا.",
+          "transliteration": "ahlan yaa Khaalid. kaana amsi yawman taweelan jiddan.",
+          "english": "Hello, Khalid. Yesterday was a very long day."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "لِمَاذَا؟",
+          "transliteration": "limaadhaa?",
+          "english": "Why?"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "اِسْتَيْقَظْتُ مُتَأَخِّرَةً، ثُمَّ ذَهَبْتُ إِلَى الْعَمَل.",
+          "transliteration": "istayqadtu muta2akhkhiratan, thumma dhahabtu ilaa al-3amal.",
+          "english": "I woke up late, then I went to work."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "وَأَيْنَ كُنْتِ لَيْلَةَ أَمْسِ؟",
+          "transliteration": "wa ayna kunti laylata amsi?",
+          "english": "And where were you last night?"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "كُنْتُ فِي الْبَيْتِ. تَعِبْتُ كَثِيرًا مِنَ الْعَمَل.",
+          "transliteration": "kuntu fee al-bayti. ta3ibtu katheeran mina al-3amal.",
+          "english": "I was at home. I got very tired from work."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "هَلِ اشْتَرَيْتِ شَيْئًا أَمْسِ؟",
+          "transliteration": "hali shtarayti shay2an amsi?",
+          "english": "Did you buy anything yesterday?"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "نَعَمْ، اشْتَرَيْتُ قَمِيصًا جَدِيدًا.",
+          "transliteration": "na3am, ishtaraytu qameesan jadeedan.",
+          "english": "Yes, I bought a new shirt."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "وَمَنْ رَأَيْتِ أَمْسِ؟",
+          "transliteration": "wa man ra2ayti amsi?",
+          "english": "And who did you see yesterday?"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "رَأَيْتُ أُخْتِي، وَأَكَلْنَا فِي مَطْعَمٍ جَمِيل.",
+          "transliteration": "ra2aytu ukhtee, wa akalnaa fee mat3amin jameel.",
+          "english": "I saw my sister, and we ate at a nice restaurant."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "وَكَيْفَ كَانَ الْجَوُّ؟",
+          "transliteration": "wa kayfa kaana al-jawwu?",
+          "english": "And how was the weather?"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "كَانَ الْجَوُّ جَمِيلًا جِدًّا أَمْسِ.",
+          "transliteration": "kaana al-jawwu jameelan jiddan amsi.",
+          "english": "The weather was very nice yesterday."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "مَاذَا فَعَلْتَ أَمْسِ؟", "transliteration": "maadhaa fa3alta amsi?", "english": "What did you do yesterday?" },
-          "response": { "arabic": "ذَهَبْتُ إِلَى السُّوق.", "transliteration": "dhahabtu ilaa as-sooq.", "english": "I went to the market." }
+          "pair": {
+            "arabic": "مَاذَا فَعَلْتَ أَمْسِ؟",
+            "transliteration": "maadhaa fa3alta amsi?",
+            "english": "What did you do yesterday?"
+          },
+          "response": {
+            "arabic": "ذَهَبْتُ إِلَى السُّوق.",
+            "transliteration": "dhahabtu ilaa as-sooq.",
+            "english": "I went to the market."
+          }
         },
         {
-          "pair": { "arabic": "أَيْنَ كُنْتَ لَيْلَةَ أَمْسِ؟", "transliteration": "ayna kunta laylata amsi?", "english": "Where were you last night?" },
-          "response": { "arabic": "كُنْتُ فِي الْبَيْت.", "transliteration": "kuntu fee al-bayt.", "english": "I was at home." }
+          "pair": {
+            "arabic": "أَيْنَ كُنْتَ لَيْلَةَ أَمْسِ؟",
+            "transliteration": "ayna kunta laylata amsi?",
+            "english": "Where were you last night?"
+          },
+          "response": {
+            "arabic": "كُنْتُ فِي الْبَيْت.",
+            "transliteration": "kuntu fee al-bayt.",
+            "english": "I was at home."
+          }
         },
         {
-          "pair": { "arabic": "مَنْ رَأَيْتَ أَمْسِ؟", "transliteration": "man ra2ayta amsi?", "english": "Who did you see yesterday?" },
-          "response": { "arabic": "رَأَيْتُ صَدِيقِي.", "transliteration": "ra2aytu sadeeqee.", "english": "I saw my friend." }
+          "pair": {
+            "arabic": "مَنْ رَأَيْتَ أَمْسِ؟",
+            "transliteration": "man ra2ayta amsi?",
+            "english": "Who did you see yesterday?"
+          },
+          "response": {
+            "arabic": "رَأَيْتُ صَدِيقِي.",
+            "transliteration": "ra2aytu sadeeqee.",
+            "english": "I saw my friend."
+          }
         },
         {
-          "pair": { "arabic": "لِمَاذَا لَمْ تَأْتِ أَمْسِ؟", "transliteration": "limaadhaa lam ta2ti amsi?", "english": "Why didn't you come yesterday?" },
-          "response": { "arabic": "كُنْتُ مُتْعَبًا.", "transliteration": "kuntu mut3aban.", "english": "I was tired." }
+          "pair": {
+            "arabic": "لِمَاذَا لَمْ تَأْتِ أَمْسِ؟",
+            "transliteration": "limaadhaa lam ta2ti amsi?",
+            "english": "Why didn't you come yesterday?"
+          },
+          "response": {
+            "arabic": "كُنْتُ مُتْعَبًا.",
+            "transliteration": "kuntu mut3aban.",
+            "english": "I was tired."
+          }
         }
       ],
       "culture": "In Fusha the past is told with the past-tense verb and أَمْسِ for yesterday, the same words a news reader uses for the day before. Friends ask about last night with a full question such as أَيْنَ كُنْتَ؟ and answer in one short past-tense sentence.",
@@ -100,8 +240,16 @@
           "type": "reply",
           "prompt": "A friend asks you: 'مَاذَا فَعَلْتَ أَمْسِ؟'. Say you went to the market.",
           "answer": "ذَهَبْتُ إِلَى السُّوق",
-          "accepted": ["ذَهَبْتُ إِلَى السُّوق", "ذهبت إلى السوق", "ذَهَبْتُ إِلَى السُّوقِ", "dhahabtu ilaa as-sooq"],
-          "too_formal": { "item": "رُحْت عَالسُّوق", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "ذَهَبْتُ إِلَى السُّوق",
+            "ذهبت إلى السوق",
+            "ذَهَبْتُ إِلَى السُّوقِ",
+            "dhahabtu ilaa as-sooq"
+          ],
+          "too_formal": {
+            "item": "رُحْت عَالسُّوق",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "ذَهَبْتُ is 'I went'; the ending تُ marks 'I' in the past."
         },
         {
@@ -109,8 +257,16 @@
           "type": "reply",
           "prompt": "A friend asks you: 'أَيْنَ كُنْتَ لَيْلَةَ أَمْسِ؟'. Say you were at home.",
           "answer": "كُنْتُ فِي الْبَيْت",
-          "accepted": ["كُنْتُ فِي الْبَيْت", "كنت في البيت", "كُنْتُ فِي الْبَيْتِ", "kuntu fee al-bayt"],
-          "too_formal": { "item": "كُنْت بِالْبَيْت", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "كُنْتُ فِي الْبَيْت",
+            "كنت في البيت",
+            "كُنْتُ فِي الْبَيْتِ",
+            "kuntu fee al-bayt"
+          ],
+          "too_formal": {
+            "item": "كُنْت بِالْبَيْت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كُنْتُ is 'I was'; in the question it is كُنْتَ for 'you were' (to a man)."
         },
         {
@@ -118,8 +274,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'مَاذَا _____ أَمْسِ؟' (What did you do yesterday? to a man)",
           "answer": "فَعَلْتَ",
-          "accepted": ["فَعَلْتَ", "فعلت", "fa3alta", "فَعَلْتِ"],
-          "too_formal": { "item": "عَمَلْت", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "فَعَلْتَ",
+            "فعلت",
+            "fa3alta",
+            "فَعَلْتِ"
+          ],
+          "too_formal": {
+            "item": "عَمَلْت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "فَعَلْتَ is 'you did' to a man; to a woman it is فَعَلْتِ."
         },
         {
@@ -127,8 +291,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'كَانَ _____ يَوْمًا طَوِيلًا جِدًّا.' (Yesterday was a very long day.)",
           "answer": "أَمْسِ",
-          "accepted": ["أَمْسِ", "امس", "amsi", "أَمْسُ"],
-          "too_formal": { "item": "إِمْبَارِح", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَمْسِ",
+            "امس",
+            "amsi",
+            "أَمْسُ"
+          ],
+          "too_formal": {
+            "item": "إِمْبَارِح",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَمْسِ means 'yesterday'; قَبْلَ أَمْسِ means 'the day before yesterday'."
         },
         {
@@ -136,8 +308,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'Who did you see yesterday?' (to a man)",
           "answer": "مَنْ رَأَيْتَ أَمْسِ؟",
-          "accepted": ["مَنْ رَأَيْتَ أَمْسِ؟", "من رأيت أمس؟", "مَنْ رَأَيْتَ أَمْسِ", "man ra2ayta amsi?"],
-          "too_formal": { "item": "مِين شُفْت إِمْبَارِح؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مَنْ رَأَيْتَ أَمْسِ؟",
+            "من رأيت أمس؟",
+            "مَنْ رَأَيْتَ أَمْسِ",
+            "man ra2ayta amsi?"
+          ],
+          "too_formal": {
+            "item": "مِين شُفْت إِمْبَارِح؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مَنْ is 'who'; the past verb رَأَيْتَ comes straight after it."
         },
         {
@@ -145,8 +325,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'I woke up late yesterday.'",
           "answer": "اِسْتَيْقَظْتُ مُتَأَخِّرًا أَمْسِ",
-          "accepted": ["اِسْتَيْقَظْتُ مُتَأَخِّرًا أَمْسِ", "استيقظت متأخرا أمس", "اِسْتَيْقَظْتُ مُتَأَخِّرَةً أَمْسِ", "istayqadtu muta2akhkhiran amsi"],
-          "too_formal": { "item": "صَحِيت مْتَأَخِّر إِمْبَارِح", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "اِسْتَيْقَظْتُ مُتَأَخِّرًا أَمْسِ",
+            "استيقظت متأخرا أمس",
+            "اِسْتَيْقَظْتُ مُتَأَخِّرَةً أَمْسِ",
+            "istayqadtu muta2akhkhiran amsi"
+          ],
+          "too_formal": {
+            "item": "صَحِيت مْتَأَخِّر إِمْبَارِح",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مُتَأَخِّرًا means 'late'; a woman says مُتَأَخِّرَةً."
         },
         {
@@ -154,28 +342,62 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'Did you buy anything yesterday?' (to a man)",
           "answer": "هَلِ اشْتَرَيْتَ شَيْئًا أَمْسِ؟",
-          "accepted": ["هَلِ اشْتَرَيْتَ شَيْئًا أَمْسِ؟", "هل اشتريت شيئا أمس؟", "هَلِ اشْتَرَيْتَ شَيْئًا أَمْسِ", "hali shtarayta shay2an amsi?"],
-          "too_formal": { "item": "اِشْتَرَيْت شِي إِمْبَارِح؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هَلِ اشْتَرَيْتَ شَيْئًا أَمْسِ؟",
+            "هل اشتريت شيئا أمس؟",
+            "هَلِ اشْتَرَيْتَ شَيْئًا أَمْسِ",
+            "hali shtarayta shay2an amsi?"
+          ],
+          "too_formal": {
+            "item": "اِشْتَرَيْت شِي إِمْبَارِح؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "هَلْ opens a yes-or-no question; before اشْتَرَيْتَ it becomes هَلِ."
         },
         {
           "id": "unit-16.lesson-01.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'Why didn't you come yesterday?'",
-          "options": ["لِمَاذَا لَمْ تَأْتِ أَمْسِ؟", "مَنْ رَأَيْتَ أَمْسِ؟", "أَيْنَ كُنْتَ لَيْلَةَ أَمْسِ؟", "هَلِ اشْتَرَيْتَ شَيْئًا أَمْسِ؟"],
+          "options": [
+            "لِمَاذَا لَمْ تَأْتِ أَمْسِ؟",
+            "مَنْ رَأَيْتَ أَمْسِ؟",
+            "أَيْنَ كُنْتَ لَيْلَةَ أَمْسِ؟",
+            "هَلِ اشْتَرَيْتَ شَيْئًا أَمْسِ؟"
+          ],
           "answer": "لِمَاذَا لَمْ تَأْتِ أَمْسِ؟",
-          "accepted": ["لِمَاذَا لَمْ تَأْتِ أَمْسِ؟", "لماذا لم تأت أمس؟", "لِمَاذَا لَمْ تَأْتِ أَمْسِ", "limaadhaa lam ta2ti amsi?"],
-          "too_formal": { "item": "لِيش مَا جِيت إِمْبَارِح؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لِمَاذَا لَمْ تَأْتِ أَمْسِ؟",
+            "لماذا لم تأت أمس؟",
+            "لِمَاذَا لَمْ تَأْتِ أَمْسِ",
+            "limaadhaa lam ta2ti amsi?"
+          ],
+          "too_formal": {
+            "item": "لِيش مَا جِيت إِمْبَارِح؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "لِمَاذَا is 'why'; لَمْ makes the verb a past negative."
         },
         {
           "id": "unit-16.lesson-01.choose.02",
           "type": "choose",
           "prompt": "Which word means 'yesterday'?",
-          "options": ["أَمْسِ", "غَدًا", "الْيَوْم", "الْآن"],
+          "options": [
+            "أَمْسِ",
+            "غَدًا",
+            "الْيَوْم",
+            "الْآن"
+          ],
           "answer": "أَمْسِ",
-          "accepted": ["أَمْسِ", "امس", "amsi", "أَمْسُ"],
-          "too_formal": { "item": "إِمْبَارِح", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَمْسِ",
+            "امس",
+            "amsi",
+            "أَمْسُ"
+          ],
+          "too_formal": {
+            "item": "إِمْبَارِح",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "غَدًا is tomorrow, الْيَوْم is today, أَمْسِ is yesterday."
         },
         {
@@ -183,8 +405,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'أَمْسِ / فَعَلْتَ / مَاذَا'.",
           "answer": "مَاذَا فَعَلْتَ أَمْسِ؟",
-          "accepted": ["مَاذَا فَعَلْتَ أَمْسِ؟", "ماذا فعلت أمس؟", "مَاذَا فَعَلْتَ أَمْسِ", "maadhaa fa3alta amsi?"],
-          "too_formal": { "item": "شُو عَمَلْت إِمْبَارِح؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مَاذَا فَعَلْتَ أَمْسِ؟",
+            "ماذا فعلت أمس؟",
+            "مَاذَا فَعَلْتَ أَمْسِ",
+            "maadhaa fa3alta amsi?"
+          ],
+          "too_formal": {
+            "item": "شُو عَمَلْت إِمْبَارِح؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "Question word first, then the verb, then the time."
         },
         {
@@ -192,8 +422,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'جِدًّا / كَانَ / أَمْسِ / الْجَوُّ / جَمِيلًا'.",
           "answer": "كَانَ الْجَوُّ جَمِيلًا جِدًّا أَمْسِ",
-          "accepted": ["كَانَ الْجَوُّ جَمِيلًا جِدًّا أَمْسِ", "كان الجو جميلا جدا أمس", "أَمْسِ كَانَ الْجَوُّ جَمِيلًا جِدًّا", "kaana al-jawwu jameelan jiddan amsi"],
-          "too_formal": { "item": "كَانَ الطَّقْس حِلْو كْتِير إِمْبَارِح", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "كَانَ الْجَوُّ جَمِيلًا جِدًّا أَمْسِ",
+            "كان الجو جميلا جدا أمس",
+            "أَمْسِ كَانَ الْجَوُّ جَمِيلًا جِدًّا",
+            "kaana al-jawwu jameelan jiddan amsi"
+          ],
+          "too_formal": {
+            "item": "كَانَ الطَّقْس حِلْو كْتِير إِمْبَارِح",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كَانَ comes first, then the thing described, then what it was like."
         }
       ]
@@ -201,49 +439,189 @@
     {
       "lesson": "lesson-02",
       "phrases": [
-        { "slot": "when-i-was-young-i-loved-to-play-outside", "arabic": "عِنْدَمَا كُنْتُ صَغِيرًا، كُنْتُ أُحِبُّ اللَّعِبَ خَارِجَ الْبَيْت", "transliteration": "3indamaa kuntu sagheeran, kuntu uhibbu al-la3iba khaarija al-bayt" },
-        { "slot": "i-grew-up-in-an-old-neighborhood-in-damascus", "arabic": "نَشَأْتُ فِي حَيٍّ قَدِيمٍ فِي دِمَشْق", "transliteration": "nasha2tu fee 7ayyin qadeemin fee Dimashq" },
-        { "slot": "i-had-a-friend-named-kareem", "arabic": "كَانَ لِي صَدِيقٌ اسْمُهُ كَرِيم", "transliteration": "kaana lee sadeequn ismuhu Kareem" },
-        { "slot": "we-used-to-play-soccer-in-the-alley", "arabic": "كُنَّا نَلْعَبُ كُرَةَ الْقَدَمِ فِي الزُّقَاق", "transliteration": "kunnaa nal3abu kurata al-qadami fee az-zuqaaq" },
-        { "slot": "every-summer-we-used-to-go-to-my-grandfather-s-i", "arabic": "فِي كُلِّ صَيْفٍ كُنَّا نَذْهَبُ إِلَى بَيْتِ جَدِّي فِي الْقَرْيَة", "transliteration": "fee kulli sayfin kunnaa nadh-habu ilaa bayti jaddee fee al-qarya" },
-        { "slot": "my-grandmother-used-to-tell-us-stories-before-sl", "arabic": "كَانَتْ جَدَّتِي تَحْكِي لَنَا قِصَصًا قَبْلَ النَّوْم", "transliteration": "kaanat jaddatee ta7kee lanaa qisasan qabla an-nawm" },
-        { "slot": "the-first-bike-i-had-was-red", "arabic": "أَوَّلُ دَرَّاجَةٍ امْتَلَكْتُهَا كَانَتْ حَمْرَاء", "transliteration": "awwalu darraajatin imtalaktuhaa kaanat 7amraa2" },
-        { "slot": "i-used-to-be-very-afraid-of-the-dark-when-i-was-", "arabic": "كُنْتُ أَخَافُ مِنَ الظَّلَامِ كَثِيرًا وَأَنَا صَغِير", "transliteration": "kuntu akhaafu mina az-zalaami katheeran wa anaa sagheer" },
-        { "slot": "my-teacher-at-school-was-very-kind", "arabic": "كَانَ مُعَلِّمِي فِي الْمَدْرَسَةِ لَطِيفًا جِدًّا", "transliteration": "kaana mu3allimee fee al-madrasati lateefan jiddan" },
-        { "slot": "we-used-to-walk-to-school-together-every-day", "arabic": "كُنَّا نَمْشِي إِلَى الْمَدْرَسَةِ مَعًا كُلَّ يَوْم", "transliteration": "kunnaa namshee ilaa al-madrasati ma3an kulla yawm" },
-        { "slot": "when-i-was-young-i-dreamed-of-becoming-a-pilot", "arabic": "عِنْدَمَا كُنْتُ صَغِيرًا، كُنْتُ أَحْلُمُ بِأَنْ أُصْبِحَ طَيَّارًا", "transliteration": "3indamaa kuntu sagheeran, kuntu a7lumu bi2an usbi7a tayyaaran" },
-        { "slot": "back-then-life-was-much-simpler", "arabic": "فِي ذَلِكَ الْوَقْتِ كَانَتِ الْحَيَاةُ أَبْسَطَ بِكَثِير", "transliteration": "fee dhaalika al-waqti kaanati al-7ayaatu absata bikatheer" }
+        {
+          "slot": "when-i-was-young-i-loved-to-play-outside",
+          "arabic": "عِنْدَمَا كُنْتُ صَغِيرًا، كُنْتُ أُحِبُّ اللَّعِبَ خَارِجَ الْبَيْت",
+          "transliteration": "3indamaa kuntu sagheeran, kuntu uhibbu al-la3iba khaarija al-bayt"
+        },
+        {
+          "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
+          "arabic": "نَشَأْتُ فِي حَيٍّ قَدِيمٍ فِي دِمَشْق",
+          "transliteration": "nasha2tu fee 7ayyin qadeemin fee Dimashq"
+        },
+        {
+          "slot": "i-had-a-friend-named-kareem",
+          "arabic": "كَانَ لِي صَدِيقٌ اسْمُهُ كَرِيم",
+          "transliteration": "kaana lee sadeequn ismuhu Kareem"
+        },
+        {
+          "slot": "we-used-to-play-soccer-in-the-alley",
+          "arabic": "كُنَّا نَلْعَبُ كُرَةَ الْقَدَمِ فِي الزُّقَاق",
+          "transliteration": "kunnaa nal3abu kurata al-qadami fee az-zuqaaq"
+        },
+        {
+          "slot": "every-summer-we-used-to-go-to-my-grandfather-s-i",
+          "arabic": "فِي كُلِّ صَيْفٍ كُنَّا نَذْهَبُ إِلَى بَيْتِ جَدِّي فِي الْقَرْيَة",
+          "transliteration": "fee kulli sayfin kunnaa nadh-habu ilaa bayti jaddee fee al-qarya"
+        },
+        {
+          "slot": "my-grandmother-used-to-tell-us-stories-before-sl",
+          "arabic": "كَانَتْ جَدَّتِي تَحْكِي لَنَا قِصَصًا قَبْلَ النَّوْم",
+          "transliteration": "kaanat jaddatee ta7kee lanaa qisasan qabla an-nawm"
+        },
+        {
+          "slot": "the-first-bike-i-had-was-red",
+          "arabic": "أَوَّلُ دَرَّاجَةٍ امْتَلَكْتُهَا كَانَتْ حَمْرَاء",
+          "transliteration": "awwalu darraajatin imtalaktuhaa kaanat 7amraa2"
+        },
+        {
+          "slot": "i-used-to-be-very-afraid-of-the-dark-when-i-was-",
+          "arabic": "كُنْتُ أَخَافُ مِنَ الظَّلَامِ كَثِيرًا وَأَنَا صَغِير",
+          "transliteration": "kuntu akhaafu mina az-zalaami katheeran wa anaa sagheer"
+        },
+        {
+          "slot": "my-teacher-at-school-was-very-kind",
+          "arabic": "كَانَ مُعَلِّمِي فِي الْمَدْرَسَةِ لَطِيفًا جِدًّا",
+          "transliteration": "kaana mu3allimee fee al-madrasati lateefan jiddan"
+        },
+        {
+          "slot": "we-used-to-walk-to-school-together-every-day",
+          "arabic": "كُنَّا نَمْشِي إِلَى الْمَدْرَسَةِ مَعًا كُلَّ يَوْم",
+          "transliteration": "kunnaa namshee ilaa al-madrasati ma3an kulla yawm"
+        },
+        {
+          "slot": "when-i-was-young-i-dreamed-of-becoming-a-pilot",
+          "arabic": "عِنْدَمَا كُنْتُ صَغِيرًا، كُنْتُ أَحْلُمُ بِأَنْ أُصْبِحَ طَيَّارًا",
+          "transliteration": "3indamaa kuntu sagheeran, kuntu a7lumu bi2an usbi7a tayyaaran"
+        },
+        {
+          "slot": "back-then-life-was-much-simpler",
+          "arabic": "فِي ذَلِكَ الْوَقْتِ كَانَتِ الْحَيَاةُ أَبْسَطَ بِكَثِير",
+          "transliteration": "fee dhaalika al-waqti kaanati al-7ayaatu absata bikatheer"
+        }
       ],
       "dialogue": [
-        { "speaker": "Omar", "arabic": "حَدِّثِينِي عَنْ طُفُولَتِكِ يَا هَالَة. أَيْنَ نَشَأْتِ؟", "transliteration": "7addithinee 3an tufoolatiki yaa Haala. ayna nasha2ti?", "english": "Tell me about your childhood, Hala. Where did you grow up?" },
-        { "speaker": "Hala", "arabic": "نَشَأْتُ فِي حَيٍّ قَدِيمٍ فِي دِمَشْق.", "transliteration": "nasha2tu fee 7ayyin qadeemin fee Dimashq.", "english": "I grew up in an old neighborhood in Damascus." },
-        { "speaker": "Omar", "arabic": "وَمَاذَا كُنْتِ تَفْعَلِينَ هُنَاكَ؟", "transliteration": "wa maadhaa kunti taf3aleena hunaaka?", "english": "And what did you used to do there?" },
-        { "speaker": "Hala", "arabic": "كُنْتُ أَلْعَبُ مَعَ صَدِيقِي كَرِيم فِي الزُّقَاق.", "transliteration": "kuntu al3abu ma3a sadeeqee Kareem fee az-zuqaaq.", "english": "I used to play with my friend Kareem in the alley." },
-        { "speaker": "Omar", "arabic": "هَلْ كُنْتُمْ تَلْعَبُونَ كُرَةَ الْقَدَم؟", "transliteration": "hal kuntum tal3aboona kurata al-qadam?", "english": "Did you used to play soccer?" },
-        { "speaker": "Hala", "arabic": "نَعَمْ، كُنَّا نَلْعَبُ كُلَّ يَوْمٍ بَعْدَ الْمَدْرَسَة.", "transliteration": "na3am, kunnaa nal3abu kulla yawmin ba3da al-madrasa.", "english": "Yes, we used to play every day after school." },
-        { "speaker": "Omar", "arabic": "وَمَاذَا كُنْتُمْ تَفْعَلُونَ فِي الصَّيْف؟", "transliteration": "wa maadhaa kuntum taf3aloona fee as-sayf?", "english": "And what did you used to do in the summer?" },
-        { "speaker": "Hala", "arabic": "كُنَّا نَذْهَبُ إِلَى بَيْتِ جَدِّي فِي الْقَرْيَة.", "transliteration": "kunnaa nadh-habu ilaa bayti jaddee fee al-qarya.", "english": "We used to go to my grandfather's house in the village." },
-        { "speaker": "Omar", "arabic": "وَمَاذَا كَانَتْ تَفْعَلُ جَدَّتُكِ؟", "transliteration": "wa maadhaa kaanat taf3alu jaddatuki?", "english": "And what did your grandmother used to do?" },
-        { "speaker": "Hala", "arabic": "كَانَتْ تَحْكِي لَنَا قِصَصًا قَبْلَ النَّوْم.", "transliteration": "kaanat ta7kee lanaa qisasan qabla an-nawm.", "english": "She used to tell us stories before sleeping." },
-        { "speaker": "Omar", "arabic": "يَبْدُو أَنَّ الْحَيَاةَ كَانَتْ أَبْسَط.", "transliteration": "yabdoo anna al-7ayaata kaanat absat.", "english": "It seems life was simpler." },
-        { "speaker": "Hala", "arabic": "نَعَمْ، كَانَتْ أَبْسَطَ بِكَثِير.", "transliteration": "na3am, kaanat absata bikatheer.", "english": "Yes, it was much simpler." }
+        {
+          "speaker": "Omar",
+          "arabic": "حَدِّثِينِي عَنْ طُفُولَتِكِ يَا هَالَة. أَيْنَ نَشَأْتِ؟",
+          "transliteration": "7addithinee 3an tufoolatiki yaa Haala. ayna nasha2ti?",
+          "english": "Tell me about your childhood, Hala. Where did you grow up?"
+        },
+        {
+          "speaker": "Hala",
+          "arabic": "نَشَأْتُ فِي حَيٍّ قَدِيمٍ فِي دِمَشْق.",
+          "transliteration": "nasha2tu fee 7ayyin qadeemin fee Dimashq.",
+          "english": "I grew up in an old neighborhood in Damascus."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وَمَاذَا كُنْتِ تَفْعَلِينَ هُنَاكَ؟",
+          "transliteration": "wa maadhaa kunti taf3aleena hunaaka?",
+          "english": "And what did you used to do there?"
+        },
+        {
+          "speaker": "Hala",
+          "arabic": "كُنْتُ أَلْعَبُ مَعَ صَدِيقِي كَرِيم فِي الزُّقَاق.",
+          "transliteration": "kuntu al3abu ma3a sadeeqee Kareem fee az-zuqaaq.",
+          "english": "I used to play with my friend Kareem in the alley."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "هَلْ كُنْتُمْ تَلْعَبُونَ كُرَةَ الْقَدَم؟",
+          "transliteration": "hal kuntum tal3aboona kurata al-qadam?",
+          "english": "Did you used to play soccer?"
+        },
+        {
+          "speaker": "Hala",
+          "arabic": "نَعَمْ، كُنَّا نَلْعَبُ كُلَّ يَوْمٍ بَعْدَ الْمَدْرَسَة.",
+          "transliteration": "na3am, kunnaa nal3abu kulla yawmin ba3da al-madrasa.",
+          "english": "Yes, we used to play every day after school."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وَمَاذَا كُنْتُمْ تَفْعَلُونَ فِي الصَّيْف؟",
+          "transliteration": "wa maadhaa kuntum taf3aloona fee as-sayf?",
+          "english": "And what did you used to do in the summer?"
+        },
+        {
+          "speaker": "Hala",
+          "arabic": "كُنَّا نَذْهَبُ إِلَى بَيْتِ جَدِّي فِي الْقَرْيَة.",
+          "transliteration": "kunnaa nadh-habu ilaa bayti jaddee fee al-qarya.",
+          "english": "We used to go to my grandfather's house in the village."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وَمَاذَا كَانَتْ تَفْعَلُ جَدَّتُكِ؟",
+          "transliteration": "wa maadhaa kaanat taf3alu jaddatuki?",
+          "english": "And what did your grandmother used to do?"
+        },
+        {
+          "speaker": "Hala",
+          "arabic": "كَانَتْ تَحْكِي لَنَا قِصَصًا قَبْلَ النَّوْم.",
+          "transliteration": "kaanat ta7kee lanaa qisasan qabla an-nawm.",
+          "english": "She used to tell us stories before sleeping."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "يَبْدُو أَنَّ الْحَيَاةَ كَانَتْ أَبْسَط.",
+          "transliteration": "yabdoo anna al-7ayaata kaanat absat.",
+          "english": "It seems life was simpler."
+        },
+        {
+          "speaker": "Hala",
+          "arabic": "نَعَمْ، كَانَتْ أَبْسَطَ بِكَثِير.",
+          "transliteration": "na3am, kaanat absata bikatheer.",
+          "english": "Yes, it was much simpler."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "أَيْنَ نَشَأْتَ؟", "transliteration": "ayna nasha2ta?", "english": "Where did you grow up?" },
-          "response": { "arabic": "نَشَأْتُ فِي حَيٍّ قَدِيمٍ فِي دِمَشْق.", "transliteration": "nasha2tu fee 7ayyin qadeemin fee Dimashq.", "english": "I grew up in an old neighborhood in Damascus." }
+          "pair": {
+            "arabic": "أَيْنَ نَشَأْتَ؟",
+            "transliteration": "ayna nasha2ta?",
+            "english": "Where did you grow up?"
+          },
+          "response": {
+            "arabic": "نَشَأْتُ فِي حَيٍّ قَدِيمٍ فِي دِمَشْق.",
+            "transliteration": "nasha2tu fee 7ayyin qadeemin fee Dimashq.",
+            "english": "I grew up in an old neighborhood in Damascus."
+          }
         },
         {
-          "pair": { "arabic": "مَاذَا كُنْتَ تَفْعَلُ وَأَنْتَ صَغِير؟", "transliteration": "maadhaa kunta taf3alu wa anta sagheer?", "english": "What did you used to do when you were young?" },
-          "response": { "arabic": "كُنْتُ أَلْعَبُ فِي الزُّقَاق.", "transliteration": "kuntu al3abu fee az-zuqaaq.", "english": "I used to play in the alley." }
+          "pair": {
+            "arabic": "مَاذَا كُنْتَ تَفْعَلُ وَأَنْتَ صَغِير؟",
+            "transliteration": "maadhaa kunta taf3alu wa anta sagheer?",
+            "english": "What did you used to do when you were young?"
+          },
+          "response": {
+            "arabic": "كُنْتُ أَلْعَبُ فِي الزُّقَاق.",
+            "transliteration": "kuntu al3abu fee az-zuqaaq.",
+            "english": "I used to play in the alley."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ كُنْتَ تَخَافُ مِنَ الظَّلَام؟", "transliteration": "hal kunta takhaafu mina az-zalaam?", "english": "Were you afraid of the dark?" },
-          "response": { "arabic": "نَعَمْ، كُنْتُ أَخَافُ كَثِيرًا.", "transliteration": "na3am, kuntu akhaafu katheeran.", "english": "Yes, I used to be very afraid." }
+          "pair": {
+            "arabic": "هَلْ كُنْتَ تَخَافُ مِنَ الظَّلَام؟",
+            "transliteration": "hal kunta takhaafu mina az-zalaam?",
+            "english": "Were you afraid of the dark?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، كُنْتُ أَخَافُ كَثِيرًا.",
+            "transliteration": "na3am, kuntu akhaafu katheeran.",
+            "english": "Yes, I used to be very afraid."
+          }
         },
         {
-          "pair": { "arabic": "مَنْ كَانَ صَدِيقَكَ؟", "transliteration": "man kaana sadeeqaka?", "english": "Who was your friend?" },
-          "response": { "arabic": "كَانَ صَدِيقِي كَرِيم.", "transliteration": "kaana sadeeqee Kareem.", "english": "My friend was Kareem." }
+          "pair": {
+            "arabic": "مَنْ كَانَ صَدِيقَكَ؟",
+            "transliteration": "man kaana sadeeqaka?",
+            "english": "Who was your friend?"
+          },
+          "response": {
+            "arabic": "كَانَ صَدِيقِي كَرِيم.",
+            "transliteration": "kaana sadeeqee Kareem.",
+            "english": "My friend was Kareem."
+          }
         }
       ],
       "culture": "Fusha tells childhood memories with كَانَ plus a present-tense verb, which means 'used to', so كُنْتُ أَلْعَبُ is 'I used to play'. Grandparents and the village summer are a common shared memory in stories told across the Arab world.",
@@ -253,8 +631,16 @@
           "type": "reply",
           "prompt": "Someone asks you, a man: 'أَيْنَ نَشَأْتَ؟'. Say you grew up in Damascus.",
           "answer": "نَشَأْتُ فِي دِمَشْق",
-          "accepted": ["نَشَأْتُ فِي دِمَشْق", "نشأت في دمشق", "نَشَأْتُ فِي دِمَشْقَ", "nasha2tu fee Dimashq"],
-          "too_formal": { "item": "كَبِرْت بِالشَّام", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "نَشَأْتُ فِي دِمَشْق",
+            "نشأت في دمشق",
+            "نَشَأْتُ فِي دِمَشْقَ",
+            "nasha2tu fee Dimashq"
+          ],
+          "too_formal": {
+            "item": "كَبِرْت بِالشَّام",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "نَشَأْتُ means 'I grew up'."
         },
         {
@@ -262,8 +648,16 @@
           "type": "reply",
           "prompt": "Someone asks: 'مَاذَا كُنْتَ تَفْعَلُ وَأَنْتَ صَغِير؟'. Say you used to play in the alley.",
           "answer": "كُنْتُ أَلْعَبُ فِي الزُّقَاق",
-          "accepted": ["كُنْتُ أَلْعَبُ فِي الزُّقَاق", "كنت ألعب في الزقاق", "كُنْتُ أَلْعَبُ فِي الزُّقَاقِ", "kuntu al3abu fee az-zuqaaq"],
-          "too_formal": { "item": "كُنْت أَلْعَب بِالزُّقَاق", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "كُنْتُ أَلْعَبُ فِي الزُّقَاق",
+            "كنت ألعب في الزقاق",
+            "كُنْتُ أَلْعَبُ فِي الزُّقَاقِ",
+            "kuntu al3abu fee az-zuqaaq"
+          ],
+          "too_formal": {
+            "item": "كُنْت أَلْعَب بِالزُّقَاق",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كُنْتُ plus a present-tense verb means 'I used to'."
         },
         {
@@ -271,8 +665,16 @@
           "type": "fill_blank",
           "prompt": "Complete: '_____ نَلْعَبُ كُرَةَ الْقَدَمِ فِي الزُّقَاق.' (We used to play soccer in the alley.)",
           "answer": "كُنَّا",
-          "accepted": ["كُنَّا", "كنا", "kunnaa", "كُنَّا،"],
-          "too_formal": { "item": "كِنَّا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "كُنَّا",
+            "كنا",
+            "kunnaa",
+            "كُنَّا،"
+          ],
+          "too_formal": {
+            "item": "كِنَّا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كُنَّا is 'we were'; before a verb it means 'we used to'."
         },
         {
@@ -280,8 +682,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'كُنْتُ _____ مِنَ الظَّلَامِ كَثِيرًا.' (I used to be very afraid of the dark.)",
           "answer": "أَخَافُ",
-          "accepted": ["أَخَافُ", "اخاف", "akhaafu", "أَخْشَى"],
-          "too_formal": { "item": "بْخَاف", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَخَافُ",
+            "اخاف",
+            "akhaafu",
+            "أَخْشَى"
+          ],
+          "too_formal": {
+            "item": "بْخَاف",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَخَافُ is 'I fear'; مِنْ names what you fear."
         },
         {
@@ -289,8 +699,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'I had a friend named Kareem.'",
           "answer": "كَانَ لِي صَدِيقٌ اسْمُهُ كَرِيم",
-          "accepted": ["كَانَ لِي صَدِيقٌ اسْمُهُ كَرِيم", "كان لي صديق اسمه كريم", "كَانَ عِنْدِي صَدِيقٌ اسْمُهُ كَرِيم", "kaana lee sadeequn ismuhu Kareem"],
-          "too_formal": { "item": "كَانَ عِنْدِي صَاحِب اِسْمُه كَرِيم", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "كَانَ لِي صَدِيقٌ اسْمُهُ كَرِيم",
+            "كان لي صديق اسمه كريم",
+            "كَانَ عِنْدِي صَدِيقٌ اسْمُهُ كَرِيم",
+            "kaana lee sadeequn ismuhu Kareem"
+          ],
+          "too_formal": {
+            "item": "كَانَ عِنْدِي صَاحِب اِسْمُه كَرِيم",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كَانَ لِي is 'I had'; the thing had comes after it."
         },
         {
@@ -298,8 +716,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'My grandmother used to tell us stories.'",
           "answer": "كَانَتْ جَدَّتِي تَحْكِي لَنَا قِصَصًا",
-          "accepted": ["كَانَتْ جَدَّتِي تَحْكِي لَنَا قِصَصًا", "كانت جدتي تحكي لنا قصصا", "كَانَتْ جَدَّتِي تَرْوِي لَنَا قِصَصًا", "kaanat jaddatee ta7kee lanaa qisasan"],
-          "too_formal": { "item": "جِدَّتِي كَانَتْ تِحْكِيلْنَا قِصَص", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "كَانَتْ جَدَّتِي تَحْكِي لَنَا قِصَصًا",
+            "كانت جدتي تحكي لنا قصصا",
+            "كَانَتْ جَدَّتِي تَرْوِي لَنَا قِصَصًا",
+            "kaanat jaddatee ta7kee lanaa qisasan"
+          ],
+          "too_formal": {
+            "item": "جِدَّتِي كَانَتْ تِحْكِيلْنَا قِصَص",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كَانَتْ is the feminine form, because the grandmother is a woman."
         },
         {
@@ -307,38 +733,85 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'We used to walk to school together every day.'",
           "answer": "كُنَّا نَمْشِي إِلَى الْمَدْرَسَةِ مَعًا كُلَّ يَوْم",
-          "accepted": ["كُنَّا نَمْشِي إِلَى الْمَدْرَسَةِ مَعًا كُلَّ يَوْم", "كنا نمشي إلى المدرسة معا كل يوم", "كُنَّا نَذْهَبُ إِلَى الْمَدْرَسَةِ مَشْيًا كُلَّ يَوْم", "kunnaa namshee ilaa al-madrasati ma3an kulla yawm"],
-          "too_formal": { "item": "كُنَّا نِمْشِي عَالْمَدْرَسَة سَوَا كُلّ يَوْم", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "كُنَّا نَمْشِي إِلَى الْمَدْرَسَةِ مَعًا كُلَّ يَوْم",
+            "كنا نمشي إلى المدرسة معا كل يوم",
+            "كُنَّا نَذْهَبُ إِلَى الْمَدْرَسَةِ مَشْيًا كُلَّ يَوْم",
+            "kunnaa namshee ilaa al-madrasati ma3an kulla yawm"
+          ],
+          "too_formal": {
+            "item": "كُنَّا نِمْشِي عَالْمَدْرَسَة سَوَا كُلّ يَوْم",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مَعًا is 'together'; كُلَّ يَوْم is 'every day'."
         },
         {
           "id": "unit-16.lesson-02.choose.01",
           "type": "choose",
           "prompt": "Which word, put before a present-tense verb, means 'used to'?",
-          "options": ["كُنْتُ", "سَوْفَ", "لَمْ", "هَلْ"],
+          "options": [
+            "كُنْتُ",
+            "سَوْفَ",
+            "لَمْ",
+            "هَلْ"
+          ],
           "answer": "كُنْتُ",
-          "accepted": ["كُنْتُ", "كنت", "kuntu", "كَانَ"],
-          "too_formal": { "item": "كُنْت", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "كُنْتُ",
+            "كنت",
+            "kuntu",
+            "كَانَ"
+          ],
+          "too_formal": {
+            "item": "كُنْت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كَانَ plus a present-tense verb tells a habit in the past."
         },
         {
           "id": "unit-16.lesson-02.choose.02",
           "type": "choose",
           "prompt": "Which sentence means 'Back then life was much simpler'?",
-          "options": ["فِي ذَلِكَ الْوَقْتِ كَانَتِ الْحَيَاةُ أَبْسَطَ بِكَثِير", "الْحَيَاةُ الْآنَ أَبْسَطُ", "كُنْتُ أُحِبُّ اللَّعِب", "كَانَ مُعَلِّمِي لَطِيفًا"],
+          "options": [
+            "فِي ذَلِكَ الْوَقْتِ كَانَتِ الْحَيَاةُ أَبْسَطَ بِكَثِير",
+            "الْحَيَاةُ الْآنَ أَبْسَطُ",
+            "كُنْتُ أُحِبُّ اللَّعِب",
+            "كَانَ مُعَلِّمِي لَطِيفًا"
+          ],
           "answer": "فِي ذَلِكَ الْوَقْتِ كَانَتِ الْحَيَاةُ أَبْسَطَ بِكَثِير",
-          "accepted": ["فِي ذَلِكَ الْوَقْتِ كَانَتِ الْحَيَاةُ أَبْسَطَ بِكَثِير", "في ذلك الوقت كانت الحياة أبسط بكثير", "كَانَتِ الْحَيَاةُ أَبْسَطَ بِكَثِير", "fee dhaalika al-waqti kaanati al-7ayaatu absata bikatheer"],
-          "too_formal": { "item": "وَقْتْهَا كَانَت الْحَيَاة أَبْسَط بِكْتِير", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "فِي ذَلِكَ الْوَقْتِ كَانَتِ الْحَيَاةُ أَبْسَطَ بِكَثِير",
+            "في ذلك الوقت كانت الحياة أبسط بكثير",
+            "كَانَتِ الْحَيَاةُ أَبْسَطَ بِكَثِير",
+            "fee dhaalika al-waqti kaanati al-7ayaatu absata bikatheer"
+          ],
+          "too_formal": {
+            "item": "وَقْتْهَا كَانَت الْحَيَاة أَبْسَط بِكْتِير",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَبْسَطَ is 'simpler'; بِكَثِير adds 'by a lot'."
         },
         {
           "id": "unit-16.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Put the pieces in order: 'فِي الزُّقَاق / كُنَّا / كُرَةَ الْقَدَمِ / نَلْعَبُ'.",
-          "words": ["كُنَّا", "نَلْعَبُ", "كُرَةَ الْقَدَمِ", "فِي الزُّقَاق"],
+          "words": [
+            "كُنَّا",
+            "نَلْعَبُ",
+            "كُرَةَ الْقَدَمِ",
+            "فِي الزُّقَاق"
+          ],
           "answer": "كُنَّا نَلْعَبُ كُرَةَ الْقَدَمِ فِي الزُّقَاق",
-          "accepted": ["كُنَّا نَلْعَبُ كُرَةَ الْقَدَمِ فِي الزُّقَاق", "كنا نلعب كرة القدم في الزقاق", "كُنَّا نَلْعَبُ كُرَةَ الْقَدَمِ فِي الزُّقَاقِ", "kunnaa nal3abu kurata al-qadami fee az-zuqaaq"],
-          "too_formal": { "item": "كُنَّا نِلْعَب كُورَة بِالزُّقَاق", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "كُنَّا نَلْعَبُ كُرَةَ الْقَدَمِ فِي الزُّقَاق",
+            "كنا نلعب كرة القدم في الزقاق",
+            "كُنَّا نَلْعَبُ كُرَةَ الْقَدَمِ فِي الزُّقَاقِ",
+            "kunnaa nal3abu kurata al-qadami fee az-zuqaaq"
+          ],
+          "too_formal": {
+            "item": "كُنَّا نِلْعَب كُورَة بِالزُّقَاق",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كُنَّا first, then the verb, then the game, then the place."
         },
         {
@@ -346,8 +819,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'حَمْرَاء / أَوَّلُ / كَانَتْ / امْتَلَكْتُهَا / دَرَّاجَةٍ'.",
           "answer": "أَوَّلُ دَرَّاجَةٍ امْتَلَكْتُهَا كَانَتْ حَمْرَاء",
-          "accepted": ["أَوَّلُ دَرَّاجَةٍ امْتَلَكْتُهَا كَانَتْ حَمْرَاء", "أول دراجة امتلكتها كانت حمراء", "أَوَّلُ دَرَّاجَةٍ امْتَلَكْتُهَا كَانَتْ حَمْرَاءَ", "awwalu darraajatin imtalaktuhaa kaanat 7amraa2"],
-          "too_formal": { "item": "أَوَّل سِيكِل كَانَ عِنْدِي كَانَ أَحْمَر", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَوَّلُ دَرَّاجَةٍ امْتَلَكْتُهَا كَانَتْ حَمْرَاء",
+            "أول دراجة امتلكتها كانت حمراء",
+            "أَوَّلُ دَرَّاجَةٍ امْتَلَكْتُهَا كَانَتْ حَمْرَاءَ",
+            "awwalu darraajatin imtalaktuhaa kaanat 7amraa2"
+          ],
+          "too_formal": {
+            "item": "أَوَّل سِيكِل كَانَ عِنْدِي كَانَ أَحْمَر",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "Fusha puts 'the first bike' first, then 'I had it', then 'was red'."
         }
       ]
@@ -355,49 +836,189 @@
     {
       "lesson": "lesson-03",
       "phrases": [
-        { "slot": "my-phone-broke-yesterday", "arabic": "اِنْكَسَرَ هَاتِفِي أَمْسِ", "transliteration": "inkasara haatifee amsi" },
-        { "slot": "i-lost-the-house-key", "arabic": "أَضَعْتُ مِفْتَاحَ الْبَيْت", "transliteration": "adha3tu miftaa7a al-bayt" },
-        { "slot": "i-was-late-for-work-this-morning", "arabic": "تَأَخَّرْتُ عَنِ الْعَمَلِ هَذَا الصَّبَاح", "transliteration": "ta2akhkhartu 3ani al-3amali haadhaa as-sabaa7" },
-        { "slot": "i-fell-on-the-stairs-and-hurt-my-leg", "arabic": "سَقَطْتُ عَلَى السُّلَّمِ وَأُصِبْتُ فِي رِجْلِي", "transliteration": "saqattu 3alaa as-sullami wa usibtu fee rijlee" },
-        { "slot": "i-forgot-my-wallet-at-home", "arabic": "نَسِيتُ مِحْفَظَتِي فِي الْبَيْت", "transliteration": "naseetu mi7fadhatee fee al-bayt" },
-        { "slot": "the-car-broke-down-in-the-middle-of-the-road", "arabic": "تَعَطَّلَتِ السَّيَّارَةُ فِي مُنْتَصَفِ الطَّرِيق", "transliteration": "ta3attalati as-sayyaaratu fee muntasafi at-tareeq" },
-        { "slot": "the-power-went-out-all-night", "arabic": "اِنْقَطَعَتِ الْكَهْرَبَاءُ طَوَالَ اللَّيْل", "transliteration": "inqata3ati al-kahrabaa2u tawaala al-layl" },
-        { "slot": "coffee-spilled-on-my-laptop", "arabic": "اِنْسَكَبَتِ الْقَهْوَةُ عَلَى حَاسُوبِي الْمَحْمُول", "transliteration": "insakabati al-qahwatu 3alaa 7aasoobee al-ma7mool" },
-        { "slot": "my-bag-got-lost-at-the-airport", "arabic": "ضَاعَتْ حَقِيبَتِي فِي الْمَطَار", "transliteration": "daa3at 7aqeebatee fee al-mataar" },
-        { "slot": "i-cut-my-hand-while-cooking", "arabic": "جَرَحْتُ يَدِي أَثْنَاءَ الطَّبْخ", "transliteration": "jara7tu yadee athnaa2a at-tabkh" },
-        { "slot": "i-made-a-mistake-and-sent-the-message-to-the-wro", "arabic": "أَخْطَأْتُ وَأَرْسَلْتُ الرِّسَالَةَ إِلَى الشَّخْصِ الْخَطَأ", "transliteration": "akhta2tu wa arsaltu ar-risaalata ilaa ash-shakhsi al-khata2" },
-        { "slot": "i-overslept-and-didn-t-hear-the-alarm", "arabic": "نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه", "transliteration": "nimtu katheeran wa lam asma3i al-munabbih" }
+        {
+          "slot": "my-phone-broke-yesterday",
+          "arabic": "اِنْكَسَرَ هَاتِفِي أَمْسِ",
+          "transliteration": "inkasara haatifee amsi"
+        },
+        {
+          "slot": "i-lost-the-house-key",
+          "arabic": "أَضَعْتُ مِفْتَاحَ الْبَيْت",
+          "transliteration": "adha3tu miftaa7a al-bayt"
+        },
+        {
+          "slot": "i-was-late-for-work-this-morning",
+          "arabic": "تَأَخَّرْتُ عَنِ الْعَمَلِ هَذَا الصَّبَاح",
+          "transliteration": "ta2akhkhartu 3ani al-3amali haadhaa as-sabaa7"
+        },
+        {
+          "slot": "i-fell-on-the-stairs-and-hurt-my-leg",
+          "arabic": "سَقَطْتُ عَلَى السُّلَّمِ وَأُصِبْتُ فِي رِجْلِي",
+          "transliteration": "saqattu 3alaa as-sullami wa usibtu fee rijlee"
+        },
+        {
+          "slot": "i-forgot-my-wallet-at-home",
+          "arabic": "نَسِيتُ مِحْفَظَتِي فِي الْبَيْت",
+          "transliteration": "naseetu mi7fadhatee fee al-bayt"
+        },
+        {
+          "slot": "the-car-broke-down-in-the-middle-of-the-road",
+          "arabic": "تَعَطَّلَتِ السَّيَّارَةُ فِي مُنْتَصَفِ الطَّرِيق",
+          "transliteration": "ta3attalati as-sayyaaratu fee muntasafi at-tareeq"
+        },
+        {
+          "slot": "the-power-went-out-all-night",
+          "arabic": "اِنْقَطَعَتِ الْكَهْرَبَاءُ طَوَالَ اللَّيْل",
+          "transliteration": "inqata3ati al-kahrabaa2u tawaala al-layl"
+        },
+        {
+          "slot": "coffee-spilled-on-my-laptop",
+          "arabic": "اِنْسَكَبَتِ الْقَهْوَةُ عَلَى حَاسُوبِي الْمَحْمُول",
+          "transliteration": "insakabati al-qahwatu 3alaa 7aasoobee al-ma7mool"
+        },
+        {
+          "slot": "my-bag-got-lost-at-the-airport",
+          "arabic": "ضَاعَتْ حَقِيبَتِي فِي الْمَطَار",
+          "transliteration": "daa3at 7aqeebatee fee al-mataar"
+        },
+        {
+          "slot": "i-cut-my-hand-while-cooking",
+          "arabic": "جَرَحْتُ يَدِي أَثْنَاءَ الطَّبْخ",
+          "transliteration": "jara7tu yadee athnaa2a at-tabkh"
+        },
+        {
+          "slot": "i-made-a-mistake-and-sent-the-message-to-the-wro",
+          "arabic": "أَخْطَأْتُ وَأَرْسَلْتُ الرِّسَالَةَ إِلَى الشَّخْصِ الْخَطَأ",
+          "transliteration": "akhta2tu wa arsaltu ar-risaalata ilaa ash-shakhsi al-khata2"
+        },
+        {
+          "slot": "i-overslept-and-didn-t-hear-the-alarm",
+          "arabic": "نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه",
+          "transliteration": "nimtu katheeran wa lam asma3i al-munabbih"
+        }
       ],
       "dialogue": [
-        { "speaker": "Dina", "arabic": "مَا بِكَ يَا طَارِق؟ تَبْدُو مُتْعَبًا.", "transliteration": "maa bika yaa Taariq? tabdoo mut3aban.", "english": "What's wrong, Tariq? You look tired." },
-        { "speaker": "Tariq", "arabic": "كَانَ صَبَاحِي سَيِّئًا. نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه.", "transliteration": "kaana sabaa7ee sayyi2an. nimtu katheeran wa lam asma3i al-munabbih.", "english": "My morning was bad. I overslept and didn't hear the alarm." },
-        { "speaker": "Dina", "arabic": "إِذًا تَأَخَّرْتَ عَنِ الْعَمَل؟", "transliteration": "idhan ta2akhkharta 3ani al-3amal?", "english": "So you were late for work?" },
-        { "speaker": "Tariq", "arabic": "نَعَمْ، تَأَخَّرْتُ عَنِ الْعَمَلِ هَذَا الصَّبَاح.", "transliteration": "na3am, ta2akhkhartu 3ani al-3amali haadhaa as-sabaa7.", "english": "Yes, I was late for work this morning." },
-        { "speaker": "Dina", "arabic": "وَمَاذَا حَدَثَ بَعْدَ ذَلِك؟", "transliteration": "wa maadhaa 7adatha ba3da dhaalik?", "english": "And what happened after that?" },
-        { "speaker": "Tariq", "arabic": "نَسِيتُ مِحْفَظَتِي فِي الْبَيْت.", "transliteration": "naseetu mi7fadhatee fee al-bayt.", "english": "I forgot my wallet at home." },
-        { "speaker": "Dina", "arabic": "هَذَا مُؤْسِف! وَكَيْفَ دَفَعْتَ؟", "transliteration": "haadhaa mu2sif! wa kayfa dafa3ta?", "english": "That's a pity! And how did you pay?" },
-        { "speaker": "Tariq", "arabic": "اِسْتَعَرْتُ مَالًا مِنْ زَمِيلِي. وَأَمْسِ اِنْكَسَرَ هَاتِفِي أَيْضًا.", "transliteration": "ista3artu maalan min zameelee. wa amsi inkasara haatifee aydan.", "english": "I borrowed money from my colleague. And yesterday my phone broke too." },
-        { "speaker": "Dina", "arabic": "هَذَا كَثِير! هَلْ أَصْلَحْتَهُ؟", "transliteration": "haadhaa katheer! hal aslahtahu?", "english": "That's a lot! Did you fix it?" },
-        { "speaker": "Tariq", "arabic": "ذَهَبْتُ إِلَى الْمَحَلِّ، وَسَيَكُونُ جَاهِزًا غَدًا.", "transliteration": "dhahabtu ilaa al-ma7alli, wa sayakoonu jaahizan ghadan.", "english": "I went to the shop, and it will be ready tomorrow." },
-        { "speaker": "Dina", "arabic": "أَرْجُو أَنْ يَكُونَ غَدُكَ أَفْضَل.", "transliteration": "arjoo an yakoona ghaduka afdal.", "english": "I hope your tomorrow is better." },
-        { "speaker": "Tariq", "arabic": "شُكْرًا، إِنْ شَاءَ اللَّه.", "transliteration": "shukran, in shaa2a allaah.", "english": "Thank you, God willing." }
+        {
+          "speaker": "Dina",
+          "arabic": "مَا بِكَ يَا طَارِق؟ تَبْدُو مُتْعَبًا.",
+          "transliteration": "maa bika yaa Taariq? tabdoo mut3aban.",
+          "english": "What's wrong, Tariq? You look tired."
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "كَانَ صَبَاحِي سَيِّئًا. نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه.",
+          "transliteration": "kaana sabaa7ee sayyi2an. nimtu katheeran wa lam asma3i al-munabbih.",
+          "english": "My morning was bad. I overslept and didn't hear the alarm."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "إِذًا تَأَخَّرْتَ عَنِ الْعَمَل؟",
+          "transliteration": "idhan ta2akhkharta 3ani al-3amal?",
+          "english": "So you were late for work?"
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "نَعَمْ، تَأَخَّرْتُ عَنِ الْعَمَلِ هَذَا الصَّبَاح.",
+          "transliteration": "na3am, ta2akhkhartu 3ani al-3amali haadhaa as-sabaa7.",
+          "english": "Yes, I was late for work this morning."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "وَمَاذَا حَدَثَ بَعْدَ ذَلِك؟",
+          "transliteration": "wa maadhaa 7adatha ba3da dhaalik?",
+          "english": "And what happened after that?"
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "نَسِيتُ مِحْفَظَتِي فِي الْبَيْت.",
+          "transliteration": "naseetu mi7fadhatee fee al-bayt.",
+          "english": "I forgot my wallet at home."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "هَذَا مُؤْسِف! وَكَيْفَ دَفَعْتَ؟",
+          "transliteration": "haadhaa mu2sif! wa kayfa dafa3ta?",
+          "english": "That's a pity! And how did you pay?"
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "اِسْتَعَرْتُ مَالًا مِنْ زَمِيلِي. وَأَمْسِ اِنْكَسَرَ هَاتِفِي أَيْضًا.",
+          "transliteration": "ista3artu maalan min zameelee. wa amsi inkasara haatifee aydan.",
+          "english": "I borrowed money from my colleague. And yesterday my phone broke too."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "هَذَا كَثِير! هَلْ أَصْلَحْتَهُ؟",
+          "transliteration": "haadhaa katheer! hal aslahtahu?",
+          "english": "That's a lot! Did you fix it?"
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "ذَهَبْتُ إِلَى الْمَحَلِّ، وَسَيَكُونُ جَاهِزًا غَدًا.",
+          "transliteration": "dhahabtu ilaa al-ma7alli, wa sayakoonu jaahizan ghadan.",
+          "english": "I went to the shop, and it will be ready tomorrow."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "أَرْجُو أَنْ يَكُونَ غَدُكَ أَفْضَل.",
+          "transliteration": "arjoo an yakoona ghaduka afdal.",
+          "english": "I hope your tomorrow is better."
+        },
+        {
+          "speaker": "Tariq",
+          "arabic": "شُكْرًا، إِنْ شَاءَ اللَّه.",
+          "transliteration": "shukran, in shaa2a allaah.",
+          "english": "Thank you, God willing."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "مَا الَّذِي حَدَثَ؟", "transliteration": "maa alladhee 7adath?", "english": "What happened?" },
-          "response": { "arabic": "اِنْكَسَرَ هَاتِفِي.", "transliteration": "inkasara haatifee.", "english": "My phone broke." }
+          "pair": {
+            "arabic": "مَا الَّذِي حَدَثَ؟",
+            "transliteration": "maa alladhee 7adath?",
+            "english": "What happened?"
+          },
+          "response": {
+            "arabic": "اِنْكَسَرَ هَاتِفِي.",
+            "transliteration": "inkasara haatifee.",
+            "english": "My phone broke."
+          }
         },
         {
-          "pair": { "arabic": "لِمَاذَا تَأَخَّرْتَ؟", "transliteration": "limaadhaa ta2akhkharta?", "english": "Why were you late?" },
-          "response": { "arabic": "نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه.", "transliteration": "nimtu katheeran wa lam asma3i al-munabbih.", "english": "I overslept and didn't hear the alarm." }
+          "pair": {
+            "arabic": "لِمَاذَا تَأَخَّرْتَ؟",
+            "transliteration": "limaadhaa ta2akhkharta?",
+            "english": "Why were you late?"
+          },
+          "response": {
+            "arabic": "نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه.",
+            "transliteration": "nimtu katheeran wa lam asma3i al-munabbih.",
+            "english": "I overslept and didn't hear the alarm."
+          }
         },
         {
-          "pair": { "arabic": "أَيْنَ مِحْفَظَتُكَ؟", "transliteration": "ayna mi7fadhatuka?", "english": "Where is your wallet?" },
-          "response": { "arabic": "نَسِيتُهَا فِي الْبَيْت.", "transliteration": "naseetuhaa fee al-bayt.", "english": "I forgot it at home." }
+          "pair": {
+            "arabic": "أَيْنَ مِحْفَظَتُكَ؟",
+            "transliteration": "ayna mi7fadhatuka?",
+            "english": "Where is your wallet?"
+          },
+          "response": {
+            "arabic": "نَسِيتُهَا فِي الْبَيْت.",
+            "transliteration": "naseetuhaa fee al-bayt.",
+            "english": "I forgot it at home."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ أَنْتَ بِخَيْر؟", "transliteration": "hal anta bikhayr?", "english": "Are you alright?" },
-          "response": { "arabic": "نَعَمْ، الْحَمْدُ لِلَّه.", "transliteration": "na3am, al7amdu lillaah.", "english": "Yes, thank God." }
+          "pair": {
+            "arabic": "هَلْ أَنْتَ بِخَيْر؟",
+            "transliteration": "hal anta bikhayr?",
+            "english": "Are you alright?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، الْحَمْدُ لِلَّه.",
+            "transliteration": "na3am, al7amdu lillaah.",
+            "english": "Yes, thank God."
+          }
         }
       ],
       "culture": "When something goes wrong, Fusha speakers name what happened in a short past-tense sentence and often add الْحَمْدُ لِلَّه if it was not worse. Things that happen to you, such as a broken phone, are said about the object: اِنْكَسَرَ هَاتِفِي, 'my phone broke', not 'I broke'.",
@@ -407,8 +1028,16 @@
           "type": "reply",
           "prompt": "A friend asks: 'لِمَاذَا تَأَخَّرْتَ؟'. Say you overslept and did not hear the alarm.",
           "answer": "نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه",
-          "accepted": ["نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه", "نمت كثيرا ولم أسمع المنبه", "نِمْتُ وَلَمْ أَسْمَعِ الْمُنَبِّه", "nimtu katheeran wa lam asma3i al-munabbih"],
-          "too_formal": { "item": "نِمْت وَمَا سِمِعْت الْمُنَبِّه", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه",
+            "نمت كثيرا ولم أسمع المنبه",
+            "نِمْتُ وَلَمْ أَسْمَعِ الْمُنَبِّه",
+            "nimtu katheeran wa lam asma3i al-munabbih"
+          ],
+          "too_formal": {
+            "item": "نِمْت وَمَا سِمِعْت الْمُنَبِّه",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "لَمْ plus a present-tense verb says 'did not'."
         },
         {
@@ -416,8 +1045,16 @@
           "type": "reply",
           "prompt": "Someone asks: 'مَا الَّذِي حَدَثَ؟'. Say your phone broke.",
           "answer": "اِنْكَسَرَ هَاتِفِي",
-          "accepted": ["اِنْكَسَرَ هَاتِفِي", "انكسر هاتفي", "اِنْكَسَرَ هَاتِفِي أَمْسِ", "inkasara haatifee"],
-          "too_formal": { "item": "تِلِفُونِي اِنْكَسَر", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "اِنْكَسَرَ هَاتِفِي",
+            "انكسر هاتفي",
+            "اِنْكَسَرَ هَاتِفِي أَمْسِ",
+            "inkasara haatifee"
+          ],
+          "too_formal": {
+            "item": "تِلِفُونِي اِنْكَسَر",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The verb comes first and the thing that broke follows it."
         },
         {
@@ -425,8 +1062,16 @@
           "type": "fill_blank",
           "prompt": "Complete: '_____ مِفْتَاحَ الْبَيْت.' (I lost the house key.)",
           "answer": "أَضَعْتُ",
-          "accepted": ["أَضَعْتُ", "اضعت", "adha3tu", "فَقَدْتُ"],
-          "too_formal": { "item": "ضَيَّعْت", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَضَعْتُ",
+            "اضعت",
+            "adha3tu",
+            "فَقَدْتُ"
+          ],
+          "too_formal": {
+            "item": "ضَيَّعْت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَضَعْتُ is 'I lost' something; ضَاعَ is 'got lost' by itself."
         },
         {
@@ -434,8 +1079,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'نَسِيتُ _____ فِي الْبَيْت.' (I forgot my wallet at home.)",
           "answer": "مِحْفَظَتِي",
-          "accepted": ["مِحْفَظَتِي", "محفظتي", "mi7fadhatee", "مَحْفَظَتِي"],
-          "too_formal": { "item": "جِزْدَانِي", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مِحْفَظَتِي",
+            "محفظتي",
+            "mi7fadhatee",
+            "مَحْفَظَتِي"
+          ],
+          "too_formal": {
+            "item": "جِزْدَانِي",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The ending ـي on مِحْفَظَتِي means 'my'."
         },
         {
@@ -443,8 +1096,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'My bag got lost at the airport.'",
           "answer": "ضَاعَتْ حَقِيبَتِي فِي الْمَطَار",
-          "accepted": ["ضَاعَتْ حَقِيبَتِي فِي الْمَطَار", "ضاعت حقيبتي في المطار", "فُقِدَتْ حَقِيبَتِي فِي الْمَطَار", "daa3at 7aqeebatee fee al-mataar"],
-          "too_formal": { "item": "شَنْطَتِي ضَاعَت بِالْمَطَار", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "ضَاعَتْ حَقِيبَتِي فِي الْمَطَار",
+            "ضاعت حقيبتي في المطار",
+            "فُقِدَتْ حَقِيبَتِي فِي الْمَطَار",
+            "daa3at 7aqeebatee fee al-mataar"
+          ],
+          "too_formal": {
+            "item": "شَنْطَتِي ضَاعَت بِالْمَطَار",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "ضَاعَتْ ends in تْ because حَقِيبَة is feminine."
         },
         {
@@ -452,8 +1113,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'I cut my hand while cooking.'",
           "answer": "جَرَحْتُ يَدِي أَثْنَاءَ الطَّبْخ",
-          "accepted": ["جَرَحْتُ يَدِي أَثْنَاءَ الطَّبْخ", "جرحت يدي أثناء الطبخ", "جَرَحْتُ يَدِي وَأَنَا أَطْبُخُ", "jara7tu yadee athnaa2a at-tabkh"],
-          "too_formal": { "item": "جَرَحْت إِيدِي وَأَنَا عَم بَطْبُخ", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "جَرَحْتُ يَدِي أَثْنَاءَ الطَّبْخ",
+            "جرحت يدي أثناء الطبخ",
+            "جَرَحْتُ يَدِي وَأَنَا أَطْبُخُ",
+            "jara7tu yadee athnaa2a at-tabkh"
+          ],
+          "too_formal": {
+            "item": "جَرَحْت إِيدِي وَأَنَا عَم بَطْبُخ",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَثْنَاءَ means 'during'; وَأَنَا plus a verb means 'while I'."
         },
         {
@@ -461,28 +1130,62 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'The power went out all night.'",
           "answer": "اِنْقَطَعَتِ الْكَهْرَبَاءُ طَوَالَ اللَّيْل",
-          "accepted": ["اِنْقَطَعَتِ الْكَهْرَبَاءُ طَوَالَ اللَّيْل", "انقطعت الكهرباء طوال الليل", "اِنْقَطَعَتِ الْكَهْرَبَاءُ اللَّيْلَ كُلَّهُ", "inqata3ati al-kahrabaa2u tawaala al-layl"],
-          "too_formal": { "item": "الْكَهْرَبَا قَطَعَت كُلّ اللَّيْل", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "اِنْقَطَعَتِ الْكَهْرَبَاءُ طَوَالَ اللَّيْل",
+            "انقطعت الكهرباء طوال الليل",
+            "اِنْقَطَعَتِ الْكَهْرَبَاءُ اللَّيْلَ كُلَّهُ",
+            "inqata3ati al-kahrabaa2u tawaala al-layl"
+          ],
+          "too_formal": {
+            "item": "الْكَهْرَبَا قَطَعَت كُلّ اللَّيْل",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "طَوَالَ means 'throughout'."
         },
         {
           "id": "unit-16.lesson-03.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'The car broke down in the middle of the road'?",
-          "options": ["تَعَطَّلَتِ السَّيَّارَةُ فِي مُنْتَصَفِ الطَّرِيق", "ضَاعَتْ حَقِيبَتِي فِي الْمَطَار", "اِنْقَطَعَتِ الْكَهْرَبَاءُ طَوَالَ اللَّيْل", "اِنْكَسَرَ هَاتِفِي أَمْسِ"],
+          "options": [
+            "تَعَطَّلَتِ السَّيَّارَةُ فِي مُنْتَصَفِ الطَّرِيق",
+            "ضَاعَتْ حَقِيبَتِي فِي الْمَطَار",
+            "اِنْقَطَعَتِ الْكَهْرَبَاءُ طَوَالَ اللَّيْل",
+            "اِنْكَسَرَ هَاتِفِي أَمْسِ"
+          ],
           "answer": "تَعَطَّلَتِ السَّيَّارَةُ فِي مُنْتَصَفِ الطَّرِيق",
-          "accepted": ["تَعَطَّلَتِ السَّيَّارَةُ فِي مُنْتَصَفِ الطَّرِيق", "تعطلت السيارة في منتصف الطريق", "تَعَطَّلَتِ السَّيَّارَةُ فِي وَسَطِ الطَّرِيق", "ta3attalati as-sayyaaratu fee muntasafi at-tareeq"],
-          "too_formal": { "item": "السَّيَّارَة عِطْلَت بِنُصّ الطَّرِيق", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "تَعَطَّلَتِ السَّيَّارَةُ فِي مُنْتَصَفِ الطَّرِيق",
+            "تعطلت السيارة في منتصف الطريق",
+            "تَعَطَّلَتِ السَّيَّارَةُ فِي وَسَطِ الطَّرِيق",
+            "ta3attalati as-sayyaaratu fee muntasafi at-tareeq"
+          ],
+          "too_formal": {
+            "item": "السَّيَّارَة عِطْلَت بِنُصّ الطَّرِيق",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مُنْتَصَفُ is 'the middle of'."
         },
         {
           "id": "unit-16.lesson-03.choose.02",
           "type": "choose",
           "prompt": "Which word means 'I forgot'?",
-          "options": ["نَسِيتُ", "أَضَعْتُ", "جَرَحْتُ", "سَقَطْتُ"],
+          "options": [
+            "نَسِيتُ",
+            "أَضَعْتُ",
+            "جَرَحْتُ",
+            "سَقَطْتُ"
+          ],
           "answer": "نَسِيتُ",
-          "accepted": ["نَسِيتُ", "نسيت", "naseetu", "نَسِيتُ."],
-          "too_formal": { "item": "نْسِيت", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "نَسِيتُ",
+            "نسيت",
+            "naseetu",
+            "نَسِيتُ."
+          ],
+          "too_formal": {
+            "item": "نْسِيت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَضَعْتُ is 'I lost', جَرَحْتُ is 'I cut', سَقَطْتُ is 'I fell'."
         },
         {
@@ -490,8 +1193,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'الْمَطَار / فِي / حَقِيبَتِي / ضَاعَتْ'.",
           "answer": "ضَاعَتْ حَقِيبَتِي فِي الْمَطَار",
-          "accepted": ["ضَاعَتْ حَقِيبَتِي فِي الْمَطَار", "ضاعت حقيبتي في المطار", "ضَاعَتْ حَقِيبَتِي فِي الْمَطَارِ", "daa3at 7aqeebatee fee al-mataar"],
-          "too_formal": { "item": "شَنْطَتِي ضَاعَت بِالْمَطَار", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "ضَاعَتْ حَقِيبَتِي فِي الْمَطَار",
+            "ضاعت حقيبتي في المطار",
+            "ضَاعَتْ حَقِيبَتِي فِي الْمَطَارِ",
+            "daa3at 7aqeebatee fee al-mataar"
+          ],
+          "too_formal": {
+            "item": "شَنْطَتِي ضَاعَت بِالْمَطَار",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "Verb first, then the bag, then the place."
         },
         {
@@ -499,8 +1210,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'الْمُنَبِّه / أَسْمَعِ / وَلَمْ / نِمْتُ / كَثِيرًا'.",
           "answer": "نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه",
-          "accepted": ["نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه", "نمت كثيرا ولم أسمع المنبه", "نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّهَ", "nimtu katheeran wa lam asma3i al-munabbih"],
-          "too_formal": { "item": "نِمْت كْتِير وَمَا سِمِعْت الْمُنَبِّه", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّه",
+            "نمت كثيرا ولم أسمع المنبه",
+            "نِمْتُ كَثِيرًا وَلَمْ أَسْمَعِ الْمُنَبِّهَ",
+            "nimtu katheeran wa lam asma3i al-munabbih"
+          ],
+          "too_formal": {
+            "item": "نِمْت كْتِير وَمَا سِمِعْت الْمُنَبِّه",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "Two actions joined by وَ: what you did, then what did not happen."
         }
       ]
@@ -508,49 +1227,189 @@
     {
       "lesson": "lesson-04",
       "phrases": [
-        { "slot": "i-heard-that-samer-got-engaged", "arabic": "سَمِعْتُ أَنَّ سَامِرًا أَصْبَحَ مَخْطُوبًا", "transliteration": "sami3tu anna Saameran asba7a makhtooban" },
-        { "slot": "there-s-news-you-won-t-believe", "arabic": "عِنْدِي خَبَرٌ لَنْ تُصَدِّقَه", "transliteration": "3indee khabarun lan tusaddiqah" },
-        { "slot": "they-told-me-you-re-moving-to-a-new-house", "arabic": "قِيلَ لِي إِنَّكَ سَتَنْتَقِلُ إِلَى بَيْتٍ جَدِيد", "transliteration": "qeela lee innaka satantaqilu ilaa baytin jadeed" },
-        { "slot": "who-told-you-this-news", "arabic": "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟", "transliteration": "man akhbaraka bihaadhaa al-khabar?" },
-        { "slot": "they-re-saying-that-such-and-such-shop-closed", "arabic": "يَقُولُونَ إِنَّ مَحَلَّ فُلَانٍ أُغْلِقَ", "transliteration": "yaqooloona inna ma7alla fulaanin ughliq" },
-        { "slot": "we-re-not-sure-yet-it-might-just-be-a-rumor", "arabic": "لَسْنَا مُتَأَكِّدِينَ بَعْدُ، رُبَّمَا هِيَ مُجَرَّدُ إِشَاعَة", "transliteration": "lasnaa muta2akkideena ba3d, rubbamaa hiya mujarradu ishaa3a" },
-        { "slot": "you-won-t-believe-what-happened-yesterday-in-the", "arabic": "لَنْ تُصَدِّقَ مَا حَدَثَ أَمْسِ فِي الْحَيّ", "transliteration": "lan tusaddiqa maa 7adatha amsi fee al-7ayy" },
-        { "slot": "my-sister-got-married-last-month", "arabic": "تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي", "transliteration": "tazawwajat ukhtee ash-shahra al-maadee" },
-        { "slot": "we-heard-they-had-a-baby-boy", "arabic": "سَمِعْنَا أَنَّهُمْ رُزِقُوا بِوَلَد", "transliteration": "sami3naa annahum ruziqoo biwalad" },
-        { "slot": "what-s-the-latest-news-with-you", "arabic": "مَا آخِرُ أَخْبَارِكَ؟", "transliteration": "maa aakhiru akhbaarika?" },
-        { "slot": "don-t-tell-anyone-but-i-heard-they-re-going-to-t", "arabic": "لَا تُخْبِرْ أَحَدًا، لَكِنِّي سَمِعْتُ أَنَّهُمْ سَيُسَافِرُونَ", "transliteration": "laa tukhbir a7adan, lakinnee sami3tu annahum sayusaafiroon" },
-        { "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it", "arabic": "هَذَا كُلُّهُ كَلَامُ النَّاسِ، لَا أَعْرِفُ هَلْ هُوَ صَحِيحٌ أَمْ لَا", "transliteration": "haadhaa kulluhu kalaamu an-naas, laa a3rifu hal huwa sa7eeh am laa" }
+        {
+          "slot": "i-heard-that-samer-got-engaged",
+          "arabic": "سَمِعْتُ أَنَّ سَامِرًا أَصْبَحَ مَخْطُوبًا",
+          "transliteration": "sami3tu anna Saameran asba7a makhtooban"
+        },
+        {
+          "slot": "there-s-news-you-won-t-believe",
+          "arabic": "عِنْدِي خَبَرٌ لَنْ تُصَدِّقَه",
+          "transliteration": "3indee khabarun lan tusaddiqah"
+        },
+        {
+          "slot": "they-told-me-you-re-moving-to-a-new-house",
+          "arabic": "قِيلَ لِي إِنَّكَ سَتَنْتَقِلُ إِلَى بَيْتٍ جَدِيد",
+          "transliteration": "qeela lee innaka satantaqilu ilaa baytin jadeed"
+        },
+        {
+          "slot": "who-told-you-this-news",
+          "arabic": "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟",
+          "transliteration": "man akhbaraka bihaadhaa al-khabar?"
+        },
+        {
+          "slot": "they-re-saying-that-such-and-such-shop-closed",
+          "arabic": "يَقُولُونَ إِنَّ مَحَلَّ فُلَانٍ أُغْلِقَ",
+          "transliteration": "yaqooloona inna ma7alla fulaanin ughliq"
+        },
+        {
+          "slot": "we-re-not-sure-yet-it-might-just-be-a-rumor",
+          "arabic": "لَسْنَا مُتَأَكِّدِينَ بَعْدُ، رُبَّمَا هِيَ مُجَرَّدُ إِشَاعَة",
+          "transliteration": "lasnaa muta2akkideena ba3d, rubbamaa hiya mujarradu ishaa3a"
+        },
+        {
+          "slot": "you-won-t-believe-what-happened-yesterday-in-the",
+          "arabic": "لَنْ تُصَدِّقَ مَا حَدَثَ أَمْسِ فِي الْحَيّ",
+          "transliteration": "lan tusaddiqa maa 7adatha amsi fee al-7ayy"
+        },
+        {
+          "slot": "my-sister-got-married-last-month",
+          "arabic": "تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي",
+          "transliteration": "tazawwajat ukhtee ash-shahra al-maadee"
+        },
+        {
+          "slot": "we-heard-they-had-a-baby-boy",
+          "arabic": "سَمِعْنَا أَنَّهُمْ رُزِقُوا بِوَلَد",
+          "transliteration": "sami3naa annahum ruziqoo biwalad"
+        },
+        {
+          "slot": "what-s-the-latest-news-with-you",
+          "arabic": "مَا آخِرُ أَخْبَارِكَ؟",
+          "transliteration": "maa aakhiru akhbaarika?"
+        },
+        {
+          "slot": "don-t-tell-anyone-but-i-heard-they-re-going-to-t",
+          "arabic": "لَا تُخْبِرْ أَحَدًا، لَكِنِّي سَمِعْتُ أَنَّهُمْ سَيُسَافِرُونَ",
+          "transliteration": "laa tukhbir a7adan, lakinnee sami3tu annahum sayusaafiroon"
+        },
+        {
+          "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it",
+          "arabic": "هَذَا كُلُّهُ كَلَامُ النَّاسِ، لَا أَعْرِفُ هَلْ هُوَ صَحِيحٌ أَمْ لَا",
+          "transliteration": "haadhaa kulluhu kalaamu an-naas, laa a3rifu hal huwa sa7eeh am laa"
+        }
       ],
       "dialogue": [
-        { "speaker": "Maha", "arabic": "مَرْحَبًا يَا يُوسُف. مَا آخِرُ أَخْبَارِكَ؟", "transliteration": "marhaban yaa Yoosuf. maa aakhiru akhbaarika?", "english": "Hello, Yousef. What's your latest news?" },
-        { "speaker": "Yousef", "arabic": "أَهْلًا يَا مَهَا. عِنْدِي خَبَرٌ لَنْ تُصَدِّقِيهِ.", "transliteration": "ahlan yaa Mahaa. 3indee khabarun lan tusaddiqeehi.", "english": "Hello, Maha. I have news you won't believe." },
-        { "speaker": "Maha", "arabic": "مَاذَا حَدَثَ؟", "transliteration": "maadhaa 7adath?", "english": "What happened?" },
-        { "speaker": "Yousef", "arabic": "سَمِعْتُ أَنَّ سَامِرًا أَصْبَحَ مَخْطُوبًا.", "transliteration": "sami3tu anna Saameran asba7a makhtooban.", "english": "I heard that Samer got engaged." },
-        { "speaker": "Maha", "arabic": "حَقًّا؟ مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟", "transliteration": "7aqqan? man akhbaraka bihaadhaa al-khabar?", "english": "Really? Who told you this news?" },
-        { "speaker": "Yousef", "arabic": "قَالَ لِي جَارُنَا. وَيَقُولُونَ إِنَّ مَحَلَّ فُلَانٍ أُغْلِقَ أَيْضًا.", "transliteration": "qaala lee jaarunaa. wa yaqooloona inna ma7alla fulaanin ughliqa aydan.", "english": "Our neighbor told me. And they say that such-and-such shop closed too." },
-        { "speaker": "Maha", "arabic": "لَسْنَا مُتَأَكِّدِينَ بَعْدُ، رُبَّمَا هِيَ مُجَرَّدُ إِشَاعَة.", "transliteration": "lasnaa muta2akkideena ba3d, rubbamaa hiya mujarradu ishaa3a.", "english": "We're not sure yet, it might just be a rumor." },
-        { "speaker": "Yousef", "arabic": "أَنْتِ عَلَى حَقٍّ، هَذَا كُلُّهُ كَلَامُ النَّاس.", "transliteration": "anti 3alaa 7aqqin, haadhaa kulluhu kalaamu an-naas.", "english": "You're right, it's all just people's talk." },
-        { "speaker": "Maha", "arabic": "وَعِنْدِي أَنَا أَيْضًا خَبَرٌ: تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي.", "transliteration": "wa 3indee anaa aydan khabarun: tazawwajat ukhtee ash-shahra al-maadee.", "english": "And I have news too: my sister got married last month." },
-        { "speaker": "Yousef", "arabic": "مَا شَاءَ اللَّه! وَسَمِعْنَا أَنَّ جِيرَانَنَا رُزِقُوا بِوَلَد.", "transliteration": "maa shaa2a allaah! wa sami3naa anna jeeranaa ruziqoo biwalad.", "english": "God has willed it! And we heard our neighbors had a baby boy." },
-        { "speaker": "Maha", "arabic": "مَا شَاءَ اللَّه! لَا تُخْبِرْ أَحَدًا، لَكِنِّي سَمِعْتُ أَنَّ جِيرَانَنَا سَيُسَافِرُونَ بَعْدَ شَهْر.", "transliteration": "maa shaa2a allaah! laa tukhbir a7adan, lakinnee sami3tu anna jeeranaa sayusaafiroona ba3da shahr.", "english": "God has willed it! Don't tell anyone, but I heard our neighbors are going to travel in a month." },
-        { "speaker": "Yousef", "arabic": "لَنْ أُخْبِرَ أَحَدًا. سَأَرَاكِ غَدًا.", "transliteration": "lan ukhbira a7adan. sa2araaki ghadan.", "english": "I won't tell anyone. I'll see you tomorrow." }
+        {
+          "speaker": "Maha",
+          "arabic": "مَرْحَبًا يَا يُوسُف. مَا آخِرُ أَخْبَارِكَ؟",
+          "transliteration": "marhaban yaa Yoosuf. maa aakhiru akhbaarika?",
+          "english": "Hello, Yousef. What's your latest news?"
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "أَهْلًا يَا مَهَا. عِنْدِي خَبَرٌ لَنْ تُصَدِّقِيهِ.",
+          "transliteration": "ahlan yaa Mahaa. 3indee khabarun lan tusaddiqeehi.",
+          "english": "Hello, Maha. I have news you won't believe."
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "مَاذَا حَدَثَ؟",
+          "transliteration": "maadhaa 7adath?",
+          "english": "What happened?"
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "سَمِعْتُ أَنَّ سَامِرًا أَصْبَحَ مَخْطُوبًا.",
+          "transliteration": "sami3tu anna Saameran asba7a makhtooban.",
+          "english": "I heard that Samer got engaged."
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "حَقًّا؟ مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟",
+          "transliteration": "7aqqan? man akhbaraka bihaadhaa al-khabar?",
+          "english": "Really? Who told you this news?"
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "قَالَ لِي جَارُنَا. وَيَقُولُونَ إِنَّ مَحَلَّ فُلَانٍ أُغْلِقَ أَيْضًا.",
+          "transliteration": "qaala lee jaarunaa. wa yaqooloona inna ma7alla fulaanin ughliqa aydan.",
+          "english": "Our neighbor told me. And they say that such-and-such shop closed too."
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "لَسْنَا مُتَأَكِّدِينَ بَعْدُ، رُبَّمَا هِيَ مُجَرَّدُ إِشَاعَة.",
+          "transliteration": "lasnaa muta2akkideena ba3d, rubbamaa hiya mujarradu ishaa3a.",
+          "english": "We're not sure yet, it might just be a rumor."
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "أَنْتِ عَلَى حَقٍّ، هَذَا كُلُّهُ كَلَامُ النَّاس.",
+          "transliteration": "anti 3alaa 7aqqin, haadhaa kulluhu kalaamu an-naas.",
+          "english": "You're right, it's all just people's talk."
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "وَعِنْدِي أَنَا أَيْضًا خَبَرٌ: تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي.",
+          "transliteration": "wa 3indee anaa aydan khabarun: tazawwajat ukhtee ash-shahra al-maadee.",
+          "english": "And I have news too: my sister got married last month."
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "مَا شَاءَ اللَّه! وَسَمِعْنَا أَنَّ جِيرَانَنَا رُزِقُوا بِوَلَد.",
+          "transliteration": "maa shaa2a allaah! wa sami3naa anna jeeranaa ruziqoo biwalad.",
+          "english": "God has willed it! And we heard our neighbors had a baby boy."
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "مَا شَاءَ اللَّه! لَا تُخْبِرْ أَحَدًا، لَكِنِّي سَمِعْتُ أَنَّ جِيرَانَنَا سَيُسَافِرُونَ بَعْدَ شَهْر.",
+          "transliteration": "maa shaa2a allaah! laa tukhbir a7adan, lakinnee sami3tu anna jeeranaa sayusaafiroona ba3da shahr.",
+          "english": "God has willed it! Don't tell anyone, but I heard our neighbors are going to travel in a month."
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "لَنْ أُخْبِرَ أَحَدًا. سَأَرَاكِ غَدًا.",
+          "transliteration": "lan ukhbira a7adan. sa2araaki ghadan.",
+          "english": "I won't tell anyone. I'll see you tomorrow."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "مَا آخِرُ أَخْبَارِكَ؟", "transliteration": "maa aakhiru akhbaarika?", "english": "What's your latest news?" },
-          "response": { "arabic": "عِنْدِي خَبَرٌ جَمِيل.", "transliteration": "3indee khabarun jameel.", "english": "I have good news." }
+          "pair": {
+            "arabic": "مَا آخِرُ أَخْبَارِكَ؟",
+            "transliteration": "maa aakhiru akhbaarika?",
+            "english": "What's your latest news?"
+          },
+          "response": {
+            "arabic": "عِنْدِي خَبَرٌ جَمِيل.",
+            "transliteration": "3indee khabarun jameel.",
+            "english": "I have good news."
+          }
         },
         {
-          "pair": { "arabic": "مَنْ أَخْبَرَكَ بِهَذَا؟", "transliteration": "man akhbaraka bihaadhaa?", "english": "Who told you this?" },
-          "response": { "arabic": "سَمِعْتُهُ مِنْ جَارِنَا.", "transliteration": "sami3tuhu min jaarinaa.", "english": "I heard it from our neighbor." }
+          "pair": {
+            "arabic": "مَنْ أَخْبَرَكَ بِهَذَا؟",
+            "transliteration": "man akhbaraka bihaadhaa?",
+            "english": "Who told you this?"
+          },
+          "response": {
+            "arabic": "سَمِعْتُهُ مِنْ جَارِنَا.",
+            "transliteration": "sami3tuhu min jaarinaa.",
+            "english": "I heard it from our neighbor."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ هَذَا صَحِيح؟", "transliteration": "hal haadhaa sa7eeh?", "english": "Is this true?" },
-          "response": { "arabic": "لَسْتُ مُتَأَكِّدًا بَعْدُ.", "transliteration": "lastu muta2akkidan ba3d.", "english": "I'm not sure yet." }
+          "pair": {
+            "arabic": "هَلْ هَذَا صَحِيح؟",
+            "transliteration": "hal haadhaa sa7eeh?",
+            "english": "Is this true?"
+          },
+          "response": {
+            "arabic": "لَسْتُ مُتَأَكِّدًا بَعْدُ.",
+            "transliteration": "lastu muta2akkidan ba3d.",
+            "english": "I'm not sure yet."
+          }
         },
         {
-          "pair": { "arabic": "مَتَى تَزَوَّجَتْ أُخْتُكَ؟", "transliteration": "mataa tazawwajat ukhtuka?", "english": "When did your sister get married?" },
-          "response": { "arabic": "تَزَوَّجَتْ فِي الشَّهْرِ الْمَاضِي.", "transliteration": "tazawwajat fee ash-shahri al-maadee.", "english": "She got married last month." }
+          "pair": {
+            "arabic": "مَتَى تَزَوَّجَتْ أُخْتُكَ؟",
+            "transliteration": "mataa tazawwajat ukhtuka?",
+            "english": "When did your sister get married?"
+          },
+          "response": {
+            "arabic": "تَزَوَّجَتْ فِي الشَّهْرِ الْمَاضِي.",
+            "transliteration": "tazawwajat fee ash-shahri al-maadee.",
+            "english": "She got married last month."
+          }
         }
       ],
       "culture": "News travels by word of mouth, so Fusha has careful ways to say how sure you are: سَمِعْتُ أَنَّ is 'I heard that', يَقُولُونَ is 'they say', and رُبَّمَا is 'maybe'. On good news people answer مَا شَاءَ اللَّه, and on passing on a secret they add لَا تُخْبِرْ أَحَدًا.",
@@ -560,8 +1419,16 @@
           "type": "reply",
           "prompt": "A friend asks: 'مَا آخِرُ أَخْبَارِكَ؟'. Say you have news they won't believe.",
           "answer": "عِنْدِي خَبَرٌ لَنْ تُصَدِّقَه",
-          "accepted": ["عِنْدِي خَبَرٌ لَنْ تُصَدِّقَه", "عندي خبر لن تصدقه", "عِنْدِي خَبَرٌ لَنْ تُصَدِّقَهُ", "3indee khabarun lan tusaddiqah"],
-          "too_formal": { "item": "عِنْدِي خَبَر مَا رَح تِصَدِّقُه", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "عِنْدِي خَبَرٌ لَنْ تُصَدِّقَه",
+            "عندي خبر لن تصدقه",
+            "عِنْدِي خَبَرٌ لَنْ تُصَدِّقَهُ",
+            "3indee khabarun lan tusaddiqah"
+          ],
+          "too_formal": {
+            "item": "عِنْدِي خَبَر مَا رَح تِصَدِّقُه",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "لَنْ plus a present-tense verb says 'will never'."
         },
         {
@@ -569,8 +1436,16 @@
           "type": "reply",
           "prompt": "Someone asks: 'هَلْ هَذَا صَحِيح؟'. Say you are not sure yet.",
           "answer": "لَسْتُ مُتَأَكِّدًا بَعْدُ",
-          "accepted": ["لَسْتُ مُتَأَكِّدًا بَعْدُ", "لست متأكدا بعد", "لَسْتُ مُتَأَكِّدَةً بَعْدُ", "lastu muta2akkidan ba3d"],
-          "too_formal": { "item": "مَا أَنَا مُتَأَكِّد لِسَّا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لَسْتُ مُتَأَكِّدًا بَعْدُ",
+            "لست متأكدا بعد",
+            "لَسْتُ مُتَأَكِّدَةً بَعْدُ",
+            "lastu muta2akkidan ba3d"
+          ],
+          "too_formal": {
+            "item": "مَا أَنَا مُتَأَكِّد لِسَّا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "لَسْتُ is 'I am not'; a woman says مُتَأَكِّدَةً."
         },
         {
@@ -578,8 +1453,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'سَمِعْتُ _____ سَامِرًا أَصْبَحَ مَخْطُوبًا.' (I heard that Samer got engaged.)",
           "answer": "أَنَّ",
-          "accepted": ["أَنَّ", "ان", "anna", "إِنَّ"],
-          "too_formal": { "item": "إِنُّو", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَنَّ",
+            "ان",
+            "anna",
+            "إِنَّ"
+          ],
+          "too_formal": {
+            "item": "إِنُّو",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "After سَمِعْتُ, the word أَنَّ means 'that' and the name after it takes a fatha."
         },
         {
@@ -587,8 +1470,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'مَنْ _____ بِهَذَا الْخَبَر؟' (Who told you this news? to a man)",
           "answer": "أَخْبَرَكَ",
-          "accepted": ["أَخْبَرَكَ", "اخبرك", "akhbaraka", "أَخْبَرَكِ"],
-          "too_formal": { "item": "قَالَّك", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَخْبَرَكَ",
+            "اخبرك",
+            "akhbaraka",
+            "أَخْبَرَكِ"
+          ],
+          "too_formal": {
+            "item": "قَالَّك",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَخْبَرَكَ is 'told you'; كَ is 'you' to a man, كِ to a woman."
         },
         {
@@ -596,8 +1487,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'My sister got married last month.'",
           "answer": "تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي",
-          "accepted": ["تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي", "تزوجت أختي الشهر الماضي", "تَزَوَّجَتْ أُخْتِي فِي الشَّهْرِ الْمَاضِي", "tazawwajat ukhtee ash-shahra al-maadee"],
-          "too_formal": { "item": "أُخْتِي تْجَوَّزَت الشَّهْر الْمَاضِي", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي",
+            "تزوجت أختي الشهر الماضي",
+            "تَزَوَّجَتْ أُخْتِي فِي الشَّهْرِ الْمَاضِي",
+            "tazawwajat ukhtee ash-shahra al-maadee"
+          ],
+          "too_formal": {
+            "item": "أُخْتِي تْجَوَّزَت الشَّهْر الْمَاضِي",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "الشَّهْرَ الْمَاضِي is 'last month', literally 'the past month'."
         },
         {
@@ -605,8 +1504,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'Who told you this news?' (to a man)",
           "answer": "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟",
-          "accepted": ["مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟", "من أخبرك بهذا الخبر؟", "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَرِ", "man akhbaraka bihaadhaa al-khabar?"],
-          "too_formal": { "item": "مِين قَالَّك هَالْخَبَر؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟",
+            "من أخبرك بهذا الخبر؟",
+            "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَرِ",
+            "man akhbaraka bihaadhaa al-khabar?"
+          ],
+          "too_formal": {
+            "item": "مِين قَالَّك هَالْخَبَر؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "بِ joins the verb to what you were told about."
         },
         {
@@ -614,28 +1521,62 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'They say the shop closed.'",
           "answer": "يَقُولُونَ إِنَّ الْمَحَلَّ أُغْلِقَ",
-          "accepted": ["يَقُولُونَ إِنَّ الْمَحَلَّ أُغْلِقَ", "يقولون إن المحل أغلق", "يَقُولُونَ إِنَّ الْمَحَلَّ قَدْ أُغْلِقَ", "yaqooloona inna al-ma7alla ughliq"],
-          "too_formal": { "item": "عَم يِقُولُوا إِنُّو الْمَحَل سَكَّر", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "يَقُولُونَ إِنَّ الْمَحَلَّ أُغْلِقَ",
+            "يقولون إن المحل أغلق",
+            "يَقُولُونَ إِنَّ الْمَحَلَّ قَدْ أُغْلِقَ",
+            "yaqooloona inna al-ma7alla ughliq"
+          ],
+          "too_formal": {
+            "item": "عَم يِقُولُوا إِنُّو الْمَحَل سَكَّر",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "يَقُولُونَ is 'they say'; إِنَّ introduces what they say."
         },
         {
           "id": "unit-16.lesson-04.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'That's all just people's talk'?",
-          "options": ["هَذَا كُلُّهُ كَلَامُ النَّاس", "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟", "تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي", "مَا آخِرُ أَخْبَارِكَ؟"],
+          "options": [
+            "هَذَا كُلُّهُ كَلَامُ النَّاس",
+            "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟",
+            "تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي",
+            "مَا آخِرُ أَخْبَارِكَ؟"
+          ],
           "answer": "هَذَا كُلُّهُ كَلَامُ النَّاس",
-          "accepted": ["هَذَا كُلُّهُ كَلَامُ النَّاس", "هذا كله كلام الناس", "هَذَا كُلُّهُ كَلَامُ النَّاسِ", "haadhaa kulluhu kalaamu an-naas"],
-          "too_formal": { "item": "هَادَا كُلُّه حَكِي نَاس", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هَذَا كُلُّهُ كَلَامُ النَّاس",
+            "هذا كله كلام الناس",
+            "هَذَا كُلُّهُ كَلَامُ النَّاسِ",
+            "haadhaa kulluhu kalaamu an-naas"
+          ],
+          "too_formal": {
+            "item": "هَادَا كُلُّه حَكِي نَاس",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كَلَامُ النَّاسِ is 'what people say', talk that may not be true."
         },
         {
           "id": "unit-16.lesson-04.choose.02",
           "type": "choose",
           "prompt": "Which word means 'rumor'?",
-          "options": ["إِشَاعَة", "خَبَر", "حَقِيقَة", "مُفَاجَأَة"],
+          "options": [
+            "إِشَاعَة",
+            "خَبَر",
+            "حَقِيقَة",
+            "مُفَاجَأَة"
+          ],
           "answer": "إِشَاعَة",
-          "accepted": ["إِشَاعَة", "اشاعة", "ishaa3a", "شَائِعَة"],
-          "too_formal": { "item": "حَكِي فَاضِي", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "إِشَاعَة",
+            "اشاعة",
+            "ishaa3a",
+            "شَائِعَة"
+          ],
+          "too_formal": {
+            "item": "حَكِي فَاضِي",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "خَبَر is 'news', حَقِيقَة is 'truth', مُفَاجَأَة is 'surprise'."
         },
         {
@@ -643,8 +1584,16 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'الْخَبَر؟ / بِهَذَا / أَخْبَرَكَ / مَنْ'.",
           "answer": "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟",
-          "accepted": ["مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟", "من أخبرك بهذا الخبر؟", "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر", "man akhbaraka bihaadhaa al-khabar?"],
-          "too_formal": { "item": "مِين قَالَّك هَالْخَبَر؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟",
+            "من أخبرك بهذا الخبر؟",
+            "مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر",
+            "man akhbaraka bihaadhaa al-khabar?"
+          ],
+          "too_formal": {
+            "item": "مِين قَالَّك هَالْخَبَر؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مَنْ first, then the verb, then what you were told."
         },
         {
@@ -652,9 +1601,706 @@
           "type": "reorder",
           "prompt": "Put the words in order: 'الْمَاضِي / أُخْتِي / تَزَوَّجَتْ / الشَّهْرَ'.",
           "answer": "تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي",
-          "accepted": ["تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي", "تزوجت أختي الشهر الماضي", "تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِيَ", "tazawwajat ukhtee ash-shahra al-maadee"],
-          "too_formal": { "item": "أُخْتِي تْجَوَّزَت الشَّهْر الْمَاضِي", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِي",
+            "تزوجت أختي الشهر الماضي",
+            "تَزَوَّجَتْ أُخْتِي الشَّهْرَ الْمَاضِيَ",
+            "tazawwajat ukhtee ash-shahra al-maadee"
+          ],
+          "too_formal": {
+            "item": "أُخْتِي تْجَوَّزَت الشَّهْر الْمَاضِي",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The verb comes first and agrees with أُخْت, so it is feminine."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "i-traveled-to-another-city-last-week",
+          "arabic": "سَافَرْتُ إِلَى مَدِينَةٍ أُخْرَى الْأُسْبُوعَ الْمَاضِي",
+          "transliteration": "safartu ilaa madeenatin ukhraa al-usboo3a al-maadee"
+        },
+        {
+          "slot": "i-took-the-train-from-the-main-station",
+          "arabic": "رَكِبْتُ الْقِطَارَ مِنَ الْمَحَطَّةِ الرَّئِيسِيَّة",
+          "transliteration": "rakibtu al-qiTaara mina al-ma7aTTati ar-ra2eesiyya"
+        },
+        {
+          "slot": "i-bought-the-ticket-the-day-before",
+          "arabic": "اِشْتَرَيْتُ التَّذْكِرَةَ قَبْلَ يَوْمٍ",
+          "transliteration": "ishtaraytu at-tadhkirata qabla yawm"
+        },
+        {
+          "slot": "i-packed-my-suitcase-the-night-before",
+          "arabic": "جَهَّزْتُ حَقِيبَتِي فِي اللَّيْلَةِ السَّابِقَة",
+          "transliteration": "jahhaztu 7aqeebatee fee al-laylati as-saabiqa"
+        },
+        {
+          "slot": "the-journey-took-four-hours",
+          "arabic": "اِسْتَغْرَقَتِ الرِّحْلَةُ أَرْبَعَ سَاعَات",
+          "transliteration": "istaghraqati ar-ri7latu arba3a saa3aat"
+        },
+        {
+          "slot": "i-sat-next-to-the-window",
+          "arabic": "جَلَسْتُ بِجَانِبِ النَّافِذَة",
+          "transliteration": "jalastu bijaanibi an-naafidha"
+        },
+        {
+          "slot": "i-saw-green-fields-and-mountains",
+          "arabic": "رَأَيْتُ حُقُولًا خَضْرَاءَ وَجِبَالًا",
+          "transliteration": "ra2aytu 7uqoolan khadraa2a wajibaalan"
+        },
+        {
+          "slot": "we-arrived-after-noon",
+          "arabic": "وَصَلْنَا بَعْدَ الظُّهْر",
+          "transliteration": "wasalnaa ba3da az-zuhr"
+        },
+        {
+          "slot": "i-stayed-in-a-small-hotel-near-the-sea",
+          "arabic": "أَقَمْتُ فِي فُنْدُقٍ صَغِيرٍ قُرْبَ الْبَحْر",
+          "transliteration": "aqamtu fee funduqin sagheerin qurba al-ba7r"
+        },
+        {
+          "slot": "i-took-many-photos",
+          "arabic": "اِلْتَقَطْتُ صُوَرًا كَثِيرَة",
+          "transliteration": "iltaqaTtu suwaran katheera"
+        },
+        {
+          "slot": "i-tried-the-local-food",
+          "arabic": "جَرَّبْتُ الْأَكْلَ الْمَحَلِّيّ",
+          "transliteration": "jarrabtu al-akla al-ma7alliyy"
+        },
+        {
+          "slot": "i-came-back-tired-but-happy",
+          "arabic": "عُدْتُ مُتْعَبًا لَكِنْ سَعِيدًا",
+          "transliteration": "3udtu mut3aban lakin sa3eedan"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Lina",
+          "arabic": "أَيْنَ كُنْتِ يَا سَلْمَى؟ لَمْ أَرَكِ مُنْذُ أُسْبُوع.",
+          "transliteration": "ayna kunti yaa Salmaa? lam araki mundhu usboo3.",
+          "english": "Where were you, Salma? I have not seen you for a week."
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "سَافَرْتُ إِلَى مَدِينَةٍ أُخْرَى الْأُسْبُوعَ الْمَاضِي.",
+          "transliteration": "safartu ilaa madeenatin ukhraa al-usboo3a al-maadee.",
+          "english": "I traveled to another city last week."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "كَيْفَ سَافَرْتِ؟",
+          "transliteration": "kayfa safarti?",
+          "english": "How did you travel?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "رَكِبْتُ الْقِطَارَ، وَاشْتَرَيْتُ التَّذْكِرَةَ قَبْلَ يَوْمٍ.",
+          "transliteration": "rakibtu al-qiTaara, washtaraytu at-tadhkirata qabla yawm.",
+          "english": "I took the train, and I bought the ticket the day before."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "كَمِ اسْتَغْرَقَتِ الرِّحْلَة؟",
+          "transliteration": "kami istaghraqati ar-ri7la?",
+          "english": "How long did the journey take?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "اِسْتَغْرَقَتْ أَرْبَعَ سَاعَات. جَلَسْتُ بِجَانِبِ النَّافِذَة.",
+          "transliteration": "istaghraqat arba3a saa3aat. jalastu bijaanibi an-naafidha.",
+          "english": "It took four hours. I sat next to the window."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "وَمَاذَا رَأَيْتِ؟",
+          "transliteration": "wamaadhaa ra2ayti?",
+          "english": "And what did you see?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "رَأَيْتُ حُقُولًا خَضْرَاءَ وَجِبَالًا.",
+          "transliteration": "ra2aytu 7uqoolan khadraa2a wajibaalan.",
+          "english": "I saw green fields and mountains."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "وَأَيْنَ أَقَمْتِ؟",
+          "transliteration": "wa-ayna aqamti?",
+          "english": "And where did you stay?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "أَقَمْتُ فِي فُنْدُقٍ صَغِيرٍ قُرْبَ الْبَحْرِ، وَالْتَقَطْتُ صُوَرًا كَثِيرَة.",
+          "transliteration": "aqamtu fee funduqin sagheerin qurba al-ba7ri, wa-ltaqaTtu suwaran katheera.",
+          "english": "I stayed in a small hotel near the sea, and I took many photos."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "هَلْ جَرَّبْتِ الْأَكْلَ الْمَحَلِّيّ؟",
+          "transliteration": "hal jarrabti al-akla al-ma7alliyy?",
+          "english": "Did you try the local food?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "نَعَمْ، وَعُدْتُ مُتْعَبَةً لَكِنْ سَعِيدَة.",
+          "transliteration": "na3am, wa3udtu mut3abatan lakin sa3eeda.",
+          "english": "Yes, and I came back tired but happy."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كَيْفَ كَانَتِ الرِّحْلَة؟",
+            "transliteration": "kayfa kaanati ar-ri7la?",
+            "english": "How was the trip?"
+          },
+          "response": {
+            "arabic": "كَانَتْ رَائِعَة، الْحَمْدُ لِلَّه.",
+            "transliteration": "kaanat raa2i3a, al-7amdu lillaah.",
+            "english": "It was wonderful, praise be to Allah."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَمِ اسْتَغْرَقَتِ الرِّحْلَة؟",
+            "transliteration": "kami istaghraqati ar-ri7la?",
+            "english": "How long did the trip take?"
+          },
+          "response": {
+            "arabic": "أَرْبَعَ سَاعَات.",
+            "transliteration": "arba3a saa3aat.",
+            "english": "Four hours."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيْنَ أَقَمْتَ؟",
+            "transliteration": "ayna aqamta?",
+            "english": "Where did you stay?"
+          },
+          "response": {
+            "arabic": "فِي فُنْدُقٍ صَغِير.",
+            "transliteration": "fee funduqin sagheer.",
+            "english": "In a small hotel."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ عُدْتَ سَالِمًا؟",
+            "transliteration": "hal 3udta saaliman?",
+            "english": "Did you come back safely?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، وَصَلْتُ سَالِمًا.",
+            "transliteration": "na3am, wasaltu saalima.",
+            "english": "Yes, I arrived safely."
+          }
+        }
+      ],
+      "culture": "A person returning from a journey is welcomed with الْحَمْدُ لِلَّهِ عَلَى السَّلَامَة, 'praise be to Allah for your safety'. Travelers ask Allah for a safe trip before leaving, and tell the story of the trip afterwards with الْحَمْدُ لِلَّه. Past events use the verb in its past form: سَافَرْتُ, رَكِبْتُ, وَصَلْنَا.",
+      "exercises": [
+        {
+          "id": "unit-16.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: 'كَمِ اسْتَغْرَقَتِ الرِّحْلَة؟'. Say four hours.",
+          "answer": "اِسْتَغْرَقَتْ أَرْبَعَ سَاعَات",
+          "accepted": [
+            "اِسْتَغْرَقَتْ أَرْبَعَ سَاعَات",
+            "استغرقت أربع ساعات",
+            "أَرْبَعَ سَاعَات",
+            "أربع ساعات",
+            "istaghraqat arba3a saa3aat"
+          ],
+          "tip": "اِسْتَغْرَقَتْ is 'it took' for a feminine thing like الرِّحْلَة."
+        },
+        {
+          "id": "unit-16.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: 'هَلْ جَرَّبْتَ الْأَكْلَ الْمَحَلِّيّ؟'. Say yes, you tried it.",
+          "answer": "نَعَمْ، جَرَّبْتُ الْأَكْلَ الْمَحَلِّيّ",
+          "accepted": [
+            "نَعَمْ، جَرَّبْتُ الْأَكْلَ الْمَحَلِّيّ",
+            "نعم، جربت الأكل المحلي",
+            "نَعَمْ، جَرَّبْتُهُ",
+            "نعم، جربته",
+            "na3am, jarrabtu al-akla al-ma7alliyy"
+          ],
+          "tip": "جَرَّبْتُ is 'I tried'."
+        },
+        {
+          "id": "unit-16.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'اشْتَرَيْتُ _____ قَبْلَ يَوْمٍ' (I bought the ticket the day before.)",
+          "answer": "التَّذْكِرَةَ",
+          "accepted": [
+            "التَّذْكِرَةَ",
+            "التذكرة",
+            "at-tadhkirata"
+          ],
+          "tip": "اِشْتَرَيْتُ is 'I bought' and التَّذْكِرَةَ is the thing bought."
+        },
+        {
+          "id": "unit-16.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَقَمْتُ فِي فُنْدُقٍ صَغِيرٍ _____ الْبَحْر' (I stayed in a small hotel near the sea.)",
+          "answer": "قُرْبَ",
+          "accepted": [
+            "قُرْبَ",
+            "قرب",
+            "qurba"
+          ],
+          "tip": "قُرْبَ means 'near'."
+        },
+        {
+          "id": "unit-16.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I took the train from the main station.'",
+          "answer": "رَكِبْتُ الْقِطَارَ مِنَ الْمَحَطَّةِ الرَّئِيسِيَّة",
+          "accepted": [
+            "رَكِبْتُ الْقِطَارَ مِنَ الْمَحَطَّةِ الرَّئِيسِيَّة",
+            "ركبت القطار من المحطة الرئيسية",
+            "rakibtu al-qiTaara mina al-ma7aTTati ar-ra2eesiyya"
+          ],
+          "tip": "رَكِبْتُ is 'I rode, I took (a vehicle)'."
+        },
+        {
+          "id": "unit-16.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I packed my suitcase the night before.'",
+          "answer": "جَهَّزْتُ حَقِيبَتِي فِي اللَّيْلَةِ السَّابِقَة",
+          "accepted": [
+            "جَهَّزْتُ حَقِيبَتِي فِي اللَّيْلَةِ السَّابِقَة",
+            "جهزت حقيبتي في الليلة السابقة",
+            "jahhaztu 7aqeebatee fee al-laylati as-saabiqa"
+          ],
+          "tip": "جَهَّزْتُ is 'I prepared'."
+        },
+        {
+          "id": "unit-16.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'We arrived after noon.'",
+          "answer": "وَصَلْنَا بَعْدَ الظُّهْر",
+          "accepted": [
+            "وَصَلْنَا بَعْدَ الظُّهْر",
+            "وصلنا بعد الظهر",
+            "wasalnaa ba3da az-zuhr"
+          ],
+          "tip": "وَصَلْنَا is 'we arrived'."
+        },
+        {
+          "id": "unit-16.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'The journey took four hours.'?",
+          "options": [
+            "وَصَلْنَا بَعْدَ الظُّهْر",
+            "اِسْتَغْرَقَتِ الرِّحْلَةُ أَرْبَعَ سَاعَات",
+            "اِلْتَقَطْتُ صُوَرًا كَثِيرَة",
+            "جَرَّبْتُ الْأَكْلَ الْمَحَلِّيّ"
+          ],
+          "answer": "اِسْتَغْرَقَتِ الرِّحْلَةُ أَرْبَعَ سَاعَات",
+          "accepted": [
+            "اِسْتَغْرَقَتِ الرِّحْلَةُ أَرْبَعَ سَاعَات",
+            "استغرقت الرحلة أربع ساعات",
+            "istaghraqati ar-ri7latu arba3a saa3aat"
+          ],
+          "tip": "اِسْتَغْرَقَ means 'it took (time)'."
+        },
+        {
+          "id": "unit-16.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'I came back tired but happy.'?",
+          "options": [
+            "سَافَرْتُ إِلَى مَدِينَةٍ أُخْرَى الْأُسْبُوعَ الْمَاضِي",
+            "جَلَسْتُ بِجَانِبِ النَّافِذَة",
+            "عُدْتُ مُتْعَبًا لَكِنْ سَعِيدًا",
+            "رَأَيْتُ حُقُولًا خَضْرَاءَ وَجِبَالًا"
+          ],
+          "answer": "عُدْتُ مُتْعَبًا لَكِنْ سَعِيدًا",
+          "accepted": [
+            "عُدْتُ مُتْعَبًا لَكِنْ سَعِيدًا",
+            "عدت متعبا لكن سعيدا",
+            "3udtu mut3aban lakin sa3eedan"
+          ],
+          "tip": "لَكِنْ means 'but'."
+        },
+        {
+          "id": "unit-16.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'بِجَانِبِ / النَّافِذَة / جَلَسْتُ'.",
+          "answer": "جَلَسْتُ بِجَانِبِ النَّافِذَة",
+          "accepted": [
+            "جَلَسْتُ بِجَانِبِ النَّافِذَة",
+            "جلست بجانب النافذة",
+            "jalastu bijaanibi an-naafidha"
+          ],
+          "tip": "The verb comes first, then where."
+        },
+        {
+          "id": "unit-16.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْمَاضِي / الْأُسْبُوعَ / أُخْرَى / مَدِينَةٍ / إِلَى / سَافَرْتُ'.",
+          "answer": "سَافَرْتُ إِلَى مَدِينَةٍ أُخْرَى الْأُسْبُوعَ الْمَاضِي",
+          "accepted": [
+            "سَافَرْتُ إِلَى مَدِينَةٍ أُخْرَى الْأُسْبُوعَ الْمَاضِي",
+            "سافرت إلى مدينة أخرى الأسبوع الماضي",
+            "safartu ilaa madeenatin ukhraa al-usboo3a al-maadee"
+          ],
+          "tip": "The verb comes first, then where to, then when."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "i-have-good-news-for-you",
+          "arabic": "عِنْدِي لَكَ خَبَرٌ سَارّ",
+          "transliteration": "3indee laka khabarun saarr"
+        },
+        {
+          "slot": "i-passed-the-exam",
+          "arabic": "نَجَحْتُ فِي الِامْتِحَان",
+          "transliteration": "naja7tu fee al-imti7aan"
+        },
+        {
+          "slot": "i-got-the-job",
+          "arabic": "حَصَلْتُ عَلَى الْوَظِيفَة",
+          "transliteration": "7asaltu 3alaa al-waZeefa"
+        },
+        {
+          "slot": "we-will-have-a-new-baby-allah-willing",
+          "arabic": "سَيَكُونُ عِنْدَنَا مَوْلُودٌ جَدِيدٌ إِنْ شَاءَ اللَّه",
+          "transliteration": "sayakoonu 3indanaa mawloodun jadeedun in shaa2a allaah"
+        },
+        {
+          "slot": "my-brother-got-engaged-yesterday",
+          "arabic": "تَمَّتْ خِطْبَةُ أَخِي أَمْسِ",
+          "transliteration": "tammat khiTbatu akhee amsi"
+        },
+        {
+          "slot": "we-bought-a-new-house",
+          "arabic": "اِشْتَرَيْنَا بَيْتًا جَدِيدًا",
+          "transliteration": "ishtarayna baytan jadeedan"
+        },
+        {
+          "slot": "my-father-came-back-from-the-hospital-and-he-is",
+          "arabic": "عَادَ أَبِي مِنَ الْمُسْتَشْفَى وَهُوَ بِخَيْرٍ الْآن",
+          "transliteration": "3aada abee mina al-mustashfaa wahuwa bikhayrin al-aan"
+        },
+        {
+          "slot": "praise-be-to-allah-this-is-a-great-blessing",
+          "arabic": "اِلْحَمْدُ لِلَّه، هَذِهِ نِعْمَةٌ عَظِيمَة",
+          "transliteration": "al-7amdu lillaah, haadhihi ni3matun 3aZeema"
+        },
+        {
+          "slot": "congratulations-i-am-very-happy-for-you-to-a-man",
+          "arabic": "مَبْرُوك، أَنَا سَعِيدٌ جِدًّا مِنْ أَجْلِكَ",
+          "transliteration": "mabrook, ana sa3eedun jiddan min ajlika"
+        },
+        {
+          "slot": "may-allah-bless-it-for-you",
+          "arabic": "بَارَكَ اللَّهُ لَكَ فِيه",
+          "transliteration": "baaraka allaahu laka feeh",
+          "reply": {
+            "arabic": "جَزَاكَ اللَّهُ خَيْرًا",
+            "transliteration": "jazaaka allaahu khayran",
+            "english": "May Allah reward you with good."
+          }
+        },
+        {
+          "slot": "when-did-you-hear-the-news",
+          "arabic": "مَتَى سَمِعْتَ الْخَبَر؟",
+          "transliteration": "mataa sami3ta al-khabar?"
+        },
+        {
+          "slot": "let-us-celebrate-together-this-evening",
+          "arabic": "لِنَحْتَفِلْ مَعًا هَذَا الْمَسَاء",
+          "transliteration": "lina7tafil ma3an haadhaa al-masaa2"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yasir",
+          "arabic": "عِنْدِي لَكَ خَبَرٌ سَارّ يَا بِلَال.",
+          "transliteration": "3indee laka khabarun saarr yaa Bilaal.",
+          "english": "I have good news for you, Bilal."
+        },
+        {
+          "speaker": "Bilal",
+          "arabic": "خَيْرًا إِنْ شَاءَ اللَّه، مَاذَا حَدَثَ؟",
+          "transliteration": "khayran in shaa2a allaah, maadhaa 7adatha?",
+          "english": "Good, Allah willing, what happened?"
+        },
+        {
+          "speaker": "Yasir",
+          "arabic": "حَصَلْتُ عَلَى الْوَظِيفَة.",
+          "transliteration": "7asaltu 3alaa al-waZeefa.",
+          "english": "I got the job."
+        },
+        {
+          "speaker": "Bilal",
+          "arabic": "مَبْرُوك، أَنَا سَعِيدٌ جِدًّا مِنْ أَجْلِكَ!",
+          "transliteration": "mabrook, ana sa3eedun jiddan min ajlika!",
+          "english": "Congratulations, I am very happy for you!"
+        },
+        {
+          "speaker": "Yasir",
+          "arabic": "بَارَكَ اللَّهُ فِيكَ. وَاشْتَرَيْنَا أَيْضًا بَيْتًا جَدِيدًا.",
+          "transliteration": "baaraka allaahu feeka. washtarayna aydan baytan jadeedan.",
+          "english": "May Allah bless you. And we also bought a new house."
+        },
+        {
+          "speaker": "Bilal",
+          "arabic": "اِلْحَمْدُ لِلَّه، هَذِهِ نِعْمَةٌ عَظِيمَة.",
+          "transliteration": "al-7amdu lillaah, haadhihi ni3matun 3aZeema.",
+          "english": "Praise be to Allah, this is a great blessing."
+        },
+        {
+          "speaker": "Yasir",
+          "arabic": "وَتَمَّتْ خِطْبَةُ أَخِي أَمْسِ.",
+          "transliteration": "watammat khiTbatu akhee amsi.",
+          "english": "And my brother got engaged yesterday."
+        },
+        {
+          "speaker": "Bilal",
+          "arabic": "بَارَكَ اللَّهُ لَكُمْ فِيهِ، أَخْبَارٌ جَمِيلَةٌ كَثِيرَة!",
+          "transliteration": "baaraka allaahu lakum feehi, akhbaarun jameelatun katheera!",
+          "english": "May Allah bless it for you, so much beautiful news!"
+        },
+        {
+          "speaker": "Yasir",
+          "arabic": "وَعَادَ أَبِي مِنَ الْمُسْتَشْفَى وَهُوَ بِخَيْرٍ الْآن.",
+          "transliteration": "wa3aada abee mina al-mustashfaa wahuwa bikhayrin al-aan.",
+          "english": "And my father came back from the hospital and he is well now."
+        },
+        {
+          "speaker": "Bilal",
+          "arabic": "اِلْحَمْدُ لِلَّهِ عَلَى سَلَامَتِهِ. لِنَحْتَفِلْ مَعًا هَذَا الْمَسَاء.",
+          "transliteration": "al-7amdu lillaahi 3alaa salaamatihi. lina7tafil ma3an haadhaa al-masaa2.",
+          "english": "Praise be to Allah for his safety. Let us celebrate together this evening."
+        },
+        {
+          "speaker": "Yasir",
+          "arabic": "فِكْرَةٌ جَمِيلَة! سَأُخْبِرُ الْجَمِيع.",
+          "transliteration": "fikratun jameela! sa-ukhbiru al-jamee3.",
+          "english": "A beautiful idea! I will tell everyone."
+        },
+        {
+          "speaker": "Bilal",
+          "arabic": "مَبْرُوك مَرَّةً أُخْرَى يَا صَدِيقِي.",
+          "transliteration": "mabrook marratan ukhraa yaa Sadeeqee.",
+          "english": "Congratulations once more, my friend."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عِنْدِي لَكَ خَبَرٌ سَارّ.",
+            "transliteration": "3indee laka khabarun saarr.",
+            "english": "I have good news for you."
+          },
+          "response": {
+            "arabic": "خَيْرًا إِنْ شَاءَ اللَّه، مَا هُوَ؟",
+            "transliteration": "khayran in shaa2a allaah, maa huwa?",
+            "english": "Good, Allah willing, what is it?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نَجَحْتُ فِي الِامْتِحَان.",
+            "transliteration": "naja7tu fee al-imti7aan.",
+            "english": "I passed the exam."
+          },
+          "response": {
+            "arabic": "مَبْرُوك، أَنَا سَعِيدٌ لَك.",
+            "transliteration": "mabrook, ana sa3eedun lak.",
+            "english": "Congratulations, I am happy for you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى سَمِعْتَ الْخَبَر؟",
+            "transliteration": "mataa sami3ta al-khabar?",
+            "english": "When did you hear the news?"
+          },
+          "response": {
+            "arabic": "سَمِعْتُهُ هَذَا الصَّبَاح.",
+            "transliteration": "sami3tuhu haadhaa as-sabaa7.",
+            "english": "I heard it this morning."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بَارَكَ اللَّهُ لَكَ فِيه.",
+            "transliteration": "baaraka allaahu laka feeh.",
+            "english": "May Allah bless it for you."
+          },
+          "response": {
+            "arabic": "جَزَاكَ اللَّهُ خَيْرًا.",
+            "transliteration": "jazaaka allaahu khayran.",
+            "english": "May Allah reward you with good."
+          }
+        }
+      ],
+      "culture": "Sharing good news and rejoicing for others is encouraged in Islam, and the first answer is مَبْرُوك or بَارَكَ اللَّهُ لَكَ فِيه. The person who has the news credits Allah with الْحَمْدُ لِلَّه, and says إِنْ شَاءَ اللَّه for good things still to come. Friends then plan to celebrate together.",
+      "exercises": [
+        {
+          "id": "unit-16.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "A friend says: 'عِنْدِي لَكَ خَبَرٌ سَارّ'. Ask what it is, Allah willing.",
+          "answer": "خَيْرًا إِنْ شَاءَ اللَّه، مَاذَا حَدَثَ؟",
+          "accepted": [
+            "خَيْرًا إِنْ شَاءَ اللَّه، مَاذَا حَدَثَ؟",
+            "خيرا إن شاء الله، ماذا حدث؟",
+            "خَيْرًا إِنْ شَاءَ اللَّه",
+            "خيرا إن شاء الله",
+            "مَاذَا حَدَثَ؟",
+            "ماذا حدث؟",
+            "khayran in shaa2a allaah, maadhaa 7adatha?"
+          ],
+          "tip": "خَيْرًا إِنْ شَاءَ اللَّه is 'good, Allah willing'."
+        },
+        {
+          "id": "unit-16.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "A friend says: 'حَصَلْتُ عَلَى الْوَظِيفَة'. Congratulate him.",
+          "answer": "مَبْرُوك، أَنَا سَعِيدٌ جِدًّا مِنْ أَجْلِكَ",
+          "accepted": [
+            "مَبْرُوك، أَنَا سَعِيدٌ جِدًّا مِنْ أَجْلِكَ",
+            "مبروك، أنا سعيد جدا من أجلك",
+            "مَبْرُوك",
+            "مبروك",
+            "بَارَكَ اللَّهُ لَكَ فِيهَا",
+            "بارك الله لك فيها",
+            "mabrook, ana sa3eedun jiddan min ajlika"
+          ],
+          "tip": "مِنْ أَجْلِكَ is 'for your sake'."
+        },
+        {
+          "id": "unit-16.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'نَجَحْتُ فِي _____' (I passed the exam!)",
+          "answer": "الِامْتِحَان",
+          "accepted": [
+            "الِامْتِحَان",
+            "الامتحان",
+            "al-imti7aan"
+          ],
+          "tip": "الِامْتِحَان means 'the exam'."
+        },
+        {
+          "id": "unit-16.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'مَبْرُوك، أَنَا _____ جِدًّا مِنْ أَجْلِكَ' (Congratulations, I am very happy for you. (to a man))",
+          "answer": "سَعِيدٌ",
+          "accepted": [
+            "سَعِيدٌ",
+            "سعيد",
+            "sa3eedun"
+          ],
+          "tip": "سَعِيدٌ means 'happy'."
+        },
+        {
+          "id": "unit-16.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'We bought a new house.'",
+          "answer": "اِشْتَرَيْنَا بَيْتًا جَدِيدًا",
+          "accepted": [
+            "اِشْتَرَيْنَا بَيْتًا جَدِيدًا",
+            "اشترينا بيتا جديدا",
+            "ishtarayna baytan jadeedan"
+          ],
+          "tip": "اِشْتَرَيْنَا is 'we bought'."
+        },
+        {
+          "id": "unit-16.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'When did you hear the news?'",
+          "answer": "مَتَى سَمِعْتَ الْخَبَر؟",
+          "accepted": [
+            "مَتَى سَمِعْتَ الْخَبَر؟",
+            "متى سمعت الخبر؟",
+            "mataa sami3ta al-khabar?"
+          ],
+          "tip": "مَتَى is 'when'."
+        },
+        {
+          "id": "unit-16.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Let us celebrate together this evening.'",
+          "answer": "لِنَحْتَفِلْ مَعًا هَذَا الْمَسَاء",
+          "accepted": [
+            "لِنَحْتَفِلْ مَعًا هَذَا الْمَسَاء",
+            "لنحتفل معا هذا المساء",
+            "lina7tafil ma3an haadhaa al-masaa2"
+          ],
+          "tip": "لِنَحْتَفِلْ is 'let us celebrate'."
+        },
+        {
+          "id": "unit-16.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'We will have a new baby, Allah willing.'?",
+          "options": [
+            "سَيَكُونُ عِنْدَنَا مَوْلُودٌ جَدِيدٌ إِنْ شَاءَ اللَّه",
+            "تَمَّتْ خِطْبَةُ أَخِي أَمْسِ",
+            "عَادَ أَبِي مِنَ الْمُسْتَشْفَى وَهُوَ بِخَيْرٍ الْآن",
+            "مَتَى سَمِعْتَ الْخَبَر؟"
+          ],
+          "answer": "سَيَكُونُ عِنْدَنَا مَوْلُودٌ جَدِيدٌ إِنْ شَاءَ اللَّه",
+          "accepted": [
+            "سَيَكُونُ عِنْدَنَا مَوْلُودٌ جَدِيدٌ إِنْ شَاءَ اللَّه",
+            "سيكون عندنا مولود جديد إن شاء الله",
+            "sayakoonu 3indanaa mawloodun jadeedun in shaa2a allaah"
+          ],
+          "tip": "مَوْلُود means 'a newborn'."
+        },
+        {
+          "id": "unit-16.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'Praise be to Allah, this is a great blessing.'?",
+          "options": [
+            "حَصَلْتُ عَلَى الْوَظِيفَة",
+            "مَبْرُوك، أَنَا سَعِيدٌ جِدًّا مِنْ أَجْلِكَ",
+            "بَارَكَ اللَّهُ لَكَ فِيه",
+            "اِلْحَمْدُ لِلَّه، هَذِهِ نِعْمَةٌ عَظِيمَة"
+          ],
+          "answer": "اِلْحَمْدُ لِلَّه، هَذِهِ نِعْمَةٌ عَظِيمَة",
+          "accepted": [
+            "اِلْحَمْدُ لِلَّه، هَذِهِ نِعْمَةٌ عَظِيمَة",
+            "الحمد لله، هذه نعمة عظيمة",
+            "al-7amdu lillaah, haadhihi ni3matun 3aZeema"
+          ],
+          "tip": "نِعْمَة means 'a blessing'."
+        },
+        {
+          "id": "unit-16.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'أَمْسِ / أَخِي / خِطْبَةُ / تَمَّتْ'.",
+          "answer": "تَمَّتْ خِطْبَةُ أَخِي أَمْسِ",
+          "accepted": [
+            "تَمَّتْ خِطْبَةُ أَخِي أَمْسِ",
+            "تمت خطبة أخي أمس",
+            "tammat khiTbatu akhee amsi"
+          ],
+          "tip": "The verb comes first, then who, then when."
+        },
+        {
+          "id": "unit-16.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'فِيه / لَكَ / اللَّهُ / بَارَكَ'.",
+          "answer": "بَارَكَ اللَّهُ لَكَ فِيه",
+          "accepted": [
+            "بَارَكَ اللَّهُ لَكَ فِيه",
+            "بارك الله لك فيه",
+            "baaraka allaahu laka feeh"
+          ],
+          "tip": "The blessing comes first, then who it is for."
         }
       ]
     }
@@ -672,16 +2318,66 @@
     ],
     "model": {
       "dialogue": [
-        { "speaker": "Rami", "arabic": "مَرْحَبًا يَا دِينَا. مَاذَا فَعَلْتِ أَمْسِ؟", "transliteration": "marhaban yaa Deenaa. maadhaa fa3alti amsi?", "english": "Hello, Dina. What did you do yesterday?" },
-        { "speaker": "Dina", "arabic": "أَهْلًا يَا رَامِي. كَانَ أَمْسِ يَوْمًا سَيِّئًا. اِنْكَسَرَ هَاتِفِي وَأَضَعْتُ مِفْتَاحَ الْبَيْت.", "transliteration": "ahlan yaa Raamee. kaana amsi yawman sayyi2an. inkasara haatifee wa adha3tu miftaa7a al-bayt.", "english": "Hello, Rami. Yesterday was a bad day. My phone broke and I lost the house key." },
-        { "speaker": "Rami", "arabic": "هَذَا مُؤْسِف! وَأَيْنَ كُنْتِ لَيْلَةَ أَمْسِ؟", "transliteration": "haadhaa mu2sif! wa ayna kunti laylata amsi?", "english": "That's a pity! And where were you last night?" },
-        { "speaker": "Dina", "arabic": "كُنْتُ فِي الْبَيْتِ، وَانْقَطَعَتِ الْكَهْرَبَاءُ طَوَالَ اللَّيْل.", "transliteration": "kuntu fee al-bayti, wa inqata3ati al-kahrabaa2u tawaala al-layl.", "english": "I was at home, and the power went out all night." },
-        { "speaker": "Rami", "arabic": "وَعِنْدِي أَنَا خَبَرٌ: سَمِعْتُ أَنَّ سَامِرًا أَصْبَحَ مَخْطُوبًا.", "transliteration": "wa 3indee anaa khabarun: sami3tu anna Saameran asba7a makhtooban.", "english": "And I have news: I heard that Samer got engaged." },
-        { "speaker": "Dina", "arabic": "حَقًّا؟ مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟", "transliteration": "7aqqan? man akhbaraka bihaadhaa al-khabar?", "english": "Really? Who told you this news?" },
-        { "speaker": "Rami", "arabic": "جَارُنَا. لَكِنَّنَا لَسْنَا مُتَأَكِّدِينَ بَعْدُ.", "transliteration": "jaarunaa. lakinnanaa lasnaa muta2akkideena ba3d.", "english": "Our neighbor. But we're not sure yet." },
-        { "speaker": "Dina", "arabic": "عِنْدَمَا كُنَّا صِغَارًا، كُنَّا نَلْعَبُ مَعَ سَامِرٍ فِي الزُّقَاق.", "transliteration": "3indamaa kunnaa sighaaran, kunnaa nal3abu ma3a Saamirin fee az-zuqaaq.", "english": "When we were young, we used to play with Samer in the alley." },
-        { "speaker": "Rami", "arabic": "صَحِيح، كَانَتِ الْحَيَاةُ أَبْسَطَ فِي ذَلِكَ الْوَقْت.", "transliteration": "sa7eeh, kaanati al-7ayaatu absata fee dhaalika al-waqt.", "english": "True, life was simpler back then." },
-        { "speaker": "Dina", "arabic": "نَعَمْ. سَأَرَاكَ غَدًا.", "transliteration": "na3am. sa2araaka ghadan.", "english": "Yes. I'll see you tomorrow." }
+        {
+          "speaker": "Rami",
+          "arabic": "مَرْحَبًا يَا دِينَا. مَاذَا فَعَلْتِ أَمْسِ؟",
+          "transliteration": "marhaban yaa Deenaa. maadhaa fa3alti amsi?",
+          "english": "Hello, Dina. What did you do yesterday?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "أَهْلًا يَا رَامِي. كَانَ أَمْسِ يَوْمًا سَيِّئًا. اِنْكَسَرَ هَاتِفِي وَأَضَعْتُ مِفْتَاحَ الْبَيْت.",
+          "transliteration": "ahlan yaa Raamee. kaana amsi yawman sayyi2an. inkasara haatifee wa adha3tu miftaa7a al-bayt.",
+          "english": "Hello, Rami. Yesterday was a bad day. My phone broke and I lost the house key."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "هَذَا مُؤْسِف! وَأَيْنَ كُنْتِ لَيْلَةَ أَمْسِ؟",
+          "transliteration": "haadhaa mu2sif! wa ayna kunti laylata amsi?",
+          "english": "That's a pity! And where were you last night?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "كُنْتُ فِي الْبَيْتِ، وَانْقَطَعَتِ الْكَهْرَبَاءُ طَوَالَ اللَّيْل.",
+          "transliteration": "kuntu fee al-bayti, wa inqata3ati al-kahrabaa2u tawaala al-layl.",
+          "english": "I was at home, and the power went out all night."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "وَعِنْدِي أَنَا خَبَرٌ: سَمِعْتُ أَنَّ سَامِرًا أَصْبَحَ مَخْطُوبًا.",
+          "transliteration": "wa 3indee anaa khabarun: sami3tu anna Saameran asba7a makhtooban.",
+          "english": "And I have news: I heard that Samer got engaged."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "حَقًّا؟ مَنْ أَخْبَرَكَ بِهَذَا الْخَبَر؟",
+          "transliteration": "7aqqan? man akhbaraka bihaadhaa al-khabar?",
+          "english": "Really? Who told you this news?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "جَارُنَا. لَكِنَّنَا لَسْنَا مُتَأَكِّدِينَ بَعْدُ.",
+          "transliteration": "jaarunaa. lakinnanaa lasnaa muta2akkideena ba3d.",
+          "english": "Our neighbor. But we're not sure yet."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "عِنْدَمَا كُنَّا صِغَارًا، كُنَّا نَلْعَبُ مَعَ سَامِرٍ فِي الزُّقَاق.",
+          "transliteration": "3indamaa kunnaa sighaaran, kunnaa nal3abu ma3a Saamirin fee az-zuqaaq.",
+          "english": "When we were young, we used to play with Samer in the alley."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "صَحِيح، كَانَتِ الْحَيَاةُ أَبْسَطَ فِي ذَلِكَ الْوَقْت.",
+          "transliteration": "sa7eeh, kaanati al-7ayaatu absata fee dhaalika al-waqt.",
+          "english": "True, life was simpler back then."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "نَعَمْ. سَأَرَاكَ غَدًا.",
+          "transliteration": "na3am. sa2araaka ghadan.",
+          "english": "Yes. I'll see you tomorrow."
+        }
       ]
     }
   }

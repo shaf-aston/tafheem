@@ -140,10 +140,12 @@ def test_the_real_units_on_disk_load_and_are_served():
 
     got = client.get(f"/api/colloquial/damascene/{dialect['units'][0]['unit']}")
     assert got.status_code == 200
+    # Topics the spine adds before this dialect writes them come back as "written": false.
+    written = [lesson for lesson in got.json()["lessons"] if lesson.get("written", True)]
     unit = got.json()
-    assert unit["lessons"] and all(lesson["exercises"] for lesson in unit["lessons"])
+    assert written and all(lesson["exercises"] for lesson in written)
     # Every exercise kept its own type's shape through the union, not a bare dict.
-    assert {e["type"] for lesson in unit["lessons"] for e in lesson["exercises"]} <= registry.TYPES
+    assert {e["type"] for lesson in written for e in lesson["exercises"]} <= registry.TYPES
     assert unit["source"]["confidence"] == "guessed"
 
 
