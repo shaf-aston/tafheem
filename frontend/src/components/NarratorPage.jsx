@@ -1,7 +1,7 @@
 /**
  * One narrator on his own page: who he was, what scholars said of him, who he
  * learnt from and taught (each a tap to that narrator's page), and the hadith
- * he narrates in the books built here, each a tap into the reader.
+ * he narrates in the six books, each a tap into the reader.
  *
  * A 404 means this machine holds no page for him (rijal.db unbuilt, or he was
  * never fetched), said in a line, as on his pop-up.
@@ -76,14 +76,16 @@ export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith 
           ))}
 
           {hadith.length > 0 && (
-            <Section title="Hadith he narrates in the books built here">
-              <ChipRow>
-                {hadith.map((h) => (
-                  <Chip key={`${h.collection}:${h.number}${h.part}`} accent={accent} onClick={() => onHadith(h)}>
-                    {of(h.collection).short} {h.number}{h.part}
-                  </Chip>
-                ))}
-              </ChipRow>
+            <Section title={`Hadith narrated (${hadith.length})`}>
+              <ShowRest lines={6} accent={accent} more={`Show all ${hadith.length}`}>
+                <ChipRow>
+                  {hadith.map((h) => (
+                    <Chip key={`${h.collection}:${h.number}${h.part}`} accent={accent} onClick={() => onHadith(h)}>
+                      {of(h.collection).short} {h.number}{h.part}
+                    </Chip>
+                  ))}
+                </ChipRow>
+              </ShowRest>
             </Section>
           )}
         </>

@@ -269,8 +269,10 @@ class Settings(BaseSettings):
     rijal_pages_dir: str = "data/rijal/pages"
     # Built by scripts/build_rijal.py. Never written while serving.
     rijal_index_path: str = "data/rijal.db"
-    # Narrators or hadith one answer lists; a narrator in thousands of hadith still gets a short list.
+    # Narrators one search lists.
     rijal_result_limit: int = Field(default=20, gt=0)
+    # Hadith one narrator's page lists, all of them behind "Show all".
+    rijal_hadith_limit: int = Field(default=5000, gt=0)
     # A hadith is read in full, so a long results page stops being read.
     hadith_result_limit: int = 20
     # A typed word no search knows is swapped for the likeliest meant word

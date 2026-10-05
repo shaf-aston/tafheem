@@ -31,7 +31,7 @@ async def get_narrator(narrator_id: int) -> Narrator:
 
 @router.get("/narrators/{narrator_id}/hadith", response_model=list[RijalHadithRef])
 async def get_narrator_hadith(narrator_id: int) -> list[RijalHadithRef]:
-    found = await asyncio.to_thread(store.hadith_of, narrator_id, get_settings().rijal_result_limit)
+    found = await asyncio.to_thread(store.hadith_of, narrator_id, get_settings().rijal_hadith_limit)
     return [RijalHadithRef(**h) for h in found]
 
 
