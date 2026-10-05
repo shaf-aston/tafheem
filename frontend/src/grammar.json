@@ -44,6 +44,7 @@
     { "title": "الجملة", "terms": [
       { "arabic": "جملة اسمية", "meaning": "A sentence that starts with a noun: الطالب مجتهد." },
       { "arabic": "جملة فعلية", "meaning": "A sentence that starts with a verb: كتب الطالب." },
+      { "arabic": "جملة شرطية", "meaning": "An if-sentence: a condition and its answer, as in إن تدرس تنجح." },
       { "arabic": "جملة خبرية", "meaning": "A sentence that tells something, so it can be true or false: a جملة اسمية خبرية or a جملة فعلية خبرية." },
       { "arabic": "جملة إنشائية", "meaning": "A sentence that does not tell but asks, calls, wonders, swears or commands, so it cannot be true or false." },
       { "arabic": "جملة إنشائية استفهامية", "meaning": "A sentence that asks a question." },

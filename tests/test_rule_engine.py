@@ -255,7 +255,9 @@ def test_card_field(sentence: str, index: int, field: str, expected: str):
     ("يَا عَبْدَ اللهِ", "jumlah_nidaiyyah"),
     ("الطُّلَّابُ يَدْرُسُونَ فِي المَكْتَبَةِ", "jumlah_ismiyyah"),  # a مبتدأ before the verb
     ("هَذَا البَيْتُ كَبِيرٌ", "jumlah_ismiyyah"),
-    ("قُمْ يَا وَلَدُ", "jumlah_filiyyah")])  # nearest case: a command before the call
+    ("قُمْ يَا وَلَدُ", "jumlah_filiyyah"),  # nearest case: a command before the call
+    ("إِنْ كُنْتَ تُحِبُّ أَنْ تُطَوَّقَ طَوْقًا مِنْ نَارٍ فَاقْبَلْهَا", "jumlah_shartiyyah"),
+    ("إِنْ تَدْرُسْ تَنْجَحْ", "jumlah_shartiyyah")])
 def test_summary_and_tree_name_the_sentence_alike(sentence: str, term: str):
     answer = _read(sentence)
     from backend.services import syntax
@@ -310,3 +312,13 @@ def test_the_glossary_explains_every_term_the_page_prints():
     printed = set(role_table()) | set(ROLES) | worked | {
         strip_diacritics(t["ar"]) for k, t in tarkeeb.items() if k != "unresolved"}
     assert sorted(label for label in printed - names if label not in meanings) == []
+
+
+@pytest.mark.parametrize("sentence, index, said", [
+    ("إِنْ كُنْتَ تُحِبُّ أَنْ تُطَوَّقَ طَوْقًا مِنْ نَارٍ فَاقْبَلْهَا", 0, "حرف شرط"),
+    ("إِنْ كُنْتَ تُحِبُّ أَنْ تُطَوَّقَ طَوْقًا مِنْ نَارٍ فَاقْبَلْهَا", 1, "فعل الشرط في محل جزم"),
+    ("إِنْ كُنْتَ تُحِبُّ أَنْ تُطَوَّقَ طَوْقًا مِنْ نَارٍ فَاقْبَلْهَا", 8, "رابطة لجواب الشرط"),
+    ("إِنْ تَدْرُسْ تَنْجَحْ", 2, "جواب الشرط مجزوم"),
+    ("إِنَّ الطَّالِبَ مُجْتَهِدٌ", 0, "ناسخ")])  # nearest case: إنّ before its noun
+def test_a_verb_after_in_makes_it_a_condition(sentence: str, index: int, said: str):
+    assert said in _read(sentence)["words"][index]["reason"]

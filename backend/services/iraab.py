@@ -62,8 +62,10 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
                          reason=found["gap"]["ar"], notes=found["gap"]["en"])
         elif found["role"]:
             _named(entry, found)
-    summary = _sentence_type(parser_roles) or rule_result.get("summary")
-    return {**rule_result, "words": signs.settle(entries), "summary": summary}
+    words = signs.settle(entries)
+    if rule_result.get("conditional"):  # the parser has no name for a condition: the cards' own stands
+        return {**rule_result, "words": rule_engine.mark_condition(words)}
+    return {**rule_result, "words": words, "summary": _sentence_type(parser_roles) or rule_result.get("summary")}
 
 
 def _named(entry: dict, found: dict) -> None:

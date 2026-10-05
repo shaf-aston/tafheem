@@ -218,6 +218,10 @@
       "ar": "جُمْلَةٌ فِعْلِيَّةٌ",
       "tone": "fil"
     },
+    "jumlah_shartiyyah": {
+      "ar": "جُمْلَةٌ شَرْطِيَّةٌ",
+      "tone": "fil"
+    },
     "jumlah_ismiyyah": {
       "ar": "جُمْلَةٌ اِسْمِيَّةٌ",
       "tone": "fail"
