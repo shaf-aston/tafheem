@@ -173,6 +173,8 @@
   "motion": {
     "_comment": "Plain numbers, so a CSS duration is built as calc(var(--motion-base-ms) * 1ms). scale is the switch for the ambient loops (the pen bobbing, the mic grille, the mic ring, the shimmer): their choreography keeps its own tempo, multiplied by this, so the Animations setting can stop them all by driving it to 0.",
     "scale": 1,
+    "_glide_comment": "How many screens away a scroll may glide; further jumps go straight there, since a long smooth scroll stops partway (Go to # in a 300-hadith book landed 9,600px short).",
+    "glide-screens": 2,
     "instant-ms": 120,
     "base-ms": 220,
     "spring-ms": 420,
