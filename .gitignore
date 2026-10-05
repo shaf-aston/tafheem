@@ -241,6 +241,9 @@ backend/data/hadith/*.json
 !backend/data/hadith/collections.json
 !backend/data/hadith/search_yardstick.json
 
+# Raw sunnah.com pages the rijal fetch caches. rijal.db is covered by *.db above.
+backend/data/rijal/pages/
+
 # Spoken words, remade on demand by services/speech.py.
 backend/data/speech_cache/
 # quran.com word list, fetched once by backend/scripts/build_word_audio.py.

@@ -1,0 +1,13 @@
+{
+  "_about": [
+    "How scripts/fetch_rijal.py talks to sunnah.com. Read by that script only.",
+    "impersonate: the browser the request looks like; sunnah.com refuses plain HTTP clients.",
+    "pace_seconds: wait between two requests, so the site is never hammered.",
+    "timeout_seconds and retries: per request; a block (403, 429) or a failure after the last retry stops the run, and the cache lets the next run resume."
+  ],
+  "site": "https://sunnah.com",
+  "impersonate": "chrome",
+  "pace_seconds": 1.0,
+  "timeout_seconds": 60,
+  "retries": 3
+}
