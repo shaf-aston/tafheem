@@ -123,6 +123,24 @@ def test_a_verb_beside_the_ism_under_its_governor_is_the_khabar_clause():
     assert clause["role"] == "خبر كان" and clause["detail"]
 
 
+def test_a_condition_draws_particle_condition_and_answer_side_by_side_with_the_masdar_inside():
+    # إنْ تُرِدْ أنْ تنجحَ تدرسْ: the parser hangs the particle on the answer; the books draw
+    # the particle, فعل الشرط and جواب الشرط apart, and أنْ with its verb as one masdar
+    toks = [token(1, "إن", "إن", "PRT", 5, "MOD", pos_camel="conj_sub"),
+            token(2, "ترد", "أراد", "VRB", 1, "OBJ", vox="a", asp="i", pos_camel="verb"),
+            token(3, "أن", "أن", "PRT", 2, "OBJ", pos_camel="conj_sub"),
+            token(4, "تنجح", "نجح", "VRB", 3, "OBJ", vox="a", asp="i", pos_camel="verb"),
+            token(5, "تدرس", "درس", "VRB", 0, "---", vox="a", asp="i", pos_camel="verb")]
+    drawn = built(["إِنْ", "تُرِدْ", "أَنْ", "تَنْجَحَ", "تَدْرُسْ"], toks)["tree"]
+    condition = tree.FRAMES["condition"]
+    assert drawn["label"] == tree.CONDITION
+    particle, verb, answer = drawn["children"]
+    assert particle["role"] == condition["particle"]
+    assert (verb["role"], answer["role"]) == (condition["verb"], condition["answer"])
+    masdar = verb["children"][1]
+    assert (masdar["label"], masdar["role"]) == (tree.FRAMES["masdar"]["label"], "مفعول به")
+
+
 def test_a_role_has_one_colour_in_every_tree():
     """A typed sentence draws like a book example: a role both tree files name wears one tone."""
     from backend.services.arabic_text import strip_diacritics

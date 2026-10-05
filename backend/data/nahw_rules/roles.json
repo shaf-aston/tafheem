@@ -44,5 +44,7 @@
   {"child": "صلة", "label": "mawsool_silah", "head_as": "اسم موصول"},
   {"child": "مضاف إليه", "label": "murakkab_idafi", "head_as": "مضاف"},
   {"child": "صفة", "label": "murakkab_tawsifi", "head_as": "موصوف"}
- ]
+ ],
+ "_frames_comment": "`frames`: the jobs a governor gives the units under it, as the books draw them. `condition`: a conditional particle, its verb's clause and the answer's clause, both in jazm (case j). `clause_by_family`: the clause on a family's verb by the parser's relation (كان's PRD is its khabar). `masdar`: أن with its verb is one masdar, whose job is read off the relation أن hangs by. `leaf_by_family`: a verb's finer name in the picture; a particle uses its family card's name. `attached`: what a jar-majroor hangs on.",
+ "frames": {"condition": {"particle": "حرف شرط جازم", "verb": "فعل الشرط", "answer": "جواب الشرط", "case": "j"}, "clause_by_family": {"kana": {"rel": "PRD", "job": "خبر كان", "case": "a"}}, "masdar": {"family": "nasb_mudari", "words": ["أن"], "label": "مَصْدَرٌ مُؤَوَّلٌ", "job_by_rel": {"OBJ": "مفعول به", "SBJ": "فاعل", "PRD": "خبر"}, "case_by_rel": {"OBJ": "a", "SBJ": "u", "PRD": "u"}}, "leaf_by_family": {"kana": "فعل ناقص"}, "attached": "متعلق بـ{word}"}
 }
