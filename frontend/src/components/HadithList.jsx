@@ -62,7 +62,7 @@ export default function HadithList({ collection, collections, book, onBack, acce
             &larr; Books
           </button>
           {data && (
-            <h3 className="flex-1 min-w-[min(100%,14rem)] flex items-center gap-2 text-sm font-medium text-[var(--text)]">
+            <h3 className="flex-1 min-w-[min(100%,14rem)] flex items-center gap-2 type-ui font-medium text-[var(--text)]">
               <TopicIcon topic={topicOf(data.book.name)} className="w-4 h-4" />
               {data.book.number}. {data.book.name}
               <span className="ms-2 type-small font-normal text-[var(--text-faint)]">{data.hadiths.length} hadiths</span>
