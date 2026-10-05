@@ -26,11 +26,16 @@ def tokens(query: str) -> list[tuple[str, str]]:
     """(typed, folded) for each word or number in the query, in order, repeats once."""
     seen: dict[str, str] = {}
     for typed in query.split():
-        folded = fold(typed.strip('"\'.,;:!?()[]،؛؟'))
+        folded = bare(typed)
         if (ARABIC_WORD.fullmatch(folded) or ENGLISH_WORD.fullmatch(folded) or _NUMBER.fullmatch(folded)) \
                 and folded not in seen:
             seen[folded] = typed
     return [(typed, folded) for folded, typed in seen.items()]
+
+
+def bare(typed: str) -> str:
+    """One typed word as the index spells it, punctuation around it dropped."""
+    return fold(typed.strip('"\'.,;:!?()[]،؛؟'))
 
 
 def is_number(folded: str) -> bool:

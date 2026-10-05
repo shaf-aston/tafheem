@@ -22,8 +22,9 @@ export const CLOSE = { exact: 0, prefix: 1, inside: 2, typo: 3 }
 
 const FILLER = /\b(surah|surat|sura|chapter|ayah|ayat|aya|verse|v|no|number)\b\.?/g
 const ARABIC_DIGITS = '٠١٢٣٤٥٦٧٨٩'
-const LATIN_ARTICLE = /^(?:al|an|ar|as|at|ad|adh|ash|ath|az|ali)[-\s]/i
 const ARABIC_ARTICLE = /^ال/
+// The first word of an English name, the article when the Arabic name has one (An-Nisa, النساء).
+const FIRST_WORD = /^[^-\s]+[-\s]/
 
 const digitsToLatin = (text) => text.replace(/[٠-٩]/g, (d) => ARABIC_DIGITS.indexOf(d))
 
@@ -39,8 +40,8 @@ const foldArabic = (text) =>
 
 /** Every spelling one surah answers to: with and without its article. */
 const keys = surahs.map((s) => {
-  const en = [foldLatin(s.en), foldLatin(s.en.replace(LATIN_ARTICLE, ''))]
   const ar = foldArabic(s.ar)
+  const en = [foldLatin(s.en), ARABIC_ARTICLE.test(ar) ? foldLatin(s.en.replace(FIRST_WORD, '')) : '']
   return { s, latin: en, arabic: [ar, ar.replace(ARABIC_ARTICLE, '')] }
 })
 
@@ -104,16 +105,15 @@ export function ayahProblem(surah, ayah) {
 
 /** Every real place a line names (surah and an ayah that exists), closest first. */
 export function placesNamed(text) {
-  const { matches, ayah } = readSurahRef(text)
+  const { matches, ayah } = readSurahRef(text, CLOSE.inside)
   if (ayah === null) return []
   return matches
-    .filter((m) => m.close < CLOSE.typo && !ayahProblem(m, ayah))
+    .filter((m) => !ayahProblem(m, ayah))
     .map((m) => ({ surah: m, ayah, ref: `${m.n}:${ayah}` }))
 }
 
 /** For a typed "name number" whose surah is clear but whose ayah does not exist: why, else null. */
 export function placeProblem(text) {
-  const { matches, ayah } = readSurahRef(text)
-  const m = matches[0]
-  return m && m.close < CLOSE.typo ? ayahProblem(m, ayah) : null
+  const { matches: [m], ayah } = readSurahRef(text, CLOSE.inside)
+  return m ? ayahProblem(m, ayah) : null
 }

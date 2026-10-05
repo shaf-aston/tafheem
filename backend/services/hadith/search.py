@@ -119,8 +119,8 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
                 partial = bool(rows)
             if meaning.is_built():
                 # Meaning reads the query as corrected, as the words were searched.
-                swapped = dict(corrected)
-                meant = " ".join(swapped.get(w, w) for w in asked.rest.split())
+                swapped = {words.bare(typed): used for typed, used in corrected}
+                meant = " ".join(swapped.get(words.bare(w), w) for w in asked.rest.split())
                 try:
                     near = meaning.nearest(meant, pool, collections)
                 except Exception:

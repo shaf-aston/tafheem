@@ -129,12 +129,12 @@ def test_the_doer_and_the_done_to_of_a_hollow_root() -> None:
     write every long vowel bare (مَكْتُوب too), so the word is the same
     word and this test holds the app to its own notation."""
     qawl = summary_of("قول", "I-nasara")
-    assert qawl["Doer (اسم الفاعل)"] == "قَائِل"
-    assert qawl["Done to (اسم المفعول)"] == "مَقُول"
+    assert qawl["Doer"] == "قَائِل"
+    assert qawl["Done to"] == "مَقُول"
 
     bay = summary_of("بيع", "I-daraba")
-    assert bay["Doer (اسم الفاعل)"] == "بَائِع"
-    assert bay["Done to (اسم المفعول)"] == "مَبِيْع"
+    assert bay["Doer"] == "بَائِع"
+    assert bay["Done to"] == "مَبِيْع"
 
 
 def test_a_hamzah_standing_first_becomes_a_long_vowel() -> None:
@@ -142,7 +142,7 @@ def test_a_hamzah_standing_first_becomes_a_long_vowel() -> None:
     the alif is written bare so the فتحة before it pulls the two into the one
     letter آ, while the و keeps the sukun the book prints on it."""
     amana = summary_of("أمن", "IV")
-    assert amana["Past (ماضي)"] == "آمَنَ"
-    assert amana["Command (أمر)"] == "آمِنْ"
-    assert amana["Past passive (ماضي مجهول)"] == "أُوْمِنَ"
-    assert amana["Verbal noun (مصدر)"] == "إِيْمَان"
+    assert amana["Past"] == "آمَنَ"
+    assert amana["Command"] == "آمِنْ"
+    assert amana["Past passive"] == "أُوْمِنَ"
+    assert amana["Verbal noun"] == "إِيْمَان"
