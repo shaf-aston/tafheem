@@ -5073,6 +5073,284 @@
           ]
         }
       ]
+    },
+    {
+      "unit": "unit-18",
+      "title": "Home and Neighbours",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Renting a Flat",
+          "phrases": [
+            {
+              "slot": "i-am-looking-for-a-flat",
+              "english": "I am looking for a flat to rent",
+              "search_term": "apartment building",
+              "image": "unit-18/l01-p01-apartment-building.jpg"
+            },
+            {
+              "slot": "how-much-is-the-rent",
+              "english": "How much is the monthly rent?"
+            },
+            {
+              "slot": "how-many-bedrooms",
+              "english": "How many bedrooms does it have?",
+              "search_term": "bedroom",
+              "image": "unit-18/l01-p03-bedroom.jpg"
+            },
+            {
+              "slot": "which-floor",
+              "english": "Which floor is it on?"
+            },
+            {
+              "slot": "is-there-a-lift",
+              "english": "Is there a lift?",
+              "search_term": "elevator",
+              "image": "unit-18/l01-p05-elevator.jpg"
+            },
+            {
+              "slot": "are-water-and-electricity-included",
+              "english": "Are water and electricity included?",
+              "search_term": "electricity meter",
+              "image": "unit-18/l01-p06-electricity-meter.jpg"
+            },
+            {
+              "slot": "can-i-view-the-flat",
+              "english": "Can I view the flat?"
+            },
+            {
+              "slot": "how-much-is-the-deposit",
+              "english": "How much is the deposit?"
+            },
+            {
+              "slot": "i-want-a-one-year-lease",
+              "english": "I want a one-year lease",
+              "search_term": "lease agreement document",
+              "image": "unit-18/l01-p09-lease-agreement-document.jpg"
+            },
+            {
+              "slot": "when-can-i-move-in",
+              "english": "When can I move in?",
+              "search_term": "moving boxes",
+              "image": "unit-18/l01-p10-moving-boxes.jpg"
+            },
+            {
+              "slot": "i-will-take-it",
+              "english": "I will take it"
+            },
+            {
+              "slot": "here-are-the-keys",
+              "english": "Here are the keys to the flat",
+              "search_term": "house keys",
+              "image": "unit-18/l01-p12-house-keys.jpg"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Rooms and Furniture",
+          "phrases": [
+            {
+              "slot": "this-is-the-living-room",
+              "english": "This is the living room"
+            },
+            {
+              "slot": "where-is-the-kitchen",
+              "english": "Where is the kitchen?",
+              "search_term": "kitchen",
+              "image": "unit-18/l02-p02-kitchen.jpg"
+            },
+            {
+              "slot": "how-many-bathrooms",
+              "english": "How many bathrooms are in the flat?"
+            },
+            {
+              "slot": "the-bedroom-is-spacious",
+              "english": "The bedroom is spacious"
+            },
+            {
+              "slot": "is-the-flat-furnished",
+              "english": "Is the flat furnished?"
+            },
+            {
+              "slot": "there-is-a-sofa",
+              "english": "There is a sofa in the living room",
+              "search_term": "sofa",
+              "image": "unit-18/l02-p06-sofa.jpg"
+            },
+            {
+              "slot": "i-need-a-new-bed",
+              "english": "I need a new bed",
+              "search_term": "bed",
+              "image": "unit-18/l02-p07-bed.jpg"
+            },
+            {
+              "slot": "put-the-table-here",
+              "english": "Put the table here",
+              "search_term": "dining table",
+              "image": "unit-18/l02-p08-dining-table.jpg"
+            },
+            {
+              "slot": "where-is-the-wardrobe",
+              "english": "Where is the wardrobe?",
+              "search_term": "wardrobe",
+              "image": "unit-18/l02-p09-wardrobe.jpg"
+            },
+            {
+              "slot": "does-the-air-conditioner-work",
+              "english": "Does the air conditioner work?",
+              "search_term": "air conditioner",
+              "image": "unit-18/l02-p10-air-conditioner.jpg"
+            },
+            {
+              "slot": "the-light-does-not-work",
+              "english": "The light does not work"
+            },
+            {
+              "slot": "where-do-i-put-the-fridge",
+              "english": "Where do I put the fridge?",
+              "search_term": "white refrigerator",
+              "image": "unit-18/l02-p12-white-refrigerator.jpg"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Repairs at Home",
+          "phrases": [
+            {
+              "slot": "the-tap-is-leaking",
+              "english": "The tap is leaking water",
+              "search_term": "leaking tap",
+              "image": "unit-18/l03-p01-leaking-tap.jpg"
+            },
+            {
+              "slot": "the-light-bulb-does-not-work",
+              "english": "The light bulb does not work",
+              "search_term": "light bulb",
+              "image": "unit-18/l03-p02-light-bulb.jpg"
+            },
+            {
+              "slot": "the-power-is-out-in-the-house",
+              "english": "The power is out in the house",
+              "search_term": "circuit breaker box",
+              "image": "unit-18/l03-p03-circuit-breaker-box.jpg"
+            },
+            {
+              "slot": "where-is-the-toolbox",
+              "english": "Where is the toolbox?",
+              "search_term": "toolbox",
+              "image": "unit-18/l03-p04-toolbox.jpg"
+            },
+            {
+              "slot": "pass-me-the-screwdriver",
+              "english": "Pass me the screwdriver",
+              "search_term": "screwdriver",
+              "image": "unit-18/l03-p05-screwdriver.jpg"
+            },
+            {
+              "slot": "i-need-a-hammer-and-nails",
+              "english": "I need a hammer and nails",
+              "search_term": "hammer and nails",
+              "image": "unit-18/l03-p06-hammer-and-nails.jpg"
+            },
+            {
+              "slot": "the-door-does-not-close-well",
+              "english": "The door does not close well",
+              "search_term": "front door",
+              "image": "unit-18/l03-p07-front-door.jpg"
+            },
+            {
+              "slot": "the-lock-is-broken",
+              "english": "The lock is broken"
+            },
+            {
+              "slot": "can-you-fix-it",
+              "english": "Can you fix it?"
+            },
+            {
+              "slot": "call-the-plumber-if-needed",
+              "english": "Call the plumber if needed"
+            },
+            {
+              "slot": "how-much-is-the-cost",
+              "english": "How much is the cost?"
+            },
+            {
+              "slot": "thanks-it-works-now",
+              "english": "Thanks, it works now"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Neighbours",
+          "phrases": [
+            {
+              "slot": "we-are-your-new-neighbours",
+              "english": "We are your new neighbours"
+            },
+            {
+              "slot": "which-flat-do-you-live-in",
+              "english": "Which flat do you live in?",
+              "search_term": "apartment building",
+              "image": "unit-18/l04-p02-apartment-building.jpg"
+            },
+            {
+              "slot": "we-live-in-the-flat-next-door",
+              "english": "We live in the flat next door"
+            },
+            {
+              "slot": "i-brought-you-some-food",
+              "english": "I brought you some food",
+              "search_term": "dish of food",
+              "image": "unit-18/l04-p04-dish-of-food.jpg"
+            },
+            {
+              "slot": "may-i-borrow-a-ladder",
+              "english": "May I borrow a ladder?",
+              "search_term": "wooden step ladder",
+              "image": "unit-18/l04-p05-wooden-step-ladder.jpg"
+            },
+            {
+              "slot": "i-apologise-for-the-disturbance",
+              "english": "I apologise for the disturbance"
+            },
+            {
+              "slot": "will-you-receive-our-mail-while-we-travel",
+              "english": "Will you receive our mail while we travel?",
+              "search_term": "mailbox",
+              "image": "unit-18/l04-p07-mailbox.jpg"
+            },
+            {
+              "slot": "where-do-we-put-the-rubbish",
+              "english": "Where do we put the rubbish?",
+              "search_term": "rubbish bin",
+              "image": "unit-18/l04-p08-rubbish-bin.jpg"
+            },
+            {
+              "slot": "could-you-move-your-car-please",
+              "english": "Could you move your car, please?",
+              "search_term": "parked car",
+              "image": "unit-18/l04-p09-parked-car.jpg"
+            },
+            {
+              "slot": "come-and-have-tea-with-us",
+              "english": "Come and have tea with us",
+              "search_term": "teapot",
+              "image": "unit-18/l04-p10-teapot.jpg"
+            },
+            {
+              "slot": "our-neighbour-is-ill-we-will-visit-him",
+              "english": "Our neighbour is ill, we will visit him"
+            },
+            {
+              "slot": "a-neighbour-has-a-right-over-us",
+              "english": "A neighbour has a right over us"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

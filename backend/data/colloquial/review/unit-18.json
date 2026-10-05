@@ -1,0 +1,79 @@
+{
+  "found": [
+    {
+      "lesson": 4,
+      "phrase": 5,
+      "english": "May I borrow a ladder?",
+      "search_term": "wooden step ladder",
+      "candidates": [
+        {
+          "id": "db84cd06-abb1-4da1-969e-0ebeccff7c56",
+          "title": "Wooden step ladder clip art",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/7646818/vector-cartoon-wood-illustrations",
+          "thumbnail": "https://api.openverse.org/v1/images/db84cd06-abb1-4da1-969e-0ebeccff7c56/thumb/"
+        },
+        {
+          "id": "f161fa72-88c2-4f72-9d56-fec5723fe441",
+          "title": "Wooden step ladder clip art",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/7668756/image-cartoon-wood-illustrations",
+          "thumbnail": "https://api.openverse.org/v1/images/f161fa72-88c2-4f72-9d56-fec5723fe441/thumb/"
+        },
+        {
+          "id": "fa629f4c-0f3f-4b02-bc1c-ebe9030ece15",
+          "title": "Wooden step-ladder in mill",
+          "creator": "winecountrymedia",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/136394702@N02/22786173163",
+          "thumbnail": "https://api.openverse.org/v1/images/fa629f4c-0f3f-4b02-bc1c-ebe9030ece15/thumb/"
+        },
+        {
+          "id": "ed85495c-3748-4750-95e3-75cc427935fe",
+          "title": "Archie Carr - repaired crossover bridge and stairs side view",
+          "creator": "U. S. Fish and Wildlife Service - Northeast Region",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/43322816@N08/14400551495",
+          "thumbnail": "https://api.openverse.org/v1/images/ed85495c-3748-4750-95e3-75cc427935fe/thumb/"
+        }
+      ]
+    }
+  ],
+  "needs_search_term": [
+    {
+      "lesson": 4,
+      "phrase": 1,
+      "english": "We are your new neighbours"
+    },
+    {
+      "lesson": 4,
+      "phrase": 3,
+      "english": "We live in the flat next door"
+    },
+    {
+      "lesson": 4,
+      "phrase": 6,
+      "english": "I apologise for the disturbance"
+    },
+    {
+      "lesson": 4,
+      "phrase": 11,
+      "english": "Our neighbour is ill, we will visit him"
+    },
+    {
+      "lesson": 4,
+      "phrase": 12,
+      "english": "A neighbour has a right over us"
+    }
+  ]
+}
