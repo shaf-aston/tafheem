@@ -10,12 +10,9 @@
  * fall in, each a tap away (`onOpenBook`) for narrowing by topic instead of
  * retyping. A search that only names a collection ("bukhari") opens it.
  */
-import { useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
-
 import { searchHadith } from '../api'
 import { useHadithCollections } from '../lib/useHadithCollections'
-import { useHistory } from '../lib/useHistory'
+import { useSearch } from '../lib/useSearch'
 
 import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
@@ -31,30 +28,18 @@ import StatusNote from './ui/StatusNote'
 import HadithCards from './HadithCards'
 
 export default function HadithSearchResults({ accent, onOpenBook, children }) {
-  const [query, setQuery] = useState('')
   const { collections, of } = useHadithCollections()
-  const { history, push: remember } = useHistory('hadith-history')
-
-  const mutation = useMutation({
-    mutationFn: searchHadith,
-    onSuccess: (_, { q }) => remember({ q }),
+  const { query, setQuery, history, mutation, submit, clear, shown: data } = useSearch({
+    historyKey: 'hadith-history',
+    ask: searchHadith,
+    onVisit: (_, { reference }) => { if (reference && !reference.asked) open(reference.collection, null) },
   })
 
   const open = (collection, book) => {
-    setQuery('')
-    mutation.reset()
+    clear()
     onOpenBook(collection, book)
   }
 
-  const submit = (overrideQuery) => {
-    const q = (overrideQuery ?? query).trim()
-    if (!q) return
-    mutation.mutate({ q }, {
-      onSuccess: ({ reference }) => { if (reference && !reference.asked) open(reference.collection, null) },
-    })
-  }
-
-  const data = mutation.data
   const searching = mutation.isPending || mutation.isError || Boolean(data)
 
   return (
@@ -67,18 +52,18 @@ export default function HadithSearchResults({ accent, onOpenBook, children }) {
         value={query}
         onChange={setQuery}
         onSubmit={() => submit()}
-        onClear={() => { setQuery(''); mutation.reset() }}
+        onClear={clear}
         busy={mutation.isPending}
         accent={accent}
       >
         <MicButton
-          onHeard={({ text }) => { setQuery(text); submit(text) }}
+          onHeard={({ text }) => submit(text)}
           accent={accent}
           title="Say what you are looking for"
         />
       </SearchBox>
 
-      {!searching && <RecentRow items={history.map((h) => h.q)} accent={accent} onPick={(q) => { setQuery(q); submit(q) }} />}
+      {!searching && <RecentRow items={history.map((h) => h.q)} accent={accent} onPick={submit} />}
 
       {!searching && children}
 

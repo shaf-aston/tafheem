@@ -10,15 +10,14 @@
  * question: narrowing re-asks the same question straight away rather than
  * leaving passages on screen from books the reader has just excluded.
  */
-import { useEffect, useState } from 'react'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 import { daleelBooksQuery, findDaleel } from '../api'
 import { isArabic, mostlyArabic } from '../lib/arabicText'
 import { plainEntry } from '../lib/laneEntry'
 import { sourcesFor, useSources } from '../lib/useSources'
-import { useArrival, useHeld } from '../lib/useArrival'
-import { useHistory } from '../lib/useHistory'
+import { useSearch } from '../lib/useSearch'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../lib/useLaneTidy'
 
 import ArabicText from './ui/ArabicText'
@@ -52,43 +51,23 @@ const MATCH_NOTE = {
 
 export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }) {
   const [laneTidy, setLaneTidy] = useLaneTidy()
-  const [query, setQuery] = useState(incoming ?? '')
   const [chosen, setChosen] = useState([])
-
-  const { history, push: remember } = useHistory('daleel-history')
 
   // A question that came back is a place reached: Recent, the trail, and the
   // address bar all record it. Which books were searched is not in it; that is
   // a filter on the answer, not a different question. See lib/journey.js.
-  const mutation = useMutation({
-    mutationFn: findDaleel,
-    onSuccess: (_, { q }) => { remember({ q }); onVisit?.(q) },
+  // An arriving question (another tab, the back arrow) is asked of every book.
+  const { query, setQuery, history, mutation, submit: ask, clear, shown: data } = useSearch({
+    historyKey: 'daleel-history', ask: findDaleel, onVisit, incoming, arrival,
   })
 
   // The list of books to offer. Asked for once and kept: it changes only when
   // the index is rebuilt, which cannot happen while the page is open.
   const { data: catalogue = [] } = useQuery(daleelBooksQuery)
 
-  // A question arriving: handed over from another tab, or the back arrow
-  // returning to one. App no longer remounts the panel for it, that remount
-  // faded the whole page back in and read as a flash (see lib/useArrival), so
-  // the box follows the question here, during the render.
-  const { arrived, returning } = useArrival(arrival, mutation.isPending)
-  if (arrived && incoming) setQuery(incoming)
-
-  // And it is asked again, so an arrival ends in an answer.
-  const { mutate: ask } = mutation
-  useEffect(() => {
-    if (incoming) ask({ q: incoming, books: [] })
-  }, [arrival, incoming, ask])
-
-  const submit = (overrideQuery, overrideBooks) => {
-    const q = (overrideQuery ?? query).trim()
-    if (!q) return
-    // No language is sent: one request reads the Arabic and the English index
-    // together, which is what makes the single box honest.
-    mutation.mutate({ q, books: overrideBooks ?? chosen })
-  }
+  // No language is sent: one request reads the Arabic and the English index
+  // together, which is what makes the single box honest.
+  const submit = (given, books = chosen) => ask(given, { books })
 
   // Changing which books are searched re-asks the same question straight away.
   // Leaving the old results on screen under a new filter would show passages
@@ -105,10 +84,8 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
   // sections move around between searches cannot be learned.
   const { sources } = useSources()
   // Stale results under a spinner is a state a reader has no way to name; the
-  // skeleton fully replaces them instead of sitting on top. A return is the one
-  // exception: nothing new was asked for, so the passages already read stay up
-  // until the same ones come back. See lib/useArrival.
-  const data = useHeld(mutation.isPending ? undefined : mutation.data, returning)
+  // skeleton fully replaces them instead of sitting on top, except through a
+  // return (lib/useSearch).
   const books = groupByBook(data?.hits ?? [], sourcesFor(sources, 'daleel'))
   const passageCount = data?.hits?.length ?? 0
   const bookCount = books.length
@@ -127,7 +104,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
       <RecentRow
         items={history.map((h) => h.q)}
         accent={accent}
-        onPick={(q) => { setQuery(q); submit(q) }}
+        onPick={submit}
       />
 
       <div className="space-y-3">
@@ -142,7 +119,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
           value={query}
           onChange={setQuery}
           onSubmit={submit}
-          onClear={() => { setQuery(''); mutation.reset() }}
+          onClear={clear}
           busy={mutation.isPending}
           accent={accent}
         >

@@ -1,6 +1,6 @@
 /** Arabic to English, and back the other way. */
-import { useEffect, useState } from 'react'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 import { rootBabsQuery, searchDictionary } from '../api'
 import config from '../dictionary.json'
@@ -10,8 +10,7 @@ import { plainPronunciation } from '../lib/pronounce'
 import { pickRoots } from '../lib/rootKey'
 import { useSetting } from '../lib/settings'
 import { useHealth } from '../lib/useHealth'
-import { useArrival, useHeld } from '../lib/useArrival'
-import { useHistory } from '../lib/useHistory'
+import { useSearch } from '../lib/useSearch'
 
 import LexiconShelf from './LexiconShelf'
 import RootMeaningCard from './RootMeaningCard'
@@ -52,58 +51,27 @@ const SPAN_CLASS = { 2: 'sm:col-span-2', 3: 'sm:col-span-2 lg:col-span-3' }
 const languageOf = (text) => (/[a-z]/i.test(text) && !isArabic(text) ? 'en' : 'ar')
 
 export default function Dictionary({ accent, incoming, arrival, onGo, onVisit }) {
-  const [query, setQuery] = useState(incoming ?? '')
-
-  // How many are kept is session.json's recent-kept; unlimited buried the
-  // search box under forty words on a phone.
-  const { history, push: remember } = useHistory('dict-history')
   const { dictionaryLoaded } = useHealth()
   const missing = dictionaryLoaded === false
 
-  // A word that came back is a place reached: it goes in the Recent row and
-  // into the trail, which is what puts it in the address bar and makes the
-  // browser's back arrow land on the previous word. See lib/journey.js.
-  const mutation = useMutation({
-    mutationFn: ({ q, l }) => searchDictionary(q, l),
-    // The word the server searched, not the keystrokes: "ك ت ب" comes back as
-    // كتب, and it is كتب that belongs in Recent and in the trail.
-    onSuccess: (data) => { remember({ q: data.query }); onVisit?.(data.query) },
+  // How many Recent keeps is session.json's recent-kept; unlimited buried the
+  // search box under forty words on a phone. The place reached is the word the
+  // server searched, not the keystrokes: "ك ت ب" comes back as كتب, and it is
+  // كتب that belongs in Recent and in the trail. An arriving word is read the
+  // same way as one typed: the command bar can hand over either language.
+  const { query, setQuery, history, mutation, submit: lookUp, clear, shown } = useSearch({
+    historyKey: 'dict-history',
+    ask: ({ q }) => searchDictionary(q, languageOf(q)),
+    place: (data) => data.query,
+    onVisit,
+    incoming,
+    arrival,
   })
 
-  const submit = (overrideQuery) => {
-    // No dictionary installed: the alert above already says so; a request would
-    // only come back as a misleading "No entries".
-    if (missing) return
-    const trimmed = (overrideQuery ?? query).trim()
-    if (!trimmed) return
-    mutation.mutate({ q: trimmed, l: languageOf(trimmed) })
-  }
-
-  // Following a synonym is a new search: the box shows the word being looked
-  // up, so the reader can see where they have got to and can edit it.
-  const lookUpWord = (word) => {
-    setQuery(word)
-    submit(word)
-  }
-
-  // A word arriving: handed over from another tab, or the back arrow returning
-  // to one. App no longer remounts the panel for it, that remount faded the
-  // whole page back in and read as a flash (see lib/useArrival), so the box
-  // follows the word here, during the render.
-  const { arrived, returning } = useArrival(arrival, mutation.isPending)
-  if (arrived && incoming) setQuery(incoming)
-
-  // Through a return the entries already read stay up until the new ones land.
-  // A search the reader typed still clears them for the skeleton below: that is
-  // a new question, and this is not.
-  const shown = useHeld(mutation.isPending ? undefined : mutation.data, returning)
-
-  // And it is looked up, read the same way as one typed: the command bar can
-  // hand over either language.
-  const { mutate: lookUp } = mutation
-  useEffect(() => {
-    if (incoming) lookUp({ q: incoming, l: languageOf(incoming) })
-  }, [arrival, incoming, lookUp])
+  // No dictionary installed: the alert above already says so; a request would
+  // only come back as a misleading "No entries". Following a synonym is a new
+  // search too, put in the box so the reader can see where they have got to.
+  const submit = (given) => { if (!missing) lookUp(given) }
 
   return (
     <div className="panel">
@@ -131,7 +99,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
       <RecentRow
         items={history.map((h) => h.q)}
         accent={accent}
-        onPick={(q) => { setQuery(q); submit(q) }}
+        onPick={submit}
       />
 
       <div className="space-y-3">
@@ -146,7 +114,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
           value={query}
           onChange={setQuery}
           onSubmit={submit}
-          onClear={() => { setQuery(''); mutation.reset() }}
+          onClear={clear}
           busy={mutation.isPending}
           disabled={missing}
           accent={accent}
@@ -172,7 +140,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
             {/* First visit has nothing to click; these give it something. */}
             <ExampleChips
               examples={config.examples}
-              onPick={lookUpWord}
+              onPick={submit}
               accent={accent}
             />
           </>
@@ -187,7 +155,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
       {mutation.isPending && !shown && <AnalyzerSkeleton />}
 
       {shown && (
-        <Results data={shown} accent={accent} onGo={onGo} onLookup={lookUpWord} />
+        <Results data={shown} accent={accent} onGo={onGo} onLookup={submit} />
       )}
 
       {/* Under the word results, not above them: the meaning searched for is the
