@@ -30,6 +30,7 @@ import SectionHeader from './ui/SectionHeader'
 import SenseBands from './ui/SenseBands'
 import VerbFormTag from './ui/VerbFormTag'
 import { AnalyzerSkeleton } from './ui/Skeleton'
+import { CorrectedNote } from './ui/StatusNote'
 import SourceBadge from './ui/SourceBadge'
 import WordGrid from './ui/WordGrid'
 import Code from './ui/Code'
@@ -153,6 +154,8 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
       )}
 
       {mutation.isPending && !shown && <AnalyzerSkeleton />}
+
+      <CorrectedNote corrected={shown?.corrected} />
 
       {shown && (
         <Results data={shown} accent={accent} onGo={onGo} onLookup={submit} />

@@ -14,7 +14,6 @@ import { searchHadith } from '../api'
 import { useHadithCollections } from '../lib/useHadithCollections'
 import { useSearch } from '../lib/useSearch'
 
-import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
 import ChipRow from './ui/ChipRow'
 import ErrorAlert from './ui/ErrorAlert'
@@ -24,7 +23,7 @@ import MicButton from './ui/MicButton'
 import RecentRow from './ui/RecentRow'
 import SearchBox from './ui/SearchBox'
 import { AnalyzerSkeleton } from './ui/Skeleton'
-import StatusNote from './ui/StatusNote'
+import StatusNote, { CorrectedNote, NoteWord } from './ui/StatusNote'
 import HadithCards from './HadithCards'
 
 export default function HadithSearchResults({ accent, onOpenBook, children }) {
@@ -79,16 +78,7 @@ export default function HadithSearchResults({ accent, onOpenBook, children }) {
         <StatusNote>searched only {data.collections.map((id) => of(id).name).join(' and ')}</StatusNote>
       )}
 
-      {data?.corrected?.length > 0 && (
-        <StatusNote>
-          {data.corrected.map(({ typed, used }, i) => (
-            <span key={typed}>
-              {i > 0 && ', '}
-              searched <Word text={used} /> for <Word text={typed} />
-            </span>
-          ))}
-        </StatusNote>
-      )}
+      <CorrectedNote corrected={data?.corrected} />
 
       {data?.reference && data.reference.asked !== data.reference.shown && (
         <StatusNote>
@@ -99,7 +89,7 @@ export default function HadithSearchResults({ accent, onOpenBook, children }) {
 
       {data?.unmatched?.length > 0 && (
         <StatusNote>
-          no hadith has {data.unmatched.map((w, i) => <span key={w}>{i > 0 && ', '}<Word text={w} /></span>)}
+          no hadith has {data.unmatched.map((w, i) => <span key={w}>{i > 0 && ', '}<NoteWord text={w} /></span>)}
         </StatusNote>
       )}
 
@@ -129,11 +119,4 @@ export default function HadithSearchResults({ accent, onOpenBook, children }) {
       {data && data.hits.length > 0 && <HadithCards items={data.hits} accent={accent} />}
     </div>
   )
-}
-
-// A typed or indexed word, set in its own script.
-function Word({ text }) {
-  return /[؀-ۿ]/.test(text)
-    ? <ArabicText as="span" size="tiny" className="text-[var(--text)]">{text}</ArabicText>
-    : <span className="text-[var(--text)]">{text}</span>
 }

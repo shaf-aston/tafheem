@@ -18,8 +18,11 @@ from __future__ import annotations
 
 import re
 import sqlite3
+from collections import Counter
+from functools import lru_cache
 
 from backend.config import data_path
+from backend.services import spelling
 from backend.services.arabic_text import bare_letters
 from backend.services.fts import TRIGRAM_MIN, quoted
 from backend.services.quran_search.hit import Hit
@@ -80,6 +83,30 @@ def search(query: str, limit: int) -> list[Hit]:
         key=lambda pair: (-pair[0], len(pair[1][3]), pair[1][0], pair[1][1]),
     )
     return [Hit(surah=row[0], ayah=row[1], arabic_text=row[2], source=_SOURCE) for _, row in scored[:limit]]
+
+
+def respelt(query: str) -> tuple[str, list[tuple[str, str]]]:
+    """The query with each word no ayah holds, even inside a longer word, swapped
+    for the one it was likeliest meant to be (services/spelling.py), and the
+    swaps as (typed, used). رحمن is kept: it matches inside الرحمن."""
+    index = data_path("quran_search_index_path")
+    if not index.exists():
+        return query, []
+    known = _vocabulary(str(index), index.stat().st_mtime_ns)
+    swaps = []
+    for typed in query.split():
+        word = _NOT_LETTERS_RE.sub("", bare_letters(typed)).translate(_TA_TO_HA)
+        if word and not known.holds(word) and (used := known.nearest(word)):
+            swaps.append((typed, used))
+    swapped = dict(swaps)
+    return " ".join(swapped.get(w, w) for w in query.split()), swaps
+
+
+@lru_cache(maxsize=1)
+def _vocabulary(_path: str, _mtime: int) -> spelling.Vocabulary:
+    """Every word of the Qur'an by how often it occurs, read once per build of the index (path and mtime are the key)."""
+    rows = _db().execute("SELECT fold FROM verse")
+    return spelling.Vocabulary(Counter(w for (fold,) in rows for w in fold.translate(_TA_TO_HA).split()))
 
 
 def _score(wanted: list[str], fold: str, length: int) -> float | None:

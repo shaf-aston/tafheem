@@ -75,7 +75,7 @@ def _pinned(source: str):
     """Search with quran_search_source set to one value, as a .env would set it."""
     def call(query: str):
         get_settings().quran_search_source = source
-        return quran_search.search(query, 20)
+        return quran_search.search(query, 20)[0]
     return call
 
 

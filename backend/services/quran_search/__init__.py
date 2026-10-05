@@ -34,16 +34,23 @@ logger = logging.getLogger(__name__)
 __all__ = ["Hit", "search"]
 
 
-def search(query: str, limit: int | None = None) -> list[Hit]:
-    """Ayahs containing what was typed, or [] when neither way can answer.
+def search(query: str, limit: int | None = None) -> tuple[list[Hit], list[tuple[str, str]]]:
+    """Ayahs containing what was typed, and any typed words swapped to find them.
 
-    Empty is a real answer and the only honest one when the network is down and
-    the index has never been built. It is never an exception: a search that
-    finds nothing is an ordinary outcome of searching.
+    An Arabic word no ayah holds is swapped for the likeliest meant one first
+    (local.respelt), and the swaps are returned as (typed, used) for the reader
+    to see. Empty is a real answer and the only honest one when the network is
+    down and the index has never been built. It is never an exception: a
+    search that finds nothing is an ordinary outcome of searching.
     """
-    settings = get_settings()
-    limit = limit or settings.quran_search_limit
-    order = _order(settings.quran_search_source, query)
+    limit = limit or get_settings().quran_search_limit
+    query, swaps = local.respelt(query) if has_arabic(query) else (query, [])
+    return _first_answer(query, limit), swaps
+
+
+def _first_answer(query: str, limit: int) -> list[Hit]:
+    """The hits of the first search that has any, in the configured order."""
+    order = _order(get_settings().quran_search_source, query)
 
     for adapter in order:
         try:

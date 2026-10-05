@@ -18,7 +18,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from backend.main import app  # noqa: E402
 from backend.scripts.build_hadith_index import _SCHEMA, index_text  # noqa: E402
 from backend.scripts import build_hadith_meaning  # noqa: E402
-from backend.services.hadith import loader, meaning, repair, search, words  # noqa: E402
+from backend.services import spelling  # noqa: E402
+from backend.services.hadith import loader, meaning, search, words  # noqa: E402
 
 _ROWS = [
     # collection_id, book_number, number, part, arabic, english
@@ -226,10 +227,10 @@ def test_words_read_numbers_as_written_out():
 
 def test_one_edit_covers_every_kind_of_slip():
     """Missing, added, replaced and swapped letters each count as one."""
-    assert repair.edits("chairty", "charity") == 1
-    assert repair.edits("رمظان", "رمضان") == 1
-    assert repair.edits("siwaak", "siwak") == 1
-    assert repair.edits("ستكجاري", "تجاري") == 2
+    assert spelling.edits("chairty", "charity") == 1
+    assert spelling.edits("رمظان", "رمضان") == 1
+    assert spelling.edits("siwaak", "siwak") == 1
+    assert spelling.edits("ستكجاري", "تجاري") == 2
 
 
 def test_a_name_is_not_the_word_it_spells(db):

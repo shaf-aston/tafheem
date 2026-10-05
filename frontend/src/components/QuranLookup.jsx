@@ -30,6 +30,7 @@ import SourceBadge from './ui/SourceBadge'
 import ArabicText from './ui/ArabicText'
 import RecentRow from './ui/RecentRow'
 import { AnalyzerSkeleton } from './ui/Skeleton'
+import { CorrectedNote } from './ui/StatusNote'
 
 // "1:3" as another tab writes it. Anything else arriving is a root.
 const AYAH_REF = /^(\d+):(\d+)$/
@@ -213,8 +214,9 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
         heard ? (
           <SearchResults results={heard} onSelect={openResult} accent={accent} />
         ) : search.data ? (
-          <div aria-busy={search.isPending} className={`transition-opacity ${search.isPending ? 'opacity-60' : ''}`}>
-            <SearchResults results={search.data} onSelect={openResult} accent={accent} />
+          <div aria-busy={search.isPending} className={`space-y-3 transition-opacity ${search.isPending ? 'opacity-60' : ''}`}>
+            <CorrectedNote corrected={search.data.corrected} />
+            <SearchResults results={search.data.hits} onSelect={openResult} accent={accent} />
           </div>
         ) : (
           search.isPending && <AnalyzerSkeleton />

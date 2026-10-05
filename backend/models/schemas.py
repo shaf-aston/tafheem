@@ -658,6 +658,12 @@ class AyahEditions(BaseModel):
     passages: list[Passage]
 
 
+class Correction(BaseModel):
+    """A typed word the search did not know, and the known word searched in its place (services/spelling.py)."""
+    typed: str
+    used: str
+
+
 class QuranSearchResult(BaseModel):
     surah: int
     ayah: int
@@ -665,6 +671,12 @@ class QuranSearchResult(BaseModel):
     # Which of the two searches found it: the hand-tagged corpus on this
     # machine, or Quran.com over the network. One list can hold either.
     source: Source | None = None
+
+
+class QuranSearchResponse(BaseModel):
+    hits: list[QuranSearchResult]
+    # Set when the words as typed found nothing and their likeliest meant words were searched instead.
+    corrected: list[Correction] = []
 
 
 class Synonym(BaseModel):
@@ -731,6 +743,8 @@ class DictionaryResponse(BaseModel):
     lang: str
     results: list[DictionaryEntry]
     source: Source | None = None
+    # Set when the word as typed found nothing and its likeliest meant word was looked up instead.
+    corrected: list[Correction] = []
 
 
 class RootMeaning(BaseModel):
@@ -1173,12 +1187,6 @@ class HadithChapter(HadithBook):
     collection: str
 
 
-class HadithCorrection(BaseModel):
-    """A typed word no hadith holds, and the indexed word searched in its place."""
-    typed: str
-    used: str
-
-
 class HadithReference(BaseModel):
     """A search that named one hadith ("muslim 8"): the number asked and the number shown, which differ when the collection skips it."""
     collection: str
@@ -1190,7 +1198,7 @@ class HadithSearchResponse(BaseModel):
     query: str
     collections: list[str] = []
     hits: list[HadithEntry] = []
-    corrected: list[HadithCorrection] = []
+    corrected: list[Correction] = []
     # Typed words no hadith holds and nothing is near enough to stand in for.
     unmatched: list[str] = []
     # No hadith holds every word; the hits are the closest by words and meaning.

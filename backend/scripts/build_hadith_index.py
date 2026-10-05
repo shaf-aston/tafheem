@@ -22,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
+from backend.services import spelling  # noqa: E402
 from backend.services.hadith import words  # noqa: E402
 from backend.services.hadith.chain import chain_of  # noqa: E402
 from backend.services.hadith.lemma import lemma  # noqa: E402
@@ -72,7 +73,7 @@ CREATE TABLE word (
 ) WITHOUT ROWID;
 
 -- Each word, and each word with one letter dropped, so a misspelling finds the
--- words within two slips of it by plain lookup (services/hadith/repair.py).
+-- words within two slips of it by plain lookup (services/spelling.py).
 CREATE TABLE deletion (
     variant  TEXT NOT NULL,
     spelling TEXT NOT NULL,
@@ -95,7 +96,7 @@ def index_text(conn: sqlite3.Connection) -> None:
     for rowid, arabic, english in rows:
         # Only the hadith, never its chain: a narrator's name is not what the hadith says.
         _, matn = chain_of(arabic)
-        folded = words.fold(matn)
+        folded = spelling.fold(matn)
         # Analysed as written, marks and all: the marks are what tell صَبْرَة the name from الصَّبْر.
         lemmas = " ".join(filter(None, (lemma(t) for t in words.ARABIC_TOKEN.findall(matn))))
         conn.execute("INSERT INTO hadith_fts (rowid, arabic, lemma, english) VALUES (?, ?, ?, ?)",
@@ -105,7 +106,7 @@ def index_text(conn: sqlite3.Connection) -> None:
     conn.executemany("INSERT INTO word (spelling, lang, n) VALUES (?, ?, ?)",
                      [(w, lang, n) for (lang, w), n in vocabulary.items()])
     conn.executemany("INSERT INTO deletion (variant, spelling, lang) VALUES (?, ?, ?)",
-                     ((v, w, lang) for lang, w in vocabulary for v in {w} | words.deletes(w)))
+                     ((v, w, lang) for lang, w in vocabulary for v in {w} | spelling.deletes(w)))
 
 
 def build() -> dict[str, int]:

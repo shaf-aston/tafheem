@@ -30,8 +30,10 @@ def took(monkeypatch):
     monkeypatch.setattr(service, "_arabic_index", arabic)
     monkeypatch.setattr(service, "_loaded", True)
     service._arabic_matches.cache_clear()
+    service._vocabulary.cache_clear()
     yield entries
     service._arabic_matches.cache_clear()
+    service._vocabulary.cache_clear()
 
 
 def found(query: str) -> list[str]:
