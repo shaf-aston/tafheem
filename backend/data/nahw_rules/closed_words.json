@@ -1043,9 +1043,10 @@
   },
   "participle_patterns": {
    "ar": "أوزان اسم الفاعل واسم المفعول والصفة المشبهة",
-   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal (a derived describing word, Tasheel 3.8.6). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل, 1ا2ِي the same with a weak last letter (باكية، داعيًا), مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول; the صفة مشبهة: 1َ2ِ3 فَعِل (فَرِحًا), 1َ2ِي3 فَعِيل (سَعِيدًا), 1َ2ْ3َان فَعْلان (غَضْبَانَ).",
+   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal (a derived describing word, Tasheel 3.8.6). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل (آ2ِ3 when the first root letter is a hamza: آمِر، آكِل), 1ا2ِي the same with a weak last letter (باكية، داعيًا), مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول; the صفة مشبهة: 1َ2ِ3 فَعِل (فَرِحًا), 1َ2ِي3 فَعِيل (سَعِيدًا), 1َ2ْ3َان فَعْلان (غَضْبَانَ).",
    "words": [
     "1ا2ِ3",
+    "آ2ِ3",
     "1ا2ِي",
     "مُ",
     "مَ1ْ2ُو3",
