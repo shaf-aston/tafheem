@@ -98,15 +98,13 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
           <Chip selected={starred} tinted accent={accent} onClick={() => setStarred(!starred)}>
             &#9733; Starred {favorites.length > 0 && favorites.length}
           </Chip>
+          {/* Every fact here comes from the collection's own row, so a new collection needs no change. */}
+          {!starred && (
+            <span className="ml-auto type-small text-[var(--text-faint)]">
+              {open.name}{open.sahih && ' · all sahih'}
+            </span>
+          )}
         </ChipRow>
-        {!starred && (
-          <p className="type-small text-[var(--text-faint)] flex items-center gap-2">
-            {open.name}
-            {open.sahih && (
-              <span role="img" aria-label="every hadith graded sahih" title="Every hadith graded sahih" className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--success)]" />
-            )}
-          </p>
-        )}
         {starred ? (
           favorites.length
             ? <HadithCards items={favorites} collections={collections} accent={accent} />
