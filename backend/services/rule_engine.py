@@ -14,7 +14,7 @@ from typing import Any
 from backend.services.arabic_text import strip_diacritics
 from backend.services import signs
 from backend.services.harakat import PRESENT_PREFIX, SUKUN
-from backend.services.nahw_book import book_words, reason, term_ar
+from backend.services.nahw_book import book_words, reason, teacher_rules, term_ar
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
@@ -80,9 +80,45 @@ def analyze(sentence: str, tags: list[dict[str, Any]]) -> dict[str, Any]:
     """{summary, words}: the sentence type and one card per word."""
     if not tags:
         return {"summary": "", "words": []}
-    is_inna = _is(tags[0], "inna")
-    summary = sentence_type(_opens_with_verb(tags, is_inna), is_inna)
-    return {"summary": summary, "words": signs.settle([_card(tag, i, tags) for i, tag in enumerate(tags)])}
+    conditional = opens_condition(tags)
+    is_inna = not conditional and _is(tags[0], "inna")
+    summary = term_ar("jumlah_shartiyyah") if conditional else sentence_type(_opens_with_verb(tags, is_inna), is_inna)
+    words = signs.settle([_card(tag, i, tags) for i, tag in enumerate(tags)])
+    return {"summary": summary, "words": mark_condition(words) if conditional else words, "conditional": conditional}
+
+
+def opens_condition(tags: list[dict]) -> bool:
+    """إنْ with a verb straight after (إن كنتَ، إن تدرسْ): a condition, never إنّ, whose
+    noun must come straight after it. The book's test, closed_words.json."""
+    first = strip_diacritics(tags[0].get("word", ""))
+    return (first in book_words("jazm", "conditional_particles")
+            and len(tags) > 1 and tags[1].get("pos") == "verb")
+
+
+def mark_condition(cards: list[dict]) -> list[dict]:
+    """فعل الشرط on the first verb after the particle; جواب الشرط on the later verb the
+    فاء ties to it (فاقبلها), else the next one in jazm (إن تدرسْ تنجحْ). Each is in
+    jazm, or in its place when built (كُنْتَ). Runs after signs.settle wrote the reasons."""
+    said = teacher_rules()["case_said"]["condition"]
+    verbs = [card for card in cards[1:] if card.get("type") == "fi'l"]
+    if not verbs:
+        return cards
+    tied = [card for card in verbs[1:] if _opened_by_fa(card)]
+    answer = next(iter(tied), None) or next((card for card in verbs[1:] if card.get("case") == "jazm"), None)
+    for card, part in ((verbs[0], "verb"), (answer, "answer")):
+        if card is None:
+            continue
+        where = said["place"] if card.get("case") == "mabni" else said["jazm"]
+        fa = f"{said['fa']}، " if card in tied else ""
+        head, dot, rule = card["reason"].partition(". القاعدة")
+        card["reason"] = f"{head}، {fa}{said[part]} {where}{dot}{rule}"
+    return cards
+
+
+def _opened_by_fa(card: dict) -> bool:
+    """A joined فاء: the typed word opens with ف and its own word does not (فَاقْبَلْهَا, not فَتَحَ)."""
+    base = strip_diacritics(card.get("camel", {}).get("base", ""))
+    return strip_diacritics(card["word"]).startswith("ف") and not base.startswith("ف")
 
 
 def _opens_with_verb(tags: list[dict], is_inna: bool) -> bool:
@@ -116,6 +152,8 @@ def _card(tag: dict[str, Any], i: int, tags: list[dict]) -> dict:
         return _harf_entry(tag, "حرف", "حرف عطف")
     if _is(tag, "jarr"):
         return _harf_entry(tag, "حرف جر", "حرف جر")
+    if i == 0 and opens_condition(tags):
+        return _harf_entry(tag, "حرف", "حرف شرط")
     if _is(tag, "inna") and i == 0:
         return _harf_entry(tag, "حرف", "حرف ناسخ")
     if pos in ("part", "det"):

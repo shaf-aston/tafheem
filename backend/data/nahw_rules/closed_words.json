@@ -369,9 +369,11 @@
   },
   "jazm": {
    "ar": "جوازم الفعل المضارع",
-   "card": {"named": "حرف جزم", "does": "يجزم الفعل المضارع", "governs": "jazm", "named_as": {"لا": "لا الناهية، حرف", "لم": "حرف نفي وجزم وقلب", "لما": "حرف نفي وجزم وقلب"}},
+   "card": {"named": "حرف جزم", "does": "يجزم الفعل المضارع", "governs": "jazm", "named_as": {"إن": "حرف شرط جازم", "لا": "لا الناهية، حرف", "لم": "حرف نفي وجزم وقلب", "لما": "حرف نفي وجزم وقلب"}},
    "effect": "puts the present verb after it in jazm (sukun; nun of the five verbs dropped; a weak last letter dropped); conditionals govern two verbs, the condition and the result",
    "before_a_present_verb": ["لم", "لما"],
+   "conditional_particles": ["إن", "إذما"],
+   "_conditional_particles": "the conditional particles (the other conditionals are nouns): with a verb straight after, a condition opens; its first verb is فعل الشرط and its answer جواب الشرط, both in jazm or in its place (services/rule_engine.py)",
    "_before_a_present_verb": "the ones that settle an unvowelled present verb as مجزوم when it comes straight after them; لا and the conditionals need a reading of the sentence (services/syntax/naming.py)",
    "words": [
     "لم",

@@ -14,7 +14,8 @@ from __future__ import annotations
 from backend.services.nahw_book import clause_of, named_roles, role_units, teacher_rules
 from backend.services.syntax.facts import Sentence, completes_kaada
 from backend.services.syntax.naming import base_tokens, opens_with_verb, tone
-from backend.services.nahw_book import term_ar
+from backend.services.arabic_text import strip_diacritics
+from backend.services.nahw_book import book_words, term_ar
 
 # What a unit is called, by the join that makes it. Spelled once, in
 # data/nahw_rules/tarkeeb.json, so a typed sentence, a book example and an ayah
@@ -22,6 +23,7 @@ from backend.services.nahw_book import term_ar
 VERBAL = term_ar("jumlah_filiyyah")
 NOMINAL = term_ar("jumlah_ismiyyah")
 QUESTION = term_ar("jumlah_istifhamiyyah")
+CONDITION = term_ar("jumlah_shartiyyah")
 NAMED = named_roles()
 
 
@@ -57,6 +59,10 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
 def _sentence_label(roles: dict[int, str | None], tokens: list[dict]) -> str:
     if any("interrog" in t.get("pos_camel", "") for t in tokens):
         return QUESTION
+    # إن كنتَ ... فاقبلها: a conditional particle and its verb, as rule_engine.opens_condition
+    if len(tokens) > 1 and roles[tokens[1]["id"]] == NAMED.fil and strip_diacritics(
+            tokens[0]["form"]) in book_words("jazm", "conditional_particles"):
+        return CONDITION
     return VERBAL if opens_with_verb([roles[t["id"]] for t in tokens]) else NOMINAL
 
 
