@@ -1,21 +1,10 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 
+import { arc } from '../lib/govArc'
 import { roleVar } from '../lib/roleColors'
 import { DEMO_WORDS, GOVERNS } from './storyData.js'
 
 const clamp = (v) => Math.max(0, Math.min(1, v))
-
-// An arc over the line from one word's top centre to another's, with the
-// chevron that ends it (pointing down into the governed word).
-const ARC_LIFT = 18 // px above the words, plus a share of the span
-const HEAD = 7 // px half-width of the arrowhead
-function arc([x1, y1], [x2, y2]) {
-  const lift = y1 - ARC_LIFT - Math.abs(x2 - x1) / 6
-  return {
-    d: `M${x1} ${y1}C${x1} ${lift} ${x2} ${lift} ${x2} ${y2}`,
-    head: `M${x2 - HEAD} ${y2 - HEAD}L${x2} ${y2}L${x2 + HEAD} ${y2 - HEAD}`,
-  }
-}
 
 // One-line sentence that slides so the active pair sits in the middle, arrows
 // above the words, and a strip of ticks (one per word) under it.

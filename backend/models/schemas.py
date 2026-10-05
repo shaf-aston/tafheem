@@ -86,6 +86,10 @@ class WordAnalysis(BaseModel):
     notes: str | None = None
     # The book's divisions that named the role (اسم ← ... (تسهيل النحو 3.1 p60)): the proof's source.
     book: str | None = None
+    # The typed word this one takes its case from, by index: its عامل, or for a تابع the
+    # word it follows. Unset where the parser drew no such word.
+    governor: int | None = None
+    follows: int | None = None
 
     @classmethod
     def from_raw(cls, w: dict) -> "WordAnalysis":
@@ -108,6 +112,8 @@ class WordAnalysis(BaseModel):
             reason=w.get("reason"),
             notes=w.get("notes"),
             book=w.get("book"),
+            governor=w.get("governor"),
+            follows=w.get("follows"),
         )
 
 

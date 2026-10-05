@@ -70,7 +70,8 @@ def _named(entry: dict, found: dict) -> None:
     """One card takes the tree's name; the case is naming's (syntax.naming._ending)."""
     renamed = found["role"] != entry.get("role")
     entry.update(role=found["role"], book=found.get("book"), role_key=role_key(found["role"]),
-                 family=found.get("family"))  # كان، إنّ: named by what they govern (signs.settle)
+                 family=found.get("family"),  # كان، إنّ: named by what they govern (signs.settle)
+                 governor=found.get("governor"), follows=found.get("follows"))
     if found["role"] != NAMED.fil and entry.get("type") == "fi'l":
         # لَسِحْرًا: CAMeL's verb is the parser's noun, so the verb's case goes with it
         entry.update(type="harf" if found["role"] in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
