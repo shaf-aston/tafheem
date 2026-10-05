@@ -24,9 +24,10 @@ from pathlib import Path
 
 import pytest
 
-from backend.config import get_settings
+from backend.config import data_path, get_settings
 from backend.services import quran_search
 from backend.services.quran_search import local, remote
+from backend.services.readonly_db import ReadOnlyDb
 
 # Three fabricated ayahs, not the real ones: the point is the search, and a test
 # that needs the built index would be skipped exactly when it is most useful.
@@ -73,7 +74,11 @@ def index(monkeypatch):
     conn.close()
 
     monkeypatch.setattr(get_settings(), "quran_search_index_path", _TEMP_INDEX)
+    # A connection of this test's own, closed before the file goes: Windows
+    # will not delete a file a connection still holds.
+    monkeypatch.setattr(local, "_db", ReadOnlyDb(lambda: data_path("quran_search_index_path")))
     yield target
+    local._db().close()
     target.unlink(missing_ok=True)
 
 

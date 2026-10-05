@@ -48,7 +48,6 @@ def db(tmp_path, monkeypatch):
     conn.close()
 
     monkeypatch.setattr(loader, "data_path", lambda _key: path)
-    monkeypatch.setattr(search, "data_path", lambda _key: path)
     # No meaning index unless a test builds one, so a real one on disk never leaks in.
     monkeypatch.setattr(meaning, "data_path", lambda _key: tmp_path / "hadith_meaning.db")
     # lru_cache is module-level and would otherwise carry a previous test's
@@ -172,7 +171,6 @@ def test_router_search_with_no_query_says_ready_without_searching(db, client):
 
 def test_router_search_before_the_database_is_built(tmp_path, monkeypatch, client):
     monkeypatch.setattr(loader, "data_path", lambda _key: tmp_path / "nothing.db")
-    monkeypatch.setattr(search, "data_path", lambda _key: tmp_path / "nothing.db")
     loader.collections.cache_clear()
     resp = client.get("/api/hadith/search", params={"q": "light"})
     assert resp.json()["ready"] is False

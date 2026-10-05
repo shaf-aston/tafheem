@@ -23,12 +23,12 @@ import sqlite3
 from collections import Counter
 from dataclasses import dataclass, field
 
-from backend.config import data_path, get_settings
+from backend.config import get_settings
 from backend.services import fts
 from backend.services.arabic_text import has_arabic
 from backend.services.hadith import meaning, reference, repair, words
 from backend.services.hadith.lemma import lemma
-from backend.services.hadith.loader import books, is_built, numbered, share
+from backend.services.hadith.loader import books, db, is_built, numbered, share
 from backend.services.hadith.loader import collections as collections_of
 
 logger = logging.getLogger(__name__)
@@ -105,7 +105,7 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
         return Result()
 
     only, params = fts.only_in("h.collection_id", collections)
-    conn = sqlite3.connect(f"file:{data_path('hadith_index_path')}?mode=ro", uri=True)
+    conn = db()
     try:
         content = _content(typed, settings)[:_MAX_TERMS]
         # An index built before dictionary forms were stored still answers, by spelling alone.
@@ -128,8 +128,6 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
     except sqlite3.OperationalError:
         # A query FTS5 cannot parse (bare punctuation) is nothing found, not a server error.
         return Result()
-    finally:
-        conn.close()
 
     hits = [Hit(collection=c, book=b, number=n, part=p, arabic=a, english=e, grades=json.loads(g))
             for c, b, n, p, a, e, g in rows[:limit]]

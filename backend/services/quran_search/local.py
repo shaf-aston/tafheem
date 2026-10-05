@@ -23,6 +23,7 @@ from backend.config import data_path
 from backend.services.arabic_text import bare_letters
 from backend.services.fts import TRIGRAM_MIN, quoted
 from backend.services.quran_search.hit import Hit
+from backend.services.readonly_db import ReadOnlyDb
 
 NAME = "local"
 
@@ -30,6 +31,8 @@ NAME = "local"
 # Quranic Arabic Corpus, which is hand-tagged, so it is "corpus" and not the
 # Quran.com key: two different books must never wear one badge.
 _SOURCE = "corpus"
+# This thread's read-only connection to the index, reopened when a build replaces it.
+_db = ReadOnlyDb(lambda: data_path("quran_search_index_path"))
 
 
 # Anything that is not an Arabic letter or a space: punctuation, digits, Latin.
@@ -62,19 +65,12 @@ def search(query: str, limit: int) -> list[Hit]:
     Returns [] when the index has not been built. A missing index is a thing
     that has not been done yet, not a failure worth an error page.
     """
-    index = data_path("quran_search_index_path")
-    if not index.exists():
-        return []
-
+    conn = _db()
     folded = " ".join(_NOT_LETTERS_RE.sub(" ", bare_letters(query)).split())
-    if not folded:
+    if conn is None or not folded:
         return []
 
-    conn = sqlite3.connect(f"file:{index}?mode=ro", uri=True)
-    try:
-        rows = _rows(conn, folded)
-    finally:
-        conn.close()
+    rows = _rows(conn, folded)
 
     # Each word once: الله الله الله is a one-word question, and counting it as
     # three made every ayah fall short of the threshold below.
