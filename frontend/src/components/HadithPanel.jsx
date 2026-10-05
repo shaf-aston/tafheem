@@ -26,12 +26,15 @@ import HadithCards from './HadithCards'
 import HadithList from './HadithList'
 import HadithSearchResults from './HadithSearchResults'
 import Code from './ui/Code'
+import SourceBadge from './ui/SourceBadge'
+import { useSources } from '../lib/useSources'
 
 export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
   const { data: collections, isPending, isError, error, refetch } = useQuery(hadithCollectionsQuery)
   const [place, setPlace] = useState(null)   // { collection, book, number, part }
   const [starred, setStarred] = useState(false)
   const { favorites } = useHadithFavorites()
+  const source = useSources().sources.find((s) => s.key === 'hadith')
 
   // A link naming a book starts that book loading beside the collections, not after them.
   const client = useQueryClient()
@@ -105,12 +108,8 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
           <Chip selected={starred} tinted accent={accent} onClick={() => setStarred(!starred)}>
             &#9733; Starred {favorites.length > 0 && favorites.length}
           </Chip>
-          {/* Every fact here comes from the collection's own row, so a new collection needs no change. */}
-          {!starred && (
-            <span className="ml-auto type-small text-[var(--text-faint)]">
-              {open.name}{open.sahih && ' · all sahih'}
-            </span>
-          )}
+          {/* The dictionary's badge: the dot is how far the text can be trusted, the label is this collection. */}
+          {!starred && source && <SourceBadge source={{ ...source, label: open.name }} className="ml-auto" />}
         </ChipRow>
         {starred ? (
           favorites.length
