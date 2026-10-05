@@ -1,0 +1,1847 @@
+{
+  "id": "rashidun",
+  "order": 3,
+  "name": "The Rightly-Guided Caliphs",
+  "arabic": "الخلفاء الراشدون",
+  "science": "tarikh",
+  "kind": "dated",
+  "sub": "11 to 40 AH, 632 to 661 CE",
+  "map": "caliphate",
+  "events": [
+    {
+      "id": "saqifah",
+      "title": "Saqifah and Abu Bakr's pledge",
+      "arabic": "السقيفة وبيعة أبي بكر",
+      "when": "632 CE, 11 AH",
+      "at": 632.45,
+      "hijri": "11 AH",
+      "place": "madinah",
+      "summary": "Hours after the Prophet's death the Ansar gather at Saqifah Banu Sa'idah; Umar pledges to Abu Bakr and the community follows. His caliphate lasts about two years and three months.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 3667,
+          "checked": "sunnah.com numbering, read on the hadith-api copy"
+        },
+        {
+          "hadith": "bukhari",
+          "number": 6830,
+          "checked": "sunnah.com numbering, read on the hadith-api copy"
+        },
+        {
+          "quran": "3:144"
+        },
+        {
+          "quran": "24:55"
+        },
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "ibnsad"
+        }
+      ],
+      "steps": [
+        {
+          "id": "death-shock",
+          "title": "The shock of the death",
+          "arabic": "الصدمة",
+          "when": "12 Rabi al-Awwal 11 AH",
+          "summary": "Umar cannot believe the Prophet has died; Abu Bakr recites that Muhammad is only a messenger and that messengers passed before him, and the people take it as new.",
+          "place": "madinah",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3667,
+              "checked": "sunnah.com numbering, read on the hadith-api copy"
+            },
+            {
+              "quran": "3:144"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "saqifah-meeting",
+          "title": "The meeting at Saqifah",
+          "arabic": "اجتماع السقيفة",
+          "when": "11 AH",
+          "summary": "The Ansar meet to choose a leader; Abu Bakr, Umar and Abu Ubaydah go to them. Abu Bakr reminds them that leadership belongs to Quraysh and proposes Umar or Abu Ubaydah.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "pledge",
+          "title": "Umar's pledge, then the people's",
+          "arabic": "البيعة",
+          "when": "11 AH",
+          "summary": "Umar takes Abu Bakr's hand and pledges first; the Ansar and then the whole community pledge, the general pledge following in the mosque. Umar later called the first pledge sudden but saved from harm.",
+          "place": "madinah",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 6830,
+              "checked": "sunnah.com numbering, read on the hadith-api copy"
+            },
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "first-speech",
+          "title": "Abu Bakr's first speech",
+          "arabic": "خطبة أبي بكر",
+          "when": "11 AH",
+          "summary": "He asks the people to help him if he does right and correct him if he errs, and says obedience is owed only while he obeys Allah and His Messenger.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        },
+        {
+          "id": "usamah-army",
+          "title": "Usamah's army sent out",
+          "arabic": "جيش أسامة",
+          "when": "11 AH",
+          "summary": "Abu Bakr sends the army the Prophet had readied under Usamah ibn Zayd toward Sham, refusing advice to hold it back. It returns victorious after about forty days.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apostasy-wars",
+      "title": "The wars of apostasy and zakah",
+      "arabic": "حروب الردة",
+      "when": "632 to 633 CE, 11 to 12 AH",
+      "at": 632.7,
+      "hijri": "11 AH",
+      "place": "yamamah",
+      "summary": "Many tribes leave Islam or withhold zakah. Abu Bakr fights them in the name of the whole religion, and the revolt ends at Yamamah.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "withholding-zakah",
+          "title": "Tribes withhold zakah",
+          "arabic": "منع الزكاة",
+          "when": "11 AH",
+          "summary": "Several tribes refuse to pay zakah to Madinah. Umar urges patience; Abu Bakr answers that he will fight whoever separates prayer from zakah.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "false-prophets",
+          "title": "False prophets rise",
+          "arabic": "المتنبئون",
+          "when": "11 AH",
+          "summary": "Musaylimah in Yamamah, Tulayhah among Asad and Ghatafan, and al-Aswad al-Ansi in Yemen claim prophethood, as does the woman Sajah among Tamim.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "eleven-columns",
+          "title": "Eleven columns",
+          "arabic": "الأمراء الأحد عشر",
+          "when": "11 AH",
+          "summary": "Abu Bakr ties eleven banners to eleven commanders, among them Khalid ibn al-Walid, and sends them across Arabia. Tulayhah is beaten at Buzakhah.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "yamamah-battle",
+          "title": "Yamamah",
+          "arabic": "معركة اليمامة",
+          "when": "Early 12 AH",
+          "summary": "Khalid defeats the Banu Hanifah at Aqraba; Musaylimah is killed. Reports give a large number of Qur'an reciters among the Muslim dead.",
+          "place": "yamamah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quran-collected",
+      "title": "The first collecting of the Qur'an",
+      "arabic": "جمع القرآن الأول",
+      "when": "633 CE, 12 AH",
+      "at": 633.3,
+      "hijri": "12 AH",
+      "place": "madinah",
+      "summary": "After Yamamah, Umar urges Abu Bakr to gather the Qur'an in one place. Zayd ibn Thabit collects it from what was written and what was memorised.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 4986,
+          "checked": "sunnah.com numbering, read on the hadith-api copy"
+        },
+        {
+          "quran": "15:9"
+        },
+        {
+          "quran": "9:128-129"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "tabari"
+        }
+      ],
+      "steps": [
+        {
+          "id": "fear-of-loss",
+          "title": "Fear of loss",
+          "arabic": "الخشية من الضياع",
+          "when": "12 AH",
+          "summary": "So many reciters had died at Yamamah that Umar feared parts of the Qur'an would go with them. Abu Bakr hesitated to do what the Prophet had not done, then accepted.",
+          "place": "madinah",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4986,
+              "checked": "sunnah.com numbering, read on the hadith-api copy"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "zayd-chosen",
+          "title": "Zayd ibn Thabit is chosen",
+          "arabic": "اختيار زيد",
+          "when": "12 AH",
+          "summary": "Zayd, a young scribe of the revelation, is told to search out the Qur'an. He later said moving a mountain would have been lighter than the task.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "two-witnesses",
+          "title": "Two witnesses for every verse",
+          "arabic": "الشهادة على المكتوب",
+          "when": "12 AH",
+          "summary": "Zayd accepts a verse only if it is written and also confirmed by two people who heard it from the Prophet. The last verses of Surat al-Tawbah are found with Abu Khuzaymah al-Ansari.",
+          "refs": [
+            {
+              "quran": "9:128-129"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "sheets-kept",
+          "title": "The sheets are kept",
+          "arabic": "الصحف",
+          "when": "12 AH onward",
+          "summary": "The sheets stay with Abu Bakr, then Umar, then pass to Umar's daughter Hafsah, the Prophet's wife.",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "umar-accession",
+      "title": "Abu Bakr names Umar and dies; Umar's accession",
+      "arabic": "وفاة أبي بكر وولاية عمر",
+      "when": "634 CE, 13 AH",
+      "at": 634.65,
+      "hijri": "13 AH",
+      "place": "madinah",
+      "summary": "Ill with a fever, Abu Bakr consults the senior companions, names Umar, and dies on 22 Jumada al-Akhirah 13 AH. Umar rules about ten years and six months.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "ibnsad"
+        }
+      ],
+      "steps": [
+        {
+          "id": "consultation",
+          "title": "Consultation",
+          "arabic": "الاستخلاف",
+          "when": "13 AH",
+          "summary": "Abu Bakr asks Abd al-Rahman ibn Awf, Uthman and others about Umar, and has the choice read to the people so they can accept or refuse it.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "abu-bakr-death",
+          "title": "Abu Bakr's death",
+          "arabic": "وفاة أبي بكر",
+          "when": "22 Jumada al-Akhirah 13 AH",
+          "summary": "He dies aged about sixty-three, as the Prophet had, and is buried beside him in the chamber of A'ishah.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        },
+        {
+          "id": "amir-mumineen",
+          "title": "Commander of the Believers",
+          "arabic": "أمير المؤمنين",
+          "when": "13 AH",
+          "summary": "Umar is first addressed as Amir al-Mu'minin, shorter than 'successor of the successor of the Messenger of Allah'.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "umar-reign",
+          "title": "Length of the reign",
+          "arabic": "مدة خلافة عمر",
+          "when": "13 to 23 AH",
+          "summary": "Sources give about ten years and six months, ending with his death in Dhu al-Hijjah 23 AH.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sham-yarmuk",
+      "title": "The conquest of Sham and Yarmuk",
+      "arabic": "فتح الشام ومعركة اليرموك",
+      "when": "634 to 636 CE, 13 to 15 AH",
+      "at": 636.6,
+      "hijri": "15 AH",
+      "place": "yarmuk",
+      "summary": "Armies sent under Abu Bakr and Umar take Syria from Byzantium; the decisive battle at the Yarmuk in Rajab 15 AH opens the whole region.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "baladhuri"
+        }
+      ],
+      "steps": [
+        {
+          "id": "armies-to-sham",
+          "title": "Four armies to Sham",
+          "arabic": "الجيوش إلى الشام",
+          "when": "13 AH",
+          "summary": "Abu Bakr sends Abu Ubaydah, Amr ibn al-As, Yazid ibn Abi Sufyan and Shurahbil ibn Hasanah toward Syria.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "khalid-moves",
+          "title": "Khalid arrives from Iraq",
+          "arabic": "وصول خالد",
+          "when": "13 AH",
+          "summary": "Khalid ibn al-Walid crosses the desert to Syria with a picked force and joins the armies; sources differ on the exact route and dates.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "yarmuk-battle",
+          "title": "The battle of Yarmuk",
+          "arabic": "معركة اليرموك",
+          "when": "Rajab 15 AH, August 636 CE",
+          "summary": "A Byzantine army much larger than the Muslim force is broken over several days. The date is Rajab 15 AH in most sources, though some give 13 or 14 AH.",
+          "place": "yarmuk",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "baladhuri"
+            }
+          ]
+        },
+        {
+          "id": "damascus-fall",
+          "title": "Damascus and the north",
+          "arabic": "دمشق وما بعدها",
+          "when": "14 to 15 AH",
+          "summary": "Damascus is taken by treaty and force after a siege, Hims and Qinnasrin follow, and Heraclius withdraws.",
+          "place": "damascus",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "baladhuri"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qadisiyyah",
+      "title": "Qadisiyyah and Persia",
+      "arabic": "القادسية وفتح فارس",
+      "when": "636 to 642 CE, 14 to 21 AH",
+      "at": 636.9,
+      "hijri": "15 AH",
+      "place": "qadisiyyah",
+      "summary": "Sa'd ibn Abi Waqqas defeats the Persian army at Qadisiyyah; Ctesiphon falls, and Nahawand in 21 AH ends organised Persian resistance.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "baladhuri"
+        }
+      ],
+      "steps": [
+        {
+          "id": "qadisiyyah-battle",
+          "title": "The battle of Qadisiyyah",
+          "arabic": "معركة القادسية",
+          "when": "15 AH (some say 14)",
+          "summary": "After days of fighting, the Persian commander Rustam is killed and his army scatters. Sources differ between 14 and 15 AH.",
+          "place": "qadisiyyah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "ctesiphon",
+          "title": "Ctesiphon taken",
+          "arabic": "فتح المدائن",
+          "when": "16 AH",
+          "summary": "The Muslims cross the Tigris and enter the Persian capital; the emperor Yazdegerd flees east.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "garrison-cities",
+          "title": "Kufa and Basra founded",
+          "arabic": "تمصير الكوفة والبصرة",
+          "when": "14 to 17 AH",
+          "summary": "Garrison cities are built so that the army does not settle among the farmland; Kufa is dated to 17 AH, Basra to about 14 to 16.",
+          "place": "kufa",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "baladhuri"
+            }
+          ]
+        },
+        {
+          "id": "nahawand",
+          "title": "Nahawand, the victory of victories",
+          "arabic": "نهاوند",
+          "when": "21 AH",
+          "summary": "A large Persian force gathers at Nahawand and is defeated; the Muslims called it the victory of victories.",
+          "place": "nahawand",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jerusalem-received",
+      "title": "Jerusalem received by Umar",
+      "arabic": "تسلم عمر بيت المقدس",
+      "when": "637 CE, 16 AH",
+      "at": 637.3,
+      "hijri": "16 AH",
+      "place": "jerusalem",
+      "summary": "The Christian patriarch Sophronius surrenders Jerusalem on terms and asks that the caliph receive it in person. Umar travels to Sham and gives a written guarantee of safety.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "siege-terms",
+          "title": "Siege and terms",
+          "arabic": "الحصار والصلح",
+          "when": "15 or 16 AH",
+          "summary": "After a siege by Abu Ubaydah and Amr ibn al-As, the people ask for peace on condition that Umar himself comes.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "umar-journey",
+          "title": "Umar's journey",
+          "arabic": "سفر عمر",
+          "when": "16 AH",
+          "summary": "He travels with a servant, and the stories of sharing the one mount with him are widely told.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "aelia-covenant",
+          "title": "The covenant of Aelia",
+          "arabic": "العهدة العمرية",
+          "when": "16 AH",
+          "summary": "The people of Aelia are promised safety for their lives, churches and property; the exact text and its conditions are debated.",
+          "place": "jerusalem",
+          "refs": [
+            {
+              "book": "tabari"
+            }
+          ]
+        },
+        {
+          "id": "prayer-place",
+          "title": "Where he prayed",
+          "arabic": "مكان صلاته",
+          "when": "16 AH",
+          "summary": "Umar is reported to have prayed outside the Church of the Holy Sepulchre so that it would not be taken as a mosque, and to have cleared the Temple Mount.",
+          "place": "jerusalem",
+          "aside": true,
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hijri-calendar",
+      "title": "The Hijri calendar and the diwan",
+      "arabic": "التأريخ الهجري والديوان",
+      "when": "638 CE, 16 or 17 AH",
+      "at": 638.2,
+      "hijri": "17 AH",
+      "place": "madinah",
+      "summary": "Umar and the companions choose the Hijrah as year one and begin a register of stipends for the army and the community.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "the-letter",
+          "title": "A letter with no year",
+          "arabic": "كتاب بلا تاريخ",
+          "when": "17 AH",
+          "summary": "A governor, Abu Musa al-Ash'ari, complains that Umar's letters carry only a month, which makes it hard to say which came first.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            }
+          ]
+        },
+        {
+          "id": "hijrah-chosen",
+          "title": "The Hijrah chosen",
+          "arabic": "اختيار الهجرة",
+          "when": "16 or 17 AH",
+          "summary": "Options such as the Prophet's birth, mission or death are weighed, and the Hijrah is chosen, with Muharram as the first month. Sources differ between 16 and 17 AH.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "diwan-register",
+          "title": "The diwan",
+          "arabic": "الديوان",
+          "when": "About 20 AH",
+          "summary": "A register of names, ranked by early Islam and nearness to the Prophet, fixes each person's yearly stipend. Its date is also given as 15 or 20 AH.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "amwas-plague",
+      "title": "The plague of Amwas and the year of ashes",
+      "arabic": "طاعون عمواس وعام الرمادة",
+      "when": "639 CE, 18 AH",
+      "at": 639.3,
+      "hijri": "18 AH",
+      "place": "amwas",
+      "summary": "Famine in Arabia, then a plague in Syria, take many lives, among them leading companions. Umar turns back at the border of Sham.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "year-of-ashes",
+          "title": "The year of ashes",
+          "arabic": "عام الرمادة",
+          "when": "18 AH",
+          "summary": "Drought and hunger strike the Hijaz. Umar feeds the people from stores brought in from Sham and Egypt and shares their hardship.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "plague",
+          "title": "The plague in Sham",
+          "arabic": "الطاعون",
+          "when": "18 AH",
+          "summary": "A plague spreads through the army and towns of Syria; Abu Ubaydah, Mu'adh ibn Jabal, Yazid ibn Abi Sufyan and others die. Counts of the dead vary widely.",
+          "place": "amwas",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "umar-returns",
+          "title": "Umar turns back",
+          "arabic": "رجوع عمر",
+          "when": "18 AH",
+          "summary": "Umar is about to enter Sham when told of the plague; he turns back, citing what the Prophet taught about not entering or leaving a plague land.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "amr-governs",
+          "title": "Amr takes the lead",
+          "arabic": "تولي عمرو",
+          "when": "18 AH",
+          "summary": "Amr ibn al-As persuades the army to scatter to the hills, and the plague ends there; Mu'awiyah is soon governor of Damascus.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "egypt-conquest",
+      "title": "Egypt under Amr ibn al-As",
+      "arabic": "فتح مصر",
+      "when": "640 to 642 CE, 18 to 21 AH",
+      "at": 641.3,
+      "hijri": "20 AH",
+      "place": "fustat",
+      "summary": "Amr ibn al-As leads a small force into Egypt, takes the fortress of Babylon, and later Alexandria. Fustat becomes the new garrison city.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "baladhuri"
+        }
+      ],
+      "steps": [
+        {
+          "id": "amr-enters",
+          "title": "Amr enters Egypt",
+          "arabic": "دخول عمرو",
+          "when": "Late 18 or 19 AH",
+          "summary": "With Umar's reluctant permission he crosses at al-Arish with about four thousand men; Zubayr ibn al-Awwam later brings reinforcement.",
+          "place": "egypt",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "baladhuri"
+            }
+          ]
+        },
+        {
+          "id": "babylon-fortress",
+          "title": "The fortress of Babylon",
+          "arabic": "حصن بابليون",
+          "when": "20 AH",
+          "summary": "After a siege the fortress falls by treaty; the dating of the treaty varies across sources from 19 to 21 AH.",
+          "place": "fustat",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "baladhuri"
+            }
+          ]
+        },
+        {
+          "id": "alexandria",
+          "title": "Alexandria",
+          "arabic": "الإسكندرية",
+          "when": "21 AH",
+          "summary": "The Byzantine garrison surrenders by agreement. Alexandria is later retaken briefly and again recovered.",
+          "place": "alexandria",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "baladhuri"
+            }
+          ]
+        },
+        {
+          "id": "fustat-founded",
+          "title": "Fustat founded",
+          "arabic": "تأسيس الفسطاط",
+          "when": "About 21 AH",
+          "summary": "Amr lays out the tent city of Fustat and builds the mosque that still bears his name.",
+          "place": "fustat",
+          "refs": [
+            {
+              "book": "baladhuri"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "umar-martyred",
+      "title": "Umar's martyrdom and the council of six",
+      "arabic": "استشهاد عمر والشورى",
+      "when": "644 CE, 23 AH",
+      "at": 644.85,
+      "hijri": "23 AH",
+      "place": "madinah",
+      "summary": "A Persian slave, Abu Lu'lu'ah, stabs Umar at the dawn prayer. Umar dies three days later and leaves the choice of his successor to six men.",
+      "flags": [],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 3700,
+          "checked": "sunnah.com numbering, read on the hadith-api copy"
+        },
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "ibnsad"
+        }
+      ],
+      "steps": [
+        {
+          "id": "the-stabbing",
+          "title": "The stabbing",
+          "arabic": "الطعن",
+          "when": "26 Dhu al-Hijjah 23 AH",
+          "summary": "Abu Lu'lu'ah (Firuz), the slave of al-Mughirah ibn Shu'bah, stabs Umar several times during the dawn prayer and then kills himself.",
+          "place": "madinah",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3700,
+              "checked": "sunnah.com numbering, read on the hadith-api copy"
+            },
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        },
+        {
+          "id": "umar-last-days",
+          "title": "Umar's last days",
+          "arabic": "أيام عمر الأخيرة",
+          "when": "23 AH",
+          "summary": "He asks that debts be paid, sends greetings to A'ishah to ask for burial beside the Prophet and Abu Bakr, and she gives her permission.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3700,
+              "checked": "sunnah.com numbering, read on the hadith-api copy"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        },
+        {
+          "id": "the-six",
+          "title": "The six named",
+          "arabic": "أهل الشورى",
+          "when": "23 AH",
+          "summary": "Umar names Uthman, Ali, Talhah, al-Zubayr, Sa'd ibn Abi Waqqas and Abd al-Rahman ibn Awf, the ones the Prophet died pleased with, to choose one among themselves.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "burial",
+          "title": "Burial",
+          "arabic": "دفنه",
+          "when": "1 Muharram 24 AH",
+          "summary": "Suhayb leads the funeral prayer; Umar is buried beside the Prophet and Abu Bakr.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uthman-pledge",
+      "title": "Uthman's pledge",
+      "arabic": "بيعة عثمان",
+      "when": "644 CE, 23 or 24 AH",
+      "at": 644.9,
+      "hijri": "24 AH",
+      "place": "madinah",
+      "summary": "Abd al-Rahman ibn Awf consults the people for three days and then pledges to Uthman. His caliphate lasts about twelve years.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 3700,
+          "checked": "sunnah.com numbering, read on the hadith-api copy"
+        },
+        {
+          "hadith": "bukhari",
+          "number": 3655,
+          "checked": "sunnah.com numbering, read on the hadith-api copy"
+        },
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "ibnsad"
+        }
+      ],
+      "steps": [
+        {
+          "id": "withdraws",
+          "title": "Abd al-Rahman withdraws",
+          "arabic": "تنازل عبد الرحمن",
+          "when": "23 AH",
+          "summary": "Abd al-Rahman asks the others to leave the choice to him and gives up his own claim, then asks for the opinion of the men and women of Madinah.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "ali-uthman",
+          "title": "Ali and Uthman",
+          "arabic": "علي وعثمان",
+          "when": "24 AH",
+          "summary": "He asks each of them whether he would act by the Book, the example of the Prophet and the two successors; Uthman says yes without condition, Ali adds his own judgement.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "pledge-given",
+          "title": "The pledge",
+          "arabic": "المبايعة",
+          "when": "Muharram 24 AH",
+          "summary": "Abd al-Rahman pledges to Uthman, Ali follows, and the people pledge in the mosque. The year is given as 23 or 24 AH because it fell at the turn of the year.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 3700,
+              "checked": "sunnah.com numbering, read on the hadith-api copy"
+            },
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        },
+        {
+          "id": "reign-length",
+          "title": "Length of the reign",
+          "arabic": "مدة الخلافة",
+          "when": "24 to 35 AH",
+          "summary": "Sources give about twelve years, or eleven years and some months, up to Dhu al-Hijjah 35 AH.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uthman-conquests",
+      "title": "Uthman's conquests",
+      "arabic": "فتوحات عثمان",
+      "when": "647 to 655 CE, 27 to 34 AH",
+      "at": 647.0,
+      "hijri": "27 AH",
+      "place": "cyprus",
+      "summary": "Armies move west into Ifriqiyah, east into Khurasan, north to Armenia, and the first Muslim fleet takes Cyprus under Mu'awiyah.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "baladhuri"
+        }
+      ],
+      "steps": [
+        {
+          "id": "ifriqiyah",
+          "title": "Ifriqiyah",
+          "arabic": "فتح إفريقية",
+          "when": "27 AH",
+          "summary": "Abdullah ibn Sa'd ibn Abi Sarh defeats the Byzantine governor Gregory at Sufetula; North Africa is reached, though not held.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "baladhuri"
+            }
+          ]
+        },
+        {
+          "id": "cyprus-fleet",
+          "title": "Cyprus and the first fleet",
+          "arabic": "قبرص",
+          "when": "28 AH",
+          "summary": "Mu'awiyah, governor of Sham, takes Cyprus by sea after asking Uthman's leave, with some companions, among them Ubadah ibn al-Samit.",
+          "place": "cyprus",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "baladhuri"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "armenia-east",
+          "title": "Armenia and Khurasan",
+          "arabic": "أرمينية وخراسان",
+          "when": "24 to 31 AH",
+          "summary": "Campaigns reach Armenia and Azerbaijan, and Persian provinces revolt and are retaken as far as Khurasan.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "baladhuri"
+            }
+          ]
+        },
+        {
+          "id": "dhat-sawari",
+          "title": "The battle of the Masts",
+          "arabic": "ذات الصواري",
+          "when": "34 AH",
+          "summary": "A Muslim fleet meets the Byzantine fleet off Lycia, commonly dated 34 AH; it is the first major naval battle.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quran-standard",
+      "title": "The standard copy of the Qur'an",
+      "arabic": "المصحف العثماني",
+      "when": "About 650 CE, 25 to 30 AH",
+      "at": 650.0,
+      "hijri": "30 AH",
+      "place": "madinah",
+      "summary": "Hudhayfah warns of differing recitations on the northern front. Uthman has Hafsah's sheets copied into standard volumes sent to the main cities.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "hadith": "bukhari",
+          "number": 4987,
+          "checked": "sunnah.com numbering, read on the hadith-api copy"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "tabari"
+        },
+        {
+          "quran": "15:9"
+        }
+      ],
+      "steps": [
+        {
+          "id": "hudhayfah-warns",
+          "title": "Hudhayfah's warning",
+          "arabic": "تحذير حذيفة",
+          "when": "25 to 30 AH",
+          "summary": "Back from Armenia and Azerbaijan, Hudhayfah ibn al-Yaman tells Uthman that soldiers from Sham and Iraq are arguing over the recitation.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "hafsah-sheets",
+          "title": "Hafsah's sheets",
+          "arabic": "صحف حفصة",
+          "when": "About 25 to 30 AH",
+          "summary": "Uthman asks Hafsah for the sheets Abu Bakr had gathered and promises to return them.",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "committee",
+          "title": "The committee",
+          "arabic": "لجنة النسخ",
+          "when": "About 25 to 30 AH",
+          "summary": "Zayd ibn Thabit, Abdullah ibn al-Zubayr, Sa'id ibn al-As and Abd al-Rahman ibn al-Harith copy the text, and Quraysh dialect decides where they differ.",
+          "refs": [
+            {
+              "hadith": "bukhari",
+              "number": 4987,
+              "checked": "sunnah.com numbering, read on the hadith-api copy"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "copies-sent",
+          "title": "Copies sent, others burned",
+          "arabic": "إرسال المصاحف",
+          "when": "About 25 to 30 AH",
+          "summary": "A copy goes to each major city with a reciter; other personal sheets are burned to end disputes. Dating runs from 25 to 30 AH.",
+          "refs": [
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "tabari"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uthman-siege",
+      "title": "The unrest and siege of Uthman",
+      "arabic": "الفتنة ومقتل عثمان",
+      "when": "656 CE, 35 AH",
+      "at": 656.45,
+      "hijri": "35 AH",
+      "place": "madinah",
+      "summary": "Complaints against governors grow and groups from Egypt, Kufa and Basra march on Madinah. Uthman is besieged for about forty days and killed on 18 Dhu al-Hijjah 35 AH.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "ibnsad"
+        }
+      ],
+      "steps": [
+        {
+          "id": "grievances",
+          "title": "Grievances",
+          "arabic": "المظالم",
+          "when": "From about 30 AH",
+          "summary": "Critics objected to the governors he appointed from his own clan, to the use of funds and to land grants; Uthman answered many charges in speeches and the sources record both sides.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "delegations",
+          "title": "The delegations",
+          "arabic": "الوفود",
+          "when": "Shawwal 35 AH",
+          "summary": "Parties arrive from Egypt, Kufa and Basra. Their grievances are partly settled, and then a letter attributed to Uthman is produced which he denied writing.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "siege-refusal",
+          "title": "The siege and his refusal",
+          "arabic": "الحصار",
+          "when": "Dhu al-Qi'dah 35 AH",
+          "summary": "Uthman forbids the companions to fight for him in order to avoid Muslim blood, and says he will not leave the city or step down.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "martyrdom",
+          "title": "His martyrdom",
+          "arabic": "الاستشهاد",
+          "when": "18 Dhu al-Hijjah 35 AH",
+          "summary": "A group enters his house and kills him while he reads the Qur'an; he is buried at night in Baqi' al-Gharqad.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ali-pledge",
+      "title": "Ali's pledge",
+      "arabic": "بيعة علي",
+      "when": "656 CE, 35 AH",
+      "at": 656.5,
+      "hijri": "35 AH",
+      "place": "madinah",
+      "summary": "Days after Uthman's death the people of Madinah, with the leading companions, pledge to Ali. His caliphate lasts about four years and nine months.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "ibnsad"
+        }
+      ],
+      "steps": [
+        {
+          "id": "pledge-ali",
+          "title": "The pledge in Madinah",
+          "arabic": "المبايعة",
+          "when": "Dhu al-Hijjah 35 AH",
+          "summary": "After some reluctance Ali accepts; the men of Madinah and others pledge. Reports differ about the pledge of Talhah and al-Zubayr, who later said they gave it under pressure and left for Makkah.",
+          "place": "madinah",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "calls-for-justice",
+          "title": "Calls for Uthman's killers",
+          "arabic": "المطالبة بالقصاص",
+          "when": "35 to 36 AH",
+          "summary": "A call to bring Uthman's killers to account grows; Ali holds that order has to return first.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "capital-kufa",
+          "title": "Moving to Kufa",
+          "arabic": "الانتقال إلى الكوفة",
+          "when": "36 AH",
+          "summary": "Ali leaves Madinah for Iraq, and Kufa becomes the seat of his caliphate.",
+          "place": "kufa",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "reign-ali",
+          "title": "Length of the reign",
+          "arabic": "مدة خلافة علي",
+          "when": "35 to 40 AH",
+          "summary": "About four years and nine months, ending on 17 or 21 Ramadan 40 AH.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "camel",
+      "title": "The battle of the Camel",
+      "arabic": "وقعة الجمل",
+      "when": "656 CE, 36 AH",
+      "at": 656.95,
+      "hijri": "36 AH",
+      "place": "basra",
+      "summary": "Talhah, al-Zubayr and A'ishah go to Basra to press for justice for Uthman. Both sides want to avoid war, but it breaks out in Jumada al-Akhirah 36 AH.",
+      "flags": [],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "to-basra",
+          "title": "To Basra",
+          "arabic": "الخروج إلى البصرة",
+          "when": "36 AH",
+          "summary": "A'ishah, Talhah and al-Zubayr march to Basra to call for justice for Uthman's killers; Ali follows with an army from Madinah and Kufa.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "talks",
+          "title": "Talks on the eve",
+          "arabic": "المفاوضات",
+          "when": "Jumada al-Akhirah 36 AH",
+          "summary": "Envoys, among them al-Qa'qa' ibn Amr, bring the sides close to agreement.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "fighting",
+          "title": "Fighting breaks out",
+          "arabic": "نشوب القتال",
+          "when": "Jumada al-Akhirah 36 AH",
+          "summary": "Reports say those involved in Uthman's killing, fearing agreement, begin the fighting by night; Talhah and al-Zubayr are killed, and A'ishah's camel is the centre of the battle.",
+          "place": "basra",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "after-camel",
+          "title": "After the battle",
+          "arabic": "بعد الوقعة",
+          "when": "36 AH",
+          "summary": "Ali treats the defeated with respect, buries the dead of both sides, and sends A'ishah back to Madinah with honour.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "siffin",
+      "title": "Siffin and the arbitration",
+      "arabic": "صفين والتحكيم",
+      "when": "657 to 658 CE, 37 AH",
+      "at": 657.55,
+      "hijri": "37 AH",
+      "place": "siffin",
+      "summary": "Ali and Mu'awiyah meet at Siffin on the Euphrates. When the fighting stops after Mu'awiyah's side raises copies of the Qur'an, the dispute goes to two arbiters.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "march-siffin",
+          "title": "The armies meet",
+          "arabic": "الجيشان",
+          "when": "Dhu al-Hijjah 36 and Safar 37 AH",
+          "summary": "Mu'awiyah, governor of Sham, asks for Uthman's killers first; Ali asks for pledge first. The armies camp at Siffin.",
+          "place": "siffin",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "ammar-killed",
+          "title": "Ammar ibn Yasir killed",
+          "arabic": "مقتل عمار",
+          "when": "37 AH",
+          "summary": "Ammar, who fights with Ali, dies in the battle; his death recalls the Prophet's words that a rebellious group would kill him.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "qurans-raised",
+          "title": "The copies raised",
+          "arabic": "رفع المصاحف",
+          "when": "37 AH",
+          "summary": "With Ali's side gaining ground, men in Mu'awiyah's army raise copies of the Qur'an on spears and call for judgement by it. Part of Ali's army insists on stopping.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "arbiters",
+          "title": "The two arbiters",
+          "arabic": "الحكمان",
+          "when": "Safar or Ramadan 37 AH",
+          "summary": "Abu Musa al-Ash'ari for Ali and Amr ibn al-As for Mu'awiyah are named. The details of their meeting are told in different ways and the outcome settled nothing.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nahrawan",
+      "title": "The Khawarij and Nahrawan",
+      "arabic": "الخوارج والنهروان",
+      "when": "658 CE, 38 AH",
+      "at": 658.55,
+      "hijri": "38 AH",
+      "place": "nahrawan",
+      "summary": "Some who had fought for Ali break away over arbitration, saying judgement belongs to Allah alone. After they kill a companion and his family, Ali fights them at Nahrawan.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        }
+      ],
+      "steps": [
+        {
+          "id": "secession",
+          "title": "The secession",
+          "arabic": "الانشقاق",
+          "when": "37 AH",
+          "summary": "Some thousands leave the army at Harura and settle apart from Ali, who debates them through Ibn Abbas, and many return.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "abdullah-ibn-khabbab",
+          "title": "Abdullah ibn Khabbab killed",
+          "arabic": "مقتل عبد الله بن خباب",
+          "when": "38 AH",
+          "summary": "They kill Abdullah ibn Khabbab and slit open his pregnant wife; Ali demands the killers and they refuse.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "battle-nahrawan",
+          "title": "Nahrawan",
+          "arabic": "معركة النهروان",
+          "when": "Safar or Dhu al-Hijjah 38 AH",
+          "summary": "Ali's army defeats them; nearly all of the Khawarij die. Their remnants and kin later raise revolts in Iraq.",
+          "place": "nahrawan",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "prophet-words",
+          "title": "Sayings of the Prophet about them",
+          "arabic": "أحاديث الخوارج",
+          "when": "38 AH",
+          "summary": "Sources report Ali citing the Prophet's description of a people who recite but whose recitation does not pass their throats.",
+          "aside": true,
+          "refs": [
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ali-martyred",
+      "title": "Ali's martyrdom",
+      "arabic": "استشهاد علي",
+      "when": "661 CE, 40 AH",
+      "at": 661.07,
+      "hijri": "40 AH",
+      "place": "kufa",
+      "summary": "Three Khawarij plan to kill Ali, Mu'awiyah and Amr ibn al-As; only Abd al-Rahman ibn Muljam succeeds. Ali dies of the wound a few days later, on 21 Ramadan 40 AH.",
+      "flags": [
+        "disputed"
+      ],
+      "refs": [
+        {
+          "hadith": "abudawud",
+          "number": 4646,
+          "checked": "sunnah.com numbering, read on the hadith-api copy"
+        },
+        {
+          "hadith": "abudawud",
+          "number": 4607,
+          "checked": "sunnah.com numbering, read on the hadith-api copy"
+        },
+        {
+          "hadith": "tirmidhi",
+          "number": 2676,
+          "checked": "sunnah.com numbering, read on the hadith-api copy"
+        },
+        {
+          "book": "tabari"
+        },
+        {
+          "book": "ibnkathir"
+        },
+        {
+          "book": "ibnsad"
+        }
+      ],
+      "steps": [
+        {
+          "id": "conspiracy",
+          "title": "The conspiracy",
+          "arabic": "المؤامرة",
+          "when": "40 AH",
+          "summary": "Ibn Muljam, al-Burak ibn Abdullah and Amr ibn Bakr agree to kill three leaders on the same night; the other two attempts fail.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "the-blow",
+          "title": "The blow in Kufa",
+          "arabic": "الضربة",
+          "when": "17 or 19 Ramadan 40 AH",
+          "summary": "Ibn Muljam strikes Ali with a poisoned sword as he comes out for the dawn prayer.",
+          "place": "kufa",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        },
+        {
+          "id": "last-wishes",
+          "title": "Last wishes",
+          "arabic": "وصية علي",
+          "when": "40 AH",
+          "summary": "Ali tells his sons to keep taqwa, forbids mutilating Ibn Muljam, and says to strike only once in return.",
+          "refs": [
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            }
+          ]
+        },
+        {
+          "id": "death-burial",
+          "title": "Death and burial",
+          "arabic": "الوفاة",
+          "when": "21 Ramadan 40 AH",
+          "summary": "He dies at about sixty-three. The place of his grave is disputed. With his death the period of the four caliphs is complete.",
+          "refs": [
+            {
+              "hadith": "abudawud",
+              "number": 4646,
+              "checked": "sunnah.com numbering, read on the hadith-api copy"
+            },
+            {
+              "hadith": "abudawud",
+              "number": 4607,
+              "checked": "sunnah.com numbering, read on the hadith-api copy"
+            },
+            {
+              "hadith": "tirmidhi",
+              "number": 2676,
+              "checked": "sunnah.com numbering, read on the hadith-api copy"
+            },
+            {
+              "book": "tabari"
+            },
+            {
+              "book": "ibnkathir"
+            },
+            {
+              "book": "ibnsad"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
