@@ -6,12 +6,12 @@
  * "adjusted during render" pattern TimelinesPanel follows for its own place),
  * and hand the actual work to small named components that read from there.
  */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useArrivalWhenReady } from '../lib/useArrival'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { hadithCollectionsQuery } from '../api'
-import { parsePlace, placeOf } from '../lib/hadithPlace'
+import { hadithBookQuery, hadithCollectionsQuery } from '../api'
+import { bookOf, parsePlace, placeOf } from '../lib/hadithPlace'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import Chip from './ui/Chip'
@@ -32,6 +32,13 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
   const [place, setPlace] = useState(null)   // { collection, book, number, part }
   const [starred, setStarred] = useState(false)
   const { favorites } = useHadithFavorites()
+
+  // A link naming a book starts that book loading beside the collections, not after them.
+  const client = useQueryClient()
+  useEffect(() => {
+    const named = bookOf(incoming)
+    if (named) client.prefetchQuery(hadithBookQuery(...named))
+  }, [client, incoming])
 
   // A deep link, a link from another tab, or the back arrow landing here: all
   // three read the same way, once per arrival (see lib/useArrival).
@@ -92,9 +99,9 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
         </p>
       )}
 
-      <HadithSearchResults collections={collections} accent={accent} onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}>
+      <HadithSearchResults accent={accent} onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}>
         <ChipRow>
-          <HadithCollectionPicker collections={collections} value={collection} onChange={pickCollection} accent={accent} />
+          <HadithCollectionPicker value={collection} onChange={pickCollection} accent={accent} />
           <Chip selected={starred} tinted accent={accent} onClick={() => setStarred(!starred)}>
             &#9733; Starred {favorites.length > 0 && favorites.length}
           </Chip>
@@ -107,12 +114,12 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
         </ChipRow>
         {starred ? (
           favorites.length
-            ? <HadithCards items={favorites} collections={collections} accent={accent} />
+            ? <HadithCards items={favorites} accent={accent} />
             : <EmptyState>Star a hadith and it is kept here.</EmptyState>
         ) : place?.book == null ? (
           <HadithBookList collection={collection} onPick={pickBook} accent={accent} />
         ) : (
-          <HadithList collection={collection} collections={collections} book={place.book} onBack={backToBooks} accent={accent} />
+          <HadithList collection={collection} book={place.book} onBack={backToBooks} accent={accent} />
         )}
       </HadithSearchResults>
     </div>

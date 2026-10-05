@@ -13,6 +13,7 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { searchHadith } from '../api'
+import { useHadithCollections } from '../lib/useHadithCollections'
 import { useHistory } from '../lib/useHistory'
 
 import ArabicText from './ui/ArabicText'
@@ -27,8 +28,9 @@ import { AnalyzerSkeleton } from './ui/Skeleton'
 import HadithCards from './HadithCards'
 import Code from './ui/Code'
 
-export default function HadithSearchResults({ collections, accent, onOpenBook, children }) {
+export default function HadithSearchResults({ accent, onOpenBook, children }) {
   const [query, setQuery] = useState('')
+  const { collections, of } = useHadithCollections()
   const { history, push: remember } = useHistory('hadith-history')
 
   const mutation = useMutation({
@@ -99,7 +101,7 @@ export default function HadithSearchResults({ collections, accent, onOpenBook, c
 
       {data?.reference && data.reference.asked !== data.reference.shown && (
         <p role="status" className="type-small text-[var(--text-dim)]">
-          {collections.find((x) => x.id === data.reference.collection)?.name || data.reference.collection} has
+          {of(data.reference.collection).name} has
           no {data.reference.asked}, so this is {data.reference.shown}, the nearest number
         </p>
       )}
@@ -128,14 +130,14 @@ export default function HadithSearchResults({ collections, accent, onOpenBook, c
               title={`${c.count} of these hits are in this chapter`}
               onClick={() => { setQuery(''); mutation.reset(); onOpenBook(c.collection, c.number) }}
             >
-              {collections.length > 1 && `${collections.find((x) => x.id === c.collection)?.short || c.collection} · `}
+              {collections.length > 1 && `${of(c.collection).short} · `}
               {c.name}
             </Chip>
           ))}
         </ChipRow>
       )}
 
-      {data && data.hits.length > 0 && <HadithCards items={data.hits} collections={collections} accent={accent} />}
+      {data && data.hits.length > 0 && <HadithCards items={data.hits} accent={accent} />}
     </div>
   )
 }
