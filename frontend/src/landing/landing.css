@@ -324,14 +324,14 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .story-rchip.on:active { transform: translate(-50%, -50%) scale(.95); }
 /* Narrow panel: the ring becomes a three-across grid under the letters. */
 @container (max-width: 560px) {
-  .landing-page .story-rootstage { --top: 8%; }
+  .landing-page .story-rootstage { --top: 11%; }
   .landing-page .story-rchip {
-    --gy: calc(var(--ltr-size) * 1.1 + 1.6rem + var(--row) * 3.7rem); --ox: calc((var(--col) - 1) * (100cqi - 4rem) / 3);
+    --gy: calc(var(--ltr-size) * 1.1 + 2.2rem + var(--row) * 4.3rem); --ox: calc((var(--col) - 1) * (100cqi - 4rem) / 3);
     left: calc(50% + (var(--col) - 1) * (100% - 2rem) / 3); top: calc(var(--top) + var(--gy));
     transform: translate(calc(-50% - var(--ox)), calc(-50% - var(--gy) + var(--ltr-size) * .6)) scale(.2);
     padding: .2rem .6rem .3rem; border-radius: 12px;
   }
-  .landing-page .story-rchip .arabic { font-size: 1.2rem; }
+  .landing-page .story-rchip .arabic { font-size: 1.35rem; }
   .landing-page .story-gloss { font-size: .58rem; letter-spacing: .06em; }
   .landing-page .story-books { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4rem; }
   .landing-page .story-book { padding: .3rem .55rem; }

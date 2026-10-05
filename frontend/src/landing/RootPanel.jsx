@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { BOOKS, ROOT_LETTERS, ROOT_WORDS } from './storyData.js'
 
@@ -24,6 +24,9 @@ export default function RootPanel({ lp }) {
   const [hit, setHit] = useState(-1)
   const [rings, setRings] = useState([])
   const [drift, setDrift] = useState([0, 0])
+  const timers = useRef([])
+  useEffect(() => () => timers.current.forEach(clearTimeout), [])
+  const later = (fn, ms) => timers.current.push(setTimeout(fn, ms))
 
   const shown = Math.floor(lp * 1.2 * (ROOT_WORDS.length + 1))
   const open = Math.max(shown, pinned)
@@ -39,7 +42,7 @@ export default function RootPanel({ lp }) {
     const x = e.clientX ? e.clientX - r.left : lr.left - r.left + lr.width / 2
     const y = e.clientY ? e.clientY - r.top : lr.top - r.top + lr.height / 2
     setHit(i)
-    setTimeout(() => setHit(-1), HIT_MS)
+    later(() => setHit(-1), HIT_MS)
     setRings((rs) => [...rs, { id: performance.now(), x, y }])
     if (open < ROOT_WORDS.length) setPinned(open + 1)
     else lightChip(nextHot.current++ % ROOT_WORDS.length)
@@ -47,7 +50,7 @@ export default function RootPanel({ lp }) {
 
   function lightChip(i) {
     setHot(i)
-    setTimeout(() => setHot(-1), HOT_MS)
+    later(() => setHot(-1), HOT_MS)
   }
 
   return (
