@@ -25,7 +25,7 @@ CollectionName = Annotated[str, StringConstraints(max_length=60)]
 @router.get("/collections", response_model=list[HadithCollection])
 async def get_collections() -> list[HadithCollection]:
     found = await asyncio.to_thread(loader.collections)
-    return [HadithCollection(id=cid, name=name, short=short, sahih=sahih) for cid, name, short, sahih in found]
+    return [HadithCollection(id=cid, name=name, short=short, sahih=sahih) for cid, name, short, *_, sahih in found]
 
 
 @router.get("/{collection}/books", response_model=list[HadithBook])

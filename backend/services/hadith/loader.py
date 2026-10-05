@@ -11,6 +11,7 @@ import sqlite3
 from functools import lru_cache
 
 from backend.config import data_path
+from backend.services.arabic_text import has_arabic
 
 
 def is_built() -> bool:
@@ -23,14 +24,30 @@ def _connect() -> sqlite3.Connection:
 
 
 @lru_cache(maxsize=1)
-def collections() -> list[tuple[str, str, str, bool]]:
-    """Every collection's id, name, short name and whether all of it is sahih, in the order the database holds them."""
+def collections() -> list[tuple[str, str, str, str, str, bool]]:
+    """Every collection's id, name, short name, Arabic name, short Arabic name and whether all of it is sahih, in the order the database holds them."""
     if not is_built():
         return []
     conn = _connect()
     try:
-        return [(cid, name, short, bool(sahih)) for cid, name, short, sahih in
-                conn.execute("SELECT id, name, short, sahih FROM collection ORDER BY rowid")]
+        return [(*names, bool(sahih)) for *names, sahih in
+                conn.execute("SELECT id, name, short, arabic, arabic_short, sahih FROM collection ORDER BY rowid")]
+    finally:
+        conn.close()
+
+
+@lru_cache(maxsize=256)
+def share(word: str) -> float:
+    """The fraction of the hadith text in the word's language that is this word, as the index spells it."""
+    if not is_built():
+        return 0.0
+    conn = _connect()
+    try:
+        row = conn.execute(
+            "SELECT w.n * 1.0 / (SELECT SUM(n) FROM word WHERE lang = w.lang) FROM word w WHERE w.lang = ? AND w.spelling = ?",
+            ("ar" if has_arabic(word) else "en", word),
+        ).fetchone()
+        return row[0] if row else 0.0
     finally:
         conn.close()
 

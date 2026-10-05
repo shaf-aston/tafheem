@@ -51,6 +51,12 @@ def number_phrases(folded: str) -> list[list[str]]:
     return [[folded], ENGLISH_WORD.findall(num2words(int(folded)).lower())]
 
 
+def without_article(folded: str) -> str:
+    """An Arabic word without its ال, when a word is left: البخاري as بخاري."""
+    rest = folded.removeprefix("ال")
+    return rest if ARABIC_WORD.fullmatch(rest) else folded
+
+
 def respell(word: str, long_vowels: dict[str, str]) -> str:
     """The word with each doubled long vowel written single: dawood as dawud."""
     for doubled, single in long_vowels.items():

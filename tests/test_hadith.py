@@ -27,7 +27,7 @@ _ROWS = [
     ("bukhari", 2, 3, "", "الصَّلَاةُ نُورٌ وَالصَّدَقَةُ بُرْهَانٌ", "Prayer is light and charity is proof"),
 ]
 _BOOKS = [("bukhari", 1, "Revelation"), ("bukhari", 2, "Faith")]
-_COLLECTIONS = [("bukhari", "Sahih al-Bukhari", "https://sunnah.com/bukhari:{number}")]
+_COLLECTIONS = [("bukhari", "Sahih al-Bukhari", "صحيح البخاري", "البخاري", "https://sunnah.com/bukhari:{number}")]
 
 
 @pytest.fixture()
@@ -36,7 +36,7 @@ def db(tmp_path, monkeypatch):
     path = tmp_path / "hadith.db"
     conn = sqlite3.connect(path)
     conn.executescript(_SCHEMA)
-    conn.executemany("INSERT INTO collection (id, name, cite) VALUES (?, ?, ?)", _COLLECTIONS)
+    conn.executemany("INSERT INTO collection (id, name, arabic, arabic_short, cite) VALUES (?, ?, ?, ?, ?)", _COLLECTIONS)
     conn.executemany("INSERT INTO book (collection_id, number, name) VALUES (?, ?, ?)", _BOOKS)
     conn.executemany(
         "INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) VALUES (?, ?, ?, ?, ?, ?)",
@@ -57,6 +57,7 @@ def db(tmp_path, monkeypatch):
     loader.collection_name.cache_clear()
     loader.cite_of.cache_clear()
     loader.books.cache_clear()
+    loader.share.cache_clear()
     return path
 
 
@@ -69,7 +70,7 @@ def test_no_database_means_not_built(tmp_path, monkeypatch):
 
 
 def test_collections_and_books_are_listed(db):
-    assert loader.collections() == [("bukhari", "Sahih al-Bukhari", "", False)]
+    assert loader.collections() == [("bukhari", "Sahih al-Bukhari", "", "صحيح البخاري", "البخاري", False)]
     assert loader.books("bukhari") == [
         {"number": 1, "name": "Revelation", "count": 2},
         {"number": 2, "name": "Faith", "count": 1},
@@ -372,7 +373,7 @@ def test_a_long_vowel_spelt_doubled_is_one_slip(db):
 def two_collections(db):
     """The tiny database plus a Muslim collection holding its own prayer hadith."""
     conn = sqlite3.connect(db)
-    conn.execute("INSERT INTO collection (id, name, short, cite) VALUES ('muslim', 'Sahih Muslim', 'Muslim', '')")
+    conn.execute("INSERT INTO collection (id, name, short, arabic, arabic_short, cite) VALUES ('muslim', 'Sahih Muslim', 'Muslim', 'صحيح مسلم', 'مسلم', '')")
     conn.execute("INSERT INTO book (collection_id, number, name) VALUES ('muslim', 1, 'Prayer')")
     conn.execute("INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) "
                  "VALUES ('muslim', 1, 8, '', 'الصلاة نور', 'Prayer is light for a Muslim')")
@@ -381,6 +382,7 @@ def two_collections(db):
     conn.commit()
     conn.close()
     loader.collections.cache_clear()
+    loader.share.cache_clear()
     return db
 
 
@@ -399,6 +401,15 @@ def test_an_everyday_word_names_a_collection_only_alone_or_with_a_number(two_col
     assert found.collections == () and [h.number for h in found.hits] == [8]
     assert search.search("muslim 8").reference == ("muslim", "8", "8")
     assert search.search("muslim").reference == ("muslim", "", "")
+
+
+def test_a_collection_named_in_arabic_reads_as_in_english(two_collections):
+    """Arabic digits, with or without the article, and as a filter on Arabic words."""
+    for typed in ("البخاري ٢", "صحيح البخاري 2", "بخاري ٢"):
+        assert search.search(typed).reference == ("bukhari", "2", "2"), typed
+    assert search.search("مسلم").reference == ("muslim", "", "")
+    found = search.search("الصلاة في البخاري")
+    assert found.collections == ("bukhari",) and [h.number for h in found.hits] == [3]
 
 
 def test_a_search_that_is_only_a_collection_name_opens_it(two_collections):

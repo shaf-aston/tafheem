@@ -31,6 +31,8 @@ CREATE TABLE collection (
     id   TEXT PRIMARY KEY,
     name TEXT NOT NULL,
     short TEXT NOT NULL DEFAULT '',
+    arabic TEXT NOT NULL DEFAULT '',
+    arabic_short TEXT NOT NULL DEFAULT '',
     cite TEXT NOT NULL DEFAULT '',
     sahih INTEGER NOT NULL DEFAULT 0
 );
@@ -124,8 +126,9 @@ def build() -> dict[str, int]:
 
             raw = json.loads(raw_path.read_text(encoding="utf-8"))
             conn.execute(
-                "INSERT INTO collection (id, name, short, cite, sahih) VALUES (?, ?, ?, ?, ?)",
-                (key, meta["name"], meta.get("short", meta["name"]), meta.get("cite", ""), int(bool(meta.get("sahih")))),
+                "INSERT INTO collection (id, name, short, arabic, arabic_short, cite, sahih) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (key, meta["name"], meta.get("short", meta["name"]), meta.get("arabic", ""), meta.get("arabic_short", ""),
+                 meta.get("cite", ""), int(bool(meta.get("sahih")))),
             )
             conn.executemany(
                 "INSERT INTO book (collection_id, number, name) VALUES (?, ?, ?)",

@@ -28,7 +28,7 @@ from backend.services import fts
 from backend.services.arabic_text import has_arabic
 from backend.services.hadith import meaning, reference, repair, words
 from backend.services.hadith.lemma import lemma
-from backend.services.hadith.loader import books, is_built, numbered
+from backend.services.hadith.loader import books, is_built, numbered, share
 from backend.services.hadith.loader import collections as collections_of
 
 logger = logging.getLogger(__name__)
@@ -89,7 +89,7 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
 
     settings = get_settings()
     limit = limit or settings.hadith_result_limit
-    asked = reference.read(query, collections_of())
+    asked = reference.read(query, collections_of(), share)
     if len(asked.collections) == 1 and not asked.rest:
         collection = asked.collections[0]
         if asked.number is None:
