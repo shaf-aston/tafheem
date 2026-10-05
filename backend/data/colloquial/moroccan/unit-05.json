@@ -1649,6 +1649,435 @@
           "tip": "wash kayn asks is there."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "taxi",
+          "arabic": "طاكسي",
+          "transliteration": "taksi"
+        },
+        {
+          "slot": "bus",
+          "arabic": "طوبيس",
+          "transliteration": "tobis"
+        },
+        {
+          "slot": "i-want-to-go-to-the-old-city",
+          "arabic": "بغيت نمشي للمدينة القديمة",
+          "transliteration": "bghit nmshi l-medina l-qdima"
+        },
+        {
+          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
+          "arabic": "وقف هنا عافاك",
+          "transliteration": "wqef hna 3afak"
+        },
+        {
+          "slot": "how-much-is-the-fare",
+          "arabic": "شحال خاصني نخلص؟",
+          "transliteration": "shhal khasni nkhles?",
+          "reply": {
+            "arabic": "خمسة وعشرين درهم.",
+            "transliteration": "khamsa w 3ashrin dirham.",
+            "english": "Twenty-five dirhams."
+          }
+        },
+        {
+          "slot": "take-me-to-to-a-man",
+          "arabic": "ديني للمحطة",
+          "transliteration": "dini l-mahatta"
+        },
+        {
+          "slot": "are-you-free-asking-a-taxi-driver-if-available",
+          "arabic": "واش خاوي؟",
+          "transliteration": "wash khawi?",
+          "reply": {
+            "arabic": "أه، تفضل.",
+            "transliteration": "ah, tfaddal.",
+            "english": "Yes, please get in."
+          }
+        },
+        {
+          "slot": "busy-occupied",
+          "arabic": "معمر",
+          "transliteration": "m3ammer"
+        },
+        {
+          "slot": "how-long-does-the-way-take",
+          "arabic": "شحال كتاخد الطريق؟",
+          "transliteration": "shhal katakhod t-triq?",
+          "reply": {
+            "arabic": "شي عشرين دقيقة.",
+            "transliteration": "shi 3ashrin d-qiqa.",
+            "english": "About twenty minutes."
+          }
+        },
+        {
+          "slot": "will-you-drop-me-at-to-a-man",
+          "arabic": "واش تنزلني حدا المحطة؟",
+          "transliteration": "wash tnezzelni hda l-mahatta?",
+          "reply": {
+            "arabic": "واخا.",
+            "transliteration": "wakha.",
+            "english": "Okay."
+          }
+        },
+        {
+          "slot": "at-your-service-a-common-polite-reply-from-a-tax",
+          "arabic": "على راسي",
+          "transliteration": "3la rasi"
+        },
+        {
+          "slot": "what-time-does-the-bus-come-tomorrow",
+          "arabic": "فأشمن ساعة كيجي الطوبيس غدا؟",
+          "transliteration": "f-ashmen sa3a kayji t-tobis ghda?",
+          "reply": {
+            "arabic": "على التمانية د الصباح.",
+            "transliteration": "3la t-tmanya d s-sbah.",
+            "english": "At eight in the morning."
+          }
+        },
+        {
+          "slot": "station",
+          "arabic": "المحطة",
+          "transliteration": "l-mahatta"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "كريم",
+          "arabic": "السلام عليكم، واش خاوي؟",
+          "transliteration": "salamu 3alaykum, wash khawi?",
+          "english": "Peace be upon you, are you free?"
+        },
+        {
+          "speaker": "عبد الله",
+          "arabic": "وعليكم السلام، أه، تفضل.",
+          "transliteration": "w 3alaykum s-salam, ah, tfaddal.",
+          "english": "And peace upon you, yes, please get in."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "بغيت نمشي للمدينة القديمة.",
+          "transliteration": "bghit nmshi l-medina l-qdima.",
+          "english": "I want to go to the Old City."
+        },
+        {
+          "speaker": "عبد الله",
+          "arabic": "على راسي. واخا، ركب.",
+          "transliteration": "3la rasi. wakha, rkeb.",
+          "english": "At your service. Okay, get in."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "شحال كتاخد الطريق؟",
+          "transliteration": "shhal katakhod t-triq?",
+          "english": "How long does the way take?"
+        },
+        {
+          "speaker": "عبد الله",
+          "arabic": "شي عشرين دقيقة.",
+          "transliteration": "shi 3ashrin d-qiqa.",
+          "english": "About twenty minutes."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "مزيان. واش تنزلني حدا المحطة؟",
+          "transliteration": "mzyan. wash tnezzelni hda l-mahatta?",
+          "english": "Good. Will you drop me near the station?"
+        },
+        {
+          "speaker": "عبد الله",
+          "arabic": "واخا، ما عنديش مشكل.",
+          "transliteration": "wakha, ma 3andish mushkil.",
+          "english": "Okay, no problem for me."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "شعل العداد عافاك.",
+          "transliteration": "sh3el l-3addad 3afak.",
+          "english": "Turn on the meter, please."
+        },
+        {
+          "speaker": "عبد الله",
+          "arabic": "واخا، شعلتو.",
+          "transliteration": "wakha, sh3elto.",
+          "english": "Okay, I turned it on."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "وقف هنا عافاك. شحال خاصني نخلص؟",
+          "transliteration": "wqef hna 3afak. shhal khasni nkhles?",
+          "english": "Stop here, please. How much do I have to pay?"
+        },
+        {
+          "speaker": "عبد الله",
+          "arabic": "خمسة وعشرين درهم.",
+          "transliteration": "khamsa w 3ashrin dirham.",
+          "english": "Twenty-five dirhams."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "واش خاوي؟",
+            "transliteration": "wash khawi?",
+            "english": "Are you free?"
+          },
+          "response": {
+            "arabic": "أه، تفضل.",
+            "transliteration": "ah, tfaddal.",
+            "english": "Yes, please get in."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شحال كتاخد الطريق؟",
+            "transliteration": "shhal katakhod t-triq?",
+            "english": "How long does the way take?"
+          },
+          "response": {
+            "arabic": "شي عشرين دقيقة.",
+            "transliteration": "shi 3ashrin d-qiqa.",
+            "english": "About twenty minutes."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شحال خاصني نخلص؟",
+            "transliteration": "shhal khasni nkhles?",
+            "english": "How much do I have to pay?"
+          },
+          "response": {
+            "arabic": "خمسة وعشرين درهم.",
+            "transliteration": "khamsa w 3ashrin dirham.",
+            "english": "Twenty-five dirhams."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فأشمن ساعة كيجي الطوبيس غدا؟",
+            "transliteration": "f-ashmen sa3a kayji t-tobis ghda?",
+            "english": "What time does the bus come tomorrow?"
+          },
+          "response": {
+            "arabic": "على التمانية د الصباح.",
+            "transliteration": "3la t-tmanya d s-sbah.",
+            "english": "At eight in the morning."
+          }
+        }
+      ],
+      "culture": "In Casablanca (red) and Rabat (blue) the petit taxi is metered and drivers are asked to \"شعل العداد\" (turn on the meter); grand taxis run fixed routes and fill up with shared passengers. Drivers may reply \"على راسي\" (on my head) as a warm yes to a request.",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Darija to a taxi driver: \"Stop here, please.\"",
+          "answer": "وقف هنا عافاك",
+          "accepted": [
+            "وقف هنا عافاك",
+            "وقف هنا",
+            "وقف هنا عفاك",
+            "wqef hna 3afak",
+            "wqef hna"
+          ],
+          "too_formal": {
+            "item": "توقف هنا من فضلك",
+            "feedback": "This is formal Arabic, not what people say in Casablanca or Rabat."
+          },
+          "tip": "\"عافاك\" (please) is the everyday Moroccan word; to a woman say \"وقفي\"."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Darija: \"Are you free?\" (asking a taxi driver)",
+          "answer": "واش خاوي؟",
+          "accepted": [
+            "واش خاوي؟",
+            "واش خاوي",
+            "خاوي",
+            "wash khawi",
+            "khawi"
+          ],
+          "too_formal": {
+            "item": "هل أنت متاح؟",
+            "feedback": "This is formal Arabic, not what people say in Casablanca or Rabat."
+          },
+          "tip": "A free taxi is \"خاوي\" (empty)."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Darija: \"I want to go to the Old City.\"",
+          "answer": "بغيت نمشي للمدينة القديمة",
+          "accepted": [
+            "بغيت نمشي للمدينة القديمة",
+            "بغيت نمشي لمدينة لقديمة",
+            "بغيت نمشي لل مدينة لقديمة",
+            "bghit nmshi l-medina l-qdima",
+            "bghit nmshi lmedina lqdima"
+          ],
+          "too_formal": {
+            "item": "أريد أن أذهب إلى المدينة القديمة",
+            "feedback": "This is formal Arabic, not what people say in Casablanca or Rabat."
+          },
+          "tip": "\"بغيت نمشي\" (I want to go) is the everyday way; \"المدينة القديمة\" is the old medina."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Darija: \"What time does the bus come tomorrow?\"",
+          "answer": "فأشمن ساعة كيجي الطوبيس غدا؟",
+          "accepted": [
+            "فأشمن ساعة كيجي الطوبيس غدا؟",
+            "فأشمن ساعة كيجي الطوبيس غدا",
+            "فاش من ساعة كيجي الطوبيس غدا",
+            "f-ashmen sa3a kayji t-tobis ghda",
+            "fashmen sa3a kayji tobis ghda"
+          ],
+          "too_formal": {
+            "item": "في أي ساعة تأتي الحافلة غدا؟",
+            "feedback": "This is formal Arabic, not what people say in Casablanca or Rabat."
+          },
+          "tip": "\"فأشمن ساعة\" is \"at what hour\"; \"كيجي\" is \"it comes\"."
+        },
+        {
+          "id": "unit-05.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"taxi\"?",
+          "options": [
+            "طاكسي",
+            "طوبيس",
+            "محطة",
+            "طريق"
+          ],
+          "answer": "طاكسي",
+          "accepted": [
+            "طاكسي",
+            "taksi",
+            "طاكسي."
+          ],
+          "too_formal": {
+            "item": "سيارة أجرة",
+            "feedback": "\"سيارة أجرة\" is the formal term."
+          },
+          "tip": "\"طاكسي\" is a loanword; petit taxis are metered, grands taxis are shared."
+        },
+        {
+          "id": "unit-05.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which word tells you the taxi is \"busy / occupied\"?",
+          "options": [
+            "معمر",
+            "خاوي",
+            "غالي",
+            "مزيان"
+          ],
+          "answer": "معمر",
+          "accepted": [
+            "معمر",
+            "m3ammer",
+            "معمّر"
+          ],
+          "too_formal": {
+            "item": "مشغول",
+            "feedback": "\"مشغول\" means busy, but is not the word used for a taxi."
+          },
+          "tip": "\"خاوي\" is free, \"معمر\" is full."
+        },
+        {
+          "id": "unit-05.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "The driver asks \"فين بغيتي تمشي؟\" (Where do you want to go?). Say: to the station.",
+          "answer": "للمحطة",
+          "accepted": [
+            "للمحطة",
+            "لمحطة",
+            "بغيت نمشي للمحطة",
+            "l-mahatta",
+            "bghit nmshi l-mahatta"
+          ],
+          "too_formal": {
+            "item": "إلى المحطة",
+            "feedback": "This is formal Arabic, not what people say in Casablanca or Rabat."
+          },
+          "tip": "\"ل\" plus the word means \"to\": \"للمحطة\"."
+        },
+        {
+          "id": "unit-05.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "You are in the taxi. Ask how long the way takes.",
+          "answer": "شحال كتاخد الطريق؟",
+          "accepted": [
+            "شحال كتاخد الطريق؟",
+            "شحال كتاخد الطريق",
+            "شحال كياخد الطريق",
+            "shhal katakhod t-triq",
+            "shhal kayakhod t-triq"
+          ],
+          "too_formal": {
+            "item": "كم يستغرق الطريق؟",
+            "feedback": "This is formal Arabic, not what people say in Casablanca or Rabat."
+          },
+          "tip": "\"كتاخد\" is \"it takes\", \"شحال\" is \"how much\"."
+        },
+        {
+          "id": "unit-05.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"شحال _____ الطريق؟\" Meaning: How long does the way take?",
+          "answer": "كتاخد",
+          "accepted": [
+            "كتاخد",
+            "katakhod",
+            "كياخد",
+            "kayakhod"
+          ],
+          "too_formal": {
+            "item": "يستغرق",
+            "feedback": "This is formal Arabic, not what people say in Casablanca or Rabat."
+          },
+          "tip": "Verbs take \"كـ\" in the present: \"كتاخد\", \"كيجي\"."
+        },
+        {
+          "id": "unit-05.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"واش _____ حدا المحطة؟\" Meaning: Will you drop me near the station?",
+          "answer": "تنزلني",
+          "accepted": [
+            "تنزلني",
+            "tnezzelni",
+            "غادي تنزلني"
+          ],
+          "too_formal": {
+            "item": "هل توصلني",
+            "feedback": "This is formal Arabic, not what people say in Casablanca or Rabat."
+          },
+          "tip": "\"حدا\" means \"next to\", \"تنزلني\" means \"you drop me off\"."
+        },
+        {
+          "id": "unit-05.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"خاصني / شحال / نخلص\"",
+          "words": [
+            "خاصني",
+            "شحال",
+            "نخلص"
+          ],
+          "answer": "شحال خاصني نخلص؟",
+          "accepted": [
+            "شحال خاصني نخلص؟",
+            "شحال خاصني نخلص",
+            "shhal khasni nkhles",
+            "شحال خاصني نخلص."
+          ],
+          "too_formal": {
+            "item": "ما هي الأجرة؟",
+            "feedback": "This is the formal version; everyday Darija is shorter."
+          },
+          "tip": "\"شحال\" comes first; \"خاصني نخلص\" is \"I have to pay\"."
+        }
+      ]
     }
   ],
   "challenge": {

@@ -1608,6 +1608,414 @@
           "tip": "The adjective منيح comes after the noun it describes."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "taxi",
+          "arabic": "تَاكْسِي",
+          "transliteration": "taaksi"
+        },
+        {
+          "slot": "bus",
+          "arabic": "بَاص",
+          "transliteration": "baas"
+        },
+        {
+          "slot": "i-want-to-go-to-the-old-city",
+          "arabic": "بِدِّي رُوح عَالْمَدِينَة الْقَدِيمَة",
+          "transliteration": "biddi roo7 3al-madiine l-2adiime"
+        },
+        {
+          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
+          "arabic": "وَقِّف هُون لَو سَمَحْت",
+          "transliteration": "wa22ef hon law sama7t"
+        },
+        {
+          "slot": "how-much-is-the-fare",
+          "arabic": "قُدِيش الْأُجْرَة؟",
+          "transliteration": "2addeesh il-2ojra?"
+        },
+        {
+          "slot": "take-me-to-to-a-man",
+          "arabic": "خِدْنِي عـِ...",
+          "transliteration": "khedni 3a..."
+        },
+        {
+          "slot": "are-you-free-asking-a-taxi-driver-if-available",
+          "arabic": "فَاضِي؟",
+          "transliteration": "faadi?"
+        },
+        {
+          "slot": "busy-occupied",
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghuul"
+        },
+        {
+          "slot": "how-long-does-the-way-take",
+          "arabic": "قُدِيش بِيَاخِد الطَّرِيق؟",
+          "transliteration": "2addeesh biyaakhod it-tari2?"
+        },
+        {
+          "slot": "will-you-drop-me-at-to-a-man",
+          "arabic": "بِتَوَصِّلْنِي عـِ...؟",
+          "transliteration": "btwassalni 3a...?"
+        },
+        {
+          "slot": "at-your-service-a-common-polite-reply-from-a-tax",
+          "arabic": "تِكْرَم عَيْنَك",
+          "transliteration": "tekram 3enak"
+        },
+        {
+          "slot": "what-time-does-the-bus-come-tomorrow",
+          "arabic": "بُكْرَا الْبَاص بِيجِي أَيْ سَاعَة؟",
+          "transliteration": "bukra l-baas biiji 2ayya sa3a?"
+        },
+        {
+          "slot": "station",
+          "arabic": "مَحَطَّة",
+          "transliteration": "ma7atta"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "arabic": "فَاضِي؟",
+          "transliteration": "faadi?",
+          "english": "Are you free?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "إي، تفضّل.",
+          "transliteration": "ee, tfaddal.",
+          "english": "Yes, get in."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "بدّي روح عالمدينة القديمة.",
+          "transliteration": "biddi roo7 3al-madiine l-2adiime.",
+          "english": "I want to go to the Old City."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "تكرم عينك.",
+          "transliteration": "tekram 3enak.",
+          "english": "At your service."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "قُدِيش بِيَاخِد الطَّرِيق؟",
+          "transliteration": "2addeesh biyaakhod it-tari2?",
+          "english": "How long does the way take?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "حوالي عشرين دقيقة.",
+          "transliteration": "7awaali 3ishriin da2ii2a.",
+          "english": "About twenty minutes."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "قُدِيش الْأُجْرَة؟",
+          "transliteration": "2addeesh il-2ojra?",
+          "english": "How much is the fare?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "بعشرين دولار.",
+          "transliteration": "b-3ishriin dolaar.",
+          "english": "Twenty dollars."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "طيب، ماشي. وقّف هون لو سمحت.",
+          "transliteration": "tayyeb, maashi. wa22ef hon law sama7t.",
+          "english": "Okay, deal. Stop here, please."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "هون منيح؟",
+          "transliteration": "hon mnii7?",
+          "english": "Is here good?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "إي، منيح، مرسي.",
+          "transliteration": "ee, mnii7, mersi.",
+          "english": "Yes, good, thank you."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "الله معك.",
+          "transliteration": "allah ma3ak.",
+          "english": "God be with you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فَاضِي؟",
+            "transliteration": "faadi?",
+            "english": "Are you free?"
+          },
+          "response": {
+            "arabic": "إي، تفضّل.",
+            "transliteration": "ee, tfaddal.",
+            "english": "Yes, get in."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قُدِيش الْأُجْرَة؟",
+            "transliteration": "2addeesh il-2ojra?",
+            "english": "How much is the fare?"
+          },
+          "response": {
+            "arabic": "بعشرين دولار.",
+            "transliteration": "b-3ishriin dolaar.",
+            "english": "Twenty dollars."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بدّي روح عالمدينة القديمة.",
+            "transliteration": "biddi roo7 3al-madiine l-2adiime.",
+            "english": "I want to go to the Old City."
+          },
+          "response": {
+            "arabic": "تكرم عينك.",
+            "transliteration": "tekram 3enak.",
+            "english": "At your service."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قُدِيش بِيَاخِد الطَّرِيق؟",
+            "transliteration": "2addeesh biyaakhod it-tari2?",
+            "english": "How long does the way take?"
+          },
+          "response": {
+            "arabic": "حوالي عشرين دقيقة.",
+            "transliteration": "7awaali 3ishriin da2ii2a.",
+            "english": "About twenty minutes."
+          }
+        }
+      ],
+      "culture": "In Beirut many people hail a taxi from the street and agree the fare before getting in, since a price is usually named rather than read from a meter. Drivers often answer a destination with \"تكرم عينك\" (at your service), and a shared taxi is called \"سرفيس\".",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to go to the Old City.\"",
+          "answer": "بِدِّي رُوح عَالْمَدِينَة الْقَدِيمَة",
+          "accepted": [
+            "بِدِّي رُوح عَالْمَدِينَة الْقَدِيمَة",
+            "بدّي روح ع المدينة القديمة",
+            "بدي روح عالمدينة القديمة",
+            "biddi roo7 3al-madiine l-2adiime"
+          ],
+          "too_formal": {
+            "item": "أريد الذهاب إلى المدينة القديمة",
+            "feedback": "This is formal written Arabic; everyday Lebanese uses \"بدّي روح عـ...\"."
+          },
+          "tip": "\"بدّي روح\" is the everyday pattern for \"I want to go\"."
+        },
+        {
+          "id": "unit-05.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"taxi\"?",
+          "options": [
+            "تَاكْسِي",
+            "بَاص",
+            "مَحَطَّة",
+            "طريق"
+          ],
+          "answer": "تَاكْسِي",
+          "accepted": [
+            "تَاكْسِي",
+            "تكسي",
+            "taaksi"
+          ],
+          "too_formal": {
+            "item": "سيارة أجرة",
+            "feedback": "This is the fuller formal term for taxi; everyday speech just says \"تاكسي\"."
+          },
+          "tip": "\"تاكسي\" and \"باص\" are both everyday loanwords, like in many other languages."
+        },
+        {
+          "id": "unit-05.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A taxi driver asks \"لوين؟\" (Where to?). Say: to the Old City.",
+          "answer": "عالمدينة القديمة",
+          "accepted": [
+            "عالمدينة القديمة",
+            "ع المدينة القديمة",
+            "بدّي روح ع المدينة القديمة",
+            "بِدِّي رُوح عَالْمَدِينَة الْقَدِيمَة"
+          ],
+          "too_formal": {
+            "item": "إلى المدينة القديمة",
+            "feedback": "This is formal Arabic rather than the everyday spoken answer."
+          },
+          "tip": "\"عا-\" (from \"على\") is the everyday way to say \"to\" a place."
+        },
+        {
+          "id": "unit-05.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"قديش _____ الطريق؟\" Meaning: How long does the way take?",
+          "answer": "بياخد",
+          "accepted": [
+            "بياخد",
+            "بيوخد",
+            "biyaakhod"
+          ],
+          "too_formal": {
+            "item": "كم من الوقت يستغرق الطريق؟",
+            "feedback": "This is a formal full question; the spoken version is much shorter."
+          },
+          "tip": "\"بياخد\" is the everyday Lebanese form of \"it takes\" (the verb \"أخد\" after \"بي\")."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Stop here, please.\" (to a man)",
+          "answer": "وَقِّف هُون لَو سَمَحْت",
+          "accepted": [
+            "وَقِّف هُون لَو سَمَحْت",
+            "وقّف هون، لو سمحت",
+            "وقّف هون",
+            "وقف هون لو سمحت"
+          ],
+          "too_formal": {
+            "item": "توقف هنا من فضلك",
+            "feedback": "This is formal Arabic; the everyday imperative is \"وقّف\"."
+          },
+          "tip": "\"وقّف\" is the everyday imperative for telling a driver to stop."
+        },
+        {
+          "id": "unit-05.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"الأجرة / قديش؟\"",
+          "answer": "قُدِيش الْأُجْرَة؟",
+          "accepted": [
+            "قُدِيش الْأُجْرَة؟",
+            "قديش الأجرة",
+            "قدّيش الأجرة؟"
+          ],
+          "too_formal": {
+            "item": "ما هي قيمة الأجرة؟",
+            "feedback": "This is a formal, wordier version of the same question."
+          },
+          "tip": "\"قديش\" comes first in this everyday question."
+        },
+        {
+          "id": "unit-05.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase means \"at your service\" (a common taxi driver reply)?",
+          "options": [
+            "تِكْرَم عَيْنَك",
+            "فاضي",
+            "مَشْغُول",
+            "الله معك"
+          ],
+          "answer": "تِكْرَم عَيْنَك",
+          "accepted": [
+            "تِكْرَم عَيْنَك",
+            "تكرم",
+            "أمرك"
+          ],
+          "too_formal": {
+            "item": "أنا في خدمتكم",
+            "feedback": "This is a more elaborate, formal-sounding version of the same everyday courtesy."
+          },
+          "tip": "\"تكرم عينك\" is a fixed, very common reply from drivers and shopkeepers alike."
+        },
+        {
+          "id": "unit-05.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "You ask a taxi driver \"فاضي؟\" and he is not free. What does he say?",
+          "answer": "مَشْغُول",
+          "accepted": [
+            "مَشْغُول",
+            "لا، مشغول",
+            "آسف، مشغول",
+            "مش فاضي"
+          ],
+          "too_formal": {
+            "item": "أنا غير متاح حالياً",
+            "feedback": "This is formal Arabic; the everyday one-word answer is \"مشغول\"."
+          },
+          "tip": "\"فاضي\" is free or available, \"مشغول\" is busy or occupied."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"What time does the bus come tomorrow?\"",
+          "answer": "بُكْرَا الْبَاص بِيجِي أَيْ سَاعَة؟",
+          "accepted": [
+            "بُكْرَا الْبَاص بِيجِي أَيْ سَاعَة؟",
+            "بكرا الباص بيجي أي ساعة",
+            "الباص بيجي أي ساعة بكرا؟",
+            "بكرا الباص بيجي الساعة قديش؟"
+          ],
+          "too_formal": {
+            "item": "في أي ساعة يصل الباص غداً؟",
+            "feedback": "This is a formal written question; everyday speech uses \"بيجي\" and \"بكرا\"."
+          },
+          "tip": "\"أي ساعة\" is the everyday way to ask \"what time\" in Lebanese."
+        },
+        {
+          "id": "unit-05.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بدّي روح عالمدينة _____.\" Meaning: I want to go to the Old City.",
+          "answer": "القديمة",
+          "accepted": [
+            "القديمة",
+            "القديمه",
+            "l-2adiime"
+          ],
+          "too_formal": {
+            "item": "العتيقة",
+            "feedback": "This is a more literary word for \"old\"; everyday Lebanese says \"القديمة\"."
+          },
+          "tip": "\"المدينة القديمة\" names the old town, as in Saida, Tripoli or Byblos."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Bus.\"",
+          "answer": "بَاص",
+          "accepted": [
+            "بَاص",
+            "الباص",
+            "باص.",
+            "baas"
+          ],
+          "too_formal": {
+            "item": "حافلة",
+            "feedback": "This is the standard written word for bus; Lebanese speech uses the everyday loanword \"باص\"."
+          },
+          "tip": "\"تاكسي\" and \"باص\" are both borrowed words, just like in many other spoken languages."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.05",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Take me to the station.\" (to a man)",
+          "answer": "خدني عالمحطة",
+          "accepted": [
+            "خدني عالمحطة",
+            "خدني ع المحطة",
+            "وصّلني عالمحطة",
+            "khedni 3al-ma7atta"
+          ],
+          "too_formal": {
+            "item": "خذني إلى المحطة",
+            "feedback": "This is formal Arabic; everyday Lebanese says \"خدني عـ...\"."
+          },
+          "tip": "\"خدني عـ...\" plus a place is the everyday way to tell a driver where to take you."
+        }
+      ]
     }
   ],
   "challenge": {

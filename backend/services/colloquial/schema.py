@@ -48,12 +48,15 @@ class ComingLesson(BaseModel):
     """A spine lesson this dialect has not begun: its title, shown as coming."""
     lesson: str
     title: str
+    section: str | None = None
     written: Literal[False]
 
 
 class Lesson(BaseModel):
     lesson: str
     title: str
+    # A heading shared with its neighbours, only in units long enough to need one.
+    section: str | None = None
     written: Literal[True] = True
     phrases: list[Phrase]
     dialogue: list[DialogueLine]

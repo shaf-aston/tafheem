@@ -826,6 +826,73 @@
               "english": "I don't like this food"
             }
           ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "At the Market",
+          "phrases": [
+            {
+              "slot": "how-much-is-this",
+              "english": "How much is this?",
+              "search_term": "shopkeeper and customer"
+            },
+            {
+              "slot": "expensive",
+              "english": "Expensive."
+            },
+            {
+              "slot": "cheap",
+              "english": "Cheap."
+            },
+            {
+              "slot": "is-there-a-discount",
+              "english": "Is there a discount?"
+            },
+            {
+              "slot": "how-much-per-kilo",
+              "english": "How much per kilo?",
+              "search_term": "market fruit stall"
+            },
+            {
+              "slot": "i-want-this",
+              "english": "I want this."
+            },
+            {
+              "slot": "lower-it-a-little-to-a-man-when-bargaining",
+              "english": "Lower it a little. (to a man, when bargaining)"
+            },
+            {
+              "slot": "final-price",
+              "english": "Final price."
+            },
+            {
+              "slot": "okay-deal",
+              "english": "Okay / Deal."
+            },
+            {
+              "slot": "do-you-have-a-smaller-one-to-a-man",
+              "english": "Do you have a smaller one? (to a man)"
+            },
+            {
+              "slot": "do-you-have-another-color-to-a-man",
+              "english": "Do you have another color? (to a man)"
+            },
+            {
+              "slot": "this-one-is-nicer",
+              "english": "This one is nicer."
+            },
+            {
+              "slot": "blue",
+              "english": "Blue.",
+              "search_term": "blue fabric"
+            },
+            {
+              "slot": "red",
+              "english": "Red.",
+              "search_term": "red fabric",
+              "image": "unit-17/l01-p14-red-fabric.jpg"
+            }
+          ]
         }
       ]
     },
@@ -1354,6 +1421,71 @@
             {
               "slot": "is-there-a-good-restaurant-in-the-area",
               "english": "Is there a good restaurant in the area?"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Getting Around",
+          "phrases": [
+            {
+              "slot": "taxi",
+              "english": "Taxi.",
+              "search_term": "yellow taxi car",
+              "image": "unit-17/l02-p01-yellow-taxi-car.jpg"
+            },
+            {
+              "slot": "bus",
+              "english": "Bus.",
+              "search_term": "city bus",
+              "image": "unit-17/l02-p02-city-bus.jpg"
+            },
+            {
+              "slot": "i-want-to-go-to-the-old-city",
+              "english": "I want to go to the Old City.",
+              "search_term": "old city street"
+            },
+            {
+              "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
+              "english": "Stop here, please. (to a man, such as a taxi driver)"
+            },
+            {
+              "slot": "how-much-is-the-fare",
+              "english": "How much is the fare?"
+            },
+            {
+              "slot": "take-me-to-to-a-man",
+              "english": "Take me to... (to a man)"
+            },
+            {
+              "slot": "are-you-free-asking-a-taxi-driver-if-available",
+              "english": "Are you free? (asking a taxi driver if available)",
+              "search_term": "taxi driver waiting"
+            },
+            {
+              "slot": "busy-occupied",
+              "english": "Busy / Occupied."
+            },
+            {
+              "slot": "how-long-does-the-way-take",
+              "english": "How long does the way take?"
+            },
+            {
+              "slot": "will-you-drop-me-at-to-a-man",
+              "english": "Will you drop me at...? (to a man)"
+            },
+            {
+              "slot": "at-your-service-a-common-polite-reply-from-a-tax",
+              "english": "At your service. (a common polite reply from a taxi driver)"
+            },
+            {
+              "slot": "what-time-does-the-bus-come-tomorrow",
+              "english": "What time does the bus come tomorrow?",
+              "search_term": "bus stop"
+            },
+            {
+              "slot": "station",
+              "english": "Station."
             }
           ]
         }
@@ -3331,22 +3463,25 @@
             {
               "slot": "eid-money-given-to-children",
               "english": "Eid money given to children",
-              "search_term": "money in an envelope"
+              "search_term": "red envelope"
             },
             {
               "slot": "i-m-putting-on-my-eid-clothes",
               "english": "I'm putting on my Eid clothes",
-              "search_term": "new clothes on hangers"
+              "search_term": "new clothes on hangers",
+              "image": "unit-14/l01-p06-new-clothes-on-hangers.jpg"
             },
             {
               "slot": "eid-cookies",
               "english": "Eid cookies",
-              "search_term": "arabic date filled cookies"
+              "search_term": "date cookies on a plate",
+              "image": "unit-14/l01-p07-date-cookies-on-a-plate.jpg"
             },
             {
               "slot": "we-re-going-to-the-eid-prayer",
               "english": "We're going to the Eid prayer",
-              "search_term": "a mosque"
+              "search_term": "a mosque",
+              "image": "unit-14/l01-p08-a-mosque.jpg"
             },
             {
               "slot": "we-visited-my-grandma-today",
@@ -3365,7 +3500,8 @@
               "slot": "may-god-give-you-all-eid-money-said-jokingly",
               "english": "May God give you all Eid money (said jokingly)"
             }
-          ]
+          ],
+          "section": "Happy occasions"
         },
         {
           "lesson": "lesson-02",
@@ -3390,12 +3526,14 @@
             {
               "slot": "what-time-is-iftar-today",
               "english": "What time is iftar today?",
-              "search_term": "sunset over a city"
+              "search_term": "sunset over a city",
+              "image": "unit-14/l02-p05-sunset-over-a-city.jpg"
             },
             {
               "slot": "we-re-preparing-for-iftar",
               "english": "We're preparing for iftar",
-              "search_term": "a table set for dinner"
+              "search_term": "a table set for dinner",
+              "image": "unit-14/l02-p06-a-table-set-for-dinner.jpg"
             },
             {
               "slot": "we-started-fasting-from-dawn",
@@ -3409,7 +3547,8 @@
             {
               "slot": "qatayef-a-ramadan-sweet-stuffed-pastry",
               "english": "Qatayef, a Ramadan sweet stuffed pastry",
-              "search_term": "stuffed pancake dessert"
+              "search_term": "baklava pastry",
+              "image": "unit-14/l02-p09-baklava-pastry.jpg"
             },
             {
               "slot": "the-iftar-cannon-fired",
@@ -3425,7 +3564,8 @@
               "slot": "may-god-accept-your-fasting",
               "english": "May God accept your fasting"
             }
-          ]
+          ],
+          "section": "Happy occasions"
         },
         {
           "lesson": "lesson-03",
@@ -3459,7 +3599,8 @@
             {
               "slot": "the-wedding-stage-decoration-is-very-beautiful",
               "english": "The wedding stage decoration is very beautiful",
-              "search_term": "wedding stage decoration"
+              "search_term": "wedding stage decoration",
+              "image": "unit-14/l03-p07-wedding-stage-decoration.jpg"
             },
             {
               "slot": "the-wedding-procession-is-coming",
@@ -3469,7 +3610,8 @@
             {
               "slot": "she-wore-a-white-dress",
               "english": "She wore a white dress",
-              "search_term": "white wedding dress"
+              "search_term": "white wedding dress",
+              "image": "unit-14/l03-p09-white-wedding-dress.jpg"
             },
             {
               "slot": "the-dabke-folk-dance-started",
@@ -3484,7 +3626,8 @@
               "slot": "what-gift-did-you-bring-them",
               "english": "What gift did you bring them?"
             }
-          ]
+          ],
+          "section": "Happy occasions"
         },
         {
           "lesson": "lesson-04",
@@ -3537,11 +3680,372 @@
             {
               "slot": "birthday-party",
               "english": "Birthday party",
-              "search_term": "birthday party with balloons"
+              "search_term": "birthday party with balloons",
+              "image": "unit-14/l04-p11-birthday-party-with-balloons.jpg"
             },
             {
               "slot": "may-god-lengthen-your-life",
               "english": "May God lengthen your life"
+            }
+          ],
+          "section": "Happy occasions"
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "A New Baby",
+          "section": "Happy occasions",
+          "phrases": [
+            {
+              "slot": "may-god-bless-the-newborn-for-you-to-a-man",
+              "english": "May God bless the newborn for you (to a man)"
+            },
+            {
+              "slot": "may-the-newborn-be-the-delight-of-your-eyes-to-a-man",
+              "english": "May he be the delight of your eyes (to a man)"
+            },
+            {
+              "slot": "may-god-make-him-righteous",
+              "english": "May God make him righteous"
+            },
+            {
+              "slot": "may-god-raise-him-well",
+              "english": "May God raise him well"
+            },
+            {
+              "slot": "thank-god-the-mother-and-baby-are-safe",
+              "english": "Thank God, the mother and baby are safe"
+            },
+            {
+              "slot": "what-did-you-name-him-to-a-man",
+              "english": "What did you name him? (to a man)"
+            },
+            {
+              "slot": "we-named-him-after-his-grandfather",
+              "english": "We named him after his grandfather"
+            },
+            {
+              "slot": "the-baby-looks-like-his-father",
+              "english": "The baby looks a lot like his father"
+            },
+            {
+              "slot": "we-came-to-visit-the-mother-and-baby",
+              "english": "We came to visit the mother and the baby",
+              "search_term": "baby blanket folded"
+            },
+            {
+              "slot": "this-is-the-baby-s-cradle",
+              "english": "This is the baby's cradle",
+              "search_term": "baby cradle",
+              "image": "unit-14/l05-p10-baby-cradle.jpg"
+            },
+            {
+              "slot": "a-gift-for-the-newborn",
+              "english": "A gift for the newborn",
+              "search_term": "baby gift basket",
+              "image": "unit-14/l05-p11-baby-gift-basket.jpg"
+            },
+            {
+              "slot": "i-ask-god-to-keep-him-safe-for-you-both",
+              "english": "I ask God to keep him safe for you both"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Graduation and Success",
+          "section": "Happy occasions",
+          "phrases": [
+            {
+              "slot": "congratulations-on-graduating",
+              "english": "Congratulations on graduating"
+            },
+            {
+              "slot": "congratulations-on-passing-the-exam",
+              "english": "Congratulations on passing the exam",
+              "search_term": "pencil and exam paper",
+              "image": "unit-14/l06-p02-pencil-and-exam-paper.jpg"
+            },
+            {
+              "slot": "i-passed-all-my-exams",
+              "english": "I passed all my exams"
+            },
+            {
+              "slot": "the-results-came-out-today",
+              "english": "The results came out today"
+            },
+            {
+              "slot": "what-is-your-result-to-a-man",
+              "english": "What is your result? (to a man)"
+            },
+            {
+              "slot": "graduation-ceremony",
+              "english": "Graduation ceremony",
+              "search_term": "graduation ceremony"
+            },
+            {
+              "slot": "graduation-cap",
+              "english": "Graduation cap",
+              "search_term": "graduation cap",
+              "image": "unit-14/l06-p07-graduation-cap.jpg"
+            },
+            {
+              "slot": "he-got-a-new-job",
+              "english": "He got a new job"
+            },
+            {
+              "slot": "congratulations-on-the-new-job",
+              "english": "Congratulations on the new job",
+              "search_term": "office desk with laptop",
+              "image": "unit-14/l06-p09-office-desk-with-laptop.jpg"
+            },
+            {
+              "slot": "may-god-grant-you-success-to-a-man",
+              "english": "May God grant you success (to a man)"
+            },
+            {
+              "slot": "we-are-proud-of-you-to-a-man",
+              "english": "We are proud of you (to a man)"
+            },
+            {
+              "slot": "may-god-open-the-doors-of-good-for-you-to-a-man",
+              "english": "May God open the doors of good for you (to a man)"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-07",
+          "title": "Back from Hajj",
+          "section": "Happy occasions",
+          "phrases": [
+            {
+              "slot": "thank-god-for-your-safety-to-a-man",
+              "english": "Thank God for your safe return (to a man)"
+            },
+            {
+              "slot": "hajj-mabroor-an-accepted-pilgrimage",
+              "english": "May your Hajj be accepted"
+            },
+            {
+              "slot": "your-effort-is-appreciated-to-a-group",
+              "english": "May your effort be appreciated (to a group)"
+            },
+            {
+              "slot": "your-sins-are-forgiven-to-a-group",
+              "english": "May your sins be forgiven (to a group)"
+            },
+            {
+              "slot": "how-did-you-find-makkah-to-a-man",
+              "english": "How did you find Makkah? (to a man)"
+            },
+            {
+              "slot": "did-you-visit-the-prophet-s-mosque-to-a-man",
+              "english": "Did you visit the Prophet's Mosque? (to a man)",
+              "search_term": "mosque with a green dome",
+              "image": "unit-14/l07-p06-mosque-with-a-green-dome.jpg"
+            },
+            {
+              "slot": "we-circled-the-kaaba",
+              "english": "We circled the Kaaba",
+              "search_term": "the Kaaba",
+              "image": "unit-14/l07-p07-the-kaaba.jpg"
+            },
+            {
+              "slot": "this-is-zamzam-water",
+              "english": "This is zamzam water",
+              "search_term": "plastic water bottle",
+              "image": "unit-14/l07-p08-plastic-water-bottle.jpg"
+            },
+            {
+              "slot": "i-brought-you-dates-and-zamzam",
+              "english": "I brought you dates and zamzam water",
+              "search_term": "bowl of dates fruit",
+              "image": "unit-14/l07-p09-bowl-of-dates-fruit.jpg"
+            },
+            {
+              "slot": "may-god-accept-it-from-you-to-a-man",
+              "english": "May God accept it from you (to a man)"
+            },
+            {
+              "slot": "may-god-grant-us-a-visit-to-his-house",
+              "english": "May God grant us a visit to His house"
+            },
+            {
+              "slot": "pray-for-us-to-a-man",
+              "english": "Pray for us (to a man)"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-08",
+          "title": "Condolences and Funerals",
+          "section": "Hard times",
+          "phrases": [
+            {
+              "slot": "we-belong-to-god-and-to-him-we-return",
+              "english": "We belong to God and to Him we return"
+            },
+            {
+              "slot": "may-god-magnify-your-reward-condolence",
+              "english": "May God magnify your reward (condolence)"
+            },
+            {
+              "slot": "may-god-have-mercy-on-him",
+              "english": "May God have mercy on him"
+            },
+            {
+              "slot": "may-god-house-him-in-spacious-gardens",
+              "english": "May God house him in His spacious gardens"
+            },
+            {
+              "slot": "may-god-forgive-him",
+              "english": "May God forgive him"
+            },
+            {
+              "slot": "my-sincere-condolences-to-the-family",
+              "english": "My sincere condolences to the family"
+            },
+            {
+              "slot": "may-god-grant-you-patience-and-comfort",
+              "english": "May God grant you patience and comfort"
+            },
+            {
+              "slot": "may-god-reward-your-effort-reply-to-mourners",
+              "english": "May God reward your effort (said to those who came)"
+            },
+            {
+              "slot": "when-is-the-funeral-prayer",
+              "english": "When is the funeral prayer?"
+            },
+            {
+              "slot": "we-will-attend-the-janazah-god-willing",
+              "english": "We will attend the funeral, God willing"
+            },
+            {
+              "slot": "where-will-the-burial-be",
+              "english": "Where will the burial be?"
+            },
+            {
+              "slot": "he-was-a-good-man-condolence",
+              "english": "He was a good man"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-09",
+          "title": "Visiting the Sick",
+          "section": "Hard times",
+          "phrases": [
+            {
+              "slot": "no-harm-a-purification-god-willing",
+              "english": "No harm, it is a purification, God willing"
+            },
+            {
+              "slot": "may-god-heal-you",
+              "english": "May God heal you"
+            },
+            {
+              "slot": "get-well-wish-your-safety",
+              "english": "Get well soon (lit. your safety)"
+            },
+            {
+              "slot": "how-are-you-feeling-today",
+              "english": "How are you feeling today?"
+            },
+            {
+              "slot": "what-did-the-doctor-say",
+              "english": "What did the doctor say?",
+              "search_term": "doctor with stethoscope",
+              "image": "unit-14/l09-p05-doctor-with-stethoscope.jpg"
+            },
+            {
+              "slot": "when-will-you-leave-the-hospital",
+              "english": "When will you leave the hospital?",
+              "search_term": "hospital building exterior"
+            },
+            {
+              "slot": "i-brought-you-some-fruit",
+              "english": "I brought you some fruit",
+              "search_term": "basket of fruit",
+              "image": "unit-14/l09-p07-basket-of-fruit.jpg"
+            },
+            {
+              "slot": "this-bouquet-is-for-you",
+              "english": "This bouquet is for you",
+              "search_term": "bouquet of flowers",
+              "image": "unit-14/l09-p08-bouquet-of-flowers.jpg"
+            },
+            {
+              "slot": "i-will-not-stay-long",
+              "english": "I won't stay long"
+            },
+            {
+              "slot": "rest-and-do-not-tire-yourself",
+              "english": "Rest and don't tire yourself"
+            },
+            {
+              "slot": "thank-you-for-visiting-me",
+              "english": "Thank you for visiting me"
+            },
+            {
+              "slot": "we-ask-god-to-grant-you-wellbeing",
+              "english": "We ask God to grant you wellbeing"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-10",
+          "title": "Bad News and Comfort",
+          "section": "Hard times",
+          "phrases": [
+            {
+              "slot": "i-am-sorry-to-hear-this-news",
+              "english": "I am very sorry to hear this news"
+            },
+            {
+              "slot": "what-happened-tell-me",
+              "english": "What happened?"
+            },
+            {
+              "slot": "be-patient-god-is-with-the-patient",
+              "english": "Be patient, God is with the patient"
+            },
+            {
+              "slot": "everything-is-by-gods-decree",
+              "english": "Everything is by God's decree"
+            },
+            {
+              "slot": "god-decreed-and-what-he-wills-he-does",
+              "english": "God decreed, and what He wills He does"
+            },
+            {
+              "slot": "perhaps-there-is-good-in-it",
+              "english": "Perhaps there is good in it"
+            },
+            {
+              "slot": "how-can-i-help-you",
+              "english": "How can I help you?"
+            },
+            {
+              "slot": "i-am-with-you-whenever-you-need-me",
+              "english": "I am with you whenever you need me"
+            },
+            {
+              "slot": "i-lost-my-job-today",
+              "english": "I lost my job today"
+            },
+            {
+              "slot": "i-failed-the-exam",
+              "english": "I failed the exam",
+              "search_term": "exam paper",
+              "image": "unit-14/l10-p10-exam-paper.jpg"
+            },
+            {
+              "slot": "do-not-be-sad-try-again",
+              "english": "Don't be sad, try again"
+            },
+            {
+              "slot": "god-will-make-it-easy-for-you",
+              "english": "God will make it easy for you"
             }
           ]
         }
@@ -3549,68 +4053,8 @@
     },
     {
       "unit": "unit-15",
-      "title": "Travel and Staying",
+      "title": "Travel and Holidays",
       "lessons": [
-        {
-          "lesson": "lesson-01",
-          "title": "At the Hotel",
-          "phrases": [
-            {
-              "slot": "hello-i-have-a-reservation",
-              "english": "Hello, I have a reservation.",
-              "search_term": "hotel reception desk"
-            },
-            {
-              "slot": "under-the-name-nour",
-              "english": "Under the name Nour."
-            },
-            {
-              "slot": "is-there-an-empty-room",
-              "english": "Is there an empty room?",
-              "search_term": "hotel room key"
-            },
-            {
-              "slot": "i-want-a-room-for-two-people",
-              "english": "I want a room for two people.",
-              "search_term": "hotel double room"
-            },
-            {
-              "slot": "how-much-is-the-price-per-night",
-              "english": "How much is the price per night?"
-            },
-            {
-              "slot": "is-breakfast-included-with-the-room",
-              "english": "Is breakfast included with the room?",
-              "search_term": "hotel breakfast buffet"
-            },
-            {
-              "slot": "can-i-see-the-room-first",
-              "english": "Can I see the room first?"
-            },
-            {
-              "slot": "where-s-the-elevator",
-              "english": "Where's the elevator?",
-              "search_term": "hotel elevator"
-            },
-            {
-              "slot": "i-want-the-key-please",
-              "english": "I want the key please.",
-              "search_term": "hotel room key card"
-            },
-            {
-              "slot": "what-time-do-i-need-to-check-out",
-              "english": "What time do I need to check out?"
-            },
-            {
-              "slot": "i-want-to-order-room-service",
-              "english": "I want to order room service."
-            },
-            {
-              "slot": "thanks-the-room-is-very-nice",
-              "english": "Thanks, the room is very nice."
-            }
-          ]
-        },
         {
           "lesson": "lesson-02",
           "title": "Booking and Tickets",
@@ -3670,7 +4114,8 @@
               "search_term": "paper bus ticket",
               "image": "unit-15/l02-p12-paper-bus-ticket.jpg"
             }
-          ]
+          ],
+          "section": "Getting there"
         },
         {
           "lesson": "lesson-03",
@@ -3729,7 +4174,69 @@
               "slot": "welcome",
               "english": "Welcome."
             }
-          ]
+          ],
+          "section": "Getting there"
+        },
+        {
+          "lesson": "lesson-01",
+          "title": "At the Hotel",
+          "phrases": [
+            {
+              "slot": "hello-i-have-a-reservation",
+              "english": "Hello, I have a reservation.",
+              "search_term": "hotel reception desk"
+            },
+            {
+              "slot": "under-the-name-nour",
+              "english": "Under the name Nour."
+            },
+            {
+              "slot": "is-there-an-empty-room",
+              "english": "Is there an empty room?",
+              "search_term": "hotel room key"
+            },
+            {
+              "slot": "i-want-a-room-for-two-people",
+              "english": "I want a room for two people.",
+              "search_term": "hotel double room"
+            },
+            {
+              "slot": "how-much-is-the-price-per-night",
+              "english": "How much is the price per night?"
+            },
+            {
+              "slot": "is-breakfast-included-with-the-room",
+              "english": "Is breakfast included with the room?",
+              "search_term": "hotel breakfast buffet"
+            },
+            {
+              "slot": "can-i-see-the-room-first",
+              "english": "Can I see the room first?"
+            },
+            {
+              "slot": "where-s-the-elevator",
+              "english": "Where's the elevator?",
+              "search_term": "hotel elevator"
+            },
+            {
+              "slot": "i-want-the-key-please",
+              "english": "I want the key please.",
+              "search_term": "hotel room key card"
+            },
+            {
+              "slot": "what-time-do-i-need-to-check-out",
+              "english": "What time do I need to check out?"
+            },
+            {
+              "slot": "i-want-to-order-room-service",
+              "english": "I want to order room service."
+            },
+            {
+              "slot": "thanks-the-room-is-very-nice",
+              "english": "Thanks, the room is very nice."
+            }
+          ],
+          "section": "Staying"
         },
         {
           "lesson": "lesson-04",
@@ -3789,7 +4296,8 @@
               "slot": "may-god-make-up-for-it-god-willing-it-ll-work-ou",
               "english": "May God make up for it, God willing it'll work out."
             }
-          ]
+          ],
+          "section": "Staying"
         }
       ]
     },
@@ -4032,144 +4540,6 @@
             {
               "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it",
               "english": "That's all just people's talk, I don't know if it's true or not."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "unit": "unit-17",
-      "title": "Shopping and Getting Around",
-      "lessons": [
-        {
-          "lesson": "lesson-01",
-          "title": "At the Market",
-          "phrases": [
-            {
-              "slot": "how-much-is-this",
-              "english": "How much is this?",
-              "search_term": "shopkeeper and customer"
-            },
-            {
-              "slot": "expensive",
-              "english": "Expensive."
-            },
-            {
-              "slot": "cheap",
-              "english": "Cheap."
-            },
-            {
-              "slot": "is-there-a-discount",
-              "english": "Is there a discount?"
-            },
-            {
-              "slot": "how-much-per-kilo",
-              "english": "How much per kilo?",
-              "search_term": "market fruit stall"
-            },
-            {
-              "slot": "i-want-this",
-              "english": "I want this."
-            },
-            {
-              "slot": "lower-it-a-little-to-a-man-when-bargaining",
-              "english": "Lower it a little. (to a man, when bargaining)"
-            },
-            {
-              "slot": "final-price",
-              "english": "Final price."
-            },
-            {
-              "slot": "okay-deal",
-              "english": "Okay / Deal."
-            },
-            {
-              "slot": "do-you-have-a-smaller-one-to-a-man",
-              "english": "Do you have a smaller one? (to a man)"
-            },
-            {
-              "slot": "do-you-have-another-color-to-a-man",
-              "english": "Do you have another color? (to a man)"
-            },
-            {
-              "slot": "this-one-is-nicer",
-              "english": "This one is nicer."
-            },
-            {
-              "slot": "blue",
-              "english": "Blue.",
-              "search_term": "blue fabric"
-            },
-            {
-              "slot": "red",
-              "english": "Red.",
-              "search_term": "red fabric",
-              "image": "unit-17/l01-p14-red-fabric.jpg"
-            }
-          ]
-        },
-        {
-          "lesson": "lesson-02",
-          "title": "Getting Around",
-          "phrases": [
-            {
-              "slot": "taxi",
-              "english": "Taxi.",
-              "search_term": "yellow taxi car",
-              "image": "unit-17/l02-p01-yellow-taxi-car.jpg"
-            },
-            {
-              "slot": "bus",
-              "english": "Bus.",
-              "search_term": "city bus",
-              "image": "unit-17/l02-p02-city-bus.jpg"
-            },
-            {
-              "slot": "i-want-to-go-to-the-old-city",
-              "english": "I want to go to the Old City.",
-              "search_term": "old city street"
-            },
-            {
-              "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-              "english": "Stop here, please. (to a man, such as a taxi driver)"
-            },
-            {
-              "slot": "how-much-is-the-fare",
-              "english": "How much is the fare?"
-            },
-            {
-              "slot": "take-me-to-to-a-man",
-              "english": "Take me to... (to a man)"
-            },
-            {
-              "slot": "are-you-free-asking-a-taxi-driver-if-available",
-              "english": "Are you free? (asking a taxi driver if available)",
-              "search_term": "taxi driver waiting"
-            },
-            {
-              "slot": "busy-occupied",
-              "english": "Busy / Occupied."
-            },
-            {
-              "slot": "how-long-does-the-way-take",
-              "english": "How long does the way take?"
-            },
-            {
-              "slot": "will-you-drop-me-at-to-a-man",
-              "english": "Will you drop me at...? (to a man)"
-            },
-            {
-              "slot": "at-your-service-a-common-polite-reply-from-a-tax",
-              "english": "At your service. (a common polite reply from a taxi driver)"
-            },
-            {
-              "slot": "what-time-does-the-bus-come-tomorrow",
-              "english": "What time does the bus come tomorrow?",
-              "search_term": "bus stop"
-            },
-            {
-              "slot": "station",
-              "english": "Station."
             }
           ]
         }
