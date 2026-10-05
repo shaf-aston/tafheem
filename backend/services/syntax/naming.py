@@ -14,11 +14,12 @@ package's `__init__.py`.
 """
 from __future__ import annotations
 
+from backend.services import verb_reader
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_path, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table
 from backend.services.syntax import facts, walker
 from backend.services.harakat import (
-    CASE_NAME, PRESENT_PREFIX, SUKUN, command_shape, drops_weak, five_verb_nun, letters, paused, typed_case)
+    CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, paused, typed_case)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -75,8 +76,12 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         token["typed"] = word
         # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever reading the parser had
         after = words[i + 1] if i + 1 < len(words) else ""
-        if command_shape(paused(word, after), i > 0 and is_one(bases[i - 1]["base"], "jazm", "before_a_present_verb")):
-            token["asp"] = "c"
+        if token["pos"].startswith("VRB") or token.get("pos_camel") in ("noun", "noun_prop"):
+            governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
+                                     for family in ("jazm", "nasb_mudari"))
+            root = token.get("root", "")
+            if verb_reader.command(word, governed, root) or verb_reader.command(paused(word, after), governed, root):
+                token["asp"] = "c"
         # letters at the end that belong to an attached pronoun, not to the word
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
                                 if t["head"] == token["id"] and t["form"].startswith("+"))

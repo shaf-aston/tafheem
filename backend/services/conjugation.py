@@ -132,8 +132,9 @@ def kind(radicals: str) -> str:
     weak = [position for position, letter in enumerate(radicals) if letter in WEAK]
     if len(weak) > 1:
         return "lafif-maqrun" if weak[-1] - weak[-2] == 1 else "lafif-mafruq"
+    # the last letter is the ناقص one, also in a four-letter root (قلبي is not sound)
     return next(
-        (name for position, name in ((0, "mithal"), (1, "ajwaf"), (2, "naqis"))
+        (name for position, name in ((0, "mithal"), (1, "ajwaf"), (-1, "naqis"))
          if radicals[position] in WEAK),
         "sahih",
     )
@@ -187,6 +188,8 @@ def _check(radicals: str, form: str) -> dict:
             f"{''.join(hidden)} is not a root letter: it stands for a و or a ي and the "
             "letters do not say which. Enter the root itself, like قول or رمي."
         )
+    if wanted == 4 and kind(radicals) not in rules["quadriliteral-kinds"]:
+        raise ValueError(f"This root is {root_type(radicals)}, and its four-letter rules are not built yet.")
     if kind(radicals) not in conjugates():
         raise ValueError(f"This root is {root_type(radicals)}, and its rules are not built yet.")
     return shape
@@ -247,44 +250,87 @@ def summary(radicals: str, form: str, shaped: "Shaper | None" = None) -> list[di
             for slot, arabic in slots if arabic]
 
 
+def _row(shaped: "Shaper", shape: dict, index: int) -> dict[str, str]:
+    """One person's six cells of the table (one row of conjugate's grid)."""
+    rules = _rules()
+    _, madi_end, letter, mudari_end = rules["persons"][index]
+    prefix, passive_prefix = shape["prefix"], rules["passive-prefix"]
+    jussive = rules["jussive"][index]
+    # The command of someone who is not being spoken to is لِ + the jussive;
+    # only the six second-person rows use the أمر stem itself. Treasures p.98.
+    jussed = shaped("nahy", (letter, W.PREFIX), (prefix, W.PREFIX),
+                    (shape["mudari"], W.PATTERN), (jussive, W.SUFFIX))
+    command = (shaped("amr", (shape["amr"], W.PATTERN), (jussive, W.SUFFIX))
+               if index in rules["addressed"] else rules["amr-lam"] + jussed)
+    return {
+        "madi": shaped("madi", (shape["madi"], W.PATTERN), (madi_end, W.SUFFIX)),
+        "mudari": shaped("mudari", (letter, W.PREFIX), (prefix, W.PREFIX),
+                         (shape["mudari"], W.PATTERN), (mudari_end, W.SUFFIX)),
+        "amr": command,
+        "nahy": rules["nahy-la"] + jussed,
+        "madi-passive": shaped("madi-passive", (shape["madi-passive"], W.PATTERN), (madi_end, W.SUFFIX)),
+        "mudari-passive": shaped("mudari-passive", (letter, W.PREFIX), (passive_prefix, W.PREFIX),
+                                 (shape["mudari-passive"], W.PATTERN), (mudari_end, W.SUFFIX)),
+    }
+
+
 def conjugate(radicals: str, form: str) -> dict:
     """The full gardaan as a grid: fourteen persons down, six columns across."""
     radicals = "".join(radicals.split())
     shape = _check(radicals, form)
     rules = _rules()
-
     shaped = Shaper(radicals, form)
-    prefix, passive_prefix = shape["prefix"], rules["passive-prefix"]
-    addressed = set(rules["addressed"])
-
-    rows = []
-    for index, (label, madi_end, letter, mudari_end) in enumerate(rules["persons"]):
-        jussive = rules["jussive"][index]
-        # The command of someone who is not being spoken to is لِ + the jussive;
-        # only the six second-person rows use the أمر stem itself. Treasures p.98.
-        jussed = shaped("nahy", (letter, W.PREFIX), (prefix, W.PREFIX),
-                        (shape["mudari"], W.PATTERN), (jussive, W.SUFFIX))
-        command = (shaped("amr", (shape["amr"], W.PATTERN), (jussive, W.SUFFIX))
-                   if index in addressed else rules["amr-lam"] + jussed)
-        rows.append({
-            "person": label,
-            "cells": {
-                "madi": shaped("madi", (shape["madi"], W.PATTERN), (madi_end, W.SUFFIX)),
-                "mudari": shaped("mudari", (letter, W.PREFIX), (prefix, W.PREFIX),
-                                 (shape["mudari"], W.PATTERN), (mudari_end, W.SUFFIX)),
-                "amr": command,
-                "nahy": rules["nahy-la"] + jussed,
-                "madi-passive": shaped("madi-passive", (shape["madi-passive"], W.PATTERN), (madi_end, W.SUFFIX)),
-                "mudari-passive": shaped("mudari-passive", (letter, W.PREFIX), (passive_prefix, W.PREFIX),
-                                         (shape["mudari-passive"], W.PATTERN), (mudari_end, W.SUFFIX)),
-            },
-        })
+    rows = [{"person": person[0], "cells": _row(shaped, shape, index)}
+            for index, person in enumerate(rules["persons"])]
 
     # The notes are the book's own "this spelling is also allowed": they belong
     # under the table, not in a cell, and an empty list means no rule reshaped
     # anything, which is the ordinary sound-root case.
     return {"columns": rules["columns"], "rows": rows,
             "summary": summary(radicals, form, shaped), "notes": shaped.notes}
+
+
+@lru_cache(maxsize=4096)
+def cells(radicals: str, form: str) -> tuple[tuple[int, str, str], ...]:
+    """Every word of the table as (person row, column, word), for reading a typed
+    verb back (verb_reader). ValueError, as conjugate(), for a root the rules do not shape."""
+    return tuple((row, column, word) for row in range(len(_rules()["person-features"]))
+                 for column, word in row_cells(radicals, form, row))
+
+
+@lru_cache(maxsize=4096)
+def _refusal(radicals: str, form: str) -> str:
+    """Why the rules do not shape this root in this form, or "". Cached, refusals too:
+    the reader asks of the same unshaped root on every word typed."""
+    try:
+        _check(radicals, form)
+    except ValueError as error:
+        return str(error)
+    return ""
+
+
+@lru_cache(maxsize=16384)
+def row_cells(radicals: str, form: str, row: int) -> tuple[tuple[str, str], ...]:
+    """One person's (column, word) cells alone, a fourteenth of the table's cost:
+    what verb_reader checks a typed word against. ValueError as conjugate()."""
+    if why := _refusal(radicals, form):
+        raise ValueError(why)
+    return tuple(_row(Shaper(radicals, form), _check(radicals, form), row).items())
+
+
+def person_features(row: int) -> tuple[str, str, str]:
+    """(person, gender, number) of a table row, in CAMeL's letters."""
+    return tuple(_rules()["person-features"][row])
+
+
+def rule(name: str) -> dict:
+    """One of the book's reshaping rules as ilal.json files it: its letters and forms."""
+    return _ilal_rules()[name]
+
+
+def addressed(row: int) -> bool:
+    """A row spoken to, whose command is the أمر stem itself, not لِ + the jussive."""
+    return row in _rules()["addressed"]
 
 
 # Every Arabic mark except the shaddah. A shaddah is not a vowel, it doubles a
@@ -371,7 +417,8 @@ def resolve_form(
             "the letters do not say which. Enter the root itself, like قول or رمي."
         )
 
-    if kind(radicals) not in conjugates():
+    if kind(radicals) not in conjugates() or (
+            len(radicals) == 4 and kind(radicals) not in _rules()["quadriliteral-kinds"]):
         return None, (
             f"This root is {root_type(radicals)}, and the book gives it its own chapter of "
             "rules, which are not built here yet. Rather than print a table that would be "

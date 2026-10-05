@@ -23,16 +23,16 @@ from backend.services import morphology
 
 def test_the_tagger_root_is_plain_letters():
     """'ktb' comes out as كتب, not ك-ت-ب."""
-    assert morphology._bw_root_to_arabic("ktb") == "كتب"
+    assert morphology.root_in_arabic("ktb") == "كتب"
 
 
 def test_an_already_arabic_root_loses_its_separators_too():
-    assert morphology._bw_root_to_arabic("ك-ت-ب") == "كتب"
+    assert morphology.root_in_arabic("ك-ت-ب") == "كتب"
 
 
 def test_a_root_with_an_unknown_radical_is_still_no_root():
     """The gap stays a gap: '#' is a radical the database could not pin down."""
-    assert morphology._bw_root_to_arabic("#.l.d") == ""
+    assert morphology.root_in_arabic("#.l.d") == ""
 
 
 def test_the_dictionary_root_is_plain_letters(tmp_path, monkeypatch):

@@ -353,5 +353,15 @@
     9,
     10,
     11
+  ],
+  "_quadriliteral-kinds": "The kinds of four-letter root the rules shape. The weak-letter rules are written for three-letter roots, so a four-letter one with a weak letter is refused, not conjugated wrongly.",
+  "quadriliteral-kinds": ["sahih", "mahmuz", "mudaaf"],
+  "_person-features": "Each row of `persons` as [person, gender, number], in CAMeL's letters, so a word read back from the table speaks the morphology's language.",
+  "person-features": [
+    ["3", "m", "s"], ["3", "m", "d"], ["3", "m", "p"],
+    ["3", "f", "s"], ["3", "f", "d"], ["3", "f", "p"],
+    ["2", "m", "s"], ["2", "m", "d"], ["2", "m", "p"],
+    ["2", "f", "s"], ["2", "f", "d"], ["2", "f", "p"],
+    ["1", "-", "s"], ["1", "-", "p"]
   ]
 }

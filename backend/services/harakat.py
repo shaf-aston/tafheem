@@ -72,9 +72,10 @@ def has_tanween(word: str) -> bool:
 
 def weak_radical(raw_root: str | None, place: int) -> bool:
     """Whether CAMeL's root has a weak letter (و or ي) as its radical at `place` (-1 last,
-    1 middle). `#` is how CAMeL writes one (and a hamza too: see weak_last)."""
+    1 middle). `#` is how CAMeL writes one (and a hamza too: see weak_last); a root read
+    from sarf's table (verb_reader) comes in Arabic letters."""
     radicals = (raw_root or "").split(".")
-    return len(radicals) == 3 and radicals[place] in ("#", "w", "y", "Y")
+    return len(radicals) == 3 and radicals[place] in ("#", "w", "y", "Y", "و", "ي")
 
 
 def weak_last(analysis: dict) -> bool:
@@ -203,44 +204,6 @@ def moved_for_wasl(word: str, after: str = "") -> bool:
 def paused(word: str, after: str = "") -> str:
     """The word as said alone: a moved kasra back to the sukun a verb's shape is read by."""
     return word[:-1] + SUKUN if moved_for_wasl(word, after) else word
-
-
-def command_shape(word: str, after_jazm: bool = False, hollow: bool = False) -> bool:
-    """فعل أمر by its vowels: a sukun last, and either the voweled hamzat al-wasl before a
-    sakin letter (اُكْتُبْ، اِجْلِسْ), two letters only, the hollow verb's (قُمْ، بِعْ، نَمْ),
-    or Form IV's hamzat al-qat' with a fatha before a sakin letter (أَكْرِمْ، أَرْسِلْ).
-    A present verb's prefix is never a bare voweled alef, and no past verb ends in a
-    sukun on its own. Only the last shape is also a present verb, the first person's
-    after a jazm particle (لم أَجْلِسْ), so `after_jazm` rules it out. A hollow Form IV
-    command lost its middle letter (أَقِمْ، أَجِبْ): three letters, a kasra on the second,
-    and only the root can tell it from a name (أَحْمَدْ), so the caller passes `hollow`."""
-    marked = letters(word)
-    if _plural_command(marked):
-        return True
-    if len(marked) < 2 or SUKUN not in marked[-1][1]:
-        return False
-    first, second = marked[0], marked[1]
-    if len(marked) == 2:
-        return bool(first[1] & {"َ", "ُ", "ِ"})
-    if len(marked) == 3 and hollow:
-        return first[0] == "أ" and "َ" in first[1] and "ِ" in second[1] and not after_jazm
-    if SUKUN not in second[1]:
-        return False
-    return (first[0] == "ا" and bool(first[1] & {"ُ", "ِ"})) or (
-        first[0] == "أ" and "َ" in first[1] and len(marked) >= 4 and not after_jazm)
-
-
-def _plural_command(marked: list[tuple[str, set]]) -> bool:
-    """اُكْتُبُوا، اعْبُدُوا: a command to many drops its nun and keeps واو الجماعة (Tasheel
-    2.2 p27), so it ends وا, not in a sukun; it opens with hamzat al-wasl (its vowel often
-    left untyped) before a sakin letter. A past verb with that opening is a longer form
-    (اِجْتَمَعُوا، اِنْكَسَرُوا) and has a fatha on its middle root letter, a command never."""
-    if len(marked) < 6 or [letter for letter, _ in marked[-2:]] != ["و", "ا"]:
-        return False
-    first, second = marked[0], marked[1]
-    if first[0] != "ا" or (first[1] and not first[1] & {"ُ", "ِ"}) or SUKUN not in second[1]:
-        return False
-    return len(marked) == 6 or "َ" not in marked[-4][1]
 
 
 def past_passive_shape(word: str) -> bool:
