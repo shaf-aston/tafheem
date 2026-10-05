@@ -71,8 +71,8 @@ select option {
 }
 
 
-/* Tailwind's own two everyday sizes, pointed back at the same config. The app
-   is written in text-xs and text-sm in about forty files, and those were a
+/* Tailwind's own sizes, pointed back at the same config. The app
+   is written in text-xs to text-3xl, and those were a
    second scale nobody could retune from theme.json. The pixel values are
    unchanged; only where they come from is. Line heights stay Tailwind's.
    Set in @theme rather than as .text-xs rules so md:text-sm and every other
@@ -80,6 +80,10 @@ select option {
 @theme inline {
   --text-xs: var(--type-label);
   --text-sm: var(--type-ui);
+  --text-base: var(--type-lead);
+  --text-lg: var(--type-heading);
+  --text-xl: var(--type-title);
+  --text-3xl: var(--type-display);
 }
 
 
