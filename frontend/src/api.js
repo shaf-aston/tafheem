@@ -190,6 +190,8 @@ export const rijalSearchQuery = (q) => ({
 export const narratorQuery = (id) => ({
   queryKey: ['narrator', id],
   queryFn: () => api.get(`/rijal/narrators/${id}`).then((r) => r.data),
+  // No page built for him stays that way, so a 404 is not retried.
+  retry: (count, error) => error?.response?.status !== 404 && count < 1,
 })
 
 // Every word typed must appear, in Arabic or English, across the named

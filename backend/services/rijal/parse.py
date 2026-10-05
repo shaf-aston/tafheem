@@ -48,16 +48,17 @@ def place(arabic: str, names: list[tuple[int, str]]) -> tuple[list[tuple[int, in
     """([(start, end, id)] found in our text, [(id, shown)] not found).
 
     Each search starts where the last name ended, so a name that comes twice in
-    one chain lands each time on its own words, in order.
+    one chain lands each time on its own words, in order. A hit must end its
+    word (أبيه, not the start of أبيها); its start may carry an attached و or ف.
     """
     placed, lost, at = [], [], 0
     for who, shown in names:
-        start = arabic.find(shown, at)
-        if start < 0:
-            lost.append((who, shown))
+        hit = re.compile(re.escape(shown) + r"(?!\w)").search(arabic, at)
+        if hit:
+            at = hit.end()
+            placed.append((hit.start(), at, who))
         else:
-            at = start + len(shown)
-            placed.append((start, at, who))
+            lost.append((who, shown))
     return placed, lost
 
 
@@ -65,9 +66,9 @@ def _people(soup: BeautifulSoup, panel: str) -> list[tuple[int, str, str]]:
     """(id, Arabic name, English name) of a panel's narrators, the folded-away rows included, each once."""
     found = {}
     for a in soup.select(f"section.panel--{panel} a.name-en"):
-        who = int(_NARRATOR.match(a["href"]).group(1))
-        ar = a.find_next_sibling("a", class_="name-ar")
-        found.setdefault(who, (who, _text(ar), _text(a)))
+        if m := _NARRATOR.match(a.get("href", "")):
+            who = int(m.group(1))
+            found.setdefault(who, (who, _text(a.find_next_sibling("a", class_="name-ar")), _text(a)))
     return list(found.values())
 
 

@@ -6,8 +6,12 @@
 import HADITH from '../../hadith.json'
 import { toneOf } from '../../lib/rijal'
 
+import { errorStatus } from '../../lib/apiError'
+
 import ArabicText from './ArabicText'
+import ErrorAlert from './ErrorAlert'
 import SourceBadge from './SourceBadge'
+import StatusNote from './StatusNote'
 
 const { site: SITE } = HADITH.narrator
 
@@ -70,6 +74,13 @@ export function NarratorFacts({ who }) {
   )
 }
 
+/** A narrator that failed to load: a 404 means no page for him is built here. */
+export function NarratorError({ error, onRetry }) {
+  return errorStatus(error) === 404
+    ? <StatusNote>No page for this narrator is built on this machine.</StatusNote>
+    : <ErrorAlert title="Could not load the narrator" error={error} fallback="Try again." onRetry={onRetry} />
+}
+
 /** Narrators as tappable cards: Arabic name, grade colour, English name. `row` packs them in a wrapping line. */
 export function NarratorLinks({ items, onOpen, row = false }) {
   return (
@@ -79,6 +90,7 @@ export function NarratorLinks({ items, onOpen, row = false }) {
           <button
             type="button"
             onClick={() => onOpen(n.id)}
+            title={n.grade_ar || undefined}
             className="press tap w-full text-left flex items-center gap-2 px-3 py-2 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--text-faint)] transition-colors"
           >
             <span
@@ -88,6 +100,7 @@ export function NarratorLinks({ items, onOpen, row = false }) {
             />
             <span className="min-w-0">
               <ArabicText size="sm" className="block text-[var(--text)]">{n.name_ar}</ArabicText>
+              {n.grade_ar && <span className="sr-only">{n.grade_ar}</span>}
               {n.name_en && !row && <span className="block type-small text-[var(--text-faint)] truncate">{n.name_en}</span>}
             </span>
           </button>

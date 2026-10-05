@@ -7,15 +7,12 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { narratorQuery } from '../../api'
-import { errorStatus } from '../../lib/apiError'
 
 import BottomSheet from './BottomSheet'
 import CloseButton from './CloseButton'
-import ErrorAlert from './ErrorAlert'
-import { NarratorFacts, NarratorName } from './NarratorParts'
+import { NarratorError, NarratorFacts, NarratorName } from './NarratorParts'
 import { Skeleton } from './Skeleton'
 import SmallButton from './SmallButton'
-import StatusNote from './StatusNote'
 
 export default function NarratorSheet({ id, onClose, onOpenPage }) {
   const { data: who, isPending, isError, error, refetch } = useQuery(narratorQuery(id))
@@ -29,9 +26,7 @@ export default function NarratorSheet({ id, onClose, onOpenPage }) {
 
       <div className="overflow-y-auto px-5 pb-5 space-y-3">
         {isPending && <Skeleton className="h-24 w-full" />}
-        {isError && (errorStatus(error) === 404
-          ? <StatusNote>No page for this narrator is built on this machine.</StatusNote>
-          : <ErrorAlert title="Could not load the narrator" error={error} fallback="Try again." onRetry={refetch} />)}
+        {isError && <NarratorError error={error} onRetry={refetch} />}
         {who && (
           <>
             <NarratorFacts who={who} />

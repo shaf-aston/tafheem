@@ -39,13 +39,18 @@ class Fetcher:
         """The page, or "" when the site has none. Anything else the site says after the last retry stops the run."""
         for attempt in range(1, self.knobs["retries"] + 1):
             time.sleep(self.knobs["pace_seconds"] * attempt)
-            reply = self.session.get(self.knobs["site"] + path, timeout=self.knobs["timeout_seconds"])
-            if reply.status_code == 200:
+            try:
+                reply = self.session.get(self.knobs["site"] + path, timeout=self.knobs["timeout_seconds"])
+            except requests.RequestsError as failed:
+                said = failed
+                continue
+            said = reply.status_code
+            if said == 200:
                 self.fetched += 1
                 return reply.text
-            if reply.status_code == 404:
+            if said == 404:
                 return ""
-        raise SystemExit(f"stopped: {path} answered {reply.status_code} {self.knobs['retries']} times; run again later to resume")
+        raise SystemExit(f"stopped: {path} answered {said} {self.knobs['retries']} times; run again later to resume")
 
     def save(self, file: Path, path: str) -> None:
         if not file.exists():

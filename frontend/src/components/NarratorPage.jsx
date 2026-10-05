@@ -9,17 +9,14 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { narratorHadithQuery, narratorQuery } from '../api'
-import { errorStatus } from '../lib/apiError'
 import { useHadithCollections } from '../lib/useHadithCollections'
 
 import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
 import ChipRow from './ui/ChipRow'
-import ErrorAlert from './ui/ErrorAlert'
-import { NarratorFacts, NarratorLinks, NarratorName } from './ui/NarratorParts'
+import { NarratorError, NarratorFacts, NarratorLinks, NarratorName } from './ui/NarratorParts'
 import ShowRest from './ui/ShowRest'
 import { AnalyzerSkeleton } from './ui/Skeleton'
-import StatusNote from './ui/StatusNote'
 
 const Section = ({ title, children }) => (
   <section className="space-y-2">
@@ -40,9 +37,7 @@ export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith 
       </button>
 
       {isPending && <AnalyzerSkeleton />}
-      {isError && (errorStatus(error) === 404
-        ? <StatusNote>No page for this narrator is built on this machine.</StatusNote>
-        : <ErrorAlert title="Could not load the narrator" error={error} fallback="Try again." onRetry={refetch} />)}
+      {isError && <NarratorError error={error} onRetry={refetch} />}
 
       {who && (
         <>
