@@ -6,7 +6,7 @@ import sys
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 
@@ -99,9 +99,13 @@ def create_app() -> FastAPI:
         app.include_router(router)
 
     @app.get("/api/health")
-    async def health() -> dict:
+    async def health(response: Response) -> dict:
+        # 503 until the background loads finish: see services/startup.py's `loading`.
+        if startup.loading:
+            response.status_code = 503
         return {
-            "status": "ok",
+            "status": "loading" if startup.loading else "ok",
+            "loading": sorted(startup.loading),
             "nlp_engine": get_engine_name(),
             "ai_backend": ai_service.get_backend_name(),
             # Which ear would answer a spoken search right now. Here for the
