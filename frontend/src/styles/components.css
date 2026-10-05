@@ -538,7 +538,9 @@ dialog::backdrop {
 
 
 /* One card look. .card is a block on the page; .card-tile is a smaller box
-   inside one, a step lighter; .card-accent adds the tab's colour bar (--c). */
+   inside one, a step lighter; .card-accent adds the tab's colour bar (--c).
+   In the components layer so a utility beside it (a hover border) wins. */
+@layer components {
 .card {
   padding: var(--space-card);
   border-radius: var(--radius-md);
@@ -552,6 +554,7 @@ dialog::backdrop {
   border: 1px solid var(--border);
 }
 .card-accent { border-left: 4px solid var(--c); }
+}
 
 
 /* The phone tab bar (ui/BottomNav): pinned at the bottom, clear of the home

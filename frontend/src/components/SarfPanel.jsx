@@ -8,6 +8,7 @@ import { useArrival, useHeld } from '../lib/useArrival'
 import { useSlowPending } from '../lib/useSlowPending'
 
 import ArabicText from './ui/ArabicText'
+import Chip from './ui/Chip'
 import ErrorAlert from './ui/ErrorAlert'
 import MicButton from './ui/MicButton'
 import PresetsDrawer from './ui/PresetsDrawer'
@@ -154,7 +155,7 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
         subtitle="Where a word comes from: its three-letter root, its pattern, and how it conjugates."
       />
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {/* The same field as Dictionary, Daleel and the Qur'an tab, down to the
             keycap and the microphone. See ui/SearchBox. */}
         <SearchBox
@@ -271,10 +272,7 @@ function SarfResult({ data, loading, meaningPending, swapPending, swapError, onR
       )}
 
       {data.notes && (
-        <div className="card rise-in text-sm text-[var(--text-dim)]">
-          <div className="eyebrow mb-1">Notes</div>
-          {data.notes}
-        </div>
+        <TableNote accent={accent} title="Notes">{data.notes}</TableNote>
       )}
     </div>
   )
@@ -288,7 +286,7 @@ function TableNote({ accent, title = 'Why there is no table', children }) {
   return (
     <div style={{ '--c': accent }} className="card card-accent rise-in space-y-1">
       <div className="eyebrow">{title}</div>
-      <p className="text-sm leading-relaxed text-[var(--text-dim)]">{children}</p>
+      <p className="type-body leading-relaxed text-[var(--text-dim)]">{children}</p>
     </div>
   )
 }
@@ -332,7 +330,7 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
   ))
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {summary.length > 0 && <SarfSagheer summary={summary} accent={accent} />}
 
       <div className="flex items-center justify-between gap-3 flex-wrap">
@@ -370,28 +368,13 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
         <>
           {/* Six columns at once is too wide for a laptop and unreadable on a phone,
               so the reader turns on only the ones being studied. */}
-          <fieldset dir="rtl" className="flex flex-wrap items-center gap-2">
-            <legend className="sr-only">Columns to show</legend>
-            {columns.map((c) => {
-              const on = shown.includes(c.id)
-              return (
-                <label
-                  key={c.id}
-                  style={on
-                    ? { '--c': accent, color: accent, borderColor: accent, background: `color-mix(in srgb, ${accent} 12%, transparent)` }
-                    : { '--c': accent }}
-                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium
-                    border border-[var(--border)] cursor-pointer transition-colors
-                    focus-within:ring-2 focus-within:ring-[var(--c)] ${
-                    on ? '' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
-                  }`}
-                >
-                  <input type="checkbox" checked={on} onChange={() => toggle(c.id)} className="sr-only" />
-                  {c.label}
-                </label>
-              )
-            })}
-          </fieldset>
+<div role="group" aria-label="Columns to show" dir="rtl" className="flex flex-wrap items-center gap-2">
+            {columns.map((c) => (
+              <Chip key={c.id} tinted accent={accent} selected={shown.includes(c.id)} onClick={() => toggle(c.id)}>
+                {c.label}
+              </Chip>
+            ))}
+          </div>
 
           {/* Arabic reads right to left, and so does the book's grid: ماضي sits on
               the right and نهي on the left. The direction lives on the scroll box so
@@ -402,7 +385,7 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
               swapPending ? 'opacity-50' : ''
             }`}
           >
-            <table className="w-max min-w-full text-sm border-collapse">
+            <table className="w-max min-w-full type-body border-collapse">
               <thead>
                 <tr className="bg-[var(--surface-hi)]">
                   {visible.map((c) => (
@@ -434,7 +417,7 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
                       scope="row"
                       dir="ltr"
                       className={`sticky left-0 z-[var(--layer-raised)] px-4 py-1.5 text-left font-normal whitespace-nowrap
-                        text-xs text-[var(--text-dim)] ${i % 2 ? 'bg-[var(--surface)]' : 'bg-[var(--surface-hi)]'}`}
+                        type-small text-[var(--text-dim)] ${i % 2 ? 'bg-[var(--surface)]' : 'bg-[var(--surface-hi)]'}`}
                     >
                       {row.person}
                     </th>
@@ -485,7 +468,7 @@ const CONJUGATIONS = { label: 'Conjugations', term: 'تصريف' }
 /** A block's name, English then its Arabic term, used by every block here. */
 function BlockTitle({ label, term }) {
   return (
-    <span className="flex items-baseline gap-2 text-[var(--text)] font-medium text-sm">
+    <span className="flex items-baseline gap-2 type-label text-[var(--text)] font-medium">
       {label}
       <ArabicText size="sm" className="arabic-inline text-[var(--text-faint)]">{term}</ArabicText>
     </span>
@@ -529,7 +512,7 @@ function MeaningCard({ meaning, pending, root, onGo, accent, i }) {
           the letter hamzah. Cut with ShowRest, as everywhere else: a hover title
           said nothing on a phone, where there is no hover. */}
       {meaning && (
-        <ShowRest lines={3} accent={accent} className="text-[var(--text)] text-sm">{meaning}</ShowRest>
+        <ShowRest lines={3} accent={accent} className="type-body text-[var(--text)]">{meaning}</ShowRest>
       )}
       {!meaning && pending && <Skeleton className="h-4 w-2/3" />}
       {/* A gap stays a gap. The dictionary has no entry for plenty of real
@@ -564,8 +547,8 @@ function InfoCard({ label, value, gloss, arabic, accent, i }) {
           and leave the label and the gloss pointing the other way. */}
       {arabic
         ? <ArabicText className="text-[var(--text)]">{value}</ArabicText>
-        : <div className="text-[var(--text)] text-sm">{value}</div>}
-      {gloss && <div className="text-[var(--text-dim)] text-xs mt-1 leading-snug">{gloss}</div>}
+        : <div className="type-body text-[var(--text)]">{value}</div>}
+      {gloss && <div className="type-small text-[var(--text-dim)] mt-1 leading-snug">{gloss}</div>}
     </div>
   )
 }
