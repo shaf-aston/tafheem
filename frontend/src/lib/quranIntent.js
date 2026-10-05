@@ -78,6 +78,5 @@ export function readQuranQuery(text) {
 // Words, with a surah offered on the side only when its name is exactly what
 // was typed: "الرحمن" is a word of the mushaf and the name of surah 55.
 function wordsOf(line) {
-  const named = surahsNamed(line, 1).filter((m) => m.close === CLOSE.exact)
-  return { kind: KIND.text, surahs: named, ayah: null, problem: null }
+  return { kind: KIND.text, surahs: surahsNamed(line, 1, CLOSE.exact), ayah: null, problem: null }
 }
