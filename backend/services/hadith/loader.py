@@ -99,3 +99,32 @@ def hadiths(collection_id: str, book_number: int) -> list[dict]:
         ]
     finally:
         conn.close()
+
+
+def numbered(collection_id: str, number: int, part: str = "") -> tuple[int, list[tuple]]:
+    """The hadith carrying this number (every lettered part, unless one letter is asked).
+
+    A number the collection does not use gives the nearest number it does
+    (Muslim starts at 8), returned first so the caller can say so.
+    Rows are (collection, book, number, part, arabic, english, grades), search's shape.
+    """
+    if not is_built():
+        return number, []
+    conn = _connect()
+    try:
+        near = conn.execute(
+            "SELECT number FROM hadith WHERE collection_id = ? ORDER BY abs(number - ?), number LIMIT 1",
+            (collection_id, number),
+        ).fetchone()
+        if not near:
+            return number, []
+        shown = near[0]
+        rows = conn.execute(
+            "SELECT collection_id, book_number, number, part, arabic, english, grades FROM hadith "
+            "WHERE collection_id = ? AND number = ? ORDER BY part",
+            (collection_id, shown),
+        ).fetchall()
+        # One letter asked narrows to it; a letter the number does not have shows them all.
+        return shown, [r for r in rows if shown == number and r[3] == part] or rows
+    finally:
+        conn.close()

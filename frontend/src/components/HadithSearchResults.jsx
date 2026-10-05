@@ -96,6 +96,13 @@ export default function HadithSearchResults({ collections, accent, onOpenBook, c
         </p>
       )}
 
+      {data?.reference && data.reference.asked !== data.reference.shown && (
+        <p role="status" className="type-small text-[var(--text-dim)]">
+          {collections.find((x) => x.id === data.reference.collection)?.name || data.reference.collection} has
+          no {data.reference.asked}, so this is {data.reference.shown}, the nearest number
+        </p>
+      )}
+
       {data?.unmatched?.length > 0 && (
         <p role="status" className="type-small text-[var(--text-dim)]">
           no hadith has {data.unmatched.map((w, i) => <span key={w}>{i > 0 && ', '}<Word text={w} /></span>)}

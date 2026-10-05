@@ -1,7 +1,7 @@
 {
   "_comment": "Hadith tab knobs. grades: which scholar's verdict leads on a card (the first here who graded it), and which words put a verdict in which family; the first family whose word appears wins, so weak words are checked first ('Hasan Sahih' is sound, 'Sahih Isnaad Daif' is not). topics: which picture a book wears, the first whose word appears in its English name wins, so the specific ones come first. Words are lower case, matched anywhere in the name.",
   "chain": {
-    "_comment": "How the chain of narrators is found, so it can be hidden (lib/hadithWords chainOf). links pass the hadith on from one narrator to the next: each verb with each ending (he, she, they, with us or me or it as object: حدثتني، حدثناه، سمعته), plus the bare words; قرأت (I read to him) is left out, since it as often means reciting Qur'an to the Prophet, which is the hadith itself; second person (أخبركم) is left out: in a hadith it is mostly a speaker asking his listeners 'shall I tell you', and would read his words as chain; says end a link and start the hadith unless another link follows. about are words a chain uses to speak of itself (with this chain, the same as it): the hadith that holds one stays whole, since that note is what it says. name is how many words one narrator's name may run, free words (the blessings said after a name) not counted, before the chain counts as unclear and the hadith stays whole. Written without vowels; a leading wa or fa is read off.",
+    "_comment": "How the chain of narrators is found, so it can be hidden (lib/hadithWords chainOf). links pass the hadith on from one narrator to the next: each verb with each ending (he, she, they, with us or me or it as object: حدثتني، حدثناه، سمعته), plus the bare words; قرأت (I read to him) is left out, since it as often means reciting Qur'an to the Prophet, which is the hadith itself; second person (أخبركم) is left out: in a hadith it is mostly a speaker asking his listeners 'shall I tell you', and would read his words as chain; says end a link and start the hadith unless another link follows. about are words a chain uses to speak of itself (with this chain, the same as it): the hadith that holds one stays whole, since that note is what it says. name is how many words one narrator's name may run, free words (the blessings said after a name, and the son of/daughter of that join its parts) not counted, before the chain counts as unclear and the hadith stays whole. Written without vowels; a leading wa or fa is read off.",
     "links": {
       "verbs": ["حدث", "يحدث", "أخبر", "أنبأ", "سمع"],
       "endings": ["", "نا", "ني", "ه", "هم", "ت", "تني", "تنا", "ناه", "نيه", "ته", "اه"],
@@ -9,8 +9,10 @@
     },
     "says": ["قال", "قالا", "قالوا", "قالت", "أن", "أنه", "أنها", "أنهم", "يقول", "تقول"],
     "about": ["الإسناد", "بإسناد", "بإسناده", "إسناده", "الحديث", "حديث", "حديثه", "مثله", "بمثله", "بمثل", "مثل", "نحوه", "بنحوه", "نحو", "بمعناه", "غير"],
-    "free": ["رضي", "رضى", "الله", "عنه", "عنها", "عنهما", "عنهم", "صلى", "عليه", "وسلم"],
+    "free": ["رضي", "رضى", "الله", "عنه", "عنها", "عنهما", "عنهم", "صلى", "عليه", "وسلم", "بن", "ابن", "بنت"],
     "name": 6,
+    "_aside_comment": "aside is the mark set either side of a narrator's own note inside the chain (Muslim: - وهذا حديثه -, - واللفظ لعثمان -). What stands between a pair is passed over, so its words are neither a name nor the chain speaking of itself. A mark with no partner is ignored.",
+    "aside": "-",
     "_kin_comment": "kin name a narrator by the one before him (his father, his grandfather), so they are never matched as a name of their own when two strands are joined.",
     "kin": ["أبي", "أبيه", "أبيها", "جده", "جدي", "أمه", "أمي", "عمه", "أخيه"],
     "_together_comment": "together say the narrators just named both or all passed it on (Muslim: حدثنا أبو بكر وزهير قالا حدثنا وكيع; ... كلاهما عن). Where a strand after ح names no narrator the main one names, it joins the main strand at the narrator after such a word.",

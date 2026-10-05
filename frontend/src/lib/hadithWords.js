@@ -89,10 +89,19 @@ const bare = (word) => {
  * (بهذا الإسناد), or a text that does not open with a link, means the end is
  * not plain: the hadith comes back whole with an empty chain, never cut into.
  */
+/** The words not set between a pair of aside marks; a mark with no partner is ignored. */
+function outsideAsides(words, marks) {
+  const at = marks.flatMap((mark, i) => (mark ? [i] : []))
+  const inside = new Set(at.flatMap((start, k) => (k % 2 || k + 1 >= at.length ? [] : range(start, at[k + 1]))))
+  return words.filter((_, i) => !inside.has(i))
+}
+const range = (start, end) => Array.from({ length: end - start + 1 }, (_, k) => start + k)
+
 export function chainOf(arabic) {
   const text = String(arabic ?? '')
   const whole = { chain: '', body: text }
-  const words = [...text.matchAll(/\S+/g)]
+  const tokens = [...text.matchAll(/\S+/g)]
+  const words = outsideAsides(tokens, tokens.map((m) => m[0] === HADITH.chain.aside))
     .map((m) => ({ at: m.index, word: bare(m[0]), quoted: QUOTED.test(m[0]), stop: STOP.test(m[0]) }))
     .filter((w) => w.word || w.quoted || w.stop)
   if (!LINKS.has(words[0]?.word)) return whole

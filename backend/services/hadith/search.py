@@ -23,9 +23,10 @@ from dataclasses import dataclass, field
 
 from backend.config import data_path, get_settings
 from backend.services.arabic_text import has_arabic
-from backend.services.hadith import meaning, repair, words
+from backend.services.hadith import meaning, reference, repair, words
 from backend.services.hadith.lemma import lemma
-from backend.services.hadith.loader import books, is_built
+from backend.services.hadith.loader import books, is_built, numbered
+from backend.services.hadith.loader import collections as collections_of
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +66,8 @@ class Result:
     # True when no hadith holds every word, so the hits hold only some of them.
     partial: bool = False
     chapters: list[Chapter] = field(default_factory=list)
+    # A search naming a hadith ("muslim 8"): (collection, number asked, number shown).
+    reference: tuple[str, str, str] | None = None
 
 
 def search(query: str, limit: int | None = None, collections: tuple[str, ...] = ()) -> Result:
@@ -80,6 +83,12 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
 
     settings = get_settings()
     limit = limit or settings.hadith_result_limit
+    named = reference.parse(query, collections_of())
+    if named:
+        shown, rows = numbered(named.collection, named.number, named.part)
+        hits = [Hit(c, b, n, p, a, e, json.loads(g)) for c, b, n, p, a, e, g in rows]
+        return Result(hits, reference=(named.collection, f"{named.number}{named.part}", str(shown)))
+
     typed = words.tokens(query)
     if not typed:
         return Result()
