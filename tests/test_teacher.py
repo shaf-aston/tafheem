@@ -3,7 +3,7 @@
 Every check is paired with the nearest reading that must be left alone, and the
 last tests follow a gap all the way to the card and the picture.
 """
-from backend.services import iraab
+from backend.services import iraab, morphology
 from backend.services.nahw_book import teacher_rules as config
 from backend.services.syntax import naming, teacher, tree
 from tests.test_naming import token
@@ -109,10 +109,8 @@ def test_a_tamyeez_needs_a_number_a_measure_or_a_verb_of_nisba():
 
 
 def test_a_gap_reaches_the_card_as_the_dash_and_the_reason():
-    rules = {"words": [{"word": "س", "role": "مبتدأ", "role_key": "mubtada", "case": "raf'", "sign": "x",
-                        "reason": "rule engine's proof", "notes": ""}], "confidence": 0.5}
     found = [{"role": None, "case": None, "gap": {"ar": "سبب", "en": "reason"}}]
-    card = iraab.with_parser_roles(rules, found)["words"][0]
+    card = iraab.cards(morphology.analyze_sentence("الْوَلَدُ"), found)[0]
     assert (card["role"], card["role_key"], card["reason"], card["notes"]) == ("–", None, "سبب", "reason")
     assert card["sign"] is None and card["case"] is None
 

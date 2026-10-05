@@ -96,9 +96,7 @@ def test_every_role_has_a_reason():
 
 @pytest.mark.parametrize("sentence", REASON_SENTENCES)
 def test_each_reason_explains_its_own_role(sentence: str):
-    from backend.services import morphology, syntax
-    rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
-    words = iraab.with_parser_roles(rules, syntax.read(sentence)["roles"])["words"]
+    words = iraab.analyse(sentence)["words"]
     for word in words:
         role = word["role"]
         if word["type"] == "punc" or role == "–":
@@ -127,9 +125,7 @@ VERB_CARDS = [
 
 @pytest.mark.parametrize("sentence, index, case, said", VERB_CARDS)
 def test_verb_card_case_and_reason_agree(sentence: str, index: int, case: str, said: str):
-    from backend.services import morphology, syntax
-    rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
-    word = iraab.with_parser_roles(rules, syntax.read(sentence)["roles"])["words"][index]
+    word = iraab.analyse(sentence)["words"][index]
     assert (word["case"], said in word["reason"]) == (case, True), word
 
 
@@ -142,20 +138,15 @@ def test_a_command_is_described_as_one(sentence: str, lemma: str):
 
 
 @pytest.mark.parametrize("sentence, verbal", [
-    ("لَمْ يَكْتُبْ الطَّالِبُ", True), ("قَدْ نَجَحَ الطَّالِبُ", True), ("مَتَى سَافَرَ الرَّجُلُ", True),
+    ("لَمْ يَكْتُبْ الطَّالِبُ", True), ("قَدْ نَجَحَ الطَّالِبُ", True), ("لَنْ يَذْهَبَ زَيْدٌ", True),
     ("إِنَّ الطَّالِبَ مُجْتَهِدٌ", False)])  # nearest case: a particle before a noun
 def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, verbal: bool):
-    from backend.services import morphology, syntax
-    rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
-    summary = iraab.with_parser_roles(rules, syntax.read(sentence)["roles"])["summary"]
+    summary = iraab.analyse(sentence)["summary"]
     assert (summary == term_ar("jumlah_filiyyah")) is verbal, summary
 
 
 def _read(sentence: str) -> dict:
-    """The route's two steps: the rules, then the parser over them."""
-    from backend.services import morphology, syntax
-    rules = rule_engine.analyze(sentence, morphology.analyze_sentence(sentence))
-    return iraab.with_parser_roles(rules, syntax.read(sentence)["roles"])
+    return iraab.analyse(sentence)
 
 
 # One card field each, found by typing the sentence in (backend/scripts/analyse.py).
@@ -257,11 +248,18 @@ def test_card_field(sentence: str, index: int, field: str, expected: str):
     ("هَذَا البَيْتُ كَبِيرٌ", "jumlah_ismiyyah"),
     ("قُمْ يَا وَلَدُ", "jumlah_filiyyah"),  # nearest case: a command before the call
     ("إِنْ كُنْتَ تُحِبُّ أَنْ تُطَوَّقَ طَوْقًا مِنْ نَارٍ فَاقْبَلْهَا", "jumlah_shartiyyah"),
-    ("إِنْ تَدْرُسْ تَنْجَحْ", "jumlah_shartiyyah")])
+    ("إِنْ تَدْرُسْ تَنْجَحْ", "jumlah_shartiyyah"),
+    ("مَتَى سَافَرَ الرَّجُلُ", "jumlah_istifhamiyyah")])  # a question, in the picture and above it
 def test_summary_and_tree_name_the_sentence_alike(sentence: str, term: str):
     answer = _read(sentence)
     from backend.services import syntax
     assert (answer["summary"], syntax.read(sentence)["tree"]["tree"]["label"]) == (term_ar(term), term_ar(term))
+
+
+def test_the_summary_is_the_pictures_own_label_never_a_second_guess():
+    # a hadith whose word the parser misnamed اسم إن once printed "· إنّ" with no إنّ in it
+    answer = _read("الظُّهْرَ وَالْعَصْرَ جَمِيعًا بِالْمَدِينَةِ فِي غَيْرِ خَوْفٍ وَلاَ سَفَرٍ")
+    assert answer["summary"] == answer["tree"]["tree"]["label"] and "إنّ" not in answer["summary"]
 
 
 def test_a_relative_and_its_silah_are_one_unit():

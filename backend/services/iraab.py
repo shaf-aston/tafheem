@@ -1,11 +1,12 @@
 """A typed sentence's i'raab, by the book's rules alone (no AI, no network).
 
 1. CAMeL reads each word (morphology).
-2. The rule engine gives every word a card from its vowels (rule_engine).
-3. An ayah the Quranic Treebank recorded is read from that record (tarkeeb_store);
+2. An ayah the Quranic Treebank recorded is read from that record (tarkeeb_store);
    anything else goes to the parser and the book's tree (syntax), which alone name
-   each word's job and its case, so the cards and the picture come from one
-   reading. A word the tree leaves unnamed stays a gap.
+   each word's job and its case. A word the tree leaves unnamed stays a gap.
+3. Each card is built once (cards): what the word is (rule_engine), the tree's name
+   on it, then its sign. The summary is the picture's top label, so the cards, the
+   line above them and the picture all come from one reading.
 
 The Analyse page and the practice questions both read sentences through here.
 """
@@ -13,23 +14,23 @@ from __future__ import annotations
 
 from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb_store
 from backend.services.harakat import CASE_NAME
-from backend.services.nahw_book import case_of, reason, teacher_rules, term_ar
-from backend.services.syntax.naming import NAMED, opens_with_verb, role_key
+from backend.services.nahw_book import case_of, reason, teacher_rules
+from backend.services.syntax.naming import NAMED, role_key
 
 
 def analyse(sentence: str) -> dict:
-    """{words, summary, source, tree} for one sentence; `tree` is None when nothing joins."""
+    """{words, summary, source, tree} for one sentence; `tree` is None when nothing joins.
+    The summary is the picture's own top label, so the line above the cards and the
+    picture can never name the sentence apart; with no picture there is no summary."""
     tags = morphology.analyze_sentence(sentence)
-    result = rule_engine.analyze(sentence, tags)
     recorded = tarkeeb_store.for_sentence(sentence)
     parsed = recorded or syntax.read(sentence)
-    result = with_parser_roles(result, parsed["roles"])
-    summary = (_recorded_summary(recorded) if recorded else None) or result.get("summary")
+    tree = _drawn(recorded) if recorded else parsed["tree"]
     return {
-        "words": result.get("words", []),
-        "summary": summary,
+        "words": cards(tags, parsed["roles"]),
+        "summary": tree["tree"].get("label") if tree else None,
         "source": provenance.of("treebank" if recorded else "nahw"),
-        "tree": _drawn(recorded) if recorded else parsed["tree"],
+        "tree": tree,
     }
 
 
@@ -39,33 +40,20 @@ def _drawn(recorded: dict) -> dict:
     return {**{key: recorded[key] for key in keep}, "source": provenance.of("treebank")}
 
 
-def _recorded_summary(recorded: dict) -> str | None:
-    """The sentence type the record names, in the words the rules use for it."""
-    top = recorded["tree"]
-    if not top.get("label"):
-        return None
-    return rule_engine.sentence_type(
-        is_verbal=top["label"] == term_ar("jumlah_filiyyah"),
-        is_inna=top.get("role") == term_ar("harf_nasikh"))
-
-
-def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
-    """The cards with the book's tree's names written on: role, case and family. The
-    cards say only what each word is; a word the tree left unnamed keeps the no-role dash."""
-    entries = rule_result.get("words", [])
-    if len(parser_roles) != len(entries):
-        return rule_result
-    for entry, found in zip(entries, parser_roles):
-        if found.get("gap"):
-            # the teacher caught the parser's name breaking a rule: the card shows the dash and why
-            entry.update(role=rule_engine.UNNAMED, role_key=None, case=found["case"], sign=None, gap=True,
-                         reason=found["gap"]["ar"], notes=found["gap"]["en"])
-        elif found["role"]:
-            _named(entry, found)
+def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
+    """One card per word, built once: what the word is (rule_engine), the job the book's
+    tree names on it, then its sign from the final case (signs.settle). A word the tree
+    left unnamed keeps the no-role dash; a name the teacher took back shows why."""
+    entries = rule_engine.cards(tags)
+    if len(roles) == len(entries):
+        for entry, found in zip(entries, roles):
+            if found.get("gap"):
+                entry.update(role=rule_engine.UNNAMED, role_key=None, case=found["case"], sign=None, gap=True,
+                             reason=found["gap"]["ar"], notes=found["gap"]["en"])
+            elif found["role"]:
+                _named(entry, found)
     words = signs.settle(entries)
-    if rule_result.get("conditional"):  # the parser has no name for a condition: the cards' own stands
-        return {**rule_result, "words": rule_engine.mark_condition(words)}
-    return {**rule_result, "words": words, "summary": _sentence_type(parser_roles) or rule_result.get("summary")}
+    return rule_engine.mark_condition(words) if rule_engine.opens_condition(tags) else words
 
 
 def _named(entry: dict, found: dict) -> None:
@@ -108,13 +96,3 @@ def _stands_for_own(entry: dict, found: dict) -> bool:
         entry["case"] = CASE_NAME[own]
         return True
     return False
-
-
-def _sentence_type(parser_roles: list[dict]) -> str | None:
-    """The type the parser's names give, or None when it named nothing."""
-    names = [found["role"] for found in parser_roles if found["role"]]
-    if not names:
-        return None
-    if "منادى" in names and not opens_with_verb(names):
-        return term_ar("jumlah_nidaiyyah")  # يا عبدَ الله: a call, the same words the tree uses
-    return rule_engine.sentence_type(is_verbal=opens_with_verb(names), is_inna="اسم إن" in names)

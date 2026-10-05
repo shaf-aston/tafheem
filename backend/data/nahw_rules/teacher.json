@@ -21,7 +21,7 @@
   "dropped_weak": {"jazm": "حذف حرف العلة"},
   "fem_plural": {"raf'": "ضمة", "nasb": "كسرة، نيابة عن الفتحة، جمع مؤنث سالم", "jarr": "كسرة"},
   "diptote": {"raf'": "ضمة", "nasb": "فتحة", "jarr": "فتحة، نيابة عن الكسرة، ممنوع من الصرف"},
-  "_stands_for": "In these kinds one typed vowel is another case's sign: a sound feminine plural's kasra is also its nasb (رأيت المعلماتِ), a diptote's fatha also its jarr (بمساجدَ). Read by iraab.with_parser_roles, so the role's own case stands.",
+  "_stands_for": "In these kinds one typed vowel is another case's sign: a sound feminine plural's kasra is also its nasb (رأيت المعلماتِ), a diptote's fatha also its jarr (بمساجدَ). Read by iraab.cards, so the role's own case stands.",
   "stands_for": {"fem_plural": {"i": "a"}, "diptote": {"a": "i"}}
  },
  "case_said": {
@@ -55,7 +55,7 @@
   "السكون": {"before": "ْ", "tails": ["تما", "تم", "تن", "نا", "ت"]}
  },
  "reasons": {
-  "_comment": "The reason a card shows, one per role, so it always explains the role the card wears (rule_engine writes it, iraab.with_parser_roles rewrites it when the parser renames the word, signs.py writes a verb's). Every name in roles.json has one; the keys after it are the rule engine's own variants.",
+  "_comment": "The reason a card shows, one per role, so it always explains the role the card wears (rule_engine writes it, iraab.cards rewrites it when the parser renames the word, signs.py writes a verb's). Every name in roles.json has one; the keys after it are the rule engine's own variants.",
   "فعل": "فعل في جملة فعلية",
   "اسم موصول": "اسم موصول مبني، والجملة بعده صلته",
   "صلة": "جملة صلة الموصول، لا محل لها من الإعراب",
