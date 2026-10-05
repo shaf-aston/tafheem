@@ -314,13 +314,13 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             job_of[token["id"]] if token["id"] in framed
             else None if token is root or token["pos"] == "PRT" or job_of[token["id"]] == NAMED.fil
             else job_of[token["id"]])
-        # مِن نارٍ: a jar-majroor is said with the word it hangs on
-        attached = FRAMES["attached"].format(word=columns[at[up]]) if label == JAR_MAJROOR and (
-            up := parent(token)) in at else None
+        # مِن نارٍ: a jar-majroor with a word to hang on is named by it, متعلق بـX
+        if label == JAR_MAJROOR and (up := parent(token)) in at:
+            label = FRAMES["attached"].format(word=columns[at[up]])
         return {"role": job,
                 "label": label,
                 "tone": tone(job) or tone(role),
-                "detail": place_of.get(token["id"]) or attached,
+                "detail": place_of.get(token["id"]),
                 # right to left, so the picture reads in the order they were typed
                 "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
 

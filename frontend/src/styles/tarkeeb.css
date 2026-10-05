@@ -136,10 +136,4 @@
   font-family: var(--font-ui);
 }
 
-.tk-name .tk-said {
-  display: block;
-  color: var(--text-faint);
-  font-size: calc(var(--arabic-tiny-rem) * 1rem);
-}
-
 .tk-inside .tk-role { font-size: calc(var(--arabic-tiny-rem) * 1rem); }
