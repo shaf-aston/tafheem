@@ -19,7 +19,7 @@ ENGLISH_WORD = re.compile("[a-z]{2,}")
 ARABIC_TOKEN = re.compile("[ء-ْٰ]+")
 _NUMBER = re.compile("[0-9]+")
 # Larger than any count a hadith gives; past it a "number" is an id, not a count.
-_MAX_NUMBER = 1_000_000
+MAX_NUMBER = 1_000_000
 
 
 def fold(word: str) -> str:
@@ -39,7 +39,7 @@ def tokens(query: str) -> list[tuple[str, str]]:
 
 
 def is_number(folded: str) -> bool:
-    return bool(_NUMBER.fullmatch(folded)) and int(folded) < _MAX_NUMBER
+    return bool(_NUMBER.fullmatch(folded)) and int(folded) < MAX_NUMBER
 
 
 def number_phrases(folded: str) -> list[list[str]]:

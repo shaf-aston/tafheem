@@ -343,7 +343,7 @@ def test_a_name_in_the_chain_is_not_searched(db):
 
 def test_a_collection_and_number_opens_that_hadith(db):
     """'bukhari 2' is the hadith numbered 2, not a word search for 'bukhari'."""
-    for typed in ("bukhari 2", "Sahih al-Bukhari 2", "bukhari:2", "bukari 2", "bukhary 2"):
+    for typed in ("bukhari 2", "Sahih al-Bukhari 2", "bukhari:2", "bukari 2", "bukhary 2", "bukhari 2.", '"bukhari" 2'):
         found = search.search(typed)
         assert [h.number for h in found.hits] == [2], typed
         assert found.reference == ("bukhari", "2", "2")
@@ -357,6 +357,10 @@ def test_a_number_the_collection_skips_shows_the_nearest_and_says_so(db):
 
 def test_words_that_name_no_collection_stay_a_word_search(db):
     assert search.search("prayer 2").reference is None
+    # Part of a name is no name, even for a collection with no short name.
+    assert search.search("sahih 2").reference is None
+    # A number larger than any hadith is no hadith, not a server error.
+    assert search.search("bukhari 99999999999999999999").reference is None
 
 
 def test_a_long_vowel_spelt_doubled_is_one_slip(db):
