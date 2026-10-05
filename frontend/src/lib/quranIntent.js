@@ -67,9 +67,8 @@ export function readQuranQuery(text) {
   }
 
   if (SURAH_WORD.test(line) || HAS_NUMBER.test(line)) {
-    const { matches, ayah } = readSurahRef(line.replace(SURAH_WORD, ''))
-    const close = matches.filter((m) => m.close < CLOSE.typo)
-    if (close.length) return place(close, ayah)
+    const { matches, ayah } = readSurahRef(line.replace(SURAH_WORD, ''), CLOSE.inside)
+    if (matches.length) return place(matches, ayah)
   }
 
   return wordsOf(line)

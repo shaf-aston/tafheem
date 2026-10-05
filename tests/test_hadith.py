@@ -285,6 +285,12 @@ def test_a_hadith_close_in_meaning_is_found_without_its_words(meanings):
     assert [h.number for h in search.search("light", 10).hits] == [3, 1, 2]
 
 
+def test_meaning_reads_the_word_as_corrected(meanings):
+    """"ligth" is searched as light, so meaning must also read light, or hadith 1 falls below unrelated 2."""
+    found = search.search("ligth", 10)
+    assert found.corrected == [("ligth", "light")] and [h.number for h in found.hits] == [3, 1, 2]
+
+
 def test_meaning_never_answers_a_question_whose_words_are_all_unknown(meanings):
     found = search.search("ستكجاري", 10)
     assert found.hits == [] and found.unmatched == ["ستكجاري"]

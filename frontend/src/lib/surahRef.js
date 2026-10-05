@@ -78,7 +78,7 @@ export function surahsNamed(name, limit = 5, loosest = CLOSE.typo) {
  * What a typed line names. `ayah` is null when only a surah was given.
  * `matches` is empty when nothing was recognised.
  */
-export function readSurahRef(text) {
+export function readSurahRef(text, loosest = CLOSE.typo) {
   const line = digitsToLatin(text ?? '').toLowerCase().replace(FILLER, ' ').trim()
   if (!line) return { matches: [], ayah: null }
 
@@ -91,7 +91,7 @@ export function readSurahRef(text) {
 
   const numbers = line.match(/\d{1,3}/g)
   const ayah = numbers ? Number(numbers[numbers.length - 1]) : null
-  return { matches: surahsNamed(line.replace(/[\d:.,،٬-]+/g, ' ')), ayah }
+  return { matches: surahsNamed(line.replace(/[\d:.,،٬-]+/g, ' '), 5, loosest), ayah }
 }
 
 /** Why an ayah number cannot be opened in this surah, or null when it can. */
