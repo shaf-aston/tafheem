@@ -13,6 +13,8 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
+from backend.services.rule_engine import UNNAMED
+
 TEMPLATES_FILE = Path(__file__).parent.parent / "data" / "practice" / "templates.json"
 
 
@@ -52,26 +54,19 @@ def from_analysis(sentence: str, rule_result: dict) -> list[dict]:
         ),
     })
 
-    # 2. The role of the most useful word, the subject if the sentence has one.
-    key_roles = config["key_roles"]
-    key_word = next(
-        (w for w in words if any(role in (w.get("role") or "") for role in key_roles)),
-        words[0] if words else None,
-    )
-    if key_word:
+    # 2. The role of the most useful word, the doer or subject if the sentence has one;
+    # only a word the analysis named, so the answer is never a guess or a dash
+    named = [w for w in words if w.get("role") not in (None, UNNAMED) and not w.get("gap")]
+    if key_word := next((w for w in named if w.get("role_key") in config["key_roles"]), named[0] if named else None):
         questions.append(_fill(
             templates["key_role"],
             word=key_word["word"],
-            role=key_word.get("role"),
             reason=key_word.get("reason", ""),
             case=key_word.get("case"),
         ))
 
-    # 3. Case and its sign, only for a word that actually shows one.
-    case_types = config["case_types"]
-    if marked := next(
-        (w for w in words if w.get("type") in case_types and w.get("sign")), None
-    ):
+    # 3. Case and its sign, only for a word whose ending is a case (not built) and shows one.
+    if marked := next((w for w in words if w.get("sign") and w.get("case") not in (None, "mabni")), None):
         questions.append(_fill(
             templates["case_sign"],
             word=marked["word"],

@@ -78,6 +78,14 @@ def test_lau_opens_a_condition_whose_answer_its_lam_ties_on():
     assert top["children"][2]["children"][0]["role"] == "حرف واقع في جواب الشرط"
 
 
+def test_man_before_a_verb_is_never_min_and_its_card_says_what_the_picture_does():
+    cards, leaves = analysed("مَنْ شَاءَ فَلْيَصُمْهُ وَمَنْ شَاءَ أَفْطَرَ")
+    assert cards[0]["role"] == leaves["مَنْ"][0][0]["role"] != "حرف جر"
+    assert cards[3]["role"] == leaves["مَنْ"][1][0]["role"]
+    cards, _ = analysed("خَرَجْتُ مِنْ الْبَيْتِ")
+    assert cards[1]["role"] == "حرف جر"
+
+
 def test_a_noun_with_pieces_on_it_is_not_read_as_a_command():
     cards, _ = analysed("الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ")
     assert cards[6]["role"] == "معطوف"
