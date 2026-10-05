@@ -94,7 +94,9 @@
   "narrator": {
     "site": "https://sunnah.com/narrator/",
     "_tones": "Highest rank each tone covers, as sunnah.com ranks a narrator (1 is the most trusted); lower ranks are danger.",
-    "tones": { "success": 3, "warn": 5 }
+    "tones": { "success": 3, "warn": 5 },
+    "_generations": "Ibn Hajar's twelve generations (tabaqat) as sunnah.com names them, first (the Companions) to last.",
+    "generations": ["الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة", "السادسة", "السابعة", "الثامنة", "التاسعة", "العاشرة", "الحادية عشرة", "الثانية عشرة"]
   },
   "topics": [
     { "id": "funeral", "words": ["funeral", "jana"] },

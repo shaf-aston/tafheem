@@ -13,7 +13,7 @@ import ErrorAlert from './ErrorAlert'
 import SourceBadge from './SourceBadge'
 import StatusNote from './StatusNote'
 
-const { site: SITE } = HADITH.narrator
+const { site: SITE, generations: GENERATIONS } = HADITH.narrator
 
 const count = (n, noun) => `${n} ${noun}${n === 1 ? '' : 's'}`
 
@@ -41,6 +41,24 @@ export function NarratorName({ who, as = 'h2' }) {
   )
 }
 
+/** His generation as one lit dot among Ibn Hajar's twelve, first on the right. */
+function GenerationDots({ name }) {
+  const at = GENERATIONS.indexOf(name)
+  if (at < 0) return null
+  return (
+    <div dir="rtl" role="img" aria-label={`Generation ${at + 1} of ${GENERATIONS.length}`} className="flex justify-end gap-1">
+      {GENERATIONS.map((g, i) => (
+        <span
+          key={g}
+          title={g}
+          className="w-2 h-2 rounded-full"
+          style={{ background: i === at ? 'var(--text)' : i < at ? 'var(--text-faint)' : 'var(--border)' }}
+        />
+      ))}
+    </div>
+  )
+}
+
 export function NarratorFacts({ who }) {
   // Arabic and the years in turn, each its own piece so the years keep their order.
   const when = [[who.generation_ar, true], [who.years], [who.city_ar, true]].filter(([text]) => text)
@@ -53,6 +71,7 @@ export function NarratorFacts({ who }) {
   return (
     <>
       {who.grade_ar && <div><GradePill rank={who.grade_rank}>{who.grade_ar}</GradePill></div>}
+      <GenerationDots name={who.generation_ar} />
       {when.length > 0 && (
         <p className="type-small text-[var(--text-dim)] flex flex-wrap items-baseline gap-x-2">
           {when.map(([text, arabic], i) => (

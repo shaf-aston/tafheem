@@ -83,6 +83,14 @@ export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith 
               </ShowRest>
             </Section>
           )}
+
+          {who.texts.map((t) => (
+            <Section key={t.book} title={<ArabicText size="sm">{t.book}</ArabicText>}>
+              <ShowRest lines={8} accent={accent}>
+                <ArabicText as="p" size="sm" className="block m-0 whitespace-pre-line text-[var(--text-dim)]">{t.body}</ArabicText>
+              </ShowRest>
+            </Section>
+          ))}
         </>
       )}
     </div>

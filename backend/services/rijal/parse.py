@@ -74,7 +74,8 @@ def _people(soup: BeautifulSoup, panel: str) -> list[tuple[int, str, str]]:
 
 def narrator(html: str) -> dict:
     """One narrator page: names, grade, the labelled facts, appraisals, teachers, students and the classical texts."""
-    soup = _soup(html)
+    # The site joins book and author with an em dash; the app never prints one.
+    soup = _soup(html.replace("—", "-"))
     out = {key: "" for key in _LABELS.values()}
     for label in soup.select("span.label.arabic-label"):
         key = _LABELS.get(_text(label))
