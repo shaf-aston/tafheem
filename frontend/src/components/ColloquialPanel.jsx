@@ -10,6 +10,8 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
 import { colloquialQuery, colloquialUnitQuery } from '../api'
+import { parsePlace, placeOf } from '../lib/colloquialPlace'
+import { useArrivalWhenReady } from '../lib/useArrival'
 import { warm } from '../lib/warm'
 import { useRemembered } from '../lib/useRemembered'
 import { colorFor } from '../theme'
@@ -25,7 +27,7 @@ const HUES = 8
 const unitNumber = (id) => Number(id.replace(/\D/g, '')) || 0
 
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
-// Without onClick it is a unit this dialect has not written yet: shown, not openable.
+// Without onClick it is a unit or topic this dialect has not written yet: shown, not openable.
 function Card({ hue, index, kicker, title, arabic, note, onClick }) {
   const tint = (pct) => `color-mix(in oklab, ${hue} ${pct}%, transparent)`
   return (
@@ -99,7 +101,7 @@ function Topic({ dialect, unit, at }) {
   return <UnitView unit={data} at={at} />
 }
 
-export default function ColloquialPanel() {
+export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   const catalogue = useQuery(colloquialQuery)
   const dialects = catalogue.data?.dialects ?? []
   const [dialectKey, setDialectKey] = useRemembered('colloq-dialect', dialects.map((d) => d.key))
@@ -116,12 +118,30 @@ export default function ColloquialPanel() {
   }, [client, dialect, unit])
   const hue = unit ? colorFor('unit', unitNumber(unit.unit) % HUES) : null
 
-  const toTop = () => { setPicked(false); setUnitKey(null); setLessonAt(null) }
-  const toDialect = () => { setUnitKey(null); setLessonAt(null) }
-  const toUnit = () => setLessonAt(null)
+  // One way to move: every step down or up the tree is a place on the journey,
+  // so a reload, a pasted link and the back arrow all land where the reader was.
+  const show = (there) => {
+    setPicked(Boolean(there))
+    if (there) setDialectKey(there.dialect)
+    setUnitKey(there?.unit ?? null)
+    setLessonAt(there?.at ?? null)
+  }
+  const go = (dialectK = null, unitK = null, at = null) => {
+    show(dialectK && { dialect: dialectK, unit: unitK, at })
+    const lessonK = at === null ? null : dialects.find((d) => d.key === dialectK).units.find((u) => u.unit === unitK).lessons[at].lesson
+    onVisit?.(dialectK ? placeOf(dialectK, unitK, lessonK) : null)
+  }
+  // An arrival names a place; followed during render so a reload paints on it, not the top first.
+  if (useArrivalWhenReady(arrival, Boolean(catalogue.data))) show(parsePlace(incoming, dialects))
+
+  const toTop = () => go()
+  const toDialect = () => go(dialect.key)
+  const toUnit = () => go(dialect.key, unit.unit)
+  // The same unit and topic in the other dialect, if that one has written them.
   const switchTo = (key) => {
-    setDialectKey(key)
-    if (!dialects.find((d) => d.key === key).units.some((u) => u.written && u.unit === unitKey)) toDialect()
+    const there = dialects.find((d) => d.key === key).units.find((u) => u.written && u.unit === unitKey)
+    const kept = lessonAt !== null && there?.lessons[lessonAt].written ? lessonAt : null
+    go(key, there ? unitKey : null, there ? kept : null)
   }
 
   const steps = [{ label: 'Dialects', go: toTop }]
@@ -145,7 +165,7 @@ export default function ColloquialPanel() {
         <Grid>
           {dialects.map((d, i) => (
             <Card key={d.key} index={i} hue={colorFor('tab', 'colloq')} kicker={d.where} title={d.label} arabic={d.arabic}
-              note={`${d.units.filter((u) => u.written).length} units`} onClick={() => { setDialectKey(d.key); setPicked(true) }} />
+              note={`${d.units.filter((u) => u.written).length} units`} onClick={() => go(d.key)} />
           ))}
         </Grid>
       )}
@@ -156,7 +176,7 @@ export default function ColloquialPanel() {
             <Card key={u.unit} index={i} hue={colorFor('unit', unitNumber(u.unit) % HUES)}
               kicker={`Unit ${unitNumber(u.unit)}`} title={u.title}
               note={u.written ? u.lessons.map((l) => l.title).join(' · ') : 'Coming'}
-              onClick={u.written ? () => setUnitKey(u.unit) : undefined} />
+              onClick={u.written ? () => go(dialect.key, u.unit) : undefined} />
           ))}
         </Grid>
       )}
@@ -169,7 +189,8 @@ export default function ColloquialPanel() {
           </div>
           <Grid>
             {unit.lessons.map((l, i) => (
-              <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} onClick={() => setLessonAt(i)} />
+              <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} note={l.written ? undefined : 'Coming'}
+                onClick={l.written ? () => go(dialect.key, unit.unit, i) : undefined} />
             ))}
           </Grid>
         </div>

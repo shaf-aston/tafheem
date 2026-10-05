@@ -4,8 +4,9 @@ spine.json is the course outline, written once: every unit, lesson and phrase
 slot with its English and picture. A dialect is a folder of unit files and one
 line in dialects.json, and a unit file only fills the spine's slots with that
 dialect's words, dialogue and exercises. So every dialect walks the same course,
-and a lesson added to the spine is missing, loudly, from every dialect until
-written. A dialect may leave whole units unwritten; those are listed as coming.
+and a slot added to a written lesson is missing, loudly, from every dialect until
+written. A dialect may leave whole units, or whole lessons of a unit, unwritten;
+those are listed as coming. It may not leave half a lesson.
 Nothing here knows the name of any dialect or unit.
 
 Checked when loaded, not trusted. A repeated exercise id would file two
@@ -77,8 +78,9 @@ def _fill(outline: dict, written: dict) -> tuple[dict, list[str]]:
     """One dialect's unit file laid onto its spine unit: the unit a learner sees.
 
     The spine gives the titles, the order, each phrase's English and picture; the
-    dialect gives everything said. A slot or lesson on one side only is a fault,
-    so a template change can never reach one dialect and quietly miss another.
+    dialect gives everything said. A slot on one side only is a fault, so a change
+    to a written lesson can never reach one dialect and quietly miss another. A
+    lesson a dialect has not begun is `written: False`, shown as coming.
     """
     said = []
     lessons = {lesson.get("lesson"): lesson for lesson in written.get("lessons") or []}
@@ -88,7 +90,7 @@ def _fill(outline: dict, written: dict) -> tuple[dict, list[str]]:
     for plan in outline["lessons"]:
         lesson = lessons.get(plan["lesson"])
         if lesson is None:
-            said.append(f"lesson {plan['lesson']!r} of spine.json is not written")
+            filled.append({"lesson": plan["lesson"], "title": plan["title"], "written": False})
             continue
         given = [phrase.get("slot") for phrase in lesson.get("phrases") or []]
         for twice in sorted({slot for slot in given if given.count(slot) > 1}, key=str):
@@ -100,7 +102,7 @@ def _fill(outline: dict, written: dict) -> tuple[dict, list[str]]:
         for missing in (slot for slot in slots if slot not in words):
             said.append(f"lesson {plan['lesson']!r} has no words for {missing!r}")
         phrases = [{**slot, **words[slot["slot"]]} for slot in plan["phrases"] if slot["slot"] in words]
-        filled.append({**lesson, "title": plan["title"], "phrases": phrases})
+        filled.append({**lesson, "title": plan["title"], "phrases": phrases, "written": True})
     return {**written, "title": outline["title"], "lessons": filled}, said
 
 
@@ -111,9 +113,9 @@ def _unit_faults(unit: dict) -> list[str]:
             said.append(f"has no {field}")
     if not unit.get("transliteration_key"):
         said.append("has no transliteration key, so its spelling is unexplained")
-    lessons = unit.get("lessons") or []
+    lessons = [lesson for lesson in unit.get("lessons") or [] if lesson.get("written", True)]
     if not lessons:
-        said.append("has no lessons")
+        said.append("has no written lessons")
     numbers = [lesson.get("lesson") for lesson in lessons]
     for dup in sorted({n for n in numbers if numbers.count(n) > 1}):
         said.append(f"has two lessons numbered {dup!r}")
@@ -156,8 +158,8 @@ def _content() -> dict:
         for outline in spine:
             if outline["unit"] not in written:
                 units.append({"unit": outline["unit"], "title": outline["title"], "written": False,
-                              "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"]}
-                                          for lesson in outline["lessons"]]})
+                              "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"],
+                                           "written": False} for lesson in outline["lessons"]]})
                 continue
             unit, faults = _fill(outline, written[outline["unit"]])
             if faults := faults + _unit_faults(unit):
@@ -190,8 +192,8 @@ def catalogue() -> dict:
                 "arabic": dialect["arabic"],
                 "where": dialect["where"],
                 "units": [{"unit": u["unit"], "title": u["title"], "written": u["written"],
-                           "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"]}
-                                       for lesson in u["lessons"]]}
+                           "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"],
+                                        "written": lesson["written"]} for lesson in u["lessons"]]}
                           for u in dialect["units"]],
             }
             for dialect in _content()["dialects"]
@@ -227,7 +229,7 @@ def compare(name: str, lesson: str) -> dict:
         if found is None:
             raise KeyError(f"{name} has no lesson {lesson!r}")
         phrases = [{key: p[key] for key in ("slot", "arabic", "transliteration")}
-                   for p in found["phrases"]] if one["written"] else None
+                   for p in found["phrases"]] if one["written"] and found["written"] else None
         dialects.append({"key": known["key"], "label": known["label"], "phrases": phrases})
     return {"unit": name, "lesson": lesson, "dialects": dialects}
 

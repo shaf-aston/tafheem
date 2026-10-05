@@ -16,6 +16,10 @@ data/colloquial/images/<unit>/, records who made it and under what licence in
 that folder's attribution.json, and sets the slot's `image` in the spine. A wrong
 picture therefore never reaches a lesson without a person choosing it.
 
+Plain stock-photo sources (STOCK) are asked first: their pictures are simple,
+well lit and object-centred, where the open search is mostly holiday snapshots.
+The open search only tops up a phrase the stock sources have too little for.
+
 Only pictures licensed for commercial use and for modification are asked for, and
 the 600 px thumbnail is fetched, never the full original.
 """
@@ -35,6 +39,7 @@ API = "https://api.openverse.org/v1/images/"
 HEADERS = {"User-Agent": "tafheem-colloquial/1.0 (learning app; image proposals)"}
 LICENSES = "commercial,modification"
 CANDIDATES_PER_PHRASE = 4
+STOCK = "stocksnap,rawpixel"
 TIMEOUT_SECONDS = 20
 
 
@@ -53,12 +58,16 @@ def candidate(result: dict) -> dict:
 
 
 def search(term: str, client: httpx.Client) -> list[dict]:
-    reply = client.get(
-        API,
-        params={"q": term, "license_type": LICENSES, "page_size": CANDIDATES_PER_PHRASE, "extension": "jpg"},
-    )
-    reply.raise_for_status()
-    return [candidate(result) for result in reply.json()["results"]]
+    found: list[dict] = []
+    for source in (STOCK, None):
+        params = {"q": term, "license_type": LICENSES, "page_size": CANDIDATES_PER_PHRASE, "extension": "jpg"}
+        reply = client.get(API, params=params | ({"source": source} if source else {}))
+        reply.raise_for_status()
+        seen = {one["id"] for one in found}
+        found += [candidate(r) for r in reply.json()["results"] if r["id"] not in seen]
+        if len(found) >= CANDIDATES_PER_PHRASE:
+            break
+    return found[:CANDIDATES_PER_PHRASE]
 
 
 def paths(unit: str) -> tuple[Path, Path, Path]:

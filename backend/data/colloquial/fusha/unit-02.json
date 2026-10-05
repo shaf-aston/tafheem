@@ -806,6 +806,754 @@
           "tip": "كَمْ, 'how much', opens the question."
         }
       ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "how-old-are-you-to-a-man",
+          "arabic": "كَمْ عُمْرُكَ؟",
+          "transliteration": "kam 3umruka?",
+          "reply": {
+            "arabic": "عُمْرِي ثَلَاثُونَ سَنَة",
+            "transliteration": "3umree thalaathoona sana",
+            "english": "I am thirty years old."
+          }
+        },
+        {
+          "slot": "i-am-married-male-speaker",
+          "arabic": "أَنَا مُتَزَوِّج",
+          "transliteration": "anaa mutazawwij"
+        },
+        {
+          "slot": "i-have-two-children",
+          "arabic": "لَدَيَّ طِفْلَان",
+          "transliteration": "ladayya tiflaan"
+        },
+        {
+          "slot": "where-does-your-family-live",
+          "arabic": "أَيْنَ تَسْكُنُ عَائِلَتُكَ؟",
+          "transliteration": "ayna taskunu 3aa2ilatuka?",
+          "reply": {
+            "arabic": "تَسْكُنُ فِي جُدَّة",
+            "transliteration": "taskunu fee Judda",
+            "english": "They live in Jeddah."
+          }
+        },
+        {
+          "slot": "what-is-your-job-to-a-man",
+          "arabic": "مَاذَا تَعْمَلُ؟",
+          "transliteration": "maathaa ta3malu?",
+          "reply": {
+            "arabic": "أَنَا مُهَنْدِس",
+            "transliteration": "anaa muhandis",
+            "english": "I am an engineer."
+          }
+        },
+        {
+          "slot": "he-is-tall",
+          "arabic": "هُوَ طَوِيل",
+          "transliteration": "huwa taweel"
+        },
+        {
+          "slot": "she-is-kind",
+          "arabic": "هِيَ لَطِيفَة",
+          "transliteration": "hiya lateefa"
+        },
+        {
+          "slot": "he-is-funny",
+          "arabic": "هُوَ مَرِح",
+          "transliteration": "huwa mari7"
+        },
+        {
+          "slot": "my-older-brother",
+          "arabic": "أَخِي الْأَكْبَر",
+          "transliteration": "akhee al-akbar"
+        },
+        {
+          "slot": "my-younger-sister",
+          "arabic": "أُخْتِي الصُّغْرَى",
+          "transliteration": "ukhtee as-sughraa"
+        },
+        {
+          "slot": "my-cousin-my-father-s-brother-s-son",
+          "arabic": "اِبْنُ عَمِّي",
+          "transliteration": "ibnu 3ammee"
+        },
+        {
+          "slot": "my-grandparents",
+          "arabic": "جَدِّي وَجَدَّتِي",
+          "transliteration": "jaddee wa jaddatee"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Sara",
+          "arabic": "كَمْ عُمْرُكَ يَا خَالِد؟",
+          "transliteration": "kam 3umruka yaa Khaalid?",
+          "english": "How old are you, Khalid?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "عُمْرِي ثَلَاثُونَ سَنَة. وَأَنْتِ؟",
+          "transliteration": "3umree thalaathoona sana. wa anti?",
+          "english": "I am thirty. And you?"
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "أَنَا فِي الْخَامِسَةِ وَالْعِشْرِين. هَلْ أَنْتَ مُتَزَوِّج؟",
+          "transliteration": "anaa fee al-khaamisati wal-3ishreen. hal anta mutazawwij?",
+          "english": "I am twenty-five. Are you married?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "نَعَمْ، أَنَا مُتَزَوِّج وَلَدَيَّ طِفْلَان.",
+          "transliteration": "na3am, anaa mutazawwij wa ladayya tiflaan.",
+          "english": "Yes, I am married and I have two children."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "مَاشَاءَ اللَّه. أَيْنَ تَسْكُنُ عَائِلَتُكَ؟",
+          "transliteration": "maashaa2a allaah. ayna taskunu 3aa2ilatuka?",
+          "english": "Masha Allah. Where does your family live?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "نَسْكُنُ فِي جُدَّة. وَأَخِي الْأَكْبَر فِي الرِّيَاض.",
+          "transliteration": "naskunu fee Judda. wa akhee al-akbar fee ar-riyaad.",
+          "english": "We live in Jeddah. And my older brother is in Riyadh."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "مَاذَا يَعْمَلُ أَخُوكَ؟",
+          "transliteration": "maathaa ya3malu akhooka?",
+          "english": "What does your brother do?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "هُوَ طَبِيب. هُوَ طَوِيل وَمَرِح جِدًّا.",
+          "transliteration": "huwa tabeeb. huwa taweel wa mari7 jiddan.",
+          "english": "He is a doctor. He is tall and very funny."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "وَأُخْتُكَ؟",
+          "transliteration": "wa ukhtuka?",
+          "english": "And your sister?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "أُخْتِي الصُّغْرَى لَطِيفَة. هِيَ طَالِبَة.",
+          "transliteration": "ukhtee as-sughraa lateefa. hiya taaliba.",
+          "english": "My younger sister is kind. She is a student."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "وَهَلْ جَدُّكَ وَجَدَّتُكَ مَعَكُمْ؟",
+          "transliteration": "wa hal jadduka wa jaddatuka ma3akum?",
+          "english": "And are your grandparents with you?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "نَعَمْ، جَدِّي وَجَدَّتِي يَسْكُنَانِ مَعَنَا.",
+          "transliteration": "na3am, jaddee wa jaddatee yaskunaani ma3anaa.",
+          "english": "Yes, my grandparents live with us."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كَمْ عُمْرُكَ؟",
+            "transliteration": "kam 3umruka?",
+            "english": "How old are you?"
+          },
+          "response": {
+            "arabic": "عُمْرِي ثَلَاثُونَ سَنَة.",
+            "transliteration": "3umree thalaathoona sana.",
+            "english": "I am thirty years old."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ لَدَيْكَ أَطْفَال؟",
+            "transliteration": "hal ladayka atfaal?",
+            "english": "Do you have children?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، لَدَيَّ طِفْلَان.",
+            "transliteration": "na3am, ladayya tiflaan.",
+            "english": "Yes, I have two children."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيْنَ تَسْكُنُ عَائِلَتُكَ؟",
+            "transliteration": "ayna taskunu 3aa2ilatuka?",
+            "english": "Where does your family live?"
+          },
+          "response": {
+            "arabic": "تَسْكُنُ فِي جُدَّة.",
+            "transliteration": "taskunu fee Judda.",
+            "english": "They live in Jeddah."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَاذَا تَعْمَلُ؟",
+            "transliteration": "maathaa ta3malu?",
+            "english": "What do you do?"
+          },
+          "response": {
+            "arabic": "أَنَا مُهَنْدِس.",
+            "transliteration": "anaa muhandis.",
+            "english": "I am an engineer."
+          }
+        }
+      ],
+      "culture": "Fusha has separate words for each relative: عَمّ is a father's brother and خَال a mother's brother, so اِبْنُ عَمِّي and اِبْنُ خَالِي are different cousins. It is polite to answer a mention of someone's children with مَاشَاءَ اللَّه.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks: 'كَمْ عُمْرُكَ؟' Say you are thirty years old.",
+          "answer": "عُمْرِي ثَلَاثُونَ سَنَة",
+          "accepted": [
+            "عُمْرِي ثَلَاثُونَ سَنَة",
+            "عمري ثلاثون سنة",
+            "3umree thalaathoona sana"
+          ],
+          "too_formal": {
+            "item": "عُمْرِي تَلَاتِين سَنَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عُمْرِي means 'my age'; the number follows."
+        },
+        {
+          "id": "unit-02.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: 'مَاذَا تَعْمَلُ؟' Say you are an engineer.",
+          "answer": "أَنَا مُهَنْدِس",
+          "accepted": [
+            "أَنَا مُهَنْدِس",
+            "أنا مهندس",
+            "anaa muhandis"
+          ],
+          "too_formal": {
+            "item": "شُو بِتِشْتِغِل؟ مُهَنْدِس",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "No verb 'to be' is needed: أَنَا مُهَنْدِس."
+        },
+        {
+          "id": "unit-02.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هِيَ _____ جِدًّا.' (She is very kind.)",
+          "answer": "لَطِيفَة",
+          "accepted": [
+            "لَطِيفَة",
+            "لطيفة",
+            "lateefa"
+          ],
+          "too_formal": {
+            "item": "لَطِيفِة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "With هِيَ the describing word takes ة."
+        },
+        {
+          "id": "unit-02.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'لَدَيَّ _____.' (I have two children.)",
+          "answer": "طِفْلَان",
+          "accepted": [
+            "طِفْلَان",
+            "طفلان",
+            "tiflaan"
+          ],
+          "too_formal": {
+            "item": "عِنْدِي وَلَدَين",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The ending ـان makes it 'two'."
+        },
+        {
+          "id": "unit-02.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'My cousin is funny.'",
+          "answer": "اِبْنُ عَمِّي مَرِح",
+          "accepted": [
+            "اِبْنُ عَمِّي مَرِح",
+            "ابن عمي مرح",
+            "ibnu 3ammee mari7"
+          ],
+          "too_formal": {
+            "item": "اِبْن عَمِّي ظَرِيف كْتِير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Start with the person, then the describing word."
+        },
+        {
+          "id": "unit-02.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I am married.' (a man speaking)",
+          "answer": "أَنَا مُتَزَوِّج",
+          "accepted": [
+            "أَنَا مُتَزَوِّج",
+            "أنا متزوج",
+            "anaa mutazawwij"
+          ],
+          "too_formal": {
+            "item": "أَنَا مْتَجَوِّز",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "A woman would say مُتَزَوِّجَة."
+        },
+        {
+          "id": "unit-02.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'tall'?",
+          "options": [
+            "طَوِيل",
+            "قَصِير",
+            "لَطِيف",
+            "مَرِح"
+          ],
+          "answer": "طَوِيل",
+          "accepted": [
+            "طَوِيل",
+            "طويل",
+            "taweel"
+          ],
+          "too_formal": {
+            "item": "طَوِيل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "طَوِيل is tall; قَصِير is short."
+        },
+        {
+          "id": "unit-02.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase means 'my younger sister'?",
+          "options": [
+            "أُخْتِي الصُّغْرَى",
+            "أُخْتِي الْكُبْرَى",
+            "أَخِي الْأَكْبَر",
+            "جَدَّتِي"
+          ],
+          "answer": "أُخْتِي الصُّغْرَى",
+          "accepted": [
+            "أُخْتِي الصُّغْرَى",
+            "أختي الصغرى",
+            "ukhtee as-sughraa"
+          ],
+          "too_formal": {
+            "item": "أُخْتِي الصُّغْرَى",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "الصُّغْرَى is younger, الْكُبْرَى is older."
+        },
+        {
+          "id": "unit-02.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'تَسْكُنُ / أَيْنَ / عَائِلَتُكَ'.",
+          "answer": "أَيْنَ تَسْكُنُ عَائِلَتُكَ",
+          "accepted": [
+            "أَيْنَ تَسْكُنُ عَائِلَتُكَ",
+            "أين تسكن عائلتك",
+            "ayna taskunu 3aa2ilatuka"
+          ],
+          "too_formal": {
+            "item": "وَيْن عَيْلَتَك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The question word أَيْنَ comes first."
+        },
+        {
+          "id": "unit-02.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'جِدًّا / طَوِيل / هُوَ'.",
+          "answer": "هُوَ طَوِيل جِدًّا",
+          "accepted": [
+            "هُوَ طَوِيل جِدًّا",
+            "هو طويل جدا",
+            "huwa taweel jiddan"
+          ],
+          "too_formal": {
+            "item": "هُوَّ كْتِير طَوِيل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "جِدًّا, 'very', goes after the word it strengthens."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "breakfast-is-at-eight",
+          "arabic": "الْفَطُورُ عَلَى السَّاعَةِ الثَّامِنَة",
+          "transliteration": "al-fatooru 3alaa as-saa3ati ath-thaamina"
+        },
+        {
+          "slot": "what-is-for-lunch",
+          "arabic": "مَاذَا سَنَأْكُلُ عَلَى الْغَدَاء؟",
+          "transliteration": "maathaa sana2kulu 3alaa al-ghadaa2?",
+          "reply": {
+            "arabic": "سَنَأْكُلُ الْأَرُزَّ وَالسَّمَك",
+            "transliteration": "sana2kulu al-aruzza was-samak",
+            "english": "We will eat rice and fish."
+          }
+        },
+        {
+          "slot": "the-food-is-ready",
+          "arabic": "الطَّعَامُ جَاهِز",
+          "transliteration": "at-ta3aamu jaahiz"
+        },
+        {
+          "slot": "dinner-is-at-nine",
+          "arabic": "الْعَشَاءُ فِي التَّاسِعَة",
+          "transliteration": "al-3ashaa2u fee at-taasi3a"
+        },
+        {
+          "slot": "this-is-delicious",
+          "arabic": "هَذَا لَذِيذ",
+          "transliteration": "haathaa ladheedh"
+        },
+        {
+          "slot": "i-am-full-male-speaker",
+          "arabic": "أَنَا شَبْعَان",
+          "transliteration": "anaa shab3aan"
+        },
+        {
+          "slot": "more-please",
+          "arabic": "الْمَزِيدَ مِنْ فَضْلِكَ",
+          "transliteration": "al-mazeeda min fadlika"
+        },
+        {
+          "slot": "help-me-cook-to-a-man",
+          "arabic": "سَاعِدْنِي فِي الطَّبْخ",
+          "transliteration": "saa3idnee fee at-tabkh"
+        },
+        {
+          "slot": "set-the-table-to-a-man",
+          "arabic": "جَهِّزِ الْمَائِدَة",
+          "transliteration": "jahhizi al-maa2ida"
+        },
+        {
+          "slot": "pass-me-the-salt-to-a-man",
+          "arabic": "نَاوِلْنِي الْمِلْح",
+          "transliteration": "naawilnee al-mil7"
+        },
+        {
+          "slot": "i-do-not-eat-meat",
+          "arabic": "لَا آكُلُ اللَّحْم",
+          "transliteration": "laa aakulu al-la7m"
+        },
+        {
+          "slot": "clear-the-table-to-a-man",
+          "arabic": "اِرْفَعِ الْمَائِدَة",
+          "transliteration": "irfa3i al-maa2ida"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Mother",
+          "arabic": "الْفَطُورُ عَلَى السَّاعَةِ الثَّامِنَة يَا أَحْمَد.",
+          "transliteration": "al-fatooru 3alaa as-saa3ati ath-thaamina yaa A7mad.",
+          "english": "Breakfast is at eight, Ahmad."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "حَسَنًا يَا أُمِّي. مَاذَا سَنَأْكُلُ عَلَى الْغَدَاء؟",
+          "transliteration": "7asanan yaa ummee. maathaa sana2kulu 3alaa al-ghadaa2?",
+          "english": "All right, Mum. What are we eating for lunch?"
+        },
+        {
+          "speaker": "Mother",
+          "arabic": "سَنَأْكُلُ الْأَرُزَّ وَالسَّمَك. سَاعِدْنِي فِي الطَّبْخ.",
+          "transliteration": "sana2kulu al-aruzza was-samak. saa3idnee fee at-tabkh.",
+          "english": "We will eat rice and fish. Help me cook."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "بِكُلِّ سُرُور. هَلْ أُجَهِّزُ الْمَائِدَة؟",
+          "transliteration": "bikulli suroor. hal ujahhizu al-maa2ida?",
+          "english": "Gladly. Shall I set the table?"
+        },
+        {
+          "speaker": "Mother",
+          "arabic": "نَعَمْ، جَهِّزِ الْمَائِدَة. الطَّعَامُ جَاهِز.",
+          "transliteration": "na3am, jahhizi al-maa2ida. at-ta3aamu jaahiz.",
+          "english": "Yes, set the table. The food is ready."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "نَاوِلْنِي الْمِلْح مِنْ فَضْلِكِ.",
+          "transliteration": "naawilnee al-mil7 min fadliki.",
+          "english": "Pass me the salt, please."
+        },
+        {
+          "speaker": "Father",
+          "arabic": "هَذَا لَذِيذ جِدًّا. شُكْرًا يَا أُمَّ أَحْمَد.",
+          "transliteration": "haathaa ladheedh jiddan. shukran yaa umma A7mad.",
+          "english": "This is very delicious. Thank you, Umm Ahmad."
+        },
+        {
+          "speaker": "Mother",
+          "arabic": "الْمَزِيدَ؟",
+          "transliteration": "al-mazeed?",
+          "english": "More?"
+        },
+        {
+          "speaker": "Father",
+          "arabic": "الْمَزِيدَ مِنْ فَضْلِكِ.",
+          "transliteration": "al-mazeeda min fadliki.",
+          "english": "More, please."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "أَنَا شَبْعَان، شُكْرًا.",
+          "transliteration": "anaa shab3aan, shukran.",
+          "english": "I am full, thank you."
+        },
+        {
+          "speaker": "Mother",
+          "arabic": "اِرْفَعِ الْمَائِدَة يَا أَحْمَد، وَالْعَشَاءُ فِي التَّاسِعَة.",
+          "transliteration": "irfa3i al-maa2ida yaa A7mad, wal-3ashaa2u fee at-taasi3a.",
+          "english": "Clear the table, Ahmad, and dinner is at nine."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "أَمْرُكِ يَا أُمِّي.",
+          "transliteration": "amruki yaa ummee.",
+          "english": "As you wish, Mum."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مَاذَا سَنَأْكُلُ عَلَى الْغَدَاء؟",
+            "transliteration": "maathaa sana2kulu 3alaa al-ghadaa2?",
+            "english": "What are we eating for lunch?"
+          },
+          "response": {
+            "arabic": "سَنَأْكُلُ الْأَرُزَّ وَالسَّمَك.",
+            "transliteration": "sana2kulu al-aruzza was-samak.",
+            "english": "We will eat rice and fish."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الطَّعَامُ جَاهِز.",
+            "transliteration": "at-ta3aamu jaahiz.",
+            "english": "The food is ready."
+          },
+          "response": {
+            "arabic": "أَخِيرًا، أَنَا جَائِع.",
+            "transliteration": "akheeran, anaa jaa2i3.",
+            "english": "At last, I am hungry."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الْمَزِيدَ؟",
+            "transliteration": "al-mazeed?",
+            "english": "More?"
+          },
+          "response": {
+            "arabic": "لَا، شُكْرًا، أَنَا شَبْعَان.",
+            "transliteration": "laa, shukran, anaa shab3aan.",
+            "english": "No, thank you, I am full."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ تَأْكُلُ اللَّحْم؟",
+            "transliteration": "hal ta2kulu al-la7m?",
+            "english": "Do you eat meat?"
+          },
+          "response": {
+            "arabic": "لَا، لَا آكُلُ اللَّحْم.",
+            "transliteration": "laa, laa aakulu al-la7m.",
+            "english": "No, I do not eat meat."
+          }
+        }
+      ],
+      "culture": "A Fusha-speaking host often keeps offering more food, and the guest says أَنَا شَبْعَان, 'I am full', after one or two polite refusals. The family usually eats from shared dishes on one table, so asking someone to pass something uses نَاوِلْنِي.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "Your mother asks: 'الْمَزِيدَ؟' Politely say you want more.",
+          "answer": "الْمَزِيدَ مِنْ فَضْلِكِ",
+          "accepted": [
+            "الْمَزِيدَ مِنْ فَضْلِكِ",
+            "المزيد من فضلك",
+            "al-mazeeda min fadliki"
+          ],
+          "too_formal": {
+            "item": "زِيدِي شَوِي مِنْ فَضْلِك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مِنْ فَضْلِكِ ends in kasra when speaking to a woman."
+        },
+        {
+          "id": "unit-02.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "A guest offers you meat. Say you do not eat meat.",
+          "answer": "لَا آكُلُ اللَّحْم",
+          "accepted": [
+            "لَا آكُلُ اللَّحْم",
+            "لا آكل اللحم",
+            "laa aakulu al-la7m"
+          ],
+          "too_formal": {
+            "item": "مَا بَاكُل لَحْمَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَا before the verb means 'I do not'."
+        },
+        {
+          "id": "unit-02.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'الطَّعَامُ _____.' (The food is ready.)",
+          "answer": "جَاهِز",
+          "accepted": [
+            "جَاهِز",
+            "جاهز",
+            "jaahiz"
+          ],
+          "too_formal": {
+            "item": "جَاهِزْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "جَاهِز describes الطَّعَام."
+        },
+        {
+          "id": "unit-02.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'نَاوِلْنِي _____.' (Pass me the salt.)",
+          "answer": "الْمِلْح",
+          "accepted": [
+            "الْمِلْح",
+            "الملح",
+            "al-mil7"
+          ],
+          "too_formal": {
+            "item": "الْمِلِح",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "نَاوِلْنِي is 'pass me' (to a man)."
+        },
+        {
+          "id": "unit-02.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'This is delicious.'",
+          "answer": "هَذَا لَذِيذ",
+          "accepted": [
+            "هَذَا لَذِيذ",
+            "هذا لذيذ",
+            "haathaa ladheedh"
+          ],
+          "too_formal": {
+            "item": "هَيْدَا طَيِّب",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَذِيذ is the Fusha word for delicious."
+        },
+        {
+          "id": "unit-02.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Help me cook.' (to a man)",
+          "answer": "سَاعِدْنِي فِي الطَّبْخ",
+          "accepted": [
+            "سَاعِدْنِي فِي الطَّبْخ",
+            "ساعدني في الطبخ",
+            "saa3idnee fee at-tabkh"
+          ],
+          "too_formal": {
+            "item": "سَاعِدْنِي بِالطَّبْخ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "فِي links the help to the task."
+        },
+        {
+          "id": "unit-02.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'full' (after eating, said by a man)?",
+          "options": [
+            "شَبْعَان",
+            "جَائِع",
+            "لَذِيذ",
+            "جَاهِز"
+          ],
+          "answer": "شَبْعَان",
+          "accepted": [
+            "شَبْعَان",
+            "شبعان",
+            "shab3aan"
+          ],
+          "too_formal": {
+            "item": "شَبْعَان",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "شَبْعَان is full; جَائِع is hungry."
+        },
+        {
+          "id": "unit-02.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase means 'Dinner is at nine'?",
+          "options": [
+            "الْعَشَاءُ فِي التَّاسِعَة",
+            "الْفَطُورُ فِي التَّاسِعَة",
+            "الْغَدَاءُ فِي الثَّامِنَة",
+            "الطَّعَامُ جَاهِز"
+          ],
+          "answer": "الْعَشَاءُ فِي التَّاسِعَة",
+          "accepted": [
+            "الْعَشَاءُ فِي التَّاسِعَة",
+            "العشاء في التاسعة",
+            "al-3ashaa2u fee at-taasi3a"
+          ],
+          "too_formal": {
+            "item": "الْعَشَاءُ فِي التَّاسِعَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "الْعَشَاء is dinner; الْفَطُور is breakfast."
+        },
+        {
+          "id": "unit-02.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْمَائِدَة / جَهِّزِ'.",
+          "answer": "جَهِّزِ الْمَائِدَة",
+          "accepted": [
+            "جَهِّزِ الْمَائِدَة",
+            "جهز المائدة",
+            "jahhizi al-maa2ida"
+          ],
+          "too_formal": {
+            "item": "جَهِّز الطَّاوْلَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The command comes first."
+        },
+        {
+          "id": "unit-02.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'جَاهِز / الطَّعَامُ'.",
+          "answer": "الطَّعَامُ جَاهِز",
+          "accepted": [
+            "الطَّعَامُ جَاهِز",
+            "الطعام جاهز",
+            "at-ta3aamu jaahiz"
+          ],
+          "too_formal": {
+            "item": "الْأَكْل جَاهِز",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Name the thing first, then say it is ready."
+        }
+      ]
     }
   ],
   "challenge": {
