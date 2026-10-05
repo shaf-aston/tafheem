@@ -26,6 +26,18 @@ describe('saying', () => {
     ])
   })
 
+  it('marks only the innermost quote when a telling holds the words said', () => {
+    // tirmidhi 1148 as sunnah.com prints it, its mismatched marks and all.
+    const said = saying('“My uncle came. So he said: “Let him in.’” She said: “It is only the woman.’ So he said: ‘Indeed he is your uncle.’”')
+      .filter((s) => s.kind === 'said').map((s) => s.text)
+    expect(said).toEqual(['Let him in.', 'It is only the woman.', 'Indeed he is your uncle.'])
+  })
+
+  it('reads ʿayn, hamza and apostrophes as letters, not quotes', () => {
+    expect(saying("Ibn 'Abbas met 'Ata' at Allah's house").map((s) => s.kind)).toEqual(['plain'])
+    expect(saying('Ibn ‘Abbas said: “Pray.” Aqra’ left.').filter((s) => s.kind === 'said')).toEqual([{ kind: 'said', text: 'Pray.' }])
+  })
+
   it('keeps several sayings apart', () => {
     expect(saying('He said "one" then "two"').filter((s) => s.kind === 'said')).toEqual([
       { kind: 'said', text: 'one' },

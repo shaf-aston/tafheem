@@ -9,7 +9,10 @@
  * and in the English both.
  *
  * So the mark is read, never guessed. A quoted stretch is `said`; everything
- * outside it is `told` and is drawn back. Where a hadith carries no quote marks
+ * outside it is `told` and is drawn back. Quotes nest in the English: a
+ * companion's whole telling sits in double quotes with the Prophet's words in
+ * single ones inside it. Only the innermost quote is `said`; a quote that holds
+ * another is telling. Where a hadith carries no quote marks
  * at all (about one in six, mostly Muslim's English), nothing is claimed: the
  * whole of it comes back as one plain span and the reader sees it in one
  * colour, which is what it looked like before any of this.
@@ -22,22 +25,85 @@ import HADITH from '../hadith.json'
 // The books' own speech mark, with the direction marks sunnah.com sets around
 // it. Those marks are invisible and would otherwise be printed inside the words.
 const MARKS = /[‎‏]/g
-const QUOTE = /["“”«»]/
+// Each quote mark's family. A curly mark says which way it faces; a straight
+// one closes its family's open quote, or else opens one.
+const OPENS = { '“': 'double', '‘': 'single', '«': 'angle' }
+const CLOSES = { '”': 'double', '’': 'single', '»': 'angle' }
+const STRAIGHT = { '"': 'double', "'": 'single' }
+const LETTER = /[\p{L}\p{N}]/u
+
+/**
+ * Each quote mark's place and the step it takes in depth: in 1, out -1, stray 0.
+ * A single mark that opens but never closes was the ʿayn of a name ('Aishah,
+ * 'Asr), so it stays in the words and is no quote.
+ */
+function quoteMarks(text) {
+  // Where the book has double quotes, a single one outside them opens speech
+  // only after a colon or comma (said: ‘Indeed); else it is transliteration:
+  // Ibn ‘Abbas, Aqra’.
+  const nests = /["“”«»]/.test(text)
+  const open = []   // { family, mark } for each quote still open
+  const marks = []
+  const unclosed = new Set()
+  // Any close but a single one ends the single quotes still open inside it.
+  const shed = (family) => { while (family !== 'single' && open.at(-1)?.family === 'single') unclosed.add(open.pop().mark) }
+  for (let at = 0; at < text.length; at += 1) {
+    const ch = text[at]
+    const family = OPENS[ch] ?? CLOSES[ch] ?? STRAIGHT[ch]
+    if (!family) continue
+    const before = text[at - 1] ?? ' '
+    const after = text[at + 1] ?? ' '
+    // A single mark between letters is an apostrophe: Allah's, Buda'ah.
+    if (family === 'single' && LETTER.test(before) && LETTER.test(after)) continue
+    // A straight double mark closes the open one or opens; a straight single
+    // one opens before a word ("said: 'Indeed") and closes after one ("man.' So").
+    const opens = OPENS[ch] || (ch === '"' ? open.at(-1)?.family !== family
+      : ch === "'" && !LETTER.test(before) && LETTER.test(after))
+    if (opens && family === 'single' && nests && !open.length && !/[:,]\s*$/.test(text.slice(0, at))) continue
+    if (opens) {
+      const mark = { at, step: 1 }
+      open.push({ family, mark })
+      marks.push(mark)
+      continue
+    }
+    // A single mark after a letter with no single quote open is a plural's
+    // apostrophe (the Muslims' wealth), not a close.
+    if (family === 'single' && open.at(-1)?.family !== 'single' && LETTER.test(before)) continue
+    shed(family)
+    // A close with nothing open is a stray mark: dropped from the words, nothing more.
+    if (!open.length) { marks.push({ at, step: 0 }); continue }
+    const { family: opened, mark: from } = open.pop()
+    // One bare word in single marks is a name spelled with ʿayn and hamza ('Ata'), not speech.
+    if (opened === 'single' && /^[\p{L}-]+$/u.test(text.slice(from.at + 1, at))) { unclosed.add(from); continue }
+    marks.push({ at, step: -1 })
+  }
+  shed()
+  return marks.filter((mark) => !unclosed.has(mark))
+}
 
 /**
  * Who says what, in order. Every span is `said`, `told` or `plain`, and joining
- * their texts gives the hadith back unchanged apart from the direction marks.
+ * their texts gives the hadith back apart from the quote and direction marks.
  */
 export function saying(text) {
   const clean = String(text ?? '').replace(MARKS, '')
   if (!clean.trim()) return []
-  const pieces = clean.split(QUOTE)
-  // One piece means no quote mark was found, so the books have not said which
-  // part is speech and neither do we.
-  if (pieces.length < 2) return [{ kind: 'plain', text: clean.trim() }]
-  return pieces
-    .map((piece, i) => ({ kind: i % 2 ? 'said' : 'told', text: piece.trim() }))
-    .filter((span) => span.text)
+  let depth = 0
+  let from = 0
+  const pieces = []
+  for (const { at, step } of quoteMarks(clean)) {
+    pieces.push({ depth, text: clean.slice(from, at).trim() })
+    depth += step
+    from = at + 1
+  }
+  pieces.push({ depth, text: clean.slice(from).trim() })
+  const kept = pieces.filter((piece) => piece.text)
+  // No quote at all means the books have not said which part is speech, and
+  // neither do we.
+  if (!kept.some((piece) => piece.depth)) return [{ kind: 'plain', text: clean.trim() }]
+  // A quote that holds a deeper one is telling: the companion's account, not the words.
+  const holds = (i) => [kept[i - 1], kept[i + 1]].some((next) => next?.depth > kept[i].depth)
+  return kept.map((piece, i) => ({ kind: piece.depth && !holds(i) ? 'said' : 'told', text: piece.text }))
 }
 
 // "Narrated Abu Huraira:", "It is narrated on the authority of X that ... said:"
