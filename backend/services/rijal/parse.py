@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 _REFERENCE = re.compile(r"^/\w+:(\d+)([a-z]*)$")
 _NARRATOR = re.compile(r"^/narrator/(\d+)$")
@@ -30,36 +30,56 @@ def _text(tag) -> str:
     return tag.get_text(" ", strip=True) if tag else ""
 
 
+def _letters(text: str) -> int:
+    return len(re.sub(r"\s", "", text))
+
+
+def _names(full) -> list[tuple[int, str, int]]:
+    """(id, the words shown, letters before them) for each narrator link with a letter in it."""
+    names, before = [], 0
+    for node in full.descendants if full else ():
+        if node.name == "a" and (m := _NARRATOR.match(node.get("href", ""))):
+            shown = node.get_text().strip()
+            if any(ch.isalpha() for ch in shown):
+                names.append((int(m.group(1)), shown, before))
+        elif isinstance(node, NavigableString):
+            before += _letters(node)
+    return names
+
+
 def book_chains(html: str) -> list[dict]:
-    """Every hadith on a book page: its number and letter, and each narrator in its Arabic, in order, as (id, the words shown)."""
+    """Every hadith on a book page: its number and letter, and each narrator in its Arabic, in order."""
     out = []
     for box in _soup(html).select("div.actualHadithContainer"):
         link = box.select_one("table.hadith_reference a[href]")
         ref = _REFERENCE.match(link["href"]) if link else None
-        if not ref:
-            continue
-        names = [(int(m.group(1)), a.get_text().strip())
-                 for a in box.select("div.arabic_hadith_full a[href]") if (m := _NARRATOR.match(a["href"]))]
-        out.append({"number": int(ref.group(1)), "part": ref.group(2), "names": names})
+        if ref:
+            out.append({"number": int(ref.group(1)), "part": ref.group(2),
+                        "names": _names(box.select_one("div.arabic_hadith_full"))})
     return out
 
 
-def place(arabic: str, names: list[tuple[int, str]]) -> tuple[list[tuple[int, int, int]], list[tuple[int, str]]]:
+def place(arabic: str, names: list[tuple[int, str, int]]) -> tuple[list[tuple[int, int, int]], list[tuple[int, str]]]:
     """([(start, end, id)] found in our text, [(id, shown)] not found).
 
-    Each search starts where the last name ended, so a name that comes twice in
-    one chain lands each time on its own words, in order. A hit must end its
-    word (أبيه, not the start of أبيها); its start may carry an attached و or ف.
+    Our text is sunnah.com's, so each name goes to the copy of its words whose
+    letter count from the start is nearest where sunnah.com links it; a name
+    said twice (الحسن in the chain, الحسن in the story) lands on the right one.
+    A hit must end its word (أبيه, not the start of أبيها); its start may carry
+    an attached و or ف.
     """
-    placed, lost, at = [], [], 0
-    for who, shown in names:
-        hit = re.compile(re.escape(shown) + r"(?!\w)").search(arabic, at)
+    letters = [0]
+    for ch in arabic:
+        letters.append(letters[-1] + (not ch.isspace()))
+    placed, lost = [], []
+    for who, shown, before in names:
+        hits = re.finditer(re.escape(shown) + r"(?!\w)", arabic)
+        hit = min(hits, key=lambda h: abs(letters[h.start()] - before), default=None)
         if hit:
-            at = hit.end()
-            placed.append((hit.start(), at, who))
+            placed.append((hit.start(), hit.end(), who))
         else:
             lost.append((who, shown))
-    return placed, lost
+    return sorted(placed), lost
 
 
 def _people(soup: BeautifulSoup, panel: str) -> list[tuple[int, str, str]]:

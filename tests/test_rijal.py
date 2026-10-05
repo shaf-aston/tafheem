@@ -7,6 +7,7 @@ wrong by landing both on the first.
 """
 from __future__ import annotations
 
+import re
 import json
 import sys
 from pathlib import Path
@@ -100,3 +101,10 @@ def test_a_link_ending_in_a_space_still_lands_before_the_next_word():
     names = parse.book_chains(page)[0]["names"]
     placed, lost = parse.place("عَنْ أَبِي سَعِيدٍ ـ رضى الله عنه", names)
     assert lost == [] and placed == [(5, 20, 3260)]
+
+
+def test_a_name_said_again_in_the_story_lands_where_sunnah_links_it():
+    text = "سَمِعْتُ الْحَسَنَ يَقُولُ وَلَقَدْ سَمِعْتُ أَبَا بَكْرَةَ يَقُولُ إِنَّ ابْنِي هَذَا سَيِّدٌ يَعْنِي الْحَسَنَ"
+    later = len(re.sub(r"\s", "", text[:text.rindex("الْحَسَنَ")]))
+    placed, _ = parse.place(text, [(1281, "الْحَسَنَ", later)])
+    assert placed == [(text.rindex("الْحَسَنَ"), len(text), 1281)]

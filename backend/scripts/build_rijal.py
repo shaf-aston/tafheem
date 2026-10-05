@@ -92,7 +92,7 @@ def add_mentions(conn: sqlite3.Connection) -> tuple[int, int, int, int, list[tup
             arabic = text.get((chain["number"], chain["part"]))
             seen += len(chain["names"])
             if arabic is None:
-                placed, missing = [], chain["names"]
+                placed, missing = [], [(who, shown) for who, shown, _ in chain["names"]]
             else:
                 linked += 1
                 placed, missing = parse.place(arabic, chain["names"])
