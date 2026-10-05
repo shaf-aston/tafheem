@@ -16,7 +16,7 @@ from backend.services.syntax.facts import Sentence, completes_kaada, is_passive
 from backend.services.syntax.naming import base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import letters, own_letters
-from backend.services.nahw_book import book_words, term_ar
+from backend.services.nahw_book import condition_of, term_ar
 
 # What a unit is called, by the join that makes it. Spelled once, in
 # data/nahw_rules/tarkeeb.json, so a typed sentence, a book example and an ayah
@@ -113,9 +113,8 @@ def _finer(token: dict, role: str | None, family: str | None) -> str | None:
 def _sentence_label(roles: dict[int, str | None], tokens: list[dict]) -> str:
     if any("interrog" in t.get("pos_camel", "") for t in tokens):
         return QUESTION
-    # إن كنتَ ... فاقبلها: a conditional particle and its verb, as rule_engine.opens_condition
-    if len(tokens) > 1 and roles[tokens[1]["id"]] == NAMED.fil and strip_diacritics(
-            tokens[0]["form"]) in book_words("jazm", "conditional_particles"):
+    # إن كنتَ ... فاقبلها، لو كنتُ ... لأمرتُ: a conditional particle and its verb, as rule_engine.opens_condition
+    if len(tokens) > 1 and roles[tokens[1]["id"]] == NAMED.fil and condition_of(strip_diacritics(tokens[0]["form"])):
         return CONDITION
     return VERBAL if opens_with_verb([roles[t["id"]] for t in tokens]) else NOMINAL
 
@@ -235,18 +234,18 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         roots = subjects + roots
     # إن كنتَ ... فاقبلها: the particle, the condition's clause and the answer's side by side
     # under the sentence, as the books draw it, rather than the condition inside the answer
-    condition = FRAMES["condition"]
-    fa = condition["fa"]  # فاقبلها: the ف on the answer ties it to the condition
-    particle = bases[0] if _sentence_label(role_of, bases) == CONDITION else None
+    condition = condition_of(strip_diacritics(bases[0]["form"])) if _sentence_label(role_of, bases) == CONDITION else None
+    particle = bases[0] if condition else None
     verb = next((kid for kid in children_of[particle["id"]] if role_of[kid["id"]] == NAMED.fil), None) if particle else None
     answer = next((t for t in roots if t["id"] == parent(particle) and role_of[t["id"]] == NAMED.fil), None) if verb else None
     if answer:
         name_of[particle["id"]] = condition["particle"]
-        name_of.update({p["id"]: fa for p in named[typed_at[answer["id"]]].get("attached", [])
-                        if p["id"] in split and p["before"] and p["role"] == NAMED.harf})
+        # فاقبلها، لأمرتُ: the letter written onto the answer ties it to the condition
+        name_of.update({p["id"]: condition["ties"][p["form"]] for p in named[typed_at[answer["id"]]].get("attached", [])
+                        if p["id"] in split and p["before"] and p["form"] in condition["ties"]})
         for unit, job in ((verb, condition["verb"]), (answer, condition["answer"])):
             job_of[unit["id"]] = job
-            place_of[unit["id"]] = in_place(condition["case"])
+            place_of[unit["id"]] = in_place(condition["case"]) if condition["case"] else said["no_place"]
             clauses.add(unit["id"])
             framed.add(unit["id"])
         children_of[answer["id"]].remove(particle)

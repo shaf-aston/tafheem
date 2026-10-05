@@ -319,6 +319,15 @@ def test_the_glossary_explains_every_term_the_page_prints():
     ("إِنْ كُنْتَ تُحِبُّ أَنْ تُطَوَّقَ طَوْقًا مِنْ نَارٍ فَاقْبَلْهَا", 1, "فعل الشرط في محل جزم"),
     ("إِنْ كُنْتَ تُحِبُّ أَنْ تُطَوَّقَ طَوْقًا مِنْ نَارٍ فَاقْبَلْهَا", 8, "رابطة لجواب الشرط"),
     ("إِنْ تَدْرُسْ تَنْجَحْ", 2, "جواب الشرط مجزوم"),
+    # لو governs nothing: its clauses have no place, and a لام ties on its answer
+    ("لَوْ جَاءَ زَيْدٌ لَأَكْرَمْتُهُ", 0, "حرف شرط غير جازم"),
+    ("لَوْ جَاءَ زَيْدٌ لَأَكْرَمْتُهُ", 1, "فعل الشرط، وجملته لا محل لها"),
+    ("لَوْ جَاءَ زَيْدٌ لَأَكْرَمْتُهُ", 3, "واللام واقعة في جواب الشرط، وهو جواب الشرط"),
     ("إِنَّ الطَّالِبَ مُجْتَهِدٌ", 0, "ناسخ")])  # nearest case: إنّ before its noun
-def test_a_verb_after_in_makes_it_a_condition(sentence: str, index: int, said: str):
+def test_a_verb_after_a_conditional_particle_makes_it_a_condition(sentence: str, index: int, said: str):
     assert said in _read(sentence)["words"][index]["reason"]
+
+
+def test_lawla_before_a_verb_urges_and_opens_no_condition():
+    # nearest case to لو: لولا and لوما open a condition only before a noun
+    assert _read("لَوْلَا تَسْتَغْفِرُونَ اللَّهَ")["summary"] != term_ar("jumlah_shartiyyah")
