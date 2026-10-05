@@ -18,8 +18,9 @@ import re
 from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
+from backend.services import verb_reader
 from backend.services.nahw_book import is_one
-from backend.services.harakat import CAMEL_CASE, CASE_NAME, TANWEEN, base_of, best_reading, command_shape, weak_last, weak_radical, moved_for_wasl, paused, typed_case
+from backend.services.harakat import CAMEL_CASE, CASE_NAME, TANWEEN, base_of, best_reading, weak_last, moved_for_wasl, paused, typed_case
 
 logger = logging.getLogger(__name__)
 
@@ -153,7 +154,7 @@ def _bw_to_ar(bw: str) -> str:
     return "".join(_BW_MAP.get(c, c) for c in bw)
 
 
-def _bw_root_to_arabic(root: str) -> str:
+def root_in_arabic(root: str) -> str:
     """'ktb' → 'كتب'  (handles already-Arabic roots too).
 
     The radicals used to be joined with hyphens, which read as three letters
@@ -216,31 +217,21 @@ def _build_features(a: dict) -> str:
 
 
 def _as_command(word: str, a: dict, before: str, after: str) -> dict:
-    """CAMeL's word list has no اُكْتُبْ, قُمْ or أَكْرِمْ, so it offers أَكْتُبُ, قَمَّ or the
-    name بِع; the typed shape of a command overrules it (the book forms the امر from the
-    مضارع that way). A two-letter one is a hollow verb that dropped its middle letter
-    (قُمْ from قام), so its root and lemma come from that past form, and finding that past
-    verb is what makes it a command even where CAMeL saw only a name. A longer shape
-    overrules a verb reading only: أَحْمَدْ paused on is a name, not a command."""
-    bare = strip_diacritics(word)
-    word = paused(word, after)
-    past = None
-    if len(bare) == 2:
-        past = next((p for p in _camel_analyzer.analyze(f"{bare[0]}ا{bare[1]}") if p.get("pos") == "verb"), None)
-    elif len(bare) == 3:
-        # أَقِمْ: Form IV's hollow command is the past قام with its alef gone, so a hollow root vouches for it
-        past = next((p for p in _camel_analyzer.analyze(f"{bare[1]}ا{bare[2]}")
-                     if p.get("pos") == "verb" and weak_radical(p.get("root"), 1)), None)
-    if not command_shape(word, is_one(before, "jazm", "before_a_present_verb"), hollow=len(bare) == 3 and bool(past)):
+    """CAMeL's word list has no اِجْلِسِي، ارْحَمُوا or قُمْ, so it offers a name or another
+    tense; sarf's own table names the command (verb_reader), by the same rules the
+    Sarf tab conjugates with. Only a verb or a noun is overruled: لَمْ and مِنْ have a
+    command's shape too, and أَفْضَلُ is a comparative whatever sarf can build."""
+    if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop"):
         return a
-    pos = (a.get("pos") or "").lower()
-    # لَمْ and مِنْ have the shape too; only a word CAMeL could call nothing but a name is overruled
-    if pos != "verb" and not (past and pos in ("noun", "noun_prop")):
+    governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
+    root = root_in_arabic(a.get("root") or "")
+    # the kasra before hamzat al-wasl is the word's own (سَمِّ اللَّهَ) or a paused sukun (أَقِمِ الصَّلَاةَ)
+    cell = verb_reader.command(word, governed, root) or verb_reader.command(paused(word, after), governed, root)
+    if cell is None:
         return a
-    a = {**a, "pos": "verb", "asp": "c", "mod": "na", "per": "2"}
-    if past:
-        a.update(root=past.get("root"), lex=past.get("lex"))
-    return a
+    return {**a, "pos": "verb", "asp": "c", "mod": "na", "vox": "a", "per": cell.person,
+            "gen": cell.gender, "num": cell.number, "root": ".".join(cell.root),
+            "lex": verb_reader.past(cell) or a.get("lex")}
 
 
 def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str = "") -> dict[str, Any]:
@@ -251,7 +242,7 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
     pos = (a.get("pos") or "").lower()
     word_type = _pos_type(pos)
     # A harf has no root in nahw; CAMeL still files one for لم and its kind.
-    root_ar = "" if word_type == "harf" else _bw_root_to_arabic(a.get("root") or "")
+    root_ar = "" if word_type == "harf" else root_in_arabic(a.get("root") or "")
 
     lex = a.get("lex") or a.get("diac") or word
     lemma = strip_diacritics(lex)

@@ -319,8 +319,9 @@ class Settings(BaseSettings):
     # background: started and left to finish, so the first use finds them loaded. Drop a name on a small machine:
     # recitation ~1s, 150MB (first recitation loads it instead); nahw_parser ~110MB ONNX + CAMeL BERT, ~600MB, ~8s+;
     # colloquial reads and checks every unit, ~3s, which the first Colloquial visit after a restart waited out;
-    # hadith_meaning ~2s, ~150MB model + 50MB vectors, which the first hadith search waited out.
-    startup_background: list[str] = ["recitation", "speech", "colloquial", "nahw_parser", "hadith_meaning"]
+    # hadith_meaning ~2s, ~150MB model + 50MB vectors, which the first hadith search waited out;
+    # sarf_reader ~4s building the verb shapes the Nahw tab reads commands with.
+    startup_background: list[str] = ["recitation", "speech", "colloquial", "nahw_parser", "sarf_reader", "hadith_meaning"]
 
     cors_origins: list[str] = Field(
         default_factory=lambda: [

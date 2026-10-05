@@ -100,7 +100,9 @@
     "final-alif-is-written-maqsura": {
       "_comment": "An alif at the end of a word is written ى. The past tense of a root ending in و keeps the full alif, which is why the book prints دَعَا but يُدْعَى.",
       "page": "241-247", "book": "ناقص paradigm",
-      "keeps-alif": ["madi"]
+      "keeps-alif": ["madi"],
+      "_keeps-alif-forms": "Only the bare three-letter past keeps it. In every longer باب the و would have become a ي (late-waw-is-ya, p.205), so the book writes سَمَّى، أَعْطَى، اِدَّعَى، اِسْتَدْعَى.",
+      "keeps-alif-forms": ["I-nasara", "I-daraba", "I-fataha", "I-samia", "I-karuma", "I-hasiba"]
     },
 
     "alif-drops-before-silence": {

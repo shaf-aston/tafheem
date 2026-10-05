@@ -1,0 +1,70 @@
+{
+  "_comment": "How services/verb_reader.py reads a typed verb back into sarf's table. It builds the table once for each stand-in root below, turns every word in it into a shape whose stand-in letters are blanks, and matches the typed word against those shapes; the root a shape gives is then conjugated for real, so the table stays the only judge.",
+  "_placeholders": "The letters that stand for the root in the stand-ins, first root letter first. No rule in ilal.json names any of them, and none is ever part of a prefix or an ending, so a stand-in's table is every sound root's table with other letters.",
+  "placeholders": "فقرب",
+  "_stand-ins": "One root of each kind the rules shape (conjugation.conjugates): sound, hollow by و and ي, weak-ended by و and ي, و- and ي-first, doubled, two weak letters apart, the hamza in each place, and a last letter that is also an ending's first (ثَبَتُّ، سَكَنَّا). Their weak letters and hamzas are real letters, kept in the shape.",
+  "stand-ins": [
+    "فقر",
+    "فور",
+    "فير",
+    "فقو",
+    "فقي",
+    "وقر",
+    "يقر",
+    "فقق",
+    "وقي",
+    "أقر",
+    "فأر",
+    "فقأ",
+    "فقت",
+    "فقن",
+    "فقرب"
+  ],
+  "_from-rules": "Rules in ilal.json that act on named letters or roots: each gives more stand-ins, built only in the forms the rule itself lists. `letters` is the rule's key holding the letters and `into` where they go (_ is the letter; \"first\" puts it first in every stand-in above that opens with a blank, so اِدَّعَى is read as well as اِدَّخَلَ); `roots` names a key that lists whole roots.",
+  "from-rules": [
+    {
+      "rule": "iftial-taa",
+      "letters": "becomes",
+      "into": "first",
+      "forms": "forms"
+    },
+    {
+      "rule": "mithal-drops-waw",
+      "letters": "throat",
+      "into": [
+        "و_ر",
+        "وق_"
+      ],
+      "forms": "forms"
+    },
+    {
+      "rule": "hamzah-amr",
+      "roots": "drop-first",
+      "forms": "drop-first-forms"
+    }
+  ],
+  "_columns": "Which table columns are read, and the name each is read as. `nahy` is لَا + the jussive, so its last word is the jussive itself. The command column of a person not spoken to is لِ + the jussive and adds nothing, so only the spoken-to rows (`addressed`) are read as commands.",
+  "columns": {
+    "madi": "madi",
+    "mudari": "mudari",
+    "amr": "amr",
+    "nahy": "jussive",
+    "madi-passive": "madi-passive",
+    "mudari-passive": "mudari-passive"
+  },
+  "_spellings": "Spellings the book also allows that the table does not print. In Forms V and VI a present verb starting تَتَ may drop one of its two ت (تَنَزَّلُ for تَتَنَزَّلُ, لا تَحَاسَدُوا).",
+  "spellings": [
+    {
+      "forms": [
+        "V",
+        "VI"
+      ],
+      "columns": [
+        "mudari",
+        "jussive"
+      ],
+      "opens": "تَتَ",
+      "becomes": "تَ"
+    }
+  ]
+}

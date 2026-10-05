@@ -2,6 +2,9 @@
 
 - **patterns.json**: the sound-root conjugation templates. Read by
   `services/conjugation.py`. Hand-written, edit directly.
+- **reading.json**: how `services/verb_reader.py` reads a typed verb back into
+  the table: the stand-in roots, the rules that add more, the columns read and the
+  spellings the book also allows. Hand-written, edit directly.
 - **babs.json**: the six Form I bab codes, quadriliteral form-name spellings,
   and which sources to try in order. Read by `services/conjugation.py`
   (`babs()`) and `services/verb_forms.py`. Hand-written, edit directly.

@@ -48,7 +48,9 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
    comes only from a dictionary that states it (`services/verb_forms.py`), never a guess.
    Conjugation fills a template from `data/sarf/patterns.json`, then runs the book's rules
    over the letters (`services/sarf/`): so قَوَلَ becomes قَالَ, يَمْدُدُ becomes يَمُدُّ, and a
-   root whose rules are not built says so rather than guess.
+   root whose rules are not built says so rather than guess. The same table reads a typed
+   verb back (`services/verb_reader.py`): Nahw asks it which command اِجْلِسِي is when the
+   dictionary has no reading, so the rules live in one place.
 5. **Reciting is heard quickly, then checked carefully.** `lib/recitingSession.js` records a
    phrase at each pause and posts it to `POST /api/listen` (`routers/listen.py`). The
    ears in `services/recitation/ears.py` write down the words, Groq first, in about 0.3 s,

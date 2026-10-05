@@ -3,7 +3,6 @@
 Each test pairs the case that fires with the nearest one that must not, since
 the parser is fed letters only and the same links come back for both.
 """
-import pytest
 
 from backend.services import harakat
 from backend.services.syntax import naming, tree
@@ -122,19 +121,6 @@ def test_a_word_the_morphology_calls_a_name_is_still_a_passive_verb_by_its_vowel
     assert roles(["قُرِئَ", "الْكِتَابُ"], toks) == ["فعل", "نائب فاعل"]
 
 
-@pytest.mark.parametrize("word, command", [
-    ("اُكْتُبْ", True), ("اِجْلِسْ", True), ("قُمْ", True), ("بِعْ", True),
-    ("أَكْتُبُ", False), ("يَكْتُبْ", False), ("كَتَبَ", False), ("اكتب", False), ("قم", False)])
-def test_command_shape(word: str, command: bool):
-    assert harakat.command_shape(word) is command
-
-
-def test_a_hollow_form_iv_command_needs_the_root_to_say_so():
-    assert harakat.command_shape("أَقِمْ", hollow=True)
-    assert not harakat.command_shape("أَقِمْ")                      # أَمِنْ, أَحْمَدْ: no hollow root, no command
-    assert not harakat.command_shape("أَقِمْ", after_jazm=True, hollow=True)  # لم أَقِمْ is a present verb
-
-
 def test_a_kasra_before_hamzat_al_wasl_is_the_paused_sukun():
     assert harakat.paused("أَقِمِ", "الصَّلَاةَ") == "أَقِمْ"
     assert harakat.paused("اُكْتُبِ", "ٱلدَّرْسَ") == "اُكْتُبْ"  # the Qur'an's own alef of wasl
@@ -148,14 +134,6 @@ def test_a_command_moved_to_kasra_is_still_built_on_the_sukun():
     found = naming.roles(["اُكْتُبِ", "الدَّرْسَ"], toks)
     assert [w["role"] for w in found] == ["فعل", "مفعول به"]
     assert found[0]["case"] == "mabni" and found[0]["aspect"] == "c"
-
-
-@pytest.mark.parametrize("word, command", [
-    ("اُكْتُبُوا", True), ("اعْبُدُوا", True), ("اِسْتَخْرِجُوا", True),  # its vowel on hamzat al-wasl may be left untyped
-    ("اِجْتَمَعُوا", False), ("اِنْكَسَرُوا", False),                       # the past of a longer form: fatha in the middle
-    ("كَتَبُوا", False), ("يَكْتُبُوا", False)])
-def test_a_command_to_many_is_read_by_its_waw(word: str, command: bool):
-    assert harakat.command_shape(word) is command
 
 
 def test_the_light_lakin_joins_and_the_shadda_one_is_the_inna_sister():

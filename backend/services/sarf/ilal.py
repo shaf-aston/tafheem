@@ -278,12 +278,14 @@ def jussive_drops_last_weak(letters: list[W.Letter], rule: dict, context: Contex
 def final_alif_is_written_maqsura(letters: list[W.Letter], rule: dict, context: Context):
     """An alif standing at the end of a word is written ى, not ا.
 
-    The one exception the book's paradigms show is the past tense of a root
-    whose last letter is و, which keeps the full alif: دَعَا against يُدْعَى.
+    The one exception the book's paradigms show is the three-letter past tense
+    of a root whose last letter is و, which keeps the full alif: دَعَا against
+    يُدْعَى; every longer باب writes ى (سَمَّى، أَعْطَى، اِدَّعَى).
     """
     if not letters or letters[-1].letter != ALIF or letters[-1].radical != 3:
         return letters, None
-    if context.slot in rule["keeps-alif"] and context.radicals[-1] == "و":
+    if (context.slot in rule["keeps-alif"] and context.radicals[-1] == "و"
+            and context.form in rule["keeps-alif-forms"]):
         return letters, None
     letters = list(letters)
     letters[-1] = letters[-1].with_letter(W.MAQSURA)
