@@ -1,39 +1,18 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 
 import MicMark from '../components/ui/MicMark'
 import { roleVar } from '../lib/roleColors'
 import theme from '../theme.json'
+import GovPanel from './GovPanel.jsx'
 import links from './links.json'
-import { loadDemo } from './loadDemo.js'
+import RootPanel from './RootPanel.jsx'
+import { DEMO_WORDS, GOVERNS } from './storyData.js'
 import useScrollProgress from './useScrollProgress.js'
-
-// Every word of the demo sentence with the role and colour the real analysis
-// gave it, in reading order.
-function leaves(node, out = []) {
-  if (node.children?.length) node.children.forEach((c) => leaves(c, out))
-  else if (node.word != null) out[node.word] = { role: node.role, tone: node.tone }
-  return out
-}
-const demo = loadDemo()
-const DEMO_WORDS = leaves(demo.tree).map((l, i) => ({ word: demo.words[i], ...l }))
-
-// The two governor arrows of step 2: the particle إنّ (word 0) reaches the
-// noun it puts in the accusative (word 1) and the verb reaches its object (word 4).
-const GOVERNS = [
-  { from: 0, to: 1, why: ['الطَّالِبَ', 'is mansub. ', 'إنَّ', ' governs it and puts it in the accusative.'] },
-  { from: 3, to: 4, why: ['الرِّسَالَةَ', 'is the object of ', 'كَتَبَ', ', so it is accusative too.'] },
-]
 
 // The ayah of step 3, and the one word the demo flags.
 const AYAH = ['بِسْمِ', 'ٱللَّهِ', 'ٱلرَّحْمَٰنِ', 'ٱلرَّحِيمِ']
 const FLAGGED = 2
 
-const BOOKS = [
-  ['Maqayis', 'origin sense'],
-  ['Lisan al-Arab', 'full entry'],
-  ['Taj al-Arus', 'commentary'],
-  ['Lane', 'English'],
-]
 const CHIPS = ['إعراب كامل', 'harakat optional', 'colour by role']
 
 const BARS = Array.from({ length: Number(theme.landing['wave-bars']) }, (_, i) => ({
@@ -50,22 +29,6 @@ const STEPS = [
   { title: 'Recite, be heard', to: 'tab=mem&mode=recite', accent: 'var(--quran)', body: '1,950 real recitations, scored word by word. Mistakes are flagged where they happened.' },
   { title: 'Trace any root', to: 'tab=dict', accent: 'var(--gold-hi)', body: '"gathering one thing to another", Ibn Faris. Four classical dictionaries, one search.' },
 ]
-
-const clamp = (v) => Math.max(0, Math.min(1, v))
-
-// An arrow from one word's top centre to another's. A pair on one row gets an
-// arc over both; a pair the line wrapped apart goes over the top, down the
-// nearer edge and in along the gap above the lower word, clear of the text.
-const ARC_LIFT = 18 // px above the higher word, plus a share of the span
-const ROW_GAP = 14 // px above the lower word where a wrapped arrow runs
-function arcPath([x1, y1], [x2, y2], width) {
-  const lift = Math.min(y1, y2) - ARC_LIFT - Math.abs(x2 - x1) / 6
-  if (Math.abs(y2 - y1) < 4) return `M${x1} ${y1}C${x1} ${lift} ${x2} ${lift} ${x2} ${y2}`
-  const edge = x2 > width / 2 ? width : 0
-  const gap = y2 - ROW_GAP
-  return `M${x1} ${y1}C${x1} ${lift} ${edge} ${lift} ${edge} ${(lift + gap) / 2}`
-    + `S${edge} ${gap} ${(edge + x2) / 2} ${gap}S${x2} ${gap} ${x2} ${y2}`
-}
 
 function Words({ list, cls = () => '' }) {
   return (
@@ -85,33 +48,9 @@ function Words({ list, cls = () => '' }) {
 // step they are (lp, 0 to 1), so scrolling back up plays it backwards.
 export default function StoryScroll() {
   const trackRef = useRef(null)
-  const govRef = useRef(null)
   const progress = useScrollProgress(trackRef)
   const active = Math.min(STEPS.length - 1, Math.floor(progress * STEPS.length))
   const lp = progress * STEPS.length - active
-  const [arcs, setArcs] = useState([])
-
-  // The arrows start and end at the real word positions, so they are measured.
-  useLayoutEffect(() => {
-    if (active !== 1) return
-    function measure() {
-      const box = govRef.current
-      if (!box) return
-      const svg = box.querySelector('svg')
-      const b = svg.getBoundingClientRect()
-      if (!b.width) return
-      const words = box.querySelectorAll('.story-word > .arabic:first-child')
-      const at = (i) => {
-        const r = words[i].getBoundingClientRect()
-        return [r.left + r.width / 2 - b.left, r.top - b.top]
-      }
-      setArcs(GOVERNS.map((g) => arcPath(at(g.from), at(g.to), b.width)))
-    }
-    measure()
-    window.addEventListener('resize', measure)
-    return () => window.removeEventListener('resize', measure)
-  }, [active])
-
   const shown = Math.floor(lp * 1.25 * (DEMO_WORDS.length + 1))
   const govIdx = lp < 0.6 ? 0 : 1
   const ayahDone = (i) => lp * 1.2 * AYAH.length - i >= 1
@@ -154,24 +93,8 @@ export default function StoryScroll() {
                 <p className="story-cap">{STEPS[0].body}</p>
               </div>
 
-              <div className={`story-panel${active === 1 ? ' active' : ''}`} ref={govRef}>
-                <div className="story-gov">
-                  <Words list={DEMO_WORDS} cls={(i) => `on${GOVERNS[govIdx].from === i || GOVERNS[govIdx].to === i ? ' cur' : ''}`} />
-                  <svg className="story-arcs" aria-hidden="true">
-                    {arcs.map((d, k) => (
-                      <path
-                        key={k} d={d} pathLength="1"
-                        stroke={roleVar(DEMO_WORDS[GOVERNS[k].to].tone)}
-                        style={{ '--d': clamp(k === 0 ? lp * 3 : (lp - 0.35) * 3) }}
-                      />
-                    ))}
-                  </svg>
-                </div>
-                {GOVERNS.map((g, k) => (
-                  <p key={k} className={`story-why${k === govIdx && lp > 0.25 ? ' on' : ''}`} style={k !== govIdx ? { display: 'none' } : undefined}>
-                    <b lang="ar">{g.why[0]}</b> {g.why[1]}<b lang="ar">{g.why[2]}</b>{g.why[3]}
-                  </p>
-                ))}
+              <div className={`story-panel story-gov${active === 1 ? ' active' : ''}`}>
+                <GovPanel lp={lp} govIdx={govIdx} />
                 <p className="story-cap">{STEPS[1].body}</p>
               </div>
 
@@ -194,16 +117,8 @@ export default function StoryScroll() {
                 <p className="story-cap">{STEPS[2].body}</p>
               </div>
 
-              <div className={`story-panel${active === 3 ? ' active' : ''}`}>
-                <p className="story-root arabic" lang="ar" dir="rtl">ك ت ب</p>
-                <div className="story-books">
-                  {BOOKS.map(([name, what], i) => (
-                    <div key={name} className={`story-book${lp > 0.08 + i * 0.1 ? ' on' : ''}`}>
-                      <b>{name}</b>
-                      <span>{what}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className={`story-panel story-root${active === 3 ? ' active' : ''}`}>
+                <RootPanel lp={lp} />
                 <p className="story-cap">{STEPS[3].body}</p>
               </div>
             </div>
