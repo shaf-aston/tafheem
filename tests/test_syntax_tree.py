@@ -63,14 +63,14 @@ def test_nothing_is_drawn_when_the_words_do_not_line_up():
     assert drawn["coverage"] == 0.0 and not tree.is_drawable(drawn)
 
 
-def test_a_jar_majroor_is_not_given_the_job_harf():
+def test_a_jar_majroor_is_named_by_the_word_it_hangs_on_not_given_the_job_harf():
     # مَا فِي الْقُبُورِ: the unit was drawn as a حرف; the parser names no job for it
     toks = [token(1, "ما", "ما", "NOM", 0, "---", pos_camel="pron_rel"),
             token(2, "في", "في", "PRT", 1, "MOD", pos_camel="prep"),
             token(3, "القبور", "قبر", "NOM", 2, "OBJ", stt="d", cas="g")]
     drawn = built(["مَا", "فِي", "الْقُبُورِ"], toks)
     unit = next(child for child in drawn["tree"]["children"] if child.get("children"))
-    assert unit["label"] == term_ar("jar_majroor")
+    assert unit["label"] == tree.FRAMES["attached"].format(word="مَا")
     assert unit["role"] is None
     assert [child["role"] for child in unit["children"]] == ["حرف جر", "مجرور"]
 

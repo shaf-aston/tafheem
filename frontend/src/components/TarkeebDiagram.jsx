@@ -44,9 +44,6 @@ function Bracket({ node, atEdge, style }) {
       {/* RTL reading order: the brace, then "=", then the name on the left. */}
       <span className="tk-eq" aria-hidden="true">=</span>
       <span>{node.label}</span>
-      {/* A unit with no job of its own is said with the word it hangs on (متعلق بـخرج);
-          a unit with a job keeps its detail as the hover on that job, one row up. */}
-      {!node.role && node.detail && <span className="tk-said">{node.detail}</span>}
     </div>
   )
 

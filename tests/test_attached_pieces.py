@@ -55,7 +55,7 @@ def test_a_preposition_written_onto_a_relative_heads_a_jar_majroor_with_its_sila
     _, leaves = analysed(HADITH)
     jar, unit = leaves["لِ"][0]
     assert jar["role"] == "حرف جر"
-    assert unit["label"] == "جَارٌّ وَمَجْرُوْرٌ" and unit["detail"] == "متعلق بـأَعَدَّ"
+    assert unit["label"] == "متعلق بـأَعَدَّ"
     majroor = next(kid for kid in unit["children"] if kid is not jar)
     assert majroor["role"] == "مجرور" and majroor["label"] == "اِسْمٌ مَوْصُوْلٌ وَصِلَتُهُ"
 
@@ -64,7 +64,7 @@ def test_a_joining_waw_and_a_preposition_with_its_pronoun_are_words_of_their_own
     _, leaves = analysed(HADITH)
     assert {leaf["role"] for leaf, _ in leaves["وَ"]} == {"حرف عطف"}
     jar, unit = leaves["بِ"][0]
-    assert unit["label"] == "جَارٌّ وَمَجْرُوْرٌ" and unit["detail"].startswith("متعلق بـ")
+    assert unit["label"].startswith("متعلق بـ")
     assert [kid["role"] for kid in unit["children"]] == ["حرف جر", "مجرور"]
     mudaf, idafa = leaves["سَبِيلِ"][0]
     assert [kid["role"] for kid in idafa["children"]] == ["مضاف", "مضاف إليه"]
