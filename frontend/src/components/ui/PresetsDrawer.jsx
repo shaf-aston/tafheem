@@ -2,57 +2,47 @@
  * Curated verbs grouped by form (باب). Each card carries enough data to show a
  * result the instant it is clicked, so browsing costs nothing.
  */
-import { useState } from 'react'
-
 import { SARF_PRESETS } from '../../data/sarfPresets'
 
 import ArabicText from './ArabicText'
+import Disclosure from './Disclosure'
 
 const TOTAL = SARF_PRESETS.reduce((n, g) => n + g.words.length, 0)
 
 export default function PresetsDrawer({ onPick, accent }) {
-  const [open, setOpen] = useState(true)
-
   return (
-    <div style={{ '--c': accent }}>
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        className="w-full flex items-center justify-between px-4 py-2.5 rounded-[var(--radius-md)]
-          bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--border-hi)]
-          transition-colors group"
-      >
-        <span className="flex items-center gap-2 text-sm text-[var(--text-dim)] group-hover:text-[var(--text)] transition-colors">
-          <span aria-hidden="true" className={`transition-transform ${open ? 'rotate-90' : ''}`}>▸</span>
-          <span className="font-medium">Common verbs</span>
-          <span className="text-[var(--text-faint)] text-xs hidden sm:inline">grouped by form (باب)</span>
+    <Disclosure
+      framed
+      tone="strong"
+      defaultOpen
+      label={(
+        <span className="flex items-baseline justify-between gap-2">
+          <span className="flex items-baseline gap-2">
+            Common verbs
+            <span className="type-small font-normal text-[var(--text-faint)] hidden sm:inline">grouped by form (باب)</span>
+          </span>
+          <span className="type-small font-normal text-[var(--text-faint)]">{TOTAL}</span>
         </span>
-        <span className="text-[var(--text-faint)] text-xs">{TOTAL}</span>
-      </button>
-
-      {open && (
-        <div className="mt-2 p-4 rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)] space-y-5">
-          {SARF_PRESETS.map((group) => (
-            <PresetGroup key={group.id} group={group} onPick={onPick} accent={accent} />
-          ))}
-          <p className="text-[var(--text-faint)] text-xs text-center">
-            One click fills the box and analyses it
-          </p>
-        </div>
       )}
-    </div>
+    >
+      <div style={{ '--c': accent }} className="p-[var(--space-card)] border-t border-[var(--border)] bg-[var(--surface)] space-y-5">
+        {SARF_PRESETS.map((group) => (
+          <PresetGroup key={group.id} group={group} onPick={onPick} />
+        ))}
+        <p className="type-small text-[var(--text-faint)] text-center">
+          One click fills the box and analyses it
+        </p>
+      </div>
+    </Disclosure>
   )
 }
 
-function PresetGroup({ group, onPick, accent }) {
+function PresetGroup({ group, onPick }) {
   return (
     <div>
       <div className="flex items-baseline gap-2 mb-2">
-        <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: accent }}>
-          {group.category}
-        </span>
-        <span className="text-[var(--text-faint)] text-xs">{group.labelEn}</span>
+        <span className="eyebrow font-semibold text-[var(--c)]">{group.category}</span>
+        <span className="type-small text-[var(--text-faint)]">{group.labelEn}</span>
       </div>
 
       {/* A grid, not a right-to-left wrapping row. The row used to be dir="rtl",
@@ -66,9 +56,8 @@ function PresetGroup({ group, onPick, accent }) {
             type="button"
             onClick={() => onPick(w)}
             style={{ '--i': i }}
-            className="rise-in flex flex-col items-center justify-center px-3 py-2
-              rounded-[var(--radius-sm)] bg-[var(--surface-hi)] border border-[var(--border)]
-              hover:border-[var(--c)] transition-colors"
+            className="card-tile rise-in lift press flex flex-col items-center justify-center
+              hover:border-[var(--c)] focus-visible:border-[var(--c)]"
           >
             {/* Same size as the gardaan's cells, a verb should not change size
                 between the card you click and the table it opens. */}
