@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal.jsx'
 import { useInView } from '../lib/useInView'
+import { reducedMotion } from './motion.js'
 
 const STATS = [
   { target: 34, label: 'classical books indexed', suffix: '' },
@@ -17,8 +18,7 @@ function Stat({ s }) {
   useEffect(() => {
     if (!inView || startedRef.current) return
     startedRef.current = true
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced) { requestAnimationFrame(() => setValue(s.target)); return }
+    if (reducedMotion()) { requestAnimationFrame(() => setValue(s.target)); return }
     const dur = 1400
     let start = null
     function step(ts) {
@@ -35,7 +35,7 @@ function Stat({ s }) {
   const shown = decimals ? value.toFixed(decimals) : Math.round(value)
 
   return (
-    <div className="stat reveal in" ref={ref}>
+    <div className="stat" ref={ref}>
       <b>{shown}{s.suffix}</b>
       <span>{s.label}</span>
     </div>

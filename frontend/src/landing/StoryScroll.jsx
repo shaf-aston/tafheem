@@ -93,7 +93,7 @@ export default function StoryScroll() {
                 <p className="story-cap">{STEPS[0].body}</p>
               </div>
 
-              <div className={`story-panel story-gov${active === 1 ? ' active' : ''}`}>
+              <div className={`story-panel${active === 1 ? ' active' : ''}`}>
                 <GovPanel lp={lp} govIdx={govIdx} />
                 <p className="story-cap">{STEPS[1].body}</p>
               </div>
@@ -117,7 +117,7 @@ export default function StoryScroll() {
                 <p className="story-cap">{STEPS[2].body}</p>
               </div>
 
-              <div className={`story-panel story-root${active === 3 ? ' active' : ''}`}>
+              <div className={`story-panel${active === 3 ? ' active' : ''}`}>
                 <RootPanel lp={lp} />
                 <p className="story-cap">{STEPS[3].body}</p>
               </div>
