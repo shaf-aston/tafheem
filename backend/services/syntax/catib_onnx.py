@@ -89,7 +89,11 @@ def warm() -> None:
         if _load_error:
             raise RuntimeError(f"CATiB parser failed to load: {_load_error}")
         try:
-            _parser = _load()
+            loaded = _load()
+            # BERT's first run pulls in ~800 torch modules (2.7s); a practice word pays
+            # that here, so the first sentence typed reads in 0.3s like every later one
+            loaded.disambiguator.disambiguate(["كتب"])
+            _parser = loaded
         except Exception as exc:
             _load_error = f"{type(exc).__name__}: {exc}"
             raise
