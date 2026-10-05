@@ -58,5 +58,25 @@
     "license_url": "https://creativecommons.org/licenses/by/2.0/",
     "foreign_landing_url": "https://www.flickr.com/photos/33634811@N07/16535165394",
     "search_term": "bus station"
+  },
+  "l05-p01-yellow-taxi-car.jpg": {
+    "id": "5425bd65-ea31-4685-9621-216693c5e6b9",
+    "title": "Free yellow taxi car toy",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5923101/photo-image-public-domain-logo-free",
+    "search_term": "yellow taxi car"
+  },
+  "l05-p02-city-bus.jpg": {
+    "id": "f24c834e-7a02-4cd9-b59d-9275ff0b10eb",
+    "title": "D5CTB 105 city bus",
+    "creator": "martin 65",
+    "license": "pdm",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/37938224@N03/7624813898",
+    "search_term": "city bus"
   }
 }

@@ -890,7 +890,7 @@
               "slot": "red",
               "english": "Red.",
               "search_term": "red fabric",
-              "image": "unit-17/l01-p14-red-fabric.jpg"
+              "image": "unit-03/l05-p14-red-fabric.jpg"
             }
           ]
         }
@@ -1432,13 +1432,13 @@
               "slot": "taxi",
               "english": "Taxi.",
               "search_term": "yellow taxi car",
-              "image": "unit-17/l02-p01-yellow-taxi-car.jpg"
+              "image": "unit-05/l05-p01-yellow-taxi-car.jpg"
             },
             {
               "slot": "bus",
               "english": "Bus.",
               "search_term": "city bus",
-              "image": "unit-17/l02-p02-city-bus.jpg"
+              "image": "unit-05/l05-p02-city-bus.jpg"
             },
             {
               "slot": "i-want-to-go-to-the-old-city",
@@ -4807,6 +4807,268 @@
             {
               "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it",
               "english": "That's all just people's talk, I don't know if it's true or not."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": "unit-17",
+      "title": "At the Masjid",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Prayer Times and Going to the Masjid",
+          "phrases": [
+            {
+              "slot": "when-is-the-adhan",
+              "english": "When is the adhan?",
+              "search_term": "mosque clock prayer times",
+              "image": "unit-17/l01-p01-mosque-clock-prayer-times.jpg"
+            },
+            {
+              "slot": "which-prayer-is-next",
+              "english": "Which prayer is next?",
+              "search_term": "prayer times board"
+            },
+            {
+              "slot": "where-is-the-masjid",
+              "english": "Where is the nearest masjid?",
+              "search_term": "mosque minaret"
+            },
+            {
+              "slot": "where-is-the-mens-entrance",
+              "english": "Where is the men's entrance?"
+            },
+            {
+              "slot": "where-is-the-womens-entrance",
+              "english": "Where is the women's entrance?",
+              "search_term": "mosque entrance door"
+            },
+            {
+              "slot": "lets-pray-in-congregation",
+              "english": "Let's pray in congregation",
+              "search_term": "mosque prayer hall empty",
+              "image": "unit-17/l01-p06-mosque-prayer-hall-empty.jpg"
+            },
+            {
+              "slot": "when-is-the-iqamah",
+              "english": "When is the iqamah?",
+              "search_term": "mosque prayer times clock",
+              "image": "unit-17/l01-p07-mosque-prayer-times-clock.jpg"
+            },
+            {
+              "slot": "the-iqamah-has-been-called",
+              "english": "The iqamah has been called, the prayer is starting"
+            },
+            {
+              "slot": "i-am-late-can-i-join",
+              "english": "I am late, can I join?"
+            },
+            {
+              "slot": "i-missed-a-rakah",
+              "english": "I missed a rak'ah"
+            },
+            {
+              "slot": "i-will-make-up-what-i-missed",
+              "english": "I will complete what I missed after the salaam"
+            },
+            {
+              "slot": "may-allah-accept",
+              "english": "May Allah accept it from you"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Wudu and Getting Ready",
+          "phrases": [
+            {
+              "slot": "where-is-the-wudu-area",
+              "english": "Where is the wudu area?",
+              "search_term": "ablution fountain mosque",
+              "image": "unit-17/l02-p01-ablution-fountain-mosque.jpg"
+            },
+            {
+              "slot": "i-want-to-make-wudu",
+              "english": "I want to make wudu"
+            },
+            {
+              "slot": "is-there-water",
+              "english": "Is there water?",
+              "search_term": "water tap",
+              "image": "unit-17/l02-p03-water-tap.jpg"
+            },
+            {
+              "slot": "where-is-the-shoe-rack",
+              "english": "Where is the shoe rack?",
+              "search_term": "shoe rack mosque",
+              "image": "unit-17/l02-p04-shoe-rack-mosque.jpg"
+            },
+            {
+              "slot": "put-your-shoes-on-the-rack",
+              "english": "Put your shoes on the rack"
+            },
+            {
+              "slot": "clothes-must-be-clean",
+              "english": "Clothes must be clean"
+            },
+            {
+              "slot": "where-is-the-prayer-rug",
+              "english": "Where is the prayer rug?",
+              "search_term": "prayer rug",
+              "image": "unit-17/l02-p07-prayer-rug.jpg"
+            },
+            {
+              "slot": "which-way-is-the-qibla",
+              "english": "Which way is the qibla?",
+              "search_term": "mosque mihrab",
+              "image": "unit-17/l02-p08-mosque-mihrab.jpg"
+            },
+            {
+              "slot": "do-you-have-a-qibla-compass",
+              "english": "Do you have a qibla compass?",
+              "search_term": "compass",
+              "image": "unit-17/l02-p09-compass.jpg"
+            },
+            {
+              "slot": "please-silence-your-phone",
+              "english": "Please put your phone on silent"
+            },
+            {
+              "slot": "i-forgot-to-silence-my-phone",
+              "english": "I forgot to put my phone on silent"
+            },
+            {
+              "slot": "where-can-i-leave-my-bag",
+              "english": "Where can I leave my bag?",
+              "search_term": "storage lockers"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Jumu'ah and the Khutbah",
+          "phrases": [
+            {
+              "slot": "when-is-the-friday-prayer",
+              "english": "When is the Friday prayer?",
+              "search_term": "mosque prayer times board"
+            },
+            {
+              "slot": "lets-go-early-to-jumuah",
+              "english": "Let us go early to Jumu'ah",
+              "search_term": "mosque entrance doorway"
+            },
+            {
+              "slot": "i-have-washed-and-put-on-clean-clothes",
+              "english": "I have bathed and put on clean clothes",
+              "search_term": "white clothes folded"
+            },
+            {
+              "slot": "the-khutbah-will-begin-soon",
+              "english": "The khutbah will begin soon",
+              "search_term": "mosque minbar",
+              "image": "unit-17/l03-p04-mosque-minbar.jpg"
+            },
+            {
+              "slot": "who-is-the-imam-today",
+              "english": "Who is the imam today?"
+            },
+            {
+              "slot": "listen-quietly-to-the-khutbah",
+              "english": "Listen quietly to the khutbah"
+            },
+            {
+              "slot": "is-there-an-empty-place",
+              "english": "Is there an empty place?",
+              "search_term": "mosque carpet"
+            },
+            {
+              "slot": "please-move-closer-together",
+              "english": "Please, move closer together a little"
+            },
+            {
+              "slot": "blessed-friday",
+              "english": "Blessed Friday"
+            },
+            {
+              "slot": "may-god-accept-from-us-and-you",
+              "english": "May Allah accept from us and from you"
+            },
+            {
+              "slot": "may-god-reward-you-with-good",
+              "english": "May Allah reward you with good"
+            },
+            {
+              "slot": "i-will-pray-the-sunnah-after-jumuah",
+              "english": "I will pray the sunnah after the Friday prayer",
+              "search_term": "shoe rack at mosque door"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Learning at the Masjid",
+          "phrases": [
+            {
+              "slot": "when-is-the-quran-class",
+              "english": "When is the Qur'an class?",
+              "search_term": "empty classroom",
+              "image": "unit-17/l04-p01-empty-classroom.jpg"
+            },
+            {
+              "slot": "i-want-to-join-the-circle",
+              "english": "I want to join the circle",
+              "search_term": "empty cushions in a circle"
+            },
+            {
+              "slot": "may-i-ask-you-a-question-teacher",
+              "english": "May I ask you a question, teacher?"
+            },
+            {
+              "slot": "could-you-repeat-the-verse",
+              "english": "Could you repeat the verse, please?"
+            },
+            {
+              "slot": "i-am-memorising-surat-al-mulk",
+              "english": "I am memorising Surat al-Mulk",
+              "search_term": "quran open",
+              "image": "unit-17/l04-p05-quran-open.jpg"
+            },
+            {
+              "slot": "i-want-to-recite-what-i-memorised-to-you",
+              "english": "I want to recite to you what I have memorised"
+            },
+            {
+              "slot": "where-is-the-timetable-of-lessons",
+              "english": "Where is the timetable of lessons?",
+              "search_term": "school timetable"
+            },
+            {
+              "slot": "i-want-to-sign-up-my-son-for-the-childrens-circle",
+              "english": "I want to sign up my son for the children's circle"
+            },
+            {
+              "slot": "how-old-is-the-child",
+              "english": "How old is the child?"
+            },
+            {
+              "slot": "may-i-borrow-a-mushaf",
+              "english": "May I borrow a mushaf?",
+              "search_term": "stack of books"
+            },
+            {
+              "slot": "where-is-the-mosque-library",
+              "english": "Where is the mosque library?",
+              "search_term": "library shelves",
+              "image": "unit-17/l04-p11-library-shelves.jpg"
+            },
+            {
+              "slot": "i-will-return-the-mushaf-tomorrow",
+              "english": "I will return the mushaf tomorrow, Allah willing",
+              "search_term": "quran stand",
+              "image": "unit-17/l04-p12-quran-stand.jpg"
             }
           ]
         }
