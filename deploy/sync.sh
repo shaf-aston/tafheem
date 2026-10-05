@@ -15,7 +15,7 @@ set -euo pipefail
 cd /home/ubuntu/repo
 
 wait_healthy() {
-	local port=$1 tries=30
+	local port=$1 tries=60  # health is 503 until the models load, ~40s on this machine
 	while [ "$tries" -gt 0 ]; do
 		curl -fsS "http://127.0.0.1:$port/api/health" >/dev/null 2>&1 && return 0
 		tries=$((tries - 1))

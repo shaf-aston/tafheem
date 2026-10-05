@@ -48,6 +48,12 @@ STEPS: dict[str, tuple[str, Callable[[], object]]] = {
 }
 
 
+# Steps not finished yet. /api/health answers 503 while any remain, so the proxy
+# and the deploy's rolling restart keep sending visitors to the copy already warm
+# (a cold Analyze waited ~40s for the parser on the 2-core server).
+loading: set[str] = set()
+
+
 def _run(name: str) -> None:
     label, load = STEPS[name]
     logger.info("Loading %s...", label)
@@ -55,6 +61,8 @@ def _run(name: str) -> None:
         load()
     except Exception as exc:
         logger.warning("Failed to load %s (non-fatal): %s", label, exc)
+    finally:
+        loading.discard(name)
 
 
 async def run() -> None:
@@ -63,6 +71,7 @@ async def run() -> None:
     unknown = [n for n in (*settings.startup_wait, *settings.startup_background) if n not in STEPS]
     if unknown:
         raise ValueError(f"Unknown startup step(s) {unknown}; known: {sorted(STEPS)}")
+    loading.update(settings.startup_background)
     loop = asyncio.get_running_loop()
     await asyncio.gather(*(loop.run_in_executor(None, _run, n) for n in settings.startup_wait))
     _freeze()
