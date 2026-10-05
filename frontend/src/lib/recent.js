@@ -4,6 +4,7 @@
  * it far right, so the strip never grows. App sees only useStrip.
  */
 import { useEffect, useMemo } from 'react'
+import { progressKey } from './stored'
 import { useRemembered } from './useRemembered'
 
 const fixed = (tab) => tab.row < 3
@@ -35,7 +36,7 @@ export function readRecent(text, tabs, seed) {
 
 /** The strip for `active`, remembered between visits. Every way into a tab passes here. */
 export function useStrip(tabs, seed, active) {
-  const [saved, save] = useRemembered('recent-tabs')
+  const [saved, save] = useRemembered(progressKey('recent-tabs'))
   const recent = useMemo(() => readRecent(saved, tabs, seed), [saved, tabs, seed])
   useEffect(() => {
     const next = addRecent(recent, active, tabs)

@@ -28,4 +28,4 @@ book title's meaning); read it by where it sits. `rest-lines` in `dictionary.jso
 height, not a count of lines. The book id is `maqayis`, the name on screen Maqayees.
 
 **Saved choices** (browser): `dict.entry-view`, `dict.lines-tap`,
-`dict.lines-try-first`, `lane-tidy`, `dict-history`.
+`dict.lines-try-first`, `lane-tidy`, `progress:dict-history` (Start over forgets it).
