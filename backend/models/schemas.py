@@ -1173,6 +1173,13 @@ class HadithCorrection(BaseModel):
     used: str
 
 
+class HadithReference(BaseModel):
+    """A search that named one hadith ("muslim 8"): the number asked and the number shown, which differ when the collection skips it."""
+    collection: str
+    asked: str
+    shown: str
+
+
 class HadithSearchResponse(BaseModel):
     query: str
     collections: list[str] = []
@@ -1183,6 +1190,7 @@ class HadithSearchResponse(BaseModel):
     # No hadith holds every word; the hits are the closest by words and meaning.
     partial: bool = False
     chapters: list[HadithChapter] = []
+    reference: HadithReference | None = None
     # False when the database has not been built yet (see services/hadith),
     # same shape as DaleelResponse.ready: the panel tells the two apart rather
     # than showing "nothing matches" for a search that could not run.

@@ -31,12 +31,20 @@ def _bare(word: str) -> str:
     return unjoined if unjoined in _LINKS or unjoined in _SAYS else plain
 
 
+def _outside_asides(words: list, marks: list[bool]) -> list:
+    """The words not set between a pair of aside marks; a mark with no partner is ignored."""
+    at = [i for i, mark in enumerate(marks) if mark]
+    inside = {i for start, end in zip(at[::2], at[1::2]) for i in range(start, end + 1)}
+    return [w for i, w in enumerate(words) if i not in inside]
+
+
 def chain_of(arabic: str | None) -> tuple[str, str]:
     """(chain, body). Where the end of the chain is not plain: ("", the whole text)."""
     text = arabic or ""
     whole = ("", text)
     words = [(m.start(), _bare(m.group()), bool(_QUOTED.search(m.group())), bool(_STOP.search(m.group())))
              for m in re.finditer(r"\S+", text)]
+    words = _outside_asides(words, [m.group() == _RULE["aside"] for m in re.finditer(r"\S+", text)])
     words = [w for w in words if w[1] or w[2] or w[3]]
     if not words or words[0][1] not in _LINKS:
         return whole

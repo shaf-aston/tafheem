@@ -166,7 +166,7 @@ def test_router_search(db, client):
 def test_router_search_with_no_query_says_ready_without_searching(db, client):
     resp = client.get("/api/hadith/search")
     assert resp.json() == {"query": "", "collections": [], "hits": [], "corrected": [], "unmatched": [],
-                            "partial": False, "chapters": [], "ready": True, "source": resp.json()["source"]}
+                            "partial": False, "chapters": [], "reference": None, "ready": True, "source": resp.json()["source"]}
 
 
 def test_router_search_before_the_database_is_built(tmp_path, monkeypatch, client):
@@ -339,3 +339,21 @@ def test_a_name_in_the_chain_is_not_searched(db):
     conn.commit()
     conn.close()
     assert [h.number for h in search.search("الصبر", 10).hits] == [5]
+
+
+def test_a_collection_and_number_opens_that_hadith(db):
+    """'bukhari 2' is the hadith numbered 2, not a word search for 'bukhari'."""
+    for typed in ("bukhari 2", "Sahih al-Bukhari 2", "bukhari:2"):
+        found = search.search(typed)
+        assert [h.number for h in found.hits] == [2], typed
+        assert found.reference == ("bukhari", "2", "2")
+
+
+def test_a_number_the_collection_skips_shows_the_nearest_and_says_so(db):
+    found = search.search("bukhari 9")
+    assert [h.number for h in found.hits] == [3]
+    assert found.reference == ("bukhari", "9", "3")
+
+
+def test_words_that_name_no_collection_stay_a_word_search(db):
+    assert search.search("prayer 2").reference is None

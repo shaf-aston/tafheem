@@ -9,7 +9,7 @@ from pydantic import StringConstraints
 
 from backend.models.schemas import (
     HadithBook, HadithBookResponse, HadithChapter, HadithCollection, HadithCorrection, HadithEntry,
-    HadithSearchResponse,
+    HadithReference, HadithSearchResponse,
 )
 from backend.services import provenance
 from backend.services.hadith import loader
@@ -80,6 +80,8 @@ async def search(
         partial=found.partial,
         chapters=[HadithChapter(collection=c.collection, number=c.number, name=c.name, count=c.count)
                   for c in found.chapters],
+        reference=HadithReference(collection=found.reference[0], asked=found.reference[1], shown=found.reference[2])
+        if found.reference else None,
         hits=[
             HadithEntry(
                 collection=h.collection, book=h.book, number=h.number, part=h.part,
