@@ -280,9 +280,9 @@
     "line-height": 2.6
   },
   "hadith": {
-    "_comment": "The words of a hadith, printed under an event in the timelines. said is what was actually said, which the books mark with quote marks; told is the telling around it, the chain of narrators and what happened between the sayings, drawn back because it is read past rather than read. lines is how much of one hadith shows before the rest waits behind Show the rest.",
+    "_comment": "The words of a hadith, printed under an event in the timelines. said is what was actually said, which the books mark with quote marks; told is the telling around it, the chain of narrators and what happened between the sayings, drawn back because it is read past rather than read; one step under text-faint, the darkest that still reads at 4.5:1 on the surface. lines is how much of one hadith shows before the rest waits behind Show the rest.",
     "said": "#f2e7d3",
-    "told": "var(--text-faint)",
+    "told": "#76839a",
     "_way_comment": "The chain drawing colours the word between two narrators by how it was received: heard (سمعت، حدّثنا، أخبرنا) and loose (عن, which does not say how). The chain words guide wears the same two.",
     "heard": "#6cc495",
     "loose": "#e09a6a",
