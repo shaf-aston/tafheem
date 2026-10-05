@@ -4298,6 +4298,273 @@
             }
           ],
           "section": "Staying"
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Sightseeing",
+          "section": "On holiday",
+          "phrases": [
+            {
+              "slot": "where-is-the-national-museum",
+              "english": "Where is the national museum?",
+              "search_term": "museum entrance"
+            },
+            {
+              "slot": "how-do-i-get-to-the-old-city",
+              "english": "How do I get to the old city?",
+              "search_term": "old city street",
+              "image": "unit-15/l05-p02-old-city-street.jpg"
+            },
+            {
+              "slot": "how-much-is-the-entry-ticket",
+              "english": "How much is the entry ticket?",
+              "search_term": "museum entry ticket"
+            },
+            {
+              "slot": "what-are-the-opening-hours",
+              "english": "What are the opening hours?",
+              "search_term": "opening hours sign"
+            },
+            {
+              "slot": "walk-straight-then-turn-left",
+              "english": "Walk straight, then turn left"
+            },
+            {
+              "slot": "i-want-a-guided-tour",
+              "english": "I want a tour with a guide"
+            },
+            {
+              "slot": "can-i-take-photos-here",
+              "english": "Can I take photos here?"
+            },
+            {
+              "slot": "where-is-the-grand-mosque",
+              "english": "Where is the grand mosque?",
+              "search_term": "grand mosque exterior",
+              "image": "unit-15/l05-p08-grand-mosque-exterior.jpg"
+            },
+            {
+              "slot": "can-visitors-enter-the-mosque",
+              "english": "Can visitors enter the mosque?"
+            },
+            {
+              "slot": "please-take-off-your-shoes-at-the-entrance",
+              "english": "Please take off your shoes at the entrance",
+              "search_term": "shoes at mosque door"
+            },
+            {
+              "slot": "where-is-the-castle",
+              "english": "Where is the castle?",
+              "search_term": "old castle",
+              "image": "unit-15/l05-p11-old-castle.jpg"
+            },
+            {
+              "slot": "how-beautiful-this-place-is",
+              "english": "How beautiful this place is!"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "At the Beach",
+          "section": "On holiday",
+          "phrases": [
+            {
+              "slot": "the-sea-is-beautiful-today",
+              "english": "The sea is beautiful today",
+              "search_term": "calm sea beach",
+              "image": "unit-15/l06-p01-calm-sea-beach.jpg"
+            },
+            {
+              "slot": "where-can-we-sit-on-the-sand",
+              "english": "Where can we sit on the sand?",
+              "search_term": "sandy beach",
+              "image": "unit-15/l06-p02-sandy-beach.jpg"
+            },
+            {
+              "slot": "i-want-to-swim",
+              "english": "I want to swim"
+            },
+            {
+              "slot": "is-the-water-cold",
+              "english": "Is the water cold?"
+            },
+            {
+              "slot": "is-it-safe-to-swim-here",
+              "english": "Is it safe to swim here?"
+            },
+            {
+              "slot": "where-is-the-lifeguard",
+              "english": "Where is the lifeguard?",
+              "search_term": "lifeguard tower",
+              "image": "unit-15/l06-p06-lifeguard-tower.jpg"
+            },
+            {
+              "slot": "the-waves-are-high-today",
+              "english": "The waves are high today",
+              "search_term": "big sea waves",
+              "image": "unit-15/l06-p07-big-sea-waves.jpg"
+            },
+            {
+              "slot": "i-want-to-rent-a-beach-umbrella",
+              "english": "I want to rent a beach umbrella",
+              "search_term": "beach umbrella",
+              "image": "unit-15/l06-p08-beach-umbrella.jpg"
+            },
+            {
+              "slot": "do-you-have-sunscreen",
+              "english": "Do you have sunscreen?",
+              "search_term": "sunscreen bottle"
+            },
+            {
+              "slot": "the-weather-is-very-hot",
+              "english": "The weather is very hot"
+            },
+            {
+              "slot": "drink-plenty-of-water",
+              "english": "Drink plenty of water"
+            },
+            {
+              "slot": "the-children-are-building-a-sandcastle",
+              "english": "The children are building a sandcastle",
+              "search_term": "sandcastle",
+              "image": "unit-15/l06-p12-sandcastle.jpg"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-07",
+          "title": "Souvenirs and Gifts",
+          "section": "On holiday",
+          "phrases": [
+            {
+              "slot": "i-want-a-souvenir-for-my-family",
+              "english": "I want a souvenir for my family"
+            },
+            {
+              "slot": "do-you-have-good-dates",
+              "english": "Do you have good dates?",
+              "search_term": "box of dates"
+            },
+            {
+              "slot": "i-want-a-box-of-spices-as-a-gift",
+              "english": "I want a box of spices as a gift",
+              "search_term": "jar of spices",
+              "image": "unit-15/l07-p03-jar-of-spices.jpg"
+            },
+            {
+              "slot": "what-is-this-perfume",
+              "english": "What is this perfume?",
+              "search_term": "perfume bottle",
+              "image": "unit-15/l07-p04-perfume-bottle.jpg"
+            },
+            {
+              "slot": "i-want-a-small-bottle-of-oud-oil",
+              "english": "I want a small bottle of oud oil",
+              "search_term": "oud oil bottle"
+            },
+            {
+              "slot": "is-this-handmade",
+              "english": "Is this handmade?"
+            },
+            {
+              "slot": "i-want-a-prayer-rug",
+              "english": "I want a prayer rug",
+              "search_term": "prayer rug",
+              "image": "unit-15/l07-p07-prayer-rug.jpg"
+            },
+            {
+              "slot": "this-wooden-box-is-beautiful",
+              "english": "This wooden box is beautiful",
+              "search_term": "carved wooden box"
+            },
+            {
+              "slot": "a-lower-price-if-i-buy-two",
+              "english": "Will you give me a lower price if I buy two?"
+            },
+            {
+              "slot": "can-you-wrap-it-as-a-gift",
+              "english": "Can you wrap it as a gift?",
+              "search_term": "gift wrapped box"
+            },
+            {
+              "slot": "i-want-a-silk-scarf-for-my-sister",
+              "english": "I want a silk scarf for my sister",
+              "search_term": "silk scarf",
+              "image": "unit-15/l07-p11-silk-scarf.jpg"
+            },
+            {
+              "slot": "this-is-a-gift-for-my-mother",
+              "english": "This is a gift for my mother, I hope she likes it"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-08",
+          "title": "Holiday Plans and Photos",
+          "section": "On holiday",
+          "phrases": [
+            {
+              "slot": "where-are-you-going-this-holiday",
+              "english": "Where are you going this holiday?"
+            },
+            {
+              "slot": "how-long-does-your-holiday-last",
+              "english": "How long does your holiday last?"
+            },
+            {
+              "slot": "we-are-travelling-with-the-whole-family",
+              "english": "We are travelling with the whole family"
+            },
+            {
+              "slot": "we-booked-a-house-near-the-beach",
+              "english": "We booked a house near the beach",
+              "search_term": "beach house",
+              "image": "unit-15/l08-p04-beach-house.jpg"
+            },
+            {
+              "slot": "i-will-take-my-camera-with-me",
+              "english": "I will take my camera with me",
+              "search_term": "camera",
+              "image": "unit-15/l08-p05-camera.jpg"
+            },
+            {
+              "slot": "what-a-beautiful-view",
+              "english": "What a beautiful view!",
+              "search_term": "mountain view",
+              "image": "unit-15/l08-p06-mountain-view.jpg"
+            },
+            {
+              "slot": "can-you-take-a-photo-of-us",
+              "english": "Can you take a photo of us?"
+            },
+            {
+              "slot": "the-sunset-is-beautiful-here",
+              "english": "The sunset is beautiful here",
+              "search_term": "sunset over the sea",
+              "image": "unit-15/l08-p08-sunset-over-the-sea.jpg"
+            },
+            {
+              "slot": "send-me-the-photos-on-my-phone",
+              "english": "Send me the photos on my phone",
+              "search_term": "smartphone",
+              "image": "unit-15/l08-p09-smartphone.jpg"
+            },
+            {
+              "slot": "how-was-your-trip",
+              "english": "How was your trip?"
+            },
+            {
+              "slot": "the-sea-is-very-calm",
+              "english": "The sea is very calm",
+              "search_term": "calm sea",
+              "image": "unit-15/l08-p11-calm-sea.jpg"
+            },
+            {
+              "slot": "we-came-back-safe-thank-god",
+              "english": "We came back safe, thank God"
+            }
+          ]
         }
       ]
     },

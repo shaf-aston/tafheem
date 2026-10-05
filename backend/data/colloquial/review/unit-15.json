@@ -1,0 +1,324 @@
+{
+  "found": [
+    {
+      "lesson": 8,
+      "phrase": 4,
+      "english": "We booked a house near the beach",
+      "search_term": "beach house",
+      "candidates": [
+        {
+          "id": "9516d79b-5f84-4fea-8179-166db5081b4b",
+          "title": "Beach house Florida",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6024590/photo-image-public-domain-house-palm-tree",
+          "thumbnail": "https://api.openverse.org/v1/images/9516d79b-5f84-4fea-8179-166db5081b4b/thumb/"
+        },
+        {
+          "id": "4cfbceaf-6e8d-47be-95f2-94c1f9e98c78",
+          "title": "Beach House Flags Trouville (c",
+          "creator": "nationalgalleryofart",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/10053959/beach-house-with-flags-trouville-c-1865-eugene-boudin",
+          "thumbnail": "https://api.openverse.org/v1/images/4cfbceaf-6e8d-47be-95f2-94c1f9e98c78/thumb/"
+        },
+        {
+          "id": "7460a9e4-99f8-4342-85df-b2727604fd40",
+          "title": "Ventura Beach House - ODR",
+          "creator": "U.S. Army",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/4040321/ventura-beach-house-odr-trip",
+          "thumbnail": "https://api.openverse.org/v1/images/7460a9e4-99f8-4342-85df-b2727604fd40/thumb/"
+        },
+        {
+          "id": "38cce6d6-29a4-4801-8a3a-f157603ee6cd",
+          "title": "Aerial view beach housing photo",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5906658/photo-image-cloud-public-domain-blue",
+          "thumbnail": "https://api.openverse.org/v1/images/38cce6d6-29a4-4801-8a3a-f157603ee6cd/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 8,
+      "phrase": 5,
+      "english": "I will take my camera with me",
+      "search_term": "camera",
+      "candidates": [
+        {
+          "id": "ba06c1e7-fbd8-4bd9-a246-d03bd265a9f0",
+          "title": "Iphone Camera",
+          "creator": "Gabriel Santiago",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/iphone-camera-WHTEJ8X4SX",
+          "thumbnail": "https://api.openverse.org/v1/images/ba06c1e7-fbd8-4bd9-a246-d03bd265a9f0/thumb/"
+        },
+        {
+          "id": "4273b926-136c-44ad-995b-a5b01ab1b5a4",
+          "title": "Camera Flash",
+          "creator": "Skitter Photo",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/camera-flash-VD8VMOR1EZ",
+          "thumbnail": "https://api.openverse.org/v1/images/4273b926-136c-44ad-995b-a5b01ab1b5a4/thumb/"
+        },
+        {
+          "id": "98c11927-a4e7-4a32-92a9-ab71b992b4df",
+          "title": "Camera Lens",
+          "creator": "Andrew E Weber",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/camera-lens-W7RWLHPKX4",
+          "thumbnail": "https://api.openverse.org/v1/images/98c11927-a4e7-4a32-92a9-ab71b992b4df/thumb/"
+        },
+        {
+          "id": "b7ad6a82-e5cd-4f65-af0a-ebedb2d2a557",
+          "title": "Iphone Camera",
+          "creator": "Jordan McQueen",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/iphone-camera-23EP0JGC5E",
+          "thumbnail": "https://api.openverse.org/v1/images/b7ad6a82-e5cd-4f65-af0a-ebedb2d2a557/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 8,
+      "phrase": 6,
+      "english": "What a beautiful view!",
+      "search_term": "mountain view",
+      "candidates": [
+        {
+          "id": "539c882a-ce45-4d14-912b-c8e37eacce39",
+          "title": "Mountain View",
+          "creator": "Jeremy Cai",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/mountain-view-YGXKPH9T4W",
+          "thumbnail": "https://api.openverse.org/v1/images/539c882a-ce45-4d14-912b-c8e37eacce39/thumb/"
+        },
+        {
+          "id": "4ef32aa4-d618-4aac-afde-941ba545704b",
+          "title": "Mountain View",
+          "creator": "Ghost Presenter",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/mountain-view-A3BB65OOCO",
+          "thumbnail": "https://api.openverse.org/v1/images/4ef32aa4-d618-4aac-afde-941ba545704b/thumb/"
+        },
+        {
+          "id": "7a2a847e-78a5-48dd-a8d6-f823a8594787",
+          "title": "Mountain View",
+          "creator": "Joe Roberts",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/mountain-view-K9CIXQGE8N",
+          "thumbnail": "https://api.openverse.org/v1/images/7a2a847e-78a5-48dd-a8d6-f823a8594787/thumb/"
+        },
+        {
+          "id": "3e6fbfd3-39f0-4bb0-9c28-c56bf2cde7e1",
+          "title": "Mountain View",
+          "creator": "Matt Bango",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/mountain-view-SGNZQYMLUM",
+          "thumbnail": "https://api.openverse.org/v1/images/3e6fbfd3-39f0-4bb0-9c28-c56bf2cde7e1/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 8,
+      "phrase": 8,
+      "english": "The sunset is beautiful here",
+      "search_term": "sunset over the sea",
+      "candidates": [
+        {
+          "id": "7f29b5b5-94c2-4589-b347-e36acc958f1d",
+          "title": "Sunrise sea",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6038616/photo-image-light-public-domain-nature",
+          "thumbnail": "https://api.openverse.org/v1/images/7f29b5b5-94c2-4589-b347-e36acc958f1d/thumb/"
+        },
+        {
+          "id": "a2806f0c-ed7e-4f96-b47f-5d6a42f45045",
+          "title": null,
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5956230/free-public-domain-cc0-photo",
+          "thumbnail": "https://api.openverse.org/v1/images/a2806f0c-ed7e-4f96-b47f-5d6a42f45045/thumb/"
+        },
+        {
+          "id": "cdb99597-fa90-4e61-ba63-9d3ac81b545a",
+          "title": "Sunset beach",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3289948/free-photo-image-adventure-animal-beach",
+          "thumbnail": "https://api.openverse.org/v1/images/cdb99597-fa90-4e61-ba63-9d3ac81b545a/thumb/"
+        },
+        {
+          "id": "861c1ce1-0128-4c92-8740-caf0ef3f9b22",
+          "title": null,
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5956136/free-public-domain-cc0-photo",
+          "thumbnail": "https://api.openverse.org/v1/images/861c1ce1-0128-4c92-8740-caf0ef3f9b22/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 8,
+      "phrase": 9,
+      "english": "Send me the photos on my phone",
+      "search_term": "smartphone",
+      "candidates": [
+        {
+          "id": "89a7263a-ae30-4970-993d-7a9fd5bcf998",
+          "title": "Smartphone Mobile",
+          "creator": "Negative Space",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/smartphone-mobile-IU6HNPC2NT",
+          "thumbnail": "https://api.openverse.org/v1/images/89a7263a-ae30-4970-993d-7a9fd5bcf998/thumb/"
+        },
+        {
+          "id": "11cd1d83-581a-46ba-b047-3f04abd3dc74",
+          "title": "Mobile Smartphone",
+          "creator": "JESHOOTS.com",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/mobile-smartphone-DLITZEAVJJ",
+          "thumbnail": "https://api.openverse.org/v1/images/11cd1d83-581a-46ba-b047-3f04abd3dc74/thumb/"
+        },
+        {
+          "id": "eefb8150-aef0-4508-9ab2-22bab354e597",
+          "title": "Iphone Smartphone",
+          "creator": "Adrianna Calvo",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/iphone-smartphone-ODN23L0AC9",
+          "thumbnail": "https://api.openverse.org/v1/images/eefb8150-aef0-4508-9ab2-22bab354e597/thumb/"
+        },
+        {
+          "id": "3c06b4e4-0516-4d07-9ecb-5aae7085481a",
+          "title": "Smartphone Mobile",
+          "creator": "Negative Space",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/smartphone-mobile-O4V3KXZI1T",
+          "thumbnail": "https://api.openverse.org/v1/images/3c06b4e4-0516-4d07-9ecb-5aae7085481a/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 8,
+      "phrase": 11,
+      "english": "The sea is very calm",
+      "search_term": "calm sea",
+      "candidates": [
+        {
+          "id": "d1b72836-5b9a-439d-a8cb-abdc6c1a67f0",
+          "title": "Calm Sea",
+          "creator": "Ghost Presenter",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/calm-sea-8V46UZCS0V",
+          "thumbnail": "https://api.openverse.org/v1/images/d1b72836-5b9a-439d-a8cb-abdc6c1a67f0/thumb/"
+        },
+        {
+          "id": "42abaebb-0859-4367-b223-220eb49a29ad",
+          "title": "Calm Sea",
+          "creator": "Ghost Presenter",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/calm-sea-JQDR21FFWT",
+          "thumbnail": "https://api.openverse.org/v1/images/42abaebb-0859-4367-b223-220eb49a29ad/thumb/"
+        },
+        {
+          "id": "27045843-5d42-428f-8d2f-59f9b431e204",
+          "title": "Calm Sea",
+          "creator": "Ghost Presenter",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/calm-sea-ZAN2P667WR",
+          "thumbnail": "https://api.openverse.org/v1/images/27045843-5d42-428f-8d2f-59f9b431e204/thumb/"
+        },
+        {
+          "id": "288e2b5c-494c-46f6-b7fa-87ec36665568",
+          "title": "Calm sea waves close up",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6032199/photo-image-public-domain-blue-ocean",
+          "thumbnail": "https://api.openverse.org/v1/images/288e2b5c-494c-46f6-b7fa-87ec36665568/thumb/"
+        }
+      ]
+    }
+  ],
+  "needs_search_term": [
+    {
+      "lesson": 8,
+      "phrase": 1,
+      "english": "Where are you going this holiday?"
+    },
+    {
+      "lesson": 8,
+      "phrase": 2,
+      "english": "How long does your holiday last?"
+    },
+    {
+      "lesson": 8,
+      "phrase": 3,
+      "english": "We are travelling with the whole family"
+    },
+    {
+      "lesson": 8,
+      "phrase": 7,
+      "english": "Can you take a photo of us?"
+    },
+    {
+      "lesson": 8,
+      "phrase": 10,
+      "english": "How was your trip?"
+    },
+    {
+      "lesson": 8,
+      "phrase": 12,
+      "english": "We came back safe, thank God"
+    }
+  ]
+}

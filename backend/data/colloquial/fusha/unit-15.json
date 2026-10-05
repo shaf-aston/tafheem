@@ -1798,6 +1798,1578 @@
           "tip": "aameen is the usual answer."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "where-is-the-national-museum",
+          "arabic": "أَيْنَ الْمَتْحَفُ الْوَطَنِيّ؟",
+          "transliteration": "ayna al-matHafu al-waTaniyy?"
+        },
+        {
+          "slot": "how-do-i-get-to-the-old-city",
+          "arabic": "كَيْفَ أَصِلُ إِلَى الْمَدِينَةِ الْقَدِيمَة؟",
+          "transliteration": "kayfa aSilu ilaa al-madeenati al-qadeema?"
+        },
+        {
+          "slot": "how-much-is-the-entry-ticket",
+          "arabic": "بِكَمْ تَذْكِرَةُ الدُّخُول؟",
+          "transliteration": "bikam tadhkiratu ad-dukhool?"
+        },
+        {
+          "slot": "what-are-the-opening-hours",
+          "arabic": "مَا هِيَ مَوَاعِيدُ الْفَتْح؟",
+          "transliteration": "maa hiya mawaa3eedu al-fatH?",
+          "reply": {
+            "arabic": "مِنَ التَّاسِعَةِ صَبَاحًا حَتَّى الْخَامِسَةِ مَسَاءً",
+            "transliteration": "min at-taasi3ati SabaaHan Hattaa al-khaamisati masaa2an",
+            "english": "From nine in the morning until five in the evening."
+          }
+        },
+        {
+          "slot": "walk-straight-then-turn-left",
+          "arabic": "اِمْشِ مُبَاشَرَةً ثُمَّ اِنْعَطِفْ يَسَارًا",
+          "transliteration": "imshi mubaashiratan thumma in3aTif yasaaran"
+        },
+        {
+          "slot": "i-want-a-guided-tour",
+          "arabic": "أُرِيدُ جَوْلَةً مَعَ مُرْشِدٍ سِيَاحِيّ",
+          "transliteration": "ureedu jawlatan ma3a murshidin siyaaHiyy"
+        },
+        {
+          "slot": "can-i-take-photos-here",
+          "arabic": "هَلْ يُمْكِنُنِي التَّصْوِيرُ هُنَا؟",
+          "transliteration": "hal yumkinunee at-taSweeru hunaa?",
+          "reply": {
+            "arabic": "نَعَمْ، لَكِنْ دُونَ اسْتِخْدَامِ الْفَلَاش",
+            "transliteration": "na3am, lakin doona istikhdaami al-flaash",
+            "english": "Yes, but without the flash."
+          }
+        },
+        {
+          "slot": "where-is-the-grand-mosque",
+          "arabic": "أَيْنَ الْمَسْجِدُ الْكَبِير؟",
+          "transliteration": "ayna al-masjidu al-kabeer?"
+        },
+        {
+          "slot": "can-visitors-enter-the-mosque",
+          "arabic": "هَلْ يُمْكِنُ لِلزُّوَّارِ دُخُولُ الْمَسْجِد؟",
+          "transliteration": "hal yumkinu liz-zuwwaari dukhoolu al-masjid?",
+          "reply": {
+            "arabic": "نَعَمْ، خَارِجَ أَوْقَاتِ الصَّلَاة",
+            "transliteration": "na3am, khaarija awqaati aS-Salaa",
+            "english": "Yes, outside prayer times."
+          }
+        },
+        {
+          "slot": "please-take-off-your-shoes-at-the-entrance",
+          "arabic": "يُرْجَى خَلْعُ الْحِذَاءِ عِنْدَ الْمَدْخَل",
+          "transliteration": "yurjaa khal3u al-Hidhaa2i 3inda al-madkhal"
+        },
+        {
+          "slot": "where-is-the-castle",
+          "arabic": "أَيْنَ الْقَلْعَة؟",
+          "transliteration": "ayna al-qal3a?"
+        },
+        {
+          "slot": "how-beautiful-this-place-is",
+          "arabic": "مَا أَجْمَلَ هَذَا الْمَكَان!",
+          "transliteration": "maa ajmala hadhaa al-makaan!",
+          "reply": {
+            "arabic": "نَعَمْ، إِنَّهُ مِنْ أَجْمَلِ الْمَعَالِم",
+            "transliteration": "na3am, innahu min ajmali al-ma3aalim",
+            "english": "Yes, it is one of the most beautiful sights."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Layla",
+          "arabic": "السَّلَامُ عَلَيْكُمْ. أَيْنَ الْمَتْحَفُ الْوَطَنِيّ مِنْ فَضْلِك؟",
+          "transliteration": "as-salaamu 3alaykum. ayna al-matHafu al-waTaniyy min faDlik?",
+          "english": "Peace be upon you. Where is the national museum, please?"
+        },
+        {
+          "speaker": "Passerby",
+          "arabic": "وَعَلَيْكُمُ السَّلَام. اِمْشِي مُبَاشَرَةً ثُمَّ اِنْعَطِفِي يَسَارًا.",
+          "transliteration": "wa 3alaykumu as-salaam. imshee mubaashiratan thumma in3aTifee yasaaran.",
+          "english": "And peace be upon you. Walk straight, then turn left."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "شُكْرًا جَزِيلًا. هَلْ هُوَ بَعِيد؟",
+          "transliteration": "shukran jazeelan. hal huwa ba3eed?",
+          "english": "Thank you very much. Is it far?"
+        },
+        {
+          "speaker": "Passerby",
+          "arabic": "لَا، خَمْسُ دَقَائِقَ سَيْرًا عَلَى الْأَقْدَام.",
+          "transliteration": "laa, khamsu daqaa2iqa sayran 3alaa al-aqdaam.",
+          "english": "No, five minutes on foot."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "مَرْحَبًا، بِكَمْ تَذْكِرَةُ الدُّخُول؟",
+          "transliteration": "marHaban, bikam tadhkiratu ad-dukhool?",
+          "english": "Hello, how much is the entry ticket?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "عَشَرَةٌ لِلْكَبِيرِ وَخَمْسَةٌ لِلطِّفْل.",
+          "transliteration": "3asharatun lilkabeeri wa khamsatun liTTifl.",
+          "english": "Ten for an adult and five for a child."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "تَذْكِرَتَانِ مِنْ فَضْلِك. وَمَا هِيَ مَوَاعِيدُ الْفَتْح؟",
+          "transliteration": "tadhkiratani min faDlik. wa maa hiya mawaa3eedu al-fatH?",
+          "english": "Two tickets, please. And what are the opening hours?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "مِنَ التَّاسِعَةِ صَبَاحًا حَتَّى الْخَامِسَةِ مَسَاءً، وَهُوَ مُغْلَقٌ يَوْمَ الْإِثْنَيْن.",
+          "transliteration": "min at-taasi3ati SabaaHan Hattaa al-khaamisati masaa2an, wa huwa mughlaqun yawma al-ithnayn.",
+          "english": "From nine in the morning until five in the evening, and it is closed on Monday."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "هَلْ يُمْكِنُنِي التَّصْوِيرُ دَاخِلَ الْقَاعَات؟",
+          "transliteration": "hal yumkinunee at-taSweeru daakhila al-qaa3aat?",
+          "english": "Can I take photos inside the halls?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "نَعَمْ، لَكِنْ دُونَ اسْتِخْدَامِ الْفَلَاش.",
+          "transliteration": "na3am, lakin doona istikhdaami al-flaash.",
+          "english": "Yes, but without the flash."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "وَأَيْنَ الْمَسْجِدُ الْكَبِير؟ أُرِيدُ زِيَارَتَهُ بَعْدَ الْمَتْحَف.",
+          "transliteration": "wa ayna al-masjidu al-kabeer? ureedu ziyaaratahu ba3da al-matHaf.",
+          "english": "And where is the grand mosque? I want to visit it after the museum."
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "هُوَ قَرِيبٌ مِنْ هُنَا. وَيُرْجَى خَلْعُ الْحِذَاءِ عِنْدَ الْمَدْخَل.",
+          "transliteration": "huwa qareebun min hunaa. wa yurjaa khal3u al-Hidhaa2i 3inda al-madkhal.",
+          "english": "It is close to here. And please take off your shoes at the entrance."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أَيْنَ الْمَتْحَفُ الْوَطَنِيّ؟",
+            "transliteration": "ayna al-matHafu al-waTaniyy?",
+            "english": "Where is the national museum?"
+          },
+          "response": {
+            "arabic": "اِمْشِ مُبَاشَرَةً ثُمَّ اِنْعَطِفْ يَسَارًا",
+            "transliteration": "imshi mubaashiratan thumma in3aTif yasaaran",
+            "english": "Walk straight, then turn left."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَا هِيَ مَوَاعِيدُ الْفَتْح؟",
+            "transliteration": "maa hiya mawaa3eedu al-fatH?",
+            "english": "What are the opening hours?"
+          },
+          "response": {
+            "arabic": "مِنَ التَّاسِعَةِ صَبَاحًا حَتَّى الْخَامِسَةِ مَسَاءً",
+            "transliteration": "min at-taasi3ati SabaaHan Hattaa al-khaamisati masaa2an",
+            "english": "From nine in the morning until five in the evening."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ يُمْكِنُنِي التَّصْوِيرُ هُنَا؟",
+            "transliteration": "hal yumkinunee at-taSweeru hunaa?",
+            "english": "Can I take photos here?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، لَكِنْ دُونَ اسْتِخْدَامِ الْفَلَاش",
+            "transliteration": "na3am, lakin doona istikhdaami al-flaash",
+            "english": "Yes, but without the flash."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَا أَجْمَلَ هَذَا الْمَكَان!",
+            "transliteration": "maa ajmala hadhaa al-makaan!",
+            "english": "How beautiful this place is!"
+          },
+          "response": {
+            "arabic": "نَعَمْ، إِنَّهُ مِنْ أَجْمَلِ الْمَعَالِم",
+            "transliteration": "na3am, innahu min ajmali al-ma3aalim",
+            "english": "Yes, it is one of the most beautiful sights."
+          }
+        }
+      ],
+      "culture": "Mosques are open to visitors outside prayer times in many places. Visitors take off their shoes at the entrance, dress modestly and speak quietly, and women usually cover their hair. Museums and old cities are often closed one day a week, so ask يَوْمَ الْإِغْلَاق (the closing day) before you go.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I want a tour with a guide'",
+          "answer": "أُرِيدُ جَوْلَةً مَعَ مُرْشِدٍ سِيَاحِيّ",
+          "accepted": [
+            "أُرِيدُ جَوْلَةً مَعَ مُرْشِدٍ سِيَاحِيّ",
+            "أريد جولة مع مرشد سياحي",
+            "ureedu jawlatan ma3a murshidin siyaaHiyy"
+          ],
+          "too_formal": {
+            "item": "بدي جولة مع دليل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "murshid is a guide; jawla is a tour."
+        },
+        {
+          "id": "unit-15.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Where is the national museum?'",
+          "answer": "أَيْنَ الْمَتْحَفُ الْوَطَنِيّ؟",
+          "accepted": [
+            "أَيْنَ الْمَتْحَفُ الْوَطَنِيّ؟",
+            "أين المتحف الوطني؟",
+            "ayna al-matHafu al-waTaniyy?"
+          ],
+          "too_formal": {
+            "item": "وين المتحف الوطني",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "ayna opens the question, then the noun."
+        },
+        {
+          "id": "unit-15.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which one means 'What are the opening hours?'",
+          "options": [
+            "مَا هِيَ مَوَاعِيدُ الْفَتْح؟",
+            "بِكَمْ تَذْكِرَةُ الدُّخُول؟",
+            "أَيْنَ الْقَلْعَة؟",
+            "هَلْ يُمْكِنُنِي التَّصْوِيرُ هُنَا؟"
+          ],
+          "answer": "مَا هِيَ مَوَاعِيدُ الْفَتْح؟",
+          "accepted": [
+            "مَا هِيَ مَوَاعِيدُ الْفَتْح؟",
+            "ما هي مواعيد الفتح؟",
+            "maa hiya mawaa3eedu al-fatH?"
+          ],
+          "too_formal": {
+            "item": "شو ساعات الدوام",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "mawaa3eed are times; al-fatH is the opening."
+        },
+        {
+          "id": "unit-15.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which one means 'Please take off your shoes at the entrance'?",
+          "options": [
+            "يُرْجَى خَلْعُ الْحِذَاءِ عِنْدَ الْمَدْخَل",
+            "أُرِيدُ جَوْلَةً مَعَ مُرْشِدٍ سِيَاحِيّ",
+            "مَا أَجْمَلَ هَذَا الْمَكَان!",
+            "كَيْفَ أَصِلُ إِلَى الْمَدِينَةِ الْقَدِيمَة؟"
+          ],
+          "answer": "يُرْجَى خَلْعُ الْحِذَاءِ عِنْدَ الْمَدْخَل",
+          "accepted": [
+            "يُرْجَى خَلْعُ الْحِذَاءِ عِنْدَ الْمَدْخَل",
+            "يرجى خلع الحذاء عند المدخل",
+            "yurjaa khal3u al-Hidhaa2i 3inda al-madkhal"
+          ],
+          "too_formal": {
+            "item": "لو سمحت شيل الجزمة عالمدخل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Said at the door of a mosque."
+        },
+        {
+          "id": "unit-15.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'How much is the entry ticket?'",
+          "answer": "بِكَمْ تَذْكِرَةُ الدُّخُول؟",
+          "accepted": [
+            "بِكَمْ تَذْكِرَةُ الدُّخُول؟",
+            "بكم تذكرة الدخول؟",
+            "bikam tadhkiratu ad-dukhool?"
+          ],
+          "too_formal": {
+            "item": "قديش بطاقة الدخول",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "bikam asks the price and comes first."
+        },
+        {
+          "id": "unit-15.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'Walk straight, then turn left'",
+          "answer": "اِمْشِ مُبَاشَرَةً ثُمَّ اِنْعَطِفْ يَسَارًا",
+          "accepted": [
+            "اِمْشِ مُبَاشَرَةً ثُمَّ اِنْعَطِفْ يَسَارًا",
+            "امش مباشرة ثم انعطف يسارا",
+            "imshi mubaashiratan thumma in3aTif yasaaran"
+          ],
+          "too_formal": {
+            "item": "روح دغري وبعدين لف شمال",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "thumma means then. To a woman: imshee ... in3aTifee."
+        },
+        {
+          "id": "unit-15.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'هَلْ يُمْكِنُنِي _____ هُنَا؟' (Can I take photos here?)",
+          "answer": "التَّصْوِيرُ",
+          "accepted": [
+            "التَّصْوِيرُ",
+            "التصوير",
+            "at-taSweeru"
+          ],
+          "too_formal": {
+            "item": "أصور",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "at-taSweer is photographing."
+        },
+        {
+          "id": "unit-15.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'كَيْفَ أَصِلُ إِلَى الْمَدِينَةِ _____؟' (How do I get to the old city?)",
+          "answer": "الْقَدِيمَة",
+          "accepted": [
+            "الْقَدِيمَة",
+            "القديمة",
+            "al-qadeema"
+          ],
+          "too_formal": {
+            "item": "العتيقة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "qadeem is old; it agrees with madeena, which is feminine."
+        },
+        {
+          "id": "unit-15.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "You are the clerk and hear: 'مَا هِيَ مَوَاعِيدُ الْفَتْح؟'. Say: from nine in the morning until five in the evening.",
+          "answer": "مِنَ التَّاسِعَةِ صَبَاحًا حَتَّى الْخَامِسَةِ مَسَاءً",
+          "accepted": [
+            "مِنَ التَّاسِعَةِ صَبَاحًا حَتَّى الْخَامِسَةِ مَسَاءً",
+            "من التاسعة صباحا حتى الخامسة مساء",
+            "min at-taasi3ati SabaaHan Hattaa al-khaamisati masaa2an",
+            "مِنَ التَّاسِعَةِ حَتَّى الْخَامِسَةِ",
+            "min at-taasi3a Hattaa al-khaamisa"
+          ],
+          "too_formal": {
+            "item": "من تسعة الصبح لخمسة المسا",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "min ... Hattaa means from ... until."
+        },
+        {
+          "id": "unit-15.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "You hear: 'مَا أَجْمَلَ هَذَا الْمَكَان!'. Agree.",
+          "answer": "نَعَمْ، إِنَّهُ مِنْ أَجْمَلِ الْمَعَالِم",
+          "accepted": [
+            "نَعَمْ، إِنَّهُ مِنْ أَجْمَلِ الْمَعَالِم",
+            "نعم، إنه من أجمل المعالم",
+            "na3am, innahu min ajmali al-ma3aalim",
+            "نَعَمْ، جَمِيلٌ جِدًّا",
+            "na3am, jameelun jiddan"
+          ],
+          "too_formal": {
+            "item": "إي، كتير حلو",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "ma3aalim are landmarks or sights."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "the-sea-is-beautiful-today",
+          "arabic": "الْبَحْرُ جَمِيلٌ الْيَوْم",
+          "transliteration": "al-baHru jameelun al-yawm"
+        },
+        {
+          "slot": "where-can-we-sit-on-the-sand",
+          "arabic": "أَيْنَ نَجْلِسُ عَلَى الرَّمْل؟",
+          "transliteration": "ayna najlisu 3alaa ar-raml?"
+        },
+        {
+          "slot": "i-want-to-swim",
+          "arabic": "أُرِيدُ أَنْ أَسْبَحَ",
+          "transliteration": "ureedu an asbaHa"
+        },
+        {
+          "slot": "is-the-water-cold",
+          "arabic": "هَلِ الْمَاءُ بَارِد؟",
+          "transliteration": "hal al-maa2u baarid?",
+          "reply": {
+            "arabic": "لَا، دَافِئٌ وَمُنَاسِب",
+            "transliteration": "laa, daafi2un wa munaasib",
+            "english": "No, it is warm and just right."
+          }
+        },
+        {
+          "slot": "is-it-safe-to-swim-here",
+          "arabic": "هَلِ السِّبَاحَةُ آمِنَةٌ هُنَا؟",
+          "transliteration": "hal as-sibaaHatu aaminatun hunaa?",
+          "reply": {
+            "arabic": "نَعَمْ، لَكِنِ اِنْتَبِهْ لِلْأَمْوَاج",
+            "transliteration": "na3am, lakini intabih lil-amwaaj",
+            "english": "Yes, but watch out for the waves."
+          }
+        },
+        {
+          "slot": "where-is-the-lifeguard",
+          "arabic": "أَيْنَ مُنْقِذُ الْغَرْقَى؟",
+          "transliteration": "ayna munqidhu al-gharqaa?"
+        },
+        {
+          "slot": "the-waves-are-high-today",
+          "arabic": "الْأَمْوَاجُ عَالِيَةٌ الْيَوْم",
+          "transliteration": "al-amwaaju 3aaliyatun al-yawm"
+        },
+        {
+          "slot": "i-want-to-rent-a-beach-umbrella",
+          "arabic": "أُرِيدُ اسْتِئْجَارَ مِظَلَّةِ شَاطِئ",
+          "transliteration": "ureedu isti2jaara miDallati shaaTi2"
+        },
+        {
+          "slot": "do-you-have-sunscreen",
+          "arabic": "هَلْ مَعَكَ كِرِيمٌ وَاقٍ مِنَ الشَّمْس؟",
+          "transliteration": "hal ma3aka kreemun waaqin mina ash-shams?",
+          "reply": {
+            "arabic": "نَعَمْ، تَفَضَّلْ",
+            "transliteration": "na3am, tafaDDal",
+            "english": "Yes, here you are."
+          }
+        },
+        {
+          "slot": "the-weather-is-very-hot",
+          "arabic": "الْجَوُّ حَارٌّ جِدًّا",
+          "transliteration": "al-jawwu Haarrun jiddan"
+        },
+        {
+          "slot": "drink-plenty-of-water",
+          "arabic": "اِشْرَبِ الْمَاءَ كَثِيرًا",
+          "transliteration": "ishrabi al-maa2a katheeran"
+        },
+        {
+          "slot": "the-children-are-building-a-sandcastle",
+          "arabic": "الْأَطْفَالُ يَبْنُونَ قَلْعَةً مِنَ الرَّمْل",
+          "transliteration": "al-aTfaalu yabnoona qal3atan mina ar-raml"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Omar",
+          "arabic": "الْبَحْرُ جَمِيلٌ الْيَوْمَ يَا هُدَى!",
+          "transliteration": "al-baHru jameelun al-yawma yaa Hudaa!",
+          "english": "The sea is beautiful today, Huda!"
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "نَعَمْ، وَلَكِنَّ الْجَوَّ حَارٌّ جِدًّا. أَيْنَ نَجْلِسُ؟",
+          "transliteration": "na3am, wa lakinna al-jawwa Haarrun jiddan. ayna najlisu?",
+          "english": "Yes, but the weather is very hot. Where do we sit?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "لِنَسْتَأْجِرْ مِظَلَّةَ شَاطِئٍ قَرِيبَةً مِنَ الْمَاء.",
+          "transliteration": "li-nasta2jir miDallata shaaTi2in qareebatan mina al-maa2.",
+          "english": "Let us rent a beach umbrella near the water."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "هَلْ مَعَكَ كِرِيمٌ وَاقٍ مِنَ الشَّمْسِ لِلْأَطْفَال؟",
+          "transliteration": "hal ma3aka kreemun waaqin mina ash-shamsi lil-aTfaal?",
+          "english": "Do you have sunscreen for the children?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "نَعَمْ، مَعِي. هَيَّا يَا أَطْفَال، ضَعُوا الْكِرِيمَ أَوَّلًا.",
+          "transliteration": "na3am, ma3ee. hayyaa yaa aTfaal, Da3oo al-kreema awwalan.",
+          "english": "Yes, I have it. Come on, children, put the cream on first."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "أَيْنَ مُنْقِذُ الْغَرْقَى؟ أُرِيدُ أَنْ أَسْأَلَهُ.",
+          "transliteration": "ayna munqidhu al-gharqaa? ureedu an as2alahu.",
+          "english": "Where is the lifeguard? I want to ask him."
+        },
+        {
+          "speaker": "Lifeguard",
+          "arabic": "أَنَا هُنَا يَا سَيِّدَتِي. كَيْفَ أُسَاعِدُكِ؟",
+          "transliteration": "ana hunaa yaa sayyidatee. kayfa usaa3iduki?",
+          "english": "I am here, madam. How can I help you?"
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "هَلِ السِّبَاحَةُ آمِنَةٌ هُنَا الْيَوْمَ؟",
+          "transliteration": "hal as-sibaaHatu aaminatun hunaa al-yawm?",
+          "english": "Is swimming safe here today?"
+        },
+        {
+          "speaker": "Lifeguard",
+          "arabic": "نَعَمْ، لَكِنَّ الْأَمْوَاجَ عَالِيَةٌ قَلِيلًا، فَلَا تَبْتَعِدُوا عَنِ الشَّاطِئ.",
+          "transliteration": "na3am, lakinna al-amwaaja 3aaliyatun qaleelan, falaa tabta3idoo 3ani ash-shaaTi2.",
+          "english": "Yes, but the waves are a little high, so do not go far from the shore."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "حَاضِر، شُكْرًا لَكَ. هَلِ الْمَاءُ بَارِد؟",
+          "transliteration": "HaaDir, shukran laka. hal al-maa2u baarid?",
+          "english": "Understood, thank you. Is the water cold?"
+        },
+        {
+          "speaker": "Lifeguard",
+          "arabic": "لَا، دَافِئٌ وَمُنَاسِب. اِسْتَمْتِعُوا بِوَقْتِكُمْ!",
+          "transliteration": "laa, daafi2un wa munaasib. istamti3oo biwaqtikum!",
+          "english": "No, it is warm and just right. Enjoy your time!"
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "بَارَكَ اللهُ فِيكَ. هَيَّا لِنَبْنِيَ قَلْعَةً مِنَ الرَّمْلِ مَعَ الْأَطْفَال!",
+          "transliteration": "baaraka allaahu feeka. hayyaa li-nabniya qal3atan mina ar-raml ma3a al-aTfaal!",
+          "english": "God bless you. Come on, let us build a sandcastle with the children!"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هَلِ الْمَاءُ بَارِد؟",
+            "transliteration": "hal al-maa2u baarid?",
+            "english": "Is the water cold?"
+          },
+          "response": {
+            "arabic": "لَا، دَافِئٌ وَمُنَاسِب",
+            "transliteration": "laa, daafi2un wa munaasib",
+            "english": "No, it is warm and just right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلِ السِّبَاحَةُ آمِنَةٌ هُنَا؟",
+            "transliteration": "hal as-sibaaHatu aaminatun hunaa?",
+            "english": "Is it safe to swim here?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، لَكِنِ اِنْتَبِهْ لِلْأَمْوَاج",
+            "transliteration": "na3am, lakini intabih lil-amwaaj",
+            "english": "Yes, but watch out for the waves."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ مَعَكَ كِرِيمٌ وَاقٍ مِنَ الشَّمْس؟",
+            "transliteration": "hal ma3aka kreemun waaqin mina ash-shams?",
+            "english": "Do you have sunscreen?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، تَفَضَّلْ",
+            "transliteration": "na3am, tafaDDal",
+            "english": "Yes, here you are."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الْجَوُّ حَارٌّ جِدًّا",
+            "transliteration": "al-jawwu Haarrun jiddan",
+            "english": "The weather is very hot."
+          },
+          "response": {
+            "arabic": "اِشْرَبِ الْمَاءَ كَثِيرًا",
+            "transliteration": "ishrabi al-maa2a katheeran",
+            "english": "Drink plenty of water."
+          }
+        }
+      ],
+      "culture": "Families usually go to a family beach and wear modest swimwear, and many keep out of the midday sun and bring plenty of water. Swim near the lifeguard and obey the flag colours, because sea conditions in summer can change quickly.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I want to swim'",
+          "answer": "أُرِيدُ أَنْ أَسْبَحَ",
+          "accepted": [
+            "أُرِيدُ أَنْ أَسْبَحَ",
+            "أريد أن أسبح",
+            "ureedu an asbaHa"
+          ],
+          "too_formal": {
+            "item": "بدي سبح",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "an asbaHa: the verb after an is in the subjunctive."
+        },
+        {
+          "id": "unit-15.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Is it safe to swim here?'",
+          "answer": "هَلِ السِّبَاحَةُ آمِنَةٌ هُنَا؟",
+          "accepted": [
+            "هَلِ السِّبَاحَةُ آمِنَةٌ هُنَا؟",
+            "هل السباحة آمنة هنا؟",
+            "hal as-sibaaHatu aaminatun hunaa?"
+          ],
+          "too_formal": {
+            "item": "هل السباحة مأمونة هون",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "as-sibaaHa is swimming as a noun; aamina is safe."
+        },
+        {
+          "id": "unit-15.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which one means 'The waves are high today'?",
+          "options": [
+            "الْأَمْوَاجُ عَالِيَةٌ الْيَوْم",
+            "الْبَحْرُ جَمِيلٌ الْيَوْم",
+            "هَلِ الْمَاءُ بَارِد؟",
+            "اِشْرَبِ الْمَاءَ كَثِيرًا"
+          ],
+          "answer": "الْأَمْوَاجُ عَالِيَةٌ الْيَوْم",
+          "accepted": [
+            "الْأَمْوَاجُ عَالِيَةٌ الْيَوْم",
+            "الأمواج عالية اليوم",
+            "al-amwaaju 3aaliyatun al-yawm"
+          ],
+          "too_formal": {
+            "item": "الموج عالي اليوم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "amwaaj is waves; 3aaliya is high."
+        },
+        {
+          "id": "unit-15.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which one means 'Do you have sunscreen?'",
+          "options": [
+            "هَلْ مَعَكَ كِرِيمٌ وَاقٍ مِنَ الشَّمْس؟",
+            "أَيْنَ مُنْقِذُ الْغَرْقَى؟",
+            "أَيْنَ نَجْلِسُ عَلَى الرَّمْل؟",
+            "الْجَوُّ حَارٌّ جِدًّا"
+          ],
+          "answer": "هَلْ مَعَكَ كِرِيمٌ وَاقٍ مِنَ الشَّمْس؟",
+          "accepted": [
+            "هَلْ مَعَكَ كِرِيمٌ وَاقٍ مِنَ الشَّمْس؟",
+            "هل معك كريم واق من الشمس؟",
+            "hal ma3aka kreemun waaqin mina ash-shams?"
+          ],
+          "too_formal": {
+            "item": "معك كريم للشمس",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "waaqin mina ash-shams: protecting from the sun."
+        },
+        {
+          "id": "unit-15.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'Where is the lifeguard?'",
+          "answer": "أَيْنَ مُنْقِذُ الْغَرْقَى؟",
+          "accepted": [
+            "أَيْنَ مُنْقِذُ الْغَرْقَى؟",
+            "أين منقذ الغرقى؟",
+            "ayna munqidhu al-gharqaa?"
+          ],
+          "too_formal": {
+            "item": "وين المنقذ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "munqidh is a rescuer; al-gharqaa are the drowning."
+        },
+        {
+          "id": "unit-15.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'The weather is very hot'",
+          "answer": "الْجَوُّ حَارٌّ جِدًّا",
+          "accepted": [
+            "الْجَوُّ حَارٌّ جِدًّا",
+            "الجو حار جدا",
+            "al-jawwu Haarrun jiddan"
+          ],
+          "too_formal": {
+            "item": "الجو كتير حامي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "jiddan comes last and means very."
+        },
+        {
+          "id": "unit-15.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'أُرِيدُ اسْتِئْجَارَ _____ شَاطِئ' (I want to rent a beach umbrella)",
+          "answer": "مِظَلَّةِ",
+          "accepted": [
+            "مِظَلَّةِ",
+            "مظلة",
+            "miDallati"
+          ],
+          "too_formal": {
+            "item": "شمسية",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "miDalla is an umbrella; shaaTi2 is the beach."
+        },
+        {
+          "id": "unit-15.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'الْأَطْفَالُ يَبْنُونَ قَلْعَةً مِنَ _____' (The children are building a sandcastle from sand)",
+          "answer": "الرَّمْل",
+          "accepted": [
+            "الرَّمْل",
+            "الرمل",
+            "ar-raml"
+          ],
+          "too_formal": {
+            "item": "الرمل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "raml is sand; qal3a is a castle."
+        },
+        {
+          "id": "unit-15.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "You hear: 'هَلِ الْمَاءُ بَارِد؟'. Say it is warm and just right.",
+          "answer": "لَا، دَافِئٌ وَمُنَاسِب",
+          "accepted": [
+            "لَا، دَافِئٌ وَمُنَاسِب",
+            "لا، دافئ ومناسب",
+            "laa, daafi2un wa munaasib",
+            "دَافِئٌ وَمُنَاسِب",
+            "daafi2un wa munaasib"
+          ],
+          "too_formal": {
+            "item": "لا، دافي ومناسب",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "daafi2 is warm."
+        },
+        {
+          "id": "unit-15.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "You are the lifeguard and hear: 'هَلِ السِّبَاحَةُ آمِنَةٌ هُنَا؟'. Say yes, but watch out for the waves.",
+          "answer": "نَعَمْ، لَكِنِ اِنْتَبِهْ لِلْأَمْوَاج",
+          "accepted": [
+            "نَعَمْ، لَكِنِ اِنْتَبِهْ لِلْأَمْوَاج",
+            "نعم، لكن انتبه للأمواج",
+            "na3am, lakini intabih lil-amwaaj",
+            "نَعَمْ، لَكِنْ اِنْتَبِهْ لِلْأَمْوَاج",
+            "na3am, lakin intabih lil-amwaaj"
+          ],
+          "too_formal": {
+            "item": "إي، بس انتبه عالموج",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "intabih is a command: be careful."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-07",
+      "phrases": [
+        {
+          "slot": "i-want-a-souvenir-for-my-family",
+          "arabic": "أُرِيدُ هَدِيَّةً تِذْكَارِيَّةً لِأُسْرَتِي",
+          "transliteration": "ureedu hadiyyatan tidhkaariyyatan li-usratee",
+          "reply": {
+            "arabic": "عِنْدِي أَشْيَاءُ كَثِيرَةٌ، تَفَضَّلْ",
+            "transliteration": "3indee ashyaa2u katheeratun, tafaDDal",
+            "english": "I have many things, please look."
+          }
+        },
+        {
+          "slot": "do-you-have-good-dates",
+          "arabic": "هَلْ عِنْدَكَ تَمْرٌ جَيِّدٌ؟",
+          "transliteration": "hal 3indaka tamrun jayyid?",
+          "reply": {
+            "arabic": "نَعَمْ، تَفَضَّلْ وَذُقْ مِنْهُ",
+            "transliteration": "na3am, tafaDDal wa dhuq minhu",
+            "english": "Yes, please taste some."
+          }
+        },
+        {
+          "slot": "i-want-a-box-of-spices-as-a-gift",
+          "arabic": "أُرِيدُ عُلْبَةَ بَهَارَاتٍ لِلْهَدِيَّةِ",
+          "transliteration": "ureedu 3ulbata bahaaraatin lil-hadiyya"
+        },
+        {
+          "slot": "what-is-this-perfume",
+          "arabic": "مَا هَذَا الْعِطْرُ؟",
+          "transliteration": "maa haadhaa al-3iTr?",
+          "reply": {
+            "arabic": "هَذَا عُودٌ طَبِيعِيٌّ",
+            "transliteration": "haadhaa 3oodun Tabee3iyy",
+            "english": "This is natural oud."
+          }
+        },
+        {
+          "slot": "i-want-a-small-bottle-of-oud-oil",
+          "arabic": "أُرِيدُ زُجَاجَةً صَغِيرَةً مِنْ دُهْنِ الْعُودِ",
+          "transliteration": "ureedu zujaajatan Saghiratan min duhni al-3oud"
+        },
+        {
+          "slot": "is-this-handmade",
+          "arabic": "هَلْ هَذَا مَصْنُوعٌ يَدَوِيًّا؟",
+          "transliteration": "hal haadhaa maSnoo3un yadawiyyan?",
+          "reply": {
+            "arabic": "نَعَمْ، صُنِعَ بِالْيَدِ",
+            "transliteration": "na3am, Suni3a bil-yad",
+            "english": "Yes, it was made by hand."
+          }
+        },
+        {
+          "slot": "i-want-a-prayer-rug",
+          "arabic": "أُرِيدُ سَجَّادَةَ صَلَاةٍ",
+          "transliteration": "ureedu sajjaadata Salaah"
+        },
+        {
+          "slot": "this-wooden-box-is-beautiful",
+          "arabic": "هَذَا الصُّنْدُوقُ الْخَشَبِيُّ جَمِيلٌ",
+          "transliteration": "haadhaa aS-Sunduuqu al-khashabiyyu jameel"
+        },
+        {
+          "slot": "a-lower-price-if-i-buy-two",
+          "arabic": "هَلْ تُعْطِينِي سِعْرًا أَقَلَّ إِذَا اشْتَرَيْتُ اثْنَيْنِ؟",
+          "transliteration": "hal tu3Teenee si3ran aqalla idhaa ishtaraytu ithnayn?",
+          "reply": {
+            "arabic": "حَسَنًا، لَكَ خَصْمٌ صَغِيرٌ",
+            "transliteration": "Hasanan, laka khaSmun Sagheer",
+            "english": "All right, you get a small discount."
+          }
+        },
+        {
+          "slot": "can-you-wrap-it-as-a-gift",
+          "arabic": "هَلْ تَسْتَطِيعُ تَغْلِيفَهُ كَهَدِيَّةٍ؟",
+          "transliteration": "hal tastaTee3u taghleefahu ka-hadiyya?",
+          "reply": {
+            "arabic": "بِكُلِّ سُرُورٍ",
+            "transliteration": "bi-kulli suroor",
+            "english": "With pleasure."
+          }
+        },
+        {
+          "slot": "i-want-a-silk-scarf-for-my-sister",
+          "arabic": "أُرِيدُ وِشَاحًا حَرِيرِيًّا لِأُخْتِي",
+          "transliteration": "ureedu wishaaHan Hareeriyyan li-ukhtee"
+        },
+        {
+          "slot": "this-is-a-gift-for-my-mother",
+          "arabic": "هَذِهِ هَدِيَّةٌ لِأُمِّي، أَتَمَنَّى أَنْ تُعْجِبَهَا",
+          "transliteration": "haadhihi hadiyyatun li-ummee, atamannaa an tu3jibahaa",
+          "reply": {
+            "arabic": "إِنْ شَاءَ اللهُ تُعْجِبُهَا",
+            "transliteration": "in shaa2a allaahu tu3jibuhaa",
+            "english": "God willing she will like it."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Samer",
+          "arabic": "السَّلَامُ عَلَيْكُمْ، أُرِيدُ هَدِيَّةً تِذْكَارِيَّةً لِأُسْرَتِي.",
+          "transliteration": "as-salaamu 3alaykum, ureedu hadiyyatan tidhkaariyyatan li-usratee.",
+          "english": "Peace be upon you, I want a souvenir for my family."
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "وَعَلَيْكُمُ السَّلَامُ، أَهْلًا بِكَ. عِنْدِي أَشْيَاءُ كَثِيرَةٌ، تَفَضَّلْ.",
+          "transliteration": "wa 3alaykumu as-salaam, ahlan bika. 3indee ashyaa2u katheeratun, tafaDDal.",
+          "english": "And peace be upon you, welcome. I have many things, please look."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "هَلْ عِنْدَكَ تَمْرٌ جَيِّدٌ؟",
+          "transliteration": "hal 3indaka tamrun jayyid?",
+          "english": "Do you have good dates?"
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "نَعَمْ، تَفَضَّلْ وَذُقْ مِنْهُ.",
+          "transliteration": "na3am, tafaDDal wa dhuq minhu.",
+          "english": "Yes, please taste some."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "طَيِّبٌ جِدًّا، سَآخُذُ عُلْبَةً. وَمَا هَذَا الْعِطْرُ؟",
+          "transliteration": "Tayyibun jiddan, sa-aakhudhu 3ulbatan. wa maa haadhaa al-3iTr?",
+          "english": "Very tasty, I will take a box. And what is this perfume?"
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "هَذَا عُودٌ طَبِيعِيٌّ، وَرَائِحَتُهُ جَمِيلَةٌ.",
+          "transliteration": "haadhaa 3oodun Tabee3iyy, wa raa2iHatuhu jameela.",
+          "english": "This is natural oud, and its scent is lovely."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "هَلْ هَذَا الصُّنْدُوقُ مَصْنُوعٌ يَدَوِيًّا؟",
+          "transliteration": "hal haadhaa aS-Sunduuqu maSnoo3un yadawiyyan?",
+          "english": "Is this box handmade?"
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "نَعَمْ، صُنِعَ بِالْيَدِ.",
+          "transliteration": "na3am, Suni3a bil-yad.",
+          "english": "Yes, it was made by hand."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "أُرِيدُ سَجَّادَةَ صَلَاةٍ أَيْضًا. هَلْ تُعْطِينِي سِعْرًا أَقَلَّ إِذَا اشْتَرَيْتُ اثْنَيْنِ؟",
+          "transliteration": "ureedu sajjaadata Salaatin aydan. hal tu3Teenee si3ran aqalla idhaa ishtaraytu ithnayn?",
+          "english": "I want a prayer rug too. Will you give me a lower price if I buy two?"
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "حَسَنًا، لَكَ خَصْمٌ صَغِيرٌ.",
+          "transliteration": "Hasanan, laka khaSmun Sagheer.",
+          "english": "All right, you get a small discount."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "هَلْ تَسْتَطِيعُ تَغْلِيفَهُ كَهَدِيَّةٍ؟",
+          "transliteration": "hal tastaTee3u taghleefahu ka-hadiyya?",
+          "english": "Can you wrap it as a gift?"
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "بِكُلِّ سُرُورٍ، بَارَكَ اللهُ فِيكَ.",
+          "transliteration": "bi-kulli suroor, baaraka allaahu feek.",
+          "english": "With pleasure, God bless you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هَلْ هَذَا مَصْنُوعٌ يَدَوِيًّا؟",
+            "transliteration": "hal haadhaa maSnoo3un yadawiyyan?",
+            "english": "Is this handmade?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، صُنِعَ بِالْيَدِ",
+            "transliteration": "na3am, Suni3a bil-yad",
+            "english": "Yes, it was made by hand."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ تُعْطِينِي سِعْرًا أَقَلَّ إِذَا اشْتَرَيْتُ اثْنَيْنِ؟",
+            "transliteration": "hal tu3Teenee si3ran aqalla idhaa ishtaraytu ithnayn?",
+            "english": "Will you give me a lower price if I buy two?"
+          },
+          "response": {
+            "arabic": "حَسَنًا، لَكَ خَصْمٌ صَغِيرٌ",
+            "transliteration": "Hasanan, laka khaSmun Sagheer",
+            "english": "All right, you get a small discount."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَا هَذَا الْعِطْرُ؟",
+            "transliteration": "maa haadhaa al-3iTr?",
+            "english": "What is this perfume?"
+          },
+          "response": {
+            "arabic": "هَذَا عُودٌ طَبِيعِيٌّ",
+            "transliteration": "haadhaa 3oodun Tabee3iyy",
+            "english": "This is natural oud."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ عِنْدَكَ تَمْرٌ جَيِّدٌ؟",
+            "transliteration": "hal 3indaka tamrun jayyid?",
+            "english": "Do you have good dates?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، تَفَضَّلْ وَذُقْ مِنْهُ",
+            "transliteration": "na3am, tafaDDal wa dhuq minhu",
+            "english": "Yes, please taste some."
+          }
+        }
+      ],
+      "culture": "Dates, oud and a prayer rug are the classic gifts carried home from a trip, and a gift is chosen for each person by name. Bargaining is gentle: ask for a better price once, politely, and a seller often offers a taste or a small discount in return.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-07.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I want a prayer rug'",
+          "answer": "أُرِيدُ سَجَّادَةَ صَلَاةٍ",
+          "accepted": [
+            "أُرِيدُ سَجَّادَةَ صَلَاةٍ",
+            "أريد سجادة صلاة",
+            "ureedu sajjaadata Salaah"
+          ],
+          "too_formal": {
+            "item": "بدي سجادة صلاة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "sajjaada is a rug; Salaah is the prayer."
+        },
+        {
+          "id": "unit-15.lesson-07.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Is this handmade?'",
+          "answer": "هَلْ هَذَا مَصْنُوعٌ يَدَوِيًّا؟",
+          "accepted": [
+            "هَلْ هَذَا مَصْنُوعٌ يَدَوِيًّا؟",
+            "هل هذا مصنوع يدويا؟",
+            "hal haadhaa maSnoo3un yadawiyyan?"
+          ],
+          "too_formal": {
+            "item": "هاد شغل إيد؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "yadawiyyan means by hand."
+        },
+        {
+          "id": "unit-15.lesson-07.choose.01",
+          "type": "choose",
+          "prompt": "Which one do you ask to find out if something is made by hand?",
+          "options": [
+            "هَلْ هَذَا مَصْنُوعٌ يَدَوِيًّا؟",
+            "هَلْ عِنْدَكَ تَمْرٌ جَيِّدٌ؟",
+            "هَلْ تَسْتَطِيعُ تَغْلِيفَهُ كَهَدِيَّةٍ؟",
+            "أُرِيدُ سَجَّادَةَ صَلَاةٍ"
+          ],
+          "answer": "هَلْ هَذَا مَصْنُوعٌ يَدَوِيًّا؟",
+          "accepted": [
+            "هَلْ هَذَا مَصْنُوعٌ يَدَوِيًّا؟",
+            "هل هذا مصنوع يدويا؟",
+            "hal haadhaa maSnoo3un yadawiyyan?"
+          ],
+          "too_formal": {
+            "item": "هاد مصنوع بإيد؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "maSnoo3 means made."
+        },
+        {
+          "id": "unit-15.lesson-07.choose.02",
+          "type": "choose",
+          "prompt": "Which one do you say to ask for a lower price?",
+          "options": [
+            "هَلْ تُعْطِينِي سِعْرًا أَقَلَّ إِذَا اشْتَرَيْتُ اثْنَيْنِ؟",
+            "مَا هَذَا الْعِطْرُ؟",
+            "هَذَا الصُّنْدُوقُ الْخَشَبِيُّ جَمِيلٌ",
+            "أُرِيدُ هَدِيَّةً تِذْكَارِيَّةً لِأُسْرَتِي"
+          ],
+          "answer": "هَلْ تُعْطِينِي سِعْرًا أَقَلَّ إِذَا اشْتَرَيْتُ اثْنَيْنِ؟",
+          "accepted": [
+            "هَلْ تُعْطِينِي سِعْرًا أَقَلَّ إِذَا اشْتَرَيْتُ اثْنَيْنِ؟",
+            "هل تعطيني سعرا أقل إذا اشتريت اثنين؟",
+            "hal tu3Teenee si3ran aqalla idhaa ishtaraytu ithnayn?"
+          ],
+          "too_formal": {
+            "item": "بتنزلي السعر إذا اشتريت اثنين؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Ask once and politely; buying two gives you a reason."
+        },
+        {
+          "id": "unit-15.lesson-07.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'Can you wrap it as a gift?'",
+          "answer": "هَلْ تَسْتَطِيعُ تَغْلِيفَهُ كَهَدِيَّةٍ؟",
+          "accepted": [
+            "هَلْ تَسْتَطِيعُ تَغْلِيفَهُ كَهَدِيَّةٍ؟",
+            "هل تستطيع تغليفه كهدية؟",
+            "hal tastaTee3u taghleefahu ka-hadiyya?"
+          ],
+          "too_formal": {
+            "item": "بتغلفلي ياها هدية؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "ka- before hadiyya means as a gift."
+        },
+        {
+          "id": "unit-15.lesson-07.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'I want a small bottle of oud oil'",
+          "answer": "أُرِيدُ زُجَاجَةً صَغِيرَةً مِنْ دُهْنِ الْعُودِ",
+          "accepted": [
+            "أُرِيدُ زُجَاجَةً صَغِيرَةً مِنْ دُهْنِ الْعُودِ",
+            "أريد زجاجة صغيرة من دهن العود",
+            "ureedu zujaajatan Saghiratan min duhni al-3oud"
+          ],
+          "too_formal": {
+            "item": "بدي قنينة دهن عود صغيرة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The thing comes first, then its small size, then min and what it holds."
+        },
+        {
+          "id": "unit-15.lesson-07.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'هَلْ عِنْدَكَ _____ جَيِّدٌ؟' (Do you have good dates?)",
+          "answer": "تَمْرٌ",
+          "accepted": [
+            "تَمْرٌ",
+            "تمر",
+            "tamrun"
+          ],
+          "too_formal": {
+            "item": "تمر",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "tamr is dates; jayyid is good."
+        },
+        {
+          "id": "unit-15.lesson-07.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'أُرِيدُ وِشَاحًا _____ لِأُخْتِي' (I want a silk scarf for my sister)",
+          "answer": "حَرِيرِيًّا",
+          "accepted": [
+            "حَرِيرِيًّا",
+            "حريريا",
+            "Hareeriyyan"
+          ],
+          "too_formal": {
+            "item": "حرير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The describing word follows the scarf and takes -an too."
+        },
+        {
+          "id": "unit-15.lesson-07.reply.01",
+          "type": "reply",
+          "prompt": "The seller says: 'تَفَضَّلْ وَذُقْ مِنْ هَذَا التَّمْرِ'. Reply naturally.",
+          "answer": "طَيِّبٌ جِدًّا، سَآخُذُ عُلْبَةً",
+          "accepted": [
+            "طَيِّبٌ جِدًّا، سَآخُذُ عُلْبَةً",
+            "طيب جدا، سآخذ علبة",
+            "Tayyibun jiddan, sa-aakhudhu 3ulbatan",
+            "شُكْرًا",
+            "shukran"
+          ],
+          "too_formal": {
+            "item": "طيب كتير، رح آخد علبة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Praise the taste, then say what you will take."
+        },
+        {
+          "id": "unit-15.lesson-07.reply.02",
+          "type": "reply",
+          "prompt": "You ask: 'هَلْ هَذَا مَصْنُوعٌ يَدَوِيًّا؟'. The seller answers. What does he say?",
+          "answer": "نَعَمْ، صُنِعَ بِالْيَدِ",
+          "accepted": [
+            "نَعَمْ، صُنِعَ بِالْيَدِ",
+            "نعم، صنع باليد",
+            "na3am, Suni3a bil-yad",
+            "نَعَمْ",
+            "na3am"
+          ],
+          "too_formal": {
+            "item": "إي، شغل إيد",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Suni3a is the passive: it was made."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-08",
+      "phrases": [
+        {
+          "slot": "where-are-you-going-this-holiday",
+          "arabic": "إِلَى أَيْنَ سَتَذْهَبُ فِي الْعُطْلَةِ؟",
+          "transliteration": "ilaa ayna sa-tadhhabu fee al-3uTla?",
+          "reply": {
+            "arabic": "سَأُسَافِرُ إِلَى الْبَحْرِ",
+            "transliteration": "sa-usaafiru ilaa al-baHr",
+            "english": "I will travel to the sea."
+          }
+        },
+        {
+          "slot": "how-long-does-your-holiday-last",
+          "arabic": "كَمْ تَدُومُ عُطْلَتُكَ؟",
+          "transliteration": "kam tadoomu 3uTlatuka?",
+          "reply": {
+            "arabic": "تَدُومُ أُسْبُوعَيْنِ",
+            "transliteration": "tadoomu usboo3ayn",
+            "english": "It lasts two weeks."
+          }
+        },
+        {
+          "slot": "we-are-travelling-with-the-whole-family",
+          "arabic": "سَنُسَافِرُ مَعَ الْعَائِلَةِ كُلِّهَا",
+          "transliteration": "sa-nusaafiru ma3a al-3aa2ilati kullihaa"
+        },
+        {
+          "slot": "we-booked-a-house-near-the-beach",
+          "arabic": "حَجَزْنَا بَيْتًا قُرْبَ الشَّاطِئِ",
+          "transliteration": "Hajaznaa baytan qurba ash-shaaTi2"
+        },
+        {
+          "slot": "i-will-take-my-camera-with-me",
+          "arabic": "سَآخُذُ مَعِي الْكَامِيرَا",
+          "transliteration": "sa-aakhudhu ma3ee al-kaameeraa"
+        },
+        {
+          "slot": "what-a-beautiful-view",
+          "arabic": "مَا أَجْمَلَ هَذَا الْمَنْظَرَ!",
+          "transliteration": "maa ajmala haadhaa al-manZar!"
+        },
+        {
+          "slot": "can-you-take-a-photo-of-us",
+          "arabic": "هَلْ تَسْتَطِيعُ أَنْ تَلْتَقِطَ لَنَا صُورَةً؟",
+          "transliteration": "hal tastaTee3u an taltaqiTa lanaa Sooratan?",
+          "reply": {
+            "arabic": "طَبْعًا، قِفُوا هُنَاكَ",
+            "transliteration": "Tab3an, qifoo hunaak",
+            "english": "Of course, stand over there."
+          }
+        },
+        {
+          "slot": "the-sunset-is-beautiful-here",
+          "arabic": "الْغُرُوبُ جَمِيلٌ هُنَا",
+          "transliteration": "al-ghuroobu jameelun hunaa"
+        },
+        {
+          "slot": "send-me-the-photos-on-my-phone",
+          "arabic": "أَرْسِلْ لِي الصُّوَرَ عَلَى الْهَاتِفِ",
+          "transliteration": "arsil lee aS-Suwara 3alaa al-haatif",
+          "reply": {
+            "arabic": "حَاضِرٌ، سَأُرْسِلُهَا الْآنَ",
+            "transliteration": "HaaDir, sa-ursiluhaa al-aan",
+            "english": "Right away, I will send them now."
+          }
+        },
+        {
+          "slot": "how-was-your-trip",
+          "arabic": "كَيْفَ كَانَتْ رِحْلَتُكَ؟",
+          "transliteration": "kayfa kaanat riHlatuka?",
+          "reply": {
+            "arabic": "كَانَتْ رَائِعَةً وَاسْتَمْتَعْنَا كَثِيرًا",
+            "transliteration": "kaanat raa2i3atan wa istamta3naa katheeran",
+            "english": "It was wonderful and we enjoyed it a lot."
+          }
+        },
+        {
+          "slot": "the-sea-is-very-calm",
+          "arabic": "الْبَحْرُ هَادِئٌ جِدًّا",
+          "transliteration": "al-baHru haadi2un jiddan"
+        },
+        {
+          "slot": "we-came-back-safe-thank-god",
+          "arabic": "عُدْنَا سَالِمِينَ، الْحَمْدُ لِلَّهِ",
+          "transliteration": "3udnaa saalimeen, al-Hamdu lillaah",
+          "reply": {
+            "arabic": "الْحَمْدُ لِلَّهِ عَلَى السَّلَامَةِ",
+            "transliteration": "al-Hamdu lillaahi 3alaa as-salaama",
+            "english": "Welcome back, thank God for your safety."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Omar",
+          "arabic": "إِلَى أَيْنَ سَتَذْهَبُونَ فِي الْعُطْلَةِ يَا رَنَا؟",
+          "transliteration": "ilaa ayna sa-tadhhaboona fee al-3uTlati yaa rana?",
+          "english": "Where are you going this holiday, Rana?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "سَنُسَافِرُ إِلَى الْبَحْرِ مَعَ الْعَائِلَةِ كُلِّهَا.",
+          "transliteration": "sa-nusaafiru ilaa al-baHri ma3a al-3aa2ilati kullihaa.",
+          "english": "We will travel to the sea with the whole family."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "كَمْ تَدُومُ عُطْلَتُكُمْ؟",
+          "transliteration": "kam tadoomu 3uTlatukum?",
+          "english": "How long does your holiday last?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "تَدُومُ أُسْبُوعَيْنِ. حَجَزْنَا بَيْتًا قُرْبَ الشَّاطِئِ.",
+          "transliteration": "tadoomu usboo3ayn. Hajaznaa baytan qurba ash-shaaTi2.",
+          "english": "Two weeks. We booked a house near the beach."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "رَائِعٌ! هَلْ سَتَأْخُذِينَ مَعَكِ الْكَامِيرَا؟",
+          "transliteration": "raa2i3un! hal sa-ta2khudheena ma3aki al-kaameeraa?",
+          "english": "Wonderful! Will you take your camera with you?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "طَبْعًا، وَسَأُرْسِلُ لَكَ الصُّوَرَ.",
+          "transliteration": "Tab3an, wa sa-ursilu laka aS-Suwar.",
+          "english": "Of course, and I will send you the photos."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "الْحَمْدُ لِلَّهِ عَلَى السَّلَامَةِ يَا رَنَا! كَيْفَ كَانَتْ رِحْلَتُكُمْ؟",
+          "transliteration": "al-Hamdu lillaahi 3alaa as-salaama yaa rana! kayfa kaanat riHlatukum?",
+          "english": "Welcome back, Rana! How was your trip? (after the holiday)"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "كَانَتْ رَائِعَةً وَاسْتَمْتَعْنَا كَثِيرًا، وَعُدْنَا سَالِمِينَ.",
+          "transliteration": "kaanat raa2i3atan wa istamta3naa katheeran, wa 3udnaa saalimeen.",
+          "english": "It was wonderful, we enjoyed it a lot, and we came back safe."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "هَلْ عِنْدَكِ صُوَرٌ؟",
+          "transliteration": "hal 3indaki Suwar?",
+          "english": "Do you have photos?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "نَعَمْ، انْظُرْ، مَا أَجْمَلَ هَذَا الْمَنْظَرَ!",
+          "transliteration": "na3am, unZur, maa ajmala haadhaa al-manZar!",
+          "english": "Yes, look, what a beautiful view!"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "فِعْلًا جَمِيلٌ. أَرْسِلِي لِي الصُّوَرَ عَلَى الْهَاتِفِ.",
+          "transliteration": "fi3lan jameel. arsilee lee aS-Suwara 3alaa al-haatif.",
+          "english": "Truly beautiful. Send me the photos on my phone."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "حَاضِرٌ، سَأُرْسِلُهَا الْآنَ.",
+          "transliteration": "HaaDir, sa-ursiluhaa al-aan.",
+          "english": "Right away, I will send them now."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "إِلَى أَيْنَ سَتَذْهَبُ فِي الْعُطْلَةِ؟",
+            "transliteration": "ilaa ayna sa-tadhhabu fee al-3uTla?",
+            "english": "Where are you going this holiday?"
+          },
+          "response": {
+            "arabic": "سَأُسَافِرُ إِلَى الْبَحْرِ",
+            "transliteration": "sa-usaafiru ilaa al-baHr",
+            "english": "I will travel to the sea."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَيْفَ كَانَتْ رِحْلَتُكَ؟",
+            "transliteration": "kayfa kaanat riHlatuka?",
+            "english": "How was your trip?"
+          },
+          "response": {
+            "arabic": "كَانَتْ رَائِعَةً وَاسْتَمْتَعْنَا كَثِيرًا",
+            "transliteration": "kaanat raa2i3atan wa istamta3naa katheeran",
+            "english": "It was wonderful and we enjoyed it a lot."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ تَسْتَطِيعُ أَنْ تَلْتَقِطَ لَنَا صُورَةً؟",
+            "transliteration": "hal tastaTee3u an taltaqiTa lanaa Sooratan?",
+            "english": "Can you take a photo of us?"
+          },
+          "response": {
+            "arabic": "طَبْعًا، قِفُوا هُنَاكَ",
+            "transliteration": "Tab3an, qifoo hunaak",
+            "english": "Of course, stand over there."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عُدْنَا سَالِمِينَ، الْحَمْدُ لِلَّهِ",
+            "transliteration": "3udnaa saalimeen, al-Hamdu lillaah",
+            "english": "We came back safe, thank God."
+          },
+          "response": {
+            "arabic": "الْحَمْدُ لِلَّهِ عَلَى السَّلَامَةِ",
+            "transliteration": "al-Hamdu lillaahi 3alaa as-salaama",
+            "english": "Welcome back, thank God for your safety."
+          }
+        }
+      ],
+      "culture": "Holiday plans are shared openly with friends and family, and a person back from a trip is greeted with al-Hamdu lillaahi 3alaa as-salaama, thanks to God for a safe return. Asking a passer-by to take a photo of the group is polite and common; photographing strangers without asking is not.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-08.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Can you take a photo of us?'",
+          "answer": "هَلْ تَسْتَطِيعُ أَنْ تَلْتَقِطَ لَنَا صُورَةً؟",
+          "accepted": [
+            "هَلْ تَسْتَطِيعُ أَنْ تَلْتَقِطَ لَنَا صُورَةً؟",
+            "هل تستطيع أن تلتقط لنا صورة؟",
+            "hal tastaTee3u an taltaqiTa lanaa Sooratan?"
+          ],
+          "too_formal": {
+            "item": "ممكن تصورنا؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "taltaqiTa means take, lanaa means for us."
+        },
+        {
+          "id": "unit-15.lesson-08.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'What a beautiful view!'",
+          "answer": "مَا أَجْمَلَ هَذَا الْمَنْظَرَ!",
+          "accepted": [
+            "مَا أَجْمَلَ هَذَا الْمَنْظَرَ!",
+            "ما أجمل هذا المنظر!",
+            "maa ajmala haadhaa al-manZar!"
+          ],
+          "too_formal": {
+            "item": "شو أحلى هالمنظر!",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "maa ajmala plus a noun means how beautiful is..."
+        },
+        {
+          "id": "unit-15.lesson-08.choose.01",
+          "type": "choose",
+          "prompt": "Which one do you say to welcome someone back from a trip?",
+          "options": [
+            "الْحَمْدُ لِلَّهِ عَلَى السَّلَامَةِ",
+            "إِلَى أَيْنَ سَتَذْهَبُ فِي الْعُطْلَةِ؟",
+            "الْبَحْرُ هَادِئٌ جِدًّا",
+            "سَآخُذُ مَعِي الْكَامِيرَا"
+          ],
+          "answer": "الْحَمْدُ لِلَّهِ عَلَى السَّلَامَةِ",
+          "accepted": [
+            "الْحَمْدُ لِلَّهِ عَلَى السَّلَامَةِ",
+            "الحمد لله على السلامة",
+            "al-Hamdu lillaahi 3alaa as-salaama"
+          ],
+          "too_formal": {
+            "item": "سلامتكم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "It thanks God for the traveller's safety."
+        },
+        {
+          "id": "unit-15.lesson-08.choose.02",
+          "type": "choose",
+          "prompt": "Which one asks 'Where are you going this holiday?'",
+          "options": [
+            "إِلَى أَيْنَ سَتَذْهَبُ فِي الْعُطْلَةِ؟",
+            "كَمْ تَدُومُ عُطْلَتُكَ؟",
+            "كَيْفَ كَانَتْ رِحْلَتُكَ؟",
+            "عُدْنَا سَالِمِينَ، الْحَمْدُ لِلَّهِ"
+          ],
+          "answer": "إِلَى أَيْنَ سَتَذْهَبُ فِي الْعُطْلَةِ؟",
+          "accepted": [
+            "إِلَى أَيْنَ سَتَذْهَبُ فِي الْعُطْلَةِ؟",
+            "إلى أين ستذهب في العطلة؟",
+            "ilaa ayna sa-tadhhabu fee al-3uTla?"
+          ],
+          "too_formal": {
+            "item": "وين رايح بالعطلة؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "ilaa ayna is to where."
+        },
+        {
+          "id": "unit-15.lesson-08.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'We booked a house near the beach'",
+          "answer": "حَجَزْنَا بَيْتًا قُرْبَ الشَّاطِئِ",
+          "accepted": [
+            "حَجَزْنَا بَيْتًا قُرْبَ الشَّاطِئِ",
+            "حجزنا بيتا قرب الشاطئ",
+            "Hajaznaa baytan qurba ash-shaaTi2"
+          ],
+          "too_formal": {
+            "item": "حجزنا بيت جنب البحر",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The verb comes first; qurba is near."
+        },
+        {
+          "id": "unit-15.lesson-08.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'How was your trip?'",
+          "answer": "كَيْفَ كَانَتْ رِحْلَتُكَ؟",
+          "accepted": [
+            "كَيْفَ كَانَتْ رِحْلَتُكَ؟",
+            "كيف كانت رحلتك؟",
+            "kayfa kaanat riHlatuka?"
+          ],
+          "too_formal": {
+            "item": "كيف كانت الرحلة؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "kaanat is feminine because riHla is feminine."
+        },
+        {
+          "id": "unit-15.lesson-08.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'إِلَى أَيْنَ سَتَذْهَبُ فِي _____؟' (Where are you going this holiday?)",
+          "answer": "الْعُطْلَةِ",
+          "accepted": [
+            "الْعُطْلَةِ",
+            "العطلة",
+            "al-3uTla"
+          ],
+          "too_formal": {
+            "item": "العطلة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "fee takes the -i ending: al-3uTlati."
+        },
+        {
+          "id": "unit-15.lesson-08.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: 'أَرْسِلْ لِي _____ عَلَى الْهَاتِفِ' (Send me the photos on my phone)",
+          "answer": "الصُّوَرَ",
+          "accepted": [
+            "الصُّوَرَ",
+            "الصور",
+            "aS-Suwara"
+          ],
+          "too_formal": {
+            "item": "الصور",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Suwar is the plural of Soora, photo."
+        },
+        {
+          "id": "unit-15.lesson-08.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: 'كَيْفَ كَانَتْ رِحْلَتُكَ؟'. Answer that it was wonderful.",
+          "answer": "كَانَتْ رَائِعَةً وَاسْتَمْتَعْنَا كَثِيرًا",
+          "accepted": [
+            "كَانَتْ رَائِعَةً وَاسْتَمْتَعْنَا كَثِيرًا",
+            "كانت رائعة واستمتعنا كثيرا",
+            "kaanat raa2i3atan wa istamta3naa katheeran",
+            "كَانَتْ رَائِعَةً",
+            "kaanat raa2i3a"
+          ],
+          "too_formal": {
+            "item": "كانت كتير حلوة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say it was wonderful and that you enjoyed it."
+        },
+        {
+          "id": "unit-15.lesson-08.reply.02",
+          "type": "reply",
+          "prompt": "A friend says: 'عُدْنَا سَالِمِينَ، الْحَمْدُ لِلَّهِ'. Reply naturally.",
+          "answer": "الْحَمْدُ لِلَّهِ عَلَى السَّلَامَةِ",
+          "accepted": [
+            "الْحَمْدُ لِلَّهِ عَلَى السَّلَامَةِ",
+            "الحمد لله على السلامة",
+            "al-Hamdu lillaahi 3alaa as-salaama",
+            "حَمْدًا لِلَّهِ عَلَى سَلَامَتِكُمْ",
+            "Hamdan lillaahi 3alaa salaamatikum"
+          ],
+          "too_formal": {
+            "item": "الحمد لله عالسلامة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The set reply to someone back from a trip."
+        }
+      ]
     }
   ],
   "challenge": {
