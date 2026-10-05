@@ -14,7 +14,12 @@
  * swallowing the news: a whole session saved to nowhere has to be sayable on
  * screen, or the review list is mysteriously empty a week later.
  */
-const BASE = '/api/progress'
+import { api } from '../api'
+
+const BASE = '/progress'
+
+/** Resolves whether the server took it; never rejects (offline or refused is false). */
+const landed = (request) => request.then(() => true, () => false)
 
 /**
  * File one answer. Resolves `{ saved }`; never rejects.
@@ -23,16 +28,7 @@ const BASE = '/api/progress'
  * timings are honest enough to average is the store's rule, not the page's.
  */
 export async function recordAttempt({ module, item, correct, ms, context }) {
-  try {
-    const response = await fetch(`${BASE}/attempts`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ module, item, correct, ms, context }),
-    })
-    return { saved: response.ok }
-  } catch {
-    return { saved: false } // offline, or no backend: the round carries on
-  }
+  return { saved: await landed(api.post(`${BASE}/attempts`, { module, item, correct, ms, context })) }
 }
 
 /**
@@ -41,38 +37,18 @@ export async function recordAttempt({ module, item, correct, ms, context }) {
  * backend was there to hear.
  */
 export async function forgetProgress() {
-  try {
-    const response = await fetch(BASE, { method: 'DELETE' })
-    return { deleted: response.ok }
-  } catch {
-    return { deleted: false }
-  }
+  return { deleted: await landed(api.delete(BASE)) }
 }
 
 /** Every item answered in this module, with its record. Throws, for react-query. */
-export async function fetchSummary(module) {
-  const response = await fetch(`${BASE}/summary?module=${encodeURIComponent(module)}`)
-  if (!response.ok) throw new Error(`Could not read progress (${response.status})`)
-  return (await response.json()).items
-}
+export const fetchSummary = (module) =>
+  api.get(`${BASE}/summary`, { params: { module } }).then((r) => r.data.items)
 
 /** Just the items due for review now, longest-waiting first. Throws, for react-query. */
-export async function fetchReviewItems(module) {
-  const response = await fetch(`${BASE}/review?module=${encodeURIComponent(module)}`)
-  if (!response.ok) throw new Error(`Could not read the review list (${response.status})`)
-  return (await response.json()).items
-}
+export const fetchReviewItems = (module) =>
+  api.get(`${BASE}/review`, { params: { module } }).then((r) => r.data.items)
 
 /** Report something that looks wrong. Resolves `{ saved }`; never rejects. */
 export async function leaveFeedback({ module, item, message }) {
-  try {
-    const response = await fetch(`${BASE}/feedback`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ module, item, message }),
-    })
-    return { saved: response.ok }
-  } catch {
-    return { saved: false }
-  }
+  return { saved: await landed(api.post(`${BASE}/feedback`, { module, item, message })) }
 }
