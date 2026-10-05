@@ -155,7 +155,7 @@ def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, 
     """(word, card role, leaf role) for each tree leaf whose role differs from its card.
 
     Compared after stripping harakat. Not counted: a leaf or card with no role (a
-    gap); a leaf in the picture's own wording (UNIT_WORDING).
+    gap); a leaf in the picture's own wording (UNIT_WORDING); a leaf naming its card's role finer.
     """
     if not tree or len(tree.get("words") or []) != len(cards):
         return []
@@ -164,7 +164,8 @@ def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, 
         card, pic = plain_role(cards[leaf["word"]].get("role")), plain_role(leaf.get("role"))
         if not card or not pic or pic in UNIT_WORDING:
             continue
-        if card != pic:
+        # the picture may name a governor finer than its card (حرف نصب for حرف), never otherwise
+        if card != pic and not pic.startswith(card + " "):
             out.append((leaf["word"], card, pic))
     return out
 

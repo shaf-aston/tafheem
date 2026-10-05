@@ -11,7 +11,7 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 """
 from __future__ import annotations
 
-from backend.services.nahw_book import clause_of, named_roles, role_units, teacher_rules
+from backend.services.nahw_book import clause_of, family_cards, frames, named_roles, role_units, teacher_rules
 from backend.services.syntax.facts import Sentence, completes_kaada
 from backend.services.syntax.naming import base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import strip_diacritics
@@ -25,12 +25,17 @@ NOMINAL = term_ar("jumlah_ismiyyah")
 QUESTION = term_ar("jumlah_istifhamiyyah")
 CONDITION = term_ar("jumlah_shartiyyah")
 NAMED = named_roles()
+FRAMES = frames()
+CARDS = dict(family_cards())
+JAR_MAJROOR = term_ar("jar_majroor")
+SHADDA = "ّ"
 
 
-def _leaf(index: int, role: str | None, why: dict | None = None) -> dict:
+def _leaf(index: int, role: str | None, why: dict | None = None, name: str | None = None) -> dict:
     """One word on its own. No role means the rules could not name it; `why` is the
-    teacher's reason when a rule took the name away, shown on hover."""
-    leaf = {"word": index, "role": role, "tone": tone(role), "gap": role is None}
+    teacher's reason when a rule took the name away, shown on hover. `name` is the
+    finer name the picture prints (حرف نصب for a حرف), coloured as its role."""
+    leaf = {"word": index, "role": name or role, "tone": tone(role), "gap": role is None}
     if role is None and why:
         leaf["detail"] = f"{why['ar']} · {why['en']}"
     return leaf
@@ -54,6 +59,16 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
         if unit["child"] in child_roles and "head_as" in unit:
             return unit["head_as"]
     return role
+
+
+def _finer(token: dict, role: str | None, family: str | None) -> str | None:
+    """A governor's name in the picture: كان is a فعل ناقص, أنْ a حرف نصب, as its card says."""
+    if family in FRAMES["leaf_by_family"]:
+        return FRAMES["leaf_by_family"][family]
+    card = CARDS.get(family)
+    named = card and card.get("named_as", {}).get(strip_diacritics(token["form"]), card["named"])
+    # only a finer name for the same role (حرف نصب for حرف), so card and picture still agree
+    return named if role in (NAMED.harf, NAMED.harf_jarr) and named and named.startswith(role) else role
 
 
 def _sentence_label(roles: dict[int, str | None], tokens: list[dict]) -> str:
@@ -98,14 +113,36 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # الولدُ يكتبُ: the clause hung on a مبتدأ (or اسم كان) is its khabar, standing in a case;
     # كان الولدُ يكتبُ: so is the one beside it, the khabar (PRD) under their governor
     said = teacher_rules()["case_said"]
+    family_of = {token["id"]: found.get("family") for token, found in zip(bases, named)}
+    name_of = {token["id"]: _finer(token, role_of[token["id"]], family_of[token["id"]]) for token in bases}
     place_of: dict[int, str] = {}
+    label_of: dict[int, str] = {}
+    framed: set[int] = set()  # units whose job a governor gave, drawn even under a particle
+
+    def in_place(case: str) -> str:
+        return said["in_place"].format(place=said["place"][case])
+
     for token in bases:
         owners = [t for t in bases if t["id"] == token["head"] or (
             token["rel"] == "PRD" and t["head"] == token["head"] and t["id"] != token["id"])]
-        clause = next((found for t in owners if (found := clause_of(role_of.get(t["id"])))), None)
+        # كنتَ تحبُّ: the clause on كان's PRD is its khabar, with no اسم كان word to hang it on
+        clause = next((found for t in owners if (found := clause_of(role_of.get(t["id"])) or (
+            (by := FRAMES["clause_by_family"].get(family_of[t["id"]])) and token["rel"] == by["rel"] and by))), None)
         if clause and token["id"] in opens:
             job_of[token["id"]] = clause["job"]
-            place_of[token["id"]] = said["in_place"].format(place=said["place"][clause["case"]])
+            place_of[token["id"]] = in_place(clause["case"])
+    # تحب أن تطوّق: أنْ and the verb hung on it are one masdar, doing the job أنْ hangs by
+    # (the parser's أنّ takes a noun, so a verb on it is the nasb أنْ whatever the card guessed)
+    masdar = FRAMES["masdar"]
+    for token in bases:
+        if (strip_diacritics(token["form"]) in masdar["words"] and SHADDA not in token["form"]
+                and token["rel"] in masdar["job_by_rel"]
+                and any(t["head"] == token["id"] and role_of[t["id"]] == NAMED.fil for t in bases)):
+            name_of[token["id"]] = CARDS[masdar["family"]]["named"]
+            label_of[token["id"]] = masdar["label"]
+            job_of[token["id"]] = masdar["job_by_rel"][token["rel"]]
+            place_of[token["id"]] = in_place(masdar["case_by_rel"][token["rel"]])
+            framed.add(token["id"])
     clauses = {token["id"] for token in bases if job_of[token["id"]] == NAMED.silah} | set(place_of)
     children_of: dict[int, list[dict]] = {token["id"]: [] for token in bases}
     by_id = {t["id"]: t for t in tokens}
@@ -135,6 +172,22 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     if len(roots) == 1 and role_of[top["id"]] == NAMED.khabar and 0 < len(subjects) < len(children_of[top["id"]]):
         children_of[top["id"]] = [kid for kid in children_of[top["id"]] if kid not in subjects]
         roots = subjects + roots
+    # إن كنتَ ... فاقبلها: the particle, the condition's clause and the answer's side by side
+    # under the sentence, as the books draw it, rather than the condition inside the answer
+    condition = FRAMES["condition"]
+    particle = bases[0] if _sentence_label(role_of, bases) == CONDITION else None
+    verb = next((kid for kid in children_of[particle["id"]] if role_of[kid["id"]] == NAMED.fil), None) if particle else None
+    answer = next((t for t in roots if t["id"] == parent(particle) and role_of[t["id"]] == NAMED.fil), None) if verb else None
+    if answer:
+        name_of[particle["id"]] = condition["particle"]
+        for unit, job in ((verb, condition["verb"]), (answer, condition["answer"])):
+            job_of[unit["id"]] = job
+            place_of[unit["id"]] = in_place(condition["case"])
+            clauses.add(unit["id"])
+            framed.add(unit["id"])
+        children_of[answer["id"]].remove(particle)
+        children_of[particle["id"]].remove(verb)
+        roots = [particle, verb] + roots
     root = roots[0]
 
     seen: set[int] = set()
@@ -147,9 +200,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         kids = [kid for kid in children_of[token["id"]] if kid["id"] not in seen]
         index = at[token["id"]]
         if not kids:
-            leaf = _leaf(index, role_of[token["id"]], why_of[token["id"]])
+            leaf = _leaf(index, role_of[token["id"]], why_of[token["id"]], name_of[token["id"]])
             # a صلة of one verb is still a clause, its doer the pronoun hidden in it
-            return {"role": job_of[token["id"]], "label": VERBAL, "tone": tone(job_of[token["id"]]),
+            return {"role": job_of[token["id"]], "label": VERBAL, "tone": tone(job_of[token["id"]]) or leaf["tone"],
                     "detail": place_of.get(token["id"]), "children": [leaf]} if token["id"] in clauses else leaf
         kid_roles = [job_of[kid["id"]] for kid in kids if job_of[kid["id"]]]
         seen.update(kid["id"] for kid in kids)
@@ -157,20 +210,25 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         role = role_of[token["id"]]
         why = why_of[token["id"]]
         # a word the teacher dashed stays a dash at the head of its unit: مضاف would name it
-        inside.append((index, _leaf(index, role if why else _unit_role(role, kid_roles), why)))
-        label = _label(token, kid_roles) or (_sentence_label(role_of, bases) if token is root
+        inside.append((index, _leaf(index, role, why, None if why else _unit_role(name_of[token["id"]], kid_roles))))
+        label = label_of.get(token["id"]) or _label(token, kid_roles) or (_sentence_label(role_of, bases) if token is root
                                              else NOMINAL if token["id"] in clauses & nominal
-                                             else VERBAL if token["id"] in clauses else "")
+                                             else VERBAL if token["id"] in clauses or role == NAMED.fil else "")
         # A particle's name is what it is, not a job for the unit it heads: the
         # parser gives no job for a jar-majroor or a clause under إِذَا, so none
         # is written rather than calling the whole unit a حرف. The clause a كاد-type
         # verb is finished by is that verb's khabar as a whole.
         job = NAMED.khabar_kaada if completes_kaada(token, sentence) else (
-            None if token is root or token["pos"] == "PRT" else job_of[token["id"]])
+            job_of[token["id"]] if token["id"] in framed
+            else None if token is root or token["pos"] == "PRT" or job_of[token["id"]] == NAMED.fil
+            else job_of[token["id"]])
+        # مِن نارٍ: a jar-majroor is said with the word it hangs on
+        attached = FRAMES["attached"].format(word=words[at[up]]) if label == JAR_MAJROOR and (
+            up := parent(token)) in at else None
         return {"role": job,
                 "label": label,
-                "tone": tone(job or role),
-                "detail": place_of.get(token["id"]),
+                "tone": tone(job) or tone(role),
+                "detail": place_of.get(token["id"]) or attached,
                 # right to left, so the picture reads in the order they were typed
                 "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
 

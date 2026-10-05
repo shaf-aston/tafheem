@@ -109,6 +109,11 @@ def role_units() -> list[dict]:
     return _roles()["units"]
 
 
+def frames() -> dict:
+    """The jobs a governor gives the units under it in the bracket picture (roles.json)."""
+    return _roles()["frames"]
+
+
 def teacher_rules() -> dict:
     """The teacher's checks and their reasons (services/syntax/teacher.py)."""
     return book_file("teacher.json")
