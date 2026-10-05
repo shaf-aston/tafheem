@@ -91,6 +91,11 @@
       { "id": "good", "tone": "warn", "words": ["hasan"] }
     ]
   },
+  "narrator": {
+    "site": "https://sunnah.com/narrator/",
+    "_tones": "Highest rank each tone covers, as sunnah.com ranks a narrator (1 is the most trusted); lower ranks are danger.",
+    "tones": { "success": 3, "warn": 5 }
+  },
   "topics": [
     { "id": "funeral", "words": ["funeral", "jana"] },
     { "id": "hajj", "words": ["pilgrim", "umra", "manasik", "of hajj", "on hajj", "hajj rituals"] },
