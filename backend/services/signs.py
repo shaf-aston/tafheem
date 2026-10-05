@@ -9,7 +9,7 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SHADDA, SUKUN, TANWEEN, drops_weak, five_verb_nun, has_tanween, letters
+from backend.services.harakat import SHADDA, SUKUN, TANWEEN, drops_weak, five_verb_nun, has_tanween, letters, typed_passive
 from backend.services.nahw_book import book_words, family_cards, reason, six_noun_case, teacher_rules
 
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
@@ -126,7 +126,10 @@ def _verb(card: dict) -> dict:
     shown = _built(built_on) if built_on else _present_sign(card, case)
     state = shown if built_on else said["word"][case]
     family = _family_said(card)
-    told = said["verb_by_family"].format(tense=tense, state=state, **family) if family else f"{tense} {state}"
+    # تُطَوَّقَ، كُتِبَ: the vowels show who is not named, so the card says so
+    voiced = f"{tense} {said['passive']}" if aspect != "c" and (
+        card["camel"].get("vox") == "p" or typed_passive(card["word"], aspect == "i")) else tense
+    told = said["verb_by_family"].format(tense=voiced, state=state, **family) if family else f"{voiced} {state}"
     return {"case": case, "sign": shown, "reason": f"{told}. {reason(tense)}"}
 
 

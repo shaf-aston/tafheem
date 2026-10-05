@@ -38,6 +38,7 @@
   "la_jins_on": {"vowel": "الفتح", "dual": "الياء", "sound_plural": "الياء", "on_alef": "الفتح المقدر على الألف"},
   "condition": {"verb": "وهو فعل الشرط", "answer": "وهو جواب الشرط", "fa": "والفاء رابطة لجواب الشرط", "place": "في محل جزم", "jazm": "مجزوم"},
   "tense": {"p": "فعل ماضٍ", "c": "فعل أمر", "i": "فعل مضارع"},
+  "passive": "مبني للمجهول",
   "_by_family": "A particle or verb named by the family it governs as (closed_words.json card, services/signs.py): its name and what it does, said in place of the plain حرف or after the tense.",
   "harf_by_family": "{named} مبني لا محل له من الإعراب، {does}",
   "verb_by_family": "{tense} {named} {state}، {does}"

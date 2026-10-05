@@ -24,6 +24,10 @@ def test_typed_case_and_passive():
     assert typed_case("مُنْتَصِرِينَ") is None  # the plural ending hides it
     assert typed_passive("كُتِبَتِ", present=False)
     assert not typed_passive("كَتَبَ", present=False)
+    assert not typed_passive("كُنْتَ", present=False)  # a hollow verb's damma before its تاء
+    assert not typed_passive("كُنْتِ", present=False)
+    assert not typed_passive("كُنَّا", present=False)
+    assert typed_passive("حُفَّتِ", present=False)  # a doubled verb's shadda stands for the kasra
     assert typed_passive("يُكَافَأُ", present=True)
 
 
