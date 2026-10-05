@@ -50,7 +50,7 @@ export default function HadithSearchResults({ accent, onOpenBook, children }) {
         placeholder="patience, الصبر…"
         value={query}
         onChange={setQuery}
-        onSubmit={() => submit()}
+        onSubmit={submit}
         onClear={clear}
         busy={mutation.isPending}
         accent={accent}

@@ -23,7 +23,6 @@ from functools import lru_cache
 
 from backend.config import data_path
 from backend.services import spelling
-from backend.services.arabic_text import bare_letters
 from backend.services.fts import TRIGRAM_MIN, quoted
 from backend.services.quran_search.hit import Hit
 from backend.services.readonly_db import ReadOnlyDb
@@ -42,10 +41,6 @@ _db = ReadOnlyDb(lambda: data_path("quran_search_index_path"))
 # A dictated ayah arrives with commas and full stops in it, and a substring
 # match on "العالمين." found nothing.
 _NOT_LETTERS_RE = re.compile(r"[^ء-ي\s]+")
-
-# A spelling difference the index does not fold: ة and ه at the end of a word
-# (الجنة typed as الجنه, as speech-to-text and many keyboards spell it).
-_TA_TO_HA = str.maketrans("ة", "ه")
 
 # An ayah stays in the list when the query and it share at least this many
 # whole words, or a run of consecutive words. Below this a nine-word query would
@@ -69,7 +64,7 @@ def search(query: str, limit: int) -> list[Hit]:
     that has not been done yet, not a failure worth an error page.
     """
     conn = _db()
-    folded = " ".join(_NOT_LETTERS_RE.sub(" ", bare_letters(query)).split())
+    folded = " ".join(_NOT_LETTERS_RE.sub(" ", spelling.fold(query)).split())
     if conn is None or not folded:
         return []
 
@@ -77,7 +72,7 @@ def search(query: str, limit: int) -> list[Hit]:
 
     # Each word once: الله الله الله is a one-word question, and counting it as
     # three made every ayah fall short of the threshold below.
-    wanted = list(dict.fromkeys(folded.translate(_TA_TO_HA).split()))
+    wanted = list(dict.fromkeys(folded.split()))
     scored = sorted(
         ((score, row) for row in rows if (score := _score(wanted, row[3], len(row[2].split()))) is not None),
         key=lambda pair: (-pair[0], len(pair[1][3]), pair[1][0], pair[1][1]),
@@ -95,7 +90,7 @@ def respelt(query: str) -> tuple[str, list[tuple[str, str]]]:
     known = _vocabulary(str(index), index.stat().st_mtime_ns)
     swaps = []
     for typed in query.split():
-        word = _NOT_LETTERS_RE.sub("", bare_letters(typed)).translate(_TA_TO_HA)
+        word = _NOT_LETTERS_RE.sub("", spelling.fold(typed))
         if word and not known.holds(word) and (used := known.nearest(word)):
             swaps.append((typed, used))
     swapped = dict(swaps)
@@ -105,8 +100,10 @@ def respelt(query: str) -> tuple[str, list[tuple[str, str]]]:
 @lru_cache(maxsize=1)
 def _vocabulary(_path: str, _mtime: int) -> spelling.Vocabulary:
     """Every word of the Qur'an by how often it occurs, read once per build of the index (path and mtime are the key)."""
-    rows = _db().execute("SELECT fold FROM verse")
-    return spelling.Vocabulary(Counter(w for (fold,) in rows for w in fold.translate(_TA_TO_HA).split()))
+    conn = _db()
+    if conn is None:
+        return spelling.Vocabulary({})
+    return spelling.Vocabulary(Counter(w for (fold,) in conn.execute("SELECT fold FROM verse") for w in spelling.fold(fold).split()))
 
 
 def _score(wanted: list[str], fold: str, length: int) -> float | None:
@@ -114,7 +111,7 @@ def _score(wanted: list[str], fold: str, length: int) -> float | None:
     little to be an answer at all. `length` is the ayah's own word count: the
     fold holds the ayah twice where its spellings differ, and counting that
     made a two-word ayah look three words long and half covered."""
-    have = fold.translate(_TA_TO_HA).split()
+    have = spelling.fold(fold).split()
     distinct = set(have[:length])
     present = len(set(wanted) & set(have))
     # Longest run of words the two share in the same order: ending[j] is the

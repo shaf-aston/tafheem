@@ -73,7 +73,7 @@ CREATE TABLE word (
 ) WITHOUT ROWID;
 
 -- Each word, and each word with one letter dropped, so a misspelling finds the
--- words within two slips of it by plain lookup (services/spelling.py).
+-- words one slip from it (or a doubled long vowel off) by plain lookup (services/spelling.py).
 CREATE TABLE deletion (
     variant  TEXT NOT NULL,
     spelling TEXT NOT NULL,

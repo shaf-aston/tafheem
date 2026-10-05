@@ -12,7 +12,9 @@ competes too, so a real word ("jail") is kept rather than "fixed".
 
 Near words are found by lookup, not by comparing against every word: each
 known word is filed under itself and under it with one letter dropped, and so
-is the typed word, so any word one slip away shares an entry with it.
+is the typed word (also with its doubled long vowels written single). That
+finds a word one slip away, or a doubled long vowel off; a word two slips away
+shares no entry with it and is not found.
 """
 from __future__ import annotations
 
@@ -25,10 +27,6 @@ from spellchecker import SpellChecker
 
 from backend.config import get_settings
 from backend.services.arabic_text import bare_letters, has_arabic
-
-# Below this a word is mostly particle; one edit turns it into too many others.
-_MIN_LETTERS = 3
-
 
 def fold(word: str) -> str:
     """The word (or text) as the indexes spell it; ة as ه, since typists write الجنه for الجنة."""
@@ -71,17 +69,22 @@ def slips(typed: str, known: str) -> int:
     return min(edits(typed, known), 1 + edits(respell(typed), known))
 
 
+def allowed(length: int) -> int:
+    """The slips a word of `length` letters may be off: `spelling_edits_per_letter` of it, at least one."""
+    return max(1, int(length * get_settings().spelling_edits_per_letter))
+
+
 def best(word: str, candidates: Iterable[str], frequency: Callable[[str], float]) -> str | None:
     """The likeliest meant word among `candidates`, or None when nothing is close or the typed word wins."""
-    if len(word) < _MIN_LETTERS:
-        return None
     settings = get_settings()
-    allowed = max(1, int(len(word) * settings.spelling_edits_per_letter))
+    if len(word) < settings.spelling_min_letters:
+        return None
+    limit = allowed(len(word))
     typed = frequency(word)
     best_score, best_word = (math.log(typed), None) if typed else (-math.inf, None)
     for known in candidates:
         distance = slips(word, known)
-        if 1 <= distance <= allowed and (common := frequency(known)):
+        if 1 <= distance <= limit and (common := frequency(known)):
             score = math.log(common) - distance * settings.spelling_edit_cost
             if score > best_score:
                 best_score, best_word = score, known

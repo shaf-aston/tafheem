@@ -14,6 +14,7 @@ import sqlite3
 
 from backend.config import get_settings
 from backend.services import spelling
+from backend.services.hadith import loader
 
 
 def nearest(conn: sqlite3.Connection, word: str, lang: str) -> str | None:
@@ -34,7 +35,7 @@ def nearest(conn: sqlite3.Connection, word: str, lang: str) -> str | None:
         # An index built before the deletion table existed.
         return None
 
-    total = conn.execute("SELECT SUM(n) FROM word WHERE lang = ?", (lang,)).fetchone()[0] or 1
+    total = loader.total(lang) or 1
     weight = get_settings().hadith_repair_everyday_weight
 
     def frequency(spelt: str) -> float:

@@ -291,7 +291,7 @@ function Passage({ text, accent, tidy = false, arabic = false }) {
       {arabic && mostlyArabic(said) ? (
         <ArabicText size="lg" className="block leading-loose whitespace-pre-line">{said}</ArabicText>
       ) : (
-        <p className="text-sm text-[var(--text-dim)] leading-relaxed whitespace-pre-line">
+        <p className="type-body text-[var(--text-dim)] leading-relaxed whitespace-pre-line">
           {said}
         </p>
       )}

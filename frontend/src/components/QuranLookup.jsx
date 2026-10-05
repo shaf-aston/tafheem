@@ -255,7 +255,7 @@ function SearchResults({ results, onSelect, accent }) {
   return (
     <div className="space-y-2">
       <div className="flex items-center gap-2 flex-wrap">
-        <p className="text-[var(--text-dim)] text-sm">{results.length} matches, pick one to open it</p>
+        <p className="text-[var(--text-dim)] type-body">{results.length} matches, pick one to open it</p>
         {sources.map((source) => (
           <SourceBadge key={source.key} source={source} />
         ))}
@@ -270,7 +270,7 @@ function SearchResults({ results, onSelect, accent }) {
             bg-[var(--surface)] border border-[var(--border)]
             hover:border-[var(--c)] transition-colors"
         >
-          <div className="text-[var(--text-faint)] text-xs mb-1 font-mono">{r.surah}:{r.ayah}</div>
+          <div className="text-[var(--text-faint)] type-small mb-1 font-mono">{r.surah}:{r.ayah}</div>
           <ArabicText as="div" className="text-right text-[var(--text)]">{r.arabic_text}</ArabicText>
         </button>
       ))}
@@ -286,7 +286,7 @@ function RootView({ data, accent, onGo, onOpenAyah, onClose }) {
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div className="flex items-baseline gap-3 flex-wrap">
           <ArabicText size="lg" className="text-[var(--text)]">{data.root}</ArabicText>
-          <span className="text-sm text-[var(--text-dim)]">
+          <span className="type-body text-[var(--text-dim)]">
             appears <strong className="text-[var(--text)] tabular-nums">{data.total}</strong> times in the Qur&rsquo;an
           </span>
         </div>
@@ -295,7 +295,7 @@ function RootView({ data, accent, onGo, onOpenAyah, onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="text-xs text-[var(--text-faint)] hover:text-[var(--text)] underline underline-offset-2"
+            className="type-small text-[var(--text-faint)] hover:text-[var(--text)] underline underline-offset-2"
           >
             Close
           </button>
@@ -304,12 +304,12 @@ function RootView({ data, accent, onGo, onOpenAyah, onClose }) {
 
       {data.forms.length > 0 && (
         <div className="space-y-1.5">
-          <p className="text-xs text-[var(--text-faint)]">Words built from it, commonest first</p>
+          <p className="type-small text-[var(--text-faint)]">Words built from it, commonest first</p>
           <div className="flex flex-wrap gap-1.5">
             {data.forms.map((f) => (
               <span
                 key={`${f.lemma}-${f.pos}`}
-                className="flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full
+                className="flex items-center gap-1.5 type-small px-2.5 py-1 rounded-full
                   bg-[var(--surface)] border border-[var(--border)]"
               >
                 <ArabicText className="text-[var(--text)]">{f.lemma}</ArabicText>
@@ -325,7 +325,7 @@ function RootView({ data, accent, onGo, onOpenAyah, onClose }) {
       <div className="space-y-1.5">
         {/* Say plainly when the list is cut short, rather than letting a capped
             list read as the whole story. */}
-        <p className="text-xs text-[var(--text-faint)]">
+        <p className="type-small text-[var(--text-faint)]">
           {shown < data.total
             ? `First ${shown} of ${data.total} places, pick one to open it`
             : `All ${shown} places, pick one to open it`}

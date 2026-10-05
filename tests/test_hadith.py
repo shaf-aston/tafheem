@@ -51,19 +51,11 @@ def db(tmp_path, monkeypatch):
     monkeypatch.setattr(loader, "data_path", lambda _key: path)
     # No meaning index unless a test builds one, so a real one on disk never leaks in.
     monkeypatch.setattr(meaning, "data_path", lambda _key: tmp_path / "hadith_meaning.db")
-    # lru_cache is module-level and would otherwise carry a previous test's
-    # (or a previous run's real) database into this one.
-    loader.collections.cache_clear()
-    loader.collection_name.cache_clear()
-    loader.cite_of.cache_clear()
-    loader.books.cache_clear()
-    loader.share.cache_clear()
     return path
 
 
 def test_no_database_means_not_built(tmp_path, monkeypatch):
     monkeypatch.setattr(loader, "data_path", lambda _key: tmp_path / "nothing.db")
-    loader.collections.cache_clear()
     assert loader.is_built() is False
     assert loader.collections() == []
     assert search.search("النور").hits == []
@@ -172,7 +164,6 @@ def test_router_search_with_no_query_says_ready_without_searching(db, client):
 
 def test_router_search_before_the_database_is_built(tmp_path, monkeypatch, client):
     monkeypatch.setattr(loader, "data_path", lambda _key: tmp_path / "nothing.db")
-    loader.collections.cache_clear()
     resp = client.get("/api/hadith/search", params={"q": "light"})
     assert resp.json()["ready"] is False
 
@@ -380,8 +371,6 @@ def two_collections(db):
     index_text(conn)
     conn.commit()
     conn.close()
-    loader.collections.cache_clear()
-    loader.share.cache_clear()
     return db
 
 

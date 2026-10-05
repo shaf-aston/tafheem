@@ -92,7 +92,7 @@ def is_built() -> bool:
 def nearest(query: str, k: int, collections: tuple[str, ...] = ()) -> list[tuple[str, int, str]]:
     """The k hadith (collection, number, part) closest in meaning to the question."""
     path = data_path("hadith_meaning_path")
-    keys, vectors = _index(str(path), path.stat().st_mtime)
+    keys, vectors = _index(str(path), path.stat().st_mtime_ns)
     if not keys:
         return []
     scores = vectors @ encoder().encode([query])[0]
@@ -103,7 +103,7 @@ def nearest(query: str, k: int, collections: tuple[str, ...] = ()) -> list[tuple
 
 
 @lru_cache(maxsize=1)
-def _index(path: str, _mtime: float) -> tuple[list[tuple[str, int, str]], np.ndarray]:
+def _index(path: str, _mtime: int) -> tuple[list[tuple[str, int, str]], np.ndarray]:
     """Every stored vector, read once per build of the file (the mtime is the cache key)."""
     conn = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
     try:

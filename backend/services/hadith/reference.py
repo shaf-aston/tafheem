@@ -20,7 +20,7 @@ from typing import Callable
 
 from backend.config import get_settings
 from backend.services.hadith.words import ARABIC_WORD, ENGLISH_WORD, MAX_NUMBER, without_article
-from backend.services.spelling import fold, slips
+from backend.services.spelling import allowed, fold, slips
 
 # What parts the typed words: "bukhari:2", "Sahih al-Bukhari", "prayer, bukhari".
 _PARTS = re.compile(r"[\s:/#,;.!?()\[\]\"\-،؛؟]+")
@@ -88,7 +88,7 @@ def _number(token: str) -> re.Match | None:
 
 
 def _near(word: str, known: str) -> bool:
-    return slips(word, known) <= int(len(known) * get_settings().spelling_edits_per_letter)
+    return slips(word, known) <= allowed(len(known))
 
 
 def _name_word(word: str) -> str:

@@ -22,37 +22,63 @@ def is_built() -> bool:
 db = ReadOnlyDb(lambda: data_path("hadith_index_path"))
 
 
-@lru_cache(maxsize=1)
+def _stamp() -> tuple[str, int] | None:
+    """Which build of hadith.db is on disk (path and mtime), None when unbuilt; the key every cache below holds under."""
+    path = data_path("hadith_index_path")
+    return (str(path), path.stat().st_mtime_ns) if path.exists() else None
+
+
 def collections() -> list[tuple[str, str, str, str, str, bool]]:
     """Every collection's id, name, short name, Arabic name, short Arabic name and whether all of it is sahih, in the order the database holds them."""
-    if not is_built():
+    return _collections(_stamp())
+
+
+@lru_cache(maxsize=1)
+def _collections(stamp) -> list[tuple[str, str, str, str, str, bool]]:
+    if stamp is None:
         return []
     conn = db()
     return [(*names, bool(sahih)) for *names, sahih in
             conn.execute("SELECT id, name, short, arabic, arabic_short, sahih FROM collection ORDER BY rowid")]
 
 
-@lru_cache(maxsize=256)
+def total(lang: str) -> int:
+    """How many words of `lang` ("ar" or "en") the hadith hold, counting each word once per hadith."""
+    return _total(_stamp(), lang)
+
+
+@lru_cache(maxsize=2)
+def _total(stamp, lang: str) -> int:
+    if stamp is None:
+        return 0
+    return db().execute("SELECT SUM(n) FROM word WHERE lang = ?", (lang,)).fetchone()[0] or 0
+
+
 def share(word: str) -> float:
     """The fraction of the hadith text in the word's language that is this word, as the index spells it."""
-    if not is_built():
+    return _share(_stamp(), word)
+
+
+@lru_cache(maxsize=256)
+def _share(stamp, word: str) -> float:
+    lang = "ar" if has_arabic(word) else "en"
+    if stamp is None or not (whole := _total(stamp, lang)):
         return 0.0
-    conn = db()
-    row = conn.execute(
-        "SELECT w.n * 1.0 / (SELECT SUM(n) FROM word WHERE lang = w.lang) FROM word w WHERE w.lang = ? AND w.spelling = ?",
-        ("ar" if has_arabic(word) else "en", word),
-    ).fetchone()
-    return row[0] if row else 0.0
+    row = db().execute("SELECT n FROM word WHERE lang = ? AND spelling = ?", (lang, word)).fetchone()
+    return row[0] / whole if row else 0.0
 
 
-@lru_cache(maxsize=8)
 def collection_name(collection_id: str) -> str | None:
     return next((name for cid, name, *_ in collections() if cid == collection_id), None)
 
 
-@lru_cache(maxsize=8)
 def cite_of(collection_id: str) -> str:
-    if not is_built():
+    return _cite_of(_stamp(), collection_id)
+
+
+@lru_cache(maxsize=8)
+def _cite_of(stamp, collection_id: str) -> str:
+    if stamp is None:
         return ""
     conn = db()
     row = conn.execute("SELECT cite FROM collection WHERE id = ?", (collection_id,)).fetchone()
@@ -64,10 +90,14 @@ def cite_url(template: str, number: int, part: str) -> str:
     return template.replace("{number}", f"{number}{part}") if template else ""
 
 
-@lru_cache(maxsize=8)
 def books(collection_id: str) -> list[dict]:
     """Every book of a collection, each with how many hadiths it holds."""
-    if not is_built():
+    return _books(_stamp(), collection_id)
+
+
+@lru_cache(maxsize=8)
+def _books(stamp, collection_id: str) -> list[dict]:
+    if stamp is None:
         return []
     conn = db()
     return [
