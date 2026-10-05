@@ -1,0 +1,142 @@
+{
+  "found": [
+    {
+      "lesson": 1,
+      "phrase": 2,
+      "english": "I want a shirt.",
+      "search_term": "shirt on hanger",
+      "candidates": [
+        {
+          "id": "572e1f44-83c2-4c99-9d6e-2fc92a5f34d9",
+          "title": "Shirts jackets hangers chest",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3336903/free-photo-image-clothes-rack-styled-fashion",
+          "thumbnail": "https://api.openverse.org/v1/images/572e1f44-83c2-4c99-9d6e-2fc92a5f34d9/thumb/"
+        },
+        {
+          "id": "893f9d98-a322-45c0-976a-6f1b931365d3",
+          "title": "Clothes Shirts",
+          "creator": "Jeff Sheldon",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/clothes-shirts-DDAA823B04",
+          "thumbnail": "https://api.openverse.org/v1/images/893f9d98-a322-45c0-976a-6f1b931365d3/thumb/"
+        },
+        {
+          "id": "8735efdf-4191-42f1-a8fc-d9460d83cd77",
+          "title": "Clothes Jackets",
+          "creator": "Clark Street Mercantile",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/clothes-jackets-72V88M4FAC",
+          "thumbnail": "https://api.openverse.org/v1/images/8735efdf-4191-42f1-a8fc-d9460d83cd77/thumb/"
+        },
+        {
+          "id": "107e03d0-e65b-4b7b-947d-a79b648df53d",
+          "title": "Clothes Suits",
+          "creator": "Clark Street Mercantile",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/clothes-suits-XRVSDKCWZ7",
+          "thumbnail": "https://api.openverse.org/v1/images/107e03d0-e65b-4b7b-947d-a79b648df53d/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 1,
+      "phrase": 5,
+      "english": "Can I try it on?",
+      "search_term": "fitting room curtain",
+      "candidates": [
+        {
+          "id": "b5821c97-7349-4da8-a50c-f6f02cc2e769",
+          "title": "Grey Fitting Room Curtains-direct-fabrics.co.uk",
+          "creator": "Julesbishop",
+          "license": "by-sa",
+          "license_version": "4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=55140255",
+          "thumbnail": "https://api.openverse.org/v1/images/b5821c97-7349-4da8-a50c-f6f02cc2e769/thumb/"
+        },
+        {
+          "id": "4f0eefb2-ce47-4a10-8c35-0bf238a4621d",
+          "title": "De Luxe",
+          "creator": "PortoBay Trade",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/24001499@N03/2283625304",
+          "thumbnail": "https://api.openverse.org/v1/images/4f0eefb2-ce47-4a10-8c35-0bf238a4621d/thumb/"
+        },
+        {
+          "id": "59615e51-ca3a-4d1d-b6b6-7cd6a64dad92",
+          "title": "My Minimalistic Dorm Room",
+          "creator": "Editor B",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/11018968@N00/8000806187",
+          "thumbnail": "https://api.openverse.org/v1/images/59615e51-ca3a-4d1d-b6b6-7cd6a64dad92/thumb/"
+        },
+        {
+          "id": "96764495-1388-4960-a428-4b579ca07d01",
+          "title": "Novotel Suvarnabhumi Airport Hotel, Bangkok",
+          "creator": "David McKelvey",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/94735786@N00/6909108060",
+          "thumbnail": "https://api.openverse.org/v1/images/96764495-1388-4960-a428-4b579ca07d01/thumb/"
+        }
+      ]
+    }
+  ],
+  "needs_search_term": [
+    {
+      "lesson": 1,
+      "phrase": 3,
+      "english": "What's your size? (to a man)"
+    },
+    {
+      "lesson": 1,
+      "phrase": 4,
+      "english": "What's your size? (to a woman)"
+    },
+    {
+      "lesson": 1,
+      "phrase": 6,
+      "english": "Where's the fitting room?"
+    },
+    {
+      "lesson": 1,
+      "phrase": 7,
+      "english": "This is too big for me."
+    },
+    {
+      "lesson": 1,
+      "phrase": 8,
+      "english": "This is too tight for me."
+    },
+    {
+      "lesson": 1,
+      "phrase": 9,
+      "english": "Do you have a smaller size?"
+    },
+    {
+      "lesson": 1,
+      "phrase": 10,
+      "english": "I tried it on and it fits me."
+    },
+    {
+      "lesson": 1,
+      "phrase": 11,
+      "english": "Is this fabric cotton?"
+    }
+  ]
+}

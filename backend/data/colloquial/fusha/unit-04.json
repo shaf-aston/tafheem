@@ -27,60 +27,200 @@
           "slot": "what-would-you-like-to-drink-to-a-man",
           "arabic": "مَاذَا تُحِبُّ أَنْ تَشْرَب؟",
           "transliteration": "maadha tu7ibbu an tashrab?",
-          "reply": { "arabic": "قَهْوَة، مِنْ فَضْلِكَ", "transliteration": "qahwa, min fadlika", "english": "Coffee, please." }
+          "reply": {
+            "arabic": "قَهْوَة، مِنْ فَضْلِكَ",
+            "transliteration": "qahwa, min fadlika",
+            "english": "Coffee, please."
+          }
         },
         {
           "slot": "what-would-you-like-to-drink-to-a-woman",
           "arabic": "مَاذَا تُحِبِّينَ أَنْ تَشْرَبِي؟",
           "transliteration": "maadha tu7ibbeena an tashrabee?",
-          "reply": { "arabic": "شَاي، مِنْ فَضْلِكَ", "transliteration": "shaay, min fadlika", "english": "Tea, please." }
+          "reply": {
+            "arabic": "شَاي، مِنْ فَضْلِكَ",
+            "transliteration": "shaay, min fadlika",
+            "english": "Tea, please."
+          }
         },
-        { "slot": "coffee-please", "arabic": "قَهْوَة، مِنْ فَضْلِكَ", "transliteration": "qahwa, min fadlika" },
-        { "slot": "tea-please", "arabic": "شَاي، مِنْ فَضْلِكَ", "transliteration": "shaay, min fadlika" },
-        { "slot": "medium-sweet-coffee", "arabic": "قَهْوَة مُتَوَسِّطَة السُّكَّر", "transliteration": "qahwa mutawassita as-sukkar" },
-        { "slot": "coffee-with-no-sugar", "arabic": "قَهْوَة بِدُونِ سُكَّر", "transliteration": "qahwa bidooni sukkar" },
-        { "slot": "sweet-coffee", "arabic": "قَهْوَة حُلْوَة", "transliteration": "qahwa 7ulwa" },
-        { "slot": "a-big-cup-of-coffee", "arabic": "كُوب كَبِير مِنَ الْقَهْوَة", "transliteration": "koob kabeer mina al-qahwa" },
-        { "slot": "i-want-mint-tea", "arabic": "أُرِيدُ شَايًا بِالنَّعْنَاع", "transliteration": "ureedu shaayan bin-na3naa3" },
+        {
+          "slot": "coffee-please",
+          "arabic": "قَهْوَة، مِنْ فَضْلِكَ",
+          "transliteration": "qahwa, min fadlika"
+        },
+        {
+          "slot": "tea-please",
+          "arabic": "شَاي، مِنْ فَضْلِكَ",
+          "transliteration": "shaay, min fadlika"
+        },
+        {
+          "slot": "medium-sweet-coffee",
+          "arabic": "قَهْوَة مُتَوَسِّطَة السُّكَّر",
+          "transliteration": "qahwa mutawassita as-sukkar"
+        },
+        {
+          "slot": "coffee-with-no-sugar",
+          "arabic": "قَهْوَة بِدُونِ سُكَّر",
+          "transliteration": "qahwa bidooni sukkar"
+        },
+        {
+          "slot": "sweet-coffee",
+          "arabic": "قَهْوَة حُلْوَة",
+          "transliteration": "qahwa 7ulwa"
+        },
+        {
+          "slot": "a-big-cup-of-coffee",
+          "arabic": "كُوب كَبِير مِنَ الْقَهْوَة",
+          "transliteration": "koob kabeer mina al-qahwa"
+        },
+        {
+          "slot": "i-want-mint-tea",
+          "arabic": "أُرِيدُ شَايًا بِالنَّعْنَاع",
+          "transliteration": "ureedu shaayan bin-na3naa3"
+        },
         {
           "slot": "is-there-sugar",
           "arabic": "هَلْ يُوجَدُ سُكَّر؟",
           "transliteration": "hal yoojadu sukkar?",
-          "reply": { "arabic": "نَعَمْ، تَفَضَّلْ", "transliteration": "na3am, tafaddal", "english": "Yes, here you are." }
+          "reply": {
+            "arabic": "نَعَمْ، تَفَضَّلْ",
+            "transliteration": "na3am, tafaddal",
+            "english": "Yes, here you are."
+          }
         },
-        { "slot": "i-like-my-coffee-bitter", "arabic": "أُحِبُّ قَهْوَتِي مُرَّة", "transliteration": "u7ibbu qahwatee murra" },
-        { "slot": "no-sugar-at-all", "arabic": "بِدُونِ أَيِّ سُكَّر", "transliteration": "bidooni ayyi sukkar" }
+        {
+          "slot": "i-like-my-coffee-bitter",
+          "arabic": "أُحِبُّ قَهْوَتِي مُرَّة",
+          "transliteration": "u7ibbu qahwatee murra"
+        },
+        {
+          "slot": "no-sugar-at-all",
+          "arabic": "بِدُونِ أَيِّ سُكَّر",
+          "transliteration": "bidooni ayyi sukkar"
+        }
       ],
       "dialogue": [
-        { "speaker": "Khalid", "arabic": "صَبَاحُ الْخَيْر. مَاذَا تُحِبُّ أَنْ تَشْرَب؟", "transliteration": "sabaa7u al-khayr. maadha tu7ibbu an tashrab?", "english": "Good morning. What would you like to drink?" },
-        { "speaker": "Rami", "arabic": "صَبَاحُ النُّور. قَهْوَة، مِنْ فَضْلِكَ.", "transliteration": "sabaa7u an-noor. qahwa, min fadlika.", "english": "Good morning. Coffee, please." },
-        { "speaker": "Khalid", "arabic": "كَيْفَ تُحِبُّ قَهْوَتَكَ؟ حُلْوَة أَمْ مُرَّة؟", "transliteration": "kayfa tu7ibbu qahwataka? 7ulwa am murra?", "english": "How do you like your coffee? Sweet or bitter?" },
-        { "speaker": "Rami", "arabic": "أُحِبُّ قَهْوَتِي مُرَّة، بِدُونِ سُكَّر.", "transliteration": "u7ibbu qahwatee murra, bidooni sukkar.", "english": "I like my coffee bitter, without sugar." },
-        { "speaker": "Khalid", "arabic": "وَأَنْتِ يَا لِينَا، مَاذَا تُحِبِّينَ أَنْ تَشْرَبِي؟", "transliteration": "wa anti yaa Leenaa, maadha tu7ibbeena an tashrabee?", "english": "And you, Lina, what would you like to drink?" },
-        { "speaker": "Lina", "arabic": "أُرِيدُ شَايًا بِالنَّعْنَاع، مِنْ فَضْلِكَ.", "transliteration": "ureedu shaayan bin-na3naa3, min fadlika.", "english": "I want mint tea, please." },
-        { "speaker": "Khalid", "arabic": "حَاضِر. كُوب كَبِير أَمْ صَغِير؟", "transliteration": "7aadir. koob kabeer am sagheer?", "english": "Certainly. A big cup or a small one?" },
-        { "speaker": "Lina", "arabic": "كُوب كَبِير. هَلْ يُوجَدُ سُكَّر؟", "transliteration": "koob kabeer. hal yoojadu sukkar?", "english": "A big cup. Is there sugar?" },
-        { "speaker": "Khalid", "arabic": "نَعَمْ، تَفَضَّلِي. كَمْ مِلْعَقَة تُرِيدِينَ؟", "transliteration": "na3am, tafaddalee. kam mil3aqa tureedeena?", "english": "Yes, here you are. How many spoonfuls do you want?" },
-        { "speaker": "Lina", "arabic": "مِلْعَقَة وَاحِدَة فَقَط.", "transliteration": "mil3aqa waa7ida faqat.", "english": "Just one spoonful." },
-        { "speaker": "Rami", "arabic": "وَأَنَا أُرِيدُ كُوبًا كَبِيرًا مِنَ الْقَهْوَة.", "transliteration": "wa anaa ureedu koopan kabeeran mina al-qahwa.", "english": "And I want a big cup of coffee." },
-        { "speaker": "Khalid", "arabic": "حَسَنًا، دَقِيقَتَان وَيَصِلُ كُلُّ شَيْء.", "transliteration": "7asanan, daqeeqataan wa yasilu kullu shay2.", "english": "Fine, two minutes and everything will arrive." }
+        {
+          "speaker": "Khalid",
+          "arabic": "صَبَاحُ الْخَيْر. مَاذَا تُحِبُّ أَنْ تَشْرَب؟",
+          "transliteration": "sabaa7u al-khayr. maadha tu7ibbu an tashrab?",
+          "english": "Good morning. What would you like to drink?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "صَبَاحُ النُّور. قَهْوَة، مِنْ فَضْلِكَ.",
+          "transliteration": "sabaa7u an-noor. qahwa, min fadlika.",
+          "english": "Good morning. Coffee, please."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "كَيْفَ تُحِبُّ قَهْوَتَكَ؟ حُلْوَة أَمْ مُرَّة؟",
+          "transliteration": "kayfa tu7ibbu qahwataka? 7ulwa am murra?",
+          "english": "How do you like your coffee? Sweet or bitter?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "أُحِبُّ قَهْوَتِي مُرَّة، بِدُونِ سُكَّر.",
+          "transliteration": "u7ibbu qahwatee murra, bidooni sukkar.",
+          "english": "I like my coffee bitter, without sugar."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "وَأَنْتِ يَا لِينَا، مَاذَا تُحِبِّينَ أَنْ تَشْرَبِي؟",
+          "transliteration": "wa anti yaa Leenaa, maadha tu7ibbeena an tashrabee?",
+          "english": "And you, Lina, what would you like to drink?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أُرِيدُ شَايًا بِالنَّعْنَاع، مِنْ فَضْلِكَ.",
+          "transliteration": "ureedu shaayan bin-na3naa3, min fadlika.",
+          "english": "I want mint tea, please."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "حَاضِر. كُوب كَبِير أَمْ صَغِير؟",
+          "transliteration": "7aadir. koob kabeer am sagheer?",
+          "english": "Certainly. A big cup or a small one?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "كُوب كَبِير. هَلْ يُوجَدُ سُكَّر؟",
+          "transliteration": "koob kabeer. hal yoojadu sukkar?",
+          "english": "A big cup. Is there sugar?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "نَعَمْ، تَفَضَّلِي. كَمْ مِلْعَقَة تُرِيدِينَ؟",
+          "transliteration": "na3am, tafaddalee. kam mil3aqa tureedeena?",
+          "english": "Yes, here you are. How many spoonfuls do you want?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "مِلْعَقَة وَاحِدَة فَقَط.",
+          "transliteration": "mil3aqa waa7ida faqat.",
+          "english": "Just one spoonful."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "وَأَنَا أُرِيدُ كُوبًا كَبِيرًا مِنَ الْقَهْوَة.",
+          "transliteration": "wa anaa ureedu koopan kabeeran mina al-qahwa.",
+          "english": "And I want a big cup of coffee."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "حَسَنًا، دَقِيقَتَان وَيَصِلُ كُلُّ شَيْء.",
+          "transliteration": "7asanan, daqeeqataan wa yasilu kullu shay2.",
+          "english": "Fine, two minutes and everything will arrive."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "مَاذَا تُحِبُّ أَنْ تَشْرَب؟", "transliteration": "maadha tu7ibbu an tashrab?", "english": "What would you like to drink? (to a man)" },
-          "response": { "arabic": "قَهْوَة، مِنْ فَضْلِكَ.", "transliteration": "qahwa, min fadlika.", "english": "Coffee, please." }
+          "pair": {
+            "arabic": "مَاذَا تُحِبُّ أَنْ تَشْرَب؟",
+            "transliteration": "maadha tu7ibbu an tashrab?",
+            "english": "What would you like to drink? (to a man)"
+          },
+          "response": {
+            "arabic": "قَهْوَة، مِنْ فَضْلِكَ.",
+            "transliteration": "qahwa, min fadlika.",
+            "english": "Coffee, please."
+          }
         },
         {
-          "pair": { "arabic": "مَاذَا تُحِبِّينَ أَنْ تَشْرَبِي؟", "transliteration": "maadha tu7ibbeena an tashrabee?", "english": "What would you like to drink? (to a woman)" },
-          "response": { "arabic": "شَاي بِالنَّعْنَاع، مِنْ فَضْلِكَ.", "transliteration": "shaay bin-na3naa3, min fadlika.", "english": "Mint tea, please." }
+          "pair": {
+            "arabic": "مَاذَا تُحِبِّينَ أَنْ تَشْرَبِي؟",
+            "transliteration": "maadha tu7ibbeena an tashrabee?",
+            "english": "What would you like to drink? (to a woman)"
+          },
+          "response": {
+            "arabic": "شَاي بِالنَّعْنَاع، مِنْ فَضْلِكَ.",
+            "transliteration": "shaay bin-na3naa3, min fadlika.",
+            "english": "Mint tea, please."
+          }
         },
         {
-          "pair": { "arabic": "كَيْفَ تُحِبُّ قَهْوَتَكَ؟", "transliteration": "kayfa tu7ibbu qahwataka?", "english": "How do you like your coffee?" },
-          "response": { "arabic": "بِدُونِ سُكَّر.", "transliteration": "bidooni sukkar.", "english": "Without sugar." }
+          "pair": {
+            "arabic": "كَيْفَ تُحِبُّ قَهْوَتَكَ؟",
+            "transliteration": "kayfa tu7ibbu qahwataka?",
+            "english": "How do you like your coffee?"
+          },
+          "response": {
+            "arabic": "بِدُونِ سُكَّر.",
+            "transliteration": "bidooni sukkar.",
+            "english": "Without sugar."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ يُوجَدُ سُكَّر؟", "transliteration": "hal yoojadu sukkar?", "english": "Is there sugar?" },
-          "response": { "arabic": "نَعَمْ، تَفَضَّلْ.", "transliteration": "na3am, tafaddal.", "english": "Yes, here you are." }
+          "pair": {
+            "arabic": "هَلْ يُوجَدُ سُكَّر؟",
+            "transliteration": "hal yoojadu sukkar?",
+            "english": "Is there sugar?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، تَفَضَّلْ.",
+            "transliteration": "na3am, tafaddal.",
+            "english": "Yes, here you are."
+          }
         }
       ],
       "culture": "In a Fusha-speaking café the order is polite and short: the drink, then مِنْ فَضْلِكَ. Coffee is usually served in a small cup and offered bitter or sweet, and tea often comes with mint.",
@@ -90,8 +230,17 @@
           "type": "reply",
           "prompt": "The waiter says: 'مَاذَا تُحِبُّ أَنْ تَشْرَب؟'. Order a coffee politely.",
           "answer": "قَهْوَة، مِنْ فَضْلِكَ",
-          "accepted": ["قَهْوَة، مِنْ فَضْلِكَ", "قهوة، من فضلك", "قهوة من فضلك", "قَهْوَة", "qahwa, min fadlika"],
-          "too_formal": { "item": "بَدِّي قَهْوَة لَوْ سَمَحْت", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "قَهْوَة، مِنْ فَضْلِكَ",
+            "قهوة، من فضلك",
+            "قهوة من فضلك",
+            "قَهْوَة",
+            "qahwa, min fadlika"
+          ],
+          "too_formal": {
+            "item": "بَدِّي قَهْوَة لَوْ سَمَحْت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "Name the drink, then add مِنْ فَضْلِكَ."
         },
         {
@@ -99,8 +248,16 @@
           "type": "reply",
           "prompt": "The waiter asks: 'كَيْفَ تُحِبُّ قَهْوَتَكَ؟'. Say you want it without sugar.",
           "answer": "بِدُونِ سُكَّر",
-          "accepted": ["بِدُونِ سُكَّر", "بدون سكر", "قَهْوَة بِدُونِ سُكَّر", "bidooni sukkar"],
-          "too_formal": { "item": "بِلَا سُكَّر", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بِدُونِ سُكَّر",
+            "بدون سكر",
+            "قَهْوَة بِدُونِ سُكَّر",
+            "bidooni sukkar"
+          ],
+          "too_formal": {
+            "item": "بِلَا سُكَّر",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "بِدُونِ means 'without'; it is followed by the thing you leave out."
         },
         {
@@ -108,8 +265,15 @@
           "type": "fill_blank",
           "prompt": "Complete: 'قَهْوَة _____ سُكَّر.' (Coffee with no sugar.)",
           "answer": "بِدُونِ",
-          "accepted": ["بِدُونِ", "بدون", "bidooni"],
-          "too_formal": { "item": "بِلَا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بِدُونِ",
+            "بدون",
+            "bidooni"
+          ],
+          "too_formal": {
+            "item": "بِلَا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "بِدُونِ is the everyday word for 'without'."
         },
         {
@@ -117,8 +281,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'أُرِيدُ _____ بِالنَّعْنَاع.' (I want mint tea.)",
           "answer": "شَايًا",
-          "accepted": ["شَايًا", "شايا", "شاي", "shaayan"],
-          "too_formal": { "item": "بَدِّي شَاي", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "شَايًا",
+            "شايا",
+            "شاي",
+            "shaayan"
+          ],
+          "too_formal": {
+            "item": "بَدِّي شَاي",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "After أُرِيدُ the thing wanted takes the ending ـًا."
         },
         {
@@ -126,8 +298,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'Sweet coffee.'",
           "answer": "قَهْوَة حُلْوَة",
-          "accepted": ["قَهْوَة حُلْوَة", "قهوة حلوة", "qahwa 7ulwa", "قَهْوَةٌ حُلْوَةٌ"],
-          "too_formal": { "item": "قَهْوَة سُكَّرِيَّة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "قَهْوَة حُلْوَة",
+            "قهوة حلوة",
+            "qahwa 7ulwa",
+            "قَهْوَةٌ حُلْوَةٌ"
+          ],
+          "too_formal": {
+            "item": "قَهْوَة سُكَّرِيَّة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The describing word follows the noun and matches it: قَهْوَة حُلْوَة."
         },
         {
@@ -135,48 +315,106 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'Is there sugar?'",
           "answer": "هَلْ يُوجَدُ سُكَّر؟",
-          "accepted": ["هَلْ يُوجَدُ سُكَّر؟", "هل يوجد سكر؟", "هل يوجد سكر", "hal yoojadu sukkar?"],
-          "too_formal": { "item": "فِي سُكَّر؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هَلْ يُوجَدُ سُكَّر؟",
+            "هل يوجد سكر؟",
+            "هل يوجد سكر",
+            "hal yoojadu sukkar?"
+          ],
+          "too_formal": {
+            "item": "فِي سُكَّر؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "هَلْ turns a statement into a yes or no question; يُوجَدُ means 'there is'."
         },
         {
           "id": "unit-04.lesson-01.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'Tea, please.'?",
-          "options": ["شَاي، مِنْ فَضْلِكَ", "قَهْوَة، مِنْ فَضْلِكَ", "قَهْوَة حُلْوَة", "قَهْوَة مُرَّة"],
+          "options": [
+            "شَاي، مِنْ فَضْلِكَ",
+            "قَهْوَة، مِنْ فَضْلِكَ",
+            "قَهْوَة حُلْوَة",
+            "قَهْوَة مُرَّة"
+          ],
           "answer": "شَاي، مِنْ فَضْلِكَ",
-          "accepted": ["شَاي، مِنْ فَضْلِكَ", "شاي، من فضلك", "shaay, min fadlika", "شَاي"],
-          "too_formal": { "item": "بَدِّي شَاي", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "شَاي، مِنْ فَضْلِكَ",
+            "شاي، من فضلك",
+            "shaay, min fadlika",
+            "شَاي"
+          ],
+          "too_formal": {
+            "item": "بَدِّي شَاي",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "شَاي is tea and قَهْوَة is coffee."
         },
         {
           "id": "unit-04.lesson-01.choose.02",
           "type": "choose",
           "prompt": "Which one means 'Coffee with no sugar'?",
-          "options": ["قَهْوَة بِدُونِ سُكَّر", "قَهْوَة حُلْوَة", "قَهْوَة مُتَوَسِّطَة السُّكَّر", "كُوب شَاي"],
+          "options": [
+            "قَهْوَة بِدُونِ سُكَّر",
+            "قَهْوَة حُلْوَة",
+            "قَهْوَة مُتَوَسِّطَة السُّكَّر",
+            "كُوب شَاي"
+          ],
           "answer": "قَهْوَة بِدُونِ سُكَّر",
-          "accepted": ["قَهْوَة بِدُونِ سُكَّر", "قهوة بدون سكر", "qahwa bidooni sukkar", "قهوة بدون سكر"],
-          "too_formal": { "item": "قَهْوَة سَادَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "قَهْوَة بِدُونِ سُكَّر",
+            "قهوة بدون سكر",
+            "qahwa bidooni sukkar",
+            "قهوة بدون سكر"
+          ],
+          "too_formal": {
+            "item": "قَهْوَة سَادَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "بِدُونِ signals that the sugar is left out."
         },
         {
           "id": "unit-04.lesson-01.reorder.01",
           "type": "reorder",
           "prompt": "Put the pieces in order: 'مِنْ / قَهْوَة، / فَضْلِكَ'.",
-          "words": ["مِنْ", "قَهْوَة،", "فَضْلِكَ"],
+          "words": [
+            "مِنْ",
+            "قَهْوَة،",
+            "فَضْلِكَ"
+          ],
           "answer": "قَهْوَة، مِنْ فَضْلِكَ",
-          "accepted": ["قَهْوَة، مِنْ فَضْلِكَ", "قهوة، من فضلك", "قهوة من فضلك", "qahwa, min fadlika"],
-          "too_formal": { "item": "قَهْوَة لَوْ سَمَحْت", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "قَهْوَة، مِنْ فَضْلِكَ",
+            "قهوة، من فضلك",
+            "قهوة من فضلك",
+            "qahwa, min fadlika"
+          ],
+          "too_formal": {
+            "item": "قَهْوَة لَوْ سَمَحْت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The drink first, then the polite ending."
         },
         {
           "id": "unit-04.lesson-01.reorder.02",
           "type": "reorder",
           "prompt": "Put the pieces in order: 'شَايًا / أُرِيدُ / بِالنَّعْنَاع'.",
-          "words": ["شَايًا", "أُرِيدُ", "بِالنَّعْنَاع"],
+          "words": [
+            "شَايًا",
+            "أُرِيدُ",
+            "بِالنَّعْنَاع"
+          ],
           "answer": "أُرِيدُ شَايًا بِالنَّعْنَاع",
-          "accepted": ["أُرِيدُ شَايًا بِالنَّعْنَاع", "أريد شايا بالنعناع", "ureedu shaayan bin-na3naa3", "أُرِيدُ شَايًا بِنَعْنَاع"],
-          "too_formal": { "item": "بَدِّي شَاي بِنَعْنَاع", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أُرِيدُ شَايًا بِالنَّعْنَاع",
+            "أريد شايا بالنعناع",
+            "ureedu shaayan bin-na3naa3",
+            "أُرِيدُ شَايًا بِنَعْنَاع"
+          ],
+          "too_formal": {
+            "item": "بَدِّي شَاي بِنَعْنَاع",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "Wish first, the drink next, what goes in it last."
         }
       ]
@@ -184,49 +422,189 @@
     {
       "lesson": "lesson-02",
       "phrases": [
-        { "slot": "where-s-the-menu", "arabic": "أَيْنَ قَائِمَةُ الطَّعَام؟", "transliteration": "ayna qaa2imatu at-ta3aam?" },
-        { "slot": "do-you-have-an-english-menu", "arabic": "هَلْ عِنْدَكُمْ قَائِمَة بِالْإِنْجِلِيزِيَّة؟", "transliteration": "hal 3indakum qaa2ima bil-injileeziyya?" },
-        { "slot": "what-do-you-have-today", "arabic": "مَاذَا عِنْدَكُمُ الْيَوْم؟", "transliteration": "maadha 3indakumu al-yawm?" },
-        { "slot": "what-appetizers-do-you-have", "arabic": "مَا الْمُقَبِّلَات الَّتِي عِنْدَكُمْ؟", "transliteration": "maa al-muqabbilaat allatee 3indakum?" },
-        { "slot": "is-there-vegetarian-food", "arabic": "هَلْ يُوجَدُ طَعَام نَبَاتِيّ؟", "transliteration": "hal yoojadu ta3aam nabaatee?" },
-        { "slot": "what-s-in-this-dish", "arabic": "مَاذَا فِي هَذَا الطَّبَق؟", "transliteration": "maadha fee haadha at-tabaq?" },
-        { "slot": "is-it-spicy-or-not-spicy", "arabic": "هَلْ هُوَ حَارّ أَمْ غَيْرُ حَارّ؟", "transliteration": "hal huwa 7aarr am ghayru 7aarr?" },
-        { "slot": "what-do-you-recommend-i-get", "arabic": "مَاذَا تَنْصَحُنِي أَنْ آخُذ؟", "transliteration": "maadha tansa7unee an aakhudh?" },
-        { "slot": "how-much-does-this-cost", "arabic": "بِكَمْ هَذَا؟", "transliteration": "bikam haadha?" },
-        { "slot": "is-there-a-dish-of-the-day", "arabic": "هَلْ يُوجَدُ طَبَقُ الْيَوْم؟", "transliteration": "hal yoojadu tabaqu al-yawm?" },
-        { "slot": "i-want-something-light", "arabic": "أُرِيدُ شَيْئًا خَفِيف", "transliteration": "ureedu shay2an khafeef" },
-        { "slot": "do-you-have-desserts", "arabic": "هَلْ عِنْدَكُمْ حَلَوِيَّات؟", "transliteration": "hal 3indakum 7alawiyyaat?" }
+        {
+          "slot": "where-s-the-menu",
+          "arabic": "أَيْنَ قَائِمَةُ الطَّعَام؟",
+          "transliteration": "ayna qaa2imatu at-ta3aam?"
+        },
+        {
+          "slot": "do-you-have-an-english-menu",
+          "arabic": "هَلْ عِنْدَكُمْ قَائِمَة بِالْإِنْجِلِيزِيَّة؟",
+          "transliteration": "hal 3indakum qaa2ima bil-injileeziyya?"
+        },
+        {
+          "slot": "what-do-you-have-today",
+          "arabic": "مَاذَا عِنْدَكُمُ الْيَوْم؟",
+          "transliteration": "maadha 3indakumu al-yawm?"
+        },
+        {
+          "slot": "what-appetizers-do-you-have",
+          "arabic": "مَا الْمُقَبِّلَات الَّتِي عِنْدَكُمْ؟",
+          "transliteration": "maa al-muqabbilaat allatee 3indakum?"
+        },
+        {
+          "slot": "is-there-vegetarian-food",
+          "arabic": "هَلْ يُوجَدُ طَعَام نَبَاتِيّ؟",
+          "transliteration": "hal yoojadu ta3aam nabaatee?"
+        },
+        {
+          "slot": "what-s-in-this-dish",
+          "arabic": "مَاذَا فِي هَذَا الطَّبَق؟",
+          "transliteration": "maadha fee haadha at-tabaq?"
+        },
+        {
+          "slot": "is-it-spicy-or-not-spicy",
+          "arabic": "هَلْ هُوَ حَارّ أَمْ غَيْرُ حَارّ؟",
+          "transliteration": "hal huwa 7aarr am ghayru 7aarr?"
+        },
+        {
+          "slot": "what-do-you-recommend-i-get",
+          "arabic": "مَاذَا تَنْصَحُنِي أَنْ آخُذ؟",
+          "transliteration": "maadha tansa7unee an aakhudh?"
+        },
+        {
+          "slot": "how-much-does-this-cost",
+          "arabic": "بِكَمْ هَذَا؟",
+          "transliteration": "bikam haadha?"
+        },
+        {
+          "slot": "is-there-a-dish-of-the-day",
+          "arabic": "هَلْ يُوجَدُ طَبَقُ الْيَوْم؟",
+          "transliteration": "hal yoojadu tabaqu al-yawm?"
+        },
+        {
+          "slot": "i-want-something-light",
+          "arabic": "أُرِيدُ شَيْئًا خَفِيف",
+          "transliteration": "ureedu shay2an khafeef"
+        },
+        {
+          "slot": "do-you-have-desserts",
+          "arabic": "هَلْ عِنْدَكُمْ حَلَوِيَّات؟",
+          "transliteration": "hal 3indakum 7alawiyyaat?"
+        }
       ],
       "dialogue": [
-        { "speaker": "Waiter", "arabic": "أَهْلًا وَسَهْلًا. تَفَضَّلُوا.", "transliteration": "ahlan wa sahlan. tafaddaloo.", "english": "Welcome. Please come in." },
-        { "speaker": "Rami", "arabic": "شُكْرًا. أَيْنَ قَائِمَةُ الطَّعَام؟", "transliteration": "shukran. ayna qaa2imatu at-ta3aam?", "english": "Thank you. Where is the menu?" },
-        { "speaker": "Waiter", "arabic": "تَفَضَّلْ، هَذِهِ هِيَ.", "transliteration": "tafaddal, haadhihi hiya.", "english": "Here you are, this is it." },
-        { "speaker": "Lina", "arabic": "هَلْ عِنْدَكُمْ قَائِمَة بِالْإِنْجِلِيزِيَّة؟", "transliteration": "hal 3indakum qaa2ima bil-injileeziyya?", "english": "Do you have an English menu?" },
-        { "speaker": "Waiter", "arabic": "نَعَمْ، طَبْعًا. تَفَضَّلِي.", "transliteration": "na3am, tab3an. tafaddalee.", "english": "Yes, of course. Here you are." },
-        { "speaker": "Rami", "arabic": "مَا الْمُقَبِّلَات الَّتِي عِنْدَكُمْ؟", "transliteration": "maa al-muqabbilaat allatee 3indakum?", "english": "What appetizers do you have?" },
-        { "speaker": "Waiter", "arabic": "عِنْدَنَا حُمُّص وَمُتَبَّل وَفَتُّوش.", "transliteration": "3indanaa 7ummus wa mutabbal wa fattoosh.", "english": "We have hummus, mutabbal and fattoush." },
-        { "speaker": "Lina", "arabic": "هَلْ يُوجَدُ طَعَام نَبَاتِيّ؟ أَنَا لَا آكُلُ اللَّحْم.", "transliteration": "hal yoojadu ta3aam nabaatee? anaa laa aakulu al-la7m.", "english": "Is there vegetarian food? I don't eat meat." },
-        { "speaker": "Waiter", "arabic": "نَعَمْ، عِنْدَنَا كَثِير مِنَ الْأَطْبَاقِ النَّبَاتِيَّة.", "transliteration": "na3am, 3indanaa katheer mina al-atbaaqi an-nabaatiyya.", "english": "Yes, we have many vegetarian dishes." },
-        { "speaker": "Rami", "arabic": "مَاذَا فِي هَذَا الطَّبَق؟ وَهَلْ هُوَ حَارّ؟", "transliteration": "maadha fee haadha at-tabaq? wa hal huwa 7aarr?", "english": "What's in this dish? And is it spicy?" },
-        { "speaker": "Waiter", "arabic": "فِيهِ أُرْز وَخُضَار، وَهُوَ غَيْرُ حَارّ.", "transliteration": "feehi urz wa khudaar, wa huwa ghayru 7aarr.", "english": "It has rice and vegetables, and it is not spicy." },
-        { "speaker": "Lina", "arabic": "مَاذَا تَنْصَحُنَا أَنْ نَأْخُذ؟ نُرِيدُ شَيْئًا خَفِيف.", "transliteration": "maadha tansa7unaa an na2khudh? nureedu shay2an khafeef.", "english": "What do you recommend we get? We want something light." }
+        {
+          "speaker": "Waiter",
+          "arabic": "أَهْلًا وَسَهْلًا. تَفَضَّلُوا.",
+          "transliteration": "ahlan wa sahlan. tafaddaloo.",
+          "english": "Welcome. Please come in."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "شُكْرًا. أَيْنَ قَائِمَةُ الطَّعَام؟",
+          "transliteration": "shukran. ayna qaa2imatu at-ta3aam?",
+          "english": "Thank you. Where is the menu?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "تَفَضَّلْ، هَذِهِ هِيَ.",
+          "transliteration": "tafaddal, haadhihi hiya.",
+          "english": "Here you are, this is it."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "هَلْ عِنْدَكُمْ قَائِمَة بِالْإِنْجِلِيزِيَّة؟",
+          "transliteration": "hal 3indakum qaa2ima bil-injileeziyya?",
+          "english": "Do you have an English menu?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "نَعَمْ، طَبْعًا. تَفَضَّلِي.",
+          "transliteration": "na3am, tab3an. tafaddalee.",
+          "english": "Yes, of course. Here you are."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "مَا الْمُقَبِّلَات الَّتِي عِنْدَكُمْ؟",
+          "transliteration": "maa al-muqabbilaat allatee 3indakum?",
+          "english": "What appetizers do you have?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "عِنْدَنَا حُمُّص وَمُتَبَّل وَفَتُّوش.",
+          "transliteration": "3indanaa 7ummus wa mutabbal wa fattoosh.",
+          "english": "We have hummus, mutabbal and fattoush."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "هَلْ يُوجَدُ طَعَام نَبَاتِيّ؟ أَنَا لَا آكُلُ اللَّحْم.",
+          "transliteration": "hal yoojadu ta3aam nabaatee? anaa laa aakulu al-la7m.",
+          "english": "Is there vegetarian food? I don't eat meat."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "نَعَمْ، عِنْدَنَا كَثِير مِنَ الْأَطْبَاقِ النَّبَاتِيَّة.",
+          "transliteration": "na3am, 3indanaa katheer mina al-atbaaqi an-nabaatiyya.",
+          "english": "Yes, we have many vegetarian dishes."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "مَاذَا فِي هَذَا الطَّبَق؟ وَهَلْ هُوَ حَارّ؟",
+          "transliteration": "maadha fee haadha at-tabaq? wa hal huwa 7aarr?",
+          "english": "What's in this dish? And is it spicy?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "فِيهِ أُرْز وَخُضَار، وَهُوَ غَيْرُ حَارّ.",
+          "transliteration": "feehi urz wa khudaar, wa huwa ghayru 7aarr.",
+          "english": "It has rice and vegetables, and it is not spicy."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "مَاذَا تَنْصَحُنَا أَنْ نَأْخُذ؟ نُرِيدُ شَيْئًا خَفِيف.",
+          "transliteration": "maadha tansa7unaa an na2khudh? nureedu shay2an khafeef.",
+          "english": "What do you recommend we get? We want something light."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "أَيْنَ قَائِمَةُ الطَّعَام؟", "transliteration": "ayna qaa2imatu at-ta3aam?", "english": "Where's the menu?" },
-          "response": { "arabic": "تَفَضَّلْ، هَذِهِ هِيَ.", "transliteration": "tafaddal, haadhihi hiya.", "english": "Here you are, this is it." }
+          "pair": {
+            "arabic": "أَيْنَ قَائِمَةُ الطَّعَام؟",
+            "transliteration": "ayna qaa2imatu at-ta3aam?",
+            "english": "Where's the menu?"
+          },
+          "response": {
+            "arabic": "تَفَضَّلْ، هَذِهِ هِيَ.",
+            "transliteration": "tafaddal, haadhihi hiya.",
+            "english": "Here you are, this is it."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ يُوجَدُ طَعَام نَبَاتِيّ؟", "transliteration": "hal yoojadu ta3aam nabaatee?", "english": "Is there vegetarian food?" },
-          "response": { "arabic": "نَعَمْ، عِنْدَنَا أَطْبَاق نَبَاتِيَّة.", "transliteration": "na3am, 3indanaa atbaaq nabaatiyya.", "english": "Yes, we have vegetarian dishes." }
+          "pair": {
+            "arabic": "هَلْ يُوجَدُ طَعَام نَبَاتِيّ؟",
+            "transliteration": "hal yoojadu ta3aam nabaatee?",
+            "english": "Is there vegetarian food?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، عِنْدَنَا أَطْبَاق نَبَاتِيَّة.",
+            "transliteration": "na3am, 3indanaa atbaaq nabaatiyya.",
+            "english": "Yes, we have vegetarian dishes."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ هُوَ حَارّ أَمْ غَيْرُ حَارّ؟", "transliteration": "hal huwa 7aarr am ghayru 7aarr?", "english": "Is it spicy or not spicy?" },
-          "response": { "arabic": "هُوَ غَيْرُ حَارّ.", "transliteration": "huwa ghayru 7aarr.", "english": "It is not spicy." }
+          "pair": {
+            "arabic": "هَلْ هُوَ حَارّ أَمْ غَيْرُ حَارّ؟",
+            "transliteration": "hal huwa 7aarr am ghayru 7aarr?",
+            "english": "Is it spicy or not spicy?"
+          },
+          "response": {
+            "arabic": "هُوَ غَيْرُ حَارّ.",
+            "transliteration": "huwa ghayru 7aarr.",
+            "english": "It is not spicy."
+          }
         },
         {
-          "pair": { "arabic": "بِكَمْ هَذَا؟", "transliteration": "bikam haadha?", "english": "How much does this cost?" },
-          "response": { "arabic": "بِخَمْسِينَ لِيرَة.", "transliteration": "bikhamseena leera.", "english": "Fifty pounds." }
+          "pair": {
+            "arabic": "بِكَمْ هَذَا؟",
+            "transliteration": "bikam haadha?",
+            "english": "How much does this cost?"
+          },
+          "response": {
+            "arabic": "بِخَمْسِينَ لِيرَة.",
+            "transliteration": "bikhamseena leera.",
+            "english": "Fifty pounds."
+          }
         }
       ],
       "culture": "In Fusha the waiter is asked directly and politely, often with هَلْ عِنْدَكُمْ. A request for a recommendation, مَاذَا تَنْصَحُنِي, is welcome in any restaurant.",
@@ -236,8 +614,16 @@
           "type": "reply",
           "prompt": "You want the menu. Ask the waiter where it is.",
           "answer": "أَيْنَ قَائِمَةُ الطَّعَام؟",
-          "accepted": ["أَيْنَ قَائِمَةُ الطَّعَام؟", "اين قائمة الطعام؟", "أين القائمة؟", "ayna qaa2imatu at-ta3aam?"],
-          "too_formal": { "item": "وَيْن الْمَنْيُو؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَيْنَ قَائِمَةُ الطَّعَام؟",
+            "اين قائمة الطعام؟",
+            "أين القائمة؟",
+            "ayna qaa2imatu at-ta3aam?"
+          ],
+          "too_formal": {
+            "item": "وَيْن الْمَنْيُو؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "قَائِمَةُ الطَّعَام is 'the list of food', the menu."
         },
         {
@@ -245,8 +631,16 @@
           "type": "reply",
           "prompt": "The waiter says: 'هَلْ هُوَ حَارّ أَمْ غَيْرُ حَارّ؟'. Answer that it is not spicy.",
           "answer": "هُوَ غَيْرُ حَارّ",
-          "accepted": ["هُوَ غَيْرُ حَارّ", "هو غير حار", "غَيْرُ حَارّ", "huwa ghayru 7aarr"],
-          "too_formal": { "item": "مَا هُوَ حَارّ", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هُوَ غَيْرُ حَارّ",
+            "هو غير حار",
+            "غَيْرُ حَارّ",
+            "huwa ghayru 7aarr"
+          ],
+          "too_formal": {
+            "item": "مَا هُوَ حَارّ",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "غَيْرُ before an adjective makes it negative: 'not spicy'."
         },
         {
@@ -254,8 +648,15 @@
           "type": "fill_blank",
           "prompt": "Complete: 'هَلْ _____ قَائِمَة بِالْإِنْجِلِيزِيَّة؟' (Do you have an English menu?)",
           "answer": "عِنْدَكُمْ",
-          "accepted": ["عِنْدَكُمْ", "عندكم", "3indakum"],
-          "too_formal": { "item": "عِنْدَكُن", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "عِنْدَكُمْ",
+            "عندكم",
+            "3indakum"
+          ],
+          "too_formal": {
+            "item": "عِنْدَكُن",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "عِنْدَ plus the ending means 'to have'; كُمْ is 'you' for a group."
         },
         {
@@ -263,8 +664,15 @@
           "type": "fill_blank",
           "prompt": "Complete: 'مَاذَا _____ هَذَا الطَّبَق؟' (What's in this dish?)",
           "answer": "فِي",
-          "accepted": ["فِي", "في", "fee"],
-          "too_formal": { "item": "جُوَّا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "فِي",
+            "في",
+            "fee"
+          ],
+          "too_formal": {
+            "item": "جُوَّا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "فِي means 'in'."
         },
         {
@@ -272,8 +680,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'Do you have desserts?'",
           "answer": "هَلْ عِنْدَكُمْ حَلَوِيَّات؟",
-          "accepted": ["هَلْ عِنْدَكُمْ حَلَوِيَّات؟", "هل عندكم حلويات؟", "هل عندكم حلويات", "hal 3indakum 7alawiyyaat?"],
-          "too_formal": { "item": "عِنْدَكُم حَلَوِيَّات؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هَلْ عِنْدَكُمْ حَلَوِيَّات؟",
+            "هل عندكم حلويات؟",
+            "هل عندكم حلويات",
+            "hal 3indakum 7alawiyyaat?"
+          ],
+          "too_formal": {
+            "item": "عِنْدَكُم حَلَوِيَّات؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "حَلَوِيَّات is the plural, 'sweets' or 'desserts'."
         },
         {
@@ -281,48 +697,107 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'I want something light.'",
           "answer": "أُرِيدُ شَيْئًا خَفِيف",
-          "accepted": ["أُرِيدُ شَيْئًا خَفِيف", "أريد شيئا خفيفا", "أريد شيئا خفيف", "ureedu shay2an khafeef"],
-          "too_formal": { "item": "بَدِّي شِي خَفِيف", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أُرِيدُ شَيْئًا خَفِيف",
+            "أريد شيئا خفيفا",
+            "أريد شيئا خفيف",
+            "ureedu shay2an khafeef"
+          ],
+          "too_formal": {
+            "item": "بَدِّي شِي خَفِيف",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "شَيْئًا is 'something' and خَفِيف is 'light'."
         },
         {
           "id": "unit-04.lesson-02.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'How much does this cost?'",
-          "options": ["بِكَمْ هَذَا؟", "مَاذَا فِي هَذَا؟", "أَيْنَ هَذَا؟", "هَلْ هَذَا حَارّ؟"],
+          "options": [
+            "بِكَمْ هَذَا؟",
+            "مَاذَا فِي هَذَا؟",
+            "أَيْنَ هَذَا؟",
+            "هَلْ هَذَا حَارّ؟"
+          ],
           "answer": "بِكَمْ هَذَا؟",
-          "accepted": ["بِكَمْ هَذَا؟", "بكم هذا؟", "bikam haadha?", "بكم هذا"],
-          "too_formal": { "item": "قَدَّيْش هَادَا؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بِكَمْ هَذَا؟",
+            "بكم هذا؟",
+            "bikam haadha?",
+            "بكم هذا"
+          ],
+          "too_formal": {
+            "item": "قَدَّيْش هَادَا؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "بِكَمْ is the everyday way to ask a price."
         },
         {
           "id": "unit-04.lesson-02.choose.02",
           "type": "choose",
           "prompt": "You do not eat meat. Which question do you ask?",
-          "options": ["هَلْ يُوجَدُ طَعَام نَبَاتِيّ؟", "هَلْ يُوجَدُ طَبَقُ الْيَوْم؟", "هَلْ عِنْدَكُمْ حَلَوِيَّات؟", "أَيْنَ قَائِمَةُ الطَّعَام؟"],
+          "options": [
+            "هَلْ يُوجَدُ طَعَام نَبَاتِيّ؟",
+            "هَلْ يُوجَدُ طَبَقُ الْيَوْم؟",
+            "هَلْ عِنْدَكُمْ حَلَوِيَّات؟",
+            "أَيْنَ قَائِمَةُ الطَّعَام؟"
+          ],
           "answer": "هَلْ يُوجَدُ طَعَام نَبَاتِيّ؟",
-          "accepted": ["هَلْ يُوجَدُ طَعَام نَبَاتِيّ؟", "هل يوجد طعام نباتي؟", "hal yoojadu ta3aam nabaatee?", "هل يوجد طعام نباتي"],
-          "too_formal": { "item": "فِي أَكْل نَبَاتِي؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هَلْ يُوجَدُ طَعَام نَبَاتِيّ؟",
+            "هل يوجد طعام نباتي؟",
+            "hal yoojadu ta3aam nabaatee?",
+            "هل يوجد طعام نباتي"
+          ],
+          "too_formal": {
+            "item": "فِي أَكْل نَبَاتِي؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "نَبَاتِيّ comes from نَبَات, 'plants'."
         },
         {
           "id": "unit-04.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "Put the pieces in order: 'الطَّعَام؟ / أَيْنَ / قَائِمَةُ'.",
-          "words": ["أَيْنَ", "قَائِمَةُ", "الطَّعَام؟"],
+          "words": [
+            "أَيْنَ",
+            "قَائِمَةُ",
+            "الطَّعَام؟"
+          ],
           "answer": "أَيْنَ قَائِمَةُ الطَّعَام؟",
-          "accepted": ["أَيْنَ قَائِمَةُ الطَّعَام؟", "اين قائمة الطعام؟", "أين قائمة الطعام", "ayna qaa2imatu at-ta3aam?"],
-          "too_formal": { "item": "وَيْن الْمَنْيُو؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَيْنَ قَائِمَةُ الطَّعَام؟",
+            "اين قائمة الطعام؟",
+            "أين قائمة الطعام",
+            "ayna qaa2imatu at-ta3aam?"
+          ],
+          "too_formal": {
+            "item": "وَيْن الْمَنْيُو؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The question word first, then what you are looking for."
         },
         {
           "id": "unit-04.lesson-02.reorder.02",
           "type": "reorder",
           "prompt": "Put the pieces in order: 'تَنْصَحُنِي / مَاذَا / آخُذ؟ / أَنْ'.",
-          "words": ["مَاذَا", "تَنْصَحُنِي", "أَنْ", "آخُذ؟"],
+          "words": [
+            "مَاذَا",
+            "تَنْصَحُنِي",
+            "أَنْ",
+            "آخُذ؟"
+          ],
           "answer": "مَاذَا تَنْصَحُنِي أَنْ آخُذ؟",
-          "accepted": ["مَاذَا تَنْصَحُنِي أَنْ آخُذ؟", "ماذا تنصحني أن آخذ؟", "ماذا تنصحني ان اخذ", "maadha tansa7unee an aakhudh?"],
-          "too_formal": { "item": "شُو بَتْنَصْحَنِي آخُد؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مَاذَا تَنْصَحُنِي أَنْ آخُذ؟",
+            "ماذا تنصحني أن آخذ؟",
+            "ماذا تنصحني ان اخذ",
+            "maadha tansa7unee an aakhudh?"
+          ],
+          "too_formal": {
+            "item": "شُو بَتْنَصْحَنِي آخُد؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مَاذَا, then the verb 'you advise me', then what to get."
         }
       ]
@@ -330,49 +805,189 @@
     {
       "lesson": "lesson-03",
       "phrases": [
-        { "slot": "are-you-ready-to-order", "arabic": "هَلْ أَنْتُمْ جَاهِزُونَ لِلطَّلَب؟", "transliteration": "hal antum jaahizoona liltalab?" },
-        { "slot": "i-ll-have-a-plate-of-hummus-and-fattoush", "arabic": "سَآخُذُ صَحْنَ حُمُّص وَفَتُّوش", "transliteration": "sa2aakhudhu sa7na 7ummus wa fattoosh" },
-        { "slot": "i-want-this-and-this", "arabic": "أُرِيدُ هَذَا وَهَذَا", "transliteration": "ureedu haadha wa haadha" },
-        { "slot": "please-make-it-quick", "arabic": "مِنْ فَضْلِكَ، بِسُرْعَة", "transliteration": "min fadlika, bisur3a" },
-        { "slot": "without-onion-please", "arabic": "بِدُونِ بَصَل، مِنْ فَضْلِكَ", "transliteration": "bidooni basal, min fadlika" },
-        { "slot": "extra-bread-please", "arabic": "خُبْز إِضَافِيّ، مِنْ فَضْلِكَ", "transliteration": "khubz idaafee, min fadlika" },
-        { "slot": "this-dish-is-for-me-and-this-is-for-her", "arabic": "هَذَا الطَّبَقُ لِي وَهَذَا لَهَا", "transliteration": "haadha at-tabaqu lee wa haadha lahaa" },
-        { "slot": "can-i-have-a-glass-of-water", "arabic": "هَلْ يُمْكِنُ أَنْ أَحْصُلَ عَلَى كُوبِ مَاء؟", "transliteration": "hal yumkinu an a7sula 3alaa koobi maa2?" },
-        { "slot": "thanks-that-s-good-enough", "arabic": "شُكْرًا، يَكْفِي هَذَا", "transliteration": "shukran, yakfee haadha" },
-        { "slot": "my-order-hasn-t-arrived-yet", "arabic": "لَمْ يَصِلْ طَلَبِي بَعْد", "transliteration": "lam yasil talabee ba3d" },
-        { "slot": "can-you-repeat-the-order", "arabic": "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ الطَّلَب؟", "transliteration": "hal yumkinuka an tu3eeda at-talab?" },
-        { "slot": "we-want-the-same-order", "arabic": "نُرِيدُ نَفْسَ الطَّلَب", "transliteration": "nureedu nafsa at-talab" }
+        {
+          "slot": "are-you-ready-to-order",
+          "arabic": "هَلْ أَنْتُمْ جَاهِزُونَ لِلطَّلَب؟",
+          "transliteration": "hal antum jaahizoona liltalab?"
+        },
+        {
+          "slot": "i-ll-have-a-plate-of-hummus-and-fattoush",
+          "arabic": "سَآخُذُ صَحْنَ حُمُّص وَفَتُّوش",
+          "transliteration": "sa2aakhudhu sa7na 7ummus wa fattoosh"
+        },
+        {
+          "slot": "i-want-this-and-this",
+          "arabic": "أُرِيدُ هَذَا وَهَذَا",
+          "transliteration": "ureedu haadha wa haadha"
+        },
+        {
+          "slot": "please-make-it-quick",
+          "arabic": "مِنْ فَضْلِكَ، بِسُرْعَة",
+          "transliteration": "min fadlika, bisur3a"
+        },
+        {
+          "slot": "without-onion-please",
+          "arabic": "بِدُونِ بَصَل، مِنْ فَضْلِكَ",
+          "transliteration": "bidooni basal, min fadlika"
+        },
+        {
+          "slot": "extra-bread-please",
+          "arabic": "خُبْز إِضَافِيّ، مِنْ فَضْلِكَ",
+          "transliteration": "khubz idaafee, min fadlika"
+        },
+        {
+          "slot": "this-dish-is-for-me-and-this-is-for-her",
+          "arabic": "هَذَا الطَّبَقُ لِي وَهَذَا لَهَا",
+          "transliteration": "haadha at-tabaqu lee wa haadha lahaa"
+        },
+        {
+          "slot": "can-i-have-a-glass-of-water",
+          "arabic": "هَلْ يُمْكِنُ أَنْ أَحْصُلَ عَلَى كُوبِ مَاء؟",
+          "transliteration": "hal yumkinu an a7sula 3alaa koobi maa2?"
+        },
+        {
+          "slot": "thanks-that-s-good-enough",
+          "arabic": "شُكْرًا، يَكْفِي هَذَا",
+          "transliteration": "shukran, yakfee haadha"
+        },
+        {
+          "slot": "my-order-hasn-t-arrived-yet",
+          "arabic": "لَمْ يَصِلْ طَلَبِي بَعْد",
+          "transliteration": "lam yasil talabee ba3d"
+        },
+        {
+          "slot": "can-you-repeat-the-order",
+          "arabic": "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ الطَّلَب؟",
+          "transliteration": "hal yumkinuka an tu3eeda at-talab?"
+        },
+        {
+          "slot": "we-want-the-same-order",
+          "arabic": "نُرِيدُ نَفْسَ الطَّلَب",
+          "transliteration": "nureedu nafsa at-talab"
+        }
       ],
       "dialogue": [
-        { "speaker": "Waiter", "arabic": "هَلْ أَنْتُمْ جَاهِزُونَ لِلطَّلَب؟", "transliteration": "hal antum jaahizoona liltalab?", "english": "Are you ready to order?" },
-        { "speaker": "Rami", "arabic": "نَعَمْ. سَآخُذُ صَحْنَ حُمُّص وَفَتُّوش.", "transliteration": "na3am. sa2aakhudhu sa7na 7ummus wa fattoosh.", "english": "Yes. I'll have a plate of hummus and fattoush." },
-        { "speaker": "Waiter", "arabic": "حَسَنًا. وَأَنْتِ يَا سَيِّدَتِي؟", "transliteration": "7asanan. wa anti yaa sayyidatee?", "english": "Fine. And you, madam?" },
-        { "speaker": "Lina", "arabic": "أُرِيدُ هَذَا وَهَذَا، بِدُونِ بَصَل، مِنْ فَضْلِكَ.", "transliteration": "ureedu haadha wa haadha, bidooni basal, min fadlika.", "english": "I want this and this, without onion, please." },
-        { "speaker": "Waiter", "arabic": "حَاضِر. هَلْ تُرِيدُونَ شَيْئًا آخَر؟", "transliteration": "7aadir. hal tureedoona shay2an aakhar?", "english": "Certainly. Do you want anything else?" },
-        { "speaker": "Rami", "arabic": "خُبْز إِضَافِيّ، مِنْ فَضْلِكَ، وَكُوب مَاء.", "transliteration": "khubz idaafee, min fadlika, wa koob maa2.", "english": "Extra bread, please, and a glass of water." },
-        { "speaker": "Waiter", "arabic": "حَسَنًا. هَلْ هَذَا كُلُّ شَيْء؟", "transliteration": "7asanan. hal haadha kullu shay2?", "english": "Fine. Is that everything?" },
-        { "speaker": "Lina", "arabic": "نَعَمْ، شُكْرًا. بِسُرْعَة مِنْ فَضْلِكَ، نَحْنُ جَائِعُونَ.", "transliteration": "na3am, shukran. bisur3a min fadlika, na7nu jaa2i3oon.", "english": "Yes, thanks. Quickly please, we are hungry." },
-        { "speaker": "Waiter", "arabic": "سَيَكُونُ الطَّلَبُ جَاهِزًا قَرِيبًا.", "transliteration": "sayakoonu at-talabu jaahizan qareeban.", "english": "The order will be ready soon." },
-        { "speaker": "Rami", "arabic": "لَوْ سَمَحْتَ، لَمْ يَصِلْ طَلَبِي بَعْد.", "transliteration": "law samahta, lam yasil talabee ba3d.", "english": "Excuse me, my order hasn't arrived yet." },
-        { "speaker": "Waiter", "arabic": "آسِف. هَلْ تُرِيدُ أَنْ أُعِيدَ الطَّلَب؟", "transliteration": "aasif. hal tureedu an u3eeda at-talab?", "english": "Sorry. Do you want me to repeat the order?" },
-        { "speaker": "Rami", "arabic": "نَعَمْ، لَوْ سَمَحْتَ. نُرِيدُ نَفْسَ الطَّلَب.", "transliteration": "na3am, law samahta. nureedu nafsa at-talab.", "english": "Yes, please. We want the same order." }
+        {
+          "speaker": "Waiter",
+          "arabic": "هَلْ أَنْتُمْ جَاهِزُونَ لِلطَّلَب؟",
+          "transliteration": "hal antum jaahizoona liltalab?",
+          "english": "Are you ready to order?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "نَعَمْ. سَآخُذُ صَحْنَ حُمُّص وَفَتُّوش.",
+          "transliteration": "na3am. sa2aakhudhu sa7na 7ummus wa fattoosh.",
+          "english": "Yes. I'll have a plate of hummus and fattoush."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "حَسَنًا. وَأَنْتِ يَا سَيِّدَتِي؟",
+          "transliteration": "7asanan. wa anti yaa sayyidatee?",
+          "english": "Fine. And you, madam?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أُرِيدُ هَذَا وَهَذَا، بِدُونِ بَصَل، مِنْ فَضْلِكَ.",
+          "transliteration": "ureedu haadha wa haadha, bidooni basal, min fadlika.",
+          "english": "I want this and this, without onion, please."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "حَاضِر. هَلْ تُرِيدُونَ شَيْئًا آخَر؟",
+          "transliteration": "7aadir. hal tureedoona shay2an aakhar?",
+          "english": "Certainly. Do you want anything else?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "خُبْز إِضَافِيّ، مِنْ فَضْلِكَ، وَكُوب مَاء.",
+          "transliteration": "khubz idaafee, min fadlika, wa koob maa2.",
+          "english": "Extra bread, please, and a glass of water."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "حَسَنًا. هَلْ هَذَا كُلُّ شَيْء؟",
+          "transliteration": "7asanan. hal haadha kullu shay2?",
+          "english": "Fine. Is that everything?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "نَعَمْ، شُكْرًا. بِسُرْعَة مِنْ فَضْلِكَ، نَحْنُ جَائِعُونَ.",
+          "transliteration": "na3am, shukran. bisur3a min fadlika, na7nu jaa2i3oon.",
+          "english": "Yes, thanks. Quickly please, we are hungry."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "سَيَكُونُ الطَّلَبُ جَاهِزًا قَرِيبًا.",
+          "transliteration": "sayakoonu at-talabu jaahizan qareeban.",
+          "english": "The order will be ready soon."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "لَوْ سَمَحْتَ، لَمْ يَصِلْ طَلَبِي بَعْد.",
+          "transliteration": "law samahta, lam yasil talabee ba3d.",
+          "english": "Excuse me, my order hasn't arrived yet."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "آسِف. هَلْ تُرِيدُ أَنْ أُعِيدَ الطَّلَب؟",
+          "transliteration": "aasif. hal tureedu an u3eeda at-talab?",
+          "english": "Sorry. Do you want me to repeat the order?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "نَعَمْ، لَوْ سَمَحْتَ. نُرِيدُ نَفْسَ الطَّلَب.",
+          "transliteration": "na3am, law samahta. nureedu nafsa at-talab.",
+          "english": "Yes, please. We want the same order."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "هَلْ أَنْتُمْ جَاهِزُونَ لِلطَّلَب؟", "transliteration": "hal antum jaahizoona liltalab?", "english": "Are you ready to order?" },
-          "response": { "arabic": "نَعَمْ، سَآخُذُ صَحْنَ حُمُّص.", "transliteration": "na3am, sa2aakhudhu sa7na 7ummus.", "english": "Yes, I'll have a plate of hummus." }
+          "pair": {
+            "arabic": "هَلْ أَنْتُمْ جَاهِزُونَ لِلطَّلَب؟",
+            "transliteration": "hal antum jaahizoona liltalab?",
+            "english": "Are you ready to order?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، سَآخُذُ صَحْنَ حُمُّص.",
+            "transliteration": "na3am, sa2aakhudhu sa7na 7ummus.",
+            "english": "Yes, I'll have a plate of hummus."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ تُرِيدُونَ شَيْئًا آخَر؟", "transliteration": "hal tureedoona shay2an aakhar?", "english": "Do you want anything else?" },
-          "response": { "arabic": "شُكْرًا، يَكْفِي هَذَا.", "transliteration": "shukran, yakfee haadha.", "english": "Thanks, that's enough." }
+          "pair": {
+            "arabic": "هَلْ تُرِيدُونَ شَيْئًا آخَر؟",
+            "transliteration": "hal tureedoona shay2an aakhar?",
+            "english": "Do you want anything else?"
+          },
+          "response": {
+            "arabic": "شُكْرًا، يَكْفِي هَذَا.",
+            "transliteration": "shukran, yakfee haadha.",
+            "english": "Thanks, that's enough."
+          }
         },
         {
-          "pair": { "arabic": "لَمْ يَصِلْ طَلَبِي بَعْد.", "transliteration": "lam yasil talabee ba3d.", "english": "My order hasn't arrived yet." },
-          "response": { "arabic": "آسِف، سَيَصِلُ الْآن.", "transliteration": "aasif, sayasilu al-aan.", "english": "Sorry, it will arrive now." }
+          "pair": {
+            "arabic": "لَمْ يَصِلْ طَلَبِي بَعْد.",
+            "transliteration": "lam yasil talabee ba3d.",
+            "english": "My order hasn't arrived yet."
+          },
+          "response": {
+            "arabic": "آسِف، سَيَصِلُ الْآن.",
+            "transliteration": "aasif, sayasilu al-aan.",
+            "english": "Sorry, it will arrive now."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ يُمْكِنُ أَنْ أَحْصُلَ عَلَى كُوبِ مَاء؟", "transliteration": "hal yumkinu an a7sula 3alaa koobi maa2?", "english": "Can I have a glass of water?" },
-          "response": { "arabic": "طَبْعًا، تَفَضَّلْ.", "transliteration": "tab3an, tafaddal.", "english": "Of course, here you are." }
+          "pair": {
+            "arabic": "هَلْ يُمْكِنُ أَنْ أَحْصُلَ عَلَى كُوبِ مَاء؟",
+            "transliteration": "hal yumkinu an a7sula 3alaa koobi maa2?",
+            "english": "Can I have a glass of water?"
+          },
+          "response": {
+            "arabic": "طَبْعًا، تَفَضَّلْ.",
+            "transliteration": "tab3an, tafaddal.",
+            "english": "Of course, here you are."
+          }
         }
       ],
       "culture": "Ordering in Fusha is done with the future سَآخُذُ and wish words like أُرِيدُ, never with a bare command. Saying مِنْ فَضْلِكَ and شُكْرًا with every request keeps the meal friendly.",
@@ -382,8 +997,16 @@
           "type": "reply",
           "prompt": "The waiter asks: 'هَلْ أَنْتُمْ جَاهِزُونَ لِلطَّلَب؟'. Say yes and order hummus and fattoush.",
           "answer": "نَعَمْ، سَآخُذُ صَحْنَ حُمُّص وَفَتُّوش",
-          "accepted": ["نَعَمْ، سَآخُذُ صَحْنَ حُمُّص وَفَتُّوش", "نعم، سآخذ صحن حمص وفتوش", "سَآخُذُ صَحْنَ حُمُّص وَفَتُّوش", "na3am, sa2aakhudhu sa7na 7ummus wa fattoosh"],
-          "too_formal": { "item": "إِي، رَح آخُد صَحْن حُمُّص وَفَتُّوش", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "نَعَمْ، سَآخُذُ صَحْنَ حُمُّص وَفَتُّوش",
+            "نعم، سآخذ صحن حمص وفتوش",
+            "سَآخُذُ صَحْنَ حُمُّص وَفَتُّوش",
+            "na3am, sa2aakhudhu sa7na 7ummus wa fattoosh"
+          ],
+          "too_formal": {
+            "item": "إِي، رَح آخُد صَحْن حُمُّص وَفَتُّوش",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "سَآخُذُ is 'I will take', a natural way to order."
         },
         {
@@ -391,8 +1014,16 @@
           "type": "reply",
           "prompt": "The waiter asks: 'هَلْ تُرِيدُونَ شَيْئًا آخَر؟'. Say that is enough, thanks.",
           "answer": "شُكْرًا، يَكْفِي هَذَا",
-          "accepted": ["شُكْرًا، يَكْفِي هَذَا", "شكرا، يكفي هذا", "شكرا يكفي", "shukran, yakfee haadha"],
-          "too_formal": { "item": "شُكْرًا، بَسّ", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "شُكْرًا، يَكْفِي هَذَا",
+            "شكرا، يكفي هذا",
+            "شكرا يكفي",
+            "shukran, yakfee haadha"
+          ],
+          "too_formal": {
+            "item": "شُكْرًا، بَسّ",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "يَكْفِي means 'it is enough'."
         },
         {
@@ -400,8 +1031,15 @@
           "type": "fill_blank",
           "prompt": "Complete: '_____ بَصَل، مِنْ فَضْلِكَ.' (Without onion, please.)",
           "answer": "بِدُونِ",
-          "accepted": ["بِدُونِ", "بدون", "bidooni"],
-          "too_formal": { "item": "مِنْ غَيْر", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بِدُونِ",
+            "بدون",
+            "bidooni"
+          ],
+          "too_formal": {
+            "item": "مِنْ غَيْر",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "Use بِدُونِ before the thing you do not want."
         },
         {
@@ -409,8 +1047,15 @@
           "type": "fill_blank",
           "prompt": "Complete: 'لَمْ يَصِلْ طَلَبِي _____.' (My order hasn't arrived yet.)",
           "answer": "بَعْد",
-          "accepted": ["بَعْد", "بعد", "ba3d"],
-          "too_formal": { "item": "لِسَّا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بَعْد",
+            "بعد",
+            "ba3d"
+          ],
+          "too_formal": {
+            "item": "لِسَّا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "With لَمْ, بَعْد at the end means 'yet'."
         },
         {
@@ -418,8 +1063,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'Extra bread, please.'",
           "answer": "خُبْز إِضَافِيّ، مِنْ فَضْلِكَ",
-          "accepted": ["خُبْز إِضَافِيّ، مِنْ فَضْلِكَ", "خبز إضافي، من فضلك", "خبز اضافي من فضلك", "khubz idaafee, min fadlika"],
-          "too_formal": { "item": "شْوَيَّة خُبْز زِيَادَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "خُبْز إِضَافِيّ، مِنْ فَضْلِكَ",
+            "خبز إضافي، من فضلك",
+            "خبز اضافي من فضلك",
+            "khubz idaafee, min fadlika"
+          ],
+          "too_formal": {
+            "item": "شْوَيَّة خُبْز زِيَادَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "إِضَافِيّ means 'additional'."
         },
         {
@@ -427,48 +1080,107 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'We want the same order.'",
           "answer": "نُرِيدُ نَفْسَ الطَّلَب",
-          "accepted": ["نُرِيدُ نَفْسَ الطَّلَب", "نريد نفس الطلب", "nureedu nafsa at-talab", "نُرِيدُ الطَّلَبَ نَفْسَهُ"],
-          "too_formal": { "item": "بَدْنَا نَفْس الطَّلَب", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "نُرِيدُ نَفْسَ الطَّلَب",
+            "نريد نفس الطلب",
+            "nureedu nafsa at-talab",
+            "نُرِيدُ الطَّلَبَ نَفْسَهُ"
+          ],
+          "too_formal": {
+            "item": "بَدْنَا نَفْس الطَّلَب",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "نُرِيدُ is 'we want'; نَفْسَ means 'the same'."
         },
         {
           "id": "unit-04.lesson-03.choose.01",
           "type": "choose",
           "prompt": "Which sentence asks for a glass of water?",
-          "options": ["هَلْ يُمْكِنُ أَنْ أَحْصُلَ عَلَى كُوبِ مَاء؟", "نُرِيدُ نَفْسَ الطَّلَب", "خُبْز إِضَافِيّ، مِنْ فَضْلِكَ", "بِدُونِ بَصَل، مِنْ فَضْلِكَ"],
+          "options": [
+            "هَلْ يُمْكِنُ أَنْ أَحْصُلَ عَلَى كُوبِ مَاء؟",
+            "نُرِيدُ نَفْسَ الطَّلَب",
+            "خُبْز إِضَافِيّ، مِنْ فَضْلِكَ",
+            "بِدُونِ بَصَل، مِنْ فَضْلِكَ"
+          ],
           "answer": "هَلْ يُمْكِنُ أَنْ أَحْصُلَ عَلَى كُوبِ مَاء؟",
-          "accepted": ["هَلْ يُمْكِنُ أَنْ أَحْصُلَ عَلَى كُوبِ مَاء؟", "هل يمكن أن أحصل على كوب ماء؟", "hal yumkinu an a7sula 3alaa koobi maa2?", "هل يمكن ان احصل على كوب ماء"],
-          "too_formal": { "item": "فِيك تِعْطِينِي كَاسَة مَيّ؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هَلْ يُمْكِنُ أَنْ أَحْصُلَ عَلَى كُوبِ مَاء؟",
+            "هل يمكن أن أحصل على كوب ماء؟",
+            "hal yumkinu an a7sula 3alaa koobi maa2?",
+            "هل يمكن ان احصل على كوب ماء"
+          ],
+          "too_formal": {
+            "item": "فِيك تِعْطِينِي كَاسَة مَيّ؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كُوب is a glass or cup and مَاء is water."
         },
         {
           "id": "unit-04.lesson-03.choose.02",
           "type": "choose",
           "prompt": "You want the waiter to hurry. What do you say?",
-          "options": ["مِنْ فَضْلِكَ، بِسُرْعَة", "شُكْرًا، يَكْفِي هَذَا", "هَذَا الطَّبَقُ لِي", "أُرِيدُ هَذَا وَهَذَا"],
+          "options": [
+            "مِنْ فَضْلِكَ، بِسُرْعَة",
+            "شُكْرًا، يَكْفِي هَذَا",
+            "هَذَا الطَّبَقُ لِي",
+            "أُرِيدُ هَذَا وَهَذَا"
+          ],
           "answer": "مِنْ فَضْلِكَ، بِسُرْعَة",
-          "accepted": ["مِنْ فَضْلِكَ، بِسُرْعَة", "من فضلك، بسرعة", "من فضلك بسرعة", "min fadlika, bisur3a"],
-          "too_formal": { "item": "يَلَّا بِسُرْعَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مِنْ فَضْلِكَ، بِسُرْعَة",
+            "من فضلك، بسرعة",
+            "من فضلك بسرعة",
+            "min fadlika, bisur3a"
+          ],
+          "too_formal": {
+            "item": "يَلَّا بِسُرْعَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "بِسُرْعَة means 'with speed', quickly."
         },
         {
           "id": "unit-04.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "Put the pieces in order: 'وَهَذَا / هَذَا / أُرِيدُ'.",
-          "words": ["أُرِيدُ", "هَذَا", "وَهَذَا"],
+          "words": [
+            "أُرِيدُ",
+            "هَذَا",
+            "وَهَذَا"
+          ],
           "answer": "أُرِيدُ هَذَا وَهَذَا",
-          "accepted": ["أُرِيدُ هَذَا وَهَذَا", "أريد هذا وهذا", "ureedu haadha wa haadha", "أُرِيدُ هَذَا وَهَذَا."],
-          "too_formal": { "item": "بَدِّي هَادَا وَهَادَا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أُرِيدُ هَذَا وَهَذَا",
+            "أريد هذا وهذا",
+            "ureedu haadha wa haadha",
+            "أُرِيدُ هَذَا وَهَذَا."
+          ],
+          "too_formal": {
+            "item": "بَدِّي هَادَا وَهَادَا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "Point at the first dish, then add the second with وَ."
         },
         {
           "id": "unit-04.lesson-03.reorder.02",
           "type": "reorder",
           "prompt": "Put the pieces in order: 'لَهَا / لِي / هَذَا الطَّبَقُ / وَهَذَا'.",
-          "words": ["هَذَا الطَّبَقُ", "لِي", "وَهَذَا", "لَهَا"],
+          "words": [
+            "هَذَا الطَّبَقُ",
+            "لِي",
+            "وَهَذَا",
+            "لَهَا"
+          ],
           "answer": "هَذَا الطَّبَقُ لِي وَهَذَا لَهَا",
-          "accepted": ["هَذَا الطَّبَقُ لِي وَهَذَا لَهَا", "هذا الطبق لي وهذا لها", "haadha at-tabaqu lee wa haadha lahaa", "هَذَا الطَّبَق لِي وَهَذَا لَهَا"],
-          "too_formal": { "item": "هَاد الطَّبَق إِلِي وَهَاد إِلْهَا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هَذَا الطَّبَقُ لِي وَهَذَا لَهَا",
+            "هذا الطبق لي وهذا لها",
+            "haadha at-tabaqu lee wa haadha lahaa",
+            "هَذَا الطَّبَق لِي وَهَذَا لَهَا"
+          ],
+          "too_formal": {
+            "item": "هَاد الطَّبَق إِلِي وَهَاد إِلْهَا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "لِي is 'for me' and لَهَا is 'for her'."
         }
       ]
@@ -476,49 +1188,189 @@
     {
       "lesson": "lesson-04",
       "phrases": [
-        { "slot": "the-bill-please", "arabic": "الْحِسَاب، مِنْ فَضْلِكَ", "transliteration": "al-7isaab, min fadlika" },
-        { "slot": "how-much-is-the-bill", "arabic": "كَمْ يَبْلُغُ الْحِسَاب؟", "transliteration": "kam yablughu al-7isaab?" },
-        { "slot": "do-you-take-cash-or-card", "arabic": "هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟", "transliteration": "hal taqbaloona an-naqda ami al-bitaaqa?" },
-        { "slot": "i-m-paying-today", "arabic": "أَنَا سَأَدْفَعُ الْيَوْم", "transliteration": "anaa sa2adfa3u al-yawm" },
-        { "slot": "no-i-m-paying", "arabic": "لَا، أَنَا سَأَدْفَع", "transliteration": "laa, anaa sa2adfa3" },
-        { "slot": "shall-we-split-the-bill", "arabic": "هَلْ نَتَقَاسَمُ الْحِسَاب؟", "transliteration": "hal nataqaasamu al-7isaab?" },
-        { "slot": "is-there-a-tip-included-in-the-bill", "arabic": "هَلْ الْإِكْرَامِيَّة مَشْمُولَة فِي الْحِسَاب؟", "transliteration": "hal al-ikraamiyya mashmoola fee al-7isaab?" },
-        { "slot": "keep-the-change", "arabic": "الْبَاقِي لَكَ", "transliteration": "al-baaqee laka" },
-        { "slot": "thanks-lit-wellness-of-your-heart-it-was-a-tasty", "arabic": "شُكْرًا، كَانَتْ وَجْبَة لَذِيذَة", "transliteration": "shukran, kaanat wajba ladheedha" },
-        { "slot": "can-i-have-the-receipt", "arabic": "هَلْ أَسْتَطِيعُ أَنْ آخُذَ الْإِيصَال؟", "transliteration": "hal astatee3u an aakhudha al-eesaal?" },
-        { "slot": "is-there-a-discount-today", "arabic": "هَلْ يُوجَدُ خَصْم الْيَوْم؟", "transliteration": "hal yoojadu khasm al-yawm?" },
-        { "slot": "bless-your-hands-the-food-was-delicious", "arabic": "تُسْلَمُ يَدَاكَ، كَانَ الطَّعَام لَذِيذ", "transliteration": "tuslamu yadaaka, kaana at-ta3aamu ladheedh" }
+        {
+          "slot": "the-bill-please",
+          "arabic": "الْحِسَاب، مِنْ فَضْلِكَ",
+          "transliteration": "al-7isaab, min fadlika"
+        },
+        {
+          "slot": "how-much-is-the-bill",
+          "arabic": "كَمْ يَبْلُغُ الْحِسَاب؟",
+          "transliteration": "kam yablughu al-7isaab?"
+        },
+        {
+          "slot": "do-you-take-cash-or-card",
+          "arabic": "هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟",
+          "transliteration": "hal taqbaloona an-naqda ami al-bitaaqa?"
+        },
+        {
+          "slot": "i-m-paying-today",
+          "arabic": "أَنَا سَأَدْفَعُ الْيَوْم",
+          "transliteration": "anaa sa2adfa3u al-yawm"
+        },
+        {
+          "slot": "no-i-m-paying",
+          "arabic": "لَا، أَنَا سَأَدْفَع",
+          "transliteration": "laa, anaa sa2adfa3"
+        },
+        {
+          "slot": "shall-we-split-the-bill",
+          "arabic": "هَلْ نَتَقَاسَمُ الْحِسَاب؟",
+          "transliteration": "hal nataqaasamu al-7isaab?"
+        },
+        {
+          "slot": "is-there-a-tip-included-in-the-bill",
+          "arabic": "هَلْ الْإِكْرَامِيَّة مَشْمُولَة فِي الْحِسَاب؟",
+          "transliteration": "hal al-ikraamiyya mashmoola fee al-7isaab?"
+        },
+        {
+          "slot": "keep-the-change",
+          "arabic": "الْبَاقِي لَكَ",
+          "transliteration": "al-baaqee laka"
+        },
+        {
+          "slot": "thanks-lit-wellness-of-your-heart-it-was-a-tasty",
+          "arabic": "شُكْرًا، كَانَتْ وَجْبَة لَذِيذَة",
+          "transliteration": "shukran, kaanat wajba ladheedha"
+        },
+        {
+          "slot": "can-i-have-the-receipt",
+          "arabic": "هَلْ أَسْتَطِيعُ أَنْ آخُذَ الْإِيصَال؟",
+          "transliteration": "hal astatee3u an aakhudha al-eesaal?"
+        },
+        {
+          "slot": "is-there-a-discount-today",
+          "arabic": "هَلْ يُوجَدُ خَصْم الْيَوْم؟",
+          "transliteration": "hal yoojadu khasm al-yawm?"
+        },
+        {
+          "slot": "bless-your-hands-the-food-was-delicious",
+          "arabic": "تُسْلَمُ يَدَاكَ، كَانَ الطَّعَام لَذِيذ",
+          "transliteration": "tuslamu yadaaka, kaana at-ta3aamu ladheedh"
+        }
       ],
       "dialogue": [
-        { "speaker": "Rami", "arabic": "لَوْ سَمَحْتَ، الْحِسَاب مِنْ فَضْلِكَ.", "transliteration": "law samahta, al-7isaab min fadlika.", "english": "Excuse me, the bill please." },
-        { "speaker": "Waiter", "arabic": "حَاضِر. تَفَضَّلْ.", "transliteration": "7aadir. tafaddal.", "english": "Certainly. Here you are." },
-        { "speaker": "Rami", "arabic": "كَمْ يَبْلُغُ الْحِسَاب؟", "transliteration": "kam yablughu al-7isaab?", "english": "How much is the bill?" },
-        { "speaker": "Waiter", "arabic": "أَلْفَان وَخَمْسُمِئَة لِيرَة.", "transliteration": "alfaan wa khamsumi2at leera.", "english": "Two thousand five hundred pounds." },
-        { "speaker": "Lina", "arabic": "هَلْ نَتَقَاسَمُ الْحِسَاب؟", "transliteration": "hal nataqaasamu al-7isaab?", "english": "Shall we split the bill?" },
-        { "speaker": "Rami", "arabic": "لَا، أَنَا سَأَدْفَع الْيَوْم.", "transliteration": "laa, anaa sa2adfa3u al-yawm.", "english": "No, I'm paying today." },
-        { "speaker": "Lina", "arabic": "شُكْرًا جَزِيلًا يَا رَامِي.", "transliteration": "shukran jazeelan yaa Raamee.", "english": "Thank you very much, Rami." },
-        { "speaker": "Rami", "arabic": "هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟", "transliteration": "hal taqbaloona an-naqda ami al-bitaaqa?", "english": "Do you take cash or card?" },
-        { "speaker": "Waiter", "arabic": "نَقْبَلُ الْاِثْنَيْنِ مَعًا.", "transliteration": "naqbalu al-ithnayni ma3an.", "english": "We take both." },
-        { "speaker": "Rami", "arabic": "هَلْ الْإِكْرَامِيَّة مَشْمُولَة فِي الْحِسَاب؟", "transliteration": "hal al-ikraamiyya mashmoola fee al-7isaab?", "english": "Is the tip included in the bill?" },
-        { "speaker": "Waiter", "arabic": "لَا، لَيْسَتْ مَشْمُولَة.", "transliteration": "laa, laysat mashmoola.", "english": "No, it is not included." },
-        { "speaker": "Rami", "arabic": "الْبَاقِي لَكَ. تُسْلَمُ يَدَاكَ، كَانَ الطَّعَام لَذِيذ.", "transliteration": "al-baaqee laka. tuslamu yadaaka, kaana at-ta3aamu ladheedh.", "english": "Keep the change. Bless your hands, the food was delicious." }
+        {
+          "speaker": "Rami",
+          "arabic": "لَوْ سَمَحْتَ، الْحِسَاب مِنْ فَضْلِكَ.",
+          "transliteration": "law samahta, al-7isaab min fadlika.",
+          "english": "Excuse me, the bill please."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "حَاضِر. تَفَضَّلْ.",
+          "transliteration": "7aadir. tafaddal.",
+          "english": "Certainly. Here you are."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "كَمْ يَبْلُغُ الْحِسَاب؟",
+          "transliteration": "kam yablughu al-7isaab?",
+          "english": "How much is the bill?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "أَلْفَان وَخَمْسُمِئَة لِيرَة.",
+          "transliteration": "alfaan wa khamsumi2at leera.",
+          "english": "Two thousand five hundred pounds."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "هَلْ نَتَقَاسَمُ الْحِسَاب؟",
+          "transliteration": "hal nataqaasamu al-7isaab?",
+          "english": "Shall we split the bill?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "لَا، أَنَا سَأَدْفَع الْيَوْم.",
+          "transliteration": "laa, anaa sa2adfa3u al-yawm.",
+          "english": "No, I'm paying today."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "شُكْرًا جَزِيلًا يَا رَامِي.",
+          "transliteration": "shukran jazeelan yaa Raamee.",
+          "english": "Thank you very much, Rami."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟",
+          "transliteration": "hal taqbaloona an-naqda ami al-bitaaqa?",
+          "english": "Do you take cash or card?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "نَقْبَلُ الْاِثْنَيْنِ مَعًا.",
+          "transliteration": "naqbalu al-ithnayni ma3an.",
+          "english": "We take both."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "هَلْ الْإِكْرَامِيَّة مَشْمُولَة فِي الْحِسَاب؟",
+          "transliteration": "hal al-ikraamiyya mashmoola fee al-7isaab?",
+          "english": "Is the tip included in the bill?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "لَا، لَيْسَتْ مَشْمُولَة.",
+          "transliteration": "laa, laysat mashmoola.",
+          "english": "No, it is not included."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "الْبَاقِي لَكَ. تُسْلَمُ يَدَاكَ، كَانَ الطَّعَام لَذِيذ.",
+          "transliteration": "al-baaqee laka. tuslamu yadaaka, kaana at-ta3aamu ladheedh.",
+          "english": "Keep the change. Bless your hands, the food was delicious."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "الْحِسَاب، مِنْ فَضْلِكَ.", "transliteration": "al-7isaab, min fadlika.", "english": "The bill, please." },
-          "response": { "arabic": "حَاضِر، تَفَضَّلْ.", "transliteration": "7aadir, tafaddal.", "english": "Certainly, here you are." }
+          "pair": {
+            "arabic": "الْحِسَاب، مِنْ فَضْلِكَ.",
+            "transliteration": "al-7isaab, min fadlika.",
+            "english": "The bill, please."
+          },
+          "response": {
+            "arabic": "حَاضِر، تَفَضَّلْ.",
+            "transliteration": "7aadir, tafaddal.",
+            "english": "Certainly, here you are."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ نَتَقَاسَمُ الْحِسَاب؟", "transliteration": "hal nataqaasamu al-7isaab?", "english": "Shall we split the bill?" },
-          "response": { "arabic": "لَا، أَنَا سَأَدْفَع.", "transliteration": "laa, anaa sa2adfa3.", "english": "No, I'm paying." }
+          "pair": {
+            "arabic": "هَلْ نَتَقَاسَمُ الْحِسَاب؟",
+            "transliteration": "hal nataqaasamu al-7isaab?",
+            "english": "Shall we split the bill?"
+          },
+          "response": {
+            "arabic": "لَا، أَنَا سَأَدْفَع.",
+            "transliteration": "laa, anaa sa2adfa3.",
+            "english": "No, I'm paying."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟", "transliteration": "hal taqbaloona an-naqda ami al-bitaaqa?", "english": "Do you take cash or card?" },
-          "response": { "arabic": "نَقْبَلُ الْاِثْنَيْنِ مَعًا.", "transliteration": "naqbalu al-ithnayni ma3an.", "english": "We take both." }
+          "pair": {
+            "arabic": "هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟",
+            "transliteration": "hal taqbaloona an-naqda ami al-bitaaqa?",
+            "english": "Do you take cash or card?"
+          },
+          "response": {
+            "arabic": "نَقْبَلُ الْاِثْنَيْنِ مَعًا.",
+            "transliteration": "naqbalu al-ithnayni ma3an.",
+            "english": "We take both."
+          }
         },
         {
-          "pair": { "arabic": "تُسْلَمُ يَدَاكَ.", "transliteration": "tuslamu yadaaka.", "english": "Bless your hands." },
-          "response": { "arabic": "بِالْهَنَاءِ وَالشِّفَاء.", "transliteration": "bil-hanaa2i wash-shifaa2.", "english": "Enjoy it and be well." }
+          "pair": {
+            "arabic": "تُسْلَمُ يَدَاكَ.",
+            "transliteration": "tuslamu yadaaka.",
+            "english": "Bless your hands."
+          },
+          "response": {
+            "arabic": "بِالْهَنَاءِ وَالشِّفَاء.",
+            "transliteration": "bil-hanaa2i wash-shifaa2.",
+            "english": "Enjoy it and be well."
+          }
         }
       ],
       "culture": "Insisting on paying is part of Arab hospitality, so a polite tug-of-war over the bill is normal. تُسْلَمُ يَدَاكَ, 'may your hands be safe', is the warm way to praise the cook.",
@@ -528,8 +1380,16 @@
           "type": "reply",
           "prompt": "Your friend says: 'هَلْ نَتَقَاسَمُ الْحِسَاب؟'. Insist on paying.",
           "answer": "لَا، أَنَا سَأَدْفَع",
-          "accepted": ["لَا، أَنَا سَأَدْفَع", "لا، أنا سأدفع", "لا أنا سأدفع", "laa, anaa sa2adfa3"],
-          "too_formal": { "item": "لَا، أَنَا رَح إِدْفَع", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لَا، أَنَا سَأَدْفَع",
+            "لا، أنا سأدفع",
+            "لا أنا سأدفع",
+            "laa, anaa sa2adfa3"
+          ],
+          "too_formal": {
+            "item": "لَا، أَنَا رَح إِدْفَع",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "سَأَدْفَعُ is 'I will pay'."
         },
         {
@@ -537,8 +1397,16 @@
           "type": "reply",
           "prompt": "Someone says to you: 'تُسْلَمُ يَدَاكَ'. Reply politely.",
           "answer": "بِالْهَنَاءِ وَالشِّفَاء",
-          "accepted": ["بِالْهَنَاءِ وَالشِّفَاء", "بالهناء والشفاء", "بالهنا والشفا", "bil-hanaa2i wash-shifaa2"],
-          "too_formal": { "item": "صَحْتَيْن", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بِالْهَنَاءِ وَالشِّفَاء",
+            "بالهناء والشفاء",
+            "بالهنا والشفا",
+            "bil-hanaa2i wash-shifaa2"
+          ],
+          "too_formal": {
+            "item": "صَحْتَيْن",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "It wishes the eater pleasure and health."
         },
         {
@@ -546,8 +1414,15 @@
           "type": "fill_blank",
           "prompt": "Complete: 'الْحِسَاب، _____ فَضْلِكَ.' (The bill, please.)",
           "answer": "مِنْ",
-          "accepted": ["مِنْ", "من", "min"],
-          "too_formal": { "item": "لَوْ", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مِنْ",
+            "من",
+            "min"
+          ],
+          "too_formal": {
+            "item": "لَوْ",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مِنْ فَضْلِكَ is 'from your kindness', please."
         },
         {
@@ -555,8 +1430,15 @@
           "type": "fill_blank",
           "prompt": "Complete: 'الْبَاقِي _____.' (Keep the change.)",
           "answer": "لَكَ",
-          "accepted": ["لَكَ", "لك", "laka"],
-          "too_formal": { "item": "خَلِّيه", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لَكَ",
+            "لك",
+            "laka"
+          ],
+          "too_formal": {
+            "item": "خَلِّيه",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "الْبَاقِي is 'the rest'; لَكَ means 'for you'."
         },
         {
@@ -564,8 +1446,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'How much is the bill?'",
           "answer": "كَمْ يَبْلُغُ الْحِسَاب؟",
-          "accepted": ["كَمْ يَبْلُغُ الْحِسَاب؟", "كم يبلغ الحساب؟", "كم الحساب؟", "kam yablughu al-7isaab?"],
-          "too_formal": { "item": "قَدَّيْش الْحِسَاب؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "كَمْ يَبْلُغُ الْحِسَاب؟",
+            "كم يبلغ الحساب؟",
+            "كم الحساب؟",
+            "kam yablughu al-7isaab?"
+          ],
+          "too_formal": {
+            "item": "قَدَّيْش الْحِسَاب؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "يَبْلُغُ means 'it amounts to'."
         },
         {
@@ -573,49 +1463,798 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'Is there a discount today?'",
           "answer": "هَلْ يُوجَدُ خَصْم الْيَوْم؟",
-          "accepted": ["هَلْ يُوجَدُ خَصْم الْيَوْم؟", "هل يوجد خصم اليوم؟", "هل يوجد خصم اليوم", "hal yoojadu khasm al-yawm?"],
-          "too_formal": { "item": "فِي خَصْم الْيَوْم؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هَلْ يُوجَدُ خَصْم الْيَوْم؟",
+            "هل يوجد خصم اليوم؟",
+            "هل يوجد خصم اليوم",
+            "hal yoojadu khasm al-yawm?"
+          ],
+          "too_formal": {
+            "item": "فِي خَصْم الْيَوْم؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "خَصْم is 'discount'."
         },
         {
           "id": "unit-04.lesson-04.choose.01",
           "type": "choose",
           "prompt": "Which sentence asks whether they take cash or card?",
-          "options": ["هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟", "هَلْ نَتَقَاسَمُ الْحِسَاب؟", "هَلْ يُوجَدُ خَصْم الْيَوْم؟", "هَلْ أَسْتَطِيعُ أَنْ آخُذَ الْإِيصَال؟"],
+          "options": [
+            "هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟",
+            "هَلْ نَتَقَاسَمُ الْحِسَاب؟",
+            "هَلْ يُوجَدُ خَصْم الْيَوْم؟",
+            "هَلْ أَسْتَطِيعُ أَنْ آخُذَ الْإِيصَال؟"
+          ],
           "answer": "هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟",
-          "accepted": ["هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟", "هل تقبلون النقد أم البطاقة؟", "hal taqbaloona an-naqda ami al-bitaaqa?", "هل تقبلون النقد ام البطاقة"],
-          "too_formal": { "item": "بِتْقْبَلُوا كَاش وَلَّا كَرْت؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟",
+            "هل تقبلون النقد أم البطاقة؟",
+            "hal taqbaloona an-naqda ami al-bitaaqa?",
+            "هل تقبلون النقد ام البطاقة"
+          ],
+          "too_formal": {
+            "item": "بِتْقْبَلُوا كَاش وَلَّا كَرْت؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَمْ joins two options in a question: 'or'."
         },
         {
           "id": "unit-04.lesson-04.choose.02",
           "type": "choose",
           "prompt": "You want a receipt. Which question do you ask?",
-          "options": ["هَلْ أَسْتَطِيعُ أَنْ آخُذَ الْإِيصَال؟", "كَمْ يَبْلُغُ الْحِسَاب؟", "الْبَاقِي لَكَ", "هَلْ نَتَقَاسَمُ الْحِسَاب؟"],
+          "options": [
+            "هَلْ أَسْتَطِيعُ أَنْ آخُذَ الْإِيصَال؟",
+            "كَمْ يَبْلُغُ الْحِسَاب؟",
+            "الْبَاقِي لَكَ",
+            "هَلْ نَتَقَاسَمُ الْحِسَاب؟"
+          ],
           "answer": "هَلْ أَسْتَطِيعُ أَنْ آخُذَ الْإِيصَال؟",
-          "accepted": ["هَلْ أَسْتَطِيعُ أَنْ آخُذَ الْإِيصَال؟", "هل أستطيع أن آخذ الإيصال؟", "hal astatee3u an aakhudha al-eesaal?", "هل استطيع ان اخذ الايصال"],
-          "too_formal": { "item": "فِيني آخُد الْفَاتُورَة؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "هَلْ أَسْتَطِيعُ أَنْ آخُذَ الْإِيصَال؟",
+            "هل أستطيع أن آخذ الإيصال؟",
+            "hal astatee3u an aakhudha al-eesaal?",
+            "هل استطيع ان اخذ الايصال"
+          ],
+          "too_formal": {
+            "item": "فِيني آخُد الْفَاتُورَة؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "الْإِيصَال is the receipt."
         },
         {
           "id": "unit-04.lesson-04.reorder.01",
           "type": "reorder",
           "prompt": "Put the pieces in order: 'الْحِسَاب؟ / يَبْلُغُ / كَمْ'.",
-          "words": ["كَمْ", "يَبْلُغُ", "الْحِسَاب؟"],
+          "words": [
+            "كَمْ",
+            "يَبْلُغُ",
+            "الْحِسَاب؟"
+          ],
           "answer": "كَمْ يَبْلُغُ الْحِسَاب؟",
-          "accepted": ["كَمْ يَبْلُغُ الْحِسَاب؟", "كم يبلغ الحساب؟", "كم يبلغ الحساب", "kam yablughu al-7isaab?"],
-          "too_formal": { "item": "قَدَّيْش الْحِسَاب؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "كَمْ يَبْلُغُ الْحِسَاب؟",
+            "كم يبلغ الحساب؟",
+            "كم يبلغ الحساب",
+            "kam yablughu al-7isaab?"
+          ],
+          "too_formal": {
+            "item": "قَدَّيْش الْحِسَاب؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "كَمْ opens the question, the bill closes it."
         },
         {
           "id": "unit-04.lesson-04.reorder.02",
           "type": "reorder",
           "prompt": "Put the pieces in order: 'سَأَدْفَعُ / الْيَوْم / أَنَا'.",
-          "words": ["أَنَا", "سَأَدْفَعُ", "الْيَوْم"],
+          "words": [
+            "أَنَا",
+            "سَأَدْفَعُ",
+            "الْيَوْم"
+          ],
           "answer": "أَنَا سَأَدْفَعُ الْيَوْم",
-          "accepted": ["أَنَا سَأَدْفَعُ الْيَوْم", "أنا سأدفع اليوم", "anaa sa2adfa3u al-yawm", "أَنَا سَأَدْفَع الْيَوْم"],
-          "too_formal": { "item": "أَنَا رَح إِدْفَع الْيَوْم", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَنَا سَأَدْفَعُ الْيَوْم",
+            "أنا سأدفع اليوم",
+            "anaa sa2adfa3u al-yawm",
+            "أَنَا سَأَدْفَع الْيَوْم"
+          ],
+          "too_formal": {
+            "item": "أَنَا رَح إِدْفَع الْيَوْم",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "Who pays, will pay, when."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "i-d-like-a-chicken-burger-and-fries",
+          "arabic": "أُرِيدُ بُرْجَر دَجَاج وَبَطَاطَا مَقْلِيَّة",
+          "transliteration": "ureedu burjar dajaaj wa bataata maqliyya"
+        },
+        {
+          "slot": "are-you-eating-here-or-taking-it-with-you",
+          "arabic": "هَلْ تَأْكُلُ هُنَا أَمْ تَأْخُذُهُ مَعَكَ؟",
+          "transliteration": "hal ta2kulu hunaa am ta2khudhuhu ma3aka?"
+        },
+        {
+          "slot": "i-want-a-pizza-to-take-away",
+          "arabic": "أُرِيدُ بِيتْزَا لِلْأَخْذِ",
+          "transliteration": "ureedu beetzaa lil-2akhdh"
+        },
+        {
+          "slot": "i-ll-eat-here",
+          "arabic": "سَآكُلُ هُنَا",
+          "transliteration": "sa2aakulu hunaa"
+        },
+        {
+          "slot": "which-size-do-you-want-small-medium-or-large",
+          "arabic": "أَيَّ حَجْم تُرِيد، صَغِير أَمْ مُتَوَسِّط أَمْ كَبِير؟",
+          "transliteration": "ayya 7ajm tureed, sagheer am mutawassit am kabeer?"
+        },
+        {
+          "slot": "a-large-cola-please",
+          "arabic": "كُولَا كَبِيرَة، مِنْ فَضْلِكَ",
+          "transliteration": "koolaa kabeera, min fadlika"
+        },
+        {
+          "slot": "without-ice-please",
+          "arabic": "بِدُونِ ثَلْج، مِنْ فَضْلِكَ",
+          "transliteration": "bidooni thalj, min fadlika"
+        },
+        {
+          "slot": "do-you-have-a-kids-meal",
+          "arabic": "هَلْ عِنْدَكُمْ وَجْبَة لِلْأَطْفَال؟",
+          "transliteration": "hal 3indakum wajba lil-2atfaal?"
+        },
+        {
+          "slot": "extra-ketchup-please",
+          "arabic": "كَاتْشَب إِضَافِيّ، مِنْ فَضْلِكَ",
+          "transliteration": "kaatshab idaafee, min fadlika"
+        },
+        {
+          "slot": "how-long-will-the-order-take",
+          "arabic": "كَمْ سَيَسْتَغْرِقُ الطَّلَب؟",
+          "transliteration": "kam sayastaghriqu at-talab?"
+        },
+        {
+          "slot": "is-the-meat-halal",
+          "arabic": "هَلِ اللَّحْم حَلَال؟",
+          "transliteration": "hal al-la7mu 7alaal?"
+        },
+        {
+          "slot": "please-put-it-in-a-bag",
+          "arabic": "مِنْ فَضْلِكَ، ضَعْهُ فِي كِيس",
+          "transliteration": "min fadlika, da3hu fee kees"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cashier",
+          "arabic": "أَهْلًا بِكُمْ. مَاذَا تُرِيدُونَ؟",
+          "transliteration": "ahlan bikum. maadhaa tureedoon?",
+          "english": "Welcome. What would you like?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "أُرِيدُ بُرْجَر دَجَاج وَبَطَاطَا مَقْلِيَّة.",
+          "transliteration": "ureedu burjar dajaaj wa bataata maqliyya.",
+          "english": "I'd like a chicken burger and fries."
+        },
+        {
+          "speaker": "Cashier",
+          "arabic": "أَيَّ حَجْم تُرِيد، صَغِير أَمْ مُتَوَسِّط أَمْ كَبِير؟",
+          "transliteration": "ayya 7ajm tureed, sagheer am mutawassit am kabeer?",
+          "english": "Which size do you want, small, medium or large?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "كُولَا كَبِيرَة، مِنْ فَضْلِكَ. بِدُونِ ثَلْج، مِنْ فَضْلِكَ.",
+          "transliteration": "koolaa kabeera, min fadlika. bidooni thalj, min fadlika.",
+          "english": "A large cola, please. Without ice, please."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "هَلْ عِنْدَكُمْ وَجْبَة لِلْأَطْفَال؟",
+          "transliteration": "hal 3indakum wajba lil-2atfaal?",
+          "english": "Do you have a kids' meal?"
+        },
+        {
+          "speaker": "Cashier",
+          "arabic": "نَعَمْ، فِيهَا هَدِيَّة صَغِيرَة.",
+          "transliteration": "na3am, feehaa hadiyya sagheera.",
+          "english": "Yes, it comes with a small gift."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "هَلِ اللَّحْم حَلَال؟",
+          "transliteration": "hal al-la7mu 7alaal?",
+          "english": "Is the meat halal?"
+        },
+        {
+          "speaker": "Cashier",
+          "arabic": "نَعَمْ، كُلُّ لُحُومِنَا حَلَال. هَلْ تَأْكُلُونَ هُنَا أَمْ تَأْخُذُونَهُ مَعَكُمْ؟",
+          "transliteration": "na3am, kullu luhoomina 7alaal. hal ta2kuloona hunaa am ta2khudhoonahu ma3akum?",
+          "english": "Yes, all our meat is halal. Are you eating here or taking it with you?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "لِلْأَخْذِ، مِنْ فَضْلِكَ. كَمْ سَيَسْتَغْرِقُ الطَّلَب؟",
+          "transliteration": "lil-2akhdh, min fadlika. kam sayastaghriqu at-talab?",
+          "english": "To take away, please. How long will the order take?"
+        },
+        {
+          "speaker": "Cashier",
+          "arabic": "خَمْس دَقَائِق فَقَط.",
+          "transliteration": "khams daqaa2iq faqat.",
+          "english": "Only five minutes."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "شُكْرًا. مِنْ فَضْلِكَ، ضَعْهُ فِي كِيس.",
+          "transliteration": "shukran. min faDlik, Da3hu fee kees.",
+          "english": "Thanks. Please put it in a bag."
+        },
+        {
+          "speaker": "Cashier",
+          "arabic": "تَفَضَّلْ، بِالْهَنَاءِ وَالشِّفَاء.",
+          "transliteration": "tafaDDal, bil-hanaa2i wash-shifaa2.",
+          "english": "Here you are, enjoy your meal."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مَاذَا تُرِيدُونَ؟",
+            "transliteration": "maadhaa tureedoon?",
+            "english": "What would you like?"
+          },
+          "response": {
+            "arabic": "أُرِيدُ بُرْجَر وَبَطَاطَا.",
+            "transliteration": "ureedu burjar wa bataata.",
+            "english": "I'd like a burger and fries."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ تَأْكُلُونَ هُنَا أَمْ تَأْخُذُونَهُ مَعَكُمْ؟",
+            "transliteration": "hal ta2kuloona hunaa am ta2khudhoonahu ma3akum?",
+            "english": "Are you eating here or taking it with you?"
+          },
+          "response": {
+            "arabic": "لِلْأَخْذِ، مِنْ فَضْلِكَ.",
+            "transliteration": "lil-2akhdh, min fadlika.",
+            "english": "To take away, please."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلِ اللَّحْم حَلَال؟",
+            "transliteration": "hal al-la7mu 7alaal?",
+            "english": "Is the meat halal?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، كُلُّ لُحُومِنَا حَلَال.",
+            "transliteration": "na3am, kullu luhoomina 7alaal.",
+            "english": "Yes, all our meat is halal."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَمْ سَيَسْتَغْرِقُ الطَّلَب؟",
+            "transliteration": "kam sayastaghriqu at-talab?",
+            "english": "How long will the order take?"
+          },
+          "response": {
+            "arabic": "خَمْس دَقَائِق فَقَط.",
+            "transliteration": "khams daqaa2iq faqat.",
+            "english": "Only five minutes."
+          }
+        }
+      ],
+      "culture": "Fast-food counters in the Arab world are quick and friendly, and the first question is usually whether the order is to eat in or to take away. Many chains are fully halal, but asking هَلِ اللَّحْم حَلَال؟ is normal and never rude. A meal, وَجْبَة, usually comes as a set with fries and a drink.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I'd like a chicken burger and fries.'",
+          "answer": "أُرِيدُ بُرْجَر دَجَاج وَبَطَاطَا مَقْلِيَّة",
+          "accepted": [
+            "أُرِيدُ بُرْجَر دَجَاج وَبَطَاطَا مَقْلِيَّة",
+            "أريد برجر دجاج وبطاطا مقلية",
+            "ureedu burjar dajaaj wa bataata maqliyya"
+          ],
+          "too_formal": {
+            "item": "بِدِّي بُرْجَر دَجَاج وَبَطَاطَا",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أُرِيدُ is 'I want', polite when ordering."
+        },
+        {
+          "id": "unit-04.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Without ice, please.'",
+          "answer": "بِدُونِ ثَلْج، مِنْ فَضْلِكَ",
+          "accepted": [
+            "بِدُونِ ثَلْج، مِنْ فَضْلِكَ",
+            "بدون ثلج، من فضلك",
+            "bidooni thalj, min fadlika"
+          ],
+          "tip": "بِدُونِ means 'without'."
+        },
+        {
+          "id": "unit-04.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence asks whether the meat is halal?",
+          "options": [
+            "هَلِ اللَّحْم حَلَال؟",
+            "هَلْ عِنْدَكُمْ وَجْبَة لِلْأَطْفَال؟",
+            "كَمْ سَيَسْتَغْرِقُ الطَّلَب؟",
+            "هَلْ تَأْكُلُ هُنَا أَمْ تَأْخُذُهُ مَعَكَ؟"
+          ],
+          "answer": "هَلِ اللَّحْم حَلَال؟",
+          "accepted": [
+            "هَلِ اللَّحْم حَلَال؟",
+            "هل اللحم حلال؟",
+            "hal al-la7mu 7alaal?"
+          ],
+          "tip": "حَلَال means 'permitted', the word for halal food."
+        },
+        {
+          "id": "unit-04.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "You want your food to take away. What do you say?",
+          "options": [
+            "لِلْأَخْذِ، مِنْ فَضْلِكَ",
+            "سَآكُلُ هُنَا",
+            "كُولَا كَبِيرَة، مِنْ فَضْلِكَ",
+            "بِدُونِ ثَلْج، مِنْ فَضْلِكَ"
+          ],
+          "answer": "لِلْأَخْذِ، مِنْ فَضْلِكَ",
+          "accepted": [
+            "لِلْأَخْذِ، مِنْ فَضْلِكَ",
+            "للأخذ، من فضلك",
+            "lil-2akhdh, min fadlika"
+          ],
+          "tip": "لِلْأَخْذِ is 'for taking'."
+        },
+        {
+          "id": "unit-04.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'فَضْلِكَ / مِنْ / كَبِيرَة، / كُولَا'.",
+          "words": [
+            "كُولَا",
+            "كَبِيرَة،",
+            "مِنْ",
+            "فَضْلِكَ"
+          ],
+          "answer": "كُولَا كَبِيرَة، مِنْ فَضْلِكَ",
+          "accepted": [
+            "كُولَا كَبِيرَة، مِنْ فَضْلِكَ",
+            "كولا كبيرة، من فضلك",
+            "koolaa kabeera, min fadlika"
+          ],
+          "tip": "The drink first, then the polite word."
+        },
+        {
+          "id": "unit-04.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'الطَّلَب؟ / سَيَسْتَغْرِقُ / كَمْ'.",
+          "words": [
+            "كَمْ",
+            "سَيَسْتَغْرِقُ",
+            "الطَّلَب؟"
+          ],
+          "answer": "كَمْ سَيَسْتَغْرِقُ الطَّلَب؟",
+          "accepted": [
+            "كَمْ سَيَسْتَغْرِقُ الطَّلَب؟",
+            "كم سيستغرق الطلب؟",
+            "kam sayastaghriqu at-talab?"
+          ],
+          "too_formal": {
+            "item": "كَمْ رَح يِاخُد الطَّلَب؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "سَيَسْتَغْرِقُ is 'it will take' (time)."
+        },
+        {
+          "id": "unit-04.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَيَّ _____ تُرِيد، صَغِير أَمْ كَبِير؟' (Which size do you want?)",
+          "answer": "حَجْم",
+          "accepted": [
+            "حَجْم",
+            "حجم",
+            "7ajm"
+          ],
+          "tip": "حَجْم is 'size'."
+        },
+        {
+          "id": "unit-04.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَلْ عِنْدَكُمْ _____ لِلْأَطْفَال؟' (Do you have a kids' meal?)",
+          "answer": "وَجْبَة",
+          "accepted": [
+            "وَجْبَة",
+            "وجبة",
+            "wajba"
+          ],
+          "tip": "وَجْبَة is a meal."
+        },
+        {
+          "id": "unit-04.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "The cashier asks: 'هَلْ تَأْكُلُونَ هُنَا أَمْ تَأْخُذُونَهُ مَعَكُمْ؟'. You want takeaway.",
+          "answer": "لِلْأَخْذِ، مِنْ فَضْلِكَ",
+          "accepted": [
+            "لِلْأَخْذِ، مِنْ فَضْلِكَ",
+            "للأخذ، من فضلك",
+            "lil-2akhdh, min fadlika",
+            "لِلْأَخْذِ",
+            "lil-2akhdh"
+          ],
+          "too_formal": {
+            "item": "تِيك أَوَي، لَوْ سَمَحْتَ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Answer with the short phrase, then مِنْ فَضْلِكَ."
+        },
+        {
+          "id": "unit-04.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "The cashier asks: 'مَاذَا تُرِيدُونَ؟'. Order a burger and fries.",
+          "answer": "أُرِيدُ بُرْجَر وَبَطَاطَا",
+          "accepted": [
+            "أُرِيدُ بُرْجَر وَبَطَاطَا",
+            "أريد برجر وبطاطا",
+            "ureedu burjar wa bataata",
+            "أُرِيدُ بُرْجَر دَجَاج وَبَطَاطَا مَقْلِيَّة"
+          ],
+          "tip": "Start with أُرِيدُ, 'I want'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "thank-you-for-the-invitation",
+          "arabic": "شُكْرًا عَلَى الدَّعْوَة",
+          "transliteration": "shukran 3alaa ad-da3wa"
+        },
+        {
+          "slot": "i-am-honoured-by-your-invitation",
+          "arabic": "تَشَرَّفْتُ بِدَعْوَتِكُمْ",
+          "transliteration": "tasharraftu bida3watikum"
+        },
+        {
+          "slot": "please-come-in-and-sit-down",
+          "arabic": "تَفَضَّلُوا، اِجْلِسُوا",
+          "transliteration": "tafaddaloo, ijlisoo"
+        },
+        {
+          "slot": "bismillah-in-the-name-of-allah",
+          "arabic": "بِسْمِ اللهِ",
+          "transliteration": "bismillaah"
+        },
+        {
+          "slot": "eat-with-your-right-hand",
+          "arabic": "كُلْ بِيَدِكَ الْيُمْنَى",
+          "transliteration": "kul bi-yadika al-yumnaa"
+        },
+        {
+          "slot": "please-take-some-more",
+          "arabic": "تَفَضَّلْ، خُذْ أَكْثَر",
+          "transliteration": "tafaddal, khudh akthar"
+        },
+        {
+          "slot": "thank-allah-i-m-full",
+          "arabic": "الْحَمْدُ لِلَّهِ، شَبِعْتُ",
+          "transliteration": "al-7amdu lillaah, shabi3tu"
+        },
+        {
+          "slot": "may-allah-reward-you-well",
+          "arabic": "جَزَاكُمُ اللهُ خَيْرًا",
+          "transliteration": "jazaakumu llaahu khayran"
+        },
+        {
+          "slot": "how-delicious-this-food-is",
+          "arabic": "مَا أَطْيَبَ هَذَا الطَّعَام!",
+          "transliteration": "maa atyaba haadhaa at-ta3aam!"
+        },
+        {
+          "slot": "please-pass-me-the-water",
+          "arabic": "نَاوِلْنِي كُوبَ الْمَاء، مِنْ فَضْلِكَ",
+          "transliteration": "naawilnee koob al-maa2, min fadlika"
+        },
+        {
+          "slot": "shall-we-have-tea-after-the-meal",
+          "arabic": "هَلْ نَشْرَبُ الشَّايَ بَعْدَ الطَّعَام؟",
+          "transliteration": "hal nashrabu ash-shaaya ba3da at-ta3aam?"
+        },
+        {
+          "slot": "next-time-it-s-on-us",
+          "arabic": "الْمَرَّة الْقَادِمَة عَلَيْنَا",
+          "transliteration": "al-marra al-qaadima 3alaynaa"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yusuf",
+          "arabic": "شُكْرًا عَلَى الدَّعْوَة.",
+          "transliteration": "shukran 3alaa ad-da3wa.",
+          "english": "Thank you for the invitation."
+        },
+        {
+          "speaker": "Host",
+          "arabic": "أَهْلًا وَسَهْلًا. تَفَضَّلْ، اِجْلِسْ.",
+          "transliteration": "ahlan wa sahlan. tafaddal, ijlis.",
+          "english": "Welcome. Please, sit down."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "تَشَرَّفْتُ بِدَعْوَتِكُمْ.",
+          "transliteration": "tasharraftu bida3watikum.",
+          "english": "I am honoured by your invitation."
+        },
+        {
+          "speaker": "Host",
+          "arabic": "بِسْمِ اللهِ، تَفَضَّلْ.",
+          "transliteration": "bismillaah, tafaddal.",
+          "english": "Bismillah, please begin."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "بِسْمِ اللهِ. مَا أَطْيَبَ هَذَا الطَّعَام!",
+          "transliteration": "bismillaah. maa atyaba haadhaa at-ta3aam!",
+          "english": "Bismillah. How delicious this food is!"
+        },
+        {
+          "speaker": "Host",
+          "arabic": "تَفَضَّلْ، خُذْ أَكْثَر.",
+          "transliteration": "tafaddal, khudh akthar.",
+          "english": "Please, take some more."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "نَاوِلْنِي كُوبَ الْمَاء، مِنْ فَضْلِكَ.",
+          "transliteration": "naawilnee koob al-maa2, min fadlika.",
+          "english": "Please pass me the water."
+        },
+        {
+          "speaker": "Host",
+          "arabic": "تَفَضَّلْ.",
+          "transliteration": "tafaddal.",
+          "english": "Here you are."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "الْحَمْدُ لِلَّهِ، شَبِعْتُ.",
+          "transliteration": "al-7amdu lillaah, shabi3tu.",
+          "english": "Thank Allah, I'm full."
+        },
+        {
+          "speaker": "Host",
+          "arabic": "هَلْ نَشْرَبُ الشَّايَ بَعْدَ الطَّعَام؟",
+          "transliteration": "hal nashrabu ash-shaaya ba3da at-ta3aam?",
+          "english": "Shall we have tea after the meal?"
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "نَعَمْ، وَجَزَاكُمُ اللهُ خَيْرًا. الْمَرَّة الْقَادِمَة عَلَيْنَا.",
+          "transliteration": "na3am, wa jazaakumu llaahu khayran. al-marra al-qaadima 3alaynaa.",
+          "english": "Yes, and may Allah reward you well. Next time it's on us."
+        },
+        {
+          "speaker": "Host",
+          "arabic": "أَهْلًا بِكَ فِي أَيِّ وَقْت.",
+          "transliteration": "ahlan bika fee ayyi waqt.",
+          "english": "You are welcome any time."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شُكْرًا عَلَى الدَّعْوَة.",
+            "transliteration": "shukran 3alaa ad-da3wa.",
+            "english": "Thank you for the invitation."
+          },
+          "response": {
+            "arabic": "أَهْلًا وَسَهْلًا، تَفَضَّلْ.",
+            "transliteration": "ahlan wa sahlan, tafaddal.",
+            "english": "Welcome, please come in."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تَفَضَّلْ، خُذْ أَكْثَر.",
+            "transliteration": "tafaddal, khudh akthar.",
+            "english": "Please, take some more."
+          },
+          "response": {
+            "arabic": "الْحَمْدُ لِلَّهِ، شَبِعْتُ.",
+            "transliteration": "al-7amdu lillaah, shabi3tu.",
+            "english": "Thank Allah, I'm full."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "جَزَاكُمُ اللهُ خَيْرًا.",
+            "transliteration": "jazaakumu llaahu khayran.",
+            "english": "May Allah reward you well."
+          },
+          "response": {
+            "arabic": "وَإِيَّاكُمْ.",
+            "transliteration": "wa iyyaakum.",
+            "english": "And you too."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ نَشْرَبُ الشَّايَ بَعْدَ الطَّعَام؟",
+            "transliteration": "hal nashrabu ash-shaaya ba3da at-ta3aam?",
+            "english": "Shall we have tea after the meal?"
+          },
+          "response": {
+            "arabic": "بِكُلِّ سُرُور.",
+            "transliteration": "bi-kulli suroor.",
+            "english": "With pleasure."
+          }
+        }
+      ],
+      "culture": "A guest says بِسْمِ اللهِ before the first bite and eats with the right hand. The host will urge you to take more, so refusing once and then accepting a little is polite. Thank the host with جَزَاكُمُ اللهُ خَيْرًا, and the answer is وَإِيَّاكُمْ.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Thank you for the invitation.'",
+          "answer": "شُكْرًا عَلَى الدَّعْوَة",
+          "accepted": [
+            "شُكْرًا عَلَى الدَّعْوَة",
+            "شكرا على الدعوة",
+            "shukran 3alaa ad-da3wa"
+          ],
+          "too_formal": {
+            "item": "يِعْطِيك الْعَافْيَة عَلَى الدَّعْوَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عَلَى means 'for' here: thanks on the invitation."
+        },
+        {
+          "id": "unit-04.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'How delicious this food is!'",
+          "answer": "مَا أَطْيَبَ هَذَا الطَّعَام!",
+          "accepted": [
+            "مَا أَطْيَبَ هَذَا الطَّعَام!",
+            "ما أطيب هذا الطعام!",
+            "maa atyaba haadhaa at-ta3aam!"
+          ],
+          "tip": "مَا أَطْيَبَ is the 'how...!' pattern."
+        },
+        {
+          "id": "unit-04.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "What do you say before you start eating?",
+          "options": [
+            "بِسْمِ اللهِ",
+            "الْحَمْدُ لِلَّهِ، شَبِعْتُ",
+            "شُكْرًا عَلَى الدَّعْوَة",
+            "جَزَاكُمُ اللهُ خَيْرًا"
+          ],
+          "answer": "بِسْمِ اللهِ",
+          "accepted": [
+            "بِسْمِ اللهِ",
+            "بسم الله",
+            "bismillaah"
+          ],
+          "tip": "Bismillah means 'in the name of Allah'."
+        },
+        {
+          "id": "unit-04.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "You want the water. Which sentence do you say?",
+          "options": [
+            "نَاوِلْنِي كُوبَ الْمَاء، مِنْ فَضْلِكَ",
+            "هَلْ نَشْرَبُ الشَّايَ بَعْدَ الطَّعَام؟",
+            "الْمَرَّة الْقَادِمَة عَلَيْنَا",
+            "تَفَضَّلْ، خُذْ أَكْثَر"
+          ],
+          "answer": "نَاوِلْنِي كُوبَ الْمَاء، مِنْ فَضْلِكَ",
+          "accepted": [
+            "نَاوِلْنِي كُوبَ الْمَاء، مِنْ فَضْلِكَ",
+            "ناولني كوب الماء، من فضلك",
+            "naawilnee koob al-maa2, min fadlika"
+          ],
+          "tip": "نَاوِلْنِي means 'hand me'."
+        },
+        {
+          "id": "unit-04.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'الدَّعْوَة / عَلَى / شُكْرًا'.",
+          "words": [
+            "شُكْرًا",
+            "عَلَى",
+            "الدَّعْوَة"
+          ],
+          "answer": "شُكْرًا عَلَى الدَّعْوَة",
+          "accepted": [
+            "شُكْرًا عَلَى الدَّعْوَة",
+            "شكرا على الدعوة",
+            "shukran 3alaa ad-da3wa"
+          ],
+          "tip": "Thanks first, then what for."
+        },
+        {
+          "id": "unit-04.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'الطَّعَام؟ / بَعْدَ / الشَّايَ / نَشْرَبُ / هَلْ'.",
+          "words": [
+            "هَلْ",
+            "نَشْرَبُ",
+            "الشَّايَ",
+            "بَعْدَ",
+            "الطَّعَام؟"
+          ],
+          "answer": "هَلْ نَشْرَبُ الشَّايَ بَعْدَ الطَّعَام؟",
+          "accepted": [
+            "هَلْ نَشْرَبُ الشَّايَ بَعْدَ الطَّعَام؟",
+            "هل نشرب الشاي بعد الطعام؟",
+            "hal nashrabu ash-shaaya ba3da at-ta3aam?"
+          ],
+          "tip": "بَعْدَ means 'after'."
+        },
+        {
+          "id": "unit-04.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'شُكْرًا عَلَى _____.' (Thank you for the invitation.)",
+          "answer": "الدَّعْوَة",
+          "accepted": [
+            "الدَّعْوَة",
+            "الدعوة",
+            "ad-da3wa"
+          ],
+          "tip": "الدَّعْوَة is 'the invitation'."
+        },
+        {
+          "id": "unit-04.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'جَزَاكُمُ اللهُ _____.' (May Allah reward you well.)",
+          "answer": "خَيْرًا",
+          "accepted": [
+            "خَيْرًا",
+            "خيرا",
+            "khayran"
+          ],
+          "tip": "خَيْرًا is 'good'."
+        },
+        {
+          "id": "unit-04.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "The host says: 'تَفَضَّلْ، خُذْ أَكْثَر.'. You are full.",
+          "answer": "الْحَمْدُ لِلَّهِ، شَبِعْتُ",
+          "accepted": [
+            "الْحَمْدُ لِلَّهِ، شَبِعْتُ",
+            "الحمد لله، شبعت",
+            "al-7amdu lillaah, shabi3tu",
+            "الْحَمْدُ لِلَّهِ"
+          ],
+          "tip": "Thank Allah first, then say you are full."
+        },
+        {
+          "id": "unit-04.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "A guest says to you: 'جَزَاكُمُ اللهُ خَيْرًا.'. Reply.",
+          "answer": "وَإِيَّاكُمْ",
+          "accepted": [
+            "وَإِيَّاكُمْ",
+            "وإياكم",
+            "wa iyyaakum"
+          ],
+          "tip": "It means 'and you too'."
         }
       ]
     }
@@ -633,18 +2272,78 @@
     ],
     "model": {
       "dialogue": [
-        { "speaker": "Waiter", "arabic": "أَهْلًا وَسَهْلًا. مَاذَا تُحِبُّونَ أَنْ تَشْرَبُوا؟", "transliteration": "ahlan wa sahlan. maadha tu7ibboona an tashraboo?", "english": "Welcome. What would you like to drink?" },
-        { "speaker": "Rami", "arabic": "قَهْوَة بِدُونِ سُكَّر، مِنْ فَضْلِكَ.", "transliteration": "qahwa bidooni sukkar, min fadlika.", "english": "Coffee with no sugar, please." },
-        { "speaker": "Lina", "arabic": "وَأَنَا شَاي بِالنَّعْنَاع، مِنْ فَضْلِكَ.", "transliteration": "wa anaa shaay bin-na3naa3, min fadlika.", "english": "And I'll have mint tea, please." },
-        { "speaker": "Rami", "arabic": "هَلْ يُوجَدُ طَبَقُ الْيَوْم؟", "transliteration": "hal yoojadu tabaqu al-yawm?", "english": "Is there a dish of the day?" },
-        { "speaker": "Waiter", "arabic": "نَعَمْ، أُرْز بِالدَّجَاج. وَهُوَ غَيْرُ حَارّ.", "transliteration": "na3am, urz bid-dajaaj. wa huwa ghayru 7aarr.", "english": "Yes, rice with chicken. And it is not spicy." },
-        { "speaker": "Rami", "arabic": "سَآخُذُ طَبَقَ الْيَوْم، وَخُبْز إِضَافِيّ، مِنْ فَضْلِكَ.", "transliteration": "sa2aakhudhu tabaqa al-yawm, wa khubz idaafee, min fadlika.", "english": "I'll have the dish of the day, and extra bread, please." },
-        { "speaker": "Lina", "arabic": "أُرِيدُ فَتُّوش بِدُونِ بَصَل.", "transliteration": "ureedu fattoosh bidooni basal.", "english": "I want fattoush without onion." },
-        { "speaker": "Waiter", "arabic": "حَاضِر. هَلْ تُرِيدُونَ شَيْئًا آخَر؟", "transliteration": "7aadir. hal tureedoona shay2an aakhar?", "english": "Certainly. Do you want anything else?" },
-        { "speaker": "Rami", "arabic": "شُكْرًا، يَكْفِي هَذَا. الْحِسَاب لَاحِقًا.", "transliteration": "shukran, yakfee haadha. al-7isaab laa7iqan.", "english": "Thanks, that's enough. The bill later." },
-        { "speaker": "Rami", "arabic": "الْحِسَاب، مِنْ فَضْلِكَ. هَلْ تَقْبَلُونَ الْبِطَاقَة؟", "transliteration": "al-7isaab, min fadlika. hal taqbaloona al-bitaaqa?", "english": "The bill, please. Do you take cards?" },
-        { "speaker": "Waiter", "arabic": "نَعَمْ، تَفَضَّلْ.", "transliteration": "na3am, tafaddal.", "english": "Yes, here you are." },
-        { "speaker": "Lina", "arabic": "تُسْلَمُ يَدَاكَ، كَانَ الطَّعَام لَذِيذ.", "transliteration": "tuslamu yadaaka, kaana at-ta3aamu ladheedh.", "english": "Bless your hands, the food was delicious." }
+        {
+          "speaker": "Waiter",
+          "arabic": "أَهْلًا وَسَهْلًا. مَاذَا تُحِبُّونَ أَنْ تَشْرَبُوا؟",
+          "transliteration": "ahlan wa sahlan. maadha tu7ibboona an tashraboo?",
+          "english": "Welcome. What would you like to drink?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "قَهْوَة بِدُونِ سُكَّر، مِنْ فَضْلِكَ.",
+          "transliteration": "qahwa bidooni sukkar, min fadlika.",
+          "english": "Coffee with no sugar, please."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "وَأَنَا شَاي بِالنَّعْنَاع، مِنْ فَضْلِكَ.",
+          "transliteration": "wa anaa shaay bin-na3naa3, min fadlika.",
+          "english": "And I'll have mint tea, please."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "هَلْ يُوجَدُ طَبَقُ الْيَوْم؟",
+          "transliteration": "hal yoojadu tabaqu al-yawm?",
+          "english": "Is there a dish of the day?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "نَعَمْ، أُرْز بِالدَّجَاج. وَهُوَ غَيْرُ حَارّ.",
+          "transliteration": "na3am, urz bid-dajaaj. wa huwa ghayru 7aarr.",
+          "english": "Yes, rice with chicken. And it is not spicy."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "سَآخُذُ طَبَقَ الْيَوْم، وَخُبْز إِضَافِيّ، مِنْ فَضْلِكَ.",
+          "transliteration": "sa2aakhudhu tabaqa al-yawm, wa khubz idaafee, min fadlika.",
+          "english": "I'll have the dish of the day, and extra bread, please."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "أُرِيدُ فَتُّوش بِدُونِ بَصَل.",
+          "transliteration": "ureedu fattoosh bidooni basal.",
+          "english": "I want fattoush without onion."
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "حَاضِر. هَلْ تُرِيدُونَ شَيْئًا آخَر؟",
+          "transliteration": "7aadir. hal tureedoona shay2an aakhar?",
+          "english": "Certainly. Do you want anything else?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "شُكْرًا، يَكْفِي هَذَا. الْحِسَاب لَاحِقًا.",
+          "transliteration": "shukran, yakfee haadha. al-7isaab laa7iqan.",
+          "english": "Thanks, that's enough. The bill later."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "الْحِسَاب، مِنْ فَضْلِكَ. هَلْ تَقْبَلُونَ الْبِطَاقَة؟",
+          "transliteration": "al-7isaab, min fadlika. hal taqbaloona al-bitaaqa?",
+          "english": "The bill, please. Do you take cards?"
+        },
+        {
+          "speaker": "Waiter",
+          "arabic": "نَعَمْ، تَفَضَّلْ.",
+          "transliteration": "na3am, tafaddal.",
+          "english": "Yes, here you are."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "تُسْلَمُ يَدَاكَ، كَانَ الطَّعَام لَذِيذ.",
+          "transliteration": "tuslamu yadaaka, kaana at-ta3aamu ladheedh.",
+          "english": "Bless your hands, the food was delicious."
+        }
       ]
     }
   }

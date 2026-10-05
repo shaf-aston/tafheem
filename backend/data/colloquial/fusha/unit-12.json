@@ -1598,6 +1598,696 @@
           "tip": "The comma splits the two ideas."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "i-ll-send-you-a-message",
+          "arabic": "سَأُرْسِلُ لَكَ رِسَالَةً",
+          "transliteration": "sa2ursilu laka risaalatan"
+        },
+        {
+          "slot": "did-you-get-my-message",
+          "arabic": "هَلْ وَصَلَتْكَ رِسَالَتِي؟",
+          "transliteration": "hal wasalatka risaalatee?",
+          "reply": {
+            "arabic": "نَعَمْ، وَصَلَتْنِي الْآن",
+            "transliteration": "na3am, wasalatnee al-aan",
+            "english": "Yes, it just reached me."
+          }
+        },
+        {
+          "slot": "i-didn-t-see-your-message",
+          "arabic": "لَمْ أَرَ رِسَالَتَكَ",
+          "transliteration": "lam ara risaalataka"
+        },
+        {
+          "slot": "send-me-the-location",
+          "arabic": "أَرْسِلْ لِي الْمَوْقِعَ",
+          "transliteration": "arsil lee al-mawqi3a"
+        },
+        {
+          "slot": "send-me-a-photo",
+          "arabic": "أَرْسِلْ لِي صُورَةً",
+          "transliteration": "arsil lee sooratan"
+        },
+        {
+          "slot": "i-ll-write-to-you-on-the-app",
+          "arabic": "سَأَكْتُبُ لَكَ عَبْرَ التَّطْبِيق",
+          "transliteration": "sa2aktubu laka 3abra at-tatbeeq"
+        },
+        {
+          "slot": "did-you-read-my-message",
+          "arabic": "هَلْ قَرَأْتَ رِسَالَتِي؟",
+          "transliteration": "hal qara2ta risaalatee?",
+          "reply": {
+            "arabic": "لَا، لَمْ أَقْرَأْهَا بَعْدُ",
+            "transliteration": "laa, lam aqra2haa ba3du",
+            "english": "No, I haven't read it yet."
+          }
+        },
+        {
+          "slot": "write-to-me-when-you-arrive",
+          "arabic": "اُكْتُبْ لِي عِنْدَمَا تَصِلُ",
+          "transliteration": "uktub lee 3indamaa tasilu"
+        },
+        {
+          "slot": "i-ll-send-a-voice-message",
+          "arabic": "سَأُرْسِلُ رِسَالَةً صَوْتِيَّةً",
+          "transliteration": "sa2ursilu risaalatan sawtiyyatan"
+        },
+        {
+          "slot": "the-message-wasn-t-sent",
+          "arabic": "لَمْ تُرْسَلِ الرِّسَالَةُ",
+          "transliteration": "lam tursali ar-risaalatu"
+        },
+        {
+          "slot": "the-internet-is-weak",
+          "arabic": "الْإِنْتَرْنِت ضَعِيف",
+          "transliteration": "al-internet da3eef"
+        },
+        {
+          "slot": "i-ll-reply-to-you-later",
+          "arabic": "سَأَرُدُّ عَلَيْكَ لَاحِقًا",
+          "transliteration": "sa2aruddu 3alayka laa7iqan"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hadi",
+          "arabic": "هَلْ وَصَلَتْكَ رِسَالَتِي؟",
+          "transliteration": "hal wasalatka risaalatee?",
+          "english": "Did you get my message?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "لَا، لَمْ أَرَ رِسَالَتَكَ. الْإِنْتَرْنِت ضَعِيف هُنَا.",
+          "transliteration": "laa, lam ara risaalataka. al-internet da3eef hunaa.",
+          "english": "No, I didn't see your message. The internet is weak here."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "لَمْ تُرْسَلِ الرِّسَالَةُ مِنْ عِنْدِي. سَأُرْسِلُهَا مِنْ جَدِيد.",
+          "transliteration": "lam tursali ar-risaalatu min 3indee. sa2ursiluhaa min jadeed.",
+          "english": "The message wasn't sent from my side. I'll send it again."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "حَسَنًا. أَرْسِلْ لِي الْمَوْقِعَ أَيْضًا.",
+          "transliteration": "7asanan. arsil lee al-mawqi3a aydan.",
+          "english": "Fine. Send me the location too."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "طَبْعًا. وَسَأُرْسِلُ لَكَ رِسَالَةً صَوْتِيَّةً.",
+          "transliteration": "tab3an. wa sa2ursilu laka risaalatan sawtiyyatan.",
+          "english": "Of course. And I'll send you a voice message."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "أَرْسِلْ لِي صُورَةً لِلْمَكَانِ مِنْ فَضْلِكَ.",
+          "transliteration": "arsil lee sooratan lil-makaani min fadlika.",
+          "english": "Send me a photo of the place please."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "حَاضِر. هَلْ قَرَأْتَ رِسَالَتِي الْآن؟",
+          "transliteration": "7aadir. hal qara2ta risaalatee al-aan?",
+          "english": "Sure. Did you read my message now?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "نَعَمْ، وَصَلَتْنِي الْآن. سَأَرُدُّ عَلَيْكَ لَاحِقًا.",
+          "transliteration": "na3am, wasalatnee al-aan. sa2aruddu 3alayka laa7iqan.",
+          "english": "Yes, it just reached me. I'll reply to you later."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "اُكْتُبْ لِي عِنْدَمَا تَصِلُ.",
+          "transliteration": "uktub lee 3indamaa tasilu.",
+          "english": "Write to me when you arrive."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "سَأَكْتُبُ لَكَ عَبْرَ التَّطْبِيق.",
+          "transliteration": "sa2aktubu laka 3abra at-tatbeeq.",
+          "english": "I'll write to you on the app."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "شُكْرًا لَكَ.",
+          "transliteration": "shukran laka.",
+          "english": "Thank you."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "لَا شُكْرَ عَلَى وَاجِب.",
+          "transliteration": "laa shukra 3alaa waajib.",
+          "english": "Don't mention it."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هَلْ وَصَلَتْكَ رِسَالَتِي؟",
+            "transliteration": "hal wasalatka risaalatee?",
+            "english": "Did you get my message?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، وَصَلَتْنِي الْآن.",
+            "transliteration": "na3am, wasalatnee al-aan.",
+            "english": "Yes, it just reached me."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ قَرَأْتَ رِسَالَتِي؟",
+            "transliteration": "hal qara2ta risaalatee?",
+            "english": "Did you read my message?"
+          },
+          "response": {
+            "arabic": "لَا، لَمْ أَقْرَأْهَا بَعْدُ.",
+            "transliteration": "laa, lam aqra2haa ba3du.",
+            "english": "No, I haven't read it yet."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لِمَاذَا لَمْ تَرُدَّ؟",
+            "transliteration": "limaadhaa lam tarudda?",
+            "english": "Why didn't you reply?"
+          },
+          "response": {
+            "arabic": "لَمْ أَرَ رِسَالَتَكَ.",
+            "transliteration": "lam ara risaalataka.",
+            "english": "I didn't see your message."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ تَكْتُبُ لِي عِنْدَمَا تَصِلُ؟",
+            "transliteration": "hal taktubu lee 3indamaa tasilu?",
+            "english": "Will you write to me when you arrive?"
+          },
+          "response": {
+            "arabic": "طَبْعًا، سَأَكْتُبُ لَكَ عَبْرَ التَّطْبِيق.",
+            "transliteration": "tab3an, sa2aktubu laka 3abra at-tatbeeq.",
+            "english": "Of course, I'll write to you on the app."
+          }
+        }
+      ],
+      "culture": "People in the Arab world send many voice messages instead of typing, and a chat usually opens with a greeting such as السَّلَامُ عَلَيْكُمْ. Friends often type in their own dialect, while Fusha is kept for formal messages to a teacher or a workplace.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I didn't see your message.'",
+          "answer": "لَمْ أَرَ رِسَالَتَكَ",
+          "accepted": [
+            "لَمْ أَرَ رِسَالَتَكَ",
+            "لم ار رسالتك",
+            "lam ara risaalataka"
+          ],
+          "too_formal": {
+            "item": "مَا شُفْتْ رِسَالَتَكْ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَمْ plus a short verb means 'did not'."
+        },
+        {
+          "id": "unit-12.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'The message wasn't sent.'",
+          "answer": "لَمْ تُرْسَلِ الرِّسَالَةُ",
+          "accepted": [
+            "لَمْ تُرْسَلِ الرِّسَالَةُ",
+            "لم ترسل الرسالة",
+            "lam tursali ar-risaalatu"
+          ],
+          "tip": "تُرْسَلُ is 'is sent'; لَمْ makes it 'was not sent'."
+        },
+        {
+          "id": "unit-12.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'I'll send a voice message'?",
+          "answer": "سَأُرْسِلُ رِسَالَةً صَوْتِيَّةً",
+          "accepted": [
+            "سَأُرْسِلُ رِسَالَةً صَوْتِيَّةً",
+            "سارسل رسالة صوتية",
+            "sa2ursilu risaalatan sawtiyyatan"
+          ],
+          "options": [
+            "سَأُرْسِلُ رِسَالَةً صَوْتِيَّةً",
+            "لَمْ تُرْسَلِ الرِّسَالَةُ",
+            "أَرْسِلْ لِي صُورَةً",
+            "هَلْ قَرَأْتَ رِسَالَتِي؟"
+          ],
+          "tip": "رِسَالَةٌ صَوْتِيَّةٌ is a voice message."
+        },
+        {
+          "id": "unit-12.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence asks 'Did you read my message?'",
+          "answer": "هَلْ قَرَأْتَ رِسَالَتِي؟",
+          "accepted": [
+            "هَلْ قَرَأْتَ رِسَالَتِي؟",
+            "هل قرات رسالتي؟",
+            "hal qara2ta risaalatee?"
+          ],
+          "options": [
+            "هَلْ قَرَأْتَ رِسَالَتِي؟",
+            "هَلْ وَصَلَتْكَ رِسَالَتِي؟",
+            "سَأَرُدُّ عَلَيْكَ لَاحِقًا",
+            "اُكْتُبْ لِي عِنْدَمَا تَصِلُ"
+          ],
+          "tip": "قَرَأْتَ means 'you read'."
+        },
+        {
+          "id": "unit-12.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'عِنْدَمَا / لِي / تَصِلُ / اُكْتُبْ'.",
+          "answer": "اُكْتُبْ لِي عِنْدَمَا تَصِلُ",
+          "accepted": [
+            "اُكْتُبْ لِي عِنْدَمَا تَصِلُ",
+            "اكتب لي عندما تصل",
+            "uktub lee 3indamaa tasilu"
+          ],
+          "tip": "The command comes first, then who it is for, then when."
+        },
+        {
+          "id": "unit-12.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْمَوْقِعَ / لِي / أَرْسِلْ'.",
+          "answer": "أَرْسِلْ لِي الْمَوْقِعَ",
+          "accepted": [
+            "أَرْسِلْ لِي الْمَوْقِعَ",
+            "ارسل لي الموقع",
+            "arsil lee al-mawqi3a"
+          ],
+          "too_formal": {
+            "item": "ابْعَتْلِي الْمَوْقِع",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَرْسِلْ is the command 'send'."
+        },
+        {
+          "id": "unit-12.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'سَأَكْتُبُ لَكَ _____ التَّطْبِيق' (I'll write to you on the app.)",
+          "answer": "عَبْرَ",
+          "accepted": [
+            "عَبْرَ",
+            "عبر",
+            "3abra"
+          ],
+          "tip": "عَبْرَ means 'through' or 'via'."
+        },
+        {
+          "id": "unit-12.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'الْإِنْتَرْنِت _____' (The internet is weak.)",
+          "answer": "ضَعِيف",
+          "accepted": [
+            "ضَعِيف",
+            "ضعيف",
+            "da3eef"
+          ],
+          "tip": "ضَعِيف means 'weak'."
+        },
+        {
+          "id": "unit-12.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: 'هَلْ وَصَلَتْكَ رِسَالَتِي؟'. Say it just reached you.",
+          "answer": "نَعَمْ، وَصَلَتْنِي الْآن",
+          "accepted": [
+            "نَعَمْ، وَصَلَتْنِي الْآن",
+            "نعم، وصلتني الان",
+            "na3am, wasalatnee al-aan"
+          ],
+          "too_formal": {
+            "item": "إِي، وَصَلَتْنِي هَلَّأ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "وَصَلَتْنِي means 'it reached me'."
+        },
+        {
+          "id": "unit-12.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: 'هَلْ قَرَأْتَ رِسَالَتِي؟'. Say you haven't read it yet.",
+          "answer": "لَا، لَمْ أَقْرَأْهَا بَعْدُ",
+          "accepted": [
+            "لَا، لَمْ أَقْرَأْهَا بَعْدُ",
+            "لا، لم اقراها بعد",
+            "laa, lam aqra2haa ba3du"
+          ],
+          "tip": "لَمْ ... بَعْدُ means 'not yet'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "can-we-do-a-video-call",
+          "arabic": "هَلْ نُجْرِي مُكَالَمَةَ فِيدْيُو؟",
+          "transliteration": "hal nujree mukaalamata feedyoo?",
+          "reply": {
+            "arabic": "طَبْعًا، سَأُرْسِلُ لَكَ الرَّابِطَ",
+            "transliteration": "tab3an, sa2ursilu laka ar-raabita",
+            "english": "Of course, I'll send you the link."
+          }
+        },
+        {
+          "slot": "i-ll-send-you-the-link",
+          "arabic": "سَأُرْسِلُ لَكَ الرَّابِطَ",
+          "transliteration": "sa2ursilu laka ar-raabita"
+        },
+        {
+          "slot": "can-you-see-me",
+          "arabic": "هَلْ تَرَانِي؟",
+          "transliteration": "hal taraanee?",
+          "reply": {
+            "arabic": "نَعَمْ، أَرَاكَ بِوُضُوح",
+            "transliteration": "na3am, araaka biwudoo7",
+            "english": "Yes, I see you clearly."
+          }
+        },
+        {
+          "slot": "i-can-t-hear-you",
+          "arabic": "لَا أَسْمَعُكَ",
+          "transliteration": "laa asma3uka"
+        },
+        {
+          "slot": "can-you-hear-me-well",
+          "arabic": "هَلْ تَسْمَعُنِي جَيِّدًا؟",
+          "transliteration": "hal tasma3unee jayyidan?"
+        },
+        {
+          "slot": "turn-on-the-camera",
+          "arabic": "شَغِّلِ الْكَامِيرَا",
+          "transliteration": "shaghghili al-kaameeraa"
+        },
+        {
+          "slot": "turn-off-the-microphone",
+          "arabic": "أَغْلِقِ الْمِيكْرُوفُون",
+          "transliteration": "aghliqi al-meekroofoon"
+        },
+        {
+          "slot": "the-sound-is-choppy",
+          "arabic": "الصَّوْتُ مُتَقَطِّع",
+          "transliteration": "as-sawtu mutaqatti3"
+        },
+        {
+          "slot": "wait-the-screen-froze",
+          "arabic": "اِنْتَظِرْ، تَجَمَّدَتِ الشَّاشَة",
+          "transliteration": "intadhir, tajammadati ash-shaasha"
+        },
+        {
+          "slot": "i-ll-leave-and-join-again",
+          "arabic": "سَأَخْرُجُ ثُمَّ أَدْخُلُ مِنْ جَدِيد",
+          "transliteration": "sa2akhruju thumma adkhulu min jadeed"
+        },
+        {
+          "slot": "let-me-share-my-screen",
+          "arabic": "دَعْنِي أُشَارِكُ شَاشَتِي",
+          "transliteration": "da3nee ushaariku shaashatee"
+        },
+        {
+          "slot": "i-ll-move-closer-to-the-router",
+          "arabic": "سَأَقْتَرِبُ مِنَ الرَّاوْتَر",
+          "transliteration": "sa2aqtaribu mina ar-raawtar"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "arabic": "هَلْ نُجْرِي مُكَالَمَةَ فِيدْيُو؟",
+          "transliteration": "hal nujree mukaalamata feedyoo?",
+          "english": "Can we do a video call?"
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "طَبْعًا. سَأُرْسِلُ لَكَ الرَّابِطَ.",
+          "transliteration": "tab3an. sa2ursilu laka ar-raabita.",
+          "english": "Of course. I'll send you the link."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "وَصَلَ الرَّابِطُ. شَغِّلِ الْكَامِيرَا مِنْ فَضْلِكَ.",
+          "transliteration": "wasala ar-raabitu. shaghghili al-kaameeraa min fadlika.",
+          "english": "The link arrived. Turn on the camera please."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "هَلْ تَرَانِي؟",
+          "transliteration": "hal taraanee?",
+          "english": "Can you see me?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "نَعَمْ، أَرَاكَ بِوُضُوح. لَكِنْ لَا أَسْمَعُكَ.",
+          "transliteration": "na3am, araaka biwudoo7. laakin laa asma3uka.",
+          "english": "Yes, I see you clearly. But I can't hear you."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "هَلْ تَسْمَعُنِي جَيِّدًا الْآن؟",
+          "transliteration": "hal tasma3unee jayyidan al-aan?",
+          "english": "Can you hear me well now?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "الصَّوْتُ مُتَقَطِّع.",
+          "transliteration": "as-sawtu mutaqatti3.",
+          "english": "The sound is choppy."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "سَأَقْتَرِبُ مِنَ الرَّاوْتَر.",
+          "transliteration": "sa2aqtaribu mina ar-raawtar.",
+          "english": "I'll move closer to the router."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "اِنْتَظِرْ، تَجَمَّدَتِ الشَّاشَة.",
+          "transliteration": "intadhir, tajammadati ash-shaasha.",
+          "english": "Wait, the screen froze."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "سَأَخْرُجُ ثُمَّ أَدْخُلُ مِنْ جَدِيد.",
+          "transliteration": "sa2akhruju thumma adkhulu min jadeed.",
+          "english": "I'll leave and join again."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "الْآن أَسْمَعُكَ جَيِّدًا.",
+          "transliteration": "al-aan asma3uka jayyidan.",
+          "english": "Now I hear you well."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "دَعْنِي أُشَارِكُ شَاشَتِي.",
+          "transliteration": "da3nee ushaariku shaashatee.",
+          "english": "Let me share my screen."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هَلْ نُجْرِي مُكَالَمَةَ فِيدْيُو؟",
+            "transliteration": "hal nujree mukaalamata feedyoo?",
+            "english": "Can we do a video call?"
+          },
+          "response": {
+            "arabic": "طَبْعًا، سَأُرْسِلُ لَكَ الرَّابِطَ.",
+            "transliteration": "tab3an, sa2ursilu laka ar-raabita.",
+            "english": "Of course, I'll send you the link."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ تَرَانِي؟",
+            "transliteration": "hal taraanee?",
+            "english": "Can you see me?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، أَرَاكَ بِوُضُوح.",
+            "transliteration": "na3am, araaka biwudoo7.",
+            "english": "Yes, I see you clearly."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ تَسْمَعُنِي جَيِّدًا؟",
+            "transliteration": "hal tasma3unee jayyidan?",
+            "english": "Can you hear me well?"
+          },
+          "response": {
+            "arabic": "لَا، الصَّوْتُ مُتَقَطِّع.",
+            "transliteration": "laa, as-sawtu mutaqatti3.",
+            "english": "No, the sound is choppy."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لِمَاذَا تَوَقَّفَتِ الصُّورَةُ؟",
+            "transliteration": "limaadhaa tawaqqafati as-sooratu?",
+            "english": "Why did the picture stop?"
+          },
+          "response": {
+            "arabic": "تَجَمَّدَتِ الشَّاشَة.",
+            "transliteration": "tajammadati ash-shaasha.",
+            "english": "The screen froze."
+          }
+        }
+      ],
+      "culture": "Video calls keep families close when relatives live in another country, and people greet and ask about each other's health before sorting out the sound and camera. Asking هَلْ تَسْمَعُنِي؟ at the start of a call is completely normal. Fusha is the language of online classes and meetings, while family calls are usually in dialect.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Can you see me?'",
+          "answer": "هَلْ تَرَانِي؟",
+          "accepted": [
+            "هَلْ تَرَانِي؟",
+            "هل تراني؟",
+            "hal taraanee?"
+          ],
+          "too_formal": {
+            "item": "بِتْشُوفْنِي؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "تَرَانِي is 'you see me'."
+        },
+        {
+          "id": "unit-12.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I'll move closer to the router.'",
+          "answer": "سَأَقْتَرِبُ مِنَ الرَّاوْتَر",
+          "accepted": [
+            "سَأَقْتَرِبُ مِنَ الرَّاوْتَر",
+            "ساقترب من الراوتر",
+            "sa2aqtaribu mina ar-raawtar"
+          ],
+          "tip": "اِقْتَرَبَ مِنْ means 'came close to'."
+        },
+        {
+          "id": "unit-12.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'The sound is choppy'?",
+          "answer": "الصَّوْتُ مُتَقَطِّع",
+          "accepted": [
+            "الصَّوْتُ مُتَقَطِّع",
+            "الصوت متقطع",
+            "as-sawtu mutaqatti3"
+          ],
+          "options": [
+            "الصَّوْتُ مُتَقَطِّع",
+            "تَجَمَّدَتِ الشَّاشَة",
+            "شَغِّلِ الْكَامِيرَا",
+            "سَأُرْسِلُ لَكَ الرَّابِطَ"
+          ],
+          "tip": "مُتَقَطِّع means 'cutting in and out'."
+        },
+        {
+          "id": "unit-12.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'Turn on the camera'?",
+          "answer": "شَغِّلِ الْكَامِيرَا",
+          "accepted": [
+            "شَغِّلِ الْكَامِيرَا",
+            "شغل الكاميرا",
+            "shaghghili al-kaameeraa"
+          ],
+          "options": [
+            "شَغِّلِ الْكَامِيرَا",
+            "أَغْلِقِ الْمِيكْرُوفُون",
+            "هَلْ تَرَانِي؟",
+            "دَعْنِي أُشَارِكُ شَاشَتِي"
+          ],
+          "too_formal": {
+            "item": "افْتَحْ الْكَامِيرَا",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "شَغِّلْ means 'turn on' or 'run'."
+        },
+        {
+          "id": "unit-12.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'جَدِيد / مِنْ / أَدْخُلُ / ثُمَّ / سَأَخْرُجُ'.",
+          "answer": "سَأَخْرُجُ ثُمَّ أَدْخُلُ مِنْ جَدِيد",
+          "accepted": [
+            "سَأَخْرُجُ ثُمَّ أَدْخُلُ مِنْ جَدِيد",
+            "ساخرج ثم ادخل من جديد",
+            "sa2akhruju thumma adkhulu min jadeed"
+          ],
+          "tip": "ثُمَّ means 'then' and joins the two actions."
+        },
+        {
+          "id": "unit-12.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'أُشَارِكُ / دَعْنِي / شَاشَتِي'.",
+          "answer": "دَعْنِي أُشَارِكُ شَاشَتِي",
+          "accepted": [
+            "دَعْنِي أُشَارِكُ شَاشَتِي",
+            "دعني اشارك شاشتي",
+            "da3nee ushaariku shaashatee"
+          ],
+          "tip": "دَعْنِي means 'let me'."
+        },
+        {
+          "id": "unit-12.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَلْ تَسْمَعُنِي _____؟' (Can you hear me well?)",
+          "answer": "جَيِّدًا",
+          "accepted": [
+            "جَيِّدًا",
+            "جيدا",
+            "jayyidan"
+          ],
+          "tip": "جَيِّدًا means 'well'."
+        },
+        {
+          "id": "unit-12.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'لَا _____' (I can't hear you.)",
+          "answer": "أَسْمَعُكَ",
+          "accepted": [
+            "أَسْمَعُكَ",
+            "اسمعك",
+            "asma3uka"
+          ],
+          "tip": "ك at the end means 'you'."
+        },
+        {
+          "id": "unit-12.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Someone says: 'هَلْ نُجْرِي مُكَالَمَةَ فِيدْيُو؟'. Agree and say you'll send the link.",
+          "answer": "طَبْعًا، سَأُرْسِلُ لَكَ الرَّابِطَ",
+          "accepted": [
+            "طَبْعًا، سَأُرْسِلُ لَكَ الرَّابِطَ",
+            "طبعا، سارسل لك الرابط",
+            "tab3an, sa2ursilu laka ar-raabita"
+          ],
+          "tip": "سَـ before a verb makes it 'will'."
+        },
+        {
+          "id": "unit-12.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: 'هَلْ تَسْمَعُنِي جَيِّدًا؟'. Say the sound is choppy.",
+          "answer": "الصَّوْتُ مُتَقَطِّع",
+          "accepted": [
+            "الصَّوْتُ مُتَقَطِّع",
+            "الصوت متقطع",
+            "as-sawtu mutaqatti3",
+            "لَا، الصَّوْتُ مُتَقَطِّع",
+            "لا، الصوت متقطع"
+          ],
+          "tip": "Say the noun first, then how it is."
+        }
+      ]
     }
   ],
   "challenge": {

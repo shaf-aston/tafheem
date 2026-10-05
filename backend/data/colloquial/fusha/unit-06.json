@@ -1612,6 +1612,689 @@
           "tip": "تُعِيدُونَ is 'you give back' (plural, polite)."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "where-is-the-escalator",
+          "arabic": "أَيْنَ السُّلَّم الْكَهْرَبَائِيّ؟",
+          "transliteration": "ayna as-sullam al-kahrabaa2ee?"
+        },
+        {
+          "slot": "where-is-the-food-court",
+          "arabic": "أَيْنَ قِسْمُ الْمَطَاعِم؟",
+          "transliteration": "ayna qismu al-mataa3im?"
+        },
+        {
+          "slot": "which-floor-is-the-shoe-shop-on",
+          "arabic": "فِي أَيِّ طَابِق مَحَلُّ الْأَحْذِيَة؟",
+          "transliteration": "fee ayyi taabiq ma7allu al-a7dhiya?"
+        },
+        {
+          "slot": "where-is-the-elevator",
+          "arabic": "أَيْنَ الْمِصْعَد؟",
+          "transliteration": "ayna al-mis3ad?"
+        },
+        {
+          "slot": "when-does-the-mall-close",
+          "arabic": "مَتَى يُغْلِقُ الْمَرْكَزُ التِّجَارِيّ؟",
+          "transliteration": "mataa yughliqu al-markazu at-tijaaree?"
+        },
+        {
+          "slot": "is-there-a-sale-in-this-shop",
+          "arabic": "هَلْ يُوجَدُ تَخْفِيضَات فِي هَذَا الْمَحَلّ؟",
+          "transliteration": "hal yoojadu takhfeedaat fee haadhaa al-ma7all?"
+        },
+        {
+          "slot": "where-is-the-prayer-room",
+          "arabic": "أَيْنَ الْمُصَلَّى؟",
+          "transliteration": "ayna al-musallaa?"
+        },
+        {
+          "slot": "i-m-just-looking",
+          "arabic": "أَنَا أَتَفَرَّج فَقَط",
+          "transliteration": "anaa atafarraju faqat"
+        },
+        {
+          "slot": "i-have-many-shopping-bags",
+          "arabic": "مَعِي أَكْيَاس كَثِيرَة",
+          "transliteration": "ma3ee akyaas katheera"
+        },
+        {
+          "slot": "where-is-the-place-to-pay",
+          "arabic": "أَيْنَ مَكَانُ الدَّفْع؟",
+          "transliteration": "ayna makaanu ad-dafa3?"
+        },
+        {
+          "slot": "where-did-you-park-the-car",
+          "arabic": "أَيْنَ أَوْقَفْتَ السَّيَّارَة؟",
+          "transliteration": "ayna awqafta as-sayyaara?"
+        },
+        {
+          "slot": "shall-we-meet-at-the-entrance",
+          "arabic": "هَلْ نَلْتَقِي عِنْدَ الْمَدْخَل؟",
+          "transliteration": "hal naltaqee 3inda al-madkhal?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hadi",
+          "arabic": "مَتَى يُغْلِقُ الْمَرْكَزُ التِّجَارِيّ؟",
+          "transliteration": "mataa yughliqu al-markazu at-tijaaree?",
+          "english": "When does the mall close?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "عِنْدَ الْعَاشِرَة مَسَاءً.",
+          "transliteration": "3inda al-3aashira masaa2an.",
+          "english": "At ten in the evening."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "فِي أَيِّ طَابِق مَحَلُّ الْأَحْذِيَة؟",
+          "transliteration": "fee ayyi taabiq ma7allu al-a7dhiya?",
+          "english": "Which floor is the shoe shop on?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "فِي الطَّابِق الثَّانِي.",
+          "transliteration": "fee at-taabiq ath-thaanee.",
+          "english": "On the second floor."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "أَيْنَ السُّلَّم الْكَهْرَبَائِيّ؟",
+          "transliteration": "ayna as-sullam al-kahrabaa2ee?",
+          "english": "Where is the escalator?"
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "هُنَاكَ، بِجَانِبِ الْمِصْعَد.",
+          "transliteration": "hunaaka, bi-jaanibi al-mis3ad.",
+          "english": "Over there, next to the elevator."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "هَلْ يُوجَدُ تَخْفِيضَات فِي هَذَا الْمَحَلّ؟",
+          "transliteration": "hal yoojadu takhfeedaat fee haadhaa al-ma7all?",
+          "english": "Is there a sale in this shop?"
+        },
+        {
+          "speaker": "Seller",
+          "arabic": "نَعَمْ، خَمْسُونَ فِي الْمِئَة عَلَى الْأَحْذِيَة.",
+          "transliteration": "na3am, khamsoona fee al-mi2a 3alaa al-a7dhiya.",
+          "english": "Yes, fifty percent off shoes."
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "أَيْنَ مَكَانُ الدَّفْع؟",
+          "transliteration": "ayna makaanu ad-dafa3?",
+          "english": "Where is the place to pay?"
+        },
+        {
+          "speaker": "Seller",
+          "arabic": "عِنْدَ الْمَدْخَل.",
+          "transliteration": "3inda al-madkhal.",
+          "english": "At the entrance."
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "أَيْنَ أَوْقَفْتَ السَّيَّارَة؟",
+          "transliteration": "ayna awqafta as-sayyaara?",
+          "english": "Where did you park the car?"
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "فِي الْمَوْقِف تَحْتَ الْأَرْض.",
+          "transliteration": "fee al-mawqif ta7ta al-ard.",
+          "english": "In the underground car park."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فِي أَيِّ طَابِق مَحَلُّ الْأَحْذِيَة؟",
+            "transliteration": "fee ayyi taabiq ma7allu al-a7dhiya?",
+            "english": "Which floor is the shoe shop on?"
+          },
+          "response": {
+            "arabic": "فِي الطَّابِق الثَّانِي.",
+            "transliteration": "fee at-taabiq ath-thaanee.",
+            "english": "On the second floor."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى يُغْلِقُ الْمَرْكَزُ التِّجَارِيّ؟",
+            "transliteration": "mataa yughliqu al-markazu at-tijaaree?",
+            "english": "When does the mall close?"
+          },
+          "response": {
+            "arabic": "عِنْدَ الْعَاشِرَة مَسَاءً.",
+            "transliteration": "3inda al-3aashira masaa2an.",
+            "english": "At ten in the evening."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ يُوجَدُ تَخْفِيضَات فِي هَذَا الْمَحَلّ؟",
+            "transliteration": "hal yoojadu takhfeedaat fee haadhaa al-ma7all?",
+            "english": "Is there a sale in this shop?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، خَمْسُونَ فِي الْمِئَة.",
+            "transliteration": "na3am, khamsoona fee al-mi2a.",
+            "english": "Yes, fifty percent."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيْنَ أَوْقَفْتَ السَّيَّارَة؟",
+            "transliteration": "ayna awqafta as-sayyaara?",
+            "english": "Where did you park the car?"
+          },
+          "response": {
+            "arabic": "فِي الْمَوْقِف تَحْتَ الْأَرْض.",
+            "transliteration": "fee al-mawqif ta7ta al-ard.",
+            "english": "In the underground car park."
+          }
+        }
+      ],
+      "culture": "Malls in the Arab world stay open late, often until ten or eleven at night, and are busiest in the evening. Most have a prayer room, الْمُصَلَّى, usually near the food court. Prices in mall shops are fixed, so people ask about a sale, تَخْفِيضَات, instead of bargaining.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Where is the escalator?'",
+          "answer": "أَيْنَ السُّلَّم الْكَهْرَبَائِيّ؟",
+          "accepted": [
+            "أَيْنَ السُّلَّم الْكَهْرَبَائِيّ؟",
+            "أين السلم الكهربائي؟",
+            "ayna as-sullam al-kahrabaa2ee?"
+          ],
+          "too_formal": {
+            "item": "فِين الْإِسْكَلَيْتَر؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "السُّلَّم is 'the stairs', الْكَهْرَبَائِيّ 'electric'."
+        },
+        {
+          "id": "unit-06.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'When does the mall close?'",
+          "answer": "مَتَى يُغْلِقُ الْمَرْكَزُ التِّجَارِيّ؟",
+          "accepted": [
+            "مَتَى يُغْلِقُ الْمَرْكَزُ التِّجَارِيّ؟",
+            "متى يغلق المركز التجاري؟",
+            "mataa yughliqu al-markazu at-tijaaree?"
+          ],
+          "tip": "الْمَرْكَز التِّجَارِيّ is 'the commercial centre', the mall."
+        },
+        {
+          "id": "unit-06.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "You are looking for the prayer room. Which question do you ask?",
+          "options": [
+            "أَيْنَ الْمُصَلَّى؟",
+            "أَيْنَ الْمِصْعَد؟",
+            "أَيْنَ مَكَانُ الدَّفْع؟",
+            "أَيْنَ أَوْقَفْتَ السَّيَّارَة؟"
+          ],
+          "answer": "أَيْنَ الْمُصَلَّى؟",
+          "accepted": [
+            "أَيْنَ الْمُصَلَّى؟",
+            "أين المصلى؟",
+            "ayna al-musallaa?"
+          ],
+          "tip": "الْمُصَلَّى is the place of prayer."
+        },
+        {
+          "id": "unit-06.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence says you are only browsing?",
+          "options": [
+            "أَنَا أَتَفَرَّج فَقَط",
+            "مَعِي أَكْيَاس كَثِيرَة",
+            "هَلْ نَلْتَقِي عِنْدَ الْمَدْخَل؟",
+            "أَيْنَ قِسْمُ الْمَطَاعِم؟"
+          ],
+          "answer": "أَنَا أَتَفَرَّج فَقَط",
+          "accepted": [
+            "أَنَا أَتَفَرَّج فَقَط",
+            "أنا أتفرج فقط",
+            "anaa atafarraju faqat"
+          ],
+          "tip": "فَقَط means 'only'."
+        },
+        {
+          "id": "unit-06.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'الْأَحْذِيَة؟ / مَحَلُّ / طَابِق / أَيِّ / فِي'.",
+          "words": [
+            "فِي",
+            "أَيِّ",
+            "طَابِق",
+            "مَحَلُّ",
+            "الْأَحْذِيَة؟"
+          ],
+          "answer": "فِي أَيِّ طَابِق مَحَلُّ الْأَحْذِيَة؟",
+          "accepted": [
+            "فِي أَيِّ طَابِق مَحَلُّ الْأَحْذِيَة؟",
+            "في أي طابق محل الأحذية؟",
+            "fee ayyi taabiq ma7allu al-a7dhiya?"
+          ],
+          "tip": "فِي أَيِّ means 'on which'."
+        },
+        {
+          "id": "unit-06.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'الْمَدْخَل؟ / عِنْدَ / نَلْتَقِي / هَلْ'.",
+          "words": [
+            "هَلْ",
+            "نَلْتَقِي",
+            "عِنْدَ",
+            "الْمَدْخَل؟"
+          ],
+          "answer": "هَلْ نَلْتَقِي عِنْدَ الْمَدْخَل؟",
+          "accepted": [
+            "هَلْ نَلْتَقِي عِنْدَ الْمَدْخَل؟",
+            "هل نلتقي عند المدخل؟",
+            "hal naltaqee 3inda al-madkhal?"
+          ],
+          "tip": "نَلْتَقِي is 'we meet'."
+        },
+        {
+          "id": "unit-06.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَيْنَ مَكَانُ _____؟' (Where is the place to pay?)",
+          "answer": "الدَّفْع",
+          "accepted": [
+            "الدَّفْع",
+            "الدفع",
+            "ad-dafa3"
+          ],
+          "tip": "الدَّفْع is 'the payment'."
+        },
+        {
+          "id": "unit-06.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'مَعِي أَكْيَاس _____.' (I have many shopping bags.)",
+          "answer": "كَثِيرَة",
+          "accepted": [
+            "كَثِيرَة",
+            "كثيرة",
+            "katheera"
+          ],
+          "tip": "كَثِيرَة is 'many'."
+        },
+        {
+          "id": "unit-06.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "Your friend asks: 'أَيْنَ أَوْقَفْتَ السَّيَّارَة؟'. You parked underground.",
+          "answer": "فِي الْمَوْقِف تَحْتَ الْأَرْض",
+          "accepted": [
+            "فِي الْمَوْقِف تَحْتَ الْأَرْض",
+            "في الموقف تحت الأرض",
+            "fee al-mawqif ta7ta al-ard",
+            "الْمَوْقِف تَحْتَ الْأَرْض"
+          ],
+          "tip": "تَحْتَ الْأَرْض is 'under the ground'."
+        },
+        {
+          "id": "unit-06.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "Your friend asks: 'مَتَى يُغْلِقُ الْمَرْكَزُ التِّجَارِيّ؟'. Say it closes at ten in the evening.",
+          "answer": "عِنْدَ الْعَاشِرَة مَسَاءً",
+          "accepted": [
+            "عِنْدَ الْعَاشِرَة مَسَاءً",
+            "عند العاشرة مساء",
+            "3inda al-3aashira masaa2an"
+          ],
+          "tip": "الْعَاشِرَة is 'the tenth' hour."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "i-ordered-a-phone-online",
+          "arabic": "طَلَبْتُ هَاتِفًا عَبْرَ الْإِنْتَرْنِت",
+          "transliteration": "talabtu haatifan 3abra al-intarnet"
+        },
+        {
+          "slot": "where-is-my-order",
+          "arabic": "أَيْنَ طَلَبِي؟",
+          "transliteration": "ayna talabee?"
+        },
+        {
+          "slot": "when-will-the-parcel-arrive",
+          "arabic": "مَتَى سَيَصِلُ الطَّرْد؟",
+          "transliteration": "mataa sayasilu at-tard?"
+        },
+        {
+          "slot": "is-delivery-free",
+          "arabic": "هَلِ التَّوْصِيل مَجَّانِيّ؟",
+          "transliteration": "hal at-tawseel majjaanee?"
+        },
+        {
+          "slot": "how-much-is-the-delivery-fee",
+          "arabic": "كَمْ رُسُومُ التَّوْصِيل؟",
+          "transliteration": "kam rusoomu at-tawseel?"
+        },
+        {
+          "slot": "i-want-to-pay-by-credit-card",
+          "arabic": "أُرِيدُ الدَّفْعَ بِبِطَاقَةِ الِائْتِمَان",
+          "transliteration": "ureedu ad-dafa3a bi-bitaaqati al-i2timaan"
+        },
+        {
+          "slot": "can-i-pay-on-delivery",
+          "arabic": "هَلْ يُمْكِنُ الدَّفْع عِنْدَ الِاسْتِلَام؟",
+          "transliteration": "hal yumkinu ad-dafu3 3inda al-istilaam?"
+        },
+        {
+          "slot": "add-it-to-the-cart",
+          "arabic": "أَضِفْهُ إِلَى السَّلَّة",
+          "transliteration": "adifhu ilaa as-salla"
+        },
+        {
+          "slot": "please-enter-your-address",
+          "arabic": "أَدْخِلْ عُنْوَانَكَ، مِنْ فَضْلِكَ",
+          "transliteration": "adkhil 3unwaanaka, min fadlika"
+        },
+        {
+          "slot": "the-parcel-arrived-damaged",
+          "arabic": "وَصَلَ الطَّرْد تَالِفًا",
+          "transliteration": "wasala at-tard taalifan"
+        },
+        {
+          "slot": "i-want-to-track-my-order",
+          "arabic": "أُرِيدُ تَتَبُّعَ طَلَبِي",
+          "transliteration": "ureedu tatabbu3a talabee"
+        },
+        {
+          "slot": "i-ll-write-a-review-of-the-product",
+          "arabic": "سَأَكْتُبُ تَقْيِيمًا لِلْمُنْتَج",
+          "transliteration": "sa2aktubu taqyeeman lil-muntaj"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Sara",
+          "arabic": "هَلِ التَّوْصِيل مَجَّانِيّ؟",
+          "transliteration": "hal at-tawseel majjaanee?",
+          "english": "Is delivery free?"
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "لَا، رُسُوم التَّوْصِيل خَمْسَة دَنَانِير.",
+          "transliteration": "laa, rusoom at-tawseel khamsa danaaneer.",
+          "english": "No, the delivery fee is five dinars."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "أُرِيدُ الدَّفْعَ بِبِطَاقَةِ الِائْتِمَان.",
+          "transliteration": "ureedu ad-dafa3a bi-bitaaqati al-i2timaan.",
+          "english": "I want to pay by credit card."
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "أَدْخِلِي عُنْوَانَكِ، مِنْ فَضْلِكِ.",
+          "transliteration": "adkhilee 3unwaanaki, min fadliki.",
+          "english": "Please enter your address."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "تَمَّ. مَتَى سَيَصِلُ الطَّرْد؟",
+          "transliteration": "tamma. mataa sayasilu at-tard?",
+          "english": "Done. When will the parcel arrive?"
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "خِلَال ثَلَاثَة أَيَّام.",
+          "transliteration": "khilaal thalaathat ayyaam.",
+          "english": "Within three days."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "أَيْنَ طَلَبِي؟ أُرِيدُ تَتَبُّعَهُ.",
+          "transliteration": "ayna talabee? ureedu tatabbu3ahu.",
+          "english": "Where is my order? I want to track it."
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "هُوَ فِي الطَّرِيق إِلَيْكِ.",
+          "transliteration": "huwa fee at-tareeq ilayki.",
+          "english": "It is on its way to you."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "وَصَلَ الطَّرْد تَالِفًا.",
+          "transliteration": "wasala at-tard taalifan.",
+          "english": "The parcel arrived damaged."
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "نَأْسَفُ جِدًّا. سَنُرْسِلُ لَكِ آخَر.",
+          "transliteration": "na2asafu jiddan. sanursilu laki aakhar.",
+          "english": "We are very sorry. We will send you another one."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "شُكْرًا. سَأَكْتُبُ تَقْيِيمًا لِلْمُنْتَج.",
+          "transliteration": "shukran. sa2aktubu taqyeeman lil-muntaj.",
+          "english": "Thank you. I'll write a review of the product."
+        },
+        {
+          "speaker": "Agent",
+          "arabic": "شُكْرًا لِثِقَتِكِ بِنَا.",
+          "transliteration": "shukran li-thiqatiki binaa.",
+          "english": "Thank you for trusting us."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هَلِ التَّوْصِيل مَجَّانِيّ؟",
+            "transliteration": "hal at-tawseel majjaanee?",
+            "english": "Is delivery free?"
+          },
+          "response": {
+            "arabic": "لَا، رُسُوم التَّوْصِيل خَمْسَة دَنَانِير.",
+            "transliteration": "laa, rusoom at-tawseel khamsa danaaneer.",
+            "english": "No, the delivery fee is five dinars."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى سَيَصِلُ الطَّرْد؟",
+            "transliteration": "mataa sayasilu at-tard?",
+            "english": "When will the parcel arrive?"
+          },
+          "response": {
+            "arabic": "خِلَال ثَلَاثَة أَيَّام.",
+            "transliteration": "khilaal thalaathat ayyaam.",
+            "english": "Within three days."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيْنَ طَلَبِي؟",
+            "transliteration": "ayna talabee?",
+            "english": "Where is my order?"
+          },
+          "response": {
+            "arabic": "هُوَ فِي الطَّرِيق إِلَيْكَ.",
+            "transliteration": "huwa fee at-tareeq ilayka.",
+            "english": "It is on its way to you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَصَلَ الطَّرْد تَالِفًا.",
+            "transliteration": "wasala at-tard taalifan.",
+            "english": "The parcel arrived damaged."
+          },
+          "response": {
+            "arabic": "نَأْسَفُ جِدًّا. سَنُرْسِلُ لَكَ آخَر.",
+            "transliteration": "na2asafu jiddan. sanursilu laka aakhar.",
+            "english": "We are very sorry. We will send you another one."
+          }
+        }
+      ],
+      "culture": "Online shopping is popular across the Arab world, and many people still choose to pay on delivery, عِنْدَ الِاسْتِلَام, when the courier arrives. Couriers often phone before they come, so keep your address and phone number correct. Check the parcel before you sign, and say so at once if it is damaged.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I ordered a phone online.'",
+          "answer": "طَلَبْتُ هَاتِفًا عَبْرَ الْإِنْتَرْنِت",
+          "accepted": [
+            "طَلَبْتُ هَاتِفًا عَبْرَ الْإِنْتَرْنِت",
+            "طلبت هاتفا عبر الإنترنت",
+            "talabtu haatifan 3abra al-intarnet"
+          ],
+          "too_formal": {
+            "item": "طَلَبْت تِلِفُون مِنَ الْإِنْتَرْنِت",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عَبْرَ means 'through'."
+        },
+        {
+          "id": "unit-06.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'When will the parcel arrive?'",
+          "answer": "مَتَى سَيَصِلُ الطَّرْد؟",
+          "accepted": [
+            "مَتَى سَيَصِلُ الطَّرْد؟",
+            "متى سيصل الطرد؟",
+            "mataa sayasilu at-tard?"
+          ],
+          "tip": "سَيَصِلُ is 'it will arrive'."
+        },
+        {
+          "id": "unit-06.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "You want to pay by credit card. Which sentence?",
+          "options": [
+            "أُرِيدُ الدَّفْعَ بِبِطَاقَةِ الِائْتِمَان",
+            "أُرِيدُ تَتَبُّعَ طَلَبِي",
+            "أَضِفْهُ إِلَى السَّلَّة",
+            "أَدْخِلْ عُنْوَانَكَ، مِنْ فَضْلِكَ"
+          ],
+          "answer": "أُرِيدُ الدَّفْعَ بِبِطَاقَةِ الِائْتِمَان",
+          "accepted": [
+            "أُرِيدُ الدَّفْعَ بِبِطَاقَةِ الِائْتِمَان",
+            "أريد الدفع ببطاقة الائتمان",
+            "ureedu ad-dafa3a bi-bitaaqati al-i2timaan"
+          ],
+          "tip": "بِطَاقَةِ الِائْتِمَان is 'credit card'."
+        },
+        {
+          "id": "unit-06.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "The parcel arrived damaged. What do you say?",
+          "options": [
+            "وَصَلَ الطَّرْد تَالِفًا",
+            "هَلِ التَّوْصِيل مَجَّانِيّ؟",
+            "سَأَكْتُبُ تَقْيِيمًا لِلْمُنْتَج",
+            "أَيْنَ طَلَبِي؟"
+          ],
+          "answer": "وَصَلَ الطَّرْد تَالِفًا",
+          "accepted": [
+            "وَصَلَ الطَّرْد تَالِفًا",
+            "وصل الطرد تالفا",
+            "wasala at-tard taalifan"
+          ],
+          "tip": "تَالِف means 'damaged'."
+        },
+        {
+          "id": "unit-06.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'التَّوْصِيل؟ / رُسُومُ / كَمْ'.",
+          "words": [
+            "كَمْ",
+            "رُسُومُ",
+            "التَّوْصِيل؟"
+          ],
+          "answer": "كَمْ رُسُومُ التَّوْصِيل؟",
+          "accepted": [
+            "كَمْ رُسُومُ التَّوْصِيل؟",
+            "كم رسوم التوصيل؟",
+            "kam rusoomu at-tawseel?"
+          ],
+          "tip": "رُسُوم are fees."
+        },
+        {
+          "id": "unit-06.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: 'مَجَّانِيّ؟ / التَّوْصِيل / هَلِ'.",
+          "words": [
+            "هَلِ",
+            "التَّوْصِيل",
+            "مَجَّانِيّ؟"
+          ],
+          "answer": "هَلِ التَّوْصِيل مَجَّانِيّ؟",
+          "accepted": [
+            "هَلِ التَّوْصِيل مَجَّانِيّ؟",
+            "هل التوصيل مجاني؟",
+            "hal at-tawseel majjaanee?"
+          ],
+          "tip": "مَجَّانِيّ means 'free of charge'."
+        },
+        {
+          "id": "unit-06.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَلِ التَّوْصِيل _____؟' (Is delivery free?)",
+          "answer": "مَجَّانِيّ",
+          "accepted": [
+            "مَجَّانِيّ",
+            "مجاني",
+            "majjaanee"
+          ],
+          "tip": "مَجَّانِيّ is 'free'."
+        },
+        {
+          "id": "unit-06.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'وَصَلَ الطَّرْد _____.' (The parcel arrived damaged.)",
+          "answer": "تَالِفًا",
+          "accepted": [
+            "تَالِفًا",
+            "تالفا",
+            "taalifan"
+          ],
+          "tip": "تَالِفًا describes the parcel's state."
+        },
+        {
+          "id": "unit-06.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Your friend asks: 'هَلِ التَّوْصِيل مَجَّانِيّ؟'. Say no, it costs five dinars.",
+          "answer": "لَا، رُسُوم التَّوْصِيل خَمْسَة دَنَانِير",
+          "accepted": [
+            "لَا، رُسُوم التَّوْصِيل خَمْسَة دَنَانِير",
+            "لا، رسوم التوصيل خمسة دنانير",
+            "laa, rusoom at-tawseel khamsa danaaneer",
+            "لَا، التَّوْصِيل خَمْسَة دَنَانِير"
+          ],
+          "tip": "رُسُوم التَّوْصِيل is 'the delivery fee'."
+        },
+        {
+          "id": "unit-06.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Support says: 'سَنُرْسِلُ لَكَ آخَر.'. Thank them.",
+          "answer": "شُكْرًا لَكُمْ",
+          "accepted": [
+            "شُكْرًا لَكُمْ",
+            "شكرا لكم",
+            "shukran lakum",
+            "شُكْرًا",
+            "شُكْرًا جَزِيلًا"
+          ],
+          "tip": "Short and polite."
+        }
+      ]
     }
   ],
   "challenge": {

@@ -916,27 +916,32 @@
             {
               "slot": "coffee-please",
               "english": "Coffee, please.",
-              "search_term": "cup of arabic coffee"
+              "search_term": "cup of arabic coffee",
+              "image": "unit-04/l01-p03-cup-of-arabic-coffee.jpg"
             },
             {
               "slot": "tea-please",
               "english": "Tea, please.",
-              "search_term": "glass of tea"
+              "search_term": "glass of tea",
+              "image": "unit-04/l01-p04-glass-of-tea.jpg"
             },
             {
               "slot": "medium-sweet-coffee",
               "english": "Medium-sweet coffee.",
-              "search_term": "small coffee cup"
+              "search_term": "small coffee cup",
+              "image": "unit-04/l01-p05-small-coffee-cup.jpg"
             },
             {
               "slot": "coffee-with-no-sugar",
               "english": "Coffee with no sugar.",
-              "search_term": "black coffee cup"
+              "search_term": "black coffee cup",
+              "image": "unit-04/l01-p06-black-coffee-cup.jpg"
             },
             {
               "slot": "sweet-coffee",
               "english": "Sweet coffee.",
-              "search_term": "sweet coffee cup"
+              "search_term": "sweet coffee cup",
+              "image": "unit-04/l01-p07-sweet-coffee-cup.jpg"
             },
             {
               "slot": "a-big-cup-of-coffee",
@@ -952,12 +957,14 @@
             {
               "slot": "is-there-sugar",
               "english": "Is there sugar?",
-              "search_term": "sugar bowl on table"
+              "search_term": "sugar bowl on table",
+              "image": "unit-04/l01-p10-sugar-bowl-on-table.jpg"
             },
             {
               "slot": "i-like-my-coffee-bitter",
               "english": "I like my coffee bitter.",
-              "search_term": "strong black coffee"
+              "search_term": "strong black coffee",
+              "image": "unit-04/l01-p11-strong-black-coffee.jpg"
             },
             {
               "slot": "no-sugar-at-all",
@@ -988,7 +995,8 @@
             {
               "slot": "what-appetizers-do-you-have",
               "english": "What appetizers do you have?",
-              "search_term": "mezze plates on table"
+              "search_term": "mezze plates on table",
+              "image": "unit-04/l02-p04-mezze-plates-on-table.jpg"
             },
             {
               "slot": "is-there-vegetarian-food",
@@ -998,7 +1006,8 @@
             {
               "slot": "what-s-in-this-dish",
               "english": "What's in this dish?",
-              "search_term": "close-up of a served dish"
+              "search_term": "close-up of a served dish",
+              "image": "unit-04/l02-p06-close-up-of-a-served-dish.jpg"
             },
             {
               "slot": "is-it-spicy-or-not-spicy",
@@ -1023,7 +1032,8 @@
             {
               "slot": "i-want-something-light",
               "english": "I want something light.",
-              "search_term": "small light salad plate"
+              "search_term": "small light salad plate",
+              "image": "unit-04/l02-p11-small-light-salad-plate.jpg"
             },
             {
               "slot": "do-you-have-desserts",
@@ -1044,7 +1054,8 @@
             {
               "slot": "i-ll-have-a-plate-of-hummus-and-fattoush",
               "english": "I'll have a plate of hummus and fattoush.",
-              "search_term": "hummus and fattoush plates"
+              "search_term": "hummus and fattoush plates",
+              "image": "unit-04/l03-p02-hummus-and-fattoush-plates.jpg"
             },
             {
               "slot": "i-want-this-and-this",
@@ -1095,7 +1106,8 @@
             {
               "slot": "we-want-the-same-order",
               "english": "We want the same order.",
-              "search_term": "two identical meals"
+              "search_term": "two identical meals",
+              "image": "unit-04/l03-p12-two-identical-meals.jpg"
             }
           ]
         },
@@ -1146,7 +1158,8 @@
             {
               "slot": "thanks-lit-wellness-of-your-heart-it-was-a-tasty",
               "english": "Thanks (lit. wellness of your heart), it was a tasty meal.",
-              "search_term": "satisfied customer leaving restaurant"
+              "search_term": "satisfied customer leaving restaurant",
+              "image": "unit-04/l04-p09-satisfied-customer-leaving-restaurant.jpg"
             },
             {
               "slot": "can-i-have-the-receipt",
@@ -1162,6 +1175,133 @@
               "slot": "bless-your-hands-the-food-was-delicious",
               "english": "Bless your hands, the food was delicious.",
               "search_term": "chef receiving compliment"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Fast Food and Takeaway",
+          "phrases": [
+            {
+              "slot": "i-d-like-a-chicken-burger-and-fries",
+              "english": "I'd like a chicken burger and fries.",
+              "search_term": "burger and fries",
+              "image": "unit-04/l05-p01-burger-and-fries.jpg"
+            },
+            {
+              "slot": "are-you-eating-here-or-taking-it-with-you",
+              "english": "Are you eating here or taking it with you?"
+            },
+            {
+              "slot": "i-want-a-pizza-to-take-away",
+              "english": "I want a pizza to take away.",
+              "search_term": "pizza box",
+              "image": "unit-04/l05-p03-pizza-box.jpg"
+            },
+            {
+              "slot": "i-ll-eat-here",
+              "english": "I'll eat here."
+            },
+            {
+              "slot": "which-size-do-you-want-small-medium-or-large",
+              "english": "Which size do you want, small, medium or large?",
+              "search_term": "three sizes of drink cups"
+            },
+            {
+              "slot": "a-large-cola-please",
+              "english": "A large cola, please.",
+              "search_term": "large cola cup with straw"
+            },
+            {
+              "slot": "without-ice-please",
+              "english": "Without ice, please."
+            },
+            {
+              "slot": "do-you-have-a-kids-meal",
+              "english": "Do you have a kids' meal?",
+              "search_term": "kids meal box",
+              "image": "unit-04/l05-p08-kids-meal-box.jpg"
+            },
+            {
+              "slot": "extra-ketchup-please",
+              "english": "Extra ketchup, please.",
+              "search_term": "ketchup bottle",
+              "image": "unit-04/l05-p09-ketchup-bottle.jpg"
+            },
+            {
+              "slot": "how-long-will-the-order-take",
+              "english": "How long will the order take?"
+            },
+            {
+              "slot": "is-the-meat-halal",
+              "english": "Is the meat halal?"
+            },
+            {
+              "slot": "please-put-it-in-a-bag",
+              "english": "Please put it in a bag.",
+              "search_term": "paper takeaway bag"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Invited Out to Eat",
+          "phrases": [
+            {
+              "slot": "thank-you-for-the-invitation",
+              "english": "Thank you for the invitation.",
+              "search_term": "invitation card on a table",
+              "image": "unit-04/l06-p01-invitation-card-on-a-table.jpg"
+            },
+            {
+              "slot": "i-am-honoured-by-your-invitation",
+              "english": "I am honoured by your invitation."
+            },
+            {
+              "slot": "please-come-in-and-sit-down",
+              "english": "Please come in and sit down.",
+              "search_term": "set dining table"
+            },
+            {
+              "slot": "bismillah-in-the-name-of-allah",
+              "english": "Bismillah (in the name of Allah)."
+            },
+            {
+              "slot": "eat-with-your-right-hand",
+              "english": "Eat with your right hand."
+            },
+            {
+              "slot": "please-take-some-more",
+              "english": "Please, take some more.",
+              "search_term": "large platter of rice and meat"
+            },
+            {
+              "slot": "thank-allah-i-m-full",
+              "english": "Thank Allah, I'm full."
+            },
+            {
+              "slot": "may-allah-reward-you-well",
+              "english": "May Allah reward you well."
+            },
+            {
+              "slot": "how-delicious-this-food-is",
+              "english": "How delicious this food is!",
+              "search_term": "plate of dates"
+            },
+            {
+              "slot": "please-pass-me-the-water",
+              "english": "Please pass me the water.",
+              "search_term": "water jug and glasses",
+              "image": "unit-04/l06-p10-water-jug-and-glasses.jpg"
+            },
+            {
+              "slot": "shall-we-have-tea-after-the-meal",
+              "english": "Shall we have tea after the meal?",
+              "search_term": "tea tray with glasses"
+            },
+            {
+              "slot": "next-time-it-s-on-us",
+              "english": "Next time it's on us."
             }
           ]
         }
@@ -1508,7 +1648,8 @@
             {
               "slot": "i-want-a-shirt",
               "english": "I want a shirt.",
-              "search_term": "man trying on a shirt"
+              "search_term": "shirt on hanger",
+              "image": "unit-06/l01-p02-shirt-on-hanger.jpg"
             },
             {
               "slot": "what-s-your-size-to-a-man",
@@ -1566,7 +1707,8 @@
             {
               "slot": "i-like-the-blue-color",
               "english": "I like the blue color.",
-              "search_term": "blue clothing on a rack"
+              "search_term": "blue clothing on a rack",
+              "image": "unit-06/l02-p02-blue-clothing-on-a-rack.jpg"
             },
             {
               "slot": "do-you-have-another-color",
@@ -1595,7 +1737,8 @@
             {
               "slot": "do-you-have-gray",
               "english": "Do you have gray?",
-              "search_term": "gray sweater folded"
+              "search_term": "gray sweater folded",
+              "image": "unit-06/l02-p09-gray-sweater-folded.jpg"
             },
             {
               "slot": "i-like-light-colors",
@@ -1650,7 +1793,7 @@
             {
               "slot": "i-want-a-discount-because-i-m-buying-a-lot",
               "english": "I want a discount because I'm buying a lot.",
-              "search_term": "shopkeeper and customer bargaining at a stall"
+              "search_term": "market stall"
             },
             {
               "slot": "ok-we-agreed",
@@ -1677,7 +1820,7 @@
             {
               "slot": "there-s-a-defect",
               "english": "There's a defect.",
-              "search_term": "torn shirt seam close up"
+              "search_term": "torn fabric"
             },
             {
               "slot": "i-didn-t-like-the-color",
@@ -1718,6 +1861,138 @@
             {
               "slot": "thanks-for-your-cooperation",
               "english": "Thanks for your cooperation."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "At the Mall",
+          "phrases": [
+            {
+              "slot": "where-is-the-escalator",
+              "english": "Where is the escalator?",
+              "search_term": "escalator",
+              "image": "unit-06/l05-p01-escalator.jpg"
+            },
+            {
+              "slot": "where-is-the-food-court",
+              "english": "Where is the food court?",
+              "search_term": "mall food court tables",
+              "image": "unit-06/l05-p02-mall-food-court-tables.jpg"
+            },
+            {
+              "slot": "which-floor-is-the-shoe-shop-on",
+              "english": "Which floor is the shoe shop on?"
+            },
+            {
+              "slot": "where-is-the-elevator",
+              "english": "Where is the elevator?",
+              "search_term": "elevator doors",
+              "image": "unit-06/l05-p04-elevator-doors.jpg"
+            },
+            {
+              "slot": "when-does-the-mall-close",
+              "english": "When does the mall close?"
+            },
+            {
+              "slot": "is-there-a-sale-in-this-shop",
+              "english": "Is there a sale in this shop?",
+              "search_term": "sale sign",
+              "image": "unit-06/l05-p06-sale-sign.jpg"
+            },
+            {
+              "slot": "where-is-the-prayer-room",
+              "english": "Where is the prayer room?"
+            },
+            {
+              "slot": "i-m-just-looking",
+              "english": "I'm just looking."
+            },
+            {
+              "slot": "i-have-many-shopping-bags",
+              "english": "I have many shopping bags.",
+              "search_term": "shopping bags",
+              "image": "unit-06/l05-p09-shopping-bags.jpg"
+            },
+            {
+              "slot": "where-is-the-place-to-pay",
+              "english": "Where is the place to pay?",
+              "search_term": "checkout counter"
+            },
+            {
+              "slot": "where-did-you-park-the-car",
+              "english": "Where did you park the car?",
+              "search_term": "underground car park",
+              "image": "unit-06/l05-p11-underground-car-park.jpg"
+            },
+            {
+              "slot": "shall-we-meet-at-the-entrance",
+              "english": "Shall we meet at the entrance?"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Shopping Online",
+          "phrases": [
+            {
+              "slot": "i-ordered-a-phone-online",
+              "english": "I ordered a phone online.",
+              "search_term": "smartphone box",
+              "image": "unit-06/l06-p01-smartphone-box.jpg"
+            },
+            {
+              "slot": "where-is-my-order",
+              "english": "Where is my order?"
+            },
+            {
+              "slot": "when-will-the-parcel-arrive",
+              "english": "When will the parcel arrive?",
+              "search_term": "delivery parcel",
+              "image": "unit-06/l06-p03-delivery-parcel.jpg"
+            },
+            {
+              "slot": "is-delivery-free",
+              "english": "Is delivery free?"
+            },
+            {
+              "slot": "how-much-is-the-delivery-fee",
+              "english": "How much is the delivery fee?"
+            },
+            {
+              "slot": "i-want-to-pay-by-credit-card",
+              "english": "I want to pay by credit card.",
+              "search_term": "credit card"
+            },
+            {
+              "slot": "can-i-pay-on-delivery",
+              "english": "Can I pay on delivery?"
+            },
+            {
+              "slot": "add-it-to-the-cart",
+              "english": "Add it to the cart.",
+              "search_term": "shopping cart on a laptop screen",
+              "image": "unit-06/l06-p08-shopping-cart-on-a-laptop-screen.jpg"
+            },
+            {
+              "slot": "please-enter-your-address",
+              "english": "Please enter your address."
+            },
+            {
+              "slot": "the-parcel-arrived-damaged",
+              "english": "The parcel arrived damaged.",
+              "search_term": "damaged cardboard box",
+              "image": "unit-06/l06-p10-damaged-cardboard-box.jpg"
+            },
+            {
+              "slot": "i-want-to-track-my-order",
+              "english": "I want to track my order."
+            },
+            {
+              "slot": "i-ll-write-a-review-of-the-product",
+              "english": "I'll write a review of the product.",
+              "search_term": "five stars rating",
+              "image": "unit-06/l06-p12-five-stars-rating.jpg"
             }
           ]
         }
@@ -3381,7 +3656,8 @@
             {
               "slot": "hello-answering-the-phone",
               "english": "Hello? (answering the phone)",
-              "search_term": "person answering a phone call"
+              "search_term": "telephone handset",
+              "image": "unit-12/l01-p01-telephone-handset.jpg"
             },
             {
               "slot": "hi-who-s-this",
@@ -3414,17 +3690,17 @@
             {
               "slot": "my-credit-ran-out",
               "english": "My credit ran out.",
-              "search_term": "prepaid phone credit card"
+              "search_term": "prepaid phone card"
             },
             {
               "slot": "my-battery-died",
               "english": "My battery died.",
-              "search_term": "dead phone battery"
+              "search_term": "low battery icon"
             },
             {
               "slot": "there-s-no-signal-here",
               "english": "There's no signal here.",
-              "search_term": "phone with no signal bars"
+              "search_term": "no signal icon"
             },
             {
               "slot": "can-you-call-me-back-in-a-bit",
@@ -3443,7 +3719,8 @@
             {
               "slot": "let-s-meet-at-the-cafe",
               "english": "Let's meet at the cafe.",
-              "search_term": "friends meeting at a cafe"
+              "search_term": "coffee cups on cafe table",
+              "image": "unit-12/l02-p02-coffee-cups-on-cafe-table.jpg"
             },
             {
               "slot": "what-time-suits-you",
@@ -3456,7 +3733,7 @@
             {
               "slot": "where-exactly",
               "english": "Where exactly?",
-              "search_term": "building main entrance"
+              "search_term": "building entrance door"
             },
             {
               "slot": "i-ll-meet-you-there",
@@ -3498,7 +3775,8 @@
             {
               "slot": "i-want-to-change-the-appointment",
               "english": "I want to change the appointment.",
-              "search_term": "calendar appointment reminder"
+              "search_term": "wall calendar",
+              "image": "unit-12/l03-p01-wall-calendar.jpg"
             },
             {
               "slot": "i-can-t-come-today",
@@ -3585,7 +3863,7 @@
             {
               "slot": "do-you-have-my-number",
               "english": "Do you have my number?",
-              "search_term": "phone number written on paper"
+              "search_term": "phone number sign"
             },
             {
               "slot": "thanks-a-lot",
@@ -3598,6 +3876,132 @@
             {
               "slot": "i-ll-pass-him-the-news-as-soon-as-he-s-in",
               "english": "I'll pass him the news as soon as he's in."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Messages and Apps",
+          "phrases": [
+            {
+              "slot": "i-ll-send-you-a-message",
+              "english": "I'll send you a message.",
+              "search_term": "speech bubble icon"
+            },
+            {
+              "slot": "did-you-get-my-message",
+              "english": "Did you get my message?"
+            },
+            {
+              "slot": "i-didn-t-see-your-message",
+              "english": "I didn't see your message."
+            },
+            {
+              "slot": "send-me-the-location",
+              "english": "Send me the location.",
+              "search_term": "map pin icon",
+              "image": "unit-12/l05-p04-map-pin-icon.jpg"
+            },
+            {
+              "slot": "send-me-a-photo",
+              "english": "Send me a photo.",
+              "search_term": "digital camera",
+              "image": "unit-12/l05-p05-digital-camera.jpg"
+            },
+            {
+              "slot": "i-ll-write-to-you-on-the-app",
+              "english": "I'll write to you on the app.",
+              "search_term": "messaging app icon"
+            },
+            {
+              "slot": "did-you-read-my-message",
+              "english": "Did you read my message?"
+            },
+            {
+              "slot": "write-to-me-when-you-arrive",
+              "english": "Write to me when you arrive."
+            },
+            {
+              "slot": "i-ll-send-a-voice-message",
+              "english": "I'll send a voice message.",
+              "search_term": "microphone icon"
+            },
+            {
+              "slot": "the-message-wasn-t-sent",
+              "english": "The message wasn't sent."
+            },
+            {
+              "slot": "the-internet-is-weak",
+              "english": "The internet is weak.",
+              "search_term": "wifi icon",
+              "image": "unit-12/l05-p11-wifi-icon.jpg"
+            },
+            {
+              "slot": "i-ll-reply-to-you-later",
+              "english": "I'll reply to you later."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Video Calls",
+          "phrases": [
+            {
+              "slot": "can-we-do-a-video-call",
+              "english": "Can we do a video call?",
+              "search_term": "laptop video conference"
+            },
+            {
+              "slot": "i-ll-send-you-the-link",
+              "english": "I'll send you the link."
+            },
+            {
+              "slot": "can-you-see-me",
+              "english": "Can you see me?"
+            },
+            {
+              "slot": "i-can-t-hear-you",
+              "english": "I can't hear you.",
+              "search_term": "headphones"
+            },
+            {
+              "slot": "can-you-hear-me-well",
+              "english": "Can you hear me well?"
+            },
+            {
+              "slot": "turn-on-the-camera",
+              "english": "Turn on the camera.",
+              "search_term": "webcam",
+              "image": "unit-12/l06-p06-webcam.jpg"
+            },
+            {
+              "slot": "turn-off-the-microphone",
+              "english": "Turn off the microphone.",
+              "search_term": "desk microphone"
+            },
+            {
+              "slot": "the-sound-is-choppy",
+              "english": "The sound is choppy."
+            },
+            {
+              "slot": "wait-the-screen-froze",
+              "english": "Wait, the screen froze.",
+              "search_term": "computer screen error",
+              "image": "unit-12/l06-p09-computer-screen-error.jpg"
+            },
+            {
+              "slot": "i-ll-leave-and-join-again",
+              "english": "I'll leave and join again."
+            },
+            {
+              "slot": "let-me-share-my-screen",
+              "english": "Let me share my screen."
+            },
+            {
+              "slot": "i-ll-move-closer-to-the-router",
+              "english": "I'll move closer to the router.",
+              "search_term": "wifi router",
+              "image": "unit-12/l06-p12-wifi-router.jpg"
             }
           ]
         }
