@@ -270,6 +270,8 @@ class Settings(BaseSettings):
     # one in a short word, two in a long one), each slip costing this much
     # log-frequency, so a word a slip further must be that much more common.
     spelling_edits_per_letter: float = 0.25
+    # Below this many letters a word is mostly particle; one edit turns it into too many others.
+    spelling_min_letters: int = 3
     spelling_edit_cost: float = 3.0
     # How common a hadith word is: this much its share of everyday writing
     # (services/spelling.py everyday), the rest its share of the hadith. Everyday
