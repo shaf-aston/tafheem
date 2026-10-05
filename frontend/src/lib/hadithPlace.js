@@ -21,6 +21,12 @@ export function parsePlace(q, collections) {
   return { collection: collectionId, book: Number(book), number: Number(match[1]), part: match[2] }
 }
 
+// The (collection, book) a place string names, before the collections are known to check it; null if none.
+export function bookOf(q) {
+  const [collection, book] = (q ?? '').split('/')
+  return /^\d+$/.test(book ?? '') ? [collection, Number(book)] : null
+}
+
 export const placeOf = (collection, book, number, part = '') => (
   number != null ? `${collection}/${book}/${number}${part}` : book != null ? `${collection}/${book}` : collection
 )

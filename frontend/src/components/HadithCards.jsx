@@ -3,8 +3,8 @@
  * for a book, for search hits and for the Starred view, so all three behave
  * the same.
  *
- * `collections` is every collection, for names and which are Sahih. A book's
- * own list also passes `collection`, since its rows do not say which; there
+ * Collection names and which are Sahih come from useHadithCollections. A book's
+ * own list passes `collection`, since its rows do not say which; there
  * the label is the number alone, and a Sahih book's cards carry no grading
  * because the green dot by the collection's name says it once for all of them.
  * Without it (search, Starred) hadiths from several collections meet, so the
@@ -13,6 +13,7 @@
 import { useState } from 'react'
 
 import { chainLinks, chainOf } from '../lib/hadithWords'
+import { useHadithCollections } from '../lib/useHadithCollections'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import ChainSheet from './ui/ChainSheet'
@@ -21,9 +22,9 @@ import FavoriteStar from './ui/FavoriteStar'
 import GradeMark from './ui/GradeMark'
 import HadithText from './ui/HadithText'
 
-export default function HadithCards({ items, accent, collection, collections, columns = false, hideChain = false }) {
+export default function HadithCards({ items, accent, collection, columns = false, hideChain = false }) {
   const { isFavorite, toggle } = useHadithFavorites()
-  const of = (id) => collections.find((c) => c.id === id)
+  const { of } = useHadithCollections()
   // The hadith whose chain is drawn in the pop-up, if any.
   const [drawn, setDrawn] = useState(null)
 
@@ -38,15 +39,15 @@ export default function HadithCards({ items, accent, collection, collections, co
               key={`${h.collection}:${ref}`}
               id={`hadith-${ref}`}
               index={i}
-              label={collection ? ref : `${of(h.collection)?.short || h.collection} ${ref}`}
+              label={collection ? ref : `${of(h.collection).short} ${ref}`}
               arabic={h.arabic}
               english={h.english}
               accent={accent}
               hideChain={hideChain}
               action={(
                 <span className="flex items-center gap-2">
-                  {!(collection && of(collection)?.sahih) && (
-                    <GradeMark grades={h.grades} sahihBy={of(h.collection)?.sahih ? of(h.collection).name : null} cite={h.cite} />
+                  {!(collection && of(collection).sahih) && (
+                    <GradeMark grades={h.grades} sahihBy={of(h.collection).sahih ? of(h.collection).name : null} cite={h.cite} />
                   )}
                   {chainOf(h.arabic).chain && (
                     <button
@@ -75,7 +76,7 @@ export default function HadithCards({ items, accent, collection, collections, co
       {drawn && (
         <ChainSheet
           links={chainLinks(chainOf(drawn.arabic).chain)}
-          author={of(drawn.collection)?.short || drawn.collection}
+          author={of(drawn.collection).short}
           accent={accent}
           onClose={() => setDrawn(null)}
         />
