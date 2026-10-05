@@ -118,8 +118,11 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
                 rows = _rows(conn, " OR ".join(terms), only, params, pool)
                 partial = bool(rows)
             if meaning.is_built():
+                # Meaning reads the query as corrected, as the words were searched.
+                swapped = dict(corrected)
+                meant = " ".join(swapped.get(w, w) for w in asked.rest.split())
                 try:
-                    near = meaning.nearest(asked.rest, pool, collections)
+                    near = meaning.nearest(meant, pool, collections)
                 except Exception:
                     # A model that cannot load (no network for the first fetch) costs meaning, not search.
                     logger.exception("hadith meaning search failed; answering by words alone")
