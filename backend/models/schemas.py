@@ -143,6 +143,7 @@ class ConjugationRow(BaseModel):
 class SarfSlot(BaseModel):
     """One entry of the صرف صغير, the one-line summary of a باب."""
     label: str
+    term: str     # the slot's Arabic name, as a column's `arabic`
     arabic: str
 
 

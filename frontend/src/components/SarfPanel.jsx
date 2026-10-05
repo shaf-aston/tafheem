@@ -249,7 +249,7 @@ function SarfResult({ data, loading, meaningPending, swapPending, swapError, onR
 
       {loading && !data.table && (
         <div className="space-y-2">
-          <div className="text-[var(--text)] font-medium text-sm">Conjugations (تصريف)</div>
+          <BlockTitle {...CONJUGATIONS} />
           <Skeleton className="h-48 w-full" />
         </div>
       )}
@@ -271,7 +271,7 @@ function SarfResult({ data, loading, meaningPending, swapPending, swapError, onR
       )}
 
       {data.notes && (
-        <div className="p-3 rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)] text-sm text-[var(--text-dim)]">
+        <div className="card rise-in text-sm text-[var(--text-dim)]">
           <div className="eyebrow mb-1">Notes</div>
           {data.notes}
         </div>
@@ -286,11 +286,7 @@ function SarfResult({ data, loading, meaningPending, swapPending, swapError, onR
  */
 function TableNote({ accent, title = 'Why there is no table', children }) {
   return (
-    <div
-      style={{ '--c': accent }}
-      className="p-4 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
-        border-l-4 border-l-[var(--c)] space-y-1"
-    >
+    <div style={{ '--c': accent }} className="card card-accent rise-in space-y-1">
       <div className="eyebrow">{title}</div>
       <p className="text-sm leading-relaxed text-[var(--text-dim)]">{children}</p>
     </div>
@@ -340,7 +336,7 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
       {summary.length > 0 && <SarfSagheer summary={summary} accent={accent} />}
 
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <span className="text-[var(--text)] font-medium text-sm">Conjugations (تصريف)</span>
+        <BlockTitle {...CONJUGATIONS} />
         {options && (
           <div className="flex items-center gap-2">
             {swapPending && (
@@ -402,7 +398,7 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
               a table too wide for the screen opens at ماضي, not at the passives. */}
           <div
             dir="rtl"
-            className={`overflow-x-auto rounded-[var(--radius-md)] border border-[var(--border)] transition-opacity ${
+            className={`rise-in overflow-x-auto rounded-[var(--radius-md)] border border-[var(--border)] transition-opacity ${
               swapPending ? 'opacity-50' : ''
             }`}
           >
@@ -410,19 +406,15 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
               <thead>
                 <tr className="bg-[var(--surface-hi)]">
                   {visible.map((c) => (
-                    <th key={c.id} className="px-4 py-2 text-center align-bottom">
-                      <div className="text-[var(--text-dim)] text-xs uppercase tracking-wide">{c.label}</div>
-                      {c.arabic && (
-                        <ArabicText size="sm" className="block text-[var(--text-faint)]">{c.arabic}</ArabicText>
-                      )}
+                    <th key={c.id} className="px-4 py-2 text-center align-bottom font-normal">
+                      <SlotHead label={c.label} term={c.arabic} />
                     </th>
                   ))}
                   {/* Last in an RTL row is the far left, which is where the one
                       English column belongs, out of the way of the Arabic. */}
                   <th
                     dir="ltr"
-                    className="sticky left-0 z-[var(--layer-raised)] bg-[var(--surface-hi)] text-left px-4 py-2
-                      text-[var(--text-faint)] text-xs uppercase tracking-wide"
+                    className="eyebrow font-normal sticky left-0 z-[var(--layer-raised)] bg-[var(--surface-hi)] text-left px-4 py-2"
                   >
                     Person
                   </th>
@@ -472,28 +464,41 @@ function Gardaan({ table, accent, form, options, onForm, swapPending, swapError,
  */
 function SarfSagheer({ summary, accent }) {
   return (
-    <div
-      style={{ '--c': accent }}
-      className="p-4 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
-        border-l-4 border-l-[var(--c)] space-y-3"
-    >
-      <span className="block text-[var(--text)] font-medium text-sm">Sarf sagheer (صرف صغير)</span>
+    <div style={{ '--c': accent }} className="card card-accent rise-in space-y-3">
+      <BlockTitle label="Sarf sagheer" term="صرف صغير" />
       {/* The book reads the باب out right to left, ماضي first, on the right; 
           so the slots are laid out that way too, same as the grid below. */}
       <div dir="rtl" className="grid gap-2 grid-cols-[repeat(auto-fit,minmax(8rem,1fr))]">
         {summary.map((slot, i) => (
-          <div
-            key={slot.label}
-            style={{ '--i': i }}
-            className="rise-in rounded-[var(--radius-md)] p-3 text-center
-              bg-[var(--surface-hi)] border border-[var(--border)]"
-          >
-            <div dir="ltr" className="eyebrow mb-1">{slot.label}</div>
-            <ArabicText className="block text-[var(--text)]">{slot.arabic}</ArabicText>
+          <div key={slot.label} style={{ '--i': i }} className="card-tile rise-in text-center">
+            <SlotHead label={slot.label} term={slot.term} />
+            <ArabicText className="block mt-1 text-[var(--text)]">{slot.arabic}</ArabicText>
           </div>
         ))}
       </div>
     </div>
+  )
+}
+
+const CONJUGATIONS = { label: 'Conjugations', term: 'تصريف' }
+
+/** A block's name, English then its Arabic term, used by every block here. */
+function BlockTitle({ label, term }) {
+  return (
+    <span className="flex items-baseline gap-2 text-[var(--text)] font-medium text-sm">
+      {label}
+      <ArabicText size="sm" className="arabic-inline text-[var(--text-faint)]">{term}</ArabicText>
+    </span>
+  )
+}
+
+/** A slot's or a column's name: the same two lines in the table and above it. */
+function SlotHead({ label, term }) {
+  return (
+    <>
+      <div dir="ltr" className="eyebrow">{label}</div>
+      {term && <ArabicText size="sm" className="block text-[var(--text-faint)]">{term}</ArabicText>}
+    </>
   )
 }
 
@@ -515,8 +520,7 @@ function MeaningCard({ meaning, pending, root, onGo, accent, i }) {
     <div
       dir="ltr"
       style={{ '--i': i, '--c': accent }}
-      className="rise-in rounded-[var(--radius-md)] p-4 bg-[var(--surface)] border border-[var(--border)]
-        flex flex-col gap-2"
+      className="card rise-in flex flex-col gap-2"
     >
       <div className="eyebrow">Meaning</div>
 
@@ -552,7 +556,7 @@ function InfoCard({ label, value, gloss, arabic, accent, i }) {
     <div
       dir="ltr"
       style={{ '--i': i, '--c': accent }}
-      className="rise-in rounded-[var(--radius-md)] p-4 bg-[var(--surface)] border border-[var(--border)]"
+      className="card rise-in"
     >
       <div className="eyebrow mb-1">{label}</div>
       {/* The card itself reads left to right, so the Arabic stays inline and
