@@ -26,7 +26,7 @@ import ErrorAlert from './ui/ErrorAlert'
 import ExampleChips from './ui/ExampleChips'
 import MicButton from './ui/MicButton'
 import SearchBox from './ui/SearchBox'
-import Segmented from './ui/Segmented'
+import FlagButton from './ui/FlagButton'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
 const EXAMPLES = [
@@ -37,7 +37,7 @@ const EXAMPLES = [
 ]
 
 // What the word row draws: each word's role, or arcs from governor to governed.
-const LENSES = [{ id: 'roles', label: 'Roles' }, { id: 'governs', label: 'Who governs whom' }]
+const LENSES = ['roles', 'governs']
 
 export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null }) {
   const [sentence, setSentence] = useState(analyse ?? '')
@@ -127,7 +127,7 @@ function AnalyzeError({ error, onRetry }) {
 // `detail` is the opened word's card, drawn right under the grid it was
 // tapped in rather than after the practice block, where a tap looked ignored.
 function AnalysisResults({ data, accent, onWordClick, picked, practice, detail }) {
-  const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES.map((l) => l.id))
+  const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES)
   const linked = data.words.some((w) => source(w) !== undefined)
   const governs = linked && lens === 'governs'
   return (
@@ -156,11 +156,13 @@ function AnalysisResults({ data, accent, onWordClick, picked, practice, detail }
           coverage={data.tree.coverage}
         />
       )}
-      {linked && (
-        <Segmented label="Word row shows" options={LENSES} value={lens} onChange={setLens} accent={accent}
-          className="w-fit mx-auto" />
-      )}
-      <WordGrid words={data.words} onClick={onWordClick} governs={governs} picked={picked} />
+      <WordGrid words={data.words} onClick={onWordClick} governs={governs} picked={picked}
+        corner={linked && (
+          <FlagButton value={governs} onChange={(on) => setLens(on ? 'governs' : 'roles')} accent={accent}
+            title="Draw arrows from each governor to the word it governs">
+            who governs whom
+          </FlagButton>
+        )} />
       <p className="text-center type-small text-[var(--text-faint)]">
         {governs && picked >= 0 && source(data.words[picked]) !== undefined
           ? <GovernsWhy words={data.words} i={picked} />
@@ -190,7 +192,7 @@ function GovernsWhy({ words, i }) {
 // Governs view: one unbroken line (arcs cannot cross a wrap) with an arc above it
 // from each governor down into the word it governs; a follower's arc is dashed.
 const ARC_CAP = 56 // px the tallest arc climbs above the words
-function WordGrid({ words, onClick, governs, picked }) {
+function WordGrid({ words, onClick, governs, picked, corner }) {
   const lineRef = useRef(null)
   const [arcs, setArcs] = useState([])
   useLayoutEffect(() => {
@@ -210,7 +212,10 @@ function WordGrid({ words, onClick, governs, picked }) {
     return () => ro.disconnect()
   }, [governs, words])
 
+  // `corner` sits in the card's top-right, outside the scroller so it stays put.
   return (
+    <div className="relative">
+    {corner && <div className="absolute top-2 right-2 z-[var(--layer-raised)] opacity-70 hover:opacity-100">{corner}</div>}
     <div
       dir="rtl"
       className={`peer-dim p-5 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
@@ -261,6 +266,7 @@ function WordGrid({ words, onClick, governs, picked }) {
         )
       })}
       </div>
+    </div>
     </div>
   )
 }
