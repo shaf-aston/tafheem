@@ -6,10 +6,12 @@ control, so a rule that stops catching its fault fails here by name.
 Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
 import copy
+import json
 
 import pytest
 from fastapi.testclient import TestClient
 
+from backend.config import data_path
 from backend.main import app
 from backend.services import timelines
 
@@ -238,7 +240,8 @@ def test_the_endpoint_serves_every_section_with_its_source():
     response = TestClient(app).get("/api/timelines")
     assert response.status_code == 200
     body = response.json()
-    assert [s["id"] for s in body["sections"]] == ["prophets", "seerah", "signs", "grave", "judgement"]
+    files = [json.loads(p.read_text("utf-8")) for p in (data_path("timelines_dir") / "sections").glob("*.json")]
+    assert [s["id"] for s in body["sections"]] == [s["id"] for s in sorted(files, key=lambda s: s["order"])]
     assert body["source"]["key"] == "timelines"
 
 
