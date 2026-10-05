@@ -328,6 +328,15 @@ def test_a_verb_after_a_conditional_particle_makes_it_a_condition(sentence: str,
     assert said in _read(sentence)["words"][index]["reason"]
 
 
+@pytest.mark.parametrize("sentence, index, role", [
+    ("زَيْدٌ ضَارِبٌ بَكْرًا", 2, "مفعول به"),  # the notes' own example of شبه الفعل
+    ("لَوْ كُنْتُ آمِرًا أَحَدًا أَنْ يَسْجُدَ لأَحَدٍ", 3, "مفعول به"),  # آمِر: فاعل of a hamza root
+    ("هَلْ أَنْتَ فَاهِمٌ الدَّرْسَ", 3, "مفعول به"),  # linked as idafa, but its fatha says object
+    ("زَيْدٌ قَادِمٌ مُسْرِعًا", 2, "حال")])  # nearest case: a describing word stays a حال
+def test_an_active_participle_takes_its_object_as_its_verb_does(sentence: str, index: int, role: str):
+    assert _read(sentence)["words"][index]["role"] == role
+
+
 def test_lawla_before_a_verb_urges_and_opens_no_condition():
     # nearest case to لو: لولا and لوما open a condition only before a noun
     assert _read("لَوْلَا تَسْتَغْفِرُونَ اللَّهَ")["summary"] != term_ar("jumlah_shartiyyah")

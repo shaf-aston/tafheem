@@ -511,6 +511,19 @@ def _place_time(token: dict, s: Sentence) -> bool:
         is_verb(k) and k["id"] > token["id"] for k in s.kids(token))
 
 
+def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
+    """A word hung on a participle that is its object: linked as one in nasb, or in the
+    nasb the reader typed where the link cannot hold it, since a مضاف إليه is never منصوب
+    (فاهمٌ الدرسَ) and a نعت has its noun's case (ضاربٌ بكرًا). An indefinite state word
+    stays a حال (قادمٌ مسرعًا), and the participle's own root a مفعول مطلق."""
+    rel, typed = token["rel"], typed_case_of(token)
+    if rel == "OBJ":
+        return typed_or_parsed_case(token) == "a"
+    return typed == "a" and (rel == "IDF" or (
+        rel == "MOD" and typed_or_parsed_case(head) != "a" and not is_state_word(token)
+        and _skeleton(token["lemma"]) != _skeleton(head["lemma"])))
+
+
 def _verb_place(token: dict, s: Sentence) -> str:
     """The place a word fills under a verb (Tasheel 3.1 p60, 3.2 p67), `none` where the
     book names it elsewhere. Tested in this order because an earlier place shadows a
@@ -528,6 +541,10 @@ def _verb_place(token: dict, s: Sentence) -> str:
     head = s.head(token)
     rel = token["rel"]
     typed = typed_case_of(token)
+    # زيدٌ ضاربٌ بكرًا: a word like the verb (شبه الفعل) takes its object as the verb does
+    # (notes, المفعول به p0: a فعل or a شبه الفعل governs it)
+    if head and not is_verb(head) and is_participle(head) and _object_of_participle(token, head, s):
+        return "object"
     if head and is_verb(head):
         before = token["id"] < head["id"]
         siblings = [t for t in s.kids(head) if t is not token]
@@ -611,6 +628,10 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     if jarr_takes(token, s):
         return "harf_jarr", head
     under_verb = bool(head) and is_verb(head)
+    # كنتُ آمرًا أحدًا: the participle governs its object as its verb would; asked before
+    # the idafa, since a مضاف إليه is never منصوب (فاهمٌ الدرسَ)
+    if head and not under_verb and _verb_place(token, s) == "object":
+        return "verb", head
     if rel == "IDF" and not (under_verb and typed != "i"):
         return "idafa", head
     # ذائقةُ الموتِ: the noun in jarr straight after a noun in construct is its mudaf ilayh
