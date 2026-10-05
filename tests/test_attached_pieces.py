@@ -70,6 +70,14 @@ def test_a_joining_waw_and_a_preposition_with_its_pronoun_are_words_of_their_own
     assert [kid["role"] for kid in idafa["children"]] == ["مضاف", "مضاف إليه"]
 
 
+def test_lau_opens_a_condition_whose_answer_its_lam_ties_on():
+    body = client.post("/api/analyze", json={"sentence": "لَوْ جَاءَ زَيْدٌ لَأَكْرَمْتُهُ"}).json()
+    top = body["tree"]["tree"]
+    assert [kid["role"] for kid in top["children"]] == ["حرف شرط غير جازم", "فعل الشرط", "جواب الشرط"]
+    assert {kid["detail"] for kid in top["children"][1:]} == {"لا محل لها من الإعراب"}
+    assert top["children"][2]["children"][0]["role"] == "حرف واقع في جواب الشرط"
+
+
 def test_a_noun_with_pieces_on_it_is_not_read_as_a_command():
     cards, _ = analysed("الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ")
     assert cards[6]["role"] == "معطوف"

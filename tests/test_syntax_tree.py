@@ -1,7 +1,7 @@
 """The bracket picture for a typed sentence, built from the parser's links."""
 from backend.services.nahw_book import role_units
 from backend.services.syntax import naming, tree
-from backend.services.nahw_book import term_ar
+from backend.services.nahw_book import condition_of, term_ar
 from tests.test_naming import token
 
 
@@ -134,7 +134,7 @@ def test_a_condition_draws_particle_condition_and_answer_side_by_side_with_the_m
             token(4, "تنجح", "نجح", "VRB", 3, "OBJ", vox="a", asp="i", pos_camel="verb"),
             token(5, "تدرس", "درس", "VRB", 0, "---", vox="a", asp="i", pos_camel="verb")]
     drawn = built(["إِنْ", "تُرِدْ", "أَنْ", "تَنْجَحَ", "تَدْرُسْ"], toks)["tree"]
-    condition = tree.FRAMES["condition"]
+    condition = condition_of("إن")
     assert drawn["label"] == tree.CONDITION
     particle, verb, answer = drawn["children"]
     assert particle["role"] == condition["particle"]

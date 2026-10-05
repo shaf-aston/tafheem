@@ -114,6 +114,14 @@ def frames() -> dict:
     return _roles()["frames"]
 
 
+def condition_of(particle: str) -> dict | None:
+    """The condition a bare particle opens: its family's entry in the condition frame,
+    found by the family whose `conditional_particles` hold it (إن جازم، لو غير جازم)."""
+    frame = frames()["condition"]
+    return next(({**frame, **own, "family": family} for family, own in frame["by_family"].items()
+                 if particle in book_words(family, "conditional_particles")), None)
+
+
 def teacher_rules() -> dict:
     """The teacher's checks and their reasons (services/syntax/teacher.py)."""
     return book_file("teacher.json")

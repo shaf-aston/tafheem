@@ -463,6 +463,8 @@
     "هل",
     "لو"
    ],
+   "conditional_particles": ["لو"],
+   "_conditional_particles": "the non-jussive conditional particles that open a condition before a verb (Year 3 notes, zuroof p4: لولا، لوما، لو، أمّا are حروف). لولا and لوما open one only before a noun and urge before a verb; أمّا comes before a noun: so only لو. Read with jazm's list by nahw_book.condition_of",
    "ambiguous": {
     "أما": "notification/detail 'as for' (أما ... فـ) vs أم + ما (interrogative) vs أما الاستفتاحية",
     "ألا": "notification 'lo!' vs exhortation 'why not' vs أن + لا (written together) vs أ + لا (question with negation)",
