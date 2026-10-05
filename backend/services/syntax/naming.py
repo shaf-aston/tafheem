@@ -125,7 +125,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
              "aspect": token.get("asp") if role == NAMED.fil else None,
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "book": book_path(found.path, found.book) if found else None,
-             "attached": [{"role": role_by_id[t["id"]], "before": t["form"].endswith("+"), "form": t["form"].strip("+"),
+             "attached": [{"id": t["id"], "role": role_by_id[t["id"]], "before": t["form"].endswith("+"), "form": t["form"].strip("+"),
                            "family": _family(t, bases, joined, below=True) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None}
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
              **_governed(i, role, token, bases, tokens, governed_by, word_of)}
