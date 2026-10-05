@@ -6,6 +6,7 @@
  * A 404 means this machine holds no page for him (rijal.db unbuilt, or he was
  * never fetched), said in a line, as on his pop-up.
  */
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { narratorHadithQuery, narratorQuery } from '../api'
@@ -24,6 +25,20 @@ const Section = ({ title, children }) => (
     {children}
   </section>
 )
+
+// Rows drawn while a list is folded. Abu Hurayra narrates thousands of hadith;
+// drawing and measuring every chip behind the fold took the page over a second.
+const FOLDED_ROWS = 80
+
+// A long list folded under "Show all N", drawing the rest only once opened.
+function FoldedList({ items, lines, accent, children: draw }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <ShowRest lines={lines} accent={accent} more={`Show all ${items.length}`} open={open} onOpenChange={setOpen}>
+      {draw(open ? items : items.slice(0, FOLDED_ROWS))}
+    </ShowRest>
+  )
+}
 
 export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith }) {
   const { data: who, isPending, isError, error, refetch } = useQuery(narratorQuery(id))
@@ -64,23 +79,23 @@ export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith 
 
           {[['Teachers', who.teachers], ['Students', who.students]].map(([title, list]) => list.length > 0 && (
             <Section key={title} title={`${title} (${list.length})`}>
-              <ShowRest lines={12} accent={accent} more={`Show all ${list.length}`}>
-                <NarratorLinks items={list} onOpen={onNarrator} />
-              </ShowRest>
+              <FoldedList items={list} lines={12} accent={accent}>
+                {(shown) => <NarratorLinks items={shown} onOpen={onNarrator} />}
+              </FoldedList>
             </Section>
           ))}
 
           {hadith.length > 0 && (
             <Section title={`Hadith narrated (${hadith.length})`}>
-              <ShowRest lines={6} accent={accent} more={`Show all ${hadith.length}`}>
-                <ChipRow>
-                  {hadith.map((h) => (
+              <FoldedList items={hadith} lines={6} accent={accent}>
+                {(shown) => (<ChipRow>
+                  {shown.map((h) => (
                     <Chip key={`${h.collection}:${h.number}${h.part}`} accent={accent} onClick={() => onHadith(h)}>
                       {of(h.collection).short} {h.number}{h.part}
                     </Chip>
                   ))}
-                </ChipRow>
-              </ShowRest>
+                </ChipRow>)}
+              </FoldedList>
             </Section>
           )}
 
