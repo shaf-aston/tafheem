@@ -228,6 +228,14 @@
     "_tap_comment": "The least height a pill or link stands on a touch screen, where a finger needs more than a pointer does. styles/text.css applies it to .tap when the pointer is coarse; a mouse keeps the compact sizes.",
     "tap": "2.25rem"
   },
+  "sheet": {
+    "_comment": "How big a pop-up may get on a wide screen. Maximums, not widths: a phone stays full width. narrow is a short list of choices (settings, a Grow step), standard a pop-up with reading in it (the chain, a phrase, the word bank), wide a pop-up laid out in columns (the sections menu). tall is how much of the screen height any of them may take. narrator is the widest a name box grows in the chain drawing before it wraps.",
+    "narrow": "36rem",
+    "standard": "46rem",
+    "wide": "56rem",
+    "tall": "88dvh",
+    "narrator": "15rem"
+  },
   "radius": {
     "sm": "0.5rem",
     "md": "0.85rem",

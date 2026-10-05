@@ -20,7 +20,7 @@ function Rung({ link, grow = false }) {
     <div className={`chain-line relative w-px min-h-7 ${grow ? 'flex-1' : ''}`}>
       {link?.term && (
         <ArabicText
-          size="tiny"
+          size="sm"
           className="absolute top-3.5 -translate-y-1/2 start-full ms-2 whitespace-nowrap opacity-80"
           style={{ color: link.way ? `var(--hadith-${link.way})` : 'var(--text-faint)' }}
         >
@@ -34,8 +34,8 @@ function Rung({ link, grow = false }) {
 function Narrator({ children }) {
   return (
     <ArabicText
-      size="sm"
-      className="block max-w-[9rem] sm:max-w-[11rem] text-center leading-relaxed px-3 py-1 rounded-[var(--radius-md)]
+      size="base"
+      className="block max-w-[var(--sheet-narrator)] text-center leading-relaxed px-3 py-1 rounded-[var(--radius-md)]
         border border-[var(--border)] bg-[var(--surface-hi)] text-[var(--text)]"
     >
       {children}

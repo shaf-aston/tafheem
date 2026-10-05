@@ -23,7 +23,7 @@ function rowsOf(lessons) {
 
 function Bank({ rows, onClose, scope, title }) {
   return (
-    <BottomSheet label={title} onClose={onClose} className="max-h-[85dvh] flex flex-col">
+    <BottomSheet label={title} onClose={onClose} className="max-h-[var(--sheet-tall)] flex flex-col">
       <header className="flex items-center justify-between gap-3 px-5 pt-4 pb-3">
         <div className="min-w-0">
           <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Word bank</p>

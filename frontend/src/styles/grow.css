@@ -182,8 +182,8 @@ button.grow-node:active { transform: translateY(2px); }
   top: 50%;
   z-index: calc(var(--layer-overlay) + 1);
   translate: -50% -50%;
-  width: min(92vw, 480px);
-  max-height: 88dvh;
+  width: min(92vw, var(--sheet-narrow));
+  max-height: var(--sheet-tall);
   overflow-y: auto;
   background: var(--surface);
   border: 1px solid var(--border-hi);
