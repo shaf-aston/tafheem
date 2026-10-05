@@ -7,7 +7,7 @@ type is one file and one registry line is not true.
 """
 from __future__ import annotations
 
-from typing import Annotated, Union
+from typing import Annotated, Literal, Union
 
 from pydantic import BaseModel, Field
 
@@ -44,9 +44,17 @@ class Drill(BaseModel):
     response: Phrase
 
 
+class ComingLesson(BaseModel):
+    """A spine lesson this dialect has not begun: its title, shown as coming."""
+    lesson: str
+    title: str
+    written: Literal[False]
+
+
 class Lesson(BaseModel):
     lesson: str
     title: str
+    written: Literal[True] = True
     phrases: list[Phrase]
     dialogue: list[DialogueLine]
     de_book: list[Drill] = []
@@ -70,7 +78,7 @@ class Unit(BaseModel):
     # The English letters and digits standing for sounds English has no letter
     # for, so the spelling is never a mystery.
     transliteration_key: dict[str, str]
-    lessons: list[Lesson]
+    lessons: list[Lesson | ComingLesson]
     challenge: Challenge
     source: Source
 

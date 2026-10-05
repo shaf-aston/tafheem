@@ -385,19 +385,25 @@
             {
               "slot": "thirsty-male-speaker",
               "english": "Thirsty. (male speaker)",
-              "search_term": "glass of water"
+              "search_term": "glass of water",
+              "image": "unit-02/l02-p03-glass-of-water.jpg"
             },
             {
               "slot": "i-want-to-eat",
-              "english": "I want to eat."
+              "english": "I want to eat.",
+              "search_term": "bowl of rice",
+              "image": "unit-02/l02-p04-bowl-of-rice.jpg"
             },
             {
               "slot": "i-want-to-drink-water",
-              "english": "I want to drink water."
+              "english": "I want to drink water.",
+              "search_term": "glass of water",
+              "image": "unit-02/l02-p05-glass-of-water.jpg"
             },
             {
               "slot": "what-do-you-like-to-eat",
-              "english": "What do you like to eat?"
+              "english": "What do you like to eat?",
+              "search_term": "plate of food"
             },
             {
               "slot": "i-like-falafel",
@@ -408,7 +414,8 @@
             {
               "slot": "coffee",
               "english": "Coffee.",
-              "search_term": "cup of arabic coffee"
+              "search_term": "cup of arabic coffee",
+              "image": "unit-02/l02-p08-cup-of-arabic-coffee.jpg"
             },
             {
               "slot": "tea",
@@ -432,6 +439,135 @@
             {
               "slot": "enjoy-your-meal-said-to-someone-while-they-are-e",
               "english": "Enjoy your meal. (said to someone while they are eating)"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Describing My Family",
+          "phrases": [
+            {
+              "slot": "how-old-are-you-to-a-man",
+              "english": "How old are you? (to a man)"
+            },
+            {
+              "slot": "i-am-married-male-speaker",
+              "english": "I am married. (male speaker)"
+            },
+            {
+              "slot": "i-have-two-children",
+              "english": "I have two children.",
+              "search_term": "two children playing"
+            },
+            {
+              "slot": "where-does-your-family-live",
+              "english": "Where does your family live?",
+              "search_term": "family house",
+              "image": "unit-02/l03-p04-family-house.jpg"
+            },
+            {
+              "slot": "what-is-your-job-to-a-man",
+              "english": "What do you do for work? (to a man)"
+            },
+            {
+              "slot": "he-is-tall",
+              "english": "He is tall.",
+              "search_term": "tall man"
+            },
+            {
+              "slot": "she-is-kind",
+              "english": "She is kind."
+            },
+            {
+              "slot": "he-is-funny",
+              "english": "He is funny."
+            },
+            {
+              "slot": "my-older-brother",
+              "english": "My older brother."
+            },
+            {
+              "slot": "my-younger-sister",
+              "english": "My younger sister."
+            },
+            {
+              "slot": "my-cousin-my-father-s-brother-s-son",
+              "english": "My cousin. (my father's brother's son)"
+            },
+            {
+              "slot": "my-grandparents",
+              "english": "My grandparents.",
+              "search_term": "grandparents with grandchild"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Meals at Home",
+          "phrases": [
+            {
+              "slot": "breakfast-is-at-eight",
+              "english": "Breakfast is at eight.",
+              "search_term": "breakfast table",
+              "image": "unit-02/l04-p01-breakfast-table.jpg"
+            },
+            {
+              "slot": "what-is-for-lunch",
+              "english": "What are we eating for lunch?",
+              "search_term": "plate of lunch food",
+              "image": "unit-02/l04-p02-plate-of-lunch-food.jpg"
+            },
+            {
+              "slot": "the-food-is-ready",
+              "english": "The food is ready.",
+              "search_term": "served meal on a table",
+              "image": "unit-02/l04-p03-served-meal-on-a-table.jpg"
+            },
+            {
+              "slot": "dinner-is-at-nine",
+              "english": "Dinner is at nine.",
+              "search_term": "dinner table"
+            },
+            {
+              "slot": "this-is-delicious",
+              "english": "This is delicious."
+            },
+            {
+              "slot": "i-am-full-male-speaker",
+              "english": "I am full. (male speaker)"
+            },
+            {
+              "slot": "more-please",
+              "english": "More, please."
+            },
+            {
+              "slot": "help-me-cook-to-a-man",
+              "english": "Help me cook. (to a man)",
+              "search_term": "cooking in a kitchen",
+              "image": "unit-02/l04-p08-cooking-in-a-kitchen.jpg"
+            },
+            {
+              "slot": "set-the-table-to-a-man",
+              "english": "Set the table. (to a man)",
+              "search_term": "set dining table",
+              "image": "unit-02/l04-p09-set-dining-table.jpg"
+            },
+            {
+              "slot": "pass-me-the-salt-to-a-man",
+              "english": "Pass me the salt. (to a man)",
+              "search_term": "salt shaker",
+              "image": "unit-02/l04-p10-salt-shaker.jpg"
+            },
+            {
+              "slot": "i-do-not-eat-meat",
+              "english": "I do not eat meat.",
+              "search_term": "plate of grilled chicken",
+              "image": "unit-02/l04-p11-plate-of-grilled-chicken.jpg"
+            },
+            {
+              "slot": "clear-the-table-to-a-man",
+              "english": "Clear the table. (to a man)",
+              "search_term": "empty dining table"
             }
           ]
         }

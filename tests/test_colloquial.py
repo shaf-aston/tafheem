@@ -244,10 +244,14 @@ def test_a_slot_or_lesson_the_spine_lacks_is_caught():
     assert any("'lesson-09' is not in spine.json" in why for why in said)
 
 
-def test_a_spine_lesson_the_dialect_never_wrote_is_caught():
+def test_a_spine_lesson_the_dialect_never_wrote_is_coming_not_a_fault():
     outline = copy.deepcopy(OUTLINE)
     outline["lessons"].append({"lesson": "lesson-02", "title": "More", "phrases": []})
-    assert any("'lesson-02' of spine.json is not written" in why for why in loader._fill(outline, copy.deepcopy(WRITTEN))[1])
+    unit, said = loader._fill(outline, copy.deepcopy(WRITTEN))
+    alone, _ = loader._fill(OUTLINE, copy.deepcopy(WRITTEN))
+    assert said == [] and loader._unit_faults(unit) == loader._unit_faults(alone)
+    assert unit["lessons"][1] == {"lesson": "lesson-02", "title": "More", "written": False}
+    assert unit["lessons"][0]["written"] is True
 
 
 def test_a_repeated_slot_in_one_lesson_is_caught():

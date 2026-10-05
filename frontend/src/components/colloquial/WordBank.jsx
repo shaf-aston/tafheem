@@ -14,7 +14,7 @@ import Spelling from './Spelling'
 // A phrase and the reply that goes with it are both worth learning; repeats across topics show once.
 function rowsOf(lessons) {
   const seen = new Set()
-  return lessons.flatMap((l) => l.phrases.flatMap((p) => [p, p.reply])).filter((r) => {
+  return lessons.filter((l) => l.written).flatMap((l) => l.phrases.flatMap((p) => [p, p.reply])).filter((r) => {
     if (!r || seen.has(r.arabic)) return false
     seen.add(r.arabic)
     return true
@@ -32,9 +32,9 @@ function Bank({ rows, onClose, scope, title }) {
         <CloseButton onClick={onClose} className={`shrink-0 ${FOCUS}`} />
       </header>
       {scope && <div className="px-5 pb-3">{scope}</div>}
-      <ul className="overflow-y-auto px-5 pb-5 divide-y divide-[var(--border)]">
+      <ul className="overflow-y-auto px-5 pb-5 grid sm:grid-cols-2 sm:gap-x-8">
         {rows.map((r) => (
-          <li key={r.arabic} className="flex items-baseline justify-between gap-4 py-2.5">
+          <li key={r.arabic} className="flex items-baseline justify-between gap-4 py-2.5 border-b border-[var(--border)]">
             <span className="min-w-0">
               <span className="type-small text-[var(--text)]">{r.english}</span>
               <Spelling className="block">{r.transliteration}</Spelling>
