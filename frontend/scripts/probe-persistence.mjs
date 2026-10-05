@@ -83,7 +83,7 @@ check('best streak read back', /best 7/.test(await page.locator('body').innerTex
 // its own letters, so the Arabic ones stood at twice the height of the English
 // ones, and a word asked on two days was kept as two records and drawn twice.
 await page.goto(`${APP}/?tab=dict`)
-await page.evaluate(() => localStorage.setItem('dict-history', JSON.stringify(
+await page.evaluate(() => localStorage.setItem('progress:dict-history', JSON.stringify(
   ['مدرسة', 'spirit', 'food', 'كتب', 'روح', 'food', 'ن-ص-ر']
     .map((q, at) => ({ q, at })))))
 await page.reload()
