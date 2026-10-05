@@ -3,39 +3,51 @@
     "Every hadith collection the module knows about, and how to build one, in the order the tab lists them.",
     "Adding a collection is an entry here plus a run of",
     "scripts/fetch_hadith_collections.py and scripts/build_hadith_index.py; no code changes.",
-    "short is the name the picker shows. cite is the citation URL template sunnah.com uses, {number} filled with the hadith's own number.",
+    "short is the name the picker shows; arabic and arabic_short are the same two names in Arabic, so a search can name it either way. cite is the citation URL template sunnah.com uses, {number} filled with the hadith's own number.",
     "sahih marks a collection whose every hadith is graded sahih by the scholars, so its hadiths carry no grade of their own."
   ],
   "bukhari": {
     "name": "Sahih al-Bukhari",
     "short": "Bukhari",
+    "arabic": "صحيح البخاري",
+    "arabic_short": "البخاري",
     "cite": "https://sunnah.com/bukhari:{number}",
     "sahih": true
   },
   "muslim": {
     "name": "Sahih Muslim",
     "short": "Muslim",
+    "arabic": "صحيح مسلم",
+    "arabic_short": "مسلم",
     "cite": "https://sunnah.com/muslim:{number}",
     "sahih": true
   },
   "abudawud": {
     "name": "Sunan Abi Dawud",
     "short": "Abu Dawud",
+    "arabic": "سنن أبي داود",
+    "arabic_short": "أبو داود",
     "cite": "https://sunnah.com/abudawud:{number}"
   },
   "tirmidhi": {
     "name": "Jami at-Tirmidhi",
     "short": "Tirmidhi",
+    "arabic": "جامع الترمذي",
+    "arabic_short": "الترمذي",
     "cite": "https://sunnah.com/tirmidhi:{number}"
   },
   "nasai": {
     "name": "Sunan an-Nasa'i",
     "short": "Nasa'i",
+    "arabic": "سنن النسائي",
+    "arabic_short": "النسائي",
     "cite": "https://sunnah.com/nasai:{number}"
   },
   "ibnmajah": {
     "name": "Sunan Ibn Majah",
     "short": "Ibn Majah",
+    "arabic": "سنن ابن ماجه",
+    "arabic_short": "ابن ماجه",
     "cite": "https://sunnah.com/ibnmajah:{number}"
   }
 }

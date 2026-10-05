@@ -278,6 +278,11 @@ class Settings(BaseSettings):
     # English letters spell a long Arabic vowel doubled (dawood, jibreel); undoing
     # them is one slip in all (services/hadith/repair.py slips), not one per letter.
     hadith_repair_long_vowels: dict[str, str] = {"ee": "i", "oo": "u", "ou": "u", "aa": "a"}
+    # A collection's name words that the hadith themselves use at least this
+    # share of the time ("muslim", مسلم) read as words, not the name, unless the
+    # search is only the name and a number (services/hadith/reference.py).
+    # Measured: names at most 2e-5 of the text, "muslim" 6e-4.
+    hadith_name_common_share: float = 1e-4
     # Words that describe the question, not the hadith: "hadith about the cat".
     # No index can count these, since the hadith never say them of themselves.
     hadith_query_framing: tuple[str, ...] = ("hadith", "hadeeth", "ahadith", "narration", "narrations",
