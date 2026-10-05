@@ -10,6 +10,8 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+from backend.services.hadith.repair import edits
+
 # Words, then a number with an optional letter (157c), joined by space, colon, slash, hash or dash.
 _REFERENCE = re.compile(r"\s*([a-z][a-z\s'\-]*?)[\s:/#\-]*(\d+)([a-z]?)\s*")
 
@@ -25,13 +27,22 @@ def _words(text: str) -> set[str]:
     return set(re.findall(r"[a-z]+", text.lower().replace("'", "")))
 
 
-def parse(query: str, collections: list[tuple[str, str, str, bool]]) -> Reference | None:
-    """The hadith a query names, or None when it names no single collection."""
+def parse(query: str, collections: list[tuple[str, str, str, bool]],
+          edits_per_letter: float = 0.0) -> Reference | None:
+    """The hadith a query names, or None when it names no single collection. Exact
+    spellings are tried first; failing those, a word may be `edits_per_letter` wrong
+    (bukari for bukhari), as the word search allows."""
     match = _REFERENCE.fullmatch(query.lower())
     if not match:
         return None
     typed = _words(match[1])
-    fits = [cid for cid, name, short, _ in collections if typed <= _words(f"{cid} {name} {short}")]
+    names = [(cid, _words(f"{cid} {name} {short}")) for cid, name, short, _ in collections]
+
+    def near(word: str, known: set[str]) -> bool:
+        return any(edits(word, k) <= int(len(k) * edits_per_letter) for k in known)
+
+    fits = [cid for cid, known in names if typed <= known] \
+        or [cid for cid, known in names if all(near(w, known) for w in typed)]
     if len(fits) != 1:
         return None
     return Reference(fits[0], int(match[2]), match[3])

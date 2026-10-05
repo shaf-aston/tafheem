@@ -343,7 +343,7 @@ def test_a_name_in_the_chain_is_not_searched(db):
 
 def test_a_collection_and_number_opens_that_hadith(db):
     """'bukhari 2' is the hadith numbered 2, not a word search for 'bukhari'."""
-    for typed in ("bukhari 2", "Sahih al-Bukhari 2", "bukhari:2"):
+    for typed in ("bukhari 2", "Sahih al-Bukhari 2", "bukhari:2", "bukari 2", "bukhary 2"):
         found = search.search(typed)
         assert [h.number for h in found.hits] == [2], typed
         assert found.reference == ("bukhari", "2", "2")

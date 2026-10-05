@@ -83,7 +83,7 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
 
     settings = get_settings()
     limit = limit or settings.hadith_result_limit
-    named = reference.parse(query, collections_of())
+    named = reference.parse(query, collections_of(), settings.hadith_repair_edits_per_letter)
     if named:
         shown, rows = numbered(named.collection, named.number, named.part)
         hits = [Hit(c, b, n, p, a, e, json.loads(g)) for c, b, n, p, a, e, g in rows]
