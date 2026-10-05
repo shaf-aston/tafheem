@@ -51,6 +51,13 @@ def number_phrases(folded: str) -> list[list[str]]:
     return [[folded], ENGLISH_WORD.findall(num2words(int(folded)).lower())]
 
 
+def respell(word: str, long_vowels: dict[str, str]) -> str:
+    """The word with each doubled long vowel written single: dawood as dawud."""
+    for doubled, single in long_vowels.items():
+        word = word.replace(doubled, single)
+    return word
+
+
 def deletes(word: str) -> set[str]:
     """The word with each one letter dropped."""
     return {word[:i] + word[i + 1:] for i in range(len(word))}

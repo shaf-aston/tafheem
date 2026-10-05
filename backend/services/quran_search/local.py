@@ -21,13 +21,10 @@ import sqlite3
 
 from backend.config import data_path
 from backend.services.arabic_text import bare_letters
+from backend.services.fts import TRIGRAM_MIN, quoted
 from backend.services.quran_search.hit import Hit
 
 NAME = "local"
-
-# The shortest string SQLite's trigram tokenizer can match. Not a preference, a
-# property of the tokenizer, so it is a constant here and not a setting.
-_TRIGRAM_MIN = 3
 
 # The source key this adapter's hits are badged with. The local text is the
 # Quranic Arabic Corpus, which is hand-tagged, so it is "corpus" and not the
@@ -116,13 +113,13 @@ def _rows(conn: sqlite3.Connection, folded: str) -> list[tuple]:
     """Every ayah containing any word of the query, by whichever of the two
     routes can see it. Ranking happens in Python, over these."""
     columns = "surah, ayah, arabic, fold"
-    long_enough = [w for w in folded.split() if len(w) >= _TRIGRAM_MIN]
+    long_enough = [w for w in folded.split() if len(w) >= TRIGRAM_MIN]
 
     if long_enough:
         # A word typed with a final ه is also asked for with ة: the index
         # spells الجنة the Qur'an's way, the query often does not.
         spellings = long_enough + [f"{w[:-1]}ة" for w in long_enough if w.endswith("ه")]
-        match = " OR ".join(f'"{_escape(w)}"' for w in spellings)
+        match = " OR ".join(map(quoted, spellings))
         return list(conn.execute(f"SELECT {columns} FROM verse WHERE verse MATCH ?", (match,)))
 
     # Too short for the index to see. A full scan, and it is affordable here in
@@ -134,11 +131,6 @@ def _rows(conn: sqlite3.Connection, folded: str) -> list[tuple]:
         f"SELECT {columns} FROM verse WHERE ' ' || fold || ' ' LIKE ? ESCAPE '\\'",
         (f"% {_like_safe(folded.split()[0])} %",),
     ))
-
-
-def _escape(term: str) -> str:
-    """A term safe to sit inside an FTS5 double-quoted string."""
-    return term.replace('"', '""')
 
 
 def _like_safe(term: str) -> str:

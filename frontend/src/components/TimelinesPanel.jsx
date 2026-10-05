@@ -22,6 +22,7 @@ import Segmented from './ui/Segmented'
 import ErrorAlert from './ui/ErrorAlert'
 import EmptyState from './ui/EmptyState'
 import { AnalyzerSkeleton } from './ui/Skeleton'
+import StatusNote from './ui/StatusNote'
 import TimelineBoard from './TimelineBoard'
 import TimelineSection from './TimelineSection'
 
@@ -78,9 +79,7 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
       />
 
       {missed && (
-        <p role="status" className="type-small text-[var(--text-dim)]">
-          That link names a timeline event that does not exist, so the sections are shown.
-        </p>
+        <StatusNote>That link names a timeline event that does not exist, so the sections are shown.</StatusNote>
       )}
 
       {shown.length === 0

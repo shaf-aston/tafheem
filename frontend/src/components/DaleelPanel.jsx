@@ -24,6 +24,7 @@ import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../lib/useL
 import ArabicText from './ui/ArabicText'
 import BookPicker from './ui/BookPicker'
 import EmptyState from './ui/EmptyState'
+import IndexNotBuilt from './ui/IndexNotBuilt'
 import FlagButton from './ui/FlagButton'
 import MicButton from './ui/MicButton'
 import PlaceLinks from './ui/PlaceLinks'
@@ -35,7 +36,6 @@ import SectionHeader from './ui/SectionHeader'
 import ShowRest from './ui/ShowRest'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
-import Code from './ui/Code'
 
 /**
  * How a hit was made, said in the reader's words beside it.
@@ -172,19 +172,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
         <ErrorAlert title="Search failed" error={mutation.error} fallback="Could not reach the backend." onRetry={() => submit()} />
       )}
 
-      {/* Not an EmptyState: an index that was never built is a thing that could
-          not run, and EmptyState is only for a search that ran and found
-          nothing. Saying "nothing matches" here would blame the question for a
-          missing file, so it says what is wrong and how to put it right. */}
-      {data?.ready === false && (
-        <ErrorAlert title="Search index not built">
-          The books have not been indexed on this machine, so every search would
-          come back empty. Build it with{' '}
-          <Code>
-            python backend/scripts/build_daleel_index.py
-          </Code>
-        </ErrorAlert>
-      )}
+      {data?.ready === false && <IndexNotBuilt command="python backend/scripts/build_daleel_index.py" />}
 
       {/* With a filter on, the sentence has to name the limit. "Nothing in the
           books" while nine books out of ten were excluded is a claim about the

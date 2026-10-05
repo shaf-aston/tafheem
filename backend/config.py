@@ -237,7 +237,9 @@ class Settings(BaseSettings):
     # Lower than the cap above because each translation also brings its root: six made a twelve-term search vs one to three for Arabic.
     # Measured over twelve English questions: three kept as many exact matches (more on six) and made most searches twice as fast.
     daleel_english_expand_max: int = 3
-    # No minimum-word-length setting here on purpose: it is a property of SQLite's trigram tokenizer and lives in services/daleel/search.py.
+    # Longest question any search box sends (Daleel, Hadith, Dictionary, Qur'an); past it, a paste, not a search.
+    search_max_query_chars: int = 200
+    # No minimum-word-length setting here on purpose: it is a property of SQLite's trigram tokenizer and lives in services/fts.py.
     # A duplicate here once switched off typo tolerance silently when only one copy changed.
 
     # Fetched once by backend/scripts/build_asbab.py; timelines use it to place reports that name no event.
@@ -273,6 +275,9 @@ class Settings(BaseSettings):
     # (services/hadith/language.py), the rest its share of the hadith. Everyday
     # writing keeps real words the hadith never use ("jail") from being "fixed".
     hadith_repair_everyday_weight: float = 0.9
+    # English letters spell a long Arabic vowel doubled (dawood, jibreel); undoing
+    # them is one slip in all (services/hadith/repair.py slips), not one per letter.
+    hadith_repair_long_vowels: dict[str, str] = {"ee": "i", "oo": "u", "ou": "u", "aa": "a"}
     # Words that describe the question, not the hadith: "hadith about the cat".
     # No index can count these, since the hadith never say them of themselves.
     hadith_query_framing: tuple[str, ...] = ("hadith", "hadeeth", "ahadith", "narration", "narrations",

@@ -4,10 +4,11 @@
  *
  * The same box Daleel and the Qur'an tab use, down to the microphone.
  *
- * A loose question gets three honest answers around the hits: which typed
- * words were swapped for the nearest word a hadith holds, which matched
- * nothing at all, and the chapters the hits fall in, each a tap away
- * (`onOpenBook`) for narrowing by topic instead of retyping.
+ * A loose question gets honest answers around the hits: which typed words
+ * were swapped for the nearest word a hadith holds, which matched nothing at
+ * all, which collection a name in it narrowed to, and the chapters the hits
+ * fall in, each a tap away (`onOpenBook`) for narrowing by topic instead of
+ * retyping. A search that only names a collection ("bukhari") opens it.
  */
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
@@ -21,12 +22,13 @@ import Chip from './ui/Chip'
 import ChipRow from './ui/ChipRow'
 import ErrorAlert from './ui/ErrorAlert'
 import EmptyState from './ui/EmptyState'
+import IndexNotBuilt from './ui/IndexNotBuilt'
 import MicButton from './ui/MicButton'
 import RecentRow from './ui/RecentRow'
 import SearchBox from './ui/SearchBox'
 import { AnalyzerSkeleton } from './ui/Skeleton'
+import StatusNote from './ui/StatusNote'
 import HadithCards from './HadithCards'
-import Code from './ui/Code'
 
 export default function HadithSearchResults({ accent, onOpenBook, children }) {
   const [query, setQuery] = useState('')
@@ -38,10 +40,18 @@ export default function HadithSearchResults({ accent, onOpenBook, children }) {
     onSuccess: (_, { q }) => remember({ q }),
   })
 
+  const open = (collection, book) => {
+    setQuery('')
+    mutation.reset()
+    onOpenBook(collection, book)
+  }
+
   const submit = (overrideQuery) => {
     const q = (overrideQuery ?? query).trim()
     if (!q) return
-    mutation.mutate({ q })
+    mutation.mutate({ q }, {
+      onSuccess: ({ reference }) => { if (reference && !reference.asked) open(reference.collection, null) },
+    })
   }
 
   const data = mutation.data
@@ -76,45 +86,39 @@ export default function HadithSearchResults({ accent, onOpenBook, children }) {
         <ErrorAlert title="Search failed" error={mutation.error} fallback="Could not reach the backend." onRetry={() => submit()} />
       )}
 
-      {/* Not an EmptyState: an unbuilt index is not a search that found nothing. */}
-      {data?.ready === false && (
-        <ErrorAlert title="Search index not built">
-          Every search would come back empty until it is built:{' '}
-          <Code>
-            python backend/scripts/build_hadith_index.py
-          </Code>
-        </ErrorAlert>
-      )}
+      {data?.ready === false && <IndexNotBuilt command="python backend/scripts/build_hadith_index.py" />}
 
       {mutation.isPending && <AnalyzerSkeleton />}
 
+      {data?.collections?.length > 0 && !data.reference && (
+        <StatusNote>searched only {data.collections.map((id) => of(id).name).join(' and ')}</StatusNote>
+      )}
+
       {data?.corrected?.length > 0 && (
-        <p role="status" className="type-small text-[var(--text-dim)]">
+        <StatusNote>
           {data.corrected.map(({ typed, used }, i) => (
             <span key={typed}>
               {i > 0 && ', '}
               searched <Word text={used} /> for <Word text={typed} />
             </span>
           ))}
-        </p>
+        </StatusNote>
       )}
 
       {data?.reference && data.reference.asked !== data.reference.shown && (
-        <p role="status" className="type-small text-[var(--text-dim)]">
+        <StatusNote>
           {of(data.reference.collection).name} has
           no {data.reference.asked}, so this is {data.reference.shown}, the nearest number
-        </p>
+        </StatusNote>
       )}
 
       {data?.unmatched?.length > 0 && (
-        <p role="status" className="type-small text-[var(--text-dim)]">
+        <StatusNote>
           no hadith has {data.unmatched.map((w, i) => <span key={w}>{i > 0 && ', '}<Word text={w} /></span>)}
-        </p>
+        </StatusNote>
       )}
 
-      {data?.partial && (
-        <p role="status" className="type-small text-[var(--text-dim)]">no hadith has every word, so these are the closest</p>
-      )}
+      {data?.partial && <StatusNote>no hadith has every word, so these are the closest</StatusNote>}
 
       {data?.ready !== false && data && data.hits.length === 0 && (
         <EmptyState>Nothing matches &ldquo;{data.query}&rdquo;.</EmptyState>
@@ -128,7 +132,7 @@ export default function HadithSearchResults({ accent, onOpenBook, children }) {
               accent={accent}
               quiet
               title={`${c.count} of these hits are in this chapter`}
-              onClick={() => { setQuery(''); mutation.reset(); onOpenBook(c.collection, c.number) }}
+              onClick={() => open(c.collection, c.number)}
             >
               {collections.length > 1 && `${of(c.collection).short} · `}
               {c.name}

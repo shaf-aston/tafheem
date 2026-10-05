@@ -12,6 +12,8 @@ swapped for the likeliest meant word (repair.py) and the swap is reported.
 Hadith close in meaning (meaning.py) are merged in by rank, so "lose your
 temper" finds "do not get angry"; only once some typed word is known, so
 nonsense still finds nothing. The chapters the hits fall in come back too.
+A collection named among the words ("fasting in bukhari") narrows the search
+to it rather than being searched for (reference.py).
 """
 from __future__ import annotations
 
@@ -22,6 +24,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 
 from backend.config import data_path, get_settings
+from backend.services import fts
 from backend.services.arabic_text import has_arabic
 from backend.services.hadith import meaning, reference, repair, words
 from backend.services.hadith.lemma import lemma
@@ -66,8 +69,11 @@ class Result:
     # True when no hadith holds every word, so the hits hold only some of them.
     partial: bool = False
     chapters: list[Chapter] = field(default_factory=list)
-    # A search naming a hadith ("muslim 8"): (collection, number asked, number shown).
+    # A search naming a hadith ("muslim 8"): (collection, number asked, number shown);
+    # naming only a collection ("bukhari"), both numbers are empty.
     reference: tuple[str, str, str] | None = None
+    # The collections searched, when the search was narrowed to some.
+    collections: tuple[str, ...] = ()
 
 
 def search(query: str, limit: int | None = None, collections: tuple[str, ...] = ()) -> Result:
@@ -83,23 +89,28 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
 
     settings = get_settings()
     limit = limit or settings.hadith_result_limit
-    named = reference.parse(query, collections_of(), settings.hadith_repair_edits_per_letter)
-    if named:
-        shown, rows = numbered(named.collection, named.number, named.part)
+    asked = reference.read(query, collections_of())
+    if len(asked.collections) == 1 and not asked.rest:
+        collection = asked.collections[0]
+        if asked.number is None:
+            return Result(reference=(collection, "", ""), collections=asked.collections)
+        shown, rows = numbered(collection, asked.number, asked.part)
         hits = [Hit(c, b, n, p, a, e, json.loads(g)) for c, b, n, p, a, e, g in rows]
-        return Result(hits, reference=(named.collection, f"{named.number}{named.part}", str(shown)))
+        return Result(hits, reference=(collection, f"{asked.number}{asked.part}", str(shown)),
+                      collections=asked.collections)
 
-    typed = words.tokens(query)
+    collections = collections or asked.collections
+    typed = words.tokens(asked.rest)
     if not typed:
         return Result()
 
-    only, params = _only_collections(collections)
+    only, params = fts.only_in("h.collection_id", collections)
     conn = sqlite3.connect(f"file:{data_path('hadith_index_path')}?mode=ro", uri=True)
     try:
-        asked = _content(typed, settings)[:_MAX_TERMS]
+        content = _content(typed, settings)[:_MAX_TERMS]
         # An index built before dictionary forms were stored still answers, by spelling alone.
         forms = any(row[1] == "lemma" for row in conn.execute("PRAGMA table_info(hadith_fts)"))
-        terms, corrected, unmatched = _terms(conn, asked, settings, forms)
+        terms, corrected, unmatched = _terms(conn, content, forms)
         rows, partial, pool = [], False, limit * _CHAPTER_SAMPLE_FACTOR
         if terms:
             rows = _rows(conn, " AND ".join(terms), only, params, pool)
@@ -108,7 +119,7 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
                 partial = bool(rows)
             if meaning.is_built():
                 try:
-                    near = meaning.nearest(query, pool, collections)
+                    near = meaning.nearest(asked.rest, pool, collections)
                 except Exception:
                     # A model that cannot load (no network for the first fetch) costs meaning, not search.
                     logger.exception("hadith meaning search failed; answering by words alone")
@@ -122,7 +133,8 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
 
     hits = [Hit(collection=c, book=b, number=n, part=p, arabic=a, english=e, grades=json.loads(g))
             for c, b, n, p, a, e, g in rows[:limit]]
-    return Result(hits, corrected, unmatched, partial, _chapters(rows, settings.hadith_chapter_hints))
+    return Result(hits, corrected, unmatched, partial, _chapters(rows, settings.hadith_chapter_hints),
+                  collections=collections)
 
 
 def _content(typed, settings) -> list[tuple[str, str]]:
@@ -131,17 +143,15 @@ def _content(typed, settings) -> list[tuple[str, str]]:
     return [(t, f) for t, f in typed if f not in framing] or typed
 
 
-def _terms(conn, asked, settings, forms: bool) -> tuple[list[str], list[tuple[str, str]], list[str]]:
+def _terms(conn, content, forms: bool) -> tuple[list[str], list[tuple[str, str]], list[str]]:
     """Index terms for each word, swapping in the likeliest meant word where the typed one matches nothing."""
     terms, corrected, unmatched = [], [], []
-    for typed, folded in asked:
+    for typed, folded in content:
         if _matches(conn, _term(folded, forms)):
             terms.append(_term(folded, forms))
             continue
         lang = "ar" if has_arabic(folded) else "en"
-        near = None if words.is_number(folded) else repair.nearest(
-            conn, folded, lang, edits_per_letter=settings.hadith_repair_edits_per_letter,
-            edit_cost=settings.hadith_repair_edit_cost, everyday_weight=settings.hadith_repair_everyday_weight)
+        near = None if words.is_number(folded) else repair.nearest(conn, folded, lang)
         if near and _matches(conn, _term(near, forms)):
             corrected.append((typed, near))
             terms.append(_term(near, forms))
@@ -194,25 +204,15 @@ def _chapters(rows, top: int) -> list[Chapter]:
     return out
 
 
-def _only_collections(collections: tuple[str, ...]) -> tuple[str, tuple[str, ...]]:
-    if not collections:
-        return "", ()
-    return " AND h.collection_id IN (" + ",".join("?" * len(collections)) + ")", collections
-
-
 def _term(folded: str, forms: bool = True) -> str:
     """One folded word as an index term: as written, or its dictionary form, or a number however written."""
     if words.is_number(folded):
-        return "(" + " OR ".join(_phrase(p) for p in words.number_phrases(folded) if p) + ")"
-    alternatives = [_phrase([folded])]
+        return "(" + " OR ".join(fts.quoted(*p) for p in words.number_phrases(folded) if p) + ")"
+    alternatives = [fts.quoted(folded)]
     if forms and has_arabic(folded):
         # A final ه may be a ة typed plainly (بالنيه for بالنية); both readings are asked.
         readings = (folded, folded[:-1] + "ة") if folded.endswith("ه") else (folded,)
         for form in dict.fromkeys(filter(None, map(lemma, readings))):
-            alternatives.append("lemma : " + _phrase([form]))
+            alternatives.append("lemma : " + fts.quoted(form))
     return "(" + " OR ".join(alternatives) + ")"
 
-
-def _phrase(parts: list[str]) -> str:
-    """Words that must stand together, quoted for FTS5 (quotes inside a word dropped)."""
-    return '"' + " ".join(p.replace('"', "") for p in parts) + '"'
