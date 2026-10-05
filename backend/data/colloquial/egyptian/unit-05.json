@@ -1618,6 +1618,429 @@
           "tip": "\"فيه\" opens the sentence: \"there is...\"."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "taxi",
+          "arabic": "تَاكْسِي",
+          "transliteration": "taaksi"
+        },
+        {
+          "slot": "bus",
+          "arabic": "أُتُوبِيس",
+          "transliteration": "otoobiis"
+        },
+        {
+          "slot": "i-want-to-go-to-the-old-city",
+          "arabic": "عَايِز أَرُوح مِصْر القَدِيمَة",
+          "transliteration": "3ayez aroo7 maSr el-2adeema"
+        },
+        {
+          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
+          "arabic": "وَقِّف هُنَا لَو سَمَحْت",
+          "transliteration": "wa22ef hena law samaht"
+        },
+        {
+          "slot": "how-much-is-the-fare",
+          "arabic": "الأَجْرَة كَام؟",
+          "transliteration": "el-ogra kaam?",
+          "reply": {
+            "arabic": "تَلَاتِين جِنِيه.",
+            "transliteration": "talateen ginee.",
+            "english": "Thirty pounds."
+          }
+        },
+        {
+          "slot": "take-me-to-to-a-man",
+          "arabic": "وَدِّينِي عَلَى",
+          "transliteration": "wadeeni 3ala"
+        },
+        {
+          "slot": "are-you-free-asking-a-taxi-driver-if-available",
+          "arabic": "فَاضِي؟",
+          "transliteration": "faaDi?",
+          "reply": {
+            "arabic": "أَيْوَه، اِتْفَضِّل.",
+            "transliteration": "aywa, itfaDDal.",
+            "english": "Yes, please get in."
+          }
+        },
+        {
+          "slot": "busy-occupied",
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool"
+        },
+        {
+          "slot": "how-long-does-the-way-take",
+          "arabic": "الطَّرِيق هَيَاخُد قَد إِيه؟",
+          "transliteration": "eT-Taree2 hayakhod add eeh?"
+        },
+        {
+          "slot": "will-you-drop-me-at-to-a-man",
+          "arabic": "تَوَصِّلْنِي لِحَد مِيدَان التَّحْرِير؟",
+          "transliteration": "twaSSalni le-7add meedaan et-ta7reer?"
+        },
+        {
+          "slot": "at-your-service-a-common-polite-reply-from-a-tax",
+          "arabic": "تَحْت أَمْرَك",
+          "transliteration": "ta7t amrak"
+        },
+        {
+          "slot": "what-time-does-the-bus-come-tomorrow",
+          "arabic": "الأتوبيس بييجي الساعة كام بكرة؟",
+          "transliteration": "el-otoobiis biyeegi es-saa3a kaam bokra?"
+        },
+        {
+          "slot": "station",
+          "arabic": "مَحَطَّة",
+          "transliteration": "ma7aTTa"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "كريم",
+          "arabic": "تاكسي! فاضي؟",
+          "transliteration": "taaksi! faaDi?",
+          "english": "Taxi! Are you free?"
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "أيوه، اتفضل يا باشا.",
+          "transliteration": "aywa, itfaDDal ya baasha.",
+          "english": "Yes, get in, sir."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "عايز أروح مصر القديمة.",
+          "transliteration": "3ayez aroo7 maSr el-2adeema.",
+          "english": "I want to go to Old Cairo."
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "تحت أمرك.",
+          "transliteration": "ta7t amrak.",
+          "english": "At your service."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "الطَّرِيق هَيَاخُد قَد إِيه؟",
+          "transliteration": "eT-Taree2 hayakhod add eeh?",
+          "english": "How long will the way take?"
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "ياخد نص ساعة لو مفيش زحمة.",
+          "transliteration": "yakhod nuSS saa3a law meefeesh zo7ma.",
+          "english": "About half an hour if there's no traffic."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "والأجرة كام؟",
+          "transliteration": "wil-ogra kaam?",
+          "english": "And the fare, how much?"
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "تَلَاتِين جِنِيه.",
+          "transliteration": "talateen ginee.",
+          "english": "Thirty pounds."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "ماشي. وقّف هنا لو سمحت.",
+          "transliteration": "maashi. wa22ef hena law samaht.",
+          "english": "Okay. Stop here, please."
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "حاضر يا باشا. وصلنا.",
+          "transliteration": "7aaDir ya baasha. waSalna.",
+          "english": "Right away, sir. We've arrived."
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "تسلم. الأتوبيس بييجي الساعة كام بكرة؟",
+          "transliteration": "tislam. el-otoobiis biyeegi es-saa3a kaam bokra?",
+          "english": "Thanks. What time does the bus come tomorrow?"
+        },
+        {
+          "speaker": "السواق",
+          "arabic": "اسأل في المحطة اللي هناك.",
+          "transliteration": "es2al fil-ma7aTTa illi henaak.",
+          "english": "Ask at the station over there."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فَاضِي؟",
+            "transliteration": "faaDi?",
+            "english": "Are you free?"
+          },
+          "response": {
+            "arabic": "أَيْوَه، اِتْفَضِّل.",
+            "transliteration": "aywa, itfaDDal.",
+            "english": "Yes, please get in."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الأَجْرَة كَام؟",
+            "transliteration": "el-ogra kaam?",
+            "english": "How much is the fare?"
+          },
+          "response": {
+            "arabic": "تَلَاتِين جِنِيه.",
+            "transliteration": "talateen ginee.",
+            "english": "Thirty pounds."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وديني على المحطة.",
+            "transliteration": "wadeeni 3ala el-ma7aTTa.",
+            "english": "Take me to the station."
+          },
+          "response": {
+            "arabic": "تحت أمرك.",
+            "transliteration": "ta7t amrak.",
+            "english": "At your service."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الطَّرِيق هَيَاخُد قَد إِيه؟",
+            "transliteration": "eT-Taree2 hayakhod add eeh?",
+            "english": "How long will the way take?"
+          },
+          "response": {
+            "arabic": "ياخد عشرين دقيقة.",
+            "transliteration": "yakhod 3eshreen de2ee2a.",
+            "english": "About twenty minutes."
+          }
+        }
+      ],
+      "culture": "In Cairo you usually agree the fare with the driver before you get in, or ask him to turn on the meter, because many drivers name a price by look. Drivers call passengers يا باشا, and answering with a friendly greeting makes the whole ride easier; ride apps like Uber are also very common.",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Are you free?\" (asking a taxi driver)",
+          "answer": "فَاضِي؟",
+          "accepted": [
+            "فَاضِي؟",
+            "فاضي",
+            "انت فاضي؟",
+            "fadi",
+            "faaDi?"
+          ],
+          "too_formal": {
+            "item": "هل أنت متاح؟",
+            "feedback": "That is formal; a driver is asked فاضي؟ on the street."
+          },
+          "tip": "\"فاضي\" literally means empty."
+        },
+        {
+          "id": "unit-05.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"Bus\"?",
+          "options": [
+            "أُتُوبِيس",
+            "تَاكْسِي",
+            "مَحَطَّة",
+            "أجرة"
+          ],
+          "answer": "أُتُوبِيس",
+          "accepted": [
+            "أُتُوبِيس",
+            "اتوبيس",
+            "otobis",
+            "أتوبيس.",
+            "otoobiis"
+          ],
+          "too_formal": {
+            "item": "حافلة",
+            "feedback": "That is the Modern Standard word; Cairenes say أتوبيس."
+          },
+          "tip": "\"أتوبيس\" is bus; \"تاكسي\" is taxi."
+        },
+        {
+          "id": "unit-05.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A taxi driver says: \"اتفضل، على فين؟\" Tell him you want to go to Old Cairo.",
+          "answer": "عَايِز أَرُوح مِصْر القَدِيمَة",
+          "accepted": [
+            "عَايِز أَرُوح مِصْر القَدِيمَة",
+            "عاوز أروح مصر القديمة",
+            "وديني مصر القديمة",
+            "وديني على مصر القديمة",
+            "3ayez aroo7 maSr el-2adeema"
+          ],
+          "too_formal": {
+            "item": "أريد الذهاب إلى مصر القديمة",
+            "feedback": "That is formal Arabic; speech uses عايز أروح."
+          },
+          "tip": "\"على فين؟\" means where to; answer with عايز أروح plus the place."
+        },
+        {
+          "id": "unit-05.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"وقّف _____ لو سمحت.\" Meaning: Stop here, please.",
+          "answer": "هنا",
+          "accepted": [
+            "هنا",
+            "هنا.",
+            "hena.",
+            "هُنا",
+            "hena"
+          ],
+          "too_formal": {
+            "item": "قف هنا من فضلك",
+            "feedback": "That is a formal command; speech says وقّف هنا لو سمحت."
+          },
+          "tip": "\"هنا\" is here, \"هناك\" is there."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How much is the fare?\"",
+          "answer": "الأَجْرَة كَام؟",
+          "accepted": [
+            "الأَجْرَة كَام؟",
+            "الأجرة كام",
+            "الأجره كام؟",
+            "كام الأجرة؟",
+            "el-ogra kaam?"
+          ],
+          "too_formal": {
+            "item": "كم الأجرة؟",
+            "feedback": "That is a formal question order; Egyptians put كام at the end."
+          },
+          "tip": "\"كام\" comes last in Egyptian questions about price or number."
+        },
+        {
+          "id": "unit-05.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"سمحت / وقّف / هنا / لو\"",
+          "words": [
+            "سَمَحْت",
+            "وَقِّف",
+            "هُنَا",
+            "لَو"
+          ],
+          "answer": "وَقِّف هُنَا لَو سَمَحْت",
+          "accepted": [
+            "وَقِّف هُنَا لَو سَمَحْت",
+            "وقف هنا لو سمحت",
+            "لو سمحت وقّف هنا",
+            "لو سمحت وقف هنا",
+            "wa22ef hena law samaht"
+          ],
+          "too_formal": {
+            "item": "قف هنا من فضلك",
+            "feedback": "That is a stiff command; speech uses وقّف."
+          },
+          "tip": "\"لو سمحت\" can come at the start or the end."
+        },
+        {
+          "id": "unit-05.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase is the driver's polite \"At your service\"?",
+          "options": [
+            "تَحْت أَمْرَك",
+            "مَشْغُول",
+            "غَالِي",
+            "مَاشِي"
+          ],
+          "answer": "تَحْت أَمْرَك",
+          "accepted": [
+            "تَحْت أَمْرَك",
+            "تحت امرك",
+            "ta7t amrak.",
+            "تحت أمرك.",
+            "ta7t amrak"
+          ],
+          "too_formal": {
+            "item": "أنا في خدمتك",
+            "feedback": "That is a formal service phrase; drivers say تحت أمرك."
+          },
+          "tip": "\"تحت أمرك\" literally means under your command."
+        },
+        {
+          "id": "unit-05.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "You ask a taxi: \"فاضي؟\" and he is taken. What does he say?",
+          "answer": "مَشْغُول",
+          "accepted": [
+            "مَشْغُول",
+            "أنا مشغول",
+            "مشغول يا باشا",
+            "لأ مشغول",
+            "mashghool"
+          ],
+          "too_formal": {
+            "item": "أنا غير متاح",
+            "feedback": "That is formal; a driver just says مشغول."
+          },
+          "tip": "\"مشغول\" means busy."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How long will the way take?\"",
+          "answer": "الطَّرِيق هَيَاخُد قَد إِيه؟",
+          "accepted": [
+            "الطَّرِيق هَيَاخُد قَد إِيه؟",
+            "الطريق هيبقى قد ايه",
+            "الطَّرِيق هَيَاخُد قَد إِيه؟",
+            "الطريق هياخد وقت قد إيه؟",
+            "eT-Taree2 hayakhod add eeh?"
+          ],
+          "too_formal": {
+            "item": "كم يستغرق الطريق؟",
+            "feedback": "That is formal; Cairenes say قد إيه for how much or how long."
+          },
+          "tip": "\"قد إيه\" asks how much or how long."
+        },
+        {
+          "id": "unit-05.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الأتوبيس بييجي الساعة _____ بكرة؟\" Meaning: What time does the bus come tomorrow?",
+          "answer": "كام",
+          "accepted": [
+            "كام",
+            "كم",
+            "كام؟",
+            "kam",
+            "kaam"
+          ],
+          "too_formal": {
+            "item": "متى يأتي الحافلة غداً؟",
+            "feedback": "That is formal; the Egyptian way is الساعة كام."
+          },
+          "tip": "\"الساعة كام؟\" asks what time it is."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Take me to the station.\" (to a man)",
+          "answer": "وديني على المحطة",
+          "accepted": [
+            "وديني على المحطة",
+            "وديني المحطة",
+            "وصّلني المحطة",
+            "خدني على المحطة",
+            "wadeeni 3ala el-ma7aTTa"
+          ],
+          "too_formal": {
+            "item": "أوصلني إلى المحطة",
+            "feedback": "That is formal; speech uses وديني."
+          },
+          "tip": "\"وديني\" means take me, and \"على\" gives the place."
+        }
+      ]
     }
   ],
   "challenge": {

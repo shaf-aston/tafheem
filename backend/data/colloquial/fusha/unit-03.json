@@ -1593,6 +1593,417 @@
           "tip": "لَا comes right before the verb."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "how-much-is-this",
+          "arabic": "بِكَمْ هَذَا؟",
+          "transliteration": "bikam haadhaa?",
+          "reply": {
+            "arabic": "بِخَمْسَةِ دَنَانِير",
+            "transliteration": "bikhamsati danaaneer",
+            "english": "For five dinars."
+          }
+        },
+        {
+          "slot": "expensive",
+          "arabic": "غَالِي",
+          "transliteration": "ghaalee"
+        },
+        {
+          "slot": "cheap",
+          "arabic": "رَخِيص",
+          "transliteration": "rakhees"
+        },
+        {
+          "slot": "is-there-a-discount",
+          "arabic": "هَلْ يُوجَدُ خَصْم؟",
+          "transliteration": "hal yoojadu khasm?",
+          "reply": {
+            "arabic": "سَأُنْقِصُ السِّعْرَ قَلِيلًا",
+            "transliteration": "sa-unqisu as-si3ra qaleelan",
+            "english": "I'll lower the price a little."
+          }
+        },
+        {
+          "slot": "how-much-per-kilo",
+          "arabic": "بِكَمِ الْكِيلُو؟",
+          "transliteration": "bikami al-keeloo?"
+        },
+        {
+          "slot": "i-want-this",
+          "arabic": "أُرِيدُ هَذَا",
+          "transliteration": "ureedu haadhaa"
+        },
+        {
+          "slot": "lower-it-a-little-to-a-man-when-bargaining",
+          "arabic": "أَنْقِصِ السِّعْرَ قَلِيلًا",
+          "transliteration": "anqisi as-si3ra qaleelan"
+        },
+        {
+          "slot": "final-price",
+          "arabic": "السِّعْرُ النِّهَائِيّ",
+          "transliteration": "as-si3ru an-nihaa2ee"
+        },
+        {
+          "slot": "okay-deal",
+          "arabic": "حَسَنًا، اِتَّفَقْنَا",
+          "transliteration": "7asanan, ittafaqnaa"
+        },
+        {
+          "slot": "do-you-have-a-smaller-one-to-a-man",
+          "arabic": "هَلْ عِنْدَكَ أَصْغَرُ مِنْ هَذَا؟",
+          "transliteration": "hal 3indaka asgharu min haadhaa?"
+        },
+        {
+          "slot": "do-you-have-another-color-to-a-man",
+          "arabic": "هَلْ عِنْدَكَ لَوْنٌ آخَر؟",
+          "transliteration": "hal 3indaka lawnun aakhar?"
+        },
+        {
+          "slot": "this-one-is-nicer",
+          "arabic": "هَذَا أَجْمَل",
+          "transliteration": "haadhaa ajmal"
+        },
+        {
+          "slot": "blue",
+          "arabic": "أَزْرَق",
+          "transliteration": "azraq"
+        },
+        {
+          "slot": "red",
+          "arabic": "أَحْمَر",
+          "transliteration": "a7mar"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Sami",
+          "arabic": "السَّلَامُ عَلَيْكُمْ.",
+          "transliteration": "as-salaamu 3alaykum.",
+          "english": "Peace be upon you."
+        },
+        {
+          "speaker": "Mahmoud",
+          "arabic": "وَعَلَيْكُمُ السَّلَامُ. تَفَضَّلْ.",
+          "transliteration": "wa 3alaykumu as-salaamu. tafaddal.",
+          "english": "And peace be upon you. Please, go ahead."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "بِكَمْ هَذَا الْقَمِيص؟",
+          "transliteration": "bikam haadhaa al-qamees?",
+          "english": "How much is this shirt?"
+        },
+        {
+          "speaker": "Mahmoud",
+          "arabic": "بِعِشْرِينَ دِينَارًا.",
+          "transliteration": "bi3ishreena deenaran.",
+          "english": "For twenty dinars."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "هَذَا غَالِي. هَلْ يُوجَدُ خَصْم؟",
+          "transliteration": "haadhaa ghaalee. hal yoojadu khasm?",
+          "english": "This is expensive. Is there a discount?"
+        },
+        {
+          "speaker": "Mahmoud",
+          "arabic": "سَأُنْقِصُ السِّعْرَ قَلِيلًا. بِثَمَانِيَةَ عَشَرَ دِينَارًا.",
+          "transliteration": "sa-unqisu as-si3ra qaleelan. bithamaaniyata 3ashara deenaran.",
+          "english": "I'll lower the price a little. For eighteen dinars."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "هَلْ عِنْدَكَ لَوْنٌ آخَر؟",
+          "transliteration": "hal 3indaka lawnun aakhar?",
+          "english": "Do you have another color?"
+        },
+        {
+          "speaker": "Mahmoud",
+          "arabic": "نَعَمْ، عِنْدِي أَزْرَق وَأَحْمَر.",
+          "transliteration": "na3am, 3indee azraq wa a7mar.",
+          "english": "Yes, I have blue and red."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "الْأَزْرَقُ أَجْمَل. مَا السِّعْرُ النِّهَائِيّ؟",
+          "transliteration": "al-azraqu ajmal. maa as-si3ru an-nihaa2ee?",
+          "english": "The blue is nicer. What's the final price?"
+        },
+        {
+          "speaker": "Mahmoud",
+          "arabic": "السِّعْرُ النِّهَائِيُّ سِتَّةَ عَشَرَ دِينَارًا.",
+          "transliteration": "as-si3ru an-nihaa2eeyu sittata 3ashara deenaran.",
+          "english": "The final price is sixteen dinars."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "حَسَنًا، اِتَّفَقْنَا.",
+          "transliteration": "7asanan, ittafaqnaa.",
+          "english": "Okay, deal."
+        },
+        {
+          "speaker": "Mahmoud",
+          "arabic": "شُكْرًا لَكَ.",
+          "transliteration": "shukran laka.",
+          "english": "Thank you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بِكَمْ هَذَا؟",
+            "transliteration": "bikam haadhaa?",
+            "english": "How much is this?"
+          },
+          "response": {
+            "arabic": "بِعِشْرِينَ دِينَارًا.",
+            "transliteration": "bi3ishreena deenaran.",
+            "english": "For twenty dinars."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ يُوجَدُ خَصْم؟",
+            "transliteration": "hal yoojadu khasm?",
+            "english": "Is there a discount?"
+          },
+          "response": {
+            "arabic": "سَأُنْقِصُ السِّعْرَ قَلِيلًا.",
+            "transliteration": "sa-unqisu as-si3ra qaleelan.",
+            "english": "I'll lower the price a little."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ عِنْدَكَ لَوْنٌ آخَر؟",
+            "transliteration": "hal 3indaka lawnun aakhar?",
+            "english": "Do you have another color?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، عِنْدِي أَزْرَق.",
+            "transliteration": "na3am, 3indee azraq.",
+            "english": "Yes, I have blue."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَا السِّعْرُ النِّهَائِيّ؟",
+            "transliteration": "maa as-si3ru an-nihaa2ee?",
+            "english": "What's the final price?"
+          },
+          "response": {
+            "arabic": "السِّعْرُ النِّهَائِيُّ سِتَّةَ عَشَرَ دِينَارًا.",
+            "transliteration": "as-si3ru an-nihaa2eeyu sittata 3ashara deenaran.",
+            "english": "The final price is sixteen dinars."
+          }
+        }
+      ],
+      "culture": "In a Fusha-speaking market, prices are asked with بِكَمْ and bargaining is polite: هَلْ يُوجَدُ خَصْم؟ is the standard way to ask for a reduction. Once both sides say اِتَّفَقْنَا, the deal is closed and it is not reopened.",
+      "exercises": [
+        {
+          "id": "unit-03.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A shopkeeper says: 'تَفَضَّلْ'. Ask how much this is.",
+          "answer": "بِكَمْ هَذَا؟",
+          "accepted": [
+            "بِكَمْ هَذَا؟",
+            "بكم هذا؟",
+            "بِكَمْ هَذَا",
+            "bikam haadhaa?"
+          ],
+          "too_formal": {
+            "item": "قَدَّيْش هَادَا؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بِكَمْ is 'for how much'; it is the price question."
+        },
+        {
+          "id": "unit-03.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "The price is too high for you. Say it is expensive and ask about a discount.",
+          "answer": "هَذَا غَالِي. هَلْ يُوجَدُ خَصْم؟",
+          "accepted": [
+            "هَذَا غَالِي. هَلْ يُوجَدُ خَصْم؟",
+            "هذا غالي. هل يوجد خصم؟",
+            "غَالِي. هَلْ يُوجَدُ خَصْم؟",
+            "haadhaa ghaalee. hal yoojadu khasm?"
+          ],
+          "too_formal": {
+            "item": "غَالِي. فِي خَصْم؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say what is wrong first, then ask for a reduction."
+        },
+        {
+          "id": "unit-03.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: '_____ هَذَا؟' (How much is this?)",
+          "answer": "بِكَمْ",
+          "accepted": [
+            "بِكَمْ",
+            "بكم",
+            "bikam",
+            "كَمْ"
+          ],
+          "too_formal": {
+            "item": "قَدَّيْش",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بِ means 'for' and كَمْ means 'how much'."
+        },
+        {
+          "id": "unit-03.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَلْ عِنْدَكَ لَوْنٌ _____؟' (Do you have another color?)",
+          "answer": "آخَر",
+          "accepted": [
+            "آخَر",
+            "اخر",
+            "aakhar",
+            "آخَرُ"
+          ],
+          "too_formal": {
+            "item": "تَانِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "آخَر means 'another' and comes after the noun."
+        },
+        {
+          "id": "unit-03.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I want this.'",
+          "answer": "أُرِيدُ هَذَا",
+          "accepted": [
+            "أُرِيدُ هَذَا",
+            "اريد هذا",
+            "أُرِيدُ هَذِهِ",
+            "ureedu haadhaa"
+          ],
+          "too_formal": {
+            "item": "بَدِّي هَادَا",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَذَا is 'this' for a masculine thing, هَذِهِ for a feminine one."
+        },
+        {
+          "id": "unit-03.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'How much per kilo?'",
+          "answer": "بِكَمِ الْكِيلُو؟",
+          "accepted": [
+            "بِكَمِ الْكِيلُو؟",
+            "بكم الكيلو؟",
+            "بِكَمْ كِيلُو؟",
+            "bikami al-keeloo?"
+          ],
+          "too_formal": {
+            "item": "بِقَدَّيْش الْكِيلُو؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The price question بِكَمْ plus the unit."
+        },
+        {
+          "id": "unit-03.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Do you have a smaller one?' (to a man)",
+          "answer": "هَلْ عِنْدَكَ أَصْغَرُ مِنْ هَذَا؟",
+          "accepted": [
+            "هَلْ عِنْدَكَ أَصْغَرُ مِنْ هَذَا؟",
+            "هل عندك أصغر من هذا؟",
+            "هَلْ عِنْدَكَ وَاحِدٌ أَصْغَر؟",
+            "hal 3indaka asgharu min haadhaa?"
+          ],
+          "too_formal": {
+            "item": "عِنْدَك أَصْغَر؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَصْغَرُ مِنْ means 'smaller than'."
+        },
+        {
+          "id": "unit-03.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'cheap'?",
+          "options": [
+            "رَخِيص",
+            "غَالِي",
+            "أَزْرَق",
+            "أَجْمَل"
+          ],
+          "answer": "رَخِيص",
+          "accepted": [
+            "رَخِيص",
+            "رخيص",
+            "rakhees",
+            "رَخِيصٌ"
+          ],
+          "too_formal": {
+            "item": "رْخِيص",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "غَالِي is the opposite: 'expensive'."
+        },
+        {
+          "id": "unit-03.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase means 'Final price'?",
+          "options": [
+            "السِّعْرُ النِّهَائِيّ",
+            "بِكَمْ هَذَا؟",
+            "هَلْ يُوجَدُ خَصْم؟",
+            "حَسَنًا، اِتَّفَقْنَا"
+          ],
+          "answer": "السِّعْرُ النِّهَائِيّ",
+          "accepted": [
+            "السِّعْرُ النِّهَائِيّ",
+            "السعر النهائي",
+            "آخِرُ سِعْر",
+            "as-si3ru an-nihaa2ee"
+          ],
+          "too_formal": {
+            "item": "آخِر سِعْر",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "النِّهَائِيّ means 'the last, final one'."
+        },
+        {
+          "id": "unit-03.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'قَلِيلًا / السِّعْرَ / أَنْقِصِ'.",
+          "answer": "أَنْقِصِ السِّعْرَ قَلِيلًا",
+          "accepted": [
+            "أَنْقِصِ السِّعْرَ قَلِيلًا",
+            "انقص السعر قليلا",
+            "أَنْقِصْ مِنَ السِّعْرِ قَلِيلًا",
+            "anqisi as-si3ra qaleelan"
+          ],
+          "too_formal": {
+            "item": "نَزِّل السِّعْر شْوَيّ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The command comes first, then what to lower, then how much."
+        },
+        {
+          "id": "unit-03.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: 'آخَر؟ / لَوْنٌ / عِنْدَكَ / هَلْ'.",
+          "answer": "هَلْ عِنْدَكَ لَوْنٌ آخَر؟",
+          "accepted": [
+            "هَلْ عِنْدَكَ لَوْنٌ آخَر؟",
+            "هل عندك لون آخر؟",
+            "هَلْ عِنْدَكَ لَوْنٌ آخَر",
+            "hal 3indaka lawnun aakhar?"
+          ],
+          "too_formal": {
+            "item": "عِنْدَك لَوْن تَانِي؟",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَلْ opens the question, and آخَر ends it."
+        }
+      ]
     }
   ],
   "challenge": {

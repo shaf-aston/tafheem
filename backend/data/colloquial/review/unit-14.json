@@ -1,0 +1,142 @@
+{
+  "found": [
+    {
+      "lesson": 9,
+      "phrase": 6,
+      "english": "When will you leave the hospital?",
+      "search_term": "hospital building exterior",
+      "candidates": [
+        {
+          "id": "931001b9-3c2d-4881-a951-e3dfe03274c0",
+          "title": "F. Lejars staff Tenon hospital",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/14018234/lejars-and-the-staff-tenon-hospital-paris-photograph-lucien-wormser",
+          "thumbnail": "https://api.openverse.org/v1/images/931001b9-3c2d-4881-a951-e3dfe03274c0/thumb/"
+        },
+        {
+          "id": "a8ea3d93-246b-4735-a137-57c21fe27dde",
+          "title": "Peking, Pechili province, China. Photograph",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/13961191/photo-image-person-art-hospital",
+          "thumbnail": "https://api.openverse.org/v1/images/a8ea3d93-246b-4735-a137-57c21fe27dde/thumb/"
+        },
+        {
+          "id": "148968e3-9cad-484c-82bf-52093d2b0ae5",
+          "title": "Modern architecture Madrid, Spain",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3290516/free-photo-image-hospital-building-apartment-arch",
+          "thumbnail": "https://api.openverse.org/v1/images/148968e3-9cad-484c-82bf-52093d2b0ae5/thumb/"
+        },
+        {
+          "id": "eb9efd48-c425-4f04-8eaa-9b37f17e83ab",
+          "title": "Staff work jail gardens Karachi",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/13979364/photo-image-people-hospital-clothing",
+          "thumbnail": "https://api.openverse.org/v1/images/eb9efd48-c425-4f04-8eaa-9b37f17e83ab/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 9,
+      "phrase": 8,
+      "english": "This bouquet is for you",
+      "search_term": "bouquet of flowers",
+      "candidates": [
+        {
+          "id": "852a4aab-324f-4432-b2da-c723874b5065",
+          "title": "large bouquet various flowers berries",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3282630/free-photo-image-flower-roses-bouquet-wedding",
+          "thumbnail": "https://api.openverse.org/v1/images/852a4aab-324f-4432-b2da-c723874b5065/thumb/"
+        },
+        {
+          "id": "bd5cf9f9-e0be-4695-8dd6-487322bf2a8f",
+          "title": "Bouquets various flowers florist's storefront",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3302163/free-photo-image-aster-blossom-cc0",
+          "thumbnail": "https://api.openverse.org/v1/images/bd5cf9f9-e0be-4695-8dd6-487322bf2a8f/thumb/"
+        },
+        {
+          "id": "6f3b6db1-1f26-4bac-909a-2e678095151e",
+          "title": "Bouquet of Flowers and Grasses",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/9198549/bouquet-flowers-and-grasses",
+          "thumbnail": "https://api.openverse.org/v1/images/6f3b6db1-1f26-4bac-909a-2e678095151e/thumb/"
+        },
+        {
+          "id": "376f6ab0-0e47-4358-b24e-f36b1170f007",
+          "title": "Screen with bouquet of flowers",
+          "creator": "thegetty",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/14274190/screen-with-bouquet-flowers",
+          "thumbnail": "https://api.openverse.org/v1/images/376f6ab0-0e47-4358-b24e-f36b1170f007/thumb/"
+        }
+      ]
+    }
+  ],
+  "needs_search_term": [
+    {
+      "lesson": 9,
+      "phrase": 1,
+      "english": "No harm, it is a purification, God willing"
+    },
+    {
+      "lesson": 9,
+      "phrase": 2,
+      "english": "May God heal you"
+    },
+    {
+      "lesson": 9,
+      "phrase": 3,
+      "english": "Get well soon (lit. your safety)"
+    },
+    {
+      "lesson": 9,
+      "phrase": 4,
+      "english": "How are you feeling today?"
+    },
+    {
+      "lesson": 9,
+      "phrase": 9,
+      "english": "I won't stay long"
+    },
+    {
+      "lesson": 9,
+      "phrase": 10,
+      "english": "Rest and don't tire yourself"
+    },
+    {
+      "lesson": 9,
+      "phrase": 11,
+      "english": "Thank you for visiting me"
+    },
+    {
+      "lesson": 9,
+      "phrase": 12,
+      "english": "We ask God to grant you wellbeing"
+    }
+  ]
+}

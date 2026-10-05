@@ -1732,6 +1732,501 @@
           "tip": "أكثر من = more than"
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "how-much-is-this",
+          "arabic": "بِكَم هَذَا؟",
+          "transliteration": "bikam haatha?",
+          "reply": {
+            "arabic": "مِيَّة وخَمْسِين دِرْهَم.",
+            "transliteration": "miyya w khamseen dirham.",
+            "english": "One hundred and fifty dirhams."
+          }
+        },
+        {
+          "slot": "expensive",
+          "arabic": "غَالِي",
+          "transliteration": "ghaali"
+        },
+        {
+          "slot": "cheap",
+          "arabic": "رَخِيص",
+          "transliteration": "rakhees"
+        },
+        {
+          "slot": "is-there-a-discount",
+          "arabic": "فِيه خَصْم؟",
+          "transliteration": "fee khasm?",
+          "reply": {
+            "arabic": "إِي، شُوَي بَس.",
+            "transliteration": "ee, shwayy bas.",
+            "english": "Yes, only a little."
+          }
+        },
+        {
+          "slot": "how-much-per-kilo",
+          "arabic": "بِكَم الكِيلُو؟",
+          "transliteration": "bikam il-keelo?",
+          "reply": {
+            "arabic": "بِعِشْرِين دِرْهَم.",
+            "transliteration": "b-3ishreen dirham.",
+            "english": "Twenty dirhams."
+          }
+        },
+        {
+          "slot": "i-want-this",
+          "arabic": "أَبِي هَذَا",
+          "transliteration": "abi haatha"
+        },
+        {
+          "slot": "lower-it-a-little-to-a-man-when-bargaining",
+          "arabic": "نَزَّل شُوَي",
+          "transliteration": "nazzil shwayy",
+          "reply": {
+            "arabic": "زِين، مِيَّة وعِشْرِين.",
+            "transliteration": "zeen, miyya w 3ishreen.",
+            "english": "Okay, one hundred and twenty."
+          }
+        },
+        {
+          "slot": "final-price",
+          "arabic": "آخِر سِعْر",
+          "transliteration": "aakhir si3ir"
+        },
+        {
+          "slot": "okay-deal",
+          "arabic": "زِين",
+          "transliteration": "zeen"
+        },
+        {
+          "slot": "do-you-have-a-smaller-one-to-a-man",
+          "arabic": "عِندَك أصْغَر؟",
+          "transliteration": "3indak asghar?",
+          "reply": {
+            "arabic": "إِي، عِندِي.",
+            "transliteration": "ee, 3indi.",
+            "english": "Yes, I have one."
+          }
+        },
+        {
+          "slot": "do-you-have-another-color-to-a-man",
+          "arabic": "عِندَك لُون ثَانِي؟",
+          "transliteration": "3indak loon thaani?",
+          "reply": {
+            "arabic": "إِي، عِندِي أزْرَق وأحْمَر.",
+            "transliteration": "ee, 3indi azrag w a7mar.",
+            "english": "Yes, I have blue and red."
+          }
+        },
+        {
+          "slot": "this-one-is-nicer",
+          "arabic": "هَذَا أحْلَى",
+          "transliteration": "haatha a7la"
+        },
+        {
+          "slot": "blue",
+          "arabic": "أزْرَق",
+          "transliteration": "azrag"
+        },
+        {
+          "slot": "red",
+          "arabic": "أحْمَر",
+          "transliteration": "a7mar"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Sara",
+          "arabic": "السلام عليكم.",
+          "transliteration": "assalaamu 3alaykum.",
+          "english": "Peace be upon you."
+        },
+        {
+          "speaker": "Abu Rashid",
+          "arabic": "وعليكم السلام، تفضلي.",
+          "transliteration": "wa 3alaykum assalaam, tfaddali.",
+          "english": "And upon you peace, please come in."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "بِكَم هَذَا؟",
+          "transliteration": "bikam haatha?",
+          "english": "How much is this?"
+        },
+        {
+          "speaker": "Abu Rashid",
+          "arabic": "هذا بمية وخمسين درهم.",
+          "transliteration": "haatha b-miyya w khamseen dirham.",
+          "english": "This is one hundred and fifty dirhams."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "غالي! نزّل شوي.",
+          "transliteration": "ghaali! nazzil shwayy.",
+          "english": "Expensive! Lower it a little."
+        },
+        {
+          "speaker": "Abu Rashid",
+          "arabic": "زين، بمية وعشرين، آخر سعر.",
+          "transliteration": "zeen, b-miyya w 3ishreen, aakhir si3ir.",
+          "english": "Okay, one hundred and twenty, final price."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "فيه خصم أكثر؟",
+          "transliteration": "fee khasm akthar?",
+          "english": "Is there more of a discount?"
+        },
+        {
+          "speaker": "Abu Rashid",
+          "arabic": "والله هذا آخر سعر، ما أقدر أنزّل.",
+          "transliteration": "wallah haatha aakhir si3ir, ma agdar anazzil.",
+          "english": "By God this is the final price, I cannot go lower."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "زين، خلاص. عندك لون ثاني؟",
+          "transliteration": "zeen, khalaas. 3indak loon thaani?",
+          "english": "Okay, done. Do you have another color?"
+        },
+        {
+          "speaker": "Abu Rashid",
+          "arabic": "إِي، عِندِي أزْرَق وأحْمَر.",
+          "transliteration": "ee, 3indi azrag w a7mar.",
+          "english": "Yes, I have blue and red."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "الأزرق أحلى، أبيه.",
+          "transliteration": "il-azrag a7la, abeeh.",
+          "english": "The blue one is nicer, I want it."
+        },
+        {
+          "speaker": "Abu Rashid",
+          "arabic": "تفضلي. الله يبارك لچ فيه.",
+          "transliteration": "tfaddali. allah ybaarik lich feeh.",
+          "english": "Here you go. May God bless it for you."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "الله يعافيك، مع السلامة.",
+          "transliteration": "allah y3aafeek, ma3a is-salaama.",
+          "english": "God keep you well, goodbye."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بِكَم هَذَا؟",
+            "transliteration": "bikam haatha?",
+            "english": "How much is this?"
+          },
+          "response": {
+            "arabic": "هذا بمية درهم.",
+            "transliteration": "haatha b-miyya dirham.",
+            "english": "This is one hundred dirhams."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِيه خَصْم؟",
+            "transliteration": "fee khasm?",
+            "english": "Is there a discount?"
+          },
+          "response": {
+            "arabic": "إِي، شُوَي بَس.",
+            "transliteration": "ee, shwayy bas.",
+            "english": "Yes, only a little."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عِندَك أصْغَر؟",
+            "transliteration": "3indak asghar?",
+            "english": "Do you have a smaller one?"
+          },
+          "response": {
+            "arabic": "إي، عندي أصغر.",
+            "transliteration": "ee, 3indi asghar.",
+            "english": "Yes, I have a smaller one."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نزّل شوي.",
+            "transliteration": "nazzil shwayy.",
+            "english": "Lower it a little."
+          },
+          "response": {
+            "arabic": "زين، آخر سعر بمية وعشرين.",
+            "transliteration": "zeen, aakhir si3ir b-miyya w 3ishreen.",
+            "english": "Okay, final price one hundred and twenty."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عِندَك لُون ثَانِي؟",
+            "transliteration": "3indak loon thaani?",
+            "english": "Do you have another color?"
+          },
+          "response": {
+            "arabic": "إي، عندي أزرق.",
+            "transliteration": "ee, 3indi azrag.",
+            "english": "Yes, I have blue."
+          }
+        }
+      ],
+      "culture": "Bargaining is normal in the souks, such as the gold and spice souks in Dubai or Souq Mubarakiya in Kuwait, but not in malls or supermarkets with fixed prices. Keep it friendly: greet first, ask nicely for a bit less, and accept the seller's \"آخر سعر\" gracefully.",
+      "exercises": [
+        {
+          "id": "unit-03.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How much is this?\"",
+          "answer": "بِكَم هَذَا؟",
+          "accepted": [
+            "بِكَم هَذَا؟",
+            "بكم هذا",
+            "bikam haatha",
+            "بكم هذي؟"
+          ],
+          "too_formal": {
+            "item": "كم سعر هذا؟",
+            "feedback": "This is a formal written question; in the Gulf people just say \"بكم هذا؟\"."
+          },
+          "tip": "\"بكم\" is the everyday way to ask a price."
+        },
+        {
+          "id": "unit-03.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"expensive\"?",
+          "options": [
+            "غَالِي",
+            "رَخِيص",
+            "جديد",
+            "قديم"
+          ],
+          "answer": "غَالِي",
+          "accepted": [
+            "غَالِي",
+            "ghaali",
+            "غالي."
+          ],
+          "too_formal": {
+            "item": "باهظ الثمن",
+            "feedback": "This is a literary way to say expensive; everyday speech says \"غالي\"."
+          },
+          "tip": "\"غالي\" is expensive, \"رخيص\" is cheap."
+        },
+        {
+          "id": "unit-03.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "The seller says a price that is too high. Ask him to lower it a little.",
+          "answer": "نَزَّل شُوَي",
+          "accepted": [
+            "نَزَّل شُوَي",
+            "نزل شوي",
+            "nazzil shwayy",
+            "نزّل السعر شوي"
+          ],
+          "too_formal": {
+            "item": "هل يمكن أن تخفض السعر قليلاً؟",
+            "feedback": "This is a formal, wordy version of the same simple request."
+          },
+          "tip": "\"نزّل شوي\" is the everyday way to ask a seller to come down a bit."
+        },
+        {
+          "id": "unit-03.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"هذا _____ سعر.\" Meaning: This is the final price.",
+          "answer": "آخر",
+          "accepted": [
+            "آخر",
+            "اخر",
+            "aakhir",
+            "آخِر سِعْر"
+          ],
+          "too_formal": {
+            "item": "هذا هو السعر النهائي",
+            "feedback": "This is a formal full sentence; spoken Gulf Arabic keeps it short."
+          },
+          "tip": "\"آخر سعر\" is the phrase sellers use to close the bargaining."
+        },
+        {
+          "id": "unit-03.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is there a discount?\"",
+          "answer": "فِيه خَصْم؟",
+          "accepted": [
+            "فِيه خَصْم؟",
+            "في خصم؟",
+            "فيه خصم",
+            "fee khasm",
+            "فيه تخفيض؟"
+          ],
+          "too_formal": {
+            "item": "هل يوجد خصم؟",
+            "feedback": "This is a formal question structure; everyday speech says \"فيه خصم؟\"."
+          },
+          "tip": "\"فيه\" means \"is there\" and is used constantly in Gulf questions."
+        },
+        {
+          "id": "unit-03.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"هذا / غالي / وايد\"",
+          "words": [
+            "هذا",
+            "غالي",
+            "وايد"
+          ],
+          "answer": "هذا غالي وايد",
+          "accepted": [
+            "هذا غالي وايد",
+            "haatha ghaali waayid",
+            "هذا وايد غالي",
+            "وايد غالي هذا"
+          ],
+          "too_formal": {
+            "item": "هذا غالٍ جداً",
+            "feedback": "This is formal Arabic wording rather than the everyday spoken sentence."
+          },
+          "tip": "\"وايد\" is the Gulf word for \"very\" or \"a lot\"."
+        },
+        {
+          "id": "unit-03.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"cheap\"?",
+          "options": [
+            "رَخِيص",
+            "غَالِي",
+            "جديد",
+            "صغير"
+          ],
+          "answer": "رَخِيص",
+          "accepted": [
+            "رَخِيص",
+            "rakhees",
+            "رخيص."
+          ],
+          "too_formal": {
+            "item": "زهيد الثمن",
+            "feedback": "This is a literary term for cheap; everyday speech says \"رخيص\"."
+          },
+          "tip": "\"رخيص\" is cheap, \"غالي\" is expensive."
+        },
+        {
+          "id": "unit-03.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "The seller offers a price you accept. Say \"Okay, deal.\"",
+          "answer": "زِين",
+          "accepted": [
+            "زِين",
+            "zeen",
+            "زين، خلاص",
+            "خلاص",
+            "تمام"
+          ],
+          "too_formal": {
+            "item": "أنا موافق على ذلك",
+            "feedback": "This is a formal agreement phrase; spoken Gulf Arabic just says \"زين\" or \"خلاص\"."
+          },
+          "tip": "\"زين\" means \"good, okay\" and is one of the most Gulf words there is."
+        },
+        {
+          "id": "unit-03.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Do you have a smaller one?\" (to a man)",
+          "answer": "عِندَك أصْغَر؟",
+          "accepted": [
+            "عِندَك أصْغَر؟",
+            "عندك أصغر",
+            "عندك واحد أصغر؟",
+            "3indak asghar",
+            "عندك اصغر من هذا؟"
+          ],
+          "too_formal": {
+            "item": "هل لديك حجم أصغر؟",
+            "feedback": "This is formal written phrasing rather than the everyday spoken question."
+          },
+          "tip": "\"عندك\" plus the thing is the everyday pattern for \"do you have...\". To a woman it is \"عندچ\"."
+        },
+        {
+          "id": "unit-03.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الأزرق _____.\" Meaning: The blue one is nicer.",
+          "answer": "أحلى",
+          "accepted": [
+            "أحلى",
+            "احلى",
+            "a7la",
+            "أحلا"
+          ],
+          "too_formal": {
+            "item": "أجمل",
+            "feedback": "This is the standard word for \"nicer\"; everyday Gulf speech often reaches for \"أحلى\"."
+          },
+          "tip": "\"أحلى\" is a very common everyday word for \"nicer\" or \"prettier\"."
+        },
+        {
+          "id": "unit-03.lesson-05.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How much per kilo?\"",
+          "answer": "بِكَم الكِيلُو؟",
+          "accepted": [
+            "بِكَم الكِيلُو؟",
+            "بكم الكيلو",
+            "bikam il-keelo",
+            "بكم كيلو؟"
+          ],
+          "too_formal": {
+            "item": "ما هو سعر الكيلو؟",
+            "feedback": "This is a formal written question; the spoken form is much shorter."
+          },
+          "tip": "Drop the verb: \"بكم\" plus the thing is the whole question."
+        },
+        {
+          "id": "unit-03.lesson-05.choose.03",
+          "type": "choose",
+          "prompt": "Which word means \"red\"?",
+          "options": [
+            "أحْمَر",
+            "أزْرَق",
+            "أصفر",
+            "أخضر"
+          ],
+          "answer": "أحْمَر",
+          "accepted": [
+            "أحْمَر",
+            "a7mar",
+            "احمر"
+          ],
+          "too_formal": {
+            "item": "قرمزي",
+            "feedback": "This names a specific shade (crimson) and is more literary than the everyday \"أحمر\"."
+          },
+          "tip": "\"أزرق\" (azrag) is blue, \"أحمر\" (a7mar) is red."
+        },
+        {
+          "id": "unit-03.lesson-05.reply.03",
+          "type": "reply",
+          "prompt": "You want this one. Say \"I want this.\"",
+          "answer": "أَبِي هَذَا",
+          "accepted": [
+            "أَبِي هَذَا",
+            "ابي هذا",
+            "abi haatha",
+            "أبغي هذا",
+            "أبا هذا"
+          ],
+          "too_formal": {
+            "item": "أريد هذا",
+            "feedback": "This is formal; in the Gulf people say \"أبي\" (or \"أبغي\", \"أبا\" in some areas) for \"I want\"."
+          },
+          "tip": "\"أبي\" is the Gulf \"I want\"; the Levantine \"بدي\" is not used here."
+        }
+      ]
     }
   ],
   "challenge": {

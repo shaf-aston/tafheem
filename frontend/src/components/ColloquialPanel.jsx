@@ -52,6 +52,16 @@ function Card({ hue, index, kicker, title, arabic, note, onClick }) {
   )
 }
 
+// Neighbouring topics under one heading; a unit without sections is one run with no heading.
+function sectionsOf(lessons) {
+  return lessons.reduce((runs, l, i) => {
+    const last = runs.at(-1)
+    if (last && last.section === (l.section ?? null)) last.lessons.push(l)
+    else runs.push({ section: l.section ?? null, from: i, lessons: [l] })
+    return runs
+  }, [])
+}
+
 function Grid({ children }) {
   return <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">{children}</div>
 }
@@ -187,12 +197,20 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
             <h2 className="type-figure font-semibold text-[var(--text)]">{unit.title}</h2>
             <UnitWordBank dialect={dialect.key} unit={unit.unit} />
           </div>
-          <Grid>
-            {unit.lessons.map((l, i) => (
-              <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} note={l.written ? undefined : 'Coming'}
-                onClick={l.written ? () => go(dialect.key, unit.unit, i) : undefined} />
-            ))}
-          </Grid>
+          {sectionsOf(unit.lessons).map(({ section, from, lessons }) => (
+            <div key={from} className="space-y-2">
+              {section && <h3 className="type-small font-semibold text-[var(--text-dim)] pt-4">{section}</h3>}
+              <Grid>
+                {lessons.map((l, n) => {
+                  const i = from + n
+                  return (
+                    <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} note={l.written ? undefined : 'Coming'}
+                      onClick={l.written ? () => go(dialect.key, unit.unit, i) : undefined} />
+                  )
+                })}
+              </Grid>
+            </div>
+          ))}
         </div>
       )}
 

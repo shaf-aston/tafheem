@@ -250,8 +250,24 @@ def test_a_spine_lesson_the_dialect_never_wrote_is_coming_not_a_fault():
     unit, said = loader._fill(outline, copy.deepcopy(WRITTEN))
     alone, _ = loader._fill(OUTLINE, copy.deepcopy(WRITTEN))
     assert said == [] and loader._unit_faults(unit) == loader._unit_faults(alone)
-    assert unit["lessons"][1] == {"lesson": "lesson-02", "title": "More", "written": False}
+    assert unit["lessons"][1] == {"lesson": "lesson-02", "title": "More", "section": None, "written": False}
     assert unit["lessons"][0]["written"] is True
+
+
+def test_a_spine_section_reaches_written_and_coming_lessons_alike():
+    outline = copy.deepcopy(OUTLINE)
+    outline["lessons"][0]["section"] = "Happy occasions"
+    outline["lessons"].append({"lesson": "lesson-02", "title": "More", "section": "Hard times", "phrases": []})
+    unit, _ = loader._fill(outline, copy.deepcopy(WRITTEN))
+    assert [lesson["section"] for lesson in unit["lessons"]] == ["Happy occasions", "Hard times"]
+    plain, _ = loader._fill(OUTLINE, copy.deepcopy(WRITTEN))
+    assert plain["lessons"][0]["section"] is None
+
+
+def test_the_catalogue_carries_each_topic_section_so_the_unit_page_can_head_it():
+    cards = [lesson for dialect in loader.catalogue()["dialects"] for unit in dialect["units"]
+             for lesson in unit["lessons"]]
+    assert cards and all("section" in lesson for lesson in cards)
 
 
 def test_a_repeated_slot_in_one_lesson_is_caught():

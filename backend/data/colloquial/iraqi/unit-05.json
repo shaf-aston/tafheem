@@ -1615,6 +1615,420 @@
           "tip": "\"أكو\" opens a question about what exists."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "taxi",
+          "arabic": "تَكْسِي",
+          "transliteration": "taksi"
+        },
+        {
+          "slot": "bus",
+          "arabic": "بَاص",
+          "transliteration": "baas"
+        },
+        {
+          "slot": "i-want-to-go-to-the-old-city",
+          "arabic": "أَرِيد أرُوح لِلْمَدِينَة الْقَدِيمَة",
+          "transliteration": "areed aroo7 lil-madeena il-gadeema"
+        },
+        {
+          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
+          "arabic": "وگّف هنا، لو سمحت",
+          "transliteration": "wagguf hnaa, law sama7t"
+        },
+        {
+          "slot": "how-much-is-the-fare",
+          "arabic": "شْكَد الِأُجْرَة؟",
+          "transliteration": "shgad il-ujra?"
+        },
+        {
+          "slot": "take-me-to-to-a-man",
+          "arabic": "خِذْنِي لـ",
+          "transliteration": "khudhni l-"
+        },
+        {
+          "slot": "are-you-free-asking-a-taxi-driver-if-available",
+          "arabic": "فَاضِي؟",
+          "transliteration": "faaDi?"
+        },
+        {
+          "slot": "busy-occupied",
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool"
+        },
+        {
+          "slot": "how-long-does-the-way-take",
+          "arabic": "شْكَد يَاخِذ الطرِيگ؟",
+          "transliteration": "shgad yaakhudh it-tareeg?"
+        },
+        {
+          "slot": "will-you-drop-me-at-to-a-man",
+          "arabic": "تُوصِلْنِي لـ؟",
+          "transliteration": "twassilni l-?"
+        },
+        {
+          "slot": "at-your-service-a-common-polite-reply-from-a-tax",
+          "arabic": "تَحْت أَمْرَك",
+          "transliteration": "ta7t amrak"
+        },
+        {
+          "slot": "what-time-does-the-bus-come-tomorrow",
+          "arabic": "الْبَاص شْوَكِت يِجِي بَاچِر؟",
+          "transliteration": "il-baas shwakit yiji baachir?"
+        },
+        {
+          "slot": "station",
+          "arabic": "مَحْطَة",
+          "transliteration": "ma7atta"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ahmed",
+          "arabic": "أستاذ، فاضي؟",
+          "transliteration": "ustaadh, faaDi?",
+          "english": "Sir, are you free?"
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "تفضل، تحت أمرك. وين تريد تروح؟",
+          "transliteration": "tfaDDal, ta7t amrak. ween treed troo7?",
+          "english": "Please, at your service. Where do you want to go?"
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "أريد أروح للمدينة القديمة. شكد الأجرة؟",
+          "transliteration": "areed aroo7 lil-madeena il-gadeema. shgad il-ujra?",
+          "english": "I want to go to the Old City. How much is the fare?"
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "عشرة آلاف.",
+          "transliteration": "3ashart aalaaf.",
+          "english": "Ten thousand."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "عشرة؟ هواية. نزّل شوية.",
+          "transliteration": "3ashra? hawaaya. nazzil shwayya.",
+          "english": "Ten? That is a lot. Lower it a little."
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "ماشي، ثمانية آلاف. اركب.",
+          "transliteration": "maashi, thmaanyat aalaaf. irkab.",
+          "english": "Okay, eight thousand. Get in."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "شْكَد يَاخِذ الطرِيگ؟",
+          "transliteration": "shgad yaakhudh it-tareeg?",
+          "english": "How long does the way take?"
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "نص ساعة، وإذا أكو زحمة أكثر شوية.",
+          "transliteration": "nuSS saa3a, w-idha aku zi7ma akthar shwayya.",
+          "english": "Half an hour, and a bit more if there is traffic."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "زين. توصلني للمحطة أول؟",
+          "transliteration": "zeen. twassilni lil-ma7atta awwal?",
+          "english": "Fine. Will you drop me at the station first?"
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "أمرك، ماكو مشكلة.",
+          "transliteration": "amrak, maaku mushkila.",
+          "english": "As you wish, no problem."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "وگّف هنا، لو سمحت.",
+          "transliteration": "wagguf hnaa, law sama7t.",
+          "english": "Stop here, please."
+        },
+        {
+          "speaker": "Driver",
+          "arabic": "تفضل، الله يسلمك.",
+          "transliteration": "tfaDDal, allah ysallmak.",
+          "english": "Here you are, God keep you safe."
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "تسلم، الله يعطيك العافية.",
+          "transliteration": "tislam, allah y3teek il-3aafya.",
+          "english": "Thank you, God give you strength."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فَاضِي؟",
+            "transliteration": "faaDi?",
+            "english": "Are you free?"
+          },
+          "response": {
+            "arabic": "لا، مشغول.",
+            "transliteration": "la, mashghool.",
+            "english": "No, busy."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْكَد الِأُجْرَة؟",
+            "transliteration": "shgad il-ujra?",
+            "english": "How much is the fare?"
+          },
+          "response": {
+            "arabic": "خمسة آلاف.",
+            "transliteration": "khamsat aalaaf.",
+            "english": "Five thousand."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين تريد تروح؟",
+            "transliteration": "ween treed troo7?",
+            "english": "Where do you want to go?"
+          },
+          "response": {
+            "arabic": "أريد أروح للمحطة.",
+            "transliteration": "areed aroo7 lil-ma7atta.",
+            "english": "I want to go to the station."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْكَد يَاخِذ الطرِيگ؟",
+            "transliteration": "shgad yaakhudh it-tareeg?",
+            "english": "How long does the way take?"
+          },
+          "response": {
+            "arabic": "ربع ساعة.",
+            "transliteration": "rub3 saa3a.",
+            "english": "A quarter of an hour."
+          }
+        }
+      ],
+      "culture": "Baghdad taxis are usually painted orange and white and mostly have no meter, so the fare is agreed before you get in, and it is normal to bargain it down. Drivers often answer a passenger with تحت أمرك or تدلل, and shared minibuses, called كيا, run set routes for a fixed price.",
+      "exercises": [
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How much is the fare?\"",
+          "answer": "شْكَد الِأُجْرَة؟",
+          "accepted": [
+            "شْكَد الِأُجْرَة؟",
+            "shgad il-ujra?",
+            "بيش الأجرة؟",
+            "beesh il-ujra?",
+            "شكد الاجرة",
+            "shgad il-ujra"
+          ],
+          "too_formal": {
+            "item": "كم أجرة الطريق؟",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "شكد is the everyday how much; agree the fare before you get in."
+        },
+        {
+          "id": "unit-05.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"busy\" for a taxi?",
+          "options": [
+            "مَشْغُول",
+            "فاضي",
+            "قريب",
+            "بعيد"
+          ],
+          "answer": "مَشْغُول",
+          "accepted": [
+            "مَشْغُول",
+            "mashghool",
+            "مشغول."
+          ],
+          "too_formal": {
+            "item": "غير متاح",
+            "feedback": "This is stiff; a driver just says مشغول."
+          },
+          "tip": "فاضي is free, مشغول is busy."
+        },
+        {
+          "id": "unit-05.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "You stop a taxi. Ask the driver if he is free.",
+          "answer": "فَاضِي؟",
+          "accepted": [
+            "فَاضِي؟",
+            "faaDi?",
+            "أستاذ فاضي؟",
+            "ustaadh faaDi?",
+            "أنت فاضي؟",
+            "inta faaDi?"
+          ],
+          "too_formal": {
+            "item": "هل أنت متاح؟",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "أستاذ is a polite way to call a driver."
+        },
+        {
+          "id": "unit-05.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"وگّف _____، لو سمحت.\" Meaning: Stop here, please.",
+          "answer": "هنا",
+          "accepted": [
+            "هنا",
+            "hnaa",
+            "hna"
+          ],
+          "too_formal": {
+            "item": "توقف هنا من فضلك",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "Say it a little before the place, so the driver has time to stop."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to go to the Old City.\"",
+          "answer": "أَرِيد أرُوح لِلْمَدِينَة الْقَدِيمَة",
+          "accepted": [
+            "أَرِيد أرُوح لِلْمَدِينَة الْقَدِيمَة",
+            "areed aroo7 lil-madeena il-gadeema",
+            "اريد اروح للمدينة القديمة",
+            "أريد أروح إلى المدينة القديمة"
+          ],
+          "too_formal": {
+            "item": "أرغب في الذهاب إلى المدينة القديمة",
+            "feedback": "This is formal; spoken Iraqi says أريد أروح."
+          },
+          "tip": "أروح means to go, and القديمة is said with a g, gadeema."
+        },
+        {
+          "id": "unit-05.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"الطريگ / شكد / ياخذ\"",
+          "words": [
+            "شكد",
+            "ياخذ",
+            "الطريگ"
+          ],
+          "answer": "شكد ياخذ الطريگ",
+          "accepted": [
+            "شكد ياخذ الطريگ",
+            "shgad yaakhudh it-tareeg",
+            "شْكَد يَاخِذ الطرِيگ؟",
+            "shgad yaakhudh it-tareeg?",
+            "شكد ياخذ الطريق"
+          ],
+          "too_formal": {
+            "item": "كم يستغرق الطريق؟",
+            "feedback": "يستغرق is written Arabic; people say ياخذ."
+          },
+          "tip": "ياخذ means takes, used for time."
+        },
+        {
+          "id": "unit-05.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "What does a driver say for \"At your service\"?",
+          "options": [
+            "تَحْت أَمْرَك",
+            "وگّف هنا",
+            "شكد الأجرة",
+            "أريد باص"
+          ],
+          "answer": "تَحْت أَمْرَك",
+          "accepted": [
+            "تَحْت أَمْرَك",
+            "ta7t amrak",
+            "تحت امرك",
+            "أمرك"
+          ],
+          "too_formal": {
+            "item": "أنا في خدمتك",
+            "feedback": "This is correct but bookish; a driver says تحت أمرك."
+          },
+          "tip": "أمرك alone is also common."
+        },
+        {
+          "id": "unit-05.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "The driver says: \"وين تريد تروح؟\" Answer: the station.",
+          "answer": "أريد أروح للمحطة",
+          "accepted": [
+            "أريد أروح للمحطة",
+            "areed aroo7 lil-ma7atta",
+            "للمحطة",
+            "lil-ma7atta",
+            "خذني للمحطة",
+            "khudhni lil-ma7atta"
+          ],
+          "too_formal": {
+            "item": "أرغب في الذهاب إلى المحطة",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "Short answers such as للمحطة are also fine."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"What time does the bus come tomorrow?\"",
+          "answer": "الْبَاص شْوَكِت يِجِي بَاچِر؟",
+          "accepted": [
+            "الْبَاص شْوَكِت يِجِي بَاچِر؟",
+            "il-baas shwakit yiji baachir?",
+            "شوكت يجي الباص باچر؟",
+            "shwakit yiji il-baas baachir?",
+            "الباص شوكت ايجي باچر"
+          ],
+          "too_formal": {
+            "item": "في أي ساعة يأتي الباص غداً؟",
+            "feedback": "غداً is formal; Iraqis say باچر."
+          },
+          "tip": "شوكت means when, and باچر means tomorrow."
+        },
+        {
+          "id": "unit-05.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"توصلني _____؟\" Meaning: Will you drop me at the station?",
+          "answer": "للمحطة",
+          "accepted": [
+            "للمحطة",
+            "lil-ma7atta",
+            "ل المحطة",
+            "للمحطه",
+            "lil ma7atta"
+          ],
+          "too_formal": {
+            "item": "هل توصلني إلى المحطة",
+            "feedback": "This is written, formal Arabic; in a Baghdad market people say it the short spoken way."
+          },
+          "tip": "توصلني is a polite question; for a woman driver you would say توصلين."
+        },
+        {
+          "id": "unit-05.lesson-05.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Take me to the station.\" (to a man)",
+          "answer": "خذني للمحطة",
+          "accepted": [
+            "خذني للمحطة",
+            "khudhni lil-ma7atta",
+            "وصلني للمحطة",
+            "wassilni lil-ma7atta"
+          ],
+          "too_formal": {
+            "item": "أوصلني إلى المحطة من فضلك",
+            "feedback": "This is formal and long."
+          },
+          "tip": "خذني is the direct everyday request."
+        }
+      ]
     }
   ],
   "challenge": {
