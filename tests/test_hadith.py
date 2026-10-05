@@ -269,7 +269,7 @@ class _Meanings:
 
     def encode(self, texts):
         import numpy as np
-        return np.array([[1.0, 0.0] if ("light" == t or "intentions" in t) else [0.0, 1.0] for t in texts])
+        return np.array([[1.0, 0.0] if (set(t.split()) == {"light"} or "intentions" in t) else [0.0, 1.0] for t in texts])
 
 
 @pytest.fixture()
@@ -285,9 +285,10 @@ def test_a_hadith_close_in_meaning_is_found_without_its_words(meanings):
     assert [h.number for h in search.search("light", 10).hits] == [3, 1, 2]
 
 
-def test_meaning_reads_the_word_as_corrected(meanings):
-    """"ligth" is searched as light, so meaning must also read light, or hadith 1 falls below unrelated 2."""
-    found = search.search("ligth", 10)
+@pytest.mark.parametrize("typed", ["ligth", "ligth ligth?"])
+def test_meaning_reads_the_word_as_corrected(meanings, typed):
+    """"ligth" is searched as light, so meaning must also read light (every time it is typed), or hadith 1 falls below unrelated 2."""
+    found = search.search(typed, 10)
     assert found.corrected == [("ligth", "light")] and [h.number for h in found.hits] == [3, 1, 2]
 
 

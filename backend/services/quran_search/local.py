@@ -143,9 +143,10 @@ def _rows(conn: sqlite3.Connection, folded: str) -> list[tuple]:
     # a way it would not be over a large corpus: 6,236 rows is a few
     # milliseconds. Matched as a whole word, with a space demanded on both
     # sides: letting a prefix run into it made أب match the end of ٱلْكِتَٰب, and a
-    # two-letter search came back with most of the Qur'an in it.
+    # two-letter search came back with most of the Qur'an in it. The column is
+    # folded as the query is (ة as ه), as the index route above asks both.
     return list(conn.execute(
-        f"SELECT {columns} FROM verse WHERE ' ' || fold || ' ' LIKE ? ESCAPE '\\'",
+        f"SELECT {columns} FROM verse WHERE ' ' || replace(fold, 'ة', 'ه') || ' ' LIKE ? ESCAPE '\\'",
         (f"% {_like_safe(folded.split()[0])} %",),
     ))
 
