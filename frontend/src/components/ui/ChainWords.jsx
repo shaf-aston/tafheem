@@ -23,9 +23,9 @@ export default function ChainWords() {
             {terms.map(({ arabic, meaning }) => (
               <div key={arabic} className="contents">
                 <dt>
-                  <ArabicText size="sm" className="whitespace-nowrap">{arabic}</ArabicText>
+                  <ArabicText className="whitespace-nowrap">{arabic}</ArabicText>
                 </dt>
-                <dd className="type-small text-[var(--text-dim)] leading-relaxed m-0">{meaning}</dd>
+                <dd className="type-body text-[var(--text-dim)] leading-relaxed m-0">{meaning}</dd>
               </div>
             ))}
           </dl>

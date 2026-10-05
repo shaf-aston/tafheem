@@ -16,7 +16,7 @@ export default function ChainSheet({ links = null, author = '', onClose, accent 
   const title = words ? 'Chain words' : 'The chain'
 
   return (
-    <BottomSheet label={title} onClose={onClose} className="max-h-[85dvh] flex flex-col">
+    <BottomSheet label={title} onClose={onClose} className="max-h-[var(--sheet-tall)] flex flex-col">
       <header className="flex items-center justify-between gap-3 px-5 pt-4 pb-3">
         <h2 aria-live="polite" className="type-ui font-semibold text-[var(--text)]">{title}</h2>
         <span className="flex items-center gap-3">

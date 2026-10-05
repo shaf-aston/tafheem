@@ -20,7 +20,7 @@ export default function BottomSheet({ label, onClose, className = '', children }
       aria-label={label}
       onClose={onClose}
       onClick={(e) => e.target === dialog.current && onClose()}
-      className="m-0 mt-auto sm:m-auto p-0 w-full max-w-none sm:max-w-lg max-h-[100dvh] bg-transparent"
+      className="m-0 mt-auto sm:m-auto p-0 w-full max-w-none sm:max-w-[var(--sheet-standard)] max-h-[100dvh] bg-transparent"
     >
       <div
         className={`bg-[var(--surface)] border border-[var(--border-hi)] rounded-t-[var(--radius-md)]

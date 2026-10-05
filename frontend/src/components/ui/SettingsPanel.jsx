@@ -35,13 +35,13 @@ export default function SettingsPanel({ open, onClose }) {
       // every real control sits inside the box below.
       onClick={(e) => e.target === dialog.current && onClose()}
       aria-labelledby="settings-title"
-      className="m-auto p-0 bg-transparent max-w-[min(28rem,92vw)] w-full"
+      className="m-auto p-0 bg-transparent max-w-[min(var(--sheet-narrow),92vw)] w-full"
     >
       <div
         // Scrolls as one box. The source list below can run past the screen,
         // and giving it its own scroller would leave two bars side by side.
         className="rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
-          p-5 space-y-5 max-h-[88vh] overflow-y-auto"
+          p-5 space-y-5 max-h-[var(--sheet-tall)] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-baseline justify-between gap-3">

@@ -19,7 +19,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
       onClose={onClose}
       onClick={(e) => e.target === dialog.current && onClose()}
       aria-labelledby="sections-title"
-      className="sections-menu m-auto p-0 bg-transparent max-w-[min(44rem,92vw)] w-full"
+      className="sections-menu m-auto p-0 bg-transparent max-w-[min(var(--sheet-wide),92vw)] w-full"
     >
       <div
         className="rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
