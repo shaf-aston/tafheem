@@ -1623,6 +1623,694 @@
           "tip": "بِسُرْعَة means 'quickly'."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "what-do-you-do-in-your-free-time",
+          "arabic": "مَاذَا تَفْعَلُ فِي وَقْتِ فَرَاغِكَ؟",
+          "transliteration": "maadhaa taf3alu fee waqti faraaghika?",
+          "reply": {
+            "arabic": "أُحِبُّ الْقِرَاءَة",
+            "transliteration": "u7ibbu al-qiraa2a",
+            "english": "I like reading."
+          }
+        },
+        {
+          "slot": "my-hobby-is-reading",
+          "arabic": "هِوَايَتِي الْقِرَاءَة",
+          "transliteration": "hiwaayatee al-qiraa2a"
+        },
+        {
+          "slot": "i-read-a-book-every-week",
+          "arabic": "أَقْرَأُ كِتَابًا كُلَّ أُسْبُوع",
+          "transliteration": "aqra2u kitaaban kulla usboo3"
+        },
+        {
+          "slot": "i-like-cooking",
+          "arabic": "أُحِبُّ الطَّبْخ",
+          "transliteration": "u7ibbu at-tabkh"
+        },
+        {
+          "slot": "i-cooked-dinner-for-my-family-yesterday",
+          "arabic": "طَبَخْتُ الْعَشَاءَ لِعَائِلَتِي أَمْس",
+          "transliteration": "tabakhtu al-3ashaa2a li3aa2ilatee ams"
+        },
+        {
+          "slot": "do-you-like-arabic-calligraphy",
+          "arabic": "هَلْ تُحِبُّ الْخَطَّ الْعَرَبِيّ؟",
+          "transliteration": "hal tu7ibbu al-khatta al-3arabiyy?",
+          "reply": {
+            "arabic": "نَعَم، أَكْتُبُ كُلَّ مَسَاء",
+            "transliteration": "na3am, aktubu kulla masaa2",
+            "english": "Yes, I write every evening."
+          }
+        },
+        {
+          "slot": "i-m-learning-to-write-calligraphy",
+          "arabic": "أَتَعَلَّمُ كِتَابَةَ الْخَطّ",
+          "transliteration": "ata3allamu kitaabata al-khatt"
+        },
+        {
+          "slot": "i-climb-mountains-with-my-friends",
+          "arabic": "أَتَسَلَّقُ الْجِبَالَ مَعَ أَصْدِقَائِي",
+          "transliteration": "atasallaqu al-jibaala ma3a asdiqaa2ee"
+        },
+        {
+          "slot": "i-grow-flowers-in-the-garden",
+          "arabic": "أَزْرَعُ الْوُرُودَ فِي الْحَدِيقَة",
+          "transliteration": "azra3u al-wuroda fee al-7adeeqa"
+        },
+        {
+          "slot": "do-you-have-time-this-evening",
+          "arabic": "هَلْ عِنْدَكَ وَقْتٌ هَذَا الْمَسَاء؟",
+          "transliteration": "hal 3indaka waqtun haadhaa al-masaa2?",
+          "reply": {
+            "arabic": "نَعَم، لِمَاذَا؟",
+            "transliteration": "na3am, limaadhaa?",
+            "english": "Yes, why?"
+          }
+        },
+        {
+          "slot": "i-spend-my-time-with-my-family",
+          "arabic": "أَقْضِي وَقْتِي مَعَ عَائِلَتِي",
+          "transliteration": "aqdee waqtee ma3a 3aa2ilatee"
+        },
+        {
+          "slot": "time-passes-quickly-when-i-read",
+          "arabic": "يَمُرُّ الْوَقْتُ بِسُرْعَةٍ عِنْدَمَا أَقْرَأ",
+          "transliteration": "yamurru al-waqtu bisur3atin 3indamaa aqra2"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Dina",
+          "arabic": "مَاذَا تَفْعَلُ فِي وَقْتِ فَرَاغِكَ يَا لَيْث؟",
+          "transliteration": "maadhaa taf3alu fee waqti faraaghika yaa layth?",
+          "english": "What do you do in your free time, Layth?"
+        },
+        {
+          "speaker": "Layth",
+          "arabic": "هِوَايَتِي الْقِرَاءَة. أَقْرَأُ كِتَابًا كُلَّ أُسْبُوع.",
+          "transliteration": "hiwaayatee al-qiraa2a. aqra2u kitaaban kulla usboo3.",
+          "english": "My hobby is reading. I read a book every week."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "هَذَا جَمِيل! يَمُرُّ الْوَقْتُ بِسُرْعَةٍ عِنْدَمَا أَقْرَأ.",
+          "transliteration": "haadhaa jameel! yamurru al-waqtu bisur3atin 3indamaa aqra2.",
+          "english": "That's nice! Time passes quickly when I read."
+        },
+        {
+          "speaker": "Layth",
+          "arabic": "وَأَنْتِ، هَلْ تُحِبِّينَ الطَّبْخ؟",
+          "transliteration": "wa anti, hal tu7ibbeena at-tabkh?",
+          "english": "And you, do you like cooking?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "نَعَم، طَبَخْتُ الْعَشَاءَ لِعَائِلَتِي أَمْس.",
+          "transliteration": "na3am, tabakhtu al-3ashaa2a li3aa2ilatee ams.",
+          "english": "Yes, I cooked dinner for my family yesterday."
+        },
+        {
+          "speaker": "Layth",
+          "arabic": "مَاذَا طَبَخْتِ؟",
+          "transliteration": "maadhaa tabakhti?",
+          "english": "What did you cook?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "طَبَخْتُ أَرُزًّا وَدَجَاجًا.",
+          "transliteration": "tabakhtu aruzzan wa dajaajan.",
+          "english": "I cooked rice and chicken."
+        },
+        {
+          "speaker": "Layth",
+          "arabic": "هَلْ تُحِبِّينَ الْخَطَّ الْعَرَبِيّ؟",
+          "transliteration": "hal tu7ibbeena al-khatta al-3arabiyy?",
+          "english": "Do you like Arabic calligraphy?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "نَعَم، أَتَعَلَّمُ كِتَابَةَ الْخَطّ.",
+          "transliteration": "na3am, ata3allamu kitaabata al-khatt.",
+          "english": "Yes, I'm learning to write calligraphy."
+        },
+        {
+          "speaker": "Layth",
+          "arabic": "أَنَا أَتَسَلَّقُ الْجِبَالَ مَعَ أَصْدِقَائِي.",
+          "transliteration": "anaa atasallaqu al-jibaala ma3a asdiqaa2ee.",
+          "english": "I climb mountains with my friends."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "وَأَنَا أَزْرَعُ الْوُرُودَ فِي الْحَدِيقَة.",
+          "transliteration": "wa anaa azra3u al-wuroda fee al-7adeeqa.",
+          "english": "And I grow flowers in the garden."
+        },
+        {
+          "speaker": "Layth",
+          "arabic": "هَلْ عِنْدَكِ وَقْتٌ هَذَا الْمَسَاء؟",
+          "transliteration": "hal 3indaki waqtun haadhaa al-masaa2?",
+          "english": "Do you have time this evening?"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مَاذَا تَفْعَلُ فِي وَقْتِ فَرَاغِكَ؟",
+            "transliteration": "maadhaa taf3alu fee waqti faraaghika?",
+            "english": "What do you do in your free time?"
+          },
+          "response": {
+            "arabic": "أَقْرَأُ كِتَابًا.",
+            "transliteration": "aqra2u kitaaban.",
+            "english": "I read a book."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ تُحِبُّ الطَّبْخ؟",
+            "transliteration": "hal tu7ibbu at-tabkh?",
+            "english": "Do you like cooking?"
+          },
+          "response": {
+            "arabic": "نَعَم، أُحِبُّهُ كَثِيرًا.",
+            "transliteration": "na3am, u7ibbuhu katheeran.",
+            "english": "Yes, I like it a lot."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ تُحِبُّ الْخَطَّ الْعَرَبِيّ؟",
+            "transliteration": "hal tu7ibbu al-khatta al-3arabiyy?",
+            "english": "Do you like Arabic calligraphy?"
+          },
+          "response": {
+            "arabic": "نَعَم، أَتَعَلَّمُ كِتَابَةَ الْخَطّ.",
+            "transliteration": "na3am, ata3allamu kitaabata al-khatt.",
+            "english": "Yes, I'm learning to write calligraphy."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ عِنْدَكَ وَقْتٌ هَذَا الْمَسَاء؟",
+            "transliteration": "hal 3indaka waqtun haadhaa al-masaa2?",
+            "english": "Do you have time this evening?"
+          },
+          "response": {
+            "arabic": "نَعَم، لِمَاذَا؟",
+            "transliteration": "na3am, limaadhaa?",
+            "english": "Yes, why?"
+          }
+        }
+      ],
+      "culture": "Arabic calligraphy is one of the most loved arts in the Muslim world, because it grew from the care taken to write the Qur'an beautifully. Learners start with simple scripts such as naskh and ruq'a, then move to grand ones such as thuluth and diwani. Many people also enjoy a quiet hobby like reading, cooking for the family or gardening in their free time.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'My hobby is reading.'",
+          "answer": "هِوَايَتِي الْقِرَاءَة",
+          "accepted": [
+            "هِوَايَتِي الْقِرَاءَة",
+            "هوايتي القراءة",
+            "هِوَايَتِي هِيَ الْقِرَاءَة",
+            "hiwaayatee al-qiraa2a"
+          ],
+          "tip": "هِوَايَة is 'hobby'; the ending ـي means 'my'."
+        },
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'I climb mountains with my friends.'",
+          "answer": "أَتَسَلَّقُ الْجِبَالَ مَعَ أَصْدِقَائِي",
+          "accepted": [
+            "أَتَسَلَّقُ الْجِبَالَ مَعَ أَصْدِقَائِي",
+            "أتسلق الجبال مع أصدقائي",
+            "أَصْعَدُ الْجِبَالَ مَعَ أَصْدِقَائِي",
+            "atasallaqu al-jibaala ma3a asdiqaa2ee"
+          ],
+          "tip": "أَتَسَلَّقُ is 'I climb'."
+        },
+        {
+          "id": "unit-07.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'cooking'?",
+          "options": [
+            "الطَّبْخ",
+            "الْقِرَاءَة",
+            "الزِّرَاعَة",
+            "الْخَطّ"
+          ],
+          "answer": "الطَّبْخ",
+          "accepted": [
+            "الطَّبْخ",
+            "الطبخ",
+            "at-tabkh"
+          ],
+          "tip": "الطَّبْخ comes from the verb طَبَخَ, 'he cooked'."
+        },
+        {
+          "id": "unit-07.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'I grow flowers in the garden'?",
+          "options": [
+            "أَزْرَعُ الْوُرُودَ فِي الْحَدِيقَة",
+            "أَقْرَأُ كِتَابًا كُلَّ أُسْبُوع",
+            "طَبَخْتُ الْعَشَاءَ أَمْس",
+            "أَتَسَلَّقُ الْجِبَال"
+          ],
+          "answer": "أَزْرَعُ الْوُرُودَ فِي الْحَدِيقَة",
+          "accepted": [
+            "أَزْرَعُ الْوُرُودَ فِي الْحَدِيقَة",
+            "أزرع الورود في الحديقة",
+            "azra3u al-wuroda fee al-7adeeqa"
+          ],
+          "tip": "أَزْرَعُ is 'I plant, I grow'."
+        },
+        {
+          "id": "unit-07.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'كِتَابًا / أَقْرَأُ / أُسْبُوع / كُلَّ'.",
+          "answer": "أَقْرَأُ كِتَابًا كُلَّ أُسْبُوع",
+          "accepted": [
+            "أَقْرَأُ كِتَابًا كُلَّ أُسْبُوع",
+            "أقرأ كتابا كل أسبوع",
+            "aqra2u kitaaban kulla usboo3"
+          ],
+          "tip": "The verb comes first: 'I read a book every week'."
+        },
+        {
+          "id": "unit-07.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'عَائِلَتِي / وَقْتِي / أَقْضِي / مَعَ'.",
+          "answer": "أَقْضِي وَقْتِي مَعَ عَائِلَتِي",
+          "accepted": [
+            "أَقْضِي وَقْتِي مَعَ عَائِلَتِي",
+            "أقضي وقتي مع عائلتي",
+            "aqdee waqtee ma3a 3aa2ilatee"
+          ],
+          "tip": "أَقْضِي وَقْتِي means 'I spend my time'."
+        },
+        {
+          "id": "unit-07.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'طَبَخْتُ الْعَشَاءَ لِعَائِلَتِي _____.' (...yesterday.)",
+          "answer": "أَمْس",
+          "accepted": [
+            "أَمْس",
+            "أمس",
+            "ams"
+          ],
+          "tip": "أَمْس means 'yesterday' and ends the sentence."
+        },
+        {
+          "id": "unit-07.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'يَمُرُّ _____ بِسُرْعَةٍ عِنْدَمَا أَقْرَأ.' (Time passes quickly when I read.)",
+          "answer": "الْوَقْتُ",
+          "accepted": [
+            "الْوَقْتُ",
+            "الوقت",
+            "al-waqtu"
+          ],
+          "tip": "الْوَقْت is 'the time'."
+        },
+        {
+          "id": "unit-07.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: 'هَلْ تُحِبُّ الْخَطَّ الْعَرَبِيّ؟'. Say yes, you write every evening.",
+          "answer": "نَعَم، أَكْتُبُ كُلَّ مَسَاء",
+          "accepted": [
+            "نَعَم، أَكْتُبُ كُلَّ مَسَاء",
+            "نعم، أكتب كل مساء",
+            "نَعَم أَكْتُبُ كُلَّ مَسَاء",
+            "أَكْتُبُ كُلَّ مَسَاء",
+            "na3am, aktubu kulla masaa2"
+          ],
+          "tip": "كُلَّ مَسَاء is 'every evening'."
+        },
+        {
+          "id": "unit-07.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: 'هَلْ عِنْدَكَ وَقْتٌ هَذَا الْمَسَاء؟'. Say yes and ask why.",
+          "answer": "نَعَم، لِمَاذَا؟",
+          "accepted": [
+            "نَعَم، لِمَاذَا؟",
+            "نعم، لماذا؟",
+            "نَعَم لِمَاذَا؟",
+            "نَعَم لماذا",
+            "na3am, limaadhaa?"
+          ],
+          "tip": "لِمَاذَا is 'why'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "do-you-play-sports",
+          "arabic": "هَلْ تُمَارِسُ الرِّيَاضَة؟",
+          "transliteration": "hal tumaarisu ar-riyaada?",
+          "reply": {
+            "arabic": "نَعَم، أَلْعَبُ كُرَةَ الْقَدَم",
+            "transliteration": "na3am, al3abu kurata al-qadam",
+            "english": "Yes, I play football."
+          }
+        },
+        {
+          "slot": "i-play-football-with-my-friends",
+          "arabic": "أَلْعَبُ كُرَةَ الْقَدَمِ مَعَ أَصْدِقَائِي",
+          "transliteration": "al3abu kurata al-qadami ma3a asdiqaa2ee"
+        },
+        {
+          "slot": "which-team-do-you-support",
+          "arabic": "أَيُّ فَرِيقٍ تُشَجِّع؟",
+          "transliteration": "ayyu fareeqin tushajji3?",
+          "reply": {
+            "arabic": "أُشَجِّعُ فَرِيقَ مَدِينَتِي",
+            "transliteration": "ushajji3u fareeqa madeenatee",
+            "english": "I support my city's team."
+          }
+        },
+        {
+          "slot": "the-match-starts-at-eight",
+          "arabic": "تَبْدَأُ الْمُبَارَاةُ فِي السَّاعَةِ الثَّامِنَة",
+          "transliteration": "tabda2u al-mubaaraatu fee as-saa3ati ath-thaaminah"
+        },
+        {
+          "slot": "i-run-every-morning",
+          "arabic": "أَرْكُضُ كُلَّ صَبَاح",
+          "transliteration": "arkudu kulla sabaa7"
+        },
+        {
+          "slot": "i-lift-weights-at-the-gym",
+          "arabic": "أَرْفَعُ الْأَثْقَالَ فِي النَّادِي الرِّيَاضِيّ",
+          "transliteration": "arfa3u al-athqaala fee an-naadee ar-riyaadiyy"
+        },
+        {
+          "slot": "archery-is-my-favourite-sport",
+          "arabic": "الرَّمْيُ بِالْقَوْسِ رِيَاضَتِي الْمُفَضَّلَة",
+          "transliteration": "ar-ramyu bil-qawsi riyaadatee al-mufaddala"
+        },
+        {
+          "slot": "i-ride-a-horse-on-friday",
+          "arabic": "أَرْكَبُ الْخَيْلَ يَوْمَ الْجُمُعَة",
+          "transliteration": "arkabu al-khayla yawma al-jum3a"
+        },
+        {
+          "slot": "i-ride-my-bicycle-in-the-park",
+          "arabic": "أَرْكَبُ دَرَّاجَتِي فِي الْحَدِيقَة",
+          "transliteration": "arkabu darraajatee fee al-7adeeqa"
+        },
+        {
+          "slot": "i-m-tired-i-need-water",
+          "arabic": "أَنَا مُتْعَبٌ، أَحْتَاجُ إِلَى مَاء",
+          "transliteration": "anaa mut3abun, a7taaju ilaa maa2"
+        },
+        {
+          "slot": "exercise-is-good-for-health",
+          "arabic": "الرِّيَاضَةُ مُفِيدَةٌ لِلصِّحَّة",
+          "transliteration": "ar-riyaadatu mufeedatun lis-si77a"
+        },
+        {
+          "slot": "shall-we-walk-together-after-the-prayer",
+          "arabic": "هَلْ نَمْشِي مَعًا بَعْدَ الصَّلَاة؟",
+          "transliteration": "hal namshee ma3an ba3da as-salaah?",
+          "reply": {
+            "arabic": "بِكُلِّ سُرُور",
+            "transliteration": "bikulli suroor",
+            "english": "With pleasure."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Layth",
+          "arabic": "هَلْ تُمَارِسُ الرِّيَاضَةَ يَا دِينَا؟",
+          "transliteration": "hal tumaarisu ar-riyaadata yaa deenaa?",
+          "english": "Do you play sports, Dina?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "نَعَم، أَرْكُضُ كُلَّ صَبَاح.",
+          "transliteration": "na3am, arkudu kulla sabaa7.",
+          "english": "Yes, I run every morning."
+        },
+        {
+          "speaker": "Layth",
+          "arabic": "وَأَنَا أَلْعَبُ كُرَةَ الْقَدَمِ مَعَ أَصْدِقَائِي.",
+          "transliteration": "wa anaa al3abu kurata al-qadami ma3a asdiqaa2ee.",
+          "english": "And I play football with my friends."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "أَيُّ فَرِيقٍ تُشَجِّع؟",
+          "transliteration": "ayyu fareeqin tushajji3?",
+          "english": "Which team do you support?"
+        },
+        {
+          "speaker": "Layth",
+          "arabic": "أُشَجِّعُ فَرِيقَ مَدِينَتِي. تَبْدَأُ الْمُبَارَاةُ فِي السَّاعَةِ الثَّامِنَة.",
+          "transliteration": "ushajji3u fareeqa madeenatee. tabda2u al-mubaaraatu fee as-saa3ati ath-thaaminah.",
+          "english": "I support my city's team. The match starts at eight."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "أَنَا أُحِبُّ الرَّمْيَ بِالْقَوْس.",
+          "transliteration": "anaa u7ibbu ar-ramya bil-qaws.",
+          "english": "I like archery."
+        },
+        {
+          "speaker": "Layth",
+          "arabic": "هَذِهِ رِيَاضَةٌ جَمِيلَة! وَهَلْ تَرْكَبِينَ الْخَيْل؟",
+          "transliteration": "haadhihi riyaadatun jameela! wa hal tarkabeena al-khayl?",
+          "english": "That's a nice sport! And do you ride horses?"
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "نَعَم، أَرْكَبُ الْخَيْلَ يَوْمَ الْجُمُعَة.",
+          "transliteration": "na3am, arkabu al-khayla yawma al-jum3a.",
+          "english": "Yes, I ride a horse on Friday."
+        },
+        {
+          "speaker": "Layth",
+          "arabic": "أَنَا أَرْكَبُ دَرَّاجَتِي فِي الْحَدِيقَة.",
+          "transliteration": "anaa arkabu darraajatee fee al-7adeeqa.",
+          "english": "I ride my bicycle in the park."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "الرِّيَاضَةُ مُفِيدَةٌ لِلصِّحَّة.",
+          "transliteration": "ar-riyaadatu mufeedatun lis-si77a.",
+          "english": "Exercise is good for health."
+        },
+        {
+          "speaker": "Layth",
+          "arabic": "نَعَم، لَكِنِّي مُتْعَبٌ الْآن. أَحْتَاجُ إِلَى مَاء.",
+          "transliteration": "na3am, lakinnee mut3abun al-aan. a7taaju ilaa maa2.",
+          "english": "Yes, but I'm tired now. I need water."
+        },
+        {
+          "speaker": "Dina",
+          "arabic": "هَلْ نَمْشِي مَعًا بَعْدَ الصَّلَاة؟",
+          "transliteration": "hal namshee ma3an ba3da as-salaah?",
+          "english": "Shall we walk together after the prayer?"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هَلْ تُمَارِسُ الرِّيَاضَة؟",
+            "transliteration": "hal tumaarisu ar-riyaada?",
+            "english": "Do you play sports?"
+          },
+          "response": {
+            "arabic": "نَعَم، أَرْكُضُ كُلَّ صَبَاح.",
+            "transliteration": "na3am, arkudu kulla sabaa7.",
+            "english": "Yes, I run every morning."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيُّ فَرِيقٍ تُشَجِّع؟",
+            "transliteration": "ayyu fareeqin tushajji3?",
+            "english": "Which team do you support?"
+          },
+          "response": {
+            "arabic": "أُشَجِّعُ فَرِيقَ مَدِينَتِي.",
+            "transliteration": "ushajji3u fareeqa madeenatee.",
+            "english": "I support my city's team."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى تَبْدَأُ الْمُبَارَاة؟",
+            "transliteration": "mataa tabda2u al-mubaaraa?",
+            "english": "When does the match start?"
+          },
+          "response": {
+            "arabic": "فِي السَّاعَةِ الثَّامِنَة.",
+            "transliteration": "fee as-saa3ati ath-thaaminah.",
+            "english": "At eight."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ نَمْشِي مَعًا بَعْدَ الصَّلَاة؟",
+            "transliteration": "hal namshee ma3an ba3da as-salaah?",
+            "english": "Shall we walk together after the prayer?"
+          },
+          "response": {
+            "arabic": "بِكُلِّ سُرُور.",
+            "transliteration": "bikulli suroor.",
+            "english": "With pleasure."
+          }
+        }
+      ],
+      "culture": "Football is the most popular sport across the Arab world, and match nights fill cafes and homes with fans. Archery and horse riding hold a special place in Islamic tradition, and the Prophet, peace be upon him, encouraged them. Many people also walk or run in the cool of the morning, and keep sport separate for men and women in public clubs.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I run every morning.'",
+          "answer": "أَرْكُضُ كُلَّ صَبَاح",
+          "accepted": [
+            "أَرْكُضُ كُلَّ صَبَاح",
+            "أركض كل صباح",
+            "أَجْرِي كُلَّ صَبَاح",
+            "arkudu kulla sabaa7"
+          ],
+          "tip": "أَرْكُضُ is 'I run'."
+        },
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'I ride my bicycle in the park.'",
+          "answer": "أَرْكَبُ دَرَّاجَتِي فِي الْحَدِيقَة",
+          "accepted": [
+            "أَرْكَبُ دَرَّاجَتِي فِي الْحَدِيقَة",
+            "أركب دراجتي في الحديقة",
+            "أَرْكَبُ الدَّرَّاجَةَ فِي الْحَدِيقَة",
+            "arkabu darraajatee fee al-7adeeqa"
+          ],
+          "tip": "أَرْكَبُ is 'I ride'; دَرَّاجَة is 'bicycle'."
+        },
+        {
+          "id": "unit-07.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'match, game'?",
+          "options": [
+            "مُبَارَاة",
+            "دَرَّاجَة",
+            "فَرِيق",
+            "مَاء"
+          ],
+          "answer": "مُبَارَاة",
+          "accepted": [
+            "مُبَارَاة",
+            "مباراة",
+            "mubaaraah"
+          ],
+          "tip": "مُبَارَاة is a match between two teams."
+        },
+        {
+          "id": "unit-07.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'Archery is my favourite sport'?",
+          "options": [
+            "الرَّمْيُ بِالْقَوْسِ رِيَاضَتِي الْمُفَضَّلَة",
+            "أَلْعَبُ كُرَةَ الْقَدَم",
+            "أَرْكَبُ الْخَيْلَ يَوْمَ الْجُمُعَة",
+            "أَرْفَعُ الْأَثْقَال"
+          ],
+          "answer": "الرَّمْيُ بِالْقَوْسِ رِيَاضَتِي الْمُفَضَّلَة",
+          "accepted": [
+            "الرَّمْيُ بِالْقَوْسِ رِيَاضَتِي الْمُفَضَّلَة",
+            "الرمي بالقوس رياضتي المفضلة",
+            "ar-ramyu bil-qawsi riyaadatee al-mufaddala"
+          ],
+          "tip": "الْقَوْس is 'the bow'; الرَّمْي is 'shooting'."
+        },
+        {
+          "id": "unit-07.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْقَدَمِ / أَلْعَبُ / أَصْدِقَائِي / كُرَةَ / مَعَ'.",
+          "answer": "أَلْعَبُ كُرَةَ الْقَدَمِ مَعَ أَصْدِقَائِي",
+          "accepted": [
+            "أَلْعَبُ كُرَةَ الْقَدَمِ مَعَ أَصْدِقَائِي",
+            "ألعب كرة القدم مع أصدقائي",
+            "al3abu kurata al-qadami ma3a asdiqaa2ee"
+          ],
+          "tip": "كُرَةُ الْقَدَم is 'football', literally 'ball of the foot'."
+        },
+        {
+          "id": "unit-07.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'مُفِيدَةٌ / الرِّيَاضَةُ / لِلصِّحَّة'.",
+          "answer": "الرِّيَاضَةُ مُفِيدَةٌ لِلصِّحَّة",
+          "accepted": [
+            "الرِّيَاضَةُ مُفِيدَةٌ لِلصِّحَّة",
+            "الرياضة مفيدة للصحة",
+            "ar-riyaadatu mufeedatun lis-si77a"
+          ],
+          "tip": "لِ before a word means 'for'."
+        },
+        {
+          "id": "unit-07.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَرْفَعُ الْأَثْقَالَ فِي _____ الرِّيَاضِيّ.' (I lift weights at the gym.)",
+          "answer": "النَّادِي",
+          "accepted": [
+            "النَّادِي",
+            "النادي",
+            "an-naadee"
+          ],
+          "tip": "النَّادِي الرِّيَاضِيّ is 'the sports club'."
+        },
+        {
+          "id": "unit-07.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَنَا مُتْعَبٌ، أَحْتَاجُ إِلَى _____.' (I'm tired, I need water.)",
+          "answer": "مَاء",
+          "accepted": [
+            "مَاء",
+            "ماء",
+            "maa2"
+          ],
+          "tip": "أَحْتَاجُ إِلَى means 'I need'."
+        },
+        {
+          "id": "unit-07.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: 'هَلْ تُمَارِسُ الرِّيَاضَة؟'. Say yes, you play football.",
+          "answer": "نَعَم، أَلْعَبُ كُرَةَ الْقَدَم",
+          "accepted": [
+            "نَعَم، أَلْعَبُ كُرَةَ الْقَدَم",
+            "نعم، ألعب كرة القدم",
+            "نَعَم أَلْعَبُ كُرَةَ الْقَدَم",
+            "أَلْعَبُ كُرَةَ الْقَدَم",
+            "na3am, al3abu kurata al-qadam"
+          ],
+          "tip": "تُمَارِسُ الرِّيَاضَة means 'you practise sport'."
+        },
+        {
+          "id": "unit-07.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: 'هَلْ نَمْشِي مَعًا بَعْدَ الصَّلَاة؟'. Say 'With pleasure.'",
+          "answer": "بِكُلِّ سُرُور",
+          "accepted": [
+            "بِكُلِّ سُرُور",
+            "بكل سرور",
+            "bikulli suroor"
+          ],
+          "tip": "بِكُلِّ سُرُور is a warm way to say yes."
+        }
+      ]
     }
   ],
   "challenge": {

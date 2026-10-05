@@ -23,49 +23,219 @@
     {
       "lesson": "lesson-01",
       "phrases": [
-        { "slot": "what-do-you-do-to-a-man", "arabic": "مَا عَمَلُكَ؟", "transliteration": "maa 3amaluka?", "reply": { "arabic": "أَعْمَلُ مُعَلِّمًا", "transliteration": "a3malu mu3allima", "english": "I work as a teacher." } },
-        { "slot": "what-do-you-do-to-a-woman", "arabic": "مَا عَمَلُكِ؟", "transliteration": "maa 3amaluki?", "reply": { "arabic": "أَعْمَلُ مُمَرِّضَةً", "transliteration": "a3malu mumarrida", "english": "I work as a nurse." } },
-        { "slot": "where-do-you-work", "arabic": "أَيْنَ تَعْمَل؟", "transliteration": "ayna ta3mal?", "reply": { "arabic": "أَعْمَلُ فِي مَصْرِف", "transliteration": "a3malu fee masrif", "english": "I work in a bank." } },
-        { "slot": "i-m-still-a-student", "arabic": "مَا زِلْتُ طَالِبًا", "transliteration": "maa zultu taaliban" },
-        { "slot": "i-m-retired", "arabic": "أَنَا مُتَقَاعِد", "transliteration": "anaa mutaqaa3id" },
-        { "slot": "what-do-you-study", "arabic": "مَاذَا تَدْرُس؟", "transliteration": "maadhaa tadrus?", "reply": { "arabic": "أَدْرُسُ الطِّبّ", "transliteration": "adrusu at-tibb", "english": "I study medicine." } },
-        { "slot": "i-work-from-home", "arabic": "أَعْمَلُ مِنَ الْبَيْت", "transliteration": "a3malu mina al-bayt" },
-        { "slot": "my-job-is-good", "arabic": "عَمَلِي جَيِّد", "transliteration": "3amalee jayyid" },
-        { "slot": "i-m-not-finding-a-job", "arabic": "لَا أَجِدُ عَمَلًا", "transliteration": "laa ajidu 3amalan" },
-        { "slot": "i-m-looking-for-a-new-job", "arabic": "أَبْحَثُ عَنْ عَمَلٍ جَدِيد", "transliteration": "ab7athu 3an 3amalin jadeed" },
-        { "slot": "how-many-years-have-you-been-working-here", "arabic": "كَمْ سَنَةً تَعْمَلُ هُنَا؟", "transliteration": "kam sanatan ta3malu hunaa?", "reply": { "arabic": "مُنْذُ خَمْسِ سَنَوَات", "transliteration": "mundhu khamsi sanawaat", "english": "For five years." } },
-        { "slot": "what-would-you-like-to-work-as", "arabic": "مَاذَا تُرِيدُ أَنْ تَعْمَل؟", "transliteration": "maadhaa tureedu an ta3mal?", "reply": { "arabic": "أُرِيدُ أَنْ أَعْمَلَ طَبِيبًا", "transliteration": "ureedu an a3mala tabeeban", "english": "I'd like to work as a doctor." } }
+        {
+          "slot": "what-do-you-do-to-a-man",
+          "arabic": "مَا عَمَلُكَ؟",
+          "transliteration": "maa 3amaluka?",
+          "reply": {
+            "arabic": "أَعْمَلُ مُعَلِّمًا",
+            "transliteration": "a3malu mu3allima",
+            "english": "I work as a teacher."
+          }
+        },
+        {
+          "slot": "what-do-you-do-to-a-woman",
+          "arabic": "مَا عَمَلُكِ؟",
+          "transliteration": "maa 3amaluki?",
+          "reply": {
+            "arabic": "أَعْمَلُ مُمَرِّضَةً",
+            "transliteration": "a3malu mumarrida",
+            "english": "I work as a nurse."
+          }
+        },
+        {
+          "slot": "where-do-you-work",
+          "arabic": "أَيْنَ تَعْمَل؟",
+          "transliteration": "ayna ta3mal?",
+          "reply": {
+            "arabic": "أَعْمَلُ فِي مَصْرِف",
+            "transliteration": "a3malu fee masrif",
+            "english": "I work in a bank."
+          }
+        },
+        {
+          "slot": "i-m-still-a-student",
+          "arabic": "مَا زِلْتُ طَالِبًا",
+          "transliteration": "maa zultu taaliban"
+        },
+        {
+          "slot": "i-m-retired",
+          "arabic": "أَنَا مُتَقَاعِد",
+          "transliteration": "anaa mutaqaa3id"
+        },
+        {
+          "slot": "what-do-you-study",
+          "arabic": "مَاذَا تَدْرُس؟",
+          "transliteration": "maadhaa tadrus?",
+          "reply": {
+            "arabic": "أَدْرُسُ الطِّبّ",
+            "transliteration": "adrusu at-tibb",
+            "english": "I study medicine."
+          }
+        },
+        {
+          "slot": "i-work-from-home",
+          "arabic": "أَعْمَلُ مِنَ الْبَيْت",
+          "transliteration": "a3malu mina al-bayt"
+        },
+        {
+          "slot": "my-job-is-good",
+          "arabic": "عَمَلِي جَيِّد",
+          "transliteration": "3amalee jayyid"
+        },
+        {
+          "slot": "i-m-not-finding-a-job",
+          "arabic": "لَا أَجِدُ عَمَلًا",
+          "transliteration": "laa ajidu 3amalan"
+        },
+        {
+          "slot": "i-m-looking-for-a-new-job",
+          "arabic": "أَبْحَثُ عَنْ عَمَلٍ جَدِيد",
+          "transliteration": "ab7athu 3an 3amalin jadeed"
+        },
+        {
+          "slot": "how-many-years-have-you-been-working-here",
+          "arabic": "كَمْ سَنَةً تَعْمَلُ هُنَا؟",
+          "transliteration": "kam sanatan ta3malu hunaa?",
+          "reply": {
+            "arabic": "مُنْذُ خَمْسِ سَنَوَات",
+            "transliteration": "mundhu khamsi sanawaat",
+            "english": "For five years."
+          }
+        },
+        {
+          "slot": "what-would-you-like-to-work-as",
+          "arabic": "مَاذَا تُرِيدُ أَنْ تَعْمَل؟",
+          "transliteration": "maadhaa tureedu an ta3mal?",
+          "reply": {
+            "arabic": "أُرِيدُ أَنْ أَعْمَلَ طَبِيبًا",
+            "transliteration": "ureedu an a3mala tabeeban",
+            "english": "I'd like to work as a doctor."
+          }
+        }
       ],
       "dialogue": [
-        { "speaker": "Omar", "arabic": "مَرْحَبًا يَا هُدَى. مَا عَمَلُكِ؟", "transliteration": "marhaban yaa Hudaa. maa 3amaluki?", "english": "Hello, Huda. What do you do?" },
-        { "speaker": "Huda", "arabic": "أَعْمَلُ مُهَنْدِسَةً. وَمَا عَمَلُكَ أَنْتَ؟", "transliteration": "a3malu muhandisa. wa maa 3amaluka anta?", "english": "I work as an engineer. And what do you do?" },
-        { "speaker": "Omar", "arabic": "مَا زِلْتُ طَالِبًا. أَدْرُسُ الطِّبّ.", "transliteration": "maa zultu taaliban. adrusu at-tibb.", "english": "I'm still a student. I study medicine." },
-        { "speaker": "Huda", "arabic": "رَائِع! وَأَيْنَ تَدْرُس؟", "transliteration": "raa2i3! wa ayna tadrus?", "english": "Wonderful! And where do you study?" },
-        { "speaker": "Omar", "arabic": "أَدْرُسُ فِي جَامِعَةِ دِمَشْق. وَأَيْنَ تَعْمَلِينَ أَنْتِ؟", "transliteration": "adrusu fee jaami3ati Dimashq. wa ayna ta3maleena anti?", "english": "I study at Damascus University. And where do you work?" },
-        { "speaker": "Huda", "arabic": "أَعْمَلُ مِنَ الْبَيْت. عَمَلِي جَيِّد.", "transliteration": "a3malu mina al-bayt. 3amalee jayyid.", "english": "I work from home. My job is good." },
-        { "speaker": "Omar", "arabic": "كَمْ سَنَةً تَعْمَلِينَ فِي هَذَا الْمَجَال؟", "transliteration": "kam sanatan ta3maleena fee haadhaa al-majaal?", "english": "How many years have you worked in this field?" },
-        { "speaker": "Huda", "arabic": "مُنْذُ خَمْسِ سَنَوَات. وَمَاذَا تُرِيدُ أَنْ تَعْمَلَ بَعْدَ التَّخَرُّج؟", "transliteration": "mundhu khamsi sanawaat. wa maadhaa tureedu an ta3mala ba3da at-takharruj?", "english": "For five years. And what would you like to work as after graduating?" },
-        { "speaker": "Omar", "arabic": "أُرِيدُ أَنْ أَعْمَلَ طَبِيبًا. أَبْحَثُ الْآنَ عَنْ عَمَلٍ جَدِيد.", "transliteration": "ureedu an a3mala tabeeban. ab7athu al-aana 3an 3amalin jadeed.", "english": "I'd like to work as a doctor. I'm looking for a new job now." },
-        { "speaker": "Huda", "arabic": "بِالتَّوْفِيق! وَالِدِي مُتَقَاعِد، وَهُوَ سَعِيدٌ جِدًّا.", "transliteration": "bit-tawfeeq! waalidee mutaqaa3id, wa huwa sa3eedun jiddan.", "english": "Good luck! My father is retired, and he is very happy." },
-        { "speaker": "Omar", "arabic": "شُكْرًا يَا هُدَى. مَعَ السَّلَامَة.", "transliteration": "shukran yaa Hudaa. ma3a as-salaama.", "english": "Thank you, Huda. Goodbye." },
-        { "speaker": "Huda", "arabic": "مَعَ السَّلَامَة.", "transliteration": "ma3a as-salaama.", "english": "Goodbye." }
+        {
+          "speaker": "Omar",
+          "arabic": "مَرْحَبًا يَا هُدَى. مَا عَمَلُكِ؟",
+          "transliteration": "marhaban yaa Hudaa. maa 3amaluki?",
+          "english": "Hello, Huda. What do you do?"
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "أَعْمَلُ مُهَنْدِسَةً. وَمَا عَمَلُكَ أَنْتَ؟",
+          "transliteration": "a3malu muhandisa. wa maa 3amaluka anta?",
+          "english": "I work as an engineer. And what do you do?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "مَا زِلْتُ طَالِبًا. أَدْرُسُ الطِّبّ.",
+          "transliteration": "maa zultu taaliban. adrusu at-tibb.",
+          "english": "I'm still a student. I study medicine."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "رَائِع! وَأَيْنَ تَدْرُس؟",
+          "transliteration": "raa2i3! wa ayna tadrus?",
+          "english": "Wonderful! And where do you study?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "أَدْرُسُ فِي جَامِعَةِ دِمَشْق. وَأَيْنَ تَعْمَلِينَ أَنْتِ؟",
+          "transliteration": "adrusu fee jaami3ati Dimashq. wa ayna ta3maleena anti?",
+          "english": "I study at Damascus University. And where do you work?"
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "أَعْمَلُ مِنَ الْبَيْت. عَمَلِي جَيِّد.",
+          "transliteration": "a3malu mina al-bayt. 3amalee jayyid.",
+          "english": "I work from home. My job is good."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "كَمْ سَنَةً تَعْمَلِينَ فِي هَذَا الْمَجَال؟",
+          "transliteration": "kam sanatan ta3maleena fee haadhaa al-majaal?",
+          "english": "How many years have you worked in this field?"
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "مُنْذُ خَمْسِ سَنَوَات. وَمَاذَا تُرِيدُ أَنْ تَعْمَلَ بَعْدَ التَّخَرُّج؟",
+          "transliteration": "mundhu khamsi sanawaat. wa maadhaa tureedu an ta3mala ba3da at-takharruj?",
+          "english": "For five years. And what would you like to work as after graduating?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "أُرِيدُ أَنْ أَعْمَلَ طَبِيبًا. أَبْحَثُ الْآنَ عَنْ عَمَلٍ جَدِيد.",
+          "transliteration": "ureedu an a3mala tabeeban. ab7athu al-aana 3an 3amalin jadeed.",
+          "english": "I'd like to work as a doctor. I'm looking for a new job now."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "بِالتَّوْفِيق! وَالِدِي مُتَقَاعِد، وَهُوَ سَعِيدٌ جِدًّا.",
+          "transliteration": "bit-tawfeeq! waalidee mutaqaa3id, wa huwa sa3eedun jiddan.",
+          "english": "Good luck! My father is retired, and he is very happy."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "شُكْرًا يَا هُدَى. مَعَ السَّلَامَة.",
+          "transliteration": "shukran yaa Hudaa. ma3a as-salaama.",
+          "english": "Thank you, Huda. Goodbye."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "مَعَ السَّلَامَة.",
+          "transliteration": "ma3a as-salaama.",
+          "english": "Goodbye."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "مَا عَمَلُكَ؟", "transliteration": "maa 3amaluka?", "english": "What do you do? (to a man)" },
-          "response": { "arabic": "أَعْمَلُ مُعَلِّمًا.", "transliteration": "a3malu mu3allima.", "english": "I work as a teacher." }
+          "pair": {
+            "arabic": "مَا عَمَلُكَ؟",
+            "transliteration": "maa 3amaluka?",
+            "english": "What do you do? (to a man)"
+          },
+          "response": {
+            "arabic": "أَعْمَلُ مُعَلِّمًا.",
+            "transliteration": "a3malu mu3allima.",
+            "english": "I work as a teacher."
+          }
         },
         {
-          "pair": { "arabic": "أَيْنَ تَعْمَل؟", "transliteration": "ayna ta3mal?", "english": "Where do you work?" },
-          "response": { "arabic": "أَعْمَلُ فِي مَصْرِف.", "transliteration": "a3malu fee masrif.", "english": "I work in a bank." }
+          "pair": {
+            "arabic": "أَيْنَ تَعْمَل؟",
+            "transliteration": "ayna ta3mal?",
+            "english": "Where do you work?"
+          },
+          "response": {
+            "arabic": "أَعْمَلُ فِي مَصْرِف.",
+            "transliteration": "a3malu fee masrif.",
+            "english": "I work in a bank."
+          }
         },
         {
-          "pair": { "arabic": "مَاذَا تَدْرُس؟", "transliteration": "maadhaa tadrus?", "english": "What do you study?" },
-          "response": { "arabic": "أَدْرُسُ الطِّبّ.", "transliteration": "adrusu at-tibb.", "english": "I study medicine." }
+          "pair": {
+            "arabic": "مَاذَا تَدْرُس؟",
+            "transliteration": "maadhaa tadrus?",
+            "english": "What do you study?"
+          },
+          "response": {
+            "arabic": "أَدْرُسُ الطِّبّ.",
+            "transliteration": "adrusu at-tibb.",
+            "english": "I study medicine."
+          }
         },
         {
-          "pair": { "arabic": "كَمْ سَنَةً تَعْمَلُ هُنَا؟", "transliteration": "kam sanatan ta3malu hunaa?", "english": "How many years have you been working here?" },
-          "response": { "arabic": "مُنْذُ خَمْسِ سَنَوَات.", "transliteration": "mundhu khamsi sanawaat.", "english": "For five years." }
+          "pair": {
+            "arabic": "كَمْ سَنَةً تَعْمَلُ هُنَا؟",
+            "transliteration": "kam sanatan ta3malu hunaa?",
+            "english": "How many years have you been working here?"
+          },
+          "response": {
+            "arabic": "مُنْذُ خَمْسِ سَنَوَات.",
+            "transliteration": "mundhu khamsi sanawaat.",
+            "english": "For five years."
+          }
         }
       ],
       "culture": "In Fusha, the usual way to ask about someone's work is مَا عَمَلُكَ؟ or مَا مِهْنَتُكَ؟, and the answer is often given as أَعْمَلُ followed by the job. People ask about work early in a first meeting, and a polite question about it is never rude.",
@@ -75,8 +245,16 @@
           "type": "reply",
           "prompt": "A man asks you: 'مَا عَمَلُكَ؟'. Say that you are still a student.",
           "answer": "مَا زِلْتُ طَالِبًا",
-          "accepted": ["مَا زِلْتُ طَالِبًا", "ما زلت طالبا", "أَنَا طَالِب", "maa zultu taaliban"],
-          "too_formal": { "item": "لِسَّا طَالِب", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مَا زِلْتُ طَالِبًا",
+            "ما زلت طالبا",
+            "أَنَا طَالِب",
+            "maa zultu taaliban"
+          ],
+          "too_formal": {
+            "item": "لِسَّا طَالِب",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مَا زِلْتُ means 'I am still'; the word after it takes the ending ـًا."
         },
         {
@@ -84,8 +262,16 @@
           "type": "reply",
           "prompt": "Someone asks you: 'أَيْنَ تَعْمَل؟'. Say that you work from home.",
           "answer": "أَعْمَلُ مِنَ الْبَيْت",
-          "accepted": ["أَعْمَلُ مِنَ الْبَيْت", "اعمل من البيت", "أَعْمَلُ فِي الْبَيْت", "a3malu mina al-bayt"],
-          "too_formal": { "item": "بَشْتَغِل مِنَ الْبَيْت", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَعْمَلُ مِنَ الْبَيْت",
+            "اعمل من البيت",
+            "أَعْمَلُ فِي الْبَيْت",
+            "a3malu mina al-bayt"
+          ],
+          "too_formal": {
+            "item": "بَشْتَغِل مِنَ الْبَيْت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَعْمَلُ is 'I work'; مِنَ الْبَيْت is 'from home'."
         },
         {
@@ -93,8 +279,16 @@
           "type": "reply",
           "prompt": "A woman asks you: 'مَاذَا تَدْرُس؟'. Say that you study medicine.",
           "answer": "أَدْرُسُ الطِّبّ",
-          "accepted": ["أَدْرُسُ الطِّبّ", "ادرس الطب", "أَدْرُسُ فِي كُلِّيَّةِ الطِّبّ", "adrusu at-tibb"],
-          "too_formal": { "item": "بَدْرُس طِبّ", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَدْرُسُ الطِّبّ",
+            "ادرس الطب",
+            "أَدْرُسُ فِي كُلِّيَّةِ الطِّبّ",
+            "adrusu at-tibb"
+          ],
+          "too_formal": {
+            "item": "بَدْرُس طِبّ",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَدْرُسُ means 'I study'; the subject follows directly."
         },
         {
@@ -102,8 +296,16 @@
           "type": "fill_blank",
           "prompt": "Complete the question: 'كَمْ _____ تَعْمَلُ هُنَا؟' (How many years have you been working here?)",
           "answer": "سَنَةً",
-          "accepted": ["سَنَةً", "سنة", "sanatan", "sana"],
-          "too_formal": { "item": "سَنَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "سَنَةً",
+            "سنة",
+            "sanatan",
+            "sana"
+          ],
+          "too_formal": {
+            "item": "سَنَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "After كَمْ the counted word takes the ending ـًا: كَمْ سَنَةً."
         },
         {
@@ -111,8 +313,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'أَبْحَثُ _____ عَمَلٍ جَدِيد.' (I'm looking for a new job.)",
           "answer": "عَنْ",
-          "accepted": ["عَنْ", "عن", "3an", "عَنْ "],
-          "too_formal": { "item": "عَ", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "عَنْ",
+            "عن",
+            "3an",
+            "عَنْ "
+          ],
+          "too_formal": {
+            "item": "عَ",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "بَحَثَ is followed by عَنْ: 'search for'."
         },
         {
@@ -120,8 +330,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'I'm retired.'",
           "answer": "أَنَا مُتَقَاعِد",
-          "accepted": ["أَنَا مُتَقَاعِد", "انا متقاعد", "مُتَقَاعِد", "anaa mutaqaa3id"],
-          "too_formal": { "item": "أَنَا عَلَى الْمَعَاش", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَنَا مُتَقَاعِد",
+            "انا متقاعد",
+            "مُتَقَاعِد",
+            "anaa mutaqaa3id"
+          ],
+          "too_formal": {
+            "item": "أَنَا عَلَى الْمَعَاش",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مُتَقَاعِد comes from التَّقَاعُد, 'retirement'."
         },
         {
@@ -129,8 +347,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'My job is good.'",
           "answer": "عَمَلِي جَيِّد",
-          "accepted": ["عَمَلِي جَيِّد", "عملي جيد", "عَمَلِي جَيِّدٌ", "3amalee jayyid"],
-          "too_formal": { "item": "شُغْلِي مْنِيح", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "عَمَلِي جَيِّد",
+            "عملي جيد",
+            "عَمَلِي جَيِّدٌ",
+            "3amalee jayyid"
+          ],
+          "too_formal": {
+            "item": "شُغْلِي مْنِيح",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "No word for 'is' is needed: عَمَلِي جَيِّد."
         },
         {
@@ -138,28 +364,62 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'I'm not finding a job.'",
           "answer": "لَا أَجِدُ عَمَلًا",
-          "accepted": ["لَا أَجِدُ عَمَلًا", "لا اجد عملا", "لَا أَجِدُ وَظِيفَةً", "laa ajidu 3amalan"],
-          "too_formal": { "item": "مَا عَم لَاقِي شُغْل", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لَا أَجِدُ عَمَلًا",
+            "لا اجد عملا",
+            "لَا أَجِدُ وَظِيفَةً",
+            "laa ajidu 3amalan"
+          ],
+          "too_formal": {
+            "item": "مَا عَم لَاقِي شُغْل",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "لَا before a present verb makes it negative: لَا أَجِدُ."
         },
         {
           "id": "unit-08.lesson-01.choose.01",
           "type": "choose",
           "prompt": "Which sentence asks a woman what her job is?",
-          "options": ["مَا عَمَلُكَ؟", "مَا عَمَلُكِ؟", "أَيْنَ تَعْمَل؟", "مَاذَا تَدْرُس؟"],
+          "options": [
+            "مَا عَمَلُكَ؟",
+            "مَا عَمَلُكِ؟",
+            "أَيْنَ تَعْمَل؟",
+            "مَاذَا تَدْرُس؟"
+          ],
           "answer": "مَا عَمَلُكِ؟",
-          "accepted": ["مَا عَمَلُكِ؟", "ما عملك؟", "maa 3amaluki?", "مَا عَمَلُكِ"],
-          "too_formal": { "item": "إِيش شُغْلِك؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مَا عَمَلُكِ؟",
+            "ما عملك؟",
+            "maa 3amaluki?",
+            "مَا عَمَلُكِ"
+          ],
+          "too_formal": {
+            "item": "إِيش شُغْلِك؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The ending كِ with a long ee sound is for a woman; كَ is for a man."
         },
         {
           "id": "unit-08.lesson-01.choose.02",
           "type": "choose",
           "prompt": "Which sentence means 'I work from home'?",
-          "options": ["أَعْمَلُ مِنَ الْبَيْت", "مَا زِلْتُ طَالِبًا", "أَنَا مُتَقَاعِد", "عَمَلِي جَيِّد"],
+          "options": [
+            "أَعْمَلُ مِنَ الْبَيْت",
+            "مَا زِلْتُ طَالِبًا",
+            "أَنَا مُتَقَاعِد",
+            "عَمَلِي جَيِّد"
+          ],
           "answer": "أَعْمَلُ مِنَ الْبَيْت",
-          "accepted": ["أَعْمَلُ مِنَ الْبَيْت", "اعمل من البيت", "a3malu mina al-bayt", "أَعْمَلُ فِي الْبَيْت"],
-          "too_formal": { "item": "بَشْتَغِل مِنَ الْبَيْت", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَعْمَلُ مِنَ الْبَيْت",
+            "اعمل من البيت",
+            "a3malu mina al-bayt",
+            "أَعْمَلُ فِي الْبَيْت"
+          ],
+          "too_formal": {
+            "item": "بَشْتَغِل مِنَ الْبَيْت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مِنَ الْبَيْت is 'from the house', so 'from home'."
         },
         {
@@ -167,9 +427,21 @@
           "type": "reorder",
           "prompt": "Put these words in order: 'الْبَيْت / مِنَ / أَعْمَلُ'.",
           "answer": "أَعْمَلُ مِنَ الْبَيْت",
-          "words": ["أَعْمَلُ", "مِنَ", "الْبَيْت"],
-          "accepted": ["أَعْمَلُ مِنَ الْبَيْت", "اعمل من البيت", "a3malu mina al-bayt", "أَعْمَلُ فِي الْبَيْت"],
-          "too_formal": { "item": "بَشْتَغِل مِنَ الْبَيْت", "feedback": "spoken, not Fusha" },
+          "words": [
+            "أَعْمَلُ",
+            "مِنَ",
+            "الْبَيْت"
+          ],
+          "accepted": [
+            "أَعْمَلُ مِنَ الْبَيْت",
+            "اعمل من البيت",
+            "a3malu mina al-bayt",
+            "أَعْمَلُ فِي الْبَيْت"
+          ],
+          "too_formal": {
+            "item": "بَشْتَغِل مِنَ الْبَيْت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The verb comes first, then the place."
         }
       ]
@@ -177,49 +449,204 @@
     {
       "lesson": "lesson-02",
       "phrases": [
-        { "slot": "hi-are-you-coming-to-the-meeting", "arabic": "مَرْحَبًا، هَلْ سَتَحْضُرُ الِاجْتِمَاع؟", "transliteration": "marhaban, hal sata7duru al-ijtimaa3?", "reply": { "arabic": "نَعَمْ، سَآتِي بَعْدَ قَلِيل", "transliteration": "na3am, sa2aatee ba3da qaleel", "english": "Yes, I'll come in a moment." } },
-        { "slot": "the-manager-wants-to-talk-to-you", "arabic": "الْمُدِيرُ يُرِيدُ أَنْ يَتَحَدَّثَ مَعَكَ", "transliteration": "al-mudeeru yureedu an yata7addatha ma3aka", "reply": { "arabic": "حَسَنًا، أَنَا قَادِم", "transliteration": "7asanan, anaa qaadim", "english": "Alright, I'm coming." } },
-        { "slot": "i-received-your-email", "arabic": "اِسْتَلَمْتُ رِسَالَتَكَ الْإِلِكْتُرُونِيَّة", "transliteration": "istalamtu risaalataka al-iliktroniyya" },
-        { "slot": "i-haven-t-finished-the-report-yet", "arabic": "لَمْ أُنْهِ التَّقْرِيرَ بَعْد", "transliteration": "lam unhi at-taqreera ba3d" },
-        { "slot": "i-have-a-meeting-at-ten-o-clock", "arabic": "عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة", "transliteration": "3indee ijtimaa3un fee as-saa3ati al-3aashira" },
-        { "slot": "my-colleague-at-the-office-is-very-nice", "arabic": "زَمِيلِي فِي الْمَكْتَبِ لَطِيفٌ جِدًّا", "transliteration": "zameelee fee al-maktabi lateefun jiddan" },
-        { "slot": "we-must-finish-this-task-before-the-afternoon", "arabic": "يَجِبُ أَنْ نُنْهِيَ هَذِهِ الْمُهِمَّةَ قَبْلَ الظُّهْر", "transliteration": "yajibu an nunhiya haadhihi al-muhimmata qabla adh-dhuhr" },
-        { "slot": "my-boss-is-very-demanding", "arabic": "مُدِيرِي مُتَطَلِّبٌ جِدًّا", "transliteration": "mudeeree mutatallibun jiddan" },
-        { "slot": "i-took-two-days-off", "arabic": "أَخَذْتُ إِجَازَةً يَوْمَيْن", "transliteration": "akhadhtu ijaazatan yawmayn" },
-        { "slot": "the-salary-comes-at-the-end-of-the-month", "arabic": "يَصِلُ الرَّاتِبُ فِي نِهَايَةِ الشَّهْر", "transliteration": "yasilu ar-raatibu fee nihaayati ash-shahr" },
-        { "slot": "are-there-overtime-hours-today", "arabic": "هَلْ هُنَاكَ عَمَلٌ إِضَافِيٌّ الْيَوْم؟", "transliteration": "hal hunaaka 3amalun idaafiyyun al-yawm?", "reply": { "arabic": "لَا، لَيْسَ الْيَوْم", "transliteration": "laa, laysa al-yawm", "english": "No, not today." } },
-        { "slot": "the-printer-keeps-breaking-down", "arabic": "الطَّابِعَةُ تَتَعَطَّلُ دَائِمًا", "transliteration": "at-taabi3atu tata3attalu daa2iman" }
+        {
+          "slot": "hi-are-you-coming-to-the-meeting",
+          "arabic": "مَرْحَبًا، هَلْ سَتَحْضُرُ الِاجْتِمَاع؟",
+          "transliteration": "marhaban, hal sata7duru al-ijtimaa3?",
+          "reply": {
+            "arabic": "نَعَمْ، سَآتِي بَعْدَ قَلِيل",
+            "transliteration": "na3am, sa2aatee ba3da qaleel",
+            "english": "Yes, I'll come in a moment."
+          }
+        },
+        {
+          "slot": "the-manager-wants-to-talk-to-you",
+          "arabic": "الْمُدِيرُ يُرِيدُ أَنْ يَتَحَدَّثَ مَعَكَ",
+          "transliteration": "al-mudeeru yureedu an yata7addatha ma3aka",
+          "reply": {
+            "arabic": "حَسَنًا، أَنَا قَادِم",
+            "transliteration": "7asanan, anaa qaadim",
+            "english": "Alright, I'm coming."
+          }
+        },
+        {
+          "slot": "i-received-your-email",
+          "arabic": "اِسْتَلَمْتُ رِسَالَتَكَ الْإِلِكْتُرُونِيَّة",
+          "transliteration": "istalamtu risaalataka al-iliktroniyya"
+        },
+        {
+          "slot": "i-haven-t-finished-the-report-yet",
+          "arabic": "لَمْ أُنْهِ التَّقْرِيرَ بَعْد",
+          "transliteration": "lam unhi at-taqreera ba3d"
+        },
+        {
+          "slot": "i-have-a-meeting-at-ten-o-clock",
+          "arabic": "عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة",
+          "transliteration": "3indee ijtimaa3un fee as-saa3ati al-3aashira"
+        },
+        {
+          "slot": "my-colleague-at-the-office-is-very-nice",
+          "arabic": "زَمِيلِي فِي الْمَكْتَبِ لَطِيفٌ جِدًّا",
+          "transliteration": "zameelee fee al-maktabi lateefun jiddan"
+        },
+        {
+          "slot": "we-must-finish-this-task-before-the-afternoon",
+          "arabic": "يَجِبُ أَنْ نُنْهِيَ هَذِهِ الْمُهِمَّةَ قَبْلَ الظُّهْر",
+          "transliteration": "yajibu an nunhiya haadhihi al-muhimmata qabla adh-dhuhr"
+        },
+        {
+          "slot": "my-boss-is-very-demanding",
+          "arabic": "مُدِيرِي مُتَطَلِّبٌ جِدًّا",
+          "transliteration": "mudeeree mutatallibun jiddan"
+        },
+        {
+          "slot": "i-took-two-days-off",
+          "arabic": "أَخَذْتُ إِجَازَةً يَوْمَيْن",
+          "transliteration": "akhadhtu ijaazatan yawmayn"
+        },
+        {
+          "slot": "the-salary-comes-at-the-end-of-the-month",
+          "arabic": "يَصِلُ الرَّاتِبُ فِي نِهَايَةِ الشَّهْر",
+          "transliteration": "yasilu ar-raatibu fee nihaayati ash-shahr"
+        },
+        {
+          "slot": "are-there-overtime-hours-today",
+          "arabic": "هَلْ هُنَاكَ عَمَلٌ إِضَافِيٌّ الْيَوْم؟",
+          "transliteration": "hal hunaaka 3amalun idaafiyyun al-yawm?",
+          "reply": {
+            "arabic": "لَا، لَيْسَ الْيَوْم",
+            "transliteration": "laa, laysa al-yawm",
+            "english": "No, not today."
+          }
+        },
+        {
+          "slot": "the-printer-keeps-breaking-down",
+          "arabic": "الطَّابِعَةُ تَتَعَطَّلُ دَائِمًا",
+          "transliteration": "at-taabi3atu tata3attalu daa2iman"
+        }
       ],
       "dialogue": [
-        { "speaker": "Khalid", "arabic": "صَبَاحَ الْخَيْر يَا مَهَا. هَلْ سَتَحْضُرِينَ الِاجْتِمَاع؟", "transliteration": "sabaa7a al-khayr yaa Mahaa. hal sata7dureena al-ijtimaa3?", "english": "Good morning, Maha. Are you coming to the meeting?" },
-        { "speaker": "Maha", "arabic": "نَعَمْ، عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة.", "transliteration": "na3am, 3indee ijtimaa3un fee as-saa3ati al-3aashira.", "english": "Yes, I have a meeting at ten o'clock." },
-        { "speaker": "Khalid", "arabic": "الْمُدِيرُ يُرِيدُ أَنْ يَتَحَدَّثَ مَعَكِ بَعْدَهُ.", "transliteration": "al-mudeeru yureedu an yata7addatha ma3aki ba3dahu.", "english": "The manager wants to talk to you after it." },
-        { "speaker": "Maha", "arabic": "حَسَنًا. لَمْ أُنْهِ التَّقْرِيرَ بَعْد.", "transliteration": "7asanan. lam unhi at-taqreera ba3d.", "english": "Alright. I haven't finished the report yet." },
-        { "speaker": "Khalid", "arabic": "يَجِبُ أَنْ نُنْهِيَ هَذِهِ الْمُهِمَّةَ قَبْلَ الظُّهْر.", "transliteration": "yajibu an nunhiya haadhihi al-muhimmata qabla adh-dhuhr.", "english": "We must finish this task before noon." },
-        { "speaker": "Maha", "arabic": "أَعْرِفُ. مُدِيرُنَا مُتَطَلِّبٌ جِدًّا.", "transliteration": "a3rifu. mudeeruna mutatallibun jiddan.", "english": "I know. Our manager is very demanding." },
-        { "speaker": "Khalid", "arabic": "لَكِنَّ زَمِيلَنَا فِي الْمَكْتَبِ لَطِيفٌ جِدًّا.", "transliteration": "lakinna zameelanaa fee al-maktabi lateefun jiddan.", "english": "But our colleague at the office is very nice." },
-        { "speaker": "Maha", "arabic": "صَحِيح. هَلْ وَصَلَتْكَ رِسَالَتِي؟", "transliteration": "sa7eeh. hal wasalatka risaalatee?", "english": "True. Did my message reach you?" },
-        { "speaker": "Khalid", "arabic": "نَعَمْ، اِسْتَلَمْتُ رِسَالَتَكِ صَبَاحًا.", "transliteration": "na3am, istalamtu risaalataki sabaa7an.", "english": "Yes, I received your message this morning." },
-        { "speaker": "Maha", "arabic": "لَكِنَّ الطَّابِعَةَ تَتَعَطَّلُ دَائِمًا.", "transliteration": "lakinna at-taabi3ata tata3attalu daa2iman.", "english": "But the printer keeps breaking down." },
-        { "speaker": "Khalid", "arabic": "سَنَطْلُبُ طَابِعَةً جَدِيدَة. هَلْ هُنَاكَ عَمَلٌ إِضَافِيٌّ الْيَوْم؟", "transliteration": "sanatlubu taabi3atan jadeeda. hal hunaaka 3amalun idaafiyyun al-yawm?", "english": "We'll ask for a new printer. Is there overtime today?" },
-        { "speaker": "Maha", "arabic": "لَا أَظُنّ. أَخَذْتُ إِجَازَةً يَوْمَيْنِ وَسَأَعْمَلُ بِجِدّ.", "transliteration": "laa azunn. akhadhtu ijaazatan yawmayni wa sa-a3malu bijidd.", "english": "I don't think so. I took two days off and I'll work hard." }
+        {
+          "speaker": "Khalid",
+          "arabic": "صَبَاحَ الْخَيْر يَا مَهَا. هَلْ سَتَحْضُرِينَ الِاجْتِمَاع؟",
+          "transliteration": "sabaa7a al-khayr yaa Mahaa. hal sata7dureena al-ijtimaa3?",
+          "english": "Good morning, Maha. Are you coming to the meeting?"
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "نَعَمْ، عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة.",
+          "transliteration": "na3am, 3indee ijtimaa3un fee as-saa3ati al-3aashira.",
+          "english": "Yes, I have a meeting at ten o'clock."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "الْمُدِيرُ يُرِيدُ أَنْ يَتَحَدَّثَ مَعَكِ بَعْدَهُ.",
+          "transliteration": "al-mudeeru yureedu an yata7addatha ma3aki ba3dahu.",
+          "english": "The manager wants to talk to you after it."
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "حَسَنًا. لَمْ أُنْهِ التَّقْرِيرَ بَعْد.",
+          "transliteration": "7asanan. lam unhi at-taqreera ba3d.",
+          "english": "Alright. I haven't finished the report yet."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "يَجِبُ أَنْ نُنْهِيَ هَذِهِ الْمُهِمَّةَ قَبْلَ الظُّهْر.",
+          "transliteration": "yajibu an nunhiya haadhihi al-muhimmata qabla adh-dhuhr.",
+          "english": "We must finish this task before noon."
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "أَعْرِفُ. مُدِيرُنَا مُتَطَلِّبٌ جِدًّا.",
+          "transliteration": "a3rifu. mudeeruna mutatallibun jiddan.",
+          "english": "I know. Our manager is very demanding."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "لَكِنَّ زَمِيلَنَا فِي الْمَكْتَبِ لَطِيفٌ جِدًّا.",
+          "transliteration": "lakinna zameelanaa fee al-maktabi lateefun jiddan.",
+          "english": "But our colleague at the office is very nice."
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "صَحِيح. هَلْ وَصَلَتْكَ رِسَالَتِي؟",
+          "transliteration": "sa7eeh. hal wasalatka risaalatee?",
+          "english": "True. Did my message reach you?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "نَعَمْ، اِسْتَلَمْتُ رِسَالَتَكِ صَبَاحًا.",
+          "transliteration": "na3am, istalamtu risaalataki sabaa7an.",
+          "english": "Yes, I received your message this morning."
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "لَكِنَّ الطَّابِعَةَ تَتَعَطَّلُ دَائِمًا.",
+          "transliteration": "lakinna at-taabi3ata tata3attalu daa2iman.",
+          "english": "But the printer keeps breaking down."
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "سَنَطْلُبُ طَابِعَةً جَدِيدَة. هَلْ هُنَاكَ عَمَلٌ إِضَافِيٌّ الْيَوْم؟",
+          "transliteration": "sanatlubu taabi3atan jadeeda. hal hunaaka 3amalun idaafiyyun al-yawm?",
+          "english": "We'll ask for a new printer. Is there overtime today?"
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "لَا أَظُنّ. أَخَذْتُ إِجَازَةً يَوْمَيْنِ وَسَأَعْمَلُ بِجِدّ.",
+          "transliteration": "laa azunn. akhadhtu ijaazatan yawmayni wa sa-a3malu bijidd.",
+          "english": "I don't think so. I took two days off and I'll work hard."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "هَلْ سَتَحْضُرُ الِاجْتِمَاع؟", "transliteration": "hal sata7duru al-ijtimaa3?", "english": "Are you coming to the meeting?" },
-          "response": { "arabic": "نَعَمْ، سَآتِي بَعْدَ قَلِيل.", "transliteration": "na3am, sa2aatee ba3da qaleel.", "english": "Yes, I'll come in a moment." }
+          "pair": {
+            "arabic": "هَلْ سَتَحْضُرُ الِاجْتِمَاع؟",
+            "transliteration": "hal sata7duru al-ijtimaa3?",
+            "english": "Are you coming to the meeting?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، سَآتِي بَعْدَ قَلِيل.",
+            "transliteration": "na3am, sa2aatee ba3da qaleel.",
+            "english": "Yes, I'll come in a moment."
+          }
         },
         {
-          "pair": { "arabic": "لَمْ أُنْهِ التَّقْرِيرَ بَعْد.", "transliteration": "lam unhi at-taqreera ba3d.", "english": "I haven't finished the report yet." },
-          "response": { "arabic": "لَا بَأْس، خُذْ وَقْتَكَ.", "transliteration": "laa ba2s, khudh waqtaka.", "english": "No problem, take your time." }
+          "pair": {
+            "arabic": "لَمْ أُنْهِ التَّقْرِيرَ بَعْد.",
+            "transliteration": "lam unhi at-taqreera ba3d.",
+            "english": "I haven't finished the report yet."
+          },
+          "response": {
+            "arabic": "لَا بَأْس، خُذْ وَقْتَكَ.",
+            "transliteration": "laa ba2s, khudh waqtaka.",
+            "english": "No problem, take your time."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ هُنَاكَ عَمَلٌ إِضَافِيٌّ الْيَوْم؟", "transliteration": "hal hunaaka 3amalun idaafiyyun al-yawm?", "english": "Are there overtime hours today?" },
-          "response": { "arabic": "لَا، اِنْتَهَى الْعَمَل.", "transliteration": "laa, intahaa al-3amal.", "english": "No, the work is done." }
+          "pair": {
+            "arabic": "هَلْ هُنَاكَ عَمَلٌ إِضَافِيٌّ الْيَوْم؟",
+            "transliteration": "hal hunaaka 3amalun idaafiyyun al-yawm?",
+            "english": "Are there overtime hours today?"
+          },
+          "response": {
+            "arabic": "لَا، اِنْتَهَى الْعَمَل.",
+            "transliteration": "laa, intahaa al-3amal.",
+            "english": "No, the work is done."
+          }
         },
         {
-          "pair": { "arabic": "الْمُدِيرُ يُرِيدُ أَنْ يَتَحَدَّثَ مَعَكَ.", "transliteration": "al-mudeeru yureedu an yata7addatha ma3aka.", "english": "The manager wants to talk to you." },
-          "response": { "arabic": "حَسَنًا، أَنَا قَادِم.", "transliteration": "7asanan, anaa qaadim.", "english": "Alright, I'm coming." }
+          "pair": {
+            "arabic": "الْمُدِيرُ يُرِيدُ أَنْ يَتَحَدَّثَ مَعَكَ.",
+            "transliteration": "al-mudeeru yureedu an yata7addatha ma3aka.",
+            "english": "The manager wants to talk to you."
+          },
+          "response": {
+            "arabic": "حَسَنًا، أَنَا قَادِم.",
+            "transliteration": "7asanan, anaa qaadim.",
+            "english": "Alright, I'm coming."
+          }
         }
       ],
       "culture": "Office talk in Fusha is polite and direct, and the word الْمُدِيرُ is used for any boss or manager. Emails and reports are written in Fusha, while people often chat in their own dialect at the desk.",
@@ -229,8 +656,16 @@
           "type": "reply",
           "prompt": "A colleague asks: 'هَلْ سَتَحْضُرُ الِاجْتِمَاع؟'. Say yes, you'll come in a moment.",
           "answer": "نَعَمْ، سَآتِي بَعْدَ قَلِيل",
-          "accepted": ["نَعَمْ، سَآتِي بَعْدَ قَلِيل", "نعم، سآتي بعد قليل", "نَعَمْ، سَآتِي", "na3am, sa2aatee ba3da qaleel"],
-          "too_formal": { "item": "إِي، جَايِي بَعْد شْوَيّ", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "نَعَمْ، سَآتِي بَعْدَ قَلِيل",
+            "نعم، سآتي بعد قليل",
+            "نَعَمْ، سَآتِي",
+            "na3am, sa2aatee ba3da qaleel"
+          ],
+          "too_formal": {
+            "item": "إِي، جَايِي بَعْد شْوَيّ",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "سَ before a verb makes it future: سَآتِي, 'I will come'."
         },
         {
@@ -238,8 +673,16 @@
           "type": "reply",
           "prompt": "Your colleague says: 'الْمُدِيرُ يُرِيدُ أَنْ يَتَحَدَّثَ مَعَكَ'. Reply that you are coming.",
           "answer": "حَسَنًا، أَنَا قَادِم",
-          "accepted": ["حَسَنًا، أَنَا قَادِم", "حسنا، انا قادم", "أَنَا قَادِم", "7asanan, anaa qaadim"],
-          "too_formal": { "item": "طَيِّب، جَايِي", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "حَسَنًا، أَنَا قَادِم",
+            "حسنا، انا قادم",
+            "أَنَا قَادِم",
+            "7asanan, anaa qaadim"
+          ],
+          "too_formal": {
+            "item": "طَيِّب، جَايِي",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "قَادِم is 'coming' and needs no verb for 'am'."
         },
         {
@@ -247,8 +690,16 @@
           "type": "reply",
           "prompt": "Someone asks: 'هَلْ هُنَاكَ عَمَلٌ إِضَافِيٌّ الْيَوْم؟'. Say no, not today.",
           "answer": "لَا، لَيْسَ الْيَوْم",
-          "accepted": ["لَا، لَيْسَ الْيَوْم", "لا، ليس اليوم", "لَا", "laa, laysa al-yawm"],
-          "too_formal": { "item": "لَا، مَا فِي الْيَوْم", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لَا، لَيْسَ الْيَوْم",
+            "لا، ليس اليوم",
+            "لَا",
+            "laa, laysa al-yawm"
+          ],
+          "too_formal": {
+            "item": "لَا، مَا فِي الْيَوْم",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "لَيْسَ negates a whole phrase: 'it is not today'."
         },
         {
@@ -256,8 +707,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'لَمْ أُنْهِ التَّقْرِيرَ _____.' (I haven't finished the report yet.)",
           "answer": "بَعْد",
-          "accepted": ["بَعْد", "بعد", "ba3d", "بَعْدُ"],
-          "too_formal": { "item": "لِسَّا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بَعْد",
+            "بعد",
+            "ba3d",
+            "بَعْدُ"
+          ],
+          "too_formal": {
+            "item": "لِسَّا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "لَمْ ... بَعْدُ means 'not yet'."
         },
         {
@@ -265,8 +724,16 @@
           "type": "fill_blank",
           "prompt": "Complete: '_____ أَنْ نُنْهِيَ هَذِهِ الْمُهِمَّةَ قَبْلَ الظُّهْر.' (We must finish this task before noon.)",
           "answer": "يَجِبُ",
-          "accepted": ["يَجِبُ", "يجب", "yajibu", "يَجِب"],
-          "too_formal": { "item": "لَازِم", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "يَجِبُ",
+            "يجب",
+            "yajibu",
+            "يَجِب"
+          ],
+          "too_formal": {
+            "item": "لَازِم",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "يَجِبُ أَنْ means 'it is necessary that'."
         },
         {
@@ -274,8 +741,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'My boss is very demanding.'",
           "answer": "مُدِيرِي مُتَطَلِّبٌ جِدًّا",
-          "accepted": ["مُدِيرِي مُتَطَلِّبٌ جِدًّا", "مديري متطلب جدا", "مُدِيرِي مُتَطَلِّبٌ لِلْغَايَة", "mudeeree mutatallibun jiddan"],
-          "too_formal": { "item": "مُدِيرِي كْتِير صَعْب", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مُدِيرِي مُتَطَلِّبٌ جِدًّا",
+            "مديري متطلب جدا",
+            "مُدِيرِي مُتَطَلِّبٌ لِلْغَايَة",
+            "mudeeree mutatallibun jiddan"
+          ],
+          "too_formal": {
+            "item": "مُدِيرِي كْتِير صَعْب",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "جِدًّا means 'very' and comes after the describing word."
         },
         {
@@ -283,8 +758,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'I took two days off.'",
           "answer": "أَخَذْتُ إِجَازَةً يَوْمَيْن",
-          "accepted": ["أَخَذْتُ إِجَازَةً يَوْمَيْن", "اخذت اجازة يومين", "أَخَذْتُ يَوْمَيْنِ إِجَازَة", "akhadhtu ijaazatan yawmayn"],
-          "too_formal": { "item": "أَخَدْت يَوْمَيْن إِجَازَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَخَذْتُ إِجَازَةً يَوْمَيْن",
+            "اخذت اجازة يومين",
+            "أَخَذْتُ يَوْمَيْنِ إِجَازَة",
+            "akhadhtu ijaazatan yawmayn"
+          ],
+          "too_formal": {
+            "item": "أَخَدْت يَوْمَيْن إِجَازَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "يَوْمَيْن is the dual of يَوْم: exactly two days."
         },
         {
@@ -292,28 +775,62 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'The printer keeps breaking down.'",
           "answer": "الطَّابِعَةُ تَتَعَطَّلُ دَائِمًا",
-          "accepted": ["الطَّابِعَةُ تَتَعَطَّلُ دَائِمًا", "الطابعة تتعطل دائما", "الطَّابِعَةُ دَائِمًا تَتَعَطَّلُ", "at-taabi3atu tata3attalu daa2iman"],
-          "too_formal": { "item": "الطَّابِعَة كُلّ شْوَيّ تِخْرَب", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "الطَّابِعَةُ تَتَعَطَّلُ دَائِمًا",
+            "الطابعة تتعطل دائما",
+            "الطَّابِعَةُ دَائِمًا تَتَعَطَّلُ",
+            "at-taabi3atu tata3attalu daa2iman"
+          ],
+          "too_formal": {
+            "item": "الطَّابِعَة كُلّ شْوَيّ تِخْرَب",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "دَائِمًا means 'always', so the breakdown repeats."
         },
         {
           "id": "unit-08.lesson-02.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'I have a meeting at ten o'clock'?",
-          "options": ["عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة", "اِسْتَلَمْتُ رِسَالَتَكَ الْإِلِكْتُرُونِيَّة", "الطَّابِعَةُ تَتَعَطَّلُ دَائِمًا", "يَصِلُ الرَّاتِبُ فِي نِهَايَةِ الشَّهْر"],
+          "options": [
+            "عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة",
+            "اِسْتَلَمْتُ رِسَالَتَكَ الْإِلِكْتُرُونِيَّة",
+            "الطَّابِعَةُ تَتَعَطَّلُ دَائِمًا",
+            "يَصِلُ الرَّاتِبُ فِي نِهَايَةِ الشَّهْر"
+          ],
           "answer": "عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة",
-          "accepted": ["عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة", "عندي اجتماع في الساعة العاشرة", "3indee ijtimaa3un fee as-saa3ati al-3aashira", "لَدَيَّ اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة"],
-          "too_formal": { "item": "عِنْدِي اجْتِمَاع السَّاعَة عَشَرَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة",
+            "عندي اجتماع في الساعة العاشرة",
+            "3indee ijtimaa3un fee as-saa3ati al-3aashira",
+            "لَدَيَّ اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة"
+          ],
+          "too_formal": {
+            "item": "عِنْدِي اجْتِمَاع السَّاعَة عَشَرَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "السَّاعَةُ الْعَاشِرَة is 'the tenth hour', so ten o'clock."
         },
         {
           "id": "unit-08.lesson-02.choose.02",
           "type": "choose",
           "prompt": "Which sentence says that the salary comes at the end of the month?",
-          "options": ["يَصِلُ الرَّاتِبُ فِي نِهَايَةِ الشَّهْر", "أَخَذْتُ إِجَازَةً يَوْمَيْن", "زَمِيلِي فِي الْمَكْتَبِ لَطِيفٌ جِدًّا", "مُدِيرِي مُتَطَلِّبٌ جِدًّا"],
+          "options": [
+            "يَصِلُ الرَّاتِبُ فِي نِهَايَةِ الشَّهْر",
+            "أَخَذْتُ إِجَازَةً يَوْمَيْن",
+            "زَمِيلِي فِي الْمَكْتَبِ لَطِيفٌ جِدًّا",
+            "مُدِيرِي مُتَطَلِّبٌ جِدًّا"
+          ],
           "answer": "يَصِلُ الرَّاتِبُ فِي نِهَايَةِ الشَّهْر",
-          "accepted": ["يَصِلُ الرَّاتِبُ فِي نِهَايَةِ الشَّهْر", "يصل الراتب في نهاية الشهر", "yasilu ar-raatibu fee nihaayati ash-shahr", "يَصِلُ الرَّاتِبُ فِي آخِرِ الشَّهْر"],
-          "too_formal": { "item": "الرَّاتِب بْيِجِي آخِر الشَّهْر", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "يَصِلُ الرَّاتِبُ فِي نِهَايَةِ الشَّهْر",
+            "يصل الراتب في نهاية الشهر",
+            "yasilu ar-raatibu fee nihaayati ash-shahr",
+            "يَصِلُ الرَّاتِبُ فِي آخِرِ الشَّهْر"
+          ],
+          "too_formal": {
+            "item": "الرَّاتِب بْيِجِي آخِر الشَّهْر",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "نِهَايَة is 'end'; الشَّهْر is 'the month'."
         },
         {
@@ -321,9 +838,22 @@
           "type": "reorder",
           "prompt": "Put these words in order: 'لَطِيفٌ / زَمِيلِي / جِدًّا / فِي الْمَكْتَبِ'.",
           "answer": "زَمِيلِي فِي الْمَكْتَبِ لَطِيفٌ جِدًّا",
-          "words": ["زَمِيلِي", "فِي الْمَكْتَبِ", "لَطِيفٌ", "جِدًّا"],
-          "accepted": ["زَمِيلِي فِي الْمَكْتَبِ لَطِيفٌ جِدًّا", "زميلي في المكتب لطيف جدا", "zameelee fee al-maktabi lateefun jiddan", "زَمِيلِي فِي الْمَكْتَبِ لَطِيفٌ لِلْغَايَة"],
-          "too_formal": { "item": "زَمِيلِي بِالْمَكْتَب كْتِير لَطِيف", "feedback": "spoken, not Fusha" },
+          "words": [
+            "زَمِيلِي",
+            "فِي الْمَكْتَبِ",
+            "لَطِيفٌ",
+            "جِدًّا"
+          ],
+          "accepted": [
+            "زَمِيلِي فِي الْمَكْتَبِ لَطِيفٌ جِدًّا",
+            "زميلي في المكتب لطيف جدا",
+            "zameelee fee al-maktabi lateefun jiddan",
+            "زَمِيلِي فِي الْمَكْتَبِ لَطِيفٌ لِلْغَايَة"
+          ],
+          "too_formal": {
+            "item": "زَمِيلِي بِالْمَكْتَب كْتِير لَطِيف",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The person first, then where, then the description."
         }
       ]
@@ -331,49 +861,204 @@
     {
       "lesson": "lesson-03",
       "phrases": [
-        { "slot": "i-have-a-lecture-at-nine", "arabic": "عِنْدِي مُحَاضَرَةٌ فِي السَّاعَةِ التَّاسِعَة", "transliteration": "3indee muhaadaratun fee as-saa3ati at-taasi3a" },
-        { "slot": "the-professor-is-absent-today", "arabic": "الْأُسْتَاذُ غَائِبٌ الْيَوْم", "transliteration": "al-ustaadhu ghaa2ibun al-yawm" },
-        { "slot": "i-have-an-exam-tomorrow", "arabic": "عِنْدِي اِمْتِحَانٌ غَدًا", "transliteration": "3indee imti7aanun ghadan", "reply": { "arabic": "بِالتَّوْفِيق", "transliteration": "bit-tawfeeq", "english": "Good luck." } },
-        { "slot": "what-s-your-major", "arabic": "مَا تَخَصُّصُكَ؟", "transliteration": "maa takhassusuka?", "reply": { "arabic": "تَخَصُّصِي الْهَنْدَسَة", "transliteration": "takhassusee al-handasa", "english": "My major is engineering." } },
-        { "slot": "what-year-are-you-in", "arabic": "فِي أَيِّ سَنَةٍ أَنْتَ؟", "transliteration": "fee ayyi sanatin anta?", "reply": { "arabic": "أَنَا فِي السَّنَةِ الثَّالِثَة", "transliteration": "anaa fee as-sanati ath-thaalitha", "english": "I'm in the third year." } },
-        { "slot": "i-have-to-study-a-lot-this-semester", "arabic": "يَجِبُ أَنْ أَدْرُسَ كَثِيرًا هَذَا الْفَصْل", "transliteration": "yajibu an adrusa katheeran haadhaa al-fasl" },
-        { "slot": "the-exam-result-came-out-good", "arabic": "ظَهَرَتْ نَتِيجَةُ الِامْتِحَانِ وَهِيَ جَيِّدَة", "transliteration": "zaharat nateejatu al-imti7aani wa hiya jayyida" },
-        { "slot": "i-didn-t-understand-the-lecture-well", "arabic": "لَمْ أَفْهَمِ الْمُحَاضَرَةَ جَيِّدًا", "transliteration": "lam afhami al-muhaadarata jayyidan" },
-        { "slot": "i-have-to-submit-the-assignment-before-friday", "arabic": "يَجِبُ أَنْ أُسَلِّمَ الْوَاجِبَ قَبْلَ يَوْمِ الْجُمُعَة", "transliteration": "yajibu an usallima al-waajiba qabla yawmi al-jumu3a" },
-        { "slot": "my-friends-at-university-are-very-nice", "arabic": "أَصْدِقَائِي فِي الْجَامِعَةِ لُطَفَاءُ جِدًّا", "transliteration": "asdiqaa2ee fee al-jaami3ati lutafaa2u jiddan" },
-        { "slot": "the-university-library-is-open-until-night", "arabic": "مَكْتَبَةُ الْجَامِعَةِ مَفْتُوحَةٌ حَتَّى اللَّيْل", "transliteration": "maktabatu al-jaami3ati maftoo7atun 7attaa al-layl" },
-        { "slot": "i-want-to-register-more-courses-next-semester", "arabic": "أُرِيدُ أَنْ أُسَجِّلَ مَوَادَّ أَكْثَرَ فِي الْفَصْلِ الْقَادِم", "transliteration": "ureedu an usajjila mawaadda akthara fee al-fasli al-qaadim" }
+        {
+          "slot": "i-have-a-lecture-at-nine",
+          "arabic": "عِنْدِي مُحَاضَرَةٌ فِي السَّاعَةِ التَّاسِعَة",
+          "transliteration": "3indee muhaadaratun fee as-saa3ati at-taasi3a"
+        },
+        {
+          "slot": "the-professor-is-absent-today",
+          "arabic": "الْأُسْتَاذُ غَائِبٌ الْيَوْم",
+          "transliteration": "al-ustaadhu ghaa2ibun al-yawm"
+        },
+        {
+          "slot": "i-have-an-exam-tomorrow",
+          "arabic": "عِنْدِي اِمْتِحَانٌ غَدًا",
+          "transliteration": "3indee imti7aanun ghadan",
+          "reply": {
+            "arabic": "بِالتَّوْفِيق",
+            "transliteration": "bit-tawfeeq",
+            "english": "Good luck."
+          }
+        },
+        {
+          "slot": "what-s-your-major",
+          "arabic": "مَا تَخَصُّصُكَ؟",
+          "transliteration": "maa takhassusuka?",
+          "reply": {
+            "arabic": "تَخَصُّصِي الْهَنْدَسَة",
+            "transliteration": "takhassusee al-handasa",
+            "english": "My major is engineering."
+          }
+        },
+        {
+          "slot": "what-year-are-you-in",
+          "arabic": "فِي أَيِّ سَنَةٍ أَنْتَ؟",
+          "transliteration": "fee ayyi sanatin anta?",
+          "reply": {
+            "arabic": "أَنَا فِي السَّنَةِ الثَّالِثَة",
+            "transliteration": "anaa fee as-sanati ath-thaalitha",
+            "english": "I'm in the third year."
+          }
+        },
+        {
+          "slot": "i-have-to-study-a-lot-this-semester",
+          "arabic": "يَجِبُ أَنْ أَدْرُسَ كَثِيرًا هَذَا الْفَصْل",
+          "transliteration": "yajibu an adrusa katheeran haadhaa al-fasl"
+        },
+        {
+          "slot": "the-exam-result-came-out-good",
+          "arabic": "ظَهَرَتْ نَتِيجَةُ الِامْتِحَانِ وَهِيَ جَيِّدَة",
+          "transliteration": "zaharat nateejatu al-imti7aani wa hiya jayyida"
+        },
+        {
+          "slot": "i-didn-t-understand-the-lecture-well",
+          "arabic": "لَمْ أَفْهَمِ الْمُحَاضَرَةَ جَيِّدًا",
+          "transliteration": "lam afhami al-muhaadarata jayyidan"
+        },
+        {
+          "slot": "i-have-to-submit-the-assignment-before-friday",
+          "arabic": "يَجِبُ أَنْ أُسَلِّمَ الْوَاجِبَ قَبْلَ يَوْمِ الْجُمُعَة",
+          "transliteration": "yajibu an usallima al-waajiba qabla yawmi al-jumu3a"
+        },
+        {
+          "slot": "my-friends-at-university-are-very-nice",
+          "arabic": "أَصْدِقَائِي فِي الْجَامِعَةِ لُطَفَاءُ جِدًّا",
+          "transliteration": "asdiqaa2ee fee al-jaami3ati lutafaa2u jiddan"
+        },
+        {
+          "slot": "the-university-library-is-open-until-night",
+          "arabic": "مَكْتَبَةُ الْجَامِعَةِ مَفْتُوحَةٌ حَتَّى اللَّيْل",
+          "transliteration": "maktabatu al-jaami3ati maftoo7atun 7attaa al-layl"
+        },
+        {
+          "slot": "i-want-to-register-more-courses-next-semester",
+          "arabic": "أُرِيدُ أَنْ أُسَجِّلَ مَوَادَّ أَكْثَرَ فِي الْفَصْلِ الْقَادِم",
+          "transliteration": "ureedu an usajjila mawaadda akthara fee al-fasli al-qaadim"
+        }
       ],
       "dialogue": [
-        { "speaker": "Yusuf", "arabic": "صَبَاحَ الْخَيْر يَا سَارَة. مَا تَخَصُّصُكِ؟", "transliteration": "sabaa7a al-khayr yaa Saara. maa takhassusuki?", "english": "Good morning, Sara. What's your major?" },
-        { "speaker": "Sara", "arabic": "تَخَصُّصِي الْهَنْدَسَة. وَأَنْتَ، فِي أَيِّ سَنَةٍ أَنْتَ؟", "transliteration": "takhassusee al-handasa. wa anta, fee ayyi sanatin anta?", "english": "My major is engineering. And you, what year are you in?" },
-        { "speaker": "Yusuf", "arabic": "أَنَا فِي السَّنَةِ الثَّالِثَة. عِنْدِي اِمْتِحَانٌ غَدًا.", "transliteration": "anaa fee as-sanati ath-thaalitha. 3indee imti7aanun ghadan.", "english": "I'm in the third year. I have an exam tomorrow." },
-        { "speaker": "Sara", "arabic": "حَقًّا؟ عِنْدِي مُحَاضَرَةٌ فِي السَّاعَةِ التَّاسِعَة، لَكِنَّ الْأُسْتَاذَ غَائِبٌ الْيَوْم.", "transliteration": "7aqqan? 3indee muhaadaratun fee as-saa3ati at-taasi3a, lakinna al-ustaadha ghaa2ibun al-yawm.", "english": "Really? I have a lecture at nine, but the professor is absent today." },
-        { "speaker": "Yusuf", "arabic": "يَجِبُ أَنْ أَدْرُسَ كَثِيرًا هَذَا الْفَصْل.", "transliteration": "yajibu an adrusa katheeran haadhaa al-fasl.", "english": "I have to study a lot this semester." },
-        { "speaker": "Sara", "arabic": "لَمْ أَفْهَمِ الْمُحَاضَرَةَ السَّابِقَةَ جَيِّدًا.", "transliteration": "lam afhami al-muhaadarata as-saabiqata jayyidan.", "english": "I didn't understand the last lecture well." },
-        { "speaker": "Yusuf", "arabic": "سَأَشْرَحُهَا لَكِ فِي الْمَكْتَبَة.", "transliteration": "sa-ash7uhaa laki fee al-maktaba.", "english": "I'll explain it to you in the library." },
-        { "speaker": "Sara", "arabic": "مَكْتَبَةُ الْجَامِعَةِ مَفْتُوحَةٌ حَتَّى اللَّيْل، أَلَيْسَ كَذَلِك؟", "transliteration": "maktabatu al-jaami3ati maftoo7atun 7attaa al-layl, alaysa kadhaalik?", "english": "The university library is open until night, isn't it?" },
-        { "speaker": "Yusuf", "arabic": "بَلَى. وَيَجِبُ أَنْ أُسَلِّمَ الْوَاجِبَ قَبْلَ يَوْمِ الْجُمُعَة.", "transliteration": "balaa. wa yajibu an usallima al-waajiba qabla yawmi al-jumu3a.", "english": "Yes. And I have to submit the assignment before Friday." },
-        { "speaker": "Sara", "arabic": "وَأَنَا أُرِيدُ أَنْ أُسَجِّلَ مَوَادَّ أَكْثَرَ فِي الْفَصْلِ الْقَادِم.", "transliteration": "wa anaa ureedu an usajjila mawaadda akthara fee al-fasli al-qaadim.", "english": "And I want to register more courses next semester." },
-        { "speaker": "Yusuf", "arabic": "أَصْدِقَاؤُنَا فِي الْجَامِعَةِ لُطَفَاءُ، وَسَيُسَاعِدُونَكِ.", "transliteration": "asdiqaa2unaa fee al-jaami3ati lutafaa2u, wa sa-yusaa3idoonaki.", "english": "Our friends at university are nice, and they will help you." },
-        { "speaker": "Sara", "arabic": "شُكْرًا يَا يُوسُف. إِلَى اللِّقَاء.", "transliteration": "shukran yaa Yoosuf. ilaa al-liqaa2.", "english": "Thank you, Yusuf. See you." }
+        {
+          "speaker": "Yusuf",
+          "arabic": "صَبَاحَ الْخَيْر يَا سَارَة. مَا تَخَصُّصُكِ؟",
+          "transliteration": "sabaa7a al-khayr yaa Saara. maa takhassusuki?",
+          "english": "Good morning, Sara. What's your major?"
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "تَخَصُّصِي الْهَنْدَسَة. وَأَنْتَ، فِي أَيِّ سَنَةٍ أَنْتَ؟",
+          "transliteration": "takhassusee al-handasa. wa anta, fee ayyi sanatin anta?",
+          "english": "My major is engineering. And you, what year are you in?"
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "أَنَا فِي السَّنَةِ الثَّالِثَة. عِنْدِي اِمْتِحَانٌ غَدًا.",
+          "transliteration": "anaa fee as-sanati ath-thaalitha. 3indee imti7aanun ghadan.",
+          "english": "I'm in the third year. I have an exam tomorrow."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "حَقًّا؟ عِنْدِي مُحَاضَرَةٌ فِي السَّاعَةِ التَّاسِعَة، لَكِنَّ الْأُسْتَاذَ غَائِبٌ الْيَوْم.",
+          "transliteration": "7aqqan? 3indee muhaadaratun fee as-saa3ati at-taasi3a, lakinna al-ustaadha ghaa2ibun al-yawm.",
+          "english": "Really? I have a lecture at nine, but the professor is absent today."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "يَجِبُ أَنْ أَدْرُسَ كَثِيرًا هَذَا الْفَصْل.",
+          "transliteration": "yajibu an adrusa katheeran haadhaa al-fasl.",
+          "english": "I have to study a lot this semester."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "لَمْ أَفْهَمِ الْمُحَاضَرَةَ السَّابِقَةَ جَيِّدًا.",
+          "transliteration": "lam afhami al-muhaadarata as-saabiqata jayyidan.",
+          "english": "I didn't understand the last lecture well."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "سَأَشْرَحُهَا لَكِ فِي الْمَكْتَبَة.",
+          "transliteration": "sa-ash7uhaa laki fee al-maktaba.",
+          "english": "I'll explain it to you in the library."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "مَكْتَبَةُ الْجَامِعَةِ مَفْتُوحَةٌ حَتَّى اللَّيْل، أَلَيْسَ كَذَلِك؟",
+          "transliteration": "maktabatu al-jaami3ati maftoo7atun 7attaa al-layl, alaysa kadhaalik?",
+          "english": "The university library is open until night, isn't it?"
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "بَلَى. وَيَجِبُ أَنْ أُسَلِّمَ الْوَاجِبَ قَبْلَ يَوْمِ الْجُمُعَة.",
+          "transliteration": "balaa. wa yajibu an usallima al-waajiba qabla yawmi al-jumu3a.",
+          "english": "Yes. And I have to submit the assignment before Friday."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "وَأَنَا أُرِيدُ أَنْ أُسَجِّلَ مَوَادَّ أَكْثَرَ فِي الْفَصْلِ الْقَادِم.",
+          "transliteration": "wa anaa ureedu an usajjila mawaadda akthara fee al-fasli al-qaadim.",
+          "english": "And I want to register more courses next semester."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "أَصْدِقَاؤُنَا فِي الْجَامِعَةِ لُطَفَاءُ، وَسَيُسَاعِدُونَكِ.",
+          "transliteration": "asdiqaa2unaa fee al-jaami3ati lutafaa2u, wa sa-yusaa3idoonaki.",
+          "english": "Our friends at university are nice, and they will help you."
+        },
+        {
+          "speaker": "Sara",
+          "arabic": "شُكْرًا يَا يُوسُف. إِلَى اللِّقَاء.",
+          "transliteration": "shukran yaa Yoosuf. ilaa al-liqaa2.",
+          "english": "Thank you, Yusuf. See you."
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "عِنْدِي اِمْتِحَانٌ غَدًا.", "transliteration": "3indee imti7aanun ghadan.", "english": "I have an exam tomorrow." },
-          "response": { "arabic": "بِالتَّوْفِيق!", "transliteration": "bit-tawfeeq!", "english": "Good luck!" }
+          "pair": {
+            "arabic": "عِنْدِي اِمْتِحَانٌ غَدًا.",
+            "transliteration": "3indee imti7aanun ghadan.",
+            "english": "I have an exam tomorrow."
+          },
+          "response": {
+            "arabic": "بِالتَّوْفِيق!",
+            "transliteration": "bit-tawfeeq!",
+            "english": "Good luck!"
+          }
         },
         {
-          "pair": { "arabic": "مَا تَخَصُّصُكَ؟", "transliteration": "maa takhassusuka?", "english": "What's your major?" },
-          "response": { "arabic": "تَخَصُّصِي الطِّبّ.", "transliteration": "takhassusee at-tibb.", "english": "My major is medicine." }
+          "pair": {
+            "arabic": "مَا تَخَصُّصُكَ؟",
+            "transliteration": "maa takhassusuka?",
+            "english": "What's your major?"
+          },
+          "response": {
+            "arabic": "تَخَصُّصِي الطِّبّ.",
+            "transliteration": "takhassusee at-tibb.",
+            "english": "My major is medicine."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ فَهِمْتَ الْمُحَاضَرَة؟", "transliteration": "hal fahimta al-muhaadara?", "english": "Did you understand the lecture?" },
-          "response": { "arabic": "لَا، لَمْ أَفْهَمْهَا جَيِّدًا.", "transliteration": "laa, lam afhamhaa jayyidan.", "english": "No, I didn't understand it well." }
+          "pair": {
+            "arabic": "هَلْ فَهِمْتَ الْمُحَاضَرَة؟",
+            "transliteration": "hal fahimta al-muhaadara?",
+            "english": "Did you understand the lecture?"
+          },
+          "response": {
+            "arabic": "لَا، لَمْ أَفْهَمْهَا جَيِّدًا.",
+            "transliteration": "laa, lam afhamhaa jayyidan.",
+            "english": "No, I didn't understand it well."
+          }
         },
         {
-          "pair": { "arabic": "كَيْفَ كَانَتْ نَتِيجَةُ الِامْتِحَان؟", "transliteration": "kayfa kaanat nateejatu al-imti7aan?", "english": "How was the exam result?" },
-          "response": { "arabic": "جَيِّدَة، الْحَمْدُ لِلَّه.", "transliteration": "jayyida, al7amdu lillaah.", "english": "Good, thank God." }
+          "pair": {
+            "arabic": "كَيْفَ كَانَتْ نَتِيجَةُ الِامْتِحَان؟",
+            "transliteration": "kayfa kaanat nateejatu al-imti7aan?",
+            "english": "How was the exam result?"
+          },
+          "response": {
+            "arabic": "جَيِّدَة، الْحَمْدُ لِلَّه.",
+            "transliteration": "jayyida, al7amdu lillaah.",
+            "english": "Good, thank God."
+          }
         }
       ],
       "culture": "University teaching in the Arab world is often in Fusha, especially in the sciences and the humanities, and lecturers are addressed as أُسْتَاذ or دُكْتُور. Students wish each other بِالتَّوْفِيق before an exam.",
@@ -383,8 +1068,16 @@
           "type": "reply",
           "prompt": "A friend says: 'عِنْدِي اِمْتِحَانٌ غَدًا'. Wish them luck.",
           "answer": "بِالتَّوْفِيق",
-          "accepted": ["بِالتَّوْفِيق", "بالتوفيق", "بِالتَّوْفِيقِ إِنْ شَاءَ اللَّه", "bit-tawfeeq"],
-          "too_formal": { "item": "إِنْ شَاءَ اللَّه تِنْجَح", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "بِالتَّوْفِيق",
+            "بالتوفيق",
+            "بِالتَّوْفِيقِ إِنْ شَاءَ اللَّه",
+            "bit-tawfeeq"
+          ],
+          "too_formal": {
+            "item": "إِنْ شَاءَ اللَّه تِنْجَح",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "بِالتَّوْفِيق means 'with success'."
         },
         {
@@ -392,8 +1085,16 @@
           "type": "reply",
           "prompt": "Someone asks: 'مَا تَخَصُّصُكَ؟'. Say that your major is engineering.",
           "answer": "تَخَصُّصِي الْهَنْدَسَة",
-          "accepted": ["تَخَصُّصِي الْهَنْدَسَة", "تخصصي الهندسة", "أَدْرُسُ الْهَنْدَسَة", "takhassusee al-handasa"],
-          "too_formal": { "item": "أَنَا بَدْرُس هَنْدَسَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "تَخَصُّصِي الْهَنْدَسَة",
+            "تخصصي الهندسة",
+            "أَدْرُسُ الْهَنْدَسَة",
+            "takhassusee al-handasa"
+          ],
+          "too_formal": {
+            "item": "أَنَا بَدْرُس هَنْدَسَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "تَخَصُّصِي is 'my major'; the subject follows it."
         },
         {
@@ -401,8 +1102,16 @@
           "type": "reply",
           "prompt": "A friend asks: 'هَلْ فَهِمْتَ الْمُحَاضَرَة؟'. Say you didn't understand it well.",
           "answer": "لَا، لَمْ أَفْهَمْهَا جَيِّدًا",
-          "accepted": ["لَا، لَمْ أَفْهَمْهَا جَيِّدًا", "لا، لم افهمها جيدا", "لَمْ أَفْهَمْهَا جَيِّدًا", "laa, lam afhamhaa jayyidan"],
-          "too_formal": { "item": "لَا، مَا فَهِمْتَهَا مْنِيح", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لَا، لَمْ أَفْهَمْهَا جَيِّدًا",
+            "لا، لم افهمها جيدا",
+            "لَمْ أَفْهَمْهَا جَيِّدًا",
+            "laa, lam afhamhaa jayyidan"
+          ],
+          "too_formal": {
+            "item": "لَا، مَا فَهِمْتَهَا مْنِيح",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The ending ـهَا means 'it' and refers to the lecture."
         },
         {
@@ -410,8 +1119,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'عِنْدِي _____ فِي السَّاعَةِ التَّاسِعَة.' (I have a lecture at nine.)",
           "answer": "مُحَاضَرَةٌ",
-          "accepted": ["مُحَاضَرَةٌ", "محاضرة", "muhaadaratun", "مُحَاضَرَة"],
-          "too_formal": { "item": "مُحَاضَرَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مُحَاضَرَةٌ",
+            "محاضرة",
+            "muhaadaratun",
+            "مُحَاضَرَة"
+          ],
+          "too_formal": {
+            "item": "مُحَاضَرَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "مُحَاضَرَة is a lecture; a class is حِصَّة at school."
         },
         {
@@ -419,8 +1136,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'الْأُسْتَاذُ _____ الْيَوْم.' (The professor is absent today.)",
           "answer": "غَائِبٌ",
-          "accepted": ["غَائِبٌ", "غائب", "ghaa2ibun", "غَائِب"],
-          "too_formal": { "item": "مَا إِجَا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "غَائِبٌ",
+            "غائب",
+            "ghaa2ibun",
+            "غَائِب"
+          ],
+          "too_formal": {
+            "item": "مَا إِجَا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "غَائِب is 'absent'; its opposite is حَاضِر."
         },
         {
@@ -428,8 +1153,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'I have an exam tomorrow.'",
           "answer": "عِنْدِي اِمْتِحَانٌ غَدًا",
-          "accepted": ["عِنْدِي اِمْتِحَانٌ غَدًا", "عندي امتحان غدا", "لَدَيَّ اِمْتِحَانٌ غَدًا", "3indee imti7aanun ghadan"],
-          "too_formal": { "item": "عِنْدِي امْتِحَان بُكْرَا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "عِنْدِي اِمْتِحَانٌ غَدًا",
+            "عندي امتحان غدا",
+            "لَدَيَّ اِمْتِحَانٌ غَدًا",
+            "3indee imti7aanun ghadan"
+          ],
+          "too_formal": {
+            "item": "عِنْدِي امْتِحَان بُكْرَا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "غَدًا is 'tomorrow'."
         },
         {
@@ -437,8 +1170,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'What year are you in?'",
           "answer": "فِي أَيِّ سَنَةٍ أَنْتَ؟",
-          "accepted": ["فِي أَيِّ سَنَةٍ أَنْتَ؟", "في اي سنة انت؟", "فِي أَيِّ سَنَةٍ أَنْتَ", "fee ayyi sanatin anta?"],
-          "too_formal": { "item": "بِأَيّ سَنَة إِنْتَ؟", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "فِي أَيِّ سَنَةٍ أَنْتَ؟",
+            "في اي سنة انت؟",
+            "فِي أَيِّ سَنَةٍ أَنْتَ",
+            "fee ayyi sanatin anta?"
+          ],
+          "too_formal": {
+            "item": "بِأَيّ سَنَة إِنْتَ؟",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَيّ means 'which'; for a woman end with أَنْتِ."
         },
         {
@@ -446,28 +1187,62 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'The university library is open until night.'",
           "answer": "مَكْتَبَةُ الْجَامِعَةِ مَفْتُوحَةٌ حَتَّى اللَّيْل",
-          "accepted": ["مَكْتَبَةُ الْجَامِعَةِ مَفْتُوحَةٌ حَتَّى اللَّيْل", "مكتبة الجامعة مفتوحة حتى الليل", "مَكْتَبَةُ الْجَامِعَةِ مَفْتُوحَةٌ إِلَى اللَّيْل", "maktabatu al-jaami3ati maftoo7atun 7attaa al-layl"],
-          "too_formal": { "item": "مَكْتَبِة الْجَامْعَة مَفْتُوحَة لَلَّيْل", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "مَكْتَبَةُ الْجَامِعَةِ مَفْتُوحَةٌ حَتَّى اللَّيْل",
+            "مكتبة الجامعة مفتوحة حتى الليل",
+            "مَكْتَبَةُ الْجَامِعَةِ مَفْتُوحَةٌ إِلَى اللَّيْل",
+            "maktabatu al-jaami3ati maftoo7atun 7attaa al-layl"
+          ],
+          "too_formal": {
+            "item": "مَكْتَبِة الْجَامْعَة مَفْتُوحَة لَلَّيْل",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "حَتَّى means 'until'."
         },
         {
           "id": "unit-08.lesson-03.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'I have to submit the assignment before Friday'?",
-          "options": ["يَجِبُ أَنْ أُسَلِّمَ الْوَاجِبَ قَبْلَ يَوْمِ الْجُمُعَة", "يَجِبُ أَنْ أَدْرُسَ كَثِيرًا هَذَا الْفَصْل", "أُرِيدُ أَنْ أُسَجِّلَ مَوَادَّ أَكْثَرَ", "لَمْ أَفْهَمِ الْمُحَاضَرَةَ جَيِّدًا"],
+          "options": [
+            "يَجِبُ أَنْ أُسَلِّمَ الْوَاجِبَ قَبْلَ يَوْمِ الْجُمُعَة",
+            "يَجِبُ أَنْ أَدْرُسَ كَثِيرًا هَذَا الْفَصْل",
+            "أُرِيدُ أَنْ أُسَجِّلَ مَوَادَّ أَكْثَرَ",
+            "لَمْ أَفْهَمِ الْمُحَاضَرَةَ جَيِّدًا"
+          ],
           "answer": "يَجِبُ أَنْ أُسَلِّمَ الْوَاجِبَ قَبْلَ يَوْمِ الْجُمُعَة",
-          "accepted": ["يَجِبُ أَنْ أُسَلِّمَ الْوَاجِبَ قَبْلَ يَوْمِ الْجُمُعَة", "يجب ان اسلم الواجب قبل يوم الجمعة", "yajibu an usallima al-waajiba qabla yawmi al-jumu3a", "يَجِبُ أَنْ أُسَلِّمَ الْوَاجِبَ قَبْلَ الْجُمُعَة"],
-          "too_formal": { "item": "لَازِم سَلِّم الْوَاجِب قَبْل الْجُمْعَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "يَجِبُ أَنْ أُسَلِّمَ الْوَاجِبَ قَبْلَ يَوْمِ الْجُمُعَة",
+            "يجب ان اسلم الواجب قبل يوم الجمعة",
+            "yajibu an usallima al-waajiba qabla yawmi al-jumu3a",
+            "يَجِبُ أَنْ أُسَلِّمَ الْوَاجِبَ قَبْلَ الْجُمُعَة"
+          ],
+          "too_formal": {
+            "item": "لَازِم سَلِّم الْوَاجِب قَبْل الْجُمْعَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "الْوَاجِب is homework; قَبْلَ means 'before'."
         },
         {
           "id": "unit-08.lesson-03.choose.02",
           "type": "choose",
           "prompt": "Which sentence means 'The exam result came out good'?",
-          "options": ["ظَهَرَتْ نَتِيجَةُ الِامْتِحَانِ وَهِيَ جَيِّدَة", "عِنْدِي اِمْتِحَانٌ غَدًا", "الْأُسْتَاذُ غَائِبٌ الْيَوْم", "مَا تَخَصُّصُكَ؟"],
+          "options": [
+            "ظَهَرَتْ نَتِيجَةُ الِامْتِحَانِ وَهِيَ جَيِّدَة",
+            "عِنْدِي اِمْتِحَانٌ غَدًا",
+            "الْأُسْتَاذُ غَائِبٌ الْيَوْم",
+            "مَا تَخَصُّصُكَ؟"
+          ],
           "answer": "ظَهَرَتْ نَتِيجَةُ الِامْتِحَانِ وَهِيَ جَيِّدَة",
-          "accepted": ["ظَهَرَتْ نَتِيجَةُ الِامْتِحَانِ وَهِيَ جَيِّدَة", "ظهرت نتيجة الامتحان وهي جيدة", "zaharat nateejatu al-imti7aani wa hiya jayyida", "نَتِيجَةُ الِامْتِحَانِ جَيِّدَة"],
-          "too_formal": { "item": "طَلَعَتْ نَتِيجَةِ الِامْتِحَان مْنِيحَة", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "ظَهَرَتْ نَتِيجَةُ الِامْتِحَانِ وَهِيَ جَيِّدَة",
+            "ظهرت نتيجة الامتحان وهي جيدة",
+            "zaharat nateejatu al-imti7aani wa hiya jayyida",
+            "نَتِيجَةُ الِامْتِحَانِ جَيِّدَة"
+          ],
+          "too_formal": {
+            "item": "طَلَعَتْ نَتِيجَةِ الِامْتِحَان مْنِيحَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "ظَهَرَتْ means 'appeared', so the result was published."
         },
         {
@@ -475,9 +1250,23 @@
           "type": "reorder",
           "prompt": "Put these words in order: 'أُسَجِّلَ / أَنْ / مَوَادَّ أَكْثَرَ / أُرِيدُ / فِي الْفَصْلِ الْقَادِم'.",
           "answer": "أُرِيدُ أَنْ أُسَجِّلَ مَوَادَّ أَكْثَرَ فِي الْفَصْلِ الْقَادِم",
-          "words": ["أُرِيدُ", "أَنْ", "أُسَجِّلَ", "مَوَادَّ أَكْثَرَ", "فِي الْفَصْلِ الْقَادِم"],
-          "accepted": ["أُرِيدُ أَنْ أُسَجِّلَ مَوَادَّ أَكْثَرَ فِي الْفَصْلِ الْقَادِم", "اريد ان اسجل مواد اكثر في الفصل القادم", "ureedu an usajjila mawaadda akthara fee al-fasli al-qaadim", "أُرِيدُ أَنْ أُسَجِّلَ مَوَادَّ أَكْثَرَ الْفَصْلَ الْقَادِم"],
-          "too_formal": { "item": "بَدِّي سَجِّل مَوَاد أَكْثَر بِالْفَصْل الْجَايّ", "feedback": "spoken, not Fusha" },
+          "words": [
+            "أُرِيدُ",
+            "أَنْ",
+            "أُسَجِّلَ",
+            "مَوَادَّ أَكْثَرَ",
+            "فِي الْفَصْلِ الْقَادِم"
+          ],
+          "accepted": [
+            "أُرِيدُ أَنْ أُسَجِّلَ مَوَادَّ أَكْثَرَ فِي الْفَصْلِ الْقَادِم",
+            "اريد ان اسجل مواد اكثر في الفصل القادم",
+            "ureedu an usajjila mawaadda akthara fee al-fasli al-qaadim",
+            "أُرِيدُ أَنْ أُسَجِّلَ مَوَادَّ أَكْثَرَ الْفَصْلَ الْقَادِم"
+          ],
+          "too_formal": {
+            "item": "بَدِّي سَجِّل مَوَاد أَكْثَر بِالْفَصْل الْجَايّ",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أُرِيدُ أَنْ is followed by a verb in the present form."
         }
       ]
@@ -485,49 +1274,199 @@
     {
       "lesson": "lesson-04",
       "phrases": [
-        { "slot": "what-do-you-plan-to-do-after-you-graduate", "arabic": "مَاذَا تَنْوِي أَنْ تَفْعَلَ بَعْدَ التَّخَرُّج؟", "transliteration": "maadhaa tanwee an taf3ala ba3da at-takharruj?", "reply": { "arabic": "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي", "transliteration": "ureedu an ukmila diraasatee", "english": "I want to continue my studies." } },
-        { "slot": "i-want-to-continue-my-studies-for-a-master-s", "arabic": "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي لِلْمَاجِسْتِير", "transliteration": "ureedu an ukmila diraasatee lil-maajisteer" },
-        { "slot": "i-intend-to-start-my-own-project", "arabic": "أَنْوِي أَنْ أَبْدَأَ مَشْرُوعِي الْخَاصّ", "transliteration": "anwee an abda2a mashroo3ee al-khaass" },
-        { "slot": "i-m-thinking-of-traveling-to-work-abroad", "arabic": "أُفَكِّرُ فِي السَّفَرِ لِلْعَمَلِ فِي الْخَارِج", "transliteration": "ufakkiru fee as-safari lil-3amali fee al-khaarij" },
-        { "slot": "in-five-years-where-will-you-be", "arabic": "بَعْدَ خَمْسِ سَنَوَاتٍ، أَيْنَ سَتَكُون؟", "transliteration": "ba3da khamsi sanawaatin, ayna sataakoon?", "reply": { "arabic": "أَتَمَنَّى أَنْ أَكُونَ مُدِيرًا", "transliteration": "atamannaa an akoona mudeeran", "english": "I hope to be a manager." } },
-        { "slot": "i-ll-try-to-enter-a-phd-program", "arabic": "سَأُحَاوِلُ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه", "transliteration": "sa-uhaawilu al-iltihaaqa bi-barnaamaji ad-duktooraah" },
-        { "slot": "my-dream-is-to-open-a-restaurant", "arabic": "حُلْمِي أَنْ أَفْتَحَ مَطْعَمًا", "transliteration": "7ulmee an aftaha mat3aman" },
-        { "slot": "i-haven-t-decided-yet-what-i-ll-do", "arabic": "لَمْ أُقَرِّرْ بَعْدُ مَاذَا سَأَفْعَل", "transliteration": "lam uqarrir ba3du maadhaa sa-af3al" },
-        { "slot": "i-want-to-settle-down-and-get-married-after-i-wo", "arabic": "أُرِيدُ أَنْ أَسْتَقِرَّ وَأَتَزَوَّجَ بَعْدَ أَنْ أَعْمَلَ قَلِيلًا", "transliteration": "ureedu an astaqirra wa atazawwaja ba3da an a3mala qaleelan" },
-        { "slot": "i-ll-apply-for-a-job-at-a-big-company", "arabic": "سَأَتَقَدَّمُ لِوَظِيفَةٍ فِي شَرِكَةٍ كَبِيرَة", "transliteration": "sa-ataqaddamu liwazeefatin fee sharikatin kabeera" },
-        { "slot": "my-ambition-is-to-become-a-manager-one-day", "arabic": "طُمُوحِي أَنْ أُصْبِحَ مُدِيرًا يَوْمًا مَا", "transliteration": "tumoo7ee an usbi7a mudeeran yawman maa" },
-        { "slot": "the-most-important-thing-is-to-be-comfortable-in", "arabic": "الْأَهَمُّ أَنْ أَكُونَ مُرْتَاحًا فِي عَمَلِي", "transliteration": "al-ahammu an akoona murtaa7an fee 3amalee" }
+        {
+          "slot": "what-do-you-plan-to-do-after-you-graduate",
+          "arabic": "مَاذَا تَنْوِي أَنْ تَفْعَلَ بَعْدَ التَّخَرُّج؟",
+          "transliteration": "maadhaa tanwee an taf3ala ba3da at-takharruj?",
+          "reply": {
+            "arabic": "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي",
+            "transliteration": "ureedu an ukmila diraasatee",
+            "english": "I want to continue my studies."
+          }
+        },
+        {
+          "slot": "i-want-to-continue-my-studies-for-a-master-s",
+          "arabic": "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي لِلْمَاجِسْتِير",
+          "transliteration": "ureedu an ukmila diraasatee lil-maajisteer"
+        },
+        {
+          "slot": "i-intend-to-start-my-own-project",
+          "arabic": "أَنْوِي أَنْ أَبْدَأَ مَشْرُوعِي الْخَاصّ",
+          "transliteration": "anwee an abda2a mashroo3ee al-khaass"
+        },
+        {
+          "slot": "i-m-thinking-of-traveling-to-work-abroad",
+          "arabic": "أُفَكِّرُ فِي السَّفَرِ لِلْعَمَلِ فِي الْخَارِج",
+          "transliteration": "ufakkiru fee as-safari lil-3amali fee al-khaarij"
+        },
+        {
+          "slot": "in-five-years-where-will-you-be",
+          "arabic": "بَعْدَ خَمْسِ سَنَوَاتٍ، أَيْنَ سَتَكُون؟",
+          "transliteration": "ba3da khamsi sanawaatin, ayna sataakoon?",
+          "reply": {
+            "arabic": "أَتَمَنَّى أَنْ أَكُونَ مُدِيرًا",
+            "transliteration": "atamannaa an akoona mudeeran",
+            "english": "I hope to be a manager."
+          }
+        },
+        {
+          "slot": "i-ll-try-to-enter-a-phd-program",
+          "arabic": "سَأُحَاوِلُ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه",
+          "transliteration": "sa-uhaawilu al-iltihaaqa bi-barnaamaji ad-duktooraah"
+        },
+        {
+          "slot": "my-dream-is-to-open-a-restaurant",
+          "arabic": "حُلْمِي أَنْ أَفْتَحَ مَطْعَمًا",
+          "transliteration": "7ulmee an aftaha mat3aman"
+        },
+        {
+          "slot": "i-haven-t-decided-yet-what-i-ll-do",
+          "arabic": "لَمْ أُقَرِّرْ بَعْدُ مَاذَا سَأَفْعَل",
+          "transliteration": "lam uqarrir ba3du maadhaa sa-af3al"
+        },
+        {
+          "slot": "i-want-to-settle-down-and-get-married-after-i-wo",
+          "arabic": "أُرِيدُ أَنْ أَسْتَقِرَّ وَأَتَزَوَّجَ بَعْدَ أَنْ أَعْمَلَ قَلِيلًا",
+          "transliteration": "ureedu an astaqirra wa atazawwaja ba3da an a3mala qaleelan"
+        },
+        {
+          "slot": "i-ll-apply-for-a-job-at-a-big-company",
+          "arabic": "سَأَتَقَدَّمُ لِوَظِيفَةٍ فِي شَرِكَةٍ كَبِيرَة",
+          "transliteration": "sa-ataqaddamu liwazeefatin fee sharikatin kabeera"
+        },
+        {
+          "slot": "my-ambition-is-to-become-a-manager-one-day",
+          "arabic": "طُمُوحِي أَنْ أُصْبِحَ مُدِيرًا يَوْمًا مَا",
+          "transliteration": "tumoo7ee an usbi7a mudeeran yawman maa"
+        },
+        {
+          "slot": "the-most-important-thing-is-to-be-comfortable-in",
+          "arabic": "الْأَهَمُّ أَنْ أَكُونَ مُرْتَاحًا فِي عَمَلِي",
+          "transliteration": "al-ahammu an akoona murtaa7an fee 3amalee"
+        }
       ],
       "dialogue": [
-        { "speaker": "Hassan", "arabic": "مَاذَا تَنْوِينَ أَنْ تَفْعَلِي بَعْدَ التَّخَرُّج؟", "transliteration": "maadhaa tanweena an taf3alee ba3da at-takharruj?", "english": "What do you plan to do after you graduate?" },
-        { "speaker": "Noura", "arabic": "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي لِلْمَاجِسْتِير.", "transliteration": "ureedu an ukmila diraasatee lil-maajisteer.", "english": "I want to continue my studies for a master's." },
-        { "speaker": "Hassan", "arabic": "رَائِع. وَهَلْ سَتُحَاوِلِينَ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه؟", "transliteration": "raa2i3. wa hal sa-tuhaawileena al-iltihaaqa bi-barnaamaji ad-duktooraah?", "english": "Wonderful. And will you try to enter a PhD program?" },
-        { "speaker": "Noura", "arabic": "سَأُحَاوِلُ ذَلِكَ. وَأَنْتَ، مَاذَا سَتَفْعَل؟", "transliteration": "sa-uhaawilu dhaalik. wa anta, maadhaa sa-taf3al?", "english": "I'll try that. And you, what will you do?" },
-        { "speaker": "Hassan", "arabic": "لَمْ أُقَرِّرْ بَعْدُ. أُفَكِّرُ فِي السَّفَرِ لِلْعَمَلِ فِي الْخَارِج.", "transliteration": "lam uqarrir ba3du. ufakkiru fee as-safari lil-3amali fee al-khaarij.", "english": "I haven't decided yet. I'm thinking of traveling to work abroad." },
-        { "speaker": "Noura", "arabic": "بَعْدَ خَمْسِ سَنَوَاتٍ، أَيْنَ سَتَكُون؟", "transliteration": "ba3da khamsi sanawaatin, ayna sataakoon?", "english": "In five years, where will you be?" },
-        { "speaker": "Hassan", "arabic": "طُمُوحِي أَنْ أُصْبِحَ مُدِيرًا يَوْمًا مَا.", "transliteration": "tumoo7ee an usbi7a mudeeran yawman maa.", "english": "My ambition is to become a manager one day." },
-        { "speaker": "Noura", "arabic": "حُلْمِي أَنْ أَفْتَحَ مَطْعَمًا.", "transliteration": "7ulmee an aftaha mat3aman.", "english": "My dream is to open a restaurant." },
-        { "speaker": "Hassan", "arabic": "سَأَتَقَدَّمُ لِوَظِيفَةٍ فِي شَرِكَةٍ كَبِيرَة، وَبَعْدَهَا أَبْدَأُ مَشْرُوعِي الْخَاصّ.", "transliteration": "sa-ataqaddamu liwazeefatin fee sharikatin kabeera, wa ba3dahaa abda2u mashroo3ee al-khaass.", "english": "I'll apply for a job at a big company, and after that I'll start my own project." },
-        { "speaker": "Noura", "arabic": "الْأَهَمُّ أَنْ أَكُونَ مُرْتَاحَةً فِي عَمَلِي.", "transliteration": "al-ahammu an akoona murtaa7atan fee 3amalee.", "english": "The most important thing is to be comfortable in my job." },
-        { "speaker": "Hassan", "arabic": "وَأَنَا أُرِيدُ أَنْ أَسْتَقِرَّ وَأَتَزَوَّجَ بَعْدَ أَنْ أَعْمَلَ قَلِيلًا.", "transliteration": "wa anaa ureedu an astaqirra wa atazawwaja ba3da an a3mala qaleelan.", "english": "And I want to settle down and get married after I work a bit." },
-        { "speaker": "Noura", "arabic": "بِالتَّوْفِيقِ لَنَا!", "transliteration": "bit-tawfeeqi lanaa!", "english": "Good luck to us!" }
+        {
+          "speaker": "Hassan",
+          "arabic": "مَاذَا تَنْوِينَ أَنْ تَفْعَلِي بَعْدَ التَّخَرُّج؟",
+          "transliteration": "maadhaa tanweena an taf3alee ba3da at-takharruj?",
+          "english": "What do you plan to do after you graduate?"
+        },
+        {
+          "speaker": "Noura",
+          "arabic": "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي لِلْمَاجِسْتِير.",
+          "transliteration": "ureedu an ukmila diraasatee lil-maajisteer.",
+          "english": "I want to continue my studies for a master's."
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "رَائِع. وَهَلْ سَتُحَاوِلِينَ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه؟",
+          "transliteration": "raa2i3. wa hal sa-tuhaawileena al-iltihaaqa bi-barnaamaji ad-duktooraah?",
+          "english": "Wonderful. And will you try to enter a PhD program?"
+        },
+        {
+          "speaker": "Noura",
+          "arabic": "سَأُحَاوِلُ ذَلِكَ. وَأَنْتَ، مَاذَا سَتَفْعَل؟",
+          "transliteration": "sa-uhaawilu dhaalik. wa anta, maadhaa sa-taf3al?",
+          "english": "I'll try that. And you, what will you do?"
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "لَمْ أُقَرِّرْ بَعْدُ. أُفَكِّرُ فِي السَّفَرِ لِلْعَمَلِ فِي الْخَارِج.",
+          "transliteration": "lam uqarrir ba3du. ufakkiru fee as-safari lil-3amali fee al-khaarij.",
+          "english": "I haven't decided yet. I'm thinking of traveling to work abroad."
+        },
+        {
+          "speaker": "Noura",
+          "arabic": "بَعْدَ خَمْسِ سَنَوَاتٍ، أَيْنَ سَتَكُون؟",
+          "transliteration": "ba3da khamsi sanawaatin, ayna sataakoon?",
+          "english": "In five years, where will you be?"
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "طُمُوحِي أَنْ أُصْبِحَ مُدِيرًا يَوْمًا مَا.",
+          "transliteration": "tumoo7ee an usbi7a mudeeran yawman maa.",
+          "english": "My ambition is to become a manager one day."
+        },
+        {
+          "speaker": "Noura",
+          "arabic": "حُلْمِي أَنْ أَفْتَحَ مَطْعَمًا.",
+          "transliteration": "7ulmee an aftaha mat3aman.",
+          "english": "My dream is to open a restaurant."
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "سَأَتَقَدَّمُ لِوَظِيفَةٍ فِي شَرِكَةٍ كَبِيرَة، وَبَعْدَهَا أَبْدَأُ مَشْرُوعِي الْخَاصّ.",
+          "transliteration": "sa-ataqaddamu liwazeefatin fee sharikatin kabeera, wa ba3dahaa abda2u mashroo3ee al-khaass.",
+          "english": "I'll apply for a job at a big company, and after that I'll start my own project."
+        },
+        {
+          "speaker": "Noura",
+          "arabic": "الْأَهَمُّ أَنْ أَكُونَ مُرْتَاحَةً فِي عَمَلِي.",
+          "transliteration": "al-ahammu an akoona murtaa7atan fee 3amalee.",
+          "english": "The most important thing is to be comfortable in my job."
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "وَأَنَا أُرِيدُ أَنْ أَسْتَقِرَّ وَأَتَزَوَّجَ بَعْدَ أَنْ أَعْمَلَ قَلِيلًا.",
+          "transliteration": "wa anaa ureedu an astaqirra wa atazawwaja ba3da an a3mala qaleelan.",
+          "english": "And I want to settle down and get married after I work a bit."
+        },
+        {
+          "speaker": "Noura",
+          "arabic": "بِالتَّوْفِيقِ لَنَا!",
+          "transliteration": "bit-tawfeeqi lanaa!",
+          "english": "Good luck to us!"
+        }
       ],
       "de_book": [
         {
-          "pair": { "arabic": "مَاذَا تَنْوِي أَنْ تَفْعَلَ بَعْدَ التَّخَرُّج؟", "transliteration": "maadhaa tanwee an taf3ala ba3da at-takharruj?", "english": "What do you plan to do after you graduate?" },
-          "response": { "arabic": "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي.", "transliteration": "ureedu an ukmila diraasatee.", "english": "I want to continue my studies." }
+          "pair": {
+            "arabic": "مَاذَا تَنْوِي أَنْ تَفْعَلَ بَعْدَ التَّخَرُّج؟",
+            "transliteration": "maadhaa tanwee an taf3ala ba3da at-takharruj?",
+            "english": "What do you plan to do after you graduate?"
+          },
+          "response": {
+            "arabic": "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي.",
+            "transliteration": "ureedu an ukmila diraasatee.",
+            "english": "I want to continue my studies."
+          }
         },
         {
-          "pair": { "arabic": "بَعْدَ خَمْسِ سَنَوَاتٍ، أَيْنَ سَتَكُون؟", "transliteration": "ba3da khamsi sanawaatin, ayna sataakoon?", "english": "In five years, where will you be?" },
-          "response": { "arabic": "أَتَمَنَّى أَنْ أَكُونَ مُدِيرًا.", "transliteration": "atamannaa an akoona mudeeran.", "english": "I hope to be a manager." }
+          "pair": {
+            "arabic": "بَعْدَ خَمْسِ سَنَوَاتٍ، أَيْنَ سَتَكُون؟",
+            "transliteration": "ba3da khamsi sanawaatin, ayna sataakoon?",
+            "english": "In five years, where will you be?"
+          },
+          "response": {
+            "arabic": "أَتَمَنَّى أَنْ أَكُونَ مُدِيرًا.",
+            "transliteration": "atamannaa an akoona mudeeran.",
+            "english": "I hope to be a manager."
+          }
         },
         {
-          "pair": { "arabic": "هَلْ قَرَّرْتَ مَاذَا سَتَفْعَل؟", "transliteration": "hal qarrarta maadhaa sataf3al?", "english": "Have you decided what you'll do?" },
-          "response": { "arabic": "لَا، لَمْ أُقَرِّرْ بَعْد.", "transliteration": "laa, lam uqarrir ba3d.", "english": "No, I haven't decided yet." }
+          "pair": {
+            "arabic": "هَلْ قَرَّرْتَ مَاذَا سَتَفْعَل؟",
+            "transliteration": "hal qarrarta maadhaa sataf3al?",
+            "english": "Have you decided what you'll do?"
+          },
+          "response": {
+            "arabic": "لَا، لَمْ أُقَرِّرْ بَعْد.",
+            "transliteration": "laa, lam uqarrir ba3d.",
+            "english": "No, I haven't decided yet."
+          }
         },
         {
-          "pair": { "arabic": "مَا حُلْمُكَ؟", "transliteration": "maa 7ulmuka?", "english": "What is your dream?" },
-          "response": { "arabic": "حُلْمِي أَنْ أَفْتَحَ مَطْعَمًا.", "transliteration": "7ulmee an aftaha mat3aman.", "english": "My dream is to open a restaurant." }
+          "pair": {
+            "arabic": "مَا حُلْمُكَ؟",
+            "transliteration": "maa 7ulmuka?",
+            "english": "What is your dream?"
+          },
+          "response": {
+            "arabic": "حُلْمِي أَنْ أَفْتَحَ مَطْعَمًا.",
+            "transliteration": "7ulmee an aftaha mat3aman.",
+            "english": "My dream is to open a restaurant."
+          }
         }
       ],
       "culture": "Talking about plans in Fusha often uses أُرِيدُ أَنْ, أَنْوِي أَنْ or سَ before a verb, and people add إِنْ شَاءَ اللَّه when speaking about the future. Plans about study, work and marriage are shared easily with friends and family.",
@@ -537,8 +1476,16 @@
           "type": "reply",
           "prompt": "A friend asks: 'مَاذَا تَنْوِي أَنْ تَفْعَلَ بَعْدَ التَّخَرُّج؟'. Say you want to continue your studies for a master's.",
           "answer": "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي لِلْمَاجِسْتِير",
-          "accepted": ["أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي لِلْمَاجِسْتِير", "اريد ان اكمل دراستي للماجستير", "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي", "ureedu an ukmila diraasatee lil-maajisteer"],
-          "too_formal": { "item": "بَدِّي كَمِّل دِرَاسْتِي مَاجِسْتِير", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي لِلْمَاجِسْتِير",
+            "اريد ان اكمل دراستي للماجستير",
+            "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي",
+            "ureedu an ukmila diraasatee lil-maajisteer"
+          ],
+          "too_formal": {
+            "item": "بَدِّي كَمِّل دِرَاسْتِي مَاجِسْتِير",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "After أُرِيدُ أَنْ the verb ends with the vowel a: أُكْمِلَ."
         },
         {
@@ -546,8 +1493,16 @@
           "type": "reply",
           "prompt": "Someone asks: 'بَعْدَ خَمْسِ سَنَوَاتٍ، أَيْنَ سَتَكُون؟'. Say you hope to be a manager.",
           "answer": "أَتَمَنَّى أَنْ أَكُونَ مُدِيرًا",
-          "accepted": ["أَتَمَنَّى أَنْ أَكُونَ مُدِيرًا", "اتمنى ان اكون مديرا", "سَأَكُونُ مُدِيرًا", "atamannaa an akoona mudeeran"],
-          "too_formal": { "item": "إِنْ شَاءَ اللَّه بَكُون مُدِير", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَتَمَنَّى أَنْ أَكُونَ مُدِيرًا",
+            "اتمنى ان اكون مديرا",
+            "سَأَكُونُ مُدِيرًا",
+            "atamannaa an akoona mudeeran"
+          ],
+          "too_formal": {
+            "item": "إِنْ شَاءَ اللَّه بَكُون مُدِير",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَتَمَنَّى means 'I hope' or 'I wish'."
         },
         {
@@ -555,8 +1510,16 @@
           "type": "reply",
           "prompt": "A friend asks: 'هَلْ قَرَّرْتَ مَاذَا سَتَفْعَل؟'. Say not yet.",
           "answer": "لَا، لَمْ أُقَرِّرْ بَعْد",
-          "accepted": ["لَا، لَمْ أُقَرِّرْ بَعْد", "لا، لم اقرر بعد", "لَمْ أُقَرِّرْ بَعْد", "laa, lam uqarrir ba3d"],
-          "too_formal": { "item": "لَا، لِسَّا مَا قَرَّرْت", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "لَا، لَمْ أُقَرِّرْ بَعْد",
+            "لا، لم اقرر بعد",
+            "لَمْ أُقَرِّرْ بَعْد",
+            "laa, lam uqarrir ba3d"
+          ],
+          "too_formal": {
+            "item": "لَا، لِسَّا مَا قَرَّرْت",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "لَمْ with the present form means 'did not'; بَعْد adds 'yet'."
         },
         {
@@ -564,8 +1527,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'حُلْمِي أَنْ _____ مَطْعَمًا.' (My dream is to open a restaurant.)",
           "answer": "أَفْتَحَ",
-          "accepted": ["أَفْتَحَ", "افتح", "aftaha", "أَفْتَحُ"],
-          "too_formal": { "item": "فَتَح", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَفْتَحَ",
+            "افتح",
+            "aftaha",
+            "أَفْتَحُ"
+          ],
+          "too_formal": {
+            "item": "فَتَح",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "فَتَحَ is 'to open'; after أَنْ it becomes أَفْتَحَ."
         },
         {
@@ -573,8 +1544,16 @@
           "type": "fill_blank",
           "prompt": "Complete: 'بَعْدَ خَمْسِ _____، أَيْنَ سَتَكُون؟' (In five years, where will you be?)",
           "answer": "سَنَوَاتٍ",
-          "accepted": ["سَنَوَاتٍ", "سنوات", "sanawaatin", "سَنَوَات"],
-          "too_formal": { "item": "سِنِين", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "سَنَوَاتٍ",
+            "سنوات",
+            "sanawaatin",
+            "سَنَوَات"
+          ],
+          "too_formal": {
+            "item": "سِنِين",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "Three to ten takes the plural: خَمْسُ سَنَوَات."
         },
         {
@@ -582,8 +1561,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate into Fusha: 'My ambition is to become a manager one day.'",
           "answer": "طُمُوحِي أَنْ أُصْبِحَ مُدِيرًا يَوْمًا مَا",
-          "accepted": ["طُمُوحِي أَنْ أُصْبِحَ مُدِيرًا يَوْمًا مَا", "طموحي ان اصبح مديرا يوما ما", "طُمُوحِي أَنْ أَصِيرَ مُدِيرًا يَوْمًا مَا", "tumoo7ee an usbi7a mudeeran yawman maa"],
-          "too_formal": { "item": "طُمُوحِي صِير مُدِير يَوْم مِنَ الْأَيَّام", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "طُمُوحِي أَنْ أُصْبِحَ مُدِيرًا يَوْمًا مَا",
+            "طموحي ان اصبح مديرا يوما ما",
+            "طُمُوحِي أَنْ أَصِيرَ مُدِيرًا يَوْمًا مَا",
+            "tumoo7ee an usbi7a mudeeran yawman maa"
+          ],
+          "too_formal": {
+            "item": "طُمُوحِي صِير مُدِير يَوْم مِنَ الْأَيَّام",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "أَصْبَحَ means 'to become' and takes the ending ـًا after it."
         },
         {
@@ -591,8 +1578,16 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'I'm thinking of traveling to work abroad.'",
           "answer": "أُفَكِّرُ فِي السَّفَرِ لِلْعَمَلِ فِي الْخَارِج",
-          "accepted": ["أُفَكِّرُ فِي السَّفَرِ لِلْعَمَلِ فِي الْخَارِج", "افكر في السفر للعمل في الخارج", "أُفَكِّرُ فِي السَّفَرِ لِلْعَمَلِ خَارِجَ الْبَلَد", "ufakkiru fee as-safari lil-3amali fee al-khaarij"],
-          "too_formal": { "item": "عَم فَكِّر سَافِر أَشْتَغِل بَرَّا", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أُفَكِّرُ فِي السَّفَرِ لِلْعَمَلِ فِي الْخَارِج",
+            "افكر في السفر للعمل في الخارج",
+            "أُفَكِّرُ فِي السَّفَرِ لِلْعَمَلِ خَارِجَ الْبَلَد",
+            "ufakkiru fee as-safari lil-3amali fee al-khaarij"
+          ],
+          "too_formal": {
+            "item": "عَم فَكِّر سَافِر أَشْتَغِل بَرَّا",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "فَكَّرَ فِي means 'to think about'."
         },
         {
@@ -600,28 +1595,62 @@
           "type": "translate_to_arabic",
           "prompt": "Translate: 'The most important thing is to be comfortable in my job.'",
           "answer": "الْأَهَمُّ أَنْ أَكُونَ مُرْتَاحًا فِي عَمَلِي",
-          "accepted": ["الْأَهَمُّ أَنْ أَكُونَ مُرْتَاحًا فِي عَمَلِي", "الاهم ان اكون مرتاحا في عملي", "الْأَهَمُّ أَنْ أَكُونَ مُرْتَاحًا فِي الْعَمَل", "al-ahammu an akoona murtaa7an fee 3amalee"],
-          "too_formal": { "item": "الْمُهِمّ كُون مْرْتَاح بِشُغْلِي", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "الْأَهَمُّ أَنْ أَكُونَ مُرْتَاحًا فِي عَمَلِي",
+            "الاهم ان اكون مرتاحا في عملي",
+            "الْأَهَمُّ أَنْ أَكُونَ مُرْتَاحًا فِي الْعَمَل",
+            "al-ahammu an akoona murtaa7an fee 3amalee"
+          ],
+          "too_formal": {
+            "item": "الْمُهِمّ كُون مْرْتَاح بِشُغْلِي",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "الْأَهَمّ means 'the most important'."
         },
         {
           "id": "unit-08.lesson-04.choose.01",
           "type": "choose",
           "prompt": "Which sentence means 'I intend to start my own project'?",
-          "options": ["أَنْوِي أَنْ أَبْدَأَ مَشْرُوعِي الْخَاصّ", "سَأُحَاوِلُ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه", "حُلْمِي أَنْ أَفْتَحَ مَطْعَمًا", "لَمْ أُقَرِّرْ بَعْدُ مَاذَا سَأَفْعَل"],
+          "options": [
+            "أَنْوِي أَنْ أَبْدَأَ مَشْرُوعِي الْخَاصّ",
+            "سَأُحَاوِلُ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه",
+            "حُلْمِي أَنْ أَفْتَحَ مَطْعَمًا",
+            "لَمْ أُقَرِّرْ بَعْدُ مَاذَا سَأَفْعَل"
+          ],
           "answer": "أَنْوِي أَنْ أَبْدَأَ مَشْرُوعِي الْخَاصّ",
-          "accepted": ["أَنْوِي أَنْ أَبْدَأَ مَشْرُوعِي الْخَاصّ", "انوي ان ابدأ مشروعي الخاص", "anwee an abda2a mashroo3ee al-khaass", "أَنْوِي أَنْ أَبْدَأَ مَشْرُوعًا خَاصًّا"],
-          "too_formal": { "item": "نَاوِي أَبْدَأ مَشْرُوعِي", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "أَنْوِي أَنْ أَبْدَأَ مَشْرُوعِي الْخَاصّ",
+            "انوي ان ابدأ مشروعي الخاص",
+            "anwee an abda2a mashroo3ee al-khaass",
+            "أَنْوِي أَنْ أَبْدَأَ مَشْرُوعًا خَاصًّا"
+          ],
+          "too_formal": {
+            "item": "نَاوِي أَبْدَأ مَشْرُوعِي",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "نَوَى means 'to intend'; مَشْرُوع is 'project'."
         },
         {
           "id": "unit-08.lesson-04.choose.02",
           "type": "choose",
           "prompt": "Which sentence means 'I'll try to enter a PhD program'?",
-          "options": ["سَأُحَاوِلُ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه", "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي لِلْمَاجِسْتِير", "سَأَتَقَدَّمُ لِوَظِيفَةٍ فِي شَرِكَةٍ كَبِيرَة", "الْأَهَمُّ أَنْ أَكُونَ مُرْتَاحًا فِي عَمَلِي"],
+          "options": [
+            "سَأُحَاوِلُ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه",
+            "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي لِلْمَاجِسْتِير",
+            "سَأَتَقَدَّمُ لِوَظِيفَةٍ فِي شَرِكَةٍ كَبِيرَة",
+            "الْأَهَمُّ أَنْ أَكُونَ مُرْتَاحًا فِي عَمَلِي"
+          ],
           "answer": "سَأُحَاوِلُ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه",
-          "accepted": ["سَأُحَاوِلُ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه", "سأحاول الالتحاق ببرنامج الدكتوراه", "sa-uhaawilu al-iltihaaqa bi-barnaamaji ad-duktooraah", "سَأُحَاوِلُ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه"],
-          "too_formal": { "item": "رَحْ جَرِّب إِدْخُل دُكْتُورَاه", "feedback": "spoken, not Fusha" },
+          "accepted": [
+            "سَأُحَاوِلُ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه",
+            "سأحاول الالتحاق ببرنامج الدكتوراه",
+            "sa-uhaawilu al-iltihaaqa bi-barnaamaji ad-duktooraah",
+            "سَأُحَاوِلُ الِالْتِحَاقَ بِبَرْنَامَجِ الدُّكْتُورَاه"
+          ],
+          "too_formal": {
+            "item": "رَحْ جَرِّب إِدْخُل دُكْتُورَاه",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "حَاوَلَ means 'to try'; الِالْتِحَاق is 'joining'."
         },
         {
@@ -629,10 +1658,792 @@
           "type": "reorder",
           "prompt": "Put these words in order: 'كَبِيرَة / سَأَتَقَدَّمُ / شَرِكَةٍ / لِوَظِيفَةٍ / فِي'.",
           "answer": "سَأَتَقَدَّمُ لِوَظِيفَةٍ فِي شَرِكَةٍ كَبِيرَة",
-          "words": ["سَأَتَقَدَّمُ", "لِوَظِيفَةٍ", "فِي", "شَرِكَةٍ", "كَبِيرَة"],
-          "accepted": ["سَأَتَقَدَّمُ لِوَظِيفَةٍ فِي شَرِكَةٍ كَبِيرَة", "سأتقدم لوظيفة في شركة كبيرة", "sa-ataqaddamu liwazeefatin fee sharikatin kabeera", "سَأَتَقَدَّمُ لِوَظِيفَةٍ فِي شَرِكَةٍ كُبْرَى"],
-          "too_formal": { "item": "رَحْ قَدِّم عَ وَظِيفَة بِشَرِكَة كْبِيرَة", "feedback": "spoken, not Fusha" },
+          "words": [
+            "سَأَتَقَدَّمُ",
+            "لِوَظِيفَةٍ",
+            "فِي",
+            "شَرِكَةٍ",
+            "كَبِيرَة"
+          ],
+          "accepted": [
+            "سَأَتَقَدَّمُ لِوَظِيفَةٍ فِي شَرِكَةٍ كَبِيرَة",
+            "سأتقدم لوظيفة في شركة كبيرة",
+            "sa-ataqaddamu liwazeefatin fee sharikatin kabeera",
+            "سَأَتَقَدَّمُ لِوَظِيفَةٍ فِي شَرِكَةٍ كُبْرَى"
+          ],
+          "too_formal": {
+            "item": "رَحْ قَدِّم عَ وَظِيفَة بِشَرِكَة كْبِيرَة",
+            "feedback": "spoken, not Fusha"
+          },
           "tip": "The describing word كَبِيرَة comes after the noun it describes."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "which-grade-are-you-in-to-a-boy",
+          "arabic": "فِي أَيِّ صَفٍّ أَنْتَ؟",
+          "transliteration": "fee ayyi saffin anta?",
+          "reply": {
+            "arabic": "أَنَا فِي الصَّفِّ الْخَامِس",
+            "transliteration": "anaa fee as-saffi al-khaamis",
+            "english": "I'm in the fifth grade."
+          }
+        },
+        {
+          "slot": "where-is-my-school-bag",
+          "arabic": "أَيْنَ حَقِيبَتِي الْمَدْرَسِيَّة؟",
+          "transliteration": "ayna 7aqeebatee al-madrasiyya?"
+        },
+        {
+          "slot": "the-teacher-is-in-the-classroom",
+          "arabic": "الْمُعَلِّمُ فِي الْفَصْل",
+          "transliteration": "al-mu3allimu fee al-fasl"
+        },
+        {
+          "slot": "open-your-book-to-page-ten-to-a-boy",
+          "arabic": "اِفْتَحْ كِتَابَكَ عَلَى الصَّفْحَةِ الْعَاشِرَة",
+          "transliteration": "iftah kitaabaka 3alaa as-saf7ati al-3aashira"
+        },
+        {
+          "slot": "write-the-lesson-on-the-board-to-a-boy",
+          "arabic": "اُكْتُبِ الدَّرْسَ عَلَى السَّبُّورَة",
+          "transliteration": "uktubi ad-darsa 3alaa as-sabboora"
+        },
+        {
+          "slot": "did-you-do-your-homework-to-a-boy",
+          "arabic": "هَلْ أَنْجَزْتَ وَاجِبَكَ؟",
+          "transliteration": "hal anjazta waajibaka?",
+          "reply": {
+            "arabic": "نَعَمْ، أَنْجَزْتُهُ أَمْسِ",
+            "transliteration": "na3am, anjaztuhu amsi",
+            "english": "Yes, I did it yesterday."
+          }
+        },
+        {
+          "slot": "i-forgot-my-pen",
+          "arabic": "نَسِيتُ قَلَمِي",
+          "transliteration": "naseetu qalamee"
+        },
+        {
+          "slot": "the-break-is-at-ten-o-clock",
+          "arabic": "الِاسْتِرَاحَةُ عِنْدَ السَّاعَةِ الْعَاشِرَة",
+          "transliteration": "al-istiraa7atu 3inda as-saa3ati al-3aashira"
+        },
+        {
+          "slot": "may-i-go-to-the-bathroom-to-a-teacher",
+          "arabic": "هَلْ يُمْكِنُنِي الذَّهَابُ إِلَى دَوْرَةِ الْمِيَاه؟",
+          "transliteration": "hal yumkinunee adh-dhahaabu ilaa dawrati al-miyaah?",
+          "reply": {
+            "arabic": "نَعَمْ، تَفَضَّلْ",
+            "transliteration": "na3am, tafaddal",
+            "english": "Yes, go ahead."
+          }
+        },
+        {
+          "slot": "when-does-the-school-day-end",
+          "arabic": "مَتَى يَنْتَهِي الْيَوْمُ الدِّرَاسِيّ؟",
+          "transliteration": "mataa yantahee al-yawmu ad-diraasiyy?",
+          "reply": {
+            "arabic": "عِنْدَ السَّاعَةِ الثَّانِيَة",
+            "transliteration": "3inda as-saa3ati ath-thaaniya",
+            "english": "At two o'clock."
+          }
+        },
+        {
+          "slot": "don-t-forget-the-school-uniform-to-a-boy",
+          "arabic": "لَا تَنْسَ الزِّيَّ الْمَدْرَسِيّ",
+          "transliteration": "laa tansa az-ziyya al-madrasiyy"
+        },
+        {
+          "slot": "my-son-is-a-diligent-student",
+          "arabic": "اِبْنِي طَالِبٌ مُجْتَهِد",
+          "transliteration": "ibnee taalibun mujtahid"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huda",
+          "arabic": "السَّلَامُ عَلَيْكُمْ يَا أُسْتَاذ سَالِم. كَيْفَ حَالُ ابْنِي فِي الْمَدْرَسَة؟",
+          "transliteration": "as-salaamu 3alaykum yaa ustaadh Saalim. kayfa 7aalu ibnee fee al-madrasa?",
+          "english": "Peace be upon you, Mr. Salim. How is my son doing at school?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "وَعَلَيْكُمُ السَّلَامُ وَرَحْمَةُ اللَّه. ابْنُكِ طَالِبٌ مُجْتَهِد.",
+          "transliteration": "wa 3alaykumu as-salaamu wa ra7matu allaah. ibnuki taalibun mujtahid.",
+          "english": "And peace and Allah's mercy be upon you. Your son is a diligent student."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "هَلْ يُنْجِزُ وَاجِبَهُ كُلَّ يَوْمٍ؟",
+          "transliteration": "hal yunjizu waajibahu kulla yawmin?",
+          "english": "Does he do his homework every day?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "نَعَمْ، وَلَكِنَّهُ يَنْسَى قَلَمَهُ أَحْيَانًا.",
+          "transliteration": "na3am, wa lakinnahu yansaa qalamahu a7yaanan.",
+          "english": "Yes, but he sometimes forgets his pen."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "سَأُذَكِّرُهُ كُلَّ صَبَاح. وَمَتَى يَنْتَهِي الْيَوْمُ الدِّرَاسِيّ؟",
+          "transliteration": "sa-udhakkiruhu kulla sabaa7. wa mataa yantahee al-yawmu ad-diraasiyy?",
+          "english": "I'll remind him every morning. And when does the school day end?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "الِاسْتِرَاحَةُ عِنْدَ السَّاعَةِ الْعَاشِرَة، وَيَنْتَهِي الْيَوْمُ عِنْدَ الثَّانِيَة.",
+          "transliteration": "al-istiraa7atu 3inda as-saa3ati al-3aashira, wa yantahee al-yawmu 3inda ath-thaaniya.",
+          "english": "The break is at ten o'clock, and the day ends at two."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "وَهَلْ يَلْبَسُ الزِّيَّ الْمَدْرَسِيَّ كُلَّ يَوْمٍ؟",
+          "transliteration": "wa hal yalbasu az-ziyya al-madrasiyya kulla yawmin?",
+          "english": "And does he wear the school uniform every day?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "نَعَمْ، الزِّيُّ الْمَدْرَسِيُّ مَطْلُوبٌ مِنْ جَمِيعِ الطُّلَّاب.",
+          "transliteration": "na3am, az-ziyyu al-madrasiyyu matloobun min jamee3i at-tullaab.",
+          "english": "Yes, the school uniform is required of all students."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "هَلْ يُمْكِنُنِي أَنْ أَرَى الْفَصْل؟",
+          "transliteration": "hal yumkinunee an araa al-fasl?",
+          "english": "May I see the classroom?"
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "تَفَضَّلِي، الْفَصْلُ فِي آخِرِ الْمَمَرّ.",
+          "transliteration": "tafaddalee, al-faslu fee aakhiri al-mamarr.",
+          "english": "Go ahead, the classroom is at the end of the hallway."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "شُكْرًا جَزِيلًا يَا أُسْتَاذ.",
+          "transliteration": "shukran jazeelan yaa ustaadh.",
+          "english": "Thank you very much, sir."
+        },
+        {
+          "speaker": "Salim",
+          "arabic": "أَهْلًا بِكِ فِي أَيِّ وَقْت.",
+          "transliteration": "ahlan biki fee ayyi waqt.",
+          "english": "You're welcome any time."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فِي أَيِّ صَفٍّ أَنْتَ؟",
+            "transliteration": "fee ayyi saffin anta?",
+            "english": "Which grade are you in?"
+          },
+          "response": {
+            "arabic": "أَنَا فِي الصَّفِّ الْخَامِس.",
+            "transliteration": "anaa fee as-saffi al-khaamis.",
+            "english": "I'm in the fifth grade."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ أَنْجَزْتَ وَاجِبَكَ؟",
+            "transliteration": "hal anjazta waajibaka?",
+            "english": "Did you do your homework?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، أَنْجَزْتُهُ أَمْسِ.",
+            "transliteration": "na3am, anjaztuhu amsi.",
+            "english": "Yes, I did it yesterday."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ يُمْكِنُنِي الذَّهَابُ إِلَى دَوْرَةِ الْمِيَاه؟",
+            "transliteration": "hal yumkinunee adh-dhahaabu ilaa dawrati al-miyaah?",
+            "english": "May I go to the bathroom?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، تَفَضَّلْ.",
+            "transliteration": "na3am, tafaddal.",
+            "english": "Yes, go ahead."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى يَنْتَهِي الْيَوْمُ الدِّرَاسِيّ؟",
+            "transliteration": "mataa yantahee al-yawmu ad-diraasiyy?",
+            "english": "When does the school day end?"
+          },
+          "response": {
+            "arabic": "عِنْدَ السَّاعَةِ الثَّانِيَة.",
+            "transliteration": "3inda as-saa3ati ath-thaaniya.",
+            "english": "At two o'clock."
+          }
+        }
+      ],
+      "culture": "In many Arab countries students wear a school uniform, and the school week often runs from Sunday to Thursday. Students call a male teacher يَا أُسْتَاذ and a female teacher يَا أُسْتَاذَة, a sign of the respect teachers receive. Parents are welcome to meet the teacher and hear how their child is doing.",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A teacher asks: 'فِي أَيِّ صَفٍّ أَنْتَ؟'. Say you are in the fifth grade.",
+          "answer": "أَنَا فِي الصَّفِّ الْخَامِس",
+          "accepted": [
+            "أَنَا فِي الصَّفِّ الْخَامِس",
+            "انا في الصف الخامس",
+            "فِي الصَّفِّ الْخَامِس",
+            "anaa fee as-saffi al-khaamis."
+          ],
+          "too_formal": {
+            "item": "أَنَا بِالصَّفّ الْخَامِس",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The number follows the noun and matches it: الصَّفّ is masculine, so الْخَامِس."
+        },
+        {
+          "id": "unit-08.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "Your teacher asks: 'هَلْ أَنْجَزْتَ وَاجِبَكَ؟'. Say yes, you did it yesterday.",
+          "answer": "نَعَمْ، أَنْجَزْتُهُ أَمْسِ",
+          "accepted": [
+            "نَعَمْ، أَنْجَزْتُهُ أَمْسِ",
+            "نعم, انجزته امس",
+            "نَعَمْ، أَنْجَزْتُ وَاجِبِي أَمْسِ",
+            "na3am, anjaztuhu amsi."
+          ],
+          "too_formal": {
+            "item": "أَيْوَه، خَلَّصْتُه مْبَارِح",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The ending ـتُ means 'I' and ـهُ means 'it'."
+        },
+        {
+          "id": "unit-08.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'اُكْتُبِ الدَّرْسَ عَلَى _____.' (Write the lesson on the board.)",
+          "answer": "السَّبُّورَة",
+          "accepted": [
+            "السَّبُّورَة",
+            "السبورة",
+            "السَّبُّورَةِ",
+            "as-sabboora"
+          ],
+          "tip": "السَّبُّورَة is the classroom board; after عَلَى it ends with the vowel i."
+        },
+        {
+          "id": "unit-08.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'الِاسْتِرَاحَةُ عِنْدَ السَّاعَةِ _____.' (The break is at ten o'clock.)",
+          "answer": "الْعَاشِرَة",
+          "accepted": [
+            "الْعَاشِرَة",
+            "العاشرة",
+            "الْعَاشِرَةِ",
+            "al-3aashira"
+          ],
+          "tip": "The hour is feminine, so the number is feminine too: الْعَاشِرَة."
+        },
+        {
+          "id": "unit-08.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Where is my school bag?'",
+          "answer": "أَيْنَ حَقِيبَتِي الْمَدْرَسِيَّة",
+          "accepted": [
+            "أَيْنَ حَقِيبَتِي الْمَدْرَسِيَّة",
+            "اين حقيبتي المدرسية",
+            "أَيْنَ حَقِيبَتِي",
+            "ayna 7aqeebatee al-madrasiyya?"
+          ],
+          "too_formal": {
+            "item": "فِين شَنْطَة الْمَدْرَسَة بِتَاعْتِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The describing word الْمَدْرَسِيَّة comes after the noun it describes."
+        },
+        {
+          "id": "unit-08.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'I forgot my pen.'",
+          "answer": "نَسِيتُ قَلَمِي",
+          "accepted": [
+            "نَسِيتُ قَلَمِي",
+            "نسيت قلمي",
+            "نَسِيتُ الْقَلَم",
+            "naseetu qalamee"
+          ],
+          "tip": "نَسِيَ means 'to forget'; ـتُ after it means 'I'."
+        },
+        {
+          "id": "unit-08.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'Open your book to page ten'?",
+          "options": [
+            "اُكْتُبِ الدَّرْسَ عَلَى السَّبُّورَة",
+            "اِفْتَحْ كِتَابَكَ عَلَى الصَّفْحَةِ الْعَاشِرَة",
+            "لَا تَنْسَ الزِّيَّ الْمَدْرَسِيّ",
+            "نَسِيتُ قَلَمِي"
+          ],
+          "answer": "اِفْتَحْ كِتَابَكَ عَلَى الصَّفْحَةِ الْعَاشِرَة",
+          "accepted": [
+            "اِفْتَحْ كِتَابَكَ عَلَى الصَّفْحَةِ الْعَاشِرَة",
+            "افتح كتابك على الصفحة العاشرة",
+            "iftah kitaabaka 3alaa as-saf7ati al-3aashira"
+          ],
+          "too_formal": {
+            "item": "اِفْتَحْ كِتَابَكْ عَ صَفْحَة عَشَرَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "اِفْتَحْ is the order 'open' to one man; ـكَ means 'your' for a man."
+        },
+        {
+          "id": "unit-08.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'My son is a diligent student'?",
+          "options": [
+            "أَيْنَ حَقِيبَتِي الْمَدْرَسِيَّة؟",
+            "الْمُعَلِّمُ فِي الْفَصْل",
+            "اِبْنِي طَالِبٌ مُجْتَهِد",
+            "مَتَى يَنْتَهِي الْيَوْمُ الدِّرَاسِيّ؟"
+          ],
+          "answer": "اِبْنِي طَالِبٌ مُجْتَهِد",
+          "accepted": [
+            "اِبْنِي طَالِبٌ مُجْتَهِد",
+            "ابني طالب مجتهد",
+            "ibnee taalibun mujtahid"
+          ],
+          "tip": "مُجْتَهِد means 'hard-working' and follows the word it describes."
+        },
+        {
+          "id": "unit-08.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْمَدْرَسِيّ / لَا / الزِّيَّ / تَنْسَ'.",
+          "answer": "لَا تَنْسَ الزِّيَّ الْمَدْرَسِيّ",
+          "words": [
+            "لَا",
+            "تَنْسَ",
+            "الزِّيَّ",
+            "الْمَدْرَسِيّ"
+          ],
+          "accepted": [
+            "لَا تَنْسَ الزِّيَّ الْمَدْرَسِيّ",
+            "لا تنس الزي المدرسي",
+            "laa tansa az-ziyya al-madrasiyy"
+          ],
+          "tip": "لَا before a verb means 'don't', and the verb is shortened: تَنْسَ."
+        },
+        {
+          "id": "unit-08.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْمِيَاه / هَلْ / دَوْرَةِ / الذَّهَابُ / يُمْكِنُنِي / إِلَى'.",
+          "answer": "هَلْ يُمْكِنُنِي الذَّهَابُ إِلَى دَوْرَةِ الْمِيَاه",
+          "words": [
+            "هَلْ",
+            "يُمْكِنُنِي",
+            "الذَّهَابُ",
+            "إِلَى",
+            "دَوْرَةِ",
+            "الْمِيَاه"
+          ],
+          "accepted": [
+            "هَلْ يُمْكِنُنِي الذَّهَابُ إِلَى دَوْرَةِ الْمِيَاه",
+            "هل يمكنني الذهاب الى دورة المياه",
+            "هَلْ أَسْتَطِيعُ الذَّهَابَ إِلَى دَوْرَةِ الْمِيَاه",
+            "hal yumkinunee adh-dhahaabu ilaa dawrati al-miyaah?"
+          ],
+          "too_formal": {
+            "item": "فِينِي رُوح عَالْحَمَّام",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَلْ opens a yes-or-no question and comes first."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "please-introduce-yourself-to-a-man",
+          "arabic": "عَرِّفْ بِنَفْسِكَ مِنْ فَضْلِكَ",
+          "transliteration": "3arrif bi-nafsika min fadlika",
+          "reply": {
+            "arabic": "اِسْمِي كَرِيم، وَأَنَا مُهَنْدِس",
+            "transliteration": "ismee kareem, wa anaa muhandis",
+            "english": "My name is Karim, and I'm an engineer."
+          }
+        },
+        {
+          "slot": "this-is-my-cv",
+          "arabic": "هَذِهِ سِيرَتِي الذَّاتِيَّة",
+          "transliteration": "hadhihi seeratee adh-dhaatiyya"
+        },
+        {
+          "slot": "i-graduated-from-the-faculty-of-engineering",
+          "arabic": "تَخَرَّجْتُ مِنْ كُلِّيَّةِ الْهَنْدَسَة",
+          "transliteration": "takharrajtu min kulliyyati al-handasa"
+        },
+        {
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma",
+          "arabic": "كَمْ سَنَةً مِنَ الْخِبْرَةِ لَدَيْكَ؟",
+          "transliteration": "kam sanatan mina al-khibrati ladayka?",
+          "reply": {
+            "arabic": "لَدَيَّ خَمْسُ سَنَوَاتٍ مِنَ الْخِبْرَة",
+            "transliteration": "ladayya khamsu sanawaatin mina al-khibra",
+            "english": "I have five years of experience."
+          }
+        },
+        {
+          "slot": "why-do-you-want-to-work-with-us-to-a-man",
+          "arabic": "لِمَاذَا تُرِيدُ أَنْ تَعْمَلَ مَعَنَا؟",
+          "transliteration": "limaadhaa tureedu an ta3mala ma3anaa?"
+        },
+        {
+          "slot": "i-speak-arabic-and-english",
+          "arabic": "أَتَحَدَّثُ الْعَرَبِيَّةَ وَالْإِنْجِلِيزِيَّة",
+          "transliteration": "ata7addathu al-3arabiyya wa al-injileeziyya"
+        },
+        {
+          "slot": "what-are-your-strengths-to-a-man",
+          "arabic": "مَا نِقَاطُ قُوَّتِكَ؟",
+          "transliteration": "maa niqaatu quwwatika?",
+          "reply": {
+            "arabic": "أَنَا مُنَظَّمٌ وَأَتَعَلَّمُ بِسُرْعَة",
+            "transliteration": "anaa munazzamun wa ata3allamu bi-sur3a",
+            "english": "I'm organized and I learn quickly."
+          }
+        },
+        {
+          "slot": "i-work-well-with-the-team",
+          "arabic": "أَعْمَلُ جَيِّدًا مَعَ الْفَرِيق",
+          "transliteration": "a3malu jayyidan ma3a al-fareeq"
+        },
+        {
+          "slot": "what-salary-do-you-expect-to-a-man",
+          "arabic": "مَا الرَّاتِبُ الَّذِي تَتَوَقَّعُهُ؟",
+          "transliteration": "maa ar-raatibu alladhee tatawaqqa3uhu?"
+        },
+        {
+          "slot": "when-can-you-start-to-a-man",
+          "arabic": "مَتَى يُمْكِنُكَ أَنْ تَبْدَأَ؟",
+          "transliteration": "mataa yumkinuka an tabda2a?",
+          "reply": {
+            "arabic": "أَسْتَطِيعُ أَنْ أَبْدَأَ غَدًا",
+            "transliteration": "astatee3u an abda2a ghadan",
+            "english": "I can start tomorrow."
+          }
+        },
+        {
+          "slot": "we-will-call-you-next-week",
+          "arabic": "سَنَتَّصِلُ بِكَ الْأُسْبُوعَ الْقَادِم",
+          "transliteration": "sa-nattasilu bika al-usboo3a al-qaadim"
+        },
+        {
+          "slot": "thank-you-for-your-time-to-a-man",
+          "arabic": "شُكْرًا لَكَ عَلَى وَقْتِكَ",
+          "transliteration": "shukran laka 3alaa waqtika"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Faisal",
+          "arabic": "تَفَضَّلْ بِالْجُلُوسِ يَا كَرِيم. عَرِّفْ بِنَفْسِكَ مِنْ فَضْلِكَ.",
+          "transliteration": "tafaddal bil-juloosi yaa kareem. 3arrif bi-nafsika min fadlika.",
+          "english": "Please sit, Karim. Introduce yourself please."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "اِسْمِي كَرِيم، وَأَنَا مُهَنْدِس. تَخَرَّجْتُ مِنْ كُلِّيَّةِ الْهَنْدَسَة.",
+          "transliteration": "ismee kareem, wa anaa muhandis. takharrajtu min kulliyyati al-handasa.",
+          "english": "My name is Karim, and I'm an engineer. I graduated from the faculty of engineering."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "هَلْ هَذِهِ سِيرَتُكَ الذَّاتِيَّة؟",
+          "transliteration": "hal hadhihi seeratuka adh-dhaatiyya?",
+          "english": "Is this your CV?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "نَعَمْ، هَذِهِ سِيرَتِي الذَّاتِيَّة.",
+          "transliteration": "na3am, hadhihi seeratee adh-dhaatiyya.",
+          "english": "Yes, this is my CV."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "كَمْ سَنَةً مِنَ الْخِبْرَةِ لَدَيْكَ؟",
+          "transliteration": "kam sanatan mina al-khibrati ladayka?",
+          "english": "How many years of experience do you have?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "لَدَيَّ خَمْسُ سَنَوَاتٍ مِنَ الْخِبْرَة.",
+          "transliteration": "ladayya khamsu sanawaatin mina al-khibra.",
+          "english": "I have five years of experience."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "لِمَاذَا تُرِيدُ أَنْ تَعْمَلَ مَعَنَا؟",
+          "transliteration": "limaadhaa tureedu an ta3mala ma3anaa?",
+          "english": "Why do you want to work with us?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "أَعْمَلُ جَيِّدًا مَعَ الْفَرِيق، وَأَتَحَدَّثُ الْعَرَبِيَّةَ وَالْإِنْجِلِيزِيَّة.",
+          "transliteration": "a3malu jayyidan ma3a al-fareeq, wa ata7addathu al-3arabiyya wa al-injileeziyya.",
+          "english": "I work well with the team, and I speak Arabic and English."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "مَا الرَّاتِبُ الَّذِي تَتَوَقَّعُهُ؟",
+          "transliteration": "maa ar-raatibu alladhee tatawaqqa3uhu?",
+          "english": "What salary do you expect?"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "أَتَوَقَّعُ رَاتِبًا مُنَاسِبًا لِخِبْرَتِي.",
+          "transliteration": "atawaqqa3u raatiban munaasiban likhibratee.",
+          "english": "I expect a salary that suits my experience."
+        },
+        {
+          "speaker": "Faisal",
+          "arabic": "مَتَى يُمْكِنُكَ أَنْ تَبْدَأَ؟ سَنَتَّصِلُ بِكَ الْأُسْبُوعَ الْقَادِم.",
+          "transliteration": "mataa yumkinuka an tabda2a? sa-nattasilu bika al-usboo3a al-qaadim.",
+          "english": "When can you start? We will call you next week."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "أَسْتَطِيعُ أَنْ أَبْدَأَ غَدًا. شُكْرًا لَكَ عَلَى وَقْتِكَ.",
+          "transliteration": "astatee3u an abda2a ghadan. shukran laka 3alaa waqtika.",
+          "english": "I can start tomorrow. Thank you for your time."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عَرِّفْ بِنَفْسِكَ مِنْ فَضْلِكَ.",
+            "transliteration": "3arrif bi-nafsika min fadlika.",
+            "english": "Please introduce yourself."
+          },
+          "response": {
+            "arabic": "اِسْمِي كَرِيم، وَأَنَا مُهَنْدِس.",
+            "transliteration": "ismee kareem, wa anaa muhandis.",
+            "english": "My name is Karim, and I'm an engineer."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَمْ سَنَةً مِنَ الْخِبْرَةِ لَدَيْكَ؟",
+            "transliteration": "kam sanatan mina al-khibrati ladayka?",
+            "english": "How many years of experience do you have?"
+          },
+          "response": {
+            "arabic": "لَدَيَّ خَمْسُ سَنَوَاتٍ مِنَ الْخِبْرَة.",
+            "transliteration": "ladayya khamsu sanawaatin mina al-khibra.",
+            "english": "I have five years of experience."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَا نِقَاطُ قُوَّتِكَ؟",
+            "transliteration": "maa niqaatu quwwatika?",
+            "english": "What are your strengths?"
+          },
+          "response": {
+            "arabic": "أَنَا مُنَظَّمٌ وَأَتَعَلَّمُ بِسُرْعَة.",
+            "transliteration": "anaa munazzamun wa ata3allamu bi-sur3a.",
+            "english": "I'm organized and I learn quickly."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى يُمْكِنُكَ أَنْ تَبْدَأَ؟",
+            "transliteration": "mataa yumkinuka an tabda2a?",
+            "english": "When can you start?"
+          },
+          "response": {
+            "arabic": "أَسْتَطِيعُ أَنْ أَبْدَأَ غَدًا.",
+            "transliteration": "astatee3u an abda2a ghadan.",
+            "english": "I can start tomorrow."
+          }
+        }
+      ],
+      "culture": "An interview in Arabic usually starts with a polite greeting and a little small talk before the questions begin. People bring a printed CV and copies of their certificates. When a start date is discussed, it is common to add إِنْ شَاءَ اللَّه, since the future is in Allah's hands.",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "An interviewer says: 'عَرِّفْ بِنَفْسِكَ مِنْ فَضْلِكَ'. Say your name is Karim and you are an engineer.",
+          "answer": "اِسْمِي كَرِيم، وَأَنَا مُهَنْدِس",
+          "accepted": [
+            "اِسْمِي كَرِيم، وَأَنَا مُهَنْدِس",
+            "اسمي كريم, وانا مهندس",
+            "ismee kareem, wa anaa muhandis."
+          ],
+          "tip": "مُهَنْدِس is 'engineer'; after أَنَا no word for 'am' is needed."
+        },
+        {
+          "id": "unit-08.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "He asks: 'كَمْ سَنَةً مِنَ الْخِبْرَةِ لَدَيْكَ؟'. Say you have five years of experience.",
+          "answer": "لَدَيَّ خَمْسُ سَنَوَاتٍ مِنَ الْخِبْرَة",
+          "accepted": [
+            "لَدَيَّ خَمْسُ سَنَوَاتٍ مِنَ الْخِبْرَة",
+            "لدي خمس سنوات من الخبرة",
+            "عِنْدِي خَمْسُ سَنَوَاتٍ مِنَ الْخِبْرَة",
+            "ladayya khamsu sanawaatin mina al-khibra."
+          ],
+          "too_formal": {
+            "item": "عِنْدِي خَمْس سِنِين خِبْرَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "لَدَيَّ means 'I have'; خَمْس takes the plural: سَنَوَات."
+        },
+        {
+          "id": "unit-08.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'تَخَرَّجْتُ مِنْ _____ الْهَنْدَسَة.' (I graduated from the faculty of engineering.)",
+          "answer": "كُلِّيَّةِ",
+          "accepted": [
+            "كُلِّيَّةِ",
+            "كلية",
+            "كُلِّيَّة",
+            "kulliyyati"
+          ],
+          "tip": "After مِنْ the noun ends with the vowel i: كُلِّيَّةِ."
+        },
+        {
+          "id": "unit-08.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'سَنَتَّصِلُ بِكَ _____ الْقَادِم.' (We will call you next week.)",
+          "answer": "الْأُسْبُوعَ",
+          "accepted": [
+            "الْأُسْبُوعَ",
+            "الاسبوع",
+            "الْأُسْبُوع",
+            "al-usboo3a"
+          ],
+          "tip": "A word that says 'when' ends with the vowel a: الْأُسْبُوعَ."
+        },
+        {
+          "id": "unit-08.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'This is my CV.'",
+          "answer": "هَذِهِ سِيرَتِي الذَّاتِيَّة",
+          "accepted": [
+            "هَذِهِ سِيرَتِي الذَّاتِيَّة",
+            "هذه سيرتي الذاتية",
+            "هَذِهِ سِيرَتِي الذَّاتِيَّةُ",
+            "hadhihi seeratee adh-dhaatiyya"
+          ],
+          "too_formal": {
+            "item": "هَاي سِيرَتِي الذَّاتِيَّة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَذِهِ is 'this' for a feminine word like سِيرَة."
+        },
+        {
+          "id": "unit-08.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: 'Why do you want to work with us?'",
+          "answer": "لِمَاذَا تُرِيدُ أَنْ تَعْمَلَ مَعَنَا",
+          "accepted": [
+            "لِمَاذَا تُرِيدُ أَنْ تَعْمَلَ مَعَنَا",
+            "لماذا تريد ان تعمل معنا",
+            "لِمَاذَا تُرِيدُ الْعَمَلَ مَعَنَا",
+            "limaadhaa tureedu an ta3mala ma3anaa?"
+          ],
+          "too_formal": {
+            "item": "لَيْش بِدَّك تِشْتَغِل مَعْنَا",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "After أَنْ the verb ends with the vowel a: تَعْمَلَ."
+        },
+        {
+          "id": "unit-08.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means 'What salary do you expect?'",
+          "options": [
+            "كَمْ سَنَةً مِنَ الْخِبْرَةِ لَدَيْكَ؟",
+            "مَتَى يُمْكِنُكَ أَنْ تَبْدَأَ؟",
+            "مَا الرَّاتِبُ الَّذِي تَتَوَقَّعُهُ؟",
+            "مَا نِقَاطُ قُوَّتِكَ؟"
+          ],
+          "answer": "مَا الرَّاتِبُ الَّذِي تَتَوَقَّعُهُ؟",
+          "accepted": [
+            "مَا الرَّاتِبُ الَّذِي تَتَوَقَّعُهُ؟",
+            "ما الراتب الذي تتوقعه",
+            "maa ar-raatibu alladhee tatawaqqa3uhu?"
+          ],
+          "too_formal": {
+            "item": "قَدّ إِيش بِتْتَوَقَّع رَاتِب",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "الرَّاتِب is 'salary'; تَتَوَقَّعُ means 'you expect'."
+        },
+        {
+          "id": "unit-08.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'I speak Arabic and English'?",
+          "options": [
+            "أَعْمَلُ جَيِّدًا مَعَ الْفَرِيق",
+            "تَخَرَّجْتُ مِنْ كُلِّيَّةِ الْهَنْدَسَة",
+            "أَتَحَدَّثُ الْعَرَبِيَّةَ وَالْإِنْجِلِيزِيَّة",
+            "هَذِهِ سِيرَتِي الذَّاتِيَّة"
+          ],
+          "answer": "أَتَحَدَّثُ الْعَرَبِيَّةَ وَالْإِنْجِلِيزِيَّة",
+          "accepted": [
+            "أَتَحَدَّثُ الْعَرَبِيَّةَ وَالْإِنْجِلِيزِيَّة",
+            "اتحدث العربية والانجليزية",
+            "ata7addathu al-3arabiyya wa al-injileeziyya"
+          ],
+          "too_formal": {
+            "item": "بَحْكِي عَرَبِي وَإِنْجْلِيزِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "تَحَدَّثَ means 'to speak' and takes the language directly."
+        },
+        {
+          "id": "unit-08.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'مِنَ / سَنَوَاتٍ / خَمْسُ / لَدَيَّ / الْخِبْرَة'.",
+          "answer": "لَدَيَّ خَمْسُ سَنَوَاتٍ مِنَ الْخِبْرَة",
+          "words": [
+            "لَدَيَّ",
+            "خَمْسُ",
+            "سَنَوَاتٍ",
+            "مِنَ",
+            "الْخِبْرَة"
+          ],
+          "accepted": [
+            "لَدَيَّ خَمْسُ سَنَوَاتٍ مِنَ الْخِبْرَة",
+            "لدي خمس سنوات من الخبرة",
+            "ladayya khamsu sanawaatin mina al-khibra."
+          ],
+          "tip": "The thing you have comes after لَدَيَّ."
+        },
+        {
+          "id": "unit-08.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'أَسْتَطِيعُ / أَنْ / غَدًا / أَبْدَأَ'.",
+          "answer": "أَسْتَطِيعُ أَنْ أَبْدَأَ غَدًا",
+          "words": [
+            "أَسْتَطِيعُ",
+            "أَنْ",
+            "أَبْدَأَ",
+            "غَدًا"
+          ],
+          "accepted": [
+            "أَسْتَطِيعُ أَنْ أَبْدَأَ غَدًا",
+            "استطيع ان ابدا غدا",
+            "أَبْدَأُ غَدًا",
+            "astatee3u an abda2a ghadan."
+          ],
+          "tip": "The time word غَدًا usually comes last."
         }
       ]
     }
@@ -649,16 +2460,66 @@
     ],
     "model": {
       "dialogue": [
-        { "speaker": "Ali", "arabic": "مَرْحَبًا يَا مَرْيَم. مَا عَمَلُكِ؟", "transliteration": "marhaban yaa Maryam. maa 3amaluki?", "english": "Hello, Maryam. What do you do?" },
-        { "speaker": "Maryam", "arabic": "أَعْمَلُ مُعَلِّمَةً، وَمَا زِلْتُ أَدْرُسُ فِي الْجَامِعَة.", "transliteration": "a3malu mu3allima, wa maa zultu adrusu fee al-jaami3a.", "english": "I work as a teacher, and I'm still studying at university." },
-        { "speaker": "Ali", "arabic": "مَا تَخَصُّصُكِ؟", "transliteration": "maa takhassusuki?", "english": "What's your major?" },
-        { "speaker": "Maryam", "arabic": "تَخَصُّصِي اللُّغَةُ الْعَرَبِيَّة. عِنْدِي اِمْتِحَانٌ غَدًا.", "transliteration": "takhassusee al-lughatu al-3arabiyya. 3indee imti7aanun ghadan.", "english": "My major is Arabic. I have an exam tomorrow." },
-        { "speaker": "Ali", "arabic": "بِالتَّوْفِيق! أَنَا عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة.", "transliteration": "bit-tawfeeq! anaa 3indee ijtimaa3un fee as-saa3ati al-3aashira.", "english": "Good luck! I have a meeting at ten o'clock." },
-        { "speaker": "Maryam", "arabic": "هَلْ يُرِيدُ الْمُدِيرُ أَنْ يَتَحَدَّثَ مَعَكَ؟", "transliteration": "hal yureedu al-mudeeru an yata7addatha ma3aka?", "english": "Does the manager want to talk to you?" },
-        { "speaker": "Ali", "arabic": "نَعَمْ، وَلَمْ أُنْهِ التَّقْرِيرَ بَعْد.", "transliteration": "na3am, wa lam unhi at-taqreera ba3d.", "english": "Yes, and I haven't finished the report yet." },
-        { "speaker": "Maryam", "arabic": "مَاذَا تَنْوِي أَنْ تَفْعَلَ فِي الْمُسْتَقْبَل؟", "transliteration": "maadhaa tanwee an taf3ala fee al-mustaqbal?", "english": "What do you plan to do in the future?" },
-        { "speaker": "Ali", "arabic": "طُمُوحِي أَنْ أُصْبِحَ مُدِيرًا يَوْمًا مَا. وَأَنْتِ؟", "transliteration": "tumoo7ee an usbi7a mudeeran yawman maa. wa anti?", "english": "My ambition is to become a manager one day. And you?" },
-        { "speaker": "Maryam", "arabic": "حُلْمِي أَنْ أُكْمِلَ دِرَاسَتِي لِلدُّكْتُورَاه.", "transliteration": "7ulmee an ukmila diraasatee lid-duktooraah.", "english": "My dream is to continue my studies for a doctorate." }
+        {
+          "speaker": "Ali",
+          "arabic": "مَرْحَبًا يَا مَرْيَم. مَا عَمَلُكِ؟",
+          "transliteration": "marhaban yaa Maryam. maa 3amaluki?",
+          "english": "Hello, Maryam. What do you do?"
+        },
+        {
+          "speaker": "Maryam",
+          "arabic": "أَعْمَلُ مُعَلِّمَةً، وَمَا زِلْتُ أَدْرُسُ فِي الْجَامِعَة.",
+          "transliteration": "a3malu mu3allima, wa maa zultu adrusu fee al-jaami3a.",
+          "english": "I work as a teacher, and I'm still studying at university."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "مَا تَخَصُّصُكِ؟",
+          "transliteration": "maa takhassusuki?",
+          "english": "What's your major?"
+        },
+        {
+          "speaker": "Maryam",
+          "arabic": "تَخَصُّصِي اللُّغَةُ الْعَرَبِيَّة. عِنْدِي اِمْتِحَانٌ غَدًا.",
+          "transliteration": "takhassusee al-lughatu al-3arabiyya. 3indee imti7aanun ghadan.",
+          "english": "My major is Arabic. I have an exam tomorrow."
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "بِالتَّوْفِيق! أَنَا عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة.",
+          "transliteration": "bit-tawfeeq! anaa 3indee ijtimaa3un fee as-saa3ati al-3aashira.",
+          "english": "Good luck! I have a meeting at ten o'clock."
+        },
+        {
+          "speaker": "Maryam",
+          "arabic": "هَلْ يُرِيدُ الْمُدِيرُ أَنْ يَتَحَدَّثَ مَعَكَ؟",
+          "transliteration": "hal yureedu al-mudeeru an yata7addatha ma3aka?",
+          "english": "Does the manager want to talk to you?"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "نَعَمْ، وَلَمْ أُنْهِ التَّقْرِيرَ بَعْد.",
+          "transliteration": "na3am, wa lam unhi at-taqreera ba3d.",
+          "english": "Yes, and I haven't finished the report yet."
+        },
+        {
+          "speaker": "Maryam",
+          "arabic": "مَاذَا تَنْوِي أَنْ تَفْعَلَ فِي الْمُسْتَقْبَل؟",
+          "transliteration": "maadhaa tanwee an taf3ala fee al-mustaqbal?",
+          "english": "What do you plan to do in the future?"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "طُمُوحِي أَنْ أُصْبِحَ مُدِيرًا يَوْمًا مَا. وَأَنْتِ؟",
+          "transliteration": "tumoo7ee an usbi7a mudeeran yawman maa. wa anti?",
+          "english": "My ambition is to become a manager one day. And you?"
+        },
+        {
+          "speaker": "Maryam",
+          "arabic": "حُلْمِي أَنْ أُكْمِلَ دِرَاسَتِي لِلدُّكْتُورَاه.",
+          "transliteration": "7ulmee an ukmila diraasatee lid-duktooraah.",
+          "english": "My dream is to continue my studies for a doctorate."
+        }
       ]
     }
   }
