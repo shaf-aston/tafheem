@@ -11,6 +11,8 @@ import { scrollToEl } from '../lib/scrollToEl'
 import { topicOf } from '../lib/hadithGrade'
 import { useRememberedFlag } from '../lib/useRemembered'
 
+import Chip from './ui/Chip'
+import ChipRow from './ui/ChipRow'
 import ErrorAlert from './ui/ErrorAlert'
 import EmptyState from './ui/EmptyState'
 import TopicIcon from './ui/TopicIcon'
@@ -71,13 +73,7 @@ export default function HadithList({ collection, collections, book, onBack, acce
             { label: 'Two columns', on: columns, set: setColumns, wide: true },
             { label: 'Hide the chain', on: hideChain, set: setHideChain },
           ]}>
-            <button
-              type="button"
-              onClick={() => setGuide(true)}
-              className="press type-small text-[var(--text-dim)] hover:text-[var(--c)] underline underline-offset-4 decoration-dotted"
-            >
-              Chain words
-            </button>
+            <Chip tinted accent={accent} onClick={() => setGuide(true)}>Chain words</Chip>
           </ReadingOptions>
           {guide && <ChainSheet accent={accent} onClose={() => setGuide(false)} />}
           <form onSubmit={jump} className="flex items-center gap-2">
@@ -113,22 +109,21 @@ export default function HadithList({ collection, collections, book, onBack, acce
   )
 }
 
-/** A small sliders icon; pressed, its tick boxes (and `children`) slide out beside it in the bar. */
+/** A small sliders icon; pressed, its on/off chips (and `children`) slide out beside it in the bar. */
 function ReadingOptions({ options, accent, children }) {
   const [open, setOpen] = useState(false)
 
   return (
     <div className="flex items-center gap-3" style={{ '--c': accent }}>
       {open && (
-        <div className="fade-in flex items-center gap-3">
+        <ChipRow className="fade-in">
           {options.map(({ label, on, set, wide }) => (
-            <label key={label} className={`${wide ? 'hidden md:flex' : 'flex'} type-small text-[var(--text-dim)] items-center gap-1.5 cursor-pointer`}>
-              <input type="checkbox" checked={on} onChange={(e) => set(e.target.checked)} style={{ accentColor: accent }} />
-              {label}
-            </label>
+            <span key={label} className={wide ? 'hidden md:contents' : 'contents'}>
+              <Chip tinted selected={on} accent={accent} onClick={() => set(!on)}>{label}</Chip>
+            </span>
           ))}
           {children}
-        </div>
+        </ChipRow>
       )}
       <button
         type="button"

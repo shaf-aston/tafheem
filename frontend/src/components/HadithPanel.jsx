@@ -15,6 +15,7 @@ import { parsePlace, placeOf } from '../lib/hadithPlace'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import Chip from './ui/Chip'
+import ChipRow from './ui/ChipRow'
 import EmptyState from './ui/EmptyState'
 import SectionHeader from './ui/SectionHeader'
 import ErrorAlert from './ui/ErrorAlert'
@@ -92,12 +93,12 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
       )}
 
       <HadithSearchResults collections={collections} accent={accent} onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}>
-        <div className="flex items-center gap-2 flex-wrap">
+        <ChipRow>
           <HadithCollectionPicker collections={collections} value={collection} onChange={pickCollection} accent={accent} />
           <Chip selected={starred} tinted accent={accent} onClick={() => setStarred(!starred)}>
             &#9733; Starred {favorites.length > 0 && favorites.length}
           </Chip>
-        </div>
+        </ChipRow>
         {!starred && (
           <p className="type-small text-[var(--text-faint)] flex items-center gap-2">
             {open.name}

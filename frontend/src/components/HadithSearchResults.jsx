@@ -17,6 +17,7 @@ import { useHistory } from '../lib/useHistory'
 
 import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
+import ChipRow from './ui/ChipRow'
 import ErrorAlert from './ui/ErrorAlert'
 import EmptyState from './ui/EmptyState'
 import MicButton from './ui/MicButton'
@@ -118,13 +119,12 @@ export default function HadithSearchResults({ collections, accent, onOpenBook, c
       )}
 
       {data?.chapters?.length > 0 && (
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="type-small text-[var(--text-faint)]">Chapters</span>
+        <ChipRow label="Chapters">
           {data.chapters.map((c) => (
             <Chip
               key={`${c.collection}:${c.number}`}
               accent={accent}
-              tinted
+              quiet
               title={`${c.count} of these hits are in this chapter`}
               onClick={() => { setQuery(''); mutation.reset(); onOpenBook(c.collection, c.number) }}
             >
@@ -132,7 +132,7 @@ export default function HadithSearchResults({ collections, accent, onOpenBook, c
               {c.name}
             </Chip>
           ))}
-        </div>
+        </ChipRow>
       )}
 
       {data && data.hits.length > 0 && <HadithCards items={data.hits} collections={collections} accent={accent} />}
