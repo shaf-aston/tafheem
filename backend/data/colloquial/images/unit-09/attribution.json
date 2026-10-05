@@ -48,5 +48,105 @@
     "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
     "foreign_landing_url": "https://www.flickr.com/photos/69319106@N00/3776240134",
     "search_term": "a neck"
+  },
+  "l05-p02-dental-chair.jpg": {
+    "id": "29308dd1-59c4-4e30-973d-9a0b2e772e60",
+    "title": "Chair Dentist",
+    "creator": "Daniel Frank",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/chair-dentist-3J10QN5PTS",
+    "search_term": "dental chair"
+  },
+  "l05-p05-dental-x-ray.jpg": {
+    "id": "7cf11fd2-8ce6-4f3e-b881-bf6181aa36f5",
+    "title": "Crazy digital dental x-ray, London, UK.jpg",
+    "creator": "gruntzooki",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/37996580417@N01/4270821583",
+    "search_term": "dental x-ray"
+  },
+  "l05-p06-medical-syringe.jpg": {
+    "id": "fcb2146b-5fd0-434b-80f5-c3066d4e5184",
+    "title": "Free medical syringe image",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5923937/photo-image-public-domain-medicine-free",
+    "search_term": "medical syringe"
+  },
+  "l05-p07-glass-of-water.jpg": {
+    "id": "561039df-ffb5-4bf6-9ad6-4be5a6fcf94f",
+    "title": "Blue glass carbonated water",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6042373/photo-image-public-domain-blue-bubbles",
+    "search_term": "glass of water"
+  },
+  "l05-p10-toothbrush.jpg": {
+    "id": "6517607f-ee5f-4378-badc-86bd868f1642",
+    "title": "Toothbrush Toothpaste",
+    "creator": "WDnet Studio",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/toothbrush-toothpaste-UD9953XS1H",
+    "search_term": "toothbrush"
+  },
+  "l06-p01-ambulance.jpg": {
+    "id": "6e026655-a0b2-4c56-b296-46b7b5f6c91d",
+    "title": "Emergency ambulance, Milton Green Station",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/8809238/photo-image-green-public-domain",
+    "search_term": "ambulance"
+  },
+  "l06-p02-emergency-room-sign.jpg": {
+    "id": "13d0d5e9-56df-40ad-842e-26d45b21ab7d",
+    "title": "Free emergency sign hospital image",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5922142/photo-image-background-public-domain-red",
+    "search_term": "emergency room sign"
+  },
+  "l06-p04-hospital-reception-desk.jpg": {
+    "id": "0aaa9d80-b7f2-4148-98eb-0fb0b091d8fc",
+    "title": "Reception desk @ CHU Liège",
+    "creator": "jepoirrier",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/57519914@N00/537773659",
+    "search_term": "hospital reception desk"
+  },
+  "l06-p05-hospital-bed.jpg": {
+    "id": "1ab25012-e764-40a9-8981-045e6d84b424",
+    "title": "Free hospital beds photo",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5922610/photo-image-public-domain-room-free",
+    "search_term": "hospital bed"
+  },
+  "l06-p08-medical-thermometer.jpg": {
+    "id": "4322a4a7-86b7-473c-a0e2-5c23b79a7009",
+    "title": "Medical thermometer",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5925351/photo-image-public-domain-medicine-free",
+    "search_term": "medical thermometer"
   }
 }

@@ -1,0 +1,74 @@
+{
+  "found": [
+    {
+      "lesson": 6,
+      "phrase": 2,
+      "english": "I play football with my friends.",
+      "search_term": "soccer ball on grass",
+      "candidates": [
+        {
+          "id": "2520f4c6-f9b4-440c-b516-06d460aecefa",
+          "title": "Still Items",
+          "creator": "Markus Spiske",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/still-items-KTQZYM7YXM",
+          "thumbnail": "https://api.openverse.org/v1/images/2520f4c6-f9b4-440c-b516-06d460aecefa/thumb/"
+        },
+        {
+          "id": "5cae03a8-57d3-4617-933e-8325c2a6fb68",
+          "title": "Soccer Ball",
+          "creator": "Michal Jarmoluk",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/soccer-ball-LHHL7FKKVD",
+          "thumbnail": "https://api.openverse.org/v1/images/5cae03a8-57d3-4617-933e-8325c2a6fb68/thumb/"
+        },
+        {
+          "id": "7857d5a2-209d-4f84-9648-caff3ade7fde",
+          "title": "Soccer Ball",
+          "creator": "Michal Jarmoluk",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/soccer-ball-FN9W4V6TK5",
+          "thumbnail": "https://api.openverse.org/v1/images/7857d5a2-209d-4f84-9648-caff3ade7fde/thumb/"
+        },
+        {
+          "id": "9675598e-bd9e-4365-8562-af4cc4a7905e",
+          "title": "Soccer Ball",
+          "creator": "Michal Jarmoluk",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/soccer-ball-1Q2U0J72YG",
+          "thumbnail": "https://api.openverse.org/v1/images/9675598e-bd9e-4365-8562-af4cc4a7905e/thumb/"
+        }
+      ]
+    }
+  ],
+  "needs_search_term": [
+    {
+      "lesson": 6,
+      "phrase": 1,
+      "english": "Do you play sports?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 3,
+      "english": "Which team do you support?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 11,
+      "english": "Exercise is good for health."
+    },
+    {
+      "lesson": 6,
+      "phrase": 12,
+      "english": "Shall we walk together after the prayer?"
+    }
+  ]
+}

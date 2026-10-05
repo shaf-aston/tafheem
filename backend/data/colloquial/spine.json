@@ -1971,6 +1971,140 @@
               "english": "The weekend comes quickly."
             }
           ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Free Time and Hobbies",
+          "phrases": [
+            {
+              "slot": "what-do-you-do-in-your-free-time",
+              "english": "What do you do in your free time?"
+            },
+            {
+              "slot": "my-hobby-is-reading",
+              "english": "My hobby is reading.",
+              "search_term": "stack of books",
+              "image": "unit-07/l05-p02-stack-of-books.jpg"
+            },
+            {
+              "slot": "i-read-a-book-every-week",
+              "english": "I read a book every week.",
+              "search_term": "library bookshelf",
+              "image": "unit-07/l05-p03-library-bookshelf.jpg"
+            },
+            {
+              "slot": "i-like-cooking",
+              "english": "I like cooking.",
+              "search_term": "cooking pot on a stove",
+              "image": "unit-07/l05-p04-cooking-pot-on-a-stove.jpg"
+            },
+            {
+              "slot": "i-cooked-dinner-for-my-family-yesterday",
+              "english": "I cooked dinner for my family yesterday."
+            },
+            {
+              "slot": "do-you-like-arabic-calligraphy",
+              "english": "Do you like Arabic calligraphy?",
+              "search_term": "calligraphy pen and ink",
+              "image": "unit-07/l05-p06-calligraphy-pen-and-ink.jpg"
+            },
+            {
+              "slot": "i-m-learning-to-write-calligraphy",
+              "english": "I'm learning to write calligraphy."
+            },
+            {
+              "slot": "i-climb-mountains-with-my-friends",
+              "english": "I climb mountains with my friends.",
+              "search_term": "hiking boots"
+            },
+            {
+              "slot": "i-grow-flowers-in-the-garden",
+              "english": "I grow flowers in the garden.",
+              "search_term": "blooming flowers garden bed",
+              "image": "unit-07/l05-p09-blooming-flowers-garden-bed.jpg"
+            },
+            {
+              "slot": "do-you-have-time-this-evening",
+              "english": "Do you have time this evening?"
+            },
+            {
+              "slot": "i-spend-my-time-with-my-family",
+              "english": "I spend my time with my family."
+            },
+            {
+              "slot": "time-passes-quickly-when-i-read",
+              "english": "Time passes quickly when I read."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Sport and Exercise",
+          "phrases": [
+            {
+              "slot": "do-you-play-sports",
+              "english": "Do you play sports?"
+            },
+            {
+              "slot": "i-play-football-with-my-friends",
+              "english": "I play football with my friends.",
+              "search_term": "soccer ball on grass",
+              "image": "unit-07/l06-p02-soccer-ball-on-grass.jpg"
+            },
+            {
+              "slot": "which-team-do-you-support",
+              "english": "Which team do you support?"
+            },
+            {
+              "slot": "the-match-starts-at-eight",
+              "english": "The match starts at eight.",
+              "search_term": "empty football stadium",
+              "image": "unit-07/l06-p04-empty-football-stadium.jpg"
+            },
+            {
+              "slot": "i-run-every-morning",
+              "english": "I run every morning.",
+              "search_term": "running shoes"
+            },
+            {
+              "slot": "i-lift-weights-at-the-gym",
+              "english": "I lift weights at the gym.",
+              "search_term": "dumbbells",
+              "image": "unit-07/l06-p06-dumbbells.jpg"
+            },
+            {
+              "slot": "archery-is-my-favourite-sport",
+              "english": "Archery is my favourite sport.",
+              "search_term": "bow and arrows",
+              "image": "unit-07/l06-p07-bow-and-arrows.jpg"
+            },
+            {
+              "slot": "i-ride-a-horse-on-friday",
+              "english": "I ride a horse on Friday.",
+              "search_term": "saddle on a horse",
+              "image": "unit-07/l06-p08-saddle-on-a-horse.jpg"
+            },
+            {
+              "slot": "i-ride-my-bicycle-in-the-park",
+              "english": "I ride my bicycle in the park.",
+              "search_term": "bicycle",
+              "image": "unit-07/l06-p09-bicycle.jpg"
+            },
+            {
+              "slot": "i-m-tired-i-need-water",
+              "english": "I'm tired, I need water.",
+              "search_term": "bottle of water",
+              "image": "unit-07/l06-p10-bottle-of-water.jpg"
+            },
+            {
+              "slot": "exercise-is-good-for-health",
+              "english": "Exercise is good for health."
+            },
+            {
+              "slot": "shall-we-walk-together-after-the-prayer",
+              "english": "Shall we walk together after the prayer?"
+            }
+          ]
         }
       ]
     },
@@ -1985,37 +2119,42 @@
             {
               "slot": "what-do-you-do-to-a-man",
               "english": "What do you do? (to a man)",
-              "search_term": "man working in office"
+              "search_term": "office desk with computer",
+              "image": "unit-08/l01-p01-office-desk-with-computer.jpg"
             },
             {
               "slot": "what-do-you-do-to-a-woman",
               "english": "What do you do? (to a woman)",
-              "search_term": "woman teacher in classroom"
+              "search_term": "empty classroom blackboard",
+              "image": "unit-08/l01-p02-empty-classroom-blackboard.jpg"
             },
             {
               "slot": "where-do-you-work",
               "english": "Where do you work?",
-              "search_term": "office building"
+              "search_term": "office building",
+              "image": "unit-08/l01-p03-office-building.jpg"
             },
             {
               "slot": "i-m-still-a-student",
               "english": "I'm still a student.",
-              "search_term": "university student with books"
+              "search_term": "school backpack"
             },
             {
               "slot": "i-m-retired",
               "english": "I'm retired.",
-              "search_term": "elderly man relaxing at home"
+              "search_term": "empty armchair by window"
             },
             {
               "slot": "what-do-you-study",
               "english": "What do you study?",
-              "search_term": "medical student with stethoscope"
+              "search_term": "stack of university textbooks",
+              "image": "unit-08/l01-p06-stack-of-university-textbooks.jpg"
             },
             {
               "slot": "i-work-from-home",
               "english": "I work from home.",
-              "search_term": "laptop on home desk"
+              "search_term": "laptop on home desk",
+              "image": "unit-08/l01-p07-laptop-on-home-desk.jpg"
             },
             {
               "slot": "my-job-is-good",
@@ -2036,7 +2175,8 @@
             {
               "slot": "what-would-you-like-to-work-as",
               "english": "What would you like to work as?",
-              "search_term": "doctor holding stethoscope"
+              "search_term": "stethoscope",
+              "image": "unit-08/l01-p12-stethoscope.jpg"
             }
           ]
         },
@@ -2047,12 +2187,13 @@
             {
               "slot": "hi-are-you-coming-to-the-meeting",
               "english": "Hi, are you coming to the meeting?",
-              "search_term": "office meeting room"
+              "search_term": "office meeting room",
+              "image": "unit-08/l02-p01-office-meeting-room.jpg"
             },
             {
               "slot": "the-manager-wants-to-talk-to-you",
               "english": "The manager wants to talk to you.",
-              "search_term": "manager at office desk"
+              "search_term": "closed office door"
             },
             {
               "slot": "i-received-your-email",
@@ -2065,12 +2206,14 @@
             {
               "slot": "i-have-a-meeting-at-ten-o-clock",
               "english": "I have a meeting at ten o'clock.",
-              "search_term": "clock on office wall"
+              "search_term": "clock on office wall",
+              "image": "unit-08/l02-p05-clock-on-office-wall.jpg"
             },
             {
               "slot": "my-colleague-at-the-office-is-very-nice",
               "english": "My colleague at the office is very nice.",
-              "search_term": "coworkers talking in office"
+              "search_term": "empty open plan office desks",
+              "image": "unit-08/l02-p06-empty-open-plan-office-desks.jpg"
             },
             {
               "slot": "we-must-finish-this-task-before-the-afternoon",
@@ -2083,7 +2226,7 @@
             {
               "slot": "i-took-two-days-off",
               "english": "I took two days off.",
-              "search_term": "person relaxing on vacation"
+              "search_term": "calendar with days marked"
             },
             {
               "slot": "the-salary-comes-at-the-end-of-the-month",
@@ -2096,7 +2239,8 @@
             {
               "slot": "the-printer-keeps-breaking-down",
               "english": "The printer keeps breaking down.",
-              "search_term": "broken office printer"
+              "search_term": "office printer",
+              "image": "unit-08/l02-p12-office-printer.jpg"
             }
           ]
         },
@@ -2107,7 +2251,8 @@
             {
               "slot": "i-have-a-lecture-at-nine",
               "english": "I have a lecture at nine.",
-              "search_term": "university lecture hall"
+              "search_term": "university lecture hall",
+              "image": "unit-08/l03-p01-university-lecture-hall.jpg"
             },
             {
               "slot": "the-professor-is-absent-today",
@@ -2116,7 +2261,7 @@
             {
               "slot": "i-have-an-exam-tomorrow",
               "english": "I have an exam tomorrow.",
-              "search_term": "student studying for exam"
+              "search_term": "desk with notes and exam paper"
             },
             {
               "slot": "what-s-your-major",
@@ -2133,7 +2278,7 @@
             {
               "slot": "the-exam-result-came-out-good",
               "english": "The exam result came out good.",
-              "search_term": "happy student with exam results"
+              "search_term": "exam paper with top grade"
             },
             {
               "slot": "i-didn-t-understand-the-lecture-well",
@@ -2146,12 +2291,14 @@
             {
               "slot": "my-friends-at-university-are-very-nice",
               "english": "My friends at university are very nice.",
-              "search_term": "group of students laughing together"
+              "search_term": "university campus lawn",
+              "image": "unit-08/l03-p10-university-campus-lawn.jpg"
             },
             {
               "slot": "the-university-library-is-open-until-night",
               "english": "The university library is open until night.",
-              "search_term": "university library interior"
+              "search_term": "university library interior",
+              "image": "unit-08/l03-p11-university-library-interior.jpg"
             },
             {
               "slot": "i-want-to-register-more-courses-next-semester",
@@ -2170,7 +2317,8 @@
             {
               "slot": "i-want-to-continue-my-studies-for-a-master-s",
               "english": "I want to continue my studies for a master's.",
-              "search_term": "graduation cap and diploma"
+              "search_term": "graduation cap and diploma",
+              "image": "unit-08/l04-p02-graduation-cap-and-diploma.jpg"
             },
             {
               "slot": "i-intend-to-start-my-own-project",
@@ -2180,7 +2328,8 @@
             {
               "slot": "i-m-thinking-of-traveling-to-work-abroad",
               "english": "I'm thinking of traveling to work abroad.",
-              "search_term": "airport departure gate"
+              "search_term": "airport departure gate",
+              "image": "unit-08/l04-p04-airport-departure-gate.jpg"
             },
             {
               "slot": "in-five-years-where-will-you-be",
@@ -2193,7 +2342,8 @@
             {
               "slot": "my-dream-is-to-open-a-restaurant",
               "english": "My dream is to open a restaurant.",
-              "search_term": "restaurant kitchen"
+              "search_term": "restaurant kitchen",
+              "image": "unit-08/l04-p07-restaurant-kitchen.jpg"
             },
             {
               "slot": "i-haven-t-decided-yet-what-i-ll-do",
@@ -2206,7 +2356,7 @@
             {
               "slot": "i-ll-apply-for-a-job-at-a-big-company",
               "english": "I'll apply for a job at a big company.",
-              "search_term": "job interview handshake"
+              "search_term": "job application form and pen"
             },
             {
               "slot": "my-ambition-is-to-become-a-manager-one-day",
@@ -2215,6 +2365,134 @@
             {
               "slot": "the-most-important-thing-is-to-be-comfortable-in",
               "english": "The most important thing is to be comfortable in my job."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "At School",
+          "phrases": [
+            {
+              "slot": "which-grade-are-you-in-to-a-boy",
+              "english": "Which grade are you in? (to a boy)"
+            },
+            {
+              "slot": "where-is-my-school-bag",
+              "english": "Where is my school bag?",
+              "search_term": "school bag",
+              "image": "unit-08/l05-p02-school-bag.jpg"
+            },
+            {
+              "slot": "the-teacher-is-in-the-classroom",
+              "english": "The teacher is in the classroom."
+            },
+            {
+              "slot": "open-your-book-to-page-ten-to-a-boy",
+              "english": "Open your book to page ten. (to a boy)",
+              "search_term": "open textbook",
+              "image": "unit-08/l05-p04-open-textbook.jpg"
+            },
+            {
+              "slot": "write-the-lesson-on-the-board-to-a-boy",
+              "english": "Write the lesson on the board. (to a boy)",
+              "search_term": "whiteboard",
+              "image": "unit-08/l05-p05-whiteboard.jpg"
+            },
+            {
+              "slot": "did-you-do-your-homework-to-a-boy",
+              "english": "Did you do your homework? (to a boy)",
+              "search_term": "homework notebook",
+              "image": "unit-08/l05-p06-homework-notebook.jpg"
+            },
+            {
+              "slot": "i-forgot-my-pen",
+              "english": "I forgot my pen.",
+              "search_term": "ballpoint pen",
+              "image": "unit-08/l05-p07-ballpoint-pen.jpg"
+            },
+            {
+              "slot": "the-break-is-at-ten-o-clock",
+              "english": "The break is at ten o'clock."
+            },
+            {
+              "slot": "may-i-go-to-the-bathroom-to-a-teacher",
+              "english": "May I go to the bathroom? (to a teacher)"
+            },
+            {
+              "slot": "when-does-the-school-day-end",
+              "english": "When does the school day end?"
+            },
+            {
+              "slot": "don-t-forget-the-school-uniform-to-a-boy",
+              "english": "Don't forget the school uniform. (to a boy)"
+            },
+            {
+              "slot": "my-son-is-a-diligent-student",
+              "english": "My son is a diligent student."
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Job Interview",
+          "phrases": [
+            {
+              "slot": "please-introduce-yourself-to-a-man",
+              "english": "Please introduce yourself. (to a man)",
+              "search_term": "empty office desk"
+            },
+            {
+              "slot": "this-is-my-cv",
+              "english": "This is my CV.",
+              "search_term": "CV document",
+              "image": "unit-08/l06-p02-cv-document.jpg"
+            },
+            {
+              "slot": "i-graduated-from-the-faculty-of-engineering",
+              "english": "I graduated from the faculty of engineering.",
+              "search_term": "graduation certificate",
+              "image": "unit-08/l06-p03-graduation-certificate.jpg"
+            },
+            {
+              "slot": "how-many-years-of-experience-do-you-have-to-a-ma",
+              "english": "How many years of experience do you have? (to a man)"
+            },
+            {
+              "slot": "why-do-you-want-to-work-with-us-to-a-man",
+              "english": "Why do you want to work with us? (to a man)"
+            },
+            {
+              "slot": "i-speak-arabic-and-english",
+              "english": "I speak Arabic and English.",
+              "search_term": "English Arabic dictionary"
+            },
+            {
+              "slot": "what-are-your-strengths-to-a-man",
+              "english": "What are your strengths? (to a man)"
+            },
+            {
+              "slot": "i-work-well-with-the-team",
+              "english": "I work well with the team."
+            },
+            {
+              "slot": "what-salary-do-you-expect-to-a-man",
+              "english": "What salary do you expect? (to a man)",
+              "search_term": "coins",
+              "image": "unit-08/l06-p09-coins.jpg"
+            },
+            {
+              "slot": "when-can-you-start-to-a-man",
+              "english": "When can you start? (to a man)"
+            },
+            {
+              "slot": "we-will-call-you-next-week",
+              "english": "We will call you next week.",
+              "search_term": "wall calendar",
+              "image": "unit-08/l06-p11-wall-calendar.jpg"
+            },
+            {
+              "slot": "thank-you-for-your-time-to-a-man",
+              "english": "Thank you for your time. (to a man)"
             }
           ]
         }
@@ -2462,6 +2740,136 @@
               "slot": "my-leg-is-swollen",
               "english": "My leg is swollen",
               "search_term": "a swollen ankle"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "At the Dentist",
+          "phrases": [
+            {
+              "slot": "do-you-have-an-appointment-to-a-man",
+              "english": "Do you have an appointment? (to a man)"
+            },
+            {
+              "slot": "open-your-mouth-to-a-man",
+              "english": "Open your mouth (to a man)",
+              "search_term": "dental chair",
+              "image": "unit-09/l05-p02-dental-chair.jpg"
+            },
+            {
+              "slot": "my-tooth-hurts-when-i-drink-something-cold",
+              "english": "My tooth hurts when I drink something cold"
+            },
+            {
+              "slot": "you-have-a-cavity-to-a-man",
+              "english": "You have a cavity (to a man)"
+            },
+            {
+              "slot": "we-ll-take-an-x-ray",
+              "english": "We'll take an X-ray",
+              "search_term": "dental x-ray",
+              "image": "unit-09/l05-p05-dental-x-ray.jpg"
+            },
+            {
+              "slot": "i-ll-give-you-an-injection-so-you-won-t-feel-pai",
+              "english": "I'll give you an injection so you won't feel pain (to a man)",
+              "search_term": "medical syringe",
+              "image": "unit-09/l05-p06-medical-syringe.jpg"
+            },
+            {
+              "slot": "rinse-your-mouth-with-water-to-a-man",
+              "english": "Rinse your mouth with water (to a man)",
+              "search_term": "glass of water",
+              "image": "unit-09/l05-p07-glass-of-water.jpg"
+            },
+            {
+              "slot": "don-t-eat-anything-for-two-hours-to-a-man",
+              "english": "Don't eat anything for two hours (to a man)"
+            },
+            {
+              "slot": "which-tooth-hurts-you-to-a-man",
+              "english": "Which tooth hurts you? (to a man)"
+            },
+            {
+              "slot": "i-brush-my-teeth-twice-a-day",
+              "english": "I brush my teeth twice a day",
+              "search_term": "toothbrush",
+              "image": "unit-09/l05-p10-toothbrush.jpg"
+            },
+            {
+              "slot": "does-this-hurt-you-to-a-man",
+              "english": "Does this hurt you? (to a man)"
+            },
+            {
+              "slot": "do-i-need-braces",
+              "english": "Do I need braces?",
+              "search_term": "dental braces model"
+            }
+          ]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "At the Hospital",
+          "phrases": [
+            {
+              "slot": "i-need-an-ambulance",
+              "english": "I need an ambulance",
+              "search_term": "ambulance",
+              "image": "unit-09/l06-p01-ambulance.jpg"
+            },
+            {
+              "slot": "where-is-the-emergency-room",
+              "english": "Where is the emergency room?",
+              "search_term": "emergency room sign",
+              "image": "unit-09/l06-p02-emergency-room-sign.jpg"
+            },
+            {
+              "slot": "my-father-had-an-accident",
+              "english": "My father had an accident"
+            },
+            {
+              "slot": "register-his-name-at-the-reception-desk-to-a-man",
+              "english": "Register his name at the reception desk (to a man)",
+              "search_term": "hospital reception desk",
+              "image": "unit-09/l06-p04-hospital-reception-desk.jpg"
+            },
+            {
+              "slot": "he-needs-to-stay-in-the-hospital-for-two-days",
+              "english": "He needs to stay in the hospital for two days",
+              "search_term": "hospital bed",
+              "image": "unit-09/l06-p05-hospital-bed.jpg"
+            },
+            {
+              "slot": "which-room-is-he-in",
+              "english": "Which room is he in?"
+            },
+            {
+              "slot": "what-are-the-visiting-hours",
+              "english": "What are the visiting hours?"
+            },
+            {
+              "slot": "i-ll-measure-his-temperature",
+              "english": "I'll measure his temperature",
+              "search_term": "medical thermometer",
+              "image": "unit-09/l06-p08-medical-thermometer.jpg"
+            },
+            {
+              "slot": "the-operation-will-take-two-hours",
+              "english": "The operation will take two hours"
+            },
+            {
+              "slot": "i-m-worried-about-him-a-man-speaking",
+              "english": "I'm worried about him (a man speaking)"
+            },
+            {
+              "slot": "praise-be-to-allah-he-is-fine-now",
+              "english": "Praise be to Allah, he is fine now"
+            },
+            {
+              "slot": "when-can-he-leave-the-hospital",
+              "english": "When can he leave the hospital?",
+              "search_term": "wheelchair"
             }
           ]
         }
