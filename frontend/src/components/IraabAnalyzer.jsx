@@ -269,6 +269,8 @@ function WordGrid({ words, onClick, governs, picked }) {
  * The click lives on the row, one handler on the table body; the keyboard lives
  * on each word, a real button, so Tab reaches it and Enter opens it.
  */
+const NONE = '–'
+
 function FullIraabTable({ words, onRowClick }) {
   const pick = (e) => {
     const row = e.target.closest('tr[data-i]')
@@ -276,45 +278,53 @@ function FullIraabTable({ words, onRowClick }) {
   }
   return (
     <Disclosure framed label="Full table: every word, side by side" bodyClassName="overflow-x-auto">
-        <table className="w-full text-sm border-collapse">
+        {/* Right to left like the books: the word first, its proof last. Case and
+            sign sit under the role (one reading, one cell); a sign that only
+            repeats مبني is dropped. */}
+        <table dir="rtl" className="w-full type-small border-collapse">
           <thead>
-            <tr className="text-[var(--text-faint)] text-xs uppercase tracking-wide border-b border-[var(--border)]">
-              <ArabicText as="th" className="text-right py-2 px-3">الكلمة</ArabicText>
-              <th className="text-left py-2 px-3">Role</th>
-              <th className="text-left py-2 px-3">Case</th>
-              <th className="text-left py-2 px-3">Sign</th>
-              <th className="text-left py-2 px-3">Root</th>
-              <th className="text-left py-2 px-3">Governed by (العامل)</th>
-              <th className="text-left py-2 px-3">Proof (الدليل)</th>
+            <tr className="type-micro text-[var(--text-faint)] border-b border-[var(--border)] align-bottom">
+              {[['الكلمة', 'Word'], ['الإعراب', 'Role · case · sign'], ['الجذر', 'Root'], ['العامل', 'Governed by'],
+                ['الدليل', 'Proof']].map(([ar, en]) => (
+                <th key={en} className="text-right font-normal py-2 px-3">
+                  <ArabicText size="sm" className="block text-[var(--text-dim)]">{ar}</ArabicText>
+                  <span dir="ltr" className="block">{en}</span>
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody onClick={pick}>
-            {words.map((w, i) => (
-              <tr
-                key={`${w.word}-${i}`}
-                data-i={i}
-                style={{ '--c': roleVar(w.role_key) }}
-                className="border-b border-[var(--border)] cursor-pointer transition-colors
-                  hover:bg-[var(--surface-hi)] role"
-              >
-                <td className="py-2 px-3 text-right">
-                  <ArabicText as="button" type="button" className="rounded-[var(--radius-sm)] px-1">{w.word}</ArabicText>
-                </td>
-                <td className="py-2 px-3" style={{ color: 'var(--c)' }}>{w.role || '–'}</td>
-                <ArabicText as="td" size="sm" className="py-2 px-3 text-[var(--text-dim)]">{w.case ? caseLabel(w.case) : '–'}</ArabicText>
-                <ArabicText as="td" size="sm" className="py-2 px-3 text-[var(--text-dim)]">{w.sign || '–'}</ArabicText>
-                <ArabicText as="td" className="py-2 px-3 text-[var(--text-dim)]">{w.root || '–'}</ArabicText>
-                <td className="py-2 px-3 text-[var(--text-dim)]">
-                  {source(w) === undefined ? '–' : (
-                    <>{w.governor == null && 'follows '}<ArabicText size="sm">{words[source(w)].word}</ArabicText></>
-                  )}
-                </td>
-                <td className="py-2 px-3 text-[var(--text-faint)] max-w-xs">
-                  {w.reason || '–'}
-                  {w.reason && <BookPath path={w.book} />}
-                </td>
-              </tr>
-            ))}
+            {words.map((w, i) => {
+              const c = w.case ? caseLabel(w.case) : ''
+              const reading = w.sign?.startsWith(c) ? [w.sign] : [c, w.sign].filter(Boolean)
+              return (
+                <tr
+                  key={`${w.word}-${i}`}
+                  data-i={i}
+                  style={{ '--c': roleVar(w.role_key) }}
+                  className="border-b border-[var(--border)] last:border-0 cursor-pointer align-top transition-colors
+                    hover:bg-[var(--surface-hi)] role"
+                >
+                  <td className="py-3 px-3 whitespace-nowrap">
+                    <ArabicText as="button" type="button" className="rounded-[var(--radius-sm)] px-1">{w.word}</ArabicText>
+                  </td>
+                  <td className="py-3 px-3 whitespace-nowrap">
+                    <ArabicText size="sm" className="block" style={{ color: 'var(--c)' }}>{w.role || '–'}</ArabicText>
+                    {reading.length > 0 && (
+                      <ArabicText size="tiny" className="block mt-1 text-[var(--text-dim)]">{reading.join(' · ')}</ArabicText>
+                    )}
+                  </td>
+                  <ArabicText as="td" size="sm" className="py-3 px-3 text-[var(--text-dim)] whitespace-nowrap">{w.root || NONE}</ArabicText>
+                  <ArabicText as="td" size="sm" className="py-3 px-3 text-[var(--text-dim)] whitespace-nowrap">
+                    {source(w) === undefined ? NONE : <>{w.governor == null && 'تابع لـ '}{words[source(w)].word}</>}
+                  </ArabicText>
+                  <td className="py-3 px-3 text-[var(--text-dim)] min-w-[18rem]">
+                    <ArabicText size="sm" className="block leading-relaxed">{w.reason || NONE}</ArabicText>
+                    {w.reason && <BookPath path={w.book} />}
+                  </td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
     </Disclosure>
