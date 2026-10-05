@@ -86,7 +86,8 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
                                 if t["head"] == token["id"] and t["form"].startswith("+"))
         token["mudaf"] = any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
-    answers = {t["id"]: a for t, a in zip(tokens, facts.of_sentence(tokens))}
+    found_answers, governed_by = facts.of_sentence(tokens)
+    answers = {t["id"]: a for t, a in zip(tokens, found_answers)}
     # the book's tree has no leaf for some answers: that word stays unnamed
     walked = [walker.walk(answers[token["id"]]) for token in bases]
     named = [found.role if found else None for found in walked]
@@ -101,27 +102,63 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     # what each word shows: the governor and follower the tree gave it, and its case
     shown = [{answers[token["id"]]["governor"], answers[token["id"]]["follows"], case}
              for token, case in zip(bases, cases)]
+    word_of = _typed_word_of(bases, tokens)
     # the parser's tense goes with a فعل, so a card CAMeL took for a noun (ضُرِبَ) still says ماضٍ
     return [{"role": role, "case": case,
              "aspect": token.get("asp") if role == NAMED.fil else None,
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
-             "book": book_path(found.path, found.book) if found else None}
-            for role, case, token, found in zip(named, cases, bases, walked)]
+             "book": book_path(found.path, found.book) if found else None,
+             **_governed(i, role, token, bases, tokens, governed_by, word_of)}
+            for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
+
+
+def _typed_word_of(bases: list[dict], tokens: list[dict]) -> dict[int, int]:
+    """Token id -> the typed word it sits in: a clitic (بِـ، ـه) belongs to the base word
+    it is written onto, a proclitic to the one after it, an enclitic to the one before."""
+    base_ids = {t["id"]: i for i, t in enumerate(bases)}
+    at, word, pending = {}, 0, []
+    for t in tokens:
+        if t["id"] in base_ids:
+            word = base_ids[t["id"]]
+            at.update(dict.fromkeys(pending, word))
+            pending = []
+        elif t["form"].endswith("+"):
+            pending.append(t["id"])
+            continue
+        at[t["id"]] = word
+    at.update(dict.fromkeys(pending, word))
+    return at
+
+
+def _governed(i: int, role: str | None, token: dict, bases: list[dict], tokens: list[dict],
+              governed_by: dict[int, int], word_of: dict[int, int]) -> dict:
+    """The typed word this one takes its case from: `follows` for a تابع (the word it copies),
+    else `governor` (its عامل); each only when it is another typed word."""
+    if role in FOLLOWERS and (head := _followed(token, bases, tokens)) is not None:
+        return {"follows": head} if head != i else {}
+    governor = word_of.get(governed_by.get(token["id"]))
+    return {"governor": governor} if governor is not None and governor != i else {}
+
+
+def _followed(token: dict, bases: list[dict], tokens: list[dict]) -> int | None:
+    """The typed word a follower follows, reached through the و of a معطوف."""
+    at = {t["id"]: i for i, t in enumerate(bases)}
+    by_id = {t["id"]: t for t in tokens}
+    head = by_id.get(token["head"])
+    while head and (head["id"] not in at or head["pos"] == "PRT"):
+        head = by_id.get(head["head"])
+    return at[head["id"]] if head else None
 
 
 def _followers_take_their_case(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
     """A صفة، معطوف، توكيد or بدل with no vowel typed wears the case of the word it
-    follows (اليدُ العليا), reached through the و of a معطوف; in order, so a chain follows too."""
-    at = {token["id"]: i for i, token in enumerate(bases)}
-    by_id = {t["id"]: t for t in tokens}
+    follows (اليدُ العليا); in order, so a chain follows too."""
     for i, (role, token) in enumerate(zip(named, bases)):
         if cases[i] is not None or role not in FOLLOWERS:
             continue
-        head = by_id.get(token["head"])
-        while head and (head["id"] not in at or head["pos"] == "PRT"):
-            head = by_id.get(head["head"])
-        if head and cases[at[head["id"]]] != "mabni":
-            cases[i] = cases[at[head["id"]]]
+        head = _followed(token, bases, tokens)
+        if head is not None and cases[head] != "mabni":
+            cases[i] = cases[head]
 
 
 def _family(token: dict, bases: list[dict], shown: list[set]) -> str | None:

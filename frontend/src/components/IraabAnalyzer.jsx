@@ -3,14 +3,16 @@
  * a card for each word. One `/api/analyze` request returns both, so they are the
  * same reading. The picture is left out when nothing could be joined.
  */
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { analyzeIraab, generatePractice } from '../api'
 import { errorMessage, errorStatus } from '../lib/apiError'
 import { buildIraabExportText } from '../lib/iraabExport'
 import { caseLabel, isUnnamed } from '../lib/grammarTerms'
+import { arc } from '../lib/govArc'
 import { roleVar } from '../lib/roleColors'
+import { useRemembered } from '../lib/useRemembered'
 
 import SourceBadge from './ui/SourceBadge'
 import TarkeebFigure from './TarkeebFigure'
@@ -24,6 +26,7 @@ import ErrorAlert from './ui/ErrorAlert'
 import ExampleChips from './ui/ExampleChips'
 import MicButton from './ui/MicButton'
 import SearchBox from './ui/SearchBox'
+import Segmented from './ui/Segmented'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
 const EXAMPLES = [
@@ -32,6 +35,9 @@ const EXAMPLES = [
   { arabic: 'إِنَّ اللهَ غَفُورٌ رَحِيمٌ', meaning: 'Indeed Allah is Forgiving, Merciful' },
   { arabic: 'ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ', meaning: 'The student went to school' },
 ]
+
+// What the word row draws: each word's role, or arcs from governor to governed.
+const LENSES = [{ id: 'roles', label: 'Roles' }, { id: 'governs', label: 'Who governs whom' }]
 
 export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null }) {
   const [sentence, setSentence] = useState(analyse ?? '')
@@ -97,6 +103,7 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
             data={analyze.data}
             accent={accent}
             onWordClick={setSelectedWord}
+            picked={analyze.data.words.indexOf(selectedWord)}
             practice={practice}
             detail={selectedWord && (
               <WordCard word={selectedWord} onClose={() => setSelectedWord(null)} onGo={onGo} exclude="nahw" />
@@ -119,7 +126,10 @@ function AnalyzeError({ error, onRetry }) {
 
 // `detail` is the opened word's card, drawn right under the grid it was
 // tapped in rather than after the practice block, where a tap looked ignored.
-function AnalysisResults({ data, accent, onWordClick, practice, detail }) {
+function AnalysisResults({ data, accent, onWordClick, picked, practice, detail }) {
+  const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES.map((l) => l.id))
+  const linked = data.words.some((w) => source(w) !== undefined)
+  const governs = linked && lens === 'governs'
   return (
     <div className="space-y-4">
       <div className="flex items-start justify-between gap-3 flex-wrap">
@@ -146,9 +156,15 @@ function AnalysisResults({ data, accent, onWordClick, practice, detail }) {
           coverage={data.tree.coverage}
         />
       )}
-      <WordGrid words={data.words} onClick={onWordClick} />
+      {linked && (
+        <Segmented label="Word row shows" options={LENSES} value={lens} onChange={setLens} accent={accent}
+          className="w-fit mx-auto" />
+      )}
+      <WordGrid words={data.words} onClick={onWordClick} governs={governs} picked={picked} />
       <p className="text-center type-small text-[var(--text-faint)]">
-        Tap any word for its full breakdown
+        {governs && picked >= 0 && source(data.words[picked]) !== undefined
+          ? <GovernsWhy words={data.words} i={picked} />
+          : 'Tap any word for its full breakdown'}
       </p>
       {detail}
 
@@ -158,13 +174,65 @@ function AnalysisResults({ data, accent, onWordClick, practice, detail }) {
   )
 }
 
-function WordGrid({ words, onClick }) {
+// The word a word takes its case from: its عامل, or the word a تابع follows.
+const source = (w) => w.governor ?? w.follows ?? undefined
+
+// "X governs Y" or "Y follows X", the typed words themselves.
+function GovernsWhy({ words, i }) {
+  const w = words[i]
+  const from = <ArabicText size="sm" className="text-[var(--text)]">{words[source(w)].word}</ArabicText>
+  const to = <ArabicText size="sm" className="text-[var(--text)]">{w.word}</ArabicText>
+  return w.governor != null
+    ?<>{from} governs {to}: it gives it its case.</>
+    : <>{to} follows {from} and copies its case.</>
+}
+
+// Governs view: one unbroken line (arcs cannot cross a wrap) with an arc above it
+// from each governor down into the word it governs; a follower's arc is dashed.
+const ARC_CAP = 56 // px the tallest arc climbs above the words
+function WordGrid({ words, onClick, governs, picked }) {
+  const lineRef = useRef(null)
+  const [arcs, setArcs] = useState([])
+  useLayoutEffect(() => {
+    if (!governs) return undefined
+    const line = lineRef.current
+    function measure() {
+      const cards = [...line.querySelectorAll('.word')]
+      const at = (i) => [cards[i].offsetLeft + cards[i].offsetWidth / 2, cards[i].offsetTop]
+      setArcs(words.flatMap((w, i) => (source(w) === undefined ? [] : [{
+        i, dashed: w.governor == null, ...arc(at(source(w)), at(i), ARC_CAP),
+      }])))
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(line)
+    document.fonts?.ready.then(measure)
+    return () => ro.disconnect()
+  }, [governs, words])
+
   return (
     <div
       dir="rtl"
-      className="peer-dim flex flex-wrap justify-center gap-3 p-5 rounded-[var(--radius-lg)]
-        bg-[var(--surface)] border border-[var(--border)]"
+      className={`peer-dim p-5 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
+        ${governs ? 'overflow-x-auto' : ''}`}
     >
+      <div
+        ref={lineRef}
+        style={governs ? { paddingTop: ARC_CAP + 8 } : undefined}
+        className={`relative flex justify-center gap-3 ${governs ? 'flex-nowrap w-max min-w-full' : 'flex-wrap'}`}
+      >
+      {governs && (
+        <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none" aria-hidden="true">
+          {arcs.map((a) => (
+            <g key={a.i} stroke={roleVar(words[a.i].role_key)} fill="none" strokeWidth="2"
+              strokeLinecap="round" strokeLinejoin="round"
+              className="transition-opacity" style={{ opacity: picked < 0 || picked === a.i ? 1 : 0.25 }}>
+              <path d={a.d} strokeDasharray={a.dashed ? '4 5' : undefined} />
+              <path d={a.head} />
+            </g>
+          ))}
+        </svg>
+      )}
       {words.map((word, i) => {
         const key = word.role_key
         return (
@@ -192,6 +260,7 @@ function WordGrid({ words, onClick }) {
           </button>
         )
       })}
+      </div>
     </div>
   )
 }
@@ -215,6 +284,7 @@ function FullIraabTable({ words, onRowClick }) {
               <th className="text-left py-2 px-3">Case</th>
               <th className="text-left py-2 px-3">Sign</th>
               <th className="text-left py-2 px-3">Root</th>
+              <th className="text-left py-2 px-3">Governed by (العامل)</th>
               <th className="text-left py-2 px-3">Proof (الدليل)</th>
             </tr>
           </thead>
@@ -234,6 +304,11 @@ function FullIraabTable({ words, onRowClick }) {
                 <ArabicText as="td" size="sm" className="py-2 px-3 text-[var(--text-dim)]">{w.case ? caseLabel(w.case) : '–'}</ArabicText>
                 <ArabicText as="td" size="sm" className="py-2 px-3 text-[var(--text-dim)]">{w.sign || '–'}</ArabicText>
                 <ArabicText as="td" className="py-2 px-3 text-[var(--text-dim)]">{w.root || '–'}</ArabicText>
+                <td className="py-2 px-3 text-[var(--text-dim)]">
+                  {source(w) === undefined ? '–' : (
+                    <>{w.governor == null && 'follows '}<ArabicText size="sm">{words[source(w)].word}</ArabicText></>
+                  )}
+                </td>
                 <td className="py-2 px-3 text-[var(--text-faint)] max-w-xs">
                   {w.reason || '–'}
                   {w.reason && <BookPath path={w.book} />}

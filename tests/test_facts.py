@@ -5,7 +5,7 @@ from tests.test_naming import VERB, clitic, token
 
 
 def answers(toks, token):
-    return facts.of_sentence(toks)[toks.index(token)]
+    return facts.of_sentence(toks)[0][toks.index(token)]
 
 
 def follows(words, toks, index):
@@ -78,6 +78,16 @@ def test_governor_harf_jarr_and_its_leaf():
             token(2, "البيت", "بيت", "NOM", 1, "OBJ", stt="d", cas="g")]
     assert governor(["فِي", "الْبَيْتِ"], toks, 1) == "harf_jarr"
     assert walker.walk({"kind": "ism", "follows": "none", "governor": "harf_jarr"})[0] == "مجرور"
+
+
+def test_each_word_points_at_the_word_that_gives_its_case():
+    toks = [token(1, "في", "في", "PRT", 0, "---"),
+            token(2, "البيت", "بيت", "NOM", 1, "OBJ", stt="d", cas="g"),
+            token(3, "الكبير", "كبير", "NOM", 2, "MOD", ud="ADJ", stt="d", cas="g")]
+    found = named(["فِي", "الْبَيْتِ", "الْكَبِيرِ"], toks)
+    assert "governor" not in found[0] and "follows" not in found[0]
+    assert found[1]["governor"] == 0  # فِي governs الْبَيْتِ
+    assert found[2]["follows"] == 1 and "governor" not in found[2]  # the صفة copies its noun
 
 
 def test_governor_idafa_and_its_leaf():
