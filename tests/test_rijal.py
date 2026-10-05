@@ -92,3 +92,11 @@ def test_a_narrator_sheet_carries_grade_generation_and_his_circle(built):
 def test_search_finds_a_narrator_by_unpointed_arabic_or_english(built):
     assert [n["id"] for n in built.get("/api/rijal/search", params={"q": "مالك أنس"}).json()["narrators"]] == [6659]
     assert [n["id"] for n in built.get("/api/rijal/search", params={"q": "malik"}).json()["narrators"]] == [6659]
+
+
+def test_a_link_ending_in_a_space_still_lands_before_the_next_word():
+    page = ('<div class="actualHadithContainer"><table class="hadith_reference"><a href="/bukhari:6481">r</a></table>'
+            '<div class="arabic_hadith_full">عَنْ <a href="/narrator/3260">أَبِي سَعِيدٍ ـ </a>رضى الله عنه</div></div>')
+    names = parse.book_chains(page)[0]["names"]
+    placed, lost = parse.place("عَنْ أَبِي سَعِيدٍ ـ رضى الله عنه", names)
+    assert lost == [] and placed == [(5, 20, 3260)]

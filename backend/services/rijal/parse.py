@@ -38,7 +38,7 @@ def book_chains(html: str) -> list[dict]:
         ref = _REFERENCE.match(link["href"]) if link else None
         if not ref:
             continue
-        names = [(int(m.group(1)), a.get_text())
+        names = [(int(m.group(1)), a.get_text().strip())
                  for a in box.select("div.arabic_hadith_full a[href]") if (m := _NARRATOR.match(a["href"]))]
         out.append({"number": int(ref.group(1)), "part": ref.group(2), "names": names})
     return out
