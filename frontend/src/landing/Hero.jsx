@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import Reveal from './Reveal.jsx'
+import { reducedMotion } from './motion.js'
 import { scrollToEl } from '../lib/scrollToEl'
 import links from './links.json'
 import { CLIPS } from './assets/clips.js'
@@ -11,7 +11,7 @@ export default function Hero() {
   const mediaRef = useRef(null)
   const playingRef = useRef(true)
   const [playing, setPlaying] = useState(true)
-  const [reduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const [reduced] = useState(reducedMotion)
 
   useEffect(() => {
     // StrictMode runs this effect, its cleanup, then this effect again before
@@ -21,7 +21,6 @@ export default function Hero() {
     // pressed. `live` guards every setState so only the current run's async
     // callbacks can touch state.
     let live = true
-    const isReduced = reduced
     const media = mediaRef.current
     const vA = document.createElement('video')
     const vB = document.createElement('video')
@@ -45,7 +44,7 @@ export default function Hero() {
     function swapTo(i) {
       loadClip(next, i)
       next.currentTime = 0
-      if (!isReduced && playingRef.current) next.play().catch(() => {})
+      if (!reduced && playingRef.current) next.play().catch(() => {})
       next.classList.add('active')
       current.classList.remove('active')
       const tmp = current
@@ -59,7 +58,7 @@ export default function Hero() {
 
     loadClip(vA, 0)
     vA.classList.add('active')
-    if (!isReduced) {
+    if (!reduced) {
       vA.onended = () => {
         idx = (idx + 1) % CLIPS.length
         swapTo(idx)
@@ -90,16 +89,16 @@ export default function Hero() {
       <span className="hero-ghost arabic" lang="ar" dir="rtl" aria-hidden="true">اقرأ</span>
       <div className="hero-grid">
         <div>
-          <Reveal as="p" className="eyebrow label in">Tafheem</Reveal>
-          <Reveal as="h1" className="headline in">
+          <p className="eyebrow label">Tafheem</p>
+          <h1 className="headline">
             <span className="mask-word"><span>Read the</span></span><br />
             <span className="mask-word"><span>Qur&apos;an. Know</span></span><br />
             <span className="mask-word"><span><span className="accent">every</span> word.</span></span>
-          </Reveal>
-          <Reveal as="p" className="sub in">
+          </h1>
+          <p className="sub">
             One root opens four classical dictionaries. One sentence unfolds into full i&apos;raab. One
             recitation gets heard, word by word. This is the app, running, right now.
-          </Reveal>
+          </p>
           <div className="cta-row">
             <a href={links.tool} className="cta">See it in action</a>
             <button

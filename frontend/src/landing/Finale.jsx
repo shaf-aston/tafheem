@@ -1,42 +1,19 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
+import { reducedMotion } from './motion.js'
 import links from './links.json'
+import useScrollProgress, { riseProgress } from './useScrollProgress.js'
 
 const LINES = ['Arabic, unlocked.', 'Grammar you can see.', 'Recitation you can trust.']
-const RISE_SHARE = 0.85 // share of the section's height that has to scroll past before it is fully risen
-
-// --e (0 to 1, eased) is how far the section has risen into view. Written
-// straight to the element, not state, so a scroll frame restyles only this.
-function useRise(ref) {
-  useEffect(() => {
-    const node = ref.current
-    const still = matchMedia('(prefers-reduced-motion: reduce)').matches
-    let raf = 0
-    function frame() {
-      raf = 0
-      const r = node.getBoundingClientRect()
-      const p = still ? 1 : Math.min(1, Math.max(0, (innerHeight - r.top) / (Math.min(r.height, innerHeight) * RISE_SHARE)))
-      node.style.setProperty('--e', (1 - (1 - p) ** 3).toFixed(3))
-    }
-    function onScroll() { if (!raf) raf = requestAnimationFrame(frame) }
-    frame()
-    addEventListener('scroll', onScroll, { passive: true })
-    addEventListener('resize', onScroll)
-    return () => {
-      removeEventListener('scroll', onScroll)
-      removeEventListener('resize', onScroll)
-      cancelAnimationFrame(raf)
-    }
-  }, [ref])
-}
 
 export default function Finale() {
   const ref = useRef(null)
   const [flood, setFlood] = useState(false)
-  useRise(ref)
+  const [still] = useState(reducedMotion)
+  const rise = useScrollProgress(ref, riseProgress) // --e: how far the section has risen, read by the CSS
 
   return (
-    <section className="finale" ref={ref}>
+    <section className="finale" ref={ref} style={{ '--e': still ? 1 : rise }}>
       <div className="wrap">
         <p className="finale-lines">
           {LINES.map((l, i) => <span key={l}><span style={{ '--i': i }}>{l}</span></span>)}

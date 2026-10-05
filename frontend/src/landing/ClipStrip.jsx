@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal.jsx'
 import { useInView } from '../lib/useInView'
 import { CLIPS } from './assets/clips.js'
+import { reducedMotion } from './motion.js'
 
 const LABELS = {
   nahw: 'Nahw', sarf: 'Sarf', quran: "Qur’an", daleel: 'Daleel',
@@ -13,7 +14,7 @@ const items = ORDER.map((id) => CLIPS.find((c) => c.id === id))
 function StripItem({ item }) {
   const [ref, inView] = useInView({ threshold: 0.6 })
   const videoRef = useRef(null)
-  const [reduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const [reduced] = useState(reducedMotion)
 
   // useInView latches true forever, so it also gates the one-time lazy load.
   const active = inView && !reduced
@@ -28,7 +29,7 @@ function StripItem({ item }) {
       <img src={item.poster} alt="" loading="lazy" />
       <video
         ref={videoRef}
-        className={active ? 'lazy-clip show' : 'lazy-clip'}
+        className={active ? 'show' : undefined}
         src={active ? item.src : undefined}
         poster={item.poster}
         muted

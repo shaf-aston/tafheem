@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import TarkeebDiagram from '../components/TarkeebDiagram'
 import { rows } from '../lib/tarkeebLayout'
 import { loadDemo } from './loadDemo.js'
+import { reducedMotion } from './motion.js'
 import useScrollProgress from './useScrollProgress.js'
 
 const GROW_END = 0.14
@@ -15,7 +16,7 @@ export default function SentenceDemo({ demo = loadDemo() }) {
   const trackRef = useRef(null)
   const rootRef = useRef(null)
   const progress = useScrollProgress(trackRef)
-  const [reduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const [reduced] = useState(reducedMotion)
   const [phone, setPhone] = useState(() => matchMedia(PHONE).matches)
 
   useEffect(() => {
