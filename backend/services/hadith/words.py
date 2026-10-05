@@ -11,7 +11,7 @@ import re
 
 from num2words import num2words
 
-from backend.services.arabic_text import bare_letters, has_arabic
+from backend.services.spelling import fold
 
 ARABIC_WORD = re.compile("[ء-ي]{2,}")
 ENGLISH_WORD = re.compile("[a-z]{2,}")
@@ -20,11 +20,6 @@ ARABIC_TOKEN = re.compile("[ء-ْٰ]+")
 _NUMBER = re.compile("[0-9]+")
 # Larger than any count a hadith gives; past it a "number" is an id, not a count.
 MAX_NUMBER = 1_000_000
-
-
-def fold(word: str) -> str:
-    """The word (or text) as the index spells it; ة as ه, since typists write الجنه for الجنة."""
-    return bare_letters(word).replace("ة", "ه") if has_arabic(word) else word.lower()
 
 
 def tokens(query: str) -> list[tuple[str, str]]:
@@ -55,15 +50,3 @@ def without_article(folded: str) -> str:
     """An Arabic word without its ال, when a word is left: البخاري as بخاري."""
     rest = folded.removeprefix("ال")
     return rest if ARABIC_WORD.fullmatch(rest) else folded
-
-
-def respell(word: str, long_vowels: dict[str, str]) -> str:
-    """The word with each doubled long vowel written single: dawood as dawud."""
-    for doubled, single in long_vowels.items():
-        word = word.replace(doubled, single)
-    return word
-
-
-def deletes(word: str) -> set[str]:
-    """The word with each one letter dropped."""
-    return {word[:i] + word[i + 1:] for i in range(len(word))}

@@ -38,6 +38,15 @@ def test_a_root_typed_letter_by_letter_is_searched_joined(client):
     assert "أخذ" in [entry["arabic"] for entry in body["results"]]
 
 
+@pytest.mark.usefixtures("took")
+def test_a_slip_that_finds_nothing_is_looked_up_as_the_word_meant(client):
+    """اخض is one letter off اخذ and inside no word: اخذ is looked up, and the answer says so."""
+    body = _search(client, "اخض").json()
+    assert body["query"] == "اخذ" and body["corrected"] == [{"typed": "اخض", "used": "اخذ"}]
+    assert "أخذ" in [entry["arabic"] for entry in body["results"]]
+    assert _search(client, "اخذ").json()["corrected"] == []
+
+
 @pytest.mark.parametrize(("q", "lang", "status"), [
     ("كتب", "fr", 400),      # a language there is no index for
     ("   ", "ar", 400),      # nothing but spaces

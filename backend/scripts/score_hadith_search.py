@@ -21,19 +21,20 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services.hadith import search, words  # noqa: E402
+from backend.services import spelling  # noqa: E402
+from backend.services.hadith import search  # noqa: E402
 
 TOP = 10
 
 
 def _markers(item: dict):
     english = re.compile(item["english"], re.I | re.S) if item.get("english") else None
-    arabic = re.compile(words.fold(item["arabic"]), re.S) if item.get("arabic") else None
+    arabic = re.compile(spelling.fold(item["arabic"]), re.S) if item.get("arabic") else None
     return english, arabic
 
 
 def _carries(english, arabic, hit_english: str, hit_arabic: str) -> bool:
-    return bool((english and english.search(hit_english)) or (arabic and arabic.search(words.fold(hit_arabic))))
+    return bool((english and english.search(hit_english)) or (arabic and arabic.search(spelling.fold(hit_arabic))))
 
 
 def _yardstick() -> list[dict]:

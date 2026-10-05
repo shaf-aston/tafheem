@@ -6,7 +6,7 @@ A collection is named by a run of typed words that are all its own words (its
 id, short, full and Arabic names as the database stores them, so a new
 collection needs no change here) and hold one whole name: "sahih bukhari"
 names Bukhari, "dawud" alone does not name Abu Dawud. A word may be a slip or
-two off (repair.slips), as the word search allows, and an Arabic one may drop
+two off (spelling.slips), as the word search allows, and an Arabic one may drop
 its ال. Words two collections both claim name neither ("sahih 8" stays a word
 search). A run of everyday words ("muslim") names a collection only alone or
 with a number, since "rights of a muslim" is about Muslims; a word is everyday
@@ -19,8 +19,8 @@ from dataclasses import dataclass
 from typing import Callable
 
 from backend.config import get_settings
-from backend.services.hadith.words import ARABIC_WORD, ENGLISH_WORD, MAX_NUMBER, fold, without_article
-from backend.services.hadith.repair import slips
+from backend.services.hadith.words import ARABIC_WORD, ENGLISH_WORD, MAX_NUMBER, without_article
+from backend.services.spelling import fold, slips
 
 # What parts the typed words: "bukhari:2", "Sahih al-Bukhari", "prayer, bukhari".
 _PARTS = re.compile(r"[\s:/#,;.!?()\[\]\"\-،؛؟]+")
@@ -88,7 +88,7 @@ def _number(token: str) -> re.Match | None:
 
 
 def _near(word: str, known: str) -> bool:
-    return slips(word, known) <= int(len(known) * get_settings().hadith_repair_edits_per_letter)
+    return slips(word, known) <= int(len(known) * get_settings().spelling_edits_per_letter)
 
 
 def _name_word(word: str) -> str:

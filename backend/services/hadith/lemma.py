@@ -9,7 +9,7 @@ from __future__ import annotations
 from functools import lru_cache
 
 from backend.services import morphology
-from backend.services.hadith.words import fold
+from backend.services.spelling import fold
 
 
 # Unbounded: the build meets each distinct written word (a few hundred thousand)

@@ -9,9 +9,11 @@ from fastapi import APIRouter, HTTPException, Path, Query
 from backend.config import get_settings
 from backend.models.schemas import (
     AyahEditions,
+    Correction,
     Edition,
     Passage,
     QuranAyah,
+    QuranSearchResponse,
     QuranSearchResult,
     QuranSurah,
     QuranWord,
@@ -233,19 +235,22 @@ async def get_ayah(surah: int, ayah: int) -> QuranAyah:
     )
 
 
-@router.get("/search", response_model=list[QuranSearchResult])
-async def search_quran(q: str = Query(..., min_length=1, max_length=get_settings().search_max_query_chars)) -> list[QuranSearchResult]:
+@router.get("/search", response_model=QuranSearchResponse)
+async def search_quran(q: str = Query(..., min_length=1, max_length=get_settings().search_max_query_chars)) -> QuranSearchResponse:
     query = normalize_text(q, "Search query")
-    hits = await asyncio.to_thread(quran_search.search, query)
+    hits, corrected = await asyncio.to_thread(quran_search.search, query)
     # The badge is per hit, not per response: one search can be answered by the
     # local corpus and the next by Quran.com, and a reader is entitled to know
     # which text is in front of them.
-    return [
-        QuranSearchResult(
-            surah=hit.surah,
-            ayah=hit.ayah,
-            arabic_text=hit.arabic_text,
-            source=Source(**provenance.of(hit.source)),
-        )
-        for hit in hits
-    ]
+    return QuranSearchResponse(
+        hits=[
+            QuranSearchResult(
+                surah=hit.surah,
+                ayah=hit.ayah,
+                arabic_text=hit.arabic_text,
+                source=Source(**provenance.of(hit.source)),
+            )
+            for hit in hits
+        ],
+        corrected=[Correction(typed=t, used=u) for t, u in corrected],
+    )

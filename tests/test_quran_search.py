@@ -152,8 +152,8 @@ def test_arabic_asks_the_index_first_and_english_asks_quran_com_first(index, mon
 
     monkeypatch.setattr(remote, "search", remote_answers)
     monkeypatch.setattr(get_settings(), "quran_search_source", "auto")
-    assert _keys(quran_search.search("ريب", 10)) == [(2, 2)] and asked == []
-    assert _keys(quran_search.search("doubt", 10)) == [(9, 9)] and asked == ["doubt"]
+    assert _keys(quran_search.search("ريب", 10)[0]) == [(2, 2)] and asked == []
+    assert _keys(quran_search.search("doubt", 10)[0]) == [(9, 9)] and asked == ["doubt"]
 
 
 def test_a_local_hit_is_badged_as_the_corpus(index) -> None:
@@ -174,7 +174,7 @@ def test_the_local_index_answers_when_the_network_does_not(index, monkeypatch) -
     monkeypatch.setattr(remote, "search", refuse)
     monkeypatch.setattr(get_settings(), "quran_search_source", "auto")
 
-    hits = quran_search.search("ريب", 10)
+    hits, _ = quran_search.search("ريب", 10)
     assert [(h.surah, h.ayah, h.source) for h in hits] == [(2, 2, "corpus")]
 
 
@@ -187,7 +187,7 @@ def test_nothing_answers_and_that_is_still_not_an_error(monkeypatch) -> None:
     monkeypatch.setattr(get_settings(), "quran_search_index_path", "data/quran/never-built.db")
     monkeypatch.setattr(get_settings(), "quran_search_source", "auto")
 
-    assert quran_search.search("ريب", 10) == []
+    assert quran_search.search("ريب", 10) == ([], [])
 
 
 def test_pinning_to_local_never_touches_the_network(index, monkeypatch) -> None:
@@ -198,7 +198,16 @@ def test_pinning_to_local_never_touches_the_network(index, monkeypatch) -> None:
 
     monkeypatch.setattr(remote, "search", explode)
     monkeypatch.setattr(get_settings(), "quran_search_source", "local")
-    assert quran_search.search("ريب", 10)
+    assert quran_search.search("ريب", 10)[0]
+
+
+def test_a_slip_no_ayah_holds_is_searched_as_the_word_meant(index, monkeypatch) -> None:
+    """مالق is one letter off مالك: nothing holds it, so مالك is searched and the swap is named."""
+    monkeypatch.setattr(get_settings(), "quran_search_source", "local")
+    hits, swaps = quran_search.search("مالق يوم", 10)
+    assert (5, 5) in _keys(hits) and swaps == [("مالق", "مالك")]
+    # A word found as typed, even inside a longer one, is never swapped.
+    assert quran_search.search("رحمن", 10)[1] == []
 
 
 def test_the_online_source_is_a_known_badge() -> None:

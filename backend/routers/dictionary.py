@@ -8,6 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 
 from backend.config import get_settings
 from backend.models.schemas import (
+    Correction,
     DictionaryEntry,
     DictionaryResponse,
     EntryLine,
@@ -77,11 +78,18 @@ async def search_dictionary(
 
     # A worker thread: an uncached fuzzy search scans every headword.
     found = await asyncio.to_thread(searcher, query)
+    corrected = []
+    # Nothing at all, not even inside a longer word: most likely a slip, so the
+    # word it was likeliest meant to be is looked up, and the page says so.
+    if not found and (used := await asyncio.to_thread(dictionary_service.meant, query, language)):
+        found = await asyncio.to_thread(searcher, used)
+        corrected, query = [Correction(typed=query, used=used)], used
     return DictionaryResponse(
         query=query,
         lang=language,
         results=[DictionaryEntry(**entry) for entry in found],
         source=Source(**provenance.of("wiktionary")),
+        corrected=corrected,
     )
 
 

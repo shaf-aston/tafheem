@@ -14,7 +14,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from backend.config import get_settings
-from backend.services import conjugation
+from backend.services import conjugation, spelling
 from backend.services.arabic_text import bare_letters, normalize_root, strip_diacritics
 
 logger = logging.getLogger(__name__)
@@ -96,6 +96,19 @@ def search_english(query: str, limit: int = 10) -> list[dict]:
     found = [_with_synonym_meanings(entry) for entry in _english_matches(keyword, limit)]
     _log_timing("english", keyword, len(found), started)
     return found
+
+
+def meant(query: str, lang: str) -> str | None:
+    """The indexed word a query that found nothing was likeliest meant to be (services/spelling.py), or None."""
+    load_dictionary()
+    typed = _folded(query.strip()) if lang == "ar" else query.strip().casefold()
+    return _vocabulary(lang).nearest(typed)
+
+
+@lru_cache(maxsize=2)
+def _vocabulary(lang: str) -> spelling.Vocabulary:
+    """Every indexed word, weighted by how common it is in everyday writing; built on the first slip."""
+    return spelling.Vocabulary(spelling.everyday_weights(_arabic_index if lang == "ar" else _english_index, lang))
 
 
 def _log_timing(side: str, key: str, results: int, started: float) -> None:

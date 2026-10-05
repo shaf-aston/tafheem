@@ -265,19 +265,19 @@ class Settings(BaseSettings):
     hadith_index_path: str = "data/hadith.db"
     # A hadith is read in full, so a long results page stops being read.
     hadith_result_limit: int = 20
-    # A typed word no hadith holds is swapped for the likeliest meant word
-    # (services/hadith/repair.py): at most this many slips per letter (a quarter:
+    # A typed word no search knows is swapped for the likeliest meant word
+    # (services/spelling.py): at most this many slips per letter (a quarter:
     # one in a short word, two in a long one), each slip costing this much
     # log-frequency, so a word a slip further must be that much more common.
-    hadith_repair_edits_per_letter: float = 0.25
-    hadith_repair_edit_cost: float = 3.0
-    # How common a word is: this much its share of everyday writing
-    # (services/hadith/language.py), the rest its share of the hadith. Everyday
+    spelling_edits_per_letter: float = 0.25
+    spelling_edit_cost: float = 3.0
+    # How common a hadith word is: this much its share of everyday writing
+    # (services/spelling.py everyday), the rest its share of the hadith. Everyday
     # writing keeps real words the hadith never use ("jail") from being "fixed".
     hadith_repair_everyday_weight: float = 0.9
     # English letters spell a long Arabic vowel doubled (dawood, jibreel); undoing
-    # them is one slip in all (services/hadith/repair.py slips), not one per letter.
-    hadith_repair_long_vowels: dict[str, str] = {"ee": "i", "oo": "u", "ou": "u", "aa": "a"}
+    # them is one slip in all (services/spelling.py slips), not one per letter.
+    spelling_long_vowels: dict[str, str] = {"ee": "i", "oo": "u", "ou": "u", "aa": "a"}
     # A collection's name words that the hadith themselves use at least this
     # share of the time ("muslim", مسلم) read as words, not the name, unless the
     # search is only the name and a number (services/hadith/reference.py).
