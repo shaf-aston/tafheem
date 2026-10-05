@@ -1,0 +1,324 @@
+{
+  "found": [
+    {
+      "lesson": 6,
+      "phrase": 1,
+      "english": "Can we do a video call?",
+      "search_term": "laptop video conference",
+      "candidates": [
+        {
+          "id": "b6520302-09dc-4600-85de-84f5cbc92cda",
+          "title": "One Laptop Per Child",
+          "creator": "jurvetson",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/44124348109@N01/4877340633",
+          "thumbnail": "https://api.openverse.org/v1/images/b6520302-09dc-4600-85de-84f5cbc92cda/thumb/"
+        },
+        {
+          "id": "d6966f2c-2760-434a-bbf9-278a59560a22",
+          "title": "Cycling for libraries -videoconference",
+          "creator": "xmacex",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/77136818@N00/5552683158",
+          "thumbnail": "https://api.openverse.org/v1/images/d6966f2c-2760-434a-bbf9-278a59560a22/thumb/"
+        },
+        {
+          "id": "6357a8e8-cd22-4800-9e18-1062e0e27936",
+          "title": "Corporate M&A Buyers",
+          "creator": "jurvetson",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/44124348109@N01/3077831203",
+          "thumbnail": "https://api.openverse.org/v1/images/6357a8e8-cd22-4800-9e18-1062e0e27936/thumb/"
+        },
+        {
+          "id": "8d235803-27e4-4ff3-9d6d-3e057ca30b19",
+          "title": "Ustreaming Process at the Sakai Conference",
+          "creator": "mathplourde",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/23311795@N04/3727170971",
+          "thumbnail": "https://api.openverse.org/v1/images/8d235803-27e4-4ff3-9d6d-3e057ca30b19/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "phrase": 4,
+      "english": "I can't hear you.",
+      "search_term": "headphones",
+      "candidates": [
+        {
+          "id": "7bc793ef-2a32-4872-b7d3-25c3a57fb38f",
+          "title": "Woman Headphones",
+          "creator": "Burst",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/woman-headphones-NOLZXJLYKF",
+          "thumbnail": "https://api.openverse.org/v1/images/7bc793ef-2a32-4872-b7d3-25c3a57fb38f/thumb/"
+        },
+        {
+          "id": "3b8d9b89-45e2-49a9-8565-f89e6ed56876",
+          "title": "Microphone Headphones",
+          "creator": "Ryan McGuire",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/microphone-headphones-EA89EFBCDA",
+          "thumbnail": "https://api.openverse.org/v1/images/3b8d9b89-45e2-49a9-8565-f89e6ed56876/thumb/"
+        },
+        {
+          "id": "606108ed-3375-4f3e-a3d9-a73ad246fa92",
+          "title": "Headphones Music",
+          "creator": "JESHOOTS.com",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/headphones-music-UXKE7VWPCY",
+          "thumbnail": "https://api.openverse.org/v1/images/606108ed-3375-4f3e-a3d9-a73ad246fa92/thumb/"
+        },
+        {
+          "id": "2a450dfd-bb56-4cc7-8992-ae54a06322f1",
+          "title": "Headphones Music",
+          "creator": "JESHOOTS.com",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/headphones-music-QS3FJYL99Z",
+          "thumbnail": "https://api.openverse.org/v1/images/2a450dfd-bb56-4cc7-8992-ae54a06322f1/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "phrase": 6,
+      "english": "Turn on the camera.",
+      "search_term": "webcam",
+      "candidates": [
+        {
+          "id": "57095844-88bd-4838-860a-09a312099037",
+          "title": "Free webcam image",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5907091/photo-image-public-domain-technology-computer",
+          "thumbnail": "https://api.openverse.org/v1/images/57095844-88bd-4838-860a-09a312099037/thumb/"
+        },
+        {
+          "id": "1aac6495-7db1-4b4b-8dad-28f28b250e26",
+          "title": "officer U.S. Customs Border Protection",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/8738669/photo-image-public-domain-covid-19-mask",
+          "thumbnail": "https://api.openverse.org/v1/images/1aac6495-7db1-4b4b-8dad-28f28b250e26/thumb/"
+        },
+        {
+          "id": "23ef4ffb-3781-4038-9950-eb52ab5616a1",
+          "title": null,
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5946261/free-public-domain-cc0-photo",
+          "thumbnail": "https://api.openverse.org/v1/images/23ef4ffb-3781-4038-9950-eb52ab5616a1/thumb/"
+        },
+        {
+          "id": "aef055cd-732e-4f07-b3d3-7d001cc3864f",
+          "title": "Camera clipart, illustration vector",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6729051/vector-public-domain-illustrations-camera",
+          "thumbnail": "https://api.openverse.org/v1/images/aef055cd-732e-4f07-b3d3-7d001cc3864f/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "phrase": 7,
+      "english": "Turn off the microphone.",
+      "search_term": "desk microphone",
+      "candidates": [
+        {
+          "id": "6ebcb455-fe96-40ba-bb45-1fdda842afc5",
+          "title": "Gathered desk microphone celebrating radio",
+          "creator": "libraryofcongress",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6747717/photo-image-paper-microphone-vintage",
+          "thumbnail": "https://api.openverse.org/v1/images/6ebcb455-fe96-40ba-bb45-1fdda842afc5/thumb/"
+        },
+        {
+          "id": "5a376ddf-785d-4e89-8396-f6c28309b27b",
+          "title": "Woman Podcast",
+          "creator": "Christina Morillo",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/woman-podcast-WKR3QXHW3U",
+          "thumbnail": "https://api.openverse.org/v1/images/5a376ddf-785d-4e89-8396-f6c28309b27b/thumb/"
+        },
+        {
+          "id": "17650262-1fa2-4be5-8632-84484f155214",
+          "title": "Man Work",
+          "creator": "Kristin Hardwick",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/man-work-K1MYNSLEL2",
+          "thumbnail": "https://api.openverse.org/v1/images/17650262-1fa2-4be5-8632-84484f155214/thumb/"
+        },
+        {
+          "id": "521cf33d-9a65-4f4a-98da-de2500292a5d",
+          "title": "Soldiers, one drag, performing concert",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/13976547/photo-image-frame-person-art",
+          "thumbnail": "https://api.openverse.org/v1/images/521cf33d-9a65-4f4a-98da-de2500292a5d/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "phrase": 9,
+      "english": "Wait, the screen froze.",
+      "search_term": "computer screen error",
+      "candidates": [
+        {
+          "id": "250fe04e-9f14-4241-be33-5723f10da032",
+          "title": "Blue Screen of Death",
+          "creator": "taberandrew",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/88442983@N00/2228633614",
+          "thumbnail": "https://api.openverse.org/v1/images/250fe04e-9f14-4241-be33-5723f10da032/thumb/"
+        },
+        {
+          "id": "c3fc05cb-f58b-4cfd-8931-81178769a343",
+          "title": "TV Error",
+          "creator": "Sibe Kokke",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/41422909@N00/1117587017",
+          "thumbnail": "https://api.openverse.org/v1/images/c3fc05cb-f58b-4cfd-8931-81178769a343/thumb/"
+        },
+        {
+          "id": "d3f63fcc-f8a7-4d86-b277-ea10775c641c",
+          "title": "Computer Freakout 3",
+          "creator": "Colin Davis Studio",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/87506973@N00/2573183602",
+          "thumbnail": "https://api.openverse.org/v1/images/d3f63fcc-f8a7-4d86-b277-ea10775c641c/thumb/"
+        },
+        {
+          "id": "d30a0fd7-ea89-42b0-83c9-9c891def3c8e",
+          "title": "Useless, useless, O2",
+          "creator": "James Cridland",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/18378655@N00/346988504",
+          "thumbnail": "https://api.openverse.org/v1/images/d30a0fd7-ea89-42b0-83c9-9c891def3c8e/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "phrase": 12,
+      "english": "I'll move closer to the router.",
+      "search_term": "wifi router",
+      "candidates": [
+        {
+          "id": "cb546a12-d8fa-4f87-a6c0-e34b0cbb7262",
+          "title": "Wifi router clipart, object illustration",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6538337/image-public-domain-black-technology",
+          "thumbnail": "https://api.openverse.org/v1/images/cb546a12-d8fa-4f87-a6c0-e34b0cbb7262/thumb/"
+        },
+        {
+          "id": "22643c7a-c2df-4873-b714-aa9d85fe8636",
+          "title": "Wifi router clipart, object illustration",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6538365/vector-sticker-public-domain-black",
+          "thumbnail": "https://api.openverse.org/v1/images/22643c7a-c2df-4873-b714-aa9d85fe8636/thumb/"
+        },
+        {
+          "id": "9cdae497-de50-42a8-af16-712755dbb2e2",
+          "title": "Wifi Router",
+          "creator": "s_pixels",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "http://www.flickr.com/photos/82701576@N03/16199008854",
+          "thumbnail": "https://api.openverse.org/v1/images/9cdae497-de50-42a8-af16-712755dbb2e2/thumb/"
+        },
+        {
+          "id": "57f39ae4-4edb-4464-8a0d-f77002312255",
+          "title": "Found the wifi router!",
+          "creator": "kalleboo",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/82365211@N00/14390490920",
+          "thumbnail": "https://api.openverse.org/v1/images/57f39ae4-4edb-4464-8a0d-f77002312255/thumb/"
+        }
+      ]
+    }
+  ],
+  "needs_search_term": [
+    {
+      "lesson": 6,
+      "phrase": 2,
+      "english": "I'll send you the link."
+    },
+    {
+      "lesson": 6,
+      "phrase": 3,
+      "english": "Can you see me?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 5,
+      "english": "Can you hear me well?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 8,
+      "english": "The sound is choppy."
+    },
+    {
+      "lesson": 6,
+      "phrase": 10,
+      "english": "I'll leave and join again."
+    },
+    {
+      "lesson": 6,
+      "phrase": 11,
+      "english": "Let me share my screen."
+    }
+  ]
+}
