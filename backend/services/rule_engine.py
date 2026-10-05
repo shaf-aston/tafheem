@@ -14,7 +14,7 @@ from typing import Any
 from backend.services.arabic_text import strip_diacritics
 from backend.services import signs
 from backend.services.harakat import PRESENT_PREFIX, SUKUN
-from backend.services.nahw_book import book_words, condition_of, reason, teacher_rules, term_ar
+from backend.services.nahw_book import MABNI_KINDS, book_words, condition_of, reason, teacher_rules, term_ar
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
@@ -22,6 +22,9 @@ from backend.services.nahw_book import book_words, condition_of, reason, teacher
 # tests/test_rule_engine.py holds the two lists together.
 
 # CAMeL's tags for each particle family; a word on the family's list counts too
+# the role a card wears until the book's tree names its job
+UNNAMED = "–"
+
 _FAMILY_POS = {"jarr": {"prep"}, "inna": {"conj_sub", "part_focus"}, "atf": {"conj"}}
 
 # ── Verb case ─────────────────────────────────────────────────────────────────
@@ -48,8 +51,11 @@ def _pos(tag: dict) -> str:
 
 
 def _is(tag: dict, family: str) -> bool:
-    """A preposition (jarr), إنّ or a sister (inna), or a joining word (atf)."""
-    return _pos(tag) in _FAMILY_POS[family] or strip_diacritics(tag.get("word", "")) in book_words(family)
+    """A preposition (jarr), إنّ or a sister (inna), or a joining word (atf). The family's
+    list names a particle by its letters, never a word the reader read as a pronoun,
+    pointer, relative or question word: مَنْ the relative is not مِنْ, though they share letters."""
+    return _pos(tag) in _FAMILY_POS[family] or (
+        not any(kind in _pos(tag) for kind in MABNI_KINDS) and strip_diacritics(tag.get("word", "")) in book_words(family))
 
 
 # ── Entry builders ────────────────────────────────────────────────────────────
@@ -146,7 +152,7 @@ def _card(tag: dict[str, Any], i: int, tags: list[dict]) -> dict:
     """One word's card by what the word is; a noun or a pronoun waits for its role."""
     pos = _pos(tag)
     if pos == "punc":
-        return _entry(tag, "punc", "–", None, None, "–")
+        return _entry(tag, "punc", UNNAMED, None, None, UNNAMED)
     if i == 0 and (frame := opens_condition(tags)):  # before حرف عطف: لو comes tagged as one
         return _harf_entry(tag, "حرف", frame["particle"])
     if _is(tag, "atf"):
@@ -163,8 +169,8 @@ def _card(tag: dict[str, Any], i: int, tags: list[dict]) -> dict:
     if pos in ("part", "det"):
         return _harf_entry(tag, "حرف", "حرف")
     if pos == "pron":
-        return _entry(tag, "damir", "–", None, "mabni", reason("ضمير"))
+        return _entry(tag, "damir", UNNAMED, None, "mabni", reason("ضمير"))
     if pos == "verb":
         return _verb_entry(tag)
     case = tag.get("case")
-    return _entry(tag, tag.get("type") or "ism", "–", None, case, reason("–", mabni=case == "mabni"))
+    return _entry(tag, tag.get("type") or "ism", UNNAMED, None, case, reason(UNNAMED, mabni=case == "mabni"))

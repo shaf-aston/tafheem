@@ -3,11 +3,8 @@
 
   "max_questions": 4,
 
-  "_key_roles_comment": "Which role the second question prefers to ask about, the subject of a sentence is the most useful thing to name first. Written both ways because the rule engine may label either.",
-  "key_roles": ["فاعل", "مبتدأ", "fa'il", "mubtada"],
-
-  "_case_types_comment": "Only these word types carry a visible case ending worth asking about.",
-  "case_types": ["ism", "sifah", "damir"],
+  "_key_roles_comment": "Which words the second question prefers to ask about, by the role key every card carries (roles.json, schemas.ROLE_KEYS): the doer or the subject is the most useful thing to name first. A word the analysis left unnamed is never asked about.",
+  "key_roles": ["fail", "mubtada"],
 
   "questions": {
     "sentence_type": {
@@ -18,7 +15,7 @@
     },
     "key_role": {
       "question": "What is the grammatical role (إعراب) of «{word}»?",
-      "answer": "«{word}» is the {role}. {reason}",
+      "answer": "«{word}»: {reason}",
       "hint": "Its case is: {case}"
     },
     "case_sign": {

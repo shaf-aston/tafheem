@@ -58,7 +58,7 @@ def with_parser_roles(rule_result: dict, parser_roles: list[dict]) -> dict:
     for entry, found in zip(entries, parser_roles):
         if found.get("gap"):
             # the teacher caught the parser's name breaking a rule: the card shows the dash and why
-            entry.update(role="–", role_key=None, case=found["case"], sign=None, gap=True,
+            entry.update(role=rule_engine.UNNAMED, role_key=None, case=found["case"], sign=None, gap=True,
                          reason=found["gap"]["ar"], notes=found["gap"]["en"])
         elif found["role"]:
             _named(entry, found)
