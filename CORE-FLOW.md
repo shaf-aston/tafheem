@@ -29,14 +29,15 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 1. **A tab picks the tool.** `frontend/src/App.jsx` holds the tabs and checks `/api/health`,
    and carries a root from one tab to another (`onGo`), so the tabs work as one app.
 2. **A typed sentence is read by the book's rules alone, no AI.** `services/iraab.py` runs it:
-   `morphology.py` (CAMeL) reads each word, `rule_engine.py` gives each a card from its
-   vowels, then an ayah the Treebank recorded is read from that record (`tarkeeb_store.py`)
+   `morphology.py` (CAMeL) reads each word, `rule_engine.py` says what each one is,
+   then an ayah the Treebank recorded is read from that record (`tarkeeb_store.py`)
    and anything else goes to `services/syntax/`: the offline parser links the words
    (`catib_onnx.py`), `facts.py` answers five questions per word and `walker.py` walks the
    book's tree (`data/nahw_rules/naming_tree.json`) to the role and its page, `teacher.py`
    dashes any name that breaks a stated rule, and `tree.py` draws the same reading as
    brackets, so the cards and the picture cannot disagree. A word no rule settles stays a gap.
-   Last, `signs.py` writes every card's sign once, from the word and its final case.
+   Last, `iraab.cards` builds each card once from that reading and `signs.py` writes its sign;
+   the line above the cards is the picture's own top label, never a second guess.
 3. **The Qur'an is looked up, never guessed.** `services/quran_corpus.py` reads the
    hand-tagged corpus; `quran_service.py` joins it with the English gloss. Tafsirs and
    translations are **editions**, all in `data/quran/library.db`, read only by

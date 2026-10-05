@@ -7,7 +7,7 @@ the seam the rest of the app talks to, so a different parser can be put behind
 it without anything else changing.
 
 If the parser is off or fails, every role comes back empty and each card
-says only what its word is, with no job (iraab.with_parser_roles).
+says only what its word is, with no job (iraab.cards).
 """
 from __future__ import annotations
 

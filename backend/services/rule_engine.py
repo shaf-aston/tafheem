@@ -3,8 +3,9 @@
 A card names only what the word itself shows: a verb, a particle (حرف جر، حرف عطف، لا
 الناهية), a pronoun, a noun and the vowel typed on it. A noun's job (مبتدأ، فاعل،
 مفعول به) needs the links between words, so only the book's tree names it
-(syntax, then iraab.with_parser_roles); a word it leaves unnamed stays a gap, never
-guessed by position. The sign is written last, once the case is final (signs.settle).
+(syntax, then iraab.cards); a word it leaves unnamed stays a gap, never guessed by
+position. Neither the sign nor the sentence type is decided here: iraab.cards writes
+the sign once the case is final, and the summary is the picture's own label.
 The words a card prints are the book's, in data/nahw_rules/teacher.json.
 """
 from __future__ import annotations
@@ -12,9 +13,8 @@ from __future__ import annotations
 from typing import Any
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services import signs
 from backend.services.harakat import PRESENT_PREFIX, SUKUN
-from backend.services.nahw_book import MABNI_KINDS, book_words, condition_of, reason, teacher_rules, term_ar
+from backend.services.nahw_book import MABNI_KINDS, book_words, condition_of, named_roles, reason, teacher_rules
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
@@ -24,6 +24,7 @@ from backend.services.nahw_book import MABNI_KINDS, book_words, condition_of, re
 # CAMeL's tags for each particle family; a word on the family's list counts too
 # the role a card wears until the book's tree names its job
 UNNAMED = "–"
+NAMED = named_roles()
 
 _FAMILY_POS = {"jarr": {"prep"}, "inna": {"conj_sub", "part_focus"}, "atf": {"conj"}}
 
@@ -32,7 +33,7 @@ _FAMILY_POS = {"jarr": {"prep"}, "inna": {"conj_sub", "part_focus"}, "atf": {"co
 
 def verb_card(base: str, aspect: str | None, case: str | None = None) -> dict:
     """A verb's tense and case: built for a past verb or a command, by its mood for a
-    present one. iraab.with_parser_roles calls it again when the parser reads a word
+    present one. iraab.cards calls it again when the parser reads a word
     as a verb or the particle before a present verb settles its mood; signs.settle
     writes the sign and the reason from these. A "present" verb whose base word (its
     joined letters off) has no present prefix is a command (اِتَّقِ، read by CAMeL as
@@ -76,28 +77,23 @@ def _harf_entry(tag: dict, role: str, why: str) -> dict:
 
 def _verb_entry(tag: dict) -> dict:
     mood = {"s": "nasb", "j": "jazm"}.get(tag.get("mood"), "raf'")
-    return {**_entry(tag, "fi'l", "فعل", "fil", None, reason("فعل")),
+    return {**_entry(tag, "fi'l", NAMED.fil, "fil", None, reason(NAMED.fil)),
             **verb_card(tag["base"], tag.get("aspect"), mood)}
 
 
 # ── Main engine ───────────────────────────────────────────────────────────────
 
-def analyze(sentence: str, tags: list[dict[str, Any]]) -> dict[str, Any]:
-    """{summary, words}: the sentence type and one card per word."""
-    if not tags:
-        return {"summary": "", "words": []}
-    conditional = opens_condition(tags)
-    is_inna = not conditional and _is(tags[0], "inna")
-    summary = term_ar("jumlah_shartiyyah") if conditional else sentence_type(_opens_with_verb(tags, is_inna), is_inna)
-    words = signs.settle([_card(tag, i, tags) for i, tag in enumerate(tags)])
-    return {"summary": summary, "words": mark_condition(words) if conditional else words, "conditional": bool(conditional)}
+def cards(tags: list[dict[str, Any]]) -> list[dict]:
+    """One card per word by what the word is, before any job is named or sign written."""
+    return [_card(tag, i, tags) for i, tag in enumerate(tags)]
 
 
 def opens_condition(tags: list[dict]) -> dict | None:
     """A conditional particle with a verb straight after (إن كنتَ، لو جاء): the condition
     it opens, never إنّ, whose noun must come straight after it. closed_words.json."""
-    frame = condition_of(strip_diacritics(tags[0].get("word", "")))
-    return frame if len(tags) > 1 and tags[1].get("pos") == "verb" else None
+    if len(tags) < 2 or tags[1].get("pos") != "verb":
+        return None
+    return condition_of(strip_diacritics(tags[0].get("word", "")))
 
 
 def mark_condition(cards: list[dict]) -> list[dict]:
@@ -131,43 +127,26 @@ def _tied_by(card: dict, ties: dict) -> str | None:
     return next((tie for tie in ties if word.startswith(tie) and not base.startswith(tie)), None)
 
 
-def _opens_with_verb(tags: list[dict], is_inna: bool) -> bool:
-    """A verb first, or a particle then a verb (لم يكتب); the parser's names replace it."""
-    if is_inna:
-        return False
-    first_pos = _pos(tags[0])
-    return first_pos == "verb" or (len(tags) > 1 and first_pos in ("part", "det") and tags[1].get("pos") == "verb")
-
-
-def sentence_type(is_verbal: bool, is_inna: bool) -> str:
-    """The sentence type a summary prints, in the tree's own words (tarkeeb.json),
-    so the line above the cards and the top of the picture say the same."""
-    if is_verbal:
-        return term_ar("jumlah_filiyyah")
-    nominal = term_ar("jumlah_ismiyyah")
-    return f"{nominal} · إنّ" if is_inna else nominal
-
-
 def _card(tag: dict[str, Any], i: int, tags: list[dict]) -> dict:
     """One word's card by what the word is; a noun or a pronoun waits for its role."""
     pos = _pos(tag)
     if pos == "punc":
         return _entry(tag, "punc", UNNAMED, None, None, UNNAMED)
     if i == 0 and (frame := opens_condition(tags)):  # before حرف عطف: لو comes tagged as one
-        return _harf_entry(tag, "حرف", frame["particle"])
+        return _harf_entry(tag, NAMED.harf, frame["particle"])
     if _is(tag, "atf"):
         # لا العاطفة joins single words; before a verb it negates (لا يكذبُ) or forbids (لا تكذبْ)
         verb = tags[i + 1] if i + 1 < len(tags) and tags[i + 1].get("pos") == "verb" else None
         if verb and strip_diacritics(tag["word"]) == "لا":
             forbids = verb.get("mood") == "j" or verb["word"].endswith(SUKUN)
-            return _harf_entry(tag, "حرف", "لا ناهية" if forbids else "لا نافية")
-        return _harf_entry(tag, "حرف", "حرف عطف")
+            return _harf_entry(tag, NAMED.harf, "لا ناهية" if forbids else "لا نافية")
+        return _harf_entry(tag, NAMED.harf, "حرف عطف")
     if _is(tag, "jarr"):
-        return _harf_entry(tag, "حرف جر", "حرف جر")
+        return _harf_entry(tag, NAMED.harf_jarr, NAMED.harf_jarr)
     if _is(tag, "inna") and i == 0:
-        return _harf_entry(tag, "حرف", "حرف ناسخ")
+        return _harf_entry(tag, NAMED.harf, "حرف ناسخ")
     if pos in ("part", "det"):
-        return _harf_entry(tag, "حرف", "حرف")
+        return _harf_entry(tag, NAMED.harf, NAMED.harf)
     if pos == "pron":
         return _entry(tag, "damir", UNNAMED, None, "mabni", reason("ضمير"))
     if pos == "verb":

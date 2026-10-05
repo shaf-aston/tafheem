@@ -2,16 +2,17 @@
 
 A sign comes from three things: the word as typed (its last letters, the vowels the
 reader wrote), CAMeL's reading of it (the card's `camel`) and the case the card ended
-on. The rule engine's cards and the parser's names both end
-here (`settle`), so a case the parser moved never keeps a sign worked out for the old
+on. iraab.cards calls `settle` once, after the parser's
+names, so a case the parser moved never keeps a sign worked out for the old
 one. The words printed are the book's, in data/nahw_rules/teacher.json.
 """
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import SHADDA, SUKUN, TANWEEN, drops_weak, five_verb_nun, has_tanween, letters, typed_passive
-from backend.services.nahw_book import book_words, family_cards, reason, six_noun_case, teacher_rules
+from backend.services.nahw_book import book_words, family_cards, named_roles, reason, six_noun_case, teacher_rules
 
+NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
 _WEAK_END = {"ي": "manqus", "و": "on_waw", "ا": "on_alef", "ى": "on_alef"}
 
@@ -79,7 +80,7 @@ def settle(cards: list[dict]) -> list[dict]:
 
 
 def _family_said(card: dict) -> dict | None:
-    """{named, does} of the family the word governs as (iraab.with_parser_roles sets it),
+    """{named, does} of the family the word governs as (iraab.cards sets it),
     by the member's own name where the book gives one (لم حرف نفي وجزم وقلب)."""
     family = dict(family_cards()).get(card.get("family"))
     if not family:
@@ -104,7 +105,7 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
 def _after_la_jins(card: dict, before: dict | None, after: dict | None) -> bool:
     """The single indefinite noun straight after لا of the genus (ولا ضرار too): not a
     مضاف, no tanween (that لا works like ليس and its noun takes the vowels)."""
-    if card.get("role") != "اسم إن" or not before:
+    if card.get("role") != NAMED.ism_inna or not before:
         return False
     return before["camel"]["base"] in book_words("la_jins") and not has_tanween(card["word"]) and not (
         after and after.get("role") == "مضاف إليه")
@@ -120,7 +121,7 @@ def _verb(card: dict) -> dict:
     aspect = card.get("aspect")
     tense = said["tense"].get(aspect)
     if not tense:
-        return {"case": "mabni", "sign": sign("mabni"), "reason": reason("فعل")}
+        return {"case": "mabni", "sign": sign("mabni"), "reason": reason(NAMED.fil)}
     built_on = _built_on(card, aspect)
     case = "mabni" if built_on else card["case"]  # rule_engine.verb_card settled the mood
     shown = _built(built_on) if built_on else _present_sign(card, case)
