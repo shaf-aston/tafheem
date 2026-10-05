@@ -4,6 +4,7 @@
  * here rather than being copied a second time.
  */
 import Chip from './Chip'
+import ChipRow from './ChipRow'
 import { isArabic } from '../../lib/arabicText'
 
 export default function RecentRow({ items, accent, onPick, mono = false, label = 'Recent' }) {
@@ -16,8 +17,7 @@ export default function RecentRow({ items, accent, onPick, mono = false, label =
   if (seen.length === 0) return null
 
   return (
-    <div className="recent-row flex flex-wrap gap-1.5 items-center">
-      <span className="text-[var(--text-faint)] type-small shrink-0">{label}</span>
+    <ChipRow label={label}>
       {seen.map((item) => (
         <Chip
           key={item}
@@ -30,6 +30,6 @@ export default function RecentRow({ items, accent, onPick, mono = false, label =
           <span className={mono ? 'font-mono' : undefined}>{item}</span>
         </Chip>
       ))}
-    </div>
+    </ChipRow>
   )
 }
