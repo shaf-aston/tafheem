@@ -1,8 +1,16 @@
 """Similar verses: the folding, the diff, the catalogue merge and the finder."""
 from __future__ import annotations
 
+import pytest
+
+from backend.config import data_path
 from backend.scripts.build_mutashabihat import merge
 from backend.services import mutashabihat
+
+fetched = pytest.mark.skipif(
+    not data_path("quran_imlaei_path").exists(),
+    reason="the Qur'an text is fetched: run fetch_recitation_checks.py",
+)
 
 
 def test_fold_drops_marks_and_unifies_letters():
@@ -57,10 +65,12 @@ def test_merge_rejects_duplicates_self_pairs_and_unknown_keys_and_counts_overlap
     assert rejected == {"duplicate": 1, "self-pair": 1, "unknown key": 1}
 
 
+@fetched
 def test_candidates_finds_the_known_partner():
     assert "7:162" in mutashabihat.candidates("2:59", 5)
 
 
+@fetched
 def test_partners_carry_text_diff_and_sources():
     found = {p["key"]: p for p in mutashabihat.partners("2:59")}
     twin = found["7:162"]

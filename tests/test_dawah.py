@@ -17,7 +17,7 @@ AYAHS = {n: 7 for n in range(1, 115)} | {2: 286}
 
 
 def question(id, **more):
-    return {"id": id, "q": "q?", "short": "s", "points": [point()], "islamqa": None, **more}
+    return {"id": id, "q": "q?", "short": "s", "points": [point()], "discussion": [point()], "islamqa": None, **more}
 
 
 def point(**more):
@@ -58,6 +58,9 @@ def test_a_note_alone_is_evidence():
     (lambda d: d["topics"][0]["questions"][0].update(points=[point(refs=[{"hadith": "muslim", "number": 1}])]), "does not declare"),
     (lambda d: d["topics"][0]["questions"][0].update(points=[point(), point(title="u", refs=[], note=" ")]), "no evidence"),
     (lambda d: d["topics"][0].update(questions=[]), "no questions"),
+    (lambda d: d["topics"][0]["questions"][0].update(discussion=[]), "has no discussion"),
+    (lambda d: d["topics"][0]["questions"][0].update(discussion=[point(text=" ")]), "has no text"),
+    (lambda d: d["topics"][0]["questions"][0].update(discussion=[point(refs=[])]), "has no evidence"),
 ])
 def test_each_fault_is_named(change, said):
     assert any(said in why for why in broken(change))
