@@ -3,6 +3,23 @@
  * Terms print in Arabic, as on the page: مرفوع, not "raf'".
  */
 import { caseLabel } from './grammarTerms'
+import { kids, pieces } from './tarkeebLayout'
+
+const GAP = '؟'
+
+// The columns a node covers, in reading order (children come sorted).
+const span = (node) => (node.word != null ? [node.word] : (kids(node) ?? []).flatMap(span))
+const named = (piece) => piece.role && (piece.detail ? `${piece.role} (${piece.detail})` : piece.role)
+// What the diagram writes for a node: the unit's name, then its job, then the
+// pieces inside one word (a verb and its hidden doer).
+const said = (node) =>
+  [node.label, pieces(node)?.map(named).filter(Boolean).join(' + ') ?? named(node)].filter(Boolean).join(': ') || GAP
+
+/** The diagram as text: one line per word or joined unit, outermost first. */
+function structureLines(words, node, depth = 0) {
+  const line = `${'  '.repeat(depth)}${span(node).map((i) => words[i]).join(' ')} = ${said(node)}`
+  return [line, ...(kids(node) ?? []).flatMap((kid) => structureLines(words, kid, depth + 1))]
+}
 
 export function buildIraabExportText(data) {
   const lines = [`I'raab Analysis: ${data.sentence}`]
@@ -18,5 +35,6 @@ export function buildIraabExportText(data) {
     if (w.book) lines.push(`  Book: ${w.book}`)
     lines.push('')
   }
+  if (data.tree?.tree) lines.push('Structure:', ...structureLines(data.tree.words, data.tree.tree))
   return lines.join('\n')
 }
