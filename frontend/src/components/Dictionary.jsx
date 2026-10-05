@@ -17,6 +17,7 @@ import LexiconShelf from './LexiconShelf'
 import RootMeaningCard from './RootMeaningCard'
 import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
+import ChipRow from './ui/ChipRow'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import ExampleChips from './ui/ExampleChips'
@@ -215,14 +216,7 @@ function ClassicalRoot({ found, accent }) {
   return (
     <>
       {hasAlternates && (
-        <div
-          className="flex flex-wrap gap-1.5 items-center"
-          role="group"
-          aria-label="Which root to look up"
-        >
-          <span className="text-[var(--text-faint)] type-small shrink-0">
-            Which root to look up
-          </span>
+        <ChipRow label="Which root to look up" role="group" aria-label="Which root to look up">
           {[primary, ...alternates].map((one) => (
             <Chip
               key={one}
@@ -234,7 +228,7 @@ function ClassicalRoot({ found, accent }) {
               {one}
             </Chip>
           ))}
-        </div>
+        </ChipRow>
       )}
       <RootMeaningCard root={root} hasAlternates={hasAlternates} accent={accent} />
       {/* Under the short answer: the books it was drawn from, for a reader who
