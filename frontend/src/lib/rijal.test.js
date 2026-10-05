@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { runs, withoutMarks } from './rijal'
+import { runs, toneOf, withoutMarks } from './rijal'
 
 describe('runs', () => {
   it('opens on a name at the very start', () => {
@@ -29,5 +29,11 @@ describe('runs', () => {
 describe('withoutMarks', () => {
   it('shifts slices left by the direction marks before them', () => {
     expect(withoutMarks('\u200fab \u200fcd', [[5, 7, 1]])).toEqual([[3, 5, 1]])
+  })
+})
+
+describe('toneOf', () => {
+  it('colours rank 1 trusted, rank 5 doubtful, and the rest and the unranked as danger', () => {
+    expect([1, 3, 4, 5, 6, null].map(toneOf)).toEqual(['success', 'success', 'warn', 'warn', 'danger', 'danger'])
   })
 })

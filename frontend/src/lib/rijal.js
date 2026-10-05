@@ -6,7 +6,14 @@
  * the direction marks and the quote marks), so a piece needs the slices that
  * fall inside it, counted from the piece's own start. Pure: no React.
  */
+import HADITH from '../hadith.json'
+
 import { MARKS } from './hadithWords'
+
+const { tones: TONES } = HADITH.narrator
+
+/** The tone a grade wears: the first whose highest rank covers it, else danger. */
+export const toneOf = (rank) => Object.entries(TONES).find(([, top]) => rank != null && rank <= top)?.[0] ?? 'danger'
 
 /**
  * `text` split into `{text}` and `{text, id}` runs. `offset` is where `text`

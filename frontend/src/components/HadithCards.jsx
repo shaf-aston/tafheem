@@ -9,7 +9,8 @@
  * because the green dot by the collection's name says it once for all of them.
  * Without it (search, Starred) hadiths from several collections meet, so the
  * label names the collection and every card carries its grading.
- * `names` (a book's, from lib/useNarrators) make the narrators in the Arabic tappable.
+ * `names` (a book's, from lib/useNarrators) make the narrators in the Arabic tappable;
+ * `onNarrator` opens one narrator's full page.
  */
 import { useState } from 'react'
 
@@ -24,7 +25,7 @@ import GradeMark from './ui/GradeMark'
 import HadithText from './ui/HadithText'
 import NarratorSheet from './ui/NarratorSheet'
 
-export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, names = {} }) {
+export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, names = {}, onNarrator }) {
   const { isFavorite, toggle } = useHadithFavorites()
   const { of } = useHadithCollections()
   // The hadith whose chain is drawn in the pop-up, if any.
@@ -79,7 +80,7 @@ export default function HadithCards({ items, accent, collection, columns = false
           )
         })}
       </ul>
-      {who != null && <NarratorSheet id={who} onClose={() => setWho(null)} />}
+      {who != null && <NarratorSheet id={who} onClose={() => setWho(null)} onOpenPage={onNarrator} />}
       {drawn && (
         <ChainSheet
           links={chainLinks(chainOf(drawn.arabic).chain)}

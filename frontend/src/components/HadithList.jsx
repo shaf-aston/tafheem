@@ -34,7 +34,7 @@ function useReadingRail(ref) {
   }, [ref])
 }
 
-export default function HadithList({ collection, book, onBack, accent }) {
+export default function HadithList({ collection, book, focus, onBack, accent, onNarrator }) {
   const { data, isPending, isError, error, refetch } = useQuery(hadithBookQuery(collection, book))
   const names = useNarrators(collection, book)
   const rail = useRef(null)
@@ -43,6 +43,11 @@ export default function HadithList({ collection, book, onBack, accent }) {
   const [columns, setColumns] = useRememberedFlag('hadith-two-columns', false)
   const [hideChain, setHideChain] = useRememberedFlag('hadith-hide-chain', false)
   const [guide, setGuide] = useState(false)
+
+  // A link to one hadith lands on it, once its book has arrived.
+  useEffect(() => {
+    if (data && focus) scrollToEl(document.getElementById(`hadith-${focus}`), 'top')
+  }, [data, focus])
 
   const jump = (event) => {
     event.preventDefault()
@@ -106,7 +111,7 @@ export default function HadithList({ collection, book, onBack, accent }) {
 
       {data && (data.hadiths.length === 0
         ? <EmptyState>This book has no hadiths yet.</EmptyState>
-        : <HadithCards items={data.hadiths} collection={collection} accent={accent} columns={columns} hideChain={hideChain} names={names} />)}
+        : <HadithCards items={data.hadiths} collection={collection} accent={accent} columns={columns} hideChain={hideChain} names={names} onNarrator={onNarrator} />)}
     </div>
   )
 }

@@ -61,7 +61,7 @@ def hadith_of(narrator_id: int, limit: int) -> list[dict]:
     """The hadith in the built books that name him, in number order."""
     db = _db()
     return [dict(row) for row in db.execute(
-        "SELECT DISTINCT collection, number, part FROM mention WHERE narrator_id = ? "
+        "SELECT DISTINCT collection, book, number, part FROM mention WHERE narrator_id = ? "
         "ORDER BY collection, number, part LIMIT ?", (narrator_id, limit))] if db else []
 
 

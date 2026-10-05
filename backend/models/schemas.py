@@ -1255,6 +1255,7 @@ class Narrator(NarratorSummary):
 
 class RijalHadithRef(BaseModel):
     collection: str
+    book: int
     number: int
     part: str = ""
 

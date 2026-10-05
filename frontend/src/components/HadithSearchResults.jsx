@@ -8,10 +8,12 @@
  * were swapped for the nearest word a hadith holds, which matched nothing at
  * all, which collection a name in it narrowed to, and the chapters the hits
  * fall in, each a tap away (`onOpenBook`) for narrowing by topic instead of
- * retyping. A search that only names a collection ("bukhari") opens it.
+ * retyping. Narrators whose name starts with the words typed sit above the hits,
+ * each a tap to his page. A search that only names a collection ("bukhari") opens it.
  */
 import { searchHadith } from '../api'
 import { useHadithCollections } from '../lib/useHadithCollections'
+import { useNarratorMatches } from '../lib/useNarrators'
 import { useSearch } from '../lib/useSearch'
 
 import Chip from './ui/Chip'
@@ -20,19 +22,23 @@ import ErrorAlert from './ui/ErrorAlert'
 import EmptyState from './ui/EmptyState'
 import IndexNotBuilt from './ui/IndexNotBuilt'
 import MicButton from './ui/MicButton'
+import { NarratorLinks } from './ui/NarratorParts'
 import RecentRow from './ui/RecentRow'
 import SearchBox from './ui/SearchBox'
+import ShowRest from './ui/ShowRest'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import StatusNote, { CorrectedNote, NoteWord } from './ui/StatusNote'
 import HadithCards from './HadithCards'
 
-export default function HadithSearchResults({ accent, onOpenBook, children }) {
+export default function HadithSearchResults({ accent, onOpenBook, onNarrator, children }) {
   const { collections, of } = useHadithCollections()
   const { query, setQuery, history, mutation, submit, clear, shown: data } = useSearch({
     historyKey: 'hadith-history',
     ask: searchHadith,
     onVisit: (_, { reference }) => { if (reference && !reference.asked) open(reference.collection, null) },
   })
+
+  const narrators = useNarratorMatches(data?.query)
 
   const open = (collection, book) => {
     clear()
@@ -99,6 +105,15 @@ export default function HadithSearchResults({ accent, onOpenBook, children }) {
         <EmptyState>Nothing matches &ldquo;{data.query}&rdquo;.</EmptyState>
       )}
 
+      {narrators.length > 0 && (
+        <div className="space-y-1.5">
+          <span className="type-small text-[var(--text-faint)]">Narrators</span>
+          <ShowRest lines={4} accent={accent} more={`Show all ${narrators.length}`}>
+            <NarratorLinks items={narrators} onOpen={onNarrator} row />
+          </ShowRest>
+        </div>
+      )}
+
       {data?.chapters?.length > 0 && (
         <ChipRow label="Chapters">
           {data.chapters.map((c) => (
@@ -116,7 +131,7 @@ export default function HadithSearchResults({ accent, onOpenBook, children }) {
         </ChipRow>
       )}
 
-      {data && data.hits.length > 0 && <HadithCards items={data.hits} accent={accent} />}
+      {data && data.hits.length > 0 && <HadithCards items={data.hits} accent={accent} onNarrator={onNarrator} />}
     </div>
   )
 }

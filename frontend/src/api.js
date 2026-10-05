@@ -179,6 +179,14 @@ export const rijalChainsQuery = (collection, book) => ({
   queryKey: ['rijal-chains', collection, book],
   queryFn: () => api.get(`/rijal/chains/${collection}/${book}`).then((r) => r.data),
 })
+export const narratorHadithQuery = (id) => ({
+  queryKey: ['narrator-hadith', id],
+  queryFn: () => api.get(`/rijal/narrators/${id}/hadith`).then((r) => r.data),
+})
+export const rijalSearchQuery = (q) => ({
+  queryKey: ['rijal-search', q],
+  queryFn: () => api.get('/rijal/search', { params: { q } }).then((r) => r.data),
+})
 export const narratorQuery = (id) => ({
   queryKey: ['narrator', id],
   queryFn: () => api.get(`/rijal/narrators/${id}`).then((r) => r.data),
