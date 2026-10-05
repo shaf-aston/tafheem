@@ -25,11 +25,15 @@ class ReadOnlyDb:
         self._path = path
         self._local = threading.local()
 
-    def __call__(self) -> sqlite3.Connection | None:
+    def stamp(self) -> tuple[str, int] | None:
+        """Which build of the file is on disk (path and mtime), None while it is not built."""
         path = self._path()
-        if not path.exists():
+        return (str(path), path.stat().st_mtime_ns) if path.exists() else None
+
+    def __call__(self) -> sqlite3.Connection | None:
+        if (stamp := self.stamp()) is None:
             return None
-        stamp = (str(path), path.stat().st_mtime_ns)
+        path = stamp[0]
         local = self._local
         if getattr(local, "stamp", None) != stamp:
             if getattr(local, "db", None) is not None:

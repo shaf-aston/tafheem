@@ -30,11 +30,7 @@ def _per_build(empty, maxsize: int = 8):
 
         cached = lru_cache(maxsize)(cached)
 
-        @wraps(read)
-        def current(*args):
-            path = data_path("hadith_index_path")
-            return cached((str(path), path.stat().st_mtime_ns) if path.exists() else None, *args)
-        return current
+        return wraps(read)(lambda *args: cached(db.stamp(), *args))
     return wrap
 
 

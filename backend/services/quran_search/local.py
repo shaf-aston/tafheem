@@ -84,10 +84,9 @@ def respelt(query: str) -> tuple[str, list[tuple[str, str]]]:
     """The query with each word no ayah holds, even inside a longer word, swapped
     for the one it was likeliest meant to be (services/spelling.py), and the
     swaps as (typed, used). رحمن is kept: it matches inside الرحمن."""
-    index = data_path("quran_search_index_path")
-    if not index.exists():
+    if (stamp := _db.stamp()) is None:
         return query, []
-    known = _vocabulary(str(index), index.stat().st_mtime_ns)
+    known = _vocabulary(stamp)
     swaps = []
     for typed in query.split():
         word = _NOT_LETTERS_RE.sub("", spelling.fold(typed))
@@ -98,12 +97,10 @@ def respelt(query: str) -> tuple[str, list[tuple[str, str]]]:
 
 
 @lru_cache(maxsize=1)
-def _vocabulary(_path: str, _mtime: int) -> spelling.Vocabulary:
-    """Every word of the Qur'an by how often it occurs, read once per build of the index (path and mtime are the key)."""
-    conn = _db()
-    if conn is None:
-        return spelling.Vocabulary({})
-    return spelling.Vocabulary(Counter(w for (fold,) in conn.execute("SELECT fold FROM verse") for w in spelling.fold(fold).split()))
+def _vocabulary(_stamp: tuple[str, int]) -> spelling.Vocabulary:
+    """Every word of the Qur'an by how often it occurs, read once per build of the index (the stamp is the key)."""
+    rows = _db().execute("SELECT fold FROM verse")
+    return spelling.Vocabulary(Counter(w for (fold,) in rows for w in spelling.fold(fold).split()))
 
 
 def _score(wanted: list[str], fold: str, length: int) -> float | None:
