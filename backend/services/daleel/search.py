@@ -30,8 +30,12 @@ from backend.services import fts
 from backend.services.daleel import registry
 from backend.services.daleel.expand import Expansion, expand
 from backend.services.daleel.lexicon import DictionaryLexicon
+from backend.services.readonly_db import ReadOnlyDb
 
 log = logging.getLogger(__name__)
+
+# This thread's read-only connection to the index, reopened when a build replaces it.
+_db = ReadOnlyDb(lambda: data_path("daleel_index_path"))
 
 # How many two-letter words one question may put to the word index. It was a
 # cap on full scans, which is why the number is small; each one is now an
@@ -100,15 +104,10 @@ def search(query: str, limit: int | None = None, books: tuple[str, ...] = ()) ->
     if expansion.is_empty():
         return []
 
-    index = data_path("daleel_index_path")
-    if not index.exists():
+    conn = _db()
+    if conn is None:
         return []
-
-    conn = sqlite3.connect(f"file:{index}?mode=ro", uri=True)
-    try:
-        rows = _candidates(conn, expansion, limit * _CANDIDATE_FACTOR, tuple(books))
-    finally:
-        conn.close()
+    rows = _candidates(conn, expansion, limit * _CANDIDATE_FACTOR, tuple(books))
 
     ranked = sorted(((rank_of(row, expansion), row) for row in rows), key=lambda i: i[0])
 
@@ -427,19 +426,12 @@ def books() -> list[tuple[str, str]]:
     the passages for DISTINCT book made FTS5 unpack every column of every row,
     which is fifteen seconds of the picker sitting empty for forty-seven names.
     """
-    index = data_path("daleel_index_path")
-    if not index.exists():
+    conn = _db()
+    if conn is None:
         return []
-
-    conn = sqlite3.connect(f"file:{index}?mode=ro", uri=True)
-    try:
-        # Ordered by source first so the list arrives grouped the way the page
-        # already groups its results, one shape for the reader to learn.
-        return list(
-            conn.execute("SELECT name, source FROM book ORDER BY source, name")
-        )
-    finally:
-        conn.close()
+    # Ordered by source first so the list arrives grouped the way the page
+    # already groups its results, one shape for the reader to learn.
+    return [tuple(row) for row in conn.execute("SELECT name, source FROM book ORDER BY source, name")]
 
 
 def is_built() -> bool:
@@ -451,16 +443,11 @@ def is_built() -> bool:
     named in the log rather than on screen: the screen would be telling a
     reader to run a command about a table they have never heard of.
     """
-    index = data_path("daleel_index_path")
-    if not index.exists():
+    conn = _db()
+    if conn is None:
         return False
-
-    conn = sqlite3.connect(f"file:{index}?mode=ro", uri=True)
-    try:
-        if _has_table(conn, "passage_meta"):
-            return True
-    finally:
-        conn.close()
+    if _has_table(conn, "passage_meta"):
+        return True
 
     log.warning("this index has no passage_meta table, so no search can run; "
                 "run: python backend/scripts/build_daleel_index.py --meta")
