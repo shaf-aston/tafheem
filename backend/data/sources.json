@@ -338,6 +338,16 @@
       "nahw"
     ]
   },
+  "rijal": {
+    "label": "Narrators (sunnah.com)",
+    "confidence": "verified",
+    "detail": "Each narrator's grade, generation, appraisals, teachers and students as sunnah.com's narrator page prints them; where a name sits in the hadith is found by matching the page's own wording against the text",
+    "url": "https://sunnah.com/narrators",
+    "where": "Narrator pages, read once by a script and stored locally.",
+    "used_in": [
+      "hadith"
+    ]
+  },
   "hadith": {
     "label": "Hadith collections",
     "confidence": "verified",

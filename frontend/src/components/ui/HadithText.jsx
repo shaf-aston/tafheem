@@ -16,7 +16,8 @@
  */
 import ArabicText from './ArabicText'
 import ShowRest from './ShowRest'
-import { chainOf, narrated, saying } from '../../lib/hadithWords'
+import { MARKS, chainOf, narrated, saying } from '../../lib/hadithWords'
+import { runs, withoutMarks } from '../../lib/rijal'
 import { useFirstSight } from '../../lib/firstSight'
 import { themeVariable } from '../../theme'
 
@@ -30,21 +31,46 @@ const LINES = Number(themeVariable('--hadith-lines')) || 7
 // Cards past this many appear together, so a long book never waits on its own stagger.
 const STAGGER_CAP = Number(themeVariable('--hadith-stagger-cap')) || 8
 
-/** One run of words, each span wearing the colour of whoever is talking. */
-function Spans({ text, marks }) {
-  return saying(text).map((span, i) => (
-    <span key={`${span.kind}-${i}`} style={TONE[span.kind]}>
-      {span.kind === 'said' ? `${marks[0]}${span.text}${marks[1]}` : span.text}{' '}
-    </span>
-  ))
+/**
+ * One run of words, each span wearing the colour of whoever is talking.
+ * `names` are [start, end, id] slices of `text`; each becomes a button
+ * that calls `onNarrator(id)`.
+ */
+function Spans({ text, marks, names = [], onNarrator }) {
+  // saying() drops the direction marks, so the slices move with them.
+  const at = withoutMarks(text, names)
+  const clean = text.replace(MARKS, '')
+  let cursor = 0
+  return saying(clean).map((span, i) => {
+    const start = clean.indexOf(span.text, cursor)
+    cursor = start + span.text.length
+    const parts = runs(span.text, at, start).map((run, j) => run.id == null ? run.text : (
+      <button
+        key={j}
+        type="button"
+        onClick={() => onNarrator(run.id)}
+        aria-label={`About ${run.text}`}
+        className="press text-inherit underline underline-offset-4 decoration-dotted decoration-[var(--text-faint)] hover:decoration-[var(--text-dim)]"
+      >
+        {run.text}
+      </button>
+    ))
+    return (
+      <span key={`${span.kind}-${i}`} style={TONE[span.kind]}>
+        {span.kind === 'said' ? <>{marks[0]}{parts}{marks[1]}</> : parts}{' '}
+      </span>
+    )
+  })
 }
 
 /**
  * `action` is a slot beside the number: a favorite star or a collection badge.
  * `hideChain` drops the chain of narrators: the Arabic as far as lib/hadithWords
  * can tell where it ends, the English its "Narrated X:" line.
+ * `names` are the narrators named in the Arabic (lib/rijal); with the chain
+ * hidden none shows, so none is offered.
  */
-export default function HadithText({ label, arabic, english = '', accent, action = null, id, index = 0, className = '', hideChain = false }) {
+export default function HadithText({ label, arabic, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, names = [], onNarrator }) {
   const { narrator, body } = narrated(english)
   const said = hideChain ? chainOf(arabic).body : arabic
   const rise = useFirstSight(`hadith:${arabic.slice(0, 30)}`)
@@ -67,7 +93,7 @@ export default function HadithText({ label, arabic, english = '', accent, action
 
       <ShowRest lines={LINES} accent={accent} more="Show the rest" less="Show less">
         <ArabicText as="p" size="base" className="block leading-loose m-0">
-          <Spans text={said} marks={['«', '»']} />
+          <Spans text={said} marks={['«', '»']} names={hideChain ? [] : names} onNarrator={onNarrator} />
         </ArabicText>
 
         {english && (

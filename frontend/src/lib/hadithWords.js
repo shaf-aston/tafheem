@@ -24,7 +24,7 @@ import HADITH from '../hadith.json'
 
 // The books' own speech mark, with the direction marks sunnah.com sets around
 // it. Those marks are invisible and would otherwise be printed inside the words.
-const MARKS = /[‎‏]/g
+export const MARKS = /[‎‏]/g
 // Each quote mark's family. A curly mark says which way it faces; a straight
 // one closes its family's open quote, or else opens one.
 const OPENS = { '“': 'double', '‘': 'single', '«': 'angle' }

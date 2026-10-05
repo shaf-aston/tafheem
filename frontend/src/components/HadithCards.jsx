@@ -9,6 +9,8 @@
  * because the green dot by the collection's name says it once for all of them.
  * Without it (search, Starred) hadiths from several collections meet, so the
  * label names the collection and every card carries its grading.
+ * `names` (a book's, from lib/useNarrators) make the narrators in the Arabic tappable;
+ * `onNarrator` opens one narrator's full page.
  */
 import { useState } from 'react'
 
@@ -21,12 +23,15 @@ import CopyButton from './ui/CopyButton'
 import FavoriteStar from './ui/FavoriteStar'
 import GradeMark from './ui/GradeMark'
 import HadithText from './ui/HadithText'
+import NarratorSheet from './ui/NarratorSheet'
 
-export default function HadithCards({ items, accent, collection, columns = false, hideChain = false }) {
+export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, names = {}, onNarrator }) {
   const { isFavorite, toggle } = useHadithFavorites()
   const { of } = useHadithCollections()
   // The hadith whose chain is drawn in the pop-up, if any.
   const [drawn, setDrawn] = useState(null)
+  // The narrator whose sheet is open, if any.
+  const [who, setWho] = useState(null)
 
   return (
     <>
@@ -44,6 +49,8 @@ export default function HadithCards({ items, accent, collection, columns = false
               english={h.english}
               accent={accent}
               hideChain={hideChain}
+              names={names[ref]}
+              onNarrator={setWho}
               action={(
                 <span className="flex items-center gap-2">
                   {!(collection && of(collection).sahih) && (
@@ -73,6 +80,7 @@ export default function HadithCards({ items, accent, collection, columns = false
           )
         })}
       </ul>
+      {who != null && <NarratorSheet id={who} onClose={() => setWho(null)} onOpenPage={onNarrator} />}
       {drawn && (
         <ChainSheet
           links={chainLinks(chainOf(drawn.arabic).chain)}

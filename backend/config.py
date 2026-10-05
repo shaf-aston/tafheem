@@ -263,6 +263,16 @@ class Settings(BaseSettings):
     hadith_dir: str = "data/hadith"
     # Built from hadith_dir by scripts/build_hadith_index.py. Never written while serving.
     hadith_index_path: str = "data/hadith.db"
+    # Narrators of the hadith chains, read from sunnah.com by scripts/fetch_rijal.py (knobs in rijal_dir/rijal.json).
+    rijal_dir: str = "data/rijal"
+    # Raw pages the fetch cached; build_rijal.py reads them, the app never does.
+    rijal_pages_dir: str = "data/rijal/pages"
+    # Built by scripts/build_rijal.py. Never written while serving.
+    rijal_index_path: str = "data/rijal.db"
+    # Narrators one search lists.
+    rijal_result_limit: int = Field(default=20, gt=0)
+    # Hadith one narrator's page lists, all of them behind "Show all".
+    rijal_hadith_limit: int = Field(default=5000, gt=0)
     # A hadith is read in full, so a long results page stops being read.
     hadith_result_limit: int = 20
     # A typed word no search knows is swapped for the likeliest meant word

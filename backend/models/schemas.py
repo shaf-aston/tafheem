@@ -1213,6 +1213,70 @@ class HadithSearchResponse(BaseModel):
     source: Source
 
 
+class NarratorSummary(BaseModel):
+    """A narrator of a chain in a line: his name and how sunnah.com grades him (rank 1 is the highest, None when ungraded)."""
+    id: int
+    name_ar: str = ""
+    name_en: str = ""
+    grade_ar: str = ""
+    grade_rank: int | None = None
+
+
+class RijalVerdict(BaseModel):
+    scholar: str
+    quote: str
+
+
+class RijalText(BaseModel):
+    """A classical book's entry on him, as sunnah.com prints it."""
+    book: str
+    body: str
+
+
+class Narrator(NarratorSummary):
+    """One narrator's sheet. Teachers and students keep their names even where we hold no page of theirs."""
+    kunya_ar: str = ""
+    grade_en: str = ""
+    generation_ar: str = ""
+    years: str = ""
+    lineage_ar: str = ""
+    nisba_ar: str = ""
+    city_ar: str = ""
+    profession_ar: str = ""
+    school_ar: str = ""
+    books_ar: list[str] = []
+    hadith_total: int | None = None
+    verdicts: list[RijalVerdict] = []
+    teachers: list[NarratorSummary] = []
+    students: list[NarratorSummary] = []
+    texts: list[RijalText] = []
+    source: Source
+
+
+class RijalHadithRef(BaseModel):
+    collection: str
+    book: int
+    number: int
+    part: str = ""
+
+
+class RijalChains(BaseModel):
+    """Where each narrator is named in a book's Arabic: hadith number and letter ("1620a") to [start, end, narrator id] slices."""
+    collection: str
+    book: int
+    chains: dict[str, list[list[int]]] = {}
+    # False when rijal.db has not been built, same as HadithSearchResponse.ready.
+    ready: bool = True
+    source: Source
+
+
+class RijalSearch(BaseModel):
+    query: str
+    narrators: list[NarratorSummary] = []
+    ready: bool = True
+    source: Source
+
+
 class SimilarPartner(BaseModel):
     """A verse that reads almost like another, with where the two differ."""
     key: str

@@ -174,6 +174,26 @@ export const hadithBookQuery = (collection, number) => ({
   queryFn: () => api.get(`/hadith/${collection}/books/${number}`).then((r) => r.data),
 })
 
+// Where each narrator is named in one book's Arabic, and one narrator's sheet.
+export const rijalChainsQuery = (collection, book) => ({
+  queryKey: ['rijal-chains', collection, book],
+  queryFn: () => api.get(`/rijal/chains/${collection}/${book}`).then((r) => r.data),
+})
+export const narratorHadithQuery = (id) => ({
+  queryKey: ['narrator-hadith', id],
+  queryFn: () => api.get(`/rijal/narrators/${id}/hadith`).then((r) => r.data),
+})
+export const rijalSearchQuery = (q) => ({
+  queryKey: ['rijal-search', q],
+  queryFn: () => api.get('/rijal/search', { params: { q } }).then((r) => r.data),
+})
+export const narratorQuery = (id) => ({
+  queryKey: ['narrator', id],
+  queryFn: () => api.get(`/rijal/narrators/${id}`).then((r) => r.data),
+  // No page built for him stays that way, so a 404 is not retried.
+  retry: (count, error) => error?.response?.status !== 404 && count < 1,
+})
+
 // Every word typed must appear, in Arabic or English, across the named
 // collections; empty collections means every collection, the ordinary case.
 export const searchHadith = ({ q, collections = [] }) =>

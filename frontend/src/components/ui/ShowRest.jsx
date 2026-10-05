@@ -42,6 +42,8 @@ export default function ShowRest({
   const [cut, setCut] = useState(false)
   // The clamp pulled up to the bottom of the last whole line, px; null until measured.
   const [snap, setSnap] = useState(null)
+  // Open and done gliding: no cap, so a long list never spills over what follows.
+  const [settled, setSettled] = useState(false)
   const limit = height ?? `${lines * 1.75}em`
 
   const measure = useCallback(() => {
@@ -87,6 +89,7 @@ export default function ShowRest({
 
   const reveal = () => {
     const next = !open
+    setSettled(false)
     setOpen(next)
     // Told on the way open only. A panel that pays for its content, a model
     // retelling say, waits for this rather than for the page.
@@ -97,13 +100,14 @@ export default function ShowRest({
     <div className={`space-y-2 ${className}`}>
       <div
         ref={body}
+        onTransitionEnd={() => open && setSettled(true)}
         // The same glide the rest of the app opens with, on the one property
         // that actually changes here, since maxHeight and overflow are not
         // grid-template-rows: the mask fade above already told the eye there
         // was more, and a snap once pressed would contradict that.
         style={{
           transition: 'max-height calc(var(--motion-base-ms) * 1ms) ease',
-          ...(open ? { maxHeight: '100em' } : {
+          ...(open ? { maxHeight: settled ? 'none' : '100em' } : {
           maxHeight: snap ?? limit,
           overflow: 'hidden',
           // The last line fades out rather than being sliced through, which is

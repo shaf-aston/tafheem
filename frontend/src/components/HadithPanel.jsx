@@ -11,7 +11,8 @@ import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithCollectionsQuery } from '../api'
-import { bookOf, parsePlace, placeOf } from '../lib/hadithPlace'
+import { bookOf, narratorOf, narratorPlaceOf, parsePlace, placeOf } from '../lib/hadithPlace'
+import { goBack } from '../lib/journey'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import Chip from './ui/Chip'
@@ -26,13 +27,15 @@ import HadithBookList from './HadithBookList'
 import HadithCards from './HadithCards'
 import HadithList from './HadithList'
 import HadithSearchResults from './HadithSearchResults'
+import NarratorPage from './NarratorPage'
 import Code from './ui/Code'
 import SourceBadge from './ui/SourceBadge'
 import { useSources } from '../lib/useSources'
 
-export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
+export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }) {
   const { data: collections, isPending, isError, error, refetch } = useQuery(hadithCollectionsQuery)
   const [place, setPlace] = useState(null)   // { collection, book, number, part }
+  const [narrator, setNarrator] = useState(null)   // the narrator whose page is open, if any
   const [starred, setStarred] = useState(false)
   const { favorites } = useHadithFavorites()
   const source = useSources().sources.find((s) => s.key === 'hadith')
@@ -49,9 +52,10 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
   const [missed, setMissed] = useState(false)
   if (useArrivalWhenReady(arrival, Boolean(collections))) {
     const asked = parsePlace(incoming, collections)
+    setNarrator(narratorOf(incoming))
     if (asked) setPlace(asked)
     else if (collections.length) setPlace({ collection: collections[0].id, book: null, number: null, part: '' })
-    setMissed(Boolean(incoming) && !asked)
+    setMissed(Boolean(incoming) && !asked && !narratorOf(incoming))
   }
 
   if (isPending) return <AnalyzerSkeleton />
@@ -86,12 +90,30 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
   const go = (next) => {
     setMissed(false)
     setStarred(false)
+    setNarrator(null)
     setPlace(next)
     onVisit?.(placeOf(next.collection, next.book, next.number, next.part))
   }
+  // A narrator's page is a step of its own, so Back returns to where he was tapped.
+  const openNarrator = (id) => onGo('hadith', narratorPlaceOf(id))
   const pickCollection = (id) => go({ collection: id, book: null, number: null, part: '' })
   const pickBook = (number) => go({ collection, book: number, number: null, part: '' })
   const backToBooks = () => go({ collection, book: null, number: null, part: '' })
+
+  if (narrator != null) {
+    return (
+      <div className="panel">
+        <SectionHeader title="Hadith" arabic="الحديث" />
+        <NarratorPage
+          id={narrator}
+          accent={accent}
+          onBack={goBack}
+          onNarrator={openNarrator}
+          onHadith={(h) => go({ collection: h.collection, book: h.book, number: h.number, part: h.part })}
+        />
+      </div>
+    )
+  }
 
   return (
     <div className="panel">
@@ -101,7 +123,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
         <StatusNote>That link names a hadith that is not here, so the collection opens plainly.</StatusNote>
       )}
 
-      <HadithSearchResults accent={accent} onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}>
+      <HadithSearchResults accent={accent} onNarrator={openNarrator} onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}>
         <ChipRow>
           <HadithCollectionPicker value={collection} onChange={pickCollection} accent={accent} />
           <Chip selected={starred} tinted accent={accent} onClick={() => setStarred(!starred)}>
@@ -112,12 +134,12 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit }) {
         </ChipRow>
         {starred ? (
           favorites.length
-            ? <HadithCards items={favorites} accent={accent} />
+            ? <HadithCards items={favorites} accent={accent} onNarrator={openNarrator} />
             : <EmptyState>Star a hadith and it is kept here.</EmptyState>
         ) : place?.book == null ? (
           <HadithBookList collection={collection} onPick={pickBook} accent={accent} />
         ) : (
-          <HadithList collection={collection} book={place.book} onBack={backToBooks} accent={accent} />
+          <HadithList collection={collection} book={place.book} focus={place.number != null ? `${place.number}${place.part}` : null} onBack={backToBooks} accent={accent} onNarrator={openNarrator} />
         )}
       </HadithSearchResults>
     </div>
