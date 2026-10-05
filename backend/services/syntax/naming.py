@@ -19,7 +19,7 @@ from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_path, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table
 from backend.services.syntax import facts, walker
 from backend.services.harakat import (
-    CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, paused, typed_case)
+    CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, own_letters, paused, typed_case)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -74,40 +74,60 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         return [{"role": None, "case": None} for _ in words]  # the split does not line up
     for i, (word, token) in enumerate(zip(words, bases)):
         token["typed"] = word
-        # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever reading the parser had
-        after = words[i + 1] if i + 1 < len(words) else ""
-        if token["pos"].startswith("VRB") or token.get("pos_camel") in ("noun", "noun_prop"):
-            governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
-                                     for family in ("jazm", "nasb_mudari"))
-            root = token.get("root", "")
-            if verb_reader.command(word, governed, root) or verb_reader.command(paused(word, after), governed, root):
-                token["asp"] = "c"
         # letters at the end that belong to an attached pronoun, not to the word
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
                                 if t["head"] == token["id"] and t["form"].startswith("+"))
+        # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever reading the parser had;
+        # a verb's reading (فَاقْبَلْهَا) is also tried on its own letters, the ف and ها aside;
+        # a noun's never is, or the يَدِ of وَيَدِهِ would be a command
+        after = words[i + 1] if i + 1 < len(words) else ""
+        verb = token["pos"].startswith("VRB")
+        if verb or token.get("pos_camel") in ("noun", "noun_prop"):
+            governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
+                                     for family in ("jazm", "nasb_mudari"))
+            root = token.get("root", "")
+            joined = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
+            own = own_letters(word, joined, token["stuck_on"]) if verb else word
+            cell = next((found for form in dict.fromkeys((word, paused(word, after), own))
+                         if (found := verb_reader.command(form, governed, root))), None)
+            if cell:
+                # the person is sarf's: the reading may have taken اقبل for "I accept"
+                token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
         token["mudaf"] = any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
     found_answers, governed_by = facts.of_sentence(tokens)
     answers = {t["id"]: a for t, a in zip(tokens, found_answers)}
     # the book's tree has no leaf for some answers: that word stays unnamed
     walked = [walker.walk(answers[token["id"]]) for token in bases]
     named = [found.role if found else None for found in walked]
+    # بِـ، ـها: an attached piece is named by the same tree as a typed word
+    base_ids = {token["id"] for token in bases}
+    attached = {t["id"]: found.role if (found := walker.walk(answers[t["id"]])) else None
+                for t in tokens if t["id"] not in base_ids}
+    role_by_id = {token["id"]: role for token, role in zip(bases, named)} | attached
     # a particle with a مجرور under it is a حرف جر: the one name, for card and picture
-    for index, token in enumerate(bases):
-        if token["pos"] == "PRT" and any(
-                named[j] == NAMED.majroor for j, kid in enumerate(bases) if kid["head"] == token["id"]):
-            named[index] = NAMED.harf_jarr
+    for t in tokens:
+        if t["pos"] == "PRT" and any(role_by_id.get(kid["id"]) == NAMED.majroor
+                                     for kid in tokens if kid["head"] == t["id"]):
+            role_by_id[t["id"]] = NAMED.harf_jarr
+    named = [role_by_id[token["id"]] for token in bases]
     cases = [_ending(role, token, bases[i - 1] if i else None, words[i + 1] if i + 1 < len(words) else "")
              for i, (role, token) in enumerate(zip(named, bases))]
     _followers_take_their_case(named, cases, bases, tokens)
     # what each word shows: the governor and follower the tree gave it, and its case
     shown = [{answers[token["id"]]["governor"], answers[token["id"]]["follows"], case}
              for token, case in zip(bases, cases)]
+    # a piece written onto a تابع joins it, it does not govern it: وَإِيمَانٌ shows عطف first
+    joined = [{answers[token["id"]]["follows"]} if answers[token["id"]]["follows"] else said
+              for token, said in zip(bases, shown)]
     word_of = _typed_word_of(bases, tokens)
     # the parser's tense goes with a فعل, so a card CAMeL took for a noun (ضُرِبَ) still says ماضٍ
     return [{"role": role, "case": case,
              "aspect": token.get("asp") if role == NAMED.fil else None,
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "book": book_path(found.path, found.book) if found else None,
+             "attached": [{"role": role_by_id[t["id"]], "before": t["form"].endswith("+"), "form": t["form"].strip("+"),
+                           "family": _family(t, bases, joined, below=True) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None}
+                          for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
              **_governed(i, role, token, bases, tokens, governed_by, word_of)}
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
 
@@ -161,13 +181,14 @@ def _followers_take_their_case(named: list, cases: list, bases: list[dict], toke
             cases[i] = cases[head]
 
 
-def _family(token: dict, bases: list[dict], shown: list[set]) -> str | None:
+def _family(token: dict, bases: list[dict], shown: list[set], below: bool = False) -> str | None:
     """The family a particle or verb is named by (كان فعل ماضٍ ناقص، إنّ حرف مشبه بالفعل):
     one whose list holds it and whose effect shows on a word linked to it, the noun hung
     on إنّ or كان, or the verb لم hangs on. A listed word that governs nothing here (the
-    لا of a plain negation) keeps its plain name."""
+    لا of a plain negation) keeps its plain name. A piece written onto a word (وَ، بِـ)
+    works only on the word `below` it: the وَ of وَإِيمَانٌ hangs on a مجرور's neighbour."""
     linked = set().union(*(said for other, said in zip(bases, shown)
-                           if other["head"] == token["id"] or other["id"] == token["head"]))
+                           if other["head"] == token["id"] or (not below and other["id"] == token["head"])))
     return next((family for family, card in family_cards()
                  if card["governs"] in linked and in_family(token["lemma"], family)), None)
 

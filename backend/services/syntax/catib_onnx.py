@@ -199,6 +199,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
             "pos": pos, "pos_camel": a.get("pos", ""), "ud": ud,
             "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
             "stt": a.get("stt", "na"), "cas": a.get("cas", "na"), "num": a.get("num", "na"),
+            "per": a.get("per", "na"), "gen": a.get("gen", "na"),
             "root": root_in_arabic(a.get("root") or ""),
             "weak_last": weak_last(a), "base": base_of(word, a.get("atbtok")), **extra, "token_type": "baseword",
         }

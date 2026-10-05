@@ -42,6 +42,13 @@ def letters(word: str) -> list[tuple[str, set]]:
     return out
 
 
+def own_letters(word: str, before: int, after: int) -> str:
+    """The typed word less `before` letters joined in front (فـ) and `after` of an attached
+    pronoun (ـها), its own vowels kept: فَاقْبَلْهَا is اقْبَلْ."""
+    marked = letters(word)
+    return "".join(letter + "".join(sorted(marks)) for letter, marks in marked[before:len(marked) - after])
+
+
 def typed_case(word: str, stuck_on: int = 0) -> str | None:
     """Case read off the last typed vowel, or None when the reader left it bare.
 
@@ -180,8 +187,10 @@ def _without_ending(marked: list[tuple[str, set]]) -> list[tuple[str, set]]:
 def typed_passive(word: str, present: bool) -> bool:
     """فُعِلَ and يُفْعَلُ by their vowels.
 
-    A past verb never opens with a damma unless it is passive, so that one mark
-    is enough. A present verb does (يُكَافِئُ is active), so there the fatha
+    A past verb's opening damma is passive only with the kasra of فُعِلَ inside it:
+    a hollow verb takes the damma alone before its doer's تاء (كُنْتَ، قُلْتُ), and
+    the last letter's kasra may be that تاء's (كُنْتِ). A present verb opens with a
+    damma too (يُكَافِئُ is active), so there the fatha
     before the last stem letter is what separates يُكَافَأُ from it. The kasra of
     كُتِبَتِ sits on a root letter, not the last one, which is why the end is not read.
     """
@@ -189,7 +198,8 @@ def typed_passive(word: str, present: bool) -> bool:
     if len(marked) < 3 or "ُ" not in marked[0][1]:
         return False
     if not present:
-        return True
+        # or a doubled verb's shadda (حُفَّتْ، رُدَّ), not a ن's: كُنَّا is كان meeting نا
+        return any("ِ" in marks or (SHADDA in marks and letter != "ن") for letter, marks in marked[1:-1])
     stem = _without_ending(marked)
     return len(stem) >= 3 and "َ" in stem[-2][1]
 

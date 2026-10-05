@@ -45,6 +45,8 @@ def is_light(token: dict) -> bool:
 
 
 def is_passive(token: dict) -> bool:
+    if token.get("asp") == "c":
+        return False  # a command is never passive; اُكْتُبُوا opens with a damma all the same
     if token.get("vox") == "p":
         return True
     typed = token.get("typed")
@@ -555,7 +557,9 @@ def _verb_place(token: dict, s: Sentence) -> str:
                 or (rel == "MOD" and typed == "a" and token.get("stt") in ("d", "c") and is_plain_noun(token)
                     and _skeleton(token["lemma"]) != _skeleton(head["lemma"]))):
             if typed in ("u", "a"):  # damma stands for the doer (or its deputy), fatha is the done-to
-                return "subject" if typed == "u" else "object"
+                # طُوِّقَ طَوْقًا: under a passive verb the first object became the deputy, so
+                # a fatha left is the second (أُعْطِيَ الولدُ الكتابَ)
+                return "subject" if typed == "u" else "second_object" if is_passive(head) else "object"
             if is_passive(head):
                 nouns = [t for t in (*siblings, token) if t["rel"] in ("SBJ", "TPC", "OBJ")]
                 return "subject" if rel != "OBJ" or is_deputy(token, nouns) else "object"
