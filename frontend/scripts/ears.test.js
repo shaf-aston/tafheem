@@ -139,7 +139,9 @@ const audioOf = async ({ reciter, ayah: [surah, ayah] }) => {
  * file is also the *right* text: imlaei is the plain vowelled spelling the ear
  * writes and the page checks against, where Uthmani counts right words wrong.
  */
-const QURAN = JSON.parse(readFileSync(new URL('../../backend/data/quran/imlaei.json', import.meta.url), 'utf8'))
+// Fetched, not tracked (backend/scripts/fetch_recitation_checks.py): without it the run is skipped.
+const QURAN_FILE = new URL('../../backend/data/quran/imlaei.json', import.meta.url)
+const QURAN = existsSync(QURAN_FILE) ? JSON.parse(readFileSync(QURAN_FILE, 'utf8')) : null
 const textOf = async ([surah, ayah]) => {
   const text = QURAN[`${surah}:${ayah}`]
   if (!text) throw new Error(`no text for ${surah}:${ayah} in backend/data/quran/imlaei.json`)
@@ -260,7 +262,7 @@ const NO_BACKOFF = new Set(LOCAL_URL ? [LOCAL_NAME] : [])
 // Nothing to ask and nothing already asked: only then is there no run. With
 // readings in the cache the whole table can be rebuilt without a credential,
 // which is what happens after a change to how a reading is marked.
-describe.skipIf(!GROQ && !DEEPGRAM && !LOCAL_URL && !Object.keys(kept).length)('how well each ear hears real recitation', () => {
+describe.skipIf(!QURAN || (!GROQ && !DEEPGRAM && !LOCAL_URL && !Object.keys(kept).length))('how well each ear hears real recitation', () => {
   it('counts what a reader would have seen', async () => {
     const printed = new Map()
     for (const { ayah } of CLIPS) {

@@ -47,7 +47,8 @@ const keys = surahs.map((s) => {
 /** How many typos a name of this length may have and still be recognised. */
 const allowedTypos = (length) => (length <= 4 ? 0 : length <= 7 ? 1 : 2)
 
-function closeness(needle, spellings) {
+// Tiers looser than `loosest` are never computed: the typo tier is the costly one.
+function closeness(needle, spellings, loosest) {
   let best = Infinity
   for (const spelling of spellings) {
     if (!spelling) continue
@@ -55,20 +56,20 @@ function closeness(needle, spellings) {
     if (spelling === needle) score = CLOSE.exact
     else if (needle.length >= 2 && spelling.startsWith(needle)) score = CLOSE.prefix
     else if (needle.length >= 3 && spelling.includes(needle)) score = CLOSE.inside
-    else if (editDistance(needle, spelling) <= allowedTypos(needle.length)) score = CLOSE.typo
+    else if (loosest >= CLOSE.typo && editDistance(needle, spelling) <= allowedTypos(needle.length)) score = CLOSE.typo
     best = Math.min(best, score)
   }
   return best
 }
 
-/** Surahs a typed name could mean, closest first, at most `limit`. */
-export function surahsNamed(name, limit = 5) {
+/** Surahs a typed name could mean, closest first, at most `limit`, none looser than `loosest`. */
+export function surahsNamed(name, limit = 5, loosest = CLOSE.typo) {
   const arabic = isArabic(name)
   const needle = arabic ? foldArabic(name).replace(ARABIC_ARTICLE, '') : foldLatin(name)
   if (!needle) return []
   return keys
-    .map(({ s, latin, arabic: ar }) => ({ ...s, close: closeness(needle, arabic ? ar : latin) }))
-    .filter((m) => m.close < Infinity)
+    .map(({ s, latin, arabic: ar }) => ({ ...s, close: closeness(needle, arabic ? ar : latin, loosest) }))
+    .filter((m) => m.close <= loosest)
     .sort((a, b) => a.close - b.close || a.n - b.n)
     .slice(0, limit)
 }
