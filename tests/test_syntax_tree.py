@@ -86,9 +86,11 @@ def test_a_word_hung_on_an_attached_particle_is_drawn_under_what_the_particle_jo
             token(3, "و+", "و+", "PRT", 2, "MOD", token_type="prc2", pos_camel="conj"),
             token(4, "علي", "علي", "PROP", 3, "OBJ")]
     drawn = built(["جَاءَ", "مُحَمَّدٌ", "وَعَلِيٌّ"], toks)
+    # the وَ is a word of its own, in its own column, joining عليّ to محمد
+    assert drawn["words"] == ["جَاءَ", "مُحَمَّدٌ", "وَ", "عَلِيٌّ"]
     joined = drawn["tree"]["children"][1]  # the noun with its معطوف inside, not a second root
-    assert [leaf["word"] for leaf in joined["children"]] == [1, 2]
-    assert roles_in(drawn["tree"]) == ["فعل", "فاعل", "فاعل", "معطوف"]  # the unit plays the faa'il
+    assert joined["children"][0]["word"] == 1
+    assert roles_in(drawn["tree"]) == ["فعل", "فاعل", "فاعل", "حرف عطف", "معطوف"]  # the unit plays the faa'il
 
 
 def test_a_verb_clause_hung_on_a_mubtada_is_its_khabar_in_the_place_of_raf():
