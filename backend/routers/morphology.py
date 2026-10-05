@@ -1,21 +1,6 @@
-"""Sarf (morphology) analysis endpoint: root, pattern, conjugation table.
+"""Sarf routes: validate, then hand the word to services.sarf_word (which owns the step order).
 
-Strategy:
-  1. Run local morphology (CAMeL / Qalsadi), gives root, part of speech, features.
-  2. Look up the word's own dictionary entry for a bab a named source already
-     states (verb_forms.babs_of); only when that is silent does the tab fall
-     back to rebuilding each Form I past tense from the root and seeing which one the
-     reader actually typed. Deterministic, and it is what stops the tab
-     conjugating اِسْتَقْبَلَ as if it were قَبَلَ.
-  3. Conjugate from the rule tables in data/sarf/patterns.json, always local,
-     always the same answer, never dependent on an AI being reachable.
-  4. The meaning comes from the local dictionary, the first sense Wiktionary
-     lists, falling back to the tagger's gloss. Local either way, so the table
-     and its meaning arrive together.
-  5. The AI is never waited on here. A network call to an AI backend can take
-     seconds, and none of the above needs it; so this route answers from local
-     data alone, and /meaning is a second, separate request the frontend fires
-     once the table is already on screen.
+/meaning is a separate request the frontend fires once the table is on screen, so the AI is never waited on.
 """
 from __future__ import annotations
 
