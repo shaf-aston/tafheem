@@ -1,0 +1,281 @@
+{
+  "found": [
+    {
+      "lesson": 6,
+      "phrase": 2,
+      "english": "This is your room.",
+      "search_term": "guest bedroom",
+      "candidates": [
+        {
+          "id": "1eb01dab-dbdd-424a-87c3-e4420eac5b54",
+          "title": "Classic guest bedroom",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3297160/free-photo-image-bedroom-bed-cc0",
+          "thumbnail": "https://api.openverse.org/v1/images/1eb01dab-dbdd-424a-87c3-e4420eac5b54/thumb/"
+        },
+        {
+          "id": "bd81aecb-7ca9-4fc3-9950-beafd1da6eef",
+          "title": "Hotel guest room, interior design",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6041294/photo-image-public-domain-free-bedroom",
+          "thumbnail": "https://api.openverse.org/v1/images/bd81aecb-7ca9-4fc3-9950-beafd1da6eef/thumb/"
+        },
+        {
+          "id": "75e6703d-39a0-4611-bbf7-b9a6b81eef46",
+          "title": "Free hotel room image",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5922902/photo-image-public-domain-free-bedroom",
+          "thumbnail": "https://api.openverse.org/v1/images/75e6703d-39a0-4611-bbf7-b9a6b81eef46/thumb/"
+        },
+        {
+          "id": "bb01e25b-592c-41a7-b6aa-87e5f5e9f989",
+          "title": null,
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5963465/free-public-domain-cc0-photo",
+          "thumbnail": "https://api.openverse.org/v1/images/bb01e25b-592c-41a7-b6aa-87e5f5e9f989/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "phrase": 3,
+      "english": "I put clean towels on the bed for you.",
+      "search_term": "folded towels",
+      "candidates": [
+        {
+          "id": "ef213a16-6e99-41d4-887e-73235263bbbc",
+          "title": "View deck chairs folded towels",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3300616/free-photo-image-luxury-hotel-lounge-spa",
+          "thumbnail": "https://api.openverse.org/v1/images/ef213a16-6e99-41d4-887e-73235263bbbc/thumb/"
+        },
+        {
+          "id": "a8921072-03fb-406e-9ff1-76a9d4c64cc3",
+          "title": "Hotel Sultanahmet, Istanbul. Distance between bed & bathroom- width of a folded towel. But the rooftop terrace still made this hotel a favorite.",
+          "creator": "EllenSeptember",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/14742817@N00/10148805946",
+          "thumbnail": "https://api.openverse.org/v1/images/a8921072-03fb-406e-9ff1-76a9d4c64cc3/thumb/"
+        },
+        {
+          "id": "b6a7f644-a67b-4677-bbba-88f112c6da4a",
+          "title": "folding towels d3",
+          "creator": "chascow",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/15586134@N00/5212051445",
+          "thumbnail": "https://api.openverse.org/v1/images/b6a7f644-a67b-4677-bbba-88f112c6da4a/thumb/"
+        },
+        {
+          "id": "287bbf72-8e8e-45e5-9ef6-8087412de998",
+          "title": "folding towels",
+          "creator": "chascow",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/15586134@N00/5212576692",
+          "thumbnail": "https://api.openverse.org/v1/images/287bbf72-8e8e-45e5-9ef6-8087412de998/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "phrase": 4,
+      "english": "Here are folded blankets in case you feel cold.",
+      "search_term": "folded blankets",
+      "candidates": [
+        {
+          "id": "56358c5a-c01f-4dcd-8758-0beead7e3f44",
+          "title": "Pile colourful fabrics",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5904063/photo-image-public-domain-fabrics-rainbow",
+          "thumbnail": "https://api.openverse.org/v1/images/56358c5a-c01f-4dcd-8758-0beead7e3f44/thumb/"
+        },
+        {
+          "id": "dc2034b3-22ea-41ed-bdb6-bb8caed79cfb",
+          "title": "Stack of folded t-shirts",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/11515763/stack-folded-t-shirts",
+          "thumbnail": "https://api.openverse.org/v1/images/dc2034b3-22ea-41ed-bdb6-bb8caed79cfb/thumb/"
+        },
+        {
+          "id": "4268367b-22ec-4a02-8241-85cd0fd23307",
+          "title": null,
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5958360/free-public-domain-cc0-photo",
+          "thumbnail": "https://api.openverse.org/v1/images/4268367b-22ec-4a02-8241-85cd0fd23307/thumb/"
+        },
+        {
+          "id": "5c1156ba-a977-4f0c-a38a-64c3eddc267f",
+          "title": "Pile of t-shirts, dirty laundry",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/11515801/pile-t-shirts-dirty-laundry",
+          "thumbnail": "https://api.openverse.org/v1/images/5c1156ba-a977-4f0c-a38a-64c3eddc267f/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "phrase": 7,
+      "english": "Here is a new toothbrush for you.",
+      "search_term": "toothbrush",
+      "candidates": [
+        {
+          "id": "6517607f-ee5f-4378-badc-86bd868f1642",
+          "title": "Toothbrush Toothpaste",
+          "creator": "WDnet Studio",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/toothbrush-toothpaste-UD9953XS1H",
+          "thumbnail": "https://api.openverse.org/v1/images/6517607f-ee5f-4378-badc-86bd868f1642/thumb/"
+        },
+        {
+          "id": "6e56023d-d68f-4dc2-889b-330c3950fe3d",
+          "title": "Toothbrush Toothpaste",
+          "creator": "George Becker",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/toothbrush-toothpaste-IGGCN0W9BJ",
+          "thumbnail": "https://api.openverse.org/v1/images/6e56023d-d68f-4dc2-889b-330c3950fe3d/thumb/"
+        },
+        {
+          "id": "1088147c-2f79-4df0-8378-a96a06f1e4ab",
+          "title": "Free two toothbrushes couple's bathroom",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5924303/photo-image-public-domain-home-free",
+          "thumbnail": "https://api.openverse.org/v1/images/1088147c-2f79-4df0-8378-a96a06f1e4ab/thumb/"
+        },
+        {
+          "id": "50af2bde-1a37-4402-a0d9-8d9565da1651",
+          "title": "Free close dentist toothbrush image",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5927085/photo-image-public-domain-brush-free",
+          "thumbnail": "https://api.openverse.org/v1/images/50af2bde-1a37-4402-a0d9-8d9565da1651/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "phrase": 8,
+      "english": "What time do you want to wake up?",
+      "search_term": "alarm clock",
+      "candidates": [
+        {
+          "id": "3095c427-7201-4b73-9d06-fe0f0ea509ac",
+          "title": "Alarm Clock",
+          "creator": "Jessica Monte",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/alarm-clock-VI3GY3LRD4",
+          "thumbnail": "https://api.openverse.org/v1/images/3095c427-7201-4b73-9d06-fe0f0ea509ac/thumb/"
+        },
+        {
+          "id": "e2b3f551-65f2-4847-9f50-d9357dea250b",
+          "title": "Red alarm clock, timepiece",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6017284/photo-image-background-public-domain-cute",
+          "thumbnail": "https://api.openverse.org/v1/images/e2b3f551-65f2-4847-9f50-d9357dea250b/thumb/"
+        },
+        {
+          "id": "c2540b55-f316-4774-84e4-40bebbeaec68",
+          "title": "macro shot standard alarm clock",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3300588/free-photo-image-clock-alarm-alcohol",
+          "thumbnail": "https://api.openverse.org/v1/images/c2540b55-f316-4774-84e4-40bebbeaec68/thumb/"
+        },
+        {
+          "id": "92602fed-5c62-401b-9972-0bdaeb2c6a79",
+          "title": "Alarm clock green",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5939627/alarm-clock-green",
+          "thumbnail": "https://api.openverse.org/v1/images/92602fed-5c62-401b-9972-0bdaeb2c6a79/thumb/"
+        }
+      ]
+    }
+  ],
+  "needs_search_term": [
+    {
+      "lesson": 6,
+      "phrase": 1,
+      "english": "You will sleep at our house tonight, no problem."
+    },
+    {
+      "lesson": 6,
+      "phrase": 5,
+      "english": "Do you need anything else?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 6,
+      "english": "Where is the bathroom?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 9,
+      "english": "I will wake you up for the dawn prayer."
+    },
+    {
+      "lesson": 6,
+      "phrase": 10,
+      "english": "Did you sleep well?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 11,
+      "english": "Sleep well."
+    },
+    {
+      "lesson": 6,
+      "phrase": 12,
+      "english": "May Allah honour you, you honoured me greatly."
+    }
+  ]
+}
