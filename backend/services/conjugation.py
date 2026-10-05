@@ -246,7 +246,7 @@ def summary(radicals: str, form: str, shaped: "Shaper | None" = None) -> list[di
     # باب كَرُمَ is intransitive, so the book gives it a صفة مشبهة where every
     # other باب gives an اسم الفاعل (Treasures p.88). A باب may rename any line
     # of its own صرف صغير that way; only the name changes, the line is the same.
-    return [{"label": shape.get(f"{slot}-label", label[slot]), "arabic": arabic}
+    return [{**shape.get(f"{slot}-label", label[slot]), "arabic": arabic}
             for slot, arabic in slots if arabic]
 
 
