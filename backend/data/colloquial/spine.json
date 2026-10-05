@@ -5351,6 +5351,399 @@
           ]
         }
       ]
+    },
+    {
+      "unit": "unit-19",
+      "title": "Errands and Emergencies",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "At the Bank",
+          "phrases": [
+            {
+              "slot": "i-want-to-open-a-bank-account",
+              "english": "I want to open a bank account.",
+              "search_term": "bank building",
+              "image": "unit-19/l01-p01-bank-building.jpg"
+            },
+            {
+              "slot": "do-you-have-your-id-card",
+              "english": "Do you have your ID card?"
+            },
+            {
+              "slot": "i-want-to-withdraw-some-cash",
+              "english": "I want to withdraw some cash.",
+              "search_term": "coins",
+              "image": "unit-19/l01-p03-coins.jpg"
+            },
+            {
+              "slot": "i-want-to-deposit-this-amount",
+              "english": "I want to deposit this amount."
+            },
+            {
+              "slot": "where-s-the-atm",
+              "english": "Where's the ATM?",
+              "search_term": "ATM machine",
+              "image": "unit-19/l01-p05-atm-machine.jpg"
+            },
+            {
+              "slot": "the-machine-swallowed-my-card",
+              "english": "The machine swallowed my card.",
+              "search_term": "bank card",
+              "image": "unit-19/l01-p06-bank-card.jpg"
+            },
+            {
+              "slot": "i-want-to-transfer-money-to-this-account",
+              "english": "I want to transfer money to this account."
+            },
+            {
+              "slot": "how-much-is-the-transfer-fee",
+              "english": "How much is the transfer fee?"
+            },
+            {
+              "slot": "i-want-to-exchange-some-dollars",
+              "english": "I want to exchange some dollars.",
+              "search_term": "US dollar bills",
+              "image": "unit-19/l01-p09-us-dollar-bills.jpg"
+            },
+            {
+              "slot": "where-do-i-sign",
+              "english": "Where do I sign?"
+            },
+            {
+              "slot": "i-want-a-statement-of-my-account",
+              "english": "I want a statement of my account."
+            },
+            {
+              "slot": "here-s-your-receipt",
+              "english": "Here's your receipt."
+            }
+          ],
+          "section": "Errands"
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "At the Post Office",
+          "phrases": [
+            {
+              "slot": "where-s-the-post-office",
+              "english": "Where's the post office?",
+              "search_term": "post office sign",
+              "image": "unit-19/l02-p01-post-office-sign.jpg"
+            },
+            {
+              "slot": "i-want-to-send-a-parcel-to-my-country",
+              "english": "I want to send a parcel to my country.",
+              "search_term": "cardboard parcel box",
+              "image": "unit-19/l02-p02-cardboard-parcel-box.jpg"
+            },
+            {
+              "slot": "how-much-does-the-parcel-weigh",
+              "english": "How much does the parcel weigh?"
+            },
+            {
+              "slot": "how-much-is-the-shipping",
+              "english": "How much is the shipping?"
+            },
+            {
+              "slot": "how-long-does-it-take-to-arrive",
+              "english": "How long does it take to arrive?"
+            },
+            {
+              "slot": "i-want-to-send-a-letter",
+              "english": "I want to send a letter.",
+              "search_term": "envelope",
+              "image": "unit-19/l02-p06-envelope.jpg"
+            },
+            {
+              "slot": "i-want-a-stamp-please",
+              "english": "I want a stamp, please.",
+              "search_term": "postage stamps"
+            },
+            {
+              "slot": "i-want-to-send-it-by-registered-mail",
+              "english": "I want to send it by registered mail.",
+              "search_term": "parcel box"
+            },
+            {
+              "slot": "write-the-address-here",
+              "english": "Write the address here."
+            },
+            {
+              "slot": "has-my-parcel-arrived",
+              "english": "Has my parcel arrived?"
+            },
+            {
+              "slot": "where-s-the-mailbox",
+              "english": "Where's the mailbox?",
+              "search_term": "red mailbox",
+              "image": "unit-19/l02-p11-red-mailbox.jpg"
+            },
+            {
+              "slot": "can-i-track-the-parcel",
+              "english": "Can I track the parcel?"
+            }
+          ],
+          "section": "Errands"
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Phone and SIM Shop",
+          "phrases": [
+            {
+              "slot": "i-want-to-buy-a-sim-card",
+              "english": "I want to buy a SIM card.",
+              "search_term": "SIM card",
+              "image": "unit-19/l03-p01-sim-card.jpg"
+            },
+            {
+              "slot": "i-want-an-internet-package",
+              "english": "I want an internet package."
+            },
+            {
+              "slot": "how-much-is-this-package",
+              "english": "How much is this package?"
+            },
+            {
+              "slot": "how-long-is-it-valid",
+              "english": "How long is it valid?"
+            },
+            {
+              "slot": "i-want-to-top-up-my-balance",
+              "english": "I want to top up my balance.",
+              "search_term": "phone credit card"
+            },
+            {
+              "slot": "does-this-phone-take-two-sim-cards",
+              "english": "Does this phone take two SIM cards?",
+              "search_term": "mobile phone"
+            },
+            {
+              "slot": "my-phone-screen-is-broken",
+              "english": "My phone screen is broken.",
+              "search_term": "cracked phone screen",
+              "image": "unit-19/l03-p07-cracked-phone-screen.jpg"
+            },
+            {
+              "slot": "how-much-is-the-repair",
+              "english": "How much is the repair?",
+              "search_term": "screwdriver"
+            },
+            {
+              "slot": "i-want-a-new-charger",
+              "english": "I want a new charger.",
+              "search_term": "phone charger",
+              "image": "unit-19/l03-p09-phone-charger.jpg"
+            },
+            {
+              "slot": "the-signal-is-weak-here",
+              "english": "The signal is weak here."
+            },
+            {
+              "slot": "can-the-service-be-activated-today",
+              "english": "Can the service be activated today?"
+            },
+            {
+              "slot": "what-is-my-new-phone-number",
+              "english": "What is my new phone number?"
+            }
+          ],
+          "section": "Errands"
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Calling for Help",
+          "phrases": [
+            {
+              "slot": "help-me",
+              "english": "Help me!"
+            },
+            {
+              "slot": "call-an-ambulance",
+              "english": "Call an ambulance.",
+              "search_term": "ambulance",
+              "image": "unit-19/l04-p02-ambulance.jpg"
+            },
+            {
+              "slot": "call-the-police",
+              "english": "Call the police.",
+              "search_term": "police car",
+              "image": "unit-19/l04-p03-police-car.jpg"
+            },
+            {
+              "slot": "call-the-fire-brigade",
+              "english": "Call the fire brigade."
+            },
+            {
+              "slot": "i-need-a-doctor",
+              "english": "I need a doctor.",
+              "search_term": "stethoscope",
+              "image": "unit-19/l04-p05-stethoscope.jpg"
+            },
+            {
+              "slot": "there-is-a-fire",
+              "english": "There is a fire.",
+              "search_term": "fire extinguisher",
+              "image": "unit-19/l04-p06-fire-extinguisher.jpg"
+            },
+            {
+              "slot": "where-is-the-nearest-hospital",
+              "english": "Where is the nearest hospital?",
+              "search_term": "hospital sign",
+              "image": "unit-19/l04-p07-hospital-sign.jpg"
+            },
+            {
+              "slot": "what-is-the-emergency-number",
+              "english": "What is the emergency number?"
+            },
+            {
+              "slot": "please-hurry",
+              "english": "Please hurry."
+            },
+            {
+              "slot": "i-don-t-speak-arabic-well",
+              "english": "I don't speak Arabic well."
+            },
+            {
+              "slot": "this-is-the-address",
+              "english": "This is the address."
+            },
+            {
+              "slot": "stay-on-the-line",
+              "english": "Stay on the line.",
+              "search_term": "mobile phone",
+              "image": "unit-19/l04-p12-mobile-phone.jpg"
+            }
+          ],
+          "section": "Emergencies"
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "An Accident",
+          "phrases": [
+            {
+              "slot": "there-has-been-an-accident",
+              "english": "There has been an accident.",
+              "search_term": "traffic cone",
+              "image": "unit-19/l05-p01-traffic-cone.jpg"
+            },
+            {
+              "slot": "is-anyone-hurt",
+              "english": "Is anyone hurt?"
+            },
+            {
+              "slot": "my-car-hit-another-car",
+              "english": "My car hit another car."
+            },
+            {
+              "slot": "i-am-fine-thank-allah",
+              "english": "I am fine, thank Allah."
+            },
+            {
+              "slot": "do-not-move",
+              "english": "Do not move."
+            },
+            {
+              "slot": "my-leg-hurts",
+              "english": "My leg hurts.",
+              "search_term": "crutches",
+              "image": "unit-19/l05-p06-crutches.jpg"
+            },
+            {
+              "slot": "bring-the-first-aid-kit",
+              "english": "Bring the first aid kit.",
+              "search_term": "first aid kit",
+              "image": "unit-19/l05-p07-first-aid-kit.jpg"
+            },
+            {
+              "slot": "i-need-a-bandage",
+              "english": "I need a bandage.",
+              "search_term": "bandage",
+              "image": "unit-19/l05-p08-bandage.jpg"
+            },
+            {
+              "slot": "please-call-my-family",
+              "english": "Please call my family."
+            },
+            {
+              "slot": "i-want-a-report-from-the-police",
+              "english": "I want a report from the police."
+            },
+            {
+              "slot": "this-is-my-insurance-card",
+              "english": "This is my insurance card.",
+              "search_term": "insurance card",
+              "image": "unit-19/l05-p11-insurance-card.jpg"
+            },
+            {
+              "slot": "did-you-see-what-happened",
+              "english": "Did you see what happened?"
+            }
+          ],
+          "section": "Emergencies"
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Lost Child",
+          "phrases": [
+            {
+              "slot": "my-child-is-lost",
+              "english": "My child is lost."
+            },
+            {
+              "slot": "he-is-five-years-old",
+              "english": "He is five years old."
+            },
+            {
+              "slot": "he-is-wearing-a-red-shirt",
+              "english": "He is wearing a red shirt.",
+              "search_term": "red t-shirt"
+            },
+            {
+              "slot": "where-did-you-see-him-last",
+              "english": "Where did you see him last?",
+              "search_term": "shopping mall"
+            },
+            {
+              "slot": "please-help-me-find-him",
+              "english": "Please help me find him."
+            },
+            {
+              "slot": "where-is-the-information-desk",
+              "english": "Where is the information desk?",
+              "search_term": "information sign",
+              "image": "unit-19/l06-p06-information-sign.jpg"
+            },
+            {
+              "slot": "please-announce-it-on-the-loudspeaker",
+              "english": "Please announce it on the loudspeaker.",
+              "search_term": "loudspeaker",
+              "image": "unit-19/l06-p07-loudspeaker.jpg"
+            },
+            {
+              "slot": "is-there-a-security-guard-here",
+              "english": "Is there a security guard here?"
+            },
+            {
+              "slot": "have-you-seen-a-small-child",
+              "english": "Have you seen a small child?"
+            },
+            {
+              "slot": "this-is-his-photo",
+              "english": "This is his photo."
+            },
+            {
+              "slot": "we-found-him",
+              "english": "We found him!"
+            },
+            {
+              "slot": "thank-you-for-your-help",
+              "english": "Thank you for your help."
+            }
+          ],
+          "section": "Emergencies"
+        }
+      ]
     }
   ]
 }
