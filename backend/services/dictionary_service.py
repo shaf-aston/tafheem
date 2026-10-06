@@ -135,17 +135,22 @@ def meaning_of(word: str) -> str:
     as synonyms are phrases or names the dictionary has no entry for, and
     inventing something for them would turn a gap into a claim.
     """
+    return next(iter(meanings_of(word)), "")
+
+
+def meanings_of(word: str) -> list[str]:
+    """Every definition of the entry for that exact word, commonest first; [] if none."""
     load_dictionary()
     if not (key := strip_diacritics(word.strip())):
-        return ""
+        return []
     return next(
         (
-            entry["definitions"][0]
+            list(entry["definitions"])
             for entry in _arabic_index.get(key, ())
             if strip_diacritics(entry.get("arabic", "")) == key
             and entry.get("definitions")
         ),
-        "",
+        [],
     )
 
 

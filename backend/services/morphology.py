@@ -396,6 +396,17 @@ def _analyze_word_camel_only(word: str) -> dict[str, Any] | None:
     return None if best is None else _analysis_dict_from_camel(word, best)
 
 
+def glosses_of(word: str) -> list[str]:
+    """CAMeL's gloss for every analysis of one word; [] when CAMeL is not there."""
+    if _camel_analyzer is None:
+        return []
+    try:
+        return [a.get("gloss") or "" for a in _camel_analyzer.analyze(word)]
+    except Exception as exc:
+        logger.debug("CAMeL analyze error for '%s': %s", word, exc)
+        return []
+
+
 def _analyze_qalsadi(word: str) -> dict[str, Any]:
     try:
         result = _lemmatizer.lemmatize(word)  # type: ignore[union-attr]
