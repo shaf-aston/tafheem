@@ -36,7 +36,7 @@ const brief = (text) =>
 const Step = ({ text }) =>
   (isArabic(text) ? <ArabicText size="sm">{brief(text)}</ArabicText> : brief(text))
 
-export default function Trail() {
+export default function Trail({ nameOf = (value) => value }) {
   const { steps, at } = useJourney()
   const walked = trailFor(steps, tabNow(steps, at), at)
   const { shown, sliced } = nearest(walked, at, TRAIL_STEPS)
@@ -78,19 +78,19 @@ export default function Trail() {
               // A link back to where we already are would move the browser's
               // index without moving the page, which is how a back press stops
               // working after one click.
-              <span data-step="here" aria-current="page" title={step.value} className={WEIGHT.here}>
-                <Step text={step.value} />
+              <span data-step="here" aria-current="page" title={nameOf(step.value)} className={WEIGHT.here}>
+                <Step text={nameOf(step.value)} />
               </span>
             ) : (
               <button
                 type="button"
                 data-step={where}
-                title={step.value}
+                title={nameOf(step.value)}
                 onClick={() => jumpTo(step.index)}
                 className={`${WEIGHT[where]} hover:text-[var(--c)] hover:opacity-100
                   transition-colors`}
               >
-                <Step text={step.value} />
+                <Step text={nameOf(step.value)} />
               </button>
             )}
           </span>
