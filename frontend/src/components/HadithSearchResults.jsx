@@ -121,7 +121,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
               key={`${c.collection}:${c.number}`}
               accent={accent}
               quiet
-              title={`${c.count} of these hits are in this chapter`}
+              title={`${c.name}: ${c.count} of these hits are in this chapter`}
               onClick={() => open(c.collection, c.number)}
             >
               {collections.length > 1 && `${of(c.collection).short} · `}
