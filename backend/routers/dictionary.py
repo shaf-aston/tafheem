@@ -34,7 +34,7 @@ from backend.services import (
     sentence_meaning,
     verb_forms,
 )
-from backend.services.arabic_text import normalize_root, spelled_out
+from backend.services.arabic_text import normalize_root, not_arabic, spelled_out
 from backend.utils import arabic_sentence, call_service, normalize_text, require_arabic
 
 router = APIRouter(prefix="/api/dictionary", tags=["dictionary"])
@@ -112,6 +112,7 @@ async def translate_sentence(
         ref=found["ref"],
         words=[SentenceWord(**w) for w in found["words"]],
         words_source=Source(**provenance.of(found["words_source"])),
+        left_out=not_arabic(q),
     )
 
 @router.get("/babs", response_model=VerbVerdict)

@@ -64,9 +64,22 @@ def words(text: str) -> list[str]:
     Punctuation is a break between words, spaced or not: مَرْحَبًا، reached CAMeL
     with its comma and came back as an unknown name.
     """
+    return [w for w in _tokens(text) if _has_arabic_letter(w)]
+
+
+def not_arabic(text: str) -> list[str]:
+    """What words() drops that a reader typed as a word: letters, none Arabic (hello, x).
+    A mark or a number is not a word, so it is not reported."""
+    return [w for w in _tokens(text) if any(c.isalpha() for c in w) and not _has_arabic_letter(w)]
+
+
+def _tokens(text: str) -> list[str]:
     spaced = "".join(" " if unicodedata.category(c).startswith("P") else c for c in text)
-    cleaned = (_QURANIC_MARKS_RE.sub("", token) for token in spaced.split())
-    return [w for w in cleaned if any(unicodedata.category(c) == "Lo" and ARABIC_RE.match(c) for c in w)]
+    return [_QURANIC_MARKS_RE.sub("", token) for token in spaced.split()]
+
+
+def _has_arabic_letter(token: str) -> bool:
+    return any(unicodedata.category(c) == "Lo" and ARABIC_RE.match(c) for c in token)
 
 
 def bare_letters(text: str) -> str:

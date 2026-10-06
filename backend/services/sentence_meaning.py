@@ -75,18 +75,46 @@ def _whole_ayah(text: str, pairs: list[dict]) -> dict | None:
     books = quran_library.for_ayah(hit.surah, hit.ayah, [get_settings().sentence_translation])
     if not books:
         return None
+    found = {"meaning": standing(books[0]["text"]), "source": "translation", "ref": f"{hit.surah}:{hit.ayah}"}
     english = quran_meanings.for_ayah(hit.surah, hit.ayah)
     ayah_words = words(hit.arabic_text)
     if len(english) != len(ayah_words):
-        return {"meaning": books[0]["text"], "source": "translation", "ref": f"{hit.surah}:{hit.ayah}",
-                "words": pairs, "words_source": "camel"}
-    return {
-        "meaning": books[0]["text"],
-        "source": "translation",
-        "ref": f"{hit.surah}:{hit.ayah}",
-        "words": [{"arabic": w, "english": english.get(n, ""), "base": w} for n, w in enumerate(ayah_words, 1)],
-        "words_source": "translation",
-    }
+        return {**found, "words": pairs, "words_source": "camel"}
+    return {**found, "words_source": "translation",
+            "words": [{"arabic": w, "english": english.get(n, ""), "base": w} for n, w in enumerate(ayah_words, 1)]}
+
+
+_PAIRS = {"(": ")", "[": "]", "“": "”"}
+# What a sentence carried on past the ayah leaves at the cut: a dash, a comma, a colon.
+_CUT_RE = re.compile(r"[\s,;:\-–—]+$")
+
+
+def standing(text: str) -> str:
+    """One ayah's slice of a running translation, made to stand on its own.
+
+    The translation is prose cut at each ayah's end, so a sentence that runs on
+    leaves its comma or dash at the cut, and a quote opened in one ayah closes in
+    another. The cut is trimmed, and each mark left open, or closed with no
+    opening, gets its partner at the other end.
+    """
+    text = _CUT_RE.sub("", text.strip())
+    opened = []
+    head = ""
+    for c in text:
+        if c in _PAIRS:
+            opened.append(c)
+        elif c in _PAIRS.values():
+            if opened and _PAIRS[opened[-1]] == c:
+                opened.pop()
+            else:
+                head = next(o for o, shut in _PAIRS.items() if shut == c) + head
+    tail = "".join(_PAIRS[o] for o in reversed(opened))
+    if text.count('"') % 2:
+        # The odd quote opens when words follow it, else it closes one from before.
+        last = text.rindex('"')
+        tail, head = (tail + '"', head) if text[last + 1:].strip() else (tail, '"' + head)
+    text = head + text + tail
+    return text[:1].upper() + text[1:]
 
 
 def _model_sense(text: str, pairs: list[dict]) -> dict:

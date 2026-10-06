@@ -761,7 +761,8 @@ class SentenceResponse(BaseModel):
     """A phrase or sentence asked of the dictionary: its sense, then word by word.
 
     `meaning` is None when nothing could give a sense; the words still stand.
-    `ref` names the ayah when the text was one whole ayah."""
+    `ref` names the ayah when the text was one whole ayah; `left_out` is what was
+    typed as a word but holds no Arabic, so it was not translated."""
 
     query: str
     kind: str  # phrase | sentence
@@ -770,6 +771,7 @@ class SentenceResponse(BaseModel):
     ref: str | None = None
     words: list[SentenceWord]
     words_source: Source
+    left_out: list[str] = []
 
 class RootMeaning(BaseModel):
     core_meaning: str

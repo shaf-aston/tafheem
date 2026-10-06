@@ -29,6 +29,9 @@ export default function SentenceMeaning({ data, accent, onGo, onLookup }) {
             : <p className="type-body text-[var(--text-dim)]">The translator could not be reached, so only the words below.</p>}
         </TranslationStrip>
       </div>
+      {data.left_out?.length > 0 && (
+        <p className="type-small text-[var(--text-dim)]">Left out, not Arabic: {data.left_out.join(', ')}</p>
+      )}
 
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <h3 className="text-sm text-[var(--text-dim)]">Word by word</h3>

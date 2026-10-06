@@ -70,3 +70,19 @@ def test_no_model_still_gives_the_words(typed, monkeypatch) -> None:
     found = sentence_meaning.translate("البيت كبير")
     assert found["meaning"] is None and found["source"] is None
     assert [w["english"] for w in found["words"]] == ["the house", "large/great"]
+
+
+@pytest.mark.parametrize("cut, shown", [
+    ("[All] praise is [due] to Allāh, Lord of the worlds -", "[All] praise is [due] to Allāh, Lord of the worlds"),
+    ('Say, "He is Allāh, [who is] One,', 'Say, "He is Allāh, [who is] One"'),
+    ('Nor is there to Him any equivalent."', '"Nor is there to Him any equivalent."'),
+    ("and the captive, (saying)", "And the captive, (saying)"),
+])
+def test_an_ayah_slice_stands_on_its_own(cut, shown) -> None:
+    assert sentence_meaning.standing(cut) == shown
+
+
+def test_words_with_no_arabic_are_named_not_dropped() -> None:
+    from backend.services.arabic_text import not_arabic, words
+    typed = "x كتاب hello، ١٢ ۖ"
+    assert words(typed) == ["كتاب"] and not_arabic(typed) == ["x", "hello"]
