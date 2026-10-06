@@ -1,0 +1,185 @@
+{
+  "_comment": "Which reading a small word with more than one takes, decided once from what stands round it (services/syntax/particles.py walks it; the card, the picture and the case rules all read the answer). A branch splits on one particle axis: `word` the word itself, `next` what follows it (an indefinite noun: no ال, no name, no pronoun on it), `negated` a negation before it, `joins` the noun after it in the case of a noun before it, `opens` the noun after it with a khabar of its own after it. A leaf's `role` is the closed_words.json family it works as; `named` its name where the family card's own does not fit, `kind` when it is no حرف (إذا before a verb is a ظرف). A word with no branch here is read by its lists as before.",
+  "tree": {
+    "branch": "الحروف ذات الوجوه",
+    "book": "1.2 p3",
+    "split": "word",
+    "children": [
+      {
+        "branch": "لا",
+        "book": "3.7.4 p69",
+        "is": "لا",
+        "split": "next",
+        "children": [
+          {
+            "branch": "لا الناهية",
+            "book": "4.1.2 p102",
+            "is": "verb_jazm",
+            "role": "jazm"
+          },
+          {
+            "branch": "لا النافية قبل الفعل",
+            "book": "3.7.3 p69",
+            "is": "verb",
+            "role": "negation"
+          },
+          {
+            "branch": "لا قبل اسم",
+            "book": "3.7.4 p69",
+            "is": [
+              "indefinite_noun",
+              "noun"
+            ],
+            "split": "joins",
+            "children": [
+              {
+                "branch": "بين كلمتين في إعراب واحد",
+                "book": "3.10.4 p95",
+                "is": "yes",
+                "split": "negated",
+                "children": [
+                  {
+                    "branch": "لا العاطفة",
+                    "book": "3.10.4 p95",
+                    "is": "no",
+                    "role": "atf"
+                  },
+                  {
+                    "branch": "لا النافية بعد نفي",
+                    "book": "3.7.3 p69",
+                    "is": "yes",
+                    "role": "negation"
+                  }
+                ]
+              },
+              {
+                "branch": "لا قبل اسم لا يتبع ما قبله",
+                "book": "3.7.4 p69",
+                "is": "no",
+                "split": "next",
+                "children": [
+                  {
+                    "branch": "لا النافية للجنس",
+                    "book": "3.7.4 p69",
+                    "is": "indefinite_noun",
+                    "role": "la_jins"
+                  },
+                  {
+                    "branch": "لا النافية قبل معرفة",
+                    "book": "3.7.3 p69",
+                    "is": "noun",
+                    "role": "negation"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "branch": "لا قبل حرف أو في آخر الكلام",
+            "book": "3.7.3 p69",
+            "else": true,
+            "role": "negation"
+          }
+        ]
+      },
+      {
+        "branch": "إلا",
+        "book": "3.8.7 p85",
+        "is": "إلا",
+        "split": "negated",
+        "children": [
+          {
+            "branch": "الاستثناء التام المثبت",
+            "book": "3.8.7 p85",
+            "is": "no",
+            "role": "istithna"
+          },
+          {
+            "branch": "إلا بعد نفي",
+            "book": "3.8.7 p85",
+            "is": "yes",
+            "split": "joins",
+            "children": [
+              {
+                "branch": "الاستثناء التام المنفي",
+                "book": "3.8.7 p85",
+                "is": "yes",
+                "role": "istithna"
+              },
+              {
+                "branch": "الحصر",
+                "book": "3.8.7 p85",
+                "is": "no",
+                "role": "hasr"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "branch": "ألا",
+        "book": "1.2 p3",
+        "is": "ألا",
+        "split": "next",
+        "children": [
+          {
+            "branch": "ألا قبل فعل",
+            "book": "1.4.2 p8",
+            "is": [
+              "verb",
+              "verb_jazm"
+            ],
+            "role": "ghair_amila_other",
+            "named": "حرف عرض وتحضيض"
+          },
+          {
+            "branch": "ألا قبل كلام",
+            "book": "1.2 p3",
+            "else": true,
+            "role": "ghair_amila_other",
+            "named": "حرف استفتاح وتنبيه"
+          }
+        ]
+      },
+      {
+        "branch": "إذا",
+        "book": "4.3.1 p112",
+        "is": "إذا",
+        "split": "next",
+        "children": [
+          {
+            "branch": "إذا الشرطية",
+            "book": "4.3.1 p112",
+            "is": [
+              "verb",
+              "verb_jazm"
+            ],
+            "role": "zarf_zaman",
+            "kind": "ism"
+          },
+          {
+            "branch": "إذا الفجائية",
+            "book": "1.2 p3",
+            "else": true,
+            "role": "ghair_amila_other",
+            "named": "حرف مفاجأة"
+          }
+        ]
+      },
+      {
+        "branch": "الواو",
+        "book": "3.10.4 p95",
+        "is": "و",
+        "split": "opens",
+        "children": [
+          {
+            "branch": "الواو بين جملتين",
+            "book": "3.10.4 p95",
+            "is": "yes",
+            "role": "istinaf"
+          }
+        ]
+      }
+    ]
+  }
+}

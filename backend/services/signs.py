@@ -75,7 +75,8 @@ def settle(cards: list[dict]) -> list[dict]:
         else:
             card["sign"] = _noun_sign(card, before, after)
             if card.get("type") == "harf" and (said := _family_said(card)):
-                card["reason"] = teacher_rules()["case_said"]["harf_by_family"].format(**said)
+                # a family that only names (حرف نفي) has nothing to add after its name
+                card["reason"] = teacher_rules()["case_said"]["harf_by_family"].format(**said).rstrip("، ")
     return cards
 
 
@@ -85,7 +86,8 @@ def _family_said(card: dict) -> dict | None:
     family = dict(family_cards()).get(card.get("family"))
     if not family:
         return None
-    return {"named": family.get("named_as", {}).get(card["camel"]["base"], family["named"]), "does": family["does"]}
+    named = card.get("named") or family.get("named_as", {}).get(card["camel"]["base"], family["named"])
+    return {"named": named, "does": family["does"]}
 
 
 def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | None:

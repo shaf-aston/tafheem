@@ -17,7 +17,7 @@ from __future__ import annotations
 from backend.services import verb_reader
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_path, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table
-from backend.services.syntax import condition, facts, walker
+from backend.services.syntax import condition, facts, particles, walker
 from backend.services.harakat import (
     CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, own_letters, paused, typed_case)
 
@@ -76,6 +76,10 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         return [{"role": None, "case": None} for _ in words]  # the split does not line up
     for i, (word, token) in enumerate(zip(words, bases)):
         token["typed"] = word
+        # a "verb" with no tense that CAMeL reads as a noun or an adjective is that noun
+        # (اللهُ أكبرُ: the elative, never the verb أَكْبَرَ)
+        if token["pos"].startswith("VRB") and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"):
+            token["pos"] = "NOM"
         # letters at the end that belong to an attached pronoun, not to the word
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
                                 if t["head"] == token["id"] and t["form"].startswith("+"))
@@ -96,6 +100,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
                 # the person is sarf's: the reading may have taken اقبل for "I accept"
                 token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
         token["mudaf"] = any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
+    particles.stamp(tokens)
     found_answers, governed_by = facts.of_sentence(tokens)
     answers = {t["id"]: a for t, a in zip(tokens, found_answers)}
     # the book's tree has no leaf for some answers: that word stays unnamed
@@ -126,9 +131,11 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     found = [{"role": role, "case": case,
              "aspect": token.get("asp") if role == NAMED.fil else None,
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
+             "named": (token.get("reading") or {}).get("named"),
              "book": book_path(found.path, found.book) if found else None,
              "attached": [{"id": t["id"], "role": role_by_id[t["id"]], "before": t["form"].endswith("+"), "form": t["form"].strip("+"),
-                           "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None}
+                           "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,
+                           "reading": t.get("reading")}
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
              **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]])}
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
@@ -146,7 +153,8 @@ def _conditioned(found: list[dict], c: dict) -> None:
     than whatever verb the parser hung them on."""
     frame = c["frame"]
     opener = found[c["opener"]]
-    if frame["noun"] and not opener["role"]:
+    # a time or place word (متى، إذا) is always the ظرف, whatever place it was named for
+    if frame["noun"] and (not opener["role"] or frame["adverb"]):
         opener.update(role=_noun_place(frame, c["verb"], found), book=None)
     if frame["built"]:
         opener["case"] = "mabni"  # أينما: built, whatever vowel it ends on
@@ -236,13 +244,16 @@ def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None =
     """The family a particle or verb is named by (كان فعل ماضٍ ناقص، إنّ حرف مشبه بالفعل):
     one whose list holds it and whose effect shows on a word linked to it, the noun hung
     on إنّ or كان, or the verb لم hangs on. A listed word that governs nothing here (the
-    لا of a plain negation) keeps its plain name. A piece written onto a word (وَ، بِـ، لْـ)
+    لا of a plain negation) keeps its plain name, unless particles.stamp read it (لا النافية).
+    A piece written onto a word (وَ، بِـ، لْـ)
     works only on that word (`onto`, what it shows) and the words hung below it: the وَ of
     وَإِيمَانٌ hangs on a مجرور's neighbour, and the لْ of فَلْيَصُمْهُ on nothing at all."""
+    if token.get("reading"):
+        return token["reading"]["family"]
     linked = set().union(onto or set(), *(said for other, said in zip(bases, shown)
                          if other["head"] == token["id"] or (onto is None and other["id"] == token["head"])))
     return next((family for family, card in family_cards()
-                 if card["governs"] in linked and in_family(token["lemma"], family)), None)
+                 if card.get("governs") in linked and in_family(token["lemma"], family)), None)
 
 
 def opens_with_verb(roles: list[str | None]) -> bool:

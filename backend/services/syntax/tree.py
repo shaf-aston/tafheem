@@ -101,15 +101,25 @@ def _doer(token: dict, family: str | None, persons: list[str]) -> dict | None:
 
 
 def _finer(token: dict, role: str | None, family: str | None) -> str | None:
-    """A governor's name in the picture: كان is a فعل ناقص, أنْ a حرف نصب, as its card says."""
+    """A governor's name in the picture: كان is a فعل ناقص, أنْ a حرف نصب, as its card says;
+    a particle read one way of several (particles.stamp) by that reading's name."""
     if family in FRAMES["leaf_by_family"]:
         return FRAMES["leaf_by_family"][family]
+    if role == NAMED.harf and (reading := token.get("reading")):
+        card = CARDS.get(reading["family"], {})
+        return reading["named"] or card.get("chart") or card.get("named_as", {}).get(
+            strip_diacritics(token["form"]).strip("+"), card.get("named", role))
     if family is None and role == NAMED.harf and token["form"].endswith("+") and is_one(strip_diacritics(token["form"]), "atf"):
         family = "atf"  # وَمَنْ شاء: a وَ written onto a new sentence is named by its letters, as its card is
     card = CARDS.get(family)
     named = card and card.get("named_as", {}).get(strip_diacritics(token["form"]).strip("+"), card["named"])
     # only a finer name for the same role (حرف نصب for حرف), so card and picture still agree
     return named if role in (NAMED.harf, NAMED.harf_jarr) and named and named.startswith(role) else role
+
+
+def _read(token: dict) -> str | None:
+    """The family particles.stamp read the word as, if it read it."""
+    return (token.get("reading") or {}).get("family")
 
 
 def _sentence_label(roles: dict[int, str | None], tokens: list[dict], named: list[dict]) -> str:
@@ -201,7 +211,24 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             job_of[token["id"]] = masdar["job_by_rel"][token["rel"]]
             place_of[token["id"]] = in_place(masdar["case_by_rel"][token["rel"]])
             framed.add(token["id"])
-    clauses = {token["id"] for token in drawn if job_of[token["id"]] == NAMED.silah} | set(place_of)
+    # اللهُ أكبرُ inside a longer sentence: a مبتدأ with its خبر hung on it is a sentence too,
+    # and so is لا النافية للجنس with its noun
+    nominal |= {token["id"] for token in drawn if token["head"] in by_id and (
+        _read(token) == "la_jins" or (role_of[token["id"]] == NAMED.mubtada and any(
+            t["head"] == token["id"] and role_of[t["id"]] == NAMED.khabar for t in drawn)))}
+    clauses = {token["id"] for token in drawn if job_of[token["id"]] == NAMED.silah} | set(place_of) | nominal
+    for token in drawn:
+        if _read(token) in FRAMES["unit_by_family"]:
+            label_of[token["id"]] = term_ar(FRAMES["unit_by_family"][_read(token)])
+    # قال: لا إله إلا الله: the sentence a verb of saying hangs as its object is its مقول القول
+    saying = FRAMES["said_clause"]
+    for token in drawn:
+        verb = by_id.get(token["head"])
+        if verb and token["rel"] == "OBJ" and token["id"] in clauses and role_of.get(verb["id"]) == NAMED.fil \
+                and strip_diacritics(verb["lemma"]) in saying["verbs"]:
+            job_of[token["id"]] = saying["job"]
+            place_of[token["id"]] = in_place(saying["case"])
+            framed.add(token["id"])
     children_of: dict[int, list[dict]] = {token["id"]: [] for token in drawn}
 
     def depth(token: dict) -> int:
@@ -220,9 +247,12 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             head = by_id[head]["head"]
         return head
 
+    unit_less = {t["id"] for t in drawn if _read(t) in FRAMES["unit_less"]}
     roots = []
     for token in drawn:
         up = parent(token)
+        while up in unit_less:  # واللهُ أكبرُ: the و stands beside its sentence, heading nothing
+            up = parent(by_id[up])
         if up in children_of and up != token["id"]:
             children_of[up].append(token)
         else:

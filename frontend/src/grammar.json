@@ -58,6 +58,8 @@
       { "arabic": "شبه الجملة", "meaning": "A جار ومجرور or a ظرف: less than a sentence, it needs a word to hang on." },
       { "arabic": "متعلق", "meaning": "What a جار ومجرور or a ظرف hangs on: the verb (متعلق بالفعل), or a خبر left unsaid (متعلق بالخبر)." },
       { "arabic": "حرف استئناف", "meaning": "A و or ف that starts a fresh sentence rather than joining a word to the one before." },
+      { "arabic": "استثناء", "meaning": "Leaving one out of a group with إلا, غير or سوى, as in جاء القوم إلا زيدًا. Its word is a أداة استثناء." },
+      { "arabic": "حصر", "meaning": "Narrowing to one with a negation and إلا, as in ما جاء إلا زيدٌ: only Zayd came. Its إلا is a أداة حصر." },
       { "arabic": "رابط", "meaning": "The pronoun that ties a sentence used as a خبر or a صفة or a حال back to its noun, as in the ـه of زيد أبوه كريم." }
     ]},
     { "title": "المبتدأ والخبر", "terms": [
