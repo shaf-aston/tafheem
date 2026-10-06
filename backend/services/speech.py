@@ -17,6 +17,7 @@ import hashlib
 import io
 import logging
 import os
+import re
 import threading
 import uuid
 import wave
@@ -29,6 +30,13 @@ from backend.services.fallback import Retirable
 log = logging.getLogger(__name__)
 
 CACHE = Path(__file__).resolve().parents[1] / "data" / "speech_cache"
+# The marks a phrase ends or breathes on.
+PAUSE = "[،؛؟.!?,]"
+
+
+def tidy(text: str) -> str:
+    """One space between words and none before a mark, so كيفك ؟ and كيفك؟ are one phrase and one stored sound."""
+    return re.sub(f" (?={PAUSE})", "", " ".join(text.split()))
 
 
 class Voice(Retirable, ABC):

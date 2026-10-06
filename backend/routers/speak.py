@@ -21,8 +21,7 @@ router = APIRouter(prefix="/api/speak", tags=["speak"])
 # Arabic words, single spaces, and the pause marks a phrase ends or breathes
 # on. Nothing else is spoken, so nothing else can reach the engine.
 WORD = "[ء-غف-ٰٕٱ]+"
-PAUSE = "[،؛؟.!?,]"
-ARABIC = re.compile(f"{WORD}{PAUSE}?( {WORD}{PAUSE}?)*")
+ARABIC = re.compile(f"{WORD}{speech.PAUSE}?( {WORD}{speech.PAUSE}?)*")
 
 
 # Recent asks per visitor, for speech_per_minute. In memory: a restart forgets
@@ -49,8 +48,7 @@ async def speak(request: Request, text: str = Query(..., min_length=1)) -> Respo
     # visitor can fake that header, so this slows casual abuse, not a determined one.
     forwarded = request.headers.get("x-forwarded-for", "")
     visitor = forwarded.split(",")[0].strip() or (request.client.host if request.client else "")
-    # One space between words and none before a mark, so كيفك ؟ and كيفك؟ are one phrase.
-    text = re.sub(f" (?={PAUSE})", "", " ".join(text.split()))
+    text = speech.tidy(text)
     settings = get_settings()
     if len(text) > settings.speech_max_chars:
         raise HTTPException(413, "Too long to say")
