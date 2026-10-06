@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services import ai, morphology, sentence_meaning
+from backend.services import ai, iraab, morphology, progress_store, sentence_meaning
 from backend.services.quran_search import local
 
 
@@ -24,39 +24,42 @@ def test_camel_gloss_reads_as_english() -> None:
     assert sentence_meaning.literal("the+child;son;boy+[def.gen.]") == "the child/son"
 
 
-@pytest.mark.parametrize("read, kind", [
-    ([_word("ذهب", "verb"), _word("الولد", "noun", "d")], "sentence"),
-    ([_word("البيت", "noun", "d"), _word("كبير", "adj", "i")], "sentence"),
-    ([_word("الحمد", "noun", "d"), _word("لله", "noun_prop", "i")], "sentence"),
-    ([_word("البيت", "noun", "d"), _word("الكبير", "adj", "d")], "phrase"),
-    ([_word("رب", "noun", "c"), _word("العالمين", "noun", "d")], "phrase"),
+@pytest.mark.parametrize("summary, read, kind", [
+    ("جُمْلَةٌ إِنْشَائِيَّةٌ اِسْتِفْهَامِيَّةٌ", [_word("هل", "part"), _word("أنت", "pron"), _word("جائع", "adj", "i")], "sentence"),
+    ("جُمْلَةٌ اِسْمِيَّةٌ", [_word("محمد", "noun_prop", "i"), _word("رسول", "noun", "c"), _word("الله", "noun_prop", "i")], "sentence"),
+    ("جَارٌّ وَمَجْرُوْرٌ", [_word("الحمد", "noun", "d"), _word("لله", "noun_prop", "i")], "sentence"),
+    ("جَارٌّ وَمَجْرُوْرٌ", [_word("الولد", "noun", "d"), _word("في", "prep"), _word("البيت", "noun", "d")], "sentence"),
+    ("مُرَكَّبٌ تَوْصِيْفِيٌّ", [_word("البيت", "noun", "d"), _word("الكبير", "adj", "d")], "phrase"),
+    ("مُرَكَّبٌ إِضَافِيٌّ", [_word("رب", "noun", "c"), _word("العالمين", "noun", "d")], "phrase"),
+    (None, [_word("في", "prep"), _word("البيت", "noun", "d")], "phrase"),
 ])
-def test_a_sentence_says_something_and_a_phrase_does_not(read, kind) -> None:
-    assert sentence_meaning.kind_of("x", read) == kind
-
-
-def test_a_closing_mark_makes_a_sentence() -> None:
-    assert sentence_meaning.kind_of("رب العالمين؟", [_word("رب", "noun", "c"), _word("العالمين", "noun", "d")]) == "sentence"
+def test_a_sentence_says_something_and_a_phrase_does_not(summary, read, kind) -> None:
+    assert sentence_meaning.kind_of(summary, read) == kind
 
 
 @pytest.fixture
-def typed(monkeypatch):
-    """A two-word text no ayah is, read by a stand-in CAMeL, and a count of model calls."""
+def typed(monkeypatch, tmp_path):
+    """A two-word text no ayah is, read by a stand-in CAMeL, a fresh store, and a count of model calls."""
     monkeypatch.setattr(morphology, "analyze_sentence", lambda text: [
         _word("البيت", "noun", "d", "the+house"), _word("كبير", "adj", "i", "large;great")])
     monkeypatch.setattr(local, "whole_ayah", lambda text: None)
-    sentence_meaning._asked.cache_clear()
+    monkeypatch.setattr(iraab, "analyse", lambda text: {"summary": "جُمْلَةٌ اِسْمِيَّةٌ"})
+    monkeypatch.setattr(progress_store, "data_path", lambda _name: tmp_path / "progress.db")
+    progress_store.reset_connection()
     asked = []
     yield asked
-    sentence_meaning._asked.cache_clear()
+    progress_store.reset_connection()
 
 
 def test_the_model_gives_the_sense_once_per_text(typed, monkeypatch) -> None:
     monkeypatch.setattr(ai, "translate_sentence", lambda text, wbw: typed.append(wbw) or {"english": " The house is big. "})
     first = sentence_meaning.translate("البيت كبير")
-    assert sentence_meaning.translate("البيت كبير") == first
-    assert first["meaning"] == "The house is big." and first["source"] == "ai" and len(typed) == 1
+    assert first["meaning"] == "The house is big." and first["source"] == "ai" and first["kind"] == "sentence"
     assert typed[0] == "البيت = the house | كبير = large/great"
+    # Another server process: nothing in memory, the same store on disk.
+    progress_store.reset_connection()
+    monkeypatch.setattr(ai, "translate_sentence", lambda text, wbw: typed.append(wbw) or {"english": "The house is large"})
+    assert sentence_meaning.translate("البيت كبير") == first and len(typed) == 1
 
 
 def test_no_model_still_gives_the_words(typed, monkeypatch) -> None:
