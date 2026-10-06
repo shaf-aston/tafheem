@@ -13,6 +13,7 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
+from backend.services.nahw_book import teacher_rules
 from backend.services.rule_engine import UNNAMED
 
 TEMPLATES_FILE = Path(__file__).parent.parent / "data" / "practice" / "templates.json"
@@ -33,6 +34,11 @@ def _fill(template: dict, **values) -> dict:
         "answer": template["answer"].format(**safe).strip(),
         "hint": template["hint"].format(**safe),
     }
+
+
+def _said(case: str | None) -> str | None:
+    """A case as the cards say it, in the book's Arabic (teacher.json case_said)."""
+    return teacher_rules()["case_said"]["word"].get(case, case)
 
 
 def from_analysis(sentence: str, rule_result: dict) -> list[dict]:
@@ -62,7 +68,7 @@ def from_analysis(sentence: str, rule_result: dict) -> list[dict]:
             templates["key_role"],
             word=key_word["word"],
             reason=key_word.get("reason", ""),
-            case=key_word.get("case"),
+            case=_said(key_word.get("case")),
         ))
 
     # 3. Case and its sign, only for a word whose ending is a case (not built) and shows one.
@@ -70,7 +76,7 @@ def from_analysis(sentence: str, rule_result: dict) -> list[dict]:
         questions.append(_fill(
             templates["case_sign"],
             word=marked["word"],
-            case=marked.get("case"),
+            case=_said(marked.get("case")),
             sign=marked.get("sign"),
             reason=marked.get("reason", ""),
         ))
@@ -78,7 +84,7 @@ def from_analysis(sentence: str, rule_result: dict) -> list[dict]:
     # 4. The whole sentence, as recall.
     missing = config["missing"]
     breakdown = " | ".join(
-        f"{w['word']}: {w.get('role') or missing}, {w.get('case') or missing}" for w in words
+        f"{w['word']}: {w.get('role') or missing}, {_said(w.get('case')) or missing}" for w in words
     )
     questions.append(_fill(templates["full_iraab"], sentence=sentence, breakdown=breakdown))
 

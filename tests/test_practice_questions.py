@@ -30,3 +30,10 @@ def test_the_doer_is_asked_about_first():
     cards, questions = asked("كَتَبَ الطَّالِبُ الدَّرْسَ")
     assert "«الطَّالِبُ»" in questions[1]["question"]
     assert cards[1]["reason"] in questions[1]["answer"]
+
+
+def test_a_case_is_said_in_arabic_as_on_the_cards():
+    _, questions = asked("لَمْ يَكْتُبِ الطَّالِبُ الدَّرْسَ")
+    said = " ".join(q[part] for q in questions for part in ("answer", "hint"))
+    assert not any(key in said for key in ("raf'", "nasb", "jarr", "jazm", "mabni"))
+    assert "مجزوم" in said and "منصوب" in said
