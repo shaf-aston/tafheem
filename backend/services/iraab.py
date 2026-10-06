@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb_store
 from backend.services.harakat import CASE_NAME
-from backend.services.nahw_book import case_of, reason, teacher_rules
+from backend.services.nahw_book import case_of, family_cards, reason, teacher_rules
 from backend.services.syntax.naming import NAMED, role_key
 
 
@@ -53,7 +53,21 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
             elif found["role"]:
                 _named(entry, found)
     words = signs.settle(entries)
-    return rule_engine.mark_condition(words, roles) if len(roles) == len(words) else words
+    if len(roles) != len(words):
+        return words
+    _pieces_said(words, roles)
+    return rule_engine.mark_condition(words, roles)
+
+
+def _pieces_said(cards: list[dict], roles: list[dict]) -> None:
+    """A piece written onto the word that its family card says on the word's own card first
+    (وَاللهُ: الواو حرف عطف، ويجوز أن تكون استئنافية), where the picture names it short."""
+    said = dict(family_cards())
+    for card, found in zip(cards, roles):
+        for piece in found.get("attached", []):
+            line = said.get((piece.get("reading") or {}).get("family"), {}).get("said")
+            if line:
+                card["reason"] = f"{line}، {card['reason']}"
 
 
 def _named(entry: dict, found: dict) -> None:
@@ -61,6 +75,7 @@ def _named(entry: dict, found: dict) -> None:
     renamed = found["role"] != entry.get("role")
     entry.update(role=found["role"], book=found.get("book"), role_key=role_key(found["role"]),
                  family=found.get("family"),  # كان، إنّ: named by what they govern (signs.settle)
+                 named=found.get("named"),  # أَلَا: a reading's own name, where the family card's does not fit
                  governor=found.get("governor"), follows=found.get("follows"))
     if found["role"] != NAMED.fil and entry.get("type") == "fi'l":
         # لَسِحْرًا: CAMeL's verb is the parser's noun, so the verb's case goes with it

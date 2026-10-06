@@ -110,8 +110,10 @@ def mark_condition(cards: list[dict], roles: list[dict]) -> list[dict]:
         if part.get("part") not in ("verb", "answer") or card.get("type") != "fi'l":
             continue
         own = said["by_family"][part["family"]]
+        # إذا: the condition's clause is its مضاف إليه, the answer's has no place
+        place = own["place"][part["part"]] if isinstance(own["place"], dict) else own["place"]
         # فَلْيَصُمْهُ: tied by its letter, the answer is a sentence standing in the place of jazm
-        where = said["jazm"] if card.get("case") == "jazm" and not part["tie"] else own["place"]
+        where = said["jazm"] if card.get("case") == "jazm" and not part["tie"] else place
         tie = f"{own['ties'][part['tie']]}، " if part["tie"] else ""
         head, dot, rule = card["reason"].partition(". القاعدة")
         card["reason"] = f"{head}، {tie}{where.format(part=said[part['part']])}{dot}{rule}"

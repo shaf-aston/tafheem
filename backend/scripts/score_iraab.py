@@ -42,7 +42,7 @@ from functools import partial
 from pathlib import Path
 
 from backend.services.arabic_text import bare_letters, strip_diacritics, words
-from backend.services.nahw_book import role_table
+from backend.services.nahw_book import book_file, family_cards, named_roles, role_table
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 KEY = json.loads((DATA / "nahw_rules" / "answer_key.json").read_text(encoding="utf-8"))
@@ -151,6 +151,25 @@ def tree_leaves(node: dict | None) -> list[dict]:
 UNIT_WORDING = {role for role, (key, _) in role_table().items() if key is None}
 
 
+def _particle_names() -> set[str]:
+    """Every name a particle's family card or reading gives it (لا النافية، أداة استثناء): the
+    picture's finer name for a card's حرف."""
+    names = set()
+    for _, card in family_cards():
+        names |= {card["named"], card.get("chart", ""), *card.get("named_as", {}).values()}
+
+    def leaves(node: dict) -> None:
+        names.add(node.get("named", ""))
+        for child in node.get("children", []):
+            leaves(child)
+    leaves(book_file("particle_tree.json")["tree"])
+    return {plain_role(name) for name in names if name}
+
+
+PARTICLE_NAMES = _particle_names()
+HARF = plain_role(named_roles().harf)
+
+
 def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, str]]:
     """(word, card role, leaf role) for each tree leaf whose role differs from its card.
 
@@ -165,6 +184,8 @@ def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, 
         if not card or not pic or pic in UNIT_WORDING:
             continue
         # the picture may name a governor finer than its card (حرف نصب for حرف), never otherwise
+        if card == HARF and pic in PARTICLE_NAMES:
+            continue
         if card != pic and not pic.startswith(card + " "):
             out.append((leaf["word"], card, pic))
     return out

@@ -32,7 +32,9 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         frame = condition_of(strip_diacritics(bases[i]["form"]))
         if not frame or i + 1 >= len(bases) or named[i + 1] != NAMED.fil or (i and not joined(i)):
             return None
-        return None if frame["noun"] and bases[i]["pos"] == "PRT" else frame  # ما النافية is a particle
+        # ما النافية is a particle; إذا before a verb is a ظرف, whatever the parser tagged it
+        kind = (bases[i].get("reading") or {}).get("kind") or ("harf" if bases[i]["pos"] == "PRT" else "ism")
+        return None if frame["noun"] and kind == "harf" else frame
 
     found = []
     for i in range(len(bases)):
@@ -47,7 +49,7 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         tie_of = {k: tie for k in stretch for tie in frame["ties"] if tie in before[k]}
         answer = next(iter(tie_of), None) or next(
             (k for k in stretch if not joined(k) and (cases[k] == "jazm" or bases[k].get("asp") == "p")), None)
-        if answer is None and frame["noun"]:
+        if answer is None and frame["shared"]:
             continue  # مَنْ جاءَ؟ : no answer, so the relative or the question word
         found.append({"opener": i, "verb": i + 1, "answer": answer, "tie": tie_of.get(answer), "frame": frame})
     return found

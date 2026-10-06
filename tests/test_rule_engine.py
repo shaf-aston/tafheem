@@ -371,3 +371,29 @@ def test_a_command_the_parser_read_as_past_is_a_command():
 def test_lawla_before_a_verb_urges_and_opens_no_condition():
     # nearest case to لو: لولا and لوما open a condition only before a noun
     assert _read("لَوْلَا تَسْتَغْفِرُونَ اللَّهَ")["summary"] != term_ar("jumlah_shartiyyah")
+
+
+# One reading per small word (particles.stamp): the card names what the word does here.
+PARTICLE_ROLES = [
+    ("إِذَا قَالَ الْعَبْدُ لاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ",
+     ["مفعول فيه", "فعل", "فاعل", "حرف", "اسم إن", "حرف", "بدل", "مبتدأ", "خبر"]),
+    ("لاَ ضَرَرَ وَلاَ ضِرَارَ", ["حرف", "اسم إن", "حرف", "اسم إن"]),
+    ("جَاءَ زَيْدٌ لَا خَالِدٌ", ["فعل", "فاعل", "حرف", "معطوف"]),
+    ("جَاءَ زَيْدٌ لَا عَمْرٌو", ["فعل", "فاعل", "حرف", "معطوف"]),  # the written و of عمرو hides no case
+    ("الْحَلاَلُ بَيِّنٌ وَالْحَرَامُ بَيِّنٌ", ["مبتدأ", "خبر", "مبتدأ", "خبر"]),
+    ("أَىُّ الأَعْمَالِ أَفْضَلُ", ["مبتدأ", "مضاف إليه", "خبر"]),
+    ("مَتَى السَّفَرُ", ["خبر", "مبتدأ"]),  # nearest case: a built question word takes no مضاف إليه
+]
+
+
+@pytest.mark.parametrize("sentence, expected", PARTICLE_ROLES)
+def test_a_small_word_is_read_once_by_what_surrounds_it(sentence: str, expected: list[str]):
+    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+
+
+def test_each_reading_names_the_particle():
+    words = iraab.analyse("إِذَا قَالَ الْعَبْدُ لاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ")["words"]
+    assert "ظرف شرط غير جازم" in words[0]["reason"]
+    assert "لا النافية للجنس" in words[3]["reason"] and "أداة استثناء" in words[5]["reason"]
+    assert "ويجوز أن تكون استئنافية" in words[7]["reason"]
+    assert "أداة حصر" in iraab.analyse("مَا جَاءَ إِلَّا زَيْدٌ")["words"][2]["reason"]

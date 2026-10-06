@@ -68,8 +68,8 @@ def typed_case(word: str, stuck_on: int = 0) -> str | None:
     if ending in HIDDEN_CASE and marked[-1][1] & VOWEL.keys() <= ENDING_NUN[ending]:
         return None
     last = marked[-1]
-    if last[0] in "اى" and marked[-2][1] & TANWEEN:
-        last = marked[-2]  # the alef of رَجُلًا carries nothing; the tanween is before it
+    if (last[0] in "اى" or (last[0] == "و" and not last[1])) and marked[-2][1] & TANWEEN:
+        last = marked[-2]  # the alef of رَجُلًا and the written و of عَمْرٌو carry nothing; the tanween is before
     return next((VOWEL[mark] for mark in last[1] if mark in VOWEL), None)
 
 

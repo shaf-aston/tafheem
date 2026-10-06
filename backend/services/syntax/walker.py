@@ -22,10 +22,12 @@ BOOK_REF = re.compile(r"\d+(\.\d+)* p\d+")
 
 
 class Walked(NamedTuple):
-    """The leaf a word reached: its role, the branch names from the root down, the leaf's book section."""
+    """The leaf a word reached: its role, the branch names from the root down, the leaf's
+    book section, and the leaf itself (a particle's leaf carries its name and kind)."""
     role: str
     path: list[str]
     book: str
+    leaf: dict
 
 
 def _answers(child: dict) -> list[str]:
@@ -100,4 +102,4 @@ def walk(values: dict[str, str], tree: dict | None = None) -> Walked | None:
         if node is None:
             return None
         path.append(node["branch"])
-    return Walked(node["role"], path, node["book"])
+    return Walked(node["role"], path, node["book"], node)

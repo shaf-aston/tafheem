@@ -119,12 +119,14 @@ def condition_of(word: str) -> dict | None:
     by the family whose `conditional_particles` (إن جازم، لو غير جازم) or `conditional_nouns`
     (مَنْ، ما) hold it; `opener` is what the word is called, `noun` whether it is a noun,
     `adverb` whether it names a time or a place (متى، أينما), `built` whether it is مبني
-    (every conditional word but أيّ)."""
+    (every conditional word but أيّ), `shared` whether a relative or a question word has its
+    letters too (مَنْ، ما، متى), so only an answer shows it opens a condition (إذا has none)."""
     frame = frames()["condition"]
     words = _closed()["families"]
     return next(({**frame, **own, "family": family, "noun": part == "conditional_nouns",
                   "adverb": word in words[family].get("conditional_adverbs", ()),
                   "built": word not in words[family].get("conditional_inflected", ()),
+                  "shared": any(word in words[other]["words"] for other in ("mawsul", "istifham")),
                   "opener": own["noun" if part == "conditional_nouns" else "particle"]}
                  for family, own in frame["by_family"].items()
                  for part in ("conditional_particles", "conditional_nouns")

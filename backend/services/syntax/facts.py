@@ -20,7 +20,19 @@ from backend.services.harakat import (
 WEAK = set("اويىءأإآئؤة")
 
 
+def read_as(token: dict, family: str) -> bool:
+    """The word works as one of this family: by the one reading particles.stamp gave it
+    (لا before a bare noun in nasb is the لا of genus, never a joining word), else by the
+    family's list, for a word with one reading only."""
+    reading = token.get("reading")
+    if reading:
+        return reading["family"] == family
+    return family not in token.get("judged", ()) and is_one(token["lemma"], family)
+
+
 def is_verb(token: dict) -> bool:
+    if token.get("reading"):
+        return token["reading"]["kind"] == "fil"  # أَلَا is a particle, whatever the parser tagged it
     if has_tanween(token.get("typed")):
         return False  # a verb never carries tanween, whatever the parser tagged it
     if token["pos"].startswith("VRB"):  # VRB-PASS is a verb too
@@ -111,7 +123,7 @@ class Sentence:
 
     def _family_of(self, word: dict) -> str | None:
         lemma = word["lemma"]
-        if (is_one(lemma, "inna") and not is_light(word)) or is_one(lemma, "la_jins"):
+        if (is_one(lemma, "inna") and not is_light(word)) or read_as(word, "la_jins"):
             return "inna"
         if is_one(lemma, "kana", "like_laysa"):
             return "kana"
@@ -151,7 +163,8 @@ class Sentence:
         """The word hangs off the question word, so it is what is asked about: the mubtada,
         whatever the parser drew it as."""
         head = self.head(token)
-        return bool(head and "interrog" in head.get("pos_camel", "") and self.asks)
+        return bool(head and "interrog" in head.get("pos_camel", "") and self.asks
+                    and not is_one(head["lemma"], "istifham", "inflected"))  # أيُّ الأعمالِ: its مضاف إليه
 
 
 def typed_case_of(token: dict) -> str | None:
@@ -164,6 +177,15 @@ def typed_case_of(token: dict) -> str | None:
 def typed_or_parsed_case(token: dict) -> str | None:
     """What the reader typed first, the parser's guess second."""
     return typed_case_of(token) or CAMEL_CASE.get(token.get("cas"))
+
+
+def place_case(token: dict, s: "Sentence") -> str | None:
+    """The case a word stands in: the noun of لا النافية للجنس is built on fatha, but لا with its
+    noun stands where a mubtada would, in raf' (لا إلهَ إلا اللهُ: اللهُ is its بدل)."""
+    head = s.head(token)
+    if head and token["rel"] in ("SBJ", "TPC") and read_as(head, "la_jins"):
+        return "u"
+    return typed_or_parsed_case(token)
 
 
 def same_case(token: dict, head: dict) -> bool:
@@ -247,7 +269,7 @@ def calling_head(token: dict, s: Sentence) -> str | None:
     if head and head["pos"] == "PRT":
         if is_one(head["lemma"], "nida") and "interrog" not in head.get("pos_camel", ""):
             return "nida"
-        if is_one(head["lemma"], "istithna") and not s.negated_before(head):
+        if read_as(head, "istithna") and not s.negated_before(head):
             return "istithna"
     # غير، سوى after a complete clause: hung on its verb, or on a definite noun under it
     # (an indefinite one takes غير as its صفة: رجلٌ غيرُ كريم)
@@ -260,7 +282,7 @@ def calling_head(token: dict, s: Sentence) -> str | None:
 def _joins_clauses(token: dict, s: Sentence) -> bool:
     """ثم is a noun to the parser, but a listed joining word between two nouns, or bare
     before a verb, is the particle (the place-word ثَمَّ wears its shadda)."""
-    if not is_one(token["lemma"], "atf"):
+    if not read_as(token, "atf"):
         return False
     if s.noun_before(token) and any(k["rel"] == "OBJ" for k in s.kids(token)):
         return True
@@ -341,7 +363,7 @@ def jarr_takes(token: dict, s: Sentence) -> bool:
     noun the parser hung on it (لله الحمدُ) is not its majrur."""
     head = s.head(token)
     if not (token["rel"] == "OBJ" and head and head["pos"] == "PRT" and not is_called_noun(head)
-            and (head.get("pos_camel") == "prep" or is_one(head["lemma"], "jarr"))):
+            and (head.get("pos_camel") == "prep" or read_as(head, "jarr"))):
         return False  # إلا، و: a particle that is no preposition takes no majrur
     return not any(t["pos"] in ("NOM", "PROP") and head["id"] < t["id"] < token["id"] for t in s.tokens)
 
@@ -351,6 +373,8 @@ def _kind(token: dict, s: Sentence) -> str:
     whatever the parser tagged it, so that test comes before the verb test."""
     if is_called_noun(token) or is_object_pronoun(token):
         return "ism"
+    if token.get("reading"):
+        return token["reading"]["kind"]  # إذا before a verb is a ظرف, أَلَا a حرف
     if negates(token, s):
         return "harf"
     if token["pos"] == "PRT" or _joins_clauses(token, s) or (s.hijazi and token is s.hijazi[0]):
@@ -374,10 +398,10 @@ def _follows(token: dict, s: Sentence) -> str:
     # ما جاء أحدٌ إلا زيدٌ: after إلا in a negated complete sentence the excepted noun in the
     # case of the noun before إلا is its بدل (Tasheel 3.2 p67)
     excepting = s.by_id.get(token["id"] - 1)
-    if excepting and excepting["pos"] == "PRT" and is_one(excepting["lemma"], "istithna") \
+    if excepting and excepting["pos"] == "PRT" and read_as(excepting, "istithna") \
             and s.negated_before(excepting):
         before = previous_noun(excepting, s)
-        if before and typed_or_parsed_case(token) and typed_or_parsed_case(token) == typed_or_parsed_case(before):
+        if before and typed_or_parsed_case(token) and typed_or_parsed_case(token) == place_case(before, s):
             return "badal"
     head = s.head(token)
     # هذا البستانُ: the noun with ال a pointer points at, hung on it or (as some parses
@@ -397,7 +421,7 @@ def _follows(token: dict, s: Sentence) -> str:
     if not head:
         return "none"
     # لكنّ is also an inna sister; it joins only when no clause of its own follows, or as the light لكنْ
-    if (head["pos"] == "PRT" or _joins_clauses(head, s)) and is_one(head["lemma"], "atf") \
+    if (head["pos"] == "PRT" or _joins_clauses(head, s)) and read_as(head, "atf") \
             and (not is_one(head["lemma"], "inna") or is_light(head)) and s.noun_before(head):
         return "atf"
     # الخليفة عمر: a bare name right after a noun with ال is that noun's badal
@@ -675,6 +699,14 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         return "subject" if token is s.hijazi[1] else "predicate"
     if zarf_of_khabar(token, s):
         return "place_time"
+    # واللهُ أكبرُ: a و that opens a sentence (particles.stamp) leaves the noun after it its
+    # mubtada, and the raf' noun hung on that its khabar
+    before = s.by_id.get(token["id"] - 1)
+    if before and read_as(before, "istinaf"):
+        return "subject"
+    opener = s.by_id.get(before["id"] - 1) if before else None
+    if opener and read_as(opener, "istinaf") and typed_or_parsed_case(token) == "u":
+        return "predicate"
     if (s.verbless and rel == "OBJ" and s.head(token) and s.head(token)["pos"] == "PRT" and not jarr_takes(token, s)
             and typed_or_parsed_case(token) == "u"):
         return "subject"  # لله الحمدُ: the noun after a fronted jar-majrur khabar is the مبتدأ
@@ -683,8 +715,14 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     head = s.head(token)
     camel = token.get("pos_camel", "")
     if s.asks:
+        # أيُّ الأعمالِ أفضلُ: the question noun with a case of its own and a مضاف إليه is the
+        # mubtada, the rest its khabar
+        leads = any("interrog" in t.get("pos_camel", "") and is_one(t["lemma"], "istifham", "inflected")
+                    and any(k["rel"] == "IDF" for k in s.kids(t)) for t in s.tokens)
         if "interrog" in camel:
-            return "predicate"  # كيف حالك: the question word is the khabar, brought to the front
+            return "subject" if leads else "predicate"  # كيف حالك: the question word is the khabar, brought to the front
+        if leads and token["pos"] == "NOM" and typed_or_parsed_case(token) == "u" and rel != "IDF":
+            return "predicate"
         if (token["pos"] == "NOM" and typed_or_parsed_case(token) == "u" and rel != "IDF") or s.asked_of(token):
             return "subject"
     if "dem" in camel and s.verbless and rel not in ("IDF", "OBJ"):

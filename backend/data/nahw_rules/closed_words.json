@@ -162,6 +162,18 @@
     "ليت": "layta 'if only'; no real rival"
    }
   },
+  "istinaf": {
+   "ar": "الواو بين جملتين",
+   "card": {"named": "حرف عطف، ويجوز أن تكون استئنافية", "does": "", "chart": "حرف", "said": "الواو حرف عطف، ويجوز أن تكون استئنافية"},
+   "effect": "a وَ before a noun with its own khabar after it (لا إله إلا الله واللهُ أكبرُ) joins two sentences, not two words: it may be read as joining them or as opening the second, so the card says both and the picture says حرف (particle_tree.json)",
+   "words": ["و"]
+  },
+  "hasr": {
+   "ar": "أداة الحصر",
+   "card": {"named": "أداة حصر", "does": "تقصر الحكم على ما بعدها"},
+   "effect": "after a negation with nothing before it in the case of the word after it (ما جاء إلا زيدٌ، لا إله إلا الله), إلا excepts nothing: it restricts, and the word after it takes the place the sentence leaves for it (Tasheel 3.8.7 p85, particle_tree.json)",
+   "words": ["إلا"]
+  },
   "la_jins": {
    "ar": "لا النافية للجنس",
    "card": {"named": "لا النافية للجنس", "does": "تعمل عمل إن، تنصب الاسم وترفع الخبر", "governs": "inna"},
@@ -422,6 +434,7 @@
   },
   "negation": {
    "ar": "حروف النفي",
+   "card": {"named": "حرف نفي", "does": "", "named_as": {"لا": "لا النافية", "ما": "ما النافية"}},
    "effect": "negates the sentence; some govern (لن، لم، لما، لات), and ما and لا act like ليس in some sentences (see family kana in tarkeeb.json)",
    "words": [
     "ما",
@@ -446,6 +459,7 @@
   },
   "ghair_amila_other": {
    "ar": "حروف غير عاملة أخرى",
+   "card": {"named": "حرف", "does": ""},
    "effect": "draws attention, answers, explains, urges, or adds a nuance; governs nothing",
    "words": [
     "أما",
@@ -520,6 +534,8 @@
    "effect": "turns the sentence into a question; the particles govern nothing, the nouns take a role in the sentence (subject, object, adverb, ...)",
    "_before_verb": "The place a question noun fills when it opens a verb clause whose verb has no object of its own (Tasheel 2.4.7 p47): what or how many is asked is the object (ماذا قرأت، كم كتابًا قرأت), how is the hal (كيف جئت), when and where the maf'ul fihi (متى سافر، أين جلس). Read by services/syntax/facts.py.",
    "before_verb": {"ماذا": "object", "كم": "object", "كيف": "state", "متى": "place_time", "أين": "place_time", "أيان": "place_time"},
+   "inflected": ["أي"],
+   "_inflected": "the one question noun that takes a case ending and a مضاف إليه (أيُّ الأعمالِ أفضلُ: أيّ the mubtada, الأعمال its مضاف إليه); every other is built, and the noun hung on it is what is asked about (متى السفرُ: السفر the mubtada). Read by services/syntax/facts.py.",
    "words": [
     "أ",
     "هل",
@@ -611,6 +627,9 @@
    "ar": "ظروف الزمان",
    "effect": "adverb of time (maf'ul fihi), nasb, or mudaf; a few are built (mabni) as in إذ إذا متى",
    "_carriers": "A word of whole or part added to a time or place word stands in its place as the maf'ul fihi (كلَّ يومٍ، بعضَ الليلِ).",
+   "conditional_nouns": ["إذا"],
+   "conditional_adverbs": ["إذا"],
+   "_conditional_nouns": "إذا before a past verb is a time word holding the meaning of a condition, not jussive (Tasheel 4.3.1 p112): its own clause is in the place of jarr as its مضاف إليه. Read with jazm's list by nahw_book.condition_of; particle_tree.json tells it from إذا الفجائية.",
    "carriers": ["كل", "بعض"],
    "words": [
     "إذ",
