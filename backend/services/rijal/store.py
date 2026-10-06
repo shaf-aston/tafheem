@@ -86,7 +86,8 @@ def narrator(narrator_id: int) -> dict | None:
         return None
     return {
         **dict(row),
-        "books_ar": json.loads(row["books_ar"]),
+        "books": json.loads(row["books"]),
+        "facts": json.loads(row["facts"]),
         "texts": [{"book": book, "body": body} for book, body in json.loads(row["texts"])],
         "verdicts": [dict(v) for v in db.execute(
             "SELECT scholar, quote FROM verdict WHERE narrator_id = ? ORDER BY ord", (narrator_id,))],

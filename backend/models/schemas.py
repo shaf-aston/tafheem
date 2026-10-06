@@ -1258,6 +1258,20 @@ class RijalText(BaseModel):
     body: str
 
 
+class RijalFact(BaseModel):
+    """One labelled fact as sunnah.com prints it, in English and in Arabic."""
+    label_en: str
+    en: str
+    label_ar: str
+    ar: str
+
+
+class RijalBook(BaseModel):
+    """A book that carries his hadith, named in both languages."""
+    en: str
+    ar: str
+
+
 class Narrator(NarratorSummary):
     """One narrator's sheet. Teachers and students keep their names even where we hold no page of theirs."""
     kunya_ar: str = ""
@@ -1269,7 +1283,8 @@ class Narrator(NarratorSummary):
     city_ar: str = ""
     profession_ar: str = ""
     school_ar: str = ""
-    books_ar: list[str] = []
+    books: list[RijalBook] = []
+    facts: list[RijalFact] = []
     hadith_total: int | None = None
     verdicts: list[RijalVerdict] = []
     teachers: list[NarratorSummary] = []
