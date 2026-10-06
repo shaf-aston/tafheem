@@ -49,12 +49,12 @@ def test_rejects_unknown_role_and_both_or_neither():
 
 def test_walk_reaches_leaf():
     tree = root(leaf("h", "harf"), leaf("f", "fil", "فعل"))
-    assert walker.walk({"kind": "fil"}, tree) == ("فعل", ["root", "f"], "1.1 p1")
+    assert walker.walk({"kind": "fil"}, tree)[:3] == ("فعل", ["root", "f"], "1.1 p1")
 
 
 def test_walk_falls_to_else():
     tree = root(leaf("h", "harf"), leaf("rest", "else", "فعل"))
-    assert walker.walk({"kind": "ism"}, tree) == ("فعل", ["root", "rest"], "1.1 p1")
+    assert walker.walk({"kind": "ism"}, tree)[:3] == ("فعل", ["root", "rest"], "1.1 p1")
 
 
 def test_walk_no_match_is_none():
@@ -67,8 +67,8 @@ def test_a_child_may_take_several_answers():
              "children": [leaf("h", "harf"), leaf("f", "fil", "فعل")]}
     tree = root(group, leaf("rest", "else", "فعل"))
     walker.validate(tree)
-    assert walker.walk({"kind": "fil"}, tree) == ("فعل", ["root", "g", "f"], "1.1 p1")
-    assert walker.walk({"kind": "ism"}, tree) == ("فعل", ["root", "rest"], "1.1 p1")
+    assert walker.walk({"kind": "fil"}, tree)[:3] == ("فعل", ["root", "g", "f"], "1.1 p1")
+    assert walker.walk({"kind": "ism"}, tree)[:3] == ("فعل", ["root", "rest"], "1.1 p1")
 
 
 def test_rejects_listed_answer_outside_axis_or_repeated_across_children():

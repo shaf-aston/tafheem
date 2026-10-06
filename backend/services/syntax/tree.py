@@ -56,9 +56,9 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
     On its own it is a مبتدأ; inside كِتَابُ الطَّالِبِ it is the مضاف and the
     unit as a whole is the مبتدأ, which is how the books draw it.
     """
-    for unit in role_units():
+    for unit in role_units():  # غَيْرَ زيدٍ keeps its مستثنى, as its card says
         if unit["child"] in child_roles and "head_as" in unit:
-            return unit["head_as"]
+            return role if role in unit.get("head_keeps", ()) else unit["head_as"]
     return role
 
 
@@ -111,8 +111,11 @@ def _finer(token: dict, role: str | None, family: str | None) -> str | None:
             strip_diacritics(token["form"]).strip("+"), card.get("named", role))
     if family is None and role == NAMED.harf and token["form"].endswith("+") and is_one(strip_diacritics(token["form"]), "atf"):
         family = "atf"  # وَمَنْ شاء: a وَ written onto a new sentence is named by its letters, as its card is
-    card = CARDS.get(family)
-    named = card and card.get("named_as", {}).get(strip_diacritics(token["form"]).strip("+"), card["named"])
+    card = CARDS.get(family) or {}
+    word = strip_diacritics(token["form"]).strip("+")
+    if word in card.get("chart_as", {}):
+        return card["chart_as"][word]  # لْـ: the chart's لام الأمر, the card's حرف جزم، لام الأمر
+    named = card and card.get("named_as", {}).get(word, card["named"])
     # only a finer name for the same role (حرف نصب for حرف), so card and picture still agree
     return named if role in (NAMED.harf, NAMED.harf_jarr) and named and named.startswith(role) else role
 
@@ -268,7 +271,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # مَنْ شاء فليصمه: the opener, the condition's clause and the answer's side by side in
     # one unit, as the books draw it, wherever the parser hung them (syntax.condition)
     holder = {kid["id"]: kids for kids in (roots, *children_of.values()) for kid in kids}
-    opened: dict[int, tuple[dict, dict]] = {}  # answer id -> (opener, condition verb)
+    opened: dict[int, tuple[dict, ...]] = {}  # answer id -> (opener, condition verb, tie letters)
     for i, found in enumerate(named):
         if found.get("condition", {}).get("part") != "opener" or found["condition"]["answer"] is None:
             continue
@@ -276,11 +279,14 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         opener, verb, answer = (bases[i], bases[found["condition"]["verb"]], bases[found["condition"]["answer"]])
         if not condition["noun"]:
             name_of[opener["id"]] = condition["opener"]  # إن: حرف شرط جازم; a noun keeps its place
-        # فاقبلها، لأمرتُ: the letter written onto the answer ties it to the condition, in its unit
+        # فَلْيَصُمْهُ، لأمرتُ: the letter written onto the answer ties it to the condition, so it
+        # stands beside the answer's sentence in the condition's unit, not inside that sentence
+        ties = []
         for piece in named[typed_at[answer["id"]]].get("attached", []):
             if piece["id"] in split and piece["before"] and piece["form"] in condition["ties"]:
                 name_of[piece["id"]] = condition["ties"][piece["form"]]
-                _move(holder, by_id[piece["id"]], children_of[answer["id"]])
+                holder[piece["id"]].remove(by_id[piece["id"]])
+                ties.append(by_id[piece["id"]])
         for unit, job in ((verb, condition["verb"]), (answer, condition["answer"])):
             job_of[unit["id"]] = job
             place_of[unit["id"]] = in_place(condition["case"]) if condition["case"] else said["no_place"]
@@ -294,7 +300,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         for unit in (opener, verb):
             holder[unit["id"]].remove(unit)
             del holder[unit["id"]]
-        opened[answer["id"]] = (opener, verb)
+        opened[answer["id"]] = (opener, verb, *ties)
     # مَنْ شاء فليصمه ومَن شاء أفطر: a condition has the front of its sentence, so the وَ
     # bringing a second one joins it beside the first, not inside the first one's answer
     for answer_id in opened:
@@ -385,10 +391,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         """A word's node, or for a condition's answer the whole condition around it."""
         if token["id"] not in opened:
             return node(token)
-        opener, verb = opened[token["id"]]
-        seen.update((opener["id"], verb["id"]))
-        parts = sorted(((at[t["id"]], node(t)) for t in (opener, verb)), key=lambda pair: pair[0])
-        inside = parts + [(at[token["id"]], node(token))]
+        beside = opened[token["id"]]
+        seen.update(t["id"] for t in beside)
+        inside = [(at[t["id"]], node(t)) for t in (*beside, token)]
         return {"role": None, "label": CONDITION, "tone": None, "detail": None,
                 "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
 

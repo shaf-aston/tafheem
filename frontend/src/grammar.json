@@ -167,6 +167,7 @@
       { "arabic": "فعل أمر", "meaning": "A command verb, as in اكتبْ. It is مبني." },
       { "arabic": "حرف نفي", "meaning": "A particle that says 'not': لا, ما, لم, لن. After لم the verb is مجزوم; after لن it is منصوب." },
       { "arabic": "حرف نهي", "meaning": "The لا that forbids, as in لا تكتبْ. The verb after it is مجزوم." },
+      { "arabic": "لام الأمر", "meaning": "The لـ that commands, as in لِيَكْتُبْ and فَلْيَصُمْهُ. A حرف جزم: the verb after it is مجزوم." },
       { "arabic": "أداة شرط", "meaning": "A word that makes one thing hang on another. Some, like إن and متى, make both verbs مجزوم. Others, like لو and إذا and كلما, do not." }
     ]}
   ],

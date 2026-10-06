@@ -13,6 +13,14 @@
 /** The API sends empty arrays where the artifact's data had nothing at all. */
 export const kids = (node) => (node.children?.length ? node.children : null)
 export const pieces = (node) => (node.parts?.length ? node.parts : null)
+/**
+ * A word named as its own first piece (يَصُمْهُ: فعل = فعل + فاعل + مفعول به) is no join
+ * of its own, so its pieces are written in its parent's row, as the books write
+ * لْـ + فعل + فاعل + مفعول به. A word whose pieces make up another job (خبر =
+ * حرف جر + مجرور) keeps its own row.
+ */
+export const flat = (node) => pieces(node)?.[0].role === node.role
+const joins = (node) => kids(node) || (pieces(node) && !flat(node))
 
 /**
  * A copy of the tree with `from`, `to` and `level` filled in.
@@ -30,12 +38,12 @@ export function measure(node) {
     }
   }
   // Pieces inside one written word are a join of their own, one level up.
-  return { ...node, from: node.word, to: node.word, level: pieces(node) ? 1 : 0 }
+  return { ...node, from: node.word, to: node.word, level: joins(node) ? 1 : 0 }
 }
 
 /** Every group, and every word carrying inner parts, keyed by its level. */
 function byLevel(node, into = new Map()) {
-  if (kids(node) || pieces(node)) {
+  if (joins(node)) {
     if (!into.has(node.level)) into.set(node.level, [])
     into.get(node.level).push(node)
   }
@@ -73,11 +81,13 @@ export function rows(tree, wordCount) {
 }
 
 /**
- * How wide a piece sits in its parent's row. A group covering two of its
- * parent's four words takes two shares; a single word takes one.
+ * The names written on a group's row, each over the columns of its own words:
+ * [{ from, to, roles }]. A flat word's pieces share its one column (لْـ | فعل + فاعل),
+ * and a word's own pieces all sit over that word.
  */
-export const share = (piece) =>
-  kids(piece) || pieces(piece) ? piece.to - piece.from + 1 : 1
+export const cells = (node) =>
+  kids(node)?.map((kid) => ({ from: kid.from, to: kid.to, roles: flat(kid) ? kid.parts : [kid] })) ??
+  [{ from: node.from, to: node.to, roles: pieces(node) }]
 
 /**
  * Split a ghair-عامل connector (فَ / وَ) off the word it is glued to, so it

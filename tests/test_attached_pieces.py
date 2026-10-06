@@ -73,9 +73,25 @@ def test_a_joining_waw_and_a_preposition_with_its_pronoun_are_words_of_their_own
 def test_lau_opens_a_condition_whose_answer_its_lam_ties_on():
     body = client.post("/api/analyze", json={"sentence": "لَوْ جَاءَ زَيْدٌ لَأَكْرَمْتُهُ"}).json()
     top = body["tree"]["tree"]
-    assert [kid["role"] for kid in top["children"]] == ["حرف شرط غير جازم", "فعل الشرط", "جواب الشرط"]
-    assert {kid["detail"] for kid in top["children"][1:]} == {"لا محل لها من الإعراب"}
-    assert top["children"][2]["children"][0]["role"] == "حرف واقع في جواب الشرط"
+    # book shape: the لام stands beside the answer's sentence, not inside it
+    assert [kid["role"] for kid in top["children"]] == [
+        "حرف شرط غير جازم", "فعل الشرط", "حرف واقع في جواب الشرط", "جواب الشرط"]
+    assert {top["children"][i]["detail"] for i in (1, 3)} == {"لا محل لها من الإعراب"}
+
+
+def test_the_chart_says_lam_al_amr_and_writes_the_verb_once():
+    _, leaves = analysed("مَنْ شَاءَ فَلْيَصُمْهُ")
+    lam, sentence = leaves["لْ"][0]
+    assert lam["role"] == "لام الأمر"
+    assert sentence["role"] == "جواب الشرط" and leaves["فَ"][0][0]["role"] == "حرف رابط"
+    assert leaves["فَ"][0][1] is not sentence  # فَـ is outside the answer's sentence
+
+
+def test_ghair_is_named_on_the_chart_as_its_card_says():
+    cards, leaves = analysed("جَاءَ الطُّلَّابُ غَيْرَ زَيْدٍ")
+    ghair, unit = leaves["غَيْرَ"][0]
+    assert cards[2]["role"] == ghair["role"] == "مستثنى"
+    assert [kid["role"] for kid in unit["children"]] == ["مستثنى", "مضاف إليه"]
 
 
 def test_man_before_a_verb_is_never_min_and_its_card_says_what_the_picture_does():

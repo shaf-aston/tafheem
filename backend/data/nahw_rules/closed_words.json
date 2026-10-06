@@ -1,5 +1,5 @@
 {
- "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw_book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word. 'card' on a governing family: what a member is named on its own card (named), what it does (does), and the effect on a word linked to it that proves it governs here (governs: a governor or follower answer of services/syntax/facts.py, or a verb's case), and a member's own name where the book gives one (named_as); read by naming._family and signs.py.",
+ "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw_book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word. 'card' on a governing family: what a member is named on its own card (named), what it does (does), and the effect on a word linked to it that proves it governs here (governs: a governor or follower answer of services/syntax/facts.py, or a verb's case), and a member's own name where the book gives one (named_as), shorter on the bracket picture where the book's chart says less (chart, chart_as); read by naming._family and signs.py.",
  "vetoes": {
   "_comment": "Links the book rules out, removed from the parser's choices before its tree is picked, and links it settles outright, written over the parser's tree after (mask.book_links). true = on. Read by services/syntax/mask.py.",
   "verb_subject_follows": true,
@@ -381,7 +381,7 @@
   },
   "jazm": {
    "ar": "جوازم الفعل المضارع",
-   "card": {"named": "حرف جزم", "does": "يجزم الفعل المضارع", "governs": "jazm", "named_as": {"إن": "حرف شرط جازم", "ل": "حرف جزم، لام الأمر", "لا": "لا الناهية، حرف", "لم": "حرف نفي وجزم وقلب", "لما": "حرف نفي وجزم وقلب"}},
+   "card": {"named": "حرف جزم", "does": "يجزم الفعل المضارع", "governs": "jazm", "named_as": {"إن": "حرف شرط جازم", "ل": "حرف جزم، لام الأمر", "لا": "لا الناهية، حرف", "لم": "حرف نفي وجزم وقلب", "لما": "حرف نفي وجزم وقلب"}, "chart_as": {"ل": "لام الأمر"}},
    "effect": "puts the present verb after it in jazm (sukun; nun of the five verbs dropped; a weak last letter dropped); conditionals govern two verbs, the condition and the result",
    "before_a_present_verb": ["لم", "لما"],
    "conditional_particles": ["إن", "إذما"],
