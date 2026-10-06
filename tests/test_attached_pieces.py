@@ -141,3 +141,26 @@ def test_a_jar_or_zarf_in_the_khabar_slot_hangs_on_an_understood_thabit(sentence
 def test_a_jar_hanging_on_a_verb_or_a_khabar_gets_no_understood_word(sentence):
     _, leaves = analysed(sentence)
     assert "ثابت" not in leaves
+
+
+@pytest.mark.parametrize("sentence, noun, name", [
+    ("أَهْلًا وَسَهْلًا", "أَهْلًا", None),
+    ("شُكْرًا لَكَ", "شُكْرًا", "مفعول مطلق"),
+])
+def test_a_nasb_noun_no_word_governs_hangs_on_an_understood_verb(sentence, noun, name):
+    cards, leaves = analysed(sentence)
+    (verb, above), = leaves["فعل محذوف"]
+    assert verb["role"] == "فعل" and verb["hidden"] is True
+    assert above["label"] == "جُمْلَةٌ فِعْلِيَّةٌ"
+    named = leaves[noun][0][0]["role"]
+    assert named == name if name else named in ("مفعول مطلق", "مفعول به")
+    assert cards[0]["role"] == named  # the card says what the picture does
+    body = client.post("/api/analyze", json={"sentence": sentence}).json()["tree"]
+    assert body["written"].count(-1) == 1 and body["unwritten"]["note"]
+
+
+@pytest.mark.parametrize("sentence", ["هَرَبَ الْوَلَدُ خَوْفًا", "رَأَيْتُ زَيْدًا", "إِنَّ زَيْدًا قَائِمٌ", "كَانَ زَيْدٌ قَائِمًا",
+                                      "نِعْمَ الرَّجُلُ سَعِيدٌ", "مَا أَجْمَلَ الرَّبِيعَ"])
+def test_a_noun_a_word_governs_gets_no_understood_verb(sentence):
+    _, leaves = analysed(sentence)
+    assert "فعل محذوف" not in leaves
