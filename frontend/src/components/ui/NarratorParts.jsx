@@ -98,6 +98,17 @@ export function NarratorFacts({ who }) {
   )
 }
 
+/** His page's header card: name, facts and lineage held together at a reading width, so the Arabic and English sides sit close. */
+export function NarratorHead({ who }) {
+  return (
+    <div className="mx-auto max-w-3xl space-y-3 px-6 py-5 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)]">
+      <NarratorName who={who} as="h2" />
+      <NarratorFacts who={who} />
+      {who.lineage_ar && <ArabicText as="p" size="sm" className="block text-[var(--text-dim)] m-0">{who.lineage_ar}</ArabicText>}
+    </div>
+  )
+}
+
 /** A narrator that failed to load: a 404 means no page for him is built here. */
 export function NarratorError({ error, onRetry }) {
   return errorStatus(error) === 404
