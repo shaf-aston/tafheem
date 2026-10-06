@@ -13,7 +13,8 @@ from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters
 from backend.services.nahw_book import case_of, is_mabni, is_one, named_roles, teacher_rules
-from backend.services.syntax.facts import Sentence, is_called_noun, is_passive, is_verb, takes_tamyeez, typed_case_of
+from backend.services.syntax.facts import (
+    Sentence, is_called_noun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of)
 from backend.services.syntax.naming import FOLLOWERS, base_tokens, roles_keyed
 from backend.services.harakat import CASE_NAME
 
@@ -62,7 +63,7 @@ def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> di
         free |= {"au", "ai"}
     # a sound feminine plural takes kasra for nasb too (رأيت المعلماتِ), and a
     # diptote takes fatha for jarr (مررت بأحمدَ): both look like a clash and are not
-    if bare.endswith("ات"):
+    if shows_nasb_by_kasra(token):
         free.add("ai")
     mudaf_ilayh = any(roles[k] == NAMED.mudaf_ilayh for k in _kid_indices(token, bases))
     if token.get("stt") != "d" and not bare.startswith("ال") and not mudaf_ilayh:

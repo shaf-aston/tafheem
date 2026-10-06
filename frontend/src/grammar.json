@@ -145,6 +145,7 @@
       { "arabic": "الواو الحالية", "meaning": "The و that opens a جملة حالية, as in the و of وهو يضحك." },
       { "arabic": "تمييز", "meaning": "A word that makes a vague one clear, as in عشرون كتابًا. It has no ال." },
       { "arabic": "مستثنى", "meaning": "The one left out after إلا, as in جاء القوم إلا زيدًا." },
+      { "arabic": "مستثنى منقطع", "meaning": "The one left out after إلا that is not of the group's kind, as in جاء القوم إلا حمارًا." },
       { "arabic": "حرف استثناء", "meaning": "The particle that leaves something out: إلا." }
     ]},
     { "title": "المجرورات", "terms": [

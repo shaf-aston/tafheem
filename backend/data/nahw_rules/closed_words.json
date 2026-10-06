@@ -1080,6 +1080,12 @@
     "1َ2ْ3َان"
    ]
   },
+  "ta_merges": {
+   "ar": "حروف تدغم فيها تاء المضارعة",
+   "book": "Tasheel al-Sarf, Forms V and VI",
+   "effect": "a present verb of Form V or VI with two ta' (تَتَطَوَّعُ) may merge its second ta' into the stem's first letter when that letter is one of these, and shows it by a shadda on it (تَطَّوَّعُ). A past verb of those forms (تَطَوَّعَ) has no shadda there; a past of two or three letters (تَمَّ) is not of these forms.",
+   "words": ["ت", "ث", "د", "ذ", "ز", "س", "ش", "ص", "ض", "ط", "ظ"]
+  },
   "six_nouns": {
    "ar": "الأسماء الستة",
    "book": "I'raab types p2",

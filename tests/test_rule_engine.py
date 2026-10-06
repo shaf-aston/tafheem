@@ -225,6 +225,15 @@ CARDS = [
     ("رَأَيْتُ أَخًا", 1, "sign", "فتحة"),                   # indefinite: no مضاف, the vowel shows
     ("سَلَّمْتُ عَلَى أَبِي الطَّبِيبِ", 2, "sign", "الياء"),    # CAMeL's name أبي is the noun أب
     ("يَسِّرُوا وَلَا تُعَسِّرُوا", 2, "sign", "حذف النون"),   # لا with a و joined to it
+    # a kasra on ـات with nothing to put it in jarr is nasb; the صفة after it follows
+    ("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا", 0, "sign", "نيابة عن الفتحة"),
+    ("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا", 1, "role", "صفة"),
+    ("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا", 4, "reason", "مضارع منصوب"),                    # the merged ta' (shadda) makes it present
+    ("رَأَيْتُ الطَّالِبَاتِ الْمُجْتَهِدَاتِ", 2, "case", "nasb"),
+    ("مَرَرْتُ بِالطَّالِبَاتِ", 1, "case", "jarr"),         # a preposition keeps the kasra jarr
+    ("أُرِيدُ أَنْ تَطَّوَّعَ", 2, "reason", "مضارع منصوب"),
+    ("تَطَوَّعَ زَيْدٌ", 0, "reason", "ماضٍ"),               # no shadda: a true past
+    ("تَمَّ الأَمْرُ", 0, "reason", "ماضٍ"),                 # a short doubled past is not Form V
 ]
 
 
@@ -254,6 +263,23 @@ def test_summary_and_tree_name_the_sentence_alike(sentence: str, term: str):
     answer = _read(sentence)
     from backend.services import syntax
     assert (answer["summary"], syntax.read(sentence)["tree"]["tree"]["label"]) == (term_ar(term), term_ar(term))
+
+
+def _picture_roles(node: dict) -> list:
+    return [node.get("role"), node.get("detail"), *(r for kid in node.get("children", []) + node.get("parts", [])
+                                                     for r in _picture_roles(kid))]
+
+
+def test_an_action_after_illa_is_a_munqati_excepted_and_its_hidden_doer_is_said_either_way():
+    from backend.services import syntax
+    shown = _picture_roles(syntax.read("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا")["tree"]["tree"])
+    assert "مستثنى منقطع" in shown and "ضمير مستتر تقديره أنتَ أو هي" in shown
+
+
+def test_the_same_masdar_with_no_illa_stays_an_object():
+    from backend.services import syntax
+    shown = _picture_roles(syntax.read("أُرِيدُ أَنْ تَطَّوَّعَ")["tree"]["tree"])
+    assert "مفعول به" in shown and "مستثنى منقطع" not in shown
 
 
 def test_the_summary_is_the_pictures_own_label_never_a_second_guess():

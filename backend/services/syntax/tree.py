@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, named_roles, role_units,
                                        teacher_rules, term_ar)
-from backend.services.syntax.facts import Sentence, completes_kaada, is_passive
+from backend.services.syntax.facts import Sentence, completes_kaada, is_passive, previous_noun, read_as
 from backend.services.syntax.naming import base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import letters, own_letters
@@ -205,6 +205,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # تحب أن تطوّق: أنْ and the verb hung on it are one masdar, doing the job أنْ hangs by
     # (the parser's أنّ takes a noun, so a verb on it is the nasb أنْ whatever the card guessed)
     masdar = FRAMES["masdar"]
+    sentence = Sentence(tokens)
     for token in drawn:
         if (strip_diacritics(token["form"]) in masdar["words"] and SHADDA not in token["form"]
                 and token["rel"] in masdar["job_by_rel"]
@@ -213,6 +214,12 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             label_of[token["id"]] = masdar["label"]
             job_of[token["id"]] = masdar["job_by_rel"][token["rel"]]
             place_of[token["id"]] = in_place(masdar["case_by_rel"][token["rel"]])
+            # إلا أنْ تتطوعَ after a noun: an action is not of the group the noun names, so a منقطع
+            excepting = by_id.get(token["head"])
+            for family, after in masdar["after_family"].items():
+                if excepting and read_as(excepting, family) and previous_noun(excepting, sentence):
+                    job_of[token["id"]] = after["job"]
+                    place_of[token["id"]] = in_place(after["case"])
             framed.add(token["id"])
     # اللهُ أكبرُ inside a longer sentence: a مبتدأ with its خبر hung on it is a sentence too,
     # and so is لا النافية للجنس with its noun
@@ -312,7 +319,6 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     root = roots[0]
 
     seen: set[int] = set()
-    sentence = Sentence(tokens)
 
     # every verb no typed word is the doer of, outermost first, so a khabar's pronoun can
     # go back to its subject: the اسم كان inside كنتَ, or the مبتدأ above يكتبُ
