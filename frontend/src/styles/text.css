@@ -158,7 +158,7 @@ textarea.arabic-lg {
 
 
 /* On a phone the two smallest rungs are lifted to a readable floor, and on a
-   touch screen .tap (pills, links, small buttons) stands at layout.tap. Both
+   touch screen .tap (pills, links, small buttons) is at least layout.tap square. Both
    wrap the token rather than redefine it: theme.js writes the tokens inline on
    the root, which no stylesheet rule could override. */
 @media (max-width: 40rem) {
@@ -168,6 +168,6 @@ textarea.arabic-lg {
 
 
 @media (pointer: coarse) {
-  .tap { min-height: var(--layout-tap); }
+  .tap { min-height: var(--layout-tap); min-width: var(--layout-tap); }
 }
 

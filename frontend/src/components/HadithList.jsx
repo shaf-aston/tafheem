@@ -62,7 +62,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
           <button
             type="button"
             onClick={onBack}
-            className="press type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors"
+            className="press tap type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors"
           >
             &larr; Books
           </button>
@@ -136,7 +136,7 @@ function ReadingOptions({ options, accent, children }) {
         aria-expanded={open}
         aria-label="Reading options"
         title="Reading options"
-        className={`press grid place-items-center w-[var(--layout-chip)] h-[var(--layout-chip)] rounded-full transition-colors ${
+        className={`press tap grid place-items-center w-[var(--layout-chip)] h-[var(--layout-chip)] rounded-full transition-colors ${
           open ? 'text-[var(--c)]' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
         }`}
       >

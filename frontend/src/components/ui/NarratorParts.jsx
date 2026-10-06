@@ -59,9 +59,23 @@ function GenerationDots({ name }) {
   )
 }
 
+/** Generation, years and city, each its own piece so Arabic never reorders the years; `also` adds plain pieces after. */
+export function NarratorWhen({ who, also = [] }) {
+  const pieces = [[who.generation_ar, true], [who.years], [who.city_ar, true], ...also.map((t) => [t])].filter(([text]) => text)
+  if (!pieces.length) return null
+  return (
+    <span className="type-small text-[var(--text-dim)] flex flex-wrap items-baseline gap-x-2">
+      {pieces.map(([text, arabic], i) => (
+        <span key={i} className="flex items-baseline gap-x-2">
+          {i > 0 && <span aria-hidden="true">·</span>}
+          {arabic ? <ArabicText size="sm">{text}</ArabicText> : text}
+        </span>
+      ))}
+    </span>
+  )
+}
+
 export function NarratorFacts({ who }) {
-  // Arabic and the years in turn, each its own piece so the years keep their order.
-  const when = [[who.generation_ar, true], [who.years], [who.city_ar, true]].filter(([text]) => text)
   const facts = [
     count(who.teachers.length, 'teacher'),
     count(who.students.length, 'student'),
@@ -72,16 +86,7 @@ export function NarratorFacts({ who }) {
     <>
       {who.grade_ar && <div><GradePill rank={who.grade_rank}>{who.grade_ar}</GradePill></div>}
       <GenerationDots name={who.generation_ar} />
-      {when.length > 0 && (
-        <p className="type-small text-[var(--text-dim)] flex flex-wrap items-baseline gap-x-2">
-          {when.map(([text, arabic], i) => (
-            <span key={i} className="flex items-baseline gap-x-2">
-              {i > 0 && <span aria-hidden="true">·</span>}
-              {arabic ? <ArabicText size="sm">{text}</ArabicText> : text}
-            </span>
-          ))}
-        </p>
-      )}
+      <NarratorWhen who={who} />
       <p className="type-small text-[var(--text-dim)]">{facts.join(' · ')}</p>
       <div className="flex flex-wrap items-center gap-3">
         <SourceBadge source={who.source} />
