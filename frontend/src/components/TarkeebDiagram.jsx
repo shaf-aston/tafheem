@@ -9,18 +9,18 @@
  * the tree's shape, and nothing about position is stored in the data. Colours
  * come from theme.json as `--role-<tone>`; this file names no colour of its own.
  */
-import { Fragment, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { Fragment, useCallback, useLayoutEffect, useMemo, useState } from 'react'
 
-import { isQuranic, seatSmallAlef } from '../lib/arabicText'
+import { isQuranic, joinedOn, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
 import { kids, pieces, rows, share, splitConnectors } from '../lib/tarkeebLayout'
+import { useRail } from '../lib/useRail'
 import { colorFor } from '../theme'
 
 import ArabicText from './ui/ArabicText'
 import Segmented from './ui/Segmented'
 import Tooltip from './ui/Tooltip'
 
-const WORD_MIN = '7rem'
 const NAME_COLUMN = '11rem'
 const GHAIR_AAMIL_ACCENT = colorFor('role', 'ghair_aamil')
 const MODES = [
@@ -38,7 +38,6 @@ const MODES = [
  */
 function Bracket({ node, atEdge, style }) {
   // roleVar is the word grid's own lookup, so one role is one colour in both.
-  const inside = !kids(node)
   const name = node.label && (
     <div className="tk-name">
       {/* RTL reading order: the brace, then "=", then the name on the left. */}
@@ -48,7 +47,7 @@ function Bracket({ node, atEdge, style }) {
   )
 
   return (
-    <div className={`tk-group${inside ? ' tk-inside' : ''}`} data-level={node.level} style={style}>
+    <div className="tk-group" data-level={node.level} style={style}>
       <div className="tk-roles">
         {(kids(node) ?? pieces(node)).map((piece, index) => (
           <Fragment key={index}>
@@ -71,25 +70,55 @@ function Bracket({ node, atEdge, style }) {
   )
 }
 
-export default function TarkeebDiagram({ words, tree, unwritten }) {
+/** Where each word's column sits along the strip, and whether it is in view: the dots. */
+function placeDots(view) {
+  const width = view.scrollWidth
+  return [...view.querySelectorAll('.tk-word')].map((word) => {
+    const middle = word.offsetLeft + word.offsetWidth / 2
+    return { left: (middle / width) * 100, on: middle >= view.scrollLeft && middle <= view.scrollLeft + view.clientWidth }
+  })
+}
+
+/** For each column, its place in the written word it was cut from: first, last, between, or alone. */
+const pieceOf = (written, index) => {
+  const before = index > 0 && written[index - 1] === written[index]
+  const after = index < written.length - 1 && written[index + 1] === written[index]
+  return before && after ? 'mid' : after ? 'first' : before ? 'last' : null
+}
+
+export default function TarkeebDiagram({ words, written, tree, unwritten }) {
   const [mode, setMode] = useState('split')
-  const scroller = useRef(null)
+  const [dots, setDots] = useState([])
+  const { strip, ends, measure, page } = useRail(`${words?.join(' ')}|${mode}`)
   const split = useMemo(
-    () => (tree && words?.length ? splitConnectors(words, tree) : null),
-    [words, tree],
+    () => (tree && words?.length ? splitConnectors(words, tree, written) : null),
+    [words, written, tree],
   )
+  const settle = useCallback(() => {
+    measure()
+    if (strip.current) setDots(placeDots(strip.current))
+  }, [measure, strip])
   // A diagram wider than its box opens on the sentence's first word, which is
   // on the right. The scroller itself is left-to-right, so left to itself it
   // opened on the last word, and on a phone that was all anyone saw.
   useLayoutEffect(() => {
-    const view = scroller.current
-    if (view) view.scrollLeft = view.scrollWidth
-  }, [words, tree, mode])
+    const view = strip.current
+    if (!view) return
+    view.scrollTo({ left: view.scrollWidth })
+    settle()
+    document.fonts?.ready.then(settle)
+  }, [words, tree, mode, strip, settle])
   if (!tree || !words?.length) return null
 
   const canSplit = split.words.length > words.length
-  const shown = mode === 'split' && canSplit ? split : { words, tree }
+  const shown = mode === 'split' && canSplit ? split : { words, written: written ?? words.map((_, i) => i), tree }
   const levels = rows(shown.tree, shown.words.length)
+  const piece = shown.words.map((_, index) => pieceOf(shown.written, index))
+  const goTo = (index) => {
+    const view = strip.current
+    const word = view.querySelectorAll('.tk-word')[index]
+    view.scrollTo({ left: word.offsetLeft - (view.clientWidth - word.offsetWidth) / 2, behavior: 'smooth' })
+  }
 
   return (
     <div>
@@ -112,24 +141,45 @@ export default function TarkeebDiagram({ words, tree, unwritten }) {
           in styles/base.css, which already covers [tabindex]. */}
       {/* Named by its sentence: a page of worked examples has several of these,
           and same-named regions are one region to a screen reader. */}
-      <div ref={scroller} className="tk-scroller" data-script={isQuranic(shown.words.join(' ')) ? 'quran' : undefined} tabIndex={0} role="region" aria-label={`Tarkeeb of ${shown.words.join(' ')}, scroll sideways to see the rest`}>
+      <div className="tk-frame">
+      {dots.length > 1 && !(ends.start && ends.end) && (
+        <div className="tk-dots">
+          {dots.map((dot, index) => (
+            <button
+              type="button"
+              key={index}
+              className="tk-dot"
+              style={{ left: `${dot.left}%` }}
+              data-on={dot.on || undefined}
+              aria-label={`Go to ${shown.words[index]}`}
+              onClick={() => goTo(index)}
+            />
+          ))}
+        </div>
+      )}
+      <button type="button" className="rail-arrow rail-arrow-l" aria-label="Further into the sentence" disabled={ends.start} onClick={() => page(-1)}>
+        &#8249;
+      </button>
+      <div ref={strip} onScroll={settle} className="tk-scroller" data-script={isQuranic(shown.words.join(' ')) ? 'quran' : undefined} tabIndex={0} role="region" aria-label={`Tarkeeb of ${shown.words.join(' ')}, scroll sideways to see the rest`}>
         <div
           className="tk-grid"
           style={{
-            gridTemplateColumns: `repeat(${shown.words.length}, minmax(${WORD_MIN}, 1fr)) ${NAME_COLUMN}`,
+            // a piece of a written word is only as wide as it needs, so the word's pieces sit close
+            gridTemplateColumns: `${piece.map((p) => (p ? 'max-content' : 'minmax(max-content, 1fr)')).join(' ')} ${NAME_COLUMN}`,
           }}
         >
           {shown.words.map((word, index) => {
             // The mark comes from the API, so no text stands for "not written" here.
             const missing = unwritten && word === unwritten.mark
+            const at = piece[index]
             return (
               <div
-                className={`tk-word${missing ? ' tk-unwritten' : ''}`}
+                className={`tk-word${missing ? ' tk-unwritten' : ''}${at ? ` tk-piece tk-piece-${at}` : ''}`}
                 key={`word-${index}`}
                 style={{ gridColumn: index + 1 }}
               >
                 <Tooltip text={missing ? unwritten.note : undefined}>
-                  <span>{seatSmallAlef(word)}</span>
+                  <span>{seatSmallAlef(at && at !== 'last' ? joinedOn(word) : word)}</span>
                 </Tooltip>
               </div>
             )
@@ -157,6 +207,10 @@ export default function TarkeebDiagram({ words, tree, unwritten }) {
             </Fragment>
           ))}
         </div>
+      </div>
+      <button type="button" className="rail-arrow rail-arrow-r" aria-label="Back to the start of the sentence" disabled={ends.end} onClick={() => page(1)}>
+        &#8250;
+      </button>
       </div>
     </div>
   )

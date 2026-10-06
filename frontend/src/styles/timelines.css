@@ -132,28 +132,7 @@
 /* An event on a weak narration keeps its place but wears a dashed edge. */
 .tl-weak { border-style: dashed; }
 
-.tl-arrow {
-  position: absolute;
-  top: 50%;
-  z-index: calc(var(--layer-raised) + 1);
-  width: 2.375rem;
-  height: 2.375rem;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--surface);
-  color: var(--tl-ink);
-  border: 1px solid color-mix(in srgb, var(--tl-acc) 35%, var(--border));
-  box-shadow: var(--shadow-pop);
-  font-size: 1.1rem;
-  font-weight: 700;
-  transition: opacity calc(var(--motion-base-ms) * 1ms) ease;
-}
-.tl-arrow-l { left: -0.375rem; }
-.tl-arrow-r { right: -0.375rem; }
-.tl-arrow[disabled] { opacity: 0; pointer-events: none; }
-/* A phone swipes the rail; the arrows would cover a card. */
-@media (max-width: 520px) { .tl-arrow { display: none; } }
+
 
 /* ── the reader ───────────────────────────────────────────── */
 .tl-reader {

@@ -129,11 +129,22 @@ export const spokenForm = (text) =>
     .replace(/ +/g, ' ')
     .trim()
 
+// Letters joining nothing after them (ا د ذ ر ز و and the hamza and final forms).
+const JOINS_NOTHING_ONWARD = 'ءاأإآٱدذرزوؤةى'
 // Letters a small alef after needs no seat for: those joining nothing onward,
 // ى that carries it itself (هُدَىٰهُمْ), and a tatweel already standing.
-const NEEDS_NO_SEAT = new Set('ءاأإآٱدذرزوؤةىـ')
+const NEEDS_NO_SEAT = new Set(`${JOINS_NOTHING_ONWARD}ـ`)
 const isLetter = (c) => (c >= 'ء' && c <= 'ي') || c === 'ٱ'
 const isMark = (c) => (c >= 'ً' && c <= 'ٟ') || c === 'ٰ' || (c >= 'ۖ' && c <= 'ۭ')
+
+/**
+ * A piece cut from the front of a written word, drawn joined on to what follows
+ * as the script writes it: فَـ and لْـ take a joining stroke, وَ never joins on.
+ */
+export const joinedOn = (piece) => {
+  const last = [...piece].reverse().find(isLetter)
+  return last && !JOINS_NOTHING_ONWARD.includes(last) ? `${piece}ـ` : piece
+}
 
 /**
  * The mushaf's spelling as a font draws it: a small alef between two joined

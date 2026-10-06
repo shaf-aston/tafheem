@@ -11,12 +11,12 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 """
 from __future__ import annotations
 
-from backend.services.nahw_book import clause_of, family_cards, frames, named_roles, role_units, teacher_rules
+from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, named_roles, role_units,
+                                       teacher_rules, term_ar)
 from backend.services.syntax.facts import Sentence, completes_kaada, is_passive
 from backend.services.syntax.naming import base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import letters, own_letters
-from backend.services.nahw_book import condition_of, term_ar
 
 # What a unit is called, by the join that makes it. Spelled once, in
 # data/nahw_rules/tarkeeb.json, so a typed sentence, a book example and an ayah
@@ -104,8 +104,10 @@ def _finer(token: dict, role: str | None, family: str | None) -> str | None:
     """A governor's name in the picture: كان is a فعل ناقص, أنْ a حرف نصب, as its card says."""
     if family in FRAMES["leaf_by_family"]:
         return FRAMES["leaf_by_family"][family]
+    if family is None and role == NAMED.harf and token["form"].endswith("+") and is_one(strip_diacritics(token["form"]), "atf"):
+        family = "atf"  # وَمَنْ شاء: a وَ written onto a new sentence is named by its letters, as its card is
     card = CARDS.get(family)
-    named = card and card.get("named_as", {}).get(strip_diacritics(token["form"]), card["named"])
+    named = card and card.get("named_as", {}).get(strip_diacritics(token["form"]).strip("+"), card["named"])
     # only a finer name for the same role (حرف نصب for حرف), so card and picture still agree
     return named if role in (NAMED.harf, NAMED.harf_jarr) and named and named.startswith(role) else role
 
@@ -134,14 +136,15 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     split = {piece["id"]: piece for found in named for piece in found.get("attached", [])
              if piece["before"] or found["role"] != NAMED.fil}
     by_id = {t["id"]: t for t in tokens}
-    drawn, columns = [], []
-    for word, token, found in zip(words, bases, named):
+    drawn, columns, written = [], [], []  # written: the typed word each column was cut from
+    for i, (word, token, found) in enumerate(zip(words, bases, named)):
         before = [by_id[p["id"]] for p in found.get("attached", []) if p["id"] in split and p["before"]]
         after = [by_id[p["id"]] for p in found.get("attached", []) if p["id"] in split and not p["before"]]
         sizes = [len(bare_letters(t["form"].strip("+"))) for t in before + after]
         spans = sizes[:len(before)] + [len(letters(word)) - sum(sizes)] + sizes[len(before):]
         drawn += before + [token] + after
         columns += [own_letters(word, sum(spans[:k]), sum(spans[k + 1:])) for k in range(len(spans))]
+        written += [i] * len(spans)
     at = {token["id"]: index for index, token in enumerate(drawn)}
     typed_at = {token["id"]: index for index, token in enumerate(bases)}
     role_of = {token["id"]: found["role"] for token, found in zip(bases, named)} | {
@@ -366,7 +369,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         tree = {"label": top_label,
                 "children": [part for _, part in drawn] if tree is None else [tree]}
     covered = sum(1 for found in named if found["role"])
-    return {"words": columns, "tree": tree, "coverage": round(covered / len(words), 2),
+    return {"words": columns, "written": written, "tree": tree, "coverage": round(covered / len(words), 2),
             "printed": [printed.get(token["id"]) for token in bases]}
 
 

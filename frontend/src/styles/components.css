@@ -637,3 +637,32 @@ dialog::backdrop {
 .chain-merge > :last-child::after {
   inset-inline-end: 50%;
 }
+
+/* ── a sideways strip's round arrows (lib/useRail) ─────────────
+   The timeline's rail and the tarkeeb chart. Each hides at its end;
+   a strip sets --rail-acc and --rail-ink to its own accent. */
+.rail-arrow {
+  --rail-acc: var(--primary);
+  --rail-ink: var(--primary-hi);
+  position: absolute;
+  top: 50%;
+  z-index: calc(var(--layer-raised) + 1);
+  width: 2.375rem;
+  height: 2.375rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--rail-ink);
+  border: 1px solid color-mix(in srgb, var(--rail-acc) 35%, var(--border));
+  box-shadow: var(--shadow-pop);
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: opacity calc(var(--motion-base-ms) * 1ms) ease;
+}
+.tl-hue .rail-arrow { --rail-acc: var(--tl-acc); --rail-ink: var(--tl-ink); }
+.rail-arrow-l { left: -0.375rem; }
+.rail-arrow-r { right: -0.375rem; }
+.rail-arrow[disabled] { opacity: 0; pointer-events: none; }
+/* A phone swipes; the arrows would cover what they page. */
+@media (max-width: 520px) { .rail-arrow { display: none; } }

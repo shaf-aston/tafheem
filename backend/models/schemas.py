@@ -258,6 +258,9 @@ class TarkeebTree(BaseModel):
     surah: int | None = None
     ayah: int | None = None
     words: list[str]
+    # The typed word each column was cut from (فَـ لْـ يَصُمْهُ share one), so the
+    # chart sets one word's pieces close. Unset for an ayah, whose words are whole.
+    written: list[int] | None = None
     tree: TarkeebNode | None = None
     # The share of words the rules placed in a named unit. The rest are gaps, and
     # this number is what keeps that visible instead of implied.

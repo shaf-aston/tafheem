@@ -151,6 +151,7 @@ function AnalysisResults({ data, accent, onWordClick, picked, practice, detail }
         // (هُوَ) or an elided khabar, and the mark it writes them with.
         <TarkeebFigure
           words={data.tree.words}
+          written={data.tree.written}
           tree={data.tree.tree}
           unwritten={data.tree.unwritten}
           coverage={data.tree.coverage}
