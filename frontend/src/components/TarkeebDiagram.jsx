@@ -70,21 +70,27 @@ function Bracket({ node, atEdge, style }) {
   )
 }
 
-/** Where each word's column sits along the strip, and whether it is in view: the dots. */
+/** Where each written word sits along the strip, and whether it is in view: the dots. */
 function placeDots(view) {
   const width = view.scrollWidth
   return [...view.querySelectorAll('.tk-word')].map((word) => {
     const middle = word.offsetLeft + word.offsetWidth / 2
-    return { left: (middle / width) * 100, on: middle >= view.scrollLeft && middle <= view.scrollLeft + view.clientWidth }
+    return {
+      left: (middle / width) * 100,
+      on: middle >= view.scrollLeft && middle <= view.scrollLeft + view.clientWidth,
+      label: word.textContent,
+    }
   })
 }
 
-/** For each column, its place in the written word it was cut from: first, last, between, or alone. */
-const pieceOf = (written, index) => {
-  const before = index > 0 && written[index - 1] === written[index]
-  const after = index < written.length - 1 && written[index + 1] === written[index]
-  return before && after ? 'mid' : after ? 'first' : before ? 'last' : null
-}
+/** The written words, each as the run of columns cut from it: [{ from, to }], in column order. */
+const writtenWords = (written) =>
+  written.reduce((runs, word, index) => {
+    const last = runs.at(-1)
+    if (last && written[last.from] === word) last.to = index
+    else runs.push({ from: index, to: index })
+    return runs
+  }, [])
 
 export default function TarkeebDiagram({ words, written, tree, unwritten }) {
   const [mode, setMode] = useState('split')
@@ -113,7 +119,9 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
   const canSplit = split.words.length > words.length
   const shown = mode === 'split' && canSplit ? split : { words, written: written ?? words.map((_, i) => i), tree }
   const levels = rows(shown.tree, shown.words.length)
-  const piece = shown.words.map((_, index) => pieceOf(shown.written, index))
+  const cells = writtenWords(shown.written)
+  // the columns of a written word cut into pieces
+  const cut = new Set(cells.flatMap(({ from, to }) => (to > from ? Array.from({ length: to - from + 1 }, (_, k) => from + k) : [])))
   const goTo = (index) => {
     const view = strip.current
     const word = view.querySelectorAll('.tk-word')[index]
@@ -151,7 +159,7 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
               className="tk-dot"
               style={{ left: `${dot.left}%` }}
               data-on={dot.on || undefined}
-              aria-label={`Go to ${shown.words[index]}`}
+              aria-label={`Go to ${dot.label}`}
               onClick={() => goTo(index)}
             />
           ))}
@@ -165,21 +173,28 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
           className="tk-grid"
           style={{
             // a piece of a written word is only as wide as it needs, so the word's pieces sit close
-            gridTemplateColumns: `${piece.map((p) => (p ? 'max-content' : 'minmax(max-content, 1fr)')).join(' ')} ${NAME_COLUMN}`,
+            gridTemplateColumns: `${shown.words.map((_, index) => (cut.has(index) ? 'max-content' : 'minmax(max-content, 1fr)')).join(' ')} ${NAME_COLUMN}`,
           }}
         >
-          {shown.words.map((word, index) => {
+          {cells.map(({ from, to }) => {
+            const word = shown.words[from]
             // The mark comes from the API, so no text stands for "not written" here.
             const missing = unwritten && word === unwritten.mark
-            const at = piece[index]
+            // فَـ لْـ يَصُمْهُ: one written word is drawn once across its pieces' columns,
+            // its pieces close and joined as the script joins them, on one line
+            const pieces = shown.words.slice(from, to + 1)
             return (
               <div
-                className={`tk-word${missing ? ' tk-unwritten' : ''}${at ? ` tk-piece tk-piece-${at}` : ''}`}
-                key={`word-${index}`}
-                style={{ gridColumn: index + 1 }}
+                className={`tk-word${missing ? ' tk-unwritten' : ''}${to > from ? ' tk-written' : ''}`}
+                key={`word-${from}`}
+                style={{ gridColumn: `${from + 1} / ${to + 2}` }}
               >
                 <Tooltip text={missing ? unwritten.note : undefined}>
-                  <span>{seatSmallAlef(at && at !== 'last' ? joinedOn(word) : word)}</span>
+                  <span>
+                    {to > from
+                      ? pieces.map((text, k) => <span key={k} className="tk-cut">{seatSmallAlef(k < pieces.length - 1 ? joinedOn(text) : text)}</span>)
+                      : seatSmallAlef(word)}
+                  </span>
                 </Tooltip>
               </div>
             )
@@ -195,7 +210,8 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
                   style={{ gridRow: level + 1, gridColumn: `${node.from + 1} / ${node.to + 2}` }}
                 />
               ))}
-              {threads.map((word) => (
+              {/* a piece of a joined word has no thread: the word is drawn across its columns, not over each */}
+              {threads.filter((word) => !cut.has(word)).map((word) => (
                 <div
                   className="tk-thread"
                   data-level={level}

@@ -70,14 +70,12 @@
   white-space: nowrap;
 }
 
-/* Pieces of one written word (فَـ لْـ يَصُمْهُ) sit close and share one line
-   underneath, each still over its own name: the piece starting the word leans
-   to the one after it, the last leans back, so the word reads as one. */
-.tk-word.tk-piece span { padding-inline: 0.05rem; border-bottom-color: color-mix(in srgb, var(--primary) 55%, transparent); }
-.tk-word.tk-piece-first { justify-content: flex-end; }
-.tk-word.tk-piece-first span { padding-inline-start: 0.6rem; }
-.tk-word.tk-piece-last { justify-content: flex-start; }
-.tk-word.tk-piece-last span { padding-inline-end: 0.6rem; }
+/* One written word cut into pieces (فَـ لْـ يَصُمْهُ) is drawn once across its
+   pieces' columns: the pieces close, joined as the script joins them, on one
+   line that marks them as one word. */
+.tk-word.tk-written > span { border-bottom-color: color-mix(in srgb, var(--primary) 55%, transparent); }
+.tk-word .tk-cut { padding: 0; border: 0; }
+.tk-cut + .tk-cut { margin-inline-start: 0.12em; }
 
 /* A name the Treebank supplied that the app has not checked against a book. It
    still reads, but it must not look as settled as a term that was checked. */
