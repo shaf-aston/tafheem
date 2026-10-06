@@ -32,6 +32,7 @@ def test_camel_gloss_reads_as_english() -> None:
     ("مُرَكَّبٌ تَوْصِيْفِيٌّ", [_word("البيت", "noun", "d"), _word("الكبير", "adj", "d")], "phrase"),
     ("مُرَكَّبٌ إِضَافِيٌّ", [_word("رب", "noun", "c"), _word("العالمين", "noun", "d")], "phrase"),
     (None, [_word("في", "prep"), _word("البيت", "noun", "d")], "phrase"),
+    ("جُمْلَةٌ اِسْمِيَّةٌ", [_word("كتاب", "noun", "i")], "word"),
 ])
 def test_a_sentence_says_something_and_a_phrase_does_not(summary, read, kind) -> None:
     assert sentence_meaning.kind_of(summary, read) == kind
@@ -77,7 +78,7 @@ def test_no_model_still_gives_the_words(typed, monkeypatch) -> None:
 def test_the_model_picks_each_words_sense_and_it_is_filed(typed, monkeypatch) -> None:
     monkeypatch.setattr(ai, "translate_sentence", lambda text, wbw: typed.append(wbw) or {"english": "The house is old", "senses": [2, 2]})
     first = sentence_meaning.translate("البيت كبير")
-    assert [w["english"] for w in first["words"]] == ["home", "old/aged"]
+    assert [w["english"] for w in first["words"]] == ["home", "old/aged"] and first["words_source"] == "ai"
     progress_store.reset_connection()
     monkeypatch.setattr(ai, "translate_sentence", lambda text, wbw: typed.append(wbw) or {"english": "x", "senses": [1, 1]})
     assert sentence_meaning.translate("البيت كبير") == first and len(typed) == 1
@@ -88,7 +89,7 @@ def test_bad_picks_leave_camels_senses(typed, monkeypatch, senses) -> None:
     monkeypatch.setattr(ai, "translate_sentence", lambda text, wbw: {"english": "The house is big", "senses": senses})
     found = sentence_meaning.translate("البيت كبير")
     assert found["meaning"] == "The house is big"
-    assert [w["english"] for w in found["words"]] == ["the house", "large/great"]
+    assert [w["english"] for w in found["words"]] == ["the house", "large/great"] and found["words_source"] == "camel"
 
 
 @pytest.mark.parametrize("cut, shown", [

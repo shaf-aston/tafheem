@@ -765,7 +765,7 @@ class SentenceResponse(BaseModel):
     typed as a word but holds no Arabic, so it was not translated."""
 
     query: str
-    kind: str  # phrase | sentence
+    kind: str  # word | phrase | sentence
     meaning: str | None = None
     source: Source | None = None
     ref: str | None = None

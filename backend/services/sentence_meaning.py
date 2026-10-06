@@ -44,7 +44,8 @@ def literal(gloss: str) -> str:
 
 
 def kind_of(summary: str | None, read: list[dict]) -> str:
-    """"sentence" when it says something, else "phrase".
+    """"sentence" when it says something, else "phrase"; "word" when one Arabic word
+    is all there is, as when the rest of what was typed is not Arabic.
 
     `summary` is the grammar's name for the whole (iraab.analyse, as the Analyse
     page shows it), and every clause it names is a جُمْلَةٌ: the verbal, nominal,
@@ -52,6 +53,8 @@ def kind_of(summary: str | None, read: list[dict]) -> str:
     هل أنت جائع as a question. It does not yet see a definite noun told about by
     what follows (الحمد لله, الولد في البيت), so that is checked here too.
     """
+    if len(read) < 2:
+        return "word"
     told = any(
         a["pos"] in morphology.NOUNISH and a["state"] == "d" and (b["state"] == "i" or b["pos"] == "prep")
         for a, b in pairwise(read)
@@ -87,7 +90,7 @@ def _whole_ayah(text: str, pairs: list[dict]) -> dict | None:
 
 _PAIRS = {"(": ")", "[": "]", "“": "”"}
 # What a sentence carried on past the ayah leaves at the cut: a dash, a comma, a colon.
-_CUT_RE = re.compile(r"[\s,;:\-–—]+$")
+_CUT_RE = re.compile(r"[\s,;:\-\u2013\u2014]+$")
 
 
 def standing(text: str) -> str:
@@ -134,10 +137,13 @@ def _model_sense(text: str, pairs: list[dict]) -> dict:
     except Exception as exc:  # noqa: BLE001, a dead model leaves the word-by-word standing
         logger.info("sentence meaning  model failed: %s", exc)
         meaning, picks = None, []
+    # The badge names who chose each word's sense: the model when it picked, else CAMeL.
+    words_source = "camel"
     if picks := _valid(picks, options):  # also when filed: the candidates may have changed since
         pairs = [{**p, "english": o[i - 1]} for p, o, i in zip(pairs, options, picks)]
+        words_source = "ai"
     return {"meaning": meaning, "source": "ai" if meaning else None, "ref": None,
-            "words": pairs, "words_source": "camel"}
+            "words": pairs, "words_source": words_source}
 
 
 def _valid(picks, options: list[list[str]]) -> list[int]:
