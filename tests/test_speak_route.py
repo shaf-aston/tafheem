@@ -108,3 +108,15 @@ def test_arabic_marks_reach_the_engine_as_pauses(monkeypatch):
     monkeypatch.setattr(voice, "_model", model)
     voice.say("كيفك؟ منيح، الحمدلله")
     assert model.heard[-1] == "كيفك ? منيح , الحمدلله"
+
+
+def test_name_of_allah_is_spelt_out_wherever_it_falls():
+    from backend.services.speech import name_spelt_out as said
+    assert said("اللَّهُ أَكْبَر") == "اللَّهُ أَكْبَر"  # first word: the engine already knows it
+    assert said("بِسْمِ اللَّهِ") == "بِسْمِ اللَّاهِ"
+    assert said("الْحَمْدُ لِلَّهِ،") == "الْحَمْدُ لِلَّاهِ،"
+    assert said("وَاللَّهِ") == "وَاللَّاهِ"
+    assert said("والله") == "وَاللَّاه"
+    assert said("ولله") == "وَلِلَّاه"
+    assert said("سبحان الله؟") == "سبحان اللَّاه؟"
+    assert said("ظلله اللهو") == "ظلله اللهو"  # look-alikes untouched
