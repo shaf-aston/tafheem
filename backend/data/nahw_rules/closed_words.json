@@ -373,6 +373,8 @@
    "effect": "puts the present verb after it in jazm (sukun; nun of the five verbs dropped; a weak last letter dropped); conditionals govern two verbs, the condition and the result",
    "before_a_present_verb": ["لم", "لما"],
    "conditional_particles": ["إن", "إذما"],
+   "conditional_nouns": ["من", "ما", "مهما", "متى", "أيان", "أين", "أنى", "حيثما", "كيفما", "أي", "أينما"],
+   "_conditional_nouns": "the conditional nouns (Tasheel: the jazm conditionals other than إن and إذما). Each has rivals (relative, question), so one opens a condition only when it leads its clause, a verb comes straight after, and an answer follows (services/syntax/condition.py)",
    "_conditional_particles": "the conditional particles (the other conditionals are nouns): with a verb straight after, a condition opens; its first verb is فعل الشرط and its answer جواب الشرط, both in jazm or in its place (services/rule_engine.py)",
    "_before_a_present_verb": "the ones that settle an unvowelled present verb as مجزوم when it comes straight after them; لا and the conditionals need a reading of the sentence (services/syntax/naming.py)",
    "words": [

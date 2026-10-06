@@ -17,7 +17,7 @@ from __future__ import annotations
 from backend.services import verb_reader
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_path, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table
-from backend.services.syntax import facts, walker
+from backend.services.syntax import condition, facts, walker
 from backend.services.harakat import (
     CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, own_letters, paused, typed_case)
 
@@ -43,6 +43,8 @@ def roles_keyed(*keys: str) -> tuple[str, ...]:
 
 
 FOLLOWERS = roles_keyed("tabi", "sifah")
+# the governor kinds (facts.AXES) whose families frame a clause as their khabar or object
+VERB_FRAMERS = ("inna", "kana", "kaada", "zanna")
 
 
 def tone(role: str | None) -> str | None:
@@ -121,15 +123,43 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
               for token, said in zip(bases, shown)]
     word_of = _typed_word_of(bases, tokens)
     # the parser's tense goes with a فعل, so a card CAMeL took for a noun (ضُرِبَ) still says ماضٍ
-    return [{"role": role, "case": case,
+    found = [{"role": role, "case": case,
              "aspect": token.get("asp") if role == NAMED.fil else None,
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "book": book_path(found.path, found.book) if found else None,
              "attached": [{"id": t["id"], "role": role_by_id[t["id"]], "before": t["form"].endswith("+"), "form": t["form"].strip("+"),
                            "family": _family(t, bases, joined, below=True) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None}
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
-             **_governed(i, role, token, bases, tokens, governed_by, word_of)}
+             **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]])}
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
+    before = [[t["form"].strip("+") for t in tokens if t["form"].endswith("+") and word_of.get(t["id"]) == i]
+              for i in range(len(bases))]
+    for found_condition in condition.find(bases, named, cases, before):
+        _conditioned(found, found_condition)
+    return found
+
+
+def _conditioned(found: list[dict], c: dict) -> None:
+    """A condition the book's test found (syntax.condition): a conditional noun keeps the place
+    it was named for (مَنْ يصبرْ: مبتدأ) and is called what it is when it had none (an اسم
+    شرط جازم, never the relative the picture would call it); a جازم opener governs both its
+    verbs, rather than whatever verb the parser hung them on."""
+    frame = c["frame"]
+    opener = found[c["opener"]]
+    if frame["noun"] and not opener["role"]:
+        opener.update(role=frame["opener"], book=None)
+    opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"],
+                           "kind": frame["opener"] if frame["noun"] else None}
+    for part in ("verb", "answer"):
+        if c[part] is None:
+            continue
+        word = found[c[part]]
+        word.pop("follows", None)
+        word.pop("governor", None)
+        if frame["case"]:
+            word["governor"] = c["opener"]
+        word["condition"] = {"part": part, "opener": c["opener"], "family": frame["family"],
+                             "tie": c["tie"] if part == "answer" else None}
 
 
 def _typed_word_of(bases: list[dict], tokens: list[dict]) -> dict[int, int]:
@@ -151,11 +181,17 @@ def _typed_word_of(bases: list[dict], tokens: list[dict]) -> dict[int, int]:
 
 
 def _governed(i: int, role: str | None, token: dict, bases: list[dict], tokens: list[dict],
-              governed_by: dict[int, int], word_of: dict[int, int]) -> dict:
+              governed_by: dict[int, int], word_of: dict[int, int], answer: dict) -> dict:
     """The typed word this one takes its case from: `follows` for a تابع (the word it copies),
-    else `governor` (its عامل); each only when it is another typed word."""
-    if role in FOLLOWERS and (head := _followed(token, bases, tokens)) is not None:
+    else `governor` (its عامل); each only when it is another typed word. A verb joined on by
+    وَ (قامَ وقَعَدَ) follows the verb before it: the link through وَ is a join, never a governor."""
+    joined_verb = role == NAMED.fil and answer["follows"] == "atf"
+    if (role in FOLLOWERS or joined_verb) and (head := _followed(token, bases, tokens)) is not None:
         return {"follows": head} if head != i else {}
+    # a verb clause stands in a place only by a family that frames it (كنتَ تحبُّ: خبر كان);
+    # the verb a parser hangs it on otherwise (جاء مَنْ نجح، قام وقعد) does not govern it
+    if role == NAMED.fil and answer["governor"] not in VERB_FRAMERS:
+        return {}
     governor = word_of.get(governed_by.get(token["id"]))
     return {"governor": governor} if governor is not None and governor != i else {}
 
