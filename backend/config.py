@@ -60,6 +60,8 @@ class Settings(BaseSettings):
     sentence_translation: str = "saheeh-en"
     # Word by word, each piece of a word shows up to this many of CAMeL's senses.
     sentence_senses: int = Field(default=2, gt=0)
+    # Candidate senses the model may pick from per word (CAMeL's readings, then the dictionary's).
+    sentence_candidates: int = Field(default=8, gt=0)
     # One English sentence back, plus a reasoning model's thinking.
     sentence_max_tokens: int = Field(default=1200, gt=0)
 
