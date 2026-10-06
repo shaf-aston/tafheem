@@ -98,15 +98,87 @@ export function NarratorFacts({ who }) {
   )
 }
 
-/** His page's header card: name, facts and lineage held together at a reading width, so the Arabic and English sides sit close. */
-export function NarratorHead({ who }) {
-  return (
-    <div className="mx-auto max-w-3xl space-y-3 px-6 py-5 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)]">
-      <NarratorName who={who} as="h2" />
-      <NarratorFacts who={who} />
-      {who.lineage_ar && <ArabicText as="p" size="sm" className="block text-[var(--text-dim)] m-0">{who.lineage_ar}</ArabicText>}
+/** A small faint label over its value; `arabic` sets both right to left. */
+function Labelled({ label, arabic = false, children }) {
+  const faint = 'block text-[var(--text-faint)] mb-1'
+  return arabic ? (
+    <div dir="rtl" className="min-w-0">
+      <ArabicText size="sm" className={faint}>{label}</ArabicText>
+      <ArabicText size="base" className="block">{children}</ArabicText>
+    </div>
+  ) : (
+    <div className="min-w-0">
+      <span className={`type-tiny ${faint}`}>{label}</span>
+      <span className="block type-ui">{children}</span>
     </div>
   )
+}
+
+/** Two sides of one row, English left and Arabic right as sunnah.com sets them; stacked on a phone. */
+const PAIR = 'grid gap-x-10 gap-y-2 sm:grid-cols-2'
+
+/**
+ * His page's header card: the name in both languages up top, then each fact
+ * sunnah.com prints in both languages as one row, English left and Arabic
+ * right, then the numbers, which read the same in either.
+ */
+export function NarratorHead({ who }) {
+  const numbers = [
+    ['Died', who.years],
+    ['Hadith', who.hadith_total],
+    ['Teachers', who.teachers.length],
+    ['Students', who.students.length],
+  ].filter(([, n]) => n != null && n !== '')
+  return (
+    <div className="mx-auto max-w-3xl px-6 py-5 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] divide-y divide-[var(--border)] [&>*]:py-4 [&>*:first-child]:pt-0 [&>*:last-child]:pb-0">
+      <div className="flex flex-col items-end gap-2 text-right">
+        <ArabicText as="h2" size="lg" className="block m-0">{who.name_ar}</ArabicText>
+        {who.name_en && <p className="type-small text-[var(--text-dim)] m-0">{who.name_en}</p>}
+        <div className="flex flex-wrap items-center gap-3">
+          <GenerationDots name={who.generation_ar} />
+          {who.grade_ar && <GradePill rank={who.grade_rank}>{who.grade_ar}</GradePill>}
+        </div>
+      </div>
+      {who.facts.length > 0 && (
+        <div className="space-y-5">
+          {who.facts.map((f) => (
+            <div key={f.label_en} className={PAIR}>
+              <Labelled label={f.label_en}>{f.en}</Labelled>
+              <Labelled label={f.label_ar} arabic>{f.ar}</Labelled>
+            </div>
+          ))}
+        </div>
+      )}
+      {who.books.length > 0 && (
+        <div className={PAIR}>
+          <div className="flex flex-wrap gap-2">{who.books.map((b) => <BookMark key={b.en}>{b.en}</BookMark>)}</div>
+          <div dir="rtl" className="flex flex-wrap gap-2">{who.books.map((b) => <BookMark key={b.ar} arabic>{b.ar}</BookMark>)}</div>
+        </div>
+      )}
+      {numbers.length > 0 && (
+        <dl className="m-0 grid gap-3 grid-cols-2 sm:grid-cols-4">
+          {numbers.map(([label, n]) => (
+            <div key={label} className="min-w-0">
+              <dt className="type-tiny text-[var(--text-faint)] mb-1">{label}</dt>
+              <dd className="m-0 type-ui tabular-nums">{n}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      <div className="flex flex-wrap items-center gap-3">
+        <SourceBadge source={who.source} />
+        <a href={`${SITE}${who.id}`} target="_blank" rel="noreferrer" className="type-small text-[var(--text-dim)] hover:text-[var(--text)] underline underline-offset-2">
+          Read on sunnah.com &#8599;
+        </a>
+      </div>
+    </div>
+  )
+}
+
+/** A book that carries his hadith, as a quiet outlined mark. */
+function BookMark({ arabic = false, children }) {
+  const box = 'inline-block px-3 py-1 rounded-[var(--radius-md)] border border-[var(--border)] text-[var(--text-dim)]'
+  return arabic ? <ArabicText size="sm" className={box}>{children}</ArabicText> : <span className={`type-small ${box}`}>{children}</span>
 }
 
 /** A narrator that failed to load: a 404 means no page for him is built here. */

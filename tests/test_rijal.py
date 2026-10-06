@@ -87,6 +87,9 @@ def test_a_narrator_sheet_carries_grade_generation_and_his_circle(built):
     sheet = built.get("/api/rijal/narrators/6659").json()
     assert (sheet["grade_rank"], sheet["generation_ar"]) == (1, "السابعة")
     assert sheet["teachers"] and sheet["students"] and sheet["verdicts"]
+    city = next(f for f in sheet["facts"] if f["label_ar"] == "بلد الإقامة")
+    assert city["label_en"] == "Cities/Regions" and city["en"] and city["ar"] == sheet["city_ar"]
+    assert all(b["en"] and b["ar"] for b in sheet["books"])
     assert built.get("/api/rijal/narrators/1").status_code == 404
     assert built.get("/api/rijal/narrators/6659/hadith").json() == [{"collection": "muslim", "book": 24, "number": 1620, "part": "a"}]
 
