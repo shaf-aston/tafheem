@@ -286,6 +286,31 @@ def words_for_surah(surah: int) -> list[tuple[int, list[dict]]]:
     ]
 
 
+@lru_cache(maxsize=1)
+def _roots_by_bare_spelling() -> dict:
+    """Each lemma and stem form, folded to bare letters, with the root it most often carries."""
+    rows = _db().execute(
+        """SELECT lemma, form, root, COUNT(*) AS uses FROM segment
+           WHERE root <> '' GROUP BY lemma, form, root"""
+    ).fetchall()
+    votes: dict[str, dict[str, int]] = {}
+    for r in rows:
+        for spelling in (r["lemma"], r["form"]):
+            bare = arabic_text.bare_letters(spelling)
+            if bare:
+                by_root = votes.setdefault(bare, {})
+                by_root[r["root"]] = by_root.get(r["root"], 0) + r["uses"]
+    return {bare: max(by_root, key=by_root.get) for bare, by_root in votes.items()}
+
+
+def root_of(word: str) -> str:
+    """The root a word is built from, or '' when the corpus does not know the word."""
+    bare = arabic_text.bare_letters(word)
+    roots = _roots_by_bare_spelling()
+    # The corpus splits the article off, so its stems never start with ال.
+    return roots.get(bare) or (roots.get(bare[2:], "") if bare.startswith("ال") else "")
+
+
 def occurrences_of_root(root: str, limit: int) -> dict:
     """Where a root appears in the Qur'an, and which words are built from it.
 

@@ -16,6 +16,7 @@ import { useMutation } from '@tanstack/react-query'
 import { getQuranAyah, getQuranRoot, searchQuran } from '../api'
 import { useArrival } from '../lib/useArrival'
 import { useHistory } from '../lib/useHistory'
+import { isArabic } from '../lib/arabicText'
 
 import AyahStudy from './AyahStudy'
 import QuranSeal from './ui/QuranSeal'
@@ -28,6 +29,7 @@ import QuranSearchBar from './QuranSearchBar'
 import SectionHeader from './ui/SectionHeader'
 import SourceBadge from './ui/SourceBadge'
 import ArabicText from './ui/ArabicText'
+import Disclosure from './ui/Disclosure'
 import RecentRow from './ui/RecentRow'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import { CorrectedNote } from './ui/StatusNote'
@@ -67,6 +69,8 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   })
   const search = useMutation({ mutationFn: searchQuran })
   const rootLookup = useMutation({ mutationFn: getQuranRoot })
+  // The root behind a single searched word; a 404 just means there is none to show.
+  const wordRoot = useMutation({ mutationFn: getQuranRoot })
 
   // Two different things can arrive and they are told apart by their shape,
   // because they were not before: Daleel hands over an ayah address like "1:3",
@@ -108,6 +112,8 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
     if (!text) return
     setShowMatches(true)
     search.mutate(text)
+    wordRoot.reset()
+    if (!/\s/.test(text) && isArabic(text) && !AYAH_REF.test(text)) wordRoot.mutate(text)
   }
 
   // What came back from the microphone: the words go in the box so they can be
@@ -155,7 +161,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
       <QuranSearchBar
         value={query}
         onChange={setQuery}
-        onClear={() => { setQuery(''); setHeard(null); search.reset() }}
+        onClear={() => { setQuery(''); setHeard(null); search.reset(); wordRoot.reset() }}
         onOpen={(m, a) => (a === null ? readSurah(m.n) : openResult({ surah: m.n, ayah: a }))}
         onSearch={runSearch}
         onHeard={onHeard}
@@ -216,6 +222,9 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
         ) : search.data ? (
           <div aria-busy={search.isPending} className={`space-y-3 transition-opacity ${search.isPending ? 'opacity-60' : ''}`}>
             <CorrectedNote corrected={search.data.corrected} />
+            {wordRoot.data && (
+              <RootView data={wordRoot.data} accent={accent} onGo={onGo} onOpenAyah={openResult} folded />
+            )}
             <SearchResults results={search.data.hits} onSelect={openResult} accent={accent} />
           </div>
         ) : (
@@ -278,29 +287,39 @@ function SearchResults({ results, onSelect, accent }) {
   )
 }
 
-function RootView({ data, accent, onGo, onOpenAyah, onClose }) {
+// `folded` shuts everything under the "appears N times" line, for a root that
+// comes along with a word search rather than being the thing asked for.
+function RootView({ data, accent, onGo, onOpenAyah, onClose, folded = false }) {
   const shown = data.occurrences.length
 
-  return (
-    <div className="space-y-4 rise-in">
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        <div className="flex items-baseline gap-3 flex-wrap">
-          <ArabicText size="lg" className="text-[var(--text)]">{data.root}</ArabicText>
-          <span className="type-body text-[var(--text-dim)]">
-            appears <strong className="text-[var(--text)] tabular-nums">{data.total}</strong> times in the Qur&rsquo;an
-          </span>
+  const title = (
+    <div className="flex items-baseline gap-3 flex-wrap">
+      <ArabicText size="lg" className="text-[var(--text)]">{data.root}</ArabicText>
+      <span className="type-body text-[var(--text-dim)]">
+        appears <strong className="text-[var(--text)] tabular-nums">{data.total}</strong> times in the Qur&rsquo;an
+      </span>
+    </div>
+  )
+
+  const body = (
+    <div className="space-y-4">
+      {folded ? (
+        <SourceBadge source={data.source} />
+      ) : (
+        <div className="flex items-center justify-between gap-3 flex-wrap">
+          {title}
+          <div className="flex items-center gap-2">
+            <SourceBadge source={data.source} />
+            <button
+              type="button"
+              onClick={onClose}
+              className="type-small text-[var(--text-faint)] hover:text-[var(--text)] underline underline-offset-2"
+            >
+              Close
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <SourceBadge source={data.source} />
-          <button
-            type="button"
-            onClick={onClose}
-            className="type-small text-[var(--text-faint)] hover:text-[var(--text)] underline underline-offset-2"
-          >
-            Close
-          </button>
-        </div>
-      </div>
+      )}
 
       {data.forms.length > 0 && (
         <div className="space-y-1.5">
@@ -330,7 +349,7 @@ function RootView({ data, accent, onGo, onOpenAyah, onClose }) {
             ? `First ${shown} of ${data.total} places, pick one to open it`
             : `All ${shown} places, pick one to open it`}
         </p>
-        <div className="grid sm:grid-cols-2 gap-1.5">
+        <div className="grid gap-1.5">
           {data.occurrences.map((o, i) => (
             <button
               key={`${o.surah}:${o.ayah}:${i}`}
@@ -350,5 +369,11 @@ function RootView({ data, accent, onGo, onOpenAyah, onClose }) {
         </div>
       </div>
     </div>
+  )
+
+  return folded ? (
+    <Disclosure label={title} className="rise-in">{body}</Disclosure>
+  ) : (
+    <div className="rise-in">{body}</div>
   )
 }

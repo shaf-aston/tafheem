@@ -100,3 +100,20 @@ def test_a_root_with_no_arabic_in_it_normalises_to_nothing():
     looked up, miss, and be reported as the book having no entry for it."""
     assert arabic_text.normalize_root("ktb") == ""
     assert arabic_text.normalize_root("") == ""
+
+
+@pytest.mark.parametrize("word", ["رَحْمَة", "الرحمن"])
+def test_a_word_answers_for_its_root(word):
+    from fastapi.testclient import TestClient
+    from backend.main import app
+
+    got = TestClient(app).get(f"/api/quran/root/{word}")
+    assert got.status_code == 200
+    assert got.json()["root"] == "رحم"
+
+
+def test_a_nonsense_word_is_not_found():
+    from fastapi.testclient import TestClient
+    from backend.main import app
+
+    assert TestClient(app).get("/api/quran/root/ززززززز").status_code == 404
