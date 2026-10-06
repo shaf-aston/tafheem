@@ -12,7 +12,7 @@ import { readSaved, writeSaved } from './stored'
  */
 const KEY = 'hadith-favorites'
 
-export const keyOf = ({ collection, number, part = '' }) => `${collection}:${number}${part}`
+export const favoriteKey = ({ collection, number, part = '' }) => `${collection}:${number}${part}`
 
 const read = () => {
   const saved = readSaved(KEY, [])
@@ -35,15 +35,15 @@ function save(next) {
 
 /** Star or unstar; a newly starred hadith goes first. Exported for the test. */
 export function toggleFavorite(hadith) {
-  const key = keyOf(hadith)
+  const key = favoriteKey(hadith)
   const { collection, book, number, part = '', arabic, english = '', grades = [], cite = '' } = hadith
-  save(items.some((h) => keyOf(h) === key)
-    ? items.filter((h) => keyOf(h) !== key)
+  save(items.some((h) => favoriteKey(h) === key)
+    ? items.filter((h) => favoriteKey(h) !== key)
     : [{ collection, book, number, part, arabic, english, grades, cite }, ...items])
 }
 
 export function useHadithFavorites() {
   const favorites = useSyncExternalStore(subscribe, () => items)
-  const isFavorite = useCallback((hadith) => favorites.some((h) => keyOf(h) === keyOf(hadith)), [favorites])
+  const isFavorite = useCallback((hadith) => favorites.some((h) => favoriteKey(h) === favoriteKey(hadith)), [favorites])
   return { favorites, isFavorite, toggle: toggleFavorite }
 }

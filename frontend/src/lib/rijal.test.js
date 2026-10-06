@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { runs, toneOf, told, withoutMarks } from './rijal'
+import { drawnChain, runs, toneOf, told, withoutMarks } from './rijal'
 
 describe('runs', () => {
   it('opens on a name at the very start', () => {
@@ -60,5 +60,14 @@ describe('told', () => {
   it('still uses the chain words where they read', () => {
     const out = told('حَدَّثَنَا زَيْدٌ عَنْ عَمْرٍو قَالَ "‏ صَلُّوا ‏"', [])
     expect(out.text.startsWith('عَنْ عَمْرٍو')).toBe(true)
+  })
+})
+
+describe('drawnChain', () => {
+  it('links each drawn name by where it stands, so a longer unlinked name never borrows a shorter one', () => {
+    const arabic = 'حَدَّثَنَا عَبْدُ اللَّهِ، قَالَ حَدَّثَنَا عَبْدُ اللَّهِ بْنُ مَسْعُودٍ، قَالَ "‏ صَلُّوا ‏"'
+    const first = arabic.indexOf('عَبْدُ اللَّهِ')
+    const out = drawnChain(arabic, [[first, first + 'عَبْدُ اللَّهِ'.length, 5]])
+    expect(out.main.map((l) => l.id)).toEqual([5, null])
   })
 })

@@ -8,11 +8,13 @@
  * side by side and join the main strand at the narrator both name. A strand
  * the books do not join anywhere stands on its own beside them, reaching only
  * the author, since that is all the text says. lib/hadithWords chainLinks
- * reads the chain; this only draws it.
+ * reads the chain; this only draws it. A name sunnah.com linked (lib/rijal
+ * linked) is a ui/NarratorLink.
  */
 import { Fragment } from 'react'
 
 import ArabicText from './ArabicText'
+import NarratorLink from './NarratorLink'
 
 /** A rung: a short line with the word that passed the hadith down it. */
 function Rung({ link, grow = false }) {
@@ -31,26 +33,26 @@ function Rung({ link, grow = false }) {
   )
 }
 
-function Narrator({ children }) {
+function Narrator({ link, onNarrator }) {
   return (
     <ArabicText
       size="base"
       className="block max-w-[var(--sheet-narrator)] text-center leading-relaxed px-3 py-1 rounded-[var(--radius-md)]
         border border-[var(--border)] bg-[var(--surface-hi)] text-[var(--text)]"
     >
-      {children}
+      <NarratorLink id={link.id} onOpen={onNarrator}>{link.name}</NarratorLink>
     </ArabicText>
   )
 }
 
 /** Narrators top down, each with the rung below it; the last rung reaches the foot. */
-function Strand({ links, top = null }) {
+function Strand({ links, top = null, onNarrator }) {
   return (
     <div className="flex flex-col items-center px-3">
       {top}
       {[...links].reverse().map((link, i, all) => (
         <Fragment key={`${link.name}-${i}`}>
-          <Narrator>{link.name}</Narrator>
+          <Narrator link={link} onNarrator={onNarrator} />
           <Rung link={link} grow={i === all.length - 1} />
         </Fragment>
       ))}
@@ -58,7 +60,7 @@ function Strand({ links, top = null }) {
   )
 }
 
-export default function ChainDrawing({ links, author }) {
+export default function ChainDrawing({ links, author, onNarrator }) {
   const { main, branches } = links
   // Where the branches join: the highest narrator any of them meets.
   const fork = Math.max(0, ...branches.map((b) => b.at ?? 0))
@@ -68,13 +70,13 @@ export default function ChainDrawing({ links, author }) {
 
   const tree = (
     <div className="flex flex-col items-center">
-      <Strand links={fork ? trunk.slice(1) : trunk} />
+      <Strand links={fork ? trunk.slice(1) : trunk} onNarrator={onNarrator} />
       {fork > 0 && (
         <>
-          <Narrator>{main[fork].name}</Narrator>
+          <Narrator link={main[fork]} onNarrator={onNarrator} />
           <div className="chain-split chain-merge flex items-stretch">
-            {joined.map((b, i) => <Strand key={i} links={b.links} top={<Rung link={b.join} />} />)}
-            <Strand links={main.slice(0, fork)} top={<Rung link={main[fork]} />} />
+            {joined.map((b, i) => <Strand key={i} links={b.links} top={<Rung link={b.join} />} onNarrator={onNarrator} />)}
+            <Strand links={main.slice(0, fork)} top={<Rung link={main[fork]} />} onNarrator={onNarrator} />
           </div>
         </>
       )}
@@ -89,6 +91,7 @@ export default function ChainDrawing({ links, author }) {
             <Strand
               key={i}
               links={b.links}
+              onNarrator={onNarrator}
               top={b.at !== null && <span className="type-tiny text-[var(--text-faint)] mb-1" dir="ltr">joins at <ArabicText size="tiny">{main[b.at].name}</ArabicText></span>}
             />
           ))}

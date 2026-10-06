@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { keyOf, toggleFavorite } from './useHadithFavorites'
+import { favoriteKey, toggleFavorite } from './useHadithFavorites'
 
 const store = new Map()
 vi.stubGlobal('localStorage', {
@@ -22,8 +22,8 @@ describe('starring a hadith', () => {
   it('a second press removes it, and a part letter is a different hadith', () => {
     toggleFavorite(hadith)
     toggleFavorite({ ...hadith, part: 'a' })
-    expect(saved().map(keyOf)).toEqual(['bukhari:1a', 'bukhari:1'])
+    expect(saved().map(favoriteKey)).toEqual(['bukhari:1a', 'bukhari:1'])
     toggleFavorite(hadith)
-    expect(saved().map(keyOf)).toEqual(['bukhari:1a'])
+    expect(saved().map(favoriteKey)).toEqual(['bukhari:1a'])
   })
 })

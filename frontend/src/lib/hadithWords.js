@@ -230,7 +230,7 @@ export function termOf(word) {
 // stay: they trail the name, so the prefix rule below reads past them, while
 // dropping الله would leave عبد الله as عبد.
 const SPELLINGS = HADITH.chain.spellings
-const keyOf = (name) => name.split(/\s+/).map(bare).filter(Boolean)
+export const keyOf = (name) => name.split(/\s+/).map(bare).filter(Boolean)
   .map((w, _, all) => (all.length > 1 && SPELLINGS[w]) || w.replace(/^ال/, '').replace(/(.{3,})ا$/, '$1').replace(/ة$/, 'ه').replace(/ى$/, 'ي'))
 const TOGETHER = new Set(HADITH.chain.together)
 // One narrator when the shorter key opens the longer (سليمان is سليمان بن يسار):
@@ -248,7 +248,7 @@ const shown = (raw) => raw.replace(/[^\u0621-\u063A\u0641-\u065F\u0670\u0671]/g,
 /**
  * A chain (from chainOf) as narrators and the word that passed it between
  * each two: [{ term, way, name }], in the book's order, teacher of the author
- * first. ح starts another strand; each one but the last becomes a branch of
+ * first, with `span`, where its name stands in `chain`. ح starts another strand; each one but the last becomes a branch of
  * `main` (the last): `at` is the place in `main` it joins, the first narrator
  * both name, and `join` the link that names him there, for its word. No
  * narrator named in both, and `at` is null: the books do not say where that
@@ -258,12 +258,14 @@ export function chainLinks(chain) {
   const strands = [[]]
   let term = null
   let name = []
+  let span = null   // where the name stands in `chain`: [start, end]
   const close = () => {
-    if (name.length) strands.at(-1).push({ term: term?.word ?? '', way: term?.way ?? '', name: name.join(' ') })
+    if (name.length) strands.at(-1).push({ term: term?.word ?? '', way: term?.way ?? '', name: name.join(' '), span })
     name = []
+    span = null
     term = null
   }
-  for (const raw of String(chain ?? '').match(/\S+/g) ?? []) {
+  for (const { 0: raw, index } of String(chain ?? '').matchAll(/\S+/g)) {
     const word = bare(raw)
     if (word === HADITH.chain.strand) { close(); strands.push([]); continue }
     if (TOGETHER.has(word)) {
@@ -274,7 +276,7 @@ export function chainLinks(chain) {
     }
     if (LINKS.has(word)) { close(); term = { word: shown(raw), way: termOf(raw)?.way ?? '' }; continue }
     if (SAYS.has(word)) { close(); continue }
-    if (word) name.push(shown(raw))
+    if (word) { name.push(shown(raw)); span = [span?.[0] ?? index, index + raw.length] }
   }
   close()
   const [main = [], ...rest] = strands.filter((s) => s.length).reverse()

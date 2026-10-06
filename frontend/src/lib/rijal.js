@@ -8,9 +8,9 @@
  */
 import HADITH from '../hadith.json'
 
-import { MARKS, QUOTED, chainOf } from './hadithWords'
+import { MARKS, QUOTED, chainLinks, chainOf } from './hadithWords'
 
-const { tones: TONES } = HADITH.narrator
+const { tones: TONES, teller: TELLER } = HADITH.narrator
 
 /** The tone a grade wears: the first whose highest rank covers it, else danger. */
 export const toneOf = (rank) => Object.entries(TONES).find(([, top]) => rank != null && rank <= top)?.[0] ?? 'danger'
@@ -52,9 +52,32 @@ export function told(arabic, names) {
   const before = names.filter(([, end]) => end <= arabic.search(QUOTED))
   const at = cut.chain
     ? arabic.lastIndexOf(cut.teller, arabic.length - cut.body.length)
-    : (before.length > 1 ? Math.max(...before.map(([start]) => start)) : 0)
+    : (before.length >= TELLER ? Math.max(...before.map(([start]) => start)) : 0)
   return {
     text: arabic.slice(at),
     names: names.filter(([start]) => start >= at).map(([start, end, id]) => [start - at, end - at, id]),
   }
+}
+
+/**
+ * A drawn chain (lib/hadithWords chainLinks of chainOf(arabic).chain) with each
+ * narrator's id where sunnah.com linked his name in this hadith: the slice
+ * overlapping the place his name stands. A name it did not link stays plain.
+ */
+export function linked(links, names) {
+  const add = (link) => link && {
+    ...link,
+    id: names.find(([start, end]) => link.span && start < link.span[1] && end > link.span[0])?.[2] ?? null,
+  }
+  return {
+    main: links.main.map(add),
+    branches: links.branches.map((b) => ({ ...b, links: b.links.map(add), join: add(b.join) })),
+  }
+}
+
+/** The chain drawing for one hadith, its names linked: `names` are its own slices. */
+export function drawnChain(arabic, names) {
+  const { chain } = chainOf(arabic)
+  const at = arabic.indexOf(chain)
+  return linked(chainLinks(chain), names.map(([start, end, id]) => [start - at, end - at, id]))
 }

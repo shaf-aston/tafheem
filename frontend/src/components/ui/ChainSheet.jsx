@@ -11,7 +11,7 @@ import ChainDrawing from './ChainDrawing'
 import ChainWords from './ChainWords'
 import CloseButton from './CloseButton'
 
-export default function ChainSheet({ links = null, author = '', onClose, accent }) {
+export default function ChainSheet({ links = null, author = '', onClose, accent, onNarrator }) {
   const [words, setWords] = useState(!links)
   const title = words ? 'Chain words' : 'The chain'
 
@@ -34,7 +34,7 @@ export default function ChainSheet({ links = null, author = '', onClose, accent 
         </span>
       </header>
       <div className="overflow-y-auto px-5 pb-5">
-        {words ? <ChainWords /> : <ChainDrawing links={links} author={author} />}
+        {words ? <ChainWords /> : <ChainDrawing links={links} author={author} onNarrator={onNarrator} />}
       </div>
     </BottomSheet>
   )
