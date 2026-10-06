@@ -64,7 +64,8 @@ def test_malik_is_graded_first_rank_of_the_seventh_generation():
 @pytest.fixture()
 def built(tmp_path, monkeypatch):
     """The two fixture hadith and Malik's page put through the real build, into a temporary rijal.db."""
-    paths = {"rijal_pages_dir": tmp_path / "pages", "rijal_index_path": tmp_path / "rijal.db"}
+    paths = {"rijal_pages_dir": tmp_path / "pages", "rijal_index_path": tmp_path / "rijal.db",
+             "rijal_dir": build_rijal.data_path("rijal_dir")}
     for module in (cache, store, build_rijal):
         monkeypatch.setattr(module, "data_path", paths.__getitem__)
     monkeypatch.setattr(loader, "hadiths", lambda *_: [
@@ -116,3 +117,15 @@ def test_family_meets_the_viewed_chain():
     assert meet([9, 2], viewed) == ([9], 2, [3, 4])  # stops early, borrows the rest
     assert meet([7, 8], viewed) == ([7, 8], None, [])  # fully its own
     assert meet([5, 5, 3], [1, 3, 3, 4]) == ([5, 5], 3, [3, 4])  # a repeated narrator
+
+
+def test_the_narrator_list_ranks_by_hadith_and_filters_by_generation(built):
+    page = built.get("/api/rijal/narrators").json()
+    counts = [n["hadith_count"] for n in page["items"]]
+    assert page["total"] == len(counts) >= 2 and counts == sorted(counts, reverse=True)
+    top = next(n for n in page["items"] if n["id"] == 6659)
+    assert top["hadith_count"] == 1 and top["generation_ar"] == "السابعة"
+    assert [g["key"] for g in page["generations"]][0] == "companions"
+    mine = built.get("/api/rijal/narrators", params={"generation": "students"}).json()
+    assert 6659 in [n["id"] for n in mine["items"]] and mine["total"] < page["total"]
+    assert built.get("/api/rijal/narrators", params={"offset": page["total"]}).json()["items"] == []

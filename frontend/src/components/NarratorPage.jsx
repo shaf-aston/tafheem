@@ -46,7 +46,7 @@ export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith 
   const { of } = useHadithCollections()
 
   return (
-    <div className="space-y-4 max-w-3xl">
+    <div className="space-y-4">
       <button type="button" onClick={onBack} className="press type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors">
         &larr; Back
       </button>
@@ -62,6 +62,8 @@ export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith 
             {who.lineage_ar && <ArabicText as="p" size="sm" className="block text-[var(--text-dim)] m-0">{who.lineage_ar}</ArabicText>}
           </div>
 
+          {/* The three side by side where the width allows, one column on a phone. */}
+          <div className="grid gap-x-6 gap-y-4 grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))] [&>*]:min-w-0">
           {who.verdicts.length > 0 && (
             <Section title="What scholars said">
               <ShowRest lines={6} accent={accent}>
@@ -84,6 +86,7 @@ export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith 
               </FoldedList>
             </Section>
           ))}
+          </div>
 
           {hadith.length > 0 && (
             <Section title={`Hadith narrated (${hadith.length})`}>

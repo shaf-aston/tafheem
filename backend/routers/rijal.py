@@ -6,7 +6,7 @@ import asyncio
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.schemas import Narrator, RijalChains, RijalFamily, FamilyPart, FamilyNarrator, RijalHadithRef, RijalSearch
+from backend.models.schemas import Narrator, NarratorList, RijalChains, RijalFamily, FamilyPart, FamilyNarrator, RijalHadithRef, RijalSearch
 from backend.services import provenance
 from backend.services.rijal import family, store
 
@@ -38,6 +38,15 @@ async def get_family(collection: str, number: int, part: str = Query("", max_len
             part=f["part"], book=f["book"], own=named(own), meet=named([met])[0] if met is not None else None,
             borrowed=named(borrowed), narrators=named([n["id"] for n in f["narrators"]]), said=f["said"]))
     return RijalFamily(viewed=viewed["part"], parts=parts)
+
+
+@router.get("/narrators", response_model=NarratorList)
+async def list_narrators(generation: str = Query("", max_length=20), offset: int = Query(0, ge=0),
+                         limit: int = Query(0, ge=0)) -> NarratorList:
+    """Narrators named in our hadith, most narrated first; limit 0 is the configured page, capped at its maximum."""
+    cfg = get_settings()
+    size = min(limit or cfg.rijal_list_page, cfg.rijal_list_max)
+    return NarratorList(**await asyncio.to_thread(store.narrators, generation, offset, size))
 
 
 @router.get("/narrators/{narrator_id}", response_model=Narrator)

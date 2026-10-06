@@ -272,6 +272,9 @@ class Settings(BaseSettings):
     rijal_index_path: str = "data/rijal.db"
     # Narrators one search lists.
     rijal_result_limit: int = Field(default=20, gt=0)
+    # Narrators one page of the narrator list shows, and the most a request may ask for.
+    rijal_list_page: int = Field(default=60, gt=0)
+    rijal_list_max: int = Field(default=200, gt=0)
     # Hadith one narrator's page lists, all of them behind "Show all".
     rijal_hadith_limit: int = Field(default=5000, gt=0)
     # A hadith is read in full, so a long results page stops being read.

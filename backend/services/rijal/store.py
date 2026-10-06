@@ -17,6 +17,44 @@ _db = ReadOnlyDb(lambda: data_path("rijal_index_path"))
 _SUMMARY = "n.id, n.name_ar, n.name_en, n.grade_ar, n.grade_rank"
 
 
+_counts: tuple | None = None  # (db stamp, [(narrator id, hadith named in), ...] most first)
+
+
+def _generations() -> list[dict]:
+    return json.loads((data_path("rijal_dir") / "rijal.json").read_text(encoding="utf-8"))["generations"]
+
+
+def _ranked(db) -> list[tuple[int, int]]:
+    """Every narrator named in a hadith with how many hadith name him, most first. One ~1 s scan per build of the file."""
+    global _counts
+    stamp = _db.stamp()
+    if _counts is None or _counts[0] != stamp:
+        rows = db.execute("SELECT narrator_id, COUNT(DISTINCT collection || number || part) n FROM mention "
+                          "GROUP BY narrator_id ORDER BY n DESC, narrator_id").fetchall()
+        _counts = (stamp, [(r[0], r[1]) for r in rows])
+    return _counts[1]
+
+
+def narrators(generation: str, offset: int, limit: int) -> dict:
+    """A page of narrators by how many hadith name them; `generation` is a key of rijal.json's groups, "" for all."""
+    db = _db()
+    groups = _generations()
+    if not db:
+        return {"items": [], "total": 0, "generations": groups}
+    ranked = _ranked(db)
+    group = next((g for g in groups if g["key"] == generation), None)
+    marks = ",".join("?" * len(group["tabaqat"])) if group else ""
+    keep = {r[0] for r in db.execute(  # a mention can name someone with no page yet
+        "SELECT id FROM narrator" + (f" WHERE generation_ar IN ({marks})" if group else ""), group["tabaqat"] if group else ())}
+    ranked = [r for r in ranked if r[0] in keep]
+    page = ranked[offset:offset + limit]
+    by_id = {r["id"]: dict(r) for r in db.execute(
+        f"SELECT {_SUMMARY}, n.generation_ar, n.years, n.city_ar FROM narrator n "
+        f"WHERE n.id IN ({','.join('?' * len(page))})", [p[0] for p in page])}
+    return {"items": [{**by_id[i], "hadith_count": n} for i, n in page if i in by_id],
+            "total": len(ranked), "generations": groups}
+
+
 def is_built() -> bool:
     return _db() is not None
 
