@@ -119,7 +119,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     shown = [{answers[token["id"]]["governor"], answers[token["id"]]["follows"], case}
              for token, case in zip(bases, cases)]
     # a piece written onto a تابع joins it, it does not govern it: وَإِيمَانٌ shows عطف first
-    joined = [{answers[token["id"]]["follows"]} if answers[token["id"]]["follows"] else said
+    joined = [{answers[token["id"]]["follows"]} if answers[token["id"]]["follows"] not in (None, "none") else said
               for token, said in zip(bases, shown)]
     word_of = _typed_word_of(bases, tokens)
     # the parser's tense goes with a فعل, so a card CAMeL took for a noun (ضُرِبَ) still says ماضٍ
@@ -128,7 +128,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "book": book_path(found.path, found.book) if found else None,
              "attached": [{"id": t["id"], "role": role_by_id[t["id"]], "before": t["form"].endswith("+"), "form": t["form"].strip("+"),
-                           "family": _family(t, bases, joined, below=True) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None}
+                           "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None}
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
              **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]])}
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
@@ -232,14 +232,15 @@ def _followers_take_their_case(named: list, cases: list, bases: list[dict], toke
             cases[i] = cases[head]
 
 
-def _family(token: dict, bases: list[dict], shown: list[set], below: bool = False) -> str | None:
+def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None = None) -> str | None:
     """The family a particle or verb is named by (كان فعل ماضٍ ناقص، إنّ حرف مشبه بالفعل):
     one whose list holds it and whose effect shows on a word linked to it, the noun hung
     on إنّ or كان, or the verb لم hangs on. A listed word that governs nothing here (the
-    لا of a plain negation) keeps its plain name. A piece written onto a word (وَ، بِـ)
-    works only on the word `below` it: the وَ of وَإِيمَانٌ hangs on a مجرور's neighbour."""
-    linked = set().union(*(said for other, said in zip(bases, shown)
-                           if other["head"] == token["id"] or (not below and other["id"] == token["head"])))
+    لا of a plain negation) keeps its plain name. A piece written onto a word (وَ، بِـ، لْـ)
+    works only on that word (`onto`, what it shows) and the words hung below it: the وَ of
+    وَإِيمَانٌ hangs on a مجرور's neighbour, and the لْ of فَلْيَصُمْهُ on nothing at all."""
+    linked = set().union(onto or set(), *(said for other, said in zip(bases, shown)
+                         if other["head"] == token["id"] or (onto is None and other["id"] == token["head"])))
     return next((family for family, card in family_cards()
                  if card["governs"] in linked and in_family(token["lemma"], family)), None)
 

@@ -8,37 +8,23 @@
  * An event resting on a weak narration keeps its card, drawn with a dashed
  * edge and said in words for a screen reader, as the old line did.
  */
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 
 import ArabicText from './ui/ArabicText'
 import TileCard from './ui/TileCard'
 import { asbabQuery } from '../api'
+import { useRail } from '../lib/useRail'
 import { onHover } from '../lib/warm'
 import { NO_DATE, eventIcon, isDated, sectionLook } from '../lib/timelineLayout'
 
 const WEAK = 'weakchain'
-const PAGE = 0.8   // share of the visible width one arrow press moves
-const EDGE = 4     // px of slack before an end counts as reached
 
 export default function TimelineRail({ section, library, chosenId, onPick }) {
-  const strip = useRef(null)
+  const { strip, ends, measure, page } = useRail(section.id)
   const client = useQueryClient()
-  const [ends, setEnds] = useState({ start: true, end: false })
   const { hue } = sectionLook(section.id)
   const dated = isDated(section)
-
-  const measure = useCallback(() => {
-    const el = strip.current
-    if (!el) return
-    setEnds({ start: el.scrollLeft < EDGE, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - EDGE })
-  }, [])
-
-  useEffect(() => {
-    measure()
-    window.addEventListener('resize', measure)
-    return () => window.removeEventListener('resize', measure)
-  }, [measure, section.id])
 
   // Centre the opened card in the strip only: scrollIntoView would move the page too.
   useEffect(() => {
@@ -46,16 +32,11 @@ export default function TimelineRail({ section, library, chosenId, onPick }) {
     const card = el?.querySelector('[aria-current="true"]')
     if (!card) return
     el.scrollTo({ left: card.offsetLeft - (el.clientWidth - card.offsetWidth) / 2 })
-  }, [chosenId, section.id])
-
-  const page = (dir) => {
-    const el = strip.current
-    el.scrollBy({ left: dir * el.clientWidth * PAGE, behavior: 'smooth' })
-  }
+  }, [chosenId, section.id, strip])
 
   return (
     <div className="tl-rail tl-hue" style={{ '--h': hue }}>
-      <button type="button" className="tl-arrow tl-arrow-l" aria-label="Earlier" disabled={ends.start} onClick={() => page(-1)}>
+      <button type="button" className="rail-arrow rail-arrow-l" aria-label="Earlier" disabled={ends.start} onClick={() => page(-1)}>
         &#8249;
       </button>
       <div ref={strip} className="tl-strip" tabIndex={0} aria-label={`${section.name} timeline`} onScroll={measure}>
@@ -92,7 +73,7 @@ export default function TimelineRail({ section, library, chosenId, onPick }) {
           })}
         </div>
       </div>
-      <button type="button" className="tl-arrow tl-arrow-r" aria-label="Later" disabled={ends.end} onClick={() => page(1)}>
+      <button type="button" className="rail-arrow rail-arrow-r" aria-label="Later" disabled={ends.end} onClick={() => page(1)}>
         &#8250;
       </button>
     </div>

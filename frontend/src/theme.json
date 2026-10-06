@@ -267,10 +267,12 @@
     "pop": "0 6px 18px rgba(0, 0, 0, 0.45)"
   },
   "arabic": {
-    "_comment": "One ladder for every piece of Arabic in the app, in rem. Four rungs, smallest first, one for each of ui/ArabicText's sizes: tiny is a name inside another name in the tarkeeb diagram; small is a term or a table cell; reading is Arabic being read: an ayah, a memorise page, a dictionary entry, the sentence a diagram is drawn under; display is a word on its own, in a search box or as an answer. The diagram used to keep a ladder of its own, and then a rung of its own, and both times its words drifted a third bigger than the same sentence in the word cards under it. Anything Arabic picks a rung here; nothing sets a size of its own.",
+    "_comment": "One ladder for every piece of Arabic in the app, in rem. Smallest first; tiny, small, reading and display are ui/ArabicText's sizes: tiny is a name inside another name; small is a term or a table cell, and a name inside another name in the tarkeeb chart; term is a name read under its word in the chart; reading is Arabic being read: an ayah, a memorise page, a dictionary entry, chart is the sentence the tarkeeb chart is drawn under, read across a row of names rather than as a line; display is a word on its own, in a search box or as an answer. The diagram used to keep a ladder of its own, and then a rung of its own, and both times its words drifted a third bigger than the same sentence in the word cards under it. Anything Arabic picks a rung here; nothing sets a size of its own.",
     "tiny-rem": 0.9,
     "small-rem": 1.05,
+    "term-rem": 1.25,
     "reading-rem": 1.5,
+    "chart-rem": 1.75,
     "display-rem": 2.4,
     "line-height": 1.9,
     "input-line-height": 1.6
@@ -306,7 +308,7 @@
     "title": "1.25rem",
     "display": "1.875rem"
   },
-  "_tarkeeb_comment": "The diagram has no sizes of its own any more. Its sentence is the arabic 'heading' rung, its role names 'small', a name inside another name 'tiny', and its + signs the English type 'body' size. Depth still reads as size, the steps are just shared with the rest of the app instead of being a second private ladder. Its colours are the 'role' group.",
+  "_tarkeeb_comment": "The diagram has no sizes of its own any more. Its sentence is the arabic 'chart' rung, its role names 'term', a name inside another name 'small', and its + signs the English type 'body' size. Depth still reads as size, the steps are just shared with the rest of the app instead of being a second private ladder. Its colours are the 'role' group.",
   "glow": {
     "strength": "0.55",
     "blur": "18px"

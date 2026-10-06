@@ -88,8 +88,10 @@ export const share = (piece) =>
  * of a compound is the connector (`ghair_aamil: true`) and, on that word,
  * the connector's own exact text (`prefix_arabic`). Turning that into two
  * grid columns is display policy, so it happens here rather than in the API.
+ * `written` is the written word each column was cut from (a typed sentence
+ * comes already cut, فَـ لْـ يَصُمْهُ); both pieces of a split keep their word's.
  */
-export function splitConnectors(words, tree) {
+export function splitConnectors(words, tree, written = words.map((_, i) => i)) {
   const splits = new Map() // original word index -> { text, piece }
   const find = (node) => {
     const children = kids(node)
@@ -99,9 +101,10 @@ export function splitConnectors(words, tree) {
     if (piece) splits.set(node.word, { text: node.prefix_arabic, piece })
   }
   find(tree)
-  if (splits.size === 0) return { words, tree, terms: [] }
+  if (splits.size === 0) return { words, written, tree, terms: [] }
 
   const newWords = []
+  const newWritten = [] // the written word each new column was cut from
   const wordAt = []       // original index -> new index of the word's own remainder
   const connectorAt = []  // original index -> new index of the connector, when split
   words.forEach((full, i) => {
@@ -109,9 +112,11 @@ export function splitConnectors(words, tree) {
     if (split && full.startsWith(split.text) && split.text.length < full.length) {
       connectorAt[i] = newWords.length
       newWords.push(split.text)
+      newWritten.push(written[i])
     }
     wordAt[i] = newWords.length
     newWords.push(connectorAt[i] === undefined ? full : full.slice(split.text.length))
+    newWritten.push(written[i])
   })
 
   const rewrite = (node) => {
@@ -145,6 +150,7 @@ export function splitConnectors(words, tree) {
 
   return {
     words: newWords,
+    written: newWritten,
     tree: { ...tree, children: tree.children.flatMap(rewrite) },
     terms: [...new Set([...splits.values()].map((s) => s.piece.role))],
   }

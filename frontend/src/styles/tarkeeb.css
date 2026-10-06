@@ -4,16 +4,51 @@
    words above it without measuring anything. A gutter column on the far left
    holds each level's "= name". Classes are prefixed tk- because .word and
    .role above mean different things. */
-/* Sideways only. Setting overflow-x alone makes overflow-y auto as well, and
-   the last brace's stem, hanging below the grid, drew a vertical scrollbar
-   with arrows down the side of every diagram. The padding holds that stem. A
-   long sentence or a phone still scrolls sideways, on the app's thin bar. */
+/* Sideways only, paged like the timeline's rail: round arrows (lib/useRail),
+   no scrollbar, no faded edges. Setting overflow-x alone makes overflow-y auto
+   as well, and the last brace's stem, hanging below the grid, drew a vertical
+   scrollbar; the padding holds that stem. */
+.tk-frame { position: relative; }
 .tk-scroller {
   overflow-x: auto;
   overflow-y: hidden;
   padding-bottom: 1rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
+  scrollbar-width: none;
+}
+.tk-scroller::-webkit-scrollbar { display: none; }
+
+/* The line above: one dot per word, lit while the word is in view; a dot
+   takes the chart to its word. Quiet on purpose, the words are the content. */
+.tk-dots { position: relative; height: 1.25rem; margin: 0 0.5rem 0.25rem; }
+.tk-dots::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: calc(50% - 0.5px);
+  height: 1px;
+  background: color-mix(in srgb, var(--primary) 22%, transparent);
+}
+.tk-dot {
+  position: absolute;
+  top: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: -0.625rem;
+  display: grid;
+  place-items: center;
+}
+.tk-dot::after {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1.5px solid color-mix(in srgb, var(--primary) 45%, transparent);
+  transition: background calc(var(--motion-base-ms) * 1ms) ease, border-color calc(var(--motion-base-ms) * 1ms) ease;
+}
+.tk-dot[data-on]::after {
+  background: color-mix(in srgb, var(--primary) 60%, transparent);
+  border-color: transparent;
 }
 
 .tk-grid {
@@ -21,20 +56,28 @@
   display: grid;
   width: 100%;
   min-width: max-content;
-  row-gap: 1.4rem;
+  row-gap: 0.85rem;
   font-family: var(--font-arabic);
 }
 
 .tk-word { grid-row: 1; display: flex; justify-content: center; }
 .tk-word span {
-  /* Reading size, the same as the word cards under the diagram and every other
-     piece of Arabic being read: one sentence, one size, wherever it is drawn. */
-  font-size: calc(var(--arabic-reading-rem) * 1rem);
+  /* The chart rung: a sentence read word by word across a row of names. */
+  font-size: calc(var(--arabic-chart-rem) * 1rem);
   line-height: 1.5;
-  padding: 0 0.5rem 0.3rem;
+  padding: 0 0.6rem 0.2rem;
   border-bottom: 1.5px solid var(--border-hi);
   white-space: nowrap;
 }
+
+/* Pieces of one written word (فَـ لْـ يَصُمْهُ) sit close and share one line
+   underneath, each still over its own name: the piece starting the word leans
+   to the one after it, the last leans back, so the word reads as one. */
+.tk-word.tk-piece span { padding-inline: 0.05rem; border-bottom-color: color-mix(in srgb, var(--primary) 55%, transparent); }
+.tk-word.tk-piece-first { justify-content: flex-end; }
+.tk-word.tk-piece-first span { padding-inline-start: 0.6rem; }
+.tk-word.tk-piece-last { justify-content: flex-start; }
+.tk-word.tk-piece-last span { padding-inline-end: 0.6rem; }
 
 /* A name the Treebank supplied that the app has not checked against a book. It
    still reads, but it must not look as settled as a term that was checked. */
@@ -64,12 +107,16 @@
 }
 .tk-roles { display: flex; align-items: flex-end; }
 .tk-role {
-  flex: 1 1 0;
+  flex: 1 1 auto;
   text-align: center;
-  font-size: calc(var(--arabic-small-rem) * 1rem);
-  line-height: 1.5;
+  font-size: calc(var(--arabic-term-rem) * 1rem);
+  line-height: 1.4;
   color: var(--tone, var(--role-default));
   padding: 0 0.2rem;
+  /* a long name (حرف جزم، لام الأمر) takes two lines rather than widening its word's column */
+  max-width: 6.5em;
+  text-wrap: balance;
+  margin-inline: auto;
 }
 /* A join the rules could not make: named as open, and drawn as open. */
 .tk-role.tk-gap { color: var(--role-gap); border-bottom: 1px dashed var(--role-gap); }
@@ -114,7 +161,7 @@
   transform: translateY(-50%);
   white-space: nowrap;
   padding-inline-start: 0.6rem;
-  font-size: calc(var(--arabic-small-rem) * 1rem);
+  font-size: calc(var(--arabic-term-rem) * 1rem);
   color: var(--tone, var(--text));
 }
 /* A group that does not reach the leftmost word has no gutter beside it, only
@@ -136,4 +183,3 @@
   font-family: var(--font-ui);
 }
 
-.tk-inside .tk-role { font-size: calc(var(--arabic-tiny-rem) * 1rem); }
