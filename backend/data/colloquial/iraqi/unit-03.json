@@ -555,9 +555,7 @@
         },
         {
           "speaker": "زبون",
-          "arabic": "اريد ربطة خبز طازة",
-          "transliteration": "areed rabtit khubuz taaza",
-          "english": "I want a fresh bundle of bread"
+          "slot": "i-want-a-fresh-bundle-of-bread"
         },
         {
           "speaker": "خباز",
@@ -579,9 +577,7 @@
         },
         {
           "speaker": "زبون",
-          "arabic": "اريد كيلو لحم مفروم",
-          "transliteration": "areed kilo la7am mafroom",
-          "english": "I want a kilo of ground meat"
+          "slot": "i-want-a-kilo-of-ground-meat"
         },
         {
           "speaker": "قصاب",
@@ -1336,9 +1332,7 @@
       "dialogue": [
         {
           "speaker": "علي",
-          "arabic": "تحب الاكل الحار؟",
-          "transliteration": "ti7ibb il-akil il-7aar?",
-          "english": "Do you like spicy food?"
+          "slot": "do-you-like-spicy-food"
         },
         {
           "speaker": "زينب",

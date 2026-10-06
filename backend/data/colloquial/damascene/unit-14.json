@@ -116,9 +116,7 @@
         },
         {
           "speaker": "سارة",
-          "arabic": "عَسَاكُم مِن عَوَاده",
-          "transliteration": "3asaakon min 3awaado",
-          "english": "May you witness it again next year"
+          "slot": "may-you-witness-it-again-next-year"
         },
         {
           "speaker": "أم أحمد",

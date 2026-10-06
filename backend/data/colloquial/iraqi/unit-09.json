@@ -146,9 +146,7 @@
         },
         {
           "speaker": "Ali",
-          "arabic": "شَكْلَك عِنْدَك نَزْلَة بَرْد",
-          "transliteration": "shaklak 3indak nazlat bard",
-          "english": "Looks like you have a cold"
+          "slot": "looks-like-you-have-a-cold-to-a-man"
         },
         {
           "speaker": "Hasan",
@@ -557,9 +555,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "عِنْدَك دَوَا لِلصُّدَاع؟",
-          "transliteration": "3indak dawa liS-Sudaa3?",
-          "english": "Do you have medicine for a headache?"
+          "slot": "do-you-have-medicine-for-a-headache"
         },
         {
           "speaker": "Pharmacist",
@@ -593,9 +589,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "لَازِم رِيسِيتَة؟",
-          "transliteration": "laazim reseeta?",
-          "english": "Do I need a prescription?"
+          "slot": "do-i-need-a-prescription"
         },
         {
           "speaker": "Pharmacist",
@@ -605,9 +599,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "گِبْل الأَكْل لُو بَعْدُه؟",
-          "transliteration": "gabul il-akil loo ba3da?",
-          "english": "Before eating or after?"
+          "slot": "before-eating-or-after"
         },
         {
           "speaker": "Pharmacist",
@@ -1009,9 +1001,7 @@
         },
         {
           "speaker": "Doctor",
-          "arabic": "مِن شُوگِت تِحِس هِيچ؟",
-          "transliteration": "min shoogit ti7iss heech?",
-          "english": "Since when have you felt like this?"
+          "slot": "since-when-have-you-been-feeling-like-this-to-a-"
         },
         {
           "speaker": "Saeed",

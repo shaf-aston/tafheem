@@ -530,9 +530,7 @@
         },
         {
           "speaker": "Noor",
-          "arabic": "شِنُو تِحِبّ تَاكُل؟",
-          "transliteration": "shinu ti7ibb taakul؟",
-          "english": "What do you like to eat?"
+          "slot": "what-do-you-like-to-eat"
         },
         {
           "speaker": "Hussein",
@@ -596,9 +594,7 @@
         },
         {
           "speaker": "Noor",
-          "arabic": "شَكِدّ الْحِسَاب؟",
-          "transliteration": "shgadd il-7isaab؟",
-          "english": "How much is the bill?"
+          "slot": "how-much-is-the-bill"
         }
       ],
       "de_book": [

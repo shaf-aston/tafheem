@@ -462,9 +462,8 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "للأسف كاش بس",
-          "transliteration": "lal2asaf kaash bas",
-          "english": "Unfortunately only cash."
+          "slot": "can-i-pay-by-card",
+          "reply": true
         },
         {
           "speaker": "الزبون",
@@ -739,9 +738,7 @@
       "dialogue": [
         {
           "speaker": "الموظف",
-          "arabic": "جوازك لو سمحت",
-          "transliteration": "jawaazak law sama7t",
-          "english": "Your passport please."
+          "slot": "your-passport-please"
         },
         {
           "speaker": "المسافر",
@@ -751,9 +748,7 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "جاي سياحة ولا شغل؟",
-          "transliteration": "jaay siyaa7a walla shughel?",
-          "english": "Coming for tourism or work?"
+          "slot": "are-you-coming-for-tourism-or-work"
         },
         {
           "speaker": "المسافر",
@@ -763,9 +758,7 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "بتقعد هني كم يوم؟",
-          "transliteration": "bitgu3ud hni kam yawm?",
-          "english": "How long will you stay here?"
+          "slot": "how-long-will-you-stay-here"
         },
         {
           "speaker": "المسافر",
@@ -775,15 +768,12 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "معك حاجة تصرح عنها؟",
-          "transliteration": "ma3ak 7aaja taSarri7 3anha?",
-          "english": "Do you have anything to declare?"
+          "slot": "do-you-have-anything-to-declare"
         },
         {
           "speaker": "المسافر",
-          "arabic": "لا، ما معي حاجة",
-          "transliteration": "la, ma ma3i 7aaja",
-          "english": "No, I don't have anything."
+          "slot": "do-you-have-anything-to-declare",
+          "reply": true
         },
         {
           "speaker": "الموظف",
@@ -1118,9 +1108,7 @@
         },
         {
           "speaker": "المسافر",
-          "arabic": "الله يعوض، إن شاء الله يصير خير",
-          "transliteration": "alla y3awwiD, in shaa alla yeSeer khayr",
-          "english": "May God make up for it, God willing it will work out."
+          "slot": "may-god-make-up-for-it-god-willing-it-ll-work-ou"
         },
         {
           "speaker": "الموظف",

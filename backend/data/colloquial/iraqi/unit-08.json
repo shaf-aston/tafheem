@@ -556,9 +556,7 @@
         },
         {
           "speaker": "Noor",
-          "arabic": "اليوم أكو دوام إضافي؟",
-          "transliteration": "il-yoom aku dawaam iDaafi?",
-          "english": "Is there overtime today?"
+          "slot": "are-there-overtime-hours-today"
         },
         {
           "speaker": "Hassan",

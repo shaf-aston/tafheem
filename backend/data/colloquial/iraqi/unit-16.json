@@ -450,7 +450,8 @@
         {
           "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
           "arabic": "كِبْرِت بِمَحَلَّة گْدِيمَة بِبَغْدَاد",
-          "transliteration": "kibart b-ma7alla gdeema b-baghdaad"
+          "transliteration": "kibart b-ma7alla gdeema b-baghdaad",
+          "english": "I grew up in an old neighborhood in Baghdad."
         },
         {
           "slot": "i-had-a-friend-named-kareem",
@@ -560,9 +561,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "وَكْتِهَا الْحَيَاة چَانِت أَبْسَط هَوَايَة",
-          "transliteration": "wakitha il-7ayaa chaanat absa6 hawaaya",
-          "english": "Back then life was much simpler."
+          "slot": "back-then-life-was-much-simpler"
         },
         {
           "speaker": "Mustafa",

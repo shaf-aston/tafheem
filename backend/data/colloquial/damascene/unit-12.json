@@ -99,9 +99,7 @@
       "dialogue": [
         {
           "speaker": "Samer",
-          "arabic": "آلُّو؟",
-          "transliteration": "aaloo?",
-          "english": "Hello?"
+          "slot": "hello-answering-the-phone"
         },
         {
           "speaker": "Lina",
@@ -489,9 +487,8 @@
         },
         {
           "speaker": "Samer",
-          "arabic": "تَمام، مِنْشُوف بَعِض الْسَاعَة سَبْعَة",
-          "transliteration": "tamaam, mnshuuf ba3ḍ is-saa3a sab3a",
-          "english": "Great, we'll see each other at 7."
+          "slot": "is-7-o-clock-good",
+          "reply": true
         },
         {
           "speaker": "Lina",
@@ -1191,9 +1188,7 @@
       "dialogue": [
         {
           "speaker": "Rami",
-          "arabic": "آلُّو، سامِر مَوْجُود؟",
-          "transliteration": "aaloo, Saamer mawjuud?",
-          "english": "Hello, is Samer there?"
+          "slot": "hello-is-samer-there"
         },
         {
           "speaker": "Lina",
@@ -1221,9 +1216,8 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "أكِيد، شو بِدَّك تِقُولْه؟",
-          "transliteration": "akiid, shu biddak t2uulo?",
-          "english": "Sure, what do you want to tell him?"
+          "slot": "can-you-take-a-message-for-me",
+          "reply": true
         },
         {
           "speaker": "Rami",

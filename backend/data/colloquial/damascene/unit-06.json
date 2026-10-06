@@ -138,9 +138,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "فِيِّني قَيِّسُهْ؟",
-          "transliteration": "fiini 2ayyso?",
-          "english": "Can I try it on?"
+          "slot": "can-i-try-it-on"
         },
         {
           "speaker": "Abu Khaled",

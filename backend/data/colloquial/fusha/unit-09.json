@@ -545,21 +545,16 @@
         },
         {
           "speaker": "Saif",
-          "arabic": "كَمْ سِعْرُ هَذَا الدَّوَاء؟",
-          "transliteration": "kam si3ru haadhaa ad-dawaa2?",
-          "english": "How much does this medicine cost?"
+          "slot": "how-much-does-this-medicine-cost"
         },
         {
           "speaker": "Lama",
-          "arabic": "عَشَرَةُ دَنَانِير.",
-          "transliteration": "3asharatu danaaneer.",
-          "english": "Ten dinars."
+          "slot": "how-much-does-this-medicine-cost",
+          "reply": true
         },
         {
           "speaker": "Saif",
-          "arabic": "هَلْ أَحْتَاجُ إِلَى وَصْفَةٍ طِبِّيَّة؟",
-          "transliteration": "hal a7taaju ilaa wasfatin tibbiyya?",
-          "english": "Do I need a prescription?"
+          "slot": "do-i-need-a-prescription"
         },
         {
           "speaker": "Lama",
@@ -569,9 +564,7 @@
         },
         {
           "speaker": "Saif",
-          "arabic": "قَبْلَ الْأَكْلِ أَمْ بَعْدَهُ؟",
-          "transliteration": "qabla al-akli am ba3dahu?",
-          "english": "Before eating or after?"
+          "slot": "before-eating-or-after"
         },
         {
           "speaker": "Lama",
@@ -968,15 +961,12 @@
         },
         {
           "speaker": "Dr. Samir",
-          "arabic": "مُنْذُ مَتَى تَشْعُرُ بِهَذَا؟",
-          "transliteration": "mundhu mataa tash3uru bihaadhaa?",
-          "english": "Since when have you been feeling this?"
+          "slot": "since-when-have-you-been-feeling-like-this-to-a-"
         },
         {
           "speaker": "Nasser",
-          "arabic": "مُنْذُ يَوْمَيْن.",
-          "transliteration": "mundhu yawmayn.",
-          "english": "For two days."
+          "slot": "since-when-have-you-been-feeling-like-this-to-a-",
+          "reply": true
         },
         {
           "speaker": "Dr. Samir",
@@ -998,9 +988,8 @@
         },
         {
           "speaker": "Nasser",
-          "arabic": "لَا، لَيْسَ عِنْدِي.",
-          "transliteration": "laa, laysa 3indee.",
-          "english": "No, I'm not."
+          "slot": "are-you-allergic-to-any-medicine-to-a-man",
+          "reply": true
         },
         {
           "speaker": "Dr. Samir",
@@ -1022,9 +1011,8 @@
         },
         {
           "speaker": "Nasser",
-          "arabic": "شُكْرًا يَا دُكْتُور.",
-          "transliteration": "shukran yaa duktoor.",
-          "english": "Thank you, doctor."
+          "slot": "get-well-soon-take-it-easy-to-a-man",
+          "reply": true
         }
       ],
       "de_book": [
@@ -1793,9 +1781,8 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "نَعَمْ، قَلِيلًا.",
-          "transliteration": "na3am, qaleelan.",
-          "english": "Yes, a little."
+          "slot": "does-this-hurt-you-to-a-man",
+          "reply": true
         },
         {
           "speaker": "Layla",
@@ -1811,9 +1798,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "سَأُعْطِيكَ حُقْنَةً حَتَّى لَا تَشْعُرَ بِأَلَم.",
-          "transliteration": "sa-u3teeka 7uqnatan 7attaa laa tash3ura bi-alam.",
-          "english": "I'll give you an injection so you won't feel pain."
+          "slot": "i-ll-give-you-an-injection-so-you-won-t-feel-pai"
         },
         {
           "speaker": "Omar",
@@ -1835,9 +1820,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "لَا تَأْكُلْ شَيْئًا لِمُدَّةِ سَاعَتَيْن.",
-          "transliteration": "laa ta2kul shay2an limuddati saa3atayn.",
-          "english": "Don't eat anything for two hours."
+          "slot": "don-t-eat-anything-for-two-hours-to-a-man"
         },
         {
           "speaker": "Omar",
@@ -2173,9 +2156,7 @@
         },
         {
           "speaker": "Sami",
-          "arabic": "أَيْنَ قِسْمُ الطَّوَارِئ؟",
-          "transliteration": "ayna qismu at-tawaari2?",
-          "english": "Where is the emergency room?"
+          "slot": "where-is-the-emergency-room"
         },
         {
           "speaker": "Mariam",
@@ -2185,9 +2166,7 @@
         },
         {
           "speaker": "Sami",
-          "arabic": "أَنَا قَلِقٌ عَلَيْه.",
-          "transliteration": "anaa qaliqun 3alayh.",
-          "english": "I'm worried about him."
+          "slot": "i-m-worried-about-him-a-man-speaking"
         },
         {
           "speaker": "Mariam",
@@ -2197,27 +2176,21 @@
         },
         {
           "speaker": "Sami",
-          "arabic": "فِي أَيِّ غُرْفَةٍ هُوَ؟",
-          "transliteration": "fee ayyi ghurfatin huwa?",
-          "english": "Which room is he in?"
+          "slot": "which-room-is-he-in"
         },
         {
           "speaker": "Mariam",
-          "arabic": "فِي الْغُرْفَةِ رَقْم خَمْسَة.",
-          "transliteration": "fee al-ghurfati raqm khamsa.",
-          "english": "In room number five."
+          "slot": "which-room-is-he-in",
+          "reply": true
         },
         {
           "speaker": "Sami",
-          "arabic": "مَا هِيَ مَوَاعِيدُ الزِّيَارَة؟",
-          "transliteration": "maa hiya mawaa3eedu az-ziyaara?",
-          "english": "What are the visiting hours?"
+          "slot": "what-are-the-visiting-hours"
         },
         {
           "speaker": "Mariam",
-          "arabic": "مِنَ الرَّابِعَةِ إِلَى السَّادِسَة.",
-          "transliteration": "mina ar-raabi3ati ilaa as-saadisa.",
-          "english": "From four to six."
+          "slot": "what-are-the-visiting-hours",
+          "reply": true
         },
         {
           "speaker": "Sami",
@@ -2227,9 +2200,8 @@
         },
         {
           "speaker": "Mariam",
-          "arabic": "غَدًا إِنْ شَاءَ اللَّه.",
-          "transliteration": "ghadan in shaa2a allaah.",
-          "english": "Tomorrow, Allah willing."
+          "slot": "when-can-he-leave-the-hospital",
+          "reply": true
         }
       ],
       "de_book": [

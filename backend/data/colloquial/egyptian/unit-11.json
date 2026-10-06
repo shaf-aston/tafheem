@@ -170,9 +170,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "جِبْتِلْكُم حَاجَات بَسِيطَة",
-          "transliteration": "gebtilkom 7agaat baseeTa",
-          "english": "I brought you a few simple things."
+          "slot": "i-brought-you-a-few-simple-things-a-small-gift"
         },
         {
           "speaker": "Salma",
@@ -484,7 +482,8 @@
             "arabic": "سَادَة لَو سَمَحْت",
             "transliteration": "saada law sama7t",
             "english": "Plain please."
-          }
+          },
+          "english": "Coffee with sugar or plain?"
         },
         {
           "slot": "ring-the-doorbell-they-must-have-arrived",
@@ -550,9 +549,7 @@
       "dialogue": [
         {
           "speaker": "Huda",
-          "arabic": "اِقْعَدُوا اِرْتَاحُوا شْوَيَّة",
-          "transliteration": "o2'odu, ertaa7u shwayya",
-          "english": "Sit down, relax a little."
+          "slot": "sit-down-relax-a-little"
         },
         {
           "speaker": "Nabil",
@@ -574,9 +571,7 @@
         },
         {
           "speaker": "Huda",
-          "arabic": "اَلْقَهْوَة بِسُكَّر وَلَّا سَادَة؟",
-          "transliteration": "el-2ahwa be-sukkar walla saada?",
-          "english": "Coffee with sugar or plain?"
+          "slot": "do-you-take-sugar-in-your-coffee"
         },
         {
           "speaker": "Nabil",
@@ -598,9 +593,7 @@
         },
         {
           "speaker": "Huda",
-          "arabic": "عَلَى رَاحْتَك، مَفِيش اِسْتِعْجَال",
-          "transliteration": "3ala raa7tak, mafeesh esti3gaal",
-          "english": "Take your time, no rush."
+          "slot": "take-your-time-no-rush"
         },
         {
           "speaker": "Nabil",
@@ -610,9 +603,7 @@
         },
         {
           "speaker": "Huda",
-          "arabic": "مَاتِتْكَسِفْش، اَلْبَيْت بِيتَك",
-          "transliteration": "matetkasafsh, el-beet beetak",
-          "english": "Do not be shy, the house is yours."
+          "slot": "don-t-be-shy-the-house-is-your-house"
         }
       ],
       "de_book": [
@@ -971,9 +962,7 @@
       "dialogue": [
         {
           "speaker": "Wafaa",
-          "arabic": "اِتْفَضَّلُوا عَلَى اَلسِّفْرَة",
-          "transliteration": "etfaddalu 3ala s-sufra",
-          "english": "Please come to the table."
+          "slot": "please-come-to-the-table-dinner-is-ready"
         },
         {
           "speaker": "Hany",
@@ -1001,15 +990,12 @@
         },
         {
           "speaker": "Hany",
-          "arabic": "جَمِيل قَوِي، تِسْلَم إِيدَك",
-          "transliteration": "gameel 2awi, teslam eedik",
-          "english": "Very good, bless your hands."
+          "slot": "try-this-dish-i-made-it-today",
+          "reply": true
         },
         {
           "speaker": "Wafaa",
-          "arabic": "خُد كِمَان، اَلْأَكْل كِتِير",
-          "transliteration": "khod kamaan, el-akl kiteer",
-          "english": "Take more, there is plenty."
+          "slot": "take-some-more-there-s-plenty-of-food"
         },
         {
           "speaker": "Hany",
@@ -1019,9 +1005,7 @@
         },
         {
           "speaker": "Wafaa",
-          "arabic": "اِسْتِنُّوا شْوَيَّة، لِسَّه فِيه حِلْو",
-          "transliteration": "estannu shwayya, lessa feeh 7elw",
-          "english": "Stay a bit, there is still dessert."
+          "slot": "stay-a-bit-there-s-still-dessert"
         },
         {
           "speaker": "Hany",
@@ -1031,9 +1015,7 @@
         },
         {
           "speaker": "Wafaa",
-          "arabic": "بِالْهَنَا وَاَلشِّفَا",
-          "transliteration": "bel-hanna wesh-shifa",
-          "english": "Enjoy it."
+          "slot": "enjoy-your-meal-said-to-those-eating"
         }
       ],
       "de_book": [
@@ -1395,9 +1377,7 @@
       "dialogue": [
         {
           "speaker": "Nour",
-          "arabic": "تِسْلِمُوا عَلَى اَلضِّيَافَة",
-          "transliteration": "teslamu 3ala d-deyaafa",
-          "english": "Thank you for the hospitality."
+          "slot": "thank-you-for-the-hospitality-lit-god-give-you-s"
         },
         {
           "speaker": "Samer",
@@ -1407,39 +1387,30 @@
         },
         {
           "speaker": "Nour",
-          "arabic": "لَازِم نِمْشِي، اَلْوَقْت اِتْأَخَّرَ",
-          "transliteration": "laazem nemshi, el-wa2t et'akhkhar",
-          "english": "We need to go, it has gotten late."
+          "slot": "we-need-to-go-it-s-gotten-late"
         },
         {
           "speaker": "Samer",
-          "arabic": "لِسَّه بِدْرِي، اِسْتِنُّوا شْوَيَّة",
-          "transliteration": "lessa badri, estannu shwayya",
-          "english": "It is still early, stay a while."
+          "slot": "we-need-to-go-it-s-gotten-late",
+          "reply": true
         },
         {
           "speaker": "Nour",
-          "arabic": "شُكْرًا عَلَى اَلْعِزُومَة، اِتْبَسَطْنَا قَوِي",
-          "transliteration": "shukran 3ala l-3azooma, etbasaTna 2awi",
-          "english": "Thanks for the invitation, we had a great time."
+          "slot": "thanks-for-the-invitation-we-had-a-great-time"
         },
         {
           "speaker": "Samer",
-          "arabic": "إِحْنَا اَلْلِي اِتْشَرَّفْنَا",
-          "transliteration": "e7na elli etsharrafna",
-          "english": "We are the ones honored."
+          "slot": "thanks-for-the-invitation-we-had-a-great-time",
+          "reply": true
         },
         {
           "speaker": "Nour",
-          "arabic": "سَلِّمْلِي عَلَى اَلْأَهْل",
-          "transliteration": "sallemli 3ala l-ahl",
-          "english": "Give my regards to the family."
+          "slot": "give-my-regards-to-the-family"
         },
         {
           "speaker": "Samer",
-          "arabic": "اللَّهُ يِسْلَمَك، هَيِسْلِمُوا عَلَيْك",
-          "transliteration": "allaah yeslemik, hayesallemu 3aleek",
-          "english": "God keep you, they will greet you too."
+          "slot": "give-my-regards-to-the-family",
+          "reply": true
         },
         {
           "speaker": "Nour",
@@ -1449,9 +1420,7 @@
         },
         {
           "speaker": "Samer",
-          "arabic": "طَمِّنُونَا لَمَّا تُوصِلُوا",
-          "transliteration": "Tammenoona lamma tewSalu",
-          "english": "Let us know when you get there."
+          "slot": "let-us-know-when-you-get-home"
         },
         {
           "speaker": "Nour",

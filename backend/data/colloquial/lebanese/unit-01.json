@@ -137,9 +137,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "شُو اسْمِك؟",
-          "transliteration": "shoo esmik?",
-          "english": "What's your name?"
+          "slot": "what-s-your-name-to-a-woman"
         },
         {
           "speaker": "Lina",
@@ -167,9 +165,7 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "مِنِيْن إِنْت؟",
-          "transliteration": "mneen inte?",
-          "english": "Where are you from?"
+          "slot": "where-are-you-from-to-a-man"
         },
         {
           "speaker": "Rami",

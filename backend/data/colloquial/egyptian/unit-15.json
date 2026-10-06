@@ -517,9 +517,8 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "لِلأَسَف كَاش بَس",
-          "transliteration": "lel-asaf kaash bass",
-          "english": "Unfortunately only cash."
+          "slot": "can-i-pay-by-card",
+          "reply": true
         },
         {
           "speaker": "الزبون",
@@ -850,9 +849,7 @@
       "dialogue": [
         {
           "speaker": "الموظف",
-          "arabic": "الْبَاسْبُور لُو سَمَحْت",
-          "transliteration": "el-basbor law samaHt",
-          "english": "Your passport please."
+          "slot": "your-passport-please"
         },
         {
           "speaker": "المسافر",
@@ -862,9 +859,7 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "جَاي سِيَاحَة وَلاَ شِغْل؟",
-          "transliteration": "gayy siyaa7a walla shoghl?",
-          "english": "Coming for tourism or work?"
+          "slot": "are-you-coming-for-tourism-or-work"
         },
         {
           "speaker": "المسافر",
@@ -874,9 +869,7 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "هِتِقْعُد هِنَا قَد إيه؟",
-          "transliteration": "hat2a3ad hena 2add eh?",
-          "english": "How long will you stay here?"
+          "slot": "how-long-will-you-stay-here"
         },
         {
           "speaker": "المسافر",
@@ -886,15 +879,12 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "مَعَاك حَاجَة تِعْلِن عَنْهَا؟",
-          "transliteration": "ma3aak 7aaga te3len 3anha?",
-          "english": "Do you have anything to declare?"
+          "slot": "do-you-have-anything-to-declare"
         },
         {
           "speaker": "المسافر",
-          "arabic": "لاَ، مَعَنْدِيش حَاجَة",
-          "transliteration": "laa, ma3andeesh 7aaga",
-          "english": "No, I don't have anything."
+          "slot": "do-you-have-anything-to-declare",
+          "reply": true
         },
         {
           "speaker": "الموظف",

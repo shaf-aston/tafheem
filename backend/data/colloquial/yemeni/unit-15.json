@@ -447,9 +447,7 @@
         },
         {
           "speaker": "زَبُون",
-          "arabic": "فِيه خَصْم لِلطُّلاب؟",
-          "transliteration": "fiih khaSm lel-Tullaab?",
-          "english": "Is there a student discount?"
+          "slot": "is-there-a-discount-for-students"
         },
         {
           "speaker": "مُوَظَّف",
@@ -471,9 +469,7 @@
         },
         {
           "speaker": "زَبُون",
-          "arabic": "الطَّرِيق قَدِّيش يِاخِذ وَقْت؟",
-          "transliteration": "T-Tareeg qaddish yiakhidh wa2et?",
-          "english": "How long does the trip take?"
+          "slot": "how-long-does-the-trip-take"
         },
         {
           "speaker": "مُوَظَّف",
@@ -753,9 +749,7 @@
         },
         {
           "speaker": "مُوَظَّف",
-          "arabic": "الْجَواز لَو سَمَحْت",
-          "transliteration": "l-jawaaz law sama7t",
-          "english": "Your passport please."
+          "slot": "your-passport-please"
         },
         {
           "speaker": "مُسافِر",
@@ -801,9 +795,7 @@
         },
         {
           "speaker": "شُرْطِي الحُدُود",
-          "arabic": "قَدِّيش الْوَقْت بِتْقَعُد هُون؟",
-          "transliteration": "qaddish l-wa2et bitga3ud huun?",
-          "english": "How long will you stay here?"
+          "slot": "how-long-will-you-stay-here"
         },
         {
           "speaker": "مُسافِر",

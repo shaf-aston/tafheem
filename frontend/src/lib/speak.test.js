@@ -14,7 +14,7 @@ vi.mock('./ayahAudio', () => ({
   watch: vi.fn((fn) => { tell = fn; return () => {} }),
 }))
 
-const { speak, reset } = await import('./speak')
+const { prepare, speak, reset } = await import('./speak')
 
 beforeEach(() => {
   played.length = 0
@@ -89,5 +89,15 @@ describe('which voice says a word', () => {
     tell('')
     await voice.done
     expect(finished).toBe(true)
+  })
+})
+
+describe('readying a voice before the press', () => {
+  it('asks the server once for a phrase with no recording, never for a recorded word', async () => {
+    await prepare('كِتَاب')
+    await prepare('بَيْتٌ كَبِيرٌ')
+    await prepare('بَيْتٌ كَبِيرٌ')
+    const asked = globalThis.fetch.mock.calls.map(([url]) => url).filter((url) => url.startsWith('/api/speak'))
+    expect(asked).toEqual([`/api/speak?text=${encodeURIComponent('بَيْتٌ كَبِيرٌ')}&voice=${config.voices.server.version}`])
   })
 })

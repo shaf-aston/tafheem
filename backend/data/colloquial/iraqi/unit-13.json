@@ -896,9 +896,7 @@
         },
         {
           "speaker": "Zahra",
-          "arabic": "لازِم تِرْتاح شْوَيّة",
-          "transliteration": "laazim tirtaa7 shwayya",
-          "english": "You should get some rest."
+          "slot": "you-should-get-some-rest-to-a-man"
         },
         {
           "speaker": "Mustafa",
@@ -908,9 +906,7 @@
         },
         {
           "speaker": "Zahra",
-          "arabic": "أحْسَن شِي تروح لِلدِكْتور",
-          "transliteration": "a7san shi truu7 lid-diktoor",
-          "english": "It's best you go to the doctor."
+          "slot": "it-s-better-you-go-to-the-doctor"
         },
         {
           "speaker": "Mustafa",
@@ -944,9 +940,7 @@
         },
         {
           "speaker": "Zahra",
-          "arabic": "خْلِيك هادِي وَعَلى كِيفَك",
-          "transliteration": "khaliik haadi w 3ala keefak",
-          "english": "Stay calm and take it easy."
+          "slot": "stay-calm-and-don-t-rush"
         }
       ],
       "de_book": [
@@ -1262,9 +1256,7 @@
       "dialogue": [
         {
           "speaker": "Ahmed",
-          "arabic": "لو سَمَحْت، أكو مُشْكِلة صِغْيَرة",
-          "transliteration": "law samaHt, aku mushkila Sghayra",
-          "english": "Excuse me, there's a small problem."
+          "slot": "excuse-me-there-s-a-small-problem-to-a-man"
         },
         {
           "speaker": "Karar",
@@ -1274,9 +1266,7 @@
         },
         {
           "speaker": "Ahmed",
-          "arabic": "هذا مو اللي طلبته",
-          "transliteration": "haadha muu illi Talabta",
-          "english": "This isn't what I ordered."
+          "slot": "this-isn-t-what-i-ordered-m"
         },
         {
           "speaker": "Karar",

@@ -552,9 +552,7 @@
         },
         {
           "speaker": "Sultan",
-          "arabic": "تِقْدَرِين تْسَاعِدِينِي؟",
-          "transliteration": "tigdareen tsaa3deeni?",
-          "english": "Can you help me?"
+          "slot": "can-you-help-me-to-a-woman"
         },
         {
           "speaker": "Mariam",
@@ -1404,9 +1402,7 @@
         },
         {
           "speaker": "Yousef",
-          "arabic": "وِين أَقْرَب بَقَالَة؟",
-          "transliteration": "ween agrab bagaala?",
-          "english": "Where is the nearest shop?"
+          "slot": "where-is-the-nearest-shop"
         },
         {
           "speaker": "Hessa",
@@ -1624,7 +1620,8 @@
           "answer": "وِين أَقْرَب بَقَالَة؟",
           "accepted": [
             "وِين أَقْرَب بَقَالَة؟",
-            "وين أقرب دكان؟", "وين أقرب جمعية؟",
+            "وين أقرب دكان؟",
+            "وين أقرب جمعية؟",
             "ween agrab bagaala",
             "أقرب بقالة وين؟"
           ],

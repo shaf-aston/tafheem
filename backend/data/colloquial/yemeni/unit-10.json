@@ -408,7 +408,8 @@
         {
           "slot": "in-winter-it-gets-very-cold-in-damascus",
           "arabic": "بِالشِّتَا بِصِير بَرْد كْتِير بِصَنْعَاء",
-          "transliteration": "bishshita biSiir bard ktiir biSan3aa"
+          "transliteration": "bishshita biSiir bard ktiir biSan3aa",
+          "english": "In winter it gets very cold in Sana'a."
         },
         {
           "slot": "in-summer-the-weather-s-hot-and-dry",
@@ -463,7 +464,8 @@
         {
           "slot": "summer-in-damascus-is-long",
           "arabic": "الصَّيْف بِصَنْعَاء بِيْكُون طَوِيل",
-          "transliteration": "iSSayf biSan3aa bykuun Tawiil"
+          "transliteration": "iSSayf biSan3aa bykuun Tawiil",
+          "english": "Summer in Sana'a is long."
         }
       ],
       "dialogue": [

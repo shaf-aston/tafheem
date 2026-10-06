@@ -133,9 +133,7 @@
         },
         {
           "speaker": "Zainab",
-          "arabic": "شكد الساعة هسة؟",
-          "transliteration": "shgad is-saa3a hessa?",
-          "english": "What time is it now?"
+          "slot": "what-time-is-it-now"
         },
         {
           "speaker": "Ali",
@@ -895,9 +893,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "شِنو رَاح نِتعَشَّى؟",
-          "transliteration": "shinu raaH nit3ashsha?",
-          "english": "What will we eat for dinner?"
+          "slot": "what-will-we-eat-for-dinner"
         },
         {
           "speaker": "Mustafa",

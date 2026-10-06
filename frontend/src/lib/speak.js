@@ -31,10 +31,12 @@ async function playFile(url) {
   }
 }
 
+const serverUrl = (text) => `${config.voices.server.url}?text=${encodeURIComponent(text)}&voice=${config.voices.server.version}`
+
 /** Each voice resolves to { done } once sound has started, rejects if it cannot. */
 const VOICES = {
   recorded: async (text) => playFile(await recordingOf(text)),
-  server: (text) => playFile(`${config.voices.server.url}?text=${encodeURIComponent(text)}&voice=${config.voices.server.version}`),
+  server: (text) => playFile(serverUrl(text)),
   browser: (text) => new Promise((started, fail) => {
     const synth = globalThis.speechSynthesis
     if (!synth) return fail(new Error('no device voice'))
@@ -56,7 +58,7 @@ const VOICES = {
 }
 
 /**
- * Say `text`. Resolves as soon as a voice starts, to { id, credit, done },
+ * Say `text`. Resolves as soon as a voice starts, to { id, done },
  * where `done` settles when it falls quiet. Rejects if no voice could say it.
  */
 let latest = 0
@@ -66,13 +68,26 @@ export async function speak(text) {
   for (const id of config.order) {
     try {
       const { done } = await VOICES[id](text)
-      return { id, credit: config.voices[id].credit, done }
+      return { id, done }
     } catch (err) {
       // Cut off by a newer press or an ayah, not unable: the next voice must not talk over it.
       if (turn !== latest || err?.name === 'AbortError') throw Object.assign(new Error('Interrupted'), { interrupted: true })
     }
   }
   throw new Error('No voice could say this')
+}
+
+/**
+ * Have the server make `text`'s voice now, so the press that follows plays at
+ * once (a new phrase takes the server ~1.7s, a made one ~0.06s). Recorded words
+ * need nothing. Once per text; a failure just leaves the press to make it.
+ */
+const prepared = new Set()
+export async function prepare(text) {
+  if (prepared.has(text)) return
+  prepared.add(text)
+  if (await recordingOf(text)) return
+  fetch(serverUrl(text)).catch(() => prepared.delete(text))
 }
 
 export function stop() {

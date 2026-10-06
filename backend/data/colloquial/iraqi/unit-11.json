@@ -167,9 +167,8 @@
         },
         {
           "speaker": "Hassan",
-          "arabic": "گدام الباب اكو مكان",
-          "transliteration": "gudaam il-baab aku makaan",
-          "english": "There's a spot in front of the door."
+          "slot": "where-can-i-park-my-car",
+          "reply": true
         },
         {
           "speaker": "Ali",
@@ -185,9 +184,7 @@
         },
         {
           "speaker": "Ali",
-          "arabic": "جِبِتْلِكُمْ شُوَيَّةْ أَغْرَاضْ بَسِيطَة",
-          "transliteration": "jibitlkum shwayya aghraad basiita",
-          "english": "I brought you a few simple things."
+          "slot": "i-brought-you-a-few-simple-things-a-small-gift"
         },
         {
           "speaker": "Hassan",
@@ -604,9 +601,7 @@
         },
         {
           "speaker": "Zainab",
-          "arabic": "قُهْوَةْ لُو چَاي؟",
-          "transliteration": "gahwa lo chaay?",
-          "english": "Coffee or tea?"
+          "slot": "coffee-or-tea"
         },
         {
           "speaker": "Mustafa",
@@ -1011,9 +1006,7 @@
       "dialogue": [
         {
           "speaker": "Zainab",
-          "arabic": "تفضلوا على السفرة، العشا جاهز",
-          "transliteration": "tfaddaloo 3as-sufra, il-3asha jaahiz",
-          "english": "Please come to the table, dinner is ready."
+          "slot": "please-come-to-the-table-dinner-is-ready"
         },
         {
           "speaker": "Mustafa",
@@ -1035,9 +1028,7 @@
         },
         {
           "speaker": "Zainab",
-          "arabic": "خِذْ بَعِدْ، الْأَكِلْ هُوَايَهْ",
-          "transliteration": "khudh ba3ad, il-akil hwaaya",
-          "english": "Take some more, there's plenty of food."
+          "slot": "take-some-more-there-s-plenty-of-food"
         },
         {
           "speaker": "Mustafa",
@@ -1047,27 +1038,20 @@
         },
         {
           "speaker": "Zainab",
-          "arabic": "هَالْأَكِلْ حَار شُوَيَّة، دِيرْ بَالَكْ",
-          "transliteration": "hal-akil 7aar shwayya, diir baalak",
-          "english": "This food is a bit spicy, be careful."
+          "slot": "this-food-is-a-bit-spicy-be-careful"
         },
         {
           "speaker": "Mustafa",
-          "arabic": "مَاكُو مِشْكِلَة، أِحِبّْ الْحَار",
-          "transliteration": "maaku mushkila, a7ibb il-7aar",
-          "english": "No problem, I like it hot."
+          "slot": "this-food-is-a-bit-spicy-be-careful",
+          "reply": true
         },
         {
           "speaker": "Hassan",
-          "arabic": "لا تستحي، إذا تريد شي بعد گللي",
-          "transliteration": "laa tistihi, iza triid shi ba3ad gulli",
-          "english": "Don't be shy, tell me if you want anything else."
+          "slot": "don-t-be-shy-tell-me-if-you-want-anything-else"
         },
         {
           "speaker": "Mustafa",
-          "arabic": "الْحَمْدُ لِلَّهِ، شِبَعْنَا",
-          "transliteration": "il7amdulillah, shbi3na",
-          "english": "Thank God, we're full."
+          "slot": "thank-god-we-re-full-and-satisfied"
         },
         {
           "speaker": "Zainab",
@@ -1457,9 +1441,7 @@
         },
         {
           "speaker": "Mustafa",
-          "arabic": "لَازِمْ نْرُوحْ، صَار الْوَگِتْ مِتَأَخِّرْ",
-          "transliteration": "laazim nruu7, saar il-wagit mit'akhkhir",
-          "english": "We need to go, it's gotten late."
+          "slot": "we-need-to-go-it-s-gotten-late"
         },
         {
           "speaker": "Hassan",
@@ -1475,27 +1457,19 @@
         },
         {
           "speaker": "Mustafa",
-          "arabic": "جِلْسَة حِلْوَة هُوَايَهْ، اللَّهُ يِخَلِّيكُمْ",
-          "transliteration": "jalsa 7ilwa hwaaya, alla ykhalliikum",
-          "english": "A very nice gathering, God keep you."
+          "slot": "a-very-nice-gathering-god-keep-you"
         },
         {
           "speaker": "Hassan",
-          "arabic": "لَا تِنْسُون، بِيتِنَا دَايْمَاً بِيتِكُمْ",
-          "transliteration": "laa tinsoon, beetna daayman beetkum",
-          "english": "Don't forget, our house is always your house."
+          "slot": "don-t-forget-our-house-is-always-your-house"
         },
         {
           "speaker": "Mustafa",
-          "arabic": "شُكْرَاً عَ الْعَزِيمَة، هُوَايَهْ اِسْتَانَسْنَا",
-          "transliteration": "shukran 3al-3izuuma, hwaaya istaansana",
-          "english": "Thanks for the invitation, we really enjoyed ourselves."
+          "slot": "thanks-for-the-invitation-we-had-a-great-time"
         },
         {
           "speaker": "Zainab",
-          "arabic": "سَلِّمْلِي عَلَى الْأَهْلِ",
-          "transliteration": "sallimli 3ala l-ahal",
-          "english": "Give my regards to the family."
+          "slot": "give-my-regards-to-the-family"
         },
         {
           "speaker": "Mustafa",

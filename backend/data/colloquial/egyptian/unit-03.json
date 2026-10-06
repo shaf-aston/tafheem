@@ -159,9 +159,8 @@
         },
         {
           "speaker": "بياع",
-          "arabic": "أَيْوَه، عَايِز كَام؟",
-          "transliteration": "aywa, 3aayez kaam?",
-          "english": "Yes, how much do you want?"
+          "slot": "do-you-have-onions-and-garlic",
+          "reply": true
         },
         {
           "speaker": "زبون",
@@ -550,9 +549,7 @@
         },
         {
           "speaker": "زبون",
-          "arabic": "عَايِز رَبْطَة عِيش طَازَة",
-          "transliteration": "3aayez rabTit 3eesh Taaza",
-          "english": "I want a fresh bundle of bread"
+          "slot": "i-want-a-fresh-bundle-of-bread"
         },
         {
           "speaker": "فرّان",
@@ -574,15 +571,12 @@
         },
         {
           "speaker": "زبون",
-          "arabic": "عَايِز كِيلُو لَحْمَة مَفْرُومَة",
-          "transliteration": "3aayez keelo la7ma mafrooma",
-          "english": "I want a kilo of ground meat"
+          "slot": "i-want-a-kilo-of-ground-meat"
         },
         {
           "speaker": "جزار",
-          "arabic": "بِتِلّو وَلَّا ضَانِي؟",
-          "transliteration": "batillu walla Daani?",
-          "english": "Beef or lamb?"
+          "slot": "i-want-a-kilo-of-ground-meat",
+          "reply": true
         },
         {
           "speaker": "زبون",
@@ -1759,9 +1753,7 @@
         },
         {
           "speaker": "منى",
-          "arabic": "فِيه خَصْم؟",
-          "transliteration": "feeh khaSm?",
-          "english": "Is there a discount?"
+          "slot": "is-there-a-discount"
         },
         {
           "speaker": "عم سيد",
@@ -1783,15 +1775,12 @@
         },
         {
           "speaker": "منى",
-          "arabic": "عِنْدَك لُون تَانِي؟",
-          "transliteration": "3andak loon taani?",
-          "english": "Do you have another color?"
+          "slot": "do-you-have-another-color-to-a-man"
         },
         {
           "speaker": "عم سيد",
-          "arabic": "أَيْوَه، فِيه أَزْرَق وَأَحْمَر.",
-          "transliteration": "aywa, feeh azra2 w-a7mar.",
-          "english": "Yes, there is blue and red."
+          "slot": "do-you-have-another-color-to-a-man",
+          "reply": true
         },
         {
           "speaker": "منى",

@@ -423,7 +423,8 @@
         {
           "slot": "is-there-vegetarian-food",
           "arabic": "فِي أَكْلَة بِدُون لَحْمَة؟",
-          "transliteration": "fi 2akla bidoon la7ma?"
+          "transliteration": "fi 2akla bidoon la7ma?",
+          "english": "Is there a dish without meat?"
         },
         {
           "slot": "what-s-in-this-dish",
@@ -815,15 +816,12 @@
       "dialogue": [
         {
           "speaker": "الْويتِر",
-          "arabic": "جَاهِزِين تِطْلِبُون؟",
-          "transliteration": "ja-hzeen titluboon?",
-          "english": "Are you ready to order?"
+          "slot": "are-you-ready-to-order"
         },
         {
           "speaker": "عُمَر",
-          "arabic": "نِعَم، أَبِي مَنْدِي",
-          "transliteration": "ni3am, abi mandi",
-          "english": "Yes, I want mandi."
+          "slot": "are-you-ready-to-order",
+          "reply": true
         },
         {
           "speaker": "الْويتِر",
@@ -1188,9 +1186,8 @@
         },
         {
           "speaker": "الْويتِرَة",
-          "arabic": "تِمَام، دَحِين أَجِيبُه لَك",
-          "transliteration": "tamam, da7een ajeebuh lak",
-          "english": "Okay, I'll bring it right away."
+          "slot": "the-bill-please",
+          "reply": true
         },
         {
           "speaker": "خَالِد",
@@ -1230,9 +1227,7 @@
         },
         {
           "speaker": "خَالِد",
-          "arabic": "يَعْطِيك الْعَافِيَة، الأَكْل كَانَ تِمَام",
-          "transliteration": "ya36eek l 3aafya, l 2akl kan tamam",
-          "english": "Thank you so much, the food was great."
+          "slot": "bless-your-hands-the-food-was-delicious"
         },
         {
           "speaker": "الْويتِرَة",

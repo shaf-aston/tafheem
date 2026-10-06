@@ -550,9 +550,7 @@
         },
         {
           "speaker": "زبون",
-          "arabic": "بِدِّي رِبْطَة خُبْز طَازَة",
-          "transliteration": "biddi rabtet khobz taza",
-          "english": "I want a fresh bundle of bread"
+          "slot": "i-want-a-fresh-bundle-of-bread"
         },
         {
           "speaker": "فرّان",
@@ -574,9 +572,7 @@
         },
         {
           "speaker": "زبون",
-          "arabic": "بِدِّي كِيلُو لَحْمَة مَفْرُومَة",
-          "transliteration": "biddi kilo lahme mafrume",
-          "english": "I want a kilo of ground meat"
+          "slot": "i-want-a-kilo-of-ground-meat"
         },
         {
           "speaker": "جزّار",
@@ -1331,9 +1327,7 @@
       "dialogue": [
         {
           "speaker": "سامر",
-          "arabic": "بِتِحِبّ الْأَكْل الْحَار؟",
-          "transliteration": "bt7eb el-akel el-har?",
-          "english": "Do you like spicy food?"
+          "slot": "do-you-like-spicy-food"
         },
         {
           "speaker": "ليلى",
@@ -1705,9 +1699,7 @@
       "dialogue": [
         {
           "speaker": "Layla",
-          "arabic": "قدِيش هاد؟",
-          "transliteration": "addeesh haad؟",
-          "english": "How much is this?"
+          "slot": "how-much-is-this"
         },
         {
           "speaker": "Abu Fadi",
@@ -1747,9 +1739,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "عِندَك لون تاني؟",
-          "transliteration": "3andak loon taani؟",
-          "english": "Do you have another color?"
+          "slot": "do-you-have-another-color-to-a-man"
         },
         {
           "speaker": "Abu Fadi",

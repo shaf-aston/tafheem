@@ -168,9 +168,8 @@
         },
         {
           "speaker": "Hala",
-          "arabic": "قُدَّام الْباب فِي مَحِل فاضي",
-          "transliteration": "2uddaam il-baab fi ma7all faadi",
-          "english": "There's an empty spot in front of the door."
+          "slot": "where-can-i-park-my-car",
+          "reply": true
         },
         {
           "speaker": "Karim",
@@ -186,9 +185,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "جِبْتِلْكِن شِي بَسِيط",
-          "transliteration": "jibtilkon shi basiit",
-          "english": "I brought you a little something."
+          "slot": "i-brought-you-a-few-simple-things-a-small-gift"
         },
         {
           "speaker": "Hala",
@@ -198,9 +195,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "عَن إِذْنِك، بِدِّي إِغْسِل إِيدِيِّي",
-          "transliteration": "3an 2eznik, baddi 2eghsol 2iideyyi",
-          "english": "Excuse me, I want to wash my hands."
+          "slot": "excuse-me-i-want-to-wash-my-hands"
         },
         {
           "speaker": "Hala",
@@ -606,9 +601,7 @@
         },
         {
           "speaker": "Maya",
-          "arabic": "قَهْوَة وِلَّا شاي؟",
-          "transliteration": "2ahwe wella shaay?",
-          "english": "Coffee or tea?"
+          "slot": "coffee-or-tea"
         },
         {
           "speaker": "Ziad",
@@ -618,15 +611,12 @@
         },
         {
           "speaker": "Maya",
-          "arabic": "بْتِحِطِّ سُكِّر بِقَهْوَتَك؟",
-          "transliteration": "bti7ot sukkar b2ahwetak?",
-          "english": "Do you take sugar in your coffee?"
+          "slot": "do-you-take-sugar-in-your-coffee"
         },
         {
           "speaker": "Ziad",
-          "arabic": "لا، سادَة",
-          "transliteration": "laa, saade",
-          "english": "No, plain."
+          "slot": "do-you-take-sugar-in-your-coffee",
+          "reply": true
         },
         {
           "speaker": "Maya",
@@ -642,9 +632,7 @@
         },
         {
           "speaker": "Maya",
-          "arabic": "ما تِسْتِحِي، الْبِيت بِيتَك",
-          "transliteration": "ma tist7i, l-beit beitak",
-          "english": "Don't be shy, the house is your house."
+          "slot": "don-t-be-shy-the-house-is-your-house"
         }
       ],
       "de_book": [
@@ -1017,9 +1005,7 @@
       "dialogue": [
         {
           "speaker": "Nadine",
-          "arabic": "تِفَضَّلُو عَالسُّفْرَة، الْأَكْل جاهِز",
-          "transliteration": "tfaddalo 3as-sufra, l-2akel jaahez",
-          "english": "Please come to the table, dinner is ready."
+          "slot": "please-come-to-the-table-dinner-is-ready"
         },
         {
           "speaker": "Karim",
@@ -1041,21 +1027,16 @@
         },
         {
           "speaker": "Nadine",
-          "arabic": "هالأكل شوي حار، دير بالك",
-          "transliteration": "hal-2akel shwayy 7aar, diir baalak",
-          "english": "This food is a bit spicy, be careful."
+          "slot": "this-food-is-a-bit-spicy-be-careful"
         },
         {
           "speaker": "Karim",
-          "arabic": "ما في مِشْكِلَة، بِحِب الْحار",
-          "transliteration": "ma fi mishkle, b7ebb il-7aar",
-          "english": "No problem, I like spicy."
+          "slot": "this-food-is-a-bit-spicy-be-careful",
+          "reply": true
         },
         {
           "speaker": "Nadine",
-          "arabic": "بدّك شوي خبز كمان؟",
-          "transliteration": "baddak shwayy khobez kamaan?",
-          "english": "Do you want a bit more bread?"
+          "slot": "do-you-want-a-bit-more-bread"
         },
         {
           "speaker": "Karim",
@@ -1065,9 +1046,7 @@
         },
         {
           "speaker": "Nadine",
-          "arabic": "ما تِسْتِحِي، قِلِّي إِذا بِدِّك شِي تاني",
-          "transliteration": "ma tist7i, 2illi 2iza baddak shi taani",
-          "english": "Don't be shy, tell me if you want anything else."
+          "slot": "don-t-be-shy-tell-me-if-you-want-anything-else"
         },
         {
           "speaker": "Karim",
@@ -1397,7 +1376,8 @@
             "arabic": "واللَّه عِنِّا شُغِل بِكِّير بِكْرا",
             "transliteration": "wallah 3enna shoghol bakkiir bukra",
             "english": "Truly, we have work early tomorrow."
-          }
+          },
+          "english": "No excuses, do you want to go already?"
         },
         {
           "slot": "thanks-for-the-invitation-we-had-a-great-time",
@@ -1465,27 +1445,20 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "لازِم نِفِلِّ، صار الْوَقْت مِتْأَخِّر",
-          "transliteration": "laazem nfell, saar il-w2et met2akhkher",
-          "english": "We need to go, it's gotten late."
+          "slot": "we-need-to-go-it-s-gotten-late"
         },
         {
           "speaker": "Nadine",
-          "arabic": "ما في أَعْذار، هِلَّق بِدْكِن تْرُوحُو؟",
-          "transliteration": "ma fi 2a3dhaar, hallaq baddkon trou7o?",
-          "english": "No excuses, do you have to go already?"
+          "slot": "no-excuses-do-we-have-to-part-so-quickly"
         },
         {
           "speaker": "Karim",
-          "arabic": "واللَّه عِنِّا شُغِل بِكِّير بِكْرا",
-          "transliteration": "wallah 3enna shoghol bakkiir bukra",
-          "english": "Truly, we have work early tomorrow."
+          "slot": "no-excuses-do-we-have-to-part-so-quickly",
+          "reply": true
         },
         {
           "speaker": "Nadine",
-          "arabic": "ما تِنْسُو، بِيتْنا دايِمًا بِيتْكِن",
-          "transliteration": "ma tensu, beitna daayman beitkon",
-          "english": "Don't forget, our house is always your house."
+          "slot": "don-t-forget-our-house-is-always-your-house"
         },
         {
           "speaker": "Karim",

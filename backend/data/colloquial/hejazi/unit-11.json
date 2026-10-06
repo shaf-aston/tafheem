@@ -173,15 +173,12 @@
         },
         {
           "speaker": "فَهِد",
-          "arabic": "عَن إِذْنِك، أَبْغَى أَغْسِل يَدَيّ",
-          "transliteration": "3an idhnik, abgha aghsil yadayya",
-          "english": "Excuse me, I want to wash my hands."
+          "slot": "excuse-me-i-want-to-wash-my-hands"
         },
         {
           "speaker": "نُور",
-          "arabic": "تَفَضَّل، الْحَمَّام هُنَاك عَلَى اليَمِين",
-          "transliteration": "tfaddal, al-7ammaam hunnak 3ala al-yamiin",
-          "english": "Go ahead, the bathroom is over there on the right."
+          "slot": "excuse-me-i-want-to-wash-my-hands",
+          "reply": true
         }
       ],
       "de_book": [
@@ -484,9 +481,7 @@
       "dialogue": [
         {
           "speaker": "هُدَى",
-          "arabic": "اقْعُد، اسْتَرِيح شِوَيّ",
-          "transliteration": "ug3ud, istrih shwayy",
-          "english": "Sit down, relax a bit."
+          "slot": "sit-down-relax-a-little"
         },
         {
           "speaker": "أَحْمَد",
@@ -508,9 +503,7 @@
         },
         {
           "speaker": "هُدَى",
-          "arabic": "تَأْخُذ سُكَّر بِالقَهْوَة؟",
-          "transliteration": "ta2khud sukkar bil-qahwah?",
-          "english": "Do you take sugar in your coffee?"
+          "slot": "do-you-take-sugar-in-your-coffee"
         },
         {
           "speaker": "أَحْمَد",
@@ -532,9 +525,7 @@
         },
         {
           "speaker": "هُدَى",
-          "arabic": "الْعِيَال عِنْدِك كِبِروا كِتْيِر!",
-          "transliteration": "al-3iyaal 3indik kibru ktiir!",
-          "english": "Your kids have grown up so much!"
+          "slot": "your-kids-have-grown-up-so-much"
         },
         {
           "speaker": "أَحْمَد",
@@ -826,15 +817,11 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "بِالهَنَا والشِّفَا",
-          "transliteration": "bil-hana wa-ash-shifa",
-          "english": "Thank you, enjoy!"
+          "slot": "enjoy-your-meal-said-to-those-eating"
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "جَرِّب هَذَا الطَّبَخ، أَنَا حِطِّيتُه الْيُوم",
-          "transliteration": "jarrib haza at-thabkh, ana 7attitu al-yoom",
-          "english": "Try this dish, I made it today."
+          "slot": "try-this-dish-i-made-it-today"
         },
         {
           "speaker": "مُحَمَّد",
@@ -844,9 +831,7 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "خُذْ أَكْثَر، الأَكْل كِثِير",
-          "transliteration": "khudh akthar, al-akal kthiir",
-          "english": "Take more, there's plenty of food."
+          "slot": "take-some-more-there-s-plenty-of-food"
         },
         {
           "speaker": "مُحَمَّد",
@@ -856,9 +841,7 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "بِتَبْغَى شِوَيّ خُبْز أَكْثَر؟",
-          "transliteration": "bitabgha shwayy khubz akthar?",
-          "english": "Do you want some more bread?"
+          "slot": "do-you-want-a-bit-more-bread"
         },
         {
           "speaker": "مُحَمَّد",
@@ -868,9 +851,7 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "اسْتَرِيح شِوَيّ، فِيه حَلْويَّات كِمَان",
-          "transliteration": "istrih shwayy, fii 7alawiyyaat kimaan",
-          "english": "Relax a bit, there's still dessert."
+          "slot": "stay-a-bit-there-s-still-dessert"
         },
         {
           "speaker": "مُحَمَّد",
@@ -1150,15 +1131,11 @@
         },
         {
           "speaker": "لَيْلَى",
-          "arabic": "مَا تِنْسَى، البَيْت بَيْتِك دِايِم",
-          "transliteration": "maa tinsaa, al-bayt baitk diaaim",
-          "english": "Don't forget, this house is always yours."
+          "slot": "don-t-forget-our-house-is-always-your-house"
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "بَلِّغْ أَهْلِك سَلامِي",
-          "transliteration": "balligh ahlak salami",
-          "english": "Give my regards to your family."
+          "slot": "give-my-regards-to-the-family"
         },
         {
           "speaker": "لَيْلَى",
@@ -1180,9 +1157,7 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "مَعَ السَّلامَة، الله يَكُون مَعَك",
-          "transliteration": "ma3a as-salam, allah yakun ma3ak",
-          "english": "Goodbye, God be with you."
+          "slot": "goodbye-god-be-with-you"
         }
       ],
       "de_book": [

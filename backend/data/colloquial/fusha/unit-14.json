@@ -160,9 +160,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "أَعَادَهُ اللهُ عَلَيْكُمْ بِالْخَيْر.",
-          "transliteration": "a3aadahu allaahu 3alaykum bilkhayr.",
-          "english": "May God bring it back to you in good health."
+          "slot": "may-you-witness-it-again-next-year"
         },
         {
           "speaker": "Omar",
@@ -172,9 +170,8 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "بَارَكَ اللهُ فِيكُمْ.",
-          "transliteration": "baaraka allaahu feekum.",
-          "english": "God bless you."
+          "slot": "blessed-eid-to-you-all",
+          "reply": true
         }
       ],
       "de_book": [
@@ -569,9 +566,7 @@
         },
         {
           "speaker": "Hind",
-          "arabic": "مَتَى مَوْعِدُ الْإِفْطَارِ الْيَوْم؟",
-          "transliteration": "mataa maw3idu al-iftaari al-yawm?",
-          "english": "What time is iftar today?"
+          "slot": "what-time-is-iftar-today"
         },
         {
           "speaker": "Khalid",
@@ -611,9 +606,7 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "تَقَبَّلَ اللهُ صِيَامَكُمْ.",
-          "transliteration": "taqabbala allaahu siyaamakum.",
-          "english": "May God accept your fasting."
+          "slot": "may-god-accept-your-fasting"
         },
         {
           "speaker": "Hind",
@@ -1427,9 +1420,7 @@
         },
         {
           "speaker": "Nour",
-          "arabic": "كَمْ بَلَغْتَ مِنَ الْعُمْر؟",
-          "transliteration": "kam balaghta mina al-3umr?",
-          "english": "How old did you turn?"
+          "slot": "how-old-did-you-turn"
         },
         {
           "speaker": "Mazen",
@@ -1463,9 +1454,7 @@
         },
         {
           "speaker": "Nour",
-          "arabic": "أَيَّ هَدِيَّةٍ تُرِيد؟",
-          "transliteration": "ayya hadiyyatin tureed?",
-          "english": "What gift do you want?"
+          "slot": "what-gift-do-you-want"
         },
         {
           "speaker": "Mazen",
@@ -1475,9 +1464,7 @@
         },
         {
           "speaker": "Nour",
-          "arabic": "أَطَالَ اللهُ عُمُرَك.",
-          "transliteration": "ataala allaahu 3umrak.",
-          "english": "May God lengthen your life."
+          "slot": "may-god-lengthen-your-life"
         },
         {
           "speaker": "Mazen",
@@ -1906,9 +1893,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "يُشْبِهُ أَبَاهُ كَثِيرًا.",
-          "transliteration": "yushbihu abaahu katheeran.",
-          "english": "He looks a lot like his father."
+          "slot": "the-baby-looks-like-his-father"
         },
         {
           "speaker": "Faisal",
@@ -1924,15 +1909,11 @@
         },
         {
           "speaker": "Faisal",
-          "arabic": "الْحَمْدُ لِلَّهِ عَلَى سَلَامَةِ الْأُمِّ وَالْمَوْلُود.",
-          "transliteration": "al-7amdu lillaahi 3alaa salaamati al-ummi wal-mawlood.",
-          "english": "Thank God, the mother and baby are safe."
+          "slot": "thank-god-the-mother-and-baby-are-safe"
         },
         {
           "speaker": "Omar",
-          "arabic": "هَذِهِ هَدِيَّةٌ لِلْمَوْلُود.",
-          "transliteration": "hadhihi hadiyyatun lil-mawlood.",
-          "english": "This is a gift for the baby."
+          "slot": "a-gift-for-the-newborn"
         },
         {
           "speaker": "Faisal",
@@ -2290,9 +2271,8 @@
         },
         {
           "speaker": "Sami",
-          "arabic": "حَصَلْتُ عَلَى تَقْدِيرِ امْتِيَاز.",
-          "transliteration": "7asaltu 3alaa taqdeeri imtiyaaz.",
-          "english": "I got an excellent grade."
+          "slot": "what-is-your-result-to-a-man",
+          "reply": true
         },
         {
           "speaker": "Khalid",
@@ -2320,15 +2300,12 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "مَبْرُوكٌ عَلَى الْوَظِيفَةِ الْجَدِيدَة!",
-          "transliteration": "mabrookun 3alaa al-wazeefati al-jadeeda!",
-          "english": "Congratulations on the new job!"
+          "slot": "congratulations-on-the-new-job"
         },
         {
           "speaker": "Sami",
-          "arabic": "بَارَكَ اللهُ فِيك.",
-          "transliteration": "baaraka allaahu feek.",
-          "english": "God bless you."
+          "slot": "congratulations-on-graduating",
+          "reply": true
         },
         {
           "speaker": "Khalid",
@@ -2338,9 +2315,8 @@
         },
         {
           "speaker": "Sami",
-          "arabic": "آمِين وَإِيَّاك.",
-          "transliteration": "aameen wa iyyaak.",
-          "english": "Amen, and you too."
+          "slot": "may-god-grant-you-success-to-a-man",
+          "reply": true
         }
       ],
       "de_book": [
@@ -2687,9 +2663,8 @@
         },
         {
           "speaker": "Saleh",
-          "arabic": "سَلَّمَكَ اللهُ.",
-          "transliteration": "sallamaka allaah.",
-          "english": "May God keep you safe."
+          "slot": "thank-god-for-your-safety-to-a-man",
+          "reply": true
         },
         {
           "speaker": "Ahmad",
@@ -2705,9 +2680,7 @@
         },
         {
           "speaker": "Ahmad",
-          "arabic": "كَيْفَ وَجَدْتَ مَكَّة؟",
-          "transliteration": "kayfa wajadta makka?",
-          "english": "How did you find Makkah?"
+          "slot": "how-did-you-find-makkah-to-a-man"
         },
         {
           "speaker": "Saleh",
@@ -2735,15 +2708,12 @@
         },
         {
           "speaker": "Saleh",
-          "arabic": "مِنَّا وَمِنْكُم.",
-          "transliteration": "minnaa wa minkum.",
-          "english": "From us and from you."
+          "slot": "may-god-accept-it-from-you-to-a-man",
+          "reply": true
         },
         {
           "speaker": "Ahmad",
-          "arabic": "رَزَقَنَا اللهُ زِيَارَةَ بَيْتِه.",
-          "transliteration": "razaqanaa allaahu ziyaarata baytih.",
-          "english": "May God grant us a visit to His house."
+          "slot": "may-god-grant-us-a-visit-to-his-house"
         },
         {
           "speaker": "Saleh",
@@ -3159,9 +3129,8 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "آمِين، جَزَاكَ اللهُ خَيْرًا.",
-          "transliteration": "aameen, jazaaka allaahu khayran.",
-          "english": "Amen, may God reward you well."
+          "slot": "may-god-grant-you-patience-and-comfort",
+          "reply": true
         }
       ],
       "de_book": [
@@ -3526,21 +3495,16 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "كَيْفَ حَالُكَ الْيَوْمَ؟",
-          "transliteration": "kayfa Haaluka al-yawm?",
-          "english": "How are you feeling today?"
+          "slot": "how-are-you-feeling-today"
         },
         {
           "speaker": "Hassan",
-          "arabic": "الْحَمْدُ لِلَّهِ، أَحْسَنُ مِنْ قَبْلُ.",
-          "transliteration": "al-Hamdu lillaah, aHsanu min qablu.",
-          "english": "Praise God, better than before."
+          "slot": "how-are-you-feeling-today",
+          "reply": true
         },
         {
           "speaker": "Yusuf",
-          "arabic": "مَاذَا قَالَ الطَّبِيبُ؟",
-          "transliteration": "maadhaa qaala aT-Tabeeb?",
-          "english": "What did the doctor say?"
+          "slot": "what-did-the-doctor-say"
         },
         {
           "speaker": "Hassan",
@@ -3568,9 +3532,8 @@
         },
         {
           "speaker": "Hassan",
-          "arabic": "بَلْ زِيَارَتُكَ تُسْعِدُنِي.",
-          "transliteration": "bal ziyaaratuka tus3idunee.",
-          "english": "On the contrary, your visit makes me happy."
+          "slot": "i-will-not-stay-long",
+          "reply": true
         },
         {
           "speaker": "Yusuf",
@@ -3932,9 +3895,7 @@
         },
         {
           "speaker": "Bilal",
-          "arabic": "فَقَدْتُ وَظِيفَتِي الْيَوْمَ.",
-          "transliteration": "faqadtu waZeefatee al-yawm.",
-          "english": "I lost my job today."
+          "slot": "i-lost-my-job-today"
         },
         {
           "speaker": "Adel",
@@ -3968,15 +3929,12 @@
         },
         {
           "speaker": "Bilal",
-          "arabic": "إِنْ شَاءَ اللهُ.",
-          "transliteration": "in shaa2a allaah.",
-          "english": "God willing."
+          "slot": "perhaps-there-is-good-in-it",
+          "reply": true
         },
         {
           "speaker": "Adel",
-          "arabic": "كَيْفَ أَسْتَطِيعُ أَنْ أُسَاعِدَكَ؟",
-          "transliteration": "kayfa astaTee3u an usaa3idaka?",
-          "english": "How can I help you?"
+          "slot": "how-can-i-help-you"
         },
         {
           "speaker": "Bilal",

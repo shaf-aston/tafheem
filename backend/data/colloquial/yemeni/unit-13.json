@@ -1180,9 +1180,7 @@
       "dialogue": [
         {
           "speaker": "يوسف",
-          "arabic": "لَوْ سَمَحْتَ، فِي مِشْكِلَةْ صَغِيرَةْ",
-          "transliteration": "law sama7t, fi mishkila sghira",
-          "english": "Excuse me, I have a small problem."
+          "slot": "excuse-me-there-s-a-small-problem-to-a-man"
         },
         {
           "speaker": "علي",

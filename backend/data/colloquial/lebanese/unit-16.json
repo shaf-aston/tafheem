@@ -436,7 +436,8 @@
         {
           "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
           "arabic": "كْبِرْت بِحَيّ قَدِيم بِبَيْرُوت",
-          "transliteration": "kbiret b-7ayy 2adiim b-beirut"
+          "transliteration": "kbiret b-7ayy 2adiim b-beirut",
+          "english": "I grew up in an old neighborhood in Beirut."
         },
         {
           "slot": "i-had-a-friend-named-kareem",
@@ -555,9 +556,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "مُعَلِّمْتِي بِالْمَدْرَسَة كَانَت كْتِير حَنُونَة",
-          "transliteration": "mou3allimti bil-madrase kenit ktiir 7anuune",
-          "english": "My teacher at school was very kind."
+          "slot": "my-teacher-at-school-was-very-kind"
         },
         {
           "speaker": "Maria",
@@ -1361,9 +1360,7 @@
         },
         {
           "speaker": "Rita",
-          "arabic": "هَيْدَا كِلُّو حْكِي نَاس، مَا بَعْرِف إِذَا صَحِيح وِلَّا لَأ",
-          "transliteration": "heyda kello 7ki naas, ma ba3ref iza Sa7ii7 walla la2",
-          "english": "That's all people's talk, I don't know if it's true or not."
+          "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it"
         },
         {
           "speaker": "George",

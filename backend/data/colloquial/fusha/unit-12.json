@@ -97,9 +97,7 @@
       "dialogue": [
         {
           "speaker": "Rami",
-          "arabic": "آلُو؟",
-          "transliteration": "aaloo?",
-          "english": "Hello?"
+          "slot": "hello-answering-the-phone"
         },
         {
           "speaker": "Samer",
@@ -115,9 +113,7 @@
         },
         {
           "speaker": "Samer",
-          "arabic": "مَعَكَ سَامِر.",
-          "transliteration": "ma3aka Saamir.",
-          "english": "This is Samer."
+          "slot": "this-is-samer-speaking"
         },
         {
           "speaker": "Rami",
@@ -163,9 +159,7 @@
         },
         {
           "speaker": "Samer",
-          "arabic": "هَلْ يُمْكِنُكَ أَنْ تُعَاوِدَ الِاتِّصَالَ بِي بَعْدَ قَلِيل؟",
-          "transliteration": "hal yumkinuka an tu3aawida al-ittisaala bee ba3da qaleel?",
-          "english": "Can you call me back in a bit?"
+          "slot": "can-you-call-me-back-in-a-bit"
         },
         {
           "speaker": "Rami",
@@ -498,9 +492,7 @@
         },
         {
           "speaker": "Rana",
-          "arabic": "لِنَلْتَقِ فِي الْمَقْهَى.",
-          "transliteration": "linaltaqi fee al-maqhaa.",
-          "english": "Let's meet at the cafe."
+          "slot": "let-s-meet-at-the-cafe"
         },
         {
           "speaker": "Sami",
@@ -510,9 +502,7 @@
         },
         {
           "speaker": "Rana",
-          "arabic": "هَلِ السَّاعَةُ السَّابِعَةُ مُنَاسِبَة؟",
-          "transliteration": "hal as-saa3atu as-saabi3atu munaasiba?",
-          "english": "Is 7 o'clock good?"
+          "slot": "is-7-o-clock-good"
         },
         {
           "speaker": "Sami",
@@ -528,15 +518,11 @@
         },
         {
           "speaker": "Sami",
-          "arabic": "أَعْرِفُ تَمَامًا أَيْنَ الْمَكَان.",
-          "transliteration": "a3rifu tamaaman ayna al-makaan.",
-          "english": "I know exactly where the place is."
+          "slot": "i-know-exactly-where-the-place-is"
         },
         {
           "speaker": "Rana",
-          "arabic": "مَا رَأْيُكَ، هَلْ نَذْهَبُ مَعًا؟",
-          "transliteration": "maa ra2yuka, hal nadh-habu ma3an?",
-          "english": "What do you think, shall we go together?"
+          "slot": "what-do-you-think-shall-we-go-together"
         },
         {
           "speaker": "Sami",
@@ -546,9 +532,7 @@
         },
         {
           "speaker": "Rana",
-          "arabic": "لَا تَتَأَخَّرْ.",
-          "transliteration": "laa tata2akhkhar.",
-          "english": "Don't be late."
+          "slot": "don-t-be-late"
         },
         {
           "speaker": "Sami",
@@ -558,9 +542,7 @@
         },
         {
           "speaker": "Rana",
-          "arabic": "إِذَا تَأَخَّرْتَ فَاتَّصِلْ بِي.",
-          "transliteration": "idhaa ta2akhkharta fattasil bee.",
-          "english": "If you're late, call me."
+          "slot": "if-you-re-late-call-me"
         },
         {
           "speaker": "Sami",
@@ -1292,21 +1274,15 @@
         },
         {
           "speaker": "Dina",
-          "arabic": "مَتَى سَيَعُود؟",
-          "transliteration": "mataa sa-ya3ood?",
-          "english": "When will he be back?"
+          "slot": "when-will-he-be-back"
         },
         {
           "speaker": "Omar",
-          "arabic": "لَا أَعْرِفُ بِالتَّحْدِيد، بَعْدَ قَلِيل.",
-          "transliteration": "laa a3rifu bit-ta7deed, ba3da qaleel.",
-          "english": "I don't know exactly, in a bit."
+          "slot": "i-don-t-know-exactly-in-a-bit"
         },
         {
           "speaker": "Dina",
-          "arabic": "هَلْ يُمْكِنُكَ أَنْ تَأْخُذَ رِسَالَةً مِنِّي؟",
-          "transliteration": "hal yumkinuka an ta2khudha risaalatan minnee?",
-          "english": "Can you take a message for me?"
+          "slot": "can-you-take-a-message-for-me"
         },
         {
           "speaker": "Omar",
@@ -1316,9 +1292,7 @@
         },
         {
           "speaker": "Dina",
-          "arabic": "قُلْ لَهُ أَنْ يَتَّصِلَ بِي.",
-          "transliteration": "qul lahu an yattasila bee.",
-          "english": "Tell him to call me."
+          "slot": "tell-him-to-call-me"
         },
         {
           "speaker": "Dina",
@@ -1334,21 +1308,16 @@
         },
         {
           "speaker": "Dina",
-          "arabic": "شُكْرًا جَزِيلًا.",
-          "transliteration": "shukran jazeelan.",
-          "english": "Thanks a lot."
+          "slot": "thanks-a-lot"
         },
         {
           "speaker": "Omar",
-          "arabic": "عَفْوًا.",
-          "transliteration": "3afwan.",
-          "english": "You're welcome."
+          "slot": "thanks-a-lot",
+          "reply": true
         },
         {
           "speaker": "Dina",
-          "arabic": "جَيِّدٌ أَنَّنِي لَمْ أُضَيِّعْ وَقْتَكَ.",
-          "transliteration": "jayyidun annanee lam udayyi3 waqtaka.",
-          "english": "Good that I didn't waste your time."
+          "slot": "good-that-i-didn-t-waste-your-time"
         },
         {
           "speaker": "Omar",
@@ -1676,9 +1645,7 @@
       "dialogue": [
         {
           "speaker": "Hadi",
-          "arabic": "هَلْ وَصَلَتْكَ رِسَالَتِي؟",
-          "transliteration": "hal wasalatka risaalatee?",
-          "english": "Did you get my message?"
+          "slot": "did-you-get-my-message"
         },
         {
           "speaker": "Karim",
@@ -1724,15 +1691,11 @@
         },
         {
           "speaker": "Hadi",
-          "arabic": "اُكْتُبْ لِي عِنْدَمَا تَصِلُ.",
-          "transliteration": "uktub lee 3indamaa tasilu.",
-          "english": "Write to me when you arrive."
+          "slot": "write-to-me-when-you-arrive"
         },
         {
           "speaker": "Karim",
-          "arabic": "سَأَكْتُبُ لَكَ عَبْرَ التَّطْبِيق.",
-          "transliteration": "sa2aktubu laka 3abra at-tatbeeq.",
-          "english": "I'll write to you on the app."
+          "slot": "i-ll-write-to-you-on-the-app"
         },
         {
           "speaker": "Hadi",
@@ -2022,9 +1985,7 @@
       "dialogue": [
         {
           "speaker": "Karim",
-          "arabic": "هَلْ نُجْرِي مُكَالَمَةَ فِيدْيُو؟",
-          "transliteration": "hal nujree mukaalamata feedyoo?",
-          "english": "Can we do a video call?"
+          "slot": "can-we-do-a-video-call"
         },
         {
           "speaker": "Hadi",
@@ -2040,9 +2001,7 @@
         },
         {
           "speaker": "Hadi",
-          "arabic": "هَلْ تَرَانِي؟",
-          "transliteration": "hal taraanee?",
-          "english": "Can you see me?"
+          "slot": "can-you-see-me"
         },
         {
           "speaker": "Karim",
@@ -2058,27 +2017,19 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "الصَّوْتُ مُتَقَطِّع.",
-          "transliteration": "as-sawtu mutaqatti3.",
-          "english": "The sound is choppy."
+          "slot": "the-sound-is-choppy"
         },
         {
           "speaker": "Hadi",
-          "arabic": "سَأَقْتَرِبُ مِنَ الرَّاوْتَر.",
-          "transliteration": "sa2aqtaribu mina ar-raawtar.",
-          "english": "I'll move closer to the router."
+          "slot": "i-ll-move-closer-to-the-router"
         },
         {
           "speaker": "Karim",
-          "arabic": "اِنْتَظِرْ، تَجَمَّدَتِ الشَّاشَة.",
-          "transliteration": "intadhir, tajammadati ash-shaasha.",
-          "english": "Wait, the screen froze."
+          "slot": "wait-the-screen-froze"
         },
         {
           "speaker": "Hadi",
-          "arabic": "سَأَخْرُجُ ثُمَّ أَدْخُلُ مِنْ جَدِيد.",
-          "transliteration": "sa2akhruju thumma adkhulu min jadeed.",
-          "english": "I'll leave and join again."
+          "slot": "i-ll-leave-and-join-again"
         },
         {
           "speaker": "Karim",
@@ -2088,9 +2039,7 @@
         },
         {
           "speaker": "Hadi",
-          "arabic": "دَعْنِي أُشَارِكُ شَاشَتِي.",
-          "transliteration": "da3nee ushaariku shaashatee.",
-          "english": "Let me share my screen."
+          "slot": "let-me-share-my-screen"
         }
       ],
       "de_book": [

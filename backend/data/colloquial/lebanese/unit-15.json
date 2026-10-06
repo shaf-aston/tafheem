@@ -483,9 +483,7 @@
         },
         {
           "speaker": "سامر",
-          "arabic": "عِنْدِكِنّ تِذَاكِر لِحَلَب؟",
-          "transliteration": "3indkon tazaaker la-7alab?",
-          "english": "Do you have tickets to Aleppo?"
+          "slot": "do-you-have-tickets-to-aleppo"
         },
         {
           "speaker": "الموظف",
@@ -507,9 +505,7 @@
         },
         {
           "speaker": "سامر",
-          "arabic": "فِيِّي إِدْفَع بَالْكَارْت؟",
-          "transliteration": "fiyyi 2edfa3 bel-kart?",
-          "english": "Can I pay by card?"
+          "slot": "can-i-pay-by-card"
         },
         {
           "speaker": "الموظف",
@@ -923,9 +919,7 @@
         },
         {
           "speaker": "الضابط",
-          "arabic": "قِدِّيْش رَح تِضَل هُون؟",
-          "transliteration": "addeesh ra7 teDall hon?",
-          "english": "How long will you stay here?"
+          "slot": "how-long-will-you-stay-here"
         },
         {
           "speaker": "سامر",
@@ -935,9 +929,7 @@
         },
         {
           "speaker": "الضابط",
-          "arabic": "أَهْلَاً وَسَهْلَاً",
-          "transliteration": "ahlan w sahlan",
-          "english": "Welcome."
+          "slot": "welcome"
         }
       ],
       "de_book": [
@@ -1278,9 +1270,7 @@
         },
         {
           "speaker": "كريم",
-          "arabic": "وَيْن مِكْتَب الشَّكَاوِي؟",
-          "transliteration": "wein maktab sh-shakaawi?",
-          "english": "Where's the complaints office?"
+          "slot": "where-s-the-complaints-office"
         },
         {
           "speaker": "الموظفة",

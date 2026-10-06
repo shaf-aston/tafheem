@@ -97,9 +97,7 @@
       "dialogue": [
         {
           "speaker": "Yusuf",
-          "arabic": "صَبَاحُ الْخَيْر.",
-          "transliteration": "sabaa7u al-khayr.",
-          "english": "Good morning."
+          "slot": "good-morning"
         },
         {
           "speaker": "Mariam",
@@ -115,21 +113,15 @@
         },
         {
           "speaker": "Mariam",
-          "arabic": "كَمِ السَّاعَةُ الْآن؟",
-          "transliteration": "kami as-saa3atu al-aan?",
-          "english": "What time is it now?"
+          "slot": "what-time-is-it-now"
         },
         {
           "speaker": "Yusuf",
-          "arabic": "السَّاعَةُ السَّابِعَة.",
-          "transliteration": "as-saa3atu as-saabi3a.",
-          "english": "It's seven o'clock."
+          "slot": "it-s-seven-o-clock"
         },
         {
           "speaker": "Mariam",
-          "arabic": "أُرِيدُ الْقَهْوَةَ أَوَّلًا.",
-          "transliteration": "ureedu al-qahwata awwalan.",
-          "english": "I want coffee first thing."
+          "slot": "i-want-coffee-first-thing"
         },
         {
           "speaker": "Yusuf",
@@ -516,9 +508,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "مَا أَخْبَارُ الْيَوْم؟",
-          "transliteration": "maa akhbaaru al-yawm?",
-          "english": "What's the news today?"
+          "slot": "what-s-the-news-today"
         },
         {
           "speaker": "Tariq",
@@ -895,9 +885,7 @@
       "dialogue": [
         {
           "speaker": "Reem",
-          "arabic": "مَسَاءُ الْخَيْر.",
-          "transliteration": "masaa2u al-khayr.",
-          "english": "Good evening."
+          "slot": "good-evening"
         },
         {
           "speaker": "Hassan",
@@ -913,15 +901,11 @@
         },
         {
           "speaker": "Hassan",
-          "arabic": "تَعِبْتُ كَثِيرًا الْيَوْم.",
-          "transliteration": "ta3ibtu katheeran al-yawm.",
-          "english": "I got very tired today."
+          "slot": "i-got-very-tired-today"
         },
         {
           "speaker": "Reem",
-          "arabic": "مَاذَا سَنَأْكُلُ عَلَى الْعَشَاء؟",
-          "transliteration": "maadhaa sana2kulu 3alaa al-3ashaa2?",
-          "english": "What will we eat for dinner?"
+          "slot": "what-will-we-eat-for-dinner"
         },
         {
           "speaker": "Hassan",
@@ -967,9 +951,8 @@
         },
         {
           "speaker": "Reem",
-          "arabic": "وَأَنْتَ مِنْ أَهْلِ الْخَيْر.",
-          "transliteration": "wa anta min ahli al-khayr.",
-          "english": "And you too."
+          "slot": "good-night",
+          "reply": true
         }
       ],
       "de_book": [
@@ -1309,15 +1292,11 @@
         },
         {
           "speaker": "Dina",
-          "arabic": "مَتَى الِاجْتِمَاع؟",
-          "transliteration": "mataa al-ijtimaa3?",
-          "english": "When is the meeting?"
+          "slot": "when-is-the-meeting"
         },
         {
           "speaker": "Layth",
-          "arabic": "فِي الْأُسْبُوعِ الْقَادِمِ اجْتِمَاعٌ يَوْمَ الثُّلَاثَاء.",
-          "transliteration": "fee al-usboo3i al-qaadimi ijtimaa3un yawma ath-thulaathaa2.",
-          "english": "Next week there's a meeting on Tuesday."
+          "slot": "next-week-there-s-a-meeting-on-tuesday"
         },
         {
           "speaker": "Dina",
@@ -1327,9 +1306,7 @@
         },
         {
           "speaker": "Layth",
-          "arabic": "يَوْمَ الْأَرْبِعَاءِ أَعْمَلُ حَتَّى الْمَسَاء.",
-          "transliteration": "yawma al-arbi3aa2i a3malu 7attaa al-masaa2.",
-          "english": "On Wednesday I work until the evening."
+          "slot": "on-wednesday-i-work-until-the-evening"
         },
         {
           "speaker": "Dina",
@@ -1339,9 +1316,7 @@
         },
         {
           "speaker": "Layth",
-          "arabic": "يَوْمَ الْخَمِيسِ أَرَى أَصْدِقَائِي.",
-          "transliteration": "yawma al-khameesi araa asdiqaa2ee.",
-          "english": "On Thursday I see my friends."
+          "slot": "on-thursday-i-see-my-friends"
         },
         {
           "speaker": "Dina",
@@ -1351,27 +1326,19 @@
         },
         {
           "speaker": "Layth",
-          "arabic": "الْجُمُعَةُ يَوْمُ الصَّلَاةِ وَالرَّاحَة.",
-          "transliteration": "al-jum3atu yawmu as-salaati war-raa7a.",
-          "english": "Friday is the day of prayer and rest."
+          "slot": "friday-is-the-day-of-prayer-and-rest"
         },
         {
           "speaker": "Dina",
-          "arabic": "مَاذَا تَنْوِي أَنْ تَفْعَلَ فِي عُطْلَةِ نِهَايَةِ الْأُسْبُوع؟",
-          "transliteration": "maadhaa tanwee an taf3ala fee 3utlati nihaayati al-usboo3?",
-          "english": "What do you plan to do on the weekend?"
+          "slot": "what-do-you-plan-to-do-on-the-weekend"
         },
         {
           "speaker": "Layth",
-          "arabic": "يَوْمَ السَّبْتِ نَذْهَبُ إِلَى السُّوق.",
-          "transliteration": "yawma as-sabti nadhhabu ilaa as-sooq.",
-          "english": "On Saturday we go to the market."
+          "slot": "on-saturday-we-go-to-the-market"
         },
         {
           "speaker": "Dina",
-          "arabic": "تَأْتِي عُطْلَةُ نِهَايَةِ الْأُسْبُوعِ بِسُرْعَة.",
-          "transliteration": "ta2tee 3utlatu nihaayati al-usboo3i bisur3a.",
-          "english": "The weekend comes quickly."
+          "slot": "the-weekend-comes-quickly"
         }
       ],
       "de_book": [
@@ -2069,9 +2036,7 @@
         },
         {
           "speaker": "Dina",
-          "arabic": "أَيُّ فَرِيقٍ تُشَجِّع؟",
-          "transliteration": "ayyu fareeqin tushajji3?",
-          "english": "Which team do you support?"
+          "slot": "which-team-do-you-support"
         },
         {
           "speaker": "Layth",
@@ -2105,9 +2070,7 @@
         },
         {
           "speaker": "Dina",
-          "arabic": "الرِّيَاضَةُ مُفِيدَةٌ لِلصِّحَّة.",
-          "transliteration": "ar-riyaadatu mufeedatun lis-si77a.",
-          "english": "Exercise is good for health."
+          "slot": "exercise-is-good-for-health"
         },
         {
           "speaker": "Layth",
@@ -2117,9 +2080,7 @@
         },
         {
           "speaker": "Dina",
-          "arabic": "هَلْ نَمْشِي مَعًا بَعْدَ الصَّلَاة؟",
-          "transliteration": "hal namshee ma3an ba3da as-salaah?",
-          "english": "Shall we walk together after the prayer?"
+          "slot": "shall-we-walk-together-after-the-prayer"
         }
       ],
       "de_book": [

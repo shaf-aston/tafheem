@@ -40,7 +40,8 @@
         {
           "slot": "this-is-samer-speaking",
           "arabic": "مَعَاك سَمِير",
-          "transliteration": "m3aak Samir"
+          "transliteration": "m3aak Samir",
+          "english": "This is Samir (speaking)."
         },
         {
           "slot": "good-that-you-called",
@@ -101,9 +102,7 @@
       "dialogue": [
         {
           "speaker": "Salma",
-          "arabic": "أَلُو؟",
-          "transliteration": "alo?",
-          "english": "Hello?"
+          "slot": "hello-answering-the-phone"
         },
         {
           "speaker": "Samir",
@@ -119,9 +118,7 @@
         },
         {
           "speaker": "Samir",
-          "arabic": "أَش خْبَارَك؟",
-          "transliteration": "ash khbaarek?",
-          "english": "What's new?"
+          "slot": "what-s-new"
         },
         {
           "speaker": "Salma",
@@ -161,9 +158,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "عَاوِد عَيَّط لِيَا مِن بَعْد شْوِيَة",
-          "transliteration": "3awd 3ayyaT liya mn ba3d shwiya",
-          "english": "Call me back in a bit."
+          "slot": "can-you-call-me-back-in-a-bit"
         },
         {
           "speaker": "Samir",
@@ -468,7 +463,8 @@
         {
           "slot": "we-ll-meet-at-the-umayyad-mosque",
           "arabic": "نْتْلَاقَاو عِنْد مَسْجِد الْحَسَن التَّانِي",
-          "transliteration": "ntlaqaw 3and masjid l-7asan t-taani"
+          "transliteration": "ntlaqaw 3and masjid l-7asan t-taani",
+          "english": "We'll meet at the Hassan II Mosque."
         },
         {
           "slot": "i-know-exactly-where-the-place-is",
@@ -490,9 +486,8 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "خْلِينَا نْتْلَاقَاو فَالْكَافِي",
-          "transliteration": "khalleena ntlaqaw f-l-kafi",
-          "english": "Let's meet at the cafe."
+          "slot": "where-should-we-meet",
+          "reply": true
         },
         {
           "speaker": "Samir",
@@ -502,9 +497,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "وَاش السَّبْعَة مَزْيَانَة؟",
-          "transliteration": "wash s-sab3a mzyaana?",
-          "english": "Is 7 o'clock good?"
+          "slot": "is-7-o-clock-good"
         },
         {
           "speaker": "Samir",
@@ -881,9 +874,7 @@
         },
         {
           "speaker": "Samir",
-          "arabic": "وَاش نْتْلَاقَاو الْعَشِيَّة عُوض الصَّبَاح؟",
-          "transliteration": "wash ntlaqaw l-3shiyya 3wad S-Sbaa7?",
-          "english": "Can we meet in the afternoon instead of the morning?"
+          "slot": "can-we-meet-in-the-afternoon-instead-of-the-morn"
         },
         {
           "speaker": "Salma",
@@ -1162,7 +1153,8 @@
         {
           "slot": "hello-is-samer-there",
           "arabic": "أَلُو، وَاش سَمِير كَايِن؟",
-          "transliteration": "alo, wash Samir kayn?"
+          "transliteration": "alo, wash Samir kayn?",
+          "english": "Hello, is Samir there?"
         },
         {
           "slot": "no-he-s-not-here-right-now",
@@ -1187,7 +1179,8 @@
             "arabic": "أَكِيد، قُول لِيَا",
             "transliteration": "akeed, qul liya",
             "english": "Sure, tell me."
-          }
+          },
+          "english": "Can you pass him a message?"
         },
         {
           "slot": "tell-him-to-call-me",
@@ -1251,21 +1244,15 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "إِمْتَا غَادِي يِرْجَع؟",
-          "transliteration": "imta ghadi yerje3?",
-          "english": "When will he be back?"
+          "slot": "when-will-he-be-back"
         },
         {
           "speaker": "Youssef",
-          "arabic": "مَا عْرَفْتِش بَالضَّبْط، مِن بَعْد شْوِيَة",
-          "transliteration": "ma 3reftsh bD-DabT, mn ba3d shwiya",
-          "english": "I don't know exactly, in a bit."
+          "slot": "i-don-t-know-exactly-in-a-bit"
         },
         {
           "speaker": "Salma",
-          "arabic": "وَاش تْقْدَر تُوصَل لِيه رِسَالَة؟",
-          "transliteration": "wash tqder tuSSel lih risaala?",
-          "english": "Can you take a message for me?"
+          "slot": "can-you-take-a-message-for-me"
         },
         {
           "speaker": "Youssef",
@@ -1275,9 +1262,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "قُول لِيه يَعَيَّط لِيَا",
-          "transliteration": "qul lih ye3ayyaT liya",
-          "english": "Tell him to call me."
+          "slot": "tell-him-to-call-me"
         },
         {
           "speaker": "Youssef",
@@ -1293,9 +1278,7 @@
         },
         {
           "speaker": "Youssef",
-          "arabic": "غِير يُوصَل نْقُول لِيه",
-          "transliteration": "ghir yuSel nqul lih",
-          "english": "I'll tell him as soon as he arrives."
+          "slot": "i-ll-tell-him-as-soon-as-he-arrives"
         },
         {
           "speaker": "Salma",

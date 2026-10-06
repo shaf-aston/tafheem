@@ -220,21 +220,16 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "مَا الصَّلَاةُ الْقَادِمَة؟",
-          "transliteration": "maa aS-Salaatu al-qaadima?",
-          "english": "Which prayer is next?"
+          "slot": "which-prayer-is-next"
         },
         {
           "speaker": "Omar",
-          "arabic": "صَلَاةُ الْعَصْر.",
-          "transliteration": "Salaatu al-3aSr.",
-          "english": "The Asr prayer."
+          "slot": "which-prayer-is-next",
+          "reply": true
         },
         {
           "speaker": "Yusuf",
-          "arabic": "مَتَى الْأَذَان؟",
-          "transliteration": "mataa al-adhaan?",
-          "english": "When is the adhan?"
+          "slot": "when-is-the-adhan"
         },
         {
           "speaker": "Omar",
@@ -274,9 +269,8 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "مِنَّا وَمِنْكُمْ.",
-          "transliteration": "minnaa wa minkum.",
-          "english": "From us and from you."
+          "slot": "may-allah-accept",
+          "reply": true
         }
       ],
       "de_book": [
@@ -622,9 +616,7 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "هَلْ يُوجَدُ مَاءٌ؟",
-          "transliteration": "hal yoojadu maa2un?",
-          "english": "Is there water?"
+          "slot": "is-there-water"
         },
         {
           "speaker": "Hamza",
@@ -646,21 +638,16 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "أَيْنَ سَجَّادَةُ الصَّلَاة؟",
-          "transliteration": "ayna sajjaadatu aS-Salaa?",
-          "english": "Where is the prayer rug?"
+          "slot": "where-is-the-prayer-rug"
         },
         {
           "speaker": "Hamza",
-          "arabic": "هُنَاكَ سَجَّادَاتٌ فِي الزَّاوِيَة.",
-          "transliteration": "hunaaka sajjaadaatun fii az-zaawiya.",
-          "english": "There are rugs in the corner."
+          "slot": "where-is-the-prayer-rug",
+          "reply": true
         },
         {
           "speaker": "Yusuf",
-          "arabic": "فِي أَيِّ اتِّجَاهٍ الْقِبْلَة؟",
-          "transliteration": "fii ayyi ittijaahin al-qibla?",
-          "english": "Which way is the qibla?"
+          "slot": "which-way-is-the-qibla"
         },
         {
           "speaker": "Hamza",
@@ -1024,9 +1011,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "هَيَّا نَذْهَبْ إِلَى الْجُمُعَةِ مُبَكِّرِين.",
-          "transliteration": "hayyaa nadhhab ilaa al-jumu3ati mubakkireen.",
-          "english": "Let us go early to Jumu'ah."
+          "slot": "lets-go-early-to-jumuah"
         },
         {
           "speaker": "Yusuf",
@@ -1042,9 +1027,8 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "الشَّيْخُ خَالِدٌ سَيَخْطُبُ وَيَؤُمُّنَا.",
-          "transliteration": "ash-shaykhu khaalidun sa-yakhTubu wa ya2ummunaa.",
-          "english": "Shaykh Khalid will give the khutbah and lead us."
+          "slot": "who-is-the-imam-today",
+          "reply": true
         },
         {
           "speaker": "Omar",
@@ -1054,9 +1038,8 @@
         },
         {
           "speaker": "Brother",
-          "arabic": "تَفَضَّلْ، هُنَا مَكَانٌ فِي الصَّفِّ الثَّانِي.",
-          "transliteration": "tafaDDal, hunaa makaanun fee aS-Saffi ath-thaanee.",
-          "english": "Please, there is a place here in the second row."
+          "slot": "is-there-an-empty-place",
+          "reply": true
         },
         {
           "speaker": "Yusuf",
@@ -1447,9 +1430,8 @@
         },
         {
           "speaker": "Ustadh",
-          "arabic": "عَلَى لَوْحَةِ الْإِعْلَانَاتِ عِنْدَ الْمَدْخَل.",
-          "transliteration": "3alaa lawHati al-i3laanaati 3inda al-madkhal.",
-          "english": "On the notice board at the entrance."
+          "slot": "where-is-the-timetable-of-lessons",
+          "reply": true
         },
         {
           "speaker": "Ahmad",
@@ -1483,9 +1465,7 @@
         },
         {
           "speaker": "Ustadh",
-          "arabic": "كَمْ عُمْرُ الطِّفْل؟",
-          "transliteration": "kam 3umru aT-Tifl?",
-          "english": "How old is the child?"
+          "slot": "how-old-is-the-child"
         },
         {
           "speaker": "Ahmad",

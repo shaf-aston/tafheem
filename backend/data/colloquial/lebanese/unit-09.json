@@ -121,9 +121,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "شُو صَار فِيك؟",
-          "transliteration": "shu Saar feek?",
-          "english": "What happened to you?"
+          "slot": "what-happened-to-you-to-a-man"
         },
         {
           "speaker": "Samer",
@@ -554,9 +552,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "أدِّيش هَالدُّوا؟",
-          "transliteration": "2addeysh had-dawa?",
-          "english": "How much is this medicine?"
+          "slot": "how-much-does-this-medicine-cost"
         },
         {
           "speaker": "Pharmacist",
@@ -566,9 +562,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "لَازِم وَصْفة؟",
-          "transliteration": "laazem waSfe?",
-          "english": "Do I need a prescription?"
+          "slot": "do-i-need-a-prescription"
         },
         {
           "speaker": "Pharmacist",
@@ -590,9 +584,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "قَبْل الأكْل وِلّا بِعْدُو؟",
-          "transliteration": "2abl el-2akel wella ba3do?",
-          "english": "Before eating or after?"
+          "slot": "before-eating-or-after"
         },
         {
           "speaker": "Pharmacist",
@@ -988,9 +980,7 @@
         },
         {
           "speaker": "Doctor",
-          "arabic": "مِن أدِّيش حَاسِس حَالَك هِيك؟",
-          "transliteration": "min 2addeysh 7aases 7aalak heek?",
-          "english": "Since when have you felt like this?"
+          "slot": "since-when-have-you-been-feeling-like-this-to-a-"
         },
         {
           "speaker": "Karim",
@@ -1006,9 +996,7 @@
         },
         {
           "speaker": "Doctor",
-          "arabic": "عِنْدَك حِسَاسِيَّة مِن شِي دُوا؟",
-          "transliteration": "3endak 7asaasiyye min shi dawa?",
-          "english": "Are you allergic to any medicine?"
+          "slot": "are-you-allergic-to-any-medicine-to-a-man"
         },
         {
           "speaker": "Karim",

@@ -31,12 +31,14 @@
             "arabic": "اِتْفَضّلْ، اِرْكَب.",
             "transliteration": "etfaddal, erkab.",
             "english": "Come in, get in."
-          }
+          },
+          "english": "Please, I want to go to al-Hussein."
         },
         {
           "slot": "can-you-take-me-to-bab-touma",
           "arabic": "مُمْكِنْ تُوَصّلْنِي وَسْطْ الْبِلَد؟",
-          "transliteration": "momken tewassalni west el-balad?"
+          "transliteration": "momken tewassalni west el-balad?",
+          "english": "Can you take me downtown?"
         },
         {
           "slot": "turn-on-the-meter-please",
@@ -150,9 +152,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "عَلَى طُول لِآخِرْ الشّارِع.",
-          "transliteration": "3ala Tool le-2aakher esh-shaari3.",
-          "english": "Straight ahead to the end of the street."
+          "slot": "straight-ahead-to-the-end-of-the-street"
         },
         {
           "speaker": "سواق",
@@ -162,9 +162,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "هِنَا كُوَيّسْ، وَقّفْ.",
-          "transliteration": "hena kwayyes, wa22af.",
-          "english": "Here is fine, stop."
+          "slot": "here-is-fine-stop"
         },
         {
           "speaker": "سواق",
@@ -495,7 +493,8 @@
         {
           "slot": "from-where-do-i-get-to-the-umayyad-mosque",
           "arabic": "أَرُوحْ الْأَزْهَرْ مِنِيِن؟",
-          "transliteration": "aroo7 el-azhar meneen?"
+          "transliteration": "aroo7 el-azhar meneen?",
+          "english": "How do I get to al-Azhar?"
         },
         {
           "slot": "thanks-a-lot",
@@ -878,7 +877,8 @@
             "arabic": "أَيْوه، بِمِرّ عَلِيه.",
             "transliteration": "aywa, bamorr 3aleeh.",
             "english": "Yes, I pass by it."
-          }
+          },
+          "english": "Do you stop at Ramses Square?"
         },
         {
           "slot": "please-let-me-off-here",
@@ -931,15 +931,12 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "الْأُجْرَة كَام؟",
-          "transliteration": "el-2ogra kaam?",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "سواق",
-          "arabic": "خَمْسَة جِنِيه.",
-          "transliteration": "khamsa geneeh.",
-          "english": "Five pounds."
+          "slot": "how-much-is-the-fare",
+          "reply": true
         },
         {
           "speaker": "راكب",
@@ -1725,9 +1722,7 @@
         },
         {
           "speaker": "كريم",
-          "arabic": "الطَّرِيق هَيَاخُد قَد إِيه؟",
-          "transliteration": "eT-Taree2 hayakhod add eeh?",
-          "english": "How long will the way take?"
+          "slot": "how-long-does-the-way-take"
         },
         {
           "speaker": "السواق",
@@ -1743,9 +1738,8 @@
         },
         {
           "speaker": "السواق",
-          "arabic": "تَلَاتِين جِنِيه.",
-          "transliteration": "talateen ginee.",
-          "english": "Thirty pounds."
+          "slot": "how-much-is-the-fare",
+          "reply": true
         },
         {
           "speaker": "كريم",

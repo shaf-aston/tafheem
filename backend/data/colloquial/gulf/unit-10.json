@@ -435,7 +435,8 @@
         {
           "slot": "in-winter-it-gets-very-cold-in-damascus",
           "arabic": "في الشِّتا الجَو يِصير بارِد مَرّة في الكُويت",
-          "transliteration": "fishshita ijjaw ySeer baarid marra filkuwait"
+          "transliteration": "fishshita ijjaw ySeer baarid marra filkuwait",
+          "english": "In winter it gets very cold in Kuwait."
         },
         {
           "slot": "in-summer-the-weather-s-hot-and-dry",
@@ -485,7 +486,8 @@
         {
           "slot": "summer-in-damascus-is-long",
           "arabic": "الصَّيف في الكُويت طَويل",
-          "transliteration": "iSSeef filkuwait Taweel"
+          "transliteration": "iSSeef filkuwait Taweel",
+          "english": "Summer in Kuwait is long."
         }
       ],
       "dialogue": [
@@ -914,9 +916,7 @@
         },
         {
           "speaker": "ريم",
-          "arabic": "نَسيت جاكيت الْمَطَر في الْبيت",
-          "transliteration": "niseet jaakeet ilmaTar filbeet",
-          "english": "I forgot the raincoat at home."
+          "slot": "i-forgot-the-raincoat-at-home"
         },
         {
           "speaker": "حمد",

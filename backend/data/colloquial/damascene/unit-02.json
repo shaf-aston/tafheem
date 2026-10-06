@@ -510,9 +510,7 @@
         },
         {
           "speaker": "Rana",
-          "arabic": "شُو بِتِحِبّ تَاكُل؟",
-          "transliteration": "shoo bti7ebb taakol؟",
-          "english": "What do you like to eat?"
+          "slot": "what-do-you-like-to-eat"
         },
         {
           "speaker": "Omar",
@@ -570,9 +568,7 @@
         },
         {
           "speaker": "Rana",
-          "arabic": "قَدِّيش الْحِسَاب؟",
-          "transliteration": "addeesh il7saab؟",
-          "english": "How much is the bill?"
+          "slot": "how-much-is-the-bill"
         }
       ],
       "de_book": [

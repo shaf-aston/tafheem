@@ -38,7 +38,7 @@ function Line({ line, side, latest }) {
         <ArabicText as="p" size="base" className="text-[var(--text)]">{line.arabic}</ArabicText>
         <div className={`flex flex-wrap items-center gap-x-2 ${side ? 'justify-end' : ''}`}>
           {!side && <Spelling>{line.transliteration}</Spelling>}
-          <SpeakButton inline={side ? 'start' : 'end'} text={line.arabic} />
+          <SpeakButton text={line.arabic} />
           {!!side && <Spelling>{line.transliteration}</Spelling>}
         </div>
         <span className="block type-small text-[var(--text)]">{line.english}</span>

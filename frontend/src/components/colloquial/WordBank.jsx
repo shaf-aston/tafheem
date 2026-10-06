@@ -40,7 +40,7 @@ function Bank({ rows, onClose, scope, title }) {
               <Spelling className="block">{r.transliteration}</Spelling>
             </span>
             <span className="shrink-0 flex items-center gap-2">
-              <SpeakButton inline="start" text={r.arabic} />
+              <SpeakButton text={r.arabic} />
               <ArabicText as="span" size="base" className="text-[var(--text)]">{r.arabic}</ArabicText>
             </span>
           </li>

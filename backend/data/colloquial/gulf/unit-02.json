@@ -523,9 +523,7 @@
         },
         {
           "speaker": "Noura",
-          "arabic": "شِنُو تِحِبّ تاكِل؟",
-          "transliteration": "shinu ti7ibb taakil?",
-          "english": "What do you like to eat?"
+          "slot": "what-do-you-like-to-eat"
         },
         {
           "speaker": "Salem",
@@ -595,9 +593,7 @@
         },
         {
           "speaker": "Salem",
-          "arabic": "كَمْ الْحِسابْ؟",
-          "transliteration": "kam il7isaab?",
-          "english": "How much is the bill?"
+          "slot": "how-much-is-the-bill"
         },
         {
           "speaker": "Waiter",

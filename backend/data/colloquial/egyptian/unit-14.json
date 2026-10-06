@@ -49,7 +49,8 @@
             "arabic": "يَا رَبّ",
             "transliteration": "ya rabb",
             "english": "God willing"
-          }
+          },
+          "english": "Here is to next Eid."
         },
         {
           "slot": "blessed-eid-to-you-all",
@@ -553,9 +554,7 @@
         },
         {
           "speaker": "أحمد",
-          "arabic": "رايح عِزُومَة فِطار مِين النَّهاردَه؟",
-          "transliteration": "raayi7 3ozoomit feTaar meen en-nahaarda?",
-          "english": "Whose iftar invitation are you going to today?"
+          "slot": "whose-iftar-invitation-are-you-going-to-tonight"
         },
         {
           "speaker": "خالد",
@@ -971,9 +970,7 @@
         },
         {
           "speaker": "هالة",
-          "arabic": "مِين مَعْزُوم عَلَى الْفَرَح؟",
-          "transliteration": "meen ma3zoom 3al-fara7?",
-          "english": "Who's invited to the wedding?"
+          "slot": "who-s-invited-to-the-wedding"
         },
         {
           "speaker": "دينا",

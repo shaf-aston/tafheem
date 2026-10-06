@@ -568,9 +568,7 @@
         },
         {
           "speaker": "الزبون",
-          "arabic": "بْغِيتْ كِيلُو دْيَال اللَّحْم الْمِفْرُوم",
-          "transliteration": "bghit kilo dyal l-lham l-mefrum",
-          "english": "I want a kilo of ground meat"
+          "slot": "i-want-a-kilo-of-ground-meat"
         },
         {
           "speaker": "الجزار",
@@ -990,9 +988,8 @@
         },
         {
           "speaker": "الأم",
-          "arabic": "غَادِي نْطِيب الْعَدْس",
-          "transliteration": "ghadi nteyeb l-3ds",
-          "english": "I'm going to cook lentils"
+          "slot": "what-are-you-going-to-cook-today",
+          "reply": true
         },
         {
           "speaker": "البنت",
@@ -1032,9 +1029,7 @@
         },
         {
           "speaker": "البنت",
-          "arabic": "شْحَال خَاصْهَا تْبْقَى عَلَى النَّار؟",
-          "transliteration": "shhal khassha tbqa 3la n-nar?",
-          "english": "How long does it need to stay on the fire?"
+          "slot": "how-long-does-it-need-to-stay-on-the-fire"
         },
         {
           "speaker": "الأم",
@@ -1415,9 +1410,7 @@
       "dialogue": [
         {
           "speaker": "سلمى",
-          "arabic": "شْنُو هِي مَاكْلَتَك الْمُفَضَّلَة؟",
-          "transliteration": "shnu hiya maklatk l-mufaddala?",
-          "english": "What's your favourite dish?"
+          "slot": "what-s-your-favorite-dish"
         },
         {
           "speaker": "يوسف",
@@ -1433,9 +1426,7 @@
         },
         {
           "speaker": "يوسف",
-          "arabic": "وَاش كْتَبْغِي الْمَاكْلَة الْحَارَة؟",
-          "transliteration": "wash katbghi l-makla l-7arra?",
-          "english": "Do you like spicy food?"
+          "slot": "do-you-like-spicy-food"
         },
         {
           "speaker": "سلمى",
@@ -1451,9 +1442,7 @@
         },
         {
           "speaker": "سلمى",
-          "arabic": "وَاش كْتَفَضِّل الْجَاج وَلَا اللَّحْم؟",
-          "transliteration": "wash katfaddal j-jaj wla l-lham?",
-          "english": "Do you prefer chicken or meat?"
+          "slot": "do-you-prefer-chicken-or-meat"
         },
         {
           "speaker": "يوسف",
@@ -1843,9 +1832,7 @@
         },
         {
           "speaker": "سلمى",
-          "arabic": "واش عندك شي لون خور؟",
-          "transliteration": "wash 3andek shi lon khor?",
-          "english": "Do you have another color?"
+          "slot": "do-you-have-another-color-to-a-man"
         },
         {
           "speaker": "إدريس",

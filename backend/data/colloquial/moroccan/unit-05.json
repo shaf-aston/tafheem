@@ -32,12 +32,14 @@
             "arabic": "وَاخَا، اِرْكَبْ.",
             "transliteration": "wakha, rkeb.",
             "english": "Okay, get in."
-          }
+          },
+          "english": "Please, I want to go to the old medina."
         },
         {
           "slot": "can-you-take-me-to-bab-touma",
           "arabic": "وَاشْ تْقَدَّرْ تُوصَّلْنِي لْبَابْ الْحَدْ؟",
-          "transliteration": "wash tqder twesslni l-bab l-7ed?"
+          "transliteration": "wash tqder twesslni l-bab l-7ed?",
+          "english": "Can you take me to Bab El Had?"
         },
         {
           "slot": "turn-on-the-meter-please",
@@ -115,9 +117,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "شْعَلْ الْكُونْطُورْ عَافَاكْ.",
-          "transliteration": "sha3el l-kontor 3afak.",
-          "english": "Turn on the meter please."
+          "slot": "turn-on-the-meter-please"
         },
         {
           "speaker": "الشوفور",
@@ -498,7 +498,8 @@
             "arabic": "دُوزْ مِنْ الْكُورْنِيشْ، غَادِي تْشُوفُو.",
             "transliteration": "dooz men l-kornish, ghadi tshoofu.",
             "english": "Go along the corniche, you will see it."
-          }
+          },
+          "english": "How do I get to the Hassan II Mosque?"
         },
         {
           "slot": "thanks-a-lot",
@@ -526,15 +527,12 @@
         },
         {
           "speaker": "ياسين",
-          "arabic": "وَاشْ بْعِيدْ وِلَّا قْرِيبْ؟",
-          "transliteration": "wash b3id wla qrib?",
-          "english": "Is it far or near?"
+          "slot": "is-it-far-or-near"
         },
         {
           "speaker": "راجل",
-          "arabic": "قْرِيبْ، غِيرْ عْشَرْ دْقَايِقْ عَلَى رْجْلِيكْ.",
-          "transliteration": "qrib, ghir 3ashr dqayeq 3la rjilik.",
-          "english": "Near, only ten minutes on foot."
+          "slot": "is-it-far-or-near",
+          "reply": true
         },
         {
           "speaker": "ياسين",
@@ -568,9 +566,7 @@
         },
         {
           "speaker": "راجل",
-          "arabic": "دُورْ عَلَى الشِّمَالْ مِنْ بْعَدْ الْجَامِعْ.",
-          "transliteration": "dor 3la sh-shmal men b3d l-jam3.",
-          "english": "Turn left after the mosque."
+          "slot": "turn-left-after-the-mosque"
         },
         {
           "speaker": "ياسين",
@@ -889,7 +885,8 @@
             "arabic": "إِيهْ، كْنُوقِفْ تَمَّا.",
             "transliteration": "iyeh, kanweqqef tma.",
             "english": "Yes, I stop there."
-          }
+          },
+          "english": "Do you stop at Place Mohammed V?"
         },
         {
           "slot": "please-let-me-off-here",
@@ -966,15 +963,12 @@
         },
         {
           "speaker": "سلمى",
-          "arabic": "شْحَالْ الثِّمَنْ؟",
-          "transliteration": "shhal t-tmen?",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "السائق",
-          "arabic": "خْمْسَة دَرَاهِمْ وْنِصْ.",
-          "transliteration": "khamsa drahem w-nuss.",
-          "english": "Five and a half dirhams."
+          "slot": "how-much-is-the-fare",
+          "reply": true
         },
         {
           "speaker": "سلمى",
@@ -990,15 +984,12 @@
         },
         {
           "speaker": "سلمى",
-          "arabic": "وَاشْ كْتُوقِفْ عِنْدْ بْلَاصْ مْحَمَّدْ الْخَامِسْ؟",
-          "transliteration": "wash katweqqef 3and blas m7emmed l-khamis?",
-          "english": "Do you stop at Place Mohammed V?"
+          "slot": "do-you-stop-at-halbouni-roundabout"
         },
         {
           "speaker": "السائق",
-          "arabic": "إِيهْ، كْنُوقِفْ تَمَّا.",
-          "transliteration": "iyeh, kanweqqef tma.",
-          "english": "Yes, I stop there."
+          "slot": "do-you-stop-at-halbouni-roundabout",
+          "reply": true
         },
         {
           "speaker": "سلمى",
@@ -1364,9 +1355,7 @@
         },
         {
           "speaker": "أمينة",
-          "arabic": "وَاشْ كَاينْ شِي مَطْعَمْ مْزِيَانْ فْهَادْ الْحِيّ؟",
-          "transliteration": "wash kayn shi mat3am mzyan f-had l-7ay?",
-          "english": "Is there a good restaurant in this area?"
+          "slot": "is-there-a-good-restaurant-in-the-area"
         },
         {
           "speaker": "هشام",
@@ -1759,9 +1748,7 @@
         },
         {
           "speaker": "كريم",
-          "arabic": "بغيت نمشي للمدينة القديمة.",
-          "transliteration": "bghit nmshi l-medina l-qdima.",
-          "english": "I want to go to the Old City."
+          "slot": "i-want-to-go-to-the-old-city"
         },
         {
           "speaker": "عبد الله",
@@ -1771,15 +1758,12 @@
         },
         {
           "speaker": "كريم",
-          "arabic": "شحال كتاخد الطريق؟",
-          "transliteration": "shhal katakhod t-triq?",
-          "english": "How long does the way take?"
+          "slot": "how-long-does-the-way-take"
         },
         {
           "speaker": "عبد الله",
-          "arabic": "شي عشرين دقيقة.",
-          "transliteration": "shi 3ashrin d-qiqa.",
-          "english": "About twenty minutes."
+          "slot": "how-long-does-the-way-take",
+          "reply": true
         },
         {
           "speaker": "كريم",
@@ -1813,9 +1797,8 @@
         },
         {
           "speaker": "عبد الله",
-          "arabic": "خمسة وعشرين درهم.",
-          "transliteration": "khamsa w 3ashrin dirham.",
-          "english": "Twenty-five dirhams."
+          "slot": "how-much-is-the-fare",
+          "reply": true
         }
       ],
       "de_book": [

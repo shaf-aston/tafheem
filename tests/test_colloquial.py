@@ -34,7 +34,7 @@ SOUND = {
     "lessons": [{
         "lesson": "lesson-01", "title": "Greetings",
         "phrases": [{**phrase(), "reply": phrase("أهلا")}],
-        "dialogue": [{"speaker": "Samer", **phrase()}],
+        "dialogue": [{"speaker": "Samer", **phrase("صباح الخير")}],
         "de_book": [{"pair": phrase(), "response": phrase("أهلا")}],
         "culture": "Greetings are repeated warmly.",
         "exercises": [exercise("a.1"), exercise("a.2", "choose"), exercise("a.3", "reorder")],
@@ -54,6 +54,41 @@ def faults(**changes):
 
 def test_the_sound_unit_has_no_faults():
     assert loader._unit_faults(copy.deepcopy(SOUND)) == []
+
+
+def slotted(*lines):
+    """The sound unit's first lesson with its phrase given a slot and its dialogue replaced, then filled."""
+    unit = copy.deepcopy(SOUND)
+    lesson = unit["lessons"][0]
+    lesson["phrases"][0] = {**lesson["phrases"][0], "slot": "greet"}
+    lesson["dialogue"] = list(lines)
+    outline = {"title": "T", "lessons": [{"lesson": "lesson-01", "title": "Greetings",
+                                           "phrases": [{"slot": "greet", "english": "Hello there."}]}]}
+    filled, said = loader._fill(outline, unit)
+    return filled["lessons"][0]["dialogue"], said + loader._unit_faults(filled)
+
+
+def test_a_dialogue_line_with_a_slot_takes_the_cards_words():
+    lines, said = slotted({"speaker": "A", "slot": "greet"}, {"speaker": "B", "slot": "greet", "reply": True})
+    assert said == []
+    assert (lines[0]["arabic"], lines[0]["english"], lines[0]["speaker"]) == ("مرحبا", "Hello.", "A")
+    assert (lines[1]["arabic"], lines[1]["english"]) == ("أهلا", "Hello.")
+
+
+def test_an_unknown_slot_or_missing_reply_is_caught():
+    assert any("not a phrase" in why for why in slotted({"speaker": "A", "slot": "nope"})[1])
+    unit = copy.deepcopy(SOUND)
+    del unit["lessons"][0]["phrases"][0]["reply"]
+    lesson = unit["lessons"][0]
+    lesson["phrases"][0]["slot"] = "greet"
+    lesson["dialogue"] = [{"speaker": "A", "slot": "greet", "reply": True}]
+    outline = {"title": "T", "lessons": [{"lesson": "lesson-01", "title": "G", "phrases": [{"slot": "greet"}]}]}
+    assert any("which has none" in why for why in loader._fill(outline, unit)[1])
+
+
+def test_a_dialogue_line_copying_a_phrase_is_caught():
+    said = slotted({"speaker": "A", **phrase("مرحبا.")})[1]
+    assert any("say it with slot" in why for why in said)
 
 
 def test_a_repeated_exercise_id_is_caught():

@@ -143,9 +143,8 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "قَدَّام البَاب كَايْنَة بْلَاصَة",
-          "transliteration": "qeddaam l-baab kayna blaaSa",
-          "english": "There's a spot in front of the door."
+          "slot": "where-can-i-park-my-car",
+          "reply": true
         },
         {
           "speaker": "Karim",
@@ -155,15 +154,12 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "اللَّهُ يَخْلِيك، مَاكَانْش خَاصَّك",
-          "transliteration": "Allaah ykhallik, maakaansh khaaSSek",
-          "english": "God keep you, you shouldn't have."
+          "slot": "i-brought-you-a-few-simple-things-a-small-gift",
+          "reply": true
         },
         {
           "speaker": "Karim",
-          "arabic": "هَاد الدَّار زْوِينَة بزَّاف",
-          "transliteration": "haad d-daar zwiina bzzaf",
-          "english": "This house is very nice."
+          "slot": "this-house-is-very-nice"
         },
         {
           "speaker": "Salma",
@@ -558,9 +554,7 @@
         },
         {
           "speaker": "Youssef",
-          "arabic": "قَهْوَة وَلَّا أتَّاي؟",
-          "transliteration": "qahwa wlla ataay?",
-          "english": "Coffee or tea?"
+          "slot": "coffee-or-tea"
         },
         {
           "speaker": "Nadia",
@@ -933,9 +927,7 @@
       "dialogue": [
         {
           "speaker": "Fatima",
-          "arabic": "تْفَضَّلو، المَاكْلَة وَاجْدَة",
-          "transliteration": "tfaDDalu, l-makla waajda",
-          "english": "Please come, the food is ready."
+          "slot": "please-come-to-the-table-dinner-is-ready"
         },
         {
           "speaker": "Omar",
@@ -957,9 +949,7 @@
         },
         {
           "speaker": "Fatima",
-          "arabic": "زِيد شِي حَاجَة، المَاكْلَة بزَّاف",
-          "transliteration": "ziid shi 7aaja, l-makla bzzaf",
-          "english": "Take some more, there's plenty."
+          "slot": "take-some-more-there-s-plenty-of-food"
         },
         {
           "speaker": "Omar",
@@ -969,9 +959,7 @@
         },
         {
           "speaker": "Fatima",
-          "arabic": "بْغِيتِي شْوِيّة دْيَال الْخُبْز؟",
-          "transliteration": "bghiti shwiya dyaal l-khobz?",
-          "english": "Do you want a bit more bread?"
+          "slot": "do-you-want-a-bit-more-bread"
         },
         {
           "speaker": "Omar",
@@ -993,9 +981,7 @@
         },
         {
           "speaker": "Fatima",
-          "arabic": "بْقَاو شْوِيّة، بَاقِي الحْلَوَة",
-          "transliteration": "bqaaw shwiya, baaqi l-7elwa",
-          "english": "Stay a bit, there's still dessert."
+          "slot": "stay-a-bit-there-s-still-dessert"
         }
       ],
       "de_book": [
@@ -1362,9 +1348,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "شُكْرَا عْلَى الدَّعْوَة، تْبَسْطْنَا بزَّاف",
-          "transliteration": "shukran 3la d-da3wa, tbeSSTna bzzaf",
-          "english": "Thanks for the invitation, we had a great time."
+          "slot": "thanks-for-the-invitation-we-had-a-great-time"
         },
         {
           "speaker": "Salma",
@@ -1374,9 +1358,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "سَلِّم لِيّا عْلَى العَائْلَة",
-          "transliteration": "sellem liyya 3la l-3aa2ila",
-          "english": "Give my regards to the family."
+          "slot": "give-my-regards-to-the-family"
         },
         {
           "speaker": "Salma",

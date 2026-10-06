@@ -99,9 +99,7 @@
       "dialogue": [
         {
           "speaker": "Samer",
-          "arabic": "أَلُّو؟",
-          "transliteration": "aloo?",
-          "english": "Hello?"
+          "slot": "hello-answering-the-phone"
         },
         {
           "speaker": "Lina",
@@ -491,7 +489,8 @@
         {
           "slot": "we-ll-meet-at-the-umayyad-mosque",
           "arabic": "مِنْتِلَاقَّى عِنْد الْجَامِع الأَمْوِي بِالشَّام",
-          "transliteration": "mnitlaa2a 3ind il-jaame3 il-2umawi bish-shaam"
+          "transliteration": "mnitlaa2a 3ind il-jaame3 il-2umawi bish-shaam",
+          "english": "We'll meet at the Umayyad Mosque in Damascus."
         },
         {
           "slot": "i-know-exactly-where-the-place-is",
@@ -536,9 +535,7 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "الْسَاعَة سَبْعَة مِنِيحَة؟",
-          "transliteration": "is-saa3a sab3a mnii7a?",
-          "english": "Is 7 o'clock good?"
+          "slot": "is-7-o-clock-good"
         },
         {
           "speaker": "Samer",
@@ -1337,9 +1334,7 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "إِمْتَى بِيْرِجَع؟",
-          "transliteration": "2imta biirja3?",
-          "english": "When will he be back?"
+          "slot": "when-will-he-be-back"
         },
         {
           "speaker": "Rima",

@@ -111,9 +111,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "هَلْ تَسْتَطِيعُ أَنْ تُوصِلَنِي إِلَى بَابِ تُومَا؟",
-          "transliteration": "hal tastatee3u an tuwsilanee ilaa baabi Toomaa?",
-          "english": "Can you take me to Bab Touma?"
+          "slot": "can-you-take-me-to-bab-touma"
         },
         {
           "speaker": "Driver",
@@ -123,9 +121,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "شَغِّلِ الْعَدَّاد، مِنْ فَضْلِكَ.",
-          "transliteration": "shaghghili al-3addaad, min fadlika.",
-          "english": "Turn on the meter please."
+          "slot": "turn-on-the-meter-please"
         },
         {
           "speaker": "Driver",
@@ -475,9 +471,7 @@
       "dialogue": [
         {
           "speaker": "Lina",
-          "arabic": "لَوْ سَمَحْتَ، أَيْنَ الصَّيْدَلِيَّة؟",
-          "transliteration": "law samahta, ayna as-saydaliyya?",
-          "english": "Excuse me, where is the pharmacy?"
+          "slot": "excuse-me-where-is-the-pharmacy"
         },
         {
           "speaker": "Passer-by",
@@ -505,15 +499,11 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "مِنْ أَيْنَ أَصِلُ إِلَى الْجَامِعِ الْأُمَوِيّ؟",
-          "transliteration": "min ayna asilu ilaa al-jaami3i al-umawee?",
-          "english": "From where do I get to the Umayyad Mosque?"
+          "slot": "from-where-do-i-get-to-the-umayyad-mosque"
         },
         {
           "speaker": "Passer-by",
-          "arabic": "اِمْشِ مُبَاشَرَةً حَتَّى نِهَايَةِ السُّوق.",
-          "transliteration": "imshi mubaasharatan 7attaa nihaayati as-sooq.",
-          "english": "Walk straight until the end of the market."
+          "slot": "walk-straight-until-the-end-of-the-market"
         },
         {
           "speaker": "Lina",
@@ -871,9 +861,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "مَا رَقْمُ الْحَافِلَة إِلَى الْجَامِعَة؟",
-          "transliteration": "maa raqmu al-7aafila ilaa al-jaami3a?",
-          "english": "What's the bus number to the university?"
+          "slot": "what-s-the-bus-number-to-the-university"
         },
         {
           "speaker": "Passer-by",
@@ -883,9 +871,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "هَلْ تَذْهَبُ هَذِهِ الْحَافِلَة إِلَى الْمَزَّة؟",
-          "transliteration": "hal tadh-habu haadhihi al-7aafila ilaa al-Mazza?",
-          "english": "Does this bus go to Mazzeh?"
+          "slot": "does-this-bus-go-to-mazzeh"
         },
         {
           "speaker": "Driver",
@@ -895,9 +881,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "كَمِ الْأُجْرَة؟",
-          "transliteration": "kami al-ujra?",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "Driver",
@@ -919,9 +903,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "هَلْ يُوجَدُ مَقْعَد فَارِغ؟",
-          "transliteration": "hal yoojadu maq3ad faarigh?",
-          "english": "Is there an empty seat?"
+          "slot": "is-there-an-empty-seat"
         },
         {
           "speaker": "Driver",
@@ -1627,9 +1609,7 @@
       "dialogue": [
         {
           "speaker": "Layla",
-          "arabic": "هَلْ أَنْتَ مُتَاح؟",
-          "transliteration": "hal anta mutaa7?",
-          "english": "Are you free?"
+          "slot": "are-you-free-asking-a-taxi-driver-if-available"
         },
         {
           "speaker": "Hamad",
@@ -1639,9 +1619,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "أُرِيدُ الذَّهَابَ إِلَى الْمَدِينَةِ الْقَدِيمَة.",
-          "transliteration": "ureedu adh-dhahaaba ilaa al-madeenati al-qadeema.",
-          "english": "I want to go to the Old City."
+          "slot": "i-want-to-go-to-the-old-city"
         },
         {
           "speaker": "Hamad",
@@ -1651,9 +1629,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "كَمْ مِنَ الْوَقْتِ يَسْتَغْرِقُ الطَّرِيق؟",
-          "transliteration": "kam mina al-waqti yastaghriqu at-tareeq?",
-          "english": "How long does the way take?"
+          "slot": "how-long-does-the-way-take"
         },
         {
           "speaker": "Hamad",
@@ -1687,9 +1663,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "تَوَقَّفْ هُنَا، لَوْ سَمَحْتَ.",
-          "transliteration": "tawaqqaf hunaa, law samahta.",
-          "english": "Stop here, please."
+          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver"
         },
         {
           "speaker": "Hamad",

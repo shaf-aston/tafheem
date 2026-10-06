@@ -528,9 +528,7 @@
         },
         {
           "speaker": "خالد",
-          "arabic": "الْسَاعَة كَم الْفِطُور الْيَوم؟",
-          "transliteration": "is-saa3a kam il-ftoor il-yoom?",
-          "english": "What time is iftar today?"
+          "slot": "what-time-is-iftar-today"
         },
         {
           "speaker": "سلطان",
@@ -1320,9 +1318,7 @@
         },
         {
           "speaker": "ماجد",
-          "arabic": "كَم صَار عُمْرَك؟",
-          "transliteration": "kam saar 3umrak?",
-          "english": "How old did you turn?"
+          "slot": "how-old-did-you-turn"
         },
         {
           "speaker": "فيصل",

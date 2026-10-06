@@ -462,9 +462,8 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "لِلْأسَف بَس كاش",
-          "transliteration": "lal2asaf bas kash",
-          "english": "Unfortunately only cash."
+          "slot": "can-i-pay-by-card",
+          "reply": true
         },
         {
           "speaker": "الزبون",
@@ -739,9 +738,7 @@
       "dialogue": [
         {
           "speaker": "الموظف",
-          "arabic": "جَواز السّفَر تَكْرَم",
-          "transliteration": "jawaaz s-safar takram",
-          "english": "Your passport please."
+          "slot": "your-passport-please"
         },
         {
           "speaker": "المسافر",
@@ -751,9 +748,7 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "جاي سِيّاحَة وِلّا شُغْل؟",
-          "transliteration": "jaay siyaaha walla shughel?",
-          "english": "Coming for tourism or work?"
+          "slot": "are-you-coming-for-tourism-or-work"
         },
         {
           "speaker": "المسافر",
@@ -763,9 +758,7 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "رِح تِقْعِد قِديش هون؟",
-          "transliteration": "ra7 to23od addeesh hon?",
-          "english": "How long will you stay here?"
+          "slot": "how-long-will-you-stay-here"
         },
         {
           "speaker": "المسافر",
@@ -775,15 +768,12 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "مَعَك شي تَصْرِح عَنّه؟",
-          "transliteration": "ma3ak shi taSarra7 3anno?",
-          "english": "Do you have anything to declare?"
+          "slot": "do-you-have-anything-to-declare"
         },
         {
           "speaker": "المسافر",
-          "arabic": "لأ، ما مَعي شي",
-          "transliteration": "la2, ma ma3i shi",
-          "english": "No, I don't have anything."
+          "slot": "do-you-have-anything-to-declare",
+          "reply": true
         },
         {
           "speaker": "الموظف",

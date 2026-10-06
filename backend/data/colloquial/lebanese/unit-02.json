@@ -548,9 +548,7 @@
         },
         {
           "speaker": "Rima",
-          "arabic": "شُو بِتْحِب تَاكِل؟",
-          "transliteration": "shoo bti7ebb ta2kol؟",
-          "english": "What do you like to eat?"
+          "slot": "what-do-you-like-to-eat"
         },
         {
           "speaker": "Karim",
@@ -608,9 +606,7 @@
         },
         {
           "speaker": "Rima",
-          "arabic": "قَدِّيش الحِسَاب؟",
-          "transliteration": "2addeesh l7saab؟",
-          "english": "How much is the bill?"
+          "slot": "how-much-is-the-bill"
         }
       ],
       "de_book": [

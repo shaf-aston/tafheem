@@ -114,9 +114,7 @@
         },
         {
           "speaker": "رَاكِب",
-          "arabic": "شَغِّلْ الْعَدَّاد لَوْ سَمَحْتَ.",
-          "transliteration": "shaggel al-3addaad law samaht.",
-          "english": "Turn on the meter please."
+          "slot": "turn-on-the-meter-please"
         },
         {
           "speaker": "سَوَّاق",
@@ -833,7 +831,8 @@
         {
           "slot": "do-you-stop-at-halbouni-roundabout",
           "arabic": "تِقِفْ عِنْدَ دَوَّارَة الرِّيَّاض؟",
-          "transliteration": "tiqif 3ind dawwara ar-riyad?"
+          "transliteration": "tiqif 3ind dawwara ar-riyad?",
+          "english": "Do you stop at the Riyadh roundabout?"
         },
         {
           "slot": "please-let-me-off-here",
@@ -881,9 +880,7 @@
         },
         {
           "speaker": "رَاكِب",
-          "arabic": "بِكَمْ التَّذْكَرَة؟",
-          "transliteration": "bikam at-tadhkara?",
-          "english": "How much is the ticket?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "مُوَظَّف",
@@ -1573,9 +1570,7 @@
       "dialogue": [
         {
           "speaker": "محمد",
-          "arabic": "فَاضِي؟",
-          "transliteration": "faadi?",
-          "english": "Are you free?"
+          "slot": "are-you-free-asking-a-taxi-driver-if-available"
         },
         {
           "speaker": "أبو أحمد",
@@ -1591,15 +1586,11 @@
         },
         {
           "speaker": "أبو أحمد",
-          "arabic": "حَاضِرْ",
-          "transliteration": "hadir",
-          "english": "At your service."
+          "slot": "at-your-service-a-common-polite-reply-from-a-tax"
         },
         {
           "speaker": "محمد",
-          "arabic": "كَمْ تَاخِذْ الطَّرِيق؟",
-          "transliteration": "kam taakhith it-tareeq?",
-          "english": "How long does the way take?"
+          "slot": "how-long-does-the-way-take"
         },
         {
           "speaker": "أبو أحمد",
@@ -1609,9 +1600,7 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "بِكَمْ الأُجْرَةْ؟",
-          "transliteration": "bikam il-ujra?",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "أبو أحمد",

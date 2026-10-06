@@ -534,9 +534,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "تَمَام، مَاشِي الْحَال",
-          "transliteration": "tamaam, maashi el7aal",
-          "english": "OK, that works."
+          "slot": "ok-that-works"
         }
       ],
       "de_book": [
@@ -1223,9 +1221,7 @@
       "dialogue": [
         {
           "speaker": "Zeina",
-          "arabic": "لَو سَمِحْت، فِي مِشْكِلَة صْغِيرَة",
-          "transliteration": "law sama7et, fii mishkle zghiire",
-          "english": "Excuse me, there's a small problem."
+          "slot": "excuse-me-there-s-a-small-problem-to-a-man"
         },
         {
           "speaker": "Waiter",
@@ -1271,9 +1267,7 @@
         },
         {
           "speaker": "Zeina",
-          "arabic": "مَا فِي مِشْكِلَة، بَس بَدِّي وَضِّح شَي",
-          "transliteration": "ma fii mishkle, bass badde waddi7 shi",
-          "english": "No problem, but I'd like to clarify something."
+          "slot": "there-s-no-problem-but-i-d-like-to-clarify-m"
         },
         {
           "speaker": "Waiter",

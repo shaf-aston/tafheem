@@ -34,12 +34,14 @@
             "arabic": "زَيْنِ، اِرْكَبْ.",
             "transliteration": "zeen, erkab.",
             "english": "Okay, get in."
-          }
+          },
+          "english": "Please, I want to go to Old Dubai."
         },
         {
           "slot": "can-you-take-me-to-bab-touma",
           "arabic": "تِقْدِرْ تُوَصِّلْنِي سُوقِ الذَّهَبِ؟",
-          "transliteration": "tigdar twassilni soog edh-dhahab?"
+          "transliteration": "tigdar twassilni soog edh-dhahab?",
+          "english": "Can you take me to the Gold Souk?"
         },
         {
           "slot": "turn-on-the-meter-please",
@@ -117,9 +119,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "شَغِّلْ الْعَدَّادِ لَوْ سَمَحْتَ.",
-          "transliteration": "shaghghel el-3addaad law samaht.",
-          "english": "Turn on the meter please."
+          "slot": "turn-on-the-meter-please"
         },
         {
           "speaker": "سواق",
@@ -505,7 +505,8 @@
         {
           "slot": "from-where-do-i-get-to-the-umayyad-mosque",
           "arabic": "مِنْ وَيْنِ أَرُوحِ جَامِعِ الشَّيْخِ زَايِدِ؟",
-          "transliteration": "min wayn arooh jaame3 esh-sheekh zaayid?"
+          "transliteration": "min wayn arooh jaame3 esh-sheekh zaayid?",
+          "english": "How do I get to the Sheikh Zayed Mosque?"
         },
         {
           "slot": "thanks-a-lot",
@@ -533,9 +534,7 @@
         },
         {
           "speaker": "خالد",
-          "arabic": "بَعِيدِ وَلَا قَرِيبِ؟",
-          "transliteration": "ba3eed wala gareeb?",
-          "english": "Is it far or near?"
+          "slot": "is-it-far-or-near"
         },
         {
           "speaker": "سالم",
@@ -897,7 +896,8 @@
             "arabic": "إِي، أَمِرْ عَلَيْهِ.",
             "transliteration": "ee, amurr 3aleeh.",
             "english": "Yes, I pass by it."
-          }
+          },
+          "english": "Do you stop at the Clock roundabout?"
         },
         {
           "slot": "please-let-me-off-here",
@@ -950,9 +950,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "كَمْ الْأَجْرَةِ؟",
-          "transliteration": "kam el-ojra?",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "سواق",
@@ -968,9 +966,8 @@
         },
         {
           "speaker": "سواق",
-          "arabic": "إِي، فِيهِ كِرْسِي وِرَا.",
-          "transliteration": "ee, feeh kursi wara.",
-          "english": "Yes, there is a seat at the back."
+          "slot": "is-there-an-empty-seat",
+          "reply": true
         },
         {
           "speaker": "راكب",
@@ -986,9 +983,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "تُوقِفْ عِنْدِ دَوَّارِ السَّاعَةِ؟",
-          "transliteration": "toogaf 3ind dawwaar es-saa3a?",
-          "english": "Do you stop at the Clock roundabout?"
+          "slot": "do-you-stop-at-halbouni-roundabout"
         },
         {
           "speaker": "سواق",
@@ -998,9 +993,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "نَزِّلْنِي هِنِي لَوْ سَمَحْتَ.",
-          "transliteration": "nazzilni hini law samaht.",
-          "english": "Please let me off here."
+          "slot": "please-let-me-off-here"
         },
         {
           "speaker": "سواق",
@@ -1356,9 +1349,7 @@
         },
         {
           "speaker": "منى",
-          "arabic": "فِيهِ مَطْعَمِ زَيْنِ بِالْمَنْطِقَةِ؟",
-          "transliteration": "feeh mat3am zeen bil-mantiga?",
-          "english": "Is there a good restaurant in the area?"
+          "slot": "is-there-a-good-restaurant-in-the-area"
         },
         {
           "speaker": "سعيد",
@@ -1739,15 +1730,12 @@
       "dialogue": [
         {
           "speaker": "Khalid",
-          "arabic": "فَاضِي؟",
-          "transliteration": "faadi?",
-          "english": "Are you free?"
+          "slot": "are-you-free-asking-a-taxi-driver-if-available"
         },
         {
           "speaker": "Abu Saeed",
-          "arabic": "إِي، تَفَضَّل.",
-          "transliteration": "ee, tfaddal.",
-          "english": "Yes, get in."
+          "slot": "are-you-free-asking-a-taxi-driver-if-available",
+          "reply": true
         },
         {
           "speaker": "Khalid",
@@ -1763,9 +1751,7 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "كَم يَاخِذ الطَّرِيق؟",
-          "transliteration": "kam yaakhith it-tareeg?",
-          "english": "How long does the way take?"
+          "slot": "how-long-does-the-way-take"
         },
         {
           "speaker": "Abu Saeed",
@@ -1775,15 +1761,12 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "بِكَم الأجْرَة؟",
-          "transliteration": "bikam il-ojra?",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "Abu Saeed",
-          "arabic": "عَلَى العَدَّاد.",
-          "transliteration": "3ala l-3addaad.",
-          "english": "By the meter."
+          "slot": "how-much-is-the-fare",
+          "reply": true
         },
         {
           "speaker": "Khalid",

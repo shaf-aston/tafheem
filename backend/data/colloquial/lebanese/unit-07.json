@@ -1224,9 +1224,7 @@
       "dialogue": [
         {
           "speaker": "Layal",
-          "arabic": "شُو نَاوي تَعْمِل بِنِهَايَة الْأُسْبُوع؟",
-          "transliteration": "shu naawi ta3mel b-nihaayet el-esbuu3?",
-          "english": "What do you plan to do on the weekend?"
+          "slot": "what-do-you-plan-to-do-on-the-weekend"
         },
         {
           "speaker": "Karim",

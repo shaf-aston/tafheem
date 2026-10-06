@@ -107,9 +107,7 @@
       "dialogue": [
         {
           "speaker": "Salim",
-          "arabic": "مَرْحَبًا.",
-          "transliteration": "marhaban.",
-          "english": "Hello."
+          "slot": "hello"
         },
         {
           "speaker": "Lina",
@@ -125,15 +123,11 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "بِخَيْر، الْحَمْدُ لِلَّهِ.",
-          "transliteration": "bikhayr, al7amdu lillaah.",
-          "english": "Fine, thank God."
+          "slot": "good-thank-god"
         },
         {
           "speaker": "Salim",
-          "arabic": "مَا اسْمُكِ؟",
-          "transliteration": "maa ismuki?",
-          "english": "What's your name?"
+          "slot": "what-s-your-name-to-a-woman"
         },
         {
           "speaker": "Lina",
@@ -155,15 +149,11 @@
         },
         {
           "speaker": "Salim",
-          "arabic": "وَأَنَا أَيْضًا.",
-          "transliteration": "wa anaa aydan.",
-          "english": "Me too."
+          "slot": "me-too"
         },
         {
           "speaker": "Lina",
-          "arabic": "مِنْ أَيْنَ أَنْتَ؟",
-          "transliteration": "min ayna anta?",
-          "english": "Where are you from?"
+          "slot": "where-are-you-from-to-a-man"
         },
         {
           "speaker": "Salim",
@@ -531,15 +521,11 @@
         },
         {
           "speaker": "Mohammed",
-          "arabic": "شُكْرًا جَزِيلًا.",
-          "transliteration": "shukran jazeelan.",
-          "english": "Thank you very much."
+          "slot": "thank-you-very-much"
         },
         {
           "speaker": "Fatima",
-          "arabic": "عَفْوًا.",
-          "transliteration": "3afwan.",
-          "english": "You're welcome."
+          "slot": "you-re-welcome-excuse-me"
         },
         {
           "speaker": "Mohammed",
@@ -555,9 +541,7 @@
         },
         {
           "speaker": "Mohammed",
-          "arabic": "آسِف، لَمْ أَفْهَمْ.",
-          "transliteration": "aasif, lam 2afham.",
-          "english": "Sorry, I didn't understand."
+          "slot": "sorry-i-didn-t-understand"
         },
         {
           "speaker": "Fatima",
@@ -573,9 +557,7 @@
         },
         {
           "speaker": "Fatima",
-          "arabic": "لَا بَأْس.",
-          "transliteration": "laa ba2s.",
-          "english": "No problem."
+          "slot": "it-s-okay-sorry-excuse-me"
         }
       ],
       "de_book": [
@@ -914,15 +896,11 @@
       "dialogue": [
         {
           "speaker": "Hassan",
-          "arabic": "كَمِ السَّاعَة؟",
-          "transliteration": "kami as-saa3a?",
-          "english": "What time is it?"
+          "slot": "what-time-is-it"
         },
         {
           "speaker": "Aisha",
-          "arabic": "السَّاعَةُ الثَّانِيَة.",
-          "transliteration": "as-saa3atu ath-thaaniya.",
-          "english": "It's two o'clock."
+          "slot": "it-s-two-o-clock"
         },
         {
           "speaker": "Hassan",
@@ -1327,9 +1305,7 @@
         },
         {
           "speaker": "Khaled",
-          "arabic": "مِنْ هُنَا؟",
-          "transliteration": "min hunaa?",
-          "english": "From here?"
+          "slot": "from-here"
         },
         {
           "speaker": "Dina",
@@ -1345,9 +1321,7 @@
         },
         {
           "speaker": "Dina",
-          "arabic": "اِنْعَطِفْ يَمِينًا.",
-          "transliteration": "in3atif yameenan.",
-          "english": "Turn right."
+          "slot": "turn-right"
         },
         {
           "speaker": "Khaled",
@@ -1730,9 +1704,7 @@
         },
         {
           "speaker": "Samer",
-          "arabic": "كَمْ فَرْدًا فِي أُسْرَتِكَ؟",
-          "transliteration": "kam fardan fee usratika?",
-          "english": "How many people are in your family?"
+          "slot": "how-many-people-are-in-your-family-to-a-man"
         },
         {
           "speaker": "Omar",
@@ -2117,15 +2089,11 @@
         },
         {
           "speaker": "Samer",
-          "arabic": "مَا اللُّغَاتُ الَّتِي تَتَكَلَّمُهَا؟",
-          "transliteration": "maa al-lughaatu allatee tatakallamuhaa?",
-          "english": "Which languages do you speak?"
+          "slot": "which-languages-do-you-speak-to-a-man"
         },
         {
           "speaker": "Omar",
-          "arabic": "أَتَكَلَّمُ الْعَرَبِيَّةَ وَالْإِنْجِلِيزِيَّة.",
-          "transliteration": "atakallamu al-3arabiyyata wal-injleeziyya.",
-          "english": "I speak Arabic and English."
+          "slot": "i-speak-arabic-and-english"
         },
         {
           "speaker": "Samer",

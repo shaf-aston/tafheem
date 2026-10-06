@@ -202,9 +202,7 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "كَمْ غُرْفَةَ نَوْمٍ فِيهَا؟",
-          "transliteration": "kam ghurfata nawmin feehaa?",
-          "english": "How many bedrooms does it have?"
+          "slot": "how-many-bedrooms"
         },
         {
           "speaker": "Omar",
@@ -214,21 +212,16 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "هَلْ يُوجَدُ مِصْعَدٌ؟",
-          "transliteration": "hal yoojadu miS3ad?",
-          "english": "Is there a lift?"
+          "slot": "is-there-a-lift"
         },
         {
           "speaker": "Omar",
-          "arabic": "نَعَمْ، فِي الْمَبْنَى مِصْعَد.",
-          "transliteration": "na3am, fii al-mabnaa miS3ad.",
-          "english": "Yes, the building has a lift."
+          "slot": "is-there-a-lift",
+          "reply": true
         },
         {
           "speaker": "Yusuf",
-          "arabic": "كَمِ الْإِيجَارُ الشَّهْرِيّ؟",
-          "transliteration": "kami al-iijaaru ash-shahriyy?",
-          "english": "How much is the monthly rent?"
+          "slot": "how-much-is-the-rent"
         },
         {
           "speaker": "Omar",
@@ -604,9 +597,7 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "هَلِ الْمُكَيِّفُ يَعْمَل؟",
-          "transliteration": "hali al-mukayyifu ya3mal?",
-          "english": "Does the air conditioner work?"
+          "slot": "does-the-air-conditioner-work"
         },
         {
           "speaker": "Omar",
@@ -628,9 +619,7 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "كَمْ حَمَّامًا فِي الشَّقَّة؟",
-          "transliteration": "kam Hammaaman fii ash-shaqqa?",
-          "english": "How many bathrooms are in the flat?"
+          "slot": "how-many-bathrooms"
         },
         {
           "speaker": "Omar",
@@ -1007,9 +996,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "شُكْرًا، إِنَّهُ يَعْمَلُ الْآن.",
-          "transliteration": "shukran, innahu ya3malu al-aan.",
-          "english": "Thanks, it works now."
+          "slot": "thanks-it-works-now"
         },
         {
           "speaker": "Yusuf",
@@ -1361,9 +1348,7 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "أَحْضَرْتُ لَكُمْ بَعْضَ الطَّعَام.",
-          "transliteration": "aHDartu lakum ba3Da aT-Ta3aam.",
-          "english": "I brought you some food."
+          "slot": "i-brought-you-some-food"
         },
         {
           "speaker": "Omar",

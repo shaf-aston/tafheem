@@ -116,9 +116,7 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "عَسَاك مِن عَوَاده",
-          "transliteration": "3asaak min 3awaaduh",
-          "english": "May you witness it again next year"
+          "slot": "may-you-witness-it-again-next-year"
         },
         {
           "speaker": "أُمّ مُحَمَّد",

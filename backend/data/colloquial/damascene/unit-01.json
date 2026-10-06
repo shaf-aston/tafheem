@@ -123,9 +123,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "شُو اسْمِك؟",
-          "transliteration": "shoo ismik?",
-          "english": "What's your name?"
+          "slot": "what-s-your-name-to-a-woman"
         },
         {
           "speaker": "Lina",
@@ -153,9 +151,7 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "مِن وَيِن إِنْت؟",
-          "transliteration": "min ween enta?",
-          "english": "Where are you from?"
+          "slot": "where-are-you-from-to-a-man"
         },
         {
           "speaker": "Rami",
@@ -911,9 +907,7 @@
       "dialogue": [
         {
           "speaker": "Nour",
-          "arabic": "السَّاعَة قَدِيش؟",
-          "transliteration": "is-saa3a addeesh?",
-          "english": "What time is it?"
+          "slot": "what-time-is-it"
         },
         {
           "speaker": "Abu Samer",

@@ -99,9 +99,7 @@
       "dialogue": [
         {
           "speaker": "Salim",
-          "arabic": "مَرْحَبَا.",
-          "transliteration": "marhaba.",
-          "english": "Hello."
+          "slot": "hello"
         },
         {
           "speaker": "Lina",
@@ -117,15 +115,11 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "تِمَام، الْحَمْدُ لِلَّهِ.",
-          "transliteration": "tamam, alhamdu lillah.",
-          "english": "Fine, thank God."
+          "slot": "good-thank-god"
         },
         {
           "speaker": "Salim",
-          "arabic": "إِسْمِك إِيش؟",
-          "transliteration": "ismik eesh?",
-          "english": "What's your name?"
+          "slot": "what-s-your-name-to-a-woman"
         },
         {
           "speaker": "Lina",
@@ -147,15 +141,11 @@
         },
         {
           "speaker": "Salim",
-          "arabic": "وَأَنَا كَمَان.",
-          "transliteration": "wa ana kaman.",
-          "english": "Me too."
+          "slot": "me-too"
         },
         {
           "speaker": "Lina",
-          "arabic": "مِنْ وَيْن إِنْتَ؟",
-          "transliteration": "min ween inta?",
-          "english": "Where are you from?"
+          "slot": "where-are-you-from-to-a-man"
         },
         {
           "speaker": "Salim",
@@ -526,15 +516,11 @@
         },
         {
           "speaker": "Mohammed",
-          "arabic": "شُكْرًا كَتِير.",
-          "transliteration": "shukran katheer.",
-          "english": "Thank you very much."
+          "slot": "thank-you-very-much"
         },
         {
           "speaker": "Fatima",
-          "arabic": "عَفْوًا.",
-          "transliteration": "3afwan.",
-          "english": "You're welcome."
+          "slot": "you-re-welcome-excuse-me"
         },
         {
           "speaker": "Mohammed",
@@ -550,9 +536,7 @@
         },
         {
           "speaker": "Mohammed",
-          "arabic": "آسِف، مَا فِهِمْتْ.",
-          "transliteration": "aasif, ma fihimt.",
-          "english": "Sorry, I didn't understand."
+          "slot": "sorry-i-didn-t-understand"
         },
         {
           "speaker": "Fatima",
@@ -900,15 +884,11 @@
       "dialogue": [
         {
           "speaker": "Hassan",
-          "arabic": "السَّاعَةْ كَمْ؟",
-          "transliteration": "is-sa3a kam?",
-          "english": "What time is it?"
+          "slot": "what-time-is-it"
         },
         {
           "speaker": "Aisha",
-          "arabic": "السَّاعَةْ اثْنَيْنْ.",
-          "transliteration": "is-sa3a ithnain.",
-          "english": "It's two o'clock."
+          "slot": "it-s-two-o-clock"
         },
         {
           "speaker": "Hassan",
@@ -1311,9 +1291,7 @@
         },
         {
           "speaker": "Khaled",
-          "arabic": "مِنْ هُنَا؟",
-          "transliteration": "min huna?",
-          "english": "From here?"
+          "slot": "from-here"
         },
         {
           "speaker": "Dina",
@@ -1329,9 +1307,7 @@
         },
         {
           "speaker": "Dina",
-          "arabic": "لِفْ عَلَى يِمِينْك.",
-          "transliteration": "lif 3ala yimink.",
-          "english": "Turn right."
+          "slot": "turn-right"
         },
         {
           "speaker": "Khaled",
@@ -1347,9 +1323,7 @@
         },
         {
           "speaker": "Khaled",
-          "arabic": "بَعِيد؟",
-          "transliteration": "ba3eed?",
-          "english": "Is it far?"
+          "slot": "far"
         },
         {
           "speaker": "Dina",

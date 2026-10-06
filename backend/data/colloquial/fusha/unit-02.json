@@ -124,9 +124,7 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "لِي أَخٌ وَأُخْتَان.",
-          "transliteration": "lee akhun wa ukhtaan.",
-          "english": "I have a brother and two sisters."
+          "slot": "i-have-a-brother-and-two-sisters"
         },
         {
           "speaker": "Muna",
@@ -562,21 +560,16 @@
         },
         {
           "speaker": "Adel",
-          "arabic": "الْحِسَابَ مِنْ فَضْلِكَ.",
-          "transliteration": "al-7isaaba min fadlika.",
-          "english": "The bill, please."
+          "slot": "the-bill-please"
         },
         {
           "speaker": "Jamal",
-          "arabic": "الْحِسَاب خَمْسُونَ رِيَال.",
-          "transliteration": "al-7isaab khamsoona riyaal.",
-          "english": "The bill is fifty riyals."
+          "slot": "how-much-is-the-bill",
+          "reply": true
         },
         {
           "speaker": "Nora",
-          "arabic": "صِحَّةً وَعَافِيَة.",
-          "transliteration": "si77atan wa 3aafiya.",
-          "english": "To your health."
+          "slot": "to-your-health-said-to-someone-after-they-finish"
         }
       ],
       "de_book": [

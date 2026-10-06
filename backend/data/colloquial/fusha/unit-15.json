@@ -102,21 +102,16 @@
       "dialogue": [
         {
           "speaker": "Guest",
-          "arabic": "مَرْحَبًا، عِنْدِي حَجْز.",
-          "transliteration": "marhaban, 3indee 7ajz.",
-          "english": "Hello, I have a reservation."
+          "slot": "hello-i-have-a-reservation"
         },
         {
           "speaker": "Clerk",
-          "arabic": "أَهْلًا بِك، بِاسْمِ مَنْ؟",
-          "transliteration": "ahlan bik, bismi man?",
-          "english": "Welcome, under whose name?"
+          "slot": "hello-i-have-a-reservation",
+          "reply": true
         },
         {
           "speaker": "Guest",
-          "arabic": "بِاسْمِ نُور.",
-          "transliteration": "bismi Noor.",
-          "english": "Under the name Nour."
+          "slot": "under-the-name-nour"
         },
         {
           "speaker": "Clerk",
@@ -138,9 +133,7 @@
         },
         {
           "speaker": "Guest",
-          "arabic": "هَلْ أَسْتَطِيعُ رُؤْيَةَ الْغُرْفَةِ أَوَّلًا؟",
-          "transliteration": "hal astatee3u ru2yata al-ghurfati awwalan?",
-          "english": "Can I see the room first?"
+          "slot": "can-i-see-the-room-first"
         },
         {
           "speaker": "Clerk",
@@ -150,9 +143,7 @@
         },
         {
           "speaker": "Guest",
-          "arabic": "أَيْنَ الْمِصْعَد؟",
-          "transliteration": "ayna al-mis3ad?",
-          "english": "Where is the elevator?"
+          "slot": "where-s-the-elevator"
         },
         {
           "speaker": "Clerk",
@@ -559,9 +550,7 @@
         },
         {
           "speaker": "Passenger",
-          "arabic": "هَلْ عِنْدَكُمْ تَذَاكِرُ إِلَى حَلَب؟",
-          "transliteration": "hal 3indakum tadhaakiru ilaa 7alab?",
-          "english": "Do you have tickets to Aleppo?"
+          "slot": "do-you-have-tickets-to-aleppo"
         },
         {
           "speaker": "Clerk",
@@ -589,15 +578,12 @@
         },
         {
           "speaker": "Clerk",
-          "arabic": "فِي الثَّامِنَةِ صَبَاحًا.",
-          "transliteration": "fii ath-thaaminati sabaa7an.",
-          "english": "At eight in the morning."
+          "slot": "what-time-does-the-bus-leave",
+          "reply": true
         },
         {
           "speaker": "Passenger",
-          "arabic": "هَلْ أَسْتَطِيعُ الدَّفْعَ بِالْبِطَاقَة؟",
-          "transliteration": "hal astatee3u ad-daf3a bil-bitaaqa?",
-          "english": "Can I pay by card?"
+          "slot": "can-i-pay-by-card"
         },
         {
           "speaker": "Clerk",
@@ -992,9 +978,7 @@
       "dialogue": [
         {
           "speaker": "Traveller",
-          "arabic": "أَيْنَ مَكْتَبُ تَسْجِيلِ الرُّكَّاب؟",
-          "transliteration": "ayna maktabu tasjeeli ar-rukkaab?",
-          "english": "Where is the check-in counter?"
+          "slot": "where-s-the-check-in-counter"
         },
         {
           "speaker": "Staff",
@@ -1004,15 +988,11 @@
         },
         {
           "speaker": "Traveller",
-          "arabic": "مَعِي جَوَازُ سَفَرِي وَتَذْكِرَتِي.",
-          "transliteration": "ma3ee jawaazu safaree wa tadhkiratee.",
-          "english": "I have my passport and my ticket."
+          "slot": "i-have-my-passport-and-my-ticket"
         },
         {
           "speaker": "Traveller",
-          "arabic": "كَمْ حَقِيبَةً يُسْمَحُ لِي بِحَمْلِهَا؟",
-          "transliteration": "kam 7aqeebatan yusma7u lee bi7amlihaa?",
-          "english": "How many bags am I allowed to take?"
+          "slot": "how-many-bags-am-i-allowed-to-take"
         },
         {
           "speaker": "Staff",
@@ -1046,33 +1026,24 @@
         },
         {
           "speaker": "Officer",
-          "arabic": "كَمْ سَتَبْقَى هُنَا؟",
-          "transliteration": "kam satabqaa hunaa?",
-          "english": "How long will you stay here?"
+          "slot": "how-long-will-you-stay-here"
         },
         {
           "speaker": "Traveller",
-          "arabic": "أُسْبُوعَيْن.",
-          "transliteration": "usboo3ayn.",
-          "english": "Two weeks."
+          "slot": "how-long-will-you-stay-here",
+          "reply": true
         },
         {
           "speaker": "Officer",
-          "arabic": "هَلْ عِنْدَكَ شَيْءٌ لِتُصَرِّحَ عَنْهُ؟",
-          "transliteration": "hal 3indaka shay2un li-tusarri7a 3anhu?",
-          "english": "Do you have anything to declare?"
+          "slot": "do-you-have-anything-to-declare"
         },
         {
           "speaker": "Traveller",
-          "arabic": "لَا، لَيْسَ عِنْدِي شَيْء.",
-          "transliteration": "laa, laysa 3indee shay2.",
-          "english": "No, I don't have anything."
+          "slot": "no-i-don-t-have-anything"
         },
         {
           "speaker": "Officer",
-          "arabic": "أَهْلًا وَسَهْلًا بِك.",
-          "transliteration": "ahlan wa sahlan bik.",
-          "english": "Welcome."
+          "slot": "welcome"
         }
       ],
       "de_book": [
@@ -1450,9 +1421,8 @@
         },
         {
           "speaker": "Staff",
-          "arabic": "حَاضِر، مَاذَا حَدَث؟",
-          "transliteration": "7aadir, maadha 7adath?",
-          "english": "Certainly, what happened?"
+          "slot": "come-help-me-please",
+          "reply": true
         },
         {
           "speaker": "Traveller",
@@ -1510,9 +1480,7 @@
         },
         {
           "speaker": "Staff",
-          "arabic": "عَوَّضَ اللهُ عَلَيْكَ، إِنْ شَاءَ اللهُ تُحَلُّ الْمُشْكِلَة.",
-          "transliteration": "3awwada allaahu 3alayka, in shaa2a allaahu tu7allu al-mushkila.",
-          "english": "May God make up for it, God willing the problem will be solved."
+          "slot": "may-god-make-up-for-it-god-willing-it-ll-work-ou"
         }
       ],
       "de_book": [
@@ -1940,9 +1908,8 @@
         },
         {
           "speaker": "Clerk",
-          "arabic": "نَعَمْ، لَكِنْ دُونَ اسْتِخْدَامِ الْفَلَاش.",
-          "transliteration": "na3am, lakin doona istikhdaami al-flaash.",
-          "english": "Yes, but without the flash."
+          "slot": "can-i-take-photos-here",
+          "reply": true
         },
         {
           "speaker": "Layla",
@@ -2684,15 +2651,12 @@
         },
         {
           "speaker": "Samer",
-          "arabic": "هَلْ عِنْدَكَ تَمْرٌ جَيِّدٌ؟",
-          "transliteration": "hal 3indaka tamrun jayyid?",
-          "english": "Do you have good dates?"
+          "slot": "do-you-have-good-dates"
         },
         {
           "speaker": "Abu Khaled",
-          "arabic": "نَعَمْ، تَفَضَّلْ وَذُقْ مِنْهُ.",
-          "transliteration": "na3am, tafaDDal wa dhuq minhu.",
-          "english": "Yes, please taste some."
+          "slot": "do-you-have-good-dates",
+          "reply": true
         },
         {
           "speaker": "Samer",
@@ -2714,9 +2678,8 @@
         },
         {
           "speaker": "Abu Khaled",
-          "arabic": "نَعَمْ، صُنِعَ بِالْيَدِ.",
-          "transliteration": "na3am, Suni3a bil-yad.",
-          "english": "Yes, it was made by hand."
+          "slot": "is-this-handmade",
+          "reply": true
         },
         {
           "speaker": "Samer",
@@ -2726,15 +2689,12 @@
         },
         {
           "speaker": "Abu Khaled",
-          "arabic": "حَسَنًا، لَكَ خَصْمٌ صَغِيرٌ.",
-          "transliteration": "Hasanan, laka khaSmun Sagheer.",
-          "english": "All right, you get a small discount."
+          "slot": "a-lower-price-if-i-buy-two",
+          "reply": true
         },
         {
           "speaker": "Samer",
-          "arabic": "هَلْ تَسْتَطِيعُ تَغْلِيفَهُ كَهَدِيَّةٍ؟",
-          "transliteration": "hal tastaTee3u taghleefahu ka-hadiyya?",
-          "english": "Can you wrap it as a gift?"
+          "slot": "can-you-wrap-it-as-a-gift"
         },
         {
           "speaker": "Abu Khaled",
@@ -3136,9 +3096,8 @@
         },
         {
           "speaker": "Rana",
-          "arabic": "حَاضِرٌ، سَأُرْسِلُهَا الْآنَ.",
-          "transliteration": "HaaDir, sa-ursiluhaa al-aan.",
-          "english": "Right away, I will send them now."
+          "slot": "send-me-the-photos-on-my-phone",
+          "reply": true
         }
       ],
       "de_book": [

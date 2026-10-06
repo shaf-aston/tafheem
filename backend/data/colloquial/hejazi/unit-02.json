@@ -107,15 +107,11 @@
         },
         {
           "speaker": "أَحْمَد",
-          "arabic": "كَمْ نَاسِ فِي أَهْلِك؟",
-          "transliteration": "kam naas fi ahlak?",
-          "english": "How many people in your family?"
+          "slot": "how-many-people-are-in-your-family-to-a-man"
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "عِنْدِي أَخِي وَخِتَيْن.",
-          "transliteration": "3indi akhi w khiten.",
-          "english": "I have my brother and two sisters."
+          "slot": "i-have-a-brother-and-two-sisters"
         },
         {
           "speaker": "أَحْمَد",
@@ -131,9 +127,7 @@
         },
         {
           "speaker": "أَحْمَد",
-          "arabic": "إِنْتِ مِتْزَوِّجَة؟",
-          "transliteration": "inti mitzawwija?",
-          "english": "Are you married?"
+          "slot": "are-you-married-to-a-woman"
         },
         {
           "speaker": "فَاطِمَة",
@@ -512,15 +506,11 @@
         },
         {
           "speaker": "نُور",
-          "arabic": "إِيشْ تِحِبّ تَاكُل؟",
-          "transliteration": "eesh ti7ibb taakul?",
-          "english": "What do you like to eat?"
+          "slot": "what-do-you-like-to-eat"
         },
         {
           "speaker": "سَالِم",
-          "arabic": "أَحِبّ الفِلَافِل.",
-          "transliteration": "a7ibb il-falaafil.",
-          "english": "I like falafel."
+          "slot": "i-like-falafel"
         },
         {
           "speaker": "نُور",
@@ -548,9 +538,8 @@
         },
         {
           "speaker": "سَالِم",
-          "arabic": "اللَّهُ يُعَافِيك.",
-          "transliteration": "allah y3aafik.",
-          "english": "Thank you."
+          "slot": "to-your-health-said-to-someone-after-they-finish",
+          "reply": true
         },
         {
           "speaker": "سَالِم",
@@ -560,21 +549,16 @@
         },
         {
           "speaker": "نُور",
-          "arabic": "صِحَّة وَعَافِيَة!",
-          "transliteration": "si77a w 3aafya!",
-          "english": "To your health!"
+          "slot": "to-your-health-said-to-someone-after-they-finish"
         },
         {
           "speaker": "سَالِم",
-          "arabic": "اللَّهُ يُعَافِيك.",
-          "transliteration": "allah y3aafik.",
-          "english": "Thank you."
+          "slot": "to-your-health-said-to-someone-after-they-finish",
+          "reply": true
         },
         {
           "speaker": "سَالِم",
-          "arabic": "الْحِسَاب لَوْ سَمَحْت.",
-          "transliteration": "il-hisaab law samaht.",
-          "english": "The bill, please."
+          "slot": "the-bill-please"
         },
         {
           "speaker": "الْخَادِم",
@@ -584,9 +568,7 @@
         },
         {
           "speaker": "سَالِم",
-          "arabic": "كَمْ الْحِسَاب؟",
-          "transliteration": "kam il-hisaab?",
-          "english": "How much is the bill?"
+          "slot": "how-much-is-the-bill"
         },
         {
           "speaker": "الْخَادِم",

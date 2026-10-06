@@ -498,21 +498,16 @@
         },
         {
           "speaker": "Ali",
-          "arabic": "أكو منيو بالانگليزي؟",
-          "transliteration": "aku menu bil ingleezi?",
-          "english": "Do you have an English menu?"
+          "slot": "do-you-have-an-english-menu"
         },
         {
           "speaker": "Waiter",
-          "arabic": "أَكُو، هَسَّه أَجِيبُه",
-          "transliteration": "aku, hassa ajeebah",
-          "english": "Yes, I'll bring it now."
+          "slot": "do-you-have-an-english-menu",
+          "reply": true
         },
         {
           "speaker": "Ali",
-          "arabic": "شِنُو عِدْكُم الْيَوْم؟",
-          "transliteration": "shinu 3idkum il yoom?",
-          "english": "What do you have today?"
+          "slot": "what-do-you-have-today"
         },
         {
           "speaker": "Waiter",
@@ -522,9 +517,7 @@
         },
         {
           "speaker": "Ali",
-          "arabic": "أَكُو أَكِل نِبَاتِي؟",
-          "transliteration": "aku akil nabaati?",
-          "english": "Is there vegetarian food?"
+          "slot": "is-there-vegetarian-food"
         },
         {
           "speaker": "Waiter",
@@ -534,9 +527,7 @@
         },
         {
           "speaker": "Ali",
-          "arabic": "شْتِنْصَحْنِي آخِذ؟",
-          "transliteration": "shtinsa7ni aakhuz?",
-          "english": "What do you recommend I get?"
+          "slot": "what-do-you-recommend-i-get"
         },
         {
           "speaker": "Waiter",
@@ -546,9 +537,7 @@
         },
         {
           "speaker": "Ali",
-          "arabic": "حَار لُو مُو حَار؟",
-          "transliteration": "7aar lo mu 7aar?",
-          "english": "Is it spicy or not spicy?"
+          "slot": "is-it-spicy-or-not-spicy"
         },
         {
           "speaker": "Waiter",
@@ -900,9 +889,7 @@
         },
         {
           "speaker": "Zainab",
-          "arabic": "بِدُون بَصَل، لُو سَمَحْت",
-          "transliteration": "bidoon basal, law sama7t",
-          "english": "Without onion, please."
+          "slot": "without-onion-please"
         },
         {
           "speaker": "Waiter",
@@ -1270,9 +1257,7 @@
       "dialogue": [
         {
           "speaker": "Saad",
-          "arabic": "الْحِسَاب، لُو سَمَحْت",
-          "transliteration": "il 7isaab, law sama7t",
-          "english": "The bill, please."
+          "slot": "the-bill-please"
         },
         {
           "speaker": "Waiter",
@@ -1282,9 +1267,7 @@
         },
         {
           "speaker": "Saad",
-          "arabic": "شكد الحساب؟",
-          "transliteration": "shgad il 7isaab?",
-          "english": "How much is the bill?"
+          "slot": "how-much-is-the-bill"
         },
         {
           "speaker": "Waiter",
@@ -1336,9 +1319,7 @@
         },
         {
           "speaker": "Ali",
-          "arabic": "تِسْلَم إِيدَك، الْأَكِل لَذِيذ",
-          "transliteration": "tislam eedak, il akil lazeez",
-          "english": "Bless your hands, the food was delicious."
+          "slot": "bless-your-hands-the-food-was-delicious"
         }
       ],
       "de_book": [

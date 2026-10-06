@@ -107,9 +107,7 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "كَمِ السَّاعَة دِحِين؟",
-          "transliteration": "kam is-saa3a di7een?",
-          "english": "What time is it now?"
+          "slot": "what-time-is-it-now"
         },
         {
           "speaker": "فَاطِمَة",
@@ -841,9 +839,7 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "شُو رَح نِتْعَشَّى؟",
-          "transliteration": "shoo ra7 nit3asha?",
-          "english": "What will we eat for dinner?"
+          "slot": "what-will-we-eat-for-dinner"
         },
         {
           "speaker": "مُحَمَّد",
@@ -1185,9 +1181,7 @@
       "dialogue": [
         {
           "speaker": "نُور",
-          "arabic": "شُو نَاوِي تِعْمَل نِهَايَة الأِسْبُوع؟",
-          "transliteration": "shoo nawi ti3mal nihayat il-isboo3?",
-          "english": "What do you plan to do on the weekend?"
+          "slot": "what-do-you-plan-to-do-on-the-weekend"
         },
         {
           "speaker": "مُحَمَّد",

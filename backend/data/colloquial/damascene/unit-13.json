@@ -495,9 +495,7 @@
         },
         {
           "speaker": "Sami",
-          "arabic": "تَمَام، مَاشِي الْحَال",
-          "transliteration": "tamaam, maashi l7aal",
-          "english": "OK, that works."
+          "slot": "ok-that-works"
         },
         {
           "speaker": "Rana",
@@ -1208,9 +1206,7 @@
       "dialogue": [
         {
           "speaker": "Yara",
-          "arabic": "لَو سَمَحْت، فِي مِشْكِلَة صْغِيرَة",
-          "transliteration": "low sama7t, fi mishkile zghiire",
-          "english": "Excuse me, there's a small problem."
+          "slot": "excuse-me-there-s-a-small-problem-to-a-man"
         },
         {
           "speaker": "Bassam",
