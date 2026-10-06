@@ -16,7 +16,7 @@ def test_a_sentence_over_the_word_limit_is_refused_and_the_limit_itself_is_allow
     assert refused.value.status_code == 422
 
 
-def test_the_default_limit_is_80_words():
+def test_the_default_limit_is_160_words():
     assert get_settings().max_sentence_words == 160
 
 

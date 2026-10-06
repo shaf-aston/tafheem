@@ -87,13 +87,13 @@ def respelt(query: str) -> tuple[str, list[tuple[str, str]]]:
     if (stamp := _db.stamp()) is None:
         return query, []
     known = _vocabulary(stamp)
-    swaps = []
-    for typed in query.split():
+    swapped = {}
+    for typed in dict.fromkeys(query.split()):
         word = _NOT_LETTERS_RE.sub("", spelling.fold(typed))
         if word and not known.holds(word) and (used := known.nearest(word)):
-            swaps.append((typed, used))
-    swapped = dict(swaps)
-    return " ".join(swapped.get(w, w) for w in query.split()), swaps
+            swapped[typed] = used
+    # Each slip reported once, however often it was typed.
+    return " ".join(swapped.get(w, w) for w in query.split()), list(swapped.items())
 
 
 @lru_cache(maxsize=1)
