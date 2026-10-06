@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { mostlyArabic, spokenForm } from './arabicText'
+import { joinedOn, mostlyArabic, spokenForm } from './arabicText'
 
 describe('mostlyArabic', () => {
   it('is true for an ayah', () => {
@@ -27,4 +27,13 @@ describe('spokenForm', () => {
   it('drops harakat and tatweel', () => expect(spokenForm('هَـ')).toBe('ه'))
   it('folds hamza on alif, ى and ة', () => expect(spokenForm('أ إ آ ى ة')).toBe('ا ا ا ي ه'))
   it('turns punctuation into one space and trims', () => expect(spokenForm(' ه،  ه؟ ')).toBe('ه ه'))
+})
+
+describe('joinedOn', () => {
+  it('gives a piece the joining stroke only when its last letter joins on', () => {
+    expect(joinedOn('فَ')).toBe('فَـ')
+    expect(joinedOn('لْ')).toBe('لْـ')
+    expect(joinedOn('وَ')).toBe('وَ') // و never joins the letter after it
+    expect(joinedOn('بِ')).toBe('بِـ')
+  })
 })
