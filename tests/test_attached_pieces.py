@@ -129,7 +129,9 @@ def test_a_jar_or_zarf_in_the_khabar_slot_hangs_on_an_understood_thabit(sentence
     _, leaves = analysed(sentence)
     (thabit, above), = leaves["ثابت"]
     assert thabit["role"] == khabar and thabit["hidden"] is True
-    unit = next(kid for kid in above["children"] if kid is not thabit)
+    # the book's row: the subject, (ثابت) خبر, then the unit hung on it, side by side
+    assert above["label"] == "جُمْلَةٌ اِسْمِيَّةٌ" and len(above["children"]) >= 3
+    unit = next(kid for kid in above["children"] if kid.get("label"))
     assert unit["label"] == "متعلق بـثابت" and unit["role"] == unit_job
     body = client.post("/api/analyze", json={"sentence": sentence}).json()["tree"]
     assert body["written"].count(-1) == 1 and body["unwritten"]["note"]
