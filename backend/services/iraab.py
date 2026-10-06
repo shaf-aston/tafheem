@@ -52,6 +52,8 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
                              reason=found["gap"]["ar"], notes=found["gap"]["en"])
             elif found["role"]:
                 _named(entry, found)
+            elif found["case"] and entry["type"] not in ("fi'l", "harf", "damir", "punc"):
+                entry["case"] = found["case"]  # no name yet: the vowel the reader typed, not CAMeL's guess
     words = signs.settle(entries)
     if len(roles) != len(words):
         return words

@@ -14,7 +14,7 @@ from typing import Callable
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_map, book_words, is_one, is_plain_noun, six_noun_case
 from backend.services.harakat import (
-    CAMEL_CASE, PRESENT_PREFIX, SHADDA, SUKUN, has_tanween, past_passive_shape, typed_case, typed_passive)
+    CAMEL_CASE, FEM_PLURAL_END, PRESENT_PREFIX, SHADDA, SUKUN, has_tanween, past_passive_shape, typed_case, typed_passive)
 
 # a root letter is what is left once the letters that come and go are removed
 WEAK = set("اويىءأإآئؤة")
@@ -174,6 +174,28 @@ def typed_case_of(token: dict) -> str | None:
     return shown or six_noun_case(token["base"], token["lemma"])
 
 
+def shows_nasb_by_kasra(token: dict) -> bool:
+    """A sound feminine plural (ـات) whose typed kasra is also its nasb (رأيت المعلماتِ)."""
+    return typed_case_of(token) == "i" and bare_letters(token.get("typed") or "").endswith(FEM_PLURAL_END)
+
+
+def shown_cases(token: dict) -> set[str]:
+    """Every case the word's ending can mean: the one typed or parsed, and nasb too for a
+    ـات word typed with a kasra."""
+    shown = typed_or_parsed_case(token)
+    return {shown, "a"} if shows_nasb_by_kasra(token) else {shown} - {None}
+
+
+def puts_in_jarr(token: dict, s: "Sentence") -> bool:
+    """Something puts the word in jarr: a مضاف before it, or a preposition hung over it
+    or written onto it (بِ، لِ)."""
+    head = s.head(token)
+    def preposition(t: dict) -> bool:
+        return t["pos"] == "PRT" and (t.get("pos_camel") == "prep" or read_as(t, "jarr"))
+
+    return token["rel"] == "IDF" or bool(head and preposition(head)) or any(preposition(k) for k in s.kids(token))
+
+
 def typed_or_parsed_case(token: dict) -> str | None:
     """What the reader typed first, the parser's guess second."""
     return typed_case_of(token) or CAMEL_CASE.get(token.get("cas"))
@@ -190,8 +212,7 @@ def place_case(token: dict, s: "Sentence") -> str | None:
 
 def same_case(token: dict, head: dict) -> bool:
     """The word and the noun it hangs on wear one case."""
-    mine = typed_or_parsed_case(token)
-    return bool(mine) and mine == typed_or_parsed_case(head) and not is_verb(head)
+    return bool(shown_cases(token) & shown_cases(head)) and not is_verb(head)
 
 
 def agrees(token: dict, head: dict) -> bool:
@@ -453,11 +474,11 @@ def _follows(token: dict, s: Sentence) -> str:
     if mine and mine != theirs and mudaf and not is_verb(mudaf) and mine == typed_or_parsed_case(mudaf) \
             and token.get("stt") == head.get("stt") == "d":
         return "naat"
-    if mine and theirs and mine != theirs and token.get("stt") == head.get("stt") == "d":
+    if mine and theirs and not shown_cases(token) & shown_cases(head) and token.get("stt") == head.get("stt") == "d":
         return "none"  # أعطى الغنيُّ الفقيرَ: with ال both show their case, and a na't wears its noun's
     if told_of_lone_mubtada(token, head, s):
         return "none"
-    if mine and mine == theirs:
+    if mine and shown_cases(token) & shown_cases(head):
         # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't
         measure = _listed(head, "tamyeez_head") and not is_participle(token)
         return "naat" if agrees(token, head) and not measure else "none"

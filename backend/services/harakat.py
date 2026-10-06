@@ -24,6 +24,10 @@ HIDDEN_CASE = ("ين", "ون", "ان")
 # the vowels their nun carries (the plural's fatha, the dual's kasra); any other
 # (الدِّينُ، بَيَانٌ) is the word's own case
 ENDING_NUN = {"ين": {"َ", "ِ"}, "ون": {"َ"}, "ان": {"ِ"}}
+# a sound feminine plural ends so; its kasra also shows nasb (رأيت المعلماتِ)
+FEM_PLURAL_END = "ات"
+# تَفَعَّلَ: the three radicals that follow a Form V or VI verb's opening ت
+FORM_V_STEM = 3
 
 CASE_NAME = {"u": "raf'", "a": "nasb", "i": "jarr"}
 # CAMeL's own case letters, as the vowel each one is
@@ -71,6 +75,16 @@ def typed_case(word: str, stuck_on: int = 0) -> str | None:
     if (last[0] in "اى" or (last[0] == "و" and not last[1])) and marked[-2][1] & TANWEEN:
         last = marked[-2]  # the alef of رَجُلًا and the written و of عَمْرٌو carry nothing; the tanween is before
     return next((VOWEL[mark] for mark in last[1] if mark in VOWEL), None)
+
+
+def merged_prefix(word: str, merging: frozenset[str]) -> bool:
+    """A present verb whose second ta' merged into the stem's first letter (تَطَّوَّعَ for
+    تَتَطَوَّعَ): a ت with a fatha, then a letter of `merging` doubled, and the whole stem of
+    Form V or VI after the ت. A past verb of those forms has no shadda there (تَطَوَّعَ),
+    and a short doubled past (تَمَّ) has not the stem."""
+    marked = letters(word)
+    return (len(marked) > FORM_V_STEM and marked[0][0] == "ت" and "َ" in marked[0][1]
+            and marked[1][0] in merging and SHADDA in marked[1][1])
 
 
 def has_tanween(word: str) -> bool:
