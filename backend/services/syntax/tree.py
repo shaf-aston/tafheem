@@ -17,7 +17,7 @@ from backend.services.syntax.facts import (Sentence, completes_kaada, is_masdar,
                                           shown_cases)
 from backend.services.syntax.naming import base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.harakat import letters, own_letters
+from backend.services.harakat import has_tanween, letters, own_letters
 
 # What a unit is called, by the join that makes it. Spelled once, in
 # data/nahw_rules/tarkeeb.json, so a typed sentence, a book example and an ayah
@@ -201,10 +201,12 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                    rel="PRD", pos="NOM", pos_camel="")
         hung.add(held["id"])
     # أهلًا وسهلًا، شكرًا لك: a منصوب noun that heads its own sentence, named by no word, is the
-    # object of a verb no one writes, beside the noun it governs
+    # object of a verb no one writes, beside the noun it governs. Alone, its nasb shows as
+    # tanween: a fatha with none (نِعْمَ، أَجْمَلَ) is a verb's
     said_verb = kept["verb"]
     for noun in [t for t in drawn if t["id"] in typed_at and role_of[t["id"]] is None
-                 and t["head"] not in by_id and t["pos"] == "NOM" and shown_cases(t) == {"a"}]:
+                 and t["head"] not in by_id and t["pos"] == "NOM" and shown_cases(t) == {"a"}
+                 and has_tanween(t.get("typed"))]:
         verb = understand(said_verb["word"], said_verb["role"], drawn.index(noun), head=0, rel="---", pos="VRB",
                           pos_camel="", base=said_verb["word"], asp="na")
         role_of[noun["id"]] = said_verb["noun"]["masdar" if is_masdar(noun) else "other"]

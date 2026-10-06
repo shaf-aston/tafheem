@@ -159,7 +159,8 @@ def test_a_nasb_noun_no_word_governs_hangs_on_an_understood_verb(sentence, noun,
     assert body["written"].count(-1) == 1 and body["unwritten"]["note"]
 
 
-@pytest.mark.parametrize("sentence", ["هَرَبَ الْوَلَدُ خَوْفًا", "رَأَيْتُ زَيْدًا", "إِنَّ زَيْدًا قَائِمٌ", "كَانَ زَيْدٌ قَائِمًا"])
+@pytest.mark.parametrize("sentence", ["هَرَبَ الْوَلَدُ خَوْفًا", "رَأَيْتُ زَيْدًا", "إِنَّ زَيْدًا قَائِمٌ", "كَانَ زَيْدٌ قَائِمًا",
+                                      "نِعْمَ الرَّجُلُ سَعِيدٌ", "مَا أَجْمَلَ الرَّبِيعَ"])
 def test_a_noun_a_word_governs_gets_no_understood_verb(sentence):
     _, leaves = analysed(sentence)
     assert "فعل محذوف" not in leaves
