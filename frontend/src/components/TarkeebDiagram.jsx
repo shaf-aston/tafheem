@@ -13,7 +13,7 @@ import { Fragment, useCallback, useLayoutEffect, useMemo, useState } from 'react
 
 import { isQuranic, joinedOn, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
-import { cells, rows, splitConnectors } from '../lib/tarkeebLayout'
+import { cells, hiddenWords, rows, splitConnectors } from '../lib/tarkeebLayout'
 import { useRail } from '../lib/useRail'
 import { colorFor } from '../theme'
 
@@ -128,6 +128,7 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
   const shown = mode === 'split' && canSplit ? split : { words, written: written ?? words.map((_, i) => i), tree }
   const levels = rows(shown.tree, shown.words.length)
   const spans = writtenWords(shown.written)
+  const hidden = hiddenWords(shown.tree)
   // the columns of a written word cut into pieces
   const cut = new Set(spans.flatMap(({ from, to }) => (to > from ? Array.from({ length: to - from + 1 }, (_, k) => from + k) : [])))
   const goTo = (index) => {
@@ -186,8 +187,8 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
         >
           {spans.map(({ from, to }) => {
             const word = shown.words[from]
-            // The mark comes from the API, so no text stands for "not written" here.
-            const missing = unwritten && word === unwritten.mark
+            // The tree marks the leaves not written, so no text stands for "not written" here.
+            const missing = hidden.has(from)
             // فَـ لْـ يَصُمْهُ: one written word drawn across its pieces' columns, each piece
             // over its own name, joined to the next by a line as the script joins them
             const pieces = shown.words.slice(from, to + 1)
@@ -205,7 +206,7 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
                     </span>
                   ))
                 ) : (
-                  <Tooltip text={missing ? unwritten.note : undefined}>
+                  <Tooltip text={missing ? unwritten?.note : undefined}>
                     <span>{seatSmallAlef(word)}</span>
                   </Tooltip>
                 )}

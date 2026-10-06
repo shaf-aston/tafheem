@@ -243,6 +243,8 @@ class TarkeebNode(BaseModel):
     # وَ), so the diagram can slice it into its own column on request instead
     # of always drawing it fused with the word it precedes.
     prefix_arabic: str | None = None
+    # Understood, not written: the diagram dashes the column (ثابت in الحمد لله, an elided khabar).
+    hidden: bool = False
     parts: list["TarkeebNode"] = Field(default_factory=list)
     children: list["TarkeebNode"] = Field(default_factory=list)
 

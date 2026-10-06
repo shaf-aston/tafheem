@@ -12,7 +12,7 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 from __future__ import annotations
 
 from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, named_roles, role_units,
-                                       teacher_rules, term_ar)
+                                       tarkeeb_rules, teacher_rules, term_ar)
 from backend.services.syntax.facts import Sentence, completes_kaada, is_passive, previous_noun, read_as
 from backend.services.syntax.naming import base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
@@ -158,11 +158,42 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         drawn += before + [token] + after
         columns += [own_letters(word, sum(spans[:k]), sum(spans[k + 1:])) for k in range(len(spans))]
         written += [i] * len(spans)
-    at = {token["id"]: index for index, token in enumerate(drawn)}
     typed_at = {token["id"]: index for index, token in enumerate(bases)}
     role_of = {token["id"]: found["role"] for token, found in zip(bases, named)} | {
         key: piece["role"] for key, piece in split.items()}
     why_of = {token["id"]: found.get("gap") for token, found in zip(bases, named)}
+    # الحمدُ لله، زيدٌ في الدار: a jar-majroor or ظرف in the khabar slot hangs on a word no one
+    # writes (ثابت), which is the khabar. It takes the column before the unit; `written` -1,
+    # -2.. is the column of no typed word, a number of its own so it joins no word's run.
+    # A relative pronoun is no مبتدأ (ما في القبور is a صلة).
+    kept = FRAMES["understood"]
+    understood: set[int] = set()
+    hung: set[int] = set()
+    khabars = {*kept["khabar_of"].values(), NAMED.khabar_kaada}
+    for held in [t for t in drawn if role_of[t["id"]] in kept["slot"]]:
+        subject = next((s for s in drawn if role_of[s["id"]] in kept["khabar_of"] and s is not held
+                        and "rel" not in s.get("pos_camel", "") and (held["head"] == s["id"] or s["head"] == held["id"] or (
+                            held["head"] == s["head"] and s["head"] in by_id))), None)
+        if not subject or any(role_of[k["id"]] in khabars and (k["id"] == subject["head"] or k["head"] in (
+                subject["id"], subject["head"])) for k in drawn):
+            continue
+        word = {"id": max(by_id) + 1 + len(understood), "form": kept["word"], "head": held["head"],
+                "rel": "PRD", "pos": "NOM", "pos_camel": ""}
+        # the khabar sits on what the unit hung on, and the unit hangs on it; a subject
+        # the unit headed (the لِ of الحمدُ لله) hangs on the khabar beside it instead
+        for old in (held, subject) if subject["head"] == held["id"] else (held,):
+            new = {**old, "head": word["id"]}
+            drawn[drawn.index(old)], by_id[old["id"]] = new, new
+        by_id[word["id"]] = word
+        role_of[word["id"]] = kept["khabar_of"][role_of[subject["id"]]]
+        why_of[word["id"]] = None
+        place = next(i for i, t in enumerate(drawn) if t["id"] == held["id"])
+        drawn.insert(place, word)
+        columns.insert(place, kept["word"])
+        written.insert(place, -1 - len(understood))
+        understood.add(word["id"])
+        hung.add(held["id"])
+    at = {token["id"]: index for index, token in enumerate(drawn)}
     # what each unit does for the word above it: هذا البيتُ is drawn with the noun over its
     # pointer, but the pair is the مبتدأ, not a صفة of the khabar
     job_of = {token["id"]: NAMED.mubtada if role_of[token["id"]] == NAMED.sifah and any(
@@ -184,7 +215,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # كان الولدُ يكتبُ: so is the one beside it, the khabar (PRD) under their governor
     said = teacher_rules()["case_said"]
     family_of = {token["id"]: found.get("family") for token, found in zip(bases, named)} | {
-        key: piece["family"] for key, piece in split.items()}
+        key: piece["family"] for key, piece in split.items()} | dict.fromkeys(understood)
     name_of = {token["id"]: _finer(token, role_of[token["id"]], family_of[token["id"]]) for token in drawn}
     place_of: dict[int, str] = {}
     label_of: dict[int, str] = {}
@@ -339,6 +370,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         """The leaf with what is written after a verb (ـها) and its doer, in the order
         the books say them: the verb, its doer, then the pronoun on it."""
         found = named[typed_at[token["id"]]] if token["id"] in typed_at else {}
+        leaf = {**leaf, "hidden": True} if token["id"] in understood else leaf
         attached = [{"role": _finer(piece, piece["role"], piece["family"]), "tone": tone(piece["role"]),
                      "gap": piece["role"] is None}
                     for piece in found.get("attached", []) if piece["id"] not in split]
@@ -371,7 +403,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         inside.append((index, pieces(token, _leaf(index, role, why, None if why else _unit_role(name_of[token["id"]], kid_roles)))))
         printed[token["id"]] = inside[-1][1]["role"]
         label = label_of.get(token["id"]) or _label(token, kid_roles) or (top_label if token is root and token["id"] not in opened
-                                             else NOMINAL if token["id"] in clauses & nominal
+                                             else NOMINAL if token["id"] in clauses & nominal or token["id"] in understood
                                              else VERBAL if token["id"] in clauses or role == NAMED.fil else "")
         # A particle's name is what it is, not a job for the unit it heads: the
         # parser gives no job for a jar-majroor or a clause under إِذَا, so none
@@ -382,7 +414,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             else None if token is root or token["pos"] == "PRT" or job_of[token["id"]] == NAMED.fil
             else job_of[token["id"]])
         # مِن نارٍ: a jar-majroor with a word to hang on is named by it, متعلق بـX
-        if label == JAR_MAJROOR and (up := parent(token)) in at:
+        if (label == JAR_MAJROOR or token["id"] in hung) and (up := parent(token)) in at:
             label = FRAMES["attached"].format(word=columns[at[up]])
         return {"role": job,
                 "label": label,
@@ -411,7 +443,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                 "children": [part for _, part in drawn] if tree is None else [tree]}
     covered = sum(1 for found in named if found["role"])
     return {"words": columns, "written": written, "tree": tree, "coverage": round(covered / len(words), 2),
-            "printed": [printed.get(token["id"]) for token in bases]}
+            "printed": [printed.get(token["id"]) for token in bases],
+            **({"unwritten": {"mark": kept["word"], "note": tarkeeb_rules()["treebank"]["unwritten_note"]}} if understood else {})}
 
 
 def _move(holder: dict[int, list[dict]], token: dict, to: list[dict]) -> None:
