@@ -90,6 +90,17 @@ def test_bad_picks_leave_camels_senses(typed, monkeypatch, senses) -> None:
     found = sentence_meaning.translate("البيت كبير")
     assert found["meaning"] == "The house is big"
     assert [w["english"] for w in found["words"]] == ["the house", "large/great"] and found["words_source"] == "camel"
+    monkeypatch.setattr(ai, "translate_sentence", lambda text, wbw: pytest.fail("asked twice"))
+    assert sentence_meaning.translate("البيت كبير") == found
+
+
+def test_a_sense_filed_before_picks_keeps_its_wording_and_gains_picks(typed, monkeypatch) -> None:
+    progress_store.keep_questions(module="dict", sentence="البيت كبير", source="ai",
+                                  questions=[{"question": "meaning", "answer": "The house is big"}])
+    monkeypatch.setattr(ai, "translate_sentence", lambda text, wbw: typed.append(wbw) or {"english": "x", "senses": [2, 2]})
+    found = sentence_meaning.translate("البيت كبير")
+    assert found["meaning"] == "The house is big" and [w["english"] for w in found["words"]] == ["home", "old/aged"]
+    assert sentence_meaning.translate("البيت كبير") == found and len(typed) == 1
 
 
 @pytest.mark.parametrize("cut, shown", [

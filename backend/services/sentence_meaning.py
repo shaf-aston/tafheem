@@ -158,19 +158,20 @@ def _asked(text: str, pairs: list[dict], options: list[list[str]]) -> tuple[str,
     """One model answer per text, filed on disk: the server runs several processes,
     and a cache in each gave the same sentence two wordings by turns. A failure or
     an empty answer raises and is not filed. Two first askings at once both ask, and
-    both return the one the store kept first. The word picks are filed with it, only
-    when valid; the model chooses numbers, it never writes a word's English."""
-    if not (kept := progress_store.kept_questions(_KEPT, text)):
+    both return the one the store kept first. The word picks are filed with it, as none
+    when invalid; the model chooses numbers, it never writes a word's English. A text
+    filed before picks existed is asked once more for them, its sense kept as filed."""
+    kept = {row["question"]: row["answer"] for row in progress_store.kept_questions(_KEPT, text)}
+    if "senses" not in kept:
         word_by_word = "\n".join(
             f"{n}. {p['arabic']}: " + " | ".join(f"{k}) {s}" for k, s in enumerate(o, 1))
             for n, (p, o) in enumerate(zip(pairs, options), 1))
         reply = ai.translate_sentence(text, word_by_word)
         if not (english := reply["english"].strip()):
             raise ValueError("the model answered with nothing")
-        questions = [{"question": "meaning", "answer": english}]
-        if picks := _valid(reply.get("senses"), options):
-            questions.append({"question": "senses", "answer": ",".join(map(str, picks))})
-        progress_store.keep_questions(module=_KEPT, sentence=text, source="ai", questions=questions)
-        kept = progress_store.kept_questions(_KEPT, text)
-    rows = {row["question"]: row["answer"] for row in kept}
-    return rows["meaning"], [int(i) for i in rows.get("senses", "").split(",") if i]
+        # "0" names no candidate, so an invalid reply is filed as no picks, not asked again.
+        picks = ",".join(map(str, _valid(reply.get("senses"), options))) or "0"
+        progress_store.keep_questions(module=_KEPT, sentence=text, source="ai", questions=[
+            {"question": "meaning", "answer": english}, {"question": "senses", "answer": picks}])
+        kept = {row["question"]: row["answer"] for row in progress_store.kept_questions(_KEPT, text)}
+    return kept["meaning"], [int(i) for i in kept["senses"].split(",")]
