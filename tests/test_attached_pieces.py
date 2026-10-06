@@ -94,6 +94,12 @@ def test_ghair_is_named_on_the_chart_as_its_card_says():
     assert [kid["role"] for kid in unit["children"]] == ["مستثنى", "مضاف إليه"]
 
 
+@pytest.mark.parametrize("sentence, job", [("جَاءَ غَيْرُكَ", "فاعل"), ("رَأَيْتُ غَيْرَكَ", "مفعول به")])
+def test_ghair_with_no_group_before_it_does_the_verbs_own_job(sentence, job):
+    cards, _ = analysed(sentence)
+    assert cards[1]["role"] == job
+
+
 def test_man_before_a_verb_is_never_min_and_its_card_says_what_the_picture_does():
     cards, leaves = analysed("مَنْ شَاءَ فَلْيَصُمْهُ وَمَنْ شَاءَ أَفْطَرَ")
     assert cards[0]["role"] == leaves["مَنْ"][0][0]["role"] != "حرف جر"

@@ -292,10 +292,12 @@ def calling_head(token: dict, s: Sentence) -> str | None:
             return "nida"
         if read_as(head, "istithna") and not s.negated_before(head):
             return "istithna"
-    # غير، سوى after a complete clause: hung on its verb, or on a definite noun under it
+    # غير، سوى after a complete clause: hung on its verb beside the group it is taken from
+    # (جاء غيرُك، رأيتُ غيرَك: غير is the doer, the object), or on a definite noun under it
     # (an indefinite one takes غير as its صفة: رجلٌ غيرُ كريم)
-    if head and is_one(token["lemma"], "istithna", "nouns") and not s.negated_before(token) \
-            and (is_verb(head) or (head.get("stt") == "d" and verb_above(token, s))):
+    if head and is_one(token["lemma"], "istithna", "nouns") and not s.negated_before(token) and (
+            (is_verb(head) and any(k["rel"] in ("SBJ", "OBJ") and k["id"] < token["id"] for k in s.kids(head)))
+            or (head.get("stt") == "d" and verb_above(token, s))):
         return "istithna"
     return None
 
