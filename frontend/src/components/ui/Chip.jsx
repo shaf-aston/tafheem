@@ -78,7 +78,7 @@ export default function Chip({
           : null),
       }}
       className={`press tap type-small leading-none rounded-full transition-colors
-        inline-flex items-center justify-center shrink-0 whitespace-nowrap
+        inline-flex items-center justify-center shrink-0 whitespace-nowrap max-w-full
         h-[var(--layout-chip)]
         hover:border-[var(--c)] hover:text-[var(--text)]
         ${quiet
@@ -88,7 +88,7 @@ export default function Chip({
     >
       {arabic
         ? <ArabicText size="tiny" className="arabic-inline">{children}</ArabicText>
-        : children}
+        : <span className="truncate">{children}</span>}
     </Tag>
   )
 }
