@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, named_roles, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar)
-from backend.services.syntax.facts import (Sentence, completes_kaada, is_masdar, is_passive, is_verb, previous_noun, read_as,
+from backend.services.syntax.facts import (Sentence, completes_kaada, is_masdar, is_passive, previous_noun, read_as,
                                           shown_cases)
 from backend.services.syntax.naming import base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
@@ -201,16 +201,12 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                    rel="PRD", pos="NOM", pos_camel="")
         hung.add(held["id"])
     # أهلًا وسهلًا، شكرًا لك: a منصوب noun that heads its own sentence, named by no word, is the
-    # object of a verb no one writes, beside the noun it governs; a question's verb is lent
-    # to it (ماذا قرأتَ؟ كتابًا)
+    # object of a verb no one writes, beside the noun it governs
     said_verb = kept["verb"]
     for noun in [t for t in drawn if t["id"] in typed_at and role_of[t["id"]] is None
                  and t["head"] not in by_id and t["pos"] == "NOM" and shown_cases(t) == {"a"}]:
-        asked = next((t["id"] for t in bases if "interrog" in t.get("pos_camel", "")), noun["id"])
-        lent = next((t for t in bases if asked < t["id"] < noun["id"] and is_verb(t)), None)
-        text = words[typed_at[lent["id"]]] if lent else said_verb["word"]
-        verb = understand(text, said_verb["role"], drawn.index(noun), head=0, rel="---", pos="VRB", pos_camel="",
-                          base=text, asp="na")
+        verb = understand(said_verb["word"], said_verb["role"], drawn.index(noun), head=0, rel="---", pos="VRB",
+                          pos_camel="", base=said_verb["word"], asp="na")
         role_of[noun["id"]] = said_verb["noun"]["masdar" if is_masdar(noun) else "other"]
         why_of[noun["id"]] = None  # the dash was for a case no job fitted; now one does
         under = {**noun, "head": verb["id"]}
