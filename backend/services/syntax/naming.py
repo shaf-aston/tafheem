@@ -138,7 +138,8 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "named": (token.get("reading") or {}).get("named"),
              "book": book_path(found.path, found.book) if found else None,
-             "attached": [{"id": t["id"], "role": role_by_id[t["id"]], "before": t["form"].endswith("+"), "form": t["form"].strip("+"),
+             # إيّاك: the pronoun on إيّا is a letter of the one detached pronoun, not a piece of its own
+             "attached": [] if facts.is_object_pronoun(token) else [{"id": t["id"], "role": role_by_id[t["id"]], "before": t["form"].endswith("+"), "form": t["form"].strip("+"),
                            "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,
                            "reading": t.get("reading")}
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
@@ -146,9 +147,21 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
     before = [[t["form"].strip("+") for t in tokens if t["form"].endswith("+") and word_of.get(t["id"]) == i]
               for i in range(len(bases))]
+    for entry, role in zip(found, named):
+        if (pair := _pair_named(bases, entry.get("governor"))) and role in pair:
+            entry["pair"] = pair  # the role keeps its id; only the printed name follows the governor
     for found_condition in condition.find(bases, named, cases, before):
         _conditioned(found, found_condition)
     return found
+
+
+def _pair_named(bases: list[dict], governor: int | None) -> dict[str, str] | None:
+    """What a governor of the inna family calls its pair, by its own name (لا: اسم لا، خبر لا),
+    from the `pair_named` of its family card (closed_words.json); None for إنّ itself."""
+    if governor is None:
+        return None
+    return next((card["pair_named"] for family, card in family_cards()
+                 if "pair_named" in card and facts.read_as(bases[governor], family)), None)
 
 
 def _conditioned(found: list[dict], c: dict) -> None:
@@ -290,7 +303,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
-    if is_mabni(token):
+    if is_mabni(token) or facts.is_object_pronoun(token):
         return "mabni"
     if facts.shows_nasb_by_kasra(token) and (case_of(role, token["mudaf"]) == "a" if role else not jarred):
         return "nasb"
@@ -306,8 +319,10 @@ def _mood(typed: str, token: dict, before: dict | None) -> str:
     on (harakat.paused); `before` is the base token before it, its joined letters off."""
     particle = before["base"] if before else ""
     dropped_nun = five_verb_nun(typed) == "dropped"
+    read = ((before or {}).get("reading") or {}).get("family")  # أَلَّا: the nasb أنْ with a لا merged in
     for family, case in (("jazm", "jazm"), ("nasb_mudari", "nasb")):
-        if is_one(particle, family, "before_a_present_verb") or (dropped_nun and is_one(particle, family)):
+        if is_one(particle, family, "before_a_present_verb") or (dropped_nun and is_one(particle, family)) \
+                or (family == "nasb_mudari" and read == family):
             return case
     if drops_weak(token["base"], token.get("weak_last")):
         return "jazm"

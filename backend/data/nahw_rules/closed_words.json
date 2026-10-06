@@ -176,7 +176,7 @@
   },
   "la_jins": {
    "ar": "لا النافية للجنس",
-   "card": {"named": "لا النافية للجنس", "does": "تعمل عمل إن، تنصب الاسم وترفع الخبر", "governs": "inna"},
+   "card": {"named": "لا النافية للجنس", "does": "تعمل عمل إن، تنصب الاسم وترفع الخبر", "governs": "inna", "pair_named": {"اسم إن": "اسم لا", "خبر إن": "خبر لا"}},
    "effect": "nasb the ism (built on fatha when indefinite and single) and raf' the khabar",
    "words": [
     "لا"
@@ -351,6 +351,8 @@
    "card": {"named": "حرف نصب", "does": "ينصب الفعل المضارع", "governs": "nasb"},
    "effect": "puts the present verb after it in nasb (fatha; the nun of the five verbs is dropped)",
    "before_a_present_verb": ["أن", "لن", "كي", "لكي", "كيلا", "لئلا", "حتى"],
+   "merges": {"ألا": {"named": "حرف نصب ومصدر", "tail": "negation"}},
+   "_merges": "a word written with a shadda on its lam is أن (this family) with the nun merged into a following لا: أَلَّا = أَنْ + لا. `named` is the name of the head, `tail` the family the piece after it works as (particles.stamp).",
    "_before_a_present_verb": "the ones that settle an unvowelled present verb as منصوب when it comes straight after them; the rest need a reading of the sentence (services/syntax/naming.py)",
    "words": [
     "أن",

@@ -13,8 +13,8 @@ from functools import lru_cache
 from typing import Callable
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SUKUN, five_verb_nun, has_tanween, letters
-from backend.services.nahw_book import book_file
+from backend.services.harakat import SHADDA, SUKUN, five_verb_nun, has_tanween, letters
+from backend.services.nahw_book import book_file, book_map
 from backend.services.syntax import facts, walker
 
 
@@ -69,6 +69,20 @@ def _joins(token: dict, s: facts.Sentence) -> str:
     return "yes" if mine and mine == facts.place_case(before, s) else "no"
 
 
+def _raf(token: dict, s: facts.Sentence) -> str:
+    """The noun after it is typed in raf' (damma or tanween with damma): the noun of لا of the
+    genus is never raf', so this لا is a plain negation and the noun is a مبتدأ."""
+    after = _next(token, s)
+    return "yes" if after and facts.typed_case_of(after) == "u" else "no"
+
+
+def _told(token: dict, s: facts.Sentence) -> str:
+    """What stands straight after the noun that follows: a noun (its khabar) or anything else."""
+    noun = _next(token, s)
+    told = _next(noun, s) if noun else None
+    return "noun" if told and told["pos"] in ("NOM", "PROP") and not facts.is_verb(told) else "other"
+
+
 def _opens(token: dict, s: facts.Sentence) -> str:
     """The noun after it opens a sentence of its own: a definite noun in raf' with an
     indefinite one in raf' after it that does not describe it, its khabar (واللهُ أكبرُ)."""
@@ -86,6 +100,8 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] =
     "negated": (("yes", "no"), _negated),
     "joins": (("yes", "no"), _joins),
     "opens": (("yes", "no"), _opens),
+    "raf": (("yes", "no"), _raf),
+    "told": (("noun", "other"), _told),
 }
 
 
@@ -110,6 +126,16 @@ def _judged(word: str) -> frozenset[str]:
     return frozenset(roles(next(c for c in _tree()["children"] if c["is"] == word)))
 
 
+def _merged(tokens: list[dict]) -> None:
+    """أَلَّا (shadda on the lam) is أنْ with its nun merged into لا (data: nasb_mudari `merges`):
+    the word is the nasb particle, and the لا the parser split off it a plain negation."""
+    for word, merged in book_map("nasb_mudari", "merges").items():
+        for token, tail in zip(tokens, tokens[1:]):
+            if strip_diacritics(token["lemma"]) == word and SHADDA in (token.get("typed") or "") and _attached(tail):
+                token["reading"] = {"family": "nasb_mudari", "named": merged["named"], "kind": "harf", "book": None}
+                tail["reading"] = {"family": merged["tail"], "named": None, "kind": "harf", "book": None}
+
+
 def stamp(tokens: list[dict]) -> None:
     """Stamp each listed word's reading on its token: {family, named, kind, book}, and the
     families the tree judges for it as `judged`. A word no leaf took (a و that opens no
@@ -125,3 +151,4 @@ def stamp(tokens: list[dict]) -> None:
         if found := walker.walk(values, _tree()):
             token["reading"] = {"family": found.role, "named": found.leaf.get("named"),
                                 "kind": found.leaf.get("kind", "harf"), "book": found.book}
+    _merged(tokens)

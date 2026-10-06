@@ -1,5 +1,5 @@
 {
-  "_comment": "Which reading a small word with more than one takes, decided once from what stands round it (services/syntax/particles.py walks it; the card, the picture and the case rules all read the answer). A branch splits on one particle axis: `word` the word itself, `next` what follows it (an indefinite noun: no ال, no name, no pronoun on it), `negated` a negation before it, `joins` the noun after it in the case of a noun before it, `opens` the noun after it with a khabar of its own after it. A leaf's `role` is the closed_words.json family it works as; `named` its name where the family card's own does not fit, `kind` when it is no حرف (إذا before a verb is a ظرف). A word with no branch here is read by its lists as before.",
+  "_comment": "Which reading a small word with more than one takes, decided once from what stands round it (services/syntax/particles.py walks it; the card, the picture and the case rules all read the answer). A branch splits on one particle axis: `word` the word itself, `next` what follows it (an indefinite noun: no ال, no name, no pronoun on it), `negated` a negation before it, `joins` the noun after it in the case of a noun before it, `opens` the noun after it with a khabar of its own after it. `raf` the noun after it typed in raf' (the noun of لا of the genus never is), `told` what stands after that noun: a noun, its khabar (لا رجلٌ أفضلُ منك: لا المشبهة بليس), or anything else (لا خوفٌ عليهم: the noun is a مبتدأ). A leaf's `role` is the closed_words.json family it works as; `named` its name where the family card's own does not fit, `kind` when it is no حرف (إذا before a verb is a ظرف). A word with no branch here is read by its lists as before.",
   "tree": {
     "branch": "الحروف ذات الوجوه",
     "book": "1.2 p3",
@@ -59,10 +59,39 @@
                 "split": "next",
                 "children": [
                   {
-                    "branch": "لا النافية للجنس",
+                    "branch": "لا قبل نكرة",
                     "book": "3.7.4 p69",
                     "is": "indefinite_noun",
-                    "role": "la_jins"
+                    "split": "raf",
+                    "children": [
+                      {
+                        "branch": "لا النافية للجنس",
+                        "book": "3.7.4 p69",
+                        "is": "no",
+                        "role": "la_jins"
+                      },
+                      {
+                        "branch": "لا والاسم المرفوع",
+                        "book": "3.7.3 p69",
+                        "is": "yes",
+                        "split": "told",
+                        "children": [
+                          {
+                            "branch": "لا المشبهة بليس",
+                            "book": "3.7.3 p69",
+                            "is": "noun",
+                            "role": "la_jins",
+                            "named": "لا المشبهة بليس"
+                          },
+                          {
+                            "branch": "لا النافية المهملة",
+                            "book": "3.7.3 p69",
+                            "is": "other",
+                            "role": "negation"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "branch": "لا النافية قبل معرفة",

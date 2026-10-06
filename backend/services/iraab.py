@@ -57,6 +57,10 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
     words = signs.settle(entries)
     if len(roles) != len(words):
         return words
+    for word, found in zip(words, roles):
+        if word.get("role") in found.get("pair", {}):  # لا رجلَ: its governor names the pair, after the sign is settled
+            word["role"] = found["pair"][word["role"]]
+            word["reason"] = reason(word["role"])
     _pieces_said(words, roles)
     return rule_engine.mark_condition(words, roles)
 
