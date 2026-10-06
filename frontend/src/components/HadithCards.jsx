@@ -10,7 +10,7 @@
  * Without it (search, Starred) hadiths from several collections meet, so the
  * label names the collection and every card carries its grading.
  * `names` (a book's, from lib/useNarrators) make the narrators in the Arabic tappable;
- * `onNarrator` opens one narrator's full page.
+ * `onNarrator` opens one narrator's full page; `onHadith` opens a sibling narration of the same number.
  */
 import { useState } from 'react'
 
@@ -23,9 +23,10 @@ import CopyButton from './ui/CopyButton'
 import FavoriteStar from './ui/FavoriteStar'
 import GradeMark from './ui/GradeMark'
 import HadithText from './ui/HadithText'
+import NarrationFamily from './ui/NarrationFamily'
 import NarratorSheet from './ui/NarratorSheet'
 
-export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, names = {}, onNarrator }) {
+export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, names = {}, onNarrator, onHadith }) {
   const { isFavorite, toggle } = useHadithFavorites()
   const { of } = useHadithCollections()
   // The hadith whose chain is drawn in the pop-up, if any.
@@ -39,6 +40,8 @@ export default function HadithCards({ items, accent, collection, columns = false
         {items.map((item, i) => {
           const h = { ...item, collection: item.collection ?? collection }
           const ref = `${h.number}${h.part ?? ''}`
+          // Narrations of this number with chains placed: the same digits, then letters only.
+          const kin = h.part ? Object.keys(names).filter((k) => k.startsWith(`${h.number}`) && /^[a-z]+$/.test(k.slice(`${h.number}`.length))).length : 0
           return (
             <HadithText
               key={`${h.collection}:${ref}`}
@@ -51,6 +54,13 @@ export default function HadithCards({ items, accent, collection, columns = false
               hideChain={hideChain}
               names={names[ref]}
               onNarrator={setWho}
+              footer={kin > 1 && !hideChain && (
+                <NarrationFamily
+                  collection={h.collection} number={h.number} part={h.part} count={kin} accent={accent}
+                  onOpen={(p) => onHadith?.({ collection: h.collection, book: p.book, number: h.number, part: p.part })}
+                  onNarrator={setWho}
+                />
+              )}
               action={(
                 <span className="flex items-center gap-2">
                   {!(collection && of(collection).sahih) && (

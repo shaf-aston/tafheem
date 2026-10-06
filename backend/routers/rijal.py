@@ -6,9 +6,9 @@ import asyncio
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.schemas import Narrator, RijalChains, RijalHadithRef, RijalSearch
+from backend.models.schemas import Narrator, RijalChains, RijalFamily, FamilyPart, FamilyNarrator, RijalHadithRef, RijalSearch
 from backend.services import provenance
-from backend.services.rijal import store
+from backend.services.rijal import family, store
 
 router = APIRouter(prefix="/api/rijal", tags=["rijal"])
 
@@ -19,6 +19,25 @@ async def get_chains(collection: str, book: int) -> RijalChains:
         collection=collection, book=book, chains=await asyncio.to_thread(store.chains, collection, book),
         ready=await asyncio.to_thread(store.is_built), source=provenance.of("rijal"),
     )
+
+
+@router.get("/family/{collection}/{number}", response_model=RijalFamily)
+async def get_family(collection: str, number: int, part: str = Query("", max_length=3)) -> RijalFamily:
+    """The narrations sharing this number, each laid against `part` (the first when not given or unknown)."""
+    found = await asyncio.to_thread(store.family, collection, number)
+    if len(found) < 2:
+        raise HTTPException(status_code=404, detail=f"{collection} {number} has one narration")
+    viewed = next((f for f in found if f["part"] == part), found[0])
+    ids = [n["id"] for n in viewed["narrators"]]
+    by_id = {n["id"]: n for f in found for n in f["narrators"]}
+    named = lambda seq: [FamilyNarrator(**by_id[i]) for i in seq]  # noqa: E731
+    parts = []
+    for f in found:
+        own, met, borrowed = family.meet([n["id"] for n in f["narrators"]], ids)
+        parts.append(FamilyPart(
+            part=f["part"], book=f["book"], own=named(own), meet=named([met])[0] if met is not None else None,
+            borrowed=named(borrowed), narrators=named([n["id"] for n in f["narrators"]]), said=f["said"]))
+    return RijalFamily(viewed=viewed["part"], parts=parts)
 
 
 @router.get("/narrators/{narrator_id}", response_model=Narrator)

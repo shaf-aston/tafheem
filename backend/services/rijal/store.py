@@ -10,7 +10,7 @@ import json
 import re
 
 from backend.config import data_path
-from backend.services.hadith import words
+from backend.services.hadith import loader, words
 from backend.services.readonly_db import ReadOnlyDb
 
 _db = ReadOnlyDb(lambda: data_path("rijal_index_path"))
@@ -75,3 +75,21 @@ def search(query: str, limit: int) -> list[dict]:
         f"SELECT {_SUMMARY} FROM narrator_fts JOIN narrator n ON n.id = narrator_fts.rowid "
         "WHERE narrator_fts MATCH ? ORDER BY COALESCE(n.hadith_total, 0) DESC LIMIT ?",
         (" ".join(f'"{t}"*' for t in terms), limit))]
+
+
+def family(collection: str, number: int) -> list[dict]:
+    """Every lettered part of one number: its narrators in text order and the Arabic said after the last of them."""
+    db = _db()
+    rows = db.execute(
+        "SELECT m.book, m.part, m.end, n.id, n.name_ar FROM mention m JOIN narrator n ON n.id = m.narrator_id "
+        "WHERE m.collection = ? AND m.number = ? ORDER BY m.part, m.ord", (collection, number)) if db else []
+    parts: dict[str, dict] = {}
+    for book, part, end, who, name in rows:
+        found = parts.setdefault(part, {"part": part, "book": book, "narrators": [], "end": 0})
+        found["narrators"].append({"id": who, "name": name})
+        found["end"] = max(found["end"], end)
+    for found in parts.values():
+        text = next((h["arabic"] for h in loader.hadiths(collection, found["book"])
+                     if h["number"] == number and h["part"] == found["part"]), "")
+        found["said"] = re.sub(r"^[\s\W_]+", "", text[found.pop("end"):])
+    return list(parts.values())

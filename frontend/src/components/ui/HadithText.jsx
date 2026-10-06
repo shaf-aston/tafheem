@@ -70,8 +70,9 @@ function Spans({ text, marks, names = [], onNarrator }) {
  * "Narrated X:" line already names only that one, so it stays.
  * `names` are the narrators named in the Arabic (lib/rijal); with the chain
  * hidden none shows, so none is offered.
+ * `footer` sits under the text: the other narrations of this number.
  */
-export default function HadithText({ label, arabic, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, names = [], onNarrator }) {
+export default function HadithText({ label, arabic, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, names = [], onNarrator, footer = null }) {
   const { narrator, body } = narrated(english)
   const cut = chainOf(arabic)
   const said = hideChain && cut.chain ? `${cut.teller} ${cut.body}` : arabic
@@ -105,6 +106,7 @@ export default function HadithText({ label, arabic, english = '', accent, action
           </p>
         )}
       </ShowRest>
+      {footer}
     </li>
   )
 }

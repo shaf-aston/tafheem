@@ -1270,6 +1270,27 @@ class RijalChains(BaseModel):
     source: Source
 
 
+class FamilyNarrator(BaseModel):
+    id: int
+    name: str
+
+
+class FamilyPart(BaseModel):
+    """One narration of a number against the viewed one: its own narrators, where it meets that chain, what it borrows."""
+    part: str
+    book: int
+    own: list[FamilyNarrator]
+    meet: FamilyNarrator | None = None
+    borrowed: list[FamilyNarrator] = []
+    narrators: list[FamilyNarrator]
+    said: str = ""
+
+
+class RijalFamily(BaseModel):
+    viewed: str
+    parts: list[FamilyPart]
+
+
 class RijalSearch(BaseModel):
     query: str
     narrators: list[NarratorSummary] = []

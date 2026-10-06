@@ -179,6 +179,12 @@ export const rijalChainsQuery = (collection, book) => ({
   queryKey: ['rijal-chains', collection, book],
   queryFn: () => api.get(`/rijal/chains/${collection}/${book}`).then((r) => r.data),
 })
+// The narrations sharing one number, each laid against `part`.
+export const narrationFamilyQuery = (collection, number, part) => ({
+  queryKey: ['rijal-family', collection, number, part],
+  queryFn: () => api.get(`/rijal/family/${collection}/${number}`, { params: { part } }).then((r) => r.data),
+  retry: false,
+})
 export const narratorHadithQuery = (id) => ({
   queryKey: ['narrator-hadith', id],
   queryFn: () => api.get(`/rijal/narrators/${id}/hadith`).then((r) => r.data),
