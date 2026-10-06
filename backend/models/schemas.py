@@ -1294,6 +1294,25 @@ class RijalFamily(BaseModel):
     parts: list[FamilyPart]
 
 
+class NarratorListItem(NarratorSummary):
+    generation_ar: str = ""
+    years: str = ""
+    city_ar: str = ""
+    hadith_count: int = 0
+
+
+class RijalGeneration(BaseModel):
+    key: str
+    label: str
+
+
+class NarratorList(BaseModel):
+    """One page of the narrators named in our hadith, the most narrated first; total counts the whole filter."""
+    items: list[NarratorListItem] = []
+    total: int = 0
+    generations: list[RijalGeneration] = []
+
+
 class RijalSearch(BaseModel):
     query: str
     narrators: list[NarratorSummary] = []

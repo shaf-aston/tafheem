@@ -200,6 +200,17 @@ export const narratorQuery = (id) => ({
   retry: (count, error) => error?.response?.status !== 404 && count < 1,
 })
 
+// The narrator list, most hadith first, a page at a time; the server fixes the page size.
+export const narratorListQuery = (generation) => ({
+  queryKey: ['narrator-list', generation],
+  queryFn: ({ pageParam }) => api.get('/rijal/narrators', { params: { generation, offset: pageParam } }).then((r) => r.data),
+  initialPageParam: 0,
+  getNextPageParam: (last, pages) => {
+    const seen = pages.reduce((n, p) => n + p.items.length, 0)
+    return last.items.length && seen < last.total ? seen : undefined
+  },
+})
+
 // Every word typed must appear, in Arabic or English, across the named
 // collections; empty collections means every collection, the ordinary case.
 export const searchHadith = ({ q, collections = [] }) =>
