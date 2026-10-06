@@ -26,7 +26,7 @@
  },
  "case_said": {
   "_comment": "A case as a reason says it: the word itself, the place a mabni word fills (مبني في محل رفع), what a mabni verb is built on, and a verb's opening words by its tense (signs.py).",
-  "word": {"raf'": "مرفوع", "nasb": "منصوب", "jarr": "مجرور", "jazm": "مجزوم"},
+  "word": {"raf'": "مرفوع", "nasb": "منصوب", "jarr": "مجرور", "jazm": "مجزوم", "mabni": "مبني"},
   "place": {"u": "رفع", "a": "نصب", "i": "جر", "j": "جزم"},
   "mabni_noun": "مبني في محل {place} لأنه {role}",
   "in_place": "في محل {place}",
