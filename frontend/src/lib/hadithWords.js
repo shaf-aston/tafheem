@@ -132,6 +132,9 @@ const LINKS = new Set([...linkWords, ...verbs.flatMap((verb) => endings.map((end
 const SAYS = new Set(HADITH.chain.says)
 const ABOUT = new Set(HADITH.chain.about)
 const FREE = new Set(HADITH.chain.free)
+const PROPHET = new Set(HADITH.chain.prophet)
+const KIN = new Set(HADITH.chain.kin)
+const HANDS = new Set(HADITH.chain.hands)
 // Anything but a letter goes: vowels, tatweel, direction marks, commas, colons.
 const BARE = /[^\u0621-\u063A\u0641-\u064A\u0671]/g
 // A quote or a bracket is the hadith's own words or a verse, never a name.
@@ -165,7 +168,7 @@ const range = (start, end) => Array.from({ length: end - start + 1 }, (_, k) => 
 
 export function chainOf(arabic) {
   const text = String(arabic ?? '')
-  const whole = { chain: '', body: text }
+  const whole = { chain: '', teller: '', body: text }
   const tokens = [...text.matchAll(/\S+/g)]
   const words = outsideAsides(tokens, tokens.map((m) => m[0] === HADITH.chain.aside))
     .map((m) => ({ at: m.index, word: bare(m[0]), quoted: QUOTED.test(m[0]), stop: STOP.test(m[0]) }))
@@ -173,6 +176,18 @@ export function chainOf(arabic) {
   if (!LINKS.has(words[0]?.word)) return whole
 
   let i = 1
+  let last = 0   // the latest link: from it on is the one who tells the hadith
+  // A link to the Prophet, to a kin word, or straight to a saying word (حدثه أنه) names no new teller.
+  // A kin word counts only standing alone: أبي ذر is a name, عن أبيه، قال is not.
+  const alone = (k) => !words[k + 1] || LINKS.has(words[k + 1].word) || SAYS.has(words[k + 1].word)
+  const before = (k) => PROPHET.has(words[k]?.word) || (KIN.has(words[k]?.word) && alone(k))
+  const teller = (at) => (before(at + 1) || SAYS.has(words[at + 1]?.word) ? last : at)
+  // After "أن", the next link within one name: the narrator named before it hands the hadith on.
+  const handed = (at) => {
+    if (!HANDS.has(words[at].word)) return -1
+    const next = words.findIndex((w, k) => k > at && (LINKS.has(w.word) || SAYS.has(w.word) || w.quoted || w.stop))
+    return next > at + 1 && next - at - 1 <= HADITH.chain.name && LINKS.has(words[next].word) ? next : -1
+  }
   while (i < words.length) {
     let name = 0
     let ended = false   // past a full stop only a link or a saying word may come
@@ -184,10 +199,16 @@ export function chainOf(arabic) {
       i += 1
     }
     if (i === words.length) return whole
-    if (LINKS.has(words[i].word)) { i += 1; continue }
+    if (LINKS.has(words[i].word)) { last = teller(i); i += 1; continue }
     while (i + 1 < words.length && SAYS.has(words[i + 1].word)) i += 1
-    if (i + 1 < words.length && LINKS.has(words[i + 1].word)) { i += 2; continue }
-    return { chain: text.slice(0, words[i].at).trim(), body: text.slice(words[i].at) }
+    if (i + 1 < words.length && LINKS.has(words[i + 1].word)) { last = teller(i + 1); i += 2; continue }
+    const link = handed(i)
+    if (link > 0) { last = before(i + 1) ? last : i; i = link + 1; continue }
+    return {
+      chain: text.slice(0, words[i].at).trim(),
+      teller: text.slice(words[last].at, words[i].at).trim(),
+      body: text.slice(words[i].at),
+    }
   }
   return whole
 }
@@ -211,7 +232,6 @@ export function termOf(word) {
 const SPELLINGS = HADITH.chain.spellings
 const keyOf = (name) => name.split(/\s+/).map(bare).filter(Boolean)
   .map((w, _, all) => (all.length > 1 && SPELLINGS[w]) || w.replace(/^ال/, '').replace(/(.{3,})ا$/, '$1').replace(/ة$/, 'ه').replace(/ى$/, 'ي'))
-const KIN = new Set(HADITH.chain.kin)
 const TOGETHER = new Set(HADITH.chain.together)
 // One narrator when the shorter key opens the longer (سليمان is سليمان بن يسار):
 // inside one hadith's chain a name is rarely shared by two men. "My father" in

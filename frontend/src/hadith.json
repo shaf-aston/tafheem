@@ -19,6 +19,9 @@
     "_spellings_comment": "Two spellings of one word in a name, read as one when two strands are matched (lib/hadithWords keyOf): the case forms of abu, and ibn with or without its alef. strand is the mark that starts another strand of the chain.",
     "spellings": { "أبا": "أبو", "أبي": "أبو", "ابن": "بن" },
     "strand": "ح",
+    "_prophet_comment": "prophet opens a link that reaches the Prophet himself (عن النبي، سمع رسول الله). With the chain hidden, the narrator kept is the one before such a link, the one who tells it; the same for a link to a kin word (عن أبيه), which names no one without the link before it. hands is the saying word that can name the next narrator before his link (أن طاوسا أخبره عن ابن عباس), so the chain walks on through it.",
+    "prophet": ["النبي", "رسول"],
+    "hands": ["أن"],
     "together": ["قالا", "قالوا", "كلاهما", "كلهم", "جميعا"],
     "terms": {
       "_comment": "The chain words guide (ui/ChainWords) and the colour of each link in the chain drawing. Meanings from Ibn al-Salah's Muqaddima (types 11, 12, 24, 25). way is how the narration was received: heard and loose colour the drawing (theme hadith-heard, hadith-loose). match is each word without vowels, a verb by its stem, so lib/hadithWords termOf finds the entry for حدثتني or وأخبرنا; a test checks every word the chain walker reads has an entry.",

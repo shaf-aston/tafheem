@@ -65,14 +65,16 @@ function Spans({ text, marks, names = [], onNarrator }) {
 
 /**
  * `action` is a slot beside the number: a favorite star or a collection badge.
- * `hideChain` drops the chain of narrators: the Arabic as far as lib/hadithWords
- * can tell where it ends, the English its "Narrated X:" line.
+ * `hideChain` drops the chain of narrators but the one who tells the hadith:
+ * the Arabic as far as lib/hadithWords can tell where it ends. The English
+ * "Narrated X:" line already names only that one, so it stays.
  * `names` are the narrators named in the Arabic (lib/rijal); with the chain
  * hidden none shows, so none is offered.
  */
 export default function HadithText({ label, arabic, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, names = [], onNarrator }) {
   const { narrator, body } = narrated(english)
-  const said = hideChain ? chainOf(arabic).body : arabic
+  const cut = chainOf(arabic)
+  const said = hideChain && cut.chain ? `${cut.teller} ${cut.body}` : arabic
   const rise = useFirstSight(`hadith:${arabic.slice(0, 30)}`)
 
   return (
@@ -98,7 +100,7 @@ export default function HadithText({ label, arabic, english = '', accent, action
 
         {english && (
           <p className="type-ui leading-relaxed mt-3 pt-3 border-t border-[var(--border)]">
-            {narrator && !hideChain && <span style={TONE.told}>{narrator} </span>}
+            {narrator && <span style={TONE.told}>{narrator} </span>}
             <Spans text={body} marks={['“', '”']} />
           </p>
         )}
