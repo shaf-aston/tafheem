@@ -9,7 +9,6 @@ import { useQuery } from '@tanstack/react-query'
 import { hadithBookQuery } from '../api'
 import { scrollToEl } from '../lib/scrollToEl'
 import { topicOf } from '../lib/hadithGrade'
-import { useNarrators } from '../lib/useNarrators'
 import { useRememberedFlag } from '../lib/useRemembered'
 
 import Chip from './ui/Chip'
@@ -36,7 +35,6 @@ function useReadingRail(ref) {
 
 export default function HadithList({ collection, book, focus, onBack, accent, onNarrator, onHadith }) {
   const { data, isPending, isError, error, refetch } = useQuery(hadithBookQuery(collection, book))
-  const names = useNarrators(collection, book)
   const rail = useRef(null)
   useReadingRail(rail)
   const [missing, setMissing] = useState(false)
@@ -111,7 +109,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
 
       {data && (data.hadiths.length === 0
         ? <EmptyState>This book has no hadiths yet.</EmptyState>
-        : <HadithCards items={data.hadiths} collection={collection} accent={accent} columns={columns} hideChain={hideChain} names={names} onNarrator={onNarrator} onHadith={onHadith} />)}
+        : <HadithCards items={data.hadiths} collection={collection} accent={accent} columns={columns} hideChain={hideChain} onNarrator={onNarrator} onHadith={onHadith} />)}
     </div>
   )
 }

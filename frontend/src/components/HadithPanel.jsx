@@ -124,7 +124,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         <StatusNote>That link names a hadith that is not here, so the collection opens plainly.</StatusNote>
       )}
 
-      <HadithSearchResults accent={accent} onNarrator={openNarrator} onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}>
+      <HadithSearchResults accent={accent} onNarrator={openNarrator} onHadith={openHadith} onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}>
         <ChipRow>
           <HadithCollectionPicker value={collection} onChange={pickCollection} accent={accent} />
           <Chip selected={starred} tinted accent={accent} onClick={() => setStarred(!starred)}>
@@ -135,7 +135,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         </ChipRow>
         {starred ? (
           favorites.length
-            ? <HadithCards items={favorites} accent={accent} onNarrator={openNarrator} />
+            ? <HadithCards items={favorites} accent={accent} onNarrator={openNarrator} onHadith={openHadith} />
             : <EmptyState>Star a hadith and it is kept here.</EmptyState>
         ) : place?.book == null ? (
           <HadithBookList collection={collection} onPick={pickBook} accent={accent} />

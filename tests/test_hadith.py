@@ -178,6 +178,9 @@ def test_grades_and_lettered_cite_reach_the_reader(db):
     assert found[(3, "c")]["grades"] == []
     assert found[(3, "c")]["cite"] == "https://sunnah.com/bukhari:3c"
     assert search.search("Prayer light").hits[0].grades == [{"by": "Al-Albani", "grade": "Sahih"}]
+    # A letter asked and found reads as found; the bare number shows every part.
+    assert search.search("bukhari 3c").reference == ("bukhari", "3c", "3c")
+    assert search.search("bukhari 3").reference == ("bukhari", "3", "3")
 
 
 def test_a_misspelt_word_is_swapped_for_the_word_meant_and_said_so(db):
