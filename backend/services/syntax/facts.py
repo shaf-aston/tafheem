@@ -501,6 +501,12 @@ def is_participle(token: dict) -> bool:
             or (token.get("pos_camel") == "noun_prop" and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
+def is_masdar(token: dict) -> bool:
+    """A noun of a masdar measure (شُكْرًا), judged by the analyser's pattern."""
+    return token.get("pos_camel") == "noun" and token.get("pattern", "").removeprefix("ال").startswith(
+        tuple(book_words("masdar_patterns")))
+
+
 def takes_tamyeez(token: dict, s: Sentence) -> bool:
     """A tamyeez stands after a number or a measure, or after a verb of tamyeez al-nisba."""
     head = s.head(token)

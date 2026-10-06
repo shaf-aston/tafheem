@@ -13,7 +13,8 @@ from __future__ import annotations
 
 from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, named_roles, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar)
-from backend.services.syntax.facts import Sentence, completes_kaada, is_passive, previous_noun, read_as
+from backend.services.syntax.facts import (Sentence, completes_kaada, is_masdar, is_passive, is_verb, previous_noun, read_as,
+                                          shown_cases)
 from backend.services.syntax.naming import base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import letters, own_letters
@@ -170,6 +171,19 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     understood: set[int] = set()
     hung: set[int] = set()
     khabars = {*kept["khabar_of"].values(), NAMED.khabar_kaada}
+
+    def understand(text: str, role: str, place: int, **word) -> dict:
+        """A word no one writes: its own column before `place`, a role, drawn hidden."""
+        word = {"id": max(by_id) + 1 + len(understood), "form": text, **word}
+        by_id[word["id"]] = word
+        role_of[word["id"]] = role
+        why_of[word["id"]] = None
+        drawn.insert(place, word)
+        columns.insert(place, text)
+        written.insert(place, -1 - len(understood))
+        understood.add(word["id"])
+        return word
+
     for held in [t for t in drawn if role_of[t["id"]] in kept["slot"]]:
         subject = next((s for s in drawn if role_of[s["id"]] in kept["khabar_of"] and s is not held
                         and "rel" not in s.get("pos_camel", "") and (held["head"] == s["id"] or s["head"] == held["id"] or (
@@ -177,22 +191,30 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if not subject or any(role_of[k["id"]] in khabars and (k["id"] == subject["head"] or k["head"] in (
                 subject["id"], subject["head"])) for k in drawn):
             continue
-        word = {"id": max(by_id) + 1 + len(understood), "form": kept["word"], "head": held["head"],
-                "rel": "PRD", "pos": "NOM", "pos_camel": ""}
         # the books write مبتدأ، خبر (ثابت)، ق (ثابت) side by side, so the khabar sits beside
         # the unit; a subject the unit headed (the لِ of الحمدُ لله) comes out beside them too
         if subject["head"] == held["id"]:
             new = {**subject, "head": held["head"]}
             drawn[drawn.index(subject)], by_id[subject["id"]] = new, new
-        by_id[word["id"]] = word
-        role_of[word["id"]] = kept["khabar_of"][role_of[subject["id"]]]
-        why_of[word["id"]] = None
         place = next(i for i, t in enumerate(drawn) if t["id"] == held["id"])
-        drawn.insert(place, word)
-        columns.insert(place, kept["word"])
-        written.insert(place, -1 - len(understood))
-        understood.add(word["id"])
+        understand(kept["word"], kept["khabar_of"][role_of[subject["id"]]], place, head=held["head"],
+                   rel="PRD", pos="NOM", pos_camel="")
         hung.add(held["id"])
+    # أهلًا وسهلًا، شكرًا لك: a منصوب noun that heads its own sentence, named by no word, is the
+    # object of a verb no one writes, beside the noun it governs; a question's verb is lent
+    # to it (ماذا قرأتَ؟ كتابًا)
+    said_verb = kept["verb"]
+    for noun in [t for t in drawn if t["id"] in typed_at and role_of[t["id"]] is None
+                 and t["head"] not in by_id and t["pos"] == "NOM" and shown_cases(t) == {"a"}]:
+        asked = next((t["id"] for t in bases if "interrog" in t.get("pos_camel", "")), noun["id"])
+        lent = next((t for t in bases if asked < t["id"] < noun["id"] and is_verb(t)), None)
+        text = words[typed_at[lent["id"]]] if lent else said_verb["word"]
+        verb = understand(text, said_verb["role"], drawn.index(noun), head=0, rel="---", pos="VRB", pos_camel="",
+                          base=text, asp="na")
+        role_of[noun["id"]] = said_verb["noun"]["masdar" if is_masdar(noun) else "other"]
+        why_of[noun["id"]] = None  # the dash was for a case no job fitted; now one does
+        under = {**noun, "head": verb["id"]}
+        drawn[drawn.index(noun)], by_id[noun["id"]] = under, under
     at = {token["id"]: index for index, token in enumerate(drawn)}
     # what each unit does for the word above it: هذا البيتُ is drawn with the noun over its
     # pointer, but the pair is the مبتدأ, not a صفة of the khabar
@@ -437,7 +459,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         return {"role": None, "label": CONDITION, "tone": None, "detail": None,
                 "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
 
-    top_label = _sentence_label(role_of, bases, named)
+    top_label = _sentence_label(role_of, drawn, named)
     drawn = sorted(((at[part["id"]], unit(part)) for part in roots), key=lambda pair: pair[0])
     tree = drawn[0][1] if len(drawn) == 1 else None
     if tree is None or tree.get("word") is not None or not tree.get("label"):
@@ -446,7 +468,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     covered = sum(1 for found in named if found["role"])
     return {"words": columns, "written": written, "tree": tree, "coverage": round(covered / len(words), 2),
             "printed": [printed.get(token["id"]) for token in bases],
-            **({"unwritten": {"mark": kept["word"], "note": tarkeeb_rules()["treebank"]["unwritten_note"]}} if understood else {})}
+            **({"unwritten": {"mark": columns[written.index(-1)], "note": tarkeeb_rules()["treebank"]["unwritten_note"]}} if understood else {})}
 
 
 def _move(holder: dict[int, list[dict]], token: dict, to: list[dict]) -> None:
