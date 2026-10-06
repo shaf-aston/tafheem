@@ -165,7 +165,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
       {catalogue.isPending && <AnalyzerSkeleton />}
       {catalogue.isError && <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={catalogue.error} onRetry={catalogue.refetch} />}
       {catalogue.data && (
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 pb-5 border-b border-[var(--border)]">
           <Trail steps={steps} />
           {dialect && dialects.length > 1 && <Switch dialects={dialects} current={dialect.key} onPick={switchTo} />}
         </div>

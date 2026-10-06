@@ -63,7 +63,12 @@ export default function WordBank({ unit, at = null }) {
   )
   return (
     <>
-      <SmallButton onClick={() => setOpen(true)}>Word bank</SmallButton>
+      <SmallButton onClick={() => setOpen(true)} className="inline-flex items-center gap-2 type-ui px-4 py-2">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5zM12 6.5v13" />
+        </svg>
+        Word bank
+      </SmallButton>
       {open && <Bank rows={rows} onClose={() => setOpen(false)} scope={scope} title={whole || !topic ? unit.title : topic.title} />}
     </>
   )

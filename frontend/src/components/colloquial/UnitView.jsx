@@ -25,14 +25,16 @@ function Scene({ unit, lesson, number, place }) {
   const [open, setOpen] = useState(null)
   return (
     <article className="space-y-12">
-      <header className="space-y-1">
-        <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Topic {number}</p>
-        <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
-        <p className="type-small text-[var(--text-dim)]">Press a picture to look closer.</p>
-        <div className="pt-2"><WordBank unit={unit} at={number - 1} /></div>
-      </header>
-
-      <Mosaic phrases={lesson.phrases} onOpen={setOpen} />
+      <div className="space-y-5">
+        <header className="flex flex-wrap items-end justify-between gap-3">
+          <div className="space-y-1">
+            <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Topic {number}</p>
+            <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
+          </div>
+          <WordBank unit={unit} at={number - 1} />
+        </header>
+        <Mosaic phrases={lesson.phrases} onOpen={setOpen} />
+      </div>
       {open !== null && <Sheet phrases={lesson.phrases} at={open} onAt={setOpen} onClose={() => setOpen(null)} place={place} />}
 
       <div className="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-10 lg:items-start">
