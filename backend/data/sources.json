@@ -137,6 +137,16 @@
       "nahw"
     ]
   },
+  "camel": {
+    "label": "CAMeL Tools",
+    "confidence": "derived",
+    "detail": "Each word's sense as CAMeL's tagger read it from the words around it. Fast and the same every time, but it can pick the wrong sense",
+    "url": "https://github.com/CAMeL-Lab/camel_tools",
+    "where": "Word-by-word English for a typed phrase or sentence. Runs locally.",
+    "used_in": [
+      "dict"
+    ]
+  },
   "wiktionary": {
     "label": "Wiktionary",
     "confidence": "verified",

@@ -23,6 +23,7 @@ from functools import lru_cache
 
 from backend.config import data_path
 from backend.services import spelling
+from backend.services.arabic_text import words
 from backend.services.fts import TRIGRAM_MIN, quoted
 from backend.services.quran_search.hit import Hit
 from backend.services.readonly_db import ReadOnlyDb
@@ -63,12 +64,29 @@ def search(query: str, limit: int) -> list[Hit]:
     Returns [] when the index has not been built. A missing index is a thing
     that has not been done yet, not a failure worth an error page.
     """
+    return [hit for _, hit in _ranked(query)[:limit]]
+
+
+def whole_ayah(query: str) -> Hit | None:
+    """The ayah the query is, every word in order and nothing more, or None.
+
+    The top score is that and only that: the whole query in one run, covering
+    every word of the ayah. Scoring counts each word once, so the word count
+    is checked too: the ayah typed twice is not that ayah."""
+    best = next(iter(_ranked(query, every=True)), None)
+    whole = best and best[0] == _WHOLE and len(words(query)) == len(words(best[1].arabic_text))
+    return best[1] if whole else None
+
+
+def _ranked(query: str, every: bool = False) -> list[tuple[float, Hit]]:
+    """Every ayah that answers the query, with its score, best first; with
+    `every`, only ayahs holding every word of it."""
     conn = _db()
     folded = " ".join(_NOT_LETTERS_RE.sub(" ", spelling.fold(query)).split())
     if conn is None or not folded:
         return []
 
-    rows = _rows(conn, folded)
+    rows = _rows(conn, folded, every)
 
     # Each word once: الله الله الله is a one-word question, and counting it as
     # three made every ayah fall short of the threshold below.
@@ -77,7 +95,7 @@ def search(query: str, limit: int) -> list[Hit]:
         ((score, row) for row in rows if (score := _score(wanted, row[3], len(row[2].split()))) is not None),
         key=lambda pair: (-pair[0], len(pair[1][3]), pair[1][0], pair[1][1]),
     )
-    return [Hit(surah=row[0], ayah=row[1], arabic_text=row[2], source=_SOURCE) for _, row in scored[:limit]]
+    return [(score, Hit(surah=row[0], ayah=row[1], arabic_text=row[2], source=_SOURCE)) for score, row in scored]
 
 
 def respelt(query: str) -> tuple[str, list[tuple[str, str]]]:
@@ -103,6 +121,10 @@ def _vocabulary(_stamp: tuple[str, int]) -> spelling.Vocabulary:
     return spelling.Vocabulary(Counter(w for (fold,) in rows for w in spelling.fold(fold).split()))
 
 
+# _score's ceiling: the query is one run of the ayah and covers all of it.
+_WHOLE = 3.0
+
+
 def _score(wanted: list[str], fold: str, length: int) -> float | None:
     """How well one ayah answers the query, 0 to 3, or None when it shares too
     little to be an answer at all. `length` is the ayah's own word count: the
@@ -126,17 +148,18 @@ def _score(wanted: list[str], fold: str, length: int) -> float | None:
     return 0.0 if len(wanted) == 1 else None
 
 
-def _rows(conn: sqlite3.Connection, folded: str) -> list[tuple]:
-    """Every ayah containing any word of the query, by whichever of the two
-    routes can see it. Ranking happens in Python, over these."""
+def _rows(conn: sqlite3.Connection, folded: str, every: bool = False) -> list[tuple]:
+    """Every ayah containing any word of the query (with `every`, all of its
+    index-visible words), by whichever of the two routes can see it. Ranking
+    happens in Python, over these."""
     columns = "surah, ayah, arabic, fold"
     long_enough = [w for w in folded.split() if len(w) >= TRIGRAM_MIN]
 
     if long_enough:
         # A word typed with a final ه is also asked for with ة: the index
         # spells الجنة the Qur'an's way, the query often does not.
-        spellings = long_enough + [f"{w[:-1]}ة" for w in long_enough if w.endswith("ه")]
-        match = " OR ".join(map(quoted, spellings))
+        asks = [f"({quoted(w)} OR {quoted(w[:-1] + 'ة')})" if w.endswith("ه") else quoted(w) for w in long_enough]
+        match = (" AND " if every else " OR ").join(asks)
         return list(conn.execute(f"SELECT {columns} FROM verse WHERE verse MATCH ?", (match,)))
 
     # Too short for the index to see. A full scan, and it is affordable here in

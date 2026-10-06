@@ -79,6 +79,10 @@ export const getTarkeebExamples = () =>
 export const searchDictionary = (q, lang = 'ar') =>
   api.get('/dictionary/search', { params: { q, lang } }).then((r) => r.data)
 
+// More than one Arabic word: the sense of the whole, then word by word.
+export const translateSentence = (q) =>
+  api.get('/dictionary/sentence', { params: { q } }).then((r) => r.data)
+
 // What a root has meant since the beginning, as against what a word means today.
 // A different book from the dictionary, so a separate call with its own source.
 export const getRootMeaning = (root) =>

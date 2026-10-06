@@ -212,6 +212,14 @@ def test_a_slip_no_ayah_holds_is_searched_as_the_word_meant(index, monkeypatch) 
     assert quran_search.search("مالق مالق يوم", 10)[1] == [("مالق", "مالك")]
 
 
+
+def test_a_whole_ayah_is_known_for_one_and_a_part_or_a_repeat_is_not(index) -> None:
+    """Typed plainly, an ayah is that ayah, not the longer one quoting it. A part
+    of it, or the ayah typed twice, is not one whole ayah."""
+    assert (local.whole_ayah("بسم الله الرحمن الرحيم").surah, local.whole_ayah("مالك يوم الدين").ayah) == (1, 5)
+    assert local.whole_ayah("بسم الله الرحمن") is None
+    assert local.whole_ayah("بسم الله الرحمن الرحيم بسم الله الرحمن الرحيم") is None
+
 def test_the_online_source_is_a_known_badge() -> None:
     """Both adapters name a source that data/sources.json really has, or the
     badge would fail at the moment a reader searched rather than here."""
