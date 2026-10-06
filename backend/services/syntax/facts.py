@@ -589,6 +589,8 @@ def _verb_place(token: dict, s: Sentence) -> str:
     absolute object (same root), a hal or a tamyeez."""
     if _place_time(token, s):
         return "place_time"
+    if is_object_pronoun(token):
+        return "object"  # إيّاك نعبد، ما عبدنا إلا إيّاه: the detached pronoun of nasb is only an object
     if with_waw(token, s):
         return "accompaniment"
     head = s.head(token)

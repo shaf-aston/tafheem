@@ -8,6 +8,8 @@
   "اسم كان": {"key": "mubtada", "tone": "fail", "clause_of": {"job": "خبر كان", "case": "a"}},
   "اسم إن": {"key": "mubtada", "tone": "fail", "clause_of": {"job": "خبر إن", "case": "u"}},
   "اسم كاد": {"key": "mubtada", "tone": "fail"},
+  "اسم لا": {"key": "mubtada", "tone": "fail"},
+  "خبر لا": {"key": "khabar", "tone": "mafool"},
   "خبر": {"key": "khabar", "tone": "mafool"},
   "خبر كان": {"key": "khabar", "tone": "mafool"},
   "خبر إن": {"key": "khabar", "tone": "mafool"},

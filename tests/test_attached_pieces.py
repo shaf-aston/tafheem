@@ -128,7 +128,7 @@ def test_a_ta_verb_after_a_third_person_subject_is_she():
     ("الْحَمْدُ لِلَّهِ", "خبر", None),
     ("زَيْدٌ فِي الدَّارِ", "خبر", None),
     ("زَيْدٌ عِنْدَكَ", "خبر", "مفعول فيه"),
-    ("لَا رَيْبَ فِيهِ", "خبر إن", None),
+    ("لَا رَيْبَ فِيهِ", "خبر لا", None),
     ("إِنَّ زَيْدًا فِي الدَّارِ", "خبر إن", None),
 ])
 def test_a_jar_or_zarf_in_the_khabar_slot_hangs_on_an_understood_thabit(sentence, khabar, unit_job):
@@ -171,3 +171,38 @@ def test_a_nasb_noun_no_word_governs_hangs_on_an_understood_verb(sentence, noun,
 def test_a_noun_a_word_governs_gets_no_understood_verb(sentence):
     _, leaves = analysed(sentence)
     assert "فعل محذوف" not in leaves
+
+
+@pytest.mark.parametrize("sentence, noun, pair", [
+    ("لَا رَجُلَ فِي الدَّارِ", "رَجُلَ", ("اسم لا", "خبر لا")),
+    ("لَا إِلَهَ إِلَّا اللَّهُ", "إِلَهَ", ("اسم لا", None)),
+    ("إِنَّ زَيْدًا فِي الدَّارِ", "زَيْدًا", ("اسم إن", "خبر إن")),  # control: إنّ keeps its own name
+])
+def test_a_governor_of_the_inna_family_names_its_pair_by_its_own_name(sentence, noun, pair):
+    cards, leaves = analysed(sentence)
+    assert leaves[noun][0][0]["role"] == pair[0] and next(c for c in cards if c["word"] == noun)["role"] == pair[0]
+    assert pair[1] is None or leaves["ثابت"][0][0]["role"] == pair[1]
+
+
+def test_la_before_a_noun_in_raf_is_a_plain_negation_not_the_genus():
+    cards, leaves = analysed("أَلَا إِنَّ أَوْلِيَاءَ اللَّهِ لَا خَوْفٌ عَلَيْهِمْ")
+    assert leaves["لَا"][0][0]["role"] == "لا النافية"
+    assert next(c for c in cards if c["word"] == "خَوْفٌ")["role"] == "مبتدأ"
+    assert next(c for c in cards if c["word"] == "أَوْلِيَاءَ")["role"] == "اسم إن"  # control
+    assert leaves["أَلَا"][0][0]["role"] == "حرف استفتاح وتنبيه"  # control
+
+
+def test_alla_with_a_shadda_is_an_merged_with_la_and_its_verb_is_nasb():
+    cards, leaves = analysed("أَمَرَ أَلَّا تَعْبُدُوا إِلَّا إِيَّاهُ")
+    assert leaves["أَ"][0][0]["role"] == "حرف نصب ومصدر" and leaves["لَّا"][0][0]["role"] == "لا النافية"
+    assert next(c for c in cards if c["word"] == "تَعْبُدُوا")["case"] == "nasb"
+    control, _ = analysed("لَا تَذْهَبْ")
+    assert control[1]["case"] == "jazm"  # لا الناهية is untouched
+
+
+@pytest.mark.parametrize("sentence, word", [("إِيَّاكَ نَعْبُدُ", "إِيَّاكَ"), ("مَا ضَرَبْتُ إِلَّا إِيَّاهُ", "إِيَّاهُ")])
+def test_a_detached_pronoun_is_one_word_and_an_object_built_in_the_place_of_nasb(sentence, word):
+    cards, leaves = analysed(sentence)
+    assert len(leaves[word]) == 1 and leaves[word][0][0]["role"] == "مفعول به" and not leaves[word][0][0]["parts"]
+    card = next(c for c in cards if c["word"] == word)
+    assert card["role"] == "مفعول به" and card["case"] == "mabni" and "في محل نصب" in card["reason"]

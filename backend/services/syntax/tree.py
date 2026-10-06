@@ -167,6 +167,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # -2.. is the column of no typed word, a number of its own so it joins no word's run.
     # A relative pronoun is no مبتدأ (ما في القبور is a صلة).
     kept = FRAMES["understood"]
+    # لا رجلَ: its governor names the pair (اسم لا), `pair` in naming; a word nobody wrote takes its subject's
+    pair_of = {token["id"]: found["pair"] for token, found in zip(bases, named) if "pair" in found}
+    understood_pair: dict[int, dict] = {}
     understood: set[int] = set()
     hung: set[int] = set()
     khabars = {*kept["khabar_of"].values(), NAMED.khabar_kaada}
@@ -196,8 +199,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             new = {**subject, "head": held["head"]}
             drawn[drawn.index(subject)], by_id[subject["id"]] = new, new
         place = next(i for i, t in enumerate(drawn) if t["id"] == held["id"])
-        understand(kept["word"], kept["khabar_of"][role_of[subject["id"]]], place, head=held["head"],
-                   rel="PRD", pos="NOM", pos_camel="")
+        khabar = kept["khabar_of"][role_of[subject["id"]]]
+        understood_pair[understand(kept["word"], khabar, place, head=held["head"],
+                                   rel="PRD", pos="NOM", pos_camel="")["id"]] = pair_of.get(subject["id"], {})
         hung.add(held["id"])
     # أهلًا وسهلًا، شكرًا لك: a منصوب noun that heads its own sentence, named by no word, is the
     # object of a verb no one writes, beside the noun it governs. Alone, its nasb shows as
@@ -236,6 +240,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     family_of = {token["id"]: found.get("family") for token, found in zip(bases, named)} | {
         key: piece["family"] for key, piece in split.items()} | dict.fromkeys(understood)
     name_of = {token["id"]: _finer(token, role_of[token["id"]], family_of[token["id"]]) for token in drawn}
+    for key, pair in {**pair_of, **understood_pair}.items():
+        name_of[key] = pair.get(role_of[key], name_of[key])
     place_of: dict[int, str] = {}
     label_of: dict[int, str] = {}
     framed: set[int] = set()  # units whose job a governor gave, drawn even under a particle
@@ -260,7 +266,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if (strip_diacritics(token["form"]) in masdar["words"] and SHADDA not in token["form"]
                 and token["rel"] in masdar["job_by_rel"]
                 and any(t["head"] == token["id"] and role_of[t["id"]] == NAMED.fil for t in drawn)):
-            name_of[token["id"]] = CARDS[masdar["family"]]["named"]
+            name_of[token["id"]] = (token.get("reading") or {}).get("named") or CARDS[masdar["family"]]["named"]
             label_of[token["id"]] = masdar["label"]
             job_of[token["id"]] = masdar["job_by_rel"][token["rel"]]
             place_of[token["id"]] = in_place(masdar["case_by_rel"][token["rel"]])

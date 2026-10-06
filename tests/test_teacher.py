@@ -56,11 +56,11 @@ def test_a_diptote_or_a_sound_feminine_plural_is_not_a_clash():
     assert review(["رَأَى", "الْمُعَلِّمَاتِ"], plural)[1]["role"] == "مفعول به"
 
 
-def test_la_before_a_typed_nominative_keeps_its_name():
-    # لا رجلٌ في الدار: the لا works like ليس, so the noun is raf' and is not a clash
+def test_a_noun_typed_in_raf_after_la_is_a_mubtada_not_a_clash():
+    # لا رجلٌ في الدار: the noun of لا of the genus is never raf', so this لا only negates
     toks = [token(1, "لا", "لا", "PRT", 0, "---"),
             token(2, "رجل", "رجل", "NOM", 1, "SBJ", stt="i")]
-    assert review(["لَا", "رَجُلٌ"], toks)[1]["role"] == "اسم إن"
+    assert review(["لَا", "رَجُلٌ"], toks)[1]["role"] == "مبتدأ"
 
 
 def found_of(*roles):
