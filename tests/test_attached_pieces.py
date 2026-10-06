@@ -116,3 +116,26 @@ def test_a_command_is_never_passive():
 def test_a_ta_verb_after_a_third_person_subject_is_she():
     _, leaves = analysed("هِنْدٌ تَكْتُبُ")
     assert leaves["تَكْتُبُ"][0][0]["parts"][1]["detail"].endswith("هي")
+
+
+@pytest.mark.parametrize("sentence, khabar, unit_job", [
+    ("الْحَمْدُ لِلَّهِ", "خبر", None),
+    ("زَيْدٌ فِي الدَّارِ", "خبر", None),
+    ("زَيْدٌ عِنْدَكَ", "خبر", "مفعول فيه"),
+    ("لَا رَيْبَ فِيهِ", "خبر إن", None),
+    ("إِنَّ زَيْدًا فِي الدَّارِ", "خبر إن", None),
+])
+def test_a_jar_or_zarf_in_the_khabar_slot_hangs_on_an_understood_thabit(sentence, khabar, unit_job):
+    _, leaves = analysed(sentence)
+    (thabit, above), = leaves["ثابت"]
+    assert thabit["role"] == khabar and thabit["hidden"] is True
+    unit = next(kid for kid in above["children"] if kid is not thabit)
+    assert unit["label"] == "متعلق بـثابت" and unit["role"] == unit_job
+    body = client.post("/api/analyze", json={"sentence": sentence}).json()["tree"]
+    assert body["written"].count(-1) == 1 and body["unwritten"]["note"]
+
+
+@pytest.mark.parametrize("sentence", ["ذَهَبَ زَيْدٌ إِلَى السُّوقِ", "زَيْدٌ قَائِمٌ فِي الدَّارِ", "مَرَرْتُ بِزَيْدٍ"])
+def test_a_jar_hanging_on_a_verb_or_a_khabar_gets_no_understood_word(sentence):
+    _, leaves = analysed(sentence)
+    assert "ثابت" not in leaves

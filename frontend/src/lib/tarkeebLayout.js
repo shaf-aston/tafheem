@@ -58,6 +58,10 @@ function roleLevels(node, parentLevel, into = {}) {
   return into
 }
 
+/** The columns whose leaf is understood, not written (ثابت in الحمد لله): a set of word indexes. */
+export const hiddenWords = (node) =>
+  kids(node) ? new Set(kids(node).flatMap((kid) => [...hiddenWords(kid)])) : new Set(node.hidden ? [node.word] : [])
+
 /**
  * The whole diagram as rows, ready to render.
  *

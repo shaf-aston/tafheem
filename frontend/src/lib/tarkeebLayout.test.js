@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cells, measure, rows, splitConnectors } from './tarkeebLayout'
+import { cells, hiddenWords, measure, rows, splitConnectors } from './tarkeebLayout'
 
 /** Shaped exactly as the API sends it: empty arrays, not missing keys. */
 const AYAH = {
@@ -161,5 +161,19 @@ describe('splitConnectors', () => {
   it('names the toggle by the connective terms actually present', () => {
     const { terms } = splitConnectors(WORDS, TREE)
     expect(terms).toEqual(['حَرْفُ عَطْفٍ'])
+  })
+})
+
+describe('hiddenWords', () => {
+  it('finds the leaves marked understood, wherever they sit', () => {
+    const tree = {
+      label: 'x',
+      children: [
+        { word: 0, role: 'a', children: [], parts: [] },
+        { label: 'y', children: [{ word: 1, role: 'b', hidden: true, children: [], parts: [] }], parts: [] },
+      ],
+      parts: [],
+    }
+    expect([...hiddenWords(tree)]).toEqual([1])
   })
 })
