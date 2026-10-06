@@ -95,6 +95,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
     onVisit?.(placeOf(next.collection, next.book, next.number, next.part))
   }
   // A narrator's page is a step of its own, so Back returns to where he was tapped.
+  const openHadith = (h) => go({ collection: h.collection, book: h.book, number: h.number, part: h.part })
   const openNarrator = (id) => onGo('hadith', narratorPlaceOf(id))
   const pickCollection = (id) => go({ collection: id, book: null, number: null, part: '' })
   const pickBook = (number) => go({ collection, book: number, number: null, part: '' })
@@ -109,7 +110,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
           accent={accent}
           onBack={goBack}
           onNarrator={openNarrator}
-          onHadith={(h) => go({ collection: h.collection, book: h.book, number: h.number, part: h.part })}
+          onHadith={openHadith}
         />
       </div>
     )
@@ -139,7 +140,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         ) : place?.book == null ? (
           <HadithBookList collection={collection} onPick={pickBook} accent={accent} />
         ) : (
-          <HadithList collection={collection} book={place.book} focus={place.number != null ? `${place.number}${place.part}` : null} onBack={backToBooks} accent={accent} onNarrator={openNarrator} />
+          <HadithList collection={collection} book={place.book} focus={place.number != null ? `${place.number}${place.part}` : null} onBack={backToBooks} accent={accent} onNarrator={openNarrator} onHadith={openHadith} />
         )}
       </HadithSearchResults>
     </div>

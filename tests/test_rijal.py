@@ -108,3 +108,11 @@ def test_a_name_said_again_in_the_story_lands_where_sunnah_links_it():
     later = len(re.sub(r"\s", "", text[:text.rindex("الْحَسَنَ")]))
     placed, _ = parse.place(text, [(1281, "الْحَسَنَ", later)])
     assert placed == [(text.rindex("الْحَسَنَ"), len(text), 1281)]
+
+
+def test_family_meets_the_viewed_chain():
+    from backend.services.rijal.family import meet
+    viewed = [1, 2, 3, 4]
+    assert meet([9, 2], viewed) == ([9], 2, [3, 4])  # stops early, borrows the rest
+    assert meet([7, 8], viewed) == ([7, 8], None, [])  # fully its own
+    assert meet([5, 5, 3], [1, 3, 3, 4]) == ([5, 5], 3, [3, 4])  # a repeated narrator

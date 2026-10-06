@@ -34,7 +34,7 @@ function useReadingRail(ref) {
   }, [ref])
 }
 
-export default function HadithList({ collection, book, focus, onBack, accent, onNarrator }) {
+export default function HadithList({ collection, book, focus, onBack, accent, onNarrator, onHadith }) {
   const { data, isPending, isError, error, refetch } = useQuery(hadithBookQuery(collection, book))
   const names = useNarrators(collection, book)
   const rail = useRef(null)
@@ -111,7 +111,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
 
       {data && (data.hadiths.length === 0
         ? <EmptyState>This book has no hadiths yet.</EmptyState>
-        : <HadithCards items={data.hadiths} collection={collection} accent={accent} columns={columns} hideChain={hideChain} names={names} onNarrator={onNarrator} />)}
+        : <HadithCards items={data.hadiths} collection={collection} accent={accent} columns={columns} hideChain={hideChain} names={names} onNarrator={onNarrator} onHadith={onHadith} />)}
     </div>
   )
 }
