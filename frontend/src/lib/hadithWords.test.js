@@ -119,6 +119,22 @@ describe('chainOf', () => {
     expect(chain.startsWith('حَدَّثَنَا')).toBe(true)
   })
 
+  it('keeps the one who tells it, never the Prophet, as the teller', () => {
+    expect(chainOf('حَدَّثَنَا يَحْيَى بْنُ بُكَيْرٍ، قَالَ حَدَّثَنَا اللَّيْثُ، عَنْ عَائِشَةَ، أَنَّهَا قَالَتْ أَوَّلُ').teller)
+      .toBe('عَنْ عَائِشَةَ، أَنَّهَا')
+    expect(chainOf('حَدَّثَنَا سُفْيَانُ ، قَالَ : سَمِعْتُ عُمَرَ رَضِيَ اللَّهُ عَنْهُ، قَالَ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ إِنَّمَا').teller)
+      .toMatch(/^سَمِعْتُ عُمَرَ/)
+  })
+
+  it('keeps the son before "his father", and walks on through "أن X أخبره"', () => {
+    expect(chainOf('حَدَّثَنَا مُحَمَّدٌ، عَنْ جَعْفَرِ بْنِ عَمْرٍو، عَنْ أَبِيهِ، قَالَ رَأَيْتُ').teller)
+      .toBe('عَنْ جَعْفَرِ بْنِ عَمْرٍو، عَنْ أَبِيهِ،')
+    expect(chainOf('حَدَّثَنَا مَهْدِيٌّ، عَنِ الْمَعْرُورِ بْنِ سُوَيْدٍ، عَنْ أَبِي ذَرٍّ ـ رضى الله عنه ـ قَالَ قَالَ').teller)
+      .toMatch(/^عَنْ أَبِي ذَرٍّ/)
+    expect(chainOf('أَخْبَرَنِي سُلَيْمَانُ الأَحْوَلُ، أَنَّ طَاوُسًا، أَخْبَرَهُ عَنِ ابْنِ عَبَّاسٍ، أَنَّ النَّبِيَّ مَرَّ').teller)
+      .toBe('عَنِ ابْنِ عَبَّاسٍ،')
+  })
+
   it('keeps a said whose speaker is in the hadith, not the chain', () => {
     expect(chainOf('حَدَّثَنَا آدَمُ، قَالَ سَمِعْتُ أَبَا صَالِحٍ، ذَكْوَانَ يُحَدِّثُ عَنْ أَبِي سَعِيدٍ الْخُدْرِيِّ،‏.‏ قَالَتِ النِّسَاءُ لِلنَّبِيِّ').body)
       .toBe('قَالَتِ النِّسَاءُ لِلنَّبِيِّ')
@@ -141,7 +157,7 @@ describe('chainOf', () => {
 
   it('leaves the hadith whole where the end of the chain is not plain', () => {
     const text = 'حَدَّثَنَا أَبُو حَيَّانَ التَّيْمِيُّ، بِهَذَا الإِسْنَادِ مِثْلَهُ غَيْرَ أَنَّ فِي رِوَايَتِهِ ‏"‏ إِذَا وَلَدَتِ الأَمَةُ'
-    expect(chainOf(text)).toEqual({ chain: '', body: text })
+    expect(chainOf(text)).toEqual({ chain: '', teller: '', body: text })
   })
 
   it('ends the chain at a plain "that" before the story', () => {
@@ -159,22 +175,22 @@ describe('chainOf', () => {
 
   it('never hides a short report run on from the last name', () => {
     const text = 'حَدَّثَنَا إِسْحَاقُ بْنُ إِبْرَاهِيمَ، عَنْ إِسْمَاعِيلَ، عَنْ قَيْسٍ، كَانَ عَطَاءُ الْبَدْرِيِّينَ خَمْسَةَ آلاَفٍ خَمْسَةَ آلاَفٍ‏.‏ وَقَالَ عُمَرُ لأُفَضِّلَنَّهُمْ'
-    expect(chainOf(text)).toEqual({ chain: '', body: text })
+    expect(chainOf(text)).toEqual({ chain: '', teller: '', body: text })
   })
 
   it('never hides a sentence after a full stop', () => {
     const text = 'حَدَّثَنَا مُسَدَّدٌ، عَنْ أَبِيهِ، عَنِ النَّبِيِّ صلى الله عليه وسلم‏.‏ وَذَكَرَ الَّذِي عَقَرَ النَّاقَةَ قَالَ'
-    expect(chainOf(text)).toEqual({ chain: '', body: text })
+    expect(chainOf(text)).toEqual({ chain: '', teller: '', body: text })
   })
 
   it('never hides a verse sitting where a name would be', () => {
     const text = 'حَدَّثَنَا يَحْيَى، عَنْ عَائِشَةَ ـ رضى الله عنها – ‏{‏وَالَّذِي تَوَلَّى كِبْرَهُ‏}‏ قَالَتْ عَبْدُ اللَّهِ'
-    expect(chainOf(text)).toEqual({ chain: '', body: text })
+    expect(chainOf(text)).toEqual({ chain: '', teller: '', body: text })
   })
 
   it('leaves a hadith with no chain at all whole', () => {
-    expect(chainOf('قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم')).toEqual({ chain: '', body: 'قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم' })
-    expect(chainOf('')).toEqual({ chain: '', body: '' })
+    expect(chainOf('قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم')).toEqual({ chain: '', teller: '', body: 'قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم' })
+    expect(chainOf('')).toEqual({ chain: '', teller: '', body: '' })
   })
 })
 
