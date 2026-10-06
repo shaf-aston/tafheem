@@ -7,7 +7,8 @@
   "listed_preposition_takes_majrur": true,
   "topic_carries_its_verb": true,
   "inner_sentence": true,
-  "ma_cancels_inna": true
+  "ma_cancels_inna": true,
+  "exception_word_by_case": true
  },
  "families": {
   "jarr": {
@@ -117,11 +118,6 @@
     "غير",
     "سوى",
     "سواء",
-    "خلا",
-    "عدا",
-    "حاشا",
-    "ما خلا",
-    "ما عدا",
     "ليس",
     "لا يكون"
    ],
@@ -130,9 +126,6 @@
     "غير": "exception noun vs plain noun meaning 'other than' used as an adjective (صفة), e.g. رجل غير مسلم",
     "سوى": "exception noun vs noun 'equal to / other than' used as an adjective",
     "سواء": "exception noun (rare) vs noun 'equal' in sentences of equality",
-    "خلا": "exception (verb or preposition) vs the ordinary verb 'became empty'; exception only when followed by an excepted noun after a complete sentence",
-    "عدا": "exception (verb or preposition) vs the ordinary verb 'passed beyond'",
-    "حاشا": "exception (verb or preposition) vs interjection 'far be it'",
     "ليس": "verb of kana family vs exception verb; exception only with an implied pronoun subject and a mustathna after it"
    },
    "nouns": [
@@ -140,6 +133,20 @@
     "سوى",
     "سواء"
    ]
+  },
+  "istithna_verbs": {
+   "ar": "خلا وعدا وحاشا",
+   "effect": "before a noun in nasb a past verb that never changes (فعل ماضٍ جامد), its doer hidden (هو) and the noun its object; before a noun in jarr a preposition and the noun its majrur; after ما only the verb. Read by services/syntax/mask.py from the noun's typed case",
+   "words": [
+    "خلا",
+    "عدا",
+    "حاشا"
+   ],
+   "ambiguous": {
+    "خلا": "exception verb or preposition vs the ordinary verb 'became empty' (خلا البيتُ: its noun in raf' is its doer)",
+    "عدا": "exception verb or preposition vs the ordinary verb 'passed beyond'",
+    "حاشا": "exception verb or preposition vs interjection 'far be it'"
+   }
   },
   "inna": {
    "ar": "إن وأخواتها",

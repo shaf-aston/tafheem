@@ -1,5 +1,5 @@
 {
-  "_comment": "Which reading a small word with more than one takes, decided once from what stands round it (services/syntax/particles.py walks it; the card, the picture and the case rules all read the answer). A branch splits on one particle axis: `word` the word itself, `next` what follows it (an indefinite noun: no ال, no name, no pronoun on it), `negated` a negation before it, `joins` the noun after it in the case of a noun before it, `opens` the noun after it with a khabar of its own after it. `raf` the noun after it typed in raf' (the noun of لا of the genus never is), `told` what stands after that noun: a noun, its khabar (لا رجلٌ أفضلُ منك: لا المشبهة بليس), or anything else (لا خوفٌ عليهم: the noun is a مبتدأ). A leaf's `role` is the closed_words.json family it works as; `named` its name where the family card's own does not fit, `kind` when it is no حرف (إذا before a verb is a ظرف). A word with no branch here is read by its lists as before.",
+  "_comment": "Which reading a small word with more than one takes, decided once from what stands round it (services/syntax/particles.py walks it; the card, the picture and the case rules all read the answer). A branch splits on one particle axis: `word` the word itself, `next` what follows it (an indefinite noun: no ال, no name, no pronoun on it), `negated` a negation before it, `joins` the noun after it in the case of a noun before it, `opens` the noun after it with a khabar of its own after it. `tool_next` the word after it is خلا، عدا or حاشا; `raf` the noun after it typed in raf' (the noun of لا of the genus never is), `told` what stands after that noun: a noun, its khabar (لا رجلٌ أفضلُ منك: لا المشبهة بليس), or anything else (لا خوفٌ عليهم: the noun is a مبتدأ). A leaf's `role` is the closed_words.json family it works as; `named` its name where the family card's own does not fit, `kind` when it is no حرف (إذا before a verb is a ظرف). A word with no branch here is read by its lists as before.",
   "tree": {
     "branch": "الحروف ذات الوجوه",
     "book": "1.2 p3",
@@ -142,6 +142,21 @@
                 "role": "hasr"
               }
             ]
+          }
+        ]
+      },
+      {
+        "branch": "ما",
+        "book": "3.8.7 p85",
+        "is": "ما",
+        "split": "tool_next",
+        "children": [
+          {
+            "branch": "ما المصدرية قبل خلا وعدا",
+            "book": "3.8.7 p85",
+            "is": "yes",
+            "role": "ghair_amila_other",
+            "named": "ما المصدرية، حرف مصدري"
           }
         ]
       },

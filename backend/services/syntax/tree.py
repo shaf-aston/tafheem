@@ -232,7 +232,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # جاء الذي نجح: the clause after a relative is its صلة, with no place of its own
     for token in drawn:
         up = next((t for t in drawn if t["id"] == token["head"]), None)
-        if up and "rel" in up.get("pos_camel", "") and up["id"] < token["id"] and token["id"] in opens                 and "condition" not in named[typed_at.get(up["id"], 0)]:
+        if up and "rel" in up.get("pos_camel", "") and not up.get("reading") and up["id"] < token["id"] and token["id"] in opens                 and "condition" not in named[typed_at.get(up["id"], 0)]:
             job_of[token["id"]] = NAMED.silah
     # الولدُ يكتبُ: the clause hung on a مبتدأ (or اسم كان) is its khabar, standing in a case;
     # كان الولدُ يكتبُ: so is the one beside it, the khabar (PRD) under their governor

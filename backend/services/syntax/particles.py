@@ -14,7 +14,7 @@ from typing import Callable
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import SHADDA, SUKUN, five_verb_nun, has_tanween, letters
-from backend.services.nahw_book import book_file, book_map
+from backend.services.nahw_book import book_file, book_map, is_one
 from backend.services.syntax import facts, walker
 
 
@@ -69,6 +69,12 @@ def _joins(token: dict, s: facts.Sentence) -> str:
     return "yes" if mine and mine == facts.place_case(before, s) else "no"
 
 
+def _tool_next(token: dict, s: facts.Sentence) -> str:
+    """The word after it is خلا, عدا or حاشا (ما عدا زيدًا): the ما that turns them into a masdar."""
+    after = _next(token, s)
+    return "yes" if after and is_one(strip_diacritics(after["form"]), "istithna_verbs") else "no"
+
+
 def _raf(token: dict, s: facts.Sentence) -> str:
     """The noun after it is typed in raf' (damma or tanween with damma): the noun of لا of the
     genus is never raf', so this لا is a plain negation and the noun is a مبتدأ."""
@@ -101,6 +107,7 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] =
     "joins": (("yes", "no"), _joins),
     "opens": (("yes", "no"), _opens),
     "raf": (("yes", "no"), _raf),
+    "tool_next": (("yes", "no"), _tool_next),
     "told": (("noun", "other"), _told),
 }
 

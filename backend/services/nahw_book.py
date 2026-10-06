@@ -156,6 +156,11 @@ def case_of(role: str, mudaf: bool = False) -> str | None:
         "a" if mudaf and role in cases["a_when_mudaf"] else None)
 
 
+def unseen_case(role: str | None) -> str | None:
+    """u / a / i the role takes when the ending shows none (teacher.json a_when_unseen)."""
+    return "a" if role in teacher_rules()["case_of_role"]["a_when_unseen"] else None
+
+
 def reason(role: str, mabni: bool = False) -> str:
     """The reason a card wearing this role shows; a role with no entry is just named, never
     given another role's text. A mabni word (الذي، هذا) fills the place of its case

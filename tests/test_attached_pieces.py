@@ -206,3 +206,45 @@ def test_a_detached_pronoun_is_one_word_and_an_object_built_in_the_place_of_nasb
     assert len(leaves[word]) == 1 and leaves[word][0][0]["role"] == "مفعول به" and not leaves[word][0][0]["parts"]
     card = next(c for c in cards if c["word"] == word)
     assert card["role"] == "مفعول به" and card["case"] == "mabni" and "في محل نصب" in card["reason"]
+
+
+def card_of(cards: list[dict], word: str) -> dict:
+    return next(c for c in cards if c["word"] == word)
+
+
+@pytest.mark.parametrize("sentence, word, case, sign", [
+    ("جَاءَ الطُّلَّابُ غَيْرَ زَيْدٍ", "غَيْرَ", "nasb", "فتحة"),
+    ("جَاءَ الْقَوْمُ سِوَى زَيْدٍ", "سِوَى", "nasb", "فتحة مقدرة على الألف للتعذر"),  # the alef hides the case
+])
+def test_ghayr_and_siwa_are_the_excepted_noun_and_say_so_themselves(sentence, word, case, sign):
+    card = card_of(analysed(sentence)[0], word)
+    assert (card["role"], card["case"], card["sign"]) == ("مستثنى", case, sign)
+    assert "إلا" not in card["reason"] and "على الاستثناء" in card["reason"] and "مضاف" in card["reason"]
+    control = card_of(analysed("جَاءَ الطُّلَّابُ إِلَّا زَيْدًا")[0], "زَيْدًا")
+    assert control["role"] == "مستثنى" and "بعد إلا" in control["reason"]  # إلا keeps its own rule
+    assert card_of(analysed("جَاءَ غَيْرُكَ")[0], "غَيْرُكَ")["role"] == "فاعل"
+
+
+def test_a_ya_ending_takes_the_case_its_role_gives_it():
+    cards, _ = analysed("كُلُّ أُمَّتِي مُعَافًى إِلَّا الْمُجَاهِرِينَ")
+    assert (card_of(cards, "الْمُجَاهِرِينَ")["case"], card_of(cards, "الْمُجَاهِرِينَ")["sign"]) == ("nasb", "الياء، جمع مذكر سالم")
+    assert card_of(analysed("رَأَيْتُ الْمُسْلِمِينَ")[0], "الْمُسْلِمِينَ")["case"] == "nasb"
+    assert card_of(analysed("مَرَرْتُ بِالْمُسْلِمِينَ")[0], "بِالْمُسْلِمِينَ")["case"] == "jarr"  # control
+
+
+@pytest.mark.parametrize("sentence, tool, noun, tool_role, noun_role", [
+    ("جَاءَ الْقَوْمُ خَلَا زَيْدًا", "خَلَا", "زَيْدًا", "فعل", "مفعول به"),
+    ("جَاءَ الْقَوْمُ خَلَا زَيْدٍ", "خَلَا", "زَيْدٍ", "حرف جر", "مجرور"),
+    ("خَلَا الْبَيْتُ", "خَلَا", "الْبَيْتُ", "فعل", "فاعل"),  # control: the ordinary verb, no exception
+])
+def test_khala_is_a_verb_or_a_preposition_by_the_case_of_the_noun_after_it(sentence, tool, noun, tool_role, noun_role):
+    cards, _ = analysed(sentence)
+    assert (card_of(cards, tool)["role"], card_of(cards, noun)["role"]) == (tool_role, noun_role)
+
+
+def test_ma_before_ada_is_the_masdar_particle_not_a_relative():
+    cards, leaves = analysed("حَضَرَ الطُّلَّابُ مَا عَدَا خَالِدًا")
+    assert leaves["مَا"][0][0]["role"] == "ما المصدرية، حرف مصدري" and "المصدرية" in card_of(cards, "مَا")["reason"]
+    assert (card_of(cards, "عَدَا")["role"], card_of(cards, "خَالِدًا")["role"]) == ("فعل", "مفعول به")
+    _, relative = analysed("أَعْجَبَنِي مَا قَرَأْتُ")
+    assert relative["مَا"][0][0]["role"] == "اسم موصول"  # control

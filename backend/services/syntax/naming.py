@@ -16,7 +16,8 @@ from __future__ import annotations
 
 from backend.services import verb_reader
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import book_path, book_words, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table
+from backend.services.nahw_book import (
+    book_path, book_words, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, particles, walker
 from backend.services.harakat import (
     CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, merged_prefix, own_letters, paused, typed_case)
@@ -307,7 +308,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return "mabni"
     if facts.shows_nasb_by_kasra(token) and (case_of(role, token["mudaf"]) == "a" if role else not jarred):
         return "nasb"
-    return CASE_NAME.get(facts.typed_case_of(token) or case_of(role or "", token["mudaf"]))
+    return CASE_NAME.get(facts.typed_case_of(token) or case_of(role or "", token["mudaf"]) or unseen_case(role))
 
 
 def _mood(typed: str, token: dict, before: dict | None) -> str:
