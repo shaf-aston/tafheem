@@ -141,13 +141,15 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
 
 def _conditioned(found: list[dict], c: dict) -> None:
     """A condition the book's test found (syntax.condition): a conditional noun keeps the place
-    it was named for (مَنْ يصبرْ: مبتدأ) and is called what it is when it had none (an اسم
-    شرط جازم, never the relative the picture would call it); a جازم opener governs both its
-    verbs, rather than whatever verb the parser hung them on."""
+    it was named for (مَنْ يصبرْ: مبتدأ); with none, it takes the book's (_noun_place), never
+    the relative the picture would call it; a جازم opener governs both its verbs, rather
+    than whatever verb the parser hung them on."""
     frame = c["frame"]
     opener = found[c["opener"]]
     if frame["noun"] and not opener["role"]:
-        opener.update(role=frame["opener"], book=None)
+        opener.update(role=_noun_place(frame, c["verb"], found), book=None)
+    if frame["built"]:
+        opener["case"] = "mabni"  # أينما: built, whatever vowel it ends on
     opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"],
                            "kind": frame["opener"] if frame["noun"] else None}
     for part in ("verb", "answer"):
@@ -160,6 +162,19 @@ def _conditioned(found: list[dict], c: dict) -> None:
             word["governor"] = c["opener"]
         word["condition"] = {"part": part, "opener": c["opener"], "family": frame["family"],
                              "tie": c["tie"] if part == "answer" else None}
+
+
+def _noun_place(frame: dict, verb: int, found: list[dict]) -> str:
+    """The place of a conditional noun the parser gave none (Tasheel): a time or place word
+    (متى، أينما) is a ظرف; مَنْ or ما whose verb already has its object (مَنْ صامَ رمضانَ) is
+    the مبتدأ. Else it is called only what it is: its verb may need no object (مبتدأ) or
+    lack the one it stands for (مفعول به), and the parser has not said which."""
+    places = frame["places"]
+    if frame["adverb"]:
+        return places["adverb"]
+    if any(word["role"] == places["object"] and word.get("governor") == verb for word in found):
+        return places["filled"]
+    return frame["opener"]
 
 
 def _typed_word_of(bases: list[dict], tokens: list[dict]) -> dict[int, int]:

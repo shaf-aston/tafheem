@@ -117,13 +117,18 @@ def frames() -> dict:
 def condition_of(word: str) -> dict | None:
     """The condition a bare word may open: its family's entry in the condition frame, found
     by the family whose `conditional_particles` (إن جازم، لو غير جازم) or `conditional_nouns`
-    (مَنْ، ما) hold it; `opener` is what the word is called, `noun` whether it is a noun."""
+    (مَنْ، ما) hold it; `opener` is what the word is called, `noun` whether it is a noun,
+    `adverb` whether it names a time or a place (متى، أينما), `built` whether it is مبني
+    (every conditional word but أيّ)."""
     frame = frames()["condition"]
+    words = _closed()["families"]
     return next(({**frame, **own, "family": family, "noun": part == "conditional_nouns",
+                  "adverb": word in words[family].get("conditional_adverbs", ()),
+                  "built": word not in words[family].get("conditional_inflected", ()),
                   "opener": own["noun" if part == "conditional_nouns" else "particle"]}
                  for family, own in frame["by_family"].items()
                  for part in ("conditional_particles", "conditional_nouns")
-                 if word in _closed()["families"][family].get(part, ())), None)
+                 if word in words[family].get(part, ())), None)
 
 
 def teacher_rules() -> dict:

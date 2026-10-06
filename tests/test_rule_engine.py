@@ -352,6 +352,22 @@ def test_a_question_noun_with_one_verb_opens_no_condition():
     assert words[1]["role"] != "اسم شرط جازم" and "الشرط" not in words[2]["reason"]
 
 
+def test_a_conditional_noun_the_parser_gave_no_place_takes_the_books_place():
+    # مَنْ whose verb has its object is the مبتدأ; a time or place word is a built ظرف, and the
+    # answer under it still draws (أينما crashed the picture)
+    man = _read("مَنْ صَامَ رَمَضَانَ فَلْيَصُمْهُ")["words"]
+    assert man[0]["role"] == "مبتدأ" and "في محل رفع" in man[0]["reason"]
+    assert "جواب الشرط في محل جزم" in man[3]["reason"]
+    aynama = _read("أَيْنَمَا تَكُونُوا يُدْرِكْكُمُ الْمَوْتُ")
+    assert aynama["summary"] == term_ar("jumlah_shartiyyah")
+    assert aynama["words"][0]["role"] == "مفعول فيه" and "مبني في محل نصب" in aynama["words"][0]["reason"]
+
+
+def test_a_command_the_parser_read_as_past_is_a_command():
+    words = _read("إِنْ كُنْتَ تُحِبُّ اللَّهَ فَاتَّبِعْنِي")["words"]
+    assert words[4]["aspect"] == "c" and words[4]["reason"].startswith("فعل أمر مبني على السكون")
+
+
 def test_lawla_before_a_verb_urges_and_opens_no_condition():
     # nearest case to لو: لولا and لوما open a condition only before a noun
     assert _read("لَوْلَا تَسْتَغْفِرُونَ اللَّهَ")["summary"] != term_ar("jumlah_shartiyyah")
