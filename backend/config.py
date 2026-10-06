@@ -56,8 +56,6 @@ class Settings(BaseSettings):
     dictionary_fuzzy_candidates: int = 200
     # Without a minimum, single letters match inside every query: a search for اخذ returned alif, khaa and dhal.
     dictionary_fuzzy_min_key: int = 3
-    # Typed text ending in one of these is a sentence, whatever its words are.
-    sentence_end_marks: str = ".?!؟"
     # The book whose English is the sense of a whole ayah typed into the dictionary (data/quran/editions.json).
     sentence_translation: str = "saheeh-en"
     # Word by word, each piece of a word shows up to this many of CAMeL's senses.

@@ -7,24 +7,28 @@ word's sense as its tagger read it from the words around it. The sense comes
 from the surest source that has one. A whole ayah has its published translation
 and the Qur'an's own word-by-word; anything else goes to the language model,
 handed the word-by-word too so its sentence stays tied to those words. A model
-answer is kept for the life of the process, so the same text asks once and
-reads the same each time.
+answer is filed on disk, so the same text asks once and reads the same each
+time, on every server process.
 """
 from __future__ import annotations
 
 import logging
 import re
-from functools import lru_cache
 from itertools import pairwise
 
 from backend.config import get_settings
-from backend.services import ai, morphology, quran_library, quran_meanings
+from backend.services import ai, iraab, morphology, progress_store, quran_library, quran_meanings
 from backend.services.arabic_text import words
+from backend.services.nahw_book import term_ar
 from backend.services.quran_search import local
 
 logger = logging.getLogger(__name__)
 
 _TAGS_RE = re.compile(r"\[[^\]]*\]|<[^>]*>")
+# The word every clause's name opens with (data/nahw_rules/tarkeeb.json).
+_CLAUSE = term_ar("jumlah_ismiyyah").split()[0]
+# Where a model's sense is filed (progress_store), so every server process reads the first one kept.
+_KEPT = "dict"
 
 
 def literal(gloss: str) -> str:
@@ -38,19 +42,20 @@ def literal(gloss: str) -> str:
     return " ".join(piece for piece in pieces if piece)
 
 
-def kind_of(text: str, read: list[dict]) -> str:
+def kind_of(summary: str | None, read: list[dict]) -> str:
     """"sentence" when it says something, else "phrase".
 
-    It says something when it has a verb, ends like a sentence, or names
-    something definite and then tells you about it: البيت كبير and الحمد لله are
-    sentences, البيت الكبير and رب العالمين are phrases.
+    `summary` is the grammar's name for the whole (iraab.analyse, as the Analyse
+    page shows it), and every clause it names is a جُمْلَةٌ: the verbal, nominal,
+    question and call clauses alike. It reads البيت الكبير as a described noun and
+    هل أنت جائع as a question. It does not yet see a definite noun told about by
+    what follows (الحمد لله, الولد في البيت), so that is checked here too.
     """
     told = any(
         a["pos"] in morphology.NOUNISH and a["state"] == "d" and (b["state"] == "i" or b["pos"] == "prep")
         for a, b in pairwise(read)
     )
-    ends = text.rstrip()[-1:] in get_settings().sentence_end_marks
-    return "sentence" if told or ends or any(w["pos"] == "verb" for w in read) else "phrase"
+    return "sentence" if told or (summary or "").startswith(_CLAUSE) else "phrase"
 
 
 def translate(text: str) -> dict:
@@ -58,7 +63,7 @@ def translate(text: str) -> dict:
     read = morphology.analyze_sentence(text)
     pairs = [{"arabic": w["word"], "english": literal(w["gloss"]), "base": w.get("base") or w["word"]} for w in read]
     found = _whole_ayah(text, pairs) or _model_sense(text, pairs)
-    return {"kind": kind_of(text, read), **found}
+    return {"kind": kind_of(iraab.analyse(text)["summary"], read), **found}
 
 
 def _whole_ayah(text: str, pairs: list[dict]) -> dict | None:
@@ -95,9 +100,15 @@ def _model_sense(text: str, pairs: list[dict]) -> dict:
             "words": pairs, "words_source": "camel"}
 
 
-@lru_cache(maxsize=get_settings().dictionary_cache_size)
 def _asked(text: str, word_by_word: str) -> str:
-    """One model answer per text. Kept only when it worked: a failure raises, and lru_cache keeps no exceptions."""
-    if not (english := ai.translate_sentence(text, word_by_word)["english"].strip()):
-        raise ValueError("the model answered with nothing")
-    return english
+    """One model answer per text, filed on disk: the server runs several processes,
+    and a cache in each gave the same sentence two wordings by turns. A failure or
+    an empty answer raises and is not filed. Two first askings at once both ask, and
+    both return the one the store kept first."""
+    if not (kept := progress_store.kept_questions(_KEPT, text)):
+        if not (english := ai.translate_sentence(text, word_by_word)["english"].strip()):
+            raise ValueError("the model answered with nothing")
+        progress_store.keep_questions(module=_KEPT, sentence=text, source="ai",
+                                      questions=[{"question": "meaning", "answer": english}])
+        kept = progress_store.kept_questions(_KEPT, text)
+    return kept[0]["answer"]
