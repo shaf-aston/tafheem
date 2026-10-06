@@ -15,11 +15,11 @@
  */
 import { useState } from 'react'
 
-import { chainLinks, chainOf } from '../lib/hadithWords'
+import { chainOf } from '../lib/hadithWords'
 import { useHadithCollections } from '../lib/useHadithCollections'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 import { useNarrators } from '../lib/useNarrators'
-import { linked } from '../lib/rijal'
+import { drawnChain } from '../lib/rijal'
 
 import ChainSheet from './ui/ChainSheet'
 import CopyButton from './ui/CopyButton'
@@ -98,7 +98,7 @@ export default function HadithCards({ items, accent, collection, columns = false
       {who != null && <NarratorSheet id={who} onClose={() => setWho(null)} onOpenPage={onNarrator} />}
       {drawn && (
         <ChainSheet
-          links={linked(chainLinks(chainOf(drawn.arabic).chain), drawn.arabic, namesOf(drawn)[`${drawn.number}${drawn.part ?? ''}`] ?? [])}
+          links={drawnChain(drawn.arabic, namesOf(drawn)[`${drawn.number}${drawn.part ?? ''}`] ?? [])}
           onNarrator={(id) => { setDrawn(null); setWho(id) }}
           author={of(drawn.collection).short}
           accent={accent}

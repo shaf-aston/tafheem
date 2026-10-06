@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { linked, runs, toneOf, told, withoutMarks } from './rijal'
+import { drawnChain, runs, toneOf, told, withoutMarks } from './rijal'
 
 describe('runs', () => {
   it('opens on a name at the very start', () => {
@@ -63,14 +63,11 @@ describe('told', () => {
   })
 })
 
-describe('linked', () => {
-  it('gives a drawn name the id of the linked name it opens with, else none', () => {
-    const arabic = 'حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ قَالَ حَدَّثَنَا سُفْيَانُ'
-    const at = (s) => [arabic.indexOf(s), arabic.indexOf(s) + s.length]
-    const links = { main: [{ name: 'سفيان' }, { name: 'الْحُمَيْدِيُّ عَبْدُ اللَّهِ' }, { name: 'زيد' }], branches: [{ links: [{ name: 'سُفْيَانُ' }], join: null }] }
-    const out = linked(links, arabic, [[...at('الْحُمَيْدِيُّ'), 7], [...at('سُفْيَانُ'), 9]])
-    expect(out.main.map((l) => l.id)).toEqual([9, 7, null])
-    expect(out.branches[0].links[0].id).toBe(9)
-    expect(out.branches[0].join).toBe(null)
+describe('drawnChain', () => {
+  it('links each drawn name by where it stands, so a longer unlinked name never borrows a shorter one', () => {
+    const arabic = 'حَدَّثَنَا عَبْدُ اللَّهِ، قَالَ حَدَّثَنَا عَبْدُ اللَّهِ بْنُ مَسْعُودٍ، قَالَ "‏ صَلُّوا ‏"'
+    const first = arabic.indexOf('عَبْدُ اللَّهِ')
+    const out = drawnChain(arabic, [[first, first + 'عَبْدُ اللَّهِ'.length, 5]])
+    expect(out.main.map((l) => l.id)).toEqual([5, null])
   })
 })

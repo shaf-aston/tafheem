@@ -9,7 +9,6 @@ export default function NarratorLink({ id, onOpen, children }) {
     <button
       type="button"
       onClick={() => onOpen(id)}
-      aria-label={`About ${children}`}
       className="press text-inherit underline underline-offset-4 decoration-dotted decoration-[var(--text-faint)] hover:decoration-[var(--text-dim)]"
     >
       {children}
