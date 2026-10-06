@@ -17,7 +17,7 @@ export default function FavoriteStar({ on, onClick }) {
       onAnimationEnd={() => setPopped(false)}
       aria-pressed={on}
       title={on ? 'Remove from favorites' : 'Add to favorites'}
-      className={`press shrink-0 leading-none transition-colors ${popped ? 'pop' : ''} ${
+      className={`press tap shrink-0 leading-none transition-colors ${popped ? 'pop' : ''} ${
         on ? 'text-[var(--warn)]' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
       }`}
     >

@@ -76,7 +76,7 @@ export default function HadithCards({ items, accent, collection, columns = false
                       onClick={() => setDrawn(h)}
                       title="Draw the chain"
                       aria-label="Draw the chain"
-                      className="press shrink-0 grid place-items-center text-[var(--text-faint)] hover:text-[var(--text-dim)] transition-colors"
+                      className="press tap shrink-0 grid place-items-center text-[var(--text-faint)] hover:text-[var(--text-dim)] transition-colors"
                     >
                       <svg aria-hidden="true" viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                         <circle cx="12" cy="4" r="2" />

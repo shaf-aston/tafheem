@@ -11,6 +11,7 @@ import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
 import ChipRow from './ui/ChipRow'
 import EmptyState from './ui/EmptyState'
+import { NarratorWhen } from './ui/NarratorParts'
 import ErrorAlert from './ui/ErrorAlert'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
@@ -47,9 +48,7 @@ export default function NarratorList({ accent, onOpen }) {
                   className="lift press w-full h-full text-start px-4 py-3 space-y-1 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--c)] transition-colors"
                 >
                   <ArabicText as="span" size="base" className="block">{n.name_ar}</ArabicText>
-                  <span className="block type-small text-[var(--text-faint)]">
-                    {[n.generation_ar, n.years, n.city_ar, `${n.hadith_count} hadith`].filter(Boolean).join(' \u00b7 ')}
-                  </span>
+                  <NarratorWhen who={n} also={[`${n.hadith_count} hadith`]} />
                 </button>
               </li>
             ))}
