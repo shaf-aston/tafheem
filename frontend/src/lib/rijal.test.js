@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { runs, toneOf, told, withoutMarks } from './rijal'
+import { linked, runs, toneOf, told, withoutMarks } from './rijal'
 
 describe('runs', () => {
   it('opens on a name at the very start', () => {
@@ -60,5 +60,17 @@ describe('told', () => {
   it('still uses the chain words where they read', () => {
     const out = told('حَدَّثَنَا زَيْدٌ عَنْ عَمْرٍو قَالَ "‏ صَلُّوا ‏"', [])
     expect(out.text.startsWith('عَنْ عَمْرٍو')).toBe(true)
+  })
+})
+
+describe('linked', () => {
+  it('gives a drawn name the id of the linked name it opens with, else none', () => {
+    const arabic = 'حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ قَالَ حَدَّثَنَا سُفْيَانُ'
+    const at = (s) => [arabic.indexOf(s), arabic.indexOf(s) + s.length]
+    const links = { main: [{ name: 'سفيان' }, { name: 'الْحُمَيْدِيُّ عَبْدُ اللَّهِ' }, { name: 'زيد' }], branches: [{ links: [{ name: 'سُفْيَانُ' }], join: null }] }
+    const out = linked(links, arabic, [[...at('الْحُمَيْدِيُّ'), 7], [...at('سُفْيَانُ'), 9]])
+    expect(out.main.map((l) => l.id)).toEqual([9, 7, null])
+    expect(out.branches[0].links[0].id).toBe(9)
+    expect(out.branches[0].join).toBe(null)
   })
 })

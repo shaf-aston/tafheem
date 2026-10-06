@@ -18,6 +18,8 @@ import ArabicText from './ArabicText'
 import ShowRest from './ShowRest'
 import { MARKS, narrated, saying } from '../../lib/hadithWords'
 import { runs, told, withoutMarks } from '../../lib/rijal'
+
+import NarratorLink from './NarratorLink'
 import { useFirstSight } from '../../lib/firstSight'
 import { themeVariable } from '../../theme'
 
@@ -33,8 +35,7 @@ const STAGGER_CAP = Number(themeVariable('--hadith-stagger-cap')) || 8
 
 /**
  * One run of words, each span wearing the colour of whoever is talking.
- * `names` are [start, end, id] slices of `text`; each becomes a button
- * that calls `onNarrator(id)`.
+ * `names` are [start, end, id] slices of `text`; each is a ui/NarratorLink.
  */
 function Spans({ text, marks, names = [], onNarrator }) {
   // saying() drops the direction marks, so the slices move with them.
@@ -44,16 +45,8 @@ function Spans({ text, marks, names = [], onNarrator }) {
   return saying(clean).map((span, i) => {
     const start = clean.indexOf(span.text, cursor)
     cursor = start + span.text.length
-    const parts = runs(span.text, at, start).map((run, j) => run.id == null ? run.text : (
-      <button
-        key={j}
-        type="button"
-        onClick={() => onNarrator(run.id)}
-        aria-label={`About ${run.text}`}
-        className="press text-inherit underline underline-offset-4 decoration-dotted decoration-[var(--text-faint)] hover:decoration-[var(--text-dim)]"
-      >
-        {run.text}
-      </button>
+    const parts = runs(span.text, at, start).map((run, j) => (
+      <NarratorLink key={j} id={run.id} onOpen={onNarrator}>{run.text}</NarratorLink>
     ))
     return (
       <span key={`${span.kind}-${i}`} style={TONE[span.kind]}>

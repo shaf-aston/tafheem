@@ -230,7 +230,7 @@ export function termOf(word) {
 // stay: they trail the name, so the prefix rule below reads past them, while
 // dropping الله would leave عبد الله as عبد.
 const SPELLINGS = HADITH.chain.spellings
-const keyOf = (name) => name.split(/\s+/).map(bare).filter(Boolean)
+export const keyOf = (name) => name.split(/\s+/).map(bare).filter(Boolean)
   .map((w, _, all) => (all.length > 1 && SPELLINGS[w]) || w.replace(/^ال/, '').replace(/(.{3,})ا$/, '$1').replace(/ة$/, 'ه').replace(/ى$/, 'ي'))
 const TOGETHER = new Set(HADITH.chain.together)
 // One narrator when the shorter key opens the longer (سليمان is سليمان بن يسار):

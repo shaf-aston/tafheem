@@ -19,6 +19,7 @@ import { chainLinks, chainOf } from '../lib/hadithWords'
 import { useHadithCollections } from '../lib/useHadithCollections'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 import { useNarrators } from '../lib/useNarrators'
+import { linked } from '../lib/rijal'
 
 import ChainSheet from './ui/ChainSheet'
 import CopyButton from './ui/CopyButton'
@@ -97,7 +98,8 @@ export default function HadithCards({ items, accent, collection, columns = false
       {who != null && <NarratorSheet id={who} onClose={() => setWho(null)} onOpenPage={onNarrator} />}
       {drawn && (
         <ChainSheet
-          links={chainLinks(chainOf(drawn.arabic).chain)}
+          links={linked(chainLinks(chainOf(drawn.arabic).chain), drawn.arabic, namesOf(drawn)[`${drawn.number}${drawn.part ?? ''}`] ?? [])}
+          onNarrator={(id) => { setDrawn(null); setWho(id) }}
           author={of(drawn.collection).short}
           accent={accent}
           onClose={() => setDrawn(null)}

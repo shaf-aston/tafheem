@@ -8,7 +8,7 @@
  */
 import HADITH from '../hadith.json'
 
-import { MARKS, QUOTED, chainOf } from './hadithWords'
+import { MARKS, QUOTED, chainOf, keyOf } from './hadithWords'
 
 const { tones: TONES } = HADITH.narrator
 
@@ -56,5 +56,22 @@ export function told(arabic, names) {
   return {
     text: arabic.slice(at),
     names: names.filter(([start]) => start >= at).map(([start, end, id]) => [start - at, end - at, id]),
+  }
+}
+
+/**
+ * A drawn chain (lib/hadithWords chainLinks) with each narrator's id where
+ * sunnah.com linked his name in this hadith: the linked name his drawn name
+ * opens with, read without vowels. A name it did not link stays plain.
+ */
+export function linked(links, arabic, names) {
+  const keys = names.map(([start, end, id]) => [keyOf(arabic.slice(start, end)).join(' '), id])
+  const add = (link) => link && {
+    ...link,
+    id: keys.find(([key]) => key && `${keyOf(link.name).join(' ')} `.startsWith(`${key} `))?.[1] ?? null,
+  }
+  return {
+    main: links.main.map(add),
+    branches: links.branches.map((b) => ({ ...b, links: b.links.map(add), join: add(b.join) })),
   }
 }
